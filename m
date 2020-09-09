@@ -2,107 +2,164 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from vger.kernel.org (vger.kernel.org [23.128.96.18])
-	by mail.lfdr.de (Postfix) with ESMTP id 5D54B262BAF
-	for <lists+devicetree@lfdr.de>; Wed,  9 Sep 2020 11:22:38 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTP id C6756262BB8
+	for <lists+devicetree@lfdr.de>; Wed,  9 Sep 2020 11:24:36 +0200 (CEST)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S1726426AbgIIJWa (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Wed, 9 Sep 2020 05:22:30 -0400
-Received: from mail.thorsis.com ([92.198.35.195]:42873 "EHLO mail.thorsis.com"
-        rhost-flags-OK-OK-OK-OK) by vger.kernel.org with ESMTP
-        id S1726708AbgIIJW3 (ORCPT <rfc822;devicetree@vger.kernel.org>);
-        Wed, 9 Sep 2020 05:22:29 -0400
-Received: from localhost (localhost [127.0.0.1])
-        by mail.thorsis.com (Postfix) with ESMTP id 2D8D5356E;
-        Wed,  9 Sep 2020 11:22:27 +0200 (CEST)
-X-Virus-Scanned: Debian amavisd-new at mail.thorsis.com
-Received: from mail.thorsis.com ([127.0.0.1])
-        by localhost (mail.thorsis.com [127.0.0.1]) (amavisd-new, port 10024)
-        with ESMTP id enPhrRHJ5ZnP; Wed,  9 Sep 2020 11:22:27 +0200 (CEST)
-Received: by mail.thorsis.com (Postfix, from userid 109)
-        id 0EC1F3DEB; Wed,  9 Sep 2020 11:22:26 +0200 (CEST)
-X-Spam-Level: 
-X-Spam-Status: No, score=-1.9 required=5.0 tests=BAYES_00,NO_RECEIVED,
-        NO_RELAYS autolearn=unavailable autolearn_force=no version=3.4.2
-From:   Alexander Dahl <ada@thorsis.com>
-To:     Pavel Machek <pavel@ucw.cz>
-Cc:     linux-leds@vger.kernel.org,
-        Jacek Anaszewski <jacek.anaszewski@gmail.com>,
-        Alexander Dahl <post@lespocky.de>, devicetree@vger.kernel.org,
-        Dan Murphy <dmurphy@ti.com>, Rob Herring <robh+dt@kernel.org>,
-        linux-kernel@vger.kernel.org
-Subject: Re: [PATCH v2 0/2] leds: pwm: Make automatic labels work
-Date:   Wed, 09 Sep 2020 11:22:18 +0200
-Message-ID: <1670070.OCB1Fln39h@ada>
-In-Reply-To: <20200909090033.GD10891@amd>
-References: <20200831210232.28052-1-post@lespocky.de> <2019500.FJf2EgCAKA@ada> <20200909090033.GD10891@amd>
-Content-Transfer-Encoding: 7Bit
-Content-Type: text/plain; charset="us-ascii"
+        id S1729529AbgIIJYe (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Wed, 9 Sep 2020 05:24:34 -0400
+Received: from lindbergh.monkeyblade.net ([23.128.96.19]:47140 "EHLO
+        lindbergh.monkeyblade.net" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
+        with ESMTP id S1726605AbgIIJYN (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Wed, 9 Sep 2020 05:24:13 -0400
+Received: from mail-wm1-x341.google.com (mail-wm1-x341.google.com [IPv6:2a00:1450:4864:20::341])
+        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 3B853C061756
+        for <devicetree@vger.kernel.org>; Wed,  9 Sep 2020 02:24:11 -0700 (PDT)
+Received: by mail-wm1-x341.google.com with SMTP id w2so1572996wmi.1
+        for <devicetree@vger.kernel.org>; Wed, 09 Sep 2020 02:24:11 -0700 (PDT)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+        d=chromium.org; s=google;
+        h=mime-version:references:in-reply-to:from:date:message-id:subject:to
+         :cc;
+        bh=AmAjr6xvyauDkIBPHoJreMuavbYPMqoWr9WPQMiNPkg=;
+        b=lgk3l2QheCZRIdB/DXYePwXEoUJvYOIpV83Gh1pRZ2BYhkcAj5c3ogzbaLtFuFI9ts
+         jpGHnH6HqqegvOnM9Uqug7F1IJiuwk+eek3yWSn2ufF9Y+cYzVYdiFc0zs3ZtTMRf5cM
+         XT5LclUiUzG/7eZUxr9lBGgyThOWt8HJEhlvI=
+X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+        d=1e100.net; s=20161025;
+        h=x-gm-message-state:mime-version:references:in-reply-to:from:date
+         :message-id:subject:to:cc;
+        bh=AmAjr6xvyauDkIBPHoJreMuavbYPMqoWr9WPQMiNPkg=;
+        b=UvJ7dCBlDIYlW+4BoF9nbyLIsZ0dbp0HhYzph/Go8Bm57dpI7byPOKInnq9iCCkYZL
+         YMjRNmtmbbeuThDpJogIMP2mwKSlqtrqOgjtUmOUej41m6CJTtm5RUyXMnE53wMHQ2HM
+         O4XkzSOPkzIPcmUJ4u/L/7CX9Sgn55pQMq8yFNvt4vVK7dIRcwd9IUN+zFgQIPQyowJb
+         7FAuLyATg8MBoQ4b+UJZBPRVmlsUnI11ldF1j/HeIAv7vZ38FXWbvPmPTbQqX2kcYw3j
+         1cz3TR6UCAlwhRbWpuzfF6LDQ6hD3F7tOlenARx1XENaFqUcs72LtLdpDHsqRzThWqvC
+         z/Hg==
+X-Gm-Message-State: AOAM532GuJBerlTATPN7WVMQKPANS74Mert7mFIf8hfVELUZ42rJIP+E
+        iMZzBwNu/qzlG53F8nd7YZnZ0eLKBH5sf333uG+jDA==
+X-Google-Smtp-Source: ABdhPJyCFk+9azkQozj50ygO4Fld+/Ww0XhKIzoSM/wUVfsy/tdWyDVDQ6WSJk0DhWTK8YoZzQXF1zAmuO+KS+gPPFU=
+X-Received: by 2002:a7b:c3c8:: with SMTP id t8mr2599038wmj.101.1599643450162;
+ Wed, 09 Sep 2020 02:24:10 -0700 (PDT)
+MIME-Version: 1.0
+References: <20200907100039.1731457-1-cychiang@chromium.org>
+ <20200907100039.1731457-3-cychiang@chromium.org> <20200908203357.GA861143@bogus>
+In-Reply-To: <20200908203357.GA861143@bogus>
+From:   Cheng-yi Chiang <cychiang@chromium.org>
+Date:   Wed, 9 Sep 2020 17:23:43 +0800
+Message-ID: <CAFv8NwLMAkFhVT-ML7QHbnSkqmgh=5SrNSik5eSCTHB1=DGQ0A@mail.gmail.com>
+Subject: Re: [PATCH v7 2/3] ASoC: qcom: dt-bindings: Add sc7180 machine bindings
+To:     Rob Herring <robh@kernel.org>
+Cc:     linux-kernel <linux-kernel@vger.kernel.org>,
+        Mark Brown <broonie@kernel.org>,
+        Taniya Das <tdas@codeaurora.org>,
+        Rohit kumar <rohitkr@codeaurora.org>,
+        Banajit Goswami <bgoswami@codeaurora.org>,
+        Patrick Lai <plai@codeaurora.org>,
+        Andy Gross <agross@kernel.org>,
+        Bjorn Andersson <bjorn.andersson@linaro.org>,
+        Liam Girdwood <lgirdwood@gmail.com>,
+        Jaroslav Kysela <perex@perex.cz>,
+        Takashi Iwai <tiwai@suse.com>,
+        Srini Kandagatla <srinivas.kandagatla@linaro.org>,
+        Stephan Gerhold <stephan@gerhold.net>,
+        Matthias Brugger <matthias.bgg@gmail.com>,
+        Heiko Stuebner <heiko@sntech.de>,
+        Doug Anderson <dianders@chromium.org>,
+        Dylan Reid <dgreid@chromium.org>,
+        Tzung-Bi Shih <tzungbi@chromium.org>,
+        Linux ARM <linux-arm-kernel@lists.infradead.org>,
+        linux-arm-msm <linux-arm-msm@vger.kernel.org>,
+        "open list:OPEN FIRMWARE AND FLATTENED DEVICE TREE BINDINGS" 
+        <devicetree@vger.kernel.org>,
+        "moderated list:SOUND - SOC LAYER / DYNAMIC AUDIO POWER MANAGEM..." 
+        <alsa-devel@alsa-project.org>, linux-mediatek@lists.infradead.org,
+        linux-rockchip@lists.infradead.org
+Content-Type: text/plain; charset="UTF-8"
 Sender: devicetree-owner@vger.kernel.org
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-Hello Pavel,
+On Wed, Sep 9, 2020 at 4:34 AM Rob Herring <robh@kernel.org> wrote:
+>
+> On Mon, Sep 07, 2020 at 06:00:38PM +0800, Cheng-Yi Chiang wrote:
+> > Add devicetree bindings documentation file for sc7180 sound card.
+> >
+> > Signed-off-by: Cheng-Yi Chiang <cychiang@chromium.org>
+> > ---
+> >  .../bindings/sound/qcom,sc7180.yaml           | 143 ++++++++++++++++++
+> >  1 file changed, 143 insertions(+)
+> >  create mode 100644 Documentation/devicetree/bindings/sound/qcom,sc7180.yaml
+> >
+> > diff --git a/Documentation/devicetree/bindings/sound/qcom,sc7180.yaml b/Documentation/devicetree/bindings/sound/qcom,sc7180.yaml
+> > new file mode 100644
+> > index 000000000000..ae809346ca80
+> > --- /dev/null
+> > +++ b/Documentation/devicetree/bindings/sound/qcom,sc7180.yaml
+> > @@ -0,0 +1,143 @@
+> > +# SPDX-License-Identifier: (GPL-2.0-only OR BSD-2-Clause)
+> > +%YAML 1.2
+> > +---
+> > +$id: http://devicetree.org/schemas/sound/qcom,sc7180.yaml#
+> > +$schema: http://devicetree.org/meta-schemas/core.yaml#
+> > +
+> > +title: Qualcomm Technologies Inc. SC7180 ASoC sound card driver
+> > +
+> > +maintainers:
+> > +  - Rohit kumar <rohitkr@codeaurora.org>
+> > +  - Cheng-Yi Chiang <cychiang@chromium.org>
+> > +
+> > +description:
+> > +  This binding describes the SC7180 sound card which uses LPASS for audio.
+> > +
+> > +properties:
+> > +  compatible:
+> > +    const: qcom,sc7180-sndcard
+> > +
+> > +  audio-routing:
+> > +    $ref: /schemas/types.yaml#/definitions/non-unique-string-array
+> > +    description:
+> > +      A list of the connections between audio components. Each entry is a
+> > +      pair of strings, the first being the connection's sink, the second
+> > +      being the connection's source.
+> > +
+> > +  model:
+> > +    $ref: /schemas/types.yaml#/definitions/string
+> > +    description: User specified audio sound card name
+> > +
+> > +  headset-jack:
+> > +    $ref: /schemas/types.yaml#/definitions/phandle
+> > +    description: phandle of the codec for headset detection
+> > +
+> > +  hdmi-jack:
+> > +    $ref: /schemas/types.yaml#/definitions/phandle
+> > +    description: phandle of the codec for hdmi jack detection
+>
+> You already have links to these devices. Why duplicate it here?
+>
+> What if you had 2 headsets? This doesn't scale.
+>
+Hi Rob, thanks for reviewing.
+There was some discussion in
+https://patchwork.kernel.org/patch/11737905/#23571643 about how to
+specify the dailink that has a headset jack.
+I would like to pass the information of headset jack and hdmi jack to
+the machine driver so the machine driver can call
+snd_soc_component_set_jack to set jack when init the corresponding link.
+Headset jack and hdmi jack will be treated differently for button and
+event type.
+Because of this, we can not just set a property "jack" in the link.
 
-Am Mittwoch, 9. September 2020, 11:00:33 CEST schrieb Pavel Machek:
-> Hi!
-> 
-> > > > for leds-gpio you can use the properties 'function' and 'color' in the
-> > > > devicetree node and omit 'label', the label is constructed
-> > > > automatically.  This is a common feature supposed to be working for
-> > > > all
-> > > > LED drivers.  However it did not yet work for the 'leds-pwm' driver.
-> > > > This series fixes the driver and takes the opportunity to update the
-> > > > dt-bindings accordingly.
-> > > > 
-> > > > v1: based on v5.9-rc2, backport on v5.4.59 tested and working
-> > > > 
-> > > > v2: based on v5.9-rc3, added the dt-bindings update patch
-> > > > 
-> > > > Greets
-> > > > Alex
-> > > > 
-> > > > Alexander Dahl (2):
-> > > >    leds: pwm: Allow automatic labels for DT based devices
-> > > >    dt-bindings: leds: Convert pwm to yaml
-> > > >   
-> > > >   .../devicetree/bindings/leds/leds-pwm.txt     | 50 -----------
-> > > >   .../devicetree/bindings/leds/leds-pwm.yaml    | 85
-> > > >   +++++++++++++++++++
-> > > >   drivers/leds/leds-pwm.c                       |  9 +-
-> > > >   3 files changed, 93 insertions(+), 51 deletions(-)
-> > > >   delete mode 100644
-> > > >   Documentation/devicetree/bindings/leds/leds-pwm.txt
-> > > >   create mode 100644
-> > > >   Documentation/devicetree/bindings/leds/leds-pwm.yaml
-> > > 
-> > > For both patches:
-> > > 
-> > > Acked-by: Jacek Anaszewski <jacek.anaszewski@gmail.com>
-> > 
-> > I'd like to make a v3 and change the license of the .yaml file to
-> > "(GPL-2.0- only OR BSD-2-Clause)" as suggested by checkpatch and [1]. 
-> > Can I keep your Acked-by for that?
-> > 
-> > Besides: those suggestions are obviously valid for new bindings.  What
-> > about old bindings (.txt), which had no explicit SPDX tag or license note
-> > before? What license would apply there?  Is the .yaml file technically
-> > new, when it was mostly just converted from .txt?
-> 
-> If it is based on previous .txt binding, you have to respect previous
-> author's license. That probably means GPL-2.0 only.
+As for the 2 headsets case (I guess you mean hp jack and mic jack), on
+this board we will not have this use case.
+If someone really wants to build hp jack and mic jack on the board
+based on this machine driver, we can add two more property hp-jack and
+mic-jack to specify that,
+as the machine driver will need to know the different jack types
+anyway. What do you think ?
 
-Probably?
+Or could you please suggest a proper way to pass such information ?
 
-> Alternatively, you can contact original author(s) to get permission to
-> relicense under (GPL-2.0-only OR BSD-2-Clause).
-
-Judging from your feedback on v3, there will be a v4 anyways, so I contacted 
-Peter Ujfalusi, who added the original .txt binding back in 2012 (merged in 
-2013).
-
-Thanks for your feedback
-Alex
-
-
-
+Thanks!
+>
+> Rob
