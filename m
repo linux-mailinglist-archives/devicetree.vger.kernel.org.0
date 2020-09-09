@@ -2,260 +2,64 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from vger.kernel.org (vger.kernel.org [23.128.96.18])
-	by mail.lfdr.de (Postfix) with ESMTP id C77B22626D8
-	for <lists+devicetree@lfdr.de>; Wed,  9 Sep 2020 07:46:46 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTP id 3D6B82626FD
+	for <lists+devicetree@lfdr.de>; Wed,  9 Sep 2020 08:01:16 +0200 (CEST)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S1725991AbgIIFqp (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Wed, 9 Sep 2020 01:46:45 -0400
-Received: from lindbergh.monkeyblade.net ([23.128.96.19]:41846 "EHLO
+        id S1727880AbgIIGBH (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Wed, 9 Sep 2020 02:01:07 -0400
+Received: from lindbergh.monkeyblade.net ([23.128.96.19]:44038 "EHLO
         lindbergh.monkeyblade.net" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S1725772AbgIIFqo (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Wed, 9 Sep 2020 01:46:44 -0400
-Received: from mail-pf1-x442.google.com (mail-pf1-x442.google.com [IPv6:2607:f8b0:4864:20::442])
-        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 86616C061573;
-        Tue,  8 Sep 2020 22:46:44 -0700 (PDT)
-Received: by mail-pf1-x442.google.com with SMTP id o20so1154483pfp.11;
-        Tue, 08 Sep 2020 22:46:44 -0700 (PDT)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=gmail.com; s=20161025;
-        h=date:from:to:cc:subject:message-id:references:mime-version
-         :content-disposition:in-reply-to:user-agent;
-        bh=C2UhuYpJejZc5ElG1FVc/lxyhIXx177Vex4idKVTX14=;
-        b=gRMPXh5i3oNQ9q/jPGNCZ9ckeN/kZdR41zGM7bev4cvYhKHv8SLVKVJX8jd8r1PUlq
-         jbMee2uZrcE1A1feMQ6t+RVXl5rVowf3Bz/RK8EZtiQc+QGQCJHybE5cvonx+VDY+hzs
-         0g2Bt/ydEgkAe/z5fCrt78qry3vnJpl+axB0xvBGyLgG3Nl2CE6OK61pWyrzd4xrg0Lz
-         ehRkD+9mEuBtxebE2LILHBztGigHuJFFvIKW/v+ENdobG3Tfi0C3ICQmf361mBgx7zBM
-         fQC6HQ4w4pvpqbqPUBr4Aprv1NGSCoUmHqzF+JM0B+9CPJ9B/hF1RRnFh/wN3iDjG8A3
-         iSiQ==
-X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=1e100.net; s=20161025;
-        h=x-gm-message-state:date:from:to:cc:subject:message-id:references
-         :mime-version:content-disposition:in-reply-to:user-agent;
-        bh=C2UhuYpJejZc5ElG1FVc/lxyhIXx177Vex4idKVTX14=;
-        b=Kwp/aMVZFNXATDAM27eLRCX9m/9TktAgqWZYHYnSuyO9kwLMe7qQCLF5jbW57uh9N7
-         51mL37R7Aq6CNO3/6vvBFFyi17x9tdNJJozzEOR+eKg/syRliGvbEVP5RlVhq7baDxOG
-         +XLABAA3Q7MwqqxzlXmoi8myscDjTRKsvGL54xWvKwvXmDfgQrpF7yDVxx31kRxKtqVN
-         Aey7n5GWfV8EV96WIdflfF2opjprkkcLtdDA3xxXlEJ5E9202sNglv9wzqVVATchm9ns
-         JaRwyW+lyFLKdqV/vUxUgk41Vw/pzaOlrLyzJi6SvYU9igPVLwzDCPVx4YN7ifBxKZqz
-         PojQ==
-X-Gm-Message-State: AOAM533VhJgHDUpF2g2naPLNRSZgxjRHRZfSxWGhnos9MRWnavO2isg2
-        e4EIUbArNTuNOuhmFMHLhf5d9D28E+WZgw==
-X-Google-Smtp-Source: ABdhPJyz26/uP7vOvSq+6g4m5jBM9THUqUo053ROl5vjaBnP0WVAno8OhD8GLu1veEwzlLv7ElHjbA==
-X-Received: by 2002:a63:594a:: with SMTP id j10mr1667431pgm.402.1599630403879;
-        Tue, 08 Sep 2020 22:46:43 -0700 (PDT)
-Received: from ThinkPad ([114.250.39.43])
-        by smtp.gmail.com with ESMTPSA id j193sm1211193pfd.89.2020.09.08.22.46.38
-        (version=TLS1_2 cipher=ECDHE-ECDSA-CHACHA20-POLY1305 bits=256/256);
-        Tue, 08 Sep 2020 22:46:43 -0700 (PDT)
-Date:   Wed, 9 Sep 2020 13:46:19 +0800
-From:   Orson Zhai <orsonzhai@gmail.com>
-To:     Jonathan Cameron <Jonathan.Cameron@Huawei.com>
-Cc:     Jonathan Cameron <jic23@kernel.org>, linux-iio@vger.kernel.org,
-        Rob Herring <robh+dt@kernel.org>,
-        DTML <devicetree@vger.kernel.org>,
-        Baolin Wang <baolin.wang7@gmail.com>,
-        Chunyan Zhang <zhang.lyra@gmail.com>
-Subject: Re: [PATCH 06/20] dt-bindings:iio:adc:sprd,sc2720-adc yaml
- conversion.
-Message-ID: <20200909054619.GA13589@ThinkPad>
-References: <20200905173004.216081-1-jic23@kernel.org>
- <20200905173004.216081-7-jic23@kernel.org>
- <CA+H2tpE2-f7Sugi04hFwx4QrczufnE2gNHPzAoHWMwARgyOyLw@mail.gmail.com>
- <20200908101232.000032c5@Huawei.com>
+        with ESMTP id S1725772AbgIIGBE (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Wed, 9 Sep 2020 02:01:04 -0400
+Received: from casper.infradead.org (casper.infradead.org [IPv6:2001:8b0:10b:1236::1])
+        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id A012AC061573;
+        Tue,  8 Sep 2020 23:01:03 -0700 (PDT)
+DKIM-Signature: v=1; a=rsa-sha256; q=dns/txt; c=relaxed/relaxed;
+        d=infradead.org; s=casper.20170209; h=In-Reply-To:Content-Type:MIME-Version:
+        References:Message-ID:Subject:Cc:To:From:Date:Sender:Reply-To:
+        Content-Transfer-Encoding:Content-ID:Content-Description;
+        bh=r6fCejwG0iL+7qa2R9K1o31Ku9WHMAs55cEybInLu9E=; b=JF9xLeJ05bJ4buQmwRppivJZg7
+        hFBS727vORj6a1zw4y4aYHspScHg5i4VntwFdoGCQYpCZL1OyicDHWHvHZoy/G6ncasFwH7y8OIRT
+        ghAVAt9dGdjfCqdV95OoxVE0Zz6SI55zoXXitO29keTsBQBTpDig9Iu0X8XTlC6iDHAFZJxuJnoTK
+        tjqCXcUncL8T+FRE/4KZ2aH+JcimPgSzCvgsFvC3WCeO9Es1spYOg8RSKXorg9wkFExMJNhOy8Iqs
+        YPrurd+4pJsFbPkX/3L/Uehh7dhZdXSvA1KdPrvKcX6KT1ontnkgZDbwbY5pMVjb/4eYukLmLbm6q
+        rzbwh/Xw==;
+Received: from hch by casper.infradead.org with local (Exim 4.92.3 #3 (Red Hat Linux))
+        id 1kFt9x-0003xX-H6; Wed, 09 Sep 2020 06:00:45 +0000
+Date:   Wed, 9 Sep 2020 07:00:45 +0100
+From:   Christoph Hellwig <hch@infradead.org>
+To:     Palmer Dabbelt <palmer@dabbelt.com>
+Cc:     Christoph Hellwig <hch@infradead.org>, dkangude@cadence.com,
+        yash.shah@sifive.com, robh+dt@kernel.org,
+        Paul Walmsley <paul.walmsley@sifive.com>, bp@alien8.de,
+        mchehab@kernel.org, tony.luck@intel.com,
+        devicetree@vger.kernel.org, aou@eecs.berkeley.edu,
+        linux-kernel@vger.kernel.org, sachin.ghadi@sifive.com,
+        rrichter@marvell.com, james.morse@arm.com,
+        linux-riscv@lists.infradead.org, linux-edac@vger.kernel.org
+Subject: Re: [PATCH v2 2/3] soc: sifive: Add SiFive specific Cadence DDR
+ controller driver
+Message-ID: <20200909060045.GA13647@infradead.org>
+References: <20200907061126.GA14999@infradead.org>
+ <mhng-d2a95187-c772-4c5d-b30b-b053a3195177@palmerdabbelt-glaptop1>
 MIME-Version: 1.0
 Content-Type: text/plain; charset=us-ascii
 Content-Disposition: inline
-In-Reply-To: <20200908101232.000032c5@Huawei.com>
-User-Agent: Mutt/1.9.4 (2018-02-28)
+In-Reply-To: <mhng-d2a95187-c772-4c5d-b30b-b053a3195177@palmerdabbelt-glaptop1>
+X-SRS-Rewrite: SMTP reverse-path rewritten from <hch@infradead.org> by casper.infradead.org. See http://www.infradead.org/rpr.html
 Sender: devicetree-owner@vger.kernel.org
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-On Tue, Sep 08, 2020 at 10:12:32AM +0100, Jonathan Cameron wrote:
-> On Tue, 8 Sep 2020 01:46:40 +0800
-> Orson Zhai <orsonzhai@gmail.com> wrote:
-> 
-> > Hi Jonathan,
-> > 
-> > On Sun, Sep 6, 2020 at 1:32 AM Jonathan Cameron <jic23@kernel.org> wrote:
-> > >
-> > > From: Jonathan Cameron <Jonathan.Cameron@huawei.com>
-> > >
-> > > I changed the name to reflect a specific part in line with normal
-> > > naming conventions. If there is a particularly strong reason to
-> > > keep the wild cards let me know.  
-> > 
-> > Why do we have to change the file name of 27xx ?
-> 
-> We don't have to, but generally we try to avoid using wild
-> card naming.   It is far too common for companies marketing departments
-> or similar to decide to group incompatible parts.  Basically picking
-> a part number and saying 'and compatible' is much less likely to cause
-> confusion than a wild card!
+On Tue, Sep 08, 2020 at 08:12:16PM -0700, Palmer Dabbelt wrote:
+> I don't know enough about the block to know if the subtle difference in
+> register names/offsets means.  They look properly jumbled up (ie, not just an
+> offset), so maybe there's just different versions or that's the SiFive-specific
+> part I had bouncing around my head?  Either way, it seems like one driver with
+> some simple configuration could handle both of these -- either sticking the
+> offsets in the DT (if they're going to be different everywhere) or by coming up
+> with some version sort of thing (if there's a handful of these).
 
-It makes much sense to me.
-
-> 
-> If you feel strongly about it and can do a check of whether there
-> are any incompatible parts or not covered by that wild card range, then
-> I'm happy to change it back again whilst applying.
-> 
-> Feel free to give a conditional Ack btw!
-
-Acked-by: Orson Zhai <orsonzhai@gmail.com>
-
-Thanks.
-
-Orson
-> 
-> Jonathan
-> 
-> > 
-> > >
-> > > Otherwise this was a fairly simple conversion as part of converting
-> > > all the IIO bindings to yaml.  
-> > 
-> > Thanks for doing this for us.
-> > 
-> > -Orson
-> > 
-> > >
-> > > Signed-off-by: Jonathan Cameron <Jonathan.Cameron@huawei.com>
-> > > Cc: Baolin Wang <baolin.wang7@gmail.com>
-> > > Cc: Orson Zhai <orsonzhai@gmail.com>
-> > > Cc: Chunyan Zhang <zhang.lyra@gmail.com>
-> > > ---
-> > >  .../bindings/iio/adc/sprd,sc2720-adc.yaml     | 72 +++++++++++++++++++
-> > >  .../bindings/iio/adc/sprd,sc27xx-adc.txt      | 40 -----------
-> > >  2 files changed, 72 insertions(+), 40 deletions(-)
-> > >
-> > > diff --git a/Documentation/devicetree/bindings/iio/adc/sprd,sc2720-adc.yaml b/Documentation/devicetree/bindings/iio/adc/sprd,sc2720-adc.yaml
-> > > new file mode 100644
-> > > index 000000000000..57df6439dd9d
-> > > --- /dev/null
-> > > +++ b/Documentation/devicetree/bindings/iio/adc/sprd,sc2720-adc.yaml
-> > > @@ -0,0 +1,72 @@
-> > > +# SPDX-License-Identifier: (GPL-2.0 OR BSD-2-Clause)
-> > > +%YAML 1.2
-> > > +---
-> > > +$id: http://devicetree.org/schemas/iio/adc/sprd,sc2720-adc.yaml#
-> > > +$schema: http://devicetree.org/meta-schemas/core.yaml#
-> > > +
-> > > +title: Spreadtrum SC27XX series PMICs ADC binding
-> > > +
-> > > +maintainers:
-> > > +  - Baolin Wang <baolin.wang7@gmail.com>
-> > > +
-> > > +description:
-> > > +  Supports the ADC found on these PMICs.
-> > > +
-> > > +properties:
-> > > +  compatible:
-> > > +    enum:
-> > > +      - sprd,sc2720-adc
-> > > +      - sprd,sc2721-adc
-> > > +      - sprd,sc2723-adc
-> > > +      - sprd,sc2730-adc
-> > > +      - sprd,sc2731-adc
-> > > +
-> > > +  reg:
-> > > +    maxItems: 1
-> > > +
-> > > +  interrupts:
-> > > +    maxItems: 1
-> > > +
-> > > +  "#io-channel-cells":
-> > > +    const: 1
-> > > +
-> > > +  hwlocks:
-> > > +    maxItems: 1
-> > > +
-> > > +  nvmem-cells:
-> > > +    maxItems: 2
-> > > +
-> > > +  nvmem-cell-names:
-> > > +    items:
-> > > +      - const: big_scale_calib
-> > > +      - const: small_scale_calib
-> > > +
-> > > +required:
-> > > +  - compatible
-> > > +  - reg
-> > > +  - interrupts
-> > > +  - "#io-channel-cells"
-> > > +  - hwlocks
-> > > +  - nvmem-cells
-> > > +  - nvmem-cell-names
-> > > +
-> > > +additionalProperties: false
-> > > +
-> > > +examples:
-> > > +  - |
-> > > +    #include <dt-bindings/interrupt-controller/irq.h>
-> > > +    pmic {
-> > > +        #address-cells = <1>;
-> > > +        #size-cells = <0>;
-> > > +        adc@480 {
-> > > +            compatible = "sprd,sc2731-adc";
-> > > +            reg = <0x480>;
-> > > +            interrupt-parent = <&sc2731_pmic>;
-> > > +            interrupts = <0 IRQ_TYPE_LEVEL_HIGH>;
-> > > +            #io-channel-cells = <1>;
-> > > +            hwlocks = <&hwlock 4>;
-> > > +            nvmem-cells = <&adc_big_scale>, <&adc_small_scale>;
-> > > +            nvmem-cell-names = "big_scale_calib", "small_scale_calib";
-> > > +        };
-> > > +    };
-> > > +...
-> > > diff --git a/Documentation/devicetree/bindings/iio/adc/sprd,sc27xx-adc.txt b/Documentation/devicetree/bindings/iio/adc/sprd,sc27xx-adc.txt
-> > > deleted file mode 100644
-> > > index b4daa15dcf15..000000000000
-> > > --- a/Documentation/devicetree/bindings/iio/adc/sprd,sc27xx-adc.txt
-> > > +++ /dev/null
-> > > @@ -1,40 +0,0 @@
-> > > -Spreadtrum SC27XX series PMICs ADC binding
-> > > -
-> > > -Required properties:
-> > > -- compatible: Should be one of the following.
-> > > -       "sprd,sc2720-adc"
-> > > -       "sprd,sc2721-adc"
-> > > -       "sprd,sc2723-adc"
-> > > -       "sprd,sc2730-adc"
-> > > -       "sprd,sc2731-adc"
-> > > -- reg: The address offset of ADC controller.
-> > > -- interrupt-parent: The interrupt controller.
-> > > -- interrupts: The interrupt number for the ADC device.
-> > > -- #io-channel-cells: Number of cells in an IIO specifier.
-> > > -- hwlocks: Reference to a phandle of a hwlock provider node.
-> > > -- nvmem-cells: A phandle to the calibration cells provided by eFuse device.
-> > > -- nvmem-cell-names: Should be "big_scale_calib", "small_scale_calib".
-> > > -
-> > > -Example:
-> > > -
-> > > -       sc2731_pmic: pmic@0 {
-> > > -               compatible = "sprd,sc2731";
-> > > -               reg = <0>;
-> > > -               spi-max-frequency = <26000000>;
-> > > -               interrupts = <GIC_SPI 31 IRQ_TYPE_LEVEL_HIGH>;
-> > > -               interrupt-controller;
-> > > -               #interrupt-cells = <2>;
-> > > -               #address-cells = <1>;
-> > > -               #size-cells = <0>;
-> > > -
-> > > -               pmic_adc: adc@480 {
-> > > -                       compatible = "sprd,sc2731-adc";
-> > > -                       reg = <0x480>;
-> > > -                       interrupt-parent = <&sc2731_pmic>;
-> > > -                       interrupts = <0 IRQ_TYPE_LEVEL_HIGH>;
-> > > -                       #io-channel-cells = <1>;
-> > > -                       hwlocks = <&hwlock 4>;
-> > > -                       nvmem-cells = <&adc_big_scale>, <&adc_small_scale>;
-> > > -                       nvmem-cell-names = "big_scale_calib", "small_scale_calib";
-> > > -               };
-> > > -       };
-> > > --
-> > > 2.28.0
-> > >  
-> 
-> 
+regmap can be used to handle non-uniform register layouts for the same
+functionality.
