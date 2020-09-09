@@ -2,95 +2,86 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from vger.kernel.org (vger.kernel.org [23.128.96.18])
-	by mail.lfdr.de (Postfix) with ESMTP id E84C8262836
-	for <lists+devicetree@lfdr.de>; Wed,  9 Sep 2020 09:16:37 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTP id 09BA2262890
+	for <lists+devicetree@lfdr.de>; Wed,  9 Sep 2020 09:27:33 +0200 (CEST)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S1727010AbgIIHQg (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Wed, 9 Sep 2020 03:16:36 -0400
-Received: from lindbergh.monkeyblade.net ([23.128.96.19]:55574 "EHLO
-        lindbergh.monkeyblade.net" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S1725984AbgIIHQd (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Wed, 9 Sep 2020 03:16:33 -0400
-Received: from mail-wm1-x342.google.com (mail-wm1-x342.google.com [IPv6:2a00:1450:4864:20::342])
-        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 8776AC061755
-        for <devicetree@vger.kernel.org>; Wed,  9 Sep 2020 00:16:33 -0700 (PDT)
-Received: by mail-wm1-x342.google.com with SMTP id l9so1236062wme.3
-        for <devicetree@vger.kernel.org>; Wed, 09 Sep 2020 00:16:33 -0700 (PDT)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=linaro.org; s=google;
-        h=date:from:to:cc:subject:message-id:references:mime-version
-         :content-disposition:content-transfer-encoding:in-reply-to;
-        bh=sGSszLhzKyiLjIv2TvuHAJHM53/YBqm/b0KkCOpx610=;
-        b=LC9b3CyHa+R4F3plgZXhFVK/O5MNI4/jydOr7NfHBXgFPf7qErTlaWo4TjBKIX3RdE
-         huAyt4+vAiD1SDS9NzOdcbr799v5pvh/DbT7VsVSNA+mH3+95jm1to+wIFW4qAbMEpEV
-         doou+cDepT3ERksbXeA6IPFmJYSk3QkxQtLHMjxPgyTr4UxE5EUgXZWPxOu6ch6SejoA
-         OnlUs1TmoeDVwhG2/ieg4sU/CwcrbONYBwDyiYvaf2K/UAKE93/idEMOK8n8fzI7rfUw
-         CvSBagnzWzUJ+UlRIkr4DlFPivrKfUwAsS/I5EVXdX/TYXYaQgjCENUC9r84crcc3QRl
-         u6Eg==
-X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=1e100.net; s=20161025;
-        h=x-gm-message-state:date:from:to:cc:subject:message-id:references
-         :mime-version:content-disposition:content-transfer-encoding
-         :in-reply-to;
-        bh=sGSszLhzKyiLjIv2TvuHAJHM53/YBqm/b0KkCOpx610=;
-        b=ep+2gC23wfJPwJuE8rpemtOBz7IrHdn+Zs5VLzp9CNrpQ03ghFmIy1pnWy3PHSSUAU
-         3kPSz/nx96Qi/PRTuY72lN787AKmV4ucIWAx1gCIFfJLfylhF5DepdY/2q1IV3A2qI87
-         2GkD/Vwt1VY/XY/JTPkvGq+q+79/YUd4R0eamiGTpu85eU2VcBZLnriyYfi3HdWU0+JI
-         FaG46ciVKaitPPzz0LA8H4mVwEGIBU2ddruk3DgvkXJmlJ1xhRalb3il+H9KgB9SqyIZ
-         3y3Q/bJuw8HPYSB73sHEXARV8QdyFYzntiOtAqdAvvFjoqeyExjC/E4zDFljhqadLhgl
-         PcZQ==
-X-Gm-Message-State: AOAM530GZtl1rLfLiaxa130NCeAFF3+i+x0nNE5LLjtw9mPGiPDS5OpA
-        nfu2ZTmrGV8g0sp0cfPkGCyjmg==
-X-Google-Smtp-Source: ABdhPJydIVfptSYf06/9NqPzYVHQ82le5fWrzLb29ZxnelQM3KNpgZ6ZW50H2EH0XCDdkQEkiXscyA==
-X-Received: by 2002:a1c:7314:: with SMTP id d20mr2057345wmb.76.1599635792247;
-        Wed, 09 Sep 2020 00:16:32 -0700 (PDT)
-Received: from dell ([91.110.221.179])
-        by smtp.gmail.com with ESMTPSA id t15sm2430132wmj.15.2020.09.09.00.16.30
-        (version=TLS1_3 cipher=TLS_AES_256_GCM_SHA384 bits=256/256);
-        Wed, 09 Sep 2020 00:16:31 -0700 (PDT)
-Date:   Wed, 9 Sep 2020 08:16:29 +0100
-From:   Lee Jones <lee.jones@linaro.org>
-To:     Krzysztof Kozlowski <krzk@kernel.org>
-Cc:     Kukjin Kim <kgene@kernel.org>, Rob Herring <robh+dt@kernel.org>,
-        linux-arm-kernel@lists.infradead.org,
-        linux-samsung-soc@vger.kernel.org, devicetree@vger.kernel.org,
-        linux-kernel@vger.kernel.org,
-        Sylwester Nawrocki <s.nawrocki@samsung.com>
-Subject: Re: [PATCH v2 2/2] dt-bindings: mfd: syscon: Document Exynos3 and
- Exynos5433 compatibles
-Message-ID: <20200909071629.GA4400@dell>
-References: <20200902161452.28832-1-krzk@kernel.org>
- <20200902161452.28832-2-krzk@kernel.org>
+        id S1729521AbgIIH1X (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Wed, 9 Sep 2020 03:27:23 -0400
+Received: from lelv0143.ext.ti.com ([198.47.23.248]:41980 "EHLO
+        lelv0143.ext.ti.com" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
+        with ESMTP id S1728584AbgIIH1V (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Wed, 9 Sep 2020 03:27:21 -0400
+Received: from fllv0035.itg.ti.com ([10.64.41.0])
+        by lelv0143.ext.ti.com (8.15.2/8.15.2) with ESMTP id 0897RBah103472;
+        Wed, 9 Sep 2020 02:27:11 -0500
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=ti.com;
+        s=ti-com-17Q1; t=1599636431;
+        bh=CP77hOSCh/XJSIWu/JAdp6XYqnTek2ZtYkKUqWwTEpQ=;
+        h=Subject:From:To:CC:References:Date:In-Reply-To;
+        b=bEs2+N5/opqv/F26O50NMeIDlmQfsG4IRDMZUOCuNz6oSki8Lv6iIBev7IWXndJ5D
+         mb3VX4f846dapOpTG8REJVamX3aNnzYj8xCH854AlYik+hK+WQ5EH1pHnboyqrpIYx
+         THxuQ80rfqisZL7cBjkkENXm0E4EiJH22N++EBXo=
+Received: from DLEE106.ent.ti.com (dlee106.ent.ti.com [157.170.170.36])
+        by fllv0035.itg.ti.com (8.15.2/8.15.2) with ESMTP id 0897RBG1064784;
+        Wed, 9 Sep 2020 02:27:11 -0500
+Received: from DLEE114.ent.ti.com (157.170.170.25) by DLEE106.ent.ti.com
+ (157.170.170.36) with Microsoft SMTP Server (version=TLS1_2,
+ cipher=TLS_ECDHE_RSA_WITH_AES_128_CBC_SHA256_P256) id 15.1.1979.3; Wed, 9 Sep
+ 2020 02:27:10 -0500
+Received: from lelv0326.itg.ti.com (10.180.67.84) by DLEE114.ent.ti.com
+ (157.170.170.25) with Microsoft SMTP Server (version=TLS1_2,
+ cipher=TLS_ECDHE_RSA_WITH_AES_128_CBC_SHA256_P256) id 15.1.1979.3 via
+ Frontend Transport; Wed, 9 Sep 2020 02:27:11 -0500
+Received: from [127.0.0.1] (ileax41-snat.itg.ti.com [10.172.224.153])
+        by lelv0326.itg.ti.com (8.15.2/8.15.2) with ESMTP id 0897R8E9067872;
+        Wed, 9 Sep 2020 02:27:09 -0500
+Subject: Re: [PATCH 1/1] dt-bindings: rng: Convert OMAP RNG to schema
+From:   Tero Kristo <t-kristo@ti.com>
+To:     Rob Herring <robh@kernel.org>
+CC:     <linux-crypto@vger.kernel.org>, <devicetree@vger.kernel.org>,
+        <mpm@selenic.com>, <herbert@gondor.apana.org.au>,
+        <robh+dt@kernel.org>
+References: <20200514131947.28094-1-t-kristo@ti.com>
+ <20200528152750.GA108124@bogus> <537a8759-264c-f366-7fb1-398ff21c9a65@ti.com>
+Message-ID: <e7182d47-3bec-3c51-9fde-faa5a150d5bf@ti.com>
+Date:   Wed, 9 Sep 2020 10:27:08 +0300
+User-Agent: Mozilla/5.0 (X11; Linux x86_64; rv:68.0) Gecko/20100101
+ Thunderbird/68.10.0
 MIME-Version: 1.0
-Content-Type: text/plain; charset=utf-8
-Content-Disposition: inline
+In-Reply-To: <537a8759-264c-f366-7fb1-398ff21c9a65@ti.com>
+Content-Type: text/plain; charset="utf-8"; format=flowed
+Content-Language: en-US
 Content-Transfer-Encoding: 8bit
-In-Reply-To: <20200902161452.28832-2-krzk@kernel.org>
+X-EXCLAIMER-MD-CONFIG: e1e8a2fd-e40a-4ac6-ac9b-f7e9cc9ee180
 Sender: devicetree-owner@vger.kernel.org
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-On Wed, 02 Sep 2020, Krzysztof Kozlowski wrote:
-
-> Document Samsung Exynos3 and Exynos5433 compatibles for system
-> registers.
+On 28/05/2020 19:54, Tero Kristo wrote:
+> On 28/05/2020 18:27, Rob Herring wrote:
+>> On Thu, 14 May 2020 16:19:47 +0300, Tero Kristo wrote:
+>>> Convert TI OMAP Random number generator bindings to DT schema.
+>>>
+>>> Signed-off-by: Tero Kristo <t-kristo@ti.com>
+>>> ---
+>>>   .../devicetree/bindings/rng/omap_rng.txt      | 38 ---------
+>>>   .../devicetree/bindings/rng/ti,omap-rng.yaml  | 77 +++++++++++++++++++
+>>>   2 files changed, 77 insertions(+), 38 deletions(-)
+>>>   delete mode 100644 Documentation/devicetree/bindings/rng/omap_rng.txt
+>>>   create mode 100644 
+>>> Documentation/devicetree/bindings/rng/ti,omap-rng.yaml
+>>>
+>>
+>> Reviewed-by: Rob Herring <robh@kernel.org>
 > 
-> Reviewed-by: Sylwester Nawrocki <s.nawrocki@samsung.com>
-> Signed-off-by: Krzysztof Kozlowski <krzk@kernel.org>
-> 
-> ---
-> 
-> Changes since v1:
-> 1. Rebase on first patch
-> ---
->  Documentation/devicetree/bindings/mfd/syscon.yaml | 2 ++
->  1 file changed, 2 insertions(+)
+> Thanks Rob. Just a quick question, who is going to merge this seeing it 
+> is a standalone dt binding conversion to yaml?
 
-Applied, thanks.
+Ping on this, it appears to have gone stale.
 
--- 
-Lee Jones [李琼斯]
-Senior Technical Lead - Developer Services
-Linaro.org │ Open source software for Arm SoCs
-Follow Linaro: Facebook | Twitter | Blog
+Who is going to pick this up?
+
+-Tero
+--
+Texas Instruments Finland Oy, Porkkalankatu 22, 00180 Helsinki. Y-tunnus/Business ID: 0615521-4. Kotipaikka/Domicile: Helsinki
