@@ -2,128 +2,133 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from vger.kernel.org (vger.kernel.org [23.128.96.18])
-	by mail.lfdr.de (Postfix) with ESMTP id 54D12262C9B
-	for <lists+devicetree@lfdr.de>; Wed,  9 Sep 2020 11:54:46 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTP id 61CE6262CD7
+	for <lists+devicetree@lfdr.de>; Wed,  9 Sep 2020 12:08:14 +0200 (CEST)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S1725917AbgIIJyo (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Wed, 9 Sep 2020 05:54:44 -0400
-Received: from lindbergh.monkeyblade.net ([23.128.96.19]:51868 "EHLO
-        lindbergh.monkeyblade.net" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S1725864AbgIIJyn (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Wed, 9 Sep 2020 05:54:43 -0400
-Received: from mail-wr1-x441.google.com (mail-wr1-x441.google.com [IPv6:2a00:1450:4864:20::441])
-        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 2DE63C061573;
-        Wed,  9 Sep 2020 02:54:43 -0700 (PDT)
-Received: by mail-wr1-x441.google.com with SMTP id w5so2221398wrp.8;
-        Wed, 09 Sep 2020 02:54:43 -0700 (PDT)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=gmail.com; s=20161025;
-        h=subject:to:cc:references:from:message-id:date:user-agent
-         :mime-version:in-reply-to:content-language:content-transfer-encoding;
-        bh=5YhVcwcb6Wgk1PCPZ8YCcZaGe5dXRg4SVb0CRjkFkgA=;
-        b=nYOrQc3JozoKIR8lxuzT8bln2t+PdtuqzCCkyIdk/xjOMRc22tyJ1oUMUFGmeRPRix
-         bCcR8TZBiiS4I0vJL4e3Bb1sDzBVEqafFMcW07KmUO2q8lwF3mJIqioT9pUzeURPWRkA
-         bUAwKSbPfWtvAgG2jjldOHWh4Xrbbqxc3PTeZInVIBc2s8saMlxnsRGAm9Ir9V2PqSFO
-         LXqZEBAs+6Fe0l48PKFQJcPlDn2pw+/hpa4xkC+jMGY6f4e6otRRS4RWA7mVULKmBuZT
-         NefxPlUrmQOpwEGpS/qAq1ER4n614vXZRgS6K8oZV8O/b+aSyDk0ptRNp5ft76/4yF1I
-         iMvA==
-X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=1e100.net; s=20161025;
-        h=x-gm-message-state:subject:to:cc:references:from:message-id:date
-         :user-agent:mime-version:in-reply-to:content-language
-         :content-transfer-encoding;
-        bh=5YhVcwcb6Wgk1PCPZ8YCcZaGe5dXRg4SVb0CRjkFkgA=;
-        b=ecvxNa5620JP8M3yfNZVUHfiGjn3QtIlEP6DOlrbmLb2kd8uTBgzdK4AWfM1dN6SDq
-         Cg3N+mskg1uZWin0ZeedrtC1EBsKGMyYrTwq+Iespus/35Z5teCsHcstlhbRi+4jL8EL
-         ZE1xqmioDIHhC1Xfp18f6CaK0UAVkCCeJ73dNTNFV5yoJrrX78N5tLrJs+FsGBZddyyR
-         PCEi9C/s84EyuMO2CXh1M+L7vsn4nf8kksQR47btAXs4zd6WLOlFj+xS5Bj8mMOWj3sp
-         UCtoJBRtGUjAb15s8YUEy+wxgN4VHPOIqNdnXvaeKT8G2Uzh6jVNEJP+2RagGMFJcTLY
-         mWow==
-X-Gm-Message-State: AOAM532mmJASm25NRo29DcwMoOJmnuj3lNVOws+RXntmrk1MApddDocq
-        i/87/34a/ZjIjJDVXmseFVI=
-X-Google-Smtp-Source: ABdhPJxv4K21NSQFaosgqbX77J5T+sjyZ/mqOq2NHXzwzUy5eaLztRepGwchvzhm/AWWCaZCdLX0Jg==
-X-Received: by 2002:a5d:6343:: with SMTP id b3mr3178210wrw.179.1599645281761;
-        Wed, 09 Sep 2020 02:54:41 -0700 (PDT)
-Received: from ziggy.stardust ([213.195.113.201])
-        by smtp.gmail.com with ESMTPSA id u66sm3116098wmg.44.2020.09.09.02.54.40
-        (version=TLS1_3 cipher=TLS_AES_128_GCM_SHA256 bits=128/128);
-        Wed, 09 Sep 2020 02:54:41 -0700 (PDT)
-Subject: Re: [PATCH] arm64: dts: mt8173-elm: fix supported values for
- regulator-allowed-modes of da9211
-To:     Enric Balletbo i Serra <enric.balletbo@collabora.com>,
-        Dafna Hirschfeld <dafna.hirschfeld@collabora.com>,
-        linux-kernel@vger.kernel.org, linux-mediatek@lists.infradead.org,
-        linux-arm-kernel@lists.infradead.org, devicetree@vger.kernel.org,
-        robh+dt@kernel.org
-Cc:     kernel@collabora.com, dafna3@gmail.com
-References: <20200903142819.24487-1-dafna.hirschfeld@collabora.com>
- <5d504bea-0934-91a9-c052-e463ad6c6d95@collabora.com>
-From:   Matthias Brugger <matthias.bgg@gmail.com>
-Message-ID: <6b281668-3316-6b81-47b2-d17cc6348449@gmail.com>
-Date:   Wed, 9 Sep 2020 11:54:40 +0200
+        id S1726708AbgIIKIM (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Wed, 9 Sep 2020 06:08:12 -0400
+Received: from foss.arm.com ([217.140.110.172]:41216 "EHLO foss.arm.com"
+        rhost-flags-OK-OK-OK-OK) by vger.kernel.org with ESMTP
+        id S1726489AbgIIKIL (ORCPT <rfc822;devicetree@vger.kernel.org>);
+        Wed, 9 Sep 2020 06:08:11 -0400
+Received: from usa-sjc-imap-foss1.foss.arm.com (unknown [10.121.207.14])
+        by usa-sjc-mx-foss1.foss.arm.com (Postfix) with ESMTP id D917331B;
+        Wed,  9 Sep 2020 03:08:10 -0700 (PDT)
+Received: from [192.168.2.22] (unknown [172.31.20.19])
+        by usa-sjc-imap-foss1.foss.arm.com (Postfix) with ESMTPSA id BCECF3F66E;
+        Wed,  9 Sep 2020 03:08:08 -0700 (PDT)
+Subject: Re: [PATCH v2 1/6] dt-bindings: timers: sp-804: Convert to
+ json-schema
+To:     Rob Herring <robh@kernel.org>
+Cc:     Liviu Dudau <liviu.dudau@arm.com>,
+        Florian Fainelli <f.fainelli@gmail.com>,
+        Scott Branden <sbranden@broadcom.com>,
+        Wei Xu <xuwei5@hisilicon.com>, Ray Jui <rjui@broadcom.com>,
+        devicetree@vger.kernel.org,
+        Haojian Zhuang <haojian.zhuang@linaro.org>,
+        linux-kernel@vger.kernel.org, Thomas Gleixner <tglx@linutronix.de>,
+        Rob Herring <robh+dt@kernel.org>,
+        Chanho Min <chanho.min@lge.com>,
+        Lorenzo Pieralisi <lorenzo.pieralisi@arm.com>,
+        Linus Walleij <linus.walleij@linaro.org>,
+        Daniel Lezcano <daniel.lezcano@linaro.org>,
+        linux-arm-kernel@lists.infradead.org,
+        Sudeep Holla <sudeep.holla@arm.com>
+References: <20200828142018.43298-1-andre.przywara@arm.com>
+ <20200828142018.43298-2-andre.przywara@arm.com>
+ <20200908172839.GA575693@bogus>
+From:   =?UTF-8?Q?Andr=c3=a9_Przywara?= <andre.przywara@arm.com>
+Autocrypt: addr=andre.przywara@arm.com; prefer-encrypt=mutual; keydata=
+ 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
+ i4aIXCH3Wv6K
+Organization: ARM Ltd.
+Message-ID: <5357abcd-483d-efa7-964e-5aeb4211ddac@arm.com>
+Date:   Wed, 9 Sep 2020 11:07:45 +0100
 User-Agent: Mozilla/5.0 (X11; Linux x86_64; rv:68.0) Gecko/20100101
  Thunderbird/68.11.0
 MIME-Version: 1.0
-In-Reply-To: <5d504bea-0934-91a9-c052-e463ad6c6d95@collabora.com>
-Content-Type: text/plain; charset=utf-8; format=flowed
-Content-Language: en-US
+In-Reply-To: <20200908172839.GA575693@bogus>
+Content-Type: text/plain; charset=utf-8
+Content-Language: en-GB
 Content-Transfer-Encoding: 7bit
 Sender: devicetree-owner@vger.kernel.org
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-
-
-On 04/09/2020 10:02, Enric Balletbo i Serra wrote:
-> Hi Dafna,
-> 
-> Thank you to work on this.
-> 
-> On 3/9/20 16:28, Dafna Hirschfeld wrote:
->> According to the datasheet the allowed modes for the da9211
->> regulator are sync and auto mode. This should be changed in the
->> devicetree. This also fix an error message
->> 'BUCKA: invalid regulator-allowed-modes element 0'
->> since value 0 is invalid.
+On 08/09/2020 18:28, Rob Herring wrote:
+> On Fri, 28 Aug 2020 15:20:13 +0100, Andre Przywara wrote:
+>> This converts the DT binding documentation for the ARM SP-804 timer IP
+>> over to json-schema.
+>> Most properties are just carried over, the clocks property requirement
+>> (either one or three clocks) is now formalised and enforced.
+>> As the former binding didn't specify clock-names, and there is no
+>> common name used by the existing DTs, I refrained from adding them in
+>> detail (just allowing the property).
+>> The requirement for the APB clock is enforced by the primecell binding
+>> already.
 >>
->> Fixes: 689b937beddeb ("arm64: dts: mediatek: add mt8173 elm and hana board")
->> Signed-off-by: Dafna Hirschfeld <dafna.hirschfeld@collabora.com>
-> 
-> Double checked the regulator supported modes and I can confirm that this patch
-> gets rid of the error message, so:
-> 
-> Tested-by: Enric Balletbo i Serra <enric.balletbo@collabora.com>
-> 
-
-Applied to v5.9-next/dts64
-
-Thanks!
-
+>> Signed-off-by: Andre Przywara <andre.przywara@arm.com>
 >> ---
->>   arch/arm64/boot/dts/mediatek/mt8173-elm.dtsi | 4 +++-
->>   1 file changed, 3 insertions(+), 1 deletion(-)
+>>  .../devicetree/bindings/timer/arm,sp804.txt   | 29 ------
+>>  .../devicetree/bindings/timer/arm,sp804.yaml  | 93 +++++++++++++++++++
+>>  2 files changed, 93 insertions(+), 29 deletions(-)
+>>  delete mode 100644 Documentation/devicetree/bindings/timer/arm,sp804.txt
+>>  create mode 100644 Documentation/devicetree/bindings/timer/arm,sp804.yaml
 >>
->> diff --git a/arch/arm64/boot/dts/mediatek/mt8173-elm.dtsi b/arch/arm64/boot/dts/mediatek/mt8173-elm.dtsi
->> index 1fe5dac24ba1..1a51879d5c6f 100644
->> --- a/arch/arm64/boot/dts/mediatek/mt8173-elm.dtsi
->> +++ b/arch/arm64/boot/dts/mediatek/mt8173-elm.dtsi
->> @@ -5,6 +5,7 @@
->>   
->>   #include <dt-bindings/input/input.h>
->>   #include <dt-bindings/input/linux-event-codes.h>
->> +#include <dt-bindings/regulator/dlg,da9211-regulator.h>
->>   #include <dt-bindings/gpio/gpio.h>
->>   #include "mt8173.dtsi"
->>   
->> @@ -293,7 +294,8 @@
->>   				regulator-max-microamp  = <4400000>;
->>   				regulator-ramp-delay = <10000>;
->>   				regulator-always-on;
->> -				regulator-allowed-modes = <0 1>;
->> +				regulator-allowed-modes = <DA9211_BUCK_MODE_SYNC
->> +							   DA9211_BUCK_MODE_AUTO>;
->>   			};
->>   
->>   			da9211_vgpu_reg: BUCKB {
->>
+> 
+> Applied, thanks!
+> 
+> I dropped the primecell.yaml ref as it is redundant.
+
+Interesting, because I explicitly added it to cover one property that
+was only described in primecell.yaml. But I think this one node was
+originally missing the actual primecell compatible string.
+
+So I tested it now again and don't see any issues without the explicit
+primecell.yaml reference anymore.
+
+Thanks for taking it!
+
+Cheers,
+Andre.
