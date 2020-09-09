@@ -2,53 +2,53 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from vger.kernel.org (vger.kernel.org [23.128.96.18])
-	by mail.lfdr.de (Postfix) with ESMTP id 41ACD262830
-	for <lists+devicetree@lfdr.de>; Wed,  9 Sep 2020 09:15:54 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTP id E84C8262836
+	for <lists+devicetree@lfdr.de>; Wed,  9 Sep 2020 09:16:37 +0200 (CEST)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S1726976AbgIIHPw (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Wed, 9 Sep 2020 03:15:52 -0400
-Received: from lindbergh.monkeyblade.net ([23.128.96.19]:55456 "EHLO
+        id S1727010AbgIIHQg (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Wed, 9 Sep 2020 03:16:36 -0400
+Received: from lindbergh.monkeyblade.net ([23.128.96.19]:55574 "EHLO
         lindbergh.monkeyblade.net" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S1725826AbgIIHPv (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Wed, 9 Sep 2020 03:15:51 -0400
-Received: from mail-wm1-x344.google.com (mail-wm1-x344.google.com [IPv6:2a00:1450:4864:20::344])
-        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 1E842C061573
-        for <devicetree@vger.kernel.org>; Wed,  9 Sep 2020 00:15:51 -0700 (PDT)
-Received: by mail-wm1-x344.google.com with SMTP id w2so1216811wmi.1
-        for <devicetree@vger.kernel.org>; Wed, 09 Sep 2020 00:15:51 -0700 (PDT)
+        with ESMTP id S1725984AbgIIHQd (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Wed, 9 Sep 2020 03:16:33 -0400
+Received: from mail-wm1-x342.google.com (mail-wm1-x342.google.com [IPv6:2a00:1450:4864:20::342])
+        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 8776AC061755
+        for <devicetree@vger.kernel.org>; Wed,  9 Sep 2020 00:16:33 -0700 (PDT)
+Received: by mail-wm1-x342.google.com with SMTP id l9so1236062wme.3
+        for <devicetree@vger.kernel.org>; Wed, 09 Sep 2020 00:16:33 -0700 (PDT)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
         d=linaro.org; s=google;
         h=date:from:to:cc:subject:message-id:references:mime-version
          :content-disposition:content-transfer-encoding:in-reply-to;
-        bh=/JsVsp8FI1KMy1pkXT80pqpRR7DYsy44AH3/acP066U=;
-        b=iFdh41Z5zYmKwG/W+rCcHcrRIP8Q3EONyrh6Wceurjj6y5s6aH6xcX/VYEv367+MRt
-         m+OFy6jVhz2Y64Da0GYm1+CInnjVrdwdz3MHrS29V0u2hbQ0QzsoxfPPUQ+1jCqkW/rr
-         je1GxlCIu4+34pFeirh3P9d3SQbO22e8vWAbMDAA8ZkT9M+UmKqFljAaOpSrTcFkS0TV
-         MeBYCCn8ZAtSFTMlGIBDpvIHiKxmSAsoB/GJSkUEedGHdL5ZbQrKbJqhBQ0rqrhs3DeL
-         QKxLelQIbPIQR8/aLBqcadR7iwxVVXEwI+KPqN4Cc+ITiI7ToN40UgTOuqj7pVVFJ3+/
-         PidQ==
+        bh=sGSszLhzKyiLjIv2TvuHAJHM53/YBqm/b0KkCOpx610=;
+        b=LC9b3CyHa+R4F3plgZXhFVK/O5MNI4/jydOr7NfHBXgFPf7qErTlaWo4TjBKIX3RdE
+         huAyt4+vAiD1SDS9NzOdcbr799v5pvh/DbT7VsVSNA+mH3+95jm1to+wIFW4qAbMEpEV
+         doou+cDepT3ERksbXeA6IPFmJYSk3QkxQtLHMjxPgyTr4UxE5EUgXZWPxOu6ch6SejoA
+         OnlUs1TmoeDVwhG2/ieg4sU/CwcrbONYBwDyiYvaf2K/UAKE93/idEMOK8n8fzI7rfUw
+         CvSBagnzWzUJ+UlRIkr4DlFPivrKfUwAsS/I5EVXdX/TYXYaQgjCENUC9r84crcc3QRl
+         u6Eg==
 X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
         d=1e100.net; s=20161025;
         h=x-gm-message-state:date:from:to:cc:subject:message-id:references
          :mime-version:content-disposition:content-transfer-encoding
          :in-reply-to;
-        bh=/JsVsp8FI1KMy1pkXT80pqpRR7DYsy44AH3/acP066U=;
-        b=bSNCX6YBPRtsRbqDcNCY1V8qZvB0bXvKd/8ikiLOn4YreSGA88ATqKwTQl57yca3ZO
-         6Ti0j9KKxIONXsZdR6dxVD0jHRUsACAhrwoRJRFisB5ARW2Spa4bjJ0q20SDhIZv7ZXA
-         AvDqVIxby9NM6MyQ53vP3056AzXV8SKNLkLMvtlAIAccHkQVL9maAjpDW0Wzkd6Zn61d
-         gP2XjKbxLdosq0qr1uPo9G69UFAANZtCAFiXrSWj++ONeTqBX3zY2vteD4X68xGg9mpG
-         qyAeZWI80w6WJdyBWVksAYHa4awG1+056CpHZKzbeaYuBR5bSB8MOpOyu+u6tM6A726E
-         JQxA==
-X-Gm-Message-State: AOAM5314wGaKXOQEmQdkOWYyPr0JiAKGeljXwcpei1qECGbxgAcU2hey
-        u2PnSYhfiR7MAqvuNDOQ2gaGVA==
-X-Google-Smtp-Source: ABdhPJzFLKxycZi88TEpQo2dW2etwws5zrUtqeqmAWdb8R54+nsGrez/u+3tm/K2T6aQNSlzN72ZWw==
-X-Received: by 2002:a7b:cbd4:: with SMTP id n20mr2217549wmi.105.1599635749811;
-        Wed, 09 Sep 2020 00:15:49 -0700 (PDT)
+        bh=sGSszLhzKyiLjIv2TvuHAJHM53/YBqm/b0KkCOpx610=;
+        b=ep+2gC23wfJPwJuE8rpemtOBz7IrHdn+Zs5VLzp9CNrpQ03ghFmIy1pnWy3PHSSUAU
+         3kPSz/nx96Qi/PRTuY72lN787AKmV4ucIWAx1gCIFfJLfylhF5DepdY/2q1IV3A2qI87
+         2GkD/Vwt1VY/XY/JTPkvGq+q+79/YUd4R0eamiGTpu85eU2VcBZLnriyYfi3HdWU0+JI
+         FaG46ciVKaitPPzz0LA8H4mVwEGIBU2ddruk3DgvkXJmlJ1xhRalb3il+H9KgB9SqyIZ
+         3y3Q/bJuw8HPYSB73sHEXARV8QdyFYzntiOtAqdAvvFjoqeyExjC/E4zDFljhqadLhgl
+         PcZQ==
+X-Gm-Message-State: AOAM530GZtl1rLfLiaxa130NCeAFF3+i+x0nNE5LLjtw9mPGiPDS5OpA
+        nfu2ZTmrGV8g0sp0cfPkGCyjmg==
+X-Google-Smtp-Source: ABdhPJydIVfptSYf06/9NqPzYVHQ82le5fWrzLb29ZxnelQM3KNpgZ6ZW50H2EH0XCDdkQEkiXscyA==
+X-Received: by 2002:a1c:7314:: with SMTP id d20mr2057345wmb.76.1599635792247;
+        Wed, 09 Sep 2020 00:16:32 -0700 (PDT)
 Received: from dell ([91.110.221.179])
-        by smtp.gmail.com with ESMTPSA id x2sm1933582wrl.13.2020.09.09.00.15.48
+        by smtp.gmail.com with ESMTPSA id t15sm2430132wmj.15.2020.09.09.00.16.30
         (version=TLS1_3 cipher=TLS_AES_256_GCM_SHA384 bits=256/256);
-        Wed, 09 Sep 2020 00:15:49 -0700 (PDT)
-Date:   Wed, 9 Sep 2020 08:15:47 +0100
+        Wed, 09 Sep 2020 00:16:31 -0700 (PDT)
+Date:   Wed, 9 Sep 2020 08:16:29 +0100
 From:   Lee Jones <lee.jones@linaro.org>
 To:     Krzysztof Kozlowski <krzk@kernel.org>
 Cc:     Kukjin Kim <kgene@kernel.org>, Rob Herring <robh+dt@kernel.org>,
@@ -56,15 +56,16 @@ Cc:     Kukjin Kim <kgene@kernel.org>, Rob Herring <robh+dt@kernel.org>,
         linux-samsung-soc@vger.kernel.org, devicetree@vger.kernel.org,
         linux-kernel@vger.kernel.org,
         Sylwester Nawrocki <s.nawrocki@samsung.com>
-Subject: Re: [PATCH v2 1/2] dt-bindings: mfd: syscon: Merge Samsung Exynos
- Sysreg bindings
-Message-ID: <20200909071547.GZ4400@dell>
+Subject: Re: [PATCH v2 2/2] dt-bindings: mfd: syscon: Document Exynos3 and
+ Exynos5433 compatibles
+Message-ID: <20200909071629.GA4400@dell>
 References: <20200902161452.28832-1-krzk@kernel.org>
+ <20200902161452.28832-2-krzk@kernel.org>
 MIME-Version: 1.0
 Content-Type: text/plain; charset=utf-8
 Content-Disposition: inline
 Content-Transfer-Encoding: 8bit
-In-Reply-To: <20200902161452.28832-1-krzk@kernel.org>
+In-Reply-To: <20200902161452.28832-2-krzk@kernel.org>
 Sender: devicetree-owner@vger.kernel.org
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
@@ -72,22 +73,19 @@ X-Mailing-List: devicetree@vger.kernel.org
 
 On Wed, 02 Sep 2020, Krzysztof Kozlowski wrote:
 
-> The Samsung Exynos System Registers (Sysreg) bindings are quite simple -
-> just additional compatible to the syscon.  They do not have any value so
-> merge them into generic MFD syscon bindings.
+> Document Samsung Exynos3 and Exynos5433 compatibles for system
+> registers.
 > 
-> Suggested-by: Sylwester Nawrocki <s.nawrocki@samsung.com>
+> Reviewed-by: Sylwester Nawrocki <s.nawrocki@samsung.com>
 > Signed-off-by: Krzysztof Kozlowski <krzk@kernel.org>
 > 
 > ---
 > 
 > Changes since v1:
-> 1. New patch
+> 1. Rebase on first patch
 > ---
->  .../bindings/arm/samsung/sysreg.yaml          | 45 -------------------
->  .../devicetree/bindings/mfd/syscon.yaml       |  2 +
->  2 files changed, 2 insertions(+), 45 deletions(-)
->  delete mode 100644 Documentation/devicetree/bindings/arm/samsung/sysreg.yaml
+>  Documentation/devicetree/bindings/mfd/syscon.yaml | 2 ++
+>  1 file changed, 2 insertions(+)
 
 Applied, thanks.
 
