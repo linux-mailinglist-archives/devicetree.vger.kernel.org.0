@@ -2,124 +2,170 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from vger.kernel.org (vger.kernel.org [23.128.96.18])
-	by mail.lfdr.de (Postfix) with ESMTP id 9E2B72632E7
-	for <lists+devicetree@lfdr.de>; Wed,  9 Sep 2020 18:53:48 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTP id ACE07263228
+	for <lists+devicetree@lfdr.de>; Wed,  9 Sep 2020 18:36:09 +0200 (CEST)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S1730809AbgIIQxX (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Wed, 9 Sep 2020 12:53:23 -0400
-Received: from lindbergh.monkeyblade.net ([23.128.96.19]:52622 "EHLO
-        lindbergh.monkeyblade.net" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S1730735AbgIIQEr (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Wed, 9 Sep 2020 12:04:47 -0400
-Received: from mail-wm1-x343.google.com (mail-wm1-x343.google.com [IPv6:2a00:1450:4864:20::343])
-        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 32884C061798
-        for <devicetree@vger.kernel.org>; Wed,  9 Sep 2020 09:04:20 -0700 (PDT)
-Received: by mail-wm1-x343.google.com with SMTP id e17so2824104wme.0
-        for <devicetree@vger.kernel.org>; Wed, 09 Sep 2020 09:04:20 -0700 (PDT)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=baylibre-com.20150623.gappssmtp.com; s=20150623;
-        h=from:to:cc:subject:date:message-id:in-reply-to:references
-         :mime-version:content-transfer-encoding;
-        bh=h1AWnbsFuPZ6MacypHQ8HsT3a6NqF6t9qfTWoa+8SvY=;
-        b=CBEtX+eetvQyYOJlhFNdL2Py9mlE1aqXsNu2yLaDW0ofpA3brnezX+6b7BJvAYKLuT
-         V68bQ27V+dOY0t21Y4cMcopxcuHJl9KObw5od6vAqTGIiccB8nljhohkaX6b988Fh2dk
-         +WW6yD629U3/2fVJqNwKLxqout6WmwgAJehP3FyS2yuM8GQiUC90ENf1p4GYBpYQ1Iie
-         Wpy0Soe3C+7W3P8HjatHnNJQkG2CkCbnx8oIy57b/J9dP5ITDpA9dh0MNYzSsk8BdLcY
-         BApABE2lixWzfO/MPhOK6ycI/B2lwLg0mofAc4MAh5J3fNsWtMENu062OPINiimT08Cd
-         6Edg==
-X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=1e100.net; s=20161025;
-        h=x-gm-message-state:from:to:cc:subject:date:message-id:in-reply-to
-         :references:mime-version:content-transfer-encoding;
-        bh=h1AWnbsFuPZ6MacypHQ8HsT3a6NqF6t9qfTWoa+8SvY=;
-        b=pzrRKTW1Kgnl2CiJWn9flZMHxfrKPQGFnzvTgnZOHSEbfRjNBBY7jfocKoXR0zB1Ko
-         IdE/OQjm22ow8yPu1TUv1qenp9MHJzJRjKAaxFsp5X2NOizNWP+PJCkNUMg3d3Z/Wnb0
-         7/SbW7ip/dVKFAu8JY7qoak634yUxyoKei8GiboiZov+c7XSXPdoBUMZ8p7/beFZwPGk
-         Bt+2Ms3jtJwu85JvDmh+KQfWUj5KyGVQTXKifvX3JiIsS2O62hkcG2vunXuebYuRiUsI
-         1dojfGzO3UhG90WJmXOWdsKfrATPShOTR7zUsuQVwV4NkxoEd0qwPlbJZt3s0echr/Wp
-         t+Kg==
-X-Gm-Message-State: AOAM531W2mLen+ZW7gmS+4Rrve4LNbjvR5gp6+pzL14UFLotQ0cE5OrL
-        r73ksCeuqQjcMn9Oj2BchzhRww==
-X-Google-Smtp-Source: ABdhPJxj7lBo+0hk4DkP0KoDHzMJtbj02HX+VSFjyvK7FqFw6/ssYu+ZmXW2UR8kbhGhvelekB8u/w==
-X-Received: by 2002:a7b:c5d0:: with SMTP id n16mr4098812wmk.7.1599667458702;
-        Wed, 09 Sep 2020 09:04:18 -0700 (PDT)
-Received: from bender.baylibre.local ([2a01:e35:2ec0:82b0:5405:9623:e2f1:b2ac])
-        by smtp.gmail.com with ESMTPSA id y6sm4850700wrn.41.2020.09.09.09.04.17
-        (version=TLS1_3 cipher=TLS_AES_256_GCM_SHA384 bits=256/256);
-        Wed, 09 Sep 2020 09:04:18 -0700 (PDT)
-From:   Neil Armstrong <narmstrong@baylibre.com>
-To:     khilman@baylibre.com, martin.blumenstingl@googlemail.com,
-        devicetree@vger.kernel.org
-Cc:     linux-amlogic@lists.infradead.org,
-        linux-arm-kernel@lists.infradead.org, linux-kernel@vger.kernel.org,
-        Neil Armstrong <narmstrong@baylibre.com>,
-        linux-usb@vger.kernel.org
-Subject: [PATCH 2/5] dt-bindings: usb: amlogic,meson-g12a-usb-ctrl: add the Amlogic AXG Families USB Glue Bindings
-Date:   Wed,  9 Sep 2020 18:04:06 +0200
-Message-Id: <20200909160409.8678-3-narmstrong@baylibre.com>
-X-Mailer: git-send-email 2.22.0
-In-Reply-To: <20200909160409.8678-1-narmstrong@baylibre.com>
-References: <20200909160409.8678-1-narmstrong@baylibre.com>
+        id S1731075AbgIIQ0L (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Wed, 9 Sep 2020 12:26:11 -0400
+Received: from mail.nic.cz ([217.31.204.67]:34622 "EHLO mail.nic.cz"
+        rhost-flags-OK-OK-OK-OK) by vger.kernel.org with ESMTP
+        id S1731052AbgIIQ0D (ORCPT <rfc822;devicetree@vger.kernel.org>);
+        Wed, 9 Sep 2020 12:26:03 -0400
+Received: from dellmb.labs.office.nic.cz (unknown [IPv6:2001:1488:fffe:6:cac7:3539:7f1f:463])
+        by mail.nic.cz (Postfix) with ESMTP id C2F08140A64;
+        Wed,  9 Sep 2020 18:25:54 +0200 (CEST)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=nic.cz; s=default;
+        t=1599668754; bh=GiMyA6x4ElsGNt3VmolCaxWgc8p8+8SuvAMrXWbJfso=;
+        h=From:To:Date;
+        b=f87YnBrkbGhc0mIVSyThy0I8tEFadbY7bRevzKURZ9u8FsqdUpA2/lTT/7rnUADVz
+         YpnEVtE4a7UcqDL5SUwko8Q7h8/8pJC0mgawuhLM6VqjkGqnUJPvleJRn4k2ROwRdS
+         kCtCRgAacYXe2/ZszbGkdU37lhlonyDym53MpG/s=
+From:   =?UTF-8?q?Marek=20Beh=C3=BAn?= <marek.behun@nic.cz>
+To:     netdev@vger.kernel.org
+Cc:     linux-leds@vger.kernel.org, Pavel Machek <pavel@ucw.cz>,
+        Dan Murphy <dmurphy@ti.com>,
+        =?UTF-8?q?Ond=C5=99ej=20Jirman?= <megous@megous.com>,
+        Russell King <linux@armlinux.org.uk>,
+        Andrew Lunn <andrew@lunn.ch>, linux-kernel@vger.kernel.org,
+        Matthias Schiffer <matthias.schiffer@ew.tq-group.com>,
+        "David S. Miller" <davem@davemloft.net>,
+        =?UTF-8?q?Marek=20Beh=C3=BAn?= <marek.behun@nic.cz>,
+        Rob Herring <robh+dt@kernel.org>, devicetree@vger.kernel.org
+Subject: [PATCH net-next + leds v2 1/7] dt-bindings: leds: document binding for HW controlled LEDs
+Date:   Wed,  9 Sep 2020 18:25:46 +0200
+Message-Id: <20200909162552.11032-2-marek.behun@nic.cz>
+X-Mailer: git-send-email 2.26.2
+In-Reply-To: <20200909162552.11032-1-marek.behun@nic.cz>
+References: <20200909162552.11032-1-marek.behun@nic.cz>
 MIME-Version: 1.0
+Content-Type: text/plain; charset=UTF-8
 Content-Transfer-Encoding: 8bit
+X-Spam-Checker-Version: SpamAssassin 3.4.2 (2018-09-13) on mail.nic.cz
+X-Spam-Status: No, score=0.00
+X-Spamd-Bar: /
+X-Virus-Scanned: clamav-milter 0.102.2 at mail
+X-Virus-Status: Clean
 Sender: devicetree-owner@vger.kernel.org
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-The Amlogic AXG is close from the GXL Glue but with a single OTG PHY.
+Document binding for LEDs connected to and controlled by various chips
+(such as ethernet PHY chips).
 
-Signed-off-by: Neil Armstrong <narmstrong@baylibre.com>
+Signed-off-by: Marek Behún <marek.behun@nic.cz>
+Cc: Rob Herring <robh+dt@kernel.org>
+Cc: devicetree@vger.kernel.org
 ---
- .../usb/amlogic,meson-g12a-usb-ctrl.yaml      | 22 ++++++++++++++++++-
- 1 file changed, 21 insertions(+), 1 deletion(-)
+ .../leds/linux,hw-controlled-leds.yaml        | 99 +++++++++++++++++++
+ 1 file changed, 99 insertions(+)
+ create mode 100644 Documentation/devicetree/bindings/leds/linux,hw-controlled-leds.yaml
 
-diff --git a/Documentation/devicetree/bindings/usb/amlogic,meson-g12a-usb-ctrl.yaml b/Documentation/devicetree/bindings/usb/amlogic,meson-g12a-usb-ctrl.yaml
-index 5b04a7dfa018..c0058332b967 100644
---- a/Documentation/devicetree/bindings/usb/amlogic,meson-g12a-usb-ctrl.yaml
-+++ b/Documentation/devicetree/bindings/usb/amlogic,meson-g12a-usb-ctrl.yaml
-@@ -25,13 +25,14 @@ description: |
-   The Amlogic A1 embeds a DWC3 USB IP Core configured for USB2 in
-   host-only mode.
- 
--  The Amlogic GXL & GXM SoCs doesn't embed an USB3 PHY.
-+  The Amlogic GXL, GXM & AXG SoCs doesn't embed an USB3 PHY.
- 
- properties:
-   compatible:
-     enum:
-       - amlogic,meson-gxl-usb-ctrl
-       - amlogic,meson-gxm-usb-ctrl
-+      - amlogic,meson-axg-usb-ctrl
-       - amlogic,meson-g12a-usb-ctrl
-       - amlogic,meson-a1-usb-ctrl
- 
-@@ -151,6 +152,25 @@ allOf:
- 
-       required:
-         - clock-names
-+  - if:
-+      properties:
-+        compatible:
-+          enum:
-+            - amlogic,meson-axg-usb-ctrl
+diff --git a/Documentation/devicetree/bindings/leds/linux,hw-controlled-leds.yaml b/Documentation/devicetree/bindings/leds/linux,hw-controlled-leds.yaml
+new file mode 100644
+index 0000000000000..eaf6e5d80c5f5
+--- /dev/null
++++ b/Documentation/devicetree/bindings/leds/linux,hw-controlled-leds.yaml
+@@ -0,0 +1,99 @@
++# SPDX-License-Identifier: GPL-2.0-only OR BSD-2-Clause
++%YAML 1.2
++---
++$id: http://devicetree.org/schemas/leds/linux,hw-controlled-leds.yaml#
++$schema: http://devicetree.org/meta-schemas/core.yaml#
 +
-+    then:
-+      properties:
-+        phy-names:
-+          items:
-+            - const: usb2-phy1 # USB2 PHY1 if USBOTG_B port is used
-+        clocks:
-+          minItems: 2
-+        clock-names:
-+          items:
-+            - const: usb_ctrl
-+            - const: ddr
-+      required:
-+        - clock-names
-   - if:
-       properties:
-         compatible:
++title: LEDs that can be controlled by hardware (eg. by an ethernet PHY chip)
++
++maintainers:
++  - Marek Behún <marek.behun@nic.cz>
++
++description:
++  Many an ethernet PHY (and other chips) supports various HW control modes
++  for LEDs connected directly to them. With this binding such LEDs can be
++  described.
++
++properties:
++  compatible:
++    const: linux,hw-controlled-leds
++
++  "#address-cells":
++    const: 1
++
++  "#size-cells":
++    const: 0
++
++patternProperties:
++  "^led@[0-9a-f]+$":
++    type: object
++    allOf:
++      - $ref: common.yaml#
++    description:
++      This node represents a LED device connected to a chip that can control
++      the LED in various HW controlled modes.
++
++    properties:
++      reg:
++        maxItems: 1
++        description:
++          This property identifies the LED to the chip the LED is connected to
++          (eg. an ethernet PHY chip can have multiple LEDs connected to it).
++
++      enable-active-high:
++        description:
++          Polarity of LED is active high. If missing, assumed default is active
++          low.
++        type: boolean
++
++      led-tristate:
++        description:
++          LED pin is tristate type. If missing, assumed false.
++        type: boolean
++
++      linux,default-hw-mode:
++        description:
++          This parameter, if present, specifies the default HW triggering mode
++          of the LED when LED trigger is set to `dev-hw-mode`.
++          Available values are specific per device the LED is connected to and
++          per LED itself.
++        $ref: /schemas/types.yaml#definitions/string
++
++    required:
++      - reg
++
++additionalProperties: false
++
++examples:
++  - |
++
++    #include <dt-bindings/leds/common.h>
++
++    ethernet-phy@0 {
++        compatible = "ethernet-phy-ieee802.3-c45";
++        reg = <0>;
++
++        leds {
++            compatible = "linux,hw-controlled-leds";
++            #address-cells = <1>;
++            #size-cells = <0>;
++
++            led@0 {
++                reg = <0>;
++                color = <LED_COLOR_ID_GREEN>;
++                function = <LED_FUNCTION_STATUS>;
++                linux,default-trigger = "dev-hw-mode";
++                linux,default-hw-mode = "1Gbps";
++            };
++
++            led@1 {
++                reg = <1>;
++                color = <LED_COLOR_ID_YELLOW>;
++                function = <LED_FUNCTION_ACTIVITY>;
++                linux,default-trigger = "dev-hw-mode";
++                linux,default-hw-mode = "activity";
++            };
++        };
++    };
++
++...
 -- 
-2.22.0
+2.26.2
 
