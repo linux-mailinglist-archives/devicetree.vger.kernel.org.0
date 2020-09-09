@@ -2,206 +2,82 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from vger.kernel.org (vger.kernel.org [23.128.96.18])
-	by mail.lfdr.de (Postfix) with ESMTP id C4B1226378A
-	for <lists+devicetree@lfdr.de>; Wed,  9 Sep 2020 22:36:46 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTP id E0AFC26379A
+	for <lists+devicetree@lfdr.de>; Wed,  9 Sep 2020 22:41:23 +0200 (CEST)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S1726440AbgIIUgp (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Wed, 9 Sep 2020 16:36:45 -0400
-Received: from mail-il1-f194.google.com ([209.85.166.194]:38974 "EHLO
-        mail-il1-f194.google.com" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S1726642AbgIIUgp (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Wed, 9 Sep 2020 16:36:45 -0400
-Received: by mail-il1-f194.google.com with SMTP id u20so3625743ilk.6;
-        Wed, 09 Sep 2020 13:36:44 -0700 (PDT)
+        id S1726976AbgIIUlW (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Wed, 9 Sep 2020 16:41:22 -0400
+Received: from mail-io1-f67.google.com ([209.85.166.67]:35828 "EHLO
+        mail-io1-f67.google.com" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
+        with ESMTP id S1726534AbgIIUlV (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Wed, 9 Sep 2020 16:41:21 -0400
+Received: by mail-io1-f67.google.com with SMTP id r9so4704328ioa.2;
+        Wed, 09 Sep 2020 13:41:20 -0700 (PDT)
 X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
         d=1e100.net; s=20161025;
         h=x-gm-message-state:date:from:to:cc:subject:message-id:references
          :mime-version:content-disposition:in-reply-to;
-        bh=tD9tolo1brm9/WWkIMmC/3imxbO/TchAZXbaapTa7wQ=;
-        b=PJLctGEqmvvjLeteZ7+igVB//7qxAfLtZNqrg6FjLBippBwPbljGA+lv0ooS8iirkw
-         oNv4QUYMZFoTRcNAWuBqwJRjbFBMa2jAk9sS99pYN7Cbv6OpE57WWH76K5IBDMCdv+xt
-         7rLsDjkLciTtAUzJztysjWGseHYq7I0/EVCSMybj9v6gW7+PKOSV7yuWx4zLMhx2Gmn/
-         nIMzLXWlhpGKBf+MFlAwI/LKcWyCXrylegy8nLkPvzP4Xqk5zv7SL9q9ykw6NmjGMQ1N
-         wFIapsHgZWXTHWSSLwBFN7lChfNk9A1QXf3RhntGIahIC6LoikQ5nFDEt5N6u4IFjVab
-         OLKg==
-X-Gm-Message-State: AOAM531ApnOAyQ/TTxmouIu/CNwJ7vU4Zjlnc8drtg3AnYrbBEPeFmAk
-        j+w0KC/v4BV957XIj/+tmA==
-X-Google-Smtp-Source: ABdhPJwboNKxydBskQnpH/Yew3oH2kR5BqC35FLjuY/D4iiOIUDsG3kaodAVucTb14h0+QQl4cjtAw==
-X-Received: by 2002:a05:6e02:f06:: with SMTP id x6mr4646832ilj.222.1599683803168;
-        Wed, 09 Sep 2020 13:36:43 -0700 (PDT)
+        bh=TqGCn7DWU7EUWxs9MN7C6bAa7Y406Cxeb7CwfmoBTx8=;
+        b=TI0NHSIHMJFHExyeU451DF8wQ1+UR9ud9jGgn0FymFFL6uMxEM7X6VXeOzyBVTuZ3O
+         K/lwbit8kSbys2UaZnRgSzKgjydeYTGbkPFa3nT4WGbfy9HBroDJeZ+8iU/TgRwOowGl
+         bTk8baED1z/T+CSc5g+1oQJO19foZRpzhYAU/xmORrFJd5tg2lc4MaZ5nhy96S+cgqHc
+         Hntk7LuvNfO7STL3Cnc9gmmHzVjUwo9TOuGjlueviEVzW+PA1NYfZ0u11506/ixeE/9J
+         KTGaVw9uY/Kgg9lpzmC+4svbXbpLJuPJ382wZCrX7449tA7yeW3gbkTlsARMsnvM7LPZ
+         nWpw==
+X-Gm-Message-State: AOAM5332dblCNZHaXrdeixktH1wMzuhYut5KTrd/2hEMPRi5hHIDgeyN
+        nrLwCOsZ+3oX9AwpdKF9Zw==
+X-Google-Smtp-Source: ABdhPJwLwHtwzJ4ltje++kfY0TsTVaRVw7sQGbyuMO1IGirxuMWUNGgGKRpRaaeQayPrx++zVhyynQ==
+X-Received: by 2002:a6b:6a01:: with SMTP id x1mr4975232iog.1.1599684080072;
+        Wed, 09 Sep 2020 13:41:20 -0700 (PDT)
 Received: from xps15 ([64.188.179.251])
-        by smtp.gmail.com with ESMTPSA id p12sm1229709iom.47.2020.09.09.13.36.36
+        by smtp.gmail.com with ESMTPSA id 64sm2085891ilv.0.2020.09.09.13.41.14
         (version=TLS1_3 cipher=TLS_AES_256_GCM_SHA384 bits=256/256);
-        Wed, 09 Sep 2020 13:36:42 -0700 (PDT)
-Received: (nullmailer pid 3035275 invoked by uid 1000);
-        Wed, 09 Sep 2020 20:36:31 -0000
-Date:   Wed, 9 Sep 2020 14:36:31 -0600
+        Wed, 09 Sep 2020 13:41:19 -0700 (PDT)
+Received: (nullmailer pid 3041579 invoked by uid 1000);
+        Wed, 09 Sep 2020 20:41:11 -0000
+Date:   Wed, 9 Sep 2020 14:41:11 -0600
 From:   Rob Herring <robh@kernel.org>
-To:     Swapnil Jakhade <sjakhade@cadence.com>
-Cc:     vkoul@kernel.org, kishon@ti.com, linux-kernel@vger.kernel.org,
-        devicetree@vger.kernel.org, mparab@cadence.com,
-        yamonkar@cadence.com, tomi.valkeinen@ti.com, jsarha@ti.com,
-        nsekhar@ti.com
-Subject: Re: [PATCH v2 7/7] dt-bindings: phy: cadence-torrent: Update Torrent
- PHY bindings for generic use
-Message-ID: <20200909203631.GA3026331@bogus>
-References: <1598534932-18693-1-git-send-email-sjakhade@cadence.com>
- <1598534932-18693-8-git-send-email-sjakhade@cadence.com>
+To:     Florian Fainelli <f.fainelli@gmail.com>
+Cc:     Kamal Dasu <kdasu.kdev@gmail.com>,
+        Yendapally Reddy Dhananjaya Reddy 
+        <yendapally.reddy@broadcom.com>,
+        "open list:OPEN FIRMWARE AND FLATTENED DEVICE TREE BINDINGS" 
+        <devicetree@vger.kernel.org>,
+        "open list:SPI SUBSYSTEM" <linux-spi@vger.kernel.org>,
+        "maintainer:BROADCOM SPI DRIVER" 
+        <bcm-kernel-feedback-list@broadcom.com>,
+        linux-arm-kernel@lists.infradead.org,
+        =?utf-8?B?UmFmYcWCIE1pxYJlY2tp?= <zajec5@gmail.com>,
+        open list <linux-kernel@vger.kernel.org>,
+        Rob Herring <robh+dt@kernel.org>,
+        Mark Brown <broonie@kernel.org>,
+        Hauke Mehrtens <hauke@hauke-m.de>, Ray Jui <rjui@broadcom.com>,
+        Scott Branden <sbranden@broadcom.com>
+Subject: Re: [PATCH 1/5] dt-bindings: spi: Fix spi-bcm-qspi compatible
+ ordering
+Message-ID: <20200909204111.GA3041530@bogus>
+References: <20200827181842.1000451-1-f.fainelli@gmail.com>
+ <20200827181842.1000451-2-f.fainelli@gmail.com>
 MIME-Version: 1.0
 Content-Type: text/plain; charset=us-ascii
 Content-Disposition: inline
-In-Reply-To: <1598534932-18693-8-git-send-email-sjakhade@cadence.com>
+In-Reply-To: <20200827181842.1000451-2-f.fainelli@gmail.com>
 Sender: devicetree-owner@vger.kernel.org
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-On Thu, Aug 27, 2020 at 03:28:52PM +0200, Swapnil Jakhade wrote:
-> Torrent PHY can be used in different multi-link multi-protocol
-> configurations including protocols other than DisplayPort also,
-> such as PCIe, USB, SGMII, QSGMII etc. Update the bindings to have
-> support for these configurations.
+On Thu, 27 Aug 2020 11:18:38 -0700, Florian Fainelli wrote:
+> The binding is currently incorrectly defining the compatible strings
+> from least specific to most specific instead of the converse. Re-order
+> them from most specific (left) to least specific (right) and fix the
+> examples as well.
 > 
-> Signed-off-by: Swapnil Jakhade <sjakhade@cadence.com>
+> Fixes: 5fc78f4c842a ("spi: Broadcom BRCMSTB, NSP, NS2 SoC bindings")
+> Signed-off-by: Florian Fainelli <f.fainelli@gmail.com>
 > ---
->  .../bindings/phy/phy-cadence-torrent.yaml     | 76 ++++++++++++++-----
->  1 file changed, 58 insertions(+), 18 deletions(-)
+>  .../bindings/spi/brcm,spi-bcm-qspi.txt           | 16 ++++++++--------
+>  1 file changed, 8 insertions(+), 8 deletions(-)
 > 
-> diff --git a/Documentation/devicetree/bindings/phy/phy-cadence-torrent.yaml b/Documentation/devicetree/bindings/phy/phy-cadence-torrent.yaml
-> index a7ee19d27c19..1b9e1231f8d8 100644
-> --- a/Documentation/devicetree/bindings/phy/phy-cadence-torrent.yaml
-> +++ b/Documentation/devicetree/bindings/phy/phy-cadence-torrent.yaml
-> @@ -4,11 +4,13 @@
->  $id: "http://devicetree.org/schemas/phy/phy-cadence-torrent.yaml#"
->  $schema: "http://devicetree.org/meta-schemas/core.yaml#"
->  
-> -title: Cadence Torrent SD0801 PHY binding for DisplayPort
-> +title: Cadence Torrent SD0801 PHY binding
->  
->  description:
->    This binding describes the Cadence SD0801 PHY (also known as Torrent PHY)
-> -  hardware included with the Cadence MHDP DisplayPort controller.
-> +  hardware included with the Cadence MHDP DisplayPort controller. Torrent
-> +  PHY also supports multilink multiprotocol combinations including protocols
-> +  such as PCIe, USB, SGMII, QSGMII etc.
->  
->  maintainers:
->    - Swapnil Jakhade <sjakhade@cadence.com>
-> @@ -49,13 +51,14 @@ properties:
->        - const: dptx_phy
->  
->    resets:
-> -    maxItems: 1
-> -    description:
-> -      Torrent PHY reset.
-> -      See Documentation/devicetree/bindings/reset/reset.txt
-> +    minItems: 1
-> +    maxItems: 2
-> +    items:
-> +      - description: Torrent PHY reset.
-> +      - description: Torrent APB reset. This is optional.
->  
->  patternProperties:
-> -  '^phy@[0-7]+$':
-> +  '^link@[0-7]+$':
 
-No, nodes with #phy-cell should be named 'phy'.
-
-Also, the '+' is wrong unless unit-addresses are in octal.
-
->      type: object
->      description:
->        Each group of PHY lanes with a single master lane should be represented as a sub-node.
-> @@ -78,13 +81,13 @@ patternProperties:
->            Specifies the type of PHY for which the group of PHY lanes is used.
->            Refer include/dt-bindings/phy/phy.h. Constants from the header should be used.
->          $ref: /schemas/types.yaml#/definitions/uint32
-> -        enum: [1, 2, 3, 4, 5, 6]
-> +        enum: [1, 2, 3, 4, 5, 6, 7, 8, 9]
-
-Probably better to change this to:
-
-minimum: 1
-maximum: 9
-
->  
->        cdns,num-lanes:
->          description:
-> -          Number of DisplayPort lanes.
-> +          Number of lanes.
->          $ref: /schemas/types.yaml#/definitions/uint32
-> -        enum: [1, 2, 4]
-> +        enum: [1, 2, 3, 4]
->          default: 4
->  
->        cdns,ssc-mode:
-> @@ -108,6 +111,7 @@ patternProperties:
->        - resets
->        - "#phy-cells"
->        - cdns,phy-type
-> +      - cdns,num-lanes
->  
->      additionalProperties: false
->  
-> @@ -141,14 +145,50 @@ examples:
->              clock-names = "refclk";
->              #address-cells = <1>;
->              #size-cells = <0>;
-> -            phy@0 {
-> -                      reg = <0>;
-> -                      resets = <&phyrst 1>, <&phyrst 2>,
-> -                               <&phyrst 3>, <&phyrst 4>;
-> -                      #phy-cells = <0>;
-> -                      cdns,phy-type = <PHY_TYPE_DP>;
-> -                      cdns,num-lanes = <4>;
-> -                      cdns,max-bit-rate = <8100>;
-> +            link@0 {
-> +                reg = <0>;
-> +                resets = <&phyrst 1>, <&phyrst 2>,
-> +                         <&phyrst 3>, <&phyrst 4>;
-> +                #phy-cells = <0>;
-> +                cdns,phy-type = <PHY_TYPE_DP>;
-> +                cdns,num-lanes = <4>;
-> +                cdns,max-bit-rate = <8100>;
-> +            };
-> +        };
-> +    };
-> +  - |
-> +    #include <dt-bindings/phy/phy.h>
-> +    #include <dt-bindings/phy/phy-cadence-torrent.h>
-> +
-> +    bus {
-> +        #address-cells = <2>;
-> +        #size-cells = <2>;
-> +
-> +        torrent-phy@f0fb500000 {
-> +            compatible = "cdns,torrent-phy";
-> +            reg = <0xf0 0xfb500000 0x0 0x00100000>;
-> +            reg-names = "torrent_phy";
-> +            resets = <&phyrst 0>, <&phyrst 1>;
-> +            clocks = <&ref_clk>;
-> +            clock-names = "refclk";
-> +            #address-cells = <1>;
-> +            #size-cells = <0>;
-> +            link@0 {
-> +                reg = <0>;
-> +                resets = <&phyrst 2>, <&phyrst 3>;
-> +                #phy-cells = <0>;
-> +                cdns,phy-type = <PHY_TYPE_PCIE>;
-> +                cdns,num-lanes = <2>;
-> +                cdns,ssc-mode = <TORRENT_SERDES_NO_SSC>;
-> +            };
-> +
-> +            link@2 {
-> +                reg = <2>;
-> +                resets = <&phyrst 4>;
-> +                #phy-cells = <0>;
-> +                cdns,phy-type = <PHY_TYPE_SGMII>;
-> +                cdns,num-lanes = <1>;
-> +                cdns,ssc-mode = <TORRENT_SERDES_NO_SSC>;
->              };
->          };
->      };
-> -- 
-> 2.26.1
-> 
+Reviewed-by: Rob Herring <robh@kernel.org>
