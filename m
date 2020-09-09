@@ -2,82 +2,173 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from vger.kernel.org (vger.kernel.org [23.128.96.18])
-	by mail.lfdr.de (Postfix) with ESMTP id A961F263239
-	for <lists+devicetree@lfdr.de>; Wed,  9 Sep 2020 18:37:24 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTP id 48EAA26324E
+	for <lists+devicetree@lfdr.de>; Wed,  9 Sep 2020 18:40:22 +0200 (CEST)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S1730776AbgIIQhM (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Wed, 9 Sep 2020 12:37:12 -0400
-Received: from mail.nic.cz ([217.31.204.67]:34678 "EHLO mail.nic.cz"
-        rhost-flags-OK-OK-OK-OK) by vger.kernel.org with ESMTP
-        id S1731057AbgIIQ0A (ORCPT <rfc822;devicetree@vger.kernel.org>);
-        Wed, 9 Sep 2020 12:26:00 -0400
-Received: from dellmb.labs.office.nic.cz (unknown [IPv6:2001:1488:fffe:6:cac7:3539:7f1f:463])
-        by mail.nic.cz (Postfix) with ESMTP id 503A6140A73;
-        Wed,  9 Sep 2020 18:25:55 +0200 (CEST)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=nic.cz; s=default;
-        t=1599668755; bh=MvXQD34WvMImgeFSgU4h5cxDM9wpALrPc1U2c97TNVY=;
-        h=From:To:Date;
-        b=esEDFi4f3TDJKUxF7mN6MzWKDJGWacG1D+Spd1xIHmg6lLdcjm+uuP3eEEmy+ElKF
-         GjuPZAc1ZUJBazQibj2HS2xM7O0h2Hc2UKz3xfHunBg1krjXxGRpiNIx3Eww8D1xmI
-         i/4QBWcehwJMgM4deFm8xFympqFdLIWqITJajpas=
-From:   =?UTF-8?q?Marek=20Beh=C3=BAn?= <marek.behun@nic.cz>
-To:     netdev@vger.kernel.org
-Cc:     linux-leds@vger.kernel.org, Pavel Machek <pavel@ucw.cz>,
-        Dan Murphy <dmurphy@ti.com>,
-        =?UTF-8?q?Ond=C5=99ej=20Jirman?= <megous@megous.com>,
-        Russell King <linux@armlinux.org.uk>,
-        Andrew Lunn <andrew@lunn.ch>, linux-kernel@vger.kernel.org,
-        Matthias Schiffer <matthias.schiffer@ew.tq-group.com>,
-        "David S. Miller" <davem@davemloft.net>,
-        =?UTF-8?q?Marek=20Beh=C3=BAn?= <marek.behun@nic.cz>,
-        Rob Herring <robh+dt@kernel.org>, devicetree@vger.kernel.org
-Subject: [PATCH net-next + leds v2 4/7] dt-bindings: net: ethernet-phy: add description for PHY LEDs
-Date:   Wed,  9 Sep 2020 18:25:49 +0200
-Message-Id: <20200909162552.11032-5-marek.behun@nic.cz>
+        id S1730876AbgIIQkS (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Wed, 9 Sep 2020 12:40:18 -0400
+Received: from lindbergh.monkeyblade.net ([23.128.96.19]:58228 "EHLO
+        lindbergh.monkeyblade.net" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
+        with ESMTP id S1731048AbgIIQik (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Wed, 9 Sep 2020 12:38:40 -0400
+Received: from mail-ej1-x642.google.com (mail-ej1-x642.google.com [IPv6:2a00:1450:4864:20::642])
+        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id BA3F6C061573
+        for <devicetree@vger.kernel.org>; Wed,  9 Sep 2020 09:38:39 -0700 (PDT)
+Received: by mail-ej1-x642.google.com with SMTP id z22so4489921ejl.7
+        for <devicetree@vger.kernel.org>; Wed, 09 Sep 2020 09:38:39 -0700 (PDT)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+        d=sartura-hr.20150623.gappssmtp.com; s=20150623;
+        h=from:to:cc:subject:date:message-id:mime-version
+         :content-transfer-encoding;
+        bh=pw9m1YIgr8W+tdJMWQbJwGKwHAZiGvL9kYmg/XnOkHE=;
+        b=NAdcPbio9rID5Vgh0E1yj6BpjObgicIR/j4dRsfBcNB5k9pRKtmhHZVNYiF1hyHzZp
+         8r6et+DI2mdyZHt/oMTFSK7jwzpF3YsS1dBfRYyRGcozMZDuifDB3cWKUtYlH8FJHPyb
+         gB3r2ITsg+sQ/dMgB0erNptG2SNU8HNWvOnZRw4N7XcjcCpjBI1MnzPiUZIXg2bxTiz9
+         2ZNesw9704/yonNovmh9i2la59VLS0DWOyCFl+2vhPcPgps/kM+Ipfbyl4R6JATfyzIf
+         7vhX9xIdloZ2EFgOwx96wHkMrGPGn4SjfQp1ues3KiX0FX6H4VCiLpwZHCRJ5HNji3/0
+         iu5w==
+X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+        d=1e100.net; s=20161025;
+        h=x-gm-message-state:from:to:cc:subject:date:message-id:mime-version
+         :content-transfer-encoding;
+        bh=pw9m1YIgr8W+tdJMWQbJwGKwHAZiGvL9kYmg/XnOkHE=;
+        b=F5KYTLOq720knlrkxkp14vL6zF4rORSfCl0t8CVUIAfy5C0EG7yAFnhN9hz+gnbW0B
+         91Ic56iYt9Jdz1hSSBVyd+5/Kf6wRF1XoZlcMe78GRpjEHN7eQFhyi19PxoEe4Q2+X5R
+         YR8jKWdTCLDJCc2sziWZyArUq/FKPT7xFjW6VPp6P6Vsc6EOMMUPXFoqTYTlgiyRvPQN
+         vCxKTGulOxgUXft7n2/N753f8r8af/iPqh5CJWG3aAM0qVkUacb0Xkr/h92/rN1r4VXX
+         Ce0geeGFwd5w3BQtzHS0MY2Wp3ZzB46ylJnGhTVyGPsaDHV4I8xzCCtfVWI7OxfHPT/3
+         zSyA==
+X-Gm-Message-State: AOAM531qiBqdAKsYIA8O+IX3y2YjmqE6zZxvUkvLtFejLmzfSI+QasNz
+        bmasyHua0VzY/3YPhKyaK76sBg==
+X-Google-Smtp-Source: ABdhPJz0PcbJXaB3x1jKe4GDZKr466W7xCgFaautkZwmPgdAbkQzZNddmOd2V24nybiU1HOJCP17Fw==
+X-Received: by 2002:a17:906:bcd5:: with SMTP id lw21mr4543065ejb.430.1599669518321;
+        Wed, 09 Sep 2020 09:38:38 -0700 (PDT)
+Received: from localhost.localdomain (dh207-97-133.xnet.hr. [88.207.97.133])
+        by smtp.googlemail.com with ESMTPSA id t10sm3114410edw.86.2020.09.09.09.38.37
+        (version=TLS1_3 cipher=TLS_AES_256_GCM_SHA384 bits=256/256);
+        Wed, 09 Sep 2020 09:38:37 -0700 (PDT)
+From:   Robert Marko <robert.marko@sartura.hr>
+To:     agross@kernel.org, bjorn.andersson@linaro.org, robh+dt@kernel.org,
+        linux-arm-msm@vger.kernel.org, devicetree@vger.kernel.org,
+        linux-kernel@vger.kernel.org
+Cc:     John Crispin <john@phrozen.org>,
+        Robert Marko <robert.marko@sartura.hr>,
+        Luka Perkov <luka.perkov@sartura.hr>,
+        Vinod Koul <vkoul@kernel.org>
+Subject: [PATCH v8] ARM: dts: qcom: ipq4019: add USB devicetree nodes
+Date:   Wed,  9 Sep 2020 18:38:31 +0200
+Message-Id: <20200909163831.1894142-1-robert.marko@sartura.hr>
 X-Mailer: git-send-email 2.26.2
-In-Reply-To: <20200909162552.11032-1-marek.behun@nic.cz>
-References: <20200909162552.11032-1-marek.behun@nic.cz>
 MIME-Version: 1.0
-Content-Type: text/plain; charset=UTF-8
 Content-Transfer-Encoding: 8bit
-X-Spam-Checker-Version: SpamAssassin 3.4.2 (2018-09-13) on mail.nic.cz
-X-Spam-Status: No, score=0.00
-X-Spamd-Bar: /
-X-Virus-Scanned: clamav-milter 0.102.2 at mail
-X-Virus-Status: Clean
 Sender: devicetree-owner@vger.kernel.org
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-Document binding for LEDs connected to an ethernet PHY chip.
+From: John Crispin <john@phrozen.org>
 
-Signed-off-by: Marek Behún <marek.behun@nic.cz>
-Cc: Rob Herring <robh+dt@kernel.org>
-Cc: devicetree@vger.kernel.org
+Since we now have driver for the USB PHY, and USB controller is already supported by the DWC3 driver lets add the necessary nodes to DTSI.
+
+Signed-off-by: John Crispin <john@phrozen.org>
+Signed-off-by: Robert Marko <robert.marko@sartura.hr>
+Cc: Luka Perkov <luka.perkov@sartura.hr>
+Reviewed-by: Vinod Koul <vkoul@kernel.org>
 ---
- Documentation/devicetree/bindings/net/ethernet-phy.yaml | 8 ++++++++
- 1 file changed, 8 insertions(+)
+Changes from v7 to v8:
+* Add labels for usb2 and usb3 nodes
+Changes from v6 to v7:
+* Remove changes to qcom-ipq4019-ap.dk01.1.dtsi
+It has slipped in unwanted, we only want to add
+nodes to the DTSI.
 
-diff --git a/Documentation/devicetree/bindings/net/ethernet-phy.yaml b/Documentation/devicetree/bindings/net/ethernet-phy.yaml
-index a9e547ac79051..f593e8709dd0d 100644
---- a/Documentation/devicetree/bindings/net/ethernet-phy.yaml
-+++ b/Documentation/devicetree/bindings/net/ethernet-phy.yaml
-@@ -174,6 +174,14 @@ properties:
-       PHY's that have configurable TX internal delays. If this property is
-       present then the PHY applies the TX delay.
- 
-+  leds:
-+    type: object
-+    description: |
-+      This is used to described LEDs that are connected to the PHY chip and
-+      their blinking can be controlled by the PHY.
-+    allOf:
-+      - $ref: /schemas/leds/linux,hw-controlled-leds.yaml#
+ arch/arm/boot/dts/qcom-ipq4019.dtsi | 74 +++++++++++++++++++++++++++++
+ 1 file changed, 74 insertions(+)
+
+diff --git a/arch/arm/boot/dts/qcom-ipq4019.dtsi b/arch/arm/boot/dts/qcom-ipq4019.dtsi
+index 74d8e2c8e4b3..4a973253024a 100644
+--- a/arch/arm/boot/dts/qcom-ipq4019.dtsi
++++ b/arch/arm/boot/dts/qcom-ipq4019.dtsi
+@@ -605,5 +605,79 @@ ethphy4: ethernet-phy@4 {
+ 				reg = <4>;
+ 			};
+ 		};
 +
- required:
-   - reg
- 
++		usb3_ss_phy: ssphy@9a000 {
++			compatible = "qcom,usb-ss-ipq4019-phy";
++			#phy-cells = <0>;
++			reg = <0x9a000 0x800>;
++			reg-names = "phy_base";
++			resets = <&gcc USB3_UNIPHY_PHY_ARES>;
++			reset-names = "por_rst";
++			status = "disabled";
++		};
++
++		usb3_hs_phy: hsphy@a6000 {
++			compatible = "qcom,usb-hs-ipq4019-phy";
++			#phy-cells = <0>;
++			reg = <0xa6000 0x40>;
++			reg-names = "phy_base";
++			resets = <&gcc USB3_HSPHY_POR_ARES>, <&gcc USB3_HSPHY_S_ARES>;
++			reset-names = "por_rst", "srif_rst";
++			status = "disabled";
++		};
++
++		usb3: usb3@8af8800 {
++			compatible = "qcom,dwc3";
++			reg = <0x8af8800 0x100>;
++			#address-cells = <1>;
++			#size-cells = <1>;
++			clocks = <&gcc GCC_USB3_MASTER_CLK>,
++				 <&gcc GCC_USB3_SLEEP_CLK>,
++				 <&gcc GCC_USB3_MOCK_UTMI_CLK>;
++			clock-names = "master", "sleep", "mock_utmi";
++			ranges;
++			status = "disabled";
++
++			dwc3@8a00000 {
++				compatible = "snps,dwc3";
++				reg = <0x8a00000 0xf8000>;
++				interrupts = <GIC_SPI 132 IRQ_TYPE_LEVEL_HIGH>;
++				phys = <&usb3_hs_phy>, <&usb3_ss_phy>;
++				phy-names = "usb2-phy", "usb3-phy";
++				dr_mode = "host";
++			};
++		};
++
++		usb2_hs_phy: hsphy@a8000 {
++			compatible = "qcom,usb-hs-ipq4019-phy";
++			#phy-cells = <0>;
++			reg = <0xa8000 0x40>;
++			reg-names = "phy_base";
++			resets = <&gcc USB2_HSPHY_POR_ARES>, <&gcc USB2_HSPHY_S_ARES>;
++			reset-names = "por_rst", "srif_rst";
++			status = "disabled";
++		};
++
++		usb2: usb2@60f8800 {
++			compatible = "qcom,dwc3";
++			reg = <0x60f8800 0x100>;
++			#address-cells = <1>;
++			#size-cells = <1>;
++			clocks = <&gcc GCC_USB2_MASTER_CLK>,
++				 <&gcc GCC_USB2_SLEEP_CLK>,
++				 <&gcc GCC_USB2_MOCK_UTMI_CLK>;
++			clock-names = "master", "sleep", "mock_utmi";
++			ranges;
++			status = "disabled";
++
++			dwc3@6000000 {
++				compatible = "snps,dwc3";
++				reg = <0x6000000 0xf8000>;
++				interrupts = <GIC_SPI 136 IRQ_TYPE_LEVEL_HIGH>;
++				phys = <&usb2_hs_phy>;
++				phy-names = "usb2-phy";
++				dr_mode = "host";
++			};
++		};
+ 	};
+ };
 -- 
 2.26.2
 
