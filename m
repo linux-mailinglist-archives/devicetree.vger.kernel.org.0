@@ -2,71 +2,70 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from vger.kernel.org (vger.kernel.org [23.128.96.18])
-	by mail.lfdr.de (Postfix) with ESMTP id BD23B26344C
-	for <lists+devicetree@lfdr.de>; Wed,  9 Sep 2020 19:18:31 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTP id 38131263465
+	for <lists+devicetree@lfdr.de>; Wed,  9 Sep 2020 19:20:14 +0200 (CEST)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S1730224AbgIIRS3 (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Wed, 9 Sep 2020 13:18:29 -0400
-Received: from mail.kernel.org ([198.145.29.99]:54042 "EHLO mail.kernel.org"
+        id S1726883AbgIIRUI (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Wed, 9 Sep 2020 13:20:08 -0400
+Received: from mail.kernel.org ([198.145.29.99]:51344 "EHLO mail.kernel.org"
         rhost-flags-OK-OK-OK-OK) by vger.kernel.org with ESMTP
-        id S1728631AbgIIP17 (ORCPT <rfc822;devicetree@vger.kernel.org>);
-        Wed, 9 Sep 2020 11:27:59 -0400
+        id S1729738AbgIIP0h (ORCPT <rfc822;devicetree@vger.kernel.org>);
+        Wed, 9 Sep 2020 11:26:37 -0400
 Received: from kozik-lap.mshome.net (unknown [194.230.155.174])
         (using TLSv1.2 with cipher ECDHE-RSA-AES128-GCM-SHA256 (128/128 bits))
         (No client certificate requested)
-        by mail.kernel.org (Postfix) with ESMTPSA id 6991722288;
-        Wed,  9 Sep 2020 15:18:08 +0000 (UTC)
+        by mail.kernel.org (Postfix) with ESMTPSA id E1DBE2228A;
+        Wed,  9 Sep 2020 15:24:48 +0000 (UTC)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=kernel.org;
-        s=default; t=1599664691;
-        bh=YEdRbTwEhXplWKi1EZoFj+urxRYVg1g/QN1Y18dYxm8=;
-        h=From:To:Subject:Date:In-Reply-To:References:From;
-        b=T31ouZ5uM8E0bASs2sqo/dkfdda5jo5fMnsF0xHv46+HtwL/5HP2373qsxBeyq2l5
-         Sx6T7bfXYF+upvXDki8AyFEBubpMaMvDNypZblVRVCkj4UeF/Xs+mnvdBR5mc0b0qU
-         BH/SjydD4+AaxfuTolTcDqcvDeo0ruV0gwmULsH4=
+        s=default; t=1599665092;
+        bh=IdciNq/N/4EjGygxwJbHbLykp3d/ZQrUrJEOTklPc/A=;
+        h=From:To:Cc:Subject:Date:From;
+        b=KSoBXwpx0FIRBnhRA8tNBbDT0JHghs9nuBgU6dLdLL8CIWjZAOt/wGTjFNIGGmzRz
+         QOgkRHjtmkOoNyyOCG0TnsBejQ23kqHELsWl6nu1Zbipzx4HQI8/HUBLvrDgiVHFpS
+         DQnCXm6fktnlOvTu0lVHAWujTr4zb5aKvp8dtF8U=
 From:   Krzysztof Kozlowski <krzk@kernel.org>
 To:     Rob Herring <robh+dt@kernel.org>, Shawn Guo <shawnguo@kernel.org>,
         Sascha Hauer <s.hauer@pengutronix.de>,
         Pengutronix Kernel Team <kernel@pengutronix.de>,
         Fabio Estevam <festevam@gmail.com>,
         NXP Linux Team <linux-imx@nxp.com>,
-        Krzysztof Kozlowski <krzk@kernel.org>,
-        Anson Huang <Anson.Huang@nxp.com>, devicetree@vger.kernel.org,
-        linux-arm-kernel@lists.infradead.org, linux-kernel@vger.kernel.org
-Subject: [PATCH 3/3] arm64: dts: imx8mn-ddr4-evk: Remove unneeded PMIC pin configuration
-Date:   Wed,  9 Sep 2020 17:17:55 +0200
-Message-Id: <20200909151755.17783-3-krzk@kernel.org>
+        Li Yang <leoyang.li@nxp.com>, devicetree@vger.kernel.org,
+        linux-kernel@vger.kernel.org, linux-arm-kernel@lists.infradead.org
+Cc:     Krzysztof Kozlowski <krzk@kernel.org>
+Subject: [PATCH 1/3] dt-bindings: arm: fsl: Add binding for Variscite Symphony board with VAR-SOM-MX8MN
+Date:   Wed,  9 Sep 2020 17:24:32 +0200
+Message-Id: <20200909152434.18643-1-krzk@kernel.org>
 X-Mailer: git-send-email 2.17.1
-In-Reply-To: <20200909151755.17783-1-krzk@kernel.org>
-References: <20200909151755.17783-1-krzk@kernel.org>
 Sender: devicetree-owner@vger.kernel.org
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-The pin configuration for PMIC interrupt is already set by
-imx8mn-evk.dtsi with exactly the same values.
+Add a binding for the Variscite Symphony evaluation kit board with
+VAR-SOM-MX8MN System on Module.
 
 Signed-off-by: Krzysztof Kozlowski <krzk@kernel.org>
 ---
- arch/arm64/boot/dts/freescale/imx8mn-ddr4-evk.dts | 8 --------
- 1 file changed, 8 deletions(-)
+ Documentation/devicetree/bindings/arm/fsl.yaml | 6 ++++++
+ 1 file changed, 6 insertions(+)
 
-diff --git a/arch/arm64/boot/dts/freescale/imx8mn-ddr4-evk.dts b/arch/arm64/boot/dts/freescale/imx8mn-ddr4-evk.dts
-index 643f94144152..66668d886a91 100644
---- a/arch/arm64/boot/dts/freescale/imx8mn-ddr4-evk.dts
-+++ b/arch/arm64/boot/dts/freescale/imx8mn-ddr4-evk.dts
-@@ -153,11 +153,3 @@
- 		};
- 	};
- };
--
--&iomuxc {
--	pinctrl_pmic: pmicirq {
--		fsl,pins = <
--			MX8MN_IOMUXC_GPIO1_IO03_GPIO1_IO3	0x41
--		>;
--	};
--};
+diff --git a/Documentation/devicetree/bindings/arm/fsl.yaml b/Documentation/devicetree/bindings/arm/fsl.yaml
+index 37cef8653541..8a8284715baf 100644
+--- a/Documentation/devicetree/bindings/arm/fsl.yaml
++++ b/Documentation/devicetree/bindings/arm/fsl.yaml
+@@ -363,6 +363,12 @@ properties:
+               - fsl,imx8mn-evk            # i.MX8MN LPDDR4 EVK Board
+           - const: fsl,imx8mn
+ 
++      - description: Variscite VAR-SOM-MX8MN based boards
++        items:
++          - const: variscite,var-som-mx8mn-symphony
++          - const: variscite,var-som-mx8mn
++          - const: fsl,imx8mn
++
+       - description: i.MX8MP based Boards
+         items:
+           - enum:
 -- 
 2.17.1
 
