@@ -2,164 +2,90 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from vger.kernel.org (vger.kernel.org [23.128.96.18])
-	by mail.lfdr.de (Postfix) with ESMTP id C6756262BB8
-	for <lists+devicetree@lfdr.de>; Wed,  9 Sep 2020 11:24:36 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTP id CD47C262BC0
+	for <lists+devicetree@lfdr.de>; Wed,  9 Sep 2020 11:25:38 +0200 (CEST)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S1729529AbgIIJYe (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Wed, 9 Sep 2020 05:24:34 -0400
-Received: from lindbergh.monkeyblade.net ([23.128.96.19]:47140 "EHLO
-        lindbergh.monkeyblade.net" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S1726605AbgIIJYN (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Wed, 9 Sep 2020 05:24:13 -0400
-Received: from mail-wm1-x341.google.com (mail-wm1-x341.google.com [IPv6:2a00:1450:4864:20::341])
-        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 3B853C061756
-        for <devicetree@vger.kernel.org>; Wed,  9 Sep 2020 02:24:11 -0700 (PDT)
-Received: by mail-wm1-x341.google.com with SMTP id w2so1572996wmi.1
-        for <devicetree@vger.kernel.org>; Wed, 09 Sep 2020 02:24:11 -0700 (PDT)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=chromium.org; s=google;
-        h=mime-version:references:in-reply-to:from:date:message-id:subject:to
-         :cc;
-        bh=AmAjr6xvyauDkIBPHoJreMuavbYPMqoWr9WPQMiNPkg=;
-        b=lgk3l2QheCZRIdB/DXYePwXEoUJvYOIpV83Gh1pRZ2BYhkcAj5c3ogzbaLtFuFI9ts
-         jpGHnH6HqqegvOnM9Uqug7F1IJiuwk+eek3yWSn2ufF9Y+cYzVYdiFc0zs3ZtTMRf5cM
-         XT5LclUiUzG/7eZUxr9lBGgyThOWt8HJEhlvI=
-X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=1e100.net; s=20161025;
-        h=x-gm-message-state:mime-version:references:in-reply-to:from:date
-         :message-id:subject:to:cc;
-        bh=AmAjr6xvyauDkIBPHoJreMuavbYPMqoWr9WPQMiNPkg=;
-        b=UvJ7dCBlDIYlW+4BoF9nbyLIsZ0dbp0HhYzph/Go8Bm57dpI7byPOKInnq9iCCkYZL
-         YMjRNmtmbbeuThDpJogIMP2mwKSlqtrqOgjtUmOUej41m6CJTtm5RUyXMnE53wMHQ2HM
-         O4XkzSOPkzIPcmUJ4u/L/7CX9Sgn55pQMq8yFNvt4vVK7dIRcwd9IUN+zFgQIPQyowJb
-         7FAuLyATg8MBoQ4b+UJZBPRVmlsUnI11ldF1j/HeIAv7vZ38FXWbvPmPTbQqX2kcYw3j
-         1cz3TR6UCAlwhRbWpuzfF6LDQ6hD3F7tOlenARx1XENaFqUcs72LtLdpDHsqRzThWqvC
-         z/Hg==
-X-Gm-Message-State: AOAM532GuJBerlTATPN7WVMQKPANS74Mert7mFIf8hfVELUZ42rJIP+E
-        iMZzBwNu/qzlG53F8nd7YZnZ0eLKBH5sf333uG+jDA==
-X-Google-Smtp-Source: ABdhPJyCFk+9azkQozj50ygO4Fld+/Ww0XhKIzoSM/wUVfsy/tdWyDVDQ6WSJk0DhWTK8YoZzQXF1zAmuO+KS+gPPFU=
-X-Received: by 2002:a7b:c3c8:: with SMTP id t8mr2599038wmj.101.1599643450162;
- Wed, 09 Sep 2020 02:24:10 -0700 (PDT)
+        id S1726060AbgIIJZg (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Wed, 9 Sep 2020 05:25:36 -0400
+Received: from jabberwock.ucw.cz ([46.255.230.98]:54228 "EHLO
+        jabberwock.ucw.cz" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
+        with ESMTP id S1725948AbgIIJZe (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Wed, 9 Sep 2020 05:25:34 -0400
+Received: by jabberwock.ucw.cz (Postfix, from userid 1017)
+        id 359D81C0B8A; Wed,  9 Sep 2020 11:25:31 +0200 (CEST)
+Date:   Wed, 9 Sep 2020 11:25:30 +0200
+From:   Pavel Machek <pavel@denx.de>
+To:     Michael Walle <michael@walle.cc>
+Cc:     linux-gpio@vger.kernel.org, devicetree@vger.kernel.org,
+        linux-kernel@vger.kernel.org, linux-hwmon@vger.kernel.org,
+        linux-pwm@vger.kernel.org, linux-watchdog@vger.kernel.org,
+        linux-arm-kernel@lists.infradead.org,
+        Linus Walleij <linus.walleij@linaro.org>,
+        Bartosz Golaszewski <bgolaszewski@baylibre.com>,
+        Rob Herring <robh+dt@kernel.org>,
+        Jean Delvare <jdelvare@suse.com>,
+        Guenter Roeck <linux@roeck-us.net>,
+        Lee Jones <lee.jones@linaro.org>,
+        Thierry Reding <thierry.reding@gmail.com>,
+        Uwe =?iso-8859-1?Q?Kleine-K=F6nig?= 
+        <u.kleine-koenig@pengutronix.de>,
+        Wim Van Sebroeck <wim@linux-watchdog.org>,
+        Shawn Guo <shawnguo@kernel.org>, Li Yang <leoyang.li@nxp.com>,
+        Thomas Gleixner <tglx@linutronix.de>,
+        Jason Cooper <jason@lakedaemon.net>,
+        Marc Zyngier <maz@kernel.org>, Mark Brown <broonie@kernel.org>,
+        Greg Kroah-Hartman <gregkh@linuxfoundation.org>,
+        Andy Shevchenko <andriy.shevchenko@linux.intel.com>,
+        Catalin Marinas <catalin.marinas@arm.com>,
+        Will Deacon <will@kernel.org>
+Subject: Re: [PATCH v9 11/13] arm64: dts: freescale: sl28: enable LED support
+Message-ID: <20200909092530.GC14289@amd>
+References: <20200907213802.26745-1-michael@walle.cc>
+ <20200907213802.26745-12-michael@walle.cc>
 MIME-Version: 1.0
-References: <20200907100039.1731457-1-cychiang@chromium.org>
- <20200907100039.1731457-3-cychiang@chromium.org> <20200908203357.GA861143@bogus>
-In-Reply-To: <20200908203357.GA861143@bogus>
-From:   Cheng-yi Chiang <cychiang@chromium.org>
-Date:   Wed, 9 Sep 2020 17:23:43 +0800
-Message-ID: <CAFv8NwLMAkFhVT-ML7QHbnSkqmgh=5SrNSik5eSCTHB1=DGQ0A@mail.gmail.com>
-Subject: Re: [PATCH v7 2/3] ASoC: qcom: dt-bindings: Add sc7180 machine bindings
-To:     Rob Herring <robh@kernel.org>
-Cc:     linux-kernel <linux-kernel@vger.kernel.org>,
-        Mark Brown <broonie@kernel.org>,
-        Taniya Das <tdas@codeaurora.org>,
-        Rohit kumar <rohitkr@codeaurora.org>,
-        Banajit Goswami <bgoswami@codeaurora.org>,
-        Patrick Lai <plai@codeaurora.org>,
-        Andy Gross <agross@kernel.org>,
-        Bjorn Andersson <bjorn.andersson@linaro.org>,
-        Liam Girdwood <lgirdwood@gmail.com>,
-        Jaroslav Kysela <perex@perex.cz>,
-        Takashi Iwai <tiwai@suse.com>,
-        Srini Kandagatla <srinivas.kandagatla@linaro.org>,
-        Stephan Gerhold <stephan@gerhold.net>,
-        Matthias Brugger <matthias.bgg@gmail.com>,
-        Heiko Stuebner <heiko@sntech.de>,
-        Doug Anderson <dianders@chromium.org>,
-        Dylan Reid <dgreid@chromium.org>,
-        Tzung-Bi Shih <tzungbi@chromium.org>,
-        Linux ARM <linux-arm-kernel@lists.infradead.org>,
-        linux-arm-msm <linux-arm-msm@vger.kernel.org>,
-        "open list:OPEN FIRMWARE AND FLATTENED DEVICE TREE BINDINGS" 
-        <devicetree@vger.kernel.org>,
-        "moderated list:SOUND - SOC LAYER / DYNAMIC AUDIO POWER MANAGEM..." 
-        <alsa-devel@alsa-project.org>, linux-mediatek@lists.infradead.org,
-        linux-rockchip@lists.infradead.org
-Content-Type: text/plain; charset="UTF-8"
+Content-Type: multipart/signed; micalg=pgp-sha1;
+        protocol="application/pgp-signature"; boundary="vOmOzSkFvhd7u8Ms"
+Content-Disposition: inline
+In-Reply-To: <20200907213802.26745-12-michael@walle.cc>
+User-Agent: Mutt/1.5.23 (2014-03-12)
 Sender: devicetree-owner@vger.kernel.org
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-On Wed, Sep 9, 2020 at 4:34 AM Rob Herring <robh@kernel.org> wrote:
->
-> On Mon, Sep 07, 2020 at 06:00:38PM +0800, Cheng-Yi Chiang wrote:
-> > Add devicetree bindings documentation file for sc7180 sound card.
-> >
-> > Signed-off-by: Cheng-Yi Chiang <cychiang@chromium.org>
-> > ---
-> >  .../bindings/sound/qcom,sc7180.yaml           | 143 ++++++++++++++++++
-> >  1 file changed, 143 insertions(+)
-> >  create mode 100644 Documentation/devicetree/bindings/sound/qcom,sc7180.yaml
-> >
-> > diff --git a/Documentation/devicetree/bindings/sound/qcom,sc7180.yaml b/Documentation/devicetree/bindings/sound/qcom,sc7180.yaml
-> > new file mode 100644
-> > index 000000000000..ae809346ca80
-> > --- /dev/null
-> > +++ b/Documentation/devicetree/bindings/sound/qcom,sc7180.yaml
-> > @@ -0,0 +1,143 @@
-> > +# SPDX-License-Identifier: (GPL-2.0-only OR BSD-2-Clause)
-> > +%YAML 1.2
-> > +---
-> > +$id: http://devicetree.org/schemas/sound/qcom,sc7180.yaml#
-> > +$schema: http://devicetree.org/meta-schemas/core.yaml#
-> > +
-> > +title: Qualcomm Technologies Inc. SC7180 ASoC sound card driver
-> > +
-> > +maintainers:
-> > +  - Rohit kumar <rohitkr@codeaurora.org>
-> > +  - Cheng-Yi Chiang <cychiang@chromium.org>
-> > +
-> > +description:
-> > +  This binding describes the SC7180 sound card which uses LPASS for audio.
-> > +
-> > +properties:
-> > +  compatible:
-> > +    const: qcom,sc7180-sndcard
-> > +
-> > +  audio-routing:
-> > +    $ref: /schemas/types.yaml#/definitions/non-unique-string-array
-> > +    description:
-> > +      A list of the connections between audio components. Each entry is a
-> > +      pair of strings, the first being the connection's sink, the second
-> > +      being the connection's source.
-> > +
-> > +  model:
-> > +    $ref: /schemas/types.yaml#/definitions/string
-> > +    description: User specified audio sound card name
-> > +
-> > +  headset-jack:
-> > +    $ref: /schemas/types.yaml#/definitions/phandle
-> > +    description: phandle of the codec for headset detection
-> > +
-> > +  hdmi-jack:
-> > +    $ref: /schemas/types.yaml#/definitions/phandle
-> > +    description: phandle of the codec for hdmi jack detection
->
-> You already have links to these devices. Why duplicate it here?
->
-> What if you had 2 headsets? This doesn't scale.
->
-Hi Rob, thanks for reviewing.
-There was some discussion in
-https://patchwork.kernel.org/patch/11737905/#23571643 about how to
-specify the dailink that has a headset jack.
-I would like to pass the information of headset jack and hdmi jack to
-the machine driver so the machine driver can call
-snd_soc_component_set_jack to set jack when init the corresponding link.
-Headset jack and hdmi jack will be treated differently for button and
-event type.
-Because of this, we can not just set a property "jack" in the link.
 
-As for the 2 headsets case (I guess you mean hp jack and mic jack), on
-this board we will not have this use case.
-If someone really wants to build hp jack and mic jack on the board
-based on this machine driver, we can add two more property hp-jack and
-mic-jack to specify that,
-as the machine driver will need to know the different jack types
-anyway. What do you think ?
+--vOmOzSkFvhd7u8Ms
+Content-Type: text/plain; charset=us-ascii
+Content-Disposition: inline
+Content-Transfer-Encoding: quoted-printable
 
-Or could you please suggest a proper way to pass such information ?
+On Mon 2020-09-07 23:38:00, Michael Walle wrote:
+> Now that we have support for GPIO lines of the SMARC connector, enable
+> LED support on the KBox A-230-LS. There are two LEDs without fixed
+> functions, one is yellow and one is green. Unfortunately, it is just one
+> multi-color LED, thus while it is possible to enable both at the same
+> time it is hard to tell the difference between "yellow only" and "yellow
+> and green".
+>=20
+> Signed-off-by: Michael Walle <michael@walle.cc>
 
-Thanks!
->
-> Rob
+Acked-by: Pavel Machek <pavel@ucw.cz>
+
+--=20
+(english) http://www.livejournal.com/~pavelmachek
+(cesky, pictures) http://atrey.karlin.mff.cuni.cz/~pavel/picture/horses/blo=
+g.html
+
+--vOmOzSkFvhd7u8Ms
+Content-Type: application/pgp-signature; name="signature.asc"
+Content-Description: Digital signature
+
+-----BEGIN PGP SIGNATURE-----
+Version: GnuPG v1
+
+iEYEARECAAYFAl9Yn4oACgkQMOfwapXb+vKlEwCffsn/eLFslqgKQ+Rq7ewumG4T
+awAAn0ncLmIiVkw2e88vrBqQ9XWGm+jv
+=cwpv
+-----END PGP SIGNATURE-----
+
+--vOmOzSkFvhd7u8Ms--
