@@ -2,212 +2,86 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from vger.kernel.org (vger.kernel.org [23.128.96.18])
-	by mail.lfdr.de (Postfix) with ESMTP id 99FAD263391
-	for <lists+devicetree@lfdr.de>; Wed,  9 Sep 2020 19:06:54 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTP id 46120263380
+	for <lists+devicetree@lfdr.de>; Wed,  9 Sep 2020 19:05:15 +0200 (CEST)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S1730549AbgIIRGW (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Wed, 9 Sep 2020 13:06:22 -0400
-Received: from fllv0015.ext.ti.com ([198.47.19.141]:44560 "EHLO
-        fllv0015.ext.ti.com" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S1728264AbgIIPkY (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Wed, 9 Sep 2020 11:40:24 -0400
-Received: from lelv0266.itg.ti.com ([10.180.67.225])
-        by fllv0015.ext.ti.com (8.15.2/8.15.2) with ESMTP id 089FdoE7086333;
-        Wed, 9 Sep 2020 10:39:50 -0500
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=ti.com;
-        s=ti-com-17Q1; t=1599665990;
-        bh=PKpzgV2pHlGLyVf0qMwwItFiGxw4/quKFW+Xh2YeSG0=;
-        h=Subject:To:CC:References:From:Date:In-Reply-To;
-        b=xRFxHL9/w7zkT7aaPLp/M1+RW59j3iiaB9ENw29hbFZzb/OiWd6JXatoXnNkm2dRn
-         yfWwA3+wnOxaENRjTWWNizCao/nX+SZ3F2UOdGTXAOAuG3NoTS74sHWgncefUcH1bs
-         bQNyQXzevSqeFWfpQ5G76s0gL45NNMRPs5iSfYDo=
-Received: from DLEE106.ent.ti.com (dlee106.ent.ti.com [157.170.170.36])
-        by lelv0266.itg.ti.com (8.15.2/8.15.2) with ESMTPS id 089Fdo8U087352
-        (version=TLSv1.2 cipher=AES256-GCM-SHA384 bits=256 verify=FAIL);
-        Wed, 9 Sep 2020 10:39:50 -0500
-Received: from DLEE114.ent.ti.com (157.170.170.25) by DLEE106.ent.ti.com
- (157.170.170.36) with Microsoft SMTP Server (version=TLS1_2,
- cipher=TLS_ECDHE_RSA_WITH_AES_128_CBC_SHA256_P256) id 15.1.1979.3; Wed, 9 Sep
- 2020 10:39:49 -0500
-Received: from lelv0327.itg.ti.com (10.180.67.183) by DLEE114.ent.ti.com
- (157.170.170.25) with Microsoft SMTP Server (version=TLS1_2,
- cipher=TLS_ECDHE_RSA_WITH_AES_128_CBC_SHA256_P256) id 15.1.1979.3 via
- Frontend Transport; Wed, 9 Sep 2020 10:39:50 -0500
-Received: from [10.250.222.86] (ileax41-snat.itg.ti.com [10.172.224.153])
-        by lelv0327.itg.ti.com (8.15.2/8.15.2) with ESMTP id 089FdlZ4108164;
-        Wed, 9 Sep 2020 10:39:48 -0500
-Subject: Re: [v4,3/4] reset-controller: ti: introduce a new reset handler
-To:     Crystal Guo <crystal.guo@mediatek.com>,
-        "p.zabel@pengutronix.de" <p.zabel@pengutronix.de>
-CC:     "robh+dt@kernel.org" <robh+dt@kernel.org>,
-        "matthias.bgg@gmail.com" <matthias.bgg@gmail.com>,
-        srv_heupstream <srv_heupstream@mediatek.com>,
-        "linux-mediatek@lists.infradead.org" 
-        <linux-mediatek@lists.infradead.org>,
-        "linux-arm-kernel@lists.infradead.org" 
-        <linux-arm-kernel@lists.infradead.org>,
-        "linux-kernel@vger.kernel.org" <linux-kernel@vger.kernel.org>,
-        "devicetree@vger.kernel.org" <devicetree@vger.kernel.org>,
-        =?UTF-8?B?U2VpeWEgV2FuZyAo546L6L+65ZCbKQ==?= 
-        <seiya.wang@mediatek.com>,
-        =?UTF-8?B?U3RhbmxleSBDaHUgKOacseWOn+mZnik=?= 
-        <stanley.chu@mediatek.com>,
-        =?UTF-8?B?WWluZ2pvZSBDaGVuICjpmbPoi7HmtLIp?= 
-        <Yingjoe.Chen@mediatek.com>,
-        =?UTF-8?B?RmFuIENoZW4gKOmZs+WHoSk=?= <fan.chen@mediatek.com>,
-        =?UTF-8?B?WW9uZyBMaWFuZyAo5qKB5YuHKQ==?= <Yong.Liang@mediatek.com>
-References: <20200817030324.5690-1-crystal.guo@mediatek.com>
- <20200817030324.5690-4-crystal.guo@mediatek.com>
- <3a5decee-5f31-e27d-a120-1f835241a87c@ti.com>
- <1599620279.14806.18.camel@mhfsdcap03>
-From:   Suman Anna <s-anna@ti.com>
-Message-ID: <096362e9-dee8-4e7a-2518-47328068c2fd@ti.com>
-Date:   Wed, 9 Sep 2020 10:39:47 -0500
-User-Agent: Mozilla/5.0 (X11; Linux x86_64; rv:68.0) Gecko/20100101
- Thunderbird/68.10.0
+        id S1730464AbgIIRFN (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Wed, 9 Sep 2020 13:05:13 -0400
+Received: from lindbergh.monkeyblade.net ([23.128.96.19]:49350 "EHLO
+        lindbergh.monkeyblade.net" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
+        with ESMTP id S1730324AbgIIPnl (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Wed, 9 Sep 2020 11:43:41 -0400
+Received: from mail-pg1-x543.google.com (mail-pg1-x543.google.com [IPv6:2607:f8b0:4864:20::543])
+        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 6D8CEC061756;
+        Wed,  9 Sep 2020 08:43:29 -0700 (PDT)
+Received: by mail-pg1-x543.google.com with SMTP id t14so2331525pgl.10;
+        Wed, 09 Sep 2020 08:43:29 -0700 (PDT)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+        d=gmail.com; s=20161025;
+        h=subject:to:cc:references:from:message-id:date:user-agent
+         :mime-version:in-reply-to:content-language:content-transfer-encoding;
+        bh=Bag69EkP6yWpG6o97y6tb9Dx12HOS7lqs0dtZkutxMY=;
+        b=I3TpjY9OqoIWqRDmbOdwnQ1v+SEE8q2kipgTuTQ99D/jb4fdUvNQ42Npk1f2N2moQ8
+         hA96XhKtfXOP1cIDKqmNZ3HutjQzuS7KU1ezoTl7quKGKt195K6GzxcUmZJ2AP5G/mjl
+         zZsJ9LitWY4+4k27OW6uS98j+uNvs+CW1Ne/s1ms25lFxvbZoyekI7PvDds4dBsVXCAO
+         ZJXfFX9VFSIBSvzQv6Q9YI9dVZ+MKF+ckl9f42t4OUbKn5reaxl+Sifj0lrRP6rwWBtA
+         b+416QHIyes+UmYMKFXfRWDHD0xekgFwouveGfk03Y18NaPCXUUtic3vcURx9tUNQoF1
+         ay7A==
+X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+        d=1e100.net; s=20161025;
+        h=x-gm-message-state:subject:to:cc:references:from:message-id:date
+         :user-agent:mime-version:in-reply-to:content-language
+         :content-transfer-encoding;
+        bh=Bag69EkP6yWpG6o97y6tb9Dx12HOS7lqs0dtZkutxMY=;
+        b=CJja6/KBQq/uTndLeGe6oL0tUqNyNlikOjOmzd55IEWKfBHOceW/Pr+oep+q8AZXk8
+         AXBHkGeN2HZqP8892hSIQ6H6xeAicIYGtMo6c8wjpbx9wPC1FFD9TgDPwO5z4oF8xJrF
+         U3qe177e5z32Mw442LH+KZX0qqBy4BnJQ9nBrAMrpuOUgsSM7LVanrlNynpBv8gNTh8b
+         TFfQMdSFbmwxkRh0snOPAQf7lYNf/9wiuN4QzXCoav2ft2uHsnsGx3SZJaeBjg2e5y9o
+         skeDpc5h0dMovaw6fvMbKBTHUQOTwIbbMt6FkYF6gWeiI2xpfEZ4zMyl+cHWKEqHf2V1
+         z94w==
+X-Gm-Message-State: AOAM5326pMVZQPLIh+2uF+Tcp+t5oEmDJC5/b1jZNvPIlNQ2EltyAccO
+        2BodhNDKQuBktkxGg1rxXO3N9RXrw1A=
+X-Google-Smtp-Source: ABdhPJwnEgUHmTVRl7qwxsDMuaptWc41HPiKDn4u5JYbhBAjgYaDhpwTk4w5nhshZWtOkRZKI/zYVw==
+X-Received: by 2002:a17:902:c206:: with SMTP id 6mr1337188pll.93.1599666208262;
+        Wed, 09 Sep 2020 08:43:28 -0700 (PDT)
+Received: from [192.168.1.3] (ip68-111-84-250.oc.oc.cox.net. [68.111.84.250])
+        by smtp.gmail.com with ESMTPSA id v4sm2339311pjh.38.2020.09.09.08.43.26
+        (version=TLS1_3 cipher=TLS_AES_128_GCM_SHA256 bits=128/128);
+        Wed, 09 Sep 2020 08:43:27 -0700 (PDT)
+Subject: Re: [PATCH v3 5/5] net: phy: smsc: LAN8710/20: remove
+ PHY_RST_AFTER_CLK_EN flag
+To:     Marco Felsch <m.felsch@pengutronix.de>, davem@davemloft.net,
+        kuba@kernel.org, robh+dt@kernel.org, andrew@lunn.ch,
+        hkallweit1@gmail.com, linux@armlinux.org.uk, zhengdejin5@gmail.com,
+        richard.leitner@skidata.com
+Cc:     netdev@vger.kernel.org, kernel@pengutronix.de,
+        devicetree@vger.kernel.org
+References: <20200909134501.32529-1-m.felsch@pengutronix.de>
+ <20200909134501.32529-6-m.felsch@pengutronix.de>
+From:   Florian Fainelli <f.fainelli@gmail.com>
+Message-ID: <a1ed4093-41af-21a8-2ca3-4e1457d23750@gmail.com>
+Date:   Wed, 9 Sep 2020 08:43:25 -0700
+User-Agent: Mozilla/5.0 (Windows NT 10.0; Win64; x64; rv:78.0) Gecko/20100101
+ Firefox/78.0 Thunderbird/78.2.1
 MIME-Version: 1.0
-In-Reply-To: <1599620279.14806.18.camel@mhfsdcap03>
-Content-Type: text/plain; charset="utf-8"
+In-Reply-To: <20200909134501.32529-6-m.felsch@pengutronix.de>
+Content-Type: text/plain; charset=utf-8; format=flowed
 Content-Language: en-US
 Content-Transfer-Encoding: 7bit
-X-EXCLAIMER-MD-CONFIG: e1e8a2fd-e40a-4ac6-ac9b-f7e9cc9ee180
 Sender: devicetree-owner@vger.kernel.org
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-On 9/8/20 9:57 PM, Crystal Guo wrote:
-> On Thu, 2020-09-03 at 07:40 +0800, Suman Anna wrote:
->> Hi Crystal,
->>
->> On 8/16/20 10:03 PM, Crystal Guo wrote:
->>> Introduce ti_syscon_reset() to integrate assert and deassert together.
->>> If some modules need do serialized assert and deassert operations
->>> to reset itself, reset_control_reset can be called for convenience.
->>
->> There are multiple changes in this same patch. I think you should split this
->> functionality away from the change for the regmap_update_bits() to
->> regmap_write_bits(), similar to what you have done in your v2 Patch 4.
->>
-> 
-> Thanks for your suggestion.
-> I will split this patch in the next version.
-> 
->>>
->>> Such as reset-qcom-aoss.c, it integrates assert and deassert together
->>> by 'reset' method. MTK Socs also need this method to perform reset.
->>>
->>> Signed-off-by: Crystal Guo <crystal.guo@mediatek.com>
->>> ---
->>>  drivers/reset/reset-ti-syscon.c | 26 ++++++++++++++++++++++++--
->>>  1 file changed, 24 insertions(+), 2 deletions(-)
->>>
->>> diff --git a/drivers/reset/reset-ti-syscon.c b/drivers/reset/reset-ti-syscon.c
->>> index a2635c21db7f..08289342f9af 100644
->>> --- a/drivers/reset/reset-ti-syscon.c
->>> +++ b/drivers/reset/reset-ti-syscon.c
->>> @@ -15,6 +15,7 @@
->>>   * GNU General Public License for more details.
->>>   */
->>>  
->>> +#include <linux/delay.h>
->>>  #include <linux/mfd/syscon.h>
->>>  #include <linux/module.h>
->>>  #include <linux/of.h>
->>> @@ -56,6 +57,7 @@ struct ti_syscon_reset_data {
->>>  	struct regmap *regmap;
->>>  	struct ti_syscon_reset_control *controls;
->>>  	unsigned int nr_controls;
->>> +	unsigned int reset_duration_us;
->>>  };
->>>  
->>>  #define to_ti_syscon_reset_data(rcdev)	\
->>> @@ -89,7 +91,7 @@ static int ti_syscon_reset_assert(struct reset_controller_dev *rcdev,
->>>  	mask = BIT(control->assert_bit);
->>>  	value = (control->flags & ASSERT_SET) ? mask : 0x0;
->>>  
->>> -	return regmap_update_bits(data->regmap, control->assert_offset, mask, value);
->>> +	return regmap_write_bits(data->regmap, control->assert_offset, mask, value);
->>>  }
->>>  
->>>  /**
->>> @@ -120,7 +122,7 @@ static int ti_syscon_reset_deassert(struct reset_controller_dev *rcdev,
->>>  	mask = BIT(control->deassert_bit);
->>>  	value = (control->flags & DEASSERT_SET) ? mask : 0x0;
->>>  
->>> -	return regmap_update_bits(data->regmap, control->deassert_offset, mask, value);
->>> +	return regmap_write_bits(data->regmap, control->deassert_offset, mask, value);
->>>  }
->>>  
->>>  /**
->>> @@ -158,9 +160,26 @@ static int ti_syscon_reset_status(struct reset_controller_dev *rcdev,
->>>  		!(control->flags & STATUS_SET);
->>>  }
->>>  
->>> +static int ti_syscon_reset(struct reset_controller_dev *rcdev,
->>> +				  unsigned long id)
->>> +{
->>> +	struct ti_syscon_reset_data *data = to_ti_syscon_reset_data(rcdev);
->>> +	int ret;
->>> +
->>> +	ret = ti_syscon_reset_assert(rcdev, id);
->>> +	if (ret)
->>> +		return ret;
->>> +
->>> +	if (data->reset_duration_us)
->>> +		usleep_range(data->reset_duration_us, data->reset_duration_us * 2);
->>> +
->>> +	return ti_syscon_reset_deassert(rcdev, id);
->>
->> I echo Philipp's comments [1] from your original v1 series about this. We don't
->> need a property to distinguish this, but you could add a flag using match data
->> and Mediatek compatible, and use that within this function, or optionally set
->> this ops based on compatible (whatever is preferred by Philipp).
->>
->> regards
->> Suman
->>
->> [1] https://patchwork.kernel.org/comment/23519193/
->>
-> Hi Suman, Philipp
-> 
-> Which method would you recommend more?
-> 1. like v2 patch, but assign the flag "data->assert_deassert_together"
-> directly (maybe rename "assert_deassert_together" to
-> "reset_op_available")
-> 
-> 2. use Mediatek compatible to decide the reset handler available or not.
 
-I would go with this option. Anyway, I think you might have to add the reset SoC
-data as well, based on Rob's comment on the binding.
 
-regards
-Suman
+On 9/9/2020 6:45 AM, Marco Felsch wrote:
+> Don't reset the phy without respect to the PHY library state machine
+> because this breaks the phy IRQ mode. The same behaviour can be archived
+> now by specifying the refclk.
+> 
+> Signed-off-by: Marco Felsch <m.felsch@pengutronix.de>
 
-> 
-> Thanks
-> Crystal
-> 
->>> +}
->>> +
->>>  static const struct reset_control_ops ti_syscon_reset_ops = {
->>>  	.assert		= ti_syscon_reset_assert,
->>>  	.deassert	= ti_syscon_reset_deassert,
->>> +	.reset		= ti_syscon_reset,
->>>  	.status		= ti_syscon_reset_status,
->>>  };
->>>  
->>> @@ -204,6 +223,9 @@ static int ti_syscon_reset_probe(struct platform_device *pdev)
->>>  		controls[i].flags = be32_to_cpup(list++);
->>>  	}
->>>  
->>> +	of_property_read_u32(pdev->dev.of_node,	"reset-duration-us",
->>> +				&data->reset_duration_us);
->>> +
->>>  	data->rcdev.ops = &ti_syscon_reset_ops;
->>>  	data->rcdev.owner = THIS_MODULE;
->>>  	data->rcdev.of_node = np;
->>>
->>
-> 
-
+Reviewed-by: Florian Fainelli <f.fainelli@gmail.com>
+-- 
+Florian
