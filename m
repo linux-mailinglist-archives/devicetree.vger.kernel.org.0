@@ -2,109 +2,78 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from vger.kernel.org (vger.kernel.org [23.128.96.18])
-	by mail.lfdr.de (Postfix) with ESMTP id E7DF1263474
-	for <lists+devicetree@lfdr.de>; Wed,  9 Sep 2020 19:20:51 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTP id A5AEB2633A8
+	for <lists+devicetree@lfdr.de>; Wed,  9 Sep 2020 19:08:35 +0200 (CEST)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S1730551AbgIIRUn (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Wed, 9 Sep 2020 13:20:43 -0400
-Received: from lindbergh.monkeyblade.net ([23.128.96.19]:45942 "EHLO
-        lindbergh.monkeyblade.net" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S1729986AbgIIPZN (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Wed, 9 Sep 2020 11:25:13 -0400
-Received: from mail-ej1-x642.google.com (mail-ej1-x642.google.com [IPv6:2a00:1450:4864:20::642])
-        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 46E53C06134E
-        for <devicetree@vger.kernel.org>; Wed,  9 Sep 2020 06:57:00 -0700 (PDT)
-Received: by mail-ej1-x642.google.com with SMTP id o8so3675246ejb.10
-        for <devicetree@vger.kernel.org>; Wed, 09 Sep 2020 06:57:00 -0700 (PDT)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=amarulasolutions.com; s=google;
-        h=mime-version:references:in-reply-to:from:date:message-id:subject:to
-         :cc:content-transfer-encoding;
-        bh=MENKoY7sLjEa2j5YMFoQoj6IgU1USAsQMBDdxrkFhWc=;
-        b=bmYvV+I7LEbseXbHhtlbAYck9NqN46DhFgxBTsEeJ62wPE19xy8BFBuma+r8HSDDl1
-         iuZJZ8QGSo4EVy9qOeJDa/xYKE2GSamLaVyFqXD1HKbEk2ngrJbnqfyNRdiR66NIpRwA
-         3s9f9mHs1brTm/hm5ADtRKLLPVEXeFDabl0+E=
-X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=1e100.net; s=20161025;
-        h=x-gm-message-state:mime-version:references:in-reply-to:from:date
-         :message-id:subject:to:cc:content-transfer-encoding;
-        bh=MENKoY7sLjEa2j5YMFoQoj6IgU1USAsQMBDdxrkFhWc=;
-        b=TgerdvlDgg4KaliY9VGHcxzF633moT0UqLYRHzI5buLtcuvKvzIy1PQRh9hoKir8P1
-         KEg51wysuAYSg+17W/m8319vPh/wflxbO48hL0WA8Lwx+v6qIO5h2ZvPu6TacvOqXWpC
-         nJbUlAal5p3YAE87KW9Nr+HEuLV7rYqWOYP5iUQeK+ntw/Ktkbo6PYonZsbJRTyJ4YDf
-         l05tY3e7QVDTu1SaEqGMmcLgDYdZ45m8uKkziFgVNiN9R1qKfVbt6hISPbTNYbwFgg8A
-         qW3KFlQyI2zq1i0BYvZUUkLqRnAhOE5Tf1e/ZeFZ3yU1mJprKMoa9N47q+w2cKP3fQMK
-         iHpg==
-X-Gm-Message-State: AOAM532+iDO9VP/2K7/Aph4gmpOISpkwe6F9C22Lmn5A2IUckhdHXECm
-        V5ozTrk8fZwZJH4GgjDdbxGO3z+I8MiDXHtO2KMrwQ==
-X-Google-Smtp-Source: ABdhPJwG32nnroeWUrNq1UG84+2uFGxqral4DWpgnb4iJnEw6uoi6YO7+CdOPDvYDAQ+31gRePqleCHukCNdIJR9k7U=
-X-Received: by 2002:a17:906:c1c6:: with SMTP id bw6mr2327666ejb.374.1599659818729;
- Wed, 09 Sep 2020 06:56:58 -0700 (PDT)
+        id S1730626AbgIIRIF (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Wed, 9 Sep 2020 13:08:05 -0400
+Received: from lb2-smtp-cloud9.xs4all.net ([194.109.24.26]:51891 "EHLO
+        lb2-smtp-cloud9.xs4all.net" rhost-flags-OK-OK-OK-OK)
+        by vger.kernel.org with ESMTP id S1730394AbgIIPhD (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Wed, 9 Sep 2020 11:37:03 -0400
+Received: from cust-b5b5937f ([IPv6:fc0c:c16d:66b8:757f:c639:739b:9d66:799d])
+        by smtp-cloud9.xs4all.net with ESMTPA
+        id G0kJkjPcoXgwIG0kKkZggK; Wed, 09 Sep 2020 16:06:48 +0200
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=xs4all.nl; s=s1;
+        t=1599660408; bh=oPrFl/TwIvpVNpQ11j9+60pYM+n2ln10KTC8JKR4WbA=;
+        h=Subject:To:From:Message-ID:Date:MIME-Version:Content-Type:From:
+         Subject;
+        b=S4SA8z+znzkwPxIJSUD15tOO5/tLQ6uyZyT8lVxO4TwZ+NwZxqYV5R0Q4lBJg2YXX
+         4HAhlrwqHrWeMbwd5HyxPYkXg0CqeBGQdnrmtdH5vxGSxQnKhLYMGEZ5CFkVeYlpZe
+         aWcLQoXVXFA/ySFah+HyFZaP9cc2ACsJiDtsX+5q8v4QawL3ljYNk+RO7Q6KiXVGrd
+         Ghcy3euewZlfVUsnno9rFvjzu2ze4ysAsBCUZmCZwIwPQSXeur5zrQlGRqmNm6et4d
+         t15Jw5Q20+7UDi2FMOq/47qoakUi73aWwGllyQSDek0xuwsanhvhdHiEkPs8mpynLX
+         cfrWoDc8TI5Xw==
+Subject: Re: [PATCH 2/3] media: Add support for the AM/FM radio chip KT0913
+ from KT Micro.
+To:     Santiago Hormazabal <santiagohssl@gmail.com>,
+        linux-media@vger.kernel.org, devicetree@vger.kernel.org,
+        Rob Herring <robh+dt@kernel.org>,
+        Ezequiel Garcia <ezequiel@collabora.com>,
+        Mauro Carvalho Chehab <mchehab@kernel.org>,
+        linux-kernel@vger.kernel.org
+References: <20200831220601.20794-1-santiagohssl@gmail.com>
+ <20200831220601.20794-3-santiagohssl@gmail.com>
+From:   Hans Verkuil <hverkuil@xs4all.nl>
+Message-ID: <60e1d448-2c79-2642-7fb6-82aceacdb75f@xs4all.nl>
+Date:   Wed, 9 Sep 2020 16:06:47 +0200
+User-Agent: Mozilla/5.0 (X11; Linux x86_64; rv:68.0) Gecko/20100101
+ Thunderbird/68.10.0
 MIME-Version: 1.0
-References: <20200904191830.387296-1-jagan@amarulasolutions.com> <6955091.ERBjKZ0CLf@diego>
-In-Reply-To: <6955091.ERBjKZ0CLf@diego>
-From:   Jagan Teki <jagan@amarulasolutions.com>
-Date:   Wed, 9 Sep 2020 19:26:47 +0530
-Message-ID: <CAMty3ZDNVZyYHAuBpCcn_=BhLvcRRHcOXKEWQqxUOdOs2+fp-Q@mail.gmail.com>
-Subject: Re: [PATCH 0/3] extcon: Add Type-C Virtual PD
-To:     =?UTF-8?Q?Heiko_St=C3=BCbner?= <heiko@sntech.de>
-Cc:     MyungJoo Ham <myungjoo.ham@samsung.com>,
-        Chanwoo Choi <cw00.choi@samsung.com>,
-        Rob Herring <robh+dt@kernel.org>, Tom Cubie <tom@radxa.com>,
-        devicetree <devicetree@vger.kernel.org>,
-        linux-arm-kernel <linux-arm-kernel@lists.infradead.org>,
-        "open list:ARM/Rockchip SoC..." <linux-rockchip@lists.infradead.org>,
-        linux-kernel <linux-kernel@vger.kernel.org>,
-        linux-amarula <linux-amarula@amarulasolutions.com>
-Content-Type: text/plain; charset="UTF-8"
-Content-Transfer-Encoding: quoted-printable
+In-Reply-To: <20200831220601.20794-3-santiagohssl@gmail.com>
+Content-Type: text/plain; charset=utf-8
+Content-Language: en-US
+Content-Transfer-Encoding: 7bit
+X-CMAE-Envelope: MS4wfBGtO1zVijWQzDMb2IpWJbNPvzETDnfTgb43UKoKnwaY0otSN+Sz/6bzbgwUBZNdeghs/Bedcx8wmruysTJ5Tftxj4trdcE3jKaLLjCFuKE0EizMQQu2
+ b4AcZHRP1AT9oEzCmI9EE2qYbDRzETU0dF9wiDtpskjRw+lh5eQIfJPX8cbMCkPzphOtzvCp7yQax+P0Q2vfVDqo5PUhysE3fl9Mgh6eLMRS2NUmhefy21kl
+ DfgUS3/9OjdmmugYGZYKwLuTgvj2nLsYV2q8jnfOdICXQgvn1JVv2BwSKG/Lt9/HCa2n5/riOiKo/5j4sG+/NULvzKBVGQwmWxQ8iGBPuMnvbPYiWNGWQrk8
+ HCISZQGegKeFGT8gc4AF+jxqHhjKyXv1umRD3GgBYLRtSUSG7Dg+Iua796Rrq+qnqtWaVYw2s8OD9IaHKXLjTQL63o/KYi2JzT68jAKQlmtfZiAzm7e9106u
+ vCx3GiLfuPbW+S3B
 Sender: devicetree-owner@vger.kernel.org
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-Hi Heiko,
+Hi Santiago,
 
-On Sat, Sep 5, 2020 at 2:53 AM Heiko St=C3=BCbner <heiko@sntech.de> wrote:
->
-> Hi Jagan,
->
-> Am Freitag, 4. September 2020, 21:18:27 CEST schrieb Jagan Teki:
-> > USB Type-C protocol supports various modes of operations
-> > includes PD, USB3, and Altmode. If the platform design
-> > supports a Type-C connector then configuring these modes
-> > can be done via enumeration.
-> >
-> > However, there are some platforms that design these modes
-> > of operations as separate protocol connectors like design
-> > Display Port from on-chip USB3 controller. So accessing
-> > Type-C Altmode Display Port via onboard Display Port
-> > connector instead of a Type-C connector.
-> >
-> > These kinds of platforms require an explicit extcon driver
-> > in order to handle Power Delivery and Port Detection.
-> >
-> > This series support this Type-C Virtual PD and enable the
-> > same in ROCK Pi 4C SBC.
-> >
-> > Any inputs?
->
-> I tend to disagree on the design via an extcon.
+On 01/09/2020 00:06, Santiago Hormazabal wrote:
+> This chip requires almost no support components and can used over I2C.
+> The driver uses the I2C bus and exposes the controls as a V4L2 radio.
+> Tested with a module that contains this chip (from SZZSJDZ.com,
+> part number ZJ-801B, even tho the company seems defunct now), and an H2+
+> AllWinner SoC running a kernel built off 07d999f of the media_tree.
+> 
+> Signed-off-by: Santiago Hormazabal <santiagohssl@gmail.com>
+> ---
+>  drivers/media/radio/Kconfig        |   10 +
+>  drivers/media/radio/Makefile       |    1 +
+>  drivers/media/radio/radio-kt0913.c | 1196 ++++++++++++++++++++++++++++
+>  3 files changed, 1207 insertions(+)
+>  create mode 100644 drivers/media/radio/radio-kt0913.c
 
-Okay, are you disagree with the extcon extension for fusb chips
-routing or entire rk3399 designs?
+One more thing: you need to add an entry to the MAINTAINERS file for this
+driver. It can either be part of this patch, or added in a separate patch.
 
-I totally agree with this point of bypassing extcon for the designs
-which has fusb302 chips. My only concern is about designs that don't
-have fusb chips - for example rock-pi-4. Designs that do have fusb302
-chips, has dynamic possibilities to identify data roles, like
-detecting Altmode DP via Type-C connector whereas designs that don't
-have fusb302 or any type-c chip need static identification of data
-role, polarity, and ss for detecting direct DP port ie where
-virtual-pd is useful.
+Regards,
 
-Look like we have two potential issues of handling DP on rk3399 here,
-let me know if you think these non-type-c chips designs also possible
-to detect w/o extcon?
-
-Jagan.
+	Hans
