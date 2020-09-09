@@ -2,86 +2,119 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from vger.kernel.org (vger.kernel.org [23.128.96.18])
-	by mail.lfdr.de (Postfix) with ESMTP id 427C4262A34
-	for <lists+devicetree@lfdr.de>; Wed,  9 Sep 2020 10:26:26 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTP id AF078262A51
+	for <lists+devicetree@lfdr.de>; Wed,  9 Sep 2020 10:32:05 +0200 (CEST)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S1726708AbgIII0Y (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Wed, 9 Sep 2020 04:26:24 -0400
-Received: from lindbergh.monkeyblade.net ([23.128.96.19]:38132 "EHLO
+        id S1727055AbgIIIcB (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Wed, 9 Sep 2020 04:32:01 -0400
+Received: from lindbergh.monkeyblade.net ([23.128.96.19]:38992 "EHLO
         lindbergh.monkeyblade.net" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S1726535AbgIII0V (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Wed, 9 Sep 2020 04:26:21 -0400
-Received: from mail-wm1-x342.google.com (mail-wm1-x342.google.com [IPv6:2a00:1450:4864:20::342])
-        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 2A6BEC061755;
-        Wed,  9 Sep 2020 01:26:20 -0700 (PDT)
-Received: by mail-wm1-x342.google.com with SMTP id w2so1407800wmi.1;
-        Wed, 09 Sep 2020 01:26:20 -0700 (PDT)
+        with ESMTP id S1726738AbgIIIb4 (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Wed, 9 Sep 2020 04:31:56 -0400
+Received: from mail-wm1-x343.google.com (mail-wm1-x343.google.com [IPv6:2a00:1450:4864:20::343])
+        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 6D382C061757
+        for <devicetree@vger.kernel.org>; Wed,  9 Sep 2020 01:31:54 -0700 (PDT)
+Received: by mail-wm1-x343.google.com with SMTP id w2so1423870wmi.1
+        for <devicetree@vger.kernel.org>; Wed, 09 Sep 2020 01:31:54 -0700 (PDT)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=gmail.com; s=20161025;
-        h=subject:to:cc:references:from:message-id:date:user-agent
+        d=linaro.org; s=google;
+        h=subject:to:cc:references:from:autocrypt:message-id:date
          :mime-version:in-reply-to:content-language:content-transfer-encoding;
-        bh=0tser96rfwYDofy0EPeasgbVCZPbEY4uhvx+UNJk7TY=;
-        b=BPnzPnO4oojkbPwwQ+0Z61XoMwy6xYQQjtqbkQFAMBZZi0u2dYGWUYuTuhCQDBnylT
-         pxRTHvu/EFFhd/QFpWTxRI/iQkaI7wvBE6NqGmbAJQl6jzPAdc+YZevHGIB4vQy1UTP2
-         kFhNq2lvB61ZSBHEtCsg6fWNkQUYp1VTsHfgy4NAEgUNhICBJmxpVlAmVPXrRdKJP8lQ
-         pDv/AgNWCr5FQfsegNeWRO3S2jATIcW4F21Z4J4AV85E/oe0Hw5X4BjFZy1daUaXkyQs
-         z7B+/v4LZEoAQ93xKVCYVlduyJcBC+iVMJ8LdP66/9/azKhj/0/qrQZL7MwM0R5jrgh5
-         QMsQ==
+        bh=6OOTP+3hdsrfyd1wUmm5Yj49uRIpO1u4gRia8ib7GbE=;
+        b=sbzYYJGUi2Tgen72Fb1lBf/XSZaBrkLvQD0BVyoOfqs/sMekPUafYW1x3vowHxwF8f
+         aKTSHlnDBiinjPy49bdsn1tVSKNkh4e3CECp0JHpS0wGHTf+cXyCmlhiURNRo4SBF/lX
+         J5zHpQdDpMa3Zvh4J13mMOuU0a8slfRlIQeFJYsU8/h/0Viwh5QvZyn8IJzF5HqQheE+
+         /wQ7mnjeLWn0XiO4G92oUnsc5klaBe1RkLG8UdJryGQk3vg7eK2XH5/vTOjqhp9did8v
+         TzwW6IWlsgj4Fb2TYW8rnHMbRlTsX0aPSJSIaldbOietK5n0IXzHZmCyJuV0rVR+84dR
+         nPcA==
 X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
         d=1e100.net; s=20161025;
-        h=x-gm-message-state:subject:to:cc:references:from:message-id:date
-         :user-agent:mime-version:in-reply-to:content-language
+        h=x-gm-message-state:subject:to:cc:references:from:autocrypt
+         :message-id:date:mime-version:in-reply-to:content-language
          :content-transfer-encoding;
-        bh=0tser96rfwYDofy0EPeasgbVCZPbEY4uhvx+UNJk7TY=;
-        b=H6IGnv1J3rIDTCeCdnYA7NgoDDFoLR/ejQgiXm7cw7ni5bA/NS4/VSCYrTdj9HFeFn
-         F4vq8GnbjePRGafYXrBBQJc66DP96YQp7X7rKPwdhlluHEVvy57yHKTnU93mtIN1Pa1s
-         yRMyTyGM0TKNaufo/FVSao1xA7TUz+D/iffF2aeEHq6JIq0C1jnxf8ULwALBhy4f+oTJ
-         lUA5i5FNT9sWdBHe4VxmRwTbqUCp7n5b4HonZA1PbWWwOYcZOn7BbFoz+SYkqdmBM6+a
-         nZboFk8kjCtnFQENYbVh4FbrUhDtxQZbAhVSTd1mN6FL/BiI06W4pglndMXrqTdEWv0I
-         8uDw==
-X-Gm-Message-State: AOAM531uP+LrO8SQtFBMdbvaccescBbcNYXiqCyDmxuIV/b0vPq5hVqA
-        Te9mtULUYVU/Rj2QNPoVdm4=
-X-Google-Smtp-Source: ABdhPJyraZ15izydbCG6UBgB4j4rhsVZ2DuZgUSzsoM3JvzdEpsWBZA+CaCVMh9UKb9tgibKOdkJtQ==
-X-Received: by 2002:a1c:dec2:: with SMTP id v185mr2357481wmg.1.1599639978820;
-        Wed, 09 Sep 2020 01:26:18 -0700 (PDT)
-Received: from ziggy.stardust ([213.195.113.201])
-        by smtp.gmail.com with ESMTPSA id o128sm2672667wmo.39.2020.09.09.01.26.17
+        bh=6OOTP+3hdsrfyd1wUmm5Yj49uRIpO1u4gRia8ib7GbE=;
+        b=Wwl4l60uvJXsjHj4dcB3k57tL+cslXU0XSmt18Pj226Oz2m/ZMYuDqpFLl1ttIrPDz
+         r2Q9tYnA9HCurxFMw2rrqM0zkvMx16q2h7xbR07AXjYbxfkBJVRKq9OdfALFwASYxqeP
+         Ymmj/WFK8k+cSnR3amHNjig+2ACo8nC/p360s44zFz2zs81hFQVVWlK1m3niJlh2AZ54
+         8k5pUYfhk4LbT0N3LZbqmWF2spQBb2+4NRc7m75Tzc7y5OIdD+P28wOXaGoieztPRxCZ
+         w9z7W6QsKLB9wPaSo4014a+k2naSMuWdm9W3DuRAdiodLGPSPbhKhlN+NRE0QIK4YrQd
+         GtTA==
+X-Gm-Message-State: AOAM531yaOgZE2kcNvGQ2p1bU91JxwZoyzTHdqPzSS1dvQ2XSTJZ6L1C
+        Hunu4BbwHXXTlyDSaverZM/ahuW9AR4VbQ==
+X-Google-Smtp-Source: ABdhPJzLc81jh8oauFaHy0YfdIx9yli0duH7En+dTAhBtbEL4Xd8mI3wMAjPF7+EAkWCgkB2Czl7Dw==
+X-Received: by 2002:a05:600c:1:: with SMTP id g1mr2287583wmc.57.1599640313218;
+        Wed, 09 Sep 2020 01:31:53 -0700 (PDT)
+Received: from [10.44.66.8] ([212.45.67.2])
+        by smtp.googlemail.com with ESMTPSA id f1sm3111398wrx.75.2020.09.09.01.31.51
         (version=TLS1_3 cipher=TLS_AES_128_GCM_SHA256 bits=128/128);
-        Wed, 09 Sep 2020 01:26:18 -0700 (PDT)
-Subject: Re: [PATCH v21 4/4] arm64: dts: mt8183: add scp node
-To:     Krzysztof Kozlowski <krzk@kernel.org>,
-        Naresh Kamboju <naresh.kamboju@linaro.org>
-Cc:     Eddie Huang <eddie.huang@mediatek.com>,
-        Linux-Next Mailing List <linux-next@vger.kernel.org>,
-        Pi-Hsun Shih <pihsun@chromium.org>,
-        Erin Lo <erin.lo@mediatek.com>,
+        Wed, 09 Sep 2020 01:31:52 -0700 (PDT)
+Subject: Re: [PATCH v5 27/36] memory: tegra-mc: Register as interconnect
+ provider
+To:     Dmitry Osipenko <digetx@gmail.com>,
+        Thierry Reding <thierry.reding@gmail.com>,
+        Jonathan Hunter <jonathanh@nvidia.com>,
         Rob Herring <robh+dt@kernel.org>,
-        Mark Rutland <mark.rutland@arm.com>,
-        "open list:OPEN FIRMWARE AND FLATTENED DEVICE TREE BINDINGS" 
-        <devicetree@vger.kernel.org>,
-        "moderated list:ARM/Mediatek SoC support" 
-        <linux-arm-kernel@lists.infradead.org>,
-        "moderated list:ARM/Mediatek SoC support" 
-        <linux-mediatek@lists.infradead.org>,
-        open list <linux-kernel@vger.kernel.org>,
-        Alexandre Courbot <acourbot@chromium.org>,
-        Bjorn Andersson <bjorn.andersson@linaro.org>,
-        Anders Roxell <anders.roxell@linaro.org>,
-        lkft-triage@lists.linaro.org,
-        Stephen Rothwell <sfr@canb.auug.org.au>
-References: <20191112110330.179649-1-pihsun@chromium.org>
- <20191112110330.179649-5-pihsun@chromium.org>
- <2abf8fdd-7b7c-73b0-beea-9c9ac56869dc@gmail.com>
- <CA+G9fYt9AujG6gyfeV5AaAv0EgggUfGT1jow8DJjVfetVWV3EA@mail.gmail.com>
- <CAJKOXPeV9zCg4v0kBfToGdJSxswbKtT16LVYADALpYRHqWXBOg@mail.gmail.com>
-From:   Matthias Brugger <matthias.bgg@gmail.com>
-Message-ID: <ced30a81-5893-6379-cdc1-c2e57d35bae4@gmail.com>
-Date:   Wed, 9 Sep 2020 10:26:16 +0200
-User-Agent: Mozilla/5.0 (X11; Linux x86_64; rv:68.0) Gecko/20100101
- Thunderbird/68.11.0
+        Michael Turquette <mturquette@baylibre.com>,
+        Stephen Boyd <sboyd@kernel.org>,
+        Peter De Schrijver <pdeschrijver@nvidia.com>,
+        MyungJoo Ham <myungjoo.ham@samsung.com>,
+        Kyungmin Park <kyungmin.park@samsung.com>,
+        Chanwoo Choi <cw00.choi@samsung.com>,
+        Mikko Perttunen <cyndis@kapsi.fi>
+Cc:     linux-tegra@vger.kernel.org, linux-pm@vger.kernel.org,
+        linux-kernel@vger.kernel.org, dri-devel@lists.freedesktop.org,
+        devicetree@vger.kernel.org
+References: <20200814000621.8415-1-digetx@gmail.com>
+ <20200814000621.8415-28-digetx@gmail.com>
+From:   Georgi Djakov <georgi.djakov@linaro.org>
+Autocrypt: addr=georgi.djakov@linaro.org; prefer-encrypt=mutual; keydata=
+ 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
+ KEmKjLDvB0pePJkdTw==
+Message-ID: <923b6801-5194-b936-13c6-0972761c29b8@linaro.org>
+Date:   Wed, 9 Sep 2020 11:31:50 +0300
 MIME-Version: 1.0
-In-Reply-To: <CAJKOXPeV9zCg4v0kBfToGdJSxswbKtT16LVYADALpYRHqWXBOg@mail.gmail.com>
-Content-Type: text/plain; charset=utf-8; format=flowed
+In-Reply-To: <20200814000621.8415-28-digetx@gmail.com>
+Content-Type: text/plain; charset=utf-8
 Content-Language: en-US
 Content-Transfer-Encoding: 7bit
 Sender: devicetree-owner@vger.kernel.org
@@ -89,43 +122,12 @@ Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-
-
-On 02/09/2020 18:23, Krzysztof Kozlowski wrote:
-> On Wed, 2 Sep 2020 at 16:45, Naresh Kamboju <naresh.kamboju@linaro.org> wrote:
->>
->> On Thu, 27 Aug 2020 at 15:44, Matthias Brugger <matthias.bgg@gmail.com> wrote:
->>>
->>>
->>>
->>> On 12/11/2019 12:03, Pi-Hsun Shih wrote:
->>>> From: Eddie Huang <eddie.huang@mediatek.com>
->>>>
->>>> Add scp node to mt8183 and mt8183-evb
->>>>
->>>> Signed-off-by: Erin Lo <erin.lo@mediatek.com>
->>>> Signed-off-by: Pi-Hsun Shih <pihsun@chromium.org>
->>>> Signed-off-by: Eddie Huang <eddie.huang@mediatek.com>
->>>
->>> Sorry I somehow oversaw this. Next time please don't doubt to ping me.
->>>
->>> Bjorn, do I understand correctly that you don't send emails to the list
->>> informing of the inclusion of a patch/series in your tree?
->>>
->>> Anyway applied now to v5.9-next/dts64 :)
->>
->> arm64 build dtbs failed on linux next 20200902.
+On 8/14/20 03:06, Dmitry Osipenko wrote:
+> Now memory controller is a memory interconnection provider. This allows us
+> to use interconnect API in order to change memory configuration.
 > 
+> Signed-off-by: Dmitry Osipenko <digetx@gmail.com>
 
-Sorry I was on vacation.
+Thanks Dmitry! Looks good to me.
 
-> I just hit it as well... I wish the kernel was built after applying
-> patches... it would make the next a better place.
-> 
-
-Right...
-
-I'll remove the patch now until this is fixed. Once again sorry for the trouble.
-
-Regards,
-Matthias
+Acked-by: Georgi Djakov <georgi.djakov@linaro.org>
