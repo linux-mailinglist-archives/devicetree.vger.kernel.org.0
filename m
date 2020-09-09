@@ -2,198 +2,152 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from vger.kernel.org (vger.kernel.org [23.128.96.18])
-	by mail.lfdr.de (Postfix) with ESMTP id 41969262CF2
-	for <lists+devicetree@lfdr.de>; Wed,  9 Sep 2020 12:19:53 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTP id 81D98262D0D
+	for <lists+devicetree@lfdr.de>; Wed,  9 Sep 2020 12:28:12 +0200 (CEST)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S1727087AbgIIKTs (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Wed, 9 Sep 2020 06:19:48 -0400
-Received: from lindbergh.monkeyblade.net ([23.128.96.19]:55732 "EHLO
-        lindbergh.monkeyblade.net" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S1726426AbgIIKTp (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Wed, 9 Sep 2020 06:19:45 -0400
-Received: from mail-wm1-x341.google.com (mail-wm1-x341.google.com [IPv6:2a00:1450:4864:20::341])
-        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id D579CC061756
-        for <devicetree@vger.kernel.org>; Wed,  9 Sep 2020 03:19:44 -0700 (PDT)
-Received: by mail-wm1-x341.google.com with SMTP id c19so1499526wmd.1
-        for <devicetree@vger.kernel.org>; Wed, 09 Sep 2020 03:19:44 -0700 (PDT)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=chromium.org; s=google;
-        h=mime-version:references:in-reply-to:from:date:message-id:subject:to
-         :cc;
-        bh=MYtyV9sjpexCNQizdjqRW/SdiWDHf0KUeZqsLzbBBXw=;
-        b=nvSB7U1YSQLRXpNDcMP9RUL4PGdEF8Pp4cI2ebpoYmMzEcjiDJLpG6b3HJObeEVAxL
-         cijYVLuZEmfuyeKiiZN8Q6lt2h87SXNCljv8Xm5odSlNFG3IzsWZMaKBsHIF8GcmTvzX
-         tAKWudAP91pOakcxDjcrP8IsABvDDWwVina9w=
-X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=1e100.net; s=20161025;
-        h=x-gm-message-state:mime-version:references:in-reply-to:from:date
-         :message-id:subject:to:cc;
-        bh=MYtyV9sjpexCNQizdjqRW/SdiWDHf0KUeZqsLzbBBXw=;
-        b=fnzcGCjqu7ke8EH1EEl6Is+sM9JqMI8nMNWr2fd7P77cMGyXIi1u+yQWSGgrz/iU+m
-         EK42ETdXcwH2ub0J7T3My9o2i4u+BpnQpcdrdiUTn/6sBH830MfDNOjIyRbCLqyZXmFR
-         ROchFio/zuaSyAlHFPtCXU41Sr63aDNOP7HlC6oI+rmHnqZRwnr2siHONjwyTYRVU6LG
-         eiuQumGFuGnM3RAtlmVPY8+AUCc+qLScVkHvNdxwNZVtE9K4/ZX2dNR4wtO8gXGuD7N+
-         6TvgixXI8gNM2l1IsCuThBAW2oL46c+DHe5KSb6nOG3ZIghDZbYx56f6mE7zz/sLFJko
-         7Sbg==
-X-Gm-Message-State: AOAM532ROTHxYx+L4cnwfT85RiNCFKDf642yQJ4FMjzcuq3E1ZCI2duN
-        Ee27sgBS86TlkriB0Ou7DXm9SA5TwNvy8OH/aqtXQw==
-X-Google-Smtp-Source: ABdhPJyiGLD2o5Mp0hKfuqc3sTpSUwV4QU2ftFwRMsUfKEu8ElxuFddp9M1CKV0LCUYsOZUPyqBuF/zKTLMFrnRTRBU=
-X-Received: by 2002:a7b:c3c8:: with SMTP id t8mr2821349wmj.101.1599646782754;
- Wed, 09 Sep 2020 03:19:42 -0700 (PDT)
+        id S1726708AbgIIK10 (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Wed, 9 Sep 2020 06:27:26 -0400
+Received: from mail.kernel.org ([198.145.29.99]:45314 "EHLO mail.kernel.org"
+        rhost-flags-OK-OK-OK-OK) by vger.kernel.org with ESMTP
+        id S1727935AbgIIK0v (ORCPT <rfc822;devicetree@vger.kernel.org>);
+        Wed, 9 Sep 2020 06:26:51 -0400
+Received: from saruman (91-155-214-58.elisa-laajakaista.fi [91.155.214.58])
+        (using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
+        (No client certificate requested)
+        by mail.kernel.org (Postfix) with ESMTPSA id 9365D206F4;
+        Wed,  9 Sep 2020 10:26:47 +0000 (UTC)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=kernel.org;
+        s=default; t=1599647209;
+        bh=MG0msxZvjCsJNDApogNfiZrhvSjNoctWQSyL9scydxs=;
+        h=From:To:Cc:Subject:In-Reply-To:References:Date:From;
+        b=FedeXmt6fvwowKtOyhe/cRP0eUKyzmP9wPKyX4D8hmyQKsI71a7+ceemLYsWgstGb
+         6AI1ZhtZEIyey4iaef9Elcefio4AU1rhrW6bOmUOxuA4pV9zlVKnZkv0PsjObP9Jfe
+         pCfjE5Yim1FbmjqPyh80HSWywTyr/fhL2hqU2i8g=
+From:   Felipe Balbi <balbi@kernel.org>
+To:     Manish Narani <MNARANI@xilinx.com>,
+        "gregkh@linuxfoundation.org" <gregkh@linuxfoundation.org>,
+        "robh+dt@kernel.org" <robh+dt@kernel.org>,
+        Michal Simek <michals@xilinx.com>,
+        "p.zabel@pengutronix.de" <p.zabel@pengutronix.de>
+Cc:     "linux-usb@vger.kernel.org" <linux-usb@vger.kernel.org>,
+        "devicetree@vger.kernel.org" <devicetree@vger.kernel.org>,
+        "linux-arm-kernel@lists.infradead.org" 
+        <linux-arm-kernel@lists.infradead.org>,
+        "linux-kernel@vger.kernel.org" <linux-kernel@vger.kernel.org>,
+        git <git@xilinx.com>
+Subject: RE: [PATCH 2/2] usb: dwc3: Add driver for Xilinx platforms
+In-Reply-To: <BYAPR02MB58960AA4C87C76223C04D71BC1260@BYAPR02MB5896.namprd02.prod.outlook.com>
+References: <1598467441-124203-1-git-send-email-manish.narani@xilinx.com>
+ <1598467441-124203-3-git-send-email-manish.narani@xilinx.com>
+ <87y2m0ioql.fsf@kernel.org>
+ <BYAPR02MB5896669D47783D06F779608BC1520@BYAPR02MB5896.namprd02.prod.outlook.com>
+ <877dtd7kxc.fsf@kernel.org>
+ <BYAPR02MB58960AA4C87C76223C04D71BC1260@BYAPR02MB5896.namprd02.prod.outlook.com>
+Date:   Wed, 09 Sep 2020 13:26:42 +0300
+Message-ID: <87blifkzz1.fsf@kernel.org>
 MIME-Version: 1.0
-References: <20200907100039.1731457-1-cychiang@chromium.org>
- <20200907100039.1731457-3-cychiang@chromium.org> <20200908203357.GA861143@bogus>
- <CAFv8NwLMAkFhVT-ML7QHbnSkqmgh=5SrNSik5eSCTHB1=DGQ0A@mail.gmail.com>
-In-Reply-To: <CAFv8NwLMAkFhVT-ML7QHbnSkqmgh=5SrNSik5eSCTHB1=DGQ0A@mail.gmail.com>
-From:   Cheng-yi Chiang <cychiang@chromium.org>
-Date:   Wed, 9 Sep 2020 18:19:16 +0800
-Message-ID: <CAFv8NwJXyzUsCQZu1cU0t7NUJDpS_DyxZM=ZhU+jGoQj97i3Jw@mail.gmail.com>
-Subject: Re: [PATCH v7 2/3] ASoC: qcom: dt-bindings: Add sc7180 machine bindings
-To:     Rob Herring <robh@kernel.org>
-Cc:     linux-kernel <linux-kernel@vger.kernel.org>,
-        Mark Brown <broonie@kernel.org>,
-        Taniya Das <tdas@codeaurora.org>,
-        Rohit kumar <rohitkr@codeaurora.org>,
-        Banajit Goswami <bgoswami@codeaurora.org>,
-        Patrick Lai <plai@codeaurora.org>,
-        Andy Gross <agross@kernel.org>,
-        Bjorn Andersson <bjorn.andersson@linaro.org>,
-        Liam Girdwood <lgirdwood@gmail.com>,
-        Jaroslav Kysela <perex@perex.cz>,
-        Takashi Iwai <tiwai@suse.com>,
-        Srini Kandagatla <srinivas.kandagatla@linaro.org>,
-        Stephan Gerhold <stephan@gerhold.net>,
-        Matthias Brugger <matthias.bgg@gmail.com>,
-        Heiko Stuebner <heiko@sntech.de>,
-        Doug Anderson <dianders@chromium.org>,
-        Dylan Reid <dgreid@chromium.org>,
-        Tzung-Bi Shih <tzungbi@chromium.org>,
-        Linux ARM <linux-arm-kernel@lists.infradead.org>,
-        linux-arm-msm <linux-arm-msm@vger.kernel.org>,
-        "open list:OPEN FIRMWARE AND FLATTENED DEVICE TREE BINDINGS" 
-        <devicetree@vger.kernel.org>,
-        "moderated list:SOUND - SOC LAYER / DYNAMIC AUDIO POWER MANAGEM..." 
-        <alsa-devel@alsa-project.org>, linux-mediatek@lists.infradead.org,
-        linux-rockchip@lists.infradead.org
-Content-Type: text/plain; charset="UTF-8"
+Content-Type: multipart/signed; boundary="=-=-=";
+        micalg=pgp-sha256; protocol="application/pgp-signature"
 Sender: devicetree-owner@vger.kernel.org
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-On Wed, Sep 9, 2020 at 5:23 PM Cheng-yi Chiang <cychiang@chromium.org> wrote:
->
-> On Wed, Sep 9, 2020 at 4:34 AM Rob Herring <robh@kernel.org> wrote:
-> >
-> > On Mon, Sep 07, 2020 at 06:00:38PM +0800, Cheng-Yi Chiang wrote:
-> > > Add devicetree bindings documentation file for sc7180 sound card.
-> > >
-> > > Signed-off-by: Cheng-Yi Chiang <cychiang@chromium.org>
-> > > ---
-> > >  .../bindings/sound/qcom,sc7180.yaml           | 143 ++++++++++++++++++
-> > >  1 file changed, 143 insertions(+)
-> > >  create mode 100644 Documentation/devicetree/bindings/sound/qcom,sc7180.yaml
-> > >
-> > > diff --git a/Documentation/devicetree/bindings/sound/qcom,sc7180.yaml b/Documentation/devicetree/bindings/sound/qcom,sc7180.yaml
-> > > new file mode 100644
-> > > index 000000000000..ae809346ca80
-> > > --- /dev/null
-> > > +++ b/Documentation/devicetree/bindings/sound/qcom,sc7180.yaml
-> > > @@ -0,0 +1,143 @@
-> > > +# SPDX-License-Identifier: (GPL-2.0-only OR BSD-2-Clause)
-> > > +%YAML 1.2
-> > > +---
-> > > +$id: http://devicetree.org/schemas/sound/qcom,sc7180.yaml#
-> > > +$schema: http://devicetree.org/meta-schemas/core.yaml#
-> > > +
-> > > +title: Qualcomm Technologies Inc. SC7180 ASoC sound card driver
-> > > +
-> > > +maintainers:
-> > > +  - Rohit kumar <rohitkr@codeaurora.org>
-> > > +  - Cheng-Yi Chiang <cychiang@chromium.org>
-> > > +
-> > > +description:
-> > > +  This binding describes the SC7180 sound card which uses LPASS for audio.
-> > > +
-> > > +properties:
-> > > +  compatible:
-> > > +    const: qcom,sc7180-sndcard
-> > > +
-> > > +  audio-routing:
-> > > +    $ref: /schemas/types.yaml#/definitions/non-unique-string-array
-> > > +    description:
-> > > +      A list of the connections between audio components. Each entry is a
-> > > +      pair of strings, the first being the connection's sink, the second
-> > > +      being the connection's source.
-> > > +
-> > > +  model:
-> > > +    $ref: /schemas/types.yaml#/definitions/string
-> > > +    description: User specified audio sound card name
-> > > +
-> > > +  headset-jack:
-> > > +    $ref: /schemas/types.yaml#/definitions/phandle
-> > > +    description: phandle of the codec for headset detection
-> > > +
-> > > +  hdmi-jack:
-> > > +    $ref: /schemas/types.yaml#/definitions/phandle
-> > > +    description: phandle of the codec for hdmi jack detection
-> >
-> > You already have links to these devices. Why duplicate it here?
-> >
-> > What if you had 2 headsets? This doesn't scale.
-> >
-> Hi Rob, thanks for reviewing.
-> There was some discussion in
-> https://patchwork.kernel.org/patch/11737905/#23571643 about how to
-> specify the dailink that has a headset jack.
-> I would like to pass the information of headset jack and hdmi jack to
-> the machine driver so the machine driver can call
-> snd_soc_component_set_jack to set jack when init the corresponding link.
-> Headset jack and hdmi jack will be treated differently for button and
-> event type.
-> Because of this, we can not just set a property "jack" in the link.
->
-> As for the 2 headsets case (I guess you mean hp jack and mic jack), on
-> this board we will not have this use case.
-> If someone really wants to build hp jack and mic jack on the board
-> based on this machine driver, we can add two more property hp-jack and
-> mic-jack to specify that,
-> as the machine driver will need to know the different jack types
-> anyway. What do you think ?
->
-> Or could you please suggest a proper way to pass such information ?
->
-> Thanks!
-> >
-Alternatively we can probably do
+--=-=-=
+Content-Type: text/plain
+Content-Transfer-Encoding: quoted-printable
 
-                dai-link@0 {
-                        link-name = "MultiMedia0";
-                        reg = <0>;
-                        cpu {
-                                sound-dai = <&lpass_cpu 0>;
-                        };
-                        headset_jack;
-                        codec {
-                                sound-dai = <&alc5682 0>;
-                        };
-                };
-                dai-link@2 {
-                        link-name = "MultiMedia2";
-                        reg = <2>;
-                        cpu {
-                                sound-dai = <&lpass_hdmi 0>;
-                        };
-                        hdmi_jack;
-                        codec {
-                                sound-dai = <&msm_dp>;
-                        };
-                };
 
-Or even put the flag into codec {}.
-Please let me know if you feel this is a better way.
-I think it will make the driver code a little more complicated, but
-the interface on dts might looks cleaner.
-Thanks!
+Hi,
 
-> > Rob
+Manish Narani <MNARANI@xilinx.com> writes:
+>> -----Original Message-----
+>> From: Felipe Balbi <balbi@kernel.org>
+>> Sent: Tuesday, September 1, 2020 5:45 PM
+>>=20
+>> >> > +		goto err;
+>> >> > +	}
+>> >> > +
+>> >> > +	ret =3D dwc3_xlnx_rst_assert(priv_data->apbrst);
+>> >> > +	if (ret < 0) {
+>> >> > +		dev_err(dev, "%s: %d: Failed to assert reset\n",
+>> >> > +			__func__, __LINE__);
+>> >>
+>> >> 		dev_err(dev, "Failed to assert APB reset\n");
+>> >>
+>> >> > +		goto err;
+>> >> > +	}
+>> >> > +
+>> >> > +	ret =3D phy_init(priv_data->usb3_phy);
+>> >>
+>> >> dwc3 core should be handling this already
+>> >
+>> > The USB controller used in Xilinx ZynqMP platform uses xilinx GT phy
+>> > which has 4 GT lanes and can used by 4 peripherals at a time.
+>>=20
+>> At the same time or are they mutually exclusive?
+>
+> The lanes are mutually exclusive.
+
+Thank you for confirming :-)
+
+>  [...]
+>> >> > +	if (ret < 0) {
+>> >> > +		dev_err(dev, "%s: %d: Failed to release reset\n",
+>> >> > +			__func__, __LINE__);
+>> >> > +		goto err;
+>> >> > +	}
+>> >> > +
+>> >> > +	/* Set PIPE power present signal */
+>> >> > +	writel(PIPE_POWER_ON, priv_data->regs + PIPE_POWER_OFFSET);
+>> >> > +
+>> >> > +	/* Clear PIPE CLK signal */
+>> >> > +	writel(PIPE_CLK_OFF, priv_data->regs + PIPE_CLK_OFFSET);
+>> >>
+>> >> shouldn't this be hidden under clk_enable()?
+>> >
+>> > Though its naming suggests something related to clock framework, it is
+>> > a register in the Xilinx USB controller space which configures the
+>> > PIPE clock coming from Serdes.
+>>=20
+>> PIPE clock is a clock. It just so happens that the source is the PHY
+>> itself.
+>
+> This bit is used to choose between PIPE clock coming from SerDes
+> and the Suspend Clock. When the controller is out of reset, this bit
+> needs to be reset in order to make the USB controller work. This
+> register is added in Xilinx USB controller register space. I will
+> add more description about the same in v2.
+
+Aha! That clarifies. It's just a clock selection from clocks that are
+generated elsewhere :-) I guess a clk driver would be overkill, indeed.
+
+Thanks for explaining. Could you add some of this information to commit
+log, then?
+
+cheers
+
+=2D-=20
+balbi
+
+--=-=-=
+Content-Type: application/pgp-signature; name="signature.asc"
+
+-----BEGIN PGP SIGNATURE-----
+
+iQJFBAEBCAAvFiEElLzh7wn96CXwjh2IzL64meEamQYFAl9YreIRHGJhbGJpQGtl
+cm5lbC5vcmcACgkQzL64meEamQZ/zw/7Btf7KF38ujarqULDRAGPcndKWFLsg+zM
+mf6UkIlysLp3RK3ADxwyLi+9jwnezvSTQ7wHU1E3jF5aHsVpahXOtkkjS6ffYhyG
+LyOGMJNJ1/h4i+QyNs5mkfOTNSP02W0mfd2VrzWse9A1IMqJeoo0xVjrqyZixZEd
+6FaO1mfIXfFFQnfS5q5hZo9GYk6HNM929VKs09bX2uJ8qsJqcI+i5SAdxbo+Zp4T
+2PxrQtcQEYxjL2R39AbAy6U627ZfEtuHrIOtTV5czMqzPAIfi/88WnXvriT7oOcM
+GrvAz+ulf8uSMwNtVc3GUzkFgpppshjoB71WojNxlfbt/5UYLTLyFOfDfPf2i4gE
+Q6EKRU3NPJcnt/2letLFfhSow6qnLuCFYCfl6z+8lgbLHoThfmNtUrx4jlVrPFMJ
+Sz1bSR5NO82aNvbhOIXWGcyoaiZBpYPX0XVyW0wDEc+dnal4oUE12MxOVhzk6QVz
+FqBdmDKXx+jjwwKkWoBONLsTvjScG5PXPMTOMGFffVSnrJ6f8bo1QGuwL8H72uqj
+4z44XEbYjiWGFYroG3VsoVJvf/vGjsfud0ZJLesKF37BeaU1jJkbYQQQjLM9WzXY
+IZ0Mg04mcVLl1vhCDK3KZH0B/8vMDiUgduLflBtuuxPqVU/wAr74jgLRJMDppBDH
+vE++F+UPao4=
+=+Qxk
+-----END PGP SIGNATURE-----
+--=-=-=--
