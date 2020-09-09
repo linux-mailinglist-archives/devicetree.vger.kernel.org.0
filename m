@@ -2,67 +2,191 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from vger.kernel.org (vger.kernel.org [23.128.96.18])
-	by mail.lfdr.de (Postfix) with ESMTP id 8349126344F
-	for <lists+devicetree@lfdr.de>; Wed,  9 Sep 2020 19:18:49 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTP id 02B3D263488
+	for <lists+devicetree@lfdr.de>; Wed,  9 Sep 2020 19:23:06 +0200 (CEST)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S1730951AbgIIRSs (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Wed, 9 Sep 2020 13:18:48 -0400
-Received: from mail-il1-f194.google.com ([209.85.166.194]:41314 "EHLO
-        mail-il1-f194.google.com" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S1730168AbgIIRSo (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Wed, 9 Sep 2020 13:18:44 -0400
-Received: by mail-il1-f194.google.com with SMTP id w8so3058415ilj.8;
-        Wed, 09 Sep 2020 10:18:44 -0700 (PDT)
-X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=1e100.net; s=20161025;
-        h=x-gm-message-state:date:from:to:cc:subject:message-id:references
-         :mime-version:content-disposition:in-reply-to;
-        bh=1hr4fQWVMQoos6KFmQBQi97levSHBi+dO9Jnfm/kgyc=;
-        b=QgVDrQv79/bMsspyf26g4QQ7M+nDYYC/uCyuQAI6TQmqQO9jt5pBIr+Mlusq9nduAE
-         eyKUQSv+CBNtLnXmfaF4UVbv+Eh9R3p20rQfmcfxvpnJx0bheNnCp274h8xntUrA6YTL
-         pEbbgtFSY1NAQdGEfXBxhlFRZKPfY3yctAMGgEqu3fy4klGIQ3GZBMhu/ML2mfsl91O5
-         m671D9XSpw/34bNwhjwmj+4TwKoVzBKXYDXyqnV6dD5r6WbpGJzHbw5iNhCkiEtNYzVA
-         sOWvIiDr89TV/HICs1wPOonQaP+eqy4+Gi9Hn1ym5+2hPL173KUd8Kq+MG8OZQ0TJvEg
-         QZbg==
-X-Gm-Message-State: AOAM533E7xhtu7K5XJRV2KAI8tOtdLjd6y5OssahsAiIoLgHK5bQASKW
-        xYFJZcSYgX4SjyrA1Szz5pt2u8/klmWD
-X-Google-Smtp-Source: ABdhPJweONXjnuZtBkOGVqg1AFS1ASeGmxxVhyJmF8gPg8PMO09CmvmPl5R9xygei/39Fl6Prjb6gg==
-X-Received: by 2002:a92:bb94:: with SMTP id x20mr4613847ilk.86.1599671923668;
-        Wed, 09 Sep 2020 10:18:43 -0700 (PDT)
-Received: from xps15 ([64.188.179.251])
-        by smtp.gmail.com with ESMTPSA id s15sm1610420ilt.62.2020.09.09.10.18.42
-        (version=TLS1_3 cipher=TLS_AES_256_GCM_SHA384 bits=256/256);
-        Wed, 09 Sep 2020 10:18:43 -0700 (PDT)
-Received: (nullmailer pid 2680839 invoked by uid 1000);
-        Wed, 09 Sep 2020 17:18:42 -0000
-Date:   Wed, 9 Sep 2020 11:18:42 -0600
-From:   Rob Herring <robh@kernel.org>
-To:     Jisheng Zhang <Jisheng.Zhang@synaptics.com>
-Cc:     Liam Girdwood <lgirdwood@gmail.com>, linux-kernel@vger.kernel.org,
-        Mark Brown <broonie@kernel.org>,
-        Rob Herring <robh+dt@kernel.org>, devicetree@vger.kernel.org
-Subject: Re: [PATCH] dt-bindings: regulator: Convert mp886x to json-schema
-Message-ID: <20200909171842.GA2680789@bogus>
-References: <20200827150640.267f6edc@xhacker.debian>
+        id S1726683AbgIIRXE (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Wed, 9 Sep 2020 13:23:04 -0400
+Received: from mail.kernel.org ([198.145.29.99]:33998 "EHLO mail.kernel.org"
+        rhost-flags-OK-OK-OK-OK) by vger.kernel.org with ESMTP
+        id S1726036AbgIIRXC (ORCPT <rfc822;devicetree@vger.kernel.org>);
+        Wed, 9 Sep 2020 13:23:02 -0400
+Received: from mail-ot1-f42.google.com (mail-ot1-f42.google.com [209.85.210.42])
+        (using TLSv1.2 with cipher ECDHE-RSA-AES128-GCM-SHA256 (128/128 bits))
+        (No client certificate requested)
+        by mail.kernel.org (Postfix) with ESMTPSA id 6C0452166E;
+        Wed,  9 Sep 2020 17:23:01 +0000 (UTC)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=kernel.org;
+        s=default; t=1599672181;
+        bh=ojYXfjO2DurN2C/opB53TRYM7STqyjyLj7tArEbYnYU=;
+        h=References:In-Reply-To:From:Date:Subject:To:Cc:From;
+        b=W40okwbvhzb3YNdQWWE61AnHf+7XtiOdb6MNYys5tClUSQqHRyUMpvh3j0fpRj3NS
+         33B56q0jVNPBQ3AsfsIRkXkarAFSMhPU2JsKSxRbZo06tvNmgrXsWwK3ewSbwGSrxC
+         B3BdieaaNhVMHkaDJiSZWYP+jSTalp6OSB3k8Ud8=
+Received: by mail-ot1-f42.google.com with SMTP id g10so2954608otq.9;
+        Wed, 09 Sep 2020 10:23:01 -0700 (PDT)
+X-Gm-Message-State: AOAM532QNqalj6R3eFLxyi/WKh/V+wpgcVI5mHOwFIhUjqcJfy/ZkstH
+        Yg8ez7sZHgduM4r4zDXprgUh9ezNBpfhIC0Ihg==
+X-Google-Smtp-Source: ABdhPJwF/BBwg1karh3OP6yS1l/x+0g03zifHTvvij6uGN/zcwIb/C59SHbjSoa84vatAmS8zyZQIW9jDnoPNpIu7AQ=
+X-Received: by 2002:a9d:411:: with SMTP id 17mr1405892otc.192.1599672180697;
+ Wed, 09 Sep 2020 10:23:00 -0700 (PDT)
 MIME-Version: 1.0
-Content-Type: text/plain; charset=us-ascii
-Content-Disposition: inline
-In-Reply-To: <20200827150640.267f6edc@xhacker.debian>
+References: <cover.1598043782.git.cristian.ciocaltea@gmail.com>
+ <863c9c1e44cfbe6184bf0bd4893ff456af0e7bb8.1598043782.git.cristian.ciocaltea@gmail.com>
+ <20200908214724.GA959481@bogus> <20200909160334.GA385382@BV030612LT>
+In-Reply-To: <20200909160334.GA385382@BV030612LT>
+From:   Rob Herring <robh@kernel.org>
+Date:   Wed, 9 Sep 2020 11:22:48 -0600
+X-Gmail-Original-Message-ID: <CAL_JsqL+21YH+_w3e6PnW0GqPyEAD6uU-hqHZercKK0xQwCOjg@mail.gmail.com>
+Message-ID: <CAL_JsqL+21YH+_w3e6PnW0GqPyEAD6uU-hqHZercKK0xQwCOjg@mail.gmail.com>
+Subject: Re: [PATCH v2 1/6] dt-bindings: mfd: Add Actions Semi ATC260x PMIC binding
+To:     Cristian Ciocaltea <cristian.ciocaltea@gmail.com>
+Cc:     Lee Jones <lee.jones@linaro.org>,
+        Dmitry Torokhov <dmitry.torokhov@gmail.com>,
+        Sebastian Reichel <sre@kernel.org>,
+        Liam Girdwood <lgirdwood@gmail.com>,
+        Mark Brown <broonie@kernel.org>,
+        Manivannan Sadhasivam <manivannan.sadhasivam@linaro.org>,
+        =?UTF-8?Q?Andreas_F=C3=A4rber?= <afaerber@suse.de>,
+        linux-actions@lists.infradead.org, devicetree@vger.kernel.org,
+        "linux-kernel@vger.kernel.org" <linux-kernel@vger.kernel.org>,
+        Linux Input <linux-input@vger.kernel.org>,
+        "open list:THERMAL" <linux-pm@vger.kernel.org>
+Content-Type: text/plain; charset="UTF-8"
 Sender: devicetree-owner@vger.kernel.org
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-On Thu, 27 Aug 2020 15:06:40 +0800, Jisheng Zhang wrote:
-> Convert the mp886x binding to DT schema format using json-schema.
-> 
-> Signed-off-by: Jisheng Zhang <Jisheng.Zhang@synaptics.com>
-> ---
->  .../devicetree/bindings/regulator/mp886x.txt  | 31 ----------
->  .../bindings/regulator/mps,mp886x.yaml        | 61 +++++++++++++++++++
->  2 files changed, 61 insertions(+), 31 deletions(-)
->  delete mode 100644 Documentation/devicetree/bindings/regulator/mp886x.txt
->  create mode 100644 Documentation/devicetree/bindings/regulator/mps,mp886x.yaml
-> 
+On Wed, Sep 9, 2020 at 10:03 AM Cristian Ciocaltea
+<cristian.ciocaltea@gmail.com> wrote:
+>
+> Hi Rob,
+>
+> Thanks for reviewing!
+>
+> On Tue, Sep 08, 2020 at 03:47:24PM -0600, Rob Herring wrote:
+> > On Sat, Aug 22, 2020 at 01:19:47AM +0300, Cristian Ciocaltea wrote:
+> > > Add devicetree binding for Actions Semi ATC260x PMICs.
+> > >
+> > > Signed-off-by: Cristian Ciocaltea <cristian.ciocaltea@gmail.com>
+> > > ---
+> > >  .../bindings/mfd/actions,atc260x.yaml         | 221 ++++++++++++++++++
+> > >  1 file changed, 221 insertions(+)
+> > >  create mode 100644 Documentation/devicetree/bindings/mfd/actions,atc260x.yaml
+> > >
+> > > diff --git a/Documentation/devicetree/bindings/mfd/actions,atc260x.yaml b/Documentation/devicetree/bindings/mfd/actions,atc260x.yaml
+> > > new file mode 100644
+> > > index 000000000000..4a55bbe1306e
+> > > --- /dev/null
+> > > +++ b/Documentation/devicetree/bindings/mfd/actions,atc260x.yaml
+> > > @@ -0,0 +1,221 @@
+> > > +# SPDX-License-Identifier: (GPL-2.0-only OR BSD-2-Clause)
+> > > +%YAML 1.2
+> > > +---
+> > > +$id: http://devicetree.org/schemas/mfd/actions,atc260x.yaml#
+> > > +$schema: http://devicetree.org/meta-schemas/core.yaml#
+> > > +
+> > > +title: Actions Semi ATC260x Power Management IC bindings
+> > > +
+> > > +maintainers:
+> > > +  - Manivannan Sadhasivam <manivannan.sadhasivam@linaro.org>
+> > > +  - Cristian Ciocaltea <cristian.ciocaltea@gmail.com>
+> > > +
+> > > +description: |
+> > > +  ATC260x series PMICs integrates Audio Codec, Power Management, RTC, IR
+> > > +  and GPIO controller blocks. Currently only the PM related functionalities
+> > > +  (i.e. regulators and system power-off/reboot) for the ATC2603C and ATC2609A
+> > > +  chip variants are supported.
+> > > +  ATC2603C includes 3 programmable DC-DC converters and 9 LDO regulators.
+> > > +  ATC2609A includes 5 programmable DC-DC converters and 10 LDO regulators.
+> > > +
+> > > +properties:
+> > > +  compatible:
+> > > +    enum:
+> > > +      - actions,atc2603c
+> > > +      - actions,atc2609a
+> > > +
+> > > +  reg:
+> > > +    maxItems: 1
+> > > +
+> > > +  interrupts:
+> > > +    maxItems: 1
+> > > +
+> > > +  pwrc:
+> > > +    type: object
+> > > +    description: |
+> > > +      The power controller integrated in ATC260x provides system power-off
+> > > +      and reboot operations.
+> >
+> > No need for this node as there are no properties, just instantiate
+> > what's needed in the MFD driver.
+>
+> My intention was to allow the user specify what functionality in the MFD
+> shall be enabled. For this particular case, if the 'pwrc' node is not
+> provided, the power-off/reboot functions will be disabled.
 
-Reviewed-by: Rob Herring <robh@kernel.org>
+IIRC, there's a flag property for this already.
+
+>
+> > > +
+> > > +    properties:
+> > > +      compatible:
+> > > +        enum:
+> > > +          - actions,atc2603c-pwrc
+> > > +          - actions,atc2609a-pwrc
+> > > +
+> > > +    required:
+> > > +      - compatible
+> > > +
+> > > +    additionalProperties: false
+> > > +
+> > > +  onkey:
+> > > +    type: object
+> > > +    description: |
+> > > +      Use the ONKEY built into ATC260x PMICs as an input device reporting
+> > > +      power button status. ONKEY can be used to wakeup from low power
+> > > +      modes and force a reset on long press.
+> > > +
+> > > +    properties:
+> > > +      compatible:
+> > > +        enum:
+> > > +          - actions,atc2603c-onkey
+> > > +          - actions,atc2609a-onkey
+> > > +
+> > > +      actions,reset-time-sec:
+> > > +        description: |
+> > > +          Duration in seconds which the key should be kept pressed for device
+> > > +          to reset automatically. The hardware default is 8. Use 0 to disable
+> > > +          this functionality.
+> > > +        enum: [0, 6, 8, 10, 12]
+> >
+> > We already have 'power-off-time-sec' in input.yaml. How about adding
+> > 'reset-time-sec' there.
+>
+> Thanks for the suggestion, I was actually looking for this before
+> choosing the custom property and just assumed this was not added for
+> a particular reason.
+
+Probably just because the usual behavior of holding the power button
+is to power off rather than reset.
+
+> So I'm going to handle it. Would you like me to send a separate patch
+> (not part of this series)?
+
+Separate patch yes, but it can be part of the series.
+
+> > This could really just be a property in the parent node.
+>
+> This is similar with 'pwrc': if 'onkey' node is not present, the ONKEY
+> functionality will not be enabled.
+
+Would you really want/need to support wakeup, but disable long press
+feature? Seems like a single property would be sufficient.
+
+> Is there a better/recommended approach to manage this MFD feature
+> selection?
+
+But we have child nodes for this in other cases, so I guess it is fine.
+
+Rob
