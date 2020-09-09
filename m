@@ -2,155 +2,103 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from vger.kernel.org (vger.kernel.org [23.128.96.18])
-	by mail.lfdr.de (Postfix) with ESMTP id D38D6262A65
-	for <lists+devicetree@lfdr.de>; Wed,  9 Sep 2020 10:34:41 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTP id CB2BA262A7B
+	for <lists+devicetree@lfdr.de>; Wed,  9 Sep 2020 10:37:30 +0200 (CEST)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S1726111AbgIIIek (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Wed, 9 Sep 2020 04:34:40 -0400
-Received: from mail-ej1-f68.google.com ([209.85.218.68]:45769 "EHLO
-        mail-ej1-f68.google.com" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S1725975AbgIIIek (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Wed, 9 Sep 2020 04:34:40 -0400
-Received: by mail-ej1-f68.google.com with SMTP id i26so2283053ejb.12;
-        Wed, 09 Sep 2020 01:34:38 -0700 (PDT)
-X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=1e100.net; s=20161025;
-        h=x-gm-message-state:date:from:to:subject:message-id:references
-         :mime-version:content-disposition:in-reply-to:user-agent;
-        bh=vsALB+bxuuEP7Stns5jLN4qt786xLJXYhZvHFA9movY=;
-        b=XSf68dHX7NAWM4nzgtejdreYFS8CJQ3ikO4MFMFfcxO6Y+tdjDe2tB0O1K4sUaovBI
-         /Bitupjop/7i9/+xc1wyMfyn2yuj4ulAJf8C8VOyYOpopPj6w6QDL/4CBZDC/KPqhORu
-         hA3G98yTqRcUwkKWNbtfp5ARmY1kd90v6tm+nAp0jaVrR3+ZAaIJmk8gKrseQTULXZXs
-         FcqxRTkfcwbIoEi1AMzCGn5UYweSFuoO+QPRpEvO6DZcXBlxvQ2TG6wpXCDW3K2C1PRt
-         /LeLstgTYWRj/5FFbZeXU64AeDh63g1/4pHO+qdGIzjC9GnBozyZrdK1eheRslTykF4d
-         uuCA==
-X-Gm-Message-State: AOAM5335XkngKzU1Qtff2hlouG5rQqjgO4Qfxw2c3Ydk+kkIhZnBaU0v
-        840PeWQ/cbY1ZvRuZ04o1Lw=
-X-Google-Smtp-Source: ABdhPJzNWdfEaEJMrGWJQ6SgVZ2LZkowL8XUPe1AidTLBAqeR320x6AIAcMg2mNv6uF3Dy3F+cwHGw==
-X-Received: by 2002:a17:906:1b55:: with SMTP id p21mr2628419ejg.457.1599640477647;
-        Wed, 09 Sep 2020 01:34:37 -0700 (PDT)
-Received: from kozik-lap ([194.230.155.174])
-        by smtp.googlemail.com with ESMTPSA id b13sm1320130edf.89.2020.09.09.01.34.35
-        (version=TLS1_2 cipher=ECDHE-ECDSA-CHACHA20-POLY1305 bits=256/256);
-        Wed, 09 Sep 2020 01:34:36 -0700 (PDT)
-Date:   Wed, 9 Sep 2020 10:34:34 +0200
-From:   Krzysztof Kozlowski <krzk@kernel.org>
-To:     Rob Herring <robh+dt@kernel.org>, Shawn Guo <shawnguo@kernel.org>,
-        Sascha Hauer <s.hauer@pengutronix.de>,
-        Pengutronix Kernel Team <kernel@pengutronix.de>,
-        Fabio Estevam <festevam@gmail.com>,
-        NXP Linux Team <linux-imx@nxp.com>,
-        Heiko Stuebner <heiko@sntech.de>,
-        Michal Simek <michal.simek@xilinx.com>,
-        Adam Ford <aford173@gmail.com>,
-        Daniel Baluta <daniel.baluta@nxp.com>,
-        Anson Huang <Anson.Huang@nxp.com>,
-        Robin Gong <yibin.gong@nxp.com>,
-        Alifer Moraes <alifer.wsdm@gmail.com>,
-        Leonard Crestez <leonard.crestez@nxp.com>,
-        "Angus Ainslie (Purism)" <angus@akkea.ca>,
-        Vitor Massaru Iha <vitor@massaru.org>,
-        Kever Yang <kever.yang@rock-chips.com>,
-        Rajan Vaja <rajan.vaja@xilinx.com>,
-        Anurag Kumar Vulisha <anurag.kumar.vulisha@xilinx.com>,
-        devicetree@vger.kernel.org, linux-arm-kernel@lists.infradead.org,
-        linux-kernel@vger.kernel.org, linux-rockchip@lists.infradead.org
-Subject: Re: [PATCH 3/8] arm64: dts: imx8mm: Correct interrupt flags in
- examples
-Message-ID: <20200909083434.GB11775@kozik-lap>
-References: <20200908150241.5771-1-krzk@kernel.org>
- <20200908150241.5771-3-krzk@kernel.org>
+        id S1729622AbgIIIhY (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Wed, 9 Sep 2020 04:37:24 -0400
+Received: from mailgw01.mediatek.com ([210.61.82.183]:60491 "EHLO
+        mailgw01.mediatek.com" rhost-flags-OK-FAIL-OK-FAIL) by vger.kernel.org
+        with ESMTP id S1726293AbgIIIhV (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Wed, 9 Sep 2020 04:37:21 -0400
+X-UUID: 5e21d33c88454d28ba28adf53dfb7efd-20200909
+DKIM-Signature: v=1; a=rsa-sha256; q=dns/txt; c=relaxed/relaxed; d=mediatek.com; s=dk;
+        h=Content-Transfer-Encoding:MIME-Version:Content-Type:References:In-Reply-To:Date:CC:To:From:Subject:Message-ID; bh=O9832d5FtUtC0eZGVaybBrxYrKTO7MoaDi7iQnm05WU=;
+        b=k1hGMFTLir+241+Tvglv5fPlEX+OkEuhISLgylnQrzYg8zukRBPHWtafFn4RaARtsYQ/WBw93bTAPRBXuZ9SyVwhUFRnPp9xlU8L4EQ5rEAmn35yl5cbownQofWxm5U3him4Isv2pCRHH75+al4L61uxnFQSLemR75uVtQuCTf8=;
+X-UUID: 5e21d33c88454d28ba28adf53dfb7efd-20200909
+Received: from mtkcas07.mediatek.inc [(172.21.101.84)] by mailgw01.mediatek.com
+        (envelope-from <neal.liu@mediatek.com>)
+        (Cellopoint E-mail Firewall v4.1.14 Build 0819 with TLSv1.2 ECDHE-RSA-AES256-SHA384 256/256)
+        with ESMTP id 354946419; Wed, 09 Sep 2020 16:37:15 +0800
+Received: from MTKCAS06.mediatek.inc (172.21.101.30) by
+ mtkmbs01n1.mediatek.inc (172.21.101.68) with Microsoft SMTP Server (TLS) id
+ 15.0.1497.2; Wed, 9 Sep 2020 16:37:06 +0800
+Received: from [172.21.77.33] (172.21.77.33) by MTKCAS06.mediatek.inc
+ (172.21.101.73) with Microsoft SMTP Server id 15.0.1497.2 via Frontend
+ Transport; Wed, 9 Sep 2020 16:37:06 +0800
+Message-ID: <1599640627.6370.3.camel@mtkswgap22>
+Subject: Re: [PATCH v7] Add MediaTek MT6779 devapc driver
+From:   Neal Liu <neal.liu@mediatek.com>
+To:     Rob Herring <robh+dt@kernel.org>,
+        Matthias Brugger <matthias.bgg@gmail.com>,
+        Chun-Kuang Hu <chunkuang.hu@kernel.org>
+CC:     Neal Liu <neal.liu@mediatek.com>,
+        "devicetree@vger.kernel.org" <devicetree@vger.kernel.org>,
+        "linux-arm-kernel@lists.infradead.org" 
+        <linux-arm-kernel@lists.infradead.org>,
+        "linux-mediatek@lists.infradead.org" 
+        <linux-mediatek@lists.infradead.org>,
+        lkml <linux-kernel@vger.kernel.org>,
+        wsd_upstream <wsd_upstream@mediatek.com>
+Date:   Wed, 9 Sep 2020 16:37:07 +0800
+In-Reply-To: <1599028813.32069.1.camel@mtkswgap22>
+References: <1598497593-15781-1-git-send-email-neal.liu@mediatek.com>
+         <1599028813.32069.1.camel@mtkswgap22>
+Content-Type: text/plain; charset="UTF-8"
+X-Mailer: Evolution 3.2.3-0ubuntu6 
 MIME-Version: 1.0
-Content-Type: text/plain; charset=utf-8
-Content-Disposition: inline
-In-Reply-To: <20200908150241.5771-3-krzk@kernel.org>
-User-Agent: Mutt/1.9.4 (2018-02-28)
+X-MTK:  N
+Content-Transfer-Encoding: base64
 Sender: devicetree-owner@vger.kernel.org
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-On Tue, Sep 08, 2020 at 05:02:36PM +0200, Krzysztof Kozlowski wrote:
-> GPIO_ACTIVE_x flags are not correct in the context of interrupt flags.
-> These are simple defines so they could be used in DTS but they will not
-> have the same meaning:
-> 1. GPIO_ACTIVE_HIGH = 0 = IRQ_TYPE_NONE
-> 2. GPIO_ACTIVE_LOW  = 1 = IRQ_TYPE_EDGE_RISING
-> 
-> Correct the interrupt flags, assuming the author of the code wanted some
-> logical behavior behind the name "ACTIVE_xxx", this is:
->   ACTIVE_LOW  => IRQ_TYPE_LEVEL_LOW
->   ACTIVE_HIGH => IRQ_TYPE_LEVEL_HIGH
-> 
-> Signed-off-by: Krzysztof Kozlowski <krzk@kernel.org>
-> ---
->  arch/arm64/boot/dts/freescale/imx8mm-beacon-som.dtsi      | 2 +-
->  arch/arm64/boot/dts/freescale/imx8mm-evk.dts              | 2 +-
->  arch/arm64/boot/dts/freescale/imx8mm-var-som-symphony.dts | 2 +-
->  arch/arm64/boot/dts/freescale/imx8mm-var-som.dtsi         | 2 +-
->  4 files changed, 4 insertions(+), 4 deletions(-)
-> 
-> diff --git a/arch/arm64/boot/dts/freescale/imx8mm-beacon-som.dtsi b/arch/arm64/boot/dts/freescale/imx8mm-beacon-som.dtsi
-> index 620a124dfb5f..fdce665d7ac4 100644
-> --- a/arch/arm64/boot/dts/freescale/imx8mm-beacon-som.dtsi
-> +++ b/arch/arm64/boot/dts/freescale/imx8mm-beacon-som.dtsi
-> @@ -74,7 +74,7 @@
->  		reg = <0x4b>;
->  		pinctrl-0 = <&pinctrl_pmic>;
->  		interrupt-parent = <&gpio1>;
-> -		interrupts = <3 GPIO_ACTIVE_LOW>;
-> +		interrupts = <3 IRQ_TYPE_LEVEL_LOW>;
+SGkgUm9iLCBNYXR0aGlhcywgQ2h1bi1LdWFuZywNCg0KUGxlYXNlIGtpbmRseSBsZXQgbWUga25v
+dyB5b3VyIGNvbW1lbnRzIGFib3V0IHRoaXMgcGF0Y2ggc2V0Lg0KVGhhbmtzDQoNCi1OZWFsDQoN
+Ck9uIFdlZCwgMjAyMC0wOS0wMiBhdCAxNDo0MCArMDgwMCwgTmVhbCBMaXUgd3JvdGU6DQo+IEhp
+IFJvYiwgTWF0dGhpYXMsIENodW4tS3VhbmcsDQo+IA0KPiBHZW50bGUgcGluZyBmb3IgdGhpcyBw
+YXRjaCBzZXQuDQo+IFRoYW5rcw0KPiANCj4gLU5lYWwNCj4gDQo+IE9uIFRodSwgMjAyMC0wOC0y
+NyBhdCAxMTowNiArMDgwMCwgTmVhbCBMaXUgd3JvdGU6DQo+ID4gVGhlc2UgcGF0Y2ggc2VyaWVz
+IGludHJvZHVjZSBhIE1lZGlhVGVrIE1UNjc3OSBkZXZhcGMgZHJpdmVyLg0KPiA+IA0KPiA+IE1l
+ZGlhVGVrIGJ1cyBmYWJyaWMgcHJvdmlkZXMgVHJ1c3Rab25lIHNlY3VyaXR5IHN1cHBvcnQgYW5k
+IGRhdGEgcHJvdGVjdGlvbiB0byBwcmV2ZW50IHNsYXZlcyBmcm9tIGJlaW5nIGFjY2Vzc2VkIGJ5
+IHVuZXhwZWN0ZWQgbWFzdGVycy4NCj4gPiBUaGUgc2VjdXJpdHkgdmlvbGF0aW9uIGlzIGxvZ2dl
+ZCBhbmQgc2VudCB0byB0aGUgcHJvY2Vzc29yIGZvciBmdXJ0aGVyIGFuYWx5c2lzIG9yIGNvdW50
+ZXJtZWFzdXJlcy4NCj4gPiANCj4gPiBBbnkgb2NjdXJyZW5jZSBvZiBzZWN1cml0eSB2aW9sYXRp
+b24gd291bGQgcmFpc2UgYW4gaW50ZXJydXB0LCBhbmQgaXQgd2lsbCBiZSBoYW5kbGVkIGJ5IG10
+ay1kZXZhcGMgZHJpdmVyLg0KPiA+IFRoZSB2aW9sYXRpb24gaW5mb3JtYXRpb24gaXMgcHJpbnRl
+ZCBpbiBvcmRlciB0byBmaW5kIHRoZSBtdXJkZXJlci4NCj4gPiANCj4gPiBjaGFuZ2VzIHNpbmNl
+IHY2Og0KPiA+IC0gcmVtb3ZlIHVubmVjZXNzYXJ5IG1hc2svdW5tYXNrIG1vZHVsZSBpcnEgZHVy
+aW5nIElTUi4NCj4gPiANCj4gPiBjaGFuZ2VzIHNpbmNlIHY1Og0KPiA+IC0gcmVtb3ZlIHJlZHVu
+ZGFudCB3cml0ZSByZWcgb3BlcmF0aW9uLg0KPiA+IC0gdXNlIHN0YXRpYyB2YXJpYWJsZSBvZiB2
+aW9fZGJncyBpbnN0ZWFkLg0KPiA+IC0gYWRkIHN0b3BfZGV2YXBjKCkgaWYgZHJpdmVyIGlzIHJl
+bW92ZWQuDQo+ID4gDQo+ID4gY2hhbmdlcyBzaW5jZSB2NDoNCj4gPiAtIHJlZmFjdG9yIGRhdGEg
+c3RydWN0dXJlLg0KPiA+IC0gbWVyZ2UgdHdvIHNpbXBsZSBmdW5jdGlvbnMgaW50byBvbmUuDQo+
+ID4gLSByZWZhY3RvciByZWdpc3RlciBzZXR0aW5nIHRvIHByZXZlbnQgdG9vIG1hbnkgZnVuY3Rp
+b24gY2FsbCBvdmVyaGVhZC4NCj4gPiANCj4gPiBjaGFuZ2VzIHNpbmNlIHYzOg0KPiA+IC0gcmV2
+aXNlIHZpb2xhdGlvbiBoYW5kbGluZyBmbG93IHRvIG1ha2UgaXQgbW9yZSBlYXNpbHkgdG8gdW5k
+ZXJzdGFuZA0KPiA+ICAgaGFyZHdhcmUgYmVoYXZpb3IuDQo+ID4gLSBhZGQgbW9yZSBjb21tZW50
+cyB0byB1bmRlcnN0YW5kIGhvdyBoYXJkd2FyZSB3b3Jrcy4NCj4gPiANCj4gPiBjaGFuZ2VzIHNp
+bmNlIHYyOg0KPiA+IC0gcGFzcyBwbGF0Zm9ybSBpbmZvIHRocm91Z2ggRFQgZGF0YS4NCj4gPiAt
+IHJlbW92ZSB1bm5lY2Vzc2FyeSBmdW5jdGlvbi4NCj4gPiAtIHJlbW92ZSBzbGF2ZV90eXBlIGJl
+Y2F1c2UgaXQgYWx3YXlzIGVxdWFscyB0byAxIGluIGN1cnJlbnQgc3VwcG9ydCBTb0MuDQo+ID4g
+LSB1c2UgdmlvX2lkeF9udW0gaW5zdHJlYWQgb2YgbGlzdCBhbGwgZGV2aWNlcycgaW5kZXguDQo+
+ID4gLSBhZGQgbW9yZSBjb21tZW50cyB0byBkZXNjcmliZSBoYXJkd2FyZSBiZWhhdmlvci4NCj4g
+PiANCj4gPiBjaGFuZ2VzIHNpbmNlIHYxOg0KPiA+IC0gbW92ZSBTb0Mgc3BlY2lmaWMgcGFydCB0
+byBEVCBkYXRhLg0KPiA+IC0gcmVtb3ZlIHVubmVjZXNzYXJ5IGJvdW5kYXJ5IGNoZWNrLg0KPiA+
+IC0gcmVtb3ZlIHVubmVjZXNzYXJ5IGRhdGEgdHlwZSBkZWNsYXJhdGlvbi4NCj4gPiAtIHVzZSBy
+ZWFkX3BvbGxfdGltZW91dCgpIGluc3RyZWFkIG9mIGZvciBsb29wIHBvbGxpbmcuDQo+ID4gLSBy
+ZXZpc2UgY29kaW5nIHN0eWxlIGVsZWdhbnRseS4NCj4gPiANCj4gPiANCj4gPiAqKiogQkxVUkIg
+SEVSRSAqKioNCj4gPiANCj4gPiBOZWFsIExpdSAoMik6DQo+ID4gICBkdC1iaW5kaW5nczogZGV2
+YXBjOiBhZGQgYmluZGluZ3MgZm9yIG10ay1kZXZhcGMNCj4gPiAgIHNvYzogbWVkaWF0ZWs6IGFk
+ZCBtdDY3NzkgZGV2YXBjIGRyaXZlcg0KPiA+IA0KPiA+ICAuLi4vYmluZGluZ3Mvc29jL21lZGlh
+dGVrL2RldmFwYy55YW1sICAgICAgICAgfCAgNTggKysrKw0KPiA+ICBkcml2ZXJzL3NvYy9tZWRp
+YXRlay9LY29uZmlnICAgICAgICAgICAgICAgICAgfCAgIDkgKw0KPiA+ICBkcml2ZXJzL3NvYy9t
+ZWRpYXRlay9NYWtlZmlsZSAgICAgICAgICAgICAgICAgfCAgIDEgKw0KPiA+ICBkcml2ZXJzL3Nv
+Yy9tZWRpYXRlay9tdGstZGV2YXBjLmMgICAgICAgICAgICAgfCAzMDUgKysrKysrKysrKysrKysr
+KysrDQo+ID4gIDQgZmlsZXMgY2hhbmdlZCwgMzczIGluc2VydGlvbnMoKykNCj4gPiAgY3JlYXRl
+IG1vZGUgMTAwNjQ0IERvY3VtZW50YXRpb24vZGV2aWNldHJlZS9iaW5kaW5ncy9zb2MvbWVkaWF0
+ZWsvZGV2YXBjLnlhbWwNCj4gPiAgY3JlYXRlIG1vZGUgMTAwNjQ0IGRyaXZlcnMvc29jL21lZGlh
+dGVrL210ay1kZXZhcGMuYw0KPiA+IA0KPiANCj4gDQoNCg==
 
-All rohm,bd71847 PMIC interrupts should be rather EDGE_FALLING.  Some of
-the boards do not have external pull ups and most of the boards do not
-configure internal pull up.  Level low would cause the interrupt line to
-stay low all the time.
-
-Best regards,
-Krzysztof
-
->  		rohm,reset-snvs-powered;
->  
->  		regulators {
-> diff --git a/arch/arm64/boot/dts/freescale/imx8mm-evk.dts b/arch/arm64/boot/dts/freescale/imx8mm-evk.dts
-> index 38134d201eef..609d73e19fee 100644
-> --- a/arch/arm64/boot/dts/freescale/imx8mm-evk.dts
-> +++ b/arch/arm64/boot/dts/freescale/imx8mm-evk.dts
-> @@ -166,7 +166,7 @@
->  		reg = <0x4b>;
->  		pinctrl-0 = <&pinctrl_pmic>;
->  		interrupt-parent = <&gpio1>;
-> -		interrupts = <3 GPIO_ACTIVE_LOW>;
-> +		interrupts = <3 IRQ_TYPE_LEVEL_LOW>;
->  		rohm,reset-snvs-powered;
->  
->  		regulators {
-> diff --git a/arch/arm64/boot/dts/freescale/imx8mm-var-som-symphony.dts b/arch/arm64/boot/dts/freescale/imx8mm-var-som-symphony.dts
-> index 0bca737964d5..b84d94e10c26 100644
-> --- a/arch/arm64/boot/dts/freescale/imx8mm-var-som-symphony.dts
-> +++ b/arch/arm64/boot/dts/freescale/imx8mm-var-som-symphony.dts
-> @@ -133,7 +133,7 @@
->  		pinctrl-names = "default";
->  		pinctrl-0 = <&pinctrl_captouch>;
->  		interrupt-parent = <&gpio5>;
-> -		interrupts = <4 GPIO_ACTIVE_HIGH>;
-> +		interrupts = <4 IRQ_TYPE_LEVEL_HIGH>;
->  
->  		touchscreen-size-x = <800>;
->  		touchscreen-size-y = <480>;
-> diff --git a/arch/arm64/boot/dts/freescale/imx8mm-var-som.dtsi b/arch/arm64/boot/dts/freescale/imx8mm-var-som.dtsi
-> index c371cb34b3f7..49743d2f60c1 100644
-> --- a/arch/arm64/boot/dts/freescale/imx8mm-var-som.dtsi
-> +++ b/arch/arm64/boot/dts/freescale/imx8mm-var-som.dtsi
-> @@ -137,7 +137,7 @@
->  		reg = <0x4b>;
->  		pinctrl-0 = <&pinctrl_pmic>;
->  		interrupt-parent = <&gpio2>;
-> -		interrupts = <8 GPIO_ACTIVE_LOW>;
-> +		interrupts = <8 IRQ_TYPE_LEVEL_LOW>;
->  		rohm,reset-snvs-powered;
->  
->  		regulators {
-> -- 
-> 2.17.1
-> 
