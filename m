@@ -2,134 +2,128 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from vger.kernel.org (vger.kernel.org [23.128.96.18])
-	by mail.lfdr.de (Postfix) with ESMTP id 40652262C88
-	for <lists+devicetree@lfdr.de>; Wed,  9 Sep 2020 11:51:44 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTP id 54D12262C9B
+	for <lists+devicetree@lfdr.de>; Wed,  9 Sep 2020 11:54:46 +0200 (CEST)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S1728631AbgIIJvm (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Wed, 9 Sep 2020 05:51:42 -0400
-Received: from mailgw01.mediatek.com ([210.61.82.183]:58624 "EHLO
-        mailgw01.mediatek.com" rhost-flags-OK-FAIL-OK-FAIL) by vger.kernel.org
-        with ESMTP id S1725826AbgIIJvk (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Wed, 9 Sep 2020 05:51:40 -0400
-X-UUID: 6990db4903854f788c4d9b05af687098-20200909
-DKIM-Signature: v=1; a=rsa-sha256; q=dns/txt; c=relaxed/relaxed; d=mediatek.com; s=dk;
-        h=Content-Transfer-Encoding:Content-Type:MIME-Version:References:In-Reply-To:Message-ID:Date:Subject:CC:To:From; bh=gd8IHDDlRyngneuXbVMKDrh2dBx36h1OwZpzKd/37SU=;
-        b=Us/H2JetY0FhX4VXNOYmwH+mYB6dLDO0voNMGqo28FJMhNnOPh+QwqE5yQJCEKrJvliLZ2cfjccfFk3/d/Es+iTm140qcBzxNoQ7KPIWovjf2OpmLZ6+3o/W0UvaROZ4g4mi1gNY0VhelcR0zruOSzYz2otyhJ+w42MSpFCHkYQ=;
-X-UUID: 6990db4903854f788c4d9b05af687098-20200909
-Received: from mtkcas08.mediatek.inc [(172.21.101.126)] by mailgw01.mediatek.com
-        (envelope-from <hector.yuan@mediatek.com>)
-        (Cellopoint E-mail Firewall v4.1.14 Build 0819 with TLSv1.2 ECDHE-RSA-AES256-SHA384 256/256)
-        with ESMTP id 1772419787; Wed, 09 Sep 2020 17:51:36 +0800
-Received: from mtkcas07.mediatek.inc (172.21.101.84) by
- mtkmbs07n1.mediatek.inc (172.21.101.16) with Microsoft SMTP Server (TLS) id
- 15.0.1497.2; Wed, 9 Sep 2020 17:51:34 +0800
-Received: from mtkswgap22.mediatek.inc (172.21.77.33) by mtkcas07.mediatek.inc
- (172.21.101.73) with Microsoft SMTP Server id 15.0.1497.2 via Frontend
- Transport; Wed, 9 Sep 2020 17:51:35 +0800
-From:   Hector Yuan <hector.yuan@mediatek.com>
-To:     <linux-mediatek@lists.infradead.org>,
-        <linux-arm-kernel@lists.infradead.org>, <linux-pm@vger.kernel.org>,
-        <devicetree@vger.kernel.org>,
-        "Rafael J. Wysocki" <rjw@rjwysocki.net>,
-        Viresh Kumar <viresh.kumar@linaro.org>,
-        Rob Herring <robh+dt@kernel.org>
-CC:     <linux-kernel@vger.kernel.org>, <wsd_upstream@mediatek.com>,
-        <hector.yuan@mediatek.com>
-Subject: [PATCH v5 2/2] dt-bindings: cpufreq: add bindings for MediaTek cpufreq HW
-Date:   Wed, 9 Sep 2020 17:51:26 +0800
-Message-ID: <1599645086-10169-3-git-send-email-hector.yuan@mediatek.com>
-X-Mailer: git-send-email 1.7.9.5
-In-Reply-To: <1599645086-10169-1-git-send-email-hector.yuan@mediatek.com>
-References: <1599645086-10169-1-git-send-email-hector.yuan@mediatek.com>
+        id S1725917AbgIIJyo (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Wed, 9 Sep 2020 05:54:44 -0400
+Received: from lindbergh.monkeyblade.net ([23.128.96.19]:51868 "EHLO
+        lindbergh.monkeyblade.net" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
+        with ESMTP id S1725864AbgIIJyn (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Wed, 9 Sep 2020 05:54:43 -0400
+Received: from mail-wr1-x441.google.com (mail-wr1-x441.google.com [IPv6:2a00:1450:4864:20::441])
+        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 2DE63C061573;
+        Wed,  9 Sep 2020 02:54:43 -0700 (PDT)
+Received: by mail-wr1-x441.google.com with SMTP id w5so2221398wrp.8;
+        Wed, 09 Sep 2020 02:54:43 -0700 (PDT)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+        d=gmail.com; s=20161025;
+        h=subject:to:cc:references:from:message-id:date:user-agent
+         :mime-version:in-reply-to:content-language:content-transfer-encoding;
+        bh=5YhVcwcb6Wgk1PCPZ8YCcZaGe5dXRg4SVb0CRjkFkgA=;
+        b=nYOrQc3JozoKIR8lxuzT8bln2t+PdtuqzCCkyIdk/xjOMRc22tyJ1oUMUFGmeRPRix
+         bCcR8TZBiiS4I0vJL4e3Bb1sDzBVEqafFMcW07KmUO2q8lwF3mJIqioT9pUzeURPWRkA
+         bUAwKSbPfWtvAgG2jjldOHWh4Xrbbqxc3PTeZInVIBc2s8saMlxnsRGAm9Ir9V2PqSFO
+         LXqZEBAs+6Fe0l48PKFQJcPlDn2pw+/hpa4xkC+jMGY6f4e6otRRS4RWA7mVULKmBuZT
+         NefxPlUrmQOpwEGpS/qAq1ER4n614vXZRgS6K8oZV8O/b+aSyDk0ptRNp5ft76/4yF1I
+         iMvA==
+X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+        d=1e100.net; s=20161025;
+        h=x-gm-message-state:subject:to:cc:references:from:message-id:date
+         :user-agent:mime-version:in-reply-to:content-language
+         :content-transfer-encoding;
+        bh=5YhVcwcb6Wgk1PCPZ8YCcZaGe5dXRg4SVb0CRjkFkgA=;
+        b=ecvxNa5620JP8M3yfNZVUHfiGjn3QtIlEP6DOlrbmLb2kd8uTBgzdK4AWfM1dN6SDq
+         Cg3N+mskg1uZWin0ZeedrtC1EBsKGMyYrTwq+Iespus/35Z5teCsHcstlhbRi+4jL8EL
+         ZE1xqmioDIHhC1Xfp18f6CaK0UAVkCCeJ73dNTNFV5yoJrrX78N5tLrJs+FsGBZddyyR
+         PCEi9C/s84EyuMO2CXh1M+L7vsn4nf8kksQR47btAXs4zd6WLOlFj+xS5Bj8mMOWj3sp
+         UCtoJBRtGUjAb15s8YUEy+wxgN4VHPOIqNdnXvaeKT8G2Uzh6jVNEJP+2RagGMFJcTLY
+         mWow==
+X-Gm-Message-State: AOAM532mmJASm25NRo29DcwMoOJmnuj3lNVOws+RXntmrk1MApddDocq
+        i/87/34a/ZjIjJDVXmseFVI=
+X-Google-Smtp-Source: ABdhPJxv4K21NSQFaosgqbX77J5T+sjyZ/mqOq2NHXzwzUy5eaLztRepGwchvzhm/AWWCaZCdLX0Jg==
+X-Received: by 2002:a5d:6343:: with SMTP id b3mr3178210wrw.179.1599645281761;
+        Wed, 09 Sep 2020 02:54:41 -0700 (PDT)
+Received: from ziggy.stardust ([213.195.113.201])
+        by smtp.gmail.com with ESMTPSA id u66sm3116098wmg.44.2020.09.09.02.54.40
+        (version=TLS1_3 cipher=TLS_AES_128_GCM_SHA256 bits=128/128);
+        Wed, 09 Sep 2020 02:54:41 -0700 (PDT)
+Subject: Re: [PATCH] arm64: dts: mt8173-elm: fix supported values for
+ regulator-allowed-modes of da9211
+To:     Enric Balletbo i Serra <enric.balletbo@collabora.com>,
+        Dafna Hirschfeld <dafna.hirschfeld@collabora.com>,
+        linux-kernel@vger.kernel.org, linux-mediatek@lists.infradead.org,
+        linux-arm-kernel@lists.infradead.org, devicetree@vger.kernel.org,
+        robh+dt@kernel.org
+Cc:     kernel@collabora.com, dafna3@gmail.com
+References: <20200903142819.24487-1-dafna.hirschfeld@collabora.com>
+ <5d504bea-0934-91a9-c052-e463ad6c6d95@collabora.com>
+From:   Matthias Brugger <matthias.bgg@gmail.com>
+Message-ID: <6b281668-3316-6b81-47b2-d17cc6348449@gmail.com>
+Date:   Wed, 9 Sep 2020 11:54:40 +0200
+User-Agent: Mozilla/5.0 (X11; Linux x86_64; rv:68.0) Gecko/20100101
+ Thunderbird/68.11.0
 MIME-Version: 1.0
-Content-Type: text/plain
-X-MTK:  N
-Content-Transfer-Encoding: base64
+In-Reply-To: <5d504bea-0934-91a9-c052-e463ad6c6d95@collabora.com>
+Content-Type: text/plain; charset=utf-8; format=flowed
+Content-Language: en-US
+Content-Transfer-Encoding: 7bit
 Sender: devicetree-owner@vger.kernel.org
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-RnJvbTogIkhlY3Rvci5ZdWFuIiA8aGVjdG9yLnl1YW5AbWVkaWF0ZWsuY29tPg0KDQpBZGQgZGV2
-aWNldHJlZSBiaW5kaW5ncyBmb3IgTWVkaWFUZWsgSFcgZHJpdmVyLg0KDQpTaWduZWQtb2ZmLWJ5
-OiBIZWN0b3IuWXVhbiA8aGVjdG9yLnl1YW5AbWVkaWF0ZWsuY29tPg0KLS0tDQogLi4uL2JpbmRp
-bmdzL2NwdWZyZXEvY3B1ZnJlcS1tZWRpYXRlay1ody55YW1sICAgICAgfCAgMTQxICsrKysrKysr
-KysrKysrKysrKysrDQogMSBmaWxlIGNoYW5nZWQsIDE0MSBpbnNlcnRpb25zKCspDQogY3JlYXRl
-IG1vZGUgMTAwNjQ0IERvY3VtZW50YXRpb24vZGV2aWNldHJlZS9iaW5kaW5ncy9jcHVmcmVxL2Nw
-dWZyZXEtbWVkaWF0ZWstaHcueWFtbA0KDQpkaWZmIC0tZ2l0IGEvRG9jdW1lbnRhdGlvbi9kZXZp
-Y2V0cmVlL2JpbmRpbmdzL2NwdWZyZXEvY3B1ZnJlcS1tZWRpYXRlay1ody55YW1sIGIvRG9jdW1l
-bnRhdGlvbi9kZXZpY2V0cmVlL2JpbmRpbmdzL2NwdWZyZXEvY3B1ZnJlcS1tZWRpYXRlay1ody55
-YW1sDQpuZXcgZmlsZSBtb2RlIDEwMDY0NA0KaW5kZXggMDAwMDAwMC4uMTE4YTE2Mw0KLS0tIC9k
-ZXYvbnVsbA0KKysrIGIvRG9jdW1lbnRhdGlvbi9kZXZpY2V0cmVlL2JpbmRpbmdzL2NwdWZyZXEv
-Y3B1ZnJlcS1tZWRpYXRlay1ody55YW1sDQpAQCAtMCwwICsxLDE0MSBAQA0KKyMgU1BEWC1MaWNl
-bnNlLUlkZW50aWZpZXI6IChHUEwtMi4wLW9ubHkgT1IgQlNELTItQ2xhdXNlKQ0KKyVZQU1MIDEu
-Mg0KKy0tLQ0KKyRpZDogaHR0cDovL2RldmljZXRyZWUub3JnL3NjaGVtYXMvY3B1ZnJlcS9jcHVm
-cmVxLW1lZGlhdGVrLWh3LnlhbWwjDQorJHNjaGVtYTogaHR0cDovL2RldmljZXRyZWUub3JnL21l
-dGEtc2NoZW1hcy9jb3JlLnlhbWwjDQorDQordGl0bGU6IE1lZGlhVGVrJ3MgQ1BVRlJFUSBCaW5k
-aW5ncw0KKw0KK21haW50YWluZXJzOg0KKyAgLSBIZWN0b3IgWXVhbiA8aGVjdG9yLnl1YW5AbWVk
-aWF0ZWsuY29tPg0KKw0KK2Rlc2NyaXB0aW9uOg0KKyAgQ1BVRlJFUSBIVyBpcyBhIGhhcmR3YXJl
-IGVuZ2luZSB1c2VkIGJ5IE1lZGlhVGVrDQorICBTb0NzIHRvIG1hbmFnZSBmcmVxdWVuY3kgaW4g
-aGFyZHdhcmUuIEl0IGlzIGNhcGFibGUgb2YgY29udHJvbGxpbmcgZnJlcXVlbmN5DQorICBmb3Ig
-bXVsdGlwbGUgY2x1c3RlcnMuDQorDQorcHJvcGVydGllczoNCisgIGNvbXBhdGlibGU6DQorICAg
-IGNvbnN0OiAibWVkaWF0ZWssY3B1ZnJlcS1odyINCisNCisgIHJlZzoNCisgICAgbWluSXRlbXM6
-IDENCisgICAgbWF4SXRlbXM6IDINCisgICAgZGVzY3JpcHRpb246IHwNCisgICAgICBBZGRyZXNz
-ZXMgYW5kIHNpemVzIGZvciB0aGUgbWVtb3J5IG9mIHRoZSBIVyBiYXNlcyBpbiBlYWNoIGZyZXF1
-ZW5jeSBkb21haW4uDQorDQorICByZWctbmFtZXM6DQorICAgIGl0ZW1zOg0KKyAgICAgIC0gY29u
-c3Q6ICJmcmVxLWRvbWFpbjAiDQorICAgICAgLSBjb25zdDogImZyZXEtZG9tYWluMSINCisgICAg
-ZGVzY3JpcHRpb246IHwNCisgICAgICBGcmVxdWVuY3kgZG9tYWluIG5hbWUuIGkuZS4NCisgICAg
-ICAiZnJlcS1kb21haW4wIiwgImZyZXEtZG9tYWluMSIuDQorDQorICAiI2ZyZXEtZG9tYWluLWNl
-bGxzIjoNCisgICAgY29uc3Q6IDENCisgICAgZGVzY3JpcHRpb246IHwNCisgICAgICBOdW1iZXIg
-b2YgY2VsbHMgaW4gYSBmcmVxZW5jeSBkb21haW4gc3BlY2lmaWVyLg0KKw0KKyAgbXRrLWZyZXEt
-ZG9tYWluOg0KKyAgICBtYXhJdGVtczogMQ0KKyAgICBkZXNjcmlwdGlvbjogfA0KKyAgICAgIERl
-ZmluZSB0aGlzIGNwdSBiZWxvbmdzIHRvIHdoaWNoIGZyZXF1ZW5jeSBkb21haW4uIGkuZS4NCisg
-ICAgICBjcHUwLTMgYmVsb25nIHRvIGZyZXF1ZW5jeSBkb21haW4wLA0KKyAgICAgIGNwdTQtNiBi
-ZWxvbmcgdG8gZnJlcXVlbmN5IGRvbWFpbjEuDQorDQorcmVxdWlyZWQ6DQorICAtIGNvbXBhdGli
-bGUNCisgIC0gcmVnDQorICAtIHJlZy1uYW1lcw0KKyAgLSAiI2ZyZXEtZG9tYWluLWNlbGxzIg0K
-Kw0KK2V4YW1wbGVzOg0KKyAgLSB8DQorICAgIGNwdXMgew0KKyAgICAgICAgICAgICNhZGRyZXNz
-LWNlbGxzID0gPDE+Ow0KKyAgICAgICAgICAgICNzaXplLWNlbGxzID0gPDA+Ow0KKw0KKyAgICAg
-ICAgICAgIGNwdTA6IGNwdUAwIHsNCisgICAgICAgICAgICAgICAgZGV2aWNlX3R5cGUgPSAiY3B1
-IjsNCisgICAgICAgICAgICAgICAgY29tcGF0aWJsZSA9ICJhcm0sY29ydGV4LWE1NSI7DQorICAg
-ICAgICAgICAgICAgIGVuYWJsZS1tZXRob2QgPSAicHNjaSI7DQorICAgICAgICAgICAgICAgIG10
-ay1mcmVxLWRvbWFpbiA9IDwmY3B1ZnJlcV9odyAwPjsNCisgICAgICAgICAgICAgICAgcmVnID0g
-PDB4MDAwPjsNCisgICAgICAgICAgICB9Ow0KKw0KKyAgICAgICAgICAgIGNwdTE6IGNwdUAxIHsN
-CisgICAgICAgICAgICAgICAgZGV2aWNlX3R5cGUgPSAiY3B1IjsNCisgICAgICAgICAgICAgICAg
-Y29tcGF0aWJsZSA9ICJhcm0sY29ydGV4LWE1NSI7DQorICAgICAgICAgICAgICAgIGVuYWJsZS1t
-ZXRob2QgPSAicHNjaSI7DQorICAgICAgICAgICAgICAgIG10ay1mcmVxLWRvbWFpbiA9IDwmY3B1
-ZnJlcV9odyAwPjsNCisgICAgICAgICAgICAgICAgcmVnID0gPDB4MTAwPjsNCisgICAgICAgICAg
-ICB9Ow0KKw0KKyAgICAgICAgICAgIGNwdTI6IGNwdUAyIHsNCisgICAgICAgICAgICAgICAgZGV2
-aWNlX3R5cGUgPSAiY3B1IjsNCisgICAgICAgICAgICAgICAgY29tcGF0aWJsZSA9ICJhcm0sY29y
-dGV4LWE1NSI7DQorICAgICAgICAgICAgICAgIGVuYWJsZS1tZXRob2QgPSAicHNjaSI7DQorICAg
-ICAgICAgICAgICAgIG10ay1mcmVxLWRvbWFpbiA9IDwmY3B1ZnJlcV9odyAwPjsNCisgICAgICAg
-ICAgICAgICAgcmVnID0gPDB4MjAwPjsNCisgICAgICAgICAgICB9Ow0KKw0KKyAgICAgICAgICAg
-IGNwdTM6IGNwdUAzIHsNCisgICAgICAgICAgICAgICAgZGV2aWNlX3R5cGUgPSAiY3B1IjsNCisg
-ICAgICAgICAgICAgICAgY29tcGF0aWJsZSA9ICJhcm0sY29ydGV4LWE1NSI7DQorICAgICAgICAg
-ICAgICAgIGVuYWJsZS1tZXRob2QgPSAicHNjaSI7DQorICAgICAgICAgICAgICAgIG10ay1mcmVx
-LWRvbWFpbiA9IDwmY3B1ZnJlcV9odyAwPjsNCisgICAgICAgICAgICAgICAgcmVnID0gPDB4MzAw
-PjsNCisgICAgICAgICAgICB9Ow0KKw0KKyAgICAgICAgICAgIGNwdTQ6IGNwdUA0IHsNCisgICAg
-ICAgICAgICAgICAgZGV2aWNlX3R5cGUgPSAiY3B1IjsNCisgICAgICAgICAgICAgICAgY29tcGF0
-aWJsZSA9ICJhcm0sY29ydGV4LWE1NSI7DQorICAgICAgICAgICAgICAgIGVuYWJsZS1tZXRob2Qg
-PSAicHNjaSI7DQorICAgICAgICAgICAgICAgIG10ay1mcmVxLWRvbWFpbiA9IDwmY3B1ZnJlcV9o
-dyAxPjsNCisgICAgICAgICAgICAgICAgcmVnID0gPDB4NDAwPjsNCisgICAgICAgICAgICB9Ow0K
-Kw0KKyAgICAgICAgICAgIGNwdTU6IGNwdUA1IHsNCisgICAgICAgICAgICAgICAgZGV2aWNlX3R5
-cGUgPSAiY3B1IjsNCisgICAgICAgICAgICAgICAgY29tcGF0aWJsZSA9ICJhcm0sY29ydGV4LWE1
-NSI7DQorICAgICAgICAgICAgICAgIGVuYWJsZS1tZXRob2QgPSAicHNjaSI7DQorICAgICAgICAg
-ICAgICAgIG10ay1mcmVxLWRvbWFpbiA9IDwmY3B1ZnJlcV9odyAxPjsNCisgICAgICAgICAgICAg
-ICAgcmVnID0gPDB4NTAwPjsNCisgICAgICAgICAgICB9Ow0KKw0KKyAgICAgICAgICAgIGNwdTY6
-IGNwdUA2IHsNCisgICAgICAgICAgICAgICAgZGV2aWNlX3R5cGUgPSAiY3B1IjsNCisgICAgICAg
-ICAgICAgICAgY29tcGF0aWJsZSA9ICJhcm0sY29ydGV4LWE3NSI7DQorICAgICAgICAgICAgICAg
-IGVuYWJsZS1tZXRob2QgPSAicHNjaSI7DQorICAgICAgICAgICAgICAgIG10ay1mcmVxLWRvbWFp
-biA9IDwmY3B1ZnJlcV9odyAxPjsNCisgICAgICAgICAgICAgICAgcmVnID0gPDB4NjAwPjsNCisg
-ICAgICAgICAgICB9Ow0KKw0KKyAgICAgICAgICAgIGNwdTc6IGNwdUA3IHsNCisgICAgICAgICAg
-ICAgICAgZGV2aWNlX3R5cGUgPSAiY3B1IjsNCisgICAgICAgICAgICAgICAgY29tcGF0aWJsZSA9
-ICJhcm0sY29ydGV4LWE3NSI7DQorICAgICAgICAgICAgICAgIGVuYWJsZS1tZXRob2QgPSAicHNj
-aSI7DQorICAgICAgICAgICAgICAgIG10ay1mcmVxLWRvbWFpbiA9IDwmY3B1ZnJlcV9odyAxPjsN
-CisgICAgICAgICAgICAgICAgcmVnID0gPDB4NzAwPjsNCisgICAgICAgICAgICB9Ow0KKyAgICB9
-Ow0KKw0KKyAgICAvKiAuLi4gKi8NCisNCisgICAgc29jIHsNCisgICAgICAgICNhZGRyZXNzLWNl
-bGxzID0gPDI+Ow0KKyAgICAgICAgI3NpemUtY2VsbHMgPSA8Mj47DQorDQorICAgICAgICBjcHVm
-cmVxX2h3OiBjcHVmcmVxQDExYmMwMCB7DQorICAgICAgICAgICAgY29tcGF0aWJsZSA9ICJtZWRp
-YXRlayxjcHVmcmVxLWh3IjsNCisgICAgICAgICAgICByZWcgPSA8MCAweDExYmMxMCAwIDB4OGM+
-LA0KKyAgICAgICAgICAgICAgIDwwIDB4MTFiY2EwIDAgMHg4Yz47DQorICAgICAgICAgICAgcmVn
-LW5hbWVzID0gImZyZXEtZG9tYWluMCIsICJmcmVxLWRvbWFpbjEiOw0KKyAgICAgICAgICAgICNm
-cmVxLWRvbWFpbi1jZWxscyA9IDwxPjsNCisgICAgICAgIH07DQorICAgIH07DQorDQorDQorDQor
-DQotLSANCjEuNy45LjUNCg==
 
+
+On 04/09/2020 10:02, Enric Balletbo i Serra wrote:
+> Hi Dafna,
+> 
+> Thank you to work on this.
+> 
+> On 3/9/20 16:28, Dafna Hirschfeld wrote:
+>> According to the datasheet the allowed modes for the da9211
+>> regulator are sync and auto mode. This should be changed in the
+>> devicetree. This also fix an error message
+>> 'BUCKA: invalid regulator-allowed-modes element 0'
+>> since value 0 is invalid.
+>>
+>> Fixes: 689b937beddeb ("arm64: dts: mediatek: add mt8173 elm and hana board")
+>> Signed-off-by: Dafna Hirschfeld <dafna.hirschfeld@collabora.com>
+> 
+> Double checked the regulator supported modes and I can confirm that this patch
+> gets rid of the error message, so:
+> 
+> Tested-by: Enric Balletbo i Serra <enric.balletbo@collabora.com>
+> 
+
+Applied to v5.9-next/dts64
+
+Thanks!
+
+>> ---
+>>   arch/arm64/boot/dts/mediatek/mt8173-elm.dtsi | 4 +++-
+>>   1 file changed, 3 insertions(+), 1 deletion(-)
+>>
+>> diff --git a/arch/arm64/boot/dts/mediatek/mt8173-elm.dtsi b/arch/arm64/boot/dts/mediatek/mt8173-elm.dtsi
+>> index 1fe5dac24ba1..1a51879d5c6f 100644
+>> --- a/arch/arm64/boot/dts/mediatek/mt8173-elm.dtsi
+>> +++ b/arch/arm64/boot/dts/mediatek/mt8173-elm.dtsi
+>> @@ -5,6 +5,7 @@
+>>   
+>>   #include <dt-bindings/input/input.h>
+>>   #include <dt-bindings/input/linux-event-codes.h>
+>> +#include <dt-bindings/regulator/dlg,da9211-regulator.h>
+>>   #include <dt-bindings/gpio/gpio.h>
+>>   #include "mt8173.dtsi"
+>>   
+>> @@ -293,7 +294,8 @@
+>>   				regulator-max-microamp  = <4400000>;
+>>   				regulator-ramp-delay = <10000>;
+>>   				regulator-always-on;
+>> -				regulator-allowed-modes = <0 1>;
+>> +				regulator-allowed-modes = <DA9211_BUCK_MODE_SYNC
+>> +							   DA9211_BUCK_MODE_AUTO>;
+>>   			};
+>>   
+>>   			da9211_vgpu_reg: BUCKB {
+>>
