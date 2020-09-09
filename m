@@ -2,239 +2,123 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from vger.kernel.org (vger.kernel.org [23.128.96.18])
-	by mail.lfdr.de (Postfix) with ESMTP id 8879B263139
-	for <lists+devicetree@lfdr.de>; Wed,  9 Sep 2020 18:03:20 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTP id 36AEF263127
+	for <lists+devicetree@lfdr.de>; Wed,  9 Sep 2020 18:01:40 +0200 (CEST)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S1730841AbgIIQDR (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Wed, 9 Sep 2020 12:03:17 -0400
-Received: from mailout2.w1.samsung.com ([210.118.77.12]:56208 "EHLO
-        mailout2.w1.samsung.com" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S1730567AbgIIQCz (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Wed, 9 Sep 2020 12:02:55 -0400
-Received: from eucas1p1.samsung.com (unknown [182.198.249.206])
-        by mailout2.w1.samsung.com (KnoxPortal) with ESMTP id 20200909144709euoutp022531ea04239d34592580b4c0a516f030~zJN5VtmJb0244802448euoutp02i
-        for <devicetree@vger.kernel.org>; Wed,  9 Sep 2020 14:47:09 +0000 (GMT)
-DKIM-Filter: OpenDKIM Filter v2.11.0 mailout2.w1.samsung.com 20200909144709euoutp022531ea04239d34592580b4c0a516f030~zJN5VtmJb0244802448euoutp02i
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=samsung.com;
-        s=mail20170921; t=1599662830;
-        bh=6pD2jBm6l4NY8TMCPp0T0+uNfiB/x7JVe6XpoPosFww=;
-        h=Subject:To:Cc:From:Date:In-Reply-To:References:From;
-        b=Ab58mHj/nrCKS1ik30p5kv8vxCIElYMllX720IHeoWDLwdpv5Xdxd+2F0lItj/7+p
-         Id2qc+lEGkNFIv6MInMB6llvVd53Z+n07yMGIIwShjk+QiX4fU/IRyi0FrrD7Rt3RJ
-         dp1rwJ0SYVMxViFYkWxDkgThm3HUmN230Sq+MBFo=
-Received: from eusmges2new.samsung.com (unknown [203.254.199.244]) by
-        eucas1p2.samsung.com (KnoxPortal) with ESMTP id
-        20200909144709eucas1p2b4703806571a6b7d4677bb44b1129e64~zJN4vjCO_0720307203eucas1p2H;
-        Wed,  9 Sep 2020 14:47:09 +0000 (GMT)
-Received: from eucas1p2.samsung.com ( [182.198.249.207]) by
-        eusmges2new.samsung.com (EUCPMTA) with SMTP id 54.DC.05997.DEAE85F5; Wed,  9
-        Sep 2020 15:47:09 +0100 (BST)
-Received: from eusmtrp1.samsung.com (unknown [182.198.249.138]) by
-        eucas1p2.samsung.com (KnoxPortal) with ESMTPA id
-        20200909144708eucas1p22c7a9c941f4656ff4efc94e1d156a9a6~zJN4U79yv0034700347eucas1p20;
-        Wed,  9 Sep 2020 14:47:08 +0000 (GMT)
-Received: from eusmgms2.samsung.com (unknown [182.198.249.180]) by
-        eusmtrp1.samsung.com (KnoxPortal) with ESMTP id
-        20200909144708eusmtrp1cea369908fda34b63479819aba3041e8~zJN4UJEpe1317213172eusmtrp1G;
-        Wed,  9 Sep 2020 14:47:08 +0000 (GMT)
-X-AuditID: cbfec7f4-65dff7000000176d-0e-5f58eaed414a
-Received: from eusmtip2.samsung.com ( [203.254.199.222]) by
-        eusmgms2.samsung.com (EUCPMTA) with SMTP id B1.1E.06017.CEAE85F5; Wed,  9
-        Sep 2020 15:47:08 +0100 (BST)
-Received: from [106.210.123.115] (unknown [106.210.123.115]) by
-        eusmtip2.samsung.com (KnoxPortal) with ESMTPA id
-        20200909144707eusmtip2e63e94961e81d7208ff2d3503e173a61~zJN3U6Wu32459124591eusmtip2b;
-        Wed,  9 Sep 2020 14:47:07 +0000 (GMT)
-Subject: Re: [PATCH RFC v6 1/6] dt-bindings: exynos-bus: Add documentation
- for interconnect properties
-To:     Georgi Djakov <georgi.djakov@linaro.org>,
-        Rob Herring <robh@kernel.org>
-Cc:     cw00.choi@samsung.com, krzk@kernel.org, devicetree@vger.kernel.org,
-        a.swigon@samsung.com, myungjoo.ham@samsung.com,
-        inki.dae@samsung.com, sw0312.kim@samsung.com,
-        b.zolnierkie@samsung.com, m.szyprowski@samsung.com,
-        linux-kernel@vger.kernel.org, linux-pm@vger.kernel.org,
-        linux-samsung-soc@vger.kernel.org, dri-devel@lists.freedesktop.org,
-        linux-arm-kernel@lists.infradead.org
-From:   Sylwester Nawrocki <s.nawrocki@samsung.com>
-Message-ID: <e6e369fb-ccf2-09ed-ad6a-680e67198359@samsung.com>
-Date:   Wed, 9 Sep 2020 16:47:06 +0200
-User-Agent: Mozilla/5.0 (Windows NT 10.0; WOW64; rv:68.0) Gecko/20100101
-        Thunderbird/68.12.0
+        id S1730733AbgIIQB3 (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Wed, 9 Sep 2020 12:01:29 -0400
+Received: from mail.kernel.org ([198.145.29.99]:59240 "EHLO mail.kernel.org"
+        rhost-flags-OK-OK-OK-OK) by vger.kernel.org with ESMTP
+        id S1730721AbgIIQBA (ORCPT <rfc822;devicetree@vger.kernel.org>);
+        Wed, 9 Sep 2020 12:01:00 -0400
+Received: from mail-oi1-f170.google.com (mail-oi1-f170.google.com [209.85.167.170])
+        (using TLSv1.2 with cipher ECDHE-RSA-AES128-GCM-SHA256 (128/128 bits))
+        (No client certificate requested)
+        by mail.kernel.org (Postfix) with ESMTPSA id 113592067C;
+        Wed,  9 Sep 2020 16:00:59 +0000 (UTC)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=kernel.org;
+        s=default; t=1599667259;
+        bh=gCT1PxEjHYMnqsc3IvRBLytlHp3Q+TLZOGRYtcA00sU=;
+        h=References:In-Reply-To:From:Date:Subject:To:Cc:From;
+        b=pt3N8HoH3a+eDZqio6ImrjIXNZmkwfnNSI1lzhPVdUJxLiorxqYClioNwFwZA3NXh
+         qEkynAsRcZP1fht5kGWwTvTgx5gyftJio8jabIzKtPVpb94ZaDPmTkannaAJ1uNoEP
+         Asa+s+3Ou4Q+aMLBi7einndS6rIL1hsuHWs3R4/4=
+Received: by mail-oi1-f170.google.com with SMTP id w16so2877799oia.2;
+        Wed, 09 Sep 2020 09:00:59 -0700 (PDT)
+X-Gm-Message-State: AOAM531son41hDdnHW4lzlJGoAJe9uV5CQeq51mzfZZHuyVFBSojz4UQ
+        u49a6G5+Sqxjd4+CNyYMzMzZKeXDzbG4A0zmFA==
+X-Google-Smtp-Source: ABdhPJxxfDXQk+6W+xnjTSduPNlggtWkN48qYEkMLzn2/lnfsbJZ547HMTqHktm+eYoi9g0Fz3c0ICdHDjbvpLrhV8U=
+X-Received: by 2002:aca:fc07:: with SMTP id a7mr1092879oii.106.1599667258344;
+ Wed, 09 Sep 2020 09:00:58 -0700 (PDT)
 MIME-Version: 1.0
-In-Reply-To: <b711257d-c34b-b609-3ada-312871967b98@linaro.org>
-Content-Language: en-US
-Content-Transfer-Encoding: 8bit
-X-Brightmail-Tracker: H4sIAAAAAAAAA02Se0hTYRjG+XYuO462jsvyRcVqSRelqRnxSSXdqFH/BFmElLb04Cy3YnPV
-        Qsgww3uW1dastAso01iuMjXtDy9ZWq60THJmmCWO7KaRdtE6nkX+93ue93n5nhc+hpD3Un5M
-        ki6F0+vUyQpaQlY9GHcuHXbvjAt7NyjDfZczEK602Cn8cnSQwsVN7RR+/u0Tjc31Dhqf6Ssg
-        sdN5U4wdb7so3Fl7kcYjeU0IW5z3RfhGU68Y9xwvo/FkXbUYWwqH6DWsymHLolWurjpa1ZfT
-        IlLdun5MlX/bhlQjjsCtdIxkVQKXnHSI04dG7ZFoskq6xQc/zj8y5rKhNFTpn428GGCXg9v6
-        gs5GEkbOliEo63lDCWIUQXHveY8YQdD4I1/0b6Wr87VnUIqg3fLYI74g6HCWUnxqFquB8bu5
-        NM8+7BZ4erWO4EMEe4KAvKFyxA9oNhzymvOnWMpGQeOp72Q2YhiSDYJPmTLens3GwoPWflKI
-        eMOjCwNT7PU3/sE5QfBMsL7waqBYJPBcSL9TNPUWsMcZ+DqY4am9AZ5VnqUEngXulttigQOg
-        rTCXFBbSEeTe6xELogBBX0sJElIrwdX+g+bbEewSsNeGCvZauDlZI+JtYGXQPewtlJDBmSoz
-        IdhSyDwpF9JB8NNm9tTxg5yBSbIAKazTTrNOO8c67Rzr/3dLEGlDvpzRoE3kDMt03GGlQa01
-        GHWJyvgDWgf6++naJlpGq1Htr70NiGWQYoY0s3dnnJxSHzKYtA0IGELhI133pC1WLk1Qm45y
-        +gNxemMyZ2hA/gyp8JVGXB3aLWcT1Sncfo47yOn/TUWMl18aOrlZMVY+HjLvpbmgvzzkdGi8
-        O/LStYhXqLk4ZsG9U67mnMiNHa31mmjb5J6IYP/UfXuv0DUVWWAPiMRPF7a+XRRo3JXU+RAb
-        w7aj8ni8WnK+7VxK5jufinNVmqIVnz9bTcbu0NjCCeX76E39QWEzg43KbYuHTXNSf5dutK6P
-        3mFXkAaNOjyY0BvUfwBBw3q3cAMAAA==
-X-Brightmail-Tracker: H4sIAAAAAAAAA+NgFnrLIsWRmVeSWpSXmKPExsVy+t/xe7pvXkXEG2zu1re4P6+V0WLjjPWs
-        Fte/PGe1mH/kHKvFla/v2Sym793EZjHp/gQWi/PnN7BbbHp8jdXi8q45bBafe48wWsw4v4/J
-        Yu2Ru+wWtxtXsFn837OD3WLG5JdsDgIem1Z1snncubaHzeN+93Emj81L6j36tqxi9Pi8SS6A
-        LUrPpii/tCRVISO/uMRWKdrQwkjP0NJCz8jEUs/Q2DzWyshUSd/OJiU1J7MstUjfLkEvo3PB
-        DfaCd4oVP+6sYmxg3CjdxcjJISFgInHt8j1WEFtIYCmjRP+E8C5GDqC4lMT8FiWIEmGJP9e6
-        2LoYuYBK3jNKPDn0lw0kISyQIbFs3wtGEFtEwFviwqI9zCBFzAItzBJfJ81gguj4zyTR0PIW
-        bAObgKFE79E+sA5eATuJw/3fWUC2sQioSLzv4AMJiwrESZzpecEGUSIocXLmExYQmxOo/M35
-        f8wgNrOAusSfeZegbHGJW0/mM0HY8hLNW2czT2AUmoWkfRaSlllIWmYhaVnAyLKKUSS1tDg3
-        PbfYSK84Mbe4NC9dLzk/dxMjMKq3Hfu5ZQdj17vgQ4wCHIxKPLwddyPihVgTy4orcw8xSnAw
-        K4nwOp09HSfEm5JYWZValB9fVJqTWnyI0RTot4nMUqLJ+cCEk1cSb2hqaG5haWhubG5sZqEk
-        ztshcDBGSCA9sSQ1OzW1ILUIpo+Jg1OqgbHZKfJ1pMsdHmPmi1Mju2In5gtEaGjr/3TT+HH7
-        WPAD9tOvvXef2/dz4Trpd8u32K5esXSmZ/ncKo61qrc2FPOaTj37WuPFm1/r5VdMzVNsm3j1
-        nHl6mOZlL++nu3lvTzfeov13xvzLt1kSP/JWeRQw+7MbfA7gf/G4lXVm+bGdh1KYzObEPPZS
-        YinOSDTUYi4qTgQABaXelwADAAA=
-X-CMS-MailID: 20200909144708eucas1p22c7a9c941f4656ff4efc94e1d156a9a6
-X-Msg-Generator: CA
-Content-Type: text/plain; charset="utf-8"
-X-RootMTR: 20200702163748eucas1p2cf7eab70bc072dea9a95183018b38ad3
-X-EPHeader: CA
-CMS-TYPE: 201P
-X-CMS-RootMailID: 20200702163748eucas1p2cf7eab70bc072dea9a95183018b38ad3
-References: <20200702163724.2218-1-s.nawrocki@samsung.com>
-        <CGME20200702163748eucas1p2cf7eab70bc072dea9a95183018b38ad3@eucas1p2.samsung.com>
-        <20200702163724.2218-2-s.nawrocki@samsung.com>
-        <20200709210448.GA876103@bogus>
-        <65af1a5c-8f8a-ef65-07f8-e0b3d04c336c@samsung.com>
-        <35d9d396-b553-a815-1f3b-1af4dc37a2ca@samsung.com>
-        <b711257d-c34b-b609-3ada-312871967b98@linaro.org>
+References: <1598467441-124203-1-git-send-email-manish.narani@xilinx.com>
+ <1598467441-124203-2-git-send-email-manish.narani@xilinx.com>
+ <20200908230520.GA1102401@bogus> <BYAPR02MB589674F9C2EFC763AFC63BD2C1260@BYAPR02MB5896.namprd02.prod.outlook.com>
+In-Reply-To: <BYAPR02MB589674F9C2EFC763AFC63BD2C1260@BYAPR02MB5896.namprd02.prod.outlook.com>
+From:   Rob Herring <robh@kernel.org>
+Date:   Wed, 9 Sep 2020 10:00:45 -0600
+X-Gmail-Original-Message-ID: <CAL_JsqKfF6+ocozmSf0n0r8LPjbyK4CurS2qqy1rdNNqQw+cnA@mail.gmail.com>
+Message-ID: <CAL_JsqKfF6+ocozmSf0n0r8LPjbyK4CurS2qqy1rdNNqQw+cnA@mail.gmail.com>
+Subject: Re: [PATCH 1/2] dt-bindings: usb: dwc3-xilinx: Add documentation for
+ Versal DWC3 Controller
+To:     Manish Narani <MNARANI@xilinx.com>
+Cc:     "gregkh@linuxfoundation.org" <gregkh@linuxfoundation.org>,
+        Michal Simek <michals@xilinx.com>,
+        "balbi@kernel.org" <balbi@kernel.org>,
+        "p.zabel@pengutronix.de" <p.zabel@pengutronix.de>,
+        "linux-usb@vger.kernel.org" <linux-usb@vger.kernel.org>,
+        "devicetree@vger.kernel.org" <devicetree@vger.kernel.org>,
+        "linux-arm-kernel@lists.infradead.org" 
+        <linux-arm-kernel@lists.infradead.org>,
+        "linux-kernel@vger.kernel.org" <linux-kernel@vger.kernel.org>,
+        git <git@xilinx.com>
+Content-Type: text/plain; charset="UTF-8"
 Sender: devicetree-owner@vger.kernel.org
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-Hi Georgi,
+On Wed, Sep 9, 2020 at 9:46 AM Manish Narani <MNARANI@xilinx.com> wrote:
+>
+> Hi Rob,
+>
+> Thanks for the review.
+>
+> > -----Original Message-----
+> > From: Rob Herring <robh@kernel.org>
+> > Sent: Wednesday, September 9, 2020 4:35 AM
+> > To: Manish Narani <MNARANI@xilinx.com>
+> > Cc: gregkh@linuxfoundation.org; Michal Simek <michals@xilinx.com>;
+> > balbi@kernel.org; p.zabel@pengutronix.de; linux-usb@vger.kernel.org;
+> > devicetree@vger.kernel.org; linux-arm-kernel@lists.infradead.org; linux-
+> > kernel@vger.kernel.org; git <git@xilinx.com>
+> > Subject: Re: [PATCH 1/2] dt-bindings: usb: dwc3-xilinx: Add documentation for
+> > Versal DWC3 Controller
+> >
+> > On Thu, Aug 27, 2020 at 12:14:00AM +0530, Manish Narani wrote:
+> > > Add documentation for Versal DWC3 controller. Add required property
+> > > 'reg' for the same. Also add optional properties for snps,dwc3.
+> > >
+> > > Signed-off-by: Manish Narani <manish.narani@xilinx.com>
+> > > ---
+> > >  .../devicetree/bindings/usb/dwc3-xilinx.txt          | 12 +++++++++++-
+> > >  1 file changed, 11 insertions(+), 1 deletion(-)
+> > >
+> > > diff --git a/Documentation/devicetree/bindings/usb/dwc3-xilinx.txt
+> > b/Documentation/devicetree/bindings/usb/dwc3-xilinx.txt
+> > > index 4aae5b2cef56..dd41ed831411 100644
+> > > --- a/Documentation/devicetree/bindings/usb/dwc3-xilinx.txt
+> > > +++ b/Documentation/devicetree/bindings/usb/dwc3-xilinx.txt
+> > > @@ -1,7 +1,8 @@
+> > >  Xilinx SuperSpeed DWC3 USB SoC controller
+> > >
+> > >  Required properties:
+> > > -- compatible:      Should contain "xlnx,zynqmp-dwc3"
+> > > +- compatible:      May contain "xlnx,zynqmp-dwc3" or "xlnx,versal-
+> > dwc3"
+> > > +- reg:             Base address and length of the register control block
+> > >  - clocks:  A list of phandles for the clocks listed in clock-names
+> > >  - clock-names:     Should contain the following:
+> > >    "bus_clk"         Master/Core clock, have to be >= 125 MHz for SS
+> > > @@ -13,12 +14,19 @@ Required child node:
+> > >  A child node must exist to represent the core DWC3 IP block. The name of
+> > >  the node is not important. The content of the node is defined in dwc3.txt.
+> > >
+> > > +Optional properties for snps,dwc3:
+> > > +- dma-coherent:    Enable this flag if CCI is enabled in design. Adding this
+> > > +           flag configures Global SoC bus Configuration Register and
+> > > +           Xilinx USB 3.0 IP - USB coherency register to enable CCI.
+> > > +- interrupt-names: This property provides the names of the interrupt ids
+> > used
+> >
+> > You have to define what the names are. 'dwc_usb3' seems pretty pointless
+> > if only 1 name.
+>
+> OK. I am planning to add more interrupt ids going ahead. For now I will remove
+> this interrupt name in v2. The interrupt name will be added along with other interrupt
+> names.
 
-On 09.09.2020 11:07, Georgi Djakov wrote:
-> On 8/28/20 17:49, Sylwester Nawrocki wrote:
->> On 30.07.2020 14:28, Sylwester Nawrocki wrote:
->>> On 09.07.2020 23:04, Rob Herring wrote:
->>>> On Thu, Jul 02, 2020 at 06:37:19PM +0200, Sylwester Nawrocki wrote:
->>>>> Add documentation for new optional properties in the exynos bus nodes:
->>>>> samsung,interconnect-parent, #interconnect-cells, bus-width.
->>>>> These properties allow to specify the SoC interconnect structure which
->>>>> then allows the interconnect consumer devices to request specific
->>>>> bandwidth requirements.
->>>>>
->>>>> Signed-off-by: Artur Świgoń <a.swigon@samsung.com>
->>>>> Signed-off-by: Sylwester Nawrocki <s.nawrocki@samsung.com>
->>
->>>>> --- a/Documentation/devicetree/bindings/devfreq/exynos-bus.txt
->>>>> +++ b/Documentation/devicetree/bindings/devfreq/exynos-bus.txt
+Define all the interrupts you have. Bindings should be complete, not
+what a driver for some OS happens to use at some point in time.
 
->>>>> +Optional properties for interconnect functionality (QoS frequency constraints):
->>>>> +- samsung,interconnect-parent: phandle to the parent interconnect node; for
->>>>> +  passive devices should point to same node as the exynos,parent-bus property.
->>
->>>> Adding vendor specific properties for a common binding defeats the 
->>>> point.
->>
->> Actually we could do without any new property if we used existing interconnect
->> consumers binding to specify linking between the provider nodes. I think those
->> exynos-bus nodes could well be considered both the interconnect providers 
->> and consumers. The example would then be something along the lines 
->> (yes, I know the bus node naming needs to be fixed):
->>
->> 	soc {
->> 		bus_dmc: bus_dmc {
->> 			compatible = "samsung,exynos-bus";
->> 			/* ... */
->> 			samsung,data-clock-ratio = <4>;
->> 			#interconnect-cells = <0>;
->> 		};
->>
->> 		bus_leftbus: bus_leftbus {
->> 			compatible = "samsung,exynos-bus";
->> 			/* ... */
->> 			interconnects = <&bus_leftbus &bus_dmc>;
->> 			#interconnect-cells = <0>;
->> 		};
->>
->> 		bus_display: bus_display {
->> 			compatible = "samsung,exynos-bus";
->> 			/* ... */
->> 			interconnects = <&bus_display &bus_leftbus>;
-> 
-> Hmm, bus_display being a consumer of itself is a bit odd? Did you mean:
->  			interconnects = <&bus_dmc &bus_leftbus>;
-
-Might be, but we would need to swap the phandles so <source, destination>
-order is maintained, i.e. interconnects = <&bus_leftbus &bus_dmc>;
-
-My intention here was to describe the 'bus_display -> bus_leftbus' part 
-of data path 'bus_display -> bus_leftbus -> bus_dmc', bus_display is
-really a consumer of 'bus_leftbus -> bus_dmc' path.
-
-I'm not sure if it is allowed to specify only single phandle (and 
-interconnect provider specifier) in the interconnect property, that would
-be needed for the bus_leftbus node to define bus_dmc as the interconnect 
-destination port. There seems to be such a use case in arch/arm64/boot/
-dts/allwinner/sun50i-a64.dtsi. 
-
->> 			#interconnect-cells = <0>;
->> 		};
->>
->>
->> 		&mixer {
->> 			compatible = "samsung,exynos4212-mixer";
->> 			interconnects = <&bus_display &bus_dmc>;
->> 			/* ... */
->> 		};
->> 	};
->>
->> What do you think, Georgi, Rob?
-> 
-> I can't understand the above example with bus_display being it's own consumer.
-> This seems strange to me. Could you please clarify it?
-
-> Otherwise the interconnect consumer DT bindings are already well established
-> and i don't see anything preventing a node to be both consumer and provider.
-> So this should be okay in general.
-
-Thanks, below is an updated example according to your suggestions. 
-Does it look better now?
-
----------------------------8<------------------------------
-soc {
-	bus_dmc: bus_dmc {
-		compatible = "samsung,exynos-bus";
-		/* ... */
-		samsung,data-clock-ratio = <4>;
-		#interconnect-cells = <0>;
-	};
-
-	bus_leftbus: bus_leftbus {
-		compatible = "samsung,exynos-bus";
-		/* ... */
-		interconnects = <&bus_dmc>;
-		#interconnect-cells = <0>;
-	};
-
-	bus_display: bus_display {
-		compatible = "samsung,exynos-bus";
-		/* ... */
-		interconnects = <&bus_leftbus &bus_dmc>;
-		#interconnect-cells = <0>;
-	};
-
-	&mixer {
-		compatible = "samsung,exynos4212-mixer";
-		interconnects = <&bus_display &bus_dmc>;
-		/* ... */
-	};
-};
----------------------------8<------------------------------
-
--- 
-Regards,
-Sylwester
+Rob
