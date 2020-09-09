@@ -2,181 +2,107 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from vger.kernel.org (vger.kernel.org [23.128.96.18])
-	by mail.lfdr.de (Postfix) with ESMTP id EA913263820
-	for <lists+devicetree@lfdr.de>; Wed,  9 Sep 2020 22:59:37 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTP id 707DD263826
+	for <lists+devicetree@lfdr.de>; Wed,  9 Sep 2020 23:03:12 +0200 (CEST)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S1726440AbgIIU72 (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Wed, 9 Sep 2020 16:59:28 -0400
-Received: from mail-io1-f66.google.com ([209.85.166.66]:41251 "EHLO
-        mail-io1-f66.google.com" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S1726426AbgIIU72 (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Wed, 9 Sep 2020 16:59:28 -0400
-Received: by mail-io1-f66.google.com with SMTP id z13so4721496iom.8;
-        Wed, 09 Sep 2020 13:59:27 -0700 (PDT)
+        id S1727087AbgIIVDH (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Wed, 9 Sep 2020 17:03:07 -0400
+Received: from lindbergh.monkeyblade.net ([23.128.96.19]:42632 "EHLO
+        lindbergh.monkeyblade.net" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
+        with ESMTP id S1726414AbgIIVDG (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Wed, 9 Sep 2020 17:03:06 -0400
+Received: from mail-pj1-x1044.google.com (mail-pj1-x1044.google.com [IPv6:2607:f8b0:4864:20::1044])
+        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 467B4C061573;
+        Wed,  9 Sep 2020 14:03:05 -0700 (PDT)
+Received: by mail-pj1-x1044.google.com with SMTP id s2so1954883pjr.4;
+        Wed, 09 Sep 2020 14:03:05 -0700 (PDT)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+        d=gmail.com; s=20161025;
+        h=subject:to:cc:references:from:message-id:date:user-agent
+         :mime-version:in-reply-to:content-language:content-transfer-encoding;
+        bh=Kk3dtIEIHLrcJXCtVTcb0P6ovpZXfJeh6sKbAWAj1no=;
+        b=Ih+9wWx7tV8Gh3D9ZZOkimGpNEiSmyOQr8AmYz36svx2Lr954NP4kKJ86JWA2YHSNx
+         f3lcFYyvCm5+CCgt0IXOKx7LkeGFYeVYiK3rc1s8p3v2qQhMqvXqhOaZm8BiZGOYqP8N
+         c2dN+MH1bBxxjj4x6SDnnW+J0PtJjlOQiS2KorrhzojRuQpOt7pf0Q7W3E8kVs2G7CUi
+         f06r1D5CRPNz2T8+oi5s4oxpECfpQhl2wfrnBeVzqkr8rcMkhdLGkoZ4zfzLQ0bg14nP
+         tdcyxIpz5WzM1h7UytzRqWSoH0QEXm3KMxFPY+d+CKzgZHExf4jaA383k7DbgK9p4vhC
+         Bbuw==
 X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
         d=1e100.net; s=20161025;
-        h=x-gm-message-state:date:from:to:cc:subject:message-id:references
-         :mime-version:content-disposition:content-transfer-encoding
-         :in-reply-to;
-        bh=WKB+fi6JCqB8h42W2jDTX81Eu1SDKw5nPBzug3L1wKk=;
-        b=hxHPeGFAUtgUmg5hW991eJxPhwNe/WxQEiN95AJ7khN4pj1u9YTGugeobQLapX77am
-         jzQ+S8+IXw6XeiXMJCuI6tLdvF4dQcR57RIMjgSQ5IjJB0+xoeyMgPjV4UvVmo6WJXZl
-         2d88K0nxrkIvfr23zaW48nUCbyMrwOu3ApWfVzfkkRIMxw/RbsTFTrh2vnViK1IrQYEr
-         uOyWiBfI/ekmKD4z1u+WzrK6yC5QS2tDOUPW9rEjlOHHyIp/6nIiNDAFKz2DK6saZkw1
-         gyNF8hPevF65MB28p4luzuHDw1kbxHcOmdGi/jIg09nEmwM4VZADJmQr5uCFVN4yRveM
-         lfJA==
-X-Gm-Message-State: AOAM5317RwA0GcDOt63Sgmg1N3HrZbsM2Tj8Dm59BvCX3fpi0IWO0lOR
-        +TSzr0ldNFnOh7R+Y8pl4g==
-X-Google-Smtp-Source: ABdhPJwW0wptLj8Blqz4AudnStaiqqzrhgJ8UPkFvAKAjhyBybXWPMeEKd/hnKGHVxntbYiTaVTUjw==
-X-Received: by 2002:a6b:f90f:: with SMTP id j15mr2959502iog.169.1599685166842;
-        Wed, 09 Sep 2020 13:59:26 -0700 (PDT)
-Received: from xps15 ([64.188.179.251])
-        by smtp.gmail.com with ESMTPSA id c9sm2047352ili.31.2020.09.09.13.59.25
-        (version=TLS1_3 cipher=TLS_AES_256_GCM_SHA384 bits=256/256);
-        Wed, 09 Sep 2020 13:59:25 -0700 (PDT)
-Received: (nullmailer pid 3066042 invoked by uid 1000);
-        Wed, 09 Sep 2020 20:59:23 -0000
-Date:   Wed, 9 Sep 2020 14:59:23 -0600
-From:   Rob Herring <robh@kernel.org>
-To:     Marek =?iso-8859-1?Q?Beh=FAn?= <marek.behun@nic.cz>
-Cc:     Andrew Lunn <andrew@lunn.ch>, netdev@vger.kernel.org,
-        linux-leds@vger.kernel.org, Pavel Machek <pavel@ucw.cz>,
-        Dan Murphy <dmurphy@ti.com>,
-        =?utf-8?Q?Ond=C5=99ej?= Jirman <megous@megous.com>,
-        Russell King <linux@armlinux.org.uk>,
-        linux-kernel@vger.kernel.org,
-        Matthias Schiffer <matthias.schiffer@ew.tq-group.com>,
-        "David S. Miller" <davem@davemloft.net>, devicetree@vger.kernel.org
-Subject: Re: [PATCH net-next + leds v2 1/7] dt-bindings: leds: document
- binding for HW controlled LEDs
-Message-ID: <20200909205923.GB3056507@bogus>
-References: <20200909162552.11032-1-marek.behun@nic.cz>
- <20200909162552.11032-2-marek.behun@nic.cz>
- <20200909182730.GK3290129@lunn.ch>
- <20200909203310.15ca4e42@dellmb.labs.office.nic.cz>
+        h=x-gm-message-state:subject:to:cc:references:from:message-id:date
+         :user-agent:mime-version:in-reply-to:content-language
+         :content-transfer-encoding;
+        bh=Kk3dtIEIHLrcJXCtVTcb0P6ovpZXfJeh6sKbAWAj1no=;
+        b=rJU9Wm+4ppjxMdgyYjES1cZzi6FODQPgU46QNXI7ZIbonFkausqbU47o7GCQmJxH4U
+         mR5DbSzUNux/knFhHuNkO4AToobSe3nInjIBByllKcxOdX+4jJpAEO6XhZ1o+S/UUF7C
+         XBDSLZl47W8wmbz3gztLO4n+/91rnxVop4TfpXD73b4cVC9TzGLtMdjH4Qbg9zQR5/MH
+         y6vXtAVxKAQkr4gWZWJXHVTkVMusoddBy37JNQjsGJaRgC79+DUjbeXBwSfUCEqnMzJ5
+         ibg1yWkCl7ob6IGBpau4JceBHlj8AUPEC6PVaW+OAK5TzQT8LYj2lfNlBQG9YsreW9Pb
+         dp3A==
+X-Gm-Message-State: AOAM532V4IN8/MYAvo93S9p+BYS4J66t5vRGOg46GsX9avPPTlzevAkQ
+        vyGmzW6EWDUrM0GqGzuP+D8=
+X-Google-Smtp-Source: ABdhPJzGfNy97zcL46hxGh9zbWvFhq+8lbc6+7e336RdPNYCnFw34GFIjCkyQca02CQCHc+DPUtv4g==
+X-Received: by 2002:a17:90a:8d05:: with SMTP id c5mr2271219pjo.222.1599685384654;
+        Wed, 09 Sep 2020 14:03:04 -0700 (PDT)
+Received: from [10.230.30.107] ([192.19.223.252])
+        by smtp.gmail.com with ESMTPSA id g32sm2951874pgl.89.2020.09.09.14.02.58
+        (version=TLS1_3 cipher=TLS_AES_128_GCM_SHA256 bits=128/128);
+        Wed, 09 Sep 2020 14:03:03 -0700 (PDT)
+Subject: Re: [PATCH 1/5] dt-bindings: spi: Fix spi-bcm-qspi compatible
+ ordering
+To:     Rob Herring <robh@kernel.org>
+Cc:     Kamal Dasu <kdasu.kdev@gmail.com>,
+        Yendapally Reddy Dhananjaya Reddy 
+        <yendapally.reddy@broadcom.com>,
+        "open list:OPEN FIRMWARE AND FLATTENED DEVICE TREE BINDINGS" 
+        <devicetree@vger.kernel.org>,
+        "open list:SPI SUBSYSTEM" <linux-spi@vger.kernel.org>,
+        "maintainer:BROADCOM SPI DRIVER" 
+        <bcm-kernel-feedback-list@broadcom.com>,
+        linux-arm-kernel@lists.infradead.org,
+        =?UTF-8?B?UmFmYcWCIE1pxYJlY2tp?= <zajec5@gmail.com>,
+        open list <linux-kernel@vger.kernel.org>,
+        Rob Herring <robh+dt@kernel.org>,
+        Mark Brown <broonie@kernel.org>,
+        Hauke Mehrtens <hauke@hauke-m.de>, Ray Jui <rjui@broadcom.com>,
+        Scott Branden <sbranden@broadcom.com>
+References: <20200827181842.1000451-1-f.fainelli@gmail.com>
+ <20200827181842.1000451-2-f.fainelli@gmail.com>
+ <20200909204111.GA3041530@bogus>
+From:   Florian Fainelli <f.fainelli@gmail.com>
+Message-ID: <0ab569c8-593a-aaa5-daaf-12860ce5931a@gmail.com>
+Date:   Wed, 9 Sep 2020 14:02:55 -0700
+User-Agent: Mozilla/5.0 (Windows NT 10.0; Win64; x64; rv:78.0) Gecko/20100101
+ Firefox/78.0 Thunderbird/78.2.1
 MIME-Version: 1.0
-Content-Type: text/plain; charset=iso-8859-1
-Content-Disposition: inline
-Content-Transfer-Encoding: 8bit
-In-Reply-To: <20200909203310.15ca4e42@dellmb.labs.office.nic.cz>
+In-Reply-To: <20200909204111.GA3041530@bogus>
+Content-Type: text/plain; charset=utf-8; format=flowed
+Content-Language: en-US
+Content-Transfer-Encoding: 7bit
 Sender: devicetree-owner@vger.kernel.org
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-On Wed, Sep 09, 2020 at 08:33:10PM +0200, Marek Behún wrote:
-> On Wed, 9 Sep 2020 20:27:30 +0200
-> Andrew Lunn <andrew@lunn.ch> wrote:
+
+
+On 9/9/2020 1:41 PM, Rob Herring wrote:
+> On Thu, 27 Aug 2020 11:18:38 -0700, Florian Fainelli wrote:
+>> The binding is currently incorrectly defining the compatible strings
+>> from least specific to most specific instead of the converse. Re-order
+>> them from most specific (left) to least specific (right) and fix the
+>> examples as well.
+>>
+>> Fixes: 5fc78f4c842a ("spi: Broadcom BRCMSTB, NSP, NS2 SoC bindings")
+>> Signed-off-by: Florian Fainelli <f.fainelli@gmail.com>
+>> ---
+>>   .../bindings/spi/brcm,spi-bcm-qspi.txt           | 16 ++++++++--------
+>>   1 file changed, 8 insertions(+), 8 deletions(-)
+>>
 > 
-> > On Wed, Sep 09, 2020 at 06:25:46PM +0200, Marek Behún wrote:
-> > > Document binding for LEDs connected to and controlled by various
-> > > chips (such as ethernet PHY chips).
-> > > 
-> > > Signed-off-by: Marek Behún <marek.behun@nic.cz>
-> > > Cc: Rob Herring <robh+dt@kernel.org>
-> > > Cc: devicetree@vger.kernel.org
-> > > ---
-> > >  .../leds/linux,hw-controlled-leds.yaml        | 99
-> > > +++++++++++++++++++ 1 file changed, 99 insertions(+)
-> > >  create mode 100644
-> > > Documentation/devicetree/bindings/leds/linux,hw-controlled-leds.yaml
-> > > 
-> > > diff --git
-> > > a/Documentation/devicetree/bindings/leds/linux,hw-controlled-leds.yaml
-> > > b/Documentation/devicetree/bindings/leds/linux,hw-controlled-leds.yaml
-> > > new file mode 100644 index 0000000000000..eaf6e5d80c5f5 ---
-> > > /dev/null +++
-> > > b/Documentation/devicetree/bindings/leds/linux,hw-controlled-leds.yaml
-> > > @@ -0,0 +1,99 @@ +# SPDX-License-Identifier: GPL-2.0-only OR
-> > > BSD-2-Clause +%YAML 1.2
-> > > +---
-> > > +$id:
-> > > http://devicetree.org/schemas/leds/linux,hw-controlled-leds.yaml#
-> > > +$schema: http://devicetree.org/meta-schemas/core.yaml# +
-> > > +title: LEDs that can be controlled by hardware (eg. by an ethernet
-> > > PHY chip) +
-> > > +maintainers:
-> > > +  - Marek Behún <marek.behun@nic.cz>
-> > > +
-> > > +description:
-> > > +  Many an ethernet PHY (and other chips) supports various HW
-> > > control modes
-> > > +  for LEDs connected directly to them. With this binding such LEDs
-> > > can be
-> > > +  described.
-> > > +
-> > > +properties:
-> > > +  compatible:
-> > > +    const: linux,hw-controlled-leds
-> > > +
-> > > +  "#address-cells":
-> > > +    const: 1
-> > > +
-> > > +  "#size-cells":
-> > > +    const: 0
-> > > +
-> > > +patternProperties:
-> > > +  "^led@[0-9a-f]+$":
-> > > +    type: object
-> > > +    allOf:
-> > > +      - $ref: common.yaml#
-> > > +    description:
-> > > +      This node represents a LED device connected to a chip that
-> > > can control
-> > > +      the LED in various HW controlled modes.
-> > > +
-> > > +    properties:
-> > > +      reg:
-> > > +        maxItems: 1
-> > > +        description:
-> > > +          This property identifies the LED to the chip the LED is
-> > > connected to
-> > > +          (eg. an ethernet PHY chip can have multiple LEDs
-> > > connected to it). +
-> > > +      enable-active-high:
-> > > +        description:
-> > > +          Polarity of LED is active high. If missing, assumed
-> > > default is active
-> > > +          low.
-> > > +        type: boolean
-> > > +
-> > > +      led-tristate:
-> > > +        description:
-> > > +          LED pin is tristate type. If missing, assumed false.
-> > > +        type: boolean
-> > > +
-> > > +      linux,default-hw-mode:
-> > > +        description:
-> > > +          This parameter, if present, specifies the default HW
-> > > triggering mode
-> > > +          of the LED when LED trigger is set to `dev-hw-mode`.
-> > > +          Available values are specific per device the LED is
-> > > connected to and
-> > > +          per LED itself.
-> > > +        $ref: /schemas/types.yaml#definitions/string
-> > > +
-> > > +    required:
-> > > +      - reg  
-> > 
-> > My Yaml foo is not very good. Do you need to list colour, function and
-> > linux,default-trigger, or do they automagically get included from the
-> > generic LED binding?
-
-They do with the '$ref: common.yaml#'. You need to list them if you want 
-to say which properties of a common schema you are using (IMO, you 
-should, but that's a secondary concern) and/or you have additional 
-constraints on them.
-
-> > 
-> > 	Andrew
+> Reviewed-by: Rob Herring <robh@kernel.org>
 > 
-> I don't know :) I copied this from other drivers, I once tried setting
-> up environment for doing checking of device trees with YAML schemas,
-> and it was a little painful :)
 
-pip3 install dtschema ?
-
-Can you elaborate on the issue.
-
-Rob
-
+Thanks, and sorry about the nagging on IRC :)
+-- 
+Florian
