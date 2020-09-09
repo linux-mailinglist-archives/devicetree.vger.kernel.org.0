@@ -2,67 +2,142 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from vger.kernel.org (vger.kernel.org [23.128.96.18])
-	by mail.lfdr.de (Postfix) with ESMTP id 16C04263747
-	for <lists+devicetree@lfdr.de>; Wed,  9 Sep 2020 22:25:14 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTP id D04CC263755
+	for <lists+devicetree@lfdr.de>; Wed,  9 Sep 2020 22:29:35 +0200 (CEST)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S1727055AbgIIUZG (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Wed, 9 Sep 2020 16:25:06 -0400
-Received: from mail-io1-f65.google.com ([209.85.166.65]:40735 "EHLO
-        mail-io1-f65.google.com" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S1725772AbgIIUZF (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Wed, 9 Sep 2020 16:25:05 -0400
-Received: by mail-io1-f65.google.com with SMTP id j2so4620751ioj.7;
-        Wed, 09 Sep 2020 13:25:04 -0700 (PDT)
-X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=1e100.net; s=20161025;
-        h=x-gm-message-state:date:from:to:cc:subject:message-id:references
-         :mime-version:content-disposition:in-reply-to;
-        bh=Mvq1pc8VzaCkfmrY21Z3+UytzMH3TjOpdxcopW0FID0=;
-        b=FYQDHWhXYJjZQLj9IaSmB36CLN4yOahsc3+dY+zJiBXbMDUMhwqFfZ0/X+7FxDefQ+
-         SOCIjuThggc/Gvp8HFU4VzijjkoK2w1HBcMQxsdvFZTRuqrDU2vCmW/zo4ydjPb/fm7L
-         /hulI9hdAobRTvWdwttvz4mnqQvE4pndyZf57L+IojfcA7/bHb1cn2WxRyDuiApNHbBe
-         zGnVwFSixieGCpdp83IwdbB0KTTN70oFg9uHIrTt9hA9SLlO6n2yb0/wvasIozRPd39y
-         fG5viXeC1jfJylc84pt3hSUXw/TX4OC+BUfbCQ0ZujGSpR57YsYFz7ibhEr6/8QNZ/U2
-         Oe8Q==
-X-Gm-Message-State: AOAM531IhBCgvN/UGdamWO/Gvq9iuQ9lhpted2lymyndIGcOkpST7R9+
-        pzDsmJWF+pCDU45RV8dc06smYCIHPR4T
-X-Google-Smtp-Source: ABdhPJxJkzwcUL1S24Z0tbRq+VDKpX3tiUGts9lRxpl0Nh4IAME/9iREuCEOedUc1oO/rQKVZ5HRcA==
-X-Received: by 2002:a6b:908:: with SMTP id t8mr4795468ioi.124.1599683104321;
-        Wed, 09 Sep 2020 13:25:04 -0700 (PDT)
-Received: from xps15 ([64.188.179.251])
-        by smtp.gmail.com with ESMTPSA id s15sm1840787ilt.62.2020.09.09.13.25.00
-        (version=TLS1_3 cipher=TLS_AES_256_GCM_SHA384 bits=256/256);
-        Wed, 09 Sep 2020 13:25:03 -0700 (PDT)
-Received: (nullmailer pid 3020163 invoked by uid 1000);
-        Wed, 09 Sep 2020 20:24:56 -0000
-Date:   Wed, 9 Sep 2020 14:24:56 -0600
-From:   Rob Herring <robh@kernel.org>
-To:     Qiang Zhao <qiang.zhao@nxp.com>
-Cc:     a.zummo@towertech.it, alexandre.belloni@bootlin.com,
-        linux-rtc@vger.kernel.org, devicetree@vger.kernel.org,
-        linux-kernel@vger.kernel.org
-Subject: Re: [PATCH 1/3] dt-bindings: rtc-2127: Add bindings for
- nxp,rtc-2127.txt
-Message-ID: <20200909202456.GA3019412@bogus>
-References: <20200827091441.12972-1-qiang.zhao@nxp.com>
+        id S1726642AbgIIU3b (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Wed, 9 Sep 2020 16:29:31 -0400
+Received: from mout.kundenserver.de ([212.227.126.134]:56439 "EHLO
+        mout.kundenserver.de" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
+        with ESMTP id S1726399AbgIIU3a (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Wed, 9 Sep 2020 16:29:30 -0400
+Received: from methusalix.internal.home.lespocky.de ([109.250.100.135]) by
+ mrelayeu.kundenserver.de (mreue009 [212.227.15.167]) with ESMTPSA (Nemesis)
+ id 1MvsN5-1kZHze0Ukh-00syox; Wed, 09 Sep 2020 22:29:17 +0200
+Received: from falbala.internal.home.lespocky.de ([192.168.243.94])
+        by methusalix.internal.home.lespocky.de with esmtpsa  (TLS1.2) tls TLS_ECDHE_RSA_WITH_AES_256_GCM_SHA384
+        (Exim 4.94)
+        (envelope-from <post@lespocky.de>)
+        id 1kG6iL-0006c9-3z; Wed, 09 Sep 2020 22:29:10 +0200
+Date:   Wed, 9 Sep 2020 22:29:07 +0200
+From:   Alexander Dahl <post@lespocky.de>
+To:     Pavel Machek <pavel@ucw.cz>
+Cc:     Alexander Dahl <post@lespocky.de>, linux-leds@vger.kernel.org,
+        devicetree@vger.kernel.org,
+        Jacek Anaszewski <jacek.anaszewski@gmail.com>,
+        Dan Murphy <dmurphy@ti.com>, Rob Herring <robh+dt@kernel.org>,
+        linux-kernel@vger.kernel.org, Alexander Dahl <ada@thorsis.com>
+Subject: Re: [PATCH v3 1/2] leds: pwm: Allow automatic labels for DT based
+ devices
+Message-ID: <20200909202907.3z425uujvu532qxs@falbala.internal.home.lespocky.de>
+Mail-Followup-To: Pavel Machek <pavel@ucw.cz>, linux-leds@vger.kernel.org,
+        devicetree@vger.kernel.org,
+        Jacek Anaszewski <jacek.anaszewski@gmail.com>,
+        Dan Murphy <dmurphy@ti.com>, Rob Herring <robh+dt@kernel.org>,
+        linux-kernel@vger.kernel.org, Alexander Dahl <ada@thorsis.com>
+References: <20200907043459.2961-1-post@lespocky.de>
+ <20200907043459.2961-2-post@lespocky.de>
+ <20200909090736.GE10891@amd>
 MIME-Version: 1.0
-Content-Type: text/plain; charset=us-ascii
+Content-Type: multipart/signed; micalg=pgp-sha256;
+        protocol="application/pgp-signature"; boundary="7j5jbnrxqkkhowne"
 Content-Disposition: inline
-In-Reply-To: <20200827091441.12972-1-qiang.zhao@nxp.com>
+In-Reply-To: <20200909090736.GE10891@amd>
+User-Agent: NeoMutt/20170113 (1.7.2)
+X-Scan-Signature: b1198b667d2db641cccf5b3ffa27e5f4
+X-Spam-Score: -2.9 (--)
+X-Provags-ID: V03:K1:q4ciz/d7HvNF3MJSK7E5yv7MFCQV5/j7h6HGs5KycUOVhx1SbuO
+ UUn4zs0YM+nLSybDQxt4AEZTZbXN7sAQQRNP5PYjATuIM8uT53Zt8UH4R63nWzEzHZFAClQ
+ 4Ah0sIr8r+XEYfVK13cxJdj8XvIz13AsMssJRvBC9hK7REOP4/K7s76ZF0KIQlT+vOz7Xwa
+ B1SX13XGwZzvqDMJekFNw==
+X-Spam-Flag: NO
+X-UI-Out-Filterresults: notjunk:1;V03:K0:oTm1+CY9ogc=:Rq4LASjrd37j7HRcX8zjk0
+ FWAkcTO/eLT3JO0F6+0QvJ3gViLfPGB5rejBMT47SgXNpp9691EBy4QTbMj0Up2QVkMM4F8EV
+ w1yWawXYLjRUyl91iZ6eb3mjyEVKG/bJHyFsLPNXp2o+iawUo0FdgTwCZVy/souTgOt+YqgYA
+ yF6eRarp1Uoh0DUSOopH3c33ltmBNJyX8qYoOwAEi5UaJUg6EUO6ZcRSOI+4Z9m6vbdwGU0SU
+ ppvWbr9F3cSnVXhgV+xQWM3oq4B1/dFVk1F3JOKULGp4OkqgJp0qpz7JSJUKWIH2Tkq5pf7s+
+ YhOso5jwShrjcZsko6PfNZv1ErZSseZD2eHvKQIYXyJwpiLQfvM8wD9zVuNHx1BI0naH9vf/8
+ rRlFYUOnakyKV73GZYw8R4YPNpFvMdxsncOluht45AiG+GISec/qo29xUtEUfjWJGhTvmS/o/
+ CSVWM/glvSHBTn/xvaFmOItmLHztfyY8TrT5ahOxxJwQUPmdNTe4hHGEVZ+LfiD9CZn0KMTRs
+ q3UITI7D2UGl0HRrYWn31r9U9/aadEBIJ0+JY/n/a+z8rFRY09/0UQqdLFuv7Cjk0ZTtcV2EL
+ IwkJFhr33TklJFc/LHoWa8DPE42zz6UA+fZFAsJwpN3Ekke3NAdoiPnPMwIQh2HZ4bzlIU5tc
+ OSBEO6/Go48OhV5GUFXudoMmNSPBBaq1wIpkrWdiqXko2KMk6WuXgkLLEWZh1JPfifOShBtFH
+ mxkeE6tjPdsJ5Pnm+EJRlEWPZjh6sfrX077P/dwf9raktZT7Q9MoYupzPOrrrfLKi2347dTvn
+ Zw5o2f7eMqM8GchS+AEuj7Gn4epbtkZ1148Xjir5iHZXM9zdst9CvXRTmp29PlGsJjp6EO7
 Sender: devicetree-owner@vger.kernel.org
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-On Thu, Aug 27, 2020 at 05:14:39PM +0800, Qiang Zhao wrote:
-> From: Zhao Qiang <qiang.zhao@nxp.com>
-> 
-> Add bindings for nxp,rtc-2127
-> 
-> Signed-off-by: Zhao Qiang <qiang.zhao@nxp.com>
-> ---
->  Documentation/devicetree/bindings/rtc/nxp,rtc-2127.txt | 18 ++++++++++++++++++
->  1 file changed, 18 insertions(+)
->  create mode 100644 Documentation/devicetree/bindings/rtc/nxp,rtc-2127.txt
 
-Bindings should be in DT schema format now.
+--7j5jbnrxqkkhowne
+Content-Type: text/plain; charset=iso-8859-1
+Content-Disposition: inline
+Content-Transfer-Encoding: quoted-printable
+
+Hei hei,
+
+On Wed, Sep 09, 2020 at 11:07:36AM +0200, Pavel Machek wrote:
+> Hi!
+>=20
+> >  	pwm_init_state(led_data->pwm, &led_data->pwmstate);
+> > =20
+> > -	ret =3D devm_led_classdev_register(dev, &led_data->cdev);
+> > +	if (fwnode) {
+> > +		init_data.fwnode =3D fwnode;
+> > +		ret =3D devm_led_classdev_register_ext(dev, &led_data->cdev,
+> > +						     &init_data);
+> > +	} else {
+> > +		ret =3D devm_led_classdev_register(dev, &led_data->cdev);
+> > +	}
+>=20
+> Can you always use _ext version, even with null fwnode?=20
+
+I did not try on real hardware, but from reading the code I would say
+the following would happen: led_classdev_register_ext() calls
+led_compose_name(parent, init_data, composed_name) which itself calls
+led_parse_fwnode_props(dev, fwnode, &props); that returns early due to
+fwnode=3D=3DNULL without changing props, thus this stays as initialized
+with {}, so led_compose_name() would return -EINVAL which would let
+led_classdev_register_ext() fail, too.
+
+> If not, can you fix the core to accept that? Having that conditional
+> in driver is ugly.
+
+It is ugly, although the approach is inspired by the leds-gpio driver.
+I'll see if I can come up with a change to led-core, but I'm also open
+for suggestions. ;-)
+
+fyi: Peter Ujfalusi answered and would give his Ack to the changed
+dual license for the yaml file.  You can expect that for v4.
+
+Stay tuned
+Alex
+
+--=20
+/"\ ASCII RIBBON | =BBWith the first link, the chain is forged. The first
+\ / CAMPAIGN     | speech censured, the first thought forbidden, the
+ X  AGAINST      | first freedom denied, chains us all irrevocably.=AB
+/ \ HTML MAIL    | (Jean-Luc Picard, quoting Judge Aaron Satie)
+
+--7j5jbnrxqkkhowne
+Content-Type: application/pgp-signature; name="signature.asc"
+
+-----BEGIN PGP SIGNATURE-----
+
+iQIzBAABCAAdFiEEwo7muQJjlc+Prwj6NK3NAHIhXMYFAl9ZOwwACgkQNK3NAHIh
+XMZYxA/+IulUzC5gR42kuynkDbBaM43uqyoJJZiKNJJQUR3qM6Z0v/UgTOG1CcY8
+uouSnoSC5hMO9bNfxTsdyBPDueqp0yttdBRkPYJs+mIIXfgpx2fDfYpp+G7XnaA0
+/aCZ7jNscqYM7stsZXTw9pHCKB/u6uhM7dPpxf4F5GRlqOBbZvBCkoSzX1Tv/lcG
+F+P+ssx16KlQycmXmhd2d1o15VCGPljnHV+GGWLMhkOLmN8P5e0vk6fOHrD54nRn
+6XS+0rZFFJ3UtXm2z7lNydQWg3wRliQmky3LMMdxgEyGvxsahwqc49YGJtUeN0ue
+tjmmN0GSCHUAPAKbxjTnGSFiGDhjjgxqP9RbDsdhc2eCO2Ppge8zCiWMK1rzch8B
+e7We5jikLTk19FMhTY15CSmigvKg84hHSCYsUCT/EIS9knA4X6hdoWR3MPRptFQg
+ebcagIHr5Jx0cMQ/JY8sSwK6x3T6FAQWT2SQ95NnowxXF2eBOP+zISxKMY5VWZVg
+WuRrcbi6n8visLtYqaZP5Y8/5WMd/HkdYPzM8MtczQEBsYEyraIpLNxQDqW2r7OT
+qdS0cKywuIkanCybA2vMHsQ+Sd8z7eBvpmQ0bZspQQY/PKl0+vfa4jyzcTe2hcDh
+Li4UpqovWXuLyVtzKReBc2mkFoI31u2cW+5jolv+HhP8F0/3OOQ=
+=5bMy
+-----END PGP SIGNATURE-----
+
+--7j5jbnrxqkkhowne--
