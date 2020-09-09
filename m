@@ -2,140 +2,78 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from vger.kernel.org (vger.kernel.org [23.128.96.18])
-	by mail.lfdr.de (Postfix) with ESMTP id 8F6182629EA
-	for <lists+devicetree@lfdr.de>; Wed,  9 Sep 2020 10:14:35 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTP id A01EF2629ED
+	for <lists+devicetree@lfdr.de>; Wed,  9 Sep 2020 10:15:17 +0200 (CEST)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S1726920AbgIIIOe (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Wed, 9 Sep 2020 04:14:34 -0400
-Received: from lindbergh.monkeyblade.net ([23.128.96.19]:36304 "EHLO
-        lindbergh.monkeyblade.net" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S1726683AbgIIIOa (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Wed, 9 Sep 2020 04:14:30 -0400
-Received: from mail-pj1-x1041.google.com (mail-pj1-x1041.google.com [IPv6:2607:f8b0:4864:20::1041])
-        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 3CF0EC061573
-        for <devicetree@vger.kernel.org>; Wed,  9 Sep 2020 01:14:30 -0700 (PDT)
-Received: by mail-pj1-x1041.google.com with SMTP id a9so963751pjg.1
-        for <devicetree@vger.kernel.org>; Wed, 09 Sep 2020 01:14:30 -0700 (PDT)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=chromium.org; s=google;
-        h=from:to:cc:subject:date:message-id:mime-version
-         :content-transfer-encoding;
-        bh=3oz9E+wONrzUTZU79l0WpeVQcrmJpZqKnrl07vYkL+g=;
-        b=Gop3FjV/+uMnAIYjTwuHk9mfpqIV/1ElZWNwys1AKUXB331HpDTbOHFEjvVlklQ6ah
-         voPmW3BE/2PUFLx6vbWSATCv3K1L3QieKXr5JeKT8/Po1PwEJ5f/MQMF1P0K6dlDrc5T
-         giu1rWaAaVgB8fNtx5gNRj/r/iRP2f5YRFBKY=
-X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=1e100.net; s=20161025;
-        h=x-gm-message-state:from:to:cc:subject:date:message-id:mime-version
-         :content-transfer-encoding;
-        bh=3oz9E+wONrzUTZU79l0WpeVQcrmJpZqKnrl07vYkL+g=;
-        b=VJg5zkycTWAXmlGVUsYxUWGa7ex7US4+pd9OE+P4VB6saUs1LuV/2V0OTnf80cPR5G
-         AsHz1mgNGKGkSAg5Y4SVVzQj/bBe86Vt1P7IiF6M+y0U6IuVXHM6AILywptUgLly8kzu
-         WWcva66wdMii+kHIRVbIcSGuv+fTNfqv52b7lx1E445PMs8gQH/hA2YyjECzNmebIg+o
-         QBjnI9VBjRfyzIp5mQrL276Neuti/BJHIPZDAmtvAcPpo8jLEk0gl4MynRebTgw2zP0d
-         8VQM/2VHnDxze/fxy6MASeHbzRQteJPsYmSFwzWXHdZKE7vm3VdNqxeoibc/zHd1Isze
-         VKNA==
-X-Gm-Message-State: AOAM532vknw22B3PHBZTxfd1AQxVQrGYiyNGfPGnA3Kg9OqAniNQqbOD
-        d2NJ+LrfhlZIFZXfC0IiWC+ukA==
-X-Google-Smtp-Source: ABdhPJwg6B7l65a9hELb6cekXm4yKt+0iW4AaOGJbjBziTTzDb99jUePR+aVNG3qQVxLlAFSRquzNQ==
-X-Received: by 2002:a17:90a:b64:: with SMTP id 91mr2530834pjq.93.1599639267650;
-        Wed, 09 Sep 2020 01:14:27 -0700 (PDT)
-Received: from kafuu-chino.c.googlers.com.com (105.219.229.35.bc.googleusercontent.com. [35.229.219.105])
-        by smtp.googlemail.com with ESMTPSA id s9sm1439672pgm.40.2020.09.09.01.14.25
-        (version=TLS1_3 cipher=TLS_AES_256_GCM_SHA384 bits=256/256);
-        Wed, 09 Sep 2020 01:14:27 -0700 (PDT)
-From:   Pi-Hsun Shih <pihsun@chromium.org>
-Cc:     Pi-Hsun Shih <pihsun@chromium.org>,
-        Rob Herring <robh+dt@kernel.org>,
-        Matthias Brugger <matthias.bgg@gmail.com>,
-        Eddie Huang <eddie.huang@mediatek.com>,
-        Erin Lo <erin.lo@mediatek.com>,
-        devicetree@vger.kernel.org (open list:OPEN FIRMWARE AND FLATTENED
-        DEVICE TREE BINDINGS),
-        linux-arm-kernel@lists.infradead.org (moderated list:ARM/Mediatek SoC
-        support),
-        linux-mediatek@lists.infradead.org (moderated list:ARM/Mediatek SoC
-        support), linux-kernel@vger.kernel.org (open list)
-Subject: [PATCH v2] arm64: dts: mt8183-kukui: add scp node
-Date:   Wed,  9 Sep 2020 16:14:22 +0800
-Message-Id: <20200909081422.2412795-1-pihsun@chromium.org>
-X-Mailer: git-send-email 2.28.0.526.ge36021eeef-goog
+        id S1726426AbgIIIPQ (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Wed, 9 Sep 2020 04:15:16 -0400
+Received: from www.zeus03.de ([194.117.254.33]:49488 "EHLO mail.zeus03.de"
+        rhost-flags-OK-OK-OK-OK) by vger.kernel.org with ESMTP
+        id S1725877AbgIIIPQ (ORCPT <rfc822;devicetree@vger.kernel.org>);
+        Wed, 9 Sep 2020 04:15:16 -0400
+DKIM-Signature: v=1; a=rsa-sha256; c=simple; d=sang-engineering.com; h=
+        date:from:to:cc:subject:message-id:references:mime-version
+        :content-type:in-reply-to; s=k1; bh=xceAgulUCJFdhnQtzS+YsMb4KCK8
+        Pw7VeatTHMborXA=; b=V0iytMUzFPShRmuI9k4NWjwz5uGWv7VGCmwHho6S4hJz
+        fxjFewZtk1+VA9RxVQx8PxwODqtMvlNAT81eVHZiABuN1fRp9Cbkx8CWuT8+TFa6
+        uxu96mhirulhlbMKvfv21HxkhKmzSYT2EL5gcagh+AT136MkfiHGYKIJcq415jk=
+Received: (qmail 226205 invoked from network); 9 Sep 2020 10:15:13 +0200
+Received: by mail.zeus03.de with ESMTPSA (TLS_AES_256_GCM_SHA384 encrypted, authenticated); 9 Sep 2020 10:15:13 +0200
+X-UD-Smtp-Session: l3s3148p1@lOkLDd2utIMgAwDPXwesAAPl1NpCEY8B
+Date:   Wed, 9 Sep 2020 10:15:10 +0200
+From:   Wolfram Sang <wsa+renesas@sang-engineering.com>
+To:     linux-i2c@vger.kernel.org
+Cc:     linux-renesas-soc@vger.kernel.org, devicetree@vger.kernel.org,
+        Alain Volmat <alain.volmat@st.com>,
+        Rob Herring <robh+dt@kernel.org>
+Subject: Re: [PATCH] i2c: add binding to mark a bus as SMBus
+Message-ID: <20200909081510.GA2272@ninjato>
+References: <20200701214830.3174-1-wsa+renesas@sang-engineering.com>
 MIME-Version: 1.0
-Content-Transfer-Encoding: 8bit
-To:     unlisted-recipients:; (no To-header on input)
+Content-Type: multipart/signed; micalg=pgp-sha512;
+        protocol="application/pgp-signature"; boundary="X1bOJ3K7DJ5YkBrT"
+Content-Disposition: inline
+In-Reply-To: <20200701214830.3174-1-wsa+renesas@sang-engineering.com>
+User-Agent: Mutt/1.10.1 (2018-07-13)
 Sender: devicetree-owner@vger.kernel.org
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-Add scp node to mt8183-kukui
 
-Fixes: 0d5e41709f76 ("arm64: dts: mt8183: add scp node")
-Signed-off-by: Pi-Hsun Shih <pihsun@chromium.org>
----
+--X1bOJ3K7DJ5YkBrT
+Content-Type: text/plain; charset=us-ascii
+Content-Disposition: inline
+Content-Transfer-Encoding: quoted-printable
 
-Change since v1:
-* Add Fixes tag.
+On Wed, Jul 01, 2020 at 11:48:30PM +0200, Wolfram Sang wrote:
+> SMBus is largely compatible with I2C but there are some specifics. In
+> case we need them on a bus, we can now use this new binding.
+>=20
+> Signed-off-by: Wolfram Sang <wsa+renesas@sang-engineering.com>
 
----
- .../arm64/boot/dts/mediatek/mt8183-kukui.dtsi | 30 +++++++++++++++++++
- 1 file changed, 30 insertions(+)
+So, I am going to apply this now. We have this cycle and the next one to
+fix up things if we find something to improve.
 
-diff --git a/arch/arm64/boot/dts/mediatek/mt8183-kukui.dtsi b/arch/arm64/boot/dts/mediatek/mt8183-kukui.dtsi
-index f0a070535b34..85f7c33ba446 100644
---- a/arch/arm64/boot/dts/mediatek/mt8183-kukui.dtsi
-+++ b/arch/arm64/boot/dts/mediatek/mt8183-kukui.dtsi
-@@ -90,6 +90,18 @@ pp3300_alw: regulator6 {
- 		regulator-max-microvolt = <3300000>;
- 	};
- 
-+	reserved_memory: reserved-memory {
-+		#address-cells = <2>;
-+		#size-cells = <2>;
-+		ranges;
-+
-+		scp_mem_reserved: scp_mem_region {
-+			compatible = "shared-dma-pool";
-+			reg = <0 0x50000000 0 0x2900000>;
-+			no-map;
-+		};
-+	};
-+
- 	max98357a: codec0 {
- 		compatible = "maxim,max98357a";
- 		sdmode-gpios = <&pio 175 0>;
-@@ -524,6 +536,13 @@ pins_clk {
- 		};
- 	};
- 
-+	scp_pins: scp {
-+		pins_scp_uart {
-+			pinmux = <PINMUX_GPIO110__FUNC_TP_URXD1_AO>,
-+				 <PINMUX_GPIO112__FUNC_TP_UTXD1_AO>;
-+		};
-+	};
-+
- 	spi0_pins: spi0 {
- 		pins_spi{
- 			pinmux = <PINMUX_GPIO85__FUNC_SPI0_MI>,
-@@ -651,6 +670,17 @@ pins_wifi_wakeup {
- 	};
- };
- 
-+&scp {
-+	status = "okay";
-+	pinctrl-names = "default";
-+	pinctrl-0 = <&scp_pins>;
-+
-+	cros_ec {
-+		compatible = "google,cros-ec-rpmsg";
-+		mtk,rpmsg-name = "cros-ec-rpmsg";
-+	};
-+};
-+
- &soc_data {
- 	status = "okay";
- };
--- 
-2.28.0.526.ge36021eeef-goog
 
+--X1bOJ3K7DJ5YkBrT
+Content-Type: application/pgp-signature; name="signature.asc"
+
+-----BEGIN PGP SIGNATURE-----
+
+iQIzBAABCgAdFiEEOZGx6rniZ1Gk92RdFA3kzBSgKbYFAl9YjwoACgkQFA3kzBSg
+KbZKYxAAk9ihU/GTqkcE9/h7I2CnGa3gpQWDCT5d2HUThmUxLuGVZjNpJpUDpOdm
++KrJZgRmzwyU/B2FKOwOW3I7FEgF51Tvjfwjbh7du9JElTBa7NsS6pWPeBocWCNh
+ytDVwcDBc3ri8IOys/Xshf3TteyjDJyazipxEelc93JQ7z+61ZstUu9ng1WAHXZE
+fnovARzS4JoIJT/c/1e1aHjscwXrotkbxGZ67SwS8OmjJ71hu0vFRV5UvrnXllQC
+GHKQGAeJVhAvdQP3eHJg3yT+LBIRt1to3igbOyxfg30eAc1lcqr1bGbpUkcWqEcN
+o2HfovvlNCIfKuFfitRGa6MSp35qm1LoY3gV9DI3xTFn6RFBLTbdG/otlln6bqW/
+wADX2uTctm2JmWi9m3maMNCxSn3MXdqvzSs3tRUuX7FOVgNClWtWgPdqXyUYyIDI
+VtlHQqFGRzG+95xoHnVwjlF/6RoRh0cVOA2Mk0wxKUTSSz9zwKpV+8tDZL6LIbL3
+MBs4AsPq9UDT53aXeUA1viAvtIsv2O1++VpyhmGRL77oZ1Fxkm3KthLsRt1hcVxI
+mcR1YWK0L8FnedOe5datZr7hucTlxzHQneOG2khVLpuBtloICUfQ5Wj3q052vwts
+lEj+Oi/8S/DB46jUWic27vZRxg8XfZVuHvYddqX9yIYJeuTv7NQ=
+=YXOG
+-----END PGP SIGNATURE-----
+
+--X1bOJ3K7DJ5YkBrT--
