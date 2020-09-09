@@ -2,130 +2,158 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from vger.kernel.org (vger.kernel.org [23.128.96.18])
-	by mail.lfdr.de (Postfix) with ESMTP id B3DCF2630CD
-	for <lists+devicetree@lfdr.de>; Wed,  9 Sep 2020 17:44:41 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTP id 88C4F26314E
+	for <lists+devicetree@lfdr.de>; Wed,  9 Sep 2020 18:06:57 +0200 (CEST)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S1730449AbgIIPoa (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Wed, 9 Sep 2020 11:44:30 -0400
-Received: from a27-10.smtp-out.us-west-2.amazonses.com ([54.240.27.10]:47568
-        "EHLO a27-10.smtp-out.us-west-2.amazonses.com" rhost-flags-OK-OK-OK-OK)
-        by vger.kernel.org with ESMTP id S1730368AbgIIPnp (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Wed, 9 Sep 2020 11:43:45 -0400
-DKIM-Signature: v=1; a=rsa-sha256; q=dns/txt; c=relaxed/simple;
-        s=zsmsymrwgfyinv5wlfyidntwsjeeldzt; d=codeaurora.org; t=1599661265;
-        h=MIME-Version:Content-Type:Content-Transfer-Encoding:Date:From:To:Cc:Subject:In-Reply-To:References:Message-ID;
-        bh=Nr4GXrAKQEOvxB4xB00+a/NEFECU2vP5J134KY5qblo=;
-        b=VZkkPOGHAsSfhD1kEepDMgyMTwzELcSNxX6dLiuhXRZnaJZy1X/lU2NwmHN4tvlb
-        Xj3JIQHFSLHUZfXmrh7MwoHI7c4N0fFHyczP2Jgi4coUFQZq1e/PapNykDkOPyn7uHd
-        OwZzwE0gokI8rn/B2P6WPWz7pn5Kos/jnRywJSPY=
-DKIM-Signature: v=1; a=rsa-sha256; q=dns/txt; c=relaxed/simple;
-        s=hsbnp7p3ensaochzwyq5wwmceodymuwv; d=amazonses.com; t=1599661265;
-        h=MIME-Version:Content-Type:Content-Transfer-Encoding:Date:From:To:Cc:Subject:In-Reply-To:References:Message-ID:Feedback-ID;
-        bh=Nr4GXrAKQEOvxB4xB00+a/NEFECU2vP5J134KY5qblo=;
-        b=jLQhpCQvCA7iTWSJZZ2VoAQNIVhMbgNMcBZbiL71m4vAqscFYVnPGSMoah9OTZ1A
-        rCA/2FVdVPKERcElC+qlx7VzG/4dhJ/4cOyvgiBxL82bbgmAsJ8WTvSDYAYXs52CwVU
-        DbRErXgtsLptA0snYPSLmm2ooWI+VX7M4DZNMxtc=
-X-Spam-Checker-Version: SpamAssassin 3.4.0 (2014-02-07) on
-        aws-us-west-2-caf-mail-1.web.codeaurora.org
-X-Spam-Level: 
-X-Spam-Status: No, score=-2.9 required=2.0 tests=ALL_TRUSTED,BAYES_00,
-        URIBL_BLOCKED autolearn=unavailable autolearn_force=no version=3.4.0
+        id S1730624AbgIIQGv (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Wed, 9 Sep 2020 12:06:51 -0400
+Received: from mail-eopbgr60081.outbound.protection.outlook.com ([40.107.6.81]:20520
+        "EHLO EUR04-DB3-obe.outbound.protection.outlook.com"
+        rhost-flags-OK-OK-OK-FAIL) by vger.kernel.org with ESMTP
+        id S1730780AbgIIQGY (ORCPT <rfc822;devicetree@vger.kernel.org>);
+        Wed, 9 Sep 2020 12:06:24 -0400
+ARC-Seal: i=1; a=rsa-sha256; s=arcselector9901; d=microsoft.com; cv=none;
+ b=KH4cETbiQ/bT4BxvQ3xmSPygUfaVd6niTgSR3y9S+YnpIXeqdVwj474PXpZa+EmIbn/DUm6LPg+W0UXWqdnL3Wn7bcfeKYoRtBXt4TaMJXSzrwkOnOfbwJkysInnzwyrg8rSsvSMTwWFPlJPQvNYqnohnoUBY4DAf7G0XtCl1Rd0DJfHG4Krg0BLYwLFFySZ7uMeE+73i58Bx/G86Ym3ATYzQAqorqVw6KgOwoxBWmo/EnG0v2WNNsSGELblb2hcjEtfK/81QKpiBYmQXco7x+WbsEGkqmStF5PLsOPQuM6HmS/enuPWWCrMEUf2lVfd5yV0PX2nrV46GGLQLL6ZCw==
+ARC-Message-Signature: i=1; a=rsa-sha256; c=relaxed/relaxed; d=microsoft.com;
+ s=arcselector9901;
+ h=From:Date:Subject:Message-ID:Content-Type:MIME-Version:X-MS-Exchange-SenderADCheck;
+ bh=EiVXQ03jSJcJDwrakuAJPeo6Ojz+Fedb35YL6zDJl9o=;
+ b=N/Yae8CTfAN+bwtwpoA2QC8aETiLLNUd39yPitfiL1yLOF3IO4JCftvTWNAT66kT2g9ADKV/gpG0rvjtiVe8hKEhTmp8azZDSEHCTnd16ibpZDS1LO9IDRPDvIV+aZJt2YXUy/AWyXgYb6IsAybJAeU50yqvZujNJkmUhM8gkKsWOpBMaPxCcxVyA/lMRCOnSGDwsNKpg7tJqf3MJw9OP9VlK5PBf4sn23g9A+2MKm2jUH0WFQaF1++z2VFQyfiZQB/ZWNXmTg97D2Wgy4QXaxTwqsolnMORnObbqflVbNaUcwNX8L0w8TPpssxQweQcQjfqMFlmABBh2CkrkYZxCw==
+ARC-Authentication-Results: i=1; mx.microsoft.com 1; spf=pass
+ smtp.mailfrom=oss.nxp.com; dmarc=pass action=none header.from=oss.nxp.com;
+ dkim=pass header.d=oss.nxp.com; arc=none
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=NXP1.onmicrosoft.com;
+ s=selector2-NXP1-onmicrosoft-com;
+ h=From:Date:Subject:Message-ID:Content-Type:MIME-Version:X-MS-Exchange-SenderADCheck;
+ bh=EiVXQ03jSJcJDwrakuAJPeo6Ojz+Fedb35YL6zDJl9o=;
+ b=AmtvzGgo5MbdVN6Bye2/Xow3AR+r7iqJ4PsMTwtFxUIBNra7e/9KbXF9biUqS9xn/EhyiYTbiBsRamRDD1uMQy3X17p/qpfBMT5S9yTyuAo+6wW1Yg/iMKTEddsIU7Elvrvpc08SaoZctULv5zvUtkbKmFuwcVs8eu7B2rXFYHc=
+Authentication-Results: kernel.org; dkim=none (message not signed)
+ header.d=none;kernel.org; dmarc=none action=none header.from=oss.nxp.com;
+Received: from VE1PR04MB6702.eurprd04.prod.outlook.com (2603:10a6:803:123::13)
+ by VI1PR0402MB3710.eurprd04.prod.outlook.com (2603:10a6:803:25::29) with
+ Microsoft SMTP Server (version=TLS1_2,
+ cipher=TLS_ECDHE_RSA_WITH_AES_256_GCM_SHA384) id 15.20.3370.16; Wed, 9 Sep
+ 2020 13:45:00 +0000
+Received: from VE1PR04MB6702.eurprd04.prod.outlook.com
+ ([fe80::1dce:f6ac:a750:5ed0]) by VE1PR04MB6702.eurprd04.prod.outlook.com
+ ([fe80::1dce:f6ac:a750:5ed0%6]) with mapi id 15.20.3370.016; Wed, 9 Sep 2020
+ 13:45:00 +0000
+From:   Wasim Khan <wasim.khan@oss.nxp.com>
+To:     shawnguo@kernel.org, leoyang.li@nxp.com, robh+dt@kernel.org,
+        linux-arm-kernel@lists.infradead.org, devicetree@vger.kernel.org,
+        linux-kernel@vger.kernel.org, V.sethi@nxp.com
+Cc:     Wasim Khan <wasim.khan@nxp.com>
+Subject: [PATCH 1/6] arm64: dts: lx2160a: Add label to pcie nodes
+Date:   Wed,  9 Sep 2020 19:14:31 +0530
+Message-Id: <1599659076-28121-2-git-send-email-wasim.khan@oss.nxp.com>
+X-Mailer: git-send-email 2.7.4
+In-Reply-To: <1599659076-28121-1-git-send-email-wasim.khan@oss.nxp.com>
+References: <1599659076-28121-1-git-send-email-wasim.khan@oss.nxp.com>
+Content-Type: text/plain
+X-ClientProxiedBy: SG2PR02CA0095.apcprd02.prod.outlook.com
+ (2603:1096:4:90::35) To VE1PR04MB6702.eurprd04.prod.outlook.com
+ (2603:10a6:803:123::13)
 MIME-Version: 1.0
-Content-Type: text/plain; charset=US-ASCII;
- format=flowed
-Content-Transfer-Encoding: 7bit
-Date:   Wed, 9 Sep 2020 14:21:04 +0000
-From:   skakit@codeaurora.org
-To:     Matthias Kaehlcke <mka@chromium.org>
-Cc:     Bjorn Andersson <bjorn.andersson@linaro.org>,
-        gregkh@linuxfoundation.org, Andy Gross <agross@kernel.org>,
-        Rob Herring <robh+dt@kernel.org>,
-        linux-arm-msm@vger.kernel.org, devicetree@vger.kernel.org,
-        linux-kernel@vger.kernel.org, akashast@codeaurora.org,
-        rojay@codeaurora.org, msavaliy@qti.qualcomm.com
-Subject: Re: [PATCH V4 4/4] tty: serial: qcom_geni_serial: Fix the UART wakeup
- issue
-In-Reply-To: <20200903165058.GK3419728@google.com>
-References: <1599145498-20707-1-git-send-email-skakit@codeaurora.org>
- <1599145498-20707-5-git-send-email-skakit@codeaurora.org>
- <20200903165058.GK3419728@google.com>
-Message-ID: <01010174733dcefc-01bf923c-1fdd-4d80-b7a8-d360c2f6cbf5-000000@us-west-2.amazonses.com>
-X-Sender: skakit@codeaurora.org
-User-Agent: Roundcube Webmail/1.3.9
-X-SES-Outgoing: 2020.09.09-54.240.27.10
-Feedback-ID: 1.us-west-2.CZuq2qbDmUIuT3qdvXlRHZZCpfZqZ4GtG9v3VKgRyF0=:AmazonSES
+X-MS-Exchange-MessageSentRepresentingType: 1
+Received: from lsv03032.swis.in-blr01.nxp.com (14.142.151.118) by SG2PR02CA0095.apcprd02.prod.outlook.com (2603:1096:4:90::35) with Microsoft SMTP Server (version=TLS1_2, cipher=TLS_ECDHE_RSA_WITH_AES_128_CBC_SHA256) id 15.20.3370.16 via Frontend Transport; Wed, 9 Sep 2020 13:44:57 +0000
+X-Mailer: git-send-email 2.7.4
+X-Originating-IP: [14.142.151.118]
+X-MS-PublicTrafficType: Email
+X-MS-Office365-Filtering-HT: Tenant
+X-MS-Office365-Filtering-Correlation-Id: 82d312c8-1d82-418e-6388-08d854c68bcb
+X-MS-TrafficTypeDiagnostic: VI1PR0402MB3710:
+X-MS-Exchange-SharedMailbox-RoutingAgent-Processed: True
+X-MS-Exchange-Transport-Forked: True
+X-Microsoft-Antispam-PRVS: <VI1PR0402MB37102E11D6D5379504C8720FD1260@VI1PR0402MB3710.eurprd04.prod.outlook.com>
+X-MS-Oob-TLC-OOBClassifiers: OLM:361;
+X-MS-Exchange-SenderADCheck: 1
+X-Microsoft-Antispam: BCL:0;
+X-Microsoft-Antispam-Message-Info: u4aKNyme5erJS0COjmdgj91eWczFLU/8ZuOVOzVfNsgN+/rRkk+dGmBVnthAoGl3Yr5w2++GfaZ9NpcdoK1fiU5z29X4khSBiFue1a+IesdUKjbJRasAHJnrPEWKRfC9HWcXgLl+z5yzmuHX7811DkgxcDCNEW6Fwb08wGY8Pkiasuq70PzlrUm950mrm4fq2/sMct3Yn2qKxxDHkumsUgRytUmwUS7AfjDFqb9UnwKxalzWP25iMernx2zd3ZkntayO2fKNHvy3ehXS0q6bw7kkV13wSU1GvGdPcPciEfHnGIgzmHOfo4+2635MpVvZlSPtRyQOoM6E5SKx9fGlQ65bOtpY7BWUE+kQVWrtLpEZzOE1Ya3ua9WZqLJMxeZG
+X-Forefront-Antispam-Report: CIP:255.255.255.255;CTRY:;LANG:en;SCL:1;SRV:;IPV:NLI;SFV:NSPM;H:VE1PR04MB6702.eurprd04.prod.outlook.com;PTR:;CAT:NONE;SFS:(4636009)(396003)(366004)(346002)(39860400002)(136003)(376002)(8936002)(5660300002)(1006002)(2616005)(16526019)(186003)(8676002)(316002)(956004)(6486002)(44832011)(83380400001)(478600001)(66946007)(6506007)(6666004)(55236004)(52116002)(2906002)(66476007)(66556008)(4326008)(6512007)(26005)(86362001)(110426005);DIR:OUT;SFP:1101;
+X-MS-Exchange-AntiSpam-MessageData: PWTbJeGSaAUDygo/myvdh9fGOduQSaMtfFGUkQBDbr/dMLsWw28ecHnxU5z26bLT9vh1TqPMgZQOU8ABuJomjLbqx0V5+tLURFx5buir1ogra8N1/xi+Jgo4/5QDRylU0TDoHZksQrGA1IP2DwPvQ4zVRB2HmWYcliOYcdSwN2m8hBrDbnyttY21ZXTXFUMqfdzZQ2dxGsT8iJUFoYmqcmTp+NjnMulozoJBNojRpiocOUiirJWbpTNHviVc6tI5VO8DIy52hgEEOUKZ3w042TcUJR4arK4yAFbGKwXM9ZBxprK2XYerDTi2iVZfvBxY0Cpnkq5XK0nw73zLfP2hc0ecpZkRZBr6FNDwHRPxYMA14n+Rd53dL1cfbVYCaKo8IX3Kx9WI+634rsLdZWR3f5ITVsiawXBY+kvqJjyic/pIqAVyGMYAZ4uWukZHCPVnz1RuX0ZRd4wmfVznGwJQjNO3GCdn1sbEZzaJudJIlr6wlSWJNIF+6GIF4aEAH2+4KnXfAkhhboQjCfzJWGQPtY86X5ymOxCD1QN0kLEqtuZ2FyZ7PmN9tXDIhDEi7G3iQNMWgrA1K8CSlA/qO58XGPTX+jPdgbLrCFG37WdL4vuJJkI6m99sU6Ff577nRWBY7aqJpsG7kGnDQ5Gpwv+lUg==
+X-OriginatorOrg: oss.nxp.com
+X-MS-Exchange-CrossTenant-Network-Message-Id: 82d312c8-1d82-418e-6388-08d854c68bcb
+X-MS-Exchange-CrossTenant-AuthSource: VE1PR04MB6702.eurprd04.prod.outlook.com
+X-MS-Exchange-CrossTenant-AuthAs: Internal
+X-MS-Exchange-CrossTenant-OriginalArrivalTime: 09 Sep 2020 13:45:00.0674
+ (UTC)
+X-MS-Exchange-CrossTenant-FromEntityHeader: Hosted
+X-MS-Exchange-CrossTenant-Id: 686ea1d3-bc2b-4c6f-a92c-d99c5c301635
+X-MS-Exchange-CrossTenant-MailboxType: HOSTED
+X-MS-Exchange-CrossTenant-UserPrincipalName: Uejt2cGRMItWOSzjLSAyqxq1Tg0eTeXwrFLvY/ARVU5Nmh9eAE8e0ABR4+rGyJXHG/D02kApEh5i5QtMTzygBQ==
+X-MS-Exchange-Transport-CrossTenantHeadersStamped: VI1PR0402MB3710
 Sender: devicetree-owner@vger.kernel.org
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-On 2020-09-03 22:20, Matthias Kaehlcke wrote:
-> On Thu, Sep 03, 2020 at 08:34:58PM +0530, satya priya wrote:
->> As a part of system suspend uart_port_suspend is called from the
->> Serial driver, which calls set_mctrl passing mctrl as NULL. This
-> 
-> nit: s/NULL/0/
-> 
+From: Wasim Khan <wasim.khan@nxp.com>
 
-Okay, will correct it.
+Add label to pcie nodes
 
->> makes RFR high(NOT_READY) during suspend.
->> 
->> Due to this BT SoC is not able to send wakeup bytes to UART during
->> suspend. Include if check for non-suspend case to keep RFR low
->> during suspend.
-> 
-> Is this patch actually needed?
-> 
-> With the other patches in this series the UART doesn't control RFR
-> on IDP, and I suppose corresponding pinconf changes should also be
-> done on other devices that want to support wakeup. Effectively,
-> I see Bluetooth wakeup working without this patch on a sc7180
-> device.
-> 
+Signed-off-by: Wasim Khan <wasim.khan@nxp.com>
+---
+ arch/arm64/boot/dts/freescale/fsl-lx2160a.dtsi | 12 ++++++------
+ 1 file changed, 6 insertions(+), 6 deletions(-)
 
-I am also seeing the same observation now on the tip (checked on IDP), 
-but previously if this patch is not present the RFR line would go high 
-during suspend (even though GPIO mode is configured in sleep state), not 
-sure how it is being low now. Theoretically, this fix is good to have, 
-because in suspend UART_MANUAL_RFR is getting set to not ready state and 
-if QUP gets power to drive this line, it may go high and wakeup from BT 
-will fail.
+diff --git a/arch/arm64/boot/dts/freescale/fsl-lx2160a.dtsi b/arch/arm64/boot/dts/freescale/fsl-lx2160a.dtsi
+index d247e42..83072da6 100644
+--- a/arch/arm64/boot/dts/freescale/fsl-lx2160a.dtsi
++++ b/arch/arm64/boot/dts/freescale/fsl-lx2160a.dtsi
+@@ -1011,7 +1011,7 @@
+ 			status = "disabled";
+ 		};
+ 
+-		pcie@3400000 {
++		pcie1: pcie@3400000 {
+ 			compatible = "fsl,lx2160a-pcie";
+ 			reg = <0x00 0x03400000 0x0 0x00100000   /* controller registers */
+ 			       0x80 0x00000000 0x0 0x00002000>; /* configuration space */
+@@ -1039,7 +1039,7 @@
+ 			status = "disabled";
+ 		};
+ 
+-		pcie@3500000 {
++		pcie2: pcie@3500000 {
+ 			compatible = "fsl,lx2160a-pcie";
+ 			reg = <0x00 0x03500000 0x0 0x00100000   /* controller registers */
+ 			       0x88 0x00000000 0x0 0x00002000>; /* configuration space */
+@@ -1067,7 +1067,7 @@
+ 			status = "disabled";
+ 		};
+ 
+-		pcie@3600000 {
++		pcie3: pcie@3600000 {
+ 			compatible = "fsl,lx2160a-pcie";
+ 			reg = <0x00 0x03600000 0x0 0x00100000   /* controller registers */
+ 			       0x90 0x00000000 0x0 0x00002000>; /* configuration space */
+@@ -1095,7 +1095,7 @@
+ 			status = "disabled";
+ 		};
+ 
+-		pcie@3700000 {
++		pcie4: pcie@3700000 {
+ 			compatible = "fsl,lx2160a-pcie";
+ 			reg = <0x00 0x03700000 0x0 0x00100000   /* controller registers */
+ 			       0x98 0x00000000 0x0 0x00002000>; /* configuration space */
+@@ -1123,7 +1123,7 @@
+ 			status = "disabled";
+ 		};
+ 
+-		pcie@3800000 {
++		pcie5: pcie@3800000 {
+ 			compatible = "fsl,lx2160a-pcie";
+ 			reg = <0x00 0x03800000 0x0 0x00100000   /* controller registers */
+ 			       0xa0 0x00000000 0x0 0x00002000>; /* configuration space */
+@@ -1151,7 +1151,7 @@
+ 			status = "disabled";
+ 		};
+ 
+-		pcie@3900000 {
++		pcie6: pcie@3900000 {
+ 			compatible = "fsl,lx2160a-pcie";
+ 			reg = <0x00 0x03900000 0x0 0x00100000   /* controller registers */
+ 			       0xa8 0x00000000 0x0 0x00002000>; /* configuration space */
+-- 
+2.7.4
 
->> Signed-off-by: satya priya <skakit@codeaurora.org>
->> Acked-by: Greg Kroah-Hartman <gregkh@linuxfoundation.org>
->> Reviewed-by: Akash Asthana <akashast@codeaurora.org>
->> ---
->> Changes in V2:
->>  - This patch fixes the UART flow control issue during suspend.
->>    Newly added in V2.
->> 
->> Changes in V3:
->>  - As per Matthias's comment removed the extra parentheses.
->> 
->> Changes in V4:
->>  - No change.
->> 
->>  drivers/tty/serial/qcom_geni_serial.c | 2 +-
->>  1 file changed, 1 insertion(+), 1 deletion(-)
->> 
->> diff --git a/drivers/tty/serial/qcom_geni_serial.c 
->> b/drivers/tty/serial/qcom_geni_serial.c
->> index 07b7b6b..2aad9d7 100644
->> --- a/drivers/tty/serial/qcom_geni_serial.c
->> +++ b/drivers/tty/serial/qcom_geni_serial.c
->> @@ -242,7 +242,7 @@ static void qcom_geni_serial_set_mctrl(struct 
->> uart_port *uport,
->>  	if (mctrl & TIOCM_LOOP)
->>  		port->loopback = RX_TX_CTS_RTS_SORTED;
->> 
->> -	if (!(mctrl & TIOCM_RTS))
->> +	if (!(mctrl & TIOCM_RTS) && !uport->suspended)
->>  		uart_manual_rfr = UART_MANUAL_RFR_EN | UART_RFR_NOT_READY;
->>  	writel(uart_manual_rfr, uport->membase + SE_UART_MANUAL_RFR);
->>  }
->> --
->> QUALCOMM INDIA, on behalf of Qualcomm Innovation Center, Inc. is a 
->> member
->> of Code Aurora Forum, hosted by The Linux Foundation
->> 
