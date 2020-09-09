@@ -2,89 +2,98 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from vger.kernel.org (vger.kernel.org [23.128.96.18])
-	by mail.lfdr.de (Postfix) with ESMTP id A61512636DD
-	for <lists+devicetree@lfdr.de>; Wed,  9 Sep 2020 21:49:24 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTP id 8F76B2636F0
+	for <lists+devicetree@lfdr.de>; Wed,  9 Sep 2020 21:57:25 +0200 (CEST)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S1729692AbgIITtD (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Wed, 9 Sep 2020 15:49:03 -0400
-Received: from mail.kernel.org ([198.145.29.99]:37772 "EHLO mail.kernel.org"
-        rhost-flags-OK-OK-OK-OK) by vger.kernel.org with ESMTP
-        id S1728443AbgIITtB (ORCPT <rfc822;devicetree@vger.kernel.org>);
-        Wed, 9 Sep 2020 15:49:01 -0400
-Received: from mail-oi1-f179.google.com (mail-oi1-f179.google.com [209.85.167.179])
-        (using TLSv1.2 with cipher ECDHE-RSA-AES128-GCM-SHA256 (128/128 bits))
-        (No client certificate requested)
-        by mail.kernel.org (Postfix) with ESMTPSA id 3152F20897;
-        Wed,  9 Sep 2020 19:49:01 +0000 (UTC)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=kernel.org;
-        s=default; t=1599680941;
-        bh=3R4p8duQAT+mum6skAEpmvoigfKOvgfHvzziJedrzsg=;
-        h=References:In-Reply-To:From:Date:Subject:To:Cc:From;
-        b=cngdoWqB0m7T3YZTw8yhmP8HVpL42lJfhHjKPl6iKwXlcysC9yVoSgLyCb1ePrl3E
-         BUY2AdLMlKTSPGZGTr4yrxbtoD2XuK8c6/ziHyVO1k/UN8Sko4Kv0Uf91WTWwoAlv6
-         8jE3C0g4ilFlJR9x53vuytj+/tdfdI6K46Lx4Cy4=
-Received: by mail-oi1-f179.google.com with SMTP id w16so3604469oia.2;
-        Wed, 09 Sep 2020 12:49:01 -0700 (PDT)
-X-Gm-Message-State: AOAM531uL0wrc2avsK2eUP2ayClujZgVnCpN7+6Mc6RJB3WnjjmGj06s
-        rNPIwG5Ti0EXvc1Fwasu1ayw81EFVcQoATqJww==
-X-Google-Smtp-Source: ABdhPJwmIIBieKiBgKub6+sUhN3HdNG5Hc7zk9mdSoIcxBQpfCH6k9NzxOLwcnl+EX589Mqy/1Z66dzbrHuoNlpsPeI=
-X-Received: by 2002:aca:4cc7:: with SMTP id z190mr1720504oia.147.1599680940504;
- Wed, 09 Sep 2020 12:49:00 -0700 (PDT)
+        id S1727055AbgIIT4x (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Wed, 9 Sep 2020 15:56:53 -0400
+Received: from lindbergh.monkeyblade.net ([23.128.96.19]:60668 "EHLO
+        lindbergh.monkeyblade.net" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
+        with ESMTP id S1725975AbgIIT4s (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Wed, 9 Sep 2020 15:56:48 -0400
+Received: from mail-ej1-x641.google.com (mail-ej1-x641.google.com [IPv6:2a00:1450:4864:20::641])
+        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 0FE56C061573
+        for <devicetree@vger.kernel.org>; Wed,  9 Sep 2020 12:56:48 -0700 (PDT)
+Received: by mail-ej1-x641.google.com with SMTP id o8so5310541ejb.10
+        for <devicetree@vger.kernel.org>; Wed, 09 Sep 2020 12:56:47 -0700 (PDT)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+        d=sartura-hr.20150623.gappssmtp.com; s=20150623;
+        h=from:to:cc:subject:date:message-id:mime-version
+         :content-transfer-encoding;
+        bh=m0/TgPqlSLn/j9s+2UIzvSqC09TziaWTutIlfUbwrOA=;
+        b=AeAj5tdFWAaImvn98P+02+VhWs9vtaDJSm+RrRU8mZKNQN8Dr0jCQOYkA+V+4YCnWy
+         MjHZLSO4HpwLaodn+7seEdggjVd0XzghTZ5KnZDcaDk6kTP1gddLPu1Wu4w/1lyOceW/
+         WhhSnDHao9kJLIZUlzi7kKQvIUhi8pRF3bFgA2a/virMtJ/8NCn3lWk8fW8uBsStZ6de
+         wAZWBERlNzL6jrgdT3n2wKLL6+rr6wp4L6JDt6eWUQM/cJd1JVU5vDc5E3lvwlULOlWF
+         GAel3Jj1LoAbZ9Wyzp5VFLV+HD2PqCSBVpyapXNpFeUNiXuqOqcfufZjuo2IoYNtjpNi
+         q3ag==
+X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+        d=1e100.net; s=20161025;
+        h=x-gm-message-state:from:to:cc:subject:date:message-id:mime-version
+         :content-transfer-encoding;
+        bh=m0/TgPqlSLn/j9s+2UIzvSqC09TziaWTutIlfUbwrOA=;
+        b=UcHIv86XlhFikuhTE+zG2fzkdYEWS78Rs3FE1lMV0ITQH3DK76sPXMyhN3NSZOH5G0
+         Rffho6EFy+Q4QXlICI1z4Hf/MxoUgd2wj2ADof+d2c7z+1rrMus+ko72ulcDQks4kig6
+         tnTw+VA9IOItNmPxVvhA5l85HDs4zQuIMwPuc710lefHGwEvTPtV7ZwXceyvBjjwiYmr
+         dZxeQ2iu53RfVByJoSkeJhLIMVDBEHa3kE1F1dIZUCOnNna1PhKbhZs6/ynHmnEdlmIr
+         ruTGO0WMxEFQV2jPBySNCq3b27Un3m84WiTul3FJnGI8RyhD/7rNRkbUd6MEHMmpE0cN
+         gjwQ==
+X-Gm-Message-State: AOAM533q+DfsVK/IsdUFHN1FrLHf25UkV+ireEFWnL8BAXsUiEWTOeNH
+        QWQwct/ty51jlDS6XX8QvesKPQ==
+X-Google-Smtp-Source: ABdhPJzVuJxTAoddtJ/CC2H74UiOmUq+E3OKfDA0YQUJdntnAKR3jyUqkpRiK4gfYyjaPHwtcu1kfA==
+X-Received: by 2002:a17:906:341b:: with SMTP id c27mr5272803ejb.286.1599681406557;
+        Wed, 09 Sep 2020 12:56:46 -0700 (PDT)
+Received: from localhost.localdomain (dh207-97-133.xnet.hr. [88.207.97.133])
+        by smtp.googlemail.com with ESMTPSA id n26sm3510870ejz.89.2020.09.09.12.56.45
+        (version=TLS1_3 cipher=TLS_AES_256_GCM_SHA384 bits=256/256);
+        Wed, 09 Sep 2020 12:56:46 -0700 (PDT)
+From:   Robert Marko <robert.marko@sartura.hr>
+To:     agross@kernel.org, bjorn.andersson@linaro.org, robh+dt@kernel.org,
+        linux-arm-msm@vger.kernel.org, devicetree@vger.kernel.org,
+        linux-kernel@vger.kernel.org
+Cc:     Robert Marko <robert.marko@sartura.hr>,
+        Luka Perkov <luka.perkov@sartura.hr>
+Subject: [PATCH v2 0/4] arm: dts: qcom: ipq4019: add more boards
+Date:   Wed,  9 Sep 2020 21:56:36 +0200
+Message-Id: <20200909195640.3127341-1-robert.marko@sartura.hr>
+X-Mailer: git-send-email 2.26.2
 MIME-Version: 1.0
-References: <20200907204045.95530-1-sebastian.reichel@collabora.com> <20200907204045.95530-4-sebastian.reichel@collabora.com>
-In-Reply-To: <20200907204045.95530-4-sebastian.reichel@collabora.com>
-From:   Rob Herring <robh+dt@kernel.org>
-Date:   Wed, 9 Sep 2020 13:48:49 -0600
-X-Gmail-Original-Message-ID: <CAL_JsqJ8E4Y-kaksCXBC=_sEf4Nz8bZr-4=_g5_PjWtQJm8jsA@mail.gmail.com>
-Message-ID: <CAL_JsqJ8E4Y-kaksCXBC=_sEf4Nz8bZr-4=_g5_PjWtQJm8jsA@mail.gmail.com>
-Subject: Re: [PATCHv2 3/4] Input: rotary-encoder - Use dev_err_probe
-To:     Sebastian Reichel <sebastian.reichel@collabora.com>
-Cc:     Dmitry Torokhov <dmitry.torokhov@gmail.com>,
-        =?UTF-8?Q?Myl=C3=A8ne_Josserand?= <mylene.josserand@collabora.com>,
-        Linux Input <linux-input@vger.kernel.org>,
-        devicetree@vger.kernel.org,
-        "linux-kernel@vger.kernel.org" <linux-kernel@vger.kernel.org>,
-        Collabora Kernel ML <kernel@collabora.com>
-Content-Type: text/plain; charset="UTF-8"
+Content-Transfer-Encoding: 8bit
 Sender: devicetree-owner@vger.kernel.org
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-On Mon, Sep 7, 2020 at 2:40 PM Sebastian Reichel
-<sebastian.reichel@collabora.com> wrote:
->
-> Simplify driver a bit by making use of dev_err_probe.
->
-> Signed-off-by: Sebastian Reichel <sebastian.reichel@collabora.com>
-> ---
->  drivers/input/misc/rotary_encoder.c | 8 ++------
->  1 file changed, 2 insertions(+), 6 deletions(-)
->
-> diff --git a/drivers/input/misc/rotary_encoder.c b/drivers/input/misc/rotary_encoder.c
-> index e9a5dbb10513..16ad86fad7cb 100644
-> --- a/drivers/input/misc/rotary_encoder.c
-> +++ b/drivers/input/misc/rotary_encoder.c
-> @@ -241,12 +241,8 @@ static int rotary_encoder_probe(struct platform_device *pdev)
->                 device_property_read_bool(dev, "rotary-encoder,relative-axis");
->
->         encoder->gpios = devm_gpiod_get_array(dev, NULL, GPIOD_IN);
-> -       if (IS_ERR(encoder->gpios)) {
-> -               err = PTR_ERR(encoder->gpios);
-> -               if (err != -EPROBE_DEFER)
-> -                       dev_err(dev, "unable to get gpios: %d\n", err);
-> -               return err;
-> -       }
-> +       if (IS_ERR(encoder->gpios))
-> +               return dev_err_probe(dev, PTR_ERR(encoder->gpios), "unable to get gpios\n");
+This patch series adds support for some popular IPQ4019 based
+boards.
 
-I hadn't seen dev_err_probe...
+This patch series depends on:
+https://patchwork.kernel.org/patch/11765789/
+https://patchwork.kernel.org/patch/11760437/
 
-Just FYI, I'm working on a different fix here which is to print errors
-in the subsystems instead. We already do this for IRQs, so why not
-everything else? The original reason was no resource is sometimes not
-an error, but now we have *_optional calls to handle this case for
-most all subsystems. It's a coccinelle script (hacked up from
-platform_get_irq.cocci) to convert all the drivers.
+Signed-off-by: Robert Marko <robert.marko@sartura.hr>
+Cc: Luka Perkov <luka.perkov@sartura.hr>
 
-Rob
+Robert Marko (4):
+  arm: dts: qcom: ipq4019: add more labels
+  arm: dts: add 8devices Jalapeno
+  arm: dts: add Alfa Network AP120C-AC
+  arm: dts: add 8devices Habanero DVK
+
+ arch/arm/boot/dts/Makefile                    |   4 +
+ .../boot/dts/qcom-ipq4018-ap120c-ac-bit.dts   |  28 ++
+ arch/arm/boot/dts/qcom-ipq4018-ap120c-ac.dts  |  27 ++
+ arch/arm/boot/dts/qcom-ipq4018-ap120c-ac.dtsi | 254 +++++++++++++++
+ arch/arm/boot/dts/qcom-ipq4018-jalapeno.dts   | 214 ++++++++++++
+ .../boot/dts/qcom-ipq4019-habanero-dvk.dts    | 304 ++++++++++++++++++
+ arch/arm/boot/dts/qcom-ipq4019.dtsi           |   6 +-
+ 7 files changed, 834 insertions(+), 3 deletions(-)
+ create mode 100644 arch/arm/boot/dts/qcom-ipq4018-ap120c-ac-bit.dts
+ create mode 100644 arch/arm/boot/dts/qcom-ipq4018-ap120c-ac.dts
+ create mode 100644 arch/arm/boot/dts/qcom-ipq4018-ap120c-ac.dtsi
+ create mode 100644 arch/arm/boot/dts/qcom-ipq4018-jalapeno.dts
+ create mode 100644 arch/arm/boot/dts/qcom-ipq4019-habanero-dvk.dts
+
+-- 
+2.26.2
+
