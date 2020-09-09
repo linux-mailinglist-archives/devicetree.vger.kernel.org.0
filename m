@@ -2,134 +2,101 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from vger.kernel.org (vger.kernel.org [23.128.96.18])
-	by mail.lfdr.de (Postfix) with ESMTP id 7578A262C29
-	for <lists+devicetree@lfdr.de>; Wed,  9 Sep 2020 11:42:54 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTP id 5F7CE262C70
+	for <lists+devicetree@lfdr.de>; Wed,  9 Sep 2020 11:49:03 +0200 (CEST)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S1728709AbgIIJmt (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Wed, 9 Sep 2020 05:42:49 -0400
-Received: from lindbergh.monkeyblade.net ([23.128.96.19]:50038 "EHLO
+        id S1727087AbgIIJsl (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Wed, 9 Sep 2020 05:48:41 -0400
+Received: from lindbergh.monkeyblade.net ([23.128.96.19]:50942 "EHLO
         lindbergh.monkeyblade.net" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S1730085AbgIIJmq (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Wed, 9 Sep 2020 05:42:46 -0400
-Received: from mail-wr1-x444.google.com (mail-wr1-x444.google.com [IPv6:2a00:1450:4864:20::444])
-        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 6BB49C061573;
-        Wed,  9 Sep 2020 02:42:46 -0700 (PDT)
-Received: by mail-wr1-x444.google.com with SMTP id m6so2229941wrn.0;
-        Wed, 09 Sep 2020 02:42:46 -0700 (PDT)
+        with ESMTP id S1726036AbgIIJsk (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Wed, 9 Sep 2020 05:48:40 -0400
+Received: from mail-pg1-x544.google.com (mail-pg1-x544.google.com [IPv6:2607:f8b0:4864:20::544])
+        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 285F6C061573;
+        Wed,  9 Sep 2020 02:48:40 -0700 (PDT)
+Received: by mail-pg1-x544.google.com with SMTP id v15so1683535pgh.6;
+        Wed, 09 Sep 2020 02:48:40 -0700 (PDT)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
         d=gmail.com; s=20161025;
-        h=subject:to:cc:references:from:message-id:date:user-agent
-         :mime-version:in-reply-to:content-language:content-transfer-encoding;
-        bh=Z8RXnpnyBMjt2Rl+qFLfs99Rgx6FHbwDsstUMymIPBQ=;
-        b=kevpgpBezl8qGbV7RG2kxXNWEHlnYbeaRmCOmICumPajZr750haas/HIHumLtfoXR7
-         5LMTicH6uqLvsYFaD+KcKHT1vcw1oblYbClP7dRMaZHUQ2bSWj+8v3uy4TtjfyichXOD
-         utx2VaZh6zLD6xYSXMhvcBl4ufAFx/i1sehZpNvq1sFN87WKO+HRtMe5qbH6vlCCQCVN
-         FOfUeUPiuwpuRDFLs9fg71niN3SYxz6dPtHwUn0PM/1pA+x1Q8PgbACwbo2ViPSul9ho
-         NYXW6JjPvcnTqJfQrr0CSR8wbilkQCwYwJaARAQ8PN31FkK0fBz/2r3/yP92ShtMeyJV
-         nk6g==
+        h=from:to:cc:subject:date:message-id;
+        bh=HV0bVobcIZ0gjyOIH2sXtQ/z9JBh+ctYWBjRN80Et9k=;
+        b=on7PaYSt15SUyw9NXiB2iPy7irBgBzVlFsAXx16w7pIZRYZE+V1ssRaggrQS/NtaN+
+         iCj7/N3HFbFOQQAD0E9tvq6FqhhBNaUGFTiBIOzsULVnsY3ltG4jZi7ssFdwH9JDZJgk
+         eYaSM/fA3llk0YvzoXiVXEkoZtg3NayaAQj8A+KxcvKrifW+GQRRa3j0Q7eDmqHCH8FG
+         4E7+agZOp3TvmYPtsobO+5vCd0aT4WlKtNEDg1huRvT8+l3NqT4T56PBr/+FXvljE5HV
+         ai2vnEuNBjk7UdurkUi+jKnCQtag0oZqnu9D2Ue5h7kJRrruMqBxDYIE3gac6Ubcxr7z
+         brrQ==
 X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
         d=1e100.net; s=20161025;
-        h=x-gm-message-state:subject:to:cc:references:from:message-id:date
-         :user-agent:mime-version:in-reply-to:content-language
-         :content-transfer-encoding;
-        bh=Z8RXnpnyBMjt2Rl+qFLfs99Rgx6FHbwDsstUMymIPBQ=;
-        b=qIpBylnfRSlfCgc2lP1V1o3yKMd8yUuKymd45MRIRdLH5FrA7GkVZ9p/LK+v/MoHGa
-         TA5ocPu8XS4xEqNkcA75x7Q7fwRnvWmsANeqebZyWlBmnk9qEfRad/5N4RZb7jwj/Mm2
-         5807qpVr2hk3ZhEQmOE4zc606iQ2SSgWzKm0sqibNMdvhJbs1ACgHE2JOJqDlRREKFKd
-         m/IXmHRnqwmelETJgszwR2Xiw2fRN+CXR3W+0zVYN6I1lE15MzaQNX6FwLvXoOiE4L7G
-         oFNJA/C1neu57UNfk7u4ooCC3MX7KZU0Szj/H1ElCqACkNXoLg0X7gTVyCo4NRN8sQex
-         HxeA==
-X-Gm-Message-State: AOAM531wPoBM/LdKqgFvVH4LUV7tOew99zZ6/2zehJSe0WjYOoL1AXGp
-        +UUkZ2CdUVNNQk4MnOMswa0=
-X-Google-Smtp-Source: ABdhPJyxx21J8UyPGAPaHM/8Ki6ecXPVaEM7uV8gatmLfxzs69Jo48V5cXIPhGqgMe+/DzTyxE7C+w==
-X-Received: by 2002:adf:ba83:: with SMTP id p3mr3217999wrg.246.1599644565115;
-        Wed, 09 Sep 2020 02:42:45 -0700 (PDT)
-Received: from ziggy.stardust ([213.195.113.201])
-        by smtp.gmail.com with ESMTPSA id m185sm3201670wmf.5.2020.09.09.02.42.43
-        (version=TLS1_3 cipher=TLS_AES_128_GCM_SHA256 bits=128/128);
-        Wed, 09 Sep 2020 02:42:44 -0700 (PDT)
-Subject: Re: [PATCH v6 4/4] arm: dts: mt7623: add lima related regulator
-To:     Frank Wunderlich <linux@fw-web.de>,
-        linux-mediatek@lists.infradead.org,
-        Chun-Kuang Hu <chunkuang.hu@kernel.org>
-Cc:     Frank Wunderlich <frank-w@public-files.de>,
-        Chunfeng Yun <chunfeng.yun@mediatek.com>,
-        devicetree@vger.kernel.org, dri-devel@lists.freedesktop.org,
-        Kishon Vijay Abraham I <kishon@ti.com>,
-        linux-arm-kernel@lists.infradead.org, linux-kernel@vger.kernel.org,
-        Philipp Zabel <p.zabel@pengutronix.de>,
-        Rob Herring <robh+dt@kernel.org>,
-        Ryder Lee <ryder.lee@mediatek.com>,
-        Sean Wang <sean.wang@mediatek.com>,
-        Alex Ryabchenko <d3adme4t@gmail.com>
-References: <20200904110002.88966-1-linux@fw-web.de>
- <20200904110002.88966-5-linux@fw-web.de>
-From:   Matthias Brugger <matthias.bgg@gmail.com>
-Message-ID: <b893cbdb-2011-88a4-dd57-3ea82cde08d8@gmail.com>
-Date:   Wed, 9 Sep 2020 11:42:43 +0200
-User-Agent: Mozilla/5.0 (X11; Linux x86_64; rv:68.0) Gecko/20100101
- Thunderbird/68.11.0
-MIME-Version: 1.0
-In-Reply-To: <20200904110002.88966-5-linux@fw-web.de>
-Content-Type: text/plain; charset=utf-8; format=flowed
-Content-Language: en-US
-Content-Transfer-Encoding: 7bit
+        h=x-gm-message-state:from:to:cc:subject:date:message-id;
+        bh=HV0bVobcIZ0gjyOIH2sXtQ/z9JBh+ctYWBjRN80Et9k=;
+        b=O6/3wiW87t9VpJ4ZmyB/tMyIVlwTTK2empsi6iBDscQRoXA3YDydqcSCeCMVo8xbk8
+         1Ytr7BaFR2fh6inR5FFZ+X3iUL2oult7RGlNl1da4dAGLXcckVQge8O09qMpQVnkq/Nl
+         vxdYA7rSNj/fwnZw5I0DkbHjK/8NNP/pCdxFMBBK0VYQJKjnFTZvG6aQqBRKiP0MOMqn
+         VieH1oiBR8WlkYNYdhfcqe2qxouWVP4As6hQ7lRSVsMySpajf0ZDdGc7/2ZRx75FsfhH
+         HthODJiz3/AASbvgBZ1hTydgg1CR9QrSJRAfcMM+GRJC0ad3qRqxaju42ZPTzGAY5BiT
+         80Cw==
+X-Gm-Message-State: AOAM530v6/wXAnzuIdCnT6gtflMVSNarfvqapGxEKQZLW8e/lxhH+WYy
+        2BcOe+XL+sp4iThOyHvkLySbkdwlszY=
+X-Google-Smtp-Source: ABdhPJxOaGWCh5/4OawFpoS59MGkvHgAnYSLgHxdBUfilihkJ8FMWX41TLAr/QS8z3Ks+7/01HtC3A==
+X-Received: by 2002:a62:5543:: with SMTP id j64mr86287pfb.45.1599644919759;
+        Wed, 09 Sep 2020 02:48:39 -0700 (PDT)
+Received: from sh05419pcu.spreadtrum.com ([117.18.48.82])
+        by smtp.gmail.com with ESMTPSA id u14sm2224149pfc.203.2020.09.09.02.48.36
+        (version=TLS1_2 cipher=ECDHE-ECDSA-AES128-GCM-SHA256 bits=128/128);
+        Wed, 09 Sep 2020 02:48:39 -0700 (PDT)
+From:   Hongtao Wu <wuht06@gmail.com>
+To:     Lorenzo Pieralisi <lorenzo.pieralisi@arm.com>,
+        Rob Herring <robh+dt@kernel.org>
+Cc:     Orson Zhai <orsonzhai@gmail.com>,
+        Baolin Wang <baolin.wang7@gmail.com>,
+        Chunyan Zhang <zhang.lyra@gmail.com>,
+        linux-pci@vger.kernel.org, devicetree@vger.kernel.org,
+        linux-kernel@vger.kernel.org, Hongtao Wu <billows.wu@unisoc.com>
+Subject: [PATCH v3 0/2] PCI: Add new Unisoc PCIe driver
+Date:   Wed,  9 Sep 2020 17:48:30 +0800
+Message-Id: <1599644912-29245-1-git-send-email-wuht06@gmail.com>
+X-Mailer: git-send-email 2.7.4
 Sender: devicetree-owner@vger.kernel.org
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
+From: Hongtao Wu <billows.wu@unisoc.com>
 
+This series adds PCIe controller driver for Unisoc SoCs.
+This controller is based on DesignWare PCIe IP.
 
-On 04/09/2020 13:00, Frank Wunderlich wrote:
-> From: Alex Ryabchenko <d3adme4t@gmail.com>
-> 
-> GPU needs additional regulator, add it to devicetree of bpi-r2
-> 
-> Signed-off-by: Alex Ryabchenko <d3adme4t@gmail.com>
-> Signed-off-by: Frank Wunderlich <frank-w@public-files.de>
+Changes from v1:
+1) Test this patch on top of Rob Herring's 40 part series of DWC clean-ups:
+   https://lore.kernel.org/linux-pci/20200821035420.380495-1-robh@kernel.org/
 
-Applied to v5.9-next/dts32
+2) Delete empty function
 
-Thanks!
+3) Document property "sprd,pcie-poweron-syscons" and
+   'sprd,pcie-poweroff-syscons'
 
-> ---
->   arch/arm/boot/dts/mt7623n-bananapi-bpi-r2.dts | 13 ++++++++++++-
->   1 file changed, 12 insertions(+), 1 deletion(-)
-> 
-> diff --git a/arch/arm/boot/dts/mt7623n-bananapi-bpi-r2.dts b/arch/arm/boot/dts/mt7623n-bananapi-bpi-r2.dts
-> index f41f221e56ca..826912545ef1 100644
-> --- a/arch/arm/boot/dts/mt7623n-bananapi-bpi-r2.dts
-> +++ b/arch/arm/boot/dts/mt7623n-bananapi-bpi-r2.dts
-> @@ -79,6 +79,13 @@ reg_5v: regulator-5v {
->   		regulator-always-on;
->   	};
->   
-> +	reg_vgpu: fixedregulator@0 {
-> +		compatible = "regulator-fixed";
-> +		regulator-name = "vdd_fixed_vgpu";
-> +		regulator-min-microvolt = <1150000>;
-> +		regulator-max-microvolt = <1150000>;
-> +	};
-> +
->   	gpio-keys {
->   		compatible = "gpio-keys";
->   		pinctrl-names = "default";
-> @@ -283,6 +290,11 @@ &i2c1 {
->   	status = "okay";
->   };
->   
-> +&mali {
-> +	mali-supply = <&reg_vgpu>;
-> +	status = "okay";
-> +};
-> +
->   &mmc0 {
->   	pinctrl-names = "default", "state_uhs";
->   	pinctrl-0 = <&mmc0_pins_default>;
-> @@ -402,4 +414,3 @@ &u3phy1 {
->   &u3phy2 {
->   	status = "okay";
->   };
-> -
-> 
+4) Delete runtime suspend/resume function
+
+5) Add COMPILE_TEST which CONFIG_PCIE_SPRD depends on
+
+Changes from v2:
+1) Change RC mode to host mode in drivers/pci/controller/dwc/Kconfig
+
+2) Change Signed-off-by from Billows Wu to Hongtao Wu
+
+Hongtao Wu (2):
+  dt-bindings: PCI: sprd: Document Unisoc PCIe RC host controller
+  PCI: sprd: Add support for Unisoc SoCs' PCIe controller
+
+ .../devicetree/bindings/pci/sprd-pcie.yaml         | 101 +++++++++
+ drivers/pci/controller/dwc/Kconfig                 |  13 ++
+ drivers/pci/controller/dwc/Makefile                |   1 +
+ drivers/pci/controller/dwc/pcie-sprd.c             | 231 +++++++++++++++++++++
+ 4 files changed, 346 insertions(+)
+ create mode 100644 Documentation/devicetree/bindings/pci/sprd-pcie.yaml
+ create mode 100644 drivers/pci/controller/dwc/pcie-sprd.c
+
+--
+2.7.4
+
