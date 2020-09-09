@@ -2,78 +2,325 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from vger.kernel.org (vger.kernel.org [23.128.96.18])
-	by mail.lfdr.de (Postfix) with ESMTP id A5AEB2633A8
-	for <lists+devicetree@lfdr.de>; Wed,  9 Sep 2020 19:08:35 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTP id 96C582633D8
+	for <lists+devicetree@lfdr.de>; Wed,  9 Sep 2020 19:11:22 +0200 (CEST)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S1730626AbgIIRIF (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Wed, 9 Sep 2020 13:08:05 -0400
-Received: from lb2-smtp-cloud9.xs4all.net ([194.109.24.26]:51891 "EHLO
-        lb2-smtp-cloud9.xs4all.net" rhost-flags-OK-OK-OK-OK)
-        by vger.kernel.org with ESMTP id S1730394AbgIIPhD (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Wed, 9 Sep 2020 11:37:03 -0400
-Received: from cust-b5b5937f ([IPv6:fc0c:c16d:66b8:757f:c639:739b:9d66:799d])
-        by smtp-cloud9.xs4all.net with ESMTPA
-        id G0kJkjPcoXgwIG0kKkZggK; Wed, 09 Sep 2020 16:06:48 +0200
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=xs4all.nl; s=s1;
-        t=1599660408; bh=oPrFl/TwIvpVNpQ11j9+60pYM+n2ln10KTC8JKR4WbA=;
-        h=Subject:To:From:Message-ID:Date:MIME-Version:Content-Type:From:
-         Subject;
-        b=S4SA8z+znzkwPxIJSUD15tOO5/tLQ6uyZyT8lVxO4TwZ+NwZxqYV5R0Q4lBJg2YXX
-         4HAhlrwqHrWeMbwd5HyxPYkXg0CqeBGQdnrmtdH5vxGSxQnKhLYMGEZ5CFkVeYlpZe
-         aWcLQoXVXFA/ySFah+HyFZaP9cc2ACsJiDtsX+5q8v4QawL3ljYNk+RO7Q6KiXVGrd
-         Ghcy3euewZlfVUsnno9rFvjzu2ze4ysAsBCUZmCZwIwPQSXeur5zrQlGRqmNm6et4d
-         t15Jw5Q20+7UDi2FMOq/47qoakUi73aWwGllyQSDek0xuwsanhvhdHiEkPs8mpynLX
-         cfrWoDc8TI5Xw==
-Subject: Re: [PATCH 2/3] media: Add support for the AM/FM radio chip KT0913
- from KT Micro.
-To:     Santiago Hormazabal <santiagohssl@gmail.com>,
-        linux-media@vger.kernel.org, devicetree@vger.kernel.org,
-        Rob Herring <robh+dt@kernel.org>,
-        Ezequiel Garcia <ezequiel@collabora.com>,
-        Mauro Carvalho Chehab <mchehab@kernel.org>,
-        linux-kernel@vger.kernel.org
-References: <20200831220601.20794-1-santiagohssl@gmail.com>
- <20200831220601.20794-3-santiagohssl@gmail.com>
-From:   Hans Verkuil <hverkuil@xs4all.nl>
-Message-ID: <60e1d448-2c79-2642-7fb6-82aceacdb75f@xs4all.nl>
-Date:   Wed, 9 Sep 2020 16:06:47 +0200
-User-Agent: Mozilla/5.0 (X11; Linux x86_64; rv:68.0) Gecko/20100101
- Thunderbird/68.10.0
+        id S1730317AbgIIRLL (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Wed, 9 Sep 2020 13:11:11 -0400
+Received: from a27-10.smtp-out.us-west-2.amazonses.com ([54.240.27.10]:42810
+        "EHLO a27-10.smtp-out.us-west-2.amazonses.com" rhost-flags-OK-OK-OK-OK)
+        by vger.kernel.org with ESMTP id S1730307AbgIIPds (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Wed, 9 Sep 2020 11:33:48 -0400
+DKIM-Signature: v=1; a=rsa-sha256; q=dns/txt; c=relaxed/simple;
+        s=zsmsymrwgfyinv5wlfyidntwsjeeldzt; d=codeaurora.org; t=1599661184;
+        h=MIME-Version:Content-Type:Content-Transfer-Encoding:Date:From:To:Cc:Subject:In-Reply-To:References:Message-ID;
+        bh=WjDONsuBH7IGcBm3DuSDqu/G8Oq6gOfRjVZiH4J/Zdw=;
+        b=gR1qzHKQVGqAvDMd8Sl1M4Hf+SCteui5S9G/1NQVaUAr7GleRQnQsIs4Xt8i4j7Y
+        0Iv6Ub/sDh5ALCVnKt1KIasjozEC7yQvkdZaLA9bZi4f77wXJNNOBbK02LcULD7rL7N
+        Cz8mk8YwkhZlXWK/p5z6+m+OnPEP/JxaMcQUyldw=
+DKIM-Signature: v=1; a=rsa-sha256; q=dns/txt; c=relaxed/simple;
+        s=hsbnp7p3ensaochzwyq5wwmceodymuwv; d=amazonses.com; t=1599661184;
+        h=MIME-Version:Content-Type:Content-Transfer-Encoding:Date:From:To:Cc:Subject:In-Reply-To:References:Message-ID:Feedback-ID;
+        bh=WjDONsuBH7IGcBm3DuSDqu/G8Oq6gOfRjVZiH4J/Zdw=;
+        b=VkNDQtylz+1BehymhumYgj2veKe4Sypp/lqs5bacOb8x/ThrRB6JWjc+mY59cZGE
+        XNhVbKgv6XFiE8WhoqfcKX9TsdBBg3NyJ5Q4mecxCUwUD2XaP/pMKe70uRXFrRd9m7g
+        +exA5sSk2j5WIyLyJ0A8SBOaUkz1s9clAkjnJPMs=
+X-Spam-Checker-Version: SpamAssassin 3.4.0 (2014-02-07) on
+        aws-us-west-2-caf-mail-1.web.codeaurora.org
+X-Spam-Level: 
+X-Spam-Status: No, score=-2.9 required=2.0 tests=ALL_TRUSTED,BAYES_00,
+        URIBL_BLOCKED autolearn=unavailable autolearn_force=no version=3.4.0
 MIME-Version: 1.0
-In-Reply-To: <20200831220601.20794-3-santiagohssl@gmail.com>
-Content-Type: text/plain; charset=utf-8
-Content-Language: en-US
+Content-Type: text/plain; charset=US-ASCII;
+ format=flowed
 Content-Transfer-Encoding: 7bit
-X-CMAE-Envelope: MS4wfBGtO1zVijWQzDMb2IpWJbNPvzETDnfTgb43UKoKnwaY0otSN+Sz/6bzbgwUBZNdeghs/Bedcx8wmruysTJ5Tftxj4trdcE3jKaLLjCFuKE0EizMQQu2
- b4AcZHRP1AT9oEzCmI9EE2qYbDRzETU0dF9wiDtpskjRw+lh5eQIfJPX8cbMCkPzphOtzvCp7yQax+P0Q2vfVDqo5PUhysE3fl9Mgh6eLMRS2NUmhefy21kl
- DfgUS3/9OjdmmugYGZYKwLuTgvj2nLsYV2q8jnfOdICXQgvn1JVv2BwSKG/Lt9/HCa2n5/riOiKo/5j4sG+/NULvzKBVGQwmWxQ8iGBPuMnvbPYiWNGWQrk8
- HCISZQGegKeFGT8gc4AF+jxqHhjKyXv1umRD3GgBYLRtSUSG7Dg+Iua796Rrq+qnqtWaVYw2s8OD9IaHKXLjTQL63o/KYi2JzT68jAKQlmtfZiAzm7e9106u
- vCx3GiLfuPbW+S3B
+Date:   Wed, 9 Sep 2020 14:19:44 +0000
+From:   skakit@codeaurora.org
+To:     Matthias Kaehlcke <mka@chromium.org>
+Cc:     Bjorn Andersson <bjorn.andersson@linaro.org>,
+        gregkh@linuxfoundation.org, Andy Gross <agross@kernel.org>,
+        Rob Herring <robh+dt@kernel.org>,
+        linux-arm-msm@vger.kernel.org, devicetree@vger.kernel.org,
+        linux-kernel@vger.kernel.org, akashast@codeaurora.org,
+        rojay@codeaurora.org, msavaliy@qti.qualcomm.com
+Subject: Re: [PATCH V4 1/4] arm64: dts: sc7180: Add wakeup support over UART
+ RX
+In-Reply-To: <20200903160524.GH3419728@google.com>
+References: <1599145498-20707-1-git-send-email-skakit@codeaurora.org>
+ <1599145498-20707-2-git-send-email-skakit@codeaurora.org>
+ <20200903160524.GH3419728@google.com>
+Message-ID: <01010174733c94d4-bf866578-b2de-4720-bc0f-bed3472a4070-000000@us-west-2.amazonses.com>
+X-Sender: skakit@codeaurora.org
+User-Agent: Roundcube Webmail/1.3.9
+X-SES-Outgoing: 2020.09.09-54.240.27.10
+Feedback-ID: 1.us-west-2.CZuq2qbDmUIuT3qdvXlRHZZCpfZqZ4GtG9v3VKgRyF0=:AmazonSES
 Sender: devicetree-owner@vger.kernel.org
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-Hi Santiago,
+Hi Matthias,
 
-On 01/09/2020 00:06, Santiago Hormazabal wrote:
-> This chip requires almost no support components and can used over I2C.
-> The driver uses the I2C bus and exposes the controls as a V4L2 radio.
-> Tested with a module that contains this chip (from SZZSJDZ.com,
-> part number ZJ-801B, even tho the company seems defunct now), and an H2+
-> AllWinner SoC running a kernel built off 07d999f of the media_tree.
+On 2020-09-03 21:35, Matthias Kaehlcke wrote:
+> On Thu, Sep 03, 2020 at 08:34:55PM +0530, satya priya wrote:
+>> Add the necessary pinctrl and interrupts to make UART wakeup capable.
+>> 
+>> If QUP function is selected in sleep state, UART RTS/RFR is pulled 
+>> high
+>> during suspend and BT SoC not able to send wakeup bytes. So, configure
+>> GPIO mode in sleep state to keep it low during suspend.
+>> 
+>> Signed-off-by: satya priya <skakit@codeaurora.org>
+>> Reviewed-by: Akash Asthana <akashast@codeaurora.org>
+>> ---
+>> Changes in V2:
+>>  - As per Matthias's comment added wakeup support for all the UARTs
+>>    of SC7180.
+>> 
+>> Changes in V3:
+>>  - No change.
+>> 
+>> Changes in V4:
+>>  - As per Matthias's comment, added the reason for configuring GPIO
+>>    mode for sleep state in commit text.
+>> 
+>>  arch/arm64/boot/dts/qcom/sc7180.dtsi | 98 
+>> ++++++++++++++++++++++++++++++------
+>>  1 file changed, 84 insertions(+), 14 deletions(-)
+>> 
+>> diff --git a/arch/arm64/boot/dts/qcom/sc7180.dtsi 
+>> b/arch/arm64/boot/dts/qcom/sc7180.dtsi
+>> index d46b383..855b13e 100644
+>> --- a/arch/arm64/boot/dts/qcom/sc7180.dtsi
+>> +++ b/arch/arm64/boot/dts/qcom/sc7180.dtsi
+>> @@ -793,9 +793,11 @@
+>>  				reg = <0 0x00880000 0 0x4000>;
+>>  				clock-names = "se";
+>>  				clocks = <&gcc GCC_QUPV3_WRAP0_S0_CLK>;
+>> -				pinctrl-names = "default";
+>> +				pinctrl-names = "default", "sleep";
+>>  				pinctrl-0 = <&qup_uart0_default>;
+>> -				interrupts = <GIC_SPI 601 IRQ_TYPE_LEVEL_HIGH>;
+>> +				pinctrl-1 = <&qup_uart0_sleep>;
+>> +				interrupts-extended = <&intc GIC_SPI 601 IRQ_TYPE_LEVEL_HIGH>,
+>> +							<&tlmm 37 IRQ_TYPE_EDGE_FALLING>;
+>>  				power-domains = <&rpmhpd SC7180_CX>;
+>>  				operating-points-v2 = <&qup_opp_table>;
+>>  				interconnects = <&qup_virt MASTER_QUP_CORE_0 &qup_virt 
+>> SLAVE_QUP_CORE_0>,
+>> @@ -845,9 +847,11 @@
+>>  				reg = <0 0x00884000 0 0x4000>;
+>>  				clock-names = "se";
+>>  				clocks = <&gcc GCC_QUPV3_WRAP0_S1_CLK>;
+>> -				pinctrl-names = "default";
+>> +				pinctrl-names = "default", "sleep";
+>>  				pinctrl-0 = <&qup_uart1_default>;
+>> -				interrupts = <GIC_SPI 602 IRQ_TYPE_LEVEL_HIGH>;
+>> +				pinctrl-1 = <&qup_uart1_sleep>;
+>> +				interrupts-extended = <&intc GIC_SPI 602 IRQ_TYPE_LEVEL_HIGH>,
+>> +							<&tlmm 3 IRQ_TYPE_EDGE_FALLING>;
+>>  				power-domains = <&rpmhpd SC7180_CX>;
+>>  				operating-points-v2 = <&qup_opp_table>;
+>>  				interconnects = <&qup_virt MASTER_QUP_CORE_0 &qup_virt 
+>> SLAVE_QUP_CORE_0>,
+>> @@ -931,9 +935,11 @@
+>>  				reg = <0 0x0088c000 0 0x4000>;
+>>  				clock-names = "se";
+>>  				clocks = <&gcc GCC_QUPV3_WRAP0_S3_CLK>;
+>> -				pinctrl-names = "default";
+>> +				pinctrl-names = "default", "sleep";
+>>  				pinctrl-0 = <&qup_uart3_default>;
+>> -				interrupts = <GIC_SPI 604 IRQ_TYPE_LEVEL_HIGH>;
+>> +				pinctrl-1 = <&qup_uart3_sleep>;
+>> +				interrupts-extended = <&intc GIC_SPI 604 IRQ_TYPE_LEVEL_HIGH>,
+>> +							<&tlmm 41 IRQ_TYPE_EDGE_FALLING>;
+>>  				power-domains = <&rpmhpd SC7180_CX>;
+>>  				operating-points-v2 = <&qup_opp_table>;
+>>  				interconnects = <&qup_virt MASTER_QUP_CORE_0 &qup_virt 
+>> SLAVE_QUP_CORE_0>,
+>> @@ -1017,9 +1023,11 @@
+>>  				reg = <0 0x00894000 0 0x4000>;
+>>  				clock-names = "se";
+>>  				clocks = <&gcc GCC_QUPV3_WRAP0_S5_CLK>;
+>> -				pinctrl-names = "default";
+>> +				pinctrl-names = "default", "sleep";
+>>  				pinctrl-0 = <&qup_uart5_default>;
+>> -				interrupts = <GIC_SPI 606 IRQ_TYPE_LEVEL_HIGH>;
+>> +				pinctrl-1 = <&qup_uart5_sleep>;
+>> +				interrupts-extended = <&intc GIC_SPI 606 IRQ_TYPE_LEVEL_HIGH>,
+>> +							<&tlmm 28 IRQ_TYPE_EDGE_FALLING>;
+>>  				power-domains = <&rpmhpd SC7180_CX>;
+>>  				operating-points-v2 = <&qup_opp_table>;
+>>  				interconnects = <&qup_virt MASTER_QUP_CORE_0 &qup_virt 
+>> SLAVE_QUP_CORE_0>,
+>> @@ -1084,9 +1092,11 @@
+>>  				reg = <0 0x00a80000 0 0x4000>;
+>>  				clock-names = "se";
+>>  				clocks = <&gcc GCC_QUPV3_WRAP1_S0_CLK>;
+>> -				pinctrl-names = "default";
+>> +				pinctrl-names = "default", "sleep";
+>>  				pinctrl-0 = <&qup_uart6_default>;
+>> -				interrupts = <GIC_SPI 353 IRQ_TYPE_LEVEL_HIGH>;
+>> +				pinctrl-1 = <&qup_uart6_sleep>;
+>> +				interrupts-extended = <&intc GIC_SPI 353 IRQ_TYPE_LEVEL_HIGH>,
+>> +							<&tlmm 62 IRQ_TYPE_EDGE_FALLING>;
+>>  				power-domains = <&rpmhpd SC7180_CX>;
+>>  				operating-points-v2 = <&qup_opp_table>;
+>>  				interconnects = <&qup_virt MASTER_QUP_CORE_1 &qup_virt 
+>> SLAVE_QUP_CORE_1>,
+>> @@ -1256,9 +1266,11 @@
+>>  				reg = <0 0x00a90000 0 0x4000>;
+>>  				clock-names = "se";
+>>  				clocks = <&gcc GCC_QUPV3_WRAP1_S4_CLK>;
+>> -				pinctrl-names = "default";
+>> +				pinctrl-names = "default", "sleep";
+>>  				pinctrl-0 = <&qup_uart10_default>;
+>> -				interrupts = <GIC_SPI 357 IRQ_TYPE_LEVEL_HIGH>;
+>> +				pinctrl-1 = <&qup_uart10_sleep>;
+>> +				interrupts-extended = <&intc GIC_SPI 357 IRQ_TYPE_LEVEL_HIGH>,
+>> +							<&tlmm 89 IRQ_TYPE_EDGE_FALLING>;
+>>  				power-domains = <&rpmhpd SC7180_CX>;
+>>  				operating-points-v2 = <&qup_opp_table>;
+>>  				interconnects = <&qup_virt MASTER_QUP_CORE_1 &qup_virt 
+>> SLAVE_QUP_CORE_1>,
+>> @@ -1308,9 +1320,11 @@
+>>  				reg = <0 0x00a94000 0 0x4000>;
+>>  				clock-names = "se";
+>>  				clocks = <&gcc GCC_QUPV3_WRAP1_S5_CLK>;
+>> -				pinctrl-names = "default";
+>> +				pinctrl-names = "default", "sleep";
+>>  				pinctrl-0 = <&qup_uart11_default>;
+>> -				interrupts = <GIC_SPI 358 IRQ_TYPE_LEVEL_HIGH>;
+>> +				pinctrl-1 = <&qup_uart11_sleep>;
+>> +				interrupts-extended = <&intc GIC_SPI 358 IRQ_TYPE_LEVEL_HIGH>,
+>> +							<&tlmm 56 IRQ_TYPE_EDGE_FALLING>;
+>>  				power-domains = <&rpmhpd SC7180_CX>;
+>>  				operating-points-v2 = <&qup_opp_table>;
+>>  				interconnects = <&qup_virt MASTER_QUP_CORE_1 &qup_virt 
+>> SLAVE_QUP_CORE_1>,
+>> @@ -1638,6 +1652,14 @@
+>>  				};
+>>  			};
+>> 
+>> +			qup_uart0_sleep: qup-uart0-sleep {
+>> +				pinmux {
+>> +					pins = "gpio34", "gpio35",
+>> +					       "gpio36", "gpio37";
+>> +					function = "gpio";
+>> +				};
+>> +			};
+>> +
+>>  			qup_uart1_default: qup-uart1-default {
+>>  				pinmux {
+>>  					pins = "gpio0", "gpio1",
+>> @@ -1646,6 +1668,14 @@
+>>  				};
+>>  			};
+>> 
+>> +			qup_uart1_sleep: qup-uart1-sleep {
+>> +				pinmux {
+>> +					pins = "gpio0", "gpio1",
+>> +					       "gpio2", "gpio3";
+>> +					function = "gpio";
+>> +				};
+>> +			};
+>> +
+>>  			qup_uart2_default: qup-uart2-default {
+>>  				pinmux {
+>>  					pins = "gpio15", "gpio16";
+>> @@ -1661,6 +1691,14 @@
+>>  				};
+>>  			};
+>> 
+>> +			qup_uart3_sleep: qup-uart3-sleep {
+>> +				pinmux {
+>> +					pins = "gpio38", "gpio39",
+>> +					       "gpio40", "gpio41";
+>> +					function = "gpio";
+>> +				};
+>> +			};
+>> +
+>>  			qup_uart4_default: qup-uart4-default {
+>>  				pinmux {
+>>  					pins = "gpio115", "gpio116";
+>> @@ -1676,6 +1714,14 @@
+>>  				};
+>>  			};
+>> 
+>> +			qup_uart5_sleep: qup-uart5-sleep {
+>> +				pinmux {
+>> +					pins = "gpio25", "gpio26",
+>> +					       "gpio27", "gpio28";
+>> +					function = "gpio";
+>> +				};
+>> +			};
+>> +
+>>  			qup_uart6_default: qup-uart6-default {
+>>  				pinmux {
+>>  					pins = "gpio59", "gpio60",
+>> @@ -1684,6 +1730,14 @@
+>>  				};
+>>  			};
+>> 
+>> +			qup_uart6_sleep: qup-uart6-sleep {
+>> +				pinmux {
+>> +					pins = "gpio59", "gpio60",
+>> +					       "gpio61", "gpio62";
+>> +					function = "gpio";
+>> +				};
+>> +			};
+>> +
+>>  			qup_uart7_default: qup-uart7-default {
+>>  				pinmux {
+>>  					pins = "gpio6", "gpio7";
+>> @@ -1713,6 +1767,14 @@
+>>  				};
+>>  			};
+>> 
+>> +			qup_uart10_sleep: qup-uart10-sleep {
+>> +				pinmux {
+>> +					pins = "gpio86", "gpio87",
+>> +					       "gpio88", "gpio89";
+>> +					function = "gpio";
+>> +				};
+>> +			};
+>> +
+>>  			qup_uart11_default: qup-uart11-default {
+>>  				pinmux {
+>>  					pins = "gpio53", "gpio54",
+>> @@ -1721,6 +1783,14 @@
+>>  				};
+>>  			};
+>> 
+>> +			qup_uart11_sleep: qup-uart11-sleep {
+>> +				pinmux {
+>> +					pins = "gpio53", "gpio54",
+>> +					       "gpio55", "gpio56";
+>> +					function = "gpio";
+>> +				};
+>> +			};
+>> +
+>>  			sdc1_on: sdc1-on {
+>>  				pinconf-clk {
+>>  					pins = "sdc1_clk";
 > 
-> Signed-off-by: Santiago Hormazabal <santiagohssl@gmail.com>
-> ---
->  drivers/media/radio/Kconfig        |   10 +
->  drivers/media/radio/Makefile       |    1 +
->  drivers/media/radio/radio-kt0913.c | 1196 ++++++++++++++++++++++++++++
->  3 files changed, 1207 insertions(+)
->  create mode 100644 drivers/media/radio/radio-kt0913.c
+> It seems only the RTS pin actually requires a pinmux change. One could
+> argue that only the muxing of this pin should be changed in sleep mode.
+> But well, changing all pins to GPIO simplifies the config, so I guess
+> it's ok as long as there are no side effects.
+> 
+> I noticed you changed only the UARTs that have RTS/CTS signals. Do the
+> others not support wakeup? I understand that the pinmux change isn't
+> needed for these UARTs, since they have no RTS signal, however I'd 
+> expect
+> them to need the 'interrupts-extended' entry if they support wakeup.
 
-One more thing: you need to add an entry to the MAINTAINERS file for this
-driver. It can either be part of this patch, or added in a separate patch.
+We are planning to add the wakeup related changes(interrupts-extended, 
+pin ctrls) to only uart3 in board specific file. As we understand, this 
+wakeup is an optional feature and cannot be added to all the UARTs. So, 
+now all the changes will be added in board specific files including the 
+pinmux change for sleep state.
 
-Regards,
+Thanks,
+Satya Priya
 
-	Hans
