@@ -2,669 +2,453 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from vger.kernel.org (vger.kernel.org [23.128.96.18])
-	by mail.lfdr.de (Postfix) with ESMTP id B1E72262DDC
-	for <lists+devicetree@lfdr.de>; Wed,  9 Sep 2020 13:31:53 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTP id E0DDE262DF2
+	for <lists+devicetree@lfdr.de>; Wed,  9 Sep 2020 13:36:52 +0200 (CEST)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S1728584AbgIILbF (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Wed, 9 Sep 2020 07:31:05 -0400
-Received: from mga05.intel.com ([192.55.52.43]:38879 "EHLO mga05.intel.com"
-        rhost-flags-OK-OK-OK-OK) by vger.kernel.org with ESMTP
-        id S1728663AbgIILay (ORCPT <rfc822;devicetree@vger.kernel.org>);
-        Wed, 9 Sep 2020 07:30:54 -0400
-IronPort-SDR: rKcx0y7cYVy9M2+Ka/FshFo1uIqUtP9aiD3brluUZKjBKRu60mCdzTn64MrPaMRbjwbhv3LEeM
- wPvIt4832xIw==
-X-IronPort-AV: E=McAfee;i="6000,8403,9738"; a="243123889"
-X-IronPort-AV: E=Sophos;i="5.76,409,1592895600"; 
-   d="scan'208";a="243123889"
-X-Amp-Result: SKIPPED(no attachment in message)
-X-Amp-File-Uploaded: False
-Received: from orsmga008.jf.intel.com ([10.7.209.65])
-  by fmsmga105.fm.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384; 09 Sep 2020 04:14:30 -0700
-IronPort-SDR: 9hcr/6B970iyS99yEjRXwg+YFLEXOZaH8D3Iz4hZnwlLNmBZSekeUnNQYLgVpsfx+loEpEGYYt
- X0wl91zIAZ2g==
-X-ExtLoop1: 1
-X-IronPort-AV: E=Sophos;i="5.76,409,1592895600"; 
-   d="scan'208";a="333786622"
-Received: from smile.fi.intel.com (HELO smile) ([10.237.68.40])
-  by orsmga008.jf.intel.com with ESMTP; 09 Sep 2020 04:14:27 -0700
-Received: from andy by smile with local (Exim 4.94)
-        (envelope-from <andriy.shevchenko@intel.com>)
-        id 1kFy3U-00FQL4-AW; Wed, 09 Sep 2020 14:14:24 +0300
-Date:   Wed, 9 Sep 2020 14:14:24 +0300
-From:   Andy Shevchenko <andriy.shevchenko@intel.com>
-To:     Amireddy Mallikarjuna reddy <mallikarjunax.reddy@linux.intel.com>
-Cc:     dmaengine@vger.kernel.org, vkoul@kernel.org,
-        devicetree@vger.kernel.org, robh+dt@kernel.org,
-        linux-kernel@vger.kernel.org, chuanhua.lei@linux.intel.com,
-        cheol.yong.kim@intel.com, qi-ming.wu@intel.com,
-        malliamireddy009@gmail.com, peter.ujfalusi@ti.com
-Subject: Re: [PATCH v6 2/2] Add Intel LGM soc DMA support.
-Message-ID: <20200909111424.GQ1891694@smile.fi.intel.com>
-References: <cover.1599605765.git.mallikarjunax.reddy@linux.intel.com>
- <748370a51af0ab768e542f1537d1aa3aeefebe8a.1599605765.git.mallikarjunax.reddy@linux.intel.com>
+        id S1728971AbgIILgr (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Wed, 9 Sep 2020 07:36:47 -0400
+Received: from lhrrgout.huawei.com ([185.176.76.210]:2800 "EHLO huawei.com"
+        rhost-flags-OK-OK-OK-FAIL) by vger.kernel.org with ESMTP
+        id S1729719AbgIILgF (ORCPT <rfc822;devicetree@vger.kernel.org>);
+        Wed, 9 Sep 2020 07:36:05 -0400
+Received: from lhreml710-chm.china.huawei.com (unknown [172.18.7.106])
+        by Forcepoint Email with ESMTP id C62BCCC8C1AF985AE5FE;
+        Wed,  9 Sep 2020 12:17:28 +0100 (IST)
+Received: from localhost (10.52.122.51) by lhreml710-chm.china.huawei.com
+ (10.201.108.61) with Microsoft SMTP Server (version=TLS1_2,
+ cipher=TLS_ECDHE_RSA_WITH_AES_128_CBC_SHA256) id 15.1.1913.5; Wed, 9 Sep 2020
+ 12:17:28 +0100
+Date:   Wed, 9 Sep 2020 12:15:50 +0100
+From:   Jonathan Cameron <Jonathan.Cameron@Huawei.com>
+To:     Stephen Boyd <swboyd@chromium.org>
+CC:     Jonathan Cameron <jic23@kernel.org>,
+        <linux-kernel@vger.kernel.org>, <linux-iio@vger.kernel.org>,
+        Daniel Campello <campello@chromium.org>,
+        Lars-Peter Clausen <lars@metafoo.de>,
+        Peter Meerwald-Stadler <pmeerw@pmeerw.net>,
+        Rob Herring <robh+dt@kernel.org>, <devicetree@vger.kernel.org>,
+        Douglas Anderson <dianders@chromium.org>,
+        Gwendal Grignou <gwendal@chromium.org>,
+        Evan Green <evgreen@chromium.org>
+Subject: Re: [PATCH] dt-bindings: iio: sx9310: Add various settings as DT
+ properties
+Message-ID: <20200909121550.00005ede@Huawei.com>
+In-Reply-To: <159963232334.454335.9794130058200265122@swboyd.mtv.corp.google.com>
+References: <20200903221828.3657250-1-swboyd@chromium.org>
+        <20200906150247.3aaef3a3@archlinux>
+        <159963232334.454335.9794130058200265122@swboyd.mtv.corp.google.com>
+Organization: Huawei Technologies Research and Development (UK) Ltd.
+X-Mailer: Claws Mail 3.17.4 (GTK+ 2.24.32; i686-w64-mingw32)
 MIME-Version: 1.0
-Content-Type: text/plain; charset=us-ascii
-Content-Disposition: inline
-In-Reply-To: <748370a51af0ab768e542f1537d1aa3aeefebe8a.1599605765.git.mallikarjunax.reddy@linux.intel.com>
-Organization: Intel Finland Oy - BIC 0357606-4 - Westendinkatu 7, 02160 Espoo
+Content-Type: text/plain; charset="US-ASCII"
+Content-Transfer-Encoding: 7bit
+X-Originating-IP: [10.52.122.51]
+X-ClientProxiedBy: lhreml709-chm.china.huawei.com (10.201.108.58) To
+ lhreml710-chm.china.huawei.com (10.201.108.61)
+X-CFilter-Loop: Reflected
 Sender: devicetree-owner@vger.kernel.org
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-On Wed, Sep 09, 2020 at 07:07:34AM +0800, Amireddy Mallikarjuna reddy wrote:
-> Add DMA controller driver for Lightning Mountain(LGM) family of SoCs.
+On Tue, 8 Sep 2020 23:18:43 -0700
+Stephen Boyd <swboyd@chromium.org> wrote:
+
+> Quoting Jonathan Cameron (2020-09-06 07:02:47)
+> > On Thu,  3 Sep 2020 15:18:28 -0700
+> > Stephen Boyd <swboyd@chromium.org> wrote:
+> >   
+> > > We need to set various bits in the hardware registers for this device to
+> > > operate properly depending on how it is installed. Add a handful of DT
+> > > properties to configure these things.
+> > > 
+> > > Cc: Daniel Campello <campello@chromium.org>
+> > > Cc: Lars-Peter Clausen <lars@metafoo.de>
+> > > Cc: Peter Meerwald-Stadler <pmeerw@pmeerw.net>
+> > > Cc: Rob Herring <robh+dt@kernel.org>
+> > > Cc: <devicetree@vger.kernel.org>
+> > > Cc: Douglas Anderson <dianders@chromium.org>
+> > > Cc: Gwendal Grignou <gwendal@chromium.org>
+> > > Cc: Evan Green <evgreen@chromium.org>
+> > > Signed-off-by: Stephen Boyd <swboyd@chromium.org>
+> > > ---
+> > > 
+> > > I haven't written any code to handle these properties yet. I'd rather do
+> > > that once the binding patch is reviewed. Patch based on iio.git testing
+> > > branch.  
+> > Makes sense to do docs first for this.  Quite a bit feels like it isn't
+> > a feature of the device configuration, but rather of the usecase.  That
+> > stuff should probably be done with a userspace interface, but you may
+> > be able to argue me around on some of them! 
+> > 
+> >   
 > 
-> The main function of the DMA controller is the transfer of data from/to any
-> DPlus compliant peripheral to/from the memory. A memory to memory copy
-> capability can also be configured.
+> Thanks for reviewing! I'm not well read on IIO so please bear with my
+> ignorance.
 > 
-> This ldma driver is used for configure the device and channnels for data
-> and control paths.
-
-...
-
-> +config INTEL_LDMA
-> +	bool "Lightning Mountain centralized low speed DMA and high speed DMA controllers"
-> +	select DMA_ENGINE
-> +	select DMA_VIRTUAL_CHANNELS
-> +	help
-> +	  Enable support for intel Lightning Mountain SOC DMA controllers.
-> +	  These controllers provide DMA capabilities for a variety of on-chip
-> +	  devices such as SSC, HSNAND and GSWIP.
-
-And how module will be called?
-
-...
-
-> +struct ldma_dev;
-> +struct ldma_port;
-
-+ blank line
-
-> +struct ldma_chan {
-> +	struct ldma_port	*port; /* back pointer */
-> +	char			name[8]; /* Channel name */
-
-> +	struct virt_dma_chan	vchan;
-
-You can make container_of() no-op if you put this to be first member of the
-structure.
-
-> +	int			nr; /* Channel id in hardware */
-> +	u32			flags; /* central way or channel based way */
-> +	enum ldma_chan_on_off	onoff;
-> +	dma_addr_t		desc_phys;
-> +	void			*desc_base; /* Virtual address */
-> +	u32			desc_cnt; /* Number of descriptors */
-> +	int			rst;
-> +	u32			hdrm_len;
-> +	bool			hdrm_csum;
-> +	u32			boff_len;
-> +	u32			data_endian;
-> +	u32			desc_endian;
-> +	bool			pden;
-> +	bool			desc_rx_np;
-> +	bool			data_endian_en;
-> +	bool			desc_endian_en;
-> +	bool			abc_en;
-> +	bool			desc_init;
-> +	struct dma_pool		*desc_pool; /* Descriptors pool */
-> +	u32			desc_num;
-> +	struct dw2_desc_sw	*ds;
-> +	struct work_struct	work;
-> +	struct dma_slave_config config;
-> +};
-
-...
-
-> +		struct {
-> +			u32 len		:16;
-> +			u32 res0	:7;
-> +			u32 bofs	:2;
-> +			u32 res1	:3;
-> +			u32 eop		:1;
-> +			u32 sop		:1;
-> +			u32 c		:1;
-> +			u32 own		:1;
-> +		} __packed field;
-> +		u32 word;
-
-Can you rather use bitfield.h?
-
-> +	} __packed status;
-> +	u32 addr;
-> +} __packed __aligned(8);
-
-...
-
-> +struct dw2_desc_sw {
-> +	struct ldma_chan	*chan;
-
-> +	struct virt_dma_desc	vdesc;
-
-Make it first and container_of() becomes no-op.
-
-> +	dma_addr_t		desc_phys;
-> +	size_t			desc_cnt;
-> +	size_t			size;
-> +	struct dw2_desc		*desc_hw;
-> +};
-
-...
-
-> +ldma_update_bits(struct ldma_dev *d, u32 mask, u32 val, u32 ofs)
-> +{
-> +	u32 old_val, new_val;
-> +
-> +	old_val = readl(d->base +  ofs);
-
-> +	new_val = (old_val & ~mask) | (val & mask);
-
-With bitfield.h you will have this as u32_replace_bits().
-
-> +
-> +	if (new_val != old_val)
-> +		writel(new_val, d->base + ofs);
-> +}
-
-...
-
-> +	/* Keep the class value unchanged */
-> +	reg &= DMA_CCTRL_CLASS | DMA_CCTRL_CLASSH;
-> +	reg |= val;
-
-No mask? Consider u32_replace_bits() or other FIELD_*() macros.
-
-...
-
-> +static void ldma_chan_desc_hw_cfg(struct ldma_chan *c, dma_addr_t desc_base,
-> +				  int desc_num)
-> +{
-> +	struct ldma_dev *d = to_ldma_dev(c->vchan.chan.device);
-> +	unsigned long flags;
-> +
-> +	spin_lock_irqsave(&d->dev_lock, flags);
-> +	ldma_update_bits(d, DMA_CS_MASK, c->nr, DMA_CS);
-> +	writel(lower_32_bits(desc_base), d->base + DMA_CDBA);
-
-> +	/* High 4 bits */
-
-Why only 4?
-
-> +	if (IS_ENABLED(CONFIG_64BIT)) {
-
-> +		u32 hi = upper_32_bits(desc_base) & 0xF;
-
-GENMASK() ?
-
-> +
-> +		ldma_update_bits(d, DMA_CDBA_MSB,
-> +				 FIELD_PREP(DMA_CDBA_MSB, hi), DMA_CCTRL);
-> +	}
-> +	writel(desc_num, d->base + DMA_CDLEN);
-> +	spin_unlock_irqrestore(&d->dev_lock, flags);
-> +
-> +	c->desc_init = true;
-> +}
-
-...
-
-
-> +	dev_dbg(d->dev, "Port Control 0x%08x configuration done\n",
-> +		readl(d->base + DMA_PCTRL));
-
-This has a side effect. Better to use temporary variable if you need to read
-back.
-
-...
-
-> +static int ldma_chan_cfg(struct ldma_chan *c)
-> +{
-> +	struct ldma_dev *d = to_ldma_dev(c->vchan.chan.device);
-> +	unsigned long flags;
-> +	u32 reg;
-> +
-> +	reg = c->pden ? DMA_CCTRL_PDEN : 0;
-> +	reg |= c->onoff ? DMA_CCTRL_ON : 0;
-> +	reg |= c->rst ? DMA_CCTRL_RST : 0;
-> +
-> +	ldma_chan_cctrl_cfg(c, reg);
-> +	ldma_chan_irq_init(c);
-
-> +	if (d->ver > DMA_VER22) {
-
-	if (d->ver <= DMA_VER22)
-		return 0;
-
-	?
-
-> +		spin_lock_irqsave(&d->dev_lock, flags);
-> +		ldma_chan_set_class(c, c->nr);
-> +		ldma_chan_byte_offset_cfg(c, c->boff_len);
-> +		ldma_chan_data_endian_cfg(c, c->data_endian_en, c->data_endian);
-> +		ldma_chan_desc_endian_cfg(c, c->desc_endian_en, c->desc_endian);
-> +		ldma_chan_hdr_mode_cfg(c, c->hdrm_len, c->hdrm_csum);
-> +		ldma_chan_rxwr_np_cfg(c, c->desc_rx_np);
-> +		ldma_chan_abc_cfg(c, c->abc_en);
-> +		spin_unlock_irqrestore(&d->dev_lock, flags);
-> +
-> +		if (ldma_chan_is_hw_desc(c))
-> +			ldma_chan_desc_hw_cfg(c, c->desc_phys, c->desc_cnt);
-> +	}
-> +
-> +	return 0;
-> +}
-
-...
-
-> +	/* DMA channel initialization */
-> +	for (i = 0; i < d->chan_nrs; i++) {
-> +		if (d->ver == DMA_VER22 && !(d->channels_mask & BIT(i)))
-> +			continue;
-
-for_each_set_bit() ?
-
-> +		c = &d->chans[i];
-> +		ldma_chan_cfg(c);
-> +	}
-
-...
-
-> +		for (i = 0; i < d->port_nrs; i++) {
-> +			p = &d->ports[i];
-> +			p->rxendi = DMA_DFT_ENDIAN;
-> +			p->txendi = DMA_DFT_ENDIAN;
-
-> +			if (!fwnode_property_read_u32(fwnode, "intel,dma-burst",
-> +						      &prop)) {
-
-How this is not invariant inside the loop?
-
-> +				p->rxbl = prop;
-> +				p->txbl = prop;
-> +			} else {
-> +				p->rxbl = DMA_DFT_BURST;
-> +				p->txbl = DMA_DFT_BURST;
-> +			}
-> +
-> +			p->pkt_drop = DMA_PKT_DROP_DIS;
-> +		}
-
-...
-
-> +	if (d->ver == DMA_VER22) {
-> +		spin_lock_irqsave(&c->vchan.lock, flags);
-> +		if (vchan_issue_pending(&c->vchan)) {
-> +			struct virt_dma_desc *vdesc;
-> +
-> +			/* Get the next descriptor */
-> +			vdesc = vchan_next_desc(&c->vchan);
-> +			if (!vdesc) {
-> +				c->ds = NULL;
-
-Nice! Don't you forget something to do here?
-
-> +				return;
-
-> +			}
-> +			list_del(&vdesc->node);
-> +			c->ds = to_lgm_dma_desc(vdesc);
-> +			ldma_chan_desc_hw_cfg(c, c->ds->desc_phys, c->ds->desc_cnt);
-> +			ldma_chan_irq_en(c);
-> +		}
-> +		spin_unlock_irqrestore(&c->vchan.lock, flags);
-> +	}
-
-...
-
-> +	irncr = readl(d->base + DMA_IRNCR);
-> +	if (!irncr) {
-
-> +		dev_err(d->dev, "dummy interrupt\n");
-
-I could imagine what happens in case of shared IRQ...
-
-> +		return IRQ_NONE;
-> +	}
-
-...
-
-> +	/* Default setting will be used */
-> +	if (cfg->src_maxburst != 2 && cfg->src_maxburst != 4 &&
-> +	    cfg->src_maxburst != 8)
-
-This is strange. Caller should have a possibility to set anything based on the
-channel and device capabilities. This one is hidden problem for the caller. Are
-you going to customize each peripheral driver for your DMA engine
-implementation?
-
-> +		return;
-
-...
-
-> +	if (!sgl)
-> +		return NULL;
-
-Is it possible?
-
-...
-
-> +static int
-> +dma_slave_config(struct dma_chan *chan, struct dma_slave_config *cfg)
-> +{
-> +	struct ldma_chan *c = to_ldma_chan(chan);
-> +
-> +	if ((cfg->direction == DMA_DEV_TO_MEM &&
-> +	     cfg->src_addr_width != DMA_SLAVE_BUSWIDTH_4_BYTES) ||
-> +	    (cfg->direction == DMA_MEM_TO_DEV &&
-> +	     cfg->dst_addr_width != DMA_SLAVE_BUSWIDTH_4_BYTES) ||
-
-Why?
-
-> +	    !is_slave_direction(cfg->direction))
-> +		return -EINVAL;
-> +
-> +	/* Must be the same */
-
-Why?
-
-> +	if (cfg->src_maxburst && cfg->dst_maxburst &&
-> +	    cfg->src_maxburst != cfg->dst_maxburst)
-> +		return -EINVAL;
-
-> +	if (cfg->src_maxburst != 2 && cfg->src_maxburst != 4 &&
-> +	    cfg->src_maxburst != 8)
-
-Why?
-
-> +		return -EINVAL;
-> +
-> +	memcpy(&c->config, cfg, sizeof(c->config));
-> +
-> +	return 0;
-> +}
-
-...
-
-> +static void dma_work(struct work_struct *work)
-> +{
-> +	struct ldma_chan *c = container_of(work, struct ldma_chan, work);
-> +	struct dma_async_tx_descriptor *tx = &c->ds->vdesc.tx;
-> +	struct virt_dma_chan *vc = &c->vchan;
-> +	struct dmaengine_desc_callback cb;
-> +	struct virt_dma_desc *vd, *_vd;
-> +	LIST_HEAD(head);
-> +
-> +	list_splice_tail_init(&vc->desc_completed, &head);
-
-No protection?
-
-> +	dmaengine_desc_get_callback(tx, &cb);
-> +	dma_cookie_complete(tx);
-> +	dmaengine_desc_callback_invoke(&cb, NULL);
-> +
-> +	list_for_each_entry_safe(vd, _vd, &head, node) {
-> +		dmaengine_desc_get_callback(tx, &cb);
-> +		dma_cookie_complete(tx);
-> +		list_del(&vd->node);
-> +		dmaengine_desc_callback_invoke(&cb, NULL);
-> +
-> +		vchan_vdesc_fini(vd);
-> +	}
-> +	c->ds = NULL;
-> +}
-
-...
-
-> +static int
-> +update_client_configs(struct of_dma *ofdma, struct of_phandle_args *spec)
-> +{
-> +	struct ldma_dev *d = ofdma->of_dma_data;
-> +	struct ldma_port *p;
-> +	struct ldma_chan *c;
-> +	u32 chan_id =  spec->args[0];
-> +	u32 port_id =  spec->args[1];
-> +
-> +	if (chan_id >= d->chan_nrs || port_id >= d->port_nrs)
-> +		return 0;
-> +
-> +	p = &d->ports[port_id];
-> +	c = &d->chans[chan_id];
-> +	c->port = p;
-> +
-> +	if (d->ver == DMA_VER22) {
-> +		u32 desc_num;
-> +		u32 burst = spec->args[2];
-> +
-> +		if (burst != 2 && burst != 4 && burst != 8)
-> +			return 0;
-> +
-> +		/* TX and RX has the same burst length */
-> +		p->txbl = ilog2(burst);
-> +		p->rxbl = p->txbl;
-> +
-> +		desc_num = spec->args[3];
-> +		if (desc_num > 255)
-> +			return 0;
-> +		c->desc_num = desc_num;
-> +
-> +		ldma_port_cfg(p);
-> +		ldma_chan_cfg(c);
-> +	} else {
-> +		if (spec->args[2] > 0 && spec->args[2] <= DMA_ENDIAN_TYPE3) {
-> +			c->data_endian = spec->args[2];
-> +			c->data_endian_en = true;
-> +		}
-> +
-> +		if (spec->args[3] > 0 && spec->args[3] <= DMA_ENDIAN_TYPE3) {
-> +			c->desc_endian = spec->args[3];
-> +			c->desc_endian_en = true;
-> +		}
-> +
-> +		if (spec->args[4] > 0 && spec->args[4] < 128)
-> +			c->boff_len = spec->args[4];
-> +
-> +		if (spec->args[5])
-> +			c->desc_rx_np = true;
-> +
-> +		/*
-> +		 * If channel packet drop enabled, port packet drop should
-> +		 * be enabled
-> +		 */
-> +		if (spec->args[6]) {
-> +			c->pden = true;
-> +			p->pkt_drop = DMA_PKT_DROP_EN;
-> +		}
-> +
-> +		/*
-> +		 * hdr-mode: If enabled, header mode size is ignored
-> +		 *           If disabled, header mode size must be provided
-> +		 */
-> +		c->hdrm_csum = !!spec->args[8];
-> +		if (!c->hdrm_csum) {
-> +			if (!spec->args[7] || spec->args[7] > DMA_HDR_LEN_MAX)
-> +				return 0;
-> +			c->hdrm_len = spec->args[7];
-> +		}
-> +
-> +		if (spec->args[10]) {
-> +			c->desc_cnt = spec->args[10];
-> +			if (c->desc_cnt > DMA_MAX_DESC_NUM) {
-> +				dev_err(d->dev, "Channel %d descriptor number out of range %d\n",
-> +					c->nr, c->desc_cnt);
-> +				return 0;
-> +			}
-> +			c->desc_phys = spec->args[9];
-> +			c->flags |= DMA_HW_DESC;
-> +		}
-> +
-> +		ldma_port_cfg(p);
-> +		ldma_chan_cfg(c);
-> +	}
-> +
-> +	return 1;
-> +}
-> +
-
-Can you split all these kind of functions each to three:
-
-foo_vXXX()
-foo_v22()
-
-foo()
-{
-	if (ver = 22)
-		return foo_v22()
-	return foo_vXXX()
-}
-
-?
-
-...
-
-> +	d->rst = devm_reset_control_get_optional(dev, NULL);
-> +	if (IS_ERR(d->rst))
-> +		return PTR_ERR(d->rst);
-> +	reset_control_deassert(d->rst);
-
-Shouldn't be devm_add_action_or_reset() for assert reset?
-
-...
-
-> +	if (IS_ENABLED(CONFIG_64BIT)) {
-> +		if (id & DMA_ID_AW_36B)
-> +			bitn = 36;
-> +	}
-
-if (a) { if (b) { ... }} ==> if (a && b) { ...}
-
-...
-
-> +	if (d->ver == DMA_VER22) {
-
-Split?
-
-> +		ret = of_property_read_u32(pdev->dev.of_node, "dma-channels",
-> +					   &d->chan_nrs);
-> +		if (ret < 0) {
-> +			dev_err(dev, "unable to read dma-channels property\n");
-> +			return ret;
-> +		}
-> +
-> +		ret = of_property_read_u32(pdev->dev.of_node, "dma-channel-mask",
-> +					   &d->channels_mask);
-> +		if (ret < 0)
-> +			d->channels_mask = GENMASK(d->chan_nrs - 1, 0);
-
-of_property*() are leftovers? Shouldn't be device_property_*()?
-
-> +
-> +		d->irq = platform_get_irq(pdev, 0);
-> +		if (d->irq < 0)
-> +			return d->irq;
-> +
-> +		ret = devm_request_irq(&pdev->dev, d->irq, dma_interrupt,
-> +				       0, DRIVER_NAME, d);
-> +		if (ret)
-> +			return ret;
-> +
-> +		d->wq = alloc_ordered_workqueue("dma_wq", WQ_MEM_RECLAIM |
-> +						WQ_HIGHPRI);
-> +		if (!d->wq)
-> +			return -ENOMEM;
-> +	}
-
-...
-
-> +	for (i = 0; i < d->port_nrs; i++) {
-> +		p = &d->ports[i];
-> +		p->portid = i;
-> +		p->ldev = d;
-
-> +		for (j = 0; j < d->chan_nrs && d->ver != DMA_VER22; j++)
-> +			c = &d->chans[j];
-
-What's going on here?
-
-> +	}
-
-...
-
-> +	for (i = 0; i < d->chan_nrs; i++) {
-> +		if (d->ver == DMA_VER22) {
-
-Split...
-
-> +			if (!(d->channels_mask & BIT(i)))
-> +				continue;
-
-...and obviously for_each_set_bit().
-
-> +			c = &d->chans[i];
-> +			c->nr = i; /* Real channel number */
-> +			c->rst = DMA_CHAN_RST;
-> +			snprintf(c->name, sizeof(c->name), "chan%d",
-> +				 c->nr);
-> +			INIT_WORK(&c->work, dma_work);
-> +			c->vchan.desc_free = dma_free_desc_resource;
-> +			vchan_init(&c->vchan, dma_dev);
-> +		} else {
-> +			c = &d->chans[i];
-> +			c->data_endian = DMA_DFT_ENDIAN;
-> +			c->desc_endian = DMA_DFT_ENDIAN;
-> +			c->data_endian_en = false;
-> +			c->desc_endian_en = false;
-> +			c->desc_rx_np = false;
-> +			c->flags |= DEVICE_ALLOC_DESC;
-> +			c->onoff = DMA_CH_OFF;
-> +			c->rst = DMA_CHAN_RST;
-> +			c->abc_en = true;
-> +			c->nr = i;
-> +			c->vchan.desc_free = dma_free_desc_resource;
-> +			vchan_init(&c->vchan, dma_dev);
-> +		}
-> +	}
-
-...
-
-> +static int __init intel_ldma_init(void)
-> +{
-> +	return platform_driver_register(&intel_ldma_driver);
-> +}
-> +
-> +device_initcall(intel_ldma_init);
-
-Each _initcall() in general should be explained.
-
-...
-
-> +#include <linux/dmaengine.h>
-
-I don't see how it's used
-
-struct dma_chan;
-
-should be enough.
-
-> +/*!
-> + * \fn int intel_dma_chan_desc_cfg(struct dma_chan *chan, dma_addr_t desc_base,
-> + *                                 int desc_num)
-> + * \brief Configure low level channel descriptors
-> + * \param[in] chan   pointer to DMA channel that the client is using
-> + * \param[in] desc_base   descriptor base physical address
-> + * \param[in] desc_num   number of descriptors
-> + * \return   0 on success
-> + * \return   kernel bug reported on failure
-> + *
-> + * This function configure the low level channel descriptors. It will be
-> + * used by CBM whose descriptor is not DDR, actually some registers.
-> + */
-> +int intel_dma_chan_desc_cfg(struct dma_chan *chan, dma_addr_t desc_base,
-> +			    int desc_num);
-
--- 
-With Best Regards,
-Andy Shevchenko
+No problem!
+
+> > > 
+> > >  .../iio/proximity/semtech,sx9310.yaml         | 182 ++++++++++++++++++
+> > >  1 file changed, 182 insertions(+)
+> > > 
+> > > diff --git a/Documentation/devicetree/bindings/iio/proximity/semtech,sx9310.yaml b/Documentation/devicetree/bindings/iio/proximity/semtech,sx9310.yaml
+> > > index 5739074d3592..e74b81483c14 100644
+> > > --- a/Documentation/devicetree/bindings/iio/proximity/semtech,sx9310.yaml
+> > > +++ b/Documentation/devicetree/bindings/iio/proximity/semtech,sx9310.yaml
+> > > @@ -40,6 +40,169 @@ properties:
+> > >    "#io-channel-cells":
+> > >      const: 1
+> > >  
+> > > +  semtech,cs0-ground:
+> > > +    description: Indicates the CS0 sensor is connected to ground.
+> > > +    type: boolean  
+> > 
+> > This one is probably fine. I can't think of a similar interface we need
+> > to match, but maybe Rob or someone else will have a suggestion.  
+> 
+> Ok.
+> 
+> >   
+> > > +
+> > > +  semtech,combined-sensors:
+> > > +    allOf:
+> > > +      - $ref: /schemas/types.yaml#definitions/uint32
+> > > +      - enum: [0, 1, 2, 3]
+> > > +    default: 0
+> > > +    description:
+> > > +      Which sensors are combined. 0 for CS3, 1 for CS0+CS1, 2 for CS1+CS2,
+> > > +      and 3 for all sensors.  
+> > 
+> > Make it clear in this description what 'combined' means.
+> > Also, I think this would be better as a set of values with an anyOf match to say
+> > <3>
+> > <0>, <1> 
+> > <1>, <2> 
+> > <1>, <2>, <3>
+> > 
+> > Fine to insist they are in numeric order.  
+> 
+> Ok, sure. I can make it a list of sensor numbers.
+> 
+> >   
+> > > +
+> > > +  semtech,cs0-gain-factor:
+> > > +    allOf:
+> > > +      - $ref: /schemas/types.yaml#definitions/uint32
+> > > +      - enum: [1, 2, 4, 8]
+> > > +    default: 1
+> > > +    description:
+> > > +      Gain factor for CS0 (and combined if any) sensor.  
+> > 
+> > Why is this something that should be in DT as opposed to via
+> > a userspace control?  We have hardwaregain for this purpose (I think)  
+> 
+> Thanks I'm not aware of hardwaregain. That looks like it should work.
+> 
+> > 
+> > Also we mostly use child nodes to allow us to specify characteristics
+> > of individual channels.  
+> 
+> Got it.
+> 
+> >   
+> > > +
+> > > +  semtech,cs1-gain-factor:
+> > > +    allOf:
+> > > +      - $ref: /schemas/types.yaml#definitions/uint32
+> > > +      - enum: [1, 2, 4, 8]
+> > > +    default: 1
+> > > +    description:
+> > > +      Gain factor for CS1 sensor.
+> > > +
+> > > +  semtech,cs2-gain-factor:
+> > > +    allOf:
+> > > +      - $ref: /schemas/types.yaml#definitions/uint32
+> > > +      - enum: [1, 2, 4, 8]
+> > > +    default: 1
+> > > +    description:
+> > > +      Gain factor for CS2 sensor.
+> > > +
+> > > +  semtech,resolution:
+> > > +    description:
+> > > +      Capacitance measure resolution.
+> > > +    enum:
+> > > +      - coarsest
+> > > +      - very-coarse
+> > > +      - coarse
+> > > +      - medium-coarse
+> > > +      - medium
+> > > +      - fine
+> > > +      - very-fine
+> > > +      - finest  
+> > I'd normally be very against cases like this where we have something that
+> > feels like it should have a clear definition rather than a random wordy scale
+> > but these are all the information I can find in the datasheet.
+> > 
+> > I would suggest adding a specific reference to the datasheet for this one.  
+> 
+> Are you saying description should say:
+> 
+> Capacitance measure resolution. Refer to datasheet for more details.
+
+Yes, basically we are saying we can't provide documentation here that is
+sufficiently detailed.  (Mostly because the datasheet doesn't really do so
+either) Hence, we aren't going to try.  Normally I hate this sort of
+poor local documentation but I can't see what else we can do here given
+all we have is those names.
+
+> 
+> ?
+> 
+> >   
+> > > +
+> > > +  semtech,startup-sensor:
+> > > +    allOf:
+> > > +      - $ref: /schemas/types.yaml#definitions/uint32
+> > > +      - enum: [0, 1, 2, 3]
+> > > +    default: 0
+> > > +    description:
+> > > +      Sensor used for start-up proximity detection. The combined
+> > > +      sensor is represented by 3.  
+> > 
+> > This feels like it should be a userspace control rather than in DT?  
+> 
+> I believe this is used during initial compensation, so it needs to be
+> set before sx9310_init_compensation() runs at probe time. Probably can't
+> be moved to userspace.
+
+Add that detail to the description here.
+
+> 
+> >   
+> > > +
+> > > +  semtech,proxraw-strength:
+> > > +    allOf:
+> > > +      - $ref: /schemas/types.yaml#definitions/uint32
+> > > +      - enum: [0, 2, 4, 8]
+> > > +    default: 2
+> > > +    description:
+> > > +      PROXRAW filter strength. A value of 0 represents off, and other values
+> > > +      represent 1-1/N.  
+> > 
+> > Having looked at the datasheet I have little or now idea of what this filter
+> > actually is.  However, what is the argument for it being in DT rather than
+> > exposing a userspace control of some type.  
+> 
+> I only see this equation in the datasheet
+> 
+> F(PROXRAW ; PROXUSEFUL[n-1] ; RAWFILT) = (1 - RAWFILT).PROXRAW + RAWFILT.PROXUSEFUL[n-1] 
+> 
+> and it's talking about updating PROXUSEFUL. "PROXUSEFUL update consists
+> of filtering PROXRAW upfront to remove its high frequencies components".
+> So presumably this filter is used to make proxraw into proxuseful so
+> that it is a meaningful number. Is this a new knob in userspace?
+
+It might fit with the various filter definitions, but there is so little info
+it is hard to map it across.   Perhaps DT is the best we can do here even
+though it would ideally be controlled from userspace.
+
+> 
+> >   
+> > > +
+> > > +  semtech,compensate-common:
+> > > +    description: Any sensor triggers compensation of all channels.
+> > > +    type: boolean  
+> > 
+> > Compensation for what?  
+> 
+> This is for RegProxCtrl6 bit 6 AVGCOMPMETHOD. 
+> 
+> 	Defines the average compensation method:
+> 
+> 	0: Individual. Each sensor triggers only its own compensation
+> 	1: Common. Any sensor triggers compensation of all channels. 
+> 
+> I believe this is for the offset compensation.
+
+I wonder if anyone will actually care which choice we make on that?
+Perhaps just pick one and don't make it controllable?
+
+Reading that it sounds like a control that is there because it was easy
+to do in hardware rather than necessarily making any sense from
+a usecase point of view.  Do we have any info on how it is used?
+
+> 
+> >   
+> > > +
+> > > +  semtech,avg-pos-strength:
+> > > +    allOf:
+> > > +      - $ref: /schemas/types.yaml#definitions/uint32
+> > > +      - enum: [0, 16, 64, 128, 256, 512, 1024, 4294967295]
+> > > +    default: 16
+> > > +    description:
+> > > +      Average positive filter strength. A value of 0 represents off and
+> > > +      UINT_MAX (4294967295) represents infinite. Other values
+> > > +      represent 1-1/N.  
+> > 
+> > I'm not sure about using UINT_MAX to represent infinity. Rob any thoughts on
+> > this?
+> > 
+> > Again, why does it make sense to have the filter controls in DT?  
+> 
+> Is there an IIO property for this? Seems OK to move it to userspace.
+
+I'm not sure enough of what it means, but we have filter controls in
+terms of 3db point and oversampling. If you can figure out a match to
+those or something that seems more generic than the above to propose
+as new ABI that would be great.
+
+> 
+> > 
+> >   
+> > > +
+> > > +  semtech,cs0-prox-threshold:
+> > > +    allOf:
+> > > +      - $ref: /schemas/types.yaml#definitions/uint32
+> > > +      - enum: [2, 4, 6, 8, 12, 16, 20, 24, 28, 32, 40,
+> > > +               48, 56, 64, 72, 80, 88, 96, 112, 128, 144,
+> > > +               160, 192, 224, 256, 320, 384, 512, 640,
+> > > +               768, 1024, 1536]
+> > > +    default: 12
+> > > +    description:
+> > > +      Proximity detection threshold for CS0 (and combined if any) sensor.  
+> > 
+> > That is definitely a userspace thing. Why would you put it in DT?
+> > Also same comment as above for channels as child nodes  
+> 
+> Alright. Presumably this is IIO_EV_TYPE_THRESH?
+
+Yes.
+
+> 
+> >   
+> > > +
+> > > +  semtech,cs1-prox-threshold:
+> > > +    allOf:
+> > > +      - $ref: /schemas/types.yaml#definitions/uint32
+> > > +      - enum: [2, 4, 6, 8, 12, 16, 20, 24, 28, 32, 40,
+> > > +               48, 56, 64, 72, 80, 88, 96, 112, 128, 144,
+> > > +               160, 192, 224, 256, 320, 384, 512, 640,
+> > > +               768, 1024, 1536]
+> > > +    default: 12
+> > > +    description:
+> > > +      Proximity detection threshold for CS1 sensor.
+> > > +
+> > > +  semtech,cs2-prox-threshold:
+> > > +    allOf:
+> > > +      - $ref: /schemas/types.yaml#definitions/uint32
+> > > +      - enum: [2, 4, 6, 8, 12, 16, 20, 24, 28, 32, 40,
+> > > +               48, 56, 64, 72, 80, 88, 96, 112, 128, 144,
+> > > +               160, 192, 224, 256, 320, 384, 512, 640,
+> > > +               768, 1024, 1536]
+> > > +    default: 12
+> > > +    description:
+> > > +      Proximity detection threshold for CS2 sensor.
+> > > +
+> > > +  semtech,cs0-body-threshold:
+> > > +    allOf:
+> > > +      - $ref: /schemas/types.yaml#definitions/uint32
+> > > +      - enum: [0, 300, 600, 900, 1200, 1500, 1800, 30000]
+> > > +    default: 1800
+> > > +    description:
+> > > +      Body detection threshold for CS0 (and combined if any) sensor.  
+> > 
+> > As before, why DT plus child nodes  
+> 
+> How should I differentiate body vs. proximity thresholds in userspace?
+> Or should I make it /sys/.../events/in_proximity0_thresh_falling_value
+> vs. /sys/.../events/in_proximity0_thresh_rising_value?
+
+I'm not sure what they actually are. A problem with IIO that may be relevant
+is that we have never supported multiple events of the same type for a channel.
+Unfortunately that is hard to change now as we'd have to redefine the event
+codes.
+
+It feels like these are potentially a bit smarter however. If they are we
+could handle them as a different event type.  Or potentially an event
+on a different channel (arguably they are some result of some sort of
+processing of more than a simple single value).  There is a patent but I've
+not read it in detail.
+
+> 
+> >   
+> > > +
+> > > +  semtech,cs1-body-threshold:
+> > > +    allOf:
+> > > +      - $ref: /schemas/types.yaml#definitions/uint32
+> > > +      - enum: [0, 300, 600, 900, 1200, 1500, 1800, 30000]
+> > > +    default: 12
+> > > +    description:
+> > > +      Body detection threshold for CS1 sensor.
+> > > +
+> > > +  semtech,cs2-body-threshold:
+> > > +    allOf:
+> > > +      - $ref: /schemas/types.yaml#definitions/uint32
+> > > +      - enum: [0, 300, 600, 900, 1200, 1500, 1800, 30000]
+> > > +    default: 12
+> > > +    description:
+> > > +      Body detection threshold for CS2 sensor.
+> > > +
+> > > +  semtech,hysteresis:
+> > > +    allOf:
+> > > +      - $ref: /schemas/types.yaml#definitions/uint32
+> > > +      - enum: [0, 6, 12, 25]
+> > > +    default: 0
+> > > +    description:
+> > > +      The percentage of hysteresis +/- applied to proximity/body samples.  
+> > 
+> > Is this hysteresis on an event?  If so we have defined ABI to control that
+> > from userspace, though as an absolute value rather than a precentage so some
+> > magic will be needed.  Hysteresis is usually defined only the 'not event'
+> > direction rather than +/-  
+> 
+> Is this IIO_EV_INFO_HYSTERESIS? It looks like it is applied to the
+> threshold by shifting it right by 4, 3, or 2. I think the +/- is
+> actually dependent on the RegProxCtrl10 bit 6 FARCOND value, so maybe
+> that isn't a problem. We could make another value like hysteresis shift
+> or hysteresis percentage?
+
+I'd rather avoid extra ABI if we can make it work as it stands, even if it
+is a little involved to do so.  Extra ABI just means we end up with more
+incompatible userspace code over time.
+
+> 
+> >   
+> > > +
+> > > +  semtech,close-debounce-samples:
+> > > +    allOf:
+> > > +      - $ref: /schemas/types.yaml#definitions/uint32
+> > > +      - enum: [0, 2, 4, 8]
+> > > +    default: 0
+> > > +    description:
+> > > +      The number of close samples debounced for proximity/body thresholds.  
+> > 
+> > This feels like something that has more to do with the object motion than
+> > the sensor setup, so perhaps should be controlled from userspace?  
+> 
+> Sure. Is there an IIO sample property? Or I should make a custom
+> knob for this?
+
+It's kind of close to in_proximity0_thresh_period and that may be how they
+have implemented it.
+
+That control specifies a number of samples for which a condition should be true
+before it is reported.
+
+> 
+> >   
+> > > +
+> > > +  semtech,far-debounce-samples:
+> > > +    allOf:
+> > > +      - $ref: /schemas/types.yaml#definitions/uint32
+> > > +      - enum: [0, 2, 4, 8]
+> > > +    default: 0
+> > > +    description:
+> > > +      The number of far samples debounced for proximity/body thresholds.
+> > > +
+> > >  required:
+> > >    - compatible
+> > >    - reg  
 
 
