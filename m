@@ -2,15 +2,15 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from vger.kernel.org (vger.kernel.org [23.128.96.18])
-	by mail.lfdr.de (Postfix) with ESMTP id 96C582633D8
-	for <lists+devicetree@lfdr.de>; Wed,  9 Sep 2020 19:11:22 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTP id 43401263402
+	for <lists+devicetree@lfdr.de>; Wed,  9 Sep 2020 19:13:08 +0200 (CEST)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S1730317AbgIIRLL (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Wed, 9 Sep 2020 13:11:11 -0400
-Received: from a27-10.smtp-out.us-west-2.amazonses.com ([54.240.27.10]:42810
+        id S1726426AbgIIRNE (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Wed, 9 Sep 2020 13:13:04 -0400
+Received: from a27-10.smtp-out.us-west-2.amazonses.com ([54.240.27.10]:41578
         "EHLO a27-10.smtp-out.us-west-2.amazonses.com" rhost-flags-OK-OK-OK-OK)
-        by vger.kernel.org with ESMTP id S1730307AbgIIPds (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Wed, 9 Sep 2020 11:33:48 -0400
+        by vger.kernel.org with ESMTP id S1730273AbgIIPcY (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Wed, 9 Sep 2020 11:32:24 -0400
 DKIM-Signature: v=1; a=rsa-sha256; q=dns/txt; c=relaxed/simple;
         s=zsmsymrwgfyinv5wlfyidntwsjeeldzt; d=codeaurora.org; t=1599661184;
         h=MIME-Version:Content-Type:Content-Transfer-Encoding:Date:From:To:Cc:Subject:In-Reply-To:References:Message-ID;
