@@ -2,249 +2,96 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from vger.kernel.org (vger.kernel.org [23.128.96.18])
-	by mail.lfdr.de (Postfix) with ESMTP id C46632638C6
-	for <lists+devicetree@lfdr.de>; Wed,  9 Sep 2020 23:58:26 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTP id 391E1263906
+	for <lists+devicetree@lfdr.de>; Thu, 10 Sep 2020 00:29:38 +0200 (CEST)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S1726976AbgIIV6Z convert rfc822-to-8bit (ORCPT
-        <rfc822;lists+devicetree@lfdr.de>); Wed, 9 Sep 2020 17:58:25 -0400
-Received: from lindbergh.monkeyblade.net ([23.128.96.19]:51200 "EHLO
-        lindbergh.monkeyblade.net" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S1726226AbgIIV6Y (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Wed, 9 Sep 2020 17:58:24 -0400
-X-Greylist: delayed 3047 seconds by postgrey-1.37 at lindbergh.monkeyblade.net; Wed, 09 Sep 2020 14:58:22 PDT
-Received: from mail.nic.cz (lists.nic.cz [IPv6:2001:1488:800:400::400])
-        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 6AF0CC061573;
-        Wed,  9 Sep 2020 14:58:21 -0700 (PDT)
-Received: from localhost (unknown [IPv6:2a0e:b107:ae1:0:3e97:eff:fe61:c680])
-        by mail.nic.cz (Postfix) with ESMTPSA id 61832140A26;
-        Wed,  9 Sep 2020 23:58:19 +0200 (CEST)
-Date:   Wed, 9 Sep 2020 23:58:19 +0200
-From:   Marek Behun <marek.behun@nic.cz>
-To:     Rob Herring <robh@kernel.org>
-Cc:     netdev@vger.kernel.org, linux-leds@vger.kernel.org,
-        Pavel Machek <pavel@ucw.cz>, Dan Murphy <dmurphy@ti.com>,
-        =?UTF-8?B?T25kxZllag==?= Jirman <megous@megous.com>,
-        Russell King <linux@armlinux.org.uk>,
-        Andrew Lunn <andrew@lunn.ch>, linux-kernel@vger.kernel.org,
-        Matthias Schiffer <matthias.schiffer@ew.tq-group.com>,
-        "David S. Miller" <davem@davemloft.net>, devicetree@vger.kernel.org
-Subject: Re: [PATCH net-next + leds v2 1/7] dt-bindings: leds: document
- binding for HW controlled LEDs
-Message-ID: <20200909235819.0b0fe7ce@nic.cz>
-In-Reply-To: <20200909211552.GA3066273@bogus>
-References: <20200909162552.11032-1-marek.behun@nic.cz>
-        <20200909162552.11032-2-marek.behun@nic.cz>
-        <20200909211552.GA3066273@bogus>
-X-Mailer: Claws Mail 3.17.6 (GTK+ 2.24.32; x86_64-pc-linux-gnu)
+        id S1729413AbgIIW3J (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Wed, 9 Sep 2020 18:29:09 -0400
+Received: from mx0b-001b2d01.pphosted.com ([148.163.158.5]:32396 "EHLO
+        mx0b-001b2d01.pphosted.com" rhost-flags-OK-OK-OK-OK)
+        by vger.kernel.org with ESMTP id S1727782AbgIIW3I (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Wed, 9 Sep 2020 18:29:08 -0400
+Received: from pps.filterd (m0098417.ppops.net [127.0.0.1])
+        by mx0a-001b2d01.pphosted.com (8.16.0.42/8.16.0.42) with SMTP id 089MRYK2097724;
+        Wed, 9 Sep 2020 18:29:00 -0400
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=ibm.com; h=from : to : cc : subject
+ : date : message-id : mime-version : content-transfer-encoding; s=pp1;
+ bh=IkJ80Y1POR7TpH9syCU5eT96eUJswMK1blGxXzjoJQk=;
+ b=g6M/FfgKHiaf6Fj722WB3LNtIsYbOWU+4mHHC5ZYBCoiOVx4X9uvCmX1o3zsEIfWofvv
+ re6PP5lqEgpSP6vpvPAfbiQxwlSdZFe2Xs51Xoxnws4I6Uqnsy9FoQdIvlLV5s5GA6Gp
+ 8wxwJQzb0Y5CT2F3gbZaUTv5QXpMj0qTb7/3xByZa0zKhYUHhYtZSOx92T2NRPuV1yaY
+ gReGqEN1czspBF66w5w7bMRaxFFoVh7LnZTD4lYrIxF54ed14TsMhXKQaEmVoKaMD7dN
+ HcXzORrkN3kR7KK5UGdl1Liwwq+sHRTpDozAsVYD8XAvBmKn3E1g+I1HpfcdNJ2OJKy5 FQ== 
+Received: from ppma05wdc.us.ibm.com (1b.90.2fa9.ip4.static.sl-reverse.com [169.47.144.27])
+        by mx0a-001b2d01.pphosted.com with ESMTP id 33f7v5810r-1
+        (version=TLSv1.2 cipher=ECDHE-RSA-AES256-GCM-SHA384 bits=256 verify=NOT);
+        Wed, 09 Sep 2020 18:29:00 -0400
+Received: from pps.filterd (ppma05wdc.us.ibm.com [127.0.0.1])
+        by ppma05wdc.us.ibm.com (8.16.0.42/8.16.0.42) with SMTP id 089MRU5Q012722;
+        Wed, 9 Sep 2020 22:29:00 GMT
+Received: from b03cxnp08027.gho.boulder.ibm.com (b03cxnp08027.gho.boulder.ibm.com [9.17.130.19])
+        by ppma05wdc.us.ibm.com with ESMTP id 33c2a9arc8-1
+        (version=TLSv1.2 cipher=ECDHE-RSA-AES256-GCM-SHA384 bits=256 verify=NOT);
+        Wed, 09 Sep 2020 22:28:59 +0000
+Received: from b03ledav002.gho.boulder.ibm.com (b03ledav002.gho.boulder.ibm.com [9.17.130.233])
+        by b03cxnp08027.gho.boulder.ibm.com (8.14.9/8.14.9/NCO v10.0) with ESMTP id 089MStWd37028442
+        (version=TLSv1/SSLv3 cipher=DHE-RSA-AES256-GCM-SHA384 bits=256 verify=OK);
+        Wed, 9 Sep 2020 22:28:55 GMT
+Received: from b03ledav002.gho.boulder.ibm.com (unknown [127.0.0.1])
+        by IMSVA (Postfix) with ESMTP id DB7EB136053;
+        Wed,  9 Sep 2020 22:28:58 +0000 (GMT)
+Received: from b03ledav002.gho.boulder.ibm.com (unknown [127.0.0.1])
+        by IMSVA (Postfix) with ESMTP id 610BB136055;
+        Wed,  9 Sep 2020 22:28:58 +0000 (GMT)
+Received: from SHADE6A.ibmuc.com (unknown [9.163.76.239])
+        by b03ledav002.gho.boulder.ibm.com (Postfix) with ESMTP;
+        Wed,  9 Sep 2020 22:28:58 +0000 (GMT)
+From:   Eddie James <eajames@linux.ibm.com>
+To:     linux-spi@vger.kernel.org
+Cc:     linux-kernel@vger.kernel.org, devicetree@vger.kernel.org,
+        joel@jms.id.au, broonie@kernel.org, bradleyb@fuzziesquirrel.com,
+        robh+dt@kernel.org, arnd@arndb.de, eajames@linux.ibm.com
+Subject: [PATCH v2 0/6] spi: Fixes for FSI-attached controller
+Date:   Wed,  9 Sep 2020 17:28:51 -0500
+Message-Id: <20200909222857.28653-1-eajames@linux.ibm.com>
+X-Mailer: git-send-email 2.26.2
 MIME-Version: 1.0
-Content-Type: text/plain; charset=UTF-8
-Content-Transfer-Encoding: 8BIT
-X-Spam-Status: No, score=-100.0 required=5.9 tests=SHORTCIRCUIT,
-        USER_IN_WELCOMELIST,USER_IN_WHITELIST shortcircuit=ham
-        autolearn=disabled version=3.4.2
-X-Spam-Checker-Version: SpamAssassin 3.4.2 (2018-09-13) on mail.nic.cz
-X-Virus-Scanned: clamav-milter 0.102.2 at mail
-X-Virus-Status: Clean
+Content-Transfer-Encoding: 8bit
+X-TM-AS-GCONF: 00
+X-Proofpoint-Virus-Version: vendor=fsecure engine=2.50.10434:6.0.235,18.0.687
+ definitions=2020-09-09_17:2020-09-09,2020-09-09 signatures=0
+X-Proofpoint-Spam-Details: rule=outbound_notspam policy=outbound score=0 lowpriorityscore=0
+ clxscore=1015 mlxscore=0 suspectscore=1 mlxlogscore=764 priorityscore=1501
+ malwarescore=0 impostorscore=0 adultscore=0 spamscore=0 phishscore=0
+ bulkscore=0 classifier=spam adjust=0 reason=mlx scancount=1
+ engine=8.12.0-2006250000 definitions=main-2009090189
 Sender: devicetree-owner@vger.kernel.org
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-On Wed, 9 Sep 2020 15:15:52 -0600
-Rob Herring <robh@kernel.org> wrote:
+This series implements a number of fixes for the FSI-attached SPI
+controller driver.
 
-> On Wed, Sep 09, 2020 at 06:25:46PM +0200, Marek Behún wrote:
-> > Document binding for LEDs connected to and controlled by various chips
-> > (such as ethernet PHY chips).  
-> 
-> If they are h/w controlled, then why are they in DT?
+Changes since v1:
+ - Switch to a new compatible string for the restricted version of the
+   SPI controller, rather than a new boolean parameter.
 
-The idea is that by default these LEDs are in some specific HW control
-mode (the chip default), but the chip supports various HW control
-modes, and also supports SW control.
-For example on Marvell PHYs there is a 4-bit register for each LED, so
-16 values, and some of them are:
-  0000: On - Receive
-        Off - No receive
-  0001: On - Link
-        Blink - Activity
-        Off - No Link
-  ...
-  0101: On - 100Mbps or Fiber Link
-        Off - Else
-  ...
-  1000: Force Off
-  1001: Force On
-  ...
-  1011: Force Blink
+Brad Bishop (3):
+  spi: fsi: Handle 9 to 15 byte transfers lengths
+  spi: fsi: Fix clock running too fast
+  spi: fsi: Fix use of the bneq+ sequencer instruction
 
-So writing 0x8 disables the LED, 0x9 enabled it (SW control via
-/sys/class/leds/<LED>/brightness), other values change the HW control
-mode (in this proposal /sys/class/leds/<LED>/hw_mode when trigger is
-set to dev-hw-mode).
+Eddie James (3):
+  dt-bindings: fsi: fsi2spi: Add compatible string for restricted
+    version
+  spi: fsi: Implement restricted size for certain controllers
+  spi: fsi: Check mux status before transfers
 
-> > 
-> > Signed-off-by: Marek Behún <marek.behun@nic.cz>
-> > Cc: Rob Herring <robh+dt@kernel.org>
-> > Cc: devicetree@vger.kernel.org
-> > ---
-> >  .../leds/linux,hw-controlled-leds.yaml        | 99 +++++++++++++++++++
-> >  1 file changed, 99 insertions(+)
-> >  create mode 100644 Documentation/devicetree/bindings/leds/linux,hw-controlled-leds.yaml
-> > 
-> > diff --git a/Documentation/devicetree/bindings/leds/linux,hw-controlled-leds.yaml b/Documentation/devicetree/bindings/leds/linux,hw-controlled-leds.yaml
-> > new file mode 100644
-> > index 0000000000000..eaf6e5d80c5f5
-> > --- /dev/null
-> > +++ b/Documentation/devicetree/bindings/leds/linux,hw-controlled-leds.yaml
-> > @@ -0,0 +1,99 @@
-> > +# SPDX-License-Identifier: GPL-2.0-only OR BSD-2-Clause
-> > +%YAML 1.2
-> > +---
-> > +$id: http://devicetree.org/schemas/leds/linux,hw-controlled-leds.yaml#
-> > +$schema: http://devicetree.org/meta-schemas/core.yaml#
-> > +
-> > +title: LEDs that can be controlled by hardware (eg. by an ethernet PHY chip)
-> > +
-> > +maintainers:
-> > +  - Marek Behún <marek.behun@nic.cz>
-> > +
-> > +description:
-> > +  Many an ethernet PHY (and other chips) supports various HW control modes
-> > +  for LEDs connected directly to them. With this binding such LEDs can be
-> > +  described.
-> > +
-> > +properties:
-> > +  compatible:
-> > +    const: linux,hw-controlled-leds  
-> 
-> What makes this linux specific?
-> 
-> Unless you're going to make this h/w specific, then it probably should 
-> just be dropped. 
-> 
+ .../devicetree/bindings/fsi/ibm,fsi2spi.yaml  |   1 +
+ drivers/spi/spi-fsi.c                         | 139 ++++++++++++++----
+ 2 files changed, 109 insertions(+), 31 deletions(-)
 
-Will do, thanks.
-
-> The phy schema will need:
-> 
-> leds:
->   type: object
->   $ref: /schemas/leds/hw-controlled-leds.yaml#
-> 
-> > +
-> > +  "#address-cells":
-> > +    const: 1
-> > +
-> > +  "#size-cells":
-> > +    const: 0
-> > +
-> > +patternProperties:
-> > +  "^led@[0-9a-f]+$":
-> > +    type: object
-> > +    allOf:
-> > +      - $ref: common.yaml#
-> > +    description:
-> > +      This node represents a LED device connected to a chip that can control
-> > +      the LED in various HW controlled modes.
-> > +
-> > +    properties:
-> > +      reg:
-> > +        maxItems: 1
-> > +        description:
-> > +          This property identifies the LED to the chip the LED is connected to
-> > +          (eg. an ethernet PHY chip can have multiple LEDs connected to it).
-> > +
-> > +      enable-active-high:
-> > +        description:
-> > +          Polarity of LED is active high. If missing, assumed default is active
-> > +          low.
-> > +        type: boolean
-> > +
-> > +      led-tristate:
-> > +        description:
-> > +          LED pin is tristate type. If missing, assumed false.
-> > +        type: boolean
-> > +
-> > +      linux,default-hw-mode:  
-> 
-> How is this linux specific? It sounds device specific. Your choice is 
-> make this a device specific property with device specific values or come 
-> up with generic modes.
-
-I was inspired by `linux,default-trigger` and `linux,keycode`
-properties...
- 
-> Perhaps 'function' should be expanded.
-
-The thing is that `function` is now used for creating LED device name.
-I was not aware that `linux,default-trigger` is deprecated
-Perhaps this should be discussed with Pavel as well.
-But of course from the perspective that DT should be independent from
-Linux, you are right.
-I fear this will be quite a pain to resolve...
-
-> > +        description:
-> > +          This parameter, if present, specifies the default HW triggering mode
-> > +          of the LED when LED trigger is set to `dev-hw-mode`.
-> > +          Available values are specific per device the LED is connected to and
-> > +          per LED itself.
-> > +        $ref: /schemas/types.yaml#definitions/string
-> > +
-> > +    required:
-> > +      - reg
-> > +
-> > +additionalProperties: false
-> > +
-> > +examples:
-> > +  - |
-> > +
-> > +    #include <dt-bindings/leds/common.h>
-> > +
-> > +    ethernet-phy@0 {
-> > +        compatible = "ethernet-phy-ieee802.3-c45";
-> > +        reg = <0>;
-> > +
-> > +        leds {
-> > +            compatible = "linux,hw-controlled-leds";
-> > +            #address-cells = <1>;
-> > +            #size-cells = <0>;
-> > +
-> > +            led@0 {
-> > +                reg = <0>;
-> > +                color = <LED_COLOR_ID_GREEN>;
-> > +                function = <LED_FUNCTION_STATUS>;  
-> 
-> Reading the description of LED_FUNCTION_STATUS doesn't align with how 
-> you are using it. Think of it as user alert/notification.
-> 
-> > +                linux,default-trigger = "dev-hw-mode";  
-> 
-> This is deprecated in favor of 'function'.
-
-As written above, this is not how the LED subsystem currently works.
-Nor is the deprecation documented.
-
-Currently `function` is used to create LED device name in the form
-`device:color:function` or `device:color:function-N` if
-`function-enumerator` is also set.
-
-> 
-> > +                linux,default-hw-mode = "1Gbps";
-> > +            };
-> > +
-> > +            led@1 {
-> > +                reg = <1>;
-> > +                color = <LED_COLOR_ID_YELLOW>;
-> > +                function = <LED_FUNCTION_ACTIVITY>;
-> > +                linux,default-trigger = "dev-hw-mode";
-> > +                linux,default-hw-mode = "activity";
-> > +            };
-> > +        };
-> > +    };
-> > +
-> > +...
-> > -- 
-> > 2.26.2
-> >   
+-- 
+2.26.2
 
