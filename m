@@ -2,100 +2,87 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from vger.kernel.org (vger.kernel.org [23.128.96.18])
-	by mail.lfdr.de (Postfix) with ESMTP id 1F5CB2637A1
-	for <lists+devicetree@lfdr.de>; Wed,  9 Sep 2020 22:43:45 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTP id 245B82637AB
+	for <lists+devicetree@lfdr.de>; Wed,  9 Sep 2020 22:44:37 +0200 (CEST)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S1727900AbgIIUnn (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Wed, 9 Sep 2020 16:43:43 -0400
-Received: from mail-il1-f195.google.com ([209.85.166.195]:43918 "EHLO
-        mail-il1-f195.google.com" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S1726440AbgIIUnn (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Wed, 9 Sep 2020 16:43:43 -0400
-Received: by mail-il1-f195.google.com with SMTP id m1so3628290ilj.10;
-        Wed, 09 Sep 2020 13:43:42 -0700 (PDT)
-X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=1e100.net; s=20161025;
-        h=x-gm-message-state:date:from:to:cc:subject:message-id:references
-         :mime-version:content-disposition:in-reply-to;
-        bh=BvEuTgm2IZoHBm+jPm4TdnWSuIpSZHMUsLkTxZ2He2I=;
-        b=p6in/OdRq2CW+XnLtNM9L/rEUzizgQIjYzMeqWAXiyhMiC3VyOUbMA8ZBqamSGkC5S
-         pxsAqxZg7ORAPOnfVU/A+Wp/FCx5sHP10UzMl/8sk9oudHQE0NLVGoclq1WF7EZF9NZg
-         yylHqumeVUtQ/fuGL02fc+7xmcEZMR0eVZpWxF1xKpeqmEmx2NzTvsJ31F339ydvM+1Y
-         QWk/avNtWkh2RXknHfxWzrxgWHYkin/t5K8PgK7UAU3wi5SVZe9nVSQZ0joBwbW0FD6c
-         DpsGt0TEbC/xUQTkF7Yp/a8g3oBAesfqoY5JGksiq8IigrP6iOlxb6AsSal8Xx4OacuF
-         7Ylw==
-X-Gm-Message-State: AOAM532iUPGSQiLY26DEekDZM7D9ttIVQltFgimU7iJz5LtuKKPUujl3
-        3Fe9AnjlOl9WTtVG68wwOQ==
-X-Google-Smtp-Source: ABdhPJy4rTKJaPZ/jWpOVJ4cgZzmcFL0VsJJo+wB8OY1va7sQv3j1LxWb/8BcCQh8lOkrHj8o37atg==
-X-Received: by 2002:a05:6e02:685:: with SMTP id o5mr5246688ils.72.1599684221973;
-        Wed, 09 Sep 2020 13:43:41 -0700 (PDT)
-Received: from xps15 ([64.188.179.251])
-        by smtp.gmail.com with ESMTPSA id a21sm1677462ioh.12.2020.09.09.13.43.34
-        (version=TLS1_3 cipher=TLS_AES_256_GCM_SHA384 bits=256/256);
-        Wed, 09 Sep 2020 13:43:41 -0700 (PDT)
-Received: (nullmailer pid 3044856 invoked by uid 1000);
-        Wed, 09 Sep 2020 20:43:31 -0000
-Date:   Wed, 9 Sep 2020 14:43:31 -0600
-From:   Rob Herring <robh@kernel.org>
-To:     "Robert Chiras (OSS)" <robert.chiras@oss.nxp.com>
-Cc:     Andrzej Hajda <a.hajda@samsung.com>,
-        Neil Armstrong <narmstrong@baylibre.com>,
-        Laurent Pinchart <Laurent.pinchart@ideasonboard.com>,
-        Jonas Karlman <jonas@kwiboo.se>,
-        Jernej Skrabec <jernej.skrabec@siol.net>,
-        Sam Ravnborg <sam@ravnborg.org>,
-        Guido =?iso-8859-1?Q?G=FCnther?= <agx@sigxcpu.org>,
-        Fabio Estevam <festevam@gmail.com>,
-        Ondrej Jirman <megous@megous.com>,
-        David Airlie <airlied@linux.ie>,
-        Daniel Vetter <daniel@ffwll.ch>,
-        dri-devel@lists.freedesktop.org, devicetree@vger.kernel.org,
-        linux-kernel@vger.kernel.org, linux-imx@nxp.com
-Subject: Re: [PATCH 4/5] dt-bindings: display/bridge: nwl-dsi: Document
- fsl,clock-drop-level property
-Message-ID: <20200909204331.GA3043802@bogus>
-References: <1598613212-1113-1-git-send-email-robert.chiras@oss.nxp.com>
- <1598613212-1113-5-git-send-email-robert.chiras@oss.nxp.com>
+        id S1729781AbgIIUog (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Wed, 9 Sep 2020 16:44:36 -0400
+Received: from mo-csw1114.securemx.jp ([210.130.202.156]:60942 "EHLO
+        mo-csw.securemx.jp" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
+        with ESMTP id S1726714AbgIIUoc (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Wed, 9 Sep 2020 16:44:32 -0400
+Received: by mo-csw.securemx.jp (mx-mo-csw1114) id 089KhsEF008212; Thu, 10 Sep 2020 05:43:54 +0900
+X-Iguazu-Qid: 2wGr7dZaSTKAoGUPU8
+X-Iguazu-QSIG: v=2; s=0; t=1599684234; q=2wGr7dZaSTKAoGUPU8; m=BoL+rC6Av6ufSuyBCXqZvW+/3t0Z6Bpq2JQAicl2zFA=
+Received: from imx2.toshiba.co.jp (imx2.toshiba.co.jp [106.186.93.51])
+        by relay.securemx.jp (mx-mr1111) id 089KhqX3014158;
+        Thu, 10 Sep 2020 05:43:52 +0900
+Received: from enc03.toshiba.co.jp ([106.186.93.13])
+        by imx2.toshiba.co.jp  with ESMTP id 089Khpim001390;
+        Thu, 10 Sep 2020 05:43:51 +0900 (JST)
+Received: from hop001.toshiba.co.jp ([133.199.164.63])
+        by enc03.toshiba.co.jp  with ESMTP id 089KhpVE018530;
+        Thu, 10 Sep 2020 05:43:51 +0900
+From:   Nobuhiro Iwamatsu <nobuhiro1.iwamatsu@toshiba.co.jp>
+To:     Rob Herring <robh+dt@kernel.org>,
+        Linus Walleij <linus.walleij@linaro.org>,
+        Catalin Marinas <catalin.marinas@arm.com>,
+        Will Deacon <will@kernel.org>, Arnd Bergmann <arnd@arndb.de>,
+        Olof Johansson <olof@lixom.net>
+Cc:     punit1.agrawal@toshiba.co.jp, yuji2.ishikawa@toshiba.co.jp,
+        devicetree@vger.kernel.org, linux-arm-kernel@lists.infradead.org,
+        linux-gpio@vger.kernel.org, Sudeep Holla <sudeep.holla@arm.com>,
+        Marc Zyngier <maz@misterjones.org>,
+        Nobuhiro Iwamatsu <nobuhiro1.iwamatsu@toshiba.co.jp>
+Subject: [PATCH v4 3/8] dt-bindings: arm: toshiba: add Toshiba Visconti ARM SoCs
+Date:   Thu, 10 Sep 2020 05:43:31 +0900
+X-TSB-HOP: ON
+Message-Id: <20200909204336.2558-4-nobuhiro1.iwamatsu@toshiba.co.jp>
+X-Mailer: git-send-email 2.27.0
+In-Reply-To: <20200909204336.2558-1-nobuhiro1.iwamatsu@toshiba.co.jp>
+References: <20200909204336.2558-1-nobuhiro1.iwamatsu@toshiba.co.jp>
 MIME-Version: 1.0
-Content-Type: text/plain; charset=us-ascii
-Content-Disposition: inline
-In-Reply-To: <1598613212-1113-5-git-send-email-robert.chiras@oss.nxp.com>
+Content-Transfer-Encoding: 8bit
 Sender: devicetree-owner@vger.kernel.org
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-On Fri, Aug 28, 2020 at 02:13:31PM +0300, Robert Chiras (OSS) wrote:
-> From: Robert Chiras <robert.chiras@nxp.com>
-> 
-> Add documentation for a new property: 'fsl,clock-drop-level'.
-> 
-> Signed-off-by: Robert Chiras <robert.chiras@nxp.com>
-> ---
->  Documentation/devicetree/bindings/display/bridge/nwl-dsi.yaml | 4 ++++
->  1 file changed, 4 insertions(+)
-> 
-> diff --git a/Documentation/devicetree/bindings/display/bridge/nwl-dsi.yaml b/Documentation/devicetree/bindings/display/bridge/nwl-dsi.yaml
-> index 8b5741b..b415f4e 100644
-> --- a/Documentation/devicetree/bindings/display/bridge/nwl-dsi.yaml
-> +++ b/Documentation/devicetree/bindings/display/bridge/nwl-dsi.yaml
-> @@ -143,6 +143,10 @@ properties:
->  
->      additionalProperties: false
->  
-> +  clock-drop-level:
+Add device tree bindings for the Toshiba Visconti ARM SoCs.
 
-fsl, ?
+Signed-off-by: Nobuhiro Iwamatsu <nobuhiro1.iwamatsu@toshiba.co.jp>
+Reviewed-by: Punit Agrawal <punit1.agrawal@toshiba.co.jp>
+---
+ .../devicetree/bindings/arm/toshiba.yaml      | 20 +++++++++++++++++++
+ 1 file changed, 20 insertions(+)
+ create mode 100644 Documentation/devicetree/bindings/arm/toshiba.yaml
 
-> +    description:
-> +      Specifies the level at wich the crtc_clock should be dropped
+diff --git a/Documentation/devicetree/bindings/arm/toshiba.yaml b/Documentation/devicetree/bindings/arm/toshiba.yaml
+new file mode 100644
+index 000000000000..efd3f4859669
+--- /dev/null
++++ b/Documentation/devicetree/bindings/arm/toshiba.yaml
+@@ -0,0 +1,20 @@
++# SPDX-License-Identifier: GPL-2.0-only OR BSD-2-Clause
++%YAML 1.2
++---
++$id: http://devicetree.org/schemas/arm/toshiba.yaml#
++$schema: http://devicetree.org/meta-schemas/core.yaml#
++
++title: Toshiba Visconti Platform Device Tree Bindings
++
++maintainers:
++  - Nobuhiro Iwamatsu <nobuhiro1.iwamatsu@toshiba.co.jp>
++
++properties:
++  $nodename:
++    const: '/'
++  compatible:
++    oneOf:
++      - description: Visconti5 TMPV7708
++        items:
++          - const: toshiba,tmpv7708
++...
+-- 
+2.27.0
 
-Needs a type $ref.
-
-> +
->  patternProperties:
->    "^panel@[0-9]+$":
->      type: object
-> -- 
-> 2.7.4
-> 
