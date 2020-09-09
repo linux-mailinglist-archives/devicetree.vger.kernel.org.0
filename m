@@ -2,130 +2,155 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from vger.kernel.org (vger.kernel.org [23.128.96.18])
-	by mail.lfdr.de (Postfix) with ESMTP id 8A767262A59
-	for <lists+devicetree@lfdr.de>; Wed,  9 Sep 2020 10:32:32 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTP id D38D6262A65
+	for <lists+devicetree@lfdr.de>; Wed,  9 Sep 2020 10:34:41 +0200 (CEST)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S1728954AbgIIIc3 (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Wed, 9 Sep 2020 04:32:29 -0400
-Received: from lindbergh.monkeyblade.net ([23.128.96.19]:39072 "EHLO
-        lindbergh.monkeyblade.net" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S1728214AbgIIIcW (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Wed, 9 Sep 2020 04:32:22 -0400
-Received: from mail-wm1-x344.google.com (mail-wm1-x344.google.com [IPv6:2a00:1450:4864:20::344])
-        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 35A4AC061796
-        for <devicetree@vger.kernel.org>; Wed,  9 Sep 2020 01:32:15 -0700 (PDT)
-Received: by mail-wm1-x344.google.com with SMTP id k18so1445833wmj.5
-        for <devicetree@vger.kernel.org>; Wed, 09 Sep 2020 01:32:15 -0700 (PDT)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=linaro.org; s=google;
-        h=subject:to:cc:references:from:autocrypt:message-id:date
-         :mime-version:in-reply-to:content-language:content-transfer-encoding;
-        bh=5IJCSjrEn+K5BXTvQyEYOcEg4gKAR761WPsWlnOts1w=;
-        b=PJhRk3GI8VIBMF78GGQCdbyNVhkQoDOI6HF3H/7gTqVx9S37ttnKpWFMNxXrPG/ExG
-         uXB3dgBtBe7cqGfk3Yeu9Nr75rOZLfa9OajnMb8Z8yYV5uREO4xbQOi3bqYQdh7v1u/X
-         BkOyAGiqxyLwLJgKMnYucJ1+3bpDMXe8eK5hrcKvGHu6EKiPiC+YPoS4LS38mkX3ylA9
-         8fQ2vFCFkf71a1NQcEbPtp+InerT+xexlC0SeZIfPhlC1iwu/jlCH//GR0bYsQqJ2zgR
-         cnPrnY+EnxV6jazS8JkaTMr/LMIHxmCj4NtP5rVX67+MDoz8o9ZuK0RCwdXr9EwpeD0X
-         EoZg==
+        id S1726111AbgIIIek (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Wed, 9 Sep 2020 04:34:40 -0400
+Received: from mail-ej1-f68.google.com ([209.85.218.68]:45769 "EHLO
+        mail-ej1-f68.google.com" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
+        with ESMTP id S1725975AbgIIIek (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Wed, 9 Sep 2020 04:34:40 -0400
+Received: by mail-ej1-f68.google.com with SMTP id i26so2283053ejb.12;
+        Wed, 09 Sep 2020 01:34:38 -0700 (PDT)
 X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
         d=1e100.net; s=20161025;
-        h=x-gm-message-state:subject:to:cc:references:from:autocrypt
-         :message-id:date:mime-version:in-reply-to:content-language
-         :content-transfer-encoding;
-        bh=5IJCSjrEn+K5BXTvQyEYOcEg4gKAR761WPsWlnOts1w=;
-        b=a4Ks5Zo8iIAiIo95Qlenwpx6HT79CZRQGLDIfLem8EzuFxKBGYmjHE5Yge8nudORBH
-         5i0UK3GCDPEGT5vlNKH5VawNR7fPEQXiVymiRJg2kpbzthJV7Xgw+Brp2tDr4oI4Cc6p
-         AEX/Kgu4A4E53FpApESmE/qjugvQg3NzepHwIXRwfIO1u8xpxkkYNIYpw5EeSQBAvBX5
-         G6hyGJgxpHiRq+nDcof+bfkRIzw3NknsAKxX4EYevfLMM0i1+jwVvAfEhmQZkbUpyk6s
-         YwRfwOE5fqRMBKk2ti8YJiI7trsD9s7jjMBi16oIHYSMgPjcXw4cEBSaWfrotIDo4oz4
-         CfYQ==
-X-Gm-Message-State: AOAM531Sg/7i0kLgD4jVS3bnO/2VclvPCryCofHMxVsYVRFx950SIV3j
-        71+n2T5kiRAhe061p+eVllYPUxXhtJpYLw==
-X-Google-Smtp-Source: ABdhPJwSyTMGp2lVRmcfrT9lC3qRBNvHbvfXboIB2MMpAJIXrQ+CTdseGHFKRbiUALEmofcFeMUsjw==
-X-Received: by 2002:a1c:6a11:: with SMTP id f17mr2240814wmc.143.1599640333594;
-        Wed, 09 Sep 2020 01:32:13 -0700 (PDT)
-Received: from [10.44.66.8] ([212.45.67.2])
-        by smtp.googlemail.com with ESMTPSA id 8sm3298743wrl.7.2020.09.09.01.32.11
-        (version=TLS1_3 cipher=TLS_AES_128_GCM_SHA256 bits=128/128);
-        Wed, 09 Sep 2020 01:32:13 -0700 (PDT)
-Subject: Re: [PATCH v5 33/36] memory: tegra30-emc: Register as interconnect
- provider
-To:     Dmitry Osipenko <digetx@gmail.com>,
-        Thierry Reding <thierry.reding@gmail.com>,
-        Jonathan Hunter <jonathanh@nvidia.com>,
-        Rob Herring <robh+dt@kernel.org>,
-        Michael Turquette <mturquette@baylibre.com>,
-        Stephen Boyd <sboyd@kernel.org>,
-        Peter De Schrijver <pdeschrijver@nvidia.com>,
-        MyungJoo Ham <myungjoo.ham@samsung.com>,
-        Kyungmin Park <kyungmin.park@samsung.com>,
-        Chanwoo Choi <cw00.choi@samsung.com>,
-        Mikko Perttunen <cyndis@kapsi.fi>
-Cc:     linux-tegra@vger.kernel.org, linux-pm@vger.kernel.org,
-        linux-kernel@vger.kernel.org, dri-devel@lists.freedesktop.org,
-        devicetree@vger.kernel.org
-References: <20200814000621.8415-1-digetx@gmail.com>
- <20200814000621.8415-34-digetx@gmail.com>
-From:   Georgi Djakov <georgi.djakov@linaro.org>
-Autocrypt: addr=georgi.djakov@linaro.org; prefer-encrypt=mutual; keydata=
- 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
- KEmKjLDvB0pePJkdTw==
-Message-ID: <afe7866b-26a3-8372-ed60-48740283f037@linaro.org>
-Date:   Wed, 9 Sep 2020 11:32:10 +0300
+        h=x-gm-message-state:date:from:to:subject:message-id:references
+         :mime-version:content-disposition:in-reply-to:user-agent;
+        bh=vsALB+bxuuEP7Stns5jLN4qt786xLJXYhZvHFA9movY=;
+        b=XSf68dHX7NAWM4nzgtejdreYFS8CJQ3ikO4MFMFfcxO6Y+tdjDe2tB0O1K4sUaovBI
+         /Bitupjop/7i9/+xc1wyMfyn2yuj4ulAJf8C8VOyYOpopPj6w6QDL/4CBZDC/KPqhORu
+         hA3G98yTqRcUwkKWNbtfp5ARmY1kd90v6tm+nAp0jaVrR3+ZAaIJmk8gKrseQTULXZXs
+         FcqxRTkfcwbIoEi1AMzCGn5UYweSFuoO+QPRpEvO6DZcXBlxvQ2TG6wpXCDW3K2C1PRt
+         /LeLstgTYWRj/5FFbZeXU64AeDh63g1/4pHO+qdGIzjC9GnBozyZrdK1eheRslTykF4d
+         uuCA==
+X-Gm-Message-State: AOAM5335XkngKzU1Qtff2hlouG5rQqjgO4Qfxw2c3Ydk+kkIhZnBaU0v
+        840PeWQ/cbY1ZvRuZ04o1Lw=
+X-Google-Smtp-Source: ABdhPJzNWdfEaEJMrGWJQ6SgVZ2LZkowL8XUPe1AidTLBAqeR320x6AIAcMg2mNv6uF3Dy3F+cwHGw==
+X-Received: by 2002:a17:906:1b55:: with SMTP id p21mr2628419ejg.457.1599640477647;
+        Wed, 09 Sep 2020 01:34:37 -0700 (PDT)
+Received: from kozik-lap ([194.230.155.174])
+        by smtp.googlemail.com with ESMTPSA id b13sm1320130edf.89.2020.09.09.01.34.35
+        (version=TLS1_2 cipher=ECDHE-ECDSA-CHACHA20-POLY1305 bits=256/256);
+        Wed, 09 Sep 2020 01:34:36 -0700 (PDT)
+Date:   Wed, 9 Sep 2020 10:34:34 +0200
+From:   Krzysztof Kozlowski <krzk@kernel.org>
+To:     Rob Herring <robh+dt@kernel.org>, Shawn Guo <shawnguo@kernel.org>,
+        Sascha Hauer <s.hauer@pengutronix.de>,
+        Pengutronix Kernel Team <kernel@pengutronix.de>,
+        Fabio Estevam <festevam@gmail.com>,
+        NXP Linux Team <linux-imx@nxp.com>,
+        Heiko Stuebner <heiko@sntech.de>,
+        Michal Simek <michal.simek@xilinx.com>,
+        Adam Ford <aford173@gmail.com>,
+        Daniel Baluta <daniel.baluta@nxp.com>,
+        Anson Huang <Anson.Huang@nxp.com>,
+        Robin Gong <yibin.gong@nxp.com>,
+        Alifer Moraes <alifer.wsdm@gmail.com>,
+        Leonard Crestez <leonard.crestez@nxp.com>,
+        "Angus Ainslie (Purism)" <angus@akkea.ca>,
+        Vitor Massaru Iha <vitor@massaru.org>,
+        Kever Yang <kever.yang@rock-chips.com>,
+        Rajan Vaja <rajan.vaja@xilinx.com>,
+        Anurag Kumar Vulisha <anurag.kumar.vulisha@xilinx.com>,
+        devicetree@vger.kernel.org, linux-arm-kernel@lists.infradead.org,
+        linux-kernel@vger.kernel.org, linux-rockchip@lists.infradead.org
+Subject: Re: [PATCH 3/8] arm64: dts: imx8mm: Correct interrupt flags in
+ examples
+Message-ID: <20200909083434.GB11775@kozik-lap>
+References: <20200908150241.5771-1-krzk@kernel.org>
+ <20200908150241.5771-3-krzk@kernel.org>
 MIME-Version: 1.0
-In-Reply-To: <20200814000621.8415-34-digetx@gmail.com>
 Content-Type: text/plain; charset=utf-8
-Content-Language: en-US
-Content-Transfer-Encoding: 7bit
+Content-Disposition: inline
+In-Reply-To: <20200908150241.5771-3-krzk@kernel.org>
+User-Agent: Mutt/1.9.4 (2018-02-28)
 Sender: devicetree-owner@vger.kernel.org
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-On 8/14/20 03:06, Dmitry Osipenko wrote:
-> Now external memory controller is a memory interconnection provider.
-> This allows us to use interconnect API to change memory configuration.
+On Tue, Sep 08, 2020 at 05:02:36PM +0200, Krzysztof Kozlowski wrote:
+> GPIO_ACTIVE_x flags are not correct in the context of interrupt flags.
+> These are simple defines so they could be used in DTS but they will not
+> have the same meaning:
+> 1. GPIO_ACTIVE_HIGH = 0 = IRQ_TYPE_NONE
+> 2. GPIO_ACTIVE_LOW  = 1 = IRQ_TYPE_EDGE_RISING
 > 
-> Signed-off-by: Dmitry Osipenko <digetx@gmail.com>
+> Correct the interrupt flags, assuming the author of the code wanted some
+> logical behavior behind the name "ACTIVE_xxx", this is:
+>   ACTIVE_LOW  => IRQ_TYPE_LEVEL_LOW
+>   ACTIVE_HIGH => IRQ_TYPE_LEVEL_HIGH
+> 
+> Signed-off-by: Krzysztof Kozlowski <krzk@kernel.org>
+> ---
+>  arch/arm64/boot/dts/freescale/imx8mm-beacon-som.dtsi      | 2 +-
+>  arch/arm64/boot/dts/freescale/imx8mm-evk.dts              | 2 +-
+>  arch/arm64/boot/dts/freescale/imx8mm-var-som-symphony.dts | 2 +-
+>  arch/arm64/boot/dts/freescale/imx8mm-var-som.dtsi         | 2 +-
+>  4 files changed, 4 insertions(+), 4 deletions(-)
+> 
+> diff --git a/arch/arm64/boot/dts/freescale/imx8mm-beacon-som.dtsi b/arch/arm64/boot/dts/freescale/imx8mm-beacon-som.dtsi
+> index 620a124dfb5f..fdce665d7ac4 100644
+> --- a/arch/arm64/boot/dts/freescale/imx8mm-beacon-som.dtsi
+> +++ b/arch/arm64/boot/dts/freescale/imx8mm-beacon-som.dtsi
+> @@ -74,7 +74,7 @@
+>  		reg = <0x4b>;
+>  		pinctrl-0 = <&pinctrl_pmic>;
+>  		interrupt-parent = <&gpio1>;
+> -		interrupts = <3 GPIO_ACTIVE_LOW>;
+> +		interrupts = <3 IRQ_TYPE_LEVEL_LOW>;
 
-Acked-by: Georgi Djakov <georgi.djakov@linaro.org>
+All rohm,bd71847 PMIC interrupts should be rather EDGE_FALLING.  Some of
+the boards do not have external pull ups and most of the boards do not
+configure internal pull up.  Level low would cause the interrupt line to
+stay low all the time.
+
+Best regards,
+Krzysztof
+
+>  		rohm,reset-snvs-powered;
+>  
+>  		regulators {
+> diff --git a/arch/arm64/boot/dts/freescale/imx8mm-evk.dts b/arch/arm64/boot/dts/freescale/imx8mm-evk.dts
+> index 38134d201eef..609d73e19fee 100644
+> --- a/arch/arm64/boot/dts/freescale/imx8mm-evk.dts
+> +++ b/arch/arm64/boot/dts/freescale/imx8mm-evk.dts
+> @@ -166,7 +166,7 @@
+>  		reg = <0x4b>;
+>  		pinctrl-0 = <&pinctrl_pmic>;
+>  		interrupt-parent = <&gpio1>;
+> -		interrupts = <3 GPIO_ACTIVE_LOW>;
+> +		interrupts = <3 IRQ_TYPE_LEVEL_LOW>;
+>  		rohm,reset-snvs-powered;
+>  
+>  		regulators {
+> diff --git a/arch/arm64/boot/dts/freescale/imx8mm-var-som-symphony.dts b/arch/arm64/boot/dts/freescale/imx8mm-var-som-symphony.dts
+> index 0bca737964d5..b84d94e10c26 100644
+> --- a/arch/arm64/boot/dts/freescale/imx8mm-var-som-symphony.dts
+> +++ b/arch/arm64/boot/dts/freescale/imx8mm-var-som-symphony.dts
+> @@ -133,7 +133,7 @@
+>  		pinctrl-names = "default";
+>  		pinctrl-0 = <&pinctrl_captouch>;
+>  		interrupt-parent = <&gpio5>;
+> -		interrupts = <4 GPIO_ACTIVE_HIGH>;
+> +		interrupts = <4 IRQ_TYPE_LEVEL_HIGH>;
+>  
+>  		touchscreen-size-x = <800>;
+>  		touchscreen-size-y = <480>;
+> diff --git a/arch/arm64/boot/dts/freescale/imx8mm-var-som.dtsi b/arch/arm64/boot/dts/freescale/imx8mm-var-som.dtsi
+> index c371cb34b3f7..49743d2f60c1 100644
+> --- a/arch/arm64/boot/dts/freescale/imx8mm-var-som.dtsi
+> +++ b/arch/arm64/boot/dts/freescale/imx8mm-var-som.dtsi
+> @@ -137,7 +137,7 @@
+>  		reg = <0x4b>;
+>  		pinctrl-0 = <&pinctrl_pmic>;
+>  		interrupt-parent = <&gpio2>;
+> -		interrupts = <8 GPIO_ACTIVE_LOW>;
+> +		interrupts = <8 IRQ_TYPE_LEVEL_LOW>;
+>  		rohm,reset-snvs-powered;
+>  
+>  		regulators {
+> -- 
+> 2.17.1
+> 
