@@ -2,173 +2,67 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from vger.kernel.org (vger.kernel.org [23.128.96.18])
-	by mail.lfdr.de (Postfix) with ESMTP id 48EAA26324E
-	for <lists+devicetree@lfdr.de>; Wed,  9 Sep 2020 18:40:22 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTP id D875926342A
+	for <lists+devicetree@lfdr.de>; Wed,  9 Sep 2020 19:15:21 +0200 (CEST)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S1730876AbgIIQkS (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Wed, 9 Sep 2020 12:40:18 -0400
-Received: from lindbergh.monkeyblade.net ([23.128.96.19]:58228 "EHLO
-        lindbergh.monkeyblade.net" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S1731048AbgIIQik (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Wed, 9 Sep 2020 12:38:40 -0400
-Received: from mail-ej1-x642.google.com (mail-ej1-x642.google.com [IPv6:2a00:1450:4864:20::642])
-        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id BA3F6C061573
-        for <devicetree@vger.kernel.org>; Wed,  9 Sep 2020 09:38:39 -0700 (PDT)
-Received: by mail-ej1-x642.google.com with SMTP id z22so4489921ejl.7
-        for <devicetree@vger.kernel.org>; Wed, 09 Sep 2020 09:38:39 -0700 (PDT)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=sartura-hr.20150623.gappssmtp.com; s=20150623;
-        h=from:to:cc:subject:date:message-id:mime-version
-         :content-transfer-encoding;
-        bh=pw9m1YIgr8W+tdJMWQbJwGKwHAZiGvL9kYmg/XnOkHE=;
-        b=NAdcPbio9rID5Vgh0E1yj6BpjObgicIR/j4dRsfBcNB5k9pRKtmhHZVNYiF1hyHzZp
-         8r6et+DI2mdyZHt/oMTFSK7jwzpF3YsS1dBfRYyRGcozMZDuifDB3cWKUtYlH8FJHPyb
-         gB3r2ITsg+sQ/dMgB0erNptG2SNU8HNWvOnZRw4N7XcjcCpjBI1MnzPiUZIXg2bxTiz9
-         2ZNesw9704/yonNovmh9i2la59VLS0DWOyCFl+2vhPcPgps/kM+Ipfbyl4R6JATfyzIf
-         7vhX9xIdloZ2EFgOwx96wHkMrGPGn4SjfQp1ues3KiX0FX6H4VCiLpwZHCRJ5HNji3/0
-         iu5w==
-X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=1e100.net; s=20161025;
-        h=x-gm-message-state:from:to:cc:subject:date:message-id:mime-version
-         :content-transfer-encoding;
-        bh=pw9m1YIgr8W+tdJMWQbJwGKwHAZiGvL9kYmg/XnOkHE=;
-        b=F5KYTLOq720knlrkxkp14vL6zF4rORSfCl0t8CVUIAfy5C0EG7yAFnhN9hz+gnbW0B
-         91Ic56iYt9Jdz1hSSBVyd+5/Kf6wRF1XoZlcMe78GRpjEHN7eQFhyi19PxoEe4Q2+X5R
-         YR8jKWdTCLDJCc2sziWZyArUq/FKPT7xFjW6VPp6P6Vsc6EOMMUPXFoqTYTlgiyRvPQN
-         vCxKTGulOxgUXft7n2/N753f8r8af/iPqh5CJWG3aAM0qVkUacb0Xkr/h92/rN1r4VXX
-         Ce0geeGFwd5w3BQtzHS0MY2Wp3ZzB46ylJnGhTVyGPsaDHV4I8xzCCtfVWI7OxfHPT/3
-         zSyA==
-X-Gm-Message-State: AOAM531qiBqdAKsYIA8O+IX3y2YjmqE6zZxvUkvLtFejLmzfSI+QasNz
-        bmasyHua0VzY/3YPhKyaK76sBg==
-X-Google-Smtp-Source: ABdhPJz0PcbJXaB3x1jKe4GDZKr466W7xCgFaautkZwmPgdAbkQzZNddmOd2V24nybiU1HOJCP17Fw==
-X-Received: by 2002:a17:906:bcd5:: with SMTP id lw21mr4543065ejb.430.1599669518321;
-        Wed, 09 Sep 2020 09:38:38 -0700 (PDT)
-Received: from localhost.localdomain (dh207-97-133.xnet.hr. [88.207.97.133])
-        by smtp.googlemail.com with ESMTPSA id t10sm3114410edw.86.2020.09.09.09.38.37
-        (version=TLS1_3 cipher=TLS_AES_256_GCM_SHA384 bits=256/256);
-        Wed, 09 Sep 2020 09:38:37 -0700 (PDT)
-From:   Robert Marko <robert.marko@sartura.hr>
-To:     agross@kernel.org, bjorn.andersson@linaro.org, robh+dt@kernel.org,
-        linux-arm-msm@vger.kernel.org, devicetree@vger.kernel.org,
-        linux-kernel@vger.kernel.org
-Cc:     John Crispin <john@phrozen.org>,
-        Robert Marko <robert.marko@sartura.hr>,
-        Luka Perkov <luka.perkov@sartura.hr>,
-        Vinod Koul <vkoul@kernel.org>
-Subject: [PATCH v8] ARM: dts: qcom: ipq4019: add USB devicetree nodes
-Date:   Wed,  9 Sep 2020 18:38:31 +0200
-Message-Id: <20200909163831.1894142-1-robert.marko@sartura.hr>
-X-Mailer: git-send-email 2.26.2
+        id S1729521AbgIIRO5 (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Wed, 9 Sep 2020 13:14:57 -0400
+Received: from mailgw02.mediatek.com ([210.61.82.184]:44098 "EHLO
+        mailgw02.mediatek.com" rhost-flags-OK-FAIL-OK-FAIL) by vger.kernel.org
+        with ESMTP id S1726976AbgIIP3G (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Wed, 9 Sep 2020 11:29:06 -0400
+X-UUID: 36e0a08b229f472eadec214b44e570cc-20200909
+DKIM-Signature: v=1; a=rsa-sha256; q=dns/txt; c=relaxed/relaxed; d=mediatek.com; s=dk;
+        h=Content-Transfer-Encoding:Content-Type:MIME-Version:Message-ID:Date:Subject:CC:To:From; bh=6Ta4xbWlDnLHSIu1GOEg1nUgcgnCO6XZQfUX8n8EoXs=;
+        b=etO8dCFeeYOusmFed/C8TjTy0V+rB4a+b9JonCzglWU5nKCMi9tUvrRjaV0oi7wxS2/pEzfQAXFORlNNe92iT7kBezcf6+dYpOC03wtzRFBxzxa3uJQI2CVV2djaAGZZW4cPATbuVDDnSeW1qqeTRT5eTOjWPDbusdQbM8DO+5w=;
+X-UUID: 36e0a08b229f472eadec214b44e570cc-20200909
+Received: from mtkexhb02.mediatek.inc [(172.21.101.103)] by mailgw02.mediatek.com
+        (envelope-from <hector.yuan@mediatek.com>)
+        (Cellopoint E-mail Firewall v4.1.14 Build 0819 with TLSv1.2 ECDHE-RSA-AES256-SHA384 256/256)
+        with ESMTP id 1210527837; Wed, 09 Sep 2020 21:34:39 +0800
+Received: from mtkcas07.mediatek.inc (172.21.101.84) by
+ mtkmbs01n1.mediatek.inc (172.21.101.68) with Microsoft SMTP Server (TLS) id
+ 15.0.1497.2; Wed, 9 Sep 2020 21:34:35 +0800
+Received: from mtkswgap22.mediatek.inc (172.21.77.33) by mtkcas07.mediatek.inc
+ (172.21.101.73) with Microsoft SMTP Server id 15.0.1497.2 via Frontend
+ Transport; Wed, 9 Sep 2020 21:34:36 +0800
+From:   Hector Yuan <hector.yuan@mediatek.com>
+To:     <linux-mediatek@lists.infradead.org>,
+        <linux-arm-kernel@lists.infradead.org>, <linux-pm@vger.kernel.org>,
+        <devicetree@vger.kernel.org>,
+        "Rafael J. Wysocki" <rjw@rjwysocki.net>,
+        Viresh Kumar <viresh.kumar@linaro.org>,
+        Rob Herring <robh+dt@kernel.org>
+CC:     <linux-kernel@vger.kernel.org>, <wsd_upstream@mediatek.com>,
+        <hector.yuan@mediatek.com>
+Subject: [PATCH v6] cpufreq: mediatek-hw: Add support for Mediatek cpufreq HW driver
+Date:   Wed, 9 Sep 2020 21:34:34 +0800
+Message-ID: <1599658476-16562-1-git-send-email-hector.yuan@mediatek.com>
+X-Mailer: git-send-email 1.7.9.5
 MIME-Version: 1.0
-Content-Transfer-Encoding: 8bit
+Content-Type: text/plain
+X-MTK:  N
+Content-Transfer-Encoding: base64
 Sender: devicetree-owner@vger.kernel.org
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-From: John Crispin <john@phrozen.org>
-
-Since we now have driver for the USB PHY, and USB controller is already supported by the DWC3 driver lets add the necessary nodes to DTSI.
-
-Signed-off-by: John Crispin <john@phrozen.org>
-Signed-off-by: Robert Marko <robert.marko@sartura.hr>
-Cc: Luka Perkov <luka.perkov@sartura.hr>
-Reviewed-by: Vinod Koul <vkoul@kernel.org>
----
-Changes from v7 to v8:
-* Add labels for usb2 and usb3 nodes
-Changes from v6 to v7:
-* Remove changes to qcom-ipq4019-ap.dk01.1.dtsi
-It has slipped in unwanted, we only want to add
-nodes to the DTSI.
-
- arch/arm/boot/dts/qcom-ipq4019.dtsi | 74 +++++++++++++++++++++++++++++
- 1 file changed, 74 insertions(+)
-
-diff --git a/arch/arm/boot/dts/qcom-ipq4019.dtsi b/arch/arm/boot/dts/qcom-ipq4019.dtsi
-index 74d8e2c8e4b3..4a973253024a 100644
---- a/arch/arm/boot/dts/qcom-ipq4019.dtsi
-+++ b/arch/arm/boot/dts/qcom-ipq4019.dtsi
-@@ -605,5 +605,79 @@ ethphy4: ethernet-phy@4 {
- 				reg = <4>;
- 			};
- 		};
-+
-+		usb3_ss_phy: ssphy@9a000 {
-+			compatible = "qcom,usb-ss-ipq4019-phy";
-+			#phy-cells = <0>;
-+			reg = <0x9a000 0x800>;
-+			reg-names = "phy_base";
-+			resets = <&gcc USB3_UNIPHY_PHY_ARES>;
-+			reset-names = "por_rst";
-+			status = "disabled";
-+		};
-+
-+		usb3_hs_phy: hsphy@a6000 {
-+			compatible = "qcom,usb-hs-ipq4019-phy";
-+			#phy-cells = <0>;
-+			reg = <0xa6000 0x40>;
-+			reg-names = "phy_base";
-+			resets = <&gcc USB3_HSPHY_POR_ARES>, <&gcc USB3_HSPHY_S_ARES>;
-+			reset-names = "por_rst", "srif_rst";
-+			status = "disabled";
-+		};
-+
-+		usb3: usb3@8af8800 {
-+			compatible = "qcom,dwc3";
-+			reg = <0x8af8800 0x100>;
-+			#address-cells = <1>;
-+			#size-cells = <1>;
-+			clocks = <&gcc GCC_USB3_MASTER_CLK>,
-+				 <&gcc GCC_USB3_SLEEP_CLK>,
-+				 <&gcc GCC_USB3_MOCK_UTMI_CLK>;
-+			clock-names = "master", "sleep", "mock_utmi";
-+			ranges;
-+			status = "disabled";
-+
-+			dwc3@8a00000 {
-+				compatible = "snps,dwc3";
-+				reg = <0x8a00000 0xf8000>;
-+				interrupts = <GIC_SPI 132 IRQ_TYPE_LEVEL_HIGH>;
-+				phys = <&usb3_hs_phy>, <&usb3_ss_phy>;
-+				phy-names = "usb2-phy", "usb3-phy";
-+				dr_mode = "host";
-+			};
-+		};
-+
-+		usb2_hs_phy: hsphy@a8000 {
-+			compatible = "qcom,usb-hs-ipq4019-phy";
-+			#phy-cells = <0>;
-+			reg = <0xa8000 0x40>;
-+			reg-names = "phy_base";
-+			resets = <&gcc USB2_HSPHY_POR_ARES>, <&gcc USB2_HSPHY_S_ARES>;
-+			reset-names = "por_rst", "srif_rst";
-+			status = "disabled";
-+		};
-+
-+		usb2: usb2@60f8800 {
-+			compatible = "qcom,dwc3";
-+			reg = <0x60f8800 0x100>;
-+			#address-cells = <1>;
-+			#size-cells = <1>;
-+			clocks = <&gcc GCC_USB2_MASTER_CLK>,
-+				 <&gcc GCC_USB2_SLEEP_CLK>,
-+				 <&gcc GCC_USB2_MOCK_UTMI_CLK>;
-+			clock-names = "master", "sleep", "mock_utmi";
-+			ranges;
-+			status = "disabled";
-+
-+			dwc3@6000000 {
-+				compatible = "snps,dwc3";
-+				reg = <0x6000000 0xf8000>;
-+				interrupts = <GIC_SPI 136 IRQ_TYPE_LEVEL_HIGH>;
-+				phys = <&usb2_hs_phy>;
-+				phy-names = "usb2-phy";
-+				dr_mode = "host";
-+			};
-+		};
- 	};
- };
--- 
-2.26.2
+VGhlIENQVWZyZXEgSFcgcHJlc2VudCBpbiBzb21lIE1lZGlhdGVrIGNoaXBzZXRzIG9mZmxvYWRz
+IHRoZSBzdGVwcyBuZWNlc3NhcnkgZm9yIGNoYW5naW5nIHRoZSBmcmVxdWVuY3kgb2YgQ1BVcy4g
+DQpUaGUgZHJpdmVyIGltcGxlbWVudHMgdGhlIGNwdWZyZXEgZHJpdmVyIGludGVyZmFjZSBmb3Ig
+dGhpcyBoYXJkd2FyZSBlbmdpbmUuIA0KDQpUaGlzIHBhdGNoIGRlcGVuZHMgb24gdGhlIE1UNjc3
+OSBEVFMgcGF0Y2ggc3VibWl0dGVkIGJ5IEhhbmtzIENoZW4NCiBodHRwczovL2xrbWwub3JnL2xr
+bWwvMjAyMC84LzQvMTA5NA0KDQoNCkhlY3Rvci5ZdWFuICgyKToNCiAgY3B1ZnJlcTogbWVkaWF0
+ZWstaHc6IEFkZCBzdXBwb3J0IGZvciBNZWRpYXRlayBjcHVmcmVxIEhXIGRyaXZlcg0KICBkdC1i
+aW5kaW5nczogY3B1ZnJlcTogYWRkIGJpbmRpbmdzIGZvciBNZWRpYVRlayBjcHVmcmVxIEhXDQoN
+CiAuLi4vYmluZGluZ3MvY3B1ZnJlcS9jcHVmcmVxLW1lZGlhdGVrLWh3LnlhbWwgICAgICB8ICAx
+NDEgKysrKysrKysrKw0KIGRyaXZlcnMvY3B1ZnJlcS9LY29uZmlnLmFybSAgICAgICAgICAgICAg
+ICAgICAgICAgIHwgICAxMiArDQogZHJpdmVycy9jcHVmcmVxL01ha2VmaWxlICAgICAgICAgICAg
+ICAgICAgICAgICAgICAgfCAgICAxICsNCiBkcml2ZXJzL2NwdWZyZXEvbWVkaWF0ZWstY3B1ZnJl
+cS1ody5jICAgICAgICAgICAgICB8ICAyODMgKysrKysrKysrKysrKysrKysrKysNCiA0IGZpbGVz
+IGNoYW5nZWQsIDQzNyBpbnNlcnRpb25zKCspDQogY3JlYXRlIG1vZGUgMTAwNjQ0IERvY3VtZW50
+YXRpb24vZGV2aWNldHJlZS9iaW5kaW5ncy9jcHVmcmVxL2NwdWZyZXEtbWVkaWF0ZWstaHcueWFt
+bA0KIGNyZWF0ZSBtb2RlIDEwMDY0NCBkcml2ZXJzL2NwdWZyZXEvbWVkaWF0ZWstY3B1ZnJlcS1o
+dy5j
 
