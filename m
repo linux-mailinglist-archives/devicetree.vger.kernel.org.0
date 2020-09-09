@@ -2,243 +2,67 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from vger.kernel.org (vger.kernel.org [23.128.96.18])
-	by mail.lfdr.de (Postfix) with ESMTP id B68DE263376
-	for <lists+devicetree@lfdr.de>; Wed,  9 Sep 2020 19:04:21 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTP id 8349126344F
+	for <lists+devicetree@lfdr.de>; Wed,  9 Sep 2020 19:18:49 +0200 (CEST)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S1730349AbgIIREF (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Wed, 9 Sep 2020 13:04:05 -0400
-Received: from mail.kernel.org ([198.145.29.99]:57776 "EHLO mail.kernel.org"
-        rhost-flags-OK-OK-OK-OK) by vger.kernel.org with ESMTP
-        id S1730922AbgIIRD7 (ORCPT <rfc822;devicetree@vger.kernel.org>);
-        Wed, 9 Sep 2020 13:03:59 -0400
-Received: from mail-oi1-f177.google.com (mail-oi1-f177.google.com [209.85.167.177])
-        (using TLSv1.2 with cipher ECDHE-RSA-AES128-GCM-SHA256 (128/128 bits))
-        (No client certificate requested)
-        by mail.kernel.org (Postfix) with ESMTPSA id D796521D40;
-        Wed,  9 Sep 2020 17:03:57 +0000 (UTC)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=kernel.org;
-        s=default; t=1599671038;
-        bh=JIDA/cRRI0indPE0r3wuMYo5P+C7fvkBFrVCEVChMe8=;
-        h=References:In-Reply-To:From:Date:Subject:To:Cc:From;
-        b=f/YvIKLyyfTdH/P3B2nWwFzJumK0wc+x6JNV89QvHGG8y/xDDKSDI1Etlu41wgLxo
-         NlvhFMD/3dP5vO4h46JxzR9HlQFdx2T8SUN1EC805YxOrLNbwOQWDpAvxbjTPPxsnM
-         ic2Ei+gt3fV89IQHKswAiynRQRYXnksS9kzatd3I=
-Received: by mail-oi1-f177.google.com with SMTP id d189so3031871oig.12;
-        Wed, 09 Sep 2020 10:03:57 -0700 (PDT)
-X-Gm-Message-State: AOAM53308i3xpmUz1hp6GYkMjYRWRNf6QrDxLAO9vHP/O7Cy2z249V7Q
-        VycTC+jtlFWToYlN527i8tXPYtds5plnam9iLA==
-X-Google-Smtp-Source: ABdhPJwMDEAWsz0YP+IUUIAwNVr87N71/p34095Drcq1C+VinwmF5SZiMbHS+Zs30a9A/NvW6uK0PeVBiWDbc8U3iGg=
-X-Received: by 2002:aca:1711:: with SMTP id j17mr1278976oii.152.1599671037167;
- Wed, 09 Sep 2020 10:03:57 -0700 (PDT)
-MIME-Version: 1.0
-References: <20200824141053.5062-1-biju.das.jz@bp.renesas.com>
- <20200824141053.5062-2-biju.das.jz@bp.renesas.com> <20200908223651.GA1042906@bogus>
- <TYBPR01MB5309786FAFF729AB8998B5D786260@TYBPR01MB5309.jpnprd01.prod.outlook.com>
-In-Reply-To: <TYBPR01MB5309786FAFF729AB8998B5D786260@TYBPR01MB5309.jpnprd01.prod.outlook.com>
+        id S1730951AbgIIRSs (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Wed, 9 Sep 2020 13:18:48 -0400
+Received: from mail-il1-f194.google.com ([209.85.166.194]:41314 "EHLO
+        mail-il1-f194.google.com" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
+        with ESMTP id S1730168AbgIIRSo (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Wed, 9 Sep 2020 13:18:44 -0400
+Received: by mail-il1-f194.google.com with SMTP id w8so3058415ilj.8;
+        Wed, 09 Sep 2020 10:18:44 -0700 (PDT)
+X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+        d=1e100.net; s=20161025;
+        h=x-gm-message-state:date:from:to:cc:subject:message-id:references
+         :mime-version:content-disposition:in-reply-to;
+        bh=1hr4fQWVMQoos6KFmQBQi97levSHBi+dO9Jnfm/kgyc=;
+        b=QgVDrQv79/bMsspyf26g4QQ7M+nDYYC/uCyuQAI6TQmqQO9jt5pBIr+Mlusq9nduAE
+         eyKUQSv+CBNtLnXmfaF4UVbv+Eh9R3p20rQfmcfxvpnJx0bheNnCp274h8xntUrA6YTL
+         pEbbgtFSY1NAQdGEfXBxhlFRZKPfY3yctAMGgEqu3fy4klGIQ3GZBMhu/ML2mfsl91O5
+         m671D9XSpw/34bNwhjwmj+4TwKoVzBKXYDXyqnV6dD5r6WbpGJzHbw5iNhCkiEtNYzVA
+         sOWvIiDr89TV/HICs1wPOonQaP+eqy4+Gi9Hn1ym5+2hPL173KUd8Kq+MG8OZQ0TJvEg
+         QZbg==
+X-Gm-Message-State: AOAM533E7xhtu7K5XJRV2KAI8tOtdLjd6y5OssahsAiIoLgHK5bQASKW
+        xYFJZcSYgX4SjyrA1Szz5pt2u8/klmWD
+X-Google-Smtp-Source: ABdhPJweONXjnuZtBkOGVqg1AFS1ASeGmxxVhyJmF8gPg8PMO09CmvmPl5R9xygei/39Fl6Prjb6gg==
+X-Received: by 2002:a92:bb94:: with SMTP id x20mr4613847ilk.86.1599671923668;
+        Wed, 09 Sep 2020 10:18:43 -0700 (PDT)
+Received: from xps15 ([64.188.179.251])
+        by smtp.gmail.com with ESMTPSA id s15sm1610420ilt.62.2020.09.09.10.18.42
+        (version=TLS1_3 cipher=TLS_AES_256_GCM_SHA384 bits=256/256);
+        Wed, 09 Sep 2020 10:18:43 -0700 (PDT)
+Received: (nullmailer pid 2680839 invoked by uid 1000);
+        Wed, 09 Sep 2020 17:18:42 -0000
+Date:   Wed, 9 Sep 2020 11:18:42 -0600
 From:   Rob Herring <robh@kernel.org>
-Date:   Wed, 9 Sep 2020 11:03:45 -0600
-X-Gmail-Original-Message-ID: <CAL_Jsq+TKjfHh=4a-NFUaYzjedVonP69ourL5YzZuxPLEY6T-Q@mail.gmail.com>
-Message-ID: <CAL_Jsq+TKjfHh=4a-NFUaYzjedVonP69ourL5YzZuxPLEY6T-Q@mail.gmail.com>
-Subject: Re: [PATCH v3 1/5] dt-bindings: usb: convert ti,hd3ss3220 bindings to json-schema
-To:     Biju Das <biju.das.jz@bp.renesas.com>
-Cc:     Greg Kroah-Hartman <gregkh@linuxfoundation.org>,
-        Prabhakar Mahadev Lad <prabhakar.mahadev-lad.rj@bp.renesas.com>,
-        Yoshihiro Shimoda <yoshihiro.shimoda.uh@renesas.com>,
-        Heikki Krogerus <heikki.krogerus@linux.intel.com>,
-        "linux-usb@vger.kernel.org" <linux-usb@vger.kernel.org>,
-        "devicetree@vger.kernel.org" <devicetree@vger.kernel.org>,
-        Geert Uytterhoeven <geert+renesas@glider.be>,
-        Chris Paterson <Chris.Paterson2@renesas.com>,
-        Biju Das <biju.das@bp.renesas.com>,
-        "linux-renesas-soc@vger.kernel.org" 
-        <linux-renesas-soc@vger.kernel.org>
-Content-Type: text/plain; charset="UTF-8"
+To:     Jisheng Zhang <Jisheng.Zhang@synaptics.com>
+Cc:     Liam Girdwood <lgirdwood@gmail.com>, linux-kernel@vger.kernel.org,
+        Mark Brown <broonie@kernel.org>,
+        Rob Herring <robh+dt@kernel.org>, devicetree@vger.kernel.org
+Subject: Re: [PATCH] dt-bindings: regulator: Convert mp886x to json-schema
+Message-ID: <20200909171842.GA2680789@bogus>
+References: <20200827150640.267f6edc@xhacker.debian>
+MIME-Version: 1.0
+Content-Type: text/plain; charset=us-ascii
+Content-Disposition: inline
+In-Reply-To: <20200827150640.267f6edc@xhacker.debian>
 Sender: devicetree-owner@vger.kernel.org
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-On Wed, Sep 9, 2020 at 2:21 AM Biju Das <biju.das.jz@bp.renesas.com> wrote:
->
-> Hi Rob,
->
-> Thanks for the feedback.
->
-> > Subject: Re: [PATCH v3 1/5] dt-bindings: usb: convert ti,hd3ss3220 bindings to
-> > json-schema
-> >
-> > On Mon, Aug 24, 2020 at 03:10:49PM +0100, Biju Das wrote:
-> > > From: Lad Prabhakar <prabhakar.mahadev-lad.rj@bp.renesas.com>
-> > >
-> > > Convert ti,hd3ss3220.txt to YAML. Updated the binding documentation as
-> > > graph bindings of this device model Super Speed (SS) data bus to the
-> > > Super Speed (SS) capable connector.
-> > >
-> > > Signed-off-by: Lad Prabhakar <prabhakar.mahadev-
-> > lad.rj@bp.renesas.com>
-> > > Signed-off-by: Biju Das <biju.das.jz@bp.renesas.com>
-> > > ---
-> > > v2->v3: Replaced Tabs with spaces in the example section.
-> > > v1->v2 : No change
-> > > Ref: https://patchwork.kernel.org/patch/11669423/
-> > > ---
-> > >  .../devicetree/bindings/usb/ti,hd3ss3220.txt  | 38 ---------
-> > > .../devicetree/bindings/usb/ti,hd3ss3220.yaml | 81
-> > +++++++++++++++++++
-> > >  2 files changed, 81 insertions(+), 38 deletions(-)  delete mode
-> > > 100644 Documentation/devicetree/bindings/usb/ti,hd3ss3220.txt
-> > >  create mode 100644
-> > > Documentation/devicetree/bindings/usb/ti,hd3ss3220.yaml
-> > >
-> > > diff --git a/Documentation/devicetree/bindings/usb/ti,hd3ss3220.txt
-> > > b/Documentation/devicetree/bindings/usb/ti,hd3ss3220.txt
-> > > deleted file mode 100644
-> > > index 2bd21b22ce95..000000000000
-> > > --- a/Documentation/devicetree/bindings/usb/ti,hd3ss3220.txt
-> > > +++ /dev/null
-> > > @@ -1,38 +0,0 @@
-> > > -TI HD3SS3220 TypeC DRP Port Controller.
-> > > -
-> > > -Required properties:
-> > > - - compatible: Must be "ti,hd3ss3220".
-> > > - - reg: I2C slave address, must be 0x47 or 0x67 based on ADDR pin.
-> > > - - interrupts: An interrupt specifier.
-> > > -
-> > > -Required sub-node:
-> > > - - connector: The "usb-c-connector" attached to the hd3ss3220 chip. The
-> > > -   bindings of the connector node are specified in:
-> > > -
-> > > -Documentation/devicetree/bindings/connector/usb-connector.yaml
-> > > -
-> > > -Example:
-> > > -hd3ss3220@47 {
-> > > -compatible = "ti,hd3ss3220";
-> > > -reg = <0x47>;
-> > > -interrupt-parent = <&gpio6>;
-> > > -interrupts = <3 IRQ_TYPE_LEVEL_LOW>;
-> > > -
-> > > -connector {
-> > > -compatible = "usb-c-connector";
-> > > -label = "USB-C";
-> > > -data-role = "dual";
-> > > -
-> > > -ports {
-> > > -#address-cells = <1>;
-> > > -#size-cells = <0>;
-> > > -
-> > > -port@1 {
-> > > -reg = <1>;
-> > > -hd3ss3220_ep: endpoint {
-> > > -remote-endpoint =
-> > <&usb3_role_switch>;
-> > > -};
-> > > -};
-> > > -};
-> > > -};
-> > > -};
-> > > diff --git a/Documentation/devicetree/bindings/usb/ti,hd3ss3220.yaml
-> > > b/Documentation/devicetree/bindings/usb/ti,hd3ss3220.yaml
-> > > new file mode 100644
-> > > index 000000000000..750a099529c0
-> > > --- /dev/null
-> > > +++ b/Documentation/devicetree/bindings/usb/ti,hd3ss3220.yaml
-> > > @@ -0,0 +1,81 @@
-> > > +# SPDX-License-Identifier: (GPL-2.0 OR BSD-2-Clause) %YAML 1.2
-> > > +---
-> > > +$id: http://devicetree.org/schemas/usb/ti,hd3ss3220.yaml#
-> > > +$schema: http://devicetree.org/meta-schemas/core.yaml#
-> > > +
-> > > +title: TI HD3SS3220 TypeC DRP Port Controller
-> > > +
-> > > +maintainers:
-> > > +  - Biju Das <biju.das.jz@bp.renesas.com>
-> > > +
-> > > +description: |-
-> > > +  HD3SS3220 is a USB SuperSpeed (SS) 2:1 mux with DRP port
-> > > +controller. The device provides Channel
-> > > +  Configuration (CC) logic and 5V VCONN sourcing for ecosystems
-> > > +implementing USB Type-C. The
-> > > +  HD3SS3220 can be configured as a Downstream Facing Port (DFP),
-> > > +Upstream Facing Port (UFP) or a
-> > > +  Dual Role Port (DRP) making it ideal for any application.
-> > > +
-> > > +properties:
-> > > +  compatible:
-> > > +   const: ti,hd3ss3220
-> > > +
-> > > +  reg:
-> > > +    maxItems: 1
-> > > +
-> > > +  interrupts:
-> > > +    maxItems: 1
-> > > +
-> > > +  ports:
-> > > +    description: OF graph bindings (specified in bindings/graph.txt) that
-> > model
-> > > +      SS data bus to the SS capable connector.
-> > > +    type: object
-> > > +    properties:
-> > > +      port@0:
-> > > +        type: object
-> > > +        description: Super Speed (SS) capable connector.
-> > > +
-> > > +      port@1:
-> > > +        type: object
-> > > +        description: Super Speed (SS) data bus.
-> > > +
-> > > +    required:
-> > > +      - port@0
-> > > +      - port@1
-> > > +
-> > > +required:
-> > > +  - compatible
-> > > +  - reg
-> > > +  - interrupts
-> > > +
-> > > +additionalProperties: false
-> > > +
-> > > +examples:
-> > > +  - |
-> > > +    i2c0 {
-> > > +        #address-cells = <1>;
-> > > +        #size-cells = <0>;
-> > > +
-> > > +        hd3ss3220@47 {
-> > > +                compatible = "ti,hd3ss3220";
-> > > +                reg = <0x47>;
-> > > +                interrupt-parent = <&gpio6>;
-> > > +                interrupts = <3>;
-> > > +
-> > > +                ports {
-> > > +                        #address-cells = <1>;
-> > > +                        #size-cells = <0>;
-> > > +                        port@0 {
-> > > +                                reg = <0>;
-> > > +                                hd3ss3220_in_ep: endpoint {
-> > > +                                        remote-endpoint = <&ss_ep>;
-> > > +                                };
-> > > +                        };
-> > > +                        port@1 {
-> > > +                                reg = <1>;
-> > > +                                hd3ss3220_out_ep: endpoint {
-> > > +                                        remote-endpoint = <&usb3_role_switch>;
-> > > +                                };
-> >
-> > If you have 2 inputs muxed, then there would be 2 endpoints here? Please
-> > show the fullest or most complicated case for the example. The port@1
-> > description could be a bit better.
->
-> As per [1] "HD3SS3220 has integrated USB 3.0/3.1 SS/SS+ MUX with 2 channel 2:1 switching required to handle cable flips".
-> The four Superspeed differential pairs (two Tx and two Rx pairs) pairs from the USB-C receptacle is connected to this device
-> and the output of the Mux is connected to the  SoC .
+On Thu, 27 Aug 2020 15:06:40 +0800, Jisheng Zhang wrote:
+> Convert the mp886x binding to DT schema format using json-schema.
+> 
+> Signed-off-by: Jisheng Zhang <Jisheng.Zhang@synaptics.com>
+> ---
+>  .../devicetree/bindings/regulator/mp886x.txt  | 31 ----------
+>  .../bindings/regulator/mps,mp886x.yaml        | 61 +++++++++++++++++++
+>  2 files changed, 61 insertions(+), 31 deletions(-)
+>  delete mode 100644 Documentation/devicetree/bindings/regulator/mp886x.txt
+>  create mode 100644 Documentation/devicetree/bindings/regulator/mps,mp886x.yaml
+> 
 
-Ah, I was thinking this was muxing 2 functions (such as DP) rather
-than cable flip handling. I guess the example doesn't need anything
-else, but the description does. In the case of directly connected to
-the SoC, how are cable flips handled? The SoC phy handles it?
-
-There's some issues in the connector binding with how the SS signals
-are handled that needs to be solved. This all needs to be addressed
-looking at various possible h/w designs.
-
-Rob
+Reviewed-by: Rob Herring <robh@kernel.org>
