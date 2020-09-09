@@ -2,118 +2,52 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from vger.kernel.org (vger.kernel.org [23.128.96.18])
-	by mail.lfdr.de (Postfix) with ESMTP id 73C162631E7
-	for <lists+devicetree@lfdr.de>; Wed,  9 Sep 2020 18:29:57 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTP id 05D9A2631FF
+	for <lists+devicetree@lfdr.de>; Wed,  9 Sep 2020 18:33:44 +0200 (CEST)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S1731133AbgIIQ3w (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Wed, 9 Sep 2020 12:29:52 -0400
-Received: from mga05.intel.com ([192.55.52.43]:4048 "EHLO mga05.intel.com"
-        rhost-flags-OK-OK-OK-OK) by vger.kernel.org with ESMTP
-        id S1730978AbgIIQ3b (ORCPT <rfc822;devicetree@vger.kernel.org>);
-        Wed, 9 Sep 2020 12:29:31 -0400
-IronPort-SDR: gV4oEhuq0jHlRbOy0fOzLL63uBw9g1D/xr0j37OgW9XbXisbKDuzfegA7HZnYeKvyq4sS2QYti
- U5oHdPi5MXUA==
-X-IronPort-AV: E=McAfee;i="6000,8403,9739"; a="243175917"
-X-IronPort-AV: E=Sophos;i="5.76,409,1592895600"; 
-   d="scan'208";a="243175917"
-X-Amp-Result: SKIPPED(no attachment in message)
-X-Amp-File-Uploaded: False
-Received: from orsmga007.jf.intel.com ([10.7.209.58])
-  by fmsmga105.fm.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384; 09 Sep 2020 09:29:28 -0700
-IronPort-SDR: rUpC/Ggy4ojxN8XqqYd8DRB1SP5lkh08ZMVP5XrZkM3MTd8sLCJUsdV7FN7fL+03l9uX0ef+Ni
- l5565xH7oHDw==
-X-ExtLoop1: 1
-X-IronPort-AV: E=Sophos;i="5.76,409,1592895600"; 
-   d="scan'208";a="343945127"
-Received: from ubuntu18.png.intel.com ([10.88.229.38])
-  by orsmga007.jf.intel.com with ESMTP; 09 Sep 2020 09:29:25 -0700
-From:   vijayakannan.ayyathurai@intel.com
-To:     thierry.reding@gmail.com, u.kleine-koenig@pengutronix.de,
-        robh+dt@kernel.org
-Cc:     linux-pwm@vger.kernel.org, devicetree@vger.kernel.org,
-        wan.ahmad.zainie.wan.mohamad@intel.com,
-        andriy.shevchenko@linux.intel.com, mgross@linux.intel.com,
-        lakshmi.bai.raja.subramanian@intel.com
-Subject: [PATCH v7 2/2] dt-bindings: pwm: keembay: Add bindings for Intel Keem Bay PWM
-Date:   Thu, 10 Sep 2020 00:27:19 +0800
-Message-Id: <20200909162719.7585-3-vijayakannan.ayyathurai@intel.com>
-X-Mailer: git-send-email 2.17.1
-In-Reply-To: <20200909162719.7585-1-vijayakannan.ayyathurai@intel.com>
-References: <20200909162719.7585-1-vijayakannan.ayyathurai@intel.com>
-MIME-Version: 1.0
-Content-Type: text/plain; charset=UTF-8
-Content-Transfer-Encoding: 8bit
+        id S1731046AbgIIQd3 (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Wed, 9 Sep 2020 12:33:29 -0400
+Received: from lindbergh.monkeyblade.net ([23.128.96.19]:57256 "EHLO
+        lindbergh.monkeyblade.net" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
+        with ESMTP id S1730710AbgIIQci (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Wed, 9 Sep 2020 12:32:38 -0400
+Received: from ozlabs.org (bilbo.ozlabs.org [IPv6:2401:3900:2:1::2])
+        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id AB535C0617A9;
+        Wed,  9 Sep 2020 06:37:35 -0700 (PDT)
+Received: by ozlabs.org (Postfix, from userid 1034)
+        id 4BmjkP4f7pz9sV5; Wed,  9 Sep 2020 23:37:33 +1000 (AEST)
+From:   Michael Ellerman <patch-notifications@ellerman.id.au>
+To:     alexandre.belloni@bootlin.com, robh+dt@kernel.org,
+        a.zummo@towertech.it, mpe@ellerman.id.au, leoyang.li@nxp.com,
+        benh@kernel.crashing.org, Biwen Li <biwen.li@oss.nxp.com>
+Cc:     devicetree@vger.kernel.org, Biwen Li <biwen.li@nxp.com>,
+        linuxppc-dev@lists.ozlabs.org, linux-kernel@vger.kernel.org,
+        linux-rtc@vger.kernel.org
+In-Reply-To: <20200527034228.23793-1-biwen.li@oss.nxp.com>
+References: <20200527034228.23793-1-biwen.li@oss.nxp.com>
+Subject: Re: [v3 1/2] dts: ppc: t4240rdb: remove interrupts property
+Message-Id: <159965824243.811679.11439322992907877530.b4-ty@ellerman.id.au>
+Date:   Wed,  9 Sep 2020 23:37:33 +1000 (AEST)
 Sender: devicetree-owner@vger.kernel.org
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-From: Vijayakannan Ayyathurai <vijayakannan.ayyathurai@intel.com>
+On Wed, 27 May 2020 11:42:27 +0800, Biwen Li wrote:
+> Since the interrupt pin for RTC DS1374 is not connected
+> to the CPU on T4240RDB, remove the interrupt property
+> from the device tree.
+> 
+> This also fix the following warning for hwclock.util-linux:
+> $ hwclock.util-linux
+> hwclock.util-linux: select() to /dev/rtc0
+> to wait for clock tick timed out
 
-Add PWM Device Tree bindings documentation for the Intel Keem Bay SoC.
+Applied to powerpc/next.
 
-Signed-off-by: Vineetha G. Jaya Kumaran <vineetha.g.jaya.kumaran@intel.com>
-Signed-off-by: Vijayakannan Ayyathurai <vijayakannan.ayyathurai@intel.com>
-Reviewed-by: Rob Herring <robh@kernel.org>
-Acked-by: Uwe Kleine-König <u.kleine-koenig@pengutronix.de>
----
- .../bindings/pwm/intel,keembay-pwm.yaml       | 47 +++++++++++++++++++
- 1 file changed, 47 insertions(+)
- create mode 100644 Documentation/devicetree/bindings/pwm/intel,keembay-pwm.yaml
+[1/2] powerpc/dts/t4240rdb: remove interrupts property
+      https://git.kernel.org/powerpc/c/8c7614d648037b0776e0b76cb62911be3b059ea4
+[2/2] powerc/dtc/t1024rdb: remove interrupts property
+      https://git.kernel.org/powerpc/c/843dc8ee23d1b353fa9cc24da3e52be0111d5931
 
-diff --git a/Documentation/devicetree/bindings/pwm/intel,keembay-pwm.yaml b/Documentation/devicetree/bindings/pwm/intel,keembay-pwm.yaml
-new file mode 100644
-index 000000000000..a37433487632
---- /dev/null
-+++ b/Documentation/devicetree/bindings/pwm/intel,keembay-pwm.yaml
-@@ -0,0 +1,47 @@
-+# SPDX-License-Identifier: (GPL-2.0-only OR BSD-2-Clause)
-+# Copyright (C) 2020 Intel Corporation
-+%YAML 1.2
-+---
-+$id: http://devicetree.org/schemas/pwm/intel,keembay-pwm.yaml#
-+$schema: http://devicetree.org/meta-schemas/core.yaml#
-+
-+title: Intel Keem Bay PWM Device Tree Bindings
-+
-+maintainers:
-+  - Vineetha G. Jaya Kumaran <vineetha.g.jaya.kumaran@intel.com>
-+
-+allOf:
-+  - $ref: pwm.yaml#
-+
-+properties:
-+  compatible:
-+    enum:
-+      - intel,keembay-pwm
-+
-+  reg:
-+    maxItems: 1
-+
-+  clocks:
-+    maxItems: 1
-+
-+  "#pwm-cells":
-+    const: 2
-+
-+required:
-+ - compatible
-+ - reg
-+ - clocks
-+ - '#pwm-cells'
-+
-+additionalProperties: false
-+
-+examples:
-+  - |
-+    #define KEEM_BAY_A53_GPIO
-+
-+    pwm@203200a0 {
-+      compatible = "intel,keembay-pwm";
-+      reg = <0x203200a0 0xe8>;
-+      clocks = <&scmi_clk KEEM_BAY_A53_GPIO>;
-+      #pwm-cells = <2>;
-+    };
--- 
-2.17.1
-
+cheers
