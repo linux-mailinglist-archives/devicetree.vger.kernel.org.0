@@ -2,217 +2,142 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from vger.kernel.org (vger.kernel.org [23.128.96.18])
-	by mail.lfdr.de (Postfix) with ESMTP id D3769263EB9
-	for <lists+devicetree@lfdr.de>; Thu, 10 Sep 2020 09:27:49 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTP id 86EEC263EFB
+	for <lists+devicetree@lfdr.de>; Thu, 10 Sep 2020 09:49:53 +0200 (CEST)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S1729865AbgIJH1o (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Thu, 10 Sep 2020 03:27:44 -0400
-Received: from mga12.intel.com ([192.55.52.136]:5784 "EHLO mga12.intel.com"
-        rhost-flags-OK-OK-OK-OK) by vger.kernel.org with ESMTP
-        id S1726746AbgIJH1m (ORCPT <rfc822;devicetree@vger.kernel.org>);
-        Thu, 10 Sep 2020 03:27:42 -0400
-IronPort-SDR: /5d06dtqMTRY7lzQF5tuf4rGO9rWV19sXXnxea+WnfwuVZaz1kvbuZNKHiaxmZOdh7gm9hqn7I
- zqxB6vAviJeQ==
-X-IronPort-AV: E=McAfee;i="6000,8403,9739"; a="138002032"
-X-IronPort-AV: E=Sophos;i="5.76,412,1592895600"; 
-   d="scan'208";a="138002032"
-X-Amp-Result: SKIPPED(no attachment in message)
-X-Amp-File-Uploaded: False
-Received: from fmsmga001.fm.intel.com ([10.253.24.23])
-  by fmsmga106.fm.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384; 10 Sep 2020 00:26:09 -0700
-IronPort-SDR: IuROGYMsnJyCthmZ52YfiKeT6z1c0bLlhrO5j9eYWcfQ6dc22mFu4mnQLj+rMrjb/U/ZfAD7w+
- VbAIrvI8i++Q==
-X-ExtLoop1: 1
-X-IronPort-AV: E=Sophos;i="5.76,412,1592895600"; 
-   d="scan'208";a="407683701"
-Received: from linux.intel.com ([10.54.29.200])
-  by fmsmga001.fm.intel.com with ESMTP; 10 Sep 2020 00:26:09 -0700
-Received: from [10.215.160.12] (rtanwar-MOBL.gar.corp.intel.com [10.215.160.12])
-        by linux.intel.com (Postfix) with ESMTP id 261DA5807AD;
-        Thu, 10 Sep 2020 00:26:05 -0700 (PDT)
-Subject: Re: [PATCH 2/2] Add driver for Moortec MR75203 PVT controller
-To:     Andy Shevchenko <andriy.shevchenko@intel.com>
-Cc:     jdelvare@suse.com, linux@roeck-us.net, p.zabel@pengutronix.de,
-        linux-hwmon@vger.kernel.org, robh+dt@kernel.org,
-        linux-kernel@vger.kernel.org, devicetree@vger.kernel.org,
-        songjun.Wu@intel.com, cheol.yong.kim@intel.com,
-        qi-ming.wu@intel.com, rtanwar@maxlinear.com
-References: <cover.1599634208.git.rahul.tanwar@linux.intel.com>
- <ecb6794a8f2ef6576421e6d5fbdf4e6a91f06b91.1599634208.git.rahul.tanwar@linux.intel.com>
- <20200909103317.GL1891694@smile.fi.intel.com>
-From:   "Tanwar, Rahul" <rahul.tanwar@linux.intel.com>
-Message-ID: <41cf7b4d-2476-4d0e-0dae-f0200649d7dd@linux.intel.com>
-Date:   Thu, 10 Sep 2020 15:26:04 +0800
-User-Agent: Mozilla/5.0 (Windows NT 10.0; WOW64; rv:68.0) Gecko/20100101
- Thunderbird/68.12.0
+        id S1728970AbgIJHtw (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Thu, 10 Sep 2020 03:49:52 -0400
+Received: from lindbergh.monkeyblade.net ([23.128.96.19]:50072 "EHLO
+        lindbergh.monkeyblade.net" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
+        with ESMTP id S1728626AbgIJHtq (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Thu, 10 Sep 2020 03:49:46 -0400
+Received: from mail-io1-xd44.google.com (mail-io1-xd44.google.com [IPv6:2607:f8b0:4864:20::d44])
+        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 04F8FC061573;
+        Thu, 10 Sep 2020 00:49:45 -0700 (PDT)
+Received: by mail-io1-xd44.google.com with SMTP id z13so6043445iom.8;
+        Thu, 10 Sep 2020 00:49:45 -0700 (PDT)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+        d=gmail.com; s=20161025;
+        h=mime-version:references:in-reply-to:from:date:message-id:subject:to
+         :cc:content-transfer-encoding;
+        bh=1PTiGOyennkCERiFVjnl2rpLQDxKh0UO1rwGXhcdHGQ=;
+        b=vfyHU6z2AJeojj+DWgkbr8McnduBaV7heEabpt0g7kNPwmEEG10g4cZCf2g5RoUr8L
+         Q9mrImohY/lrKLwhtTFKLikxUndWYRFzDTnnIPRyDhfOoe4z4P/rrfporvWxZjZQYhD6
+         OduT7XQZbzNZhau4enoa/5whfKYXaBewGG8T1EMPWpUwZ5lRtug1Pyx7inuxUi1oOcxD
+         gqtstBvTo5Sc7MjPW5IZT8o10fx+6AGZ9jn7DhZm0e0hFgln4T5seRFyRHUZOYGQL3lf
+         qTbGjWNYed3kKGn9WQW/wwK5Gj+cSixputaA11nRgAQ9aXfQ9gSIz2/G+2rIJ2JJHM5N
+         Suvg==
+X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+        d=1e100.net; s=20161025;
+        h=x-gm-message-state:mime-version:references:in-reply-to:from:date
+         :message-id:subject:to:cc:content-transfer-encoding;
+        bh=1PTiGOyennkCERiFVjnl2rpLQDxKh0UO1rwGXhcdHGQ=;
+        b=o6fhXTSvn8MFlWEAKO/LN7wIEwOvJFPGB9BvGds5fRX9+25UdPl/FQQw9ga9W91r/C
+         GpjAaGKN0ranep6y8jURWw9W7vtZt4BZooEj8cF4fWBsWOlE/6a1pRlUmNqzNf/O72IN
+         OD33rgSvCrdooGyPb09ZugNtGi4Df/17bWJKvrSp8GvSZ6HCKaDU1/RhO6LAbpcihh1p
+         a7IAx/N9K+rSsKwk/NZSpQgINDinC4+zPS0VDZLEylRXlVffXJ+wbaavO0kURNMJw7Mh
+         KAEHeXG+XbqtNgFric4/W1BkU/+kt6iGEzZ/haUkUPzXykP/CbywH6RcPQ3WSIDWfZZh
+         JGIw==
+X-Gm-Message-State: AOAM533MCuRKxeTZ22m/JNaHY22M7LhaAIpr21r5za0gq+ekOWvbLXi4
+        K93K2fsgRmmkjbCqbhzdFQ/RluFo+FyNsl1LioNJRSFDZu4=
+X-Google-Smtp-Source: ABdhPJwgD4ZKx8mYopgg3XNY+Per6BffD+Xe9MaqvAy593SfYzFkMrwyS/vdUj1XLskp7sbFyMsOb1GTewknce7HAXI=
+X-Received: by 2002:a02:ce8c:: with SMTP id y12mr7734842jaq.53.1599724185207;
+ Thu, 10 Sep 2020 00:49:45 -0700 (PDT)
 MIME-Version: 1.0
-In-Reply-To: <20200909103317.GL1891694@smile.fi.intel.com>
-Content-Type: text/plain; charset=utf-8
-Content-Transfer-Encoding: 8bit
-Content-Language: en-US
+References: <1599474459-20853-1-git-send-email-gene.chen.richtek@gmail.com>
+ <1599474459-20853-2-git-send-email-gene.chen.richtek@gmail.com> <20200908222544.GF1005@bug>
+In-Reply-To: <20200908222544.GF1005@bug>
+From:   Gene Chen <gene.chen.richtek@gmail.com>
+Date:   Thu, 10 Sep 2020 07:49:33 +0800
+Message-ID: <CAE+NS34h9qbdHkYDYDnHGgk+9mFNTRpKEMKNEFZ+Secf6JyoZg@mail.gmail.com>
+Subject: Re: [PATCH v3 1/2] leds: mt6360: Add LED driver for MT6360
+To:     Pavel Machek <pavel@ucw.cz>
+Cc:     jacek.anaszewski@gmail.com, robh+dt@kernel.org,
+        Matthias Brugger <matthias.bgg@gmail.com>,
+        Dan Murphy <dmurphy@ti.com>, linux-leds@vger.kernel.org,
+        devicetree@vger.kernel.org, linux-arm-kernel@lists.infradead.org,
+        linux-mediatek@lists.infradead.org, linux-kernel@vger.kernel.org,
+        Gene Chen <gene_chen@richtek.com>, Wilma.Wu@mediatek.com,
+        shufan_lee@richtek.com, cy_huang@richtek.com,
+        benjamin.chao@mediatek.com
+Content-Type: text/plain; charset="UTF-8"
+Content-Transfer-Encoding: quoted-printable
 Sender: devicetree-owner@vger.kernel.org
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-
-Hi Andy,
-
-Thanks for the review & feedback.
-
-On 9/9/2020 6:33 pm, Andy Shevchenko wrote:
-> On Wed, Sep 09, 2020 at 02:52:05PM +0800, Rahul Tanwar wrote:
->> PVT controller (MR75203) is used to configure & control
->> Moortec embedded analog IP which contains temprature
->> sensor(TS), voltage monitor(VM) & process detector(PD)
->> modules. Add driver to support MR75203 PVT controller.
-> ...
+Pavel Machek <pavel@ucw.cz> =E6=96=BC 2020=E5=B9=B49=E6=9C=889=E6=97=A5 =E9=
+=80=B1=E4=B8=89 =E4=B8=8A=E5=8D=886:25=E5=AF=AB=E9=81=93=EF=BC=9A
 >
->> +#include <linux/clk.h>
->> +#include <linux/hwmon.h>
->> +#include <linux/module.h>
->> +#include <linux/mutex.h>
+> Hi!
 >
->> +#include <linux/of.h>
-> I don't see anything special about OF here.
-> Perhaps
-> 	mod_devicetable.h
-> 	property.h
-> ?
-
-of.h is needed because of of_property_read_u8_array(). I will add
-mod_devicetable.h.
-property.h seems not required at all.
-
->> +#include <linux/platform_device.h>
->> +#include <linux/regmap.h>
->> +#include <linux/reset.h>
-> ...
+> > From: Gene Chen <gene_chen@richtek.com>
+> >
+> > Add MT6360 LED driver include 2-channel Flash LED with torch/strobe mod=
+e,
+> > and 4-channel RGB LED support Register/Flash/Breath Mode
+> >
+> > Signed-off-by: Gene Chen <gene_chen@richtek.com>
+> > ---
+> >  drivers/leds/Kconfig       |  11 +
+> >  drivers/leds/Makefile      |   1 +
+> >  drivers/leds/leds-mt6360.c | 681 +++++++++++++++++++++++++++++++++++++=
+++++++++
+> >  3 files changed, 693 insertions(+)
+> >  create mode 100644 drivers/leds/leds-mt6360.c
+> >
+> > +     help
+> > +       This option enables support for dual Flash LED drivers found on
+> > +       Mediatek MT6360 PMIC.
+> > +       Independent current sources supply for each flash LED support t=
+orch and strobe mode.
+> > +       Includes Low-VF and short protection.
+> > +
 >
->> +#define PVT_POLL_TIMEOUT	20000
-> Units?
-
-Well noted.
-
-> ...
->
->> +	sys_freq = clk_get_rate(pvt->clk) / 1000000;
-> HZ_PER_MHZ ?
-
-Well noted.
-
->> +	while (high >= low) {
->> +		middle = DIV_ROUND_CLOSEST(low + high, 2);
-> I'm wondering would it be better in the code like
->
-> 	middle = (low + high + 1) / 2;
-
-Will update.
-
->> +		key = DIV_ROUND_CLOSEST(sys_freq, middle);
->> +		if (key > 514) {
->> +			low = middle + 1;
->> +			continue;
->> +		} else if (key < 2) {
->> +			high = middle - 1;
->> +			continue;
->> +		}
->> +
->> +		break;
->> +	}
->> +
->> +	key = clamp_val(key, 2, 514) - 2;
-> I guess above deserves a comment with formulas.
-
-Hmm..I will try to add some more info. Problem is that the datasheet doesn't
-explain it clearly.
-
-> ...
->
->> +		regmap_write(p_map, SDIF_DISABLE, GENMASK(p_num - 1, 0));
-> For non-constants better would be BIT(p_num) - 1.
-
-Well noted.
-
-> ...
->
->> +		regmap_write(v_map, SDIF_SMPL_CTRL, 0x0);
->> +		regmap_write(v_map, SDIF_HALT, 0x0);
->> +		regmap_write(v_map, SDIF_DISABLE, 0);
-> In some you have 0, in some 0x0 over the file, can it be consistent?
-
-Yes, missed that, will update.
-
-> ...
->
->> +static struct regmap_config pvt_regmap_config = {
->> +	.reg_bits = 32,
->> +	.reg_stride = 4,
->> +	.val_bits = 32,
-> How do you use regmap's lock?
-
-We mutex lock whenever read temperature or voltage values from the registers.
-All non-probe/non-init paths. We do not override regmap's internal lock.
-
->> +};
-> ...
->
->> +static int pvt_get_regmap(struct platform_device *pdev, char *reg_name)
->> +{
->> +	struct device *dev = &pdev->dev;
->> +	struct pvt_device *pvt = platform_get_drvdata(pdev);
-> Can it be first line in definition block?
-
-Well noted.
-
->> +	struct regmap **reg_map;
->> +	void __iomem *io_base;
->> +	struct resource *res;
->> +
->> +	if (!strcmp(reg_name, "common"))
->> +		reg_map = &pvt->c_map;
->> +	else if (!strcmp(reg_name, "ts"))
->> +		reg_map = &pvt->t_map;
->> +	else if (!strcmp(reg_name, "pd"))
->> +		reg_map = &pvt->p_map;
->> +	else if (!strcmp(reg_name, "vm"))
->> +		reg_map = &pvt->v_map;
->> +	else
->> +		return -EINVAL;
->> +
->> +	res = platform_get_resource_byname(pdev, IORESOURCE_MEM, reg_name);
->> +	io_base = devm_ioremap_resource(dev, res);
-> 	io_base = devm_platform_ioremap_resource_by_name(pdev, reg_name);
->
-> ?
-
-Well noted.
-
->> +	if (IS_ERR(io_base))
->> +		return PTR_ERR(io_base);
->> +
->> +	pvt_regmap_config.name = reg_name;
-> Hmm... regmap API keeps it in devres. Why is there a copy?
-
-Just populating the name in regmap config because of multiple register
-regions.. 
-
->> +	*reg_map = devm_regmap_init_mmio(dev, io_base, &pvt_regmap_config);
->> +	if (IS_ERR(*reg_map)) {
->> +		dev_err(dev, "failed to init register map\n");
->> +		return PTR_ERR(*reg_map);
->> +	}
->> +
->> +	return 0;
->> +}
-> ...
->
->> +		for (i = 0; i < num; i++)
->> +			in_config[i] = HWMON_I_INPUT;
-> memset32() ?
+> 80 columns. And perhaps user does not need to know about protections... a=
+nd actually
+> about independend sources, either.
 >
 
-Well noted. Thanks.
+ACK
 
-Regards,
-Rahul
+> "Enable this for RGB LED and flash LED support on..."?
+>
+> > +static int mt6360_torch_brightness_set(struct led_classdev *lcdev, enu=
+m led_brightness level)
+> > +{
+> > +     struct mt6360_led *led =3D container_of(lcdev, struct mt6360_led,=
+ flash.led_cdev);
+> > +     struct mt6360_priv *priv =3D led->priv;
+> > +     u32 enable_mask =3D MT6360_TORCHEN_MASK | MT6360_FLCSEN_MASK(led-=
+>led_no);
+> > +     u32 val =3D (level) ? MT6360_FLCSEN_MASK(led->led_no) : 0;
+> > +     u32 prev =3D priv->fled_torch_used, curr;
+> > +     int ret;
+> > +
+> > +     dev_dbg(lcdev->dev, "[%d] brightness %d\n", led->led_no, level);
+> > +     if (priv->fled_strobe_used) {
+> > +             dev_warn(lcdev->dev, "Please disable strobe first [%d]\n"=
+, priv->fled_strobe_used);
+> > +             return -EINVAL;
+> > +     }
+>
+> So... how does its userland interface look like?
+>
+
+1. set FLED1 brightness
+# echo 1 > /sys/class/leds/white:flash1/flash_brightness
+2. enable FLED1 strobe
+# echo 1 > /sys/class/leds/white:flash1/flash_strobe
+3 . turn off FLED1 strobe (just used to gaurantee the strobe mode
+flash leds must be turned off)
+# echo 0 > /sys/class/leds/white:flash1/flash_strobe
+
+> Best regards,
+>                                                                         P=
+avel
+> --
+> (english) http://www.livejournal.com/~pavelmachek
+> (cesky, pictures) http://atrey.karlin.mff.cuni.cz/~pavel/picture/horses/b=
+log.html
