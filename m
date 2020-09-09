@@ -2,156 +2,119 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from vger.kernel.org (vger.kernel.org [23.128.96.18])
-	by mail.lfdr.de (Postfix) with ESMTP id 19BBE262B16
-	for <lists+devicetree@lfdr.de>; Wed,  9 Sep 2020 10:58:17 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTP id D7918262B32
+	for <lists+devicetree@lfdr.de>; Wed,  9 Sep 2020 11:00:44 +0200 (CEST)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S1726005AbgIII6N (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Wed, 9 Sep 2020 04:58:13 -0400
-Received: from lindbergh.monkeyblade.net ([23.128.96.19]:43114 "EHLO
-        lindbergh.monkeyblade.net" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S1726440AbgIII6C (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Wed, 9 Sep 2020 04:58:02 -0400
-Received: from mail-wr1-x441.google.com (mail-wr1-x441.google.com [IPv6:2a00:1450:4864:20::441])
-        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 19416C061573;
-        Wed,  9 Sep 2020 01:58:02 -0700 (PDT)
-Received: by mail-wr1-x441.google.com with SMTP id x14so2007013wrl.12;
-        Wed, 09 Sep 2020 01:58:02 -0700 (PDT)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=gmail.com; s=20161025;
-        h=subject:to:cc:references:from:message-id:date:user-agent
-         :mime-version:in-reply-to:content-language:content-transfer-encoding;
-        bh=mY/fzmuc9Z9J54FdM2ZzI/TWtsjmz4gHfBgSVB4ZBAo=;
-        b=n5LZ7Lm+YDmFKKER+/ysMgI/kt0PyaoCrAXe1aD247+zCUUizrKYj6N+IvvXOS2kas
-         NpY98kod+KZqr0NIu9MWhZcd+HqkWcYQJlrIXUhm0XObO0wFbjH13m0bKEM7LmG+mYir
-         sPtBcQHjYxKxyMWQuBq5rFsOtKs+1nWxGNhHKmlJw39/mB9U6Kms6Eg+pRimya3W58+g
-         CkuTu2/jgtvH6JWUn84QE+ADu1UmouhHMlYPdiI2Jezx2aUyuR/zRc3EWurt5tqIHsdM
-         FRQkIXU2Z6LXkNSBnA1Kk1ZBG99ZFdsIt6kaFnnRgG7nGF0tuOD4Q81OdUeBnLd2DptB
-         vsaw==
-X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=1e100.net; s=20161025;
-        h=x-gm-message-state:subject:to:cc:references:from:message-id:date
-         :user-agent:mime-version:in-reply-to:content-language
-         :content-transfer-encoding;
-        bh=mY/fzmuc9Z9J54FdM2ZzI/TWtsjmz4gHfBgSVB4ZBAo=;
-        b=qFKEpJ1VN9YnaKu23L3Xw7Jj9hBwJka5tDL0YTukbfWjH+4OT0y7GKO1pCtv+1BTGV
-         Z5HAndTf7DpnV317R3/95IrDo7XxTERaSrc3C11z28E/VCMGPCuC3aa9mrh9L3SRYm8u
-         0NPWnypwS9VwkF/0C293ZXSb8jlmAtvoqmfNZk8hWToMbzS3Acjr1Hd3rUqmVq9I+vwP
-         jUNz8FtwUPdVXllPbWNxyycJSHiuH4uprHMtMoU6Zt78KCOn5Oei+ZHThLl8SipO1Tq8
-         3DozoPMzoX6cGXfoIdm2arZ/+CJIkelWRJIAUmuHFYQBujKGa2gn3Pk/y/93LF9K0t9y
-         RO+Q==
-X-Gm-Message-State: AOAM530VfrPAUWcnW+QxQBpzt5tpWQ3kqhvQrDJhfUr0TKSPTPPOga7F
-        WyxoCR0mnZ/MNGifoRTcunSlVKt8Xcc=
-X-Google-Smtp-Source: ABdhPJxBlZkTjgNZg2GsUVOdYfL4ThVMkW2G4Y+Yebj4FIFY/o9pwrA+mol3aBqWMdivXg9XmXRlFg==
-X-Received: by 2002:adf:f6c2:: with SMTP id y2mr2720456wrp.79.1599641880528;
-        Wed, 09 Sep 2020 01:58:00 -0700 (PDT)
-Received: from ziggy.stardust ([213.195.113.201])
-        by smtp.gmail.com with ESMTPSA id d2sm3339157wro.34.2020.09.09.01.57.59
-        (version=TLS1_3 cipher=TLS_AES_128_GCM_SHA256 bits=128/128);
-        Wed, 09 Sep 2020 01:57:59 -0700 (PDT)
-Subject: Re: [PATCH v2] arm64: dts: mt8183-kukui: add scp node
-To:     Pi-Hsun Shih <pihsun@chromium.org>
-Cc:     Rob Herring <robh+dt@kernel.org>,
-        Eddie Huang <eddie.huang@mediatek.com>,
-        Erin Lo <erin.lo@mediatek.com>,
-        "open list:OPEN FIRMWARE AND FLATTENED DEVICE TREE BINDINGS" 
-        <devicetree@vger.kernel.org>,
-        "moderated list:ARM/Mediatek SoC support" 
-        <linux-arm-kernel@lists.infradead.org>,
-        "moderated list:ARM/Mediatek SoC support" 
-        <linux-mediatek@lists.infradead.org>,
-        open list <linux-kernel@vger.kernel.org>
-References: <20200909081422.2412795-1-pihsun@chromium.org>
-From:   Matthias Brugger <matthias.bgg@gmail.com>
-Message-ID: <dd5a6b8b-71dc-ce54-1f0d-7fa6b1dd6248@gmail.com>
-Date:   Wed, 9 Sep 2020 10:57:58 +0200
-User-Agent: Mozilla/5.0 (X11; Linux x86_64; rv:68.0) Gecko/20100101
- Thunderbird/68.11.0
+        id S1726169AbgIIJAf (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Wed, 9 Sep 2020 05:00:35 -0400
+Received: from jabberwock.ucw.cz ([46.255.230.98]:50400 "EHLO
+        jabberwock.ucw.cz" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
+        with ESMTP id S1725877AbgIIJAf (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Wed, 9 Sep 2020 05:00:35 -0400
+Received: by jabberwock.ucw.cz (Postfix, from userid 1017)
+        id 022E91C0B8C; Wed,  9 Sep 2020 11:00:34 +0200 (CEST)
+Date:   Wed, 9 Sep 2020 11:00:33 +0200
+From:   Pavel Machek <pavel@ucw.cz>
+To:     Alexander Dahl <ada@thorsis.com>
+Cc:     linux-leds@vger.kernel.org,
+        Jacek Anaszewski <jacek.anaszewski@gmail.com>,
+        Alexander Dahl <post@lespocky.de>, devicetree@vger.kernel.org,
+        Dan Murphy <dmurphy@ti.com>, Rob Herring <robh+dt@kernel.org>,
+        linux-kernel@vger.kernel.org
+Subject: Re: [PATCH v2 0/2] leds: pwm: Make automatic labels work
+Message-ID: <20200909090033.GD10891@amd>
+References: <20200831210232.28052-1-post@lespocky.de>
+ <a8f9068b-d78d-3ba5-6747-f79ed8e641bd@gmail.com>
+ <2019500.FJf2EgCAKA@ada>
 MIME-Version: 1.0
-In-Reply-To: <20200909081422.2412795-1-pihsun@chromium.org>
-Content-Type: text/plain; charset=utf-8; format=flowed
-Content-Language: en-US
-Content-Transfer-Encoding: 7bit
+Content-Type: multipart/signed; micalg=pgp-sha1;
+        protocol="application/pgp-signature"; boundary="BRE3mIcgqKzpedwo"
+Content-Disposition: inline
+In-Reply-To: <2019500.FJf2EgCAKA@ada>
+User-Agent: Mutt/1.5.23 (2014-03-12)
 Sender: devicetree-owner@vger.kernel.org
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
 
+--BRE3mIcgqKzpedwo
+Content-Type: text/plain; charset=us-ascii
+Content-Disposition: inline
+Content-Transfer-Encoding: quoted-printable
 
-On 09/09/2020 10:14, Pi-Hsun Shih wrote:
-> Add scp node to mt8183-kukui
-> 
-> Fixes: 0d5e41709f76 ("arm64: dts: mt8183: add scp node")
-> Signed-off-by: Pi-Hsun Shih <pihsun@chromium.org>
-> ---
-> 
-> Change since v1:
-> * Add Fixes tag.
-> 
-> ---
->   .../arm64/boot/dts/mediatek/mt8183-kukui.dtsi | 30 +++++++++++++++++++
->   1 file changed, 30 insertions(+)
-> 
-> diff --git a/arch/arm64/boot/dts/mediatek/mt8183-kukui.dtsi b/arch/arm64/boot/dts/mediatek/mt8183-kukui.dtsi
-> index f0a070535b34..85f7c33ba446 100644
-> --- a/arch/arm64/boot/dts/mediatek/mt8183-kukui.dtsi
-> +++ b/arch/arm64/boot/dts/mediatek/mt8183-kukui.dtsi
-> @@ -90,6 +90,18 @@ pp3300_alw: regulator6 {
->   		regulator-max-microvolt = <3300000>;
->   	};
->   
-> +	reserved_memory: reserved-memory {
-> +		#address-cells = <2>;
-> +		#size-cells = <2>;
-> +		ranges;
-> +
-> +		scp_mem_reserved: scp_mem_region {
-> +			compatible = "shared-dma-pool";
-> +			reg = <0 0x50000000 0 0x2900000>;
-> +			no-map;
-> +		};
-> +	};
-> +
+Hi!
 
-Do we expect other boards to have a different memory reservation? I can see that 
-EVB and Kukui uses the same. If not, we should add the node in mt8183.dtsi instead.
+> > > for leds-gpio you can use the properties 'function' and 'color' in the
+> > > devicetree node and omit 'label', the label is constructed
+> > > automatically.  This is a common feature supposed to be working for a=
+ll
+> > > LED drivers.  However it did not yet work for the 'leds-pwm' driver.
+> > > This series fixes the driver and takes the opportunity to update the
+> > > dt-bindings accordingly.
+> > >=20
+> > > v1: based on v5.9-rc2, backport on v5.4.59 tested and working
+> > >=20
+> > > v2: based on v5.9-rc3, added the dt-bindings update patch
+> > >=20
+> > > Greets
+> > > Alex
+> > >=20
+> > > Alexander Dahl (2):
+> > >    leds: pwm: Allow automatic labels for DT based devices
+> > >    dt-bindings: leds: Convert pwm to yaml
+> > >  =20
+> > >   .../devicetree/bindings/leds/leds-pwm.txt     | 50 -----------
+> > >   .../devicetree/bindings/leds/leds-pwm.yaml    | 85 ++++++++++++++++=
++++
+> > >   drivers/leds/leds-pwm.c                       |  9 +-
+> > >   3 files changed, 93 insertions(+), 51 deletions(-)
+> > >   delete mode 100644 Documentation/devicetree/bindings/leds/leds-pwm.=
+txt
+> > >   create mode 100644 Documentation/devicetree/bindings/leds/leds-pwm.=
+yaml
+> >=20
+> > For both patches:
+> >=20
+> > Acked-by: Jacek Anaszewski <jacek.anaszewski@gmail.com>
+>=20
+> I'd like to make a v3 and change the license of the .yaml file to "(GPL-2=
+=2E0-
+> only OR BSD-2-Clause)" as suggested by checkpatch and [1].  Can I keep yo=
+ur=20
+> Acked-by for that?
+>=20
+> Besides: those suggestions are obviously valid for new bindings.  What ab=
+out=20
+> old bindings (.txt), which had no explicit SPDX tag or license note befor=
+e? =20
+> What license would apply there?  Is the .yaml file technically new, when =
+it=20
+> was mostly just converted from .txt?
 
-Regards,
-Matthias
+If it is based on previous .txt binding, you have to respect previous
+author's license. That probably means GPL-2.0 only.
 
->   	max98357a: codec0 {
->   		compatible = "maxim,max98357a";
->   		sdmode-gpios = <&pio 175 0>;
-> @@ -524,6 +536,13 @@ pins_clk {
->   		};
->   	};
->   
-> +	scp_pins: scp {
-> +		pins_scp_uart {
-> +			pinmux = <PINMUX_GPIO110__FUNC_TP_URXD1_AO>,
-> +				 <PINMUX_GPIO112__FUNC_TP_UTXD1_AO>;
-> +		};
-> +	};
-> +
->   	spi0_pins: spi0 {
->   		pins_spi{
->   			pinmux = <PINMUX_GPIO85__FUNC_SPI0_MI>,
-> @@ -651,6 +670,17 @@ pins_wifi_wakeup {
->   	};
->   };
->   
-> +&scp {
-> +	status = "okay";
-> +	pinctrl-names = "default";
-> +	pinctrl-0 = <&scp_pins>;
-> +
-> +	cros_ec {
-> +		compatible = "google,cros-ec-rpmsg";
-> +		mtk,rpmsg-name = "cros-ec-rpmsg";
-> +	};
-> +};
-> +
->   &soc_data {
->   	status = "okay";
->   };
-> 
+Alternatively, you can contact original author(s) to get permission to
+relicense under (GPL-2.0-only OR BSD-2-Clause).
+
+Best regards,
+									Pavel
+--=20
+(english) http://www.livejournal.com/~pavelmachek
+(cesky, pictures) http://atrey.karlin.mff.cuni.cz/~pavel/picture/horses/blo=
+g.html
+
+--BRE3mIcgqKzpedwo
+Content-Type: application/pgp-signature; name="signature.asc"
+Content-Description: Digital signature
+
+-----BEGIN PGP SIGNATURE-----
+Version: GnuPG v1
+
+iEYEARECAAYFAl9YmbEACgkQMOfwapXb+vLZKgCgrKZ1RB1Ep+Opcm6Thf0u4JM2
+1xkAoK6e5DOd661jEaNbLA7SVm57YF0B
+=w6wt
+-----END PGP SIGNATURE-----
+
+--BRE3mIcgqKzpedwo--
