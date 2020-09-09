@@ -2,136 +2,350 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from vger.kernel.org (vger.kernel.org [23.128.96.18])
-	by mail.lfdr.de (Postfix) with ESMTP id D2CB1263276
-	for <lists+devicetree@lfdr.de>; Wed,  9 Sep 2020 18:44:08 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTP id 774492632EC
+	for <lists+devicetree@lfdr.de>; Wed,  9 Sep 2020 18:54:08 +0200 (CEST)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S1730587AbgIIQoB (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Wed, 9 Sep 2020 12:44:01 -0400
-Received: from fllv0016.ext.ti.com ([198.47.19.142]:50632 "EHLO
-        fllv0016.ext.ti.com" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S1730993AbgIIQnv (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Wed, 9 Sep 2020 12:43:51 -0400
-Received: from fllv0035.itg.ti.com ([10.64.41.0])
-        by fllv0016.ext.ti.com (8.15.2/8.15.2) with ESMTP id 089FAAnU061479;
-        Wed, 9 Sep 2020 10:10:10 -0500
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=ti.com;
-        s=ti-com-17Q1; t=1599664210;
-        bh=y4ypjBJCmmVVWSAzOMpL0Yzjxk7jCoHxtQOFSri+Anw=;
-        h=Subject:To:CC:References:From:Date:In-Reply-To;
-        b=u/+ts5j5SpV+waYzgQySKVrYaTAvl6uBOp84sSfEcJAW//jpLjWcjzkvnMwA3Frda
-         DcgUnu9/SR6ASEHDG8soaQr/EkhVrE5ai+thntuHL3iTqY/7r++fqS6qUx7nOGhlcq
-         SPIlVSjWsVfaLxzELrbxRnvkTv2hHoKgNfcaYKp8=
-Received: from DLEE100.ent.ti.com (dlee100.ent.ti.com [157.170.170.30])
-        by fllv0035.itg.ti.com (8.15.2/8.15.2) with ESMTP id 089FAAeT090290;
-        Wed, 9 Sep 2020 10:10:10 -0500
-Received: from DLEE115.ent.ti.com (157.170.170.26) by DLEE100.ent.ti.com
- (157.170.170.30) with Microsoft SMTP Server (version=TLS1_2,
- cipher=TLS_ECDHE_RSA_WITH_AES_128_CBC_SHA256_P256) id 15.1.1979.3; Wed, 9 Sep
- 2020 10:10:09 -0500
-Received: from lelv0326.itg.ti.com (10.180.67.84) by DLEE115.ent.ti.com
- (157.170.170.26) with Microsoft SMTP Server (version=TLS1_2,
- cipher=TLS_ECDHE_RSA_WITH_AES_128_CBC_SHA256_P256) id 15.1.1979.3 via
- Frontend Transport; Wed, 9 Sep 2020 10:10:09 -0500
-Received: from [10.250.34.59] (ileax41-snat.itg.ti.com [10.172.224.153])
-        by lelv0326.itg.ti.com (8.15.2/8.15.2) with ESMTP id 089FA99W115484;
-        Wed, 9 Sep 2020 10:10:09 -0500
-Subject: Re: [v4,2/4] dt-binding: reset-controller: ti: add
- 'mediatek,infra-reset' to compatible
+        id S1730893AbgIIQEO (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Wed, 9 Sep 2020 12:04:14 -0400
+Received: from lindbergh.monkeyblade.net ([23.128.96.19]:52510 "EHLO
+        lindbergh.monkeyblade.net" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
+        with ESMTP id S1730871AbgIIQDk (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Wed, 9 Sep 2020 12:03:40 -0400
+Received: from mail-ed1-x542.google.com (mail-ed1-x542.google.com [IPv6:2a00:1450:4864:20::542])
+        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id D063EC061756;
+        Wed,  9 Sep 2020 09:03:39 -0700 (PDT)
+Received: by mail-ed1-x542.google.com with SMTP id c10so3216770edk.6;
+        Wed, 09 Sep 2020 09:03:39 -0700 (PDT)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+        d=gmail.com; s=20161025;
+        h=date:from:to:cc:subject:message-id:references:mime-version
+         :content-disposition:in-reply-to;
+        bh=wFFzLDrI+LRiU6RjuLeqeQ9NmNXTj6WvqrdOw9KuB74=;
+        b=dtgEidWQWGnPfTY+p6W+UM6e8pUns0tL63U5Lx+mzClihOlw3YnZltPvaa4J+S+hm5
+         eppMOGnpvEqQobOmZwarAPE9FgbEtQNKvhwMj+Ap98TwK5Lu4ijDhfSdLGWnZjkXVcea
+         dh//8CGUm/WD60tLCP4eLk5MjUb68NYLrsleQCpSBqXxewUW1G3XxKF9dapNBYoOznh4
+         3p1FMVR+2t6kYiuJj9G8eHNIWiOklHQrJYJG5vobsCR99x/6CsDAjdI5ftwVL9ljdDQm
+         GsuABHYMl4nwDtyJcfOig//q+syxOeYre7gl9sfha9lBWJBnQ5t8QcqHkyiaILpHedw/
+         qG1w==
+X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+        d=1e100.net; s=20161025;
+        h=x-gm-message-state:date:from:to:cc:subject:message-id:references
+         :mime-version:content-disposition:in-reply-to;
+        bh=wFFzLDrI+LRiU6RjuLeqeQ9NmNXTj6WvqrdOw9KuB74=;
+        b=PjfHECZK/U8QzAXCaKjZMa66eFosDYPAwk3RJuvDnLxtkExvwi8XBBvtB351HcrYs1
+         s3dd4a8nx20iNfI4Vu0X9RcFPWdxeDbIetd2Et9XfAsWY4OnnVBDUPUv3a/J66VzB+Cq
+         RmDqlWrhdIFT/Lwd3bht4Ec7Qm40cgdJjCfCXXGIme1TDEsORE0XU5Rvxox1M37QpZKs
+         tL0H9vCbawLP6foM1KyUO8Dv4W7zPHngU4yWmZhoAHMvyrodsVbbApka2iwyOU6hloGj
+         HCg/CftXAHDoJd+s65hacZEO4rBbzlxQ+iHq0sV92URXLOSnPcqltTonSh+u703CuCu/
+         QtOw==
+X-Gm-Message-State: AOAM533GtFqj4lO+f0R5Xs2dJpKg7dtVZZuHhOE1YRR9ok5Yvs/Qle9G
+        bT8QvCj2qZPfHlot0OSUcFJTwVJb0DA=
+X-Google-Smtp-Source: ABdhPJx6EOlwx44g53DleVKdxsTSqVWdmunkZ/V2Qwx8KdcFBUMu3uaER3jCrG+1ovQ9sIE93uMImw==
+X-Received: by 2002:a50:d98d:: with SMTP id w13mr5029328edj.37.1599667418391;
+        Wed, 09 Sep 2020 09:03:38 -0700 (PDT)
+Received: from BV030612LT ([188.24.159.61])
+        by smtp.gmail.com with ESMTPSA id n14sm3065473edb.52.2020.09.09.09.03.36
+        (version=TLS1_3 cipher=TLS_AES_256_GCM_SHA384 bits=256/256);
+        Wed, 09 Sep 2020 09:03:37 -0700 (PDT)
+Date:   Wed, 9 Sep 2020 19:03:34 +0300
+From:   Cristian Ciocaltea <cristian.ciocaltea@gmail.com>
 To:     Rob Herring <robh@kernel.org>
-CC:     Crystal Guo <crystal.guo@mediatek.com>,
-        "p.zabel@pengutronix.de" <p.zabel@pengutronix.de>,
-        "matthias.bgg@gmail.com" <matthias.bgg@gmail.com>,
-        srv_heupstream <srv_heupstream@mediatek.com>,
-        "linux-mediatek@lists.infradead.org" 
-        <linux-mediatek@lists.infradead.org>,
-        "linux-arm-kernel@lists.infradead.org" 
-        <linux-arm-kernel@lists.infradead.org>,
-        "linux-kernel@vger.kernel.org" <linux-kernel@vger.kernel.org>,
-        "devicetree@vger.kernel.org" <devicetree@vger.kernel.org>,
-        =?UTF-8?B?U2VpeWEgV2FuZyAo546L6L+65ZCbKQ==?= 
-        <seiya.wang@mediatek.com>,
-        =?UTF-8?B?U3RhbmxleSBDaHUgKOacseWOn+mZnik=?= 
-        <stanley.chu@mediatek.com>,
-        =?UTF-8?B?WWluZ2pvZSBDaGVuICjpmbPoi7HmtLIp?= 
-        <Yingjoe.Chen@mediatek.com>,
-        =?UTF-8?B?RmFuIENoZW4gKOmZs+WHoSk=?= <fan.chen@mediatek.com>,
-        =?UTF-8?B?WW9uZyBMaWFuZyAo5qKB5YuHKQ==?= <Yong.Liang@mediatek.com>
-References: <20200817030324.5690-1-crystal.guo@mediatek.com>
- <20200817030324.5690-3-crystal.guo@mediatek.com>
- <20200825190219.GA1125997@bogus> <1598440183.30048.14.camel@mhfsdcap03>
- <6c292056-1cb1-bc6c-0422-46e047dcf08f@ti.com>
- <CAL_JsqKuL7XM2CL3z0OQdRua5YJO2ZRdsoE3fdAH948mKGfWnA@mail.gmail.com>
-From:   Suman Anna <s-anna@ti.com>
-Message-ID: <b91c4ddf-8f12-2154-0a41-bf9563b5aefd@ti.com>
-Date:   Wed, 9 Sep 2020 10:10:04 -0500
-User-Agent: Mozilla/5.0 (X11; Linux x86_64; rv:68.0) Gecko/20100101
- Thunderbird/68.10.0
+Cc:     Lee Jones <lee.jones@linaro.org>,
+        Dmitry Torokhov <dmitry.torokhov@gmail.com>,
+        Sebastian Reichel <sre@kernel.org>,
+        Liam Girdwood <lgirdwood@gmail.com>,
+        Mark Brown <broonie@kernel.org>,
+        Manivannan Sadhasivam <manivannan.sadhasivam@linaro.org>,
+        Andreas =?iso-8859-1?Q?F=E4rber?= <afaerber@suse.de>,
+        linux-actions@lists.infradead.org, devicetree@vger.kernel.org,
+        linux-kernel@vger.kernel.org, linux-input@vger.kernel.org,
+        linux-pm@vger.kernel.org
+Subject: Re: [PATCH v2 1/6] dt-bindings: mfd: Add Actions Semi ATC260x PMIC
+ binding
+Message-ID: <20200909160334.GA385382@BV030612LT>
+References: <cover.1598043782.git.cristian.ciocaltea@gmail.com>
+ <863c9c1e44cfbe6184bf0bd4893ff456af0e7bb8.1598043782.git.cristian.ciocaltea@gmail.com>
+ <20200908214724.GA959481@bogus>
 MIME-Version: 1.0
-In-Reply-To: <CAL_JsqKuL7XM2CL3z0OQdRua5YJO2ZRdsoE3fdAH948mKGfWnA@mail.gmail.com>
-Content-Type: text/plain; charset="utf-8"
-Content-Language: en-US
-Content-Transfer-Encoding: 7bit
-X-EXCLAIMER-MD-CONFIG: e1e8a2fd-e40a-4ac6-ac9b-f7e9cc9ee180
+Content-Type: text/plain; charset=us-ascii
+Content-Disposition: inline
+In-Reply-To: <20200908214724.GA959481@bogus>
 Sender: devicetree-owner@vger.kernel.org
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-On 9/8/20 1:49 PM, Rob Herring wrote:
-> On Wed, Sep 2, 2020 at 5:26 PM Suman Anna <s-anna@ti.com> wrote:
->>
->> Hi Rob,
->>
->> On 8/26/20 6:09 AM, Crystal Guo wrote:
->>> On Wed, 2020-08-26 at 03:02 +0800, Rob Herring wrote:
->>>> On Mon, Aug 17, 2020 at 11:03:22AM +0800, Crystal Guo wrote:
->>>>> The TI syscon reset controller provides a common reset management,
->>>>> and is suitable for MTK SoCs. Add compatible 'mediatek,infra-reset',
->>>>> which denotes to use ti reset-controller driver directly.
->>>>>
->>>>> Signed-off-by: Crystal Guo <crystal.guo@mediatek.com>
->>>>> ---
->>>>>  Documentation/devicetree/bindings/reset/ti-syscon-reset.txt | 1 +
->>>>>  1 file changed, 1 insertion(+)
->>>>>
->>>>> diff --git a/Documentation/devicetree/bindings/reset/ti-syscon-reset.txt b/Documentation/devicetree/bindings/reset/ti-syscon-reset.txt
->>>>> index ab041032339b..5a0e9365b51b 100644
->>>>> --- a/Documentation/devicetree/bindings/reset/ti-syscon-reset.txt
->>>>> +++ b/Documentation/devicetree/bindings/reset/ti-syscon-reset.txt
->>>>> @@ -25,6 +25,7 @@ Required properties:
->>>>>                         "ti,k2l-pscrst"
->>>>>                         "ti,k2hk-pscrst"
->>>>>                         "ti,syscon-reset"
->>>>> +                       "mediatek,infra-reset", "ti,syscon-reset"
->>>>
->>>> You need your own binding doc. If you can use the same driver then fine,
->>>> but that's a separate issue. There's also reset-simple driver if you
->>>> have just array of 32-bit registers with a bit per reset.
->>>>
->>>> Don't repeat 'ti,reset-bits' either.
->>>
->>> Do you mean I should add a Mediatek reset binding doc, although Mediatek
->>> reuse the TI reset controller directly?
->>
->> Hmm, how do you envision not repeating the same bits in a separate binding?
-> 
-> I mean 'ti,reset-bits' isn't really something that should have been in
-> DT in the first place, but rather implied by the compatible string.
+Hi Rob,
 
-Ok, should I be deprecating this and move this data to driver then?
+Thanks for reviewing!
 
-I am assuming that is how you are envisioning the new Mediatek binding to be
-atleast.
+On Tue, Sep 08, 2020 at 03:47:24PM -0600, Rob Herring wrote:
+> On Sat, Aug 22, 2020 at 01:19:47AM +0300, Cristian Ciocaltea wrote:
+> > Add devicetree binding for Actions Semi ATC260x PMICs.
+> > 
+> > Signed-off-by: Cristian Ciocaltea <cristian.ciocaltea@gmail.com>
+> > ---
+> >  .../bindings/mfd/actions,atc260x.yaml         | 221 ++++++++++++++++++
+> >  1 file changed, 221 insertions(+)
+> >  create mode 100644 Documentation/devicetree/bindings/mfd/actions,atc260x.yaml
+> > 
+> > diff --git a/Documentation/devicetree/bindings/mfd/actions,atc260x.yaml b/Documentation/devicetree/bindings/mfd/actions,atc260x.yaml
+> > new file mode 100644
+> > index 000000000000..4a55bbe1306e
+> > --- /dev/null
+> > +++ b/Documentation/devicetree/bindings/mfd/actions,atc260x.yaml
+> > @@ -0,0 +1,221 @@
+> > +# SPDX-License-Identifier: (GPL-2.0-only OR BSD-2-Clause)
+> > +%YAML 1.2
+> > +---
+> > +$id: http://devicetree.org/schemas/mfd/actions,atc260x.yaml#
+> > +$schema: http://devicetree.org/meta-schemas/core.yaml#
+> > +
+> > +title: Actions Semi ATC260x Power Management IC bindings
+> > +
+> > +maintainers:
+> > +  - Manivannan Sadhasivam <manivannan.sadhasivam@linaro.org>
+> > +  - Cristian Ciocaltea <cristian.ciocaltea@gmail.com>
+> > +
+> > +description: |
+> > +  ATC260x series PMICs integrates Audio Codec, Power Management, RTC, IR
+> > +  and GPIO controller blocks. Currently only the PM related functionalities
+> > +  (i.e. regulators and system power-off/reboot) for the ATC2603C and ATC2609A
+> > +  chip variants are supported.
+> > +  ATC2603C includes 3 programmable DC-DC converters and 9 LDO regulators.
+> > +  ATC2609A includes 5 programmable DC-DC converters and 10 LDO regulators.
+> > +
+> > +properties:
+> > +  compatible:
+> > +    enum:
+> > +      - actions,atc2603c
+> > +      - actions,atc2609a
+> > +
+> > +  reg:
+> > +    maxItems: 1
+> > +
+> > +  interrupts:
+> > +    maxItems: 1
+> > +
+> > +  pwrc:
+> > +    type: object
+> > +    description: |
+> > +      The power controller integrated in ATC260x provides system power-off
+> > +      and reboot operations.
+> 
+> No need for this node as there are no properties, just instantiate 
+> what's needed in the MFD driver.
 
-regards
-Suman
+My intention was to allow the user specify what functionality in the MFD
+shall be enabled. For this particular case, if the 'pwrc' node is not
+provided, the power-off/reboot functions will be disabled.
 
+> > +
+> > +    properties:
+> > +      compatible:
+> > +        enum:
+> > +          - actions,atc2603c-pwrc
+> > +          - actions,atc2609a-pwrc
+> > +
+> > +    required:
+> > +      - compatible
+> > +
+> > +    additionalProperties: false
+> > +
+> > +  onkey:
+> > +    type: object
+> > +    description: |
+> > +      Use the ONKEY built into ATC260x PMICs as an input device reporting
+> > +      power button status. ONKEY can be used to wakeup from low power
+> > +      modes and force a reset on long press.
+> > +
+> > +    properties:
+> > +      compatible:
+> > +        enum:
+> > +          - actions,atc2603c-onkey
+> > +          - actions,atc2609a-onkey
+> > +
+> > +      actions,reset-time-sec:
+> > +        description: |
+> > +          Duration in seconds which the key should be kept pressed for device
+> > +          to reset automatically. The hardware default is 8. Use 0 to disable
+> > +          this functionality.
+> > +        enum: [0, 6, 8, 10, 12]
 > 
->> Does it help if I convert this to YAML first without a ti, prefix in the file name?
-> 
-> No, I don't think this should be a shared binding. The driver may be
-> able to be shared, but that's independent from the binding.
-> 
-> Rob
-> 
+> We already have 'power-off-time-sec' in input.yaml. How about adding 
+> 'reset-time-sec' there.
 
+Thanks for the suggestion, I was actually looking for this before
+choosing the custom property and just assumed this was not added for
+a particular reason.
+
+So I'm going to handle it. Would you like me to send a separate patch
+(not part of this series)?
+
+> This could really just be a property in the parent node.
+
+This is similar with 'pwrc': if 'onkey' node is not present, the ONKEY
+functionality will not be enabled.
+
+Is there a better/recommended approach to manage this MFD feature
+selection?
+
+> > +
+> > +    required:
+> > +      - compatible
+> > +
+> > +    additionalProperties: false
+> > +
+> > +  regulators:
+> > +    type: object
+> > +    description: |
+> > +      List of child nodes specifying the regulators, depending on chip variant:
+> > +      * ATC2603C: dcdc[1-3], ldo[1-3,5-8,11], switchldo1
+> > +      * ATC2609A: dcdc[0-4], ldo[0-9]
+> > +
+> > +    properties:
+> > +      compatible:
+> > +        enum:
+> > +          - actions,atc2603c-regulator
+> > +          - actions,atc2609a-regulator
+> > +
+> > +      switchldo1:
+> > +        type: object
+> > +        $ref: ../regulator/regulator.yaml
+> > +
+> > +        properties:
+> > +          regulator-name: true
+> > +          regulator-boot-on: true
+> > +          regulator-always-on: true
+> > +          regulator-min-microvolt: true
+> > +          regulator-max-microvolt: true
+> > +          regulator-allow-bypass: true
+> > +          regulator-active-discharge: true
+> > +
+> > +        additionalProperties: false
+> > +
+> > +    patternProperties:
+> > +      "^(dcdc[0-4]|ldo[0-9]|ldo11|switchldo1)-supply$":
+> > +        description: ATC260x voltage regulators supplies
+> > +
+> > +      "^(dcdc[0-4]|ldo[0-9]|ldo11)$":
+> > +        type: object
+> > +        $ref: ../regulator/regulator.yaml
+> > +
+> > +        properties:
+> > +          regulator-name: true
+> > +          regulator-boot-on: true
+> > +          regulator-always-on: true
+> > +          regulator-min-microvolt: true
+> > +          regulator-max-microvolt: true
+> > +          regulator-allow-bypass: true
+> > +
+> > +        additionalProperties: false
+> > +
+> > +    allOf:
+> > +      - if:
+> > +          properties:
+> > +            compatible:
+> > +              contains:
+> > +                const: actions,atc2603c-regulator
+> > +        then:
+> > +          patternProperties:
+> > +            "^(dcdc[0,4]|ldo[0,4,9])(-supply)?$": false
+> > +
+> > +            "^(ldo|dcdc)":
+> > +              properties:
+> > +                regulator-allow-bypass: false
+> > +      - if:
+> > +          properties:
+> > +            compatible:
+> > +              contains:
+> > +                const: actions,atc2609a-regulator
+> > +        then:
+> > +          patternProperties:
+> > +            "^(ldo11|switchldo1)(-supply)?$": false
+> > +
+> > +            "^(dcdc|ldo[3-9])":
+> > +              properties:
+> > +                regulator-allow-bypass: false
+> > +
+> > +    required:
+> > +      - compatible
+> > +
+> > +    additionalProperties: false
+> > +
+> > +additionalProperties: false
+> > +
+> > +required:
+> > +  - compatible
+> > +  - reg
+> > +  - interrupts
+> > +
+> > +examples:
+> > +  - |
+> > +    #include <dt-bindings/interrupt-controller/arm-gic.h>
+> > +
+> > +    i2c0 {
+> > +      #address-cells = <1>;
+> > +      #size-cells = <0>;
+> > +
+> > +      pmic@65 {
+> > +        compatible = "actions,atc2603c";
+> > +        reg = <0x65>;
+> > +        interrupt-parent = <&sirq>;
+> > +        interrupts = <2 IRQ_TYPE_LEVEL_HIGH>;
+> > +
+> > +        pwrc {
+> > +          compatible = "actions,atc2603c-pwrc";
+> > +        };
+> > +
+> > +        onkey {
+> > +          compatible = "actions,atc2603c-onkey";
+> > +          actions,reset-time-sec = <6>;
+> > +        };
+> > +
+> > +        regulators {
+> > +          compatible = "actions,atc2603c-regulator";
+> > +
+> > +          dcdc1-supply = <&reg_5v0>;
+> > +          dcdc3-supply = <&reg_5v0>;
+> > +          ldo5-supply = <&reg_5v0>;
+> > +          switchldo1-supply = <&vcc>;
+> > +
+> > +          vdd_cpu: dcdc1 {
+> > +            regulator-name = "VDD_CPU";
+> > +            regulator-min-microvolt = <700000>;
+> > +            regulator-max-microvolt = <1400000>;
+> > +            regulator-always-on;
+> > +          };
+> > +
+> > +          vcc: dcdc3 {
+> > +            regulator-name = "VCC";
+> > +            regulator-min-microvolt = <2600000>;
+> > +            regulator-max-microvolt = <3300000>;
+> > +            regulator-always-on;
+> > +          };
+> > +
+> > +          vcc_3v1: ldo5 {
+> > +            regulator-name = "VCC_3V1";
+> > +            regulator-min-microvolt = <2600000>;
+> > +            regulator-max-microvolt = <3300000>;
+> > +          };
+> > +
+> > +          sd_vcc: switchldo1 {
+> > +            regulator-name = "SD_VCC";
+> > +            regulator-min-microvolt = <3000000>;
+> > +            regulator-max-microvolt = <3300000>;
+> > +            regulator-always-on;
+> > +            regulator-boot-on;
+> > +          };
+> > +        };
+> > +      };
+> > +    };
+> > +
+> > +...
+> > -- 
+> > 2.28.0
+> > 
+
+Kind regards,
+Cristi
