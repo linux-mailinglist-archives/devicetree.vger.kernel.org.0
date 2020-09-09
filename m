@@ -2,142 +2,122 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from vger.kernel.org (vger.kernel.org [23.128.96.18])
-	by mail.lfdr.de (Postfix) with ESMTP id D04CC263755
-	for <lists+devicetree@lfdr.de>; Wed,  9 Sep 2020 22:29:35 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTP id 16FFB263777
+	for <lists+devicetree@lfdr.de>; Wed,  9 Sep 2020 22:32:09 +0200 (CEST)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S1726642AbgIIU3b (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Wed, 9 Sep 2020 16:29:31 -0400
-Received: from mout.kundenserver.de ([212.227.126.134]:56439 "EHLO
-        mout.kundenserver.de" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S1726399AbgIIU3a (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Wed, 9 Sep 2020 16:29:30 -0400
-Received: from methusalix.internal.home.lespocky.de ([109.250.100.135]) by
- mrelayeu.kundenserver.de (mreue009 [212.227.15.167]) with ESMTPSA (Nemesis)
- id 1MvsN5-1kZHze0Ukh-00syox; Wed, 09 Sep 2020 22:29:17 +0200
-Received: from falbala.internal.home.lespocky.de ([192.168.243.94])
-        by methusalix.internal.home.lespocky.de with esmtpsa  (TLS1.2) tls TLS_ECDHE_RSA_WITH_AES_256_GCM_SHA384
-        (Exim 4.94)
-        (envelope-from <post@lespocky.de>)
-        id 1kG6iL-0006c9-3z; Wed, 09 Sep 2020 22:29:10 +0200
-Date:   Wed, 9 Sep 2020 22:29:07 +0200
-From:   Alexander Dahl <post@lespocky.de>
-To:     Pavel Machek <pavel@ucw.cz>
-Cc:     Alexander Dahl <post@lespocky.de>, linux-leds@vger.kernel.org,
-        devicetree@vger.kernel.org,
-        Jacek Anaszewski <jacek.anaszewski@gmail.com>,
-        Dan Murphy <dmurphy@ti.com>, Rob Herring <robh+dt@kernel.org>,
-        linux-kernel@vger.kernel.org, Alexander Dahl <ada@thorsis.com>
-Subject: Re: [PATCH v3 1/2] leds: pwm: Allow automatic labels for DT based
- devices
-Message-ID: <20200909202907.3z425uujvu532qxs@falbala.internal.home.lespocky.de>
-Mail-Followup-To: Pavel Machek <pavel@ucw.cz>, linux-leds@vger.kernel.org,
-        devicetree@vger.kernel.org,
-        Jacek Anaszewski <jacek.anaszewski@gmail.com>,
-        Dan Murphy <dmurphy@ti.com>, Rob Herring <robh+dt@kernel.org>,
-        linux-kernel@vger.kernel.org, Alexander Dahl <ada@thorsis.com>
-References: <20200907043459.2961-1-post@lespocky.de>
- <20200907043459.2961-2-post@lespocky.de>
- <20200909090736.GE10891@amd>
+        id S1726714AbgIIUbz (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Wed, 9 Sep 2020 16:31:55 -0400
+Received: from mx0a-001b2d01.pphosted.com ([148.163.156.1]:46918 "EHLO
+        mx0a-001b2d01.pphosted.com" rhost-flags-OK-OK-OK-OK)
+        by vger.kernel.org with ESMTP id S1729692AbgIIUbS (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Wed, 9 Sep 2020 16:31:18 -0400
+Received: from pps.filterd (m0187473.ppops.net [127.0.0.1])
+        by mx0a-001b2d01.pphosted.com (8.16.0.42/8.16.0.42) with SMTP id 089K2nuj123598;
+        Wed, 9 Sep 2020 16:31:06 -0400
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=ibm.com; h=from : to : cc : subject
+ : date : message-id : mime-version : content-transfer-encoding; s=pp1;
+ bh=PuadrHvm0MnklWOLHSJCPokf4kHEQnujJ5UtCKe7LCo=;
+ b=R8UFtztdS16r8HauU/G2TL3nT39oAyRKhhBF8l+uXw2m0E70CWXPgwhljliWy5lTw+Af
+ dbGjuVB/RxIsUVcagoB666I0TBqy8qGQZ2FjITuL+yhGxMkyznYYXMPsMUv9397DJNQ1
+ yvS8vHjYtNgUAZ9maKL2Gk6jFyBW3ALdsbgDYizgwtRtwR3QTzWxGIavJx/oqqb8NTRE
+ zR4LT7xf8LF58nhGIZo6zSZ0mZ8+RLQ9muaD0Xk9QqL8GMAPYOeHT3ioGdh1Y7q4emAQ
+ 9SDqC2T+hl+kfiZzDXVT+slHNPcb9CtRJooaw5h/Pv8e6AtIDUlfbVt9qd9ddwNZnT8a 4A== 
+Received: from pps.reinject (localhost [127.0.0.1])
+        by mx0a-001b2d01.pphosted.com with ESMTP id 33f55khkk4-1
+        (version=TLSv1.2 cipher=ECDHE-RSA-AES256-GCM-SHA384 bits=256 verify=NOT);
+        Wed, 09 Sep 2020 16:31:06 -0400
+Received: from m0187473.ppops.net (m0187473.ppops.net [127.0.0.1])
+        by pps.reinject (8.16.0.36/8.16.0.36) with SMTP id 089K338r124703;
+        Wed, 9 Sep 2020 16:31:03 -0400
+Received: from ppma01dal.us.ibm.com (83.d6.3fa9.ip4.static.sl-reverse.com [169.63.214.131])
+        by mx0a-001b2d01.pphosted.com with ESMTP id 33f55khkjj-1
+        (version=TLSv1.2 cipher=ECDHE-RSA-AES256-GCM-SHA384 bits=256 verify=NOT);
+        Wed, 09 Sep 2020 16:31:03 -0400
+Received: from pps.filterd (ppma01dal.us.ibm.com [127.0.0.1])
+        by ppma01dal.us.ibm.com (8.16.0.42/8.16.0.42) with SMTP id 089KS1Af004301;
+        Wed, 9 Sep 2020 20:31:01 GMT
+Received: from b03cxnp08026.gho.boulder.ibm.com (b03cxnp08026.gho.boulder.ibm.com [9.17.130.18])
+        by ppma01dal.us.ibm.com with ESMTP id 33d46mwgfd-1
+        (version=TLSv1.2 cipher=ECDHE-RSA-AES256-GCM-SHA384 bits=256 verify=NOT);
+        Wed, 09 Sep 2020 20:31:01 +0000
+Received: from b03ledav004.gho.boulder.ibm.com (b03ledav004.gho.boulder.ibm.com [9.17.130.235])
+        by b03cxnp08026.gho.boulder.ibm.com (8.14.9/8.14.9/NCO v10.0) with ESMTP id 089KUtP141746762
+        (version=TLSv1/SSLv3 cipher=DHE-RSA-AES256-GCM-SHA384 bits=256 verify=OK);
+        Wed, 9 Sep 2020 20:30:55 GMT
+Received: from b03ledav004.gho.boulder.ibm.com (unknown [127.0.0.1])
+        by IMSVA (Postfix) with ESMTP id 2EC5178063;
+        Wed,  9 Sep 2020 20:31:00 +0000 (GMT)
+Received: from b03ledav004.gho.boulder.ibm.com (unknown [127.0.0.1])
+        by IMSVA (Postfix) with ESMTP id 834797805F;
+        Wed,  9 Sep 2020 20:30:59 +0000 (GMT)
+Received: from SHADE6A.ibmuc.com (unknown [9.163.76.239])
+        by b03ledav004.gho.boulder.ibm.com (Postfix) with ESMTP;
+        Wed,  9 Sep 2020 20:30:59 +0000 (GMT)
+From:   Eddie James <eajames@linux.ibm.com>
+To:     linux-input@vger.kernel.org
+Cc:     devicetree@vger.kernel.org, linux-aspeed@lists.ozlabs.org,
+        linux-i2c@vger.kernel.org, linux-kernel@vger.kernel.org,
+        robh+dt@kernel.org, dmitry.torokhov@gmail.com, joel@jms.id.au,
+        andrew@aj.id.au, benh@kernel.crashing.org,
+        brendanhiggins@google.com, wsa@kernel.org, rentao.bupt@gmail.com,
+        ryan_chen@aspeedtech.com
+Subject: [PATCH v3 0/5] input: misc: Add IBM Operation Panel driver
+Date:   Wed,  9 Sep 2020 15:30:54 -0500
+Message-Id: <20200909203059.23427-1-eajames@linux.ibm.com>
+X-Mailer: git-send-email 2.26.2
 MIME-Version: 1.0
-Content-Type: multipart/signed; micalg=pgp-sha256;
-        protocol="application/pgp-signature"; boundary="7j5jbnrxqkkhowne"
-Content-Disposition: inline
-In-Reply-To: <20200909090736.GE10891@amd>
-User-Agent: NeoMutt/20170113 (1.7.2)
-X-Scan-Signature: b1198b667d2db641cccf5b3ffa27e5f4
-X-Spam-Score: -2.9 (--)
-X-Provags-ID: V03:K1:q4ciz/d7HvNF3MJSK7E5yv7MFCQV5/j7h6HGs5KycUOVhx1SbuO
- UUn4zs0YM+nLSybDQxt4AEZTZbXN7sAQQRNP5PYjATuIM8uT53Zt8UH4R63nWzEzHZFAClQ
- 4Ah0sIr8r+XEYfVK13cxJdj8XvIz13AsMssJRvBC9hK7REOP4/K7s76ZF0KIQlT+vOz7Xwa
- B1SX13XGwZzvqDMJekFNw==
-X-Spam-Flag: NO
-X-UI-Out-Filterresults: notjunk:1;V03:K0:oTm1+CY9ogc=:Rq4LASjrd37j7HRcX8zjk0
- FWAkcTO/eLT3JO0F6+0QvJ3gViLfPGB5rejBMT47SgXNpp9691EBy4QTbMj0Up2QVkMM4F8EV
- w1yWawXYLjRUyl91iZ6eb3mjyEVKG/bJHyFsLPNXp2o+iawUo0FdgTwCZVy/souTgOt+YqgYA
- yF6eRarp1Uoh0DUSOopH3c33ltmBNJyX8qYoOwAEi5UaJUg6EUO6ZcRSOI+4Z9m6vbdwGU0SU
- ppvWbr9F3cSnVXhgV+xQWM3oq4B1/dFVk1F3JOKULGp4OkqgJp0qpz7JSJUKWIH2Tkq5pf7s+
- YhOso5jwShrjcZsko6PfNZv1ErZSseZD2eHvKQIYXyJwpiLQfvM8wD9zVuNHx1BI0naH9vf/8
- rRlFYUOnakyKV73GZYw8R4YPNpFvMdxsncOluht45AiG+GISec/qo29xUtEUfjWJGhTvmS/o/
- CSVWM/glvSHBTn/xvaFmOItmLHztfyY8TrT5ahOxxJwQUPmdNTe4hHGEVZ+LfiD9CZn0KMTRs
- q3UITI7D2UGl0HRrYWn31r9U9/aadEBIJ0+JY/n/a+z8rFRY09/0UQqdLFuv7Cjk0ZTtcV2EL
- IwkJFhr33TklJFc/LHoWa8DPE42zz6UA+fZFAsJwpN3Ekke3NAdoiPnPMwIQh2HZ4bzlIU5tc
- OSBEO6/Go48OhV5GUFXudoMmNSPBBaq1wIpkrWdiqXko2KMk6WuXgkLLEWZh1JPfifOShBtFH
- mxkeE6tjPdsJ5Pnm+EJRlEWPZjh6sfrX077P/dwf9raktZT7Q9MoYupzPOrrrfLKi2347dTvn
- Zw5o2f7eMqM8GchS+AEuj7Gn4epbtkZ1148Xjir5iHZXM9zdst9CvXRTmp29PlGsJjp6EO7
+Content-Transfer-Encoding: 8bit
+X-TM-AS-GCONF: 00
+X-Proofpoint-Virus-Version: vendor=fsecure engine=2.50.10434:6.0.235,18.0.687
+ definitions=2020-09-09_16:2020-09-09,2020-09-09 signatures=0
+X-Proofpoint-Spam-Details: rule=outbound_notspam policy=outbound score=0 suspectscore=1 bulkscore=0
+ clxscore=1015 mlxscore=0 priorityscore=1501 adultscore=0
+ lowpriorityscore=0 phishscore=0 malwarescore=0 spamscore=0 mlxlogscore=999
+ impostorscore=0 classifier=spam adjust=0 reason=mlx scancount=1
+ engine=8.12.0-2006250000 definitions=main-2009090178
 Sender: devicetree-owner@vger.kernel.org
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
+This series adds support for input from the IBM Operation Panel, which is
+a simple controller with three buttons and an LCD display meant for
+interacting with a server. It's connected over I2C, typically to a service
+processor. This series only supports the input from the panel, in which the
+panel masters the I2C bus and sends data to the host system when someone
+presses a button on the controller.
 
---7j5jbnrxqkkhowne
-Content-Type: text/plain; charset=iso-8859-1
-Content-Disposition: inline
-Content-Transfer-Encoding: quoted-printable
+Changes since v2:
+ - Add "additionalProperties: false" to dts doc
+ - Refactor switch statement in the input driver; check command size and call
+   the processing function within the STOP case
+ - Use a different definition name for Aspeed interrupt status mask
 
-Hei hei,
+Changes since v1:
+ - Redo DTS documentation example to use I2C_OWN_SLAVE_ADDRESS
+ - Reject commands received in the input driver that are too long
+ - Add a definition for the interrupt status mask in the Aspeed I2C driver
+ - Use I2C_OWN_SLAVE_ADDRESS for both dts additions
 
-On Wed, Sep 09, 2020 at 11:07:36AM +0200, Pavel Machek wrote:
-> Hi!
->=20
-> >  	pwm_init_state(led_data->pwm, &led_data->pwmstate);
-> > =20
-> > -	ret =3D devm_led_classdev_register(dev, &led_data->cdev);
-> > +	if (fwnode) {
-> > +		init_data.fwnode =3D fwnode;
-> > +		ret =3D devm_led_classdev_register_ext(dev, &led_data->cdev,
-> > +						     &init_data);
-> > +	} else {
-> > +		ret =3D devm_led_classdev_register(dev, &led_data->cdev);
-> > +	}
->=20
-> Can you always use _ext version, even with null fwnode?=20
+Eddie James (5):
+  dt-bindings: input: Add documentation for IBM Operation Panel
+  input: misc: Add IBM Operation Panel driver
+  i2c: aspeed: Mask IRQ status to relevant bits
+  ARM: dts: Aspeed: Tacoma: Add IBM Operation Panel I2C device
+  ARM: dts: Aspeed: Rainier: Add IBM Operation Panel I2C device
 
-I did not try on real hardware, but from reading the code I would say
-the following would happen: led_classdev_register_ext() calls
-led_compose_name(parent, init_data, composed_name) which itself calls
-led_parse_fwnode_props(dev, fwnode, &props); that returns early due to
-fwnode=3D=3DNULL without changing props, thus this stays as initialized
-with {}, so led_compose_name() would return -EINVAL which would let
-led_classdev_register_ext() fail, too.
+ .../bindings/input/ibm,op-panel.yaml          |  41 ++++
+ MAINTAINERS                                   |   7 +
+ arch/arm/boot/dts/aspeed-bmc-ibm-rainier.dts  |   7 +
+ arch/arm/boot/dts/aspeed-bmc-opp-tacoma.dts   |   7 +
+ drivers/i2c/busses/i2c-aspeed.c               |   2 +
+ drivers/input/misc/Kconfig                    |  18 ++
+ drivers/input/misc/Makefile                   |   1 +
+ drivers/input/misc/ibm-panel.c                | 189 ++++++++++++++++++
+ 8 files changed, 272 insertions(+)
+ create mode 100644 Documentation/devicetree/bindings/input/ibm,op-panel.yaml
+ create mode 100644 drivers/input/misc/ibm-panel.c
 
-> If not, can you fix the core to accept that? Having that conditional
-> in driver is ugly.
+-- 
+2.26.2
 
-It is ugly, although the approach is inspired by the leds-gpio driver.
-I'll see if I can come up with a change to led-core, but I'm also open
-for suggestions. ;-)
-
-fyi: Peter Ujfalusi answered and would give his Ack to the changed
-dual license for the yaml file.  You can expect that for v4.
-
-Stay tuned
-Alex
-
---=20
-/"\ ASCII RIBBON | =BBWith the first link, the chain is forged. The first
-\ / CAMPAIGN     | speech censured, the first thought forbidden, the
- X  AGAINST      | first freedom denied, chains us all irrevocably.=AB
-/ \ HTML MAIL    | (Jean-Luc Picard, quoting Judge Aaron Satie)
-
---7j5jbnrxqkkhowne
-Content-Type: application/pgp-signature; name="signature.asc"
-
------BEGIN PGP SIGNATURE-----
-
-iQIzBAABCAAdFiEEwo7muQJjlc+Prwj6NK3NAHIhXMYFAl9ZOwwACgkQNK3NAHIh
-XMZYxA/+IulUzC5gR42kuynkDbBaM43uqyoJJZiKNJJQUR3qM6Z0v/UgTOG1CcY8
-uouSnoSC5hMO9bNfxTsdyBPDueqp0yttdBRkPYJs+mIIXfgpx2fDfYpp+G7XnaA0
-/aCZ7jNscqYM7stsZXTw9pHCKB/u6uhM7dPpxf4F5GRlqOBbZvBCkoSzX1Tv/lcG
-F+P+ssx16KlQycmXmhd2d1o15VCGPljnHV+GGWLMhkOLmN8P5e0vk6fOHrD54nRn
-6XS+0rZFFJ3UtXm2z7lNydQWg3wRliQmky3LMMdxgEyGvxsahwqc49YGJtUeN0ue
-tjmmN0GSCHUAPAKbxjTnGSFiGDhjjgxqP9RbDsdhc2eCO2Ppge8zCiWMK1rzch8B
-e7We5jikLTk19FMhTY15CSmigvKg84hHSCYsUCT/EIS9knA4X6hdoWR3MPRptFQg
-ebcagIHr5Jx0cMQ/JY8sSwK6x3T6FAQWT2SQ95NnowxXF2eBOP+zISxKMY5VWZVg
-WuRrcbi6n8visLtYqaZP5Y8/5WMd/HkdYPzM8MtczQEBsYEyraIpLNxQDqW2r7OT
-qdS0cKywuIkanCybA2vMHsQ+Sd8z7eBvpmQ0bZspQQY/PKl0+vfa4jyzcTe2hcDh
-Li4UpqovWXuLyVtzKReBc2mkFoI31u2cW+5jolv+HhP8F0/3OOQ=
-=5bMy
------END PGP SIGNATURE-----
-
---7j5jbnrxqkkhowne--
