@@ -2,152 +2,67 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from vger.kernel.org (vger.kernel.org [23.128.96.18])
-	by mail.lfdr.de (Postfix) with ESMTP id EBC57263688
-	for <lists+devicetree@lfdr.de>; Wed,  9 Sep 2020 21:19:32 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTP id AF8AD2636A2
+	for <lists+devicetree@lfdr.de>; Wed,  9 Sep 2020 21:33:18 +0200 (CEST)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S1726738AbgIITTb (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Wed, 9 Sep 2020 15:19:31 -0400
-Received: from relay5-d.mail.gandi.net ([217.70.183.197]:32779 "EHLO
-        relay5-d.mail.gandi.net" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S1726399AbgIITT2 (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Wed, 9 Sep 2020 15:19:28 -0400
-X-Originating-IP: 90.65.88.165
-Received: from localhost (lfbn-lyo-1-1908-165.w90-65.abo.wanadoo.fr [90.65.88.165])
-        (Authenticated sender: alexandre.belloni@bootlin.com)
-        by relay5-d.mail.gandi.net (Postfix) with ESMTPSA id 01DE41C0004;
-        Wed,  9 Sep 2020 19:19:23 +0000 (UTC)
-Date:   Wed, 9 Sep 2020 21:19:23 +0200
-From:   Alexandre Belloni <alexandre.belloni@bootlin.com>
-To:     Jonathan Cameron <jic23@kernel.org>
-Cc:     linux-iio@vger.kernel.org, Rob Herring <robh@kernel.org>,
-        devicetree@vger.kernel.org,
-        Jonathan Cameron <Jonathan.Cameron@huawei.com>,
-        Maxime Ripard <maxime.ripard@free-electrons.com>
-Subject: Re: [PATCH v2 07/20] dt-bindings:iio:adc:nuvoton,nau7802 yaml
- conversion
-Message-ID: <20200909191923.GV230586@piout.net>
-References: <20200909175946.395313-1-jic23@kernel.org>
- <20200909175946.395313-8-jic23@kernel.org>
+        id S1725975AbgIITdR (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Wed, 9 Sep 2020 15:33:17 -0400
+Received: from mail-ej1-f68.google.com ([209.85.218.68]:37526 "EHLO
+        mail-ej1-f68.google.com" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
+        with ESMTP id S1725772AbgIITdQ (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Wed, 9 Sep 2020 15:33:16 -0400
+Received: by mail-ej1-f68.google.com with SMTP id nw23so5251017ejb.4;
+        Wed, 09 Sep 2020 12:33:14 -0700 (PDT)
+X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+        d=1e100.net; s=20161025;
+        h=x-gm-message-state:date:from:to:cc:subject:message-id:references
+         :mime-version:content-disposition:in-reply-to:user-agent;
+        bh=yh5U4DdKjNhyUaf2ifBbb4LF6J0UbLKo+raAvinnvCc=;
+        b=FInsvLBJOjYiufyYIA0L/TE4dnLBIwMRZMh4bjYVAkf9PCiYBe6vNfsSPNrGlqn2w3
+         T8HAwxpVDxoHrnT9VoHIPtIbSRggv9JYPpE0Qd1sj9Lq5kylbIbNehQrzFKfVPtxoWer
+         Lxaux0yo6oNMQm3VxuKg80COCgiaJHdOD7LaZedm0JrYVRzZeyXiDhIvW1CfZoWSdILS
+         leyLD6/sTAu+kavc9e8tbL5lrTKYcg0DODaWBKvYdmwo5Le8djWf82CDMmXr/YOApavF
+         PIBZLVWDmPmen3fe46t258R86pe9+H7xs5npR8ROUHcJYGCz7O4RQkW/u3z5XrHuA/tu
+         8W3w==
+X-Gm-Message-State: AOAM532OhiztGSBHlJtMuDVO3W8O54WFBtBALkpz17jhaudlbmo61Vu9
+        XxQQWSBFHBq+42KYavvEpl0=
+X-Google-Smtp-Source: ABdhPJzfLTKoQqFfsuyMyzEyLXyZr0KGpy8lDztIEh6WKkxAjXcD2vd6EVWLi/WVCEqwa5g4EAyG9w==
+X-Received: by 2002:a17:906:d97b:: with SMTP id rp27mr5520650ejb.18.1599679994274;
+        Wed, 09 Sep 2020 12:33:14 -0700 (PDT)
+Received: from kozik-lap ([194.230.155.174])
+        by smtp.googlemail.com with ESMTPSA id 40sm3702732edr.67.2020.09.09.12.33.12
+        (version=TLS1_2 cipher=ECDHE-ECDSA-CHACHA20-POLY1305 bits=256/256);
+        Wed, 09 Sep 2020 12:33:13 -0700 (PDT)
+Date:   Wed, 9 Sep 2020 21:33:11 +0200
+From:   Krzysztof Kozlowski <krzk@kernel.org>
+To:     Fabien Parent <fparent@baylibre.com>
+Cc:     linux-mediatek@lists.infradead.org,
+        linux-arm-kernel@lists.infradead.org, devicetree@vger.kernel.org,
+        linux-kernel@vger.kernel.org, matthias.bgg@gmail.com,
+        robh+dt@kernel.org
+Subject: Re: [PATCH 1/2] dt-bindings: mediatek: Add binding for MT8167 SMI
+Message-ID: <20200909193311.GA15293@kozik-lap>
+References: <20200906180938.1117526-1-fparent@baylibre.com>
 MIME-Version: 1.0
-Content-Type: text/plain; charset=us-ascii
+Content-Type: text/plain; charset=utf-8
 Content-Disposition: inline
-In-Reply-To: <20200909175946.395313-8-jic23@kernel.org>
+In-Reply-To: <20200906180938.1117526-1-fparent@baylibre.com>
+User-Agent: Mutt/1.9.4 (2018-02-28)
 Sender: devicetree-owner@vger.kernel.org
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-Hi,
-
-On 09/09/2020 18:59:33+0100, Jonathan Cameron wrote:
-> From: Jonathan Cameron <Jonathan.Cameron@huawei.com>
+On Sun, Sep 06, 2020 at 08:09:37PM +0200, Fabien Parent wrote:
+> Add device tree bindings documentation for MT8167 SMI.
 > 
-> A simple conversion from txt file to yaml.  I added the #io-channel-cells
-> property as optional to allow the channels of this ADCs to be used
-> to provide services to other drivers, for example if an analog
-> accelerometer is connected.
-> 
-> Signed-off-by: Jonathan Cameron <Jonathan.Cameron@huawei.com>
-> Cc: Alexandre Belloni <alexandre.belloni@free-electrons.com>
-> Cc: Maxime Ripard <maxime.ripard@free-electrons.com>
+> Signed-off-by: Fabien Parent <fparent@baylibre.com>
 > ---
->  .../bindings/iio/adc/nuvoton,nau7802.yaml     | 50 +++++++++++++++++++
->  .../bindings/iio/adc/nuvoton-nau7802.txt      | 18 -------
->  2 files changed, 50 insertions(+), 18 deletions(-)
-> 
-> diff --git a/Documentation/devicetree/bindings/iio/adc/nuvoton,nau7802.yaml b/Documentation/devicetree/bindings/iio/adc/nuvoton,nau7802.yaml
-> new file mode 100644
-> index 000000000000..bcd041ea28a8
-> --- /dev/null
-> +++ b/Documentation/devicetree/bindings/iio/adc/nuvoton,nau7802.yaml
-> @@ -0,0 +1,50 @@
-> +# SPDX-License-Identifier: (GPL-2.0 OR BSD-2-Clause)
-> +%YAML 1.2
-> +---
-> +$id: http://devicetree.org/schemas/iio/adc/nuvoton,nau7802.yaml#
-> +$schema: http://devicetree.org/meta-schemas/core.yaml#
-> +
-> +title: Nuvoton NAU7802 I2c Analog to Digital Converter (ADC)
-> +
-> +maintainers:
-> +  - Alexandre Belloni <alexandre.belloni@free-electrons.com>
-> +  - Maxime Ripard <maxime.ripard@free-electrons.com>
-> +
+>  .../bindings/memory-controllers/mediatek,smi-common.txt        | 3 ++-
+>  .../bindings/memory-controllers/mediatek,smi-larb.txt          | 3 ++-
 
-Sorry, I meant to reply earlier. Can you make that:
+Thanks, applied.
 
- - Alexandre Belloni <alexandre.belloni@bootlin.com>
- - Maxime Ripard <mripard@kernel.org>
+Best regards,
+Krzysztof
 
-Else, this seems good to me!
-
-> +properties:
-> +  compatible:
-> +    const: nuvoton,nau7802
-> +
-> +  reg:
-> +    maxItems: 1
-> +
-> +  interrupts:
-> +    maxItems: 1
-> +
-> +  nuvoton,vldo:
-> +    $ref: /schemas/types.yaml#/definitions/uint32
-> +    description:
-> +      Internal reference voltage in millivolts to be configured.
-> +    minimum: 2400
-> +    maximum: 4500
-> +
-> +  "#io-channel-cells":
-> +    const: 1
-> +
-> +required:
-> +  - compatible
-> +  - reg
-> +
-> +additionalProperties: false
-> +
-> +examples:
-> +  - |
-> +    i2c {
-> +        #address-cells = <1>;
-> +        #size-cells = <0>;
-> +        nau7802@2a {
-> +            compatible = "nuvoton,nau7802";
-> +            reg = <0x2a>;
-> +            nuvoton,vldo = <3000>;
-> +        };
-> +    };
-> +...
-> diff --git a/Documentation/devicetree/bindings/iio/adc/nuvoton-nau7802.txt b/Documentation/devicetree/bindings/iio/adc/nuvoton-nau7802.txt
-> deleted file mode 100644
-> index e9582e6fe350..000000000000
-> --- a/Documentation/devicetree/bindings/iio/adc/nuvoton-nau7802.txt
-> +++ /dev/null
-> @@ -1,18 +0,0 @@
-> -* Nuvoton NAU7802 Analog to Digital Converter (ADC)
-> -
-> -Required properties:
-> -  - compatible: Should be "nuvoton,nau7802"
-> -  - reg: Should contain the ADC I2C address
-> -
-> -Optional properties:
-> -  - nuvoton,vldo: Internal reference voltage in millivolts to be
-> -    configured valid values are between 2400 mV and 4500 mV.
-> -  - interrupts: IRQ line for the ADC. If not used the driver will use
-> -    polling.
-> -
-> -Example:
-> -adc2: nau7802@2a {
-> -	compatible = "nuvoton,nau7802";
-> -	reg = <0x2a>;
-> -	nuvoton,vldo = <3000>;
-> -};
-> -- 
-> 2.28.0
-> 
-
--- 
-Alexandre Belloni, Bootlin
-Embedded Linux and Kernel engineering
-https://bootlin.com
