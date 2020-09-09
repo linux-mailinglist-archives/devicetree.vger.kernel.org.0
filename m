@@ -2,110 +2,67 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from vger.kernel.org (vger.kernel.org [23.128.96.18])
-	by mail.lfdr.de (Postfix) with ESMTP id 2DE282625B0
-	for <lists+devicetree@lfdr.de>; Wed,  9 Sep 2020 05:12:34 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTP id 76D702625C1
+	for <lists+devicetree@lfdr.de>; Wed,  9 Sep 2020 05:16:37 +0200 (CEST)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S1727804AbgIIDMZ (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Tue, 8 Sep 2020 23:12:25 -0400
-Received: from lindbergh.monkeyblade.net ([23.128.96.19]:46400 "EHLO
-        lindbergh.monkeyblade.net" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S1726489AbgIIDMS (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Tue, 8 Sep 2020 23:12:18 -0400
-Received: from mail-pg1-x542.google.com (mail-pg1-x542.google.com [IPv6:2607:f8b0:4864:20::542])
-        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id D5CEAC061756
-        for <devicetree@vger.kernel.org>; Tue,  8 Sep 2020 20:12:17 -0700 (PDT)
-Received: by mail-pg1-x542.google.com with SMTP id 67so990493pgd.12
-        for <devicetree@vger.kernel.org>; Tue, 08 Sep 2020 20:12:17 -0700 (PDT)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=dabbelt-com.20150623.gappssmtp.com; s=20150623;
-        h=date:subject:in-reply-to:cc:from:to:message-id:mime-version
-         :content-transfer-encoding;
-        bh=68ipujDablGcEJonPET//NBEYZiQNXSeSF+EeohflME=;
-        b=TReKjmiIL072PrYgIA4/D2VQXd+J56RQ/DSJXM7PBArTdXh4/GxSAbvdgGzsHJAyn7
-         ZzJPgLqDko2UBN0UMQ3m456optZlKtqlwx+HGq60uJYI57g0ev1xOoEGkDujuTfmrTRo
-         FiH/R/Czt0dHCsH1fPA2Uzh2Ecn3HY2ieoZ+DwzBrbfkiDk1bLTXUWeOuqtQtPb3I8Hl
-         nrCx1lN7nhoqvEuuNM+G9SPLizyqNFZ3Dls+kQWqSvFJQiPVPYXD/2VYDJ5DyPQLz03B
-         1AQRz66PFO6KIS+LKsdx//tDLK7+cJRDShEZyTFsprfBX/yQz0MF5rCeCwec0jk3i8oG
-         dXMA==
-X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=1e100.net; s=20161025;
-        h=x-gm-message-state:date:subject:in-reply-to:cc:from:to:message-id
-         :mime-version:content-transfer-encoding;
-        bh=68ipujDablGcEJonPET//NBEYZiQNXSeSF+EeohflME=;
-        b=T6ZjHpSSnGVdKFvbe2AzV7f3SUETHy5GyfXqhMp3yibxnCAJq3Anj2iUsJ21sVTfzL
-         ZO1D/N9ozO+99sLyrWbxWxyBzjbRvEDU/ST4VnaM+o9ntnSv5KJ9ZOX5583au8XBau0X
-         2kGHqlgq9nzB7dKJdIt71wvRoIDR+glmOOWl3qXwgReob8JsBcLa8zC83aq2CT7srmxn
-         TlPjXI6jSmkVCa6uwOEIrong4zmhXyQg6Z1u2sC0r3GN+xlrG+UoagTsOLNXwOMWnlNN
-         esBlPUW3wgE7sm73lHSa5IEBUwtCq4Dij58QkToRxlhdt13DJTdsnKMhmYL0T1sNx4DK
-         rgjA==
-X-Gm-Message-State: AOAM531s7eRhGtCgYoAWVweIRn+tNLZvFE/sYSISQlB8t+PldyIPHlvq
-        nLUol5WiKl7+RR1rZ+nB/Gy7nA==
-X-Google-Smtp-Source: ABdhPJwexB0r5HrP0KwYZnG4eojTsfNQqFJlDv8+/BCwJd3a9eEytgZ8MppW46t1gK2A2ChRvfFYPw==
-X-Received: by 2002:a63:5b64:: with SMTP id l36mr1371109pgm.413.1599621136651;
-        Tue, 08 Sep 2020 20:12:16 -0700 (PDT)
-Received: from localhost (76-210-143-223.lightspeed.sntcca.sbcglobal.net. [76.210.143.223])
-        by smtp.gmail.com with ESMTPSA id b20sm809072pfb.198.2020.09.08.20.12.15
-        (version=TLS1_3 cipher=TLS_AES_256_GCM_SHA384 bits=256/256);
-        Tue, 08 Sep 2020 20:12:16 -0700 (PDT)
-Date:   Tue, 08 Sep 2020 20:12:16 -0700 (PDT)
-X-Google-Original-Date: Tue, 08 Sep 2020 20:12:09 PDT (-0700)
-Subject:     Re: [PATCH v2 2/3] soc: sifive: Add SiFive specific Cadence DDR controller driver
-In-Reply-To: <20200907061126.GA14999@infradead.org>
-CC:     yash.shah@sifive.com, robh+dt@kernel.org,
-        Paul Walmsley <paul.walmsley@sifive.com>, bp@alien8.de,
-        mchehab@kernel.org, tony.luck@intel.com,
-        devicetree@vger.kernel.org, aou@eecs.berkeley.edu,
-        linux-kernel@vger.kernel.org, sachin.ghadi@sifive.com,
-        rrichter@marvell.com, james.morse@arm.com,
-        linux-riscv@lists.infradead.org, linux-edac@vger.kernel.org
-From:   Palmer Dabbelt <palmer@dabbelt.com>
-To:     Christoph Hellwig <hch@infradead.org>, dkangude@cadence.com
-Message-ID: <mhng-d2a95187-c772-4c5d-b30b-b053a3195177@palmerdabbelt-glaptop1>
-Mime-Version: 1.0 (MHng)
-Content-Type: text/plain; charset=utf-8; format=flowed
-Content-Transfer-Encoding: 8bit
+        id S1726369AbgIIDQg (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Tue, 8 Sep 2020 23:16:36 -0400
+Received: from mailgw02.mediatek.com ([210.61.82.184]:49629 "EHLO
+        mailgw02.mediatek.com" rhost-flags-OK-FAIL-OK-FAIL) by vger.kernel.org
+        with ESMTP id S1726002AbgIIDQf (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Tue, 8 Sep 2020 23:16:35 -0400
+X-UUID: 9e7cc0b894ba4b14a27667a025a37425-20200909
+DKIM-Signature: v=1; a=rsa-sha256; q=dns/txt; c=relaxed/relaxed; d=mediatek.com; s=dk;
+        h=Content-Transfer-Encoding:MIME-Version:Content-Type:References:In-Reply-To:Date:CC:To:From:Subject:Message-ID; bh=D4akEY1UsIrLp2l32I4rH/2r4ZNkNg0urog1SmVJQy4=;
+        b=f2HMqAS5HdzGiqovALQY3IIbtKL3Vyr5hGlhiL/sOeABmvMNz2pIj3+bU7tho+cXO4lBoFbmBOtw34txCEsM8sJ8tW2XXSDq94rb477khaxWI0WbWxvCLRoWIb1t00QFAijp36TXvmdFbsrwNPHWhB2r3XOSWB79v+tKpBQQhfA=;
+X-UUID: 9e7cc0b894ba4b14a27667a025a37425-20200909
+Received: from mtkcas07.mediatek.inc [(172.21.101.84)] by mailgw02.mediatek.com
+        (envelope-from <jianjun.wang@mediatek.com>)
+        (Cellopoint E-mail Firewall v4.1.14 Build 0819 with TLSv1.2 ECDHE-RSA-AES256-SHA384 256/256)
+        with ESMTP id 1994703033; Wed, 09 Sep 2020 11:16:33 +0800
+Received: from MTKCAS32.mediatek.inc (172.27.4.184) by mtkmbs08n2.mediatek.inc
+ (172.21.101.56) with Microsoft SMTP Server (TLS) id 15.0.1497.2; Wed, 9 Sep
+ 2020 11:16:31 +0800
+Received: from [10.17.3.153] (10.17.3.153) by MTKCAS32.mediatek.inc
+ (172.27.4.170) with Microsoft SMTP Server id 15.0.1497.2 via Frontend
+ Transport; Wed, 9 Sep 2020 11:16:30 +0800
+Message-ID: <1599621279.2521.13.camel@mhfsdcap03>
+Subject: Re: [v1,1/3] dt-bindings: Add YAML schemas for Gen3 PCIe controller
+From:   Jianjun Wang <jianjun.wang@mediatek.com>
+To:     Bjorn Helgaas <helgaas@kernel.org>
+CC:     Bjorn Helgaas <bhelgaas@google.com>,
+        Rob Herring <robh+dt@kernel.org>,
+        Lorenzo Pieralisi <lorenzo.pieralisi@arm.com>,
+        Ryder Lee <ryder.lee@mediatek.com>,
+        Philipp Zabel <p.zabel@pengutronix.de>,
+        "Matthias Brugger" <matthias.bgg@gmail.com>,
+        Mauro Carvalho Chehab <mchehab+huawei@kernel.org>,
+        <davem@davemloft.net>, <linux-pci@vger.kernel.org>,
+        <linux-mediatek@lists.infradead.org>, <devicetree@vger.kernel.org>,
+        <linux-kernel@vger.kernel.org>,
+        <linux-arm-kernel@lists.infradead.org>,
+        Sj Huang <sj.huang@mediatek.com>
+Date:   Wed, 9 Sep 2020 11:14:39 +0800
+In-Reply-To: <20200908200407.GA628520@bjorn-Precision-5520>
+References: <20200908200407.GA628520@bjorn-Precision-5520>
+Content-Type: text/plain; charset="UTF-8"
+X-Mailer: Evolution 3.10.4-0ubuntu2 
+MIME-Version: 1.0
+X-TM-SNTS-SMTP: 0EE92390ADB39B90B8C5C83EAD1CEFB6CD9D6181AF39723CDB849AC1378F8DBA2000:8
+X-MTK:  N
+Content-Transfer-Encoding: base64
 Sender: devicetree-owner@vger.kernel.org
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-On Sun, 06 Sep 2020 23:11:26 PDT (-0700), Christoph Hellwig wrote:
-> On Mon, Sep 07, 2020 at 11:17:58AM +0530, Yash Shah wrote:
->> Add a driver to manage the Cadence DDR controller present on SiFive SoCs
->> At present the driver manages the EDAC feature of the DDR controller.
->> Additional features may be added to the driver in future to control
->> other aspects of the DDR controller.
->
-> So if this is a generic(ish) Cadence IP block shouldn't it be named
-> Cadence and made generic?  Or is the frontend somehow SiFive specific?
+T24gVHVlLCAyMDIwLTA5LTA4IGF0IDE1OjA0IC0wNTAwLCBCam9ybiBIZWxnYWFzIHdyb3RlOg0K
+PiBPbiBNb24sIFNlcCAwNywgMjAyMCBhdCAwODowODo1MFBNICswODAwLCBKaWFuanVuIFdhbmcg
+d3JvdGU6DQo+ID4gQWRkIFlBTUwgc2NoZW1hcyBkb2N1bWVudGF0aW9uIGZvciBHZW4zIFBDSWUg
+Y29udHJvbGxlciBvbg0KPiA+IE1lZGlhVGVrIFNvQ3MuDQo+IA0KPiBQbGVhc2UgbWVudGlvbiAi
+bWVkaWF0ZWsiIGluIHRoZSBzdWJqZWN0IGxpbmUgc28gImdpdCBsb2cgLS1vbmVsaW5lIg0KPiBp
+cyBtb3JlIHVzZWZ1bC4NCj4gDQo+IFRoZSBjb252ZW50aW9uIChub3QgdW5pdmVyc2FsbHkgb2Jz
+ZXJ2ZWQpIHNlZW1zIHRvIGJlIHNvbWV0aGluZyBsaWtlOg0KPiANCj4gICBkdC1iaW5kaW5nczog
+UENJOiA8ZHJpdmVyLW5hbWU+OiBBZGQgWUFNTCBzY2hlbWENCg0KVGhhbmtzIGZvciB5b3VyIHJl
+dmlldywgSSB3aWxsIGZpeCBpdCBpbiB0aGUgbmV4dCB2ZXJzaW9uLg0KDQo=
 
-For some reason I thought we had a SiFive-specific interface to this, but I may
-have gotten that confused with something else as it's been a while.  Someone
-from SiFive would probably have a better idea, but it looks like the person I'd
-ask isn't thereany more so I'm all out of options ;)
-
-It looks like there was a very similar driver posted by Dhananjay Kangude from
-Cadence in April: https://lkml.org/lkml/2020/4/6/358 .  Some of the register
-definitions seem to be different, but the code I looked at is very similar so
-there's at least some bits that could be shared.  I found a v4 of that patch
-set, but that was back in May: https://lkml.org/lkml/2020/5/11/912 .  It
-alludes to a v5, but I can't find one.  I've added Dhananjay, maybe he knows
-what's up?
-
-I don't know enough about the block to know if the subtle difference in
-register names/offsets means.  They look properly jumbled up (ie, not just an
-offset), so maybe there's just different versions or that's the SiFive-specific
-part I had bouncing around my head?  Either way, it seems like one driver with
-some simple configuration could handle both of these -- either sticking the
-offsets in the DT (if they're going to be different everywhere) or by coming up
-with some version sort of thing (if there's a handful of these).
-
-I'm now also a bit worried about the provenace of this code.  The two drivers
-are errily similar -- for example, the variable definitions in handle_ce()
-
-       u64 err_c_addr = 0x0;
-       u64 err_c_data = 0x0;
-       u32 err_c_synd, err_c_id;
-       u32 sig_val_l, sig_val_h;
-
-are exactly the same.
