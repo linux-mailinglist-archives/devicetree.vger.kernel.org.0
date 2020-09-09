@@ -2,60 +2,60 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from vger.kernel.org (vger.kernel.org [23.128.96.18])
-	by mail.lfdr.de (Postfix) with ESMTP id 26C0D2636E6
-	for <lists+devicetree@lfdr.de>; Wed,  9 Sep 2020 21:57:02 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTP id 4A30C2636F3
+	for <lists+devicetree@lfdr.de>; Wed,  9 Sep 2020 21:57:34 +0200 (CEST)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S1728207AbgIIT47 (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Wed, 9 Sep 2020 15:56:59 -0400
-Received: from lindbergh.monkeyblade.net ([23.128.96.19]:60680 "EHLO
+        id S1727782AbgIIT5Z (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Wed, 9 Sep 2020 15:57:25 -0400
+Received: from lindbergh.monkeyblade.net ([23.128.96.19]:60694 "EHLO
         lindbergh.monkeyblade.net" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S1726535AbgIIT4u (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Wed, 9 Sep 2020 15:56:50 -0400
-Received: from mail-ej1-x644.google.com (mail-ej1-x644.google.com [IPv6:2a00:1450:4864:20::644])
-        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 9D00DC061757
-        for <devicetree@vger.kernel.org>; Wed,  9 Sep 2020 12:56:49 -0700 (PDT)
-Received: by mail-ej1-x644.google.com with SMTP id e23so5349462eja.3
-        for <devicetree@vger.kernel.org>; Wed, 09 Sep 2020 12:56:49 -0700 (PDT)
+        with ESMTP id S1726883AbgIIT4w (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Wed, 9 Sep 2020 15:56:52 -0400
+Received: from mail-ed1-x542.google.com (mail-ed1-x542.google.com [IPv6:2a00:1450:4864:20::542])
+        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 56CF1C061795
+        for <devicetree@vger.kernel.org>; Wed,  9 Sep 2020 12:56:51 -0700 (PDT)
+Received: by mail-ed1-x542.google.com with SMTP id n13so3905009edo.10
+        for <devicetree@vger.kernel.org>; Wed, 09 Sep 2020 12:56:51 -0700 (PDT)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
         d=sartura-hr.20150623.gappssmtp.com; s=20150623;
         h=from:to:cc:subject:date:message-id:in-reply-to:references
          :mime-version:content-transfer-encoding;
-        bh=p+ciS2qx7n0ML41xAjv+I0OnFKOUx8aqQW6A20J9zqg=;
-        b=YWJGljpf6NqYCyEmRgtbIZnfmxtQRL2RKLYngIzZ2jDJjdidTUCMeZRJMtFhQreFwq
-         TP0r1FRpEv/FfCtu3K1RrvWtFR4jWuGk17OJWqe0hUZSwZ4HnUprBNslVduG4uSHy15M
-         PJSd2Y+tCUTZovb00YO/d65nK4kHuk6Z+IDk4MkJOWn++H3aqT2iCAd5imuVFnJeopXO
-         j7Sbm8Zp/C43qZ+BEcOha8jNMA5rtncsluXZzdlm6oUuxprHTmQjW0esNnGEw/+3shB7
-         bUrllq4x3J1hUq6FkGvNrrxfCC218MHDGsvbuYbC88BfzIFK+Dh52hgetyfVgc6G2Qsk
-         sA1Q==
+        bh=4Gg66pi3MvXZIr12COgqvRgMCQp4+Tv92UGPdWGbVRw=;
+        b=lRhBIwf4QridhXR0XhTYyH/cCye+U4bv0ohXULGB5bCIAKirXiK4CX8liDEwWLOPvF
+         OuZpEA/NvyOoV45Des6uaKQ2Us4FRVEILvfq2eQdTKKQ2wr4nlHjYFkiagzuuuwoIpFJ
+         5GwwNGq1Wc3nx+u8BuISSfUMI/sJU3NQUBbfFflUe8oK1TB24lDnY7jYyD3hsZEdjIGM
+         LTZlRk7mBNLKTpO8Gh2pRnlBWzihRdKw6fNtqsKmpB/K4Q2JjKKQaHFrXwpZmhwshlOz
+         4jE+7H7XqTOzDaN2HTfaT4XVc74pmBJ/dYpFne0KW/7qKM8U6XH/dDSOKfhQllZi++Ds
+         6Eig==
 X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
         d=1e100.net; s=20161025;
         h=x-gm-message-state:from:to:cc:subject:date:message-id:in-reply-to
          :references:mime-version:content-transfer-encoding;
-        bh=p+ciS2qx7n0ML41xAjv+I0OnFKOUx8aqQW6A20J9zqg=;
-        b=FLpN55rlGgizcI1AnADi35xDnNJns3cOPRFCfycHgF1Z0PkrldrVHLUfCSfvi2l8ix
-         9vRsStrBye2SzKRPH30WNoRL69/awed8ruNv1b91eICzRn5gslHpiWyQhHEN1qUhCcbm
-         e5mV5KV0Dhg1HH9bMzCU9ODVju3jOo+FRGQqGMYTLAGZeiLh7I6a03cEqeAbFS8Xvl/z
-         R+pjrUROzYIyJe81OeoSISGd5k/HRwSWK50fmw+9Iw6FQyjzMyr498pxDG5PYXZNd0mH
-         IxpMGGp8m/HRunEva+o/s+04z32hwPqZ/sFOGbaSfqMoi753MuWrO21BNhg1xZ/8eEpO
-         FEBg==
-X-Gm-Message-State: AOAM531VDMvZ3/ZnETRtdH40s9wScMpGCJFz7vv75bOu4cxrcJgdQzRH
-        5txWYRUAFienD7DgE3NvWvHkvF/G1odPWg==
-X-Google-Smtp-Source: ABdhPJwZbg1ozv4MBW3qXWyJexh1RbCAIMd9u8UwGfFdGj0KXMnOru2pC/yh0FOO9gXyC16imsu3Ew==
-X-Received: by 2002:a17:906:e88:: with SMTP id p8mr5705006ejf.134.1599681408354;
-        Wed, 09 Sep 2020 12:56:48 -0700 (PDT)
+        bh=4Gg66pi3MvXZIr12COgqvRgMCQp4+Tv92UGPdWGbVRw=;
+        b=hP5IKkaXtO+piXqd1OD0asqfzvtcAJpgkNzW+Dd+6bI0+cuZuCaLQOLeunhwTcFnXl
+         iwnvuuxqdl0bcT3HlhuHtLwaA8nHmusMTjAZsjhjGCafysa0ek+EmCJ5AUf6ZPERLZpw
+         U6urGZQj+xCmrXX4efdJwHtaeMhd0BnU8p7eJ4HnilcSBkghCukIThMechdSJQt+uz+M
+         /NOb6722JpYIU8/q3XLXkvPx3NFtz0hHSnu+MAI7KvSvxSiLnIbqG5eh9waq+vIq641t
+         +Rebru32BDJqzZMHSagNIheWW8lyznKRpygcO4lbLrfV8MMq5Jw1PU536Ou00ZNGJa2N
+         iOJw==
+X-Gm-Message-State: AOAM533zWooFBfhUZbTKONrdoRrtNIylBZIDTMG7a88p56fKGnXNuzdA
+        vLYe08mm4+zl/8bgXLVAHe+5JA==
+X-Google-Smtp-Source: ABdhPJzoOPhaXoBgeESP+e4XyEKNLLFqtqrodHpbLQrvsWZXAr9c2tZ4UxWPk1VgXkORTROYgBz4sw==
+X-Received: by 2002:aa7:cd90:: with SMTP id x16mr5681315edv.302.1599681409952;
+        Wed, 09 Sep 2020 12:56:49 -0700 (PDT)
 Received: from localhost.localdomain (dh207-97-133.xnet.hr. [88.207.97.133])
-        by smtp.googlemail.com with ESMTPSA id n26sm3510870ejz.89.2020.09.09.12.56.47
+        by smtp.googlemail.com with ESMTPSA id n26sm3510870ejz.89.2020.09.09.12.56.48
         (version=TLS1_3 cipher=TLS_AES_256_GCM_SHA384 bits=256/256);
-        Wed, 09 Sep 2020 12:56:47 -0700 (PDT)
+        Wed, 09 Sep 2020 12:56:49 -0700 (PDT)
 From:   Robert Marko <robert.marko@sartura.hr>
 To:     agross@kernel.org, bjorn.andersson@linaro.org, robh+dt@kernel.org,
         linux-arm-msm@vger.kernel.org, devicetree@vger.kernel.org,
         linux-kernel@vger.kernel.org
 Cc:     Robert Marko <robert.marko@sartura.hr>,
         Luka Perkov <luka.perkov@sartura.hr>
-Subject: [PATCH v2 1/4] arm: dts: qcom: ipq4019: add more labels
-Date:   Wed,  9 Sep 2020 21:56:37 +0200
-Message-Id: <20200909195640.3127341-2-robert.marko@sartura.hr>
+Subject: [PATCH v2 2/4] arm: dts: add 8devices Jalapeno
+Date:   Wed,  9 Sep 2020 21:56:38 +0200
+Message-Id: <20200909195640.3127341-3-robert.marko@sartura.hr>
 X-Mailer: git-send-email 2.26.2
 In-Reply-To: <20200909195640.3127341-1-robert.marko@sartura.hr>
 References: <20200909195640.3127341-1-robert.marko@sartura.hr>
@@ -66,7 +66,17 @@ Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-Lets add labels to more commonly used nodes for easier modification in board DTS files.
+8devices Jalapeno is a dual-band SoM, based on Qualcomm
+IPQ4018 + QCA8072 platform.
+
+Specification:
+QCA IPQ4018, Quad core ARM v7 Cortex A7 717MHz
+256 MB of DDR3 RAM
+8 MB of SPI NOR flash
+128 MB of Winbond SPI NAND flash
+WLAN1: Qualcomm Atheros QCA4018 2.4GHz 802.11bgn 2:2x2
+WLAN2: Qualcomm Atheros QCA4018 5GHz 802.11a/n/ac 2:2x2
+ETH: Qualcomm Atheros QCA8072 Gigabit Switch (1 x LAN, 1 x WAN)
 
 Signed-off-by: Robert Marko <robert.marko@sartura.hr>
 Cc: Luka Perkov <luka.perkov@sartura.hr>
@@ -74,40 +84,243 @@ Cc: Luka Perkov <luka.perkov@sartura.hr>
 Changes since v1:
 * Drop include that does not exist
 
- arch/arm/boot/dts/qcom-ipq4019.dtsi | 6 +++---
- 1 file changed, 3 insertions(+), 3 deletions(-)
+ arch/arm/boot/dts/Makefile                  |   1 +
+ arch/arm/boot/dts/qcom-ipq4018-jalapeno.dts | 214 ++++++++++++++++++++
+ 2 files changed, 215 insertions(+)
+ create mode 100644 arch/arm/boot/dts/qcom-ipq4018-jalapeno.dts
 
-diff --git a/arch/arm/boot/dts/qcom-ipq4019.dtsi b/arch/arm/boot/dts/qcom-ipq4019.dtsi
-index 3d056aada8d1..7bf1da916f25 100644
---- a/arch/arm/boot/dts/qcom-ipq4019.dtsi
-+++ b/arch/arm/boot/dts/qcom-ipq4019.dtsi
-@@ -190,7 +190,7 @@ gcc: clock-controller@1800000 {
- 			reg = <0x1800000 0x60000>;
- 		};
- 
--		rng@22000 {
-+		prng: rng@22000 {
- 			compatible = "qcom,prng";
- 			reg = <0x22000 0x140>;
- 			clocks = <&gcc GCC_PRNG_AHB_CLK>;
-@@ -310,7 +310,7 @@ cryptobam: dma@8e04000 {
- 			status = "disabled";
- 		};
- 
--		crypto@8e3a000 {
-+		crypto: crypto@8e3a000 {
- 			compatible = "qcom,crypto-v5.1";
- 			reg = <0x08e3a000 0x6000>;
- 			clocks = <&gcc GCC_CRYPTO_AHB_CLK>,
-@@ -396,7 +396,7 @@ blsp1_uart2: serial@78b0000 {
- 			dma-names = "rx", "tx";
- 		};
- 
--		watchdog@b017000 {
-+		watchdog: watchdog@b017000 {
- 			compatible = "qcom,kpss-wdt", "qcom,kpss-wdt-ipq4019";
- 			reg = <0xb017000 0x40>;
- 			clocks = <&sleep_clk>;
+diff --git a/arch/arm/boot/dts/Makefile b/arch/arm/boot/dts/Makefile
+index 4572db3fa5ae..9b474208057d 100644
+--- a/arch/arm/boot/dts/Makefile
++++ b/arch/arm/boot/dts/Makefile
+@@ -890,6 +890,7 @@ dtb-$(CONFIG_ARCH_QCOM) += \
+ 	qcom-apq8074-dragonboard.dtb \
+ 	qcom-apq8084-ifc6540.dtb \
+ 	qcom-apq8084-mtp.dtb \
++	qcom-ipq4018-jalapeno.dtb \
+ 	qcom-ipq4019-ap.dk01.1-c1.dtb \
+ 	qcom-ipq4019-ap.dk04.1-c1.dtb \
+ 	qcom-ipq4019-ap.dk04.1-c3.dtb \
+diff --git a/arch/arm/boot/dts/qcom-ipq4018-jalapeno.dts b/arch/arm/boot/dts/qcom-ipq4018-jalapeno.dts
+new file mode 100644
+index 000000000000..394412619894
+--- /dev/null
++++ b/arch/arm/boot/dts/qcom-ipq4018-jalapeno.dts
+@@ -0,0 +1,214 @@
++// SPDX-License-Identifier: GPL-2.0-or-later OR MIT
++// Copyright (c) 2018, Robert Marko <robimarko@gmail.com>
++
++#include "qcom-ipq4019.dtsi"
++#include <dt-bindings/gpio/gpio.h>
++#include <dt-bindings/input/input.h>
++
++/ {
++	model = "8devices Jalapeno";
++	compatible = "8dev,jalapeno";
++};
++
++&tlmm {
++	mdio_pins: mdio_pinmux {
++		pinmux_1 {
++			pins = "gpio53";
++			function = "mdio";
++		};
++
++		pinmux_2 {
++			pins = "gpio52";
++			function = "mdc";
++		};
++
++		pinconf {
++			pins = "gpio52", "gpio53";
++			bias-pull-up;
++		};
++	};
++
++	serial_pins: serial_pinmux {
++		mux {
++			pins = "gpio60", "gpio61";
++			function = "blsp_uart0";
++			bias-disable;
++		};
++	};
++
++	spi_0_pins: spi_0_pinmux {
++		pin {
++			function = "blsp_spi0";
++			pins = "gpio55", "gpio56", "gpio57";
++			drive-strength = <2>;
++			bias-disable;
++		};
++
++		pin_cs {
++			function = "gpio";
++			pins = "gpio54", "gpio59";
++			drive-strength = <2>;
++			bias-disable;
++			output-high;
++		};
++	};
++};
++
++&watchdog {
++	status = "okay";
++};
++
++&prng {
++	status = "okay";
++};
++
++&blsp_dma {
++	status = "okay";
++};
++
++&blsp1_spi1 {
++	status = "okay";
++
++	pinctrl-0 = <&spi_0_pins>;
++	pinctrl-names = "default";
++	cs-gpios = <&tlmm 54 GPIO_ACTIVE_HIGH>, <&tlmm 59 GPIO_ACTIVE_HIGH>;
++
++	flash@0 {
++		status = "okay";
++
++		compatible = "jedec,spi-nor";
++		reg = <0>;
++		spi-max-frequency = <24000000>;
++
++		partitions {
++			compatible = "fixed-partitions";
++			#address-cells = <1>;
++			#size-cells = <1>;
++
++			partition@0 {
++				label = "SBL1";
++				reg = <0x00000000 0x00040000>;
++				read-only;
++			};
++
++			partition@40000 {
++				label = "MIBIB";
++				reg = <0x00040000 0x00020000>;
++				read-only;
++			};
++
++			partition@60000 {
++				label = "QSEE";
++				reg = <0x00060000 0x00060000>;
++				read-only;
++			};
++
++			partition@c0000 {
++				label = "CDT";
++				reg = <0x000c0000 0x00010000>;
++				read-only;
++			};
++
++			partition@d0000 {
++				label = "DDRPARAMS";
++				reg = <0x000d0000 0x00010000>;
++				read-only;
++			};
++
++			partition@e0000 {
++				label = "u-boot-env";
++				reg = <0x000e0000 0x00010000>;
++			};
++
++			partition@f0000 {
++				label = "u-boot";
++				reg = <0x000f0000 0x00080000>;
++				read-only;
++			};
++
++			partition@170000 {
++				label = "ART";
++				reg = <0x00170000 0x00010000>;
++				read-only;
++			};
++		};
++	};
++
++	spi-nand@1 {
++		status = "okay";
++
++		compatible = "spi-nand";
++		reg = <1>;
++		spi-max-frequency = <24000000>;
++
++		partitions {
++			compatible = "fixed-partitions";
++			#address-cells = <1>;
++			#size-cells = <1>;
++
++			partition@0 {
++				label = "ubi1";
++				reg = <0x00000000 0x04000000>;
++			};
++
++			partition@4000000 {
++				label = "ubi2";
++				reg = <0x04000000 0x04000000>;
++			};
++		};
++	};
++};
++
++&blsp1_uart1 {
++	status = "okay";
++
++	pinctrl-0 = <&serial_pins>;
++	pinctrl-names = "default";
++};
++
++&cryptobam {
++	status = "okay";
++};
++
++&crypto {
++	status = "okay";
++};
++
++&mdio {
++	status = "okay";
++
++	pinctrl-0 = <&mdio_pins>;
++	pinctrl-names = "default";
++};
++
++&wifi0 {
++	status = "okay";
++
++	qcom,ath10k-calibration-variant = "8devices-Jalapeno";
++};
++
++&wifi1 {
++	status = "okay";
++
++	qcom,ath10k-calibration-variant = "8devices-Jalapeno";
++};
++
++&usb3_ss_phy {
++	status = "okay";
++};
++
++&usb3_hs_phy {
++	status = "okay";
++};
++
++&usb3 {
++	status = "okay";
++};
++
++&usb2_hs_phy {
++	status = "okay";
++};
++
++&usb2 {
++	status = "okay";
++};
 -- 
 2.26.2
 
