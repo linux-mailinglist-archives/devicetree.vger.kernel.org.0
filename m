@@ -2,117 +2,260 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from vger.kernel.org (vger.kernel.org [23.128.96.18])
-	by mail.lfdr.de (Postfix) with ESMTP id 5AE1B26266F
-	for <lists+devicetree@lfdr.de>; Wed,  9 Sep 2020 06:46:26 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTP id C77B22626D8
+	for <lists+devicetree@lfdr.de>; Wed,  9 Sep 2020 07:46:46 +0200 (CEST)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S1725877AbgIIEqY (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Wed, 9 Sep 2020 00:46:24 -0400
-Received: from lindbergh.monkeyblade.net ([23.128.96.19]:60830 "EHLO
+        id S1725991AbgIIFqp (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Wed, 9 Sep 2020 01:46:45 -0400
+Received: from lindbergh.monkeyblade.net ([23.128.96.19]:41846 "EHLO
         lindbergh.monkeyblade.net" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S1725856AbgIIEqX (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Wed, 9 Sep 2020 00:46:23 -0400
-Received: from mail-pg1-x52f.google.com (mail-pg1-x52f.google.com [IPv6:2607:f8b0:4864:20::52f])
-        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id BDE3CC061755
-        for <devicetree@vger.kernel.org>; Tue,  8 Sep 2020 21:46:22 -0700 (PDT)
-Received: by mail-pg1-x52f.google.com with SMTP id j34so1161016pgi.7
-        for <devicetree@vger.kernel.org>; Tue, 08 Sep 2020 21:46:22 -0700 (PDT)
+        with ESMTP id S1725772AbgIIFqo (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Wed, 9 Sep 2020 01:46:44 -0400
+Received: from mail-pf1-x442.google.com (mail-pf1-x442.google.com [IPv6:2607:f8b0:4864:20::442])
+        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 86616C061573;
+        Tue,  8 Sep 2020 22:46:44 -0700 (PDT)
+Received: by mail-pf1-x442.google.com with SMTP id o20so1154483pfp.11;
+        Tue, 08 Sep 2020 22:46:44 -0700 (PDT)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=linaro.org; s=google;
+        d=gmail.com; s=20161025;
         h=date:from:to:cc:subject:message-id:references:mime-version
          :content-disposition:in-reply-to:user-agent;
-        bh=k9xIdA5uNBsj+GJ5HARC5Tw5O2ikVymrpKoJIVRjtkM=;
-        b=Vw7IaWgkIPBViICq+9eKHLp7LZ/to1OMgXtebdo/EIZZgKmOMZLTM3/FQ5NpoOhmPq
-         5+AAN493iEpS9v7RtTiBPjmJ01SfcZhIfC+bn73OCQc11eowEonndExzCO7lNv487p6E
-         1qKpWPrhXiCQOZ9mSpIMfZLlrhFxBETMM15M0cyOyJdkOIUaA1ktNyOKMkOzTSdSAdoy
-         ekAPWhJxiE1h0r2JPV+GPCBOv4XSJSuIFCFLS35NlgoWYlvgJWB3ZhLmXOF62zLX9Mse
-         B7E/Uoa7XdP5CPCdq/opJIsPNfiKfGYJdcFAn/VMhFg+HPBQIgSGUxvoWy1TVUHGIVKq
-         4gHA==
+        bh=C2UhuYpJejZc5ElG1FVc/lxyhIXx177Vex4idKVTX14=;
+        b=gRMPXh5i3oNQ9q/jPGNCZ9ckeN/kZdR41zGM7bev4cvYhKHv8SLVKVJX8jd8r1PUlq
+         jbMee2uZrcE1A1feMQ6t+RVXl5rVowf3Bz/RK8EZtiQc+QGQCJHybE5cvonx+VDY+hzs
+         0g2Bt/ydEgkAe/z5fCrt78qry3vnJpl+axB0xvBGyLgG3Nl2CE6OK61pWyrzd4xrg0Lz
+         ehRkD+9mEuBtxebE2LILHBztGigHuJFFvIKW/v+ENdobG3Tfi0C3ICQmf361mBgx7zBM
+         fQC6HQ4w4pvpqbqPUBr4Aprv1NGSCoUmHqzF+JM0B+9CPJ9B/hF1RRnFh/wN3iDjG8A3
+         iSiQ==
 X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
         d=1e100.net; s=20161025;
         h=x-gm-message-state:date:from:to:cc:subject:message-id:references
          :mime-version:content-disposition:in-reply-to:user-agent;
-        bh=k9xIdA5uNBsj+GJ5HARC5Tw5O2ikVymrpKoJIVRjtkM=;
-        b=UvQ5Sljrk1B46V01+g0cNG5iIwgx6xJZ/22DOSdecxh3u3lqkF8DrUrO2SW10fV4m3
-         RCTnHD0K+pph4E+4fiL88NpZvLOPtBhLJUdfI3jH+LjWI0CDxeNUsIBaU3WETKIGmso8
-         9N1k//zg/OoqjRzqNx3bN42ezZSPyiLdIPrU+5vS41SuyLqj87Ykxvr5CoXJQW9IlAni
-         oZW3UmhKEH3TtDS7IpVjBEx5MuIL0c26uGKWoGOvSx8TEV9cLivQ2v/urtsj4iBG0GYT
-         h4Jlx2YXns/atFlWqkUuxNdIDLhHK8GCe1QWTacuX+QQOlST2C7RskToYSLmZEQ/6Ql+
-         eGRQ==
-X-Gm-Message-State: AOAM532/dEFLFSOgo7R62WlVfXeilHnlURuo9iSkHaadqAwzBVOl2BYP
-        qzLSbRtojpZ6DVe13EQiE0tOKje/j08E1w==
-X-Google-Smtp-Source: ABdhPJyHmMxIsk8wCLCm/XLHUrlYlkUrjBTaPKthTCbkUVu/ZjM9745oGxKM3iNO1qOFVEjtJclaOg==
-X-Received: by 2002:a17:902:bcc2:: with SMTP id o2mr1981556pls.87.1599626781598;
-        Tue, 08 Sep 2020 21:46:21 -0700 (PDT)
-Received: from localhost ([122.181.54.133])
-        by smtp.gmail.com with ESMTPSA id p68sm1011133pfb.40.2020.09.08.21.46.20
-        (version=TLS1_2 cipher=ECDHE-ECDSA-AES128-GCM-SHA256 bits=128/128);
-        Tue, 08 Sep 2020 21:46:20 -0700 (PDT)
-Date:   Wed, 9 Sep 2020 10:16:18 +0530
-From:   Viresh Kumar <viresh.kumar@linaro.org>
-To:     Jassi Brar <jassisinghbrar@gmail.com>
-Cc:     Arnd Bergmann <arnd@arndb.de>, Sudeep Holla <sudeep.holla@arm.com>,
-        Rob Herring <robh@kernel.org>,
-        Frank Rowand <frowand.list@gmail.com>,
-        Bjorn Andersson <bjorn.andersson@linaro.org>,
-        Vincent Guittot <vincent.guittot@linaro.org>,
-        linux-arm-kernel <linux-arm-kernel@lists.infradead.org>,
-        Devicetree List <devicetree@vger.kernel.org>,
-        Linux Kernel Mailing List <linux-kernel@vger.kernel.org>
-Subject: Re: [RFC] dt-bindings: mailbox: add doorbell support to ARM MHU
-Message-ID: <20200909044618.deyx37pzocxiga7u@vireshk-i7>
-References: <20200605045645.GD12397@bogus>
- <CABb+yY2YZ99NjHYNi0=KLGFDsVUeJmqiJD3E25Chwk-THJV4iw@mail.gmail.com>
- <20200605085830.GA32372@bogus>
- <CABb+yY2TR7tuMx6u8yah6mO2GwZ5SWYOO80EQRL-i=ybgn=Wog@mail.gmail.com>
- <20200610093334.yznxl2esv5ht27ns@vireshk-i7>
- <20200611100027.GB18781@bogus>
- <CABb+yY1OwVB+uk+0w+D-4Xy46iYn8tPZYBZ0qjrzQFLA6SaTvw@mail.gmail.com>
- <20200612052853.nds4iycie6ldjnnr@vireshk-i7>
- <CAK8P3a0nVOR7YYSZaKmzm3WsUZLgOqL7yZq+f0Dfnn2=16AkLA@mail.gmail.com>
- <CABb+yY3HDs219C8Wcc+CJRLukV4OvCKhqevU-9jN4bCU6SC3rQ@mail.gmail.com>
+        bh=C2UhuYpJejZc5ElG1FVc/lxyhIXx177Vex4idKVTX14=;
+        b=Kwp/aMVZFNXATDAM27eLRCX9m/9TktAgqWZYHYnSuyO9kwLMe7qQCLF5jbW57uh9N7
+         51mL37R7Aq6CNO3/6vvBFFyi17x9tdNJJozzEOR+eKg/syRliGvbEVP5RlVhq7baDxOG
+         +XLABAA3Q7MwqqxzlXmoi8myscDjTRKsvGL54xWvKwvXmDfgQrpF7yDVxx31kRxKtqVN
+         Aey7n5GWfV8EV96WIdflfF2opjprkkcLtdDA3xxXlEJ5E9202sNglv9wzqVVATchm9ns
+         JaRwyW+lyFLKdqV/vUxUgk41Vw/pzaOlrLyzJi6SvYU9igPVLwzDCPVx4YN7ifBxKZqz
+         PojQ==
+X-Gm-Message-State: AOAM533VhJgHDUpF2g2naPLNRSZgxjRHRZfSxWGhnos9MRWnavO2isg2
+        e4EIUbArNTuNOuhmFMHLhf5d9D28E+WZgw==
+X-Google-Smtp-Source: ABdhPJyz26/uP7vOvSq+6g4m5jBM9THUqUo053ROl5vjaBnP0WVAno8OhD8GLu1veEwzlLv7ElHjbA==
+X-Received: by 2002:a63:594a:: with SMTP id j10mr1667431pgm.402.1599630403879;
+        Tue, 08 Sep 2020 22:46:43 -0700 (PDT)
+Received: from ThinkPad ([114.250.39.43])
+        by smtp.gmail.com with ESMTPSA id j193sm1211193pfd.89.2020.09.08.22.46.38
+        (version=TLS1_2 cipher=ECDHE-ECDSA-CHACHA20-POLY1305 bits=256/256);
+        Tue, 08 Sep 2020 22:46:43 -0700 (PDT)
+Date:   Wed, 9 Sep 2020 13:46:19 +0800
+From:   Orson Zhai <orsonzhai@gmail.com>
+To:     Jonathan Cameron <Jonathan.Cameron@Huawei.com>
+Cc:     Jonathan Cameron <jic23@kernel.org>, linux-iio@vger.kernel.org,
+        Rob Herring <robh+dt@kernel.org>,
+        DTML <devicetree@vger.kernel.org>,
+        Baolin Wang <baolin.wang7@gmail.com>,
+        Chunyan Zhang <zhang.lyra@gmail.com>
+Subject: Re: [PATCH 06/20] dt-bindings:iio:adc:sprd,sc2720-adc yaml
+ conversion.
+Message-ID: <20200909054619.GA13589@ThinkPad>
+References: <20200905173004.216081-1-jic23@kernel.org>
+ <20200905173004.216081-7-jic23@kernel.org>
+ <CA+H2tpE2-f7Sugi04hFwx4QrczufnE2gNHPzAoHWMwARgyOyLw@mail.gmail.com>
+ <20200908101232.000032c5@Huawei.com>
 MIME-Version: 1.0
 Content-Type: text/plain; charset=us-ascii
 Content-Disposition: inline
-In-Reply-To: <CABb+yY3HDs219C8Wcc+CJRLukV4OvCKhqevU-9jN4bCU6SC3rQ@mail.gmail.com>
-User-Agent: NeoMutt/20180716-391-311a52
+In-Reply-To: <20200908101232.000032c5@Huawei.com>
+User-Agent: Mutt/1.9.4 (2018-02-28)
 Sender: devicetree-owner@vger.kernel.org
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-On 08-09-20, 22:23, Jassi Brar wrote:
-> From the test case Sudeep last shared, the scmi usage on mhu doesn't
-> not even hit any bottleneck ... the test "failed" because of the too
-> small hardcoded timeout value. Otherwise the current code actually
-> shows better numbers.
-
-Its not important on why the test failed there, but the fact that
-there were requests in queue which have to be completed one by one and
-the last ones in the queue will always pay the penalty.
-
-> We need some synthetic tests to bring the limitation to the surface. I
-> agree that there may be such a test case, however fictitious. For that
-> reason, I am ok with the doorbell mode.
+On Tue, Sep 08, 2020 at 10:12:32AM +0100, Jonathan Cameron wrote:
+> On Tue, 8 Sep 2020 01:46:40 +0800
+> Orson Zhai <orsonzhai@gmail.com> wrote:
 > 
-> I totally agree with one compat-string for one hardware. However, as
-> you said, unlike other device classes, the mailbox driver runs the
-> sumtotal of hardware and the remote firmware behaviour. Also the
-> implementations wouldn't share much, so I think a separate file+dt
-> will be better.
+> > Hi Jonathan,
+> > 
+> > On Sun, Sep 6, 2020 at 1:32 AM Jonathan Cameron <jic23@kernel.org> wrote:
+> > >
+> > > From: Jonathan Cameron <Jonathan.Cameron@huawei.com>
+> > >
+> > > I changed the name to reflect a specific part in line with normal
+> > > naming conventions. If there is a particularly strong reason to
+> > > keep the wild cards let me know.  
+> > 
+> > Why do we have to change the file name of 27xx ?
+> 
+> We don't have to, but generally we try to avoid using wild
+> card naming.   It is far too common for companies marketing departments
+> or similar to decide to group incompatible parts.  Basically picking
+> a part number and saying 'and compatible' is much less likely to cause
+> confusion than a wild card!
 
-> But I wanna get rid of this toothache that flares up
-> every season, so whatever.
+It makes much sense to me.
 
-I can't agree more :)
+> 
+> If you feel strongly about it and can do a check of whether there
+> are any incompatible parts or not covered by that wild card range, then
+> I'm happy to change it back again whilst applying.
+> 
+> Feel free to give a conditional Ack btw!
 
-So to conclude the thread, if I have understood correctly, we are
-going to implement another doorbell driver for this hardware which
-will use a different compatible string and #mbox-cells value.
+Acked-by: Orson Zhai <orsonzhai@gmail.com>
 
-I will try to refresh the bindings soon, which will be followed by the
-driver implementation.
+Thanks.
 
-Thanks everyone.
-
--- 
-viresh
+Orson
+> 
+> Jonathan
+> 
+> > 
+> > >
+> > > Otherwise this was a fairly simple conversion as part of converting
+> > > all the IIO bindings to yaml.  
+> > 
+> > Thanks for doing this for us.
+> > 
+> > -Orson
+> > 
+> > >
+> > > Signed-off-by: Jonathan Cameron <Jonathan.Cameron@huawei.com>
+> > > Cc: Baolin Wang <baolin.wang7@gmail.com>
+> > > Cc: Orson Zhai <orsonzhai@gmail.com>
+> > > Cc: Chunyan Zhang <zhang.lyra@gmail.com>
+> > > ---
+> > >  .../bindings/iio/adc/sprd,sc2720-adc.yaml     | 72 +++++++++++++++++++
+> > >  .../bindings/iio/adc/sprd,sc27xx-adc.txt      | 40 -----------
+> > >  2 files changed, 72 insertions(+), 40 deletions(-)
+> > >
+> > > diff --git a/Documentation/devicetree/bindings/iio/adc/sprd,sc2720-adc.yaml b/Documentation/devicetree/bindings/iio/adc/sprd,sc2720-adc.yaml
+> > > new file mode 100644
+> > > index 000000000000..57df6439dd9d
+> > > --- /dev/null
+> > > +++ b/Documentation/devicetree/bindings/iio/adc/sprd,sc2720-adc.yaml
+> > > @@ -0,0 +1,72 @@
+> > > +# SPDX-License-Identifier: (GPL-2.0 OR BSD-2-Clause)
+> > > +%YAML 1.2
+> > > +---
+> > > +$id: http://devicetree.org/schemas/iio/adc/sprd,sc2720-adc.yaml#
+> > > +$schema: http://devicetree.org/meta-schemas/core.yaml#
+> > > +
+> > > +title: Spreadtrum SC27XX series PMICs ADC binding
+> > > +
+> > > +maintainers:
+> > > +  - Baolin Wang <baolin.wang7@gmail.com>
+> > > +
+> > > +description:
+> > > +  Supports the ADC found on these PMICs.
+> > > +
+> > > +properties:
+> > > +  compatible:
+> > > +    enum:
+> > > +      - sprd,sc2720-adc
+> > > +      - sprd,sc2721-adc
+> > > +      - sprd,sc2723-adc
+> > > +      - sprd,sc2730-adc
+> > > +      - sprd,sc2731-adc
+> > > +
+> > > +  reg:
+> > > +    maxItems: 1
+> > > +
+> > > +  interrupts:
+> > > +    maxItems: 1
+> > > +
+> > > +  "#io-channel-cells":
+> > > +    const: 1
+> > > +
+> > > +  hwlocks:
+> > > +    maxItems: 1
+> > > +
+> > > +  nvmem-cells:
+> > > +    maxItems: 2
+> > > +
+> > > +  nvmem-cell-names:
+> > > +    items:
+> > > +      - const: big_scale_calib
+> > > +      - const: small_scale_calib
+> > > +
+> > > +required:
+> > > +  - compatible
+> > > +  - reg
+> > > +  - interrupts
+> > > +  - "#io-channel-cells"
+> > > +  - hwlocks
+> > > +  - nvmem-cells
+> > > +  - nvmem-cell-names
+> > > +
+> > > +additionalProperties: false
+> > > +
+> > > +examples:
+> > > +  - |
+> > > +    #include <dt-bindings/interrupt-controller/irq.h>
+> > > +    pmic {
+> > > +        #address-cells = <1>;
+> > > +        #size-cells = <0>;
+> > > +        adc@480 {
+> > > +            compatible = "sprd,sc2731-adc";
+> > > +            reg = <0x480>;
+> > > +            interrupt-parent = <&sc2731_pmic>;
+> > > +            interrupts = <0 IRQ_TYPE_LEVEL_HIGH>;
+> > > +            #io-channel-cells = <1>;
+> > > +            hwlocks = <&hwlock 4>;
+> > > +            nvmem-cells = <&adc_big_scale>, <&adc_small_scale>;
+> > > +            nvmem-cell-names = "big_scale_calib", "small_scale_calib";
+> > > +        };
+> > > +    };
+> > > +...
+> > > diff --git a/Documentation/devicetree/bindings/iio/adc/sprd,sc27xx-adc.txt b/Documentation/devicetree/bindings/iio/adc/sprd,sc27xx-adc.txt
+> > > deleted file mode 100644
+> > > index b4daa15dcf15..000000000000
+> > > --- a/Documentation/devicetree/bindings/iio/adc/sprd,sc27xx-adc.txt
+> > > +++ /dev/null
+> > > @@ -1,40 +0,0 @@
+> > > -Spreadtrum SC27XX series PMICs ADC binding
+> > > -
+> > > -Required properties:
+> > > -- compatible: Should be one of the following.
+> > > -       "sprd,sc2720-adc"
+> > > -       "sprd,sc2721-adc"
+> > > -       "sprd,sc2723-adc"
+> > > -       "sprd,sc2730-adc"
+> > > -       "sprd,sc2731-adc"
+> > > -- reg: The address offset of ADC controller.
+> > > -- interrupt-parent: The interrupt controller.
+> > > -- interrupts: The interrupt number for the ADC device.
+> > > -- #io-channel-cells: Number of cells in an IIO specifier.
+> > > -- hwlocks: Reference to a phandle of a hwlock provider node.
+> > > -- nvmem-cells: A phandle to the calibration cells provided by eFuse device.
+> > > -- nvmem-cell-names: Should be "big_scale_calib", "small_scale_calib".
+> > > -
+> > > -Example:
+> > > -
+> > > -       sc2731_pmic: pmic@0 {
+> > > -               compatible = "sprd,sc2731";
+> > > -               reg = <0>;
+> > > -               spi-max-frequency = <26000000>;
+> > > -               interrupts = <GIC_SPI 31 IRQ_TYPE_LEVEL_HIGH>;
+> > > -               interrupt-controller;
+> > > -               #interrupt-cells = <2>;
+> > > -               #address-cells = <1>;
+> > > -               #size-cells = <0>;
+> > > -
+> > > -               pmic_adc: adc@480 {
+> > > -                       compatible = "sprd,sc2731-adc";
+> > > -                       reg = <0x480>;
+> > > -                       interrupt-parent = <&sc2731_pmic>;
+> > > -                       interrupts = <0 IRQ_TYPE_LEVEL_HIGH>;
+> > > -                       #io-channel-cells = <1>;
+> > > -                       hwlocks = <&hwlock 4>;
+> > > -                       nvmem-cells = <&adc_big_scale>, <&adc_small_scale>;
+> > > -                       nvmem-cell-names = "big_scale_calib", "small_scale_calib";
+> > > -               };
+> > > -       };
+> > > --
+> > > 2.28.0
+> > >  
+> 
+> 
