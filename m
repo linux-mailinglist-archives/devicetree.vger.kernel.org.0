@@ -2,109 +2,126 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from vger.kernel.org (vger.kernel.org [23.128.96.18])
-	by mail.lfdr.de (Postfix) with ESMTP id 366042629F6
-	for <lists+devicetree@lfdr.de>; Wed,  9 Sep 2020 10:17:25 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTP id 1A93E262A08
+	for <lists+devicetree@lfdr.de>; Wed,  9 Sep 2020 10:19:38 +0200 (CEST)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S1727087AbgIIIRY (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Wed, 9 Sep 2020 04:17:24 -0400
-Received: from mail-ed1-f65.google.com ([209.85.208.65]:34791 "EHLO
-        mail-ed1-f65.google.com" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S1725917AbgIIIRV (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Wed, 9 Sep 2020 04:17:21 -0400
-Received: by mail-ed1-f65.google.com with SMTP id q21so1747230edv.1;
-        Wed, 09 Sep 2020 01:17:19 -0700 (PDT)
+        id S1727075AbgIIITh (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Wed, 9 Sep 2020 04:19:37 -0400
+Received: from lindbergh.monkeyblade.net ([23.128.96.19]:37090 "EHLO
+        lindbergh.monkeyblade.net" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
+        with ESMTP id S1726489AbgIIITd (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Wed, 9 Sep 2020 04:19:33 -0400
+Received: from mail-ej1-x644.google.com (mail-ej1-x644.google.com [IPv6:2a00:1450:4864:20::644])
+        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 51784C061795
+        for <devicetree@vger.kernel.org>; Wed,  9 Sep 2020 01:19:30 -0700 (PDT)
+Received: by mail-ej1-x644.google.com with SMTP id z23so2220747ejr.13
+        for <devicetree@vger.kernel.org>; Wed, 09 Sep 2020 01:19:30 -0700 (PDT)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+        d=chromium.org; s=google;
+        h=mime-version:references:in-reply-to:from:date:message-id:subject:to
+         :cc;
+        bh=1pXeIVny4SCjQpHOWRmhg1e5D0Af+TbFGDr+gvAazg8=;
+        b=BzvSFaQJLJILAdbXFT5uKFET8GO6bhTFU1aGXOdyFeuKWcsNprgoucxgyYron9HPfk
+         HZ97W1WAJu2i1eDwe14xs0xptM1CRb0niUmbUMgS/GaowyFio56M3+/7vkgyS/mZ9TA+
+         pkreEdffWjXtuxoj2tazieSNZxqOVRvmruuzY=
 X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
         d=1e100.net; s=20161025;
-        h=x-gm-message-state:date:from:to:cc:subject:message-id:references
-         :mime-version:content-disposition:in-reply-to:user-agent;
-        bh=7OpTxvqddGdtoZyyM0TB6Dwd1d1h5eHAlbtTkynXxLQ=;
-        b=qYfBYiHevTuiwAX0gp82vQHbmhXUkNjdrpEIK9UVM7/7WbboU5ha+PaBcte9zG1SVA
-         aqcycKohwIHEfRq10UvDBvIJzIQl8s1NsDoz4glwYZdZmitarELpVJWFnd9qWqMf3hbH
-         Z8QocqyYLxtpZy9Cd8N//5rWALc2SOJ2Poq7kxZZSYzi/p1sn5c0dMre/3J8E3nR+Wci
-         cJOGKuUDBx7hs+iOrvF74i9W2d4YE2iDtphTa5FEYSLih182k375oV3NAfyFcWavLJxX
-         PVQloG/MD8kdQLJTbbPXEbgvnciWps4AXmhD+9AampobpZKQfjgtR1s0zWbURttgYStn
-         RB8w==
-X-Gm-Message-State: AOAM5332efZs2FZ4via3aqVC21KpK80UrQjAbc06Fo7Z9+v6tuuw913i
-        UpbFWX9wmjfwqUT5PSBTVOwaggXTob0=
-X-Google-Smtp-Source: ABdhPJz0SecHFx4uuzCes0o22Yc31zkBd304YBMEI8PTDYfXEpeZtc1D/GDccaXGm5ScYU8J2q5cyw==
-X-Received: by 2002:aa7:c308:: with SMTP id l8mr2838807edq.361.1599639439245;
-        Wed, 09 Sep 2020 01:17:19 -0700 (PDT)
-Received: from kozik-lap ([194.230.155.174])
-        by smtp.googlemail.com with ESMTPSA id h10sm1286313ejt.93.2020.09.09.01.17.17
-        (version=TLS1_2 cipher=ECDHE-ECDSA-CHACHA20-POLY1305 bits=256/256);
-        Wed, 09 Sep 2020 01:17:18 -0700 (PDT)
-Date:   Wed, 9 Sep 2020 10:17:16 +0200
-From:   "krzk@kernel.org" <krzk@kernel.org>
-To:     "Vaittinen, Matti" <Matti.Vaittinen@fi.rohmeurope.com>
-Cc:     "lee.jones@linaro.org" <lee.jones@linaro.org>,
-        linux-power <linux-power@fi.rohmeurope.com>,
-        "linux-kernel@vger.kernel.org" <linux-kernel@vger.kernel.org>,
-        "devicetree@vger.kernel.org" <devicetree@vger.kernel.org>,
-        "tharvey@gateworks.com" <tharvey@gateworks.com>,
-        "rjones@gateworks.com" <rjones@gateworks.com>,
-        "robh+dt@kernel.org" <robh+dt@kernel.org>
-Subject: Re: [PATCH] dt-bindings: mfd: Correct interrupt flags in examples
-Message-ID: <20200909081716.GA11775@kozik-lap>
-References: <20200908145900.4423-1-krzk@kernel.org>
- <5ea2a75a873b6291962f6b6a7949e9d185187911.camel@fi.rohmeurope.com>
+        h=x-gm-message-state:mime-version:references:in-reply-to:from:date
+         :message-id:subject:to:cc;
+        bh=1pXeIVny4SCjQpHOWRmhg1e5D0Af+TbFGDr+gvAazg8=;
+        b=A7U0OMCPa9iyJ2VFJC8fLMNqOWZzIxCz2lhHogl2gRv5TD68UO0Nx05PdVXZH4N1C2
+         zUX0CFwdu41cnaDmieGJi0uAWalI9b23hokmoELUmpS+jh68RUHzDofBJ+8B7sv9f2Xz
+         9cnMdxphPMTD3zsJFYsevCYF1wVn4Lih+9LlUIA8EFqtgnkjNjI/YJDWdkXjS7dI5nJh
+         VPtjJMsQ82sOe2wkaSRQOcrsoAZlhy7JZioR58D0bva7oU+xwsmyZ6/UR8hDIQ9D3naG
+         L7U8wzWbjY1dqP4wreM0j4jjqod1EyZ+sfswnL5Da+sZ3xbhXbYSaTdIAqI8lwnwN4g+
+         AYmA==
+X-Gm-Message-State: AOAM533pPBi8zV3lNesr9sLYmcNE7VB3Bil38YETmTz4hU6bXUTAxXDx
+        9WEH5/GbVQO4YfIIWDwTgzp3wTee/wHUs8JFK3oPZA==
+X-Google-Smtp-Source: ABdhPJzvfIij7YO4hihFiSb4hxA+NHJOifz4cTebwv29YbC+ZXbvBjLWdaVioZkEamOkVZ0ebFwb4JDa7iEPkbmLQ3o=
+X-Received: by 2002:a17:906:f150:: with SMTP id gw16mr2384862ejb.528.1599639568574;
+ Wed, 09 Sep 2020 01:19:28 -0700 (PDT)
 MIME-Version: 1.0
-Content-Type: text/plain; charset=utf-8
-Content-Disposition: inline
-In-Reply-To: <5ea2a75a873b6291962f6b6a7949e9d185187911.camel@fi.rohmeurope.com>
-User-Agent: Mutt/1.9.4 (2018-02-28)
+References: <20191112110330.179649-1-pihsun@chromium.org> <20191112110330.179649-5-pihsun@chromium.org>
+ <2abf8fdd-7b7c-73b0-beea-9c9ac56869dc@gmail.com> <CA+G9fYt9AujG6gyfeV5AaAv0EgggUfGT1jow8DJjVfetVWV3EA@mail.gmail.com>
+ <CAJKOXPeV9zCg4v0kBfToGdJSxswbKtT16LVYADALpYRHqWXBOg@mail.gmail.com> <ab35a9c7-1b33-dc75-8520-ee072ff1309f@nvidia.com>
+In-Reply-To: <ab35a9c7-1b33-dc75-8520-ee072ff1309f@nvidia.com>
+From:   Pi-Hsun Shih <pihsun@chromium.org>
+Date:   Wed, 9 Sep 2020 16:18:52 +0800
+Message-ID: <CANdKZ0eGTqxkcdgyAR6ay4yJNy74v5SqAOh96u+v4WzbZRf32Q@mail.gmail.com>
+Subject: Re: [PATCH v21 4/4] arm64: dts: mt8183: add scp node
+To:     Jon Hunter <jonathanh@nvidia.com>
+Cc:     Krzysztof Kozlowski <krzk@kernel.org>,
+        Naresh Kamboju <naresh.kamboju@linaro.org>,
+        Matthias Brugger <matthias.bgg@gmail.com>,
+        Eddie Huang <eddie.huang@mediatek.com>,
+        Linux-Next Mailing List <linux-next@vger.kernel.org>,
+        Erin Lo <erin.lo@mediatek.com>,
+        Rob Herring <robh+dt@kernel.org>,
+        Mark Rutland <mark.rutland@arm.com>,
+        "open list:OPEN FIRMWARE AND FLATTENED DEVICE TREE BINDINGS" 
+        <devicetree@vger.kernel.org>,
+        "moderated list:ARM/Mediatek SoC support" 
+        <linux-arm-kernel@lists.infradead.org>,
+        "moderated list:ARM/Mediatek SoC support" 
+        <linux-mediatek@lists.infradead.org>,
+        open list <linux-kernel@vger.kernel.org>,
+        Alexandre Courbot <acourbot@chromium.org>,
+        Bjorn Andersson <bjorn.andersson@linaro.org>,
+        Anders Roxell <anders.roxell@linaro.org>,
+        lkft-triage@lists.linaro.org,
+        Stephen Rothwell <sfr@canb.auug.org.au>,
+        linux-tegra <linux-tegra@vger.kernel.org>
+Content-Type: text/plain; charset="UTF-8"
 Sender: devicetree-owner@vger.kernel.org
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-On Wed, Sep 09, 2020 at 06:30:44AM +0000, Vaittinen, Matti wrote:
-> 
-> On Tue, 2020-09-08 at 16:59 +0200, Krzysztof Kozlowski wrote:
-> > GPIO_ACTIVE_x flags are not correct in the context of interrupt
-> > flags.
-> > These are simple defines so they could be used in DTS but they will
-> > not
-> > have the same meaning:
-> > 1. GPIO_ACTIVE_HIGH = 0 = IRQ_TYPE_NONE
-> > 2. GPIO_ACTIVE_LOW  = 1 = IRQ_TYPE_EDGE_RISING
-> > 
-> > Correct the interrupt flags, assuming the author of the code wanted
-> > some
-> > logical behavior behind the name "ACTIVE_xxx", this is:
-> >   ACTIVE_LOW => IRQ_TYPE_LEVEL_LOW
-> > 
-> > Signed-off-by: Krzysztof Kozlowski <krzk@kernel.org>
-> 
-> For BD70528:
-> Acked-By: Matti Vaittinen <matti.vaittinen@fi.rohmeurope.com>
-> 
-> > ---
-> >  Documentation/devicetree/bindings/mfd/act8945a.txt          | 2 +-
-> >  Documentation/devicetree/bindings/mfd/gateworks-gsc.yaml    | 3 ++-
-> >  Documentation/devicetree/bindings/mfd/rohm,bd70528-pmic.txt | 2 +-
-> >  3 files changed, 4 insertions(+), 3 deletions(-)
-> > 
-> > 
-> > diff --git a/Documentation/devicetree/bindings/mfd/rohm,bd70528-
-> > pmic.txt b/Documentation/devicetree/bindings/mfd/rohm,bd70528-
-> > pmic.txt
-> > index c3c02ce73cde..386eec06cf08 100644
-> > --- a/Documentation/devicetree/bindings/mfd/rohm,bd70528-pmic.txt
-> > +++ b/Documentation/devicetree/bindings/mfd/rohm,bd70528-pmic.txt
-> > @@ -39,7 +39,7 @@ pmic: pmic@4b {
-> >  	compatible = "rohm,bd70528";
-> >  	reg = <0x4b>;
-> >  	interrupt-parent = <&gpio1>;
-> > -	interrupts = <29 GPIO_ACTIVE_LOW>;
-> > +	interrupts = <29 IRQ_TYPE_LEVEL_LOW>;
-> 
-> This is how it should have been from the beginning :) Thanks!
+On Wed, Sep 9, 2020 at 3:37 PM Jon Hunter <jonathanh@nvidia.com> wrote:
+>
+>
+> On 02/09/2020 17:23, Krzysztof Kozlowski wrote:
+> > On Wed, 2 Sep 2020 at 16:45, Naresh Kamboju <naresh.kamboju@linaro.org> wrote:
+> >>
+> >> On Thu, 27 Aug 2020 at 15:44, Matthias Brugger <matthias.bgg@gmail.com> wrote:
+> >>>
+> >>>
+> >>>
+> >>> On 12/11/2019 12:03, Pi-Hsun Shih wrote:
+> >>>> From: Eddie Huang <eddie.huang@mediatek.com>
+> >>>>
+> >>>> Add scp node to mt8183 and mt8183-evb
+> >>>>
+> >>>> Signed-off-by: Erin Lo <erin.lo@mediatek.com>
+> >>>> Signed-off-by: Pi-Hsun Shih <pihsun@chromium.org>
+> >>>> Signed-off-by: Eddie Huang <eddie.huang@mediatek.com>
+> >>>
+> >>> Sorry I somehow oversaw this. Next time please don't doubt to ping me.
+> >>>
+> >>> Bjorn, do I understand correctly that you don't send emails to the list
+> >>> informing of the inclusion of a patch/series in your tree?
+> >>>
+> >>> Anyway applied now to v5.9-next/dts64 :)
+> >>
+> >> arm64 build dtbs failed on linux next 20200902.
+> >
+> > I just hit it as well... I wish the kernel was built after applying
+> > patches... it would make the next a better place.
+>
+>
+> Any update on this? It is still broken as of next-20200908.
+>
+> Jon
+>
 
-I start to wonder now. It seems some boards do not configure a pull up
-there, so IRQ_TYPE_LEVEL_LOW is wrong - causes the line to stay in low
-state.  But actually this maybe is a problem of missing pull up, not the
-IRQ flag?
+I just sent https://lore.kernel.org/patchwork/patch/1303034/ which
+should fix this.
 
-Best regards,
-Krzysztof
+The build failure is because another patch for the mt8183-kukui.dtsi
+(cd894e274b74 "arm64: dts: mt8183: Add krane-sku176 board") that was
+merged after this patch is submitted to list is missing the
+scp_mem_reserved field. Sorry for that.
 
+
+> --
+> nvpublic
