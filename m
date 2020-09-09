@@ -2,102 +2,181 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from vger.kernel.org (vger.kernel.org [23.128.96.18])
-	by mail.lfdr.de (Postfix) with ESMTP id 0129F2634F9
-	for <lists+devicetree@lfdr.de>; Wed,  9 Sep 2020 19:51:12 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTP id 5B0B826354E
+	for <lists+devicetree@lfdr.de>; Wed,  9 Sep 2020 20:02:56 +0200 (CEST)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S1725974AbgIIRvI (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Wed, 9 Sep 2020 13:51:08 -0400
-Received: from mail.kernel.org ([198.145.29.99]:54988 "EHLO mail.kernel.org"
+        id S1728015AbgIISCq (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Wed, 9 Sep 2020 14:02:46 -0400
+Received: from mail.kernel.org ([198.145.29.99]:59114 "EHLO mail.kernel.org"
         rhost-flags-OK-OK-OK-OK) by vger.kernel.org with ESMTP
-        id S1725772AbgIIRvG (ORCPT <rfc822;devicetree@vger.kernel.org>);
-        Wed, 9 Sep 2020 13:51:06 -0400
-Received: from mail-ot1-f44.google.com (mail-ot1-f44.google.com [209.85.210.44])
+        id S1730077AbgIISCT (ORCPT <rfc822;devicetree@vger.kernel.org>);
+        Wed, 9 Sep 2020 14:02:19 -0400
+Received: from localhost.localdomain (cpc149474-cmbg20-2-0-cust94.5-4.cable.virginm.net [82.4.196.95])
         (using TLSv1.2 with cipher ECDHE-RSA-AES128-GCM-SHA256 (128/128 bits))
         (No client certificate requested)
-        by mail.kernel.org (Postfix) with ESMTPSA id 7BF2B21D7F;
-        Wed,  9 Sep 2020 17:51:05 +0000 (UTC)
+        by mail.kernel.org (Postfix) with ESMTPSA id EE10921D7E;
+        Wed,  9 Sep 2020 18:02:17 +0000 (UTC)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=kernel.org;
-        s=default; t=1599673865;
-        bh=pGHphgmWLyo/dufTuQiMNTxw/j6Mkqzz2RqYRRi2qIE=;
-        h=References:In-Reply-To:From:Date:Subject:To:Cc:From;
-        b=UifUi1aR6vTY1YCFohz0MrsKIbjiUVfmrXU2POWfD05x3TzEfeUPlesFCVlJ6ghfj
-         9vIKHIkvaeFpbqdu0l6Nr9FuDgfyQP+9Asr7rOvSE/4V1z1OUqkQV0RhMb5NGdIAUa
-         Bu91FIcOSqIl/6c1IQ0N9sRnIsOWjX/dOz2z9lqM=
-Received: by mail-ot1-f44.google.com with SMTP id e23so3041611otk.7;
-        Wed, 09 Sep 2020 10:51:05 -0700 (PDT)
-X-Gm-Message-State: AOAM5312kw1DuKn84gQM+jUMYzCOgSB91L4a38kiYeYVT4Pr16ryt3Ex
-        TW8SmtFuErQSIUdbqotW9XfRDn7rDWrTKEpN+w==
-X-Google-Smtp-Source: ABdhPJxkJmq457j4MdDwATy4hh9FtiZDSM5Hwf51HIx/0/Kwnq9MhZuGO4CNBKKY+8iKB00EhwOE4N/A7bj1yse07sE=
-X-Received: by 2002:a9d:411:: with SMTP id 17mr1478163otc.192.1599673864818;
- Wed, 09 Sep 2020 10:51:04 -0700 (PDT)
+        s=default; t=1599674538;
+        bh=x+AENQgE5sQw7JrK4Mcwc/c8kJjrYCcm4fU+wOE0Nzc=;
+        h=From:To:Cc:Subject:Date:From;
+        b=FB56DlaVIRvKuguvpCUrY8Mea7qm0HLMDbAB6EN29Rf2QVawvL2t2n4NqHuOjbrYS
+         kOWG4zF8FfPjiRlIIWf79HtEyIVbKavSdNhZcFMv6pftMrq5nGb5T27mDqu8bum0b9
+         cln1/92rOfuL73jYC4hSh5lRN2Giad4LgrH04ZnQ=
+From:   Jonathan Cameron <jic23@kernel.org>
+To:     linux-iio@vger.kernel.org
+Cc:     Rob Herring <robh@kernel.org>, devicetree@vger.kernel.org,
+        Jonathan Cameron <Jonathan.Cameron@huawei.com>
+Subject: [PATCH v2 00/20]  dt-bindings:iio:adc: Another set of yaml conversions.
+Date:   Wed,  9 Sep 2020 18:59:26 +0100
+Message-Id: <20200909175946.395313-1-jic23@kernel.org>
+X-Mailer: git-send-email 2.28.0
 MIME-Version: 1.0
-References: <20200907120852.12090-1-jianjun.wang@mediatek.com>
- <20200907120852.12090-2-jianjun.wang@mediatek.com> <20200908195050.GA795070@bogus>
- <1599620917.2521.9.camel@mhfsdcap03>
-In-Reply-To: <1599620917.2521.9.camel@mhfsdcap03>
-From:   Rob Herring <robh@kernel.org>
-Date:   Wed, 9 Sep 2020 11:50:53 -0600
-X-Gmail-Original-Message-ID: <CAL_Jsq+NrfiJ-DAwtYG2b_chfivXi-aazHH8kiApuHS1G8JF=Q@mail.gmail.com>
-Message-ID: <CAL_Jsq+NrfiJ-DAwtYG2b_chfivXi-aazHH8kiApuHS1G8JF=Q@mail.gmail.com>
-Subject: Re: [v1,1/3] dt-bindings: Add YAML schemas for Gen3 PCIe controller
-To:     Jianjun Wang <jianjun.wang@mediatek.com>
-Cc:     David Miller <davem@davemloft.net>,
-        Philipp Zabel <p.zabel@pengutronix.de>,
-        Ryder Lee <ryder.lee@mediatek.com>,
-        Bjorn Helgaas <bhelgaas@google.com>,
-        Mauro Carvalho Chehab <mchehab+huawei@kernel.org>,
-        PCI <linux-pci@vger.kernel.org>,
-        Matthias Brugger <matthias.bgg@gmail.com>,
-        linux-arm-kernel <linux-arm-kernel@lists.infradead.org>,
-        "moderated list:ARM/Mediatek SoC support" 
-        <linux-mediatek@lists.infradead.org>, devicetree@vger.kernel.org,
-        "linux-kernel@vger.kernel.org" <linux-kernel@vger.kernel.org>,
-        Sj Huang <sj.huang@mediatek.com>,
-        Lorenzo Pieralisi <lorenzo.pieralisi@arm.com>
-Content-Type: text/plain; charset="UTF-8"
+Content-Transfer-Encoding: 8bit
 Sender: devicetree-owner@vger.kernel.org
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-On Tue, Sep 8, 2020 at 9:10 PM Jianjun Wang <jianjun.wang@mediatek.com> wrote:
->
-> On Tue, 2020-09-08 at 13:50 -0600, Rob Herring wrote:
-> > On Mon, 07 Sep 2020 20:08:50 +0800, Jianjun Wang wrote:
-> > > Add YAML schemas documentation for Gen3 PCIe controller on
-> > > MediaTek SoCs.
-> > >
-> > > Acked-by: Ryder Lee <ryder.lee@mediatek.com>
-> > > Signed-off-by: Jianjun Wang <jianjun.wang@mediatek.com>
-> > > ---
-> > >  .../bindings/pci/mediatek-pcie-gen3.yaml      | 158 ++++++++++++++++++
-> > >  1 file changed, 158 insertions(+)
-> > >  create mode 100644 Documentation/devicetree/bindings/pci/mediatek-pcie-gen3.yaml
-> > >
-> >
-> >
-> > My bot found errors running 'make dt_binding_check' on your patch:
-> >
-> > Documentation/devicetree/bindings/pci/mediatek-pcie-gen3.example.dts:55.56-59.19: Warning (pci_device_reg): /example-0/bus/pcie@11230000/legacy-interrupt-controller: missing PCI reg property
-> >
-> >
-> > See https://patchwork.ozlabs.org/patch/1359119
-> >
-> > If you already ran 'make dt_binding_check' and didn't see the above
-> > error(s), then make sure dt-schema is up to date:
-> >
-> > pip3 install git+https://github.com/devicetree-org/dt-schema.git@master --upgrade
-> >
-> > Please check and re-submit.
-> >
->
-> Yes, I have already found this warning message, but I'm confused with
-> how to add this reg property, since the interrupt-controller has inherit
-> the pci device type but does not have its own registers.
->
-> Could you please tell me how to fix this error, or which docs can I
-> refer to?
+From: Jonathan Cameron <Jonathan.Cameron@huawei.com>
 
-Actually, disregard this. We need to fix dtc for this case.
+Changes since V1:
+- Fixed wrong file naming in the marvell,berlin2-adc header caught
+  by Rob's scripts.
+- Rolled in Martin's patch for amlogic,meson-saradc
+- Changed maitainer for adi,ad7768-1 given Stefan's email address
+  is bouncing.  I went with Michael Hennerich as the ADI catch all
+  MAINTAINERS entry means this is his problem anyway.
+- Fixed some white space issues and typos (yup I didn't run checkpatch
+  on v1 :(
+- Add tags where given
 
-Rob
+It is somewhat easier to do these all at once as then the yaml syntax
+knowledge builds up and Rob once said he preferred to review them
+in groups. Hence here are 20 binding conversions to enjoy.
+
+There are 2 other bindings currently awaiting v2 review and it may
+take a while to convert over the remaining IIO ADC ones as they
+are mostly the complex cases. There are also quite a few drivers
+that have undocumented bindings. I plan to do a sweep for those once
+yaml conversions are finished.
+
+For maintainers, I've mostly gone with the original author of the
+txt file. If anyone wants to claim responsibility for any or
+reject it then that is great.  I'll act as backup maintainer
+for all of these by default anyway.
+
+There are a few places I think we could look to tighten the binding
+definitions if we wish. Hopefully this will be a good layer to build on.
+
+Thanks,
+
+Jonathan
+
+Jonathan Cameron (20):
+  dt-bindings:iio:adc:fsl,vf610-adc conversion to yaml.
+  dt-bindings:iio:adc:ti,twl4030-madc yaml conversion
+  dt-bindings:iio:adc:st,stmpe-adc yaml conversion
+  dt-bindings:iio:adc: aspeed,ast2400 yaml conversion
+  dt-bindings:iio:adc:marvell,berlin2-adc yaml conversion
+  dt-bindings:iio:adc:sprd,sc2720-adc yaml conversion.
+  dt-bindings:iio:adc:nuvoton,nau7802 yaml conversion
+  dt-bindings:iio:adc:nuvoton,npcm750-adc yaml conversion
+  dt-bindings:iio:adc:nxp,lpc1850-adc yaml conversion
+  dt-bindings:iio:adc:lpc3220-adc yaml conversion
+  dt-bindings:iio:adc:motorola,cpcap-adc yaml conversion
+  dt-bindings:iio:adc:dlg,da9150-gpadc yaml conversion
+  dt-bindings:iio:adc:cosmic,10001-adc yaml conversion
+  dt-bindings:iio:adc:adi,ad7949 yaml conversion
+  dt-bindings:iio:adc:ad7768-1 yaml conversion
+  dt-bindings:iio:adc:ti,ads1015 yaml conversion
+  dt-bindings:iio:adc:holt,hi8435 yaml conversion
+  dt-bindings:iio:adc:amlogic,meson-saradc yaml conversion
+  dt-bindings:iio:adc:fsl,imx7d-adc yaml conversion
+  dt-bindings:iio:adc:fsl,imx25-gcq yaml conversion
+
+ .../devicetree/bindings/iio/adc/ad7949.txt    |  16 --
+ .../bindings/iio/adc/adi,ad7768-1.txt         |  41 -----
+ .../bindings/iio/adc/adi,ad7768-1.yaml        |  89 +++++++++++
+ .../bindings/iio/adc/adi,ad7949.yaml          |  57 +++++++
+ .../devicetree/bindings/iio/adc/ads1015.txt   |  73 ---------
+ .../bindings/iio/adc/amlogic,meson-saradc.txt |  48 ------
+ .../iio/adc/amlogic,meson-saradc.yaml         | 149 ++++++++++++++++++
+ .../bindings/iio/adc/aspeed,ast2400-adc.yaml  |  54 +++++++
+ .../bindings/iio/adc/aspeed_adc.txt           |  22 ---
+ .../bindings/iio/adc/berlin2_adc.txt          |  19 ---
+ .../bindings/iio/adc/cc10001_adc.txt          |  22 ---
+ .../bindings/iio/adc/cosmic,10001-adc.yaml    |  59 +++++++
+ .../devicetree/bindings/iio/adc/cpcap-adc.txt |  17 --
+ .../bindings/iio/adc/da9150-gpadc.txt         |  16 --
+ .../bindings/iio/adc/dlg,da9150-gpadc.yaml    |  33 ++++
+ .../bindings/iio/adc/fsl,imx25-gcq.txt        |  57 -------
+ .../bindings/iio/adc/fsl,imx25-gcq.yaml       | 129 +++++++++++++++
+ .../bindings/iio/adc/fsl,imx7d-adc.yaml       |  62 ++++++++
+ .../bindings/iio/adc/fsl,vf610-adc.yaml       |  81 ++++++++++
+ .../devicetree/bindings/iio/adc/hi8435.txt    |  21 ---
+ .../bindings/iio/adc/holt,hi8435.yaml         |  49 ++++++
+ .../devicetree/bindings/iio/adc/imx7d-adc.txt |  24 ---
+ .../bindings/iio/adc/lpc1850-adc.txt          |  20 ---
+ .../bindings/iio/adc/lpc32xx-adc.txt          |  21 ---
+ .../bindings/iio/adc/marvell,berlin2-adc.yaml |  50 ++++++
+ .../bindings/iio/adc/motorola,cpcap-adc.yaml  |  51 ++++++
+ .../bindings/iio/adc/nuvoton,nau7802.yaml     |  50 ++++++
+ .../bindings/iio/adc/nuvoton,npcm-adc.txt     |  26 ---
+ .../bindings/iio/adc/nuvoton,npcm750-adc.yaml |  64 ++++++++
+ .../bindings/iio/adc/nuvoton-nau7802.txt      |  18 ---
+ .../bindings/iio/adc/nxp,lpc1850-adc.yaml     |  61 +++++++
+ .../bindings/iio/adc/nxp,lpc3220-adc.yaml     |  50 ++++++
+ .../bindings/iio/adc/sprd,sc2720-adc.yaml     |  72 +++++++++
+ .../bindings/iio/adc/sprd,sc27xx-adc.txt      |  40 -----
+ .../bindings/iio/adc/st,stmpe-adc.yaml        |  45 ++++++
+ .../devicetree/bindings/iio/adc/stmpe-adc.txt |  21 ---
+ .../bindings/iio/adc/ti,ads1015.yaml          | 113 +++++++++++++
+ .../bindings/iio/adc/ti,twl4030-madc.yaml     |  48 ++++++
+ .../bindings/iio/adc/twl4030-madc.txt         |  24 ---
+ .../devicetree/bindings/iio/adc/vf610-adc.txt |  36 -----
+ 40 files changed, 1366 insertions(+), 582 deletions(-)
+ delete mode 100644 Documentation/devicetree/bindings/iio/adc/ad7949.txt
+ delete mode 100644 Documentation/devicetree/bindings/iio/adc/adi,ad7768-1.txt
+ create mode 100644 Documentation/devicetree/bindings/iio/adc/adi,ad7768-1.yaml
+ create mode 100644 Documentation/devicetree/bindings/iio/adc/adi,ad7949.yaml
+ delete mode 100644 Documentation/devicetree/bindings/iio/adc/ads1015.txt
+ delete mode 100644 Documentation/devicetree/bindings/iio/adc/amlogic,meson-saradc.txt
+ create mode 100644 Documentation/devicetree/bindings/iio/adc/amlogic,meson-saradc.yaml
+ create mode 100644 Documentation/devicetree/bindings/iio/adc/aspeed,ast2400-adc.yaml
+ delete mode 100644 Documentation/devicetree/bindings/iio/adc/aspeed_adc.txt
+ delete mode 100644 Documentation/devicetree/bindings/iio/adc/berlin2_adc.txt
+ delete mode 100644 Documentation/devicetree/bindings/iio/adc/cc10001_adc.txt
+ create mode 100644 Documentation/devicetree/bindings/iio/adc/cosmic,10001-adc.yaml
+ delete mode 100644 Documentation/devicetree/bindings/iio/adc/cpcap-adc.txt
+ delete mode 100644 Documentation/devicetree/bindings/iio/adc/da9150-gpadc.txt
+ create mode 100644 Documentation/devicetree/bindings/iio/adc/dlg,da9150-gpadc.yaml
+ delete mode 100644 Documentation/devicetree/bindings/iio/adc/fsl,imx25-gcq.txt
+ create mode 100644 Documentation/devicetree/bindings/iio/adc/fsl,imx25-gcq.yaml
+ create mode 100644 Documentation/devicetree/bindings/iio/adc/fsl,imx7d-adc.yaml
+ create mode 100644 Documentation/devicetree/bindings/iio/adc/fsl,vf610-adc.yaml
+ delete mode 100644 Documentation/devicetree/bindings/iio/adc/hi8435.txt
+ create mode 100644 Documentation/devicetree/bindings/iio/adc/holt,hi8435.yaml
+ delete mode 100644 Documentation/devicetree/bindings/iio/adc/imx7d-adc.txt
+ delete mode 100644 Documentation/devicetree/bindings/iio/adc/lpc1850-adc.txt
+ delete mode 100644 Documentation/devicetree/bindings/iio/adc/lpc32xx-adc.txt
+ create mode 100644 Documentation/devicetree/bindings/iio/adc/marvell,berlin2-adc.yaml
+ create mode 100644 Documentation/devicetree/bindings/iio/adc/motorola,cpcap-adc.yaml
+ create mode 100644 Documentation/devicetree/bindings/iio/adc/nuvoton,nau7802.yaml
+ delete mode 100644 Documentation/devicetree/bindings/iio/adc/nuvoton,npcm-adc.txt
+ create mode 100644 Documentation/devicetree/bindings/iio/adc/nuvoton,npcm750-adc.yaml
+ delete mode 100644 Documentation/devicetree/bindings/iio/adc/nuvoton-nau7802.txt
+ create mode 100644 Documentation/devicetree/bindings/iio/adc/nxp,lpc1850-adc.yaml
+ create mode 100644 Documentation/devicetree/bindings/iio/adc/nxp,lpc3220-adc.yaml
+ create mode 100644 Documentation/devicetree/bindings/iio/adc/sprd,sc2720-adc.yaml
+ delete mode 100644 Documentation/devicetree/bindings/iio/adc/sprd,sc27xx-adc.txt
+ create mode 100644 Documentation/devicetree/bindings/iio/adc/st,stmpe-adc.yaml
+ delete mode 100644 Documentation/devicetree/bindings/iio/adc/stmpe-adc.txt
+ create mode 100644 Documentation/devicetree/bindings/iio/adc/ti,ads1015.yaml
+ create mode 100644 Documentation/devicetree/bindings/iio/adc/ti,twl4030-madc.yaml
+ delete mode 100644 Documentation/devicetree/bindings/iio/adc/twl4030-madc.txt
+ delete mode 100644 Documentation/devicetree/bindings/iio/adc/vf610-adc.txt
+
+-- 
+2.28.0
+
