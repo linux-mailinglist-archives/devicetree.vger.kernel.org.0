@@ -2,78 +2,109 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from vger.kernel.org (vger.kernel.org [23.128.96.18])
-	by mail.lfdr.de (Postfix) with ESMTP id A01EF2629ED
-	for <lists+devicetree@lfdr.de>; Wed,  9 Sep 2020 10:15:17 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTP id 366042629F6
+	for <lists+devicetree@lfdr.de>; Wed,  9 Sep 2020 10:17:25 +0200 (CEST)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S1726426AbgIIIPQ (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Wed, 9 Sep 2020 04:15:16 -0400
-Received: from www.zeus03.de ([194.117.254.33]:49488 "EHLO mail.zeus03.de"
-        rhost-flags-OK-OK-OK-OK) by vger.kernel.org with ESMTP
-        id S1725877AbgIIIPQ (ORCPT <rfc822;devicetree@vger.kernel.org>);
-        Wed, 9 Sep 2020 04:15:16 -0400
-DKIM-Signature: v=1; a=rsa-sha256; c=simple; d=sang-engineering.com; h=
-        date:from:to:cc:subject:message-id:references:mime-version
-        :content-type:in-reply-to; s=k1; bh=xceAgulUCJFdhnQtzS+YsMb4KCK8
-        Pw7VeatTHMborXA=; b=V0iytMUzFPShRmuI9k4NWjwz5uGWv7VGCmwHho6S4hJz
-        fxjFewZtk1+VA9RxVQx8PxwODqtMvlNAT81eVHZiABuN1fRp9Cbkx8CWuT8+TFa6
-        uxu96mhirulhlbMKvfv21HxkhKmzSYT2EL5gcagh+AT136MkfiHGYKIJcq415jk=
-Received: (qmail 226205 invoked from network); 9 Sep 2020 10:15:13 +0200
-Received: by mail.zeus03.de with ESMTPSA (TLS_AES_256_GCM_SHA384 encrypted, authenticated); 9 Sep 2020 10:15:13 +0200
-X-UD-Smtp-Session: l3s3148p1@lOkLDd2utIMgAwDPXwesAAPl1NpCEY8B
-Date:   Wed, 9 Sep 2020 10:15:10 +0200
-From:   Wolfram Sang <wsa+renesas@sang-engineering.com>
-To:     linux-i2c@vger.kernel.org
-Cc:     linux-renesas-soc@vger.kernel.org, devicetree@vger.kernel.org,
-        Alain Volmat <alain.volmat@st.com>,
-        Rob Herring <robh+dt@kernel.org>
-Subject: Re: [PATCH] i2c: add binding to mark a bus as SMBus
-Message-ID: <20200909081510.GA2272@ninjato>
-References: <20200701214830.3174-1-wsa+renesas@sang-engineering.com>
+        id S1727087AbgIIIRY (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Wed, 9 Sep 2020 04:17:24 -0400
+Received: from mail-ed1-f65.google.com ([209.85.208.65]:34791 "EHLO
+        mail-ed1-f65.google.com" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
+        with ESMTP id S1725917AbgIIIRV (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Wed, 9 Sep 2020 04:17:21 -0400
+Received: by mail-ed1-f65.google.com with SMTP id q21so1747230edv.1;
+        Wed, 09 Sep 2020 01:17:19 -0700 (PDT)
+X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+        d=1e100.net; s=20161025;
+        h=x-gm-message-state:date:from:to:cc:subject:message-id:references
+         :mime-version:content-disposition:in-reply-to:user-agent;
+        bh=7OpTxvqddGdtoZyyM0TB6Dwd1d1h5eHAlbtTkynXxLQ=;
+        b=qYfBYiHevTuiwAX0gp82vQHbmhXUkNjdrpEIK9UVM7/7WbboU5ha+PaBcte9zG1SVA
+         aqcycKohwIHEfRq10UvDBvIJzIQl8s1NsDoz4glwYZdZmitarELpVJWFnd9qWqMf3hbH
+         Z8QocqyYLxtpZy9Cd8N//5rWALc2SOJ2Poq7kxZZSYzi/p1sn5c0dMre/3J8E3nR+Wci
+         cJOGKuUDBx7hs+iOrvF74i9W2d4YE2iDtphTa5FEYSLih182k375oV3NAfyFcWavLJxX
+         PVQloG/MD8kdQLJTbbPXEbgvnciWps4AXmhD+9AampobpZKQfjgtR1s0zWbURttgYStn
+         RB8w==
+X-Gm-Message-State: AOAM5332efZs2FZ4via3aqVC21KpK80UrQjAbc06Fo7Z9+v6tuuw913i
+        UpbFWX9wmjfwqUT5PSBTVOwaggXTob0=
+X-Google-Smtp-Source: ABdhPJz0SecHFx4uuzCes0o22Yc31zkBd304YBMEI8PTDYfXEpeZtc1D/GDccaXGm5ScYU8J2q5cyw==
+X-Received: by 2002:aa7:c308:: with SMTP id l8mr2838807edq.361.1599639439245;
+        Wed, 09 Sep 2020 01:17:19 -0700 (PDT)
+Received: from kozik-lap ([194.230.155.174])
+        by smtp.googlemail.com with ESMTPSA id h10sm1286313ejt.93.2020.09.09.01.17.17
+        (version=TLS1_2 cipher=ECDHE-ECDSA-CHACHA20-POLY1305 bits=256/256);
+        Wed, 09 Sep 2020 01:17:18 -0700 (PDT)
+Date:   Wed, 9 Sep 2020 10:17:16 +0200
+From:   "krzk@kernel.org" <krzk@kernel.org>
+To:     "Vaittinen, Matti" <Matti.Vaittinen@fi.rohmeurope.com>
+Cc:     "lee.jones@linaro.org" <lee.jones@linaro.org>,
+        linux-power <linux-power@fi.rohmeurope.com>,
+        "linux-kernel@vger.kernel.org" <linux-kernel@vger.kernel.org>,
+        "devicetree@vger.kernel.org" <devicetree@vger.kernel.org>,
+        "tharvey@gateworks.com" <tharvey@gateworks.com>,
+        "rjones@gateworks.com" <rjones@gateworks.com>,
+        "robh+dt@kernel.org" <robh+dt@kernel.org>
+Subject: Re: [PATCH] dt-bindings: mfd: Correct interrupt flags in examples
+Message-ID: <20200909081716.GA11775@kozik-lap>
+References: <20200908145900.4423-1-krzk@kernel.org>
+ <5ea2a75a873b6291962f6b6a7949e9d185187911.camel@fi.rohmeurope.com>
 MIME-Version: 1.0
-Content-Type: multipart/signed; micalg=pgp-sha512;
-        protocol="application/pgp-signature"; boundary="X1bOJ3K7DJ5YkBrT"
+Content-Type: text/plain; charset=utf-8
 Content-Disposition: inline
-In-Reply-To: <20200701214830.3174-1-wsa+renesas@sang-engineering.com>
-User-Agent: Mutt/1.10.1 (2018-07-13)
+In-Reply-To: <5ea2a75a873b6291962f6b6a7949e9d185187911.camel@fi.rohmeurope.com>
+User-Agent: Mutt/1.9.4 (2018-02-28)
 Sender: devicetree-owner@vger.kernel.org
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
+On Wed, Sep 09, 2020 at 06:30:44AM +0000, Vaittinen, Matti wrote:
+> 
+> On Tue, 2020-09-08 at 16:59 +0200, Krzysztof Kozlowski wrote:
+> > GPIO_ACTIVE_x flags are not correct in the context of interrupt
+> > flags.
+> > These are simple defines so they could be used in DTS but they will
+> > not
+> > have the same meaning:
+> > 1. GPIO_ACTIVE_HIGH = 0 = IRQ_TYPE_NONE
+> > 2. GPIO_ACTIVE_LOW  = 1 = IRQ_TYPE_EDGE_RISING
+> > 
+> > Correct the interrupt flags, assuming the author of the code wanted
+> > some
+> > logical behavior behind the name "ACTIVE_xxx", this is:
+> >   ACTIVE_LOW => IRQ_TYPE_LEVEL_LOW
+> > 
+> > Signed-off-by: Krzysztof Kozlowski <krzk@kernel.org>
+> 
+> For BD70528:
+> Acked-By: Matti Vaittinen <matti.vaittinen@fi.rohmeurope.com>
+> 
+> > ---
+> >  Documentation/devicetree/bindings/mfd/act8945a.txt          | 2 +-
+> >  Documentation/devicetree/bindings/mfd/gateworks-gsc.yaml    | 3 ++-
+> >  Documentation/devicetree/bindings/mfd/rohm,bd70528-pmic.txt | 2 +-
+> >  3 files changed, 4 insertions(+), 3 deletions(-)
+> > 
+> > 
+> > diff --git a/Documentation/devicetree/bindings/mfd/rohm,bd70528-
+> > pmic.txt b/Documentation/devicetree/bindings/mfd/rohm,bd70528-
+> > pmic.txt
+> > index c3c02ce73cde..386eec06cf08 100644
+> > --- a/Documentation/devicetree/bindings/mfd/rohm,bd70528-pmic.txt
+> > +++ b/Documentation/devicetree/bindings/mfd/rohm,bd70528-pmic.txt
+> > @@ -39,7 +39,7 @@ pmic: pmic@4b {
+> >  	compatible = "rohm,bd70528";
+> >  	reg = <0x4b>;
+> >  	interrupt-parent = <&gpio1>;
+> > -	interrupts = <29 GPIO_ACTIVE_LOW>;
+> > +	interrupts = <29 IRQ_TYPE_LEVEL_LOW>;
+> 
+> This is how it should have been from the beginning :) Thanks!
 
---X1bOJ3K7DJ5YkBrT
-Content-Type: text/plain; charset=us-ascii
-Content-Disposition: inline
-Content-Transfer-Encoding: quoted-printable
+I start to wonder now. It seems some boards do not configure a pull up
+there, so IRQ_TYPE_LEVEL_LOW is wrong - causes the line to stay in low
+state.  But actually this maybe is a problem of missing pull up, not the
+IRQ flag?
 
-On Wed, Jul 01, 2020 at 11:48:30PM +0200, Wolfram Sang wrote:
-> SMBus is largely compatible with I2C but there are some specifics. In
-> case we need them on a bus, we can now use this new binding.
->=20
-> Signed-off-by: Wolfram Sang <wsa+renesas@sang-engineering.com>
+Best regards,
+Krzysztof
 
-So, I am going to apply this now. We have this cycle and the next one to
-fix up things if we find something to improve.
-
-
---X1bOJ3K7DJ5YkBrT
-Content-Type: application/pgp-signature; name="signature.asc"
-
------BEGIN PGP SIGNATURE-----
-
-iQIzBAABCgAdFiEEOZGx6rniZ1Gk92RdFA3kzBSgKbYFAl9YjwoACgkQFA3kzBSg
-KbZKYxAAk9ihU/GTqkcE9/h7I2CnGa3gpQWDCT5d2HUThmUxLuGVZjNpJpUDpOdm
-+KrJZgRmzwyU/B2FKOwOW3I7FEgF51Tvjfwjbh7du9JElTBa7NsS6pWPeBocWCNh
-ytDVwcDBc3ri8IOys/Xshf3TteyjDJyazipxEelc93JQ7z+61ZstUu9ng1WAHXZE
-fnovARzS4JoIJT/c/1e1aHjscwXrotkbxGZ67SwS8OmjJ71hu0vFRV5UvrnXllQC
-GHKQGAeJVhAvdQP3eHJg3yT+LBIRt1to3igbOyxfg30eAc1lcqr1bGbpUkcWqEcN
-o2HfovvlNCIfKuFfitRGa6MSp35qm1LoY3gV9DI3xTFn6RFBLTbdG/otlln6bqW/
-wADX2uTctm2JmWi9m3maMNCxSn3MXdqvzSs3tRUuX7FOVgNClWtWgPdqXyUYyIDI
-VtlHQqFGRzG+95xoHnVwjlF/6RoRh0cVOA2Mk0wxKUTSSz9zwKpV+8tDZL6LIbL3
-MBs4AsPq9UDT53aXeUA1viAvtIsv2O1++VpyhmGRL77oZ1Fxkm3KthLsRt1hcVxI
-mcR1YWK0L8FnedOe5datZr7hucTlxzHQneOG2khVLpuBtloICUfQ5Wj3q052vwts
-lEj+Oi/8S/DB46jUWic27vZRxg8XfZVuHvYddqX9yIYJeuTv7NQ=
-=YXOG
------END PGP SIGNATURE-----
-
---X1bOJ3K7DJ5YkBrT--
