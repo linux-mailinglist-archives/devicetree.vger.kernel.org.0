@@ -2,84 +2,93 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from vger.kernel.org (vger.kernel.org [23.128.96.18])
-	by mail.lfdr.de (Postfix) with ESMTP id 33A2D262BCA
-	for <lists+devicetree@lfdr.de>; Wed,  9 Sep 2020 11:27:31 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTP id A8619262BCF
+	for <lists+devicetree@lfdr.de>; Wed,  9 Sep 2020 11:28:38 +0200 (CEST)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S1726060AbgIIJ1a (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Wed, 9 Sep 2020 05:27:30 -0400
-Received: from jabberwock.ucw.cz ([46.255.230.98]:54496 "EHLO
-        jabberwock.ucw.cz" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S1725826AbgIIJ13 (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Wed, 9 Sep 2020 05:27:29 -0400
-Received: by jabberwock.ucw.cz (Postfix, from userid 1017)
-        id 716721C0B87; Wed,  9 Sep 2020 11:27:26 +0200 (CEST)
-Date:   Wed, 9 Sep 2020 11:27:25 +0200
-From:   Pavel Machek <pavel@ucw.cz>
-To:     Alexander Dahl <ada@thorsis.com>
-Cc:     linux-leds@vger.kernel.org,
-        Jacek Anaszewski <jacek.anaszewski@gmail.com>,
-        Alexander Dahl <post@lespocky.de>, devicetree@vger.kernel.org,
-        Dan Murphy <dmurphy@ti.com>, Rob Herring <robh+dt@kernel.org>,
-        linux-kernel@vger.kernel.org
-Subject: Re: [PATCH v2 0/2] leds: pwm: Make automatic labels work
-Message-ID: <20200909092725.GD14289@amd>
-References: <20200831210232.28052-1-post@lespocky.de>
- <2019500.FJf2EgCAKA@ada>
- <20200909090033.GD10891@amd>
- <1670070.OCB1Fln39h@ada>
+        id S1726738AbgIIJ2g (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Wed, 9 Sep 2020 05:28:36 -0400
+Received: from lindbergh.monkeyblade.net ([23.128.96.19]:47824 "EHLO
+        lindbergh.monkeyblade.net" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
+        with ESMTP id S1726060AbgIIJ2d (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Wed, 9 Sep 2020 05:28:33 -0400
+Received: from mail-lf1-x12a.google.com (mail-lf1-x12a.google.com [IPv6:2a00:1450:4864:20::12a])
+        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 53034C061756
+        for <devicetree@vger.kernel.org>; Wed,  9 Sep 2020 02:28:33 -0700 (PDT)
+Received: by mail-lf1-x12a.google.com with SMTP id x69so1230567lff.3
+        for <devicetree@vger.kernel.org>; Wed, 09 Sep 2020 02:28:33 -0700 (PDT)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+        d=linaro.org; s=google;
+        h=from:to:cc:subject:date:message-id:mime-version
+         :content-transfer-encoding;
+        bh=MunoKbh/mt3H7lKJf79ktTfGntL6Z6LhfrQgiCHvIt0=;
+        b=xYrRG15tBl3EKH48BODgSIXjSHK9GvhyCOHe98qe0iEPpBdwOu0PETaA4pgHWzJBBz
+         mg3y5T3/xWTmCJ7Nona7QJzkKZys+nNojYOdussbzaEf3He8duDodk6+W82MeWu52xBH
+         eeWoAn8la8U7AbWQArldO9G5zW91jXUJazs7jAaU7vFmtWrf2TPixkJeZz+uOrGDknpY
+         ssw6O+bHoEjdDlUc1yCDsKW4SOmT/KdyXExA1e+cSRsf5sjUV/n80irrIfWUtMgnJZPv
+         MJcunv4r9FjXYIc1ri1T63cGJfzyF3vBdsHZgR6O/poWKwiKTJSck35f2s+zedKfqmBL
+         WU8A==
+X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+        d=1e100.net; s=20161025;
+        h=x-gm-message-state:from:to:cc:subject:date:message-id:mime-version
+         :content-transfer-encoding;
+        bh=MunoKbh/mt3H7lKJf79ktTfGntL6Z6LhfrQgiCHvIt0=;
+        b=gxtGbWHjcviq9127J1Y20uyYhM2gNru6rCJMOdtXM6pRWpfvNVwJQ3iRpPk1LUJKpw
+         uBPWvhgk+dIoaWvrweh3Ry+7SH+d6KS+GFng7eAH3BYRXie53izHP/OcRd1Fe/DhfA+T
+         GRF/klN4sj/4GyJX9wV07Mv+iTpgS5qBWYF473wfMuYVEBSH3Wu5wfIaw5DgjKNt5K2C
+         //Jm1CANccuBHtQcRGecIS5nVsFzOGQ/QUPrjK05iXt864g2AoPmcaA9sgCKLlb3xiaw
+         RKs3W2XxAce4ggxg+06ywXkx0g1ak97XSilf8LON+K5GfWXrvrTLoYk8M6gIa3ob6rXj
+         3LIw==
+X-Gm-Message-State: AOAM530aYPziTTKyEC6FVOyOcuSmKCzv/9hjl2Pm9ZXzw+c+irs3jD0O
+        UxBOVqgdzWUSB3F65D2YGgF0GJoZgO3l6g==
+X-Google-Smtp-Source: ABdhPJyicE9PL6knTzn66V6urc6P++oQ12ZB7nsNSQ4c6++ZUi7LuVSJu+yJNh+4T8Ela5lSm+wg2w==
+X-Received: by 2002:a19:8386:: with SMTP id f128mr1552340lfd.78.1599643709402;
+        Wed, 09 Sep 2020 02:28:29 -0700 (PDT)
+Received: from eriador.lan ([188.162.64.180])
+        by smtp.gmail.com with ESMTPSA id s8sm595870ljo.11.2020.09.09.02.28.27
+        (version=TLS1_3 cipher=TLS_AES_256_GCM_SHA384 bits=256/256);
+        Wed, 09 Sep 2020 02:28:28 -0700 (PDT)
+From:   Dmitry Baryshkov <dmitry.baryshkov@linaro.org>
+To:     devicetree@vger.kernel.org, dri-devel@lists.freedesktop.org,
+        linux-arm-msm@vger.kernel.org
+Cc:     Rob Herring <robh+dt@kernel.org>, Daniel Vetter <daniel@ffwll.ch>,
+        David Airlie <airlied@linux.ie>,
+        Andrzej Hajda <a.hajda@samsung.com>,
+        Neil Armstrong <narmstrong@baylibre.com>,
+        Laurent Pinchart <Laurent.pinchart@ideasonboard.com>,
+        Jonas Karlman <jonas@kwiboo.se>,
+        Jernej Skrabec <jernej.skrabec@siol.net>,
+        Vinod Koul <vkoul@kernel.org>, Sam Ravnborg <sam@ravnborg.org>
+Subject: [PATCH v3 0/2] Add LT9611UXC DSI to HDMI bridge support
+Date:   Wed,  9 Sep 2020 12:28:21 +0300
+Message-Id: <20200909092823.64810-1-dmitry.baryshkov@linaro.org>
+X-Mailer: git-send-email 2.28.0
 MIME-Version: 1.0
-Content-Type: multipart/signed; micalg=pgp-sha1;
-        protocol="application/pgp-signature"; boundary="uxuisgdDHaNETlh8"
-Content-Disposition: inline
-In-Reply-To: <1670070.OCB1Fln39h@ada>
-User-Agent: Mutt/1.5.23 (2014-03-12)
+Content-Transfer-Encoding: 8bit
 Sender: devicetree-owner@vger.kernel.org
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
+Hi,
 
---uxuisgdDHaNETlh8
-Content-Type: text/plain; charset=us-ascii
-Content-Disposition: inline
-Content-Transfer-Encoding: quoted-printable
+This series adds support for Lontium LT9611UXC bridge chip which takes
+MIPI DSI as input and provides HDMI signal as output.
 
-Hi!
+The chip can be found in Qualcomm RB5 platform [1], [2].
 
-> > > Besides: those suggestions are obviously valid for new bindings.  What
-> > > about old bindings (.txt), which had no explicit SPDX tag or license =
-note
-> > > before? What license would apply there?  Is the .yaml file technically
-> > > new, when it was mostly just converted from .txt?
-> >=20
-> > If it is based on previous .txt binding, you have to respect previous
-> > author's license. That probably means GPL-2.0 only.
->=20
-> Probably?
+[1] https://www.qualcomm.com/products/qualcomm-robotics-rb5-platform
+[2] https://www.thundercomm.com/app_en/product/1590131656070623
 
-I have not checked exact licensing situation of that text, have not
-decided if it was copyrightable in the first place, and am not a
-lawyer.
+Changes since v2:
+ - Squashed connector support into main patch
+ - Added comment on modes table
+ - Dropped display timings support, covered by EDID
+ - Dropped sleep mode support
+ - Dropped hpd_status reading from ISR handler
+ - Added "sentinel" comments to empty table entries
 
-So... probably :-).
+Changes since v1:
+ - Fix whitespaces/indentation
+ - Support working without DRM_BRIDGE_ATTACH_NO_CONNECTOR
 
-Best regards,
-									Pavel
---=20
-(english) http://www.livejournal.com/~pavelmachek
-(cesky, pictures) http://atrey.karlin.mff.cuni.cz/~pavel/picture/horses/blo=
-g.html
 
---uxuisgdDHaNETlh8
-Content-Type: application/pgp-signature; name="signature.asc"
-Content-Description: Digital signature
-
------BEGIN PGP SIGNATURE-----
-Version: GnuPG v1
-
-iEYEARECAAYFAl9Yn/0ACgkQMOfwapXb+vKBNwCaAiwL8PTenU6t8p0eeFTwOAFZ
-zDwAnjLM5GgoSjCflS2WRK1odwSIbLDD
-=vCS3
------END PGP SIGNATURE-----
-
---uxuisgdDHaNETlh8--
