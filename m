@@ -2,106 +2,88 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from vger.kernel.org (vger.kernel.org [23.128.96.18])
-	by mail.lfdr.de (Postfix) with ESMTP id 327562648DD
-	for <lists+devicetree@lfdr.de>; Thu, 10 Sep 2020 17:36:49 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTP id 90E6D26493F
+	for <lists+devicetree@lfdr.de>; Thu, 10 Sep 2020 18:00:58 +0200 (CEST)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S1731365AbgIJPgo (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Thu, 10 Sep 2020 11:36:44 -0400
-Received: from lindbergh.monkeyblade.net ([23.128.96.19]:38060 "EHLO
-        lindbergh.monkeyblade.net" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S1731361AbgIJPgQ (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Thu, 10 Sep 2020 11:36:16 -0400
-Received: from mail-ej1-x642.google.com (mail-ej1-x642.google.com [IPv6:2a00:1450:4864:20::642])
-        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 20257C061362
-        for <devicetree@vger.kernel.org>; Thu, 10 Sep 2020 08:35:51 -0700 (PDT)
-Received: by mail-ej1-x642.google.com with SMTP id lo4so9337658ejb.8
-        for <devicetree@vger.kernel.org>; Thu, 10 Sep 2020 08:35:51 -0700 (PDT)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=baylibre-com.20150623.gappssmtp.com; s=20150623;
-        h=mime-version:references:in-reply-to:from:date:message-id:subject:to
-         :cc;
-        bh=BXTkxBrQX1Fi6aDdkjMID82XurVAmc4lBQFLUMsq2gk=;
-        b=RC+ZT7BvjK4qq6hzJuqwm9x4XRFN9jn8PQza2KtLx6+jWuCwMd7udqz44TwyD9yVSO
-         kPrQAbKYUZIW9n3CsPJYJzGDD+7AVpScWFtUiMCyzA3UVRNehD1IWKW+vNJ24OpzdCWP
-         jKxHfR2U05e6Y9vHrg3q2/z03OYSlUnBbcCWoMS5lh7EXBEtTxFVljeHIlQjoWg/pnwp
-         B43hyi7EbRftVn0jkpXIuQIktY1+nYHJTrGca5Q/s1iQphnAihtcIXwt/S4bXrzQjB/w
-         +gjawcC6zPhW8xHCzMDcYomenWpV06AjP3EY1pL5GzwesGsA9RlXJyovLGuY2SA9IiN7
-         dO2A==
-X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=1e100.net; s=20161025;
-        h=x-gm-message-state:mime-version:references:in-reply-to:from:date
-         :message-id:subject:to:cc;
-        bh=BXTkxBrQX1Fi6aDdkjMID82XurVAmc4lBQFLUMsq2gk=;
-        b=dzW+/VIrKl0qIzlrD2EJ++saJos9aCrsSecx247vesz3cVLAT/eJquO3nrQ+OXlgra
-         vi847LHVpGTODJ1Mt+8JENYnGVHabgExhA9gwEsS+fAKs9aLlZHKOsG6tI5mxd2S7Svj
-         aLLhwl5v0wY3u4pOa1u+EqxrAPFBWhPP1LhbgfSjxlDzpU2ie9ip75Yf7D+syX/ngPD2
-         7uiqFSozZRRl0fS1315AUC9fOsl+6HLGpiXtApHcFn60XAEm+VqW9ylmNwHusGQdXGlZ
-         goEujmkPi3lzBkuAdVQqmY/m7KAtkbkCmQKR5Nr85MqzXnL+LIf3C/vuNWzqaoezXWc8
-         iGhA==
-X-Gm-Message-State: AOAM533sQtXdGl+N3RTLAhcayC06OEcrPkCdeM2QFdFo4lnOC1bBdUQz
-        spNd9FDADs6ePVTVCyu0vkkxwzh0u2da1rYeJGPFtHlO/Go=
-X-Google-Smtp-Source: ABdhPJx7Mv8T/HQTpG7Qvas8LgnYGmAQQFvExnKZdjcXfZJH7JQDNYWAh9qsaxWtv/Kp4041pJErzuu/1P5IeK2hr9I=
-X-Received: by 2002:a17:906:11d2:: with SMTP id o18mr9182631eja.420.1599752150402;
- Thu, 10 Sep 2020 08:35:50 -0700 (PDT)
+        id S1731477AbgIJP7Q (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Thu, 10 Sep 2020 11:59:16 -0400
+Received: from a27-18.smtp-out.us-west-2.amazonses.com ([54.240.27.18]:35576
+        "EHLO a27-18.smtp-out.us-west-2.amazonses.com" rhost-flags-OK-OK-OK-OK)
+        by vger.kernel.org with ESMTP id S1731525AbgIJP5O (ORCPT
+        <rfc822;devicetree@vger.kernel.org>);
+        Thu, 10 Sep 2020 11:57:14 -0400
+DKIM-Signature: v=1; a=rsa-sha256; q=dns/txt; c=relaxed/simple;
+        s=zsmsymrwgfyinv5wlfyidntwsjeeldzt; d=codeaurora.org; t=1599752908;
+        h=From:To:Cc:Subject:References:Date:In-Reply-To:Message-ID:MIME-Version:Content-Type;
+        bh=BPqL7/h9mcBs20IvOHSVnkirBfkrU50E8+7n9AQiCAA=;
+        b=ZAbAInrzKdMebTej23haxoemlTjzcPTF7gZIrpQmrxMALdLD2s/PaBKlIbH50W7u
+        MLzwOkm24El+GwSy2TV7nPVf//eqPIfdKbXnn8WyNpYoM9XOlbXJhjsEwfWr8XiIdCW
+        A2TN3WFK7XjbUTaTPwtrhl3494NXNxLVKUG9IdS4=
+DKIM-Signature: v=1; a=rsa-sha256; q=dns/txt; c=relaxed/simple;
+        s=hsbnp7p3ensaochzwyq5wwmceodymuwv; d=amazonses.com; t=1599752908;
+        h=From:To:Cc:Subject:References:Date:In-Reply-To:Message-ID:MIME-Version:Content-Type:Feedback-ID;
+        bh=BPqL7/h9mcBs20IvOHSVnkirBfkrU50E8+7n9AQiCAA=;
+        b=XHzZcuoWBSyBMYcAAxp6zIpyR7OUpSCfRSSn1qw7eQP32mFX42nkEXIunw49jpxa
+        IH+19tajk32rVpVEA066N8Sj5AC7KloMCTv5JzHUhfOr7+5toeL52bgQAnYWGiBulzo
+        YA1ABAsLri/zaMsh5PaWbZV0ZvGOzgonG/rk0nqY=
+X-Spam-Checker-Version: SpamAssassin 3.4.0 (2014-02-07) on
+        aws-us-west-2-caf-mail-1.web.codeaurora.org
+X-Spam-Level: 
+X-Spam-Status: No, score=-2.9 required=2.0 tests=ALL_TRUSTED,BAYES_00,SPF_FAIL,
+        URIBL_BLOCKED autolearn=no autolearn_force=no version=3.4.0
+DMARC-Filter: OpenDMARC Filter v1.3.2 smtp.codeaurora.org 990ADC433CA
+Authentication-Results: aws-us-west-2-caf-mail-1.web.codeaurora.org; dmarc=none (p=none dis=none) header.from=codeaurora.org
+Authentication-Results: aws-us-west-2-caf-mail-1.web.codeaurora.org; spf=fail smtp.mailfrom=kvalo@codeaurora.org
+From:   Kalle Valo <kvalo@codeaurora.org>
+To:     Rob Herring <robh@kernel.org>
+Cc:     Anilkumar Kolli <akolli@codeaurora.org>,
+        devicetree@vger.kernel.org, linux-wireless@vger.kernel.org,
+        ath11k@lists.infradead.org
+Subject: Re: [PATCH v7 1/3] dt: bindings: net: update compatible for ath11k
+References: <1599551717-3801-1-git-send-email-akolli@codeaurora.org>
+        <010101746cb6751a-ca300933-1174-4534-a01b-b1dbf1c1f305-000000@us-west-2.amazonses.com>
+        <20200908203514.GA870402@bogus>
+Date:   Thu, 10 Sep 2020 15:48:28 +0000
+In-Reply-To: <20200908203514.GA870402@bogus> (Rob Herring's message of "Tue, 8
+        Sep 2020 14:35:14 -0600")
+Message-ID: <0101017478b42fca-a6c7ad92-949e-41c7-8088-ffce98e7b830-000000@us-west-2.amazonses.com>
+User-Agent: Gnus/5.13 (Gnus v5.13) Emacs/24.5 (gnu/linux)
 MIME-Version: 1.0
-References: <20200910134239.192030-1-jonathanh@nvidia.com> <20200910134239.192030-2-jonathanh@nvidia.com>
-In-Reply-To: <20200910134239.192030-2-jonathanh@nvidia.com>
-From:   Bartosz Golaszewski <bgolaszewski@baylibre.com>
-Date:   Thu, 10 Sep 2020 17:35:39 +0200
-Message-ID: <CAMpxmJXbhrmJJn4f3zk4=Y2tCwLzpFc+c6NbxcqVe8eaLSRvtw@mail.gmail.com>
-Subject: Re: [PATCH 1/5] misc: eeprom: at24: Initialise AT24 NVMEM ID field
-To:     Jon Hunter <jonathanh@nvidia.com>
-Cc:     Rob Herring <robh+dt@kernel.org>,
-        Thierry Reding <thierry.reding@gmail.com>,
-        linux-i2c <linux-i2c@vger.kernel.org>,
-        LKML <linux-kernel@vger.kernel.org>,
-        linux-devicetree <devicetree@vger.kernel.org>,
-        linux-tegra@vger.kernel.org
-Content-Type: text/plain; charset="UTF-8"
+Content-Type: text/plain
+X-SES-Outgoing: 2020.09.10-54.240.27.18
+Feedback-ID: 1.us-west-2.CZuq2qbDmUIuT3qdvXlRHZZCpfZqZ4GtG9v3VKgRyF0=:AmazonSES
 Sender: devicetree-owner@vger.kernel.org
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-On Thu, Sep 10, 2020 at 3:43 PM Jon Hunter <jonathanh@nvidia.com> wrote:
->
-> The AT24 EEPROM driver does not initialise the 'id' field of the
-> nvmem_config structure and because the entire structure is not
-> initialised, it ends up with a random value. This causes the NVMEM
-> driver to append the device 'devid' value to name of the NVMEM
-> device. Although this is not a problem per-se, for I2C devices such as
-> the AT24, that already have a device unique name, there does not seem
-> much value in appending an additional 0 to the I2C name. For example,
-> appending a 0 to an I2C device name such as 1-0050 does not seem
-> necessary and maybe even a bit confusing. Therefore, fix this by
-> setting the NVMEM config.id to NVMEM_DEVID_NONE for AT24 EEPROMs.
->
-> Signed-off-by: Jon Hunter <jonathanh@nvidia.com>
-> ---
->  drivers/misc/eeprom/at24.c | 1 +
->  1 file changed, 1 insertion(+)
->
-> diff --git a/drivers/misc/eeprom/at24.c b/drivers/misc/eeprom/at24.c
-> index e9df1ca251df..3f7a3bb6a36c 100644
-> --- a/drivers/misc/eeprom/at24.c
-> +++ b/drivers/misc/eeprom/at24.c
-> @@ -715,6 +715,7 @@ static int at24_probe(struct i2c_client *client)
->
->         nvmem_config.name = dev_name(dev);
->         nvmem_config.dev = dev;
-> +       nvmem_config.id = NVMEM_DEVID_NONE;
->         nvmem_config.read_only = !writable;
->         nvmem_config.root_only = !(flags & AT24_FLAG_IRUGO);
->         nvmem_config.owner = THIS_MODULE;
-> --
-> 2.25.1
->
+Rob Herring <robh@kernel.org> writes:
 
-This patch is correct and thanks for catching it. I vaguely recall
-wondering at some point why the appended 0 in the nvmem name for at24.
-Unfortunately this change would affect how the device is visible in
-user-space in /sys/bus/nvmem/devices/ and this could break existing
-users. Also: there are many in-kernel users that would need to be
-updated. I'm afraid we'll need some sort of backward compatibility.
+> On Tue, 08 Sep 2020 07:55:31 +0000, Anilkumar Kolli wrote:
+>> Add IPQ6018 wireless driver support,
+>> its based on ath11k driver.
+>> 
+>> Signed-off-by: Anilkumar Kolli <akolli@codeaurora.org>
+>> ---
+>> V3:
+>>  - Use 'enum' rather than oneOf+const.
+>> V4:
+>>  - removed oneOf, use just enum (Rob)
+>> V5:
+>>  - Fixes errors in 'make dt_binding_check' (Rob)
+>> 
+>>  Documentation/devicetree/bindings/net/wireless/qcom,ath11k.yaml | 4 +++-
+>>  1 file changed, 3 insertions(+), 1 deletion(-)
+>> 
+>
+>
+> Please add Acked-by/Reviewed-by tags when posting new versions. However,
+> there's no need to repost patches *only* to add the tags. The upstream
+> maintainer will do that for acks received on the version they apply.
+>
+> If a tag was not added on purpose, please state why and what changed.
 
-Bartosz
+I added Rob's Reviewed-by in the pending branch.
+
+-- 
+https://wireless.wiki.kernel.org/en/developers/documentation/submittingpatches
