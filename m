@@ -2,91 +2,88 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from vger.kernel.org (vger.kernel.org [23.128.96.18])
-	by mail.lfdr.de (Postfix) with ESMTP id E43CC26472D
-	for <lists+devicetree@lfdr.de>; Thu, 10 Sep 2020 15:44:48 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTP id B2D59264787
+	for <lists+devicetree@lfdr.de>; Thu, 10 Sep 2020 15:55:38 +0200 (CEST)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S1730889AbgIJNm2 (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Thu, 10 Sep 2020 09:42:28 -0400
-Received: from mail-oo1-f67.google.com ([209.85.161.67]:32849 "EHLO
-        mail-oo1-f67.google.com" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S1730940AbgIJNjw (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Thu, 10 Sep 2020 09:39:52 -0400
-Received: by mail-oo1-f67.google.com with SMTP id m25so1446169oou.0;
-        Thu, 10 Sep 2020 06:39:51 -0700 (PDT)
-X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=1e100.net; s=20161025;
-        h=x-gm-message-state:mime-version:references:in-reply-to:from:date
-         :message-id:subject:to:cc;
-        bh=fuIaTh3Pz3XpBBXXvEDUU0YQElK+nkti8UzeWWJ7a+U=;
-        b=BVlnlHizRSX/wts4QURL6v+vSKhMiFmUcJYxxq5qIRR6n69yMZUwhWQgD/U+xS1YJy
-         XltqVGs2oLWzqzl0iNM64qKLMpSkEQUZKZS1gcuBvFZo2rG0oykLVgj8Loh0N6+ormp+
-         pkOSzNwldUN1wzvxcsAdIHF/pJBXJ0MBGg0+vN5qp61YSB+PCZMd5g+60Sz+FbVrkuvw
-         5wSiojc/MsQvRe7qgW33fqJAEb3IKNYCd5MxxAkVSUGBOaeZ4ptBSYliAArwZMe9gNWt
-         RoO14jtHtYRIfGlGYFfiX8Qc+peMB8BDugxL+ov8S7HDH2xsvxknCz+rqdgiC09noBGt
-         Z7Bg==
-X-Gm-Message-State: AOAM5300By7PJJdGe2Oau4XITppbZwfuUz2ZLnuxyL5GUUZxQxiNzdf6
-        WFcPQmzzI+kKJBn3vPVVKUpWoRYSekyNaqj5gpN+Fd5/JQc=
-X-Google-Smtp-Source: ABdhPJzBoEOi1+NC2zEApW5vQGpwWc46XxoohF+/VXD2icQ34M3cjcdB1EMf0Ctl0IujE3VlBgKOiOWdXEjqTyRpxg4=
-X-Received: by 2002:a4a:da4e:: with SMTP id f14mr4490811oou.40.1599745190779;
- Thu, 10 Sep 2020 06:39:50 -0700 (PDT)
-MIME-Version: 1.0
-References: <1599739372-30669-1-git-send-email-yoshihiro.shimoda.uh@renesas.com>
- <1599739372-30669-5-git-send-email-yoshihiro.shimoda.uh@renesas.com>
-In-Reply-To: <1599739372-30669-5-git-send-email-yoshihiro.shimoda.uh@renesas.com>
-From:   Geert Uytterhoeven <geert@linux-m68k.org>
-Date:   Thu, 10 Sep 2020 15:39:39 +0200
-Message-ID: <CAMuHMdUELBtGqkjryfcg6P=Ja6vZuR9MG8FDu66Ze9npJ_r=DQ@mail.gmail.com>
-Subject: Re: [PATCH v2 4/4] arm64: dts: renesas: Add Renesas Falcon boards support
-To:     Yoshihiro Shimoda <yoshihiro.shimoda.uh@renesas.com>
-Cc:     Magnus Damm <magnus.damm@gmail.com>,
+        id S1730500AbgIJNyj (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Thu, 10 Sep 2020 09:54:39 -0400
+Received: from hqnvemgate26.nvidia.com ([216.228.121.65]:10015 "EHLO
+        hqnvemgate26.nvidia.com" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
+        with ESMTP id S1730984AbgIJNwC (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Thu, 10 Sep 2020 09:52:02 -0400
+Received: from hqpgpgate102.nvidia.com (Not Verified[216.228.121.13]) by hqnvemgate26.nvidia.com (using TLS: TLSv1.2, DES-CBC3-SHA)
+        id <B5f5a2d580002>; Thu, 10 Sep 2020 06:42:48 -0700
+Received: from hqmail.nvidia.com ([172.20.161.6])
+  by hqpgpgate102.nvidia.com (PGP Universal service);
+  Thu, 10 Sep 2020 06:43:02 -0700
+X-PGP-Universal: processed;
+        by hqpgpgate102.nvidia.com on Thu, 10 Sep 2020 06:43:02 -0700
+Received: from HQMAIL105.nvidia.com (172.20.187.12) by HQMAIL107.nvidia.com
+ (172.20.187.13) with Microsoft SMTP Server (TLS) id 15.0.1473.3; Thu, 10 Sep
+ 2020 13:43:01 +0000
+Received: from hqnvemgw03.nvidia.com (10.124.88.68) by HQMAIL105.nvidia.com
+ (172.20.187.12) with Microsoft SMTP Server (TLS) id 15.0.1473.3 via Frontend
+ Transport; Thu, 10 Sep 2020 13:43:01 +0000
+Received: from moonraker.nvidia.com (Not Verified[10.26.73.219]) by hqnvemgw03.nvidia.com with Trustwave SEG (v7,5,8,10121)
+        id <B5f5a2d640000>; Thu, 10 Sep 2020 06:43:01 -0700
+From:   Jon Hunter <jonathanh@nvidia.com>
+To:     Bartosz Golaszewski <bgolaszewski@baylibre.com>,
         Rob Herring <robh+dt@kernel.org>,
-        Linux-Renesas <linux-renesas-soc@vger.kernel.org>,
-        "open list:OPEN FIRMWARE AND FLATTENED DEVICE TREE BINDINGS" 
-        <devicetree@vger.kernel.org>
-Content-Type: text/plain; charset="UTF-8"
+        Thierry Reding <thierry.reding@gmail.com>
+CC:     <linux-i2c@vger.kernel.org>, <linux-kernel@vger.kernel.org>,
+        <devicetree@vger.kernel.org>, <linux-tegra@vger.kernel.org>,
+        Jon Hunter <jonathanh@nvidia.com>
+Subject: [PATCH 2/5] dt-bindings: eeprom: at24: Add label property for AT24
+Date:   Thu, 10 Sep 2020 14:42:36 +0100
+Message-ID: <20200910134239.192030-3-jonathanh@nvidia.com>
+X-Mailer: git-send-email 2.25.1
+In-Reply-To: <20200910134239.192030-1-jonathanh@nvidia.com>
+References: <20200910134239.192030-1-jonathanh@nvidia.com>
+MIME-Version: 1.0
+X-NVConfidentiality: public
+Content-Transfer-Encoding: quoted-printable
+Content-Type: text/plain
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=nvidia.com; s=n1;
+        t=1599745369; bh=O0fz7iA/JfwFmK2MfkAYul7GJEtbt1EDCkF9bjPsbNQ=;
+        h=X-PGP-Universal:From:To:CC:Subject:Date:Message-ID:X-Mailer:
+         In-Reply-To:References:MIME-Version:X-NVConfidentiality:
+         Content-Transfer-Encoding:Content-Type;
+        b=YHGlXZ5eR3KnYr0WLqYJfNL63GaEg7MIK70Q/XgKiQSITGygNF3Ya8kHRzZde8Ibs
+         atPHemPP68PVwWd++WkAFtMU3rc+ou3qR1qtNGvciBu3PjMSiEKa0hjrPPvVm1H/sY
+         Xvj3cDDSjVrmK0y7l3gxYFOAEF7vU35RTpuFsIre7XWIJ/lwuLPLDT7THfkoxddSQv
+         iMQJf7qXL0mzzO92Vs1DkDOMlQDnIu01zyv1jQnkKNmkdz+k9Lwt1iV9nsYX6otQCL
+         isCgac8YX6PsyQ/iycDVeE3oabadlGx+MM0RPpXorSpj5RJrkCpzfGnsbrSNUwg7/3
+         lqheMt/m12uZA==
 Sender: devicetree-owner@vger.kernel.org
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-Hi Shimoda-san,
+Add a label property for the AT24 EEPROM to allow a custom name to be
+used for identifying the EEPROM on a board. This is useful when there
+is more than one EEPROM present.
 
-On Thu, Sep 10, 2020 at 2:03 PM Yoshihiro Shimoda
-<yoshihiro.shimoda.uh@renesas.com> wrote:
-> Initial support for the Renesas Falcon CPU and BreakOut boards
-> support.
->
-> Signed-off-by: Yoshihiro Shimoda <yoshihiro.shimoda.uh@renesas.com>
+Signed-off-by: Jon Hunter <jonathanh@nvidia.com>
+---
+ Documentation/devicetree/bindings/eeprom/at24.yaml | 4 ++++
+ 1 file changed, 4 insertions(+)
 
-Thanks for the update!
+diff --git a/Documentation/devicetree/bindings/eeprom/at24.yaml b/Documenta=
+tion/devicetree/bindings/eeprom/at24.yaml
+index 4cee72d53318..5c00d8a146b0 100644
+--- a/Documentation/devicetree/bindings/eeprom/at24.yaml
++++ b/Documentation/devicetree/bindings/eeprom/at24.yaml
+@@ -114,6 +114,10 @@ properties:
+           - const: renesas,r1ex24128
+           - const: atmel,24c128
+=20
++  label:
++    description: Descriptive name of the EEPROM.
++    maxItems: 1
++
+   reg:
+     maxItems: 1
+=20
+--=20
+2.25.1
 
-> --- /dev/null> +++ b/arch/arm64/boot/dts/renesas/r8a779a0-falcon.dts
-> @@ -0,0 +1,23 @@
-> +// SPDX-License-Identifier: GPL-2.0
-> +/*
-> + * Device Tree Source for the Falcon CPU and BreakOut boards
-> + *
-> + * Copyright (C) 2020 Renesas Electronics Corp.
-> + */
-> +
-> +/dts-v1/;
-> +#include "r8a779a0.dtsi"
-
-Not needed, as already included by the file below.
-
-> +#include "r8a779a0-falcon-cpu.dtsi"
-
-Reviewed-by: Geert Uytterhoeven <geert+renesas@glider.be>
-
-No need to resend, will queue in renesas-devel for v5.10 with the above fixed.
-
-Gr{oetje,eeting}s,
-
-                        Geert
-
--- 
-Geert Uytterhoeven -- There's lots of Linux beyond ia32 -- geert@linux-m68k.org
-
-In personal conversations with technical people, I call myself a hacker. But
-when I'm talking to journalists I just say "programmer" or something like that.
-                                -- Linus Torvalds
