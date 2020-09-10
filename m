@@ -2,175 +2,114 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from vger.kernel.org (vger.kernel.org [23.128.96.18])
-	by mail.lfdr.de (Postfix) with ESMTP id F2F84263A9A
-	for <lists+devicetree@lfdr.de>; Thu, 10 Sep 2020 04:35:47 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTP id 28DFD263ABF
+	for <lists+devicetree@lfdr.de>; Thu, 10 Sep 2020 04:44:03 +0200 (CEST)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S1730832AbgIJCfn (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Wed, 9 Sep 2020 22:35:43 -0400
-Received: from lindbergh.monkeyblade.net ([23.128.96.19]:57432 "EHLO
+        id S1730654AbgIJCnu (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Wed, 9 Sep 2020 22:43:50 -0400
+Received: from lindbergh.monkeyblade.net ([23.128.96.19]:58682 "EHLO
         lindbergh.monkeyblade.net" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S1730573AbgIJCdy (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Wed, 9 Sep 2020 22:33:54 -0400
-Received: from mail-ed1-x542.google.com (mail-ed1-x542.google.com [IPv6:2a00:1450:4864:20::542])
-        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id E8480C061573;
-        Wed,  9 Sep 2020 19:32:32 -0700 (PDT)
-Received: by mail-ed1-x542.google.com with SMTP id q21so4737236edv.1;
-        Wed, 09 Sep 2020 19:32:32 -0700 (PDT)
+        with ESMTP id S1730699AbgIJCmE (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Wed, 9 Sep 2020 22:42:04 -0400
+Received: from mail-ej1-x644.google.com (mail-ej1-x644.google.com [IPv6:2a00:1450:4864:20::644])
+        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id C3920C061756;
+        Wed,  9 Sep 2020 19:42:03 -0700 (PDT)
+Received: by mail-ej1-x644.google.com with SMTP id u21so6467320eja.2;
+        Wed, 09 Sep 2020 19:42:03 -0700 (PDT)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
         d=jms.id.au; s=google;
         h=mime-version:references:in-reply-to:from:date:message-id:subject:to
          :cc;
-        bh=eWT97yy/lfN++yK+3hmvJmTiGbb9VXyAZ9/Zg/KaUXY=;
-        b=kp/7rc1enm4PY5SDiFcIoUYwg84bEnbNEYMTQ8qp+9Pp/MQeIlxEd4fMMbE1aS0TzR
-         Yc2FJVyvt6AQK4yOH+BhPgSMIkken4Eg1eSbD+dPGjm9JaVcCWybamwRwMpcPIvt7BXX
-         x6o75w2WDcnpHJOBRBRkXzVZC2P0LHmsdvl04=
+        bh=NqwpRLg4PT44jhpT//Uf1w2MoxgHWm0NwZNCgoTWYaQ=;
+        b=SzbeO7Oa0OQJSMhsqoY5ZVWwaerWZtBxMvU91a4ZbLSIjrnT/wA/jxzt9sw1LWMGWg
+         MR13QS591LgNNIInj50Q+kz8yNMCRw08k0PnyEa0ts12t7O+VSo9CsnK1c9akMFFkMSu
+         C3JuOqI5xeP4ZEbgA+ikOy3PHSXgtGgZU85ok=
 X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
         d=1e100.net; s=20161025;
         h=x-gm-message-state:mime-version:references:in-reply-to:from:date
          :message-id:subject:to:cc;
-        bh=eWT97yy/lfN++yK+3hmvJmTiGbb9VXyAZ9/Zg/KaUXY=;
-        b=qdNcQi89KXHMhoPwbjD15LJc4B2J9NCKaNulr3dBmdqm2mP9jp2RtQHnwVcf/uFarg
-         yjWoFeUxgxPG+q0qf80ysrW50JnDCJXr0KAs8gZt2taUTL4ysu7r7Iuk3STuBC+6MfI2
-         jA/JLOHy7zrQDcNUbqyHaeDwpcsbtM6G8In5SJxF/nbSEYeYtZ2Kdv0v84FsAyrxklLP
-         3CMYz7BsiDwpBXrXgSoC8/0SzF0ItpQYL1bzwStmbj10DAv7f9eSxqBHLTXdoY3jh+vX
-         nx7RgKK69YMWuYg2pjHluhdfEvU24Rc+cIaND324/Ju4boola7nshjI0P2CBj72KIt1E
-         xK2A==
-X-Gm-Message-State: AOAM533d+H7EoBINMYvTcdSBUj1y35puSwEWBSLeozKWIDAfvJEZCIzz
-        1RjBsfjNq1w+2CR0+ven2xYaPKebDlEOIRP9vpjpgWc8
-X-Google-Smtp-Source: ABdhPJxhv5HYB0Xtoz82eBUKLuVFbP9wApM1PlcILnkhgvYHT12658eGPvVkQrcDAELzZLJ0ap/G3eFoFxqgU7JHkUw=
-X-Received: by 2002:a05:6402:220d:: with SMTP id cq13mr7068356edb.260.1599705151522;
- Wed, 09 Sep 2020 19:32:31 -0700 (PDT)
+        bh=NqwpRLg4PT44jhpT//Uf1w2MoxgHWm0NwZNCgoTWYaQ=;
+        b=S7kLjoz7yfPQownPM4pmK1omA3moG32ZAMxFNcTGp+EepkCob+NUaudGW+uUjtM2N8
+         In6Z5lWgUUB4fWul99GS+YOIScFs5rL/zHwEggXwN1MsKXyzAvWatoubcqMdlh65Z57h
+         s4IUSuVuDO4Ihy483OdOqzZz6Q5OkH7ElQSRR9a/G4ia92PtA/AqE9gSVyqcUIFpxKbi
+         e9tOQ+TO3dL4gb5OGZC3Q8FE3EWpp0lCy9J6Se5AohTxxoZoh5v3iVEZXxuD49gIuRGF
+         np2joc7J5JSYrhq6m0XHjok8Zck/ORbSpRNiv1C57FOkWNCD9F5+42Zcqp8OKeWlHoVI
+         MMtg==
+X-Gm-Message-State: AOAM533pOQpfGoVote4SNhjY0rfJgDDKKac+qKU4tkq9sopYjzUcPqPo
+        bwQqKzVlIwX58gR+KGSteZoE+m9AzkYfkD7ODmFM7OjPYmA=
+X-Google-Smtp-Source: ABdhPJwcXluGz3hInva1gKy4bM6y+M5N5Gn1vQaAuMY9KP0ILDgfzMQslOJeSPPJbmHsAfiiGjCmfeI9GQntCW6JJLg=
+X-Received: by 2002:a17:906:e918:: with SMTP id ju24mr6428814ejb.442.1599705722453;
+ Wed, 09 Sep 2020 19:42:02 -0700 (PDT)
 MIME-Version: 1.0
-References: <20200909175946.395313-1-jic23@kernel.org> <20200909175946.395313-5-jic23@kernel.org>
-In-Reply-To: <20200909175946.395313-5-jic23@kernel.org>
+References: <20200909203059.23427-1-eajames@linux.ibm.com> <20200909203059.23427-5-eajames@linux.ibm.com>
+In-Reply-To: <20200909203059.23427-5-eajames@linux.ibm.com>
 From:   Joel Stanley <joel@jms.id.au>
-Date:   Thu, 10 Sep 2020 02:32:19 +0000
-Message-ID: <CACPK8Xc+GpVVLvBdz5zHTndBeP0bd7SKLDZq7H6rDUDsd0kMdA@mail.gmail.com>
-Subject: Re: [PATCH v2 04/20] dt-bindings:iio:adc: aspeed,ast2400 yaml conversion
-To:     Jonathan Cameron <jic23@kernel.org>
-Cc:     linux-iio@vger.kernel.org, Rob Herring <robh@kernel.org>,
+Date:   Thu, 10 Sep 2020 02:41:49 +0000
+Message-ID: <CACPK8XdSUAiShnY2CZOb8_6YfaMxXnbUg0k=mWctYbRWEUpyBg@mail.gmail.com>
+Subject: Re: [PATCH v3 4/5] ARM: dts: Aspeed: Tacoma: Add IBM Operation Panel
+ I2C device
+To:     Eddie James <eajames@linux.ibm.com>
+Cc:     linux-input@vger.kernel.org,
         devicetree <devicetree@vger.kernel.org>,
-        Jonathan Cameron <Jonathan.Cameron@huawei.com>,
-        Rick Altherr <raltherr@google.com>,
-        Andrew Jeffery <andrew@aj.id.au>
+        linux-aspeed <linux-aspeed@lists.ozlabs.org>,
+        linux-i2c@vger.kernel.org,
+        Linux Kernel Mailing List <linux-kernel@vger.kernel.org>,
+        Rob Herring <robh+dt@kernel.org>, dmitry.torokhov@gmail.com,
+        Andrew Jeffery <andrew@aj.id.au>,
+        Benjamin Herrenschmidt <benh@kernel.crashing.org>,
+        Brendan Higgins <brendanhiggins@google.com>, wsa@kernel.org,
+        Tao Ren <rentao.bupt@gmail.com>,
+        Ryan Chen <ryan_chen@aspeedtech.com>
 Content-Type: text/plain; charset="UTF-8"
 Sender: devicetree-owner@vger.kernel.org
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-On Wed, 9 Sep 2020 at 18:02, Jonathan Cameron <jic23@kernel.org> wrote:
+On Wed, 9 Sep 2020 at 20:31, Eddie James <eajames@linux.ibm.com> wrote:
 >
-> From: Jonathan Cameron <Jonathan.Cameron@huawei.com>
+> Set I2C bus 0 to multi-master mode and add the panel device that will
+> register as a slave.
 >
-> Simple txt to yaml conversion. Part of a general move to convert
-> all the IIO bindings over to yaml.
->
-> Signed-off-by: Jonathan Cameron <Jonathan.Cameron@huawei.com>
-> Cc: Rick Altherr <raltherr@google.com>
-> Cc: Joel Stanley <joel@jms.id.au>
-> Cc: Andrew Jeffery <andrew@aj.id.au>
+> Signed-off-by: Eddie James <eajames@linux.ibm.com>
+> Reviewed-by: Joel Stanley <joel@jms.id.au>
 
-Acked-by: Joel Stanley <joel@jms.id.au>
+Applied to the aspeed tree for v5.10.
 
+Cheers,
+
+Joel
 
 > ---
->  .../bindings/iio/adc/aspeed,ast2400-adc.yaml  | 54 +++++++++++++++++++
->  .../bindings/iio/adc/aspeed_adc.txt           | 22 --------
->  2 files changed, 54 insertions(+), 22 deletions(-)
+>  arch/arm/boot/dts/aspeed-bmc-opp-tacoma.dts | 7 +++++++
+>  1 file changed, 7 insertions(+)
 >
-> diff --git a/Documentation/devicetree/bindings/iio/adc/aspeed,ast2400-adc.yaml b/Documentation/devicetree/bindings/iio/adc/aspeed,ast2400-adc.yaml
-> new file mode 100644
-> index 000000000000..09018487d690
-> --- /dev/null
-> +++ b/Documentation/devicetree/bindings/iio/adc/aspeed,ast2400-adc.yaml
-
-This naming doesn't make sense, as the bindings are for the ast2500
-too (and they also apply for the ast2600).
-
-> @@ -0,0 +1,54 @@
-> +# SPDX-License-Identifier: (GPL-2.0 OR BSD-2-Clause)
-> +%YAML 1.2
-> +---
-> +$id: http://devicetree.org/schemas/iio/adc/aspeed,ast2400-adc.yaml#
-> +$schema: http://devicetree.org/meta-schemas/core.yaml#
+> diff --git a/arch/arm/boot/dts/aspeed-bmc-opp-tacoma.dts b/arch/arm/boot/dts/aspeed-bmc-opp-tacoma.dts
+> index 5f4ee67ac787..4d070d6ba09f 100644
+> --- a/arch/arm/boot/dts/aspeed-bmc-opp-tacoma.dts
+> +++ b/arch/arm/boot/dts/aspeed-bmc-opp-tacoma.dts
+> @@ -4,6 +4,7 @@
+>
+>  #include "aspeed-g6.dtsi"
+>  #include <dt-bindings/gpio/aspeed-gpio.h>
+> +#include <dt-bindings/i2c/i2c.h>
+>  #include <dt-bindings/leds/leds-pca955x.h>
+>
+>  / {
+> @@ -438,7 +439,13 @@ aliases {
+>  };
+>
+>  &i2c0 {
+> +       multi-master;
+>         status = "okay";
 > +
-> +title: ADC that forms part of an ASPEED server management processor.
-> +
-> +maintainers:
-> +  - Rick Altherr <raltherr@google.com>
-> +
-> +description:
-> +  This device is a 10-bit converter for 16 voltage channels.  All inputs are
-> +  single ended.
-> +
-> +properties:
-> +  compatible:
-> +    enum:
-> +      - aspeed,ast2400-adc
-> +      - aspeed,ast2500-adc
-> +
-> +  reg:
-> +    maxItems: 1
-> +
-> +  clocks:
-> +    description:
-> +      Input clock used to derive the sample clock. Expected to be the
-> +      SoC's APB clock.
-> +
-> +  resets: true
-> +
-> +  "#io-channel-cells":
-> +    const: 1
-> +
-> +required:
-> +  - compatible
-> +  - reg
-> +  - clocks
-> +  - resets
-> +  - "#io-channel-cells"
-> +
-> +additionalProperties: false
-> +
-> +examples:
-> +  - |
-> +    #include <dt-bindings/clock/aspeed-clock.h>
-> +    adc@1e6e9000 {
-> +        compatible = "aspeed,ast2400-adc";
-> +        reg = <0x1e6e9000 0xb0>;
-> +        clocks = <&syscon ASPEED_CLK_APB>;
-> +        resets = <&syscon ASPEED_RESET_ADC>;
-> +        #io-channel-cells = <1>;
-> +    };
-> +...
-> diff --git a/Documentation/devicetree/bindings/iio/adc/aspeed_adc.txt b/Documentation/devicetree/bindings/iio/adc/aspeed_adc.txt
-> deleted file mode 100644
-> index 034fc2ba100e..000000000000
-> --- a/Documentation/devicetree/bindings/iio/adc/aspeed_adc.txt
-> +++ /dev/null
-> @@ -1,22 +0,0 @@
-> -Aspeed ADC
-> -
-> -This device is a 10-bit converter for 16 voltage channels.  All inputs are
-> -single ended.
-> -
-> -Required properties:
-> -- compatible: Should be "aspeed,ast2400-adc" or "aspeed,ast2500-adc"
-> -- reg: memory window mapping address and length
-> -- clocks: Input clock used to derive the sample clock. Expected to be the
-> -          SoC's APB clock.
-> -- resets: Reset controller phandle
-> -- #io-channel-cells: Must be set to <1> to indicate channels are selected
-> -                     by index.
-> -
-> -Example:
-> -       adc@1e6e9000 {
-> -               compatible = "aspeed,ast2400-adc";
-> -               reg = <0x1e6e9000 0xb0>;
-> -               clocks = <&syscon ASPEED_CLK_APB>;
-> -               resets = <&syscon ASPEED_RESET_ADC>;
-> -               #io-channel-cells = <1>;
-> -       };
+> +       ibm-panel@62 {
+> +               compatible = "ibm,op-panel";
+> +               reg = <(0x62 | I2C_OWN_SLAVE_ADDRESS)>;
+> +       };
+>  };
+>
+>  &i2c1 {
 > --
-> 2.28.0
+> 2.26.2
 >
