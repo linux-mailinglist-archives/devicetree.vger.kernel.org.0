@@ -2,119 +2,120 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from vger.kernel.org (vger.kernel.org [23.128.96.18])
-	by mail.lfdr.de (Postfix) with ESMTP id BE608264557
-	for <lists+devicetree@lfdr.de>; Thu, 10 Sep 2020 13:33:46 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTP id C0EEF264585
+	for <lists+devicetree@lfdr.de>; Thu, 10 Sep 2020 13:52:07 +0200 (CEST)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S1727805AbgIJLdk (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Thu, 10 Sep 2020 07:33:40 -0400
-Received: from mail-eopbgr1310119.outbound.protection.outlook.com ([40.107.131.119]:5440
-        "EHLO APC01-SG2-obe.outbound.protection.outlook.com"
-        rhost-flags-OK-OK-OK-FAIL) by vger.kernel.org with ESMTP
-        id S1730321AbgIJLYp (ORCPT <rfc822;devicetree@vger.kernel.org>);
-        Thu, 10 Sep 2020 07:24:45 -0400
-ARC-Seal: i=1; a=rsa-sha256; s=arcselector9901; d=microsoft.com; cv=none;
- b=EwD22/dcpnH6a/sbjig+x5NhG71iL8ptpkkmI3Cob50dtvh8I6VEgM31UEQ0+UrV0PQmb+ZecMCUOw7sOXeoabKBEneC8I3xCWkHViVZ+mEMCySg8BFdycS56z0tBaelvv2jNaaWiTKFvkurNHAXOeaOnKoQIQ444SlGYROZJwnP1mTJ5vc7QWsE5EnlrHqL8H67iCysBxbHo5HIbXf+z3HduZq8W/h8WWUlJj4h/ddrclvMd14x2J1ibONBzGV2ce/uLUPr9bW1b421kAq9OAQcSRBE5AKleB+OcOMKUkVTPDrwCQjZxugAyMLiBjYNcUFP7D6oHylP1nVrdcxvOA==
-ARC-Message-Signature: i=1; a=rsa-sha256; c=relaxed/relaxed; d=microsoft.com;
- s=arcselector9901;
- h=From:Date:Subject:Message-ID:Content-Type:MIME-Version:X-MS-Exchange-SenderADCheck;
- bh=CzLX3toqOStQTFy60LrGjLGlTT71uOju5tCD6g8HA5Y=;
- b=VPIyuyG1kXbfLqt7pMawAyP9GjhdBD9NkDbigkf9PqzDjgR8QnxUZUu0KFUZ0b75AuSbachC+OioKyHqm8X0WDCLsjtaARxPVXrSLSl2/L0RROSAq2jqsR1PA7KVCSvKYy1CytqmxUr20jc9mEEhEtqcPDo0OXzJU4fOEuGOHMs33WVEZrXhwfX+j6YGlDUljjl/zO17PaOQ68QZDhJCdVabHvcIs4cpokkw2RlFuEknQQE3mgFuX6ZVi/yovT//x3y8yhgQMsnQH1vdgQU2Sfj0v2cWqD9OVRB4STxHt642iUgEU5OANHr1RVVXAkb+Ev6OZMzMva7+/8uywZUlAg==
-ARC-Authentication-Results: i=1; mx.microsoft.com 1; spf=pass
- smtp.mailfrom=renesas.com; dmarc=pass action=none header.from=renesas.com;
- dkim=pass header.d=renesas.com; arc=none
+        id S1730083AbgIJLvn (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Thu, 10 Sep 2020 07:51:43 -0400
+Received: from lindbergh.monkeyblade.net ([23.128.96.19]:59132 "EHLO
+        lindbergh.monkeyblade.net" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
+        with ESMTP id S1729455AbgIJLsz (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Thu, 10 Sep 2020 07:48:55 -0400
+Received: from mail-pg1-x541.google.com (mail-pg1-x541.google.com [IPv6:2607:f8b0:4864:20::541])
+        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id F3A6FC0617A0;
+        Thu, 10 Sep 2020 04:35:11 -0700 (PDT)
+Received: by mail-pg1-x541.google.com with SMTP id j34so4088504pgi.7;
+        Thu, 10 Sep 2020 04:35:11 -0700 (PDT)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
- d=renesasgroup.onmicrosoft.com; s=selector2-renesasgroup-onmicrosoft-com;
- h=From:Date:Subject:Message-ID:Content-Type:MIME-Version:X-MS-Exchange-SenderADCheck;
- bh=CzLX3toqOStQTFy60LrGjLGlTT71uOju5tCD6g8HA5Y=;
- b=GDFKU9KngrExYpua2bPhYNIfh+G7B8jbXcC2+LgfVgNpMeglB0i16khuwarbERFt6khb8+ZoIdm4DvMa7j6VK1ZRe1hU7qrD7NPr6Ais15OD/zkG1KloFSKWt2k3ExB2GARjhD0DPkkeD5TTYYL5LYeyMcaMbaLXCzQyii2WJfw=
-Received: from TY2PR01MB3692.jpnprd01.prod.outlook.com (2603:1096:404:d5::22)
- by TY2PR01MB2569.jpnprd01.prod.outlook.com (2603:1096:404:74::11) with
- Microsoft SMTP Server (version=TLS1_2,
- cipher=TLS_ECDHE_RSA_WITH_AES_256_GCM_SHA384) id 15.20.3348.15; Thu, 10 Sep
- 2020 11:24:21 +0000
-Received: from TY2PR01MB3692.jpnprd01.prod.outlook.com
- ([fe80::9055:525d:2d64:b625]) by TY2PR01MB3692.jpnprd01.prod.outlook.com
- ([fe80::9055:525d:2d64:b625%5]) with mapi id 15.20.3348.019; Thu, 10 Sep 2020
- 11:24:20 +0000
-From:   Yoshihiro Shimoda <yoshihiro.shimoda.uh@renesas.com>
-To:     Geert Uytterhoeven <geert@linux-m68k.org>
-CC:     Magnus Damm <magnus.damm@gmail.com>,
-        Rob Herring <robh+dt@kernel.org>,
-        Linux-Renesas <linux-renesas-soc@vger.kernel.org>,
-        "open list:OPEN FIRMWARE AND FLATTENED DEVICE TREE BINDINGS" 
-        <devicetree@vger.kernel.org>
-Subject: RE: [PATCH 14/14] arm64: dts: renesas: Add Renesas Falcon boards
- support
-Thread-Topic: [PATCH 14/14] arm64: dts: renesas: Add Renesas Falcon boards
- support
-Thread-Index: AQHWhPgXPxjJ48KvYUmh4Lgcbyf/male/suAgAK7PuCAAAL6gIAAAqXw
-Date:   Thu, 10 Sep 2020 11:24:20 +0000
-Message-ID: <TY2PR01MB36929567AEB2CB7BB45B2036D8270@TY2PR01MB3692.jpnprd01.prod.outlook.com>
-References: <1599470390-29719-1-git-send-email-yoshihiro.shimoda.uh@renesas.com>
- <1599470390-29719-15-git-send-email-yoshihiro.shimoda.uh@renesas.com>
- <CAMuHMdUXUvU5dPkBFdW_ZVhnBKpFEPVLD3mdOkhrmakZjCHErg@mail.gmail.com>
- <TY2PR01MB36929138C1723ABE87358597D8270@TY2PR01MB3692.jpnprd01.prod.outlook.com>
- <CAMuHMdU6TLz09bvNCK8kRruu-W+B8c9Bnbr5kTCZzW-38cqO8A@mail.gmail.com>
-In-Reply-To: <CAMuHMdU6TLz09bvNCK8kRruu-W+B8c9Bnbr5kTCZzW-38cqO8A@mail.gmail.com>
-Accept-Language: ja-JP, en-US
-Content-Language: ja-JP
-X-MS-Has-Attach: 
-X-MS-TNEF-Correlator: 
-authentication-results: linux-m68k.org; dkim=none (message not signed)
- header.d=none;linux-m68k.org; dmarc=none action=none header.from=renesas.com;
-x-originating-ip: [240f:60:5f3e:1:29e4:1562:227f:bbc3]
-x-ms-publictraffictype: Email
-x-ms-office365-filtering-ht: Tenant
-x-ms-office365-filtering-correlation-id: ae683b2a-abec-4d87-3469-08d8557c103a
-x-ms-traffictypediagnostic: TY2PR01MB2569:
-x-microsoft-antispam-prvs: <TY2PR01MB25699F5EAF96E1836C694FBAD8270@TY2PR01MB2569.jpnprd01.prod.outlook.com>
-x-ms-oob-tlc-oobclassifiers: OLM:4502;
-x-ms-exchange-senderadcheck: 1
-x-microsoft-antispam: BCL:0;
-x-microsoft-antispam-message-info: ILQm4gEWlvJ4ldguesj14A8jFQSVt00FgOYAu27XclPKoWw9Cmkzx3MVtxJ+Nr1so1rxwbcSSbJzWhp6jzOLa4/U4B5LzKx2kBLx8ktYzhxxmzrYvxlomuT9ddNZruP0I7zByE4qDRLnpXSCWiEO5IGr1Vj5n+z261S9p38tbc1jNAY1+OORNXznQsssbuFFuOIE/6IalOsZSLvrcPB+vuT6pKmZkZh6oRsnJezDy+DzboFw+6UkeIx7bCNZ/GZIiO/cqzne12hpTqvuyjjvWb0iOYRN+CIqbaIBTZreaTr22oAXkq5tn9sTpLA2l1FupTKK07DgJQkmx1P2Ecd8Gw==
-x-forefront-antispam-report: CIP:255.255.255.255;CTRY:;LANG:en;SCL:1;SRV:;IPV:NLI;SFV:NSPM;H:TY2PR01MB3692.jpnprd01.prod.outlook.com;PTR:;CAT:NONE;SFS:(4636009)(376002)(39860400002)(136003)(346002)(396003)(366004)(478600001)(76116006)(53546011)(71200400001)(66556008)(66476007)(64756008)(6506007)(55016002)(66446008)(4326008)(186003)(6916009)(7696005)(5660300002)(52536014)(2906002)(86362001)(54906003)(66946007)(33656002)(8676002)(8936002)(316002)(9686003);DIR:OUT;SFP:1102;
-x-ms-exchange-antispam-messagedata: qefNlo8kn2uyVHy98PHx4K+RmleG5nBE60XgknRoaNt34Z4hiy+hsCiAcMTz5e1TboTrz1bGUxSUqmEImXk3oSZbLTbwIlwZppTkPOnaGMCF3aosmSvAaCmrZT6H+Bj5ehKe77H+0++L2UASI39tO6ii4hcVnU6uvQJajg2JdA19jrNSh6G/ARJgPdMWsYe4ddYj1ZuPnizxImVgD9vQz2qOiR9BRCFc5N6LG1lVSTbum68jwSpVqefHb5YiaHOK5caWFWL6yLwTrwJ9mqpr4o9HnWjJ0MPSk9PMa8omTqxetvgKhfdfizvxpwWdr8/A0z/MZq5fwcvR6AYMWUG23679cIj62oJnQgfQw/264Gx4gliU5pmqoBIkaSMmT25gkOJsl9pYgfisQwstoAgw7I7tS4j9uSgMYlOl/5ofTTp3XF3KdERyntVcLb6K7JtykCsEaxOxieupWvEbw3EeVzWSezQaEFLJP/eTn7aR1lp0l24mgNqGQt5Gi17wH7qxOrfDCdmtSccM61oR9Di2NC4H5SCXDRsTfJKFQbi30KDE7umVrrnQpDGimGGd0slh87cPlll9OlcKpiSY4tJLsBeXmHT05TkYVLk39t9/4RsfM9Ivif+myfX8JZugMGpSpYXsNDlXbY/DQ2CCOnI9DD6Df7+SV3b/LWi4S63bj3zLOjbAMf1D/BkOaeVnxlLZXM4AC4RKNIGk2yB912crdQ==
-x-ms-exchange-transport-forked: True
-Content-Type: text/plain; charset="utf-8"
-Content-Transfer-Encoding: base64
+        d=gmail.com; s=20161025;
+        h=mime-version:references:in-reply-to:from:date:message-id:subject:to
+         :cc;
+        bh=OAIIi6uo3XgXFJ7QsLwLusqGAN4H6rcenY71bNI/1l8=;
+        b=rW+wPK6uNUbrUcprGE+bQuCpqDWnZ0VJbYkiOw/LceoiimtmO+K5zGaJ8VH0fntmp+
+         60B98AoB2KqakAI4TCQ0uZ4WWLuPJehYgr5Srs+vOTsO7s8hRxHwTPM9ARbWajgphq2B
+         eWF9fHapKu16Jsi6TEfaoFS4dpvFBS9QK41CJGk+o7RlAABDvo/dM9b4B650BS9FLS4p
+         yMJaz5yYQL0WEuCDL8GAudTrpDIShQA3TuQLtjqRDVN0d9IrSXJcdxiN51NAOtaJEQnw
+         oxKzVKa1VyeWniKn9nW3b/8r4kUc1kNt9Z6dWm93DAtQAozF65v8SL+LPP/lanfG6nC1
+         uJPg==
+X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+        d=1e100.net; s=20161025;
+        h=x-gm-message-state:mime-version:references:in-reply-to:from:date
+         :message-id:subject:to:cc;
+        bh=OAIIi6uo3XgXFJ7QsLwLusqGAN4H6rcenY71bNI/1l8=;
+        b=AVRtOUlyEtkWC05Ly0x2EA/ZMpiF9mfyFgBbhgy6OabeH/qYVZS46eBG2J9AC5inPk
+         x79tqJKgL/bl8QfbN7+XB/nLXQ/a8bRsDlU3bn+1cS+Whr+Y948kquUtpW2PieL/TMkL
+         /q+A9RvrXJ8tmhxdoqZOMnHKaAFhPx9rXSYIio3FrgyR143GSML4x3CJdz1/dbCE0y2u
+         3YTa5+6TemGf88r1/7E7aMQqYkXz/DGPsE/TLt3bZxFeXWje+HsDWWAm1/dKWCvjpSr5
+         e8gd1EWNSt9a3ETSCw3Tkb8HtTPOBN7f1NbnYsXCdO4EfuyUC4PoCnhCkSVUZsP/Hqop
+         Hxeg==
+X-Gm-Message-State: AOAM531VgFbtO40dx9PjEYnrxLbOd9r8Uurn+XvPBkfWbfluZqRVkIaq
+        SvN1I7on697jT5TALTrHfacCfqwGMR1vM2zdA7o=
+X-Google-Smtp-Source: ABdhPJyA7xJQIZk5VHdsH5jeJ1GijVp07O14SJTxho9owohQ9HM6j6M0zAQbtOSB3XzQ6HyGQ+uJhc1FwEQ8T7FSZbs=
+X-Received: by 2002:a63:ec4c:: with SMTP id r12mr4042041pgj.74.1599737711469;
+ Thu, 10 Sep 2020 04:35:11 -0700 (PDT)
 MIME-Version: 1.0
-X-OriginatorOrg: renesas.com
-X-MS-Exchange-CrossTenant-AuthAs: Internal
-X-MS-Exchange-CrossTenant-AuthSource: TY2PR01MB3692.jpnprd01.prod.outlook.com
-X-MS-Exchange-CrossTenant-Network-Message-Id: ae683b2a-abec-4d87-3469-08d8557c103a
-X-MS-Exchange-CrossTenant-originalarrivaltime: 10 Sep 2020 11:24:20.7991
- (UTC)
-X-MS-Exchange-CrossTenant-fromentityheader: Hosted
-X-MS-Exchange-CrossTenant-id: 53d82571-da19-47e4-9cb4-625a166a4a2a
-X-MS-Exchange-CrossTenant-mailboxtype: HOSTED
-X-MS-Exchange-CrossTenant-userprincipalname: WNg95zNMchuAFc+fMFdY0+HvknyVVwBGW8Z61Yc/EJ7KFqACAnFa2MQbf5cc4V2V9RYMdSjE8tOPqL/G+3VzzjMRDm5rqlhpIvrEBx44wIHyWSCpEud0Gpw6PCpA5ksR
-X-MS-Exchange-Transport-CrossTenantHeadersStamped: TY2PR01MB2569
+References: <1599474459-20853-1-git-send-email-gene.chen.richtek@gmail.com>
+ <1599474459-20853-2-git-send-email-gene.chen.richtek@gmail.com>
+ <CAHp75VdLDvoQicP1nLnjOiit6qjaw9n7+LuJ-J3MtaoHUOa_2g@mail.gmail.com>
+ <CAE+NS35FETQ9ASJeYP=Sa8dm7ohRBcdAwUioCAnHPY2TiD4pNA@mail.gmail.com> <20200910081814.GB28357@amd>
+In-Reply-To: <20200910081814.GB28357@amd>
+From:   Andy Shevchenko <andy.shevchenko@gmail.com>
+Date:   Thu, 10 Sep 2020 14:34:54 +0300
+Message-ID: <CAHp75Vds75jP47Fy78gxrg05J-CYQ7yD_EiDqizKkcW5rHL_RA@mail.gmail.com>
+Subject: Re: [PATCH v3 1/2] leds: mt6360: Add LED driver for MT6360
+To:     Pavel Machek <pavel@ucw.cz>
+Cc:     Gene Chen <gene.chen.richtek@gmail.com>,
+        Jacek Anaszewski <jacek.anaszewski@gmail.com>,
+        Rob Herring <robh+dt@kernel.org>,
+        Matthias Brugger <matthias.bgg@gmail.com>,
+        Dan Murphy <dmurphy@ti.com>,
+        Linux LED Subsystem <linux-leds@vger.kernel.org>,
+        devicetree <devicetree@vger.kernel.org>,
+        linux-arm Mailing List <linux-arm-kernel@lists.infradead.org>,
+        "moderated list:ARM/Mediatek SoC support" 
+        <linux-mediatek@lists.infradead.org>,
+        Linux Kernel Mailing List <linux-kernel@vger.kernel.org>,
+        Gene Chen <gene_chen@richtek.com>, Wilma.Wu@mediatek.com,
+        shufan_lee@richtek.com, cy_huang@richtek.com,
+        benjamin.chao@mediatek.com
+Content-Type: text/plain; charset="UTF-8"
 Sender: devicetree-owner@vger.kernel.org
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-SGkgR2VlcnQtc2FuLA0KDQo+IEZyb206IEdlZXJ0IFV5dHRlcmhvZXZlbiwgU2VudDogVGh1cnNk
-YXksIFNlcHRlbWJlciAxMCwgMjAyMCA4OjE0IFBNDQo+IA0KPiBIaSBTaGltb2RhLXNhbiwNCj4g
-DQo+IE9uIFRodSwgU2VwIDEwLCAyMDIwIGF0IDE6MDQgUE0gWW9zaGloaXJvIFNoaW1vZGENCj4g
-PHlvc2hpaGlyby5zaGltb2RhLnVoQHJlbmVzYXMuY29tPiB3cm90ZToNCj4gPiA+IEZyb206IEdl
-ZXJ0IFV5dHRlcmhvZXZlbiwgU2VudDogV2VkbmVzZGF5LCBTZXB0ZW1iZXIgOSwgMjAyMCAyOjIx
-IEFNDQo+ID4gPiBPbiBNb24sIFNlcCA3LCAyMDIwIGF0IDExOjIwIEFNIFlvc2hpaGlybyBTaGlt
-b2RhDQo+ID4gPiA8eW9zaGloaXJvLnNoaW1vZGEudWhAcmVuZXNhcy5jb20+IHdyb3RlOg0KPiA+
-ID4gPiBJbml0aWFsIHN1cHBvcnQgZm9yIHRoZSBSZW5lc2FzIEZhbGNvbiBDUFUgYW5kIEJyZWFr
-T3V0IGJvYXJkcw0KPiA+ID4gPiBzdXBwb3J0Lg0KPiA+ID4gPg0KPiA+ID4gPiBTaWduZWQtb2Zm
-LWJ5OiBZb3NoaWhpcm8gU2hpbW9kYSA8eW9zaGloaXJvLnNoaW1vZGEudWhAcmVuZXNhcy5jb20+
-DQo+ID4gPg0KPiA+ID4gVGhhbmtzIGZvciB5b3VyIHBhdGNoIQ0KPiA+ID4NCj4gPiA+ID4gLS0t
-IC9kZXYvbnVsbA0KPiA+ID4gPiArKysgYi9hcmNoL2FybTY0L2Jvb3QvZHRzL3JlbmVzYXMvZmFs
-Y29uLWNwdS5kdHNpDQo+ID4gPiA+IEBAIC0wLDAgKzEsNDQgQEANCj4gPiA+ID4gKy8vIFNQRFgt
-TGljZW5zZS1JZGVudGlmaWVyOiBHUEwtMi4wDQo+ID4gPiA+ICsvKg0KPiA+ID4gPiArICogRGV2
-aWNlIFRyZWUgU291cmNlIGZvciB0aGUgRmFsY29uIENQVSBib2FyZA0KPiA+ID4gPiArICoNCj4g
-PiA+ID4gKyAqIENvcHlyaWdodCAoQykgMjAyMCBSZW5lc2FzIEVsZWN0cm9uaWNzIENvcnAuDQo+
-ID4gPiA+ICsgKi8NCj4gPiA+DQo+ID4gPiBBcyB0aGlzIGJvYXJkIGNvbnRhaW5zIHRoZSBDUFUs
-IEkgaGFkIGV4cGVjdGVkDQo+ID4gPg0KPiA+ID4gICAgICNpbmNsdWRlICJyOGE3NzlhMC5kdHNp
-Ig0KPiA+ID4NCj4gPiA+IGhlcmUuDQo+ID4NCj4gPiBJIGdvdCBpdC4gSSdsbCBhZGQgaXQuDQo+
-IA0KPiBUaGFua3MhDQo+IA0KPiBCVFcsIEkgZm9yZ290IHRvIG1lbnRpb24gdGhhdCB0aGUgZmls
-ZSBzaG91bGQgcHJvYmFibHkgYmUgbmFtZWQNCj4gcjhhNzc5YTAtZmFsY29uLWNwdS5kdHNpLCBp
-LmUuIGluY2wuIHRoZSBTb0MgcGFydCBudW1iZXIgcHJlZml4Lg0KDQpJIGdvdCBpdC4gSSdsbCBy
-ZW5hbWUgdGhlIGZpbGUgb24gdjIgcGF0Y2guDQoNCkJlc3QgcmVnYXJkcywNCllvc2hpaGlybyBT
-aGltb2RhDQoNCg==
+On Thu, Sep 10, 2020 at 11:18 AM Pavel Machek <pavel@ucw.cz> wrote:
+
+...
+
+> > > > +enum {
+> > > > +       MT6360_LED_ISNK1 = 0,
+> > > > +       MT6360_LED_ISNK2,
+> > > > +       MT6360_LED_ISNK3,
+> > > > +       MT6360_LED_ISNK4,
+> > > > +       MT6360_LED_FLASH1,
+> > > > +       MT6360_LED_FLASH2,
+> > >
+> > > > +       MT6360_MAX_LEDS,
+> > >
+> > > No comma for terminator entry.
+> > >
+> >
+> > ACK
+>
+> Actually, that comma is fine. Its absence would be fine, too.
+
+It is slightly better not to have to prevent (theoretical) rebase or
+other similar issues when a new item can go behind the terminator. In
+such a case compiler can easily tell you if something is wrong.
+
+> > > > +};
+
+...
+
+> > > > +static const struct of_device_id __maybe_unused mt6360_led_of_id[] = {
+> > > > +       { .compatible = "mediatek,mt6360-led", },
+> > >
+> > > > +       {},
+> > >
+> > > No need comma.
+> >
+> > ACK
+>
+> It is also no hurting comma.
+
+Same explanation. It doesn't hurt per se, but its absence might serve a purpose.
+
+-- 
+With Best Regards,
+Andy Shevchenko
