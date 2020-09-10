@@ -2,69 +2,77 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from vger.kernel.org (vger.kernel.org [23.128.96.18])
-	by mail.lfdr.de (Postfix) with ESMTP id 276A7264664
-	for <lists+devicetree@lfdr.de>; Thu, 10 Sep 2020 14:55:39 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTP id CB113264672
+	for <lists+devicetree@lfdr.de>; Thu, 10 Sep 2020 14:59:09 +0200 (CEST)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S1730203AbgIJMyg (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Thu, 10 Sep 2020 08:54:36 -0400
-Received: from mail.kernel.org ([198.145.29.99]:35980 "EHLO mail.kernel.org"
-        rhost-flags-OK-OK-OK-OK) by vger.kernel.org with ESMTP
-        id S1730734AbgIJMwt (ORCPT <rfc822;devicetree@vger.kernel.org>);
-        Thu, 10 Sep 2020 08:52:49 -0400
-Received: from localhost (fw-tnat.cambridge.arm.com [217.140.96.140])
-        (using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
-        (No client certificate requested)
-        by mail.kernel.org (Postfix) with ESMTPSA id EEEB220BED;
-        Thu, 10 Sep 2020 12:52:17 +0000 (UTC)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=kernel.org;
-        s=default; t=1599742338;
-        bh=c+f/k+6GyQvNsPgFbCCeEDvT5NuCYq5YkYLiuMEqnl0=;
-        h=Date:From:To:Cc:In-Reply-To:References:Subject:From;
-        b=u2vf6VJMoiVc4IaTLGmNSUN1npSYI2KRTyLzavM8NrJyrIh+B9XmLeDU/us9/J0br
-         i5vmaQwhee+l8UMteeLnhYSKfm2OfzSaHXAJx4ZqS3UDMPpsKX9aJDhqDvgpaH4zEg
-         MpXOkM7X0k4bAQynkV+vZxPri2mYykDsSXw/7hr4=
-Date:   Thu, 10 Sep 2020 13:51:33 +0100
-From:   Mark Brown <broonie@kernel.org>
-To:     devicetree@vger.kernel.org, linux-kernel@vger.kernel.org,
+        id S1730863AbgIJM6M (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Thu, 10 Sep 2020 08:58:12 -0400
+Received: from alexa-out.qualcomm.com ([129.46.98.28]:38551 "EHLO
+        alexa-out.qualcomm.com" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
+        with ESMTP id S1730740AbgIJM40 (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Thu, 10 Sep 2020 08:56:26 -0400
+Received: from ironmsg07-lv.qualcomm.com (HELO ironmsg07-lv.qulacomm.com) ([10.47.202.151])
+  by alexa-out.qualcomm.com with ESMTP; 10 Sep 2020 05:55:01 -0700
+Received: from ironmsg01-blr.qualcomm.com ([10.86.208.130])
+  by ironmsg07-lv.qulacomm.com with ESMTP/TLS/AES256-SHA; 10 Sep 2020 05:55:00 -0700
+Received: from c-skakit-linux.ap.qualcomm.com (HELO c-skakit-linux.qualcomm.com) ([10.242.51.242])
+  by ironmsg01-blr.qualcomm.com with ESMTP; 10 Sep 2020 18:24:31 +0530
+Received: by c-skakit-linux.qualcomm.com (Postfix, from userid 2344709)
+        id 3ED0B431F; Thu, 10 Sep 2020 18:24:30 +0530 (IST)
+From:   satya priya <skakit@codeaurora.org>
+To:     Bjorn Andersson <bjorn.andersson@linaro.org>
+Cc:     Matthias Kaehlcke <mka@chromium.org>, gregkh@linuxfoundation.org,
+        Andy Gross <agross@kernel.org>,
         Rob Herring <robh+dt@kernel.org>,
-        Liam Girdwood <lgirdwood@gmail.com>,
-        Jisheng Zhang <Jisheng.Zhang@synaptics.com>
-In-Reply-To: <20200827150640.267f6edc@xhacker.debian>
-References: <20200827150640.267f6edc@xhacker.debian>
-Subject: Re: [PATCH] dt-bindings: regulator: Convert mp886x to json-schema
-Message-Id: <159974229313.39285.6202853983766593999.b4-ty@kernel.org>
+        linux-arm-msm@vger.kernel.org, devicetree@vger.kernel.org,
+        linux-kernel@vger.kernel.org, akashast@codeaurora.org,
+        rojay@codeaurora.org, msavaliy@qti.qualcomm.com,
+        dianders@chromium.org, satya priya <skakit@codeaurora.org>
+Subject: [PATCH V5 0/4] Add wakeup support over UART RX
+Date:   Thu, 10 Sep 2020 18:23:54 +0530
+Message-Id: <1599742438-16811-1-git-send-email-skakit@codeaurora.org>
+X-Mailer: git-send-email 2.7.4
 Sender: devicetree-owner@vger.kernel.org
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-On Thu, 27 Aug 2020 15:06:40 +0800, Jisheng Zhang wrote:
-> Convert the mp886x binding to DT schema format using json-schema.
+Changes in V2:
+ - As per Matthias's comment added wakeup support for all the UARTs
+   of SC7180.
+ - Added sleep state in sc7180-idp.dts file.
+ - Modify the if check in set_mctrl API in serial driver to avoid
+   making RFR high during suspend.
 
-Applied to
+Changes in V3:
+ - As per Matthias's comments modify the idp dts pin config to keep
+   only the required pin settings.
+ - Remove the extra parentheses from serial driver patch.
 
-   https://git.kernel.org/pub/scm/linux/kernel/git/broonie/regulator.git for-next
+Changes in V4:
+ - As per Matthias's comments, change the commit text to mention why
+   GPIO function needs to be selected in sleep.
+ - Add separate patch for improvements made in pin conf settings.
 
-Thanks!
+Changes in V5:
+ - Moved pinctrl and interrupt configuration to board specific files.
+ - Added new patch for trogdor board specific changes.
 
-[1/1] dt-bindings: regulator: Convert mp886x to json-schema
-      commit: fd24adf887e490fd10a9a6bb9d76854e87c235f8
+satya priya (4):
+  arm64: dts: qcom: sc7180: Improve the pin config settings for CTS and
+    TX
+  arm64: dts: qcom: sc7180: Add necessary pinctrl and interrupt config
+    for BT UART
+  arm64: dts: qcom: sc7180-trogdor: Add pinctrl and interrupt config for
+    BT UART
+  tty: serial: qcom_geni_serial: Fix the UART wakeup issue
 
-All being well this means that it will be integrated into the linux-next
-tree (usually sometime in the next 24 hours) and sent to Linus during
-the next merge window (or sooner if it is a bug fix), however if
-problems are discovered then the patch may be dropped or reverted.
+ arch/arm64/boot/dts/qcom/sc7180-idp.dts      | 58 +++++++++++++++++++++++++---
+ arch/arm64/boot/dts/qcom/sc7180-trogdor.dtsi | 48 +++++++++++++++++++++++
+ drivers/tty/serial/qcom_geni_serial.c        |  2 +-
+ 3 files changed, 101 insertions(+), 7 deletions(-)
 
-You may get further e-mails resulting from automated or manual testing
-and review of the tree, please engage with people reporting problems and
-send followup patches addressing any issues that are reported if needed.
+-- 
+QUALCOMM INDIA, on behalf of Qualcomm Innovation Center, Inc. is a member 
+of Code Aurora Forum, hosted by The Linux Foundation
 
-If any updates are required or you are submitting further changes they
-should be sent as incremental updates against current git, existing
-patches will not be replaced.
-
-Please add any relevant lists and maintainers to the CCs when replying
-to this mail.
-
-Thanks,
-Mark
