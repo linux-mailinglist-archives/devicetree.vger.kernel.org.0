@@ -2,223 +2,181 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from vger.kernel.org (vger.kernel.org [23.128.96.18])
-	by mail.lfdr.de (Postfix) with ESMTP id A4C66264488
-	for <lists+devicetree@lfdr.de>; Thu, 10 Sep 2020 12:47:46 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTP id EFDEF26447D
+	for <lists+devicetree@lfdr.de>; Thu, 10 Sep 2020 12:46:50 +0200 (CEST)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S1730477AbgIJKrj (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Thu, 10 Sep 2020 06:47:39 -0400
-Received: from mail-bn8nam11on2059.outbound.protection.outlook.com ([40.107.236.59]:50081
-        "EHLO NAM11-BN8-obe.outbound.protection.outlook.com"
-        rhost-flags-OK-OK-OK-FAIL) by vger.kernel.org with ESMTP
-        id S1730349AbgIJKpa (ORCPT <rfc822;devicetree@vger.kernel.org>);
-        Thu, 10 Sep 2020 06:45:30 -0400
-ARC-Seal: i=1; a=rsa-sha256; s=arcselector9901; d=microsoft.com; cv=none;
- b=W5kPT2MoEfqw+CLLdyffSygM4w8CtBx/6lhHbFeqMxUTcu+eCL4TuEAJFXEowqDlLJEmAcrcnPQWwqQ71rVkTNKL8FolKWmKaWQv/NY6w+sXg8B3CWaLWrbEzHYiqWLRJD2ZPliund16/gpRRPWYW/+iiJ61ilN1hTBrtghR1j7MgYZKJhv5DSJlTBqWw5xCQmCMzDoVgzRHsudSfHZ91JvBEwTei7TtjWA+JVk019WDCygc4q0xh9xn2tJhqdoRBzQ7a1gx25wQJi6SXdS6BhJoKkJH7MTyqwR/bX4AR88Jbg3CN8rR4iXvhvplsVgDsHWepDrPtgcwT85DQ+gwpQ==
-ARC-Message-Signature: i=1; a=rsa-sha256; c=relaxed/relaxed; d=microsoft.com;
- s=arcselector9901;
- h=From:Date:Subject:Message-ID:Content-Type:MIME-Version:X-MS-Exchange-SenderADCheck;
- bh=LDCNfmA2VpqnqjSQXmP74QoaUphwEGVSFL9m2GB7xF0=;
- b=EmAVWC9UqohJDTbKCuL40+6O1j6gOogCFFa1ryT8XOtI/KCq+Ujfu7xLIU4bS/rqOHKE5GHcjK65YR/x9MAculzxhPqSgNVREHeaQPkZxRD9SFiSdiuVeXAR2cA9kU4iabrG0a6XdbL6QzULAkHj4dPT4i7V0ef0FLZK5F0AHNnOMp3kFdIyFXkADGmn+VT1mjrKwTDFwpFW5+8m8+nLDcmAZUYgRdBGO9nRU6xpz+lnS2aa8GWk8T46B+ni0hEHK1v/9Puq4suDYgFRzW2JlQLCDnyiomI4xyKq6KkpiKNNagHOxMlz4jNp5c6Y4qiFJ90taDZhEebnuApqrJkMnA==
-ARC-Authentication-Results: i=1; mx.microsoft.com 1; spf=pass
- smtp.mailfrom=openfive.com; dmarc=pass action=none header.from=sifive.com;
- dkim=pass header.d=sifive.com; arc=none
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=sifive.com;
- s=selector1;
- h=From:Date:Subject:Message-ID:Content-Type:MIME-Version:X-MS-Exchange-SenderADCheck;
- bh=LDCNfmA2VpqnqjSQXmP74QoaUphwEGVSFL9m2GB7xF0=;
- b=CY1LskH9AxVcNelSCZLw34SfGKN/U/+ljmgNNq9obKqWtubAzMMfFPll6Zh913LPyiwFgDZ2lISsrC/F20m6KdUAmqe9+ibkkIjprG+qd0wQDf0VaToy4B0vxV4Jx5LHPm38W9U1qwm0S2n5q+yuyRFOH5yMJ1AFdf8KFLWB2Gc=
-Authentication-Results: vger.kernel.org; dkim=none (message not signed)
- header.d=none;vger.kernel.org; dmarc=none action=none header.from=sifive.com;
-Received: from DM6PR13MB3451.namprd13.prod.outlook.com (2603:10b6:5:1c3::10)
- by DM6PR13MB4330.namprd13.prod.outlook.com (2603:10b6:5:163::30) with
- Microsoft SMTP Server (version=TLS1_2,
- cipher=TLS_ECDHE_RSA_WITH_AES_256_GCM_SHA384) id 15.20.3391.5; Thu, 10 Sep
- 2020 10:44:46 +0000
-Received: from DM6PR13MB3451.namprd13.prod.outlook.com
- ([fe80::a48a:1f7c:267c:876]) by DM6PR13MB3451.namprd13.prod.outlook.com
- ([fe80::a48a:1f7c:267c:876%7]) with mapi id 15.20.3370.016; Thu, 10 Sep 2020
- 10:44:46 +0000
-From:   Sagar Kadam <sagar.kadam@sifive.com>
-To:     linux-pwm@vger.kernel.org, linux-kernel@vger.kernel.org,
-        linux-riscv@lists.infradead.org, devicetree@vger.kernel.org,
-        linux-clk@vger.kernel.org
-Cc:     mturquette@baylibre.com, sboyd@kernel.org, robh+dt@kernel.org,
-        paul.walmsley@sifive.com, palmer@dabbelt.com, tglx@linutronix.de,
-        jason@lakedaemon.net, maz@kernel.org, thierry.reding@gmail.com,
-        u.kleine-koenig@pengutronix.de, lee.jones@linaro.org,
-        aou@eecs.berkeley.edu, yash.shah@sifive.com,
-        Sagar Kadam <sagar.kadam@sifive.com>
-Subject: [PATCH v1 3/3] dt-bindings: riscv: convert pwm bindings to json-schema
-Date:   Thu, 10 Sep 2020 16:14:04 +0530
-Message-Id: <1599734644-4791-4-git-send-email-sagar.kadam@sifive.com>
-X-Mailer: git-send-email 2.7.4
-In-Reply-To: <1599734644-4791-1-git-send-email-sagar.kadam@sifive.com>
-References: <1599734644-4791-1-git-send-email-sagar.kadam@sifive.com>
-Content-Type: text/plain
-X-ClientProxiedBy: BMXPR01CA0087.INDPRD01.PROD.OUTLOOK.COM
- (2603:1096:b00:54::27) To DM6PR13MB3451.namprd13.prod.outlook.com
- (2603:10b6:5:1c3::10)
+        id S1730324AbgIJKpn (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Thu, 10 Sep 2020 06:45:43 -0400
+Received: from lindbergh.monkeyblade.net ([23.128.96.19]:49052 "EHLO
+        lindbergh.monkeyblade.net" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
+        with ESMTP id S1727087AbgIJKoQ (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Thu, 10 Sep 2020 06:44:16 -0400
+Received: from mail-wm1-x342.google.com (mail-wm1-x342.google.com [IPv6:2a00:1450:4864:20::342])
+        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 7085BC061756;
+        Thu, 10 Sep 2020 03:44:16 -0700 (PDT)
+Received: by mail-wm1-x342.google.com with SMTP id s13so5143968wmh.4;
+        Thu, 10 Sep 2020 03:44:16 -0700 (PDT)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+        d=gmail.com; s=20161025;
+        h=subject:to:cc:references:from:message-id:date:user-agent
+         :mime-version:in-reply-to:content-language:content-transfer-encoding;
+        bh=aOHr73dpDQf8/KvHagwjhuowv7yRQqFneFoh3PGbITM=;
+        b=q6Q9EUfgUkDU+JAG1PhnrxhhQLvngbJ4J1HFd6Py38+r1qzQipjqBpiMaSh+yaS7Gs
+         GYJUb7ocbvFg9BR7VWkRKupAOLCOiLsDJC6zR35YgUVfGVH8MXYsSpkRWs+ibXJHuIIO
+         uz0SUOdv8J7Wt24LFIB8uq1RwkFCYunBIZg2+BDG4fGRkYfoFspsKkEaHViST77yQz8J
+         GjIkXKXwbgdSOlElcBswKxsrO8uc5a5DKTEBWJpTn8aYgDToN8wyHcZObzHDgBWZaEKB
+         sCzKremYu7MRyt3Mm60HStuOKlf6ZSLGuIOMBezuog9DNkxAoJFW7v3zEkSZYQSpmPgT
+         iy2w==
+X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+        d=1e100.net; s=20161025;
+        h=x-gm-message-state:subject:to:cc:references:from:message-id:date
+         :user-agent:mime-version:in-reply-to:content-language
+         :content-transfer-encoding;
+        bh=aOHr73dpDQf8/KvHagwjhuowv7yRQqFneFoh3PGbITM=;
+        b=mZYOqsmw9dsDCVfqB+bvjGUgpDPVISsKh3+dqx5EFgW+YK0597KfBnaoJLIjl25CpT
+         GtGpVLKUoEVwdpY8A/w/ToJCEADVrl4N4OjCHf/glCJY/IixUCrFC8uoIf4I1pQ6cd+3
+         WhAqjxPR8RrjGmG5dW2hRP4JFii4/zoH6QUqYA1ZT3NJ/0UjAKE3aEyPtDFggnh5/A/j
+         FV9ubgUGTZfJn/l4Ie8DBdXvW/IkZz6VHzv19c248m6goAa5Nzhiwp5Xf1WgsoN1umys
+         FcflbjbeRe11mNuOAra3QjTPRSSlnWQuAc5INVFALlpQOLPWR3pe67JbyRcj6C/G5awb
+         nA+Q==
+X-Gm-Message-State: AOAM530vXpmKJr+fsddC3jaE1BRWxZoBlCCzmvnz/WRiQ0CgVDJA7VxJ
+        HrbH2TdlG4h5GdQ2yz3v+JI=
+X-Google-Smtp-Source: ABdhPJzstUYCSIAFw1zbcpfYKdoKEa8qqMY49ikOW8IZMKvNF7nI/+/ZPgIR2t4NGWLpd7xlcoQg6Q==
+X-Received: by 2002:a05:600c:ce:: with SMTP id u14mr8261086wmm.137.1599734655104;
+        Thu, 10 Sep 2020 03:44:15 -0700 (PDT)
+Received: from ziggy.stardust ([213.195.113.201])
+        by smtp.gmail.com with ESMTPSA id f1sm8452466wrt.20.2020.09.10.03.44.13
+        (version=TLS1_3 cipher=TLS_AES_128_GCM_SHA256 bits=128/128);
+        Thu, 10 Sep 2020 03:44:14 -0700 (PDT)
+Subject: Re: [PATCH v5 2/4] PCI: mediatek: Use regmap to get shared pcie-cfg
+ base
+To:     Chuanjia Liu <chuanjia.liu@mediatek.com>,
+        Bjorn Helgaas <bhelgaas@google.com>,
+        Rob Herring <robh+dt@kernel.org>,
+        Lorenzo Pieralisi <lorenzo.pieralisi@arm.com>
+Cc:     devicetree@vger.kernel.org, Ryder Lee <ryder.lee@mediatek.com>,
+        Frank Wunderlich <frank-w@public-files.de>,
+        linux-pci@vger.kernel.org, linux-mediatek@lists.infradead.org,
+        linux-arm-kernel@lists.infradead.org, yong.wu@mediatek.com
+References: <20200910061115.909-1-chuanjia.liu@mediatek.com>
+ <20200910061115.909-3-chuanjia.liu@mediatek.com>
+From:   Matthias Brugger <matthias.bgg@gmail.com>
+Message-ID: <b627b938-2210-16d2-1682-3c25506e30f3@gmail.com>
+Date:   Thu, 10 Sep 2020 12:44:08 +0200
+User-Agent: Mozilla/5.0 (X11; Linux x86_64; rv:68.0) Gecko/20100101
+ Thunderbird/68.11.0
 MIME-Version: 1.0
-X-MS-Exchange-MessageSentRepresentingType: 1
-Received: from osubuntu003.open-silicon.com (159.117.144.156) by BMXPR01CA0087.INDPRD01.PROD.OUTLOOK.COM (2603:1096:b00:54::27) with Microsoft SMTP Server (version=TLS1_2, cipher=TLS_ECDHE_RSA_WITH_AES_128_CBC_SHA256) id 15.20.3326.19 via Frontend Transport; Thu, 10 Sep 2020 10:44:41 +0000
-X-Mailer: git-send-email 2.7.4
-X-Originating-IP: [159.117.144.156]
-X-MS-PublicTrafficType: Email
-X-MS-Office365-Filtering-Correlation-Id: 152f3faf-a43f-43a4-59ec-08d85576890f
-X-MS-TrafficTypeDiagnostic: DM6PR13MB4330:
-X-LD-Processed: 22f88e9d-ae0d-4ed9-b984-cdc9be1529f1,ExtAddr
-X-MS-Exchange-Transport-Forked: True
-X-Microsoft-Antispam-PRVS: <DM6PR13MB4330597D39EA193D4E98743697270@DM6PR13MB4330.namprd13.prod.outlook.com>
-X-MS-Oob-TLC-OOBClassifiers: OLM:7691;
-X-MS-Exchange-SenderADCheck: 1
-X-Microsoft-Antispam: BCL:0;
-X-Microsoft-Antispam-Message-Info: 8xTg06r18EcHvaSl2GS1ZKR0ut+Q8cFjcCcoaeW/uGfpMRxT9ZVHHXFw7sF/h3ALK+4XT86eFDz7t5inwb6YM0JV8STwRPBrNk8uTPm3+P8qp0mPCXLOc/iTc/Z2VFKzVIHM2g5USdWnOcrD6onCyElhfzG/vB6RYgPPqv5fcxWafcMCaDR3gCpXdrPuQrWKyo4lo7sUHkIy+7k5IJ8cnaSJ4S7+kON22kWEjzuaukhL0hj+1Do1otYOjE8NdPGVMpeJABq9JbN4ZaP3nIgvjAavp3L3Iv3Kx+28HpJr4xund7YW6vNGvhK9Uf2YD0oqvW5mnjuw20jssmnyYkFqQTsWekXOPR5hil0W6f2bNYuhOiX33k/S0CVIoteIWsa6ui186KFES5w+1Y7JBWu2Rw==
-X-Forefront-Antispam-Report: CIP:255.255.255.255;CTRY:;LANG:en;SCL:1;SRV:;IPV:NLI;SFV:NSPM;H:DM6PR13MB3451.namprd13.prod.outlook.com;PTR:;CAT:NONE;SFS:(366004)(376002)(136003)(396003)(39850400004)(346002)(66946007)(83380400001)(6486002)(6506007)(83170400001)(6512007)(52116002)(316002)(66556008)(66476007)(42882007)(5660300002)(36756003)(107886003)(8676002)(26005)(6666004)(44832011)(2906002)(7416002)(4326008)(16526019)(966005)(8936002)(478600001)(2616005)(956004)(186003);DIR:OUT;SFP:1101;
-X-MS-Exchange-AntiSpam-MessageData: i/qrLlDPQDrLz/F1WDR1fk6ujykA/4vESuKqv/TL4yDDRvd45MZPjQD6kGCIONxlRmfzsRuqWG421sxK5gXRSq2FWdQikHzA5f9T1qaKYJ4iDr3fa8ypSa+HfW2jx8Wo1E4S6is8tSXRYGdwqbCm1pdifOD97WH2nO1Hv9R8Eypca0iIJ0avsi/kCX4lX7MKDkL9s08OqdCej/1hBzjNfumzFEj6EfYR53Qsp6ryf+1fziDi2+zd9yU1J9RGNdKp0gI5ANrLLgqfMci4hOV7Igy4KfR35rDCBBKdVaZcUaZz9FjJgmi/hKv7zBgWTthAdWEMbk6R4U0PAK9pqazPXZeQhIGB5LZzorHLUb1Lqc+ry2yISiTWS6vxBjHliZDZpXc1TjGM1zTiFUQnxILSVBj9XhSXuGcxEgEkjykgCpQQg7vlM21GVXrGYN8cl1dxFC0HqoujpfSjTifmKNT7sfpBo/Ockw4igMlYpOqdhSgGfsJMbe/Izp5O3JezRqpzUglgxDNXaVBS21rsNx2H8Yxm/72hull6f6aVgnIRS1HN8J8uRhNgKR6foWwQg3bbqRTVLP3IrYCffi0tGqskmHdbNJTxQv58I1Otlyr2xOlDktkb6NRLYoQ1JclRy62XU3wMtzqJzZPsuPDmucAFSA==
-X-OriginatorOrg: sifive.com
-X-MS-Exchange-CrossTenant-Network-Message-Id: 152f3faf-a43f-43a4-59ec-08d85576890f
-X-MS-Exchange-CrossTenant-AuthSource: DM6PR13MB3451.namprd13.prod.outlook.com
-X-MS-Exchange-CrossTenant-AuthAs: Internal
-X-MS-Exchange-CrossTenant-OriginalArrivalTime: 10 Sep 2020 10:44:46.8760
- (UTC)
-X-MS-Exchange-CrossTenant-FromEntityHeader: Hosted
-X-MS-Exchange-CrossTenant-Id: 22f88e9d-ae0d-4ed9-b984-cdc9be1529f1
-X-MS-Exchange-CrossTenant-MailboxType: HOSTED
-X-MS-Exchange-CrossTenant-UserPrincipalName: cz5Ap5IhNvqdhl8Cfr4iXjWoT0LEo8Ygp19D1ryqoqQqvO28VXQ2fXCVlkMzpoNDhcpBJCk7dAYsQ9qOrOjkmw==
-X-MS-Exchange-Transport-CrossTenantHeadersStamped: DM6PR13MB4330
+In-Reply-To: <20200910061115.909-3-chuanjia.liu@mediatek.com>
+Content-Type: text/plain; charset=utf-8; format=flowed
+Content-Language: en-US
+Content-Transfer-Encoding: 7bit
 Sender: devicetree-owner@vger.kernel.org
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-Convert device tree bindings for SiFive's PWM controller to YAML
-format.
 
-Signed-off-by: Sagar Kadam <sagar.kadam@sifive.com>
----
- .../devicetree/bindings/pwm/pwm-sifive.txt         | 33 ----------
- .../devicetree/bindings/pwm/pwm-sifive.yaml        | 72 ++++++++++++++++++++++
- 2 files changed, 72 insertions(+), 33 deletions(-)
- delete mode 100644 Documentation/devicetree/bindings/pwm/pwm-sifive.txt
- create mode 100644 Documentation/devicetree/bindings/pwm/pwm-sifive.yaml
 
-diff --git a/Documentation/devicetree/bindings/pwm/pwm-sifive.txt b/Documentation/devicetree/bindings/pwm/pwm-sifive.txt
-deleted file mode 100644
-index 3d1dd7b0..0000000
---- a/Documentation/devicetree/bindings/pwm/pwm-sifive.txt
-+++ /dev/null
-@@ -1,33 +0,0 @@
--SiFive PWM controller
--
--Unlike most other PWM controllers, the SiFive PWM controller currently only
--supports one period for all channels in the PWM. All PWMs need to run at
--the same period. The period also has significant restrictions on the values
--it can achieve, which the driver rounds to the nearest achievable period.
--PWM RTL that corresponds to the IP block version numbers can be found
--here:
--
--https://github.com/sifive/sifive-blocks/tree/master/src/main/scala/devices/pwm
--
--Required properties:
--- compatible: Should be "sifive,<chip>-pwm" and "sifive,pwm<version>".
--  Supported compatible strings are: "sifive,fu540-c000-pwm" for the SiFive
--  PWM v0 as integrated onto the SiFive FU540 chip, and "sifive,pwm0" for the
--  SiFive PWM v0 IP block with no chip integration tweaks.
--  Please refer to sifive-blocks-ip-versioning.txt for details.
--- reg: physical base address and length of the controller's registers
--- clocks: Should contain a clock identifier for the PWM's parent clock.
--- #pwm-cells: Should be 3. See pwm.yaml in this directory
--  for a description of the cell format.
--- interrupts: one interrupt per PWM channel
--
--Examples:
--
--pwm:  pwm@10020000 {
--	compatible = "sifive,fu540-c000-pwm", "sifive,pwm0";
--	reg = <0x0 0x10020000 0x0 0x1000>;
--	clocks = <&tlclk>;
--	interrupt-parent = <&plic>;
--	interrupts = <42 43 44 45>;
--	#pwm-cells = <3>;
--};
-diff --git a/Documentation/devicetree/bindings/pwm/pwm-sifive.yaml b/Documentation/devicetree/bindings/pwm/pwm-sifive.yaml
-new file mode 100644
-index 0000000..415d053
---- /dev/null
-+++ b/Documentation/devicetree/bindings/pwm/pwm-sifive.yaml
-@@ -0,0 +1,72 @@
-+# SPDX-License-Identifier: (GPL-2.0-only OR BSD-2-Clause)
-+# Copyright (C) 2020 SiFive, Inc.
-+%YAML 1.2
-+---
-+$id: http://devicetree.org/schemas/pwm/pwm-sifive.yaml#
-+$schema: http://devicetree.org/meta-schemas/core.yaml#
-+
-+title: SiFive PWM controller
-+
-+maintainers:
-+  - Yash Shah <yash.shah@sifive.com>
-+  - Sagar Kadam <sagar.kadam@sifive.com>
-+  - Paul Walmsley <paul.walmsley@sifive.com>
-+
-+description:
-+  Unlike most other PWM controllers, the SiFive PWM controller currently
-+  only supports one period for all channels in the PWM. All PWMs need to
-+  run at the same period. The period also has significant restrictions on
-+  the values it can achieve, which the driver rounds to the nearest
-+  achievable period. PWM RTL that corresponds to the IP block version
-+  numbers can be found here -
-+
-+  https://github.com/sifive/sifive-blocks/tree/master/src/main/scala/devices/pwm
-+
-+properties:
-+  compatible:
-+    items:
-+      - const: sifive,fu540-c000-pwm
-+      - const: sifive,pwm0
-+    description:
-+      Should be "sifive,<chip>-pwm" and "sifive,pwm<version>". Supported
-+      compatible strings are "sifive,fu540-c000-pwm" for the SiFive PWM v0
-+      as integrated onto the SiFive FU540 chip, and "sifive,pwm0" for the
-+      SiFive PWM v0 IP block with no chip integration tweaks.
-+      Please refer to sifive-blocks-ip-versioning.txt for details.
-+
-+  reg:
-+    maxItems: 1
-+    description: Physical base address and length of the controller's registers
-+
-+  clocks:
-+    description: Should contain a clock identifier for the PWM's parent clock.
-+
-+  "#pwm-cells":
-+    const: 3
-+    description:
-+      Should be 3. See pwm.yaml in this directory for a description of the
-+      cell format.
-+
-+  interrupts:
-+    maxItems: 1
-+    description: One interrupt per PWM channel.
-+
-+required:
-+  - compatible
-+  - reg
-+  - clocks
-+  - "#pwm-cells"
-+  - interrupts
-+
-+additionalProperties: false
-+
-+examples:
-+  - |
-+    pwm:  pwm@10020000 {
-+      compatible = "sifive,fu540-c000-pwm", "sifive,pwm0";
-+      reg = <0x10020000 0x1000>;
-+      clocks = <&tlclk>;
-+      interrupt-parent = <&plic>;
-+      interrupts = <42 43 44 45>;
-+      #pwm-cells = <3>;
-+    };
--- 
-2.7.4
+On 10/09/2020 08:11, Chuanjia Liu wrote:
+> Use regmap to get shared pcie-cfg base and change
+> the method to get pcie irq.
+> 
+> Acked-by: Ryder Lee <ryder.lee@mediatek.com>
+> Signed-off-by: Chuanjia Liu <chuanjia.liu@mediatek.com>
+> ---
+>   drivers/pci/controller/pcie-mediatek.c | 25 ++++++++++++++++++-------
+>   1 file changed, 18 insertions(+), 7 deletions(-)
+> 
+> diff --git a/drivers/pci/controller/pcie-mediatek.c b/drivers/pci/controller/pcie-mediatek.c
+> index cf4c18f0c25a..987845d19982 100644
+> --- a/drivers/pci/controller/pcie-mediatek.c
+> +++ b/drivers/pci/controller/pcie-mediatek.c
+> @@ -14,6 +14,7 @@
+>   #include <linux/irqchip/chained_irq.h>
+>   #include <linux/irqdomain.h>
+>   #include <linux/kernel.h>
+> +#include <linux/mfd/syscon.h>
+>   #include <linux/msi.h>
+>   #include <linux/module.h>
+>   #include <linux/of_address.h>
+> @@ -23,6 +24,7 @@
+>   #include <linux/phy/phy.h>
+>   #include <linux/platform_device.h>
+>   #include <linux/pm_runtime.h>
+> +#include <linux/regmap.h>
+>   #include <linux/reset.h>
+>   
+>   #include "../pci.h"
+> @@ -205,6 +207,7 @@ struct mtk_pcie_port {
+>    * struct mtk_pcie - PCIe host information
+>    * @dev: pointer to PCIe device
+>    * @base: IO mapped register base
+> + * @cfg: IO mapped register map for PCIe config
+>    * @free_ck: free-run reference clock
+>    * @mem: non-prefetchable memory resource
+>    * @ports: pointer to PCIe port information
+> @@ -213,6 +216,7 @@ struct mtk_pcie_port {
+>   struct mtk_pcie {
+>   	struct device *dev;
+>   	void __iomem *base;
+> +	struct regmap *cfg;
+>   	struct clk *free_ck;
+>   
+>   	struct list_head ports;
+> @@ -648,7 +652,7 @@ static int mtk_pcie_setup_irq(struct mtk_pcie_port *port,
+>   		return err;
+>   	}
+>   
+> -	port->irq = platform_get_irq(pdev, port->slot);
+> +	port->irq = platform_get_irq_byname(pdev, "pcie_irq");
+>   	if (port->irq < 0)
+>   		return port->irq;
 
+You will need to make sure taht the driver keeps working with the old DTS 
+format. This is not the case here.
+
+Regards,
+Matthias
+
+>   
+> @@ -674,12 +678,11 @@ static int mtk_pcie_startup_port_v2(struct mtk_pcie_port *port)
+>   	if (!mem)
+>   		return -EINVAL;
+>   
+> -	/* MT7622 platforms need to enable LTSSM and ASPM from PCIe subsys */
+> -	if (pcie->base) {
+> -		val = readl(pcie->base + PCIE_SYS_CFG_V2);
+> -		val |= PCIE_CSR_LTSSM_EN(port->slot) |
+> -		       PCIE_CSR_ASPM_L1_EN(port->slot);
+> -		writel(val, pcie->base + PCIE_SYS_CFG_V2);
+> +	/* MT7622/MT7629 platforms need to enable LTSSM and ASPM. */
+> +	if (pcie->cfg) {
+> +		val = PCIE_CSR_LTSSM_EN(port->slot) |
+> +		      PCIE_CSR_ASPM_L1_EN(port->slot);
+> +		regmap_update_bits(pcie->cfg, PCIE_SYS_CFG_V2, val, val);
+>   	}
+>   
+>   	/* Assert all reset signals */
+> @@ -983,6 +986,7 @@ static int mtk_pcie_subsys_powerup(struct mtk_pcie *pcie)
+>   	struct device *dev = pcie->dev;
+>   	struct platform_device *pdev = to_platform_device(dev);
+>   	struct resource *regs;
+> +	struct device_node *cfg_node;
+>   	int err;
+>   
+>   	/* get shared registers, which are optional */
+> @@ -995,6 +999,13 @@ static int mtk_pcie_subsys_powerup(struct mtk_pcie *pcie)
+>   		}
+>   	}
+>   
+> +	cfg_node = of_parse_phandle(dev->of_node, "mediatek,pcie-cfg", 0);
+> +	if (cfg_node) {
+> +		pcie->cfg = syscon_node_to_regmap(cfg_node);
+> +		if (IS_ERR(pcie->cfg))
+> +			return PTR_ERR(pcie->cfg);
+> +	}
+> +
+>   	pcie->free_ck = devm_clk_get(dev, "free_ck");
+>   	if (IS_ERR(pcie->free_ck)) {
+>   		if (PTR_ERR(pcie->free_ck) == -EPROBE_DEFER)
+> 
