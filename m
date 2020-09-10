@@ -2,93 +2,91 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from vger.kernel.org (vger.kernel.org [23.128.96.18])
-	by mail.lfdr.de (Postfix) with ESMTP id E56F4264761
-	for <lists+devicetree@lfdr.de>; Thu, 10 Sep 2020 15:48:24 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTP id E43CC26472D
+	for <lists+devicetree@lfdr.de>; Thu, 10 Sep 2020 15:44:48 +0200 (CEST)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S1730957AbgIJNri (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Thu, 10 Sep 2020 09:47:38 -0400
-Received: from lindbergh.monkeyblade.net ([23.128.96.19]:48334 "EHLO
-        lindbergh.monkeyblade.net" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S1730960AbgIJNlY (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Thu, 10 Sep 2020 09:41:24 -0400
-Received: from mail-pg1-x541.google.com (mail-pg1-x541.google.com [IPv6:2607:f8b0:4864:20::541])
-        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 1344CC0617A5
-        for <devicetree@vger.kernel.org>; Thu, 10 Sep 2020 06:38:39 -0700 (PDT)
-Received: by mail-pg1-x541.google.com with SMTP id s65so3196392pgb.0
-        for <devicetree@vger.kernel.org>; Thu, 10 Sep 2020 06:38:39 -0700 (PDT)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=linaro.org; s=google;
-        h=from:to:cc:subject:date:message-id:in-reply-to:references;
-        bh=ZNvv8+JQ9K4oMoMWHCuX/xgK/U3xfOuz27z8d5NqEl4=;
-        b=NLrcjaL7QRSgAVAS8jKPxO385aRKlma2IZc9/vZQMhc1OR4CsYF79dddiPDoDdr5hl
-         A+f5oWPz2KrPAExttKTkJrWVL2wH/71AQimKGR4NqxcSJnyZwbfXx0nvETeNgGCb4mp6
-         ubSdBnZwFgzOqAb+cbxQVYpgFOLlqby0bngAfEqcMhaeTdSeqtMOHPHkTicx8Nzt8N80
-         t8OFxvmQH9TYPKrdLipE1bAH1uR7OGUkx3N6M39/g94j69yn3VeGThdE1SMrYYa/v3k8
-         w5w4sCqS/mjRDgHI5Hmc2x+u5Jf3ARyAfH3tGtSEbYyXSVcZ4c8+9gkKcJbVY+poZT3h
-         3v7w==
+        id S1730889AbgIJNm2 (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Thu, 10 Sep 2020 09:42:28 -0400
+Received: from mail-oo1-f67.google.com ([209.85.161.67]:32849 "EHLO
+        mail-oo1-f67.google.com" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
+        with ESMTP id S1730940AbgIJNjw (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Thu, 10 Sep 2020 09:39:52 -0400
+Received: by mail-oo1-f67.google.com with SMTP id m25so1446169oou.0;
+        Thu, 10 Sep 2020 06:39:51 -0700 (PDT)
 X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
         d=1e100.net; s=20161025;
-        h=x-gm-message-state:from:to:cc:subject:date:message-id:in-reply-to
-         :references;
-        bh=ZNvv8+JQ9K4oMoMWHCuX/xgK/U3xfOuz27z8d5NqEl4=;
-        b=A7jnZya+b/lflmQVvCaNParWmdwqxyljO6TQpEHVDn09lQGqyRW3l+sGZ6AwyUPSew
-         cvnp55FzAzxUdi9MFdGygMUPC/7VCzv4B0dlYgHbsT9PrF3dhL6s7mVk1HhslJAhYo0F
-         ROG5nd/dS12pv38bbK1uGCJ4r0CDMcDWFdalDEK5a/qemgdzdw8Ozjqv+UXr+hJ0b7Xv
-         F+9cDqkrcN8MjYrulPVGF1vBAa/zmDfJF2n3BenM2unDCk2BGkY2FJERVOiPMJuYWW/X
-         a/gzUKXSxcxKE17oXhI7aMXIrDrIRkFh3M0nH993I8slBTIgDOB1GOlALWv/o3h7eF0g
-         0kPg==
-X-Gm-Message-State: AOAM530dXIDvgMOQEQ9rRNQtuyTNn8VoivV+QV+M8umP20+S8mUQCJS4
-        yz7MKSv2ZtCvR5eg+hNhmh/B
-X-Google-Smtp-Source: ABdhPJzW+u4JvdtC188qU8jt9B5t020dsUHriYtFX1t07dZfPWLHMeGvGfPiBb3GayK81YdfH+LNiw==
-X-Received: by 2002:aa7:9edb:0:b029:13e:d13d:a059 with SMTP id r27-20020aa79edb0000b029013ed13da059mr5639198pfq.31.1599745118657;
-        Thu, 10 Sep 2020 06:38:38 -0700 (PDT)
-Received: from localhost.localdomain ([103.59.133.81])
-        by smtp.googlemail.com with ESMTPSA id o30sm5603801pgc.45.2020.09.10.06.38.35
-        (version=TLS1_3 cipher=TLS_AES_256_GCM_SHA384 bits=256/256);
-        Thu, 10 Sep 2020 06:38:38 -0700 (PDT)
-From:   Manivannan Sadhasivam <manivannan.sadhasivam@linaro.org>
-To:     wg@grandegger.com, mkl@pengutronix.de, robh+dt@kernel.org
-Cc:     linux-can@vger.kernel.org, devicetree@vger.kernel.org,
-        linux-kernel@vger.kernel.org, dev.kurt@vandijck-laurijssen.be,
-        o.rempel@pengutronix.de,
-        Manivannan Sadhasivam <manivannan.sadhasivam@linaro.org>
-Subject: [PATCH 6/6] MAINTAINERS: Add entry for Microchip MCP25XXFD SPI-CAN network driver
-Date:   Thu, 10 Sep 2020 19:08:06 +0530
-Message-Id: <20200910133806.25077-7-manivannan.sadhasivam@linaro.org>
-X-Mailer: git-send-email 2.17.1
-In-Reply-To: <20200910133806.25077-1-manivannan.sadhasivam@linaro.org>
-References: <20200910133806.25077-1-manivannan.sadhasivam@linaro.org>
+        h=x-gm-message-state:mime-version:references:in-reply-to:from:date
+         :message-id:subject:to:cc;
+        bh=fuIaTh3Pz3XpBBXXvEDUU0YQElK+nkti8UzeWWJ7a+U=;
+        b=BVlnlHizRSX/wts4QURL6v+vSKhMiFmUcJYxxq5qIRR6n69yMZUwhWQgD/U+xS1YJy
+         XltqVGs2oLWzqzl0iNM64qKLMpSkEQUZKZS1gcuBvFZo2rG0oykLVgj8Loh0N6+ormp+
+         pkOSzNwldUN1wzvxcsAdIHF/pJBXJ0MBGg0+vN5qp61YSB+PCZMd5g+60Sz+FbVrkuvw
+         5wSiojc/MsQvRe7qgW33fqJAEb3IKNYCd5MxxAkVSUGBOaeZ4ptBSYliAArwZMe9gNWt
+         RoO14jtHtYRIfGlGYFfiX8Qc+peMB8BDugxL+ov8S7HDH2xsvxknCz+rqdgiC09noBGt
+         Z7Bg==
+X-Gm-Message-State: AOAM5300By7PJJdGe2Oau4XITppbZwfuUz2ZLnuxyL5GUUZxQxiNzdf6
+        WFcPQmzzI+kKJBn3vPVVKUpWoRYSekyNaqj5gpN+Fd5/JQc=
+X-Google-Smtp-Source: ABdhPJzBoEOi1+NC2zEApW5vQGpwWc46XxoohF+/VXD2icQ34M3cjcdB1EMf0Ctl0IujE3VlBgKOiOWdXEjqTyRpxg4=
+X-Received: by 2002:a4a:da4e:: with SMTP id f14mr4490811oou.40.1599745190779;
+ Thu, 10 Sep 2020 06:39:50 -0700 (PDT)
+MIME-Version: 1.0
+References: <1599739372-30669-1-git-send-email-yoshihiro.shimoda.uh@renesas.com>
+ <1599739372-30669-5-git-send-email-yoshihiro.shimoda.uh@renesas.com>
+In-Reply-To: <1599739372-30669-5-git-send-email-yoshihiro.shimoda.uh@renesas.com>
+From:   Geert Uytterhoeven <geert@linux-m68k.org>
+Date:   Thu, 10 Sep 2020 15:39:39 +0200
+Message-ID: <CAMuHMdUELBtGqkjryfcg6P=Ja6vZuR9MG8FDu66Ze9npJ_r=DQ@mail.gmail.com>
+Subject: Re: [PATCH v2 4/4] arm64: dts: renesas: Add Renesas Falcon boards support
+To:     Yoshihiro Shimoda <yoshihiro.shimoda.uh@renesas.com>
+Cc:     Magnus Damm <magnus.damm@gmail.com>,
+        Rob Herring <robh+dt@kernel.org>,
+        Linux-Renesas <linux-renesas-soc@vger.kernel.org>,
+        "open list:OPEN FIRMWARE AND FLATTENED DEVICE TREE BINDINGS" 
+        <devicetree@vger.kernel.org>
+Content-Type: text/plain; charset="UTF-8"
 Sender: devicetree-owner@vger.kernel.org
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-Add MAINTAINERS entry for Microchip MCP25XXFD SPI-CAN network driver.
+Hi Shimoda-san,
 
-Signed-off-by: Manivannan Sadhasivam <manivannan.sadhasivam@linaro.org>
----
- MAINTAINERS | 8 ++++++++
- 1 file changed, 8 insertions(+)
+On Thu, Sep 10, 2020 at 2:03 PM Yoshihiro Shimoda
+<yoshihiro.shimoda.uh@renesas.com> wrote:
+> Initial support for the Renesas Falcon CPU and BreakOut boards
+> support.
+>
+> Signed-off-by: Yoshihiro Shimoda <yoshihiro.shimoda.uh@renesas.com>
 
-diff --git a/MAINTAINERS b/MAINTAINERS
-index b5cfab015bd6..e4ddf908a8b5 100644
---- a/MAINTAINERS
-+++ b/MAINTAINERS
-@@ -10652,6 +10652,14 @@ L:	linux-input@vger.kernel.org
- S:	Maintained
- F:	drivers/hid/hid-mcp2221.c
- 
-+MCP25XXFD SPI-CAN NETWORK DRIVER
-+M:	Marc Kleine-Budde <mkl@pengutronix.de>
-+M:	Manivannan Sadhasivam <manivannan.sadhasivam@linaro.org>
-+L:	linux-can@vger.kernel.org
-+S:	Maintained
-+F:	Documentation/devicetree/bindings/net/can/microchip,mcp25xxfd.yaml
-+F:	drivers/net/can/spi/mcp25xxfd/
-+
- MCP4018 AND MCP4531 MICROCHIP DIGITAL POTENTIOMETER DRIVERS
- M:	Peter Rosin <peda@axentia.se>
- L:	linux-iio@vger.kernel.org
+Thanks for the update!
+
+> --- /dev/null> +++ b/arch/arm64/boot/dts/renesas/r8a779a0-falcon.dts
+> @@ -0,0 +1,23 @@
+> +// SPDX-License-Identifier: GPL-2.0
+> +/*
+> + * Device Tree Source for the Falcon CPU and BreakOut boards
+> + *
+> + * Copyright (C) 2020 Renesas Electronics Corp.
+> + */
+> +
+> +/dts-v1/;
+> +#include "r8a779a0.dtsi"
+
+Not needed, as already included by the file below.
+
+> +#include "r8a779a0-falcon-cpu.dtsi"
+
+Reviewed-by: Geert Uytterhoeven <geert+renesas@glider.be>
+
+No need to resend, will queue in renesas-devel for v5.10 with the above fixed.
+
+Gr{oetje,eeting}s,
+
+                        Geert
+
 -- 
-2.17.1
+Geert Uytterhoeven -- There's lots of Linux beyond ia32 -- geert@linux-m68k.org
 
+In personal conversations with technical people, I call myself a hacker. But
+when I'm talking to journalists I just say "programmer" or something like that.
+                                -- Linus Torvalds
