@@ -2,142 +2,106 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from vger.kernel.org (vger.kernel.org [23.128.96.18])
-	by mail.lfdr.de (Postfix) with ESMTP id F1FE4264123
-	for <lists+devicetree@lfdr.de>; Thu, 10 Sep 2020 11:14:48 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTP id 06C6A26422D
+	for <lists+devicetree@lfdr.de>; Thu, 10 Sep 2020 11:34:08 +0200 (CEST)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S1730252AbgIJJOp (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Thu, 10 Sep 2020 05:14:45 -0400
-Received: from verein.lst.de ([213.95.11.211]:60117 "EHLO verein.lst.de"
-        rhost-flags-OK-OK-OK-OK) by vger.kernel.org with ESMTP
-        id S1727090AbgIJJOC (ORCPT <rfc822;devicetree@vger.kernel.org>);
-        Thu, 10 Sep 2020 05:14:02 -0400
-Received: by verein.lst.de (Postfix, from userid 2407)
-        id 7F59E6736F; Thu, 10 Sep 2020 11:13:51 +0200 (CEST)
-Date:   Thu, 10 Sep 2020 11:13:51 +0200
-From:   Christoph Hellwig <hch@lst.de>
-To:     Greg KH <greg@kroah.com>
-Cc:     Christoph Hellwig <hch@lst.de>, iommu@lists.linux-foundation.org,
-        Russell King <linux@armlinux.org.uk>,
-        Santosh Shilimkar <ssantosh@kernel.org>,
-        Jim Quinlan <james.quinlan@broadcom.com>,
-        Nathan Chancellor <natechancellor@gmail.com>,
-        Florian Fainelli <f.fainelli@gmail.com>,
-        Robin Murphy <robin.murphy@arm.com>,
-        Rob Herring <robh+dt@kernel.org>,
-        Frank Rowand <frowand.list@gmail.com>,
-        linux-arm-kernel@lists.infradead.org, linux-kernel@vger.kernel.org,
-        linux-sh@vger.kernel.org, linux-pci@vger.kernel.org,
-        linux-acpi@vger.kernel.org, devicetree@vger.kernel.org,
-        linux-usb@vger.kernel.org
-Subject: Re: [PATCH 3/3] dma-mapping: introduce DMA range map, supplanting
- dma_pfn_offset
-Message-ID: <20200910091351.GA25883@lst.de>
-References: <20200910054038.324517-1-hch@lst.de> <20200910054038.324517-4-hch@lst.de> <20200910075351.GA1092435@kroah.com>
+        id S1730657AbgIJJeF (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Thu, 10 Sep 2020 05:34:05 -0400
+Received: from mail-ot1-f68.google.com ([209.85.210.68]:40810 "EHLO
+        mail-ot1-f68.google.com" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
+        with ESMTP id S1730791AbgIJJdt (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Thu, 10 Sep 2020 05:33:49 -0400
+Received: by mail-ot1-f68.google.com with SMTP id e23so4791290otk.7;
+        Thu, 10 Sep 2020 02:33:49 -0700 (PDT)
+X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+        d=1e100.net; s=20161025;
+        h=x-gm-message-state:mime-version:references:in-reply-to:from:date
+         :message-id:subject:to:cc;
+        bh=/C47IB+M4nbaJ9760h1nUtZkhySt02neFnlZ98xNcsk=;
+        b=X6CvrbmrMXIQZ9XAdwJxI3iIAEp9o/w/jhssu47T7nVwji7LN21JlQaF67YJgQyDaB
+         eXF2DYp5RHqshNjSW8hD64pl4nb6EdL1/2m+a47uMN5djGqS4o/Es+VsUtNQg/jiZ7pG
+         7VNnxchVA5RupQpTsLZHZn4BH7QL1aoD/x++dx1IEgm90xwBbMgN7umcy2Yk2qz4luTq
+         Sp8bph9ur0IW/C+3j++y1JlyYAvbDqE8XZPKe7HwBd/K3H/LjtUybZvd29dFr97hCjf0
+         Xde5cldfpw8c7vBvJX7RXHzcB87FMZzoixTJ00TWI/B81Dpfrl9EcDILcc4Kp0qcyG48
+         eHJQ==
+X-Gm-Message-State: AOAM533Wp3icg8dDtRrN5/VZbJoF+KFDbYfStdbIIr3EqovGB9M4o+ST
+        uaOyim5s3wGMPmN6jfcx4wTfrghMBb0oTpz+Fn0=
+X-Google-Smtp-Source: ABdhPJyKtepHyQ3hj+VpqxVbmkIPUxk+KZPk5olzAOt0nNaXE+lJagqO0th4OOsmJLg0LdaTe+wwlek1fosVWcd6QfQ=
+X-Received: by 2002:a9d:3b76:: with SMTP id z109mr3428638otb.250.1599730428650;
+ Thu, 10 Sep 2020 02:33:48 -0700 (PDT)
 MIME-Version: 1.0
-Content-Type: text/plain; charset=us-ascii
-Content-Disposition: inline
-In-Reply-To: <20200910075351.GA1092435@kroah.com>
-User-Agent: Mutt/1.5.17 (2007-11-01)
+References: <87o8mhrtxo.wl-kuninori.morimoto.gx@renesas.com> <87h7s9rtvl.wl-kuninori.morimoto.gx@renesas.com>
+In-Reply-To: <87h7s9rtvl.wl-kuninori.morimoto.gx@renesas.com>
+From:   Geert Uytterhoeven <geert@linux-m68k.org>
+Date:   Thu, 10 Sep 2020 11:33:37 +0200
+Message-ID: <CAMuHMdWaH7eTFTxPUR6qmxV1m=GK_LW7o=ct7x+yE2UQJDy2ig@mail.gmail.com>
+Subject: Re: [PATCH v2 05/10] arm64: dts: renesas: r8a77961: Add FCP device nodes
+To:     Kuninori Morimoto <kuninori.morimoto.gx@renesas.com>
+Cc:     Rob Herring <robh+dt@kernel.org>,
+        Laurent <laurent.pinchart@ideasonboard.com>,
+        David Airlie <airlied@linux.ie>,
+        Daniel Vetter <daniel@ffwll.ch>,
+        Magnus <magnus.damm@gmail.com>,
+        Linux-Renesas <linux-renesas-soc@vger.kernel.org>,
+        Linux-DT <devicetree@vger.kernel.org>,
+        Kieran Bingham <kieran.bingham+renesas@ideasonboard.com>,
+        shimoda <yoshihiro.shimoda.uh@renesas.com>,
+        DRI Development <dri-devel@lists.freedesktop.org>
+Content-Type: text/plain; charset="UTF-8"
 Sender: devicetree-owner@vger.kernel.org
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-On Thu, Sep 10, 2020 at 09:53:51AM +0200, Greg KH wrote:
-> >  		/*
-> >  		 * Please refer to usb_alloc_dev() to see why we set
-> > -		 * dma_mask and dma_pfn_offset.
-> > +		 * dma_mask and dma_range_map.
-> >  		 */
-> >  		intf->dev.dma_mask = dev->dev.dma_mask;
-> > -		intf->dev.dma_pfn_offset = dev->dev.dma_pfn_offset;
-> > +		if (dma_direct_copy_range_map(&intf->dev, &dev->dev))
-> > +			dev_err(&dev->dev, "failed to copy DMA map\n");
-> 
-> We tell the user, but then just keep on running?  Is there anything that
-> we can do here?
-> 
-> If not, why not have dma_direct_copy_range_map() print out the error?
+Hi Morimoto-san,
 
-At least for USB I'm pretty sure this isn't required at all.  I've been
-running with the patch below on my desktop for two days now trying all
-the usb toys I have (in addition to grepping for obvious abuses in
-the drivers).  remoteproc is a different story, but the DMA handling
-seems there is sketchy to start with..
+On Tue, Sep 8, 2020 at 2:34 AM Kuninori Morimoto
+<kuninori.morimoto.gx@renesas.com> wrote:
+> From: Kuninori Morimoto <kuninori.morimoto.gx@renesas.com>
+>
+> This patch adds FCP device nodes for R-Car M3-W+ (r8a77961) SoC.
+> This patch was tested on R-Car M3-W+ Salvator-XS board.
+>
+> Signed-off-by: Kuninori Morimoto <kuninori.morimoto.gx@renesas.com>
 
----
-From 8bae3e6833f2ca431dcfcbc8f9cced7d5e972a01 Mon Sep 17 00:00:00 2001
-From: Christoph Hellwig <hch@lst.de>
-Date: Wed, 9 Sep 2020 08:28:59 +0200
-Subject: usb: don't inherity DMA properties for USB devices
+> --- a/arch/arm64/boot/dts/renesas/r8a77961.dtsi
+> +++ b/arch/arm64/boot/dts/renesas/r8a77961.dtsi
+> @@ -2004,6 +2004,58 @@ pciec1: pcie@ee800000 {
+>                         status = "disabled";
+>                 };
+>
+> +               fcpf0: fcp@fe950000 {
+> +                       compatible = "renesas,fcpf";
+> +                       reg = <0 0xfe950000 0 0x200>;
+> +                       clocks = <&cpg CPG_MOD 615>;
+> +                       power-domains = <&sysc R8A77961_PD_A3VC>;
+> +                       resets = <&cpg 615>;
 
-As the comment in usb_alloc_dev correctly states, drivers can't use
-the DMA API on usb device, and at least calling dma_set_mask on them
-is highly dangerous.  Unlike what the comment states upper level drivers
-also can't really use the presence of a dma mask to check for DMA
-support, as the dma_mask is set by default for most busses.
+Missing "iommus = <&ipmmu_vc0 16>;"
 
-Remove the copying over of DMA information, and remove the now unused
-dma_direct_copy_range_map export.
+> +               };
+> +
+> +               fcpvb0: fcp@fe96f000 {
+> +                       compatible = "renesas,fcpv";
+> +                       reg = <0 0xfe96f000 0 0x200>;
+> +                       clocks = <&cpg CPG_MOD 607>;
+> +                       power-domains = <&sysc R8A77961_PD_A3VC>;
+> +                       resets = <&cpg 607>;
 
-Signed-off-by: Christoph Hellwig <hch@lst.de>
----
- drivers/usb/core/message.c |  7 -------
- drivers/usb/core/usb.c     | 13 -------------
- kernel/dma/direct.c        |  1 -
- 3 files changed, 21 deletions(-)
+Missing "iommus = <&ipmmu_vi0 5>;"
 
-diff --git a/drivers/usb/core/message.c b/drivers/usb/core/message.c
-index 935ee98e049f65..9e45732dc1d1d1 100644
---- a/drivers/usb/core/message.c
-+++ b/drivers/usb/core/message.c
-@@ -1954,13 +1954,6 @@ int usb_set_configuration(struct usb_device *dev, int configuration)
- 		intf->dev.bus = &usb_bus_type;
- 		intf->dev.type = &usb_if_device_type;
- 		intf->dev.groups = usb_interface_groups;
--		/*
--		 * Please refer to usb_alloc_dev() to see why we set
--		 * dma_mask and dma_range_map.
--		 */
--		intf->dev.dma_mask = dev->dev.dma_mask;
--		if (dma_direct_copy_range_map(&intf->dev, &dev->dev))
--			dev_err(&dev->dev, "failed to copy DMA map\n");
- 		INIT_WORK(&intf->reset_ws, __usb_queue_reset_device);
- 		intf->minor = -1;
- 		device_initialize(&intf->dev);
-diff --git a/drivers/usb/core/usb.c b/drivers/usb/core/usb.c
-index 23d451f6894d70..9b4ac4415f1a47 100644
---- a/drivers/usb/core/usb.c
-+++ b/drivers/usb/core/usb.c
-@@ -599,19 +599,6 @@ struct usb_device *usb_alloc_dev(struct usb_device *parent,
- 	dev->dev.bus = &usb_bus_type;
- 	dev->dev.type = &usb_device_type;
- 	dev->dev.groups = usb_device_groups;
--	/*
--	 * Fake a dma_mask/offset for the USB device:
--	 * We cannot really use the dma-mapping API (dma_alloc_* and
--	 * dma_map_*) for USB devices but instead need to use
--	 * usb_alloc_coherent and pass data in 'urb's, but some subsystems
--	 * manually look into the mask/offset pair to determine whether
--	 * they need bounce buffers.
--	 * Note: calling dma_set_mask() on a USB device would set the
--	 * mask for the entire HCD, so don't do that.
--	 */
--	dev->dev.dma_mask = bus->sysdev->dma_mask;
--	if (dma_direct_copy_range_map(&dev->dev, bus->sysdev))
--		dev_err(&dev->dev, "failed to copy DMA map\n");
- 	set_dev_node(&dev->dev, dev_to_node(bus->sysdev));
- 	dev->state = USB_STATE_ATTACHED;
- 	dev->lpm_disable_count = 1;
-diff --git a/kernel/dma/direct.c b/kernel/dma/direct.c
-index fc815f7375e282..3af257571a3b42 100644
---- a/kernel/dma/direct.c
-+++ b/kernel/dma/direct.c
-@@ -552,4 +552,3 @@ int dma_direct_copy_range_map(struct device *to, struct device *from)
- 	to->dma_range_map = new_map;
- 	return 0;
- }
--EXPORT_SYMBOL_GPL(dma_direct_copy_range_map);
+> +               };
+
+The rest looks good to me, so with the above fixed:
+Reviewed-by: Geert Uytterhoeven <geert+renesas@glider.be>
+
+Gr{oetje,eeting}s,
+
+                        Geert
+
 -- 
-2.28.0
+Geert Uytterhoeven -- There's lots of Linux beyond ia32 -- geert@linux-m68k.org
 
+In personal conversations with technical people, I call myself a hacker. But
+when I'm talking to journalists I just say "programmer" or something like that.
+                                -- Linus Torvalds
