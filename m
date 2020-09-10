@@ -2,75 +2,53 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from vger.kernel.org (vger.kernel.org [23.128.96.18])
-	by mail.lfdr.de (Postfix) with ESMTP id 1F487264661
-	for <lists+devicetree@lfdr.de>; Thu, 10 Sep 2020 14:54:36 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTP id 276A7264664
+	for <lists+devicetree@lfdr.de>; Thu, 10 Sep 2020 14:55:39 +0200 (CEST)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S1730680AbgIJMxD (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Thu, 10 Sep 2020 08:53:03 -0400
-Received: from mail.kernel.org ([198.145.29.99]:35868 "EHLO mail.kernel.org"
+        id S1730203AbgIJMyg (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Thu, 10 Sep 2020 08:54:36 -0400
+Received: from mail.kernel.org ([198.145.29.99]:35980 "EHLO mail.kernel.org"
         rhost-flags-OK-OK-OK-OK) by vger.kernel.org with ESMTP
-        id S1730694AbgIJMwH (ORCPT <rfc822;devicetree@vger.kernel.org>);
-        Thu, 10 Sep 2020 08:52:07 -0400
+        id S1730734AbgIJMwt (ORCPT <rfc822;devicetree@vger.kernel.org>);
+        Thu, 10 Sep 2020 08:52:49 -0400
 Received: from localhost (fw-tnat.cambridge.arm.com [217.140.96.140])
         (using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
         (No client certificate requested)
-        by mail.kernel.org (Postfix) with ESMTPSA id 0DB0B208FE;
-        Thu, 10 Sep 2020 12:52:06 +0000 (UTC)
+        by mail.kernel.org (Postfix) with ESMTPSA id EEEB220BED;
+        Thu, 10 Sep 2020 12:52:17 +0000 (UTC)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=kernel.org;
-        s=default; t=1599742327;
-        bh=UD5TaEy8wxsIp8mgrsHiGFMm82kAp/qRHT62V05wZ/c=;
+        s=default; t=1599742338;
+        bh=c+f/k+6GyQvNsPgFbCCeEDvT5NuCYq5YkYLiuMEqnl0=;
         h=Date:From:To:Cc:In-Reply-To:References:Subject:From;
-        b=pigTNppn4yTAbkkFsKlwZKc5rp/cZDxXMIjQKcrl38XBMQDNgsoeyJbc+xT2FrbuE
-         5hwVtobENa27f1/CUF47R+egESEI/eWR8qsrXlzO8BJIfLORRvXcBxqvHpmEZbL/yi
-         cFr835WK9hubS7YEGVv8FrkwYDn/yzJ6a4jERk6g=
-Date:   Thu, 10 Sep 2020 13:51:22 +0100
+        b=u2vf6VJMoiVc4IaTLGmNSUN1npSYI2KRTyLzavM8NrJyrIh+B9XmLeDU/us9/J0br
+         i5vmaQwhee+l8UMteeLnhYSKfm2OfzSaHXAJx4ZqS3UDMPpsKX9aJDhqDvgpaH4zEg
+         MpXOkM7X0k4bAQynkV+vZxPri2mYykDsSXw/7hr4=
+Date:   Thu, 10 Sep 2020 13:51:33 +0100
 From:   Mark Brown <broonie@kernel.org>
-To:     Srinivas Kandagatla <srinivas.kandagatla@linaro.org>
-Cc:     alsa-devel@alsa-project.org, plai@codeaurora.org,
-        lgirdwood@gmail.com, robh+dt@kernel.org, tiwai@suse.com,
-        bgoswami@codeaurora.org, devicetree@vger.kernel.org,
-        linux-kernel@vger.kernel.org
-In-Reply-To: <20200910101732.23484-1-srinivas.kandagatla@linaro.org>
-References: <20200910101732.23484-1-srinivas.kandagatla@linaro.org>
-Subject: Re: [PATCH 0/8] ASoC: q6dsp: Add support to Codec Ports.
-Message-Id: <159974228224.39114.1744393464890136484.b4-ty@kernel.org>
+To:     devicetree@vger.kernel.org, linux-kernel@vger.kernel.org,
+        Rob Herring <robh+dt@kernel.org>,
+        Liam Girdwood <lgirdwood@gmail.com>,
+        Jisheng Zhang <Jisheng.Zhang@synaptics.com>
+In-Reply-To: <20200827150640.267f6edc@xhacker.debian>
+References: <20200827150640.267f6edc@xhacker.debian>
+Subject: Re: [PATCH] dt-bindings: regulator: Convert mp886x to json-schema
+Message-Id: <159974229313.39285.6202853983766593999.b4-ty@kernel.org>
 Sender: devicetree-owner@vger.kernel.org
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-On Thu, 10 Sep 2020 11:17:24 +0100, Srinivas Kandagatla wrote:
-> LPASS IP on SoCs like SM8250 has Digital Codec part integrated into it.
-> This ports are exposed in Q6DSP as Codec ports. This patchset adds
-> support to those q6afe ports along with q6routing and q6afe-dai.
-> 
-> This patchset has been tested along with other patches on
-> Qualcomm Robotics RB5 Platform with Soundwire and WSA8815 Codec.
-> 
-> [...]
+On Thu, 27 Aug 2020 15:06:40 +0800, Jisheng Zhang wrote:
+> Convert the mp886x binding to DT schema format using json-schema.
 
 Applied to
 
-   https://git.kernel.org/pub/scm/linux/kernel/git/broonie/sound.git for-next
+   https://git.kernel.org/pub/scm/linux/kernel/git/broonie/regulator.git for-next
 
 Thanks!
 
-[1/8] ASoC: q6dsp: q6afe: add support to Codec DMA ports
-      commit: 150b2e86c54ad09c26e60f32925aeaf1fca1a5d3
-[2/8] ASoC: q6dsp: q6routing: add support to Codec DMA ports
-      commit: 825492cb518bcf654e9205b3c723585191314d1a
-[3/8] ASoC: q6dsp: q6afe: prepare afe_apr_send_pkt to take response opcode
-      commit: 342a4f8ca12b1cac812151b05f8a837eebc6885c
-[4/8] ASoC: q6dsp: q6afe: add global q6afe waitqueue
-      commit: 181202d021f51d4c0442e71adc34e9629a35a6d8
-[5/8] ASoC: q6dsp: q6afe: add lpass hw voting support
-      commit: 55e07531d922540c656c7fc2e21d76e1b751f279
-[6/8] ASoC: q6dsp: q6afe: update q6afe_set_param to support global clocks
-      commit: 84ab3b9f19f6ff0bb5df6c6deea75ab4c1d2aff8
-[7/8] ASoC: q6dsp: q6afe: add codec lpass clocks
-      commit: 0c3e35fc1ebe22a5254ba3bff2599a2c49b00abe
-[8/8] ASoC: q6dsp: q6afe-dai: add support to Codec DMA ports
-      commit: 1fdbcfa9fdee6f9cc00129f0f5ed0ff29cfef646
+[1/1] dt-bindings: regulator: Convert mp886x to json-schema
+      commit: fd24adf887e490fd10a9a6bb9d76854e87c235f8
 
 All being well this means that it will be integrated into the linux-next
 tree (usually sometime in the next 24 hours) and sent to Linus during
