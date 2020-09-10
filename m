@@ -2,89 +2,81 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from vger.kernel.org (vger.kernel.org [23.128.96.18])
-	by mail.lfdr.de (Postfix) with ESMTP id 72D8F2653EC
-	for <lists+devicetree@lfdr.de>; Thu, 10 Sep 2020 23:42:32 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTP id E648F26545C
+	for <lists+devicetree@lfdr.de>; Thu, 10 Sep 2020 23:55:36 +0200 (CEST)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S1729953AbgIJMMj (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Thu, 10 Sep 2020 08:12:39 -0400
-Received: from relmlor1.renesas.com ([210.160.252.171]:49725 "EHLO
-        relmlie5.idc.renesas.com" rhost-flags-OK-OK-OK-FAIL)
-        by vger.kernel.org with ESMTP id S1730309AbgIJMDI (ORCPT
-        <rfc822;devicetree@vger.kernel.org>);
-        Thu, 10 Sep 2020 08:03:08 -0400
-X-IronPort-AV: E=Sophos;i="5.76,412,1592838000"; 
-   d="scan'208";a="56936701"
-Received: from unknown (HELO relmlir6.idc.renesas.com) ([10.200.68.152])
-  by relmlie5.idc.renesas.com with ESMTP; 10 Sep 2020 21:03:06 +0900
-Received: from localhost.localdomain (unknown [10.166.252.89])
-        by relmlir6.idc.renesas.com (Postfix) with ESMTP id 63A98425ACDC;
-        Thu, 10 Sep 2020 21:03:06 +0900 (JST)
-From:   Yoshihiro Shimoda <yoshihiro.shimoda.uh@renesas.com>
-To:     geert+renesas@glider.be, magnus.damm@gmail.com, robh+dt@kernel.org
-Cc:     linux-renesas-soc@vger.kernel.org, devicetree@vger.kernel.org,
-        Yoshihiro Shimoda <yoshihiro.shimoda.uh@renesas.com>
-Subject: [PATCH v2 0/4] treewide: add support for R-Car V3U
-Date:   Thu, 10 Sep 2020 21:02:48 +0900
-Message-Id: <1599739372-30669-1-git-send-email-yoshihiro.shimoda.uh@renesas.com>
-X-Mailer: git-send-email 2.7.4
+        id S1728527AbgIJVmo (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Thu, 10 Sep 2020 17:42:44 -0400
+Received: from lelv0143.ext.ti.com ([198.47.23.248]:46424 "EHLO
+        lelv0143.ext.ti.com" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
+        with ESMTP id S1730776AbgIJMlv (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Thu, 10 Sep 2020 08:41:51 -0400
+Received: from fllv0035.itg.ti.com ([10.64.41.0])
+        by lelv0143.ext.ti.com (8.15.2/8.15.2) with ESMTP id 08ACfCwS058807;
+        Thu, 10 Sep 2020 07:41:12 -0500
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=ti.com;
+        s=ti-com-17Q1; t=1599741672;
+        bh=nzSal+6OsgkooGCpPLASc7epDcU1mtLH8VlEHBjVaT8=;
+        h=From:To:CC:Subject:Date;
+        b=MpjF/hY5RgChDuhPz9O/wrU1Kx4vX3NTzEeomiYjFGa3td1TCtayAwYoe9xzlbaLK
+         onqR/5WfhDnPO8CHgx9tthWm4xTBtvMEd3Ks8ZnTqSXSglfUginB4d9IBtPzMi9WP6
+         5OewJXzxDCmCwHndy78yYAsLljHats6tzGQlWD8M=
+Received: from DLEE100.ent.ti.com (dlee100.ent.ti.com [157.170.170.30])
+        by fllv0035.itg.ti.com (8.15.2/8.15.2) with ESMTP id 08ACfC8f006482;
+        Thu, 10 Sep 2020 07:41:12 -0500
+Received: from DLEE104.ent.ti.com (157.170.170.34) by DLEE100.ent.ti.com
+ (157.170.170.30) with Microsoft SMTP Server (version=TLS1_2,
+ cipher=TLS_ECDHE_RSA_WITH_AES_128_CBC_SHA256_P256) id 15.1.1979.3; Thu, 10
+ Sep 2020 07:41:12 -0500
+Received: from lelv0326.itg.ti.com (10.180.67.84) by DLEE104.ent.ti.com
+ (157.170.170.34) with Microsoft SMTP Server (version=TLS1_2,
+ cipher=TLS_ECDHE_RSA_WITH_AES_128_CBC_SHA256_P256) id 15.1.1979.3 via
+ Frontend Transport; Thu, 10 Sep 2020 07:41:12 -0500
+Received: from feketebors.ti.com (ileax41-snat.itg.ti.com [10.172.224.153])
+        by lelv0326.itg.ti.com (8.15.2/8.15.2) with ESMTP id 08ACfAGM024223;
+        Thu, 10 Sep 2020 07:41:10 -0500
+From:   Peter Ujfalusi <peter.ujfalusi@ti.com>
+To:     <broonie@kernel.org>, <lgirdwood@gmail.com>, <robh+dt@kernel.org>
+CC:     <alsa-devel@alsa-project.org>, <devicetree@vger.kernel.org>,
+        <linux-kernel@vger.kernel.org>
+Subject: [PATCH v2 0/2] ASoC: ti: j721e-evm: Support for j7200 variant
+Date:   Thu, 10 Sep 2020 15:41:08 +0300
+Message-ID: <20200910124110.19361-1-peter.ujfalusi@ti.com>
+X-Mailer: git-send-email 2.28.0
+MIME-Version: 1.0
+Content-Transfer-Encoding: 8bit
+Content-Type: text/plain
+X-EXCLAIMER-MD-CONFIG: e1e8a2fd-e40a-4ac6-ac9b-f7e9cc9ee180
 Sender: devicetree-owner@vger.kernel.org
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-This patch series is like incremental patches from the v1 series [1].
-And, this patch series fix patch 2, 10, 13 and 14/14 of
-the v1 series. In other words, I don't include other patches because:
- - some patches (1, 3 to 6, 8, 9, 11) already got Reviewed-by [1].
- - I submitted incremental v2 patches [2] for patch 6/14 and 12/14.
+Hi,
 
-[1]
-https://patchwork.kernel.org/project/linux-renesas-soc/list/?series=344457
+Changes since v1:
+- Suffix the 2359296000 constant with 'u' to silence C90 warning
 
-[2]
-https://patchwork.kernel.org/project/linux-renesas-soc/list/?series=345847
+When j7200 SOM is connected to the CPB, the audio setup is a bit different:
+Only 48KHz family have clock path, 44.1KHz is not supported.
 
-Changes from v1:
- - In the patch 1:
- -- Fix renesas,falcon-breakout.
- - In the patch 2:
- -- Fix Remove #include rcar-sysc.h.
- -- Use r8a779a0_sysc_{area,info} instead of rcar_sysc_{area,info}.
- -- Use SYSCSR_BUSY instead of SYSCSR_P{ON,OFF}ENB.
- -- Remove struct rcar_sysc_ch.
- -- Replace keywords of "rcar" to "r8a779a0".
- -- Clean up r8a779a0_sysc_pwr_on_off().
- -- Use readl_poll_timeout_"atomic()" because held by spin_lock_irqsave().
- -- Remove has_cpg_mstp flag.
- -- Remove #ifdef CONFIG_SYSC_R8A779A0
- - In the patch 3:
- -- Fix the length of sysc.
- -- Add resets property into scif0.
- -- Fix GIC_CPU_MAS_SIMPLE() argument to 1.
- - In the patch 4:
- -- Add #include "r8a779a0.dtsi".
- -- Fix compatible in falcon-cpu.dtsi and r8a779a0-falcon.dts.
+Update the binding documentation and add support for the j7200 version of CPB
+to the driver.
 
-Yoshihiro Shimoda (4):
-  dt-bindings: arm: renesas: Document Renesas Falcon boards
-  soc: renesas: r8a779a0-sysc: Add r8a779a0 support
-  arm64: dts: renesas: Add Renesas R8A779A0 SoC support
-  arm64: dts: renesas: Add Renesas Falcon boards support
+Regards,
+Peter
+---
+Peter Ujfalusi (2):
+  ASoC: dt-bindings: ti,j721e-cpb-audio: Document support for j7200-cpb
+  ASoC: ti: j721e-evm: Add support for j7200-cpb audio
 
- Documentation/devicetree/bindings/arm/renesas.yaml |   8 +
- arch/arm64/boot/dts/renesas/Makefile               |   2 +
- .../boot/dts/renesas/r8a779a0-falcon-cpu.dtsi      |  46 +++
- arch/arm64/boot/dts/renesas/r8a779a0-falcon.dts    |  23 ++
- arch/arm64/boot/dts/renesas/r8a779a0.dtsi          | 133 ++++++
- drivers/soc/renesas/Kconfig                        |   4 +
- drivers/soc/renesas/Makefile                       |   1 +
- drivers/soc/renesas/r8a779a0-sysc.c                | 450 +++++++++++++++++++++
- 8 files changed, 667 insertions(+)
- create mode 100644 arch/arm64/boot/dts/renesas/r8a779a0-falcon-cpu.dtsi
- create mode 100644 arch/arm64/boot/dts/renesas/r8a779a0-falcon.dts
- create mode 100644 arch/arm64/boot/dts/renesas/r8a779a0.dtsi
- create mode 100644 drivers/soc/renesas/r8a779a0-sysc.c
+ .../bindings/sound/ti,j721e-cpb-audio.yaml    | 92 ++++++++++++++-----
+ sound/soc/ti/j721e-evm.c                      | 11 +++
+ 2 files changed, 81 insertions(+), 22 deletions(-)
 
 -- 
-2.7.4
+Peter
+
+Texas Instruments Finland Oy, Porkkalankatu 22, 00180 Helsinki.
+Y-tunnus/Business ID: 0615521-4. Kotipaikka/Domicile: Helsinki
 
