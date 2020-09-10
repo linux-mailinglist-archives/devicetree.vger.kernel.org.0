@@ -2,130 +2,126 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from vger.kernel.org (vger.kernel.org [23.128.96.18])
-	by mail.lfdr.de (Postfix) with ESMTP id 8CE962654AF
-	for <lists+devicetree@lfdr.de>; Fri, 11 Sep 2020 00:00:21 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTP id DA66726545B
+	for <lists+devicetree@lfdr.de>; Thu, 10 Sep 2020 23:55:21 +0200 (CEST)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S1725795AbgIJWAN (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Thu, 10 Sep 2020 18:00:13 -0400
-Received: from mail-bn8nam12on2060.outbound.protection.outlook.com ([40.107.237.60]:10080
-        "EHLO NAM12-BN8-obe.outbound.protection.outlook.com"
-        rhost-flags-OK-OK-OK-FAIL) by vger.kernel.org with ESMTP
-        id S1730099AbgIJKo1 (ORCPT <rfc822;devicetree@vger.kernel.org>);
-        Thu, 10 Sep 2020 06:44:27 -0400
-ARC-Seal: i=1; a=rsa-sha256; s=arcselector9901; d=microsoft.com; cv=none;
- b=m1mW597Jv21LrWD6UqtMDBTocGHx0/IO8WbjHLJKTH+saLfMgJanS9HjHZ2W9zUMNQ3sbSndJ1KikKlJQkgcdGob9UVFIpKytva1qOaBfk2w1RsfV4Ooy9kSkORS2sk8LU85yxLf56SywXY5LlwF7Nf2yFVLz3TSTWGYGY3/gucr2xaU77pisEkFDU8/oW2Bq28Sxi00SgohhHLuThJdqz34qQKJZsOaqFL9/Jl3bvZwe7szqqY5ETZLq3urjAnPhEJq0ADw4l+8aW7OLTDmpfSjY+EcoU/CbGFkfXPW51BLmgM10Z7LOB9ObgnifqSFflTt849ZKgo9Su91cGLzLA==
-ARC-Message-Signature: i=1; a=rsa-sha256; c=relaxed/relaxed; d=microsoft.com;
- s=arcselector9901;
- h=From:Date:Subject:Message-ID:Content-Type:MIME-Version:X-MS-Exchange-SenderADCheck;
- bh=W9X2XoooE1ZGtXFc7HiH4o7Ntp9X+LreW4l/6KNnf94=;
- b=dAic5THLZQGtVHMsPAQyMPjDFxX5oyNPWWUGFI6WGM/yy9qXbafFC6Jd2B/0NSJ7l6ua3pTBFUa0iHf565KgXy4A91XBWcgF9jlGCLGEywz87WyiyX0DbXp0zryfhAbpj/NxSdt6C8KzGKEY1ZjtasKq+P8TQjA/stmUYKbrZrvbnLXvjjWJqG2pFl7y6EqBHp0JjJFolMZBLwvltyP34XNnLz/8+4NK/ntZ1fm2RQ/hzbLCblYO1V7kzWJ9YByKw3KqGz6wEhsMZoTwaYe778Jxphu1ZppCgPD4DZGOf61h1GhgXItnIjp1DhGFEsswNlonki+JkKRP2G0Qx9+n2A==
-ARC-Authentication-Results: i=1; mx.microsoft.com 1; spf=pass
- smtp.mailfrom=openfive.com; dmarc=pass action=none header.from=sifive.com;
- dkim=pass header.d=sifive.com; arc=none
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=sifive.com;
- s=selector1;
- h=From:Date:Subject:Message-ID:Content-Type:MIME-Version:X-MS-Exchange-SenderADCheck;
- bh=W9X2XoooE1ZGtXFc7HiH4o7Ntp9X+LreW4l/6KNnf94=;
- b=Nf9JdC1C5PxC4+DiPnnRO/YlHvk20eV6v5mh1tQ33HT4yx3rSt+NmPNLyJ0h/Yc6sW+ZeN4VAuSZPBBsteHmc/x/XPjV9LN0ATLxshPCe+XonPtDcwflyj9vM8C+2P5DUJTUMXL/Qtf6HVTFXgfnqwhflihFzOo0sILjTPkdz4k=
-Authentication-Results: vger.kernel.org; dkim=none (message not signed)
- header.d=none;vger.kernel.org; dmarc=none action=none header.from=sifive.com;
-Received: from DM6PR13MB3451.namprd13.prod.outlook.com (2603:10b6:5:1c3::10)
- by DM5PR1301MB2106.namprd13.prod.outlook.com (2603:10b6:4:32::19) with
- Microsoft SMTP Server (version=TLS1_2,
- cipher=TLS_ECDHE_RSA_WITH_AES_256_GCM_SHA384) id 15.20.3348.5; Thu, 10 Sep
- 2020 10:44:24 +0000
-Received: from DM6PR13MB3451.namprd13.prod.outlook.com
- ([fe80::a48a:1f7c:267c:876]) by DM6PR13MB3451.namprd13.prod.outlook.com
- ([fe80::a48a:1f7c:267c:876%7]) with mapi id 15.20.3370.016; Thu, 10 Sep 2020
- 10:44:24 +0000
-From:   Sagar Kadam <sagar.kadam@sifive.com>
-To:     linux-pwm@vger.kernel.org, linux-kernel@vger.kernel.org,
-        linux-riscv@lists.infradead.org, devicetree@vger.kernel.org,
-        linux-clk@vger.kernel.org
-Cc:     mturquette@baylibre.com, sboyd@kernel.org, robh+dt@kernel.org,
-        paul.walmsley@sifive.com, palmer@dabbelt.com, tglx@linutronix.de,
-        jason@lakedaemon.net, maz@kernel.org, thierry.reding@gmail.com,
-        u.kleine-koenig@pengutronix.de, lee.jones@linaro.org,
-        aou@eecs.berkeley.edu, yash.shah@sifive.com,
-        Sagar Kadam <sagar.kadam@sifive.com>
-Subject: [PATCH v1 0/3] convert sifive's prci, plic and pwm bindings to yaml 
-Date:   Thu, 10 Sep 2020 16:14:01 +0530
-Message-Id: <1599734644-4791-1-git-send-email-sagar.kadam@sifive.com>
-X-Mailer: git-send-email 2.7.4
-Content-Type: text/plain
-X-ClientProxiedBy: BMXPR01CA0087.INDPRD01.PROD.OUTLOOK.COM
- (2603:1096:b00:54::27) To DM6PR13MB3451.namprd13.prod.outlook.com
- (2603:10b6:5:1c3::10)
+        id S1728546AbgIJVmp (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Thu, 10 Sep 2020 17:42:45 -0400
+Received: from lindbergh.monkeyblade.net ([23.128.96.19]:60560 "EHLO
+        lindbergh.monkeyblade.net" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
+        with ESMTP id S1729741AbgIJL5g (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Thu, 10 Sep 2020 07:57:36 -0400
+Received: from mail-pf1-x441.google.com (mail-pf1-x441.google.com [IPv6:2607:f8b0:4864:20::441])
+        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id CF1CBC061573;
+        Thu, 10 Sep 2020 04:46:26 -0700 (PDT)
+Received: by mail-pf1-x441.google.com with SMTP id z19so4467737pfn.8;
+        Thu, 10 Sep 2020 04:46:26 -0700 (PDT)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+        d=gmail.com; s=20161025;
+        h=mime-version:references:in-reply-to:from:date:message-id:subject:to
+         :cc:content-transfer-encoding;
+        bh=Nw0E6gxQ2hI2c4XtcGgjWtuM2BIER2w0GyM871TVHiE=;
+        b=TA0eyE+C1G8SDT1g5ewoXGJN+Pte1ilhz6PSvNsNQH/mV4ErK+fr1FKYJ9wwPMZILn
+         Ed9l1+V5/pBZwg5KGPHzH1iXJCdMvytO1u91dfuuG+lMPlsArNoDH+qw7TUyX0uiGSc+
+         VXGaMnOwU72TeQuVxi9MIWYcowk6asEF0ZqZ6tufgjirVCiWVm3rsYZnUaRnh+2shh/z
+         NQ5hL/IDyaxFs4dIWHN7DIGNG7A0eZwb+btta7syG8UFhXCh07oWcy4FrSD7DXR2tKnY
+         TDOBpN1OMQz5PcPCCq662olaEJv89X4VHgMO5GRUc3beDuHuLwWCgHU6dTHXkIVBnwib
+         RRIw==
+X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+        d=1e100.net; s=20161025;
+        h=x-gm-message-state:mime-version:references:in-reply-to:from:date
+         :message-id:subject:to:cc:content-transfer-encoding;
+        bh=Nw0E6gxQ2hI2c4XtcGgjWtuM2BIER2w0GyM871TVHiE=;
+        b=KurtnkqvzfgvUeTd3yApv+ZEop9d9SIxU9LWF/bNji6+5vpHrMrZfR9tM7wIMiK1/U
+         u9OuayzLNA74+qi6hoTnSzVXDx1gZtAkFE+N3g31L+2g8c4jVwzEI38QZ3kQsWPMVuwi
+         ssk1XdRIKUl5QjIlQoihMFNvsZ86J+cABYU1lbUofJBjJ6OZiCydfI1to2lxIHk2ORGZ
+         OTtKfVjUpN70qCTNweLbBKSYRioAWUzD80lzGfwjQ2vX15INQyry0f+Z426GFvvXXflw
+         uwxzPGqfxa93ddYHZ5nlRfyJxO87uJkd7tttUH/H4Krhj7h0EM8GTXF3YubJkx7lTjCA
+         riMQ==
+X-Gm-Message-State: AOAM530Dk1Aw+2VCL+KrETO6PCM623ZiSzUNsTcqPhS6Kl9ZN2FXoErF
+        UyADLFFmBPuWVlTCCCqyYrTF6i3PxdEYd49dXts=
+X-Google-Smtp-Source: ABdhPJwpLTvKve2riypUG+0ME7LX2XWWhl8ZwU5Y5Lg5Cj0ecvXaABCi2XmCtinoJjzwlOm6SQanVtnbYUXx1NFPLMs=
+X-Received: by 2002:a63:ec4c:: with SMTP id r12mr4068361pgj.74.1599738385970;
+ Thu, 10 Sep 2020 04:46:25 -0700 (PDT)
 MIME-Version: 1.0
-X-MS-Exchange-MessageSentRepresentingType: 1
-Received: from osubuntu003.open-silicon.com (159.117.144.156) by BMXPR01CA0087.INDPRD01.PROD.OUTLOOK.COM (2603:1096:b00:54::27) with Microsoft SMTP Server (version=TLS1_2, cipher=TLS_ECDHE_RSA_WITH_AES_128_CBC_SHA256) id 15.20.3326.19 via Frontend Transport; Thu, 10 Sep 2020 10:44:18 +0000
-X-Mailer: git-send-email 2.7.4
-X-Originating-IP: [159.117.144.156]
-X-MS-PublicTrafficType: Email
-X-MS-Office365-Filtering-Correlation-Id: 9e1ef478-9a0f-4fc4-9019-08d855767b95
-X-MS-TrafficTypeDiagnostic: DM5PR1301MB2106:
-X-LD-Processed: 22f88e9d-ae0d-4ed9-b984-cdc9be1529f1,ExtAddr
-X-MS-Exchange-Transport-Forked: True
-X-Microsoft-Antispam-PRVS: <DM5PR1301MB2106A2A94362F73A5D64EB0797270@DM5PR1301MB2106.namprd13.prod.outlook.com>
-X-MS-Oob-TLC-OOBClassifiers: OLM:2276;
-X-MS-Exchange-SenderADCheck: 1
-X-Microsoft-Antispam: BCL:0;
-X-Microsoft-Antispam-Message-Info: kUJbS4YG4D98hiHmLt2ay6Tf15pPalZm+WIsSm6JUmrfNGIOenJGeJ53VjtDac85tcjK5s4XaQ6a7VMN02VdAWQP3rqnJKWqx6/Jdr3lcVwrMl1QVMF2d2Q7zvXBmMYWpirYFE5MGuwdBweUiVLk4tW+p7MfnAIv1ZqaFGkz+MlqV0SSnQezPGjnGR33aiidZCFH8SWeiX+40xB7R9iCnj1cYbMslpPxV3bmWPgCOZhdZgJx45LzrnpMP4/O++yebTKash7zvGcvZTbsJzRyjA7qvupR+S+fBkXAhRtYePrNX1QFepsLR78U3SCzLW/i4FTkPTEPhhfRSlJlFKtWbR2nX+98e8dbBmg2BPfh6ApZ7hwJsXxSqDX323LyF8f3g0F30EHYKFhTKDCdVNmf1w==
-X-Forefront-Antispam-Report: CIP:255.255.255.255;CTRY:;LANG:en;SCL:1;SRV:;IPV:NLI;SFV:NSPM;H:DM6PR13MB3451.namprd13.prod.outlook.com;PTR:;CAT:NONE;SFS:(39850400004)(346002)(376002)(136003)(366004)(396003)(6666004)(6512007)(316002)(4743002)(26005)(966005)(8676002)(6486002)(66556008)(66476007)(52116002)(2616005)(956004)(186003)(66946007)(5660300002)(4326008)(42882007)(107886003)(8936002)(36756003)(2906002)(478600001)(83380400001)(6506007)(83170400001)(7416002)(16526019)(44832011);DIR:OUT;SFP:1101;
-X-MS-Exchange-AntiSpam-MessageData: 2WgOgmhh8sVnvYy3MQYyiRHlTAIyxCfG5ScEDIT5VIfchf931QW/n4K7q0rMA2oEaxvXLpkUIOSIVJDRAxStXr2js2NiL7vMQQKeKFxOXKsSVw9boZC7DlFTCK1a3hJhOpklO75v/wOFa/gBJVDUpsEEt9WMAtHNIVp5419ccZ/z4gPx2aqiYyUAM3fcrc26dvKJmaTw6VIwcTwKfW7DlaIfmou7GYYXgzDLwUCXydw3l1sUJs2ZI9zlUwUw0pBNZllFbEwSunIqC6pkSquRGwo9t4jmT+wGq22Nu5kPS7mYuFBTW8YCt+fppmkxubRvRaWZhrxu1D/CM4a2UkjRDMdAIxocmDLcccPodjehU88N167cWKBo2rnZHrmUBJS/w1YgPX2fiioiMiMQe0cVW3KVhlz79mRxuDfKq7QnUqX1m+TdisIxiDapTPjOTtBhjkNWnv2apZrpBo4T1CWYGCsC3uyyBw9VoCh3iAQf9GggM+VUR/XRMSYLa8Ag+g7jhd8U7WvvzpOFHHPrVOKV/Fw9K08S7P/hYkdLF5SSJvpHrLHLKDszmhJ+8/SsbGv5vZ7Lu8Y9gOeo0WnB7FlbhEx/NR1xonU06/4mW3vyPkzeKgWhbLccZKz/GJ/ZlPLGFWmd6xsM2b0sbpVUOrJsBg==
-X-OriginatorOrg: sifive.com
-X-MS-Exchange-CrossTenant-Network-Message-Id: 9e1ef478-9a0f-4fc4-9019-08d855767b95
-X-MS-Exchange-CrossTenant-AuthSource: DM6PR13MB3451.namprd13.prod.outlook.com
-X-MS-Exchange-CrossTenant-AuthAs: Internal
-X-MS-Exchange-CrossTenant-OriginalArrivalTime: 10 Sep 2020 10:44:24.3085
- (UTC)
-X-MS-Exchange-CrossTenant-FromEntityHeader: Hosted
-X-MS-Exchange-CrossTenant-Id: 22f88e9d-ae0d-4ed9-b984-cdc9be1529f1
-X-MS-Exchange-CrossTenant-MailboxType: HOSTED
-X-MS-Exchange-CrossTenant-UserPrincipalName: SGyQhd8kkVvyQA6w3C3klNQLSJbc9aQ1XjfVeElTIyMkujcF7B5yeGAzQmNYjpjyLOHZxicwsvdmt4J6Ytr50g==
-X-MS-Exchange-Transport-CrossTenantHeadersStamped: DM5PR1301MB2106
+References: <1599474459-20853-1-git-send-email-gene.chen.richtek@gmail.com>
+ <1599474459-20853-2-git-send-email-gene.chen.richtek@gmail.com>
+ <CAHp75VdLDvoQicP1nLnjOiit6qjaw9n7+LuJ-J3MtaoHUOa_2g@mail.gmail.com> <CAE+NS35FETQ9ASJeYP=Sa8dm7ohRBcdAwUioCAnHPY2TiD4pNA@mail.gmail.com>
+In-Reply-To: <CAE+NS35FETQ9ASJeYP=Sa8dm7ohRBcdAwUioCAnHPY2TiD4pNA@mail.gmail.com>
+From:   Andy Shevchenko <andy.shevchenko@gmail.com>
+Date:   Thu, 10 Sep 2020 14:46:08 +0300
+Message-ID: <CAHp75VdeqiMdm=zS7W9sfu7=hVFMo0NV6kTOZ_q6UNq9jFcNuA@mail.gmail.com>
+Subject: Re: [PATCH v3 1/2] leds: mt6360: Add LED driver for MT6360
+To:     Gene Chen <gene.chen.richtek@gmail.com>
+Cc:     Jacek Anaszewski <jacek.anaszewski@gmail.com>,
+        Pavel Machek <pavel@ucw.cz>, Rob Herring <robh+dt@kernel.org>,
+        Matthias Brugger <matthias.bgg@gmail.com>,
+        Dan Murphy <dmurphy@ti.com>,
+        Linux LED Subsystem <linux-leds@vger.kernel.org>,
+        devicetree <devicetree@vger.kernel.org>,
+        linux-arm Mailing List <linux-arm-kernel@lists.infradead.org>,
+        "moderated list:ARM/Mediatek SoC support" 
+        <linux-mediatek@lists.infradead.org>,
+        Linux Kernel Mailing List <linux-kernel@vger.kernel.org>,
+        Gene Chen <gene_chen@richtek.com>, Wilma.Wu@mediatek.com,
+        shufan_lee@richtek.com, cy_huang@richtek.com,
+        benjamin.chao@mediatek.com
+Content-Type: text/plain; charset="UTF-8"
+Content-Transfer-Encoding: quoted-printable
 Sender: devicetree-owner@vger.kernel.org
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-The PRCI and PLIC controller bindings are in txt format. Here, we convert
-them to yaml format.
+On Thu, Sep 10, 2020 at 11:11 AM Gene Chen <gene.chen.richtek@gmail.com> wr=
+ote:
+> Andy Shevchenko <andy.shevchenko@gmail.com> =E6=96=BC 2020=E5=B9=B49=E6=
+=9C=889=E6=97=A5 =E9=80=B1=E4=B8=89 =E4=B8=8B=E5=8D=889:48=E5=AF=AB=E9=81=
+=93=EF=BC=9A
+> > On Mon, Sep 7, 2020 at 1:31 PM Gene Chen <gene.chen.richtek@gmail.com> =
+wrote:
+> > > From: Gene Chen <gene_chen@richtek.com>
 
-These patches are tested on commit f4d51dffc6c0 ("Linux 5.9-rc4"). I have
-added the log of dt_binding_check for these IP block's on 5.9-rc4 kernel
-here [1] in case someone want's to refer it.
+...
 
-[1] https://paste.ubuntu.com/p/VHqqnXdrkJ
+> > > +       if (priv->fled_strobe_used) {
+> > > +               dev_warn(lcdev->dev, "Please disable strobe first [%d=
+]\n", priv->fled_strobe_used);
+> > > +               return -EINVAL;
+> >
+> > Hmm... Shouldn't be guaranteed by some framework?
+> >
+>
+> Because both Flash LED use single logically control.
+> It doesn't exist one LED is torch mode, and the other is strobe mode.
 
-Additionally the default log of dt_binding_check on linux-5.9-rc4 without
-these patches can be found here [2].
+You mean you have always an attribute for hardware even if it doesn't
+support a feature?
+Can you consider hiding attributes?
 
-[2] https://paste.ubuntu.com/p/KNGJrJvvdt
+...
 
-Patch History:
-============================
-V1: Base version.
+> > > +       lcdev->max_brightness =3D (val - MT6360_ITORCH_MIN) / MT6360_=
+ITORCH_STEP + 1;
+> >
+> > DIV_ROUND_UP(val - MT6360_ITORCH_MIN, MT6360_ITORCH_STEP) ?
+> >
+>
+> This is mapping 0~val to 1~max_brightness as level.
+> I convert val below MT6360_ITORCH_STEP to 1 for ignore max_brightness
+> =3D 0, because 0 means disable.
+> There is a little difference from DIV_ROUND_UP.
 
-Sagar Kadam (3):
-  dt-bindings: fu540: prci: convert PRCI bindings to json-schema
-  dt-bindings: riscv: convert plic bindings to json-schema
-  dt-bindings: riscv: convert pwm bindings to json-schema
+What div_round_up does is
+(x + y - 1) / y
+What do you do
 
- .../bindings/clock/sifive/fu540-prci.txt           |  46 ---------
- .../bindings/clock/sifive/fu540-prci.yaml          |  75 +++++++++++++++
- .../interrupt-controller/sifive,plic-1.0.0.txt     |  58 -----------
- .../interrupt-controller/sifive,plic-1.0.0.yaml    | 107 +++++++++++++++++++++
- .../devicetree/bindings/pwm/pwm-sifive.txt         |  33 -------
- .../devicetree/bindings/pwm/pwm-sifive.yaml        |  72 ++++++++++++++
- 6 files changed, 254 insertions(+), 137 deletions(-)
- delete mode 100644 Documentation/devicetree/bindings/clock/sifive/fu540-prci.txt
- create mode 100644 Documentation/devicetree/bindings/clock/sifive/fu540-prci.yaml
- delete mode 100644 Documentation/devicetree/bindings/interrupt-controller/sifive,plic-1.0.0.txt
- create mode 100644 Documentation/devicetree/bindings/interrupt-controller/sifive,plic-1.0.0.yaml
- delete mode 100644 Documentation/devicetree/bindings/pwm/pwm-sifive.txt
- create mode 100644 Documentation/devicetree/bindings/pwm/pwm-sifive.yaml
+x / y + 1 =3D (x + y)/y =3D ((x + 1) + y - 1)/y =3D DIV_ROUND_UP(x+1,y)
 
--- 
-2.7.4
+So, DIV_ROUND_UP(val - MT6360_ITORCH_MIN + 1, MT6360_ITORCH_STEP) ?
 
+(yes I made classical off-by-one error)
+
+--=20
+With Best Regards,
+Andy Shevchenko
