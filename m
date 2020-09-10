@@ -2,419 +2,119 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from vger.kernel.org (vger.kernel.org [23.128.96.18])
-	by mail.lfdr.de (Postfix) with ESMTP id 76F0E264C5B
-	for <lists+devicetree@lfdr.de>; Thu, 10 Sep 2020 20:11:13 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTP id 78B02264CA3
+	for <lists+devicetree@lfdr.de>; Thu, 10 Sep 2020 20:17:58 +0200 (CEST)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S1726828AbgIJSLI (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Thu, 10 Sep 2020 14:11:08 -0400
-Received: from mail-io1-f66.google.com ([209.85.166.66]:37567 "EHLO
-        mail-io1-f66.google.com" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S1725951AbgIJSK3 (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Thu, 10 Sep 2020 14:10:29 -0400
-Received: by mail-io1-f66.google.com with SMTP id y13so8172274iow.4;
-        Thu, 10 Sep 2020 11:10:25 -0700 (PDT)
-X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=1e100.net; s=20161025;
-        h=x-gm-message-state:date:from:to:cc:subject:message-id:references
-         :mime-version:content-disposition:in-reply-to;
-        bh=vouhSmUcYcMbjxNbVHaIAIekKrOUzBSoOSn9DczZ8fY=;
-        b=MJhG3clisTkcM2i75e15ivJSux+vZfbTniTWfdiErSgj1/vrNL/pWD09jy9740is9L
-         dj7qbSGvKeakXWIoat0kcQtDX3Soy3pG0dUwQXLndZjCOTP7UuuqhQLRhfCLGv3EupGj
-         CJLwCSOrpL7dHM4I8Grlffqss4WBR18Li77dSBmfOsJzn8BUGiJymdpjnrKPjAKECAFu
-         IO5/SdqaqdZOMOoWQ63cFLtBUG1zS/ZEuiuRG5E6Be8iGtwoqhsZ8r/B9Pb2Xh+3rf88
-         Y56Ao3WpOw3nUoAWSHmoVc9X2xpl009BC/zsHCy9C1D4z5wAE4LGGmYPbr1snqAs33z2
-         L+sQ==
-X-Gm-Message-State: AOAM531kuA+zax/Lx7cjlRgxP3SlD404AHRGz3/MeZS6FR2IscSVOu2e
-        kcRyOQmKF8sYFOx6RZ6fWg==
-X-Google-Smtp-Source: ABdhPJySrXuTKcamxrp4PHnHzinO4XqL/L5q7pGaz1+cshGumWAhcgTYcHZzZ1TzUOdpZ7bP/QDMiw==
-X-Received: by 2002:a6b:f919:: with SMTP id j25mr8806437iog.113.1599761413871;
-        Thu, 10 Sep 2020 11:10:13 -0700 (PDT)
-Received: from xps15 ([64.188.179.251])
-        by smtp.gmail.com with ESMTPSA id k14sm3220564ioa.7.2020.09.10.11.10.10
-        (version=TLS1_3 cipher=TLS_AES_256_GCM_SHA384 bits=256/256);
-        Thu, 10 Sep 2020 11:10:13 -0700 (PDT)
-Received: (nullmailer pid 611387 invoked by uid 1000);
-        Thu, 10 Sep 2020 18:10:09 -0000
-Date:   Thu, 10 Sep 2020 12:10:09 -0600
-From:   Rob Herring <robh@kernel.org>
-To:     Zhiqiang Hou <Zhiqiang.Hou@nxp.com>
-Cc:     linux-pci@vger.kernel.org, devicetree@vger.kernel.org,
-        linux-kernel@vger.kernel.org, linux-arm-kernel@lists.infradead.org,
-        linuxppc-dev@lists.ozlabs.org, bhelgaas@google.com,
-        lorenzo.pieralisi@arm.com, shawnguo@kernel.org, leoyang.li@nxp.com,
-        kishon@ti.com, gustavo.pimentel@synopsys.com, roy.zang@nxp.com,
-        jingoohan1@gmail.com, andrew.murray@arm.com, mingkai.hu@nxp.com,
-        minghuan.Lian@nxp.com, Xiaowei Bao <xiaowei.bao@nxp.com>
-Subject: Re: [PATCHv7 04/12] PCI: designware-ep: Modify MSI and MSIX CAP way
- of finding
-Message-ID: <20200910181009.GB592152@bogus>
-References: <20200811095441.7636-1-Zhiqiang.Hou@nxp.com>
- <20200811095441.7636-5-Zhiqiang.Hou@nxp.com>
+        id S1726780AbgIJSRk (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Thu, 10 Sep 2020 14:17:40 -0400
+Received: from hqnvemgate24.nvidia.com ([216.228.121.143]:6933 "EHLO
+        hqnvemgate24.nvidia.com" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
+        with ESMTP id S1726815AbgIJSPz (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Thu, 10 Sep 2020 14:15:55 -0400
+Received: from hqpgpgate101.nvidia.com (Not Verified[216.228.121.13]) by hqnvemgate24.nvidia.com (using TLS: TLSv1.2, DES-CBC3-SHA)
+        id <B5f5a6cc30001>; Thu, 10 Sep 2020 11:13:23 -0700
+Received: from hqmail.nvidia.com ([172.20.161.6])
+  by hqpgpgate101.nvidia.com (PGP Universal service);
+  Thu, 10 Sep 2020 11:15:39 -0700
+X-PGP-Universal: processed;
+        by hqpgpgate101.nvidia.com on Thu, 10 Sep 2020 11:15:39 -0700
+Received: from [10.26.73.219] (10.124.1.5) by HQMAIL107.nvidia.com
+ (172.20.187.13) with Microsoft SMTP Server (TLS) id 15.0.1473.3; Thu, 10 Sep
+ 2020 18:15:37 +0000
+Subject: Re: [PATCH 1/5] misc: eeprom: at24: Initialise AT24 NVMEM ID field
+To:     Bartosz Golaszewski <bgolaszewski@baylibre.com>
+CC:     Rob Herring <robh+dt@kernel.org>,
+        Thierry Reding <thierry.reding@gmail.com>,
+        linux-i2c <linux-i2c@vger.kernel.org>,
+        LKML <linux-kernel@vger.kernel.org>,
+        linux-devicetree <devicetree@vger.kernel.org>,
+        <linux-tegra@vger.kernel.org>
+References: <20200910134239.192030-1-jonathanh@nvidia.com>
+ <20200910134239.192030-2-jonathanh@nvidia.com>
+ <CAMpxmJXbhrmJJn4f3zk4=Y2tCwLzpFc+c6NbxcqVe8eaLSRvtw@mail.gmail.com>
+From:   Jon Hunter <jonathanh@nvidia.com>
+Message-ID: <88021f57-b8cf-d3d6-0e9c-19ed0bccb729@nvidia.com>
+Date:   Thu, 10 Sep 2020 19:15:35 +0100
+User-Agent: Mozilla/5.0 (X11; Linux x86_64; rv:68.0) Gecko/20100101
+ Thunderbird/68.10.0
 MIME-Version: 1.0
-Content-Type: text/plain; charset=us-ascii
-Content-Disposition: inline
-In-Reply-To: <20200811095441.7636-5-Zhiqiang.Hou@nxp.com>
+In-Reply-To: <CAMpxmJXbhrmJJn4f3zk4=Y2tCwLzpFc+c6NbxcqVe8eaLSRvtw@mail.gmail.com>
+X-Originating-IP: [10.124.1.5]
+X-ClientProxiedBy: HQMAIL101.nvidia.com (172.20.187.10) To
+ HQMAIL107.nvidia.com (172.20.187.13)
+Content-Type: text/plain; charset="utf-8"
+Content-Language: en-US
+Content-Transfer-Encoding: 7bit
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=nvidia.com; s=n1;
+        t=1599761603; bh=ImR9HM3BwJEKpNyfruoguFeSWEoxHgvjFybBk6AmQU0=;
+        h=X-PGP-Universal:Subject:To:CC:References:From:Message-ID:Date:
+         User-Agent:MIME-Version:In-Reply-To:X-Originating-IP:
+         X-ClientProxiedBy:Content-Type:Content-Language:
+         Content-Transfer-Encoding;
+        b=eXvx6CIyrI5L+OdV6Zej3o+rca6Oewxr2SSuWeVpOeViCx/3Dl7Ja2p/1ITtYfayx
+         8ClLlt3KkMLeXxYfgf+vh1kkatjpUM2wH7fckD2NEfhvcyiwT+CLWDy0GG4ni+uyWy
+         b3uO+3zLB/MJbqDUdLSD+GxdshgGLetfPRjsKsTS9s+/H+lrFSqphJu+11WoeC0isC
+         NhdiAF179skqhL0uKVmRSw3iNf737tFt+VC7Cv5t7DuEwW6f8Pe1i6+k0/79mBL59a
+         F5bltTKd6/pSS4vNtz/c0Oe+8ns+toQfxo8w1ysNW2F9RfMh6jmnztir5bGxWcH+jy
+         Y2TfTc1O+ANSQ==
 Sender: devicetree-owner@vger.kernel.org
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-On Tue, Aug 11, 2020 at 05:54:33PM +0800, Zhiqiang Hou wrote:
-> From: Xiaowei Bao <xiaowei.bao@nxp.com>
-> 
-> Each PF of EP device should have its own MSI or MSIX capabitily
-> struct, so create a dw_pcie_ep_func struct and move the msi_cap
-> and msix_cap to this struct from dw_pcie_ep, and manage the PFs
-> via a list.
-> 
-> Signed-off-by: Xiaowei Bao <xiaowei.bao@nxp.com>
-> Signed-off-by: Hou Zhiqiang <Zhiqiang.Hou@nxp.com>
-> ---
-> V7:
->  - Rebase the patch without functionality change.
-> 
->  .../pci/controller/dwc/pcie-designware-ep.c   | 139 +++++++++++++++---
->  drivers/pci/controller/dwc/pcie-designware.h  |  18 ++-
->  2 files changed, 136 insertions(+), 21 deletions(-)
-> 
-> diff --git a/drivers/pci/controller/dwc/pcie-designware-ep.c b/drivers/pci/controller/dwc/pcie-designware-ep.c
-> index 56bd1cd71f16..4680a51c49c0 100644
-> --- a/drivers/pci/controller/dwc/pcie-designware-ep.c
-> +++ b/drivers/pci/controller/dwc/pcie-designware-ep.c
-> @@ -28,6 +28,19 @@ void dw_pcie_ep_init_notify(struct dw_pcie_ep *ep)
->  }
->  EXPORT_SYMBOL_GPL(dw_pcie_ep_init_notify);
->  
-> +struct dw_pcie_ep_func *
-> +dw_pcie_ep_get_func_from_ep(struct dw_pcie_ep *ep, u8 func_no)
-> +{
-> +	struct dw_pcie_ep_func *ep_func;
-> +
-> +	list_for_each_entry(ep_func, &ep->func_list, list) {
-> +		if (ep_func->func_no == func_no)
-> +			return ep_func;
-> +	}
-> +
-> +	return NULL;
-> +}
-> +
->  static unsigned int dw_pcie_ep_func_select(struct dw_pcie_ep *ep, u8 func_no)
->  {
->  	unsigned int func_offset = 0;
-> @@ -68,6 +81,47 @@ void dw_pcie_ep_reset_bar(struct dw_pcie *pci, enum pci_barno bar)
->  		__dw_pcie_ep_reset_bar(pci, func_no, bar, 0);
->  }
->  
-> +static u8 __dw_pcie_ep_find_next_cap(struct dw_pcie_ep *ep, u8 func_no,
-> +		u8 cap_ptr, u8 cap)
-> +{
-> +	struct dw_pcie *pci = to_dw_pcie_from_ep(ep);
-> +	unsigned int func_offset = 0;
-> +	u8 cap_id, next_cap_ptr;
-> +	u16 reg;
-> +
-> +	if (!cap_ptr)
-> +		return 0;
-> +
-> +	func_offset = dw_pcie_ep_func_select(ep, func_no);
-> +
-> +	reg = dw_pcie_readw_dbi(pci, func_offset + cap_ptr);
-> +	cap_id = (reg & 0x00ff);
-> +
-> +	if (cap_id > PCI_CAP_ID_MAX)
-> +		return 0;
-> +
-> +	if (cap_id == cap)
-> +		return cap_ptr;
-> +
-> +	next_cap_ptr = (reg & 0xff00) >> 8;
-> +	return __dw_pcie_ep_find_next_cap(ep, func_no, next_cap_ptr, cap);
-> +}
-> +
-> +static u8 dw_pcie_ep_find_capability(struct dw_pcie_ep *ep, u8 func_no, u8 cap)
-> +{
-> +	struct dw_pcie *pci = to_dw_pcie_from_ep(ep);
-> +	unsigned int func_offset = 0;
-> +	u8 next_cap_ptr;
-> +	u16 reg;
-> +
-> +	func_offset = dw_pcie_ep_func_select(ep, func_no);
-> +
-> +	reg = dw_pcie_readw_dbi(pci, func_offset + PCI_CAPABILITY_LIST);
-> +	next_cap_ptr = (reg & 0x00ff);
-> +
-> +	return __dw_pcie_ep_find_next_cap(ep, func_no, next_cap_ptr, cap);
-> +}
 
-These are almost the same as __dw_pcie_find_next_cap and 
-dw_pcie_find_capability. Please modify them to take a function offset 
-and work for both host and endpoints.
-
-> +
->  static int dw_pcie_ep_write_header(struct pci_epc *epc, u8 func_no,
->  				   struct pci_epf_header *hdr)
->  {
-> @@ -257,13 +311,18 @@ static int dw_pcie_ep_get_msi(struct pci_epc *epc, u8 func_no)
->  	struct dw_pcie *pci = to_dw_pcie_from_ep(ep);
->  	u32 val, reg;
->  	unsigned int func_offset = 0;
-> +	struct dw_pcie_ep_func *ep_func;
->  
-> -	if (!ep->msi_cap)
-> +	ep_func = dw_pcie_ep_get_func_from_ep(ep, func_no);
-> +	if (!ep_func)
-> +		return -EINVAL;
-> +
-> +	if (!ep_func->msi_cap)
->  		return -EINVAL;
->  
->  	func_offset = dw_pcie_ep_func_select(ep, func_no);
->  
-> -	reg = ep->msi_cap + func_offset + PCI_MSI_FLAGS;
-> +	reg = ep_func->msi_cap + func_offset + PCI_MSI_FLAGS;
->  	val = dw_pcie_readw_dbi(pci, reg);
->  	if (!(val & PCI_MSI_FLAGS_ENABLE))
->  		return -EINVAL;
-> @@ -279,13 +338,18 @@ static int dw_pcie_ep_set_msi(struct pci_epc *epc, u8 func_no, u8 interrupts)
->  	struct dw_pcie *pci = to_dw_pcie_from_ep(ep);
->  	u32 val, reg;
->  	unsigned int func_offset = 0;
-> +	struct dw_pcie_ep_func *ep_func;
-> +
-> +	ep_func = dw_pcie_ep_get_func_from_ep(ep, func_no);
-> +	if (!ep_func)
-> +		return -EINVAL;
->  
-> -	if (!ep->msi_cap)
-> +	if (!ep_func->msi_cap)
->  		return -EINVAL;
->  
->  	func_offset = dw_pcie_ep_func_select(ep, func_no);
->  
-> -	reg = ep->msi_cap + func_offset + PCI_MSI_FLAGS;
-> +	reg = ep_func->msi_cap + func_offset + PCI_MSI_FLAGS;
-
-If msi_cap is now per function, then shouldn't it already include 
-'func_offset'?
-
->  	val = dw_pcie_readw_dbi(pci, reg);
->  	val &= ~PCI_MSI_FLAGS_QMASK;
->  	val |= (interrupts << 1) & PCI_MSI_FLAGS_QMASK;
-> @@ -302,13 +366,18 @@ static int dw_pcie_ep_get_msix(struct pci_epc *epc, u8 func_no)
->  	struct dw_pcie *pci = to_dw_pcie_from_ep(ep);
->  	u32 val, reg;
->  	unsigned int func_offset = 0;
-> +	struct dw_pcie_ep_func *ep_func;
-> +
-> +	ep_func = dw_pcie_ep_get_func_from_ep(ep, func_no);
-> +	if (!ep_func)
-> +		return -EINVAL;
->  
-> -	if (!ep->msix_cap)
-> +	if (!ep_func->msix_cap)
->  		return -EINVAL;
->  
->  	func_offset = dw_pcie_ep_func_select(ep, func_no);
->  
-> -	reg = ep->msix_cap + func_offset + PCI_MSIX_FLAGS;
-> +	reg = ep_func->msix_cap + func_offset + PCI_MSIX_FLAGS;
->  	val = dw_pcie_readw_dbi(pci, reg);
->  	if (!(val & PCI_MSIX_FLAGS_ENABLE))
->  		return -EINVAL;
-> @@ -325,25 +394,30 @@ static int dw_pcie_ep_set_msix(struct pci_epc *epc, u8 func_no, u16 interrupts,
->  	struct dw_pcie *pci = to_dw_pcie_from_ep(ep);
->  	u32 val, reg;
->  	unsigned int func_offset = 0;
-> +	struct dw_pcie_ep_func *ep_func;
->  
-> -	if (!ep->msix_cap)
-> +	ep_func = dw_pcie_ep_get_func_from_ep(ep, func_no);
-> +	if (!ep_func)
-> +		return -EINVAL;
-> +
-> +	if (!ep_func->msix_cap)
->  		return -EINVAL;
->  
->  	dw_pcie_dbi_ro_wr_en(pci);
->  
->  	func_offset = dw_pcie_ep_func_select(ep, func_no);
->  
-> -	reg = ep->msix_cap + func_offset + PCI_MSIX_FLAGS;
-> +	reg = ep_func->msix_cap + func_offset + PCI_MSIX_FLAGS;
->  	val = dw_pcie_readw_dbi(pci, reg);
->  	val &= ~PCI_MSIX_FLAGS_QSIZE;
->  	val |= interrupts;
->  	dw_pcie_writew_dbi(pci, reg, val);
->  
-> -	reg = ep->msix_cap + func_offset + PCI_MSIX_TABLE;
-> +	reg = ep_func->msix_cap + func_offset + PCI_MSIX_TABLE;
->  	val = offset | bir;
->  	dw_pcie_writel_dbi(pci, reg, val);
->  
-> -	reg = ep->msix_cap + func_offset + PCI_MSIX_PBA;
-> +	reg = ep_func->msix_cap + func_offset + PCI_MSIX_PBA;
->  	val = (offset + (interrupts * PCI_MSIX_ENTRY_SIZE)) | bir;
->  	dw_pcie_writel_dbi(pci, reg, val);
->  
-> @@ -426,6 +500,7 @@ int dw_pcie_ep_raise_msi_irq(struct dw_pcie_ep *ep, u8 func_no,
->  			     u8 interrupt_num)
->  {
->  	struct dw_pcie *pci = to_dw_pcie_from_ep(ep);
-> +	struct dw_pcie_ep_func *ep_func;
->  	struct pci_epc *epc = ep->epc;
->  	unsigned int aligned_offset;
->  	unsigned int func_offset = 0;
-> @@ -435,25 +510,29 @@ int dw_pcie_ep_raise_msi_irq(struct dw_pcie_ep *ep, u8 func_no,
->  	bool has_upper;
->  	int ret;
->  
-> -	if (!ep->msi_cap)
-> +	ep_func = dw_pcie_ep_get_func_from_ep(ep, func_no);
-> +	if (!ep_func)
-> +		return -EINVAL;
-> +
-> +	if (!ep_func->msi_cap)
->  		return -EINVAL;
->  
->  	func_offset = dw_pcie_ep_func_select(ep, func_no);
->  
->  	/* Raise MSI per the PCI Local Bus Specification Revision 3.0, 6.8.1. */
-> -	reg = ep->msi_cap + func_offset + PCI_MSI_FLAGS;
-> +	reg = ep_func->msi_cap + func_offset + PCI_MSI_FLAGS;
->  	msg_ctrl = dw_pcie_readw_dbi(pci, reg);
->  	has_upper = !!(msg_ctrl & PCI_MSI_FLAGS_64BIT);
-> -	reg = ep->msi_cap + func_offset + PCI_MSI_ADDRESS_LO;
-> +	reg = ep_func->msi_cap + func_offset + PCI_MSI_ADDRESS_LO;
->  	msg_addr_lower = dw_pcie_readl_dbi(pci, reg);
->  	if (has_upper) {
-> -		reg = ep->msi_cap + func_offset + PCI_MSI_ADDRESS_HI;
-> +		reg = ep_func->msi_cap + func_offset + PCI_MSI_ADDRESS_HI;
->  		msg_addr_upper = dw_pcie_readl_dbi(pci, reg);
-> -		reg = ep->msi_cap + func_offset + PCI_MSI_DATA_64;
-> +		reg = ep_func->msi_cap + func_offset + PCI_MSI_DATA_64;
->  		msg_data = dw_pcie_readw_dbi(pci, reg);
->  	} else {
->  		msg_addr_upper = 0;
-> -		reg = ep->msi_cap + func_offset + PCI_MSI_DATA_32;
-> +		reg = ep_func->msi_cap + func_offset + PCI_MSI_DATA_32;
->  		msg_data = dw_pcie_readw_dbi(pci, reg);
->  	}
->  	aligned_offset = msg_addr_lower & (epc->mem->window.page_size - 1);
-> @@ -489,6 +568,7 @@ int dw_pcie_ep_raise_msix_irq(struct dw_pcie_ep *ep, u8 func_no,
->  			      u16 interrupt_num)
->  {
->  	struct dw_pcie *pci = to_dw_pcie_from_ep(ep);
-> +	struct dw_pcie_ep_func *ep_func;
->  	struct pci_epf_msix_tbl *msix_tbl;
->  	struct pci_epc *epc = ep->epc;
->  	unsigned int func_offset = 0;
-> @@ -499,9 +579,16 @@ int dw_pcie_ep_raise_msix_irq(struct dw_pcie_ep *ep, u8 func_no,
->  	int ret;
->  	u8 bir;
->  
-> +	ep_func = dw_pcie_ep_get_func_from_ep(ep, func_no);
-> +	if (!ep_func)
-> +		return -EINVAL;
-> +
-> +	if (!ep_func->msix_cap)
-> +		return -EINVAL;
-> +
->  	func_offset = dw_pcie_ep_func_select(ep, func_no);
->  
-> -	reg = ep->msix_cap + func_offset + PCI_MSIX_TABLE;
-> +	reg = ep_func->msix_cap + func_offset + PCI_MSIX_TABLE;
->  	tbl_offset = dw_pcie_readl_dbi(pci, reg);
->  	bir = (tbl_offset & PCI_MSIX_TABLE_BIR);
->  	tbl_offset &= PCI_MSIX_TABLE_OFFSET;
-> @@ -596,11 +683,15 @@ int dw_pcie_ep_init(struct dw_pcie_ep *ep)
->  {
->  	int ret;
->  	void *addr;
-> +	u8 func_no;
->  	struct pci_epc *epc;
->  	struct dw_pcie *pci = to_dw_pcie_from_ep(ep);
->  	struct device *dev = pci->dev;
->  	struct device_node *np = dev->of_node;
->  	const struct pci_epc_features *epc_features;
-> +	struct dw_pcie_ep_func *ep_func;
-> +
-> +	INIT_LIST_HEAD(&ep->func_list);
->  
->  	if (!pci->dbi_base || !pci->dbi_base2) {
->  		dev_err(dev, "dbi_base/dbi_base2 is not populated\n");
-> @@ -660,9 +751,19 @@ int dw_pcie_ep_init(struct dw_pcie_ep *ep)
->  	if (ret < 0)
->  		epc->max_functions = 1;
->  
-> -	ep->msi_cap = dw_pcie_find_capability(pci, PCI_CAP_ID_MSI);
-> +	for (func_no = 0; func_no < epc->max_functions; func_no++) {
-> +		ep_func = devm_kzalloc(dev, sizeof(*ep_func), GFP_KERNEL);
-> +		if (!ep_func)
-> +			return -ENOMEM;
->  
-> -	ep->msix_cap = dw_pcie_find_capability(pci, PCI_CAP_ID_MSIX);
-> +		ep_func->func_no = func_no;
-> +		ep_func->msi_cap = dw_pcie_ep_find_capability(ep, func_no,
-> +							      PCI_CAP_ID_MSI);
-> +		ep_func->msix_cap = dw_pcie_ep_find_capability(ep, func_no,
-> +							       PCI_CAP_ID_MSIX);
-> +
-> +		list_add_tail(&ep_func->list, &ep->func_list);
-> +	}
->  
->  	if (ep->ops->ep_init)
->  		ep->ops->ep_init(ep);
-> diff --git a/drivers/pci/controller/dwc/pcie-designware.h b/drivers/pci/controller/dwc/pcie-designware.h
-> index 745b4938225a..19c4ba486239 100644
-> --- a/drivers/pci/controller/dwc/pcie-designware.h
-> +++ b/drivers/pci/controller/dwc/pcie-designware.h
-> @@ -230,8 +230,16 @@ struct dw_pcie_ep_ops {
->  	unsigned int (*func_conf_select)(struct dw_pcie_ep *ep, u8 func_no);
->  };
->  
-> +struct dw_pcie_ep_func {
-> +	struct list_head	list;
-> +	u8			func_no;
-> +	u8			msi_cap;	/* MSI capability offset */
-> +	u8			msix_cap;	/* MSI-X capability offset */
-> +};
-> +
->  struct dw_pcie_ep {
->  	struct pci_epc		*epc;
-> +	struct list_head	func_list;
->  	const struct dw_pcie_ep_ops *ops;
->  	phys_addr_t		phys_base;
->  	size_t			addr_size;
-> @@ -244,8 +252,6 @@ struct dw_pcie_ep {
->  	u32			num_ob_windows;
->  	void __iomem		*msi_mem;
->  	phys_addr_t		msi_mem_phys;
-> -	u8			msi_cap;	/* MSI capability offset */
-> -	u8			msix_cap;	/* MSI-X capability offset */
->  	struct pci_epf_bar	*epf_bar[PCI_STD_NUM_BARS];
->  };
->  
-> @@ -440,6 +446,8 @@ int dw_pcie_ep_raise_msix_irq(struct dw_pcie_ep *ep, u8 func_no,
->  int dw_pcie_ep_raise_msix_irq_doorbell(struct dw_pcie_ep *ep, u8 func_no,
->  				       u16 interrupt_num);
->  void dw_pcie_ep_reset_bar(struct dw_pcie *pci, enum pci_barno bar);
-> +struct dw_pcie_ep_func *
-> +dw_pcie_ep_get_func_from_ep(struct dw_pcie_ep *ep, u8 func_no);
->  #else
->  static inline void dw_pcie_ep_linkup(struct dw_pcie_ep *ep)
->  {
-> @@ -490,5 +498,11 @@ static inline int dw_pcie_ep_raise_msix_irq_doorbell(struct dw_pcie_ep *ep,
->  static inline void dw_pcie_ep_reset_bar(struct dw_pcie *pci, enum pci_barno bar)
->  {
->  }
-> +
-> +static inline struct dw_pcie_ep_func *
-> +dw_pcie_ep_get_func_from_ep(struct dw_pcie_ep *ep, u8 func_no)
-> +{
-> +	return NULL;
-> +}
->  #endif
->  #endif /* _PCIE_DESIGNWARE_H */
-> -- 
-> 2.17.1
+On 10/09/2020 16:35, Bartosz Golaszewski wrote:
+> On Thu, Sep 10, 2020 at 3:43 PM Jon Hunter <jonathanh@nvidia.com> wrote:
+>>
+>> The AT24 EEPROM driver does not initialise the 'id' field of the
+>> nvmem_config structure and because the entire structure is not
+>> initialised, it ends up with a random value. This causes the NVMEM
+>> driver to append the device 'devid' value to name of the NVMEM
+>> device. Although this is not a problem per-se, for I2C devices such as
+>> the AT24, that already have a device unique name, there does not seem
+>> much value in appending an additional 0 to the I2C name. For example,
+>> appending a 0 to an I2C device name such as 1-0050 does not seem
+>> necessary and maybe even a bit confusing. Therefore, fix this by
+>> setting the NVMEM config.id to NVMEM_DEVID_NONE for AT24 EEPROMs.
+>>
+>> Signed-off-by: Jon Hunter <jonathanh@nvidia.com>
+>> ---
+>>  drivers/misc/eeprom/at24.c | 1 +
+>>  1 file changed, 1 insertion(+)
+>>
+>> diff --git a/drivers/misc/eeprom/at24.c b/drivers/misc/eeprom/at24.c
+>> index e9df1ca251df..3f7a3bb6a36c 100644
+>> --- a/drivers/misc/eeprom/at24.c
+>> +++ b/drivers/misc/eeprom/at24.c
+>> @@ -715,6 +715,7 @@ static int at24_probe(struct i2c_client *client)
+>>
+>>         nvmem_config.name = dev_name(dev);
+>>         nvmem_config.dev = dev;
+>> +       nvmem_config.id = NVMEM_DEVID_NONE;
+>>         nvmem_config.read_only = !writable;
+>>         nvmem_config.root_only = !(flags & AT24_FLAG_IRUGO);
+>>         nvmem_config.owner = THIS_MODULE;
+>> --
+>> 2.25.1
+>>
 > 
+> This patch is correct and thanks for catching it. I vaguely recall
+> wondering at some point why the appended 0 in the nvmem name for at24.
+> Unfortunately this change would affect how the device is visible in
+> user-space in /sys/bus/nvmem/devices/ and this could break existing
+> users. Also: there are many in-kernel users that would need to be
+> updated. I'm afraid we'll need some sort of backward compatibility.
+
+
+Thanks, yes that is a problem. I guess for now we could explicitly init
+to NVMEM_DEVID_AUTO or maybe just 0 so that it defaults to the same path
+in the NVMEM driver. However, I am not sure how we can make allow some
+devices to use NVMEM_DEVID_NONE and others use something else. This is
+not really something that we can describe in DT because it has nothing
+to do with h/w.
+
+Cheers
+Jon
+
+-- 
+nvpublic
