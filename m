@@ -2,272 +2,84 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from vger.kernel.org (vger.kernel.org [23.128.96.18])
-	by mail.lfdr.de (Postfix) with ESMTP id C25A2264C48
-	for <lists+devicetree@lfdr.de>; Thu, 10 Sep 2020 20:07:52 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTP id 065CE264C35
+	for <lists+devicetree@lfdr.de>; Thu, 10 Sep 2020 20:05:42 +0200 (CEST)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S1726810AbgIJSHo (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Thu, 10 Sep 2020 14:07:44 -0400
-Received: from foss.arm.com ([217.140.110.172]:41680 "EHLO foss.arm.com"
-        rhost-flags-OK-OK-OK-OK) by vger.kernel.org with ESMTP
-        id S1726301AbgIJSCr (ORCPT <rfc822;devicetree@vger.kernel.org>);
-        Thu, 10 Sep 2020 14:02:47 -0400
-Received: from usa-sjc-imap-foss1.foss.arm.com (unknown [10.121.207.14])
-        by usa-sjc-mx-foss1.foss.arm.com (Postfix) with ESMTP id 55A17106F;
-        Thu, 10 Sep 2020 11:02:31 -0700 (PDT)
-Received: from [10.57.40.122] (unknown [10.57.40.122])
-        by usa-sjc-imap-foss1.foss.arm.com (Postfix) with ESMTPSA id B6FEF3F66E;
-        Thu, 10 Sep 2020 11:02:27 -0700 (PDT)
-Subject: Re: [PATCH 1/3] ARM/dma-mapping: move various helpers from
- dma-mapping.h to dma-direct.h
-To:     Christoph Hellwig <hch@lst.de>, iommu@lists.linux-foundation.org,
-        Russell King <linux@armlinux.org.uk>,
-        Santosh Shilimkar <ssantosh@kernel.org>
-Cc:     devicetree@vger.kernel.org,
-        Florian Fainelli <f.fainelli@gmail.com>,
-        linux-sh@vger.kernel.org, Frank Rowand <frowand.list@gmail.com>,
-        linux-usb@vger.kernel.org, linux-kernel@vger.kernel.org,
-        linux-acpi@vger.kernel.org, Rob Herring <robh+dt@kernel.org>,
-        Jim Quinlan <james.quinlan@broadcom.com>,
-        linux-pci@vger.kernel.org,
-        Nathan Chancellor <natechancellor@gmail.com>,
-        linux-arm-kernel@lists.infradead.org
-References: <20200910054038.324517-1-hch@lst.de>
- <20200910054038.324517-2-hch@lst.de>
-From:   Robin Murphy <robin.murphy@arm.com>
-Message-ID: <42497691-ec93-1e93-d3e5-e841eaf8247a@arm.com>
-Date:   Thu, 10 Sep 2020 19:02:23 +0100
-User-Agent: Mozilla/5.0 (Windows NT 10.0; rv:68.0) Gecko/20100101
- Thunderbird/68.12.0
+        id S1725991AbgIJSFd (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Thu, 10 Sep 2020 14:05:33 -0400
+Received: from lindbergh.monkeyblade.net ([23.128.96.19]:33508 "EHLO
+        lindbergh.monkeyblade.net" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
+        with ESMTP id S1725877AbgIJSFS (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Thu, 10 Sep 2020 14:05:18 -0400
+Received: from mail-pg1-x542.google.com (mail-pg1-x542.google.com [IPv6:2607:f8b0:4864:20::542])
+        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 89A3BC061573;
+        Thu, 10 Sep 2020 11:05:17 -0700 (PDT)
+Received: by mail-pg1-x542.google.com with SMTP id l191so4652077pgd.5;
+        Thu, 10 Sep 2020 11:05:17 -0700 (PDT)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+        d=gmail.com; s=20161025;
+        h=from:to:cc:subject:date:message-id:mime-version
+         :content-transfer-encoding;
+        bh=sbUyJpejCvA3QH4e+Y9L0OkTzMxPfcFa5isJNJNYA7E=;
+        b=rFnTYk3kalLjbRQHngSb/t19D4EtEitgTtgTaWIoBT/vs85zoyWHRg0R5iKsQDM8fq
+         UVNLyQurv0ZwippbcCdjNojPWIXGR35uIsowLwkOCiK6dWifkl3jsjZHkqyDr1xhZhKL
+         +RQz0/LS9EUM9ZcrzNL+/StM0CIhmlpIXsck4gQ5WLrX0ep9rT2ubj5qKMAVuZVxvb3Z
+         UzfBU/wdisoQcwBlJiRybtvPcTrMWHy+iuCprfzB16QbXOktzO/Mln6YIwVdxh15N/zp
+         TgnTZKwcuTmLxqWYy4DikDwcUdk2bo82uhQ5tst1q6kQ/knDejt/isrmpFs/De3raBZu
+         L/yw==
+X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+        d=1e100.net; s=20161025;
+        h=x-gm-message-state:from:to:cc:subject:date:message-id:mime-version
+         :content-transfer-encoding;
+        bh=sbUyJpejCvA3QH4e+Y9L0OkTzMxPfcFa5isJNJNYA7E=;
+        b=eLJBh9DzCBBcNrHsv06VPvc2HgRxALwtO/zmCzT2EokzNi9B+bFW8Qh/+/mOFTABUN
+         T8dtFohv+5/4GDcj5TmKNfQRJJktCbirBZp+aFOUmT6YY3czUzqiPNcGmQrSgN6ULTPi
+         exaYALRBFbyGsTTb06BYrHluYzJx4dmeQsjlLNghYZjURV4VFG4Y+a1SbX9DOI91hcPl
+         5aDhkgv93xBuL2zUio1cslXxLTQBFZ4PBOCAt5Z6XZl24JKSwiDYSXrDTdgH9TOYQKjI
+         05Ef0D3Jvvl6qtQEirbUnAkwVIheCv1r8uaoaahxMUO/5IwhGKAKld816xS2j5gZ1kiZ
+         jsPg==
+X-Gm-Message-State: AOAM531yFPyQYwdHKMKvJ6JiM7C9E+nFcwNwUNfsm1jv4xD5R05sDnqR
+        FEo3jLfWAFEze1pRmIe/8g7lP7KA118=
+X-Google-Smtp-Source: ABdhPJwrXbIa5IjH+meDBbNT3ln3vgWA7C+RElpoZ+bxyZNXiOlZC+Q/3NY5ishRbJ7b7cgMfXZCgQ==
+X-Received: by 2002:aa7:9297:0:b029:13c:1611:653c with SMTP id j23-20020aa792970000b029013c1611653cmr6824116pfa.14.1599761117096;
+        Thu, 10 Sep 2020 11:05:17 -0700 (PDT)
+Received: from nish-HP-Pavilion ([2409:4072:6218:54d7:9928:e984:12bb:783d])
+        by smtp.gmail.com with ESMTPSA id y29sm7252536pfq.207.2020.09.10.11.05.15
+        (version=TLS1_3 cipher=TLS_AES_256_GCM_SHA384 bits=256/256);
+        Thu, 10 Sep 2020 11:05:16 -0700 (PDT)
+From:   Nishant Malpani <nish.malpani25@gmail.com>
+To:     jic23@kernel.org, robh+dt@kernel.org
+Cc:     linux-kernel@vger.kernel.org, linux-iio@vger.kernel.org,
+        devicetree@vger.kernel.org, andy.shevchenko@gmail.com,
+        Nishant Malpani <nish.malpani25@gmail.com>
+Subject: [RESEND PATCH v3 0/3] iio: gyro: adxrs290: Add triggered buffer & debugfs support
+Date:   Thu, 10 Sep 2020 23:34:47 +0530
+Message-Id: <20200910180450.29696-1-nish.malpani25@gmail.com>
+X-Mailer: git-send-email 2.20.1
 MIME-Version: 1.0
-In-Reply-To: <20200910054038.324517-2-hch@lst.de>
-Content-Type: text/plain; charset=utf-8; format=flowed
-Content-Language: en-GB
-Content-Transfer-Encoding: 7bit
+Content-Transfer-Encoding: 8bit
 Sender: devicetree-owner@vger.kernel.org
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-On 2020-09-10 06:40, Christoph Hellwig wrote:
-> Move the helpers to translate to and from direct mapping DMA addresses
-> to dma-direct.h.  This not only is the most logical place, but the new
-> placement also avoids dependency loops with pending commits.
+Introduce DATA_RDY trigger for triggered buffer setup; this enables continuous
+data capture. Additionally, add support for direct register access using the debugfs 
+iio interface. 
 
-For the straightforward move as it should be,
+The device-tree bindings documentation illustrates an example of using a GPIO irq
+line to trigger a data capture.
 
-Reviewed-by: Robin Murphy <robin.murphy@arm.com>
+Nishant Malpani (3):
+  iio: gyro: adxrs290: Add triggered buffer support
+  dt-bindings: iio: gyro: adxrs290: Add interrupts support
+  iio: gyro: adxrs290: Add debugfs register access support
 
-However I do wonder how much of this could be cleaned up further...
+ .../bindings/iio/gyroscope/adi,adxrs290.yaml  |   6 +
+ drivers/iio/gyro/Kconfig                      |   2 +
+ drivers/iio/gyro/adxrs290.c                   | 237 ++++++++++++++++--
+ 3 files changed, 231 insertions(+), 14 deletions(-)
 
-> Signed-off-by: Christoph Hellwig <hch@lst.de>
-> ---
->   arch/arm/common/dmabounce.c        |  2 +-
->   arch/arm/include/asm/dma-direct.h  | 70 ++++++++++++++++++++++++++++++
->   arch/arm/include/asm/dma-mapping.h | 70 ------------------------------
->   3 files changed, 71 insertions(+), 71 deletions(-)
-> 
-> diff --git a/arch/arm/common/dmabounce.c b/arch/arm/common/dmabounce.c
-> index f4b719bde76367..d3e00ea9208834 100644
-> --- a/arch/arm/common/dmabounce.c
-> +++ b/arch/arm/common/dmabounce.c
-> @@ -24,7 +24,7 @@
->   #include <linux/slab.h>
->   #include <linux/page-flags.h>
->   #include <linux/device.h>
-> -#include <linux/dma-mapping.h>
-> +#include <linux/dma-direct.h>
->   #include <linux/dmapool.h>
->   #include <linux/list.h>
->   #include <linux/scatterlist.h>
-> diff --git a/arch/arm/include/asm/dma-direct.h b/arch/arm/include/asm/dma-direct.h
-> index 7c3001a6a775bf..de0f4ff9279615 100644
-> --- a/arch/arm/include/asm/dma-direct.h
-> +++ b/arch/arm/include/asm/dma-direct.h
-> @@ -2,6 +2,76 @@
->   #ifndef ASM_ARM_DMA_DIRECT_H
->   #define ASM_ARM_DMA_DIRECT_H 1
->   
-> +#include <asm/memory.h>
-> +
-> +#ifdef __arch_page_to_dma
-> +#error Please update to __arch_pfn_to_dma
-> +#endif
+-- 
+2.20.1
 
-This must be long, long dead by now.
-
-> +
-> +/*
-> + * dma_to_pfn/pfn_to_dma/dma_to_virt/virt_to_dma are architecture private
-> + * functions used internally by the DMA-mapping API to provide DMA
-> + * addresses. They must not be used by drivers.
-> + */
-> +#ifndef __arch_pfn_to_dma
-> +static inline dma_addr_t pfn_to_dma(struct device *dev, unsigned long pfn)
-> +{
-> +	if (dev)
-> +		pfn -= dev->dma_pfn_offset;
-> +	return (dma_addr_t)__pfn_to_bus(pfn);
-> +}
-> +
-> +static inline unsigned long dma_to_pfn(struct device *dev, dma_addr_t addr)
-> +{
-> +	unsigned long pfn = __bus_to_pfn(addr);
-> +
-> +	if (dev)
-> +		pfn += dev->dma_pfn_offset;
-> +
-> +	return pfn;
-> +}
-
-These are only overridden for OMAP1510, and it looks like it wouldn't 
-take much for the platform code or ohci-omap driver to set up a generic 
-DMA offset for the relevant device.
-
-> +
-> +static inline void *dma_to_virt(struct device *dev, dma_addr_t addr)
-> +{
-> +	if (dev) {
-> +		unsigned long pfn = dma_to_pfn(dev, addr);
-> +
-> +		return phys_to_virt(__pfn_to_phys(pfn));
-> +	}
-> +
-> +	return (void *)__bus_to_virt((unsigned long)addr);
-> +}
-
-This appears entirely unused.
-
-> +
-> +static inline dma_addr_t virt_to_dma(struct device *dev, void *addr)
-> +{
-> +	if (dev)
-> +		return pfn_to_dma(dev, virt_to_pfn(addr));
-> +
-> +	return (dma_addr_t)__virt_to_bus((unsigned long)(addr));
-> +}
-
-And this is only used for some debug prints in dmabounce.
-
-Similarly the __bus_to_*()/__*_to_bus() calls themselves only appear 
-significant to mach-footbridge any more, and could probably also be 
-evolved into regular DMA offsets now that all API calls must have a 
-non-NULL device. I think I might come back and take a closer look at all 
-this at some point in future... :)
-
-Robin.
-
-> +
-> +#else
-> +static inline dma_addr_t pfn_to_dma(struct device *dev, unsigned long pfn)
-> +{
-> +	return __arch_pfn_to_dma(dev, pfn);
-> +}
-> +
-> +static inline unsigned long dma_to_pfn(struct device *dev, dma_addr_t addr)
-> +{
-> +	return __arch_dma_to_pfn(dev, addr);
-> +}
-> +
-> +static inline void *dma_to_virt(struct device *dev, dma_addr_t addr)
-> +{
-> +	return __arch_dma_to_virt(dev, addr);
-> +}
-> +
-> +static inline dma_addr_t virt_to_dma(struct device *dev, void *addr)
-> +{
-> +	return __arch_virt_to_dma(dev, addr);
-> +}
-> +#endif
-> +
->   static inline dma_addr_t __phys_to_dma(struct device *dev, phys_addr_t paddr)
->   {
->   	unsigned int offset = paddr & ~PAGE_MASK;
-> diff --git a/arch/arm/include/asm/dma-mapping.h b/arch/arm/include/asm/dma-mapping.h
-> index bdd80ddbca3451..0a1a536368c3a4 100644
-> --- a/arch/arm/include/asm/dma-mapping.h
-> +++ b/arch/arm/include/asm/dma-mapping.h
-> @@ -8,8 +8,6 @@
->   #include <linux/scatterlist.h>
->   #include <linux/dma-debug.h>
->   
-> -#include <asm/memory.h>
-> -
->   #include <xen/xen.h>
->   #include <asm/xen/hypervisor.h>
->   
-> @@ -23,74 +21,6 @@ static inline const struct dma_map_ops *get_arch_dma_ops(struct bus_type *bus)
->   	return NULL;
->   }
->   
-> -#ifdef __arch_page_to_dma
-> -#error Please update to __arch_pfn_to_dma
-> -#endif
-> -
-> -/*
-> - * dma_to_pfn/pfn_to_dma/dma_to_virt/virt_to_dma are architecture private
-> - * functions used internally by the DMA-mapping API to provide DMA
-> - * addresses. They must not be used by drivers.
-> - */
-> -#ifndef __arch_pfn_to_dma
-> -static inline dma_addr_t pfn_to_dma(struct device *dev, unsigned long pfn)
-> -{
-> -	if (dev)
-> -		pfn -= dev->dma_pfn_offset;
-> -	return (dma_addr_t)__pfn_to_bus(pfn);
-> -}
-> -
-> -static inline unsigned long dma_to_pfn(struct device *dev, dma_addr_t addr)
-> -{
-> -	unsigned long pfn = __bus_to_pfn(addr);
-> -
-> -	if (dev)
-> -		pfn += dev->dma_pfn_offset;
-> -
-> -	return pfn;
-> -}
-> -
-> -static inline void *dma_to_virt(struct device *dev, dma_addr_t addr)
-> -{
-> -	if (dev) {
-> -		unsigned long pfn = dma_to_pfn(dev, addr);
-> -
-> -		return phys_to_virt(__pfn_to_phys(pfn));
-> -	}
-> -
-> -	return (void *)__bus_to_virt((unsigned long)addr);
-> -}
-> -
-> -static inline dma_addr_t virt_to_dma(struct device *dev, void *addr)
-> -{
-> -	if (dev)
-> -		return pfn_to_dma(dev, virt_to_pfn(addr));
-> -
-> -	return (dma_addr_t)__virt_to_bus((unsigned long)(addr));
-> -}
-> -
-> -#else
-> -static inline dma_addr_t pfn_to_dma(struct device *dev, unsigned long pfn)
-> -{
-> -	return __arch_pfn_to_dma(dev, pfn);
-> -}
-> -
-> -static inline unsigned long dma_to_pfn(struct device *dev, dma_addr_t addr)
-> -{
-> -	return __arch_dma_to_pfn(dev, addr);
-> -}
-> -
-> -static inline void *dma_to_virt(struct device *dev, dma_addr_t addr)
-> -{
-> -	return __arch_dma_to_virt(dev, addr);
-> -}
-> -
-> -static inline dma_addr_t virt_to_dma(struct device *dev, void *addr)
-> -{
-> -	return __arch_virt_to_dma(dev, addr);
-> -}
-> -#endif
-> -
->   /**
->    * arm_dma_alloc - allocate consistent memory for DMA
->    * @dev: valid struct device pointer, or NULL for ISA and EISA-like devices
-> 
