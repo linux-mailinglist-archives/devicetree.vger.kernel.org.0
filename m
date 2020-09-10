@@ -2,365 +2,246 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from vger.kernel.org (vger.kernel.org [23.128.96.18])
-	by mail.lfdr.de (Postfix) with ESMTP id B07952643B0
-	for <lists+devicetree@lfdr.de>; Thu, 10 Sep 2020 12:19:43 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTP id B987B2643CC
+	for <lists+devicetree@lfdr.de>; Thu, 10 Sep 2020 12:22:38 +0200 (CEST)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S1726079AbgIJKTU (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Thu, 10 Sep 2020 06:19:20 -0400
-Received: from lindbergh.monkeyblade.net ([23.128.96.19]:44932 "EHLO
-        lindbergh.monkeyblade.net" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S1725913AbgIJKSK (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Thu, 10 Sep 2020 06:18:10 -0400
-Received: from mail-wr1-x442.google.com (mail-wr1-x442.google.com [IPv6:2a00:1450:4864:20::442])
-        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id C5414C0617A2
-        for <devicetree@vger.kernel.org>; Thu, 10 Sep 2020 03:17:58 -0700 (PDT)
-Received: by mail-wr1-x442.google.com with SMTP id k15so6043686wrn.10
-        for <devicetree@vger.kernel.org>; Thu, 10 Sep 2020 03:17:58 -0700 (PDT)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=linaro.org; s=google;
-        h=from:to:cc:subject:date:message-id:in-reply-to:references
-         :mime-version:content-transfer-encoding;
-        bh=fI1uS4bVeiqLJzCVRZUdfDt50/7TaI5DFX9s+uR8bi0=;
-        b=WYVUOP78Ceudw8wHTgtD4OL6yrcyMzVLx+5nuP/mHNT7rUuEGgFqmySkdD0ytYlUIT
-         8IgjAcg417KQYMvJIDwSxzKsz7FqCuvmkUrFNz51IQwXhGY+FNbNKw5WnIhfY91rHSyS
-         YSVvD99v221/B9M+Qv1lOioQPPdkYuDzg2bium2d9z7uIBEBkXxiNe0clrX3eJhD0A+2
-         cnaLBhbvyAnSiove7mSyx+rpAr3Pl3YvdQKSrmh3U7gz2oCM4PwecYyjoZxII4dHWiQf
-         qtj/FZe/TBe6Z6q0Q6dNxfYnf8P4TNytw4F5+jUs6gDc3DV1wqKChJYyJ3M+A8b36pkL
-         NA4w==
-X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=1e100.net; s=20161025;
-        h=x-gm-message-state:from:to:cc:subject:date:message-id:in-reply-to
-         :references:mime-version:content-transfer-encoding;
-        bh=fI1uS4bVeiqLJzCVRZUdfDt50/7TaI5DFX9s+uR8bi0=;
-        b=JK+cF0TYvR9YoXnPGrDyXmnb4+a5bWkdF7EsQ6lCNO7BLhL46rcde2Dgvc2R/ilC6G
-         zflmXTn1OGo/Fa9ya8fEb7IMIvwEX+IFQluG5S5aFuTA23BCCTFbrOu3VJbNwxH07iBh
-         ZwX7GO0MfmqwhNGPCaBJyvZi6NgNOah6VMIThqWuebqoPrhByIqt2KNPzyJzSyqO9Qf3
-         h0IWaIIo8A0j2kdMo7xtRPBD4ZRprmtS8+h8jE6v0FGvt/F6wkT4Q54+n03PZqS0xBr2
-         RLErtYQahXB9mC5to5wiUNGdFA3n3oT+IomroXsO4lXJNW0FP9zeu+G4q8mTytqjx0LD
-         ps0w==
-X-Gm-Message-State: AOAM530uq6lZWa0qznMMnPFNLdNL0flPuHDa0mBsqHh1i1kqvRvjUrEA
-        FOl0dNy3WXeRdetBTlfAaor38Q==
-X-Google-Smtp-Source: ABdhPJyDqSI3QwjTu46eo8utnMHXlAibRnHzADDlFuXxPCwSOFwTJn3ww+z5s6A933WGx+awyhPUFw==
-X-Received: by 2002:a5d:4591:: with SMTP id p17mr8084131wrq.408.1599733077453;
-        Thu, 10 Sep 2020 03:17:57 -0700 (PDT)
-Received: from srini-hackbox.lan (cpc86377-aztw32-2-0-cust226.18-1.cable.virginm.net. [92.233.226.227])
-        by smtp.gmail.com with ESMTPSA id m4sm8851731wro.18.2020.09.10.03.17.56
-        (version=TLS1_3 cipher=TLS_AES_256_GCM_SHA384 bits=256/256);
-        Thu, 10 Sep 2020 03:17:56 -0700 (PDT)
-From:   Srinivas Kandagatla <srinivas.kandagatla@linaro.org>
-To:     broonie@kernel.org
-Cc:     lgirdwood@gmail.com, robh+dt@kernel.org, plai@codeaurora.org,
-        bgoswami@codeaurora.org, perex@perex.cz, tiwai@suse.com,
-        alsa-devel@alsa-project.org, devicetree@vger.kernel.org,
-        linux-kernel@vger.kernel.org,
-        Srinivas Kandagatla <srinivas.kandagatla@linaro.org>
-Subject: [PATCH 8/8] ASoC: q6dsp: q6afe-dai: add support to Codec DMA ports
-Date:   Thu, 10 Sep 2020 11:17:32 +0100
-Message-Id: <20200910101732.23484-9-srinivas.kandagatla@linaro.org>
-X-Mailer: git-send-email 2.21.0
-In-Reply-To: <20200910101732.23484-1-srinivas.kandagatla@linaro.org>
-References: <20200910101732.23484-1-srinivas.kandagatla@linaro.org>
+        id S1726426AbgIJKWh (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Thu, 10 Sep 2020 06:22:37 -0400
+Received: from lb1-smtp-cloud8.xs4all.net ([194.109.24.21]:48625 "EHLO
+        lb1-smtp-cloud8.xs4all.net" rhost-flags-OK-OK-OK-OK)
+        by vger.kernel.org with ESMTP id S1725971AbgIJKWf (ORCPT
+        <rfc822;devicetree@vger.kernel.org>);
+        Thu, 10 Sep 2020 06:22:35 -0400
+Received: from cust-b5b5937f ([IPv6:fc0c:c16d:66b8:757f:c639:739b:9d66:799d])
+        by smtp-cloud8.xs4all.net with ESMTPA
+        id GJimkZGk2PTBMGJinkQoUD; Thu, 10 Sep 2020 12:22:31 +0200
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=xs4all.nl; s=s1;
+        t=1599733351; bh=LDYwQREKIyP+fC1mTmdEZ1algK9y376YR+lsZdvZzJg=;
+        h=Subject:To:From:Message-ID:Date:MIME-Version:Content-Type:From:
+         Subject;
+        b=jozX8HK1R7t7Nd3fVcZF7ns/5gsUqXbX39besg8kGO1OjY7FpP7AWb374QEdjZNas
+         Pd2KKSbqiw3367hHx5vwd7TMY6T5FIL7U+PBU2bd2PpEnSzEy6BE9MGeDAnj2NrbBD
+         OVJFuEGPyI9Veqv427RerI+p6OGo4YDlMNevIUaazaaXhb7SpEH9ZfSmDw647taMX6
+         iGmYNV4+BSFaSPUI/v+KEuiHUYRq02+fbKI3NsMSjY8DIorLaMyFVhD+l0TnjG6dlL
+         DxH4lScZRyuFEF/KmOUeY1F2GAai4SPpeW0NKFVufHS0jaj5m9+74XtnMP6VTQ/sy0
+         J9S9BiLka+AcA==
+Subject: Re: [PATCH v3 3/3] media: v4l: xilinx: Add Xilinx UHD-SDI Rx
+ Subsystem driver
+To:     Nicolas Dufresne <nicolas@ndufresne.ca>,
+        Laurent Pinchart <laurent.pinchart@ideasonboard.com>,
+        Vishal Sagar <vsagar@xilinx.com>
+Cc:     Hyun Kwon <hyunk@xilinx.com>,
+        "mchehab@kernel.org" <mchehab@kernel.org>,
+        "robh+dt@kernel.org" <robh+dt@kernel.org>,
+        "mark.rutland@arm.com" <mark.rutland@arm.com>,
+        Michal Simek <michals@xilinx.com>,
+        "linux-media@vger.kernel.org" <linux-media@vger.kernel.org>,
+        "devicetree@vger.kernel.org" <devicetree@vger.kernel.org>,
+        "linux-arm-kernel@lists.infradead.org" 
+        <linux-arm-kernel@lists.infradead.org>,
+        "linux-kernel@vger.kernel.org" <linux-kernel@vger.kernel.org>,
+        "joe@perches.com" <joe@perches.com>,
+        Sandip Kothari <sandipk@xilinx.com>,
+        Dinesh Kumar <dineshk@xilinx.com>
+References: <20200618053304.14551-1-vishal.sagar@xilinx.com>
+ <20200618053304.14551-4-vishal.sagar@xilinx.com>
+ <50cc4f4b-e788-c5ad-cd6a-b428b96d5377@xs4all.nl>
+ <20200715213315.GF6144@pendragon.ideasonboard.com>
+ <BY5PR02MB6867211CA1F22DC01D6A8F15A75D0@BY5PR02MB6867.namprd02.prod.outlook.com>
+ <20200819165641.GS6049@pendragon.ideasonboard.com>
+ <ae3814b877ea264b0231321d12d946761941e004.camel@ndufresne.ca>
+From:   Hans Verkuil <hverkuil@xs4all.nl>
+Message-ID: <f88cc98f-7e0d-cedc-6b27-a7a5fd801ebe@xs4all.nl>
+Date:   Thu, 10 Sep 2020 12:22:28 +0200
+User-Agent: Mozilla/5.0 (X11; Linux x86_64; rv:68.0) Gecko/20100101
+ Thunderbird/68.10.0
 MIME-Version: 1.0
+In-Reply-To: <ae3814b877ea264b0231321d12d946761941e004.camel@ndufresne.ca>
+Content-Type: text/plain; charset=utf-8
+Content-Language: en-US
 Content-Transfer-Encoding: 8bit
+X-CMAE-Envelope: MS4wfCBeF1sLUp1ZjeFxLDXvfC59chaRZP7VNt4zdmlx2vHaBZ44MLrFHAIiSVJaAGUWx092ARpSoUQWM7/eT0Vw+zOM8ZGCKl31lJ51poV6oV6+OadenTw+
+ FFZtEwdEjASw/E2ObTESiObHWRRRvawAIzrwgLZHwDUfsI1eXv4HIgMwwlUNxWxM8T7BpAdVOJYF4fyqsgXyo5eDGMpRomSD81Yi2Gorod7lJZWZ9xYChJrK
+ gBvmYJkeNAfPZwJmKVGa5/Z2HhNqcub5zl6FZM5x1wNjmx90zW/Zii3VjqsQbiRoUshwFNJpcn6XlDwZd0LRpnqJAKlQb/OHvsWcVbhLrdfqtcVuajFi86F1
+ BtkLq6LKGSHmUyOAYFH2AEAOCAEb7qgZf2BY3Ovwv7jFjYp3xlQhE9uH+iGUmaPw4azeY6PwA3oUfQpoXCv/mU3RwRG+29NKsHTHMNpFBtrWsVn6YYqMcQaE
+ vOkdz0lUgNIuHP4FNIMIv6k9QCuNJTQ8fC1+KDGac9V0gK90KYtq0VMzVyUtM4w4E/NyOr24WrzBQ1E15YVH9BCCnweXUDnxtJYN4djG2n9+jdONh7iyBJxp
+ 7m6knQ21NiLiW9pbywyugYvuFd5ib5NJcFXi4v/4KzRw8d5iRBJ+So2GXyGNksBFIFrjf0gIT5+IK84Qyy6SNy+fzhBQjkqD/Xf7lpShTXAxubDZi3JaA/tr
+ uO7+95ESacioABjLQz83eaF0BvXfYoQL/m559NoeaA7C6c4zr80J4g==
 Sender: devicetree-owner@vger.kernel.org
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-Signed-off-by: Srinivas Kandagatla <srinivas.kandagatla@linaro.org>
----
- sound/soc/qcom/qdsp6/q6afe-dai.c | 229 +++++++++++++++++++++++++++++++
- 1 file changed, 229 insertions(+)
+On 26/08/2020 16:10, Nicolas Dufresne wrote:
+> Le mercredi 19 août 2020 à 19:56 +0300, Laurent Pinchart a écrit :
+>> Hi Vishal,
+>>
+>> (Hans, there's a question for you below)
+>>
+>> On Wed, Aug 19, 2020 at 01:47:49PM +0000, Vishal Sagar wrote:
+>>> On Thursday, July 16, 2020 3:03 AM Laurent Pinchart wrote:
+>>>> On Thu, Jun 25, 2020 at 11:43:01AM +0200, Hans Verkuil wrote:
+>>>>> On 18/06/2020 07:33, Vishal Sagar wrote:
+>>>>>> The Xilinx UHD-SDI Rx subsystem soft IP is used to capture native SDI
+>>>>>> streams from SDI sources like SDI broadcast equipment like cameras and
+>>>>>> mixers. This block outputs either native SDI, native video or
+>>>>>> AXI4-Stream compliant data stream for further processing. Please refer
+>>>>>> to PG290 for details.
+>>>>>>
+>>>>>> The driver is used to configure the IP to add framer, search for
+>>>>>> specific modes, get the detected mode, stream parameters, errors, etc.
+>>>>>> It also generates events for video lock/unlock, bridge over/under flow.
+>>>>>>
+>>>>>> The driver supports 10/12 bpc YUV 422 media bus format currently. It
+>>>>>> also decodes the stream parameters based on the ST352 packet embedded in the
+>>>>>> stream. In case the ST352 packet isn't present in the stream, the core's
+>>>>>> detected properties are used to set stream properties.
+>>>>>>
+>>>>>> The driver currently supports only the AXI4-Stream IP configuration.
+>>>>>>
+>>>>>> Signed-off-by: Vishal Sagar <vishal.sagar@xilinx.com>
+>>>>>> ---
+>>>>>> v3
+>>>>>> - fixed KConfig with better description
+>>>>>> - removed unnecessary header files
+>>>>>> - converted uppercase to lowercase for all hex values
+>>>>>> - merged core struct to state struct
+>>>>>> - removed most one line functions and replaced with direct reg
+>>>>>>   read/write or macros
+>>>>>> - dt property bpp to bpc. default 10. not mandatory.
+>>>>>> - fixed subscribe events, log_status, s_stream
+>>>>>> - merged overflow/underflow to one event
+>>>>>> - moved all controls to xilinx-sdirxss.h
+>>>>>> - max events from 128 to 8
+>>>>>> - used FIELD_GET() instead of custom macro
+>>>>>> - updated the controls documentation
+>>>>>> - added spinlock
+>>>>>> - removed 3GB control and added mode to detect bitmask
+>>>>>> - fixed format for (width, height, colorspace, xfer func, etc)
+>>>>>> - added dv_timings_cap, s/g_dv_timings
+>>>>>> - fixed set/get_format
+>>>>>> - fix v4l control registrations
+>>>>>> - fix order of registration / deregistration in probe() remove()
+>>>>>> - fixed other comments from Hyun, Laurent and Hans
+>>>>>> - things yet to close
+>>>>>>   - adding source port for connector (Laurent's suggestion)
+>>>>>>   - adding new FIELD type for Transport Stream V4L2_FIELD_ALTERNATE_PROG (Han's suggestion)
+>>>>>>   - Update / remove EDH or CRC related controls
+>>>>>>
+>>>>>> v2
+>>>>>> - Added DV timing support based on Hans Verkuilś feedback
+>>>>>> - More documentation to custom v4l controls and events
+>>>>>> - Fixed Hyunś comments
+>>>>>> - Added macro for masking and shifting as per Joe Perches comments
+>>>>>> - Updated to latest as per Xilinx github repo driver like
+>>>>>>   adding new DV timings not in mainline yet uptill 03/21/20
+>>>>>>
+>>>>>>  drivers/media/platform/xilinx/Kconfig         |   11 +
+>>>>>>  drivers/media/platform/xilinx/Makefile        |    1 +
+>>>>>>  .../media/platform/xilinx/xilinx-sdirxss.c    | 2121 +++++++++++++++++
+>>>>>>  include/uapi/linux/v4l2-controls.h            |    6 +
+>>>>>>  include/uapi/linux/xilinx-sdirxss.h           |  283 +++
+>>>>>>  5 files changed, 2422 insertions(+)
+>>>>>>  create mode 100644 drivers/media/platform/xilinx/xilinx-sdirxss.c
+>>>>>>  create mode 100644 include/uapi/linux/xilinx-sdirxss.h
+>>
+>> [snip]
+>>
+>>>>>> diff --git a/drivers/media/platform/xilinx/xilinx-sdirxss.c b/drivers/media/platform/xilinx/xilinx-sdirxss.c
+>>>>>> new file mode 100644
+>>>>>> index 000000000000..e39aab7c656a
+>>>>>> --- /dev/null
+>>>>>> +++ b/drivers/media/platform/xilinx/xilinx-sdirxss.c
+>>>>>> @@ -0,0 +1,2121 @@
+>>
+>> [snip]
+>>
+>>>>>> +	case V4L2_CID_XILINX_SDIRX_TS_IS_INTERLACED:
+>>>>>> +		ctrl->val = xsdirxss->ts_is_interlaced;
+>>>>>> +		break;
+>>>>>
+>>>>> I assume this control will disappear once you added support for
+>>>>> FIELD_ALTERNATE_PROG?
+>>>>
+>>>> I'm not sure FIELD_ALTERNATE_PROG is a good idea. The v4l2_field
+>>>> specifies today how frames are split into multiple buffers. There's an
+>>>> implicit assumption that a frame split into two buffers is captured with
+>>>> interlacing. In the SDI case, the two concepts get decoupled, a
+>>>> progressive frame can be transmitted (and captured) in two separate
+>>>> parts. If we add a *_PROG field, we'll need to duplicate most of the
+>>>> v4l2_field values with a _PROG suffix, as the progressive frame can be
+>>>> captured in alternate buffers on a video node, but also in separate odd
+>>>> and even buffers on two video nodes. Tt the hardware level, data is
+>>>> transmitted with odd lines on one link, and even lines on a second link.
+>>>> There are then two instances of this IP core, one for each link. One
+>>>> instance would receive and process the even lines, the other instance
+>>>> the odd lines. The output of the two instances can then be connected to
+>>>> two separate DMA engines, or combined in the FPGA fabric, depending on
+>>>> how the user designs the system.
+>>>
+>>> My apologies to give incorrect info regarding this.
+>>> In the progressive segmented frame, a progressive captured frame is sent
+>>> across to receiver over an interlaced transport. The 2 fields received
+>>> are similar to how V4L2_FIELD_ALTERNATE is except that the fields weren't
+>>> captured at 2 different times.
+>>
+>> I've now read more about progressive segmented frames, and I was indeed
+>> wrong about the fact that the two segments are transported over
+>> different links.
+>>
+>> I still wonder, however, if a _PROG suffix is the best option. Wouldn't
+>> we need to also add V4L2_FIELD_TOP_PROG, V4L2_FIELD_BOTTOM_PROG,
+>> V4L2_FIELD_SEQ_TB_PROG and V4L2_FIELD_SEQ_BT_PROG, not necessarily for
+>> this driver, but for other devices that would support capturing the
+>> odd/even segments only, or support capturing both segments in a single
+>> buffer, one after the other ?
+>>
+>> Maybe that's unavoidable, as enum v4l2_field combines both the buffer
+>> layout and the fact that the frame is interlaced or progressive. If we
+>> had to redesign it we could do better, but having to keep backward
+>> compatibility, duplicating most values with a _PROG suffix may be the
+>> best option.
+>>
+>> Hans, any opinion ?
 
-diff --git a/sound/soc/qcom/qdsp6/q6afe-dai.c b/sound/soc/qcom/qdsp6/q6afe-dai.c
-index 0168af849272..d58b86a98114 100644
---- a/sound/soc/qcom/qdsp6/q6afe-dai.c
-+++ b/sound/soc/qcom/qdsp6/q6afe-dai.c
-@@ -55,6 +55,48 @@
- 		.remove = msm_dai_q6_dai_remove,			\
- 	}
- 
-+#define Q6AFE_CDC_DMA_RX_DAI(did) {				\
-+		.playback = {						\
-+			.stream_name = #did" Playback",	\
-+			.rates = SNDRV_PCM_RATE_8000 | SNDRV_PCM_RATE_16000 |\
-+				SNDRV_PCM_RATE_32000 | SNDRV_PCM_RATE_48000 |\
-+				SNDRV_PCM_RATE_176400,			\
-+			.formats = SNDRV_PCM_FMTBIT_S16_LE |		\
-+				   SNDRV_PCM_FMTBIT_S24_LE |		\
-+				   SNDRV_PCM_FMTBIT_S32_LE,		\
-+			.channels_min = 1,				\
-+			.channels_max = 8,				\
-+			.rate_min = 8000,				\
-+			.rate_max = 176400,				\
-+		},							\
-+		.name = #did,						\
-+		.ops = &q6dma_ops,					\
-+		.id = did,						\
-+		.probe = msm_dai_q6_dai_probe,				\
-+		.remove = msm_dai_q6_dai_remove,			\
-+	}
-+
-+#define Q6AFE_CDC_DMA_TX_DAI(did) {				\
-+		.capture = {						\
-+			.stream_name = #did" Capture",		\
-+			.rates = SNDRV_PCM_RATE_8000 | SNDRV_PCM_RATE_16000 |\
-+				SNDRV_PCM_RATE_32000 | SNDRV_PCM_RATE_48000 |\
-+				SNDRV_PCM_RATE_176400,			\
-+			.formats = SNDRV_PCM_FMTBIT_S16_LE |		\
-+				   SNDRV_PCM_FMTBIT_S24_LE |		\
-+				   SNDRV_PCM_FMTBIT_S32_LE,		\
-+			.channels_min = 1,				\
-+			.channels_max = 8,				\
-+			.rate_min = 8000,				\
-+			.rate_max = 176400,				\
-+		},							\
-+		.name = #did,						\
-+		.ops = &q6dma_ops,					\
-+		.id = did,						\
-+		.probe = msm_dai_q6_dai_probe,				\
-+		.remove = msm_dai_q6_dai_remove,			\
-+	}
-+
- struct q6afe_dai_priv_data {
- 	uint32_t sd_line_mask;
- 	uint32_t sync_mode;
-@@ -307,6 +349,90 @@ static int q6tdm_hw_params(struct snd_pcm_substream *substream,
- 
- 	return 0;
- }
-+
-+static int q6dma_set_channel_map(struct snd_soc_dai *dai,
-+				 unsigned int tx_num, unsigned int *tx_ch_mask,
-+				 unsigned int rx_num, unsigned int *rx_ch_mask)
-+{
-+
-+	struct q6afe_dai_data *dai_data = dev_get_drvdata(dai->dev);
-+	struct q6afe_cdc_dma_cfg *cfg = &dai_data->port_config[dai->id].dma_cfg;
-+	int ch_mask;
-+	int rc = 0;
-+
-+	switch (dai->id) {
-+	case WSA_CODEC_DMA_TX_0:
-+	case WSA_CODEC_DMA_TX_1:
-+	case WSA_CODEC_DMA_TX_2:
-+	case VA_CODEC_DMA_TX_0:
-+	case VA_CODEC_DMA_TX_1:
-+	case VA_CODEC_DMA_TX_2:
-+	case TX_CODEC_DMA_TX_0:
-+	case TX_CODEC_DMA_TX_1:
-+	case TX_CODEC_DMA_TX_2:
-+	case TX_CODEC_DMA_TX_3:
-+	case TX_CODEC_DMA_TX_4:
-+	case TX_CODEC_DMA_TX_5:
-+		if (!tx_ch_mask) {
-+			dev_err(dai->dev, "tx slot not found\n");
-+			return -EINVAL;
-+		}
-+
-+		if (tx_num > AFE_PORT_MAX_AUDIO_CHAN_CNT) {
-+			dev_err(dai->dev, "invalid tx num %d\n",
-+				tx_num);
-+			return -EINVAL;
-+		}
-+		ch_mask = *tx_ch_mask;
-+
-+		break;
-+	case WSA_CODEC_DMA_RX_0:
-+	case WSA_CODEC_DMA_RX_1:
-+	case RX_CODEC_DMA_RX_0:
-+	case RX_CODEC_DMA_RX_1:
-+	case RX_CODEC_DMA_RX_2:
-+	case RX_CODEC_DMA_RX_3:
-+	case RX_CODEC_DMA_RX_4:
-+	case RX_CODEC_DMA_RX_5:
-+	case RX_CODEC_DMA_RX_6:
-+	case RX_CODEC_DMA_RX_7:
-+		/* rx */
-+		if (!rx_ch_mask) {
-+			dev_err(dai->dev, "rx slot not found\n");
-+			return -EINVAL;
-+		}
-+		if (rx_num > AFE_PORT_MAX_AUDIO_CHAN_CNT) {
-+			dev_err(dai->dev, "invalid rx num %d\n",
-+				rx_num);
-+			return -EINVAL;
-+		}
-+		ch_mask = *rx_ch_mask;
-+
-+		break;
-+	default:
-+		dev_err(dai->dev, "%s: invalid dai id 0x%x\n",
-+			__func__, dai->id);
-+		return -EINVAL;
-+	}
-+
-+	cfg->active_channels_mask = ch_mask;
-+
-+	return rc;
-+}
-+
-+static int q6dma_hw_params(struct snd_pcm_substream *substream,
-+			   struct snd_pcm_hw_params *params,
-+			   struct snd_soc_dai *dai)
-+{
-+	struct q6afe_dai_data *dai_data = dev_get_drvdata(dai->dev);
-+	struct q6afe_cdc_dma_cfg *cfg = &dai_data->port_config[dai->id].dma_cfg;
-+
-+	cfg->bit_width = params_width(params);
-+	cfg->sample_rate = params_rate(params);
-+	cfg->num_channels = params_channels(params);
-+
-+	return 0;
-+}
- static void q6afe_dai_shutdown(struct snd_pcm_substream *substream,
- 				struct snd_soc_dai *dai)
- {
-@@ -362,6 +488,10 @@ static int q6afe_dai_prepare(struct snd_pcm_substream *substream,
- 		q6afe_tdm_port_prepare(dai_data->port[dai->id],
- 					&dai_data->port_config[dai->id].tdm);
- 		break;
-+	case WSA_CODEC_DMA_RX_0 ... RX_CODEC_DMA_RX_7:
-+		q6afe_cdc_dma_port_prepare(dai_data->port[dai->id],
-+					   &dai_data->port_config[dai->id].dma_cfg);
-+		break;
- 	default:
- 		return -EINVAL;
- 	}
-@@ -430,6 +560,7 @@ static int q6afe_mi2s_set_sysclk(struct snd_soc_dai *dai,
- 					     freq, dir);
- 	case Q6AFE_LPASS_CLK_ID_PRI_MI2S_IBIT ... Q6AFE_LPASS_CLK_ID_QUI_MI2S_OSR:
- 	case Q6AFE_LPASS_CLK_ID_MCLK_1 ... Q6AFE_LPASS_CLK_ID_INT_MCLK_1:
-+	case Q6AFE_LPASS_CLK_ID_WSA_CORE_MCLK ... Q6AFE_LPASS_CLK_ID_VA_CORE_2X_MCLK:
- 		return q6afe_port_set_sysclk(port, clk_id,
- 					     Q6AFE_LPASS_CLK_ATTRIBUTE_COUPLE_NO,
- 					     Q6AFE_LPASS_CLK_ROOT_DEFAULT,
-@@ -562,6 +693,29 @@ static const struct snd_soc_dapm_route q6afe_dapm_routes[] = {
- 	{"PRI_MI2S_TX", NULL, "Primary MI2S Capture"},
- 	{"SEC_MI2S_TX", NULL, "Secondary MI2S Capture"},
- 	{"QUAT_MI2S_TX", NULL, "Quaternary MI2S Capture"},
-+
-+	{"WSA_CODEC_DMA_RX_0 Playback", NULL, "WSA_CODEC_DMA_RX_0"},
-+	{"WSA_CODEC_DMA_TX_0", NULL, "WSA_CODEC_DMA_TX_0 Capture"},
-+	{"WSA_CODEC_DMA_RX_1 Playback", NULL, "WSA_CODEC_DMA_RX_1"},
-+	{"WSA_CODEC_DMA_TX_1", NULL, "WSA_CODEC_DMA_TX_1 Capture"},
-+	{"WSA_CODEC_DMA_TX_2", NULL, "WSA_CODEC_DMA_TX_2 Capture"},
-+	{"VA_CODEC_DMA_TX_0", NULL, "VA_CODEC_DMA_TX_0 Capture"},
-+	{"VA_CODEC_DMA_TX_1", NULL, "VA_CODEC_DMA_TX_1 Capture"},
-+	{"VA_CODEC_DMA_TX_2", NULL, "VA_CODEC_DMA_TX_2 Capture"},
-+	{"RX_CODEC_DMA_RX_0 Playback", NULL, "RX_CODEC_DMA_RX_0"},
-+	{"TX_CODEC_DMA_TX_0", NULL, "TX_CODEC_DMA_TX_0 Capture"},
-+	{"RX_CODEC_DMA_RX_1 Playback", NULL, "RX_CODEC_DMA_RX_1"},
-+	{"TX_CODEC_DMA_TX_1", NULL, "TX_CODEC_DMA_TX_1 Capture"},
-+	{"RX_CODEC_DMA_RX_2 Playback", NULL, "RX_CODEC_DMA_RX_2"},
-+	{"TX_CODEC_DMA_TX_2", NULL, "TX_CODEC_DMA_TX_2 Capture"},
-+	{"RX_CODEC_DMA_RX_3 Playback", NULL, "RX_CODEC_DMA_RX_3"},
-+	{"TX_CODEC_DMA_TX_3", NULL, "TX_CODEC_DMA_TX_3 Capture"},
-+	{"RX_CODEC_DMA_RX_4 Playback", NULL, "RX_CODEC_DMA_RX_4"},
-+	{"TX_CODEC_DMA_TX_4", NULL, "TX_CODEC_DMA_TX_4 Capture"},
-+	{"RX_CODEC_DMA_RX_5 Playback", NULL, "RX_CODEC_DMA_RX_5"},
-+	{"TX_CODEC_DMA_TX_5", NULL, "TX_CODEC_DMA_TX_5 Capture"},
-+	{"RX_CODEC_DMA_RX_6 Playback", NULL, "RX_CODEC_DMA_RX_6"},
-+	{"RX_CODEC_DMA_RX_7 Playback", NULL, "RX_CODEC_DMA_RX_7"},
- };
- 
- static const struct snd_soc_dai_ops q6hdmi_ops = {
-@@ -594,6 +748,14 @@ static const struct snd_soc_dai_ops q6tdm_ops = {
- 	.hw_params        = q6tdm_hw_params,
- };
- 
-+static const struct snd_soc_dai_ops q6dma_ops = {
-+	.prepare	= q6afe_dai_prepare,
-+	.shutdown	= q6afe_dai_shutdown,
-+	.set_sysclk	= q6afe_mi2s_set_sysclk,
-+	.set_channel_map  = q6dma_set_channel_map,
-+	.hw_params        = q6dma_hw_params,
-+};
-+
- static int msm_dai_q6_dai_probe(struct snd_soc_dai *dai)
- {
- 	struct q6afe_dai_data *dai_data = dev_get_drvdata(dai->dev);
-@@ -1128,6 +1290,28 @@ static struct snd_soc_dai_driver q6afe_dais[] = {
- 		.probe = msm_dai_q6_dai_probe,
- 		.remove = msm_dai_q6_dai_remove,
- 	},
-+	Q6AFE_CDC_DMA_RX_DAI(WSA_CODEC_DMA_RX_0),
-+	Q6AFE_CDC_DMA_TX_DAI(WSA_CODEC_DMA_TX_0),
-+	Q6AFE_CDC_DMA_RX_DAI(WSA_CODEC_DMA_RX_1),
-+	Q6AFE_CDC_DMA_TX_DAI(WSA_CODEC_DMA_TX_1),
-+	Q6AFE_CDC_DMA_TX_DAI(WSA_CODEC_DMA_TX_2),
-+	Q6AFE_CDC_DMA_TX_DAI(VA_CODEC_DMA_TX_0),
-+	Q6AFE_CDC_DMA_TX_DAI(VA_CODEC_DMA_TX_1),
-+	Q6AFE_CDC_DMA_TX_DAI(VA_CODEC_DMA_TX_2),
-+	Q6AFE_CDC_DMA_RX_DAI(RX_CODEC_DMA_RX_0),
-+	Q6AFE_CDC_DMA_TX_DAI(TX_CODEC_DMA_TX_0),
-+	Q6AFE_CDC_DMA_RX_DAI(RX_CODEC_DMA_RX_1),
-+	Q6AFE_CDC_DMA_TX_DAI(TX_CODEC_DMA_TX_1),
-+	Q6AFE_CDC_DMA_RX_DAI(RX_CODEC_DMA_RX_2),
-+	Q6AFE_CDC_DMA_TX_DAI(TX_CODEC_DMA_TX_2),
-+	Q6AFE_CDC_DMA_RX_DAI(RX_CODEC_DMA_RX_3),
-+	Q6AFE_CDC_DMA_TX_DAI(TX_CODEC_DMA_TX_3),
-+	Q6AFE_CDC_DMA_RX_DAI(RX_CODEC_DMA_RX_4),
-+	Q6AFE_CDC_DMA_TX_DAI(TX_CODEC_DMA_TX_4),
-+	Q6AFE_CDC_DMA_RX_DAI(RX_CODEC_DMA_RX_5),
-+	Q6AFE_CDC_DMA_TX_DAI(TX_CODEC_DMA_TX_5),
-+	Q6AFE_CDC_DMA_RX_DAI(RX_CODEC_DMA_RX_6),
-+	Q6AFE_CDC_DMA_RX_DAI(RX_CODEC_DMA_RX_7),
- };
- 
- static int q6afe_of_xlate_dai_name(struct snd_soc_component *component,
-@@ -1350,6 +1534,51 @@ static const struct snd_soc_dapm_widget q6afe_dai_widgets[] = {
- 	SND_SOC_DAPM_AIF_OUT("QUIN_TDM_TX_7", NULL,
- 						0, SND_SOC_NOPM, 0, 0),
- 	SND_SOC_DAPM_AIF_OUT("DISPLAY_PORT_RX", "NULL", 0, SND_SOC_NOPM, 0, 0),
-+
-+	SND_SOC_DAPM_AIF_IN("WSA_CODEC_DMA_RX_0", "NULL",
-+		0, SND_SOC_NOPM, 0, 0),
-+	SND_SOC_DAPM_AIF_OUT("WSA_CODEC_DMA_TX_0", "NULL",
-+		 0, SND_SOC_NOPM, 0, 0),
-+	SND_SOC_DAPM_AIF_IN("WSA_CODEC_DMA_RX_1", "NULL",
-+		0, SND_SOC_NOPM, 0, 0),
-+	SND_SOC_DAPM_AIF_OUT("WSA_CODEC_DMA_TX_1", "NULL",
-+		 0, SND_SOC_NOPM, 0, 0),
-+	SND_SOC_DAPM_AIF_OUT("WSA_CODEC_DMA_TX_2", "NULL",
-+		 0, SND_SOC_NOPM, 0, 0),
-+	SND_SOC_DAPM_AIF_OUT("VA_CODEC_DMA_TX_0", "NULL",
-+		 0, SND_SOC_NOPM, 0, 0),
-+	SND_SOC_DAPM_AIF_OUT("VA_CODEC_DMA_TX_1", "NULL",
-+		 0, SND_SOC_NOPM, 0, 0),
-+	SND_SOC_DAPM_AIF_OUT("VA_CODEC_DMA_TX_2", "NULL",
-+		 0, SND_SOC_NOPM, 0, 0),
-+	SND_SOC_DAPM_AIF_IN("RX_CODEC_DMA_RX_0", "NULL",
-+		0, SND_SOC_NOPM, 0, 0),
-+	SND_SOC_DAPM_AIF_OUT("TX_CODEC_DMA_TX_0", "NULL",
-+		 0, SND_SOC_NOPM, 0, 0),
-+	SND_SOC_DAPM_AIF_IN("RX_CODEC_DMA_RX_1", "NULL",
-+		0, SND_SOC_NOPM, 0, 0),
-+	SND_SOC_DAPM_AIF_OUT("TX_CODEC_DMA_TX_1", "NULL",
-+		 0, SND_SOC_NOPM, 0, 0),
-+	SND_SOC_DAPM_AIF_IN("RX_CODEC_DMA_RX_2", "NULL",
-+		0, SND_SOC_NOPM, 0, 0),
-+	SND_SOC_DAPM_AIF_OUT("TX_CODEC_DMA_TX_2", "NULL",
-+		 0, SND_SOC_NOPM, 0, 0),
-+	SND_SOC_DAPM_AIF_IN("RX_CODEC_DMA_RX_3", "NULL",
-+		0, SND_SOC_NOPM, 0, 0),
-+	SND_SOC_DAPM_AIF_OUT("TX_CODEC_DMA_TX_3", "NULL",
-+		 0, SND_SOC_NOPM, 0, 0),
-+	SND_SOC_DAPM_AIF_IN("RX_CODEC_DMA_RX_4", "NULL",
-+		0, SND_SOC_NOPM, 0, 0),
-+	SND_SOC_DAPM_AIF_OUT("TX_CODEC_DMA_TX_4", "NULL",
-+		 0, SND_SOC_NOPM, 0, 0),
-+	SND_SOC_DAPM_AIF_IN("RX_CODEC_DMA_RX_5", "NULL",
-+		0, SND_SOC_NOPM, 0, 0),
-+	SND_SOC_DAPM_AIF_OUT("TX_CODEC_DMA_TX_5", "NULL",
-+		 0, SND_SOC_NOPM, 0, 0),
-+	SND_SOC_DAPM_AIF_IN("RX_CODEC_DMA_RX_6", "NULL",
-+		0, SND_SOC_NOPM, 0, 0),
-+	SND_SOC_DAPM_AIF_IN("RX_CODEC_DMA_RX_7", "NULL",
-+		0, SND_SOC_NOPM, 0, 0),
- };
- 
- static const struct snd_soc_component_driver q6afe_dai_component = {
--- 
-2.21.0
+I don't believe there is any need to create those other V4L2_FIELD_ variants.
+With V4L2_FIELD_ALTERNATE_PROG each buffer will be set to V4L2_FIELD_TOP (i.e.
+odd lines) or V4L2_FIELD_BOTTOM (i.e. even lines).
+
+There is nothing else you need here.
+
+A V4L2_FIELD_SEQ_TB_PROG might be needed if we get HW that does something
+so strange.
+
+> 
+> Can't your receiver store these two fragment directly into a
+> progressive buffer instead of leaking this HW specific thing into uAPI
+> ? All you'd need is support for stride (bytesperline) at the HW
+> writeback level, and then you can hide this complexicuty to userspace
+> by filling the top/bottom line only. You simply multiply the stride by
+> two in this context.
+
+Vishal, this is a good question from Nicolas.
+
+An alternative solution might be to DMA the odd and even lines to the
+same buffer, but consecutive. I.e., instead of having to create a
+V4L2_FIELD_ALTERNATE_PROG, you'd create a V4L2_FIELD_SEQ_TB_PROG, which
+is identical to V4L2_FIELD_SEQ_TB, except that it is for a progressive
+frame.
+
+If you can avoid V4L2_FIELD_ALTERNATE_PROG somehow and just return a
+single buffer per frame, then that would be much better. One field per
+buffer is a big pain for userspace.
+
+Regards,
+
+	Hans
+
+> 
+>>
+>>> So I will add the V4L2_FIELD_ALTERNATE_PROG in next patch version.
+>>
+>> [snip]
+>>
+> 
 
