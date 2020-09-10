@@ -2,100 +2,107 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from vger.kernel.org (vger.kernel.org [23.128.96.18])
-	by mail.lfdr.de (Postfix) with ESMTP id 0963D263C7C
-	for <lists+devicetree@lfdr.de>; Thu, 10 Sep 2020 07:34:49 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTP id DE339263C86
+	for <lists+devicetree@lfdr.de>; Thu, 10 Sep 2020 07:37:47 +0200 (CEST)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S1726231AbgIJFer (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Thu, 10 Sep 2020 01:34:47 -0400
-Received: from lindbergh.monkeyblade.net ([23.128.96.19]:57348 "EHLO
-        lindbergh.monkeyblade.net" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S1726227AbgIJFeU (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Thu, 10 Sep 2020 01:34:20 -0400
-Received: from mail-pl1-x641.google.com (mail-pl1-x641.google.com [IPv6:2607:f8b0:4864:20::641])
-        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 9C041C061757
-        for <devicetree@vger.kernel.org>; Wed,  9 Sep 2020 22:34:19 -0700 (PDT)
-Received: by mail-pl1-x641.google.com with SMTP id k13so356425plk.3
-        for <devicetree@vger.kernel.org>; Wed, 09 Sep 2020 22:34:19 -0700 (PDT)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=linaro.org; s=google;
-        h=date:from:to:cc:subject:message-id:references:mime-version
-         :content-disposition:in-reply-to:user-agent;
-        bh=5lEi/XoDUJ11Wa7F5s06RrCLa2hPWxpKnO1zR9YxyoY=;
-        b=CAEWlx6IuBLlkVsW+lOwMOeCTijAw1MpiQ3Ubb2OiqpnJtMewM1XNtUAhSIg1ikgvE
-         JpQ79qJ6W+TpKYmuBH7/eBcz5WKzj9GaDsUqhxos2YpwlQsr8aEn9N36PdsFS0hDWe6y
-         cNhiV778PgC5as9xtK6R0NroTicROjr76SN0u0Pi4chuP8X3ibTcn/DO0e02C6/yTFtK
-         q0uHIk25Jr73tNAPDUqN0E/KWZ2FKnNQcJBseJJm25c6Sm0RT8fYscQXhoYRyGZbGG83
-         SI6aRY5TTQMwlVObPlooDffFy48lbHaXcaYOfHW0nENuCCHAJsdeecPwwCjiEoRllUoh
-         P+xQ==
-X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=1e100.net; s=20161025;
-        h=x-gm-message-state:date:from:to:cc:subject:message-id:references
-         :mime-version:content-disposition:in-reply-to:user-agent;
-        bh=5lEi/XoDUJ11Wa7F5s06RrCLa2hPWxpKnO1zR9YxyoY=;
-        b=SdHxc3aaELHax2cjsqnBcFobt0pM13ooJmE9eJgUa6slzT0yenL4eSSsh8mefCZX2V
-         LxWaQFMVpaiEvCoplj/5qwxL/AZbTKIBrHHFk3j371rUs26U9V7IXVSyXkrNTY5gAzB3
-         K143ySowthzwxPBXJTK53IOn0EOitGOSjTqWGjXy1IxkuTHVxUR1P5CBPBZHFlMggjPI
-         m61gQL0L2Y0Ocjlzl7hjEd0lpsi3wMQ3GTkgtaRSo1w7q3AULA/J6W+w/l7gyp3CsBpo
-         RCrq7RE/9UfUm/ASaktzNJkvZzYgFoqDk9xs3ehdZA/C0Pg2jc+/Um6/DpGgGGOARoaO
-         oCNA==
-X-Gm-Message-State: AOAM531NFFthXh7h8Q9yvCAHHk2IYBvjvxHPbUdolY72yA/AujDMQxbw
-        Ts6v4rBM2pySip0EQi7KF3d7rA==
-X-Google-Smtp-Source: ABdhPJz3EgNE/dzdl1waBSoWGoWNzDHErjWDYYygsBmeO19Q5FRz5rTWYfVjdhPhDSbWLy3fyrzRsA==
-X-Received: by 2002:a17:90a:d315:: with SMTP id p21mr3945874pju.88.1599716059106;
-        Wed, 09 Sep 2020 22:34:19 -0700 (PDT)
-Received: from localhost ([122.181.54.133])
-        by smtp.gmail.com with ESMTPSA id w203sm4575162pff.0.2020.09.09.22.34.18
-        (version=TLS1_2 cipher=ECDHE-ECDSA-AES128-GCM-SHA256 bits=128/128);
-        Wed, 09 Sep 2020 22:34:18 -0700 (PDT)
-Date:   Thu, 10 Sep 2020 11:04:06 +0530
-From:   Viresh Kumar <viresh.kumar@linaro.org>
-To:     Hector Yuan <hector.yuan@mediatek.com>
-Cc:     linux-mediatek@lists.infradead.org,
-        linux-arm-kernel@lists.infradead.org, linux-pm@vger.kernel.org,
-        devicetree@vger.kernel.org,
-        "Rafael J. Wysocki" <rjw@rjwysocki.net>,
-        Rob Herring <robh+dt@kernel.org>, linux-kernel@vger.kernel.org,
-        wsd_upstream@mediatek.com
-Subject: Re: [PATCH v7] cpufreq: mediatek-hw: Add support for Mediatek
- cpufreq HW driver
-Message-ID: <20200910053406.t37rgioykzvk3oem@vireshk-i7>
-References: <1599712262-8819-1-git-send-email-hector.yuan@mediatek.com>
- <20200910050341.pgyieq3q7ijitosn@vireshk-i7>
- <1599715851.7042.9.camel@mtkswgap22>
+        id S1725933AbgIJFhq (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Thu, 10 Sep 2020 01:37:46 -0400
+Received: from mail.kernel.org ([198.145.29.99]:38204 "EHLO mail.kernel.org"
+        rhost-flags-OK-OK-OK-OK) by vger.kernel.org with ESMTP
+        id S1725912AbgIJFhp (ORCPT <rfc822;devicetree@vger.kernel.org>);
+        Thu, 10 Sep 2020 01:37:45 -0400
+Received: from coco.lan (ip5f5ad5ac.dynamic.kabel-deutschland.de [95.90.213.172])
+        (using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
+        (No client certificate requested)
+        by mail.kernel.org (Postfix) with ESMTPSA id B967420731;
+        Thu, 10 Sep 2020 05:37:41 +0000 (UTC)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=kernel.org;
+        s=default; t=1599716264;
+        bh=KzFX2IztZLgcyzVWfGl7cz8XwjZrrz4gFgRo0cURvB4=;
+        h=Date:From:To:Cc:Subject:In-Reply-To:References:From;
+        b=1zVWi5PB9CkoW9yI3AUBiTPFFGMxrlMoEu79augE+lBa93iLIJJs4LtaiOXIDBRkN
+         vpvGtmYQEPBauJRpvx10hH3oROMrKG4J96ZeTDeUl8v1hXLMeN5mjXwK00MeIyvtK4
+         q4MbEfXhKt879bi4ysUnugjbQVg679A9F/IPddaI=
+Date:   Thu, 10 Sep 2020 07:37:38 +0200
+From:   Mauro Carvalho Chehab <mchehab+huawei@kernel.org>
+To:     Rob Herring <robh+dt@kernel.org>
+Cc:     Linuxarm <linuxarm@huawei.com>, mauro.chehab@huawei.com,
+        John Stultz <john.stultz@linaro.org>,
+        Manivannan Sadhasivam <mani@kernel.org>,
+        Robin Murphy <robin.murphy@arm.com>,
+        Kishon Vijay Abraham I <kishon@ti.com>,
+        Vinod Koul <vkoul@kernel.org>, Yu Chen <chenyu56@huawei.com>,
+        "linux-kernel@vger.kernel.org" <linux-kernel@vger.kernel.org>,
+        devicetree@vger.kernel.org
+Subject: Re: [RFC 03/10] phy: hisilicon: phy-hi3670-usb3: use a consistent
+ namespace
+Message-ID: <20200910073738.0d472fde@coco.lan>
+In-Reply-To: <CAL_Jsq+e44-_AFqKEkUAKKWapMB7wHCPDCtuWrPvn__NMpNxOw@mail.gmail.com>
+References: <cover.1599214329.git.mchehab+huawei@kernel.org>
+        <58d6b31d0134448a35c47e822c887e994164228b.1599214329.git.mchehab+huawei@kernel.org>
+        <CAL_Jsq+e44-_AFqKEkUAKKWapMB7wHCPDCtuWrPvn__NMpNxOw@mail.gmail.com>
+X-Mailer: Claws Mail 3.17.6 (GTK+ 2.24.32; x86_64-redhat-linux-gnu)
 MIME-Version: 1.0
-Content-Type: text/plain; charset=us-ascii
-Content-Disposition: inline
-In-Reply-To: <1599715851.7042.9.camel@mtkswgap22>
-User-Agent: NeoMutt/20180716-391-311a52
+Content-Type: text/plain; charset=US-ASCII
+Content-Transfer-Encoding: quoted-printable
 Sender: devicetree-owner@vger.kernel.org
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-On 10-09-20, 13:30, Hector Yuan wrote:
-> On Thu, 2020-09-10 at 10:33 +0530, Viresh Kumar wrote:
-> > On 10-09-20, 12:31, Hector Yuan wrote:
-> > > The CPUfreq HW present in some Mediatek chipsets offloads the steps necessary for changing the frequency of CPUs. 
-> > > The driver implements the cpufreq driver interface for this hardware engine. 
-> > > 
-> > > This patch depends on the MT6779 DTS patch submitted by Hanks Chen
-> > >  https://lkml.org/lkml/2020/8/4/1094
-> > 
-> > Thanks for hanging there. Looks good to me. I will apply it once Rob
-> > Ack's the binding patch.
-> > 
-> 
-> Many thanks for your help. May I know if you can add Reviewed-by tag to
-> this patch set.
+Em Wed, 9 Sep 2020 14:15:59 -0600
+Rob Herring <robh+dt@kernel.org> escreveu:
 
-Since this patchset is going to get merged via my tree (ARM cpufreq
-tree), a reviewed-by isn't required here. I will queue it up for
-5.10-rc1 after I receive an Ack from Rob.
+> On Fri, Sep 4, 2020 at 4:23 AM Mauro Carvalho Chehab
+> <mchehab+huawei@kernel.org> wrote:
+> >
+> > Rename hikey970 to hi3670, in order to use a namespace
+> > similar to hi3660 driver.
+> >
+> > Signed-off-by: Mauro Carvalho Chehab <mchehab+huawei@kernel.org>
+> > ---
+> >  .../bindings/phy/phy-hi3670-usb3.txt          |  4 +- =20
+>=20
+> Bindings should be a separate patch.
 
-> I would like to prepare some patches for more features
-> based on this. Is that okay to you? Thanks again.
+Ok. I'll split it.
 
-That should be fine.
+>=20
+> >  drivers/phy/hisilicon/phy-hi3670-usb3.c       | 98 +++++++++----------
+> >  2 files changed, 51 insertions(+), 51 deletions(-)
+> >
+> > diff --git a/Documentation/devicetree/bindings/phy/phy-hi3670-usb3.txt =
+b/Documentation/devicetree/bindings/phy/phy-hi3670-usb3.txt
+> > index 4cb02612ff23..2fb27cb8beaf 100644
+> > --- a/Documentation/devicetree/bindings/phy/phy-hi3670-usb3.txt
+> > +++ b/Documentation/devicetree/bindings/phy/phy-hi3670-usb3.txt
+> > @@ -2,7 +2,7 @@ Hisilicon Kirin970 usb PHY
+> >  -----------------------
+> >
+> >  Required properties:
+> > -- compatible: should be "hisilicon,kirin970-usb-phy"
+> > +- compatible: should be "hisilicon,hi3670-usb-phy" =20
+>=20
+> Unless this is unused, we can't just change it. It's an ABI.
 
--- 
-viresh
+=46rom upstream PoV, this binding is for a new driver that will be added
+via this patchset.=20
+>=20
+> >  - #phy-cells: must be 0
+> >  - hisilicon,pericrg-syscon: phandle of syscon used to control phy.
+> >  - hisilicon,pctrl-syscon: phandle of syscon used to control phy.
+> > @@ -14,7 +14,7 @@ Refer to phy/phy-bindings.txt for the generic PHY bin=
+ding properties
+> >
+> >  Example:
+> >         usb_phy: usbphy {
+> > -               compatible =3D "hisilicon,kirin970-usb-phy";
+> > +               compatible =3D "hisilicon,hi3670-usb-phy";
+> >                 #phy-cells =3D <0>;
+> >                 hisilicon,pericrg-syscon =3D <&crg_ctrl>;
+> >                 hisilicon,pctrl-syscon =3D <&pctrl>; =20
+
+
+
+Thanks,
+Mauro
