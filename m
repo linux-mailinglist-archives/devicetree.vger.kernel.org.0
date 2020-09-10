@@ -2,119 +2,272 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from vger.kernel.org (vger.kernel.org [23.128.96.18])
-	by mail.lfdr.de (Postfix) with ESMTP id 75DB3264B58
-	for <lists+devicetree@lfdr.de>; Thu, 10 Sep 2020 19:33:33 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTP id B317C264BF5
+	for <lists+devicetree@lfdr.de>; Thu, 10 Sep 2020 19:55:36 +0200 (CEST)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S1727019AbgIJRda (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Thu, 10 Sep 2020 13:33:30 -0400
-Received: from lelv0142.ext.ti.com ([198.47.23.249]:51346 "EHLO
-        lelv0142.ext.ti.com" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S1726005AbgIJRXx (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Thu, 10 Sep 2020 13:23:53 -0400
-Received: from lelv0266.itg.ti.com ([10.180.67.225])
-        by lelv0142.ext.ti.com (8.15.2/8.15.2) with ESMTP id 08AHNa85067378;
-        Thu, 10 Sep 2020 12:23:36 -0500
+        id S1725864AbgIJRzb (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Thu, 10 Sep 2020 13:55:31 -0400
+Received: from lelv0143.ext.ti.com ([198.47.23.248]:34076 "EHLO
+        lelv0143.ext.ti.com" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
+        with ESMTP id S1725804AbgIJRzL (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Thu, 10 Sep 2020 13:55:11 -0400
+Received: from lelv0265.itg.ti.com ([10.180.67.224])
+        by lelv0143.ext.ti.com (8.15.2/8.15.2) with ESMTP id 08AHswNv018124;
+        Thu, 10 Sep 2020 12:54:58 -0500
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=ti.com;
-        s=ti-com-17Q1; t=1599758616;
-        bh=mKJeUaEE88L34KpZIR8PYe0ce/BfI23fWM9rlX3WJaY=;
-        h=Date:From:To:CC:Subject:References:In-Reply-To;
-        b=dO62BYSIdJW94ic/6+7j/aC9R8PVZjrZB12qgjHBYBgTQ4zU7rPtDYUT1GTi3j5FF
-         5niLqxwNP6EydbdLc+/IE8QP8YTwQkjsQPO0OHOVATxt7UJA3e+AurCWH+Uu9fqPdn
-         Gw2k0/G9aWKAN1Zl+wntlleIEddKGWM/6lThSLlg=
-Received: from DFLE113.ent.ti.com (dfle113.ent.ti.com [10.64.6.34])
-        by lelv0266.itg.ti.com (8.15.2/8.15.2) with ESMTPS id 08AHNa5X035523
+        s=ti-com-17Q1; t=1599760498;
+        bh=qmkw4Ao5r6a/WHa9BCl3spSTc7wFalSybwxcg5vcS3Q=;
+        h=Subject:To:CC:References:From:Date:In-Reply-To;
+        b=WanuwpUS5qU4H7sEWN0igiE3xzFtyECvxwxU0knYpk/Q87v11DLokQ7s4jhx72b9f
+         woxk+ME1VhDeRxrb7WGge0LroK5JTNjeZa7UQ4AbeBYXtVJmY0F/GBkQl3Qpt8rgZ6
+         nIUt5tmt7gIb6Wh3a62mMdorASFoE//jWtUy7nVU=
+Received: from DLEE114.ent.ti.com (dlee114.ent.ti.com [157.170.170.25])
+        by lelv0265.itg.ti.com (8.15.2/8.15.2) with ESMTPS id 08AHsw7U019518
         (version=TLSv1.2 cipher=AES256-GCM-SHA384 bits=256 verify=FAIL);
-        Thu, 10 Sep 2020 12:23:36 -0500
-Received: from DFLE102.ent.ti.com (10.64.6.23) by DFLE113.ent.ti.com
- (10.64.6.34) with Microsoft SMTP Server (version=TLS1_2,
+        Thu, 10 Sep 2020 12:54:58 -0500
+Received: from DLEE113.ent.ti.com (157.170.170.24) by DLEE114.ent.ti.com
+ (157.170.170.25) with Microsoft SMTP Server (version=TLS1_2,
  cipher=TLS_ECDHE_RSA_WITH_AES_128_CBC_SHA256_P256) id 15.1.1979.3; Thu, 10
- Sep 2020 12:23:36 -0500
-Received: from fllv0039.itg.ti.com (10.64.41.19) by DFLE102.ent.ti.com
- (10.64.6.23) with Microsoft SMTP Server (version=TLS1_2,
+ Sep 2020 12:54:57 -0500
+Received: from lelv0326.itg.ti.com (10.180.67.84) by DLEE113.ent.ti.com
+ (157.170.170.24) with Microsoft SMTP Server (version=TLS1_2,
  cipher=TLS_ECDHE_RSA_WITH_AES_128_CBC_SHA256_P256) id 15.1.1979.3 via
- Frontend Transport; Thu, 10 Sep 2020 12:23:36 -0500
-Received: from localhost (ileax41-snat.itg.ti.com [10.172.224.153])
-        by fllv0039.itg.ti.com (8.15.2/8.15.2) with ESMTP id 08AHNZb3093440;
-        Thu, 10 Sep 2020 12:23:36 -0500
-Date:   Thu, 10 Sep 2020 12:23:35 -0500
-From:   Nishanth Menon <nm@ti.com>
-To:     Lokesh Vutla <lokeshvutla@ti.com>
+ Frontend Transport; Thu, 10 Sep 2020 12:54:57 -0500
+Received: from [10.250.66.47] (ileax41-snat.itg.ti.com [10.172.224.153])
+        by lelv0326.itg.ti.com (8.15.2/8.15.2) with ESMTP id 08AHssrW088162;
+        Thu, 10 Sep 2020 12:54:55 -0500
+Subject: Re: [PATCH v3 4/5] arm64: dts: ti: Add support for J7200 SoC
+To:     Nishanth Menon <nm@ti.com>, Lokesh Vutla <lokeshvutla@ti.com>
 CC:     Tero Kristo <t-kristo@ti.com>, Rob Herring <robh+dt@kernel.org>,
         Linux ARM Mailing List <linux-arm-kernel@lists.infradead.org>,
         Device Tree Mailing List <devicetree@vger.kernel.org>,
-        Sekhar Nori <nsekhar@ti.com>, Suman Anna <s-anna@ti.com>,
+        Sekhar Nori <nsekhar@ti.com>,
         Grygorii Strashko <grygorii.strashko@ti.com>,
         Kishon Vijay Abraham I <kishon@ti.com>
-Subject: Re: [PATCH v3 5/5] arm64: dts: ti: Add support for J7200 Common
- Processor Board
-Message-ID: <20200910172335.n4nln7wnlupnpfkw@akan>
 References: <20200908162252.17672-1-lokeshvutla@ti.com>
- <20200908162252.17672-6-lokeshvutla@ti.com>
+ <20200908162252.17672-5-lokeshvutla@ti.com>
+ <20200910171928.xzfwhix46lcsiup7@akan>
+From:   Suman Anna <s-anna@ti.com>
+Message-ID: <83122b2e-4dba-a2f9-b722-e510acfa9135@ti.com>
+Date:   Thu, 10 Sep 2020 12:54:54 -0500
+User-Agent: Mozilla/5.0 (X11; Linux x86_64; rv:68.0) Gecko/20100101
+ Thunderbird/68.10.0
 MIME-Version: 1.0
-Content-Type: text/plain; charset="us-ascii"
-Content-Disposition: inline
-In-Reply-To: <20200908162252.17672-6-lokeshvutla@ti.com>
-User-Agent: NeoMutt/20171215
+In-Reply-To: <20200910171928.xzfwhix46lcsiup7@akan>
+Content-Type: text/plain; charset="utf-8"
+Content-Language: en-US
+Content-Transfer-Encoding: 7bit
 X-EXCLAIMER-MD-CONFIG: e1e8a2fd-e40a-4ac6-ac9b-f7e9cc9ee180
 Sender: devicetree-owner@vger.kernel.org
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-On 21:52-20200908, Lokesh Vutla wrote:
-> Add support for J7200 Common Processor Board.
-> The EVM architecture is very similar to J721E as follows:
+On 9/10/20 12:19 PM, Nishanth Menon wrote:
+> On 21:52-20200908, Lokesh Vutla wrote:
+> [...]
+> Few minor comments below.. (I dont have any further comments beyond
+> these) I had missed taking a diff against j721e and what downstream
+> vendor kernel.
 > 
-> +------------------------------------------------------+
-> |   +-------------------------------------------+      |
-> |   |                                           |      |
-> |   |        Add-on Card 1 Options              |      |
-> |   |                                           |      |
-> |   +-------------------------------------------+      |
-> |                                                      |
-> |                                                      |
-> |                     +-------------------+            |
-> |                     |                   |            |
-> |                     |   SOM             |            |
-> |  +--------------+   |                   |            |
-> |  |              |   |                   |            |
-> |  |  Add-on      |   +-------------------+            |
-> |  |  Card 2      |                                    |    Power Supply
-> |  |  Options     |                                    |    |
-> |  |              |                                    |    |
-> |  +--------------+                                    | <---
-> +------------------------------------------------------+
->                                 Common Processor Board
+>> diff --git a/arch/arm64/boot/dts/ti/k3-j7200-main.dtsi b/arch/arm64/boot/dts/ti/k3-j7200-main.dtsi
+>> new file mode 100644
+>> index 000000000000..ed5f419bc86d
+>> --- /dev/null
+>> +++ b/arch/arm64/boot/dts/ti/k3-j7200-main.dtsi
+>> @@ -0,0 +1,199 @@
+> [...]
+>> +	gic500: interrupt-controller@1800000 {
+>> +		compatible = "arm,gic-v3";
+>> +		#address-cells = <2>;
+>> +		#size-cells = <2>;
+>> +		ranges;
+>> +		#interrupt-cells = <3>;
+>> +		interrupt-controller;
+>> +		reg = <0x00 0x01800000 0x00 0x10000>,	/* GICD */
+>> +		      <0x00 0x01900000 0x00 0x100000>;	/* GICR */
+>> +
+>> +		/* vcpumntirq: virtual CPU interface maintenance interrupt */
+>> +		interrupts = <GIC_PPI 9 IRQ_TYPE_LEVEL_HIGH>;
+>> +
+>> +		gic_its: msi-controller@1820000 {
+>> +			compatible = "arm,gic-v3-its";
+>> +			reg = <0x00 0x01820000 0x00 0x10000>;
+>> +			socionext,synquacer-pre-its = <0x1000000 0x400000>;
+>> +			msi-controller;
+>> +			#msi-cells = <1>;
+>> +		};
+>> +	};
+>> +
+>> +	main_navss: navss@30000000 {
 > 
-> Common Processor board is the baseboard that has most of the actual
-> connectors, power supply etc. A SOM (System on Module) is plugged on
-> to the common processor board and this contains the SoC, PMIC, DDR and
-> basic high speed components necessary for functionality.
+> hmm.. bus@ just to simplify things? or I wonder if a better common term is available?
+> I cant find a better alternative when I look at
+> https://github.com/devicetree-org/devicetree-specification/blob/v0.3/source/devicetree-basics.rst
 > 
-> Note:
-> * The minimum configuration required to boot up the board is System On
->   Module(SOM) + Common Processor Board.
-> * Since there is just a single SOM and Common Processor Board, we are
->   maintaining common processor board as the base dts and SOM as the dtsi
->   that we include. In the future as more SOM's appear, we should move
->   common processor board as a dtsi and include configurations as dts.
-> * All daughter cards beyond the basic boards shall be maintained as
->   overlays.
+>> +		compatible = "simple-mfd";
+>> +		#address-cells = <2>;
+>> +		#size-cells = <2>;
+>> +		ranges = <0x00 0x30000000 0x00 0x30000000 0x00 0x0c400000>;
 > 
-> Reviewed-by: Grygorii Strashko <grygorii.strashko@ti.com>
-> Signed-off-by: Lokesh Vutla <lokeshvutla@ti.com>
-> Signed-off-by: Peter Ujfalusi <peter.ujfalusi@ti.com>
-> ---
->  arch/arm64/boot/dts/ti/Makefile               |  2 +
->  .../dts/ti/k3-j7200-common-proc-board.dts     | 64 +++++++++++++++++++
->  arch/arm64/boot/dts/ti/k3-j7200-som-p0.dtsi   | 29 +++++++++
->  3 files changed, 95 insertions(+)
->  create mode 100644 arch/arm64/boot/dts/ti/k3-j7200-common-proc-board.dts
->  create mode 100644 arch/arm64/boot/dts/ti/k3-j7200-som-p0.dtsi
+> 
+>> +
+>> +		secure_proxy_main: mailbox@32c00000 {
+>> +			compatible = "ti,am654-secure-proxy";
+>> +			#mbox-cells = <1>;
+>> +			reg-names = "target_data", "rt", "scfg";
+>> +			reg = <0x00 0x32c00000 0x00 0x100000>,
+>> +			      <0x00 0x32400000 0x00 0x100000>,
+>> +			      <0x00 0x32800000 0x00 0x100000>;
+>> +			interrupt-names = "rx_011";
+>> +			interrupts = <GIC_SPI 37 IRQ_TYPE_LEVEL_HIGH>;
+>> +		};
+> 
+> I think we could introduce base infrastructure stuff like intr and
+> inta nodes here? Also, the gpio_intr?
 
-This looks fine to me.
+FYI, they are currently being added in Patch 1 from Grygorii's "[v2,0/4] arm64:
+dts: ti: k3-j7200: add dma and mcu cpsw" series,
+https://patchwork.kernel.org/cover/11763711/
 
--- 
-Regards,
-Nishanth Menon
-Key (0xDDB5849D1736249D) / Fingerprint: F8A2 8693 54EB 8232 17A3  1A34 DDB5 849D 1736 249D
+The overall series seems to have some dependencies, so better to separate out
+those nodes and include as an additional add-on patch to this series, atleast it
+can unblock all others who use the TI-SCI Interrupt node.
+
+> 
+>> +	};
+>> +
+>> +	main_pmx0: pinmux@11c000 {
+> 
+> 	pinctrl@ ?
+> 
+> [...]
+>> diff --git a/arch/arm64/boot/dts/ti/k3-j7200-mcu-wakeup.dtsi b/arch/arm64/boot/dts/ti/k3-j7200-mcu-wakeup.dtsi
+>> new file mode 100644
+>> index 000000000000..76ef75586077
+>> --- /dev/null
+>> +++ b/arch/arm64/boot/dts/ti/k3-j7200-mcu-wakeup.dtsi
+>> +
+> [...]
+>> +	wkup_pmx0: pinmux@4301c000 {
+> 	
+> 	pinctrl@ ?
+>> +		compatible = "pinctrl-single";
+>> +		/* Proxy 0 addressing */
+>> +		reg = <0x00 0x4301c000 0x00 0x178>;
+>> +		#pinctrl-cells = <1>;
+>> +		pinctrl-single,register-width = <32>;
+>> +		pinctrl-single,function-mask = <0xffffffff>;
+>> +	};
+>> +
+>> +	mcu_ram: sram@41c00000 {
+>> +		compatible = "mmio-sram";
+>> +		reg = <0x00 0x41c00000 0x00 0x100000>;
+>> +		ranges = <0x00 0x00 0x41c00000 0x100000>;
+>> +		#address-cells = <1>;
+>> +		#size-cells = <1>;
+>> +	};
+> 
+> wkup_gpio_intr same argument as "core infrastructure" ?
+> 
+>> +
+>> diff --git a/arch/arm64/boot/dts/ti/k3-j7200.dtsi b/arch/arm64/boot/dts/ti/k3-j7200.dtsi
+>> new file mode 100644
+>> index 000000000000..7c337780adb6
+>> --- /dev/null
+>> +++ b/arch/arm64/boot/dts/ti/k3-j7200.dtsi
+>> @@ -0,0 +1,165 @@
+>> +// SPDX-License-Identifier: GPL-2.0
+>> +/*
+>> + * Device Tree Source for J7200 SoC Family
+>> + *
+>> + * Copyright (C) 2020 Texas Instruments Incorporated - https://www.ti.com/
+>> + */
+>> +
+>> +#include <dt-bindings/interrupt-controller/irq.h>
+>> +#include <dt-bindings/interrupt-controller/arm-gic.h>
+>> +#include <dt-bindings/pinctrl/k3.h>
+>> +#include <dt-bindings/soc/ti,sci_pm_domain.h>
+>> +
+>> +/ {
+>> +	model = "Texas Instruments K3 J7200 SoC";
+>> +	compatible = "ti,j7200";
+>> +	interrupt-parent = <&gic500>;
+>> +	#address-cells = <2>;
+>> +	#size-cells = <2>;
+>> +
+>> +	aliases {
+>> +		serial0 = &wkup_uart0;
+>> +		serial1 = &mcu_uart0;
+>> +		serial2 = &main_uart0;
+>> +		serial3 = &main_uart1;
+>> +		serial4 = &main_uart2;
+>> +		serial5 = &main_uart3;
+>> +		serial6 = &main_uart4;
+>> +		serial7 = &main_uart5;
+>> +		serial8 = &main_uart6;
+>> +		serial9 = &main_uart7;
+>> +		serial10 = &main_uart8;
+>> +		serial11 = &main_uart9;
+>> +	};
+>> +
+> 
+> might be nice to leave a chosen { }; here to indicate board
+> files fill it up.. just to maintain consistency with rest of SoC dtsis?
+
+Doesn't serve any purpose IMO. I remember commenting about that blank node to
+remove it during some earlier reviews.
+
+regards
+Suman
+
+> 
+> [...]
+>> +
+>> +	cbass_main: bus@100000 {
+>> +		compatible = "simple-bus";
+>> +		#address-cells = <2>;
+>> +		#size-cells = <2>;
+>> +		ranges = <0x00 0x00100000 0x00 0x00100000 0x00 0x00020000>, /* ctrl mmr */
+>> +			 <0x00 0x00600000 0x00 0x00600000 0x00 0x00031100>, /* GPIO */
+>> +			 <0x00 0x00a40000 0x00 0x00a40000 0x00 0x00000800>, /* timesync router */
+>> +			 <0x00 0x01000000 0x00 0x01000000 0x00 0x0d000000>, /* Most peripherals */
+>> +			 <0x00 0x30000000 0x00 0x30000000 0x00 0x0c400000>, /* MAIN NAVSS */
+>> +			 <0x00 0x70000000 0x00 0x70000000 0x00 0x00800000>, /* MSMC RAM */
+>> +			 <0x41 0x00000000 0x41 0x00000000 0x01 0x00000000>, /* PCIe1 DAT */
+>> +
+>> +			 /* MCUSS_WKUP Range */
+>> +			 <0x00 0x28380000 0x00 0x28380000 0x00 0x03880000>,
+>> +			 <0x00 0x40200000 0x00 0x40200000 0x00 0x00998400>,
+>> +			 <0x00 0x40f00000 0x00 0x40f00000 0x00 0x00020000>,
+>> +			 <0x00 0x41000000 0x00 0x41000000 0x00 0x00020000>,
+>> +			 <0x00 0x41400000 0x00 0x41400000 0x00 0x00020000>,
+>> +			 <0x00 0x41c00000 0x00 0x41c00000 0x00 0x00100000>,
+>> +			 <0x00 0x42040000 0x00 0x42040000 0x00 0x03ac2400>,
+>> +			 <0x00 0x45100000 0x00 0x45100000 0x00 0x00c24000>,
+>> +			 <0x00 0x46000000 0x00 0x46000000 0x00 0x00200000>,
+>> +			 <0x00 0x47000000 0x00 0x47000000 0x00 0x00068400>,
+>> +			 <0x00 0x50000000 0x00 0x50000000 0x00 0x10000000>;
+>> +
+>> +		cbass_mcu_wakeup: bus@28380000 {
+>> +			compatible = "simple-bus";
+>> +			#address-cells = <2>;
+>> +			#size-cells = <2>;
+>> +			ranges = <0x00 0x28380000 0x00 0x28380000 0x00 0x03880000>, /* MCU NAVSS*/
+>> +				 <0x00 0x40200000 0x00 0x40200000 0x00 0x00998400>, /* First peripheral window */
+>> +				 <0x00 0x40f00000 0x00 0x40f00000 0x00 0x00020000>, /* CTRL_MMR0 */
+>> +				 <0x00 0x41000000 0x00 0x41000000 0x00 0x00020000>, /* MCU R5F Core0 */
+>> +				 <0x00 0x41400000 0x00 0x41400000 0x00 0x00020000>, /* MCU R5F Core1 */
+>> +				 <0x00 0x41c00000 0x00 0x41c00000 0x00 0x00100000>, /* MCU SRAM */
+>> +				 <0x00 0x42040000 0x00 0x42040000 0x00 0x03ac2400>, /* WKUP peripheral window */
+>> +				 <0x00 0x45100000 0x00 0x45100000 0x00 0x00c24000>, /* MMRs, remaining NAVSS */
+>> +				 <0x00 0x46000000 0x00 0x46000000 0x00 0x00200000>, /* CPSW */
+>> +				 <0x00 0x47000000 0x00 0x47000000 0x00 0x00068400>, /* OSPI register space */
+>> +				 <0x00 0x50000000 0x00 0x50000000 0x00 0x10000000>; /* FSS OSPI0/1 data region 0 */
+>> +		};
+>> +	};
+>> +};
+> 
+> We covered these already.
+> 
+
