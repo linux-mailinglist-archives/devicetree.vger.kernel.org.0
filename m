@@ -2,99 +2,112 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from vger.kernel.org (vger.kernel.org [23.128.96.18])
-	by mail.lfdr.de (Postfix) with ESMTP id BC0AC265460
-	for <lists+devicetree@lfdr.de>; Thu, 10 Sep 2020 23:55:41 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTP id AD6C4265374
+	for <lists+devicetree@lfdr.de>; Thu, 10 Sep 2020 23:35:23 +0200 (CEST)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S1728165AbgIJVmo (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Thu, 10 Sep 2020 17:42:44 -0400
-Received: from lelv0143.ext.ti.com ([198.47.23.248]:46436 "EHLO
-        lelv0143.ext.ti.com" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S1730784AbgIJMmB (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Thu, 10 Sep 2020 08:42:01 -0400
-Received: from lelv0265.itg.ti.com ([10.180.67.224])
-        by lelv0143.ext.ti.com (8.15.2/8.15.2) with ESMTP id 08ACfGmB058834;
-        Thu, 10 Sep 2020 07:41:16 -0500
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=ti.com;
-        s=ti-com-17Q1; t=1599741676;
-        bh=IUYzQQqshxSh8qleqqCtf7r2HRvFn42iOSU0wPIKUbo=;
-        h=From:To:CC:Subject:Date:In-Reply-To:References;
-        b=aDN7IJvEekqZAiO7vsV+56kEMaWvcSm9rJJkdH7790BCE0ZYsdrYdaBo2rVK/cyHi
-         p85pkBzHAhFIVEjxL6qsb/Fzo6j++uanEGsbydPseAhdu1v+ktp89PEBEz4xFVAQYW
-         sPoF9+YrMbeOj0A099XALkM77q9TPy8/nZJMpobM=
-Received: from DLEE100.ent.ti.com (dlee100.ent.ti.com [157.170.170.30])
-        by lelv0265.itg.ti.com (8.15.2/8.15.2) with ESMTPS id 08ACfGgt058080
-        (version=TLSv1.2 cipher=AES256-GCM-SHA384 bits=256 verify=FAIL);
-        Thu, 10 Sep 2020 07:41:16 -0500
-Received: from DLEE114.ent.ti.com (157.170.170.25) by DLEE100.ent.ti.com
- (157.170.170.30) with Microsoft SMTP Server (version=TLS1_2,
- cipher=TLS_ECDHE_RSA_WITH_AES_128_CBC_SHA256_P256) id 15.1.1979.3; Thu, 10
- Sep 2020 07:41:16 -0500
-Received: from lelv0326.itg.ti.com (10.180.67.84) by DLEE114.ent.ti.com
- (157.170.170.25) with Microsoft SMTP Server (version=TLS1_2,
- cipher=TLS_ECDHE_RSA_WITH_AES_128_CBC_SHA256_P256) id 15.1.1979.3 via
- Frontend Transport; Thu, 10 Sep 2020 07:41:16 -0500
-Received: from feketebors.ti.com (ileax41-snat.itg.ti.com [10.172.224.153])
-        by lelv0326.itg.ti.com (8.15.2/8.15.2) with ESMTP id 08ACfAGO024223;
-        Thu, 10 Sep 2020 07:41:14 -0500
-From:   Peter Ujfalusi <peter.ujfalusi@ti.com>
-To:     <broonie@kernel.org>, <lgirdwood@gmail.com>, <robh+dt@kernel.org>
-CC:     <alsa-devel@alsa-project.org>, <devicetree@vger.kernel.org>,
-        <linux-kernel@vger.kernel.org>
-Subject: [PATCH v2 2/2] ASoC: ti: j721e-evm: Add support for j7200-cpb audio
-Date:   Thu, 10 Sep 2020 15:41:10 +0300
-Message-ID: <20200910124110.19361-3-peter.ujfalusi@ti.com>
-X-Mailer: git-send-email 2.28.0
-In-Reply-To: <20200910124110.19361-1-peter.ujfalusi@ti.com>
-References: <20200910124110.19361-1-peter.ujfalusi@ti.com>
+        id S1728198AbgIJVeu (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Thu, 10 Sep 2020 17:34:50 -0400
+Received: from a27-55.smtp-out.us-west-2.amazonses.com ([54.240.27.55]:59096
+        "EHLO a27-55.smtp-out.us-west-2.amazonses.com" rhost-flags-OK-OK-OK-OK)
+        by vger.kernel.org with ESMTP id S1730883AbgIJNtq (ORCPT
+        <rfc822;devicetree@vger.kernel.org>);
+        Thu, 10 Sep 2020 09:49:46 -0400
+DKIM-Signature: v=1; a=rsa-sha256; q=dns/txt; c=relaxed/simple;
+        s=zsmsymrwgfyinv5wlfyidntwsjeeldzt; d=codeaurora.org; t=1599742198;
+        h=MIME-Version:Content-Type:Content-Transfer-Encoding:Date:From:To:Cc:Subject:In-Reply-To:References:Message-ID;
+        bh=s775L7iCYKpGMncC/fTv63fok23Pnh/vNT1134dXG/I=;
+        b=Elr96xnzsEBEUVxFkM7+mD6XMQzh9xlVq4Brz8bIKJnMDvSi1h14zCUFkejWeOfW
+        R5SACiNIuAObBH2Pb82/9UAy99TS7GDOfNucN4Z2Euqhv8MST+nzqQBcb1yZ5s9Cieu
+        yzLU6A6PeyNu1POswfM/bDdYqidogQwTXneVxHkg=
+DKIM-Signature: v=1; a=rsa-sha256; q=dns/txt; c=relaxed/simple;
+        s=hsbnp7p3ensaochzwyq5wwmceodymuwv; d=amazonses.com; t=1599742198;
+        h=MIME-Version:Content-Type:Content-Transfer-Encoding:Date:From:To:Cc:Subject:In-Reply-To:References:Message-ID:Feedback-ID;
+        bh=s775L7iCYKpGMncC/fTv63fok23Pnh/vNT1134dXG/I=;
+        b=Wv3iIPZmLaD1mQJyPljMTQiUJ40ELe5fJ5rkE7TTk/pyGEVNsuHRr8997X2cDNW3
+        VxFwSm8ikScENv1tYJJ/UnEWPM0hQKxyOcXAtARDo5ZF+H+hdqvKqSRm4Kxulje5q5w
+        rxYqdhdLfUrgb/QP2LSW18r/xKRCcV+uXTapIEdE=
+X-Spam-Checker-Version: SpamAssassin 3.4.0 (2014-02-07) on
+        aws-us-west-2-caf-mail-1.web.codeaurora.org
+X-Spam-Level: 
+X-Spam-Status: No, score=-2.9 required=2.0 tests=ALL_TRUSTED,BAYES_00,
+        URIBL_BLOCKED autolearn=unavailable autolearn_force=no version=3.4.0
 MIME-Version: 1.0
-Content-Transfer-Encoding: 8bit
-Content-Type: text/plain
-X-EXCLAIMER-MD-CONFIG: e1e8a2fd-e40a-4ac6-ac9b-f7e9cc9ee180
+Content-Type: text/plain; charset=US-ASCII;
+ format=flowed
+Content-Transfer-Encoding: 7bit
+Date:   Thu, 10 Sep 2020 12:49:58 +0000
+From:   skakit@codeaurora.org
+To:     Doug Anderson <dianders@chromium.org>
+Cc:     Bjorn Andersson <bjorn.andersson@linaro.org>,
+        Matthias Kaehlcke <mka@chromium.org>,
+        Greg Kroah-Hartman <gregkh@linuxfoundation.org>,
+        Andy Gross <agross@kernel.org>,
+        Rob Herring <robh+dt@kernel.org>,
+        linux-arm-msm <linux-arm-msm@vger.kernel.org>,
+        "open list:OPEN FIRMWARE AND FLATTENED DEVICE TREE BINDINGS" 
+        <devicetree@vger.kernel.org>, LKML <linux-kernel@vger.kernel.org>,
+        Akash Asthana <akashast@codeaurora.org>,
+        Roja Rani Yarubandi <rojay@codeaurora.org>,
+        msavaliy@qti.qualcomm.com
+Subject: Re: [PATCH V4 2/4] arm64: dts: qcom: sc7180: Improve the pin config
+ settings for CTS and TX
+In-Reply-To: <CAD=FV=XZgmQXCzVx3CdeOkAWC6zz8bNW+f6Qt1=O9ZSaGUr75g@mail.gmail.com>
+References: <1599145498-20707-1-git-send-email-skakit@codeaurora.org>
+ <1599145498-20707-3-git-send-email-skakit@codeaurora.org>
+ <CAD=FV=XZgmQXCzVx3CdeOkAWC6zz8bNW+f6Qt1=O9ZSaGUr75g@mail.gmail.com>
+Message-ID: <010101747810c24f-a169785b-0866-4932-a24e-80ff53393de2-000000@us-west-2.amazonses.com>
+X-Sender: skakit@codeaurora.org
+User-Agent: Roundcube Webmail/1.3.9
+X-SES-Outgoing: 2020.09.10-54.240.27.55
+Feedback-ID: 1.us-west-2.CZuq2qbDmUIuT3qdvXlRHZZCpfZqZ4GtG9v3VKgRyF0=:AmazonSES
 Sender: devicetree-owner@vger.kernel.org
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-When j7200 SOM is attached to the CPB we only have parent clock for 48KHz
-family and the rate of the parent clock is 2359296000Hz.
+Hi Doug,
 
-Signed-off-by: Peter Ujfalusi <peter.ujfalusi@ti.com>
----
- sound/soc/ti/j721e-evm.c | 11 +++++++++++
- 1 file changed, 11 insertions(+)
+On 2020-09-10 02:58, Doug Anderson wrote:
+> Hi,
+> 
+> On Thu, Sep 3, 2020 at 8:07 AM satya priya <skakit@codeaurora.org> 
+> wrote:
+>> 
+>> --- a/arch/arm64/boot/dts/qcom/sc7180-idp.dts
+>> +++ b/arch/arm64/boot/dts/qcom/sc7180-idp.dts
+>> @@ -474,32 +474,30 @@
+>>  &qup_uart3_default {
+>>         pinconf-cts {
+>>                 /*
+>> -                * Configure a pull-down on 38 (CTS) to match the pull 
+>> of
+>> -                * the Bluetooth module.
+>> +                * Configure no-pull on CTS. As this is driven by BT, 
+>> do not
+>> +                * specify any pull in order to not conflict with BT 
+>> pulls.
+>>                  */
+>>                 pins = "gpio38";
+>> -               bias-pull-down;
+>> -               output-high;
+> 
+> Weird, how did that output-high sneak in there?  Glad it's going away.
+> 
+> 
+>> +               bias-disable;
+> 
+> I'm not convinced that the removal of the pul is the correct thing
+> here.  Specifically for the rx line the comment makes the argument
+> that if we power off the Bluetooth module then it will stop driving
+> this pin.  In that case if we remove the pull here then the line will
+> be floating and that can cause some extra power consumption as the
+> line floats between different logic levels.  Do you really need to
+> remove this pull?
+> 
 
-diff --git a/sound/soc/ti/j721e-evm.c b/sound/soc/ti/j721e-evm.c
-index cb074af47a7d..29b73303f3fc 100644
---- a/sound/soc/ti/j721e-evm.c
-+++ b/sound/soc/ti/j721e-evm.c
-@@ -525,6 +525,14 @@ static const struct j721e_audio_match_data j721e_cpb_ivi_data = {
- 	},
- };
- 
-+static const struct j721e_audio_match_data j7200_cpb_data = {
-+	.board_type = J721E_BOARD_CPB,
-+	.num_links = 2, /* CPB pcm3168a */
-+	.pll_rates = {
-+		[J721E_CLK_PARENT_48000] = 2359296000u, /* PLL4 */
-+	},
-+};
-+
- static const struct of_device_id j721e_audio_of_match[] = {
- 	{
- 		.compatible = "ti,j721e-cpb-audio",
-@@ -532,6 +540,9 @@ static const struct of_device_id j721e_audio_of_match[] = {
- 	}, {
- 		.compatible = "ti,j721e-cpb-ivi-audio",
- 		.data = &j721e_cpb_ivi_data,
-+	}, {
-+		.compatible = "ti,j7200-cpb-audio",
-+		.data = &j7200_cpb_data,
- 	},
- 	{ },
- };
--- 
-Peter
+Okay, will keep the pull-down back for CTS.
 
-Texas Instruments Finland Oy, Porkkalankatu 22, 00180 Helsinki.
-Y-tunnus/Business ID: 0615521-4. Kotipaikka/Domicile: Helsinki
-
+> Same comment for the next patch where you add the sleep settings.
+> 
+> 
+> -Doug
