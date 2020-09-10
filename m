@@ -2,77 +2,118 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from vger.kernel.org (vger.kernel.org [23.128.96.18])
-	by mail.lfdr.de (Postfix) with ESMTP id 94B4A264D69
-	for <lists+devicetree@lfdr.de>; Thu, 10 Sep 2020 20:42:19 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTP id 846C0264DAD
+	for <lists+devicetree@lfdr.de>; Thu, 10 Sep 2020 20:48:34 +0200 (CEST)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S1726802AbgIJSl5 (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Thu, 10 Sep 2020 14:41:57 -0400
-Received: from asavdk3.altibox.net ([109.247.116.14]:49720 "EHLO
-        asavdk3.altibox.net" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S1726746AbgIJSlr (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Thu, 10 Sep 2020 14:41:47 -0400
-Received: from ravnborg.org (unknown [188.228.123.71])
-        (using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
+        id S1725820AbgIJSsP (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Thu, 10 Sep 2020 14:48:15 -0400
+Received: from mail.kernel.org ([198.145.29.99]:56262 "EHLO mail.kernel.org"
+        rhost-flags-OK-OK-OK-OK) by vger.kernel.org with ESMTP
+        id S1726898AbgIJSrg (ORCPT <rfc822;devicetree@vger.kernel.org>);
+        Thu, 10 Sep 2020 14:47:36 -0400
+Received: from localhost.localdomain (unknown [194.230.155.174])
+        (using TLSv1.2 with cipher ECDHE-RSA-AES128-GCM-SHA256 (128/128 bits))
         (No client certificate requested)
-        by asavdk3.altibox.net (Postfix) with ESMTPS id 180CB20039;
-        Thu, 10 Sep 2020 20:41:42 +0200 (CEST)
-Date:   Thu, 10 Sep 2020 20:41:41 +0200
-From:   Sam Ravnborg <sam@ravnborg.org>
-To:     Laurentiu Palcu <laurentiu.palcu@oss.nxp.com>
-Cc:     Daniel Vetter <daniel@ffwll.ch>,
-        devicetree <devicetree@vger.kernel.org>,
-        Laurentiu Palcu <laurentiu.palcu@nxp.com>,
-        Guido =?iso-8859-1?Q?G=FCnther?= <agx@sigxcpu.org>,
-        lukas@mntmn.com,
-        Linux Kernel Mailing List <linux-kernel@vger.kernel.org>,
-        dri-devel <dri-devel@lists.freedesktop.org>,
-        NXP Linux Team <linux-imx@nxp.com>,
-        Pengutronix Kernel Team <kernel@pengutronix.de>,
-        Linux ARM <linux-arm-kernel@lists.infradead.org>
-Subject: Re: [PATCH v9 0/5] Add support for iMX8MQ Display Controller
- Subsystem
-Message-ID: <20200910184141.GD893045@ravnborg.org>
-References: <20200731081836.3048-1-laurentiu.palcu@oss.nxp.com>
- <20200828083620.6m5yhcv7rg5tckzh@fsr-ub1864-141>
- <e882838158cb9e81440c8cdeb25d80bf3310e8a8.camel@pengutronix.de>
- <20200831112445.t4xfz33avdyx5w6p@fsr-ub1864-141>
- <f46d44f38008d214951994a340814570c182cc15.camel@pengutronix.de>
- <CAKMK7uG7s1j+k0WPq8H4OcTD0jP2_LpTy0SBw0RtP-ij1OS7Mw@mail.gmail.com>
- <20200910080432.26dleo5wxybsacvl@fsr-ub1864-141>
-MIME-Version: 1.0
-Content-Type: text/plain; charset=us-ascii
-Content-Disposition: inline
-In-Reply-To: <20200910080432.26dleo5wxybsacvl@fsr-ub1864-141>
-X-CMAE-Score: 0
-X-CMAE-Analysis: v=2.3 cv=CaYmGojl c=1 sm=1 tr=0
-        a=S6zTFyMACwkrwXSdXUNehg==:117 a=S6zTFyMACwkrwXSdXUNehg==:17
-        a=kj9zAlcOel0A:10 a=EC8lkJN9LEwtObD5xQsA:9 a=CjuIK1q_8ugA:10
+        by mail.kernel.org (Postfix) with ESMTPSA id 9192920855;
+        Thu, 10 Sep 2020 18:47:34 +0000 (UTC)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=kernel.org;
+        s=default; t=1599763655;
+        bh=T/J19eEn3KKQMictkQaqPg+3MA1LjIWj4lP36KCntIQ=;
+        h=From:To:Cc:Subject:Date:From;
+        b=JxiIkoZNk4KHaoukG4G01fCUjHEL9lzT/onLIlR092y2FmXpQHMjDVYTINe++Erap
+         z7wZuUY5qrW95EnkH+SaqvKJbMni1mfaR1/CDt9607ERVJQMCcEugrrP1YhakEryDJ
+         I/7xkQ5Pq2MshTi7c4tbU3NxMoVrITSJzucgwVEU=
+From:   Krzysztof Kozlowski <krzk@kernel.org>
+To:     Rob Herring <robh+dt@kernel.org>, devicetree@vger.kernel.org,
+        linux-kernel@vger.kernel.org
+Cc:     Krzysztof Kozlowski <krzk@kernel.org>
+Subject: [PATCH] dt-bindings: example: Extend based on practice
+Date:   Thu, 10 Sep 2020 20:47:06 +0200
+Message-Id: <20200910184706.9677-1-krzk@kernel.org>
+X-Mailer: git-send-email 2.17.1
 Sender: devicetree-owner@vger.kernel.org
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-Hi Laurentiu
+Extend the example schema with common rules which seems to be not that
+obvious:
+1. Expecting arrays of phandles to be always ordered, regardless if
+   "xxx-names" is provided (e.g. clocks),
+2. Add example of altering a property based on presence of other
+   property,
+3. Document usage of unevaluatedProperties.
 
-> > > I've tested this together with a hacked up eDP bridge driver stack on
-> > > my boards. The testing hasn't been really in-depth, but things seem to
-> > > work fine. I have now pushed the whole series into drm-misc-next.
-> > 
-> > Something doesn't compile too well
-> > 
-> > ERROR: modpost: "__aeabi_ldivmod"
-> > [drivers/gpu/drm/imx/dcss/imx-dcss.ko] undefined!
-> > ERROR: modpost: "__aeabi_uldivmod"
-> > [drivers/gpu/drm/imx/dcss/imx-dcss.ko] undefined!
-> 
-> Oops... :/ I guess we need an ARM64 dependency in Kconfig. No
-> 32bit NXP SoC uses this particular display controller. So, that should
-> fix the compilation issue on 32bit.
+Signed-off-by: Krzysztof Kozlowski <krzk@kernel.org>
+---
+ .../devicetree/bindings/example-schema.yaml   | 33 ++++++++++++++-----
+ 1 file changed, 25 insertions(+), 8 deletions(-)
 
-Build coverage for ARM64 is an OK short term fix.
+diff --git a/Documentation/devicetree/bindings/example-schema.yaml b/Documentation/devicetree/bindings/example-schema.yaml
+index 822975dbeafa..b381db1ae00a 100644
+--- a/Documentation/devicetree/bindings/example-schema.yaml
++++ b/Documentation/devicetree/bindings/example-schema.yaml
+@@ -81,6 +81,8 @@ properties:
+     maxItems: 1
+     description: bus clock. A description is only needed for a single item if
+       there's something unique to add.
++      The items should be have a fixed order, so pattern matching names are
++      discouraged.
+ 
+   clock-names:
+     items:
+@@ -97,6 +99,8 @@ properties:
+       A variable number of interrupts warrants a description of what conditions
+       affect the number of interrupts. Otherwise, descriptions on standard
+       properties are not necessary.
++      The items should be have a fixed order, so pattern matching names are
++      discouraged.
+ 
+   interrupt-names:
+     # minItems must be specified here because the default would be 2
+@@ -196,14 +200,24 @@ required:
+ #
+ # If the conditionals become too unweldy, then it may be better to just split
+ # the binding into separate schema documents.
+-if:
+-  properties:
+-    compatible:
+-      contains:
+-        const: vendor,soc2-ip
+-then:
+-  required:
+-    - foo-supply
++allOf:
++  - if:
++      properties:
++        compatible:
++          contains:
++            const: vendor,soc2-ip
++    then:
++      required:
++        - foo-supply
++  # Altering schema depending on presence of properties is usually done by
++  # dependencies (see above), however some adjustments might require if:
++  - if:
++      required:
++        - vendor,bool-property
++    then:
++      properties:
++        vendor,int-property:
++          enum: [2, 4, 6]
+ 
+ # Ideally, the schema should have this line otherwise any other properties
+ # present are allowed. There's a few common properties such as 'status' and
+@@ -211,6 +225,9 @@ then:
+ #
+ # This can't be used in cases where another schema is referenced
+ # (i.e. allOf: [{$ref: ...}]).
++# If and only if another schema is referenced and arbitrary children nodes can
++# appear, "unevaluatedProperties: false" could be used.  Typical example is I2C
++# controller where no name pattern matching for childre can be added.
+ additionalProperties: false
+ 
+ examples:
+-- 
+2.17.1
 
-Please fix the driver so we can build test it for all architectures.
-The chance to miss something when refactoring if only build for ARM64
-is too high. The fix can land when it is ready, and is not urgent.
-
-	Sam
