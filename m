@@ -2,169 +2,251 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from vger.kernel.org (vger.kernel.org [23.128.96.18])
-	by mail.lfdr.de (Postfix) with ESMTP id 207AB263910
-	for <lists+devicetree@lfdr.de>; Thu, 10 Sep 2020 00:30:05 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTP id 37833263A2A
+	for <lists+devicetree@lfdr.de>; Thu, 10 Sep 2020 04:22:17 +0200 (CEST)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S1729990AbgIIW3h (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Wed, 9 Sep 2020 18:29:37 -0400
-Received: from mx0a-001b2d01.pphosted.com ([148.163.156.1]:61938 "EHLO
-        mx0a-001b2d01.pphosted.com" rhost-flags-OK-OK-OK-OK)
-        by vger.kernel.org with ESMTP id S1729275AbgIIW3K (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Wed, 9 Sep 2020 18:29:10 -0400
-Received: from pps.filterd (m0098410.ppops.net [127.0.0.1])
-        by mx0a-001b2d01.pphosted.com (8.16.0.42/8.16.0.42) with SMTP id 089MEBWo074158;
-        Wed, 9 Sep 2020 18:29:04 -0400
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=ibm.com; h=from : to : cc : subject
- : date : message-id : in-reply-to : references : mime-version :
- content-transfer-encoding; s=pp1;
- bh=DEmr4aJEPJnjTMZ+V7PyElhX3mO7ALiHeOirevVo29U=;
- b=bKNlzGUcKgUZUB3DFtTmJtNLQB++B1X0V4g/LQkWdRviSjuQSjCT9Uo7uE1vtofImAzS
- ypEF88hpSWRztzycthE/x7I1VsV2QvKRuchJZXo65fm+I5t9e6Y8od/rqXy/KJ6KaYmo
- vK0fTkcRfb0PbDNZ7nIlWfucxJNwrsgVTXJElZe1qLbzEHi4fbj5basNiW00n8khX98i
- p8nbzB9vyZ3rkUR3sP1HVLzj9u11tu7BIieR0Sk1HKVYUUvINrEnMXLp89bcGZihgI0S
- PXBFpVbkW4kka8ftwPwu4b9Ia0S2mvnd1zCkYiofgzNCoP1oyMHb80+iWo/Ng2sXLGt1 aA== 
-Received: from ppma03dal.us.ibm.com (b.bd.3ea9.ip4.static.sl-reverse.com [169.62.189.11])
-        by mx0a-001b2d01.pphosted.com with ESMTP id 33f7nhg90s-1
-        (version=TLSv1.2 cipher=ECDHE-RSA-AES256-GCM-SHA384 bits=256 verify=NOT);
-        Wed, 09 Sep 2020 18:29:04 -0400
-Received: from pps.filterd (ppma03dal.us.ibm.com [127.0.0.1])
-        by ppma03dal.us.ibm.com (8.16.0.42/8.16.0.42) with SMTP id 089MQSCt010049;
-        Wed, 9 Sep 2020 22:29:03 GMT
-Received: from b03cxnp08026.gho.boulder.ibm.com (b03cxnp08026.gho.boulder.ibm.com [9.17.130.18])
-        by ppma03dal.us.ibm.com with ESMTP id 33c2a9bfuf-1
-        (version=TLSv1.2 cipher=ECDHE-RSA-AES256-GCM-SHA384 bits=256 verify=NOT);
-        Wed, 09 Sep 2020 22:29:03 +0000
-Received: from b03ledav002.gho.boulder.ibm.com (b03ledav002.gho.boulder.ibm.com [9.17.130.233])
-        by b03cxnp08026.gho.boulder.ibm.com (8.14.9/8.14.9/NCO v10.0) with ESMTP id 089MSvjZ983680
-        (version=TLSv1/SSLv3 cipher=DHE-RSA-AES256-GCM-SHA384 bits=256 verify=OK);
-        Wed, 9 Sep 2020 22:28:57 GMT
-Received: from b03ledav002.gho.boulder.ibm.com (unknown [127.0.0.1])
-        by IMSVA (Postfix) with ESMTP id 31406136051;
-        Wed,  9 Sep 2020 22:29:02 +0000 (GMT)
-Received: from b03ledav002.gho.boulder.ibm.com (unknown [127.0.0.1])
-        by IMSVA (Postfix) with ESMTP id B4A8613604F;
-        Wed,  9 Sep 2020 22:29:01 +0000 (GMT)
-Received: from SHADE6A.ibmuc.com (unknown [9.163.76.239])
-        by b03ledav002.gho.boulder.ibm.com (Postfix) with ESMTP;
-        Wed,  9 Sep 2020 22:29:01 +0000 (GMT)
-From:   Eddie James <eajames@linux.ibm.com>
-To:     linux-spi@vger.kernel.org
-Cc:     linux-kernel@vger.kernel.org, devicetree@vger.kernel.org,
-        joel@jms.id.au, broonie@kernel.org, bradleyb@fuzziesquirrel.com,
-        robh+dt@kernel.org, arnd@arndb.de, eajames@linux.ibm.com
-Subject: [PATCH v2 6/6] spi: fsi: Check mux status before transfers
-Date:   Wed,  9 Sep 2020 17:28:57 -0500
-Message-Id: <20200909222857.28653-7-eajames@linux.ibm.com>
-X-Mailer: git-send-email 2.26.2
-In-Reply-To: <20200909222857.28653-1-eajames@linux.ibm.com>
-References: <20200909222857.28653-1-eajames@linux.ibm.com>
+        id S1730729AbgIJCWI (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Wed, 9 Sep 2020 22:22:08 -0400
+Received: from lindbergh.monkeyblade.net ([23.128.96.19]:53934 "EHLO
+        lindbergh.monkeyblade.net" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
+        with ESMTP id S1730716AbgIJCMD (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Wed, 9 Sep 2020 22:12:03 -0400
+Received: from mail-pl1-x644.google.com (mail-pl1-x644.google.com [IPv6:2607:f8b0:4864:20::644])
+        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 59E96C061350
+        for <devicetree@vger.kernel.org>; Wed,  9 Sep 2020 17:49:05 -0700 (PDT)
+Received: by mail-pl1-x644.google.com with SMTP id u9so67437plk.4
+        for <devicetree@vger.kernel.org>; Wed, 09 Sep 2020 17:49:05 -0700 (PDT)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+        d=chromium.org; s=google;
+        h=from:to:cc:subject:date:message-id:mime-version
+         :content-transfer-encoding;
+        bh=hHus+OVDLcqY8ScYulpBifSVnWRXEeyUkMAp+pNYLt0=;
+        b=RVJqCCuWWOWM0dz4VGUPHz4YT/8M0FMiRkUquMcPFXyO4exdWIDMrDFVfPjC3Q3qQK
+         KelgV9kK1UXp5k8x8ZfGDjgM7j0hDALiD++NCMlf1j0abGNT0BHeNi13f6hWqGmATtbI
+         kEQWo7uqFqGVF9SS9RQnncWkL0u9T17ni5k1U=
+X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+        d=1e100.net; s=20161025;
+        h=x-gm-message-state:from:to:cc:subject:date:message-id:mime-version
+         :content-transfer-encoding;
+        bh=hHus+OVDLcqY8ScYulpBifSVnWRXEeyUkMAp+pNYLt0=;
+        b=Ub/O12545Qh/PJi/ANGF12OLQW9TYdPueNK9Nt0fC0NmS9lcCl2dWRqlOpMlu0OJyd
+         1AoJ0PKnfttN4QtFRDqpG+vaiw620KnpijCl1uMgnNUYF+ljnIDxY1+24PVyTiIm5yys
+         /uFZqPlUaSAL/4PCw9NLmqOe8qqBosBobGJjODPnWtKPrHjxGgWbsbqfYlkYuk1gGSgz
+         qOyAy2bpjvpGx45L1kdlPPImrFa0qdxXpudWr6xp9uPKSlOaZj67OrdbwPsQg7ZcXwXe
+         xwmBm6tPOEWjLp2vjWal9XnadtGUNdRzmp4Ns6p86B0+EHC/bs9xyjerXS2+g5MwT5KI
+         mBcw==
+X-Gm-Message-State: AOAM531waFYb2w8PMuWDDA2g1FAGjvLJjaqekFcuOphBPCX4LEo3HsDb
+        PlSH/A9LJBAYU1raJQPme5SkgQ==
+X-Google-Smtp-Source: ABdhPJwTj4wUUbAsxAV/7h1osggTI46u9y5FkiWqwpcCL+YgkGoYklfmUILVQGR2xmBQe1XfGkrOaA==
+X-Received: by 2002:a17:902:ee01:b029:d1:8c50:aa89 with SMTP id z1-20020a170902ee01b02900d18c50aa89mr372202plb.6.1599698944629;
+        Wed, 09 Sep 2020 17:49:04 -0700 (PDT)
+Received: from smtp.gmail.com ([2620:15c:202:1:3e52:82ff:fe6c:83ab])
+        by smtp.gmail.com with ESMTPSA id c7sm3899050pfj.100.2020.09.09.17.49.03
+        (version=TLS1_3 cipher=TLS_AES_256_GCM_SHA384 bits=256/256);
+        Wed, 09 Sep 2020 17:49:03 -0700 (PDT)
+From:   Stephen Boyd <swboyd@chromium.org>
+To:     Kishon Vijay Abraham I <kishon@ti.com>,
+        Vinod Koul <vkoul@kernel.org>
+Cc:     linux-kernel@vger.kernel.org, linux-arm-msm@vger.kernel.org,
+        Jeykumar Sankaran <jsanka@codeaurora.org>,
+        Chandan Uddaraju <chandanu@codeaurora.org>,
+        Vara Reddy <varar@codeaurora.org>,
+        Tanmay Shah <tanmay@codeaurora.org>,
+        Bjorn Andersson <bjorn.andersson@linaro.org>,
+        Manu Gautam <mgautam@codeaurora.org>,
+        Sandeep Maheswaram <sanm@codeaurora.org>,
+        Douglas Anderson <dianders@chromium.org>,
+        Sean Paul <seanpaul@chromium.org>,
+        Rob Clark <robdclark@chromium.org>,
+        Jonathan Marek <jonathan@marek.ca>,
+        Dmitry Baryshkov <dmitry.baryshkov@linaro.org>,
+        devicetree@vger.kernel.org, Rob Herring <robh+dt@kernel.org>,
+        Stephen Boyd <sboyd@kernel.org>
+Subject: [PATCH v3 00/10] Support qcom USB3+DP combo phy (or type-c phy)
+Date:   Wed,  9 Sep 2020 17:48:52 -0700
+Message-Id: <20200910004902.2252694-1-swboyd@chromium.org>
+X-Mailer: git-send-email 2.28.0.526.ge36021eeef-goog
 MIME-Version: 1.0
 Content-Transfer-Encoding: 8bit
-X-TM-AS-GCONF: 00
-X-Proofpoint-Virus-Version: vendor=fsecure engine=2.50.10434:6.0.235,18.0.687
- definitions=2020-09-09_17:2020-09-09,2020-09-09 signatures=0
-X-Proofpoint-Spam-Details: rule=outbound_notspam policy=outbound score=0 clxscore=1015 spamscore=0
- impostorscore=0 bulkscore=0 phishscore=0 priorityscore=1501
- lowpriorityscore=0 adultscore=0 mlxlogscore=774 suspectscore=1 mlxscore=0
- malwarescore=0 classifier=spam adjust=0 reason=mlx scancount=1
- engine=8.12.0-2006250000 definitions=main-2009090192
 Sender: devicetree-owner@vger.kernel.org
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-The SPI controllers are not accessible if the mux isn't set. Therefore,
-check the mux status before starting a transfer and fail out if it isn't
-set.
+This patch series is based on v12 of the msm DP driver submission[1]
+plus a compliance patch[2]. In the v5 patch series review I suggested
+that the DP PHY and PLL be split out of the drm driver and moved to the
+qmp phy driver. This patch series does that, but it is still marked as
+an RFC because there are a couple more things to do, mostly updating the
+DT binding and getting agreement on how to structure the code.
 
-Signed-off-by: Eddie James <eajames@linux.ibm.com>
-Signed-off-by: Joel Stanley <joel@jms.id.au>
----
- drivers/spi/spi-fsi.c | 40 +++++++++++++++++++++++++++-------------
- 1 file changed, 27 insertions(+), 13 deletions(-)
+Eventually I believe the qmp phy driver will need to listen for type-c
+notifiers or somehow know the type-c pinout being used so this driver
+can program things slightly differently. Right now, I don't have any way
+to test it though, so I've left it as future work. For some more
+details, the DP phy and the USB3 phy share the same physical pins on the
+SoC and those pins pretty much line up with a type-c pinout modulo some
+CC pins for cable orientation detection logic that lives on the PMIC. So
+the DP phy can use all four lanes or it can use two lanes and the USB3
+phy can use two lanes. In the hardware designs that I have access to it
+is always two lanes for USB3 and two lanes for DP going through what
+looks like a type-c pinout so this just hard codes that configuration in
+the driver.
 
-diff --git a/drivers/spi/spi-fsi.c b/drivers/spi/spi-fsi.c
-index a702e9d7d68c..8a440c7078ef 100644
---- a/drivers/spi/spi-fsi.c
-+++ b/drivers/spi/spi-fsi.c
-@@ -12,6 +12,7 @@
- 
- #define FSI_ENGID_SPI			0x23
- #define FSI_MBOX_ROOT_CTRL_8		0x2860
-+#define  FSI_MBOX_ROOT_CTRL_8_SPI_MUX	 0xf0000000
- 
- #define FSI2SPI_DATA0			0x00
- #define FSI2SPI_DATA1			0x04
-@@ -84,6 +85,26 @@ struct fsi_spi_sequence {
- 	u64 data;
- };
- 
-+static int fsi_spi_check_mux(struct fsi_device *fsi, struct device *dev)
-+{
-+	int rc;
-+	u32 root_ctrl_8;
-+	__be32 root_ctrl_8_be;
-+
-+	rc = fsi_slave_read(fsi->slave, FSI_MBOX_ROOT_CTRL_8, &root_ctrl_8_be,
-+			    sizeof(root_ctrl_8_be));
-+	if (rc)
-+		return rc;
-+
-+	root_ctrl_8 = be32_to_cpu(root_ctrl_8_be);
-+	dev_dbg(dev, "Root control register 8: %08x\n", root_ctrl_8);
-+	if ((root_ctrl_8 & FSI_MBOX_ROOT_CTRL_8_SPI_MUX) ==
-+	     FSI_MBOX_ROOT_CTRL_8_SPI_MUX)
-+		return 0;
-+
-+	return -ENOLINK;
-+}
-+
- static int fsi_spi_check_status(struct fsi_spi *ctx)
- {
- 	int rc;
-@@ -449,11 +470,15 @@ static int fsi_spi_transfer_init(struct fsi_spi *ctx)
- static int fsi_spi_transfer_one_message(struct spi_controller *ctlr,
- 					struct spi_message *mesg)
- {
--	int rc = 0;
-+	int rc;
- 	u8 seq_slave = SPI_FSI_SEQUENCE_SEL_SLAVE(mesg->spi->chip_select + 1);
- 	struct spi_transfer *transfer;
- 	struct fsi_spi *ctx = spi_controller_get_devdata(ctlr);
- 
-+	rc = fsi_spi_check_mux(ctx->fsi, ctx->dev);
-+	if (rc)
-+		return rc;
-+
- 	list_for_each_entry(transfer, &mesg->transfers, transfer_list) {
- 		struct fsi_spi_sequence seq;
- 		struct spi_transfer *next = NULL;
-@@ -537,24 +562,13 @@ static size_t fsi_spi_max_transfer_size(struct spi_device *spi)
- static int fsi_spi_probe(struct device *dev)
- {
- 	int rc;
--	u32 root_ctrl_8;
- 	struct device_node *np;
- 	int num_controllers_registered = 0;
- 	struct fsi_device *fsi = to_fsi_dev(dev);
- 
--	/*
--	 * Check the SPI mux before attempting to probe. If the mux isn't set
--	 * then the SPI controllers can't access their slave devices.
--	 */
--	rc = fsi_slave_read(fsi->slave, FSI_MBOX_ROOT_CTRL_8, &root_ctrl_8,
--			    sizeof(root_ctrl_8));
-+	rc = fsi_spi_check_mux(fsi, dev);
- 	if (rc)
--		return rc;
--
--	if (!root_ctrl_8) {
--		dev_dbg(dev, "SPI mux not set, aborting probe.\n");
- 		return -ENODEV;
--	}
- 
- 	for_each_available_child_of_node(dev->of_node, np) {
- 		u32 base;
+Here's the example node that I'm using on sc7180:
+
+	usb_1_qmpphy: phy-wrapper@88e9000 {
+		compatible = "qcom,sc7180-qmp-usb3-dp-phy";
+		reg = <0 0x088e9000 0 0x18c>, // usb pll (or serdes)
+		      <0 0x088e8000 0 0x38>, // dp com
+		      <0 0x088ea000 0 0x40>;  // dp pll (or serdes)
+		status = "disabled";
+		#address-cells = <2>;
+		#size-cells = <2>;
+		ranges;
+
+		clocks = <&gcc GCC_USB3_PRIM_PHY_AUX_CLK>,
+			 <&gcc GCC_USB_PHY_CFG_AHB2PHY_CLK>,
+			 <&gcc GCC_USB3_PRIM_CLKREF_CLK>,
+			 <&gcc GCC_USB3_PRIM_PHY_COM_AUX_CLK>;
+		clock-names = "aux", "cfg_ahb", "ref", "com_aux";
+
+		resets = <&gcc GCC_USB3_PHY_PRIM_BCR>,
+			 <&gcc GCC_USB3_DP_PHY_PRIM_BCR>;
+		reset-names = "phy", "common";
+
+		usb_1_ssphy: usb3-phy@88e9200 {
+			reg = <0 0x088e9200 0 0x128>, // tx0
+			      <0 0x088e9400 0 0x200>, // rx0
+			      <0 0x088e9c00 0 0x218>, // pcs
+			      <0 0x088e9600 0 0x128>, // tx1
+			      <0 0x088e9800 0 0x200>, // rx1
+			      <0 0x088e9a00 0 0x18>;  // pcs misc
+			#clock-cells = <0>;
+			#phy-cells = <0>;
+			clocks = <&gcc GCC_USB3_PRIM_PHY_PIPE_CLK>;
+			clock-names = "pipe0";
+			clock-output-names = "usb3_phy_pipe_clk_src";
+		};
+
+		dp_phy: dp-phy@88ea200 {
+			reg = <0 0x088ea200 0 0x200>, // tx0
+			      <0 0x088ea400 0 0x200>, // rx0
+			      <0 0x088eaa00 0 0x200>, // dp phy
+			      <0 0x088ea600 0 0x200>, // tx1
+			      <0 0x088ea800 0 0x200>; // rx1
+			#clock-cells = <1>;
+			#phy-cells = <0>;
+		};
+	};
+
+I had to put the serdes register region in the wrapper node and jam the
+common area (dp_com) in the middle. Sort of a mess but it was the best I
+could do to make the driver changes minimially invasive. I also had to
+change the node names to 'usb3-phy' and 'dp-phy' from 'phy' so that I
+could differentiate the different phys in the driver. Otherwise the qmp
+driver was already mostly prepared for two different phys to sit next to
+each other inside the phy wrapper so it was mostly just a chore of
+moving code from one place to another.
+
+The last patch in this series rips out the DP PHY and PLL code from the
+drm driver and wires in the phy API calls instead. I don't know the
+merge path for it. Maybe Rob Clark can pick it up and I can pick the clk
+patch into clk-next and the phy patches can go via the phy tree, then
+everything can meet in linux-next. There are still some more TODOs in
+the code but they feel minor enough to fix with more testing.
+
+Changes from v2 (https://lore.kernel.org/r/20200902230215.3452712-1-swboyd@chromium.org)
+ * Added regs to sc7180 dp struct
+ * s/QSERDES_COM_RESETSM_CNTRL/QSERDES_V3_COM_RESETSM_CNTRL/ in
+   qcom_qmp_phy_configure_dp_phy()
+
+Changes from v1 (https://lore.kernel.org/r/20200826024711.220080-1-swboyd@chromium.org)
+ * New patch for devm_platform_ioremap_resource()
+ * Moved serdes tables to sc7180 patch
+ * Removed more dead code from drm driver in last patch
+ * Reset aux phy is kept around now. Slightly moved where we init the
+   phy and setup aux
+ * Added a phy_exit() call to last patch so we properly shut down DP on
+   disconnect and can work on multiple plugs
+
+Changes from RFC (https://lore.kernel.org/r/20200611091919.108018-1-swboyd@chromium.org)
+ * New patch for DT binding
+ * Rebased onto latest DP patch series
+
+TODO:
+ * Clean up phy power on sequence a bit so that it is done in one place
+   instead of two
+ * Allow link rate to change after phy is powered on?
+ * Make the runtime PM logic detect combo phy and power down both?
+
+Stephen Boyd (10):
+  dt-bindings: phy: qcom,qmp-usb3-dp: Add DP phy information
+  phy: qcom-qmp: Move phy mode into struct qmp_phy
+  phy: qcom-qmp: Remove 'initialized' in favor of 'init_count'
+  phy: qcom-qmp: Move 'serdes' and 'cfg' into 'struct qcom_phy'
+  phy: qcom-qmp: Get dp_com I/O resource by index
+  phy: qcom-qmp: Use devm_platform_ioremap_resource() to simplify
+  phy: qcom-qmp: Add support for DP in USB3+DP combo phy
+  phy: qcom-qmp: Add support for sc7180 DP phy
+  clk: qcom: dispcc: Update DP clk ops for phy design
+  drm/msm/dp: Use qmp phy for DP PLL and PHY
+
+ .../bindings/phy/qcom,qmp-usb3-dp-phy.yaml    |   91 +-
+ drivers/clk/qcom/clk-rcg2.c                   |   19 +-
+ drivers/clk/qcom/dispcc-sc7180.c              |    3 -
+ drivers/gpu/drm/msm/Makefile                  |    4 +-
+ drivers/gpu/drm/msm/dp/dp_aux.c               |    7 +-
+ drivers/gpu/drm/msm/dp/dp_catalog.c           |  287 +----
+ drivers/gpu/drm/msm/dp/dp_catalog.h           |    9 +-
+ drivers/gpu/drm/msm/dp/dp_ctrl.c              |   48 +-
+ drivers/gpu/drm/msm/dp/dp_display.c           |   17 -
+ drivers/gpu/drm/msm/dp/dp_display.h           |    3 -
+ drivers/gpu/drm/msm/dp/dp_link.c              |    2 +
+ drivers/gpu/drm/msm/dp/dp_panel.c             |    1 +
+ drivers/gpu/drm/msm/dp/dp_parser.c            |   12 +-
+ drivers/gpu/drm/msm/dp/dp_parser.h            |   12 +-
+ drivers/gpu/drm/msm/dp/dp_pll.c               |   99 --
+ drivers/gpu/drm/msm/dp/dp_pll.h               |   61 -
+ drivers/gpu/drm/msm/dp/dp_pll_10nm.c          |  930 ---------------
+ drivers/gpu/drm/msm/dp/dp_pll_private.h       |   89 --
+ drivers/gpu/drm/msm/dp/dp_power.c             |   39 +-
+ drivers/gpu/drm/msm/dp/dp_power.h             |    9 -
+ drivers/gpu/drm/msm/dp/dp_reg.h               |  213 ----
+ drivers/phy/qualcomm/phy-qcom-qmp.c           | 1058 ++++++++++++++---
+ drivers/phy/qualcomm/phy-qcom-qmp.h           |   80 ++
+ 23 files changed, 1141 insertions(+), 1952 deletions(-)
+ delete mode 100644 drivers/gpu/drm/msm/dp/dp_pll.c
+ delete mode 100644 drivers/gpu/drm/msm/dp/dp_pll.h
+ delete mode 100644 drivers/gpu/drm/msm/dp/dp_pll_10nm.c
+ delete mode 100644 drivers/gpu/drm/msm/dp/dp_pll_private.h
+
+Cc: Jeykumar Sankaran <jsanka@codeaurora.org>
+Cc: Chandan Uddaraju <chandanu@codeaurora.org>
+Cc: Vara Reddy <varar@codeaurora.org>
+Cc: Tanmay Shah <tanmay@codeaurora.org>
+Cc: Bjorn Andersson <bjorn.andersson@linaro.org>
+Cc: Manu Gautam <mgautam@codeaurora.org>
+Cc: Sandeep Maheswaram <sanm@codeaurora.org>
+Cc: Douglas Anderson <dianders@chromium.org>
+Cc: Sean Paul <seanpaul@chromium.org>
+Cc: Rob Clark <robdclark@chromium.org>
+Cc: Jonathan Marek <jonathan@marek.ca>
+Cc: Dmitry Baryshkov <dmitry.baryshkov@linaro.org>
+Cc: <devicetree@vger.kernel.org>
+Cc: Rob Herring <robh+dt@kernel.org>
+Cc: Stephen Boyd <sboyd@kernel.org>
+
+[1] https://lore.kernel.org/r/20200827211658.27479-1-tanmay@codeaurora.org
+[2] https://lore.kernel.org/r/20200827214739.22037-1-khsieh@codeaurora.org
+
+base-commit: d012a7190fc1fd72ed48911e77ca97ba4521bccd
+prerequisite-patch-id: aa650e8353e003be0075deea0dee92a82e321432
+prerequisite-patch-id: 496af774194db20706fa82eb79f95891c8784952
+prerequisite-patch-id: 87e6b1a10063ca350cacd64408024714599a14f4
+prerequisite-patch-id: ac467cb99ea60ee186ab9bbe47a3e4d9c13a1313
+prerequisite-patch-id: 4eff0531912abbfa748181e90baffba9eb52e295
+prerequisite-patch-id: a6970d668b3570f2c10eda99904aa3dfc8fefa1d
 -- 
-2.26.2
+Sent by a computer, using git, on the internet
 
