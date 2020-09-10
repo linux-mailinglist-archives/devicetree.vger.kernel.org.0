@@ -2,59 +2,59 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from vger.kernel.org (vger.kernel.org [23.128.96.18])
-	by mail.lfdr.de (Postfix) with ESMTP id AA7FF26537E
-	for <lists+devicetree@lfdr.de>; Thu, 10 Sep 2020 23:36:36 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTP id 22AF626537F
+	for <lists+devicetree@lfdr.de>; Thu, 10 Sep 2020 23:36:37 +0200 (CEST)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S1726760AbgIJVge (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Thu, 10 Sep 2020 17:36:34 -0400
-Received: from lindbergh.monkeyblade.net ([23.128.96.19]:48066 "EHLO
+        id S1726913AbgIJVgf (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Thu, 10 Sep 2020 17:36:35 -0400
+Received: from lindbergh.monkeyblade.net ([23.128.96.19]:48064 "EHLO
         lindbergh.monkeyblade.net" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S1730938AbgIJNjw (ORCPT
+        with ESMTP id S1730937AbgIJNjw (ORCPT
         <rfc822;devicetree@vger.kernel.org>); Thu, 10 Sep 2020 09:39:52 -0400
-Received: from mail-pl1-x644.google.com (mail-pl1-x644.google.com [IPv6:2607:f8b0:4864:20::644])
-        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id F3B83C061796
+Received: from mail-pj1-x1041.google.com (mail-pj1-x1041.google.com [IPv6:2607:f8b0:4864:20::1041])
+        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id ECFCCC061795
         for <devicetree@vger.kernel.org>; Thu, 10 Sep 2020 06:38:34 -0700 (PDT)
-Received: by mail-pl1-x644.google.com with SMTP id x18so929496pll.6
+Received: by mail-pj1-x1041.google.com with SMTP id a9so36273pjg.1
         for <devicetree@vger.kernel.org>; Thu, 10 Sep 2020 06:38:34 -0700 (PDT)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
         d=linaro.org; s=google;
         h=from:to:cc:subject:date:message-id:in-reply-to:references;
-        bh=N3mgJASizexPLNkdFt4Wcjn+xRiScZKeT3febPP2GBs=;
-        b=jm0FeBubSLNdmOw7edyREhQe0fHd7uC1w3dnmUfrc1pPQA9LjHaAGbmQmlzdWirFNI
-         zATrB/jWrCY/mvh5sRgI21Jdv6tCgd4nwF67n6J0i3+akIH16jJe1P8fn5kuNIRFBBJy
-         AjVBalKDmuD35a49JkSS04+cwj4A3cjMwkzu/lrltDB2LXekFJBua8k6M3VCGUDoEmif
-         tzJICDtdTfeg2enYNGt9lQw4mewr7jRWXqMoVXMM7ehzyjjJlj4OqNeKQAk4/sxMDe0/
-         IaMfUp1ctePiLCggBZ+SFFrEL2W7R8iVMoze9fLs9WEt41HK2TMNntRYjuU6WgjbMLtT
-         c1iQ==
+        bh=iLHRBASNYEmkuiDuFe0SBkN4vlTm2qDSJERpRCtFbFA=;
+        b=vEnJvArt/jV0tucYprJiUPmNwaW3jWlqQwEcsKSihRWgrM8pMPo1UEWkeD7wLyJ6B9
+         BqZCp3BAD57mPSKl6tForgxMWdF4TWrEL/PplwAsPWRmqm+kUipqzcyzUoi0opDv261Y
+         t+IgVsFA6a4onPVxt0ULMwUyVwm0ZpmLO77dcF/3juGtwdYUYWzLa3VgDl1msKV+/xuK
+         Yv+ddumuoJjCRfAzM+tEtm+Ux6JBXCl/gATaROEnpSnXRfVyf1esldpCG9WNjnvwNU48
+         srhGrK+ThsD48PMEom/iZ1ppJpptRtIP5GHMQIiwCXa33b6WX6sCWmWnP1MOK+gHFyEC
+         rgjQ==
 X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
         d=1e100.net; s=20161025;
         h=x-gm-message-state:from:to:cc:subject:date:message-id:in-reply-to
          :references;
-        bh=N3mgJASizexPLNkdFt4Wcjn+xRiScZKeT3febPP2GBs=;
-        b=R71w2ijC+VsmIKWshU+jo5bwxMBfniy3XHPaeMsiST5TYzc80sNhfhaDwRDGoF3L6n
-         iJa7wI6qzjc6/vonN2IUclAQoOkt+2XBsMtAcVmLeHm3GpY3QTghiNOeDMotrIEQh03Z
-         65kkOE35V+BjEhF88XiVMBPmmacVaAbZNt7XAbD8c9vSMa0bKdgYMEeNpboCBous2+KG
-         t00kt1y7TsVFu45EejhComPjK7JuiUjCd4y2G0DJtBzgVtgxQYmdVyWC4+SzPd/Q/k/N
-         QGKImQ4gkDqFZU5nxrd5OkttY1aE5e+utaWWcflVdfO1CROKOcPcdseH3xPqiEvS2pnV
-         o8ZA==
-X-Gm-Message-State: AOAM533g0Xufnw5glMYVYcnITZh1ZK0O/IZtPfZ3UsligNGotCQglnrW
-        olFKrkocXcpgI+CDf4VXuzFz
-X-Google-Smtp-Source: ABdhPJxRELGnMm3DJ89Rir5TtGhJ47XLeP1KTjwsnp7EbUrctdExJ5hMzEP2U6K/qP0+ei6wNUSEag==
-X-Received: by 2002:a17:902:8f98:b029:d1:870b:469e with SMTP id z24-20020a1709028f98b02900d1870b469emr5877515plo.3.1599745102152;
-        Thu, 10 Sep 2020 06:38:22 -0700 (PDT)
+        bh=iLHRBASNYEmkuiDuFe0SBkN4vlTm2qDSJERpRCtFbFA=;
+        b=PUqn2EB7jGyvBLxRro05fblnG8HcjGMzzyi737ErInX7paLPg7S9Bx04KdyYIlxjeC
+         IQjse+lDqe6IPiupecYfJ/32zwTBQuv9hvrecKIbnSAKLj1wz/5zakQwsivNaEdJU1g3
+         uGWaN7sdGPfR/KRCoTmLjvxvtzYFDB+xZPrxmtY9mMS2FFvROOoPn61rtmMO+OxR4TFn
+         3y+R9Zj/h8/OK0mcrUAK87n7tOTo3DkUVdGrpQ44VFgbe7a16JZjdnnpNSe6ZV1GypUp
+         jyEcxikTFjEX+I2/9c4D2Kr7UvepScV8oZ21ZD6Wja2JxoErBpdasqJT487+jK6/X5VW
+         M1hw==
+X-Gm-Message-State: AOAM530ROVZHE/SNF1AhUmyNaXNp/HV/tmf0FKa/LQhAaiiLMTZg3ZDv
+        4c7uMW5LC7/imH7sTEPsZ5pI
+X-Google-Smtp-Source: ABdhPJzeWOZ1pKO1jcd2dS9St5qDG+fGn/Dm3FoTJSpj456ARhGUf0y/P2YtXpGsHxYBpIY+z3cXKg==
+X-Received: by 2002:a17:90a:d3cd:: with SMTP id d13mr33821pjw.70.1599745105313;
+        Thu, 10 Sep 2020 06:38:25 -0700 (PDT)
 Received: from localhost.localdomain ([103.59.133.81])
-        by smtp.googlemail.com with ESMTPSA id o30sm5603801pgc.45.2020.09.10.06.38.19
+        by smtp.googlemail.com with ESMTPSA id o30sm5603801pgc.45.2020.09.10.06.38.22
         (version=TLS1_3 cipher=TLS_AES_256_GCM_SHA384 bits=256/256);
-        Thu, 10 Sep 2020 06:38:21 -0700 (PDT)
+        Thu, 10 Sep 2020 06:38:24 -0700 (PDT)
 From:   Manivannan Sadhasivam <manivannan.sadhasivam@linaro.org>
 To:     wg@grandegger.com, mkl@pengutronix.de, robh+dt@kernel.org
 Cc:     linux-can@vger.kernel.org, devicetree@vger.kernel.org,
         linux-kernel@vger.kernel.org, dev.kurt@vandijck-laurijssen.be,
         o.rempel@pengutronix.de,
         Manivannan Sadhasivam <manivannan.sadhasivam@linaro.org>
-Subject: [PATCH 1/6] can: rx-offload: can_rx_offload_add_manual(): add new initialization function
-Date:   Thu, 10 Sep 2020 19:08:01 +0530
-Message-Id: <20200910133806.25077-2-manivannan.sadhasivam@linaro.org>
+Subject: [PATCH 2/6] dt-bindings: can: mcp25xxfd: document device tree bindings
+Date:   Thu, 10 Sep 2020 19:08:02 +0530
+Message-Id: <20200910133806.25077-3-manivannan.sadhasivam@linaro.org>
 X-Mailer: git-send-email 2.17.1
 In-Reply-To: <20200910133806.25077-1-manivannan.sadhasivam@linaro.org>
 References: <20200910133806.25077-1-manivannan.sadhasivam@linaro.org>
@@ -63,58 +63,104 @@ Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-From: Marc Kleine-Budde <mkl@pengutronix.de>
+From: Oleksij Rempel <o.rempel@pengutronix.de>
 
-This patch adds a new initialization function:
-can_rx_offload_add_manual()
+This patch adds the device-tree binding documentation for the Microchip
+MCP25xxFD SPI CAN controller family.
 
-It should be used to add support rx-offload to a driver, if the callback
-mechanism should not be used. Use e.g. can_rx_offload_queue_sorted() to queue
-skbs into rx-offload.
-
+Signed-off-by: Oleksij Rempel <o.rempel@pengutronix.de>
 Signed-off-by: Marc Kleine-Budde <mkl@pengutronix.de>
 Signed-off-by: Manivannan Sadhasivam <manivannan.sadhasivam@linaro.org>
 ---
- drivers/net/can/rx-offload.c   | 11 +++++++++++
- include/linux/can/rx-offload.h |  3 +++
- 2 files changed, 14 insertions(+)
+ .../bindings/net/can/microchip,mcp25xxfd.yaml | 79 +++++++++++++++++++
+ 1 file changed, 79 insertions(+)
+ create mode 100644 Documentation/devicetree/bindings/net/can/microchip,mcp25xxfd.yaml
 
-diff --git a/drivers/net/can/rx-offload.c b/drivers/net/can/rx-offload.c
-index e8328910a234..3b180269a92d 100644
---- a/drivers/net/can/rx-offload.c
-+++ b/drivers/net/can/rx-offload.c
-@@ -351,6 +351,17 @@ int can_rx_offload_add_fifo(struct net_device *dev,
- }
- EXPORT_SYMBOL_GPL(can_rx_offload_add_fifo);
- 
-+int can_rx_offload_add_manual(struct net_device *dev,
-+			      struct can_rx_offload *offload,
-+			      unsigned int weight)
-+{
-+	if (offload->mailbox_read)
-+		return -EINVAL;
+diff --git a/Documentation/devicetree/bindings/net/can/microchip,mcp25xxfd.yaml b/Documentation/devicetree/bindings/net/can/microchip,mcp25xxfd.yaml
+new file mode 100644
+index 000000000000..aa2cad14d6d7
+--- /dev/null
++++ b/Documentation/devicetree/bindings/net/can/microchip,mcp25xxfd.yaml
+@@ -0,0 +1,79 @@
++# SPDX-License-Identifier: (GPL-2.0-only OR BSD-2-Clause)
++%YAML 1.2
++---
++$id: http://devicetree.org/schemas/net/can/microchip,mcp25xxfd.yaml#
++$schema: http://devicetree.org/meta-schemas/core.yaml#
 +
-+	return can_rx_offload_init_queue(dev, offload, weight);
-+}
-+EXPORT_SYMBOL_GPL(can_rx_offload_add_manual);
++title:
++  Microchip MCP2517FD and MCP2518FD stand-alone CAN controller device tree
++  bindings
 +
- void can_rx_offload_enable(struct can_rx_offload *offload)
- {
- 	napi_enable(&offload->napi);
-diff --git a/include/linux/can/rx-offload.h b/include/linux/can/rx-offload.h
-index 1b78a0cfb615..f1b38088b765 100644
---- a/include/linux/can/rx-offload.h
-+++ b/include/linux/can/rx-offload.h
-@@ -35,6 +35,9 @@ int can_rx_offload_add_timestamp(struct net_device *dev,
- int can_rx_offload_add_fifo(struct net_device *dev,
- 			    struct can_rx_offload *offload,
- 			    unsigned int weight);
-+int can_rx_offload_add_manual(struct net_device *dev,
-+			      struct can_rx_offload *offload,
-+			      unsigned int weight);
- int can_rx_offload_irq_offload_timestamp(struct can_rx_offload *offload,
- 					 u64 reg);
- int can_rx_offload_irq_offload_fifo(struct can_rx_offload *offload);
++maintainers:
++  - Marc Kleine-Budde <mkl@pengutronix.de>
++
++properties:
++  compatible:
++    oneOf:
++      - const: microchip,mcp2517fd
++        description: for MCP2517FD
++      - const: microchip,mcp2518fd
++        description: for MCP2518FD
++      - const: microchip,mcp25xxfd
++        description: to autodetect chip variant
++
++  reg:
++    maxItems: 1
++
++  interrupts-extended:
++    maxItems: 1
++
++  clocks:
++    maxItems: 1
++
++  vdd-supply:
++    description: Regulator that powers the CAN controller.
++    maxItems: 1
++
++  xceiver-supply:
++    description: Regulator that powers the CAN transceiver.
++    maxItems: 1
++
++  microchip,rx-int-gpios:
++    description:
++      GPIO phandle of GPIO connected to to INT1 pin of the MCP25XXFD, which
++      signals a pending RX interrupt.
++    maxItems: 1
++
++  spi-max-frequency:
++    description:
++      Must be half or less of "clocks" frequency.
++    maximum: 20000000
++
++required:
++  - compatible
++  - reg
++  - interrupts-extended
++  - clocks
++
++examples:
++  - |
++    #include <dt-bindings/gpio/gpio.h>
++    #include <dt-bindings/interrupt-controller/irq.h>
++
++    spi0 {
++        #address-cells = <1>;
++        #size-cells = <0>;
++
++        can@0 {
++            compatible = "microchip,mcp25xxfd";
++            reg = <0>;
++            clocks = <&can0_osc>;
++            pinctrl-names = "default";
++            pinctrl-0 = <&can0_pins>;
++            spi-max-frequency = <20000000>;
++            interrupts-extended = <&gpio 13 IRQ_TYPE_LEVEL_LOW>;
++            microchip,rx-int-gpios = <&gpio 27 GPIO_ACTIVE_LOW>;
++            vdd-supply = <&reg5v0>;
++            xceiver-supply = <&reg5v0>;
++        };
++    };
 -- 
 2.17.1
 
