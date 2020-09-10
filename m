@@ -2,140 +2,162 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from vger.kernel.org (vger.kernel.org [23.128.96.18])
-	by mail.lfdr.de (Postfix) with ESMTP id 5A8C62643E7
-	for <lists+devicetree@lfdr.de>; Thu, 10 Sep 2020 12:25:42 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTP id DE349264437
+	for <lists+devicetree@lfdr.de>; Thu, 10 Sep 2020 12:35:04 +0200 (CEST)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S1726808AbgIJKZk (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Thu, 10 Sep 2020 06:25:40 -0400
-Received: from lindbergh.monkeyblade.net ([23.128.96.19]:46112 "EHLO
+        id S1730166AbgIJKfB (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Thu, 10 Sep 2020 06:35:01 -0400
+Received: from lindbergh.monkeyblade.net ([23.128.96.19]:47546 "EHLO
         lindbergh.monkeyblade.net" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S1730865AbgIJKZZ (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Thu, 10 Sep 2020 06:25:25 -0400
-Received: from mail-wm1-x343.google.com (mail-wm1-x343.google.com [IPv6:2a00:1450:4864:20::343])
-        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 2AD79C061573;
-        Thu, 10 Sep 2020 03:25:24 -0700 (PDT)
-Received: by mail-wm1-x343.google.com with SMTP id k18so5236879wmj.5;
-        Thu, 10 Sep 2020 03:25:24 -0700 (PDT)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=gmail.com; s=20161025;
-        h=subject:to:cc:references:from:message-id:date:user-agent
-         :mime-version:in-reply-to:content-language:content-transfer-encoding;
-        bh=uDGopvs8aEy5CLN9XFvGzNsaYZBkoKWrQofytwNxzDI=;
-        b=TtLuCefBkaK7TlKv/Sk2EuMm6ot39a7QJqRt/iyU/N/NhshX+ZQAp9ewNvpTs+0Z72
-         8KF8R1rSgMj2lrRVEtQs7czdrs+vh7uMxahg7wcCNOCTeuhnnwrSWxkKefP8zzMlz8fr
-         d+hjZlUbxc3sSiCsaeL/0LSEK5HD/coEmRMSUD99K6bySVOliMuw67g1DHV2G65QWMcM
-         Awf7VI/yhh1E4RSovGaeLdgUdL8cZSyUB1aHo8KsNAE2Kvx1isaqgWevpgqpHKh5m6ux
-         9jZli4FVifj/fryrULBwtCJrFAQI+fI1nGfp1Vw1RyITZmyJEnxUULbMPtd87vHxZjMB
-         8spw==
-X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=1e100.net; s=20161025;
-        h=x-gm-message-state:subject:to:cc:references:from:message-id:date
-         :user-agent:mime-version:in-reply-to:content-language
-         :content-transfer-encoding;
-        bh=uDGopvs8aEy5CLN9XFvGzNsaYZBkoKWrQofytwNxzDI=;
-        b=BotKYZxBCqHe0nh5HEfLI2FfqjMYFyf7Gm9rbUZIDovZnDDGIq/MYualKc4J8VGLSg
-         627OciUUuWLOqAGeX33aBNh0l8+GKr6CLOiFQvZxQ73mO6NmyKkBMXOsWRueWRmUHzB9
-         8CMwKd63kRLa/kz0EyQ96t10kH7I4fbca+Vi9zNbgBi1fk/7HbtUpveW37BM8sQI1GIE
-         ulQ05ZRSUd4QKUjUtQizFJjmCCOiXzarUdflNwCdLGHmKUNKW0dOgRcLGNhrCKMDM9Mj
-         GJbSWrwDCgzj5tUeTnMY/ZPCN7X17/lOXNughsrWcnmuaBp2HenRXqQkjv2Vn7RT/YeS
-         YKGg==
-X-Gm-Message-State: AOAM533p/tB6P42QVSXNy2BQj/+oqDxtYynRr4/DuKeue2XyvaVPyaZT
-        VhuHTM1nXTqJV9ekNdV35+w=
-X-Google-Smtp-Source: ABdhPJwEntZMPev9H0+UabGQF6k7v0hipNAbHGksKxQPqTzKVMcHb27HZfswdjmY9yMhPtph54h6PA==
-X-Received: by 2002:a1c:5a87:: with SMTP id o129mr8077545wmb.145.1599733522852;
-        Thu, 10 Sep 2020 03:25:22 -0700 (PDT)
-Received: from ziggy.stardust ([213.195.113.201])
-        by smtp.gmail.com with ESMTPSA id g143sm2937249wme.0.2020.09.10.03.25.21
-        (version=TLS1_3 cipher=TLS_AES_128_GCM_SHA256 bits=128/128);
-        Thu, 10 Sep 2020 03:25:22 -0700 (PDT)
-Subject: Re: [PATCH v2 1/2] arm64: dts: mt8173: Set uart to mmio32 iotype
-To:     Hsin-Yi Wang <hsinyi@chromium.org>,
-        linux-mediatek@lists.infradead.org
-Cc:     Rob Herring <robh+dt@kernel.org>, devicetree@vger.kernel.org,
-        linux-arm-kernel@lists.infradead.org, linux-kernel@vger.kernel.org,
-        Enric Balletbo i Serra <enric.balletbo@collabora.com>,
-        Eddie Huang <eddie.huang@mediatek.com>
-References: <20200910084304.3429494-1-hsinyi@chromium.org>
-From:   Matthias Brugger <matthias.bgg@gmail.com>
-Message-ID: <9ca1b7c0-9fec-27b7-ae08-c00613c3004c@gmail.com>
-Date:   Thu, 10 Sep 2020 12:25:21 +0200
+        with ESMTP id S1728350AbgIJKeh (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Thu, 10 Sep 2020 06:34:37 -0400
+Received: from perceval.ideasonboard.com (perceval.ideasonboard.com [IPv6:2001:4b98:dc2:55:216:3eff:fef7:d647])
+        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 8F1BCC061573;
+        Thu, 10 Sep 2020 03:34:36 -0700 (PDT)
+Received: from [192.168.0.20] (cpc89244-aztw30-2-0-cust3082.18-1.cable.virginm.net [86.31.172.11])
+        by perceval.ideasonboard.com (Postfix) with ESMTPSA id 3FC7A3B;
+        Thu, 10 Sep 2020 12:34:26 +0200 (CEST)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=ideasonboard.com;
+        s=mail; t=1599734067;
+        bh=Dmmg95bt89l1Tptk+BHOHpTSANQEVcyWBQUkB+1pjXU=;
+        h=Reply-To:Subject:To:Cc:References:From:Date:In-Reply-To:From;
+        b=AFIIPzX85Ce46c9OhFYJ8Gdg6nu+Y5MEudB42iCuWZdmGiO3FblSOmxW+BHNWUigp
+         JcyLvXUU5nr5SHghkPl71lsHigBYrB183hQKWkyYK+fUd3hr/hY5hMrZlGCAHchK8z
+         Teh6wSTfMy6ugzBMwYyWkEdq0k+iS0iCBH48vaow=
+Reply-To: kieran.bingham+renesas@ideasonboard.com
+Subject: Re: [PATCH 5/9] arm64: dts: renesas: r8a77961: Add VSP device nodes
+To:     Geert Uytterhoeven <geert@linux-m68k.org>
+Cc:     Kuninori Morimoto <kuninori.morimoto.gx@renesas.com>,
+        Rob Herring <robh+dt@kernel.org>,
+        Laurent <laurent.pinchart@ideasonboard.com>,
+        David Airlie <airlied@linux.ie>,
+        Daniel Vetter <daniel@ffwll.ch>,
+        Magnus <magnus.damm@gmail.com>,
+        Linux-Renesas <linux-renesas-soc@vger.kernel.org>,
+        Linux-DT <devicetree@vger.kernel.org>,
+        "(Renesas) shimoda" <yoshihiro.shimoda.uh@renesas.com>,
+        DRI Development <dri-devel@lists.freedesktop.org>
+References: <87sgbu70tq.wl-kuninori.morimoto.gx@renesas.com>
+ <87lfhm70s6.wl-kuninori.morimoto.gx@renesas.com>
+ <31ec6196-7613-8eb3-e092-07d0c874632a@ideasonboard.com>
+ <CAMuHMdVHGQ0FFcLjQfXhke5PKJKnNfZ3NOF-p08v3QrQ-87npA@mail.gmail.com>
+From:   Kieran Bingham <kieran.bingham+renesas@ideasonboard.com>
+Organization: Ideas on Board
+Message-ID: <f1ed4b08-59eb-986e-4036-820887993f00@ideasonboard.com>
+Date:   Thu, 10 Sep 2020 11:34:23 +0100
 User-Agent: Mozilla/5.0 (X11; Linux x86_64; rv:68.0) Gecko/20100101
- Thunderbird/68.11.0
+ Thunderbird/68.10.0
 MIME-Version: 1.0
-In-Reply-To: <20200910084304.3429494-1-hsinyi@chromium.org>
-Content-Type: text/plain; charset=utf-8; format=flowed
-Content-Language: en-US
+In-Reply-To: <CAMuHMdVHGQ0FFcLjQfXhke5PKJKnNfZ3NOF-p08v3QrQ-87npA@mail.gmail.com>
+Content-Type: text/plain; charset=utf-8
+Content-Language: en-GB
 Content-Transfer-Encoding: 7bit
 Sender: devicetree-owner@vger.kernel.org
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-Hi,
+Hi Geert,
 
-On 10/09/2020 10:43, Hsin-Yi Wang wrote:
-> Set uart iotype to mmio32 to make earlycon work with stdout-path.
+On 10/09/2020 10:44, Geert Uytterhoeven wrote:
+> Hi Kieran,
 > 
-> Signed-off-by: Hsin-Yi Wang <hsinyi@chromium.org>
-> ---
->   arch/arm64/boot/dts/mediatek/mt8173.dtsi | 8 ++++++++
->   1 file changed, 8 insertions(+)
+> On Mon, Sep 7, 2020 at 5:55 PM Kieran Bingham
+> <kieran.bingham+renesas@ideasonboard.com> wrote:
+>> On 07/09/2020 03:59, Kuninori Morimoto wrote:
+>>> From: Kuninori Morimoto <kuninori.morimoto.gx@renesas.com>
+>>>
+>>> This patch adds VSP device nodes for R-Car M3-W+ (r8a77961) SoC.
+>>> This patch is test on R-Car M3-W+ Salvator-XS board.
+>>>
+>>> Signed-off-by: Kuninori Morimoto <kuninori.morimoto.gx@renesas.com>
+>>> ---
+>>>  arch/arm64/boot/dts/renesas/r8a77961.dtsi | 55 +++++++++++++++++++++++
+>>>  1 file changed, 55 insertions(+)
+>>>
+>>> diff --git a/arch/arm64/boot/dts/renesas/r8a77961.dtsi b/arch/arm64/boot/dts/renesas/r8a77961.dtsi
+>>> index fe0db11b9cb9..c2a6918ed5e6 100644
+>>> --- a/arch/arm64/boot/dts/renesas/r8a77961.dtsi
+>>> +++ b/arch/arm64/boot/dts/renesas/r8a77961.dtsi
+>>> @@ -2056,6 +2056,61 @@ fcpvd2: fcp@fea37000 {
+>>>                       iommus = <&ipmmu_vi0 10>;
+>>>               };
+>>
+>> The FCP's added are:
+>>
+>>                 fcpf0: fcp@fe950000 {
+>>                 fcpf1: fcp@fe951000 {
+>>                 fcpvb0: fcp@fe96f000 {
+>>                 fcpvb1: fcp@fe92f000 {
+>>                 fcpvi0: fcp@fe9af000 {
+>>                 fcpvi1: fcp@fe9bf000 {
+>>                 fcpvd0: fcp@fea27000 {
+>>                 fcpvd1: fcp@fea2f000 {
+>>                 fcpvd2: fcp@fea37000 {
+>>
+>> So indeed, the first fcpf0 comes before fe960000.
+>>
+>> Do we keep the items grouped by the first occurrence? or sort the nodes
+>> based on address?
+>>
+>> for some reason I thought we were ordering based on address, but I see
+>> other situations where we group too - so I'm confused (and wishing there
+>> was an automatic tool to get the sorting correct without fuss).
+>>
+>> Is there a set policy?
 > 
-> diff --git a/arch/arm64/boot/dts/mediatek/mt8173.dtsi b/arch/arm64/boot/dts/mediatek/mt8173.dtsi
-> index 5e046f9d48ce9..ca6ea71f5f435 100644
-> --- a/arch/arm64/boot/dts/mediatek/mt8173.dtsi
-> +++ b/arch/arm64/boot/dts/mediatek/mt8173.dtsi
-> @@ -613,6 +613,8 @@ uart0: serial@11002000 {
->   			interrupts = <GIC_SPI 83 IRQ_TYPE_LEVEL_LOW>;
->   			clocks = <&pericfg CLK_PERI_UART0_SEL>, <&pericfg CLK_PERI_UART0>;
->   			clock-names = "baud", "bus";
-> +			reg-io-width = <4>;
+> For nodes with a unit-address, we usually[*] sort by unit-address, but we keep
+> similar nodes grouped.  Hence I prefer this v1 over v2.
 
-Why do we need that, we have
-device->port.iotype = UPIO_MEM32;
-in early_mtk8250_setup(). That should do the job already.
+I assume then the groups are sorted by the first entry,
 
+I.e. hypothetically:
 
-> +			reg-shift = <2>;
+fdp@0
+fcp@1
+vsp@2
+fdp@3
+fcp@4
+vsp@5
+cmm@6
+cmm@7
 
-Can't we just add
-device->port.regshift = 2;
-to early_mtk8250_setup()? I think that would be a cleaner solution. As the 
-serial device is the same for all SoCs, I don't expect any regression here.
+would become
 
-CCing Eddie to correct me, if I'm wrong :)
+fdp@0
+fdp@3
+fcp@1
+fcp@4
+vsp@2
+vsp@5
+cmm@6
+cmm@7
 
-Regards,
-Matthias
+Has anyone already created any scripting/validation to automate the
+sorting requirements?
 
->   			status = "disabled";
->   		};
->   
-> @@ -623,6 +625,8 @@ uart1: serial@11003000 {
->   			interrupts = <GIC_SPI 84 IRQ_TYPE_LEVEL_LOW>;
->   			clocks = <&pericfg CLK_PERI_UART1_SEL>, <&pericfg CLK_PERI_UART1>;
->   			clock-names = "baud", "bus";
-> +			reg-io-width = <4>;
-> +			reg-shift = <2>;
->   			status = "disabled";
->   		};
->   
-> @@ -633,6 +637,8 @@ uart2: serial@11004000 {
->   			interrupts = <GIC_SPI 85 IRQ_TYPE_LEVEL_LOW>;
->   			clocks = <&pericfg CLK_PERI_UART2_SEL>, <&pericfg CLK_PERI_UART2>;
->   			clock-names = "baud", "bus";
-> +			reg-io-width = <4>;
-> +			reg-shift = <2>;
->   			status = "disabled";
->   		};
->   
-> @@ -643,6 +649,8 @@ uart3: serial@11005000 {
->   			interrupts = <GIC_SPI 86 IRQ_TYPE_LEVEL_LOW>;
->   			clocks = <&pericfg CLK_PERI_UART3_SEL>, <&pericfg CLK_PERI_UART3>;
->   			clock-names = "baud", "bus";
-> +			reg-io-width = <4>;
-> +			reg-shift = <2>;
->   			status = "disabled";
->   		};
->   
 > 
+> [*] Seems like FCP/VSP are interleaved in r8a77990.dsi, doh.
+> 
+
+Personally I prefer that - but my opinion doesn't matter here - so as
+long as the rules are defined (or even better, automatically
+enforceable) that's fine.
+
+
+>>> +             vspb: vsp@fe960000 {
+>>> +                     compatible = "renesas,vsp2";
+>>> +                     reg = <0 0xfe960000 0 0x8000>;
+>>> +                     interrupts = <GIC_SPI 266 IRQ_TYPE_LEVEL_HIGH>;
+>>> +                     clocks = <&cpg CPG_MOD 626>;
+>>> +                     power-domains = <&sysc R8A77961_PD_A3VC>;
+>>> +                     resets = <&cpg 626>;
+>>> +
+>>> +                     renesas,fcp = <&fcpvb0>;
+>>> +             };
+> 
+> Gr{oetje,eeting}s,
+> 
+>                         Geert
+> 
+
