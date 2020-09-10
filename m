@@ -2,72 +2,69 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from vger.kernel.org (vger.kernel.org [23.128.96.18])
-	by mail.lfdr.de (Postfix) with ESMTP id 93A70263E35
-	for <lists+devicetree@lfdr.de>; Thu, 10 Sep 2020 09:12:40 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTP id C51BE263E73
+	for <lists+devicetree@lfdr.de>; Thu, 10 Sep 2020 09:21:50 +0200 (CEST)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S1730341AbgIJHMX (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Thu, 10 Sep 2020 03:12:23 -0400
-Received: from mail-ot1-f67.google.com ([209.85.210.67]:40013 "EHLO
-        mail-ot1-f67.google.com" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S1729990AbgIJHKc (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Thu, 10 Sep 2020 03:10:32 -0400
-Received: by mail-ot1-f67.google.com with SMTP id e23so4518284otk.7;
-        Thu, 10 Sep 2020 00:10:32 -0700 (PDT)
-X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=1e100.net; s=20161025;
-        h=x-gm-message-state:mime-version:references:in-reply-to:from:date
-         :message-id:subject:to:cc;
-        bh=bfcaWzDdv7oE1xRBeWrafJxuLxpPCJ95L1Zw2Z0Vkbw=;
-        b=GaHQ23ilwPKCKQ/JjYVx4wPQJc6xxsqZ4o74NWGM6qTX9dPtQY1vwPNbT/hZa/rZNn
-         sjKKfjciiqLeVUkOeSaj8GHNEes2zMvDai33U9Be+k/5DqALctYq+kQcJSEYSCTzrlFX
-         nQq5iMDDqwVvkhfQ75P8lKVwWOQ8+QKfKYTK/mUvDrI2vC/fCZk1Gq820Sk+duWCl0+P
-         4kWoNlYZshILwGB82jJBYFCm3VQZEeBQBI7c6ghK1saCIyBkk1bBa8GTTguF9V7JWgsY
-         aYzTn26wuJLZf9Fvu6uCDMDOEVOaYlfaPVzH3u28TSQkocWVE/xZsc8ac/NdU/wM1MeE
-         RkQg==
-X-Gm-Message-State: AOAM532YcHDw3CBwuSRiTizph5hWjD96H1SaftUboL/OW077Sg7NNrc/
-        uIAfpbbEp89GtvC9U3KI+rje3TZqqRx4rRFR57tZOKy9
-X-Google-Smtp-Source: ABdhPJx6mowMcqvb9A2X5A93sUbQO+14kcxardEqgpqHGX52EfeHnRXM+J1DbzmRAv27mFbtUkj6mwqDXLrId4O3BaA=
-X-Received: by 2002:a05:6830:1008:: with SMTP id a8mr2869064otp.107.1599721831996;
- Thu, 10 Sep 2020 00:10:31 -0700 (PDT)
+        id S1728617AbgIJHVt (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Thu, 10 Sep 2020 03:21:49 -0400
+Received: from lindbergh.monkeyblade.net ([23.128.96.19]:45536 "EHLO
+        lindbergh.monkeyblade.net" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
+        with ESMTP id S1729993AbgIJHUZ (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Thu, 10 Sep 2020 03:20:25 -0400
+Received: from bhuna.collabora.co.uk (bhuna.collabora.co.uk [IPv6:2a00:1098:0:82:1000:25:2eeb:e3e3])
+        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id B0ABAC061573;
+        Thu, 10 Sep 2020 00:20:23 -0700 (PDT)
+Received: from [127.0.0.1] (localhost [127.0.0.1])
+        (Authenticated sender: eballetbo)
+        with ESMTPSA id 0862028AE4F
+Subject: Re: [PATCH 1/2] arm64: dts: mt8173: elm: Set uart0 to mmio32 iotype
+To:     Hsin-Yi Wang <hsinyi@chromium.org>,
+        linux-mediatek@lists.infradead.org
+Cc:     Rob Herring <robh+dt@kernel.org>,
+        Matthias Brugger <matthias.bgg@gmail.com>,
+        devicetree@vger.kernel.org, linux-arm-kernel@lists.infradead.org,
+        linux-kernel@vger.kernel.org
+References: <20200910054635.3337487-1-hsinyi@chromium.org>
+From:   Enric Balletbo i Serra <enric.balletbo@collabora.com>
+Message-ID: <ba77586c-7902-9ce4-0f4f-ad1743596d85@collabora.com>
+Date:   Thu, 10 Sep 2020 09:20:12 +0200
+User-Agent: Mozilla/5.0 (X11; Linux x86_64; rv:68.0) Gecko/20100101
+ Thunderbird/68.12.0
 MIME-Version: 1.0
-References: <20200907073214.13929-1-prabhakar.mahadev-lad.rj@bp.renesas.com>
-In-Reply-To: <20200907073214.13929-1-prabhakar.mahadev-lad.rj@bp.renesas.com>
-From:   Geert Uytterhoeven <geert@linux-m68k.org>
-Date:   Thu, 10 Sep 2020 09:10:21 +0200
-Message-ID: <CAMuHMdXRHyXCEbnvCQZmT+rq+tN8i_y0eOZTFwBbb09yx3K1TA@mail.gmail.com>
-Subject: Re: [PATCH] arm64: dts: renesas: r8a774e1-hihope-rzg2h-ex: Enable sata
-To:     Lad Prabhakar <prabhakar.mahadev-lad.rj@bp.renesas.com>
-Cc:     Magnus Damm <magnus.damm@gmail.com>,
-        Rob Herring <robh+dt@kernel.org>,
-        Linux-Renesas <linux-renesas-soc@vger.kernel.org>,
-        "open list:OPEN FIRMWARE AND FLATTENED DEVICE TREE BINDINGS" 
-        <devicetree@vger.kernel.org>,
-        Linux Kernel Mailing List <linux-kernel@vger.kernel.org>,
-        Biju Das <biju.das.jz@bp.renesas.com>,
-        Prabhakar <prabhakar.csengg@gmail.com>
-Content-Type: text/plain; charset="UTF-8"
+In-Reply-To: <20200910054635.3337487-1-hsinyi@chromium.org>
+Content-Type: text/plain; charset=utf-8
+Content-Language: en-US
+Content-Transfer-Encoding: 7bit
 Sender: devicetree-owner@vger.kernel.org
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-On Mon, Sep 7, 2020 at 9:32 AM Lad Prabhakar
-<prabhakar.mahadev-lad.rj@bp.renesas.com> wrote:
-> Enable sata interface on HiHope RZ/G2H board.
->
-> Signed-off-by: Lad Prabhakar <prabhakar.mahadev-lad.rj@bp.renesas.com>
-> Reviewed-by: Biju Das <biju.das.jz@bp.renesas.com>
+Hi Hsin-Yi,
 
-Reviewed-by: Geert Uytterhoeven <geert+renesas@glider.be>
-i.e. will queue in renesas-devel for v5.10.
+On 10/9/20 7:46, Hsin-Yi Wang wrote:
+> Set uart0 iotype to mmio32 to make earlycon work with stdout-path.
+> 
+> Signed-off-by: Hsin-Yi Wang <hsinyi@chromium.org>
+> ---
+>  arch/arm64/boot/dts/mediatek/mt8173-elm.dtsi | 2 ++
+>  1 file changed, 2 insertions(+)
+> 
+> diff --git a/arch/arm64/boot/dts/mediatek/mt8173-elm.dtsi b/arch/arm64/boot/dts/mediatek/mt8173-elm.dtsi
+> index a5a12b2599a4a..d54e62f72c65d 100644
+> --- a/arch/arm64/boot/dts/mediatek/mt8173-elm.dtsi
+> +++ b/arch/arm64/boot/dts/mediatek/mt8173-elm.dtsi
+> @@ -1160,6 +1160,8 @@ &thermal {
+>  };
+>  
+>  &uart0 {
+> +	reg-io-width = <4>;
+> +	reg-shift = <2>;
 
-Gr{oetje,eeting}s,
+I am wondering if these properties are common enough to go to mt8173.dtsi
+instead of here.
 
-                        Geert
-
--- 
-Geert Uytterhoeven -- There's lots of Linux beyond ia32 -- geert@linux-m68k.org
-
-In personal conversations with technical people, I call myself a hacker. But
-when I'm talking to journalists I just say "programmer" or something like that.
-                                -- Linus Torvalds
+>  	status = "okay";
+>  };
+>  
+> 
