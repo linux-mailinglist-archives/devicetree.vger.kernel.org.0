@@ -2,272 +2,369 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from vger.kernel.org (vger.kernel.org [23.128.96.18])
-	by mail.lfdr.de (Postfix) with ESMTP id B317C264BF5
-	for <lists+devicetree@lfdr.de>; Thu, 10 Sep 2020 19:55:36 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTP id CE9C9264C09
+	for <lists+devicetree@lfdr.de>; Thu, 10 Sep 2020 19:58:39 +0200 (CEST)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S1725864AbgIJRzb (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Thu, 10 Sep 2020 13:55:31 -0400
-Received: from lelv0143.ext.ti.com ([198.47.23.248]:34076 "EHLO
-        lelv0143.ext.ti.com" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S1725804AbgIJRzL (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Thu, 10 Sep 2020 13:55:11 -0400
-Received: from lelv0265.itg.ti.com ([10.180.67.224])
-        by lelv0143.ext.ti.com (8.15.2/8.15.2) with ESMTP id 08AHswNv018124;
-        Thu, 10 Sep 2020 12:54:58 -0500
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=ti.com;
-        s=ti-com-17Q1; t=1599760498;
-        bh=qmkw4Ao5r6a/WHa9BCl3spSTc7wFalSybwxcg5vcS3Q=;
-        h=Subject:To:CC:References:From:Date:In-Reply-To;
-        b=WanuwpUS5qU4H7sEWN0igiE3xzFtyECvxwxU0knYpk/Q87v11DLokQ7s4jhx72b9f
-         woxk+ME1VhDeRxrb7WGge0LroK5JTNjeZa7UQ4AbeBYXtVJmY0F/GBkQl3Qpt8rgZ6
-         nIUt5tmt7gIb6Wh3a62mMdorASFoE//jWtUy7nVU=
-Received: from DLEE114.ent.ti.com (dlee114.ent.ti.com [157.170.170.25])
-        by lelv0265.itg.ti.com (8.15.2/8.15.2) with ESMTPS id 08AHsw7U019518
-        (version=TLSv1.2 cipher=AES256-GCM-SHA384 bits=256 verify=FAIL);
-        Thu, 10 Sep 2020 12:54:58 -0500
-Received: from DLEE113.ent.ti.com (157.170.170.24) by DLEE114.ent.ti.com
- (157.170.170.25) with Microsoft SMTP Server (version=TLS1_2,
- cipher=TLS_ECDHE_RSA_WITH_AES_128_CBC_SHA256_P256) id 15.1.1979.3; Thu, 10
- Sep 2020 12:54:57 -0500
-Received: from lelv0326.itg.ti.com (10.180.67.84) by DLEE113.ent.ti.com
- (157.170.170.24) with Microsoft SMTP Server (version=TLS1_2,
- cipher=TLS_ECDHE_RSA_WITH_AES_128_CBC_SHA256_P256) id 15.1.1979.3 via
- Frontend Transport; Thu, 10 Sep 2020 12:54:57 -0500
-Received: from [10.250.66.47] (ileax41-snat.itg.ti.com [10.172.224.153])
-        by lelv0326.itg.ti.com (8.15.2/8.15.2) with ESMTP id 08AHssrW088162;
-        Thu, 10 Sep 2020 12:54:55 -0500
-Subject: Re: [PATCH v3 4/5] arm64: dts: ti: Add support for J7200 SoC
-To:     Nishanth Menon <nm@ti.com>, Lokesh Vutla <lokeshvutla@ti.com>
-CC:     Tero Kristo <t-kristo@ti.com>, Rob Herring <robh+dt@kernel.org>,
-        Linux ARM Mailing List <linux-arm-kernel@lists.infradead.org>,
-        Device Tree Mailing List <devicetree@vger.kernel.org>,
-        Sekhar Nori <nsekhar@ti.com>,
-        Grygorii Strashko <grygorii.strashko@ti.com>,
-        Kishon Vijay Abraham I <kishon@ti.com>
-References: <20200908162252.17672-1-lokeshvutla@ti.com>
- <20200908162252.17672-5-lokeshvutla@ti.com>
- <20200910171928.xzfwhix46lcsiup7@akan>
-From:   Suman Anna <s-anna@ti.com>
-Message-ID: <83122b2e-4dba-a2f9-b722-e510acfa9135@ti.com>
-Date:   Thu, 10 Sep 2020 12:54:54 -0500
-User-Agent: Mozilla/5.0 (X11; Linux x86_64; rv:68.0) Gecko/20100101
- Thunderbird/68.10.0
-MIME-Version: 1.0
-In-Reply-To: <20200910171928.xzfwhix46lcsiup7@akan>
-Content-Type: text/plain; charset="utf-8"
-Content-Language: en-US
-Content-Transfer-Encoding: 7bit
-X-EXCLAIMER-MD-CONFIG: e1e8a2fd-e40a-4ac6-ac9b-f7e9cc9ee180
+        id S1726728AbgIJR6b (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Thu, 10 Sep 2020 13:58:31 -0400
+Received: from mail.kernel.org ([198.145.29.99]:34448 "EHLO mail.kernel.org"
+        rhost-flags-OK-OK-OK-OK) by vger.kernel.org with ESMTP
+        id S1725912AbgIJR54 (ORCPT <rfc822;devicetree@vger.kernel.org>);
+        Thu, 10 Sep 2020 13:57:56 -0400
+Received: from localhost.localdomain (unknown [194.230.155.174])
+        (using TLSv1.2 with cipher ECDHE-RSA-AES128-GCM-SHA256 (128/128 bits))
+        (No client certificate requested)
+        by mail.kernel.org (Postfix) with ESMTPSA id EF1B921D40;
+        Thu, 10 Sep 2020 17:57:47 +0000 (UTC)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=kernel.org;
+        s=default; t=1599760674;
+        bh=Ig0I27P42ieGc6gGYx+GeMhx7gC5E92JKC6RjqC/cws=;
+        h=From:To:Cc:Subject:Date:In-Reply-To:References:From;
+        b=aL1LxtlU3eo57YoPod7fVA8aJUJWQUoGbdIGpA/Bq7ymfHVNb2SQh1KlRBEX42rnc
+         SwKdRbh1yBmVoljiFGvssUa72cDejPqRY5QW51vH0R3XU3ZQxR6sgDe8qbdTC7ZABX
+         eaU1VQYILki1swNa2B4QuTwGWi1aRDkYDbO5lL/Q=
+From:   Krzysztof Kozlowski <krzk@kernel.org>
+To:     Linus Walleij <linus.walleij@linaro.org>,
+        Bartosz Golaszewski <bgolaszewski@baylibre.com>,
+        Rob Herring <robh+dt@kernel.org>,
+        =?UTF-8?q?Beno=C3=AEt=20Cousson?= <bcousson@baylibre.com>,
+        Tony Lindgren <tony@atomide.com>,
+        Russell King <linux@armlinux.org.uk>,
+        Jason Cooper <jason@lakedaemon.net>,
+        Andrew Lunn <andrew@lunn.ch>,
+        Gregory Clement <gregory.clement@bootlin.com>,
+        Sebastian Hesselbarth <sebastian.hesselbarth@gmail.com>,
+        Joel Stanley <joel@jms.id.au>,
+        Andrew Jeffery <andrew@aj.id.au>,
+        Shawn Guo <shawnguo@kernel.org>,
+        Sascha Hauer <s.hauer@pengutronix.de>,
+        Pengutronix Kernel Team <kernel@pengutronix.de>,
+        NXP Linux Team <linux-imx@nxp.com>,
+        Matthias Brugger <matthias.bgg@gmail.com>,
+        Geert Uytterhoeven <geert+renesas@glider.be>,
+        Magnus Damm <magnus.damm@gmail.com>,
+        Tero Kristo <t-kristo@ti.com>, Nishanth Menon <nm@ti.com>,
+        Michal Simek <michal.simek@xilinx.com>,
+        Guenter Roeck <linux@roeck-us.net>, devicetree@vger.kernel.org,
+        linux-kernel@vger.kernel.org, linux-omap@vger.kernel.org,
+        linux-arm-kernel@lists.infradead.org,
+        linux-aspeed@lists.ozlabs.org, linux-mediatek@lists.infradead.org,
+        linux-renesas-soc@vger.kernel.org
+Cc:     Krzysztof Kozlowski <krzk@kernel.org>
+Subject: [PATCH v2 01/15] dt-bindings: gpio: convert bindings for NXP PCA953x family to dtschema
+Date:   Thu, 10 Sep 2020 19:57:19 +0200
+Message-Id: <20200910175733.11046-2-krzk@kernel.org>
+X-Mailer: git-send-email 2.17.1
+In-Reply-To: <20200910175733.11046-1-krzk@kernel.org>
+References: <20200910175733.11046-1-krzk@kernel.org>
 Sender: devicetree-owner@vger.kernel.org
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-On 9/10/20 12:19 PM, Nishanth Menon wrote:
-> On 21:52-20200908, Lokesh Vutla wrote:
-> [...]
-> Few minor comments below.. (I dont have any further comments beyond
-> these) I had missed taking a diff against j721e and what downstream
-> vendor kernel.
-> 
->> diff --git a/arch/arm64/boot/dts/ti/k3-j7200-main.dtsi b/arch/arm64/boot/dts/ti/k3-j7200-main.dtsi
->> new file mode 100644
->> index 000000000000..ed5f419bc86d
->> --- /dev/null
->> +++ b/arch/arm64/boot/dts/ti/k3-j7200-main.dtsi
->> @@ -0,0 +1,199 @@
-> [...]
->> +	gic500: interrupt-controller@1800000 {
->> +		compatible = "arm,gic-v3";
->> +		#address-cells = <2>;
->> +		#size-cells = <2>;
->> +		ranges;
->> +		#interrupt-cells = <3>;
->> +		interrupt-controller;
->> +		reg = <0x00 0x01800000 0x00 0x10000>,	/* GICD */
->> +		      <0x00 0x01900000 0x00 0x100000>;	/* GICR */
->> +
->> +		/* vcpumntirq: virtual CPU interface maintenance interrupt */
->> +		interrupts = <GIC_PPI 9 IRQ_TYPE_LEVEL_HIGH>;
->> +
->> +		gic_its: msi-controller@1820000 {
->> +			compatible = "arm,gic-v3-its";
->> +			reg = <0x00 0x01820000 0x00 0x10000>;
->> +			socionext,synquacer-pre-its = <0x1000000 0x400000>;
->> +			msi-controller;
->> +			#msi-cells = <1>;
->> +		};
->> +	};
->> +
->> +	main_navss: navss@30000000 {
-> 
-> hmm.. bus@ just to simplify things? or I wonder if a better common term is available?
-> I cant find a better alternative when I look at
-> https://github.com/devicetree-org/devicetree-specification/blob/v0.3/source/devicetree-basics.rst
-> 
->> +		compatible = "simple-mfd";
->> +		#address-cells = <2>;
->> +		#size-cells = <2>;
->> +		ranges = <0x00 0x30000000 0x00 0x30000000 0x00 0x0c400000>;
-> 
-> 
->> +
->> +		secure_proxy_main: mailbox@32c00000 {
->> +			compatible = "ti,am654-secure-proxy";
->> +			#mbox-cells = <1>;
->> +			reg-names = "target_data", "rt", "scfg";
->> +			reg = <0x00 0x32c00000 0x00 0x100000>,
->> +			      <0x00 0x32400000 0x00 0x100000>,
->> +			      <0x00 0x32800000 0x00 0x100000>;
->> +			interrupt-names = "rx_011";
->> +			interrupts = <GIC_SPI 37 IRQ_TYPE_LEVEL_HIGH>;
->> +		};
-> 
-> I think we could introduce base infrastructure stuff like intr and
-> inta nodes here? Also, the gpio_intr?
+Convert the NXP PCA953x family of GPIO expanders bindings to device tree
+schema.
 
-FYI, they are currently being added in Patch 1 from Grygorii's "[v2,0/4] arm64:
-dts: ti: k3-j7200: add dma and mcu cpsw" series,
-https://patchwork.kernel.org/cover/11763711/
+Signed-off-by: Krzysztof Kozlowski <krzk@kernel.org>
 
-The overall series seems to have some dependencies, so better to separate out
-those nodes and include as an additional add-on patch to this series, atleast it
-can unblock all others who use the TI-SCI Interrupt node.
+---
 
-> 
->> +	};
->> +
->> +	main_pmx0: pinmux@11c000 {
-> 
-> 	pinctrl@ ?
-> 
-> [...]
->> diff --git a/arch/arm64/boot/dts/ti/k3-j7200-mcu-wakeup.dtsi b/arch/arm64/boot/dts/ti/k3-j7200-mcu-wakeup.dtsi
->> new file mode 100644
->> index 000000000000..76ef75586077
->> --- /dev/null
->> +++ b/arch/arm64/boot/dts/ti/k3-j7200-mcu-wakeup.dtsi
->> +
-> [...]
->> +	wkup_pmx0: pinmux@4301c000 {
-> 	
-> 	pinctrl@ ?
->> +		compatible = "pinctrl-single";
->> +		/* Proxy 0 addressing */
->> +		reg = <0x00 0x4301c000 0x00 0x178>;
->> +		#pinctrl-cells = <1>;
->> +		pinctrl-single,register-width = <32>;
->> +		pinctrl-single,function-mask = <0xffffffff>;
->> +	};
->> +
->> +	mcu_ram: sram@41c00000 {
->> +		compatible = "mmio-sram";
->> +		reg = <0x00 0x41c00000 0x00 0x100000>;
->> +		ranges = <0x00 0x00 0x41c00000 0x100000>;
->> +		#address-cells = <1>;
->> +		#size-cells = <1>;
->> +	};
-> 
-> wkup_gpio_intr same argument as "core infrastructure" ?
-> 
->> +
->> diff --git a/arch/arm64/boot/dts/ti/k3-j7200.dtsi b/arch/arm64/boot/dts/ti/k3-j7200.dtsi
->> new file mode 100644
->> index 000000000000..7c337780adb6
->> --- /dev/null
->> +++ b/arch/arm64/boot/dts/ti/k3-j7200.dtsi
->> @@ -0,0 +1,165 @@
->> +// SPDX-License-Identifier: GPL-2.0
->> +/*
->> + * Device Tree Source for J7200 SoC Family
->> + *
->> + * Copyright (C) 2020 Texas Instruments Incorporated - https://www.ti.com/
->> + */
->> +
->> +#include <dt-bindings/interrupt-controller/irq.h>
->> +#include <dt-bindings/interrupt-controller/arm-gic.h>
->> +#include <dt-bindings/pinctrl/k3.h>
->> +#include <dt-bindings/soc/ti,sci_pm_domain.h>
->> +
->> +/ {
->> +	model = "Texas Instruments K3 J7200 SoC";
->> +	compatible = "ti,j7200";
->> +	interrupt-parent = <&gic500>;
->> +	#address-cells = <2>;
->> +	#size-cells = <2>;
->> +
->> +	aliases {
->> +		serial0 = &wkup_uart0;
->> +		serial1 = &mcu_uart0;
->> +		serial2 = &main_uart0;
->> +		serial3 = &main_uart1;
->> +		serial4 = &main_uart2;
->> +		serial5 = &main_uart3;
->> +		serial6 = &main_uart4;
->> +		serial7 = &main_uart5;
->> +		serial8 = &main_uart6;
->> +		serial9 = &main_uart7;
->> +		serial10 = &main_uart8;
->> +		serial11 = &main_uart9;
->> +	};
->> +
-> 
-> might be nice to leave a chosen { }; here to indicate board
-> files fill it up.. just to maintain consistency with rest of SoC dtsis?
+Changes since v1:
+1. Use additionalProperties.
+2. Add wakeup-source.
+3. Add hogs.
+4. Extend example with hogs.
+---
+ .../devicetree/bindings/gpio/gpio-pca953x.txt |  90 ----------
+ .../bindings/gpio/gpio-pca95xx.yaml           | 166 ++++++++++++++++++
+ .../devicetree/bindings/trivial-devices.yaml  |   4 -
+ 3 files changed, 166 insertions(+), 94 deletions(-)
+ delete mode 100644 Documentation/devicetree/bindings/gpio/gpio-pca953x.txt
+ create mode 100644 Documentation/devicetree/bindings/gpio/gpio-pca95xx.yaml
 
-Doesn't serve any purpose IMO. I remember commenting about that blank node to
-remove it during some earlier reviews.
-
-regards
-Suman
-
-> 
-> [...]
->> +
->> +	cbass_main: bus@100000 {
->> +		compatible = "simple-bus";
->> +		#address-cells = <2>;
->> +		#size-cells = <2>;
->> +		ranges = <0x00 0x00100000 0x00 0x00100000 0x00 0x00020000>, /* ctrl mmr */
->> +			 <0x00 0x00600000 0x00 0x00600000 0x00 0x00031100>, /* GPIO */
->> +			 <0x00 0x00a40000 0x00 0x00a40000 0x00 0x00000800>, /* timesync router */
->> +			 <0x00 0x01000000 0x00 0x01000000 0x00 0x0d000000>, /* Most peripherals */
->> +			 <0x00 0x30000000 0x00 0x30000000 0x00 0x0c400000>, /* MAIN NAVSS */
->> +			 <0x00 0x70000000 0x00 0x70000000 0x00 0x00800000>, /* MSMC RAM */
->> +			 <0x41 0x00000000 0x41 0x00000000 0x01 0x00000000>, /* PCIe1 DAT */
->> +
->> +			 /* MCUSS_WKUP Range */
->> +			 <0x00 0x28380000 0x00 0x28380000 0x00 0x03880000>,
->> +			 <0x00 0x40200000 0x00 0x40200000 0x00 0x00998400>,
->> +			 <0x00 0x40f00000 0x00 0x40f00000 0x00 0x00020000>,
->> +			 <0x00 0x41000000 0x00 0x41000000 0x00 0x00020000>,
->> +			 <0x00 0x41400000 0x00 0x41400000 0x00 0x00020000>,
->> +			 <0x00 0x41c00000 0x00 0x41c00000 0x00 0x00100000>,
->> +			 <0x00 0x42040000 0x00 0x42040000 0x00 0x03ac2400>,
->> +			 <0x00 0x45100000 0x00 0x45100000 0x00 0x00c24000>,
->> +			 <0x00 0x46000000 0x00 0x46000000 0x00 0x00200000>,
->> +			 <0x00 0x47000000 0x00 0x47000000 0x00 0x00068400>,
->> +			 <0x00 0x50000000 0x00 0x50000000 0x00 0x10000000>;
->> +
->> +		cbass_mcu_wakeup: bus@28380000 {
->> +			compatible = "simple-bus";
->> +			#address-cells = <2>;
->> +			#size-cells = <2>;
->> +			ranges = <0x00 0x28380000 0x00 0x28380000 0x00 0x03880000>, /* MCU NAVSS*/
->> +				 <0x00 0x40200000 0x00 0x40200000 0x00 0x00998400>, /* First peripheral window */
->> +				 <0x00 0x40f00000 0x00 0x40f00000 0x00 0x00020000>, /* CTRL_MMR0 */
->> +				 <0x00 0x41000000 0x00 0x41000000 0x00 0x00020000>, /* MCU R5F Core0 */
->> +				 <0x00 0x41400000 0x00 0x41400000 0x00 0x00020000>, /* MCU R5F Core1 */
->> +				 <0x00 0x41c00000 0x00 0x41c00000 0x00 0x00100000>, /* MCU SRAM */
->> +				 <0x00 0x42040000 0x00 0x42040000 0x00 0x03ac2400>, /* WKUP peripheral window */
->> +				 <0x00 0x45100000 0x00 0x45100000 0x00 0x00c24000>, /* MMRs, remaining NAVSS */
->> +				 <0x00 0x46000000 0x00 0x46000000 0x00 0x00200000>, /* CPSW */
->> +				 <0x00 0x47000000 0x00 0x47000000 0x00 0x00068400>, /* OSPI register space */
->> +				 <0x00 0x50000000 0x00 0x50000000 0x00 0x10000000>; /* FSS OSPI0/1 data region 0 */
->> +		};
->> +	};
->> +};
-> 
-> We covered these already.
-> 
+diff --git a/Documentation/devicetree/bindings/gpio/gpio-pca953x.txt b/Documentation/devicetree/bindings/gpio/gpio-pca953x.txt
+deleted file mode 100644
+index 3126c3817e2a..000000000000
+--- a/Documentation/devicetree/bindings/gpio/gpio-pca953x.txt
++++ /dev/null
+@@ -1,90 +0,0 @@
+-* NXP PCA953x I2C GPIO multiplexer
+-
+-Required properties:
+- - compatible: Has to contain one of the following:
+-	nxp,pca6416
+-	nxp,pca9505
+-	nxp,pca9534
+-	nxp,pca9535
+-	nxp,pca9536
+-	nxp,pca9537
+-	nxp,pca9538
+-	nxp,pca9539
+-	nxp,pca9554
+-	nxp,pca9555
+-	nxp,pca9556
+-	nxp,pca9557
+-	nxp,pca9574
+-	nxp,pca9575
+-	nxp,pca9698
+-	nxp,pcal6416
+-	nxp,pcal6524
+-	nxp,pcal9535
+-	nxp,pcal9555a
+-	maxim,max7310
+-	maxim,max7312
+-	maxim,max7313
+-	maxim,max7315
+-	ti,pca6107
+-	ti,pca9536
+-	ti,tca6408
+-	ti,tca6416
+-	ti,tca6424
+-	ti,tca9539
+-	ti,tca9554
+-	onnn,cat9554
+-	onnn,pca9654
+-	exar,xra1202
+- - gpio-controller: if used as gpio expander.
+- - #gpio-cells: if used as gpio expander.
+- - interrupt-controller: if to be used as interrupt expander.
+- - #interrupt-cells: if to be used as interrupt expander.
+-
+-Optional properties:
+- - interrupts: interrupt specifier for the device's interrupt output.
+- - reset-gpios: GPIO specification for the RESET input. This is an
+-		active low signal to the PCA953x.
+- - vcc-supply:	power supply regulator.
+-
+-Example:
+-
+-
+-	gpio@20 {
+-		compatible = "nxp,pca9505";
+-		reg = <0x20>;
+-		pinctrl-names = "default";
+-		pinctrl-0 = <&pinctrl_pca9505>;
+-		gpio-controller;
+-		#gpio-cells = <2>;
+-		interrupt-parent = <&gpio3>;
+-		interrupts = <23 IRQ_TYPE_LEVEL_LOW>;
+-	};
+-
+-
+-Example with Interrupts:
+-
+-
+-	gpio99: gpio@22 {
+-		compatible = "nxp,pcal6524";
+-		reg = <0x22>;
+-		interrupt-parent = <&gpio6>;
+-		interrupts = <1 IRQ_TYPE_EDGE_FALLING>;	/* gpio6_161 */
+-		interrupt-controller;
+-		#interrupt-cells = <2>;
+-		vcc-supply = <&vdds_1v8_main>;
+-		gpio-controller;
+-		#gpio-cells = <2>;
+-		gpio-line-names =
+-			"hdmi-ct-hpd", "hdmi.ls-oe", "p02", "p03", "vibra", "fault2", "p06", "p07",
+-			"en-usb", "en-host1", "en-host2", "chg-int", "p14", "p15", "mic-int", "en-modem",
+-			"shdn-hs-amp", "chg-status+red", "green", "blue", "en-esata", "fault1", "p26", "p27";
+-	};
+-
+-	ts3a227@3b {
+-		compatible = "ti,ts3a227e";
+-		reg = <0x3b>;
+-		interrupt-parent = <&gpio99>;
+-		interrupts = <14 IRQ_TYPE_EDGE_RISING>;
+-		ti,micbias = <0>;	/* 2.1V */
+-	};
+-
+diff --git a/Documentation/devicetree/bindings/gpio/gpio-pca95xx.yaml b/Documentation/devicetree/bindings/gpio/gpio-pca95xx.yaml
+new file mode 100644
+index 000000000000..7ff6efadf797
+--- /dev/null
++++ b/Documentation/devicetree/bindings/gpio/gpio-pca95xx.yaml
+@@ -0,0 +1,166 @@
++# SPDX-License-Identifier: (GPL-2.0-only OR BSD-2-Clause)
++%YAML 1.2
++---
++$id: http://devicetree.org/schemas/gpio/gpio-pca95xx.yaml#
++$schema: http://devicetree.org/meta-schemas/core.yaml#
++
++title: NXP PCA95xx I2C GPIO multiplexer
++
++maintainers:
++  - Krzysztof Kozlowski <krzk@kernel.org>
++
++properties:
++  compatible:
++    enum:
++      - exar,xra1202
++      - maxim,max7310
++      - maxim,max7312
++      - maxim,max7313
++      - maxim,max7315
++      - nxp,pca6416
++      - nxp,pca9505
++      - nxp,pca9534
++      - nxp,pca9535
++      - nxp,pca9536
++      - nxp,pca9537
++      - nxp,pca9538
++      - nxp,pca9539
++      - nxp,pca9554
++      - nxp,pca9555
++      - nxp,pca9556
++      - nxp,pca9557
++      - nxp,pca9574
++      - nxp,pca9575
++      - nxp,pca9698
++      - nxp,pcal6416
++      - nxp,pcal6524
++      - nxp,pcal9535
++      - nxp,pcal9555a
++      - onnn,cat9554
++      - onnn,pca9654
++      - ti,pca6107
++      - ti,pca9536
++      - ti,tca6408
++      - ti,tca6416
++      - ti,tca6424
++      - ti,tca9539
++      - ti,tca9554
++
++  reg:
++    maxItems: 1
++
++  gpio-controller: true
++
++  '#gpio-cells':
++    const: 2
++
++  gpio-line-names:
++    minItems: 1
++    maxItems: 32
++
++  interrupts:
++    maxItems: 1
++
++  interrupt-controller: true
++
++  '#interrupt-cells':
++    const: 2
++
++  reset-gpios:
++    description:
++      GPIO specification for the RESET input. This is an active low signal to
++      the PCA953x.
++
++  vcc-supply:
++    description:
++      Optional power supply
++
++  wakeup-source:
++    $ref: /schemas/types.yaml#/definitions/flag
++
++patternProperties:
++  "^(hog-[0-9]+|.+-hog(-[0-9]+)?)$":
++    type: object
++    properties:
++      gpio-hog: true
++      gpios: true
++      input: true
++      output-high: true
++      output-low: true
++      line-name: true
++
++    required:
++      - gpio-hog
++      - gpios
++
++    additionalProperties: false
++
++required:
++  - compatible
++  - reg
++  - gpio-controller
++  - "#gpio-cells"
++
++additionalProperties: false
++
++examples:
++  - |
++    #include <dt-bindings/gpio/gpio.h>
++    #include <dt-bindings/interrupt-controller/irq.h>
++
++    i2c0 {
++        #address-cells = <1>;
++        #size-cells = <0>;
++
++        gpio@20 {
++            compatible = "nxp,pca9505";
++            reg = <0x20>;
++            pinctrl-names = "default";
++            pinctrl-0 = <&pinctrl_pca9505>;
++            gpio-controller;
++            #gpio-cells = <2>;
++            interrupt-parent = <&gpio3>;
++            interrupts = <23 IRQ_TYPE_LEVEL_LOW>;
++
++            usb3-sata-sel-hog {
++                gpio-hog;
++                gpios = <4 GPIO_ACTIVE_HIGH>;
++                output-low;
++                line-name = "usb3_sata_sel";
++            };
++        };
++    };
++
++  - |
++    #include <dt-bindings/interrupt-controller/irq.h>
++
++    i2c1 {
++        #address-cells = <1>;
++        #size-cells = <0>;
++
++        gpio99: gpio@22 {
++            compatible = "nxp,pcal6524";
++            reg = <0x22>;
++            interrupt-parent = <&gpio6>;
++            interrupts = <1 IRQ_TYPE_EDGE_FALLING>; /* gpio6_161 */
++            interrupt-controller;
++            #interrupt-cells = <2>;
++            vcc-supply = <&vdds_1v8_main>;
++            gpio-controller;
++            #gpio-cells = <2>;
++            gpio-line-names = "hdmi-ct-hpd", "hdmi.ls-oe", "p02", "p03",
++                              "vibra", "fault2", "p06", "p07", "en-usb",
++                              "en-host1", "en-host2", "chg-int", "p14", "p15",
++                              "mic-int", "en-modem", "shdn-hs-amp",
++                              "chg-status+red", "green", "blue", "en-esata",
++                              "fault1", "p26", "p27";
++        };
++
++        ts3a227@3b {
++            compatible = "ti,ts3a227e";
++            reg = <0x3b>;
++            interrupt-parent = <&gpio99>;
++            interrupts = <14 IRQ_TYPE_EDGE_RISING>;
++            ti,micbias = <0>; /* 2.1V */
++        };
++    };
+diff --git a/Documentation/devicetree/bindings/trivial-devices.yaml b/Documentation/devicetree/bindings/trivial-devices.yaml
+index 25cfcc904240..442a1f537651 100644
+--- a/Documentation/devicetree/bindings/trivial-devices.yaml
++++ b/Documentation/devicetree/bindings/trivial-devices.yaml
+@@ -322,10 +322,6 @@ properties:
+           - nuvoton,npct601
+             # Nuvoton Temperature Sensor
+           - nuvoton,w83773g
+-            # Octal SMBus and I2C registered interface
+-          - nxp,pca9556
+-            # 8-bit I2C-bus and SMBus I/O port with reset
+-          - nxp,pca9557
+             # OKI ML86V7667 video decoder
+           - oki,ml86v7667
+             # OV5642: Color CMOS QSXGA (5-megapixel) Image Sensor with OmniBSI and Embedded TrueFocus
+-- 
+2.17.1
 
