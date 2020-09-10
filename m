@@ -2,88 +2,130 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from vger.kernel.org (vger.kernel.org [23.128.96.18])
-	by mail.lfdr.de (Postfix) with ESMTP id 3A26B263F89
-	for <lists+devicetree@lfdr.de>; Thu, 10 Sep 2020 10:18:42 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTP id B9323264020
+	for <lists+devicetree@lfdr.de>; Thu, 10 Sep 2020 10:35:43 +0200 (CEST)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S1729296AbgIJISi (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Thu, 10 Sep 2020 04:18:38 -0400
-Received: from lindbergh.monkeyblade.net ([23.128.96.19]:54310 "EHLO
-        lindbergh.monkeyblade.net" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S1728709AbgIJIRJ (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Thu, 10 Sep 2020 04:17:09 -0400
-Received: from bhuna.collabora.co.uk (bhuna.collabora.co.uk [IPv6:2a00:1098:0:82:1000:25:2eeb:e3e3])
-        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id D8EF2C061756;
-        Thu, 10 Sep 2020 01:16:59 -0700 (PDT)
-Received: from [127.0.0.1] (localhost [127.0.0.1])
-        (Authenticated sender: eballetbo)
-        with ESMTPSA id 3E3EF29B5AA
-Subject: Re: [PATCH 1/2] arm64: dts: mt8173: elm: Set uart0 to mmio32 iotype
-To:     Hsin-Yi Wang <hsinyi@chromium.org>
-Cc:     "moderated list:ARM/Mediatek SoC support" 
-        <linux-mediatek@lists.infradead.org>,
+        id S1729935AbgIJIeQ (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Thu, 10 Sep 2020 04:34:16 -0400
+Received: from jabberwock.ucw.cz ([46.255.230.98]:42240 "EHLO
+        jabberwock.ucw.cz" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
+        with ESMTP id S1730165AbgIJISd (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Thu, 10 Sep 2020 04:18:33 -0400
+Received: by jabberwock.ucw.cz (Postfix, from userid 1017)
+        id DEEBE1C0B7D; Thu, 10 Sep 2020 10:18:14 +0200 (CEST)
+Date:   Thu, 10 Sep 2020 10:18:14 +0200
+From:   Pavel Machek <pavel@ucw.cz>
+To:     Gene Chen <gene.chen.richtek@gmail.com>
+Cc:     Andy Shevchenko <andy.shevchenko@gmail.com>,
+        Jacek Anaszewski <jacek.anaszewski@gmail.com>,
         Rob Herring <robh+dt@kernel.org>,
         Matthias Brugger <matthias.bgg@gmail.com>,
-        Devicetree List <devicetree@vger.kernel.org>,
-        "moderated list:ARM/FREESCALE IMX / MXC ARM ARCHITECTURE" 
-        <linux-arm-kernel@lists.infradead.org>,
-        lkml <linux-kernel@vger.kernel.org>
-References: <20200910054635.3337487-1-hsinyi@chromium.org>
- <ba77586c-7902-9ce4-0f4f-ad1743596d85@collabora.com>
- <CAJMQK-j_Syejw1Bc53fN8OuRYppns7g_=EQW+PUDkQDhnwxvSw@mail.gmail.com>
-From:   Enric Balletbo i Serra <enric.balletbo@collabora.com>
-Message-ID: <944325c1-818e-934c-907d-7ff0493446b4@collabora.com>
-Date:   Thu, 10 Sep 2020 10:16:55 +0200
-User-Agent: Mozilla/5.0 (X11; Linux x86_64; rv:68.0) Gecko/20100101
- Thunderbird/68.12.0
+        Dan Murphy <dmurphy@ti.com>,
+        Linux LED Subsystem <linux-leds@vger.kernel.org>,
+        devicetree <devicetree@vger.kernel.org>,
+        linux-arm Mailing List <linux-arm-kernel@lists.infradead.org>,
+        "moderated list:ARM/Mediatek SoC support" 
+        <linux-mediatek@lists.infradead.org>,
+        Linux Kernel Mailing List <linux-kernel@vger.kernel.org>,
+        Gene Chen <gene_chen@richtek.com>, Wilma.Wu@mediatek.com,
+        shufan_lee@richtek.com, cy_huang@richtek.com,
+        benjamin.chao@mediatek.com
+Subject: Re: [PATCH v3 1/2] leds: mt6360: Add LED driver for MT6360
+Message-ID: <20200910081814.GB28357@amd>
+References: <1599474459-20853-1-git-send-email-gene.chen.richtek@gmail.com>
+ <1599474459-20853-2-git-send-email-gene.chen.richtek@gmail.com>
+ <CAHp75VdLDvoQicP1nLnjOiit6qjaw9n7+LuJ-J3MtaoHUOa_2g@mail.gmail.com>
+ <CAE+NS35FETQ9ASJeYP=Sa8dm7ohRBcdAwUioCAnHPY2TiD4pNA@mail.gmail.com>
 MIME-Version: 1.0
-In-Reply-To: <CAJMQK-j_Syejw1Bc53fN8OuRYppns7g_=EQW+PUDkQDhnwxvSw@mail.gmail.com>
-Content-Type: text/plain; charset=utf-8
-Content-Language: en-US
-Content-Transfer-Encoding: 7bit
+Content-Type: multipart/signed; micalg=pgp-sha1;
+        protocol="application/pgp-signature"; boundary="oLBj+sq0vYjzfsbl"
+Content-Disposition: inline
+In-Reply-To: <CAE+NS35FETQ9ASJeYP=Sa8dm7ohRBcdAwUioCAnHPY2TiD4pNA@mail.gmail.com>
+User-Agent: Mutt/1.5.23 (2014-03-12)
 Sender: devicetree-owner@vger.kernel.org
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-Hi Hsin-Yi,
 
-On 10/9/20 9:57, Hsin-Yi Wang wrote:
-> On Thu, Sep 10, 2020 at 3:20 PM Enric Balletbo i Serra
-> <enric.balletbo@collabora.com> wrote:
->>
->> Hi Hsin-Yi,
->>
->> On 10/9/20 7:46, Hsin-Yi Wang wrote:
->>> Set uart0 iotype to mmio32 to make earlycon work with stdout-path.
->>>
->>> Signed-off-by: Hsin-Yi Wang <hsinyi@chromium.org>
->>> ---
->>>  arch/arm64/boot/dts/mediatek/mt8173-elm.dtsi | 2 ++
->>>  1 file changed, 2 insertions(+)
->>>
->>> diff --git a/arch/arm64/boot/dts/mediatek/mt8173-elm.dtsi b/arch/arm64/boot/dts/mediatek/mt8173-elm.dtsi
->>> index a5a12b2599a4a..d54e62f72c65d 100644
->>> --- a/arch/arm64/boot/dts/mediatek/mt8173-elm.dtsi
->>> +++ b/arch/arm64/boot/dts/mediatek/mt8173-elm.dtsi
->>> @@ -1160,6 +1160,8 @@ &thermal {
->>>  };
->>>
->>>  &uart0 {
->>> +     reg-io-width = <4>;
->>> +     reg-shift = <2>;
->>
->> I am wondering if these properties are common enough to go to mt8173.dtsi
->> instead of here.
->>
-> Since stdout-path is set on elm.dtsi (using uart0), so I add this
-> attribute here.
-> 
+--oLBj+sq0vYjzfsbl
+Content-Type: text/plain; charset=us-ascii
+Content-Disposition: inline
+Content-Transfer-Encoding: quoted-printable
 
-Why needs to be defined in the same place that stdout-path is set?
+Hi!
 
-My guess is that reg-io-width and reg-shift are SoC specific, as they define how
-the IO access to the register is done. In fact, I think that these properties
-should be added in all the uarts, not only the one that has defined the stdout-path.
+> > > +enum {
+> > > +       MT6360_LED_ISNK1 =3D 0,
+> > > +       MT6360_LED_ISNK2,
+> > > +       MT6360_LED_ISNK3,
+> > > +       MT6360_LED_ISNK4,
+> > > +       MT6360_LED_FLASH1,
+> > > +       MT6360_LED_FLASH2,
+> >
+> > > +       MT6360_MAX_LEDS,
+> >
+> > No comma for terminator entry.
+> >
+>=20
+> ACK
 
-Cheers,
-  Enric
+Actually, that comma is fine. Its absence would be fine, too.
+
+> > > +};
+> >
+> > ...
+> >
+> > > +#define MT6360_ISNK_MASK               0x1F
+> >
+> > GENMASK()
+
+Again, that is fine.
+
+> > > +#define FLED_TORCH_FLAG_MASK           0x0c
+> >
+> > > +#define FLED_STROBE_FLAG_MASK          0x03
+> >
+> > GENMASK()
+> >
+>=20
+> ACK
+
+Again, that is fine.
+
+> > > +       return 0;
+> > > +}
+> > > +
+> > > +static const struct of_device_id __maybe_unused mt6360_led_of_id[] =
+=3D {
+> > > +       { .compatible =3D "mediatek,mt6360-led", },
+> >
+> > > +       {},
+> >
+> > No need comma.
+>=20
+> ACK
+
+It is also no hurting comma.
+
+Best regards,
+
+									Pavel
+--=20
+(english) http://www.livejournal.com/~pavelmachek
+(cesky, pictures) http://atrey.karlin.mff.cuni.cz/~pavel/picture/horses/blo=
+g.html
+
+--oLBj+sq0vYjzfsbl
+Content-Type: application/pgp-signature; name="signature.asc"
+Content-Description: Digital signature
+
+-----BEGIN PGP SIGNATURE-----
+Version: GnuPG v1
+
+iEYEARECAAYFAl9Z4UUACgkQMOfwapXb+vI8xwCffPv2VNdsHIiN1JW/R8U9rVgS
+wgIAn1rrY28DLYQIe3/AWsXVIEaFjfEB
+=itTo
+-----END PGP SIGNATURE-----
+
+--oLBj+sq0vYjzfsbl--
