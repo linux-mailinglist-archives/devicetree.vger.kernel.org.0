@@ -2,104 +2,106 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from vger.kernel.org (vger.kernel.org [23.128.96.18])
-	by mail.lfdr.de (Postfix) with ESMTP id 436C92648E2
-	for <lists+devicetree@lfdr.de>; Thu, 10 Sep 2020 17:37:22 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTP id 327562648DD
+	for <lists+devicetree@lfdr.de>; Thu, 10 Sep 2020 17:36:49 +0200 (CEST)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S1731368AbgIJPhH (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Thu, 10 Sep 2020 11:37:07 -0400
-Received: from relay8-d.mail.gandi.net ([217.70.183.201]:60831 "EHLO
-        relay8-d.mail.gandi.net" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S1731355AbgIJPgW (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Thu, 10 Sep 2020 11:36:22 -0400
-X-Originating-IP: 99.144.118.237
-Received: from m1nmax.no-ip.org (unknown [99.144.118.237])
-        (Authenticated sender: matthias@kaehlcke.net)
-        by relay8-d.mail.gandi.net (Postfix) with ESMTPSA id 0EE321BF20A;
-        Thu, 10 Sep 2020 15:35:38 +0000 (UTC)
-Received: by m1nmax.no-ip.org (Postfix, from userid 1000)
-        id B0CFD80655; Thu, 10 Sep 2020 08:35:36 -0700 (PDT)
-Date:   Thu, 10 Sep 2020 08:35:36 -0700
-From:   Matthias Kaehlcke <matthias@kaehlcke.net>
-To:     satya priya <skakit@codeaurora.org>
-Cc:     Bjorn Andersson <bjorn.andersson@linaro.org>,
-        Matthias Kaehlcke <mka@chromium.org>,
-        gregkh@linuxfoundation.org, Andy Gross <agross@kernel.org>,
-        Rob Herring <robh+dt@kernel.org>,
-        linux-arm-msm@vger.kernel.org, devicetree@vger.kernel.org,
-        linux-kernel@vger.kernel.org, akashast@codeaurora.org,
-        rojay@codeaurora.org, msavaliy@qti.qualcomm.com,
-        dianders@chromium.org
-Subject: Re: [PATCH V5 2/4] arm64: dts: qcom: sc7180: Add necessary pinctrl
- and interrupt config for BT UART
-Message-ID: <20200910153536.lcifa6ljy7hwgptn@debian>
-Mail-Followup-To: Matthias Kaehlcke <matthias@kaehlcke.net>,
-        satya priya <skakit@codeaurora.org>,
-        Bjorn Andersson <bjorn.andersson@linaro.org>,
-        Matthias Kaehlcke <mka@chromium.org>, gregkh@linuxfoundation.org,
-        Andy Gross <agross@kernel.org>, Rob Herring <robh+dt@kernel.org>,
-        linux-arm-msm@vger.kernel.org, devicetree@vger.kernel.org,
-        linux-kernel@vger.kernel.org, akashast@codeaurora.org,
-        rojay@codeaurora.org, msavaliy@qti.qualcomm.com,
-        dianders@chromium.org
-References: <1599742438-16811-1-git-send-email-skakit@codeaurora.org>
- <1599742438-16811-3-git-send-email-skakit@codeaurora.org>
+        id S1731365AbgIJPgo (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Thu, 10 Sep 2020 11:36:44 -0400
+Received: from lindbergh.monkeyblade.net ([23.128.96.19]:38060 "EHLO
+        lindbergh.monkeyblade.net" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
+        with ESMTP id S1731361AbgIJPgQ (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Thu, 10 Sep 2020 11:36:16 -0400
+Received: from mail-ej1-x642.google.com (mail-ej1-x642.google.com [IPv6:2a00:1450:4864:20::642])
+        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 20257C061362
+        for <devicetree@vger.kernel.org>; Thu, 10 Sep 2020 08:35:51 -0700 (PDT)
+Received: by mail-ej1-x642.google.com with SMTP id lo4so9337658ejb.8
+        for <devicetree@vger.kernel.org>; Thu, 10 Sep 2020 08:35:51 -0700 (PDT)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+        d=baylibre-com.20150623.gappssmtp.com; s=20150623;
+        h=mime-version:references:in-reply-to:from:date:message-id:subject:to
+         :cc;
+        bh=BXTkxBrQX1Fi6aDdkjMID82XurVAmc4lBQFLUMsq2gk=;
+        b=RC+ZT7BvjK4qq6hzJuqwm9x4XRFN9jn8PQza2KtLx6+jWuCwMd7udqz44TwyD9yVSO
+         kPrQAbKYUZIW9n3CsPJYJzGDD+7AVpScWFtUiMCyzA3UVRNehD1IWKW+vNJ24OpzdCWP
+         jKxHfR2U05e6Y9vHrg3q2/z03OYSlUnBbcCWoMS5lh7EXBEtTxFVljeHIlQjoWg/pnwp
+         B43hyi7EbRftVn0jkpXIuQIktY1+nYHJTrGca5Q/s1iQphnAihtcIXwt/S4bXrzQjB/w
+         +gjawcC6zPhW8xHCzMDcYomenWpV06AjP3EY1pL5GzwesGsA9RlXJyovLGuY2SA9IiN7
+         dO2A==
+X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+        d=1e100.net; s=20161025;
+        h=x-gm-message-state:mime-version:references:in-reply-to:from:date
+         :message-id:subject:to:cc;
+        bh=BXTkxBrQX1Fi6aDdkjMID82XurVAmc4lBQFLUMsq2gk=;
+        b=dzW+/VIrKl0qIzlrD2EJ++saJos9aCrsSecx247vesz3cVLAT/eJquO3nrQ+OXlgra
+         vi847LHVpGTODJ1Mt+8JENYnGVHabgExhA9gwEsS+fAKs9aLlZHKOsG6tI5mxd2S7Svj
+         aLLhwl5v0wY3u4pOa1u+EqxrAPFBWhPP1LhbgfSjxlDzpU2ie9ip75Yf7D+syX/ngPD2
+         7uiqFSozZRRl0fS1315AUC9fOsl+6HLGpiXtApHcFn60XAEm+VqW9ylmNwHusGQdXGlZ
+         goEujmkPi3lzBkuAdVQqmY/m7KAtkbkCmQKR5Nr85MqzXnL+LIf3C/vuNWzqaoezXWc8
+         iGhA==
+X-Gm-Message-State: AOAM533sQtXdGl+N3RTLAhcayC06OEcrPkCdeM2QFdFo4lnOC1bBdUQz
+        spNd9FDADs6ePVTVCyu0vkkxwzh0u2da1rYeJGPFtHlO/Go=
+X-Google-Smtp-Source: ABdhPJx7Mv8T/HQTpG7Qvas8LgnYGmAQQFvExnKZdjcXfZJH7JQDNYWAh9qsaxWtv/Kp4041pJErzuu/1P5IeK2hr9I=
+X-Received: by 2002:a17:906:11d2:: with SMTP id o18mr9182631eja.420.1599752150402;
+ Thu, 10 Sep 2020 08:35:50 -0700 (PDT)
 MIME-Version: 1.0
-Content-Type: text/plain; charset=us-ascii
-Content-Disposition: inline
-In-Reply-To: <1599742438-16811-3-git-send-email-skakit@codeaurora.org>
-User-Agent: NeoMutt/20180716
+References: <20200910134239.192030-1-jonathanh@nvidia.com> <20200910134239.192030-2-jonathanh@nvidia.com>
+In-Reply-To: <20200910134239.192030-2-jonathanh@nvidia.com>
+From:   Bartosz Golaszewski <bgolaszewski@baylibre.com>
+Date:   Thu, 10 Sep 2020 17:35:39 +0200
+Message-ID: <CAMpxmJXbhrmJJn4f3zk4=Y2tCwLzpFc+c6NbxcqVe8eaLSRvtw@mail.gmail.com>
+Subject: Re: [PATCH 1/5] misc: eeprom: at24: Initialise AT24 NVMEM ID field
+To:     Jon Hunter <jonathanh@nvidia.com>
+Cc:     Rob Herring <robh+dt@kernel.org>,
+        Thierry Reding <thierry.reding@gmail.com>,
+        linux-i2c <linux-i2c@vger.kernel.org>,
+        LKML <linux-kernel@vger.kernel.org>,
+        linux-devicetree <devicetree@vger.kernel.org>,
+        linux-tegra@vger.kernel.org
+Content-Type: text/plain; charset="UTF-8"
 Sender: devicetree-owner@vger.kernel.org
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-El Thu, Sep 10, 2020 at 06:23:56PM +0530 satya priya ha dit:
-
-> Add a suitable sleep configuration for uart3 to support Bluetooth wakeup.
-> 
-> If QUP function is selected in sleep state, UART RTS/RFR is pulled high
-> during suspend and BT SoC not able to send wakeup bytes. So, configure
-> GPIO mode in sleep state to keep it low during suspend.
-> 
-> Signed-off-by: satya priya <skakit@codeaurora.org>
-> Reviewed-by: Akash Asthana <akashast@codeaurora.org>
-
-Was this change really reviewed (privately) by Akash or are you still
-carrying forward this tag from v2? The configuration and the comments
-have change substantially since v2, IMO you should drop the tag unless
-Akash really reviewed the current version or something close to it.
-
+On Thu, Sep 10, 2020 at 3:43 PM Jon Hunter <jonathanh@nvidia.com> wrote:
+>
+> The AT24 EEPROM driver does not initialise the 'id' field of the
+> nvmem_config structure and because the entire structure is not
+> initialised, it ends up with a random value. This causes the NVMEM
+> driver to append the device 'devid' value to name of the NVMEM
+> device. Although this is not a problem per-se, for I2C devices such as
+> the AT24, that already have a device unique name, there does not seem
+> much value in appending an additional 0 to the I2C name. For example,
+> appending a 0 to an I2C device name such as 1-0050 does not seem
+> necessary and maybe even a bit confusing. Therefore, fix this by
+> setting the NVMEM config.id to NVMEM_DEVID_NONE for AT24 EEPROMs.
+>
+> Signed-off-by: Jon Hunter <jonathanh@nvidia.com>
 > ---
-> Changes in V2:
->  - This patch adds sleep state for BT UART. Newly added in V2.
-> 
-> Changes in V3:
->  - Remove "output-high" for TX from both sleep and default states
->    as it is not required. Configure pull-up for TX in sleep state.
-> 
-> Changes in V4:
->  - As per Matthias's comment, removed drive-strength for sleep state
->    and fixed nit-pick.
-> 
-> Changes in V5:
->  - As per Matthias's comments, moved pinmux change for sleep state,
->    pinctrl and interrupt config to the board specific file.
-> 
->  arch/arm64/boot/dts/qcom/sc7180-idp.dts | 48 +++++++++++++++++++++++++++++++++
->  1 file changed, 48 insertions(+)
-> 
-> diff --git a/arch/arm64/boot/dts/qcom/sc7180-idp.dts b/arch/arm64/boot/dts/qcom/sc7180-idp.dts
-> index 04888df..e529a41 100644
-> --- a/arch/arm64/boot/dts/qcom/sc7180-idp.dts
-> +++ b/arch/arm64/boot/dts/qcom/sc7180-idp.dts
-> @@ -344,6 +344,10 @@
->  };
->  
->  &uart3 {
-> +	pinctrl-names = "default", "sleep";
-> +	pinctrl-1 = <&qup_uart3_sleep>;
-> +	interrupts-extended = <&intc GIC_SPI 604 IRQ_TYPE_LEVEL_HIGH>,
-> +				<&tlmm 41 IRQ_TYPE_EDGE_FALLING>;
+>  drivers/misc/eeprom/at24.c | 1 +
+>  1 file changed, 1 insertion(+)
+>
+> diff --git a/drivers/misc/eeprom/at24.c b/drivers/misc/eeprom/at24.c
+> index e9df1ca251df..3f7a3bb6a36c 100644
+> --- a/drivers/misc/eeprom/at24.c
+> +++ b/drivers/misc/eeprom/at24.c
+> @@ -715,6 +715,7 @@ static int at24_probe(struct i2c_client *client)
+>
+>         nvmem_config.name = dev_name(dev);
+>         nvmem_config.dev = dev;
+> +       nvmem_config.id = NVMEM_DEVID_NONE;
+>         nvmem_config.read_only = !writable;
+>         nvmem_config.root_only = !(flags & AT24_FLAG_IRUGO);
+>         nvmem_config.owner = THIS_MODULE;
+> --
+> 2.25.1
+>
 
-As Doug already said, you need to delete the 'interrupts' property now
-that we have 'interrupts-extended'.
+This patch is correct and thanks for catching it. I vaguely recall
+wondering at some point why the appended 0 in the nvmem name for at24.
+Unfortunately this change would affect how the device is visible in
+user-space in /sys/bus/nvmem/devices/ and this could break existing
+users. Also: there are many in-kernel users that would need to be
+updated. I'm afraid we'll need some sort of backward compatibility.
+
+Bartosz
