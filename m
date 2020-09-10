@@ -2,145 +2,79 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from vger.kernel.org (vger.kernel.org [23.128.96.18])
-	by mail.lfdr.de (Postfix) with ESMTP id 2C786263BBC
-	for <lists+devicetree@lfdr.de>; Thu, 10 Sep 2020 06:10:28 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTP id 1BD5F263BC0
+	for <lists+devicetree@lfdr.de>; Thu, 10 Sep 2020 06:11:28 +0200 (CEST)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S1725873AbgIJEK1 (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Thu, 10 Sep 2020 00:10:27 -0400
-Received: from lindbergh.monkeyblade.net ([23.128.96.19]:44406 "EHLO
+        id S1725771AbgIJELT (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Thu, 10 Sep 2020 00:11:19 -0400
+Received: from lindbergh.monkeyblade.net ([23.128.96.19]:44556 "EHLO
         lindbergh.monkeyblade.net" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S1725372AbgIJEKS (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Thu, 10 Sep 2020 00:10:18 -0400
-Received: from mail-ej1-x642.google.com (mail-ej1-x642.google.com [IPv6:2a00:1450:4864:20::642])
-        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 2ACC8C061573;
-        Wed,  9 Sep 2020 21:10:18 -0700 (PDT)
-Received: by mail-ej1-x642.google.com with SMTP id e23so6665999eja.3;
-        Wed, 09 Sep 2020 21:10:18 -0700 (PDT)
+        with ESMTP id S1725830AbgIJELN (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Thu, 10 Sep 2020 00:11:13 -0400
+Received: from mail-pl1-x62a.google.com (mail-pl1-x62a.google.com [IPv6:2607:f8b0:4864:20::62a])
+        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id F4167C061757
+        for <devicetree@vger.kernel.org>; Wed,  9 Sep 2020 21:11:12 -0700 (PDT)
+Received: by mail-pl1-x62a.google.com with SMTP id k13so270117plk.3
+        for <devicetree@vger.kernel.org>; Wed, 09 Sep 2020 21:11:12 -0700 (PDT)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=jms.id.au; s=google;
-        h=mime-version:references:in-reply-to:from:date:message-id:subject:to
-         :cc;
-        bh=YGErWqzdCXUZ8GEfs8VwODgLH3bAUZ+0e535T36z444=;
-        b=MrXS4SRuYdMUw6uafhVbvyAIYTv8AlL+Z+TnwQZyduJLIkfYW4D8TXDPOlI7SUm7nN
-         fJmWR7aK/fZk4xmeMya3O2TSn+uN0CHBUKbTTfGbGD9ajBq8+wFU0ZRJGzEasjfULvV1
-         S2M/NVRthwLSJUy5Adch0OTHRU9+eEXxlJLs0=
+        d=chromium.org; s=google;
+        h=from:to:cc:subject:date:message-id:mime-version
+         :content-transfer-encoding;
+        bh=SjTp1hGds9ZwoOkcpeoGQakZnJuh6PzHnYd7zFegRU8=;
+        b=NRiAcWHkL9seEwOjmyIZa3MCaZMmxBU6gYtM36EnQkvpXPeKcxLiCF/OKJTBvSJ+e9
+         Jk44zmGowKGaPR4fIlaRKZhunvN6QMSFIzxG0PZ74x8bt2El2eBZRz7pVHbyykM5Acow
+         vDBOeXBT0yHaRFahCLTwhTSWPFU+gcQiUKzBg=
 X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
         d=1e100.net; s=20161025;
-        h=x-gm-message-state:mime-version:references:in-reply-to:from:date
-         :message-id:subject:to:cc;
-        bh=YGErWqzdCXUZ8GEfs8VwODgLH3bAUZ+0e535T36z444=;
-        b=az20f0OE0bT7ZunvwkeKp2ijgCFiDs2MER4sTgZ58myQhiqLtXDzMYA7tM6UA+BpCD
-         63ShoxBs4QdF/kF8qcnWXPUHhrm5amT6H9V1OGBdEoi3hNkUfy99akDVmDktjBAIA4kS
-         hCzjjo4QXev61ysJ+eXiAJaJj8ZoBUQDXDZActcoUtfr5fpzDaDVLBx5zMaNyNpvIjgt
-         7pgIck1tJA8/12pHIy7gV54mgPdEUxHp0CcVS8d25FsxffFyfeRaPODp404FzC8TIGHR
-         uQrgM07KZP90CyuthA0c977zrw89n4x6o9/AAZnx9O1gNVP572VeB0EaJhtHYtvguUDA
-         i5Fw==
-X-Gm-Message-State: AOAM532KCQ+rZGAvivpflfwS6bBmEsj/v6RyowOouVWvHlxw+DbTTCTd
-        FjXM9CuZ/6MShxHf/NcG+88XeEX7SS8GvkD83CzIlBVYhPQ=
-X-Google-Smtp-Source: ABdhPJz4dWpkLm01ZcAHO4YymAk5+CGB8BtAUfcYjnJcZYzn6Tx7X1lqIF00zYCcs542WIWNqCpkqfnaZlZ0xnNqKCY=
-X-Received: by 2002:a17:906:fcc7:: with SMTP id qx7mr7292901ejb.254.1599711016851;
- Wed, 09 Sep 2020 21:10:16 -0700 (PDT)
+        h=x-gm-message-state:from:to:cc:subject:date:message-id:mime-version
+         :content-transfer-encoding;
+        bh=SjTp1hGds9ZwoOkcpeoGQakZnJuh6PzHnYd7zFegRU8=;
+        b=Ka5P82wyIaCIUgsWcCZAmyZpglqUCnnD8ITz36NNqpPc3Yu7y2JN0Oiyb1QvqFTIGY
+         gzQ5oc9deNGLCiyWv2CQxfGra1vbjVRkqpJGWxtYdBK2Qo+u25WOZSVvUyUb+/TY30+y
+         RPH/v8kuDs+0RTlp1CiBFCX/cwpqImulyqeH6N2BTnj0qApSl8eXp529ZOZKkfusfFwO
+         TgfeRMwSU4/AOJ9vgDH9dBcIqgKQy4w8XZm0Kk9Jy19n2FnbvRVc6C7bsuqX1gqJaBe/
+         IJDUYAn2Q9BcdB+zAGZhQwz6iC5/K5/DAkG19d7ynVupXl8BtHiYtHqwRu3xOGTEsm7h
+         gLQQ==
+X-Gm-Message-State: AOAM532I2Ic2ulSJ4W+bkFntbEQcs/N6EtobH9nd4LyFU8V9jiKS4i3u
+        zpjiVulhIbCB0Gm6PvoQrHIePw==
+X-Google-Smtp-Source: ABdhPJy/kt256pAD+9kwVUTT8gpc//AaRJDaKiqodWQDyyYH+29li3hwTA00uoaR3VXRStW5UdRJ1g==
+X-Received: by 2002:a17:90a:8593:: with SMTP id m19mr3592561pjn.104.1599711068389;
+        Wed, 09 Sep 2020 21:11:08 -0700 (PDT)
+Received: from ikjn-p920.tpe.corp.google.com ([2401:fa00:1:10:f693:9fff:fef4:a8fc])
+        by smtp.gmail.com with ESMTPSA id z11sm4266169pfc.181.2020.09.09.21.11.06
+        (version=TLS1_3 cipher=TLS_AES_256_GCM_SHA384 bits=256/256);
+        Wed, 09 Sep 2020 21:11:07 -0700 (PDT)
+From:   Ikjoon Jang <ikjn@chromium.org>
+To:     Rob Herring <robh+dt@kernel.org>, Mark Brown <broonie@kernel.org>,
+        devicetree@vger.kernel.org, linux-spi@vger.kernel.org
+Cc:     Ikjoon Jang <ikjn@chromium.org>,
+        Bayi Cheng <bayi.cheng@mediatek.com>,
+        Chuanhong Guo <gch981213@gmail.com>,
+        Matthias Brugger <matthias.bgg@gmail.com>,
+        linux-arm-kernel@lists.infradead.org, linux-kernel@vger.kernel.org,
+        linux-mediatek@lists.infradead.org
+Subject: [PATCH 0/2] Add 36bit dma support to mediatek spi-nor controller.
+Date:   Thu, 10 Sep 2020 12:10:59 +0800
+Message-Id: <20200910041101.1695195-1-ikjn@chromium.org>
+X-Mailer: git-send-email 2.28.0.526.ge36021eeef-goog
 MIME-Version: 1.0
-References: <20200715135418.3194860-1-jk@codeconstruct.com.au>
-In-Reply-To: <20200715135418.3194860-1-jk@codeconstruct.com.au>
-From:   Joel Stanley <joel@jms.id.au>
-Date:   Thu, 10 Sep 2020 04:10:05 +0000
-Message-ID: <CACPK8XcT02qv+1H=DDv8BRAdUmrBoweZ+Qb3aG34bQ9-UC08Xg@mail.gmail.com>
-Subject: Re: [PATCH 1/2] gpio/aspeed-sgpio: enable access to all 80 input &
- output sgpios
-To:     Jeremy Kerr <jk@codeconstruct.com.au>
-Cc:     "open list:GPIO SUBSYSTEM" <linux-gpio@vger.kernel.org>,
-        linux-aspeed <linux-aspeed@lists.ozlabs.org>,
-        devicetree <devicetree@vger.kernel.org>,
-        Andrew Jeffery <andrew@aj.id.au>
-Content-Type: text/plain; charset="UTF-8"
+Content-Transfer-Encoding: 8bit
 Sender: devicetree-owner@vger.kernel.org
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-On Wed, 15 Jul 2020 at 14:06, Jeremy Kerr <jk@codeconstruct.com.au> wrote:
->
-> Currently, the aspeed-sgpio driver exposes up to 80 GPIO lines,
-> corresponding to the 80 status bits available in hardware. Each of these
-> lines can be configured as either an input or an output.
->
-> However, each of these GPIOs is actually an input *and* an output; we
-> actually have 80 inputs plus 80 outputs.
->
-> This change expands the maximum number of GPIOs to 160; the lower half
-> of this range are the input-only GPIOs, the upper half are the outputs.
-> We fix the GPIO directions to correspond to this mapping.
->
-> This also fixes a bug when setting GPIOs - we were reading from the
-> input register, making it impossible to set more than one output GPIO.
->
-> Signed-off-by: Jeremy Kerr <jk@codeconstruct.com.au>
+mt8192-nor has 36bit addressing support, this patch adds 36bit address
+handlings to spi-mtk-nor.
 
-A Fixes: might be a good idea.
+Ikjoon Jang (2):
+  dt-bindings: spi: add mt8192-nor compatible string
+  spi: spi-mtk-nor: support 36bit dma addressing to mediatek spi-nor
 
-> ---
->  .../devicetree/bindings/gpio/sgpio-aspeed.txt |   5 +-
->  drivers/gpio/gpio-aspeed-sgpio.c              | 115 +++++++++++-------
->  2 files changed, 77 insertions(+), 43 deletions(-)
+ .../bindings/spi/mediatek,spi-mtk-nor.yaml    |  1 +
+ drivers/spi/spi-mtk-nor.c                     | 19 ++++++++++++++++++-
+ 2 files changed, 19 insertions(+), 1 deletion(-)
 
-> diff --git a/drivers/gpio/gpio-aspeed-sgpio.c b/drivers/gpio/gpio-aspeed-sgpio.c
-> index 8319812593e3..927d46f159b8 100644
-> --- a/drivers/gpio/gpio-aspeed-sgpio.c
-> +++ b/drivers/gpio/gpio-aspeed-sgpio.c
-> @@ -17,7 +17,8 @@
->  #include <linux/spinlock.h>
->  #include <linux/string.h>
->
-> -#define MAX_NR_SGPIO                   80
-> +#define MAX_NR_HW_SGPIO                        80
-> +#define SGPIO_OUTPUT_OFFSET            MAX_NR_HW_SGPIO
+-- 
+2.28.0.526.ge36021eeef-goog
 
-A short comment explaining what's going on with these defines (as you
-did in your commit message) will help future reviewers.
-
-> +static void aspeed_sgpio_irq_init_valid_mask(struct gpio_chip *gc,
-> +               unsigned long *valid_mask, unsigned int ngpios)
-> +{
-> +       struct aspeed_sgpio *sgpio = gpiochip_get_data(gc);
-> +       int n = sgpio->n_sgpio;
-> +
-> +       WARN_ON(ngpios < MAX_NR_HW_SGPIO * 2);
-> +
-> +       /* input GPIOs in the lower range */
-> +       bitmap_set(valid_mask, 0, n);
-> +       bitmap_clear(valid_mask, n, ngpios - n);
-> +}
-> +
-> +static const bool aspeed_sgpio_is_input(unsigned int offset)
-
-The 0day bot complained about the 'const' here.
-
-> +{
-> +       return offset < SGPIO_OUTPUT_OFFSET;
-> +}
-
->  static int aspeed_sgpio_dir_out(struct gpio_chip *gc, unsigned int offset, int val)
->  {
->         struct aspeed_sgpio *gpio = gpiochip_get_data(gc);
->         unsigned long flags;
-> +       int rc;
->
-> -       spin_lock_irqsave(&gpio->lock, flags);
-> -
-> -       gpio->dir_in[GPIO_BANK(offset)] &= ~GPIO_BIT(offset);
-> -       sgpio_set_value(gc, offset, val);
-> +       /* No special action is required for setting the direction; we'll
-> +        * error-out in sgpio_set_value if this isn't an output GPIO */
->
-> +       spin_lock_irqsave(&gpio->lock, flags);
-> +       rc = sgpio_set_value(gc, offset, val);
->         spin_unlock_irqrestore(&gpio->lock, flags);
->
->         return 0;
-
-I think this should be 'return rc'
-
-Cheers,
-
-Joel
