@@ -2,512 +2,359 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from vger.kernel.org (vger.kernel.org [23.128.96.18])
-	by mail.lfdr.de (Postfix) with ESMTP id 25D84263F6B
-	for <lists+devicetree@lfdr.de>; Thu, 10 Sep 2020 10:11:37 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTP id CD018263F92
+	for <lists+devicetree@lfdr.de>; Thu, 10 Sep 2020 10:21:57 +0200 (CEST)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S1726381AbgIJILX (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Thu, 10 Sep 2020 04:11:23 -0400
-Received: from lindbergh.monkeyblade.net ([23.128.96.19]:53408 "EHLO
-        lindbergh.monkeyblade.net" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S1727830AbgIJILT (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Thu, 10 Sep 2020 04:11:19 -0400
-Received: from mail-il1-x144.google.com (mail-il1-x144.google.com [IPv6:2607:f8b0:4864:20::144])
-        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id BF27CC061573;
-        Thu, 10 Sep 2020 01:11:18 -0700 (PDT)
-Received: by mail-il1-x144.google.com with SMTP id p13so4879018ils.3;
-        Thu, 10 Sep 2020 01:11:18 -0700 (PDT)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=gmail.com; s=20161025;
-        h=mime-version:references:in-reply-to:from:date:message-id:subject:to
-         :cc:content-transfer-encoding;
-        bh=h2IZltBAMOS/o9iIrQdsLGqY/IFmzbDkqlzeIWyPEyE=;
-        b=AaIzZvaqthpqmY0nldV4aFsCIUhn6+C5yi/EJmXnqVwgmkk4rzm3OoJgvrNeO9mQ2O
-         YLmG7ZzVAFwXMQeHxWnO/+awYblIIUa6XHGMsJwqbuQQRIkTn4dLRgZi1y68fc9WupkX
-         VPu/qdWD6V5mDIulLRmlf5xi5wlNQ/7I3tnMixgrEeLPfbdsQSS6vRwYx9vTaQxkcmV8
-         13DxwoYIVwBw8ZZPRAw4XyqcAzaNxLIykpvG20uitwd8pd7z6YIk3noLRe2uL0mTB5R+
-         DIYvtHXZzVanJxCj8wMRZnGd8APuOBAXi/ildev/001fMHoBs7XP40UW/YvyGhzWuXR3
-         8Yig==
-X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=1e100.net; s=20161025;
-        h=x-gm-message-state:mime-version:references:in-reply-to:from:date
-         :message-id:subject:to:cc:content-transfer-encoding;
-        bh=h2IZltBAMOS/o9iIrQdsLGqY/IFmzbDkqlzeIWyPEyE=;
-        b=JqYD8gpuTZWgp4omy2IYCcqbVPYua0pOrbkbicQ18CZuhGfd32414iHM5s8tfXIzAG
-         VUAz6Cmn63XrN5mzSP9QT1O26uZfBonJmu0sIqpP6UB7M524Xo/KCruAbmEpbSDPwI+8
-         IkCRL8ywR+9DNnAQfE1tUj8APB+lEQ8Z6YOvkBx4lc4I92HcZkbp7N/F5VNeHdfossay
-         zvvoMcrheKoqXmtTUEV4b1Au45mj2e6CMR39In4Y+MidS2lyHvxrrH+MOzpV7shEfqKI
-         hozZdr0RDFFmpu80clVcHfJpVbWbCNDVS1m6PS8vNNY4MYrdU+SbH1BK/abfNwu4snBi
-         16Kw==
-X-Gm-Message-State: AOAM532n96cLBDLN91kaGWlPq+oJg698S1E7FGMvWY0q9cw0QHE16sec
-        OuydQ6w2/afkSEnZwCJ1RYrQlRvXdTalC6h6r7U=
-X-Google-Smtp-Source: ABdhPJxK4TDHSOyxHtmtUBONEAfWXowozHed9JQnZ2LJ4ec+JtNREuI0uflxK0VEzj+Thfg96iuJThe14spKX5gwJas=
-X-Received: by 2002:a92:7f0f:: with SMTP id a15mr6964207ild.186.1599725478055;
- Thu, 10 Sep 2020 01:11:18 -0700 (PDT)
-MIME-Version: 1.0
-References: <1599474459-20853-1-git-send-email-gene.chen.richtek@gmail.com>
- <1599474459-20853-2-git-send-email-gene.chen.richtek@gmail.com> <CAHp75VdLDvoQicP1nLnjOiit6qjaw9n7+LuJ-J3MtaoHUOa_2g@mail.gmail.com>
-In-Reply-To: <CAHp75VdLDvoQicP1nLnjOiit6qjaw9n7+LuJ-J3MtaoHUOa_2g@mail.gmail.com>
-From:   Gene Chen <gene.chen.richtek@gmail.com>
-Date:   Thu, 10 Sep 2020 08:11:06 +0800
-Message-ID: <CAE+NS35FETQ9ASJeYP=Sa8dm7ohRBcdAwUioCAnHPY2TiD4pNA@mail.gmail.com>
-Subject: Re: [PATCH v3 1/2] leds: mt6360: Add LED driver for MT6360
-To:     Andy Shevchenko <andy.shevchenko@gmail.com>
-Cc:     Jacek Anaszewski <jacek.anaszewski@gmail.com>,
-        Pavel Machek <pavel@ucw.cz>, Rob Herring <robh+dt@kernel.org>,
-        Matthias Brugger <matthias.bgg@gmail.com>,
-        Dan Murphy <dmurphy@ti.com>,
-        Linux LED Subsystem <linux-leds@vger.kernel.org>,
+        id S1729251AbgIJIVx (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Thu, 10 Sep 2020 04:21:53 -0400
+Received: from mail-eopbgr130058.outbound.protection.outlook.com ([40.107.13.58]:22087
+        "EHLO EUR01-HE1-obe.outbound.protection.outlook.com"
+        rhost-flags-OK-OK-OK-FAIL) by vger.kernel.org with ESMTP
+        id S1730184AbgIJIUi (ORCPT <rfc822;devicetree@vger.kernel.org>);
+        Thu, 10 Sep 2020 04:20:38 -0400
+ARC-Seal: i=1; a=rsa-sha256; s=arcselector9901; d=microsoft.com; cv=none;
+ b=HSpwfXqJfXIBOxVQSnEbnk1LXxaMGKJM9qbCDCJTm4UW13nsXpL1iSWXMUQaPdWeYQzR+2CJ/pk4YK0dM6O2qBqvvRL8shNRjLgrOxJu9UqvdECXX6cS/aMBCC61Jx3EVl7roVhMnITg+WSQh0uRT7a2yM9rgwyPigA89aqSMe5qkUXDmKOVdtZxbFi2unkVvaUGYMei2r4Wiv9LmxxMcwvwB4H5W9FjXTKItog098VVWum9CVnocGMloxtXCq56fcXunLVghPo2AUm6qNOhMAYmRylTQQw7OLWP9Pa46AbnOvU0Q8mHgY2FoPVKRf+gKAuXZIOP3dOTzQeFTgsKWQ==
+ARC-Message-Signature: i=1; a=rsa-sha256; c=relaxed/relaxed; d=microsoft.com;
+ s=arcselector9901;
+ h=From:Date:Subject:Message-ID:Content-Type:MIME-Version:X-MS-Exchange-SenderADCheck;
+ bh=c8V9uW12QgCwujYMIQWSe8BCf/HXcFoedE8kBEhfGtA=;
+ b=OCbs8Ja8yykZlkUClbAoFZchH69RtSoZnwnHqlC5Xwk13ISU0jfsBxVhPEKEvUa3GVf2UaOUy4WaZgtyi6kFkfwY86VZX++tjk9RnRZgpaMJuGAHVIHbYYdEMDsVKUQla2UXLM9WKzQ+UDMnY90kj7nYpb0CLEwg92MfsLyDGdbkKpWE7cUETdpICEry8+lePMUduykRqypO7IxpLJkEFP4y/THNP1U5yiDt4/eVvfKkkbJTcnb7Mwd6zIVZqR04ta3Ft5xiEd8ZDxWFm/3e9X3naEaV3izqTvcLShF3ultlBKO6eiM0lq4AoNG7Ai7IMA6nJeuFC4K56SqyrEWCzQ==
+ARC-Authentication-Results: i=1; mx.microsoft.com 1; spf=pass
+ smtp.mailfrom=oss.nxp.com; dmarc=pass action=none header.from=oss.nxp.com;
+ dkim=pass header.d=oss.nxp.com; arc=none
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=NXP1.onmicrosoft.com;
+ s=selector2-NXP1-onmicrosoft-com;
+ h=From:Date:Subject:Message-ID:Content-Type:MIME-Version:X-MS-Exchange-SenderADCheck;
+ bh=c8V9uW12QgCwujYMIQWSe8BCf/HXcFoedE8kBEhfGtA=;
+ b=em4ro2GSVkX/kiX8yovih9R7o6F9CBZI9gdzMi+nkyXygsq1eK6SygUV+FTHLEgTSHFeAzLniK5Uu65X0nOLRjkNTfz1UAc5wkWpAnlTb4ZXRVbWwyFnf2zrhwM7kLfqXYYWHloGwQMs+JL+7YZB2Ruu6hmT1s9FbcWsBvyr8LU=
+Authentication-Results: ffwll.ch; dkim=none (message not signed)
+ header.d=none;ffwll.ch; dmarc=none action=none header.from=oss.nxp.com;
+Received: from VI1PR0402MB3902.eurprd04.prod.outlook.com
+ (2603:10a6:803:22::27) by VE1PR04MB6607.eurprd04.prod.outlook.com
+ (2603:10a6:803:121::19) with Microsoft SMTP Server (version=TLS1_2,
+ cipher=TLS_ECDHE_RSA_WITH_AES_256_GCM_SHA384) id 15.20.3370.16; Thu, 10 Sep
+ 2020 08:04:37 +0000
+Received: from VI1PR0402MB3902.eurprd04.prod.outlook.com
+ ([fe80::5d66:84a7:26de:67c3]) by VI1PR0402MB3902.eurprd04.prod.outlook.com
+ ([fe80::5d66:84a7:26de:67c3%6]) with mapi id 15.20.3370.016; Thu, 10 Sep 2020
+ 08:04:37 +0000
+Date:   Thu, 10 Sep 2020 11:04:32 +0300
+From:   Laurentiu Palcu <laurentiu.palcu@oss.nxp.com>
+To:     Daniel Vetter <daniel@ffwll.ch>
+Cc:     Lucas Stach <l.stach@pengutronix.de>,
+        Sam Ravnborg <sam@ravnborg.org>,
         devicetree <devicetree@vger.kernel.org>,
-        linux-arm Mailing List <linux-arm-kernel@lists.infradead.org>,
-        "moderated list:ARM/Mediatek SoC support" 
-        <linux-mediatek@lists.infradead.org>,
+        Guido =?iso-8859-1?Q?G=FCnther?= <agx@sigxcpu.org>,
+        lukas@mntmn.com,
         Linux Kernel Mailing List <linux-kernel@vger.kernel.org>,
-        Gene Chen <gene_chen@richtek.com>, Wilma.Wu@mediatek.com,
-        shufan_lee@richtek.com, cy_huang@richtek.com,
-        benjamin.chao@mediatek.com
-Content-Type: text/plain; charset="UTF-8"
-Content-Transfer-Encoding: quoted-printable
+        dri-devel <dri-devel@lists.freedesktop.org>,
+        NXP Linux Team <linux-imx@nxp.com>,
+        Pengutronix Kernel Team <kernel@pengutronix.de>,
+        Laurentiu Palcu <laurentiu.palcu@nxp.com>,
+        Linux ARM <linux-arm-kernel@lists.infradead.org>
+Subject: Re: [PATCH v9 0/5] Add support for iMX8MQ Display Controller
+ Subsystem
+Message-ID: <20200910080432.26dleo5wxybsacvl@fsr-ub1864-141>
+References: <20200731081836.3048-1-laurentiu.palcu@oss.nxp.com>
+ <20200828083620.6m5yhcv7rg5tckzh@fsr-ub1864-141>
+ <e882838158cb9e81440c8cdeb25d80bf3310e8a8.camel@pengutronix.de>
+ <20200831112445.t4xfz33avdyx5w6p@fsr-ub1864-141>
+ <f46d44f38008d214951994a340814570c182cc15.camel@pengutronix.de>
+ <CAKMK7uG7s1j+k0WPq8H4OcTD0jP2_LpTy0SBw0RtP-ij1OS7Mw@mail.gmail.com>
+Content-Type: text/plain; charset=us-ascii
+Content-Disposition: inline
+In-Reply-To: <CAKMK7uG7s1j+k0WPq8H4OcTD0jP2_LpTy0SBw0RtP-ij1OS7Mw@mail.gmail.com>
+User-Agent: NeoMutt/20171215
+X-ClientProxiedBy: AM0PR06CA0134.eurprd06.prod.outlook.com
+ (2603:10a6:208:ab::39) To VI1PR0402MB3902.eurprd04.prod.outlook.com
+ (2603:10a6:803:22::27)
+MIME-Version: 1.0
+X-MS-Exchange-MessageSentRepresentingType: 1
+Received: from fsr-ub1864-141 (83.217.231.2) by AM0PR06CA0134.eurprd06.prod.outlook.com (2603:10a6:208:ab::39) with Microsoft SMTP Server (version=TLS1_2, cipher=TLS_ECDHE_RSA_WITH_AES_256_GCM_SHA384) id 15.20.3370.16 via Frontend Transport; Thu, 10 Sep 2020 08:04:35 +0000
+X-Originating-IP: [83.217.231.2]
+X-MS-PublicTrafficType: Email
+X-MS-Office365-Filtering-HT: Tenant
+X-MS-Office365-Filtering-Correlation-Id: ed35e88d-57ae-4a3f-d084-08d85560291f
+X-MS-TrafficTypeDiagnostic: VE1PR04MB6607:
+X-MS-Exchange-SharedMailbox-RoutingAgent-Processed: True
+X-LD-Processed: 686ea1d3-bc2b-4c6f-a92c-d99c5c301635,ExtAddr
+X-MS-Exchange-Transport-Forked: True
+X-Microsoft-Antispam-PRVS: <VE1PR04MB6607A9572C9EFAB40213882ABE270@VE1PR04MB6607.eurprd04.prod.outlook.com>
+X-MS-Oob-TLC-OOBClassifiers: OLM:8882;
+X-MS-Exchange-SenderADCheck: 1
+X-Microsoft-Antispam: BCL:0;
+X-Microsoft-Antispam-Message-Info: TPhEeELiLoqUZym90Ze2EJEyXnES38fcNLkvznbeD4tZdHzdyEB/9SuPdsS5M8ZXaoXNHYxIdA9uFrBvf2FMWUwfJ/xuEBimsz22tnojhFs3B8xlMU2wwwX+mA4zaenwlLsHAx3hQ6emFrp55bCYLwTrikANsdwzKUdUz9hshDMFBomvpS7Zt5YWc2vhg4o8aI+ZeciFGiKuwu143Lf7Jx4ogPLIrMbppNOfA33DYSC0jXgg6ie5Zl3FHujKpcpcL9L8RD5GBZU+y6wfH4eNtPXmDNTC0J0aWT3T7i5kjZNWgMRBFCTSolwK8u4HEU6NLI+f0+SrHiIFp3hpqq+RYQN/NwPqDV3zjvChtVtMBGJiQ48VIBBSSc4xgP6H5sOSLIqbuYGPoQUNEUQldryRK7HWrrfbpCNDcoL4/ZtC1dWqMnVVdxh2DpqOI1Y8HsH/ErGebEFaPE3stXMX+boO5Q==
+X-Forefront-Antispam-Report: CIP:255.255.255.255;CTRY:;LANG:en;SCL:1;SRV:;IPV:NLI;SFV:NSPM;H:VI1PR0402MB3902.eurprd04.prod.outlook.com;PTR:;CAT:NONE;SFS:(4636009)(346002)(396003)(366004)(39860400002)(136003)(376002)(44832011)(6666004)(6496006)(26005)(8676002)(83080400001)(478600001)(956004)(30864003)(186003)(7416002)(4326008)(966005)(16526019)(8936002)(2906002)(316002)(53546011)(55016002)(86362001)(83380400001)(54906003)(66946007)(6916009)(66556008)(66476007)(33716001)(1076003)(5660300002)(52116002)(9686003)(32563001);DIR:OUT;SFP:1101;
+X-MS-Exchange-AntiSpam-MessageData: XSJWZuPEjBgzjq94L6FWOPIbgHW8JWkDrzQa3JGUcIxnleCTDmXAaZeNX7yth3LZIAJxpMrVZRzOwpvUnGZYKElN6SJZJLwgdYzBrmHqP7lzDKtu77Rye/4AfdkWT3SILlBCvlH13svb0gvAv3CQkpO8HrIXxLlGwulgO3n+v3QvsahYFqf3MfKOrObftHMv/ZaaQS5S9fi45IFpjONc3F+L3nOudB0hZw4DDwMgpNWq9wOEH6bdCnRVRt1T915g7jo+VPI2KZqEtRz7gV0CBoQrgqRl2imUEZryZ1esAi5jwCUNuiYmO4JIjcofY3Zf2Ths9Hg/lxq8C5YXXGoMAPataGpia/vuJkMImD0fNmP2s1bF3GLGcl1wTt9SghWo5zlmrMAXfoFQMAu592q69D16l3u2yGl2bLk+sXDJJrp1/HOagukFL8kshct7OsglHfzQ6lqsB2RjVxQrM1jz6UHKGK8JEsYj0HFuIXFVWWPOl6iiDQe0fzemgIeeUI7ISln6WYabmkO4m+MVgDM3m9oHGL6iyAhazcQvnvTJU6nWGo96pTfcpdni9wo3XtvvscVa8x2d9rNnuT7+jILyG6XfrNlbdS6uANhOpTOfPD9CpD5K3U6FchI1mhCbh0B6uXeWjVZAszBB8pnjregXQg==
+X-OriginatorOrg: oss.nxp.com
+X-MS-Exchange-CrossTenant-Network-Message-Id: ed35e88d-57ae-4a3f-d084-08d85560291f
+X-MS-Exchange-CrossTenant-AuthSource: VI1PR0402MB3902.eurprd04.prod.outlook.com
+X-MS-Exchange-CrossTenant-AuthAs: Internal
+X-MS-Exchange-CrossTenant-OriginalArrivalTime: 10 Sep 2020 08:04:37.3254
+ (UTC)
+X-MS-Exchange-CrossTenant-FromEntityHeader: Hosted
+X-MS-Exchange-CrossTenant-Id: 686ea1d3-bc2b-4c6f-a92c-d99c5c301635
+X-MS-Exchange-CrossTenant-MailboxType: HOSTED
+X-MS-Exchange-CrossTenant-UserPrincipalName: QBhvzbcYrQEJMzwDzVKEj5mxkXWbxd/IXjggvvcFJfxHU9FOqdpN6G7g16+cEUeGQQV4qpZsgZb/bg8abrpUfw==
+X-MS-Exchange-Transport-CrossTenantHeadersStamped: VE1PR04MB6607
 Sender: devicetree-owner@vger.kernel.org
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-Andy Shevchenko <andy.shevchenko@gmail.com> =E6=96=BC 2020=E5=B9=B49=E6=9C=
-=889=E6=97=A5 =E9=80=B1=E4=B8=89 =E4=B8=8B=E5=8D=889:48=E5=AF=AB=E9=81=93=
-=EF=BC=9A
->
-> On Mon, Sep 7, 2020 at 1:31 PM Gene Chen <gene.chen.richtek@gmail.com> wr=
-ote:
+Hi Daniel,
+
+On Thu, Sep 10, 2020 at 08:47:34AM +0200, Daniel Vetter wrote:
+> On Wed, Sep 9, 2020 at 5:03 PM Lucas Stach <l.stach@pengutronix.de> wrote:
 > >
-> > From: Gene Chen <gene_chen@richtek.com>
+> > Hi Laurentiu,
 > >
-> > Add MT6360 LED driver include 2-channel Flash LED with torch/strobe mod=
-e,
-> > and 4-channel RGB LED support Register/Flash/Breath Mode
->
-> I'm wondering why you don't use struct led_classdev_flash.
->
-> ...
->
+> > On Mo, 2020-08-31 at 14:24 +0300, Laurentiu Palcu wrote:
+> > > Hi Lucas, Sam,
+> > >
+> > > On Mon, Aug 31, 2020 at 12:37:23PM +0200, Lucas Stach wrote:
+> > > > Hi Laurentiu,
+> > > >
+> > > > On Fr, 2020-08-28 at 11:36 +0300, Laurentiu Palcu wrote:
+> > > > > Hi Lucas,
+> > > > >
+> > > > > I was wondering about the plans to merge this series. Since not many
+> > > > > people can test it properly due to lack of DCSS support in the upstream
+> > > > > NWL driver (which I heard it's coming soon) and a completely nonexistent
+> > > > > HDP driver, are we going to take a leap of faith and merge it as is? Or
+> > > > > should we wait?
+> > > >
+> > > > I think even if the bridges aren't ready yet, the driver is in a good
+> > > > enough shape to merge it. There's no point in letting it accumulate
+> > > > bitrot while waiting for the bridges to land. Also I guess it will make
+> > > > bridge driver development a lot easier when the DCSS driver is in-tree.
+> > >
+> > > OK, fair enough.
+> > >
+> > > > > As to who is going to do the actual merge, I know we had a brief
+> > > > > discussion about it some time ago and I was supposed to apply for
+> > > > > drm-misc rights, however it feels a little awkward to merge my own
+> > > > > code... :) Though, I might not even qualify for drm-misc rights anyway,
+> > > > > considering I haven't been very active in this area... :/
+> > > >
+> > > > Please consider applying for drm-misc merge rights. Even if you don't
+> > > > do the initial merge I think it will come in handy in the long run.
+> > >
+> > > OK, I'll apply for drm-misc rights. Sam also encouraged me to do this in
+> > > a previous email. Since this series will be followed by a bunch of other
+> > > patches, enabling support for video planes, among other things, I guess
+> > > I'll need the rights anyway.
+> > >
+> > > > > On that note, I will probably need help with the merging, provided it's
+> > > > > still happenning. Will you be able to help me out with this?
+> > > >
+> > > > Sure, I'm having some time available this week. I'll give this v9
+> > > > another spin on my boards and will do the merge after that.
+> > >
+> > > Thanks Lucas. As a matter of fact, after Sam's email, I was preparing a
+> > > v10 after rebasing to latest drm-next. However, no conflicts were encountered
+> > > and the v9 series applied cleanly. Let me know if you encounter any
+> > > issues and I can resend it.
+> >
+> > I've tested this together with a hacked up eDP bridge driver stack on
+> > my boards. The testing hasn't been really in-depth, but things seem to
+> > work fine. I have now pushed the whole series into drm-misc-next.
+> 
+> Something doesn't compile too well
+> 
+> ERROR: modpost: "__aeabi_ldivmod"
+> [drivers/gpu/drm/imx/dcss/imx-dcss.ko] undefined!
+> ERROR: modpost: "__aeabi_uldivmod"
+> [drivers/gpu/drm/imx/dcss/imx-dcss.ko] undefined!
 
-Both Flash and RGB LED use led_classdev_flash by
-"devm_led_classdev_flash_register_ext".
+Oops... :/ I guess we need an ARM64 dependency in Kconfig. No
+32bit NXP SoC uses this particular display controller. So, that should
+fix the compilation issue on 32bit.
 
-> > +//
-> > +// Copyright (C) 2020 MediaTek Inc.
-> > +//
->
-> Do you really need these two // lines?
->
+I'll send a fix shortly.
 
-ACK, I will remove it
+Thanks,
+laurentiu
 
-> ...
->
-> > +enum {
-> > +       MT6360_LED_ISNK1 =3D 0,
-> > +       MT6360_LED_ISNK2,
-> > +       MT6360_LED_ISNK3,
-> > +       MT6360_LED_ISNK4,
-> > +       MT6360_LED_FLASH1,
-> > +       MT6360_LED_FLASH2,
->
-> > +       MT6360_MAX_LEDS,
->
-> No comma for terminator entry.
->
-
-ACK
-
-> > +};
->
-> ...
->
-> > +#define MT6360_ISNK_MASK               0x1F
->
-> GENMASK()
->
-> ...
->
-> > +#define MT6360_ITORCH_MIN              25000
-> > +#define MT6360_ITORCH_STEP             12500
-> > +#define MT6360_ITORCH_MAX              400000
-> > +#define MT6360_ISTRB_MIN               50000
-> > +#define MT6360_ISTRB_STEP              12500
-> > +#define MT6360_ISTRB_MAX               1500000
-> > +#define MT6360_STRBTO_MIN              64000
-> > +#define MT6360_STRBTO_STEP             32000
-> > +#define MT6360_STRBTO_MAX              2432000
->
-> Add unit suffixes, please.
->
-
-ACK
-
-> ...
->
-> > +#define FLED_TORCH_FLAG_MASK           0x0c
->
-> > +#define FLED_STROBE_FLAG_MASK          0x03
->
-> GENMASK()
->
-
-ACK
-
-> ...
->
-> > +       dev_dbg(lcdev->dev, "[%d] brightness %d\n", led->led_no, level)=
-;
->
-> Not production noise.
->
-
-ACK
-
-> ...
->
-> > +       ret =3D regmap_update_bits(priv->regmap, MT6360_REG_RGBEN, enab=
-le_mask, val);
-> > +       if (ret)
-> > +               return ret;
-> > +
-> > +       return 0;
->
-> return regmap...
->
-> > +       u32 val =3D (level) ? MT6360_FLCSEN_MASK(led->led_no) : 0;
->
-> Why parens?
->
-
-ACK
-
-> ...
->
-> > +       dev_dbg(lcdev->dev, "[%d] brightness %d\n", led->led_no, level)=
-;
->
-> Noise.
->
-
-ACK
-
-> ...
->
-> > +       if (priv->fled_strobe_used) {
-> > +               dev_warn(lcdev->dev, "Please disable strobe first [%d]\=
-n", priv->fled_strobe_used);
-> > +               return -EINVAL;
->
-> Hmm... Shouldn't be guaranteed by some framework?
->
-
-Because both Flash LED use single logically control.
-It doesn't exist one LED is torch mode, and the other is strobe mode.
-
-> ...
->
-> > +               curr =3D prev & (~BIT(led->led_no));
->
-> Too many parens.
->
-
-ACK
-
-> ...
->
-> > +static int mt6360_strobe_brightness_set(struct led_classdev_flash *fl_=
-cdev, u32 brightness)
-> > +{
-> > +       struct mt6360_led *led =3D container_of(fl_cdev, struct mt6360_=
-led, flash);
-> > +       struct led_classdev *lcdev =3D &fl_cdev->led_cdev;
-> > +
->
-> > +       dev_dbg(lcdev->dev, "[%d] strobe brightness %d\n", led->led_no,=
- brightness);
->
-> Noise. Point of this entire function?
->
-
-ACK, I will remove it, reserve function entry only for register
-ledcass_dev check ops exist
-
-> > +       return 0;
-> > +}
->
-> ...
->
-> > +       dev_dbg(lcdev->dev, "[%d] strobe state %d\n", led->led_no, stat=
-e);
->
-> Noise.
->
-> If you wish to do it right, add trace events to the framework.
->
-
-ACK, I will remove it.
-
-> ...
->
-> > +       if (priv->fled_torch_used) {
->
-> > +               dev_warn(lcdev->dev, "Please disable torch first [0x%x]=
-\n", priv->fled_torch_used);
->
-> Again, why the warning? Can this be a part of the framework?
->
-
-Same as above.
-
-> > +               return -EINVAL;
-> > +       }
->
-> ...
->
-> > +               curr =3D prev & (~BIT(led->led_no));
->
-> Too many parens.
->
-
-ACK
-
-> ...
->
-> > +       if (!prev && curr)
-> > +               usleep_range(5000, 6000);
-> > +       else if (prev && !curr)
-> > +               udelay(500);
->
-> These delays must be explained.
->
-
-ACK
-
-> ...
->
-> > +       if (led->led_no =3D=3D MT6360_LED_FLASH1) {
-> > +               strobe_timeout_mask =3D MT6360_FLED1STRBTO_MASK;
-> > +               fled_short_mask =3D MT6360_FLED1SHORT_MASK;
->
-> > +
->
-> Redundant blank line.
->
-
-ACK
-
-> > +       } else {
-> > +               strobe_timeout_mask =3D MT6360_FLED2STRBTO_MASK;
-> > +               fled_short_mask =3D MT6360_FLED2SHORT_MASK;
-> > +       }
->
-> ...
->
-> > +static int mt6360_flash_external_strobe_set(struct v4l2_flash *v4l2_fl=
-ash, bool enable)
-> > +{
-> > +       struct led_classdev_flash *flash =3D v4l2_flash->fled_cdev;
-> > +       struct mt6360_led *led =3D container_of(flash, struct mt6360_le=
-d, flash);
-> > +       struct mt6360_priv *priv =3D led->priv;
->
-> > +       u32 enable_mask =3D MT6360_FLCSEN_MASK(led->led_no);
->
-> enable_mask -> mask
->   u32 value =3D enable ? mask : 0;
->
-> > +       int ret;
-> > +
-> > +       ret =3D regmap_update_bits(priv->regmap, MT6360_REG_FLEDEN, ena=
-ble_mask,
->
-> > +                                enable ? enable_mask : 0);
->
->   ret =3D  ... mask, value);
->
-
-ACK
-
-> > +       if (ret)
-> > +               return ret;
-> > +
-> > +       if (enable)
-> > +               priv->fled_strobe_used |=3D BIT(led->led_no);
-> > +       else
-> > +               priv->fled_strobe_used &=3D (~BIT(led->led_no));
->
-> Too many parens.
->
-
-ACK
-
-> > +
-> > +       return 0;
-> > +}
->
-> ...
->
-> > +       s->val =3D s->max =3D (s->min) + (lcdev->max_brightness - 1) * =
-s->step;
->
-> Ditto.
->
-
-ACK
-
-> ...
->
-> > +static void clamp_align(u32 *v, u32 min, u32 max, u32 step)
->
-> Can we keep a similar API, i.e. return a new value rather than update old=
-?
->
-> > +{
->
-> > +       *v =3D clamp_val(*v, min, max);
->
-> I would rather use a temporary variable (and it actually will be
-> required with above).
->
-> > +       if (step > 1)
-> > +               *v =3D (*v - min) / step * step + min;
->
-> Sounds like open coded rounddown().
->
-
-ACK
-
-> > +}
->
-> ...
->
-> > +       lcdev->max_brightness =3D (val - MT6360_ITORCH_MIN) / MT6360_IT=
-ORCH_STEP + 1;
->
-> DIV_ROUND_UP(val - MT6360_ITORCH_MIN, MT6360_ITORCH_STEP) ?
->
-
-This is mapping 0~val to 1~max_brightness as level.
-I convert val below MT6360_ITORCH_STEP to 1 for ignore max_brightness
-=3D 0, because 0 means disable.
-There is a little difference from DIV_ROUND_UP.
-
-> ...
->
-> > +static int mt6360_init_common_properties(struct mt6360_led *led, struc=
-t led_init_data *init_data)
-> > +{
-> > +       const char *str;
-> > +
-> > +       if (!fwnode_property_read_string(init_data->fwnode, "default-st=
-ate", &str)) {
-> > +               if (!strcmp(str, "on"))
-> > +                       led->default_state =3D STATE_ON;
-> > +               else if (!strcmp(str, "keep"))
-> > +                       led->default_state =3D STATE_KEEP;
->
-> > +               else
->
-> I wouldn't allow some garbage to be off.
->
-
-ACK
-
-> > +                       led->default_state =3D STATE_OFF;
-> > +       }
->
-> What about
->
-> static const char * const states =3D { "on", "keep", "off" };
->
-> int ret;
->
-> ret =3D match_string(states, ARRAY_SIZE(states), str);
-> if (ret)
->  ...
->
-> default_state =3D ret;
->
-> ?
->
-> > +       return 0;
-> > +}
->
-
-ACK
-
-> ...
->
-> > +static int mt6360_led_probe(struct platform_device *pdev)
-> > +{
-> > +       struct mt6360_priv *priv;
-> > +       struct fwnode_handle *child;
-> > +       int i, ret;
-> > +
->
-> > +       priv->regmap =3D dev_get_regmap(pdev->dev.parent, NULL);
-> > +       if (!priv->regmap) {
-> > +               dev_err(&pdev->dev, "Failed to get parent regmap\n");
-> > +               return -ENODEV;
-> > +       }
->
-> ...
->
-> > +out:
->
-> out_flash_leds_release: ?
->
-
-ACK
-
-> > +       for (i =3D MT6360_LED_FLASH1; i <=3D MT6360_LED_FLASH2; i++) {
-> > +               struct mt6360_led *led =3D priv->leds[i];
-> > +
-> > +               if (led && led->v4l2_flash)
-> > +                       v4l2_flash_release(led->v4l2_flash);
-> > +
-> > +       }
->
-> ...
->
-> > +static int mt6360_led_remove(struct platform_device *pdev)
-> > +{
-> > +       struct mt6360_priv *priv =3D platform_get_drvdata(pdev);
-> > +       int i;
-> > +
-> > +       for (i =3D MT6360_LED_FLASH1; i <=3D MT6360_LED_FLASH2; i++) {
-> > +               struct mt6360_led *led =3D priv->leds[i];
-> > +
-> > +               if (led && led->v4l2_flash)
-> > +                       v4l2_flash_release(led->v4l2_flash);
-> > +
-> > +       }
->
-> Looks like a code duplication.
->
-
-ACK
-
-> > +
-> > +       return 0;
-> > +}
-> > +
-> > +static const struct of_device_id __maybe_unused mt6360_led_of_id[] =3D=
- {
-> > +       { .compatible =3D "mediatek,mt6360-led", },
->
-> > +       {},
->
-> No need comma.
->
-
-ACK
-
-> > +};
->
->
-> --
-> With Best Regards,
-> Andy Shevchenko
+> 
+> Cheers, Daniel
+> >
+> > Regards,
+> > Lucas
+> >
+> > > Thanks,
+> > > Laurentiu
+> > >
+> > > > Regards,
+> > > > Lucas
+> > > >
+> > > > > Thanks,
+> > > > > laurentiu
+> > > > >
+> > > > > On Fri, Jul 31, 2020 at 11:18:28AM +0300, Laurentiu Palcu wrote:
+> > > > > > From: Laurentiu Palcu <laurentiu.palcu@nxp.com>
+> > > > > >
+> > > > > > Hi,
+> > > > > >
+> > > > > > This patchset adds initial DCSS support for iMX8MQ chip. Initial support
+> > > > > > includes only graphics plane support (no video planes), no HDR10 capabilities,
+> > > > > > no graphics decompression (only linear, tiled and super-tiled buffers allowed).
+> > > > > >
+> > > > > > Support for the rest of the features will be added incrementally, in subsequent
+> > > > > > patches.
+> > > > > >
+> > > > > > The patchset was tested with both HDP driver (in the downstream tree) and the upstream
+> > > > > > MIPI-DSI driver (with a couple of patches on top, to make it work correctly with DCSS).
+> > > > > >
+> > > > > > Thanks,
+> > > > > > Laurentiu
+> > > > > >
+> > > > > > Changes in v9:
+> > > > > >  * Fixed a compilation issue found by Guido in his setup: 'select
+> > > > > >    VIDEOMODE_HELPERS' was missing from Kconfig;
+> > > > > >  * Use imx8mq-clock.h in the bindings file so one can understand what
+> > > > > >    those clock values mean;
+> > > > > >  * no other changes done. Couldn't address the hang Guido reported as
+> > > > > >    it's not happening in my setup. However, in my tree, there are some
+> > > > > >    extra NWL and ADV patches applied on top of upstream ones... Also,
+> > > > > >    removing them and testing only with upstream, even if there's no
+> > > > > >    image out, does not produce a hang... :/
+> > > > > >
+> > > > > > Changes in v8:
+> > > > > >  * Removed 'select RESET_CONTROLLER" from Kconfig as Philipp pointed
+> > > > > >    out. SRC is not used in DCSS driver;
+> > > > > >  * Nothing else changed;
+> > > > > >
+> > > > > > Changes in v7:
+> > > > > >  * Added a patch to initialize the connector using the drm_bridge_connector
+> > > > > >    API as Sam suggested. Tested it using NWL_DSI and ADV7535 with
+> > > > > >    Guido's patch [1] applied and one fix for ADV [2]. Also, some extra
+> > > > > >    patches for ADV and NWL were needed, from our downstream tree, which
+> > > > > >    will be upstreamed soon by their author;
+> > > > > >  * Rest of the patches are untouched;
+> > > > > >
+> > > > > > [1] https://lists.freedesktop.org/archives/dri-devel/2020-July/273025.html
+> > > > > > [2] https://lists.freedesktop.org/archives/dri-devel/2020-July/273132.html
+> > > > > >
+> > > > > > Changes in v6:
+> > > > > >  * Addressed Rob's comment and added "additionalProperties: false" at
+> > > > > >    the end of the bindings' properties. However, this change surfaced
+> > > > > >    an issue with the assigned-clock* properties not being documented in
+> > > > > >    the properties section. Added the descriptions and the bindings patch
+> > > > > >    will need another review;
+> > > > > >  * Added an entry for DCSS driver in the MAINTAINERS file;
+> > > > > >  * Removed the component framework patch altogether;
+> > > > > >
+> > > > > > Changes in v5:
+> > > > > >  * Rebased to latest;
+> > > > > >  * Took out component framework support and made it a separate patch so
+> > > > > >    that people can still test with HDP driver, which makes use of it.
+> > > > > >    But the idea is to get rid of it once HDP driver's next versions
+> > > > > >    will remove component framework as well;
+> > > > > >  * Slight improvement to modesetting: avoid cutting off the pixel clock
+> > > > > >    if the new mode and the old one are equal. Also, in this case, is
+> > > > > >    not necessary to wait for DTG to shut off. This would allow to switch
+> > > > > >    from 8b RGB to 12b YUV422, for example, with no interruptions (at least
+> > > > > >    from DCSS point of view);
+> > > > > >  * Do not fire off CTXLD when going to suspend, unless it still has
+> > > > > >    entries that need to be committed to DCSS;
+> > > > > >  * Addressed Rob's comments on bindings;
+> > > > > >
+> > > > > > Changes in v4:
+> > > > > >  * Addressed Lucas and Philipp's comments:
+> > > > > >    * Added DRM_KMS_CMA_HELPER dependency in Kconfig;
+> > > > > >    * Removed usage of devm_ functions since I'm already doing all the
+> > > > > >      clean-up in the submodules_deinit();
+> > > > > >    * Moved the drm_crtc_arm_vblank_event() in dcss_crtc_atomic_flush();
+> > > > > >    * Removed en_completion variable from dcss_crtc since this was
+> > > > > >      introduced mainly to avoid vblank timeout warnings which were fixed
+> > > > > >      by arming the vblank event in flush() instead of begin();
+> > > > > >    * Removed clks_on and irq_enabled flags since all the calls to
+> > > > > >      enabling/disabling clocks and interrupts were balanced;
+> > > > > >    * Removed the custom atomic_commit callback and used the DRM core
+> > > > > >      helper and, in the process, got rid of a workqueue that wasn't
+> > > > > >      necessary anymore;
+> > > > > >    * Fixed some minor DT binding issues flagged by Philipp;
+> > > > > >    * Some other minor changes suggested by Lucas;
+> > > > > >  * Removed YUV formats from the supported formats as these cannot work
+> > > > > >    without the HDR10 module CSCs and LUTs. Will add them back when I
+> > > > > >    will add support for video planes;
+> > > > > >
+> > > > > > Changes in v3:
+> > > > > >  * rebased to latest linux-next and made it compile as drmP.h was
+> > > > > >    removed;
+> > > > > >  * removed the patch adding the VIDEO2_PLL clock. It's already applied;
+> > > > > >  * removed an unnecessary 50ms sleep in the dcss_dtg_sync_set();
+> > > > > >  * fixed a a spurious hang reported by Lukas Hartmann and encountered
+> > > > > >    by me several times;
+> > > > > >  * mask DPR and DTG interrupts by default, as they may come enabled from
+> > > > > >    U-boot;
+> > > > > >
+> > > > > > Changes in v2:
+> > > > > >  * Removed '0x' in node's unit-address both in DT and yaml;
+> > > > > >  * Made the address region size lowercase, to be consistent;
+> > > > > >  * Removed some left-over references to P010;
+> > > > > >  * Added a Kconfig dependency of DRM && ARCH_MXC. This will also silence compilation
+> > > > > >    issues reported by kbuild for other architectures;
+> > > > > >
+> > > > > >
+> > > > > > Laurentiu Palcu (5):
+> > > > > >   drm/imx: compile imx directory by default
+> > > > > >   drm/imx: Add initial support for DCSS on iMX8MQ
+> > > > > >   drm/imx/dcss: use drm_bridge_connector API
+> > > > > >   MAINTAINERS: Add entry for i.MX 8MQ DCSS driver
+> > > > > >   dt-bindings: display: imx: add bindings for DCSS
+> > > > > >
+> > > > > >  .../bindings/display/imx/nxp,imx8mq-dcss.yaml | 108 +++
+> > > > > >  MAINTAINERS                                   |   8 +
+> > > > > >  drivers/gpu/drm/Makefile                      |   2 +-
+> > > > > >  drivers/gpu/drm/imx/Kconfig                   |   2 +
+> > > > > >  drivers/gpu/drm/imx/Makefile                  |   1 +
+> > > > > >  drivers/gpu/drm/imx/dcss/Kconfig              |   9 +
+> > > > > >  drivers/gpu/drm/imx/dcss/Makefile             |   6 +
+> > > > > >  drivers/gpu/drm/imx/dcss/dcss-blkctl.c        |  70 ++
+> > > > > >  drivers/gpu/drm/imx/dcss/dcss-crtc.c          | 219 +++++
+> > > > > >  drivers/gpu/drm/imx/dcss/dcss-ctxld.c         | 424 +++++++++
+> > > > > >  drivers/gpu/drm/imx/dcss/dcss-dev.c           | 325 +++++++
+> > > > > >  drivers/gpu/drm/imx/dcss/dcss-dev.h           | 177 ++++
+> > > > > >  drivers/gpu/drm/imx/dcss/dcss-dpr.c           | 562 ++++++++++++
+> > > > > >  drivers/gpu/drm/imx/dcss/dcss-drv.c           | 138 +++
+> > > > > >  drivers/gpu/drm/imx/dcss/dcss-dtg.c           | 409 +++++++++
+> > > > > >  drivers/gpu/drm/imx/dcss/dcss-kms.c           | 198 +++++
+> > > > > >  drivers/gpu/drm/imx/dcss/dcss-kms.h           |  44 +
+> > > > > >  drivers/gpu/drm/imx/dcss/dcss-plane.c         | 405 +++++++++
+> > > > > >  drivers/gpu/drm/imx/dcss/dcss-scaler.c        | 826 ++++++++++++++++++
+> > > > > >  drivers/gpu/drm/imx/dcss/dcss-ss.c            | 180 ++++
+> > > > > >  20 files changed, 4112 insertions(+), 1 deletion(-)
+> > > > > >  create mode 100644 Documentation/devicetree/bindings/display/imx/nxp,imx8mq-dcss.yaml
+> > > > > >  create mode 100644 drivers/gpu/drm/imx/dcss/Kconfig
+> > > > > >  create mode 100644 drivers/gpu/drm/imx/dcss/Makefile
+> > > > > >  create mode 100644 drivers/gpu/drm/imx/dcss/dcss-blkctl.c
+> > > > > >  create mode 100644 drivers/gpu/drm/imx/dcss/dcss-crtc.c
+> > > > > >  create mode 100644 drivers/gpu/drm/imx/dcss/dcss-ctxld.c
+> > > > > >  create mode 100644 drivers/gpu/drm/imx/dcss/dcss-dev.c
+> > > > > >  create mode 100644 drivers/gpu/drm/imx/dcss/dcss-dev.h
+> > > > > >  create mode 100644 drivers/gpu/drm/imx/dcss/dcss-dpr.c
+> > > > > >  create mode 100644 drivers/gpu/drm/imx/dcss/dcss-drv.c
+> > > > > >  create mode 100644 drivers/gpu/drm/imx/dcss/dcss-dtg.c
+> > > > > >  create mode 100644 drivers/gpu/drm/imx/dcss/dcss-kms.c
+> > > > > >  create mode 100644 drivers/gpu/drm/imx/dcss/dcss-kms.h
+> > > > > >  create mode 100644 drivers/gpu/drm/imx/dcss/dcss-plane.c
+> > > > > >  create mode 100644 drivers/gpu/drm/imx/dcss/dcss-scaler.c
+> > > > > >  create mode 100644 drivers/gpu/drm/imx/dcss/dcss-ss.c
+> > > > > >
+> > > > > > --
+> > > > > > 2.23.0
+> > > > > >
+> >
+> > _______________________________________________
+> > dri-devel mailing list
+> > dri-devel@lists.freedesktop.org
+> > https://lists.freedesktop.org/mailman/listinfo/dri-devel
+> 
+> 
+> 
+> -- 
+> Daniel Vetter
+> Software Engineer, Intel Corporation
+> http://blog.ffwll.ch
