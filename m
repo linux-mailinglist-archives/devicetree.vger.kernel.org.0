@@ -2,841 +2,149 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from vger.kernel.org (vger.kernel.org [23.128.96.18])
-	by mail.lfdr.de (Postfix) with ESMTP id C350E2654BD
-	for <lists+devicetree@lfdr.de>; Fri, 11 Sep 2020 00:02:18 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTP id 58C4F2654C7
+	for <lists+devicetree@lfdr.de>; Fri, 11 Sep 2020 00:04:05 +0200 (CEST)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S1725306AbgIJWCQ (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Thu, 10 Sep 2020 18:02:16 -0400
-Received: from perceval.ideasonboard.com ([213.167.242.64]:59914 "EHLO
-        perceval.ideasonboard.com" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S1725294AbgIJWCP (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Thu, 10 Sep 2020 18:02:15 -0400
-Received: from pendragon.ideasonboard.com (62-78-145-57.bb.dnainternet.fi [62.78.145.57])
-        by perceval.ideasonboard.com (Postfix) with ESMTPSA id 987903B;
-        Fri, 11 Sep 2020 00:02:06 +0200 (CEST)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=ideasonboard.com;
-        s=mail; t=1599775326;
-        bh=HKGlc5yb7ncRySFT9+clBSuAmcahFdx91g+7VW9qpJw=;
-        h=Date:From:To:Cc:Subject:References:In-Reply-To:From;
-        b=Fk+xc74vCbgilkbOELi2bhSJR8wANXpMhwfOE9KEOKGgE/y6zVVcdzJPnu59Y8qSP
-         22D6KQ+EFz4Ho/iLJ3qD5LIkT2fYhsGQJgr9wBce/f5X3FKcilDzaoPVELtPdyZd8w
-         NmqS0vXMmZ7Jg3inuPJYcoFauST/gOzPGs+ol7l4=
-Date:   Fri, 11 Sep 2020 01:01:38 +0300
-From:   Laurent Pinchart <laurent.pinchart@ideasonboard.com>
-To:     Bogdan Togorean <bogdan.togorean@analog.com>
-Cc:     linux-media@vger.kernel.org,
-        Mauro Carvalho Chehab <mchehab@kernel.org>,
-        Rob Herring <robh+dt@kernel.org>,
-        "David S. Miller" <davem@davemloft.net>,
-        Sakari Ailus <sakari.ailus@linux.intel.com>,
-        Laurent Pinchart <laurent.pinchart+renesas@ideasonboard.com>,
-        Jacopo Mondi <jacopo+renesas@jmondi.org>,
-        Kieran Bingham <kieran.bingham+renesas@ideasonboard.com>,
-        YueHaibing <yuehaibing@huawei.com>,
-        Bingbu Cao <bingbu.cao@intel.com>,
-        Manivannan Sadhasivam <manivannan.sadhasivam@linaro.org>,
-        Shawn Tu <shawnx.tu@intel.com>,
-        Dongchun Zhu <dongchun.zhu@mediatek.com>,
-        devicetree@vger.kernel.org, linux-kernel@vger.kernel.org
-Subject: Re: [PATCH 1/2] media: i2c: Add driver for the Analog Devices
- ADDI9036 ToF front-end
-Message-ID: <20200910220138.GJ3940@pendragon.ideasonboard.com>
-References: <20200910162426.55306-1-bogdan.togorean@analog.com>
+        id S1725808AbgIJWD4 (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Thu, 10 Sep 2020 18:03:56 -0400
+Received: from lindbergh.monkeyblade.net ([23.128.96.19]:42558 "EHLO
+        lindbergh.monkeyblade.net" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
+        with ESMTP id S1725294AbgIJWDy (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Thu, 10 Sep 2020 18:03:54 -0400
+Received: from mail-wm1-x343.google.com (mail-wm1-x343.google.com [IPv6:2a00:1450:4864:20::343])
+        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id C780CC061573;
+        Thu, 10 Sep 2020 15:03:53 -0700 (PDT)
+Received: by mail-wm1-x343.google.com with SMTP id x23so2179706wmi.3;
+        Thu, 10 Sep 2020 15:03:53 -0700 (PDT)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+        d=gmail.com; s=20161025;
+        h=mime-version:references:in-reply-to:from:date:message-id:subject:to
+         :cc;
+        bh=XwFesGR4NbCLq0zixfOqhv5ARStJ9CjQZ3o4UAP9K2k=;
+        b=Ryg27q/gAZXbg6huhbkDvo7fSvYgt+GSFoQpCeq1JnM98lYeNn1mU0FPPQjx8+zCR7
+         HO7cWjwGxLY+h/9hS+8lXwfAdzU25b/SOByjCW516cHROFpUlc4E84piriVXDA48SJ/M
+         /AAdslZCcSarc31hmEtZQSGY8Q4GXkfi1BfK/281hA6gGFH62+hTlrfivfTpcxXfECkf
+         b6MATUAd7FQDf1Fer5hJHd61DSrCV/PjwZVnBYKKUMSGFBT0prFUD2qcQ0Lupkp1ye7H
+         uJOdx9f4noBxv6I1KggJpV17U/pj6gg3zA/oppkQKW1iCBL5V1OelDW1gvcGqFZhjCqW
+         SFdg==
+X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+        d=1e100.net; s=20161025;
+        h=x-gm-message-state:mime-version:references:in-reply-to:from:date
+         :message-id:subject:to:cc;
+        bh=XwFesGR4NbCLq0zixfOqhv5ARStJ9CjQZ3o4UAP9K2k=;
+        b=mEygLPC3mXo3buF+1VH688becNg/sJwRSLyNwVa+ssWw2u/2ssuT0+Yjc5mjA/i6Zf
+         fC2r1sx9mb42FPLvLJzx5wX6H7t9/mSjW3Q8Sl207ymTOMvuZDMGJX4cebyAylN9hL6/
+         ksFRsMkG1DJsvh+5bVI63tIEBZMq1D+4dQV8vtuOMZCrYxiBBUA8XnCEy3EnYUXMXMaf
+         5clcH7iErVaJiYH9Pt+oN1m+lR6Z2vzfP0G+nVGTYgn9Na+r2dh+CO1oQz+mmB/R/qwb
+         vFWoJQEhi8aBcTBKk3Ka8wSSOzAzfSFGLHZVyOBepfCm+zo/KODmChpUb7jLIaCWy9Uh
+         dSrg==
+X-Gm-Message-State: AOAM530/HjeSK/ZK1TgL2OrTJ0hp47k/eXAL/9tK4r/h6IfD5chuzV7Y
+        TVUCFlrvnrucMRBp2a8xgOWUga7f8p0Z6P36XWY=
+X-Google-Smtp-Source: ABdhPJzKmH/rmiHX/MqNIlb9eckwnYeH5cxMnEa8h0PE/vcCG2cB5ok8HqYzXdjuavUOrjkKgumjScxKYz3UVx9VSr4=
+X-Received: by 2002:a7b:cf1a:: with SMTP id l26mr2030447wmg.164.1599775431560;
+ Thu, 10 Sep 2020 15:03:51 -0700 (PDT)
 MIME-Version: 1.0
-Content-Type: text/plain; charset=utf-8
-Content-Disposition: inline
-In-Reply-To: <20200910162426.55306-1-bogdan.togorean@analog.com>
+References: <1594899334-19772-1-git-send-email-kalyan_t@codeaurora.org>
+ <1594899334-19772-2-git-send-email-kalyan_t@codeaurora.org> <20200910220037.GA472@uller>
+In-Reply-To: <20200910220037.GA472@uller>
+From:   Rob Clark <robdclark@gmail.com>
+Date:   Thu, 10 Sep 2020 15:04:47 -0700
+Message-ID: <CAF6AEGvriNYkeaBVmK2mEG1OVojun2nQ7c2X6BuE-E-B4DRujA@mail.gmail.com>
+Subject: Re: [PATCH 2/3] arm64: dts: sc7180: add bus clock to mdp node for
+ sc7180 target
+To:     Bjorn Andersson <bjorn.andersson@linaro.org>
+Cc:     Kalyan Thota <kalyan_t@codeaurora.org>,
+        dri-devel <dri-devel@lists.freedesktop.org>,
+        linux-arm-msm <linux-arm-msm@vger.kernel.org>,
+        freedreno <freedreno@lists.freedesktop.org>,
+        "open list:OPEN FIRMWARE AND FLATTENED DEVICE TREE BINDINGS" 
+        <devicetree@vger.kernel.org>,
+        Krishna Manikandan <mkrishn@codeaurora.org>,
+        Linux Kernel Mailing List <linux-kernel@vger.kernel.org>,
+        Sean Paul <seanpaul@chromium.org>,
+        "Kristian H. Kristensen" <hoegsberg@chromium.org>,
+        Douglas Anderson <dianders@chromium.org>,
+        Jeykumar Sankaran <jsanka@codeaurora.org>,
+        Raviteja Tamatam <travitej@codeaurora.org>,
+        nganji@codeaurora.org
+Content-Type: text/plain; charset="UTF-8"
 Sender: devicetree-owner@vger.kernel.org
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-Hi Bogdan,
+On Thu, Sep 10, 2020 at 3:00 PM Bjorn Andersson
+<bjorn.andersson@linaro.org> wrote:
+>
+> On Thu 16 Jul 11:35 UTC 2020, Kalyan Thota wrote:
+>
+> > From: Krishna Manikandan <mkrishn@codeaurora.org>
+> >
+> > Move the bus clock to mdp device node,in order
+> > to facilitate bus band width scaling on sc7180
+> > target.
+> >
+> > The parent device MDSS will not vote for bus bw,
+> > instead the vote will be triggered by mdp device
+> > node. Since a minimum vote is required to turn
+> > on bus clock, move the clock node to mdp device
+> > from where the votes are requested.
+> >
+> > This patch has dependency on the below series
+> > https://patchwork.kernel.org/patch/11468783/
+> >
+>
+> Isn't this dependency on an old revision of patch 3/3 in this series?
+>
+> Regardless, I don't see either the linked patch or patch 3 merged in
+> linux-next, so I presume I should not merge this?
 
-Thank you for the patch.
+I guess that would be "drm/msm/dpu: add support for clk and bw scaling
+for display" on msm-next-staging[1] (about to be msm-next)
 
-On Thu, Sep 10, 2020 at 07:24:06PM +0300, Bogdan Togorean wrote:
-> The ADDI9036 is a complete, 45 MHz, front-end solution for charge
-> coupled device (CCD) time of flight (TOF) imaging applications.
-> 
-> It has 2-lane MIPI CSI-2 RAW12 data output and i2c control interface.
-> 
-> The programming of calibration and firmware is performed by userspace
-> SDK through CID_USER class IOCTLs.
+[1] https://gitlab.freedesktop.org/drm/msm/-/commits/msm-next-staging
 
-I'm afraid that's not acceptable. The firmware should be loaded using
-the Linux kernel firmware API. As for calibration, is it static data ?
-How is it generated ?
 
-> Signed-off-by: Bogdan Togorean <bogdan.togorean@analog.com>
-> ---
->  MAINTAINERS                        |  10 +
->  drivers/media/i2c/Kconfig          |  14 +
->  drivers/media/i2c/Makefile         |   1 +
->  drivers/media/i2c/addi9036.c       | 673 +++++++++++++++++++++++++++++
->  include/uapi/linux/v4l2-controls.h |   6 +
->  5 files changed, 704 insertions(+)
->  create mode 100644 drivers/media/i2c/addi9036.c
-> 
-> diff --git a/MAINTAINERS b/MAINTAINERS
-> index b5cfab015bd6..fb03ad9ca920 100644
-> --- a/MAINTAINERS
-> +++ b/MAINTAINERS
-> @@ -477,6 +477,16 @@ W:	http://wiki.analog.com/AD7879
->  W:	http://ez.analog.com/community/linux-device-drivers
->  F:	drivers/input/touchscreen/ad7879.c
->  
-> +ADDI9036 TOF FRONTEND DRIVER
-> +M:	Bogdan Togorean <bogdan.togorean@analog.com>
-> +L:	linux-media@vger.kernel.org
-> +S:	Supported
-> +W:	https://www.analog.com/en/products/addi9036.html
-> +W:	http://ez.analog.com/community/linux-device-drivers
-> +T:	git git://linuxtv.org/media_tree.git
-> +F:	Documentation/devicetree/bindings/media/i2c/adi,addi9036.yaml
-> +F:	drivers/media/i2c/addi9036.c
-> +
->  ADDRESS SPACE LAYOUT RANDOMIZATION (ASLR)
->  M:	Jiri Kosina <jikos@kernel.org>
->  S:	Maintained
-> diff --git a/drivers/media/i2c/Kconfig b/drivers/media/i2c/Kconfig
-> index c7ba76fee599..087dd307505d 100644
-> --- a/drivers/media/i2c/Kconfig
-> +++ b/drivers/media/i2c/Kconfig
-> @@ -725,6 +725,20 @@ config VIDEO_APTINA_PLL
->  config VIDEO_SMIAPP_PLL
->  	tristate
->  
-> +config VIDEO_ADDI9036
-> +	tristate "Analog Devices ADDI9036 ToF front-end support"
-> +	depends on I2C && VIDEO_V4L2
-> +	select MEDIA_CONTROLLER
-> +	select VIDEO_V4L2_SUBDEV_API
-> +	select V4L2_FWNODE
-> +	select REGMAP_I2C
-> +	help
-> +	  This is a Video4Linux2 driver for Analog Devices ADDI9036
-> +	  Time of Flight front-end.
-> +
-> +	  To compile this driver as a module, choose M here: the
-> +	  module will be called addi9036.
-> +
->  config VIDEO_HI556
->  	tristate "Hynix Hi-556 sensor support"
->  	depends on I2C && VIDEO_V4L2
-> diff --git a/drivers/media/i2c/Makefile b/drivers/media/i2c/Makefile
-> index f0a77473979d..631a7c7612ca 100644
-> --- a/drivers/media/i2c/Makefile
-> +++ b/drivers/media/i2c/Makefile
-> @@ -26,6 +26,7 @@ obj-$(CONFIG_VIDEO_AK7375)  += ak7375.o
->  obj-$(CONFIG_VIDEO_DW9714)  += dw9714.o
->  obj-$(CONFIG_VIDEO_DW9768)  += dw9768.o
->  obj-$(CONFIG_VIDEO_DW9807_VCM)  += dw9807-vcm.o
-> +obj-$(CONFIG_VIDEO_ADDI9036) += addi9036.o
->  obj-$(CONFIG_VIDEO_ADV7170) += adv7170.o
->  obj-$(CONFIG_VIDEO_ADV7175) += adv7175.o
->  obj-$(CONFIG_VIDEO_ADV7180) += adv7180.o
-> diff --git a/drivers/media/i2c/addi9036.c b/drivers/media/i2c/addi9036.c
-> new file mode 100644
-> index 000000000000..76c3444058dc
-> --- /dev/null
-> +++ b/drivers/media/i2c/addi9036.c
-> @@ -0,0 +1,673 @@
-> +// SPDX-License-Identifier: GPL-2.0
-> +/*
-> + * Driver for the Analog Devices ADDI9036 ToF front-end.
-> + *
-> + * Copyright (C) 2019-2020 Analog Devices, All Rights Reserved.
-> + *
-> + */
-> +
-> +#include <linux/device.h>
-> +#include <linux/gpio/consumer.h>
-> +#include <linux/i2c.h>
-> +#include <linux/init.h>
-> +#include <linux/module.h>
-> +#include <linux/mutex.h>
-> +#include <linux/of.h>
-> +#include <linux/of_graph.h>
-> +#include <linux/regmap.h>
-> +#include <linux/slab.h>
-> +#include <linux/types.h>
-> +#include <linux/version.h>
-> +#include <media/v4l2-ctrls.h>
-> +#include <media/v4l2-fwnode.h>
-> +#include <media/v4l2-subdev.h>
-> +
-> +struct addi9036_mode_info {
-> +	u32 width;
-> +	u32 height;
-> +	u32 pixel_rate;
-> +	u32 link_freq_idx;
-> +};
-> +
-> +struct addi9036 {
-> +	struct regmap *regmap;
-> +	struct device *dev;
-> +	struct v4l2_subdev sd;
-> +	struct media_pad pad;
-> +	struct v4l2_fwnode_endpoint ep;
-> +	struct v4l2_mbus_framefmt fmt;
-> +	struct v4l2_rect crop;
-> +
-> +	const struct addi9036_mode_info *current_mode;
-> +
-> +	struct v4l2_ctrl_handler ctrls;
-> +	struct v4l2_ctrl *pixel_rate;
-> +	struct v4l2_ctrl *link_freq;
-> +
-> +	/* lock to protect power state */
-> +	struct mutex power_lock;
-> +	int power_count;
-> +
-> +	struct gpio_desc *rst_gpio;
-> +
-> +	/* controls */
-> +	struct v4l2_ctrl *set_chip_config;
-> +	struct v4l2_ctrl *reg_read;
-> +};
-> +
-> +static inline struct addi9036 *to_addi9036(struct v4l2_subdev *sd)
-> +{
-> +	return container_of(sd, struct addi9036, sd);
-> +}
-> +
-> +#define V4L2_CID_AD_DEV_SET_CHIP_CONFIG_QUERY  (V4L2_CID_USER_ADDI9036_BASE + 0)
-> +#define V4L2_CID_AD_DEV_REG_READ_QUERY  (V4L2_CID_USER_ADDI9036_BASE + 1)
-> +
-> +static const struct reg_sequence addi9036_powerup_setting[] = {
-> +	{ 0xc4c0, 0x001c },
-> +	{ 0xc4c3, 0x001c },
-> +	{ 0xc4d7, 0x0000 },
-> +	{ 0xc4d5, 0x0002 },
-> +	{ 0xc4da, 0x0001 },
-> +	{ 0xc4f0, 0x0000 },
-> +	{ 0xc427, 0x0003 },
-> +	{ 0xc427, 0x0001 },
-> +	{ 0xc427, 0x0000 },
-> +	{ 0xc426, 0x0030 },
-> +	{ 0xc426, 0x0010 },
-> +	{ 0xc426, 0x0000 },
-> +	{ 0xc423, 0x0080 },
-> +	{ 0xc431, 0x0080 },
-> +	{ 0x4001, 0x0007 },
-> +	{ 0x7c22, 0x0004 }
-> +};
-> +
-> +static const struct reg_sequence addi9036_powerdown_setting[] = {
-> +	{ 0xc022, 0x0001 },
-> +	{ 0x4001, 0x0006 },
-> +	{ 0x7c22, 0x0004 },
-> +	{ 0xc431, 0x0082 },
-> +	{ 0xc423, 0x0000 },
-> +	{ 0xc426, 0x0020 },
-> +	{ 0xc427, 0x0002 },
-> +	{ 0xc4c0, 0x003c },
-> +	{ 0xc4c3, 0x003c },
-> +	{ 0xc4d5, 0x0003 },
-> +	{ 0xc4da, 0x0000 },
-> +	{ 0xc4d7, 0x0001 },
-> +	{ 0xc4f0, 0x0001 }
-> +};
-> +
-> +static const s64 link_freq_tbl[] = {
-> +	110529000,
-> +	221184000,
-> +};
-> +
-> +/* Elements of the structure must be ordered ascending by width & height */
-> +static const struct addi9036_mode_info addi9036_mode_info_data[] = {
-> +	{
-> +		.width = 640,
-> +		.height = 480,
-> +		.pixel_rate = 36864000,
-> +		.link_freq_idx = 0 /* an index in link_freq_tbl[] */
-> +	},
-> +	{
-> +		.width = 640,
-> +		.height = 960,
-> +		.pixel_rate = 73728000,
-> +		.link_freq_idx = 1 /* an index in link_freq_tbl[] */
-> +	},
-> +};
-> +
-> +static bool addi9306_readable_register(struct device *dev, unsigned int reg)
-> +{
-> +	if (((reg >= 0x4000) && (reg <= 0x6FFF)) ||
-> +	    ((reg >= 0x7C00) && (reg <= 0x7FFF)) ||
-> +	    ((reg >= 0xC000) && (reg <= 0xC200)) ||
-> +	    ((reg >= 0xC300) && (reg <= 0xC6BF)))
-> +		return true;
-> +	else
-> +		return false;
-> +}
-> +
-> +static bool addi9306_writeable_register(struct device *dev, unsigned int reg)
-> +{
-> +	if (((reg >= 0x4000) && (reg <= 0x6FFF)) ||
-> +	    ((reg >= 0x7C00) && (reg <= 0x7FFF)) ||
-> +	    ((reg >= 0xC000) && (reg <= 0xC113)) ||
-> +	    ((reg >= 0xC300) && (reg <= 0xC7FF)))
-> +		return true;
-> +	else
-> +		return false;
-> +}
-> +
-> +static const struct regmap_config addi9036_i2c_regmap_config = {
-> +	.reg_bits = 16,
-> +	.val_bits = 16,
-> +
-> +	.max_register = 0xC7FF,
-> +	.writeable_reg = addi9306_writeable_register,
-> +	.readable_reg = addi9306_readable_register,
-> +	.cache_type = REGCACHE_NONE,
-> +};
-> +
-> +static int addi9036_set_power_on(struct addi9036 *addi9036)
-> +{
-> +	int ret;
-> +
-> +	if (addi9036->rst_gpio)
-> +		gpiod_set_value_cansleep(addi9036->rst_gpio, 0);
-> +
-> +	ret = regmap_register_patch(addi9036->regmap, addi9036_powerup_setting,
-> +				    ARRAY_SIZE(addi9036_powerup_setting));
-> +	if (ret)
-> +		dev_err(addi9036->dev, "Could not set power up registers\n");
-> +
-> +	return ret;
-> +}
-> +
-> +static int addi9036_set_power_off(struct addi9036 *addi9036)
-> +{
-> +	int ret;
-> +
-> +	ret = regmap_register_patch(addi9036->regmap,
-> +				    addi9036_powerdown_setting,
-> +				    ARRAY_SIZE(addi9036_powerdown_setting));
-> +	if (ret)
-> +		dev_err(addi9036->dev, "could not set power down registers\n");
-> +
-> +	if (addi9036->rst_gpio)
-> +		gpiod_set_value_cansleep(addi9036->rst_gpio, 1);
-> +
-> +	return ret;
-> +}
-> +
-> +static int addi9036_s_power(struct v4l2_subdev *sd, int on)
-> +{
-> +	struct addi9036 *addi9036 = to_addi9036(sd);
-> +	int ret = 0;
-> +
-> +	mutex_lock(&addi9036->power_lock);
-> +
-> +	dev_dbg(addi9036->dev, "s_power: %d\n", on);
-> +
-> +	/* If the power count is modified from 0 to != 0 or from != 0 to 0,
-> +	 * update the power state.
-> +	 */
-> +	if (addi9036->power_count == !on) {
-> +		if (on)
-> +			ret = addi9036_set_power_on(addi9036);
-> +		else
-> +			ret = addi9036_set_power_off(addi9036);
-> +	}
-> +
-> +	if (!ret) {
-> +		/* Update the power count. */
-> +		addi9036->power_count += on ? 1 : -1;
-> +		WARN(addi9036->power_count < 0, "Unbalanced power count\n");
-> +		WARN(addi9036->power_count > 1, "Duplicated s_power call\n");
-> +	}
-> +
-> +	mutex_unlock(&addi9036->power_lock);
-> +
-> +	return ret;
-> +}
-> +
-> +static int addi9036_set_chip_config(struct addi9036 *addi9036,
-> +				    struct v4l2_ctrl *ctrl)
-> +{
-> +	int index;
-> +	unsigned short *reg, *val;
-> +
-> +	reg = (unsigned short *)(ctrl->p_new.p_u16);
-> +	val = (unsigned short *)(ctrl->p_new.p_u16 + 1);
-> +
-> +	for (index = 0; index < ctrl->elems; index += 2) {
-> +		regmap_write(addi9036->regmap, *reg, *val);
-> +		reg += 2;
-> +		val += 2;
-> +	}
-> +
-> +	return 0;
-> +}
-> +
-> +static int addi9036_s_ctrl(struct v4l2_ctrl *ctrl)
-> +{
-> +	struct addi9036 *addi9036 = container_of(ctrl->handler,
-> +						 struct addi9036, ctrls);
-> +	int ret = 0;
-> +	unsigned int val;
-> +
-> +	switch (ctrl->id) {
-> +	case V4L2_CID_AD_DEV_SET_CHIP_CONFIG_QUERY:
-> +		ret = addi9036_set_chip_config(addi9036, ctrl);
-> +		break;
-> +	case V4L2_CID_AD_DEV_REG_READ_QUERY:
-> +		ret = regmap_read(addi9036->regmap, *(u16 *)(ctrl->p_new.p_u16),
-> +				  &val);
-> +		if (ret)
-> +			dev_warn(addi9036->dev,
-> +				 "could not read from register\n");
-> +		else
-> +			*(u16 *)(ctrl->p_new.p_u16) = val;
-> +		break;
-> +	case V4L2_CID_PIXEL_RATE:
-> +	case V4L2_CID_LINK_FREQ:
-> +		break;
-> +	default:
-> +		dev_err(addi9036->dev, "%s > Unhandled: %x  param=%x\n",
-> +			__func__, ctrl->id, ctrl->val);
-> +		ret = -EINVAL;
-> +		break;
-> +	}
-> +
-> +	return ret;
-> +}
-> +
-> +static const struct v4l2_ctrl_ops addi9036_ctrl_ops = {
-> +	.s_ctrl = addi9036_s_ctrl,
-> +};
-> +
-> +static const struct v4l2_ctrl_config addi9036_ctrl_chip_config = {
-> +	.ops		= &addi9036_ctrl_ops,
-> +	.id		= V4L2_CID_AD_DEV_SET_CHIP_CONFIG_QUERY,
-> +	.name		= "chip_config",
-> +	.type		= V4L2_CTRL_TYPE_U16,
-> +	.def		= 0xFF,
-> +	.min		= 0x00,
-> +	.max		= 0xFFFF,
-> +	.step		= 1,
-> +	.dims		= { 2048 },
-> +	.elem_size	= 2
-> +};
-> +
-> +static const struct v4l2_ctrl_config addi9036_ctrl_reg_read = {
-> +	.ops	= &addi9036_ctrl_ops,
-> +	.id	= V4L2_CID_AD_DEV_REG_READ_QUERY,
-> +	.name	= "reg_read",
-> +	.type	= V4L2_CTRL_TYPE_U16,
-> +	.def	= 0,
-> +	.min	= 0x00,
-> +	.max	= 0xFFFF,
-> +	.step	= 1
-> +};
-> +
-> +static int addi9036_enum_mbus_code(struct v4l2_subdev *sd,
-> +				   struct v4l2_subdev_pad_config *cfg,
-> +				   struct v4l2_subdev_mbus_code_enum *code)
-> +{
-> +	if (code->index > 0)
-> +		return -EINVAL;
-> +
-> +	code->code = MEDIA_BUS_FMT_SBGGR12_1X12;
-> +
-> +	return 0;
-> +}
-> +
-> +static int addi9036_enum_frame_size(struct v4l2_subdev *subdev,
-> +				    struct v4l2_subdev_pad_config *cfg,
-> +				    struct v4l2_subdev_frame_size_enum *fse)
-> +{
-> +	if (fse->code != MEDIA_BUS_FMT_SBGGR12_1X12)
-> +		return -EINVAL;
-> +
-> +	if (fse->index >= ARRAY_SIZE(addi9036_mode_info_data))
-> +		return -EINVAL;
-> +
-> +	fse->min_width = addi9036_mode_info_data[fse->index].width;
-> +	fse->max_width = addi9036_mode_info_data[fse->index].width;
-> +	fse->min_height = addi9036_mode_info_data[fse->index].height;
-> +	fse->max_height = addi9036_mode_info_data[fse->index].height;
-> +
-> +	return 0;
-> +}
-> +
-> +static struct v4l2_mbus_framefmt *
-> +addi9036_get_pad_format(struct addi9036 *addi9036,
-> +			struct v4l2_subdev_pad_config *cfg,
-> +			unsigned int pad,
-> +			enum v4l2_subdev_format_whence which)
-> +{
-> +	switch (which) {
-> +	case V4L2_SUBDEV_FORMAT_TRY:
-> +		return v4l2_subdev_get_try_format(&addi9036->sd, cfg, pad);
-> +	case V4L2_SUBDEV_FORMAT_ACTIVE:
-> +		return &addi9036->fmt;
-> +	default:
-> +		return NULL;
-> +	}
-> +}
-> +
-> +static int addi9036_get_format(struct v4l2_subdev *sd,
-> +			       struct v4l2_subdev_pad_config *cfg,
-> +			       struct v4l2_subdev_format *format)
-> +{
-> +	struct addi9036 *addi9036 = to_addi9036(sd);
-> +	struct v4l2_mbus_framefmt *pad_format;
-> +
-> +	pad_format = addi9036_get_pad_format(addi9036, cfg, format->pad,
-> +					     format->which);
-> +
-> +	if (!pad_format)
-> +		return -EINVAL;
-> +
-> +	format->format = *pad_format;
-> +
-> +	return 0;
-> +}
-> +
-> +static struct v4l2_rect *
-> +addi9036_get_pad_crop(struct addi9036 *addi9036,
-> +		      struct v4l2_subdev_pad_config *cfg,
-> +		      unsigned int pad, enum v4l2_subdev_format_whence which)
-> +{
-> +	switch (which) {
-> +	case V4L2_SUBDEV_FORMAT_TRY:
-> +		return v4l2_subdev_get_try_crop(&addi9036->sd, cfg, pad);
-> +	case V4L2_SUBDEV_FORMAT_ACTIVE:
-> +		return &addi9036->crop;
-> +	default:
-> +		return NULL;
-> +	}
-> +}
-> +
-> +static const struct addi9036_mode_info *
-> +addi9036_find_nearest_mode(unsigned int width, unsigned int height)
-> +{
-> +	unsigned int i;
-> +
-> +	for (i = ARRAY_SIZE(addi9036_mode_info_data) - 1; i > 0; i--) {
-> +		if (addi9036_mode_info_data[i].width <= width &&
-> +		    addi9036_mode_info_data[i].height <= height)
-> +			break;
-> +	}
-> +
-> +	return &addi9036_mode_info_data[i];
-> +}
-> +
-> +static int addi9036_set_format(struct v4l2_subdev *sd,
-> +			       struct v4l2_subdev_pad_config *cfg,
-> +			       struct v4l2_subdev_format *format)
-> +{
-> +	struct addi9036 *addi9036 = to_addi9036(sd);
-> +	struct v4l2_mbus_framefmt *framefmt;
-> +	struct v4l2_rect *crop;
-> +	const struct addi9036_mode_info *new_mode;
-> +	int ret;
-> +
-> +	dev_dbg(addi9036->dev, "set_fmt: %x %dx%d\n",
-> +		format->format.code, format->format.width,
-> +		format->format.height);
-> +
-> +	crop = addi9036_get_pad_crop(addi9036, cfg, format->pad,
-> +				     format->which);
-> +
-> +	if (!crop)
-> +		return -EINVAL;
-> +
-> +	new_mode = addi9036_find_nearest_mode(format->format.width,
-> +					      format->format.height);
-> +	crop->width = new_mode->width;
-> +	crop->height = new_mode->height;
-> +
-> +	if (format->which == V4L2_SUBDEV_FORMAT_ACTIVE) {
-> +		ret = v4l2_ctrl_s_ctrl_int64(addi9036->pixel_rate,
-> +					     new_mode->pixel_rate);
-> +		if (ret < 0)
-> +			return ret;
-> +
-> +		ret = v4l2_ctrl_s_ctrl(addi9036->link_freq,
-> +				       new_mode->link_freq_idx);
-> +		if (ret < 0)
-> +			return ret;
-> +
-> +		addi9036->current_mode = new_mode;
-> +	}
-> +
-> +	framefmt = addi9036_get_pad_format(addi9036, cfg, format->pad,
-> +					   format->which);
-> +
-> +	if (!framefmt)
-> +		return -EINVAL;
-> +
-> +	framefmt->width = crop->width;
-> +	framefmt->height = crop->height;
-> +	framefmt->code = MEDIA_BUS_FMT_SBGGR12_1X12;
-> +	framefmt->field = V4L2_FIELD_NONE;
-> +	framefmt->colorspace = V4L2_COLORSPACE_SRGB;
-> +
-> +	format->format = *framefmt;
-> +
-> +	return 0;
-> +}
-> +
-> +static int addi9036_entity_init_cfg(struct v4l2_subdev *subdev,
-> +				    struct v4l2_subdev_pad_config *cfg)
-> +{
-> +	struct v4l2_subdev_format fmt = { 0 };
-> +
-> +	if (cfg)
-> +		fmt.which = V4L2_SUBDEV_FORMAT_TRY;
-> +	else
-> +		fmt.which = V4L2_SUBDEV_FORMAT_ACTIVE;
-> +
-> +	fmt.format.width = 640;
-> +	fmt.format.height = 960;
-> +
-> +	addi9036_set_format(subdev, cfg, &fmt);
-> +
-> +	return 0;
-> +}
-> +
-> +static int addi9036_get_selection(struct v4l2_subdev *sd,
-> +				  struct v4l2_subdev_pad_config *cfg,
-> +				  struct v4l2_subdev_selection *sel)
-> +{
-> +	struct addi9036 *addi9036 = to_addi9036(sd);
-> +
-> +	if (sel->target != V4L2_SEL_TGT_CROP)
-> +		return -EINVAL;
-> +
-> +	sel->r = *addi9036_get_pad_crop(addi9036, cfg, sel->pad, sel->which);
-> +
-> +	return 0;
-> +}
-> +
-> +static int addi9036_s_stream(struct v4l2_subdev *subdev, int enable)
-> +{
-> +	struct addi9036 *addi9036 = to_addi9036(subdev);
-> +
-> +	dev_dbg(addi9036->dev, "stream %d\n", enable);
-> +
-> +	return 0;
-> +}
-> +
-> +static const struct v4l2_subdev_core_ops addi9036_core_ops = {
-> +	.s_power	= addi9036_s_power,
-> +};
-> +
-> +static const struct v4l2_subdev_video_ops addi9036_video_ops = {
-> +	.s_stream	= addi9036_s_stream,
-> +};
-> +
-> +static const struct v4l2_subdev_pad_ops addi9036_subdev_pad_ops = {
-> +	.init_cfg		= addi9036_entity_init_cfg,
-> +	.enum_mbus_code		= addi9036_enum_mbus_code,
-> +	.enum_frame_size	= addi9036_enum_frame_size,
-> +	.get_fmt		= addi9036_get_format,
-> +	.set_fmt		= addi9036_set_format,
-> +	.get_selection		= addi9036_get_selection,
-> +};
-> +
-> +static const struct v4l2_subdev_ops addi9036_subdev_ops = {
-> +	.core	= &addi9036_core_ops,
-> +	.video	= &addi9036_video_ops,
-> +	.pad	= &addi9036_subdev_pad_ops,
-> +};
-> +
-> +static int addi9036_probe(struct i2c_client *client)
-> +{
-> +	struct device *dev = &client->dev;
-> +	struct fwnode_handle *endpoint;
-> +	struct addi9036 *addi9036;
-> +	int ret;
-> +
-> +	dev_dbg(dev, "%s: i2c addr = 0x%x\n", __func__, client->addr);
-> +
-> +	addi9036 = devm_kzalloc(dev, sizeof(struct addi9036), GFP_KERNEL);
-> +	if (!addi9036)
-> +		return -ENOMEM;
-> +
-> +	addi9036->dev = dev;
-> +
-> +	addi9036->regmap = devm_regmap_init_i2c(client,
-> +						&addi9036_i2c_regmap_config);
-> +	if (IS_ERR(addi9036->regmap)) {
-> +		dev_err(dev, "Error initializing i2c regmap\n");
-> +		return PTR_ERR(addi9036->regmap);
-> +	}
-> +
-> +	mutex_init(&addi9036->power_lock);
-> +
-> +	endpoint = fwnode_graph_get_next_endpoint(dev_fwnode(dev), NULL);
-> +	if (!endpoint) {
-> +		dev_err(dev, "endpoint node not found\n");
-> +		return -EINVAL;
-> +	}
-> +
-> +	ret = v4l2_fwnode_endpoint_parse(endpoint, &addi9036->ep);
-> +	if (ret < 0) {
-> +		dev_err(dev, "parsing endpoint node failed\n");
-> +		return ret;
-> +	}
-> +	fwnode_handle_put(endpoint);
-> +
-> +	if (addi9036->ep.bus_type != V4L2_MBUS_CSI2_DPHY) {
-> +		dev_err(dev, "invalid bus type, must be MIPI CSI2\n");
-> +		return -EINVAL;
-> +	}
-> +
-> +	addi9036->rst_gpio = gpiod_get_optional(dev, "reset", GPIOD_OUT_HIGH);
-> +	if (IS_ERR(addi9036->rst_gpio)) {
-> +		dev_info(dev, "Unable to get \"reset\" gpio\n");
-> +		return PTR_ERR(addi9036->rst_gpio);
-> +	}
-> +
-> +	v4l2_ctrl_handler_init(&addi9036->ctrls, 4);
-> +
-> +	addi9036->pixel_rate = v4l2_ctrl_new_std(&addi9036->ctrls,
-> +						  &addi9036_ctrl_ops,
-> +						  V4L2_CID_PIXEL_RATE,
-> +						  1, INT_MAX, 1, 1);
-> +	addi9036->link_freq = v4l2_ctrl_new_int_menu(&addi9036->ctrls,
-> +						     &addi9036_ctrl_ops,
-> +						     V4L2_CID_LINK_FREQ,
-> +						     ARRAY_SIZE(
-> +							     link_freq_tbl) - 1,
-> +						     0, link_freq_tbl);
-> +	if (addi9036->link_freq)
-> +		addi9036->link_freq->flags |= V4L2_CTRL_FLAG_READ_ONLY;
-> +
-> +	addi9036->set_chip_config = v4l2_ctrl_new_custom(&addi9036->ctrls,
-> +						&addi9036_ctrl_chip_config,
-> +						NULL);
-> +
-> +	addi9036->reg_read = v4l2_ctrl_new_custom(&addi9036->ctrls,
-> +						  &addi9036_ctrl_reg_read,
-> +						  NULL);
-> +
-> +	addi9036->sd.ctrl_handler = &addi9036->ctrls;
-> +
-> +	if (addi9036->ctrls.error) {
-> +		dev_err(dev, "%s: control initialization error %d\n",
-> +			__func__, addi9036->ctrls.error);
-> +		ret = addi9036->ctrls.error;
-> +		goto free_ctrl;
-> +	}
-> +
-> +	v4l2_i2c_subdev_init(&addi9036->sd, client, &addi9036_subdev_ops);
-> +	addi9036->sd.flags |= V4L2_SUBDEV_FL_HAS_DEVNODE;
-> +	addi9036->pad.flags = MEDIA_PAD_FL_SOURCE;
-> +	addi9036->sd.dev = &client->dev;
-> +	addi9036->sd.entity.function = MEDIA_ENT_F_CAM_SENSOR;
-> +
-> +	ret = media_entity_pads_init(&addi9036->sd.entity, 1, &addi9036->pad);
-> +
-> +	if (ret < 0) {
-> +		dev_err(dev, "could not register media entity\n");
-> +		goto free_ctrl;
-> +	}
-> +
-> +	ret = addi9036_s_power(&addi9036->sd, true);
-> +	if (ret < 0) {
-> +		dev_err(dev, "could not power up addi9036\n");
-> +		goto free_entity;
-> +	}
-> +
-> +	dev_info(dev, "addi9036 detected at address 0x%02x\n", client->addr);
-> +
-> +	ret = addi9036_s_power(&addi9036->sd, false);
-> +	if (ret < 0) {
-> +		dev_err(dev, "could not power down addi9036\n");
-> +		goto free_entity;
-> +	}
-> +
-> +	addi9036_entity_init_cfg(&addi9036->sd, NULL);
-> +
-> +	ret = v4l2_async_register_subdev(&addi9036->sd);
-> +	if (ret < 0)
-> +		dev_err(dev, "could not register v4l2 device\n");
-> +
-> +	return 0;
-> +
-> +free_entity:
-> +	media_entity_cleanup(&addi9036->sd.entity);
-> +free_ctrl:
-> +	v4l2_ctrl_handler_free(&addi9036->ctrls);
-> +	mutex_destroy(&addi9036->power_lock);
-> +
-> +	return ret;
-> +}
-> +
-> +static int addi9036_remove(struct i2c_client *client)
-> +{
-> +	struct v4l2_subdev *sd = i2c_get_clientdata(client);
-> +	struct addi9036 *addi9036 = to_addi9036(sd);
-> +
-> +	v4l2_async_unregister_subdev(&addi9036->sd);
-> +	media_entity_cleanup(&addi9036->sd.entity);
-> +	if (addi9036->rst_gpio)
-> +		gpiod_put(addi9036->rst_gpio);
-> +	v4l2_ctrl_handler_free(&addi9036->ctrls);
-> +	mutex_destroy(&addi9036->power_lock);
-> +
-> +	return 0;
-> +}
-> +
-> +static const struct i2c_device_id addi9036_id[] = {
-> +	{ "addi9036", 0 },
-> +	{}
-> +};
-> +MODULE_DEVICE_TABLE(i2c, addi9036_id);
-> +
-> +static const struct of_device_id addi9036_of_match[] = {
-> +	{ .compatible = "adi,addi9036" },
-> +	{ /* sentinel */ }
-> +};
-> +MODULE_DEVICE_TABLE(of, addi9036_of_match);
-> +
-> +static struct i2c_driver addi9036_i2c_driver = {
-> +	.driver			= {
-> +		.of_match_table = addi9036_of_match,
-> +		.name		= "addi9036",
-> +	},
-> +	.probe_new		= addi9036_probe,
-> +	.remove			= addi9036_remove,
-> +	.id_table		= addi9036_id,
-> +};
-> +
-> +module_i2c_driver(addi9036_i2c_driver);
-> +
-> +MODULE_DESCRIPTION("Analog Devices ADDI9036 Camera Driver");
-> +MODULE_AUTHOR("Bogdan Togorean");
-> +MODULE_LICENSE("GPL v2");
-> diff --git a/include/uapi/linux/v4l2-controls.h b/include/uapi/linux/v4l2-controls.h
-> index 62271418c1be..f88b56479bc1 100644
-> --- a/include/uapi/linux/v4l2-controls.h
-> +++ b/include/uapi/linux/v4l2-controls.h
-> @@ -198,6 +198,12 @@ enum v4l2_colorfx {
->   */
->  #define V4L2_CID_USER_ATMEL_ISC_BASE		(V4L2_CID_USER_BASE + 0x10c0)
->  
-> +/*
-> + * The base for the addi9036 driver controls.
-> + * We reserve 16 controls for this driver.
-> + */
-> +#define V4L2_CID_USER_ADDI9036_BASE		(V4L2_CID_USER_BASE + 0x10e0)
-> +
->  /* MPEG-class control IDs */
->  /* The MPEG controls are applicable to all codec controls
->   * and the 'MPEG' part of the define is historical */
-> -- 
-> 2.28.0
-> 
-
--- 
-Regards,
-
-Laurent Pinchart
+> Regards,
+> Bjorn
+>
+> > Signed-off-by: Krishna Manikandan <mkrishn@codeaurora.org>
+> > ---
+> >  arch/arm64/boot/dts/qcom/sc7180.dtsi | 8 ++++----
+> >  1 file changed, 4 insertions(+), 4 deletions(-)
+> >
+> > diff --git a/arch/arm64/boot/dts/qcom/sc7180.dtsi b/arch/arm64/boot/dts/qcom/sc7180.dtsi
+> > index 4f2c0d1..31fed6d 100644
+> > --- a/arch/arm64/boot/dts/qcom/sc7180.dtsi
+> > +++ b/arch/arm64/boot/dts/qcom/sc7180.dtsi
+> > @@ -1510,10 +1510,9 @@
+> >                       power-domains = <&dispcc MDSS_GDSC>;
+> >
+> >                       clocks = <&gcc GCC_DISP_AHB_CLK>,
+> > -                              <&gcc GCC_DISP_HF_AXI_CLK>,
+> >                                <&dispcc DISP_CC_MDSS_AHB_CLK>,
+> >                                <&dispcc DISP_CC_MDSS_MDP_CLK>;
+> > -                     clock-names = "iface", "bus", "ahb", "core";
+> > +                     clock-names = "iface", "ahb", "core";
+> >
+> >                       assigned-clocks = <&dispcc DISP_CC_MDSS_MDP_CLK>;
+> >                       assigned-clock-rates = <300000000>;
+> > @@ -1539,12 +1538,13 @@
+> >                                     <0 0x0aeb0000 0 0x2008>;
+> >                               reg-names = "mdp", "vbif";
+> >
+> > -                             clocks = <&dispcc DISP_CC_MDSS_AHB_CLK>,
+> > +                             clocks = <&gcc GCC_DISP_HF_AXI_CLK>,
+> > +                                      <&dispcc DISP_CC_MDSS_AHB_CLK>,
+> >                                        <&dispcc DISP_CC_MDSS_ROT_CLK>,
+> >                                        <&dispcc DISP_CC_MDSS_MDP_LUT_CLK>,
+> >                                        <&dispcc DISP_CC_MDSS_MDP_CLK>,
+> >                                        <&dispcc DISP_CC_MDSS_VSYNC_CLK>;
+> > -                             clock-names = "iface", "rot", "lut", "core",
+> > +                             clock-names = "bus", "iface", "rot", "lut", "core",
+> >                                             "vsync";
+> >                               assigned-clocks = <&dispcc DISP_CC_MDSS_MDP_CLK>,
+> >                                                 <&dispcc DISP_CC_MDSS_VSYNC_CLK>;
+> > --
+> > 1.9.1
+> >
