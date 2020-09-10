@@ -2,79 +2,101 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from vger.kernel.org (vger.kernel.org [23.128.96.18])
-	by mail.lfdr.de (Postfix) with ESMTP id 674A9263B9F
-	for <lists+devicetree@lfdr.de>; Thu, 10 Sep 2020 05:48:47 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTP id 9A702263BAB
+	for <lists+devicetree@lfdr.de>; Thu, 10 Sep 2020 05:57:20 +0200 (CEST)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S1729717AbgIJDso (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Wed, 9 Sep 2020 23:48:44 -0400
-Received: from mailgw01.mediatek.com ([210.61.82.183]:49871 "EHLO
-        mailgw01.mediatek.com" rhost-flags-OK-FAIL-OK-FAIL) by vger.kernel.org
-        with ESMTP id S1729822AbgIJDsb (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Wed, 9 Sep 2020 23:48:31 -0400
-X-UUID: 2df7bd4b00f14007921cf70cb6f6ce8e-20200910
-DKIM-Signature: v=1; a=rsa-sha256; q=dns/txt; c=relaxed/relaxed; d=mediatek.com; s=dk;
-        h=Content-Transfer-Encoding:MIME-Version:Content-Type:References:In-Reply-To:Date:CC:To:From:Subject:Message-ID; bh=h4KTk5shQrSyQDIxPJZftxCwDg7ngCtftlyh+RM3c1o=;
-        b=TWtYHWM+f2I2op8pMxtixr3wdhqoFJJr9dvWVQBh0Fp+CtK87F3Bhu4kFBd2fXNoYTiLTUQG9VbLClJ04eRvkkosGnHB4H6sG8U2rEdSFs4+LvPJXgEzSz0mD+GdX8nGaL9bEgC8CtnPIR1XWAHyvwEZbfpABlX6KoR7WOhyX2A=;
-X-UUID: 2df7bd4b00f14007921cf70cb6f6ce8e-20200910
-Received: from mtkexhb02.mediatek.inc [(172.21.101.103)] by mailgw01.mediatek.com
-        (envelope-from <hector.yuan@mediatek.com>)
-        (Cellopoint E-mail Firewall v4.1.14 Build 0819 with TLSv1.2 ECDHE-RSA-AES256-SHA384 256/256)
-        with ESMTP id 379000295; Thu, 10 Sep 2020 11:48:26 +0800
-Received: from mtkcas07.mediatek.inc (172.21.101.84) by
- mtkmbs01n2.mediatek.inc (172.21.101.79) with Microsoft SMTP Server (TLS) id
- 15.0.1497.2; Thu, 10 Sep 2020 11:48:21 +0800
-Received: from [172.21.77.33] (172.21.77.33) by mtkcas07.mediatek.inc
- (172.21.101.73) with Microsoft SMTP Server id 15.0.1497.2 via Frontend
- Transport; Thu, 10 Sep 2020 11:48:22 +0800
-Message-ID: <1599709702.7042.1.camel@mtkswgap22>
-Subject: Re: [PATCH v6 1/2] cpufreq: mediatek-hw: Add support for Mediatek
- cpufreq HW driver
-From:   Hector Yuan <hector.yuan@mediatek.com>
-To:     Viresh Kumar <viresh.kumar@linaro.org>
-CC:     <linux-mediatek@lists.infradead.org>,
-        <linux-arm-kernel@lists.infradead.org>, <linux-pm@vger.kernel.org>,
-        <devicetree@vger.kernel.org>,
-        "Rafael J. Wysocki" <rjw@rjwysocki.net>,
-        "Rob Herring" <robh+dt@kernel.org>, <linux-kernel@vger.kernel.org>,
-        <wsd_upstream@mediatek.com>
-Date:   Thu, 10 Sep 2020 11:48:22 +0800
-In-Reply-To: <20200910034245.eqya625p7la33dkc@vireshk-i7>
-References: <1599658476-16562-1-git-send-email-hector.yuan@mediatek.com>
-         <1599658476-16562-2-git-send-email-hector.yuan@mediatek.com>
-         <20200910034245.eqya625p7la33dkc@vireshk-i7>
-Content-Type: text/plain; charset="UTF-8"
-X-Mailer: Evolution 3.2.3-0ubuntu6 
+        id S1727893AbgIJD5T (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Wed, 9 Sep 2020 23:57:19 -0400
+Received: from lindbergh.monkeyblade.net ([23.128.96.19]:42208 "EHLO
+        lindbergh.monkeyblade.net" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
+        with ESMTP id S1725773AbgIJD5R (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Wed, 9 Sep 2020 23:57:17 -0400
+Received: from mail-ej1-x642.google.com (mail-ej1-x642.google.com [IPv6:2a00:1450:4864:20::642])
+        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id A6488C061573;
+        Wed,  9 Sep 2020 20:57:16 -0700 (PDT)
+Received: by mail-ej1-x642.google.com with SMTP id nw23so6621953ejb.4;
+        Wed, 09 Sep 2020 20:57:16 -0700 (PDT)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+        d=jms.id.au; s=google;
+        h=mime-version:references:in-reply-to:from:date:message-id:subject:to
+         :cc;
+        bh=K+D12hGVwScuYyxWOHUH1+5ysjpRMewwxlzMDyf/Wpc=;
+        b=ncxUvo1acHcF8r+VD2TvqZtMAGKG9IUqN1MWUk1S8vuZQK2tJYl7rtKPRfWM3FE+cW
+         MjCQyLN1I4qJztPKyBb6+giQbVg4l5QQvwL9Fkf0cLUfHeoT4oDB7PTS/r8VqNhM8gDW
+         zjFmqgjyrFFpY6fQj8givVovWGzUH6JrowmPo=
+X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+        d=1e100.net; s=20161025;
+        h=x-gm-message-state:mime-version:references:in-reply-to:from:date
+         :message-id:subject:to:cc;
+        bh=K+D12hGVwScuYyxWOHUH1+5ysjpRMewwxlzMDyf/Wpc=;
+        b=RuzmfWFl0nIQ3QHWKfHaV8W+DkJLQx1bERvc+lFkdeAzp1pjGzSIFSrt83TMpoSfqL
+         sUCEBPaZoyZJhzqICzpCvqBeeOeTfcB4zSUaej6cGCYhDr9dvtGeS3mNY08rPZPYPE97
+         IryaGLurDtSBnbv5S3GSvRtf6jbTl8TIx9lxuNJ1r79KZTMeCWr2xTMIK3aES4FeAiLp
+         62Z13OQLiaomoeiSvfgxgd2x06IV3PU5A3PxajmWPkOVVsC9VwqJu0ZhW+ARIYl+tgL4
+         3lUugXRH4aVEvBmZoKKKTPMP0J4fiEbG444x29e/n3b00jNdXmYeNned8TSZGHYgXjA2
+         7cHw==
+X-Gm-Message-State: AOAM53157TOjVDyBwT3MrgfsfSDxmQFIwwVXUR1CSK9T3j50D3Xx5xVs
+        vFbtpg612LgRoXeFvMGXyPTMWik76xTJYH2MVPM=
+X-Google-Smtp-Source: ABdhPJyxgIT5FVRYlESJqvho8jAdaQREuczgbp6vegxqirYKG53fie1HrraaFgLNUkCqk3UFhiPiQF4GMbPtQBShrUQ=
+X-Received: by 2002:a17:906:b6d5:: with SMTP id ec21mr6513096ejb.396.1599710235338;
+ Wed, 09 Sep 2020 20:57:15 -0700 (PDT)
 MIME-Version: 1.0
-X-TM-SNTS-SMTP: A78FA5853F92044C4771A9B1C8BF1BDA2274661E2593E21FCABB848E93EDED232000:8
-X-MTK:  N
-Content-Transfer-Encoding: base64
+References: <20200715135418.3194860-1-jk@codeconstruct.com.au> <20200715135418.3194860-2-jk@codeconstruct.com.au>
+In-Reply-To: <20200715135418.3194860-2-jk@codeconstruct.com.au>
+From:   Joel Stanley <joel@jms.id.au>
+Date:   Thu, 10 Sep 2020 03:57:02 +0000
+Message-ID: <CACPK8XdOTorJcNSON--LZU8XkWLh5kwXc8fkGWOBmXVnFiCnSQ@mail.gmail.com>
+Subject: Re: [PATCH 2/2] gpio/aspeed-sgpio: don't enable all interrupts by default
+To:     Jeremy Kerr <jk@codeconstruct.com.au>
+Cc:     "open list:GPIO SUBSYSTEM" <linux-gpio@vger.kernel.org>,
+        linux-aspeed <linux-aspeed@lists.ozlabs.org>,
+        devicetree <devicetree@vger.kernel.org>,
+        Andrew Jeffery <andrew@aj.id.au>
+Content-Type: text/plain; charset="UTF-8"
 Sender: devicetree-owner@vger.kernel.org
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-T24gVGh1LCAyMDIwLTA5LTEwIGF0IDA5OjEyICswNTMwLCBWaXJlc2ggS3VtYXIgd3JvdGU6DQo+
-IE9uIDA5LTA5LTIwLCAyMTozNCwgSGVjdG9yIFl1YW4gd3JvdGU6DQo+ID4gK3N0YXRpYyB1bnNp
-Z25lZCBpbnQgbXRrX2NwdWZyZXFfaHdfZ2V0KHVuc2lnbmVkIGludCBjcHUpDQo+ID4gK3sNCj4g
-PiArCXN0cnVjdCBjcHVmcmVxX210ayAqYzsNCj4gPiArCXN0cnVjdCBjcHVmcmVxX3BvbGljeSAq
-cG9saWN5Ow0KPiA+ICsJdW5zaWduZWQgaW50IGluZGV4Ow0KPiA+ICsNCj4gPiArCXBvbGljeSA9
-IGNwdWZyZXFfY3B1X2dldF9yYXcoY3B1KTsNCj4gPiArCWlmICghcG9saWN5KQ0KPiA+ICsJCXJl
-dHVybiAwOw0KPiANCj4gV2h5IGRpZG4ndCB5b3UgZHJvcCBwb2xpY3kgYXMgd2UgZGlzY3Vzc2Vk
-IGluIHByZXZpb3VzIHZlcnNpb24gPw0KPiANClNvcnJ5IEkgbWlzc2VkIHRoYXQuIFRoYW5rIHlv
-dS4NCj4gPiArCWMgPSBtdGtfZnJlcV9kb21haW5fbWFwW2NwdV07DQo+ID4gKw0KPiA+ICsJaW5k
-ZXggPSByZWFkbF9yZWxheGVkKGMtPnJlZ19iYXNlc1tSRUdfUEVSRl9TVEFURV0pOw0KPiA+ICsJ
-aW5kZXggPSBtaW4oaW5kZXgsIExVVF9NQVhfRU5UUklFUyAtIDEpOw0KPiA+ICsNCj4gPiArCXJl
-dHVybiBwb2xpY3ktPmZyZXFfdGFibGVbaW5kZXhdLmZyZXF1ZW5jeTsNCj4gDQo+IHBvbGljeS0+
-ZnJlcV90YWJsZSBhbmQgYy0+dGFibGUgYXJlIHNhbWUsIGlzbid0IGl0ID8NCj4gDQpZZXMsIHlv
-dSBhcmUgcmlnaHQuDQo+ID4gK30NCj4gPiArDQo+ID4gK3N0YXRpYyBzdHJ1Y3QgcGxhdGZvcm1f
-ZHJpdmVyIG10a19jcHVmcmVxX2h3X2RyaXZlciA9IHsNCj4gPiArCS5wcm9iZSA9IG10a19jcHVm
-cmVxX2h3X2RyaXZlcl9wcm9iZSwNCj4gPiArCS5yZW1vdmUgPSBtdGtfY3B1ZnJlcV9od19kcml2
-ZXJfcmVtb3ZlLA0KPiA+ICsJLmRyaXZlciA9IHsNCj4gPiArCQkubmFtZSA9ICJtdGstY3B1ZnJl
-cS1odyIsDQo+ID4gKwkJLm9mX21hdGNoX3RhYmxlID0gbXRrX2NwdWZyZXFfaHdfbWF0Y2gsDQo+
-ID4gKwl9LA0KPiA+ICt9Ow0KPiA+ICsNCj4gDQo+IFJlbW92ZSB0aGlzIGJsYW5rIGxpbmUuDQo+
-IA0KT0sNCj4gPiArbW9kdWxlX3BsYXRmb3JtX2RyaXZlcihtdGtfY3B1ZnJlcV9od19kcml2ZXIp
-Ow0KPiA+ICsNCj4gPiArTU9EVUxFX0RFU0NSSVBUSU9OKCJtdGsgQ1BVRlJFUSBIVyBEcml2ZXIi
-KTsNCj4gDQo+IE1heWJlIHdyaXRlIHRoaXMgaXMgIk1lZGlhdGVrIGNwdWZyZXEtaHcgZHJpdmVy
-IiA/DQo+IA0KT0sNCj4gPiArTU9EVUxFX0xJQ0VOU0UoIkdQTCB2MiIpOw0KPiA+IC0tIA0KPiA+
-IDEuNy45LjUNCj4gDQoNCg==
+On Wed, 15 Jul 2020 at 14:06, Jeremy Kerr <jk@codeconstruct.com.au> wrote:
+>
+> Currently, the IRQ setup for the SGPIO driver enables all interrupts for
+> dual-edge trigger mode. Since the default handler is handle_bad_irq, any
+> state change on input GPIOs will trigger bad IRQ warnings.
+>
+> This change applies sensible (disabled) IRQ defaults.
+>
+> Signed-off-by: Jeremy Kerr <jk@codeconstruct.com.au>
+> ---
+>  drivers/gpio/gpio-aspeed-sgpio.c | 4 +---
+>  1 file changed, 1 insertion(+), 3 deletions(-)
+>
+> diff --git a/drivers/gpio/gpio-aspeed-sgpio.c b/drivers/gpio/gpio-aspeed-sgpio.c
+> index 927d46f159b8..23a3a40901d6 100644
+> --- a/drivers/gpio/gpio-aspeed-sgpio.c
+> +++ b/drivers/gpio/gpio-aspeed-sgpio.c
 
+I've re-ordered the lines in the diff to make it easier to review:
+
+> @@ -451,9 +451,7 @@ static int aspeed_sgpio_setup_irqs(struct aspeed_sgpio *gpio,
+>                 /* trigger type is edge */
+>                 iowrite32(0x00000000, bank_reg(gpio, bank, reg_irq_type1));
+>                 /* dual edge trigger mode. */
+> -               iowrite32(0xffffffff, bank_reg(gpio, bank, reg_irq_type2));
+> +               iowrite32(0x00000000, bank_reg(gpio, bank, reg_irq_type2));
+
+You're changing the trigger mode from dual edge to single edge.
+
+> -               /* enable irq */
+> -               iowrite32(0xffffffff, bank_reg(gpio, bank, reg_irq_enable));
+
+And also removing the enabling of IRQs. This part makes sense, as it's
+what the commit message says.
+
+If you think a sensible default should be single edge (and I would
+agree with that change), perhaps update the comment to say "set single
+edge trigger mode" and mention it in your commit message.
+
+Cheers,
+
+Joel
