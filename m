@@ -2,95 +2,120 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from vger.kernel.org (vger.kernel.org [23.128.96.18])
-	by mail.lfdr.de (Postfix) with ESMTP id 05980263B4A
-	for <lists+devicetree@lfdr.de>; Thu, 10 Sep 2020 05:19:54 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTP id BB887263B8A
+	for <lists+devicetree@lfdr.de>; Thu, 10 Sep 2020 05:43:35 +0200 (CEST)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S1726440AbgIJDTx (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Wed, 9 Sep 2020 23:19:53 -0400
-Received: from lindbergh.monkeyblade.net ([23.128.96.19]:36286 "EHLO
+        id S1729822AbgIJDnd (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Wed, 9 Sep 2020 23:43:33 -0400
+Received: from lindbergh.monkeyblade.net ([23.128.96.19]:39874 "EHLO
         lindbergh.monkeyblade.net" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S1725772AbgIJDTu (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Wed, 9 Sep 2020 23:19:50 -0400
-Received: from mail-ed1-x544.google.com (mail-ed1-x544.google.com [IPv6:2a00:1450:4864:20::544])
-        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 59B77C061573;
-        Wed,  9 Sep 2020 20:19:49 -0700 (PDT)
-Received: by mail-ed1-x544.google.com with SMTP id a12so4756704eds.13;
-        Wed, 09 Sep 2020 20:19:49 -0700 (PDT)
+        with ESMTP id S1729251AbgIJDnB (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Wed, 9 Sep 2020 23:43:01 -0400
+Received: from mail-pl1-x642.google.com (mail-pl1-x642.google.com [IPv6:2607:f8b0:4864:20::642])
+        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id D2DC2C061757
+        for <devicetree@vger.kernel.org>; Wed,  9 Sep 2020 20:43:00 -0700 (PDT)
+Received: by mail-pl1-x642.google.com with SMTP id x18so241057pll.6
+        for <devicetree@vger.kernel.org>; Wed, 09 Sep 2020 20:43:00 -0700 (PDT)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=jms.id.au; s=google;
-        h=mime-version:references:in-reply-to:from:date:message-id:subject:to
-         :cc;
-        bh=EYnG8g1OXjCEZvsNS7qUv8EcZAN6EKkdlhqeP9kn+nY=;
-        b=Rgq9EPWWGYiqY2DdgSyemU/sJRKCmZz0UNbwdRAGZUWF7DhqPv+cj2ifMs75KMOUdD
-         Q4wAgKHTZJq0763WeDwq45zmTDP50AJpLLBiqwa6Mp/n11La+rwXwqPpddRTxjsNaidZ
-         90aIPmV2siYV1gMpuKSAhznKUhi5e4al81epQ=
+        d=linaro.org; s=google;
+        h=date:from:to:cc:subject:message-id:references:mime-version
+         :content-disposition:in-reply-to:user-agent;
+        bh=ZmS2T2jFD4Mhxd1SucoAel5AcWUGDJSMEH/6aOpQ3E4=;
+        b=xQK7MlcvpwgA7zVon4fYwgsjjBXLD1QDVQO0Y/wxK4TpVqAOuOsyHTfnz61IDHZ2n5
+         TGXB9Ozsm5y9yYIWBSZihicx99cw8Tqy45Kzki86JArCPtrddKx8cx77jJLwOpYMGaGK
+         M7L2/yKx7qk6TgLvU71F2gSNpHGQNerD4WBLdX/GKAstcJMfIlHlelhbu9G4XmmlB47K
+         vvZ5OFuqcsxwTb0J/ulV+DTtR8GWtu+++Va24XqlOa+K3nMYat+XJPH7FLd09HLwP1TH
+         083BY7CAp5HdCGyDtmJmOb0fZYTgNC3uZZhOlqvGsm/C6UlMfNwTL7XcG7+LYgwmCgj3
+         O5rg==
 X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
         d=1e100.net; s=20161025;
-        h=x-gm-message-state:mime-version:references:in-reply-to:from:date
-         :message-id:subject:to:cc;
-        bh=EYnG8g1OXjCEZvsNS7qUv8EcZAN6EKkdlhqeP9kn+nY=;
-        b=Oayc8dxFkJl8yXcFvcrZS/ro+OkKbaGLSU5ElOcEVPVcnwfCT8EbCiLhyayLEgRtmZ
-         DTsU+hvKd+OWq9zVak1DJXshbBfCx6nfF2eLbilVm479ZFNB9XIX2rEBrPaZ+zX2avUE
-         unEqFDzLbVzndjEo00jw3Eb4ar+5IyNVjrfb+TwW5dWLdpLlhFGsJ971iNEIrYg9zE5p
-         epeVwAfewdZgfRjBi4laP4YAfwJ3uu5geUIvR/lmJjMzeXRHakQo+7XzqREsQmZl05S/
-         qArBsvSaSaU5qTPkVrO9Y8QVdnHF7eXE0YK8AqfDfm526uD1avU240hFK1jpMjcGXvxn
-         EMMw==
-X-Gm-Message-State: AOAM53257KVWHr4djegjP++JIcuukw9dl9Xh9kwQpCA2aDlG6GggdrSu
-        eBnzNwpUjAtmRmLFBuRy++UzvzPwGFHE3LTgSe/1itoqW1g=
-X-Google-Smtp-Source: ABdhPJztvH21yX503RRfEKAijGeEVGzRJ2v0afoEPzzI9wed+4D7RjfpT7KicJHk4K8nd6aXIBoWTv2Yk6P1EFWq/Sc=
-X-Received: by 2002:aa7:c38a:: with SMTP id k10mr7407719edq.325.1599707988052;
- Wed, 09 Sep 2020 20:19:48 -0700 (PDT)
+        h=x-gm-message-state:date:from:to:cc:subject:message-id:references
+         :mime-version:content-disposition:in-reply-to:user-agent;
+        bh=ZmS2T2jFD4Mhxd1SucoAel5AcWUGDJSMEH/6aOpQ3E4=;
+        b=Khgh6rGahz5yCIva7ifVVHBhDKdN17x4QQw347yURdTj/jCuvVB4HWXBO2Bs8c1ucU
+         zadkP/EcPKnhbqZEzcAk01Njw3fUgxSRhavVda+ce26X3kkL6yJy3hUlEOteRUxt32fJ
+         0fH02fZg7PCc0jfKd2ybqKHz1UiMDRw8+p89DCYu6d8Ef5KgRyI2qwByiXE1+Bmnl8a5
+         1MlAyanNwUsRR4/OKzNWM+DwzHuIrzEM/HrXNWlr15jmPTWHfZBUCVrxZINtUfngtsxp
+         gq4dbNaaO7inTpLZLwlmDmC6vd/cRXuYZkETk1++omJ3NGz27149TA06GC35PFM0X4qt
+         iwXg==
+X-Gm-Message-State: AOAM533zO3fip5+pruV+xNG2Q7jxRlhvhwWZ/x1R5oQQiSXUVC8nXDqr
+        9u49ECL+wbD24GCZapNjImml4w==
+X-Google-Smtp-Source: ABdhPJxRgu58IL1rniuVlRLSIpomG8nzd42RuHvTf3NVD6MC0hy7wZ/evpSgjCdMunvXwKBg/3c4Tg==
+X-Received: by 2002:a17:902:10f:: with SMTP id 15mr3733723plb.121.1599709379966;
+        Wed, 09 Sep 2020 20:42:59 -0700 (PDT)
+Received: from localhost ([122.181.54.133])
+        by smtp.gmail.com with ESMTPSA id z129sm3423532pgb.84.2020.09.09.20.42.58
+        (version=TLS1_2 cipher=ECDHE-ECDSA-AES128-GCM-SHA256 bits=128/128);
+        Wed, 09 Sep 2020 20:42:58 -0700 (PDT)
+Date:   Thu, 10 Sep 2020 09:12:45 +0530
+From:   Viresh Kumar <viresh.kumar@linaro.org>
+To:     Hector Yuan <hector.yuan@mediatek.com>
+Cc:     linux-mediatek@lists.infradead.org,
+        linux-arm-kernel@lists.infradead.org, linux-pm@vger.kernel.org,
+        devicetree@vger.kernel.org,
+        "Rafael J. Wysocki" <rjw@rjwysocki.net>,
+        Rob Herring <robh+dt@kernel.org>, linux-kernel@vger.kernel.org,
+        wsd_upstream@mediatek.com
+Subject: Re: [PATCH v6 1/2] cpufreq: mediatek-hw: Add support for Mediatek
+ cpufreq HW driver
+Message-ID: <20200910034245.eqya625p7la33dkc@vireshk-i7>
+References: <1599658476-16562-1-git-send-email-hector.yuan@mediatek.com>
+ <1599658476-16562-2-git-send-email-hector.yuan@mediatek.com>
 MIME-Version: 1.0
-References: <20200910031143.2997298-1-andrew@aj.id.au>
-In-Reply-To: <20200910031143.2997298-1-andrew@aj.id.au>
-From:   Joel Stanley <joel@jms.id.au>
-Date:   Thu, 10 Sep 2020 03:19:34 +0000
-Message-ID: <CACPK8XeZe2n_a56LGJ16VswvPwRu7jWcSCTH+3grJ5zY9Wq38g@mail.gmail.com>
-Subject: Re: [PATCH] ARM: dts: rainier: Disable internal pull-downs on eMMC pins
-To:     Andrew Jeffery <andrew@aj.id.au>
-Cc:     Rob Herring <robh+dt@kernel.org>,
-        devicetree <devicetree@vger.kernel.org>,
-        Linux ARM <linux-arm-kernel@lists.infradead.org>,
-        linux-aspeed <linux-aspeed@lists.ozlabs.org>,
-        Linux Kernel Mailing List <linux-kernel@vger.kernel.org>
-Content-Type: text/plain; charset="UTF-8"
+Content-Type: text/plain; charset=us-ascii
+Content-Disposition: inline
+In-Reply-To: <1599658476-16562-2-git-send-email-hector.yuan@mediatek.com>
+User-Agent: NeoMutt/20180716-391-311a52
 Sender: devicetree-owner@vger.kernel.org
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-On Thu, 10 Sep 2020 at 03:12, Andrew Jeffery <andrew@aj.id.au> wrote:
->
-> There's a veritable tug-of-war going on in the design, so disable one of
-> the warring parties.
->
-> Signed-off-by: Andrew Jeffery <andrew@aj.id.au>
+On 09-09-20, 21:34, Hector Yuan wrote:
+> +static unsigned int mtk_cpufreq_hw_get(unsigned int cpu)
+> +{
+> +	struct cpufreq_mtk *c;
+> +	struct cpufreq_policy *policy;
+> +	unsigned int index;
+> +
+> +	policy = cpufreq_cpu_get_raw(cpu);
+> +	if (!policy)
+> +		return 0;
 
-Applied to the aspeed tree for 5.10.
+Why didn't you drop policy as we discussed in previous version ?
 
-Cheers,
+> +	c = mtk_freq_domain_map[cpu];
+> +
+> +	index = readl_relaxed(c->reg_bases[REG_PERF_STATE]);
+> +	index = min(index, LUT_MAX_ENTRIES - 1);
+> +
+> +	return policy->freq_table[index].frequency;
 
-Joel
+policy->freq_table and c->table are same, isn't it ?
 
-> ---
->  arch/arm/boot/dts/aspeed-bmc-ibm-rainier.dts | 4 ++++
->  1 file changed, 4 insertions(+)
->
-> diff --git a/arch/arm/boot/dts/aspeed-bmc-ibm-rainier.dts b/arch/arm/boot/dts/aspeed-bmc-ibm-rainier.dts
-> index 1fa233d2da26..21ae880c7530 100644
-> --- a/arch/arm/boot/dts/aspeed-bmc-ibm-rainier.dts
-> +++ b/arch/arm/boot/dts/aspeed-bmc-ibm-rainier.dts
-> @@ -180,6 +180,10 @@ &emmc_controller {
->         status = "okay";
->  };
->
-> +&pinctrl_emmc_default {
-> +       bias-disable;
+> +}
+> +
+> +static struct platform_driver mtk_cpufreq_hw_driver = {
+> +	.probe = mtk_cpufreq_hw_driver_probe,
+> +	.remove = mtk_cpufreq_hw_driver_remove,
+> +	.driver = {
+> +		.name = "mtk-cpufreq-hw",
+> +		.of_match_table = mtk_cpufreq_hw_match,
+> +	},
 > +};
 > +
->  &emmc {
->         status = "okay";
->  };
-> --
-> 2.25.1
->
+
+Remove this blank line.
+
+> +module_platform_driver(mtk_cpufreq_hw_driver);
+> +
+> +MODULE_DESCRIPTION("mtk CPUFREQ HW Driver");
+
+Maybe write this is "Mediatek cpufreq-hw driver" ?
+
+> +MODULE_LICENSE("GPL v2");
+> -- 
+> 1.7.9.5
+
+-- 
+viresh
