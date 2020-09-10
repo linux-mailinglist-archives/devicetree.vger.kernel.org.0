@@ -2,145 +2,89 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from vger.kernel.org (vger.kernel.org [23.128.96.18])
-	by mail.lfdr.de (Postfix) with ESMTP id C850926533F
-	for <lists+devicetree@lfdr.de>; Thu, 10 Sep 2020 23:30:23 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTP id 42E2B26533A
+	for <lists+devicetree@lfdr.de>; Thu, 10 Sep 2020 23:30:19 +0200 (CEST)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S1728209AbgIJVaV (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Thu, 10 Sep 2020 17:30:21 -0400
-Received: from lindbergh.monkeyblade.net ([23.128.96.19]:50114 "EHLO
-        lindbergh.monkeyblade.net" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S1730998AbgIJNwr (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Thu, 10 Sep 2020 09:52:47 -0400
-Received: from mail-io1-xd44.google.com (mail-io1-xd44.google.com [IPv6:2607:f8b0:4864:20::d44])
-        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 1888AC061756
-        for <devicetree@vger.kernel.org>; Thu, 10 Sep 2020 06:41:27 -0700 (PDT)
-Received: by mail-io1-xd44.google.com with SMTP id d18so7052183iop.13
-        for <devicetree@vger.kernel.org>; Thu, 10 Sep 2020 06:41:27 -0700 (PDT)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=chromium.org; s=google;
-        h=mime-version:references:in-reply-to:from:date:message-id:subject:to
-         :cc;
-        bh=uTlbqLOdrEt7UPiiXLx6yUBn8+Vw9g0DGn2N0VRJHZQ=;
-        b=Ox24dyt6nVjtGDGN1CPYXDGOo/2oq3U8X/r9mzO/S9lH3U3T8OSsyYjG9fjzR+qgBD
-         5ugaO811qVghi5tQ9nmTEt34eIyJfKTARh95uAu2ms6P0BKuV2yCJqhhTgTpckA3wY5V
-         5owBQNpU8wLydaLeTRaUOOfcne0j1r0lFOIQc=
-X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=1e100.net; s=20161025;
-        h=x-gm-message-state:mime-version:references:in-reply-to:from:date
-         :message-id:subject:to:cc;
-        bh=uTlbqLOdrEt7UPiiXLx6yUBn8+Vw9g0DGn2N0VRJHZQ=;
-        b=FE0zMcmOLcvKMiIIS32vS1ICkbhRdZFZJgw/pFnChE+PYIWy678qZstPB0XjFFIRyJ
-         oUT75X3+LqVG713O4madY56eBZqI5k1FLMQGlkSwsQ1QB+afN0YPxZz8H7d//a28bGTX
-         HmEIYEC3ITUPICwec3bVlzAtP8eVG2SYxB+FFryh8pW/ftCTR6gfYkPgNFBeIltVGIVw
-         uieIAxV4vY+LYmUALL+ivhNOCFToAbafpGA0TpJrYHQmUKG4hgmrpXf5/40NrrtkppxI
-         I5yQnZwnpW3xt+k6XV7lTZBwZIR4Rhb/VYojGHRDIIDvykEUY1rdgxWsfisuOmFet1Nr
-         y9WA==
-X-Gm-Message-State: AOAM532+b7BMpeEVj/jUW+HA7FYugLDXfoHMSJQSMVNNmJiGDs2rhsVE
-        klYqfTzxRV1ABIJy+6EuTV9BVi/TGCTcVbbrlBUHJQ==
-X-Google-Smtp-Source: ABdhPJx7rimxRz7QDx2lJr2uFaq/N7i1d6SG+0JOvjQrq9+OiBQgm/jvkZqZfSOI7yKji0+UoevlSl35L019lILyyVY=
-X-Received: by 2002:a5e:930d:: with SMTP id k13mr7562170iom.40.1599745286349;
- Thu, 10 Sep 2020 06:41:26 -0700 (PDT)
-MIME-Version: 1.0
-References: <20200910084304.3429494-1-hsinyi@chromium.org> <9ca1b7c0-9fec-27b7-ae08-c00613c3004c@gmail.com>
-In-Reply-To: <9ca1b7c0-9fec-27b7-ae08-c00613c3004c@gmail.com>
-From:   Hsin-Yi Wang <hsinyi@chromium.org>
-Date:   Thu, 10 Sep 2020 21:40:59 +0800
-Message-ID: <CAJMQK-g+pPR6ZrSJHPPcR9Tqw_4QjuMyUqML-RoPOjfnYZ=YGA@mail.gmail.com>
-Subject: Re: [PATCH v2 1/2] arm64: dts: mt8173: Set uart to mmio32 iotype
-To:     Matthias Brugger <matthias.bgg@gmail.com>
-Cc:     "moderated list:ARM/Mediatek SoC support" 
-        <linux-mediatek@lists.infradead.org>,
+        id S1730463AbgIJNwt (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Thu, 10 Sep 2020 09:52:49 -0400
+Received: from hqnvemgate26.nvidia.com ([216.228.121.65]:10011 "EHLO
+        hqnvemgate26.nvidia.com" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
+        with ESMTP id S1730890AbgIJNv7 (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Thu, 10 Sep 2020 09:51:59 -0400
+Received: from hqpgpgate101.nvidia.com (Not Verified[216.228.121.13]) by hqnvemgate26.nvidia.com (using TLS: TLSv1.2, DES-CBC3-SHA)
+        id <B5f5a2d540000>; Thu, 10 Sep 2020 06:42:44 -0700
+Received: from hqmail.nvidia.com ([172.20.161.6])
+  by hqpgpgate101.nvidia.com (PGP Universal service);
+  Thu, 10 Sep 2020 06:42:58 -0700
+X-PGP-Universal: processed;
+        by hqpgpgate101.nvidia.com on Thu, 10 Sep 2020 06:42:58 -0700
+Received: from HQMAIL101.nvidia.com (172.20.187.10) by HQMAIL101.nvidia.com
+ (172.20.187.10) with Microsoft SMTP Server (TLS) id 15.0.1473.3; Thu, 10 Sep
+ 2020 13:42:57 +0000
+Received: from hqnvemgw03.nvidia.com (10.124.88.68) by HQMAIL101.nvidia.com
+ (172.20.187.10) with Microsoft SMTP Server (TLS) id 15.0.1473.3 via Frontend
+ Transport; Thu, 10 Sep 2020 13:42:57 +0000
+Received: from moonraker.nvidia.com (Not Verified[10.26.73.219]) by hqnvemgw03.nvidia.com with Trustwave SEG (v7,5,8,10121)
+        id <B5f5a2d5f0004>; Thu, 10 Sep 2020 06:42:57 -0700
+From:   Jon Hunter <jonathanh@nvidia.com>
+To:     Bartosz Golaszewski <bgolaszewski@baylibre.com>,
         Rob Herring <robh+dt@kernel.org>,
-        Devicetree List <devicetree@vger.kernel.org>,
-        "moderated list:ARM/FREESCALE IMX / MXC ARM ARCHITECTURE" 
-        <linux-arm-kernel@lists.infradead.org>,
-        lkml <linux-kernel@vger.kernel.org>,
-        Enric Balletbo i Serra <enric.balletbo@collabora.com>,
-        Eddie Huang <eddie.huang@mediatek.com>
-Content-Type: text/plain; charset="UTF-8"
+        Thierry Reding <thierry.reding@gmail.com>
+CC:     <linux-i2c@vger.kernel.org>, <linux-kernel@vger.kernel.org>,
+        <devicetree@vger.kernel.org>, <linux-tegra@vger.kernel.org>,
+        Jon Hunter <jonathanh@nvidia.com>
+Subject: [PATCH 0/5] Add support for custom names for AT24 EEPROMs
+Date:   Thu, 10 Sep 2020 14:42:34 +0100
+Message-ID: <20200910134239.192030-1-jonathanh@nvidia.com>
+X-Mailer: git-send-email 2.25.1
+MIME-Version: 1.0
+X-NVConfidentiality: public
+Content-Transfer-Encoding: quoted-printable
+Content-Type: text/plain
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=nvidia.com; s=n1;
+        t=1599745364; bh=p+eYdcmA2/YhlGQL68eNg7qv5O42WRTdkqFEOkVxhh4=;
+        h=X-PGP-Universal:From:To:CC:Subject:Date:Message-ID:X-Mailer:
+         MIME-Version:X-NVConfidentiality:Content-Transfer-Encoding:
+         Content-Type;
+        b=chn7Qdj+vGw8KwVNpGbRcKeQAJ8oa+V2YNtbKpgP8ZhgULS3olMy81JTxYnikpi2S
+         7ETE1sSyuLV2dzO1bXIRSolnNg72nn9ZxkP0PtnhLhFB0uivxWyI+EGBFxsPUz7Xog
+         R1LRw4MTEXzazen+08lVWx9C08ZOii7UtK852BUmNxaRGzajjeiSTutDGX64RlUTuy
+         Qmb66rEG8AgZQ7ZutIzpdo6wMMGm40MqlcXJsI9PQVhJU0WRzeV06ao3NxuYkMByGg
+         yVbnjMBwRI0JD8Bx5q0sghwdOPW0vsniidJ+ABEkAuRrsHsPhzYAmp2BRKk9+sO4UB
+         QFYI0AzAQ15gg==
 Sender: devicetree-owner@vger.kernel.org
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-On Thu, Sep 10, 2020 at 6:25 PM Matthias Brugger <matthias.bgg@gmail.com> wrote:
->
-> Hi,
->
-> On 10/09/2020 10:43, Hsin-Yi Wang wrote:
-> > Set uart iotype to mmio32 to make earlycon work with stdout-path.
-> >
-> > Signed-off-by: Hsin-Yi Wang <hsinyi@chromium.org>
-> > ---
-> >   arch/arm64/boot/dts/mediatek/mt8173.dtsi | 8 ++++++++
-> >   1 file changed, 8 insertions(+)
-> >
-> > diff --git a/arch/arm64/boot/dts/mediatek/mt8173.dtsi b/arch/arm64/boot/dts/mediatek/mt8173.dtsi
-> > index 5e046f9d48ce9..ca6ea71f5f435 100644
-> > --- a/arch/arm64/boot/dts/mediatek/mt8173.dtsi
-> > +++ b/arch/arm64/boot/dts/mediatek/mt8173.dtsi
-> > @@ -613,6 +613,8 @@ uart0: serial@11002000 {
-> >                       interrupts = <GIC_SPI 83 IRQ_TYPE_LEVEL_LOW>;
-> >                       clocks = <&pericfg CLK_PERI_UART0_SEL>, <&pericfg CLK_PERI_UART0>;
-> >                       clock-names = "baud", "bus";
-> > +                     reg-io-width = <4>;
->
-> Why do we need that, we have
-> device->port.iotype = UPIO_MEM32;
-> in early_mtk8250_setup(). That should do the job already.
->
->
+For platforms that have multiple boards and hence have multiple EEPROMs
+for identifying the different boards, it is useful to label the EEPROMs
+in device-tree so that they can be easily identified. For example, MAC
+address information is stored in the EEPROM on the processor module for
+some Jetson platforms which is not only required by the kernel but the
+bootloader as well. So having a simple way to identify the EEPROM is
+needed.
 
-But if we don't change in dts, we would see
-[    0.000000] earlycon: mtk8250 at MMIO 0x0000000011002000 (options '115200n8')
-instead of
-[    0.000000] earlycon: mtk8250 at MMIO32 0x0000000011002000 (options
-'115200n8')
+Jon Hunter (5):
+  misc: eeprom: at24: Initialise AT24 NVMEM ID field
+  dt-bindings: eeprom: at24: Add label property for AT24
+  misc: eeprom: at24: Support custom device names for AT24 EEPROMs
+  arm64: tegra: Add label properties for EEPROMs
+  arm64: tegra: Populate EEPROMs for Jetson Xavier NX
 
-Perhaps we should move the pr_info part in earlycon_init() after
-match->setup(). Since setup may change iotype. What do you think?
+ .../devicetree/bindings/eeprom/at24.yaml         |  4 ++++
+ .../boot/dts/nvidia/tegra186-p2771-0000.dts      |  1 +
+ arch/arm64/boot/dts/nvidia/tegra186-p3310.dtsi   |  1 +
+ arch/arm64/boot/dts/nvidia/tegra194-p2888.dtsi   |  1 +
+ .../boot/dts/nvidia/tegra194-p2972-0000.dts      |  1 +
+ .../nvidia/tegra194-p3509-0000+p3668-0000.dts    | 14 ++++++++++++++
+ .../boot/dts/nvidia/tegra194-p3668-0000.dtsi     | 16 ++++++++++++++++
+ arch/arm64/boot/dts/nvidia/tegra210-p2180.dtsi   |  1 +
+ .../boot/dts/nvidia/tegra210-p2371-2180.dts      |  1 +
+ .../boot/dts/nvidia/tegra210-p3450-0000.dts      |  2 ++
+ drivers/misc/eeprom/at24.c                       | 11 ++++++++++-
+ 11 files changed, 52 insertions(+), 1 deletion(-)
 
+--=20
+2.25.1
 
-> > +                     reg-shift = <2>;
->
-> Can't we just add
-> device->port.regshift = 2;
-> to early_mtk8250_setup()? I think that would be a cleaner solution. As the
-> serial device is the same for all SoCs, I don't expect any regression here.
->
-> CCing Eddie to correct me, if I'm wrong :)
->
-> Regards,
-> Matthias
->
-> >                       status = "disabled";
-> >               };
-> >
-> > @@ -623,6 +625,8 @@ uart1: serial@11003000 {
-> >                       interrupts = <GIC_SPI 84 IRQ_TYPE_LEVEL_LOW>;
-> >                       clocks = <&pericfg CLK_PERI_UART1_SEL>, <&pericfg CLK_PERI_UART1>;
-> >                       clock-names = "baud", "bus";
-> > +                     reg-io-width = <4>;
-> > +                     reg-shift = <2>;
-> >                       status = "disabled";
-> >               };
-> >
-> > @@ -633,6 +637,8 @@ uart2: serial@11004000 {
-> >                       interrupts = <GIC_SPI 85 IRQ_TYPE_LEVEL_LOW>;
-> >                       clocks = <&pericfg CLK_PERI_UART2_SEL>, <&pericfg CLK_PERI_UART2>;
-> >                       clock-names = "baud", "bus";
-> > +                     reg-io-width = <4>;
-> > +                     reg-shift = <2>;
-> >                       status = "disabled";
-> >               };
-> >
-> > @@ -643,6 +649,8 @@ uart3: serial@11005000 {
-> >                       interrupts = <GIC_SPI 86 IRQ_TYPE_LEVEL_LOW>;
-> >                       clocks = <&pericfg CLK_PERI_UART3_SEL>, <&pericfg CLK_PERI_UART3>;
-> >                       clock-names = "baud", "bus";
-> > +                     reg-io-width = <4>;
-> > +                     reg-shift = <2>;
-> >                       status = "disabled";
-> >               };
-> >
-> >
