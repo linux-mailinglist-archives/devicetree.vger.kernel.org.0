@@ -2,46 +2,47 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from vger.kernel.org (vger.kernel.org [23.128.96.18])
-	by mail.lfdr.de (Postfix) with ESMTP id 56F092648D6
-	for <lists+devicetree@lfdr.de>; Thu, 10 Sep 2020 17:35:32 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTP id 2DE4A2648CB
+	for <lists+devicetree@lfdr.de>; Thu, 10 Sep 2020 17:34:05 +0200 (CEST)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S1731322AbgIJPf2 (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Thu, 10 Sep 2020 11:35:28 -0400
-Received: from lindbergh.monkeyblade.net ([23.128.96.19]:37614 "EHLO
+        id S1731331AbgIJPdL (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Thu, 10 Sep 2020 11:33:11 -0400
+Received: from lindbergh.monkeyblade.net ([23.128.96.19]:37526 "EHLO
         lindbergh.monkeyblade.net" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S1731266AbgIJPdt (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Thu, 10 Sep 2020 11:33:49 -0400
-Received: from mail-oi1-x263.google.com (mail-oi1-x263.google.com [IPv6:2607:f8b0:4864:20::263])
-        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id F4088C061369
-        for <devicetree@vger.kernel.org>; Thu, 10 Sep 2020 08:26:05 -0700 (PDT)
-Received: by mail-oi1-x263.google.com with SMTP id x14so6279162oic.9
-        for <devicetree@vger.kernel.org>; Thu, 10 Sep 2020 08:26:05 -0700 (PDT)
+        with ESMTP id S1731287AbgIJPcj (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Thu, 10 Sep 2020 11:32:39 -0400
+Received: from mail-oi1-x262.google.com (mail-oi1-x262.google.com [IPv6:2607:f8b0:4864:20::262])
+        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 2150EC061371
+        for <devicetree@vger.kernel.org>; Thu, 10 Sep 2020 08:26:19 -0700 (PDT)
+Received: by mail-oi1-x262.google.com with SMTP id c13so6273041oiy.6
+        for <devicetree@vger.kernel.org>; Thu, 10 Sep 2020 08:26:19 -0700 (PDT)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
         d=broadcom.com; s=google;
-        h=from:to:cc:subject:date:message-id;
-        bh=N9KMfAmv5gz9m6lApSf8P0rQ6LhDYejBww8cNrHpQok=;
-        b=PH7EqfcrI9gbwFUc67/qdfVoPVX/x4PJuxUjvJeXseMzxwVdhBcsyHdWLOP5cGyfx5
-         7ZSBopRHdt6dSl26MJHlVEZbcs2PNDaWG3QYJWdgHtTwLu6T/ib8f2QzZMy+M/cSbnFa
-         5MjLhstOsdMcqMcTFdZvluz11qF37cAKikXTk=
+        h=from:to:cc:subject:date:message-id:in-reply-to:references;
+        bh=Pf2v6K7fWr+bHCgGUrV3kke5q6+ZGtBMsavuxBjru5M=;
+        b=SfjaHdsV2lxdGQvWKc7EZuSFskirebpOlxOzXblt3pwchrHV6C4K5BhXP0Gyhrblhy
+         6Ox39WJo6pbiXDZEsDnFEqqe1G5RvOK4XY+7AeKH55DNxvUUYoTPEzZ0fQNbH9n6nX1J
+         7wtyz9RrLUfN1MJ3ldJ7dUzPrBnOA4tGN2klg=
 X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
         d=1e100.net; s=20161025;
-        h=x-gm-message-state:from:to:cc:subject:date:message-id;
-        bh=N9KMfAmv5gz9m6lApSf8P0rQ6LhDYejBww8cNrHpQok=;
-        b=NBiFj+Y5KQ8GUA9fPcC6kES/Jc5MZMmF0WAsmlAIoo81OEDpur/hiGSNzejtCTwH3U
-         IvI8UBjtJSouudm9eD3eeDtpHNlufKDKR9VuriCbMauQPb35Dig+bPhrSExAmNiRA4bB
-         lDUrBQzmmMS/OpQFqE6FmuQLJVbdywSBoAofECRWAaGo1LGsEkgdcxvp14heDkUnvB32
-         Ya75hKbvYElk7x64VYfu0fcBIbfTcQzcLbNSOtwut6oy8Ao3ZYRFWLhFqLgNZggO0pWw
-         66mT0+YfK3gdmDslKZUUHBFXilSP2CggLhD4tzU5cog7CASyCgcVGRaOVsGU9hYxgyVX
-         XMOw==
-X-Gm-Message-State: AOAM530N1shIRYQeLNzKOcyadf59LGKQUNswE3G6+KwDX1dr+pTrflqr
-        1KL1Qpn0L9arXbVlgywHL/d7MF0LOm7jKrsQD7JtQwsAE4Va
-X-Google-Smtp-Source: ABdhPJxW+wUZjy6K9BKtFZv7NGBFSRSsF5MWXPbl2+IX73/JOQCBJl9BEXktjrUDKBXePb25dMK3bpyfrhPr
-X-Received: by 2002:aca:b454:: with SMTP id d81mr350910oif.150.1599751563367;
-        Thu, 10 Sep 2020 08:26:03 -0700 (PDT)
+        h=x-gm-message-state:from:to:cc:subject:date:message-id:in-reply-to
+         :references;
+        bh=Pf2v6K7fWr+bHCgGUrV3kke5q6+ZGtBMsavuxBjru5M=;
+        b=l49C1erCVoTfdFBN5J+GWCQrjtcjAVU7keqTD6q5V7YC+iEpt32FfkUPe/ScPdy8pv
+         WCyQSV29ABqmqw4oqNy/zvYmSEFW9TCrJWUH+tLwSBBtc3EHLNdzj11/bEjvvPUZAM14
+         BoqgNgdNvGBeTk1rIvlM+dPEYRvJDj/VhoJF35FKh6vtjk5+IrxhrdEMds1vVJF89cos
+         IHS8DYo/antIZyGk6Ls0MMIztGpnf1SYAzpXTtWFOMN8icZkcicSXQPsUgYXRHAuS7XI
+         NRWpCnrOvz6Yxm5B4Ax6faXMN5atDzd/6dgOCJy7/w8vfBPOzOhsgFrJD52oL0OlCNAg
+         wr1w==
+X-Gm-Message-State: AOAM5326MLcs9rM7Z7mOkYreGjhXxznonOLErc/MLYfwrvKFXwG3ST03
+        qWlpO5D2wwPLj/PlUO3p8vGbJgPNvSyyUmPMOdndJSht6OkW
+X-Google-Smtp-Source: ABdhPJzTjwr55nx7RvuWPGr4A0Ppz+2wny0SQ9PbuZXKywFz6zRzamwR7UTzBzOpwY39BqVvHM2+KO4l8h9d
+X-Received: by 2002:aca:5752:: with SMTP id l79mr349595oib.86.1599751578361;
+        Thu, 10 Sep 2020 08:26:18 -0700 (PDT)
 Received: from rj-aorus.ric.broadcom.com ([192.19.228.250])
-        by smtp-relay.gmail.com with ESMTPS id h4sm943004oom.19.2020.09.10.08.25.58
+        by smtp-relay.gmail.com with ESMTPS id h4sm943004oom.19.2020.09.10.08.26.13
         (version=TLS1_3 cipher=TLS_AES_256_GCM_SHA384 bits=256/256);
-        Thu, 10 Sep 2020 08:26:03 -0700 (PDT)
+        Thu, 10 Sep 2020 08:26:18 -0700 (PDT)
 X-Relaying-Domain: broadcom.com
 From:   Ray Jui <ray.jui@broadcom.com>
 To:     Mark Brown <broonie@kernel.org>, Rob Herring <robh+dt@kernel.org>,
@@ -51,35 +52,41 @@ Cc:     linux-spi@vger.kernel.org, devicetree@vger.kernel.org,
         linux-kernel@vger.kernel.org,
         bcm-kernel-feedback-list@broadcom.com,
         Ray Jui <ray.jui@broadcom.com>
-Subject: [PATCH 1/4] dt-bindings: spi: Add compatible string for brcmstb SoCs
-Date:   Thu, 10 Sep 2020 08:25:36 -0700
-Message-Id: <20200910152539.45584-1-ray.jui@broadcom.com>
+Subject: [PATCH 3/4] spi: bcm-qspi: Fix probe regression on iProc platforms
+Date:   Thu, 10 Sep 2020 08:25:38 -0700
+Message-Id: <20200910152539.45584-3-ray.jui@broadcom.com>
 X-Mailer: git-send-email 2.17.1
+In-Reply-To: <20200910152539.45584-1-ray.jui@broadcom.com>
+References: <20200910152539.45584-1-ray.jui@broadcom.com>
 Sender: devicetree-owner@vger.kernel.org
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-Add compatible string for brcmstb 7445 SoCs.
+iProc chips have QSPI controller that does not have the MSPI_REV
+offset. Reading from that offset will cause a bus error. Fix it by
+having MSPI_REV query disabled in the generic compatible string.
 
+Fixes: 3a01f04d74ef ("spi: bcm-qspi: Handle lack of MSPI_REV offset")
+Link: https://lore.kernel.org/linux-arm-kernel/20200909211857.4144718-1-f.fainelli@gmail.com/T/#u
 Signed-off-by: Ray Jui <ray.jui@broadcom.com>
 ---
- Documentation/devicetree/bindings/spi/brcm,spi-bcm-qspi.txt | 2 ++
- 1 file changed, 2 insertions(+)
+ drivers/spi/spi-bcm-qspi.c | 2 +-
+ 1 file changed, 1 insertion(+), 1 deletion(-)
 
-diff --git a/Documentation/devicetree/bindings/spi/brcm,spi-bcm-qspi.txt b/Documentation/devicetree/bindings/spi/brcm,spi-bcm-qspi.txt
-index f5e518d099f2..9d4d5d866fa0 100644
---- a/Documentation/devicetree/bindings/spi/brcm,spi-bcm-qspi.txt
-+++ b/Documentation/devicetree/bindings/spi/brcm,spi-bcm-qspi.txt
-@@ -32,6 +32,8 @@ Required properties:
-     			     			  			    BRCMSTB  SoCs
-     "brcm,spi-bcm7435-qspi", "brcm,spi-bcm-qspi", "brcm,spi-brcmstb-mspi" : Second Instance of MSPI
-     			     			  			    BRCMSTB  SoCs
-+    "brcm,spi-bcm7445-qspi", "brcm,spi-bcm-qspi", "brcm,spi-brcmstb-mspi" : Second Instance of MSPI
-+                                                                            BRCMSTB  SoCs
-     "brcm,spi-bcm7216-qspi", "brcm,spi-bcm-qspi", "brcm,spi-brcmstb-mspi" : Second Instance of MSPI
-     			     			  			    BRCMSTB  SoCs
-     "brcm,spi-bcm7278-qspi", "brcm,spi-bcm-qspi", "brcm,spi-brcmstb-mspi" : Second Instance of MSPI
+diff --git a/drivers/spi/spi-bcm-qspi.c b/drivers/spi/spi-bcm-qspi.c
+index c5209b42b0d2..b78d47a4403c 100644
+--- a/drivers/spi/spi-bcm-qspi.c
++++ b/drivers/spi/spi-bcm-qspi.c
+@@ -1300,7 +1300,7 @@ static const struct of_device_id bcm_qspi_of_match[] = {
+ 	},
+ 	{
+ 		.compatible = "brcm,spi-bcm-qspi",
+-		.data = &bcm_qspi_rev_data,
++		.data = &bcm_qspi_no_rev_data,
+ 	},
+ 	{
+ 		.compatible = "brcm,spi-bcm7216-qspi",
 -- 
 2.17.1
 
