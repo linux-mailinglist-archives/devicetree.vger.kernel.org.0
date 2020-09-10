@@ -2,16 +2,16 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from vger.kernel.org (vger.kernel.org [23.128.96.18])
-	by mail.lfdr.de (Postfix) with ESMTP id CCB1C2653C2
-	for <lists+devicetree@lfdr.de>; Thu, 10 Sep 2020 23:40:32 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTP id D87C8265369
+	for <lists+devicetree@lfdr.de>; Thu, 10 Sep 2020 23:34:41 +0200 (CEST)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S1728257AbgIJVj5 (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Thu, 10 Sep 2020 17:39:57 -0400
-Received: from a27-10.smtp-out.us-west-2.amazonses.com ([54.240.27.10]:50286
-        "EHLO a27-10.smtp-out.us-west-2.amazonses.com" rhost-flags-OK-OK-OK-OK)
-        by vger.kernel.org with ESMTP id S1727055AbgIJNHI (ORCPT
+        id S1730764AbgIJNty (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Thu, 10 Sep 2020 09:49:54 -0400
+Received: from a27-55.smtp-out.us-west-2.amazonses.com ([54.240.27.55]:57968
+        "EHLO a27-55.smtp-out.us-west-2.amazonses.com" rhost-flags-OK-OK-OK-OK)
+        by vger.kernel.org with ESMTP id S1730881AbgIJNto (ORCPT
         <rfc822;devicetree@vger.kernel.org>);
-        Thu, 10 Sep 2020 09:07:08 -0400
+        Thu, 10 Sep 2020 09:49:44 -0400
 DKIM-Signature: v=1; a=rsa-sha256; q=dns/txt; c=relaxed/simple;
         s=zsmsymrwgfyinv5wlfyidntwsjeeldzt; d=codeaurora.org; t=1599742198;
         h=MIME-Version:Content-Type:Content-Transfer-Encoding:Date:From:To:Cc:Subject:In-Reply-To:References:Message-ID;
@@ -58,7 +58,7 @@ References: <1599145498-20707-1-git-send-email-skakit@codeaurora.org>
 Message-ID: <010101747810c24f-a169785b-0866-4932-a24e-80ff53393de2-000000@us-west-2.amazonses.com>
 X-Sender: skakit@codeaurora.org
 User-Agent: Roundcube Webmail/1.3.9
-X-SES-Outgoing: 2020.09.10-54.240.27.10
+X-SES-Outgoing: 2020.09.10-54.240.27.55
 Feedback-ID: 1.us-west-2.CZuq2qbDmUIuT3qdvXlRHZZCpfZqZ4GtG9v3VKgRyF0=:AmazonSES
 Sender: devicetree-owner@vger.kernel.org
 Precedence: bulk
