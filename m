@@ -2,81 +2,99 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from vger.kernel.org (vger.kernel.org [23.128.96.18])
-	by mail.lfdr.de (Postfix) with ESMTP id CC622264D09
-	for <lists+devicetree@lfdr.de>; Thu, 10 Sep 2020 20:33:26 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTP id 9BE60264D02
+	for <lists+devicetree@lfdr.de>; Thu, 10 Sep 2020 20:32:49 +0200 (CEST)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S1726776AbgIJSdU (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Thu, 10 Sep 2020 14:33:20 -0400
-Received: from mail.kernel.org ([198.145.29.99]:48310 "EHLO mail.kernel.org"
-        rhost-flags-OK-OK-OK-OK) by vger.kernel.org with ESMTP
-        id S1726935AbgIJSXY (ORCPT <rfc822;devicetree@vger.kernel.org>);
-        Thu, 10 Sep 2020 14:23:24 -0400
-Received: from localhost.localdomain (unknown [194.230.155.174])
-        (using TLSv1.2 with cipher ECDHE-RSA-AES128-GCM-SHA256 (128/128 bits))
-        (No client certificate requested)
-        by mail.kernel.org (Postfix) with ESMTPSA id 58F3D21D79;
-        Thu, 10 Sep 2020 18:22:52 +0000 (UTC)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=kernel.org;
-        s=default; t=1599762175;
-        bh=/lCqompaU4J7OaqiXkk9Bzxz+r9grKwZNR9v6cvgsyw=;
-        h=From:To:Subject:Date:In-Reply-To:References:From;
-        b=AKXO5lYZFQ3OaPM1xxM98DhEuqohj3wAhu7BH++n/ylW5Q67e2feOTKisKYuJLShv
-         r3mquNIAoCvEHbTd0gmYReYUcxgyX1GMQ1uX8FwdrfWezo6tQlS3t0wy79IoIEWNhA
-         moTQxMBlsidNS+fcICPMvvxiJ3rsNxvtlqGQh8k4=
-From:   Krzysztof Kozlowski <krzk@kernel.org>
-To:     Rob Herring <robh+dt@kernel.org>, Shawn Guo <shawnguo@kernel.org>,
+        id S1726966AbgIJSbm (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Thu, 10 Sep 2020 14:31:42 -0400
+Received: from lelv0142.ext.ti.com ([198.47.23.249]:59750 "EHLO
+        lelv0142.ext.ti.com" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
+        with ESMTP id S1725992AbgIJS3n (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Thu, 10 Sep 2020 14:29:43 -0400
+Received: from lelv0266.itg.ti.com ([10.180.67.225])
+        by lelv0142.ext.ti.com (8.15.2/8.15.2) with ESMTP id 08AISHSD084673;
+        Thu, 10 Sep 2020 13:28:17 -0500
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=ti.com;
+        s=ti-com-17Q1; t=1599762497;
+        bh=/p00wrLZKxm3tUdvkQZ3Zas+TvF5YzDvm0LLgn7D3xQ=;
+        h=Date:From:To:CC:Subject:References:In-Reply-To;
+        b=ON8eBfGmOQBQZAOZzSzMJXoaAUONGx+PNaEnoSbTXzBrY10dzuDqJ4nJHVJ9C3xlj
+         E7Dhx3GpS+UNp5WpcmR2xgjrVCOcY6TJfa7P/HAb8DhdkYRe8A5Deqk72nyekQtKkN
+         dhc9G7Q3PZPA57dy53JiDEkqPS5ygGvh9+c+kTQ0=
+Received: from DFLE103.ent.ti.com (dfle103.ent.ti.com [10.64.6.24])
+        by lelv0266.itg.ti.com (8.15.2/8.15.2) with ESMTPS id 08AISHdJ130436
+        (version=TLSv1.2 cipher=AES256-GCM-SHA384 bits=256 verify=FAIL);
+        Thu, 10 Sep 2020 13:28:17 -0500
+Received: from DFLE106.ent.ti.com (10.64.6.27) by DFLE103.ent.ti.com
+ (10.64.6.24) with Microsoft SMTP Server (version=TLS1_2,
+ cipher=TLS_ECDHE_RSA_WITH_AES_128_CBC_SHA256_P256) id 15.1.1979.3; Thu, 10
+ Sep 2020 13:28:17 -0500
+Received: from lelv0327.itg.ti.com (10.180.67.183) by DFLE106.ent.ti.com
+ (10.64.6.27) with Microsoft SMTP Server (version=TLS1_2,
+ cipher=TLS_ECDHE_RSA_WITH_AES_128_CBC_SHA256_P256) id 15.1.1979.3 via
+ Frontend Transport; Thu, 10 Sep 2020 13:28:17 -0500
+Received: from localhost (ileax41-snat.itg.ti.com [10.172.224.153])
+        by lelv0327.itg.ti.com (8.15.2/8.15.2) with ESMTP id 08AISFXN107099;
+        Thu, 10 Sep 2020 13:28:16 -0500
+Date:   Thu, 10 Sep 2020 13:28:14 -0500
+From:   Nishanth Menon <nm@ti.com>
+To:     Krzysztof Kozlowski <krzk@kernel.org>
+CC:     Linus Walleij <linus.walleij@linaro.org>,
+        Bartosz Golaszewski <bgolaszewski@baylibre.com>,
+        Rob Herring <robh+dt@kernel.org>,
+        =?iso-8859-1?Q?Beno=EEt?= Cousson <bcousson@baylibre.com>,
+        Tony Lindgren <tony@atomide.com>,
+        Russell King <linux@armlinux.org.uk>,
+        Jason Cooper <jason@lakedaemon.net>,
+        Andrew Lunn <andrew@lunn.ch>,
+        Gregory Clement <gregory.clement@bootlin.com>,
+        Sebastian Hesselbarth <sebastian.hesselbarth@gmail.com>,
+        Joel Stanley <joel@jms.id.au>,
+        Andrew Jeffery <andrew@aj.id.au>,
+        Shawn Guo <shawnguo@kernel.org>,
         Sascha Hauer <s.hauer@pengutronix.de>,
         Pengutronix Kernel Team <kernel@pengutronix.de>,
-        Fabio Estevam <festevam@gmail.com>,
         NXP Linux Team <linux-imx@nxp.com>,
-        Krzysztof Kozlowski <krzk@kernel.org>,
-        Wolfram Sang <wolfram@the-dreams.de>,
-        linux-i2c@vger.kernel.org, devicetree@vger.kernel.org,
-        linux-arm-kernel@lists.infradead.org, linux-kernel@vger.kernel.org
-Subject: [PATCH v3 2/4] dt-bindings: i2c: imx-lpi2c: Fix i.MX 8QXP compatible matching
-Date:   Thu, 10 Sep 2020 20:22:42 +0200
-Message-Id: <20200910182244.5815-2-krzk@kernel.org>
-X-Mailer: git-send-email 2.17.1
-In-Reply-To: <20200910182244.5815-1-krzk@kernel.org>
-References: <20200910182244.5815-1-krzk@kernel.org>
+        Matthias Brugger <matthias.bgg@gmail.com>,
+        Geert Uytterhoeven <geert+renesas@glider.be>,
+        Magnus Damm <magnus.damm@gmail.com>,
+        Tero Kristo <t-kristo@ti.com>,
+        Michal Simek <michal.simek@xilinx.com>,
+        Guenter Roeck <linux@roeck-us.net>,
+        <devicetree@vger.kernel.org>, <linux-kernel@vger.kernel.org>,
+        <linux-omap@vger.kernel.org>,
+        <linux-arm-kernel@lists.infradead.org>,
+        <linux-aspeed@lists.ozlabs.org>,
+        <linux-mediatek@lists.infradead.org>,
+        <linux-renesas-soc@vger.kernel.org>
+Subject: Re: [PATCH v2 01/15] dt-bindings: gpio: convert bindings for NXP
+ PCA953x family to dtschema
+Message-ID: <20200910182814.veviax3n377undkv@akan>
+References: <20200910175733.11046-1-krzk@kernel.org>
+ <20200910175733.11046-2-krzk@kernel.org>
+MIME-Version: 1.0
+Content-Type: text/plain; charset="us-ascii"
+Content-Disposition: inline
+In-Reply-To: <20200910175733.11046-2-krzk@kernel.org>
+User-Agent: NeoMutt/20171215
+X-EXCLAIMER-MD-CONFIG: e1e8a2fd-e40a-4ac6-ac9b-f7e9cc9ee180
 Sender: devicetree-owner@vger.kernel.org
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-The i.MX 8QXP DTSes use two compatibles so update the binding to fix
-dtbs_check warnings like:
+On 19:57-20200910, Krzysztof Kozlowski wrote:
+[...]
+> +  wakeup-source:
+> +    $ref: /schemas/types.yaml#/definitions/flag
+> +
+> +patternProperties:
+> +  "^(hog-[0-9]+|.+-hog(-[0-9]+)?)$":
 
-  arch/arm64/boot/dts/freescale/imx8qxp-mek.dt.yaml: i2c@5a820000:
-    compatible: ['fsl,imx8qxp-lpi2c', 'fsl,imx7ulp-lpi2c'] is too long
+I wonder if "hog" is too generic and might clash with "something-hog" in
+the future?
 
-Signed-off-by: Krzysztof Kozlowski <krzk@kernel.org>
----
- .../devicetree/bindings/i2c/i2c-imx-lpi2c.yaml        | 11 +++++++----
- 1 file changed, 7 insertions(+), 4 deletions(-)
-
-diff --git a/Documentation/devicetree/bindings/i2c/i2c-imx-lpi2c.yaml b/Documentation/devicetree/bindings/i2c/i2c-imx-lpi2c.yaml
-index 918535b33384..8b088a34a8e6 100644
---- a/Documentation/devicetree/bindings/i2c/i2c-imx-lpi2c.yaml
-+++ b/Documentation/devicetree/bindings/i2c/i2c-imx-lpi2c.yaml
-@@ -14,10 +14,13 @@ allOf:
- 
- properties:
-   compatible:
--    enum:
--      - fsl,imx7ulp-lpi2c
--      - fsl,imx8qxp-lpi2c
--      - fsl,imx8qm-lpi2c
-+    oneOf:
-+      - enum:
-+          - fsl,imx7ulp-lpi2c
-+          - fsl,imx8qm-lpi2c
-+      - items:
-+          - const: fsl,imx8qxp-lpi2c
-+          - const: fsl,imx7ulp-lpi2c
- 
-   '#address-cells': true
-   '#size-cells': true
 -- 
-2.17.1
-
+Regards,
+Nishanth Menon
+Key (0xDDB5849D1736249D) / Fingerprint: F8A2 8693 54EB 8232 17A3  1A34 DDB5 849D 1736 249D
