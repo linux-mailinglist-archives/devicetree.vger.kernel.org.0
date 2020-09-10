@@ -2,118 +2,96 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from vger.kernel.org (vger.kernel.org [23.128.96.18])
-	by mail.lfdr.de (Postfix) with ESMTP id 846C0264DAD
-	for <lists+devicetree@lfdr.de>; Thu, 10 Sep 2020 20:48:34 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTP id 8DE3C264DE2
+	for <lists+devicetree@lfdr.de>; Thu, 10 Sep 2020 20:55:11 +0200 (CEST)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S1725820AbgIJSsP (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Thu, 10 Sep 2020 14:48:15 -0400
-Received: from mail.kernel.org ([198.145.29.99]:56262 "EHLO mail.kernel.org"
+        id S1726979AbgIJSzD (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Thu, 10 Sep 2020 14:55:03 -0400
+Received: from mail.kernel.org ([198.145.29.99]:60144 "EHLO mail.kernel.org"
         rhost-flags-OK-OK-OK-OK) by vger.kernel.org with ESMTP
-        id S1726898AbgIJSrg (ORCPT <rfc822;devicetree@vger.kernel.org>);
-        Thu, 10 Sep 2020 14:47:36 -0400
-Received: from localhost.localdomain (unknown [194.230.155.174])
+        id S1726539AbgIJSyJ (ORCPT <rfc822;devicetree@vger.kernel.org>);
+        Thu, 10 Sep 2020 14:54:09 -0400
+Received: from mail-ed1-f42.google.com (mail-ed1-f42.google.com [209.85.208.42])
         (using TLSv1.2 with cipher ECDHE-RSA-AES128-GCM-SHA256 (128/128 bits))
         (No client certificate requested)
-        by mail.kernel.org (Postfix) with ESMTPSA id 9192920855;
-        Thu, 10 Sep 2020 18:47:34 +0000 (UTC)
+        by mail.kernel.org (Postfix) with ESMTPSA id 4BA8921D92;
+        Thu, 10 Sep 2020 18:54:05 +0000 (UTC)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=kernel.org;
-        s=default; t=1599763655;
-        bh=T/J19eEn3KKQMictkQaqPg+3MA1LjIWj4lP36KCntIQ=;
-        h=From:To:Cc:Subject:Date:From;
-        b=JxiIkoZNk4KHaoukG4G01fCUjHEL9lzT/onLIlR092y2FmXpQHMjDVYTINe++Erap
-         z7wZuUY5qrW95EnkH+SaqvKJbMni1mfaR1/CDt9607ERVJQMCcEugrrP1YhakEryDJ
-         I/7xkQ5Pq2MshTi7c4tbU3NxMoVrITSJzucgwVEU=
+        s=default; t=1599764045;
+        bh=XhMR0se3B2M3cCm4dG7gM2H1njurlMTbkC88FGhIKJs=;
+        h=References:In-Reply-To:From:Date:Subject:To:Cc:From;
+        b=NWf2TTe71JDTV5fTFH3pnw3HOYxZ5ivZJJsDunUt35gp25A4mNzl407I2iacg6Psi
+         Budl9qFpHKWvZJLdEln1WkpXuBpI3tCHQdwvnqxK5EHBixzH8JD2FeS50pKl/BJZ9Q
+         oW6NJfp9FaoUigAD/y/1aDn9KN/rWfhNcmsuNGLQ=
+Received: by mail-ed1-f42.google.com with SMTP id ay8so7391618edb.8;
+        Thu, 10 Sep 2020 11:54:05 -0700 (PDT)
+X-Gm-Message-State: AOAM530PpEiF4gd8hIQjezXCsXKEU4jDKO+O2s24KIZK0hCqdcKi6WP6
+        lRd0yze+KWFNX6QGZfOtGdAIUkCUMP64yFo52DA=
+X-Google-Smtp-Source: ABdhPJzxOkwjKIRJe1J7RhPZI8K0aJEHMtzOqR5F+V93515rBHAjgLIuO18iiQn+8UTlJNwgheXSwAxcmyXoMHMFYBk=
+X-Received: by 2002:a05:6402:180a:: with SMTP id g10mr10672940edy.18.1599764043844;
+ Thu, 10 Sep 2020 11:54:03 -0700 (PDT)
+MIME-Version: 1.0
+References: <20200910175733.11046-1-krzk@kernel.org> <20200910175733.11046-2-krzk@kernel.org>
+ <20200910182814.veviax3n377undkv@akan>
+In-Reply-To: <20200910182814.veviax3n377undkv@akan>
 From:   Krzysztof Kozlowski <krzk@kernel.org>
-To:     Rob Herring <robh+dt@kernel.org>, devicetree@vger.kernel.org,
-        linux-kernel@vger.kernel.org
-Cc:     Krzysztof Kozlowski <krzk@kernel.org>
-Subject: [PATCH] dt-bindings: example: Extend based on practice
-Date:   Thu, 10 Sep 2020 20:47:06 +0200
-Message-Id: <20200910184706.9677-1-krzk@kernel.org>
-X-Mailer: git-send-email 2.17.1
+Date:   Thu, 10 Sep 2020 20:53:52 +0200
+X-Gmail-Original-Message-ID: <CAJKOXPdQJz7aLu4sjds46SiZwxvB-VMBR=stjpUme+8iEo+d-w@mail.gmail.com>
+Message-ID: <CAJKOXPdQJz7aLu4sjds46SiZwxvB-VMBR=stjpUme+8iEo+d-w@mail.gmail.com>
+Subject: Re: [PATCH v2 01/15] dt-bindings: gpio: convert bindings for NXP
+ PCA953x family to dtschema
+To:     Nishanth Menon <nm@ti.com>
+Cc:     Linus Walleij <linus.walleij@linaro.org>,
+        Bartosz Golaszewski <bgolaszewski@baylibre.com>,
+        Rob Herring <robh+dt@kernel.org>,
+        =?UTF-8?Q?Beno=C3=AEt_Cousson?= <bcousson@baylibre.com>,
+        Tony Lindgren <tony@atomide.com>,
+        Russell King <linux@armlinux.org.uk>,
+        Jason Cooper <jason@lakedaemon.net>,
+        Andrew Lunn <andrew@lunn.ch>,
+        Gregory Clement <gregory.clement@bootlin.com>,
+        Sebastian Hesselbarth <sebastian.hesselbarth@gmail.com>,
+        Joel Stanley <joel@jms.id.au>,
+        Andrew Jeffery <andrew@aj.id.au>,
+        Shawn Guo <shawnguo@kernel.org>,
+        Sascha Hauer <s.hauer@pengutronix.de>,
+        Pengutronix Kernel Team <kernel@pengutronix.de>,
+        NXP Linux Team <linux-imx@nxp.com>,
+        Matthias Brugger <matthias.bgg@gmail.com>,
+        Geert Uytterhoeven <geert+renesas@glider.be>,
+        Magnus Damm <magnus.damm@gmail.com>,
+        Tero Kristo <t-kristo@ti.com>,
+        Michal Simek <michal.simek@xilinx.com>,
+        Guenter Roeck <linux@roeck-us.net>, devicetree@vger.kernel.org,
+        "linux-kernel@vger.kernel.org" <linux-kernel@vger.kernel.org>,
+        linux-omap@vger.kernel.org, linux-arm-kernel@lists.infradead.org,
+        linux-aspeed@lists.ozlabs.org, linux-mediatek@lists.infradead.org,
+        linux-renesas-soc@vger.kernel.org
+Content-Type: text/plain; charset="UTF-8"
 Sender: devicetree-owner@vger.kernel.org
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-Extend the example schema with common rules which seems to be not that
-obvious:
-1. Expecting arrays of phandles to be always ordered, regardless if
-   "xxx-names" is provided (e.g. clocks),
-2. Add example of altering a property based on presence of other
-   property,
-3. Document usage of unevaluatedProperties.
+On Thu, 10 Sep 2020 at 20:28, Nishanth Menon <nm@ti.com> wrote:
+>
+> On 19:57-20200910, Krzysztof Kozlowski wrote:
+> [...]
+> > +  wakeup-source:
+> > +    $ref: /schemas/types.yaml#/definitions/flag
+> > +
+> > +patternProperties:
+> > +  "^(hog-[0-9]+|.+-hog(-[0-9]+)?)$":
+>
+> I wonder if "hog" is too generic and might clash with "something-hog" in
+> the future?
 
-Signed-off-by: Krzysztof Kozlowski <krzk@kernel.org>
----
- .../devicetree/bindings/example-schema.yaml   | 33 ++++++++++++++-----
- 1 file changed, 25 insertions(+), 8 deletions(-)
+This pattern is already used in
+Documentation/devicetree/bindings/gpio/fsl-imx-gpio.yaml. It will
+match only children and so far it did not find any other nodes in ARM
+and ARM64 dts. I don't expect clashes. Also the question is then - if
+one adds a child of GPIO expander named "foobar-hog" and it is not a
+GPIO hog, then what is it?
 
-diff --git a/Documentation/devicetree/bindings/example-schema.yaml b/Documentation/devicetree/bindings/example-schema.yaml
-index 822975dbeafa..b381db1ae00a 100644
---- a/Documentation/devicetree/bindings/example-schema.yaml
-+++ b/Documentation/devicetree/bindings/example-schema.yaml
-@@ -81,6 +81,8 @@ properties:
-     maxItems: 1
-     description: bus clock. A description is only needed for a single item if
-       there's something unique to add.
-+      The items should be have a fixed order, so pattern matching names are
-+      discouraged.
- 
-   clock-names:
-     items:
-@@ -97,6 +99,8 @@ properties:
-       A variable number of interrupts warrants a description of what conditions
-       affect the number of interrupts. Otherwise, descriptions on standard
-       properties are not necessary.
-+      The items should be have a fixed order, so pattern matching names are
-+      discouraged.
- 
-   interrupt-names:
-     # minItems must be specified here because the default would be 2
-@@ -196,14 +200,24 @@ required:
- #
- # If the conditionals become too unweldy, then it may be better to just split
- # the binding into separate schema documents.
--if:
--  properties:
--    compatible:
--      contains:
--        const: vendor,soc2-ip
--then:
--  required:
--    - foo-supply
-+allOf:
-+  - if:
-+      properties:
-+        compatible:
-+          contains:
-+            const: vendor,soc2-ip
-+    then:
-+      required:
-+        - foo-supply
-+  # Altering schema depending on presence of properties is usually done by
-+  # dependencies (see above), however some adjustments might require if:
-+  - if:
-+      required:
-+        - vendor,bool-property
-+    then:
-+      properties:
-+        vendor,int-property:
-+          enum: [2, 4, 6]
- 
- # Ideally, the schema should have this line otherwise any other properties
- # present are allowed. There's a few common properties such as 'status' and
-@@ -211,6 +225,9 @@ then:
- #
- # This can't be used in cases where another schema is referenced
- # (i.e. allOf: [{$ref: ...}]).
-+# If and only if another schema is referenced and arbitrary children nodes can
-+# appear, "unevaluatedProperties: false" could be used.  Typical example is I2C
-+# controller where no name pattern matching for childre can be added.
- additionalProperties: false
- 
- examples:
--- 
-2.17.1
-
+Best regards,
+Krzysztof
