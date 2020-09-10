@@ -2,51 +2,51 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from vger.kernel.org (vger.kernel.org [23.128.96.18])
-	by mail.lfdr.de (Postfix) with ESMTP id 1FDC12652F7
-	for <lists+devicetree@lfdr.de>; Thu, 10 Sep 2020 23:27:01 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTP id 791EA265306
+	for <lists+devicetree@lfdr.de>; Thu, 10 Sep 2020 23:27:51 +0200 (CEST)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S1728113AbgIJV05 (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Thu, 10 Sep 2020 17:26:57 -0400
-Received: from lindbergh.monkeyblade.net ([23.128.96.19]:52914 "EHLO
+        id S1726535AbgIJV1R (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Thu, 10 Sep 2020 17:27:17 -0400
+Received: from lindbergh.monkeyblade.net ([23.128.96.19]:52892 "EHLO
         lindbergh.monkeyblade.net" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S1731071AbgIJOK1 (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Thu, 10 Sep 2020 10:10:27 -0400
-Received: from mail-wm1-x343.google.com (mail-wm1-x343.google.com [IPv6:2a00:1450:4864:20::343])
-        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 7C530C061799
-        for <devicetree@vger.kernel.org>; Thu, 10 Sep 2020 06:57:33 -0700 (PDT)
-Received: by mail-wm1-x343.google.com with SMTP id a65so128109wme.5
-        for <devicetree@vger.kernel.org>; Thu, 10 Sep 2020 06:57:33 -0700 (PDT)
+        with ESMTP id S1731027AbgIJOKU (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Thu, 10 Sep 2020 10:10:20 -0400
+Received: from mail-wr1-x443.google.com (mail-wr1-x443.google.com [IPv6:2a00:1450:4864:20::443])
+        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 68F34C06179A
+        for <devicetree@vger.kernel.org>; Thu, 10 Sep 2020 06:57:34 -0700 (PDT)
+Received: by mail-wr1-x443.google.com with SMTP id x14so6784784wrl.12
+        for <devicetree@vger.kernel.org>; Thu, 10 Sep 2020 06:57:34 -0700 (PDT)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
         d=linaro.org; s=google;
         h=from:to:cc:subject:date:message-id:in-reply-to:references
          :mime-version:content-transfer-encoding;
-        bh=p5LHymWJ1t58cRZI4MxwTqiMv3bCXN9LR4UYb0nY9Ks=;
-        b=BU07gu7RbTwVUCaVgyCcrK6dlZRCQMCpP0JLqt4VxVj9PkiQON6snK8y8evDWZJ9C7
-         G8ssLCUwz9l9RP5wku9eS6dKXlZIhl4KGyrHEFlyTNQ69idDig2PugrYXY+znUd1vB3n
-         P+HKcxvKMEzj8muUBzw+37tSpBaGsPM2cSLlugb106UvcTJ3Loka58FbnEsk6KI//4mw
-         Gg/WdilAn8NOl9yX2VwvHV+Sdx1/umi5ouYY7HKddcpPfWdWJaoN+6xF5nFE6H/xU4j2
-         u4EIFHXYhKdPqomERJLcJd2EhDkZRnPG1C71B7pNw73aauNnYqSmM9YZiqKn17/MvTD+
-         gIEw==
+        bh=JuyBy5SQ7Lbzjz7YW70om8n+KmTvxYMUk+MZk/dzwhw=;
+        b=Kwb9FGhK/VZxBJyw32CBJXlBvPh8JJqrejHsDQcx6O9DfDnqGscFNi1vOWFEv/JDvO
+         5bAKHrqOopKBjW9KfqBdjL9jpxEYypeGrNbite8YEhbzS/6fWZq+rBh370l7/6vWc4nP
+         JhO6l8tEbyb7nY7fvmUNAT6zOQMAkr82dtEs5HJE/YrOioqhkQX13VW8nVVKJpErzG9m
+         vx8UVTFUrPweHMq/vdGw2RHq0tMqqxSftmckFvCmoC56PCOcuRm0akrg9j2j0ehiyO8e
+         LGul4m6xMpzIJP0fKoPklKZxvdcdHpBkAtmOFjk9galeiYUzhBn3cIdn5ooBwljP+BNw
+         0Bqg==
 X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
         d=1e100.net; s=20161025;
         h=x-gm-message-state:from:to:cc:subject:date:message-id:in-reply-to
          :references:mime-version:content-transfer-encoding;
-        bh=p5LHymWJ1t58cRZI4MxwTqiMv3bCXN9LR4UYb0nY9Ks=;
-        b=QKlMcKmY2lRpx2Jhl78C5y0GK6RGkHE8ScpHae2uzr1JpaQHw8ViD3EpUnVTVEGIBx
-         hLDZLgo8hY4bJwDDo6QtMImCcLJ0gthORMQMrT3ZNs8aRyEBkH2qkDZyuRFGvdzjvYKg
-         BG3IZrkXbvq6zLRI568gidQJNR04GAS7LM2q/EKK+IJ7GzEFB74kLxhNfahdOlNViF/9
-         pm9ApXgThPIzDmZ3oR+qO1rvDswlzC14wcorJsm4RBXaqw4573hZ6E3eQe6Q4gfyIyzz
-         e3hhaZ+rRD4yOw7o0Y7e/7t6uWONMdj6Lk/TeMlIlh8BG0qRxa5i5+zxXWo4QRK+kAhB
-         J0tA==
-X-Gm-Message-State: AOAM531En0bXLBhU83hE3rbbyFg3REmgU/hMeLTDH+rlqpuGhW8/lLGH
-        k/JIeuCeXbAZOnsWMgCrnQvw1g==
-X-Google-Smtp-Source: ABdhPJz8JPkdphleeGWLjFTULiHVBVjim7Pu1cJZNz2RZlrDgsKlArRXdMY8J0edNYU4G94ktur8Yw==
-X-Received: by 2002:a7b:c2aa:: with SMTP id c10mr138263wmk.86.1599746251701;
-        Thu, 10 Sep 2020 06:57:31 -0700 (PDT)
+        bh=JuyBy5SQ7Lbzjz7YW70om8n+KmTvxYMUk+MZk/dzwhw=;
+        b=JqEVNsyGpiN822kSrhRmekj6bl3W33Kfy5I5mNwEIoba92jcqJpdAvSjbvFqMScO2f
+         yRIHGQ383AFoLO5/TQLaJwlJcIlfhMP43c8wURq40QDtvpyD7yMwvZzCv6UGJ4S9EgCA
+         6x1Cr8Lg/wLj2zBq5wKKG0ldgzOrj31301/LS/Ov13vsM4r6y9ytXEYd/89Je4OCmpu/
+         eUIlthWk5gVOH0mG8bztuaeSDkhfJtdP8icO7sdzXKmCVAb1qx0DYt3NFQ5pC4Y+xrNV
+         HVArTo8uu/d6hbshWtvdaMauxMro8bhKqPhRd9jAxwms+XT5C+JR42rcUQ7NUUyWa5tR
+         oJRA==
+X-Gm-Message-State: AOAM531b5b+vJjd3bieaFRDlJ9kRZ+JoOuzp+phBKMw5UxCiV9/WcuDh
+        8VzhYBmt0lAET7gdR0m6zKym/jnVRR1UVg==
+X-Google-Smtp-Source: ABdhPJxoAB4SgLJt/G+GmfOLrydKZkE5iN65qR8j3d4TGTuQTXLIW7vY72H0j/6CKQVH6sTxQnkeWw==
+X-Received: by 2002:adf:e4c9:: with SMTP id v9mr8851548wrm.375.1599746252966;
+        Thu, 10 Sep 2020 06:57:32 -0700 (PDT)
 Received: from srini-hackbox.lan (cpc86377-aztw32-2-0-cust226.18-1.cable.virginm.net. [92.233.226.227])
-        by smtp.gmail.com with ESMTPSA id b2sm3786154wmh.47.2020.09.10.06.57.30
+        by smtp.gmail.com with ESMTPSA id b2sm3786154wmh.47.2020.09.10.06.57.31
         (version=TLS1_3 cipher=TLS_AES_256_GCM_SHA384 bits=256/256);
-        Thu, 10 Sep 2020 06:57:31 -0700 (PDT)
+        Thu, 10 Sep 2020 06:57:32 -0700 (PDT)
 From:   Srinivas Kandagatla <srinivas.kandagatla@linaro.org>
 To:     broonie@kernel.org, robh+dt@kernel.org
 Cc:     lgirdwood@gmail.com, plai@codeaurora.org, bgoswami@codeaurora.org,
@@ -54,9 +54,9 @@ Cc:     lgirdwood@gmail.com, plai@codeaurora.org, bgoswami@codeaurora.org,
         devicetree@vger.kernel.org, linux-kernel@vger.kernel.org,
         sboyd@kernel.org,
         Srinivas Kandagatla <srinivas.kandagatla@linaro.org>
-Subject: [PATCH 1/2] ASoC: q6afe: dt-bindings: add q6afe clock bindings
-Date:   Thu, 10 Sep 2020 14:57:07 +0100
-Message-Id: <20200910135708.14842-2-srinivas.kandagatla@linaro.org>
+Subject: [PATCH 2/2] ASoC: q6afe-clocks: add q6afe clock controller
+Date:   Thu, 10 Sep 2020 14:57:08 +0100
+Message-Id: <20200910135708.14842-3-srinivas.kandagatla@linaro.org>
 X-Mailer: git-send-email 2.21.0
 In-Reply-To: <20200910135708.14842-1-srinivas.kandagatla@linaro.org>
 References: <20200910135708.14842-1-srinivas.kandagatla@linaro.org>
@@ -67,137 +67,331 @@ Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-q6afe exposes various lpass clocks controls via q6dsp q6afe commands.
-This patch adds bindings required for this clock controller.
+q6afe already exposes lpass clocks, however this was not presented
+as proper clock controller driver. This patch basically adds clock
+controller support for q6afe clocks.
+
+This is useful for other drivers like lpass digital codec or lpass
+lowpower island drivers to request or vote for these clocks.
 
 Signed-off-by: Srinivas Kandagatla <srinivas.kandagatla@linaro.org>
 ---
- .../devicetree/bindings/sound/qcom,q6afe.txt  | 23 ++++++
- include/dt-bindings/sound/qcom,q6afe.h        | 74 ++++++++++++++++++-
- 2 files changed, 96 insertions(+), 1 deletion(-)
+ sound/soc/qcom/Kconfig              |   4 +
+ sound/soc/qcom/qdsp6/Makefile       |   1 +
+ sound/soc/qcom/qdsp6/q6afe-clocks.c | 270 ++++++++++++++++++++++++++++
+ 3 files changed, 275 insertions(+)
+ create mode 100644 sound/soc/qcom/qdsp6/q6afe-clocks.c
 
-diff --git a/Documentation/devicetree/bindings/sound/qcom,q6afe.txt b/Documentation/devicetree/bindings/sound/qcom,q6afe.txt
-index 4916dd6a0896..2d6fb2ea75a0 100644
---- a/Documentation/devicetree/bindings/sound/qcom,q6afe.txt
-+++ b/Documentation/devicetree/bindings/sound/qcom,q6afe.txt
-@@ -98,6 +98,24 @@ configuration of each dai. Must contain the following properties.
- 		0 - MSB
- 		1 - LSB
+diff --git a/sound/soc/qcom/Kconfig b/sound/soc/qcom/Kconfig
+index a607ace8b089..a7ef62685b41 100644
+--- a/sound/soc/qcom/Kconfig
++++ b/sound/soc/qcom/Kconfig
+@@ -63,6 +63,9 @@ config SND_SOC_QDSP6_AFE
+ config SND_SOC_QDSP6_AFE_DAI
+ 	tristate
  
-+= AFE CLOCKSS
-+"clocks" subnode of the AFE node. It represents q6afe clocks
-+"clocks" node should have following properties.
-+- compatible:
-+	Usage: required
-+	Value type: <stringlist>
-+	Definition: must be "qcom,q6afe-clocks"
++config SND_SOC_QDSP6_AFE_CLOCKS
++	tristate
 +
-+- #clock-cells:
-+	Usage: required
-+	Value type: <u32>
-+	Definition: Must be 2. Clock Id followed by
-+		below valid clock coupling attributes.
-+		1 - for no coupled clock
-+		2 - for dividend of the coupled clock
-+		3 - for divisor of the coupled clock
-+		4 - for inverted and no couple clock
-+
- = EXAMPLE
+ config SND_SOC_QDSP6_ADM
+ 	tristate
  
- apr-service@4 {
-@@ -175,4 +193,9 @@ apr-service@4 {
- 			qcom,sd-lines = <1>;
- 		};
- 	};
+@@ -83,6 +86,7 @@ config SND_SOC_QDSP6
+ 	select SND_SOC_QDSP6_CORE
+ 	select SND_SOC_QDSP6_AFE
+ 	select SND_SOC_QDSP6_AFE_DAI
++	select SND_SOC_QDSP6_AFE_CLOCKS
+ 	select SND_SOC_QDSP6_ADM
+ 	select SND_SOC_QDSP6_ROUTING
+ 	select SND_SOC_QDSP6_ASM
+diff --git a/sound/soc/qcom/qdsp6/Makefile b/sound/soc/qcom/qdsp6/Makefile
+index 7e91e96f7ad5..3c1dd9f32f1d 100644
+--- a/sound/soc/qcom/qdsp6/Makefile
++++ b/sound/soc/qcom/qdsp6/Makefile
+@@ -3,6 +3,7 @@ obj-$(CONFIG_SND_SOC_QDSP6_COMMON) += q6dsp-common.o
+ obj-$(CONFIG_SND_SOC_QDSP6_CORE) += q6core.o
+ obj-$(CONFIG_SND_SOC_QDSP6_AFE) += q6afe.o
+ obj-$(CONFIG_SND_SOC_QDSP6_AFE_DAI) += q6afe-dai.o
++obj-$(CONFIG_SND_SOC_QDSP6_AFE_CLOCKS) += q6afe-clocks.o
+ obj-$(CONFIG_SND_SOC_QDSP6_ADM) += q6adm.o
+ obj-$(CONFIG_SND_SOC_QDSP6_ROUTING) += q6routing.o
+ obj-$(CONFIG_SND_SOC_QDSP6_ASM) += q6asm.o
+diff --git a/sound/soc/qcom/qdsp6/q6afe-clocks.c b/sound/soc/qcom/qdsp6/q6afe-clocks.c
+new file mode 100644
+index 000000000000..2967f4546af5
+--- /dev/null
++++ b/sound/soc/qcom/qdsp6/q6afe-clocks.c
+@@ -0,0 +1,270 @@
++// SPDX-License-Identifier: GPL-1.0
++// Copyright (c) 2020, Linaro Limited
 +
-+	clocks {
-+		compatible = "qcom,q6afe-clocks";
-+		#clock-cells = <2>;
-+	};
- };
-diff --git a/include/dt-bindings/sound/qcom,q6afe.h b/include/dt-bindings/sound/qcom,q6afe.h
-index 7207ab2b57bf..f64b5d2e6efd 100644
---- a/include/dt-bindings/sound/qcom,q6afe.h
-+++ b/include/dt-bindings/sound/qcom,q6afe.h
-@@ -130,5 +130,77 @@
- #define RX_CODEC_DMA_RX_6	125
- #define RX_CODEC_DMA_RX_7	126
- 
--#endif /* __DT_BINDINGS_Q6_AFE_H__ */
-+#define LPASS_CLK_ID_PRI_MI2S_IBIT	1
-+#define LPASS_CLK_ID_PRI_MI2S_EBIT	2
-+#define LPASS_CLK_ID_SEC_MI2S_IBIT	3
-+#define LPASS_CLK_ID_SEC_MI2S_EBIT	4
-+#define LPASS_CLK_ID_TER_MI2S_IBIT	5
-+#define LPASS_CLK_ID_TER_MI2S_EBIT	6
-+#define LPASS_CLK_ID_QUAD_MI2S_IBIT	7
-+#define LPASS_CLK_ID_QUAD_MI2S_EBIT	8
-+#define LPASS_CLK_ID_SPEAKER_I2S_IBIT	9
-+#define LPASS_CLK_ID_SPEAKER_I2S_EBIT	10
-+#define LPASS_CLK_ID_SPEAKER_I2S_OSR	11
-+#define LPASS_CLK_ID_QUI_MI2S_IBIT	12
-+#define LPASS_CLK_ID_QUI_MI2S_EBIT	13
-+#define LPASS_CLK_ID_SEN_MI2S_IBIT	14
-+#define LPASS_CLK_ID_SEN_MI2S_EBIT	15
-+#define LPASS_CLK_ID_INT0_MI2S_IBIT	16
-+#define LPASS_CLK_ID_INT1_MI2S_IBIT	17
-+#define LPASS_CLK_ID_INT2_MI2S_IBIT	18
-+#define LPASS_CLK_ID_INT3_MI2S_IBIT	19
-+#define LPASS_CLK_ID_INT4_MI2S_IBIT	20
-+#define LPASS_CLK_ID_INT5_MI2S_IBIT	21
-+#define LPASS_CLK_ID_INT6_MI2S_IBIT	22
-+#define LPASS_CLK_ID_QUI_MI2S_OSR	23
-+#define LPASS_CLK_ID_PRI_PCM_IBIT	24
-+#define LPASS_CLK_ID_PRI_PCM_EBIT	25
-+#define LPASS_CLK_ID_SEC_PCM_IBIT	26
-+#define LPASS_CLK_ID_SEC_PCM_EBIT	27
-+#define LPASS_CLK_ID_TER_PCM_IBIT	28
-+#define LPASS_CLK_ID_TER_PCM_EBIT	29
-+#define LPASS_CLK_ID_QUAD_PCM_IBIT	30
-+#define LPASS_CLK_ID_QUAD_PCM_EBIT	31
-+#define LPASS_CLK_ID_QUIN_PCM_IBIT	32
-+#define LPASS_CLK_ID_QUIN_PCM_EBIT	33
-+#define LPASS_CLK_ID_QUI_PCM_OSR	34
-+#define LPASS_CLK_ID_PRI_TDM_IBIT	35
-+#define LPASS_CLK_ID_PRI_TDM_EBIT	36
-+#define LPASS_CLK_ID_SEC_TDM_IBIT	37
-+#define LPASS_CLK_ID_SEC_TDM_EBIT	38
-+#define LPASS_CLK_ID_TER_TDM_IBIT	39
-+#define LPASS_CLK_ID_TER_TDM_EBIT	40
-+#define LPASS_CLK_ID_QUAD_TDM_IBIT	41
-+#define LPASS_CLK_ID_QUAD_TDM_EBIT	42
-+#define LPASS_CLK_ID_QUIN_TDM_IBIT	43
-+#define LPASS_CLK_ID_QUIN_TDM_EBIT	44
-+#define LPASS_CLK_ID_QUIN_TDM_OSR	45
-+#define LPASS_CLK_ID_MCLK_1		46
-+#define LPASS_CLK_ID_MCLK_2		47
-+#define LPASS_CLK_ID_MCLK_3		48
-+#define LPASS_CLK_ID_MCLK_4		49
-+#define LPASS_CLK_ID_INTERNAL_DIGITAL_CODEC_CORE	50
-+#define LPASS_CLK_ID_INT_MCLK_0		51
-+#define LPASS_CLK_ID_INT_MCLK_1		52
-+#define LPASS_CLK_ID_MCLK_5		53
-+#define LPASS_CLK_ID_WSA_CORE_MCLK	54
-+#define LPASS_CLK_ID_WSA_CORE_NPL_MCLK	55
-+#define LPASS_CLK_ID_VA_CORE_MCLK	56
-+#define LPASS_CLK_ID_TX_CORE_MCLK	57
-+#define LPASS_CLK_ID_TX_CORE_NPL_MCLK	58
-+#define LPASS_CLK_ID_RX_CORE_MCLK	59
-+#define LPASS_CLK_ID_RX_CORE_NPL_MCLK	60
-+#define LPASS_CLK_ID_VA_CORE_2X_MCLK	61
++#include <linux/err.h>
++#include <linux/init.h>
++#include <linux/clk-provider.h>
++#include <linux/module.h>
++#include <linux/device.h>
++#include <linux/platform_device.h>
++#include <linux/of.h>
++#include <linux/slab.h>
++#include "q6afe.h"
 +
-+#define LPASS_HW_AVTIMER_VOTE		101
-+#define LPASS_HW_MACRO_VOTE		102
-+#define LPASS_HW_DCODEC_VOTE		103
++#define Q6AFE_CLK(id) &(struct q6afe_clk) {		\
++		.clk_id	= id,				\
++		.afe_clk_id	= Q6AFE_##id,		\
++		.name = #id,				\
++		.attributes = LPASS_CLK_ATTRIBUTE_COUPLE_NO, \
++		.hw.init = &(struct clk_init_data) {	\
++			.ops = &clk_q6afe_ops,		\
++			.name = #id,			\
++		},					\
++	}
 +
-+#define Q6AFE_MAX_CLK_ID			104
- 
-+#define LPASS_CLK_ATTRIBUTE_INVALID		0x0
-+#define LPASS_CLK_ATTRIBUTE_COUPLE_NO		0x1
-+#define LPASS_CLK_ATTRIBUTE_COUPLE_DIVIDEND	0x2
-+#define LPASS_CLK_ATTRIBUTE_COUPLE_DIVISOR	0x3
++#define Q6AFE_VOTE_CLK(id, blkid, n) &(struct q6afe_clk) { \
++		.clk_id	= id,				\
++		.afe_clk_id = blkid,			\
++		.name = #n,				\
++		.hw.init = &(struct clk_init_data) {	\
++			.ops = &clk_vote_q6afe_ops,	\
++			.name = #id,			\
++		},					\
++	}
 +
-+#endif /* __DT_BINDINGS_Q6_AFE_H__ */
++struct q6afe_clk {
++	struct device *dev;
++	int clk_id;
++	int afe_clk_id;
++	char *name;
++	int attributes;
++	int rate;
++	uint32_t handle;
++	struct clk_hw hw;
++};
++
++#define to_q6afe_clk(_hw) container_of(_hw, struct q6afe_clk, hw)
++
++struct q6afe_cc {
++	struct device *dev;
++	struct q6afe_clk **clks;
++	int num_clks;
++};
++
++static int clk_q6afe_prepare(struct clk_hw *hw)
++{
++	struct q6afe_clk *clk = to_q6afe_clk(hw);
++
++	return q6afe_set_lpass_clock(clk->dev, clk->afe_clk_id, clk->attributes,
++				     Q6AFE_LPASS_CLK_ROOT_DEFAULT, clk->rate);
++}
++
++static void clk_q6afe_unprepare(struct clk_hw *hw)
++{
++	struct q6afe_clk *clk = to_q6afe_clk(hw);
++
++	q6afe_set_lpass_clock(clk->dev, clk->afe_clk_id, clk->attributes,
++			      Q6AFE_LPASS_CLK_ROOT_DEFAULT, 0);
++}
++
++static int clk_q6afe_set_rate(struct clk_hw *hw, unsigned long rate,
++			      unsigned long parent_rate)
++{
++	struct q6afe_clk *clk = to_q6afe_clk(hw);
++
++	clk->rate = rate;
++
++	return 0;
++}
++
++static unsigned long clk_q6afe_recalc_rate(struct clk_hw *hw,
++					   unsigned long parent_rate)
++{
++	struct q6afe_clk *clk = to_q6afe_clk(hw);
++
++	return clk->rate;
++}
++
++static long clk_q6afe_round_rate(struct clk_hw *hw, unsigned long rate,
++				 unsigned long *parent_rate)
++{
++	return rate;
++}
++
++static const struct clk_ops clk_q6afe_ops = {
++	.prepare	= clk_q6afe_prepare,
++	.unprepare	= clk_q6afe_unprepare,
++	.set_rate	= clk_q6afe_set_rate,
++	.round_rate	= clk_q6afe_round_rate,
++	.recalc_rate	= clk_q6afe_recalc_rate,
++};
++
++static int clk_vote_q6afe_block(struct clk_hw *hw)
++{
++	struct q6afe_clk *clk = to_q6afe_clk(hw);
++
++	return q6afe_vote_lpass_core_hw(clk->dev, clk->afe_clk_id,
++					clk->name, &clk->handle);
++}
++
++static void clk_unvote_q6afe_block(struct clk_hw *hw)
++{
++	struct q6afe_clk *clk = to_q6afe_clk(hw);
++
++	q6afe_unvote_lpass_core_hw(clk->dev, clk->afe_clk_id, clk->handle);
++}
++
++static const struct clk_ops clk_vote_q6afe_ops = {
++	.prepare	= clk_vote_q6afe_block,
++	.unprepare	= clk_unvote_q6afe_block,
++};
++
++struct q6afe_clk *q6afe_clks[Q6AFE_MAX_CLK_ID] = {
++	[LPASS_CLK_ID_PRI_MI2S_IBIT] = Q6AFE_CLK(LPASS_CLK_ID_PRI_MI2S_IBIT),
++	[LPASS_CLK_ID_PRI_MI2S_EBIT] = Q6AFE_CLK(LPASS_CLK_ID_PRI_MI2S_EBIT),
++	[LPASS_CLK_ID_SEC_MI2S_IBIT] = Q6AFE_CLK(LPASS_CLK_ID_SEC_MI2S_IBIT),
++	[LPASS_CLK_ID_SEC_MI2S_EBIT] = Q6AFE_CLK(LPASS_CLK_ID_SEC_MI2S_EBIT),
++	[LPASS_CLK_ID_TER_MI2S_IBIT] = Q6AFE_CLK(LPASS_CLK_ID_TER_MI2S_IBIT),
++	[LPASS_CLK_ID_TER_MI2S_EBIT] = Q6AFE_CLK(LPASS_CLK_ID_TER_MI2S_EBIT),
++	[LPASS_CLK_ID_QUAD_MI2S_IBIT] = Q6AFE_CLK(LPASS_CLK_ID_QUAD_MI2S_IBIT),
++	[LPASS_CLK_ID_QUAD_MI2S_EBIT] = Q6AFE_CLK(LPASS_CLK_ID_QUAD_MI2S_EBIT),
++	[LPASS_CLK_ID_SPEAKER_I2S_IBIT] =
++				Q6AFE_CLK(LPASS_CLK_ID_SPEAKER_I2S_IBIT),
++	[LPASS_CLK_ID_SPEAKER_I2S_EBIT] =
++				Q6AFE_CLK(LPASS_CLK_ID_SPEAKER_I2S_EBIT),
++	[LPASS_CLK_ID_SPEAKER_I2S_OSR] =
++				Q6AFE_CLK(LPASS_CLK_ID_SPEAKER_I2S_OSR),
++	[LPASS_CLK_ID_QUI_MI2S_IBIT] = Q6AFE_CLK(LPASS_CLK_ID_QUI_MI2S_IBIT),
++	[LPASS_CLK_ID_QUI_MI2S_EBIT] = Q6AFE_CLK(LPASS_CLK_ID_QUI_MI2S_EBIT),
++	[LPASS_CLK_ID_SEN_MI2S_IBIT] = Q6AFE_CLK(LPASS_CLK_ID_SEN_MI2S_IBIT),
++	[LPASS_CLK_ID_SEN_MI2S_EBIT] = Q6AFE_CLK(LPASS_CLK_ID_SEN_MI2S_EBIT),
++	[LPASS_CLK_ID_INT0_MI2S_IBIT] = Q6AFE_CLK(LPASS_CLK_ID_INT0_MI2S_IBIT),
++	[LPASS_CLK_ID_INT1_MI2S_IBIT] = Q6AFE_CLK(LPASS_CLK_ID_INT1_MI2S_IBIT),
++	[LPASS_CLK_ID_INT2_MI2S_IBIT] = Q6AFE_CLK(LPASS_CLK_ID_INT2_MI2S_IBIT),
++	[LPASS_CLK_ID_INT3_MI2S_IBIT] = Q6AFE_CLK(LPASS_CLK_ID_INT3_MI2S_IBIT),
++	[LPASS_CLK_ID_INT4_MI2S_IBIT] = Q6AFE_CLK(LPASS_CLK_ID_INT4_MI2S_IBIT),
++	[LPASS_CLK_ID_INT5_MI2S_IBIT] = Q6AFE_CLK(LPASS_CLK_ID_INT5_MI2S_IBIT),
++	[LPASS_CLK_ID_INT6_MI2S_IBIT] = Q6AFE_CLK(LPASS_CLK_ID_INT6_MI2S_IBIT),
++	[LPASS_CLK_ID_QUI_MI2S_OSR] = Q6AFE_CLK(LPASS_CLK_ID_QUI_MI2S_OSR),
++	[LPASS_CLK_ID_PRI_PCM_IBIT] = Q6AFE_CLK(LPASS_CLK_ID_PRI_PCM_IBIT),
++	[LPASS_CLK_ID_PRI_PCM_EBIT] = Q6AFE_CLK(LPASS_CLK_ID_PRI_PCM_EBIT),
++	[LPASS_CLK_ID_SEC_PCM_IBIT] = Q6AFE_CLK(LPASS_CLK_ID_SEC_PCM_IBIT),
++	[LPASS_CLK_ID_SEC_PCM_EBIT] = Q6AFE_CLK(LPASS_CLK_ID_SEC_PCM_EBIT),
++	[LPASS_CLK_ID_TER_PCM_IBIT] = Q6AFE_CLK(LPASS_CLK_ID_TER_PCM_IBIT),
++	[LPASS_CLK_ID_TER_PCM_EBIT] = Q6AFE_CLK(LPASS_CLK_ID_TER_PCM_EBIT),
++	[LPASS_CLK_ID_QUAD_PCM_IBIT] = Q6AFE_CLK(LPASS_CLK_ID_QUAD_PCM_IBIT),
++	[LPASS_CLK_ID_QUAD_PCM_EBIT] = Q6AFE_CLK(LPASS_CLK_ID_QUAD_PCM_EBIT),
++	[LPASS_CLK_ID_QUIN_PCM_IBIT] = Q6AFE_CLK(LPASS_CLK_ID_QUIN_PCM_IBIT),
++	[LPASS_CLK_ID_QUIN_PCM_EBIT] = Q6AFE_CLK(LPASS_CLK_ID_QUIN_PCM_EBIT),
++	[LPASS_CLK_ID_QUI_PCM_OSR] = Q6AFE_CLK(LPASS_CLK_ID_QUI_PCM_OSR),
++	[LPASS_CLK_ID_PRI_TDM_IBIT] = Q6AFE_CLK(LPASS_CLK_ID_PRI_TDM_IBIT),
++	[LPASS_CLK_ID_PRI_TDM_EBIT] = Q6AFE_CLK(LPASS_CLK_ID_PRI_TDM_EBIT),
++	[LPASS_CLK_ID_SEC_TDM_IBIT] = Q6AFE_CLK(LPASS_CLK_ID_SEC_TDM_IBIT),
++	[LPASS_CLK_ID_SEC_TDM_EBIT] = Q6AFE_CLK(LPASS_CLK_ID_SEC_TDM_EBIT),
++	[LPASS_CLK_ID_TER_TDM_IBIT] = Q6AFE_CLK(LPASS_CLK_ID_TER_TDM_IBIT),
++	[LPASS_CLK_ID_TER_TDM_EBIT] = Q6AFE_CLK(LPASS_CLK_ID_TER_TDM_EBIT),
++	[LPASS_CLK_ID_QUAD_TDM_IBIT] = Q6AFE_CLK(LPASS_CLK_ID_QUAD_TDM_IBIT),
++	[LPASS_CLK_ID_QUAD_TDM_EBIT] = Q6AFE_CLK(LPASS_CLK_ID_QUAD_TDM_EBIT),
++	[LPASS_CLK_ID_QUIN_TDM_IBIT] = Q6AFE_CLK(LPASS_CLK_ID_QUIN_TDM_IBIT),
++	[LPASS_CLK_ID_QUIN_TDM_EBIT] = Q6AFE_CLK(LPASS_CLK_ID_QUIN_TDM_EBIT),
++	[LPASS_CLK_ID_QUIN_TDM_OSR] = Q6AFE_CLK(LPASS_CLK_ID_QUIN_TDM_OSR),
++	[LPASS_CLK_ID_MCLK_1] = Q6AFE_CLK(LPASS_CLK_ID_MCLK_1),
++	[LPASS_CLK_ID_MCLK_2] = Q6AFE_CLK(LPASS_CLK_ID_MCLK_2),
++	[LPASS_CLK_ID_MCLK_3] = Q6AFE_CLK(LPASS_CLK_ID_MCLK_3),
++	[LPASS_CLK_ID_MCLK_4] = Q6AFE_CLK(LPASS_CLK_ID_MCLK_4),
++	[LPASS_CLK_ID_INTERNAL_DIGITAL_CODEC_CORE] =
++		Q6AFE_CLK(LPASS_CLK_ID_INTERNAL_DIGITAL_CODEC_CORE),
++	[LPASS_CLK_ID_INT_MCLK_0] = Q6AFE_CLK(LPASS_CLK_ID_INT_MCLK_0),
++	[LPASS_CLK_ID_INT_MCLK_1] = Q6AFE_CLK(LPASS_CLK_ID_INT_MCLK_1),
++	[LPASS_CLK_ID_WSA_CORE_MCLK] = Q6AFE_CLK(LPASS_CLK_ID_WSA_CORE_MCLK),
++	[LPASS_CLK_ID_WSA_CORE_NPL_MCLK] =
++				Q6AFE_CLK(LPASS_CLK_ID_WSA_CORE_NPL_MCLK),
++	[LPASS_CLK_ID_VA_CORE_MCLK] = Q6AFE_CLK(LPASS_CLK_ID_VA_CORE_MCLK),
++	[LPASS_CLK_ID_TX_CORE_MCLK] = Q6AFE_CLK(LPASS_CLK_ID_TX_CORE_MCLK),
++	[LPASS_CLK_ID_TX_CORE_NPL_MCLK] =
++			Q6AFE_CLK(LPASS_CLK_ID_TX_CORE_NPL_MCLK),
++	[LPASS_CLK_ID_RX_CORE_MCLK] = Q6AFE_CLK(LPASS_CLK_ID_RX_CORE_MCLK),
++	[LPASS_CLK_ID_RX_CORE_NPL_MCLK] =
++				Q6AFE_CLK(LPASS_CLK_ID_RX_CORE_NPL_MCLK),
++	[LPASS_CLK_ID_VA_CORE_2X_MCLK] =
++				Q6AFE_CLK(LPASS_CLK_ID_VA_CORE_2X_MCLK),
++	[LPASS_HW_AVTIMER_VOTE] = Q6AFE_VOTE_CLK(LPASS_HW_AVTIMER_VOTE,
++						 Q6AFE_LPASS_CORE_AVTIMER_BLOCK,
++						 "LPASS_AVTIMER_MACRO"),
++	[LPASS_HW_MACRO_VOTE] = Q6AFE_VOTE_CLK(LPASS_HW_MACRO_VOTE,
++						Q6AFE_LPASS_CORE_HW_MACRO_BLOCK,
++						"LPASS_HW_MACRO"),
++	[LPASS_HW_DCODEC_VOTE] = Q6AFE_VOTE_CLK(LPASS_HW_DCODEC_VOTE,
++					Q6AFE_LPASS_CORE_HW_DCODEC_BLOCK,
++					"LPASS_HW_DCODEC"),
++};
++
++static struct clk_hw *q6afe_of_clk_hw_get(struct of_phandle_args *clkspec,
++					  void *data)
++{
++	struct q6afe_cc *cc = data;
++	unsigned int idx = clkspec->args[0];
++	unsigned int attr = clkspec->args[1];
++
++	if (idx >= cc->num_clks || attr > LPASS_CLK_ATTRIBUTE_COUPLE_DIVISOR) {
++		dev_err(cc->dev, "Invalid clk specifier (%d, %d)\n", idx, attr);
++		return ERR_PTR(-EINVAL);
++	}
++
++	if (cc->clks[idx]) {
++		cc->clks[idx]->attributes = attr;
++		return &cc->clks[idx]->hw;
++	}
++
++	return ERR_PTR(-ENOENT);
++}
++
++static int q6afe_clock_dev_probe(struct platform_device *pdev)
++{
++	struct q6afe_cc *cc;
++	struct device *dev = &pdev->dev;
++	int i, ret;
++
++	cc = devm_kzalloc(dev, sizeof(*cc), GFP_KERNEL);
++	if (!cc)
++		return -ENOMEM;
++
++	cc->clks = &q6afe_clks[0];
++	cc->num_clks = ARRAY_SIZE(q6afe_clks);
++	for (i = 0; i < ARRAY_SIZE(q6afe_clks); i++) {
++		if (!q6afe_clks[i])
++			continue;
++
++		q6afe_clks[i]->dev = dev;
++
++		ret = devm_clk_hw_register(dev, &q6afe_clks[i]->hw);
++		if (ret)
++			return ret;
++	}
++
++	ret = of_clk_add_hw_provider(dev->of_node, q6afe_of_clk_hw_get, cc);
++	if (ret)
++		return ret;
++
++	dev_set_drvdata(dev, cc);
++
++	return 0;
++}
++
++static const struct of_device_id q6afe_clock_device_id[] = {
++	{ .compatible = "qcom,q6afe-clocks" },
++	{},
++};
++MODULE_DEVICE_TABLE(of, q6afe_clock_device_id);
++
++static struct platform_driver q6afe_clock_platform_driver = {
++	.driver = {
++		.name = "q6afe-clock",
++		.of_match_table = of_match_ptr(q6afe_clock_device_id),
++	},
++	.probe = q6afe_clock_dev_probe,
++};
++module_platform_driver(q6afe_clock_platform_driver);
++
++MODULE_DESCRIPTION("Q6 Audio Frontend clock driver");
++MODULE_LICENSE("GPL v2");
 -- 
 2.21.0
 
