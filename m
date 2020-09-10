@@ -2,179 +2,103 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from vger.kernel.org (vger.kernel.org [23.128.96.18])
-	by mail.lfdr.de (Postfix) with ESMTP id BBC98264A8F
-	for <lists+devicetree@lfdr.de>; Thu, 10 Sep 2020 19:04:02 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTP id C0F0C264A9F
+	for <lists+devicetree@lfdr.de>; Thu, 10 Sep 2020 19:05:45 +0200 (CEST)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S1727792AbgIJRD5 (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Thu, 10 Sep 2020 13:03:57 -0400
-Received: from lelv0143.ext.ti.com ([198.47.23.248]:56124 "EHLO
-        lelv0143.ext.ti.com" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S1726781AbgIJRBv (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Thu, 10 Sep 2020 13:01:51 -0400
-Received: from lelv0266.itg.ti.com ([10.180.67.225])
-        by lelv0143.ext.ti.com (8.15.2/8.15.2) with ESMTP id 08AGjlEb130848;
-        Thu, 10 Sep 2020 11:45:47 -0500
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=ti.com;
-        s=ti-com-17Q1; t=1599756347;
-        bh=pnk4f1iUfHWALtHgD4FAJQqVHJQ5Jg8J1SsT1dEO7VQ=;
-        h=From:To:CC:Subject:Date:In-Reply-To:References;
-        b=uNSxyPNzboF/odzvryv+0n/zqHXAX4Mp9Zo6I4Gx0ihDxBXp8lCjA5LKBRP+dsziF
-         G6+9LyY41x/13Kmk19Ula+stpdDvjUqL9xY5B+35qIhDaiiQPArzlVWiwloZnPPNHN
-         FRMYf334NMQZ1WGKb2zY5r3snSyFUEx/2Yc9zEQg=
-Received: from DLEE115.ent.ti.com (dlee115.ent.ti.com [157.170.170.26])
-        by lelv0266.itg.ti.com (8.15.2/8.15.2) with ESMTPS id 08AGjl2C107433
-        (version=TLSv1.2 cipher=AES256-GCM-SHA384 bits=256 verify=FAIL);
-        Thu, 10 Sep 2020 11:45:47 -0500
-Received: from DLEE112.ent.ti.com (157.170.170.23) by DLEE115.ent.ti.com
- (157.170.170.26) with Microsoft SMTP Server (version=TLS1_2,
- cipher=TLS_ECDHE_RSA_WITH_AES_128_CBC_SHA256_P256) id 15.1.1979.3; Thu, 10
- Sep 2020 11:45:46 -0500
-Received: from fllv0039.itg.ti.com (10.64.41.19) by DLEE112.ent.ti.com
- (157.170.170.23) with Microsoft SMTP Server (version=TLS1_2,
- cipher=TLS_ECDHE_RSA_WITH_AES_128_CBC_SHA256_P256) id 15.1.1979.3 via
- Frontend Transport; Thu, 10 Sep 2020 11:45:46 -0500
-Received: from localhost (ileax41-snat.itg.ti.com [10.172.224.153])
-        by fllv0039.itg.ti.com (8.15.2/8.15.2) with ESMTP id 08AGjjGn022616;
-        Thu, 10 Sep 2020 11:45:46 -0500
-From:   Ricardo Rivera-Matos <r-rivera-matos@ti.com>
-To:     <sre@kernel.org>, <robh+dt@kernel.org>, <linux-pm@vger.kernel.org>,
-        <devicetree@vger.kernel.org>, <linux-kernel@vger.kernel.org>
-CC:     <dmurphy@ti.com>, Ricardo Rivera-Matos <r-rivera-matos@ti.com>
-Subject: [PATCH v3 1/2] dt-bindings: power: Add the bq256xx dt bindings
-Date:   Thu, 10 Sep 2020 11:45:33 -0500
-Message-ID: <20200910164534.16987-2-r-rivera-matos@ti.com>
-X-Mailer: git-send-email 2.28.0
-In-Reply-To: <20200910164534.16987-1-r-rivera-matos@ti.com>
-References: <20200910164534.16987-1-r-rivera-matos@ti.com>
+        id S1726755AbgIJQzU (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Thu, 10 Sep 2020 12:55:20 -0400
+Received: from mail-ed1-f68.google.com ([209.85.208.68]:33638 "EHLO
+        mail-ed1-f68.google.com" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
+        with ESMTP id S1725864AbgIJQxP (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Thu, 10 Sep 2020 12:53:15 -0400
+Received: by mail-ed1-f68.google.com with SMTP id g4so7055591edk.0;
+        Thu, 10 Sep 2020 09:53:13 -0700 (PDT)
+X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+        d=1e100.net; s=20161025;
+        h=x-gm-message-state:date:from:to:subject:message-id:references
+         :mime-version:content-disposition:in-reply-to:user-agent;
+        bh=3nk4XRQ2S4e5AEFEFMDuymF8Jl6oZV0YsM2IeVg++t0=;
+        b=On72LEkIvNUnORcGqc2Mc5kYADQ9+AadLn2X03TvyU8wdNzl4tfhMPVmOlnvSy3wXN
+         bWe5KFO0NP+xVA5HoyCU2hN5bJSA51CDpTjAmRM+/LTjOPkWrbHmbmbxytPYtPelVea8
+         qK0fQ/NEU+xxHC3hUJLCI+m0D1NkJkii8hu7+OB4B5uOtw7OAXH/FMrQODG8Ar6CjeJy
+         9m4JHxxzFocIkhMZNS83qpCcbL8vJkNftdPPl2ougT50A2aQbcUXTPrgJq46vXr295Lt
+         W3d1QrP76+VgGlGK09vHvz8m7T/PYv/dwdD+FfAzDFZ8CevwM46A6Xk5g5hakU86oyyK
+         U0DQ==
+X-Gm-Message-State: AOAM531ZVBsjjG46HtWGuxd3w55CmkGPfkPKcfclxjqGOvJBVGsHAhia
+        hLcmbycsBsyz5CNufdF9Ks0=
+X-Google-Smtp-Source: ABdhPJyquD6+nZSxDAFxh5wceHTIih3xdZbNqTBnMJD615DtbqdBY7qzu8F3twgU/y/4F0Tvr77Hdg==
+X-Received: by 2002:a05:6402:cb4:: with SMTP id cn20mr10351438edb.369.1599756792337;
+        Thu, 10 Sep 2020 09:53:12 -0700 (PDT)
+Received: from kozik-lap ([194.230.155.174])
+        by smtp.googlemail.com with ESMTPSA id 35sm7851689edg.71.2020.09.10.09.53.09
+        (version=TLS1_2 cipher=ECDHE-ECDSA-CHACHA20-POLY1305 bits=256/256);
+        Thu, 10 Sep 2020 09:53:10 -0700 (PDT)
+Date:   Thu, 10 Sep 2020 18:53:08 +0200
+From:   Krzysztof Kozlowski <krzk@kernel.org>
+To:     Linus Walleij <linus.walleij@linaro.org>,
+        Bartosz Golaszewski <bgolaszewski@baylibre.com>,
+        Rob Herring <robh+dt@kernel.org>,
+        =?utf-8?Q?Beno=C3=AEt?= Cousson <bcousson@baylibre.com>,
+        Tony Lindgren <tony@atomide.com>,
+        Joel Stanley <joel@jms.id.au>,
+        Andrew Jeffery <andrew@aj.id.au>,
+        Jason Cooper <jason@lakedaemon.net>,
+        Andrew Lunn <andrew@lunn.ch>,
+        Sebastian Hesselbarth <sebastian.hesselbarth@gmail.com>,
+        Gregory Clement <gregory.clement@bootlin.com>,
+        Shawn Guo <shawnguo@kernel.org>,
+        Sascha Hauer <s.hauer@pengutronix.de>,
+        Pengutronix Kernel Team <kernel@pengutronix.de>,
+        Stefan Agner <stefan@agner.ch>, linux-gpio@vger.kernel.org,
+        devicetree@vger.kernel.org, linux-kernel@vger.kernel.org,
+        linux-omap@vger.kernel.org, linux-arm-kernel@lists.infradead.org,
+        linux-aspeed@lists.ozlabs.org
+Subject: Re: [PATCH 4/6] ARM: dts: aspeed: Fix PCA95xx GPIO expander
+ properties on Portwell
+Message-ID: <20200910165308.GA11510@kozik-lap>
+References: <20200829094024.31842-1-krzk@kernel.org>
+ <20200829094024.31842-4-krzk@kernel.org>
 MIME-Version: 1.0
-Content-Type: text/plain; charset="UTF-8"
-Content-Transfer-Encoding: 8bit
-X-EXCLAIMER-MD-CONFIG: e1e8a2fd-e40a-4ac6-ac9b-f7e9cc9ee180
+Content-Type: text/plain; charset=utf-8
+Content-Disposition: inline
+In-Reply-To: <20200829094024.31842-4-krzk@kernel.org>
+User-Agent: Mutt/1.9.4 (2018-02-28)
 Sender: devicetree-owner@vger.kernel.org
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-Add the bindings for the bq256xx series of battery charging ICs.
+On Sat, Aug 29, 2020 at 11:40:22AM +0200, Krzysztof Kozlowski wrote:
+> The PCA95xx GPIO expander requires GPIO controller properties to operate
+> properly.
+> 
+> Signed-off-by: Krzysztof Kozlowski <krzk@kernel.org>
+> ---
+>  arch/arm/boot/dts/aspeed-bmc-portwell-neptune.dts | 2 ++
+>  1 file changed, 2 insertions(+)
 
-Datasheets:
-- https://www.ti.com/lit/ds/symlink/bq25600.pdf
-- https://www.ti.com/lit/ds/symlink/bq25601.pdf
-- https://www.ti.com/lit/ds/symlink/bq25600d.pdf
-- https://www.ti.com/lit/ds/symlink/bq25601d.pdf
-- https://www.ti.com/lit/ds/symlink/bq25611d.pdf
-- https://www.ti.com/lit/ds/symlink/bq25618.pdf
-- https://www.ti.com/lit/ds/symlink/bq25619.pdf
+Hi everyone,
 
-Signed-off-by: Ricardo Rivera-Matos <r-rivera-matos@ti.com>
----
- .../bindings/power/supply/bq256xx.yaml        | 97 +++++++++++++++++++
- 1 file changed, 97 insertions(+)
- create mode 100644 Documentation/devicetree/bindings/power/supply/bq256xx.yaml
+Any comments here?
 
-diff --git a/Documentation/devicetree/bindings/power/supply/bq256xx.yaml b/Documentation/devicetree/bindings/power/supply/bq256xx.yaml
-new file mode 100644
-index 000000000000..8cc2242f7df0
---- /dev/null
-+++ b/Documentation/devicetree/bindings/power/supply/bq256xx.yaml
-@@ -0,0 +1,97 @@
-+# SPDX-License-Identifier: (GPL-2.0-only or BSD-2-Clause)
-+# Copyright (C) 2020 Texas Instruments Incorporated
-+%YAML 1.2
-+---
-+$id: "http://devicetree.org/schemas/power/supply/bq256xx.yaml#"
-+$schema: "http://devicetree.org/meta-schemas/core.yaml#"
-+
-+title: TI bq256xx Switch Mode Buck Charger
-+
-+maintainers:
-+  - Ricardo Rivera-Matos <r-rivera-matos@ti.com>
-+
-+description: |
-+  The bq256xx devices are a family of highly-integrated battery charge
-+  management and system power management ICs for single cell Li-ion and Li-
-+  polymer batteries.
-+
-+  Datasheets:
-+    - https://www.ti.com/lit/ds/symlink/bq25600.pdf
-+    - https://www.ti.com/lit/ds/symlink/bq25601.pdf
-+    - https://www.ti.com/lit/ds/symlink/bq25600d.pdf
-+    - https://www.ti.com/lit/ds/symlink/bq25601d.pdf
-+    - https://www.ti.com/lit/ds/symlink/bq25611d.pdf
-+    - https://www.ti.com/lit/ds/symlink/bq25618.pdf
-+    - https://www.ti.com/lit/ds/symlink/bq25619.pdf
-+
-+properties:
-+  compatible:
-+    enum:
-+      - ti,bq25600
-+      - ti,bq25601
-+      - ti,bq25600d
-+      - ti,bq25601d
-+      - ti,bq25611d
-+      - ti,bq25618
-+      - ti,bq25619
-+
-+  reg:
-+    maxItems: 1
-+
-+  ti,watchdog-timer:
-+    $ref: /schemas/types.yaml#/definitions/uint32
-+    description: |
-+      Watchdog timer in ms. 0 (default) disables the watchdog
-+    minimum: 0
-+    maximum: 160000
-+    enum: [ 0, 40000, 80000, 160000]
-+
-+  input-voltage-limit-microvolt:
-+    description: |
-+       Minimum input voltage limit in µV with a 100000 µV step
-+    minimum: 3900000
-+    maximum: 5400000
-+
-+  input-current-limit-microamp:
-+    description: |
-+       Maximum input current limit in µA with a 100000 µA step
-+    minimum: 100000
-+    maximum: 3200000
-+
-+required:
-+  - compatible
-+  - reg
-+  - monitored-battery
-+
-+examples:
-+  - |
-+    bat: battery {
-+      compatible = "simple-battery";
-+      constant-charge-current-max-microamp = <2040000>;
-+      constant-charge-voltage-max-microvolt = <4352000>;
-+      precharge-current-microamp = <180000>;
-+      charge-term-current-microamp = <180000>;
-+    };
-+    #include <dt-bindings/gpio/gpio.h>
-+    #include <dt-bindings/interrupt-controller/irq.h>
-+    i2c {
-+
-+      clock-frequency = <400000>;
-+
-+      #address-cells = <1>;
-+      #size-cells = <0>;
-+
-+      charger@6b {
-+        compatible = "ti,bq25601";
-+        reg = <0x6b>;
-+        monitored-battery = <&bat>;
-+
-+        interrupt-parent = <&gpio1>;
-+        interrupts = <16 IRQ_TYPE_EDGE_FALLING>;
-+        watchdog-timer = <40000>;
-+
-+        input-voltage-limit-microvolt = <4500000>;
-+        input-current-limit-microamp = <2400000>;
-+       };
-+    };
-+...
--- 
-2.28.0
+Best regards,
+Krzysztof
 
+
+> 
+> diff --git a/arch/arm/boot/dts/aspeed-bmc-portwell-neptune.dts b/arch/arm/boot/dts/aspeed-bmc-portwell-neptune.dts
+> index 4a1ca8f5b6a7..03c161493ffc 100644
+> --- a/arch/arm/boot/dts/aspeed-bmc-portwell-neptune.dts
+> +++ b/arch/arm/boot/dts/aspeed-bmc-portwell-neptune.dts
+> @@ -121,6 +121,8 @@
+>  	pca9555@27 {
+>  		compatible = "nxp,pca9555";
+>  		reg = <0x27>;
+> +		gpio-controller;
+> +		#gpio-cells = <2>;
+>  	};
+>  };
+>  
+> -- 
+> 2.17.1
+> 
