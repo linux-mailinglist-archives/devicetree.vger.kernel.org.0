@@ -2,51 +2,51 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from vger.kernel.org (vger.kernel.org [23.128.96.18])
-	by mail.lfdr.de (Postfix) with ESMTP id A26712643BD
-	for <lists+devicetree@lfdr.de>; Thu, 10 Sep 2020 12:20:51 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTP id AE8792643B6
+	for <lists+devicetree@lfdr.de>; Thu, 10 Sep 2020 12:20:32 +0200 (CEST)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S1726494AbgIJKUp (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Thu, 10 Sep 2020 06:20:45 -0400
-Received: from lindbergh.monkeyblade.net ([23.128.96.19]:44936 "EHLO
+        id S1730662AbgIJKUG (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Thu, 10 Sep 2020 06:20:06 -0400
+Received: from lindbergh.monkeyblade.net ([23.128.96.19]:44956 "EHLO
         lindbergh.monkeyblade.net" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S1729413AbgIJKRy (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Thu, 10 Sep 2020 06:17:54 -0400
-Received: from mail-wr1-x444.google.com (mail-wr1-x444.google.com [IPv6:2a00:1450:4864:20::444])
-        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 6B2F3C061798
-        for <devicetree@vger.kernel.org>; Thu, 10 Sep 2020 03:17:52 -0700 (PDT)
-Received: by mail-wr1-x444.google.com with SMTP id o5so6020348wrn.13
-        for <devicetree@vger.kernel.org>; Thu, 10 Sep 2020 03:17:52 -0700 (PDT)
+        with ESMTP id S1730588AbgIJKSA (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Thu, 10 Sep 2020 06:18:00 -0400
+Received: from mail-wr1-x442.google.com (mail-wr1-x442.google.com [IPv6:2a00:1450:4864:20::442])
+        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id B5A86C061799
+        for <devicetree@vger.kernel.org>; Thu, 10 Sep 2020 03:17:53 -0700 (PDT)
+Received: by mail-wr1-x442.google.com with SMTP id a17so6070533wrn.6
+        for <devicetree@vger.kernel.org>; Thu, 10 Sep 2020 03:17:53 -0700 (PDT)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
         d=linaro.org; s=google;
         h=from:to:cc:subject:date:message-id:in-reply-to:references
          :mime-version:content-transfer-encoding;
-        bh=35FP4zv+pwkbGr1a0ICMd6sQ90vGjx362WgHWWdE2EE=;
-        b=qytJ0anu0r8iejL2J6YFmry4i70Yz/OxSO1hg0YXgpdvILS87SEuM+OW/N06uatodz
-         PxYfg+QYPOwoxehP3B4PVH7HPiFr7AvPe1OGaELzxBmV8IGd8EGASeJC12C9VE6aOfXj
-         ELoDnCUfz2fhMZxAnb0fX9axz9fdFuTIrGUY6ncQU1vrXqrNMWGwHirCdtdDrcF5tLwt
-         nz4alzp1i/jrRUVE8npi1+JiG6oduIEDZHsIgpN3crEIVyP/DG9cituiP4B3LG7sL2MR
-         o0ZODSoIXBmYK62jfACiBuEneyDJHaaSJLAwewbUAyCOlxYo1NvpAwkeppcil4ggIabb
-         WFPg==
+        bh=5EKdqRsK8wVtz9cHR3wKpVYkVxvCf4OgD26PR6bDVFQ=;
+        b=e1mK1tGz6rZaNFFeQOtX2dk9yd8gvcj3TmaGXRNp1rqBIffPapTSViWj1tmPT/i0Sj
+         bX6Jdr3LpJclFl1JAq2XVIrK5Fj5nxWBUryo1a71BZFL9dDYC8G3E6JOLlfUj2oj9x1g
+         masAqBHlE0yWtextn4dI95Lwgv0cAvBdVvap5r9e3ezZEd1URr5OsAetuaNMmIKA5T1m
+         n+A0dkvgFOX9FJQTn+CZ2b64lGGja+5QvtGMspVRwzDBfYq4n1nrTjFTXschjs/lO141
+         Kzxqz9wSjXJmESJR+8zWXkjkN0VTyTAyWQiow+omrnDjuzbQoicZHVUpsGL59+FvvW3d
+         w/1g==
 X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
         d=1e100.net; s=20161025;
         h=x-gm-message-state:from:to:cc:subject:date:message-id:in-reply-to
          :references:mime-version:content-transfer-encoding;
-        bh=35FP4zv+pwkbGr1a0ICMd6sQ90vGjx362WgHWWdE2EE=;
-        b=dGkebZSvLAcKAJcatvMSN96IjT7rC14zuwa44iQw7i50BXXY68qn8eyjJ5cQDOJ5rQ
-         FA+Ii5ieaPpsc6BrgWR2zRk1iLbVxYgSFohnSzBaSH7Pkv6b35sR3bKGGrFis88KGr0J
-         Ul8fihijKnv19ETU9gWpFUqOxVil4jn7s2z4GoDjz0KMZlUa/X5PnViD7LnJcyvq72uw
-         0fT9suM+Rv6wBUIaQGR6T4Mw5OXG/vxRG1l1KziaGZvF3gN/Xtf5fpB4cV/HQ7txEUXm
-         MykJhzX+6vQYpZXKYaCYRPhSz96bxpsPoq2Cj24PAosdznPop2sF1KOcKDmsP4cU2SSr
-         Tkzg==
-X-Gm-Message-State: AOAM53258KuXz2SY9stYL/gICH/N8Hr5ug7vV1vIWlwAfdgB9pJCFovC
-        mZ7oypMFJ/f5ityVTl1yi1119g==
-X-Google-Smtp-Source: ABdhPJwwyy6FJ4lFjbkvIsHCWHQE2fqsNe40JDp5tIgVLRzzrHZGi8Opl4fcPMyaHoVU6nJlbkLJtg==
-X-Received: by 2002:adf:9e43:: with SMTP id v3mr8377833wre.306.1599733071084;
-        Thu, 10 Sep 2020 03:17:51 -0700 (PDT)
+        bh=5EKdqRsK8wVtz9cHR3wKpVYkVxvCf4OgD26PR6bDVFQ=;
+        b=FJOA0yQr8k9L1scEpIHU8+tu1R27vkL/hJtVvK0ENSeaKvwJ5guk+tl3VOscU2qqLb
+         DT9Vw+EZQa7rGgfIxbYN+hpbmJvgkSBNRA72dxpbvvVbVBCLjgPDWHJBrSzDfjMB9nbF
+         wIfSYynrMDO9aIrxFusLAfZGSACB7xVqi9v/mlZOWAREtnZUl6E8NeGPumwChaGrKTTz
+         T0RlPdIdlVo/7Be5ZKEgLjYaFFPLyq0NKbRmRX8OFLsfg/2RPXa1+T4biqvFYRvxcP20
+         KVF3TdnMpp1sdUShYRfRQLwgwKraq7kL9SRCqAW3cVQuD1Px44lSj74mcBLaQ58u6k7H
+         /9oA==
+X-Gm-Message-State: AOAM5321ECmnHVR7ZHMyV35DQdrOpbkon08LA/g7fkdEzLO5g2doNPtk
+        9OKNiTX8K+NXHTX5hUqQJJsSYw==
+X-Google-Smtp-Source: ABdhPJz6Gm1hlVXhAPmoOB7PYf2rx5xu/cRrmqQk65gftmzu7Hm5sDaEbywIRTAXQiAz5cAbxcYRRg==
+X-Received: by 2002:adf:94c1:: with SMTP id 59mr8856155wrr.29.1599733072447;
+        Thu, 10 Sep 2020 03:17:52 -0700 (PDT)
 Received: from srini-hackbox.lan (cpc86377-aztw32-2-0-cust226.18-1.cable.virginm.net. [92.233.226.227])
-        by smtp.gmail.com with ESMTPSA id m4sm8851731wro.18.2020.09.10.03.17.49
+        by smtp.gmail.com with ESMTPSA id m4sm8851731wro.18.2020.09.10.03.17.51
         (version=TLS1_3 cipher=TLS_AES_256_GCM_SHA384 bits=256/256);
-        Thu, 10 Sep 2020 03:17:50 -0700 (PDT)
+        Thu, 10 Sep 2020 03:17:51 -0700 (PDT)
 From:   Srinivas Kandagatla <srinivas.kandagatla@linaro.org>
 To:     broonie@kernel.org
 Cc:     lgirdwood@gmail.com, robh+dt@kernel.org, plai@codeaurora.org,
@@ -54,9 +54,9 @@ Cc:     lgirdwood@gmail.com, robh+dt@kernel.org, plai@codeaurora.org,
         alsa-devel@alsa-project.org, devicetree@vger.kernel.org,
         linux-kernel@vger.kernel.org,
         Srinivas Kandagatla <srinivas.kandagatla@linaro.org>
-Subject: [PATCH 3/8] ASoC: q6dsp: q6afe: prepare afe_apr_send_pkt to take response opcode
-Date:   Thu, 10 Sep 2020 11:17:27 +0100
-Message-Id: <20200910101732.23484-4-srinivas.kandagatla@linaro.org>
+Subject: [PATCH 4/8] ASoC: q6dsp: q6afe: add global q6afe waitqueue
+Date:   Thu, 10 Sep 2020 11:17:28 +0100
+Message-Id: <20200910101732.23484-5-srinivas.kandagatla@linaro.org>
 X-Mailer: git-send-email 2.21.0
 In-Reply-To: <20200910101732.23484-1-srinivas.kandagatla@linaro.org>
 References: <20200910101732.23484-1-srinivas.kandagatla@linaro.org>
@@ -67,76 +67,77 @@ Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-Update afe_apr_send_pkt() to take response opcode that it should wait for.
-This is helpful in cases where we expect response other than the
-actual command opcode.
+In some cases like clocks q6afe would have to process commands
+without an associated q6afe port, in such cases waitqueue is
+required at global level to wait for the command to finish.
+This patch also adds the command result to go with this waitqueue.
 
 Signed-off-by: Srinivas Kandagatla <srinivas.kandagatla@linaro.org>
 ---
- sound/soc/qcom/qdsp6/q6afe.c | 13 ++++++-------
- 1 file changed, 6 insertions(+), 7 deletions(-)
+ sound/soc/qcom/qdsp6/q6afe.c | 22 +++++++++++++++++-----
+ 1 file changed, 17 insertions(+), 5 deletions(-)
 
 diff --git a/sound/soc/qcom/qdsp6/q6afe.c b/sound/soc/qcom/qdsp6/q6afe.c
-index 8ceefb431bcb..f934c69f0a14 100644
+index f934c69f0a14..2a8e3c3acb10 100644
 --- a/sound/soc/qcom/qdsp6/q6afe.c
 +++ b/sound/soc/qcom/qdsp6/q6afe.c
-@@ -902,10 +902,9 @@ int q6afe_get_port_id(int index)
- EXPORT_SYMBOL_GPL(q6afe_get_port_id);
- 
- static int afe_apr_send_pkt(struct q6afe *afe, struct apr_pkt *pkt,
--			    struct q6afe_port *port)
-+			    struct q6afe_port *port, uint32_t rsp_opcode)
+@@ -362,6 +362,8 @@ struct q6afe {
+ 	struct device *dev;
+ 	struct q6core_svc_api_info ainfo;
+ 	struct mutex lock;
++	struct aprv2_ibasic_rsp_result_t result;
++	wait_queue_head_t wait;
+ 	struct list_head port_list;
+ 	spinlock_t port_list_lock;
+ };
+@@ -905,11 +907,20 @@ static int afe_apr_send_pkt(struct q6afe *afe, struct apr_pkt *pkt,
+ 			    struct q6afe_port *port, uint32_t rsp_opcode)
  {
  	wait_queue_head_t *wait = &port->wait;
--	struct apr_hdr *hdr = &pkt->hdr;
++	struct aprv2_ibasic_rsp_result_t *result;
  	int ret;
  
  	mutex_lock(&afe->lock);
-@@ -919,7 +918,7 @@ static int afe_apr_send_pkt(struct q6afe *afe, struct apr_pkt *pkt,
+-	port->result.opcode = 0;
+-	port->result.status = 0;
++	if (port) {
++		wait = &port->wait;
++		result = &port->result;
++	} else {
++		result = &afe->result;
++		wait = &afe->wait;
++	}
++
++	result->opcode = 0;
++	result->status = 0;
+ 
+ 	ret = apr_send_pkt(afe->apr, pkt);
+ 	if (ret < 0) {
+@@ -918,13 +929,13 @@ static int afe_apr_send_pkt(struct q6afe *afe, struct apr_pkt *pkt,
  		goto err;
  	}
  
--	ret = wait_event_timeout(*wait, (port->result.opcode == hdr->opcode),
-+	ret = wait_event_timeout(*wait, (port->result.opcode == rsp_opcode),
+-	ret = wait_event_timeout(*wait, (port->result.opcode == rsp_opcode),
++	ret = wait_event_timeout(*wait, (result->opcode == rsp_opcode),
  				 msecs_to_jiffies(TIMEOUT_MS));
  	if (!ret) {
  		ret = -ETIMEDOUT;
-@@ -976,7 +975,7 @@ static int q6afe_port_set_param(struct q6afe_port *port, void *data,
- 	pdata->param_id = param_id;
- 	pdata->param_size = psize;
- 
--	ret = afe_apr_send_pkt(afe, pkt, port);
-+	ret = afe_apr_send_pkt(afe, pkt, port, AFE_SVC_CMD_SET_PARAM);
- 	if (ret)
- 		dev_err(afe->dev, "AFE enable for port 0x%x failed %d\n",
- 		       port_id, ret);
-@@ -1025,7 +1024,7 @@ static int q6afe_port_set_param_v2(struct q6afe_port *port, void *data,
- 	pdata->param_id = param_id;
- 	pdata->param_size = psize;
- 
--	ret = afe_apr_send_pkt(afe, pkt, port);
-+	ret = afe_apr_send_pkt(afe, pkt, port, AFE_PORT_CMD_SET_PARAM_V2);
- 	if (ret)
- 		dev_err(afe->dev, "AFE enable for port 0x%x failed %d\n",
- 		       port_id, ret);
-@@ -1155,7 +1154,7 @@ int q6afe_port_stop(struct q6afe_port *port)
- 	stop->port_id = port_id;
- 	stop->reserved = 0;
- 
--	ret = afe_apr_send_pkt(afe, pkt, port);
-+	ret = afe_apr_send_pkt(afe, pkt, port, AFE_PORT_CMD_DEVICE_STOP);
- 	if (ret)
- 		dev_err(afe->dev, "AFE close failed %d\n", ret);
- 
-@@ -1467,7 +1466,7 @@ int q6afe_port_start(struct q6afe_port *port)
- 
- 	start->port_id = port_id;
- 
--	ret = afe_apr_send_pkt(afe, pkt, port);
-+	ret = afe_apr_send_pkt(afe, pkt, port, AFE_PORT_CMD_DEVICE_START);
- 	if (ret)
- 		dev_err(afe->dev, "AFE enable for port 0x%x failed %d\n",
- 			port_id, ret);
+-	} else if (port->result.status > 0) {
++	} else if (result->status > 0) {
+ 		dev_err(afe->dev, "DSP returned error[%x]\n",
+-			port->result.status);
++			result->status);
+ 		ret = -EINVAL;
+ 	} else {
+ 		ret = 0;
+@@ -1594,6 +1605,7 @@ static int q6afe_probe(struct apr_device *adev)
+ 	q6core_get_svc_api_info(adev->svc_id, &afe->ainfo);
+ 	afe->apr = adev;
+ 	mutex_init(&afe->lock);
++	init_waitqueue_head(&afe->wait);
+ 	afe->dev = dev;
+ 	INIT_LIST_HEAD(&afe->port_list);
+ 	spin_lock_init(&afe->port_list_lock);
 -- 
 2.21.0
 
