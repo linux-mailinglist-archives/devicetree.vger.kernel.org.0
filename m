@@ -2,238 +2,71 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from vger.kernel.org (vger.kernel.org [23.128.96.18])
-	by mail.lfdr.de (Postfix) with ESMTP id 21220264B4C
-	for <lists+devicetree@lfdr.de>; Thu, 10 Sep 2020 19:30:36 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTP id DDA17264C05
+	for <lists+devicetree@lfdr.de>; Thu, 10 Sep 2020 19:58:24 +0200 (CEST)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S1727037AbgIJRac (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Thu, 10 Sep 2020 13:30:32 -0400
-Received: from lindbergh.monkeyblade.net ([23.128.96.19]:56084 "EHLO
-        lindbergh.monkeyblade.net" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S1727808AbgIJR2w (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Thu, 10 Sep 2020 13:28:52 -0400
-Received: from bhuna.collabora.co.uk (bhuna.collabora.co.uk [IPv6:2a00:1098:0:82:1000:25:2eeb:e3e3])
-        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id A6CC6C061795;
-        Thu, 10 Sep 2020 10:28:51 -0700 (PDT)
-Received: from [127.0.0.1] (localhost [127.0.0.1])
-        (Authenticated sender: eballetbo)
-        with ESMTPSA id CD68729BB09
-From:   Enric Balletbo i Serra <enric.balletbo@collabora.com>
-To:     linux-kernel@vger.kernel.org
-Cc:     Collabora Kernel ML <kernel@collabora.com>, fparent@baylibre.com,
-        matthias.bgg@gmail.com, drinkcat@chromium.org, hsinyi@chromium.org,
-        weiyi.lu@mediatek.com, Matthias Brugger <mbrugger@suse.com>,
-        Rob Herring <robh+dt@kernel.org>, devicetree@vger.kernel.org,
-        linux-arm-kernel@lists.infradead.org,
-        linux-mediatek@lists.infradead.org
-Subject: [PATCH 12/12] arm64: dts: mediatek: Add mt8183 power domains controller
-Date:   Thu, 10 Sep 2020 19:28:26 +0200
-Message-Id: <20200910172826.3074357-13-enric.balletbo@collabora.com>
-X-Mailer: git-send-email 2.28.0
-In-Reply-To: <20200910172826.3074357-1-enric.balletbo@collabora.com>
-References: <20200910172826.3074357-1-enric.balletbo@collabora.com>
-MIME-Version: 1.0
-Content-Transfer-Encoding: 8bit
+        id S1725996AbgIJR5A (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Thu, 10 Sep 2020 13:57:00 -0400
+Received: from mail.kernel.org ([198.145.29.99]:33412 "EHLO mail.kernel.org"
+        rhost-flags-OK-OK-OK-OK) by vger.kernel.org with ESMTP
+        id S1726216AbgIJQPN (ORCPT <rfc822;devicetree@vger.kernel.org>);
+        Thu, 10 Sep 2020 12:15:13 -0400
+Received: from localhost.localdomain (unknown [194.230.155.174])
+        (using TLSv1.2 with cipher ECDHE-RSA-AES128-GCM-SHA256 (128/128 bits))
+        (No client certificate requested)
+        by mail.kernel.org (Postfix) with ESMTPSA id 7C81E20BED;
+        Thu, 10 Sep 2020 16:12:44 +0000 (UTC)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=kernel.org;
+        s=default; t=1599754367;
+        bh=q4PfSN/iGfvSKBF5OqA0xnoo0M75rGDiILB3JNyi3Sc=;
+        h=From:To:Subject:Date:In-Reply-To:References:From;
+        b=DZLIVNDF3f/+Zb8igN7FHQTHTiyncQABGWe6n7i8pQ0p8yF5+sEd6nVCPwBng9eUX
+         qK9fkl2lh5OsLE75J0gWVdfHa1jteXtCVZ417b83Qw+CFXF9C5dvRC74HfLtSs0OhT
+         FYDhSgoGTQZrDE56CAThmMnbqWSjhbEPZUQoyUg4=
+From:   Krzysztof Kozlowski <krzk@kernel.org>
+To:     "David S. Miller" <davem@davemloft.net>,
+        Jakub Kicinski <kuba@kernel.org>,
+        Rob Herring <robh+dt@kernel.org>,
+        Krzysztof Kozlowski <krzk@kernel.org>,
+        Krzysztof Opasiak <k.opasiak@samsung.com>,
+        Kukjin Kim <kgene@kernel.org>, linux-kernel@vger.kernel.org,
+        netdev@vger.kernel.org, devicetree@vger.kernel.org,
+        linux-nfc@lists.01.org, linux-arm-kernel@lists.infradead.org,
+        linux-samsung-soc@vger.kernel.org
+Subject: [PATCH v3 5/8] nfc: s3fwrn5: Add missing CRYPTO_HASH dependency
+Date:   Thu, 10 Sep 2020 18:12:16 +0200
+Message-Id: <20200910161219.6237-6-krzk@kernel.org>
+X-Mailer: git-send-email 2.17.1
+In-Reply-To: <20200910161219.6237-1-krzk@kernel.org>
+References: <20200910161219.6237-1-krzk@kernel.org>
 Sender: devicetree-owner@vger.kernel.org
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-From: Matthias Brugger <mbrugger@suse.com>
+The driver uses crypto hash functions so it needs to select CRYPTO_HASH.
+This fixes build errors:
 
-Add power domains controller node for SoC mt8183
+  arc-linux-ld: drivers/nfc/s3fwrn5/firmware.o: in function `s3fwrn5_fw_download':
+  firmware.c:(.text+0x152): undefined reference to `crypto_alloc_shash'
 
-Signed-off-by: Matthias Brugger <mbrugger@suse.com>
-Signed-off-by: Enric Balletbo i Serra <enric.balletbo@collabora.com>
+Signed-off-by: Krzysztof Kozlowski <krzk@kernel.org>
 ---
+ drivers/nfc/s3fwrn5/Kconfig | 1 +
+ 1 file changed, 1 insertion(+)
 
- arch/arm64/boot/dts/mediatek/mt8183.dtsi | 160 +++++++++++++++++++++++
- 1 file changed, 160 insertions(+)
-
-diff --git a/arch/arm64/boot/dts/mediatek/mt8183.dtsi b/arch/arm64/boot/dts/mediatek/mt8183.dtsi
-index 102105871db2..7012cdb22bf0 100644
---- a/arch/arm64/boot/dts/mediatek/mt8183.dtsi
-+++ b/arch/arm64/boot/dts/mediatek/mt8183.dtsi
-@@ -8,6 +8,7 @@
- #include <dt-bindings/clock/mt8183-clk.h>
- #include <dt-bindings/interrupt-controller/arm-gic.h>
- #include <dt-bindings/interrupt-controller/irq.h>
-+#include <dt-bindings/power/mt8183-power.h>
- #include <dt-bindings/reset-controller/mt8183-resets.h>
- #include <dt-bindings/phy/phy.h>
- #include "mt8183-pinfunc.h"
-@@ -316,6 +317,160 @@ pio: pinctrl@10005000 {
- 			#interrupt-cells = <2>;
- 		};
- 
-+		scpsys: syscon@10006000 {
-+			compatible = "mediatek,mt8183-power-controller", "syscon";
-+			reg = <0 0x10006000 0 0x1000>;
-+			#address-cells = <1>;
-+			#size-cells = <0>;
-+
-+			audio@MT8183_POWER_DOMAIN_AUDIO {
-+				reg = <MT8183_POWER_DOMAIN_AUDIO>;
-+				clocks = <&topckgen CLK_TOP_MUX_AUD_INTBUS>,
-+					 <&infracfg CLK_INFRA_AUDIO>,
-+					 <&infracfg CLK_INFRA_AUDIO_26M_BCLK>;
-+				clock-names = "audio", "audio1", "audio2";
-+				#power-domain-cells = <0>;
-+			};
-+
-+			conn@MT8183_POWER_DOMAIN_CONN {
-+				reg = <MT8183_POWER_DOMAIN_CONN>;
-+				mediatek,infracfg = <&infracfg>;
-+				#power-domain-cells = <0>;
-+			};
-+
-+			mfg_async@MT8183_POWER_DOMAIN_MFG_ASYNC {
-+				reg = <MT8183_POWER_DOMAIN_MFG_ASYNC>;
-+
-+				#address-cells = <1>;
-+				#size-cells = <0>;
-+				clocks =  <&topckgen CLK_TOP_MUX_MFG>;
-+				clock-names = "mfg";
-+				#power-domain-cells = <1>;
-+
-+				mfg@MT8183_POWER_DOMAIN_MFG {
-+					reg = <MT8183_POWER_DOMAIN_MFG>;
-+					#address-cells = <1>;
-+					#size-cells = <0>;
-+					#power-domain-cells = <1>;
-+
-+					mfg_core0@MT8183_POWER_DOMAIN_MFG_CORE0 {
-+						reg = <MT8183_POWER_DOMAIN_MFG_CORE0>;
-+						#power-domain-cells = <0>;
-+					};
-+
-+					mfg_core1@MT8183_POWER_DOMAIN_MFG_CORE1 {
-+						reg = <MT8183_POWER_DOMAIN_MFG_CORE1>;
-+						#power-domain-cells = <0>;
-+					};
-+
-+					mfg_2d@MT8183_POWER_DOMAIN_MFG_2D {
-+						reg = <MT8183_POWER_DOMAIN_MFG_2D>;
-+						mediatek,infracfg = <&infracfg>;
-+						#power-domain-cells = <0>;
-+					};
-+				};
-+			};
-+
-+			disp@MT8183_POWER_DOMAIN_DISP {
-+				reg = <MT8183_POWER_DOMAIN_DISP>;
-+				clocks = <&topckgen CLK_TOP_MUX_MM>,
-+					 <&mmsys CLK_MM_SMI_COMMON>,
-+					 <&mmsys CLK_MM_SMI_LARB0>,
-+					 <&mmsys CLK_MM_SMI_LARB1>,
-+					 <&mmsys CLK_MM_GALS_COMM0>,
-+					 <&mmsys CLK_MM_GALS_COMM1>,
-+					 <&mmsys CLK_MM_GALS_CCU2MM>,
-+					 <&mmsys CLK_MM_GALS_IPU12MM>,
-+					 <&mmsys CLK_MM_GALS_IMG2MM>,
-+					 <&mmsys CLK_MM_GALS_CAM2MM>,
-+					 <&mmsys CLK_MM_GALS_IPU2MM>;
-+				clock-names = "mm", "mm-0", "mm-1", "mm-2", "mm-3",
-+					      "mm-4", "mm-5", "mm-6", "mm-7",
-+					      "mm-8", "mm-9";
-+				#address-cells = <1>;
-+				#size-cells = <0>;
-+				mediatek,infracfg = <&infracfg>;
-+				mediatek,smi = <&smi_common>;
-+				#power-domain-cells = <1>;
-+
-+				cam@MT8183_POWER_DOMAIN_CAM {
-+					reg = <MT8183_POWER_DOMAIN_CAM>;
-+					clocks = <&topckgen CLK_TOP_MUX_CAM>,
-+						 <&camsys CLK_CAM_LARB6>,
-+						 <&camsys CLK_CAM_LARB3>,
-+						 <&camsys CLK_CAM_SENINF>,
-+						 <&camsys CLK_CAM_CAMSV0>,
-+						 <&camsys CLK_CAM_CAMSV1>,
-+						 <&camsys CLK_CAM_CAMSV2>,
-+						 <&camsys CLK_CAM_CCU>;
-+					clock-names = "cam", "cam-0", "cam-1",
-+						      "cam-2", "cam-3", "cam-4",
-+						      "cam-5", "cam-6";
-+					mediatek,infracfg = <&infracfg>;
-+					mediatek,smi = <&smi_common>;
-+					#power-domain-cells = <0>;
-+				};
-+
-+				isp@MT8183_POWER_DOMAIN_ISP {
-+					reg = <MT8183_POWER_DOMAIN_ISP>;
-+					clocks = <&topckgen CLK_TOP_MUX_IMG>,
-+						 <&imgsys CLK_IMG_LARB5>,
-+						 <&imgsys CLK_IMG_LARB2>;
-+					clock-names = "isp", "isp-0", "isp-1";
-+					mediatek,infracfg = <&infracfg>;
-+					mediatek,smi = <&smi_common>;
-+					#power-domain-cells = <0>;
-+				};
-+
-+				vdec@MT8183_POWER_DOMAIN_VDEC {
-+					reg = <MT8183_POWER_DOMAIN_VDEC>;
-+					mediatek,smi = <&smi_common>;
-+					#power-domain-cells = <0>;
-+				};
-+
-+				venc@MT8183_POWER_DOMAIN_VENC {
-+					reg = <MT8183_POWER_DOMAIN_VENC>;
-+					mediatek,smi = <&smi_common>;
-+					#power-domain-cells = <0>;
-+				};
-+
-+				vpu_top@MT8183_POWER_DOMAIN_VPU_TOP {
-+					reg = <MT8183_POWER_DOMAIN_VPU_TOP>;
-+					clocks = <&topckgen CLK_TOP_MUX_IPU_IF>,
-+						 <&topckgen CLK_TOP_MUX_DSP>,
-+						 <&ipu_conn CLK_IPU_CONN_IPU>,
-+						 <&ipu_conn CLK_IPU_CONN_AHB>,
-+						 <&ipu_conn CLK_IPU_CONN_AXI>,
-+						 <&ipu_conn CLK_IPU_CONN_ISP>,
-+						 <&ipu_conn CLK_IPU_CONN_CAM_ADL>,
-+						 <&ipu_conn CLK_IPU_CONN_IMG_ADL>;
-+					clock-names = "vpu", "vpu1", "vpu-0", "vpu-1",
-+						      "vpu-2", "vpu-3", "vpu-4", "vpu-5";
-+					#address-cells = <1>;
-+					#size-cells = <0>;
-+					mediatek,infracfg = <&infracfg>;
-+					mediatek,smi = <&smi_common>;
-+					#power-domain-cells = <1>;
-+
-+					vpu_core0@MT8183_POWER_DOMAIN_VPU_CORE0 {
-+						reg = <MT8183_POWER_DOMAIN_VPU_CORE0>;
-+						clocks = <&topckgen CLK_TOP_MUX_DSP1>;
-+						clock-names = "vpu2";
-+						mediatek,infracfg = <&infracfg>;
-+						#power-domain-cells = <0>;
-+					};
-+
-+					vpu_core1@MT8183_POWER_DOMAIN_VPU_CORE1 {
-+						reg = <MT8183_POWER_DOMAIN_VPU_CORE1>;
-+						clocks = <&topckgen CLK_TOP_MUX_DSP2>;
-+						clock-names = "vpu3";
-+						mediatek,infracfg = <&infracfg>;
-+						#power-domain-cells = <0>;
-+					};
-+				};
-+			};
-+		};
-+
- 		watchdog: watchdog@10007000 {
- 			compatible = "mediatek,mt8183-wdt",
- 				     "mediatek,mt6589-wdt";
-@@ -754,6 +909,11 @@ mmsys: syscon@14000000 {
- 			#clock-cells = <1>;
- 		};
- 
-+		smi_common: smi@14019000 {
-+			compatible = "mediatek,mt8183-smi-common", "syscon";
-+			reg = <0 0x14019000 0 0x1000>;
-+		};
-+
- 		imgsys: syscon@15020000 {
- 			compatible = "mediatek,mt8183-imgsys", "syscon";
- 			reg = <0 0x15020000 0 0x1000>;
+diff --git a/drivers/nfc/s3fwrn5/Kconfig b/drivers/nfc/s3fwrn5/Kconfig
+index af9d18690afe..3f8b6da58280 100644
+--- a/drivers/nfc/s3fwrn5/Kconfig
++++ b/drivers/nfc/s3fwrn5/Kconfig
+@@ -2,6 +2,7 @@
+ config NFC_S3FWRN5
+ 	tristate
+ 	select CRYPTO
++	select CRYPTO_HASH
+ 	help
+ 	  Core driver for Samsung S3FWRN5 NFC chip. Contains core utilities
+ 	  of chip. It's intended to be used by PHYs to avoid duplicating lots
 -- 
-2.28.0
+2.17.1
 
