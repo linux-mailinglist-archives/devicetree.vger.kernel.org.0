@@ -2,132 +2,89 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from vger.kernel.org (vger.kernel.org [23.128.96.18])
-	by mail.lfdr.de (Postfix) with ESMTP id C6477265553
-	for <lists+devicetree@lfdr.de>; Fri, 11 Sep 2020 01:06:47 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTP id 80EC226556E
+	for <lists+devicetree@lfdr.de>; Fri, 11 Sep 2020 01:21:01 +0200 (CEST)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S1725300AbgIJXGp (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Thu, 10 Sep 2020 19:06:45 -0400
-Received: from lindbergh.monkeyblade.net ([23.128.96.19]:52264 "EHLO
-        lindbergh.monkeyblade.net" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S1725294AbgIJXGn (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Thu, 10 Sep 2020 19:06:43 -0400
-Received: from mail-qt1-x841.google.com (mail-qt1-x841.google.com [IPv6:2607:f8b0:4864:20::841])
-        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id C7B89C061573
-        for <devicetree@vger.kernel.org>; Thu, 10 Sep 2020 16:06:42 -0700 (PDT)
-Received: by mail-qt1-x841.google.com with SMTP id 19so6321757qtp.1
-        for <devicetree@vger.kernel.org>; Thu, 10 Sep 2020 16:06:42 -0700 (PDT)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=linaro.org; s=google;
-        h=date:from:to:cc:subject:message-id:references:mime-version
-         :content-disposition:in-reply-to;
-        bh=NDyjd2iMqequc7LRMcRbG7To5TWvVyedy/KOdmHGA9k=;
-        b=gSNaWPdEY2QnZcjph+epkQoIRckMJ874n0EFerBdUUjyUl30uIWC34VWoHykoJjQ2E
-         LN6wVH8yVGRLppCxyuiY0kt80KWFDFQiTkmaSgmu+hAuWpTiNqVNLOP8xx0sm3oagMAK
-         LS3rYYs5b0CjLr4QYfdFymg1HeGqT4gMXc/0KpHr6N7uvpfAqSB4j7t78+WfK6eBcu6R
-         TNXKjNwS/tZ/jQ8dslR7h8Wx51Mbm4uE7jjsvWar+SQ4a1TA3Yk1hP+zwMFH0HhgCVIr
-         lDdfV7C3fE7uYZh82uHb5FyEvrmCINbklup9YkD6ZmBLHnkbyLW+++sR1/UOpvP+1LPq
-         3DHg==
-X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=1e100.net; s=20161025;
-        h=x-gm-message-state:date:from:to:cc:subject:message-id:references
-         :mime-version:content-disposition:in-reply-to;
-        bh=NDyjd2iMqequc7LRMcRbG7To5TWvVyedy/KOdmHGA9k=;
-        b=p1ynUAITVu9kQY3IauEzRF7UsiwM4MWTzd3uJjqTU2cveQi2jHAAzf/EzVkxwxEQ1N
-         pIbMkMbpcP6Es8oT1fzYpiuhWBuTwRVqMmLO19RPfLselhaKUCkZqYymUV/CAVOOnXTe
-         KLbQgra9DzE+jKNV7kwFNX54Hb0NGkAr0kFT0C5tjJhNdgOpi4AHWEWVHMjwFFxTPYqW
-         B4yA3NWgZNNfyqH6SPOyYzAykRwukBX5qR/Cp1S1cq1vwbcVMpl5sRkjC/YmGXh2cMrq
-         cokk5ZLMogxyHlxAKSjHPRmgcnNeslKYrLe96+FcgmkLc62OMMdIFhCqZqljl0cIEo8i
-         jHzg==
-X-Gm-Message-State: AOAM533Nc5yHIFtcKph1pZP37Retet5I9Llralq4CmrVJgM4qteVx5p5
-        cNKqpBBTPaZsBqnYqGBuueecdQ==
-X-Google-Smtp-Source: ABdhPJwUNn1cTdcJJNctsCsTgJWF1pa/DKRujT7/DrPwH/+LKqQh/m6CHBbRIBeoyfdun9zY14Czpw==
-X-Received: by 2002:ac8:7188:: with SMTP id w8mr3165127qto.134.1599779201381;
-        Thu, 10 Sep 2020 16:06:41 -0700 (PDT)
-Received: from uller (ec2-34-197-84-77.compute-1.amazonaws.com. [34.197.84.77])
-        by smtp.gmail.com with ESMTPSA id u55sm288593qtu.42.2020.09.10.16.06.40
-        (version=TLS1_3 cipher=TLS_AES_256_GCM_SHA384 bits=256/256);
-        Thu, 10 Sep 2020 16:06:40 -0700 (PDT)
-Date:   Thu, 10 Sep 2020 23:06:39 +0000
-From:   Bjorn Andersson <bjorn.andersson@linaro.org>
-To:     satya priya <skakit@codeaurora.org>, gregkh@linuxfoundation.org
-Cc:     Matthias Kaehlcke <mka@chromium.org>,
-        Andy Gross <agross@kernel.org>,
-        Rob Herring <robh+dt@kernel.org>,
-        linux-arm-msm@vger.kernel.org, devicetree@vger.kernel.org,
-        linux-kernel@vger.kernel.org, akashast@codeaurora.org,
-        rojay@codeaurora.org, msavaliy@qti.qualcomm.com,
-        dianders@chromium.org
-Subject: Re: [PATCH V5 4/4] tty: serial: qcom_geni_serial: Fix the UART
- wakeup issue
-Message-ID: <20200910230639.GB472@uller>
-References: <1599742438-16811-1-git-send-email-skakit@codeaurora.org>
- <1599742438-16811-5-git-send-email-skakit@codeaurora.org>
-MIME-Version: 1.0
-Content-Type: text/plain; charset=us-ascii
-Content-Disposition: inline
-In-Reply-To: <1599742438-16811-5-git-send-email-skakit@codeaurora.org>
+        id S1725290AbgIJXVA (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Thu, 10 Sep 2020 19:21:00 -0400
+Received: from relmlor2.renesas.com ([210.160.252.172]:57795 "EHLO
+        relmlie6.idc.renesas.com" rhost-flags-OK-OK-OK-FAIL)
+        by vger.kernel.org with ESMTP id S1725280AbgIJXU7 (ORCPT
+        <rfc822;devicetree@vger.kernel.org>);
+        Thu, 10 Sep 2020 19:20:59 -0400
+Date:   11 Sep 2020 08:20:56 +0900
+X-IronPort-AV: E=Sophos;i="5.76,413,1592838000"; 
+   d="scan'208";a="56751956"
+Received: from unknown (HELO relmlir5.idc.renesas.com) ([10.200.68.151])
+  by relmlie6.idc.renesas.com with ESMTP; 11 Sep 2020 08:20:56 +0900
+Received: from mercury.renesas.com (unknown [10.166.252.133])
+        by relmlir5.idc.renesas.com (Postfix) with ESMTP id A176D4006DFB;
+        Fri, 11 Sep 2020 08:20:56 +0900 (JST)
+Message-ID: <87wo11te4z.wl-kuninori.morimoto.gx@renesas.com>
+From:   Kuninori Morimoto <kuninori.morimoto.gx@renesas.com>
+To:     Geert Uytterhoeven <geert@linux-m68k.org>
+Cc:     Rob Herring <robh+dt@kernel.org>,
+        Laurent <laurent.pinchart@ideasonboard.com>,
+        Geert Uytterhoeven <geert+renesas@glider.be>,
+        David Airlie <airlied@linux.ie>,
+        Daniel Vetter <daniel@ffwll.ch>,
+        Magnus <magnus.damm@gmail.com>,
+        Linux-Renesas <linux-renesas-soc@vger.kernel.org>,
+        Linux-DT <devicetree@vger.kernel.org>,
+        Kieran Bingham <kieran.bingham+renesas@ideasonboard.com>,
+        shimoda <yoshihiro.shimoda.uh@renesas.com>,
+        DRI Development <dri-devel@lists.freedesktop.org>
+Subject: Re: [PATCH v2 07/10] arm64: dts: renesas: r8a77961: Add DU device nodes
+In-Reply-To: <CAMuHMdUmfavKH03LRj4WNoOEbu+oY64_Mic74zCfFbK4rO9KSw@mail.gmail.com>
+References: <87o8mhrtxo.wl-kuninori.morimoto.gx@renesas.com>
+        <87eendrtv1.wl-kuninori.morimoto.gx@renesas.com>
+        <CAMuHMdUmfavKH03LRj4WNoOEbu+oY64_Mic74zCfFbK4rO9KSw@mail.gmail.com>
+User-Agent: Wanderlust/2.15.9 Emacs/26.3 Mule/6.0
+MIME-Version: 1.0 (generated by SEMI-EPG 1.14.7 - "Harue")
+Content-Type: text/plain; charset=US-ASCII
 Sender: devicetree-owner@vger.kernel.org
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-On Thu 10 Sep 12:53 UTC 2020, satya priya wrote:
 
-> As a part of system suspend uart_port_suspend is called from the
-> Serial driver, which calls set_mctrl passing mctrl as 0. This
-> makes RFR high(NOT_READY) during suspend.
-> 
-> Due to this BT SoC is not able to send wakeup bytes to UART during
-> suspend. Include if check for non-suspend case to keep RFR low
-> during suspend.
-> 
+Hi Geert
 
-Seems reasonable.
+> > From: Kuninori Morimoto <kuninori.morimoto.gx@renesas.com>
+> >
+> > This patch adds DU device nodes for R-Car M3-W+ (r8a77961) SoC.
+> > This patch was tested on R-Car M3-W+ Salvator-XS board.
+> >
+> > Signed-off-by: Kuninori Morimoto <kuninori.morimoto.gx@renesas.com>
+> > ---
+(snip)
+> >                 du: display@feb00000 {
+> > +                       compatible = "renesas,du-r8a77961";
+> >                         reg = <0 0xfeb00000 0 0x70000>;
+> > -                       /* placeholder */
+> > +                       interrupts = <GIC_SPI 256 IRQ_TYPE_LEVEL_HIGH>,
+> > +                                    <GIC_SPI 268 IRQ_TYPE_LEVEL_HIGH>,
+> > +                                    <GIC_SPI 269 IRQ_TYPE_LEVEL_HIGH>;
+> > +                       clocks = <&cpg CPG_MOD 724>, <&cpg CPG_MOD 723>,
+> > +                                <&cpg CPG_MOD 722>;
+> > +                       clock-names = "du.0", "du.1", "du.2";
+> > +                       resets = <&cpg 724>, <&cpg 722>;
+> > +                       reset-names = "du.0", "du.2";
+> > +
+> > +                       renesas,vsps = <&vspd0 0>, <&vspd1 0>, <&vspd2 0>;
+> > +                       status = "disabled";
+> 
+> Do you want support for CMMs?
 
-Reviewed-by: Bjorn Andersson <bjorn.andersson@linaro.org>
+I'm not sure how it works.
+Thus I dropped such features from initial support.
 
-> Signed-off-by: satya priya <skakit@codeaurora.org>
-> Acked-by: Greg Kroah-Hartman <gregkh@linuxfoundation.org>
+I hope Laurent or Kieran will support it
+when he received physical board.
+Some comment for iommu.
 
-Greg, I don't see this depending on anything else, will you pick this
-patch through your tree? I will take the dts patches through the qcom
-tree.
+Thank you for your help !!
 
-Regards,
-Bjorn
-
-> Reviewed-by: Akash Asthana <akashast@codeaurora.org>
-> ---
-> Changes in V2:
->  - This patch fixes the UART flow control issue during suspend.
->    Newly added in V2.
-> 
-> Changes in V3:
->  - As per Matthias's comment removed the extra parentheses.
-> 
-> Changes in V4:
->  - No change.
-> 
-> Changes in V5:
->  - As per Matthias comment, fixed nit-pick in commit text.
-> 
->  drivers/tty/serial/qcom_geni_serial.c | 2 +-
->  1 file changed, 1 insertion(+), 1 deletion(-)
-> 
-> diff --git a/drivers/tty/serial/qcom_geni_serial.c b/drivers/tty/serial/qcom_geni_serial.c
-> index 3aa29d2..bc63c54 100644
-> --- a/drivers/tty/serial/qcom_geni_serial.c
-> +++ b/drivers/tty/serial/qcom_geni_serial.c
-> @@ -242,7 +242,7 @@ static void qcom_geni_serial_set_mctrl(struct uart_port *uport,
->  	if (mctrl & TIOCM_LOOP)
->  		port->loopback = RX_TX_CTS_RTS_SORTED;
->  
-> -	if (!(mctrl & TIOCM_RTS))
-> +	if (!(mctrl & TIOCM_RTS) && !uport->suspended)
->  		uart_manual_rfr = UART_MANUAL_RFR_EN | UART_RFR_NOT_READY;
->  	writel(uart_manual_rfr, uport->membase + SE_UART_MANUAL_RFR);
->  }
-> -- 
-> QUALCOMM INDIA, on behalf of Qualcomm Innovation Center, Inc. is a member 
-> of Code Aurora Forum, hosted by The Linux Foundation
-> 
+Best regards
+---
+Kuninori Morimoto
