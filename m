@@ -2,135 +2,129 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from vger.kernel.org (vger.kernel.org [23.128.96.18])
-	by mail.lfdr.de (Postfix) with ESMTP id E978C264A4E
-	for <lists+devicetree@lfdr.de>; Thu, 10 Sep 2020 18:51:29 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTP id 84CE0264A8C
+	for <lists+devicetree@lfdr.de>; Thu, 10 Sep 2020 19:03:57 +0200 (CEST)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S1726890AbgIJQvW (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Thu, 10 Sep 2020 12:51:22 -0400
-Received: from mail-am6eur05on2081.outbound.protection.outlook.com ([40.107.22.81]:35296
-        "EHLO EUR05-AM6-obe.outbound.protection.outlook.com"
-        rhost-flags-OK-OK-OK-FAIL) by vger.kernel.org with ESMTP
-        id S1726755AbgIJQtx (ORCPT <rfc822;devicetree@vger.kernel.org>);
-        Thu, 10 Sep 2020 12:49:53 -0400
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=armh.onmicrosoft.com;
- s=selector2-armh-onmicrosoft-com;
- h=From:Date:Subject:Message-ID:Content-Type:MIME-Version:X-MS-Exchange-SenderADCheck;
- bh=WrHYHQKqTOoC0bGCtmRTv3gN6h25ebC3MSPuGdcGTq0=;
- b=X/D5P5DZ3vR3eREMFjFCylkBDD/K4FBmXcR+jwmHtKcXjULc4tm52M/ZEWG6Ea0xhGNcnJR8ky9WRVKyprAo6OocznnYJM5tbB8jzF3px8mdPDTnUJDDBJcOt4QVAuSCYvcBrXT7nUycoa6flhHWnbzkJQG7CeuWru46Kefdq1M=
-Received: from AM6PR05CA0012.eurprd05.prod.outlook.com (2603:10a6:20b:2e::25)
- by DB7PR08MB3083.eurprd08.prod.outlook.com (2603:10a6:5:28::27) with
- Microsoft SMTP Server (version=TLS1_2,
- cipher=TLS_ECDHE_RSA_WITH_AES_256_GCM_SHA384) id 15.20.3370.16; Thu, 10 Sep
- 2020 16:49:47 +0000
-Received: from VE1EUR03FT027.eop-EUR03.prod.protection.outlook.com
- (2603:10a6:20b:2e:cafe::7b) by AM6PR05CA0012.outlook.office365.com
- (2603:10a6:20b:2e::25) with Microsoft SMTP Server (version=TLS1_2,
- cipher=TLS_ECDHE_RSA_WITH_AES_256_GCM_SHA384) id 15.20.3370.16 via Frontend
- Transport; Thu, 10 Sep 2020 16:49:47 +0000
-X-MS-Exchange-Authentication-Results: spf=pass (sender IP is 63.35.35.123)
- smtp.mailfrom=arm.com; vger.kernel.org; dkim=pass (signature was verified)
- header.d=armh.onmicrosoft.com;vger.kernel.org; dmarc=bestguesspass
- action=none header.from=arm.com;
-Received-SPF: Pass (protection.outlook.com: domain of arm.com designates
- 63.35.35.123 as permitted sender) receiver=protection.outlook.com;
- client-ip=63.35.35.123; helo=64aa7808-outbound-1.mta.getcheckrecipient.com;
-Received: from 64aa7808-outbound-1.mta.getcheckrecipient.com (63.35.35.123) by
- VE1EUR03FT027.mail.protection.outlook.com (10.152.18.154) with Microsoft SMTP
- Server (version=TLS1_2, cipher=TLS_ECDHE_RSA_WITH_AES_256_GCM_SHA384) id
- 15.20.3370.16 via Frontend Transport; Thu, 10 Sep 2020 16:49:47 +0000
-Received: ("Tessian outbound 34b830c8a0ef:v64"); Thu, 10 Sep 2020 16:49:47 +0000
-X-CheckRecipientChecked: true
-X-CR-MTA-CID: 379644be06000920
-X-CR-MTA-TID: 64aa7808
-Received: from 16b4bb85e215.2
-        by 64aa7808-outbound-1.mta.getcheckrecipient.com id 454E48A3-3DD7-4AE6-A9D2-A0DA0495BF4A.1;
-        Thu, 10 Sep 2020 16:49:41 +0000
-Received: from EUR01-HE1-obe.outbound.protection.outlook.com
-    by 64aa7808-outbound-1.mta.getcheckrecipient.com with ESMTPS id 16b4bb85e215.2
-    (version=TLSv1.2 cipher=ECDHE-RSA-AES256-GCM-SHA384);
-    Thu, 10 Sep 2020 16:49:41 +0000
-ARC-Seal: i=1; a=rsa-sha256; s=arcselector9901; d=microsoft.com; cv=none;
- b=ONszJCMTGX3PHmxZjAdCaT7z1lQ4Cdp613yT6g5+tduGE//1lY56wbT05dqDNS2eIMJ9jjXLIz4d2YJ/yJEax64PCZDF4Qbxd2FSsTzow4WZZ5FxGXhoTcwT4eGmHG62ju+SHhZmJi3mBjSPaTdCSm6JkUbJbcP5o9SK57TU4EpTgnEHrmr70JHQOs1cIGlcWoch4KUpE8tk/jFQmRy7CyM34eefqT4LqsCU+CjevtSfdv9uskF6vUop2UYTSk3GDpfP7ISErcGH+PUzwhpt5Gxw8LpnNUKw7Zdrrnz5TbjiVuZegq4JzVCYPs8gLBhuZ0ulF6NDl3u46AezDf5wkg==
-ARC-Message-Signature: i=1; a=rsa-sha256; c=relaxed/relaxed; d=microsoft.com;
- s=arcselector9901;
- h=From:Date:Subject:Message-ID:Content-Type:MIME-Version:X-MS-Exchange-SenderADCheck;
- bh=WrHYHQKqTOoC0bGCtmRTv3gN6h25ebC3MSPuGdcGTq0=;
- b=MYtcjscglkPmU9Pcj6A+ffTM64e1Vp5aTKqvPLJDHcKSL09jgIUiPBTZFd9g9DyE2/KsPVqql+XmeXdx1opumJFElyKRcIFrfgr+N2RiyA2NI5n+9pcB8wfb0aeh6+B6Vp7SJjpj7RWDKU1qU9bY4EgMaFss40YMWuKLwa9CFkXVjvAh2FV4KGTNqXazUJxsryQ7nMZBlS4/jNEh76NJl+TOR13tGAIvg3CyrvQDji23ntoOIyu8SK1SrhJGkvpiL9Ev808SN4UxHEJ3pPIMW9JJ34iBz8omps1krlFTG6g5ain1ryVocOXK74PRIxhBnMzo9fWubthkMe0DbEljZg==
-ARC-Authentication-Results: i=1; mx.microsoft.com 1; spf=pass
- smtp.mailfrom=arm.com; dmarc=pass action=none header.from=arm.com; dkim=pass
- header.d=arm.com; arc=none
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=armh.onmicrosoft.com;
- s=selector2-armh-onmicrosoft-com;
- h=From:Date:Subject:Message-ID:Content-Type:MIME-Version:X-MS-Exchange-SenderADCheck;
- bh=WrHYHQKqTOoC0bGCtmRTv3gN6h25ebC3MSPuGdcGTq0=;
- b=X/D5P5DZ3vR3eREMFjFCylkBDD/K4FBmXcR+jwmHtKcXjULc4tm52M/ZEWG6Ea0xhGNcnJR8ky9WRVKyprAo6OocznnYJM5tbB8jzF3px8mdPDTnUJDDBJcOt4QVAuSCYvcBrXT7nUycoa6flhHWnbzkJQG7CeuWru46Kefdq1M=
-Authentication-Results-Original: arm.com; dkim=none (message not signed)
- header.d=none;arm.com; dmarc=none action=none header.from=arm.com;
-Received: from DB8PR08MB4010.eurprd08.prod.outlook.com (2603:10a6:10:ab::15)
- by DBAPR08MB5831.eurprd08.prod.outlook.com (2603:10a6:10:1a8::20) with
- Microsoft SMTP Server (version=TLS1_2,
- cipher=TLS_ECDHE_RSA_WITH_AES_256_GCM_SHA384) id 15.20.3348.16; Thu, 10 Sep
- 2020 16:49:39 +0000
-Received: from DB8PR08MB4010.eurprd08.prod.outlook.com
- ([fe80::2d77:cba8:3fc8:3d4f]) by DB8PR08MB4010.eurprd08.prod.outlook.com
- ([fe80::2d77:cba8:3fc8:3d4f%3]) with mapi id 15.20.3370.016; Thu, 10 Sep 2020
- 16:49:39 +0000
-Subject: Re: [PATCH 1/1] of: properties of reserved-memory nodes
-To:     Heinrich Schuchardt <xypron.glpk@gmx.de>,
-        Rob Herring <robh+dt@kernel.org>,
-        Mark Rutland <mark.rutland@arm.com>
+        id S1726927AbgIJRB4 (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Thu, 10 Sep 2020 13:01:56 -0400
+Received: from lindbergh.monkeyblade.net ([23.128.96.19]:51218 "EHLO
+        lindbergh.monkeyblade.net" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
+        with ESMTP id S1727807AbgIJQ5s (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Thu, 10 Sep 2020 12:57:48 -0400
+Received: from mail-wm1-x341.google.com (mail-wm1-x341.google.com [IPv6:2a00:1450:4864:20::341])
+        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id D8FFEC0613ED
+        for <devicetree@vger.kernel.org>; Thu, 10 Sep 2020 06:46:54 -0700 (PDT)
+Received: by mail-wm1-x341.google.com with SMTP id x23so108583wmi.3
+        for <devicetree@vger.kernel.org>; Thu, 10 Sep 2020 06:46:53 -0700 (PDT)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+        d=monstr-eu.20150623.gappssmtp.com; s=20150623;
+        h=subject:to:cc:references:from:autocrypt:message-id:date:user-agent
+         :mime-version:in-reply-to:content-language:content-transfer-encoding;
+        bh=6thAmsUl4Y+M7Ev1B1iv8hCqeIOWewwGqPNbleVqUdY=;
+        b=WycwRzCFjKZLRJM+j2ql2cioAkQbc08NDMu2bEbJBXmj54rmW/3C6fX9n6nAB10WLv
+         Ack27CuoEaysZU+HpElHgttYwqshcgyTEm1wi7A5IxEq8STl5u3lb4KEprp72CzzEKIQ
+         tgW9fB27uIhN8TMyJg/eD4F+sGpibO1vGcjn2Ud0+mU5Qq7fDiWUjItTj1BPtFxZTPS5
+         UbUqFBUPqJBnMfRJJS+elx6DHWuokKZsWSTFkUV7C6LZwvqEE+1GulXCAdJ4WAo+Boxr
+         hyD1721jJtsgeqejKHV0crKRyEOAJdHKtvA0WkyZ7aSI54LR6H02w72BqTrMN6OA7siM
+         vnMQ==
+X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+        d=1e100.net; s=20161025;
+        h=x-gm-message-state:subject:to:cc:references:from:autocrypt
+         :message-id:date:user-agent:mime-version:in-reply-to
+         :content-language:content-transfer-encoding;
+        bh=6thAmsUl4Y+M7Ev1B1iv8hCqeIOWewwGqPNbleVqUdY=;
+        b=g8VRFUuvh7HmjErGcofUKZFolozngM9vo6pzwk5ejc8+/Eu/QNOWpBr2Z74VeHr7WV
+         jEygc0DLn0E4Z4VYSTvNmZVLccTvRctJ0ohXY9W2RoUgoMPc11p/36SRiY7IbqGd/tCk
+         Qr1MuZoKuP8SzhfSXy3/g2ulDllZRO2rAW+C/XrwGxAvBy4jZT/JuisuEIW0eaMLCLxR
+         BGey/XqIX3YYH5i1AmnJ0GvB9KooagJOvQjyAu7rpbn9bEdkENV8zQYtK4eni+Ys55kK
+         qXRcYChY5QUW6epo4hcs4Ye4KjVTCgOjxmvs9HpB2qq8fVIXryeydLBYozpT8QXOAOdC
+         DA4Q==
+X-Gm-Message-State: AOAM5304lvaPPC/UIjZWNHgP+xM1VWf+iTK95Mt5YMhfZOrXDOrMnOTP
+        +8ej2/mj6AC0Uwx1vR6sl6XYtQ==
+X-Google-Smtp-Source: ABdhPJwEBTRTqtjkAvsaVtw8Lqt2Geg38QkvvsxZlrCtgYuiFxccymywMW7ZEN9HpG7qpxHOUd/Nag==
+X-Received: by 2002:a1c:2e17:: with SMTP id u23mr54074wmu.73.1599745612445;
+        Thu, 10 Sep 2020 06:46:52 -0700 (PDT)
+Received: from [192.168.0.105] (nat-35.starnet.cz. [178.255.168.35])
+        by smtp.gmail.com with ESMTPSA id v17sm9118533wrr.60.2020.09.10.06.46.51
+        (version=TLS1_3 cipher=TLS_AES_128_GCM_SHA256 bits=128/128);
+        Thu, 10 Sep 2020 06:46:51 -0700 (PDT)
+Subject: Re: [PATCH] ARM: zynq: Add Z-turn board V5
+To:     agriveaux@deutnet.info, michal.simek@xilinx.com, robh+dt@kernel.org
 Cc:     devicetree@vger.kernel.org, linux-kernel@vger.kernel.org,
-        Ard Biesheuvel <ardb@kernel.org>, nd <nd@arm.com>
-References: <20200910162020.3927-1-xypron.glpk@gmx.de>
-From:   Grant Likely <grant.likely@arm.com>
-Message-ID: <c163b528-cf26-7733-c4c6-471bfd84cc43@arm.com>
-Date:   Thu, 10 Sep 2020 17:49:35 +0100
+        linux-arm-kernel@lists.infradead.org
+References: <20200909150608.1984952-1-agriveaux@deutnet.info>
+From:   Michal Simek <monstr@monstr.eu>
+Autocrypt: addr=monstr@monstr.eu; keydata=
+ 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
+ 0Z1MQlmNcq2bhOMzTxuXX2NDzUZs4aqEyZQ=
+Message-ID: <5e0bf2ca-307e-f610-95c4-441864293a7a@monstr.eu>
+Date:   Thu, 10 Sep 2020 15:46:51 +0200
 User-Agent: Mozilla/5.0 (X11; Linux x86_64; rv:68.0) Gecko/20100101
  Thunderbird/68.12.0
-In-Reply-To: <20200910162020.3927-1-xypron.glpk@gmx.de>
-Content-Type: text/plain; charset=utf-8; format=flowed
+MIME-Version: 1.0
+In-Reply-To: <20200909150608.1984952-1-agriveaux@deutnet.info>
+Content-Type: text/plain; charset=utf-8
 Content-Language: en-US
 Content-Transfer-Encoding: 7bit
-X-ClientProxiedBy: LO2P265CA0314.GBRP265.PROD.OUTLOOK.COM
- (2603:10a6:600:a4::14) To DB8PR08MB4010.eurprd08.prod.outlook.com
- (2603:10a6:10:ab::15)
-MIME-Version: 1.0
-X-MS-Exchange-MessageSentRepresentingType: 1
-Received: from [192.168.16.178] (188.30.219.21) by LO2P265CA0314.GBRP265.PROD.OUTLOOK.COM (2603:10a6:600:a4::14) with Microsoft SMTP Server (version=TLS1_2, cipher=TLS_ECDHE_RSA_WITH_AES_256_GCM_SHA384) id 15.20.3370.16 via Frontend Transport; Thu, 10 Sep 2020 16:49:38 +0000
-X-Originating-IP: [188.30.219.21]
-X-MS-PublicTrafficType: Email
-X-MS-Office365-Filtering-HT: Tenant
-X-MS-Office365-Filtering-Correlation-Id: 25912823-ba07-4ae1-3f67-08d855a986cf
-X-MS-TrafficTypeDiagnostic: DBAPR08MB5831:|DB7PR08MB3083:
-X-MS-Exchange-Transport-Forked: True
-X-Microsoft-Antispam-PRVS: <DB7PR08MB3083FA4F16AD6EA860A26EBA95270@DB7PR08MB3083.eurprd08.prod.outlook.com>
-x-checkrecipientrouted: true
-NoDisclaimer: true
-X-MS-Oob-TLC-OOBClassifiers: OLM:6790;OLM:6790;
-X-MS-Exchange-SenderADCheck: 1
-X-Microsoft-Antispam-Untrusted: BCL:0;
-X-Microsoft-Antispam-Message-Info-Original: cvElFkCIjmNv8QITjx55im6P5u6rQq8YFMKcB1AFHr3a8YsVcvF1eV9l4djUpkZItDUs9nsOGlmDzj1Joak1rNMbopHagQYDOSBLYt5t6gPatzyHdx4PIz8FL1KqznyNbT/aewpZZ0zd81UFPjR2+OfoLTCtdhp65yl5b26p7PDnC0+oymmtGZCHZKLAPAhHMrWUsL6iDYGksxQYCHoxgNJnhA/EK3AghyeimFNtINK40UcFSZS6t/xQBntIUmmkmWF/RIXtTwiQOllpEZMNXd/YdDLz7ay3y51Uwxc3b0Cl/SHzvCQR3YXGRs9uqgCV40tsynen06pojW63HQy2UUoNDt5oIpO6r8sZgbvBm4tMsvGeuN8xaBxj7fdYtX7h
-X-Forefront-Antispam-Report-Untrusted: CIP:255.255.255.255;CTRY:;LANG:en;SCL:1;SRV:;IPV:NLI;SFV:NSPM;H:DB8PR08MB4010.eurprd08.prod.outlook.com;PTR:;CAT:NONE;SFS:(4636009)(136003)(366004)(39860400002)(376002)(346002)(396003)(956004)(44832011)(5660300002)(186003)(2906002)(6486002)(26005)(16576012)(54906003)(6666004)(110136005)(31686004)(478600001)(55236004)(16526019)(53546011)(4326008)(66946007)(86362001)(31696002)(66476007)(36756003)(316002)(6636002)(8676002)(8936002)(66556008)(52116002)(2616005)(43740500002);DIR:OUT;SFP:1101;
-X-MS-Exchange-AntiSpam-MessageData: jhAc7H138/wqXP/+ls6ur5EvaEYyQn4/qSxsd7vy1K+POO101TGyAGiSYFVKWruudmzRQm7HNVUL22wdMGpkSjCpu/tQ1IYlnTPzysKcIPH4boO+4Dx7+BwH6ov4+sI8JKIolYDC4F2Pd6HA5KsZ62PjZxd6IzhMkWtIuvvtTf9sJoSKK8xLx9z8WKFr9bVYA4LDPHSPTT8hJfCq3Q+l047yk1agEYa11eR0zy7GbM8ZJTxesIReeKTPD1C9KFq73jbL/ggWwfJrb9z2xW8cSMCy/+TXUrR2QM+MsYCf2PVOQn+4CM1vplunMP/BKKwRB1KKFevOTkYV4SgOKOXRr7rbT6MHoXcE5oJcv0URiCSNHZRlUreJRz45evFSfmmtydUUvvPPPt3p0NKJirqOnqQjkaPd57fbLC+t0WoyWYWid2X1lMu5bOvQ++bWEE91Z1AUtd1Zt0CAGASM7MwsBTkgd32kSVL7lqjQwx4UfRpT2QJwgdHW44ZbJ9tqQSku9lnGoqS75DBgXX/oH5SU2ayD4zK1PXi0lN8ZYndzFgT4XSkyyuB60LH/P1UuMxVYh9d+5cr7GW/CqzTBOI9iy59Zl7FxXyC2xUzFI0X4WpjJMCOnxHbotTrj4AexIKiOhFlF7WBAJg4ywZHq2MgMNQ==
-X-MS-Exchange-Transport-CrossTenantHeadersStamped: DBAPR08MB5831
-Original-Authentication-Results: arm.com; dkim=none (message not signed)
- header.d=none;arm.com; dmarc=none action=none header.from=arm.com;
-X-EOPAttributedMessage: 0
-X-MS-Exchange-Transport-CrossTenantHeadersStripped: VE1EUR03FT027.eop-EUR03.prod.protection.outlook.com
-X-MS-Office365-Filtering-Correlation-Id-Prvs: e1e63051-941b-49ab-a960-08d855a98206
-X-Microsoft-Antispam: BCL:0;
-X-Microsoft-Antispam-Message-Info: DSE95wQYu4TmraNUyz+uQeQjK5bAQrIcpC9mgglMGOSaf9uMkguldpSBubqTZ/uSxdfpPKQeqFPyj6d7QlCFWE4QmoBK7GESemNzfqKpxYRSoGpZPyxuuDbFT0LdH4itBbhWTwYsnCYuXXfMLJF7ArO5IcPxQjPjlLa78Y1PVxMnzxBirpgzjfzSMd/UPUd9SKFPVKpXjJQut461iKo0VkAFV5oTb1wu2KL4Im7p/tDFSlo+ge9pHz965Ha4BHA5JaxY1QXbA8OVLl8Ybmmamblzu9yVJ2afifqHAPts5MSCSWycgTFOrEFBCW7DMAPdTH4ZG0xSPfphXhRL6+uBDpPvesh2RygDK5RUqfTHJn5gOL1AA496cJ0LpgiPvmDv7T+dfUSDHmN3R3RG4qFYv+Oa8Z+zJdXPOjhq66i26HzIdG/Vcg5ll/Yt5wLSlGeY
-X-Forefront-Antispam-Report: CIP:63.35.35.123;CTRY:IE;LANG:en;SCL:1;SRV:;IPV:CAL;SFV:NSPM;H:64aa7808-outbound-1.mta.getcheckrecipient.com;PTR:ec2-63-35-35-123.eu-west-1.compute.amazonaws.com;CAT:NONE;SFS:(4636009)(136003)(376002)(39860400002)(396003)(346002)(46966005)(36756003)(53546011)(2906002)(44832011)(70206006)(70586007)(82310400003)(4326008)(336012)(31696002)(356005)(55236004)(82740400003)(81166007)(47076004)(36906005)(110136005)(86362001)(478600001)(8676002)(316002)(54906003)(16576012)(6486002)(6666004)(450100002)(8936002)(26005)(186003)(16526019)(6636002)(956004)(31686004)(5660300002)(2616005)(43740500002);DIR:OUT;SFP:1101;
-X-OriginatorOrg: arm.com
-X-MS-Exchange-CrossTenant-OriginalArrivalTime: 10 Sep 2020 16:49:47.0988
- (UTC)
-X-MS-Exchange-CrossTenant-Network-Message-Id: 25912823-ba07-4ae1-3f67-08d855a986cf
-X-MS-Exchange-CrossTenant-Id: f34e5979-57d9-4aaa-ad4d-b122a662184d
-X-MS-Exchange-CrossTenant-OriginalAttributedTenantConnectingIp: TenantId=f34e5979-57d9-4aaa-ad4d-b122a662184d;Ip=[63.35.35.123];Helo=[64aa7808-outbound-1.mta.getcheckrecipient.com]
-X-MS-Exchange-CrossTenant-AuthSource: VE1EUR03FT027.eop-EUR03.prod.protection.outlook.com
-X-MS-Exchange-CrossTenant-AuthAs: Anonymous
-X-MS-Exchange-CrossTenant-FromEntityHeader: HybridOnPrem
-X-MS-Exchange-Transport-CrossTenantHeadersStamped: DB7PR08MB3083
 Sender: devicetree-owner@vger.kernel.org
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
@@ -138,32 +132,496 @@ X-Mailing-List: devicetree@vger.kernel.org
 
 
 
-On 10/09/2020 17:20, Heinrich Schuchardt wrote:
-> The reusable and the no-map property are mutually exclusive.
-> Clarify this in the documentation.
+On 09. 09. 20 17:06, agriveaux@deutnet.info wrote:
+> From: Alexandre GRIVEAUX <agriveaux@deutnet.info>
 > 
-> Signed-off-by: Heinrich Schuchardt <xypron.glpk@gmx.de>
-
-Acked-by: Grant Likely <grant.likely@arm.com>
-
+> Adding Z-turn board V5 to resolve the change between:
+> 
+> "Z-TURNBOARD_schematic.pdf" schematics state version 1 to 4 has Atheros AR8035
+> "Z-Turn_Board_sch_V15_20160303.pdf" schematics state version 5 has Micrel KSZ9031
+> 
+> At this time the S25FL128SAGNFI003 doesn't work because of bug:
+> 
+> *** Warning - spi_flash_probe_bus_cs() failed, using default environment
+> 
+> Signed-off-by: Alexandre GRIVEAUX <agriveaux@deutnet.info>
 > ---
->   .../devicetree/bindings/reserved-memory/reserved-memory.txt    | 3 +++
->   1 file changed, 3 insertions(+)
+>  arch/arm/dts/Makefile                         |   1 +
+>  arch/arm/dts/zynq-zturn-v5.dts                | 121 ++++++++
+>  .../xilinx/zynq/zynq-zturn-v5/ps7_init_gpl.c  | 273 ++++++++++++++++++
+>  configs/xilinx_zynq_virt_defconfig            |   4 +-
+>  4 files changed, 398 insertions(+), 1 deletion(-)
+>  create mode 100644 arch/arm/dts/zynq-zturn-v5.dts
+>  create mode 100644 board/xilinx/zynq/zynq-zturn-v5/ps7_init_gpl.c
 > 
-> diff --git a/Documentation/devicetree/bindings/reserved-memory/reserved-memory.txt b/Documentation/devicetree/bindings/reserved-memory/reserved-memory.txt
-> index bac4afa3b197..eb987203548f 100644
-> --- a/Documentation/devicetree/bindings/reserved-memory/reserved-memory.txt
-> +++ b/Documentation/devicetree/bindings/reserved-memory/reserved-memory.txt
-> @@ -64,6 +64,9 @@ reusable (optional) - empty property
->         system can use that region to store volatile or cached data that
->         can be otherwise regenerated or migrated elsewhere.
-> 
-> +A node must not carry both the no-map and the reusable property as these are
-> +logically contradictory.
+> diff --git a/arch/arm/dts/Makefile b/arch/arm/dts/Makefile
+> index f8f529435b..0f8973b1c8 100644
+> --- a/arch/arm/dts/Makefile
+> +++ b/arch/arm/dts/Makefile
+> @@ -277,6 +277,7 @@ dtb-$(CONFIG_ARCH_ZYNQ) += \
+>  	zynq-zc770-xm013.dtb \
+>  	zynq-zed.dtb \
+>  	zynq-zturn.dtb \
+> +	zynq-zturn-v5.dtb \
+>  	zynq-zybo.dtb \
+>  	zynq-zybo-z7.dtb
+>  dtb-$(CONFIG_ARCH_ZYNQMP) += \
+> diff --git a/arch/arm/dts/zynq-zturn-v5.dts b/arch/arm/dts/zynq-zturn-v5.dts
+> new file mode 100644
+> index 0000000000..eebeec800f
+> --- /dev/null
+> +++ b/arch/arm/dts/zynq-zturn-v5.dts
+> @@ -0,0 +1,121 @@
+> +// SPDX-License-Identifier: GPL-2.0
+> +/*
+> + *  Copyright (C) 2020 Alexandre Griveaux <alex@deutnet.info>
+> + *
+> + *  Based on zynq-zturn.dts which is:
+> + *  Copyright (C) 2015 Andrea Merello <adnrea.merello@gmail.com>
+> + *  Copyright (C) 2017 Alexander Graf <agraf@suse.de>
+> + *
+> + */
 > +
->   Linux implementation note:
->   - If a "linux,cma-default" property is present, then Linux will use the
->     region for the default pool of the contiguous memory allocator.
-> --
-> 2.28.0
+> +/dts-v1/;
+> +/include/ "zynq-7000.dtsi"
+> +
+> +/ {
+> +	model = "Zynq Z-Turn MYIR Board V5";
+> +	compatible = "myir,zynq-zturn", "xlnx,zynq-7000";
+> +
+> +	aliases {
+> +		ethernet0 = &gem0;
+> +		serial0 = &uart1;
+> +		serial1 = &uart0;
+> +		mmc0 = &sdhci0;
+> +	};
+> +
+> +	memory@0 {
+> +		device_type = "memory";
+> +		reg = <0x0 0x40000000>;
+> +	};
+> +
+> +	chosen {
+> +		stdout-path = "serial0:115200n8";
+> +	};
+> +
+> +	gpio-leds {
+> +		compatible = "gpio-leds";
+> +		usr-led1 {
+> +			label = "usr-led1";
+> +			gpios = <&gpio0 0x0 0x1>;
+> +			default-state = "off";
+> +		};
+> +
+> +		usr-led2 {
+> +			label = "usr-led2";
+> +			gpios = <&gpio0 0x9 0x1>;
+> +			default-state = "off";
+> +		};
+> +	};
+> +
+> +	gpio-keys {
+> +		compatible = "gpio-keys";
+> +		autorepeat;
+> +		K1 {
+> +			label = "K1";
+> +			gpios = <&gpio0 0x32 0x1>;
+> +			linux,code = <0x66>;
+> +			wakeup-source;
+> +			autorepeat;
+> +		};
+> +	};
+> +};
+> +
+> +&clkc {
+> +	ps-clk-frequency = <33333333>;
+> +};
+> +
+> +&qspi {
+> +	u-boot,dm-pre-reloc;
+> +	status = "okay";
+> +};
+> +
+> +&gem0 {
+> +	status = "okay";
+> +	phy-mode = "rgmii-id";
+> +	phy-handle = <&ethernet_phy>;
+> +
+> +	ethernet_phy: ethernet-phy@0 {
+> +		reg = <0x3>;
+> +	};
+> +};
+> +
+> +&sdhci0 {
+> +	u-boot,dm-pre-reloc;
+> +	status = "okay";
+> +};
+> +
+> +&uart0 {
+> +	u-boot,dm-pre-reloc;
+> +	status = "okay";
+> +};
+> +
+> +&uart1 {
+> +	u-boot,dm-pre-reloc;
+> +	status = "okay";
+> +};
+> +
+> +&usb0 {
+> +	status = "okay";
+> +	dr_mode = "host";
+> +};
+> +
+> +&can0 {
+> +	status = "okay";
+> +};
+> +
+> +&i2c0 {
+> +	status = "okay";
+> +	clock-frequency = <400000>;
+> +
+> +	stlm75@49 {
+> +		status = "okay";
+> +		compatible = "lm75";
+> +		reg = <0x49>;
+> +	};
+> +
+> +	accelerometer@53 {
+> +		compatible = "adi,adxl345", "adxl345", "adi,adxl34x", "adxl34x";
+> +		reg = <0x53>;
+> +		interrupt-parent = <&intc>;
+> +		interrupts = <0x0 0x1e 0x4>;
+> +	};
+> +};
+> diff --git a/board/xilinx/zynq/zynq-zturn-v5/ps7_init_gpl.c b/board/xilinx/zynq/zynq-zturn-v5/ps7_init_gpl.c
+> new file mode 100644
+> index 0000000000..5d573868cb
+> --- /dev/null
+> +++ b/board/xilinx/zynq/zynq-zturn-v5/ps7_init_gpl.c
+> @@ -0,0 +1,273 @@
+> +// SPDX-License-Identifier: GPL-2.0+
+> +/*
+> + * Copyright (c) Xilinx, Inc.
+> + */
+> +
+> +#include <asm/arch/ps7_init_gpl.h>
+> +
+> +static unsigned long ps7_pll_init_data[] = {
+> +	EMIT_WRITE(0xF8000008, 0x0000DF0DU),
+> +	EMIT_MASKWRITE(0xF8000110, 0x003FFFF0U, 0x000FA220U),
+> +	EMIT_MASKWRITE(0xF8000100, 0x0007F000U, 0x00028000U),
+> +	EMIT_MASKWRITE(0xF8000100, 0x00000010U, 0x00000010U),
+> +	EMIT_MASKWRITE(0xF8000100, 0x00000001U, 0x00000001U),
+> +	EMIT_MASKWRITE(0xF8000100, 0x00000001U, 0x00000000U),
+> +	EMIT_MASKPOLL(0xF800010C, 0x00000001U),
+> +	EMIT_MASKWRITE(0xF8000100, 0x00000010U, 0x00000000U),
+> +	EMIT_MASKWRITE(0xF8000120, 0x1F003F30U, 0x1F000200U),
+> +	EMIT_MASKWRITE(0xF8000114, 0x003FFFF0U, 0x0012C220U),
+> +	EMIT_MASKWRITE(0xF8000104, 0x0007F000U, 0x00020000U),
+> +	EMIT_MASKWRITE(0xF8000104, 0x00000010U, 0x00000010U),
+> +	EMIT_MASKWRITE(0xF8000104, 0x00000001U, 0x00000001U),
+> +	EMIT_MASKWRITE(0xF8000104, 0x00000001U, 0x00000000U),
+> +	EMIT_MASKPOLL(0xF800010C, 0x00000002U),
+> +	EMIT_MASKWRITE(0xF8000104, 0x00000010U, 0x00000000U),
+> +	EMIT_MASKWRITE(0xF8000124, 0xFFF00003U, 0x0C200003U),
+> +	EMIT_MASKWRITE(0xF8000118, 0x003FFFF0U, 0x001452C0U),
+> +	EMIT_MASKWRITE(0xF8000108, 0x0007F000U, 0x0001E000U),
+> +	EMIT_MASKWRITE(0xF8000108, 0x00000010U, 0x00000010U),
+> +	EMIT_MASKWRITE(0xF8000108, 0x00000001U, 0x00000001U),
+> +	EMIT_MASKWRITE(0xF8000108, 0x00000001U, 0x00000000U),
+> +	EMIT_MASKPOLL(0xF800010C, 0x00000004U),
+> +	EMIT_MASKWRITE(0xF8000108, 0x00000010U, 0x00000000U),
+> +	EMIT_WRITE(0xF8000004, 0x0000767BU),
+> +	EMIT_EXIT(),
+> +};
+> +
+> +static unsigned long ps7_clock_init_data[] = {
+> +	EMIT_WRITE(0xF8000008, 0x0000DF0DU),
+> +	EMIT_MASKWRITE(0xF8000128, 0x03F03F01U, 0x00700F01U),
+> +	EMIT_MASKWRITE(0xF8000138, 0x00000011U, 0x00000001U),
+> +	EMIT_MASKWRITE(0xF8000140, 0x03F03F71U, 0x00100801U),
+> +	EMIT_MASKWRITE(0xF800014C, 0x00003F31U, 0x00000501U),
+> +	EMIT_MASKWRITE(0xF8000150, 0x00003F33U, 0x00001401U),
+> +	EMIT_MASKWRITE(0xF8000154, 0x00003F33U, 0x00000A03U),
+> +	EMIT_MASKWRITE(0xF800015C, 0x03F03F33U, 0x00200501U),
+> +	EMIT_MASKWRITE(0xF8000160, 0x007F007FU, 0x00000000U),
+> +	EMIT_MASKWRITE(0xF8000168, 0x00003F31U, 0x00000501U),
+> +	EMIT_MASKWRITE(0xF8000170, 0x03F03F30U, 0x00200500U),
+> +	EMIT_MASKWRITE(0xF8000180, 0x03F03F30U, 0x00400500U),
+> +	EMIT_MASKWRITE(0xF80001C4, 0x00000001U, 0x00000001U),
+> +	EMIT_MASKWRITE(0xF800012C, 0x01FFCCCDU, 0x01FD044DU),
+> +	EMIT_WRITE(0xF8000004, 0x0000767BU),
+> +	EMIT_EXIT(),
+> +};
+> +
+> +static unsigned long ps7_ddr_init_data[] = {
+> +	EMIT_MASKWRITE(0xF8006000, 0x0001FFFFU, 0x00000080U),
+> +	EMIT_MASKWRITE(0xF8006004, 0x0007FFFFU, 0x00001082U),
+> +	EMIT_MASKWRITE(0xF8006008, 0x03FFFFFFU, 0x03C0780FU),
+> +	EMIT_MASKWRITE(0xF800600C, 0x03FFFFFFU, 0x02001001U),
+> +	EMIT_MASKWRITE(0xF8006010, 0x03FFFFFFU, 0x00014001U),
+> +	EMIT_MASKWRITE(0xF8006014, 0x001FFFFFU, 0x0004285BU),
+> +	EMIT_MASKWRITE(0xF8006018, 0xF7FFFFFFU, 0x44E458D3U),
+> +	EMIT_MASKWRITE(0xF800601C, 0xFFFFFFFFU, 0x7282BCE5U),
+> +	EMIT_MASKWRITE(0xF8006020, 0x7FDFFFFCU, 0x270872D0U),
+> +	EMIT_MASKWRITE(0xF8006024, 0x0FFFFFC3U, 0x00000000U),
+> +	EMIT_MASKWRITE(0xF8006028, 0x00003FFFU, 0x00002007U),
+> +	EMIT_MASKWRITE(0xF800602C, 0xFFFFFFFFU, 0x00000008U),
+> +	EMIT_MASKWRITE(0xF8006030, 0xFFFFFFFFU, 0x00040B30U),
+> +	EMIT_MASKWRITE(0xF8006034, 0x13FF3FFFU, 0x000116D4U),
+> +	EMIT_MASKWRITE(0xF8006038, 0x00000003U, 0x00000000U),
+> +	EMIT_MASKWRITE(0xF800603C, 0x000FFFFFU, 0x00000777U),
+> +	EMIT_MASKWRITE(0xF8006040, 0xFFFFFFFFU, 0xFFF00000U),
+> +	EMIT_MASKWRITE(0xF8006044, 0x0FFFFFFFU, 0x0F666666U),
+> +	EMIT_MASKWRITE(0xF8006048, 0x0003F03FU, 0x0003C008U),
+> +	EMIT_MASKWRITE(0xF8006050, 0xFF0F8FFFU, 0x77010800U),
+> +	EMIT_MASKWRITE(0xF8006058, 0x00010000U, 0x00000000U),
+> +	EMIT_MASKWRITE(0xF800605C, 0x0000FFFFU, 0x00005003U),
+> +	EMIT_MASKWRITE(0xF8006060, 0x000017FFU, 0x0000003EU),
+> +	EMIT_MASKWRITE(0xF8006064, 0x00021FE0U, 0x00020000U),
+> +	EMIT_MASKWRITE(0xF8006068, 0x03FFFFFFU, 0x00284141U),
+> +	EMIT_MASKWRITE(0xF800606C, 0x0000FFFFU, 0x00001610U),
+> +	EMIT_MASKWRITE(0xF8006078, 0x03FFFFFFU, 0x00466111U),
+> +	EMIT_MASKWRITE(0xF800607C, 0x000FFFFFU, 0x00032222U),
+> +	EMIT_MASKWRITE(0xF80060A4, 0xFFFFFFFFU, 0x10200802U),
+> +	EMIT_MASKWRITE(0xF80060A8, 0x0FFFFFFFU, 0x0690CB73U),
+> +	EMIT_MASKWRITE(0xF80060AC, 0x000001FFU, 0x000001FEU),
+> +	EMIT_MASKWRITE(0xF80060B0, 0x1FFFFFFFU, 0x1CFFFFFFU),
+> +	EMIT_MASKWRITE(0xF80060B4, 0x00000200U, 0x00000200U),
+> +	EMIT_MASKWRITE(0xF80060B8, 0x01FFFFFFU, 0x00200066U),
+> +	EMIT_MASKWRITE(0xF80060C4, 0x00000003U, 0x00000000U),
+> +	EMIT_MASKWRITE(0xF80060C8, 0x000000FFU, 0x00000000U),
+> +	EMIT_MASKWRITE(0xF80060DC, 0x00000001U, 0x00000000U),
+> +	EMIT_MASKWRITE(0xF80060F0, 0x0000FFFFU, 0x00000000U),
+> +	EMIT_MASKWRITE(0xF80060F4, 0x0000000FU, 0x00000008U),
+> +	EMIT_MASKWRITE(0xF8006114, 0x000000FFU, 0x00000000U),
+> +	EMIT_MASKWRITE(0xF8006118, 0x7FFFFFCFU, 0x40000001U),
+> +	EMIT_MASKWRITE(0xF800611C, 0x7FFFFFCFU, 0x40000001U),
+> +	EMIT_MASKWRITE(0xF8006120, 0x7FFFFFCFU, 0x40000001U),
+> +	EMIT_MASKWRITE(0xF8006124, 0x7FFFFFCFU, 0x40000001U),
+> +	EMIT_MASKWRITE(0xF800612C, 0x000FFFFFU, 0x0002A81FU),
+> +	EMIT_MASKWRITE(0xF8006130, 0x000FFFFFU, 0x00029822U),
+> +	EMIT_MASKWRITE(0xF8006134, 0x000FFFFFU, 0x00026C10U),
+> +	EMIT_MASKWRITE(0xF8006138, 0x000FFFFFU, 0x00026013U),
+> +	EMIT_MASKWRITE(0xF8006140, 0x000FFFFFU, 0x00000035U),
+> +	EMIT_MASKWRITE(0xF8006144, 0x000FFFFFU, 0x00000035U),
+> +	EMIT_MASKWRITE(0xF8006148, 0x000FFFFFU, 0x00000035U),
+> +	EMIT_MASKWRITE(0xF800614C, 0x000FFFFFU, 0x00000035U),
+> +	EMIT_MASKWRITE(0xF8006154, 0x000FFFFFU, 0x0000009FU),
+> +	EMIT_MASKWRITE(0xF8006158, 0x000FFFFFU, 0x000000A2U),
+> +	EMIT_MASKWRITE(0xF800615C, 0x000FFFFFU, 0x00000090U),
+> +	EMIT_MASKWRITE(0xF8006160, 0x000FFFFFU, 0x00000093U),
+> +	EMIT_MASKWRITE(0xF8006168, 0x001FFFFFU, 0x000000FFU),
+> +	EMIT_MASKWRITE(0xF800616C, 0x001FFFFFU, 0x000000FBU),
+> +	EMIT_MASKWRITE(0xF8006170, 0x001FFFFFU, 0x000000F0U),
+> +	EMIT_MASKWRITE(0xF8006174, 0x001FFFFFU, 0x000000EDU),
+> +	EMIT_MASKWRITE(0xF800617C, 0x000FFFFFU, 0x000000DFU),
+> +	EMIT_MASKWRITE(0xF8006180, 0x000FFFFFU, 0x000000E2U),
+> +	EMIT_MASKWRITE(0xF8006184, 0x000FFFFFU, 0x000000D0U),
+> +	EMIT_MASKWRITE(0xF8006188, 0x000FFFFFU, 0x000000D3U),
+> +	EMIT_MASKWRITE(0xF8006190, 0x6FFFFEFEU, 0x00040080U),
+> +	EMIT_MASKWRITE(0xF8006194, 0x000FFFFFU, 0x0001FC82U),
+> +	EMIT_MASKWRITE(0xF8006204, 0xFFFFFFFFU, 0x00000000U),
+> +	EMIT_MASKWRITE(0xF8006208, 0x000703FFU, 0x000003FFU),
+> +	EMIT_MASKWRITE(0xF800620C, 0x000703FFU, 0x000003FFU),
+> +	EMIT_MASKWRITE(0xF8006210, 0x000703FFU, 0x000003FFU),
+> +	EMIT_MASKWRITE(0xF8006214, 0x000703FFU, 0x000003FFU),
+> +	EMIT_MASKWRITE(0xF8006218, 0x000F03FFU, 0x000003FFU),
+> +	EMIT_MASKWRITE(0xF800621C, 0x000F03FFU, 0x000003FFU),
+> +	EMIT_MASKWRITE(0xF8006220, 0x000F03FFU, 0x000003FFU),
+> +	EMIT_MASKWRITE(0xF8006224, 0x000F03FFU, 0x000003FFU),
+> +	EMIT_MASKWRITE(0xF80062A8, 0x00000FF5U, 0x00000000U),
+> +	EMIT_MASKWRITE(0xF80062AC, 0xFFFFFFFFU, 0x00000000U),
+> +	EMIT_MASKWRITE(0xF80062B0, 0x003FFFFFU, 0x00005125U),
+> +	EMIT_MASKWRITE(0xF80062B4, 0x0003FFFFU, 0x000012A8U),
+> +	EMIT_MASKPOLL(0xF8000B74, 0x00002000U),
+> +	EMIT_MASKWRITE(0xF8006000, 0x0001FFFFU, 0x00000081U),
+> +	EMIT_MASKPOLL(0xF8006054, 0x00000007U),
+> +	EMIT_EXIT(),
+> +};
+> +
+> +static unsigned long ps7_mio_init_data[] = {
+> +	EMIT_WRITE(0xF8000008, 0x0000DF0DU),
+> +	EMIT_MASKWRITE(0xF8000B40, 0x00000FFFU, 0x00000600U),
+> +	EMIT_MASKWRITE(0xF8000B44, 0x00000FFFU, 0x00000600U),
+> +	EMIT_MASKWRITE(0xF8000B48, 0x00000FFFU, 0x00000672U),
+> +	EMIT_MASKWRITE(0xF8000B4C, 0x00000FFFU, 0x00000672U),
+> +	EMIT_MASKWRITE(0xF8000B50, 0x00000FFFU, 0x00000674U),
+> +	EMIT_MASKWRITE(0xF8000B54, 0x00000FFFU, 0x00000674U),
+> +	EMIT_MASKWRITE(0xF8000B58, 0x00000FFFU, 0x00000600U),
+> +	EMIT_MASKWRITE(0xF8000B5C, 0xFFFFFFFFU, 0x0018C61CU),
+> +	EMIT_MASKWRITE(0xF8000B60, 0xFFFFFFFFU, 0x00F9861CU),
+> +	EMIT_MASKWRITE(0xF8000B64, 0xFFFFFFFFU, 0x00F9861CU),
+> +	EMIT_MASKWRITE(0xF8000B68, 0xFFFFFFFFU, 0x00F9861CU),
+> +	EMIT_MASKWRITE(0xF8000B6C, 0x00007FFFU, 0x00000260U),
+> +	EMIT_MASKWRITE(0xF8000B70, 0x00000001U, 0x00000001U),
+> +	EMIT_MASKWRITE(0xF8000B70, 0x00000021U, 0x00000020U),
+> +	EMIT_MASKWRITE(0xF8000B70, 0x07FEFFFFU, 0x00000823U),
+> +	EMIT_MASKWRITE(0xF8000700, 0x00003FFFU, 0x00001600U),
+> +	EMIT_MASKWRITE(0xF8000704, 0x00003FFFU, 0x00000602U),
+> +	EMIT_MASKWRITE(0xF8000708, 0x00003FFFU, 0x00000602U),
+> +	EMIT_MASKWRITE(0xF800070C, 0x00003FFFU, 0x00000602U),
+> +	EMIT_MASKWRITE(0xF8000710, 0x00003FFFU, 0x00000602U),
+> +	EMIT_MASKWRITE(0xF8000714, 0x00003FFFU, 0x00000602U),
+> +	EMIT_MASKWRITE(0xF8000718, 0x00003FFFU, 0x00000602U),
+> +	EMIT_MASKWRITE(0xF800071C, 0x00003FFFU, 0x00000600U),
+> +	EMIT_MASKWRITE(0xF8000720, 0x00003FFFU, 0x00000602U),
+> +	EMIT_MASKWRITE(0xF8000724, 0x00003FFFU, 0x00000600U),
+> +	EMIT_MASKWRITE(0xF8000728, 0x00003FFFU, 0x000016E1U),
+> +	EMIT_MASKWRITE(0xF800072C, 0x00003FFFU, 0x000016E0U),
+> +	EMIT_MASKWRITE(0xF8000730, 0x00003FFFU, 0x00001640U),
+> +	EMIT_MASKWRITE(0xF8000734, 0x00003FFFU, 0x00001640U),
+> +	EMIT_MASKWRITE(0xF8000738, 0x00003FFFU, 0x00001621U),
+> +	EMIT_MASKWRITE(0xF800073C, 0x00003FFFU, 0x00001620U),
+> +	EMIT_MASKWRITE(0xF8000740, 0x00003FFFU, 0x00001202U),
+> +	EMIT_MASKWRITE(0xF8000744, 0x00003FFFU, 0x00001202U),
+> +	EMIT_MASKWRITE(0xF8000748, 0x00003FFFU, 0x00001202U),
+> +	EMIT_MASKWRITE(0xF800074C, 0x00003FFFU, 0x00001202U),
+> +	EMIT_MASKWRITE(0xF8000750, 0x00003FFFU, 0x00001202U),
+> +	EMIT_MASKWRITE(0xF8000754, 0x00003FFFU, 0x00001202U),
+> +	EMIT_MASKWRITE(0xF8000758, 0x00003FFFU, 0x00001203U),
+> +	EMIT_MASKWRITE(0xF800075C, 0x00003FFFU, 0x00001203U),
+> +	EMIT_MASKWRITE(0xF8000760, 0x00003FFFU, 0x00001203U),
+> +	EMIT_MASKWRITE(0xF8000764, 0x00003FFFU, 0x00001203U),
+> +	EMIT_MASKWRITE(0xF8000768, 0x00003FFFU, 0x00001203U),
+> +	EMIT_MASKWRITE(0xF800076C, 0x00003FFFU, 0x00001203U),
+> +	EMIT_MASKWRITE(0xF8000770, 0x00003FFFU, 0x00001204U),
+> +	EMIT_MASKWRITE(0xF8000774, 0x00003FFFU, 0x00001205U),
+> +	EMIT_MASKWRITE(0xF8000778, 0x00003FFFU, 0x00001204U),
+> +	EMIT_MASKWRITE(0xF800077C, 0x00003FFFU, 0x00001205U),
+> +	EMIT_MASKWRITE(0xF8000780, 0x00003FFFU, 0x00001204U),
+> +	EMIT_MASKWRITE(0xF8000784, 0x00003FFFU, 0x00001204U),
+> +	EMIT_MASKWRITE(0xF8000788, 0x00003FFFU, 0x00001204U),
+> +	EMIT_MASKWRITE(0xF800078C, 0x00003FFFU, 0x00001204U),
+> +	EMIT_MASKWRITE(0xF8000790, 0x00003FFFU, 0x00001205U),
+> +	EMIT_MASKWRITE(0xF8000794, 0x00003FFFU, 0x00001204U),
+> +	EMIT_MASKWRITE(0xF8000798, 0x00003FFFU, 0x00001204U),
+> +	EMIT_MASKWRITE(0xF800079C, 0x00003FFFU, 0x00001204U),
+> +	EMIT_MASKWRITE(0xF80007A0, 0x00003FFFU, 0x00001280U),
+> +	EMIT_MASKWRITE(0xF80007A4, 0x00003FFFU, 0x00001280U),
+> +	EMIT_MASKWRITE(0xF80007A8, 0x00003FFFU, 0x00001280U),
+> +	EMIT_MASKWRITE(0xF80007AC, 0x00003FFFU, 0x00001280U),
+> +	EMIT_MASKWRITE(0xF80007B0, 0x00003FFFU, 0x00001280U),
+> +	EMIT_MASKWRITE(0xF80007B4, 0x00003FFFU, 0x00001280U),
+> +	EMIT_MASKWRITE(0xF80007B8, 0x00003F01U, 0x00000201U),
+> +	EMIT_MASKWRITE(0xF80007BC, 0x00003F01U, 0x00000201U),
+> +	EMIT_MASKWRITE(0xF80007C0, 0x00003FFFU, 0x000012E0U),
+> +	EMIT_MASKWRITE(0xF80007C4, 0x00003FFFU, 0x000012E1U),
+> +	EMIT_MASKWRITE(0xF80007C8, 0x00003FFFU, 0x00000200U),
+> +	EMIT_MASKWRITE(0xF80007CC, 0x00003FFFU, 0x00000200U),
+> +	EMIT_MASKWRITE(0xF80007D0, 0x00003FFFU, 0x00001280U),
+> +	EMIT_MASKWRITE(0xF80007D4, 0x00003FFFU, 0x00001280U),
+> +	EMIT_MASKWRITE(0xF8000830, 0x003F003FU, 0x002E002FU),
+> +	EMIT_WRITE(0xF8000004, 0x0000767BU),
+> +	EMIT_EXIT(),
+> +};
+> +
+> +static unsigned long ps7_peripherals_init_data[] = {
+> +	EMIT_WRITE(0xF8000008, 0x0000DF0DU),
+> +	EMIT_MASKWRITE(0xF8000B48, 0x00000180U, 0x00000180U),
+> +	EMIT_MASKWRITE(0xF8000B4C, 0x00000180U, 0x00000180U),
+> +	EMIT_MASKWRITE(0xF8000B50, 0x00000180U, 0x00000180U),
+> +	EMIT_MASKWRITE(0xF8000B54, 0x00000180U, 0x00000180U),
+> +	EMIT_WRITE(0xF8000004, 0x0000767BU),
+> +	EMIT_MASKWRITE(0xE000D000, 0x00080000U, 0x00080000U),
+> +	EMIT_MASKWRITE(0xF8007000, 0x20000000U, 0x00000000U),
+> +	EMIT_MASKWRITE(0xE000A244, 0x003FFFFFU, 0x00080000U),
+> +	EMIT_MASKWRITE(0xE000A00C, 0x003F003FU, 0x00370008U),
+> +	EMIT_MASKWRITE(0xE000A248, 0x003FFFFFU, 0x00080000U),
+> +	EMIT_MASKWRITE(0xE000A00C, 0x003F003FU, 0x00370000U),
+> +	EMIT_MASKDELAY(0xF8F00200, 1),
+> +	EMIT_MASKWRITE(0xE000A00C, 0x003F003FU, 0x00370008U),
+> +	EMIT_EXIT(),
+> +};
+> +
+> +static unsigned long ps7_post_config_0[] = {
+> +	EMIT_WRITE(0xF8000008, 0x0000DF0DU),
+> +	EMIT_MASKWRITE(0xF8000900, 0x0000000FU, 0x0000000FU),
+> +	EMIT_MASKWRITE(0xF8000240, 0xFFFFFFFFU, 0x00000000U),
+> +	EMIT_WRITE(0xF8000004, 0x0000767BU),
+> +	EMIT_EXIT(),
+> +};
+> +
+> +int ps7_post_config(void)
+> +{
+> +	return ps7_config(ps7_post_config_0);
+> +}
+> +
+> +int ps7_init(void)
+> +{
+> +	int ret;
+> +
+> +	ret = ps7_config(ps7_mio_init_data);
+> +	if (ret != PS7_INIT_SUCCESS)
+> +		return ret;
+> +
+> +	ret = ps7_config(ps7_pll_init_data);
+> +	if (ret != PS7_INIT_SUCCESS)
+> +		return ret;
+> +
+> +	ret = ps7_config(ps7_clock_init_data);
+> +	if (ret != PS7_INIT_SUCCESS)
+> +		return ret;
+> +
+> +	ret = ps7_config(ps7_ddr_init_data);
+> +	if (ret != PS7_INIT_SUCCESS)
+> +		return ret;
+> +
+> +	ret = ps7_config(ps7_peripherals_init_data);
+> +	if (ret != PS7_INIT_SUCCESS)
+> +		return ret;
+> +	return PS7_INIT_SUCCESS;
+> +}
+> diff --git a/configs/xilinx_zynq_virt_defconfig b/configs/xilinx_zynq_virt_defconfig
+> index 8acdab25b7..afbc81afd1 100644
+> --- a/configs/xilinx_zynq_virt_defconfig
+> +++ b/configs/xilinx_zynq_virt_defconfig
+> @@ -49,7 +49,7 @@ CONFIG_CMD_MTDPARTS=y
+>  CONFIG_CMD_MTDPARTS_SPREAD=y
+>  CONFIG_CMD_MTDPARTS_SHOW_NET_SIZES=y
+>  CONFIG_CMD_UBI=y
+> -CONFIG_OF_LIST="zynq-zc702 zynq-zc706 zynq-zc770-xm010 zynq-zc770-xm011 zynq-zc770-xm011-x16 zynq-zc770-xm012 zynq-zc770-xm013 zynq-cc108 zynq-microzed zynq-minized zynq-picozed zynq-zed zynq-zturn zynq-zybo zynq-zybo-z7 zynq-dlc20-rev1.0"
+> +CONFIG_OF_LIST="zynq-zc702 zynq-zc706 zynq-zc770-xm010 zynq-zc770-xm011 zynq-zc770-xm011-x16 zynq-zc770-xm012 zynq-zc770-xm013 zynq-cc108 zynq-microzed zynq-minized zynq-picozed zynq-zed zynq-zturn zynq-zturn-v5 zynq-zybo zynq-zybo-z7 zynq-dlc20-rev1.0"
+>  CONFIG_ENV_OVERWRITE=y
+>  CONFIG_ENV_IS_IN_SPI_FLASH=y
+>  CONFIG_SYS_RELOC_GD_ENV_ADDR=y
+> @@ -90,6 +90,8 @@ CONFIG_SPI_FLASH_WINBOND=y
+>  CONFIG_PHY_MARVELL=y
+>  CONFIG_PHY_REALTEK=y
+>  CONFIG_PHY_XILINX=y
+> +CONFIG_PHY_MICREL=y
+> +CONFIG_PHY_MICREL_KSZ90X1=y
+>  CONFIG_MII=y
+>  CONFIG_ZYNQ_GEM=y
+>  CONFIG_ARM_DCC=y
 > 
+
+As I wrote to u-boot mailing list.
+
+I prefer to make this simpler because the most of that stuff is just c&p.
+
+What about this?
+
+#include "zynq-zturn.dts";
+
+/ {
+	model = "Zynq Z-Turn MYIR Board V5";
+	compatible = "myir,zynq-zturn-v5", "myir,zynq-zturn", "xlnx,zynq-7000";
+};
+
+&ethernet_phy {
+	reg = <3>;
+};
+
+Thanks,
+Michal
+
+-- 
+Michal Simek, Ing. (M.Eng), OpenPGP -> KeyID: FE3D1F91
+w: www.monstr.eu p: +42-0-721842854
+Maintainer of Linux kernel - Xilinx Microblaze
+Maintainer of Linux kernel - Xilinx Zynq ARM and ZynqMP ARM64 SoCs
+U-Boot custodian - Xilinx Microblaze/Zynq/ZynqMP/Versal SoCs
+
+
+
