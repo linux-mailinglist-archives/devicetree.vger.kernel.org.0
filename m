@@ -2,101 +2,109 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from vger.kernel.org (vger.kernel.org [23.128.96.18])
-	by mail.lfdr.de (Postfix) with ESMTP id E77A8264528
-	for <lists+devicetree@lfdr.de>; Thu, 10 Sep 2020 13:10:10 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTP id EFCA1264516
+	for <lists+devicetree@lfdr.de>; Thu, 10 Sep 2020 13:07:04 +0200 (CEST)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S1730430AbgIJLKF (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Thu, 10 Sep 2020 07:10:05 -0400
-Received: from out4-smtp.messagingengine.com ([66.111.4.28]:40225 "EHLO
-        out4-smtp.messagingengine.com" rhost-flags-OK-OK-OK-OK)
-        by vger.kernel.org with ESMTP id S1730518AbgIJKyx (ORCPT
-        <rfc822;devicetree@vger.kernel.org>);
-        Thu, 10 Sep 2020 06:54:53 -0400
-Received: from compute3.internal (compute3.nyi.internal [10.202.2.43])
-        by mailout.nyi.internal (Postfix) with ESMTP id D98BB5C10CA;
-        Thu, 10 Sep 2020 06:54:52 -0400 (EDT)
-Received: from mailfrontend2 ([10.202.2.163])
-  by compute3.internal (MEProxy); Thu, 10 Sep 2020 06:54:52 -0400
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=aj.id.au; h=from
-        :to:cc:subject:date:message-id:mime-version
-        :content-transfer-encoding; s=fm3; bh=7fKJTSl0aTWXfPqJvnHuuREMnq
-        wvVIPeCygVKzFLhOk=; b=fxtXh8w7MOT/hbSneypqL4AaQEJs9Oa7hjYBE36m6V
-        bFQbNlck8V5HR+8Og664JCIeTPrQtbMn6O3Hr2yjdfd7/fXUryMyt+rAfnkLm8Xd
-        qsmKUYhLqlv5q/zOTbqkLNMURKjvFNJQjrZY0z1qaoiM9coVN/71pOg2m4x3Pd2x
-        4iO6PM9TXcfN4FDnA3K56qTPCawdW7e1EjVv3u+Jk4cbEW3Q/x+Slp8eZVOtTeVW
-        fJ99fyfkrcVZ1TxqeYdibUf5dOq2lduZemAmyfFCLwjJYmhH3me2h6ArZvzJp7qV
-        FPoUgdf6b6vXnf4aOSYyXr9fW0Ejbq9uZyTDjNzWbZMA==
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=
-        messagingengine.com; h=cc:content-transfer-encoding:date:from
-        :message-id:mime-version:subject:to:x-me-proxy:x-me-proxy
-        :x-me-sender:x-me-sender:x-sasl-enc; s=fm3; bh=7fKJTSl0aTWXfPqJv
-        nHuuREMnqwvVIPeCygVKzFLhOk=; b=esHI8a9kX3HYOmCJF/FpjTamHSxljQ/3W
-        rXI5ymnmwwzpcGOlDoiug7t8xGo+9lt3FDQ9VRMBEqZ3y3VylAk47gS9Bc6FygzY
-        g4Dd/awAKLQzZpMmKIECUUwKthXG4/tfN5aOE+OwbIXiF1cXMBs9Ib3l5DYKdHIB
-        N6SosTwHX9NIiB8/JZKiX4uCmy0JvXcNkiJwNhvQeToicI81qnUVdZ0XaYFIxX5T
-        3LNPBL163D0DFwxb3VTFJzGiZcokT9cZ/axUP2Do7020FuIr4Wj/Hw6dR0aM19+Z
-        nrcoMAmk7qggYV68akFDWEGSTmJ4FSfeEks70zvxyuv68voBVYcdg==
-X-ME-Sender: <xms:-wVaX-WKFyau5GnnmRSgZMXohkCOYq4WcdHAPTH0SyfF-wgt4_Hrfw>
-    <xme:-wVaX6n94UdHrfu_KWsqQnPz6lW_ZlplSzuGXYbrHRkvLVI3PXmhfwnDZym721iPx
-    O3LiiafmceUnQqbKQ>
-X-ME-Proxy-Cause: gggruggvucftvghtrhhoucdtuddrgeduiedrudehjedgvdejucetufdoteggodetrfdotf
-    fvucfrrhhofhhilhgvmecuhfgrshhtofgrihhlpdfqfgfvpdfurfetoffkrfgpnffqhgen
-    uceurghilhhouhhtmecufedttdenucenucfjughrpefhvffufffkofgggfestdekredtre
-    dttdenucfhrhhomheptehnughrvgifucflvghffhgvrhihuceorghnughrvgifsegrjhdr
-    ihgurdgruheqnecuggftrfgrthhtvghrnhepkefhieffjeevfeevhedtieeihfefvdejle
-    dvvddthefftedujeethfeuueelfedtnecukfhppedugedrvddruddtledrkeehnecuvehl
-    uhhsthgvrhfuihiivgeptdenucfrrghrrghmpehmrghilhhfrhhomheprghnughrvgifse
-    grjhdrihgurdgruh
-X-ME-Proxy: <xmx:-wVaXyYvSwKl1dXxL0Zk70s0r7UxLVD3BrXBYfW5RSp1FNDf4l0IUg>
-    <xmx:-wVaX1WjSjZC7qa1ZMhvd0bLPwO_PLxVC_k7y4YNigLbclrZYn30iA>
-    <xmx:-wVaX4mtJbHWNwba7tbwaSIWM0uO1eOgWSTTMS0mdVXJ5Lh43_3txw>
-    <xmx:_AVaX2ZzQVYpU_Rod9vcAulCnt5CGQIkOYl7GsIZr2eJRjxbbCbQZQ>
-Received: from localhost.localdomain (ppp14-2-109-85.adl-apt-pir-bras32.tpg.internode.on.net [14.2.109.85])
-        by mail.messagingengine.com (Postfix) with ESMTPA id BA51F3064674;
-        Thu, 10 Sep 2020 06:54:48 -0400 (EDT)
-From:   Andrew Jeffery <andrew@aj.id.au>
-To:     linux-mmc@vger.kernel.org
-Cc:     adrian.hunter@intel.com, ulf.hansson@linaro.org, joel@jms.id.au,
-        robh+dt@kernel.org, devicetree@vger.kernel.org,
-        linux-arm-kernel@lists.infradead.org,
-        linux-aspeed@lists.ozlabs.org, linux-kernel@vger.kernel.org
-Subject: [PATCH 0/3] mmc: sdhci-of-aspeed: Expose data sample phase delay tuning
-Date:   Thu, 10 Sep 2020 20:24:37 +0930
-Message-Id: <20200910105440.3087723-1-andrew@aj.id.au>
-X-Mailer: git-send-email 2.25.1
+        id S1728289AbgIJLFl (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Thu, 10 Sep 2020 07:05:41 -0400
+Received: from mail.kernel.org ([198.145.29.99]:51970 "EHLO mail.kernel.org"
+        rhost-flags-OK-OK-OK-OK) by vger.kernel.org with ESMTP
+        id S1730699AbgIJLD2 (ORCPT <rfc822;devicetree@vger.kernel.org>);
+        Thu, 10 Sep 2020 07:03:28 -0400
+Received: from localhost (fw-tnat.cambridge.arm.com [217.140.96.140])
+        (using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
+        (No client certificate requested)
+        by mail.kernel.org (Postfix) with ESMTPSA id F2DFF20720;
+        Thu, 10 Sep 2020 11:03:26 +0000 (UTC)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=kernel.org;
+        s=default; t=1599735807;
+        bh=dmrwyQMyeJMFMQp1EmqKFdckpq9rAe0lbenAUyImoHI=;
+        h=Date:From:To:Cc:Subject:References:In-Reply-To:From;
+        b=18mUZhE89SuUR9AkRIvaLcq0CV19oM50ifpHaALiIug/IWYJwyy6/yKbEXGWUq0e2
+         ySMgHwdgAHR53xxhtsjqglHPRZ6z18CuVQ19qtjnOwsiniC5WkrCRFiC2Lm3RUg9ox
+         sGG3YwHzjYvnF+tl2rakOguBKLp+KG5CEGtVhy5w=
+Date:   Thu, 10 Sep 2020 12:02:41 +0100
+From:   Mark Brown <broonie@kernel.org>
+To:     Rob Herring <robh@kernel.org>
+Cc:     Cheng-yi Chiang <cychiang@chromium.org>,
+        linux-kernel <linux-kernel@vger.kernel.org>,
+        Taniya Das <tdas@codeaurora.org>,
+        Rohit kumar <rohitkr@codeaurora.org>,
+        Banajit Goswami <bgoswami@codeaurora.org>,
+        Patrick Lai <plai@codeaurora.org>,
+        Andy Gross <agross@kernel.org>,
+        Bjorn Andersson <bjorn.andersson@linaro.org>,
+        Liam Girdwood <lgirdwood@gmail.com>,
+        Jaroslav Kysela <perex@perex.cz>,
+        Takashi Iwai <tiwai@suse.com>,
+        Srini Kandagatla <srinivas.kandagatla@linaro.org>,
+        Stephan Gerhold <stephan@gerhold.net>,
+        Matthias Brugger <matthias.bgg@gmail.com>,
+        Heiko Stuebner <heiko@sntech.de>,
+        Doug Anderson <dianders@chromium.org>,
+        Dylan Reid <dgreid@chromium.org>,
+        Tzung-Bi Shih <tzungbi@chromium.org>,
+        Linux ARM <linux-arm-kernel@lists.infradead.org>,
+        linux-arm-msm <linux-arm-msm@vger.kernel.org>,
+        "open list:OPEN FIRMWARE AND FLATTENED DEVICE TREE BINDINGS" 
+        <devicetree@vger.kernel.org>,
+        "moderated list:SOUND - SOC LAYER / DYNAMIC AUDIO POWER MANAGEM..." 
+        <alsa-devel@alsa-project.org>,
+        "moderated list:ARM/Mediatek SoC support" 
+        <linux-mediatek@lists.infradead.org>,
+        "open list:ARM/Rockchip SoC..." <linux-rockchip@lists.infradead.org>
+Subject: Re: [PATCH v7 2/3] ASoC: qcom: dt-bindings: Add sc7180 machine
+ bindings
+Message-ID: <20200910110241.GA4898@sirena.org.uk>
+References: <20200907100039.1731457-1-cychiang@chromium.org>
+ <20200907100039.1731457-3-cychiang@chromium.org>
+ <20200908203357.GA861143@bogus>
+ <CAFv8NwLMAkFhVT-ML7QHbnSkqmgh=5SrNSik5eSCTHB1=DGQ0A@mail.gmail.com>
+ <CAL_JsqKW2bpHP60MX4eFmtfzkvaHJ670m6e8H29=u=mDAYg63w@mail.gmail.com>
 MIME-Version: 1.0
-Content-Transfer-Encoding: 8bit
+Content-Type: multipart/signed; micalg=pgp-sha512;
+        protocol="application/pgp-signature"; boundary="cNdxnHkX5QqsyA0e"
+Content-Disposition: inline
+In-Reply-To: <CAL_JsqKW2bpHP60MX4eFmtfzkvaHJ670m6e8H29=u=mDAYg63w@mail.gmail.com>
+X-Cookie: I disagree with unanimity.
+User-Agent: Mutt/1.10.1 (2018-07-13)
 Sender: devicetree-owner@vger.kernel.org
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-Hello,
 
-This series exposes some devicetree properties for tuning sample phase
-delay in the Aspeed SD/eMMC controllers. The relevant register was
-introduced on the AST2600 and is present for both the SD/MMC controller
-and the dedicated eMMC controller.
+--cNdxnHkX5QqsyA0e
+Content-Type: text/plain; charset=us-ascii
+Content-Disposition: inline
 
-Please review!
+On Wed, Sep 09, 2020 at 11:49:22AM -0600, Rob Herring wrote:
 
-Joel: If Rob's happy with the binding change can you take the dts patch
-through the aspeed dt tree?
+> I would assume a codec to be similar. The codec node (the alc5682
+> node) should have any jack related properties (or possibly implicitly
+> support it by default).
 
-Cheers,
+This isn't always clear - some jack detection is implemented entirely by
+integrating simple components like GPIOs and ADCs or by integrating
+limited support in one device with some external components to get more
+features (like bolting an ADC on the side for button detect).  I would
+not expect to ever see a device with jack detection support that could
+just be unconditionally enabled, it will always require some board level
+wiring up to provide the connections required to function.
 
-Andrew
+--cNdxnHkX5QqsyA0e
+Content-Type: application/pgp-signature; name="signature.asc"
 
-Andrew Jeffery (3):
-  dt: bindings: mmc: Add phase control properties for the Aspeed SDHCI
-  mmc: sdhci-of-aspeed: Expose data sample phase delay tuning
-  ARM: dts: tacoma: Add data sample phase delay for eMMC
+-----BEGIN PGP SIGNATURE-----
 
- .../devicetree/bindings/mmc/aspeed,sdhci.yaml |   8 +
- arch/arm/boot/dts/aspeed-bmc-opp-tacoma.dts   |   2 +
- drivers/mmc/host/sdhci-of-aspeed.c            | 137 +++++++++++++++++-
- 3 files changed, 142 insertions(+), 5 deletions(-)
+iQEzBAABCgAdFiEEreZoqmdXGLWf4p/qJNaLcl1Uh9AFAl9aB9EACgkQJNaLcl1U
+h9AQugf/fpoDHSobmOyj7a1nUYga227O6hgeON+vz+LB7a1JnX599O2oELAe1IGT
+xOV8DGUJpwdKUP1XWMHb/vMrtaS71E8m6Qsulc3s+Hdt6F38ObT5+z7zu0grr0rm
+wN1qRoyWHkPhFczDkvF95J2xO+lbs+5DbmfT/YVL+npWCtyYRVgKDwhmwWvqk/Sv
+5H7dVBlF1ivTTc4mAbG0FGGVlSL9hsg87i9b30jChkitX7BDRyvj41eVOdQs0Dpz
+ghIR+b6ZFI4iihIbFj8kBDL6y6cekl0Cs9YUA5YLsDxSjSJUidnCiuX1UK3NNOW2
+HiD76k32T+eskJVotOs6/DwV7UQS4A==
+=knP8
+-----END PGP SIGNATURE-----
 
--- 
-2.25.1
-
+--cNdxnHkX5QqsyA0e--
