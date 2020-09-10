@@ -2,99 +2,169 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from vger.kernel.org (vger.kernel.org [23.128.96.18])
-	by mail.lfdr.de (Postfix) with ESMTP id 85A2D263F21
-	for <lists+devicetree@lfdr.de>; Thu, 10 Sep 2020 09:54:56 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTP id EDD0D263F35
+	for <lists+devicetree@lfdr.de>; Thu, 10 Sep 2020 09:59:24 +0200 (CEST)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S1729622AbgIJHyz (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Thu, 10 Sep 2020 03:54:55 -0400
-Received: from fllv0016.ext.ti.com ([198.47.19.142]:34066 "EHLO
-        fllv0016.ext.ti.com" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S1726792AbgIJHyp (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Thu, 10 Sep 2020 03:54:45 -0400
-Received: from lelv0266.itg.ti.com ([10.180.67.225])
-        by fllv0016.ext.ti.com (8.15.2/8.15.2) with ESMTP id 08A7sen9078068;
-        Thu, 10 Sep 2020 02:54:40 -0500
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=ti.com;
-        s=ti-com-17Q1; t=1599724480;
-        bh=xLqhM8JuqWpOLMHetzz/8/24VkctoaW/pS2UjG1I9j0=;
-        h=From:To:CC:Subject:Date:In-Reply-To:References;
-        b=IOqH2X26tjkpkVPLBtpXQLFa0xKbnADsV53eCehLtJlDidoAlrsbZM5oIpPkPt2Si
-         33/J6ruOJ/ZuSSmsUugEAly3/FZwgxc9WHel6iN0GlnEinS5HEjWsWoaloIO+iNBMl
-         Re74c0JC1DYdpZ1Dc5Mfhe/KXYJZipznuZ0xVGxk=
-Received: from DFLE103.ent.ti.com (dfle103.ent.ti.com [10.64.6.24])
-        by lelv0266.itg.ti.com (8.15.2/8.15.2) with ESMTPS id 08A7se6s086300
-        (version=TLSv1.2 cipher=AES256-GCM-SHA384 bits=256 verify=FAIL);
-        Thu, 10 Sep 2020 02:54:40 -0500
-Received: from DFLE113.ent.ti.com (10.64.6.34) by DFLE103.ent.ti.com
- (10.64.6.24) with Microsoft SMTP Server (version=TLS1_2,
- cipher=TLS_ECDHE_RSA_WITH_AES_128_CBC_SHA256_P256) id 15.1.1979.3; Thu, 10
- Sep 2020 02:54:39 -0500
-Received: from lelv0327.itg.ti.com (10.180.67.183) by DFLE113.ent.ti.com
- (10.64.6.34) with Microsoft SMTP Server (version=TLS1_2,
- cipher=TLS_ECDHE_RSA_WITH_AES_128_CBC_SHA256_P256) id 15.1.1979.3 via
- Frontend Transport; Thu, 10 Sep 2020 02:54:39 -0500
-Received: from feketebors.ti.com (ileax41-snat.itg.ti.com [10.172.224.153])
-        by lelv0327.itg.ti.com (8.15.2/8.15.2) with ESMTP id 08A7sXCU123142;
-        Thu, 10 Sep 2020 02:54:38 -0500
-From:   Peter Ujfalusi <peter.ujfalusi@ti.com>
-To:     <broonie@kernel.org>, <lgirdwood@gmail.com>, <robh+dt@kernel.org>
-CC:     <alsa-devel@alsa-project.org>, <devicetree@vger.kernel.org>,
-        <linux-kernel@vger.kernel.org>
-Subject: [PATCH 2/2] ASoC: ti: j721e-evm: Add support for j7200-cpb audio
-Date:   Thu, 10 Sep 2020 10:54:33 +0300
-Message-ID: <20200910075433.26718-3-peter.ujfalusi@ti.com>
-X-Mailer: git-send-email 2.28.0
-In-Reply-To: <20200910075433.26718-1-peter.ujfalusi@ti.com>
-References: <20200910075433.26718-1-peter.ujfalusi@ti.com>
+        id S1727096AbgIJH7V (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Thu, 10 Sep 2020 03:59:21 -0400
+Received: from lhrrgout.huawei.com ([185.176.76.210]:2801 "EHLO huawei.com"
+        rhost-flags-OK-OK-OK-FAIL) by vger.kernel.org with ESMTP
+        id S1727830AbgIJH7L (ORCPT <rfc822;devicetree@vger.kernel.org>);
+        Thu, 10 Sep 2020 03:59:11 -0400
+Received: from lhreml710-chm.china.huawei.com (unknown [172.18.7.107])
+        by Forcepoint Email with ESMTP id 5FA05322755FC6988A57;
+        Thu, 10 Sep 2020 08:59:08 +0100 (IST)
+Received: from localhost (10.52.121.43) by lhreml710-chm.china.huawei.com
+ (10.201.108.61) with Microsoft SMTP Server (version=TLS1_2,
+ cipher=TLS_ECDHE_RSA_WITH_AES_128_GCM_SHA256) id 15.1.1913.5; Thu, 10 Sep
+ 2020 08:59:08 +0100
+Date:   Thu, 10 Sep 2020 08:57:33 +0100
+From:   Jonathan Cameron <Jonathan.Cameron@Huawei.com>
+To:     Alexandre Belloni <alexandre.belloni@bootlin.com>
+CC:     Jonathan Cameron <jic23@kernel.org>, <linux-iio@vger.kernel.org>,
+        "Rob Herring" <robh@kernel.org>, <devicetree@vger.kernel.org>,
+        Maxime Ripard <maxime.ripard@free-electrons.com>
+Subject: Re: [PATCH v2 07/20] dt-bindings:iio:adc:nuvoton,nau7802 yaml
+ conversion
+Message-ID: <20200910085733.00005b0a@Huawei.com>
+In-Reply-To: <20200909191923.GV230586@piout.net>
+References: <20200909175946.395313-1-jic23@kernel.org>
+        <20200909175946.395313-8-jic23@kernel.org>
+        <20200909191923.GV230586@piout.net>
+Organization: Huawei Technologies Research and Development (UK) Ltd.
+X-Mailer: Claws Mail 3.17.4 (GTK+ 2.24.32; i686-w64-mingw32)
 MIME-Version: 1.0
-Content-Transfer-Encoding: 8bit
-Content-Type: text/plain
-X-EXCLAIMER-MD-CONFIG: e1e8a2fd-e40a-4ac6-ac9b-f7e9cc9ee180
+Content-Type: text/plain; charset="US-ASCII"
+Content-Transfer-Encoding: 7bit
+X-Originating-IP: [10.52.121.43]
+X-ClientProxiedBy: lhreml712-chm.china.huawei.com (10.201.108.63) To
+ lhreml710-chm.china.huawei.com (10.201.108.61)
+X-CFilter-Loop: Reflected
 Sender: devicetree-owner@vger.kernel.org
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-When j7200 SOM is attached to the CPB we only have parent clock for 48KHz
-family and the rate of the parent clock is 2359296000Hz.
+On Wed, 9 Sep 2020 21:19:23 +0200
+Alexandre Belloni <alexandre.belloni@bootlin.com> wrote:
 
-Signed-off-by: Peter Ujfalusi <peter.ujfalusi@ti.com>
----
- sound/soc/ti/j721e-evm.c | 11 +++++++++++
- 1 file changed, 11 insertions(+)
+> Hi,
+> 
+> On 09/09/2020 18:59:33+0100, Jonathan Cameron wrote:
+> > From: Jonathan Cameron <Jonathan.Cameron@huawei.com>
+> > 
+> > A simple conversion from txt file to yaml.  I added the #io-channel-cells
+> > property as optional to allow the channels of this ADCs to be used
+> > to provide services to other drivers, for example if an analog
+> > accelerometer is connected.
+> > 
+> > Signed-off-by: Jonathan Cameron <Jonathan.Cameron@huawei.com>
+> > Cc: Alexandre Belloni <alexandre.belloni@free-electrons.com>
+> > Cc: Maxime Ripard <maxime.ripard@free-electrons.com>
+> > ---
+> >  .../bindings/iio/adc/nuvoton,nau7802.yaml     | 50 +++++++++++++++++++
+> >  .../bindings/iio/adc/nuvoton-nau7802.txt      | 18 -------
+> >  2 files changed, 50 insertions(+), 18 deletions(-)
+> > 
+> > diff --git a/Documentation/devicetree/bindings/iio/adc/nuvoton,nau7802.yaml b/Documentation/devicetree/bindings/iio/adc/nuvoton,nau7802.yaml
+> > new file mode 100644
+> > index 000000000000..bcd041ea28a8
+> > --- /dev/null
+> > +++ b/Documentation/devicetree/bindings/iio/adc/nuvoton,nau7802.yaml
+> > @@ -0,0 +1,50 @@
+> > +# SPDX-License-Identifier: (GPL-2.0 OR BSD-2-Clause)
+> > +%YAML 1.2
+> > +---
+> > +$id: http://devicetree.org/schemas/iio/adc/nuvoton,nau7802.yaml#
+> > +$schema: http://devicetree.org/meta-schemas/core.yaml#
+> > +
+> > +title: Nuvoton NAU7802 I2c Analog to Digital Converter (ADC)
+> > +
+> > +maintainers:
+> > +  - Alexandre Belloni <alexandre.belloni@free-electrons.com>
+> > +  - Maxime Ripard <maxime.ripard@free-electrons.com>
+> > +  
+> 
+> Sorry, I meant to reply earlier. Can you make that:
+> 
+>  - Alexandre Belloni <alexandre.belloni@bootlin.com>
+>  - Maxime Ripard <mripard@kernel.org>
+> 
+> Else, this seems good to me!
 
-diff --git a/sound/soc/ti/j721e-evm.c b/sound/soc/ti/j721e-evm.c
-index cb074af47a7d..f66674fd5f64 100644
---- a/sound/soc/ti/j721e-evm.c
-+++ b/sound/soc/ti/j721e-evm.c
-@@ -525,6 +525,14 @@ static const struct j721e_audio_match_data j721e_cpb_ivi_data = {
- 	},
- };
- 
-+static const struct j721e_audio_match_data j7200_cpb_data = {
-+	.board_type = J721E_BOARD_CPB,
-+	.num_links = 2, /* CPB pcm3168a */
-+	.pll_rates = {
-+		[J721E_CLK_PARENT_48000] = 2359296000, /* PLL4 */
-+	},
-+};
-+
- static const struct of_device_id j721e_audio_of_match[] = {
- 	{
- 		.compatible = "ti,j721e-cpb-audio",
-@@ -532,6 +540,9 @@ static const struct of_device_id j721e_audio_of_match[] = {
- 	}, {
- 		.compatible = "ti,j721e-cpb-ivi-audio",
- 		.data = &j721e_cpb_ivi_data,
-+	}, {
-+		.compatible = "ti,j7200-cpb-audio",
-+		.data = &j7200_cpb_data,
- 	},
- 	{ },
- };
--- 
-Peter
+Will do. If I don't do a v3 for other reasons I'll change that
+whilst applying.
 
-Texas Instruments Finland Oy, Porkkalankatu 22, 00180 Helsinki.
-Y-tunnus/Business ID: 0615521-4. Kotipaikka/Domicile: Helsinki
+Thanks,
+
+Jonathan
+
+> 
+> > +properties:
+> > +  compatible:
+> > +    const: nuvoton,nau7802
+> > +
+> > +  reg:
+> > +    maxItems: 1
+> > +
+> > +  interrupts:
+> > +    maxItems: 1
+> > +
+> > +  nuvoton,vldo:
+> > +    $ref: /schemas/types.yaml#/definitions/uint32
+> > +    description:
+> > +      Internal reference voltage in millivolts to be configured.
+> > +    minimum: 2400
+> > +    maximum: 4500
+> > +
+> > +  "#io-channel-cells":
+> > +    const: 1
+> > +
+> > +required:
+> > +  - compatible
+> > +  - reg
+> > +
+> > +additionalProperties: false
+> > +
+> > +examples:
+> > +  - |
+> > +    i2c {
+> > +        #address-cells = <1>;
+> > +        #size-cells = <0>;
+> > +        nau7802@2a {
+> > +            compatible = "nuvoton,nau7802";
+> > +            reg = <0x2a>;
+> > +            nuvoton,vldo = <3000>;
+> > +        };
+> > +    };
+> > +...
+> > diff --git a/Documentation/devicetree/bindings/iio/adc/nuvoton-nau7802.txt b/Documentation/devicetree/bindings/iio/adc/nuvoton-nau7802.txt
+> > deleted file mode 100644
+> > index e9582e6fe350..000000000000
+> > --- a/Documentation/devicetree/bindings/iio/adc/nuvoton-nau7802.txt
+> > +++ /dev/null
+> > @@ -1,18 +0,0 @@
+> > -* Nuvoton NAU7802 Analog to Digital Converter (ADC)
+> > -
+> > -Required properties:
+> > -  - compatible: Should be "nuvoton,nau7802"
+> > -  - reg: Should contain the ADC I2C address
+> > -
+> > -Optional properties:
+> > -  - nuvoton,vldo: Internal reference voltage in millivolts to be
+> > -    configured valid values are between 2400 mV and 4500 mV.
+> > -  - interrupts: IRQ line for the ADC. If not used the driver will use
+> > -    polling.
+> > -
+> > -Example:
+> > -adc2: nau7802@2a {
+> > -	compatible = "nuvoton,nau7802";
+> > -	reg = <0x2a>;
+> > -	nuvoton,vldo = <3000>;
+> > -};
+> > -- 
+> > 2.28.0
+> >   
+> 
+
 
