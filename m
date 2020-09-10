@@ -2,75 +2,226 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from vger.kernel.org (vger.kernel.org [23.128.96.18])
-	by mail.lfdr.de (Postfix) with ESMTP id 720FD264312
-	for <lists+devicetree@lfdr.de>; Thu, 10 Sep 2020 11:59:36 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTP id 46F86264321
+	for <lists+devicetree@lfdr.de>; Thu, 10 Sep 2020 12:01:08 +0200 (CEST)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S1730742AbgIJJ7d (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Thu, 10 Sep 2020 05:59:33 -0400
-Received: from mail-ot1-f68.google.com ([209.85.210.68]:40772 "EHLO
-        mail-ot1-f68.google.com" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S1730484AbgIJJ4s (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Thu, 10 Sep 2020 05:56:48 -0400
-Received: by mail-ot1-f68.google.com with SMTP id e23so4837358otk.7;
-        Thu, 10 Sep 2020 02:56:48 -0700 (PDT)
+        id S1730397AbgIJKBF (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Thu, 10 Sep 2020 06:01:05 -0400
+Received: from lindbergh.monkeyblade.net ([23.128.96.19]:41178 "EHLO
+        lindbergh.monkeyblade.net" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
+        with ESMTP id S1730755AbgIJJzm (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Thu, 10 Sep 2020 05:55:42 -0400
+Received: from mail-pj1-x1041.google.com (mail-pj1-x1041.google.com [IPv6:2607:f8b0:4864:20::1041])
+        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id C8040C06179E
+        for <devicetree@vger.kernel.org>; Thu, 10 Sep 2020 02:55:40 -0700 (PDT)
+Received: by mail-pj1-x1041.google.com with SMTP id mm21so2763389pjb.4
+        for <devicetree@vger.kernel.org>; Thu, 10 Sep 2020 02:55:40 -0700 (PDT)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+        d=linaro.org; s=google;
+        h=from:to:cc:subject:date:message-id:mime-version
+         :content-transfer-encoding;
+        bh=JlPu/fma8Wv6beiC8BOJ1wqv04CLGFnXPqAwT28bt3I=;
+        b=z1sBxW4YmZIfGKvGOaW+5n71uktXLJCGKxaf7EZOkF/QMUsaop7A7jbUPm1eT8eZ9Q
+         SbHkISTOMhMREIR9ItHocN9Rtur8xd+Z5fiqCODgObYKEPsCQnEOYqOTDduWw/+4Oqof
+         jIN9ThdeaKOu1o1jBtTIVK6zzBTJJlsHs/uwt4Jn2mFbzTgdqcW4s5RqAJZK+qaL0NYP
+         YVaWi9cvts4IkHJ7FX5LZ8/HaR7zw59DrhKwrSaRSLCHniHafoFe1VUIU8V4kIoOyNug
+         jQzy7Ce4c+Q1F1wu1R4G4P/RMRd88bDqUmqLWMoYee9P4c2ykJTF1QbgE5ssKYVtziUI
+         OHXg==
 X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
         d=1e100.net; s=20161025;
-        h=x-gm-message-state:mime-version:references:in-reply-to:from:date
-         :message-id:subject:to:cc;
-        bh=0+aAW8fAjI/ukWO9Up4e4Jv1cLs+aHR0l/ub6mwFsiw=;
-        b=ZaRpwZctupRZNj0Z7eSEE2MWKfqFwyPB8fK3lLW/QxqyV24FNPTBk8ME/bRKvfpFQI
-         VvNG8etw2CoTB8jP6DZXuzD38WDD6tjmQ1NwjKUaqt6sEnlHT4CslSzjptS+YB6MGozY
-         jyp75lQIxxUeAdXbEmh9PF6yAvYmKAvjVaBVTHDDn4VC2ZxTQ0CEWupcS4g66tTUYMeg
-         do3nTkbrMr9zxp7+yaBYYjT2bnbv46sBoQvZumLDROfPYex8BsBqqZS50QVqjR7NPEwd
-         MoTuDJsEG+2x0V7T0qwRKe0K2yyz/CWOrlyZfABC/eSJU8WkDIlHiLssQwAQT8KmLTXI
-         Hu+A==
-X-Gm-Message-State: AOAM533Jd741fZXB1UG8NZHLmUd1F7xXqnDpljfqp6nVkw9BmQ9iorYF
-        Np4Oe7qu2w/KKi2N+EqdcJFW6efKcE61r6lbaNY=
-X-Google-Smtp-Source: ABdhPJyWBOiHLisXP2jELsYF+4g3l8T9tKP9LhlfqQ+wtDxBiKMBl57vV0R6auq3wQFduBAUJGdXG59wYf/jm+y4Nyw=
-X-Received: by 2002:a05:6830:1008:: with SMTP id a8mr3152888otp.107.1599731807995;
- Thu, 10 Sep 2020 02:56:47 -0700 (PDT)
+        h=x-gm-message-state:from:to:cc:subject:date:message-id:mime-version
+         :content-transfer-encoding;
+        bh=JlPu/fma8Wv6beiC8BOJ1wqv04CLGFnXPqAwT28bt3I=;
+        b=VRCZU26iv43UYLGDZuLxjLknEr+ONGO4gzWmRkPhXVs3LrU0dJ6qrd+O2ahYX8IBpZ
+         LsWNWhOXuLwHYMYaso364Drhx+LKDiWnJOiU3MbIZ8UKej8rv5TWivBVbvu0uj3T7/CN
+         RREIKM7P51dYCrm+F7wbjUoCF8sE2YezaDV5PCaBST4i1We6xRwmlbyMMU1iHI/vsYi9
+         wpFZUW1OAU0f1bf3NjOdkNb5yFoJqSRSPdq01Lk5iPgo0IbNUwanIGDRw/APbFuvXVLT
+         xOlv2dYUySsYVar4NnIWte3O2MZJtkx/dLDkAom4+gPFF928KAfWNPNDmAv2AfPDkmk1
+         yNuA==
+X-Gm-Message-State: AOAM531D7qx9bVMeKdnmlS0+Lo0OOYti6b1lgSRSgTrSkvxapigUFCIr
+        Y6AxVPKh5q9M07IoRTfYWVl+WA==
+X-Google-Smtp-Source: ABdhPJykJJq0byCnVztMHWbo3H2EohdgAPfnnowua9twE/mwibkxraGHSfY3PwXZt2r9xxINcyZXbw==
+X-Received: by 2002:a17:902:bb84:: with SMTP id m4mr4626014pls.90.1599731738712;
+        Thu, 10 Sep 2020 02:55:38 -0700 (PDT)
+Received: from localhost ([122.181.54.133])
+        by smtp.gmail.com with ESMTPSA id l123sm4443187pgl.24.2020.09.10.02.55.37
+        (version=TLS1_2 cipher=ECDHE-ECDSA-AES128-GCM-SHA256 bits=128/128);
+        Thu, 10 Sep 2020 02:55:38 -0700 (PDT)
+From:   Viresh Kumar <viresh.kumar@linaro.org>
+To:     Rob Herring <robh+dt@kernel.org>,
+        Jassi Brar <jassisinghbrar@gmail.com>,
+        Jassi Brar <jaswinder.singh@linaro.org>
+Cc:     Viresh Kumar <viresh.kumar@linaro.org>,
+        Vincent Guittot <vincent.guittot@linaro.org>,
+        Arnd Bergmann <arnd@arndb.de>,
+        Frank Rowand <frowand.list@gmail.com>,
+        Bjorn Andersson <bjorn.andersson@linaro.org>,
+        linux-arm-kernel@lists.infradead.org, devicetree@vger.kernel.org,
+        linux-kernel@vger.kernel.org
+Subject: [PATCH V3 1/2] dt-bindings: mailbox : arm,mhu: Convert to Json-schema
+Date:   Thu, 10 Sep 2020 15:25:18 +0530
+Message-Id: <7f50b23d157a97242c79bd8f2ab649a9272b9b59.1599731645.git.viresh.kumar@linaro.org>
+X-Mailer: git-send-email 2.25.0.rc1.19.g042ed3e048af
 MIME-Version: 1.0
-References: <87o8mhrtxo.wl-kuninori.morimoto.gx@renesas.com> <87blihrtus.wl-kuninori.morimoto.gx@renesas.com>
-In-Reply-To: <87blihrtus.wl-kuninori.morimoto.gx@renesas.com>
-From:   Geert Uytterhoeven <geert@linux-m68k.org>
-Date:   Thu, 10 Sep 2020 11:56:37 +0200
-Message-ID: <CAMuHMdVX=zMQ4sQ9PrzrHnt4WGAVJ_iuMURSDYaZroWj9CNo1Q@mail.gmail.com>
-Subject: Re: [PATCH v2 09/10] arm64: dts: renesas: r8a77961-salvator-xs: add
- HDMI Display support
-To:     Kuninori Morimoto <kuninori.morimoto.gx@renesas.com>
-Cc:     Rob Herring <robh+dt@kernel.org>,
-        Laurent <laurent.pinchart@ideasonboard.com>,
-        David Airlie <airlied@linux.ie>,
-        Daniel Vetter <daniel@ffwll.ch>,
-        Magnus <magnus.damm@gmail.com>,
-        Linux-Renesas <linux-renesas-soc@vger.kernel.org>,
-        Linux-DT <devicetree@vger.kernel.org>,
-        Kieran Bingham <kieran.bingham+renesas@ideasonboard.com>,
-        shimoda <yoshihiro.shimoda.uh@renesas.com>,
-        DRI Development <dri-devel@lists.freedesktop.org>
-Content-Type: text/plain; charset="UTF-8"
+Content-Transfer-Encoding: 8bit
 Sender: devicetree-owner@vger.kernel.org
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-On Tue, Sep 8, 2020 at 2:35 AM Kuninori Morimoto
-<kuninori.morimoto.gx@renesas.com> wrote:
-> From: Kuninori Morimoto <kuninori.morimoto.gx@renesas.com>
->
-> This patch enables HDMI Display on R-Car M3-W+ Salvator-XS board.
->
-> Signed-off-by: Kuninori Morimoto <kuninori.morimoto.gx@renesas.com>
+Convert the DT binding over to Json-schema.
 
-Reviewed-by: Geert Uytterhoeven <geert+renesas@glider.be>
+Signed-off-by: Viresh Kumar <viresh.kumar@linaro.org>
+---
+V3: New patch.
 
-Gr{oetje,eeting}s,
+ .../devicetree/bindings/mailbox/arm,mhu.yaml  | 86 +++++++++++++++++++
+ .../devicetree/bindings/mailbox/arm-mhu.txt   | 43 ----------
+ 2 files changed, 86 insertions(+), 43 deletions(-)
+ create mode 100644 Documentation/devicetree/bindings/mailbox/arm,mhu.yaml
+ delete mode 100644 Documentation/devicetree/bindings/mailbox/arm-mhu.txt
 
-                        Geert
-
+diff --git a/Documentation/devicetree/bindings/mailbox/arm,mhu.yaml b/Documentation/devicetree/bindings/mailbox/arm,mhu.yaml
+new file mode 100644
+index 000000000000..4e840cedb2e4
+--- /dev/null
++++ b/Documentation/devicetree/bindings/mailbox/arm,mhu.yaml
+@@ -0,0 +1,86 @@
++# SPDX-License-Identifier: GPL-2.0
++%YAML 1.2
++---
++$id: http://devicetree.org/schemas/mailbox/arm,mhu.yaml#
++$schema: http://devicetree.org/meta-schemas/core.yaml#
++
++title: ARM MHU Mailbox Controller
++
++maintainers:
++  - Jassi Brar <jaswinder.singh@linaro.org>
++
++description: |
++  The ARM's Message-Handling-Unit (MHU) is a mailbox controller that has 3
++  independent channels/links to communicate with remote processor(s).  MHU links
++  are hardwired on a platform. A link raises interrupt for any received data.
++  However, there is no specified way of knowing if the sent data has been read
++  by the remote. This driver assumes the sender polls STAT register and the
++  remote clears it after having read the data.  The last channel is specified to
++  be a 'Secure' resource, hence can't be used by Linux running NS.
++
++# We need a select here so we don't match all nodes with 'arm,primecell'
++select:
++  properties:
++    compatible:
++      contains:
++        const: arm,mhu
++  required:
++    - compatible
++
++properties:
++  compatible:
++    items:
++      - const: arm,mhu
++      - const: arm,primecell
++
++  reg:
++    maxItems: 1
++
++  interrupts:
++    description: |
++      Interrupt information corresponding to each of the 3 links of MHU,
++      low-priority non-secure, high-priority non-secure, and secure.
++    maxItems: 3
++
++  clocks:
++    maxItems: 1
++
++  clock-names:
++    items:
++      - const: apb_pclk
++
++  '#mbox-cells':
++    description: Index of the channel.
++    const: 1
++
++required:
++  - compatible
++  - reg
++  - interrupts
++  - '#mbox-cells'
++
++additionalProperties: false
++
++examples:
++  - |
++    soc {
++        #address-cells = <2>;
++        #size-cells = <2>;
++
++        mhuA: mailbox@2b1f0000 {
++            #mbox-cells = <1>;
++            compatible = "arm,mhu", "arm,primecell";
++            reg = <0 0x2b1f0000 0 0x1000>;
++            interrupts = <0 36 4>, /* LP-NonSecure */
++                         <0 35 4>, /* HP-NonSecure */
++                         <0 37 4>; /* Secure */
++            clocks = <&clock 0 2 1>;
++            clock-names = "apb_pclk";
++        };
++
++        mhu_client_scb: scb@2e000000 {
++            compatible = "fujitsu,mb86s70-scb-1.0";
++            reg = <0 0x2e000000 0 0x4000>;
++            mboxes = <&mhuA 1>; /* HP-NonSecure */
++        };
++    };
+diff --git a/Documentation/devicetree/bindings/mailbox/arm-mhu.txt b/Documentation/devicetree/bindings/mailbox/arm-mhu.txt
+deleted file mode 100644
+index 4971f03f0b33..000000000000
+--- a/Documentation/devicetree/bindings/mailbox/arm-mhu.txt
++++ /dev/null
+@@ -1,43 +0,0 @@
+-ARM MHU Mailbox Driver
+-======================
+-
+-The ARM's Message-Handling-Unit (MHU) is a mailbox controller that has
+-3 independent channels/links to communicate with remote processor(s).
+- MHU links are hardwired on a platform. A link raises interrupt for any
+-received data. However, there is no specified way of knowing if the sent
+-data has been read by the remote. This driver assumes the sender polls
+-STAT register and the remote clears it after having read the data.
+-The last channel is specified to be a 'Secure' resource, hence can't be
+-used by Linux running NS.
+-
+-Mailbox Device Node:
+-====================
+-
+-Required properties:
+---------------------
+-- compatible:		Shall be "arm,mhu" & "arm,primecell"
+-- reg:			Contains the mailbox register address range (base
+-			address and length)
+-- #mbox-cells		Shall be 1 - the index of the channel needed.
+-- interrupts:		Contains the interrupt information corresponding to
+-			each of the 3 links of MHU.
+-
+-Example:
+---------
+-
+-	mhu: mailbox@2b1f0000 {
+-		#mbox-cells = <1>;
+-		compatible = "arm,mhu", "arm,primecell";
+-		reg = <0 0x2b1f0000 0x1000>;
+-		interrupts = <0 36 4>, /* LP-NonSecure */
+-			     <0 35 4>, /* HP-NonSecure */
+-			     <0 37 4>; /* Secure */
+-		clocks = <&clock 0 2 1>;
+-		clock-names = "apb_pclk";
+-	};
+-
+-	mhu_client: scb@2e000000 {
+-		compatible = "fujitsu,mb86s70-scb-1.0";
+-		reg = <0 0x2e000000 0x4000>;
+-		mboxes = <&mhu 1>; /* HP-NonSecure */
+-	};
 -- 
-Geert Uytterhoeven -- There's lots of Linux beyond ia32 -- geert@linux-m68k.org
+2.25.0.rc1.19.g042ed3e048af
 
-In personal conversations with technical people, I call myself a hacker. But
-when I'm talking to journalists I just say "programmer" or something like that.
-                                -- Linus Torvalds
