@@ -2,151 +2,100 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from vger.kernel.org (vger.kernel.org [23.128.96.18])
-	by mail.lfdr.de (Postfix) with ESMTP id 607EA263C77
-	for <lists+devicetree@lfdr.de>; Thu, 10 Sep 2020 07:34:25 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTP id 0963D263C7C
+	for <lists+devicetree@lfdr.de>; Thu, 10 Sep 2020 07:34:49 +0200 (CEST)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S1726059AbgIJFeP (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Thu, 10 Sep 2020 01:34:15 -0400
-Received: from lindbergh.monkeyblade.net ([23.128.96.19]:57288 "EHLO
+        id S1726231AbgIJFer (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Thu, 10 Sep 2020 01:34:47 -0400
+Received: from lindbergh.monkeyblade.net ([23.128.96.19]:57348 "EHLO
         lindbergh.monkeyblade.net" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S1725912AbgIJFeF (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Thu, 10 Sep 2020 01:34:05 -0400
-Received: from mail-ed1-x544.google.com (mail-ed1-x544.google.com [IPv6:2a00:1450:4864:20::544])
-        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 4F5E4C061756
-        for <devicetree@vger.kernel.org>; Wed,  9 Sep 2020 22:34:02 -0700 (PDT)
-Received: by mail-ed1-x544.google.com with SMTP id l17so4964895edq.12
-        for <devicetree@vger.kernel.org>; Wed, 09 Sep 2020 22:34:02 -0700 (PDT)
+        with ESMTP id S1726227AbgIJFeU (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Thu, 10 Sep 2020 01:34:20 -0400
+Received: from mail-pl1-x641.google.com (mail-pl1-x641.google.com [IPv6:2607:f8b0:4864:20::641])
+        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 9C041C061757
+        for <devicetree@vger.kernel.org>; Wed,  9 Sep 2020 22:34:19 -0700 (PDT)
+Received: by mail-pl1-x641.google.com with SMTP id k13so356425plk.3
+        for <devicetree@vger.kernel.org>; Wed, 09 Sep 2020 22:34:19 -0700 (PDT)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=chromium.org; s=google;
-        h=mime-version:references:in-reply-to:from:date:message-id:subject:to
-         :cc;
-        bh=60m4hlTxGIMTHH9zDLpW2r5D85YdOPl2w4joQJnWmwA=;
-        b=nY/GFWKyeBX/RUFO9u1oe4hlkrj2e2sOr59SOi/XTYi5toZj9oU+PlC3yWoAwPOFN2
-         5i8xIU1YcBt2bAXr6Jp03/gOrEuZTChoV6Eg6JR+z8Bb75FlyvBxuquNU7tXif2hK8k0
-         bJKTYNsTwz5EUDsp6fTOQJvRuIvC1csiVVvzo=
+        d=linaro.org; s=google;
+        h=date:from:to:cc:subject:message-id:references:mime-version
+         :content-disposition:in-reply-to:user-agent;
+        bh=5lEi/XoDUJ11Wa7F5s06RrCLa2hPWxpKnO1zR9YxyoY=;
+        b=CAEWlx6IuBLlkVsW+lOwMOeCTijAw1MpiQ3Ubb2OiqpnJtMewM1XNtUAhSIg1ikgvE
+         JpQ79qJ6W+TpKYmuBH7/eBcz5WKzj9GaDsUqhxos2YpwlQsr8aEn9N36PdsFS0hDWe6y
+         cNhiV778PgC5as9xtK6R0NroTicROjr76SN0u0Pi4chuP8X3ibTcn/DO0e02C6/yTFtK
+         q0uHIk25Jr73tNAPDUqN0E/KWZ2FKnNQcJBseJJm25c6Sm0RT8fYscQXhoYRyGZbGG83
+         SI6aRY5TTQMwlVObPlooDffFy48lbHaXcaYOfHW0nENuCCHAJsdeecPwwCjiEoRllUoh
+         P+xQ==
 X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
         d=1e100.net; s=20161025;
-        h=x-gm-message-state:mime-version:references:in-reply-to:from:date
-         :message-id:subject:to:cc;
-        bh=60m4hlTxGIMTHH9zDLpW2r5D85YdOPl2w4joQJnWmwA=;
-        b=O6w+TsB1eRDDKIgv9sq5VmqWgw970eFBHuY9qFXhADo1WE1GSz4J94sJrASrCGBret
-         m8VqVdKZ0maaimj7FYP1MaVw2WtJ9a2zvMm1MjjmqBRQ4frujjcECk1SoCm7ptV/q5gQ
-         uQZCpytU7BMD/NyaBA6ebK3/stKiV6OW0ngeeMN1mkyEl+EqyOvMYuMxgHz3pGQKz8cD
-         82+ucysXtv1TZEixnwY5SbLGiqdzhYvQg3/wn0YZ+IWCeVjlMp6Jt7EOzB2qqDzV7Nil
-         /rqZVROE/NKtYPec6sPCpxZVI/V5HcWgbOSjAD4CIp4ubSSiyfXs+DjTTj+9xfz+/xwO
-         Zc7A==
-X-Gm-Message-State: AOAM5328MmhrruXWmGTaE4BbFFQwN9ex1Y4sUGNL1rBt8Aljlq96xcKX
-        K6ZvzNumO41N80ffJGGKGWlNgRyDo5z59eJ8LGVvaQ==
-X-Google-Smtp-Source: ABdhPJxZWL/a+FakIDHKml1deb33cHOcCk+94TvMWao3/i9x9TyStla5QSTT3ONizI1t9/7Icb72n5sslJD4sHHnvic=
-X-Received: by 2002:a50:fe0f:: with SMTP id f15mr7513034edt.235.1599716040960;
- Wed, 09 Sep 2020 22:34:00 -0700 (PDT)
+        h=x-gm-message-state:date:from:to:cc:subject:message-id:references
+         :mime-version:content-disposition:in-reply-to:user-agent;
+        bh=5lEi/XoDUJ11Wa7F5s06RrCLa2hPWxpKnO1zR9YxyoY=;
+        b=SdHxc3aaELHax2cjsqnBcFobt0pM13ooJmE9eJgUa6slzT0yenL4eSSsh8mefCZX2V
+         LxWaQFMVpaiEvCoplj/5qwxL/AZbTKIBrHHFk3j371rUs26U9V7IXVSyXkrNTY5gAzB3
+         K143ySowthzwxPBXJTK53IOn0EOitGOSjTqWGjXy1IxkuTHVxUR1P5CBPBZHFlMggjPI
+         m61gQL0L2Y0Ocjlzl7hjEd0lpsi3wMQ3GTkgtaRSo1w7q3AULA/J6W+w/l7gyp3CsBpo
+         RCrq7RE/9UfUm/ASaktzNJkvZzYgFoqDk9xs3ehdZA/C0Pg2jc+/Um6/DpGgGGOARoaO
+         oCNA==
+X-Gm-Message-State: AOAM531NFFthXh7h8Q9yvCAHHk2IYBvjvxHPbUdolY72yA/AujDMQxbw
+        Ts6v4rBM2pySip0EQi7KF3d7rA==
+X-Google-Smtp-Source: ABdhPJz3EgNE/dzdl1waBSoWGoWNzDHErjWDYYygsBmeO19Q5FRz5rTWYfVjdhPhDSbWLy3fyrzRsA==
+X-Received: by 2002:a17:90a:d315:: with SMTP id p21mr3945874pju.88.1599716059106;
+        Wed, 09 Sep 2020 22:34:19 -0700 (PDT)
+Received: from localhost ([122.181.54.133])
+        by smtp.gmail.com with ESMTPSA id w203sm4575162pff.0.2020.09.09.22.34.18
+        (version=TLS1_2 cipher=ECDHE-ECDSA-AES128-GCM-SHA256 bits=128/128);
+        Wed, 09 Sep 2020 22:34:18 -0700 (PDT)
+Date:   Thu, 10 Sep 2020 11:04:06 +0530
+From:   Viresh Kumar <viresh.kumar@linaro.org>
+To:     Hector Yuan <hector.yuan@mediatek.com>
+Cc:     linux-mediatek@lists.infradead.org,
+        linux-arm-kernel@lists.infradead.org, linux-pm@vger.kernel.org,
+        devicetree@vger.kernel.org,
+        "Rafael J. Wysocki" <rjw@rjwysocki.net>,
+        Rob Herring <robh+dt@kernel.org>, linux-kernel@vger.kernel.org,
+        wsd_upstream@mediatek.com
+Subject: Re: [PATCH v7] cpufreq: mediatek-hw: Add support for Mediatek
+ cpufreq HW driver
+Message-ID: <20200910053406.t37rgioykzvk3oem@vireshk-i7>
+References: <1599712262-8819-1-git-send-email-hector.yuan@mediatek.com>
+ <20200910050341.pgyieq3q7ijitosn@vireshk-i7>
+ <1599715851.7042.9.camel@mtkswgap22>
 MIME-Version: 1.0
-References: <20200909081422.2412795-1-pihsun@chromium.org> <dd5a6b8b-71dc-ce54-1f0d-7fa6b1dd6248@gmail.com>
-In-Reply-To: <dd5a6b8b-71dc-ce54-1f0d-7fa6b1dd6248@gmail.com>
-From:   Pi-Hsun Shih <pihsun@chromium.org>
-Date:   Thu, 10 Sep 2020 13:33:24 +0800
-Message-ID: <CANdKZ0dAWG7CyNF9064+WBC_7q8M=S6=Q30TFz9fpgd4YbOsOw@mail.gmail.com>
-Subject: Re: [PATCH v2] arm64: dts: mt8183-kukui: add scp node
-To:     Matthias Brugger <matthias.bgg@gmail.com>
-Cc:     Rob Herring <robh+dt@kernel.org>,
-        Eddie Huang <eddie.huang@mediatek.com>,
-        Erin Lo <erin.lo@mediatek.com>,
-        "open list:OPEN FIRMWARE AND FLATTENED DEVICE TREE BINDINGS" 
-        <devicetree@vger.kernel.org>,
-        "moderated list:ARM/Mediatek SoC support" 
-        <linux-arm-kernel@lists.infradead.org>,
-        "moderated list:ARM/Mediatek SoC support" 
-        <linux-mediatek@lists.infradead.org>,
-        open list <linux-kernel@vger.kernel.org>
-Content-Type: text/plain; charset="UTF-8"
+Content-Type: text/plain; charset=us-ascii
+Content-Disposition: inline
+In-Reply-To: <1599715851.7042.9.camel@mtkswgap22>
+User-Agent: NeoMutt/20180716-391-311a52
 Sender: devicetree-owner@vger.kernel.org
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-On Wed, Sep 9, 2020 at 4:58 PM Matthias Brugger <matthias.bgg@gmail.com> wrote:
->
->
->
-> On 09/09/2020 10:14, Pi-Hsun Shih wrote:
-> > Add scp node to mt8183-kukui
-> >
-> > Fixes: 0d5e41709f76 ("arm64: dts: mt8183: add scp node")
-> > Signed-off-by: Pi-Hsun Shih <pihsun@chromium.org>
-> > ---
-> >
-> > Change since v1:
-> > * Add Fixes tag.
-> >
-> > ---
-> >   .../arm64/boot/dts/mediatek/mt8183-kukui.dtsi | 30 +++++++++++++++++++
-> >   1 file changed, 30 insertions(+)
-> >
-> > diff --git a/arch/arm64/boot/dts/mediatek/mt8183-kukui.dtsi b/arch/arm64/boot/dts/mediatek/mt8183-kukui.dtsi
-> > index f0a070535b34..85f7c33ba446 100644
-> > --- a/arch/arm64/boot/dts/mediatek/mt8183-kukui.dtsi
-> > +++ b/arch/arm64/boot/dts/mediatek/mt8183-kukui.dtsi
-> > @@ -90,6 +90,18 @@ pp3300_alw: regulator6 {
-> >               regulator-max-microvolt = <3300000>;
-> >       };
-> >
-> > +     reserved_memory: reserved-memory {
-> > +             #address-cells = <2>;
-> > +             #size-cells = <2>;
-> > +             ranges;
-> > +
-> > +             scp_mem_reserved: scp_mem_region {
-> > +                     compatible = "shared-dma-pool";
-> > +                     reg = <0 0x50000000 0 0x2900000>;
-> > +                     no-map;
-> > +             };
-> > +     };
-> > +
->
-> Do we expect other boards to have a different memory reservation? I can see that
-> EVB and Kukui uses the same. If not, we should add the node in mt8183.dtsi instead.
->
-> Regards,
-> Matthias
+On 10-09-20, 13:30, Hector Yuan wrote:
+> On Thu, 2020-09-10 at 10:33 +0530, Viresh Kumar wrote:
+> > On 10-09-20, 12:31, Hector Yuan wrote:
+> > > The CPUfreq HW present in some Mediatek chipsets offloads the steps necessary for changing the frequency of CPUs. 
+> > > The driver implements the cpufreq driver interface for this hardware engine. 
+> > > 
+> > > This patch depends on the MT6779 DTS patch submitted by Hanks Chen
+> > >  https://lkml.org/lkml/2020/8/4/1094
+> > 
+> > Thanks for hanging there. Looks good to me. I will apply it once Rob
+> > Ack's the binding patch.
+> > 
+> 
+> Many thanks for your help. May I know if you can add Reviewed-by tag to
+> this patch set.
 
-All our current boards use the same memory reservation, but it's still
-possible for future boards based on mt8183 to use different SCP memory
-size, so I feel this should still be left out of mt8183.dtsi.
+Since this patchset is going to get merged via my tree (ARM cpufreq
+tree), a reviewed-by isn't required here. I will queue it up for
+5.10-rc1 after I receive an Ack from Rob.
 
->
-> >       max98357a: codec0 {
-> >               compatible = "maxim,max98357a";
-> >               sdmode-gpios = <&pio 175 0>;
-> > @@ -524,6 +536,13 @@ pins_clk {
-> >               };
-> >       };
-> >
-> > +     scp_pins: scp {
-> > +             pins_scp_uart {
-> > +                     pinmux = <PINMUX_GPIO110__FUNC_TP_URXD1_AO>,
-> > +                              <PINMUX_GPIO112__FUNC_TP_UTXD1_AO>;
-> > +             };
-> > +     };
-> > +
-> >       spi0_pins: spi0 {
-> >               pins_spi{
-> >                       pinmux = <PINMUX_GPIO85__FUNC_SPI0_MI>,
-> > @@ -651,6 +670,17 @@ pins_wifi_wakeup {
-> >       };
-> >   };
-> >
-> > +&scp {
-> > +     status = "okay";
-> > +     pinctrl-names = "default";
-> > +     pinctrl-0 = <&scp_pins>;
-> > +
-> > +     cros_ec {
-> > +             compatible = "google,cros-ec-rpmsg";
-> > +             mtk,rpmsg-name = "cros-ec-rpmsg";
-> > +     };
-> > +};
-> > +
-> >   &soc_data {
-> >       status = "okay";
-> >   };
-> >
+> I would like to prepare some patches for more features
+> based on this. Is that okay to you? Thanks again.
+
+That should be fine.
+
+-- 
+viresh
