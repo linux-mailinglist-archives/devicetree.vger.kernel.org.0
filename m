@@ -2,47 +2,47 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from vger.kernel.org (vger.kernel.org [23.128.96.18])
-	by mail.lfdr.de (Postfix) with ESMTP id 2DE4A2648CB
-	for <lists+devicetree@lfdr.de>; Thu, 10 Sep 2020 17:34:05 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTP id 421232648D8
+	for <lists+devicetree@lfdr.de>; Thu, 10 Sep 2020 17:35:33 +0200 (CEST)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S1731331AbgIJPdL (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Thu, 10 Sep 2020 11:33:11 -0400
-Received: from lindbergh.monkeyblade.net ([23.128.96.19]:37526 "EHLO
+        id S1731294AbgIJPf3 (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Thu, 10 Sep 2020 11:35:29 -0400
+Received: from lindbergh.monkeyblade.net ([23.128.96.19]:37542 "EHLO
         lindbergh.monkeyblade.net" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S1731287AbgIJPcj (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Thu, 10 Sep 2020 11:32:39 -0400
+        with ESMTP id S1731297AbgIJPdi (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Thu, 10 Sep 2020 11:33:38 -0400
 Received: from mail-oi1-x262.google.com (mail-oi1-x262.google.com [IPv6:2607:f8b0:4864:20::262])
-        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 2150EC061371
-        for <devicetree@vger.kernel.org>; Thu, 10 Sep 2020 08:26:19 -0700 (PDT)
-Received: by mail-oi1-x262.google.com with SMTP id c13so6273041oiy.6
-        for <devicetree@vger.kernel.org>; Thu, 10 Sep 2020 08:26:19 -0700 (PDT)
+        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id A18C3C061374
+        for <devicetree@vger.kernel.org>; Thu, 10 Sep 2020 08:26:25 -0700 (PDT)
+Received: by mail-oi1-x262.google.com with SMTP id n2so6309886oij.1
+        for <devicetree@vger.kernel.org>; Thu, 10 Sep 2020 08:26:25 -0700 (PDT)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
         d=broadcom.com; s=google;
         h=from:to:cc:subject:date:message-id:in-reply-to:references;
-        bh=Pf2v6K7fWr+bHCgGUrV3kke5q6+ZGtBMsavuxBjru5M=;
-        b=SfjaHdsV2lxdGQvWKc7EZuSFskirebpOlxOzXblt3pwchrHV6C4K5BhXP0Gyhrblhy
-         6Ox39WJo6pbiXDZEsDnFEqqe1G5RvOK4XY+7AeKH55DNxvUUYoTPEzZ0fQNbH9n6nX1J
-         7wtyz9RrLUfN1MJ3ldJ7dUzPrBnOA4tGN2klg=
+        bh=fJHhgYEwWxBGPZV0ck5d43o8h1NDMA91jT0wBqCfnwY=;
+        b=Zdsfz/texQfzXW2RGAHepIO+zcBnvTWRPvI9uTSQnnv62NJZBg2LJ6xmh15MhBIyrw
+         v2XZbgrWLuNbsmf/JyNDTQY9RgOzmk6Cbd/1ypznE5opXiubVRfp31r9c36Og/nxYeMK
+         GKaoaYgBHLRuJDDj4YQAG9m6P0os4YS4Trbzg=
 X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
         d=1e100.net; s=20161025;
         h=x-gm-message-state:from:to:cc:subject:date:message-id:in-reply-to
          :references;
-        bh=Pf2v6K7fWr+bHCgGUrV3kke5q6+ZGtBMsavuxBjru5M=;
-        b=l49C1erCVoTfdFBN5J+GWCQrjtcjAVU7keqTD6q5V7YC+iEpt32FfkUPe/ScPdy8pv
-         WCyQSV29ABqmqw4oqNy/zvYmSEFW9TCrJWUH+tLwSBBtc3EHLNdzj11/bEjvvPUZAM14
-         BoqgNgdNvGBeTk1rIvlM+dPEYRvJDj/VhoJF35FKh6vtjk5+IrxhrdEMds1vVJF89cos
-         IHS8DYo/antIZyGk6Ls0MMIztGpnf1SYAzpXTtWFOMN8icZkcicSXQPsUgYXRHAuS7XI
-         NRWpCnrOvz6Yxm5B4Ax6faXMN5atDzd/6dgOCJy7/w8vfBPOzOhsgFrJD52oL0OlCNAg
-         wr1w==
-X-Gm-Message-State: AOAM5326MLcs9rM7Z7mOkYreGjhXxznonOLErc/MLYfwrvKFXwG3ST03
-        qWlpO5D2wwPLj/PlUO3p8vGbJgPNvSyyUmPMOdndJSht6OkW
-X-Google-Smtp-Source: ABdhPJzTjwr55nx7RvuWPGr4A0Ppz+2wny0SQ9PbuZXKywFz6zRzamwR7UTzBzOpwY39BqVvHM2+KO4l8h9d
-X-Received: by 2002:aca:5752:: with SMTP id l79mr349595oib.86.1599751578361;
-        Thu, 10 Sep 2020 08:26:18 -0700 (PDT)
+        bh=fJHhgYEwWxBGPZV0ck5d43o8h1NDMA91jT0wBqCfnwY=;
+        b=f+UP7eL/JV9y5XsToqftWBM6IKBfPfgT2PPXonOrSYb9FPo2RgtKK7iVpVdZwcq/86
+         AZxp4zOJqVRXxbcasX4rdJTnIAkmBea/sE4+a9oyosopD2I+6X5rMFYRFkeDA10ku8MT
+         oeKo5VUwA15kEtEQua4Tm30rZk9Ti02mTAaKvNimaWfMA4xNY3ayXW3L6rNsXso0oM50
+         W1s2MpinxkLpIhlNtYEHG2KEVbiNIQDlPSLHEHRcZdt3ZgxeuGVAfzE1PUUQ0Z434/mD
+         g9S0uX48OtGZ0hGwabQKVMsgjZ7+3h3cZA4kAZ1fd4jyVuiqpuUbRpFaMdtF3jZKfr6r
+         zHFA==
+X-Gm-Message-State: AOAM5306wdswLrnpaDSB/z0ODMNBERLBxrSdEkjRL7GCG42ELH1AkXRR
+        EDiv3/9fHKalidRTeSwOVY8iJ2AjAlKHf6s3R29kYjclT6ye
+X-Google-Smtp-Source: ABdhPJyG0h05fMgSeA0kb5tHFjfFMkLwJoDKu0c8WIRTzJdH0BccQ194jKVgXJ9oEvffUNNs8qjWbXf25PZO
+X-Received: by 2002:aca:d54d:: with SMTP id m74mr336105oig.3.1599751584954;
+        Thu, 10 Sep 2020 08:26:24 -0700 (PDT)
 Received: from rj-aorus.ric.broadcom.com ([192.19.228.250])
-        by smtp-relay.gmail.com with ESMTPS id h4sm943004oom.19.2020.09.10.08.26.13
+        by smtp-relay.gmail.com with ESMTPS id h4sm943004oom.19.2020.09.10.08.26.20
         (version=TLS1_3 cipher=TLS_AES_256_GCM_SHA384 bits=256/256);
-        Thu, 10 Sep 2020 08:26:18 -0700 (PDT)
+        Thu, 10 Sep 2020 08:26:24 -0700 (PDT)
 X-Relaying-Domain: broadcom.com
 From:   Ray Jui <ray.jui@broadcom.com>
 To:     Mark Brown <broonie@kernel.org>, Rob Herring <robh+dt@kernel.org>,
@@ -52,9 +52,9 @@ Cc:     linux-spi@vger.kernel.org, devicetree@vger.kernel.org,
         linux-kernel@vger.kernel.org,
         bcm-kernel-feedback-list@broadcom.com,
         Ray Jui <ray.jui@broadcom.com>
-Subject: [PATCH 3/4] spi: bcm-qspi: Fix probe regression on iProc platforms
-Date:   Thu, 10 Sep 2020 08:25:38 -0700
-Message-Id: <20200910152539.45584-3-ray.jui@broadcom.com>
+Subject: [PATCH 4/4] spi: bcm-qspi: Clean up 7425, 7429, and 7435 settings
+Date:   Thu, 10 Sep 2020 08:25:39 -0700
+Message-Id: <20200910152539.45584-4-ray.jui@broadcom.com>
 X-Mailer: git-send-email 2.17.1
 In-Reply-To: <20200910152539.45584-1-ray.jui@broadcom.com>
 References: <20200910152539.45584-1-ray.jui@broadcom.com>
@@ -63,30 +63,38 @@ Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-iProc chips have QSPI controller that does not have the MSPI_REV
-offset. Reading from that offset will cause a bus error. Fix it by
-having MSPI_REV query disabled in the generic compatible string.
+The Broadcom QSPI driver now falls back to no MSPI_DEV support as the
+default setting in the generic compatible string, explicit settings for
+STB chips 7425, 7429, and 7435 can be removed.
 
-Fixes: 3a01f04d74ef ("spi: bcm-qspi: Handle lack of MSPI_REV offset")
-Link: https://lore.kernel.org/linux-arm-kernel/20200909211857.4144718-1-f.fainelli@gmail.com/T/#u
 Signed-off-by: Ray Jui <ray.jui@broadcom.com>
 ---
- drivers/spi/spi-bcm-qspi.c | 2 +-
- 1 file changed, 1 insertion(+), 1 deletion(-)
+ drivers/spi/spi-bcm-qspi.c | 12 ------------
+ 1 file changed, 12 deletions(-)
 
 diff --git a/drivers/spi/spi-bcm-qspi.c b/drivers/spi/spi-bcm-qspi.c
-index c5209b42b0d2..b78d47a4403c 100644
+index b78d47a4403c..14c9d0133bce 100644
 --- a/drivers/spi/spi-bcm-qspi.c
 +++ b/drivers/spi/spi-bcm-qspi.c
-@@ -1300,7 +1300,7 @@ static const struct of_device_id bcm_qspi_of_match[] = {
- 	},
+@@ -1281,18 +1281,6 @@ static const struct bcm_qspi_data bcm_qspi_spcr3_data = {
+ };
+ 
+ static const struct of_device_id bcm_qspi_of_match[] = {
+-	{
+-		.compatible = "brcm,spi-bcm7425-qspi",
+-		.data = &bcm_qspi_no_rev_data,
+-	},
+-	{
+-		.compatible = "brcm,spi-bcm7429-qspi",
+-		.data = &bcm_qspi_no_rev_data,
+-	},
+-	{
+-		.compatible = "brcm,spi-bcm7435-qspi",
+-		.data = &bcm_qspi_no_rev_data,
+-	},
  	{
- 		.compatible = "brcm,spi-bcm-qspi",
--		.data = &bcm_qspi_rev_data,
-+		.data = &bcm_qspi_no_rev_data,
- 	},
- 	{
- 		.compatible = "brcm,spi-bcm7216-qspi",
+ 		.compatible = "brcm,spi-bcm7445-qspi",
+ 		.data = &bcm_qspi_rev_data,
 -- 
 2.17.1
 
