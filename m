@@ -2,120 +2,73 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from vger.kernel.org (vger.kernel.org [23.128.96.18])
-	by mail.lfdr.de (Postfix) with ESMTP id BB887263B8A
-	for <lists+devicetree@lfdr.de>; Thu, 10 Sep 2020 05:43:35 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTP id 3C2C9263B92
+	for <lists+devicetree@lfdr.de>; Thu, 10 Sep 2020 05:47:50 +0200 (CEST)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S1729822AbgIJDnd (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Wed, 9 Sep 2020 23:43:33 -0400
-Received: from lindbergh.monkeyblade.net ([23.128.96.19]:39874 "EHLO
-        lindbergh.monkeyblade.net" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S1729251AbgIJDnB (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Wed, 9 Sep 2020 23:43:01 -0400
-Received: from mail-pl1-x642.google.com (mail-pl1-x642.google.com [IPv6:2607:f8b0:4864:20::642])
-        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id D2DC2C061757
-        for <devicetree@vger.kernel.org>; Wed,  9 Sep 2020 20:43:00 -0700 (PDT)
-Received: by mail-pl1-x642.google.com with SMTP id x18so241057pll.6
-        for <devicetree@vger.kernel.org>; Wed, 09 Sep 2020 20:43:00 -0700 (PDT)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=linaro.org; s=google;
-        h=date:from:to:cc:subject:message-id:references:mime-version
-         :content-disposition:in-reply-to:user-agent;
-        bh=ZmS2T2jFD4Mhxd1SucoAel5AcWUGDJSMEH/6aOpQ3E4=;
-        b=xQK7MlcvpwgA7zVon4fYwgsjjBXLD1QDVQO0Y/wxK4TpVqAOuOsyHTfnz61IDHZ2n5
-         TGXB9Ozsm5y9yYIWBSZihicx99cw8Tqy45Kzki86JArCPtrddKx8cx77jJLwOpYMGaGK
-         M7L2/yKx7qk6TgLvU71F2gSNpHGQNerD4WBLdX/GKAstcJMfIlHlelhbu9G4XmmlB47K
-         vvZ5OFuqcsxwTb0J/ulV+DTtR8GWtu+++Va24XqlOa+K3nMYat+XJPH7FLd09HLwP1TH
-         083BY7CAp5HdCGyDtmJmOb0fZYTgNC3uZZhOlqvGsm/C6UlMfNwTL7XcG7+LYgwmCgj3
-         O5rg==
-X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=1e100.net; s=20161025;
-        h=x-gm-message-state:date:from:to:cc:subject:message-id:references
-         :mime-version:content-disposition:in-reply-to:user-agent;
-        bh=ZmS2T2jFD4Mhxd1SucoAel5AcWUGDJSMEH/6aOpQ3E4=;
-        b=Khgh6rGahz5yCIva7ifVVHBhDKdN17x4QQw347yURdTj/jCuvVB4HWXBO2Bs8c1ucU
-         zadkP/EcPKnhbqZEzcAk01Njw3fUgxSRhavVda+ce26X3kkL6yJy3hUlEOteRUxt32fJ
-         0fH02fZg7PCc0jfKd2ybqKHz1UiMDRw8+p89DCYu6d8Ef5KgRyI2qwByiXE1+Bmnl8a5
-         1MlAyanNwUsRR4/OKzNWM+DwzHuIrzEM/HrXNWlr15jmPTWHfZBUCVrxZINtUfngtsxp
-         gq4dbNaaO7inTpLZLwlmDmC6vd/cRXuYZkETk1++omJ3NGz27149TA06GC35PFM0X4qt
-         iwXg==
-X-Gm-Message-State: AOAM533zO3fip5+pruV+xNG2Q7jxRlhvhwWZ/x1R5oQQiSXUVC8nXDqr
-        9u49ECL+wbD24GCZapNjImml4w==
-X-Google-Smtp-Source: ABdhPJxRgu58IL1rniuVlRLSIpomG8nzd42RuHvTf3NVD6MC0hy7wZ/evpSgjCdMunvXwKBg/3c4Tg==
-X-Received: by 2002:a17:902:10f:: with SMTP id 15mr3733723plb.121.1599709379966;
-        Wed, 09 Sep 2020 20:42:59 -0700 (PDT)
-Received: from localhost ([122.181.54.133])
-        by smtp.gmail.com with ESMTPSA id z129sm3423532pgb.84.2020.09.09.20.42.58
-        (version=TLS1_2 cipher=ECDHE-ECDSA-AES128-GCM-SHA256 bits=128/128);
-        Wed, 09 Sep 2020 20:42:58 -0700 (PDT)
-Date:   Thu, 10 Sep 2020 09:12:45 +0530
-From:   Viresh Kumar <viresh.kumar@linaro.org>
-To:     Hector Yuan <hector.yuan@mediatek.com>
-Cc:     linux-mediatek@lists.infradead.org,
-        linux-arm-kernel@lists.infradead.org, linux-pm@vger.kernel.org,
-        devicetree@vger.kernel.org,
-        "Rafael J. Wysocki" <rjw@rjwysocki.net>,
-        Rob Herring <robh+dt@kernel.org>, linux-kernel@vger.kernel.org,
-        wsd_upstream@mediatek.com
-Subject: Re: [PATCH v6 1/2] cpufreq: mediatek-hw: Add support for Mediatek
- cpufreq HW driver
-Message-ID: <20200910034245.eqya625p7la33dkc@vireshk-i7>
-References: <1599658476-16562-1-git-send-email-hector.yuan@mediatek.com>
- <1599658476-16562-2-git-send-email-hector.yuan@mediatek.com>
+        id S1725773AbgIJDrt (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Wed, 9 Sep 2020 23:47:49 -0400
+Received: from mailgw02.mediatek.com ([210.61.82.184]:52089 "EHLO
+        mailgw02.mediatek.com" rhost-flags-OK-FAIL-OK-FAIL) by vger.kernel.org
+        with ESMTP id S1727055AbgIJDrp (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Wed, 9 Sep 2020 23:47:45 -0400
+X-UUID: e386fe9b4cd04378bb9bcd192e68287d-20200910
+DKIM-Signature: v=1; a=rsa-sha256; q=dns/txt; c=relaxed/relaxed; d=mediatek.com; s=dk;
+        h=Content-Transfer-Encoding:Content-Type:MIME-Version:Message-ID:Date:Subject:CC:To:From; bh=i74HM4n2z7CpO2GU1v53gI/FrljpvWxIeevuuyVHQjk=;
+        b=dssjgq5bRR4rflvQw5PY5rjvXWvN0834CfeY04OpF8BPQCTWMSXBucmgSJWsQlQew+waKuKZdFGbTOlwx5aHJbubNbfhYe2b9166PRNSCyXQ/kvZOISgty2K5cJGsp6EJ38CgR+4XxI4XdIlHmPFINq7hy6v8C3ZsErN42gLPrQ=;
+X-UUID: e386fe9b4cd04378bb9bcd192e68287d-20200910
+Received: from mtkcas10.mediatek.inc [(172.21.101.39)] by mailgw02.mediatek.com
+        (envelope-from <jianjun.wang@mediatek.com>)
+        (Cellopoint E-mail Firewall v4.1.14 Build 0819 with TLSv1.2 ECDHE-RSA-AES256-SHA384 256/256)
+        with ESMTP id 1341551757; Thu, 10 Sep 2020 11:47:43 +0800
+Received: from mtkcas07.mediatek.inc (172.21.101.84) by
+ mtkmbs08n1.mediatek.inc (172.21.101.55) with Microsoft SMTP Server (TLS) id
+ 15.0.1497.2; Thu, 10 Sep 2020 11:47:40 +0800
+Received: from localhost.localdomain (10.17.3.153) by mtkcas07.mediatek.inc
+ (172.21.101.73) with Microsoft SMTP Server id 15.0.1497.2 via Frontend
+ Transport; Thu, 10 Sep 2020 11:47:40 +0800
+From:   Jianjun Wang <jianjun.wang@mediatek.com>
+To:     Bjorn Helgaas <bhelgaas@google.com>,
+        Rob Herring <robh+dt@kernel.org>,
+        Lorenzo Pieralisi <lorenzo.pieralisi@arm.com>,
+        Ryder Lee <ryder.lee@mediatek.com>
+CC:     Philipp Zabel <p.zabel@pengutronix.de>,
+        Matthias Brugger <matthias.bgg@gmail.com>,
+        Mauro Carvalho Chehab <mchehab+huawei@kernel.org>,
+        <davem@davemloft.net>, <linux-pci@vger.kernel.org>,
+        <linux-mediatek@lists.infradead.org>, <devicetree@vger.kernel.org>,
+        <linux-kernel@vger.kernel.org>,
+        <linux-arm-kernel@lists.infradead.org>,
+        Sj Huang <sj.huang@mediatek.com>,
+        Jianjun Wang <jianjun.wang@mediatek.com>
+Subject: [v2,0/3] PCI: mediatek: Add new generation controller support
+Date:   Thu, 10 Sep 2020 11:45:33 +0800
+Message-ID: <20200910034536.30860-1-jianjun.wang@mediatek.com>
+X-Mailer: git-send-email 2.18.0
 MIME-Version: 1.0
-Content-Type: text/plain; charset=us-ascii
-Content-Disposition: inline
-In-Reply-To: <1599658476-16562-2-git-send-email-hector.yuan@mediatek.com>
-User-Agent: NeoMutt/20180716-391-311a52
+Content-Type: text/plain
+X-MTK:  N
+Content-Transfer-Encoding: base64
 Sender: devicetree-owner@vger.kernel.org
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-On 09-09-20, 21:34, Hector Yuan wrote:
-> +static unsigned int mtk_cpufreq_hw_get(unsigned int cpu)
-> +{
-> +	struct cpufreq_mtk *c;
-> +	struct cpufreq_policy *policy;
-> +	unsigned int index;
-> +
-> +	policy = cpufreq_cpu_get_raw(cpu);
-> +	if (!policy)
-> +		return 0;
+VGhlc2Ugc2VyaWVzIHBhdGNoZXMgYWRkIHBjaWUtbWVkaWF0ZWstZ2VuMy5jIGFuZCBkdC1iaW5k
+aW5ncyBmaWxlIHRvDQpzdXBwb3J0IG5ldyBnZW5lcmF0aW9uIFBDSWUgY29udHJvbGxlci4NCg0K
+Q2hhbmdlIGluIHYyOg0KMS4gRml4IHRoZSB0eXBvIG9mIGR0LWJpbmRpbmdzIHBhdGNoDQoyLiBS
+ZW1vdmUgdGhlIHVubmVjZXNzYXJ5IHByb3BlcnRpZXMgaW4gYmluZGluZyBkb2N1bWVudA0KMy4g
+ZGlzcG9zIHRoZSBpcnEgbWFwcGluZ3Mgb2YgbXNpIHRvcCBkb21haW4gd2hlbiBpcnEgdGVhcmRv
+d24NCg0KSmlhbmp1biBXYW5nICgzKToNCiAgZHQtYmluZGluZ3M6IFBDSTogbWVkaWF0ZWs6IEFk
+ZCBZQU1MIHNjaGVtYQ0KICBQQ0k6IG1lZGlhdGVrOiBBZGQgbmV3IGdlbmVyYXRpb24gY29udHJv
+bGxlciBzdXBwb3J0DQogIE1BSU5UQUlORVJTOiB1cGRhdGUgZW50cnkgZm9yIE1lZGlhVGVrIFBD
+SWUgY29udHJvbGxlcg0KDQogLi4uL2JpbmRpbmdzL3BjaS9tZWRpYXRlay1wY2llLWdlbjMueWFt
+bCAgICAgIHwgIDEzMCArKw0KIE1BSU5UQUlORVJTICAgICAgICAgICAgICAgICAgICAgICAgICAg
+ICAgICAgICB8ICAgIDEgKw0KIGRyaXZlcnMvcGNpL2NvbnRyb2xsZXIvS2NvbmZpZyAgICAgICAg
+ICAgICAgICB8ICAgMTQgKw0KIGRyaXZlcnMvcGNpL2NvbnRyb2xsZXIvTWFrZWZpbGUgICAgICAg
+ICAgICAgICB8ICAgIDEgKw0KIGRyaXZlcnMvcGNpL2NvbnRyb2xsZXIvcGNpZS1tZWRpYXRlay1n
+ZW4zLmMgICB8IDEwNzYgKysrKysrKysrKysrKysrKysNCiA1IGZpbGVzIGNoYW5nZWQsIDEyMjIg
+aW5zZXJ0aW9ucygrKQ0KIGNyZWF0ZSBtb2RlIDEwMDY0NCBEb2N1bWVudGF0aW9uL2RldmljZXRy
+ZWUvYmluZGluZ3MvcGNpL21lZGlhdGVrLXBjaWUtZ2VuMy55YW1sDQogY3JlYXRlIG1vZGUgMTAw
+NjQ0IGRyaXZlcnMvcGNpL2NvbnRyb2xsZXIvcGNpZS1tZWRpYXRlay1nZW4zLmMNCg0KLS0gDQoy
+LjI1LjENCg==
 
-Why didn't you drop policy as we discussed in previous version ?
-
-> +	c = mtk_freq_domain_map[cpu];
-> +
-> +	index = readl_relaxed(c->reg_bases[REG_PERF_STATE]);
-> +	index = min(index, LUT_MAX_ENTRIES - 1);
-> +
-> +	return policy->freq_table[index].frequency;
-
-policy->freq_table and c->table are same, isn't it ?
-
-> +}
-> +
-> +static struct platform_driver mtk_cpufreq_hw_driver = {
-> +	.probe = mtk_cpufreq_hw_driver_probe,
-> +	.remove = mtk_cpufreq_hw_driver_remove,
-> +	.driver = {
-> +		.name = "mtk-cpufreq-hw",
-> +		.of_match_table = mtk_cpufreq_hw_match,
-> +	},
-> +};
-> +
-
-Remove this blank line.
-
-> +module_platform_driver(mtk_cpufreq_hw_driver);
-> +
-> +MODULE_DESCRIPTION("mtk CPUFREQ HW Driver");
-
-Maybe write this is "Mediatek cpufreq-hw driver" ?
-
-> +MODULE_LICENSE("GPL v2");
-> -- 
-> 1.7.9.5
-
--- 
-viresh
