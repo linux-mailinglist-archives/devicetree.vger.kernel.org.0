@@ -2,149 +2,133 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from vger.kernel.org (vger.kernel.org [23.128.96.18])
-	by mail.lfdr.de (Postfix) with ESMTP id 8373A26504A
-	for <lists+devicetree@lfdr.de>; Thu, 10 Sep 2020 22:10:42 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTP id 404CB265053
+	for <lists+devicetree@lfdr.de>; Thu, 10 Sep 2020 22:11:39 +0200 (CEST)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S1726780AbgIJUKc (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Thu, 10 Sep 2020 16:10:32 -0400
-Received: from mx0a-001b2d01.pphosted.com ([148.163.156.1]:57032 "EHLO
-        mx0a-001b2d01.pphosted.com" rhost-flags-OK-OK-OK-OK)
-        by vger.kernel.org with ESMTP id S1731029AbgIJPAm (ORCPT
-        <rfc822;devicetree@vger.kernel.org>);
-        Thu, 10 Sep 2020 11:00:42 -0400
-Received: from pps.filterd (m0098409.ppops.net [127.0.0.1])
-        by mx0a-001b2d01.pphosted.com (8.16.0.42/8.16.0.42) with SMTP id 08ADVwbj156061;
-        Thu, 10 Sep 2020 09:55:42 -0400
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=ibm.com; h=subject : to : cc :
- references : from : message-id : date : mime-version : in-reply-to :
- content-type : content-transfer-encoding; s=pp1;
- bh=uAJ358VnHFKZvUebteG+ZwkjrTg7lzgNh1aBoFkoHpk=;
- b=GZ2G1BNy+s9Zu39AdCM8v721KGKk26Vt/6LGxwvE4CfsTkJyANcLma4ZKsQYFkae9NfG
- s25+sWBk3wJF9/nJBeFH27CoQh17AO4byjDzUHqfe0nWMrHgtM5hyfk41xyirKwL3mBG
- w4/6kQRbpkG+sqS1w2BP0ihz2ZqUIRDt+tJ0mMDXCjV1MIxNKnkcZQg7fnG1RoBFNICY
- 9QsdVhNGSbMnZqU6YstDD1xlgdiajDyFjNSNubeglI6AtVJlasZvMrQe7vBhJCEtwz66
- 9XHHW8ONZZO0BNMIsODWT42eV6X/yMj4x5I27JO++Zb6W1s/FCaUB8xku+jURKNhwWHT QA== 
-Received: from pps.reinject (localhost [127.0.0.1])
-        by mx0a-001b2d01.pphosted.com with ESMTP id 33fn1x0xd2-1
-        (version=TLSv1.2 cipher=ECDHE-RSA-AES256-GCM-SHA384 bits=256 verify=NOT);
-        Thu, 10 Sep 2020 09:55:42 -0400
-Received: from m0098409.ppops.net (m0098409.ppops.net [127.0.0.1])
-        by pps.reinject (8.16.0.36/8.16.0.36) with SMTP id 08ADWGVT157762;
-        Thu, 10 Sep 2020 09:55:42 -0400
-Received: from ppma04dal.us.ibm.com (7a.29.35a9.ip4.static.sl-reverse.com [169.53.41.122])
-        by mx0a-001b2d01.pphosted.com with ESMTP id 33fn1x0xcm-1
-        (version=TLSv1.2 cipher=ECDHE-RSA-AES256-GCM-SHA384 bits=256 verify=NOT);
-        Thu, 10 Sep 2020 09:55:42 -0400
-Received: from pps.filterd (ppma04dal.us.ibm.com [127.0.0.1])
-        by ppma04dal.us.ibm.com (8.16.0.42/8.16.0.42) with SMTP id 08ADqBZ1008486;
-        Thu, 10 Sep 2020 13:55:41 GMT
-Received: from b03cxnp08027.gho.boulder.ibm.com (b03cxnp08027.gho.boulder.ibm.com [9.17.130.19])
-        by ppma04dal.us.ibm.com with ESMTP id 33c2a9snn8-1
-        (version=TLSv1.2 cipher=ECDHE-RSA-AES256-GCM-SHA384 bits=256 verify=NOT);
-        Thu, 10 Sep 2020 13:55:41 +0000
-Received: from b03ledav006.gho.boulder.ibm.com (b03ledav006.gho.boulder.ibm.com [9.17.130.237])
-        by b03cxnp08027.gho.boulder.ibm.com (8.14.9/8.14.9/NCO v10.0) with ESMTP id 08ADtaZ823200424
-        (version=TLSv1/SSLv3 cipher=DHE-RSA-AES256-GCM-SHA384 bits=256 verify=OK);
-        Thu, 10 Sep 2020 13:55:36 GMT
-Received: from b03ledav006.gho.boulder.ibm.com (unknown [127.0.0.1])
-        by IMSVA (Postfix) with ESMTP id D4943C6062;
-        Thu, 10 Sep 2020 13:55:39 +0000 (GMT)
-Received: from b03ledav006.gho.boulder.ibm.com (unknown [127.0.0.1])
-        by IMSVA (Postfix) with ESMTP id 470DDC605D;
-        Thu, 10 Sep 2020 13:55:39 +0000 (GMT)
-Received: from [9.211.140.115] (unknown [9.211.140.115])
-        by b03ledav006.gho.boulder.ibm.com (Postfix) with ESMTP;
-        Thu, 10 Sep 2020 13:55:39 +0000 (GMT)
-Subject: Re: [PATCH v3 3/5] i2c: aspeed: Mask IRQ status to relevant bits
-To:     Brendan Higgins <brendanhiggins@google.com>
-Cc:     linux-input@vger.kernel.org,
-        devicetree <devicetree@vger.kernel.org>,
-        linux-aspeed <linux-aspeed@lists.ozlabs.org>,
-        linux-i2c@vger.kernel.org,
-        Linux Kernel Mailing List <linux-kernel@vger.kernel.org>,
-        Rob Herring <robh+dt@kernel.org>,
-        Dmitry Torokhov <dmitry.torokhov@gmail.com>,
-        Joel Stanley <joel@jms.id.au>,
-        Andrew Jeffery <andrew@aj.id.au>,
-        Benjamin Herrenschmidt <benh@kernel.crashing.org>,
-        wsa@kernel.org, rentao.bupt@gmail.com,
-        Ryan Chen <ryan_chen@aspeedtech.com>
-References: <20200909203059.23427-1-eajames@linux.ibm.com>
- <20200909203059.23427-4-eajames@linux.ibm.com>
- <CAFd5g46ghV7ArmM8LnMkGa-Nip_fT934+3cPOkVxS-b5odZXYw@mail.gmail.com>
-From:   Eddie James <eajames@linux.ibm.com>
-Message-ID: <b092f884-9aa9-5d0b-1a90-36af558e43a8@linux.ibm.com>
-Date:   Thu, 10 Sep 2020 08:55:38 -0500
-User-Agent: Mozilla/5.0 (X11; Linux x86_64; rv:68.0) Gecko/20100101
- Thunderbird/68.11.0
+        id S1730438AbgIJO7n (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Thu, 10 Sep 2020 10:59:43 -0400
+Received: from lindbergh.monkeyblade.net ([23.128.96.19]:59526 "EHLO
+        lindbergh.monkeyblade.net" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
+        with ESMTP id S1730865AbgIJOwg (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Thu, 10 Sep 2020 10:52:36 -0400
+Received: from mail-vs1-xe44.google.com (mail-vs1-xe44.google.com [IPv6:2607:f8b0:4864:20::e44])
+        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id E5067C06179E
+        for <devicetree@vger.kernel.org>; Thu, 10 Sep 2020 07:42:44 -0700 (PDT)
+Received: by mail-vs1-xe44.google.com with SMTP id j3so3538030vsm.0
+        for <devicetree@vger.kernel.org>; Thu, 10 Sep 2020 07:42:44 -0700 (PDT)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+        d=chromium.org; s=google;
+        h=mime-version:references:in-reply-to:from:date:message-id:subject:to
+         :cc;
+        bh=Xn2z91UfCtrgcaftSJI2dNlH0TFk/vXw21rz//Drd/M=;
+        b=UVSPAVfNwE3+6oK7YYZjhiud+K7lnkgA2zgaHh02Rowe50M2AyiZS9odTByUXmtVxF
+         Di08SfgpXs/tjHW3UcuczZMqEczt1J/Rek8K66sVerDDfqDSau4pvge+N0mcHDWOLNBL
+         nHy3s4N6+sgOwEX3D20NKo0xUVYSDGqfM97OU=
+X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+        d=1e100.net; s=20161025;
+        h=x-gm-message-state:mime-version:references:in-reply-to:from:date
+         :message-id:subject:to:cc;
+        bh=Xn2z91UfCtrgcaftSJI2dNlH0TFk/vXw21rz//Drd/M=;
+        b=CrDrx5zIhCR5MUSyNe5w/8jESsByO1+YtWuUdOZ1Xxr8Ful0+kbO5aCsipW1skZKgq
+         oJP57mY8zdGyLTFHynWa7H2EUBDntttKl8l++vnS+lmNT0Ndw5XLh+R9brMhz7jSmlr9
+         6FhNl6xCBCFbt6JNbwO8TS3ZM6rrF6qTwSkibBdV0MtvYwsM2PrluxkaKUsR8jegMCdl
+         WKY7tiPF6HFMROSVc+MFzQmehWJWbYkXdd5jKUEr2HeMnoaW8LXaiU13P+0bg8lX3BPr
+         tyxwyVgXFfVBhwlyZKgSDHB8qcCY23SB2KlJqbsP/edcKnKYOCW15I65JoNVordcbGWr
+         8GUw==
+X-Gm-Message-State: AOAM533TXE+8Y9KA3okzniFrSqPBkc9fGWYyhL6SuEMIRTx9VxXP94aR
+        QbsniR7MfhlBflz7Z+Pg9fwya37sT+kZcg==
+X-Google-Smtp-Source: ABdhPJztUV5M2tnUHHGyevwlCwtXaZR7hvl2CAm/NV2uPAw9oacBdV7J48ASJ7Q5WyJ1JCN6KN2big==
+X-Received: by 2002:a05:6102:3031:: with SMTP id v17mr3917259vsa.10.1599748963505;
+        Thu, 10 Sep 2020 07:42:43 -0700 (PDT)
+Received: from mail-vs1-f44.google.com (mail-vs1-f44.google.com. [209.85.217.44])
+        by smtp.gmail.com with ESMTPSA id s8sm923328vke.48.2020.09.10.07.42.42
+        for <devicetree@vger.kernel.org>
+        (version=TLS1_3 cipher=TLS_AES_128_GCM_SHA256 bits=128/128);
+        Thu, 10 Sep 2020 07:42:42 -0700 (PDT)
+Received: by mail-vs1-f44.google.com with SMTP id j3so3537972vsm.0
+        for <devicetree@vger.kernel.org>; Thu, 10 Sep 2020 07:42:42 -0700 (PDT)
+X-Received: by 2002:a67:d907:: with SMTP id t7mr4555810vsj.8.1599748961645;
+ Thu, 10 Sep 2020 07:42:41 -0700 (PDT)
 MIME-Version: 1.0
-In-Reply-To: <CAFd5g46ghV7ArmM8LnMkGa-Nip_fT934+3cPOkVxS-b5odZXYw@mail.gmail.com>
-Content-Type: text/plain; charset=utf-8; format=flowed
-Content-Transfer-Encoding: 7bit
-Content-Language: en-US
-X-TM-AS-GCONF: 00
-X-Proofpoint-Virus-Version: vendor=fsecure engine=2.50.10434:6.0.235,18.0.687
- definitions=2020-09-10_03:2020-09-10,2020-09-10 signatures=0
-X-Proofpoint-Spam-Details: rule=outbound_notspam policy=outbound score=0 priorityscore=1501
- impostorscore=0 spamscore=0 malwarescore=0 lowpriorityscore=0 adultscore=0
- clxscore=1015 suspectscore=0 bulkscore=0 phishscore=0 mlxlogscore=999
- mlxscore=0 classifier=spam adjust=0 reason=mlx scancount=1
- engine=8.12.0-2006250000 definitions=main-2009100120
+References: <1599742438-16811-1-git-send-email-skakit@codeaurora.org> <1599742438-16811-4-git-send-email-skakit@codeaurora.org>
+In-Reply-To: <1599742438-16811-4-git-send-email-skakit@codeaurora.org>
+From:   Doug Anderson <dianders@chromium.org>
+Date:   Thu, 10 Sep 2020 07:42:30 -0700
+X-Gmail-Original-Message-ID: <CAD=FV=Wxo6ggLN39UMtMNwd6GOQwnEjA1MCxHjB6cmE9RTRMPA@mail.gmail.com>
+Message-ID: <CAD=FV=Wxo6ggLN39UMtMNwd6GOQwnEjA1MCxHjB6cmE9RTRMPA@mail.gmail.com>
+Subject: Re: [PATCH V5 3/4] arm64: dts: qcom: sc7180-trogdor: Add pinctrl and
+ interrupt config for BT UART
+To:     satya priya <skakit@codeaurora.org>
+Cc:     Bjorn Andersson <bjorn.andersson@linaro.org>,
+        Matthias Kaehlcke <mka@chromium.org>,
+        Greg Kroah-Hartman <gregkh@linuxfoundation.org>,
+        Andy Gross <agross@kernel.org>,
+        Rob Herring <robh+dt@kernel.org>,
+        linux-arm-msm <linux-arm-msm@vger.kernel.org>,
+        "open list:OPEN FIRMWARE AND FLATTENED DEVICE TREE BINDINGS" 
+        <devicetree@vger.kernel.org>, LKML <linux-kernel@vger.kernel.org>,
+        Akash Asthana <akashast@codeaurora.org>,
+        Roja Rani Yarubandi <rojay@codeaurora.org>,
+        msavaliy@qti.qualcomm.com
+Content-Type: text/plain; charset="UTF-8"
 Sender: devicetree-owner@vger.kernel.org
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
+Hi,
 
-On 9/10/20 4:00 AM, Brendan Higgins wrote:
-> On Wed, Sep 9, 2020 at 1:31 PM Eddie James <eajames@linux.ibm.com> wrote:
->> Mask the IRQ status to only the bits that the driver checks. This
->> prevents excessive driver warnings when operating in slave mode
->> when additional bits are set that the driver doesn't handle.
->>
->> Signed-off-by: Eddie James <eajames@linux.ibm.com>
->> Reviewed-by: Tao Ren <rentao.bupt@gmail.com>
-> Sorry, looks like I didn't get my comment in in time.
+On Thu, Sep 10, 2020 at 5:55 AM satya priya <skakit@codeaurora.org> wrote:
 >
-> Looks good in principle. One minor comment below:
+> Add a suitable sleep configuration for uart3 to support Bluetooth wakeup.
 >
->> ---
->>   drivers/i2c/busses/i2c-aspeed.c | 2 ++
->>   1 file changed, 2 insertions(+)
->>
->> diff --git a/drivers/i2c/busses/i2c-aspeed.c b/drivers/i2c/busses/i2c-aspeed.c
->> index 31268074c422..724bf30600d6 100644
->> --- a/drivers/i2c/busses/i2c-aspeed.c
->> +++ b/drivers/i2c/busses/i2c-aspeed.c
->> @@ -69,6 +69,7 @@
->>    * These share bit definitions, so use the same values for the enable &
->>    * status bits.
->>    */
->> +#define ASPEED_I2CD_INTR_RECV_MASK                     0xf000ffff
-> Could we define ASPEED_I2CD_INTR_RECV_MASK to be ASPEED_I2CD_INTR_ALL ?
-
-
-That was my original thought... there is another define for that already 
-a few lines down though.
-
-
-Thanks,
-
-Eddie
-
-
+> If QUP function is selected in sleep state, UART RTS/RFR is pulled high
+> during suspend and BT SoC not able to send wakeup bytes. So, configure
+> GPIO mode in sleep state to keep it low during suspend.
 >
->>   #define ASPEED_I2CD_INTR_SDA_DL_TIMEOUT                        BIT(14)
->>   #define ASPEED_I2CD_INTR_BUS_RECOVER_DONE              BIT(13)
->>   #define ASPEED_I2CD_INTR_SLAVE_MATCH                   BIT(7)
->> @@ -604,6 +605,7 @@ static irqreturn_t aspeed_i2c_bus_irq(int irq, void *dev_id)
->>          writel(irq_received & ~ASPEED_I2CD_INTR_RX_DONE,
->>                 bus->base + ASPEED_I2C_INTR_STS_REG);
->>          readl(bus->base + ASPEED_I2C_INTR_STS_REG);
->> +       irq_received &= ASPEED_I2CD_INTR_RECV_MASK;
->>          irq_remaining = irq_received;
->>
->>   #if IS_ENABLED(CONFIG_I2C_SLAVE)
->> --
->> 2.26.2
->>
+> Signed-off-by: satya priya <skakit@codeaurora.org>
+> ---
+> Changes in V5:
+>  - Newly added in V5. This patch adds wakeup support for trogdor board files.
+>
+>  arch/arm64/boot/dts/qcom/sc7180-trogdor.dtsi | 48 ++++++++++++++++++++++++++++
+>  1 file changed, 48 insertions(+)
+
+Note: I can't find this email on any of the mailing lists.  Can you
+check your config?  I tried:
+
+http://lore.kernel.org/r/1599742438-16811-4-git-send-email-skakit@codeaurora.org
+
+...and also checked patchwork servers.  I only see patch 1 and 2.  I
+think Bjorn usually applies from patchwork so this'll likely be a
+problem...
+
+
+> diff --git a/arch/arm64/boot/dts/qcom/sc7180-trogdor.dtsi b/arch/arm64/boot/dts/qcom/sc7180-trogdor.dtsi
+> index a6b9beb..96b5331 100644
+> --- a/arch/arm64/boot/dts/qcom/sc7180-trogdor.dtsi
+> +++ b/arch/arm64/boot/dts/qcom/sc7180-trogdor.dtsi
+> @@ -792,6 +792,11 @@ ap_spi_fp: &spi10 {
+>  #include <arm/cros-ec-sbs.dtsi>
+>
+>  &uart3 {
+> +       pinctrl-names = "default", "sleep";
+> +       pinctrl-1 = <&qup_uart3_sleep>;
+> +       interrupts-extended = <&intc GIC_SPI 604 IRQ_TYPE_LEVEL_HIGH>,
+> +                               <&tlmm 41 IRQ_TYPE_EDGE_FALLING>;
+> +
+>         status = "okay";
+
+Same comments here as for patch #2.
+
+
+>         bluetooth: bluetooth {
+> @@ -1345,4 +1350,47 @@ ap_spi_fp: &spi10 {
+>                         drive-strength = <2>;
+>                 };
+>         };
+> +
+> +       qup_uart3_sleep: qup-uart3-sleep {
+
+I believe things in this section are supposed to be sorted
+alphabetically.  Thus "qup..." should be sorted before "trackpad..."
