@@ -2,91 +2,95 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from vger.kernel.org (vger.kernel.org [23.128.96.18])
-	by mail.lfdr.de (Postfix) with ESMTP id 6918A264945
-	for <lists+devicetree@lfdr.de>; Thu, 10 Sep 2020 18:03:35 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTP id 32A7E26499D
+	for <lists+devicetree@lfdr.de>; Thu, 10 Sep 2020 18:22:41 +0200 (CEST)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S1731503AbgIJQBl (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Thu, 10 Sep 2020 12:01:41 -0400
-Received: from a27-185.smtp-out.us-west-2.amazonses.com ([54.240.27.185]:45292
-        "EHLO a27-185.smtp-out.us-west-2.amazonses.com" rhost-flags-OK-OK-OK-OK)
-        by vger.kernel.org with ESMTP id S1731490AbgIJQAJ (ORCPT
-        <rfc822;devicetree@vger.kernel.org>);
-        Thu, 10 Sep 2020 12:00:09 -0400
-DKIM-Signature: v=1; a=rsa-sha256; q=dns/txt; c=relaxed/simple;
-        s=zsmsymrwgfyinv5wlfyidntwsjeeldzt; d=codeaurora.org; t=1599753578;
-        h=From:To:Cc:Subject:References:Date:In-Reply-To:Message-ID:MIME-Version:Content-Type;
-        bh=no4xzk5dl0DZKu3yUy/aceo++Mol/reXQMZo5+6oVlQ=;
-        b=CiZHkvSL4bMmh+qQ11uG7MbYW4uMlL0lTFdYbN/dXguilmjr27AdVOj8vr0+KbCy
-        dM80HgUJ4YfPCfovCH8T7qTDVhJK7LUWVrfLtin1rTvNnlU5kZ1mLizc1i1ICqgH5Yn
-        XFmvZx2AIJi7a9eUEHKvOlTnj0qzAIOPs88+KF00=
-DKIM-Signature: v=1; a=rsa-sha256; q=dns/txt; c=relaxed/simple;
-        s=hsbnp7p3ensaochzwyq5wwmceodymuwv; d=amazonses.com; t=1599753578;
-        h=From:To:Cc:Subject:References:Date:In-Reply-To:Message-ID:MIME-Version:Content-Type:Feedback-ID;
-        bh=no4xzk5dl0DZKu3yUy/aceo++Mol/reXQMZo5+6oVlQ=;
-        b=dddedF+dAsRi1kD+OZUzAlpFu/REI8s/VEA8IBNbeOh40MLL2Qz9sS+CsAc/HSXG
-        y44uNSosJJxfnitXyjSeFO2BBpFnyReFOaXfZcspKls0utPkc+NzSsRWM8aI8+7dmNo
-        G+hgOzoIyXYFPS/h6iEq6+4Y2CpziZVVYy9Zd4So=
-X-Spam-Checker-Version: SpamAssassin 3.4.0 (2014-02-07) on
-        aws-us-west-2-caf-mail-1.web.codeaurora.org
-X-Spam-Level: 
-X-Spam-Status: No, score=-2.9 required=2.0 tests=ALL_TRUSTED,BAYES_00,SPF_FAIL,
-        URIBL_BLOCKED autolearn=no autolearn_force=no version=3.4.0
-DMARC-Filter: OpenDMARC Filter v1.3.2 smtp.codeaurora.org 932C9C433CA
-Authentication-Results: aws-us-west-2-caf-mail-1.web.codeaurora.org; dmarc=none (p=none dis=none) header.from=codeaurora.org
-Authentication-Results: aws-us-west-2-caf-mail-1.web.codeaurora.org; spf=fail smtp.mailfrom=kvalo@codeaurora.org
-From:   Kalle Valo <kvalo@codeaurora.org>
-To:     Anilkumar Kolli <akolli@codeaurora.org>
-Cc:     ath11k@lists.infradead.org, devicetree@vger.kernel.org,
-        linux-wireless@vger.kernel.org
-Subject: Re: [PATCH v7 3/3] ath11k: add ipq6018 support
-References: <1599551717-3801-1-git-send-email-akolli@codeaurora.org>
-        <010101746cb68afd-6bca691b-12eb-40bd-bf2d-f22769b756ed-000000@us-west-2.amazonses.com>
-Date:   Thu, 10 Sep 2020 15:59:38 +0000
-In-Reply-To: <010101746cb68afd-6bca691b-12eb-40bd-bf2d-f22769b756ed-000000@us-west-2.amazonses.com>
-        (Anilkumar Kolli's message of "Tue, 8 Sep 2020 07:55:36 +0000")
-Message-ID: <0101017478be67b1-30e23aef-2da8-4355-b4d9-142972261c3e-000000@us-west-2.amazonses.com>
-User-Agent: Gnus/5.13 (Gnus v5.13) Emacs/24.5 (gnu/linux)
+        id S1726835AbgIJQWi (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Thu, 10 Sep 2020 12:22:38 -0400
+Received: from mout.gmx.net ([212.227.17.21]:48765 "EHLO mout.gmx.net"
+        rhost-flags-OK-OK-OK-OK) by vger.kernel.org with ESMTP
+        id S1726109AbgIJQVG (ORCPT <rfc822;devicetree@vger.kernel.org>);
+        Thu, 10 Sep 2020 12:21:06 -0400
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=gmx.net;
+        s=badeba3b8450; t=1599754831;
+        bh=NbW0cwlVTptfiRCTVkmRdPqGiB8hKc7GXoxgdPOoYcE=;
+        h=X-UI-Sender-Class:From:To:Cc:Subject:Date;
+        b=cwOhTSGavDrdH3L+s9heE7IXMtrHkarayM8P9VN+ttl1dlpXh7kpzgLz4TNuUjj4y
+         DGi6CkJnQ44wjzssi4VfNPylu3RBTgB/SB51Vpe6SXjtW8/iaZffo4DB3IeVn+DmUF
+         7t20qGGtlZMfYGgHyX7xhQH7ltdMv8LEZKdyqBj4=
+X-UI-Sender-Class: 01bb95c1-4bf8-414a-932a-4f6e2808ef9c
+Received: from LT02.fritz.box ([178.202.41.107]) by mail.gmx.com (mrgmx105
+ [212.227.17.174]) with ESMTPSA (Nemesis) id 1MuDXp-1kXGR13oGz-00ucxq; Thu, 10
+ Sep 2020 18:20:31 +0200
+From:   Heinrich Schuchardt <xypron.glpk@gmx.de>
+To:     Rob Herring <robh+dt@kernel.org>,
+        Mark Rutland <mark.rutland@arm.com>
+Cc:     devicetree@vger.kernel.org, linux-kernel@vger.kernel.org,
+        Ard Biesheuvel <ardb@kernel.org>,
+        Grant Likely <grant.likely@arm.com>,
+        Heinrich Schuchardt <xypron.glpk@gmx.de>
+Subject: [PATCH 1/1] of: properties of reserved-memory nodes
+Date:   Thu, 10 Sep 2020 18:20:20 +0200
+Message-Id: <20200910162020.3927-1-xypron.glpk@gmx.de>
+X-Mailer: git-send-email 2.28.0
 MIME-Version: 1.0
-Content-Type: text/plain
-X-SES-Outgoing: 2020.09.10-54.240.27.185
-Feedback-ID: 1.us-west-2.CZuq2qbDmUIuT3qdvXlRHZZCpfZqZ4GtG9v3VKgRyF0=:AmazonSES
+Content-Transfer-Encoding: quoted-printable
+X-Provags-ID: V03:K1:DOgYbhvSJCp25Kh7HDVu9hQRp552LHwiNou/oQcYVi3lJGfF+Qm
+ 27rJ0h5ayaBP+Be6QK7+Mp2ghPs+lLsgeg1qnm6Mbz3nxLCug0ak6hk8viG+K+d1j1VdhAN
+ IY1VIgLHnOtKUFVjYKgo8ZNkAKmhcck5Hx+TlFhD2fFh91qSc+m/rmjrTpwU1rikcdqvaqH
+ 3ZSlufLo9rP/Zl24Gid5g==
+X-Spam-Flag: NO
+X-UI-Out-Filterresults: notjunk:1;V03:K0:FNKs8fnwmMk=:hKfF1w90R6Kr6H4LGRMYjZ
+ ZQQGhzeeystWBgjOeVRiU/ZP1H0gZREYohf493dErswDUXAhI2fcMvyB2zcHWCq3+3qxSD6Ds
+ knVQJe6HDHeaBhrQhI5KhIC8MNHsHykB8zEa631GzJj7Mire2vhCCNfgbeTFkbcY/fDd8Nj/c
+ qWzH9lrjNqcIuUgBI6jfXOrkg4qM3cnoxCBqQwp6YJS5u5NbMYRuG/gbBtQteg063hpCinW4a
+ PcBhggAC8+aZOSJ9gXEtaQYLa7Wz8DP7w5VgEemZGMTG+5OJgc32D0mNGiKykBlTQiankw7NY
+ b3a7FjKsADtEzshVFOyHNL+SB3Egz8gscgKYgCuU8JykfRHCTAqJte94Smt3J0pbvOl/nCVyV
+ VpEW8y5SbirHSCySD1KcK9MiZ6eAluZLzzvQoSd1Cp5MbImyKYleXyWyCzMXys8NT8CD9YfSW
+ 7cbL6LM4/2h7YLG7RP7kj9UVE+Wy9vY5Gvbg9YKP6Qn9a1CcUkkUZT7RfmlBOHiCQ/zEscb1S
+ /tUtJvlgO+KV0vOTo6nxSHB77G6qXXrlBAdYcBqoo/fJu9WOeHaTZS9MTgSBGZ2lsKcztMym6
+ zWxvHBck0Kis3HM1iJOOU/f1Z1HrYKP2c3nT6mBjjGSYUrOYIZd+P9o9ZUITeK+hI88dZfcZ2
+ ZFBZQJMZE5yXCDqqBFw9qm4fOH0abCxJBV/yL806jJu0wIXXjCqV26K9FUan2yBeXe1nF67m2
+ A+mACEHZDBWhqT1E63dYq3TXVl2sl93gWNtH8Z4QpfmmHn+9yqa5wcw59Y6BllXv0xsyC+dLe
+ ylj0TGfDp7SOnPG6LOe2AfxO88/hONeonGDo6URpeTb1qbuXx5KdqzKSgEUYSqRRaDOlqmWyY
+ Fvsuo+yqfNSWBU/MCRPfMdCpAgxkZMBIKdBNhgixGItiYs7Kl7PzgrcBI4JgWI35CVPMA41QI
+ AwrJSbDmDIu9BKrP/cCS8ho23Zueab4Dk6Yh0XZgrTKpM7GMuSOqnJ4ILzrYunC9w2FNFqgL0
+ rkzFXGV//pvJCq967qxXeX7m6B9r+JZzdL/OzxyOpOBOo6viR9DVMFio2m8pAYyAI6AB5FyNw
+ WDbttHmsVgM6z/32UxdPNBG9AeztXxMioAUW1R0XmNqmtyS5d05rCWBPxjiSrObmEzWKgzmri
+ URI8BbvFJgpo4kziEIr5F+AHnn9EjGSk9PwpB1SeMa7bpL9o8WrB9ScTzHxf2jX7ucj2rhFL3
+ QJEF47nlpbtjnmem3StIB/z851dpzNep0em1kgQ==
 Sender: devicetree-owner@vger.kernel.org
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-Anilkumar Kolli <akolli@codeaurora.org> writes:
+The reusable and the no-map property are mutually exclusive.
+Clarify this in the documentation.
 
-> IPQ6018 has one 5G and one 2G radio with 2x2,
-> shares ipq8074 configurations.
->
-> Tested on: IPQ6018 hw1.0 AHB WLAN.HK.2.2-02134-QCAHKSWPL_SILICONZ-1
-> Tested on: IPQ8074 hw2.0 AHB WLAN.HK.2.4.0.1-00009-QCAHKSWPL_SILICONZ-1
->
-> Signed-off-by: Anilkumar Kolli <akolli@codeaurora.org>
+Signed-off-by: Heinrich Schuchardt <xypron.glpk@gmx.de>
+=2D--
+ .../devicetree/bindings/reserved-memory/reserved-memory.txt    | 3 +++
+ 1 file changed, 3 insertions(+)
 
-[...]
+diff --git a/Documentation/devicetree/bindings/reserved-memory/reserved-me=
+mory.txt b/Documentation/devicetree/bindings/reserved-memory/reserved-memo=
+ry.txt
+index bac4afa3b197..eb987203548f 100644
+=2D-- a/Documentation/devicetree/bindings/reserved-memory/reserved-memory.=
+txt
++++ b/Documentation/devicetree/bindings/reserved-memory/reserved-memory.tx=
+t
+@@ -64,6 +64,9 @@ reusable (optional) - empty property
+       system can use that region to store volatile or cached data that
+       can be otherwise regenerated or migrated elsewhere.
 
-> --- a/drivers/net/wireless/ath/ath11k/core.h
-> +++ b/drivers/net/wireless/ath/ath11k/core.h
-> @@ -90,6 +90,7 @@ struct ath11k_skb_rxcb {
->  
->  enum ath11k_hw_rev {
->  	ATH11K_HW_IPQ8074,
-> +	ATH11K_HW_IPQ6018,
->  	ATH11K_HW_QCA6390_HW20,
->  };
++A node must not carry both the no-map and the reusable property as these =
+are
++logically contradictory.
++
+ Linux implementation note:
+ - If a "linux,cma-default" property is present, then Linux will use the
+   region for the default pool of the contiguous memory allocator.
+=2D-
+2.28.0
 
-In the pending branch I changed this to:
-
-enum ath11k_hw_rev {
-	ATH11K_HW_IPQ8074,
-	ATH11K_HW_QCA6390_HW20,
-	ATH11K_HW_IPQ6018_HW10,
-};
-
-Also ATH11K_HW_IPQ8074 should be renamed to ATH11K_HW_IPQ8074_HW20, but
-in a separate patch later.
-
--- 
-https://wireless.wiki.kernel.org/en/developers/documentation/submittingpatches
