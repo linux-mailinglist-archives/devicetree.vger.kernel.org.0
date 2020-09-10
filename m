@@ -2,57 +2,132 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from vger.kernel.org (vger.kernel.org [23.128.96.18])
-	by mail.lfdr.de (Postfix) with ESMTP id 315822654F9
-	for <lists+devicetree@lfdr.de>; Fri, 11 Sep 2020 00:22:42 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTP id C6477265553
+	for <lists+devicetree@lfdr.de>; Fri, 11 Sep 2020 01:06:47 +0200 (CEST)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S1725798AbgIJWWj (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Thu, 10 Sep 2020 18:22:39 -0400
-Received: from lindbergh.monkeyblade.net ([23.128.96.19]:45442 "EHLO
+        id S1725300AbgIJXGp (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Thu, 10 Sep 2020 19:06:45 -0400
+Received: from lindbergh.monkeyblade.net ([23.128.96.19]:52264 "EHLO
         lindbergh.monkeyblade.net" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S1725294AbgIJWWi (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Thu, 10 Sep 2020 18:22:38 -0400
-Received: from shards.monkeyblade.net (shards.monkeyblade.net [IPv6:2620:137:e000::1:9])
-        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id CDFD1C061756;
-        Thu, 10 Sep 2020 15:22:37 -0700 (PDT)
-Received: from localhost (unknown [IPv6:2601:601:9f00:477::3d5])
-        (using TLSv1 with cipher AES256-SHA (256/256 bits))
-        (Client did not present a certificate)
-        (Authenticated sender: davem-davemloft)
-        by shards.monkeyblade.net (Postfix) with ESMTPSA id 4010C135ED631;
-        Thu, 10 Sep 2020 15:05:49 -0700 (PDT)
-Date:   Thu, 10 Sep 2020 15:22:35 -0700 (PDT)
-Message-Id: <20200910.152235.1512682061673845419.davem@davemloft.net>
-To:     krzk@kernel.org
-Cc:     kuba@kernel.org, robh+dt@kernel.org, k.opasiak@samsung.com,
-        kgene@kernel.org, linux-kernel@vger.kernel.org,
-        netdev@vger.kernel.org, devicetree@vger.kernel.org,
-        linux-nfc@lists.01.org, linux-arm-kernel@lists.infradead.org,
-        linux-samsung-soc@vger.kernel.org
-Subject: Re: [PATCH v3 0/8] nfc: s3fwrn5: Few cleanups
-From:   David Miller <davem@davemloft.net>
-In-Reply-To: <20200910161219.6237-1-krzk@kernel.org>
-References: <20200910161219.6237-1-krzk@kernel.org>
-X-Mailer: Mew version 6.8 on Emacs 27.1
-Mime-Version: 1.0
-Content-Type: Text/Plain; charset=us-ascii
-Content-Transfer-Encoding: 7bit
-X-Greylist: Sender succeeded SMTP AUTH, not delayed by milter-greylist-4.5.12 (shards.monkeyblade.net [2620:137:e000::1:9]); Thu, 10 Sep 2020 15:05:49 -0700 (PDT)
+        with ESMTP id S1725294AbgIJXGn (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Thu, 10 Sep 2020 19:06:43 -0400
+Received: from mail-qt1-x841.google.com (mail-qt1-x841.google.com [IPv6:2607:f8b0:4864:20::841])
+        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id C7B89C061573
+        for <devicetree@vger.kernel.org>; Thu, 10 Sep 2020 16:06:42 -0700 (PDT)
+Received: by mail-qt1-x841.google.com with SMTP id 19so6321757qtp.1
+        for <devicetree@vger.kernel.org>; Thu, 10 Sep 2020 16:06:42 -0700 (PDT)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+        d=linaro.org; s=google;
+        h=date:from:to:cc:subject:message-id:references:mime-version
+         :content-disposition:in-reply-to;
+        bh=NDyjd2iMqequc7LRMcRbG7To5TWvVyedy/KOdmHGA9k=;
+        b=gSNaWPdEY2QnZcjph+epkQoIRckMJ874n0EFerBdUUjyUl30uIWC34VWoHykoJjQ2E
+         LN6wVH8yVGRLppCxyuiY0kt80KWFDFQiTkmaSgmu+hAuWpTiNqVNLOP8xx0sm3oagMAK
+         LS3rYYs5b0CjLr4QYfdFymg1HeGqT4gMXc/0KpHr6N7uvpfAqSB4j7t78+WfK6eBcu6R
+         TNXKjNwS/tZ/jQ8dslR7h8Wx51Mbm4uE7jjsvWar+SQ4a1TA3Yk1hP+zwMFH0HhgCVIr
+         lDdfV7C3fE7uYZh82uHb5FyEvrmCINbklup9YkD6ZmBLHnkbyLW+++sR1/UOpvP+1LPq
+         3DHg==
+X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+        d=1e100.net; s=20161025;
+        h=x-gm-message-state:date:from:to:cc:subject:message-id:references
+         :mime-version:content-disposition:in-reply-to;
+        bh=NDyjd2iMqequc7LRMcRbG7To5TWvVyedy/KOdmHGA9k=;
+        b=p1ynUAITVu9kQY3IauEzRF7UsiwM4MWTzd3uJjqTU2cveQi2jHAAzf/EzVkxwxEQ1N
+         pIbMkMbpcP6Es8oT1fzYpiuhWBuTwRVqMmLO19RPfLselhaKUCkZqYymUV/CAVOOnXTe
+         KLbQgra9DzE+jKNV7kwFNX54Hb0NGkAr0kFT0C5tjJhNdgOpi4AHWEWVHMjwFFxTPYqW
+         B4yA3NWgZNNfyqH6SPOyYzAykRwukBX5qR/Cp1S1cq1vwbcVMpl5sRkjC/YmGXh2cMrq
+         cokk5ZLMogxyHlxAKSjHPRmgcnNeslKYrLe96+FcgmkLc62OMMdIFhCqZqljl0cIEo8i
+         jHzg==
+X-Gm-Message-State: AOAM533Nc5yHIFtcKph1pZP37Retet5I9Llralq4CmrVJgM4qteVx5p5
+        cNKqpBBTPaZsBqnYqGBuueecdQ==
+X-Google-Smtp-Source: ABdhPJwUNn1cTdcJJNctsCsTgJWF1pa/DKRujT7/DrPwH/+LKqQh/m6CHBbRIBeoyfdun9zY14Czpw==
+X-Received: by 2002:ac8:7188:: with SMTP id w8mr3165127qto.134.1599779201381;
+        Thu, 10 Sep 2020 16:06:41 -0700 (PDT)
+Received: from uller (ec2-34-197-84-77.compute-1.amazonaws.com. [34.197.84.77])
+        by smtp.gmail.com with ESMTPSA id u55sm288593qtu.42.2020.09.10.16.06.40
+        (version=TLS1_3 cipher=TLS_AES_256_GCM_SHA384 bits=256/256);
+        Thu, 10 Sep 2020 16:06:40 -0700 (PDT)
+Date:   Thu, 10 Sep 2020 23:06:39 +0000
+From:   Bjorn Andersson <bjorn.andersson@linaro.org>
+To:     satya priya <skakit@codeaurora.org>, gregkh@linuxfoundation.org
+Cc:     Matthias Kaehlcke <mka@chromium.org>,
+        Andy Gross <agross@kernel.org>,
+        Rob Herring <robh+dt@kernel.org>,
+        linux-arm-msm@vger.kernel.org, devicetree@vger.kernel.org,
+        linux-kernel@vger.kernel.org, akashast@codeaurora.org,
+        rojay@codeaurora.org, msavaliy@qti.qualcomm.com,
+        dianders@chromium.org
+Subject: Re: [PATCH V5 4/4] tty: serial: qcom_geni_serial: Fix the UART
+ wakeup issue
+Message-ID: <20200910230639.GB472@uller>
+References: <1599742438-16811-1-git-send-email-skakit@codeaurora.org>
+ <1599742438-16811-5-git-send-email-skakit@codeaurora.org>
+MIME-Version: 1.0
+Content-Type: text/plain; charset=us-ascii
+Content-Disposition: inline
+In-Reply-To: <1599742438-16811-5-git-send-email-skakit@codeaurora.org>
 Sender: devicetree-owner@vger.kernel.org
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-From: Krzysztof Kozlowski <krzk@kernel.org>
-Date: Thu, 10 Sep 2020 18:12:11 +0200
+On Thu 10 Sep 12:53 UTC 2020, satya priya wrote:
 
-> Changes since v2:
-> 1. Fix dtschema ID after rename (patch 1/8).
-> 2. Apply patch 9/9 (defconfig change).
+> As a part of system suspend uart_port_suspend is called from the
+> Serial driver, which calls set_mctrl passing mctrl as 0. This
+> makes RFR high(NOT_READY) during suspend.
 > 
-> Changes since v1:
-> 1. Rename dtschema file and add additionalProperties:false, as Rob
->    suggested,
-> 2. Add Marek's tested-by,
-> 3. New patches: #4, #5, #6, #7 and #9.
+> Due to this BT SoC is not able to send wakeup bytes to UART during
+> suspend. Include if check for non-suspend case to keep RFR low
+> during suspend.
+> 
 
-Seires applied to net-next, thanks.
+Seems reasonable.
+
+Reviewed-by: Bjorn Andersson <bjorn.andersson@linaro.org>
+
+> Signed-off-by: satya priya <skakit@codeaurora.org>
+> Acked-by: Greg Kroah-Hartman <gregkh@linuxfoundation.org>
+
+Greg, I don't see this depending on anything else, will you pick this
+patch through your tree? I will take the dts patches through the qcom
+tree.
+
+Regards,
+Bjorn
+
+> Reviewed-by: Akash Asthana <akashast@codeaurora.org>
+> ---
+> Changes in V2:
+>  - This patch fixes the UART flow control issue during suspend.
+>    Newly added in V2.
+> 
+> Changes in V3:
+>  - As per Matthias's comment removed the extra parentheses.
+> 
+> Changes in V4:
+>  - No change.
+> 
+> Changes in V5:
+>  - As per Matthias comment, fixed nit-pick in commit text.
+> 
+>  drivers/tty/serial/qcom_geni_serial.c | 2 +-
+>  1 file changed, 1 insertion(+), 1 deletion(-)
+> 
+> diff --git a/drivers/tty/serial/qcom_geni_serial.c b/drivers/tty/serial/qcom_geni_serial.c
+> index 3aa29d2..bc63c54 100644
+> --- a/drivers/tty/serial/qcom_geni_serial.c
+> +++ b/drivers/tty/serial/qcom_geni_serial.c
+> @@ -242,7 +242,7 @@ static void qcom_geni_serial_set_mctrl(struct uart_port *uport,
+>  	if (mctrl & TIOCM_LOOP)
+>  		port->loopback = RX_TX_CTS_RTS_SORTED;
+>  
+> -	if (!(mctrl & TIOCM_RTS))
+> +	if (!(mctrl & TIOCM_RTS) && !uport->suspended)
+>  		uart_manual_rfr = UART_MANUAL_RFR_EN | UART_RFR_NOT_READY;
+>  	writel(uart_manual_rfr, uport->membase + SE_UART_MANUAL_RFR);
+>  }
+> -- 
+> QUALCOMM INDIA, on behalf of Qualcomm Innovation Center, Inc. is a member 
+> of Code Aurora Forum, hosted by The Linux Foundation
+> 
