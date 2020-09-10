@@ -2,92 +2,94 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from vger.kernel.org (vger.kernel.org [23.128.96.18])
-	by mail.lfdr.de (Postfix) with ESMTP id 7001F263D29
-	for <lists+devicetree@lfdr.de>; Thu, 10 Sep 2020 08:21:06 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTP id 7C308263D63
+	for <lists+devicetree@lfdr.de>; Thu, 10 Sep 2020 08:29:00 +0200 (CEST)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S1726079AbgIJGVD (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Thu, 10 Sep 2020 02:21:03 -0400
-Received: from mail.kernel.org ([198.145.29.99]:48470 "EHLO mail.kernel.org"
-        rhost-flags-OK-OK-OK-OK) by vger.kernel.org with ESMTP
-        id S1725971AbgIJGVD (ORCPT <rfc822;devicetree@vger.kernel.org>);
-        Thu, 10 Sep 2020 02:21:03 -0400
-Received: from localhost (p5486ceec.dip0.t-ipconnect.de [84.134.206.236])
-        (using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
-        (No client certificate requested)
-        by mail.kernel.org (Postfix) with ESMTPSA id BED97207DE;
-        Thu, 10 Sep 2020 06:21:01 +0000 (UTC)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=kernel.org;
-        s=default; t=1599718862;
-        bh=JWNUxWZbGJJ1fihwnRRpBTK9XQnFPsAPD0+ab1fseg0=;
-        h=Date:From:To:Cc:Subject:References:In-Reply-To:From;
-        b=fbiWPiLGCvPfrqWWZo5JFgb0/Uw26pu9zVq68ZQqhDRwSWZe7agcZkOIx1SnYzMrh
-         hnkhvpGayepHpld0KmFCoOuDnFXWPZ3SrV6glb+8+a81MN0AIqWOSVgFBX+/2a7T7+
-         cFq8vyvDSlE68w43+QHICEgzMmKiGQGYDpZIWA38=
-Date:   Thu, 10 Sep 2020 08:20:58 +0200
-From:   Wolfram Sang <wsa@kernel.org>
-To:     Eddie James <eajames@linux.ibm.com>
-Cc:     linux-input@vger.kernel.org, devicetree@vger.kernel.org,
-        linux-aspeed@lists.ozlabs.org, linux-i2c@vger.kernel.org,
-        linux-kernel@vger.kernel.org, robh+dt@kernel.org,
-        dmitry.torokhov@gmail.com, joel@jms.id.au, andrew@aj.id.au,
-        benh@kernel.crashing.org, brendanhiggins@google.com,
-        rentao.bupt@gmail.com, ryan_chen@aspeedtech.com
-Subject: Re: [PATCH v3 3/5] i2c: aspeed: Mask IRQ status to relevant bits
-Message-ID: <20200910062058.GC1031@ninjato>
-References: <20200909203059.23427-1-eajames@linux.ibm.com>
- <20200909203059.23427-4-eajames@linux.ibm.com>
- <20200910061813.GB1031@ninjato>
+        id S1726440AbgIJG25 (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Thu, 10 Sep 2020 02:28:57 -0400
+Received: from mail-ot1-f65.google.com ([209.85.210.65]:45581 "EHLO
+        mail-ot1-f65.google.com" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
+        with ESMTP id S1726345AbgIJG2v (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Thu, 10 Sep 2020 02:28:51 -0400
+Received: by mail-ot1-f65.google.com with SMTP id g96so4420233otb.12;
+        Wed, 09 Sep 2020 23:28:51 -0700 (PDT)
+X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+        d=1e100.net; s=20161025;
+        h=x-gm-message-state:mime-version:references:in-reply-to:from:date
+         :message-id:subject:to:cc;
+        bh=KqtdSuTRwMp9QS5pGe926THwPMAioOqNmc/5xqurX1c=;
+        b=SX3xduY3nXs1Q2Mp4z+Jlxc20fN/b7OgB5YLIR1+BkpyW39CBrbW2odWogNbLYCLmn
+         riSWJzZrrUb/n7JQuCX2LOO3csb8Sr8wRARafe9evvaq0h5V63xyFUkpaaamUftDiU7b
+         9rz7OhnMOnIjsUa8QeDmo6Ha6UBCXuVeNlOr7Em0AWsSYNsrmHpxbMhHJgzvGPzWYqJp
+         tIitH1oEgjXRqWQ3sDuSH40pF9Kv28gpsrY2+xrOBQRyKKezDik5UZInm8dvzfPGr9BU
+         TCiMcHabuTb7NUvXm9Qh9RTnsQ4MnXMCdAmcGQXTTbgiFviWaNWmqoh87dGscUuRDXR/
+         SKQA==
+X-Gm-Message-State: AOAM533JYLBLIKxDMETbk92tI7sPaRPch96jBv3RfKSK1pRRIoJcY5MS
+        5IlOQhrxTADS/hO57gfQsJEtruPuVs4PbDnBxQ8=
+X-Google-Smtp-Source: ABdhPJz8XUiox/5ZXXlI+8Pg9NkomON+3KLHXKVnsHq0uMfea1KNhQK3wpXGTl0lUJyvbCz9iRWBrC0+goIxsDmInd0=
+X-Received: by 2002:a9d:3b76:: with SMTP id z109mr3073295otb.250.1599719330843;
+ Wed, 09 Sep 2020 23:28:50 -0700 (PDT)
 MIME-Version: 1.0
-Content-Type: multipart/signed; micalg=pgp-sha512;
-        protocol="application/pgp-signature"; boundary="adJ1OR3c6QgCpb/j"
-Content-Disposition: inline
-In-Reply-To: <20200910061813.GB1031@ninjato>
-User-Agent: Mutt/1.10.1 (2018-07-13)
+References: <1599470390-29719-1-git-send-email-yoshihiro.shimoda.uh@renesas.com>
+ <1599470390-29719-12-git-send-email-yoshihiro.shimoda.uh@renesas.com>
+ <CAMuHMdXsOki08u_Kf_xsm0OqddKL6RwmWLX+r+sekWYrgXf83w@mail.gmail.com> <TY2PR01MB3692490B65EB4DFDF9BB5D73D8270@TY2PR01MB3692.jpnprd01.prod.outlook.com>
+In-Reply-To: <TY2PR01MB3692490B65EB4DFDF9BB5D73D8270@TY2PR01MB3692.jpnprd01.prod.outlook.com>
+From:   Geert Uytterhoeven <geert@linux-m68k.org>
+Date:   Thu, 10 Sep 2020 08:28:38 +0200
+Message-ID: <CAMuHMdX6osANqLEybj6LXzB=ZgtsWcsiWxbdD8p0yLN=EOB8cQ@mail.gmail.com>
+Subject: Re: [PATCH 11/14] soc: renesas: rcar-rst: Add support for R-Car V3U
+To:     Yoshihiro Shimoda <yoshihiro.shimoda.uh@renesas.com>
+Cc:     Magnus Damm <magnus.damm@gmail.com>,
+        Rob Herring <robh+dt@kernel.org>,
+        Linux-Renesas <linux-renesas-soc@vger.kernel.org>,
+        "open list:OPEN FIRMWARE AND FLATTENED DEVICE TREE BINDINGS" 
+        <devicetree@vger.kernel.org>
+Content-Type: text/plain; charset="UTF-8"
 Sender: devicetree-owner@vger.kernel.org
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
+Hi Shimoda-san,
 
---adJ1OR3c6QgCpb/j
-Content-Type: text/plain; charset=us-ascii
-Content-Disposition: inline
-Content-Transfer-Encoding: quoted-printable
+On Thu, Sep 10, 2020 at 6:45 AM Yoshihiro Shimoda
+<yoshihiro.shimoda.uh@renesas.com> wrote:
+> > From: Geert Uytterhoeven, Sent: Tuesday, September 8, 2020 8:36 PM
+> > On Mon, Sep 7, 2020 at 11:20 AM Yoshihiro Shimoda
+> > <yoshihiro.shimoda.uh@renesas.com> wrote:
+> > > Add support for R-Car V3U (R8A779A0) to the R-Car RST driver.
+> > >
+> > > Signed-off-by: Yoshihiro Shimoda <yoshihiro.shimoda.uh@renesas.com>
 
-On Thu, Sep 10, 2020 at 08:18:13AM +0200, Wolfram Sang wrote:
-> On Wed, Sep 09, 2020 at 03:30:57PM -0500, Eddie James wrote:
-> > Mask the IRQ status to only the bits that the driver checks. This
-> > prevents excessive driver warnings when operating in slave mode
-> > when additional bits are set that the driver doesn't handle.
-> >=20
-> > Signed-off-by: Eddie James <eajames@linux.ibm.com>
-> > Reviewed-by: Tao Ren <rentao.bupt@gmail.com>
->=20
-> I reconsidered and applied it now because this helps whenever slave mode
-> is used. So, applied to for-current, thanks!
+> > > --- a/drivers/soc/renesas/rcar-rst.c
+> > > +++ b/drivers/soc/renesas/rcar-rst.c
+> > > @@ -37,6 +37,10 @@ static const struct rst_config rcar_rst_gen3 __initconst = {
+> > >         .modemr = 0x60,
+> > >  };
+> > >
+> > > +static const struct rst_config rcar_rst_r8a779a0 __initconst = {
+> > > +       .modemr = 0x00,         /* MODEMR0 and it has CPG related bits */
+> >
+> > Do you need the bits from MODEMR1, too?
+> > Perhaps the time is ripe to add rcar_rst_read_mode_pins64(),
+> > so users can access more than 32 bits on SoCs that provide it (R-Car
+> > V3H and V3U)?
+>
+> I think so. However, main users of rcar_rst_read_mode_pins()
+> are cpg drivers for now. So, perhaps no one uses more than 32 bits for now.
 
-If someone could provide a Fixes tag, that would be welcome. For me, not
-knowing the HW it doesn't look trivial to determine.
+We can always add rcar_rst_read_mode_pins64() when it becomes really
+needed.
 
+Hence i.e. will queue this as-is in renesas-devel for v5.10.
 
---adJ1OR3c6QgCpb/j
-Content-Type: application/pgp-signature; name="signature.asc"
+Gr{oetje,eeting}s,
 
------BEGIN PGP SIGNATURE-----
+                        Geert
 
-iQIzBAABCgAdFiEEOZGx6rniZ1Gk92RdFA3kzBSgKbYFAl9ZxckACgkQFA3kzBSg
-KbZ3iA//cQfh41pbKdqYAo099C5IRm15SZnDi0WxKZpIYlYR22XokN01zfTYj/vX
-AIy+9J85UNFbLBhrASWn/Zuu7/4VkAKQgBPZChEH6EJ4wRe9RGHg6+Em21n0gqR9
-pyWNMkX4S/iSeLdhsi0HZ23Lg9KyN8tFUiw1Wj4DCcQGEDe8W1oOBkW1X1r2YLTk
-p99q/blvdOcfPUqfSFRxBYCKFYwipTllZMAklQ52sHDKpabgIxdNtUsffSrZaabr
-4UNtkX4cf+S5KZb87uXXb3zeVFRpr/tls4CQDAMyJHiqvrMT9gLGmpmKAX93RDy9
-dln32Q1uJbhiTjQc/tTuxQiiCiexc0vpk0uf1yliEbToVzb7rLCXz/ms9sY+oPZM
-tOzbG8/ERYdkUAbdkMIrgASNgDgrQvISH8pyLIIGfrGsiz2FcFBHUCBCONeyZgR8
-kndwyqr0plUr0RsCibBkkyRRKT/D9SkJAAMDBaAg68j2Uj+PEr+ccagf/AH+Fdbb
-gTLE64Mx1awSmGF6RpOHEgvEG+o62GDbZk/TmKD7GIWjeXqpZwoG1OySHc/gmFrJ
-lB4SN2kjxbHhcOB+D0YatsuVmrwEbQFTMMTH01gWjwLRpjNQ9TOxrMgmOhtiMyh/
-C7jkwvhOCiwtvd5zmD2JTn7r/0GhZXU6dg3DLlZQzMsh9NhV45s=
-=24Fn
------END PGP SIGNATURE-----
+-- 
+Geert Uytterhoeven -- There's lots of Linux beyond ia32 -- geert@linux-m68k.org
 
---adJ1OR3c6QgCpb/j--
+In personal conversations with technical people, I call myself a hacker. But
+when I'm talking to journalists I just say "programmer" or something like that.
+                                -- Linus Torvalds
