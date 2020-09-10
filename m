@@ -2,139 +2,93 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from vger.kernel.org (vger.kernel.org [23.128.96.18])
-	by mail.lfdr.de (Postfix) with ESMTP id 4A4BA2653F2
-	for <lists+devicetree@lfdr.de>; Thu, 10 Sep 2020 23:42:35 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTP id 3DE602653F5
+	for <lists+devicetree@lfdr.de>; Thu, 10 Sep 2020 23:42:39 +0200 (CEST)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S1728354AbgIJVm3 (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Thu, 10 Sep 2020 17:42:29 -0400
-Received: from a27-188.smtp-out.us-west-2.amazonses.com ([54.240.27.188]:49248
-        "EHLO a27-188.smtp-out.us-west-2.amazonses.com" rhost-flags-OK-OK-OK-OK)
-        by vger.kernel.org with ESMTP id S1730895AbgIJM5o (ORCPT
-        <rfc822;devicetree@vger.kernel.org>);
-        Thu, 10 Sep 2020 08:57:44 -0400
-DKIM-Signature: v=1; a=rsa-sha256; q=dns/txt; c=relaxed/simple;
-        s=zsmsymrwgfyinv5wlfyidntwsjeeldzt; d=codeaurora.org; t=1599742237;
-        h=MIME-Version:Content-Type:Content-Transfer-Encoding:Date:From:To:Cc:Subject:In-Reply-To:References:Message-ID;
-        bh=A9Lh+vWkVNILygqWZqjls4YC1TZDnQLkSvqL2XZ3eIY=;
-        b=NxfYxLCx5rlXYYDTuelbyMbjN32D2KSdTUxQIaitStu/OcDhhTxt/k7a9bInokxb
-        uH059kXmlQ8+vw8HB/aAWx/xHGdk1dOq3a9kO/LUw0Fio1z6JGWpjP1SfAg6Tq7zwLA
-        OqySPARGPcA5wO4eciHZAgAsjbsmOGOZY77+OWMk=
-DKIM-Signature: v=1; a=rsa-sha256; q=dns/txt; c=relaxed/simple;
-        s=hsbnp7p3ensaochzwyq5wwmceodymuwv; d=amazonses.com; t=1599742237;
-        h=MIME-Version:Content-Type:Content-Transfer-Encoding:Date:From:To:Cc:Subject:In-Reply-To:References:Message-ID:Feedback-ID;
-        bh=A9Lh+vWkVNILygqWZqjls4YC1TZDnQLkSvqL2XZ3eIY=;
-        b=UuYYvFIzIIrkH4W7FFzYBwgGZdTyMev1iIAKnKd2rW1t9IfsVCf9gdEPUKQvP4th
-        2RZ6X8kf3kZx+lsieWBY3qoHDy5LgQK0fdruwR8CRSVTuUjoMIXNFAmGSixWJVAUUWT
-        C5le0DXzBGAr8bN3rCn/b1n/ttvmL6+2q52GAt3g=
-X-Spam-Checker-Version: SpamAssassin 3.4.0 (2014-02-07) on
-        aws-us-west-2-caf-mail-1.web.codeaurora.org
-X-Spam-Level: 
-X-Spam-Status: No, score=-2.9 required=2.0 tests=ALL_TRUSTED,BAYES_00,
-        URIBL_BLOCKED autolearn=unavailable autolearn_force=no version=3.4.0
-MIME-Version: 1.0
-Content-Type: text/plain; charset=US-ASCII;
- format=flowed
-Content-Transfer-Encoding: 7bit
-Date:   Thu, 10 Sep 2020 12:50:36 +0000
-From:   skakit@codeaurora.org
-To:     Doug Anderson <dianders@chromium.org>
-Cc:     Bjorn Andersson <bjorn.andersson@linaro.org>,
-        Matthias Kaehlcke <mka@chromium.org>,
-        Greg Kroah-Hartman <gregkh@linuxfoundation.org>,
-        Andy Gross <agross@kernel.org>,
+        id S1728502AbgIJVmc (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Thu, 10 Sep 2020 17:42:32 -0400
+Received: from fllv0016.ext.ti.com ([198.47.19.142]:46742 "EHLO
+        fllv0016.ext.ti.com" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
+        with ESMTP id S1730657AbgIJMwG (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Thu, 10 Sep 2020 08:52:06 -0400
+Received: from lelv0266.itg.ti.com ([10.180.67.225])
+        by fllv0016.ext.ti.com (8.15.2/8.15.2) with ESMTP id 08ACph2t029218;
+        Thu, 10 Sep 2020 07:51:43 -0500
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=ti.com;
+        s=ti-com-17Q1; t=1599742303;
+        bh=Ijyx/Z3QPWT+RXPEAsyithN3fsFSMHdny3gj47bF4a8=;
+        h=Date:From:To:CC:Subject:References:In-Reply-To;
+        b=v3UEvaQNaVMVlnRArKMSY8Oh6qnT4/T9fBuZELmq4AlErqmfJRmgjYxf21p0ERy8e
+         XuevoSb6JFo2/DW2eXl3xL0XYsSM6EIKErDLaqX1TuSGySYHpSi9OIRmSvtqin+D8q
+         YkEFBrzhQ5IbWOxR8hVKAXzcD8Vbgge9tnKJ2ZAo=
+Received: from DFLE109.ent.ti.com (dfle109.ent.ti.com [10.64.6.30])
+        by lelv0266.itg.ti.com (8.15.2/8.15.2) with ESMTPS id 08ACphCA002028
+        (version=TLSv1.2 cipher=AES256-GCM-SHA384 bits=256 verify=FAIL);
+        Thu, 10 Sep 2020 07:51:43 -0500
+Received: from DFLE103.ent.ti.com (10.64.6.24) by DFLE109.ent.ti.com
+ (10.64.6.30) with Microsoft SMTP Server (version=TLS1_2,
+ cipher=TLS_ECDHE_RSA_WITH_AES_128_CBC_SHA256_P256) id 15.1.1979.3; Thu, 10
+ Sep 2020 07:51:43 -0500
+Received: from fllv0040.itg.ti.com (10.64.41.20) by DFLE103.ent.ti.com
+ (10.64.6.24) with Microsoft SMTP Server (version=TLS1_2,
+ cipher=TLS_ECDHE_RSA_WITH_AES_128_CBC_SHA256_P256) id 15.1.1979.3 via
+ Frontend Transport; Thu, 10 Sep 2020 07:51:43 -0500
+Received: from localhost (ileax41-snat.itg.ti.com [10.172.224.153])
+        by fllv0040.itg.ti.com (8.15.2/8.15.2) with ESMTP id 08ACphVv083193;
+        Thu, 10 Sep 2020 07:51:43 -0500
+Date:   Thu, 10 Sep 2020 07:51:43 -0500
+From:   Nishanth Menon <nm@ti.com>
+To:     Suman Anna <s-anna@ti.com>
+CC:     Lokesh Vutla <lokeshvutla@ti.com>, Tero Kristo <t-kristo@ti.com>,
         Rob Herring <robh+dt@kernel.org>,
-        linux-arm-msm <linux-arm-msm@vger.kernel.org>,
-        "open list:OPEN FIRMWARE AND FLATTENED DEVICE TREE BINDINGS" 
-        <devicetree@vger.kernel.org>, LKML <linux-kernel@vger.kernel.org>,
-        Akash Asthana <akashast@codeaurora.org>,
-        Roja Rani Yarubandi <rojay@codeaurora.org>,
-        msavaliy@qti.qualcomm.com
-Subject: Re: [PATCH V4 3/4] arm64: dts: qcom: sc7180: Add sleep state for BT
- UART
-In-Reply-To: <CAD=FV=VyRU3+BLx_6YPrOsaA6E05cJn_OpBR1y3Dt0LA0X5REA@mail.gmail.com>
-References: <1599145498-20707-1-git-send-email-skakit@codeaurora.org>
- <1599145498-20707-4-git-send-email-skakit@codeaurora.org>
- <CAD=FV=VyRU3+BLx_6YPrOsaA6E05cJn_OpBR1y3Dt0LA0X5REA@mail.gmail.com>
-Message-ID: <010101747811583e-172b27b5-ea28-4660-a64b-407b13bb6fd1-000000@us-west-2.amazonses.com>
-X-Sender: skakit@codeaurora.org
-User-Agent: Roundcube Webmail/1.3.9
-X-SES-Outgoing: 2020.09.10-54.240.27.188
-Feedback-ID: 1.us-west-2.CZuq2qbDmUIuT3qdvXlRHZZCpfZqZ4GtG9v3VKgRyF0=:AmazonSES
+        Linux ARM Mailing List <linux-arm-kernel@lists.infradead.org>,
+        Device Tree Mailing List <devicetree@vger.kernel.org>,
+        Sekhar Nori <nsekhar@ti.com>,
+        Grygorii Strashko <grygorii.strashko@ti.com>,
+        Kishon Vijay Abraham I <kishon@ti.com>
+Subject: Re: [PATCH v3 1/5] arm64: dts: ti: Makefile: Use ARCH_K3 for
+ building dtbs
+Message-ID: <20200910125143.v3xqgl4ywzzfztg7@akan>
+References: <20200908162252.17672-1-lokeshvutla@ti.com>
+ <20200908162252.17672-2-lokeshvutla@ti.com>
+ <e18882ae-f6b2-7dd8-15ee-aa719888c91f@ti.com>
+MIME-Version: 1.0
+Content-Type: text/plain; charset="us-ascii"
+Content-Disposition: inline
+In-Reply-To: <e18882ae-f6b2-7dd8-15ee-aa719888c91f@ti.com>
+User-Agent: NeoMutt/20171215
+X-EXCLAIMER-MD-CONFIG: e1e8a2fd-e40a-4ac6-ac9b-f7e9cc9ee180
 Sender: devicetree-owner@vger.kernel.org
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-On 2020-09-10 02:59, Doug Anderson wrote:
-> Hi,
+On 11:48-20200908, Suman Anna wrote:
+> On 9/8/20 11:22 AM, Lokesh Vutla wrote:
+> > To allow lesser dependency and better maintainability use CONFIG_ARCH_K3
+> > for building dtbs for all K3 based devices. This is as per the
+> > discussion in [0].
+> > 
+> > [0] https://lore.kernel.org/linux-arm-kernel/20200908112534.t5bgrjf7y3a6l2ss@akan/
+> > 
+> > Signed-off-by: Lokesh Vutla <lokeshvutla@ti.com>
+> > ---
+> >  arch/arm64/boot/dts/ti/Makefile | 4 ++--
+> >  1 file changed, 2 insertions(+), 2 deletions(-)
+> > 
+> > diff --git a/arch/arm64/boot/dts/ti/Makefile b/arch/arm64/boot/dts/ti/Makefile
+> > index 05c0bebf65d4..e7bfb16fa816 100644
+> > --- a/arch/arm64/boot/dts/ti/Makefile
+> > +++ b/arch/arm64/boot/dts/ti/Makefile
+> > @@ -6,6 +6,6 @@
+> >  # Copyright (C) 2016-2018 Texas Instruments Incorporated - https://www.ti.com/
 > 
-> On Thu, Sep 3, 2020 at 8:08 AM satya priya <skakit@codeaurora.org> 
-> wrote:
->> 
->> diff --git a/arch/arm64/boot/dts/qcom/sc7180-idp.dts 
->> b/arch/arm64/boot/dts/qcom/sc7180-idp.dts
->> index cecac3e..77e3523 100644
->> --- a/arch/arm64/boot/dts/qcom/sc7180-idp.dts
->> +++ b/arch/arm64/boot/dts/qcom/sc7180-idp.dts
->> @@ -507,6 +507,43 @@
->>         };
->>  };
->> 
->> +&qup_uart3_sleep {
->> +       pinconf-cts {
->> +               /*
->> +                * Configure no-pull on CTS. As this is driven by BT, 
->> do not
->> +                * specify any pull in order to not conflict with BT 
->> pulls.
->> +                */
->> +               pins = "gpio38";
->> +               bias-disable;
-> 
-> Same comment as in the previous patch that I'm not convinced removing
-> the bias here is correct.
-> 
+> Please update the Copyright to use 2020, like 2016-2020. Minor comment, so can
+> be fixed up while applying.
 
-Okay.
+ok, I will fix it up locally when applying.
 
-> 
->> +       };
->> +
->> +       pinconf-rts {
->> +               /*
->> +                * Configure pull-down on RTS to make sure that the BT 
->> SoC can
->> +                * wake up the system by sending wakeup bytes during 
->> suspend.
->> +                */
->> +               pins = "gpio39";
->> +               bias-pull-down;
->> +       };
->> +
->> +       pinconf-tx {
->> +               /* Configure pull-up on TX when it isn't actively 
->> driven */
->> +               pins = "gpio40";
->> +               bias-pull-up;
->> +       };
->> +
->> +       pinconf-rx {
->> +               /*
->> +                * Configure a pull-up on RX. This is needed to avoid
->> +                * garbage data when the TX pin of the Bluetooth 
->> module is
->> +                * in tri-state (module powered off or not driving the
->> +                * signal yet).
->> +                */
->> +               pins = "gpio41";
->> +               bias-pull-up;
->> +       };
->> +};
->> +
->>  &qup_uart8_default {
-> 
-> Slight nit that "default" starts with a "d" which sorts before "sleep"
-> which starts with an "s".  Thus "qup_uart8_default" should be above
-> "qup_uart3_sleep", not below.
-
-Okay.
+-- 
+Regards,
+Nishanth Menon
+Key (0xDDB5849D1736249D) / Fingerprint: F8A2 8693 54EB 8232 17A3  1A34 DDB5 849D 1736 249D
