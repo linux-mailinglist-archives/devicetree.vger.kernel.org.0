@@ -2,125 +2,237 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from vger.kernel.org (vger.kernel.org [23.128.96.18])
-	by mail.lfdr.de (Postfix) with ESMTP id B59B7266283
-	for <lists+devicetree@lfdr.de>; Fri, 11 Sep 2020 17:51:29 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTP id 3B0EB266243
+	for <lists+devicetree@lfdr.de>; Fri, 11 Sep 2020 17:37:04 +0200 (CEST)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S1726527AbgIKPvY (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Fri, 11 Sep 2020 11:51:24 -0400
-Received: from fllv0015.ext.ti.com ([198.47.19.141]:43242 "EHLO
-        fllv0015.ext.ti.com" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S1725904AbgIKPvM (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Fri, 11 Sep 2020 11:51:12 -0400
-Received: from lelv0266.itg.ti.com ([10.180.67.225])
-        by fllv0015.ext.ti.com (8.15.2/8.15.2) with ESMTP id 08BEiH8S080691;
-        Fri, 11 Sep 2020 09:44:17 -0500
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=ti.com;
-        s=ti-com-17Q1; t=1599835457;
-        bh=VeiJJJ5bDbdPOe8X83iD+SDZUH01GPEKBkwwWMTRjgc=;
-        h=Subject:To:CC:References:From:Date:In-Reply-To;
-        b=UJE/6zWtsV+dKAnUUe1kgx4juYG0EdbHLsIxlqQHR/qXPSPaff8coqPtO9DENjKvM
-         KXBa1Phfd6Bxzs7qBKxWzdfy+oP+0y6GsXXNC9F6nlBk7gsAOEndpke4lriNBhn9v6
-         AraTG/qSLZARBudKKUIAalacflPPOiQ7+mqZ5TgM=
-Received: from DFLE104.ent.ti.com (dfle104.ent.ti.com [10.64.6.25])
-        by lelv0266.itg.ti.com (8.15.2/8.15.2) with ESMTPS id 08BEiH7P001244
-        (version=TLSv1.2 cipher=AES256-GCM-SHA384 bits=256 verify=FAIL);
-        Fri, 11 Sep 2020 09:44:17 -0500
-Received: from DFLE105.ent.ti.com (10.64.6.26) by DFLE104.ent.ti.com
- (10.64.6.25) with Microsoft SMTP Server (version=TLS1_2,
- cipher=TLS_ECDHE_RSA_WITH_AES_128_CBC_SHA256_P256) id 15.1.1979.3; Fri, 11
- Sep 2020 09:44:16 -0500
-Received: from lelv0326.itg.ti.com (10.180.67.84) by DFLE105.ent.ti.com
- (10.64.6.26) with Microsoft SMTP Server (version=TLS1_2,
- cipher=TLS_ECDHE_RSA_WITH_AES_128_CBC_SHA256_P256) id 15.1.1979.3 via
- Frontend Transport; Fri, 11 Sep 2020 09:44:16 -0500
-Received: from [10.250.66.146] (ileax41-snat.itg.ti.com [10.172.224.153])
-        by lelv0326.itg.ti.com (8.15.2/8.15.2) with ESMTP id 08BEiEGY111883;
-        Fri, 11 Sep 2020 09:44:15 -0500
-Subject: Re: [v4,3/4] reset-controller: ti: introduce a new reset handler
-To:     Philipp Zabel <p.zabel@pengutronix.de>,
-        Crystal Guo <crystal.guo@mediatek.com>
-CC:     "robh+dt@kernel.org" <robh+dt@kernel.org>,
-        "matthias.bgg@gmail.com" <matthias.bgg@gmail.com>,
-        srv_heupstream <srv_heupstream@mediatek.com>,
-        "linux-mediatek@lists.infradead.org" 
-        <linux-mediatek@lists.infradead.org>,
-        "linux-arm-kernel@lists.infradead.org" 
-        <linux-arm-kernel@lists.infradead.org>,
-        "linux-kernel@vger.kernel.org" <linux-kernel@vger.kernel.org>,
-        "devicetree@vger.kernel.org" <devicetree@vger.kernel.org>,
-        =?UTF-8?B?U2VpeWEgV2FuZyAo546L6L+65ZCbKQ==?= 
-        <seiya.wang@mediatek.com>,
-        =?UTF-8?B?U3RhbmxleSBDaHUgKOacseWOn+mZnik=?= 
-        <stanley.chu@mediatek.com>,
-        =?UTF-8?B?WWluZ2pvZSBDaGVuICjpmbPoi7HmtLIp?= 
-        <Yingjoe.Chen@mediatek.com>,
-        =?UTF-8?B?RmFuIENoZW4gKOmZs+WHoSk=?= <fan.chen@mediatek.com>,
-        =?UTF-8?B?WW9uZyBMaWFuZyAo5qKB5YuHKQ==?= <Yong.Liang@mediatek.com>
-References: <20200817030324.5690-1-crystal.guo@mediatek.com>
- <20200817030324.5690-4-crystal.guo@mediatek.com>
- <3a5decee-5f31-e27d-a120-1f835241a87c@ti.com>
- <1599620279.14806.18.camel@mhfsdcap03>
- <096362e9-dee8-4e7a-2518-47328068c2fd@ti.com>
- <1599792140.14806.22.camel@mhfsdcap03>
- <9d72aaef-49fe-ebb6-215d-05ad3ab27af4@ti.com>
- <1599804422.14806.27.camel@mhfsdcap03>
- <dae4ab91ec20e72963f2658efca4874a35dd739e.camel@pengutronix.de>
-From:   Suman Anna <s-anna@ti.com>
-Message-ID: <407863ba-e336-11fc-297d-f1be1f58adaa@ti.com>
-Date:   Fri, 11 Sep 2020 09:44:14 -0500
-User-Agent: Mozilla/5.0 (X11; Linux x86_64; rv:68.0) Gecko/20100101
- Thunderbird/68.10.0
+        id S1726202AbgIKPg5 (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Fri, 11 Sep 2020 11:36:57 -0400
+Received: from lindbergh.monkeyblade.net ([23.128.96.19]:35144 "EHLO
+        lindbergh.monkeyblade.net" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
+        with ESMTP id S1726551AbgIKPg0 (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Fri, 11 Sep 2020 11:36:26 -0400
+Received: from mail-qv1-xf43.google.com (mail-qv1-xf43.google.com [IPv6:2607:f8b0:4864:20::f43])
+        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 9F4A0C06179F
+        for <devicetree@vger.kernel.org>; Fri, 11 Sep 2020 08:35:37 -0700 (PDT)
+Received: by mail-qv1-xf43.google.com with SMTP id q10so5404308qvs.1
+        for <devicetree@vger.kernel.org>; Fri, 11 Sep 2020 08:35:37 -0700 (PDT)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+        d=marek-ca.20150623.gappssmtp.com; s=20150623;
+        h=from:to:cc:subject:date:message-id:in-reply-to:references
+         :mime-version:content-transfer-encoding;
+        bh=WsPjwepdx0CsX0W2iH+opkwycH1cAd/VmPHfgsssETA=;
+        b=fZQzry+hCtrnoa+52FXNS3blkRMCk5HvwNVjsX3f/YDaXBo3WJRUgWkihBcCkda3wH
+         OXPShaOb4WnuCWIQ8qFvXjvVFhQQz9/vvY8qpbi0RXe4GkSD4B73jvdAzqD0hnIBdMWL
+         lywVkKHzT4FOk0xj10Apx9Dyz0Hr5CZZnj333WeQ9vZ0T+aKPfBertLrH8DZFBUtgaA+
+         vtItGqRIdlQekcoRrQCwSAF/SxNKAG/HqjdSOWj9QzL3+O5OcG8chcnZCTuh91xDQF0J
+         ipXqS97rYcHf3Iy648uyNueio62Oi3wthzFM7lQGFdxsrSWiZaA3OTDoIwDlWeHTIsBD
+         DBvA==
+X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+        d=1e100.net; s=20161025;
+        h=x-gm-message-state:from:to:cc:subject:date:message-id:in-reply-to
+         :references:mime-version:content-transfer-encoding;
+        bh=WsPjwepdx0CsX0W2iH+opkwycH1cAd/VmPHfgsssETA=;
+        b=Dn/qAPm+yuYk2EFp5Yx4wU2ylNHCU92Ar372s2ifzo6Q0g2QivP1K65x+r8jLVx+23
+         DyMvIHx5nPQXdu3Kbcb0lFTNEgv6s5lfej2yYmir2SkfVW4O5BBWNXe5jTdjkL/u+kVQ
+         XOSmGhuesFu4bEUpdGf+DX0mO6lgUlj7r/hLfv4HFLmrlj5bUbuMF0sAD171NHP85ktn
+         oB4IK2VZgBNCf3Do3E78zUNNysSmwccAxEelw4kpY8bplYBF6nH0fehT6/5lO1uu7ZnJ
+         FJWOnKg7zwEDraqpN187YAjUtYgZGQYO+c+tYDcDSxwEBMH4xupIpz8j2uJGnENZtQ+s
+         FHqQ==
+X-Gm-Message-State: AOAM532VxDNSs+8fzpFcuYT3Pq63eyE0N5HfzpnlkuRSj3yDQOvpm4Ta
+        lobi/die/jHf9fDza1BqMJ9KIQ==
+X-Google-Smtp-Source: ABdhPJxVT7wmShH+qDM7q22ttEuV1aHWCNGhiqx81r3AmbzL0gVcrtkCOUv9oTQDmYAvbHTs/shsIA==
+X-Received: by 2002:a0c:e354:: with SMTP id a20mr2464989qvm.43.1599838536879;
+        Fri, 11 Sep 2020 08:35:36 -0700 (PDT)
+Received: from localhost.localdomain ([147.253.86.153])
+        by smtp.gmail.com with ESMTPSA id v16sm3001744qkg.37.2020.09.11.08.35.35
+        (version=TLS1_3 cipher=TLS_AES_256_GCM_SHA384 bits=256/256);
+        Fri, 11 Sep 2020 08:35:36 -0700 (PDT)
+From:   Jonathan Marek <jonathan@marek.ca>
+To:     linux-arm-msm@vger.kernel.org
+Cc:     Andy Gross <agross@kernel.org>,
+        Bjorn Andersson <bjorn.andersson@linaro.org>,
+        Michael Turquette <mturquette@baylibre.com>,
+        Stephen Boyd <sboyd@kernel.org>,
+        Rob Herring <robh+dt@kernel.org>,
+        Taniya Das <tdas@codeaurora.org>,
+        linux-clk@vger.kernel.org (open list:COMMON CLK FRAMEWORK),
+        devicetree@vger.kernel.org (open list:OPEN FIRMWARE AND FLATTENED
+        DEVICE TREE BINDINGS), linux-kernel@vger.kernel.org (open list)
+Subject: [PATCH v3 3/7] dt-bindings: clock: combine qcom,sdm845-dispcc and qcom,sc7180-dispcc
+Date:   Fri, 11 Sep 2020 11:34:03 -0400
+Message-Id: <20200911153412.21672-4-jonathan@marek.ca>
+X-Mailer: git-send-email 2.26.1
+In-Reply-To: <20200911153412.21672-1-jonathan@marek.ca>
+References: <20200911153412.21672-1-jonathan@marek.ca>
 MIME-Version: 1.0
-In-Reply-To: <dae4ab91ec20e72963f2658efca4874a35dd739e.camel@pengutronix.de>
-Content-Type: text/plain; charset="utf-8"
-Content-Language: en-US
-Content-Transfer-Encoding: 7bit
-X-EXCLAIMER-MD-CONFIG: e1e8a2fd-e40a-4ac6-ac9b-f7e9cc9ee180
+Content-Transfer-Encoding: 8bit
 Sender: devicetree-owner@vger.kernel.org
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-On 9/11/20 9:26 AM, Philipp Zabel wrote:
-> Hi Crystal,
-> 
-> On Fri, 2020-09-11 at 14:07 +0800, Crystal Guo wrote:
-> [...]
->> Should I add the SoC-specific data as follows?
->> This may also modify the ti original code, is it OK?
->>
->> +       data->reset_data = of_device_get_match_data(&pdev->dev);
->> +
->> +       list = of_get_property(np, data->reset_data->reset_bits, &size);
->>
->> +static const struct common_reset_data ti_reset_data = {
->> +       .reset_op_available = false,
->> +       .reset_bits = "ti, reset-bits",
->                             ^
-> That space doesn't belong there.
-> 
->> +};
->> +
->> +static const struct common_reset_data mediatek_reset_data = {
->> +       .reset_op_available = true,
->> +       .reset_bits = "mediatek, reset-bits",
->> +};
-> 
-> I understand Robs comments as meaning "ti,reset-bits" should have been
-> called "reset-bits" in the first place, and you shouldn't repeat adding
-> the vendor prefix, as that is implied by the compatible. So this should
-> probably be just "reset-bits".
+These two bindings are almost identical, so combine them into one. This
+will make it easier to add the sm8150 and sm8250 dispcc bindings.
 
-Hmm, not sure about that. I think Rob wants the reset data itself to be added in
-the driver as is being done on some other SoCs (eg: like in reset-qcom-pdc.c).
+Signed-off-by: Jonathan Marek <jonathan@marek.ca>
+---
+ ...om,sdm845-dispcc.yaml => qcom,dispcc.yaml} | 18 ++--
+ .../bindings/clock/qcom,sc7180-dispcc.yaml    | 86 -------------------
+ 2 files changed, 12 insertions(+), 92 deletions(-)
+ rename Documentation/devicetree/bindings/clock/{qcom,sdm845-dispcc.yaml => qcom,dispcc.yaml} (86%)
+ delete mode 100644 Documentation/devicetree/bindings/clock/qcom,sc7180-dispcc.yaml
 
-regards
-Suman
-
-> 
-> Otherwise this looks like it should work.
-> 
-> regards
-> Philipp
-> 
+diff --git a/Documentation/devicetree/bindings/clock/qcom,sdm845-dispcc.yaml b/Documentation/devicetree/bindings/clock/qcom,dispcc.yaml
+similarity index 86%
+rename from Documentation/devicetree/bindings/clock/qcom,sdm845-dispcc.yaml
+rename to Documentation/devicetree/bindings/clock/qcom,dispcc.yaml
+index ead44705333b..7d5b25dfe0b1 100644
+--- a/Documentation/devicetree/bindings/clock/qcom,sdm845-dispcc.yaml
++++ b/Documentation/devicetree/bindings/clock/qcom,dispcc.yaml
+@@ -1,32 +1,37 @@
+ # SPDX-License-Identifier: GPL-2.0-only
+ %YAML 1.2
+ ---
+-$id: http://devicetree.org/schemas/clock/qcom,sdm845-dispcc.yaml#
++$id: http://devicetree.org/schemas/clock/qcom,dispcc.yaml#
+ $schema: http://devicetree.org/meta-schemas/core.yaml#
+ 
+-title: Qualcomm Display Clock & Reset Controller Binding for SDM845
++title: Qualcomm Display Clock & Reset Controller Binding
+ 
+ maintainers:
+   - Taniya Das <tdas@codeaurora.org>
+ 
+ description: |
+   Qualcomm display clock control module which supports the clocks, resets and
+-  power domains on SDM845.
++  power domains on SDM845/SC7180.
+ 
+-  See also dt-bindings/clock/qcom,dispcc-sdm845.h.
++  See also:
++    dt-bindings/clock/qcom,dispcc-sdm845.h
++    dt-bindings/clock/qcom,dispcc-sc7180.h
+ 
+ properties:
+   compatible:
+-    const: qcom,sdm845-dispcc
++    enum:
++      - qcom,sdm845-dispcc
++      - qcom,sc7180-dispcc
+ 
+   # NOTE: sdm845.dtsi existed for quite some time and specified no clocks.
+   # The code had to use hardcoded mechanisms to find the input clocks.
+   # New dts files should have these clocks.
+   clocks:
++    minItems: 8
+     items:
+       - description: Board XO source
+       - description: GPLL0 source from GCC
+-      - description: GPLL0 div source from GCC
++      - description: GPLL0 div source from GCC (sdm845 only)
+       - description: Byte clock from DSI PHY0
+       - description: Pixel clock from DSI PHY0
+       - description: Byte clock from DSI PHY1
+@@ -35,6 +40,7 @@ properties:
+       - description: VCO DIV clock from DP PHY
+ 
+   clock-names:
++    minItems: 8
+     items:
+       - const: bi_tcxo
+       - const: gcc_disp_gpll0_clk_src
+diff --git a/Documentation/devicetree/bindings/clock/qcom,sc7180-dispcc.yaml b/Documentation/devicetree/bindings/clock/qcom,sc7180-dispcc.yaml
+deleted file mode 100644
+index e94847f92770..000000000000
+--- a/Documentation/devicetree/bindings/clock/qcom,sc7180-dispcc.yaml
++++ /dev/null
+@@ -1,86 +0,0 @@
+-# SPDX-License-Identifier: GPL-2.0-only
+-%YAML 1.2
+----
+-$id: http://devicetree.org/schemas/clock/qcom,sc7180-dispcc.yaml#
+-$schema: http://devicetree.org/meta-schemas/core.yaml#
+-
+-title: Qualcomm Display Clock & Reset Controller Binding for SC7180
+-
+-maintainers:
+-  - Taniya Das <tdas@codeaurora.org>
+-
+-description: |
+-  Qualcomm display clock control module which supports the clocks, resets and
+-  power domains on SC7180.
+-
+-  See also dt-bindings/clock/qcom,dispcc-sc7180.h.
+-
+-properties:
+-  compatible:
+-    const: qcom,sc7180-dispcc
+-
+-  clocks:
+-    items:
+-      - description: Board XO source
+-      - description: GPLL0 source from GCC
+-      - description: Byte clock from DSI PHY
+-      - description: Pixel clock from DSI PHY
+-      - description: Link clock from DP PHY
+-      - description: VCO DIV clock from DP PHY
+-
+-  clock-names:
+-    items:
+-      - const: bi_tcxo
+-      - const: gcc_disp_gpll0_clk_src
+-      - const: dsi0_phy_pll_out_byteclk
+-      - const: dsi0_phy_pll_out_dsiclk
+-      - const: dp_phy_pll_link_clk
+-      - const: dp_phy_pll_vco_div_clk
+-
+-  '#clock-cells':
+-    const: 1
+-
+-  '#reset-cells':
+-    const: 1
+-
+-  '#power-domain-cells':
+-    const: 1
+-
+-  reg:
+-    maxItems: 1
+-
+-required:
+-  - compatible
+-  - reg
+-  - clocks
+-  - clock-names
+-  - '#clock-cells'
+-  - '#reset-cells'
+-  - '#power-domain-cells'
+-
+-additionalProperties: false
+-
+-examples:
+-  - |
+-    #include <dt-bindings/clock/qcom,gcc-sc7180.h>
+-    #include <dt-bindings/clock/qcom,rpmh.h>
+-    clock-controller@af00000 {
+-      compatible = "qcom,sc7180-dispcc";
+-      reg = <0x0af00000 0x200000>;
+-      clocks = <&rpmhcc RPMH_CXO_CLK>,
+-               <&gcc GCC_DISP_GPLL0_CLK_SRC>,
+-               <&dsi_phy 0>,
+-               <&dsi_phy 1>,
+-               <&dp_phy 0>,
+-               <&dp_phy 1>;
+-      clock-names = "bi_tcxo",
+-                    "gcc_disp_gpll0_clk_src",
+-                    "dsi0_phy_pll_out_byteclk",
+-                    "dsi0_phy_pll_out_dsiclk",
+-                    "dp_phy_pll_link_clk",
+-                    "dp_phy_pll_vco_div_clk";
+-      #clock-cells = <1>;
+-      #reset-cells = <1>;
+-      #power-domain-cells = <1>;
+-    };
+-...
+-- 
+2.26.1
 
