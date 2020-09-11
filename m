@@ -2,194 +2,83 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from vger.kernel.org (vger.kernel.org [23.128.96.18])
-	by mail.lfdr.de (Postfix) with ESMTP id 84596265F53
-	for <lists+devicetree@lfdr.de>; Fri, 11 Sep 2020 14:14:27 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTP id 3E437265F66
+	for <lists+devicetree@lfdr.de>; Fri, 11 Sep 2020 14:19:35 +0200 (CEST)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S1725870AbgIKMNv (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Fri, 11 Sep 2020 08:13:51 -0400
-Received: from relmlor2.renesas.com ([210.160.252.172]:1998 "EHLO
-        relmlie6.idc.renesas.com" rhost-flags-OK-OK-OK-FAIL)
-        by vger.kernel.org with ESMTP id S1725824AbgIKMNs (ORCPT
-        <rfc822;devicetree@vger.kernel.org>);
-        Fri, 11 Sep 2020 08:13:48 -0400
-X-IronPort-AV: E=Sophos;i="5.76,415,1592838000"; 
-   d="scan'208";a="56821913"
-Received: from unknown (HELO relmlir6.idc.renesas.com) ([10.200.68.152])
-  by relmlie6.idc.renesas.com with ESMTP; 11 Sep 2020 21:13:14 +0900
-Received: from devel.example.org?044ree.adwin.renesas.com (unknown [10.226.36.120])
-        by relmlir6.idc.renesas.com (Postfix) with ESMTP id 11F9A4260FB3;
-        Fri, 11 Sep 2020 21:13:11 +0900 (JST)
-From:   Fabrizio Castro <fabrizio.castro.jz@renesas.com>
-To:     Rob Herring <robh+dt@kernel.org>,
-        Geert Uytterhoeven <geert+renesas@glider.be>
-Cc:     Fabrizio Castro <fabrizio.castro.jz@renesas.com>,
-        Magnus Damm <magnus.damm@gmail.com>,
-        linux-renesas-soc@vger.kernel.org, devicetree@vger.kernel.org,
-        Chris Paterson <Chris.Paterson2@renesas.com>,
-        Biju Das <biju.das.jz@bp.renesas.com>,
-        Prabhakar Mahadev Lad <prabhakar.mahadev-lad.rj@bp.renesas.com>,
-        Laurent Pinchart <laurent.pinchart@ideasonboard.com>
-Subject: [PATCH] arm64: dts: renesas: r8a77990: Add DRIF support
-Date:   Fri, 11 Sep 2020 13:12:59 +0100
-Message-Id: <20200911121259.5669-1-fabrizio.castro.jz@renesas.com>
-X-Mailer: git-send-email 2.25.1
+        id S1725881AbgIKMRR (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Fri, 11 Sep 2020 08:17:17 -0400
+Received: from mail.kernel.org ([198.145.29.99]:58880 "EHLO mail.kernel.org"
+        rhost-flags-OK-OK-OK-OK) by vger.kernel.org with ESMTP
+        id S1725817AbgIKMQu (ORCPT <rfc822;devicetree@vger.kernel.org>);
+        Fri, 11 Sep 2020 08:16:50 -0400
+Received: from mail.kernel.org (ip5f5ad5a5.dynamic.kabel-deutschland.de [95.90.213.165])
+        (using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
+        (No client certificate requested)
+        by mail.kernel.org (Postfix) with ESMTPSA id 13FDE22207;
+        Fri, 11 Sep 2020 12:16:48 +0000 (UTC)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=kernel.org;
+        s=default; t=1599826608;
+        bh=hRvZkeA5envDy3jhEryZBWbNL0TKkQVW9LyxnaBNgqQ=;
+        h=From:To:Cc:Subject:Date:In-Reply-To:References:From;
+        b=yOnLxkIZSbj3z0FDLvaw1/7hm2GKZUM7rCnmALOdyRnjVrL/N8HlwqMpL0EDu6f+W
+         xVkJ97yZymr3BSzlaUfa1tf0afl+9nTsGNOShQEi1fYFeO/YzdbjmCst9+2RlVvpIc
+         H9A7tRUt7H6adXKWj/jeBNkXN0VwIzDIDE+WB1BU=
+Received: from mchehab by mail.kernel.org with local (Exim 4.94)
+        (envelope-from <mchehab@kernel.org>)
+        id 1kGhyv-0006WH-W5; Fri, 11 Sep 2020 14:16:46 +0200
+From:   Mauro Carvalho Chehab <mchehab+huawei@kernel.org>
+Cc:     linuxarm@huawei.com, mauro.chehab@huawei.com,
+        Mauro Carvalho Chehab <mchehab+huawei@kernel.org>,
+        "John Stultz" <john.stultz@linaro.org>,
+        "Manivannan Sadhasivam" <mani@kernel.org>,
+        Kishon Vijay Abraham I <kishon@ti.com>,
+        Rob Herring <robh+dt@kernel.org>,
+        Vinod Koul <vkoul@kernel.org>, devicetree@vger.kernel.org,
+        linux-kernel@vger.kernel.org
+Subject: [PATCH v3 RESEND 4/8] dts: phy: phy-hi3670-usb3.txt: use a consistent namespace
+Date:   Fri, 11 Sep 2020 14:16:40 +0200
+Message-Id: <f7832a577fc4b7d2f8459c1023f9782e43a9efb2.1599826421.git.mchehab+huawei@kernel.org>
+X-Mailer: git-send-email 2.26.2
+In-Reply-To: <cover.1599826421.git.mchehab+huawei@kernel.org>
+References: <cover.1599826421.git.mchehab+huawei@kernel.org>
 MIME-Version: 1.0
 Content-Transfer-Encoding: 8bit
+To:     unlisted-recipients:; (no To-header on input)
 Sender: devicetree-owner@vger.kernel.org
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-Add the DRIF controller nodes for the r8a77990 (a.k.a. R-Car E3).
+While this driver is not used yet, use a more consistent namespace,
+similar to the PHY layer for Kirin 960 (hi3660).
 
-Please note that R-Car E3 has register BITCTR located at offset
-0x80 (this register is not available on the r8a77960 and r8a77951,
-whose support has already been upstreamed), and even though it is
-not dealt with just yet within the driver, we have to keep that
-into account with our device tree nodes.
-
-Also, please note that while testing it has emerged that the
-HW User Manual has the wrong DMA details for DRIF2 and DRIF3
-on E3, as they are only allowed SYS-DMAC0 rather than SYS-DMAC1
-and SYS-DMAC2. An errata addressing this issue will be available
-soon.
-
-Signed-off-by: Fabrizio Castro <fabrizio.castro.jz@renesas.com>
+Signed-off-by: Mauro Carvalho Chehab <mchehab+huawei@kernel.org>
 ---
- arch/arm64/boot/dts/renesas/r8a77990.dtsi | 120 ++++++++++++++++++++++
- 1 file changed, 120 insertions(+)
+ Documentation/devicetree/bindings/phy/phy-hi3670-usb3.txt | 4 ++--
+ 1 file changed, 2 insertions(+), 2 deletions(-)
 
-diff --git a/arch/arm64/boot/dts/renesas/r8a77990.dtsi b/arch/arm64/boot/dts/renesas/r8a77990.dtsi
-index 1991bdc36792..caeddc2c1a70 100644
---- a/arch/arm64/boot/dts/renesas/r8a77990.dtsi
-+++ b/arch/arm64/boot/dts/renesas/r8a77990.dtsi
-@@ -1288,6 +1288,126 @@ vin5csi40: endpoint@2 {
- 			};
- 		};
+diff --git a/Documentation/devicetree/bindings/phy/phy-hi3670-usb3.txt b/Documentation/devicetree/bindings/phy/phy-hi3670-usb3.txt
+index 4cb02612ff23..2fb27cb8beaf 100644
+--- a/Documentation/devicetree/bindings/phy/phy-hi3670-usb3.txt
++++ b/Documentation/devicetree/bindings/phy/phy-hi3670-usb3.txt
+@@ -2,7 +2,7 @@ Hisilicon Kirin970 usb PHY
+ -----------------------
  
-+		drif00: rif@e6f40000 {
-+			compatible = "renesas,r8a77990-drif",
-+				     "renesas,rcar-gen3-drif";
-+			reg = <0 0xe6f40000 0 0x84>;
-+			interrupts = <GIC_SPI 12 IRQ_TYPE_LEVEL_HIGH>;
-+			clocks = <&cpg CPG_MOD 515>;
-+			clock-names = "fck";
-+			dmas = <&dmac1 0x20>, <&dmac2 0x20>;
-+			dma-names = "rx", "rx";
-+			power-domains = <&sysc R8A77990_PD_ALWAYS_ON>;
-+			resets = <&cpg 515>;
-+			renesas,bonding = <&drif01>;
-+			status = "disabled";
-+		};
-+
-+		drif01: rif@e6f50000 {
-+			compatible = "renesas,r8a77990-drif",
-+				     "renesas,rcar-gen3-drif";
-+			reg = <0 0xe6f50000 0 0x84>;
-+			interrupts = <GIC_SPI 13 IRQ_TYPE_LEVEL_HIGH>;
-+			clocks = <&cpg CPG_MOD 514>;
-+			clock-names = "fck";
-+			dmas = <&dmac1 0x22>, <&dmac2 0x22>;
-+			dma-names = "rx", "rx";
-+			power-domains = <&sysc R8A77990_PD_ALWAYS_ON>;
-+			resets = <&cpg 514>;
-+			renesas,bonding = <&drif00>;
-+			status = "disabled";
-+		};
-+
-+		drif10: rif@e6f60000 {
-+			compatible = "renesas,r8a77990-drif",
-+				     "renesas,rcar-gen3-drif";
-+			reg = <0 0xe6f60000 0 0x84>;
-+			interrupts = <GIC_SPI 14 IRQ_TYPE_LEVEL_HIGH>;
-+			clocks = <&cpg CPG_MOD 513>;
-+			clock-names = "fck";
-+			dmas = <&dmac1 0x24>, <&dmac2 0x24>;
-+			dma-names = "rx", "rx";
-+			power-domains = <&sysc R8A77990_PD_ALWAYS_ON>;
-+			resets = <&cpg 513>;
-+			renesas,bonding = <&drif11>;
-+			status = "disabled";
-+		};
-+
-+		drif11: rif@e6f70000 {
-+			compatible = "renesas,r8a77990-drif",
-+				     "renesas,rcar-gen3-drif";
-+			reg = <0 0xe6f70000 0 0x84>;
-+			interrupts = <GIC_SPI 15 IRQ_TYPE_LEVEL_HIGH>;
-+			clocks = <&cpg CPG_MOD 512>;
-+			clock-names = "fck";
-+			dmas = <&dmac1 0x26>, <&dmac2 0x26>;
-+			dma-names = "rx", "rx";
-+			power-domains = <&sysc R8A77990_PD_ALWAYS_ON>;
-+			resets = <&cpg 512>;
-+			renesas,bonding = <&drif10>;
-+			status = "disabled";
-+		};
-+
-+		drif20: rif@e6f80000 {
-+			compatible = "renesas,r8a77990-drif",
-+				     "renesas,rcar-gen3-drif";
-+			reg = <0 0xe6f80000 0 0x84>;
-+			interrupts = <GIC_SPI 24 IRQ_TYPE_LEVEL_HIGH>;
-+			clocks = <&cpg CPG_MOD 511>;
-+			clock-names = "fck";
-+			dmas = <&dmac0 0x28>;
-+			dma-names = "rx";
-+			power-domains = <&sysc R8A77990_PD_ALWAYS_ON>;
-+			resets = <&cpg 511>;
-+			renesas,bonding = <&drif21>;
-+			status = "disabled";
-+		};
-+
-+		drif21: rif@e6f90000 {
-+			compatible = "renesas,r8a77990-drif",
-+				     "renesas,rcar-gen3-drif";
-+			reg = <0 0xe6f90000 0 0x84>;
-+			interrupts = <GIC_SPI 25 IRQ_TYPE_LEVEL_HIGH>;
-+			clocks = <&cpg CPG_MOD 510>;
-+			clock-names = "fck";
-+			dmas = <&dmac0 0x2a>;
-+			dma-names = "rx";
-+			power-domains = <&sysc R8A77990_PD_ALWAYS_ON>;
-+			resets = <&cpg 510>;
-+			renesas,bonding = <&drif20>;
-+			status = "disabled";
-+		};
-+
-+		drif30: rif@e6fa0000 {
-+			compatible = "renesas,r8a77990-drif",
-+				     "renesas,rcar-gen3-drif";
-+			reg = <0 0xe6fa0000 0 0x84>;
-+			interrupts = <GIC_SPI 26 IRQ_TYPE_LEVEL_HIGH>;
-+			clocks = <&cpg CPG_MOD 509>;
-+			clock-names = "fck";
-+			dmas = <&dmac0 0x2c>;
-+			dma-names = "rx";
-+			power-domains = <&sysc R8A77990_PD_ALWAYS_ON>;
-+			resets = <&cpg 509>;
-+			renesas,bonding = <&drif31>;
-+			status = "disabled";
-+		};
-+
-+		drif31: rif@e6fb0000 {
-+			compatible = "renesas,r8a77990-drif",
-+				     "renesas,rcar-gen3-drif";
-+			reg = <0 0xe6fb0000 0 0x84>;
-+			interrupts = <GIC_SPI 27 IRQ_TYPE_LEVEL_HIGH>;
-+			clocks = <&cpg CPG_MOD 508>;
-+			clock-names = "fck";
-+			dmas = <&dmac0 0x2e>;
-+			dma-names = "rx";
-+			power-domains = <&sysc R8A77990_PD_ALWAYS_ON>;
-+			resets = <&cpg 508>;
-+			renesas,bonding = <&drif30>;
-+			status = "disabled";
-+		};
-+
- 		rcar_sound: sound@ec500000 {
- 			/*
- 			 * #sound-dai-cells is required
+ Required properties:
+-- compatible: should be "hisilicon,kirin970-usb-phy"
++- compatible: should be "hisilicon,hi3670-usb-phy"
+ - #phy-cells: must be 0
+ - hisilicon,pericrg-syscon: phandle of syscon used to control phy.
+ - hisilicon,pctrl-syscon: phandle of syscon used to control phy.
+@@ -14,7 +14,7 @@ Refer to phy/phy-bindings.txt for the generic PHY binding properties
+ 
+ Example:
+ 	usb_phy: usbphy {
+-		compatible = "hisilicon,kirin970-usb-phy";
++		compatible = "hisilicon,hi3670-usb-phy";
+ 		#phy-cells = <0>;
+ 		hisilicon,pericrg-syscon = <&crg_ctrl>;
+ 		hisilicon,pctrl-syscon = <&pctrl>;
 -- 
-2.25.1
+2.26.2
 
