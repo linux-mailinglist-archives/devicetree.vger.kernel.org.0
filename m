@@ -2,106 +2,146 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from vger.kernel.org (vger.kernel.org [23.128.96.18])
-	by mail.lfdr.de (Postfix) with ESMTP id 9C38C2667FD
-	for <lists+devicetree@lfdr.de>; Fri, 11 Sep 2020 20:01:38 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTP id C6AA22669D2
+	for <lists+devicetree@lfdr.de>; Fri, 11 Sep 2020 22:56:24 +0200 (CEST)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S1725846AbgIKSBf (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Fri, 11 Sep 2020 14:01:35 -0400
-Received: from userp2130.oracle.com ([156.151.31.86]:46044 "EHLO
-        userp2130.oracle.com" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S1725794AbgIKSBd (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Fri, 11 Sep 2020 14:01:33 -0400
-Received: from pps.filterd (userp2130.oracle.com [127.0.0.1])
-        by userp2130.oracle.com (8.16.0.42/8.16.0.42) with SMTP id 08BHxNun136182;
-        Fri, 11 Sep 2020 18:01:00 GMT
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=oracle.com; h=subject : to : cc :
- references : from : message-id : date : mime-version : in-reply-to :
- content-type : content-transfer-encoding; s=corp-2020-01-29;
- bh=K/lrGLKQLzPCde1LBeenvfV12lSqYozwSEeErGwFLx0=;
- b=p3td48CvzFQw8bp+qotx7y2XNGDz349JG2L68Ognkw/J+TLmf6hry58o/0azGGJDmM3n
- T2x07sp/D5YQGaD0JXWu/RuYc0P2QPMQfmCfhhZgy4tNbp7XB0MLpDIgzjNviZisFdwJ
- tVRbf1BuYXl9BQ68SiM4IlLykbmhWv8/LD46cuyF6W3vMasF3dL496+iLWpZHe8/PWM7
- 1CZZGbudcuqz2D48aVZZQx0LmiwLjLBM9yeRroGmg9ku5x9sA7JKbKkITdsE+m2iaNNh
- dM+YXKKldp/6uh38YsMh0M8sBrZhq8oX68S7iURwWht61uYrEshzXXCL4PiUKt28MJ4p Xw== 
-Received: from aserp3030.oracle.com (aserp3030.oracle.com [141.146.126.71])
-        by userp2130.oracle.com with ESMTP id 33c23rfrhy-1
-        (version=TLSv1.2 cipher=ECDHE-RSA-AES256-GCM-SHA384 bits=256 verify=FAIL);
-        Fri, 11 Sep 2020 18:01:00 +0000
-Received: from pps.filterd (aserp3030.oracle.com [127.0.0.1])
-        by aserp3030.oracle.com (8.16.0.42/8.16.0.42) with SMTP id 08BHximb049957;
-        Fri, 11 Sep 2020 18:00:59 GMT
-Received: from userv0121.oracle.com (userv0121.oracle.com [156.151.31.72])
-        by aserp3030.oracle.com with ESMTP id 33dacqayvf-1
-        (version=TLSv1.2 cipher=ECDHE-RSA-AES256-GCM-SHA384 bits=256 verify=OK);
-        Fri, 11 Sep 2020 18:00:59 +0000
-Received: from abhmp0002.oracle.com (abhmp0002.oracle.com [141.146.116.8])
-        by userv0121.oracle.com (8.14.4/8.13.8) with ESMTP id 08BI0t3G026796;
-        Fri, 11 Sep 2020 18:00:55 GMT
-Received: from [10.74.108.237] (/10.74.108.237)
-        by default (Oracle Beehive Gateway v4.0)
-        with ESMTP ; Fri, 11 Sep 2020 11:00:55 -0700
-Subject: Re: [PATCH 2/3] ARM/keystone: move the DMA offset handling under
- ifdef CONFIG_ARM_LPAE
-To:     Russell King - ARM Linux admin <linux@armlinux.org.uk>,
-        Christoph Hellwig <hch@lst.de>
-Cc:     iommu@lists.linux-foundation.org,
-        Santosh Shilimkar <ssantosh@kernel.org>,
-        Jim Quinlan <james.quinlan@broadcom.com>,
-        Nathan Chancellor <natechancellor@gmail.com>,
-        Florian Fainelli <f.fainelli@gmail.com>,
-        Robin Murphy <robin.murphy@arm.com>,
-        Rob Herring <robh+dt@kernel.org>,
-        Frank Rowand <frowand.list@gmail.com>,
-        linux-arm-kernel@lists.infradead.org, linux-kernel@vger.kernel.org,
-        linux-sh@vger.kernel.org, linux-pci@vger.kernel.org,
-        linux-acpi@vger.kernel.org, devicetree@vger.kernel.org,
-        linux-usb@vger.kernel.org
-References: <20200910054038.324517-1-hch@lst.de>
- <20200910054038.324517-3-hch@lst.de>
- <20200911111551.GG1551@shell.armlinux.org.uk>
-From:   santosh.shilimkar@oracle.com
-Organization: Oracle Corporation
-Message-ID: <f13c72b9-9efa-7b9d-6c23-19f87b151bc4@oracle.com>
-Date:   Fri, 11 Sep 2020 11:00:52 -0700
-User-Agent: Mozilla/5.0 (Macintosh; Intel Mac OS X 10.15; rv:68.0)
- Gecko/20100101 Thunderbird/68.9.0
+        id S1725815AbgIKU4S (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Fri, 11 Sep 2020 16:56:18 -0400
+Received: from lindbergh.monkeyblade.net ([23.128.96.19]:57108 "EHLO
+        lindbergh.monkeyblade.net" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
+        with ESMTP id S1725811AbgIKU4P (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Fri, 11 Sep 2020 16:56:15 -0400
+Received: from mail-ed1-x542.google.com (mail-ed1-x542.google.com [IPv6:2a00:1450:4864:20::542])
+        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id ADB4AC061573;
+        Fri, 11 Sep 2020 13:56:14 -0700 (PDT)
+Received: by mail-ed1-x542.google.com with SMTP id ay8so11476786edb.8;
+        Fri, 11 Sep 2020 13:56:14 -0700 (PDT)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+        d=gmail.com; s=20161025;
+        h=subject:to:cc:references:from:message-id:date:user-agent
+         :mime-version:in-reply-to:content-language:content-transfer-encoding;
+        bh=EN1aXepR2pAjS7TkWhKDjvai8AQzIN3Al8VaNg0aZds=;
+        b=FDN5aR1mZNsEYGXCC1BPMBu0sm0hScQh2NjkB1fe3oZh5VizOrUpX/nnaUi4GgW5va
+         L+LDwSSw9Qw/DpnuvmcdBJi6SbQwk3quhgcGiQqSBUIyeCSl7RHdwo49O18KQTsMjIop
+         qDAcEgE7JoYcKXoh8woTdO8sumbjYbkyObegcVrcj3VouezYf+YgwmhTIhSEqit2Ou4Y
+         koNwrjHNpGH0dnpObyb9djReB7CKAn7StrNDCyV3qt2Gn/6kEAJMKdMGlYW2+sSQhQy0
+         qpX5oREBRaYK1lSFTy9AafMj8EdNSntKJ0pm4znDC7YvDZKVW5LnuiDKLfxOhAp38OBJ
+         xAog==
+X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+        d=1e100.net; s=20161025;
+        h=x-gm-message-state:subject:to:cc:references:from:message-id:date
+         :user-agent:mime-version:in-reply-to:content-language
+         :content-transfer-encoding;
+        bh=EN1aXepR2pAjS7TkWhKDjvai8AQzIN3Al8VaNg0aZds=;
+        b=slxw/Dr3tYqVODZsvURBCJgqsx2gvItxY4eIjZt/ctZwTi6inArKPLhVbo3jqVl1UF
+         0olq57AhKuJdKMcWlJIR5jrRo7LH+QmHuH4WZY12MlQmFuPb8W3T9Cfy3nVBZ5HIl8ZI
+         Y0biCkVhJWg3/K3OJ/4Btfg1qk7AHLneziU+YPhuSxr4l1JBGSGz+Fug7mu49bR0jH/d
+         qf1mJ0qdOrw3vShBol9NND17C7QED7ZyFKGo5sdRdn/W+uVs1vJ2rETIMVK6J/y+pmHV
+         R7yeckwknH8aWLdguWSLIxBJvvCtXbm8jPFSi2lzkdqqtudvVbEjZZFyyUW/BRal4uf9
+         TS8g==
+X-Gm-Message-State: AOAM5332JDAk6J/FDOai1XchPTQFL5MTPpRbDtmgYHehYUcnWO/zc0JN
+        hD4ol9xb9DXdyQWVXigRxB8=
+X-Google-Smtp-Source: ABdhPJwKOgIOcTcY6QqbJuRaVpQD5wA5CYwL5XmcohJ38wSTiq2WLVPUbKFzW9xX6/uwSYLc+ep2Pw==
+X-Received: by 2002:a50:8c24:: with SMTP id p33mr4421467edp.330.1599857773391;
+        Fri, 11 Sep 2020 13:56:13 -0700 (PDT)
+Received: from ?IPv6:2a01:110f:b59:fd00:e953:3254:5e71:3177? ([2a01:110f:b59:fd00:e953:3254:5e71:3177])
+        by smtp.gmail.com with ESMTPSA id i17sm2151979ejy.79.2020.09.11.13.56.11
+        (version=TLS1_3 cipher=TLS_AES_128_GCM_SHA256 bits=128/128);
+        Fri, 11 Sep 2020 13:56:12 -0700 (PDT)
+Subject: Re: [PATCH v3 1/2] leds: mt6360: Add LED driver for MT6360
+To:     Pavel Machek <pavel@ucw.cz>
+Cc:     Gene Chen <gene.chen.richtek@gmail.com>, robh+dt@kernel.org,
+        matthias.bgg@gmail.com, dmurphy@ti.com, linux-leds@vger.kernel.org,
+        devicetree@vger.kernel.org, linux-arm-kernel@lists.infradead.org,
+        linux-mediatek@lists.infradead.org, linux-kernel@vger.kernel.org,
+        gene_chen@richtek.com, Wilma.Wu@mediatek.com,
+        shufan_lee@richtek.com, cy_huang@richtek.com,
+        benjamin.chao@mediatek.com
+References: <1599474459-20853-1-git-send-email-gene.chen.richtek@gmail.com>
+ <1599474459-20853-2-git-send-email-gene.chen.richtek@gmail.com>
+ <559a568e-3a2e-33c6-43aa-547a18f8e26b@gmail.com> <20200911070503.GA9818@amd>
+From:   Jacek Anaszewski <jacek.anaszewski@gmail.com>
+Message-ID: <d2721bb7-6f0e-19af-41b9-0f3ae95cf4f9@gmail.com>
+Date:   Fri, 11 Sep 2020 22:56:10 +0200
+User-Agent: Mozilla/5.0 (X11; Linux x86_64; rv:68.0) Gecko/20100101
+ Thunderbird/68.12.0
 MIME-Version: 1.0
-In-Reply-To: <20200911111551.GG1551@shell.armlinux.org.uk>
-Content-Type: text/plain; charset=utf-8; format=flowed
+In-Reply-To: <20200911070503.GA9818@amd>
+Content-Type: text/plain; charset=windows-1252; format=flowed
 Content-Language: en-US
 Content-Transfer-Encoding: 7bit
-X-Proofpoint-Virus-Version: vendor=nai engine=6000 definitions=9741 signatures=668679
-X-Proofpoint-Spam-Details: rule=notspam policy=default score=0 mlxlogscore=999 malwarescore=0
- bulkscore=0 phishscore=0 adultscore=0 suspectscore=0 spamscore=0
- mlxscore=0 classifier=spam adjust=0 reason=mlx scancount=1
- engine=8.12.0-2006250000 definitions=main-2009110145
-X-Proofpoint-Virus-Version: vendor=nai engine=6000 definitions=9741 signatures=668679
-X-Proofpoint-Spam-Details: rule=notspam policy=default score=0 adultscore=0 priorityscore=1501
- mlxlogscore=999 mlxscore=0 bulkscore=0 suspectscore=0 spamscore=0
- malwarescore=0 phishscore=0 lowpriorityscore=0 clxscore=1011
- impostorscore=0 classifier=spam adjust=0 reason=mlx scancount=1
- engine=8.12.0-2006250000 definitions=main-2009110145
 Sender: devicetree-owner@vger.kernel.org
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-On 9/11/20 4:15 AM, Russell King - ARM Linux admin wrote:
-> On Thu, Sep 10, 2020 at 07:40:37AM +0200, Christoph Hellwig wrote:
->> The DMA offset notifier can only be used if PHYS_OFFSET is at least
->> KEYSTONE_HIGH_PHYS_START, which can't be represented by a 32-bit
->> phys_addr_t.  Currently the code compiles fine despite that, a pending
->> change to the DMA offset handling would create a compiler warning for
->> this case.  Add an ifdef to not compile the code except for LPAE
->> configs.
-> 
-> However, to have use of the high physical offset, LPAE needs to be
-> enabled, which ensures that phys_addr_t is 64-bit.
-> 
-> I believe that DMA is non-coherent on this platform unless the high
-> physical address is used. Or something like that.
-> 
-Exactly. Higher address ranges needs to be used for DMA coherency.
+Hi Pavel,
 
-Regards,
-Santosh
+On 9/11/20 9:05 AM, Pavel Machek wrote:
+> Hi!
+> 
+>>> +{
+>>> +	struct mt6360_led *led = container_of(lcdev, struct mt6360_led, flash.led_cdev);
+>>> +	struct mt6360_priv *priv = led->priv;
+>>> +	u32 enable_mask = MT6360_TORCHEN_MASK | MT6360_FLCSEN_MASK(led->led_no);
+>>> +	u32 val = (level) ? MT6360_FLCSEN_MASK(led->led_no) : 0;
+>>> +	u32 prev = priv->fled_torch_used, curr;
+>>> +	int ret;
+>>> +
+>>> +	dev_dbg(lcdev->dev, "[%d] brightness %d\n", led->led_no, level);
+>>> +	if (priv->fled_strobe_used) {
+>>> +		dev_warn(lcdev->dev, "Please disable strobe first [%d]\n", priv->fled_strobe_used);
+>>
+>> Doesn't hardware handle that? IOW, what happens when you have enabled
+>> both torch and flash? If flash just overrides torch mode, than you
+>> should not prevent enabling torch in this case.
+> 
+> Yep, this is strange/confusing... and was reason why I asked for not
+> supporting strobe from sysfs.
+
+What you say now is even more confusing when we look at your ack
+under this patch:
+
+commit 7aea8389a77abf9fde254aca2434a605c7704f58
+Author: Jacek Anaszewski <j.anaszewski@samsung.com>
+Date:   Fri Jan 9 07:22:51 2015 -0800
+
+     leds: Add LED Flash class extension to the LED subsystem
+
+     Some LED devices support two operation modes - torch and flash.
+     This patch provides support for flash LED devices in the LED subsystem
+     by introducing new sysfs attributes and kernel internal interface.
+     The attributes being introduced are: flash_brightness, flash_strobe,
+     flash_timeout, max_flash_timeout, max_flash_brightness, flash_fault,
+     flash_sync_strobe and available_sync_leds. All the flash related
+     features are placed in a separate module.
+
+     The modifications aim to be compatible with V4L2 framework requirements
+     related to the flash devices management. The design assumes that V4L2
+     sub-device can take of the LED class device control and communicate
+     with it through the kernel internal interface. When V4L2 Flash 
+sub-device
+     file is opened, the LED class device sysfs interface is made
+     unavailable.
+
+     Signed-off-by: Jacek Anaszewski <j.anaszewski@samsung.com>
+     Acked-by: Kyungmin Park <kyungmin.park@samsung.com>
+     Cc: Richard Purdie <rpurdie@rpsys.net>
+     Acked-by: Pavel Machek <pavel@ucw.cz>
+     Signed-off-by: Bryan Wu <cooloney@gmail.com>
+
+
+> Could I get you to remove code you are not commenting at when
+> reviewing?
+> 
+>>> +MODULE_AUTHOR("Gene Chen <gene_chen@richtek.com>");
+>>> +MODULE_DESCRIPTION("MT6360 Led Driver");
+> 
+> Led -> LED.
+> 
+> 									Pavel
+> 
+
+-- 
+Best regards,
+Jacek Anaszewski
