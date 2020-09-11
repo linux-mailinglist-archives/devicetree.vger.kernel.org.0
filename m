@@ -2,73 +2,99 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from vger.kernel.org (vger.kernel.org [23.128.96.18])
-	by mail.lfdr.de (Postfix) with ESMTP id 0F1422658DF
-	for <lists+devicetree@lfdr.de>; Fri, 11 Sep 2020 07:38:06 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTP id 48AB726590C
+	for <lists+devicetree@lfdr.de>; Fri, 11 Sep 2020 08:03:19 +0200 (CEST)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S1725497AbgIKFiE (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Fri, 11 Sep 2020 01:38:04 -0400
-Received: from mga01.intel.com ([192.55.52.88]:61639 "EHLO mga01.intel.com"
-        rhost-flags-OK-OK-OK-OK) by vger.kernel.org with ESMTP
-        id S1725446AbgIKFiE (ORCPT <rfc822;devicetree@vger.kernel.org>);
-        Fri, 11 Sep 2020 01:38:04 -0400
-IronPort-SDR: T69mPdDQYAesGPq+bhAz83fRn2VB/zYL5CFOiHsliSoYIWOW3/RvicGXUrSGaIApOj3SF4YeMc
- q7Grbnye9/bw==
-X-IronPort-AV: E=McAfee;i="6000,8403,9740"; a="176760657"
-X-IronPort-AV: E=Sophos;i="5.76,414,1592895600"; 
-   d="scan'208";a="176760657"
-X-Amp-Result: SKIPPED(no attachment in message)
-X-Amp-File-Uploaded: False
-Received: from fmsmga001.fm.intel.com ([10.253.24.23])
-  by fmsmga101.fm.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384; 10 Sep 2020 22:38:03 -0700
-IronPort-SDR: jJ5tJ0klxr3CXIlyPpFiB9RZkK05zVqMSM3a9/yMZBYoAQkUjWFCfnR8gBtL3NmMT86bIQ+AOH
- 4J2eZ8sOc+dw==
-X-IronPort-AV: E=Sophos;i="5.76,414,1592895600"; 
-   d="scan'208";a="407983723"
-Received: from paasikivi.fi.intel.com ([10.237.72.42])
-  by fmsmga001-auth.fm.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384; 10 Sep 2020 22:37:59 -0700
-Received: by paasikivi.fi.intel.com (Postfix, from userid 1000)
-        id 899832079D; Fri, 11 Sep 2020 08:37:57 +0300 (EEST)
-Date:   Fri, 11 Sep 2020 08:37:57 +0300
-From:   Sakari Ailus <sakari.ailus@linux.intel.com>
-To:     Jacopo Mondi <jacopo+renesas@jmondi.org>
-Cc:     robh+dt@kernel.org, devicetree@vger.kernel.org,
-        linux-media@vger.kernel.org,
-        "Lad, Prabhakar" <prabhakar.csengg@gmail.com>, mchehab@kernel.org,
-        hverkuil-cisco@xs4all.nl, laurent.pinchart@ideasonboard.com,
-        linux-renesas-soc@vger.kernel.org, Rob Herring <robh@kernel.org>,
-        Lad Prabhakar <prabhakar.mahadev-lad.rj@bp.renesas.com>
-Subject: Re: [PATCH v5 2/3] dt-bindings: media: ov772x: Make bus-type
- mandatory
-Message-ID: <20200911053757.GF6566@paasikivi.fi.intel.com>
-References: <20200910162055.614089-1-jacopo+renesas@jmondi.org>
- <20200910162055.614089-3-jacopo+renesas@jmondi.org>
+        id S1725536AbgIKGDS (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Fri, 11 Sep 2020 02:03:18 -0400
+Received: from lindbergh.monkeyblade.net ([23.128.96.19]:59624 "EHLO
+        lindbergh.monkeyblade.net" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
+        with ESMTP id S1725535AbgIKGDS (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Fri, 11 Sep 2020 02:03:18 -0400
+Received: from metis.ext.pengutronix.de (metis.ext.pengutronix.de [IPv6:2001:67c:670:201:290:27ff:fe1d:cc33])
+        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id DD728C061573
+        for <devicetree@vger.kernel.org>; Thu, 10 Sep 2020 23:03:17 -0700 (PDT)
+Received: from pty.hi.pengutronix.de ([2001:67c:670:100:1d::c5])
+        by metis.ext.pengutronix.de with esmtps (TLS1.2:ECDHE_RSA_AES_256_GCM_SHA384:256)
+        (Exim 4.92)
+        (envelope-from <mfe@pengutronix.de>)
+        id 1kGc9Q-0002KV-Qm; Fri, 11 Sep 2020 08:03:12 +0200
+Received: from mfe by pty.hi.pengutronix.de with local (Exim 4.89)
+        (envelope-from <mfe@pengutronix.de>)
+        id 1kGc9Q-0003cz-6Y; Fri, 11 Sep 2020 08:03:12 +0200
+Date:   Fri, 11 Sep 2020 08:03:12 +0200
+From:   Marco Felsch <m.felsch@pengutronix.de>
+To:     Oleksij Rempel <o.rempel@pengutronix.de>
+Cc:     Mark Rutland <mark.rutland@arm.com>,
+        Rob Herring <robh+dt@kernel.org>,
+        Sascha Hauer <s.hauer@pengutronix.de>,
+        Shawn Guo <shawnguo@kernel.org>, devicetree@vger.kernel.org,
+        linux-kernel@vger.kernel.org, NXP Linux Team <linux-imx@nxp.com>,
+        Pengutronix Kernel Team <kernel@pengutronix.de>,
+        David Jander <david@protonic.nl>,
+        Fabio Estevam <festevam@gmail.com>,
+        linux-arm-kernel@lists.infradead.org
+Subject: Re: [PATCH v2 3/3] ARM: dts: add Plymovent M2M board
+Message-ID: <20200911060312.amj2ly7b3aiiwvhv@pengutronix.de>
+References: <20200911050941.15013-1-o.rempel@pengutronix.de>
+ <20200911050941.15013-4-o.rempel@pengutronix.de>
 MIME-Version: 1.0
 Content-Type: text/plain; charset=us-ascii
 Content-Disposition: inline
-In-Reply-To: <20200910162055.614089-3-jacopo+renesas@jmondi.org>
-User-Agent: Mutt/1.10.1 (2018-07-13)
+In-Reply-To: <20200911050941.15013-4-o.rempel@pengutronix.de>
+X-Sent-From: Pengutronix Hildesheim
+X-URL:  http://www.pengutronix.de/
+X-IRC:  #ptxdist @freenode
+X-Accept-Language: de,en
+X-Accept-Content-Type: text/plain
+X-Uptime: 07:59:54 up 300 days, 21:18, 302 users,  load average: 0.08, 0.06,
+ 0.01
+User-Agent: NeoMutt/20170113 (1.7.2)
+X-SA-Exim-Connect-IP: 2001:67c:670:100:1d::c5
+X-SA-Exim-Mail-From: mfe@pengutronix.de
+X-SA-Exim-Scanned: No (on metis.ext.pengutronix.de); SAEximRunCond expanded to false
+X-PTX-Original-Recipient: devicetree@vger.kernel.org
 Sender: devicetree-owner@vger.kernel.org
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-Hi Jacopo,
-
-On Thu, Sep 10, 2020 at 06:20:54PM +0200, Jacopo Mondi wrote:
-> In order to establish required properties based on the selected
-> bus type, make the 'bus-type' property mandatory. As this change
-> documents an endpoint property, also document the 'remote-endpoint'
-> one now that the 'endpoint' schema has been expanded.
+On 20-09-11 07:09, Oleksij Rempel wrote:
+> Plymovent M2M is a control interface produced for the Plymovent filter
+> systems.
 > 
-> Binary compatibility with existing DTB is kept as the driver does not
-> enforce the property to be present, and shall fall-back to default
-> parallel bus configuration, which was the only supported bus type, if
-> the property is not specified.
+> Signed-off-by: David Jander <david@protonic.nl>
+> Signed-off-by: Oleksij Rempel <o.rempel@pengutronix.de>
+> ---
+>  arch/arm/boot/dts/Makefile          |   1 +
+>  arch/arm/boot/dts/imx6dl-plym2m.dts | 394 ++++++++++++++++++++++++++++
+>  2 files changed, 395 insertions(+)
+>  create mode 100644 arch/arm/boot/dts/imx6dl-plym2m.dts
+> 
+> diff --git a/arch/arm/boot/dts/Makefile b/arch/arm/boot/dts/Makefile
+> index 4572db3fa5ae..3c3811fd8613 100644
+> --- a/arch/arm/boot/dts/Makefile
+> +++ b/arch/arm/boot/dts/Makefile
+> @@ -455,6 +455,7 @@ dtb-$(CONFIG_SOC_IMX6Q) += \
+>  	imx6dl-pico-hobbit.dtb \
+>  	imx6dl-pico-nymph.dtb \
+>  	imx6dl-pico-pi.dtb \
+> +	imx6dl-plym2m.dtb \
+>  	imx6dl-prtrvt.dtb \
+>  	imx6dl-prtvt7.dtb \
+>  	imx6dl-rex-basic.dtb \
+> diff --git a/arch/arm/boot/dts/imx6dl-plym2m.dts b/arch/arm/boot/dts/imx6dl-plym2m.dts
+> new file mode 100644
+> index 000000000000..4f96e05aa03f
+> --- /dev/null
+> +++ b/arch/arm/boot/dts/imx6dl-plym2m.dts
+> @@ -0,0 +1,394 @@
+> +// SPDX-License-Identifier: GPL-2.0-or-later OR MIT
+> +// SPDX-FileCopyrightText: 2014 Protonic Holland
+> +// SPDX-FileCopyrightText: 2020 Oleksij Rempel <kernel@pengutronix.de>, Pengutronix
+		^
+@shawn: I saw a few patches adding these tags. Are they used in the near
+future?
 
-Could you add a comment on this to the driver, so this feature isn't
-accidentally removed?
-
--- 
 Regards,
-
-Sakari Ailus
+  Marco
