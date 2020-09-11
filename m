@@ -2,59 +2,44 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from vger.kernel.org (vger.kernel.org [23.128.96.18])
-	by mail.lfdr.de (Postfix) with ESMTP id B7A8E266469
-	for <lists+devicetree@lfdr.de>; Fri, 11 Sep 2020 18:38:07 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTP id 4FC4C26646B
+	for <lists+devicetree@lfdr.de>; Fri, 11 Sep 2020 18:38:11 +0200 (CEST)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S1726610AbgIKQh7 convert rfc822-to-8bit (ORCPT
+        id S1726593AbgIKQh7 convert rfc822-to-8bit (ORCPT
         <rfc822;lists+devicetree@lfdr.de>); Fri, 11 Sep 2020 12:37:59 -0400
-Received: from lindbergh.monkeyblade.net ([23.128.96.19]:59728 "EHLO
+Received: from lindbergh.monkeyblade.net ([23.128.96.19]:59722 "EHLO
         lindbergh.monkeyblade.net" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S1726430AbgIKPM6 (ORCPT
+        with ESMTP id S1726426AbgIKPM6 (ORCPT
         <rfc822;devicetree@vger.kernel.org>); Fri, 11 Sep 2020 11:12:58 -0400
 Received: from metis.ext.pengutronix.de (metis.ext.pengutronix.de [IPv6:2001:67c:670:201:290:27ff:fe1d:cc33])
-        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 74CD7C061357
-        for <devicetree@vger.kernel.org>; Fri, 11 Sep 2020 07:26:44 -0700 (PDT)
+        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id C7422C061373
+        for <devicetree@vger.kernel.org>; Fri, 11 Sep 2020 07:33:35 -0700 (PDT)
 Received: from lupine.hi.pengutronix.de ([2001:67c:670:100:3ad5:47ff:feaf:1a17] helo=lupine)
         by metis.ext.pengutronix.de with esmtps (TLS1.3:ECDHE_RSA_AES_256_GCM_SHA384:256)
         (Exim 4.92)
         (envelope-from <p.zabel@pengutronix.de>)
-        id 1kGk0a-0003r9-8y; Fri, 11 Sep 2020 16:26:36 +0200
+        id 1kGk7E-0004h8-OX; Fri, 11 Sep 2020 16:33:28 +0200
 Received: from pza by lupine with local (Exim 4.92)
         (envelope-from <p.zabel@pengutronix.de>)
-        id 1kGk0Y-0003Gl-Ik; Fri, 11 Sep 2020 16:26:34 +0200
-Message-ID: <dae4ab91ec20e72963f2658efca4874a35dd739e.camel@pengutronix.de>
-Subject: Re: [v4,3/4] reset-controller: ti: introduce a new reset handler
+        id 1kGk77-0003hr-RU; Fri, 11 Sep 2020 16:33:21 +0200
+Message-ID: <1ac4ba40a031169b968e3084c132579db921033c.camel@pengutronix.de>
+Subject: Re: [v2,2/3] PCI: mediatek: Add new generation controller support
 From:   Philipp Zabel <p.zabel@pengutronix.de>
-To:     Crystal Guo <crystal.guo@mediatek.com>, Suman Anna <s-anna@ti.com>
-Cc:     "robh+dt@kernel.org" <robh+dt@kernel.org>,
-        "matthias.bgg@gmail.com" <matthias.bgg@gmail.com>,
-        srv_heupstream <srv_heupstream@mediatek.com>,
-        "linux-mediatek@lists.infradead.org" 
-        <linux-mediatek@lists.infradead.org>,
-        "linux-arm-kernel@lists.infradead.org" 
-        <linux-arm-kernel@lists.infradead.org>,
-        "linux-kernel@vger.kernel.org" <linux-kernel@vger.kernel.org>,
-        "devicetree@vger.kernel.org" <devicetree@vger.kernel.org>,
-        Seiya Wang =?UTF-8?Q?=28=E7=8E=8B=E8=BF=BA=E5=90=9B=29?= 
-        <seiya.wang@mediatek.com>,
-        Stanley Chu =?UTF-8?Q?=28=E6=9C=B1=E5=8E=9F=E9=99=9E=29?= 
-        <stanley.chu@mediatek.com>,
-        Yingjoe Chen =?UTF-8?Q?=28=E9=99=B3=E8=8B=B1=E6=B4=B2=29?= 
-        <Yingjoe.Chen@mediatek.com>,
-        Fan Chen =?UTF-8?Q?=28=E9=99=B3=E5=87=A1=29?= 
-        <fan.chen@mediatek.com>,
-        Yong Liang =?UTF-8?Q?=28=E6=A2=81=E5=8B=87=29?= 
-        <Yong.Liang@mediatek.com>
-Date:   Fri, 11 Sep 2020 16:26:34 +0200
-In-Reply-To: <1599804422.14806.27.camel@mhfsdcap03>
-References: <20200817030324.5690-1-crystal.guo@mediatek.com>
-         <20200817030324.5690-4-crystal.guo@mediatek.com>
-         <3a5decee-5f31-e27d-a120-1f835241a87c@ti.com>
-         <1599620279.14806.18.camel@mhfsdcap03>
-         <096362e9-dee8-4e7a-2518-47328068c2fd@ti.com>
-         <1599792140.14806.22.camel@mhfsdcap03>
-         <9d72aaef-49fe-ebb6-215d-05ad3ab27af4@ti.com>
-         <1599804422.14806.27.camel@mhfsdcap03>
+To:     Jianjun Wang <jianjun.wang@mediatek.com>,
+        Bjorn Helgaas <bhelgaas@google.com>,
+        Rob Herring <robh+dt@kernel.org>,
+        Lorenzo Pieralisi <lorenzo.pieralisi@arm.com>,
+        Ryder Lee <ryder.lee@mediatek.com>
+Cc:     Matthias Brugger <matthias.bgg@gmail.com>,
+        Mauro Carvalho Chehab <mchehab+huawei@kernel.org>,
+        davem@davemloft.net, linux-pci@vger.kernel.org,
+        linux-mediatek@lists.infradead.org, devicetree@vger.kernel.org,
+        linux-kernel@vger.kernel.org, linux-arm-kernel@lists.infradead.org,
+        Sj Huang <sj.huang@mediatek.com>
+Date:   Fri, 11 Sep 2020 16:33:21 +0200
+In-Reply-To: <20200910034536.30860-3-jianjun.wang@mediatek.com>
+References: <20200910034536.30860-1-jianjun.wang@mediatek.com>
+         <20200910034536.30860-3-jianjun.wang@mediatek.com>
 Content-Type: text/plain; charset="UTF-8"
 Content-Transfer-Encoding: 8BIT
 User-Agent: Evolution 3.30.5-1.1 
@@ -68,36 +53,49 @@ Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-Hi Crystal,
+Hi Jianjun,
 
-On Fri, 2020-09-11 at 14:07 +0800, Crystal Guo wrote:
+On Thu, 2020-09-10 at 11:45 +0800, Jianjun Wang wrote:
+> MediaTek's PCIe host controller has three generation HWs, the new
+> generation HW is an individual bridge, it supoorts Gen3 speed and
+> up to 256 MSI interrupt numbers for multi-function devices.
+> 
+> Add support for new Gen3 controller which can be found on MT8192.
+> 
+> Signed-off-by: Jianjun Wang <jianjun.wang@mediatek.com>
+> Acked-by: Ryder Lee <ryder.lee@mediatek.com>
+> ---
+>  drivers/pci/controller/Kconfig              |   14 +
+>  drivers/pci/controller/Makefile             |    1 +
+>  drivers/pci/controller/pcie-mediatek-gen3.c | 1076 +++++++++++++++++++
+>  3 files changed, 1091 insertions(+)
+>  create mode 100644 drivers/pci/controller/pcie-mediatek-gen3.c
+> 
 [...]
-> Should I add the SoC-specific data as follows?
-> This may also modify the ti original code, is it OK?
-> 
-> +       data->reset_data = of_device_get_match_data(&pdev->dev);
+> diff --git a/drivers/pci/controller/pcie-mediatek-gen3.c b/drivers/pci/controller/pcie-mediatek-gen3.c
+> new file mode 100644
+> index 000000000000..f8c8bdf88d33
+> --- /dev/null
+> +++ b/drivers/pci/controller/pcie-mediatek-gen3.c
+[...]
+> +static int mtk_pcie_power_up(struct mtk_pcie_port *port)
+> +{
+> +	struct device *dev = port->dev;
+> +	int err;
 > +
-> +       list = of_get_property(np, data->reset_data->reset_bits, &size);
-> 
-> +static const struct common_reset_data ti_reset_data = {
-> +       .reset_op_available = false,
-> +       .reset_bits = "ti, reset-bits",
-                            ^
-That space doesn't belong there.
+> +	port->phy_reset = devm_reset_control_get_optional(dev, "phy-rst");
 
-> +};
-> +
-> +static const struct common_reset_data mediatek_reset_data = {
-> +       .reset_op_available = true,
-> +       .reset_bits = "mediatek, reset-bits",
-> +};
+Please use devm_reset_control_get_optional_exclusive() instead.
 
-I understand Robs comments as meaning "ti,reset-bits" should have been
-called "reset-bits" in the first place, and you shouldn't repeat adding
-the vendor prefix, as that is implied by the compatible. So this should
-probably be just "reset-bits".
+> +	if (PTR_ERR(port->phy_reset) == -EPROBE_DEFER)
+> +		return PTR_ERR(port->phy_reset);
 
-Otherwise this looks like it should work.
+This should be
+
+	if (IS_ERR(port->phy_reset))
+		return PTR_ERR(port->phy_reset);
+
+there is no reason to continue if this throws -ENOMEM, for example.
 
 regards
 Philipp
