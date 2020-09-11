@@ -2,95 +2,119 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from vger.kernel.org (vger.kernel.org [23.128.96.18])
-	by mail.lfdr.de (Postfix) with ESMTP id 43018266149
-	for <lists+devicetree@lfdr.de>; Fri, 11 Sep 2020 16:35:36 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTP id BC7AB26621D
+	for <lists+devicetree@lfdr.de>; Fri, 11 Sep 2020 17:28:15 +0200 (CEST)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S1726284AbgIKOfB (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Fri, 11 Sep 2020 10:35:01 -0400
-Received: from lindbergh.monkeyblade.net ([23.128.96.19]:40678 "EHLO
-        lindbergh.monkeyblade.net" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S1726226AbgIKNLy (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Fri, 11 Sep 2020 09:11:54 -0400
-Received: from mail-lj1-x243.google.com (mail-lj1-x243.google.com [IPv6:2a00:1450:4864:20::243])
-        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id ED49BC0617A3
-        for <devicetree@vger.kernel.org>; Fri, 11 Sep 2020 06:10:04 -0700 (PDT)
-Received: by mail-lj1-x243.google.com with SMTP id k25so12395709ljk.0
-        for <devicetree@vger.kernel.org>; Fri, 11 Sep 2020 06:10:04 -0700 (PDT)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=linaro.org; s=google;
-        h=from:to:cc:subject:date:message-id:in-reply-to:references
-         :mime-version:content-transfer-encoding;
-        bh=JSPHG+gWrol4xtMWqlVawkUp7PUHXa4piQC1yx4WIUQ=;
-        b=sEuCMNpNZYYuAs0LAOewYrhOb/4Ro2IUzL3kV17d/lgV7TVvfrubtNKkZAdRvWopCR
-         Eji5hFzeP6LDqZAVhwLcGoVZOrdveHmVbI+MPe4vI+tGD3TgHQHJ3Utvz/UymyXWuMWU
-         HN3mJ4oMGNRoQWQNOBAnSsTkm2V+lqdJSknF0yt1SqCvhZruKP0Mcem0bPnN3j64tIkV
-         VuPa1w9xzlajgmQNMLKwPq0z8oCVgJgEL+jsnOK05rwpp/s8eFou1NsSQpvSilYsiJm1
-         u15+8CJjnNj1jfCsweCkHWaZqdYgAgyEBuzz+bv3IErK3ObQn0zbpwTHk6LB8DNKNZKP
-         nKrg==
-X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=1e100.net; s=20161025;
-        h=x-gm-message-state:from:to:cc:subject:date:message-id:in-reply-to
-         :references:mime-version:content-transfer-encoding;
-        bh=JSPHG+gWrol4xtMWqlVawkUp7PUHXa4piQC1yx4WIUQ=;
-        b=R2b71XD8162HXNUvbYbQZahpdpxg6hI9XaBT3keOGgraTi2BzusL3VGePuC5vfWc4W
-         oY6vhDrRAijSZ3a0+TKx0f/FAgZi+VQAzPcTnoYTO3qrA3+vbwH5XJMjNUB2jE9a89xq
-         z3Z4uwkzxayevtaLqUdZUJQEadbEicDCWJ4YVWjQDggDpmvgxNtqmolEMnxw5SRJf8p6
-         E/cgBOcpH0XFsLy434r57qKHZuLvfmBto1wMvSPow4EYlzgo5eg+HgA961zHbgQjReo4
-         FHUPrrt+5FCxfZCV1l9T6GRrAz55MOsy0WCYLs7kWY+RVGTT0+nU41/X0MByOYKb1ShB
-         OWjQ==
-X-Gm-Message-State: AOAM533uowKHC7qbaxvxueRbiQsq2u1nFxJl2ZaBvmEvg19YNF4o6TiS
-        q5UwZ+2LaKJl3gPgtr97nRVVdg==
-X-Google-Smtp-Source: ABdhPJweLFzvwR0GykH9HcZst3Q+Y2PFxn41CgZ06JQB1cBkINnhG0UexuZHCND63cR+N8Y6v2gFTQ==
-X-Received: by 2002:a2e:8153:: with SMTP id t19mr851775ljg.334.1599829803419;
-        Fri, 11 Sep 2020 06:10:03 -0700 (PDT)
-Received: from eriador.lan ([188.162.64.141])
-        by smtp.gmail.com with ESMTPSA id 10sm429500lfq.64.2020.09.11.06.10.01
-        (version=TLS1_3 cipher=TLS_AES_256_GCM_SHA384 bits=256/256);
-        Fri, 11 Sep 2020 06:10:02 -0700 (PDT)
-From:   Dmitry Baryshkov <dmitry.baryshkov@linaro.org>
-To:     Andy Gross <agross@kernel.org>,
-        Bjorn Andersson <bjorn.andersson@linaro.org>,
+        id S1726092AbgIKP2K (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Fri, 11 Sep 2020 11:28:10 -0400
+Received: from mga02.intel.com ([134.134.136.20]:11193 "EHLO mga02.intel.com"
+        rhost-flags-OK-OK-OK-OK) by vger.kernel.org with ESMTP
+        id S1726482AbgIKP13 (ORCPT <rfc822;devicetree@vger.kernel.org>);
+        Fri, 11 Sep 2020 11:27:29 -0400
+IronPort-SDR: nzThaXujr+ALgCRhaSW7VKSfyQ96qsG48/iJVKP0U/fwtHYabvnephDxfUdYBfWrCf6qeJmT5R
+ QPbp7UEdrRzg==
+X-IronPort-AV: E=McAfee;i="6000,8403,9740"; a="146447683"
+X-IronPort-AV: E=Sophos;i="5.76,415,1592895600"; 
+   d="scan'208";a="146447683"
+X-Amp-Result: SKIPPED(no attachment in message)
+X-Amp-File-Uploaded: False
+Received: from orsmga001.jf.intel.com ([10.7.209.18])
+  by orsmga101.jf.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384; 11 Sep 2020 06:49:08 -0700
+IronPort-SDR: YGXxGEATdN65IN69VmiikoyK2YTR30+O68yZe+59DwGOF1ft0rbD8qiEt2xPK07XTQzomCDuQC
+ bjRCn57WG/Vg==
+X-IronPort-AV: E=Sophos;i="5.76,415,1592895600"; 
+   d="scan'208";a="378568692"
+Received: from paasikivi.fi.intel.com ([10.237.72.42])
+  by orsmga001-auth.jf.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384; 11 Sep 2020 06:49:04 -0700
+Received: by paasikivi.fi.intel.com (Postfix, from userid 1000)
+        id A94202079D; Fri, 11 Sep 2020 16:49:02 +0300 (EEST)
+Date:   Fri, 11 Sep 2020 16:49:02 +0300
+From:   Sakari Ailus <sakari.ailus@linux.intel.com>
+To:     "Togorean, Bogdan" <Bogdan.Togorean@analog.com>
+Cc:     Laurent Pinchart <laurent.pinchart@ideasonboard.com>,
+        "linux-media@vger.kernel.org" <linux-media@vger.kernel.org>,
+        Mauro Carvalho Chehab <mchehab@kernel.org>,
         Rob Herring <robh+dt@kernel.org>,
-        Jonathan Marek <jonathan@marek.ca>,
-        Stephen Boyd <sboyd@kernel.org>,
-        Michael Turquette <mturquette@baylibre.com>
-Cc:     linux-arm-msm@vger.kernel.org,
+        "David S. Miller" <davem@davemloft.net>,
+        Laurent Pinchart <laurent.pinchart+renesas@ideasonboard.com>,
+        Jacopo Mondi <jacopo+renesas@jmondi.org>,
+        Kieran Bingham <kieran.bingham+renesas@ideasonboard.com>,
+        YueHaibing <yuehaibing@huawei.com>,
+        Bingbu Cao <bingbu.cao@intel.com>,
         Manivannan Sadhasivam <manivannan.sadhasivam@linaro.org>,
-        devicetree@vger.kernel.org
-Subject: [RFC 4/4] arm64: dts: qcom: sm8250: pin MMCX to stop the board from crashing
-Date:   Fri, 11 Sep 2020 16:09:50 +0300
-Message-Id: <20200911130950.578483-5-dmitry.baryshkov@linaro.org>
-X-Mailer: git-send-email 2.28.0
-In-Reply-To: <20200911130950.578483-1-dmitry.baryshkov@linaro.org>
-References: <20200911130950.578483-1-dmitry.baryshkov@linaro.org>
+        Shawn Tu <shawnx.tu@intel.com>,
+        Dongchun Zhu <dongchun.zhu@mediatek.com>,
+        "devicetree@vger.kernel.org" <devicetree@vger.kernel.org>,
+        "linux-kernel@vger.kernel.org" <linux-kernel@vger.kernel.org>,
+        "Cozma, Andrei" <Andrei.Cozma@analog.com>
+Subject: Re: [PATCH 1/2] media: i2c: Add driver for the Analog Devices
+ ADDI9036 ToF front-end
+Message-ID: <20200911134902.GH26842@paasikivi.fi.intel.com>
+References: <20200910162426.55306-1-bogdan.togorean@analog.com>
+ <20200910220138.GJ3940@pendragon.ideasonboard.com>
+ <DM6PR03MB5274FF37BB02D98691BB43289B240@DM6PR03MB5274.namprd03.prod.outlook.com>
 MIME-Version: 1.0
-Content-Transfer-Encoding: 8bit
+Content-Type: text/plain; charset=us-ascii
+Content-Disposition: inline
+In-Reply-To: <DM6PR03MB5274FF37BB02D98691BB43289B240@DM6PR03MB5274.namprd03.prod.outlook.com>
+User-Agent: Mutt/1.10.1 (2018-07-13)
 Sender: devicetree-owner@vger.kernel.org
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-Use MMCX domain to power up MDSS_GDSC.
+Hi Bogdan,
 
-Signed-off-by: Dmitry Baryshkov <dmitry.baryshkov@linaro.org>
----
- arch/arm64/boot/dts/qcom/sm8250.dtsi | 3 +++
- 1 file changed, 3 insertions(+)
+On Fri, Sep 11, 2020 at 01:32:39PM +0000, Togorean, Bogdan wrote:
+> Hi Laurent,
+> 
+> > Hi Bogdan,
+> > 
+> > Thank you for the patch.
+> 
+> Thank you for review!
+> 
+> > 
+> > On Thu, Sep 10, 2020 at 07:24:06PM +0300, Bogdan Togorean wrote:
+> > > The ADDI9036 is a complete, 45 MHz, front-end solution for charge
+> > > coupled device (CCD) time of flight (TOF) imaging applications.
+> > >
+> > > It has 2-lane MIPI CSI-2 RAW12 data output and i2c control interface.
+> > >
+> > > The programming of calibration and firmware is performed by userspace
+> > > SDK through CID_USER class IOCTLs.
+> > 
+> > I'm afraid that's not acceptable. The firmware should be loaded using
+> > the Linux kernel firmware API. As for calibration, is it static data ?
+> > How is it generated ?
+> 
+> Calibration data is static data, generated at production and stored on and EEPROM
+> memory on camera board. The camera board consists mainly of ADDI9036 processor
+> + CCD image sensor + EEPROM.
+> 
+> The firmware is a set of (address, data) tuples that are written via I2C.
+> We want this driver to be a generic one and support all implementations
+> of ADDI9036 ToF processor. Now the problem is that some implementations 
+> store firmware + calibration on external EEPROM and some store just calibration 
+> data on EEPROM and firmware is loaded from a file stored in SDK. With the help 
+> of the 2 custom controls we move the camera model detection, firmware
+> and calibration fetching from driver to user space SDK.
 
-diff --git a/arch/arm64/boot/dts/qcom/sm8250.dtsi b/arch/arm64/boot/dts/qcom/sm8250.dtsi
-index 5045fe89a494..c42640228ceb 100644
---- a/arch/arm64/boot/dts/qcom/sm8250.dtsi
-+++ b/arch/arm64/boot/dts/qcom/sm8250.dtsi
-@@ -1732,6 +1732,9 @@ dp_out: endpoint {
- 		dispcc: clock-controller@af00000 {
- 			compatible = "qcom,sm8250-dispcc";
- 			reg = <0 0x0af00000 0 0x10000>;
-+			power-domains = <&rpmhpd SM8250_MMCX>;
-+			power-domain-names = "mmcx";
-+			required-opps = <&rpmhpd_opp_low_svs>;
- 			clocks = <&rpmhcc RPMH_CXO_CLK>,
- 				 <&dsi0_phy 0>,
- 				 <&dsi0_phy 1>,
+Can you figure out by reading EEPROM which one of these is the case?
+Alternatively you could add a custom DT property IMO.
+
+The calibration data could be loaded using request_firmware(), too. I'd use
+a specific directory for just this purpose.
+
+> 
+> Also an important point is that the ToF processor has 3 operating modes 
+> (near, medium and far). At each mode change a new set of firmware + 
+> calibration data is loaded into ADDI9036 chip. If we move the firmware loading
+> in driver we would still need a custom enumeration control to select the working mode.
+
+I don't see there being an issue having such a control.
+
 -- 
-2.28.0
+Kind regards,
 
+Sakari Ailus
