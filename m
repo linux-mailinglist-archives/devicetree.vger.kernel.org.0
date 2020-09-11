@@ -2,146 +2,187 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from vger.kernel.org (vger.kernel.org [23.128.96.18])
-	by mail.lfdr.de (Postfix) with ESMTP id 5898E265AB9
-	for <lists+devicetree@lfdr.de>; Fri, 11 Sep 2020 09:46:10 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTP id 73755265ADC
+	for <lists+devicetree@lfdr.de>; Fri, 11 Sep 2020 09:53:34 +0200 (CEST)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S1725822AbgIKHqF (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Fri, 11 Sep 2020 03:46:05 -0400
-Received: from lindbergh.monkeyblade.net ([23.128.96.19]:47110 "EHLO
-        lindbergh.monkeyblade.net" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S1725535AbgIKHp4 (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Fri, 11 Sep 2020 03:45:56 -0400
-Received: from mail-ed1-x542.google.com (mail-ed1-x542.google.com [IPv6:2a00:1450:4864:20::542])
-        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 12BE6C061573
-        for <devicetree@vger.kernel.org>; Fri, 11 Sep 2020 00:45:56 -0700 (PDT)
-Received: by mail-ed1-x542.google.com with SMTP id i1so9021621edv.2
-        for <devicetree@vger.kernel.org>; Fri, 11 Sep 2020 00:45:55 -0700 (PDT)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=baylibre-com.20150623.gappssmtp.com; s=20150623;
-        h=mime-version:references:in-reply-to:from:date:message-id:subject:to
-         :cc;
-        bh=H10t/PoYzFp2YJmus+JauG6BT44xTI8He+24ZzfKGuc=;
-        b=iJSfcSRDOI0uj91Wf8MfSv/rALU7QF9mAKdWgTtdYgxxMFt80M8rsPWnXsXYMzUpZK
-         xHebxWWZTzyE/epGDO1WpaKpE8SOrd0QpZqajO8z3MCuct47/WoledDN2wrpFrTVsELB
-         C/Dyw6kPcsR4JDILPM/nBFjJEI3h0YHOinecmu1KOgC5RsTbTTEEaZwZDv4YHbWn9RIm
-         ZviGWZDSck3+GZAMoo2bfIS1Lxd32PEiG9+OLmj4P9a/W52MoUUrfQmqYprssftujuh9
-         DmCIv8Yi1GSnT8yjI/bThPIVd20V7UVAMCV+ydLH3qveG2n2iguoJxEkaBA2PVarhCv6
-         2M+A==
-X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=1e100.net; s=20161025;
-        h=x-gm-message-state:mime-version:references:in-reply-to:from:date
-         :message-id:subject:to:cc;
-        bh=H10t/PoYzFp2YJmus+JauG6BT44xTI8He+24ZzfKGuc=;
-        b=RodMU5bCNqKm5v/VzjlWUVehMrEee/k/REdnbSLLeatieG08pArzILKl/9ZXJdCjCV
-         nR2AtbLMJrtMIBeIJ53gcVMw0GxX5WU5tfxW0EswfVOZxHUaBpBBE8R/X3sn0sbGvimD
-         YLH8OkT1LcXaT+FQ3xEmpLFVtk4pVxIN/7Ym5/HBMrToQbz+02w3jP1d/1X5Co6YyYDq
-         m1uk5hX97ZSr4gfhPwXEqyUFZaflKQg16vwyFJvWXziLT2Ta7dd/mO0RFeyM7j1dcxuR
-         Z3MgQk0LGidoZcHasNiKDuxXHM8wYSQnAjbpRf5eEvO8stbwyUQdwA+eN1fzcGv2T4JS
-         KpuA==
-X-Gm-Message-State: AOAM530DiFonV4NNI+pwYdioNEQZRHC9AdQxyHPU5B/pcuwbtk6Tmol1
-        QBZvA6uXMt4x8RJjX3dujxQUcsO2pjs/TxhusPC/ja/jPVc=
-X-Google-Smtp-Source: ABdhPJzoAxY70MZcPNGWxyG6zQ6qr5FKoQPOg9NgPLDiF+Ir58RNLJLUI7l1ei3YibuFb2rBegUpdWQ+ccblZaesBJc=
-X-Received: by 2002:a50:e79c:: with SMTP id b28mr712767edn.371.1599810354627;
- Fri, 11 Sep 2020 00:45:54 -0700 (PDT)
+        id S1725616AbgIKHxa (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Fri, 11 Sep 2020 03:53:30 -0400
+Received: from hostingweb31-40.netsons.net ([89.40.174.40]:37055 "EHLO
+        hostingweb31-40.netsons.net" rhost-flags-OK-OK-OK-OK)
+        by vger.kernel.org with ESMTP id S1725554AbgIKHx3 (ORCPT
+        <rfc822;devicetree@vger.kernel.org>);
+        Fri, 11 Sep 2020 03:53:29 -0400
+Received: from [78.134.51.148] (port=60254 helo=[192.168.77.62])
+        by hostingweb31.netsons.net with esmtpsa  (TLS1.2) tls TLS_ECDHE_RSA_WITH_AES_128_GCM_SHA256
+        (Exim 4.93)
+        (envelope-from <luca@lucaceresoli.net>)
+        id 1kGds4-000E73-KE; Fri, 11 Sep 2020 09:53:24 +0200
+Subject: Re: [PATCH v5] dt-bindings: media: imx274: Convert to json-schema
+To:     Jacopo Mondi <jacopo+renesas@jmondi.org>,
+        Leon Luo <leonl@leopardimaging.com>,
+        Sowjanya Komatineni <skomatineni@nvidia.com>,
+        robh+dt@kernel.org, devicetree@vger.kernel.org,
+        linux-media@vger.kernel.org
+Cc:     mchehab@kernel.org, sakari.ailus@linux.intel.com,
+        hverkuil-cisco@xs4all.nl, laurent.pinchart@ideasonboard.com,
+        linux-renesas-soc@vger.kernel.org
+References: <20200910162009.613976-1-jacopo+renesas@jmondi.org>
+From:   Luca Ceresoli <luca@lucaceresoli.net>
+Message-ID: <f6b43803-1880-c5fe-dba1-fa94d1dbb182@lucaceresoli.net>
+Date:   Fri, 11 Sep 2020 09:53:23 +0200
+User-Agent: Mozilla/5.0 (X11; Linux x86_64; rv:68.0) Gecko/20100101
+ Thunderbird/68.10.0
 MIME-Version: 1.0
-References: <20200910134239.192030-1-jonathanh@nvidia.com> <20200910134239.192030-2-jonathanh@nvidia.com>
- <CAMpxmJXbhrmJJn4f3zk4=Y2tCwLzpFc+c6NbxcqVe8eaLSRvtw@mail.gmail.com>
- <88021f57-b8cf-d3d6-0e9c-19ed0bccb729@nvidia.com> <5afe9537-dc50-16ff-028e-b4539c6f924a@nvidia.com>
-In-Reply-To: <5afe9537-dc50-16ff-028e-b4539c6f924a@nvidia.com>
-From:   Bartosz Golaszewski <bgolaszewski@baylibre.com>
-Date:   Fri, 11 Sep 2020 09:45:43 +0200
-Message-ID: <CAMpxmJUAhJmGA_3nKs51hF=08vY19U5Rpfz30DLgOOiTMuxjzA@mail.gmail.com>
-Subject: Re: [PATCH 1/5] misc: eeprom: at24: Initialise AT24 NVMEM ID field
-To:     Jon Hunter <jonathanh@nvidia.com>
-Cc:     Rob Herring <robh+dt@kernel.org>,
-        Thierry Reding <thierry.reding@gmail.com>,
-        linux-i2c <linux-i2c@vger.kernel.org>,
-        LKML <linux-kernel@vger.kernel.org>,
-        linux-devicetree <devicetree@vger.kernel.org>,
-        linux-tegra@vger.kernel.org
-Content-Type: text/plain; charset="UTF-8"
+In-Reply-To: <20200910162009.613976-1-jacopo+renesas@jmondi.org>
+Content-Type: text/plain; charset=utf-8
+Content-Language: en-US
+Content-Transfer-Encoding: 7bit
+X-AntiAbuse: This header was added to track abuse, please include it with any abuse report
+X-AntiAbuse: Primary Hostname - hostingweb31.netsons.net
+X-AntiAbuse: Original Domain - vger.kernel.org
+X-AntiAbuse: Originator/Caller UID/GID - [47 12] / [47 12]
+X-AntiAbuse: Sender Address Domain - lucaceresoli.net
+X-Get-Message-Sender-Via: hostingweb31.netsons.net: authenticated_id: luca@lucaceresoli.net
+X-Authenticated-Sender: hostingweb31.netsons.net: luca@lucaceresoli.net
+X-Source: 
+X-Source-Args: 
+X-Source-Dir: 
 Sender: devicetree-owner@vger.kernel.org
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-On Thu, Sep 10, 2020 at 8:19 PM Jon Hunter <jonathanh@nvidia.com> wrote:
->
->
-> On 10/09/2020 19:15, Jon Hunter wrote:
-> >
-> > On 10/09/2020 16:35, Bartosz Golaszewski wrote:
-> >> On Thu, Sep 10, 2020 at 3:43 PM Jon Hunter <jonathanh@nvidia.com> wrote:
-> >>>
-> >>> The AT24 EEPROM driver does not initialise the 'id' field of the
-> >>> nvmem_config structure and because the entire structure is not
-> >>> initialised, it ends up with a random value. This causes the NVMEM
-> >>> driver to append the device 'devid' value to name of the NVMEM
-> >>> device. Although this is not a problem per-se, for I2C devices such as
-> >>> the AT24, that already have a device unique name, there does not seem
-> >>> much value in appending an additional 0 to the I2C name. For example,
-> >>> appending a 0 to an I2C device name such as 1-0050 does not seem
-> >>> necessary and maybe even a bit confusing. Therefore, fix this by
-> >>> setting the NVMEM config.id to NVMEM_DEVID_NONE for AT24 EEPROMs.
-> >>>
-> >>> Signed-off-by: Jon Hunter <jonathanh@nvidia.com>
-> >>> ---
-> >>>  drivers/misc/eeprom/at24.c | 1 +
-> >>>  1 file changed, 1 insertion(+)
-> >>>
-> >>> diff --git a/drivers/misc/eeprom/at24.c b/drivers/misc/eeprom/at24.c
-> >>> index e9df1ca251df..3f7a3bb6a36c 100644
-> >>> --- a/drivers/misc/eeprom/at24.c
-> >>> +++ b/drivers/misc/eeprom/at24.c
-> >>> @@ -715,6 +715,7 @@ static int at24_probe(struct i2c_client *client)
-> >>>
-> >>>         nvmem_config.name = dev_name(dev);
-> >>>         nvmem_config.dev = dev;
-> >>> +       nvmem_config.id = NVMEM_DEVID_NONE;
-> >>>         nvmem_config.read_only = !writable;
-> >>>         nvmem_config.root_only = !(flags & AT24_FLAG_IRUGO);
-> >>>         nvmem_config.owner = THIS_MODULE;
-> >>> --
-> >>> 2.25.1
-> >>>
-> >>
-> >> This patch is correct and thanks for catching it. I vaguely recall
-> >> wondering at some point why the appended 0 in the nvmem name for at24.
-> >> Unfortunately this change would affect how the device is visible in
-> >> user-space in /sys/bus/nvmem/devices/ and this could break existing
-> >> users. Also: there are many in-kernel users that would need to be
-> >> updated. I'm afraid we'll need some sort of backward compatibility.
-> >
-> >
-> > Thanks, yes that is a problem. I guess for now we could explicitly init
-> > to NVMEM_DEVID_AUTO or maybe just 0 so that it defaults to the same path
-> > in the NVMEM driver. However, I am not sure how we can make allow some
-> > devices to use NVMEM_DEVID_NONE and others use something else. This is
-> > not really something that we can describe in DT because it has nothing
-> > to do with h/w.
->
->
-> Unless we make the configuration of the 'id' dependent on the 'label'
-> property so something like ...
->
->         if (device_property_present(dev, "label")) {
->                 nvmem_config.id = NVMEM_DEVID_NONE;
->                 err = device_property_read_string(dev, "label",
->                                                   &nvmem_config.name);
->                 if (err)
->                         return err;
->         } else {
->                 nvmem_config.id = NVMEM_DEVID_AUTO;
->                 nvmem_config.name = dev_name(dev);
->         }
->
-> Cheers
-> Jon
->
-> --
-> nvpublic
+Hi Jacopo,
 
-Yes, this looks like the best compromise we can get for now. Please
-make sure to document why we do this in the code.
+On 10/09/20 18:20, Jacopo Mondi wrote:
+> Convert the imx274 bindings document to json-schema and update
+> the MAINTAINERS file accordingly.
+> 
+> Reviewed-by: Laurent Pinchart <laurent.pinchart@ideasonboard.com>
+> Signed-off-by: Jacopo Mondi <jacopo+renesas@jmondi.org>
+> ---
+> 
+> v4->v5:
+> - Add optional properties that were upstreamed in v5.9-rc2 in the textual
+>   bindings
+> - Move them to be lowercase: this patch should be fast-tracked through the
+>   fixes branch to make sure it gets in before v5.9 is released, otherwise the
+>   textual bindings will have supplies names in uppercase
+> 
+> ---
+>  .../devicetree/bindings/media/i2c/imx274.txt  | 38 ---------
+>  .../bindings/media/i2c/sony,imx274.yaml       | 77 +++++++++++++++++++
+>  MAINTAINERS                                   |  2 +-
+>  3 files changed, 78 insertions(+), 39 deletions(-)
+>  delete mode 100644 Documentation/devicetree/bindings/media/i2c/imx274.txt
+>  create mode 100644 Documentation/devicetree/bindings/media/i2c/sony,imx274.yaml
+> 
+> diff --git a/Documentation/devicetree/bindings/media/i2c/imx274.txt b/Documentation/devicetree/bindings/media/i2c/imx274.txt
+> deleted file mode 100644
+> index 0727079d2410..000000000000
+> --- a/Documentation/devicetree/bindings/media/i2c/imx274.txt
+> +++ /dev/null
+> @@ -1,38 +0,0 @@
+> -* Sony 1/2.5-Inch 8.51Mp CMOS Digital Image Sensor
+> -
+> -The Sony imx274 is a 1/2.5-inch CMOS active pixel digital image sensor with
+> -an active array size of 3864H x 2202V. It is programmable through I2C
+> -interface. The I2C address is fixed to 0x1a as per sensor data sheet.
+> -Image data is sent through MIPI CSI-2, which is configured as 4 lanes
+> -at 1440 Mbps.
+> -
+> -
+> -Required Properties:
+> -- compatible: value should be "sony,imx274" for imx274 sensor
+> -- reg: I2C bus address of the device
+> -
+> -Optional Properties:
+> -- reset-gpios: Sensor reset GPIO
+> -- clocks: Reference to the input clock.
+> -- clock-names: Should be "inck".
+> -- VANA-supply: Sensor 2.8v analog supply.
+> -- VDIG-supply: Sensor 1.8v digital core supply.
+> -- VDDL-supply: Sensor digital IO 1.2v supply.
+> -
+> -The imx274 device node should contain one 'port' child node with
+> -an 'endpoint' subnode. For further reading on port node refer to
+> -Documentation/devicetree/bindings/media/video-interfaces.txt.
+> -
+> -Example:
+> -	sensor@1a {
+> -		compatible = "sony,imx274";
+> -		reg = <0x1a>;
+> -		#address-cells = <1>;
+> -		#size-cells = <0>;
+> -		reset-gpios = <&gpio_sensor 0 0>;
+> -		port {
+> -			sensor_out: endpoint {
+> -				remote-endpoint = <&csiss_in>;
+> -			};
+> -		};
+> -	};
+> diff --git a/Documentation/devicetree/bindings/media/i2c/sony,imx274.yaml b/Documentation/devicetree/bindings/media/i2c/sony,imx274.yaml
+> new file mode 100644
+> index 000000000000..fe81def68466
+> --- /dev/null
+> +++ b/Documentation/devicetree/bindings/media/i2c/sony,imx274.yaml
+> @@ -0,0 +1,77 @@
+> +# SPDX-License-Identifier: (GPL-2.0-only OR BSD-2-Clause)
+> +%YAML 1.2
+> +---
+> +$id: http://devicetree.org/schemas/media/i2c/sony,imx274.yaml#
+> +$schema: http://devicetree.org/meta-schemas/core.yaml#
+> +
+> +title: Sony 1/2.5-Inch 8.51MP CMOS Digital Image Sensor
+> +
+> +maintainers:
+> +  - Leon Luo <leonl@leopardimaging.com>
+> +
+> +description: |
+> +  The Sony IMX274 is a 1/2.5-inch CMOS active pixel digital image sensor with an
+> +  active array size of 3864H x 2202V. It is programmable through I2C interface.
+> +  Image data is sent through MIPI CSI-2, which is configured as 4 lanes at 1440
+> +  Mbps.
+> +
+> +properties:
+> +  compatible:
+> +    const: sony,imx274
+> +
+> +  reg:
+> +    const: 0x1a
+> +
+> +  reset-gpios:
+> +    maxItems: 1
+> +
+> +  port:
+> +    type: object
+> +    description: |
+> +      Output video port. See ../video-interfaces.txt.
+> +
+> +  clocks:
+> +    maxItems: 1
+> +
+> +  clock-names:
+> +    const: inck
+> +
+> +  vana-supply:
+> +    description: Sensor 2.8v analog supply.
+> +    maxItems: 1
+> +
+> +  vdig-supply:
+> +    description: Sensor 2.8v analog supply.
 
-Bartosz
+Copy-paste leftover. Should be "Sensor 1.8v digital core supply."
+
+> +    maxItems: 1
+> +
+> +  vddl-supply:
+> +    description: Sensor 2.8v analog supply.
+
+Same here, should be "Sensor digital IO 1.2v supply."
+
+With the above fixed you can add to v6:
+ Reviewed-by: Luca Ceresoli <luca@lucaceresoli.net>
+
+-- 
+Luca
