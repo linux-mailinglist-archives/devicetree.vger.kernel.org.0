@@ -2,140 +2,95 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from vger.kernel.org (vger.kernel.org [23.128.96.18])
-	by mail.lfdr.de (Postfix) with ESMTP id 026B2265672
-	for <lists+devicetree@lfdr.de>; Fri, 11 Sep 2020 03:15:25 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTP id 7C14126567B
+	for <lists+devicetree@lfdr.de>; Fri, 11 Sep 2020 03:17:03 +0200 (CEST)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S1725300AbgIKBPW (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Thu, 10 Sep 2020 21:15:22 -0400
-Received: from lindbergh.monkeyblade.net ([23.128.96.19]:43808 "EHLO
+        id S1725294AbgIKBRB (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Thu, 10 Sep 2020 21:17:01 -0400
+Received: from lindbergh.monkeyblade.net ([23.128.96.19]:44076 "EHLO
         lindbergh.monkeyblade.net" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S1725280AbgIKBPQ (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Thu, 10 Sep 2020 21:15:16 -0400
-Received: from mail-ej1-x641.google.com (mail-ej1-x641.google.com [IPv6:2a00:1450:4864:20::641])
-        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 65098C061573;
-        Thu, 10 Sep 2020 18:15:16 -0700 (PDT)
-Received: by mail-ej1-x641.google.com with SMTP id u21so11520001eja.2;
-        Thu, 10 Sep 2020 18:15:16 -0700 (PDT)
+        with ESMTP id S1725280AbgIKBRB (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Thu, 10 Sep 2020 21:17:01 -0400
+Received: from mail-ej1-x642.google.com (mail-ej1-x642.google.com [IPv6:2a00:1450:4864:20::642])
+        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 8C9A3C061573;
+        Thu, 10 Sep 2020 18:17:00 -0700 (PDT)
+Received: by mail-ej1-x642.google.com with SMTP id i26so11478447ejb.12;
+        Thu, 10 Sep 2020 18:17:00 -0700 (PDT)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
         d=jms.id.au; s=google;
         h=mime-version:references:in-reply-to:from:date:message-id:subject:to
          :cc;
-        bh=DqB7DPHtIqi+Bw4fMVuljm+cc0DjSGuY8RA1DkIWScA=;
-        b=DHL8lSflYdMnee4Le9oK2Cmw2kT1eKSCFxkEhyOVZfuzMIo/md+bD1KtO10sDhEJ7s
-         xkYUKlXqQqmHWSsOqTkXU9VCQa6ufMsGzNaeAa6D+XybzjCJZhojTlf9pYPIgmghItuY
-         Try0QKw8VXdzCAO3PeOi3EogI8kn3HmlTB3Yo=
+        bh=qCmr6GtTRUVNMstlQGu5HfhuoPvjXOmhgGjk3oqJXP8=;
+        b=nwOJbGJ51iJS9jtAMnqK7Mm5zybB2q3TkewTWxpS2zj8xyhXGMLedCMmXmrPzs7oS2
+         zSeD2YzMLSrMu5LaX3YpAg/+prqmC7yhd8lPXYfIHA0M/hw6OTDyW3AFrEdNf5oPkTEX
+         iFRNxsoc2P3AzxDHx1/eiNpFAYbT+bxbE5nMk=
 X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
         d=1e100.net; s=20161025;
         h=x-gm-message-state:mime-version:references:in-reply-to:from:date
          :message-id:subject:to:cc;
-        bh=DqB7DPHtIqi+Bw4fMVuljm+cc0DjSGuY8RA1DkIWScA=;
-        b=D9XjCsFpuiO50dsV29xH5aiQnXaTSw49H40Ei3QLxftAUoVI+is8ekUZP9MA2/aHV8
-         3MRZRWPRdX31nSw52AE0eEBPnc3nDVMnUJJaNiXlxRyK4cGODBKF4+aDvUgvNA6sYq12
-         j2tyCaHvBBY1U1aGw3yBrvqWIxS4/D5S9mbK1v/HvAfIrA0qML4fnmgVKOBV8HAkjm2D
-         9nAkv2nIFniUwAz0vaPDptr7nTWoR6ADmzqqt/9Z8T3nny95TnoiVpLu4yA5HT3nv6zE
-         2L/FH8uN4kvZ+JgSVvMHXc3Knj8JYcqbF9BrESR8HcIGmN7QF1Bkis+Ks3exdoq+Xm2A
-         mDHw==
-X-Gm-Message-State: AOAM531DcCy2xh7oo1Kmy8UmuB7M8fr1lNgD/3PpKkimAempvtgWxWr7
-        JLA/jxA/zCpTyS1F2+it8huZkXbd16XtPFiB19Y=
-X-Google-Smtp-Source: ABdhPJyC/5wFl0aS0uol0uyiBTrxuWRqUjvlvqNkVX3NwIiFYVzywBU8WdIF3SqqzUmJnc3M3EdqulZFtzFPOftVnJE=
-X-Received: by 2002:a17:906:8695:: with SMTP id g21mr11320548ejx.504.1599786914775;
- Thu, 10 Sep 2020 18:15:14 -0700 (PDT)
+        bh=qCmr6GtTRUVNMstlQGu5HfhuoPvjXOmhgGjk3oqJXP8=;
+        b=VLfFE8/47WLwhsYzhaFZAelyYov/pHGKcxtIu2GFIz4brOz7Afr2RAX7jvtu6jFVBN
+         Lq466CtPAAU+Sy5H3T2kfecJJUu36aVOw00LT7g08C++YHRhUZGj7QSiTx0lEq6YZN+y
+         ykSanlMh96p9eTb6oHH+HLIJf7eFXX+MuXRPcHqsYfIbwURn3YMIHqGU0EGWYAKkTe5B
+         tKpXjt5kSZzSeDsYdgVlcjBf9HvZjTei+d7j3mqRkUuc8lUu0b9IB2nkRLqje0KxrneS
+         Psn2rEeliytBfWdDNUDYdeboLRmBv/uzFGEoMJe5DWmV7sOEY2OrOQznMFI22sFwkQB2
+         r5og==
+X-Gm-Message-State: AOAM531fduVFDdFpSu2EK7fAJ4ROBGgyJW96E6yzlGYYxU0KONmk+/tA
+        DhylxuUnJa6UvAAiEmIfDwPQ1NeKGUgHNtF37y4=
+X-Google-Smtp-Source: ABdhPJxznsa97+hjW+1Lf952YVMsO/Bg3uH+xCCYEp+PmEnbqsZ0PhKvpFXk2mt41KaSjH7q9joy2tNFywgTif3/PSI=
+X-Received: by 2002:a17:906:8401:: with SMTP id n1mr11400758ejx.215.1599787016868;
+ Thu, 10 Sep 2020 18:16:56 -0700 (PDT)
 MIME-Version: 1.0
-References: <20200715135418.3194860-1-jk@codeconstruct.com.au>
- <CACPK8XcT02qv+1H=DDv8BRAdUmrBoweZ+Qb3aG34bQ9-UC08Xg@mail.gmail.com> <788526c84deb4763d874be1748fcc5a583f8f79d.camel@codeconstruct.com.au>
-In-Reply-To: <788526c84deb4763d874be1748fcc5a583f8f79d.camel@codeconstruct.com.au>
+References: <20200910151840.25333-1-eajames@linux.ibm.com> <20200910151840.25333-4-eajames@linux.ibm.com>
+In-Reply-To: <20200910151840.25333-4-eajames@linux.ibm.com>
 From:   Joel Stanley <joel@jms.id.au>
-Date:   Fri, 11 Sep 2020 01:15:02 +0000
-Message-ID: <CACPK8XetpRt9gnfA3WbTzXOctqD5Anb0ugub3LaVzyyVnjycmQ@mail.gmail.com>
-Subject: Re: [PATCH 1/2] gpio/aspeed-sgpio: enable access to all 80 input &
- output sgpios
-To:     Jeremy Kerr <jk@codeconstruct.com.au>
-Cc:     "open list:GPIO SUBSYSTEM" <linux-gpio@vger.kernel.org>,
-        linux-aspeed <linux-aspeed@lists.ozlabs.org>,
+Date:   Fri, 11 Sep 2020 01:16:44 +0000
+Message-ID: <CACPK8XdTsDtDAvaNrz7e3hGXdcx_1=A0vPuTiXF7GhnWQrQi3g@mail.gmail.com>
+Subject: Re: [PATCH 3/4] dt-bindings: fsi: Aspeed master: Add bus-frequency property
+To:     Eddie James <eajames@linux.ibm.com>
+Cc:     linux-clk@vger.kernel.org,
+        Linux Kernel Mailing List <linux-kernel@vger.kernel.org>,
         devicetree <devicetree@vger.kernel.org>,
-        Andrew Jeffery <andrew@aj.id.au>
+        linux-aspeed <linux-aspeed@lists.ozlabs.org>,
+        linux-fsi@lists.ozlabs.org, Andrew Jeffery <andrew@aj.id.au>,
+        Rob Herring <robh+dt@kernel.org>,
+        Stephen Boyd <sboyd@kernel.org>,
+        Michael Turquette <mturquette@baylibre.com>,
+        Alistair Popple <alistair@popple.id.au>,
+        Jeremy Kerr <jk@ozlabs.org>
 Content-Type: text/plain; charset="UTF-8"
 Sender: devicetree-owner@vger.kernel.org
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-On Fri, 11 Sep 2020 at 01:10, Jeremy Kerr <jk@codeconstruct.com.au> wrote:
+On Thu, 10 Sep 2020 at 15:18, Eddie James <eajames@linux.ibm.com> wrote:
 >
-> Hi Joel,
+> Document the bus-frequency property.
 >
-> Thanks for the review!
->
-> > A Fixes: might be a good idea.
->
-> OK, given this isn't strictly (just) a fix, should I split that out?
+> Signed-off-by: Eddie James <eajames@linux.ibm.com>
 
-I assume anyone using the sgpio driver in anger would need this patch
-for it to work properly, so a fix tag will help them there. No need to
-break it down any further in my opinion.
+I think this is good terminology, and it's consistent with similar
+protocols such as i2c.
 
-Cheers,
+Reviewed-by: Joel Stanley <joel@jms.id.au>
 
-Joel
-
+> ---
+>  Documentation/devicetree/bindings/fsi/fsi-master-aspeed.txt | 1 +
+>  1 file changed, 1 insertion(+)
 >
-> > > -#define MAX_NR_SGPIO                   80
-> > > +#define MAX_NR_HW_SGPIO                        80
-> > > +#define SGPIO_OUTPUT_OFFSET            MAX_NR_HW_SGPIO
-> >
-> > A short comment explaining what's going on with these defines (as you
-> > did in your commit message) will help future reviewers.
+> diff --git a/Documentation/devicetree/bindings/fsi/fsi-master-aspeed.txt b/Documentation/devicetree/bindings/fsi/fsi-master-aspeed.txt
+> index a513e65ec0c9..d84bd19526ca 100644
+> --- a/Documentation/devicetree/bindings/fsi/fsi-master-aspeed.txt
+> +++ b/Documentation/devicetree/bindings/fsi/fsi-master-aspeed.txt
+> @@ -17,6 +17,7 @@ Optional properties:
 >
-> Sounds good, I'll add one.
->
-> >
-> > > +static void aspeed_sgpio_irq_init_valid_mask(struct gpio_chip *gc,
-> > > +               unsigned long *valid_mask, unsigned int ngpios)
-> > > +{
-> > > +       struct aspeed_sgpio *sgpio = gpiochip_get_data(gc);
-> > > +       int n = sgpio->n_sgpio;
-> > > +
-> > > +       WARN_ON(ngpios < MAX_NR_HW_SGPIO * 2);
-> > > +
-> > > +       /* input GPIOs in the lower range */
-> > > +       bitmap_set(valid_mask, 0, n);
-> > > +       bitmap_clear(valid_mask, n, ngpios - n);
-> > > +}
-> > > +
-> > > +static const bool aspeed_sgpio_is_input(unsigned int offset)
-> >
-> > The 0day bot complained about the 'const' here.
->
-> ack, will remove.
->
-> > > +{
-> > > +       return offset < SGPIO_OUTPUT_OFFSET;
-> > > +}
-> > >  static int aspeed_sgpio_dir_out(struct gpio_chip *gc, unsigned int offset, int val)
-> > >  {
-> > >         struct aspeed_sgpio *gpio = gpiochip_get_data(gc);
-> > >         unsigned long flags;
-> > > +       int rc;
-> > >
-> > > -       spin_lock_irqsave(&gpio->lock, flags);
-> > > -
-> > > -       gpio->dir_in[GPIO_BANK(offset)] &= ~GPIO_BIT(offset);
-> > > -       sgpio_set_value(gc, offset, val);
-> > > +       /* No special action is required for setting the direction; we'll
-> > > +        * error-out in sgpio_set_value if this isn't an output GPIO */
-> > >
-> > > +       spin_lock_irqsave(&gpio->lock, flags);
-> > > +       rc = sgpio_set_value(gc, offset, val);
-> > >         spin_unlock_irqrestore(&gpio->lock, flags);
-> > >
-> > >         return 0;
-> >
-> > I think this should be 'return rc'
->
-> Yup. I'll send a v2 with these changes.
->
-> Cheers,
+>   - fsi-routing-gpios: GPIO for setting the FSI mux (internal or cabled)
+>   - fsi-mux-gpios: GPIO for detecting the desired FSI mux state
+> + - bus-frequency: the frequency of the FSI bus
 >
 >
-> Jeremy
+>  Examples:
+> --
+> 2.26.2
 >
