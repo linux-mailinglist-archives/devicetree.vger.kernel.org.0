@@ -2,128 +2,129 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from vger.kernel.org (vger.kernel.org [23.128.96.18])
-	by mail.lfdr.de (Postfix) with ESMTP id C568D265A00
-	for <lists+devicetree@lfdr.de>; Fri, 11 Sep 2020 09:06:05 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTP id D6E6D265A62
+	for <lists+devicetree@lfdr.de>; Fri, 11 Sep 2020 09:20:09 +0200 (CEST)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S1725770AbgIKHGC (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Fri, 11 Sep 2020 03:06:02 -0400
-Received: from lindbergh.monkeyblade.net ([23.128.96.19]:40976 "EHLO
-        lindbergh.monkeyblade.net" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S1725601AbgIKHFy (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Fri, 11 Sep 2020 03:05:54 -0400
-Received: from mail-il1-x144.google.com (mail-il1-x144.google.com [IPv6:2607:f8b0:4864:20::144])
-        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id AA660C061757
-        for <devicetree@vger.kernel.org>; Fri, 11 Sep 2020 00:05:53 -0700 (PDT)
-Received: by mail-il1-x144.google.com with SMTP id t18so7492673ilp.5
-        for <devicetree@vger.kernel.org>; Fri, 11 Sep 2020 00:05:53 -0700 (PDT)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=google.com; s=20161025;
-        h=mime-version:references:in-reply-to:from:date:message-id:subject:to
-         :cc;
-        bh=XjqzgjQOFRpWcDyxvZxk4QJoi3x7zBwCHCwHFZiUpHE=;
-        b=Zj9C1l8KtRpl+As+fC2SodYHV3leGr8IKnqUrXtbIKaxuPg+jO46cUnNc8nVxX18SW
-         mbEW+8P41/MJvM/E4u41uFzqENs/81i6qVqtPc1CTfNlU3EKI4I1TUEtnco1j69bnEZB
-         wLRzlq0oAuyYLrpP3Z5qmaGoU/ISEgtJhEqpeGcisx9o3OBg19btgYSqmZJKzsuqIBqd
-         Is69lQN28aGTCuDIiW2Zryc/kx6uTbqlcXQ9Homq6iIxjNcfkNX3gKaIihnTzR7UstAN
-         2VmsxeVA/wm3GsAiYpgtNStNHtBtN5TvK8oY9/xl1uIVCpI92OXTTqJMUgchu/8p+4nA
-         i2xQ==
-X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=1e100.net; s=20161025;
-        h=x-gm-message-state:mime-version:references:in-reply-to:from:date
-         :message-id:subject:to:cc;
-        bh=XjqzgjQOFRpWcDyxvZxk4QJoi3x7zBwCHCwHFZiUpHE=;
-        b=WTjrHdEANhoBqTrE2upS6cq1v4BxRD7Ln5JBknIJ9Br79VVP11C9LKKv700YAj5CKe
-         sGhoU4KXiu3j7Gk1t6VOBAiMhHTMFMosdwdlv2IazkuG49FAK7BRx/F5dOmvz90KWa0e
-         LC0mSKEXiMYzA4c2l4goJEwyW3GYxABUjx7UxrCW51e+8yxpxDfT51kc8pL3dAfpOfvh
-         +QQfMEO44aNLmij+AY5VJUTfAJvjsv7pg1F32uvJLtyit7IezbQPnoJFIUTW/5YqiBs3
-         o6Qvv3olYnKFPZKTnj16ExqTO2ceiy5kVdBCZsNzPHkLNEmzJGVd646BekaAFos6mRYL
-         R2eg==
-X-Gm-Message-State: AOAM533u7JiwtOYE945vMDyIwOKeXV4cklSsfdRoXKK/0/4IVXoIYGm4
-        wVtkP1/0zVJccnE6ZrwQh0RC9Go/3kxH/xhUkMEz/g==
-X-Google-Smtp-Source: ABdhPJxx9W+H95xTgv9e14gbLyf1rs3mr+kr5EwsJPRKWUGmYYoAK21qecVtMoUC7yBc5BRWpykI7hnP1cxl9BbtPK4=
-X-Received: by 2002:a92:217:: with SMTP id 23mr715365ilc.118.1599807952488;
- Fri, 11 Sep 2020 00:05:52 -0700 (PDT)
+        id S1725710AbgIKHUI (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Fri, 11 Sep 2020 03:20:08 -0400
+Received: from mail-am6eur05on2052.outbound.protection.outlook.com ([40.107.22.52]:13089
+        "EHLO EUR05-AM6-obe.outbound.protection.outlook.com"
+        rhost-flags-OK-OK-OK-FAIL) by vger.kernel.org with ESMTP
+        id S1725536AbgIKHUE (ORCPT <rfc822;devicetree@vger.kernel.org>);
+        Fri, 11 Sep 2020 03:20:04 -0400
+ARC-Seal: i=1; a=rsa-sha256; s=arcselector9901; d=microsoft.com; cv=none;
+ b=VpxBi0jnvSYCOpbXFGMQRnXOW45RTJt0uqDWoe1gxJV1aIU0vIxnU/c1HwEJsr2gu+URRofuZuwDlZAGqA+5RKOdi4Zu4obuGtpE7F7Uk3/goJegcmqKUGk2kI2jHLLkakv5qbzXBjzCAJTS1q1loJztvBbnnghbuXo45TDELfchbC0EgECI1Rdh9OGhCOQJ603p6EZnPy4xI4j5KKVAQq9PEmFLl9j997O9ktnRGsrrEsfnz0qdl5TB4tap3NpqNfvCh0BWJCjd27jcDWqo5r5GTIk2sc1sAj3SYOaoPIQQ7autTs6LG9dnTH+N96NbYdFPd3uq3u+BBAD7id20Hw==
+ARC-Message-Signature: i=1; a=rsa-sha256; c=relaxed/relaxed; d=microsoft.com;
+ s=arcselector9901;
+ h=From:Date:Subject:Message-ID:Content-Type:MIME-Version:X-MS-Exchange-SenderADCheck;
+ bh=6Q9Yd33ubrluRg4IqkEhzePSZcz9XkbXk4kVMZdUEBI=;
+ b=VGO3+pS4plg58Rl49qE9/MhxFYfSHLd3fz/azXEvgYWUTPn/vzeCc8+y421+oQSGuaf8hGJzi6eI5rvzN8nk4jWAvfqr4g2PrS65oyFzaZuxwy1CfjLAA602zeNc1FUSL4vv3ctdLl29GC7zzv1dqtGrPkyHzvmryKiBc+RgimqhsxDHx6kUDHrZo5iI2YjKxpEaopF4RkRbZrRH2ZRTT5uu9qJD+wDu/371VmZwYBzGjHph5qdUTl2ZT0eAImGY4Txsz5tDGgj/bhDJJCV3zOc5GEhu0+nIAB6sRlw6vmHusaezBZi2UuhoxYsQNQhklpzs6u6R10yE+0DNXdMarw==
+ARC-Authentication-Results: i=1; mx.microsoft.com 1; spf=pass
+ smtp.mailfrom=nxp.com; dmarc=pass action=none header.from=nxp.com; dkim=pass
+ header.d=nxp.com; arc=none
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=nxp.com; s=selector2;
+ h=From:Date:Subject:Message-ID:Content-Type:MIME-Version:X-MS-Exchange-SenderADCheck;
+ bh=6Q9Yd33ubrluRg4IqkEhzePSZcz9XkbXk4kVMZdUEBI=;
+ b=pMk2LmU4hPrw19DdD1cCAEWIcXKcN3wTEd5uT83ChY4Fsc/NsYWeXHYzaccJV8iB+moiCp1jv5NLj4a0jl2qdSwxfy6jyJ+aCpR3ASpS1VuBkprA1qaZUMTjbe3fxmowbpkuoeCKRrnpXFBn9YDUHIhLyt3NSCgYWC4vqWtOPqc=
+Received: from AM6PR04MB4966.eurprd04.prod.outlook.com (2603:10a6:20b:2::14)
+ by AM7PR04MB6773.eurprd04.prod.outlook.com (2603:10a6:20b:dc::14) with
+ Microsoft SMTP Server (version=TLS1_2,
+ cipher=TLS_ECDHE_RSA_WITH_AES_256_GCM_SHA384) id 15.20.3370.16; Fri, 11 Sep
+ 2020 07:19:59 +0000
+Received: from AM6PR04MB4966.eurprd04.prod.outlook.com
+ ([fe80::99b5:145d:16cc:78ca]) by AM6PR04MB4966.eurprd04.prod.outlook.com
+ ([fe80::99b5:145d:16cc:78ca%3]) with mapi id 15.20.3370.016; Fri, 11 Sep 2020
+ 07:19:59 +0000
+From:   Aisheng Dong <aisheng.dong@nxp.com>
+To:     Peng Fan <peng.fan@nxp.com>,
+        "shawnguo@kernel.org" <shawnguo@kernel.org>,
+        "s.hauer@pengutronix.de" <s.hauer@pengutronix.de>,
+        "festevam@gmail.com" <festevam@gmail.com>,
+        Abel Vesa <abel.vesa@nxp.com>,
+        "robh+dt@kernel.org" <robh+dt@kernel.org>
+CC:     "kernel@pengutronix.de" <kernel@pengutronix.de>,
+        dl-linux-imx <linux-imx@nxp.com>,
+        Anson Huang <anson.huang@nxp.com>,
+        "linux-arm-kernel@lists.infradead.org" 
+        <linux-arm-kernel@lists.infradead.org>,
+        "linux-kernel@vger.kernel.org" <linux-kernel@vger.kernel.org>,
+        "devicetree@vger.kernel.org" <devicetree@vger.kernel.org>
+Subject: RE: [PATCH 1/4] dt-bindings: fsl: add i.MX7ULP PMC binding doc
+Thread-Topic: [PATCH 1/4] dt-bindings: fsl: add i.MX7ULP PMC binding doc
+Thread-Index: AQHWh+zi0lUqzLc3V0GYGgj5TwZkHqljAcZg
+Date:   Fri, 11 Sep 2020 07:19:59 +0000
+Message-ID: <AM6PR04MB49661958310D649508AB698B80240@AM6PR04MB4966.eurprd04.prod.outlook.com>
+References: <1599795053-5091-1-git-send-email-peng.fan@nxp.com>
+ <1599795053-5091-2-git-send-email-peng.fan@nxp.com>
+In-Reply-To: <1599795053-5091-2-git-send-email-peng.fan@nxp.com>
+Accept-Language: zh-CN, en-US
+Content-Language: en-US
+X-MS-Has-Attach: 
+X-MS-TNEF-Correlator: 
+authentication-results: nxp.com; dkim=none (message not signed)
+ header.d=none;nxp.com; dmarc=none action=none header.from=nxp.com;
+x-originating-ip: [119.31.174.67]
+x-ms-publictraffictype: Email
+x-ms-office365-filtering-ht: Tenant
+x-ms-office365-filtering-correlation-id: 20f95103-15d2-483d-4d78-08d856231805
+x-ms-traffictypediagnostic: AM7PR04MB6773:
+x-ms-exchange-transport-forked: True
+x-microsoft-antispam-prvs: <AM7PR04MB67736F4F4BF68091D17AA42980240@AM7PR04MB6773.eurprd04.prod.outlook.com>
+x-ms-oob-tlc-oobclassifiers: OLM:483;
+x-ms-exchange-senderadcheck: 1
+x-microsoft-antispam: BCL:0;
+x-microsoft-antispam-message-info: jDDjMqhJ51LoOAiaGHGI3xW3T0IHZu9+DTy8ysjO5V4UDrCbdYuxugejagsZXRmudOKvHtiJkT++3L6FOnXYM7nIDnl0HE3Yibb7htQur6hXJOjUjaxu0Uqmu+XG4RwVVuqCIwpKW423SWBZk7s43SF/5d4zZKMnwYLSfQ2E6W9Ciocl59EaeUfzCr55yYp3CNc2yf52Kv3EseEPwdsRSaHc92pAfq4IbasBtt2KYNHzgKzg/7a73fSCFwVviV7myPDahC3d1u3gtW1bt1hBfJJoea8dc9/YMD3nZVs58/wlVUeBnCcYpg+A5RE3UIttKld2dCQ4McEKKjXA9ezBZAFLidOcbTskL6gJ0doo6OrdhuqUVmclT+9vGbCISmoh+0/GndosSKMUp+npQJyAEQ==
+x-forefront-antispam-report: CIP:255.255.255.255;CTRY:;LANG:en;SCL:1;SRV:;IPV:NLI;SFV:NSPM;H:AM6PR04MB4966.eurprd04.prod.outlook.com;PTR:;CAT:NONE;SFS:(4636009)(346002)(39860400002)(376002)(366004)(396003)(136003)(186003)(966005)(66446008)(86362001)(26005)(6506007)(5660300002)(66556008)(66476007)(66946007)(52536014)(316002)(8936002)(76116006)(71200400001)(64756008)(4326008)(54906003)(2906002)(8676002)(9686003)(55016002)(7696005)(44832011)(33656002)(478600001)(110136005);DIR:OUT;SFP:1101;
+x-ms-exchange-antispam-messagedata: cVpFHnaGEemt19t4W6+bPcsG7zryhtcVqc6TyDe6Q1Sjx6Y2KwE5LGwAS6h1dgqsmQf34jxBlH3+bXPcuOpr1vRFII/PVSalLDJCD3OBBwSbsO7GMmx3KzbM+5gMuaBKerBdCPUnYvXETNq9EQ9A7lTH0Uqqa8MAl7US5aXkItkZuZ7GBp7Yq8Uie5iD/e1r3xFmmI38dJcwvppREpUy18Zsl/hfxftWPJOMfYqvlsYbDPLt8rf99/yG3BhPAI/NAVIv+yPFCMNjwVCE/BCAFX6WCQH0i697adKY5b2htIGfqBOp3uWp2Awx+w3zIRdxXjp+I/qcdmm+mmDzCceu1JvoK9i6b+cwrFNeATPFC2bqWvRZ8dMP095uNuamanbWavsTm6SXK8T62tzCE5VppT2iKVJH2GTPSz3JbOQjU4c1ER8usDBYOJhDzDZbewdLpgaxbS+6X0iWi9BTJ+xOsvWAkZeITtLVBBoAbbR8G8ZL56qWWiY8uBx8/+pivv8Yv2k20d/o187jsMrg2qVtoU5scD+PCaS9np63Hk3LO1+XghqyucLUeoehcL/Z8HeQbA5fuERvlv1NQ3aso7soxWdCqwWF6OkgK9KItvwycIZe/e5w2lNki665TR8H/BKlWl0pzraHPlH4yIlyZvpZ/A==
+Content-Type: text/plain; charset="utf-8"
+Content-Transfer-Encoding: base64
 MIME-Version: 1.0
-References: <20200910052347.1790735-1-cychiang@chromium.org> <20200910052347.1790735-4-cychiang@chromium.org>
-In-Reply-To: <20200910052347.1790735-4-cychiang@chromium.org>
-From:   Tzung-Bi Shih <tzungbi@google.com>
-Date:   Fri, 11 Sep 2020 15:05:41 +0800
-Message-ID: <CA+Px+wVGaSfJxNGXX9LEw10k11vG=m9_bLpONA5w4-0O7XF0mQ@mail.gmail.com>
-Subject: Re: [PATCH v8 3/3] ASoC: qcom: sc7180: Add machine driver for sound
- card registration
-To:     Cheng-Yi Chiang <cychiang@chromium.org>
-Cc:     Linux Kernel Mailing List <linux-kernel@vger.kernel.org>,
-        Mark Brown <broonie@kernel.org>,
-        Taniya Das <tdas@codeaurora.org>,
-        Rohit kumar <rohitkr@codeaurora.org>,
-        Banajit Goswami <bgoswami@codeaurora.org>,
-        Patrick Lai <plai@codeaurora.org>,
-        Andy Gross <agross@kernel.org>,
-        Bjorn Andersson <bjorn.andersson@linaro.org>,
-        Liam Girdwood <lgirdwood@gmail.com>,
-        Rob Herring <robh+dt@kernel.org>,
-        Jaroslav Kysela <perex@perex.cz>,
-        Takashi Iwai <tiwai@suse.com>,
-        Srini Kandagatla <srinivas.kandagatla@linaro.org>,
-        Stephan Gerhold <stephan@gerhold.net>,
-        Matthias Brugger <matthias.bgg@gmail.com>,
-        Heiko Stuebner <heiko@sntech.de>,
-        Douglas Anderson <dianders@chromium.org>, dgreid@chromium.org,
-        Tzung-Bi Shih <tzungbi@chromium.org>,
-        linux-arm-kernel@lists.infradead.org,
-        linux-arm-msm@vger.kernel.org, devicetree@vger.kernel.org,
-        ALSA development <alsa-devel@alsa-project.org>,
-        linux-mediatek@lists.infradead.org,
-        linux-rockchip@lists.infradead.org,
-        Ajit Pandey <ajitp@codeaurora.org>
-Content-Type: text/plain; charset="UTF-8"
+X-OriginatorOrg: nxp.com
+X-MS-Exchange-CrossTenant-AuthAs: Internal
+X-MS-Exchange-CrossTenant-AuthSource: AM6PR04MB4966.eurprd04.prod.outlook.com
+X-MS-Exchange-CrossTenant-Network-Message-Id: 20f95103-15d2-483d-4d78-08d856231805
+X-MS-Exchange-CrossTenant-originalarrivaltime: 11 Sep 2020 07:19:59.8620
+ (UTC)
+X-MS-Exchange-CrossTenant-fromentityheader: Hosted
+X-MS-Exchange-CrossTenant-id: 686ea1d3-bc2b-4c6f-a92c-d99c5c301635
+X-MS-Exchange-CrossTenant-mailboxtype: HOSTED
+X-MS-Exchange-CrossTenant-userprincipalname: QRyas+zFXfcU22RYADl8NYqCnYJwWcb2Zl9lt4kPQ1McSRlCHU9xmTjLkKgzOI7+Sf7GqHiZbsUGcnu1Ns6Puw==
+X-MS-Exchange-Transport-CrossTenantHeadersStamped: AM7PR04MB6773
 Sender: devicetree-owner@vger.kernel.org
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-On Thu, Sep 10, 2020 at 1:24 PM Cheng-Yi Chiang <cychiang@chromium.org> wrote:
-> +struct sc7180_snd_data {
-> +       u32 pri_mi2s_clk_count;
-> +       struct snd_soc_jack hs_jack;
-> +       struct device_node *hs_jack_of_node;
-> +       struct snd_soc_jack hdmi_jack;
-> +       struct device_node *hdmi_jack_of_node;
-> +};
-hs_jack_of_node and hdmi_jack_of_node are not using.  Remove them.
-
-> +static int sc7180_init(struct snd_soc_pcm_runtime *rtd)
-> +{
-> +       struct snd_soc_dai *cpu_dai = asoc_rtd_to_cpu(rtd, 0);
-> +
-> +       switch (cpu_dai->id) {
-> +       case MI2S_PRIMARY:
-> +               return sc7180_headset_init(rtd);
-> +       case MI2S_SECONDARY:
-> +               return 0;
-> +       case HDMI:
-I guess this enumeration has not merged yet?  It doesn't sound like a
-specific-enough naming.
-
-> +static int sc7180_snd_platform_probe(struct platform_device *pdev)
-> +{
-> +       struct snd_soc_card *card = &sc7180_card;
-> +       struct sc7180_snd_data *data;
-> +       struct device *dev = &pdev->dev;
-> +       int ret;
-> +
-> +       /* Allocate the private data */
-> +       data = devm_kzalloc(dev, sizeof(*data), GFP_KERNEL);
-> +       if (!data)
-> +               return -ENOMEM;
-> +
-> +       card->dev = dev;
-> +
-> +       ret = qcom_snd_parse_of(card);
-> +       if (ret) {
-> +               dev_err(dev, "Error parsing OF data\n");
-> +               return ret;
-> +       }
-> +
-> +       snd_soc_card_set_drvdata(card, data);
-To be neat, move this line immediately before or after "card->dev = dev;".
+PiBGcm9tOiBQZW5nIEZhbiA8cGVuZy5mYW5AbnhwLmNvbT4NCj4gU2VudDogRnJpZGF5LCBTZXB0
+ZW1iZXIgMTEsIDIwMjAgMTE6MzEgQU0NCj4gDQo+IEFkZCBpLk1YN1VMUCBQb3dlciBNYW5hZ2Vt
+ZW50IENvbnRyb2xsZXIgYmluZGluZyBkb2MNCj4gDQo+IFNpZ25lZC1vZmYtYnk6IFBlbmcgRmFu
+IDxwZW5nLmZhbkBueHAuY29tPg0KPiAtLS0NCj4gIC4uLi9iaW5kaW5ncy9hcm0vZnJlZXNjYWxl
+L2lteDd1bHAtcG1jLnlhbWwgICB8IDMzICsrKysrKysrKysrKysrKysrKysNCj4gIDEgZmlsZSBj
+aGFuZ2VkLCAzMyBpbnNlcnRpb25zKCspDQo+ICBjcmVhdGUgbW9kZSAxMDA2NDQNCj4gRG9jdW1l
+bnRhdGlvbi9kZXZpY2V0cmVlL2JpbmRpbmdzL2FybS9mcmVlc2NhbGUvaW14N3VscC1wbWMueWFt
+bA0KDQpJIHdvbmRlciBpZiB3ZSBjYW4gbWVyZ2UgaXQgaW50byB0aGUgZXhpc3QgaW14N3VscCBw
+bSBiaW5kaW5nIGRvYy4NCkRvY3VtZW50YXRpb24vZGV2aWNldHJlZS9iaW5kaW5ncy9hcm0vZnJl
+ZXNjYWxlL2ZzbCxpbXg3dWxwLXBtLnlhbWwNCg0KPiANCj4gZGlmZiAtLWdpdA0KPiBhL0RvY3Vt
+ZW50YXRpb24vZGV2aWNldHJlZS9iaW5kaW5ncy9hcm0vZnJlZXNjYWxlL2lteDd1bHAtcG1jLnlh
+bWwNCj4gYi9Eb2N1bWVudGF0aW9uL2RldmljZXRyZWUvYmluZGluZ3MvYXJtL2ZyZWVzY2FsZS9p
+bXg3dWxwLXBtYy55YW1sDQo+IG5ldyBmaWxlIG1vZGUgMTAwNjQ0DQo+IGluZGV4IDAwMDAwMDAw
+MDAwMC4uMzNhMzFkODdkZDYyDQo+IC0tLSAvZGV2L251bGwNCj4gKysrIGIvRG9jdW1lbnRhdGlv
+bi9kZXZpY2V0cmVlL2JpbmRpbmdzL2FybS9mcmVlc2NhbGUvaW14N3VscC1wbWMueWFtbA0KPiBA
+QCAtMCwwICsxLDMzIEBADQo+ICsjIFNQRFgtTGljZW5zZS1JZGVudGlmaWVyOiBHUEwtMi4wDQo+
+ICslWUFNTCAxLjINCj4gKy0tLQ0KPiArJGlkOiBodHRwOi8vZGV2aWNldHJlZS5vcmcvc2NoZW1h
+cy9hcm0vZnJlZXNjYWxlL2lteDd1bHAtcG1jLnlhbWwjDQo+ICskc2NoZW1hOiBodHRwOi8vZGV2
+aWNldHJlZS5vcmcvbWV0YS1zY2hlbWFzL2NvcmUueWFtbCMNCj4gKw0KPiArdGl0bGU6IGkuTVg3
+VUxQIFBvd2VyIE1hbmFnZW1lbnQgQ29udHJvbGxlcihQTUMpIERldmljZSBUcmVlIEJpbmRpbmdz
+DQo+ICsNCj4gK21haW50YWluZXJzOg0KPiArICAtIFBlbmcgRmFuIDxwZW5nLmZhbkBueHAuY29t
+Pg0KPiArDQo+ICtwcm9wZXJ0aWVzOg0KPiArICBjb21wYXRpYmxlOg0KPiArICAgIGl0ZW1zOg0K
+PiArICAgICAgLSBlbnVtOg0KPiArICAgICAgICAgIC0gZnNsLGlteDd1bHAtcG1jLW00DQo+ICsg
+ICAgICAgICAgLSBmc2wsaW14N3VscC1wbWMtYTcNCg0KQ2FuIHdlIGNoYW5nZSB0byB0aGUgZXhp
+c3QgbmFtaW5nIHBhdHRlcm4gd2hpY2ggYWxzbyBhbGlnbiB3aXRoIEhXIHJlZmVyZW5jZSBtYW51
+YWw/DQplLmcuDQpmc2wsaW14N3VscC1wbWMwDQpmc2wsaW14N3VscC1wbWMxDQoNCkFsaWduZWQg
+d2l0aDoNCmZzbCxpbXg3dWxwLXNtYzENCmZzbCxpbXg3dWxwLXBjYzINCmZzbCxpbXg3dWxwLXNj
+ZzENCg0KUmVnYXJkcw0KQWlzaGVuZw0KDQo+ICsNCj4gKyAgcmVnOg0KPiArICAgIG1heEl0ZW1z
+OiAxDQo+ICsNCj4gK3JlcXVpcmVkOg0KPiArICAtIGNvbXBhdGlibGUNCj4gKyAgLSByZWcNCj4g
+Kw0KPiArYWRkaXRpb25hbFByb3BlcnRpZXM6IGZhbHNlDQo+ICsNCj4gK2V4YW1wbGVzOg0KPiAr
+ICAtIHwNCj4gKyAgICBwbWMwOiBwbWMtbTRANDEwYTEwMDAgew0KPiArICAgICAgICBjb21wYXRp
+YmxlID0gImZzbCxpbXg3dWxwLXBtYy1tNCI7DQo+ICsgICAgICAgIHJlZyA9IDwweDQxMGExMDAw
+IDB4MTAwMD47DQo+ICsgICAgfTsNCj4gLS0NCj4gMi4yOC4wDQoNCg==
