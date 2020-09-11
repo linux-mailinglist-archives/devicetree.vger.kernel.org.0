@@ -2,827 +2,316 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from vger.kernel.org (vger.kernel.org [23.128.96.18])
-	by mail.lfdr.de (Postfix) with ESMTP id 3D179265F90
-	for <lists+devicetree@lfdr.de>; Fri, 11 Sep 2020 14:30:52 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTP id 9B24F265FF3
+	for <lists+devicetree@lfdr.de>; Fri, 11 Sep 2020 15:00:46 +0200 (CEST)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S1725780AbgIKM3x (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Fri, 11 Sep 2020 08:29:53 -0400
-Received: from mail.kernel.org ([198.145.29.99]:59294 "EHLO mail.kernel.org"
-        rhost-flags-OK-OK-OK-OK) by vger.kernel.org with ESMTP
-        id S1725871AbgIKMRM (ORCPT <rfc822;devicetree@vger.kernel.org>);
-        Fri, 11 Sep 2020 08:17:12 -0400
-Received: from mail.kernel.org (ip5f5ad5a5.dynamic.kabel-deutschland.de [95.90.213.165])
-        (using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
-        (No client certificate requested)
-        by mail.kernel.org (Postfix) with ESMTPSA id 0582B221ED;
-        Fri, 11 Sep 2020 12:16:48 +0000 (UTC)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=kernel.org;
-        s=default; t=1599826608;
-        bh=iRif6tYG9lH6sF2BTiVslYkjGOYZ9PuRMGMucrM+87g=;
-        h=From:To:Cc:Subject:Date:In-Reply-To:References:From;
-        b=0xRz7VHPDhF2GzObjkxMK48tjo8WXZxlyUhtIyCc6MYMxhxnO3PcSlS0mzODGSDam
-         5FqsK3mX6BtwDb72+jywDIGq4rwZT8BuNJfHSXMhSAvCBhcD6cs+28L9e63J2uo7Yc
-         8HBITqMO2YKU0ayAzzJvg8751CfoCGg7/jrAqDmw=
-Received: from mchehab by mail.kernel.org with local (Exim 4.94)
-        (envelope-from <mchehab@kernel.org>)
-        id 1kGhyv-0006WB-So; Fri, 11 Sep 2020 14:16:45 +0200
-From:   Mauro Carvalho Chehab <mchehab+huawei@kernel.org>
-Cc:     linuxarm@huawei.com, mauro.chehab@huawei.com,
-        Yu Chen <chenyu56@huawei.com>,
-        "John Stultz" <john.stultz@linaro.org>,
-        "Manivannan Sadhasivam" <mani@kernel.org>,
-        "Mauro Carvalho Chehab" <mchehab+huawei@kernel.org>,
-        Kishon Vijay Abraham I <kishon@ti.com>,
-        Krzysztof Kozlowski <krzk@kernel.org>,
+        id S1726144AbgIKNAL (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Fri, 11 Sep 2020 09:00:11 -0400
+Received: from mailgw01.mediatek.com ([210.61.82.183]:38155 "EHLO
+        mailgw01.mediatek.com" rhost-flags-OK-FAIL-OK-FAIL) by vger.kernel.org
+        with ESMTP id S1726096AbgIKM6G (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Fri, 11 Sep 2020 08:58:06 -0400
+X-UUID: abcb94c3b398456a9c76e3cb4ba5ef9e-20200911
+DKIM-Signature: v=1; a=rsa-sha256; q=dns/txt; c=relaxed/relaxed; d=mediatek.com; s=dk;
+        h=Content-Transfer-Encoding:Content-Type:MIME-Version:References:In-Reply-To:Message-ID:Date:Subject:CC:To:From; bh=hdLgl5qYb7csFXTSLNcMefKqwSUXSPIFrjgHweGeq/I=;
+        b=ViAxymYpU6q5ijMaG7/C2bHGsoJLboYs59Mv6Es2skBV3SM3t0Q4f+EFpaNNEWz55kv8cwdMRg/NRdqfhT0ujjqdvyEniMP5JZ5s7rqR7//XoNqw6oUbO0YEAgsZ3C3uPyL++eTRsWSobr2rP3aU1Ltd0iVAo+7UkBEol919P+Q=;
+X-UUID: abcb94c3b398456a9c76e3cb4ba5ef9e-20200911
+Received: from mtkcas10.mediatek.inc [(172.21.101.39)] by mailgw01.mediatek.com
+        (envelope-from <landen.chao@mediatek.com>)
+        (Cellopoint E-mail Firewall v4.1.14 Build 0819 with TLSv1.2 ECDHE-RSA-AES256-SHA384 256/256)
+        with ESMTP id 1346006590; Fri, 11 Sep 2020 20:57:40 +0800
+Received: from MTKCAS06.mediatek.inc (172.21.101.30) by
+ mtkmbs07n1.mediatek.inc (172.21.101.16) with Microsoft SMTP Server (TLS) id
+ 15.0.1497.2; Fri, 11 Sep 2020 20:57:35 +0800
+Received: from mtksdccf07.mediatek.inc (172.21.84.99) by MTKCAS06.mediatek.inc
+ (172.21.101.73) with Microsoft SMTP Server id 15.0.1497.2 via Frontend
+ Transport; Fri, 11 Sep 2020 20:57:35 +0800
+From:   Landen Chao <landen.chao@mediatek.com>
+To:     Andrew Lunn <andrew@lunn.ch>,
+        Vivien Didelot <vivien.didelot@gmail.com>,
+        Florian Fainelli <f.fainelli@gmail.com>,
+        "David S . Miller" <davem@davemloft.net>,
+        Jakub Kicinski <kuba@kernel.org>,
         Rob Herring <robh+dt@kernel.org>,
-        Vinod Koul <vkoul@kernel.org>, devicetree@vger.kernel.org,
-        linux-kernel@vger.kernel.org
-Subject: [PATCH v3 RESEND 1/8] phy: hisilicon: add USB physical layer for Kirin 3670
-Date:   Fri, 11 Sep 2020 14:16:37 +0200
-Message-Id: <2bcc14afcbd1cc8972ab8f1a561a13aae04b881a.1599826421.git.mchehab+huawei@kernel.org>
-X-Mailer: git-send-email 2.26.2
-In-Reply-To: <cover.1599826421.git.mchehab+huawei@kernel.org>
-References: <cover.1599826421.git.mchehab+huawei@kernel.org>
+        Matthias Brugger <matthias.bgg@gmail.com>,
+        Sean Wang <sean.wang@mediatek.com>,
+        Philipp Zabel <p.zabel@pengutronix.de>,
+        Russell King <linux@armlinux.org.uk>
+CC:     <netdev@vger.kernel.org>, <devicetree@vger.kernel.org>,
+        <linux-arm-kernel@lists.infradead.org>,
+        <linux-mediatek@lists.infradead.org>,
+        <linux-kernel@vger.kernel.org>, <frank-w@public-files.de>,
+        <opensource@vdorst.com>, <dqfext@gmail.com>,
+        Landen Chao <landen.chao@mediatek.com>
+Subject: [PATCH net-next v4 2/6] net: dsa: mt7530: Extend device data ready for adding a new hardware
+Date:   Fri, 11 Sep 2020 20:56:24 +0800
+Message-ID: <45e081044e0ede0dc460524069b29094d838f53e.1599825966.git.landen.chao@mediatek.com>
+X-Mailer: git-send-email 2.18.0
+In-Reply-To: <cover.1599825966.git.landen.chao@mediatek.com>
+References: <cover.1599825966.git.landen.chao@mediatek.com>
 MIME-Version: 1.0
-Content-Transfer-Encoding: 8bit
-To:     unlisted-recipients:; (no To-header on input)
+Content-Type: text/plain
+X-MTK:  N
+Content-Transfer-Encoding: base64
 Sender: devicetree-owner@vger.kernel.org
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-From: Yu Chen <chenyu56@huawei.com>
-
-Add the Hisilicon Kirin 3670 USB phy driver just after the
-hi3660, using the same namespace.
-
-This driver was imported from Linaro's official Hikey 970
-tree, from the original patch, removing the addition of
-the dwg3-specific parts.
-
-Signed-off-by: Yu Chen <chenyu56@huawei.com>
-Signed-off-by: Mauro Carvalho Chehab <mchehab+huawei@kernel.org>
----
- .../bindings/phy/phy-hi3670-usb3.txt          |  25 +
- drivers/phy/hisilicon/Kconfig                 |  10 +
- drivers/phy/hisilicon/Makefile                |   1 +
- drivers/phy/hisilicon/phy-hi3670-usb3.c       | 682 ++++++++++++++++++
- 4 files changed, 718 insertions(+)
- create mode 100644 Documentation/devicetree/bindings/phy/phy-hi3670-usb3.txt
- create mode 100644 drivers/phy/hisilicon/phy-hi3670-usb3.c
-
-diff --git a/Documentation/devicetree/bindings/phy/phy-hi3670-usb3.txt b/Documentation/devicetree/bindings/phy/phy-hi3670-usb3.txt
-new file mode 100644
-index 000000000000..4cb02612ff23
---- /dev/null
-+++ b/Documentation/devicetree/bindings/phy/phy-hi3670-usb3.txt
-@@ -0,0 +1,25 @@
-+Hisilicon Kirin970 usb PHY
-+-----------------------
-+
-+Required properties:
-+- compatible: should be "hisilicon,kirin970-usb-phy"
-+- #phy-cells: must be 0
-+- hisilicon,pericrg-syscon: phandle of syscon used to control phy.
-+- hisilicon,pctrl-syscon: phandle of syscon used to control phy.
-+- hisilicon,sctrl-syscon: phandle of syscon used to control phy.
-+- hisilicon,usb31-misc-syscon: phandle of syscon used to control phy.
-+- eye-diagram-param: parameter set for phy
-+- usb3-phy-tx-vboost-lvl: parameter set for phy
-+Refer to phy/phy-bindings.txt for the generic PHY binding properties
-+
-+Example:
-+	usb_phy: usbphy {
-+		compatible = "hisilicon,kirin970-usb-phy";
-+		#phy-cells = <0>;
-+		hisilicon,pericrg-syscon = <&crg_ctrl>;
-+		hisilicon,pctrl-syscon = <&pctrl>;
-+		hisilicon,sctrl-syscon = <&sctrl>;
-+		hisilicon,usb31-misc-syscon = <&usb31_misc>;
-+		eye-diagram-param = <0xFDFEE4>;
-+		usb3-phy-tx-vboost-lvl = <0x5>;
-+	};
-diff --git a/drivers/phy/hisilicon/Kconfig b/drivers/phy/hisilicon/Kconfig
-index 1c73053bcc98..4d008cfc279c 100644
---- a/drivers/phy/hisilicon/Kconfig
-+++ b/drivers/phy/hisilicon/Kconfig
-@@ -23,6 +23,16 @@ config PHY_HI3660_USB
- 
- 	  To compile this driver as a module, choose M here.
- 
-+config PHY_HI3670_USB
-+	tristate "hi3670 USB PHY support"
-+	depends on (ARCH_HISI && ARM64) || COMPILE_TEST
-+	select GENERIC_PHY
-+	select MFD_SYSCON
-+	help
-+	  Enable this to support the HISILICON HI3670 USB PHY.
-+
-+	  To compile this driver as a module, choose M here.
-+
- config PHY_HISTB_COMBPHY
- 	tristate "HiSilicon STB SoCs COMBPHY support"
- 	depends on (ARCH_HISI && ARM64) || COMPILE_TEST
-diff --git a/drivers/phy/hisilicon/Makefile b/drivers/phy/hisilicon/Makefile
-index 92e874ae9c74..51729868145b 100644
---- a/drivers/phy/hisilicon/Makefile
-+++ b/drivers/phy/hisilicon/Makefile
-@@ -1,6 +1,7 @@
- # SPDX-License-Identifier: GPL-2.0-only
- obj-$(CONFIG_PHY_HI6220_USB)		+= phy-hi6220-usb.o
- obj-$(CONFIG_PHY_HI3660_USB)		+= phy-hi3660-usb3.o
-+obj-$(CONFIG_PHY_HI3670_USB)		+= phy-hi3670-usb3.o
- obj-$(CONFIG_PHY_HISTB_COMBPHY)		+= phy-histb-combphy.o
- obj-$(CONFIG_PHY_HISI_INNO_USB2)	+= phy-hisi-inno-usb2.o
- obj-$(CONFIG_PHY_HIX5HD2_SATA)		+= phy-hix5hd2-sata.o
-diff --git a/drivers/phy/hisilicon/phy-hi3670-usb3.c b/drivers/phy/hisilicon/phy-hi3670-usb3.c
-new file mode 100644
-index 000000000000..4e04ac97728d
---- /dev/null
-+++ b/drivers/phy/hisilicon/phy-hi3670-usb3.c
-@@ -0,0 +1,682 @@
-+/*
-+ * Phy provider for USB 3.1 controller on HiSilicon Kirin970 platform
-+ *
-+ * Copyright (C) 2017-2018 Hilisicon Electronics Co., Ltd.
-+ *		http://www.huawei.com
-+ *
-+ * Authors: Yu Chen <chenyu56@huawei.com>
-+ *
-+ * This program is free software: you can redistribute it and/or modify
-+ * it under the terms of the GNU General Public License version 2  of
-+ * the License as published by the Free Software Foundation.
-+ *
-+ * This program is distributed in the hope that it will be useful,
-+ * but WITHOUT ANY WARRANTY; without even the implied warranty of
-+ * MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE.  See the
-+ * GNU General Public License for more details.
-+ */
-+
-+#include <linux/kernel.h>
-+#include <linux/mfd/syscon.h>
-+#include <linux/module.h>
-+#include <linux/platform_device.h>
-+#include <linux/phy/phy.h>
-+#include <linux/regmap.h>
-+#include <linux/clk.h>
-+
-+#define SCTRL_SCDEEPSLEEPED		(0x0)
-+#define USB_CLK_SELECTED		BIT(20)
-+
-+#define PERI_CRG_PEREN0			(0x00)
-+#define PERI_CRG_PERDIS0		(0x04)
-+#define PERI_CRG_PEREN4			(0x40)
-+#define PERI_CRG_PERDIS4		(0x44)
-+#define PERI_CRG_PERRSTEN4		(0x90)
-+#define PERI_CRG_PERRSTDIS4		(0x94)
-+#define PERI_CRG_ISODIS			(0x148)
-+#define PERI_CRG_PEREN6			(0x410)
-+#define PERI_CRG_PERDIS6		(0x414)
-+
-+#define USB_REFCLK_ISO_EN		BIT(25)
-+
-+#define GT_CLK_USB2PHY_REF		BIT(19)
-+
-+#define PCTRL_PERI_CTRL3		(0x10)
-+#define PCTRL_PERI_CTRL3_MSK_START	(16)
-+#define USB_TCXO_EN			BIT(1)
-+
-+#define PCTRL_PERI_CTRL24		(0x64)
-+#define SC_CLK_USB3PHY_3MUX1_SEL	BIT(25)
-+
-+#define USB3OTG_CTRL0			(0x00)
-+#define USB3OTG_CTRL3			(0x0C)
-+#define USB3OTG_CTRL4			(0x10)
-+#define USB3OTG_CTRL5			(0x14)
-+#define USB3OTG_CTRL7			(0x1C)
-+#define USB_MISC_CFG50			(0x50)
-+#define USB_MISC_CFG54			(0x54)
-+#define USB_MISC_CFG58			(0x58)
-+#define USB_MISC_CFG5C			(0x5C)
-+#define USB_MISC_CFGA0			(0xA0)
-+#define TCA_CLK_RST			(0x200)
-+#define TCA_INTR_EN			(0x204)
-+#define TCA_INTR_STS			(0x208)
-+#define TCA_GCFG			(0x210)
-+#define TCA_TCPC			(0x214)
-+#define TCA_VBUS_CTRL			(0x240)
-+
-+#define CTRL0_USB3_VBUSVLD		BIT(7)
-+#define CTRL0_USB3_VBUSVLD_SEL		BIT(6)
-+
-+#define CTRL3_USB2_VBUSVLDEXT0		BIT(6)
-+#define CTRL3_USB2_VBUSVLDEXTSEL0	BIT(5)
-+
-+#define CTRL5_USB2_SIDDQ		BIT(0)
-+
-+#define CTRL7_USB2_REFCLKSEL_MASK	(3 << 3)
-+#define CTRL7_USB2_REFCLKSEL_ABB	(3 << 3)
-+#define CTRL7_USB2_REFCLKSEL_PAD	(2 << 3)
-+
-+#define CFG50_USB3_PHY_TEST_POWERDOWN	BIT(23)
-+
-+#define CFG54_USB31PHY_CR_ADDR_MASK	(0xFFFF)
-+#define CFG54_USB31PHY_CR_ADDR_SHIFT	(16)
-+#define CFG54_USB3PHY_REF_USE_PAD	BIT(12)
-+#define CFG54_PHY0_PMA_PWR_STABLE	BIT(11)
-+#define CFG54_PHY0_PCS_PWR_STABLE	BIT(9)
-+#define CFG54_USB31PHY_CR_ACK		BIT(7)
-+#define CFG54_USB31PHY_CR_WR_EN		BIT(5)
-+#define CFG54_USB31PHY_CR_SEL		BIT(4)
-+#define CFG54_USB31PHY_CR_RD_EN		BIT(3)
-+#define CFG54_USB31PHY_CR_CLK		BIT(2)
-+#define CFG54_USB3_PHY0_ANA_PWR_EN	BIT(1)
-+
-+#define CFG58_USB31PHY_CR_DATA_MASK     (0xFFFF)
-+#define CFG58_USB31PHY_CR_DATA_RD_START (16)
-+
-+#define CFG5C_USB3_PHY0_SS_MPLLA_SSC_EN	BIT(1)
-+
-+#define CFGA0_VAUX_RESET		BIT(9)
-+#define CFGA0_USB31C_RESET		BIT(8)
-+#define CFGA0_USB2PHY_REFCLK_SELECT	BIT(4)
-+#define CFGA0_USB3PHY_RESET		BIT(1)
-+#define CFGA0_USB2PHY_POR		BIT(0)
-+
-+#define INTR_EN_XA_TIMEOUT_EVT_EN	BIT(1)
-+#define INTR_EN_XA_ACK_EVT_EN		BIT(0)
-+
-+#define CLK_RST_TCA_REF_CLK_EN		BIT(1)
-+#define CLK_RST_SUSPEND_CLK_EN		BIT(0)
-+
-+#define GCFG_ROLE_HSTDEV		BIT(4)
-+
-+#define TCPC_VALID			BIT(4)
-+#define TCPC_LOW_POWER_EN		BIT(3)
-+#define TCPC_MUX_CONTROL_MASK		(3 << 0)
-+#define TCPC_MUX_CONTROL_USB31		(1 << 0)
-+
-+#define VBUS_CTRL_POWERPRESENT_OVERRD	(3 << 2)
-+#define VBUS_CTRL_VBUSVALID_OVERRD	(3 << 0)
-+
-+#define KIRIN970_USB_DEFAULT_PHY_PARAM	(0xFDFEE4)
-+#define KIRIN970_USB_DEFAULT_PHY_VBOOST	(0x5)
-+
-+#define TX_VBOOST_LVL_REG		(0xf)
-+#define TX_VBOOST_LVL_START		(6)
-+#define TX_VBOOST_LVL_ENABLE		BIT(9)
-+
-+struct kirin970_priv {
-+	struct device *dev;
-+	struct regmap *peri_crg;
-+	struct regmap *pctrl;
-+	struct regmap *sctrl;
-+	struct regmap *usb31misc;
-+
-+	u32 eye_diagram_param;
-+	u32 tx_vboost_lvl;
-+
-+	u32 peri_crg_offset;
-+	u32 pctrl_offset;
-+	u32 usb31misc_offset;
-+};
-+
-+static int kirin970_phy_cr_clk(struct regmap *usb31misc)
-+{
-+	int ret;
-+
-+	/* Clock up */
-+	ret = regmap_update_bits(usb31misc, USB_MISC_CFG54,
-+			CFG54_USB31PHY_CR_CLK, CFG54_USB31PHY_CR_CLK);
-+	if (ret)
-+		return ret;
-+
-+	/* Clock down */
-+	ret = regmap_update_bits(usb31misc, USB_MISC_CFG54,
-+			CFG54_USB31PHY_CR_CLK, 0);
-+
-+	return ret;
-+}
-+
-+static int kirin970_phy_cr_set_sel(struct regmap *usb31misc)
-+{
-+	return regmap_update_bits(usb31misc, USB_MISC_CFG54,
-+			CFG54_USB31PHY_CR_SEL, CFG54_USB31PHY_CR_SEL);
-+}
-+
-+static int kirin970_phy_cr_start(struct regmap *usb31misc, int direction)
-+{
-+	int ret;
-+
-+	if (direction)
-+		ret = regmap_update_bits(usb31misc, USB_MISC_CFG54,
-+			CFG54_USB31PHY_CR_WR_EN, CFG54_USB31PHY_CR_WR_EN);
-+	else
-+		ret = regmap_update_bits(usb31misc, USB_MISC_CFG54,
-+			CFG54_USB31PHY_CR_RD_EN, CFG54_USB31PHY_CR_RD_EN);
-+
-+	if (ret)
-+		return ret;
-+
-+	ret = kirin970_phy_cr_clk(usb31misc);
-+	if (ret)
-+		return ret;
-+
-+	ret = regmap_update_bits(usb31misc, USB_MISC_CFG54,
-+			CFG54_USB31PHY_CR_RD_EN | CFG54_USB31PHY_CR_WR_EN, 0);
-+
-+	return ret;
-+}
-+
-+static int kirin970_phy_cr_wait_ack(struct regmap *usb31misc)
-+{
-+	u32 reg;
-+	int retry = 100000;
-+	int ret;
-+
-+	while (retry-- > 0) {
-+		ret = regmap_read(usb31misc, USB_MISC_CFG54, &reg);
-+		if (ret)
-+			return ret;
-+		if ((reg & CFG54_USB31PHY_CR_ACK) == CFG54_USB31PHY_CR_ACK)
-+			return 0;
-+
-+		ret = kirin970_phy_cr_clk(usb31misc);
-+		if (ret)
-+			return ret;
-+	}
-+
-+	return -ETIMEDOUT;
-+}
-+
-+static int kirin970_phy_cr_set_addr(struct regmap *usb31misc, u32 addr)
-+{
-+	u32 reg;
-+	int ret;
-+
-+	ret = regmap_read(usb31misc, USB_MISC_CFG54, &reg);
-+	if (ret)
-+		return ret;
-+
-+	reg &= ~(CFG54_USB31PHY_CR_ADDR_MASK << CFG54_USB31PHY_CR_ADDR_SHIFT);
-+	reg |= ((addr & CFG54_USB31PHY_CR_ADDR_MASK) <<
-+			CFG54_USB31PHY_CR_ADDR_SHIFT);
-+	ret = regmap_write(usb31misc, USB_MISC_CFG54, reg);
-+
-+	return ret;
-+}
-+
-+static int kirin970_phy_cr_read(struct regmap *usb31misc, u32 addr, u32 *val)
-+{
-+	int reg;
-+	int i;
-+	int ret;
-+
-+	for (i = 0; i < 100; i++) {
-+		ret = kirin970_phy_cr_clk(usb31misc);
-+		if (ret)
-+			return ret;
-+	}
-+
-+	ret = kirin970_phy_cr_set_sel(usb31misc);
-+	if (ret)
-+		return ret;
-+
-+	ret = kirin970_phy_cr_set_addr(usb31misc, addr);
-+	if (ret)
-+		return ret;
-+
-+	ret = kirin970_phy_cr_start(usb31misc, 0);
-+	if (ret)
-+		return ret;
-+
-+	ret = kirin970_phy_cr_wait_ack(usb31misc);
-+	if (ret)
-+		return ret;
-+
-+	ret = regmap_read(usb31misc, USB_MISC_CFG58, &reg);
-+	if (ret)
-+		return ret;
-+
-+	*val = (reg >> CFG58_USB31PHY_CR_DATA_RD_START) &
-+		CFG58_USB31PHY_CR_DATA_MASK;
-+
-+	return 0;
-+}
-+
-+static int kirin970_phy_cr_write(struct regmap *usb31misc, u32 addr, u32 val)
-+{
-+	int i;
-+	int ret;
-+
-+	for (i = 0; i < 100; i++) {
-+		ret = kirin970_phy_cr_clk(usb31misc);
-+		if (ret)
-+			return ret;
-+	}
-+
-+	ret = kirin970_phy_cr_set_sel(usb31misc);
-+	if (ret)
-+		return ret;
-+
-+	ret = kirin970_phy_cr_set_addr(usb31misc, addr);
-+	if (ret)
-+		return ret;
-+
-+	ret = regmap_write(usb31misc, USB_MISC_CFG58,
-+			val & CFG58_USB31PHY_CR_DATA_MASK);
-+	if (ret)
-+		return ret;
-+
-+	ret = kirin970_phy_cr_start(usb31misc, 1);
-+	if (ret)
-+		return ret;
-+
-+	ret = kirin970_phy_cr_wait_ack(usb31misc);
-+
-+	return ret;
-+}
-+
-+static int kirin970_phy_set_params(struct kirin970_priv *priv)
-+{
-+	u32 reg;
-+	int ret;
-+	int retry = 3;
-+
-+	ret = regmap_write(priv->usb31misc, USB3OTG_CTRL4,
-+			priv->eye_diagram_param);
-+	if (ret) {
-+		dev_err(priv->dev, "set USB3OTG_CTRL4 failed\n");
-+		return ret;
-+	}
-+
-+	while (retry-- > 0) {
-+		ret = kirin970_phy_cr_read(priv->usb31misc,
-+				TX_VBOOST_LVL_REG, &reg);
-+		if (!ret)
-+			break;
-+		else if (ret != -ETIMEDOUT) {
-+			dev_err(priv->dev, "read TX_VBOOST_LVL_REG failed\n");
-+			return ret;
-+		}
-+	}
-+	if (ret)
-+		return ret;
-+
-+	reg |= (TX_VBOOST_LVL_ENABLE |
-+			(priv->tx_vboost_lvl << TX_VBOOST_LVL_START));
-+	ret = kirin970_phy_cr_write(priv->usb31misc, TX_VBOOST_LVL_REG, reg);
-+	if (ret)
-+		dev_err(priv->dev, "write TX_VBOOST_LVL_REG failed\n");
-+
-+	return ret;
-+}
-+
-+static int kirin970_is_abbclk_seleted(struct kirin970_priv *priv)
-+{
-+	u32 reg;
-+
-+	if (!priv->sctrl) {
-+		dev_err(priv->dev, "priv->sctrl is null!\n");
-+		return 1;
-+	}
-+
-+	if (regmap_read(priv->sctrl, SCTRL_SCDEEPSLEEPED, &reg)) {
-+		dev_err(priv->dev, "SCTRL_SCDEEPSLEEPED read failed!\n");
-+		return 1;
-+	}
-+
-+	if ((reg & USB_CLK_SELECTED) == 0)
-+		return 1;
-+
-+	return 0;
-+}
-+
-+static int kirin970_config_phy_clock(struct kirin970_priv *priv)
-+{
-+	u32 val, mask;
-+	int ret;
-+
-+	if (kirin970_is_abbclk_seleted(priv)) {
-+		/* usb refclk iso disable */
-+		ret = regmap_write(priv->peri_crg, PERI_CRG_ISODIS,
-+				USB_REFCLK_ISO_EN);
-+		if (ret)
-+			goto out;
-+
-+		/* select usbphy clk from abb */
-+		mask = SC_CLK_USB3PHY_3MUX1_SEL;
-+		ret = regmap_update_bits(priv->pctrl,
-+				PCTRL_PERI_CTRL24, mask, 0);
-+		if (ret)
-+			goto out;
-+
-+		ret = regmap_update_bits(priv->usb31misc, USB_MISC_CFGA0,
-+				CFGA0_USB2PHY_REFCLK_SELECT, 0);
-+		if (ret)
-+			goto out;
-+
-+		ret = regmap_read(priv->usb31misc, USB3OTG_CTRL7, &val);
-+		if (ret)
-+			goto out;
-+		val &= ~CTRL7_USB2_REFCLKSEL_MASK;
-+		val |= CTRL7_USB2_REFCLKSEL_ABB;
-+		ret = regmap_write(priv->usb31misc, USB3OTG_CTRL7, val);
-+		if (ret)
-+			goto out;
-+	} else {
-+		ret = regmap_update_bits(priv->usb31misc, USB_MISC_CFG54,
-+				CFG54_USB3PHY_REF_USE_PAD,
-+				CFG54_USB3PHY_REF_USE_PAD);
-+		if (ret)
-+			goto out;
-+
-+		ret = regmap_update_bits(priv->usb31misc, USB_MISC_CFGA0,
-+				CFGA0_USB2PHY_REFCLK_SELECT,
-+				CFGA0_USB2PHY_REFCLK_SELECT);
-+		if (ret)
-+			goto out;
-+
-+		ret = regmap_read(priv->usb31misc, USB3OTG_CTRL7, &val);
-+		if (ret)
-+			goto out;
-+		val &= ~CTRL7_USB2_REFCLKSEL_MASK;
-+		val |= CTRL7_USB2_REFCLKSEL_PAD;
-+		ret = regmap_write(priv->usb31misc, USB3OTG_CTRL7, val);
-+		if (ret)
-+			goto out;
-+
-+		ret = regmap_write(priv->peri_crg,
-+				PERI_CRG_PEREN6, GT_CLK_USB2PHY_REF);
-+		if (ret)
-+			goto out;
-+	}
-+
-+	return 0;
-+out:
-+	dev_err(priv->dev, "failed to config phy clock ret: %d\n", ret);
-+	return ret;
-+}
-+
-+static int kirin970_config_tca(struct kirin970_priv *priv)
-+{
-+	u32 val, mask;
-+	int ret;
-+
-+	ret = regmap_write(priv->usb31misc, TCA_INTR_STS, 0xffff);
-+	if (ret)
-+		goto out;
-+
-+	ret = regmap_write(priv->usb31misc, TCA_INTR_EN,
-+			INTR_EN_XA_TIMEOUT_EVT_EN | INTR_EN_XA_ACK_EVT_EN);
-+	if (ret)
-+		goto out;
-+
-+	mask = CLK_RST_TCA_REF_CLK_EN | CLK_RST_SUSPEND_CLK_EN;
-+	ret = regmap_update_bits(priv->usb31misc, TCA_CLK_RST, mask, 0);
-+	if (ret)
-+		goto out;
-+
-+	ret = regmap_update_bits(priv->usb31misc, TCA_GCFG,
-+			GCFG_ROLE_HSTDEV, GCFG_ROLE_HSTDEV);
-+	if (ret)
-+		goto out;
-+
-+	ret = regmap_read(priv->usb31misc, TCA_TCPC, &val);
-+	if (ret)
-+		goto out;
-+	val &= ~(TCPC_VALID | TCPC_LOW_POWER_EN | TCPC_MUX_CONTROL_MASK);
-+	val |= (TCPC_VALID | TCPC_MUX_CONTROL_USB31);
-+	ret = regmap_write(priv->usb31misc, TCA_TCPC, val);
-+	if (ret)
-+		goto out;
-+
-+	ret = regmap_write(priv->usb31misc, TCA_VBUS_CTRL,
-+		VBUS_CTRL_POWERPRESENT_OVERRD | VBUS_CTRL_VBUSVALID_OVERRD);
-+	if (ret)
-+		goto out;
-+
-+	return 0;
-+out:
-+	dev_err(priv->dev, "failed to config phy clock ret: %d\n", ret);
-+	return ret;
-+}
-+
-+static int kirin970_phy_exit(struct phy *phy);
-+
-+static int kirin970_phy_init(struct phy *phy)
-+{
-+	struct kirin970_priv *priv = phy_get_drvdata(phy);
-+	u32 val;
-+	int ret;
-+
-+	kirin970_phy_exit(phy);
-+	dev_info(priv->dev, "%s in\n", __func__);
-+	/* assert controller */
-+	val = CFGA0_VAUX_RESET | CFGA0_USB31C_RESET;
-+	ret = regmap_update_bits(priv->usb31misc, USB_MISC_CFGA0, val, 0);
-+	if (ret)
-+		goto out;
-+
-+	ret = kirin970_config_phy_clock(priv);
-+	if (ret)
-+		goto out;
-+
-+	/* Exit from IDDQ mode */
-+	ret = regmap_update_bits(priv->usb31misc, USB3OTG_CTRL5,
-+			CTRL5_USB2_SIDDQ, 0);
-+	if (ret)
-+		goto out;
-+
-+	/* Release USB31 PHY out of TestPowerDown mode */
-+	ret = regmap_update_bits(priv->usb31misc, USB_MISC_CFG50,
-+			CFG50_USB3_PHY_TEST_POWERDOWN, 0);
-+	if (ret)
-+		goto out;
-+
-+	/* Tell the PHY power is stable */
-+	val = CFG54_USB3_PHY0_ANA_PWR_EN | CFG54_PHY0_PCS_PWR_STABLE |
-+		CFG54_PHY0_PMA_PWR_STABLE;
-+	ret = regmap_update_bits(priv->usb31misc, USB_MISC_CFG54,
-+			val, val);
-+	if (ret)
-+		goto out;
-+
-+	ret = kirin970_config_tca(priv);
-+	if (ret)
-+		goto out;
-+
-+	/* Enable SSC */
-+	ret = regmap_update_bits(priv->usb31misc, USB_MISC_CFG5C,
-+			CFG5C_USB3_PHY0_SS_MPLLA_SSC_EN,
-+			CFG5C_USB3_PHY0_SS_MPLLA_SSC_EN);
-+	if (ret)
-+		goto out;
-+
-+	/* Deassert phy */
-+	val = CFGA0_USB3PHY_RESET | CFGA0_USB2PHY_POR;
-+	ret = regmap_update_bits(priv->usb31misc, USB_MISC_CFGA0, val, val);
-+	if (ret)
-+		goto out;
-+
-+	udelay(100);
-+
-+	/* Deassert controller */
-+	val = CFGA0_VAUX_RESET | CFGA0_USB31C_RESET;
-+	ret = regmap_update_bits(priv->usb31misc, USB_MISC_CFGA0, val, val);
-+	if (ret)
-+		goto out;
-+
-+	udelay(100);
-+
-+	/* Set fake vbus valid signal */
-+	val = CTRL0_USB3_VBUSVLD | CTRL0_USB3_VBUSVLD_SEL;
-+	ret = regmap_update_bits(priv->usb31misc, USB3OTG_CTRL0, val, val);
-+	if (ret)
-+		goto out;
-+
-+	val = CTRL3_USB2_VBUSVLDEXT0 | CTRL3_USB2_VBUSVLDEXTSEL0;
-+	ret = regmap_update_bits(priv->usb31misc, USB3OTG_CTRL3, val, val);
-+	if (ret)
-+		goto out;
-+
-+	udelay(100);
-+
-+	ret = kirin970_phy_set_params(priv);
-+	if (ret)
-+		goto out;
-+
-+	{
-+		ret = regmap_read(priv->peri_crg, 0x4c,
-+				&val);
-+		if (!ret)
-+			dev_info(priv->dev, "peri_crg 0x4c %x\n", val);
-+		ret = regmap_read(priv->peri_crg, 0x404,
-+				&val);
-+		if (!ret)
-+			dev_info(priv->dev, "peri_crg 0x404 %x\n", val);
-+		ret = regmap_read(priv->peri_crg, 0xc,
-+				&val);
-+		if (!ret)
-+			dev_info(priv->dev, "peri_crg 0xc %x\n", val);
-+		ret = regmap_read(priv->peri_crg, 0xac,
-+				&val);
-+		if (!ret)
-+			dev_info(priv->dev, "peri_crg 0xac %x\n", val);
-+		ret = regmap_read(priv->pctrl, 0x10,
-+				&val);
-+		if (!ret)
-+			dev_info(priv->dev, "pctrl 0x10 %x\n", val);
-+	}
-+
-+	return 0;
-+out:
-+	dev_err(priv->dev, "failed to init phy ret: %d\n", ret);
-+	return ret;
-+}
-+
-+static int kirin970_phy_exit(struct phy *phy)
-+{
-+	struct kirin970_priv *priv = phy_get_drvdata(phy);
-+	u32 mask;
-+	int ret;
-+
-+	/* Assert phy */
-+	mask = CFGA0_USB3PHY_RESET | CFGA0_USB2PHY_POR;
-+	ret = regmap_update_bits(priv->usb31misc, USB_MISC_CFGA0, mask, 0);
-+	if (ret)
-+		goto out;
-+
-+	if (!kirin970_is_abbclk_seleted(priv)) {
-+		ret = regmap_write(priv->peri_crg, PERI_CRG_PERDIS6,
-+				GT_CLK_USB2PHY_REF);
-+		if (ret)
-+			goto out;
-+	}
-+
-+	return 0;
-+out:
-+	dev_err(priv->dev, "failed to exit phy ret: %d\n", ret);
-+	return ret;
-+}
-+
-+static struct phy_ops kirin970_phy_ops = {
-+	.init		= kirin970_phy_init,
-+	.exit		= kirin970_phy_exit,
-+	.owner		= THIS_MODULE,
-+};
-+
-+static int kirin970_phy_probe(struct platform_device *pdev)
-+{
-+	struct phy_provider *phy_provider;
-+	struct device *dev = &pdev->dev;
-+	struct phy *phy;
-+	struct kirin970_priv *priv;
-+
-+	priv = devm_kzalloc(dev, sizeof(*priv), GFP_KERNEL);
-+	if (!priv)
-+		return -ENOMEM;
-+
-+	priv->dev = dev;
-+	priv->peri_crg = syscon_regmap_lookup_by_phandle(dev->of_node,
-+					"hisilicon,pericrg-syscon");
-+	if (IS_ERR(priv->peri_crg)) {
-+		dev_err(dev, "no hisilicon,pericrg-syscon\n");
-+		return PTR_ERR(priv->peri_crg);
-+	}
-+
-+	priv->pctrl = syscon_regmap_lookup_by_phandle(dev->of_node,
-+					"hisilicon,pctrl-syscon");
-+	if (IS_ERR(priv->pctrl)) {
-+		dev_err(dev, "no hisilicon,pctrl-syscon\n");
-+		return PTR_ERR(priv->pctrl);
-+	}
-+
-+	priv->sctrl = syscon_regmap_lookup_by_phandle(dev->of_node,
-+					"hisilicon,sctrl-syscon");
-+	if (IS_ERR(priv->sctrl)) {
-+		dev_err(dev, "no hisilicon,sctrl-syscon\n");
-+		return PTR_ERR(priv->sctrl);
-+	}
-+
-+	priv->usb31misc = syscon_regmap_lookup_by_phandle(dev->of_node,
-+					"hisilicon,usb31-misc-syscon");
-+	if (IS_ERR(priv->usb31misc)) {
-+		dev_err(dev, "no hisilicon,usb31-misc-syscon\n");
-+		return PTR_ERR(priv->usb31misc);
-+	}
-+
-+	if (of_property_read_u32(dev->of_node, "eye-diagram-param",
-+				&(priv->eye_diagram_param)))
-+		priv->eye_diagram_param = KIRIN970_USB_DEFAULT_PHY_PARAM;
-+
-+	if (of_property_read_u32(dev->of_node, "usb3-phy-tx-vboost-lvl",
-+				&(priv->tx_vboost_lvl)))
-+		priv->eye_diagram_param = KIRIN970_USB_DEFAULT_PHY_VBOOST;
-+
-+	phy = devm_phy_create(dev, NULL, &kirin970_phy_ops);
-+	if (IS_ERR(phy))
-+		return PTR_ERR(phy);
-+
-+	phy_set_drvdata(phy, priv);
-+	phy_provider = devm_of_phy_provider_register(dev, of_phy_simple_xlate);
-+	return PTR_ERR_OR_ZERO(phy_provider);
-+}
-+
-+static const struct of_device_id kirin970_phy_of_match[] = {
-+	{.compatible = "hisilicon,kirin970-usb-phy",},
-+	{ },
-+};
-+MODULE_DEVICE_TABLE(of, kirin970_phy_of_match);
-+
-+static struct platform_driver kirin970_phy_driver = {
-+	.probe	= kirin970_phy_probe,
-+	.driver = {
-+		.name	= "kirin970-usb-phy",
-+		.of_match_table	= kirin970_phy_of_match,
-+	}
-+};
-+module_platform_driver(kirin970_phy_driver);
-+
-+MODULE_AUTHOR("Yu Chen <chenyu56@huawei.com>");
-+MODULE_LICENSE("GPL v2");
-+MODULE_DESCRIPTION("Hilisicon Kirin970 USB31 PHY Driver");
--- 
-2.26.2
+QWRkIGEgc3RydWN0dXJlIGhvbGRpbmcgcmVxdWlyZWQgb3BlcmF0aW9ucyBmb3IgZWFjaCBkZXZp
+Y2Ugc3VjaCBhcyBkZXZpY2UNCmluaXRpYWxpemF0aW9uLCBQSFkgcG9ydCByZWFkIG9yIHdyaXRl
+LCBhIGNoZWNrZXIgd2hldGhlciBQSFkgaW50ZXJmYWNlIGlzDQpzdXBwb3J0ZWQgb24gYSBjZXJ0
+YWluIHBvcnQsIE1BQyBwb3J0IHNldHVwIGZvciBlaXRoZXIgYnVzIHBhZCBvciBhDQpzcGVjaWZp
+YyBQSFkgaW50ZXJmYWNlLg0KDQpUaGUgcGF0Y2ggaXMgZG9uZSBmb3IgcmVhZHkgYWRkaW5nIGEg
+bmV3IGhhcmR3YXJlIE1UNzUzMSwgYW5kIGtlZXAgdGhlDQpzYW1lIHNldHVwIGxvZ2ljIG9mIGV4
+aXN0aW5nIGhhcmR3YXJlLg0KDQpTaWduZWQtb2ZmLWJ5OiBMYW5kZW4gQ2hhbyA8bGFuZGVuLmNo
+YW9AbWVkaWF0ZWsuY29tPg0KU2lnbmVkLW9mZi1ieTogU2VhbiBXYW5nIDxzZWFuLndhbmdAbWVk
+aWF0ZWsuY29tPg0KLS0tDQogZHJpdmVycy9uZXQvZHNhL210NzUzMC5jIHwgMjcxICsrKysrKysr
+KysrKysrKysrKysrKysrKysrKystLS0tLS0tLS0tLQ0KIGRyaXZlcnMvbmV0L2RzYS9tdDc1MzAu
+aCB8ICAzNyArKysrKy0NCiAyIGZpbGVzIGNoYW5nZWQsIDIzNCBpbnNlcnRpb25zKCspLCA3NCBk
+ZWxldGlvbnMoLSkNCg0KZGlmZiAtLWdpdCBhL2RyaXZlcnMvbmV0L2RzYS9tdDc1MzAuYyBiL2Ry
+aXZlcnMvbmV0L2RzYS9tdDc1MzAuYw0KaW5kZXggMjM4NDE3ZGIyNmY5Li45YzZmODBiM2U1ZjUg
+MTAwNjQ0DQotLS0gYS9kcml2ZXJzL25ldC9kc2EvbXQ3NTMwLmMNCisrKyBiL2RyaXZlcnMvbmV0
+L2RzYS9tdDc1MzAuYw0KQEAgLTM3Miw4ICszNzIsOSBAQCBtdDc1MzBfZmRiX3dyaXRlKHN0cnVj
+dCBtdDc1MzBfcHJpdiAqcHJpdiwgdTE2IHZpZCwNCiAJCW10NzUzMF93cml0ZShwcml2LCBNVDc1
+MzBfQVRBMSArIChpICogNCksIHJlZ1tpXSk7DQogfQ0KIA0KKy8qIFNldHVwIFRYIGNpcmN1aXQg
+aW5jbHVkaW5nIHJlbGV2YW50IFBBRCBhbmQgZHJpdmluZyAqLw0KIHN0YXRpYyBpbnQNCi1tdDc1
+MzBfcGFkX2Nsa19zZXR1cChzdHJ1Y3QgZHNhX3N3aXRjaCAqZHMsIGludCBtb2RlKQ0KK210NzUz
+MF9wYWRfY2xrX3NldHVwKHN0cnVjdCBkc2Ffc3dpdGNoICpkcywgcGh5X2ludGVyZmFjZV90IGlu
+dGVyZmFjZSkNCiB7DQogCXN0cnVjdCBtdDc1MzBfcHJpdiAqcHJpdiA9IGRzLT5wcml2Ow0KIAl1
+MzIgbmNwbzEsIHNzY19kZWx0YSwgdHJnaW50LCBpLCB4dGFsOw0KQEAgLTM4Nyw3ICszODgsNyBA
+QCBtdDc1MzBfcGFkX2Nsa19zZXR1cChzdHJ1Y3QgZHNhX3N3aXRjaCAqZHMsIGludCBtb2RlKQ0K
+IAkJcmV0dXJuIC1FSU5WQUw7DQogCX0NCiANCi0Jc3dpdGNoIChtb2RlKSB7DQorCXN3aXRjaCAo
+aW50ZXJmYWNlKSB7DQogCWNhc2UgUEhZX0lOVEVSRkFDRV9NT0RFX1JHTUlJOg0KIAkJdHJnaW50
+ID0gMDsNCiAJCS8qIFBMTCBmcmVxdWVuY3k6IDEyNU1IeiAqLw0KQEAgLTQwOSw3ICs0MTAsOCBA
+QCBtdDc1MzBfcGFkX2Nsa19zZXR1cChzdHJ1Y3QgZHNhX3N3aXRjaCAqZHMsIGludCBtb2RlKQ0K
+IAkJfQ0KIAkJYnJlYWs7DQogCWRlZmF1bHQ6DQotCQlkZXZfZXJyKHByaXYtPmRldiwgInhNSUkg
+bW9kZSAlZCBub3Qgc3VwcG9ydGVkXG4iLCBtb2RlKTsNCisJCWRldl9lcnIocHJpdi0+ZGV2LCAi
+eE1JSSBpbnRlcmZhY2UgJWQgbm90IHN1cHBvcnRlZFxuIiwNCisJCQlpbnRlcmZhY2UpOw0KIAkJ
+cmV0dXJuIC1FSU5WQUw7DQogCX0NCiANCkBAIC0xMzQ5LDQ3ICsxMzUxLDExNiBAQCBtdDc1MzBf
+c2V0dXAoc3RydWN0IGRzYV9zd2l0Y2ggKmRzKQ0KIAlyZXR1cm4gMDsNCiB9DQogDQotc3RhdGlj
+IHZvaWQgbXQ3NTMwX3BoeWxpbmtfbWFjX2NvbmZpZyhzdHJ1Y3QgZHNhX3N3aXRjaCAqZHMsIGlu
+dCBwb3J0LA0KLQkJCQkgICAgICB1bnNpZ25lZCBpbnQgbW9kZSwNCi0JCQkJICAgICAgY29uc3Qg
+c3RydWN0IHBoeWxpbmtfbGlua19zdGF0ZSAqc3RhdGUpDQorc3RhdGljIGJvb2wNCittdDc1MzBf
+cGh5X21vZGVfc3VwcG9ydGVkKHN0cnVjdCBkc2Ffc3dpdGNoICpkcywgaW50IHBvcnQsDQorCQkJ
+ICBjb25zdCBzdHJ1Y3QgcGh5bGlua19saW5rX3N0YXRlICpzdGF0ZSkNCiB7DQogCXN0cnVjdCBt
+dDc1MzBfcHJpdiAqcHJpdiA9IGRzLT5wcml2Ow0KLQl1MzIgbWNyX2N1ciwgbWNyX25ldzsNCiAN
+CiAJc3dpdGNoIChwb3J0KSB7DQotCWNhc2UgMDogLyogSW50ZXJuYWwgcGh5ICovDQotCWNhc2Ug
+MToNCi0JY2FzZSAyOg0KLQljYXNlIDM6DQotCWNhc2UgNDoNCisJY2FzZSAwIC4uLiA0OiAvKiBJ
+bnRlcm5hbCBwaHkgKi8NCiAJCWlmIChzdGF0ZS0+aW50ZXJmYWNlICE9IFBIWV9JTlRFUkZBQ0Vf
+TU9ERV9HTUlJKQ0KLQkJCXJldHVybjsNCisJCQlyZXR1cm4gZmFsc2U7DQogCQlicmVhazsNCiAJ
+Y2FzZSA1OiAvKiAybmQgY3B1IHBvcnQgd2l0aCBwaHkgb2YgcG9ydCAwIG9yIDQgLyBleHRlcm5h
+bCBwaHkgKi8NCi0JCWlmIChwcml2LT5wNV9pbnRlcmZhY2UgPT0gc3RhdGUtPmludGVyZmFjZSkN
+Ci0JCQlicmVhazsNCiAJCWlmICghcGh5X2ludGVyZmFjZV9tb2RlX2lzX3JnbWlpKHN0YXRlLT5p
+bnRlcmZhY2UpICYmDQogCQkgICAgc3RhdGUtPmludGVyZmFjZSAhPSBQSFlfSU5URVJGQUNFX01P
+REVfTUlJICYmDQogCQkgICAgc3RhdGUtPmludGVyZmFjZSAhPSBQSFlfSU5URVJGQUNFX01PREVf
+R01JSSkNCi0JCQlyZXR1cm47DQorCQkJcmV0dXJuIGZhbHNlOw0KKwkJYnJlYWs7DQorCWNhc2Ug
+NjogLyogMXN0IGNwdSBwb3J0ICovDQorCQlpZiAoc3RhdGUtPmludGVyZmFjZSAhPSBQSFlfSU5U
+RVJGQUNFX01PREVfUkdNSUkgJiYNCisJCSAgICBzdGF0ZS0+aW50ZXJmYWNlICE9IFBIWV9JTlRF
+UkZBQ0VfTU9ERV9UUkdNSUkpDQorCQkJcmV0dXJuIGZhbHNlOw0KKwkJYnJlYWs7DQorCWRlZmF1
+bHQ6DQorCQlkZXZfZXJyKHByaXYtPmRldiwgIiVzOiB1bnN1cHBvcnRlZCBwb3J0OiAlaVxuIiwg
+X19mdW5jX18sDQorCQkJcG9ydCk7DQorCQlyZXR1cm4gZmFsc2U7DQorCX0NCisNCisJcmV0dXJu
+IHRydWU7DQorfQ0KKw0KK3N0YXRpYyBib29sDQorbXQ3NTN4X3BoeV9tb2RlX3N1cHBvcnRlZChz
+dHJ1Y3QgZHNhX3N3aXRjaCAqZHMsIGludCBwb3J0LA0KKwkJCSAgY29uc3Qgc3RydWN0IHBoeWxp
+bmtfbGlua19zdGF0ZSAqc3RhdGUpDQorew0KKwlzdHJ1Y3QgbXQ3NTMwX3ByaXYgKnByaXYgPSBk
+cy0+cHJpdjsNCisNCisJcmV0dXJuIHByaXYtPmluZm8tPnBoeV9tb2RlX3N1cHBvcnRlZChkcywg
+cG9ydCwgc3RhdGUpOw0KK30NCisNCitzdGF0aWMgaW50DQorbXQ3NTN4X3BhZF9zZXR1cChzdHJ1
+Y3QgZHNhX3N3aXRjaCAqZHMsIGNvbnN0IHN0cnVjdCBwaHlsaW5rX2xpbmtfc3RhdGUgKnN0YXRl
+KQ0KK3sNCisJc3RydWN0IG10NzUzMF9wcml2ICpwcml2ID0gZHMtPnByaXY7DQorDQorCXJldHVy
+biBwcml2LT5pbmZvLT5wYWRfc2V0dXAoZHMsIHN0YXRlLT5pbnRlcmZhY2UpOw0KK30NCisNCitz
+dGF0aWMgaW50DQorbXQ3NTMwX21hY19jb25maWcoc3RydWN0IGRzYV9zd2l0Y2ggKmRzLCBpbnQg
+cG9ydCwgdW5zaWduZWQgaW50IG1vZGUsDQorCQkgIHBoeV9pbnRlcmZhY2VfdCBpbnRlcmZhY2Up
+DQorew0KKwlzdHJ1Y3QgbXQ3NTMwX3ByaXYgKnByaXYgPSBkcy0+cHJpdjsNCisNCisJLyogT25s
+eSBuZWVkIHRvIHNldHVwIHBvcnQ1LiAqLw0KKwlpZiAocG9ydCAhPSA1KQ0KKwkJcmV0dXJuIDA7
+DQorDQorCW10NzUzMF9zZXR1cF9wb3J0NShwcml2LT5kcywgaW50ZXJmYWNlKTsNCisNCisJcmV0
+dXJuIDA7DQorfQ0KKw0KK3N0YXRpYyBpbnQNCittdDc1M3hfbWFjX2NvbmZpZyhzdHJ1Y3QgZHNh
+X3N3aXRjaCAqZHMsIGludCBwb3J0LCB1bnNpZ25lZCBpbnQgbW9kZSwNCisJCSAgY29uc3Qgc3Ry
+dWN0IHBoeWxpbmtfbGlua19zdGF0ZSAqc3RhdGUpDQorew0KKwlzdHJ1Y3QgbXQ3NTMwX3ByaXYg
+KnByaXYgPSBkcy0+cHJpdjsNCisNCisJcmV0dXJuIHByaXYtPmluZm8tPm1hY19wb3J0X2NvbmZp
+ZyhkcywgcG9ydCwgbW9kZSwgc3RhdGUtPmludGVyZmFjZSk7DQorfQ0KKw0KK3N0YXRpYyB2b2lk
+DQorbXQ3NTN4X3BoeWxpbmtfbWFjX2NvbmZpZyhzdHJ1Y3QgZHNhX3N3aXRjaCAqZHMsIGludCBw
+b3J0LCB1bnNpZ25lZCBpbnQgbW9kZSwNCisJCQkgIGNvbnN0IHN0cnVjdCBwaHlsaW5rX2xpbmtf
+c3RhdGUgKnN0YXRlKQ0KK3sNCisJc3RydWN0IG10NzUzMF9wcml2ICpwcml2ID0gZHMtPnByaXY7
+DQorCXUzMiBtY3JfY3VyLCBtY3JfbmV3Ow0KKw0KKwlpZiAoIW10NzUzeF9waHlfbW9kZV9zdXBw
+b3J0ZWQoZHMsIHBvcnQsIHN0YXRlKSkNCisJCWdvdG8gdW5zdXBwb3J0ZWQ7DQorDQorCXN3aXRj
+aCAocG9ydCkgew0KKwljYXNlIDAgLi4uIDQ6IC8qIEludGVybmFsIHBoeSAqLw0KKwkJaWYgKHN0
+YXRlLT5pbnRlcmZhY2UgIT0gUEhZX0lOVEVSRkFDRV9NT0RFX0dNSUkpDQorCQkJZ290byB1bnN1
+cHBvcnRlZDsNCisJCWJyZWFrOw0KKwljYXNlIDU6IC8qIDJuZCBjcHUgcG9ydCB3aXRoIHBoeSBv
+ZiBwb3J0IDAgb3IgNCAvIGV4dGVybmFsIHBoeSAqLw0KKwkJaWYgKHByaXYtPnA1X2ludGVyZmFj
+ZSA9PSBzdGF0ZS0+aW50ZXJmYWNlKQ0KKwkJCWJyZWFrOw0KKw0KKwkJaWYgKG10NzUzeF9tYWNf
+Y29uZmlnKGRzLCBwb3J0LCBtb2RlLCBzdGF0ZSkgPCAwKQ0KKwkJCWdvdG8gdW5zdXBwb3J0ZWQ7
+DQogDQotCQltdDc1MzBfc2V0dXBfcG9ydDUoZHMsIHN0YXRlLT5pbnRlcmZhY2UpOw0KIAkJYnJl
+YWs7DQogCWNhc2UgNjogLyogMXN0IGNwdSBwb3J0ICovDQogCQlpZiAocHJpdi0+cDZfaW50ZXJm
+YWNlID09IHN0YXRlLT5pbnRlcmZhY2UpDQogCQkJYnJlYWs7DQogDQotCQlpZiAoc3RhdGUtPmlu
+dGVyZmFjZSAhPSBQSFlfSU5URVJGQUNFX01PREVfUkdNSUkgJiYNCi0JCSAgICBzdGF0ZS0+aW50
+ZXJmYWNlICE9IFBIWV9JTlRFUkZBQ0VfTU9ERV9UUkdNSUkpDQotCQkJcmV0dXJuOw0KKwkJbXQ3
+NTN4X3BhZF9zZXR1cChkcywgc3RhdGUpOw0KIA0KLQkJLyogU2V0dXAgVFggY2lyY3VpdCBpbmNs
+dWluZyByZWxldmFudCBQQUQgYW5kIGRyaXZpbmcgKi8NCi0JCW10NzUzMF9wYWRfY2xrX3NldHVw
+KGRzLCBzdGF0ZS0+aW50ZXJmYWNlKTsNCisJCWlmIChtdDc1M3hfbWFjX2NvbmZpZyhkcywgcG9y
+dCwgbW9kZSwgc3RhdGUpIDwgMCkNCisJCQlnb3RvIHVuc3VwcG9ydGVkOw0KIA0KIAkJcHJpdi0+
+cDZfaW50ZXJmYWNlID0gc3RhdGUtPmludGVyZmFjZTsNCiAJCWJyZWFrOw0KIAlkZWZhdWx0Og0K
+LQkJZGV2X2Vycihkcy0+ZGV2LCAiJXM6IHVuc3VwcG9ydGVkIHBvcnQ6ICVpXG4iLCBfX2Z1bmNf
+XywgcG9ydCk7DQordW5zdXBwb3J0ZWQ6DQorCQlkZXZfZXJyKGRzLT5kZXYsICIlczogdW5zdXBw
+b3J0ZWQgJXMgcG9ydDogJWlcbiIsDQorCQkJX19mdW5jX18sIHBoeV9tb2RlcyhzdGF0ZS0+aW50
+ZXJmYWNlKSwgcG9ydCk7DQogCQlyZXR1cm47DQogCX0NCiANCkBAIC0xNDUzLDYxICsxNTI0LDQ0
+IEBAIHN0YXRpYyB2b2lkIG10NzUzMF9waHlsaW5rX21hY19saW5rX3VwKHN0cnVjdCBkc2Ffc3dp
+dGNoICpkcywgaW50IHBvcnQsDQogCW10NzUzMF9zZXQocHJpdiwgTVQ3NTMwX1BNQ1JfUChwb3J0
+KSwgbWNyKTsNCiB9DQogDQotc3RhdGljIHZvaWQgbXQ3NTMwX3BoeWxpbmtfdmFsaWRhdGUoc3Ry
+dWN0IGRzYV9zd2l0Y2ggKmRzLCBpbnQgcG9ydCwNCi0JCQkJICAgIHVuc2lnbmVkIGxvbmcgKnN1
+cHBvcnRlZCwNCi0JCQkJICAgIHN0cnVjdCBwaHlsaW5rX2xpbmtfc3RhdGUgKnN0YXRlKQ0KK3N0
+YXRpYyB2b2lkDQorbXQ3NTMwX21hY19wb3J0X3ZhbGlkYXRlKHN0cnVjdCBkc2Ffc3dpdGNoICpk
+cywgaW50IHBvcnQsDQorCQkJIHVuc2lnbmVkIGxvbmcgKnN1cHBvcnRlZCkNCit7DQorCWlmIChw
+b3J0ID09IDUpDQorCQlwaHlsaW5rX3NldChzdXBwb3J0ZWQsIDEwMDBiYXNlWF9GdWxsKTsNCit9
+DQorDQorc3RhdGljIHZvaWQNCittdDc1M3hfcGh5bGlua192YWxpZGF0ZShzdHJ1Y3QgZHNhX3N3
+aXRjaCAqZHMsIGludCBwb3J0LA0KKwkJCXVuc2lnbmVkIGxvbmcgKnN1cHBvcnRlZCwNCisJCQlz
+dHJ1Y3QgcGh5bGlua19saW5rX3N0YXRlICpzdGF0ZSkNCiB7DQogCV9fRVRIVE9PTF9ERUNMQVJF
+X0xJTktfTU9ERV9NQVNLKG1hc2spID0geyAwLCB9Ow0KKwlzdHJ1Y3QgbXQ3NTMwX3ByaXYgKnBy
+aXYgPSBkcy0+cHJpdjsNCiANCi0Jc3dpdGNoIChwb3J0KSB7DQotCWNhc2UgMDogLyogSW50ZXJu
+YWwgcGh5ICovDQotCWNhc2UgMToNCi0JY2FzZSAyOg0KLQljYXNlIDM6DQotCWNhc2UgNDoNCi0J
+CWlmIChzdGF0ZS0+aW50ZXJmYWNlICE9IFBIWV9JTlRFUkZBQ0VfTU9ERV9OQSAmJg0KLQkJICAg
+IHN0YXRlLT5pbnRlcmZhY2UgIT0gUEhZX0lOVEVSRkFDRV9NT0RFX0dNSUkpDQotCQkJZ290byB1
+bnN1cHBvcnRlZDsNCi0JCWJyZWFrOw0KLQljYXNlIDU6IC8qIDJuZCBjcHUgcG9ydCB3aXRoIHBo
+eSBvZiBwb3J0IDAgb3IgNCAvIGV4dGVybmFsIHBoeSAqLw0KLQkJaWYgKHN0YXRlLT5pbnRlcmZh
+Y2UgIT0gUEhZX0lOVEVSRkFDRV9NT0RFX05BICYmDQotCQkgICAgIXBoeV9pbnRlcmZhY2VfbW9k
+ZV9pc19yZ21paShzdGF0ZS0+aW50ZXJmYWNlKSAmJg0KLQkJICAgIHN0YXRlLT5pbnRlcmZhY2Ug
+IT0gUEhZX0lOVEVSRkFDRV9NT0RFX01JSSAmJg0KLQkJICAgIHN0YXRlLT5pbnRlcmZhY2UgIT0g
+UEhZX0lOVEVSRkFDRV9NT0RFX0dNSUkpDQotCQkJZ290byB1bnN1cHBvcnRlZDsNCi0JCWJyZWFr
+Ow0KLQljYXNlIDY6IC8qIDFzdCBjcHUgcG9ydCAqLw0KLQkJaWYgKHN0YXRlLT5pbnRlcmZhY2Ug
+IT0gUEhZX0lOVEVSRkFDRV9NT0RFX05BICYmDQotCQkgICAgc3RhdGUtPmludGVyZmFjZSAhPSBQ
+SFlfSU5URVJGQUNFX01PREVfUkdNSUkgJiYNCi0JCSAgICBzdGF0ZS0+aW50ZXJmYWNlICE9IFBI
+WV9JTlRFUkZBQ0VfTU9ERV9UUkdNSUkpDQotCQkJZ290byB1bnN1cHBvcnRlZDsNCi0JCWJyZWFr
+Ow0KLQlkZWZhdWx0Og0KLQkJZGV2X2Vycihkcy0+ZGV2LCAiJXM6IHVuc3VwcG9ydGVkIHBvcnQ6
+ICVpXG4iLCBfX2Z1bmNfXywgcG9ydCk7DQotdW5zdXBwb3J0ZWQ6DQorCWlmIChzdGF0ZS0+aW50
+ZXJmYWNlICE9IFBIWV9JTlRFUkZBQ0VfTU9ERV9OQSAmJg0KKwkgICAgIW10NzUzeF9waHlfbW9k
+ZV9zdXBwb3J0ZWQoZHMsIHBvcnQsIHN0YXRlKSkgew0KIAkJbGlua21vZGVfemVybyhzdXBwb3J0
+ZWQpOw0KIAkJcmV0dXJuOw0KIAl9DQogDQogCXBoeWxpbmtfc2V0X3BvcnRfbW9kZXMobWFzayk7
+DQotCXBoeWxpbmtfc2V0KG1hc2ssIEF1dG9uZWcpOw0KIA0KLQlpZiAoc3RhdGUtPmludGVyZmFj
+ZSA9PSBQSFlfSU5URVJGQUNFX01PREVfVFJHTUlJKSB7DQotCQlwaHlsaW5rX3NldChtYXNrLCAx
+MDAwYmFzZVRfRnVsbCk7DQotCX0gZWxzZSB7DQorCWlmIChzdGF0ZS0+aW50ZXJmYWNlICE9IFBI
+WV9JTlRFUkZBQ0VfTU9ERV9UUkdNSUkpIHsNCiAJCXBoeWxpbmtfc2V0KG1hc2ssIDEwYmFzZVRf
+SGFsZik7DQogCQlwaHlsaW5rX3NldChtYXNrLCAxMGJhc2VUX0Z1bGwpOw0KIAkJcGh5bGlua19z
+ZXQobWFzaywgMTAwYmFzZVRfSGFsZik7DQogCQlwaHlsaW5rX3NldChtYXNrLCAxMDBiYXNlVF9G
+dWxsKTsNCi0NCi0JCWlmIChzdGF0ZS0+aW50ZXJmYWNlICE9IFBIWV9JTlRFUkZBQ0VfTU9ERV9N
+SUkpIHsNCi0JCQkvKiBUaGlzIHN3aXRjaCBvbmx5IHN1cHBvcnRzIDFHIGZ1bGwtZHVwbGV4LiAq
+Lw0KLQkJCXBoeWxpbmtfc2V0KG1hc2ssIDEwMDBiYXNlVF9GdWxsKTsNCi0JCQlpZiAocG9ydCA9
+PSA1KQ0KLQkJCQlwaHlsaW5rX3NldChtYXNrLCAxMDAwYmFzZVhfRnVsbCk7DQotCQl9DQorCQlw
+aHlsaW5rX3NldChtYXNrLCBBdXRvbmVnKTsNCiAJfQ0KIA0KKwkvKiBUaGlzIHN3aXRjaCBvbmx5
+IHN1cHBvcnRzIDFHIGZ1bGwtZHVwbGV4LiAqLw0KKwlpZiAoc3RhdGUtPmludGVyZmFjZSAhPSBQ
+SFlfSU5URVJGQUNFX01PREVfTUlJKQ0KKwkJcGh5bGlua19zZXQobWFzaywgMTAwMGJhc2VUX0Z1
+bGwpOw0KKw0KKwlwcml2LT5pbmZvLT5tYWNfcG9ydF92YWxpZGF0ZShkcywgcG9ydCwgbWFzayk7
+DQorDQogCXBoeWxpbmtfc2V0KG1hc2ssIFBhdXNlKTsNCiAJcGh5bGlua19zZXQobWFzaywgQXN5
+bV9QYXVzZSk7DQogDQpAQCAtMTU1NSwxMiArMTYwOSw0NSBAQCBtdDc1MzBfcGh5bGlua19tYWNf
+bGlua19zdGF0ZShzdHJ1Y3QgZHNhX3N3aXRjaCAqZHMsIGludCBwb3J0LA0KIAlyZXR1cm4gMTsN
+CiB9DQogDQorc3RhdGljIGludA0KK210NzUzeF9waHlsaW5rX21hY19saW5rX3N0YXRlKHN0cnVj
+dCBkc2Ffc3dpdGNoICpkcywgaW50IHBvcnQsDQorCQkJICAgICAgc3RydWN0IHBoeWxpbmtfbGlu
+a19zdGF0ZSAqc3RhdGUpDQorew0KKwlzdHJ1Y3QgbXQ3NTMwX3ByaXYgKnByaXYgPSBkcy0+cHJp
+djsNCisNCisJcmV0dXJuIHByaXYtPmluZm8tPm1hY19wb3J0X2dldF9zdGF0ZShkcywgcG9ydCwg
+c3RhdGUpOw0KK30NCisNCitzdGF0aWMgaW50DQorbXQ3NTN4X3NldHVwKHN0cnVjdCBkc2Ffc3dp
+dGNoICpkcykNCit7DQorCXN0cnVjdCBtdDc1MzBfcHJpdiAqcHJpdiA9IGRzLT5wcml2Ow0KKw0K
+KwlyZXR1cm4gcHJpdi0+aW5mby0+c3dfc2V0dXAoZHMpOw0KK30NCisNCitzdGF0aWMgaW50DQor
+bXQ3NTN4X3BoeV9yZWFkKHN0cnVjdCBkc2Ffc3dpdGNoICpkcywgaW50IHBvcnQsIGludCByZWdu
+dW0pDQorew0KKwlzdHJ1Y3QgbXQ3NTMwX3ByaXYgKnByaXYgPSBkcy0+cHJpdjsNCisNCisJcmV0
+dXJuIHByaXYtPmluZm8tPnBoeV9yZWFkKGRzLCBwb3J0LCByZWdudW0pOw0KK30NCisNCitzdGF0
+aWMgaW50DQorbXQ3NTN4X3BoeV93cml0ZShzdHJ1Y3QgZHNhX3N3aXRjaCAqZHMsIGludCBwb3J0
+LCBpbnQgcmVnbnVtLCB1MTYgdmFsKQ0KK3sNCisJc3RydWN0IG10NzUzMF9wcml2ICpwcml2ID0g
+ZHMtPnByaXY7DQorDQorCXJldHVybiBwcml2LT5pbmZvLT5waHlfd3JpdGUoZHMsIHBvcnQsIHJl
+Z251bSwgdmFsKTsNCit9DQorDQogc3RhdGljIGNvbnN0IHN0cnVjdCBkc2Ffc3dpdGNoX29wcyBt
+dDc1MzBfc3dpdGNoX29wcyA9IHsNCiAJLmdldF90YWdfcHJvdG9jb2wJPSBtdGtfZ2V0X3RhZ19w
+cm90b2NvbCwNCi0JLnNldHVwCQkJPSBtdDc1MzBfc2V0dXAsDQorCS5zZXR1cAkJCT0gbXQ3NTN4
+X3NldHVwLA0KIAkuZ2V0X3N0cmluZ3MJCT0gbXQ3NTMwX2dldF9zdHJpbmdzLA0KLQkucGh5X3Jl
+YWQJCT0gbXQ3NTMwX3BoeV9yZWFkLA0KLQkucGh5X3dyaXRlCQk9IG10NzUzMF9waHlfd3JpdGUs
+DQorCS5waHlfcmVhZAkJPSBtdDc1M3hfcGh5X3JlYWQsDQorCS5waHlfd3JpdGUJCT0gbXQ3NTN4
+X3BoeV93cml0ZSwNCiAJLmdldF9ldGh0b29sX3N0YXRzCT0gbXQ3NTMwX2dldF9ldGh0b29sX3N0
+YXRzLA0KIAkuZ2V0X3NzZXRfY291bnQJCT0gbXQ3NTMwX2dldF9zc2V0X2NvdW50LA0KIAkucG9y
+dF9lbmFibGUJCT0gbXQ3NTMwX3BvcnRfZW5hYmxlLA0KQEAgLTE1NzcsMTYgKzE2NjQsNDEgQEAg
+c3RhdGljIGNvbnN0IHN0cnVjdCBkc2Ffc3dpdGNoX29wcyBtdDc1MzBfc3dpdGNoX29wcyA9IHsN
+CiAJLnBvcnRfdmxhbl9kZWwJCT0gbXQ3NTMwX3BvcnRfdmxhbl9kZWwsDQogCS5wb3J0X21pcnJv
+cl9hZGQJPSBtdDc1MzBfcG9ydF9taXJyb3JfYWRkLA0KIAkucG9ydF9taXJyb3JfZGVsCT0gbXQ3
+NTMwX3BvcnRfbWlycm9yX2RlbCwNCi0JLnBoeWxpbmtfdmFsaWRhdGUJPSBtdDc1MzBfcGh5bGlu
+a192YWxpZGF0ZSwNCi0JLnBoeWxpbmtfbWFjX2xpbmtfc3RhdGUgPSBtdDc1MzBfcGh5bGlua19t
+YWNfbGlua19zdGF0ZSwNCi0JLnBoeWxpbmtfbWFjX2NvbmZpZwk9IG10NzUzMF9waHlsaW5rX21h
+Y19jb25maWcsDQorCS5waHlsaW5rX3ZhbGlkYXRlCT0gbXQ3NTN4X3BoeWxpbmtfdmFsaWRhdGUs
+DQorCS5waHlsaW5rX21hY19saW5rX3N0YXRlCT0gbXQ3NTN4X3BoeWxpbmtfbWFjX2xpbmtfc3Rh
+dGUsDQorCS5waHlsaW5rX21hY19jb25maWcJPSBtdDc1M3hfcGh5bGlua19tYWNfY29uZmlnLA0K
+IAkucGh5bGlua19tYWNfbGlua19kb3duCT0gbXQ3NTMwX3BoeWxpbmtfbWFjX2xpbmtfZG93biwN
+CiAJLnBoeWxpbmtfbWFjX2xpbmtfdXAJPSBtdDc1MzBfcGh5bGlua19tYWNfbGlua191cCwNCiB9
+Ow0KIA0KK3N0YXRpYyBjb25zdCBzdHJ1Y3QgbXQ3NTN4X2luZm8gbXQ3NTN4X3RhYmxlW10gPSB7
+DQorCVtJRF9NVDc2MjFdID0gew0KKwkJLmlkID0gSURfTVQ3NjIxLA0KKwkJLnN3X3NldHVwID0g
+bXQ3NTMwX3NldHVwLA0KKwkJLnBoeV9yZWFkID0gbXQ3NTMwX3BoeV9yZWFkLA0KKwkJLnBoeV93
+cml0ZSA9IG10NzUzMF9waHlfd3JpdGUsDQorCQkucGFkX3NldHVwID0gbXQ3NTMwX3BhZF9jbGtf
+c2V0dXAsDQorCQkucGh5X21vZGVfc3VwcG9ydGVkID0gbXQ3NTMwX3BoeV9tb2RlX3N1cHBvcnRl
+ZCwNCisJCS5tYWNfcG9ydF92YWxpZGF0ZSA9IG10NzUzMF9tYWNfcG9ydF92YWxpZGF0ZSwNCisJ
+CS5tYWNfcG9ydF9nZXRfc3RhdGUgPSBtdDc1MzBfcGh5bGlua19tYWNfbGlua19zdGF0ZSwNCisJ
+CS5tYWNfcG9ydF9jb25maWcgPSBtdDc1MzBfbWFjX2NvbmZpZywNCisJfSwNCisJW0lEX01UNzUz
+MF0gPSB7DQorCQkuaWQgPSBJRF9NVDc1MzAsDQorCQkuc3dfc2V0dXAgPSBtdDc1MzBfc2V0dXAs
+DQorCQkucGh5X3JlYWQgPSBtdDc1MzBfcGh5X3JlYWQsDQorCQkucGh5X3dyaXRlID0gbXQ3NTMw
+X3BoeV93cml0ZSwNCisJCS5wYWRfc2V0dXAgPSBtdDc1MzBfcGFkX2Nsa19zZXR1cCwNCisJCS5w
+aHlfbW9kZV9zdXBwb3J0ZWQgPSBtdDc1MzBfcGh5X21vZGVfc3VwcG9ydGVkLA0KKwkJLm1hY19w
+b3J0X3ZhbGlkYXRlID0gbXQ3NTMwX21hY19wb3J0X3ZhbGlkYXRlLA0KKwkJLm1hY19wb3J0X2dl
+dF9zdGF0ZSA9IG10NzUzMF9waHlsaW5rX21hY19saW5rX3N0YXRlLA0KKwkJLm1hY19wb3J0X2Nv
+bmZpZyA9IG10NzUzMF9tYWNfY29uZmlnLA0KKwl9LA0KK307DQorDQogc3RhdGljIGNvbnN0IHN0
+cnVjdCBvZl9kZXZpY2VfaWQgbXQ3NTMwX29mX21hdGNoW10gPSB7DQotCXsgLmNvbXBhdGlibGUg
+PSAibWVkaWF0ZWssbXQ3NjIxIiwgLmRhdGEgPSAodm9pZCAqKUlEX01UNzYyMSwgfSwNCi0JeyAu
+Y29tcGF0aWJsZSA9ICJtZWRpYXRlayxtdDc1MzAiLCAuZGF0YSA9ICh2b2lkICopSURfTVQ3NTMw
+LCB9LA0KKwl7IC5jb21wYXRpYmxlID0gIm1lZGlhdGVrLG10NzYyMSIsIC5kYXRhID0gJm10NzUz
+eF90YWJsZVtJRF9NVDc2MjFdLCB9LA0KKwl7IC5jb21wYXRpYmxlID0gIm1lZGlhdGVrLG10NzUz
+MCIsIC5kYXRhID0gJm10NzUzeF90YWJsZVtJRF9NVDc1MzBdLCB9LA0KIAl7IC8qIHNlbnRpbmVs
+ICovIH0sDQogfTsNCiBNT0RVTEVfREVWSUNFX1RBQkxFKG9mLCBtdDc1MzBfb2ZfbWF0Y2gpOw0K
+QEAgLTE2MjcsOCArMTczOSwyMSBAQCBtdDc1MzBfcHJvYmUoc3RydWN0IG1kaW9fZGV2aWNlICpt
+ZGlvZGV2KQ0KIAkvKiBHZXQgdGhlIGhhcmR3YXJlIGlkZW50aWZpZXIgZnJvbSB0aGUgZGV2aWNl
+dHJlZSBub2RlLg0KIAkgKiBXZSB3aWxsIG5lZWQgaXQgZm9yIHNvbWUgb2YgdGhlIGNsb2NrIGFu
+ZCByZWd1bGF0b3Igc2V0dXAuDQogCSAqLw0KLQlwcml2LT5pZCA9ICh1bnNpZ25lZCBpbnQpKHVu
+c2lnbmVkIGxvbmcpDQotCQlvZl9kZXZpY2VfZ2V0X21hdGNoX2RhdGEoJm1kaW9kZXYtPmRldik7
+DQorCXByaXYtPmluZm8gPSBvZl9kZXZpY2VfZ2V0X21hdGNoX2RhdGEoJm1kaW9kZXYtPmRldik7
+DQorCWlmICghcHJpdi0+aW5mbykNCisJCXJldHVybiAtRUlOVkFMOw0KKw0KKwkvKiBTYW5pdHkg
+Y2hlY2sgaWYgdGhlc2UgcmVxdWlyZWQgZGV2aWNlIG9wZXJhdGlvbnMgYXJlIGZpbGxlZA0KKwkg
+KiBwcm9wZXJseS4NCisJICovDQorCWlmICghcHJpdi0+aW5mby0+c3dfc2V0dXAgfHwgIXByaXYt
+PmluZm8tPnBhZF9zZXR1cCB8fA0KKwkgICAgIXByaXYtPmluZm8tPnBoeV9yZWFkIHx8ICFwcml2
+LT5pbmZvLT5waHlfd3JpdGUgfHwNCisJICAgICFwcml2LT5pbmZvLT5waHlfbW9kZV9zdXBwb3J0
+ZWQgfHwNCisJICAgICFwcml2LT5pbmZvLT5tYWNfcG9ydF92YWxpZGF0ZSB8fA0KKwkgICAgIXBy
+aXYtPmluZm8tPm1hY19wb3J0X2dldF9zdGF0ZSB8fCAhcHJpdi0+aW5mby0+bWFjX3BvcnRfY29u
+ZmlnKQ0KKwkJcmV0dXJuIC1FSU5WQUw7DQorDQorCXByaXYtPmlkID0gcHJpdi0+aW5mby0+aWQ7
+DQogDQogCWlmIChwcml2LT5pZCA9PSBJRF9NVDc1MzApIHsNCiAJCXByaXYtPmNvcmVfcHdyID0g
+ZGV2bV9yZWd1bGF0b3JfZ2V0KCZtZGlvZGV2LT5kZXYsICJjb3JlIik7DQpkaWZmIC0tZ2l0IGEv
+ZHJpdmVycy9uZXQvZHNhL210NzUzMC5oIGIvZHJpdmVycy9uZXQvZHNhL210NzUzMC5oDQppbmRl
+eCAxNGRlNjBkMGI5Y2EuLjQ0YWM1NTQzMzA4OSAxMDA2NDQNCi0tLSBhL2RyaXZlcnMvbmV0L2Rz
+YS9tdDc1MzAuaA0KKysrIGIvZHJpdmVycy9uZXQvZHNhL210NzUzMC5oDQpAQCAtMTEsNyArMTEs
+NyBAQA0KICNkZWZpbmUgTVQ3NTMwX05VTV9GREJfUkVDT1JEUwkJMjA0OA0KICNkZWZpbmUgTVQ3
+NTMwX0FMTF9NRU1CRVJTCQkweGZmDQogDQotZW51bSB7DQorZW51bSBtdDc1M3hfaWQgew0KIAlJ
+RF9NVDc1MzAgPSAwLA0KIAlJRF9NVDc2MjEgPSAxLA0KIH07DQpAQCAtNDQzLDYgKzQ0Myw0MCBA
+QCBzdGF0aWMgY29uc3QgY2hhciAqcDVfaW50Zl9tb2Rlcyh1bnNpZ25lZCBpbnQgcDVfaW50ZXJm
+YWNlKQ0KIAl9DQogfQ0KIA0KKy8qIHN0cnVjdCBtdDc1M3hfaW5mbyAtCVRoaXMgaXMgdGhlIG1h
+aW4gZGF0YSBzdHJ1Y3R1cmUgZm9yIGhvbGRpbmcgdGhlIHNwZWNpZmljDQorICoJCQlwYXJ0IGZv
+ciBlYWNoIHN1cHBvcnRlZCBkZXZpY2UNCisgKiBAc3dfc2V0dXA6CQlIb2xkaW5nIHRoZSBoYW5k
+bGVyIHRvIGEgZGV2aWNlIGluaXRpYWxpemF0aW9uDQorICogQHBoeV9yZWFkOgkJSG9sZGluZyB0
+aGUgd2F5IHJlYWRpbmcgUEhZIHBvcnQNCisgKiBAcGh5X3dyaXRlOgkJSG9sZGluZyB0aGUgd2F5
+IHdyaXRpbmcgUEhZIHBvcnQNCisgKiBAcGFkX3NldHVwOgkJSG9sZGluZyB0aGUgd2F5IHNldHRp
+bmcgdXAgdGhlIGJ1cyBwYWQgZm9yIGEgY2VydGFpbg0KKyAqCQkJTUFDIHBvcnQNCisgKiBAcGh5
+X21vZGVfc3VwcG9ydGVkOglDaGVjayBpZiB0aGUgUEhZIHR5cGUgaXMgYmVpbmcgc3VwcG9ydGVk
+IG9uIGEgY2VydGFpbg0KKyAqCQkJcG9ydA0KKyAqIEBtYWNfcG9ydF92YWxpZGF0ZToJSG9sZGlu
+ZyB0aGUgd2F5IHRvIHNldCBhZGRpdGlvbiB2YWxpZGF0ZSB0eXBlIGZvciBhDQorICoJCQljZXJ0
+YW4gTUFDIHBvcnQNCisgKiBAbWFjX3BvcnRfZ2V0X3N0YXRlOiBIb2xkaW5nIHRoZSB3YXkgZ2V0
+dGluZyB0aGUgTUFDL1BDUyBzdGF0ZSBmb3IgYSBjZXJ0YWluDQorICoJCQlNQUMgcG9ydA0KKyAq
+IEBtYWNfcG9ydF9jb25maWc6CUhvbGRpbmcgdGhlIHdheSBzZXR0aW5nIHVwIHRoZSBQSFkgYXR0
+cmlidXRlIHRvIGENCisgKgkJCWNlcnRhaW4gTUFDIHBvcnQNCisgKi8NCitzdHJ1Y3QgbXQ3NTN4
+X2luZm8gew0KKwllbnVtIG10NzUzeF9pZCBpZDsNCisNCisJaW50ICgqc3dfc2V0dXApKHN0cnVj
+dCBkc2Ffc3dpdGNoICpkcyk7DQorCWludCAoKnBoeV9yZWFkKShzdHJ1Y3QgZHNhX3N3aXRjaCAq
+ZHMsIGludCBwb3J0LCBpbnQgcmVnbnVtKTsNCisJaW50ICgqcGh5X3dyaXRlKShzdHJ1Y3QgZHNh
+X3N3aXRjaCAqZHMsIGludCBwb3J0LCBpbnQgcmVnbnVtLCB1MTYgdmFsKTsNCisJaW50ICgqcGFk
+X3NldHVwKShzdHJ1Y3QgZHNhX3N3aXRjaCAqZHMsIHBoeV9pbnRlcmZhY2VfdCBpbnRlcmZhY2Up
+Ow0KKwlib29sICgqcGh5X21vZGVfc3VwcG9ydGVkKShzdHJ1Y3QgZHNhX3N3aXRjaCAqZHMsIGlu
+dCBwb3J0LA0KKwkJCQkgICBjb25zdCBzdHJ1Y3QgcGh5bGlua19saW5rX3N0YXRlICpzdGF0ZSk7
+DQorCXZvaWQgKCptYWNfcG9ydF92YWxpZGF0ZSkoc3RydWN0IGRzYV9zd2l0Y2ggKmRzLCBpbnQg
+cG9ydCwNCisJCQkJICB1bnNpZ25lZCBsb25nICpzdXBwb3J0ZWQpOw0KKwlpbnQgKCptYWNfcG9y
+dF9nZXRfc3RhdGUpKHN0cnVjdCBkc2Ffc3dpdGNoICpkcywgaW50IHBvcnQsDQorCQkJCSAgc3Ry
+dWN0IHBoeWxpbmtfbGlua19zdGF0ZSAqc3RhdGUpOw0KKwlpbnQgKCptYWNfcG9ydF9jb25maWcp
+KHN0cnVjdCBkc2Ffc3dpdGNoICpkcywgaW50IHBvcnQsDQorCQkJICAgICAgIHVuc2lnbmVkIGlu
+dCBtb2RlLA0KKwkJCSAgICAgICBwaHlfaW50ZXJmYWNlX3QgaW50ZXJmYWNlKTsNCit9Ow0KKw0K
+IC8qIHN0cnVjdCBtdDc1MzBfcHJpdiAtCVRoaXMgaXMgdGhlIG1haW4gZGF0YSBzdHJ1Y3R1cmUg
+Zm9yIGhvbGRpbmcgdGhlIHN0YXRlDQogICoJCQlvZiB0aGUgZHJpdmVyDQogICogQGRldjoJCVRo
+ZSBkZXZpY2UgcG9pbnRlcg0KQEAgLTQ2OCw2ICs1MDIsNyBAQCBzdHJ1Y3QgbXQ3NTMwX3ByaXYg
+ew0KIAlzdHJ1Y3QgcmVndWxhdG9yCSpjb3JlX3B3cjsNCiAJc3RydWN0IHJlZ3VsYXRvcgkqaW9f
+cHdyOw0KIAlzdHJ1Y3QgZ3Bpb19kZXNjCSpyZXNldDsNCisJY29uc3Qgc3RydWN0IG10NzUzeF9p
+bmZvICppbmZvOw0KIAl1bnNpZ25lZCBpbnQJCWlkOw0KIAlib29sCQkJbWNtOw0KIAlwaHlfaW50
+ZXJmYWNlX3QJCXA2X2ludGVyZmFjZTsNCi0tIA0KMi4xNy4xDQo=
 
