@@ -2,361 +2,275 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from vger.kernel.org (vger.kernel.org [23.128.96.18])
-	by mail.lfdr.de (Postfix) with ESMTP id 9F4942664E9
-	for <lists+devicetree@lfdr.de>; Fri, 11 Sep 2020 18:48:15 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTP id C414C26654D
+	for <lists+devicetree@lfdr.de>; Fri, 11 Sep 2020 18:58:22 +0200 (CEST)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S1726118AbgIKQsE convert rfc822-to-8bit (ORCPT
-        <rfc822;lists+devicetree@lfdr.de>); Fri, 11 Sep 2020 12:48:04 -0400
-Received: from lindbergh.monkeyblade.net ([23.128.96.19]:58634 "EHLO
-        lindbergh.monkeyblade.net" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S1726373AbgIKPID (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Fri, 11 Sep 2020 11:08:03 -0400
-Received: from metis.ext.pengutronix.de (metis.ext.pengutronix.de [IPv6:2001:67c:670:201:290:27ff:fe1d:cc33])
-        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 52B51C06137D
-        for <devicetree@vger.kernel.org>; Fri, 11 Sep 2020 07:43:41 -0700 (PDT)
-Received: from lupine.hi.pengutronix.de ([2001:67c:670:100:3ad5:47ff:feaf:1a17] helo=lupine)
-        by metis.ext.pengutronix.de with esmtps (TLS1.3:ECDHE_RSA_AES_256_GCM_SHA384:256)
-        (Exim 4.92)
-        (envelope-from <p.zabel@pengutronix.de>)
-        id 1kGkGy-0005we-Oo; Fri, 11 Sep 2020 16:43:32 +0200
-Received: from pza by lupine with local (Exim 4.92)
-        (envelope-from <p.zabel@pengutronix.de>)
-        id 1kGkGw-0004SM-2N; Fri, 11 Sep 2020 16:43:30 +0200
-Message-ID: <c79f1f4b6cf2601f1ed526c1366bc0493ee4ba0b.camel@pengutronix.de>
-Subject: Re: [PATCH v12 2/2] Add PWM fan controller driver for LGM SoC
-From:   Philipp Zabel <p.zabel@pengutronix.de>
-To:     Rahul Tanwar <rahul.tanwar@linux.intel.com>,
-        u.kleine-koenig@pengutronix.de, linux-pwm@vger.kernel.org,
-        lee.jones@linaro.org
-Cc:     thierry.reding@gmail.com, robh+dt@kernel.org,
-        linux-kernel@vger.kernel.org, devicetree@vger.kernel.org,
-        andriy.shevchenko@intel.com, songjun.Wu@intel.com,
-        cheol.yong.kim@intel.com, qi-ming.wu@intel.com,
-        rahul.tanwar.linux@gmail.com, rtanwar@maxlinear.com
-Date:   Fri, 11 Sep 2020 16:43:30 +0200
-In-Reply-To: <300eddab8fef7bbac011638e54099a8c1fc8f62a.1599637734.git.rahul.tanwar@linux.intel.com>
-References: <cover.1599637734.git.rahul.tanwar@linux.intel.com>
-         <300eddab8fef7bbac011638e54099a8c1fc8f62a.1599637734.git.rahul.tanwar@linux.intel.com>
-Content-Type: text/plain; charset="UTF-8"
-Content-Transfer-Encoding: 8BIT
-User-Agent: Evolution 3.30.5-1.1 
+        id S1726330AbgIKQ6S (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Fri, 11 Sep 2020 12:58:18 -0400
+Received: from mail-eopbgr1400139.outbound.protection.outlook.com ([40.107.140.139]:22013
+        "EHLO JPN01-TY1-obe.outbound.protection.outlook.com"
+        rhost-flags-OK-OK-OK-FAIL) by vger.kernel.org with ESMTP
+        id S1726225AbgIKPE0 (ORCPT <rfc822;devicetree@vger.kernel.org>);
+        Fri, 11 Sep 2020 11:04:26 -0400
+ARC-Seal: i=1; a=rsa-sha256; s=arcselector9901; d=microsoft.com; cv=none;
+ b=k6Ky4S6NdQnqyo3Ysh5OFd7TtWn/TGVIu2+EmRWkmU8u2ihPjNh/bnB9Vw/Ki/oYINEEQhF1mDKO6zwVAkoyaBR6JZBkL2Eg/UhweyacByqiA9z/X0kjW5pnNgeCxsEHlpiXzgBQ4OBmQGnKUf1LEOi0TJ7XvQeiqWnuNtpM+CIzDQ/DPI1MxQy3AEgJtnsz1jmg8TM8h6qz/mzjvfesKdidGX7+E02olAKghoaffV7Koo7/vfPssev7Fng9veryb7aQyT70euq/BSRS25Cyp0Zc2wu24MqMxwhJE1l+MuCtBP+e6bFj7/4HLl7SoGtAvvDBBHM8fpJ2Veh2Ek/x6A==
+ARC-Message-Signature: i=1; a=rsa-sha256; c=relaxed/relaxed; d=microsoft.com;
+ s=arcselector9901;
+ h=From:Date:Subject:Message-ID:Content-Type:MIME-Version:X-MS-Exchange-SenderADCheck;
+ bh=9vjYy6MN5naoBRUiGu7aZJUlR5R9Tj2eO/7Wc9Qcd6s=;
+ b=lUhgRJJeoDow9htDq6U0cVRs6v9dzFOxWVmstd51Lf/D3BrU1ZdCbtVCDzCAAKvPv5WDsw6HmA0Pieb89kIF1VMgAswQptvw9Bbx+e5SwGOr2HoMWLqPUz3iUImKFRxTaSKUShWnXc+In7aS9TSE8bFwYEXPj1axzN7bJYHk99zNDy8ya0PBdOzoa4EySwmHcSx6CJVCsn4a1E/MjIWOPEwLw5IkWbM1myaneXy2+vtwAk1/FNBT8Mg6EiJ0ETaP/Zt0wMcf4LOfHpIHED+eM9dp+IfqxKbK4nzP2DbQ9j0je7fqLRn+xaqt7cjvF9jg4JbmW/S7YcdkE5MQelYt/g==
+ARC-Authentication-Results: i=1; mx.microsoft.com 1; spf=pass
+ smtp.mailfrom=renesas.com; dmarc=pass action=none header.from=renesas.com;
+ dkim=pass header.d=renesas.com; arc=none
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+ d=renesasgroup.onmicrosoft.com; s=selector2-renesasgroup-onmicrosoft-com;
+ h=From:Date:Subject:Message-ID:Content-Type:MIME-Version:X-MS-Exchange-SenderADCheck;
+ bh=9vjYy6MN5naoBRUiGu7aZJUlR5R9Tj2eO/7Wc9Qcd6s=;
+ b=eLRMoyPVvnVtIgOBbBwNc8izHRbVk2qXuomUp7VVZdby3iROnkaCNXnyq5KkfevhZKqD9S7xjhYMVRSJLaoyRSJg/4OVM4RXZp+CWjgQm32vYlt1zFbJDG19h91G1QCOtey8k9EGe1Qr6CfGrLmTyyp/MDlO7v14TLBolVUhPhw=
+Received: from OSAPR01MB2385.jpnprd01.prod.outlook.com (2603:1096:603:37::20)
+ by OSBPR01MB1735.jpnprd01.prod.outlook.com (2603:1096:603:2::15) with
+ Microsoft SMTP Server (version=TLS1_2,
+ cipher=TLS_ECDHE_RSA_WITH_AES_256_GCM_SHA384) id 15.20.3370.17; Fri, 11 Sep
+ 2020 14:44:13 +0000
+Received: from OSAPR01MB2385.jpnprd01.prod.outlook.com
+ ([fe80::75bc:81cc:bb5:7d50]) by OSAPR01MB2385.jpnprd01.prod.outlook.com
+ ([fe80::75bc:81cc:bb5:7d50%6]) with mapi id 15.20.3370.017; Fri, 11 Sep 2020
+ 14:44:13 +0000
+From:   Chris Paterson <Chris.Paterson2@renesas.com>
+To:     Fabrizio Castro <fabrizio.castro.jz@renesas.com>,
+        Rob Herring <robh+dt@kernel.org>,
+        Geert Uytterhoeven <geert+renesas@glider.be>
+CC:     Fabrizio Castro <fabrizio.castro.jz@renesas.com>,
+        Magnus Damm <magnus.damm@gmail.com>,
+        "linux-renesas-soc@vger.kernel.org" 
+        <linux-renesas-soc@vger.kernel.org>,
+        "devicetree@vger.kernel.org" <devicetree@vger.kernel.org>,
+        Biju Das <biju.das.jz@bp.renesas.com>,
+        Prabhakar Mahadev Lad <prabhakar.mahadev-lad.rj@bp.renesas.com>,
+        Laurent Pinchart <laurent.pinchart@ideasonboard.com>
+Subject: RE: [PATCH] arm64: dts: renesas: r8a77990: Add DRIF support
+Thread-Topic: [PATCH] arm64: dts: renesas: r8a77990: Add DRIF support
+Thread-Index: AQHWiDTuz7MJCTxWkE21FuJi1e1lZaljfMoggAAGI3A=
+Date:   Fri, 11 Sep 2020 14:44:13 +0000
+Message-ID: <OSAPR01MB2385C1419FD37C52D81E5687B7240@OSAPR01MB2385.jpnprd01.prod.outlook.com>
+References: <20200911121259.5669-1-fabrizio.castro.jz@renesas.com>
+ <OSAPR01MB238592CAC340A0BD147847ABB7240@OSAPR01MB2385.jpnprd01.prod.outlook.com>
+In-Reply-To: <OSAPR01MB238592CAC340A0BD147847ABB7240@OSAPR01MB2385.jpnprd01.prod.outlook.com>
+Accept-Language: en-GB, en-US
+Content-Language: en-US
+X-MS-Has-Attach: 
+X-MS-TNEF-Correlator: 
+authentication-results: renesas.com; dkim=none (message not signed)
+ header.d=none;renesas.com; dmarc=none action=none header.from=renesas.com;
+x-originating-ip: [31.54.191.121]
+x-ms-publictraffictype: Email
+x-ms-office365-filtering-ht: Tenant
+x-ms-office365-filtering-correlation-id: 936eed0f-9b43-4cb2-301e-08d856612706
+x-ms-traffictypediagnostic: OSBPR01MB1735:
+x-ms-exchange-transport-forked: True
+x-microsoft-antispam-prvs: <OSBPR01MB17353B80C8D5A16623D03432B7240@OSBPR01MB1735.jpnprd01.prod.outlook.com>
+x-ms-oob-tlc-oobclassifiers: OLM:9508;
+x-ms-exchange-senderadcheck: 1
+x-microsoft-antispam: BCL:0;
+x-microsoft-antispam-message-info: 1jUc3pIQRAJr/ooyqGAdmY5nTE0ezwDv2LpMku7x0OhF8yhC3Lcc+wfj5b5K1i1aGHsnzLcl3CsRcqteMoskbm3wcW/aTrNfQEON6ev7sGqakYAA/55zV/Hyt+gJeSeU6aMwaJTCvX+X9qtFBN+B8aBZW3lFm+4tM+3jm3IT9gBbxap9EpVwD4w6WwsHsAm5Q6METyOhExQYpp90tltqt0tzVcnghyYEE1yp62wrYTB4omw+aaUKqLKr8AxNoaIrHKTMErudTnF82Bje1LRfEHXMw2Rt14UoBpkzbjYr0E+L8C21TNcNN8LSqk7jmusldWrbal9u16eiqBL76eDkXw==
+x-forefront-antispam-report: CIP:255.255.255.255;CTRY:;LANG:en;SCL:1;SRV:;IPV:NLI;SFV:NSPM;H:OSAPR01MB2385.jpnprd01.prod.outlook.com;PTR:;CAT:NONE;SFS:(4636009)(376002)(346002)(366004)(39860400002)(136003)(396003)(7696005)(86362001)(66946007)(2906002)(6506007)(64756008)(66556008)(66476007)(54906003)(66446008)(4326008)(8676002)(9686003)(110136005)(76116006)(5660300002)(2940100002)(55016002)(478600001)(52536014)(8936002)(316002)(83380400001)(186003)(33656002)(26005)(71200400001);DIR:OUT;SFP:1102;
+x-ms-exchange-antispam-messagedata: M76l0MUfZ+/p/o5o0fHCtRG69pWf5psKwi8wVY1Uu2G08ahbADHDZqxMMoloPZHKW3r2o7u8fq07hQBlsC51G4t8+nMM2uhfLsM8+2w4uuZKuJBS2TIu1CRRHfgKcZ8pIs6dudmGuDnb6D6UrIawhHAD35IPi4hubueClB5TGOADB4vGn+zHRV8rgXtb5+3OFILobo2VqHuB2gvna6JjIpH3bsxbMehdyvjUTdS94tTJy9J34LayDcodyFPpiV4ogtYz98xpelLq1OWbk970YrTVYnfo5XE0JLFOIebf3sLhjm1B+Qih9vAAxx8NXcv8TA9Q1VHUJdCHOoPADja3eDcdlsnC3TG14MoP76/m3t1gW9jUIU8a259SbUU2YwUGMlJB87VpoRSgwB91V725stZR3WNi+++EKq5dQH5K1k2PBolLjGxWKcYuWjiq+bDHn84WWA8L9OpKAkObGy/CWl3gvLezKnZ32s6NQ5SxfMmR/Nc0b7IzkZ7WTC0YHuupwByu6qMGoXZSo7p3qMMDqkAnRslfNcuR2icKVH4olzS5N2sN80qgPzO0WgohOgZB9wvVoCisLct0Z7fZGQRzBUzVyfXfl3FFBz+8drxebJLLs2sdE8T5odmQO2sfkF4nEGjImR0cF1y2RdxunQ2BGg==
+Content-Type: text/plain; charset="Windows-1252"
+Content-Transfer-Encoding: quoted-printable
 MIME-Version: 1.0
-X-SA-Exim-Connect-IP: 2001:67c:670:100:3ad5:47ff:feaf:1a17
-X-SA-Exim-Mail-From: p.zabel@pengutronix.de
-X-SA-Exim-Scanned: No (on metis.ext.pengutronix.de); SAEximRunCond expanded to false
-X-PTX-Original-Recipient: devicetree@vger.kernel.org
+X-OriginatorOrg: renesas.com
+X-MS-Exchange-CrossTenant-AuthAs: Internal
+X-MS-Exchange-CrossTenant-AuthSource: OSAPR01MB2385.jpnprd01.prod.outlook.com
+X-MS-Exchange-CrossTenant-Network-Message-Id: 936eed0f-9b43-4cb2-301e-08d856612706
+X-MS-Exchange-CrossTenant-originalarrivaltime: 11 Sep 2020 14:44:13.7739
+ (UTC)
+X-MS-Exchange-CrossTenant-fromentityheader: Hosted
+X-MS-Exchange-CrossTenant-id: 53d82571-da19-47e4-9cb4-625a166a4a2a
+X-MS-Exchange-CrossTenant-mailboxtype: HOSTED
+X-MS-Exchange-CrossTenant-userprincipalname: eOMrg3PSAQ0vRV5LkR4q2BiZ51VkjNeJIjqFvCzu4O81gsVi2/eJ37ZzbvJVnlSZGz7Mc6t1geZWlAx8NP9sl0oQXDjKczW7JuRq5SU9z3c=
+X-MS-Exchange-Transport-CrossTenantHeadersStamped: OSBPR01MB1735
 Sender: devicetree-owner@vger.kernel.org
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-Hi Rahul,
+> From: Chris Paterson
+> Sent: 11 September 2020 15:25
+>=20
+> Hi Fab,
+>=20
+> > From: Fabrizio Castro <fabrizio.castro.jz@renesas.com>
+> > Sent: 11 September 2020 13:13
+> >
+> > Add the DRIF controller nodes for the r8a77990 (a.k.a. R-Car E3).
+> >
+> > Please note that R-Car E3 has register BITCTR located at offset
+> > 0x80 (this register is not available on the r8a77960 and r8a77951,
+> > whose support has already been upstreamed), and even though it is
+> > not dealt with just yet within the driver, we have to keep that
+> > into account with our device tree nodes.
+> >
+> > Also, please note that while testing it has emerged that the
+> > HW User Manual has the wrong DMA details for DRIF2 and DRIF3
+> > on E3, as they are only allowed SYS-DMAC0 rather than SYS-DMAC1
+> > and SYS-DMAC2. An errata addressing this issue will be available
+> > soon.
+> >
+> > Signed-off-by: Fabrizio Castro <fabrizio.castro.jz@renesas.com>
+>=20
+> Looks okay to me. Thanks for the patch.
 
-I just have some small nitpicks, see below:
+Assuming you're going to update the bindings...
+=20
+> Reviewed-by: Chris Paterson <chris.paterson2@renesas.com>
+>=20
+> Kind regards, Chris
+>=20
+> > ---
+> >  arch/arm64/boot/dts/renesas/r8a77990.dtsi | 120
+> > ++++++++++++++++++++++
+> >  1 file changed, 120 insertions(+)
+> >
+> > diff --git a/arch/arm64/boot/dts/renesas/r8a77990.dtsi
+> > b/arch/arm64/boot/dts/renesas/r8a77990.dtsi
+> > index 1991bdc36792..caeddc2c1a70 100644
+> > --- a/arch/arm64/boot/dts/renesas/r8a77990.dtsi
+> > +++ b/arch/arm64/boot/dts/renesas/r8a77990.dtsi
+> > @@ -1288,6 +1288,126 @@ vin5csi40: endpoint@2 {
+> >  			};
+> >  		};
+> >
+> > +		drif00: rif@e6f40000 {
+> > +			compatible =3D "renesas,r8a77990-drif",
+> > +				     "renesas,rcar-gen3-drif";
+> > +			reg =3D <0 0xe6f40000 0 0x84>;
+> > +			interrupts =3D <GIC_SPI 12 IRQ_TYPE_LEVEL_HIGH>;
+> > +			clocks =3D <&cpg CPG_MOD 515>;
+> > +			clock-names =3D "fck";
+> > +			dmas =3D <&dmac1 0x20>, <&dmac2 0x20>;
+> > +			dma-names =3D "rx", "rx";
+> > +			power-domains =3D <&sysc
+> > R8A77990_PD_ALWAYS_ON>;
+> > +			resets =3D <&cpg 515>;
+> > +			renesas,bonding =3D <&drif01>;
+> > +			status =3D "disabled";
+> > +		};
+> > +
+> > +		drif01: rif@e6f50000 {
+> > +			compatible =3D "renesas,r8a77990-drif",
+> > +				     "renesas,rcar-gen3-drif";
+> > +			reg =3D <0 0xe6f50000 0 0x84>;
+> > +			interrupts =3D <GIC_SPI 13 IRQ_TYPE_LEVEL_HIGH>;
+> > +			clocks =3D <&cpg CPG_MOD 514>;
+> > +			clock-names =3D "fck";
+> > +			dmas =3D <&dmac1 0x22>, <&dmac2 0x22>;
+> > +			dma-names =3D "rx", "rx";
+> > +			power-domains =3D <&sysc
+> > R8A77990_PD_ALWAYS_ON>;
+> > +			resets =3D <&cpg 514>;
+> > +			renesas,bonding =3D <&drif00>;
+> > +			status =3D "disabled";
+> > +		};
+> > +
+> > +		drif10: rif@e6f60000 {
+> > +			compatible =3D "renesas,r8a77990-drif",
+> > +				     "renesas,rcar-gen3-drif";
+> > +			reg =3D <0 0xe6f60000 0 0x84>;
+> > +			interrupts =3D <GIC_SPI 14 IRQ_TYPE_LEVEL_HIGH>;
+> > +			clocks =3D <&cpg CPG_MOD 513>;
+> > +			clock-names =3D "fck";
+> > +			dmas =3D <&dmac1 0x24>, <&dmac2 0x24>;
+> > +			dma-names =3D "rx", "rx";
+> > +			power-domains =3D <&sysc
+> > R8A77990_PD_ALWAYS_ON>;
+> > +			resets =3D <&cpg 513>;
+> > +			renesas,bonding =3D <&drif11>;
+> > +			status =3D "disabled";
+> > +		};
+> > +
+> > +		drif11: rif@e6f70000 {
+> > +			compatible =3D "renesas,r8a77990-drif",
+> > +				     "renesas,rcar-gen3-drif";
+> > +			reg =3D <0 0xe6f70000 0 0x84>;
+> > +			interrupts =3D <GIC_SPI 15 IRQ_TYPE_LEVEL_HIGH>;
+> > +			clocks =3D <&cpg CPG_MOD 512>;
+> > +			clock-names =3D "fck";
+> > +			dmas =3D <&dmac1 0x26>, <&dmac2 0x26>;
+> > +			dma-names =3D "rx", "rx";
+> > +			power-domains =3D <&sysc
+> > R8A77990_PD_ALWAYS_ON>;
+> > +			resets =3D <&cpg 512>;
+> > +			renesas,bonding =3D <&drif10>;
+> > +			status =3D "disabled";
+> > +		};
+> > +
+> > +		drif20: rif@e6f80000 {
+> > +			compatible =3D "renesas,r8a77990-drif",
+> > +				     "renesas,rcar-gen3-drif";
+> > +			reg =3D <0 0xe6f80000 0 0x84>;
+> > +			interrupts =3D <GIC_SPI 24 IRQ_TYPE_LEVEL_HIGH>;
+> > +			clocks =3D <&cpg CPG_MOD 511>;
+> > +			clock-names =3D "fck";
+> > +			dmas =3D <&dmac0 0x28>;
+> > +			dma-names =3D "rx";
+> > +			power-domains =3D <&sysc
+> > R8A77990_PD_ALWAYS_ON>;
+> > +			resets =3D <&cpg 511>;
+> > +			renesas,bonding =3D <&drif21>;
+> > +			status =3D "disabled";
+> > +		};
+> > +
+> > +		drif21: rif@e6f90000 {
+> > +			compatible =3D "renesas,r8a77990-drif",
+> > +				     "renesas,rcar-gen3-drif";
+> > +			reg =3D <0 0xe6f90000 0 0x84>;
+> > +			interrupts =3D <GIC_SPI 25 IRQ_TYPE_LEVEL_HIGH>;
+> > +			clocks =3D <&cpg CPG_MOD 510>;
+> > +			clock-names =3D "fck";
+> > +			dmas =3D <&dmac0 0x2a>;
+> > +			dma-names =3D "rx";
+> > +			power-domains =3D <&sysc
+> > R8A77990_PD_ALWAYS_ON>;
+> > +			resets =3D <&cpg 510>;
+> > +			renesas,bonding =3D <&drif20>;
+> > +			status =3D "disabled";
+> > +		};
+> > +
+> > +		drif30: rif@e6fa0000 {
+> > +			compatible =3D "renesas,r8a77990-drif",
+> > +				     "renesas,rcar-gen3-drif";
+> > +			reg =3D <0 0xe6fa0000 0 0x84>;
+> > +			interrupts =3D <GIC_SPI 26 IRQ_TYPE_LEVEL_HIGH>;
+> > +			clocks =3D <&cpg CPG_MOD 509>;
+> > +			clock-names =3D "fck";
+> > +			dmas =3D <&dmac0 0x2c>;
+> > +			dma-names =3D "rx";
+> > +			power-domains =3D <&sysc
+> > R8A77990_PD_ALWAYS_ON>;
+> > +			resets =3D <&cpg 509>;
+> > +			renesas,bonding =3D <&drif31>;
+> > +			status =3D "disabled";
+> > +		};
+> > +
+> > +		drif31: rif@e6fb0000 {
+> > +			compatible =3D "renesas,r8a77990-drif",
+> > +				     "renesas,rcar-gen3-drif";
+> > +			reg =3D <0 0xe6fb0000 0 0x84>;
+> > +			interrupts =3D <GIC_SPI 27 IRQ_TYPE_LEVEL_HIGH>;
+> > +			clocks =3D <&cpg CPG_MOD 508>;
+> > +			clock-names =3D "fck";
+> > +			dmas =3D <&dmac0 0x2e>;
+> > +			dma-names =3D "rx";
+> > +			power-domains =3D <&sysc
+> > R8A77990_PD_ALWAYS_ON>;
+> > +			resets =3D <&cpg 508>;
+> > +			renesas,bonding =3D <&drif30>;
+> > +			status =3D "disabled";
+> > +		};
+> > +
+> >  		rcar_sound: sound@ec500000 {
+> >  			/*
+> >  			 * #sound-dai-cells is required
+> > --
+> > 2.25.1
 
-On Wed, 2020-09-09 at 15:51 +0800, Rahul Tanwar wrote:
-> Intel Lightning Mountain(LGM) SoC contains a PWM fan controller.
-> This PWM controller does not have any other consumer, it is a
-> dedicated PWM controller for fan attached to the system. Add
-> driver for this PWM fan controller.
-> 
-> Signed-off-by: Rahul Tanwar <rahul.tanwar@linux.intel.com>
-> Reviewed-by: Andy Shevchenko <andriy.shevchenko@intel.com>
-> ---
->  drivers/pwm/Kconfig         |  11 ++
->  drivers/pwm/Makefile        |   1 +
->  drivers/pwm/pwm-intel-lgm.c | 253 ++++++++++++++++++++++++++++++++++++++++++++
->  3 files changed, 265 insertions(+)
->  create mode 100644 drivers/pwm/pwm-intel-lgm.c
-> 
-> diff --git a/drivers/pwm/Kconfig b/drivers/pwm/Kconfig
-> index 7dbcf6973d33..4949c51fe90b 100644
-> --- a/drivers/pwm/Kconfig
-> +++ b/drivers/pwm/Kconfig
-> @@ -232,6 +232,17 @@ config PWM_IMX_TPM
->  	  To compile this driver as a module, choose M here: the module
->  	  will be called pwm-imx-tpm.
->  
-> +config PWM_INTEL_LGM
-> +	tristate "Intel LGM PWM support"
-> +	depends on HAS_IOMEM
-> +	depends on (OF && X86) || COMPILE_TEST
-> +	select REGMAP_MMIO
-> +	help
-> +	  Generic PWM fan controller driver for LGM SoC.
-> +
-> +	  To compile this driver as a module, choose M here: the module
-> +	  will be called pwm-intel-lgm.
-> +
->  config PWM_IQS620A
->  	tristate "Azoteq IQS620A PWM support"
->  	depends on MFD_IQS62X || COMPILE_TEST
-> diff --git a/drivers/pwm/Makefile b/drivers/pwm/Makefile
-> index 2c2ba0a03557..e9431b151694 100644
-> --- a/drivers/pwm/Makefile
-> +++ b/drivers/pwm/Makefile
-> @@ -20,6 +20,7 @@ obj-$(CONFIG_PWM_IMG)		+= pwm-img.o
->  obj-$(CONFIG_PWM_IMX1)		+= pwm-imx1.o
->  obj-$(CONFIG_PWM_IMX27)		+= pwm-imx27.o
->  obj-$(CONFIG_PWM_IMX_TPM)	+= pwm-imx-tpm.o
-> +obj-$(CONFIG_PWM_INTEL_LGM)	+= pwm-intel-lgm.o
->  obj-$(CONFIG_PWM_IQS620A)	+= pwm-iqs620a.o
->  obj-$(CONFIG_PWM_JZ4740)	+= pwm-jz4740.o
->  obj-$(CONFIG_PWM_LP3943)	+= pwm-lp3943.o
-> diff --git a/drivers/pwm/pwm-intel-lgm.c b/drivers/pwm/pwm-intel-lgm.c
-> new file mode 100644
-> index 000000000000..8e9f8cd3b7fb
-> --- /dev/null
-> +++ b/drivers/pwm/pwm-intel-lgm.c
-> @@ -0,0 +1,253 @@
-> +// SPDX-License-Identifier: GPL-2.0
-> +/*
-> + * Copyright (C) 2020 Intel Corporation.
-> + *
-> + * Limitations:
-> + * - The hardware supports fixed period which is dependent on 2/3 or 4
-> + *   wire fan mode.
-> + * - Supports normal polarity. Does not support changing polarity.
-> + * - When PWM is disabled, output of PWM will become 0(inactive). It doesn't
-> + *   keep track of running period.
-> + * - When duty cycle is changed, PWM output may be a mix of previous setting
-> + *   and new setting for the first period. From second period, the output is
-> + *   based on new setting.
-> + * - It is a dedicated PWM fan controller. There are no other consumers for
-> + *   this PWM controller.
-> + */
-> +#include <linux/bitfield.h>
-> +#include <linux/clk.h>
-> +#include <linux/module.h>
-> +#include <linux/platform_device.h>
-> +#include <linux/mod_devicetable.h>
-> +#include <linux/pwm.h>
-> +#include <linux/regmap.h>
-> +#include <linux/reset.h>
-> +
-> +#define LGM_PWM_FAN_CON0		0x0
-> +#define LGM_PWM_FAN_EN_EN		BIT(0)
-> +#define LGM_PWM_FAN_EN_DIS		0x0
-> +#define LGM_PWM_FAN_EN_MSK		BIT(0)
-> +#define LGM_PWM_FAN_MODE_2WIRE		0x0
-> +#define LGM_PWM_FAN_MODE_MSK		BIT(1)
-> +#define LGM_PWM_FAN_DC_MSK		GENMASK(23, 16)
-> +
-> +#define LGM_PWM_FAN_CON1		0x4
-> +#define LGM_PWM_FAN_MAX_RPM_MSK		GENMASK(15, 0)
-> +
-> +#define LGM_PWM_MAX_RPM			(BIT(16) - 1)
-> +#define LGM_PWM_DEFAULT_RPM		4000
-> +#define LGM_PWM_MAX_DUTY_CYCLE		(BIT(8) - 1)
-> +
-> +#define LGM_PWM_DC_BITS			8
-> +
-> +#define LGM_PWM_PERIOD_2WIRE_NS		(40 * NSEC_PER_MSEC)
-> +
-> +struct lgm_pwm_chip {
-> +	struct pwm_chip chip;
-> +	struct regmap *regmap;
-> +	struct clk *clk;
-> +	struct reset_control *rst;
-> +	u32 period;
-> +};
-> +
-> +static inline struct lgm_pwm_chip *to_lgm_pwm_chip(struct pwm_chip *chip)
-> +{
-> +	return container_of(chip, struct lgm_pwm_chip, chip);
-> +}
-> +
-> +static int lgm_pwm_enable(struct pwm_chip *chip, bool enable)
-> +{
-> +	struct lgm_pwm_chip *pc = to_lgm_pwm_chip(chip);
-> +	struct regmap *regmap = pc->regmap;
-> +
-> +	return regmap_update_bits(regmap, LGM_PWM_FAN_CON0, LGM_PWM_FAN_EN_MSK,
-> +				  enable ? LGM_PWM_FAN_EN_EN : LGM_PWM_FAN_EN_DIS);
-> +}
-> +
-> +static int lgm_pwm_apply(struct pwm_chip *chip, struct pwm_device *pwm,
-> +			 const struct pwm_state *state)
-> +{
-> +	struct lgm_pwm_chip *pc = to_lgm_pwm_chip(chip);
-> +	u32 duty_cycle, val;
-> +	int ret;
-> +
-> +	/*
-> +	 * The hardware only supports
-> +	 * normal polarity and fixed period.
-> +	 */
-
-That comment could be put on a single line.
-
-> +	if (state->polarity != PWM_POLARITY_NORMAL || state->period < pc->period)
-> +		return -EINVAL;
-> +
-> +	if (!state->enabled)
-> +		return lgm_pwm_enable(chip, 0);
-> +
-> +	duty_cycle = min_t(u64, state->duty_cycle, pc->period);
-> +	val = duty_cycle * LGM_PWM_MAX_DUTY_CYCLE / pc->period;
-> +
-> +	ret = regmap_update_bits(pc->regmap, LGM_PWM_FAN_CON0, LGM_PWM_FAN_DC_MSK,
-> +				 FIELD_PREP(LGM_PWM_FAN_DC_MSK, val));
-> +	if (ret)
-> +		return ret;
-> +
-> +	return lgm_pwm_enable(chip, 1);
-> +}
-> +
-> +static void lgm_pwm_get_state(struct pwm_chip *chip, struct pwm_device *pwm,
-> +			      struct pwm_state *state)
-> +{
-> +	struct lgm_pwm_chip *pc = to_lgm_pwm_chip(chip);
-> +	u32 duty, val;
-> +
-> +	state->enabled = regmap_test_bits(pc->regmap, LGM_PWM_FAN_CON0,
-> +					  LGM_PWM_FAN_EN_EN);
-> +	state->polarity = PWM_POLARITY_NORMAL;
-> +	state->period = pc->period; /* fixed period */
-> +
-> +	regmap_read(pc->regmap, LGM_PWM_FAN_CON0, &val);
-> +	duty = FIELD_GET(LGM_PWM_FAN_DC_MSK, val);
-> +	state->duty_cycle = DIV_ROUND_UP(duty * pc->period, LGM_PWM_MAX_DUTY_CYCLE);
-> +}
-> +
-> +static const struct pwm_ops lgm_pwm_ops = {
-> +	.get_state = lgm_pwm_get_state,
-> +	.apply = lgm_pwm_apply,
-> +	.owner = THIS_MODULE,
-> +};
-> +
-> +static void lgm_pwm_init(struct lgm_pwm_chip *pc)
-> +{
-> +	struct regmap *regmap = pc->regmap;
-> +	u32 con0_val;
-> +
-> +	con0_val = FIELD_PREP(LGM_PWM_FAN_MODE_MSK, LGM_PWM_FAN_MODE_2WIRE);
-> +	pc->period = LGM_PWM_PERIOD_2WIRE_NS;
-> +	regmap_update_bits(regmap, LGM_PWM_FAN_CON1, LGM_PWM_FAN_MAX_RPM_MSK,
-> +			   LGM_PWM_DEFAULT_RPM);
-> +	regmap_update_bits(regmap, LGM_PWM_FAN_CON0, LGM_PWM_FAN_MODE_MSK,
-> +			   con0_val);
-> +}
-> +
-> +static const struct regmap_config lgm_pwm_regmap_config = {
-> +	.reg_bits = 32,
-> +	.reg_stride = 4,
-> +	.val_bits = 32,
-> +};
-> +
-> +static void lgm_clk_disable(void *data)
-> +{
-> +	struct lgm_pwm_chip *pc = data;
-> +
-> +	clk_disable_unprepare(pc->clk);
-> +}
-> +
-> +static int lgm_clk_enable(struct device *dev, struct lgm_pwm_chip *pc)
-> +{
-> +	int ret;
-> +
-> +	ret = clk_prepare_enable(pc->clk);
-> +	if (ret)
-> +		return ret;
-> +
-> +	return devm_add_action_or_reset(dev, lgm_clk_disable, pc);
-> +}
-> +
-> +static void lgm_reset_control_assert(void *data)
-> +{
-> +	struct lgm_pwm_chip *pc = data;
-> +
-> +	reset_control_assert(pc->rst);
-> +}
-> +
-> +static int lgm_reset_control_deassert(struct device *dev, struct lgm_pwm_chip *pc)
-> +{
-> +	int ret;
-> +
-> +	ret = reset_control_deassert(pc->rst);
-> +	if (ret)
-> +		return ret;
-> +
-> +	return devm_add_action_or_reset(dev, lgm_reset_control_assert, pc);
-> +}
-> +
-> +static int lgm_pwm_probe(struct platform_device *pdev)
-> +{
-> +	struct device *dev = &pdev->dev;
-> +	struct lgm_pwm_chip *pc;
-> +	void __iomem *io_base;
-> +	int ret;
-> +
-> +	pc = devm_kzalloc(dev, sizeof(*pc), GFP_KERNEL);
-> +	if (!pc)
-> +		return -ENOMEM;
-> +
-> +	io_base = devm_platform_ioremap_resource(pdev, 0);
-> +	if (IS_ERR(io_base))
-> +		return PTR_ERR(io_base);
-> +
-> +	pc->regmap = devm_regmap_init_mmio(dev, io_base, &lgm_pwm_regmap_config);
-> +	if (IS_ERR(pc->regmap))
-> +		return dev_err_probe(dev, PTR_ERR(pc->regmap),
-> +				     "failed to init register map\n");
-> +
-> +	pc->rst = devm_reset_control_get_exclusive(dev, NULL);
-> +	if (IS_ERR(pc->rst))
-> +		return dev_err_probe(dev, PTR_ERR(pc->rst),
-> +				     "failed to get reset control\n");
-> +
-> +	ret = lgm_reset_control_deassert(dev, pc);
-> +	if (ret)
-> +		return dev_err_probe(dev, ret, "cannot deassert reset control\n");
-
-I would request all resources before deasserting the reset, that way
--EPROBE_DEFER due to missing clocks would keep the controller in reset.
-
-> +	pc->clk = devm_clk_get(dev, NULL);
-> +	if (IS_ERR(pc->clk))
-> +		return dev_err_probe(dev, PTR_ERR(pc->clk), "failed to get clock\n");
-> +
-> +	ret = lgm_clk_enable(dev, pc);
-> +	if (ret) {
-> +		dev_err(dev, "failed to enable clock\n");
-> +		return ret;
-> +	}
-> +
-> +	pc->chip.dev = dev;
-> +	pc->chip.ops = &lgm_pwm_ops;
-> +	pc->chip.npwm = 1;
-> +
-> +	lgm_pwm_init(pc);
-> +
-> +	ret = pwmchip_add(&pc->chip);
-> +	if (ret < 0) {
-> +		dev_err(dev, "failed to add PWM chip: %pe\n", ERR_PTR(ret));
-> +		return ret;
-> +	}
-> +
-> +	platform_set_drvdata(pdev, pc);
-> +	return 0;
-> +}
-> +
-> +static int lgm_pwm_remove(struct platform_device *pdev)
-> +{
-> +	struct lgm_pwm_chip *pc = platform_get_drvdata(pdev);
-> +	int ret;
-> +
-> +	ret = pwmchip_remove(&pc->chip);
-> +	if (ret < 0)
-> +		return ret;
-> +
-> +	return 0;
-
-You could just
-
-	return pwmchip_remove(&pc->chip);
-
-here.
-
-regards
-Philipp
