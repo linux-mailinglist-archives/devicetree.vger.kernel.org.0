@@ -2,160 +2,79 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from vger.kernel.org (vger.kernel.org [23.128.96.18])
-	by mail.lfdr.de (Postfix) with ESMTP id C46ED265716
-	for <lists+devicetree@lfdr.de>; Fri, 11 Sep 2020 04:47:38 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTP id 899F1265717
+	for <lists+devicetree@lfdr.de>; Fri, 11 Sep 2020 04:48:53 +0200 (CEST)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S1725798AbgIKCrh (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Thu, 10 Sep 2020 22:47:37 -0400
-Received: from fllv0016.ext.ti.com ([198.47.19.142]:52926 "EHLO
-        fllv0016.ext.ti.com" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S1725300AbgIKCrg (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Thu, 10 Sep 2020 22:47:36 -0400
-Received: from lelv0265.itg.ti.com ([10.180.67.224])
-        by fllv0016.ext.ti.com (8.15.2/8.15.2) with ESMTP id 08B2lT69001288;
-        Thu, 10 Sep 2020 21:47:29 -0500
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=ti.com;
-        s=ti-com-17Q1; t=1599792449;
-        bh=5C3n2ifpxrT79tXAyyVK3erCrf7btBkT3WK13Eaxp2s=;
-        h=Subject:To:CC:References:From:Date:In-Reply-To;
-        b=CDDzIjjMX+l0PbwvSzod1v7ljTHGoTvevREDyEYi0f1ai7HA+ezU29cQBGKdnXp2V
-         iutUlcgxpDF+yywaGtiYfvkYxkvNPP1OY6/h6LgfJrPy9l8hdBMvGjAAKgDXEUZAyZ
-         fmHl3du0yKgSdMr+gSyDZie75w4SlZ2tAk/xz+eo=
-Received: from DLEE106.ent.ti.com (dlee106.ent.ti.com [157.170.170.36])
-        by lelv0265.itg.ti.com (8.15.2/8.15.2) with ESMTPS id 08B2lT7F017863
-        (version=TLSv1.2 cipher=AES256-GCM-SHA384 bits=256 verify=FAIL);
-        Thu, 10 Sep 2020 21:47:29 -0500
-Received: from DLEE114.ent.ti.com (157.170.170.25) by DLEE106.ent.ti.com
- (157.170.170.36) with Microsoft SMTP Server (version=TLS1_2,
- cipher=TLS_ECDHE_RSA_WITH_AES_128_CBC_SHA256_P256) id 15.1.1979.3; Thu, 10
- Sep 2020 21:47:28 -0500
-Received: from fllv0039.itg.ti.com (10.64.41.19) by DLEE114.ent.ti.com
- (157.170.170.25) with Microsoft SMTP Server (version=TLS1_2,
- cipher=TLS_ECDHE_RSA_WITH_AES_128_CBC_SHA256_P256) id 15.1.1979.3 via
- Frontend Transport; Thu, 10 Sep 2020 21:47:29 -0500
-Received: from [10.250.66.47] (ileax41-snat.itg.ti.com [10.172.224.153])
-        by fllv0039.itg.ti.com (8.15.2/8.15.2) with ESMTP id 08B2lRXY049564;
-        Thu, 10 Sep 2020 21:47:27 -0500
-Subject: Re: [PATCH v3 4/5] arm64: dts: ti: Add support for J7200 SoC
-To:     Nishanth Menon <nm@ti.com>
-CC:     Lokesh Vutla <lokeshvutla@ti.com>, Tero Kristo <t-kristo@ti.com>,
-        Rob Herring <robh+dt@kernel.org>,
-        Linux ARM Mailing List <linux-arm-kernel@lists.infradead.org>,
-        Device Tree Mailing List <devicetree@vger.kernel.org>,
-        Sekhar Nori <nsekhar@ti.com>,
-        Grygorii Strashko <grygorii.strashko@ti.com>,
-        Kishon Vijay Abraham I <kishon@ti.com>
-References: <20200908162252.17672-1-lokeshvutla@ti.com>
- <20200908162252.17672-5-lokeshvutla@ti.com>
- <20200910171928.xzfwhix46lcsiup7@akan>
- <83122b2e-4dba-a2f9-b722-e510acfa9135@ti.com>
- <20200910182020.t4xkpgyzu5ryxkp5@akan>
-From:   Suman Anna <s-anna@ti.com>
-Message-ID: <2f06e21a-798d-cbe2-80cc-202a8069ce9f@ti.com>
-Date:   Thu, 10 Sep 2020 21:47:27 -0500
-User-Agent: Mozilla/5.0 (X11; Linux x86_64; rv:68.0) Gecko/20100101
- Thunderbird/68.10.0
-MIME-Version: 1.0
-In-Reply-To: <20200910182020.t4xkpgyzu5ryxkp5@akan>
-Content-Type: text/plain; charset="utf-8"
-Content-Language: en-US
-Content-Transfer-Encoding: 7bit
-X-EXCLAIMER-MD-CONFIG: e1e8a2fd-e40a-4ac6-ac9b-f7e9cc9ee180
+        id S1725800AbgIKCsw (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Thu, 10 Sep 2020 22:48:52 -0400
+Received: from lindbergh.monkeyblade.net ([23.128.96.19]:58130 "EHLO
+        lindbergh.monkeyblade.net" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
+        with ESMTP id S1725799AbgIKCst (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Thu, 10 Sep 2020 22:48:49 -0400
+Received: from mail-pj1-x104a.google.com (mail-pj1-x104a.google.com [IPv6:2607:f8b0:4864:20::104a])
+        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 36F09C061573
+        for <devicetree@vger.kernel.org>; Thu, 10 Sep 2020 19:48:49 -0700 (PDT)
+Received: by mail-pj1-x104a.google.com with SMTP id hr13so1200459pjb.3
+        for <devicetree@vger.kernel.org>; Thu, 10 Sep 2020 19:48:48 -0700 (PDT)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+        d=google.com; s=20161025;
+        h=sender:date:message-id:mime-version:subject:from:to:cc;
+        bh=bLNTRYbIes188tpc0mDmg8PeKqWkLkLsLS+cEmRfJ4Q=;
+        b=YCPcf4zW9n2xKiuS5+Sk6CHvfpFrQXUtAG/znA41cDBEii323Cv+ykNKyUkB3Q5pbd
+         vTxTyvi+ZeQTvz26dBGf43cou2OZ128LsjlxxL1DcuH/Echu1+uSnS3hk45Lg2aahSqM
+         mr0yVHhFOM6TWFkxi3QJI7EK/LuguF4NyPg6TKV5wt2gOfNRZKBnHeBymysJileSGytE
+         YGCIlyEHvzkc2ZsvBC84VwRA9U/HNNP9XBXIIUqwEA0ck/pg2hJLlhQ/5VPiLkMtvHN5
+         P/RAOiKrliU8Nxr1woz73U+1dNizWjUCpLgg+YUgJrZuLQKSFk5uZum+4wv5veQHFdM+
+         KB8w==
+X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+        d=1e100.net; s=20161025;
+        h=x-gm-message-state:sender:date:message-id:mime-version:subject:from
+         :to:cc;
+        bh=bLNTRYbIes188tpc0mDmg8PeKqWkLkLsLS+cEmRfJ4Q=;
+        b=rXb3cjFGTMI3e7g2Bl4akCHMpFZTl2H1vFFaUXdb6wHQNdccDUrTvU/q0C5ZB0sZ9p
+         21jouPVJ2MNsI19Kwuxoh7fUY97Bbu+qe59yz670b3xcxCQXIpamnyT2dd8TiooLWbPA
+         SJZCzipmAeXVrHJ6uLbASxomZvwNtiZ9xbiyJlOLJhDmZOxo/Y5oWYqmpXWtBLNFegRR
+         7zW4Y69mxp45AjLHuQkxb3gDdoh24aZsu9oP7AHu4rogDpeXNkYBrqmRynU9W78aquZ5
+         bIhm7kB9J0HNCZ+8KGtdw1kGHXfX62aBtf+Ptvfc+FcdIXmcrffxKqY/ZCtTCwug2XH0
+         rqEg==
+X-Gm-Message-State: AOAM5300ISumQ/2joCy9GkPDmffNQGuTwTxL58JOHPTLbgxD482k4fte
+        zQdcU3vc4PpTCb7NdLn1R3M1bPq2hGuI
+X-Google-Smtp-Source: ABdhPJyIfmz+RgSdsE9dxfSUuq4vYwku/EgyIMRrTQZW+Sp90HxOGM4j3hTDem3RAzXvTIqjnn63jWgqGf2s
+X-Received: from tzungbi-z840.tpe.corp.google.com ([2401:fa00:1:10:725a:fff:fe41:c6a5])
+ (user=tzungbi job=sendgmr) by 2002:a17:90b:941:: with SMTP id
+ dw1mr602456pjb.1.1599792528048; Thu, 10 Sep 2020 19:48:48 -0700 (PDT)
+Date:   Fri, 11 Sep 2020 10:48:31 +0800
+Message-Id: <20200911024833.1673961-1-tzungbi@google.com>
+Mime-Version: 1.0
+X-Mailer: git-send-email 2.28.0.526.ge36021eeef-goog
+Subject: [PATCH 0/2] ASoC: mediatek: mt8183-da7219: support machine driver for rt1015p
+From:   Tzung-Bi Shih <tzungbi@google.com>
+To:     broonie@kernel.org, robh+dt@kernel.org
+Cc:     alsa-devel@alsa-project.org, devicetree@vger.kernel.org,
+        tzungbi@google.com
+Content-Type: text/plain; charset="UTF-8"
 Sender: devicetree-owner@vger.kernel.org
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-On 9/10/20 1:20 PM, Nishanth Menon wrote:
-> On 12:54-20200910, Suman Anna wrote:
-> [...]
-> 
->>>> +		};
->>>
->>> I think we could introduce base infrastructure stuff like intr and
->>> inta nodes here? Also, the gpio_intr?
->>
->> FYI, they are currently being added in Patch 1 from Grygorii's "[v2,0/4] arm64:
->> dts: ti: k3-j7200: add dma and mcu cpsw" series,
->> https://patchwork.kernel.org/cover/11763711/
->>
->> The overall series seems to have some dependencies, so better to separate out
->> those nodes and include as an additional add-on patch to this series, atleast it
->> can unblock all others who use the TI-SCI Interrupt node.
->>
-> 
-> There is dependency on udma which in turn needs chipid stuff merged,
-> but I dont see anything preventing inta intr (which are infrastructure
-> components) from being merged in. It is not just udma driver that uses these
-> infrastructure.
+The series reuses mt8183-da7219-max98357.c for supporting machine
+driver with rt1015p speaker amplifier.
 
-Yep, I also meant the same.
+The 1st patch adds document for the new proposed compatible string.
 
-> 
-> [...]
->>>> +
->>>> +/ {
->>>> +	model = "Texas Instruments K3 J7200 SoC";
->>>> +	compatible = "ti,j7200";
->>>> +	interrupt-parent = <&gic500>;
->>>> +	#address-cells = <2>;
->>>> +	#size-cells = <2>;
->>>> +
->>>> +	aliases {
->>>> +		serial0 = &wkup_uart0;
->>>> +		serial1 = &mcu_uart0;
->>>> +		serial2 = &main_uart0;
->>>> +		serial3 = &main_uart1;
->>>> +		serial4 = &main_uart2;
->>>> +		serial5 = &main_uart3;
->>>> +		serial6 = &main_uart4;
->>>> +		serial7 = &main_uart5;
->>>> +		serial8 = &main_uart6;
->>>> +		serial9 = &main_uart7;
->>>> +		serial10 = &main_uart8;
->>>> +		serial11 = &main_uart9;
->>>> +	};
->>>> +
->>>
->>> might be nice to leave a chosen { }; here to indicate board
->>> files fill it up.. just to maintain consistency with rest of SoC dtsis?
->>
->> Doesn't serve any purpose IMO. I remember commenting about that blank node to
->> remove it during some earlier reviews.
-> 
-> I know. just consistency for board files to add things in -> you can
-> see similar usage else where as well. if we are going to drop it, we might
-> drop from am65 and j721e as well. for bootloaders that look for the node, it
-> tends to be consistently present OR not.. I'd rather they be consistently
-> be available than to deal with mix for downstream boards. No strong feelings
-> either way, but.. lets stay consistent throughout.
-> 
-> $ git grep 'chosen { };' arch/arm64/boot/dts/
-> arch/arm64/boot/dts/apm/apm-merlin.dts: chosen { };
-> arch/arm64/boot/dts/apm/apm-mustang.dts:        chosen { };
-> arch/arm64/boot/dts/arm/foundation-v8.dtsi:     chosen { };
-> arch/arm64/boot/dts/arm/fvp-base-revc.dts:      chosen { };
-> arch/arm64/boot/dts/arm/rtsm_ve-aemv8a.dts:     chosen { };
-> arch/arm64/boot/dts/hisilicon/hip06-d03.dts:    chosen { };
-> arch/arm64/boot/dts/mediatek/mt8173-evb.dts:    chosen { };
-> arch/arm64/boot/dts/qcom/msm8916.dtsi:  chosen { };
-> arch/arm64/boot/dts/qcom/msm8992.dtsi:  chosen { };
-> arch/arm64/boot/dts/qcom/msm8994.dtsi:  chosen { };
-> arch/arm64/boot/dts/qcom/msm8996.dtsi:  chosen { };
-> arch/arm64/boot/dts/qcom/msm8998.dtsi:  chosen { };
-> arch/arm64/boot/dts/qcom/qcs404.dtsi:   chosen { };
-> arch/arm64/boot/dts/qcom/sc7180.dtsi:   chosen { };
-> arch/arm64/boot/dts/qcom/sdm630.dtsi:   chosen { };
-> arch/arm64/boot/dts/qcom/sdm660.dtsi:   chosen { };
-> arch/arm64/boot/dts/qcom/sdm845.dtsi:   chosen { };
-> arch/arm64/boot/dts/qcom/sm8150.dtsi:   chosen { };
-> arch/arm64/boot/dts/qcom/sm8250.dtsi:   chosen { };
-> arch/arm64/boot/dts/ti/k3-am65.dtsi:    chosen { };
-> arch/arm64/boot/dts/ti/k3-j721e.dtsi:   chosen { };
-> 
+The 2nd patch changes the machine driver to support "RT1015P" codec.
 
-Yeah ok to add back then.
+Tzung-Bi Shih (2):
+  ASoC: dt-bindings: mt8183-da7219: add compatible string for using
+    rt1015p
+  ASoC: mediatek: mt8183-da7219: support machine driver with rt1015p
 
-regards
-Suman
+ .../bindings/sound/mt8183-da7219-max98357.txt |  1 +
+ sound/soc/mediatek/Kconfig                    |  1 +
+ .../mediatek/mt8183/mt8183-da7219-max98357.c  | 40 +++++++++++++++++++
+ 3 files changed, 42 insertions(+)
+
+-- 
+2.28.0.526.ge36021eeef-goog
 
