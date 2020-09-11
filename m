@@ -2,57 +2,34 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from vger.kernel.org (vger.kernel.org [23.128.96.18])
-	by mail.lfdr.de (Postfix) with ESMTP id 392642663D0
-	for <lists+devicetree@lfdr.de>; Fri, 11 Sep 2020 18:25:42 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTP id 6D02B26654E
+	for <lists+devicetree@lfdr.de>; Fri, 11 Sep 2020 18:58:23 +0200 (CEST)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S1726584AbgIKQZj (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Fri, 11 Sep 2020 12:25:39 -0400
-Received: from lindbergh.monkeyblade.net ([23.128.96.19]:42984 "EHLO
-        lindbergh.monkeyblade.net" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S1726260AbgIKQZf (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Fri, 11 Sep 2020 12:25:35 -0400
-Received: from mail-pj1-x1041.google.com (mail-pj1-x1041.google.com [IPv6:2607:f8b0:4864:20::1041])
-        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 934ABC061756;
-        Fri, 11 Sep 2020 09:25:35 -0700 (PDT)
-Received: by mail-pj1-x1041.google.com with SMTP id a9so1966957pjg.1;
-        Fri, 11 Sep 2020 09:25:35 -0700 (PDT)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=gmail.com; s=20161025;
-        h=subject:to:cc:references:from:message-id:date:user-agent
-         :mime-version:in-reply-to:content-language:content-transfer-encoding;
-        bh=EwU8Y8jyLbqhzR3bhbXCQ0ACvEAzu6m47XXNJBX9Eu0=;
-        b=SfUAQosCbK7F+CBl7zdFfyy7Qjkzlzjvypp3h40Ri2q0NEVl/DGWoYvfZdf7dNwYZ0
-         6B6xVOlk0gV3XYyrHba0XfY7kjOOkUoAEIMopB+FQn8ygUDiQoev3Y9k/nJXlDFz9QRj
-         uUimSWYErzEK5C2/KjfjzPBo8zduEKwxDoSiNOYOlpHE/+mCU+CLzFh365uJFlh35ygd
-         Gg9F1m55l8xUGHghbggvs/Ns7iKx0lvdHfcXz/3woZSlvyd+1/BxfLeMV29IeiKqCTFO
-         SQcfnjeIZhGJSIj/fK6dBl4QeB/0+pkf3cfF7kh0OxsfMn4g5FtTJJnrQWSAY1i64dtI
-         Wqag==
-X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=1e100.net; s=20161025;
-        h=x-gm-message-state:subject:to:cc:references:from:message-id:date
-         :user-agent:mime-version:in-reply-to:content-language
-         :content-transfer-encoding;
-        bh=EwU8Y8jyLbqhzR3bhbXCQ0ACvEAzu6m47XXNJBX9Eu0=;
-        b=VfYwvcig0S0ONJ4T1BtoxDYI7IzerqSR6FN/atugm7K0m8P9G6d6f9cB9a4H8aZWNi
-         tO2cDzlBh94QH+irwssvgrkYkDsAyV3GcGfjszYoZVuwv/HNV1pPGGsxYUs+Zy2FppFo
-         7jjrgsFVnX6kWOCom1/mjAssZ+An25FtDaoUxwXGKB2mRAgwuoD5mMViwAeZZPItZvNg
-         EDlYZriiHDP4DmX1gBrduT3PM8srwVy5YQm9Nuc3G3JMMQBUoy2WSfAXBqSZLiFMkw5R
-         l28RXsh+ANv/Qafr5fkPSfRB91LjOG+g0XKRsw0/a3tqZImYXLpdF5xIjTpH6SQQCdhR
-         EvCw==
-X-Gm-Message-State: AOAM533fs+4jdhXB/Sv7cUuhD60k2JulM4Tjnstb5l+aJwd36xhPe2Pf
-        v/ENtwEADiiBC3j8jRugdqGepeWAtoY=
-X-Google-Smtp-Source: ABdhPJwu1Tz3IzRQa+geTq4CMgMqps0FWRGe/wBTmbiN0XYcI0riziAr3xJ7SwNNK4/ShfIMqy2F1w==
-X-Received: by 2002:a17:90b:1642:: with SMTP id il2mr2828500pjb.93.1599841534976;
-        Fri, 11 Sep 2020 09:25:34 -0700 (PDT)
-Received: from [10.230.30.107] ([192.19.223.252])
-        by smtp.gmail.com with ESMTPSA id c4sm645829pjq.7.2020.09.11.09.25.32
-        (version=TLS1_3 cipher=TLS_AES_128_GCM_SHA256 bits=128/128);
-        Fri, 11 Sep 2020 09:25:34 -0700 (PDT)
-Subject: Re: [PATCH net-next v5 3/6] dt-bindings: net: dsa: add new MT7531
- binding to support MT7531
-To:     Landen Chao <landen.chao@mediatek.com>,
-        Andrew Lunn <andrew@lunn.ch>,
+        id S1726351AbgIKQ6U (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Fri, 11 Sep 2020 12:58:20 -0400
+Received: from mailgw02.mediatek.com ([210.61.82.184]:13306 "EHLO
+        mailgw02.mediatek.com" rhost-flags-OK-FAIL-OK-FAIL) by vger.kernel.org
+        with ESMTP id S1725958AbgIKPE1 (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Fri, 11 Sep 2020 11:04:27 -0400
+X-UUID: 04c1a75677cf4a0e8219b9ee8284231b-20200911
+DKIM-Signature: v=1; a=rsa-sha256; q=dns/txt; c=relaxed/relaxed; d=mediatek.com; s=dk;
+        h=Content-Transfer-Encoding:Content-Type:MIME-Version:References:In-Reply-To:Message-ID:Date:Subject:CC:To:From; bh=d6kOW52w5IkfV9rG1/hHcYEAa68TX5XY3lJUkDhh0sM=;
+        b=qwzKo3SXBVumEkmUu1FQ9o+vNIUwl4zBh8s8aQHYnU6DJSBBLoO1VECc4zoyA4Fd7ae+DMsM4osagu/Lwiwqt0hy6YrpoZ9TFppCsCqI18xndT7ZRQ0zqByn31TMsxNIB40TyiIGXRQDFVFCXWF1kL3TL9sMQtu2yOk1iOnroao=;
+X-UUID: 04c1a75677cf4a0e8219b9ee8284231b-20200911
+Received: from mtkcas07.mediatek.inc [(172.21.101.84)] by mailgw02.mediatek.com
+        (envelope-from <landen.chao@mediatek.com>)
+        (Cellopoint E-mail Firewall v4.1.14 Build 0819 with TLSv1.2 ECDHE-RSA-AES256-SHA384 256/256)
+        with ESMTP id 552007333; Fri, 11 Sep 2020 21:49:15 +0800
+Received: from MTKCAS06.mediatek.inc (172.21.101.30) by
+ mtkmbs07n2.mediatek.inc (172.21.101.141) with Microsoft SMTP Server (TLS) id
+ 15.0.1497.2; Fri, 11 Sep 2020 21:49:11 +0800
+Received: from mtksdccf07.mediatek.inc (172.21.84.99) by MTKCAS06.mediatek.inc
+ (172.21.101.73) with Microsoft SMTP Server id 15.0.1497.2 via Frontend
+ Transport; Fri, 11 Sep 2020 21:49:11 +0800
+From:   Landen Chao <landen.chao@mediatek.com>
+To:     Andrew Lunn <andrew@lunn.ch>,
         Vivien Didelot <vivien.didelot@gmail.com>,
+        Florian Fainelli <f.fainelli@gmail.com>,
         "David S . Miller" <davem@davemloft.net>,
         Jakub Kicinski <kuba@kernel.org>,
         Rob Herring <robh+dt@kernel.org>,
@@ -60,36 +37,44 @@ To:     Landen Chao <landen.chao@mediatek.com>,
         Sean Wang <sean.wang@mediatek.com>,
         Philipp Zabel <p.zabel@pengutronix.de>,
         Russell King <linux@armlinux.org.uk>
-Cc:     netdev@vger.kernel.org, devicetree@vger.kernel.org,
-        linux-arm-kernel@lists.infradead.org,
-        linux-mediatek@lists.infradead.org, linux-kernel@vger.kernel.org,
-        frank-w@public-files.de, opensource@vdorst.com, dqfext@gmail.com
+CC:     <netdev@vger.kernel.org>, <devicetree@vger.kernel.org>,
+        <linux-arm-kernel@lists.infradead.org>,
+        <linux-mediatek@lists.infradead.org>,
+        <linux-kernel@vger.kernel.org>, <frank-w@public-files.de>,
+        <opensource@vdorst.com>, <dqfext@gmail.com>,
+        Landen Chao <landen.chao@mediatek.com>
+Subject: [PATCH net-next v5 1/6] net: dsa: mt7530: Refine message in Kconfig
+Date:   Fri, 11 Sep 2020 21:48:51 +0800
+Message-ID: <58198dcca7138ee86aaead739cff979a946bf070.1599829696.git.landen.chao@mediatek.com>
+X-Mailer: git-send-email 2.18.0
+In-Reply-To: <cover.1599829696.git.landen.chao@mediatek.com>
 References: <cover.1599829696.git.landen.chao@mediatek.com>
- <b5d44dc310a45dc139639d968350f5888dc7e1ac.1599829696.git.landen.chao@mediatek.com>
-From:   Florian Fainelli <f.fainelli@gmail.com>
-Message-ID: <0b414c02-8860-cb0d-2131-de4e04cbf49c@gmail.com>
-Date:   Fri, 11 Sep 2020 09:25:31 -0700
-User-Agent: Mozilla/5.0 (Windows NT 10.0; Win64; x64; rv:78.0) Gecko/20100101
- Firefox/78.0 Thunderbird/78.2.2
 MIME-Version: 1.0
-In-Reply-To: <b5d44dc310a45dc139639d968350f5888dc7e1ac.1599829696.git.landen.chao@mediatek.com>
-Content-Type: text/plain; charset=utf-8; format=flowed
-Content-Language: en-US
-Content-Transfer-Encoding: 7bit
+Content-Type: text/plain
+X-MTK:  N
+Content-Transfer-Encoding: base64
 Sender: devicetree-owner@vger.kernel.org
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
+UmVmaW5lIG1lc3NhZ2UgaW4gS2NvbmZpZyB3aXRoIGZpeGluZyB0eXBvIGFuZCBhbiBleHBsaWNp
+dCBNVDc2MjEgc3VwcG9ydC4NCg0KU2lnbmVkLW9mZi1ieTogTGFuZGVuIENoYW8gPGxhbmRlbi5j
+aGFvQG1lZGlhdGVrLmNvbT4NClNpZ25lZC1vZmYtYnk6IFNlYW4gV2FuZyA8c2Vhbi53YW5nQG1l
+ZGlhdGVrLmNvbT4NClJldmlld2VkLWJ5OiBGbG9yaWFuIEZhaW5lbGxpIDxmLmZhaW5lbGxpQGdt
+YWlsLmNvbT4NCi0tLQ0KIGRyaXZlcnMvbmV0L2RzYS9LY29uZmlnIHwgNiArKystLS0NCiAxIGZp
+bGUgY2hhbmdlZCwgMyBpbnNlcnRpb25zKCspLCAzIGRlbGV0aW9ucygtKQ0KDQpkaWZmIC0tZ2l0
+IGEvZHJpdmVycy9uZXQvZHNhL0tjb25maWcgYi9kcml2ZXJzL25ldC9kc2EvS2NvbmZpZw0KaW5k
+ZXggNDY4YjNjNDI3M2M1Li4wNmQ2OGE4NDg3NzQgMTAwNjQ0DQotLS0gYS9kcml2ZXJzL25ldC9k
+c2EvS2NvbmZpZw0KKysrIGIvZHJpdmVycy9uZXQvZHNhL0tjb25maWcNCkBAIC0zMywxMiArMzMs
+MTIgQEAgY29uZmlnIE5FVF9EU0FfTEFOVElRX0dTV0lQDQogCSAgdGhlIHhyeDIwMCAvIFZSOSBT
+b0MuDQogDQogY29uZmlnIE5FVF9EU0FfTVQ3NTMwDQotCXRyaXN0YXRlICJNZWRpYXRlayBNVDc1
+MzAgRXRoZXJuZXQgc3dpdGNoIHN1cHBvcnQiDQorCXRyaXN0YXRlICJNZWRpYVRlayBNVDc1MzAg
+YW5kIE1UNzYyMSBFdGhlcm5ldCBzd2l0Y2ggc3VwcG9ydCINCiAJZGVwZW5kcyBvbiBORVRfRFNB
+DQogCXNlbGVjdCBORVRfRFNBX1RBR19NVEsNCiAJaGVscA0KLQkgIFRoaXMgZW5hYmxlcyBzdXBw
+b3J0IGZvciB0aGUgTWVkaWF0ZWsgTVQ3NTMwIEV0aGVybmV0IHN3aXRjaA0KLQkgIGNoaXAuDQor
+CSAgVGhpcyBlbmFibGVzIHN1cHBvcnQgZm9yIHRoZSBNZWRpYVRlayBNVDc1MzAgYW5kIE1UNzYy
+MSBFdGhlcm5ldA0KKwkgIHN3aXRjaCBjaGlwLg0KIA0KIGNvbmZpZyBORVRfRFNBX01WODhFNjA2
+MA0KIAl0cmlzdGF0ZSAiTWFydmVsbCA4OEU2MDYwIGV0aGVybmV0IHN3aXRjaCBjaGlwIHN1cHBv
+cnQiDQotLSANCjIuMTcuMQ0K
 
-
-On 9/11/2020 6:48 AM, Landen Chao wrote:
-> Add devicetree binding to support the compatible mt7531 switch as used
-> in the MediaTek MT7531 switch.
-> 
-> Signed-off-by: Sean Wang <sean.wang@mediatek.com>
-> Signed-off-by: Landen Chao <landen.chao@mediatek.com>
-
-Reviewed-by: Florian Fainelli <f.fainelli@gmail.com>
--- 
-Florian
