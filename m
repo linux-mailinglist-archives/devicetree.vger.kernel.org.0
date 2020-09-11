@@ -2,101 +2,106 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from vger.kernel.org (vger.kernel.org [23.128.96.18])
-	by mail.lfdr.de (Postfix) with ESMTP id BC53B26564A
-	for <lists+devicetree@lfdr.de>; Fri, 11 Sep 2020 03:00:39 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTP id BF900265682
+	for <lists+devicetree@lfdr.de>; Fri, 11 Sep 2020 03:17:56 +0200 (CEST)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S1725290AbgIKBAd (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Thu, 10 Sep 2020 21:00:33 -0400
-Received: from lindbergh.monkeyblade.net ([23.128.96.19]:41564 "EHLO
-        lindbergh.monkeyblade.net" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S1725280AbgIKBAc (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Thu, 10 Sep 2020 21:00:32 -0400
-Received: from mail-pg1-x542.google.com (mail-pg1-x542.google.com [IPv6:2607:f8b0:4864:20::542])
-        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 216CEC061573;
-        Thu, 10 Sep 2020 18:00:32 -0700 (PDT)
-Received: by mail-pg1-x542.google.com with SMTP id 7so5347250pgm.11;
-        Thu, 10 Sep 2020 18:00:32 -0700 (PDT)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=gmail.com; s=20161025;
-        h=date:from:to:cc:subject:message-id:references:mime-version
-         :content-disposition:in-reply-to;
-        bh=8vElMG7rEAelCeSO5KkK1BZJe+z+ZlZT2B98OvglQOo=;
-        b=IcBeXrVaP4EsP0HrA9+ROO7rhXmG78X1vXTViI+Rd2iyCwoUfEknPSHviTK3nXeIpJ
-         tGW2NWIUdZGWK0sbo4V9pJmOvczBrLnBQHLl1VTQnVaR1YTrAELgRHHARkMPl3evQThl
-         eqdOA/b4xiSgBG3clLDL7Mrqb/ng+ScC5dNLANNUoy6EJhNJWsmBqOwRWE2Iit4CFS3v
-         aUE6+Ib5pTl/bS62nsfuODN0833w1vBp8oA5sMavOdl+7RK6/3PtVhf38L/BzjzAoKie
-         uwy1e2Q+ZemJWoHNUf5nyzvKhTdd9jXp2k3+kjjpgGQHs7otGS/kACphdVqie+T+MO/1
-         JiWg==
-X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=1e100.net; s=20161025;
-        h=x-gm-message-state:date:from:to:cc:subject:message-id:references
-         :mime-version:content-disposition:in-reply-to;
-        bh=8vElMG7rEAelCeSO5KkK1BZJe+z+ZlZT2B98OvglQOo=;
-        b=tH5yOz7q1dvQQP0t/8Ez5dFHaRt481nzPsRZNbozqJFCgb6Lrf3SJhVqmmvySDvzTv
-         kW6EsqYdOJV5k+CwBVRwGPsMGxkqn+02JQ1FvIyY2xrGIWV+ZEfXWJo+0Di766INea2L
-         BHqFgmU3pVLsiyLLnnciTP6wSJdUjPU2Dl2xh/Rp81iFSTUp7udu0zC38Kh48aJzSXlT
-         2Ry5W5jZkfCuwYH3Heag3ub06V0Q15xMjtiStb0ImOZ0q9NqNLPascEMjB9bCWkjUJPK
-         uRCmtFhnXnA25MKzJMblMC/8XZYpQv65DkXwqvSVNlFZifiB7cPMZZkDaVxdLdp3yQDY
-         Oyaw==
-X-Gm-Message-State: AOAM531s55WQwdnjDnpXxJbqaC8GzTf0M6xk6nDANA4xXGXf3XSMA26/
-        8zHxUbFNSKvKDFf/6bdu8cZ6XzfyWDm3Zg==
-X-Google-Smtp-Source: ABdhPJzyykw0tjPQgOGTfsn47Q+1TsLlbukbor9bi3JAr18Rei2ufl+ITDUCMq4AAt6tRopL5i8H9Q==
-X-Received: by 2002:a17:902:7c03:b029:d0:cbe1:e71b with SMTP id x3-20020a1709027c03b02900d0cbe1e71bmr8244598pll.41.1599786031325;
-        Thu, 10 Sep 2020 18:00:31 -0700 (PDT)
-Received: from localhost (g168.115-65-169.ppp.wakwak.ne.jp. [115.65.169.168])
-        by smtp.gmail.com with ESMTPSA id a27sm292341pfk.52.2020.09.10.18.00.30
-        (version=TLS1_3 cipher=TLS_AES_256_GCM_SHA384 bits=256/256);
-        Thu, 10 Sep 2020 18:00:30 -0700 (PDT)
-Date:   Fri, 11 Sep 2020 10:00:28 +0900
-From:   Stafford Horne <shorne@gmail.com>
-To:     Mateusz Holenko <mholenko@antmicro.com>
-Cc:     Rob Herring <robh+dt@kernel.org>,
-        Mark Rutland <mark.rutland@arm.com>,
-        Greg Kroah-Hartman <gregkh@linuxfoundation.org>,
-        Jiri Slaby <jslaby@suse.com>, devicetree@vger.kernel.org,
-        linux-serial@vger.kernel.org, Karol Gugala <kgugala@antmicro.com>,
-        Mauro Carvalho Chehab <mchehab+samsung@kernel.org>,
-        "David S. Miller" <davem@davemloft.net>,
-        "Paul E. McKenney" <paulmck@linux.ibm.com>,
-        Filip Kokosinski <fkokosinski@antmicro.com>,
-        Pawel Czarnecki <pczarnecki@internships.antmicro.com>,
-        Joel Stanley <joel@jms.id.au>,
-        Jonathan Cameron <Jonathan.Cameron@huawei.com>,
-        Maxime Ripard <mripard@kernel.org>,
-        Shawn Guo <shawnguo@kernel.org>,
-        Heiko Stuebner <heiko@sntech.de>,
-        Sam Ravnborg <sam@ravnborg.org>,
-        Icenowy Zheng <icenowy@aosc.io>,
-        Laurent Pinchart <laurent.pinchart@ideasonboard.com>,
-        linux-kernel@vger.kernel.org, "Gabriel L. Somlo" <gsomlo@gmail.com>
-Subject: Re: [PATCH v10 0/5] LiteX SoC controller and LiteUART serial driver
-Message-ID: <20200911010028.GO3562056@lianli.shorne-pla.net>
-References: <20200812143324.2394375-0-mholenko@antmicro.com>
+        id S1725796AbgIKBRz (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Thu, 10 Sep 2020 21:17:55 -0400
+Received: from pi.codeconstruct.com.au ([103.231.89.101]:41894 "EHLO
+        codeconstruct.com.au" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
+        with ESMTP id S1725280AbgIKBRz (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Thu, 10 Sep 2020 21:17:55 -0400
+X-Greylist: delayed 438 seconds by postgrey-1.27 at vger.kernel.org; Thu, 10 Sep 2020 21:17:52 EDT
+Received: from pecola.lan (180-150-121-66.b49679.p1.nbn.aussiebb.net [180.150.121.66])
+        by mail.codeconstruct.com.au (Postfix) with ESMTPSA id AE2DB3FEA9;
+        Thu, 10 Sep 2020 21:10:30 -0400 (EDT)
+Message-ID: <788526c84deb4763d874be1748fcc5a583f8f79d.camel@codeconstruct.com.au>
+Subject: Re: [PATCH 1/2] gpio/aspeed-sgpio: enable access to all 80 input &
+ output sgpios
+From:   Jeremy Kerr <jk@codeconstruct.com.au>
+To:     Joel Stanley <joel@jms.id.au>
+Cc:     "open list:GPIO SUBSYSTEM" <linux-gpio@vger.kernel.org>,
+        linux-aspeed <linux-aspeed@lists.ozlabs.org>,
+        devicetree <devicetree@vger.kernel.org>,
+        Andrew Jeffery <andrew@aj.id.au>
+Date:   Fri, 11 Sep 2020 09:10:29 +0800
+In-Reply-To: <CACPK8XcT02qv+1H=DDv8BRAdUmrBoweZ+Qb3aG34bQ9-UC08Xg@mail.gmail.com>
+References: <20200715135418.3194860-1-jk@codeconstruct.com.au>
+         <CACPK8XcT02qv+1H=DDv8BRAdUmrBoweZ+Qb3aG34bQ9-UC08Xg@mail.gmail.com>
+Content-Type: text/plain; charset="UTF-8"
+User-Agent: Evolution 3.36.4-2 
 MIME-Version: 1.0
-Content-Type: text/plain; charset=us-ascii
-Content-Disposition: inline
-In-Reply-To: <20200812143324.2394375-0-mholenko@antmicro.com>
+Content-Transfer-Encoding: 7bit
 Sender: devicetree-owner@vger.kernel.org
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-On Wed, Aug 12, 2020 at 02:33:46PM +0200, Mateusz Holenko wrote:
-> This patchset introduces support for LiteX SoC Controller
-> and LiteUART - serial device from LiteX SoC builder
-> (https://github.com/enjoy-digital/litex).
+Hi Joel,
+
+Thanks for the review!
+
+> A Fixes: might be a good idea.
+
+OK, given this isn't strictly (just) a fix, should I split that out?
+
+> > -#define MAX_NR_SGPIO                   80
+> > +#define MAX_NR_HW_SGPIO                        80
+> > +#define SGPIO_OUTPUT_OFFSET            MAX_NR_HW_SGPIO
 > 
-> In the following patchset I will add
-> a new mor1kx-based (OpenRISC) platform that
-> uses this device.
+> A short comment explaining what's going on with these defines (as you
+> did in your commit message) will help future reviewers.
+
+Sounds good, I'll add one.
+
 > 
-> Later I plan to extend this platform by
-> adding support for more devices from LiteX suite.
+> > +static void aspeed_sgpio_irq_init_valid_mask(struct gpio_chip *gc,
+> > +               unsigned long *valid_mask, unsigned int ngpios)
+> > +{
+> > +       struct aspeed_sgpio *sgpio = gpiochip_get_data(gc);
+> > +       int n = sgpio->n_sgpio;
+> > +
+> > +       WARN_ON(ngpios < MAX_NR_HW_SGPIO * 2);
+> > +
+> > +       /* input GPIOs in the lower range */
+> > +       bitmap_set(valid_mask, 0, n);
+> > +       bitmap_clear(valid_mask, n, ngpios - n);
+> > +}
+> > +
+> > +static const bool aspeed_sgpio_is_input(unsigned int offset)
+> 
+> The 0day bot complained about the 'const' here.
 
-Hello, as discussed offline I am planning to merge these via the OpenRISC tree
-during 5.10.  If anyone has an issues let me know.
+ack, will remove.
 
-The patches all have their reviews and look fine to me other than a few nit's on
-the soc controller patch.
+> > +{
+> > +       return offset < SGPIO_OUTPUT_OFFSET;
+> > +}
+> >  static int aspeed_sgpio_dir_out(struct gpio_chip *gc, unsigned int offset, int val)
+> >  {
+> >         struct aspeed_sgpio *gpio = gpiochip_get_data(gc);
+> >         unsigned long flags;
+> > +       int rc;
+> > 
+> > -       spin_lock_irqsave(&gpio->lock, flags);
+> > -
+> > -       gpio->dir_in[GPIO_BANK(offset)] &= ~GPIO_BIT(offset);
+> > -       sgpio_set_value(gc, offset, val);
+> > +       /* No special action is required for setting the direction; we'll
+> > +        * error-out in sgpio_set_value if this isn't an output GPIO */
+> > 
+> > +       spin_lock_irqsave(&gpio->lock, flags);
+> > +       rc = sgpio_set_value(gc, offset, val);
+> >         spin_unlock_irqrestore(&gpio->lock, flags);
+> > 
+> >         return 0;
+> 
+> I think this should be 'return rc'
 
--Stafford
+Yup. I'll send a v2 with these changes.
+
+Cheers,
+
+
+Jeremy
+
