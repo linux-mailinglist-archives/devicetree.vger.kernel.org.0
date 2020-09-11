@@ -2,88 +2,94 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from vger.kernel.org (vger.kernel.org [23.128.96.18])
-	by mail.lfdr.de (Postfix) with ESMTP id C85F32663BB
-	for <lists+devicetree@lfdr.de>; Fri, 11 Sep 2020 18:23:33 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTP id 392642663D0
+	for <lists+devicetree@lfdr.de>; Fri, 11 Sep 2020 18:25:42 +0200 (CEST)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S1726587AbgIKQXT (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Fri, 11 Sep 2020 12:23:19 -0400
-Received: from mail.kernel.org ([198.145.29.99]:58552 "EHLO mail.kernel.org"
-        rhost-flags-OK-OK-OK-OK) by vger.kernel.org with ESMTP
-        id S1726658AbgIKQWo (ORCPT <rfc822;devicetree@vger.kernel.org>);
-        Fri, 11 Sep 2020 12:22:44 -0400
-Received: from disco-boy.misterjones.org (disco-boy.misterjones.org [51.254.78.96])
-        (using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
-        (No client certificate requested)
-        by mail.kernel.org (Postfix) with ESMTPSA id C600B208FE;
-        Fri, 11 Sep 2020 16:22:43 +0000 (UTC)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=kernel.org;
-        s=default; t=1599841363;
-        bh=9LYqaWU05I+yGzP75Vgbuy+m+69FJjcCY3s2HbbX2wU=;
-        h=Date:From:To:Cc:Subject:In-Reply-To:References:From;
-        b=B+v3SQiZwyy4UpWmJFD5mb8pxB/dxPQPVLoAKoMGP9bLTuvI0ZKQsNEEvOdCSPH2W
-         nblGV1FRmN5LkKMD1g7+RrDfHYBrZ8ZwR+ozYKUhY35e+Du4wuHAOsrm6nZqJUfUSn
-         A6b+SpbdYrPCxhfmRC2jU8e1187mdrD2LkFcpgT0=
-Received: from disco-boy.misterjones.org ([51.254.78.96] helo=www.loen.fr)
-        by disco-boy.misterjones.org with esmtpsa (TLS1.2:ECDHE_RSA_AES_128_GCM_SHA256:128)
-        (Exim 4.92)
-        (envelope-from <maz@kernel.org>)
-        id 1kGlov-00B2LT-SV; Fri, 11 Sep 2020 17:22:42 +0100
-MIME-Version: 1.0
-Content-Type: text/plain; charset=US-ASCII;
- format=flowed
-Content-Transfer-Encoding: 7bit
-Date:   Fri, 11 Sep 2020 17:22:41 +0100
-From:   Marc Zyngier <maz@kernel.org>
-To:     Cristian Ciocaltea <cristian.ciocaltea@gmail.com>
-Cc:     Rob Herring <robh+dt@kernel.org>,
-        Manivannan Sadhasivam <manivannan.sadhasivam@linaro.org>,
-        Thomas Gleixner <tglx@linutronix.de>,
-        Jason Cooper <jason@lakedaemon.net>,
-        =?UTF-8?Q?Andreas_F=C3=A4rber?= <afaerber@suse.de>,
-        parthiban@linumiz.com, Saravanan Sekar <sravanhome@gmail.com>,
-        linux-kernel@vger.kernel.org, devicetree@vger.kernel.org,
+        id S1726584AbgIKQZj (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Fri, 11 Sep 2020 12:25:39 -0400
+Received: from lindbergh.monkeyblade.net ([23.128.96.19]:42984 "EHLO
+        lindbergh.monkeyblade.net" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
+        with ESMTP id S1726260AbgIKQZf (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Fri, 11 Sep 2020 12:25:35 -0400
+Received: from mail-pj1-x1041.google.com (mail-pj1-x1041.google.com [IPv6:2607:f8b0:4864:20::1041])
+        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 934ABC061756;
+        Fri, 11 Sep 2020 09:25:35 -0700 (PDT)
+Received: by mail-pj1-x1041.google.com with SMTP id a9so1966957pjg.1;
+        Fri, 11 Sep 2020 09:25:35 -0700 (PDT)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+        d=gmail.com; s=20161025;
+        h=subject:to:cc:references:from:message-id:date:user-agent
+         :mime-version:in-reply-to:content-language:content-transfer-encoding;
+        bh=EwU8Y8jyLbqhzR3bhbXCQ0ACvEAzu6m47XXNJBX9Eu0=;
+        b=SfUAQosCbK7F+CBl7zdFfyy7Qjkzlzjvypp3h40Ri2q0NEVl/DGWoYvfZdf7dNwYZ0
+         6B6xVOlk0gV3XYyrHba0XfY7kjOOkUoAEIMopB+FQn8ygUDiQoev3Y9k/nJXlDFz9QRj
+         uUimSWYErzEK5C2/KjfjzPBo8zduEKwxDoSiNOYOlpHE/+mCU+CLzFh365uJFlh35ygd
+         Gg9F1m55l8xUGHghbggvs/Ns7iKx0lvdHfcXz/3woZSlvyd+1/BxfLeMV29IeiKqCTFO
+         SQcfnjeIZhGJSIj/fK6dBl4QeB/0+pkf3cfF7kh0OxsfMn4g5FtTJJnrQWSAY1i64dtI
+         Wqag==
+X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+        d=1e100.net; s=20161025;
+        h=x-gm-message-state:subject:to:cc:references:from:message-id:date
+         :user-agent:mime-version:in-reply-to:content-language
+         :content-transfer-encoding;
+        bh=EwU8Y8jyLbqhzR3bhbXCQ0ACvEAzu6m47XXNJBX9Eu0=;
+        b=VfYwvcig0S0ONJ4T1BtoxDYI7IzerqSR6FN/atugm7K0m8P9G6d6f9cB9a4H8aZWNi
+         tO2cDzlBh94QH+irwssvgrkYkDsAyV3GcGfjszYoZVuwv/HNV1pPGGsxYUs+Zy2FppFo
+         7jjrgsFVnX6kWOCom1/mjAssZ+An25FtDaoUxwXGKB2mRAgwuoD5mMViwAeZZPItZvNg
+         EDlYZriiHDP4DmX1gBrduT3PM8srwVy5YQm9Nuc3G3JMMQBUoy2WSfAXBqSZLiFMkw5R
+         l28RXsh+ANv/Qafr5fkPSfRB91LjOG+g0XKRsw0/a3tqZImYXLpdF5xIjTpH6SQQCdhR
+         EvCw==
+X-Gm-Message-State: AOAM533fs+4jdhXB/Sv7cUuhD60k2JulM4Tjnstb5l+aJwd36xhPe2Pf
+        v/ENtwEADiiBC3j8jRugdqGepeWAtoY=
+X-Google-Smtp-Source: ABdhPJwu1Tz3IzRQa+geTq4CMgMqps0FWRGe/wBTmbiN0XYcI0riziAr3xJ7SwNNK4/ShfIMqy2F1w==
+X-Received: by 2002:a17:90b:1642:: with SMTP id il2mr2828500pjb.93.1599841534976;
+        Fri, 11 Sep 2020 09:25:34 -0700 (PDT)
+Received: from [10.230.30.107] ([192.19.223.252])
+        by smtp.gmail.com with ESMTPSA id c4sm645829pjq.7.2020.09.11.09.25.32
+        (version=TLS1_3 cipher=TLS_AES_128_GCM_SHA256 bits=128/128);
+        Fri, 11 Sep 2020 09:25:34 -0700 (PDT)
+Subject: Re: [PATCH net-next v5 3/6] dt-bindings: net: dsa: add new MT7531
+ binding to support MT7531
+To:     Landen Chao <landen.chao@mediatek.com>,
+        Andrew Lunn <andrew@lunn.ch>,
+        Vivien Didelot <vivien.didelot@gmail.com>,
+        "David S . Miller" <davem@davemloft.net>,
+        Jakub Kicinski <kuba@kernel.org>,
+        Rob Herring <robh+dt@kernel.org>,
+        Matthias Brugger <matthias.bgg@gmail.com>,
+        Sean Wang <sean.wang@mediatek.com>,
+        Philipp Zabel <p.zabel@pengutronix.de>,
+        Russell King <linux@armlinux.org.uk>
+Cc:     netdev@vger.kernel.org, devicetree@vger.kernel.org,
         linux-arm-kernel@lists.infradead.org,
-        linux-actions@lists.infradead.org,
-        Parthiban Nallathambi <pn@denx.de>
-Subject: Re: [PATCH v6 2/3] irqchip: Add Actions Semi Owl SIRQ controller
-In-Reply-To: <1167b847f6fe1da3834aeaadf5710ddac54f06a0.1599552438.git.cristian.ciocaltea@gmail.com>
-References: <cover.1599552438.git.cristian.ciocaltea@gmail.com>
- <1167b847f6fe1da3834aeaadf5710ddac54f06a0.1599552438.git.cristian.ciocaltea@gmail.com>
-User-Agent: Roundcube Webmail/1.4.8
-Message-ID: <c5115d27739e1664f808ff5f1fc315e8@kernel.org>
-X-Sender: maz@kernel.org
-X-SA-Exim-Connect-IP: 51.254.78.96
-X-SA-Exim-Rcpt-To: cristian.ciocaltea@gmail.com, robh+dt@kernel.org, manivannan.sadhasivam@linaro.org, tglx@linutronix.de, jason@lakedaemon.net, afaerber@suse.de, parthiban@linumiz.com, sravanhome@gmail.com, linux-kernel@vger.kernel.org, devicetree@vger.kernel.org, linux-arm-kernel@lists.infradead.org, linux-actions@lists.infradead.org, pn@denx.de
-X-SA-Exim-Mail-From: maz@kernel.org
-X-SA-Exim-Scanned: No (on disco-boy.misterjones.org); SAEximRunCond expanded to false
+        linux-mediatek@lists.infradead.org, linux-kernel@vger.kernel.org,
+        frank-w@public-files.de, opensource@vdorst.com, dqfext@gmail.com
+References: <cover.1599829696.git.landen.chao@mediatek.com>
+ <b5d44dc310a45dc139639d968350f5888dc7e1ac.1599829696.git.landen.chao@mediatek.com>
+From:   Florian Fainelli <f.fainelli@gmail.com>
+Message-ID: <0b414c02-8860-cb0d-2131-de4e04cbf49c@gmail.com>
+Date:   Fri, 11 Sep 2020 09:25:31 -0700
+User-Agent: Mozilla/5.0 (Windows NT 10.0; Win64; x64; rv:78.0) Gecko/20100101
+ Firefox/78.0 Thunderbird/78.2.2
+MIME-Version: 1.0
+In-Reply-To: <b5d44dc310a45dc139639d968350f5888dc7e1ac.1599829696.git.landen.chao@mediatek.com>
+Content-Type: text/plain; charset=utf-8; format=flowed
+Content-Language: en-US
+Content-Transfer-Encoding: 7bit
 Sender: devicetree-owner@vger.kernel.org
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-On 2020-09-08 09:20, Cristian Ciocaltea wrote:
-> This interrupt controller is found in the Actions Semi Owl SoCs (S500,
-> S700 and S900) and provides support for handling up to 3 external
-> interrupt lines.
-> 
-> Each line can be independently configured as interrupt and triggers on
-> either of the edges or either of the levels. Additionally, each line
-> can also be masked individually.
-> 
-> The patch is based on the work started by Parthiban Nallathambi:
-> https://lore.kernel.org/lkml/20181126100356.2840578-1-pn@denx.de/
-> 
-> Signed-off-by: Parthiban Nallathambi <pn@denx.de>
-> Signed-off-by: Saravanan Sekar <sravanhome@gmail.com>
-> [cristi: optimized DT, various fixes/cleanups/improvements]
-> Signed-off-by: Cristian Ciocaltea <cristian.ciocaltea@gmail.com>
 
-Who is the author of these patches? If this is a co-development, please
-use the relevant tags. Otherwise, the author of the patch must come as
-the first SoB.
 
-The patch itself looks good.
+On 9/11/2020 6:48 AM, Landen Chao wrote:
+> Add devicetree binding to support the compatible mt7531 switch as used
+> in the MediaTek MT7531 switch.
+> 
+> Signed-off-by: Sean Wang <sean.wang@mediatek.com>
+> Signed-off-by: Landen Chao <landen.chao@mediatek.com>
 
-         M.
+Reviewed-by: Florian Fainelli <f.fainelli@gmail.com>
 -- 
-Jazz is not dead. It just smells funny...
+Florian
