@@ -2,198 +2,225 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from vger.kernel.org (vger.kernel.org [23.128.96.18])
-	by mail.lfdr.de (Postfix) with ESMTP id D9889265595
-	for <lists+devicetree@lfdr.de>; Fri, 11 Sep 2020 01:45:53 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTP id 45C3326560D
+	for <lists+devicetree@lfdr.de>; Fri, 11 Sep 2020 02:32:13 +0200 (CEST)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S1725294AbgIJXpw (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Thu, 10 Sep 2020 19:45:52 -0400
-Received: from lindbergh.monkeyblade.net ([23.128.96.19]:58298 "EHLO
-        lindbergh.monkeyblade.net" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S1725280AbgIJXps (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Thu, 10 Sep 2020 19:45:48 -0400
-Received: from mail-qv1-xf42.google.com (mail-qv1-xf42.google.com [IPv6:2607:f8b0:4864:20::f42])
-        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 19B4CC061756
-        for <devicetree@vger.kernel.org>; Thu, 10 Sep 2020 16:45:48 -0700 (PDT)
-Received: by mail-qv1-xf42.google.com with SMTP id cv8so4253030qvb.12
-        for <devicetree@vger.kernel.org>; Thu, 10 Sep 2020 16:45:47 -0700 (PDT)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=linaro.org; s=google;
-        h=date:from:to:cc:subject:message-id:references:mime-version
-         :content-disposition:in-reply-to;
-        bh=1cv5j35BABg4q2f4/PUHEsEap0GTGj1LrVIdAlf5e5I=;
-        b=qGkU2ngtRzd1MnDmFePrSWXuIuG33/CjbOW7gF6fH38AAZidSofTZ4SdeT0s5s4a/9
-         bX1NKKOffNfkiv9lf5K8aeMoAfFO+NmlQ1ZcLxSs/U2QLdmuAFauBA9AeGFzx8a+ABR0
-         Ze8wJG4i7ZztnJ53Zh2v2JxyEWHMAs1MVXfUzWspSNk0DdKyToJJMwtjPx92K5BJT02M
-         D3gFxhIfQiQO8spmv6UqzaqU3cdZBCENZERhgLFy3snm7Ik12B64AT+gCrEekGA6rXLe
-         jjAxLweP+D+wLZUJvLyiYhVpw2K10W0JHNjHuo2xPqdDOtbC8WLPCbeJ5ETd2C5mKwGB
-         ylnQ==
-X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=1e100.net; s=20161025;
-        h=x-gm-message-state:date:from:to:cc:subject:message-id:references
-         :mime-version:content-disposition:in-reply-to;
-        bh=1cv5j35BABg4q2f4/PUHEsEap0GTGj1LrVIdAlf5e5I=;
-        b=deoIEcu1OPXQdZriTOFkcDhz4P6806wH8A/m7DwgqUauL7ctpaot6GfdTW1exSeTZx
-         CyUBZpnMCuTXjkaPOHEeFGyrLOp3uUOmhrsw6LACSjvvnFg1H8iD/+WNkwxkoGMdWYqf
-         yAnvTJnMpOumfc92hXRzfhi9vQsGXAdG1QSOX3WWJtV1OooDYOPpg+mX5ERt5fWwgIHC
-         rmu2jQJQFksk6V1+/DdhbCmyk0I64OM8F+rreA97XSqkokLRUW6E1Uohw840eG3O2dM5
-         bqboCi6QzhN5QHa3xCBlXEB2S0aGb3s3ZBGz0CcdZSegQlId07z3pK4jEwcrLtRK8IJi
-         aNyg==
-X-Gm-Message-State: AOAM530C7EsUjEorbnZJTCguglWtCRAKtmOIcGwYEU5p3OQzH4puzk1C
-        A7v6NVCzN6TI2S/+7+u6Qi2SMw==
-X-Google-Smtp-Source: ABdhPJw8zaFnhCta+8BO94bH8EWlMXGJLBrw/PW+lcHMmANnFPR+jOwF9U7s/VpS5KmvZX1sAal6BA==
-X-Received: by 2002:ad4:56a6:: with SMTP id bd6mr11148014qvb.22.1599781546904;
-        Thu, 10 Sep 2020 16:45:46 -0700 (PDT)
-Received: from uller (ec2-34-197-84-77.compute-1.amazonaws.com. [34.197.84.77])
-        by smtp.gmail.com with ESMTPSA id g5sm332403qtx.43.2020.09.10.16.45.45
-        (version=TLS1_3 cipher=TLS_AES_256_GCM_SHA384 bits=256/256);
-        Thu, 10 Sep 2020 16:45:46 -0700 (PDT)
-Date:   Thu, 10 Sep 2020 23:45:44 +0000
-From:   Bjorn Andersson <bjorn.andersson@linaro.org>
-To:     satya priya <skakit@codeaurora.org>
-Cc:     Matthias Kaehlcke <mka@chromium.org>, gregkh@linuxfoundation.org,
-        Andy Gross <agross@kernel.org>,
-        Rob Herring <robh+dt@kernel.org>,
-        linux-arm-msm@vger.kernel.org, devicetree@vger.kernel.org,
-        linux-kernel@vger.kernel.org, akashast@codeaurora.org,
-        rojay@codeaurora.org, msavaliy@qti.qualcomm.com,
-        dianders@chromium.org
-Subject: Re: [PATCH V5 2/4] arm64: dts: qcom: sc7180: Add necessary pinctrl
- and interrupt config for BT UART
-Message-ID: <20200910234544.GC472@uller>
-References: <1599742438-16811-1-git-send-email-skakit@codeaurora.org>
- <1599742438-16811-3-git-send-email-skakit@codeaurora.org>
+        id S1725280AbgIKAcF (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Thu, 10 Sep 2020 20:32:05 -0400
+Received: from mail.kernel.org ([198.145.29.99]:35016 "EHLO mail.kernel.org"
+        rhost-flags-OK-OK-OK-OK) by vger.kernel.org with ESMTP
+        id S1725290AbgIKAcF (ORCPT <rfc822;devicetree@vger.kernel.org>);
+        Thu, 10 Sep 2020 20:32:05 -0400
+Received: from localhost (c-67-164-102-47.hsd1.ca.comcast.net [67.164.102.47])
+        (using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
+        (No client certificate requested)
+        by mail.kernel.org (Postfix) with ESMTPSA id B8D98208FE;
+        Fri, 11 Sep 2020 00:32:03 +0000 (UTC)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=kernel.org;
+        s=default; t=1599784324;
+        bh=UiJ+tjUwdN6I83bQ9lMpiASXNuSfegaRd4S0aUWadTU=;
+        h=Date:From:To:cc:Subject:In-Reply-To:References:From;
+        b=Eu+3wmxKLdizAwL0WtecMunAz7AMBTRx0ZYAsLft15R+arAc7TxeCxdThSIFanSM8
+         T2X8/ijD01PUwmgb9eyNyA9v0csJNtrEuFJBrat5ofOKaKNf61vRT+qD+mXQIKbfec
+         xVHBtdz4/AsKGZAkyBQeA00hNWXWVmE/dTqa11mA=
+Date:   Thu, 10 Sep 2020 17:32:02 -0700 (PDT)
+From:   Stefano Stabellini <sstabellini@kernel.org>
+X-X-Sender: sstabellini@sstabellini-ThinkPad-T480s
+To:     Ben Levinsky <ben.levinsky@xilinx.com>
+cc:     punit1.agrawal@toshiba.co.jp, stefanos@xilinx.com,
+        michals@xilinx.com, devicetree@vger.kernel.org,
+        emooring@xilinx.com, michael.auchter@ni.com,
+        mathieu.poirier@linaro.org, linux-remoteproc@vger.kernel.org,
+        linux-kernel@vger.kernel.org, jliang@xilinx.com,
+        robh+dt@kernel.org, Jason Wu <j.wu@xilinx.com>,
+        Michal Simek <michal.simek@xilinx.com>,
+        linux-arm-kernel@lists.infradead.org
+Subject: Re: [PATCH v13 4/5] dt-bindings: remoteproc: Add documentation for
+ ZynqMP R5 rproc bindings
+In-Reply-To: <20200904143209.31235-5-ben.levinsky@xilinx.com>
+Message-ID: <alpine.DEB.2.21.2009101725520.28991@sstabellini-ThinkPad-T480s>
+References: <20200904143209.31235-1-ben.levinsky@xilinx.com> <20200904143209.31235-5-ben.levinsky@xilinx.com>
+User-Agent: Alpine 2.21 (DEB 202 2017-01-01)
 MIME-Version: 1.0
-Content-Type: text/plain; charset=us-ascii
-Content-Disposition: inline
-In-Reply-To: <1599742438-16811-3-git-send-email-skakit@codeaurora.org>
+Content-Type: text/plain; charset=US-ASCII
 Sender: devicetree-owner@vger.kernel.org
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-On Thu 10 Sep 12:53 UTC 2020, satya priya wrote:
-
-> Add a suitable sleep configuration for uart3 to support Bluetooth wakeup.
+On Fri, 4 Sep 2020, Ben Levinsky wrote:
+> Add binding for ZynqMP R5 OpenAMP.
 > 
-> If QUP function is selected in sleep state, UART RTS/RFR is pulled high
-> during suspend and BT SoC not able to send wakeup bytes. So, configure
-> GPIO mode in sleep state to keep it low during suspend.
+> Represent the RPU domain resources in one device node. Each RPU
+> processor is a subnode of the top RPU domain node.
 > 
-
-But patch 4 says that you change this behavior, is that patch really
-needed if we switch the pins to GPIO, or if this patch really needed if
-we merge patch 4?
-
-Could it be that in lower power states we drop the power to the uart
-block and rely on the PDC to wait for the BT chip to start sending the
-wakeup bytes on the rx pin?
-
-
-This commit will become the reference for all other platforms where we
-enable the same functionality, so better document it properly.
-
-> Signed-off-by: satya priya <skakit@codeaurora.org>
-> Reviewed-by: Akash Asthana <akashast@codeaurora.org>
+> Signed-off-by: Jason Wu <j.wu@xilinx.com>
+> Signed-off-by: Wendy Liang <jliang@xilinx.com>
+> Signed-off-by: Michal Simek <michal.simek@xilinx.com>
+> 
+> Signed-off-by: Ben Levinsky <ben.levinsky@xilinx.com>
 > ---
-> Changes in V2:
->  - This patch adds sleep state for BT UART. Newly added in V2.
+> v3:
+> - update zynqmp_r5 yaml parsing to not raise warnings for extra
+>   information in children of R5 node. The warning "node has a unit
+>   name, but no reg or ranges property" will still be raised though 
+>   as this particular node is needed to describe the
+>   '#address-cells' and '#size-cells' information.
+> v4::
+> - remove warning '/example-0/rpu@ff9a0000/r5@0: 
+>   node has a unit name, but no reg or ranges property'
+>   by adding reg to r5 node.
+> v5:
+> - update device tree sample and yaml parsing to not raise any warnings
+> - description for memory-region in yaml parsing
+> - compatible string in yaml parsing for TCM
+> v6:
+> - remove coupling TCM nodes with remoteproc 
+> - remove mailbox as it is optional not needed
+> v7:
+> - change lockstep-mode to xlnx,cluster-mode
+> v9:
+> - show example IPC nodes and tcm bank nodes
+> v11:
+> - add property meta-memory-regions to illustrate link
+>   between r5 and TCM banks
+> - update so no warnings from 'make dt_binding_check'
+> ---
+>  .../xilinx,zynqmp-r5-remoteproc.yaml          | 123 ++++++++++++++++++
+>  1 file changed, 123 insertions(+)
+>  create mode 100644 Documentation/devicetree/bindings/remoteproc/xilinx,zynqmp-r5-remoteproc.yaml
 > 
-> Changes in V3:
->  - Remove "output-high" for TX from both sleep and default states
->    as it is not required. Configure pull-up for TX in sleep state.
-> 
-> Changes in V4:
->  - As per Matthias's comment, removed drive-strength for sleep state
->    and fixed nit-pick.
-> 
-> Changes in V5:
->  - As per Matthias's comments, moved pinmux change for sleep state,
->    pinctrl and interrupt config to the board specific file.
-> 
->  arch/arm64/boot/dts/qcom/sc7180-idp.dts | 48 +++++++++++++++++++++++++++++++++
->  1 file changed, 48 insertions(+)
-> 
-> diff --git a/arch/arm64/boot/dts/qcom/sc7180-idp.dts b/arch/arm64/boot/dts/qcom/sc7180-idp.dts
-> index 04888df..e529a41 100644
-> --- a/arch/arm64/boot/dts/qcom/sc7180-idp.dts
-> +++ b/arch/arm64/boot/dts/qcom/sc7180-idp.dts
-> @@ -344,6 +344,10 @@
->  };
->  
->  &uart3 {
-> +	pinctrl-names = "default", "sleep";
-> +	pinctrl-1 = <&qup_uart3_sleep>;
-> +	interrupts-extended = <&intc GIC_SPI 604 IRQ_TYPE_LEVEL_HIGH>,
-> +				<&tlmm 41 IRQ_TYPE_EDGE_FALLING>;
->  	status = "okay";
->  
->  	bluetooth: wcn3990-bt {
-> @@ -545,3 +549,47 @@
->  	};
->  };
->  
-> +&tlmm {
-> +	qup_uart3_sleep: qup-uart3-sleep {
-> +		pinmux {
-> +			pins = "gpio38", "gpio39",
-> +			       "gpio40", "gpio41";
-> +			function = "gpio";
-> +		};
+> diff --git a/Documentation/devicetree/bindings/remoteproc/xilinx,zynqmp-r5-remoteproc.yaml b/Documentation/devicetree/bindings/remoteproc/xilinx,zynqmp-r5-remoteproc.yaml
+> new file mode 100644
+> index 000000000000..148374c61908
+> --- /dev/null
+> +++ b/Documentation/devicetree/bindings/remoteproc/xilinx,zynqmp-r5-remoteproc.yaml
+> @@ -0,0 +1,123 @@
+> +# SPDX-License-Identifier: (GPL-2.0 OR BSD-2-Clause)
+> +%YAML 1.2
+> +---
+> +$id: "http://devicetree.org/schemas/remoteproc/xilinx,zynqmp-r5-remoteproc.yaml#"
+> +$schema: "http://devicetree.org/meta-schemas/core.yaml#"
 > +
-> +		pinconf-cts {
-> +			/*
-> +			 * Configure a pull-down on CTS to match the pull of
-> +			 * the Bluetooth module.
-> +			 */
-> +			pins = "gpio38";
-> +			bias-pull-down;
-> +		};
+> +title: Xilinx R5 remote processor controller bindings
 > +
-> +		pinconf-rts {
-> +			/*
-> +			 * Configure pull-down on RTS to make sure that the BT SoC can
-> +			 * wake up the system by sending wakeup bytes during suspend.
-
-So "request to send" is active low and pulling it low will indicate to
-the BT chip that it's allowed to wake us up by pulling rx low?
-
-I would like this comment to really describe what's actually going on.
-
-> +			 */
-> +			 pins = "gpio39";
-> +			 bias-pull-down;
-> +		};
+> +description:
+> +  This document defines the binding for the remoteproc component that loads and
+> +  boots firmwares on the Xilinx Zynqmp and Versal family chipset.
 > +
-> +		pinconf-tx {
-> +			/* Configure pull-up on TX when it isn't actively driven */
-
-Sure, but why? Wouldn't that be to prevent the BT chip from receiving
-garbage while the SoC is asleep?
-
-> +			pins = "gpio40";
-> +			bias-pull-up;
-> +		};
+> +  Note that the Linux has global addressing view of the R5-related memory (TCM)
+> +  so the absolute address ranges are provided in TCM reg's.
+> +maintainers:
+> +  - Ed Mooring <ed.mooring@xilinx.com>
+> +  - Ben Levinsky <ben.levinsky@xilinx.com>
 > +
-> +		pinconf-rx {
-> +			/*
-> +			 * Configure a pull-up on RX. This is needed to avoid
-> +			 * garbage data when the TX pin of the Bluetooth module is
-> +			 * in tri-state (module powered off or not driving the
-> +			 * signal yet).
-> +			 */
+> +properties:
+> +  compatible:
+> +    const: "xlnx,zynqmp-r5-remoteproc-1.0"
+> +
+> +  lockstep-mode:
+> +    description:
+> +      R5 core configuration (split is 0 or lock-step and 1)
+> +    maxItems: 1
+> +
+> +  interrupts:
+> +    description:
+> +      Interrupt mapping for remoteproc IPI. It is required if the
+> +      user uses the remoteproc driver with the RPMsg kernel driver.
+> +    maxItems: 6
+> +
+> +  memory-region:
+> +    description:
+> +      collection of memory carveouts used for elf-loading and inter-processor
+> +      communication.
+> +    maxItems: 4
+> +    minItems: 4
+> +  meta-memory-regions:
+> +    description:
+> +      collection of memories that are not present in the top level memory
+> +      nodes' mapping. For example, R5s' TCM banks. These banks are needed
+> +      for R5 firmware meta data such as the R5 firmware's heap and stack
+> +  pnode-id:
+> +    maxItems: 1
+> +  mboxes:
+> +    maxItems: 2
+> +  mbox-names:
+> +    maxItems: 2
+> +
+> +examples:
+> +  - |
+> +     reserved-memory {
+> +          #address-cells = <1>;
+> +          #size-cells = <1>;
+> +          ranges;
+> +          elf_load: rproc@3ed000000 {
+> +               no-map;
+> +               reg = <0x3ed00000 0x40000>;
+> +          };
+> +     };
+> +     rpu {
+> +          compatible = "xlnx,zynqmp-r5-remoteproc-1.0";
+> +          #address-cells = <1>;
+> +          #size-cells = <1>;
+> +          ranges;
+> +          lockstep-mode = <0>;
+> +          r5_0 {
+> +               ranges;
+> +               #address-cells = <1>;
+> +               #size-cells = <1>;
+> +               memory-region = <&elf_load>;
+> +               meta-memory-regions = <0x40 0x41>;
+> +               pnode-id = <0x7>;
 
-It's nice to avoid "garbage data", but isn't the real reason that the
-floating pin on the other side would cause spurious wakeups?
+I can see you are expecting a link from this node to the tcm nodes in
+the driver, but I can't find such a link in this example.
 
-Regards,
-Bjorn
 
-> +			pins = "gpio41";
-> +			bias-pull-up;
-> +		};
-> +	};
-> +};
-> -- 
-> QUALCOMM INDIA, on behalf of Qualcomm Innovation Center, Inc. is a member 
-> of Code Aurora Forum, hosted by The Linux Foundation
-> 
+> +          };
+> +     };
+> +
+> +     /*
+> +      * Below nodes are required if using TCM to load R5 firmware
+> +      * if not, then either do not provide nodes are label as disabled in
+> +      * status property
+> +      */
+> +     tcm_0a@ffe00000 {
+> +         reg = <0xffe00000 0x10000>;
+> +         pnode-id = <0xf>;
+> +         no-map;
+> +         status = "okay";
+> +         phandle = <0x40>;
+> +         compatible = "xlnx,tcm";
+> +     };
+> +     tcm_1a@ffe20000 {
+> +         reg = <0xffe20000 0x10000>;
+> +         pnode-id = <0x10>;
+> +         no-map;
+> +         status = "okay";
+> +         compatible = "xlnx,tcm";
+> +         phandle = <0x41>;
+> +     };
+> +
+> +     /*
+> +      * Below nodes are required for IPC, as Xilinx Kernel
+> +      * can potentially have other applications that use CMA
+> +      * and conflict from hardware design. With that in mind,
+> +      * explicitly state the address spaces for the IPC remoteproc
+> +      * mechanisms.
+> +      *
+> +      * If IPC not required and only elf-loading then these are not needed.
+> +      */
+> +     rpu0vdev0vring0: rpu0vdev0vring0@3ed40000 {
+> +         no-map;
+> +         reg = <0x3ed40000 0x4000>;
+> +     };
+> +     rpu0vdev0vring1: rpu0vdev0vring1@3ed44000 {
+> +         no-map;
+> +         reg = <0x3ed44000 0x4000>;
+> +     };
+> +     rpu0vdev0buffer: rpu0vdev0buffer@3ed48000 {
+> +         no-map;
+> +         reg = <0x3ed48000 0x100000>;
+> +     };
+
+Shouldn't they be under reserved-memory?
