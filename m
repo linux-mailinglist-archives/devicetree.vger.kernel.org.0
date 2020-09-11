@@ -2,75 +2,87 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from vger.kernel.org (vger.kernel.org [23.128.96.18])
-	by mail.lfdr.de (Postfix) with ESMTP id 2E265265920
-	for <lists+devicetree@lfdr.de>; Fri, 11 Sep 2020 08:09:14 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTP id 465F7265929
+	for <lists+devicetree@lfdr.de>; Fri, 11 Sep 2020 08:11:11 +0200 (CEST)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S1725535AbgIKGJD (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Fri, 11 Sep 2020 02:09:03 -0400
-Received: from mail.kernel.org ([198.145.29.99]:34532 "EHLO mail.kernel.org"
+        id S1725804AbgIKGLJ (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Fri, 11 Sep 2020 02:11:09 -0400
+Received: from mail.kernel.org ([198.145.29.99]:35406 "EHLO mail.kernel.org"
         rhost-flags-OK-OK-OK-OK) by vger.kernel.org with ESMTP
-        id S1725446AbgIKGJD (ORCPT <rfc822;devicetree@vger.kernel.org>);
-        Fri, 11 Sep 2020 02:09:03 -0400
-Received: from mail-ej1-f43.google.com (mail-ej1-f43.google.com [209.85.218.43])
+        id S1725446AbgIKGLH (ORCPT <rfc822;devicetree@vger.kernel.org>);
+        Fri, 11 Sep 2020 02:11:07 -0400
+Received: from mail-ej1-f48.google.com (mail-ej1-f48.google.com [209.85.218.48])
         (using TLSv1.2 with cipher ECDHE-RSA-AES128-GCM-SHA256 (128/128 bits))
         (No client certificate requested)
-        by mail.kernel.org (Postfix) with ESMTPSA id 58366221ED;
-        Fri, 11 Sep 2020 06:09:02 +0000 (UTC)
+        by mail.kernel.org (Postfix) with ESMTPSA id E62E0221F1;
+        Fri, 11 Sep 2020 06:11:06 +0000 (UTC)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=kernel.org;
-        s=default; t=1599804542;
-        bh=XzzaqRgzegv5mShrfRiMAX/0bKqxPmMJr5VwppGGwEw=;
+        s=default; t=1599804667;
+        bh=R+WQCRWfq/LEeLL9EuGAFD+jyfSl/fjliRW9gC2u17M=;
         h=References:In-Reply-To:From:Date:Subject:To:Cc:From;
-        b=ihhcwtVWk6dTGE+h9Hne7tOOv/piw6eF0oxfxjMAzyMEi76bRAHq4wh9HTqPQlReu
-         FO4DNAMAN0P2AnALwa4Gh1oqnSXIPSd/9RwcY1PYk2Gwow+aZNT2gqUI10i7aXbuvY
-         5OWPFFLx+B4R2b1vfMPvfrbmYQJTsJGjSjDapPtk=
-Received: by mail-ej1-f43.google.com with SMTP id q13so12175433ejo.9;
-        Thu, 10 Sep 2020 23:09:02 -0700 (PDT)
-X-Gm-Message-State: AOAM533tXv5vpufzr3Fb557g3H4okNSow+XDuBOPW1CRs1jonFxUt5Fv
-        fghRSZiOZaMpq364yqSPIxD5jrsQ5phzLLlvwAI=
-X-Google-Smtp-Source: ABdhPJwZG4xklZq441Eewbql9ntW9zPs1xfQjq9o+LVzvNLUp2kxK3mUNknnSYBDmPX56LMLO75nMFLMG4xyFDPtcm4=
-X-Received: by 2002:a17:906:8401:: with SMTP id n1mr505360ejx.215.1599804540886;
- Thu, 10 Sep 2020 23:09:00 -0700 (PDT)
+        b=GHEpjzBiGvtJ1QhOXg4nIsgN5ThSgM00QRJX4Cghvz7A274L7p71V6OwfaBrG1X7J
+         uVyd/7XdH7fhiQhYyOM4eLfnabBhEQ8cFOqAAgpYBXbjJTV7NJ8+LYLGYdNvk7hHE1
+         8odlxiTb6JWeOThhbKMIc1HFWyofHRtn3Q8u/1v8=
+Received: by mail-ej1-f48.google.com with SMTP id gr14so12244485ejb.1;
+        Thu, 10 Sep 2020 23:11:06 -0700 (PDT)
+X-Gm-Message-State: AOAM531kIgp6PQ41zD+x4poHXkcXDayMrLutW1ti6LgVzfaTLQazauxe
+        d0ugZuDx+8NaAQ6H8+Yo1qMazkg61LxFFr414i8=
+X-Google-Smtp-Source: ABdhPJysqYkgvsUB5GiEswkRNNKILHjjgWCeXRVo+QHtk0WCjK+abRX2rEGDEoOCLg/z/tM8wvqyn+iTq0H6F2DGVuc=
+X-Received: by 2002:a17:906:af53:: with SMTP id ly19mr495830ejb.503.1599804665477;
+ Thu, 10 Sep 2020 23:11:05 -0700 (PDT)
 MIME-Version: 1.0
-References: <20200910161219.6237-1-krzk@kernel.org> <20200910.152235.1512682061673845419.davem@davemloft.net>
-In-Reply-To: <20200910.152235.1512682061673845419.davem@davemloft.net>
+References: <20200910175733.11046-1-krzk@kernel.org> <20200910175733.11046-13-krzk@kernel.org>
+ <CACPK8XfmDySpkCw8nkmns-euGQE6JTqZLVO6JhvFJiRqNosRuQ@mail.gmail.com>
+In-Reply-To: <CACPK8XfmDySpkCw8nkmns-euGQE6JTqZLVO6JhvFJiRqNosRuQ@mail.gmail.com>
 From:   Krzysztof Kozlowski <krzk@kernel.org>
-Date:   Fri, 11 Sep 2020 08:08:49 +0200
-X-Gmail-Original-Message-ID: <CAJKOXPcFfxY2EU7-_gPQyhp9m_dVed6qxgpZzD4kazEkjDeXOw@mail.gmail.com>
-Message-ID: <CAJKOXPcFfxY2EU7-_gPQyhp9m_dVed6qxgpZzD4kazEkjDeXOw@mail.gmail.com>
-Subject: Re: [PATCH v3 0/8] nfc: s3fwrn5: Few cleanups
-To:     David Miller <davem@davemloft.net>
-Cc:     kuba@kernel.org, robh+dt@kernel.org, k.opasiak@samsung.com,
-        kgene@kernel.org,
-        "linux-kernel@vger.kernel.org" <linux-kernel@vger.kernel.org>,
-        netdev@vger.kernel.org, devicetree@vger.kernel.org,
-        linux-nfc@lists.01.org, linux-arm-kernel@lists.infradead.org,
-        "linux-samsung-soc@vger.kernel.org" 
-        <linux-samsung-soc@vger.kernel.org>
+Date:   Fri, 11 Sep 2020 08:10:53 +0200
+X-Gmail-Original-Message-ID: <CAJKOXPca3R=LYVws9rYj-iuOx7Z1GMkM2ow2pCQ3CGnv0vSS7Q@mail.gmail.com>
+Message-ID: <CAJKOXPca3R=LYVws9rYj-iuOx7Z1GMkM2ow2pCQ3CGnv0vSS7Q@mail.gmail.com>
+Subject: Re: [PATCH v2 12/15] ARM: dts: aspeed: align GPIO hog names with dtschema
+To:     Joel Stanley <joel@jms.id.au>
+Cc:     Linus Walleij <linus.walleij@linaro.org>,
+        Bartosz Golaszewski <bgolaszewski@baylibre.com>,
+        Rob Herring <robh+dt@kernel.org>,
+        =?UTF-8?Q?Beno=C3=AEt_Cousson?= <bcousson@baylibre.com>,
+        Tony Lindgren <tony@atomide.com>,
+        Russell King <linux@armlinux.org.uk>,
+        Jason Cooper <jason@lakedaemon.net>,
+        Andrew Lunn <andrew@lunn.ch>,
+        Gregory Clement <gregory.clement@bootlin.com>,
+        Sebastian Hesselbarth <sebastian.hesselbarth@gmail.com>,
+        Andrew Jeffery <andrew@aj.id.au>,
+        Shawn Guo <shawnguo@kernel.org>,
+        Sascha Hauer <s.hauer@pengutronix.de>,
+        Pengutronix Kernel Team <kernel@pengutronix.de>,
+        NXP Linux Team <linux-imx@nxp.com>,
+        Matthias Brugger <matthias.bgg@gmail.com>,
+        Geert Uytterhoeven <geert+renesas@glider.be>,
+        Magnus Damm <magnus.damm@gmail.com>,
+        Tero Kristo <t-kristo@ti.com>, Nishanth Menon <nm@ti.com>,
+        Michal Simek <michal.simek@xilinx.com>,
+        Guenter Roeck <linux@roeck-us.net>,
+        devicetree <devicetree@vger.kernel.org>,
+        Linux Kernel Mailing List <linux-kernel@vger.kernel.org>,
+        linux-omap@vger.kernel.org,
+        Linux ARM <linux-arm-kernel@lists.infradead.org>,
+        linux-aspeed <linux-aspeed@lists.ozlabs.org>,
+        linux-mediatek@lists.infradead.org,
+        linux-renesas-soc@vger.kernel.org
 Content-Type: text/plain; charset="UTF-8"
 Sender: devicetree-owner@vger.kernel.org
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-On Fri, 11 Sep 2020 at 00:22, David Miller <davem@davemloft.net> wrote:
+On Fri, 11 Sep 2020 at 02:58, Joel Stanley <joel@jms.id.au> wrote:
 >
-> From: Krzysztof Kozlowski <krzk@kernel.org>
-> Date: Thu, 10 Sep 2020 18:12:11 +0200
->
-> > Changes since v2:
-> > 1. Fix dtschema ID after rename (patch 1/8).
-> > 2. Apply patch 9/9 (defconfig change).
+> On Thu, 10 Sep 2020 at 17:59, Krzysztof Kozlowski <krzk@kernel.org> wrote:
 > >
-> > Changes since v1:
-> > 1. Rename dtschema file and add additionalProperties:false, as Rob
-> >    suggested,
-> > 2. Add Marek's tested-by,
-> > 3. New patches: #4, #5, #6, #7 and #9.
+> > dtschema for pca95xx expects GPIO hogs to end with 'hog' prefix.
 >
-> Seires applied to net-next, thanks.
+> This is a bit ugly. Do we have to go down this path?
 
-Thanks. The DTS should go separate - via samsung-soc/arm-soc tree.
-However if it is too late, then no problem.
+No, but please comment on schema (1/15 in this series).
 
 Best regards,
 Krzysztof
