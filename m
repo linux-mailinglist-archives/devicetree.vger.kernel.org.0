@@ -2,74 +2,78 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from vger.kernel.org (vger.kernel.org [23.128.96.18])
-	by mail.lfdr.de (Postfix) with ESMTP id 88AC1265B47
-	for <lists+devicetree@lfdr.de>; Fri, 11 Sep 2020 10:15:48 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTP id 5AEFA265BBD
+	for <lists+devicetree@lfdr.de>; Fri, 11 Sep 2020 10:36:34 +0200 (CEST)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S1725825AbgIKIPp (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Fri, 11 Sep 2020 04:15:45 -0400
-Received: from lhrrgout.huawei.com ([185.176.76.210]:2807 "EHLO huawei.com"
-        rhost-flags-OK-OK-OK-FAIL) by vger.kernel.org with ESMTP
-        id S1725554AbgIKIPp (ORCPT <rfc822;devicetree@vger.kernel.org>);
-        Fri, 11 Sep 2020 04:15:45 -0400
-Received: from lhreml710-chm.china.huawei.com (unknown [172.18.7.106])
-        by Forcepoint Email with ESMTP id 318BCCFEBCCD1D074D5B;
-        Fri, 11 Sep 2020 09:15:43 +0100 (IST)
-Received: from localhost (10.52.125.200) by lhreml710-chm.china.huawei.com
- (10.201.108.61) with Microsoft SMTP Server (version=TLS1_2,
- cipher=TLS_ECDHE_RSA_WITH_AES_128_CBC_SHA256) id 15.1.1913.5; Fri, 11 Sep
- 2020 09:15:42 +0100
-Date:   Fri, 11 Sep 2020 09:14:07 +0100
-From:   Jonathan Cameron <Jonathan.Cameron@Huawei.com>
-To:     Nishant Malpani <nish.malpani25@gmail.com>
-CC:     <jic23@kernel.org>, <robh+dt@kernel.org>,
-        <linux-kernel@vger.kernel.org>, <linux-iio@vger.kernel.org>,
-        <devicetree@vger.kernel.org>, <andy.shevchenko@gmail.com>
-Subject: Re: [RESEND PATCH v3 0/3] iio: gyro: adxrs290: Add triggered buffer
- & debugfs support
-Message-ID: <20200911091407.000057e7@Huawei.com>
-In-Reply-To: <20200910180450.29696-1-nish.malpani25@gmail.com>
-References: <20200910180450.29696-1-nish.malpani25@gmail.com>
-Organization: Huawei Technologies Research and Development (UK) Ltd.
-X-Mailer: Claws Mail 3.17.4 (GTK+ 2.24.32; i686-w64-mingw32)
-MIME-Version: 1.0
-Content-Type: text/plain; charset="US-ASCII"
-Content-Transfer-Encoding: 7bit
-X-Originating-IP: [10.52.125.200]
-X-ClientProxiedBy: lhreml707-chm.china.huawei.com (10.201.108.56) To
- lhreml710-chm.china.huawei.com (10.201.108.61)
-X-CFilter-Loop: Reflected
+        id S1725767AbgIKIgd (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Fri, 11 Sep 2020 04:36:33 -0400
+Received: from relmlor1.renesas.com ([210.160.252.171]:44824 "EHLO
+        relmlie5.idc.renesas.com" rhost-flags-OK-OK-OK-FAIL)
+        by vger.kernel.org with ESMTP id S1725550AbgIKIgd (ORCPT
+        <rfc822;devicetree@vger.kernel.org>);
+        Fri, 11 Sep 2020 04:36:33 -0400
+X-IronPort-AV: E=Sophos;i="5.76,414,1592838000"; 
+   d="scan'208";a="57022257"
+Received: from unknown (HELO relmlir5.idc.renesas.com) ([10.200.68.151])
+  by relmlie5.idc.renesas.com with ESMTP; 11 Sep 2020 17:36:31 +0900
+Received: from localhost.localdomain (unknown [10.226.36.204])
+        by relmlir5.idc.renesas.com (Postfix) with ESMTP id D3A65400D4DC;
+        Fri, 11 Sep 2020 17:36:29 +0900 (JST)
+From:   Lad Prabhakar <prabhakar.mahadev-lad.rj@bp.renesas.com>
+To:     Geert Uytterhoeven <geert+renesas@glider.be>,
+        Magnus Damm <magnus.damm@gmail.com>,
+        Rob Herring <robh+dt@kernel.org>,
+        linux-renesas-soc@vger.kernel.org
+Cc:     linux-kernel@vger.kernel.org, devicetree@vger.kernel.org,
+        Lad Prabhakar <prabhakar.mahadev-lad.rj@bp.renesas.com>,
+        Prabhakar <prabhakar.csengg@gmail.com>
+Subject: [PATCH] ARM: dts: r8a7742-iwg21d-q7-dbcm-ca: Add can0 support to camera DB
+Date:   Fri, 11 Sep 2020 09:36:15 +0100
+Message-Id: <20200911083615.17377-1-prabhakar.mahadev-lad.rj@bp.renesas.com>
+X-Mailer: git-send-email 2.17.1
 Sender: devicetree-owner@vger.kernel.org
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-On Thu, 10 Sep 2020 23:34:47 +0530
-Nishant Malpani <nish.malpani25@gmail.com> wrote:
+This patch enables CAN0 interface exposed through connector J4 on the
+camera DB.
 
-> Introduce DATA_RDY trigger for triggered buffer setup; this enables continuous
-> data capture. Additionally, add support for direct register access using the debugfs 
-> iio interface. 
-> 
-> The device-tree bindings documentation illustrates an example of using a GPIO irq
-> line to trigger a data capture.
-> 
-> Nishant Malpani (3):
->   iio: gyro: adxrs290: Add triggered buffer support
->   dt-bindings: iio: gyro: adxrs290: Add interrupts support
->   iio: gyro: adxrs290: Add debugfs register access support
-> 
->  .../bindings/iio/gyroscope/adi,adxrs290.yaml  |   6 +
->  drivers/iio/gyro/Kconfig                      |   2 +
->  drivers/iio/gyro/adxrs290.c                   | 237 ++++++++++++++++--
->  3 files changed, 231 insertions(+), 14 deletions(-)
-> 
+Signed-off-by: Lad Prabhakar <prabhakar.mahadev-lad.rj@bp.renesas.com>
+Reviewed-by: Chris Paterson <Chris.Paterson2@renesas.com>
+---
+ arch/arm/boot/dts/r8a7742-iwg21d-q7-dbcm-ca.dts | 11 +++++++++++
+ 1 file changed, 11 insertions(+)
 
-Odd. The original patch one eventually made it (I'd checked it hadn't
-gotten to me or to lore.kernel.org yesterday :(
-
-Ah well, one of those quirks of life and resend does no harm.
-
-Will catch up with this tomorrow probably.
-
-Jonathan
+diff --git a/arch/arm/boot/dts/r8a7742-iwg21d-q7-dbcm-ca.dts b/arch/arm/boot/dts/r8a7742-iwg21d-q7-dbcm-ca.dts
+index 1479ced50873..961c0f2eeefb 100644
+--- a/arch/arm/boot/dts/r8a7742-iwg21d-q7-dbcm-ca.dts
++++ b/arch/arm/boot/dts/r8a7742-iwg21d-q7-dbcm-ca.dts
+@@ -27,6 +27,12 @@
+ 	status = "disabled";
+ };
+ 
++&can0 {
++	pinctrl-0 = <&can0_pins>;
++	pinctrl-names = "default";
++	status = "okay";
++};
++
+ &ether {
+ 	pinctrl-0 = <&ether_pins>;
+ 	pinctrl-names = "default";
+@@ -49,6 +55,11 @@
+ };
+ 
+ &pfc {
++	can0_pins: can0 {
++		groups = "can0_data_d";
++		function = "can0";
++	};
++
+ 	ether_pins: ether {
+ 		groups = "eth_mdio", "eth_rmii";
+ 		function = "eth";
+-- 
+2.17.1
 
