@@ -2,172 +2,193 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from vger.kernel.org (vger.kernel.org [23.128.96.18])
-	by mail.lfdr.de (Postfix) with ESMTP id 1B0202667A2
-	for <lists+devicetree@lfdr.de>; Fri, 11 Sep 2020 19:46:09 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTP id 4EC75266707
+	for <lists+devicetree@lfdr.de>; Fri, 11 Sep 2020 19:36:54 +0200 (CEST)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S1725856AbgIKRqH (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Fri, 11 Sep 2020 13:46:07 -0400
-Received: from mail.kernel.org ([198.145.29.99]:59292 "EHLO mail.kernel.org"
-        rhost-flags-OK-OK-OK-OK) by vger.kernel.org with ESMTP
-        id S1725844AbgIKMRK (ORCPT <rfc822;devicetree@vger.kernel.org>);
-        Fri, 11 Sep 2020 08:17:10 -0400
-Received: from mail.kernel.org (ip5f5ad5a5.dynamic.kabel-deutschland.de [95.90.213.165])
-        (using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
-        (No client certificate requested)
-        by mail.kernel.org (Postfix) with ESMTPSA id 460992220D;
-        Fri, 11 Sep 2020 12:16:48 +0000 (UTC)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=kernel.org;
-        s=default; t=1599826608;
-        bh=y+HaSJ5DamzNsnw7uVNpEE+xv+fRAimb14ck/lGaCO4=;
-        h=From:To:Cc:Subject:Date:In-Reply-To:References:From;
-        b=UDPMrzz/FbbPgDocU8ZF8ACiaUxv0/5N8+a8u4By7bq6uD6IG2CE44DkRnBwHa1bh
-         0YNmPFXV1r+8WwkT7mKqsArmPaSGJgP6kJtA6A+It9CQ7UuDbuBJ+V+HA8LuPPZvn7
-         K0CIwOgJzjUc6e025xQDHnb7eOWw4jncd8tQ0e4g=
-Received: from mchehab by mail.kernel.org with local (Exim 4.94)
-        (envelope-from <mchehab@kernel.org>)
-        id 1kGhyw-0006WN-2R; Fri, 11 Sep 2020 14:16:46 +0200
-From:   Mauro Carvalho Chehab <mchehab+huawei@kernel.org>
-Cc:     linuxarm@huawei.com, mauro.chehab@huawei.com,
-        Mauro Carvalho Chehab <mchehab+huawei@kernel.org>,
-        "John Stultz" <john.stultz@linaro.org>,
-        "Manivannan Sadhasivam" <mani@kernel.org>,
-        Kishon Vijay Abraham I <kishon@ti.com>,
-        Rob Herring <robh+dt@kernel.org>,
-        Vinod Koul <vkoul@kernel.org>, devicetree@vger.kernel.org,
-        linux-kernel@vger.kernel.org
-Subject: [PATCH v3 RESEND 7/8] dt-bindings: phy: convert phy-kirin970-usb3.txt to yaml
-Date:   Fri, 11 Sep 2020 14:16:43 +0200
-Message-Id: <7964c39084de5d2fd3dca30bf5abb5973eeec42b.1599826421.git.mchehab+huawei@kernel.org>
-X-Mailer: git-send-email 2.26.2
-In-Reply-To: <cover.1599826421.git.mchehab+huawei@kernel.org>
-References: <cover.1599826421.git.mchehab+huawei@kernel.org>
+        id S1726428AbgIKRg3 (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Fri, 11 Sep 2020 13:36:29 -0400
+Received: from perceval.ideasonboard.com ([213.167.242.64]:48354 "EHLO
+        perceval.ideasonboard.com" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
+        with ESMTP id S1726301AbgIKRgW (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Fri, 11 Sep 2020 13:36:22 -0400
+Received: from pendragon.ideasonboard.com (62-78-145-57.bb.dnainternet.fi [62.78.145.57])
+        by perceval.ideasonboard.com (Postfix) with ESMTPSA id 6466BA17;
+        Fri, 11 Sep 2020 19:36:18 +0200 (CEST)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=ideasonboard.com;
+        s=mail; t=1599845778;
+        bh=ePLcCSWgyD07mW+TFS8Sn50bYfstYmKjYVoCsbtJ6kU=;
+        h=Date:From:To:Cc:Subject:References:In-Reply-To:From;
+        b=jluLJQcroJiCUniN4dxj7D2Y94RUk0IeHUwZVLCcW28jWLhKyOQfzs9OZcJUYHkZP
+         3PgOc6oOaLsADTkisZ9KD1MkkNmu3MIM7KY1d2evkcTRnSD7PPKtZALO8KfhkKmUyF
+         hYEACvlWMHoKUqZtyAisHaWiUvltaLR75ETGU/M4=
+Date:   Fri, 11 Sep 2020 20:35:50 +0300
+From:   Laurent Pinchart <laurent.pinchart@ideasonboard.com>
+To:     Jacopo Mondi <jacopo@jmondi.org>
+Cc:     Luca Ceresoli <luca@lucaceresoli.net>,
+        Jacopo Mondi <jacopo+renesas@jmondi.org>,
+        Leon Luo <leonl@leopardimaging.com>,
+        Sowjanya Komatineni <skomatineni@nvidia.com>,
+        robh+dt@kernel.org, devicetree@vger.kernel.org,
+        linux-media@vger.kernel.org, mchehab@kernel.org,
+        sakari.ailus@linux.intel.com, hverkuil-cisco@xs4all.nl,
+        linux-renesas-soc@vger.kernel.org
+Subject: Re: [PATCH v5] dt-bindings: media: imx274: Convert to json-schema
+Message-ID: <20200911173550.GE6808@pendragon.ideasonboard.com>
+References: <20200910162009.613976-1-jacopo+renesas@jmondi.org>
+ <f6b43803-1880-c5fe-dba1-fa94d1dbb182@lucaceresoli.net>
+ <20200911085939.3fahuftw3o2hj4vw@uno.localdomain>
 MIME-Version: 1.0
-Content-Transfer-Encoding: 8bit
-To:     unlisted-recipients:; (no To-header on input)
+Content-Type: text/plain; charset=utf-8
+Content-Disposition: inline
+In-Reply-To: <20200911085939.3fahuftw3o2hj4vw@uno.localdomain>
 Sender: devicetree-owner@vger.kernel.org
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-Use the new YAML for this physical layer.
+Hi Jacopo,
 
-Signed-off-by: Mauro Carvalho Chehab <mchehab+huawei@kernel.org>
----
- .../bindings/phy/hisilicon,hi3670-usb3.yaml   | 72 +++++++++++++++++++
- .../bindings/phy/phy-hi3670-usb3.txt          | 25 -------
- 2 files changed, 72 insertions(+), 25 deletions(-)
- create mode 100644 Documentation/devicetree/bindings/phy/hisilicon,hi3670-usb3.yaml
- delete mode 100644 Documentation/devicetree/bindings/phy/phy-hi3670-usb3.txt
+On Fri, Sep 11, 2020 at 10:59:39AM +0200, Jacopo Mondi wrote:
+> On Fri, Sep 11, 2020 at 09:53:23AM +0200, Luca Ceresoli wrote:
+> > On 10/09/20 18:20, Jacopo Mondi wrote:
+> > > Convert the imx274 bindings document to json-schema and update
+> > > the MAINTAINERS file accordingly.
+> > >
+> > > Reviewed-by: Laurent Pinchart <laurent.pinchart@ideasonboard.com>
+> > > Signed-off-by: Jacopo Mondi <jacopo+renesas@jmondi.org>
+> > > ---
+> > >
+> > > v4->v5:
+> > > - Add optional properties that were upstreamed in v5.9-rc2 in the textual
+> > >   bindings
+> > > - Move them to be lowercase: this patch should be fast-tracked through the
+> > >   fixes branch to make sure it gets in before v5.9 is released, otherwise the
+> > >   textual bindings will have supplies names in uppercase
+> > >
+> > > ---
+> > >  .../devicetree/bindings/media/i2c/imx274.txt  | 38 ---------
+> > >  .../bindings/media/i2c/sony,imx274.yaml       | 77 +++++++++++++++++++
+> > >  MAINTAINERS                                   |  2 +-
+> > >  3 files changed, 78 insertions(+), 39 deletions(-)
+> > >  delete mode 100644 Documentation/devicetree/bindings/media/i2c/imx274.txt
+> > >  create mode 100644 Documentation/devicetree/bindings/media/i2c/sony,imx274.yaml
+> > >
+> > > diff --git a/Documentation/devicetree/bindings/media/i2c/imx274.txt b/Documentation/devicetree/bindings/media/i2c/imx274.txt
+> > > deleted file mode 100644
+> > > index 0727079d2410..000000000000
+> > > --- a/Documentation/devicetree/bindings/media/i2c/imx274.txt
+> > > +++ /dev/null
+> > > @@ -1,38 +0,0 @@
+> > > -* Sony 1/2.5-Inch 8.51Mp CMOS Digital Image Sensor
+> > > -
+> > > -The Sony imx274 is a 1/2.5-inch CMOS active pixel digital image sensor with
+> > > -an active array size of 3864H x 2202V. It is programmable through I2C
+> > > -interface. The I2C address is fixed to 0x1a as per sensor data sheet.
+> > > -Image data is sent through MIPI CSI-2, which is configured as 4 lanes
+> > > -at 1440 Mbps.
+> > > -
+> > > -
+> > > -Required Properties:
+> > > -- compatible: value should be "sony,imx274" for imx274 sensor
+> > > -- reg: I2C bus address of the device
+> > > -
+> > > -Optional Properties:
+> > > -- reset-gpios: Sensor reset GPIO
+> > > -- clocks: Reference to the input clock.
+> > > -- clock-names: Should be "inck".
+> > > -- VANA-supply: Sensor 2.8v analog supply.
+> > > -- VDIG-supply: Sensor 1.8v digital core supply.
+> > > -- VDDL-supply: Sensor digital IO 1.2v supply.
+> > > -
+> > > -The imx274 device node should contain one 'port' child node with
+> > > -an 'endpoint' subnode. For further reading on port node refer to
+> > > -Documentation/devicetree/bindings/media/video-interfaces.txt.
+> > > -
+> > > -Example:
+> > > -	sensor@1a {
+> > > -		compatible = "sony,imx274";
+> > > -		reg = <0x1a>;
+> > > -		#address-cells = <1>;
+> > > -		#size-cells = <0>;
+> > > -		reset-gpios = <&gpio_sensor 0 0>;
+> > > -		port {
+> > > -			sensor_out: endpoint {
+> > > -				remote-endpoint = <&csiss_in>;
+> > > -			};
+> > > -		};
+> > > -	};
+> > > diff --git a/Documentation/devicetree/bindings/media/i2c/sony,imx274.yaml b/Documentation/devicetree/bindings/media/i2c/sony,imx274.yaml
+> > > new file mode 100644
+> > > index 000000000000..fe81def68466
+> > > --- /dev/null
+> > > +++ b/Documentation/devicetree/bindings/media/i2c/sony,imx274.yaml
+> > > @@ -0,0 +1,77 @@
+> > > +# SPDX-License-Identifier: (GPL-2.0-only OR BSD-2-Clause)
+> > > +%YAML 1.2
+> > > +---
+> > > +$id: http://devicetree.org/schemas/media/i2c/sony,imx274.yaml#
+> > > +$schema: http://devicetree.org/meta-schemas/core.yaml#
+> > > +
+> > > +title: Sony 1/2.5-Inch 8.51MP CMOS Digital Image Sensor
+> > > +
+> > > +maintainers:
+> > > +  - Leon Luo <leonl@leopardimaging.com>
+> > > +
+> > > +description: |
+> > > +  The Sony IMX274 is a 1/2.5-inch CMOS active pixel digital image sensor with an
+> > > +  active array size of 3864H x 2202V. It is programmable through I2C interface.
+> > > +  Image data is sent through MIPI CSI-2, which is configured as 4 lanes at 1440
+> > > +  Mbps.
+> > > +
+> > > +properties:
+> > > +  compatible:
+> > > +    const: sony,imx274
+> > > +
+> > > +  reg:
+> > > +    const: 0x1a
+> > > +
+> > > +  reset-gpios:
+> > > +    maxItems: 1
+> > > +
+> > > +  port:
+> > > +    type: object
+> > > +    description: |
+> > > +      Output video port. See ../video-interfaces.txt.
+> > > +
+> > > +  clocks:
+> > > +    maxItems: 1
+> > > +
+> > > +  clock-names:
+> > > +    const: inck
+> > > +
+> > > +  vana-supply:
+> > > +    description: Sensor 2.8v analog supply.
+> > > +    maxItems: 1
+> > > +
+> > > +  vdig-supply:
+> > > +    description: Sensor 2.8v analog supply.
+> >
+> > Copy-paste leftover. Should be "Sensor 1.8v digital core supply."
+> 
+> oooo :(
+> I've been so sloppy on this series I'm almost ashamed.
+> 
+> I'll send a v6 with your tag in
 
-diff --git a/Documentation/devicetree/bindings/phy/hisilicon,hi3670-usb3.yaml b/Documentation/devicetree/bindings/phy/hisilicon,hi3670-usb3.yaml
-new file mode 100644
-index 000000000000..125a5d6546ae
---- /dev/null
-+++ b/Documentation/devicetree/bindings/phy/hisilicon,hi3670-usb3.yaml
-@@ -0,0 +1,72 @@
-+# SPDX-License-Identifier: GPL-2.0
-+%YAML 1.2
-+---
-+$id: http://devicetree.org/schemas/phy/hisilicon,hi3670-usb3.yaml#
-+$schema: http://devicetree.org/meta-schemas/core.yaml#
-+
-+title: Hisilicon Kirin970 USB PHY
-+
-+maintainers:
-+  - Mauro Carvalho Chehab <mchehab+huawei@kernel.org>
-+description: |+
-+  Bindings for USB3 PHY on HiSilicon Kirin 970.
-+
-+properties:
-+  compatible:
-+    const: hisilicon,hi3670-usb-phy
-+
-+  "#phy-cells":
-+    const: 0
-+
-+  hisilicon,pericrg-syscon:
-+    $ref: '/schemas/types.yaml#/definitions/phandle'
-+    description: phandle of syscon used to control iso refclk.
-+
-+  hisilicon,pctrl-syscon:
-+    $ref: '/schemas/types.yaml#/definitions/phandle'
-+    description: phandle of syscon used to control usb tcxo.
-+
-+  hisilicon,sctrl-syscon:
-+    $ref: '/schemas/types.yaml#/definitions/phandle'
-+    description: phandle of syscon used to control phy deep sleep.
-+
-+  hisilicon,eye-diagram-param:
-+    $ref: /schemas/types.yaml#/definitions/uint32
-+    description: Eye diagram for phy.
-+
-+  hisilicon,tx-vboost-lvl:
-+    $ref: /schemas/types.yaml#/definitions/uint32
-+    description: TX level vboost for phy.
-+
-+required:
-+  - compatible
-+  - hisilicon,pericrg-syscon
-+  - hisilicon,pctrl-syscon
-+  - hisilicon,sctrl-syscon
-+  - hisilicon,eye-diagram-param
-+  - hisilicon,tx-vboost-lvl
-+  - "#phy-cells"
-+
-+additionalProperties: false
-+
-+examples:
-+  - |
-+    bus {
-+      #address-cells = <2>;
-+      #size-cells = <2>;
-+
-+      usb3_otg_bc: usb3_otg_bc@ff200000 {
-+        compatible = "syscon", "simple-mfd";
-+        reg = <0x0 0xff200000 0x0 0x1000>;
-+
-+        usb_phy {
-+          compatible = "hisilicon,hi3670-usb-phy";
-+          #phy-cells = <0>;
-+          hisilicon,pericrg-syscon = <&crg_ctrl>;
-+          hisilicon,pctrl-syscon = <&pctrl>;
-+          hisilicon,sctrl-syscon = <&sctrl>;
-+          hisilicon,eye-diagram-param = <0xfdfee4>;
-+          hisilicon,tx-vboost-lvl = <0x5>;
-+        };
-+      };
-+    };
-diff --git a/Documentation/devicetree/bindings/phy/phy-hi3670-usb3.txt b/Documentation/devicetree/bindings/phy/phy-hi3670-usb3.txt
-deleted file mode 100644
-index 2fb27cb8beaf..000000000000
---- a/Documentation/devicetree/bindings/phy/phy-hi3670-usb3.txt
-+++ /dev/null
-@@ -1,25 +0,0 @@
--Hisilicon Kirin970 usb PHY
-------------------------
--
--Required properties:
--- compatible: should be "hisilicon,hi3670-usb-phy"
--- #phy-cells: must be 0
--- hisilicon,pericrg-syscon: phandle of syscon used to control phy.
--- hisilicon,pctrl-syscon: phandle of syscon used to control phy.
--- hisilicon,sctrl-syscon: phandle of syscon used to control phy.
--- hisilicon,usb31-misc-syscon: phandle of syscon used to control phy.
--- eye-diagram-param: parameter set for phy
--- usb3-phy-tx-vboost-lvl: parameter set for phy
--Refer to phy/phy-bindings.txt for the generic PHY binding properties
--
--Example:
--	usb_phy: usbphy {
--		compatible = "hisilicon,hi3670-usb-phy";
--		#phy-cells = <0>;
--		hisilicon,pericrg-syscon = <&crg_ctrl>;
--		hisilicon,pctrl-syscon = <&pctrl>;
--		hisilicon,sctrl-syscon = <&sctrl>;
--		hisilicon,usb31-misc-syscon = <&usb31_misc>;
--		eye-diagram-param = <0xFDFEE4>;
--		usb3-phy-tx-vboost-lvl = <0x5>;
--	};
+And if you haven't already, s/v/V/ (the voltage symbol is an uppercase
+V).
+
+> > > +    maxItems: 1
+> > > +
+> > > +  vddl-supply:
+> > > +    description: Sensor 2.8v analog supply.
+> >
+> > Same here, should be "Sensor digital IO 1.2v supply."
+> >
+> > With the above fixed you can add to v6:
+> >  Reviewed-by: Luca Ceresoli <luca@lucaceresoli.net>
+
 -- 
-2.26.2
+Regards,
 
+Laurent Pinchart
