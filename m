@@ -2,81 +2,194 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from vger.kernel.org (vger.kernel.org [23.128.96.18])
-	by mail.lfdr.de (Postfix) with ESMTP id 84086265F30
-	for <lists+devicetree@lfdr.de>; Fri, 11 Sep 2020 14:05:16 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTP id 84596265F53
+	for <lists+devicetree@lfdr.de>; Fri, 11 Sep 2020 14:14:27 +0200 (CEST)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S1725787AbgIKMFI (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Fri, 11 Sep 2020 08:05:08 -0400
-Received: from mail.kernel.org ([198.145.29.99]:43054 "EHLO mail.kernel.org"
-        rhost-flags-OK-OK-OK-OK) by vger.kernel.org with ESMTP
-        id S1725790AbgIKMEg (ORCPT <rfc822;devicetree@vger.kernel.org>);
-        Fri, 11 Sep 2020 08:04:36 -0400
-Received: from coco.lan (ip5f5ad5a5.dynamic.kabel-deutschland.de [95.90.213.165])
-        (using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
-        (No client certificate requested)
-        by mail.kernel.org (Postfix) with ESMTPSA id 52C2F221E7;
-        Fri, 11 Sep 2020 12:04:33 +0000 (UTC)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=kernel.org;
-        s=default; t=1599825876;
-        bh=8ld3vCiVF+nY7Iq3wXPKpq2LyOTrnCr36pcsLmRAEa4=;
-        h=Date:From:To:Cc:Subject:In-Reply-To:References:From;
-        b=l0DCrrMeMtswPVZKfgtO+RLob8Y2NiBfXbbrclCPWpMp1Sd3QAn+pnZV09Aug427v
-         BFpf2RxfdFkqH4HqN/1gxbsfabVEfZ58y01EwzMhoG5qKY0uqjL4PwmaVo/8XbozuA
-         PP420E2P1iM8hFDhteuOsDNioqH0YDmMYvhZYiUo=
-Date:   Fri, 11 Sep 2020 14:04:30 +0200
-From:   Mauro Carvalho Chehab <mchehab+huawei@kernel.org>
-To:     Vinod Koul <vkoul@kernel.org>
-Cc:     Greg Kroah-Hartman <gregkh@linuxfoundation.org>,
-        linuxarm@huawei.com, mauro.chehab@huawei.com,
-        John Stultz <john.stultz@linaro.org>,
-        Manivannan Sadhasivam <mani@kernel.org>,
-        "David S. Miller" <davem@davemloft.net>,
-        Kishon Vijay Abraham I <kishon@ti.com>,
-        Krzysztof Kozlowski <krzk@kernel.org>,
-        Rob Herring <robh+dt@kernel.org>,
-        Rob Herring <robh@kernel.org>, Yu Chen <chenyu56@huawei.com>,
-        devicetree@vger.kernel.org, linux-kernel@vger.kernel.org
-Subject: Re: [PATCH v3 0/8] Add PHY USB3 drivers for Hikey 970
-Message-ID: <20200911140430.5281b1c3@coco.lan>
-In-Reply-To: <20200911114711.GX77521@vkoul-mobl>
-References: <cover.1599716786.git.mchehab+huawei@kernel.org>
-        <20200911114711.GX77521@vkoul-mobl>
-X-Mailer: Claws Mail 3.17.6 (GTK+ 2.24.32; x86_64-redhat-linux-gnu)
+        id S1725870AbgIKMNv (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Fri, 11 Sep 2020 08:13:51 -0400
+Received: from relmlor2.renesas.com ([210.160.252.172]:1998 "EHLO
+        relmlie6.idc.renesas.com" rhost-flags-OK-OK-OK-FAIL)
+        by vger.kernel.org with ESMTP id S1725824AbgIKMNs (ORCPT
+        <rfc822;devicetree@vger.kernel.org>);
+        Fri, 11 Sep 2020 08:13:48 -0400
+X-IronPort-AV: E=Sophos;i="5.76,415,1592838000"; 
+   d="scan'208";a="56821913"
+Received: from unknown (HELO relmlir6.idc.renesas.com) ([10.200.68.152])
+  by relmlie6.idc.renesas.com with ESMTP; 11 Sep 2020 21:13:14 +0900
+Received: from devel.example.org?044ree.adwin.renesas.com (unknown [10.226.36.120])
+        by relmlir6.idc.renesas.com (Postfix) with ESMTP id 11F9A4260FB3;
+        Fri, 11 Sep 2020 21:13:11 +0900 (JST)
+From:   Fabrizio Castro <fabrizio.castro.jz@renesas.com>
+To:     Rob Herring <robh+dt@kernel.org>,
+        Geert Uytterhoeven <geert+renesas@glider.be>
+Cc:     Fabrizio Castro <fabrizio.castro.jz@renesas.com>,
+        Magnus Damm <magnus.damm@gmail.com>,
+        linux-renesas-soc@vger.kernel.org, devicetree@vger.kernel.org,
+        Chris Paterson <Chris.Paterson2@renesas.com>,
+        Biju Das <biju.das.jz@bp.renesas.com>,
+        Prabhakar Mahadev Lad <prabhakar.mahadev-lad.rj@bp.renesas.com>,
+        Laurent Pinchart <laurent.pinchart@ideasonboard.com>
+Subject: [PATCH] arm64: dts: renesas: r8a77990: Add DRIF support
+Date:   Fri, 11 Sep 2020 13:12:59 +0100
+Message-Id: <20200911121259.5669-1-fabrizio.castro.jz@renesas.com>
+X-Mailer: git-send-email 2.25.1
 MIME-Version: 1.0
-Content-Type: text/plain; charset=US-ASCII
-Content-Transfer-Encoding: 7bit
+Content-Transfer-Encoding: 8bit
 Sender: devicetree-owner@vger.kernel.org
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-Em Fri, 11 Sep 2020 17:17:11 +0530
-Vinod Koul <vkoul@kernel.org> escreveu:
+Add the DRIF controller nodes for the r8a77990 (a.k.a. R-Car E3).
 
-> On 10-09-20, 07:52, Mauro Carvalho Chehab wrote:
-> > This patch series add the PHY layer needed in order to support the USB
-> > functionality on Hikey 970 boards.
-> > 
-> > v3:
-> > - split a namespace patch on two (one with code changes and another
-> >   one with dt-bindings changes);
-> > - placed just the PHY driver on this series. Another series will add the
-> >   USB HUB driver and the DTS changes required to enable USB support
-> >   for this board.  
-> 
-> I have only cover in my inbox, no other patches. Even lore doesn't show
-> the series, not sure what happened here
+Please note that R-Car E3 has register BITCTR located at offset
+0x80 (this register is not available on the r8a77960 and r8a77951,
+whose support has already been upstreamed), and even though it is
+not dealt with just yet within the driver, we have to keep that
+into account with our device tree nodes.
 
-Gah, it sounds that my scripts did something really weird there.
+Also, please note that while testing it has emerged that the
+HW User Manual has the wrong DMA details for DRIF2 and DRIF3
+on E3, as they are only allowed SYS-DMAC0 rather than SYS-DMAC1
+and SYS-DMAC2. An errata addressing this issue will be available
+soon.
 
-I changed it while sending some docs patches, as, by adding
-all maintainers and MLs for each patch on that series to the
-cover letter would produce around ~100 e-mail addresses,
-which would hardly be accepted by most of the email servers.
+Signed-off-by: Fabrizio Castro <fabrizio.castro.jz@renesas.com>
+---
+ arch/arm64/boot/dts/renesas/r8a77990.dtsi | 120 ++++++++++++++++++++++
+ 1 file changed, 120 insertions(+)
 
-It sounds that I ended breaking it :-(
+diff --git a/arch/arm64/boot/dts/renesas/r8a77990.dtsi b/arch/arm64/boot/dts/renesas/r8a77990.dtsi
+index 1991bdc36792..caeddc2c1a70 100644
+--- a/arch/arm64/boot/dts/renesas/r8a77990.dtsi
++++ b/arch/arm64/boot/dts/renesas/r8a77990.dtsi
+@@ -1288,6 +1288,126 @@ vin5csi40: endpoint@2 {
+ 			};
+ 		};
+ 
++		drif00: rif@e6f40000 {
++			compatible = "renesas,r8a77990-drif",
++				     "renesas,rcar-gen3-drif";
++			reg = <0 0xe6f40000 0 0x84>;
++			interrupts = <GIC_SPI 12 IRQ_TYPE_LEVEL_HIGH>;
++			clocks = <&cpg CPG_MOD 515>;
++			clock-names = "fck";
++			dmas = <&dmac1 0x20>, <&dmac2 0x20>;
++			dma-names = "rx", "rx";
++			power-domains = <&sysc R8A77990_PD_ALWAYS_ON>;
++			resets = <&cpg 515>;
++			renesas,bonding = <&drif01>;
++			status = "disabled";
++		};
++
++		drif01: rif@e6f50000 {
++			compatible = "renesas,r8a77990-drif",
++				     "renesas,rcar-gen3-drif";
++			reg = <0 0xe6f50000 0 0x84>;
++			interrupts = <GIC_SPI 13 IRQ_TYPE_LEVEL_HIGH>;
++			clocks = <&cpg CPG_MOD 514>;
++			clock-names = "fck";
++			dmas = <&dmac1 0x22>, <&dmac2 0x22>;
++			dma-names = "rx", "rx";
++			power-domains = <&sysc R8A77990_PD_ALWAYS_ON>;
++			resets = <&cpg 514>;
++			renesas,bonding = <&drif00>;
++			status = "disabled";
++		};
++
++		drif10: rif@e6f60000 {
++			compatible = "renesas,r8a77990-drif",
++				     "renesas,rcar-gen3-drif";
++			reg = <0 0xe6f60000 0 0x84>;
++			interrupts = <GIC_SPI 14 IRQ_TYPE_LEVEL_HIGH>;
++			clocks = <&cpg CPG_MOD 513>;
++			clock-names = "fck";
++			dmas = <&dmac1 0x24>, <&dmac2 0x24>;
++			dma-names = "rx", "rx";
++			power-domains = <&sysc R8A77990_PD_ALWAYS_ON>;
++			resets = <&cpg 513>;
++			renesas,bonding = <&drif11>;
++			status = "disabled";
++		};
++
++		drif11: rif@e6f70000 {
++			compatible = "renesas,r8a77990-drif",
++				     "renesas,rcar-gen3-drif";
++			reg = <0 0xe6f70000 0 0x84>;
++			interrupts = <GIC_SPI 15 IRQ_TYPE_LEVEL_HIGH>;
++			clocks = <&cpg CPG_MOD 512>;
++			clock-names = "fck";
++			dmas = <&dmac1 0x26>, <&dmac2 0x26>;
++			dma-names = "rx", "rx";
++			power-domains = <&sysc R8A77990_PD_ALWAYS_ON>;
++			resets = <&cpg 512>;
++			renesas,bonding = <&drif10>;
++			status = "disabled";
++		};
++
++		drif20: rif@e6f80000 {
++			compatible = "renesas,r8a77990-drif",
++				     "renesas,rcar-gen3-drif";
++			reg = <0 0xe6f80000 0 0x84>;
++			interrupts = <GIC_SPI 24 IRQ_TYPE_LEVEL_HIGH>;
++			clocks = <&cpg CPG_MOD 511>;
++			clock-names = "fck";
++			dmas = <&dmac0 0x28>;
++			dma-names = "rx";
++			power-domains = <&sysc R8A77990_PD_ALWAYS_ON>;
++			resets = <&cpg 511>;
++			renesas,bonding = <&drif21>;
++			status = "disabled";
++		};
++
++		drif21: rif@e6f90000 {
++			compatible = "renesas,r8a77990-drif",
++				     "renesas,rcar-gen3-drif";
++			reg = <0 0xe6f90000 0 0x84>;
++			interrupts = <GIC_SPI 25 IRQ_TYPE_LEVEL_HIGH>;
++			clocks = <&cpg CPG_MOD 510>;
++			clock-names = "fck";
++			dmas = <&dmac0 0x2a>;
++			dma-names = "rx";
++			power-domains = <&sysc R8A77990_PD_ALWAYS_ON>;
++			resets = <&cpg 510>;
++			renesas,bonding = <&drif20>;
++			status = "disabled";
++		};
++
++		drif30: rif@e6fa0000 {
++			compatible = "renesas,r8a77990-drif",
++				     "renesas,rcar-gen3-drif";
++			reg = <0 0xe6fa0000 0 0x84>;
++			interrupts = <GIC_SPI 26 IRQ_TYPE_LEVEL_HIGH>;
++			clocks = <&cpg CPG_MOD 509>;
++			clock-names = "fck";
++			dmas = <&dmac0 0x2c>;
++			dma-names = "rx";
++			power-domains = <&sysc R8A77990_PD_ALWAYS_ON>;
++			resets = <&cpg 509>;
++			renesas,bonding = <&drif31>;
++			status = "disabled";
++		};
++
++		drif31: rif@e6fb0000 {
++			compatible = "renesas,r8a77990-drif",
++				     "renesas,rcar-gen3-drif";
++			reg = <0 0xe6fb0000 0 0x84>;
++			interrupts = <GIC_SPI 27 IRQ_TYPE_LEVEL_HIGH>;
++			clocks = <&cpg CPG_MOD 508>;
++			clock-names = "fck";
++			dmas = <&dmac0 0x2e>;
++			dma-names = "rx";
++			power-domains = <&sysc R8A77990_PD_ALWAYS_ON>;
++			resets = <&cpg 508>;
++			renesas,bonding = <&drif30>;
++			status = "disabled";
++		};
++
+ 		rcar_sound: sound@ec500000 {
+ 			/*
+ 			 * #sound-dai-cells is required
+-- 
+2.25.1
 
-I'll re-send this patch series.
-
-Thanks,
-Mauro
