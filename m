@@ -2,25 +2,25 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from vger.kernel.org (vger.kernel.org [23.128.96.18])
-	by mail.lfdr.de (Postfix) with ESMTP id BAAC726628E
-	for <lists+devicetree@lfdr.de>; Fri, 11 Sep 2020 17:53:23 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTP id 8222F266271
+	for <lists+devicetree@lfdr.de>; Fri, 11 Sep 2020 17:46:51 +0200 (CEST)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S1726504AbgIKPwy (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Fri, 11 Sep 2020 11:52:54 -0400
-Received: from mout.kundenserver.de ([217.72.192.73]:42353 "EHLO
+        id S1726609AbgIKPqd (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Fri, 11 Sep 2020 11:46:33 -0400
+Received: from mout.kundenserver.de ([212.227.17.24]:34537 "EHLO
         mout.kundenserver.de" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S1726537AbgIKPnh (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Fri, 11 Sep 2020 11:43:37 -0400
+        with ESMTP id S1726538AbgIKPnk (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Fri, 11 Sep 2020 11:43:40 -0400
 Received: from methusalix.internal.home.lespocky.de ([109.250.103.56]) by
- mrelayeu.kundenserver.de (mreue108 [212.227.15.183]) with ESMTPSA (Nemesis)
- id 1My3Ef-1kRwV22uGl-00zVsj; Fri, 11 Sep 2020 17:40:59 +0200
+ mrelayeu.kundenserver.de (mreue107 [212.227.15.183]) with ESMTPSA (Nemesis)
+ id 1MGA0o-1kK4Z30yom-00GafJ; Fri, 11 Sep 2020 17:41:05 +0200
 Received: from lemmy.internal.home.lespocky.de ([192.168.243.176] helo=lemmy.home.lespocky.de)
         by methusalix.internal.home.lespocky.de with esmtpsa  (TLS1.3) tls TLS_AES_256_GCM_SHA384
         (Exim 4.94)
         (envelope-from <alex@home.lespocky.de>)
-        id 1kGlAW-00012l-Dq; Fri, 11 Sep 2020 17:40:57 +0200
-Received: (nullmailer pid 28446 invoked by uid 2001);
-        Fri, 11 Sep 2020 15:40:55 -0000
+        id 1kGlAc-00013I-Pk; Fri, 11 Sep 2020 17:41:03 +0200
+Received: (nullmailer pid 28469 invoked by uid 2001);
+        Fri, 11 Sep 2020 15:41:02 -0000
 From:   Alexander Dahl <post@lespocky.de>
 To:     linux-leds@vger.kernel.org, devicetree@vger.kernel.org
 Cc:     Jacek Anaszewski <jacek.anaszewski@gmail.com>,
@@ -29,86 +29,212 @@ Cc:     Jacek Anaszewski <jacek.anaszewski@gmail.com>,
         Peter Ujfalusi <peter.ujfalusi@ti.com>,
         Alexander Dahl <ada@thorsis.com>,
         Alexander Dahl <post@lespocky.de>
-Subject: [PATCH v4 0/3] leds: pwm: Make automatic labels work
-Date:   Fri, 11 Sep 2020 17:40:01 +0200
-Message-Id: <20200911154004.28354-1-post@lespocky.de>
+Subject: [PATCH v4 3/3] dt-bindings: leds: Convert pwm to yaml
+Date:   Fri, 11 Sep 2020 17:40:04 +0200
+Message-Id: <20200911154004.28354-4-post@lespocky.de>
 X-Mailer: git-send-email 2.20.1
+In-Reply-To: <20200911154004.28354-1-post@lespocky.de>
+References: <20200911154004.28354-1-post@lespocky.de>
 MIME-Version: 1.0
 Content-Transfer-Encoding: 8bit
-X-Scan-Signature: 770cd104049592bdf1705ca88dc38dfa
+X-Scan-Signature: a27db00201996a3601d2552749fb2316
 X-Spam-Score: -2.9 (--)
-X-Provags-ID: V03:K1:e4FvXaQWDj87KwD0kEbtAGIU3u5VS+b8RpwJ8Fxy+7ih3wJ005A
- dC03taXs1FPmBoQuk4ab6GKiSV4FkUwZWKiod2sLL/htRdqmxD3y5vdUgfkknuYJLaSDD1B
- kI6GShk76+2S4ls/wX1LLXWySYA2UdZL1m+00mhsvQhWfN0CpQCRSxQYQn9Kkuix26Jvtna
- NqNUEGcsCyjK6txldsrUw==
+X-Provags-ID: V03:K1:Rc3ucBdQVYvH6p2B5iOmO02x3lqJqnDJA5ydqTPMWrr+j+/QhWs
+ 68YtQfgrNlfvdAGmhLSRSSxlEUDXwjoOkkGdF82QLXgft6mbX1onkJr5QuV3ThjOdExzG29
+ p89l4CbhlKVMM9YZr68X73yyz3zYp+NyK40x4tYNd/zL0AXoBHFxHVbpxuvfSZgqZaf1vEh
+ aY2i+mEWpL1iwyrcECLRA==
 X-Spam-Flag: NO
-X-UI-Out-Filterresults: notjunk:1;V03:K0:lQ7HEH7Aius=:Isg2qlduxH4oFRIzMuqf/y
- PTLMUjZyz1N4tki5cd+GSBmBii2zrZGs2Tpt2uMjVq9ACNPoyXdo0UxEjzqkf+HyzjHlDwHJK
- quORKXN4pT2SZ+bHf1/uhXxWZCvqayhtqO2LJEOaKK7NQ4GTDNRLayLpSUqrNww8A88NF0XrH
- Wm1qwrM/kQd05rIG+Sp9XszcgNSmIPf48IALqG2WdTzjnRlW9Wzg8HDAaDKd+3dhbJmpkihTY
- JkcYbG4k2M69tkgeu39J+dsAiq1s3I0tD7JxRvxzens+3AwrW0dDvnup57jS95iE4l+FrDKvo
- 8myWL6V9G8fYSDhf6MwIj4iCMUf4iUL45LxMSddEytWjRmdtmmIgNu8BhCB8HVuP+udQI1ENO
- ve+rKjWJkUUfNLrAtrqxOe66f0l6c4MwJmApHZLHjMW39FtgzUJ0zcrgZW8keAkXVGTo5SQHO
- zMWUnO0l6nGOrytQl7yTvd5YS9pOKjEqxQEp9g41ZzwhEcz0mL2oNEFARVvg5+39vsWudCTcU
- C7ekLQI1uJA+TcrkSzq78/Zm5giMBAiISj/xaF6IkkS6a1L5vTVvucOkH8Eo/JUnfOTiksmaz
- T7kC5TlnpTc45PhdeApC2l5Sg9AxBQJQvj37atvBkjCIIeUshXg2C+xoL+L4EgeZLOldTND0k
- OGFGWFSZt+zjzl4sUzZfQzrxh3ux+0moP1DyEmtLPdfI2RAkDr+trS9slk1S/e7Y/wKQaqrmn
- v8ERLp5phHbAOQgjyOQ6t24P0fKz7GYidjKxtOnujli+lj3L0i04MxyK7PX0pSZlcVt28YM5v
- k3Jh3r9t82UQg9s37WuB1iP3b0c7C7JIVX+tr5Bp2VRL4YDMH5DyFQqI2n9LZ5QBuMbNZWI
+X-UI-Out-Filterresults: notjunk:1;V03:K0:5FkSoacWUCI=:tjaCre2lJBYxvBG3E+NQuv
+ h8fiA00zgIJUJx26vL2M3CAwXrfmRyQJvSd7WmM2Paju4yK3ahgLr6IQzsp2T6FH36DvOZnVv
+ EfdwLnwNuP7JI24jdY4G5SlRr6PyJTw5PSuBLJHdNvwWb+xtH1XpQpZhFqY2pnBiuM9duGbIb
+ m1AzKRiucvXTo6b0S1gXvGMSVUzckIJhPiToAPvMuCrZEGLJdCF2u7Bw6cBPWQ3LDuoi8Gf69
+ 36A5y+cFgVVhEw4jRQ59Eu1Kq1f7aHJYhqDtnAucuJt4BvorIFRDKT7fP1DlgcBkK5as3ywvZ
+ zLEmsEWvGINVNwUXHGPnO2x9OT+c/E21TfTatLjClxyZCDIGSTLzkyQ/+55RNaNipg3Z+6ByM
+ qVpqwyT/peOVTnH93ZhfG0qVPFjxpjA+QATq5tutwcV9lvcksd3qN6LH/Mr275XC3hREz/jIP
+ mUsLgPk21bIcNsVJyeTlqVW1zQW41Lr5kLqpLHyBuTD8w4ts1oIHxWI7QrAjrWHDZTtKLL+Xk
+ oQFhYN1frwO8oX8dEfByYHqwJHxugQFn5GWnuGBxJQpKP8M+cj5l+BXgo9uagItVL8pu3x1CI
+ /5owOHZz5DsGy2pEpFytEx3ShJY+IRcF3KT6Eeu0r5lycdHr7UgEUPsINQlvQ3g5ppK3dV0XY
+ OfwypLscNNz/2yqw/H/Jf+0xPQu+qpHACIL3RuKbYe1EALD+qllKdE74Zq5cay+fLwUaLYQ1Z
+ F7lQinZgJf5UySyOGymAKFiO32F2YXoJESbKz6kSTypvx2Wnlvk+MRH1oR40fXWJMM/jvmgYI
+ 3/en5zfbHtneot6DEjC7Rwrdupt0Pd1/khPgCqH+qEq5KatWlBWFc/oyPVIJMMygZpNDPQr
 Sender: devicetree-owner@vger.kernel.org
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-Hei hei,
+The example was adapted slightly to make use of the 'function' and
+'color' properties.  License discussed with the original author.
 
-for leds-gpio you can use the properties 'function' and 'color' in the
-devicetree node and omit 'label', the label is constructed
-automatically.  This is a common feature supposed to be working for all
-LED drivers.  However it did not yet work for the 'leds-pwm' driver.
+Suggested-by: Jacek Anaszewski <jacek.anaszewski@gmail.com>
+Signed-off-by: Alexander Dahl <post@lespocky.de>
+Acked-by: Jacek Anaszewski <jacek.anaszewski@gmail.com>
+Cc: Peter Ujfalusi <peter.ujfalusi@ti.com>
+---
 
-This series changes led-core a bit to add a non-ugly fix for the
-leds-pwm driver and takes the opportunity to update the leds-pwm
-dt-bindings accordingly.
-
-v4 was tested on a at91 sama5d2 based platform with LEDs connected to
-GPIO and PWM.
-
-Greets
-Alex
-
-v4:
-- added led-class patch handling fwnode passing differently (patch 1/3)
-- adapted leds-pwm patch to new led-class (patch 2/3)
-- contacted original author of leds-pwm dt binding on license issue
-  (patch 3/3)
-
-v3:
-- series rebased on v5.9-rc4
-- changed license of .yaml file to recommended one (patch 2/2)
-- added Acked-by to both patches
-
-v2:
-- series rebased on v5.9-rc3
-- added the dt-bindings update patch (2/2)
-
-v1:
-- based on v5.9-rc2
-- backport on v5.4.59 tested and working
-
-Alexander Dahl (3):
-  leds: Require valid fwnode pointer for composing name
-  leds: pwm: Allow automatic labels for DT based devices
-  dt-bindings: leds: Convert pwm to yaml
+Notes:
+    v3 -> v4:
+      * added Cc to original author of the binding
+    
+    v2 -> v3:
+      * changed license identifier to recommended one
+      * added Acked-by
+    
+    v2:
+      * added this patch to series (Suggested-by: Jacek Anaszewski)
 
  .../devicetree/bindings/leds/leds-pwm.txt     | 50 -----------
  .../devicetree/bindings/leds/leds-pwm.yaml    | 85 +++++++++++++++++++
- drivers/leds/led-class.c                      |  2 +-
- drivers/leds/leds-pwm.c                       |  3 +-
- 4 files changed, 88 insertions(+), 52 deletions(-)
+ 2 files changed, 85 insertions(+), 50 deletions(-)
  delete mode 100644 Documentation/devicetree/bindings/leds/leds-pwm.txt
  create mode 100644 Documentation/devicetree/bindings/leds/leds-pwm.yaml
 
+diff --git a/Documentation/devicetree/bindings/leds/leds-pwm.txt b/Documentation/devicetree/bindings/leds/leds-pwm.txt
+deleted file mode 100644
+index 6c6583c35f2f..000000000000
+--- a/Documentation/devicetree/bindings/leds/leds-pwm.txt
++++ /dev/null
+@@ -1,50 +0,0 @@
+-LED connected to PWM
+-
+-Required properties:
+-- compatible : should be "pwm-leds".
+-
+-Each LED is represented as a sub-node of the pwm-leds device.  Each
+-node's name represents the name of the corresponding LED.
+-
+-LED sub-node properties:
+-- pwms : PWM property to point to the PWM device (phandle)/port (id) and to
+-  specify the period time to be used: <&phandle id period_ns>;
+-- pwm-names : (optional) Name to be used by the PWM subsystem for the PWM device
+-  For the pwms and pwm-names property please refer to:
+-  Documentation/devicetree/bindings/pwm/pwm.txt
+-- max-brightness : Maximum brightness possible for the LED
+-- active-low : (optional) For PWMs where the LED is wired to supply
+-  rather than ground.
+-- label :  (optional)
+-  see Documentation/devicetree/bindings/leds/common.txt
+-- linux,default-trigger :  (optional)
+-  see Documentation/devicetree/bindings/leds/common.txt
+-
+-Example:
+-
+-twl_pwm: pwm {
+-	/* provides two PWMs (id 0, 1 for PWM1 and PWM2) */
+-	compatible = "ti,twl6030-pwm";
+-	#pwm-cells = <2>;
+-};
+-
+-twl_pwmled: pwmled {
+-	/* provides one PWM (id 0 for Charing indicator LED) */
+-	compatible = "ti,twl6030-pwmled";
+-	#pwm-cells = <2>;
+-};
+-
+-pwmleds {
+-	compatible = "pwm-leds";
+-	kpad {
+-		label = "omap4::keypad";
+-		pwms = <&twl_pwm 0 7812500>;
+-		max-brightness = <127>;
+-	};
+-
+-	charging {
+-		label = "omap4:green:chrg";
+-		pwms = <&twl_pwmled 0 7812500>;
+-		max-brightness = <255>;
+-	};
+-};
+diff --git a/Documentation/devicetree/bindings/leds/leds-pwm.yaml b/Documentation/devicetree/bindings/leds/leds-pwm.yaml
+new file mode 100644
+index 000000000000..c74867492424
+--- /dev/null
++++ b/Documentation/devicetree/bindings/leds/leds-pwm.yaml
+@@ -0,0 +1,85 @@
++# SPDX-License-Identifier: (GPL-2.0-only OR BSD-2-Clause)
++%YAML 1.2
++---
++$id: http://devicetree.org/schemas/leds/leds-pwm.yaml#
++$schema: http://devicetree.org/meta-schemas/core.yaml#
++
++title: LEDs connected to PWM
++
++maintainers:
++  - Pavel Machek <pavel@ucw.cz>
++
++description:
++  Each LED is represented as a sub-node of the pwm-leds device.  Each
++  node's name represents the name of the corresponding LED.
++
++properties:
++  compatible:
++    const: pwm-leds
++
++patternProperties:
++  "^pwm-led-([0-9a-f])$":
++    type: object
++
++    $ref: common.yaml#
++
++    properties:
++      pwms:
++        description:
++          "PWM property to point to the PWM device (phandle)/port (id)
++          and to specify the period time to be used:
++          <&phandle id period_ns>;"
++
++      pwm-names:
++        description:
++          "Name to be used by the PWM subsystem for the PWM device For
++          the pwms and pwm-names property please refer to:
++          Documentation/devicetree/bindings/pwm/pwm.txt"
++
++      max-brightness:
++        description:
++          Maximum brightness possible for the LED
++
++      active-low:
++        description:
++          For PWMs where the LED is wired to supply rather than ground.
++
++    required:
++      - pwms
++      - max-brightness
++
++examples:
++  - |
++
++    #include <dt-bindings/leds/common.h>
++
++    twl_pwm: pwm {
++        /* provides two PWMs (id 0, 1 for PWM1 and PWM2) */
++        compatible = "ti,twl6030-pwm";
++        #pwm-cells = <2>;
++    };
++
++    twl_pwmled: pwmled {
++        /* provides one PWM (id 0 for Charing indicator LED) */
++        compatible = "ti,twl6030-pwmled";
++        #pwm-cells = <2>;
++    };
++
++    pwm_leds {
++        compatible = "pwm-leds";
++
++        pwm-led-1 {
++            label = "omap4::keypad";
++            pwms = <&twl_pwm 0 7812500>;
++            max-brightness = <127>;
++        };
++
++        pwm-led-2 {
++            color = <LED_COLOR_ID_GREEN>;
++            function = LED_FUNCTION_CHARGING;
++            pwms = <&twl_pwmled 0 7812500>;
++            max-brightness = <255>;
++        };
++    };
++
++...
 -- 
 2.20.1
 
