@@ -2,333 +2,238 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from vger.kernel.org (vger.kernel.org [23.128.96.18])
-	by mail.lfdr.de (Postfix) with ESMTP id EC8E026571A
-	for <lists+devicetree@lfdr.de>; Fri, 11 Sep 2020 04:49:39 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTP id 3B73F265725
+	for <lists+devicetree@lfdr.de>; Fri, 11 Sep 2020 04:52:42 +0200 (CEST)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S1725468AbgIKCth (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Thu, 10 Sep 2020 22:49:37 -0400
-Received: from out4-smtp.messagingengine.com ([66.111.4.28]:50725 "EHLO
-        out4-smtp.messagingengine.com" rhost-flags-OK-OK-OK-OK)
-        by vger.kernel.org with ESMTP id S1725300AbgIKCtg (ORCPT
-        <rfc822;devicetree@vger.kernel.org>);
-        Thu, 10 Sep 2020 22:49:36 -0400
-Received: from compute3.internal (compute3.nyi.internal [10.202.2.43])
-        by mailout.nyi.internal (Postfix) with ESMTP id 890CD5C00C8;
-        Thu, 10 Sep 2020 22:49:34 -0400 (EDT)
-Received: from imap2 ([10.202.2.52])
-  by compute3.internal (MEProxy); Thu, 10 Sep 2020 22:49:34 -0400
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=aj.id.au; h=
-        mime-version:message-id:in-reply-to:references:date:from:to:cc
-        :subject:content-type; s=fm3; bh=c6HSkrtTKfINlw/HGLRz2lhc2rwOVfP
-        uL1hDI8lDt7U=; b=i+cYvdGVG53shXCRHyD1vQ8u1ujCCPr5eY1kK7EQYToNz+J
-        AA9iBTCjQz+NRmJURYnog1U27xaGfY3NyipTOWPe2454RBFuTael3OkUln5t2n9I
-        6GSgpEx7J8fOlw0CC6J6PqvoJiJErY6Q8svxxXXDCLvP5cqys5GyzbPBBxcPkb42
-        QIhSrKOq5elMO1uVA8Yv/TuSd14KDteBE8gQsdyXb+aRBgO3UVWhQuYu6+BEwe5y
-        ISgH6nLndpMJDKMk0GEPF+bwOhBjh4//6K4VOqUrf82+wdF9xyCoxXYR8LmCjTe1
-        dNk+6iqUckagvBRY1CF9V3kZCiP2+uQ84TNt0HQ==
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=
-        messagingengine.com; h=cc:content-type:date:from:in-reply-to
-        :message-id:mime-version:references:subject:to:x-me-proxy
-        :x-me-proxy:x-me-sender:x-me-sender:x-sasl-enc; s=fm3; bh=c6HSkr
-        tTKfINlw/HGLRz2lhc2rwOVfPuL1hDI8lDt7U=; b=CLnperrNN8K6K/UlWaRxxw
-        VyLslnaNvGyFPVwFj9hB5enyU460ugTNHZhsJG5MPFsEu29OcutNFOgYMsKUVRmQ
-        1TufmHI6LDHRjLxB+tQpX9YxbmZldRec3SWUI/Jg8H7Bd3NWDFDPoXDVK/GIcB4f
-        mIJeTIeZKtzYdhOG+dYPFcsfMMpUhP0Gq5ZVdG2DG4oaAPaUKW1tjvmo7VruzRa8
-        e56JJSXrTTZ9HHC+3h1cqXY433GAb2U2chU9uT2Y/fJuvaUEGb0H8a9oCjkm3509
-        EMFPM2oHFkdWZqp2nNXE3c7AWW7sxO1cFLqeSQTiFePe9JAcNPfyFLebK7LYWy9Q
-        ==
-X-ME-Sender: <xms:veVaX9i2zJKbL-rsGu6wDuS392e7ONVJEaK5sVFtYYYdKwcWtdN4JA>
-    <xme:veVaXyAGhpTGhQ2LG_SClz1Fy5TnETvSioVKunfDXC7bq8OXVHryBlN9SqgTjYBj1
-    JlezshzqbJg9wzTIg>
-X-ME-Proxy-Cause: gggruggvucftvghtrhhoucdtuddrgeduiedrudehkedgieegucetufdoteggodetrfdotf
-    fvucfrrhhofhhilhgvmecuhfgrshhtofgrihhlpdfqfgfvpdfurfetoffkrfgpnffqhgen
-    uceurghilhhouhhtmecufedttdenucesvcftvggtihhpihgvnhhtshculddquddttddmne
-    cujfgurhepofgfggfkjghffffhvffutgesthdtredtreerjeenucfhrhhomhepfdetnhgu
-    rhgvficulfgvfhhfvghrhidfuceorghnughrvgifsegrjhdrihgurdgruheqnecuggftrf
-    grthhtvghrnhepuddttdekueeggedvtddtueekiedutdfguedutdefieeuteefieelteet
-    vddthfeinecuvehluhhsthgvrhfuihiivgeptdenucfrrghrrghmpehmrghilhhfrhhomh
-    eprghnughrvgifsegrjhdrihgurdgruh
-X-ME-Proxy: <xmx:veVaX9GzcQP1jyPm9v2lMWIhHGnJ6RJrPVxgHTBXuoSO7BfzfcX9yQ>
-    <xmx:veVaXyTChuYUP85dyIaMFhOkBTkUXsBI1h6k_CGJPVGOfxMCJz-how>
-    <xmx:veVaX6zFQKd-fxpsOWmn0iEQIvyywA6N99rnM0vjzMDroCM46OmXxg>
-    <xmx:vuVaXxmCtWS5yUGdCGGfZw9qVzjbq3uDcSJ0rSrnzyF0zpIiT-cICQ>
-Received: by mailuser.nyi.internal (Postfix, from userid 501)
-        id B3088E00A6; Thu, 10 Sep 2020 22:49:32 -0400 (EDT)
-X-Mailer: MessagingEngine.com Webmail Interface
-User-Agent: Cyrus-JMAP/3.3.0-259-g88fbbfa-fm-20200903.003-g88fbbfa3
-Mime-Version: 1.0
-Message-Id: <57d48d7a-7cea-4be7-92bd-8f3b93f84a06@www.fastmail.com>
-In-Reply-To: <CACPK8Xf-jys=F0Uqg-hYH-eDThmd5yOSNeC7+vLhra3GdOK1Zw@mail.gmail.com>
-References: <20200910105440.3087723-1-andrew@aj.id.au>
- <20200910105440.3087723-3-andrew@aj.id.au>
- <CACPK8Xf-jys=F0Uqg-hYH-eDThmd5yOSNeC7+vLhra3GdOK1Zw@mail.gmail.com>
-Date:   Fri, 11 Sep 2020 12:19:12 +0930
-From:   "Andrew Jeffery" <andrew@aj.id.au>
-To:     "Joel Stanley" <joel@jms.id.au>
-Cc:     linux-mmc <linux-mmc@vger.kernel.org>,
-        "Adrian Hunter" <adrian.hunter@intel.com>,
-        "Ulf Hansson" <ulf.hansson@linaro.org>,
-        "Rob Herring" <robh+dt@kernel.org>,
-        devicetree <devicetree@vger.kernel.org>,
-        "Linux ARM" <linux-arm-kernel@lists.infradead.org>,
-        linux-aspeed <linux-aspeed@lists.ozlabs.org>,
-        "Linux Kernel Mailing List" <linux-kernel@vger.kernel.org>
-Subject: =?UTF-8?Q?Re:_[PATCH_2/3]_mmc:_sdhci-of-aspeed:_Expose_data_sample_phase?=
- =?UTF-8?Q?_delay_tuning?=
-Content-Type: text/plain
+        id S1725613AbgIKCwR (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Thu, 10 Sep 2020 22:52:17 -0400
+Received: from lelv0142.ext.ti.com ([198.47.23.249]:44166 "EHLO
+        lelv0142.ext.ti.com" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
+        with ESMTP id S1725355AbgIKCwR (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Thu, 10 Sep 2020 22:52:17 -0400
+Received: from lelv0265.itg.ti.com ([10.180.67.224])
+        by lelv0142.ext.ti.com (8.15.2/8.15.2) with ESMTP id 08B2q61C091599;
+        Thu, 10 Sep 2020 21:52:06 -0500
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=ti.com;
+        s=ti-com-17Q1; t=1599792726;
+        bh=Esp+eXvFOmAKyDr7g0v32QFXLOHZWUXkVmwhXwV7LWY=;
+        h=Subject:To:CC:References:From:Date:In-Reply-To;
+        b=ROv4FYNZkayiDv6/IpXMgFfgdH51CoLRkdJ6JYdFjR1mERNztL4dOC7jM4NaZmbgq
+         QNB5toYd7epaVE13PHsl9Nglat5l/iPcX1mRUnbAQMcQsVVnVU9yLgdT2yGAdGMlaW
+         wYF9chZE3IlKgu302sreRD/HaDuz4WkCRcrl70eo=
+Received: from DLEE112.ent.ti.com (dlee112.ent.ti.com [157.170.170.23])
+        by lelv0265.itg.ti.com (8.15.2/8.15.2) with ESMTPS id 08B2q6mw026129
+        (version=TLSv1.2 cipher=AES256-GCM-SHA384 bits=256 verify=FAIL);
+        Thu, 10 Sep 2020 21:52:06 -0500
+Received: from DLEE109.ent.ti.com (157.170.170.41) by DLEE112.ent.ti.com
+ (157.170.170.23) with Microsoft SMTP Server (version=TLS1_2,
+ cipher=TLS_ECDHE_RSA_WITH_AES_128_CBC_SHA256_P256) id 15.1.1979.3; Thu, 10
+ Sep 2020 21:52:06 -0500
+Received: from lelv0326.itg.ti.com (10.180.67.84) by DLEE109.ent.ti.com
+ (157.170.170.41) with Microsoft SMTP Server (version=TLS1_2,
+ cipher=TLS_ECDHE_RSA_WITH_AES_128_CBC_SHA256_P256) id 15.1.1979.3 via
+ Frontend Transport; Thu, 10 Sep 2020 21:52:06 -0500
+Received: from [10.250.66.47] (ileax41-snat.itg.ti.com [10.172.224.153])
+        by lelv0326.itg.ti.com (8.15.2/8.15.2) with ESMTP id 08B2q47k122740;
+        Thu, 10 Sep 2020 21:52:04 -0500
+Subject: Re: [v4,3/4] reset-controller: ti: introduce a new reset handler
+To:     Crystal Guo <crystal.guo@mediatek.com>,
+        "p.zabel@pengutronix.de" <p.zabel@pengutronix.de>,
+        "robh+dt@kernel.org" <robh+dt@kernel.org>,
+        "matthias.bgg@gmail.com" <matthias.bgg@gmail.com>
+CC:     srv_heupstream <srv_heupstream@mediatek.com>,
+        "linux-mediatek@lists.infradead.org" 
+        <linux-mediatek@lists.infradead.org>,
+        "linux-arm-kernel@lists.infradead.org" 
+        <linux-arm-kernel@lists.infradead.org>,
+        "linux-kernel@vger.kernel.org" <linux-kernel@vger.kernel.org>,
+        "devicetree@vger.kernel.org" <devicetree@vger.kernel.org>,
+        =?UTF-8?B?U2VpeWEgV2FuZyAo546L6L+65ZCbKQ==?= 
+        <seiya.wang@mediatek.com>,
+        =?UTF-8?B?U3RhbmxleSBDaHUgKOacseWOn+mZnik=?= 
+        <stanley.chu@mediatek.com>,
+        =?UTF-8?B?WWluZ2pvZSBDaGVuICjpmbPoi7HmtLIp?= 
+        <Yingjoe.Chen@mediatek.com>,
+        =?UTF-8?B?RmFuIENoZW4gKOmZs+WHoSk=?= <fan.chen@mediatek.com>,
+        =?UTF-8?B?WW9uZyBMaWFuZyAo5qKB5YuHKQ==?= <Yong.Liang@mediatek.com>
+References: <20200817030324.5690-1-crystal.guo@mediatek.com>
+ <20200817030324.5690-4-crystal.guo@mediatek.com>
+ <3a5decee-5f31-e27d-a120-1f835241a87c@ti.com>
+ <1599620279.14806.18.camel@mhfsdcap03>
+ <096362e9-dee8-4e7a-2518-47328068c2fd@ti.com>
+ <1599792140.14806.22.camel@mhfsdcap03>
+From:   Suman Anna <s-anna@ti.com>
+Message-ID: <9d72aaef-49fe-ebb6-215d-05ad3ab27af4@ti.com>
+Date:   Thu, 10 Sep 2020 21:52:04 -0500
+User-Agent: Mozilla/5.0 (X11; Linux x86_64; rv:68.0) Gecko/20100101
+ Thunderbird/68.10.0
+MIME-Version: 1.0
+In-Reply-To: <1599792140.14806.22.camel@mhfsdcap03>
+Content-Type: text/plain; charset="utf-8"
+Content-Language: en-US
+Content-Transfer-Encoding: 7bit
+X-EXCLAIMER-MD-CONFIG: e1e8a2fd-e40a-4ac6-ac9b-f7e9cc9ee180
 Sender: devicetree-owner@vger.kernel.org
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-
-
-On Fri, 11 Sep 2020, at 11:32, Joel Stanley wrote:
-> On Thu, 10 Sep 2020 at 10:55, Andrew Jeffery <andrew@aj.id.au> wrote:
-> >
-> > Allow sample phase adjustment to deal with layout or tolerance issues.
-> >
-> > Signed-off-by: Andrew Jeffery <andrew@aj.id.au>
-> > ---
-> >  drivers/mmc/host/sdhci-of-aspeed.c | 137 +++++++++++++++++++++++++++--
-> >  1 file changed, 132 insertions(+), 5 deletions(-)
-> >
-> > diff --git a/drivers/mmc/host/sdhci-of-aspeed.c b/drivers/mmc/host/sdhci-of-aspeed.c
-> > index 4f008ba3280e..641accbfcde4 100644
-> > --- a/drivers/mmc/host/sdhci-of-aspeed.c
-> > +++ b/drivers/mmc/host/sdhci-of-aspeed.c
-> > @@ -16,9 +16,18 @@
-> >
-> >  #include "sdhci-pltfm.h"
-> >
-> > -#define ASPEED_SDC_INFO                0x00
-> > -#define   ASPEED_SDC_S1MMC8    BIT(25)
-> > -#define   ASPEED_SDC_S0MMC8    BIT(24)
-> > +#define ASPEED_SDC_INFO                        0x00
-> > +#define   ASPEED_SDC_S1_MMC8           BIT(25)
-> > +#define   ASPEED_SDC_S0_MMC8           BIT(24)
-> > +#define ASPEED_SDC_PHASE               0xf4
-> > +#define   ASPEED_SDC_S1_PHASE_IN       GENMASK(25, 21)
-> > +#define   ASPEED_SDC_S0_PHASE_IN       GENMASK(20, 16)
-> > +#define   ASPEED_SDC_S1_PHASE_OUT      GENMASK(15, 11)
-> > +#define   ASPEED_SDC_S1_PHASE_IN_EN    BIT(10)
-> > +#define   ASPEED_SDC_S1_PHASE_OUT_EN   GENMASK(9, 8)
-> > +#define   ASPEED_SDC_S0_PHASE_OUT      GENMASK(7, 3)
-> > +#define   ASPEED_SDC_S0_PHASE_IN_EN    BIT(2)
-> > +#define   ASPEED_SDC_S0_PHASE_OUT_EN   GENMASK(1, 0)
-> >
-> >  struct aspeed_sdc {
-> >         struct clk *clk;
-> > @@ -28,9 +37,21 @@ struct aspeed_sdc {
-> >         void __iomem *regs;
-> >  };
-> >
-> > +struct aspeed_sdhci_phase_desc {
-> > +       u32 value_mask;
-> > +       u32 enable_mask;
-> > +       u8 enable_value;
-> > +};
-> > +
-> > +struct aspeed_sdhci_phase {
-> > +       struct aspeed_sdhci_phase_desc in;
-> > +       struct aspeed_sdhci_phase_desc out;
-> > +};
-> > +
-> >  struct aspeed_sdhci {
-> >         struct aspeed_sdc *parent;
-> >         u32 width_mask;
-> > +       const struct aspeed_sdhci_phase *phase;
-> >  };
-> >
-> >  static void aspeed_sdc_configure_8bit_mode(struct aspeed_sdc *sdc,
-> > @@ -50,6 +71,25 @@ static void aspeed_sdc_configure_8bit_mode(struct aspeed_sdc *sdc,
-> >         spin_unlock(&sdc->lock);
-> >  }
-> >
-> > +static void
-> > +aspeed_sdc_configure_phase(struct aspeed_sdc *sdc,
-> > +                          const struct aspeed_sdhci_phase_desc *phase,
-> > +                          uint8_t value, bool enable)
-> > +{
-> > +       u32 reg;
-> > +
-> > +       spin_lock(&sdc->lock);
-> 
-> What is the lock protecting against?
-> 
-> We call this in the ->probe, so there should be no concurrent access going on.
-
-Because the register is in the "global" part of the SD/MMC controller address 
-space (it's not part of the SDHCI), and there are multiple slots that may have 
-a driver probed concurrently.
-
-> 
-> 
-> > +       reg = readl(sdc->regs + ASPEED_SDC_PHASE);
-> > +       reg &= ~phase->enable_mask;
-> > +       if (enable) {
-> > +               reg &= ~phase->value_mask;
-> > +               reg |= value << __ffs(phase->value_mask);
-> > +               reg |= phase->enable_value << __ffs(phase->enable_mask);
-> > +       }
-> > +       writel(reg, sdc->regs + ASPEED_SDC_PHASE);
-> > +       spin_unlock(&sdc->lock);
-> > +}
-> > +
-> >  static void aspeed_sdhci_set_clock(struct sdhci_host *host, unsigned int clock)
-> >  {
-> >         struct sdhci_pltfm_host *pltfm_host;
-> > @@ -155,8 +195,58 @@ static inline int aspeed_sdhci_calculate_slot(struct aspeed_sdhci *dev,
-> >         return (delta / 0x100) - 1;
-> >  }
-> >
-> > +static int aspeed_sdhci_configure_of(struct platform_device *pdev,
-> > +                                    struct aspeed_sdhci *sdhci)
-> > +{
-> > +       u32 iphase, ophase;
-> > +       struct device_node *np;
-> > +       struct device *dev;
-> > +       int ret;
-> > +
-> > +       if (!sdhci->phase)
-> > +               return 0;
-> > +
-> > +       dev = &pdev->dev;
-> > +       np = dev->of_node;
-> > +
-> > +       ret = of_property_read_u32(np, "aspeed,input-phase", &iphase);
-> > +       if (ret < 0) {
-> > +               aspeed_sdc_configure_phase(sdhci->parent, &sdhci->phase->in, 0,
-> > +                                          false);
-> 
-> Will this clear any value that eg. u-boot writes?
-
-No, see the 'enable' test in aspeed_sdc_configure_phase()
-
-> 
-> The register should be left alone if the kernel doesn't have a
-> configuration of it's own, otherwise we may end up breaking an
-> otherwise working system.
-
-Right, I can rework that.
-
-> 
-> > +               dev_dbg(dev, "Input phase configuration disabled");
-> > +       } else if (iphase >= (1 << 5)) {
-> > +               dev_err(dev,
-> > +                       "Input phase value exceeds field range (5 bits): %u",
-> > +                       iphase);
-> > +               return -ERANGE;
-> > +       } else {
-> > +               aspeed_sdc_configure_phase(sdhci->parent, &sdhci->phase->in,
-> > +                                          iphase, true);
-> > +               dev_info(dev, "Input phase relationship: %u", iphase);
-> 
-> Make theis _dbg, on a normal boot we don't need this chatter in the logs.
-> 
-> The same comments apply for the output.
-
-Yes, I actually meant to do this before I sent the patches but clearly forgot :)
-
-> 
-> > +       }
-> > +
-> > +       ret = of_property_read_u32(np, "aspeed,output-phase", &ophase);
-> > +       if (ret < 0) {
-> > +               aspeed_sdc_configure_phase(sdhci->parent, &sdhci->phase->out, 0,
-> > +                                          false);
-> > +               dev_dbg(dev, "Output phase configuration disabled");
-> > +       } else if (ophase >= (1 << 5)) {
-> > +               dev_err(dev,
-> > +                       "Output phase value exceeds field range (5 bits): %u",
-> > +                       iphase);
-> > +               return -ERANGE;
-> 
-> This will cause the driver to fail to probe. I think skipping setting
-> of the phase is a better option.
-
-Well, maybe? If the phase is specified but invalid then chances are you'll hit 
-system instability by continuing to probe the driver. I think it's better to 
-fail in an obvious way, it's not as if it's incidentally incorrect.
-
+On 9/10/20 9:42 PM, Crystal Guo wrote:
+> On Wed, 2020-09-09 at 23:39 +0800, Suman Anna wrote:
+>> On 9/8/20 9:57 PM, Crystal Guo wrote:
+>>> On Thu, 2020-09-03 at 07:40 +0800, Suman Anna wrote:
+>>>> Hi Crystal,
+>>>>
+>>>> On 8/16/20 10:03 PM, Crystal Guo wrote:
+>>>>> Introduce ti_syscon_reset() to integrate assert and deassert together.
+>>>>> If some modules need do serialized assert and deassert operations
+>>>>> to reset itself, reset_control_reset can be called for convenience.
+>>>>
+>>>> There are multiple changes in this same patch. I think you should split this
+>>>> functionality away from the change for the regmap_update_bits() to
+>>>> regmap_write_bits(), similar to what you have done in your v2 Patch 4.
+>>>>
+>>>
+>>> Thanks for your suggestion.
+>>> I will split this patch in the next version.
+>>>
+>>>>>
+>>>>> Such as reset-qcom-aoss.c, it integrates assert and deassert together
+>>>>> by 'reset' method. MTK Socs also need this method to perform reset.
+>>>>>
+>>>>> Signed-off-by: Crystal Guo <crystal.guo@mediatek.com>
+>>>>> ---
+>>>>>  drivers/reset/reset-ti-syscon.c | 26 ++++++++++++++++++++++++--
+>>>>>  1 file changed, 24 insertions(+), 2 deletions(-)
+>>>>>
+>>>>> diff --git a/drivers/reset/reset-ti-syscon.c b/drivers/reset/reset-ti-syscon.c
+>>>>> index a2635c21db7f..08289342f9af 100644
+>>>>> --- a/drivers/reset/reset-ti-syscon.c
+>>>>> +++ b/drivers/reset/reset-ti-syscon.c
+>>>>> @@ -15,6 +15,7 @@
+>>>>>   * GNU General Public License for more details.
+>>>>>   */
+>>>>>  
+>>>>> +#include <linux/delay.h>
+>>>>>  #include <linux/mfd/syscon.h>
+>>>>>  #include <linux/module.h>
+>>>>>  #include <linux/of.h>
+>>>>> @@ -56,6 +57,7 @@ struct ti_syscon_reset_data {
+>>>>>  	struct regmap *regmap;
+>>>>>  	struct ti_syscon_reset_control *controls;
+>>>>>  	unsigned int nr_controls;
+>>>>> +	unsigned int reset_duration_us;
+>>>>>  };
+>>>>>  
+>>>>>  #define to_ti_syscon_reset_data(rcdev)	\
+>>>>> @@ -89,7 +91,7 @@ static int ti_syscon_reset_assert(struct reset_controller_dev *rcdev,
+>>>>>  	mask = BIT(control->assert_bit);
+>>>>>  	value = (control->flags & ASSERT_SET) ? mask : 0x0;
+>>>>>  
+>>>>> -	return regmap_update_bits(data->regmap, control->assert_offset, mask, value);
+>>>>> +	return regmap_write_bits(data->regmap, control->assert_offset, mask, value);
+>>>>>  }
+>>>>>  
+>>>>>  /**
+>>>>> @@ -120,7 +122,7 @@ static int ti_syscon_reset_deassert(struct reset_controller_dev *rcdev,
+>>>>>  	mask = BIT(control->deassert_bit);
+>>>>>  	value = (control->flags & DEASSERT_SET) ? mask : 0x0;
+>>>>>  
+>>>>> -	return regmap_update_bits(data->regmap, control->deassert_offset, mask, value);
+>>>>> +	return regmap_write_bits(data->regmap, control->deassert_offset, mask, value);
+>>>>>  }
+>>>>>  
+>>>>>  /**
+>>>>> @@ -158,9 +160,26 @@ static int ti_syscon_reset_status(struct reset_controller_dev *rcdev,
+>>>>>  		!(control->flags & STATUS_SET);
+>>>>>  }
+>>>>>  
+>>>>> +static int ti_syscon_reset(struct reset_controller_dev *rcdev,
+>>>>> +				  unsigned long id)
+>>>>> +{
+>>>>> +	struct ti_syscon_reset_data *data = to_ti_syscon_reset_data(rcdev);
+>>>>> +	int ret;
+>>>>> +
+>>>>> +	ret = ti_syscon_reset_assert(rcdev, id);
+>>>>> +	if (ret)
+>>>>> +		return ret;
+>>>>> +
+>>>>> +	if (data->reset_duration_us)
+>>>>> +		usleep_range(data->reset_duration_us, data->reset_duration_us * 2);
+>>>>> +
+>>>>> +	return ti_syscon_reset_deassert(rcdev, id);
+>>>>
+>>>> I echo Philipp's comments [1] from your original v1 series about this. We don't
+>>>> need a property to distinguish this, but you could add a flag using match data
+>>>> and Mediatek compatible, and use that within this function, or optionally set
+>>>> this ops based on compatible (whatever is preferred by Philipp).
+>>>>
+>>>> regards
+>>>> Suman
+>>>>
+>>>> [1] https://patchwork.kernel.org/comment/23519193/
+>>>>
+>>> Hi Suman, Philipp
+>>>
+>>> Which method would you recommend more?
+>>> 1. like v2 patch, but assign the flag "data->assert_deassert_together"
+>>> directly (maybe rename "assert_deassert_together" to
+>>> "reset_op_available")
+>>>
+>>> 2. use Mediatek compatible to decide the reset handler available or not.
+>>
+>> I would go with this option. Anyway, I think you might have to add the reset SoC
+>> data as well, based on Rob's comment on the binding.
+>>
+>> regards
+>> Suman
 > 
 > 
-> > +       } else {
-> > +               aspeed_sdc_configure_phase(sdhci->parent, &sdhci->phase->out,
-> > +                                          ophase, true);
-> > +               dev_info(dev, "Output phase relationship: %u", ophase);
-> > +       }
-> > +
-> > +       return 0;
-> > +}
-> > +
-> >  static int aspeed_sdhci_probe(struct platform_device *pdev)
-> >  {
-> > +       const struct aspeed_sdhci_phase *phase;
-> >         struct sdhci_pltfm_host *pltfm_host;
-> >         struct aspeed_sdhci *dev;
-> >         struct sdhci_host *host;
-> > @@ -181,7 +271,10 @@ static int aspeed_sdhci_probe(struct platform_device *pdev)
-> >                 return -EINVAL;
-> >
-> >         dev_info(&pdev->dev, "Configuring for slot %d\n", slot);
-> > -       dev->width_mask = !slot ? ASPEED_SDC_S0MMC8 : ASPEED_SDC_S1MMC8;
-> > +       dev->width_mask = !slot ? ASPEED_SDC_S0_MMC8 : ASPEED_SDC_S1_MMC8;
-> > +       phase = of_device_get_match_data(&pdev->dev);
-> > +       if (phase)
-> > +               dev->phase = &phase[slot];
-> >
-> >         sdhci_get_of_property(pdev);
-> >
-> > @@ -195,6 +288,10 @@ static int aspeed_sdhci_probe(struct platform_device *pdev)
-> >                 goto err_pltfm_free;
-> >         }
-> >
-> > +       ret = aspeed_sdhci_configure_of(pdev, dev);
-> > +       if (ret)
-> > +               goto err_sdhci_add;
-> > +
-> >         ret = mmc_of_parse(host->mmc);
-> >         if (ret)
-> >                 goto err_sdhci_add;
-> > @@ -230,10 +327,40 @@ static int aspeed_sdhci_remove(struct platform_device *pdev)
-> >         return 0;
-> >  }
-> >
-> > +static const struct aspeed_sdhci_phase ast2600_sdhci_phase[] = {
-> > +       /* SDHCI/Slot 0 */
-> > +       [0] = {
-> > +               .in = {
-> > +                       .value_mask = ASPEED_SDC_S0_PHASE_IN,
-> > +                       .enable_mask = ASPEED_SDC_S0_PHASE_IN_EN,
-> > +                       .enable_value = 1,
-> > +               },
-> > +               .out = {
-> > +                       .value_mask = ASPEED_SDC_S0_PHASE_OUT,
-> > +                       .enable_mask = ASPEED_SDC_S0_PHASE_OUT_EN,
-> > +                       .enable_value = 3,
-> > +               },
-> > +       },
-> > +       /* SDHCI/Slot 1 */
-> > +       [1] = {
-> > +               .in = {
-> > +                       .value_mask = ASPEED_SDC_S1_PHASE_IN,
-> > +                       .enable_mask = ASPEED_SDC_S1_PHASE_IN_EN,
-> > +                       .enable_value = 1,
-> > +               },
-> > +               .out = {
-> > +                       .value_mask = ASPEED_SDC_S1_PHASE_OUT,
-> > +                       .enable_mask = ASPEED_SDC_S1_PHASE_OUT_EN,
+> Thanks for your suggestions
+> I will add the following changes in the next version, 
+> please correct me if there is any misunderstanding.
+> 1). revert ti-syscon-reset.txt add a new mediatek reset binding doc.
+> 2). split the patch [v4,3/4] with the change for the
+> regmap_update_bits() to regmap_write_bits() and the change to integrate
+> assert and deassert together.
+> 3). add the reset SoC data, which contains the flag "reset_op_available"
+> to decide the reset handler available or not.
+
+You would also need to add your SoC-specific data equivalent of the current
+ti,reset-bits in your infra node. Please see Rob's comments on patch 2. Also,
+your new Mediatek binding should be in YAML format.
+
+regards
+Suman
+
+> 4). separate the dts patch from this patch sets
 > 
-> Is there any value in splitting the input and output phase values
-> up? (instead of taking the property from the device tree and putting
-> it in the hardware).
+>>>
+>>> Thanks
+>>> Crystal
+>>>
+>>>>> +}
+>>>>> +
+>>>>>  static const struct reset_control_ops ti_syscon_reset_ops = {
+>>>>>  	.assert		= ti_syscon_reset_assert,
+>>>>>  	.deassert	= ti_syscon_reset_deassert,
+>>>>> +	.reset		= ti_syscon_reset,
+>>>>>  	.status		= ti_syscon_reset_status,
+>>>>>  };
+>>>>>  
+>>>>> @@ -204,6 +223,9 @@ static int ti_syscon_reset_probe(struct platform_device *pdev)
+>>>>>  		controls[i].flags = be32_to_cpup(list++);
+>>>>>  	}
+>>>>>  
+>>>>> +	of_property_read_u32(pdev->dev.of_node,	"reset-duration-us",
+>>>>> +				&data->reset_duration_us);
+>>>>> +
+>>>>>  	data->rcdev.ops = &ti_syscon_reset_ops;
+>>>>>  	data->rcdev.owner = THIS_MODULE;
+>>>>>  	data->rcdev.of_node = np;
+>>>>>
+>>>>
+>>>
+>>
+> 
 
-One register contains both settings for both slots. We can't just blast the 
-full register value for one of the slots into it. Further, the fields for the 
-slots are interleaved, so it's not like we can just associate the top or bottom 
-16 bits with a particular slot.
-
-Cheers,
-
-Andrew
