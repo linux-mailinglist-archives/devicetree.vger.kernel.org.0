@@ -2,76 +2,117 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from vger.kernel.org (vger.kernel.org [23.128.96.18])
-	by mail.lfdr.de (Postfix) with ESMTP id C4F6A2663E1
-	for <lists+devicetree@lfdr.de>; Fri, 11 Sep 2020 18:26:59 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTP id 4AE23266398
+	for <lists+devicetree@lfdr.de>; Fri, 11 Sep 2020 18:21:07 +0200 (CEST)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S1726505AbgIKQ0c (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Fri, 11 Sep 2020 12:26:32 -0400
-Received: from mail-lf1-f68.google.com ([209.85.167.68]:46820 "EHLO
-        mail-lf1-f68.google.com" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S1726444AbgIKPWa (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Fri, 11 Sep 2020 11:22:30 -0400
-Received: by mail-lf1-f68.google.com with SMTP id b22so2673528lfs.13
-        for <devicetree@vger.kernel.org>; Fri, 11 Sep 2020 08:22:29 -0700 (PDT)
+        id S1726306AbgIKQSv (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Fri, 11 Sep 2020 12:18:51 -0400
+Received: from lindbergh.monkeyblade.net ([23.128.96.19]:34404 "EHLO
+        lindbergh.monkeyblade.net" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
+        with ESMTP id S1726493AbgIKPbG (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Fri, 11 Sep 2020 11:31:06 -0400
+Received: from mail-vs1-xe41.google.com (mail-vs1-xe41.google.com [IPv6:2607:f8b0:4864:20::e41])
+        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id E75ECC061757
+        for <devicetree@vger.kernel.org>; Fri, 11 Sep 2020 08:31:04 -0700 (PDT)
+Received: by mail-vs1-xe41.google.com with SMTP id j6so4669524vsg.8
+        for <devicetree@vger.kernel.org>; Fri, 11 Sep 2020 08:31:04 -0700 (PDT)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+        d=chromium.org; s=google;
+        h=mime-version:references:in-reply-to:from:date:message-id:subject:to
+         :cc;
+        bh=XQ0JFGk0jynIKmq2K3P16bVN8Djod/Kezzi4snKiADY=;
+        b=XsBD6bIs7vKHNxYE82q8A7ZEoSoOU6Ljp4t42+euB+op9GjboVKdeD6RYJ4B6IbaUP
+         Ns2pack5xHA8MIWOe2/QY0z0Q7TrcLRLIWaDLimGj8nhXT45RAd/BxJtfAzpiOE7oI3h
+         tabyhOgNLFJE+PAW1KTQWcHZr/cM5YEcKWi4k=
 X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
         d=1e100.net; s=20161025;
-        h=x-gm-message-state:date:from:to:cc:subject:message-id:references
-         :mime-version:content-disposition:in-reply-to:user-agent;
-        bh=aOEss69u0HOf22P48MgZ3tBTFDKG/yZuI7WmzKdffDM=;
-        b=COuKZVHuuY/cc8pc7svvdOlFkulnDkd5p17rKrMtn67PMSleenNwU6GDAKjdcSEJqb
-         pYob0AW02xZj8YXzkZn8bwwxLEKnJQm/TYQFegsXSRtrB3YnILkv3yAeTA+ipsbY8eoV
-         kgv4+eoIsJGG+BQFs60gCf0hKyg6wbwuVLiVDx9hPkwReNOfCo4SFmzq0TD00t3wVYM5
-         jH2OFzkkQqOAuVRGZHGl0OvlYA3YficCGClLOprrXeyi/leTx0KI2nKtZkGfjaaOvhBm
-         vGrmgx880aaDElR+1Vh0ish3LSt9w1SBeU0Bl/nqRpdlxa/j4Ss0tCY6cZezWQHlVD3L
-         5Bgg==
-X-Gm-Message-State: AOAM533Wwiwjtb8K5QTB4s12DgCEKUbUt81+E/bjaKCgzvo/05v7TKjo
-        UzXD0sOdfVEvbPaJr40eG2x0/fXhYVVOkQ==
-X-Google-Smtp-Source: ABdhPJwuI4pGTArYk3AIoPmW73BVQfttNnu3/IOhNJnwaeSyTKJzti6CLpR1dy2frjoSivz3v0G8TQ==
-X-Received: by 2002:a17:906:4993:: with SMTP id p19mr2504434eju.277.1599836063629;
-        Fri, 11 Sep 2020 07:54:23 -0700 (PDT)
-Received: from kozik-lap ([194.230.155.174])
-        by smtp.googlemail.com with ESMTPSA id e15sm1851929eds.5.2020.09.11.07.54.21
-        (version=TLS1_2 cipher=ECDHE-ECDSA-CHACHA20-POLY1305 bits=256/256);
-        Fri, 11 Sep 2020 07:54:22 -0700 (PDT)
-Date:   Fri, 11 Sep 2020 16:54:20 +0200
-From:   Krzysztof Kozlowski <krzk@kernel.org>
-To:     Rob Herring <robh+dt@kernel.org>, Kukjin Kim <kgene@kernel.org>,
-        devicetree@vger.kernel.org, linux-arm-kernel@lists.infradead.org,
-        linux-samsung-soc@vger.kernel.org, linux-kernel@vger.kernel.org
-Cc:     Marek Szyprowski <m.szyprowski@samsung.com>,
-        Bartlomiej Zolnierkiewicz <b.zolnierkie@samsung.com>,
-        Sylwester Nawrocki <snawrocki@kernel.org>
-Subject: Re: [PATCH v3 3/3] ARM: dts: exynos: Add clocks sound node in
- Exynos5422 Odroid XU4
-Message-ID: <20200911145420.GD15290@kozik-lap>
-References: <20200906142146.21266-1-krzk@kernel.org>
- <20200906142146.21266-3-krzk@kernel.org>
+        h=x-gm-message-state:mime-version:references:in-reply-to:from:date
+         :message-id:subject:to:cc;
+        bh=XQ0JFGk0jynIKmq2K3P16bVN8Djod/Kezzi4snKiADY=;
+        b=a0Wi3nhWcKv/wXhnPhTDeDgXCqy01Et2iLR+T/xkSSQ0jxCvz7IWpIh/+EJjtOhdR9
+         53lEP+gFAOnuOLR3gKQ3n77HcknAAl3kz8zpGe33uPgmvHLZ2Q+QjR+8w56Mbq6F5+50
+         klOvs/OY9UpPJsX8mmhphB07rwS2XGV2N9CEWVDjiUnkFJhsFzja9ac7YeHOppqkYYDc
+         BglBadcvHG0gL4zcwqAwshVlAQyLBuU8oJZmxExoG27WexGG6FDIIKowjomxU40cG5pF
+         WIpl4JPXdXuFpqouR8HK/10TdsVAC+ksdTZlrZfCc1ExNMjzJ3qI2bYx2lmKos57rd0h
+         6z1w==
+X-Gm-Message-State: AOAM532GYB+Ld/NzHbNSKFJ6Sjfhttc2vRxB+ssmI0/5PViYU2tu60CW
+        FvZkvW5B6lC2mRrZS3fTFmgOxA1LIzWjVA==
+X-Google-Smtp-Source: ABdhPJzGWvWSoRUyZBj+Gi21dT+zgNNqlLYq2ERF68gc1wDzWbWlJAlkybvLD/aulO2bZOVj8eeiyQ==
+X-Received: by 2002:a67:c595:: with SMTP id h21mr1545250vsk.12.1599838263031;
+        Fri, 11 Sep 2020 08:31:03 -0700 (PDT)
+Received: from mail-vs1-f52.google.com (mail-vs1-f52.google.com. [209.85.217.52])
+        by smtp.gmail.com with ESMTPSA id x124sm394097vka.34.2020.09.11.08.31.01
+        for <devicetree@vger.kernel.org>
+        (version=TLS1_3 cipher=TLS_AES_128_GCM_SHA256 bits=128/128);
+        Fri, 11 Sep 2020 08:31:01 -0700 (PDT)
+Received: by mail-vs1-f52.google.com with SMTP id j6so4669461vsg.8
+        for <devicetree@vger.kernel.org>; Fri, 11 Sep 2020 08:31:01 -0700 (PDT)
+X-Received: by 2002:a05:6102:10c2:: with SMTP id t2mr1521400vsr.10.1599838261153;
+ Fri, 11 Sep 2020 08:31:01 -0700 (PDT)
 MIME-Version: 1.0
-Content-Type: text/plain; charset=utf-8
-Content-Disposition: inline
-In-Reply-To: <20200906142146.21266-3-krzk@kernel.org>
-User-Agent: Mutt/1.9.4 (2018-02-28)
+References: <1599742438-16811-1-git-send-email-skakit@codeaurora.org>
+ <1599742438-16811-3-git-send-email-skakit@codeaurora.org> <CAD=FV=ULJqgHutr524wb-wVq4gejqo1p_zqRXP=h4Co6Gvmzew@mail.gmail.com>
+ <010101747ca94cce-42d129fa-0374-4f12-aab8-2ccafd02b3c7-000000@us-west-2.amazonses.com>
+ <20200911135232.GY3715@yoga>
+In-Reply-To: <20200911135232.GY3715@yoga>
+From:   Doug Anderson <dianders@chromium.org>
+Date:   Fri, 11 Sep 2020 08:30:48 -0700
+X-Gmail-Original-Message-ID: <CAD=FV=Uf80P0_aOJw5NMd_oNm5fd8etXnM7m03ogUo7_Kk9G-A@mail.gmail.com>
+Message-ID: <CAD=FV=Uf80P0_aOJw5NMd_oNm5fd8etXnM7m03ogUo7_Kk9G-A@mail.gmail.com>
+Subject: Re: [PATCH V5 2/4] arm64: dts: qcom: sc7180: Add necessary pinctrl
+ and interrupt config for BT UART
+To:     Bjorn Andersson <bjorn.andersson@linaro.org>
+Cc:     satya priya <skakit@codeaurora.org>,
+        Matthias Kaehlcke <mka@chromium.org>,
+        Greg Kroah-Hartman <gregkh@linuxfoundation.org>,
+        Andy Gross <agross@kernel.org>,
+        Rob Herring <robh+dt@kernel.org>,
+        linux-arm-msm <linux-arm-msm@vger.kernel.org>,
+        "open list:OPEN FIRMWARE AND FLATTENED DEVICE TREE BINDINGS" 
+        <devicetree@vger.kernel.org>, LKML <linux-kernel@vger.kernel.org>,
+        Akash Asthana <akashast@codeaurora.org>,
+        Roja Rani Yarubandi <rojay@codeaurora.org>,
+        msavaliy@qti.qualcomm.com
+Content-Type: text/plain; charset="UTF-8"
 Sender: devicetree-owner@vger.kernel.org
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-On Sun, Sep 06, 2020 at 04:21:46PM +0200, Krzysztof Kozlowski wrote:
-> The dtschema expects "clocks" property if "assigned-clocks" are used.
-> Add reference to all parent clocks to silence the dtbs_check warnings.
-> 
-> Signed-off-by: Krzysztof Kozlowski <krzk@kernel.org>
-> 
-> ---
-> 
-> Changes since v2:
-> 1. Move clock properties to i2s, just like Sylwester Nawrocki did for
->    Odroid XU3.
-> ---
->  arch/arm/boot/dts/exynos5422-odroidxu4.dts | 60 ++++++++++------------
+Hi,
 
-Applied with reworked commit msg.
+On Fri, Sep 11, 2020 at 6:52 AM Bjorn Andersson
+<bjorn.andersson@linaro.org> wrote:
+>
+> > > >  &uart3 {
+> > > > +       pinctrl-names = "default", "sleep";
+> > > > +       pinctrl-1 = <&qup_uart3_sleep>;
+> > > > +       interrupts-extended = <&intc GIC_SPI 604 IRQ_TYPE_LEVEL_HIGH>,
+> > > > +                               <&tlmm 41 IRQ_TYPE_EDGE_FALLING>;
+> > >
+> > > You need a:
+> > >
+> > > /delete-property/interrupts;
+> > >
+> > > ...or, alternatively, a patch before this one that converts all the
+> > > UARTs in sc7180 to just use interrupts-extended.
+> > >
+> >
+> > Sure, I will add this. But I think when both are added,
+> > "interrupts-extended" will get priority as per [1] and there wouldn't be any
+> > problem.
+> >
+>
+> You're indeed correct, please stick with what you have.
 
-Best regards,
-Krzysztof
+IMO this is ugly, but I won't fight too hard on it if you guys really
+want to do it that way.  Reading the documentation it sounds as if
+allowing for both is intended to be used in cases where the same
+device tree might be used on old software (that didn't understand
+interrupts-extended) and on new software (that does).  The
+interrupts-extended property by far predates any sc7180 support,
+though, so I can't imagine anyone really needing to use that these
+days.  Is it really that bad to add the /delete-property/ to end up
+with a cleaner final device tree?
 
+-Doug
