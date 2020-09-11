@@ -2,100 +2,74 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from vger.kernel.org (vger.kernel.org [23.128.96.18])
-	by mail.lfdr.de (Postfix) with ESMTP id 4FC4C26646B
-	for <lists+devicetree@lfdr.de>; Fri, 11 Sep 2020 18:38:11 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTP id 80A79266440
+	for <lists+devicetree@lfdr.de>; Fri, 11 Sep 2020 18:34:13 +0200 (CEST)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S1726593AbgIKQh7 convert rfc822-to-8bit (ORCPT
-        <rfc822;lists+devicetree@lfdr.de>); Fri, 11 Sep 2020 12:37:59 -0400
-Received: from lindbergh.monkeyblade.net ([23.128.96.19]:59722 "EHLO
-        lindbergh.monkeyblade.net" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S1726426AbgIKPM6 (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Fri, 11 Sep 2020 11:12:58 -0400
-Received: from metis.ext.pengutronix.de (metis.ext.pengutronix.de [IPv6:2001:67c:670:201:290:27ff:fe1d:cc33])
-        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id C7422C061373
-        for <devicetree@vger.kernel.org>; Fri, 11 Sep 2020 07:33:35 -0700 (PDT)
-Received: from lupine.hi.pengutronix.de ([2001:67c:670:100:3ad5:47ff:feaf:1a17] helo=lupine)
-        by metis.ext.pengutronix.de with esmtps (TLS1.3:ECDHE_RSA_AES_256_GCM_SHA384:256)
-        (Exim 4.92)
-        (envelope-from <p.zabel@pengutronix.de>)
-        id 1kGk7E-0004h8-OX; Fri, 11 Sep 2020 16:33:28 +0200
-Received: from pza by lupine with local (Exim 4.92)
-        (envelope-from <p.zabel@pengutronix.de>)
-        id 1kGk77-0003hr-RU; Fri, 11 Sep 2020 16:33:21 +0200
-Message-ID: <1ac4ba40a031169b968e3084c132579db921033c.camel@pengutronix.de>
-Subject: Re: [v2,2/3] PCI: mediatek: Add new generation controller support
-From:   Philipp Zabel <p.zabel@pengutronix.de>
-To:     Jianjun Wang <jianjun.wang@mediatek.com>,
-        Bjorn Helgaas <bhelgaas@google.com>,
-        Rob Herring <robh+dt@kernel.org>,
-        Lorenzo Pieralisi <lorenzo.pieralisi@arm.com>,
-        Ryder Lee <ryder.lee@mediatek.com>
-Cc:     Matthias Brugger <matthias.bgg@gmail.com>,
-        Mauro Carvalho Chehab <mchehab+huawei@kernel.org>,
-        davem@davemloft.net, linux-pci@vger.kernel.org,
-        linux-mediatek@lists.infradead.org, devicetree@vger.kernel.org,
-        linux-kernel@vger.kernel.org, linux-arm-kernel@lists.infradead.org,
-        Sj Huang <sj.huang@mediatek.com>
-Date:   Fri, 11 Sep 2020 16:33:21 +0200
-In-Reply-To: <20200910034536.30860-3-jianjun.wang@mediatek.com>
-References: <20200910034536.30860-1-jianjun.wang@mediatek.com>
-         <20200910034536.30860-3-jianjun.wang@mediatek.com>
-Content-Type: text/plain; charset="UTF-8"
-Content-Transfer-Encoding: 8BIT
-User-Agent: Evolution 3.30.5-1.1 
+        id S1726565AbgIKQeL (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Fri, 11 Sep 2020 12:34:11 -0400
+Received: from mail-wr1-f65.google.com ([209.85.221.65]:44601 "EHLO
+        mail-wr1-f65.google.com" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
+        with ESMTP id S1726271AbgIKPO4 (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Fri, 11 Sep 2020 11:14:56 -0400
+Received: by mail-wr1-f65.google.com with SMTP id s12so11821559wrw.11;
+        Fri, 11 Sep 2020 08:14:11 -0700 (PDT)
+X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+        d=1e100.net; s=20161025;
+        h=x-gm-message-state:date:from:to:cc:subject:message-id:references
+         :mime-version:content-disposition:in-reply-to:user-agent;
+        bh=UIVbwBNKxNo/10lplKWoo394ZufuQog2Ked0Yf0GEU0=;
+        b=pi8SdIVAxEH9+5z3pbGZLtoqICGQRgAqCbHXW0i6Y2RydoCALqsvhU+r/mnJsz4XjM
+         aaviy7LIDbPe2PuiTnENSbgCYOW9ic7/i6n3dlJNtY0O8fnmgu6Hhe4a9+lzMtXViPiR
+         fftSRPPcELoU0ZvMRBE9/oE+85R9YueF1O154MjLpvWkzfCupMClA7PJ8RJSVGOYN2ZV
+         4l/bCqJHxLPerVrBMu61AhKI4hUXBVPltRPneyk/q3uQNNjJRpYt4SdUredopwUqxtO2
+         PoWmGAdmlfGirtZk3vBbG+9WyQjcsOd9fPz/sAp37wuWsYbHesT34oAkesWZ6kZ8459r
+         /xWA==
+X-Gm-Message-State: AOAM533T/W7J2zxwvQbcZUqQ1P6Lafrzsw7eSaSgJrKxI9LKwY/ibjBW
+        poWO0wwHkVTNQFWTWn1MtEKt/oVxFPpo9g==
+X-Google-Smtp-Source: ABdhPJyRFKcUX5ZMW6c5ii/6YaXTE/rQWuO05eOrW+yGWhS9Pw4jNEpnmBx0GwzTcscwqGuyAKKerA==
+X-Received: by 2002:a17:906:3e4e:: with SMTP id t14mr2264655eji.269.1599834992753;
+        Fri, 11 Sep 2020 07:36:32 -0700 (PDT)
+Received: from kozik-lap ([194.230.155.174])
+        by smtp.googlemail.com with ESMTPSA id f10sm1814872edk.34.2020.09.11.07.36.30
+        (version=TLS1_2 cipher=ECDHE-ECDSA-CHACHA20-POLY1305 bits=256/256);
+        Fri, 11 Sep 2020 07:36:31 -0700 (PDT)
+Date:   Fri, 11 Sep 2020 16:36:27 +0200
+From:   Krzysztof Kozlowski <krzk@kernel.org>
+To:     Kukjin Kim <kgene@kernel.org>, Rob Herring <robh+dt@kernel.org>,
+        Lihua Yao <ylhuajnu@outlook.com>,
+        linux-arm-kernel@lists.infradead.org,
+        linux-samsung-soc@vger.kernel.org, devicetree@vger.kernel.org,
+        linux-kernel@vger.kernel.org
+Cc:     Marek Szyprowski <m.szyprowski@samsung.com>,
+        Bartlomiej Zolnierkiewicz <b.zolnierkie@samsung.com>,
+        Sylwester Nawrocki <snawrocki@kernel.org>,
+        Tomasz Figa <tomasz.figa@gmail.com>
+Subject: Re: [PATCH 01/11] ARM: dts: s5pv210: Correct ethernet unit address
+ in SMDKV210
+Message-ID: <20200911143627.GA659@kozik-lap>
+References: <20200907183313.29234-1-krzk@kernel.org>
+ <20200907183313.29234-2-krzk@kernel.org>
 MIME-Version: 1.0
-X-SA-Exim-Connect-IP: 2001:67c:670:100:3ad5:47ff:feaf:1a17
-X-SA-Exim-Mail-From: p.zabel@pengutronix.de
-X-SA-Exim-Scanned: No (on metis.ext.pengutronix.de); SAEximRunCond expanded to false
-X-PTX-Original-Recipient: devicetree@vger.kernel.org
+Content-Type: text/plain; charset=utf-8
+Content-Disposition: inline
+In-Reply-To: <20200907183313.29234-2-krzk@kernel.org>
+User-Agent: Mutt/1.9.4 (2018-02-28)
 Sender: devicetree-owner@vger.kernel.org
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-Hi Jianjun,
-
-On Thu, 2020-09-10 at 11:45 +0800, Jianjun Wang wrote:
-> MediaTek's PCIe host controller has three generation HWs, the new
-> generation HW is an individual bridge, it supoorts Gen3 speed and
-> up to 256 MSI interrupt numbers for multi-function devices.
+On Mon, Sep 07, 2020 at 08:33:03PM +0200, Krzysztof Kozlowski wrote:
+> The SROM bank 5 is at address 0xa8000000, just like the one put in "reg"
+> property of ethernet node.  Fix the unit address of ethernet node.
 > 
-> Add support for new Gen3 controller which can be found on MT8192.
-> 
-> Signed-off-by: Jianjun Wang <jianjun.wang@mediatek.com>
-> Acked-by: Ryder Lee <ryder.lee@mediatek.com>
+> Signed-off-by: Krzysztof Kozlowski <krzk@kernel.org>
 > ---
->  drivers/pci/controller/Kconfig              |   14 +
->  drivers/pci/controller/Makefile             |    1 +
->  drivers/pci/controller/pcie-mediatek-gen3.c | 1076 +++++++++++++++++++
->  3 files changed, 1091 insertions(+)
->  create mode 100644 drivers/pci/controller/pcie-mediatek-gen3.c
-> 
-[...]
-> diff --git a/drivers/pci/controller/pcie-mediatek-gen3.c b/drivers/pci/controller/pcie-mediatek-gen3.c
-> new file mode 100644
-> index 000000000000..f8c8bdf88d33
-> --- /dev/null
-> +++ b/drivers/pci/controller/pcie-mediatek-gen3.c
-[...]
-> +static int mtk_pcie_power_up(struct mtk_pcie_port *port)
-> +{
-> +	struct device *dev = port->dev;
-> +	int err;
-> +
-> +	port->phy_reset = devm_reset_control_get_optional(dev, "phy-rst");
+>  arch/arm/boot/dts/s5pv210-smdkv210.dts | 2 +-
+>  1 file changed, 1 insertion(+), 1 deletion(-)
 
-Please use devm_reset_control_get_optional_exclusive() instead.
+Applied.
 
-> +	if (PTR_ERR(port->phy_reset) == -EPROBE_DEFER)
-> +		return PTR_ERR(port->phy_reset);
+Best regards,
+Krzysztof
 
-This should be
-
-	if (IS_ERR(port->phy_reset))
-		return PTR_ERR(port->phy_reset);
-
-there is no reason to continue if this throws -ENOMEM, for example.
-
-regards
-Philipp
