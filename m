@@ -2,193 +2,189 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from vger.kernel.org (vger.kernel.org [23.128.96.18])
-	by mail.lfdr.de (Postfix) with ESMTP id 4EC75266707
-	for <lists+devicetree@lfdr.de>; Fri, 11 Sep 2020 19:36:54 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTP id 5475E2667AF
+	for <lists+devicetree@lfdr.de>; Fri, 11 Sep 2020 19:47:24 +0200 (CEST)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S1726428AbgIKRg3 (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Fri, 11 Sep 2020 13:36:29 -0400
-Received: from perceval.ideasonboard.com ([213.167.242.64]:48354 "EHLO
-        perceval.ideasonboard.com" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S1726301AbgIKRgW (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Fri, 11 Sep 2020 13:36:22 -0400
-Received: from pendragon.ideasonboard.com (62-78-145-57.bb.dnainternet.fi [62.78.145.57])
-        by perceval.ideasonboard.com (Postfix) with ESMTPSA id 6466BA17;
-        Fri, 11 Sep 2020 19:36:18 +0200 (CEST)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=ideasonboard.com;
-        s=mail; t=1599845778;
-        bh=ePLcCSWgyD07mW+TFS8Sn50bYfstYmKjYVoCsbtJ6kU=;
-        h=Date:From:To:Cc:Subject:References:In-Reply-To:From;
-        b=jluLJQcroJiCUniN4dxj7D2Y94RUk0IeHUwZVLCcW28jWLhKyOQfzs9OZcJUYHkZP
-         3PgOc6oOaLsADTkisZ9KD1MkkNmu3MIM7KY1d2evkcTRnSD7PPKtZALO8KfhkKmUyF
-         hYEACvlWMHoKUqZtyAisHaWiUvltaLR75ETGU/M4=
-Date:   Fri, 11 Sep 2020 20:35:50 +0300
-From:   Laurent Pinchart <laurent.pinchart@ideasonboard.com>
-To:     Jacopo Mondi <jacopo@jmondi.org>
-Cc:     Luca Ceresoli <luca@lucaceresoli.net>,
-        Jacopo Mondi <jacopo+renesas@jmondi.org>,
-        Leon Luo <leonl@leopardimaging.com>,
-        Sowjanya Komatineni <skomatineni@nvidia.com>,
-        robh+dt@kernel.org, devicetree@vger.kernel.org,
-        linux-media@vger.kernel.org, mchehab@kernel.org,
-        sakari.ailus@linux.intel.com, hverkuil-cisco@xs4all.nl,
-        linux-renesas-soc@vger.kernel.org
-Subject: Re: [PATCH v5] dt-bindings: media: imx274: Convert to json-schema
-Message-ID: <20200911173550.GE6808@pendragon.ideasonboard.com>
-References: <20200910162009.613976-1-jacopo+renesas@jmondi.org>
- <f6b43803-1880-c5fe-dba1-fa94d1dbb182@lucaceresoli.net>
- <20200911085939.3fahuftw3o2hj4vw@uno.localdomain>
+        id S1725958AbgIKRrS (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Fri, 11 Sep 2020 13:47:18 -0400
+Received: from lindbergh.monkeyblade.net ([23.128.96.19]:55966 "EHLO
+        lindbergh.monkeyblade.net" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
+        with ESMTP id S1725867AbgIKRrP (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Fri, 11 Sep 2020 13:47:15 -0400
+Received: from mail-pf1-x444.google.com (mail-pf1-x444.google.com [IPv6:2607:f8b0:4864:20::444])
+        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 52410C061573
+        for <devicetree@vger.kernel.org>; Fri, 11 Sep 2020 10:47:15 -0700 (PDT)
+Received: by mail-pf1-x444.google.com with SMTP id c196so8074747pfc.0
+        for <devicetree@vger.kernel.org>; Fri, 11 Sep 2020 10:47:15 -0700 (PDT)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+        d=chromium.org; s=google;
+        h=from:to:cc:subject:date:message-id:mime-version
+         :content-transfer-encoding;
+        bh=CgMtX/bQdS+iljLhW5Xz3FoT/kLLfD7hEC/fOvVMJlE=;
+        b=lF42bRcPysLjAz+4XpAo+NifmoYEPSBJzRIvemjHfGghsYHgR1QoV/gvIesYoL6itg
+         fP82ZaiRVqJwao1iq3lLyvojkrdgQL4zeKJ0zjStTVlrHIvIY1mXMYowjT05Z+o2GJhC
+         uSVPB7TOLIEkNXActRv3e8S3wyfIiHvKTLTuI=
+X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+        d=1e100.net; s=20161025;
+        h=x-gm-message-state:from:to:cc:subject:date:message-id:mime-version
+         :content-transfer-encoding;
+        bh=CgMtX/bQdS+iljLhW5Xz3FoT/kLLfD7hEC/fOvVMJlE=;
+        b=izWw3yDmLhnNVWznej96xr4fLMt9mh+/TNVZpj5x/nzNdohea/fxvjzMX/53cD6bUU
+         fGrPgwmVzQ3MwZrXot2zmonaG7E7J2k8QAoIis7sdLTQVbFX6D/EBo9MjWLTpsXdNRh0
+         sxJMYL4Bl0jic3t8PV1r+F0zxFigvTgmUZnxM2FA1lP2e27kCmn72zHCR3erSJSRAjOt
+         uD5gSnCdOKPNPKBag4UZLj94HA79IX7YSf3y1cD8JzKNfA3sI9LsUhwuuYBi6MNfPDV5
+         9KlmidRq10z9b5Vs8E86aq4kU1TqZMmlzd8CN4c568n1+PNsyKBV3LKx8WdOsoHt7iaE
+         AReg==
+X-Gm-Message-State: AOAM5316+tEUOs7PEb8yDTHj+7fG+NM/sQuywi1HfFLRPOwEv1HJjN+6
+        taBxV7wkvQKB9aS5F4Ms1BOpEQ==
+X-Google-Smtp-Source: ABdhPJxNtBdyzMkYndGvJzc/+tnBt6ycOD7P1IyvK0XKGbemUwW2lU1PpHqixxbAgdo+QItKKfXxZA==
+X-Received: by 2002:a17:902:8f88:b029:d0:cc03:3ba with SMTP id z8-20020a1709028f88b02900d0cc0303bamr3297714plo.40.1599846434800;
+        Fri, 11 Sep 2020 10:47:14 -0700 (PDT)
+Received: from localhost ([2401:fa00:1:10:de4a:3eff:fe7d:d39c])
+        by smtp.gmail.com with ESMTPSA id v13sm2349434pjr.12.2020.09.11.10.47.09
+        (version=TLS1_3 cipher=TLS_AES_128_GCM_SHA256 bits=128/128);
+        Fri, 11 Sep 2020 10:47:13 -0700 (PDT)
+From:   Cheng-Yi Chiang <cychiang@chromium.org>
+To:     linux-kernel@vger.kernel.org
+Cc:     Mark Brown <broonie@kernel.org>, Taniya Das <tdas@codeaurora.org>,
+        Rohit kumar <rohitkr@codeaurora.org>,
+        Banajit Goswami <bgoswami@codeaurora.org>,
+        Patrick Lai <plai@codeaurora.org>,
+        Andy Gross <agross@kernel.org>,
+        Bjorn Andersson <bjorn.andersson@linaro.org>,
+        Liam Girdwood <lgirdwood@gmail.com>,
+        Rob Herring <robh+dt@kernel.org>,
+        Jaroslav Kysela <perex@perex.cz>,
+        Takashi Iwai <tiwai@suse.com>,
+        Srini Kandagatla <srinivas.kandagatla@linaro.org>,
+        Stephan Gerhold <stephan@gerhold.net>,
+        Matthias Brugger <matthias.bgg@gmail.com>,
+        Heiko Stuebner <heiko@sntech.de>,
+        Srinivasa Rao <srivasam@codeaurora.org>, dianders@chromium.org,
+        dgreid@chromium.org, tzungbi@chromium.org,
+        linux-arm-kernel@lists.infradead.org,
+        linux-arm-msm@vger.kernel.org, devicetree@vger.kernel.org,
+        alsa-devel@alsa-project.org, linux-mediatek@lists.infradead.org,
+        linux-rockchip@lists.infradead.org,
+        Cheng-Yi Chiang <cychiang@chromium.org>
+Subject: [PATCH v10 0/3] Add documentation and machine driver for SC7180 sound card
+Date:   Sat, 12 Sep 2020 01:47:02 +0800
+Message-Id: <20200911174705.759011-1-cychiang@chromium.org>
+X-Mailer: git-send-email 2.28.0.618.gf4bc123cb7-goog
 MIME-Version: 1.0
-Content-Type: text/plain; charset=utf-8
-Content-Disposition: inline
-In-Reply-To: <20200911085939.3fahuftw3o2hj4vw@uno.localdomain>
+Content-Transfer-Encoding: 8bit
 Sender: devicetree-owner@vger.kernel.org
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-Hi Jacopo,
+Note:
+- The machine driver patch is made by the collaboration of
+  Cheng-Yi Chiang <cychiang@chromium.org>
+  Rohit kumar <rohitkr@codeaurora.org>
+  Ajit Pandey <ajitp@codeaurora.org>
+  But Ajit has left codeaurora.
+- This patch series needs HDMI DAI name SC7180_LPASS_DP defined in sc7180-lpass.h.
+  It will be posted in the newer patchset of https://patchwork.kernel.org/patch/11745565/
 
-On Fri, Sep 11, 2020 at 10:59:39AM +0200, Jacopo Mondi wrote:
-> On Fri, Sep 11, 2020 at 09:53:23AM +0200, Luca Ceresoli wrote:
-> > On 10/09/20 18:20, Jacopo Mondi wrote:
-> > > Convert the imx274 bindings document to json-schema and update
-> > > the MAINTAINERS file accordingly.
-> > >
-> > > Reviewed-by: Laurent Pinchart <laurent.pinchart@ideasonboard.com>
-> > > Signed-off-by: Jacopo Mondi <jacopo+renesas@jmondi.org>
-> > > ---
-> > >
-> > > v4->v5:
-> > > - Add optional properties that were upstreamed in v5.9-rc2 in the textual
-> > >   bindings
-> > > - Move them to be lowercase: this patch should be fast-tracked through the
-> > >   fixes branch to make sure it gets in before v5.9 is released, otherwise the
-> > >   textual bindings will have supplies names in uppercase
-> > >
-> > > ---
-> > >  .../devicetree/bindings/media/i2c/imx274.txt  | 38 ---------
-> > >  .../bindings/media/i2c/sony,imx274.yaml       | 77 +++++++++++++++++++
-> > >  MAINTAINERS                                   |  2 +-
-> > >  3 files changed, 78 insertions(+), 39 deletions(-)
-> > >  delete mode 100644 Documentation/devicetree/bindings/media/i2c/imx274.txt
-> > >  create mode 100644 Documentation/devicetree/bindings/media/i2c/sony,imx274.yaml
-> > >
-> > > diff --git a/Documentation/devicetree/bindings/media/i2c/imx274.txt b/Documentation/devicetree/bindings/media/i2c/imx274.txt
-> > > deleted file mode 100644
-> > > index 0727079d2410..000000000000
-> > > --- a/Documentation/devicetree/bindings/media/i2c/imx274.txt
-> > > +++ /dev/null
-> > > @@ -1,38 +0,0 @@
-> > > -* Sony 1/2.5-Inch 8.51Mp CMOS Digital Image Sensor
-> > > -
-> > > -The Sony imx274 is a 1/2.5-inch CMOS active pixel digital image sensor with
-> > > -an active array size of 3864H x 2202V. It is programmable through I2C
-> > > -interface. The I2C address is fixed to 0x1a as per sensor data sheet.
-> > > -Image data is sent through MIPI CSI-2, which is configured as 4 lanes
-> > > -at 1440 Mbps.
-> > > -
-> > > -
-> > > -Required Properties:
-> > > -- compatible: value should be "sony,imx274" for imx274 sensor
-> > > -- reg: I2C bus address of the device
-> > > -
-> > > -Optional Properties:
-> > > -- reset-gpios: Sensor reset GPIO
-> > > -- clocks: Reference to the input clock.
-> > > -- clock-names: Should be "inck".
-> > > -- VANA-supply: Sensor 2.8v analog supply.
-> > > -- VDIG-supply: Sensor 1.8v digital core supply.
-> > > -- VDDL-supply: Sensor digital IO 1.2v supply.
-> > > -
-> > > -The imx274 device node should contain one 'port' child node with
-> > > -an 'endpoint' subnode. For further reading on port node refer to
-> > > -Documentation/devicetree/bindings/media/video-interfaces.txt.
-> > > -
-> > > -Example:
-> > > -	sensor@1a {
-> > > -		compatible = "sony,imx274";
-> > > -		reg = <0x1a>;
-> > > -		#address-cells = <1>;
-> > > -		#size-cells = <0>;
-> > > -		reset-gpios = <&gpio_sensor 0 0>;
-> > > -		port {
-> > > -			sensor_out: endpoint {
-> > > -				remote-endpoint = <&csiss_in>;
-> > > -			};
-> > > -		};
-> > > -	};
-> > > diff --git a/Documentation/devicetree/bindings/media/i2c/sony,imx274.yaml b/Documentation/devicetree/bindings/media/i2c/sony,imx274.yaml
-> > > new file mode 100644
-> > > index 000000000000..fe81def68466
-> > > --- /dev/null
-> > > +++ b/Documentation/devicetree/bindings/media/i2c/sony,imx274.yaml
-> > > @@ -0,0 +1,77 @@
-> > > +# SPDX-License-Identifier: (GPL-2.0-only OR BSD-2-Clause)
-> > > +%YAML 1.2
-> > > +---
-> > > +$id: http://devicetree.org/schemas/media/i2c/sony,imx274.yaml#
-> > > +$schema: http://devicetree.org/meta-schemas/core.yaml#
-> > > +
-> > > +title: Sony 1/2.5-Inch 8.51MP CMOS Digital Image Sensor
-> > > +
-> > > +maintainers:
-> > > +  - Leon Luo <leonl@leopardimaging.com>
-> > > +
-> > > +description: |
-> > > +  The Sony IMX274 is a 1/2.5-inch CMOS active pixel digital image sensor with an
-> > > +  active array size of 3864H x 2202V. It is programmable through I2C interface.
-> > > +  Image data is sent through MIPI CSI-2, which is configured as 4 lanes at 1440
-> > > +  Mbps.
-> > > +
-> > > +properties:
-> > > +  compatible:
-> > > +    const: sony,imx274
-> > > +
-> > > +  reg:
-> > > +    const: 0x1a
-> > > +
-> > > +  reset-gpios:
-> > > +    maxItems: 1
-> > > +
-> > > +  port:
-> > > +    type: object
-> > > +    description: |
-> > > +      Output video port. See ../video-interfaces.txt.
-> > > +
-> > > +  clocks:
-> > > +    maxItems: 1
-> > > +
-> > > +  clock-names:
-> > > +    const: inck
-> > > +
-> > > +  vana-supply:
-> > > +    description: Sensor 2.8v analog supply.
-> > > +    maxItems: 1
-> > > +
-> > > +  vdig-supply:
-> > > +    description: Sensor 2.8v analog supply.
-> >
-> > Copy-paste leftover. Should be "Sensor 1.8v digital core supply."
-> 
-> oooo :(
-> I've been so sloppy on this series I'm almost ashamed.
-> 
-> I'll send a v6 with your tag in
+Changes from v1 to v2:
+- Ducumentation: Addressed all suggestions from Doug.
+- Machine driver:
+  - Fix comment style for license.
+  - Sort includes.
+  - Remove sc7180_snd_hw_params.
+  - Remove sc7180_dai_init and use aux device instead for headset jack registration.
+  - Statically define format for Primary MI2S.
+  - Atomic is not a concern because there is mutex in card to make sure
+    startup and shutdown happen sequentially.
+  - Fix missing return -EINVAL in startup.
+  - Use static sound card.
+  - Use devm_kzalloc to avoid kfree.
 
-And if you haven't already, s/v/V/ (the voltage symbol is an uppercase
-V).
+Changes from v2 to v3:
+- Ducumentation: Addressed suggestions from Srini.
+- Machine driver:
+  - Reuse qcom_snd_parse_of to parse properties.
+  - Remove playback-only and capture-only.
+  - Misc fixes to address comments.
 
-> > > +    maxItems: 1
-> > > +
-> > > +  vddl-supply:
-> > > +    description: Sensor 2.8v analog supply.
-> >
-> > Same here, should be "Sensor digital IO 1.2v supply."
-> >
-> > With the above fixed you can add to v6:
-> >  Reviewed-by: Luca Ceresoli <luca@lucaceresoli.net>
+Changes from v3 to v4:
+- Ducumentation: Addressed suggestions from Rob.
+ - Remove definition of dai.
+ - Use 'sound-dai: true' for sound-dai schema.
+ - Add reg property to pass 'make dt_binding_check' check although reg is not used in the driver.
+- Machine driver:
+ - Add Reviewed-by: Tzung-Bi Shih <tzungbi@google.com>
+
+Changes from v4 to v5:
+- Documentation: Addressed suggestions from Rob.
+ - Add definition for "#address-cells" and "#size-cells".
+ - Add additionalProperties: false
+ - Add required properties.
+
+Changes from v5 to v6:
+- Documentation: Addressed suggestions from Rob.
+ - Drop contains in compatible strings.
+ - Only allow dai-link@[0-9]
+ - Remove reg ref since it has a type definition already.
+
+Changes from v6 to v7
+- Documentation:
+  - Add headset-jack and hdmi-jack to specify the codec
+    responsible for jack detection.
+- HDMI codec driver:
+  - Use component set_jack ops instead of exporting hdmi_codec_set_jack_detect.
+- Machine driver:
+  - Removed aux device following Stephan's suggestion.
+  - Use headset-jack and hdmi-jack to specify the codec
+    responsible for jack detection.
+  - Add support for HDMI(actually DP) playback.
+
+Changes from v7 to v8
+- Documentation:
+  - Remove headset-jack and hdmi-jack.
+- Machine driver:
+  - Let machine driver decide whether there is a jack on the DAI.
+
+Changes from v8 to v9
+- hdmi-codec driver:
+  - Fixed the naming.
+- Machine driver:
+  - Fixed unused fields.
+  - Moved snd_soc_card_set_drvdata
+  - Keep the naming of HDMI as dai name until v5 of lpass-hdmi patches.
+
+Changes from v9 to v10
+- Documentation:
+  - Let compatible string be more specific for board configuration to allow
+    for future changes.
+- Machine driver:
+  - Fixed unused include and macro.
+  - Add temporary macro SC7180_LPASS_DP for future change in sc7180-lpass.h.
+  - Let sound card be dynamically allocated.
+  - Change compatible string accordingly.
+
+Ajit Pandey (1):
+  ASoC: qcom: sc7180: Add machine driver for sound card registration
+
+Cheng-Yi Chiang (2):
+  ASoC: hdmi-codec: Use set_jack ops to set jack
+  ASoC: qcom: dt-bindings: Add sc7180 machine bindings
+
+ .../bindings/sound/qcom,sc7180.yaml           | 130 +++++++++
+ include/sound/hdmi-codec.h                    |   3 -
+ sound/soc/codecs/hdmi-codec.c                 |  12 +-
+ sound/soc/mediatek/mt8173/mt8173-rt5650.c     |   5 +-
+ .../mediatek/mt8183/mt8183-da7219-max98357.c  |   5 +-
+ .../mt8183/mt8183-mt6358-ts3a227-max98357.c   |   5 +-
+ sound/soc/qcom/Kconfig                        |  12 +
+ sound/soc/qcom/Makefile                       |   2 +
+ sound/soc/qcom/sc7180.c                       | 266 ++++++++++++++++++
+ sound/soc/rockchip/rockchip_max98090.c        |   3 +-
+ 10 files changed, 421 insertions(+), 22 deletions(-)
+ create mode 100644 Documentation/devicetree/bindings/sound/qcom,sc7180.yaml
+ create mode 100644 sound/soc/qcom/sc7180.c
 
 -- 
-Regards,
+2.28.0.618.gf4bc123cb7-goog
 
-Laurent Pinchart
