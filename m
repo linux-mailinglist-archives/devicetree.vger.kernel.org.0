@@ -2,119 +2,149 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from vger.kernel.org (vger.kernel.org [23.128.96.18])
-	by mail.lfdr.de (Postfix) with ESMTP id BC7AB26621D
-	for <lists+devicetree@lfdr.de>; Fri, 11 Sep 2020 17:28:15 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTP id 0354F2661E7
+	for <lists+devicetree@lfdr.de>; Fri, 11 Sep 2020 17:15:21 +0200 (CEST)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S1726092AbgIKP2K (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Fri, 11 Sep 2020 11:28:10 -0400
-Received: from mga02.intel.com ([134.134.136.20]:11193 "EHLO mga02.intel.com"
-        rhost-flags-OK-OK-OK-OK) by vger.kernel.org with ESMTP
-        id S1726482AbgIKP13 (ORCPT <rfc822;devicetree@vger.kernel.org>);
-        Fri, 11 Sep 2020 11:27:29 -0400
-IronPort-SDR: nzThaXujr+ALgCRhaSW7VKSfyQ96qsG48/iJVKP0U/fwtHYabvnephDxfUdYBfWrCf6qeJmT5R
- QPbp7UEdrRzg==
-X-IronPort-AV: E=McAfee;i="6000,8403,9740"; a="146447683"
-X-IronPort-AV: E=Sophos;i="5.76,415,1592895600"; 
-   d="scan'208";a="146447683"
-X-Amp-Result: SKIPPED(no attachment in message)
-X-Amp-File-Uploaded: False
-Received: from orsmga001.jf.intel.com ([10.7.209.18])
-  by orsmga101.jf.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384; 11 Sep 2020 06:49:08 -0700
-IronPort-SDR: YGXxGEATdN65IN69VmiikoyK2YTR30+O68yZe+59DwGOF1ft0rbD8qiEt2xPK07XTQzomCDuQC
- bjRCn57WG/Vg==
-X-IronPort-AV: E=Sophos;i="5.76,415,1592895600"; 
-   d="scan'208";a="378568692"
-Received: from paasikivi.fi.intel.com ([10.237.72.42])
-  by orsmga001-auth.jf.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384; 11 Sep 2020 06:49:04 -0700
-Received: by paasikivi.fi.intel.com (Postfix, from userid 1000)
-        id A94202079D; Fri, 11 Sep 2020 16:49:02 +0300 (EEST)
-Date:   Fri, 11 Sep 2020 16:49:02 +0300
-From:   Sakari Ailus <sakari.ailus@linux.intel.com>
-To:     "Togorean, Bogdan" <Bogdan.Togorean@analog.com>
-Cc:     Laurent Pinchart <laurent.pinchart@ideasonboard.com>,
-        "linux-media@vger.kernel.org" <linux-media@vger.kernel.org>,
-        Mauro Carvalho Chehab <mchehab@kernel.org>,
-        Rob Herring <robh+dt@kernel.org>,
-        "David S. Miller" <davem@davemloft.net>,
-        Laurent Pinchart <laurent.pinchart+renesas@ideasonboard.com>,
-        Jacopo Mondi <jacopo+renesas@jmondi.org>,
-        Kieran Bingham <kieran.bingham+renesas@ideasonboard.com>,
-        YueHaibing <yuehaibing@huawei.com>,
-        Bingbu Cao <bingbu.cao@intel.com>,
-        Manivannan Sadhasivam <manivannan.sadhasivam@linaro.org>,
-        Shawn Tu <shawnx.tu@intel.com>,
-        Dongchun Zhu <dongchun.zhu@mediatek.com>,
+        id S1726014AbgIKPPP (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Fri, 11 Sep 2020 11:15:15 -0400
+Received: from mx08-00178001.pphosted.com ([91.207.212.93]:50074 "EHLO
+        mx07-00178001.pphosted.com" rhost-flags-OK-OK-OK-FAIL)
+        by vger.kernel.org with ESMTP id S1726421AbgIKPM7 (ORCPT
+        <rfc822;devicetree@vger.kernel.org>);
+        Fri, 11 Sep 2020 11:12:59 -0400
+Received: from pps.filterd (m0046661.ppops.net [127.0.0.1])
+        by mx07-00178001.pphosted.com (8.16.0.42/8.16.0.42) with SMTP id 08BDlfdN016391;
+        Fri, 11 Sep 2020 15:50:04 +0200
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=st.com; h=subject : to : cc :
+ references : from : message-id : date : mime-version : in-reply-to :
+ content-type : content-transfer-encoding; s=STMicroelectronics;
+ bh=LedGIkihyb95sarwl6GH6FHkhiz/ZEZc+nrtI6/KHRQ=;
+ b=DqTcfhEOyT+mjya84EPGVrM1imjDeblcaBYwSTzOxQYWNd7Sxj+G2zkIvTMr27NXSkLH
+ YwCMK1oAw8clCxnrvtktuamiNqy3/2L5FGqPVJAKmXMtlLIAZkgL7Xb9lwNXt/zlwjj+
+ g/tXBi70Q0H/h5xkp10E1dsHKe9RbmMr4/IdRhqw+t7MhfiT3cbMIjPqJ3ATFTEH45l8
+ 8U1HEraZ7IV/4NAm8H2Pph2HvEftW9I5xblkFqbHCkuDZMdoIXPZV1JeKWL11M0eHx5i
+ AKn8VypoIsE50fhMd/ZeHzv7iv0OpJ0zhr4c1hWKq8Rbjx414URLPZsvqup0j/irA8Lf zg== 
+Received: from beta.dmz-eu.st.com (beta.dmz-eu.st.com [164.129.1.35])
+        by mx07-00178001.pphosted.com with ESMTP id 33c1jfhyq1-1
+        (version=TLSv1.2 cipher=ECDHE-RSA-AES256-GCM-SHA384 bits=256 verify=NOT);
+        Fri, 11 Sep 2020 15:50:04 +0200
+Received: from euls16034.sgp.st.com (euls16034.sgp.st.com [10.75.44.20])
+        by beta.dmz-eu.st.com (STMicroelectronics) with ESMTP id AA153100038;
+        Fri, 11 Sep 2020 15:50:02 +0200 (CEST)
+Received: from Webmail-eu.st.com (gpxdag3node4.st.com [10.75.127.71])
+        by euls16034.sgp.st.com (STMicroelectronics) with ESMTP id 8D99F2AD9FD;
+        Fri, 11 Sep 2020 15:50:02 +0200 (CEST)
+Received: from lmecxl0889.tpe.st.com (10.75.127.44) by GPXDAG3NODE4.st.com
+ (10.75.127.71) with Microsoft SMTP Server (TLS) id 15.0.1473.3; Fri, 11 Sep
+ 2020 15:50:00 +0200
+Subject: Re: [PATCH 2/3] dt-bindings: remoteproc: stm32_rproc: update for
+ firmware synchronization
+To:     Rob Herring <robh@kernel.org>
+CC:     Alexandre TORGUE <alexandre.torgue@st.com>,
         "devicetree@vger.kernel.org" <devicetree@vger.kernel.org>,
+        "linux-stm32@st-md-mailman.stormreply.com" 
+        <linux-stm32@st-md-mailman.stormreply.com>,
+        "linux-arm-kernel@lists.infradead.org" 
+        <linux-arm-kernel@lists.infradead.org>,
+        "linux-remoteproc@vger.kernel.org" <linux-remoteproc@vger.kernel.org>,
         "linux-kernel@vger.kernel.org" <linux-kernel@vger.kernel.org>,
-        "Cozma, Andrei" <Andrei.Cozma@analog.com>
-Subject: Re: [PATCH 1/2] media: i2c: Add driver for the Analog Devices
- ADDI9036 ToF front-end
-Message-ID: <20200911134902.GH26842@paasikivi.fi.intel.com>
-References: <20200910162426.55306-1-bogdan.togorean@analog.com>
- <20200910220138.GJ3940@pendragon.ideasonboard.com>
- <DM6PR03MB5274FF37BB02D98691BB43289B240@DM6PR03MB5274.namprd03.prod.outlook.com>
+        Fabien DESSENNE <fabien.dessenne@st.com>,
+        Mathieu Poirier <mathieu.poirier@linaro.org>,
+        Ohad Ben-Cohen <ohad@wizery.com>,
+        Bjorn Andersson <bjorn.andersson@linaro.org>
+References: <20200827072101.26588-1-arnaud.pouliquen@st.com>
+ <20200827072101.26588-3-arnaud.pouliquen@st.com>
+ <20200909202251.GA2975092@bogus>
+From:   Arnaud POULIQUEN <arnaud.pouliquen@st.com>
+Message-ID: <c9d45617-6de9-7e49-0c82-151e67fff61d@st.com>
+Date:   Fri, 11 Sep 2020 15:49:59 +0200
+User-Agent: Mozilla/5.0 (X11; Linux x86_64; rv:68.0) Gecko/20100101
+ Thunderbird/68.10.0
 MIME-Version: 1.0
-Content-Type: text/plain; charset=us-ascii
-Content-Disposition: inline
-In-Reply-To: <DM6PR03MB5274FF37BB02D98691BB43289B240@DM6PR03MB5274.namprd03.prod.outlook.com>
-User-Agent: Mutt/1.10.1 (2018-07-13)
+In-Reply-To: <20200909202251.GA2975092@bogus>
+Content-Type: text/plain; charset="utf-8"
+Content-Language: en-US
+Content-Transfer-Encoding: 7bit
+X-Originating-IP: [10.75.127.44]
+X-ClientProxiedBy: SFHDAG4NODE2.st.com (10.75.127.11) To GPXDAG3NODE4.st.com
+ (10.75.127.71)
+X-Proofpoint-Virus-Version: vendor=fsecure engine=2.50.10434:6.0.235,18.0.687
+ definitions=2020-09-11_05:2020-09-10,2020-09-11 signatures=0
 Sender: devicetree-owner@vger.kernel.org
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-Hi Bogdan,
+Hi Rob,
 
-On Fri, Sep 11, 2020 at 01:32:39PM +0000, Togorean, Bogdan wrote:
-> Hi Laurent,
+On 9/9/20 10:22 PM, Rob Herring wrote:
+> On Thu, Aug 27, 2020 at 09:21:00AM +0200, Arnaud Pouliquen wrote:
+>> Add new properties description used to attach to a pre-loaded
+>> firmware according to the commit 9276536f455b3
+>> ("remoteproc: stm32: Parse syscon that will manage M4 synchronisation")
+>> which updates the driver part.
+>>
+>> Signed-off-by: Arnaud Pouliquen <arnaud.pouliquen@st.com>
+>> ---
+>>  .../bindings/remoteproc/st,stm32-rproc.yaml   | 19 +++++++++++++++++++
+>>  1 file changed, 19 insertions(+)
+>>
+>> diff --git a/Documentation/devicetree/bindings/remoteproc/st,stm32-rproc.yaml b/Documentation/devicetree/bindings/remoteproc/st,stm32-rproc.yaml
+>> index 4ffa25268fcc..e50957d86b1c 100644
+>> --- a/Documentation/devicetree/bindings/remoteproc/st,stm32-rproc.yaml
+>> +++ b/Documentation/devicetree/bindings/remoteproc/st,stm32-rproc.yaml
+>> @@ -96,6 +96,25 @@ properties:
+>>          3rd cell: register bitmask for the deep sleep bit
+>>      maxItems: 1
+>>  
+>> +  st,syscfg-m4-state:
+>> +    $ref: "/schemas/types.yaml#/definitions/phandle-array"
+>> +    description: |
+>> +      Reference to the tamp register which exposes the Cortex-M4 state.
+>> +        1st cell: phandle to syscon block
+>> +        2nd cell: register offset containing the Cortex-M4 state
+>> +        3rd cell: register bitmask for the Cortex-M4 state
+>> +    maxItems: 1
+>> +
+>> +  st,syscfg-rsc-tbl:
+>> +    $ref: "/schemas/types.yaml#/definitions/phandle-array"
+>> +    description: |
+>> +      Reference to the tamp register which references the Cortex-M4
+>> +      resource table address.
+>> +        1st cell: phandle to syscon block
+>> +        2nd cell: register offset containing the resource table address
+>> +        3rd cell: register bitmask for the resource table address
+>> +    maxItems: 1
 > 
-> > Hi Bogdan,
-> > 
-> > Thank you for the patch.
-> 
-> Thank you for review!
-> 
-> > 
-> > On Thu, Sep 10, 2020 at 07:24:06PM +0300, Bogdan Togorean wrote:
-> > > The ADDI9036 is a complete, 45 MHz, front-end solution for charge
-> > > coupled device (CCD) time of flight (TOF) imaging applications.
-> > >
-> > > It has 2-lane MIPI CSI-2 RAW12 data output and i2c control interface.
-> > >
-> > > The programming of calibration and firmware is performed by userspace
-> > > SDK through CID_USER class IOCTLs.
-> > 
-> > I'm afraid that's not acceptable. The firmware should be loaded using
-> > the Linux kernel firmware API. As for calibration, is it static data ?
-> > How is it generated ?
-> 
-> Calibration data is static data, generated at production and stored on and EEPROM
-> memory on camera board. The camera board consists mainly of ADDI9036 processor
-> + CCD image sensor + EEPROM.
-> 
-> The firmware is a set of (address, data) tuples that are written via I2C.
-> We want this driver to be a generic one and support all implementations
-> of ADDI9036 ToF processor. Now the problem is that some implementations 
-> store firmware + calibration on external EEPROM and some store just calibration 
-> data on EEPROM and firmware is loaded from a file stored in SDK. With the help 
-> of the 2 custom controls we move the camera model detection, firmware
-> and calibration fetching from driver to user space SDK.
+> Why can't these be implied? You can lookup the tamp syscon by 
+> compatible.
 
-Can you figure out by reading EEPROM which one of these is the case?
-Alternatively you could add a custom DT property IMO.
+I just made a copy/past of the  "st,syscfg-pdds" syscon description available in the same file [1]
+  
+I can provide a shorter descriptions, something like this:
 
-The calibration data could be loaded using request_firmware(), too. I'd use
-a specific directory for just this purpose.
+   description: |
+     Reference to the tamp syscon register and bitmask which contains the Cortex-M4
+      resource table address.
+   maxItems: 1
+
+Would this meet your expectations? If yes, I will also add in next version an extra patch to fix [1]
+
+[1] https://elixir.bootlin.com/linux/v5.9-rc3/source/Documentation/devicetree/bindings/remoteproc/st,stm32-rproc.yaml#L90
 
 > 
-> Also an important point is that the ToF processor has 3 operating modes 
-> (near, medium and far). At each mode change a new set of firmware + 
-> calibration data is loaded into ADDI9036 chip. If we move the firmware loading
-> in driver we would still need a custom enumeration control to select the working mode.
+> Please add these to the example.
 
-I don't see there being an issue having such a control.
+I will extend the example with these properties
 
--- 
-Kind regards,
+Thanks,
+Arnaud
 
-Sakari Ailus
+> 
+>> +
+>>    st,auto-boot:
+>>      $ref: /schemas/types.yaml#/definitions/flag
+>>      description:
+>> -- 
+>> 2.17.1
+>>
