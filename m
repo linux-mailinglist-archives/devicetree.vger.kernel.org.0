@@ -2,30 +2,30 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from vger.kernel.org (vger.kernel.org [23.128.96.18])
-	by mail.lfdr.de (Postfix) with ESMTP id 148B9265EFC
-	for <lists+devicetree@lfdr.de>; Fri, 11 Sep 2020 13:47:41 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTP id 84086265F30
+	for <lists+devicetree@lfdr.de>; Fri, 11 Sep 2020 14:05:16 +0200 (CEST)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S1725852AbgIKLre (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Fri, 11 Sep 2020 07:47:34 -0400
-Received: from mail.kernel.org ([198.145.29.99]:52866 "EHLO mail.kernel.org"
+        id S1725787AbgIKMFI (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Fri, 11 Sep 2020 08:05:08 -0400
+Received: from mail.kernel.org ([198.145.29.99]:43054 "EHLO mail.kernel.org"
         rhost-flags-OK-OK-OK-OK) by vger.kernel.org with ESMTP
-        id S1725819AbgIKLrR (ORCPT <rfc822;devicetree@vger.kernel.org>);
-        Fri, 11 Sep 2020 07:47:17 -0400
-Received: from localhost (unknown [122.171.196.109])
+        id S1725790AbgIKMEg (ORCPT <rfc822;devicetree@vger.kernel.org>);
+        Fri, 11 Sep 2020 08:04:36 -0400
+Received: from coco.lan (ip5f5ad5a5.dynamic.kabel-deutschland.de [95.90.213.165])
         (using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
         (No client certificate requested)
-        by mail.kernel.org (Postfix) with ESMTPSA id 172A4221E7;
-        Fri, 11 Sep 2020 11:47:15 +0000 (UTC)
+        by mail.kernel.org (Postfix) with ESMTPSA id 52C2F221E7;
+        Fri, 11 Sep 2020 12:04:33 +0000 (UTC)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=kernel.org;
-        s=default; t=1599824837;
-        bh=T5hi2wkZ1BsNn5NEzkD7Mfirzp6ADMP2cxY2M3N8TkU=;
-        h=Date:From:To:Cc:Subject:References:In-Reply-To:From;
-        b=bHpEoEUKlZdeWR4fKbgkvrv0OLAT5h0g4wHB9Pt1B/+9ZlbbRHo9Tl2xNgsDtnHXb
-         mpW3YSsF5ZZiQULHcl5fKRCl8oUV9BFqjzF6w7+6+wikDOwps7GTssubqgGfmHpi3H
-         evXqSKxU1aYKqopaUBWbgSs7hCpsDKOwvWQuZyXg=
-Date:   Fri, 11 Sep 2020 17:17:11 +0530
-From:   Vinod Koul <vkoul@kernel.org>
-To:     Mauro Carvalho Chehab <mchehab+huawei@kernel.org>
+        s=default; t=1599825876;
+        bh=8ld3vCiVF+nY7Iq3wXPKpq2LyOTrnCr36pcsLmRAEa4=;
+        h=Date:From:To:Cc:Subject:In-Reply-To:References:From;
+        b=l0DCrrMeMtswPVZKfgtO+RLob8Y2NiBfXbbrclCPWpMp1Sd3QAn+pnZV09Aug427v
+         BFpf2RxfdFkqH4HqN/1gxbsfabVEfZ58y01EwzMhoG5qKY0uqjL4PwmaVo/8XbozuA
+         PP420E2P1iM8hFDhteuOsDNioqH0YDmMYvhZYiUo=
+Date:   Fri, 11 Sep 2020 14:04:30 +0200
+From:   Mauro Carvalho Chehab <mchehab+huawei@kernel.org>
+To:     Vinod Koul <vkoul@kernel.org>
 Cc:     Greg Kroah-Hartman <gregkh@linuxfoundation.org>,
         linuxarm@huawei.com, mauro.chehab@huawei.com,
         John Stultz <john.stultz@linaro.org>,
@@ -37,56 +37,46 @@ Cc:     Greg Kroah-Hartman <gregkh@linuxfoundation.org>,
         Rob Herring <robh@kernel.org>, Yu Chen <chenyu56@huawei.com>,
         devicetree@vger.kernel.org, linux-kernel@vger.kernel.org
 Subject: Re: [PATCH v3 0/8] Add PHY USB3 drivers for Hikey 970
-Message-ID: <20200911114711.GX77521@vkoul-mobl>
+Message-ID: <20200911140430.5281b1c3@coco.lan>
+In-Reply-To: <20200911114711.GX77521@vkoul-mobl>
 References: <cover.1599716786.git.mchehab+huawei@kernel.org>
+        <20200911114711.GX77521@vkoul-mobl>
+X-Mailer: Claws Mail 3.17.6 (GTK+ 2.24.32; x86_64-redhat-linux-gnu)
 MIME-Version: 1.0
-Content-Type: text/plain; charset=us-ascii
-Content-Disposition: inline
-In-Reply-To: <cover.1599716786.git.mchehab+huawei@kernel.org>
+Content-Type: text/plain; charset=US-ASCII
+Content-Transfer-Encoding: 7bit
 Sender: devicetree-owner@vger.kernel.org
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-On 10-09-20, 07:52, Mauro Carvalho Chehab wrote:
-> This patch series add the PHY layer needed in order to support the USB
-> functionality on Hikey 970 boards.
-> 
-> v3:
-> - split a namespace patch on two (one with code changes and another
->   one with dt-bindings changes);
-> - placed just the PHY driver on this series. Another series will add the
->   USB HUB driver and the DTS changes required to enable USB support
->   for this board.
+Em Fri, 11 Sep 2020 17:17:11 +0530
+Vinod Koul <vkoul@kernel.org> escreveu:
 
-I have only cover in my inbox, no other patches. Even lore doesn't show
-the series, not sure what happened here
+> On 10-09-20, 07:52, Mauro Carvalho Chehab wrote:
+> > This patch series add the PHY layer needed in order to support the USB
+> > functionality on Hikey 970 boards.
+> > 
+> > v3:
+> > - split a namespace patch on two (one with code changes and another
+> >   one with dt-bindings changes);
+> > - placed just the PHY driver on this series. Another series will add the
+> >   USB HUB driver and the DTS changes required to enable USB support
+> >   for this board.  
+> 
+> I have only cover in my inbox, no other patches. Even lore doesn't show
+> the series, not sure what happened here
 
-> 
-> Mauro Carvalho Chehab (6):
->   phy: hisilicon: phy-hi3670-usb3: use a consistent namespace
->   dts: phy: phy-hi3670-usb3.txt: use a consistent namespace
->   phy: hisilicon: phy-hi3670-usb3: fix coding style
->   phy: hisilicon: phy-hi3670-usb3: change some DT properties
->   dt-bindings: phy: convert phy-kirin970-usb3.txt to yaml
->   MAINTAINERS: add myself as maintainer for Kirin 970 USB PHY
-> 
-> Yu Chen (2):
->   phy: hisilicon: add USB physical layer for Kirin 3670
->   phy: hisilicon: phy-hi3670-usb3: fix some issues at the init code
-> 
->  .../bindings/phy/hisilicon,hi3670-usb3.yaml   |  72 ++
->  MAINTAINERS                                   |   9 +-
->  drivers/phy/hisilicon/Kconfig                 |  10 +
->  drivers/phy/hisilicon/Makefile                |   1 +
->  drivers/phy/hisilicon/phy-hi3670-usb3.c       | 671 ++++++++++++++++++
->  5 files changed, 762 insertions(+), 1 deletion(-)
->  create mode 100644 Documentation/devicetree/bindings/phy/hisilicon,hi3670-usb3.yaml
->  create mode 100644 drivers/phy/hisilicon/phy-hi3670-usb3.c
-> 
-> -- 
-> 2.26.2
-> 
+Gah, it sounds that my scripts did something really weird there.
 
--- 
-~Vinod
+I changed it while sending some docs patches, as, by adding
+all maintainers and MLs for each patch on that series to the
+cover letter would produce around ~100 e-mail addresses,
+which would hardly be accepted by most of the email servers.
+
+It sounds that I ended breaking it :-(
+
+I'll re-send this patch series.
+
+Thanks,
+Mauro
