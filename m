@@ -2,205 +2,82 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from vger.kernel.org (vger.kernel.org [23.128.96.18])
-	by mail.lfdr.de (Postfix) with ESMTP id 62CD4266348
-	for <lists+devicetree@lfdr.de>; Fri, 11 Sep 2020 18:13:31 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTP id 2A446266324
+	for <lists+devicetree@lfdr.de>; Fri, 11 Sep 2020 18:11:37 +0200 (CEST)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S1726558AbgIKQMj (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Fri, 11 Sep 2020 12:12:39 -0400
-Received: from lindbergh.monkeyblade.net ([23.128.96.19]:35170 "EHLO
-        lindbergh.monkeyblade.net" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S1726550AbgIKPg0 (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Fri, 11 Sep 2020 11:36:26 -0400
-Received: from mail-qt1-x843.google.com (mail-qt1-x843.google.com [IPv6:2607:f8b0:4864:20::843])
-        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 87544C0617B9
-        for <devicetree@vger.kernel.org>; Fri, 11 Sep 2020 08:35:39 -0700 (PDT)
-Received: by mail-qt1-x843.google.com with SMTP id n10so8179508qtv.3
-        for <devicetree@vger.kernel.org>; Fri, 11 Sep 2020 08:35:39 -0700 (PDT)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=marek-ca.20150623.gappssmtp.com; s=20150623;
-        h=from:to:cc:subject:date:message-id:in-reply-to:references
-         :mime-version:content-transfer-encoding;
-        bh=bchsK5WXQ8xp8RAbe8m3vqoKGIecIRopLTU6zvIOBbM=;
-        b=kQRnSXhWGYmemxfMPgeIP3NLaUT+bZTIRPGCJs9EMCaSryfV/W1C4WEWlUBadtHJc1
-         /k0H7GMO9Bspxb5h9sSRnwTaSNtsrBkJLliW58KifcRUetK6yc0ClxvznnqzybkjNc6K
-         IewV0Hc4+NGK0Z3YZY7rpKZvI+ApogNe7riv8qm8Fz1LV12xpYNnEdjKpNgR5RALGHIM
-         UAXkYYv0bQUlOjv0HDfspJJujddHRCx3OmBCFpuVzAtV4OoqcNLOLfDjS81s+5LvtYKZ
-         9prmf5avDdtF2f1rk+QA7ra42TSetbQAc6EsPqBZDb8R6nFRMv7Gh8CmOY8WC0ek/xKk
-         fmCQ==
+        id S1726561AbgIKQL0 (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Fri, 11 Sep 2020 12:11:26 -0400
+Received: from mail-ed1-f67.google.com ([209.85.208.67]:43928 "EHLO
+        mail-ed1-f67.google.com" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
+        with ESMTP id S1726487AbgIKPiJ (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Fri, 11 Sep 2020 11:38:09 -0400
+Received: by mail-ed1-f67.google.com with SMTP id n13so10372849edo.10;
+        Fri, 11 Sep 2020 08:38:06 -0700 (PDT)
 X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
         d=1e100.net; s=20161025;
-        h=x-gm-message-state:from:to:cc:subject:date:message-id:in-reply-to
-         :references:mime-version:content-transfer-encoding;
-        bh=bchsK5WXQ8xp8RAbe8m3vqoKGIecIRopLTU6zvIOBbM=;
-        b=GN+1C6kFzxBkD/lhpW63OwlQ/59bbTKLdd+PugIHOhoWJNnfDEc+4trR6YT4cKX5HB
-         e8eqCWYwcYVWsmnQH7ToVnipfTE1xMSLKuTR1Z/WFvpBi2eX3zX7by3ySkbpaVTd1GDH
-         +IY4YoRL9uxdKyoHZ62jP+g0WVrvaI+TM8bjJVauoppxONkSNagOdjIqhoTwuRp+EBkE
-         kLiAoa84mFyh2KqcqLz7P9BxNKNbmNcFPVThp/UwYlON0mns2CSTZBiOvCjszc5+OXLj
-         NZ/blr2XjuR1gjwEPGON5XQE/I06zyZTN6c+HexIcOG1LAg0GJzjbONHKgTpZ2Y5ZNE1
-         UWhA==
-X-Gm-Message-State: AOAM531B9NFy8QXwbtFcOrcyKLyq+nTt+nnQ/wTtOAvlZVr2ZNp0xqh7
-        xNfAyG4IFKD9DbvKrkEl2EY+eQ==
-X-Google-Smtp-Source: ABdhPJy3NjpKwPLBHJFzg36fPKToAQQae7+lMRpHpkW6SePO5hy6NX6FO+8HIQ4GlK0z8aouERyDzg==
-X-Received: by 2002:ac8:5057:: with SMTP id h23mr2501990qtm.219.1599838538758;
-        Fri, 11 Sep 2020 08:35:38 -0700 (PDT)
-Received: from localhost.localdomain ([147.253.86.153])
-        by smtp.gmail.com with ESMTPSA id v16sm3001744qkg.37.2020.09.11.08.35.37
-        (version=TLS1_3 cipher=TLS_AES_256_GCM_SHA384 bits=256/256);
-        Fri, 11 Sep 2020 08:35:38 -0700 (PDT)
-From:   Jonathan Marek <jonathan@marek.ca>
-To:     linux-arm-msm@vger.kernel.org
-Cc:     Andy Gross <agross@kernel.org>,
-        Bjorn Andersson <bjorn.andersson@linaro.org>,
-        Michael Turquette <mturquette@baylibre.com>,
-        Stephen Boyd <sboyd@kernel.org>,
+        h=x-gm-message-state:date:from:to:subject:message-id:references
+         :mime-version:content-disposition:in-reply-to:user-agent;
+        bh=7DjrxY7Lk4EK6rFC1XPIpw7t8L5lPZ8egTPE4yUmjhU=;
+        b=dHWKLfnxULNo7qbHjI0Vl5pTzWxwvGJsfDn7EbYsZNGdSIgM4lqFZHs9MioN1nLjCu
+         nWcpoOnXY+0+81J8eMH87a1HvJB1KGzBgmuCEbjIENtmzuc1gwhT6YNvbKagw1fK1379
+         BKFLN030erqeQ7p6rQjvDlJxQcyvewqTR/y9PsuQefu/pHny9q/dFzMazpi7LmGVyIJD
+         n+0gdnG+BWHrC8wL9sJ/h2iOXQZL2eAMBc9Xb4rjeAxAvtitZ/P7k2LKheBuWsTt0I1z
+         3XzZ4E3qJanGhwE2AYLSwLk+vTQqhmuoWX12NechABRCniX+MwRNiYMYjkWeurUcHJa3
+         HuLg==
+X-Gm-Message-State: AOAM53393D9UAbOokkbY0gPJycakIxLjbrRtopIBz8a4ol6nE53YFSYu
+        ED+rYHBuGJ53Na7Otb7L+3z5jTtMvnbaPQ==
+X-Google-Smtp-Source: ABdhPJx1oFowCxvi4gz9N5G5FJwtdy3gLuMaWdJJuUaR6LNVTy9hGMGrP1GbxlAQ+8eJwfAJUzN1Yw==
+X-Received: by 2002:a05:6402:8:: with SMTP id d8mr2549402edu.15.1599838685470;
+        Fri, 11 Sep 2020 08:38:05 -0700 (PDT)
+Received: from kozik-lap ([194.230.155.174])
+        by smtp.googlemail.com with ESMTPSA id bm2sm1951756edb.30.2020.09.11.08.38.03
+        (version=TLS1_2 cipher=ECDHE-ECDSA-CHACHA20-POLY1305 bits=256/256);
+        Fri, 11 Sep 2020 08:38:04 -0700 (PDT)
+Date:   Fri, 11 Sep 2020 17:38:02 +0200
+From:   Krzysztof Kozlowski <krzk@kernel.org>
+To:     Paul Cercueil <paul@crapouillou.net>,
         Rob Herring <robh+dt@kernel.org>,
-        Taniya Das <tdas@codeaurora.org>,
-        linux-clk@vger.kernel.org (open list:COMMON CLK FRAMEWORK),
-        devicetree@vger.kernel.org (open list:OPEN FIRMWARE AND FLATTENED
-        DEVICE TREE BINDINGS), linux-kernel@vger.kernel.org (open list)
-Subject: [PATCH v3 4/7] dt-bindings: clock: Introduce QCOM SM8150 display clock bindings
-Date:   Fri, 11 Sep 2020 11:34:04 -0400
-Message-Id: <20200911153412.21672-5-jonathan@marek.ca>
-X-Mailer: git-send-email 2.26.1
-In-Reply-To: <20200911153412.21672-1-jonathan@marek.ca>
-References: <20200911153412.21672-1-jonathan@marek.ca>
+        Thomas Bogendoerfer <tsbogend@alpha.franken.de>,
+        Harvey Hunt <harveyhuntnexus@gmail.com>,
+        Miquel Raynal <miquel.raynal@bootlin.com>,
+        Richard Weinberger <richard@nod.at>,
+        Vignesh Raghavendra <vigneshr@ti.com>,
+        linux-mips@vger.kernel.org, devicetree@vger.kernel.org,
+        linux-kernel@vger.kernel.org, linux-mtd@lists.infradead.org
+Subject: Re: [PATCH v2 1/2] MAINTAINERS: Remove JZ4780 DMA driver entry
+Message-ID: <20200911153802.GA18279@kozik-lap>
+References: <20200817184131.907-1-krzk@kernel.org>
 MIME-Version: 1.0
-Content-Transfer-Encoding: 8bit
+Content-Type: text/plain; charset=utf-8
+Content-Disposition: inline
+In-Reply-To: <20200817184131.907-1-krzk@kernel.org>
+User-Agent: Mutt/1.9.4 (2018-02-28)
 Sender: devicetree-owner@vger.kernel.org
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-Add device tree bindings for display clock controller for
-Qualcomm Technology Inc's SM8150 SoCs.
+On Mon, Aug 17, 2020 at 08:41:30PM +0200, Krzysztof Kozlowski wrote:
+> The entry for MIPS Ingenic JZ4780 DMA driver is not up to date anymore.
+> Zubair Lutfullah Kakakhel's email bounces and no maintenance is
+> provided.
+> 
+> Suggested-by: Paul Cercueil <paul@crapouillou.net>
+> Signed-off-by: Krzysztof Kozlowski <krzk@kernel.org>
+> 
+> ---
+> 
+> Changes since v1:
+> 1. New patch
+> ---
+>  MAINTAINERS | 5 -----
+>  1 file changed, 5 deletions(-)
+> 
 
-Signed-off-by: Jonathan Marek <jonathan@marek.ca>
----
- .../bindings/clock/qcom,dispcc.yaml           | 10 +--
- .../dt-bindings/clock/qcom,dispcc-sm8150.h    | 69 +++++++++++++++++++
- 2 files changed, 75 insertions(+), 4 deletions(-)
- create mode 100644 include/dt-bindings/clock/qcom,dispcc-sm8150.h
+Hi all,
 
-diff --git a/Documentation/devicetree/bindings/clock/qcom,dispcc.yaml b/Documentation/devicetree/bindings/clock/qcom,dispcc.yaml
-index 7d5b25dfe0b1..9702066cda38 100644
---- a/Documentation/devicetree/bindings/clock/qcom,dispcc.yaml
-+++ b/Documentation/devicetree/bindings/clock/qcom,dispcc.yaml
-@@ -11,26 +11,28 @@ maintainers:
- 
- description: |
-   Qualcomm display clock control module which supports the clocks, resets and
--  power domains on SDM845/SC7180.
-+  power domains on SDM845/SC7180/SM8150.
- 
-   See also:
-     dt-bindings/clock/qcom,dispcc-sdm845.h
-     dt-bindings/clock/qcom,dispcc-sc7180.h
-+    dt-bindings/clock/qcom,dispcc-sm8150.h
- 
- properties:
-   compatible:
-     enum:
-       - qcom,sdm845-dispcc
-       - qcom,sc7180-dispcc
-+      - qcom,sm8150-dispcc
- 
-   # NOTE: sdm845.dtsi existed for quite some time and specified no clocks.
-   # The code had to use hardcoded mechanisms to find the input clocks.
-   # New dts files should have these clocks.
-   clocks:
--    minItems: 8
-+    minItems: 7
-     items:
-       - description: Board XO source
--      - description: GPLL0 source from GCC
-+      - description: GPLL0 source from GCC (sdm845/sc7180 only)
-       - description: GPLL0 div source from GCC (sdm845 only)
-       - description: Byte clock from DSI PHY0
-       - description: Pixel clock from DSI PHY0
-@@ -40,7 +42,7 @@ properties:
-       - description: VCO DIV clock from DP PHY
- 
-   clock-names:
--    minItems: 8
-+    minItems: 7
-     items:
-       - const: bi_tcxo
-       - const: gcc_disp_gpll0_clk_src
-diff --git a/include/dt-bindings/clock/qcom,dispcc-sm8150.h b/include/dt-bindings/clock/qcom,dispcc-sm8150.h
-new file mode 100644
-index 000000000000..2b96b0b4fe97
---- /dev/null
-+++ b/include/dt-bindings/clock/qcom,dispcc-sm8150.h
-@@ -0,0 +1,69 @@
-+/* SPDX-License-Identifier: GPL-2.0 */
-+/*
-+ * Copyright (c) 2017-2020, The Linux Foundation. All rights reserved.
-+ */
-+
-+#ifndef _DT_BINDINGS_CLK_QCOM_DISP_CC_SM8150_H
-+#define _DT_BINDINGS_CLK_QCOM_DISP_CC_SM8150_H
-+
-+/* DISP_CC clock registers */
-+#define DISP_CC_MDSS_AHB_CLK			0
-+#define DISP_CC_MDSS_AHB_CLK_SRC		1
-+#define DISP_CC_MDSS_BYTE0_CLK			2
-+#define DISP_CC_MDSS_BYTE0_CLK_SRC		3
-+#define DISP_CC_MDSS_BYTE0_DIV_CLK_SRC		4
-+#define DISP_CC_MDSS_BYTE0_INTF_CLK		5
-+#define DISP_CC_MDSS_BYTE1_CLK			6
-+#define DISP_CC_MDSS_BYTE1_CLK_SRC		7
-+#define DISP_CC_MDSS_BYTE1_DIV_CLK_SRC		8
-+#define DISP_CC_MDSS_BYTE1_INTF_CLK		9
-+#define DISP_CC_MDSS_DP_AUX1_CLK		10
-+#define DISP_CC_MDSS_DP_AUX1_CLK_SRC		11
-+#define DISP_CC_MDSS_DP_AUX_CLK			12
-+#define DISP_CC_MDSS_DP_AUX_CLK_SRC		13
-+#define DISP_CC_MDSS_DP_CRYPTO1_CLK		14
-+#define DISP_CC_MDSS_DP_CRYPTO1_CLK_SRC		15
-+#define DISP_CC_MDSS_DP_CRYPTO_CLK		16
-+#define DISP_CC_MDSS_DP_CRYPTO_CLK_SRC		17
-+#define DISP_CC_MDSS_DP_LINK1_CLK		18
-+#define DISP_CC_MDSS_DP_LINK1_CLK_SRC		19
-+#define DISP_CC_MDSS_DP_LINK1_INTF_CLK		20
-+#define DISP_CC_MDSS_DP_LINK_CLK		21
-+#define DISP_CC_MDSS_DP_LINK_CLK_SRC		22
-+#define DISP_CC_MDSS_DP_LINK_INTF_CLK		23
-+#define DISP_CC_MDSS_DP_PIXEL1_CLK		24
-+#define DISP_CC_MDSS_DP_PIXEL1_CLK_SRC		25
-+#define DISP_CC_MDSS_DP_PIXEL2_CLK		26
-+#define DISP_CC_MDSS_DP_PIXEL2_CLK_SRC		27
-+#define DISP_CC_MDSS_DP_PIXEL_CLK		28
-+#define DISP_CC_MDSS_DP_PIXEL_CLK_SRC		29
-+#define DISP_CC_MDSS_ESC0_CLK			30
-+#define DISP_CC_MDSS_ESC0_CLK_SRC		31
-+#define DISP_CC_MDSS_ESC1_CLK			32
-+#define DISP_CC_MDSS_ESC1_CLK_SRC		33
-+#define DISP_CC_MDSS_MDP_CLK			34
-+#define DISP_CC_MDSS_MDP_CLK_SRC		35
-+#define DISP_CC_MDSS_MDP_LUT_CLK		36
-+#define DISP_CC_MDSS_NON_GDSC_AHB_CLK		37
-+#define DISP_CC_MDSS_PCLK0_CLK			38
-+#define DISP_CC_MDSS_PCLK0_CLK_SRC		39
-+#define DISP_CC_MDSS_PCLK1_CLK			40
-+#define DISP_CC_MDSS_PCLK1_CLK_SRC		41
-+#define DISP_CC_MDSS_ROT_CLK			42
-+#define DISP_CC_MDSS_ROT_CLK_SRC		43
-+#define DISP_CC_MDSS_RSCC_AHB_CLK		44
-+#define DISP_CC_MDSS_RSCC_VSYNC_CLK		45
-+#define DISP_CC_MDSS_VSYNC_CLK			46
-+#define DISP_CC_MDSS_VSYNC_CLK_SRC		47
-+#define DISP_CC_PLL0				48
-+#define DISP_CC_PLL1				49
-+
-+/* DISP_CC Reset */
-+#define DISP_CC_MDSS_CORE_BCR			0
-+#define DISP_CC_MDSS_RSCC_BCR			1
-+#define DISP_CC_MDSS_SPDM_BCR			2
-+
-+/* DISP_CC GDSCR */
-+#define MDSS_GDSC				0
-+
-+#endif
--- 
-2.26.1
+Any comments on these two patches?
+
+Best regards,
+Krzysztof
 
