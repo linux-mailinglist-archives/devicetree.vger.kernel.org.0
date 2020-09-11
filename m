@@ -2,277 +2,106 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from vger.kernel.org (vger.kernel.org [23.128.96.18])
-	by mail.lfdr.de (Postfix) with ESMTP id 8F6472667CE
-	for <lists+devicetree@lfdr.de>; Fri, 11 Sep 2020 19:53:16 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTP id 9C38C2667FD
+	for <lists+devicetree@lfdr.de>; Fri, 11 Sep 2020 20:01:38 +0200 (CEST)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S1725846AbgIKRxG (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Fri, 11 Sep 2020 13:53:06 -0400
-Received: from lindbergh.monkeyblade.net ([23.128.96.19]:56880 "EHLO
-        lindbergh.monkeyblade.net" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S1725816AbgIKRwo (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Fri, 11 Sep 2020 13:52:44 -0400
-Received: from mail-pf1-x444.google.com (mail-pf1-x444.google.com [IPv6:2607:f8b0:4864:20::444])
-        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 67F7AC061795
-        for <devicetree@vger.kernel.org>; Fri, 11 Sep 2020 10:52:43 -0700 (PDT)
-Received: by mail-pf1-x444.google.com with SMTP id d6so7934917pfn.9
-        for <devicetree@vger.kernel.org>; Fri, 11 Sep 2020 10:52:43 -0700 (PDT)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=broadcom.com; s=google;
-        h=from:to:cc:subject:date:message-id:in-reply-to:references;
-        bh=m4flW0eGW0tffkIHX5Om1c+mAEM2k7lQaZtvvuDDv6Q=;
-        b=EE4lXJfCa/j1t5Ufqu5oi50FY8ExkMgvJBuSAWo+6M2UG7wRfPm4iXiAK/npZqo1KL
-         9UpFW+k0u/hxwUY2gDzG0sAT2d/Sl85TvVTBs4aIPBikPQFH92VwMagniJ7MpNZ/YRop
-         ECkLWqtmbwcVeV/sGbVhC3Vc3raVt453rLm50=
-X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=1e100.net; s=20161025;
-        h=x-gm-message-state:from:to:cc:subject:date:message-id:in-reply-to
-         :references;
-        bh=m4flW0eGW0tffkIHX5Om1c+mAEM2k7lQaZtvvuDDv6Q=;
-        b=Nb3JdCvUWJTNj7QjODk4qFGNg/PYO2HllPOaeES3xluX+UrRr4EPwLSBaeQRKtkM2D
-         IbQlPz8DbEkMjr6gGiZfEnj0mVo6I0PlbjDuIkDHrwMmXPJuAHtbdlcWOEDqkgNMoVLD
-         0tjCLo+PA2c4Ebt+CuKfF70TNYZmx40sb2xVdbNv62e6+5QVX0M2I7jgqaYWy84n/CcE
-         C3SrslYVLXSgJ382lSIh43u/pYg4Xa6Adkr/kVEPWZmxg5Q1vYt7KsIEJaA5bFY7gtXc
-         Qh7AzsC+o5inmJ2FjMxDJMkmQM0r8OCZc8N7LIWdx6Qj/F7mOlOhrVeWlzlqMvjhUOZy
-         L8zg==
-X-Gm-Message-State: AOAM532Lnf9p0IQMrswBIW0ym7Qj9jmNNDbMItNkXsuSBod5tXEbnebe
-        +Ky3PpxRl9eoeWLpNoKzhQbqfQ==
-X-Google-Smtp-Source: ABdhPJxL2iLzrIDE7DMZFFgFuBFlCuzDnF1E1RbQcRpkhInUOTDND8LzRX/901IPCTrlS8/NSOSW5Q==
-X-Received: by 2002:a63:7f59:: with SMTP id p25mr2438918pgn.146.1599846762600;
-        Fri, 11 Sep 2020 10:52:42 -0700 (PDT)
-Received: from stbsrv-and-01.and.broadcom.net ([192.19.231.250])
-        by smtp.gmail.com with ESMTPSA id d77sm2871963pfd.121.2020.09.11.10.52.40
-        (version=TLS1_3 cipher=TLS_AES_256_GCM_SHA384 bits=256/256);
-        Fri, 11 Sep 2020 10:52:41 -0700 (PDT)
-From:   Jim Quinlan <james.quinlan@broadcom.com>
-To:     linux-pci@vger.kernel.org,
-        Nicolas Saenz Julienne <nsaenzjulienne@suse.de>,
-        Christoph Hellwig <hch@lst.de>,
-        Robin Murphy <robin.murphy@arm.com>,
-        bcm-kernel-feedback-list@broadcom.com, james.quinlan@broadcom.com
-Cc:     Jim Quinlan <jquinlan@broadcom.com>,
+        id S1725846AbgIKSBf (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Fri, 11 Sep 2020 14:01:35 -0400
+Received: from userp2130.oracle.com ([156.151.31.86]:46044 "EHLO
+        userp2130.oracle.com" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
+        with ESMTP id S1725794AbgIKSBd (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Fri, 11 Sep 2020 14:01:33 -0400
+Received: from pps.filterd (userp2130.oracle.com [127.0.0.1])
+        by userp2130.oracle.com (8.16.0.42/8.16.0.42) with SMTP id 08BHxNun136182;
+        Fri, 11 Sep 2020 18:01:00 GMT
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=oracle.com; h=subject : to : cc :
+ references : from : message-id : date : mime-version : in-reply-to :
+ content-type : content-transfer-encoding; s=corp-2020-01-29;
+ bh=K/lrGLKQLzPCde1LBeenvfV12lSqYozwSEeErGwFLx0=;
+ b=p3td48CvzFQw8bp+qotx7y2XNGDz349JG2L68Ognkw/J+TLmf6hry58o/0azGGJDmM3n
+ T2x07sp/D5YQGaD0JXWu/RuYc0P2QPMQfmCfhhZgy4tNbp7XB0MLpDIgzjNviZisFdwJ
+ tVRbf1BuYXl9BQ68SiM4IlLykbmhWv8/LD46cuyF6W3vMasF3dL496+iLWpZHe8/PWM7
+ 1CZZGbudcuqz2D48aVZZQx0LmiwLjLBM9yeRroGmg9ku5x9sA7JKbKkITdsE+m2iaNNh
+ dM+YXKKldp/6uh38YsMh0M8sBrZhq8oX68S7iURwWht61uYrEshzXXCL4PiUKt28MJ4p Xw== 
+Received: from aserp3030.oracle.com (aserp3030.oracle.com [141.146.126.71])
+        by userp2130.oracle.com with ESMTP id 33c23rfrhy-1
+        (version=TLSv1.2 cipher=ECDHE-RSA-AES256-GCM-SHA384 bits=256 verify=FAIL);
+        Fri, 11 Sep 2020 18:01:00 +0000
+Received: from pps.filterd (aserp3030.oracle.com [127.0.0.1])
+        by aserp3030.oracle.com (8.16.0.42/8.16.0.42) with SMTP id 08BHximb049957;
+        Fri, 11 Sep 2020 18:00:59 GMT
+Received: from userv0121.oracle.com (userv0121.oracle.com [156.151.31.72])
+        by aserp3030.oracle.com with ESMTP id 33dacqayvf-1
+        (version=TLSv1.2 cipher=ECDHE-RSA-AES256-GCM-SHA384 bits=256 verify=OK);
+        Fri, 11 Sep 2020 18:00:59 +0000
+Received: from abhmp0002.oracle.com (abhmp0002.oracle.com [141.146.116.8])
+        by userv0121.oracle.com (8.14.4/8.13.8) with ESMTP id 08BI0t3G026796;
+        Fri, 11 Sep 2020 18:00:55 GMT
+Received: from [10.74.108.237] (/10.74.108.237)
+        by default (Oracle Beehive Gateway v4.0)
+        with ESMTP ; Fri, 11 Sep 2020 11:00:55 -0700
+Subject: Re: [PATCH 2/3] ARM/keystone: move the DMA offset handling under
+ ifdef CONFIG_ARM_LPAE
+To:     Russell King - ARM Linux admin <linux@armlinux.org.uk>,
+        Christoph Hellwig <hch@lst.de>
+Cc:     iommu@lists.linux-foundation.org,
+        Santosh Shilimkar <ssantosh@kernel.org>,
+        Jim Quinlan <james.quinlan@broadcom.com>,
+        Nathan Chancellor <natechancellor@gmail.com>,
         Florian Fainelli <f.fainelli@gmail.com>,
-        Bjorn Helgaas <bhelgaas@google.com>,
+        Robin Murphy <robin.murphy@arm.com>,
         Rob Herring <robh+dt@kernel.org>,
-        linux-arm-kernel@lists.infradead.org (moderated list:BROADCOM BCM7XXX
-        ARM ARCHITECTURE),
-        linux-rpi-kernel@lists.infradead.org (moderated list:BROADCOM
-        BCM2711/BCM2835 ARM ARCHITECTURE),
-        devicetree@vger.kernel.org (open list:OPEN FIRMWARE AND FLATTENED
-        DEVICE TREE BINDINGS), linux-kernel@vger.kernel.org (open list)
-Subject: [PATCH v12 02/10] dt-bindings: PCI: Add bindings for more Brcmstb chips
-Date:   Fri, 11 Sep 2020 13:52:22 -0400
-Message-Id: <20200911175232.19016-3-james.quinlan@broadcom.com>
-X-Mailer: git-send-email 2.17.1
-In-Reply-To: <20200911175232.19016-1-james.quinlan@broadcom.com>
-References: <20200911175232.19016-1-james.quinlan@broadcom.com>
-Content-Type: multipart/signed; protocol="application/pkcs7-signature"; micalg=sha-256;
-        boundary="000000000000042f0105af0d5aea"
+        Frank Rowand <frowand.list@gmail.com>,
+        linux-arm-kernel@lists.infradead.org, linux-kernel@vger.kernel.org,
+        linux-sh@vger.kernel.org, linux-pci@vger.kernel.org,
+        linux-acpi@vger.kernel.org, devicetree@vger.kernel.org,
+        linux-usb@vger.kernel.org
+References: <20200910054038.324517-1-hch@lst.de>
+ <20200910054038.324517-3-hch@lst.de>
+ <20200911111551.GG1551@shell.armlinux.org.uk>
+From:   santosh.shilimkar@oracle.com
+Organization: Oracle Corporation
+Message-ID: <f13c72b9-9efa-7b9d-6c23-19f87b151bc4@oracle.com>
+Date:   Fri, 11 Sep 2020 11:00:52 -0700
+User-Agent: Mozilla/5.0 (Macintosh; Intel Mac OS X 10.15; rv:68.0)
+ Gecko/20100101 Thunderbird/68.9.0
+MIME-Version: 1.0
+In-Reply-To: <20200911111551.GG1551@shell.armlinux.org.uk>
+Content-Type: text/plain; charset=utf-8; format=flowed
+Content-Language: en-US
+Content-Transfer-Encoding: 7bit
+X-Proofpoint-Virus-Version: vendor=nai engine=6000 definitions=9741 signatures=668679
+X-Proofpoint-Spam-Details: rule=notspam policy=default score=0 mlxlogscore=999 malwarescore=0
+ bulkscore=0 phishscore=0 adultscore=0 suspectscore=0 spamscore=0
+ mlxscore=0 classifier=spam adjust=0 reason=mlx scancount=1
+ engine=8.12.0-2006250000 definitions=main-2009110145
+X-Proofpoint-Virus-Version: vendor=nai engine=6000 definitions=9741 signatures=668679
+X-Proofpoint-Spam-Details: rule=notspam policy=default score=0 adultscore=0 priorityscore=1501
+ mlxlogscore=999 mlxscore=0 bulkscore=0 suspectscore=0 spamscore=0
+ malwarescore=0 phishscore=0 lowpriorityscore=0 clxscore=1011
+ impostorscore=0 classifier=spam adjust=0 reason=mlx scancount=1
+ engine=8.12.0-2006250000 definitions=main-2009110145
 Sender: devicetree-owner@vger.kernel.org
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
---000000000000042f0105af0d5aea
+On 9/11/20 4:15 AM, Russell King - ARM Linux admin wrote:
+> On Thu, Sep 10, 2020 at 07:40:37AM +0200, Christoph Hellwig wrote:
+>> The DMA offset notifier can only be used if PHYS_OFFSET is at least
+>> KEYSTONE_HIGH_PHYS_START, which can't be represented by a 32-bit
+>> phys_addr_t.  Currently the code compiles fine despite that, a pending
+>> change to the DMA offset handling would create a compiler warning for
+>> this case.  Add an ifdef to not compile the code except for LPAE
+>> configs.
+> 
+> However, to have use of the high physical offset, LPAE needs to be
+> enabled, which ensures that phys_addr_t is 64-bit.
+> 
+> I believe that DMA is non-coherent on this platform unless the high
+> physical address is used. Or something like that.
+> 
+Exactly. Higher address ranges needs to be used for DMA coherency.
 
-From: Jim Quinlan <jquinlan@broadcom.com>
-
-- Add compatible strings for three more Broadcom STB chips: 7278, 7216,
-  7211 (STB version of RPi4).
-- Add new property 'brcm,scb-sizes'.
-- Add new property 'resets'.
-- Add new property 'reset-names' for 7216 only.
-- Allow 'ranges' and 'dma-ranges' to have more than one item and update
-  the example to show this.
-
-Signed-off-by: Jim Quinlan <jquinlan@broadcom.com>
-Reviewed-by: Rob Herring <robh@kernel.org>
----
- .../bindings/pci/brcm,stb-pcie.yaml           | 56 ++++++++++++++++---
- 1 file changed, 49 insertions(+), 7 deletions(-)
-
-diff --git a/Documentation/devicetree/bindings/pci/brcm,stb-pcie.yaml b/Documentation/devicetree/bindings/pci/brcm,stb-pcie.yaml
-index 8680a0f86c5a..807694b4f41f 100644
---- a/Documentation/devicetree/bindings/pci/brcm,stb-pcie.yaml
-+++ b/Documentation/devicetree/bindings/pci/brcm,stb-pcie.yaml
-@@ -9,12 +9,15 @@ title: Brcmstb PCIe Host Controller Device Tree Bindings
- maintainers:
-   - Nicolas Saenz Julienne <nsaenzjulienne@suse.de>
- 
--allOf:
--  - $ref: /schemas/pci/pci-bus.yaml#
--
- properties:
-   compatible:
--    const: brcm,bcm2711-pcie # The Raspberry Pi 4
-+    items:
-+      - enum:
-+          - brcm,bcm2711-pcie # The Raspberry Pi 4
-+          - brcm,bcm7211-pcie # Broadcom STB version of RPi4
-+          - brcm,bcm7278-pcie # Broadcom 7278 Arm
-+          - brcm,bcm7216-pcie # Broadcom 7216 Arm
-+          - brcm,bcm7445-pcie # Broadcom 7445 Arm
- 
-   reg:
-     maxItems: 1
-@@ -34,10 +37,12 @@ properties:
-       - const: msi
- 
-   ranges:
--    maxItems: 1
-+    minItems: 1
-+    maxItems: 4
- 
-   dma-ranges:
--    maxItems: 1
-+    minItems: 1
-+    maxItems: 6
- 
-   clocks:
-     maxItems: 1
-@@ -58,8 +63,31 @@ properties:
- 
-   aspm-no-l0s: true
- 
-+  resets:
-+    description: for "brcm,bcm7216-pcie", must be a valid reset
-+      phandle pointing to the RESCAL reset controller provider node.
-+    $ref: "/schemas/types.yaml#/definitions/phandle"
-+
-+  reset-names:
-+    items:
-+      - const: rescal
-+
-+  brcm,scb-sizes:
-+    description: u64 giving the 64bit PCIe memory
-+      viewport size of a memory controller.  There may be up to
-+      three controllers, and each size must be a power of two
-+      with a size greater or equal to the amount of memory the
-+      controller supports.  Note that each memory controller
-+      may have two component regions -- base and extended -- so
-+      this information cannot be deduced from the dma-ranges.
-+    $ref: /schemas/types.yaml#/definitions/uint64-array
-+    items:
-+      minItems: 1
-+      maxItems: 3
-+
- required:
-   - reg
-+  - ranges
-   - dma-ranges
-   - "#interrupt-cells"
-   - interrupts
-@@ -68,6 +96,18 @@ required:
-   - interrupt-map
-   - msi-controller
- 
-+allOf:
-+  - $ref: /schemas/pci/pci-bus.yaml#
-+  - if:
-+      properties:
-+        compatible:
-+          contains:
-+            const: brcm,bcm7216-pcie
-+    then:
-+      required:
-+        - resets
-+        - reset-names
-+
- unevaluatedProperties: false
- 
- examples:
-@@ -93,7 +133,9 @@ examples:
-                     msi-parent = <&pcie0>;
-                     msi-controller;
-                     ranges = <0x02000000 0x0 0xf8000000 0x6 0x00000000 0x0 0x04000000>;
--                    dma-ranges = <0x02000000 0x0 0x00000000 0x0 0x00000000 0x0 0x80000000>;
-+                    dma-ranges = <0x42000000 0x1 0x00000000 0x0 0x40000000 0x0 0x80000000>,
-+                                 <0x42000000 0x1 0x80000000 0x3 0x00000000 0x0 0x80000000>;
-                     brcm,enable-ssc;
-+                    brcm,scb-sizes =  <0x0000000080000000 0x0000000080000000>;
-             };
-     };
--- 
-2.17.1
-
-
---000000000000042f0105af0d5aea
-Content-Type: application/pkcs7-signature; name="smime.p7s"
-Content-Transfer-Encoding: base64
-Content-Disposition: attachment; filename="smime.p7s"
-Content-Description: S/MIME Cryptographic Signature
-
-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
-mOxPm7sNHsn0TVdPryi9+T2d8fVC/kUmuEdTYP/Hdu4W4b4T9BcW57fInYrmaJ+uotS6X59rAgMB
-AAGjggHRMIIBzTAOBgNVHQ8BAf8EBAMCBaAwgZ4GCCsGAQUFBwEBBIGRMIGOME0GCCsGAQUFBzAC
-hkFodHRwOi8vc2VjdXJlLmdsb2JhbHNpZ24uY29tL2NhY2VydC9nc3BlcnNvbmFsc2lnbjJzaGEy
-ZzNvY3NwLmNydDA9BggrBgEFBQcwAYYxaHR0cDovL29jc3AyLmdsb2JhbHNpZ24uY29tL2dzcGVy
-c29uYWxzaWduMnNoYTJnMzBNBgNVHSAERjBEMEIGCisGAQQBoDIBKAowNDAyBggrBgEFBQcCARYm
-aHR0cHM6Ly93d3cuZ2xvYmFsc2lnbi5jb20vcmVwb3NpdG9yeS8wCQYDVR0TBAIwADBEBgNVHR8E
-PTA7MDmgN6A1hjNodHRwOi8vY3JsLmdsb2JhbHNpZ24uY29tL2dzcGVyc29uYWxzaWduMnNoYTJn
-My5jcmwwJQYDVR0RBB4wHIEaamFtZXMucXVpbmxhbkBicm9hZGNvbS5jb20wEwYDVR0lBAwwCgYI
-KwYBBQUHAwQwHwYDVR0jBBgwFoAUaXKCYjFnlUSFd5GAxAQ2SZ17C2EwHQYDVR0OBBYEFNYm4GDl
-4WOt3laB3gNKFfYyaM8bMA0GCSqGSIb3DQEBCwUAA4IBAQBD+XYEgpG/OqeRgXAgDF8sa+lQ/00T
-wCP/3nBzwZPblTyThtDE/iaL/YZ5rdwqXwdCnSFh9cMhd/bnA+Eqw89clgTixvz9MdL9Vuo8LACI
-VpHO+sxZ2Cu3bO5lpK+UVCyr21y1zumOICsOuu4MJA5mtkpzBXQiA7b/ogjGxG+5iNjt9FAMX4JP
-V6GuAMmRknrzeTlxPy40UhUcRKk6Nm8mxl3Jh4KB68z7NFVpIx8G5w5I7S5ar1mLGNRjtFZ0RE4O
-lcCwKVGUXRaZMgQGrIhxGVelVgrcBh2vjpndlv733VI2VKE/TvV5MxMGU18RnogYSm66AEFA/Zb+
-5ztz1AtIMYICbzCCAmsCAQEwbTBdMQswCQYDVQQGEwJCRTEZMBcGA1UEChMQR2xvYmFsU2lnbiBu
-di1zYTEzMDEGA1UEAxMqR2xvYmFsU2lnbiBQZXJzb25hbFNpZ24gMiBDQSAtIFNIQTI1NiAtIEcz
-AgwTv2xmtR4KOmK4QvMwDQYJYIZIAWUDBAIBBQCggdQwLwYJKoZIhvcNAQkEMSIEILE5YhZNwPVv
-6Hl3155Gm76eLAo3Zzvia/hzE2tpRKemMBgGCSqGSIb3DQEJAzELBgkqhkiG9w0BBwEwHAYJKoZI
-hvcNAQkFMQ8XDTIwMDkxMTE3NTI0M1owaQYJKoZIhvcNAQkPMVwwWjALBglghkgBZQMEASowCwYJ
-YIZIAWUDBAEWMAsGCWCGSAFlAwQBAjAKBggqhkiG9w0DBzALBgkqhkiG9w0BAQowCwYJKoZIhvcN
-AQEHMAsGCWCGSAFlAwQCATANBgkqhkiG9w0BAQEFAASCAQBlHmt+6uMXiwPHTc2sVK+1nKNVw9fp
-CYn/FTBgVbBYqwTrpSJOa36rRGFnaUVIMyWzid1DpzmRoraLMr2LsUmKzI95iMrhfQKxWiWniHbl
-UM+d/8MBF93bZf1T0NRJnsX9FyFbm0w5uxS7U42xkBMRRz1GCrpvg6NNxal6oIawvDcsZFCY2CKx
-bDsHqZMJimzL3+HegSpybwBlJRd7MWxdTjE0s4PSXFshQnhWWI/eKVnyJrqhmzHujfZpo1RWZ9LU
-F9VQ9owYAvgdZ6ulrTdY7uGKShztojMKXRR/lOBJ5RnPO2VYp45FiZYf5hT48nRNfo236Hz4jhPB
-eDi860nE
---000000000000042f0105af0d5aea--
+Regards,
+Santosh
