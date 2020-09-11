@@ -2,68 +2,57 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from vger.kernel.org (vger.kernel.org [23.128.96.18])
-	by mail.lfdr.de (Postfix) with ESMTP id 369322659C2
-	for <lists+devicetree@lfdr.de>; Fri, 11 Sep 2020 08:58:32 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTP id A58122659C9
+	for <lists+devicetree@lfdr.de>; Fri, 11 Sep 2020 08:59:20 +0200 (CEST)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S1725791AbgIKG6Y (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Fri, 11 Sep 2020 02:58:24 -0400
-Received: from helcar.hmeau.com ([216.24.177.18]:58992 "EHLO fornost.hmeau.com"
+        id S1725785AbgIKG7T (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Fri, 11 Sep 2020 02:59:19 -0400
+Received: from helcar.hmeau.com ([216.24.177.18]:59022 "EHLO fornost.hmeau.com"
         rhost-flags-OK-OK-OK-OK) by vger.kernel.org with ESMTP
-        id S1725535AbgIKG6Y (ORCPT <rfc822;devicetree@vger.kernel.org>);
-        Fri, 11 Sep 2020 02:58:24 -0400
+        id S1725562AbgIKG7P (ORCPT <rfc822;devicetree@vger.kernel.org>);
+        Fri, 11 Sep 2020 02:59:15 -0400
 Received: from gwarestrin.arnor.me.apana.org.au ([192.168.0.7])
         by fornost.hmeau.com with smtp (Exim 4.92 #5 (Debian))
-        id 1kGd0Y-0007uw-4p; Fri, 11 Sep 2020 16:58:07 +1000
-Received: by gwarestrin.arnor.me.apana.org.au (sSMTP sendmail emulation); Fri, 11 Sep 2020 16:58:06 +1000
-Date:   Fri, 11 Sep 2020 16:58:06 +1000
+        id 1kGd1W-0007xV-Fl; Fri, 11 Sep 2020 16:59:07 +1000
+Received: by gwarestrin.arnor.me.apana.org.au (sSMTP sendmail emulation); Fri, 11 Sep 2020 16:59:06 +1000
+Date:   Fri, 11 Sep 2020 16:59:06 +1000
 From:   Herbert Xu <herbert@gondor.apana.org.au>
-To:     Atte Tommiska <atte.tommiska@xiphera.com>
-Cc:     Matt Mackall <mpm@selenic.com>, Rob Herring <robh+dt@kernel.org>,
-        Arnd Bergmann <arnd@arndb.de>,
-        Greg Kroah-Hartman <gregkh@linuxfoundation.org>,
-        linux-crypto@vger.kernel.org, devicetree@vger.kernel.org,
+To:     Krzysztof Kozlowski <krzk@kernel.org>
+Cc:     Vladimir Zapolskiy <vz@mleia.com>,
+        Kamil Konieczny <k.konieczny@samsung.com>,
+        "David S. Miller" <davem@davemloft.net>,
+        Rob Herring <robh+dt@kernel.org>, linux-crypto@vger.kernel.org,
+        linux-samsung-soc@vger.kernel.org, devicetree@vger.kernel.org,
         linux-kernel@vger.kernel.org
-Subject: Re: [PATCH v3 0/3] hwrng: add support for Xiphera XIP8001B
-Message-ID: <20200911065806.GG32150@gondor.apana.org.au>
-References: <20200902102817.32172-1-atte.tommiska@xiphera.com>
+Subject: Re: [PATCH 2/3] crypto: s5p-sss - Add and fix kerneldoc
+Message-ID: <20200911065906.GI32150@gondor.apana.org.au>
+References: <20200903180400.2865-1-krzk@kernel.org>
+ <20200903180400.2865-2-krzk@kernel.org>
 MIME-Version: 1.0
 Content-Type: text/plain; charset=us-ascii
 Content-Disposition: inline
-In-Reply-To: <20200902102817.32172-1-atte.tommiska@xiphera.com>
+In-Reply-To: <20200903180400.2865-2-krzk@kernel.org>
 User-Agent: Mutt/1.10.1 (2018-07-13)
 Sender: devicetree-owner@vger.kernel.org
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-On Wed, Sep 02, 2020 at 01:28:14PM +0300, Atte Tommiska wrote:
-> This patchset introduces a linux driver for Xiphera's XIP8001B IP.
-> The IP is an FPGA-based TRNG which can be used in various FPGA families.
-> The IP is in use in multiple customer projects and in Xiphera's own products.
+On Thu, Sep 03, 2020 at 08:03:59PM +0200, Krzysztof Kozlowski wrote:
+> Add missing and fix existing kerneldoc to silence W=1 warnings:
 > 
-> changes in v2: 
->   - fixed the 'make dt_binding_check' errors in the devicetree schema.
+>   drivers/crypto/s5p-sss.c:333: warning: Function parameter or member 'pclk' not described in 's5p_aes_dev'
+>   drivers/crypto/s5p-sss.c:373: warning: Function parameter or member 'sgl' not described in 's5p_hash_reqctx'
+>   drivers/crypto/s5p-sss.c:373: warning: Function parameter or member 'buffer' not described in 's5p_hash_reqctx'
+>   drivers/crypto/s5p-sss.c:1143: warning: Function parameter or member 'new_len' not described in 's5p_hash_prepare_sgs'
+>   drivers/crypto/s5p-sss.c:1143: warning: Excess function parameter 'nbytes' description in 's5p_hash_prepare_sgs'
 > 
-> changes in v3: 
->   - added Rob's tags to the first and second patch
->   - fixed a typo in the subject line of the second patch
->   - removed a redundant line of code from the driver in the third patch
-> 
-> Atte Tommiska (3):
->   dt-bindings: vendor-prefixes: Add Xiphera vendor prefix
->   dt-bindings: rng: add bindings for Xiphera XIP8001B hwrng
->   hwrng: xiphera-trng: add support for XIP8001B hwrng
-> 
->  .../bindings/rng/xiphera,xip8001b-trng.yaml   |  33 ++++
->  .../devicetree/bindings/vendor-prefixes.yaml  |   2 +
->  drivers/char/hw_random/Kconfig                |  10 ++
->  drivers/char/hw_random/Makefile               |   1 +
->  drivers/char/hw_random/xiphera-trng.c         | 150 ++++++++++++++++++
->  5 files changed, 196 insertions(+)
->  create mode 100644 Documentation/devicetree/bindings/rng/xiphera,xip8001b-trng.yaml
->  create mode 100644 drivers/char/hw_random/xiphera-trng.c
+> Signed-off-by: Krzysztof Kozlowski <krzk@kernel.org>
+> ---
+>  drivers/crypto/s5p-sss.c | 7 ++++---
+>  1 file changed, 4 insertions(+), 3 deletions(-)
 
-All applied.  Thanks.
+Patch applied.  Thanks.
 -- 
 Email: Herbert Xu <herbert@gondor.apana.org.au>
 Home Page: http://gondor.apana.org.au/~herbert/
