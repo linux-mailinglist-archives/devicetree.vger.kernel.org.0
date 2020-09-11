@@ -2,78 +2,125 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from vger.kernel.org (vger.kernel.org [23.128.96.18])
-	by mail.lfdr.de (Postfix) with ESMTP id 7544B2665A9
-	for <lists+devicetree@lfdr.de>; Fri, 11 Sep 2020 19:09:37 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTP id C71B726659E
+	for <lists+devicetree@lfdr.de>; Fri, 11 Sep 2020 19:08:34 +0200 (CEST)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S1726177AbgIKRJO (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Fri, 11 Sep 2020 13:09:14 -0400
-Received: from mail-lj1-f195.google.com ([209.85.208.195]:46432 "EHLO
-        mail-lj1-f195.google.com" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S1726178AbgIKO6Z (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Fri, 11 Sep 2020 10:58:25 -0400
-Received: by mail-lj1-f195.google.com with SMTP id a22so12648323ljp.13;
-        Fri, 11 Sep 2020 07:58:09 -0700 (PDT)
-X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=1e100.net; s=20161025;
-        h=x-gm-message-state:date:from:to:cc:subject:message-id:references
-         :mime-version:content-disposition:in-reply-to:user-agent;
-        bh=bIIMnHfFJYpi3UwZe4wCDvPNzvOBVTUDM/t6ueEm2IQ=;
-        b=mAyo/tpi8ARmR8aDwqrb1CtKPA3r11YT9SqXea3V7E11uhFHH/a5OIah7JgYkwgdwk
-         3FnL7ijrjMjYZfCgwem+jZBiN0qfbSDtsb/V/STpcR7Yt1KAnWgeYIrqR30/1kaMNkYu
-         040wegaJwfEPKkQu0m5yVEgdOr5Il0FyFkil0l8rQjHiVMw1x9tLxBrooiqhwWu9OnlN
-         gta5Kfcr1d16HRcSWFETUlwOFcW1fseWDdFlSQlErkFKQHiWJ8AabYcyjPWLqEipdZ+2
-         ZQozfyR9U/TCz5LlBXY+Oq0WSeAuXsCjPU6xConqI5yr5SKQu4NBHXhU4zjCpUZs1uL8
-         RV/w==
-X-Gm-Message-State: AOAM532gcbCwD7zWpO8CYPwcwR99ZP4/yl35z2KxPnt1O4skbuHLniaf
-        y2xOpf9UKLMnU2j5bLzUg4ZI5OHHC3Dung==
-X-Google-Smtp-Source: ABdhPJywwF2Qwh/N3i4i3wh28Wz8xzxLonYVXzEwdMBro7y7SeyhloT6RGdTzB5T3g8Tol8cwACJZw==
-X-Received: by 2002:a17:906:a256:: with SMTP id bi22mr2324488ejb.375.1599835117275;
-        Fri, 11 Sep 2020 07:38:37 -0700 (PDT)
-Received: from kozik-lap ([194.230.155.174])
-        by smtp.googlemail.com with ESMTPSA id f17sm1780002eds.45.2020.09.11.07.38.35
-        (version=TLS1_2 cipher=ECDHE-ECDSA-CHACHA20-POLY1305 bits=256/256);
-        Fri, 11 Sep 2020 07:38:36 -0700 (PDT)
-Date:   Fri, 11 Sep 2020 16:38:34 +0200
-From:   Krzysztof Kozlowski <krzk@kernel.org>
-To:     Kukjin Kim <kgene@kernel.org>, Rob Herring <robh+dt@kernel.org>,
-        Lihua Yao <ylhuajnu@outlook.com>,
-        linux-arm-kernel@lists.infradead.org,
-        linux-samsung-soc@vger.kernel.org, devicetree@vger.kernel.org,
-        linux-kernel@vger.kernel.org
-Cc:     Marek Szyprowski <m.szyprowski@samsung.com>,
-        Bartlomiej Zolnierkiewicz <b.zolnierkie@samsung.com>,
-        Sylwester Nawrocki <snawrocki@kernel.org>,
-        Tomasz Figa <tomasz.figa@gmail.com>
-Subject: Re: [PATCH 00/11] ARM: dts: s3c: dtschema fixes
-Message-ID: <20200911143834.GB659@kozik-lap>
-References: <20200907183313.29234-1-krzk@kernel.org>
+        id S1726085AbgIKPA7 (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Fri, 11 Sep 2020 11:00:59 -0400
+Received: from fllv0015.ext.ti.com ([198.47.19.141]:36320 "EHLO
+        fllv0015.ext.ti.com" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
+        with ESMTP id S1725918AbgIKPAc (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Fri, 11 Sep 2020 11:00:32 -0400
+Received: from lelv0266.itg.ti.com ([10.180.67.225])
+        by fllv0015.ext.ti.com (8.15.2/8.15.2) with ESMTP id 08BEiH8S080691;
+        Fri, 11 Sep 2020 09:44:17 -0500
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=ti.com;
+        s=ti-com-17Q1; t=1599835457;
+        bh=VeiJJJ5bDbdPOe8X83iD+SDZUH01GPEKBkwwWMTRjgc=;
+        h=Subject:To:CC:References:From:Date:In-Reply-To;
+        b=UJE/6zWtsV+dKAnUUe1kgx4juYG0EdbHLsIxlqQHR/qXPSPaff8coqPtO9DENjKvM
+         KXBa1Phfd6Bxzs7qBKxWzdfy+oP+0y6GsXXNC9F6nlBk7gsAOEndpke4lriNBhn9v6
+         AraTG/qSLZARBudKKUIAalacflPPOiQ7+mqZ5TgM=
+Received: from DFLE104.ent.ti.com (dfle104.ent.ti.com [10.64.6.25])
+        by lelv0266.itg.ti.com (8.15.2/8.15.2) with ESMTPS id 08BEiH7P001244
+        (version=TLSv1.2 cipher=AES256-GCM-SHA384 bits=256 verify=FAIL);
+        Fri, 11 Sep 2020 09:44:17 -0500
+Received: from DFLE105.ent.ti.com (10.64.6.26) by DFLE104.ent.ti.com
+ (10.64.6.25) with Microsoft SMTP Server (version=TLS1_2,
+ cipher=TLS_ECDHE_RSA_WITH_AES_128_CBC_SHA256_P256) id 15.1.1979.3; Fri, 11
+ Sep 2020 09:44:16 -0500
+Received: from lelv0326.itg.ti.com (10.180.67.84) by DFLE105.ent.ti.com
+ (10.64.6.26) with Microsoft SMTP Server (version=TLS1_2,
+ cipher=TLS_ECDHE_RSA_WITH_AES_128_CBC_SHA256_P256) id 15.1.1979.3 via
+ Frontend Transport; Fri, 11 Sep 2020 09:44:16 -0500
+Received: from [10.250.66.146] (ileax41-snat.itg.ti.com [10.172.224.153])
+        by lelv0326.itg.ti.com (8.15.2/8.15.2) with ESMTP id 08BEiEGY111883;
+        Fri, 11 Sep 2020 09:44:15 -0500
+Subject: Re: [v4,3/4] reset-controller: ti: introduce a new reset handler
+To:     Philipp Zabel <p.zabel@pengutronix.de>,
+        Crystal Guo <crystal.guo@mediatek.com>
+CC:     "robh+dt@kernel.org" <robh+dt@kernel.org>,
+        "matthias.bgg@gmail.com" <matthias.bgg@gmail.com>,
+        srv_heupstream <srv_heupstream@mediatek.com>,
+        "linux-mediatek@lists.infradead.org" 
+        <linux-mediatek@lists.infradead.org>,
+        "linux-arm-kernel@lists.infradead.org" 
+        <linux-arm-kernel@lists.infradead.org>,
+        "linux-kernel@vger.kernel.org" <linux-kernel@vger.kernel.org>,
+        "devicetree@vger.kernel.org" <devicetree@vger.kernel.org>,
+        =?UTF-8?B?U2VpeWEgV2FuZyAo546L6L+65ZCbKQ==?= 
+        <seiya.wang@mediatek.com>,
+        =?UTF-8?B?U3RhbmxleSBDaHUgKOacseWOn+mZnik=?= 
+        <stanley.chu@mediatek.com>,
+        =?UTF-8?B?WWluZ2pvZSBDaGVuICjpmbPoi7HmtLIp?= 
+        <Yingjoe.Chen@mediatek.com>,
+        =?UTF-8?B?RmFuIENoZW4gKOmZs+WHoSk=?= <fan.chen@mediatek.com>,
+        =?UTF-8?B?WW9uZyBMaWFuZyAo5qKB5YuHKQ==?= <Yong.Liang@mediatek.com>
+References: <20200817030324.5690-1-crystal.guo@mediatek.com>
+ <20200817030324.5690-4-crystal.guo@mediatek.com>
+ <3a5decee-5f31-e27d-a120-1f835241a87c@ti.com>
+ <1599620279.14806.18.camel@mhfsdcap03>
+ <096362e9-dee8-4e7a-2518-47328068c2fd@ti.com>
+ <1599792140.14806.22.camel@mhfsdcap03>
+ <9d72aaef-49fe-ebb6-215d-05ad3ab27af4@ti.com>
+ <1599804422.14806.27.camel@mhfsdcap03>
+ <dae4ab91ec20e72963f2658efca4874a35dd739e.camel@pengutronix.de>
+From:   Suman Anna <s-anna@ti.com>
+Message-ID: <407863ba-e336-11fc-297d-f1be1f58adaa@ti.com>
+Date:   Fri, 11 Sep 2020 09:44:14 -0500
+User-Agent: Mozilla/5.0 (X11; Linux x86_64; rv:68.0) Gecko/20100101
+ Thunderbird/68.10.0
 MIME-Version: 1.0
-Content-Type: text/plain; charset=utf-8
-Content-Disposition: inline
-In-Reply-To: <20200907183313.29234-1-krzk@kernel.org>
-User-Agent: Mutt/1.9.4 (2018-02-28)
+In-Reply-To: <dae4ab91ec20e72963f2658efca4874a35dd739e.camel@pengutronix.de>
+Content-Type: text/plain; charset="utf-8"
+Content-Language: en-US
+Content-Transfer-Encoding: 7bit
+X-EXCLAIMER-MD-CONFIG: e1e8a2fd-e40a-4ac6-ac9b-f7e9cc9ee180
 Sender: devicetree-owner@vger.kernel.org
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-On Mon, Sep 07, 2020 at 08:33:02PM +0200, Krzysztof Kozlowski wrote:
-> Hi,
+On 9/11/20 9:26 AM, Philipp Zabel wrote:
+> Hi Crystal,
 > 
-> This is last serie of big dtschema cleanups for Samsung DTS.  It fixes
-> almost all dtschema violations, except:
+> On Fri, 2020-09-11 at 14:07 +0800, Crystal Guo wrote:
+> [...]
+>> Should I add the SoC-specific data as follows?
+>> This may also modify the ti original code, is it OK?
+>>
+>> +       data->reset_data = of_device_get_match_data(&pdev->dev);
+>> +
+>> +       list = of_get_property(np, data->reset_data->reset_bits, &size);
+>>
+>> +static const struct common_reset_data ti_reset_data = {
+>> +       .reset_op_available = false,
+>> +       .reset_bits = "ti, reset-bits",
+>                             ^
+> That space doesn't belong there.
 > 
->   s3c6410-mini6410.dt.yaml: srom-cs1-bus@18000000: ethernet@18000000:reg:0: [402653184, 2, 402653188, 2] is too long
+>> +};
+>> +
+>> +static const struct common_reset_data mediatek_reset_data = {
+>> +       .reset_op_available = true,
+>> +       .reset_bits = "mediatek, reset-bits",
+>> +};
 > 
-> which is similar to the case with SMDK5410 (Exynos5410).
-> 
-> The patchset was not tested on HW.
-> 
-> Best regards,
-> Krzysztof
+> I understand Robs comments as meaning "ti,reset-bits" should have been
+> called "reset-bits" in the first place, and you shouldn't repeat adding
+> the vendor prefix, as that is implied by the compatible. So this should
+> probably be just "reset-bits".
 
-Applied entire series.
+Hmm, not sure about that. I think Rob wants the reset data itself to be added in
+the driver as is being done on some other SoCs (eg: like in reset-qcom-pdc.c).
 
-Best regards,
-Krzysztof
+regards
+Suman
+
+> 
+> Otherwise this looks like it should work.
+> 
+> regards
+> Philipp
+> 
 
