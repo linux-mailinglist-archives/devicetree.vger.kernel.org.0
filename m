@@ -2,79 +2,174 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from vger.kernel.org (vger.kernel.org [23.128.96.18])
-	by mail.lfdr.de (Postfix) with ESMTP id 9896D265AD0
-	for <lists+devicetree@lfdr.de>; Fri, 11 Sep 2020 09:50:57 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTP id 04783265A9E
+	for <lists+devicetree@lfdr.de>; Fri, 11 Sep 2020 09:37:31 +0200 (CEST)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S1725763AbgIKHuy convert rfc822-to-8bit (ORCPT
-        <rfc822;lists+devicetree@lfdr.de>); Fri, 11 Sep 2020 03:50:54 -0400
-Received: from mail.flex.co.jp ([211.8.82.123]:33316 "EHLO www.flex.co.jp"
-        rhost-flags-OK-FAIL-OK-FAIL) by vger.kernel.org with ESMTP
-        id S1725730AbgIKHus (ORCPT <rfc822;devicetree@vger.kernel.org>);
-        Fri, 11 Sep 2020 03:50:48 -0400
-Received: from live.com.mx ([103.89.89.225])
-        (authenticated bits=0)
-        by www.flex.co.jp (MTA) with ESMTP id 089815Tj011131
-        for <devicetree@vger.kernel.org>; Wed, 9 Sep 2020 17:01:28 +0900
-Reply-To: powerinthewords@yahoo.co.jp
-From:   piyin.crhe@live.com.mx
-To:     devicetree@vger.kernel.org
-Subject: =?utf-8?Q?=5BSpam=5D?=
- We are still waiting for your email...
-Date:   09 Sep 2020 01:01:26 -0700
-Message-ID: <20200909010126.F745D41BFE00C837@live.com.mx>
+        id S1725769AbgIKHh2 (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Fri, 11 Sep 2020 03:37:28 -0400
+Received: from mail-ot1-f67.google.com ([209.85.210.67]:44308 "EHLO
+        mail-ot1-f67.google.com" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
+        with ESMTP id S1725648AbgIKHhW (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Fri, 11 Sep 2020 03:37:22 -0400
+Received: by mail-ot1-f67.google.com with SMTP id a2so7561003otr.11;
+        Fri, 11 Sep 2020 00:37:21 -0700 (PDT)
+X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+        d=1e100.net; s=20161025;
+        h=x-gm-message-state:mime-version:references:in-reply-to:from:date
+         :message-id:subject:to:cc;
+        bh=vO3shii/E7fgPE7FHhT9bDipzvL+QVGM4jZh7S0ik5Q=;
+        b=D1osL9si4BRxEVRZicTMRQ/8l1TLNZnfyK/8lzb8ZEg80G47q1YnULGyRY1uIakFpQ
+         yPodHuCeqIZvRbc6Bx4F4OBr/3TmGOjRz83vuZ0z4msLj5DZHFHExYCurSSgRUlbMorb
+         +xfhk5Qi9UhQ2GFucmw4Uh278Fbqr2JgQjiV+f8Xe5qaYNCoRF0ieoYsr6LRzCJRiqZs
+         xVZQVcQ5GChV6wrqco3sdn+1C2d0KFg8iHWdobeRq+rXrgR6+0KAj6164P3AJVod/0rE
+         C7QZD8SGU6yytovJtA5wtv6e152APVayvnffSSzt8OJkCmJ6agTIILiBiME9SI6NNbaF
+         rHHA==
+X-Gm-Message-State: AOAM531iYL+eq1JwJ6Bh7hxfd+biSAAZUv2TaFQE1y5Ewm1hzKgl2AbO
+        sE/jmZu8ewpFQ0iUV930BIyK6Rm2wW+JSmIwUrjb5Mia
+X-Google-Smtp-Source: ABdhPJxcwMIwnS7iUfHMr6autuHPnOKVqu6GSLZ4M208xRRY0vxpd3q85CZDkM3kLC3ZxIamOVWdfXV+o834hcATMyw=
+X-Received: by 2002:a9d:5a92:: with SMTP id w18mr417440oth.145.1599809840778;
+ Fri, 11 Sep 2020 00:37:20 -0700 (PDT)
 MIME-Version: 1.0
-Content-Type: text/plain;
-        charset="utf-8"
-Content-Transfer-Encoding: 8BIT
-X-SpamInfo: FortiGuard-AntiSpam ip, connection black ip 103.89.89.225
+References: <87sgbu70tq.wl-kuninori.morimoto.gx@renesas.com>
+ <87lfhm70s6.wl-kuninori.morimoto.gx@renesas.com> <31ec6196-7613-8eb3-e092-07d0c874632a@ideasonboard.com>
+ <CAMuHMdVHGQ0FFcLjQfXhke5PKJKnNfZ3NOF-p08v3QrQ-87npA@mail.gmail.com>
+ <f1ed4b08-59eb-986e-4036-820887993f00@ideasonboard.com> <CAMuHMdVGFOaBFCejGDgzf8AUbHFis0TOM-DDJ3h9k0+fuu=umQ@mail.gmail.com>
+In-Reply-To: <CAMuHMdVGFOaBFCejGDgzf8AUbHFis0TOM-DDJ3h9k0+fuu=umQ@mail.gmail.com>
+From:   Geert Uytterhoeven <geert@linux-m68k.org>
+Date:   Fri, 11 Sep 2020 09:37:09 +0200
+Message-ID: <CAMuHMdUxCq+yawHsgJZYiEwaFLo-J9vJL8yiom=zsVVUVCdS4Q@mail.gmail.com>
+Subject: Re: [PATCH 5/9] arm64: dts: renesas: r8a77961: Add VSP device nodes
+To:     Kieran Bingham <kieran.bingham+renesas@ideasonboard.com>
+Cc:     Kuninori Morimoto <kuninori.morimoto.gx@renesas.com>,
+        Rob Herring <robh+dt@kernel.org>,
+        Laurent <laurent.pinchart@ideasonboard.com>,
+        David Airlie <airlied@linux.ie>,
+        Daniel Vetter <daniel@ffwll.ch>,
+        Magnus <magnus.damm@gmail.com>,
+        Linux-Renesas <linux-renesas-soc@vger.kernel.org>,
+        Linux-DT <devicetree@vger.kernel.org>,
+        "(Renesas) shimoda" <yoshihiro.shimoda.uh@renesas.com>,
+        DRI Development <dri-devel@lists.freedesktop.org>
+Content-Type: text/plain; charset="UTF-8"
 Sender: devicetree-owner@vger.kernel.org
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-Dear Beneficiary,
+On Thu, Sep 10, 2020 at 1:09 PM Geert Uytterhoeven <geert@linux-m68k.org> wrote:
+> On Thu, Sep 10, 2020 at 12:34 PM Kieran Bingham
+> <kieran.bingham+renesas@ideasonboard.com> wrote:
+> > On 10/09/2020 10:44, Geert Uytterhoeven wrote:
+> > > On Mon, Sep 7, 2020 at 5:55 PM Kieran Bingham
+> > > <kieran.bingham+renesas@ideasonboard.com> wrote:
+> > >> On 07/09/2020 03:59, Kuninori Morimoto wrote:
+> > >>> From: Kuninori Morimoto <kuninori.morimoto.gx@renesas.com>
+> > >>>
+> > >>> This patch adds VSP device nodes for R-Car M3-W+ (r8a77961) SoC.
+> > >>> This patch is test on R-Car M3-W+ Salvator-XS board.
 
-We wish to inform you that a power of attorney was forwarded to 
-our office  by two gentlemen regarding your unclaimed fund of $56 
-Million Dollar. One of them is an American citizen named Mr. 
-Robert Porter and the other is Mr. Wilhelm Berg a Swedish 
-citizen.We have be waiting for you to contact us since last year.
+> > >>> --- a/arch/arm64/boot/dts/renesas/r8a77961.dtsi
+> > >>> +++ b/arch/arm64/boot/dts/renesas/r8a77961.dtsi
+> > >>> @@ -2056,6 +2056,61 @@ fcpvd2: fcp@fea37000 {
+> > >>>                       iommus = <&ipmmu_vi0 10>;
+> > >>>               };
+> > >>
+> > >> The FCP's added are:
+> > >>
+> > >>                 fcpf0: fcp@fe950000 {
+> > >>                 fcpf1: fcp@fe951000 {
+> > >>                 fcpvb0: fcp@fe96f000 {
+> > >>                 fcpvb1: fcp@fe92f000 {
+> > >>                 fcpvi0: fcp@fe9af000 {
+> > >>                 fcpvi1: fcp@fe9bf000 {
+> > >>                 fcpvd0: fcp@fea27000 {
+> > >>                 fcpvd1: fcp@fea2f000 {
+> > >>                 fcpvd2: fcp@fea37000 {
+> > >>
+> > >> So indeed, the first fcpf0 comes before fe960000.
+> > >>
+> > >> Do we keep the items grouped by the first occurrence? or sort the nodes
+> > >> based on address?
+> > >>
+> > >> for some reason I thought we were ordering based on address, but I see
+> > >> other situations where we group too - so I'm confused (and wishing there
+> > >> was an automatic tool to get the sorting correct without fuss).
+> > >>
+> > >> Is there a set policy?
+> > >
+> > > For nodes with a unit-address, we usually[*] sort by unit-address, but we keep
+> > > similar nodes grouped.  Hence I prefer this v1 over v2.
+> >
+> > I assume then the groups are sorted by the first entry,
+> >
+> > I.e. hypothetically:
+> >
+> > fdp@0
+> > fcp@1
+> > vsp@2
+> > fdp@3
+> > fcp@4
+> > vsp@5
+> > cmm@6
+> > cmm@7
+> >
+> > would become
+> >
+> > fdp@0
+> > fdp@3
+> > fcp@1
+> > fcp@4
+> > vsp@2
+> > vsp@5
+> > cmm@6
+> > cmm@7
+>
+> Exactly.  That's how we (Reneas SoCs) have been (trying to) doing it.
+> I am aware there are some deviations (e.g. do you keep all 4 possible
+> SCIF types together (they're all serial@), or do you group them per
+> type? And some nodes (ipmmu) may be sorted alphabetically by label).
+>
+> > Has anyone already created any scripting/validation to automate the
+> > sorting requirements?
+>
+> Not yet, AFAIK. I've been thinking about doing that several times,
+> though ;-)
+>
+> > > [*] Seems like FCP/VSP are interleaved in r8a77990.dsi, doh.
+> > >
+> >
+> > Personally I prefer that - but my opinion doesn't matter here - so as
+> > long as the rules are defined (or even better, automatically
+> > enforceable) that's fine.
+>
+> Indeed.
+>
+> Perhaps creating rules is something to be handled at a higher level
+> (i.e. common for all DTS files)?
+>
+> Summarizing "our" rules:
+>   1. Nodes without unit-address are sorted alphabetically, by node name,
+>   2. Nodes with unit-address are sorted numerically, by unit-address,
+>        a. Nodes of the same type are grouped together, i.e. the whole
+>           group is sorted w.r.t. to other nodes/groups based on the
+>           unit-address of the first member of the group.
+>   3. Anchors are sorted alphabetically, but anchor name.
+>
+> Do they make sense?
 
-The document claims these gentlemen to be your authorized 
-representatives, and the power of attorney states that you are 
-already deceased.  It further states that your death was due to 
-lung cancer, with your date of death being January 27th, 2020.
+For comparison, scripts/dtc/dtx_diff uses "dtc -s" for sorting, which
+sorts everything (nodes and properties) alphabetically.
+While I can agree on sorting all nodes alphabetically, sorting
+properties alphabetically goes IMHO a bit too far.  E.g. it's established
+practice to put "compatible" and "reg" first.
 
-They have now submitted a new account to replace the receiving 
-account that was in the original claim of funds. These funds have 
-remained unclaimed for quite some time and the need for 
-resolution is pressing. Below is the new account they have 
-submitted.
+Gr{oetje,eeting}s,
 
-Account Name's :  Robert Porter /Wilhelm Berg
-Account: 5007-29 438 66
-IBAN-nr: SE4150000000050072943866
-Bic-kod: ESSESESS
-Skandinaviska Enskilda Banken. (SEB :)
-SWEDEN .
+                        Geert
 
-In the event that you are in fact still alive, we ask that you 
-confirm your existence by responding to this email. You are to 
-view this as a matter requiring immediate attention and response. 
-We have 48 hr monitoring of all activities within Federal Reserve 
-Bank.On this regard,you will be directed to any of our office 
-center that you will go in person to sign the final papers,
-because we have our payment center in Europe,Asia,America and 
-Canada.You will go to any of the office that you will be directed 
-to with the copy of the documents of your fund.
+-- 
+Geert Uytterhoeven -- There's lots of Linux beyond ia32 -- geert@linux-m68k.org
 
-We have contacted the bank in the Sweden asking them to wait for 
-further directives from Federal Reserve Bank, prior to 
-authorizing any withdrawals in any form.  Our request is based 
-entirely on our attempt to verify that you are in fact deceased, 
-before money is wrongly disbursed.
-
-Your in Service,
-
-Robert Steven Kaplan
-2200 N Pearl St, Dallas, TX 75201, United States
+In personal conversations with technical people, I call myself a hacker. But
+when I'm talking to journalists I just say "programmer" or something like that.
+                                -- Linus Torvalds
