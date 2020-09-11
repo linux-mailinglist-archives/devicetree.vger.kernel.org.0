@@ -2,54 +2,91 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from vger.kernel.org (vger.kernel.org [23.128.96.18])
-	by mail.lfdr.de (Postfix) with ESMTP id 15FEC265EED
-	for <lists+devicetree@lfdr.de>; Fri, 11 Sep 2020 13:43:31 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTP id 148B9265EFC
+	for <lists+devicetree@lfdr.de>; Fri, 11 Sep 2020 13:47:41 +0200 (CEST)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S1725774AbgIKLnX (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Fri, 11 Sep 2020 07:43:23 -0400
-Received: from mail.kernel.org ([198.145.29.99]:49200 "EHLO mail.kernel.org"
+        id S1725852AbgIKLre (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Fri, 11 Sep 2020 07:47:34 -0400
+Received: from mail.kernel.org ([198.145.29.99]:52866 "EHLO mail.kernel.org"
         rhost-flags-OK-OK-OK-OK) by vger.kernel.org with ESMTP
-        id S1725779AbgIKLnK (ORCPT <rfc822;devicetree@vger.kernel.org>);
-        Fri, 11 Sep 2020 07:43:10 -0400
+        id S1725819AbgIKLrR (ORCPT <rfc822;devicetree@vger.kernel.org>);
+        Fri, 11 Sep 2020 07:47:17 -0400
 Received: from localhost (unknown [122.171.196.109])
         (using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
         (No client certificate requested)
-        by mail.kernel.org (Postfix) with ESMTPSA id B7EBD21D79;
-        Fri, 11 Sep 2020 11:43:08 +0000 (UTC)
+        by mail.kernel.org (Postfix) with ESMTPSA id 172A4221E7;
+        Fri, 11 Sep 2020 11:47:15 +0000 (UTC)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=kernel.org;
-        s=default; t=1599824589;
-        bh=71D7FwuJXQG5SoQQ3/Wx1gY6oRig9YIzTJYZXg5luTs=;
+        s=default; t=1599824837;
+        bh=T5hi2wkZ1BsNn5NEzkD7Mfirzp6ADMP2cxY2M3N8TkU=;
         h=Date:From:To:Cc:Subject:References:In-Reply-To:From;
-        b=fvji4I1MSjVaf/1iGu6g9FspIHC7rCubQqNi6epl3qmtdiw3MwO56wdU533VS5lPP
-         ehJE9sY1u6999MQMg3l2Xl0Y2LBpZNwQKkyKrQXni6cJf36CF3BvStrc58A3ldcRA6
-         5gfQuFVwnowXJRoJIkRhQee0eiNkuGZJfIpNgv8o=
-Date:   Fri, 11 Sep 2020 17:13:03 +0530
+        b=bHpEoEUKlZdeWR4fKbgkvrv0OLAT5h0g4wHB9Pt1B/+9ZlbbRHo9Tl2xNgsDtnHXb
+         mpW3YSsF5ZZiQULHcl5fKRCl8oUV9BFqjzF6w7+6+wikDOwps7GTssubqgGfmHpi3H
+         evXqSKxU1aYKqopaUBWbgSs7hCpsDKOwvWQuZyXg=
+Date:   Fri, 11 Sep 2020 17:17:11 +0530
 From:   Vinod Koul <vkoul@kernel.org>
-To:     "Ramuthevar,Vadivel MuruganX" 
-        <vadivel.muruganx.ramuthevar@linux.intel.com>
-Cc:     linux-kernel@vger.kernel.org, kishon@ti.com,
-        devicetree@vger.kernel.org, robh+dt@kernel.org,
-        gregkh@linuxfoundation.org, p.zabel@pengutronix.de,
-        balbi@kernel.org, andriy.shevchenko@intel.com,
-        cheol.yong.kim@intel.com, qi-ming.wu@intel.com, yin1.li@intel.com
-Subject: Re: [PATCH v9 0/2] phy: Add USB PHY support on Intel LGM SoC
-Message-ID: <20200911114303.GW77521@vkoul-mobl>
-References: <20200828022312.52724-1-vadivel.muruganx.ramuthevar@linux.intel.com>
+To:     Mauro Carvalho Chehab <mchehab+huawei@kernel.org>
+Cc:     Greg Kroah-Hartman <gregkh@linuxfoundation.org>,
+        linuxarm@huawei.com, mauro.chehab@huawei.com,
+        John Stultz <john.stultz@linaro.org>,
+        Manivannan Sadhasivam <mani@kernel.org>,
+        "David S. Miller" <davem@davemloft.net>,
+        Kishon Vijay Abraham I <kishon@ti.com>,
+        Krzysztof Kozlowski <krzk@kernel.org>,
+        Rob Herring <robh+dt@kernel.org>,
+        Rob Herring <robh@kernel.org>, Yu Chen <chenyu56@huawei.com>,
+        devicetree@vger.kernel.org, linux-kernel@vger.kernel.org
+Subject: Re: [PATCH v3 0/8] Add PHY USB3 drivers for Hikey 970
+Message-ID: <20200911114711.GX77521@vkoul-mobl>
+References: <cover.1599716786.git.mchehab+huawei@kernel.org>
 MIME-Version: 1.0
 Content-Type: text/plain; charset=us-ascii
 Content-Disposition: inline
-In-Reply-To: <20200828022312.52724-1-vadivel.muruganx.ramuthevar@linux.intel.com>
+In-Reply-To: <cover.1599716786.git.mchehab+huawei@kernel.org>
 Sender: devicetree-owner@vger.kernel.org
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-On 28-08-20, 10:23, Ramuthevar,Vadivel MuruganX wrote:
-> The USB PHY provides the optimized for low power dissipation while active, idle, or on standby.
-> Requires minimal external components, a single resistor, for best operation.
-> Supports 10/5-Gbps high-speed data transmission rates through 3-m USB 3.x cable
+On 10-09-20, 07:52, Mauro Carvalho Chehab wrote:
+> This patch series add the PHY layer needed in order to support the USB
+> functionality on Hikey 970 boards.
+> 
+> v3:
+> - split a namespace patch on two (one with code changes and another
+>   one with dt-bindings changes);
+> - placed just the PHY driver on this series. Another series will add the
+>   USB HUB driver and the DTS changes required to enable USB support
+>   for this board.
 
-Applied, thanks
+I have only cover in my inbox, no other patches. Even lore doesn't show
+the series, not sure what happened here
+
+> 
+> Mauro Carvalho Chehab (6):
+>   phy: hisilicon: phy-hi3670-usb3: use a consistent namespace
+>   dts: phy: phy-hi3670-usb3.txt: use a consistent namespace
+>   phy: hisilicon: phy-hi3670-usb3: fix coding style
+>   phy: hisilicon: phy-hi3670-usb3: change some DT properties
+>   dt-bindings: phy: convert phy-kirin970-usb3.txt to yaml
+>   MAINTAINERS: add myself as maintainer for Kirin 970 USB PHY
+> 
+> Yu Chen (2):
+>   phy: hisilicon: add USB physical layer for Kirin 3670
+>   phy: hisilicon: phy-hi3670-usb3: fix some issues at the init code
+> 
+>  .../bindings/phy/hisilicon,hi3670-usb3.yaml   |  72 ++
+>  MAINTAINERS                                   |   9 +-
+>  drivers/phy/hisilicon/Kconfig                 |  10 +
+>  drivers/phy/hisilicon/Makefile                |   1 +
+>  drivers/phy/hisilicon/phy-hi3670-usb3.c       | 671 ++++++++++++++++++
+>  5 files changed, 762 insertions(+), 1 deletion(-)
+>  create mode 100644 Documentation/devicetree/bindings/phy/hisilicon,hi3670-usb3.yaml
+>  create mode 100644 drivers/phy/hisilicon/phy-hi3670-usb3.c
+> 
+> -- 
+> 2.26.2
+> 
 
 -- 
 ~Vinod
