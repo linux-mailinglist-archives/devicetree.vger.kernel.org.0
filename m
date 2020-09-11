@@ -2,73 +2,240 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from vger.kernel.org (vger.kernel.org [23.128.96.18])
-	by mail.lfdr.de (Postfix) with ESMTP id 56ADC2661C5
-	for <lists+devicetree@lfdr.de>; Fri, 11 Sep 2020 17:04:11 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTP id B46B62661CC
+	for <lists+devicetree@lfdr.de>; Fri, 11 Sep 2020 17:06:40 +0200 (CEST)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S1726034AbgIKPDj (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Fri, 11 Sep 2020 11:03:39 -0400
-Received: from mail-lf1-f67.google.com ([209.85.167.67]:43364 "EHLO
-        mail-lf1-f67.google.com" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S1725875AbgIKPCf (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Fri, 11 Sep 2020 11:02:35 -0400
-Received: by mail-lf1-f67.google.com with SMTP id y2so6136291lfy.10;
-        Fri, 11 Sep 2020 08:00:58 -0700 (PDT)
-X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=1e100.net; s=20161025;
-        h=x-gm-message-state:date:from:to:cc:subject:message-id:references
-         :mime-version:content-disposition:in-reply-to:user-agent;
-        bh=GcoUTofUB6qhy7035EI6To3ibgdlCiURiNUbUNXaw6I=;
-        b=Syy4/u1KbtqXRRsHA2mIqfYgc9ZzQwMsqS7Eq8k46qEu25aXFwJGTv6dgPvXLGJm1W
-         XZLzpAJ5VScds66eVmc7+F3o7HD46yf/60SGmgYR8kQCYGYYkVeo8hDFZT08NmVRnuVR
-         8/Fx14GRO39jXk8Oa5cNkEC7iOOzeTJANR0GY7J14gP+Vz+6N6yWITkYuwtw72aHfeMT
-         +XPna2FOwBk4XQlN2SL4bEO7rtc8YojdB20FK90ro2GB6epo7lNiVZDzBSFRrZnB++Eo
-         sE7+aIfFGx8k3/Mk7RdKVCKCbXUdsI4RrklFZmdny/rGtMMTqFvcsdaz3FqPVQJ374UO
-         OdRQ==
-X-Gm-Message-State: AOAM530KxnON+23iLkpY91HEmT97ltWbT8mVk5jwjYk8EcYPRw/gPqKK
-        SwF2DvhMisdSH1GK/tp3s7fQFN2+HYyJVg==
-X-Google-Smtp-Source: ABdhPJzTUj3zbI6elwZd3zIOb6pE2NGdWHdYR6xDJ6mTwv+rDxUE1HtD9YCd1R9SYENLPKkAK2+leQ==
-X-Received: by 2002:a50:fe82:: with SMTP id d2mr2360474edt.86.1599836047108;
-        Fri, 11 Sep 2020 07:54:07 -0700 (PDT)
-Received: from kozik-lap ([194.230.155.174])
-        by smtp.googlemail.com with ESMTPSA id gh21sm1743686ejb.32.2020.09.11.07.54.05
-        (version=TLS1_2 cipher=ECDHE-ECDSA-CHACHA20-POLY1305 bits=256/256);
-        Fri, 11 Sep 2020 07:54:05 -0700 (PDT)
-Date:   Fri, 11 Sep 2020 16:54:03 +0200
-From:   Krzysztof Kozlowski <krzk@kernel.org>
-To:     Rob Herring <robh+dt@kernel.org>, Kukjin Kim <kgene@kernel.org>,
-        devicetree@vger.kernel.org, linux-arm-kernel@lists.infradead.org,
-        linux-samsung-soc@vger.kernel.org, linux-kernel@vger.kernel.org
-Cc:     Marek Szyprowski <m.szyprowski@samsung.com>,
-        Bartlomiej Zolnierkiewicz <b.zolnierkie@samsung.com>,
-        Sylwester Nawrocki <snawrocki@kernel.org>
-Subject: Re: [PATCH v3 2/3] ARM: dts: exynos: Add assigned clock parent to
- CMU in Exynos4412 Odroid
-Message-ID: <20200911145403.GC15290@kozik-lap>
-References: <20200906142146.21266-1-krzk@kernel.org>
- <20200906142146.21266-2-krzk@kernel.org>
+        id S1726092AbgIKPGi (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Fri, 11 Sep 2020 11:06:38 -0400
+Received: from mo4-p02-ob.smtp.rzone.de ([85.215.255.83]:12436 "EHLO
+        mo4-p02-ob.smtp.rzone.de" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
+        with ESMTP id S1725786AbgIKPET (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Fri, 11 Sep 2020 11:04:19 -0400
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; t=1599836509;
+        s=strato-dkim-0002; d=gerhold.net;
+        h=In-Reply-To:References:Message-ID:Subject:Cc:To:From:Date:
+        X-RZG-CLASS-ID:X-RZG-AUTH:From:Subject:Sender;
+        bh=HxVrrGD2kLhJ6RXz9xL0pT6u48do7GUFCv4skGWY/sQ=;
+        b=JL+ZkDei9lRYtorF8iwuWcB4Lv9FeK1hLpYFA9PfyKeCowlDjKqyG+HBWTCuFH39GP
+        n7vpOz+nWU0GStFWNkmClQwVFhFD9ozXhy//jkF1yExV9foSTFXAEUMWJQ2/b1iMXC56
+        +Szkbb7KhIoFPTMJyZRVsLt5JjR/MC7yQkVLEeOoelZj2tik9pi8xqFHJLZqtBCPQJVJ
+        Jcd4PfY3uptFIPBpImExRn3utK1GOyJt8y37G5gRX/57riIqsZd/v20jDTVV7hxz9R7z
+        64qBk+NUt4zUzcdrhrgJ8v9bdtoIPRquCRDaffUQLcT6JD8O7glmIDXcgaMmXiN3O9Mc
+        vAVw==
+X-RZG-AUTH: ":P3gBZUipdd93FF5ZZvYFPugejmSTVR2nRPhVOQ/OcYgojyw4j34+u26zEIdhPgVC7iy9yGr7ESbX"
+X-RZG-CLASS-ID: mo00
+Received: from gerhold.net
+        by smtp.strato.de (RZmta 46.10.7 DYNA|AUTH)
+        with ESMTPSA id g0b6c1w8BF0mNYQ
+        (using TLSv1.3 with cipher TLS_AES_256_GCM_SHA384 (256 bits))
+        (Client did not present a certificate);
+        Fri, 11 Sep 2020 17:00:48 +0200 (CEST)
+Date:   Fri, 11 Sep 2020 17:00:44 +0200
+From:   Stephan Gerhold <stephan@gerhold.net>
+To:     Cheng-Yi Chiang <cychiang@chromium.org>
+Cc:     linux-kernel@vger.kernel.org, Mark Brown <broonie@kernel.org>,
+        Taniya Das <tdas@codeaurora.org>,
+        Rohit kumar <rohitkr@codeaurora.org>,
+        Banajit Goswami <bgoswami@codeaurora.org>,
+        Patrick Lai <plai@codeaurora.org>,
+        Andy Gross <agross@kernel.org>,
+        Bjorn Andersson <bjorn.andersson@linaro.org>,
+        Liam Girdwood <lgirdwood@gmail.com>,
+        Rob Herring <robh+dt@kernel.org>,
+        Jaroslav Kysela <perex@perex.cz>,
+        Takashi Iwai <tiwai@suse.com>,
+        Srini Kandagatla <srinivas.kandagatla@linaro.org>,
+        Matthias Brugger <matthias.bgg@gmail.com>,
+        Heiko Stuebner <heiko@sntech.de>, dianders@chromium.org,
+        dgreid@chromium.org, tzungbi@chromium.org,
+        linux-arm-kernel@lists.infradead.org,
+        linux-arm-msm@vger.kernel.org, devicetree@vger.kernel.org,
+        alsa-devel@alsa-project.org, linux-mediatek@lists.infradead.org,
+        linux-rockchip@lists.infradead.org,
+        Ajit Pandey <ajitp@codeaurora.org>
+Subject: Re: [PATCH v9 3/3] ASoC: qcom: sc7180: Add machine driver for sound
+ card registration
+Message-ID: <20200911150044.GA2352@gerhold.net>
+References: <20200911102259.3667381-1-cychiang@chromium.org>
+ <20200911102259.3667381-4-cychiang@chromium.org>
 MIME-Version: 1.0
-Content-Type: text/plain; charset=utf-8
+Content-Type: text/plain; charset=us-ascii
 Content-Disposition: inline
-In-Reply-To: <20200906142146.21266-2-krzk@kernel.org>
-User-Agent: Mutt/1.9.4 (2018-02-28)
+In-Reply-To: <20200911102259.3667381-4-cychiang@chromium.org>
 Sender: devicetree-owner@vger.kernel.org
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-On Sun, Sep 06, 2020 at 04:21:45PM +0200, Krzysztof Kozlowski wrote:
-> Commit 68605101460e ("ARM: dts: exynos: Add support for audio over HDMI
-> for Odroid X/X2/U3") added assigned clocks under Clock Management Unit.
-> 
-> However the dtschema expects "clocks" property if "assigned-clocks" are
-> used.  Add reference to input clock, the parent used in
-> "assigned-clock-parents" to silence the dtschema warnings:
-> 
->   arch/arm/boot/dts/exynos4412-odroidu3.dt.yaml: clock-controller@10030000: 'clocks' is a dependency of 'assigned-clocks'
-> 
+Hi,
 
-Applied.
+Thanks for removing the weird use of auxilliary devices :)
 
-Best regards,
-Krzysztof
+On Fri, Sep 11, 2020 at 06:22:59PM +0800, Cheng-Yi Chiang wrote:
+> From: Ajit Pandey <ajitp@codeaurora.org>
+> 
+> Add new driver to register sound card on sc7180 trogdor board and
+> do the required configuration for lpass cpu dai and external codecs
+> connected over MI2S interfaces.
+> 
+> Signed-off-by: Ajit Pandey <ajitp@codeaurora.org>
+> Signed-off-by: Cheng-Yi Chiang <cychiang@chromium.org>
+> ---
+>  sound/soc/qcom/Kconfig  |  12 ++
+>  sound/soc/qcom/Makefile |   2 +
+>  sound/soc/qcom/sc7180.c | 267 ++++++++++++++++++++++++++++++++++++++++
+>  3 files changed, 281 insertions(+)
+>  create mode 100644 sound/soc/qcom/sc7180.c
+> 
+> diff --git a/sound/soc/qcom/Kconfig b/sound/soc/qcom/Kconfig
+> index a607ace8b089..0459185ee243 100644
+> --- a/sound/soc/qcom/Kconfig
+> +++ b/sound/soc/qcom/Kconfig
+> @@ -116,4 +116,16 @@ config SND_SOC_SDM845
+>  	  SDM845 SoC-based systems.
+>  	  Say Y if you want to use audio device on this SoCs.
+>  
+> +config SND_SOC_SC7180
+> +	tristate "SoC Machine driver for SC7180 boards"
+> +	depends on I2C
+> +	select SND_SOC_QCOM_COMMON
+> +	select SND_SOC_LPASS_SC7180
+> +	select SND_SOC_MAX98357A
+> +	select SND_SOC_RT5682_I2C
+> +	help
+> +	  To add support for audio on Qualcomm Technologies Inc.
+> +	  SC7180 SoC-based systems.
+> +	  Say Y if you want to use audio device on this SoCs.
+> +
+>  endif #SND_SOC_QCOM
+> diff --git a/sound/soc/qcom/Makefile b/sound/soc/qcom/Makefile
+> index 7972c9479ab0..0cdcbf367ef1 100644
+> --- a/sound/soc/qcom/Makefile
+> +++ b/sound/soc/qcom/Makefile
+> @@ -17,12 +17,14 @@ snd-soc-storm-objs := storm.o
+>  snd-soc-apq8016-sbc-objs := apq8016_sbc.o
+>  snd-soc-apq8096-objs := apq8096.o
+>  snd-soc-sdm845-objs := sdm845.o
+> +snd-soc-sc7180-objs := sc7180.o
+>  snd-soc-qcom-common-objs := common.o
+>  
+>  obj-$(CONFIG_SND_SOC_STORM) += snd-soc-storm.o
+>  obj-$(CONFIG_SND_SOC_APQ8016_SBC) += snd-soc-apq8016-sbc.o
+>  obj-$(CONFIG_SND_SOC_MSM8996) += snd-soc-apq8096.o
+>  obj-$(CONFIG_SND_SOC_SDM845) += snd-soc-sdm845.o
+> +obj-$(CONFIG_SND_SOC_SC7180) += snd-soc-sc7180.o
+>  obj-$(CONFIG_SND_SOC_QCOM_COMMON) += snd-soc-qcom-common.o
+>  
+>  #DSP lib
+> diff --git a/sound/soc/qcom/sc7180.c b/sound/soc/qcom/sc7180.c
+> new file mode 100644
+> index 000000000000..40bc4fc98842
+> --- /dev/null
+> +++ b/sound/soc/qcom/sc7180.c
+> @@ -0,0 +1,267 @@
+> +// SPDX-License-Identifier: GPL-2.0-only
+> +//
+> +// Copyright (c) 2020, The Linux Foundation. All rights reserved.
+> +//
+> +// sc7180.c -- ALSA SoC Machine driver for SC7180
+> +
+> +#include <dt-bindings/sound/sc7180-lpass.h>
+> +#include <linux/module.h>
+> +#include <linux/of_device.h>
+> +#include <linux/platform_device.h>
+> +#include <sound/core.h>
+> +#include <sound/jack.h>
+> +#include <sound/pcm.h>
+> +#include <sound/pcm_params.h>
+> +#include <sound/soc.h>
+> +#include <uapi/linux/input-event-codes.h>
+> +
+> +#include "../codecs/rt5682.h"
+> +#include "common.h"
+> +#include "lpass.h"
+> +
+> +#define DEFAULT_SAMPLE_RATE_48K		48000
+> +#define DEFAULT_MCLK_RATE		19200000
+> +#define RT5682_PLL1_FREQ (48000 * 512)
+> +
+> +struct sc7180_snd_data {
+> +	u32 pri_mi2s_clk_count;
+> +	struct snd_soc_jack hs_jack;
+> +	struct snd_soc_jack hdmi_jack;
+> +};
 
+[...]
+
+> +
+> +static const struct snd_soc_ops sc7180_ops = {
+> +	.startup = sc7180_snd_startup,
+> +	.shutdown = sc7180_snd_shutdown,
+> +};
+> +
+> +static const struct snd_soc_dapm_widget sc7180_snd_widgets[] = {
+> +	SND_SOC_DAPM_HP("Headphone Jack", NULL),
+> +	SND_SOC_DAPM_MIC("Headset Mic", NULL),
+> +};
+> +
+> +static struct snd_soc_card sc7180_card = {
+> +	.owner = THIS_MODULE,
+> +	.dapm_widgets = sc7180_snd_widgets,
+> +	.num_dapm_widgets = ARRAY_SIZE(sc7180_snd_widgets),
+> +};
+
+Given that you modify this struct and already allocate some memory
+dynamically (sc7810_snd_data), it might be a bit cleaner to avoid
+modifying global memory and instead allocate snd_soc_card dynamically as
+well. Could just add it to sc7180_snd_data for example (see e.g. apq8016_sbc)
+
+> +
+> +static void sc7180_add_ops(struct snd_soc_card *card)
+> +{
+> +	struct snd_soc_dai_link *link;
+> +	int i;
+> +
+> +	for_each_card_prelinks(card, i, link) {
+> +		link->ops = &sc7180_ops;
+> +		link->init = sc7180_init;
+> +	}
+> +}
+> +
+> +static int sc7180_snd_platform_probe(struct platform_device *pdev)
+> +{
+> +	struct snd_soc_card *card = &sc7180_card;
+> +	struct sc7180_snd_data *data;
+> +	struct device *dev = &pdev->dev;
+> +	int ret;
+> +
+> +	/* Allocate the private data */
+> +	data = devm_kzalloc(dev, sizeof(*data), GFP_KERNEL);
+> +	if (!data)
+> +		return -ENOMEM;
+> +
+> +	card->dev = dev;
+> +	snd_soc_card_set_drvdata(card, data);
+> +
+> +	ret = qcom_snd_parse_of(card);
+> +	if (ret) {
+> +		dev_err(dev, "Error parsing OF data\n");
+
+This will just add noise in case of probe deferral. qcom_snd_parse_of()
+already logs a message for most errors so you can just remove this one.
+
+> +		return ret;
+> +	}
+> +
+> +	sc7180_add_ops(card);
+> +
+> +	return devm_snd_soc_register_card(dev, card);
+> +}
+> +
+> +static const struct of_device_id sc7180_snd_device_id[]  = {
+> +	{ .compatible = "qcom,sc7180-sndcard" },
+
+Will all SC7180 use the configuration in this driver? (With RT5682,
+HDMI, the jack configuration etc). Otherwise a more specific compatible
+string might be better, so other device-specific ones can be added later.
+
+Thanks!
+Stephan
