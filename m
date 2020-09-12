@@ -2,136 +2,80 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from vger.kernel.org (vger.kernel.org [23.128.96.18])
-	by mail.lfdr.de (Postfix) with ESMTP id 53EF226795F
-	for <lists+devicetree@lfdr.de>; Sat, 12 Sep 2020 12:08:21 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTP id 39A6E267978
+	for <lists+devicetree@lfdr.de>; Sat, 12 Sep 2020 12:26:48 +0200 (CEST)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S1725813AbgILKIU (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Sat, 12 Sep 2020 06:08:20 -0400
-Received: from lindbergh.monkeyblade.net ([23.128.96.19]:37578 "EHLO
+        id S1725837AbgILK0p (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Sat, 12 Sep 2020 06:26:45 -0400
+Received: from lindbergh.monkeyblade.net ([23.128.96.19]:40392 "EHLO
         lindbergh.monkeyblade.net" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S1725836AbgILKIO (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Sat, 12 Sep 2020 06:08:14 -0400
-Received: from mail-lj1-x241.google.com (mail-lj1-x241.google.com [IPv6:2a00:1450:4864:20::241])
-        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 6FEAAC061757
-        for <devicetree@vger.kernel.org>; Sat, 12 Sep 2020 03:08:12 -0700 (PDT)
-Received: by mail-lj1-x241.google.com with SMTP id a15so14580306ljk.2
-        for <devicetree@vger.kernel.org>; Sat, 12 Sep 2020 03:08:12 -0700 (PDT)
+        with ESMTP id S1725825AbgILK0n (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Sat, 12 Sep 2020 06:26:43 -0400
+Received: from mail-lf1-x141.google.com (mail-lf1-x141.google.com [IPv6:2a00:1450:4864:20::141])
+        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id C7BF0C061573
+        for <devicetree@vger.kernel.org>; Sat, 12 Sep 2020 03:26:42 -0700 (PDT)
+Received: by mail-lf1-x141.google.com with SMTP id y11so8398608lfl.5
+        for <devicetree@vger.kernel.org>; Sat, 12 Sep 2020 03:26:42 -0700 (PDT)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
         d=linaro.org; s=google;
         h=mime-version:references:in-reply-to:from:date:message-id:subject:to
          :cc;
-        bh=LhS5fiHNS+mf8gdgKUyRgo45ZOROmtSlUAQLqDxlfa4=;
-        b=m84ZT5BPICoUprfBrZfjZJo2ToERzKGaIY2M6zIDJinD/VsTcZGwo12Haard8p1vhC
-         MjZ8Hx1mOMoZusfjl0oIINyvWLew3L/D9Vjr6BiIPqengZMXdB/f0RVu1NZMRU2Q3z2V
-         kDw7HrGgkIRJkY7ZdDYxtEtXHKR5/QKvHKBVMwnPxWhPJDa8IJD1nxJmu+ACxDeUAVRj
-         eWLRVBXOA6MNERWuGkqiqoNBVFHwzaDGQ/HFBHpcyhLZgLwuWw0uLKa/KkF+xDYIC+Fm
-         y512jagysE3SZE1JiPHWpTndTacUnZvwMYiNVx5FAlo6DD9u1U+4vzX3/glDN2wD5pMh
-         pEFg==
+        bh=DIvFHB7lKvI8Iwk6KhzKSg38RPdA6STehJc0AFenl/s=;
+        b=TgdLZ8CWnvUkKRUD9ck3TZFKAtbFZdod1PqLgk9HJMvzSbLtFne8nRvv224yxIAiWq
+         z7fZK0vgaMe+upK3tCIbHqkMLCL0BDnzDexB9pV3IdNN2SMmBbXS/HvfLilkrplQqPUg
+         2JZVfJ2+Zs15smj60hWb9XIpj9pasAyFif3uaxVeYsZ17t7JD2gatdkgpqf1ivJ/Z001
+         131jkG3Q4d7EVoOxbqOleQXR0o+PuqHYEFZrF0z5ujCZBQm8g+4jZ+/gH8eFG7wDla7S
+         TSfJ3AM25LFRXbo+Rj1UYmIeq0nk3iIMmhwiiov5X3k2x/0KbHpVhf65SrS2iTxdFbx8
+         gFew==
 X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
         d=1e100.net; s=20161025;
         h=x-gm-message-state:mime-version:references:in-reply-to:from:date
          :message-id:subject:to:cc;
-        bh=LhS5fiHNS+mf8gdgKUyRgo45ZOROmtSlUAQLqDxlfa4=;
-        b=iVSFdY68YDM56ZVz9Q86+houc39sLT8RHDhVVaW3jqfrXgBcA9DqaGGVfTLMgnYBdS
-         sLoveKJFfd/1YMLQwqV4AjR63Wp7iXfDHB27Vu+oHUYr3KvHMoXrJPGfHUO3eK2F9L81
-         /QDbLOUlPZ/QU8+lOZ74Ocpk99CaYUObvgnawJVWh/4xgHwYeYpILmbOonUDgNpVbJe7
-         6usOHfndAAVz8p5X0fJf93kRM0VqRtHJkRLlSLbkdGpdNFuJcO/OlYfbwBZoVPTo95bz
-         F3mHRG8Pnx5Aejrxdshv3a5r40oKvWaNSsIzHoQPSkB0DGuqW2AGetnSEi+5QYhNTKLm
-         aClg==
-X-Gm-Message-State: AOAM532ob3l+hhIkZXhbMTuTVd6YED8hKf7lHYTVVce9UUEUfklv9gyE
-        wggiZkWmSylVnnELXqfRzmc6eIi5oJOw/CUVgNd0PQ==
-X-Google-Smtp-Source: ABdhPJztH8Y3Zl30n6XdqCSNpq33ojnWBwr/h05qXrY6CWiTumbfWA4LLSAc0k49IpbpJ+j5i9pFRwI9T1f7AE6sj0s=
-X-Received: by 2002:a2e:9988:: with SMTP id w8mr2308597lji.286.1599905290685;
- Sat, 12 Sep 2020 03:08:10 -0700 (PDT)
+        bh=DIvFHB7lKvI8Iwk6KhzKSg38RPdA6STehJc0AFenl/s=;
+        b=P4KvvEbVO6r1PYLTfUjCnYzUTXPxOZ58iGEz1cKkVyxYw1T2u0XH3Nxwl8pZxyAimZ
+         E8MT0g26EH19KZp/6nGpWqM820Ak3ZwHhF6Va1XM4WPabzhluys9idQJXuscHLEQsgb/
+         lpj5r32OmRaIzc3bJhRuoH3kAg+Sag3wF5l4msLg40ajrbd9+X07Bci84zkKkFJkGXhh
+         6vCAnCWqr01MzxF7jk48Z04/BWqp+PLdTmOoa24hYR6qJ/4l4Ipjra6qhOG3n29dQWfT
+         zvL/aptbhtXrTYHtqyTv/WikDWU6fxWhlizB8YF7p9/beUxVhKak2YGuVdj59pl/mxC/
+         Kciw==
+X-Gm-Message-State: AOAM5326NvPmJ2MyTG6qzTriZiyrljG3FJWGOelLBk+Yh8g67+mttP/p
+        GW4mJTQT0GDvDiiq/b9S6NO1w6etMqBXE4mBC0YnaA==
+X-Google-Smtp-Source: ABdhPJwKiuEHgRhH33r8Cuv5dORAtTyXD+wsGtyMIN07PfqnoP4U6z39oel307ZB0j+F9mHfildM6sSoTSI189WMtFw=
+X-Received: by 2002:a19:520b:: with SMTP id m11mr1383172lfb.502.1599906400286;
+ Sat, 12 Sep 2020 03:26:40 -0700 (PDT)
 MIME-Version: 1.0
-References: <20200910175733.11046-1-krzk@kernel.org> <20200910175733.11046-2-krzk@kernel.org>
- <CACPK8XdocAX5mOXf3VP29cNXH+6unYunB9NiT3qFVKyzR6WXPg@mail.gmail.com>
- <CAJKOXPe6Tf0B5W27XaD5zLk77OBzGCHpirhTdZjFH0oh8GvWgg@mail.gmail.com> <c162b6ad-57f1-a75a-11e3-9c80c60bd845@ti.com>
-In-Reply-To: <c162b6ad-57f1-a75a-11e3-9c80c60bd845@ti.com>
+References: <20200909204336.2558-1-nobuhiro1.iwamatsu@toshiba.co.jp>
+In-Reply-To: <20200909204336.2558-1-nobuhiro1.iwamatsu@toshiba.co.jp>
 From:   Linus Walleij <linus.walleij@linaro.org>
-Date:   Sat, 12 Sep 2020 12:07:59 +0200
-Message-ID: <CACRpkdbrrzkYVW13V89PJ5_WRGhxSL0rOxAHA_7hYSyw28Shvg@mail.gmail.com>
-Subject: Re: [PATCH v2 01/15] dt-bindings: gpio: convert bindings for NXP
- PCA953x family to dtschema
-To:     Grygorii Strashko <grygorii.strashko@ti.com>,
-        Rob Herring <robh+dt@kernel.org>
-Cc:     Krzysztof Kozlowski <krzk@kernel.org>,
-        Joel Stanley <joel@jms.id.au>,
-        Bartosz Golaszewski <bgolaszewski@baylibre.com>,
-        =?UTF-8?Q?Beno=C3=AEt_Cousson?= <bcousson@baylibre.com>,
-        Tony Lindgren <tony@atomide.com>,
-        Russell King <linux@armlinux.org.uk>,
-        Jason Cooper <jason@lakedaemon.net>,
-        Andrew Lunn <andrew@lunn.ch>,
-        Gregory Clement <gregory.clement@bootlin.com>,
-        Sebastian Hesselbarth <sebastian.hesselbarth@gmail.com>,
-        Andrew Jeffery <andrew@aj.id.au>,
-        Shawn Guo <shawnguo@kernel.org>,
-        Sascha Hauer <s.hauer@pengutronix.de>,
-        Pengutronix Kernel Team <kernel@pengutronix.de>,
-        NXP Linux Team <linux-imx@nxp.com>,
-        Matthias Brugger <matthias.bgg@gmail.com>,
-        Geert Uytterhoeven <geert+renesas@glider.be>,
-        Magnus Damm <magnus.damm@gmail.com>,
-        Tero Kristo <t-kristo@ti.com>, Nishanth Menon <nm@ti.com>,
-        Michal Simek <michal.simek@xilinx.com>,
-        Guenter Roeck <linux@roeck-us.net>,
-        devicetree <devicetree@vger.kernel.org>,
-        Linux Kernel Mailing List <linux-kernel@vger.kernel.org>,
-        Linux-OMAP <linux-omap@vger.kernel.org>,
+Date:   Sat, 12 Sep 2020 12:26:28 +0200
+Message-ID: <CACRpkdbSVeTYo99aHQgXrUk=1nq0rePUeozJwCErhZG=2OfSKw@mail.gmail.com>
+Subject: Re: [PATCH v4 0/8] Add Toshiba Visconti ARM64 Platform support
+To:     Nobuhiro Iwamatsu <nobuhiro1.iwamatsu@toshiba.co.jp>
+Cc:     Rob Herring <robh+dt@kernel.org>,
+        Catalin Marinas <catalin.marinas@arm.com>,
+        Will Deacon <will@kernel.org>, Arnd Bergmann <arnd@arndb.de>,
+        Olof Johansson <olof@lixom.net>, punit1.agrawal@toshiba.co.jp,
+        yuji2.ishikawa@toshiba.co.jp,
+        "open list:OPEN FIRMWARE AND FLATTENED DEVICE TREE BINDINGS" 
+        <devicetree@vger.kernel.org>,
         Linux ARM <linux-arm-kernel@lists.infradead.org>,
-        linux-aspeed <linux-aspeed@lists.ozlabs.org>,
-        "moderated list:ARM/Mediatek SoC support" 
-        <linux-mediatek@lists.infradead.org>,
-        Linux-Renesas <linux-renesas-soc@vger.kernel.org>
+        "open list:GPIO SUBSYSTEM" <linux-gpio@vger.kernel.org>,
+        Sudeep Holla <sudeep.holla@arm.com>,
+        Marc Zyngier <maz@misterjones.org>
 Content-Type: text/plain; charset="UTF-8"
 Sender: devicetree-owner@vger.kernel.org
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-On Fri, Sep 11, 2020 at 11:54 AM Grygorii Strashko
-<grygorii.strashko@ti.com> wrote:
+On Wed, Sep 9, 2020 at 10:44 PM Nobuhiro Iwamatsu
+<nobuhiro1.iwamatsu@toshiba.co.jp> wrote:
 
-> More over, there is already generic schema for gpio hogs: gpio-hog.yaml
+> Visconti is a series of Toshiba's SoCs targeting image processing
+> applications[0]. These set of patches adds support for Visconti5 a Arm
+> v8 based SoC.
 
-Where is this? I don't have it in my GPIO devel branch for sure, and
-it is not in linux-next either so not in Bartosz' tree.
-
-I did suggest that I want a gpio-common.yaml file which includes the
-hogs.
-
-> Originally, gpio bindings were defined without restricting gpio hog node names and,
-> generic schema follows this.
->
-> I think, the generic "gpio-hogs" sub-node may be introduced to place gpio hogs child nodes,
-> if gpio hogs node names restriction need to be introduces (*which i'm not sure is reasonable*).
->
-> gpio@20 {
->         gpio-hogs {
->                 yyy-hog {
->                          gpio-hog;
->                          gpios
->                 }
->         }
->
-> But this require as gpio code as generic gpio schema update (with backward compatibility in mind).
-
-The whole problem I have with the DT bindings is that defining
-them is not really a Linux problem and the people maintaining it even want
-to move it out of the Linux kernel tree. It is supposedly the responsibility of
-all operating systems using device tree including but not limited to BSD
-and Zephyr.
-
-But there is noone picking up the responsibility outside of the Linux kernel
-tree except for Rob and Rob cannot do everything.
-
-With things like this it breaks apart because noone takes the overall
-responsibility. And as subsystem maintainer I am fully overloaded with
-the Linux side of things.
-
-This is of course not your or anyone else's fault. But:
-GPIO DT binding maintainers/writers wanted!
+Patches 1 & 2 applied to the pinctrl tree!
 
 Yours,
 Linus Walleij
