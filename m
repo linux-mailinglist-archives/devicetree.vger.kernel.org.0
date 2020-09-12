@@ -2,85 +2,84 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from vger.kernel.org (vger.kernel.org [23.128.96.18])
-	by mail.lfdr.de (Postfix) with ESMTP id 4041F267A7E
-	for <lists+devicetree@lfdr.de>; Sat, 12 Sep 2020 14:52:23 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTP id F14DF267AD8
+	for <lists+devicetree@lfdr.de>; Sat, 12 Sep 2020 16:31:24 +0200 (CEST)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S1725903AbgILMwU (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Sat, 12 Sep 2020 08:52:20 -0400
-Received: from mail.kernel.org ([198.145.29.99]:46486 "EHLO mail.kernel.org"
+        id S1725848AbgILObU (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Sat, 12 Sep 2020 10:31:20 -0400
+Received: from gw.c-home.cz ([89.24.150.100]:33021 "EHLO dmz.c-home.cz"
         rhost-flags-OK-OK-OK-OK) by vger.kernel.org with ESMTP
-        id S1725889AbgILMwL (ORCPT <rfc822;devicetree@vger.kernel.org>);
-        Sat, 12 Sep 2020 08:52:11 -0400
-Received: from disco-boy.misterjones.org (disco-boy.misterjones.org [51.254.78.96])
-        (using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
-        (No client certificate requested)
-        by mail.kernel.org (Postfix) with ESMTPSA id 6E91C2073E;
-        Sat, 12 Sep 2020 12:52:10 +0000 (UTC)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=kernel.org;
-        s=default; t=1599915130;
-        bh=GF65RgPizxOvsdxgQQL/c07GFhNfm31zP65Jgj0JLF0=;
-        h=From:To:Cc:Subject:Date:In-Reply-To:References:From;
-        b=JgX7kOXn4qlNeZuyeyJA0y1DSEkbQl+6igYcTVl6AmM0ezg4Q+E3sQZ/4X79uN7Vo
-         tQvnJFu/sZNmdnUqTvtfZvpg7rpJ70vmXcTD3qOvWkt47U6dh2GNAy3Sh9evZKMctF
-         Oq6cyVKB2kfkY0pI6sDXArWnDrcFS70shwQOv31Q=
-Received: from 78.163-31-62.static.virginmediabusiness.co.uk ([62.31.163.78] helo=why.lan)
-        by disco-boy.misterjones.org with esmtpsa (TLS1.3:ECDHE_RSA_AES_256_GCM_SHA384:256)
-        (Exim 4.92)
-        (envelope-from <maz@kernel.org>)
-        id 1kH50i-00BEw6-TL; Sat, 12 Sep 2020 13:52:09 +0100
-From:   Marc Zyngier <maz@kernel.org>
-To:     devicetree@vger.kernel.org, linux-kernel@vger.kernel.org,
-        linux-arm-kernel@lists.infradead.org
-Cc:     Enric Balletbo i Serra <enric.balletbo@collabora.com>,
-        Frank Wunderlich <linux@fw-web.de>,
-        John Stultz <john.stultz@linaro.org>,
-        Saravana Kannan <saravanak@google.com>,
-        Hanks Chen <hanks.chen@mediatek.com>,
-        Andy Gross <agross@kernel.org>,
-        Bjorn Andersson <bjorn.andersson@linaro.org>,
-        Matthias Brugger <matthias.bgg@gmail.com>,
-        Thomas Gleixner <tglx@linutronix.de>,
-        Jason Cooper <jason@lakedaemon.net>,
-        Rob Herring <robh+dt@kernel.org>,
-        Frank Rowand <frowand.list@gmail.com>, kernel-team@android.com
-Subject: [PATCH 6/6] irqchip/qcom-pdc: Allow modular build
-Date:   Sat, 12 Sep 2020 13:51:48 +0100
-Message-Id: <20200912125148.1271481-7-maz@kernel.org>
-X-Mailer: git-send-email 2.28.0
-In-Reply-To: <20200912125148.1271481-1-maz@kernel.org>
-References: <20200912125148.1271481-1-maz@kernel.org>
-MIME-Version: 1.0
-Content-Transfer-Encoding: 8bit
-X-SA-Exim-Connect-IP: 62.31.163.78
-X-SA-Exim-Rcpt-To: devicetree@vger.kernel.org, linux-kernel@vger.kernel.org, linux-arm-kernel@lists.infradead.org, enric.balletbo@collabora.com, linux@fw-web.de, john.stultz@linaro.org, saravanak@google.com, hanks.chen@mediatek.com, agross@kernel.org, bjorn.andersson@linaro.org, matthias.bgg@gmail.com, tglx@linutronix.de, jason@lakedaemon.net, robh+dt@kernel.org, frowand.list@gmail.com, kernel-team@android.com
-X-SA-Exim-Mail-From: maz@kernel.org
-X-SA-Exim-Scanned: No (on disco-boy.misterjones.org); SAEximRunCond expanded to false
+        id S1725846AbgILObT (ORCPT <rfc822;devicetree@vger.kernel.org>);
+        Sat, 12 Sep 2020 10:31:19 -0400
+Received: from ubuntu1804.c-home.cz (unifi.c-home.cz [192.168.1.239])
+        by dmz.c-home.cz (8.14.4+Sun/8.14.4) with ESMTP id 08CEUtMx007223;
+        Sat, 12 Sep 2020 16:31:01 +0200 (CEST)
+From:   Martin Cerveny <m.cerveny@computer.org>
+To:     Maxime Ripard <mripard@kernel.org>
+Cc:     Martin Cerveny <m.cerveny@computer.org>,
+        Chen-Yu Tsai <wens@csie.org>, devel@driverdev.osuosl.org,
+        devicetree@vger.kernel.org,
+        Greg Kroah-Hartman <gregkh@linuxfoundation.org>,
+        linux-arm-kernel@lists.infradead.org, linux-kernel@vger.kernel.org,
+        linux-media@vger.kernel.org,
+        Mauro Carvalho Chehab <mchehab@kernel.org>,
+        Paul Kocialkowski <paul.kocialkowski@bootlin.com>,
+        Rob Herring <robh+dt@kernel.org>
+Subject: [PATCH v2 0/6] ARM: dts: sun8i: v3s: Enable video decoder
+Date:   Sat, 12 Sep 2020 16:30:46 +0200
+Message-Id: <20200912143052.30952-1-m.cerveny@computer.org>
+X-Mailer: git-send-email 2.17.1
 Sender: devicetree-owner@vger.kernel.org
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-Switch the driver to a "hybrid probe" model which preserves the
-built-in behaviour while allowing the driver to be optionnally
-built as a module for development purposes.
+First patch extends cedrus capability to all decoders
+because V3s missing MPEG2 decoder.
 
-Signed-off-by: Marc Zyngier <maz@kernel.org>
----
- drivers/irqchip/qcom-pdc.c | 4 +++-
- 1 file changed, 3 insertions(+), 1 deletion(-)
+Next two patches add system control node (SRAM C1) and 
+next three patches add support for Cedrus VPU.
 
-diff --git a/drivers/irqchip/qcom-pdc.c b/drivers/irqchip/qcom-pdc.c
-index 6ae9e1f0819d..8543fa23da10 100644
---- a/drivers/irqchip/qcom-pdc.c
-+++ b/drivers/irqchip/qcom-pdc.c
-@@ -430,4 +430,6 @@ static int qcom_pdc_init(struct device_node *node, struct device_node *parent)
- 	return ret;
- }
- 
--IRQCHIP_DECLARE(qcom_pdc, "qcom,pdc", qcom_pdc_init);
-+IRQCHIP_HYBRID_DRIVER_BEGIN(qcom_pdc)
-+IRQCHIP_MATCH("qcom,pdc", qcom_pdc_init)
-+IRQCHIP_HYBRID_DRIVER_END(qcom_pdc)
+Tested on "Lichee Zero" V3s platform with testing LCD patch
+( https://github.com/mcerveny/linux/tree/v3s_videocodec_v4 )
+and V4L2 raw API testing utility
+( https://github.com/mcerveny/v4l2-request-test ):
+- enabled LCD (DRM dual VI and sigle UI planes)
+- added RGB panel
+- enabled PWM
+
+There is low memory on V3s (64MB) and maximum must be available to CMA:
+- CONFIG_CMA_SIZE_MBYTES=28
+- add swap to swapout other processes
+- decrease buffers in v4l2-request-test (.buffers_count from 16 to 6)
+
+Only H.264 decoder working - MPEG and H.265 unsupported by V3s,
+JPEG/MJPEG still unimplemented, encoder unimplemented
+
+best regards,
+Martin
+
+Changes since v1:
+- patch 0005 rename
+- added testing description
+
+Martin Cerveny (6):
+  media: cedrus: Register all codecs as capability
+  dt-bindings: sram: allwinner,sun4i-a10-system-control: Add V3s
+    compatibles
+  ARM: dts: sun8i: v3s: Add node for system control
+  media: cedrus: Add support for V3s
+  dt-bindings: media: cedrus: Add V3s compatible
+  ARM: dts: sun8i: v3s: Add video engine node
+
+ .../allwinner,sun4i-a10-video-engine.yaml     |  1 +
+ .../allwinner,sun4i-a10-system-control.yaml   |  6 ++++
+ arch/arm/boot/dts/sun8i-v3s.dtsi              | 33 +++++++++++++++++++
+ drivers/staging/media/sunxi/cedrus/cedrus.c   | 28 +++++++++++++++-
+ drivers/staging/media/sunxi/cedrus/cedrus.h   |  2 ++
+ .../staging/media/sunxi/cedrus/cedrus_video.c |  2 ++
+ 6 files changed, 71 insertions(+), 1 deletion(-)
+
 -- 
-2.28.0
+2.17.1
 
