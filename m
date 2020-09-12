@@ -2,82 +2,91 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from vger.kernel.org (vger.kernel.org [23.128.96.18])
-	by mail.lfdr.de (Postfix) with ESMTP id 7CF4526793B
-	for <lists+devicetree@lfdr.de>; Sat, 12 Sep 2020 11:40:50 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTP id 12115267940
+	for <lists+devicetree@lfdr.de>; Sat, 12 Sep 2020 11:41:54 +0200 (CEST)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S1725825AbgILJkt (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Sat, 12 Sep 2020 05:40:49 -0400
-Received: from lindbergh.monkeyblade.net ([23.128.96.19]:33378 "EHLO
+        id S1725860AbgILJlp (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Sat, 12 Sep 2020 05:41:45 -0400
+Received: from lindbergh.monkeyblade.net ([23.128.96.19]:33524 "EHLO
         lindbergh.monkeyblade.net" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S1725833AbgILJkr (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Sat, 12 Sep 2020 05:40:47 -0400
-Received: from mail-lf1-x12b.google.com (mail-lf1-x12b.google.com [IPv6:2a00:1450:4864:20::12b])
-        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id DD824C061757
-        for <devicetree@vger.kernel.org>; Sat, 12 Sep 2020 02:40:46 -0700 (PDT)
-Received: by mail-lf1-x12b.google.com with SMTP id y17so8318714lfa.8
-        for <devicetree@vger.kernel.org>; Sat, 12 Sep 2020 02:40:46 -0700 (PDT)
+        with ESMTP id S1725834AbgILJlm (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Sat, 12 Sep 2020 05:41:42 -0400
+Received: from mail-lf1-x142.google.com (mail-lf1-x142.google.com [IPv6:2a00:1450:4864:20::142])
+        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 2DCB1C061757
+        for <devicetree@vger.kernel.org>; Sat, 12 Sep 2020 02:41:42 -0700 (PDT)
+Received: by mail-lf1-x142.google.com with SMTP id x69so8336011lff.3
+        for <devicetree@vger.kernel.org>; Sat, 12 Sep 2020 02:41:41 -0700 (PDT)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
         d=linaro.org; s=google;
         h=mime-version:references:in-reply-to:from:date:message-id:subject:to
          :cc;
-        bh=Bu21n2a8vd/3CcBVh7nLD8UijbrBObsNdfAHBgEsuAY=;
-        b=A8Igbl+Ja4q9/iX9ehDRtvWeB6PaRcMmfmTTdYIxPhyjoDWGzkLtNwN0PDWb+tHE8T
-         vdbTEfwoVi1xhuctibXeaP3ImuT/ErlVSSTkuEcBFtbjuze67NW1y9erfHUTNX5AqMlv
-         mQtcN5EjWcSo23JmhLtXhQJ5edIAHiSDTmL3JC8r4M4MQwVZ6M9p4H6z8YqJkdfGSdOA
-         /0gcjhoT+oF/vIITfmSqKsp0zMGskItEWgaDpRNJRbZDiGBln1G1GlwKAcaSnOCl2tJM
-         svPja5c9QsIsPnvfIlTKB+wuN2qDZgQARFbeHIrzkAWW2tQHg6zZ34EGpTNkGGsU00Fu
-         Qjeg==
+        bh=UZU/zGwz2ovaC4pIMVMr+MCjpS2iaz8WzZBqdPPj3tI=;
+        b=eZokzSMIQ7hJR8bFXNYglm8tUxXHklQVG1x93I2xiIKCW5A8fVxmdyT6LLArph/LNW
+         QgYUy/dHVGIKPtUkTfQlGdfjSY8sa59lPD/d3tzo98w1II/rDnuzqANq6pBEOzaZpqeh
+         BGq9tuaLi6LrI2zcyNLooPoSA2C+zmi+AQ0ev92rjWK0hINqDfeAwnBKrRcD2EgYhOzF
+         TecwnJFY3Tw1S73W5qV+CdjGOX0IxzRUVuGkdG9RDRbTY5vbmr/kWyyTr+dngENvs0cy
+         Sjdan74x6z2WafgtXy94uaA5Ibf22ntO2PBUwIGlycFidvOcLWs+NX71KQkGxcTG9xYD
+         H8fA==
 X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
         d=1e100.net; s=20161025;
         h=x-gm-message-state:mime-version:references:in-reply-to:from:date
          :message-id:subject:to:cc;
-        bh=Bu21n2a8vd/3CcBVh7nLD8UijbrBObsNdfAHBgEsuAY=;
-        b=npmfUDBAig41KJnO995aZGn3hJAFa6ZJYFdbh+2Rl44m7laf6/kfNAzYw+LtklkFK4
-         Csn5ac1036nhN7J8HI0h/AGShc18Y9UFQdpejMmcK6cqWPkza/h6jndGehZSEk9v2bb2
-         Bv1YHOcYXI3LobI3j9EtKtHvxS1OmHp5VuW1yiysg+hg8M9YY1D6IgugC8YVYidEecuV
-         NwwJ1M5ngoesM9RhnlfGECymK3/3XZGuqVQTxH2nIZ75MNQZ7EOJr4H7r5dYVdGuTZec
-         nqqEkktHwSs8V/Os6OPEzjKYDXnjljek5KfrgGX+xXC+VnmMYIeBDfJh+pUjMrbTwUcW
-         Ynxw==
-X-Gm-Message-State: AOAM531liOWzIkvSrB7tEg08NYZtB+cVMnaAYWf+yzYMKGbo+tbTAyUH
-        diu85HbVZeiIEl22YWnPh14Q/WpTx7XtjSf1Ttl9sIYCU9XlDQ==
-X-Google-Smtp-Source: ABdhPJxtWd61C3gmyIEQJbG14ARIXV82F//JJoP5YZ0xf3J2atBZ/1YczNBpwdDJI7khfzxWiVwXvg0DoNZxLnhgAyc=
-X-Received: by 2002:a19:6419:: with SMTP id y25mr1497993lfb.333.1599903644933;
- Sat, 12 Sep 2020 02:40:44 -0700 (PDT)
+        bh=UZU/zGwz2ovaC4pIMVMr+MCjpS2iaz8WzZBqdPPj3tI=;
+        b=pSdphTxMsfXfej2GckunhKkjoXK+8y9F+mSXWAklRqVumcgfx0V/UeNAgxos1V9KZu
+         +Owt2vf0L25HKa8JHk0dTIYKjeD3TAlIGAFFvd8iWSpv5Wj0/M3SjHK+GlFVEBZB7tTT
+         zVmN1p80RmCHA5JcyP4XMD7Z1bM+jP//EeJBYkuH36s17fFHWYf4lWH2I/0hNYQbBic6
+         34FnjJZKT714uu65pUV/5AE3GnVC+HonD+uELqInxHcswvqd5rfwjUasOeV7yMzBl4hp
+         I49IZl2a+WrsCgk+9/W15sHIFBa7YbFKzlUcHhXJNi/Mrt224YNGz33VX/6USJdr2hgx
+         9HMw==
+X-Gm-Message-State: AOAM5311mSh6XSW5H/O+zSIb/URueBFyPdFXoEN59bY9wr3tZJs+zuEF
+        32WQO22wB2f5O4fWcBQdpKY4dcxNYvh4N4AlwRyF0Q==
+X-Google-Smtp-Source: ABdhPJy4kP0f3CQ9PdpoZfSsR1ZDkXvseTxFo2z9nh5ohEpgFep9TTkvnaVgSqHW+XxIx3RTqvEqvy8k4mH5h5PDXj4=
+X-Received: by 2002:ac2:4c11:: with SMTP id t17mr1628328lfq.260.1599903700539;
+ Sat, 12 Sep 2020 02:41:40 -0700 (PDT)
 MIME-Version: 1.0
-References: <20200904151139.18715-1-krzk@kernel.org>
-In-Reply-To: <20200904151139.18715-1-krzk@kernel.org>
+References: <20200829094024.31842-1-krzk@kernel.org> <20200829094024.31842-5-krzk@kernel.org>
+In-Reply-To: <20200829094024.31842-5-krzk@kernel.org>
 From:   Linus Walleij <linus.walleij@linaro.org>
-Date:   Sat, 12 Sep 2020 11:40:34 +0200
-Message-ID: <CACRpkdbGTQTFAWoQtxrODYdADyUJ0JohL-63oCv9aWj53H_0Xw@mail.gmail.com>
-Subject: Re: [GIT PULL] dt-bindings: gpio: fsl-imx-gpio: Cleanup for v5.10
+Date:   Sat, 12 Sep 2020 11:41:29 +0200
+Message-ID: <CACRpkdaR5jao0hMEUF9KC4EHQwOVZNsd+Up8U+MMKFBTYqNReg@mail.gmail.com>
+Subject: Re: [PATCH 5/6] ARM: dts: dove: Fix PCA95xx GPIO expander properties
+ on A510
 To:     Krzysztof Kozlowski <krzk@kernel.org>
-Cc:     Linux ARM <linux-arm-kernel@lists.infradead.org>,
+Cc:     Bartosz Golaszewski <bgolaszewski@baylibre.com>,
+        Rob Herring <robh+dt@kernel.org>,
+        =?UTF-8?Q?Beno=C3=AEt_Cousson?= <bcousson@baylibre.com>,
+        Tony Lindgren <tony@atomide.com>,
+        Joel Stanley <joel@jms.id.au>,
+        Andrew Jeffery <andrew@aj.id.au>,
+        Jason Cooper <jason@lakedaemon.net>,
+        Andrew Lunn <andrew@lunn.ch>,
+        Sebastian Hesselbarth <sebastian.hesselbarth@gmail.com>,
+        Gregory Clement <gregory.clement@bootlin.com>,
+        Shawn Guo <shawnguo@kernel.org>,
+        Sascha Hauer <s.hauer@pengutronix.de>,
+        Pengutronix Kernel Team <kernel@pengutronix.de>,
+        Stefan Agner <stefan@agner.ch>,
+        "open list:GPIO SUBSYSTEM" <linux-gpio@vger.kernel.org>,
         "open list:OPEN FIRMWARE AND FLATTENED DEVICE TREE BINDINGS" 
         <devicetree@vger.kernel.org>,
         "linux-kernel@vger.kernel.org" <linux-kernel@vger.kernel.org>,
-        "open list:GPIO SUBSYSTEM" <linux-gpio@vger.kernel.org>
+        Linux-OMAP <linux-omap@vger.kernel.org>,
+        Linux ARM <linux-arm-kernel@lists.infradead.org>,
+        linux-aspeed <linux-aspeed@lists.ozlabs.org>
 Content-Type: text/plain; charset="UTF-8"
 Sender: devicetree-owner@vger.kernel.org
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-On Fri, Sep 4, 2020 at 5:11 PM Krzysztof Kozlowski <krzk@kernel.org> wrote:
+On Sat, Aug 29, 2020 at 11:40 AM Krzysztof Kozlowski <krzk@kernel.org> wrote:
 
-> These were on the list for some time. They got review from Rob so I guess they
-> are good to go via subsystem tree.
+> The PCA95xx GPIO expander requires GPIO controller properties to operate
+> properly.
+>
+> Signed-off-by: Krzysztof Kozlowski <krzk@kernel.org>
 
-Pulled in to my devel branch, thanks!
-
-Documentation/devicetree/bindings/gpio/fsl-imx-gpio.yaml
-looks very, very good.
-
-One thing I was thinking of was to abstract out
-gpio-common.yaml from these bindings as a start, since
-you made the effort to even parse hogs properly.
-That way others could benefit from the work.
-
-Do you want to do it or should I take a stab?
+Reviewed-by: Linus Walleij <linus.walleij@linaro.org>
 
 Yours,
 Linus Walleij
