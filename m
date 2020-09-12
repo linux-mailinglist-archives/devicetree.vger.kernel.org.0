@@ -2,108 +2,197 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from vger.kernel.org (vger.kernel.org [23.128.96.18])
-	by mail.lfdr.de (Postfix) with ESMTP id 6B30B267848
-	for <lists+devicetree@lfdr.de>; Sat, 12 Sep 2020 08:46:34 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTP id 72F5926788F
+	for <lists+devicetree@lfdr.de>; Sat, 12 Sep 2020 09:35:57 +0200 (CEST)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S1725846AbgILGqd (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Sat, 12 Sep 2020 02:46:33 -0400
-Received: from verein.lst.de ([213.95.11.211]:39013 "EHLO verein.lst.de"
-        rhost-flags-OK-OK-OK-OK) by vger.kernel.org with ESMTP
-        id S1725813AbgILGqc (ORCPT <rfc822;devicetree@vger.kernel.org>);
-        Sat, 12 Sep 2020 02:46:32 -0400
-Received: by verein.lst.de (Postfix, from userid 2407)
-        id EB2A368B02; Sat, 12 Sep 2020 08:46:24 +0200 (CEST)
-Date:   Sat, 12 Sep 2020 08:46:24 +0200
-From:   Christoph Hellwig <hch@lst.de>
-To:     Robin Murphy <robin.murphy@arm.com>
-Cc:     Christoph Hellwig <hch@lst.de>, iommu@lists.linux-foundation.org,
-        Russell King <linux@armlinux.org.uk>,
-        Santosh Shilimkar <ssantosh@kernel.org>,
-        devicetree@vger.kernel.org,
-        Florian Fainelli <f.fainelli@gmail.com>,
-        linux-sh@vger.kernel.org, Frank Rowand <frowand.list@gmail.com>,
-        linux-usb@vger.kernel.org, linux-kernel@vger.kernel.org,
-        linux-acpi@vger.kernel.org, Rob Herring <robh+dt@kernel.org>,
-        Jim Quinlan <james.quinlan@broadcom.com>,
-        linux-pci@vger.kernel.org,
-        Nathan Chancellor <natechancellor@gmail.com>,
-        linux-arm-kernel@lists.infradead.org
-Subject: Re: [PATCH 3/3] dma-mapping: introduce DMA range map, supplanting
- dma_pfn_offset
-Message-ID: <20200912064624.GA19260@lst.de>
-References: <20200910054038.324517-1-hch@lst.de> <20200910054038.324517-4-hch@lst.de> <011dea58-3714-3343-c055-57228be2a450@arm.com>
+        id S1725800AbgILHfy (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Sat, 12 Sep 2020 03:35:54 -0400
+Received: from lindbergh.monkeyblade.net ([23.128.96.19]:42526 "EHLO
+        lindbergh.monkeyblade.net" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
+        with ESMTP id S1725799AbgILHfw (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Sat, 12 Sep 2020 03:35:52 -0400
+Received: from mail-ej1-x644.google.com (mail-ej1-x644.google.com [IPv6:2a00:1450:4864:20::644])
+        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 1F4B4C061573;
+        Sat, 12 Sep 2020 00:35:52 -0700 (PDT)
+Received: by mail-ej1-x644.google.com with SMTP id o8so16470295ejb.10;
+        Sat, 12 Sep 2020 00:35:51 -0700 (PDT)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+        d=gmail.com; s=20161025;
+        h=date:from:to:cc:subject:message-id:references:mime-version
+         :content-disposition:in-reply-to;
+        bh=vVstsRYbims6zfnRcAlwpo0Z6QMKaiNdgin+5Ie4n4k=;
+        b=dY3dSzOzACsDcZDNlpPWbl+liJT10/1tPgPURqSyCcS0D3LNyIFcxHz9TXshlBDGO0
+         kJd/PR+XqIWK990HOt8BMlkCowzUQgY6d7zZeXaK5ilL+9h2bvuiLrpMOqLqO4YXBcli
+         Q0hOhEsPqFJO0rrz56ahFaiPWe72FE1qW+TzUD38NHrxaV6v/bDuSsDout2TEUiSTwxG
+         3s3YS0T7QhVDfj/LL9IFbqHoZjjejGJ/LgvC2PH5T/+VwnPAt3vkM86KdqmSk+qD0K/w
+         mFtA12/42uDF8K7IpkHwnB6UmpOFTgSSqu2iLvqgdc2eEsgFbYl6NiGFCcTKV4D+QVwL
+         Dirg==
+X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+        d=1e100.net; s=20161025;
+        h=x-gm-message-state:date:from:to:cc:subject:message-id:references
+         :mime-version:content-disposition:in-reply-to;
+        bh=vVstsRYbims6zfnRcAlwpo0Z6QMKaiNdgin+5Ie4n4k=;
+        b=cWB8ys4xsmdM4+7OtZtLtED4dDwC4TBqDJ7tG2UiuW0BJQo+LRfF4msUTZM3aQn3zF
+         Lf/zeDj0KxNbNm53su0j4XUZWpdKd/Z8LAM21rtaJw+cnEoiKu3o9XVHvYxf5zGZBuwZ
+         kXPZyt2p9VJqRiCfmhww/ExSB2GVF1aoKPwzsXyYX8y/dhVU18gAjWoMgbN1BmotG3FF
+         V4obLflGLfv1LelJfcImakoSWhCz+wmS9a/cswbW9/symqtWPUd+5MY1aK1E3L+TRsZm
+         usXu/ynK+WHbfw+xgtmDhJyqLIT7UdiNrg2FW3K/gdL04r7iWk7NTIPOudW/J12cL7q5
+         7Tgg==
+X-Gm-Message-State: AOAM5304hTnQADdplgWsXcjx63FNOTH48q6BE3lEMXsfE3pEt7savWUF
+        hFS3kS0kkQiyLTrMHjXWLXM=
+X-Google-Smtp-Source: ABdhPJzUpWOhLQaKid2nvpj0/oWczKJxvIQpFfMcNdx/R2LzwSv29sfxYtfYFzCWna2DF+w0/fC5Ew==
+X-Received: by 2002:a17:906:9443:: with SMTP id z3mr5458008ejx.156.1599896150640;
+        Sat, 12 Sep 2020 00:35:50 -0700 (PDT)
+Received: from skbuf ([188.25.217.212])
+        by smtp.gmail.com with ESMTPSA id bf25sm3901096edb.95.2020.09.12.00.35.49
+        (version=TLS1_3 cipher=TLS_AES_256_GCM_SHA384 bits=256/256);
+        Sat, 12 Sep 2020 00:35:50 -0700 (PDT)
+Date:   Sat, 12 Sep 2020 10:35:48 +0300
+From:   Vladimir Oltean <olteanv@gmail.com>
+To:     Yangbo Lu <yangbo.lu@nxp.com>
+Cc:     netdev@vger.kernel.org, devicetree@vger.kernel.org,
+        "David S . Miller" <davem@davemloft.net>,
+        Richard Cochran <richardcochran@gmail.com>,
+        Rob Herring <robh+dt@kernel.org>,
+        Mark Rutland <mark.rutland@arm.com>
+Subject: Re: [PATCH 2/2] ptp_qoriq: support FIPER3
+Message-ID: <20200912073548.c3yb7fe7mhi6cews@skbuf>
+References: <20200912033006.20771-1-yangbo.lu@nxp.com>
+ <20200912033006.20771-3-yangbo.lu@nxp.com>
 MIME-Version: 1.0
 Content-Type: text/plain; charset=us-ascii
 Content-Disposition: inline
-In-Reply-To: <011dea58-3714-3343-c055-57228be2a450@arm.com>
-User-Agent: Mutt/1.5.17 (2007-11-01)
+In-Reply-To: <20200912033006.20771-3-yangbo.lu@nxp.com>
 Sender: devicetree-owner@vger.kernel.org
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-On Fri, Sep 11, 2020 at 05:12:36PM +0100, Robin Murphy wrote:
-> (apologies to Jim - I did look through one of the previous versions since I 
-> last commented and thought it looked OK, but never actually replied as 
-> such)
->
-> On 2020-09-10 06:40, Christoph Hellwig wrote:
->> From: Jim Quinlan <james.quinlan@broadcom.com>
->>
->> The new field 'dma_range_map' in struct device is used to facilitate the
->> use of single or multiple offsets between mapping regions of cpu addrs and
->> dma addrs.  It subsumes the role of "dev->dma_pfn_offset" which was only
->> capable of holding a single uniform offset and had no region bounds
->> checking.
->>
->> The function of_dma_get_range() has been modified so that it takes a single
->> argument -- the device node -- and returns a map, NULL, or an error code.
->> The map is an array that holds the information regarding the DMA regions.
->> Each range entry contains the address offset, the cpu_start address, the
->> dma_start address, and the size of the region.
->>
->> of_dma_configure() is the typical manner to set range offsets but there are
->> a number of ad hoc assignments to "dev->dma_pfn_offset" in the kernel
->> driver code.  These cases now invoke the function
->> dma_attach_offset_range(dev, cpu_addr, dma_addr, size).
->
-> This is now called dma_direct_set_offset(), right?
+Hi Yangbo,
 
-Yes.
+On Sat, Sep 12, 2020 at 11:30:06AM +0800, Yangbo Lu wrote:
+> The FIPER3 (fixed interval period pulse generator) is supported on
+> DPAA2 and ENETC network controller hardware. This patch is to support
+> it in ptp_qoriq driver.
+> 
+> Signed-off-by: Yangbo Lu <yangbo.lu@nxp.com>
+> ---
+>  drivers/ptp/ptp_qoriq.c       | 23 ++++++++++++++++++++++-
+>  include/linux/fsl/ptp_qoriq.h |  3 +++
+>  2 files changed, 25 insertions(+), 1 deletion(-)
+> 
+> diff --git a/drivers/ptp/ptp_qoriq.c b/drivers/ptp/ptp_qoriq.c
+> index c09c16be..68beb1b 100644
+> --- a/drivers/ptp/ptp_qoriq.c
+> +++ b/drivers/ptp/ptp_qoriq.c
+> @@ -72,6 +72,10 @@ static void set_fipers(struct ptp_qoriq *ptp_qoriq)
+>  	set_alarm(ptp_qoriq);
+>  	ptp_qoriq->write(&regs->fiper_regs->tmr_fiper1, ptp_qoriq->tmr_fiper1);
+>  	ptp_qoriq->write(&regs->fiper_regs->tmr_fiper2, ptp_qoriq->tmr_fiper2);
+> +
+> +	if (ptp_qoriq->fiper3_support)
+> +		ptp_qoriq->write(&regs->fiper_regs->tmr_fiper3,
+> +				 ptp_qoriq->tmr_fiper3);
+>  }
+>  
+>  int extts_clean_up(struct ptp_qoriq *ptp_qoriq, int index, bool update_event)
+> @@ -366,6 +370,7 @@ static u32 ptp_qoriq_nominal_freq(u32 clk_src)
+>   *   "fsl,tmr-add"
+>   *   "fsl,tmr-fiper1"
+>   *   "fsl,tmr-fiper2"
+> + *   "fsl,tmr-fiper3" (required only for DPAA2 and ENETC hardware)
+>   *   "fsl,max-adj"
+>   *
+>   * Return 0 if success
+> @@ -412,6 +417,7 @@ static int ptp_qoriq_auto_config(struct ptp_qoriq *ptp_qoriq,
+>  	ptp_qoriq->tmr_add = freq_comp;
+>  	ptp_qoriq->tmr_fiper1 = DEFAULT_FIPER1_PERIOD - ptp_qoriq->tclk_period;
+>  	ptp_qoriq->tmr_fiper2 = DEFAULT_FIPER2_PERIOD - ptp_qoriq->tclk_period;
+> +	ptp_qoriq->tmr_fiper3 = DEFAULT_FIPER3_PERIOD - ptp_qoriq->tclk_period;
+>  
+>  	/* max_adj = 1000000000 * (freq_ratio - 1.0) - 1
+>  	 * freq_ratio = reference_clock_freq / nominal_freq
+> @@ -446,6 +452,13 @@ int ptp_qoriq_init(struct ptp_qoriq *ptp_qoriq, void __iomem *base,
+>  	else
+>  		ptp_qoriq->extts_fifo_support = false;
+>  
+> +	if (of_device_is_compatible(node, "fsl,dpaa2-ptp") ||
+> +	    of_device_is_compatible(node, "fsl,enetc-ptp")) {
+> +		ptp_qoriq->fiper3_support = true;
+> +	} else {
+> +		ptp_qoriq->fiper3_support = false;
+> +	}
 
->> +		int ret = dma_direct_set_offset(dev, KEYSTONE_HIGH_PHYS_START,
->> +						KEYSTONE_LOW_PHYS_START,
->> +						KEYSTONE_HIGH_PHYS_SIZE);
->> +		dev_err(dev, "set dma_offset%08llx%s\n",
->> +			KEYSTONE_HIGH_PHYS_START - KEYSTONE_LOW_PHYS_START,
->> +			ret ? " failed" : "");
->
-> FWIW I've already been thinking of some optimisations which would have the 
-> happy side-effect of removing many of these allocation failure scenarios, 
-> but at this point I reckon it's more practical to just get the current 
-> implementation landed and working.
+Since struct ptp_qoriq is kzalloc()-ed, maybe you can skip the "else"
+branch?
 
-Given that no one deals or can easily deal with these failures we
-should probably take care of that.  IMHO we could just allocate a
-single static range and point all the devices to it, what would
-you think of that?
+> +
+>  	if (of_property_read_u32(node,
+>  				 "fsl,tclk-period", &ptp_qoriq->tclk_period) ||
+>  	    of_property_read_u32(node,
+> @@ -457,7 +470,10 @@ int ptp_qoriq_init(struct ptp_qoriq *ptp_qoriq, void __iomem *base,
+>  	    of_property_read_u32(node,
+>  				 "fsl,tmr-fiper2", &ptp_qoriq->tmr_fiper2) ||
+>  	    of_property_read_u32(node,
+> -				 "fsl,max-adj", &ptp_qoriq->caps.max_adj)) {
+> +				 "fsl,max-adj", &ptp_qoriq->caps.max_adj) ||
+> +	    (of_property_read_u32(node,
+> +				 "fsl,tmr-fiper3", &ptp_qoriq->tmr_fiper3) &&
+> +	     ptp_qoriq->fiper3_support)) {
 
->>   @@ -811,8 +812,13 @@ static int sun4i_backend_bind(struct device *dev, 
->> struct device *master,
->>   		 * because of an old DT, we need to set the DMA offset by hand
->>   		 * on our device since the RAM mapping is at 0 for the DMA bus,
->>   		 * unlike the CPU.
->> +		 *
->> +		 * XXX(hch): this has no business in a driver and needs to move
->> +		 * to the device tree.
->
-> As the context implies, this has actually grown a proper DT description of 
-> the funky interconnect layout (see 564d6fd611f9 and the linked patch 
-> series), and this is just an ugly fallback path to prevent regressions with 
-> old DTBs that are already out there. So unless you can fire up the time 
-> machine to fix those, this extra comment is really just beating a dead 
-> horse :(
+Could you check for the "ptp_qoriq->fiper3_support" boolean first, so
+that a useless device tree property lookup is not performed?
 
-Well, I need to beat the dead horse to avoid having to export the
-function, which will really just bread new users.  So at the minimum
-we'd need to move the setup to platform code that is always built in.
+>  		pr_warn("device tree node missing required elements, try automatic configuration\n");
+>  
+>  		if (ptp_qoriq_auto_config(ptp_qoriq, node))
+> @@ -502,6 +518,11 @@ int ptp_qoriq_init(struct ptp_qoriq *ptp_qoriq, void __iomem *base,
+>  	ptp_qoriq->write(&regs->ctrl_regs->tmr_prsc, ptp_qoriq->tmr_prsc);
+>  	ptp_qoriq->write(&regs->fiper_regs->tmr_fiper1, ptp_qoriq->tmr_fiper1);
+>  	ptp_qoriq->write(&regs->fiper_regs->tmr_fiper2, ptp_qoriq->tmr_fiper2);
+> +
+> +	if (ptp_qoriq->fiper3_support)
+> +		ptp_qoriq->write(&regs->fiper_regs->tmr_fiper3,
+> +				 ptp_qoriq->tmr_fiper3);
+> +
+>  	set_alarm(ptp_qoriq);
+>  	ptp_qoriq->write(&regs->ctrl_regs->tmr_ctrl,
+>  			 tmr_ctrl|FIPERST|RTPE|TE|FRD);
+> diff --git a/include/linux/fsl/ptp_qoriq.h b/include/linux/fsl/ptp_qoriq.h
+> index 884b8f8..01acebe 100644
+> --- a/include/linux/fsl/ptp_qoriq.h
+> +++ b/include/linux/fsl/ptp_qoriq.h
+> @@ -136,6 +136,7 @@ struct ptp_qoriq_registers {
+>  #define DEFAULT_TMR_PRSC	2
+>  #define DEFAULT_FIPER1_PERIOD	1000000000
+>  #define DEFAULT_FIPER2_PERIOD	1000000000
+> +#define DEFAULT_FIPER3_PERIOD	1000000000
+>  
+>  struct ptp_qoriq {
+>  	void __iomem *base;
+> @@ -147,6 +148,7 @@ struct ptp_qoriq {
+>  	struct dentry *debugfs_root;
+>  	struct device *dev;
+>  	bool extts_fifo_support;
+> +	bool fiper3_support;
+>  	int irq;
+>  	int phc_index;
+>  	u32 tclk_period;  /* nanoseconds */
+> @@ -155,6 +157,7 @@ struct ptp_qoriq {
+>  	u32 cksel;
+>  	u32 tmr_fiper1;
+>  	u32 tmr_fiper2;
+> +	u32 tmr_fiper3;
+>  	u32 (*read)(unsigned __iomem *addr);
+>  	void (*write)(unsigned __iomem *addr, u32 val);
+>  };
+> -- 
+> 2.7.4
+> 
+
+With that,
+
+Acked-by: Vladimir Oltean <vladimir.oltean@nxp.com>
+
+Thanks for doing this!
+-Vladimir
