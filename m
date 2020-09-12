@@ -2,127 +2,108 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from vger.kernel.org (vger.kernel.org [23.128.96.18])
-	by mail.lfdr.de (Postfix) with ESMTP id 1D44426784D
-	for <lists+devicetree@lfdr.de>; Sat, 12 Sep 2020 08:46:42 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTP id 6B30B267848
+	for <lists+devicetree@lfdr.de>; Sat, 12 Sep 2020 08:46:34 +0200 (CEST)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S1725879AbgILGqk (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Sat, 12 Sep 2020 02:46:40 -0400
-Received: from out28-197.mail.aliyun.com ([115.124.28.197]:51522 "EHLO
-        out28-197.mail.aliyun.com" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S1725845AbgILGqd (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Sat, 12 Sep 2020 02:46:33 -0400
-X-Alimail-AntiSpam: AC=CONTINUE;BC=0.07457393|-1;CH=green;DM=|CONTINUE|false|;DS=CONTINUE|ham_regular_dialog|0.128661-0.000966969-0.870372;FP=0|0|0|0|0|-1|-1|-1;HT=e01l07447;MF=zhouyu@wanyeetech.com;NM=1;PH=DS;RN=8;RT=8;SR=0;TI=SMTPD_---.IW6khOv_1599893185;
-Received: from 192.168.178.128(mailfrom:zhouyu@wanyeetech.com fp:SMTPD_---.IW6khOv_1599893185)
-          by smtp.aliyun-inc.com(10.147.40.7);
-          Sat, 12 Sep 2020 14:46:25 +0800
-Subject: Re: [PATCH 3/3] MIPS: DTS: img: marduk: Add NXP SC16IS752IPW
-To:     Hauke Mehrtens <hauke@hauke-m.de>, tsbogend@alpha.franken.de
-Cc:     linux-mips@vger.kernel.org, devicetree@vger.kernel.org,
-        robh+dt@kernel.org, james.hartley@sondrel.com,
-        rahulbedarkar89@gmail.com, wigyori@uid0.hu
-References: <20200815163514.11631-1-hauke@hauke-m.de>
- <20200815163514.11631-3-hauke@hauke-m.de>
-From:   Zhou Yanjie <zhouyu@wanyeetech.com>
-Message-ID: <4f182366-c042-0596-dbe0-d209f2e3e114@wanyeetech.com>
-Date:   Sat, 12 Sep 2020 14:46:19 +0800
-User-Agent: Mozilla/5.0 (X11; Linux x86_64; rv:60.0) Gecko/20100101
- Thunderbird/60.3.0
+        id S1725846AbgILGqd (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Sat, 12 Sep 2020 02:46:33 -0400
+Received: from verein.lst.de ([213.95.11.211]:39013 "EHLO verein.lst.de"
+        rhost-flags-OK-OK-OK-OK) by vger.kernel.org with ESMTP
+        id S1725813AbgILGqc (ORCPT <rfc822;devicetree@vger.kernel.org>);
+        Sat, 12 Sep 2020 02:46:32 -0400
+Received: by verein.lst.de (Postfix, from userid 2407)
+        id EB2A368B02; Sat, 12 Sep 2020 08:46:24 +0200 (CEST)
+Date:   Sat, 12 Sep 2020 08:46:24 +0200
+From:   Christoph Hellwig <hch@lst.de>
+To:     Robin Murphy <robin.murphy@arm.com>
+Cc:     Christoph Hellwig <hch@lst.de>, iommu@lists.linux-foundation.org,
+        Russell King <linux@armlinux.org.uk>,
+        Santosh Shilimkar <ssantosh@kernel.org>,
+        devicetree@vger.kernel.org,
+        Florian Fainelli <f.fainelli@gmail.com>,
+        linux-sh@vger.kernel.org, Frank Rowand <frowand.list@gmail.com>,
+        linux-usb@vger.kernel.org, linux-kernel@vger.kernel.org,
+        linux-acpi@vger.kernel.org, Rob Herring <robh+dt@kernel.org>,
+        Jim Quinlan <james.quinlan@broadcom.com>,
+        linux-pci@vger.kernel.org,
+        Nathan Chancellor <natechancellor@gmail.com>,
+        linux-arm-kernel@lists.infradead.org
+Subject: Re: [PATCH 3/3] dma-mapping: introduce DMA range map, supplanting
+ dma_pfn_offset
+Message-ID: <20200912064624.GA19260@lst.de>
+References: <20200910054038.324517-1-hch@lst.de> <20200910054038.324517-4-hch@lst.de> <011dea58-3714-3343-c055-57228be2a450@arm.com>
 MIME-Version: 1.0
-In-Reply-To: <20200815163514.11631-3-hauke@hauke-m.de>
-Content-Type: text/plain; charset=gbk; format=flowed
-Content-Transfer-Encoding: 8bit
-Content-Language: en-US
+Content-Type: text/plain; charset=us-ascii
+Content-Disposition: inline
+In-Reply-To: <011dea58-3714-3343-c055-57228be2a450@arm.com>
+User-Agent: Mutt/1.5.17 (2007-11-01)
 Sender: devicetree-owner@vger.kernel.org
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-Hello Hauke,
-
-I would like to ask how to write UART nodes of SC16IS752, our CU1000-Neo 
-board also uses SC16IS752 to expand GPIOs and UARTs, and the bluetooth 
-module (from AP6212A) is connected to UART expanded by SC16IS752, but I 
-don't know how to write UART node, so bluetooth cannot be used normally 
-at present.
-
-Thanks and best regards£¡
-
-ÔÚ 2020/8/16 ÉÏÎç12:35, Hauke Mehrtens Ð´µÀ:
-> Add NXP SC16IS752IPW SPI-UART controller to device tree.
+On Fri, Sep 11, 2020 at 05:12:36PM +0100, Robin Murphy wrote:
+> (apologies to Jim - I did look through one of the previous versions since I 
+> last commented and thought it looked OK, but never actually replied as 
+> such)
 >
-> This controller drives 2 UARTs and 7 LEDs on the board.
+> On 2020-09-10 06:40, Christoph Hellwig wrote:
+>> From: Jim Quinlan <james.quinlan@broadcom.com>
+>>
+>> The new field 'dma_range_map' in struct device is used to facilitate the
+>> use of single or multiple offsets between mapping regions of cpu addrs and
+>> dma addrs.  It subsumes the role of "dev->dma_pfn_offset" which was only
+>> capable of holding a single uniform offset and had no region bounds
+>> checking.
+>>
+>> The function of_dma_get_range() has been modified so that it takes a single
+>> argument -- the device node -- and returns a map, NULL, or an error code.
+>> The map is an array that holds the information regarding the DMA regions.
+>> Each range entry contains the address offset, the cpu_start address, the
+>> dma_start address, and the size of the region.
+>>
+>> of_dma_configure() is the typical manner to set range offsets but there are
+>> a number of ad hoc assignments to "dev->dma_pfn_offset" in the kernel
+>> driver code.  These cases now invoke the function
+>> dma_attach_offset_range(dev, cpu_addr, dma_addr, size).
 >
-> Signed-off-by: Hauke Mehrtens <hauke@hauke-m.de>
-> ---
->   arch/mips/boot/dts/img/pistachio_marduk.dts | 51 +++++++++++++++++++++
->   1 file changed, 51 insertions(+)
+> This is now called dma_direct_set_offset(), right?
+
+Yes.
+
+>> +		int ret = dma_direct_set_offset(dev, KEYSTONE_HIGH_PHYS_START,
+>> +						KEYSTONE_LOW_PHYS_START,
+>> +						KEYSTONE_HIGH_PHYS_SIZE);
+>> +		dev_err(dev, "set dma_offset%08llx%s\n",
+>> +			KEYSTONE_HIGH_PHYS_START - KEYSTONE_LOW_PHYS_START,
+>> +			ret ? " failed" : "");
 >
-> diff --git a/arch/mips/boot/dts/img/pistachio_marduk.dts b/arch/mips/boot/dts/img/pistachio_marduk.dts
-> index 633a41954cc0..f4965a484b72 100644
-> --- a/arch/mips/boot/dts/img/pistachio_marduk.dts
-> +++ b/arch/mips/boot/dts/img/pistachio_marduk.dts
-> @@ -46,6 +46,46 @@
->   		regulator-max-microvolt = <1800000>;
->   	};
->   
-> +	/* EXT clock from ca8210 is fed to sc16is752 */
-> +	ca8210_ext_clk: ca8210-ext-clk {
-> +		compatible = "fixed-clock";
-> +		#clock-cells = <0>;
-> +		clock-frequency = <16000000>;
-> +		clock-output-names = "ca8210_ext_clock";
-> +	};
-> +
-> +	gpioleds {
-> +		compatible = "gpio-leds";
-> +		user1 {
-> +			label = "marduk:red:user1";
-> +			gpios = <&sc16is752 0 GPIO_ACTIVE_LOW>;
-> +		};
-> +		user2 {
-> +			label = "marduk:red:user2";
-> +			gpios = <&sc16is752 1 GPIO_ACTIVE_LOW>;
-> +		};
-> +		user3 {
-> +			label = "marduk:red:user3";
-> +			gpios = <&sc16is752 2 GPIO_ACTIVE_LOW>;
-> +		};
-> +		user4 {
-> +			label = "marduk:red:user4";
-> +			gpios = <&sc16is752 3 GPIO_ACTIVE_LOW>;
-> +		};
-> +		user5 {
-> +			label = "marduk:red:user5";
-> +			gpios = <&sc16is752 4 GPIO_ACTIVE_LOW>;
-> +		};
-> +		user6 {
-> +			label = "marduk:red:user6";
-> +			gpios = <&sc16is752 5 GPIO_ACTIVE_LOW>;
-> +		};
-> +		user7 {
-> +			label = "marduk:red:user7";
-> +			gpios = <&sc16is752 6 GPIO_ACTIVE_LOW>;
-> +		};
-> +	};
-> +
->   	leds {
->   		compatible = "pwm-leds";
->   		heartbeat {
-> @@ -95,6 +135,17 @@
->   		extclock-freq = <16000000>;
->   		extclock-gpio = <2>;
->   	};
-> +
-> +	sc16is752: sc16is752@1 {
-> +		compatible = "nxp,sc16is752";
-> +		reg = <1>;
-> +		clocks = <&ca8210_ext_clk>;
-> +		spi-max-frequency = <4000000>;
-> +		interrupt-parent = <&gpio0>;
-> +		interrupts = <11 IRQ_TYPE_EDGE_FALLING>;
-> +		gpio-controller;
-> +		#gpio-cells = <2>;
-> +	};
->   };
->   
->   &spfi1 {
+> FWIW I've already been thinking of some optimisations which would have the 
+> happy side-effect of removing many of these allocation failure scenarios, 
+> but at this point I reckon it's more practical to just get the current 
+> implementation landed and working.
+
+Given that no one deals or can easily deal with these failures we
+should probably take care of that.  IMHO we could just allocate a
+single static range and point all the devices to it, what would
+you think of that?
+
+>>   @@ -811,8 +812,13 @@ static int sun4i_backend_bind(struct device *dev, 
+>> struct device *master,
+>>   		 * because of an old DT, we need to set the DMA offset by hand
+>>   		 * on our device since the RAM mapping is at 0 for the DMA bus,
+>>   		 * unlike the CPU.
+>> +		 *
+>> +		 * XXX(hch): this has no business in a driver and needs to move
+>> +		 * to the device tree.
+>
+> As the context implies, this has actually grown a proper DT description of 
+> the funky interconnect layout (see 564d6fd611f9 and the linked patch 
+> series), and this is just an ugly fallback path to prevent regressions with 
+> old DTBs that are already out there. So unless you can fire up the time 
+> machine to fix those, this extra comment is really just beating a dead 
+> horse :(
+
+Well, I need to beat the dead horse to avoid having to export the
+function, which will really just bread new users.  So at the minimum
+we'd need to move the setup to platform code that is always built in.
