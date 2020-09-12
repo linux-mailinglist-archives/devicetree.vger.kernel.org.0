@@ -2,96 +2,154 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from vger.kernel.org (vger.kernel.org [23.128.96.18])
-	by mail.lfdr.de (Postfix) with ESMTP id 0C00D267994
-	for <lists+devicetree@lfdr.de>; Sat, 12 Sep 2020 12:36:45 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTP id 08AE92679A1
+	for <lists+devicetree@lfdr.de>; Sat, 12 Sep 2020 12:51:03 +0200 (CEST)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S1725888AbgILKgn (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Sat, 12 Sep 2020 06:36:43 -0400
-Received: from lindbergh.monkeyblade.net ([23.128.96.19]:41916 "EHLO
+        id S1725865AbgILKvB (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Sat, 12 Sep 2020 06:51:01 -0400
+Received: from lindbergh.monkeyblade.net ([23.128.96.19]:44112 "EHLO
         lindbergh.monkeyblade.net" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S1725857AbgILKgg (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Sat, 12 Sep 2020 06:36:36 -0400
-Received: from mail-lf1-x144.google.com (mail-lf1-x144.google.com [IPv6:2a00:1450:4864:20::144])
-        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id BEFFFC0613ED
-        for <devicetree@vger.kernel.org>; Sat, 12 Sep 2020 03:36:34 -0700 (PDT)
-Received: by mail-lf1-x144.google.com with SMTP id b22so4841296lfs.13
-        for <devicetree@vger.kernel.org>; Sat, 12 Sep 2020 03:36:34 -0700 (PDT)
+        with ESMTP id S1725833AbgILKux (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Sat, 12 Sep 2020 06:50:53 -0400
+Received: from mail-lj1-x244.google.com (mail-lj1-x244.google.com [IPv6:2a00:1450:4864:20::244])
+        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 9FAC3C061757
+        for <devicetree@vger.kernel.org>; Sat, 12 Sep 2020 03:50:52 -0700 (PDT)
+Received: by mail-lj1-x244.google.com with SMTP id y4so14548923ljk.8
+        for <devicetree@vger.kernel.org>; Sat, 12 Sep 2020 03:50:52 -0700 (PDT)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
         d=linaro.org; s=google;
         h=mime-version:references:in-reply-to:from:date:message-id:subject:to
          :cc;
-        bh=RF8m2xC4JB4qyW3nCqkmJE2v3IVbH777DHP9r98chVU=;
-        b=ZdAifYhj2ckBuaqC7gwZR7Hupf7v18XeH6Ksh6kg+yA5O8P0Qnbfx9ZEFfkqW0fTOy
-         lNszaKVc2NrsIDl1Egk7zLIrGNG0Ldo9UZJUcVS9IZVJkzXjn8CU8VVFivI17aeYfd+T
-         Jw9pNYWslgFu/FSgrEuYYb4RkkkzEPjBhUexfGTSPM0KnPb3qZxqBmZdq/2k3u04i6Qs
-         4Kst372V4IhEqb/0UqRTctNzZNV3duEfTaf7tKIlJl1AgMGryVizSQvmm6QuyWqLotes
-         ToifTRd3uH4Bz/BY28YZp5rWMeB9KXGmdnWQn1rhIugm5IKnafz7O0t1dTBhevtbIr6X
-         wZpQ==
+        bh=Wg0fr0Xi3XkN+YWO9v5UT+RzHkdd/M+Kasz4B3DfYQg=;
+        b=zR0tBZ2My4K92cIteSx5alzLJ32K3bYdevLiA8UGJqStIU+KJq9DJfMtO7LDzh/ZkT
+         2GLXtXQ1lZb+XkYiG69fIvar6Zzkh0EvJfTth6FZ2xAlGtnkmuxQJ39TsWv6N6JHWKmi
+         wMP7qd8M8G+OePycMmPeFZTk8FpMKH9hYkKkGwTIzh1YIH6o5u9fGNfwnpmF+vYbdZFM
+         B6ZYHe9Qq594ZZoBNaokzOhVqvZGfMbR++p8BaJ1m5Jy49KRL+qoPVGgkvlSjaVgeqqW
+         xNMqh3/2zGfmRTvbU+YZVtGYdWxlwaxJefH1x53q6B97BBUbtI9rzOcdichmwdlmrwuF
+         2cQA==
 X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
         d=1e100.net; s=20161025;
         h=x-gm-message-state:mime-version:references:in-reply-to:from:date
          :message-id:subject:to:cc;
-        bh=RF8m2xC4JB4qyW3nCqkmJE2v3IVbH777DHP9r98chVU=;
-        b=axWtwpkXZHH7vfbhSOTLAbMwr3T6DK1L0cfk+13uT4xOKo9Zp83aU/zBp0ekHCO9Pt
-         m7TY56jYirDcMLCw3xZcnHngm9ubEH98csAyjFInHKX/dyxBEF/T9Sa9xWoI3J5qOu9e
-         VIopkf7IXx2ifghj7eWTkMkQ24N/njn+Bp5CcUQcz86WWImuuPhiDBlHos+zL4oYbFHi
-         FCrNcj0LS1PgJcUdJvFszQ5rJC+3+1lnqoePwf5bFUHSDh1X5rPSgZGy6eNw2jMwAJCZ
-         tvTYmViRAqC2cixsbCcuQcEoR14/JZOo/6ZMcGx+PF9xQurml/ZPLxZOI7yrW7r4fvkZ
-         oU3A==
-X-Gm-Message-State: AOAM5304T0B3buPBpDbAJR/a0FeG4bq+LSgLuc72DUIYawAMZuWGXTso
-        VDUgLVyfpJOBPqK0TMJL86qQqRio2Popvi3O3ap9og==
-X-Google-Smtp-Source: ABdhPJyoD2XPyfxM3troBciEM2Mczg6M+QUgoHKVC37fUndkhJdOxvWEyjUmNDBgtw0N6y9hRBKROUhaDN/qwicI9KA=
-X-Received: by 2002:a05:6512:370b:: with SMTP id z11mr1453851lfr.571.1599906993330;
- Sat, 12 Sep 2020 03:36:33 -0700 (PDT)
+        bh=Wg0fr0Xi3XkN+YWO9v5UT+RzHkdd/M+Kasz4B3DfYQg=;
+        b=Z2D8xLqyJ8jzdtMmoL+lW2XDtqjTXzYE3t5w3iq8qOOEQsB7X3hzCkLD8KOTFMEGV1
+         UJgQfSd3ce1f0ixSRp74jFC48Wsy0rTqS4hv+fT0B6XYibdTWltQt76TD5n8FkrITI8f
+         Ez9WvDkQ04r11tAFlR6BikHRHNMkDTr/vJKseTdtcUr7htEJ3Wo6SD6aNcvDo6hVAiQQ
+         1lJRCHOBDdfmaSoffCLVV5V/xWCI4IeikLPBYnAbjDSaUBoy4QDvbpGl486LAYdITy1u
+         8UQ3MT5ilWYYEcwlKqOB+wzFdMutnvFLo66ZHC3WQ6IsHCiA6J9X64t1pDmVS0MEzMva
+         k1oA==
+X-Gm-Message-State: AOAM533tFB668y7mOhcw/CTMehiXamuWOC7h4r/k8+fG+4XhUJ81eIm+
+        NqTI5j3DKQxNfSRaakvowMFf9uH2UJrW5MlJ9MLt2w==
+X-Google-Smtp-Source: ABdhPJyrL0Q5hyLukWGBJStErc5rCrkaAA8Fumpbu7+P2HoQvwGOhXNmH16VkHLaE0zD8ERoYgCIrPuSvLxqYH7jV+I=
+X-Received: by 2002:a05:651c:28c:: with SMTP id b12mr2286938ljo.293.1599907851023;
+ Sat, 12 Sep 2020 03:50:51 -0700 (PDT)
 MIME-Version: 1.0
-References: <cover.1595572867.git.frank@allwinnertech.com>
-In-Reply-To: <cover.1595572867.git.frank@allwinnertech.com>
+References: <20200903133528.8595-1-lars.povlsen@microchip.com> <20200903133528.8595-2-lars.povlsen@microchip.com>
+In-Reply-To: <20200903133528.8595-2-lars.povlsen@microchip.com>
 From:   Linus Walleij <linus.walleij@linaro.org>
-Date:   Sat, 12 Sep 2020 12:36:22 +0200
-Message-ID: <CACRpkdZqNSGkDCm6HGpS63iWp5b4WrZpdqz8QEeu4CVzkhGQ=Q@mail.gmail.com>
-Subject: Re: [PATCH v5 00/16] Allwinner A100 Initial support
-To:     Frank Lee <frank@allwinnertech.com>
+Date:   Sat, 12 Sep 2020 12:50:40 +0200
+Message-ID: <CACRpkdZUQG1T_Bx5G275tSjDez0skDKGSc370B57FZ35NA6iEA@mail.gmail.com>
+Subject: Re: [PATCH v2 1/3] dt-bindings: pinctrl: Add bindings for
+ pinctrl-mchp-sgpio driver
+To:     Lars Povlsen <lars.povlsen@microchip.com>
 Cc:     Rob Herring <robh+dt@kernel.org>,
-        Maxime Ripard <mripard@kernel.org>,
-        Chen-Yu Tsai <wens@csie.org>,
-        Michael Turquette <mturquette@baylibre.com>,
-        Stephen Boyd <sboyd@kernel.org>,
-        Gregory Clement <gregory.clement@bootlin.com>,
-        Thomas Gleixner <tglx@linutronix.de>,
-        Jason Cooper <jason@lakedaemon.net>,
-        Marc Zyngier <maz@kernel.org>,
-        Srini Kandagatla <srinivas.kandagatla@linaro.org>,
-        Vasily Khoruzhick <anarsoul@gmail.com>,
-        Frank Lee <tiny.windzz@gmail.com>,
-        Zhang Rui <rui.zhang@intel.com>,
-        Daniel Lezcano <daniel.lezcano@linaro.org>,
-        Amit Kucheria <amit.kucheria@verdurent.com>,
-        Lee Jones <lee.jones@linaro.org>,
-        Philipp Zabel <p.zabel@pengutronix.de>,
-        Icenowy Zheng <icenowy@aosc.io>,
-        Ondrej Jirman <megous@megous.com>,
-        Corentin Labbe <clabbe@baylibre.com>, bage@linutronix.de,
+        Microchip Linux Driver Support <UNGLinuxDriver@microchip.com>,
         "open list:OPEN FIRMWARE AND FLATTENED DEVICE TREE BINDINGS" 
         <devicetree@vger.kernel.org>,
+        "open list:GPIO SUBSYSTEM" <linux-gpio@vger.kernel.org>,
         Linux ARM <linux-arm-kernel@lists.infradead.org>,
         "linux-kernel@vger.kernel.org" <linux-kernel@vger.kernel.org>,
-        linux-clk <linux-clk@vger.kernel.org>,
-        linux-i2c <linux-i2c@vger.kernel.org>,
-        "open list:GPIO SUBSYSTEM" <linux-gpio@vger.kernel.org>,
-        Linux PM list <linux-pm@vger.kernel.org>
+        Alexandre Belloni <alexandre.belloni@bootlin.com>
 Content-Type: text/plain; charset="UTF-8"
 Sender: devicetree-owner@vger.kernel.org
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-On Fri, Jul 24, 2020 at 8:53 AM Frank Lee <frank@allwinnertech.com> wrote:
+Hi Lars,
 
->   dt-bindings: pinctrl: sunxi: Get rid of continual nesting
->   dt-bindings: pinctrl: sunxi: Add A100 pinctrl bindings
->   pinctrl: sunxi: add support for the Allwinner A100 pin controller
+thanks for your patch!
 
-These three patches (3,4,5) are now applied to the pinctrl tree.
+On Thu, Sep 3, 2020 at 3:35 PM Lars Povlsen <lars.povlsen@microchip.com> wrote:
+
+> This adds DT bindings for the Microsemi/Microchip SGPIO controller,
+
+What I do not understand is why this GPIO controller is placed in the
+bindings of the pin controllers? Do you plan to add pin control
+properties to the bindings in the future?
+
+> +description: |
+> +  By using a serial interface, the SIO controller significantly extend
+> +  the number of available GPIOs with a minimum number of additional
+> +  pins on the device. The primary purpose of the SIO controllers is to
+> +  connect control signals from SFP modules and to act as an LED
+> +  controller.
+
+This doesn't sound like it will ever be pin control?
+
+> +  gpio-controller: true
+> +
+> +  '#gpio-cells':
+> +    description: GPIO consumers must specify four arguments, first the
+> +      port number, then the bit number, then a input/output flag and
+> +      finally the GPIO flags (from include/dt-bindings/gpio/gpio.h).
+> +      The dt-bindings/gpio/mchp-sgpio.h file define manifest constants
+> +      PIN_INPUT and PIN_OUTPUT.
+> +    const: 4
+
+I do not follow this new third input/output flag at all.
+
+- If it is a property of the hardware, it is something the driver should
+  handle by determining which hardware it is from the compatible
+  string.
+
+- If it is a configuration it should be turned into something that is generic
+  and useful for *all* GPIO controllers. If it is pin config it should use
+  the pinconf bindings rather than shortcuts like this, but I think it is
+  something the driver can do as an effect of the pin being requested
+  as input or output in the operating system, depending on who the
+  consumer is. Linux for example has GPIOD_OUT_LOW,
+  GPIOD_OUT_HIGH, GPIOD_IN, GPIOD_ASIS...
+
+- Is it not just a hog? We have bindings for those.
+
+> +  microchip,sgpio-port-ranges:
+> +    description: This is a sequence of tuples, defining intervals of
+> +      enabled ports in the serial input stream. The enabled ports must
+> +      match the hardware configuration in order for signals to be
+> +      properly written/read to/from the controller holding
+> +      registers. Being tuples, then number of arguments must be
+> +      even. The tuples mast be ordered (low, high) and are
+> +      inclusive. Arguments must be between 0 and 31.
+> +    $ref: /schemas/types.yaml#/definitions/uint32-array
+> +    minItems: 2
+> +    maxItems: 64
+
+And you are *absolutely sure* that you can't just figure this out
+from the compatible string? Or add a few compatible strings for
+the existing variants?
+
+> +  microchip,sgpio-frequency:
+> +    description: The sgpio controller frequency (Hz). This dictates
+> +      the serial bitstream speed, which again affects the latency in
+> +      getting control signals back and forth between external shift
+> +      registers. The speed must be no larger than half the system
+> +      clock, and larger than zero.
+> +    $ref: /schemas/types.yaml#/definitions/uint32
+> +    minimum: 1
+> +    default: 12500000
+
+I understand why you need this binding now, OK.
+
+> +/* mchp-sgpio specific pin type defines */
+> +#undef PIN_OUTPUT
+> +#undef PIN_INPUT
+> +#define PIN_OUTPUT     0
+> +#define PIN_INPUT      1
+
+I'm not a fan of this. It seems like something that should be set in
+response to the gpiochip callbacks .direction_input and
+.direction_output callbacks.
 
 Yours,
 Linus Walleij
