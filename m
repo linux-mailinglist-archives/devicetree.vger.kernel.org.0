@@ -2,220 +2,99 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from vger.kernel.org (vger.kernel.org [23.128.96.18])
-	by mail.lfdr.de (Postfix) with ESMTP id 600122679D0
-	for <lists+devicetree@lfdr.de>; Sat, 12 Sep 2020 13:11:24 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTP id 9EF36267A7A
+	for <lists+devicetree@lfdr.de>; Sat, 12 Sep 2020 14:52:17 +0200 (CEST)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S1726003AbgILLLW (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Sat, 12 Sep 2020 07:11:22 -0400
-Received: from lindbergh.monkeyblade.net ([23.128.96.19]:47288 "EHLO
-        lindbergh.monkeyblade.net" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S1725996AbgILLLQ (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Sat, 12 Sep 2020 07:11:16 -0400
-Received: from mail-lj1-x243.google.com (mail-lj1-x243.google.com [IPv6:2a00:1450:4864:20::243])
-        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 11193C0613ED
-        for <devicetree@vger.kernel.org>; Sat, 12 Sep 2020 04:11:14 -0700 (PDT)
-Received: by mail-lj1-x243.google.com with SMTP id a15so14662489ljk.2
-        for <devicetree@vger.kernel.org>; Sat, 12 Sep 2020 04:11:14 -0700 (PDT)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=linaro.org; s=google;
-        h=mime-version:references:in-reply-to:from:date:message-id:subject:to
-         :cc;
-        bh=difJeTP+wV7JyemjeWX3GldS9tsqpKh0tmwoGysikgA=;
-        b=PHEEwmZH0GmE/ddgwQsvtRHwatJShCMl8y2YHwI7N4grJggqzM1xLhzEsjLeosNc9t
-         nnouvutJlZBAv+T3DkIn8zydOcB6d4qKPGPX3XgzaQSl8rEckvpDZkgXBUDmqZnYHkrE
-         n7tdrjSjl12tQhG2/cWnj+zy9zSL0o4NoCsJXtQQkakVGRfEBqGMWHRQBiCIWST5c76i
-         E2Bpq8CjKtVcVE+y7QWsVJM7w4toH+r7cbhss3XIeEz0hu2N29G6Lk/+eVDj8YNOZ4+H
-         U2WoMdzqMLsZXwe5XaJat9yNYPEVRKt0sAbhYVGTTC8Z8FjPIcie8ywoxH3t9httEGMA
-         d+/Q==
-X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=1e100.net; s=20161025;
-        h=x-gm-message-state:mime-version:references:in-reply-to:from:date
-         :message-id:subject:to:cc;
-        bh=difJeTP+wV7JyemjeWX3GldS9tsqpKh0tmwoGysikgA=;
-        b=MhQ0Z++JS1KbwfZmgIL25+Id7SFkkvbzuZF0c74gwny1+V10VYSbq3cvvJdKsQiFoM
-         dXMmBPb78pjDaILV8wQeBns0XOsSYntEj3NWjbhWNJOqPivZH5I4FZ9C3XPQSNirDgJS
-         qsfItYmA9r0SVW0VVwIHERV/mmfzeA/tD5dkOfzKZirlw76VJ5xuKAcsT1mTPwIJbxBH
-         cPKEv4vX2XhNlKxRzQ9asmw8cK10QIKmaWCIjlpcdFXobSBk837scTiDI9gb7MIfYFxw
-         zZbZAwasnzBfkoCr+wgu6G3YTH8XJwEbpXzOZoioYgfPpzlBDFMXCvz8XDNFADOZBw8g
-         mRBQ==
-X-Gm-Message-State: AOAM53237IwEosZQU2UtBUVHyfBTyULi+IdajQx895dggSNwmkbU0ors
-        zVcFYA3jWyaUbnuaoaaAPcBQ6R7uN029HXgnO4D0Eg==
-X-Google-Smtp-Source: ABdhPJzzO4J1ksW5rgtoJxMVbDnefY+BTIco1KcPrO3ijTsjJfIAo2n7aBEwVvZ7iqVJVytssUr0NCLz+Ssx70c/ZWM=
-X-Received: by 2002:a05:651c:107b:: with SMTP id y27mr2047736ljm.338.1599909072951;
- Sat, 12 Sep 2020 04:11:12 -0700 (PDT)
+        id S1725888AbgILMwK (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Sat, 12 Sep 2020 08:52:10 -0400
+Received: from mail.kernel.org ([198.145.29.99]:46244 "EHLO mail.kernel.org"
+        rhost-flags-OK-OK-OK-OK) by vger.kernel.org with ESMTP
+        id S1725857AbgILMwH (ORCPT <rfc822;devicetree@vger.kernel.org>);
+        Sat, 12 Sep 2020 08:52:07 -0400
+Received: from disco-boy.misterjones.org (disco-boy.misterjones.org [51.254.78.96])
+        (using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
+        (No client certificate requested)
+        by mail.kernel.org (Postfix) with ESMTPSA id 2D1CC2073E;
+        Sat, 12 Sep 2020 12:52:06 +0000 (UTC)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=kernel.org;
+        s=default; t=1599915126;
+        bh=SngN3KVo+uCehkPIcuGTa6gjVun+U3xzppx3ffSqK3M=;
+        h=From:To:Cc:Subject:Date:From;
+        b=i1LG5xSiAM52TqKv1DcvJu0yKRyG8oT7eXZimJfpnxIQEWnCitx06UOLpkjZKOwzm
+         Cl04wO/J6b2d304uo2BjHSS8ryfIhKTmuAV+5CzslCZr2RztSDQ7Mmzlcd+icfehc2
+         W4rK0ZMnLynH+1oheLuxFkdqmr5LvPJA8S846mlE=
+Received: from 78.163-31-62.static.virginmediabusiness.co.uk ([62.31.163.78] helo=why.lan)
+        by disco-boy.misterjones.org with esmtpsa (TLS1.3:ECDHE_RSA_AES_256_GCM_SHA384:256)
+        (Exim 4.92)
+        (envelope-from <maz@kernel.org>)
+        id 1kH50e-00BEw6-5G; Sat, 12 Sep 2020 13:52:04 +0100
+From:   Marc Zyngier <maz@kernel.org>
+To:     devicetree@vger.kernel.org, linux-kernel@vger.kernel.org,
+        linux-arm-kernel@lists.infradead.org
+Cc:     Enric Balletbo i Serra <enric.balletbo@collabora.com>,
+        Frank Wunderlich <linux@fw-web.de>,
+        John Stultz <john.stultz@linaro.org>,
+        Saravana Kannan <saravanak@google.com>,
+        Hanks Chen <hanks.chen@mediatek.com>,
+        Andy Gross <agross@kernel.org>,
+        Bjorn Andersson <bjorn.andersson@linaro.org>,
+        Matthias Brugger <matthias.bgg@gmail.com>,
+        Thomas Gleixner <tglx@linutronix.de>,
+        Jason Cooper <jason@lakedaemon.net>,
+        Rob Herring <robh+dt@kernel.org>,
+        Frank Rowand <frowand.list@gmail.com>, kernel-team@android.com
+Subject: [PATCH 0/6] irqchip: Hybrid probing
+Date:   Sat, 12 Sep 2020 13:51:42 +0100
+Message-Id: <20200912125148.1271481-1-maz@kernel.org>
+X-Mailer: git-send-email 2.28.0
 MIME-Version: 1.0
-References: <20200903133528.8595-1-lars.povlsen@microchip.com> <20200903133528.8595-3-lars.povlsen@microchip.com>
-In-Reply-To: <20200903133528.8595-3-lars.povlsen@microchip.com>
-From:   Linus Walleij <linus.walleij@linaro.org>
-Date:   Sat, 12 Sep 2020 13:11:02 +0200
-Message-ID: <CACRpkdbUv4r+Cghs1e4OEFCW4Yd1bGGQcWZ5TEb2uDWnVXhPSw@mail.gmail.com>
-Subject: Re: [PATCH v2 2/3] pinctrl: pinctrl-mchp-sgpio: Add pinctrl driver
- for Microsemi Serial GPIO
-To:     Lars Povlsen <lars.povlsen@microchip.com>,
-        Kate Stewart <kstewart@linuxfoundation.org>
-Cc:     Microchip Linux Driver Support <UNGLinuxDriver@microchip.com>,
-        "open list:OPEN FIRMWARE AND FLATTENED DEVICE TREE BINDINGS" 
-        <devicetree@vger.kernel.org>,
-        "open list:GPIO SUBSYSTEM" <linux-gpio@vger.kernel.org>,
-        Linux ARM <linux-arm-kernel@lists.infradead.org>,
-        "linux-kernel@vger.kernel.org" <linux-kernel@vger.kernel.org>,
-        Alexandre Belloni <alexandre.belloni@bootlin.com>
-Content-Type: text/plain; charset="UTF-8"
+Content-Transfer-Encoding: 8bit
+X-SA-Exim-Connect-IP: 62.31.163.78
+X-SA-Exim-Rcpt-To: devicetree@vger.kernel.org, linux-kernel@vger.kernel.org, linux-arm-kernel@lists.infradead.org, enric.balletbo@collabora.com, linux@fw-web.de, john.stultz@linaro.org, saravanak@google.com, hanks.chen@mediatek.com, agross@kernel.org, bjorn.andersson@linaro.org, matthias.bgg@gmail.com, tglx@linutronix.de, jason@lakedaemon.net, robh+dt@kernel.org, frowand.list@gmail.com, kernel-team@android.com
+X-SA-Exim-Mail-From: maz@kernel.org
+X-SA-Exim-Scanned: No (on disco-boy.misterjones.org); SAEximRunCond expanded to false
 Sender: devicetree-owner@vger.kernel.org
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-On Thu, Sep 3, 2020 at 3:35 PM Lars Povlsen <lars.povlsen@microchip.com> wrote:
+A recent attempt at converting a couple of interrupt controllers from
+early probing to standard platform drivers have badly failed, as it
+became evident that although an interrupt controller can easily probe
+late, device drivers for the endpoints connected to it are rarely
+equipped to deal with probe deferral. Changes were swiftly reverted.
 
-> This adds a pinctrl driver for the Microsemi/Microchip Serial GPIO
-> (SGPIO) device used in various SoC's.
->
-> Signed-off-by: Lars Povlsen <lars.povlsen@microchip.com>
-(...)
+However, there is some value in *optionally* enabling this, if only
+for development purposes, as there is otherwise a "chicken and egg"
+problem, and a few people (cc'd) are working on a potential solution.
 
-> diff --git a/drivers/pinctrl/pinctrl-mchp-sgpio.c b/drivers/pinctrl/pinctrl-mchp-sgpio.c
+This short series enables the infrastructure for modular building
+whilst retaining the usual early probing for monolithic build, and
+introduces it to the three drivers that were previously made to probe
+as platform drivers.
 
-Can we just spell it out
-pinctrl-microchip-sgpio.c ?
+As I don't have any of the HW, this series is fully untested and I'd
+welcome some feedback on it.
 
-The abbreviation seems arbitrary and unnecessary.
+Thanks,
 
-I do see that this chip is using the pinctrl abstractions (very nicely)
-and should be under drivers/pinctrl/*.
+	M.
 
-Sadly it doesn't mean the bindings need to be in pinctrl ... unless you
-plan to add pinctrl bindings later.
+Marc Zyngier (6):
+  of: Add basic infrastructure to create early probe arrays
+  irqchip: Make IRQCHIP_MATCH() type safe
+  irqchip: Introduce IRQCHIP_HYBRID_DRIVER_{BEGIN,END} macros
+  irqchip/mtk-cirq: Allow modular build
+  irqchip/mtk-sysirq: Allow modular build
+  irqchip/qcom-pdc: Allow modular build
 
-> +config PINCTRL_MCHP_SGPIO
-> +       bool "Pinctrl driver for Microsemi/Microchip Serial GPIO"
-> +       depends on OF
-> +       depends on HAS_IOMEM
-> +       select GPIOLIB
-> +       select GENERIC_PINCONF
-> +       select GENERIC_PINCTRL_GROUPS
-> +       select GENERIC_PINMUX_FUNCTIONS
+ drivers/irqchip/irq-mtk-cirq.c   |  4 +++-
+ drivers/irqchip/irq-mtk-sysirq.c |  4 +++-
+ drivers/irqchip/qcom-pdc.c       |  4 +++-
+ include/linux/irqchip.h          | 14 +++++++++++++-
+ include/linux/of.h               | 15 +++++++++++++++
+ 5 files changed, 37 insertions(+), 4 deletions(-)
 
-Nice use of these abstractions!
+-- 
+2.28.0
 
-> +// SPDX-License-Identifier: (GPL-2.0 OR MIT)
-
-What's up with this OR MIT? I'd like Kate to OK this.
-
-> +#define MCHP_SGPIOS_PER_BANK   32
-> +#define MCHP_SGPIO_BANK_DEPTH  4
-> +
-> +#define PIN_NAM_SZ     (sizeof("SGPIO_D_pXXbY")+1)
-> +
-> +enum {
-> +       REG_INPUT_DATA,
-> +       REG_PORT_CONFIG,
-> +       REG_PORT_ENABLE,
-> +       REG_SIO_CONFIG,
-> +       REG_SIO_CLOCK,
-> +       MAXREG
-> +};
-> +
-> +struct mchp_sgpio_props {
-
-Just call it struct microchip_gpio_variant it is easier to read and
-does not abbreviate randomly, also it is a per-variant set of properties
-so calling it variant is more to the point.
-
-> +struct mchp_sgpio_priv {
-
-I would just spell it out struct microchip_sgpio, it is implicit that
-the struct is private since it is defined in a c file.
-
-> +struct mchp_sgpio_port_addr {
-
-struct microchip_sgpio_port_addr
-
-(Admittedly this is a bit about taste.)
-
-> +static inline void sgpio_writel(struct mchp_sgpio_priv *priv,
-> +                               u32 val, u32 rno, u32 off)
-> +{
-> +       u32 __iomem *reg = &priv->regs[priv->props->regoff[rno] + off];
-> +
-> +       writel(val, reg);
-> +}
-> +
-> +static inline void sgpio_clrsetbits(struct mchp_sgpio_priv *priv,
-> +                                   u32 rno, u32 off, u32 clear, u32 set)
-> +{
-> +       u32 __iomem *reg = &priv->regs[priv->props->regoff[rno] + off];
-> +       u32 val = readl(reg);
-> +
-> +       val &= ~clear;
-> +       val |= set;
-> +
-> +       writel(val, reg);
-> +}
-
-This looks like a reimplementation of regmap_update_bits for a bit,
-have you considered just using regmap? It's pretty simple.
-
-> +static int mchp_sgpio_direction_input(struct gpio_chip *gc, unsigned int gpio)
-> +{
-> +       struct mchp_sgpio_priv *priv = gpiochip_get_data(gc);
-> +
-> +       /* Fixed-position function */
-> +       return sgpio_is_input(priv, gpio) ? 0 : -EINVAL;
-> +}
-> +
-> +static int mchp_sgpio_direction_output(struct gpio_chip *gc,
-> +                                      unsigned int gpio, int value)
-> +{
-> +       struct mchp_sgpio_priv *priv = gpiochip_get_data(gc);
-> +       struct mchp_sgpio_port_addr addr;
-> +
-> +       sgpio_pin_to_addr(priv, gpio, &addr);
-> +
-> +       /* Fixed-position function */
-> +       if (addr.input)
-> +               return -EINVAL;
-> +
-> +       sgpio_output_set(priv, &addr, value);
-> +
-> +       return 0;
-> +}
-
-This looks like the right way to handle this!
-
-> +static int mchp_sgpio_of_xlate(struct gpio_chip *gc,
-> +                              const struct of_phandle_args *gpiospec,
-> +                              u32 *flags)
-> +{
-> +       struct mchp_sgpio_priv *priv = gpiochip_get_data(gc);
-> +       int pin, base;
-> +
-> +       if (gpiospec->args[0] > MCHP_SGPIOS_PER_BANK ||
-> +           gpiospec->args[1] > priv->bitcount)
-> +               return -EINVAL;
-> +       base = priv->bitcount * gpiospec->args[0];
-> +       pin = base + gpiospec->args[1];
-> +       /* Add to 2nd half of output range if output */
-> +       if (gpiospec->args[2] == PIN_OUTPUT)
-> +               pin += (priv->ngpios / 2);
-> +
-> +       if (pin > gc->ngpio)
-> +               return -EINVAL;
-> +
-> +       if (flags)
-> +               *flags = gpiospec->args[3];
-> +
-> +       return pin;
-> +}
-
-I don't like this. I would certainly prefer the driver to just use standard
-GPIO bindings. I do not understand why this is necessary.
-
-If for nothing else, there should be a big comment explaining this.
-
-The only real problem I have with the driver is this extra flag tagged onto
-all the GPIOs, this seems unnecessary, and something the hardware
-driver should already know from the compatible string.
-
-Yours,
-Linus Walleij
