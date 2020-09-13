@@ -2,175 +2,370 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from vger.kernel.org (vger.kernel.org [23.128.96.18])
-	by mail.lfdr.de (Postfix) with ESMTP id 76A9F268044
-	for <lists+devicetree@lfdr.de>; Sun, 13 Sep 2020 18:28:36 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTP id 2F26F268081
+	for <lists+devicetree@lfdr.de>; Sun, 13 Sep 2020 19:17:53 +0200 (CEST)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S1725956AbgIMQ2b (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Sun, 13 Sep 2020 12:28:31 -0400
-Received: from mail-eopbgr150074.outbound.protection.outlook.com ([40.107.15.74]:5805
-        "EHLO EUR01-DB5-obe.outbound.protection.outlook.com"
-        rhost-flags-OK-OK-OK-FAIL) by vger.kernel.org with ESMTP
-        id S1725941AbgIMQ2Z (ORCPT <rfc822;devicetree@vger.kernel.org>);
-        Sun, 13 Sep 2020 12:28:25 -0400
-ARC-Seal: i=1; a=rsa-sha256; s=arcselector9901; d=microsoft.com; cv=none;
- b=It//eJ1P91CpaoeClD/kul7+e4HreHsvIOzJQ3/ouHIYrbhqJnrbVoJMcILLNSf/N/R8hC7FIZYVD64EJRjBnxPjFGvD5KlTd0NCaZRdjeKMQcxi0BNgGdpPike1kcIpDKCyNoDvjsd3Dcykr37Caa5AEqkZj/rbmmjCGEfcB/WgNytgBSI7gXVpbDSRsQROGGyavo2Mq/bRrdcjqvO2+FPHpBBbcJYH4MThSKb5kMUFtEGbCmj2De13jXuKnIToLVaEHIjZl8i+7T50OTlX9VxAonrg27sQiqa0FVKZSTekYXhGAVD6Niud8ssrL6hrsOwTOvWTznh3EIF8YI3r6A==
-ARC-Message-Signature: i=1; a=rsa-sha256; c=relaxed/relaxed; d=microsoft.com;
- s=arcselector9901;
- h=From:Date:Subject:Message-ID:Content-Type:MIME-Version:X-MS-Exchange-SenderADCheck;
- bh=zdBiOQzIODjGMj6ycA0AJRhMfIZH3lYWos/r555Ehdk=;
- b=Ay10n1ePJgL/Q5kU36oPTKX00/I7mY+dSzGccszbz5r4uJh5Wf3UK6heMvmlDnhp5vjV8qey1mKo+6TSLovpgJSWzReonqRMrvEziP05vGtQW5Hx8DvwHm6TukTNGgXmHbFlqZFELvzyoCQI5c+DeArh5u04/pMMZ9ii43npA9Gm+zV9jmAyO7cLbotSfj6eoiZCZE/ioRDPXFZXxzx31OlkQ9rzXWRK1/2AGlMNheF9wJALRJfpqHv5f8+uCIpHXUP5r2c85gCXCSQNTTtQgGV3nak6sowCGo8iQTD7C13TAgTdaTGDP0rQ0p6taZ87w5DU2XF+DVEcc/OtSuGohw==
-ARC-Authentication-Results: i=1; mx.microsoft.com 1; spf=pass
- smtp.mailfrom=nxp.com; dmarc=pass action=none header.from=nxp.com; dkim=pass
- header.d=nxp.com; arc=none
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=nxp.com; s=selector2;
- h=From:Date:Subject:Message-ID:Content-Type:MIME-Version:X-MS-Exchange-SenderADCheck;
- bh=zdBiOQzIODjGMj6ycA0AJRhMfIZH3lYWos/r555Ehdk=;
- b=YYW+a+aIs0H0PotwdRyYGFSFIS5i81aZ3Y1tfBgh8EwOVKW21KkMX86nQT0DrlK4tJwRGeEepAb8wLDU1Iep6MsOwMJViUC2MkmLiwwr+33TWn22JoO9zOcdFiXDbzRGZ7Sp4wKYSBfQBqKU9Bw4wFlS02dPFO8WzW8+mk2Lz+8=
-Received: from HE1PR0402MB3371.eurprd04.prod.outlook.com (2603:10a6:7:85::27)
- by HE1PR0402MB2730.eurprd04.prod.outlook.com (2603:10a6:3:e2::15) with
- Microsoft SMTP Server (version=TLS1_2,
- cipher=TLS_ECDHE_RSA_WITH_AES_256_GCM_SHA384) id 15.20.3370.17; Sun, 13 Sep
- 2020 16:28:20 +0000
-Received: from HE1PR0402MB3371.eurprd04.prod.outlook.com
- ([fe80::c872:d354:7cf7:deb9]) by HE1PR0402MB3371.eurprd04.prod.outlook.com
- ([fe80::c872:d354:7cf7:deb9%3]) with mapi id 15.20.3370.018; Sun, 13 Sep 2020
- 16:28:20 +0000
-From:   "Z.q. Hou" <zhiqiang.hou@nxp.com>
-To:     Rob Herring <robh@kernel.org>
-CC:     "linux-pci@vger.kernel.org" <linux-pci@vger.kernel.org>,
-        "devicetree@vger.kernel.org" <devicetree@vger.kernel.org>,
-        "linux-kernel@vger.kernel.org" <linux-kernel@vger.kernel.org>,
-        "linux-arm-kernel@lists.infradead.org" 
-        <linux-arm-kernel@lists.infradead.org>,
-        "linuxppc-dev@lists.ozlabs.org" <linuxppc-dev@lists.ozlabs.org>,
-        "bhelgaas@google.com" <bhelgaas@google.com>,
-        "lorenzo.pieralisi@arm.com" <lorenzo.pieralisi@arm.com>,
-        "shawnguo@kernel.org" <shawnguo@kernel.org>,
-        Leo Li <leoyang.li@nxp.com>, "kishon@ti.com" <kishon@ti.com>,
-        "gustavo.pimentel@synopsys.com" <gustavo.pimentel@synopsys.com>,
-        Roy Zang <roy.zang@nxp.com>,
-        "jingoohan1@gmail.com" <jingoohan1@gmail.com>,
-        "andrew.murray@arm.com" <andrew.murray@arm.com>,
-        Mingkai Hu <mingkai.hu@nxp.com>,
-        "M.h. Lian" <minghuan.lian@nxp.com>,
-        Xiaowei Bao <xiaowei.bao@nxp.com>
-Subject: RE: [PATCHv7 02/12] PCI: designware-ep: Add the doorbell mode of
- MSI-X in EP mode
-Thread-Topic: [PATCHv7 02/12] PCI: designware-ep: Add the doorbell mode of
- MSI-X in EP mode
-Thread-Index: AQHWb8Z3KevupTpcJEaaUJbn6LJx9KliWE8AgASdcyA=
-Date:   Sun, 13 Sep 2020 16:28:20 +0000
-Message-ID: <HE1PR0402MB3371A2E50CF6206684A1C16384220@HE1PR0402MB3371.eurprd04.prod.outlook.com>
-References: <20200811095441.7636-1-Zhiqiang.Hou@nxp.com>
- <20200811095441.7636-3-Zhiqiang.Hou@nxp.com> <20200910175804.GA592152@bogus>
-In-Reply-To: <20200910175804.GA592152@bogus>
-Accept-Language: zh-CN, en-US
-Content-Language: en-US
-X-MS-Has-Attach: 
-X-MS-TNEF-Correlator: 
-authentication-results: kernel.org; dkim=none (message not signed)
- header.d=none;kernel.org; dmarc=none action=none header.from=nxp.com;
-x-originating-ip: [119.31.174.73]
-x-ms-publictraffictype: Email
-x-ms-office365-filtering-ht: Tenant
-x-ms-office365-filtering-correlation-id: 973e4a48-1c35-4455-d4e1-08d858020740
-x-ms-traffictypediagnostic: HE1PR0402MB2730:
-x-ms-exchange-transport-forked: True
-x-microsoft-antispam-prvs: <HE1PR0402MB27309168D394590756BD657C84220@HE1PR0402MB2730.eurprd04.prod.outlook.com>
-x-ms-oob-tlc-oobclassifiers: OLM:8273;
-x-ms-exchange-senderadcheck: 1
-x-microsoft-antispam: BCL:0;
-x-microsoft-antispam-message-info: OvwjmOxF2sT+tUaDtiVFrPtgcN3G9YWo7DPOSWtxtjs0f0/OJkVM9ZFmPC7IesAizS9twgVg0dLFG1BZsysMOuy75iM5aHB2D3zogix701eACZzutbO2imoV0OI+T7EJRMLij0T3wfl4u6fy8QC451wGWm1N70/GPIWqqlDzda3d5aoQDlzNYBFQb/b91ptz/t6j8PdstrWKEkJXMWB6fQBUlEPuUt94WQhQVJOb80A00wnBQbgGGFS+i42YN4yxB54LDPMhGmD1Dwwsrsi0occ4YJf7PFep++qOnMVBvbcXyHA1asNWTSMgOb94vLpo/H49TsjhxM5kH+O7POE00g==
-x-forefront-antispam-report: CIP:255.255.255.255;CTRY:;LANG:en;SCL:1;SRV:;IPV:NLI;SFV:NSPM;H:HE1PR0402MB3371.eurprd04.prod.outlook.com;PTR:;CAT:NONE;SFS:(4636009)(39860400002)(136003)(396003)(346002)(376002)(366004)(7696005)(66946007)(55016002)(66446008)(64756008)(66556008)(66476007)(9686003)(8676002)(26005)(6916009)(71200400001)(6506007)(53546011)(8936002)(186003)(478600001)(5660300002)(52536014)(7416002)(54906003)(83380400001)(4326008)(316002)(86362001)(33656002)(76116006)(2906002);DIR:OUT;SFP:1101;
-x-ms-exchange-antispam-messagedata: y4G61In80A74mhQoh1rVUKF9O5gjDUffEkCjlkXdV9/hTRj/iAjGYSfEwsC5D+ABN65AVFie+bDVFXr2Hy0sETLRdbduwDs+O1uSZOEey7QsSd3ZU6jx0mwRGp4zTypAd9ByGDCSXb3wpz4QMf9oJT4irC/e6KCn3450b4ntXOYP3X45M+9Y7q2YjMamdfwXrZI01FtdYebBH19xax4pnMi9SjPBv227nHpF7IcsX7/bVxdF242lP7TVRpbs1ShGgs8AgsvdG86Umvwper5+MUfRpyTcEAUHq5UvPrjYHF0QIi1b4Qh52lRAJB5MOqny7qckF7dnQkJXeP/02k3EThJ5Xqq+9B6es4U1MTsLEjtEbST412hyRr8tmkpO9xnfUUbR4RvJSf/xF4IdE0ERLYnsDVMaP14CfL7OAXDoeaLRDMzl62CZsXUqksh2UPCiUGPomPLcWqM1VTNL3/J10gIlfZXksSBVnj+hrajw047R8ebn3tAhluww6AGirbHwZtVtGqppL6e5WXsnLssXhllVKCwsRxwdD+hGgm5GDx56aZAYeDsLYke+bRS8JyLC6iaTF80k0EwJaNyphF3NYfS3MuhpXKEfR8o/KtZ4bHwC0bYbDs7+lzIy6KEgB0q9l6Uy0l+HgpqVXboN7ILqMw==
-Content-Type: text/plain; charset="gb2312"
-Content-Transfer-Encoding: base64
+        id S1725928AbgIMRRu (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Sun, 13 Sep 2020 13:17:50 -0400
+Received: from lindbergh.monkeyblade.net ([23.128.96.19]:40294 "EHLO
+        lindbergh.monkeyblade.net" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
+        with ESMTP id S1725876AbgIMRRs (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Sun, 13 Sep 2020 13:17:48 -0400
+Received: from mail-pj1-x1043.google.com (mail-pj1-x1043.google.com [IPv6:2607:f8b0:4864:20::1043])
+        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 0D1B7C06174A;
+        Sun, 13 Sep 2020 10:17:47 -0700 (PDT)
+Received: by mail-pj1-x1043.google.com with SMTP id jw11so4172155pjb.0;
+        Sun, 13 Sep 2020 10:17:46 -0700 (PDT)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+        d=gmail.com; s=20161025;
+        h=date:from:to:cc:subject:message-id:references:mime-version
+         :content-disposition:in-reply-to;
+        bh=CD+rj96ISkGxvzLNQ3PLcvQIi9uSSq1sV+SXI9K2/i0=;
+        b=XUFjsHL6RgupQxtg+XEdjUCw5yy/Oaxg/AQp0lcNUsbuV93ri08NECvYrR6w8hTYrq
+         Oq9eJIK4YhHJ22jMYOVdb5cq30eTjHZGl2svHc02cIToNNVUpQzoxms5XfhwYM5Eh0rk
+         0x+i1Q9Mkg56RC7cPECWj7TamD6GKYicFhDCTClukVLLT/TWFz5apF97OeJK4ECTf8D9
+         EFsYYneEx1AdXvgTWs90Gsf4T9ldK9BspF7A2Y4CLjIkwxVGarmfIM+D+lTZfVi30a10
+         ER0BlM+tXmEZ+qJE43WCo+NNnCN9w1eARwlZ5deKASCvw1rK22Ua9u9Sb/Pd3v00TlQ2
+         JTzw==
+X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+        d=1e100.net; s=20161025;
+        h=x-gm-message-state:date:from:to:cc:subject:message-id:references
+         :mime-version:content-disposition:in-reply-to;
+        bh=CD+rj96ISkGxvzLNQ3PLcvQIi9uSSq1sV+SXI9K2/i0=;
+        b=LJHrSJUqJtzUr2zevfa+ZXTP0RGiVuer0qqWGkYJKdWxq93Que3gKYWRSyXViBI84s
+         +bdUWLHaP7cLbmWs7FWbZuo4/ic1MRc26Thfm28u0gg1g3mpcUEEKnN10lug8NK2kyS2
+         ww71h+r5rIbnItDHGNh2P42n2P3UbjshSHV20UXgQY0fAGB+wUMNzqD0+VRYUHXAoj5Y
+         I4QgpKVUfTrTGMLHg7vgzb1EhKpI+gGlSNGAE1lgD9w3QyE1V1LTuezJRjv6DPjAciKh
+         N7M4cirR32/hlJxsFoivOaaUL+Vl57Oh7t9ymX1wZK8k08kkX2BwDXKJ1tOwF/KVij7+
+         cJoQ==
+X-Gm-Message-State: AOAM530U2K2V9piKG0f5Fm6VPr9x5CayEC4FizFcMLcoXtJc/YHvCoa2
+        xKtQIZyftVsW9NLrzhdHPpo=
+X-Google-Smtp-Source: ABdhPJzX4PaPpmtgFjp1c1G8m5ToMIdgqlwR39sBQrZLcqeieNRaK5AlKXXJvZBtgXma2RahjB2ZcQ==
+X-Received: by 2002:a17:90a:de81:: with SMTP id n1mr10698917pjv.92.1600017466236;
+        Sun, 13 Sep 2020 10:17:46 -0700 (PDT)
+Received: from dtor-ws ([2620:15c:202:201:a6ae:11ff:fe11:fcc3])
+        by smtp.gmail.com with ESMTPSA id q23sm7927913pfg.143.2020.09.13.10.17.44
+        (version=TLS1_3 cipher=TLS_AES_256_GCM_SHA384 bits=256/256);
+        Sun, 13 Sep 2020 10:17:45 -0700 (PDT)
+Date:   Sun, 13 Sep 2020 10:17:43 -0700
+From:   Dmitry Torokhov <dmitry.torokhov@gmail.com>
+To:     Eddie James <eajames@linux.ibm.com>
+Cc:     linux-input@vger.kernel.org, devicetree@vger.kernel.org,
+        linux-aspeed@lists.ozlabs.org, linux-i2c@vger.kernel.org,
+        linux-kernel@vger.kernel.org, robh+dt@kernel.org, joel@jms.id.au,
+        andrew@aj.id.au, benh@kernel.crashing.org,
+        brendanhiggins@google.com, wsa@kernel.org, rentao.bupt@gmail.com,
+        ryan_chen@aspeedtech.com
+Subject: Re: [PATCH v3 2/5] input: misc: Add IBM Operation Panel driver
+Message-ID: <20200913171743.GH1665100@dtor-ws>
+References: <20200909203059.23427-1-eajames@linux.ibm.com>
+ <20200909203059.23427-3-eajames@linux.ibm.com>
 MIME-Version: 1.0
-X-OriginatorOrg: nxp.com
-X-MS-Exchange-CrossTenant-AuthAs: Internal
-X-MS-Exchange-CrossTenant-AuthSource: HE1PR0402MB3371.eurprd04.prod.outlook.com
-X-MS-Exchange-CrossTenant-Network-Message-Id: 973e4a48-1c35-4455-d4e1-08d858020740
-X-MS-Exchange-CrossTenant-originalarrivaltime: 13 Sep 2020 16:28:20.5834
- (UTC)
-X-MS-Exchange-CrossTenant-fromentityheader: Hosted
-X-MS-Exchange-CrossTenant-id: 686ea1d3-bc2b-4c6f-a92c-d99c5c301635
-X-MS-Exchange-CrossTenant-mailboxtype: HOSTED
-X-MS-Exchange-CrossTenant-userprincipalname: BEKfU2HYI1LI9xMrbcfUhF1a+OAIKgYf2yYcvdVyqO9a2MCnRt4LgWeP+foNmmq/3IgAf4QFxemK6NHQLMZjug==
-X-MS-Exchange-Transport-CrossTenantHeadersStamped: HE1PR0402MB2730
+Content-Type: text/plain; charset=us-ascii
+Content-Disposition: inline
+In-Reply-To: <20200909203059.23427-3-eajames@linux.ibm.com>
 Sender: devicetree-owner@vger.kernel.org
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-SGkgUm9iLA0KDQpUaGFua3MgYSBsb3QgZm9yIHlvdXIgY29tbWVudHMhDQoNCj4gLS0tLS1Pcmln
-aW5hbCBNZXNzYWdlLS0tLS0NCj4gRnJvbTogUm9iIEhlcnJpbmcgPHJvYmhAa2VybmVsLm9yZz4N
-Cj4gU2VudDogMjAyMMTqOdTCMTHI1SAxOjU4DQo+IFRvOiBaLnEuIEhvdSA8emhpcWlhbmcuaG91
-QG54cC5jb20+DQo+IENjOiBsaW51eC1wY2lAdmdlci5rZXJuZWwub3JnOyBkZXZpY2V0cmVlQHZn
-ZXIua2VybmVsLm9yZzsNCj4gbGludXgta2VybmVsQHZnZXIua2VybmVsLm9yZzsgbGludXgtYXJt
-LWtlcm5lbEBsaXN0cy5pbmZyYWRlYWQub3JnOw0KPiBsaW51eHBwYy1kZXZAbGlzdHMub3psYWJz
-Lm9yZzsgYmhlbGdhYXNAZ29vZ2xlLmNvbTsNCj4gbG9yZW56by5waWVyYWxpc2lAYXJtLmNvbTsg
-c2hhd25ndW9Aa2VybmVsLm9yZzsgTGVvIExpDQo+IDxsZW95YW5nLmxpQG54cC5jb20+OyBraXNo
-b25AdGkuY29tOyBndXN0YXZvLnBpbWVudGVsQHN5bm9wc3lzLmNvbTsNCj4gUm95IFphbmcgPHJv
-eS56YW5nQG54cC5jb20+OyBqaW5nb29oYW4xQGdtYWlsLmNvbTsNCj4gYW5kcmV3Lm11cnJheUBh
-cm0uY29tOyBNaW5na2FpIEh1IDxtaW5na2FpLmh1QG54cC5jb20+OyBNLmguIExpYW4NCj4gPG1p
-bmdodWFuLmxpYW5AbnhwLmNvbT47IFhpYW93ZWkgQmFvIDx4aWFvd2VpLmJhb0BueHAuY29tPg0K
-PiBTdWJqZWN0OiBSZTogW1BBVENIdjcgMDIvMTJdIFBDSTogZGVzaWdud2FyZS1lcDogQWRkIHRo
-ZSBkb29yYmVsbCBtb2RlIG9mDQo+IE1TSS1YIGluIEVQIG1vZGUNCj4gDQo+IE9uIFR1ZSwgQXVn
-IDExLCAyMDIwIGF0IDA1OjU0OjMxUE0gKzA4MDAsIFpoaXFpYW5nIEhvdSB3cm90ZToNCj4gPiBG
-cm9tOiBYaWFvd2VpIEJhbyA8eGlhb3dlaS5iYW9AbnhwLmNvbT4NCj4gPg0KPiA+IEFkZCB0aGUg
-ZG9vcmJlbGwgbW9kZSBvZiBNU0ktWCBpbiBEV0MgRVAgZHJpdmVyLg0KPiA+DQo+ID4gU2lnbmVk
-LW9mZi1ieTogWGlhb3dlaSBCYW8gPHhpYW93ZWkuYmFvQG54cC5jb20+DQo+ID4gUmV2aWV3ZWQt
-Ynk6IEFuZHJldyBNdXJyYXkgPGFuZHJldy5tdXJyYXlAYXJtLmNvbT4NCj4gPiBTaWduZWQtb2Zm
-LWJ5OiBIb3UgWmhpcWlhbmcgPFpoaXFpYW5nLkhvdUBueHAuY29tPg0KPiA+IC0tLQ0KPiA+IFY3
-Og0KPiA+ICAtIFJlYmFzZSB0aGUgcGF0Y2ggd2l0aG91dCBmdW5jdGlvbmFsaXR5IGNoYW5nZS4N
-Cj4gPg0KPiA+ICBkcml2ZXJzL3BjaS9jb250cm9sbGVyL2R3Yy9wY2llLWRlc2lnbndhcmUtZXAu
-YyB8IDE0ICsrKysrKysrKysrKysrDQo+ID4gIGRyaXZlcnMvcGNpL2NvbnRyb2xsZXIvZHdjL3Bj
-aWUtZGVzaWdud2FyZS5oICAgIHwgMTIgKysrKysrKysrKysrDQo+ID4gIDIgZmlsZXMgY2hhbmdl
-ZCwgMjYgaW5zZXJ0aW9ucygrKQ0KPiA+DQo+ID4gZGlmZiAtLWdpdCBhL2RyaXZlcnMvcGNpL2Nv
-bnRyb2xsZXIvZHdjL3BjaWUtZGVzaWdud2FyZS1lcC5jDQo+ID4gYi9kcml2ZXJzL3BjaS9jb250
-cm9sbGVyL2R3Yy9wY2llLWRlc2lnbndhcmUtZXAuYw0KPiA+IGluZGV4IGU1YmQzYTVlZjM4MC4u
-ZTc2YjUwNGVkNDY1IDEwMDY0NA0KPiA+IC0tLSBhL2RyaXZlcnMvcGNpL2NvbnRyb2xsZXIvZHdj
-L3BjaWUtZGVzaWdud2FyZS1lcC5jDQo+ID4gKysrIGIvZHJpdmVycy9wY2kvY29udHJvbGxlci9k
-d2MvcGNpZS1kZXNpZ253YXJlLWVwLmMNCj4gPiBAQCAtNDcxLDYgKzQ3MSwyMCBAQCBpbnQgZHdf
-cGNpZV9lcF9yYWlzZV9tc2lfaXJxKHN0cnVjdCBkd19wY2llX2VwDQo+ICplcCwgdTggZnVuY19u
-bywNCj4gPiAgCXJldHVybiAwOw0KPiA+ICB9DQo+ID4NCj4gPiAraW50IGR3X3BjaWVfZXBfcmFp
-c2VfbXNpeF9pcnFfZG9vcmJlbGwoc3RydWN0IGR3X3BjaWVfZXAgKmVwLCB1OA0KPiA+ICtmdW5j
-X25vLA0KPiANCj4gcmV0dXJuIHZvaWQuIEl0IG5ldmVyIGhhcyBhbiBlcnJvci4NCj4gDQo+IEl0
-IGNvdWxkIGFsc28ganVzdCBiZSBhbiBpbmxpbmUgZnVuY3Rpb24uDQoNClllcywgbWFrZSBzZW5z
-ZSBhbmQgd2lsbCBjaGFuZ2UgaW4gbmV4dCB2ZXJzaW9uLg0KDQpUaGFua3MsDQpaaGlxaWFuZw0K
-DQo+IA0KPiA+ICsJCQkJICAgICAgIHUxNiBpbnRlcnJ1cHRfbnVtKQ0KPiA+ICt7DQo+ID4gKwlz
-dHJ1Y3QgZHdfcGNpZSAqcGNpID0gdG9fZHdfcGNpZV9mcm9tX2VwKGVwKTsNCj4gPiArCXUzMiBt
-c2dfZGF0YTsNCj4gPiArDQo+ID4gKwltc2dfZGF0YSA9IChmdW5jX25vIDw8IFBDSUVfTVNJWF9E
-T09SQkVMTF9QRl9TSElGVCkgfA0KPiA+ICsJCSAgIChpbnRlcnJ1cHRfbnVtIC0gMSk7DQo+ID4g
-Kw0KPiA+ICsJZHdfcGNpZV93cml0ZWxfZGJpKHBjaSwgUENJRV9NU0lYX0RPT1JCRUxMLCBtc2df
-ZGF0YSk7DQo+ID4gKw0KPiA+ICsJcmV0dXJuIDA7DQo+ID4gK30NCj4gPiArDQo+ID4gIGludCBk
-d19wY2llX2VwX3JhaXNlX21zaXhfaXJxKHN0cnVjdCBkd19wY2llX2VwICplcCwgdTggZnVuY19u
-bywNCj4gPiAgCQkJICAgICAgdTE2IGludGVycnVwdF9udW0pDQo+ID4gIHsNCj4gPiBkaWZmIC0t
-Z2l0IGEvZHJpdmVycy9wY2kvY29udHJvbGxlci9kd2MvcGNpZS1kZXNpZ253YXJlLmgNCj4gPiBi
-L2RyaXZlcnMvcGNpL2NvbnRyb2xsZXIvZHdjL3BjaWUtZGVzaWdud2FyZS5oDQo+ID4gaW5kZXgg
-ODlmODI3MWVjNWVlLi43NDViNDkzODIyNWEgMTAwNjQ0DQo+ID4gLS0tIGEvZHJpdmVycy9wY2kv
-Y29udHJvbGxlci9kd2MvcGNpZS1kZXNpZ253YXJlLmgNCj4gPiArKysgYi9kcml2ZXJzL3BjaS9j
-b250cm9sbGVyL2R3Yy9wY2llLWRlc2lnbndhcmUuaA0KPiA+IEBAIC05Nyw2ICs5Nyw5IEBADQo+
-ID4gICNkZWZpbmUgUENJRV9NSVNDX0NPTlRST0xfMV9PRkYJCTB4OEJDDQo+ID4gICNkZWZpbmUg
-UENJRV9EQklfUk9fV1JfRU4JCUJJVCgwKQ0KPiA+DQo+ID4gKyNkZWZpbmUgUENJRV9NU0lYX0RP
-T1JCRUxMCQkweDk0OA0KPiA+ICsjZGVmaW5lIFBDSUVfTVNJWF9ET09SQkVMTF9QRl9TSElGVAky
-NA0KPiA+ICsNCj4gPiAgI2RlZmluZSBQQ0lFX1BMX0NIS19SRUdfQ09OVFJPTF9TVEFUVVMJCQkw
-eEIyMA0KPiA+ICAjZGVmaW5lIFBDSUVfUExfQ0hLX1JFR19DSEtfUkVHX1NUQVJUCQkJQklUKDAp
-DQo+ID4gICNkZWZpbmUgUENJRV9QTF9DSEtfUkVHX0NIS19SRUdfQ09OVElOVU9VUwkJQklUKDEp
-DQo+ID4gQEAgLTQzNCw2ICs0MzcsOCBAQCBpbnQgZHdfcGNpZV9lcF9yYWlzZV9tc2lfaXJxKHN0
-cnVjdCBkd19wY2llX2VwDQo+ICplcCwgdTggZnVuY19ubywNCj4gPiAgCQkJICAgICB1OCBpbnRl
-cnJ1cHRfbnVtKTsNCj4gPiAgaW50IGR3X3BjaWVfZXBfcmFpc2VfbXNpeF9pcnEoc3RydWN0IGR3
-X3BjaWVfZXAgKmVwLCB1OCBmdW5jX25vLA0KPiA+ICAJCQkgICAgIHUxNiBpbnRlcnJ1cHRfbnVt
-KTsNCj4gPiAraW50IGR3X3BjaWVfZXBfcmFpc2VfbXNpeF9pcnFfZG9vcmJlbGwoc3RydWN0IGR3
-X3BjaWVfZXAgKmVwLCB1OA0KPiBmdW5jX25vLA0KPiA+ICsJCQkJICAgICAgIHUxNiBpbnRlcnJ1
-cHRfbnVtKTsNCj4gPiAgdm9pZCBkd19wY2llX2VwX3Jlc2V0X2JhcihzdHJ1Y3QgZHdfcGNpZSAq
-cGNpLCBlbnVtIHBjaV9iYXJubyBiYXIpOw0KPiA+ICNlbHNlICBzdGF0aWMgaW5saW5lIHZvaWQg
-ZHdfcGNpZV9lcF9saW5rdXAoc3RydWN0IGR3X3BjaWVfZXAgKmVwKSBAQA0KPiA+IC00NzUsNiAr
-NDgwLDEzIEBAIHN0YXRpYyBpbmxpbmUgaW50IGR3X3BjaWVfZXBfcmFpc2VfbXNpeF9pcnEoc3Ry
-dWN0DQo+IGR3X3BjaWVfZXAgKmVwLCB1OCBmdW5jX25vLA0KPiA+ICAJcmV0dXJuIDA7DQo+ID4g
-IH0NCj4gPg0KPiA+ICtzdGF0aWMgaW5saW5lIGludCBkd19wY2llX2VwX3JhaXNlX21zaXhfaXJx
-X2Rvb3JiZWxsKHN0cnVjdCBkd19wY2llX2VwDQo+ICplcCwNCj4gPiArCQkJCQkJICAgICB1OCBm
-dW5jX25vLA0KPiA+ICsJCQkJCQkgICAgIHUxNiBpbnRlcnJ1cHRfbnVtKQ0KPiA+ICt7DQo+ID4g
-KwlyZXR1cm4gMDsNCj4gPiArfQ0KPiA+ICsNCj4gPiAgc3RhdGljIGlubGluZSB2b2lkIGR3X3Bj
-aWVfZXBfcmVzZXRfYmFyKHN0cnVjdCBkd19wY2llICpwY2ksIGVudW0NCj4gPiBwY2lfYmFybm8g
-YmFyKSAgeyAgfQ0KPiA+IC0tDQo+ID4gMi4xNy4xDQo+ID4NCg==
+Hi Eddie,
+
+On Wed, Sep 09, 2020 at 03:30:56PM -0500, Eddie James wrote:
+> Add a driver to get the button events from the panel and provide
+> them to userspace with the input subsystem. The panel is
+> connected with I2C and controls the bus, so the driver registers
+> as an I2C slave device.
+> 
+> Signed-off-by: Eddie James <eajames@linux.ibm.com>
+> Reviewed-by: Joel Stanley <joel@jms.id.au>
+> ---
+>  MAINTAINERS                    |   1 +
+>  drivers/input/misc/Kconfig     |  18 ++++
+>  drivers/input/misc/Makefile    |   1 +
+>  drivers/input/misc/ibm-panel.c | 189 +++++++++++++++++++++++++++++++++
+>  4 files changed, 209 insertions(+)
+>  create mode 100644 drivers/input/misc/ibm-panel.c
+> 
+> diff --git a/MAINTAINERS b/MAINTAINERS
+> index 28408d29d873..5429da957a1a 100644
+> --- a/MAINTAINERS
+> +++ b/MAINTAINERS
+> @@ -8351,6 +8351,7 @@ M:	Eddie James <eajames@linux.ibm.com>
+>  L:	linux-input@vger.kernel.org
+>  S:	Maintained
+>  F:	Documentation/devicetree/bindings/input/ibm,op-panel.yaml
+> +F:	drivers/input/misc/ibm-panel.c
+>  
+>  IBM Power 842 compression accelerator
+>  M:	Haren Myneni <haren@us.ibm.com>
+> diff --git a/drivers/input/misc/Kconfig b/drivers/input/misc/Kconfig
+> index 362e8a01980c..65ab1ce7b259 100644
+> --- a/drivers/input/misc/Kconfig
+> +++ b/drivers/input/misc/Kconfig
+> @@ -708,6 +708,24 @@ config INPUT_ADXL34X_SPI
+>  	  To compile this driver as a module, choose M here: the
+>  	  module will be called adxl34x-spi.
+>  
+> +config INPUT_IBM_PANEL
+> +	tristate "IBM Operation Panel driver"
+> +	depends on I2C_SLAVE || COMPILE_TEST
+> +	help
+> +	  Say Y here if you have an IBM Operation Panel connected to your system
+> +	  over I2C. The panel is typically connected only to a system's service
+> +	  processor (BMC).
+> +
+> +	  If unsure, say N.
+> +
+> +	  The Operation Panel is a controller with some buttons and an LCD
+> +	  display that allows someone with physical access to the system to
+> +	  perform various administrative tasks. This driver only supports the part
+> +	  of the controller that sends commands to the system.
+> +
+> +	  To compile this driver as a module, choose M here: the module will be
+> +	  called ibm-panel.
+> +
+>  config INPUT_IMS_PCU
+>  	tristate "IMS Passenger Control Unit driver"
+>  	depends on USB
+> diff --git a/drivers/input/misc/Makefile b/drivers/input/misc/Makefile
+> index a48e5f2d859d..7e9edf0a142b 100644
+> --- a/drivers/input/misc/Makefile
+> +++ b/drivers/input/misc/Makefile
+> @@ -38,6 +38,7 @@ obj-$(CONFIG_INPUT_GPIO_DECODER)	+= gpio_decoder.o
+>  obj-$(CONFIG_INPUT_GPIO_VIBRA)		+= gpio-vibra.o
+>  obj-$(CONFIG_INPUT_HISI_POWERKEY)	+= hisi_powerkey.o
+>  obj-$(CONFIG_HP_SDC_RTC)		+= hp_sdc_rtc.o
+> +obj-$(CONFIG_INPUT_IBM_PANEL)		+= ibm-panel.o
+>  obj-$(CONFIG_INPUT_IMS_PCU)		+= ims-pcu.o
+>  obj-$(CONFIG_INPUT_IQS269A)		+= iqs269a.o
+>  obj-$(CONFIG_INPUT_IXP4XX_BEEPER)	+= ixp4xx-beeper.o
+> diff --git a/drivers/input/misc/ibm-panel.c b/drivers/input/misc/ibm-panel.c
+> new file mode 100644
+> index 000000000000..7329f4641636
+> --- /dev/null
+> +++ b/drivers/input/misc/ibm-panel.c
+> @@ -0,0 +1,189 @@
+> +// SPDX-License-Identifier: GPL-2.0-or-later
+> +/*
+> + * Copyright (C) IBM Corporation 2020
+> + */
+> +
+> +#include <linux/i2c.h>
+> +#include <linux/init.h>
+> +#include <linux/input.h>
+> +#include <linux/kernel.h>
+> +#include <linux/limits.h>
+> +#include <linux/module.h>
+> +#include <linux/of.h>
+> +#include <linux/spinlock.h>
+> +
+> +#define DEVICE_NAME	"ibm-panel"
+> +
+> +struct ibm_panel {
+> +	u8 idx;
+> +	u8 command[11];
+> +	spinlock_t lock;	/* protects writes to idx and command */
+> +	struct input_dev *input;
+> +};
+> +
+> +static void ibm_panel_process_command(struct ibm_panel *panel)
+> +{
+> +	u8 i;
+> +	u8 chksum;
+> +	u16 sum = 0;
+> +	int pressed;
+> +	int released;
+> +
+> +	if (panel->command[0] != 0xff && panel->command[1] != 0xf0) {
+> +		dev_dbg(&panel->input->dev, "command invalid\n");
+> +		return;
+> +	}
+> +
+> +	for (i = 0; i < sizeof(panel->command) - 1; ++i) {
+> +		sum += panel->command[i];
+> +		if (sum & 0xff00) {
+> +			sum &= 0xff;
+> +			sum++;
+> +		}
+> +	}
+> +
+> +	chksum = sum & 0xff;
+> +	chksum = ~chksum;
+> +	chksum++;
+
+Maybe move checksum calculation into a separate function?
+
+> +
+> +	if (chksum != panel->command[sizeof(panel->command) - 1]) {
+> +		dev_dbg(&panel->input->dev, "command failed checksum\n");
+> +		return;
+> +	}
+> +
+> +	released = panel->command[2] & 0x80;
+> +	pressed = released ? 0 : 1;
+
+	pressed = !(panel->command[2] & BIT(7));
+
+or "pressed = !released;" if you want to keep both.
+
+> +
+> +	switch (panel->command[2] & 0xf) {
+> +	case 0:
+> +		input_report_key(panel->input, BTN_NORTH, pressed);
+> +		break;
+> +	case 1:
+> +		input_report_key(panel->input, BTN_SOUTH, pressed);
+> +		break;
+> +	case 2:
+> +		input_report_key(panel->input, BTN_SELECT, pressed);
+> +		break;
+> +	default:
+> +		dev_dbg(&panel->input->dev, "unknown command %u\n",
+> +			panel->command[2] & 0xf);
+> +		return;
+> +	}
+> +
+> +	input_sync(panel->input);
+> +}
+> +
+> +static int ibm_panel_i2c_slave_cb(struct i2c_client *client,
+> +				  enum i2c_slave_event event, u8 *val)
+> +{
+> +	unsigned long flags;
+> +	struct ibm_panel *panel = i2c_get_clientdata(client);
+> +
+> +	dev_dbg(&panel->input->dev, "event: %u data: %02x\n", event, *val);
+> +
+> +	spin_lock_irqsave(&panel->lock, flags);
+> +
+> +	switch (event) {
+> +	case I2C_SLAVE_STOP:
+> +		if (panel->idx == sizeof(panel->command))
+> +			ibm_panel_process_command(panel);
+> +		else
+> +			dev_dbg(&panel->input->dev,
+> +				"command incorrect size %u\n", panel->idx);
+> +		fallthrough;
+> +	case I2C_SLAVE_WRITE_REQUESTED:
+> +		panel->idx = 0;
+> +		break;
+> +	case I2C_SLAVE_WRITE_RECEIVED:
+> +		if (panel->idx < sizeof(panel->command))
+> +			panel->command[panel->idx++] = *val;
+> +		else
+> +			/*
+> +			 * The command is too long and therefore invalid, so set the index
+> +			 * to it's largest possible value. When a STOP is finally received,
+> +			 * the command will be rejected upon processing.
+> +			 */
+> +			panel->idx = U8_MAX;
+> +		break;
+> +	case I2C_SLAVE_READ_REQUESTED:
+> +	case I2C_SLAVE_READ_PROCESSED:
+> +		*val = 0xff;
+> +		break;
+> +	default:
+> +		break;
+> +	}
+> +
+> +	spin_unlock_irqrestore(&panel->lock, flags);
+> +
+> +	return 0;
+> +}
+> +
+> +static int ibm_panel_probe(struct i2c_client *client,
+> +			   const struct i2c_device_id *id)
+> +{
+> +	int rc;
+> +	struct ibm_panel *panel = devm_kzalloc(&client->dev, sizeof(*panel),
+> +					       GFP_KERNEL);
+> +
+> +	if (!panel)
+> +		return -ENOMEM;
+> +
+> +	panel->input = devm_input_allocate_device(&client->dev);
+> +	if (!panel->input)
+> +		return -ENOMEM;
+> +
+> +	panel->input->name = client->name;
+> +	panel->input->id.bustype = BUS_I2C;
+> +	input_set_capability(panel->input, EV_KEY, BTN_NORTH);
+> +	input_set_capability(panel->input, EV_KEY, BTN_SOUTH);
+> +	input_set_capability(panel->input, EV_KEY, BTN_SELECT);
+
+North/South/Select are gamepad buttons, not general purpose ones. I
+think you should not hard-code keymap in the driver, but rather use
+device property to specify keymap that makes sense for the particular
+board's application.
+
+> +
+> +	rc = input_register_device(panel->input);
+> +	if (rc) {
+> +		dev_err(&client->dev, "Failed to register input device: %d\n",
+> +			rc);
+> +		return rc;
+> +	}
+> +
+> +	spin_lock_init(&panel->lock);
+> +
+> +	i2c_set_clientdata(client, panel);
+> +	rc = i2c_slave_register(client, ibm_panel_i2c_slave_cb);
+> +	if (rc) {
+> +		input_unregister_device(panel->input);
+
+You are using devm, there is no need to manually unregister input
+device.
+
+> +		return rc;
+> +	}
+> +
+> +	return 0;
+> +}
+> +
+> +static int ibm_panel_remove(struct i2c_client *client)
+> +{
+> +	int rc;
+> +	struct ibm_panel *panel = i2c_get_clientdata(client);
+> +
+> +	rc = i2c_slave_unregister(client);
+> +
+> +	input_unregister_device(panel->input);
+
+This is not needed.
+
+> +
+> +	return rc;
+
+The remove operation is not reversible, so there is no need to return
+error here. Just log en error if i2c_slave_unregister() fails if you
+want, and return 0.
+
+> +}
+> +
+> +static const struct of_device_id ibm_panel_match[] = {
+> +	{ .compatible = "ibm,op-panel" },
+> +	{ }
+> +};
+> +
+> +static struct i2c_driver ibm_panel_driver = {
+> +	.driver = {
+> +		.name = DEVICE_NAME,
+> +		.of_match_table = ibm_panel_match,
+> +	},
+> +	.probe = ibm_panel_probe,
+> +	.remove = ibm_panel_remove,
+> +};
+> +module_i2c_driver(ibm_panel_driver);
+> +
+> +MODULE_AUTHOR("Eddie James <eajames@linux.ibm.com>");
+> +MODULE_DESCRIPTION("IBM Operation Panel Driver");
+> +MODULE_LICENSE("GPL");
+> -- 
+> 2.26.2
+> 
+
+Thanks.
+
+-- 
+Dmitry
