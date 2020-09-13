@@ -2,125 +2,89 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from vger.kernel.org (vger.kernel.org [23.128.96.18])
-	by mail.lfdr.de (Postfix) with ESMTP id 7071A267D55
-	for <lists+devicetree@lfdr.de>; Sun, 13 Sep 2020 04:48:58 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTP id B4C89267D59
+	for <lists+devicetree@lfdr.de>; Sun, 13 Sep 2020 04:50:35 +0200 (CEST)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S1725912AbgIMCs5 (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Sat, 12 Sep 2020 22:48:57 -0400
-Received: from mailgw02.mediatek.com ([1.203.163.81]:22503 "EHLO
-        mailgw02.mediatek.com" rhost-flags-OK-FAIL-OK-FAIL) by vger.kernel.org
-        with ESMTP id S1725908AbgIMCsz (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Sat, 12 Sep 2020 22:48:55 -0400
-X-UUID: a8020bd14d53441fa66cb55b810d10ea-20200913
-DKIM-Signature: v=1; a=rsa-sha256; q=dns/txt; c=relaxed/relaxed; d=mediatek.com; s=dk;
-        h=Content-Transfer-Encoding:MIME-Version:Content-Type:References:In-Reply-To:Date:CC:To:From:Subject:Message-ID; bh=ixnwdilJm1ik+Sm2/G6gQSeRU/yl+c9RA2y6lHXtiFM=;
-        b=G4CWgI6+sQwUrvN3CNkPJzNy6Jm8nDmAtg/KRE4ctCeI0w0J6DIpjlhstq9roJlENw2lQR9DDb2ng3Et89chyfI1HC/nghVrD5DoE2UU2souXqzF5tNh+R06+Z0FXyFPwJNNEd9IcNCZGPpEk9sNYwO4bNvJMg7dFFA5L4Ra/yE=;
-X-UUID: a8020bd14d53441fa66cb55b810d10ea-20200913
-Received: from mtkcas32.mediatek.inc [(172.27.4.253)] by mailgw02.mediatek.com
-        (envelope-from <chuanjia.liu@mediatek.com>)
-        (mailgw01.mediatek.com ESMTP with TLSv1.2 ECDHE-RSA-AES256-SHA384 256/256)
-        with ESMTP id 133974669; Sun, 13 Sep 2020 10:48:36 +0800
-Received: from MTKCAS32.mediatek.inc (172.27.4.184) by MTKMBS31N1.mediatek.inc
- (172.27.4.69) with Microsoft SMTP Server (TLS) id 15.0.1497.2; Sun, 13 Sep
- 2020 10:48:34 +0800
-Received: from [10.17.3.153] (10.17.3.153) by MTKCAS32.mediatek.inc
- (172.27.4.170) with Microsoft SMTP Server id 15.0.1497.2 via Frontend
- Transport; Sun, 13 Sep 2020 10:48:34 +0800
-Message-ID: <1599965194.7466.28.camel@mhfsdcap03>
-Subject: Re: [PATCH v5 2/4] PCI: mediatek: Use regmap to get shared pcie-cfg
- base
-From:   Chuanjia Liu <chuanjia.liu@mediatek.com>
-To:     Matthias Brugger <matthias.bgg@gmail.com>
-CC:     Bjorn Helgaas <bhelgaas@google.com>,
-        Rob Herring <robh+dt@kernel.org>,
-        Lorenzo Pieralisi <lorenzo.pieralisi@arm.com>,
-        <devicetree@vger.kernel.org>, Ryder Lee <ryder.lee@mediatek.com>,
-        Frank Wunderlich <frank-w@public-files.de>,
-        <linux-pci@vger.kernel.org>, <linux-mediatek@lists.infradead.org>,
-        <linux-arm-kernel@lists.infradead.org>, <yong.wu@mediatek.com>
-Date:   Sun, 13 Sep 2020 10:46:34 +0800
-In-Reply-To: <b627b938-2210-16d2-1682-3c25506e30f3@gmail.com>
-References: <20200910061115.909-1-chuanjia.liu@mediatek.com>
-         <20200910061115.909-3-chuanjia.liu@mediatek.com>
-         <b627b938-2210-16d2-1682-3c25506e30f3@gmail.com>
-Content-Type: text/plain; charset="UTF-8"
-X-Mailer: Evolution 3.10.4-0ubuntu2 
+        id S1725938AbgIMCue (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Sat, 12 Sep 2020 22:50:34 -0400
+Received: from mail.kernel.org ([198.145.29.99]:38496 "EHLO mail.kernel.org"
+        rhost-flags-OK-OK-OK-OK) by vger.kernel.org with ESMTP
+        id S1725909AbgIMCuc (ORCPT <rfc822;devicetree@vger.kernel.org>);
+        Sat, 12 Sep 2020 22:50:32 -0400
+Received: from dragon (80.251.214.228.16clouds.com [80.251.214.228])
+        (using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
+        (No client certificate requested)
+        by mail.kernel.org (Postfix) with ESMTPSA id 457E9207EA;
+        Sun, 13 Sep 2020 02:50:29 +0000 (UTC)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=kernel.org;
+        s=default; t=1599965431;
+        bh=c6d5FuxAU1itofgwPghtwPak/5DXK2sYSJJ0ptY6ChA=;
+        h=Date:From:To:Cc:Subject:References:In-Reply-To:From;
+        b=GNusl8jxqVxdW1Khy44B4HccOBYQPdIlNjnkXQQ382iY+BuTV97ye5b0i4xgI3G5z
+         +OoHGkTEtR2hyj5rHrKSuZXvMoYvYqVWaO2aq7yrX2P6WHQTdoyBRqYoOunv7lRCMd
+         No+rdhH8RgjlurAt4VU2PqW6snx5X2Y+hh+SfhoU=
+Date:   Sun, 13 Sep 2020 10:50:26 +0800
+From:   Shawn Guo <shawnguo@kernel.org>
+To:     Peng Fan <peng.fan@nxp.com>
+Cc:     Aisheng Dong <aisheng.dong@nxp.com>,
+        "s.hauer@pengutronix.de" <s.hauer@pengutronix.de>,
+        "festevam@gmail.com" <festevam@gmail.com>,
+        Abel Vesa <abel.vesa@nxp.com>,
+        "robh+dt@kernel.org" <robh+dt@kernel.org>,
+        "kernel@pengutronix.de" <kernel@pengutronix.de>,
+        dl-linux-imx <linux-imx@nxp.com>,
+        Anson Huang <anson.huang@nxp.com>,
+        "linux-arm-kernel@lists.infradead.org" 
+        <linux-arm-kernel@lists.infradead.org>,
+        "linux-kernel@vger.kernel.org" <linux-kernel@vger.kernel.org>,
+        "devicetree@vger.kernel.org" <devicetree@vger.kernel.org>
+Subject: Re: [PATCH 1/4] dt-bindings: fsl: add i.MX7ULP PMC binding doc
+Message-ID: <20200913025025.GJ25109@dragon>
+References: <1599795053-5091-1-git-send-email-peng.fan@nxp.com>
+ <1599795053-5091-2-git-send-email-peng.fan@nxp.com>
+ <AM6PR04MB49661958310D649508AB698B80240@AM6PR04MB4966.eurprd04.prod.outlook.com>
+ <DB6PR0402MB276056780BC661041A5D604C88240@DB6PR0402MB2760.eurprd04.prod.outlook.com>
 MIME-Version: 1.0
-X-TM-SNTS-SMTP: B622682C64DBF4B97D327ED91874FA7AE6E2A95E360E8685FB83F62B6AA965732000:8
-X-MTK:  N
-Content-Transfer-Encoding: base64
+Content-Type: text/plain; charset=us-ascii
+Content-Disposition: inline
+In-Reply-To: <DB6PR0402MB276056780BC661041A5D604C88240@DB6PR0402MB2760.eurprd04.prod.outlook.com>
+User-Agent: Mutt/1.9.4 (2018-02-28)
 Sender: devicetree-owner@vger.kernel.org
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-T24gVGh1LCAyMDIwLTA5LTEwIGF0IDEyOjQ0ICswMjAwLCBNYXR0aGlhcyBCcnVnZ2VyIHdyb3Rl
-Og0KPiANCj4gT24gMTAvMDkvMjAyMCAwODoxMSwgQ2h1YW5qaWEgTGl1IHdyb3RlOg0KPiA+IFVz
-ZSByZWdtYXAgdG8gZ2V0IHNoYXJlZCBwY2llLWNmZyBiYXNlIGFuZCBjaGFuZ2UNCj4gPiB0aGUg
-bWV0aG9kIHRvIGdldCBwY2llIGlycS4NCj4gPiANCj4gPiBBY2tlZC1ieTogUnlkZXIgTGVlIDxy
-eWRlci5sZWVAbWVkaWF0ZWsuY29tPg0KPiA+IFNpZ25lZC1vZmYtYnk6IENodWFuamlhIExpdSA8
-Y2h1YW5qaWEubGl1QG1lZGlhdGVrLmNvbT4NCj4gPiAtLS0NCj4gPiAgIGRyaXZlcnMvcGNpL2Nv
-bnRyb2xsZXIvcGNpZS1tZWRpYXRlay5jIHwgMjUgKysrKysrKysrKysrKysrKysrLS0tLS0tLQ0K
-PiA+ICAgMSBmaWxlIGNoYW5nZWQsIDE4IGluc2VydGlvbnMoKyksIDcgZGVsZXRpb25zKC0pDQo+
-ID4gDQo+ID4gZGlmZiAtLWdpdCBhL2RyaXZlcnMvcGNpL2NvbnRyb2xsZXIvcGNpZS1tZWRpYXRl
-ay5jIGIvZHJpdmVycy9wY2kvY29udHJvbGxlci9wY2llLW1lZGlhdGVrLmMNCj4gPiBpbmRleCBj
-ZjRjMThmMGMyNWEuLjk4Nzg0NWQxOTk4MiAxMDA2NDQNCj4gPiAtLS0gYS9kcml2ZXJzL3BjaS9j
-b250cm9sbGVyL3BjaWUtbWVkaWF0ZWsuYw0KPiA+ICsrKyBiL2RyaXZlcnMvcGNpL2NvbnRyb2xs
-ZXIvcGNpZS1tZWRpYXRlay5jDQo+ID4gQEAgLTE0LDYgKzE0LDcgQEANCj4gPiAgICNpbmNsdWRl
-IDxsaW51eC9pcnFjaGlwL2NoYWluZWRfaXJxLmg+DQo+ID4gICAjaW5jbHVkZSA8bGludXgvaXJx
-ZG9tYWluLmg+DQo+ID4gICAjaW5jbHVkZSA8bGludXgva2VybmVsLmg+DQo+ID4gKyNpbmNsdWRl
-IDxsaW51eC9tZmQvc3lzY29uLmg+DQo+ID4gICAjaW5jbHVkZSA8bGludXgvbXNpLmg+DQo+ID4g
-ICAjaW5jbHVkZSA8bGludXgvbW9kdWxlLmg+DQo+ID4gICAjaW5jbHVkZSA8bGludXgvb2ZfYWRk
-cmVzcy5oPg0KPiA+IEBAIC0yMyw2ICsyNCw3IEBADQo+ID4gICAjaW5jbHVkZSA8bGludXgvcGh5
-L3BoeS5oPg0KPiA+ICAgI2luY2x1ZGUgPGxpbnV4L3BsYXRmb3JtX2RldmljZS5oPg0KPiA+ICAg
-I2luY2x1ZGUgPGxpbnV4L3BtX3J1bnRpbWUuaD4NCj4gPiArI2luY2x1ZGUgPGxpbnV4L3JlZ21h
-cC5oPg0KPiA+ICAgI2luY2x1ZGUgPGxpbnV4L3Jlc2V0Lmg+DQo+ID4gICANCj4gPiAgICNpbmNs
-dWRlICIuLi9wY2kuaCINCj4gPiBAQCAtMjA1LDYgKzIwNyw3IEBAIHN0cnVjdCBtdGtfcGNpZV9w
-b3J0IHsNCj4gPiAgICAqIHN0cnVjdCBtdGtfcGNpZSAtIFBDSWUgaG9zdCBpbmZvcm1hdGlvbg0K
-PiA+ICAgICogQGRldjogcG9pbnRlciB0byBQQ0llIGRldmljZQ0KPiA+ICAgICogQGJhc2U6IElP
-IG1hcHBlZCByZWdpc3RlciBiYXNlDQo+ID4gKyAqIEBjZmc6IElPIG1hcHBlZCByZWdpc3RlciBt
-YXAgZm9yIFBDSWUgY29uZmlnDQo+ID4gICAgKiBAZnJlZV9jazogZnJlZS1ydW4gcmVmZXJlbmNl
-IGNsb2NrDQo+ID4gICAgKiBAbWVtOiBub24tcHJlZmV0Y2hhYmxlIG1lbW9yeSByZXNvdXJjZQ0K
-PiA+ICAgICogQHBvcnRzOiBwb2ludGVyIHRvIFBDSWUgcG9ydCBpbmZvcm1hdGlvbg0KPiA+IEBA
-IC0yMTMsNiArMjE2LDcgQEAgc3RydWN0IG10a19wY2llX3BvcnQgew0KPiA+ICAgc3RydWN0IG10
-a19wY2llIHsNCj4gPiAgIAlzdHJ1Y3QgZGV2aWNlICpkZXY7DQo+ID4gICAJdm9pZCBfX2lvbWVt
-ICpiYXNlOw0KPiA+ICsJc3RydWN0IHJlZ21hcCAqY2ZnOw0KPiA+ICAgCXN0cnVjdCBjbGsgKmZy
-ZWVfY2s7DQo+ID4gICANCj4gPiAgIAlzdHJ1Y3QgbGlzdF9oZWFkIHBvcnRzOw0KPiA+IEBAIC02
-NDgsNyArNjUyLDcgQEAgc3RhdGljIGludCBtdGtfcGNpZV9zZXR1cF9pcnEoc3RydWN0IG10a19w
-Y2llX3BvcnQgKnBvcnQsDQo+ID4gICAJCXJldHVybiBlcnI7DQo+ID4gICAJfQ0KPiA+ICAgDQo+
-ID4gLQlwb3J0LT5pcnEgPSBwbGF0Zm9ybV9nZXRfaXJxKHBkZXYsIHBvcnQtPnNsb3QpOw0KPiA+
-ICsJcG9ydC0+aXJxID0gcGxhdGZvcm1fZ2V0X2lycV9ieW5hbWUocGRldiwgInBjaWVfaXJxIik7
-DQo+ID4gICAJaWYgKHBvcnQtPmlycSA8IDApDQo+ID4gICAJCXJldHVybiBwb3J0LT5pcnE7DQo+
-IA0KPiBZb3Ugd2lsbCBuZWVkIHRvIG1ha2Ugc3VyZSB0YWh0IHRoZSBkcml2ZXIga2VlcHMgd29y
-a2luZyB3aXRoIHRoZSBvbGQgRFRTIA0KPiBmb3JtYXQuIFRoaXMgaXMgbm90IHRoZSBjYXNlIGhl
-cmUuDQo+IA0KVGhhbmtzIGZvciB5b3VyIHJldmlldywgSSB3aWxsIGZpeCBpdCBpbiB0aGUgbmV4
-dCB2ZXJzaW9uLg0KDQpSZWdhcmRzLA0KQ2h1YW5qaWENCj4gUmVnYXJkcywNCj4gTWF0dGhpYXMN
-Cj4gDQo+ID4gICANCj4gPiBAQCAtNjc0LDEyICs2NzgsMTEgQEAgc3RhdGljIGludCBtdGtfcGNp
-ZV9zdGFydHVwX3BvcnRfdjIoc3RydWN0IG10a19wY2llX3BvcnQgKnBvcnQpDQo+ID4gICAJaWYg
-KCFtZW0pDQo+ID4gICAJCXJldHVybiAtRUlOVkFMOw0KPiA+ICAgDQo+ID4gLQkvKiBNVDc2MjIg
-cGxhdGZvcm1zIG5lZWQgdG8gZW5hYmxlIExUU1NNIGFuZCBBU1BNIGZyb20gUENJZSBzdWJzeXMg
-Ki8NCj4gPiAtCWlmIChwY2llLT5iYXNlKSB7DQo+ID4gLQkJdmFsID0gcmVhZGwocGNpZS0+YmFz
-ZSArIFBDSUVfU1lTX0NGR19WMik7DQo+ID4gLQkJdmFsIHw9IFBDSUVfQ1NSX0xUU1NNX0VOKHBv
-cnQtPnNsb3QpIHwNCj4gPiAtCQkgICAgICAgUENJRV9DU1JfQVNQTV9MMV9FTihwb3J0LT5zbG90
-KTsNCj4gPiAtCQl3cml0ZWwodmFsLCBwY2llLT5iYXNlICsgUENJRV9TWVNfQ0ZHX1YyKTsNCj4g
-PiArCS8qIE1UNzYyMi9NVDc2MjkgcGxhdGZvcm1zIG5lZWQgdG8gZW5hYmxlIExUU1NNIGFuZCBB
-U1BNLiAqLw0KPiA+ICsJaWYgKHBjaWUtPmNmZykgew0KPiA+ICsJCXZhbCA9IFBDSUVfQ1NSX0xU
-U1NNX0VOKHBvcnQtPnNsb3QpIHwNCj4gPiArCQkgICAgICBQQ0lFX0NTUl9BU1BNX0wxX0VOKHBv
-cnQtPnNsb3QpOw0KPiA+ICsJCXJlZ21hcF91cGRhdGVfYml0cyhwY2llLT5jZmcsIFBDSUVfU1lT
-X0NGR19WMiwgdmFsLCB2YWwpOw0KPiA+ICAgCX0NCj4gPiAgIA0KPiA+ICAgCS8qIEFzc2VydCBh
-bGwgcmVzZXQgc2lnbmFscyAqLw0KPiA+IEBAIC05ODMsNiArOTg2LDcgQEAgc3RhdGljIGludCBt
-dGtfcGNpZV9zdWJzeXNfcG93ZXJ1cChzdHJ1Y3QgbXRrX3BjaWUgKnBjaWUpDQo+ID4gICAJc3Ry
-dWN0IGRldmljZSAqZGV2ID0gcGNpZS0+ZGV2Ow0KPiA+ICAgCXN0cnVjdCBwbGF0Zm9ybV9kZXZp
-Y2UgKnBkZXYgPSB0b19wbGF0Zm9ybV9kZXZpY2UoZGV2KTsNCj4gPiAgIAlzdHJ1Y3QgcmVzb3Vy
-Y2UgKnJlZ3M7DQo+ID4gKwlzdHJ1Y3QgZGV2aWNlX25vZGUgKmNmZ19ub2RlOw0KPiA+ICAgCWlu
-dCBlcnI7DQo+ID4gICANCj4gPiAgIAkvKiBnZXQgc2hhcmVkIHJlZ2lzdGVycywgd2hpY2ggYXJl
-IG9wdGlvbmFsICovDQo+ID4gQEAgLTk5NSw2ICs5OTksMTMgQEAgc3RhdGljIGludCBtdGtfcGNp
-ZV9zdWJzeXNfcG93ZXJ1cChzdHJ1Y3QgbXRrX3BjaWUgKnBjaWUpDQo+ID4gICAJCX0NCj4gPiAg
-IAl9DQo+ID4gICANCj4gPiArCWNmZ19ub2RlID0gb2ZfcGFyc2VfcGhhbmRsZShkZXYtPm9mX25v
-ZGUsICJtZWRpYXRlayxwY2llLWNmZyIsIDApOw0KPiA+ICsJaWYgKGNmZ19ub2RlKSB7DQo+ID4g
-KwkJcGNpZS0+Y2ZnID0gc3lzY29uX25vZGVfdG9fcmVnbWFwKGNmZ19ub2RlKTsNCj4gPiArCQlp
-ZiAoSVNfRVJSKHBjaWUtPmNmZykpDQo+ID4gKwkJCXJldHVybiBQVFJfRVJSKHBjaWUtPmNmZyk7
-DQo+ID4gKwl9DQo+ID4gKw0KPiA+ICAgCXBjaWUtPmZyZWVfY2sgPSBkZXZtX2Nsa19nZXQoZGV2
-LCAiZnJlZV9jayIpOw0KPiA+ICAgCWlmIChJU19FUlIocGNpZS0+ZnJlZV9jaykpIHsNCj4gPiAg
-IAkJaWYgKFBUUl9FUlIocGNpZS0+ZnJlZV9jaykgPT0gLUVQUk9CRV9ERUZFUikNCj4gPiANCg0K
+On Fri, Sep 11, 2020 at 07:45:20AM +0000, Peng Fan wrote:
+> > b/Documentation/devicetree/bindings/arm/freescale/imx7ulp-pmc.yaml
+> > > @@ -0,0 +1,33 @@
+> > > +# SPDX-License-Identifier: GPL-2.0
+> > > +%YAML 1.2
+> > > +---
+> > > +$id: http://devicetree.org/schemas/arm/freescale/imx7ulp-pmc.yaml#
+> > > +$schema: http://devicetree.org/meta-schemas/core.yaml#
+> > > +
+> > > +title: i.MX7ULP Power Management Controller(PMC) Device Tree Bindings
+> > > +
+> > > +maintainers:
+> > > +  - Peng Fan <peng.fan@nxp.com>
+> > > +
+> > > +properties:
+> > > +  compatible:
+> > > +    items:
+> > > +      - enum:
+> > > +          - fsl,imx7ulp-pmc-m4
+> > > +          - fsl,imx7ulp-pmc-a7
+> > 
+> > Can we change to the exist naming pattern which also align with HW
+> > reference manual?
+> > e.g.
+> > fsl,imx7ulp-pmc0
+> > fsl,imx7ulp-pmc1
+> 
+> This was rejected by Shawn before.
+> https://patchwork.kernel.org/patch/11390591/
 
+Oh, I'm fine with the naming if pmc0 and pmc1 are different HW block
+rather than two instances of the same block.
+
+Shawn
