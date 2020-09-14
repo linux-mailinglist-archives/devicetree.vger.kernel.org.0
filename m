@@ -2,80 +2,184 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from vger.kernel.org (vger.kernel.org [23.128.96.18])
-	by mail.lfdr.de (Postfix) with ESMTP id 2A7F52683E7
-	for <lists+devicetree@lfdr.de>; Mon, 14 Sep 2020 07:01:24 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTP id 4011426843E
+	for <lists+devicetree@lfdr.de>; Mon, 14 Sep 2020 07:50:47 +0200 (CEST)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S1725973AbgINFBS (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Mon, 14 Sep 2020 01:01:18 -0400
-Received: from mailgw01.mediatek.com ([210.61.82.183]:11768 "EHLO
-        mailgw01.mediatek.com" rhost-flags-OK-FAIL-OK-FAIL) by vger.kernel.org
-        with ESMTP id S1725996AbgINFBI (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Mon, 14 Sep 2020 01:01:08 -0400
-X-UUID: 47c549bb81f4499d81b64f801e431f63-20200914
-DKIM-Signature: v=1; a=rsa-sha256; q=dns/txt; c=relaxed/relaxed; d=mediatek.com; s=dk;
-        h=Content-Transfer-Encoding:Content-Type:MIME-Version:References:In-Reply-To:Message-ID:Date:Subject:CC:To:From; bh=/mYD66patFgq7ha/cJhn7mSkoKmWOdFvvY0fkbfVMfM=;
-        b=vErOI+JRIK7eqRGBe7E4IfHCmiM/hAOa0oDV3CYkqaGX7vFIJRgjCvDUBpxwAYBXFdsWBBuPD8W0eL3UVrhy0AW1vOIAtdd1dKwPuKsdao48JMj18o3BlUq6ySqcG7cGIgaog+huWZhu3zoPCkjk7R3ROMg41JteM2ncHJ+2xyY=;
-X-UUID: 47c549bb81f4499d81b64f801e431f63-20200914
-Received: from mtkcas07.mediatek.inc [(172.21.101.84)] by mailgw01.mediatek.com
-        (envelope-from <stanley.chu@mediatek.com>)
-        (Cellopoint E-mail Firewall v4.1.14 Build 0819 with TLSv1.2 ECDHE-RSA-AES256-SHA384 256/256)
-        with ESMTP id 1937689054; Mon, 14 Sep 2020 13:00:56 +0800
-Received: from MTKCAS06.mediatek.inc (172.21.101.30) by
- mtkmbs02n1.mediatek.inc (172.21.101.77) with Microsoft SMTP Server (TLS) id
- 15.0.1497.2; Mon, 14 Sep 2020 13:00:53 +0800
-Received: from mtksdccf07.mediatek.inc (172.21.84.99) by MTKCAS06.mediatek.inc
- (172.21.101.73) with Microsoft SMTP Server id 15.0.1497.2 via Frontend
- Transport; Mon, 14 Sep 2020 13:00:54 +0800
-From:   Stanley Chu <stanley.chu@mediatek.com>
-To:     <linux-scsi@vger.kernel.org>, <devicetree@vger.kernel.org>,
-        <robh+dt@kernel.org>, <robh@kernel.org>, <mark.rutland@arm.com>,
-        <chunfeng.yun@mediatek.com>, <yingjoe.chen@mediatek.com>,
-        <kishon@ti.com>, <martin.petersen@oracle.com>,
-        <avri.altman@wdc.com>, <alim.akhtar@samsung.com>,
-        <pedrom.sousa@synopsys.com>
-CC:     <vivek.gautam@codeaurora.org>, <liwei213@huawei.com>,
-        <linux-mediatek@lists.infradead.org>, <matthias.bgg@gmail.com>,
-        <kuohong.wang@mediatek.com>, <peter.wang@mediatek.com>,
-        <chun-hung.wu@mediatek.com>, <andy.teng@mediatek.com>,
-        <chaotian.jing@mediatek.com>, <cc.chou@mediatek.com>,
-        <jiajie.hao@mediatek.com>, <arvin.wang@mediatek.com>,
-        <henryc.chen@mediatek.com>, Stanley Chu <stanley.chu@mediatek.com>
-Subject: [PATCH v3 2/2] dt-bindings: ufs-mediatek: Add mt8192-ufshci compatible string
-Date:   Mon, 14 Sep 2020 13:00:52 +0800
-Message-ID: <20200914050052.3974-3-stanley.chu@mediatek.com>
-X-Mailer: git-send-email 2.18.0
-In-Reply-To: <20200914050052.3974-1-stanley.chu@mediatek.com>
-References: <20200914050052.3974-1-stanley.chu@mediatek.com>
+        id S1726031AbgINFuZ (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Mon, 14 Sep 2020 01:50:25 -0400
+Received: from lindbergh.monkeyblade.net ([23.128.96.19]:42284 "EHLO
+        lindbergh.monkeyblade.net" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
+        with ESMTP id S1726003AbgINFuY (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Mon, 14 Sep 2020 01:50:24 -0400
+Received: from mail-pf1-x441.google.com (mail-pf1-x441.google.com [IPv6:2607:f8b0:4864:20::441])
+        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 8494DC06174A;
+        Sun, 13 Sep 2020 22:50:40 -0700 (PDT)
+Received: by mail-pf1-x441.google.com with SMTP id k15so11642023pfc.12;
+        Sun, 13 Sep 2020 22:50:40 -0700 (PDT)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+        d=gmail.com; s=20161025;
+        h=date:from:to:cc:subject:message-id:references:mime-version
+         :content-disposition:in-reply-to;
+        bh=SfP9QlXY9kgf1Z03tIPvju6GkCXCl3Lw/jAZiIByEus=;
+        b=Scr91ke5PNeqlCWlVRyR2/HwCg5iv5/moRuDN2o7KPyyCX32e6J+1OguqMIBzd/VlN
+         IqvCrv97oG8uCV6YzIhz/1DHocH729WeIx/E8rm0e4Ej5yx2zUCtewg0B8/DKnDMAWsR
+         MgpkE1kXsn1ooRyixMPrJchBysVQFoA2iABre26Hj3RDECxT1DAZuI6+2eNuwUa3Lna+
+         CTgXCPzkeHmPCQ2XHayvaqKkzT+yJUllRCOmfG+OQ/5UEhITfr3Kv717PrAsHa5T7tS+
+         ilnYN5Q97/88503chkr66QiJc6b8vfrsWZs+STy7zs3bW8a8mV1SSZP8dDjszmRWVbwh
+         z+1g==
+X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+        d=1e100.net; s=20161025;
+        h=x-gm-message-state:date:from:to:cc:subject:message-id:references
+         :mime-version:content-disposition:in-reply-to;
+        bh=SfP9QlXY9kgf1Z03tIPvju6GkCXCl3Lw/jAZiIByEus=;
+        b=aWnN81PoKMFbkAgVoV2R2p/7+/p7nBXJo+DMHPxvVzq/HcbLg7uU/umm+koPQ6BZs0
+         nlbF7e7i/YdHTYcF2AYQbQvmSbH1M0ZSB3H73Z2W3wusBHIiSfiKtuBInDvvnLOiM5+G
+         KmAVG76WCYTFU4cKk9utLdRAO2K3Wl9bosaY0P6zrWwQ2O25QCCzZhl5f8xL6E7C5rJs
+         wPGINzNCXk4g1U4QAu339xC8GICelZO0YFdVHiSZtbW8mz/MH+in298Z3g38ZEVbbEDN
+         slZMjTKa1lK/DbU1YC6mFjJuPh9hbJFvz1GYfsYdESXwkJAdlwg9W0vaeeKl8cLlVn5S
+         gPwQ==
+X-Gm-Message-State: AOAM533UuxrtEzBm+vt08Bn/7UCaFjaht8wOSummQvGf48zoJq04w1uh
+        Qea8fWUJrnjqcuihCfuD3sf+GcS0tjM=
+X-Google-Smtp-Source: ABdhPJzgldZCikLcCzokpFL4t5oOWqnDrHO2PdTuwRdclF2oNKQOlCTagPqQ5RKBiuYNlHNudnDiEA==
+X-Received: by 2002:a17:902:7c96:: with SMTP id y22mr9044677pll.68.1600062639912;
+        Sun, 13 Sep 2020 22:50:39 -0700 (PDT)
+Received: from dtor-ws ([2620:15c:202:201:a6ae:11ff:fe11:fcc3])
+        by smtp.gmail.com with ESMTPSA id z7sm3917406pgc.35.2020.09.13.22.50.38
+        (version=TLS1_3 cipher=TLS_AES_256_GCM_SHA384 bits=256/256);
+        Sun, 13 Sep 2020 22:50:38 -0700 (PDT)
+Date:   Sun, 13 Sep 2020 22:50:36 -0700
+From:   Dmitry Torokhov <dmitry.torokhov@gmail.com>
+To:     Rob Herring <robh+dt@kernel.org>
+Cc:     Yingjoe Chen <yingjoe.chen@mediatek.com>,
+        Andy Shevchenko <andriy.shevchenko@linux.intel.com>,
+        Marco Felsch <m.felsch@pengutronix.de>,
+        linux-input@vger.kernel.org, linux-arm-kernel@lists.infradead.org,
+        linux-kernel@vger.kernel.org, devicetree@vger.kernel.org,
+        Fengping Yu <fengping.yu@mediatek.com>
+Subject: Re: [PATCH v18 1/3] dt-bindings: Add bindings for Mediatek matrix
+ keypad
+Message-ID: <20200914055036.GI1665100@dtor-ws>
+References: <20200909072159.14888-1-fengping.yu@mediatek.com>
+ <20200909072159.14888-2-fengping.yu@mediatek.com>
 MIME-Version: 1.0
-Content-Type: text/plain
-X-MTK:  N
-Content-Transfer-Encoding: base64
+Content-Type: text/plain; charset=us-ascii
+Content-Disposition: inline
+In-Reply-To: <20200909072159.14888-2-fengping.yu@mediatek.com>
 Sender: devicetree-owner@vger.kernel.org
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-QWRkICJtZWRpYXRlayxtdDgxOTItdWZzaGNpIiBjb21wYXRpYmxlIHN0cmluZyB0byBmb3IgTWVk
-aWFUZWsNClVGUyBob3N0IGNvbnRyb2xsZXIgcHJlc2VudCBvbiBNVDgxOTIgY2hpcHNldHMuDQoN
-ClNpZ25lZC1vZmYtYnk6IFN0YW5sZXkgQ2h1IDxzdGFubGV5LmNodUBtZWRpYXRlay5jb20+DQot
-LS0NCiBEb2N1bWVudGF0aW9uL2RldmljZXRyZWUvYmluZGluZ3MvdWZzL3Vmcy1tZWRpYXRlay50
-eHQgfCA0ICsrKy0NCiAxIGZpbGUgY2hhbmdlZCwgMyBpbnNlcnRpb25zKCspLCAxIGRlbGV0aW9u
-KC0pDQoNCmRpZmYgLS1naXQgYS9Eb2N1bWVudGF0aW9uL2RldmljZXRyZWUvYmluZGluZ3MvdWZz
-L3Vmcy1tZWRpYXRlay50eHQgYi9Eb2N1bWVudGF0aW9uL2RldmljZXRyZWUvYmluZGluZ3MvdWZz
-L3Vmcy1tZWRpYXRlay50eHQNCmluZGV4IDcyYWFiODU0NzMwOC4uNjNhOTUzYjY3MmQyIDEwMDY0
-NA0KLS0tIGEvRG9jdW1lbnRhdGlvbi9kZXZpY2V0cmVlL2JpbmRpbmdzL3Vmcy91ZnMtbWVkaWF0
-ZWsudHh0DQorKysgYi9Eb2N1bWVudGF0aW9uL2RldmljZXRyZWUvYmluZGluZ3MvdWZzL3Vmcy1t
-ZWRpYXRlay50eHQNCkBAIC05LDcgKzksOSBAQCBjb250YWluIGEgcGhhbmRsZSByZWZlcmVuY2Ug
-dG8gVUZTIE0tUEhZIG5vZGUuDQogUmVxdWlyZWQgcHJvcGVydGllcyBmb3IgVUZTIG5vZGVzOg0K
-IC0gY29tcGF0aWJsZSAgICAgICAgIDogQ29tcGF0aWJsZSBsaXN0LCBjb250YWlucyB0aGUgZm9s
-bG93aW5nIGNvbnRyb2xsZXI6DQogICAgICAgICAgICAgICAgICAgICAgICAibWVkaWF0ZWssbXQ4
-MTgzLXVmc2hjaSIgZm9yIE1lZGlhVGVrIFVGUyBob3N0IGNvbnRyb2xsZXINCi0gICAgICAgICAg
-ICAgICAgICAgICAgIHByZXNlbnQgb24gTVQ4MXh4IGNoaXBzZXRzLg0KKyAgICAgICAgICAgICAg
-ICAgICAgICAgcHJlc2VudCBvbiBNVDgxODMgY2hpcHNldHMuDQorICAgICAgICAgICAgICAgICAg
-ICAgICAibWVkaWF0ZWssbXQ4MTkyLXVmc2hjaSIgZm9yIE1lZGlhVGVrIFVGUyBob3N0IGNvbnRy
-b2xsZXINCisgICAgICAgICAgICAgICAgICAgICAgIHByZXNlbnQgb24gTVQ4MTkyIGNoaXBzZXRz
-Lg0KIC0gcmVnICAgICAgICAgICAgICAgIDogQWRkcmVzcyBhbmQgbGVuZ3RoIG9mIHRoZSBVRlMg
-cmVnaXN0ZXIgc2V0Lg0KIC0gcGh5cyAgICAgICAgICAgICAgIDogcGhhbmRsZSB0byBtLXBoeS4N
-CiAtIGNsb2NrcyAgICAgICAgICAgICA6IExpc3Qgb2YgcGhhbmRsZSBhbmQgY2xvY2sgc3BlY2lm
-aWVyIHBhaXJzLg0KLS0gDQoyLjE4LjANCg==
+Hi Rob,
 
+On Wed, Sep 09, 2020 at 03:21:58PM +0800, Fengping Yu wrote:
+> From: "fengping.yu" <fengping.yu@mediatek.com>
+> 
+> This patch add devicetree bindings for Mediatek matrix keypad driver.
+
+I am generally happy with the driver itself, do you have any concerns
+with the binding?
+
+Thanks!
+
+> 
+> Signed-off-by: fengping.yu <fengping.yu@mediatek.com>
+> ---
+>  .../devicetree/bindings/input/mtk-kpd.yaml    | 83 +++++++++++++++++++
+>  1 file changed, 83 insertions(+)
+>  create mode 100644 Documentation/devicetree/bindings/input/mtk-kpd.yaml
+> 
+> diff --git a/Documentation/devicetree/bindings/input/mtk-kpd.yaml b/Documentation/devicetree/bindings/input/mtk-kpd.yaml
+> new file mode 100644
+> index 000000000000..eda2c6efbfbf
+> --- /dev/null
+> +++ b/Documentation/devicetree/bindings/input/mtk-kpd.yaml
+> @@ -0,0 +1,83 @@
+> +# SPDX-License-Identifier: GPL-2.0
+> +%YAML 1.2
+> +---
+> +version: 1
+> +
+> +$id: http://devicetree.org/schemas/input/mtk-keypad.yaml#
+> +$schema: http://devicetree.org/meta-schemas/core.yaml#
+> +
+> +title: Mediatek's Keypad Controller device tree bindings
+> +
+> +maintainer:
+> +  - Fengping Yu <fengping.yu@mediatek.com>
+> +
+> +description: |
+> +  Mediatek's Keypad controller is used to interface a SoC with a matrix-type
+> +  keypad device. The keypad controller supports multiple row and column lines.
+> +  A key can be placed at each intersection of a unique row and a unique column.
+> +  The keypad controller can sense a key-press and key-release and report the
+> +  event using a interrupt to the cpu.
+> +
+> +properties:
+> +  compatible:
+> +    oneOf:
+> +      - const: "mediatek,mt6779-keypad"
+> +      - const: "mediatek,mt6873-keypad"
+> +
+> +  clock-names:
+> +    description: Names of the clocks listed in clocks property in the same order
+> +    maxItems: 1
+> +    items:
+> +    	- const: kpd
+> +
+> +  clocks:
+> +    description: Must contain one entry, for the module clock
+> +    refs: devicetree/bindings/clocks/clock-bindings.txt for details.
+> +
+> +  interrupts:
+> +    description: A single interrupt specifier
+> +    maxItems: 1
+> +
+> +  linux,keymap:
+> +    description: The keymap for keys as described in the binding document
+> +    refs: devicetree/bindings/input/matrix-keymap.txt
+> +    minItems: 1
+> +
+> +  reg:
+> +    description: The base address of the Keypad register bank
+> +    maxItems: 1
+> +
+> +  wakeup-source:
+> +    description: use any event on keypad as wakeup event
+> +    type: boolean
+> +
+> +  keypad,num-columns:
+> +    description: Number of column lines connected to the keypad controller.
+> +
+> +  keypad,num-rows:
+> +    description: Number of row lines connected to the keypad controller.
+> +
+> +  mediatek,debounce-us:
+> +    description: Debounce interval in microseconds, if not specified, the default
+> +    value is 16000
+> +    maximum: 256000
+> +
+> +required:
+> +  - compatible
+> +  - reg
+> +  - interrupts
+> +  - linux,keymap
+> +  - clocks
+> +  - clock-names
+> +
+> +examples:
+> +  - |
+> +
+> +  kp@10010000 {
+> +    compatible = "mediatek,kp";
+> +    reg = <0 0x10010000 0 0x1000>;
+> +    linux,keymap = < MATRIX_KEY(0x00, 0x00, KEY_VOLUMEDOWN) >;
+> +    interrupts = <GIC_SPI 75 IRQ_TYPE_EDGE_FALLING>;
+> +    clocks = <&clk26m>;
+> +    clock-names = "kpd";
+> +  };
+> -- 
+> 2.18.0
+
+-- 
+Dmitry
