@@ -2,87 +2,67 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from vger.kernel.org (vger.kernel.org [23.128.96.18])
-	by mail.lfdr.de (Postfix) with ESMTP id E6853269663
-	for <lists+devicetree@lfdr.de>; Mon, 14 Sep 2020 22:25:02 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTP id 08DFB26965C
+	for <lists+devicetree@lfdr.de>; Mon, 14 Sep 2020 22:24:37 +0200 (CEST)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S1726064AbgINUZB (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Mon, 14 Sep 2020 16:25:01 -0400
-Received: from mail-io1-f68.google.com ([209.85.166.68]:45920 "EHLO
-        mail-io1-f68.google.com" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S1726373AbgINUWp (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Mon, 14 Sep 2020 16:22:45 -0400
-Received: by mail-io1-f68.google.com with SMTP id y74so1501765iof.12;
-        Mon, 14 Sep 2020 13:22:44 -0700 (PDT)
+        id S1726160AbgINUYf (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Mon, 14 Sep 2020 16:24:35 -0400
+Received: from mail-il1-f195.google.com ([209.85.166.195]:33421 "EHLO
+        mail-il1-f195.google.com" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
+        with ESMTP id S1726388AbgINUYH (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Mon, 14 Sep 2020 16:24:07 -0400
+Received: by mail-il1-f195.google.com with SMTP id x2so884057ilm.0;
+        Mon, 14 Sep 2020 13:23:41 -0700 (PDT)
 X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
         d=1e100.net; s=20161025;
         h=x-gm-message-state:date:from:to:cc:subject:message-id:references
          :mime-version:content-disposition:in-reply-to;
-        bh=dPtHCfDUD4ey1ZULXFTKqZNYshevl4kIod3SIiCDEKA=;
-        b=tnbceZoMk1tQqYiy1HV2HpZXprKUv6JQObaNqcfyhdWmD0XvpzMvABrc1zVJuAoPjH
-         mjZilEO6lSS3/bWqoY1mfgpF3Aqv4M3bGWoBZRcAB3R6BnOmrDuvuOTXl/oqmuA3SnSS
-         Iq6Uxx0yf9O1v213Jm7+tHFQ8qxtW66C6DkbV01EVUcIOxB9K0DJzcDBb0G1UldfDKNV
-         gYenx8cA2KN82rggjOawAJI/VQzx1PEIIgf3BA/EExkdwXHOXSx5DkDitmLp4Un9YJtf
-         DnWenPZjOsnhLaYG0C1m0AqdQu5fIb3dBWVjtRtFVgzoDV7srzTPN1Dp+vSVJy0l197i
-         HvoA==
-X-Gm-Message-State: AOAM530lqfs42bpm2H0i8Hoh8yXhB/SdHg3xBgJyIMEuInMyCMd47cRA
-        DDamaajhZeX0W0UGQBwXQjxoDgUF0Ltg
-X-Google-Smtp-Source: ABdhPJx06r/tB4DL4iWET254PrfW3KIT6XCr/JSIxzlso/QDEMYWy8QbdkH2DrY4eebn9IZTUP3KCA==
-X-Received: by 2002:a6b:ec04:: with SMTP id c4mr13194264ioh.179.1600114964012;
-        Mon, 14 Sep 2020 13:22:44 -0700 (PDT)
+        bh=y0cRQ51IL0zEzJCFRKwuJ6EJ41YrG7bvo7HIxXwI1Uo=;
+        b=tWWv2kFVXf7uFl53mVKqo06v3TKlM+74DLbq9HcJ00l9V7Q+55Xf7/agPdxt2E3fZi
+         ElX0lxfMPxjkxabUJQml14hUQg39PpgZsCTb4bCrzzp5xG72k11qfhPBgVt6o6O6Yekl
+         wZUo1rqyelmn9V2mwIIRO00FyE+ZoC5J/K6P3QLk4w3M+4pgKn+XQ0VSQcH8ur+wONBE
+         RmQ67NWI3biP6/sBvSvGuxNElTCzVkCGG/XG2V+bgflPAkLF2fouAnWzSUvSQmzqcuJ0
+         G/+85xMHSR5qdTTKbVR+H7KlvK800pfvmI+Gc+jYtlF0lXHqF547A0gkn+vNw9v+mfnu
+         wDxg==
+X-Gm-Message-State: AOAM531iXHNOHT2cbRxraignDLljCxgNRX800p+PLbVYTYHdKEtt7W6y
+        EUOlwY1ST9mC+38JmoXvQ1/0x9FzJazv
+X-Google-Smtp-Source: ABdhPJx0buG9EtsZBnxvI1gIEwWgyvUZdRLfiwVbTta20vCS82DJVj4eE1VB2VBzwa18Bi/5BVxmxw==
+X-Received: by 2002:a92:b309:: with SMTP id p9mr13261205ilh.125.1600115021249;
+        Mon, 14 Sep 2020 13:23:41 -0700 (PDT)
 Received: from xps15 ([64.188.179.253])
-        by smtp.gmail.com with ESMTPSA id r7sm7556022ilg.27.2020.09.14.13.22.42
+        by smtp.gmail.com with ESMTPSA id o10sm7706652ilk.36.2020.09.14.13.23.40
         (version=TLS1_3 cipher=TLS_AES_256_GCM_SHA384 bits=256/256);
-        Mon, 14 Sep 2020 13:22:43 -0700 (PDT)
-Received: (nullmailer pid 177360 invoked by uid 1000);
-        Mon, 14 Sep 2020 20:22:41 -0000
-Date:   Mon, 14 Sep 2020 14:22:41 -0600
+        Mon, 14 Sep 2020 13:23:40 -0700 (PDT)
+Received: (nullmailer pid 178980 invoked by uid 1000);
+        Mon, 14 Sep 2020 20:23:39 -0000
+Date:   Mon, 14 Sep 2020 14:23:39 -0600
 From:   Rob Herring <robh@kernel.org>
-To:     Luca Ceresoli <luca@lucaceresoli.net>
-Cc:     Lee Jones <lee.jones@linaro.org>, Axel Lin <axel.lin@ingics.com>,
-        Keerthy <j-keerthy@ti.com>, Rob Herring <robh+dt@kernel.org>,
-        devicetree@vger.kernel.org, linux-kernel@vger.kernel.org
-Subject: Re: [PATCH v5 2/3] dt-bindings: mfd: add LP87524-Q1
-Message-ID: <20200914202241.GA177305@bogus>
-References: <20200902142259.28349-1-luca@lucaceresoli.net>
- <20200902142259.28349-3-luca@lucaceresoli.net>
+To:     meenakshi.aggarwal@nxp.com
+Cc:     linux-arm-kernel@lists.infradead.org, devicetree@vger.kernel.org,
+        leoyang.li@nxp.com, robh+dt@kernel.org, shawnguo@kernel.org,
+        V.sethi@nxp.com, linux-kernel@vger.kernel.org
+Subject: Re: [PATCH 1/2] dt-bindings: arm64: add compatible for LX2162A QDS
+ Board
+Message-ID: <20200914202339.GA178950@bogus>
+References: <1599059610-7570-1-git-send-email-meenakshi.aggarwal@nxp.com>
 MIME-Version: 1.0
 Content-Type: text/plain; charset=us-ascii
 Content-Disposition: inline
-In-Reply-To: <20200902142259.28349-3-luca@lucaceresoli.net>
+In-Reply-To: <1599059610-7570-1-git-send-email-meenakshi.aggarwal@nxp.com>
 Sender: devicetree-owner@vger.kernel.org
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-On Wed, 02 Sep 2020 16:22:58 +0200, Luca Ceresoli wrote:
-> Add the LP87524-Q1 to the bindings along with an example. This is a variant
-> of the LP87565-Q1 and LP87561-Q1 chips which already have bindings.
+On Wed, 02 Sep 2020 20:43:29 +0530, meenakshi.aggarwal@nxp.com wrote:
+> From: Meenakshi Aggarwal <meenakshi.aggarwal@nxp.com>
 > 
-> Signed-off-by: Luca Ceresoli <luca@lucaceresoli.net>
+> Add support for LX2162A, LX2162A is LX2160A based SoC.
 > 
+> Signed-off-by: Meenakshi Aggarwal <meenakshi.aggarwal@nxp.com>
 > ---
-> 
-> Changes in v5:
->  - describe the "regulators" node too (Rob)
->  - add 'additionalProperties: false' (Rob)
->  - user patternProperties for supplies
->  - simplify supply description
-> 
-> Changes in v4:
->  - reformat as a standalone file
-> 
-> Changes in v3:
->  - fix yaml errors
-> 
-> Changes in v2:
->  - RFC,v1 was based on the txt file, rewrite for yaml
->  - use uppercase consistently in model names (Lee Jones)
->  - replace "regulator" -> "mfd" in subject line (Lee Jones)
->  - replace "dt:" suffix with "dt-bindings:" prefix in subject line
-> ---
->  .../bindings/mfd/ti,lp87524-q1.yaml           | 112 ++++++++++++++++++
->  1 file changed, 112 insertions(+)
->  create mode 100644 Documentation/devicetree/bindings/mfd/ti,lp87524-q1.yaml
+>  Documentation/devicetree/bindings/arm/fsl.yaml | 1 +
+>  1 file changed, 1 insertion(+)
 > 
 
-Reviewed-by: Rob Herring <robh@kernel.org>
+Acked-by: Rob Herring <robh@kernel.org>
