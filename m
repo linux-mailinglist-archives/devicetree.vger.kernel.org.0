@@ -2,112 +2,132 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from vger.kernel.org (vger.kernel.org [23.128.96.18])
-	by mail.lfdr.de (Postfix) with ESMTP id 13C26268542
-	for <lists+devicetree@lfdr.de>; Mon, 14 Sep 2020 09:02:39 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTP id F217B26857E
+	for <lists+devicetree@lfdr.de>; Mon, 14 Sep 2020 09:08:38 +0200 (CEST)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S1726042AbgINHCi (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Mon, 14 Sep 2020 03:02:38 -0400
-Received: from lindbergh.monkeyblade.net ([23.128.96.19]:53310 "EHLO
-        lindbergh.monkeyblade.net" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S1726035AbgINHCg (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Mon, 14 Sep 2020 03:02:36 -0400
-Received: from mail-wm1-x343.google.com (mail-wm1-x343.google.com [IPv6:2a00:1450:4864:20::343])
-        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 17E9AC06174A;
-        Mon, 14 Sep 2020 00:02:36 -0700 (PDT)
-Received: by mail-wm1-x343.google.com with SMTP id l9so10059746wme.3;
-        Mon, 14 Sep 2020 00:02:36 -0700 (PDT)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=gmail.com; s=20161025;
-        h=date:from:to:cc:subject:message-id:references:mime-version
-         :content-disposition:in-reply-to;
-        bh=ml8vr6Wwd8hPNDUkSIjUgKBmst2KUg/iKFfd1eKHbfY=;
-        b=Wg/7YIuVODY1f/Qw+IWwdh9GdxY6fqJYt7gJ1WtD7FNB/cQUUSuo9PeYJLawcLQYNO
-         H+RN+NNupzvNtEYUw89ad9drszQ5QFVDHe8nUTFzFfBy6AeMM4pT+KCEUfiQZgZE4Jk5
-         IWwMZsNCj8UNdcuLFjE1frsuVlM3snQH4h14O+CC1olKiNuvzR7uRUoQbNFcOk3oPm8Q
-         gXbN1wpmtYeVZa5Mv+y8z85Ev+3yQC5Tv6awggCOuWV8Y2cocqd4DbFJN06LxwGkZKhv
-         ob32wuY9H07TTL6ERgryf/ZlCo/2/BYQ0WA/ljKib6GGoT0AMcB16DHpSDLiufqndw0H
-         7F6w==
-X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=1e100.net; s=20161025;
-        h=x-gm-message-state:date:from:to:cc:subject:message-id:references
-         :mime-version:content-disposition:in-reply-to;
-        bh=ml8vr6Wwd8hPNDUkSIjUgKBmst2KUg/iKFfd1eKHbfY=;
-        b=H0zKV1DeS7zpXPWKQ6jgZCiVPU8NGdnCIfk8nhi8K7eesZrMbu5IV4tYUVheyhTiQQ
-         y8468S9ydiYp9RXHY/y+N7sdlU9EdD/ktsISJnaACROON1P5P8vLuik0W8Pu+RRjggFy
-         5Gd2cmdnM+QBdeTVN8mnQY2sFH2+yBKZHPdcSxGm/vw+AAJDlTk/wOjtIQ/07B+nmUEe
-         jJYcPwAp+Nmqu4gPOSCleYhbVw8FM8u4V8xPM7m3yH6DZEgsbqd8SKOowBqc+5pnL1Qe
-         HqI8HhYPH4w339IUosu5hbC284TDlYqXkeIcxYqMGeBHGDWkV45RVDo+jKaaYXne8G60
-         dp8w==
-X-Gm-Message-State: AOAM532+HmZgTtK8/4AGVokVY5as36FcNd818UBVZkvmJVYxx1srfnXw
-        UP6bAo1rk/4/eO7Qwucazkg=
-X-Google-Smtp-Source: ABdhPJw83MGwijm9vthtmc6HJFUAN1ccQRobbM9harAX3NUVxObqZyzm5N4R+bLvX9UgT+mAbz8KXw==
-X-Received: by 2002:a1c:2cc2:: with SMTP id s185mr1769441wms.77.1600066952994;
-        Mon, 14 Sep 2020 00:02:32 -0700 (PDT)
-Received: from BV030612LT (oi48z9.static.otenet.gr. [79.129.51.141])
-        by smtp.gmail.com with ESMTPSA id 185sm19019749wma.18.2020.09.14.00.02.30
-        (version=TLS1_3 cipher=TLS_AES_256_GCM_SHA384 bits=256/256);
-        Mon, 14 Sep 2020 00:02:32 -0700 (PDT)
-Date:   Mon, 14 Sep 2020 10:02:27 +0300
-From:   Cristian Ciocaltea <cristian.ciocaltea@gmail.com>
-To:     Marc Zyngier <maz@kernel.org>
-Cc:     Rob Herring <robh+dt@kernel.org>,
-        Manivannan Sadhasivam <manivannan.sadhasivam@linaro.org>,
-        Thomas Gleixner <tglx@linutronix.de>,
-        Jason Cooper <jason@lakedaemon.net>,
-        Andreas =?iso-8859-1?Q?F=E4rber?= <afaerber@suse.de>,
-        parthiban@linumiz.com, Saravanan Sekar <sravanhome@gmail.com>,
-        linux-kernel@vger.kernel.org, devicetree@vger.kernel.org,
-        linux-arm-kernel@lists.infradead.org,
-        linux-actions@lists.infradead.org,
-        Parthiban Nallathambi <pn@denx.de>
-Subject: Re: [PATCH v6 2/3] irqchip: Add Actions Semi Owl SIRQ controller
-Message-ID: <20200914070227.GA4491@BV030612LT>
-References: <cover.1599552438.git.cristian.ciocaltea@gmail.com>
- <1167b847f6fe1da3834aeaadf5710ddac54f06a0.1599552438.git.cristian.ciocaltea@gmail.com>
- <c5115d27739e1664f808ff5f1fc315e8@kernel.org>
+        id S1726086AbgINHIf (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Mon, 14 Sep 2020 03:08:35 -0400
+Received: from mail-eopbgr20047.outbound.protection.outlook.com ([40.107.2.47]:5282
+        "EHLO EUR02-VE1-obe.outbound.protection.outlook.com"
+        rhost-flags-OK-OK-OK-FAIL) by vger.kernel.org with ESMTP
+        id S1726064AbgINHIe (ORCPT <rfc822;devicetree@vger.kernel.org>);
+        Mon, 14 Sep 2020 03:08:34 -0400
+ARC-Seal: i=1; a=rsa-sha256; s=arcselector9901; d=microsoft.com; cv=none;
+ b=LTyPYwNVE8PQ1HRWjDfAg0YatYBDV11mVVbj7RdME/FX4yBB7kCN35YwLNWhFhMpeyj+p4YjAcJhO0kogVKD3UwAQhNnLL2OdyUoMTISJBjX7yTHLY5U27E8ElQeocLwM+sbVabuvkhAuCdlxyQnQeAoDCUXS+qE4B/dIBC5DHmPGA6w8J8AW05ySrb9rDGIw9Caf4XeyvNYwIrL+iimbZJGCfTYmB1qkNMN4SGF89lVMZ85EPWM956++Lm1Z+6YSu4yBuozdsqt7xUuWFyI3CWpBaJ5lBKYQvkKI3P07vQPZMdxnMl/6BGIOZ61hSSmBhIQmEZM0mSalldXC4mG4w==
+ARC-Message-Signature: i=1; a=rsa-sha256; c=relaxed/relaxed; d=microsoft.com;
+ s=arcselector9901;
+ h=From:Date:Subject:Message-ID:Content-Type:MIME-Version:X-MS-Exchange-SenderADCheck;
+ bh=dPLFOc4dBN3VxvTcS7W/fzXikW8GuPal+OKiItKzbpI=;
+ b=lY4FfpPhb3Gj/ISonuLy5vP45W8Sv93FYxlcDn44xRaLpmALgKTO7aj4+fkZWtx4WhEXOBZTrCOrwFCHAPgud6XUablwSdB6SoA2SqzosBxTNYbcA4WY1Wpy2hG9iWDLh3lotTsEKrtovhLE6EBtujnEVbUJPgo9rp0ppQ5c6BQ2FnbW/65THcGCYk7G38y+DOsptwP5l5Shk3RRyLSXPkNaubbJjMLR6EIvsbvHmHYX0TohixzFOMnUu19qqeCI3WomzfFsSKbJqW8nDUMwL0+pwvkLCooLjJ0zYSL5yYyaZwjnQvVhm0cNav0pQ45zJ+V1xzVqlhlehJol6vA50w==
+ARC-Authentication-Results: i=1; mx.microsoft.com 1; spf=pass
+ smtp.mailfrom=nxp.com; dmarc=pass action=none header.from=nxp.com; dkim=pass
+ header.d=nxp.com; arc=none
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=nxp.com; s=selector2;
+ h=From:Date:Subject:Message-ID:Content-Type:MIME-Version:X-MS-Exchange-SenderADCheck;
+ bh=dPLFOc4dBN3VxvTcS7W/fzXikW8GuPal+OKiItKzbpI=;
+ b=rP4GPJbUPCgXzgCV8vtn9ktRc+RyVmsHumIBEGDm+CKHC22P9mQsNqe5JMPu5AAGtJASloVwjILK8cCITQ92MTh/N4qKJWvtsKFALPqkpEZlNbVSGDtYI0aw9Cnmz0cH3J7cC8sq2c3NxHePqR8nR0kbRnb6M+tuPZ5HTLleGg8=
+Received: from VE1PR04MB6768.eurprd04.prod.outlook.com (2603:10a6:803:129::26)
+ by VI1PR04MB5822.eurprd04.prod.outlook.com (2603:10a6:803:de::16) with
+ Microsoft SMTP Server (version=TLS1_2,
+ cipher=TLS_ECDHE_RSA_WITH_AES_256_GCM_SHA384) id 15.20.3370.16; Mon, 14 Sep
+ 2020 07:08:23 +0000
+Received: from VE1PR04MB6768.eurprd04.prod.outlook.com
+ ([fe80::f16e:a79:2203:5d35]) by VE1PR04MB6768.eurprd04.prod.outlook.com
+ ([fe80::f16e:a79:2203:5d35%6]) with mapi id 15.20.3370.019; Mon, 14 Sep 2020
+ 07:08:23 +0000
+From:   Qiang Zhao <qiang.zhao@nxp.com>
+To:     Rob Herring <robh@kernel.org>
+CC:     "a.zummo@towertech.it" <a.zummo@towertech.it>,
+        "alexandre.belloni@bootlin.com" <alexandre.belloni@bootlin.com>,
+        "linux-rtc@vger.kernel.org" <linux-rtc@vger.kernel.org>,
+        "devicetree@vger.kernel.org" <devicetree@vger.kernel.org>,
+        "linux-kernel@vger.kernel.org" <linux-kernel@vger.kernel.org>
+Subject: RE: [PATCH 1/3] dt-bindings: rtc-2127: Add bindings for
+ nxp,rtc-2127.txt
+Thread-Topic: [PATCH 1/3] dt-bindings: rtc-2127: Add bindings for
+ nxp,rtc-2127.txt
+Thread-Index: AQHWfFOV2mqT9X+P3UaXnJvGvvBfp6lg1ekAgAByYLCAAkefAIAEQfJw
+Date:   Mon, 14 Sep 2020 07:08:22 +0000
+Message-ID: <VE1PR04MB6768F9352B510CB6E873515A91230@VE1PR04MB6768.eurprd04.prod.outlook.com>
+References: <20200827091441.12972-1-qiang.zhao@nxp.com>
+ <20200909202456.GA3019412@bogus>
+ <VE1PR04MB676899EEA79D59061FE91BF691270@VE1PR04MB6768.eurprd04.prod.outlook.com>
+ <CAL_JsqJx=7npNYNe4MybNvdNRxBj_XjvEOJsSm+gNGEkvbh2VA@mail.gmail.com>
+In-Reply-To: <CAL_JsqJx=7npNYNe4MybNvdNRxBj_XjvEOJsSm+gNGEkvbh2VA@mail.gmail.com>
+Accept-Language: en-US
+Content-Language: en-US
+X-MS-Has-Attach: 
+X-MS-TNEF-Correlator: 
+authentication-results: kernel.org; dkim=none (message not signed)
+ header.d=none;kernel.org; dmarc=none action=none header.from=nxp.com;
+x-originating-ip: [119.31.174.73]
+x-ms-publictraffictype: Email
+x-ms-office365-filtering-ht: Tenant
+x-ms-office365-filtering-correlation-id: e1a9e59c-8361-45ce-dc14-08d8587cf7d7
+x-ms-traffictypediagnostic: VI1PR04MB5822:
+x-microsoft-antispam-prvs: <VI1PR04MB582255CE2CE77F9FB773813791230@VI1PR04MB5822.eurprd04.prod.outlook.com>
+x-ms-oob-tlc-oobclassifiers: OLM:9508;
+x-ms-exchange-senderadcheck: 1
+x-microsoft-antispam: BCL:0;
+x-microsoft-antispam-message-info: OY0YhzcdmwP6cagRDlvosQ5UHLrKiCev6Lw93OwPevipJ0w5n0TKtlu4KCueh9/rGPWTtOrEsHbeYvzfoHk7AakRqSMs1aihubhFVoAla3+OGy7fohqGhBciIh7Rk5nL0UGp1nLvkhBC+cEf9soqxn+hUlGzDCmh1+3qJV9qfIP7ae7FtcIvR6Br93EnEr6gQ2ujDjRKs1fe/PJKrZNesc053cbu8r+6QmxsfUNUzUm2+w70Pe47FLvK81NKBxXWMINx3oKQ62RTtu5FC1UtZRTwylXaj6g/TlyDQRrgzAnjJnlPALDXkBqqO8/AXRFpkZYE76kBykkJ55umrzOrULspAsjn5ke4wTOaanYmIpnLfL4aaUA40U1l9256Wa4mno9GFcvCG8jUU/q58RLL/JAsAake3P0UUI8IHTVf6TZL09Pz7gMl/hAQ6e7Hb7vge0H8pTbngE8xaE5YJctDsA==
+x-forefront-antispam-report: CIP:255.255.255.255;CTRY:;LANG:en;SCL:1;SRV:;IPV:NLI;SFV:NSPM;H:VE1PR04MB6768.eurprd04.prod.outlook.com;PTR:;CAT:NONE;SFS:(4636009)(366004)(346002)(376002)(396003)(136003)(39860400002)(86362001)(7696005)(71200400001)(55016002)(966005)(44832011)(53546011)(26005)(8936002)(6506007)(4326008)(83380400001)(9686003)(6916009)(186003)(478600001)(33656002)(54906003)(8676002)(5660300002)(76116006)(52536014)(2906002)(66946007)(316002)(64756008)(66556008)(66476007)(66446008)(142933001);DIR:OUT;SFP:1101;
+x-ms-exchange-antispam-messagedata: zy2DHRb84BE4o7a24CGx22uQcOtnb44go/bHMcZs7Q6GvgP0O85zoN8SoW4UaoBo16GEHrBacT8RHNWnK6TR580V0o0hiweyIkZrJeo70x9GqTWszpdYpEMXZKCzQaTxk1+8ILonS6utPRsUJzD1G1r57y/BNVlUcT1udK1sCLDYmKJf2fl5I404cfS08iQUGDc24O5UFkhCxjLzc6Ljdw4yTw6dsLl1ug6mFUgScOGKfayT3sePyQhrIg1dpLVKHjJoQqOrXJt1YYF1qg7i0RSnQIHFqFJ0GJbRLownpxfNLwf8vTtsQKYkTlLRM6gsArfPT58zswPm4da0gh1qDXJvU0JksR5g54GPYswKSW7b3peTu39OLPsgrLGAFmS6doK+7ooFOMKWlym7LbJowoSyhBfiiKqpRV5TKj51Q2CTYS6aAUUIzoUg/RV4NJnZVxrMREc2qiNLeyMS/Q9rkm1fHpow+JQx3PfwqFgUrFLLNNnbfbHyjO3JLm3t7Dhsrswm5igvtf3fBdo6uvm2g6iYZlXMUtMvUSOV5ysLH/YyL8VpHEf8YSr9jHfDA+htDQKUTPGKA5ZFWdfxOn7p81gBr1D78wai/p4WtLZQHIuEC83pZMMz1DrFpVdASHgvO1j7Kvko8sWeO5u1qH4VeQ==
+x-ms-exchange-transport-forked: True
+Content-Type: text/plain; charset="utf-8"
+Content-Transfer-Encoding: base64
 MIME-Version: 1.0
-Content-Type: text/plain; charset=us-ascii
-Content-Disposition: inline
-In-Reply-To: <c5115d27739e1664f808ff5f1fc315e8@kernel.org>
+X-OriginatorOrg: nxp.com
+X-MS-Exchange-CrossTenant-AuthAs: Internal
+X-MS-Exchange-CrossTenant-AuthSource: VE1PR04MB6768.eurprd04.prod.outlook.com
+X-MS-Exchange-CrossTenant-Network-Message-Id: e1a9e59c-8361-45ce-dc14-08d8587cf7d7
+X-MS-Exchange-CrossTenant-originalarrivaltime: 14 Sep 2020 07:08:22.9113
+ (UTC)
+X-MS-Exchange-CrossTenant-fromentityheader: Hosted
+X-MS-Exchange-CrossTenant-id: 686ea1d3-bc2b-4c6f-a92c-d99c5c301635
+X-MS-Exchange-CrossTenant-mailboxtype: HOSTED
+X-MS-Exchange-CrossTenant-userprincipalname: IFVI5eePGkWqlX43P0GEo7Y4LXmj7UrgLrIsUGd6l7wEdBcNCFpyMpQcJfydm4+OkR872gZvkedR/KA7OUydmQ==
+X-MS-Exchange-Transport-CrossTenantHeadersStamped: VI1PR04MB5822
 Sender: devicetree-owner@vger.kernel.org
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-Hi Marc,
-
-On Fri, Sep 11, 2020 at 05:22:41PM +0100, Marc Zyngier wrote:
-> On 2020-09-08 09:20, Cristian Ciocaltea wrote:
-> > This interrupt controller is found in the Actions Semi Owl SoCs (S500,
-> > S700 and S900) and provides support for handling up to 3 external
-> > interrupt lines.
-> > 
-> > Each line can be independently configured as interrupt and triggers on
-> > either of the edges or either of the levels. Additionally, each line
-> > can also be masked individually.
-> > 
-> > The patch is based on the work started by Parthiban Nallathambi:
-> > https://lore.kernel.org/lkml/20181126100356.2840578-1-pn@denx.de/
-> > 
-> > Signed-off-by: Parthiban Nallathambi <pn@denx.de>
-> > Signed-off-by: Saravanan Sekar <sravanhome@gmail.com>
-> > [cristi: optimized DT, various fixes/cleanups/improvements]
-> > Signed-off-by: Cristian Ciocaltea <cristian.ciocaltea@gmail.com>
-> 
-> Who is the author of these patches? If this is a co-development, please
-> use the relevant tags. Otherwise, the author of the patch must come as
-> the first SoB.
-
-I took the authorship for the driver patch, as mentioned in the cover
-letter. So, if I understand correctly, my SoB should be moved on top and
-I assume I also need to drop the related comment line.
-
-> The patch itself looks good.
-
-Thanks for reviewing,
-Cristi
-
-> 
->         M.
-> -- 
-> Jazz is not dead. It just smells funny...
+T24gRnJpLCBTZXAgMTEsIDIwMjAgYXQgMjI6MDMsIFJvYiBIZXJyaW5nIDxyb2JoQGtlcm5lbC5v
+cmc+IHdyb3RlOg0KDQo+IC0tLS0tT3JpZ2luYWwgTWVzc2FnZS0tLS0tDQo+IEZyb206IFJvYiBI
+ZXJyaW5nIDxyb2JoQGtlcm5lbC5vcmc+DQo+IFNlbnQ6IDIwMjDlubQ55pyIMTHml6UgMjI6MDMN
+Cj4gVG86IFFpYW5nIFpoYW8gPHFpYW5nLnpoYW9AbnhwLmNvbT4NCj4gQ2M6IGEuenVtbW9AdG93
+ZXJ0ZWNoLml0OyBhbGV4YW5kcmUuYmVsbG9uaUBib290bGluLmNvbTsNCj4gbGludXgtcnRjQHZn
+ZXIua2VybmVsLm9yZzsgZGV2aWNldHJlZUB2Z2VyLmtlcm5lbC5vcmc7DQo+IGxpbnV4LWtlcm5l
+bEB2Z2VyLmtlcm5lbC5vcmcNCj4gU3ViamVjdDogUmU6IFtQQVRDSCAxLzNdIGR0LWJpbmRpbmdz
+OiBydGMtMjEyNzogQWRkIGJpbmRpbmdzIGZvcg0KPiBueHAscnRjLTIxMjcudHh0DQo+IA0KPiBP
+biBXZWQsIFNlcCA5LCAyMDIwIGF0IDk6MTYgUE0gUWlhbmcgWmhhbyA8cWlhbmcuemhhb0BueHAu
+Y29tPiB3cm90ZToNCj4gPg0KPiA+IE9uIFRodSwgU2VwIDEwLCAyMDIwIGF0IDA0OjI1QU0sIFJv
+YiBIZXJyaW5nIDxyb2JoQGtlcm5lbC5vcmc+IHdyb3RlOg0KPiA+ID4gLS0tLS1PcmlnaW5hbCBN
+ZXNzYWdlLS0tLS0NCj4gPiA+IEZyb206IFJvYiBIZXJyaW5nIDxyb2JoQGtlcm5lbC5vcmc+DQo+
+ID4gPiBTZW50OiAyMDIw5bm0OeaciDEw5pelIDQ6MjUNCj4gPiA+IFRvOiBRaWFuZyBaaGFvIDxx
+aWFuZy56aGFvQG54cC5jb20+DQo+ID4gPiBDYzogYS56dW1tb0B0b3dlcnRlY2guaXQ7IGFsZXhh
+bmRyZS5iZWxsb25pQGJvb3RsaW4uY29tOw0KPiA+ID4gbGludXgtcnRjQHZnZXIua2VybmVsLm9y
+ZzsgZGV2aWNldHJlZUB2Z2VyLmtlcm5lbC5vcmc7DQo+ID4gPiBsaW51eC1rZXJuZWxAdmdlci5r
+ZXJuZWwub3JnDQo+ID4gPiBTdWJqZWN0OiBSZTogW1BBVENIIDEvM10gZHQtYmluZGluZ3M6IHJ0
+Yy0yMTI3OiBBZGQgYmluZGluZ3MgZm9yDQo+ID4gPiBueHAscnRjLTIxMjcudHh0DQo+ID4gPg0K
+PiA+ID4gT24gVGh1LCBBdWcgMjcsIDIwMjAgYXQgMDU6MTQ6MzlQTSArMDgwMCwgUWlhbmcgWmhh
+byB3cm90ZToNCj4gPiA+ID4gRnJvbTogWmhhbyBRaWFuZyA8cWlhbmcuemhhb0BueHAuY29tPg0K
+PiA+ID4gPg0KDQpQbGVhc2UgaGVscCB0byByZXZpZXcgYXMgYmVsb3csIGlmIGl0IGlzIG9rLCBJ
+IHdpbGwgc2VuZCB0aGUgbmV3IHZlcnNpb24gcGF0Y2guIFRoYW5rIHlvdSENCg0KZGlmZiAtLWdp
+dCBhL0RvY3VtZW50YXRpb24vZGV2aWNldHJlZS9iaW5kaW5ncy9ydGMvbnhwLHBjZjIxMjcueWFt
+bCBiL0RvY3VtZW50YXRpb24vZGV2aWNldHJlZS9iaW5kaW5ncy9ydGMvbnhwLHBjZjIxMjcueWFt
+bA0KbmV3IGZpbGUgbW9kZSAxMDA2NDQNCmluZGV4IDAwMDAwMDAuLjgwOWRkNTkNCi0tLSAvZGV2
+L251bGwNCisrKyBiL0RvY3VtZW50YXRpb24vZGV2aWNldHJlZS9iaW5kaW5ncy9ydGMvbnhwLHBj
+ZjIxMjcueWFtbA0KQEAgLTAsMCArMSwzOCBAQA0KKyMgU1BEWC1MaWNlbnNlLUlkZW50aWZpZXI6
+IEdQTC0yLjANCislWUFNTCAxLjINCistLS0NCiskaWQ6IGh0dHA6Ly9kZXZpY2V0cmVlLm9yZy9z
+Y2hlbWFzL3J0Yy9ueHAscGNmMjEyNy55YW1sIw0KKyRzY2hlbWE6IGh0dHA6Ly9kZXZpY2V0cmVl
+Lm9yZy9tZXRhLXNjaGVtYXMvY29yZS55YW1sIw0KKw0KK3RpdGxlOiBQQ0YgUlRDcw0KKw0KK21h
+aW50YWluZXJzOg0KKyAgLSBRaWFuZyBaaGFvIDxxaWFuZy56aGFvQG54cC5jb20+DQorDQorYWxs
+T2Y6DQorICAtICRyZWY6ICJydGMueWFtbCMiDQorDQorcHJvcGVydGllczoNCisgIGNvbXBhdGli
+bGU6DQorICAgIGVudW06DQorICAgICAgLSBueHAscGNmMjEyNw0KKyAgICAgIC0gbnhwLHBjZjIx
+MjkNCisNCisgIHJlZzoNCisgICAgbWF4SXRlbXM6IDENCisNCisgIGludGVycnVwdHM6DQorICAg
+IG1heEl0ZW1zOiAxDQorDQorICBuby13YXRjaGRvZzoNCisgICAgbWF4SXRlbXM6IDENCisNCisg
+IHN0YXJ0LXllYXI6IHRydWUNCisNCityZXF1aXJlZDoNCisgIC0gY29tcGF0aWJsZQ0KKyAgLSBy
+ZWcNCisNCithZGRpdGlvbmFsUHJvcGVydGllczogZmFsc2UNCisNCisuLi4NCg0KPiANCj4gRG9j
+dW1lbnRhdGlvbi9kZXZpY2V0cmVlL3dyaXRpbmctc2NoZW1hLnJzdCBhbmQgYWJvdXQgMTAwMCBl
+eGFtcGxlcyBpbiB0aGUNCj4ga2VybmVsIHRyZWUuDQo+IA0KPiBSb2INCg==
