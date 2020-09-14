@@ -2,101 +2,149 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from vger.kernel.org (vger.kernel.org [23.128.96.18])
-	by mail.lfdr.de (Postfix) with ESMTP id 1CAAD269892
-	for <lists+devicetree@lfdr.de>; Tue, 15 Sep 2020 00:08:34 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTP id 4176A269898
+	for <lists+devicetree@lfdr.de>; Tue, 15 Sep 2020 00:09:43 +0200 (CEST)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S1725994AbgINWId (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Mon, 14 Sep 2020 18:08:33 -0400
-Received: from mail-io1-f66.google.com ([209.85.166.66]:33525 "EHLO
-        mail-io1-f66.google.com" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S1725979AbgINWId (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Mon, 14 Sep 2020 18:08:33 -0400
-Received: by mail-io1-f66.google.com with SMTP id r25so1912192ioj.0;
-        Mon, 14 Sep 2020 15:08:32 -0700 (PDT)
-X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=1e100.net; s=20161025;
-        h=x-gm-message-state:date:from:to:cc:subject:message-id:references
-         :mime-version:content-disposition:in-reply-to;
-        bh=HfVeQ81fFlvBzyeQzVxZZpi/9tbQOUKFJsP3PWI05Uc=;
-        b=sTB5GH9mQbWPoFRaU6oSigDmL0bHqQDA4SHQvdnvc9C6mb9AJYlHj3JbQYpGaO/hrr
-         2W+O8dGHx8qKULnZFEeDM46ZwIeDP1BjmRds+ZX5b1eNJb3whCnvnRC8avfv2qIiJXEj
-         48jOkikaJv6n+W3nhst6ZzV8A92kUop4tIjUhZ+W2DG0Pncn/+Z9XMqCjfk3RnA7NhFM
-         +Fo311wkPe3/MCKdGkxgw4RJWD6z8Rn+F6NIttLda9ODZMVUoZM7dSceOUa4H9XNV37u
-         tCHLKEry7/QQlV4/emqqShb2KpWdG7xrrnioUPE5RZYxbjhp4Bx17ESJ6h1q6xd117Gt
-         hmdA==
-X-Gm-Message-State: AOAM530zVQ48FksqFTN6mnL8HRJ8rWh0IdGsq0jmnU7taiMtkbAn1lch
-        Pg3YC4cSDGLUU9WMzkTN8Q==
-X-Google-Smtp-Source: ABdhPJzOEWAxnZG+kDpP3Y4L1MtUa0ni/O8Jr2Ub5j+QdhNiZ4nS4jkbiRz6otnEmg9u4/zC1QacmQ==
-X-Received: by 2002:a05:6602:15c5:: with SMTP id f5mr11938387iow.42.1600121312167;
-        Mon, 14 Sep 2020 15:08:32 -0700 (PDT)
-Received: from xps15 ([64.188.179.253])
-        by smtp.gmail.com with ESMTPSA id m15sm7558130ild.8.2020.09.14.15.08.30
-        (version=TLS1_3 cipher=TLS_AES_256_GCM_SHA384 bits=256/256);
-        Mon, 14 Sep 2020 15:08:31 -0700 (PDT)
-Received: (nullmailer pid 346892 invoked by uid 1000);
-        Mon, 14 Sep 2020 22:08:29 -0000
-Date:   Mon, 14 Sep 2020 16:08:29 -0600
-From:   Rob Herring <robh@kernel.org>
-To:     Thierry Reding <thierry.reding@gmail.com>
-Cc:     Joerg Roedel <joro@8bytes.org>,
-        Frank Rowand <frowand.list@gmail.com>,
-        Will Deacon <will@kernel.org>,
-        Robin Murphy <robin.murphy@arm.com>,
-        iommu@lists.linux-foundation.org, devicetree@vger.kernel.org,
-        linux-kernel@vger.kernel.org
-Subject: Re: [PATCH v2 1/4] dt-bindings: reserved-memory: Document "active"
- property
-Message-ID: <20200914220829.GA330122@bogus>
-References: <20200904130000.691933-1-thierry.reding@gmail.com>
+        id S1725986AbgINWJm (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Mon, 14 Sep 2020 18:09:42 -0400
+Received: from mail.kernel.org ([198.145.29.99]:55412 "EHLO mail.kernel.org"
+        rhost-flags-OK-OK-OK-OK) by vger.kernel.org with ESMTP
+        id S1725979AbgINWJi (ORCPT <rfc822;devicetree@vger.kernel.org>);
+        Mon, 14 Sep 2020 18:09:38 -0400
+Received: from mail-ej1-f54.google.com (mail-ej1-f54.google.com [209.85.218.54])
+        (using TLSv1.2 with cipher ECDHE-RSA-AES128-GCM-SHA256 (128/128 bits))
+        (No client certificate requested)
+        by mail.kernel.org (Postfix) with ESMTPSA id EA72921D7D;
+        Mon, 14 Sep 2020 22:09:36 +0000 (UTC)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=kernel.org;
+        s=default; t=1600121377;
+        bh=Nz7gGQ+J/ilhJdHLM4BsmqhATykFw0LEpRBTDA8GVOk=;
+        h=References:In-Reply-To:From:Date:Subject:To:Cc:From;
+        b=vcdsExYa08FePhjPFL/B5tV+UlxmRi0Dt3qUnKHypkDv/qhVr8oRIH0/ZDlgoanh+
+         29ZTRj2HAFMritc/hyC2IL6dnmTKAdsl6rnasfKf2sCXvjnHAp8zgRsSkPRX/IGO8Q
+         dMjY3XH6toV6vEqTpZUk3JOYmtS00w/dbnKAhXVo=
+Received: by mail-ej1-f54.google.com with SMTP id nw23so2162006ejb.4;
+        Mon, 14 Sep 2020 15:09:36 -0700 (PDT)
+X-Gm-Message-State: AOAM531qga1WjgFS41PmkZMxZbA4wNP8Isvvmd3gbVV3Vpke+1Qo6fzV
+        di4kY6PuOOib/W3PR8eSdBNte8kw3FH98UH+cQ==
+X-Google-Smtp-Source: ABdhPJzJGzLWfXMkzj/uZwj/GppT/VN4DVF+j5uKOZfH5SCyReE4lyC/KudDVVDW7AFmoqKRghaV4EK54CnHc9xzmBw=
+X-Received: by 2002:a17:906:7102:: with SMTP id x2mr16660250ejj.260.1600121375444;
+ Mon, 14 Sep 2020 15:09:35 -0700 (PDT)
 MIME-Version: 1.0
-Content-Type: text/plain; charset=us-ascii
-Content-Disposition: inline
-In-Reply-To: <20200904130000.691933-1-thierry.reding@gmail.com>
+References: <20200904110002.88966-1-linux@fw-web.de> <20200904110002.88966-2-linux@fw-web.de>
+In-Reply-To: <20200904110002.88966-2-linux@fw-web.de>
+From:   Chun-Kuang Hu <chunkuang.hu@kernel.org>
+Date:   Tue, 15 Sep 2020 06:09:25 +0800
+X-Gmail-Original-Message-ID: <CAAOTY__TNsteFiTxdXfnKns4jkz62NNG7joUtsu0XVV8MwhhRQ@mail.gmail.com>
+Message-ID: <CAAOTY__TNsteFiTxdXfnKns4jkz62NNG7joUtsu0XVV8MwhhRQ@mail.gmail.com>
+Subject: Re: [PATCH v6 1/4] drm/mediatek: disable tmds on mt2701
+To:     Frank Wunderlich <linux@fw-web.de>,
+        Jitao Shi <jitao.shi@mediatek.com>
+Cc:     "moderated list:ARM/Mediatek SoC support" 
+        <linux-mediatek@lists.infradead.org>,
+        Chun-Kuang Hu <chunkuang.hu@kernel.org>,
+        Matthias Brugger <matthias.bgg@gmail.com>,
+        DTML <devicetree@vger.kernel.org>,
+        Ryder Lee <ryder.lee@mediatek.com>,
+        Frank Wunderlich <frank-w@public-files.de>,
+        chunhui dai <chunhui.dai@mediatek.com>,
+        Sean Wang <sean.wang@mediatek.com>,
+        linux-kernel <linux-kernel@vger.kernel.org>,
+        DRI Development <dri-devel@lists.freedesktop.org>,
+        Kishon Vijay Abraham I <kishon@ti.com>,
+        Rob Herring <robh+dt@kernel.org>,
+        Philipp Zabel <p.zabel@pengutronix.de>,
+        Chunfeng Yun <chunfeng.yun@mediatek.com>,
+        Linux ARM <linux-arm-kernel@lists.infradead.org>
+Content-Type: text/plain; charset="UTF-8"
+Content-Transfer-Encoding: quoted-printable
 Sender: devicetree-owner@vger.kernel.org
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-On Fri, Sep 04, 2020 at 02:59:57PM +0200, Thierry Reding wrote:
-> From: Thierry Reding <treding@nvidia.com>
-> 
-> Reserved memory regions can be marked as "active" if hardware is
-> expected to access the regions during boot and before the operating
-> system can take control. One example where this is useful is for the
-> operating system to infer whether the region needs to be identity-
-> mapped through an IOMMU.
+Hi, Frank:
 
-I like simple solutions, but this hardly seems adequate to solve the 
-problem of passing IOMMU setup from bootloader/firmware to the OS. Like 
-what is the IOVA that's supposed to be used if identity mapping is not 
-used?
+Frank Wunderlich <linux@fw-web.de> =E6=96=BC 2020=E5=B9=B49=E6=9C=884=E6=97=
+=A5 =E9=80=B1=E4=BA=94 =E4=B8=8B=E5=8D=887:01=E5=AF=AB=E9=81=93=EF=BC=9A
+>
+> From: chunhui dai <chunhui.dai@mediatek.com>
+>
+> Without that patch if you use specific resolutions like 1280x1024,
+> I can see distortion in the output. It seems as if the
+> frequency for updating the pixel of the image is out of sync.
+>
+> For initialization tmds needs to be active, but can be disabled after ini=
+t
+> to fix blurry display
 
-If you know enough about the regions to assume identity mapping, then 
-can't you know if active or not?
+As discussed with Jitao offline, he agree this patch, so I applied
+this patch to mediatek-drm-next [1], thanks.
 
-> Signed-off-by: Thierry Reding <treding@nvidia.com>
+[1] https://git.kernel.org/pub/scm/linux/kernel/git/chunkuang.hu/linux.git/=
+log/?h=3Dmediatek-drm-next
+
+Regards,
+Chun-Kuang.
+
+>
+> Signed-off-by: chunhui dai <chunhui.dai@mediatek.com>
+> Signed-off-by: Frank Wunderlich <frank-w@public-files.de>
+> Tested-by: Frank Wunderlich <frank-w@public-files.de>
 > ---
->  .../bindings/reserved-memory/reserved-memory.txt           | 7 +++++++
->  1 file changed, 7 insertions(+)
-> 
-> diff --git a/Documentation/devicetree/bindings/reserved-memory/reserved-memory.txt b/Documentation/devicetree/bindings/reserved-memory/reserved-memory.txt
-> index 4dd20de6977f..163d2927e4fc 100644
-> --- a/Documentation/devicetree/bindings/reserved-memory/reserved-memory.txt
-> +++ b/Documentation/devicetree/bindings/reserved-memory/reserved-memory.txt
-> @@ -63,6 +63,13 @@ reusable (optional) - empty property
->        able to reclaim it back. Typically that means that the operating
->        system can use that region to store volatile or cached data that
->        can be otherwise regenerated or migrated elsewhere.
-> +active (optional) - empty property
-> +    - If this property is set for a reserved memory region, it indicates
-> +      that some piece of hardware may be actively accessing this region.
-> +      Should the operating system want to enable IOMMU protection for a
-> +      device, all active memory regions must have been identity-mapped
-> +      in order to ensure that non-quiescent hardware during boot can
-> +      continue to access the memory.
->  
->  Linux implementation note:
->  - If a "linux,cma-default" property is present, then Linux will use the
-> -- 
-> 2.28.0
-> 
+>  drivers/phy/mediatek/phy-mtk-hdmi-mt2701.c | 1 +
+>  drivers/phy/mediatek/phy-mtk-hdmi.c        | 3 +++
+>  drivers/phy/mediatek/phy-mtk-hdmi.h        | 1 +
+>  3 files changed, 5 insertions(+)
+>
+> diff --git a/drivers/phy/mediatek/phy-mtk-hdmi-mt2701.c b/drivers/phy/med=
+iatek/phy-mtk-hdmi-mt2701.c
+> index a6cb1dea3d0c..b74c65a1762c 100644
+> --- a/drivers/phy/mediatek/phy-mtk-hdmi-mt2701.c
+> +++ b/drivers/phy/mediatek/phy-mtk-hdmi-mt2701.c
+> @@ -238,6 +238,7 @@ static void mtk_hdmi_phy_disable_tmds(struct mtk_hdmi=
+_phy *hdmi_phy)
+>
+>  struct mtk_hdmi_phy_conf mtk_hdmi_phy_2701_conf =3D {
+>         .flags =3D CLK_SET_RATE_GATE,
+> +       .pll_default_off =3D true,
+>         .hdmi_phy_clk_ops =3D &mtk_hdmi_phy_pll_ops,
+>         .hdmi_phy_enable_tmds =3D mtk_hdmi_phy_enable_tmds,
+>         .hdmi_phy_disable_tmds =3D mtk_hdmi_phy_disable_tmds,
+> diff --git a/drivers/phy/mediatek/phy-mtk-hdmi.c b/drivers/phy/mediatek/p=
+hy-mtk-hdmi.c
+> index 8fc83f01a720..47c029d4b270 100644
+> --- a/drivers/phy/mediatek/phy-mtk-hdmi.c
+> +++ b/drivers/phy/mediatek/phy-mtk-hdmi.c
+> @@ -184,6 +184,9 @@ static int mtk_hdmi_phy_probe(struct platform_device =
+*pdev)
+>                 return PTR_ERR(phy_provider);
+>         }
+>
+> +       if (hdmi_phy->conf->pll_default_off)
+> +               hdmi_phy->conf->hdmi_phy_disable_tmds(hdmi_phy);
+> +
+>         return of_clk_add_provider(dev->of_node, of_clk_src_simple_get,
+>                                    hdmi_phy->pll);
+>  }
+> diff --git a/drivers/phy/mediatek/phy-mtk-hdmi.h b/drivers/phy/mediatek/p=
+hy-mtk-hdmi.h
+> index b13e1d5f8e78..dcf9bb13699b 100644
+> --- a/drivers/phy/mediatek/phy-mtk-hdmi.h
+> +++ b/drivers/phy/mediatek/phy-mtk-hdmi.h
+> @@ -21,6 +21,7 @@ struct mtk_hdmi_phy;
+>
+>  struct mtk_hdmi_phy_conf {
+>         unsigned long flags;
+> +       bool pll_default_off;
+>         const struct clk_ops *hdmi_phy_clk_ops;
+>         void (*hdmi_phy_enable_tmds)(struct mtk_hdmi_phy *hdmi_phy);
+>         void (*hdmi_phy_disable_tmds)(struct mtk_hdmi_phy *hdmi_phy);
+> --
+> 2.25.1
+>
+>
+> _______________________________________________
+> Linux-mediatek mailing list
+> Linux-mediatek@lists.infradead.org
+> http://lists.infradead.org/mailman/listinfo/linux-mediatek
