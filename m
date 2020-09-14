@@ -2,70 +2,70 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from vger.kernel.org (vger.kernel.org [23.128.96.18])
-	by mail.lfdr.de (Postfix) with ESMTP id 47D442696F7
-	for <lists+devicetree@lfdr.de>; Mon, 14 Sep 2020 22:49:10 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTP id 80B70269706
+	for <lists+devicetree@lfdr.de>; Mon, 14 Sep 2020 22:51:16 +0200 (CEST)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S1726064AbgINUtJ (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Mon, 14 Sep 2020 16:49:09 -0400
-Received: from mail-io1-f68.google.com ([209.85.166.68]:45065 "EHLO
-        mail-io1-f68.google.com" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S1726011AbgINUtI (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Mon, 14 Sep 2020 16:49:08 -0400
-Received: by mail-io1-f68.google.com with SMTP id y74so1582511iof.12;
-        Mon, 14 Sep 2020 13:49:07 -0700 (PDT)
+        id S1726061AbgINUvJ (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Mon, 14 Sep 2020 16:51:09 -0400
+Received: from mail-io1-f65.google.com ([209.85.166.65]:34772 "EHLO
+        mail-io1-f65.google.com" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
+        with ESMTP id S1726040AbgINUvI (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Mon, 14 Sep 2020 16:51:08 -0400
+Received: by mail-io1-f65.google.com with SMTP id m17so1680343ioo.1;
+        Mon, 14 Sep 2020 13:51:08 -0700 (PDT)
 X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
         d=1e100.net; s=20161025;
         h=x-gm-message-state:date:from:to:cc:subject:message-id:references
          :mime-version:content-disposition:in-reply-to;
-        bh=324IWcSqtgH8IcpZs89vYu0Yda5zeL7Dvw7hvmrV6w8=;
-        b=DayZ+sLgZm/VXggAguI4vdIe5vMXp1/EMWz0PFUDfm8orda+l39IRpo/4yciXV4bff
-         WigdqtB6OEUUlNfUg8c7Z3jQ/wDk8lEmBJw721hS0RNsVyOuGWk33R/2nukMQ2ccThwQ
-         OhB12QjhZ0fzzdThH/jsJ34oKQxtpEdStPMAVgaQ2wePqpnz5GNjoJDfdurWIu8dM0Pc
-         H6Mh+kwz5BBrqqy3pycnS0+cohLzElWOSllekybaqYEqLkx4hX5vM01Em/56kc8arisU
-         u3XqArQxSiZlR8s8SexLbcXEIv1jC5EHL446+6pyJlpkZKj7I20UDRHnGBg/Hwc8R4BB
-         /bww==
-X-Gm-Message-State: AOAM530vzkhM/BFApCGWIIuzLPjkXLf+ZjpjtTy6+fkbjpFz1S1c6fb1
-        vsPZotVFm1NI/hoOwPcdPw==
-X-Google-Smtp-Source: ABdhPJw3dG9R6uY1Hk2lyvK8UUg2e9cANhPTyhqEKEE1Z8Y1Yx9xPFKy234XgQJer9v3V+MrL73Qgw==
-X-Received: by 2002:a5e:9b0e:: with SMTP id j14mr12756622iok.112.1600116547173;
-        Mon, 14 Sep 2020 13:49:07 -0700 (PDT)
+        bh=HRDfI8tEIuTikQ6QH9FCFwWrHIhHqqKR/Ofl5jSpDVo=;
+        b=cKOuhSD0o4FgKMUadcxSA1E3skgoM5k7FUOBJPts27AXoe+/KqPOhMnBi4xBG1SULL
+         /zJy04oPttOyAXjlUKh/oWakSEbDxLv9emlGarLNT/lsiQ30LfcIvEJ6RCbqeP15uZKM
+         pItJPzykHUSCwSbajo9FjKQr3wlyveBDPJeVMeooaopwIZr7HiXsicmz/jDYn+K9tw5u
+         jG36u1r0YoSunim8PuAxAKtGh0+Jm41KSNQBHd13MsK40+lOmqJdgotYO2+ewCiUVO5j
+         evheVPDaN77NTXDjSqnEzPa2Hc73IzhDJU20Cv0wgYYxmVzeF6T63m2SWt87r5BK/cod
+         B3bw==
+X-Gm-Message-State: AOAM531Z8VwQnFGgfiIUPnpmqGkcIS2NNmOe22e9W0XtpZfHq4++rF9P
+        qPYSqg5G+4Q48wjzjVUaNQ==
+X-Google-Smtp-Source: ABdhPJya5++YS3k9G7XvhrjF9A2/hADUPddalWHaT6EsdIdHB3yr90uv2no/O2qsYqOxXvHHUz7HIA==
+X-Received: by 2002:a5e:9911:: with SMTP id t17mr12761154ioj.58.1600116667734;
+        Mon, 14 Sep 2020 13:51:07 -0700 (PDT)
 Received: from xps15 ([64.188.179.253])
-        by smtp.gmail.com with ESMTPSA id k14sm6513960ioa.7.2020.09.14.13.49.05
+        by smtp.gmail.com with ESMTPSA id z4sm6290316iol.52.2020.09.14.13.51.06
         (version=TLS1_3 cipher=TLS_AES_256_GCM_SHA384 bits=256/256);
-        Mon, 14 Sep 2020 13:49:06 -0700 (PDT)
-Received: (nullmailer pid 220224 invoked by uid 1000);
-        Mon, 14 Sep 2020 20:49:04 -0000
-Date:   Mon, 14 Sep 2020 14:49:04 -0600
+        Mon, 14 Sep 2020 13:51:07 -0700 (PDT)
+Received: (nullmailer pid 223447 invoked by uid 1000);
+        Mon, 14 Sep 2020 20:51:05 -0000
+Date:   Mon, 14 Sep 2020 14:51:05 -0600
 From:   Rob Herring <robh@kernel.org>
 To:     Krzysztof Kozlowski <krzk@kernel.org>
-Cc:     Rob Herring <robh+dt@kernel.org>,
-        Guenter Roeck <groeck@chromium.org>,
-        devicetree@vger.kernel.org, Benson Leung <bleung@chromium.org>,
-        linux-kernel@vger.kernel.org,
-        Enric Balletbo i Serra <enric.balletbo@collabora.com>,
-        Lee Jones <lee.jones@linaro.org>
-Subject: Re: [PATCH v2] dt-bindings: mfd: google,cros-ec: Add missing
+Cc:     David Airlie <airlied@linux.ie>, Daniel Vetter <daniel@ffwll.ch>,
+        Kukjin Kim <kgene@kernel.org>,
+        Maxime Ripard <mripard@kernel.org>,
+        Heiko Stuebner <heiko@sntech.de>,
+        Inki Dae <inki.dae@samsung.com>,
+        dri-devel@lists.freedesktop.org, devicetree@vger.kernel.org,
+        linux-kernel@vger.kernel.org, linux-arm-kernel@lists.infradead.org,
+        linux-samsung-soc@vger.kernel.org
+Subject: Re: [PATCH v2 4/6] dt-bindings: gpu: samsung-rotator: Add missing
  properties
-Message-ID: <20200914204904.GA220139@bogus>
-References: <20200903191407.12686-1-krzk@kernel.org>
+Message-ID: <20200914205105.GA220369@bogus>
+References: <20200903191438.12781-1-krzk@kernel.org>
+ <20200903191438.12781-4-krzk@kernel.org>
 MIME-Version: 1.0
 Content-Type: text/plain; charset=us-ascii
 Content-Disposition: inline
-In-Reply-To: <20200903191407.12686-1-krzk@kernel.org>
+In-Reply-To: <20200903191438.12781-4-krzk@kernel.org>
 Sender: devicetree-owner@vger.kernel.org
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-On Thu, 03 Sep 2020 21:14:07 +0200, Krzysztof Kozlowski wrote:
-> Add common properties appearing in DTSes (controller-data,
-> wakeup-source) to partially fix dtbs_check warnings like:
+On Thu, Sep 03, 2020 at 09:14:36PM +0200, Krzysztof Kozlowski wrote:
+> Add common properties appearing in DTSes (iommus, power-domains) to fix
+> dtbs_check warnings like:
 > 
->   arch/arm/boot/dts/exynos5250-snow.dt.yaml: embedded-controller@1e:
->     'keyboard-controller', 'wakeup-source' do not match any of the regexes: 'pinctrl-[0-9]+'
-> 
->   arch/arm/boot/dts/exynos5800-peach-pi.dt.yaml: cros-ec@0:
->     'controller-data', 'i2c-tunnel', 'keyboard-controller' do not match any of the regexes: 'pinctrl-[0-9]+'
+>   arch/arm/boot/dts/exynos4210-i9100.dt.yaml: rotator@12810000:
+>     'iommus', 'power-domains' do not match any of the regexes: 'pinctrl-[0-9]+'
 > 
 > Signed-off-by: Krzysztof Kozlowski <krzk@kernel.org>
 > 
@@ -74,8 +74,26 @@ On Thu, 03 Sep 2020 21:14:07 +0200, Krzysztof Kozlowski wrote:
 > Changes since v1:
 > 1. Add properties instead of using unevaluated
 > ---
->  Documentation/devicetree/bindings/mfd/google,cros-ec.yaml | 8 ++++++++
->  1 file changed, 8 insertions(+)
+>  Documentation/devicetree/bindings/gpu/samsung-rotator.yaml | 3 +++
+>  1 file changed, 3 insertions(+)
 > 
+> diff --git a/Documentation/devicetree/bindings/gpu/samsung-rotator.yaml b/Documentation/devicetree/bindings/gpu/samsung-rotator.yaml
+> index 665c6e3b31d3..f480174fe0d3 100644
+> --- a/Documentation/devicetree/bindings/gpu/samsung-rotator.yaml
+> +++ b/Documentation/devicetree/bindings/gpu/samsung-rotator.yaml
+> @@ -22,6 +22,9 @@ properties:
+>    interrupts:
+>      maxItems: 1
+>  
+> +  iommus: true
+> +  power-domains: true
 
-Applied, thanks!
+These need to define how many. I assume 1, so 'maxItems: 1'.
+
+> +
+>    clocks:
+>      maxItems: 1
+>  
+> -- 
+> 2.17.1
+> 
