@@ -2,92 +2,193 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from vger.kernel.org (vger.kernel.org [23.128.96.18])
-	by mail.lfdr.de (Postfix) with ESMTP id B9E682686CC
-	for <lists+devicetree@lfdr.de>; Mon, 14 Sep 2020 10:06:35 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTP id A5C622686F9
+	for <lists+devicetree@lfdr.de>; Mon, 14 Sep 2020 10:14:34 +0200 (CEST)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S1726112AbgINIGK (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Mon, 14 Sep 2020 04:06:10 -0400
-Received: from mailgw01.mediatek.com ([210.61.82.183]:30398 "EHLO
-        mailgw01.mediatek.com" rhost-flags-OK-FAIL-OK-FAIL) by vger.kernel.org
-        with ESMTP id S1726122AbgINIFg (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Mon, 14 Sep 2020 04:05:36 -0400
-X-UUID: bebf9c19301442118425eecf8e76361d-20200914
-DKIM-Signature: v=1; a=rsa-sha256; q=dns/txt; c=relaxed/relaxed; d=mediatek.com; s=dk;
-        h=Content-Transfer-Encoding:MIME-Version:Content-Type:References:In-Reply-To:Date:CC:To:From:Subject:Message-ID; bh=o4+81MO/aJXsuzsrMQotH3ExSOvHSioLCD4f6dFJz2w=;
-        b=l6FCLiA7CJi3pAqSW4Cxm/8GBgjW4L6Ft2+GXzUAVTo5Y51qYZWyjZPjj+vUJqg7T/QEgu2STC017M8xWY2DUtZLSqt6psW2BkyPoq7AK/pReqqWCYd5BgAEl3EiVl7uzo/4tXOEiWnCvy13/3lk3DmBtYZU3midJqY7LytMqpc=;
-X-UUID: bebf9c19301442118425eecf8e76361d-20200914
-Received: from mtkcas10.mediatek.inc [(172.21.101.39)] by mailgw01.mediatek.com
-        (envelope-from <yong.wu@mediatek.com>)
-        (Cellopoint E-mail Firewall v4.1.14 Build 0819 with TLSv1.2 ECDHE-RSA-AES256-SHA384 256/256)
-        with ESMTP id 49461636; Mon, 14 Sep 2020 16:05:26 +0800
-Received: from MTKCAS32.mediatek.inc (172.27.4.184) by mtkmbs08n2.mediatek.inc
- (172.21.101.56) with Microsoft SMTP Server (TLS) id 15.0.1497.2; Mon, 14 Sep
- 2020 16:05:24 +0800
-Received: from [10.17.3.153] (10.17.3.153) by MTKCAS32.mediatek.inc
- (172.27.4.170) with Microsoft SMTP Server id 15.0.1497.2 via Frontend
- Transport; Mon, 14 Sep 2020 16:05:21 +0800
-Message-ID: <1600070601.27773.14.camel@mhfsdcap03>
-Subject: Re: [PATCH v4 3/3] iommu/mediatek: add support for MT8167
-From:   Yong Wu <yong.wu@mediatek.com>
-To:     Fabien Parent <fparent@baylibre.com>
-CC:     <iommu@lists.linux-foundation.org>, <devicetree@vger.kernel.org>,
-        <linux-kernel@vger.kernel.org>,
-        <linux-arm-kernel@lists.infradead.org>,
-        <linux-mediatek@lists.infradead.org>, <joro@8bytes.org>,
-        <robh+dt@kernel.org>, <matthias.bgg@gmail.com>,
-        <miles.chen@mediatek.com>
-Date:   Mon, 14 Sep 2020 16:03:21 +0800
-In-Reply-To: <20200907101649.1573134-3-fparent@baylibre.com>
-References: <20200907101649.1573134-1-fparent@baylibre.com>
-         <20200907101649.1573134-3-fparent@baylibre.com>
-Content-Type: text/plain; charset="UTF-8"
-X-Mailer: Evolution 3.10.4-0ubuntu2 
+        id S1726183AbgINIOX (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Mon, 14 Sep 2020 04:14:23 -0400
+Received: from lindbergh.monkeyblade.net ([23.128.96.19]:34916 "EHLO
+        lindbergh.monkeyblade.net" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
+        with ESMTP id S1726190AbgINIGj (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Mon, 14 Sep 2020 04:06:39 -0400
+Received: from mail-pj1-x1041.google.com (mail-pj1-x1041.google.com [IPv6:2607:f8b0:4864:20::1041])
+        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 7CCBDC061788
+        for <devicetree@vger.kernel.org>; Mon, 14 Sep 2020 01:06:27 -0700 (PDT)
+Received: by mail-pj1-x1041.google.com with SMTP id v14so3616794pjd.4
+        for <devicetree@vger.kernel.org>; Mon, 14 Sep 2020 01:06:27 -0700 (PDT)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+        d=chromium.org; s=google;
+        h=from:to:cc:subject:date:message-id:mime-version
+         :content-transfer-encoding;
+        bh=3ox4aNsfcgsY0RPX5lognE3py6DN8GEMGKvGSpSvhHM=;
+        b=SUDEULP4c/8tVHVk7xVbOPiooBoKPwQaZtEi0R6EjvskfHBD+R4GPSOXG962UXjQdn
+         hjEMWNOjCkbELEQDt7lAdtBKEDCKdfaZ/nE6LqBXKxUFgaACGT1SL+AfqiRWV8dTMPOI
+         8IsvGl5Q4uG7ePFhBrYOXAQZi6rmMGR8iKa5s=
+X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+        d=1e100.net; s=20161025;
+        h=x-gm-message-state:from:to:cc:subject:date:message-id:mime-version
+         :content-transfer-encoding;
+        bh=3ox4aNsfcgsY0RPX5lognE3py6DN8GEMGKvGSpSvhHM=;
+        b=Q9rmdUlzyIOwZ+/WFXLbnSfaVLdrExCceIoq4Qe9/XlwgTQtZ3tOwc4rtwL2bacsfe
+         rSUwYwFlxN4KtqN8t5mm/wqIWRvzvgHD+MOPdKgITZYZ1WipI8+JeH2bNIR024RuWRHY
+         WqAhOk8Gu7KE8cgCsYkZ2PGzsXhkCvEk0d8UkXxDUqhqdkBOfmlA3/NVoBA4VvvkR7S8
+         cI5s327HfYBa4t0bYywPe6wV+DdJ2BPPt8sHqgeEA7rvMGPAXx7I9ky0yXWfBCK51B3W
+         RpRS/uK9d2bQSl91xcX2reHMHiGNh0I9z6m/vHJ5a3dsmB/zXF56p//2ON2Sbk1mTNrF
+         P+fQ==
+X-Gm-Message-State: AOAM53194UO1Dakb7P+KXv4aU7/nCyIvuHLTJBl3A8y/F5IhAAlKm2mE
+        XBmkhcx/vS3aZUZusyQsCbrtEw==
+X-Google-Smtp-Source: ABdhPJx6+lhvNIvr9+VBanO1ggP5pmi1cHUcVKYwpq1KgsWsAXysHgZC4IqNJJqD6VKRGJo4WVtKAg==
+X-Received: by 2002:a17:90a:49c8:: with SMTP id l8mr12375320pjm.24.1600070786866;
+        Mon, 14 Sep 2020 01:06:26 -0700 (PDT)
+Received: from localhost ([2401:fa00:1:10:de4a:3eff:fe7d:d39c])
+        by smtp.gmail.com with ESMTPSA id b10sm3811152pgm.64.2020.09.14.01.06.22
+        (version=TLS1_3 cipher=TLS_AES_128_GCM_SHA256 bits=128/128);
+        Mon, 14 Sep 2020 01:06:25 -0700 (PDT)
+From:   Cheng-Yi Chiang <cychiang@chromium.org>
+To:     linux-kernel@vger.kernel.org
+Cc:     Mark Brown <broonie@kernel.org>, Taniya Das <tdas@codeaurora.org>,
+        Rohit kumar <rohitkr@codeaurora.org>,
+        Banajit Goswami <bgoswami@codeaurora.org>,
+        Patrick Lai <plai@codeaurora.org>,
+        Andy Gross <agross@kernel.org>,
+        Bjorn Andersson <bjorn.andersson@linaro.org>,
+        Liam Girdwood <lgirdwood@gmail.com>,
+        Rob Herring <robh+dt@kernel.org>,
+        Jaroslav Kysela <perex@perex.cz>,
+        Takashi Iwai <tiwai@suse.com>,
+        Srini Kandagatla <srinivas.kandagatla@linaro.org>,
+        Stephan Gerhold <stephan@gerhold.net>,
+        Matthias Brugger <matthias.bgg@gmail.com>,
+        Heiko Stuebner <heiko@sntech.de>,
+        Srinivasa Rao <srivasam@codeaurora.org>, dianders@chromium.org,
+        dgreid@chromium.org, tzungbi@chromium.org,
+        linux-arm-kernel@lists.infradead.org,
+        linux-arm-msm@vger.kernel.org, devicetree@vger.kernel.org,
+        alsa-devel@alsa-project.org, linux-mediatek@lists.infradead.org,
+        linux-rockchip@lists.infradead.org,
+        Cheng-Yi Chiang <cychiang@chromium.org>
+Subject: [PATCH v11 0/3] Add documentation and machine driver for SC7180 sound card
+Date:   Mon, 14 Sep 2020 16:06:16 +0800
+Message-Id: <20200914080619.4178587-1-cychiang@chromium.org>
+X-Mailer: git-send-email 2.28.0.618.gf4bc123cb7-goog
 MIME-Version: 1.0
-X-TM-SNTS-SMTP: 2B396821207B0DA67FA40430B531D336757789FCC3ACCCB9E04E67630009AD4F2000:8
-X-MTK:  N
-Content-Transfer-Encoding: base64
+Content-Transfer-Encoding: 8bit
 Sender: devicetree-owner@vger.kernel.org
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-T24gTW9uLCAyMDIwLTA5LTA3IGF0IDEyOjE2ICswMjAwLCBGYWJpZW4gUGFyZW50IHdyb3RlOg0K
-PiBBZGQgc3VwcG9ydCBmb3IgdGhlIElPTU1VIG9uIE1UODE2Nw0KPiANCj4gU2lnbmVkLW9mZi1i
-eTogRmFiaWVuIFBhcmVudCA8ZnBhcmVudEBiYXlsaWJyZS5jb20+DQoNClJldmlld2VkLWJ5OiBZ
-b25nIFd1IDx5b25nLnd1QG1lZGlhdGVrLmNvbT4NCg0KPiAtLS0NCj4gDQo+IFY0Ow0KPiAJKiBS
-ZW1vdmVkIEhBU180R0JfTU9ERSBmbGFnIHNpbmNlIHRoaXMgU29DIGRvZXMgbm90IHNlZW0gdG8g
-c3VwcG9ydCBpdA0KPiBWMzoNCj4gCSogdXNlIExFR0FDWV9JVlJQX1BBRERSIGZsYWcgaW5zdGVh
-ZCBvZiB1c2luZyBhIHBsYXRmb3JtIGRhdGEgbWVtYmVyDQo+IFYyOg0KPiAJKiByZW1vdmVkIGlm
-IGJhc2VkIG9uIG00dV9wbGF0LCBhbmQgdXNpbmcgaW5zdGVhZCB0aGUgbmV3DQo+IAkgIGhhc19s
-ZWdhY3lfaXZycF9wYWRkciBtZW1iZXIgdGhhdCB3YXMgaW50cm9kdWNlZCBpbiBwYXRjaCAyLg0K
-PiANCj4gLS0tDQo+ICBkcml2ZXJzL2lvbW11L210a19pb21tdS5jIHwgOCArKysrKysrKw0KPiAg
-ZHJpdmVycy9pb21tdS9tdGtfaW9tbXUuaCB8IDEgKw0KPiAgMiBmaWxlcyBjaGFuZ2VkLCA5IGlu
-c2VydGlvbnMoKykNCj4gDQo+IGRpZmYgLS1naXQgYS9kcml2ZXJzL2lvbW11L210a19pb21tdS5j
-IGIvZHJpdmVycy9pb21tdS9tdGtfaW9tbXUuYw0KPiBpbmRleCBiMWY4NWE3ZTkzNDYuLjRmZjA3
-MWViNTI3OSAxMDA2NDQNCj4gLS0tIGEvZHJpdmVycy9pb21tdS9tdGtfaW9tbXUuYw0KPiArKysg
-Yi9kcml2ZXJzL2lvbW11L210a19pb21tdS5jDQo+IEBAIC04MTcsNiArODE3LDEzIEBAIHN0YXRp
-YyBjb25zdCBzdHJ1Y3QgbXRrX2lvbW11X3BsYXRfZGF0YSBtdDY3NzlfZGF0YSA9IHsNCj4gIAku
-bGFyYmlkX3JlbWFwICA9IHt7MH0sIHsxfSwgezJ9LCB7M30sIHs1fSwgezcsIDh9LCB7MTB9LCB7
-OX19LA0KPiAgfTsNCj4gIA0KPiArc3RhdGljIGNvbnN0IHN0cnVjdCBtdGtfaW9tbXVfcGxhdF9k
-YXRhIG10ODE2N19kYXRhID0gew0KPiArCS5tNHVfcGxhdCAgICAgPSBNNFVfTVQ4MTY3LA0KPiAr
-CS5mbGFncyAgICAgICAgPSBSRVNFVF9BWEkgfCBIQVNfTEVHQUNZX0lWUlBfUEFERFIsDQo+ICsJ
-Lmludl9zZWxfcmVnICA9IFJFR19NTVVfSU5WX1NFTF9HRU4xLA0KPiArCS5sYXJiaWRfcmVtYXAg
-PSB7ezB9LCB7MX0sIHsyfX0sIC8qIExpbmVhciBtYXBwaW5nLiAqLw0KPiArfTsNCj4gKw0KPiAg
-c3RhdGljIGNvbnN0IHN0cnVjdCBtdGtfaW9tbXVfcGxhdF9kYXRhIG10ODE3M19kYXRhID0gew0K
-PiAgCS5tNHVfcGxhdCAgICAgPSBNNFVfTVQ4MTczLA0KPiAgCS5mbGFncwkgICAgICA9IEhBU180
-R0JfTU9ERSB8IEhBU19CQ0xLIHwgUkVTRVRfQVhJIHwNCj4gQEAgLTgzNSw2ICs4NDIsNyBAQCBz
-dGF0aWMgY29uc3Qgc3RydWN0IG10a19pb21tdV9wbGF0X2RhdGEgbXQ4MTgzX2RhdGEgPSB7DQo+
-ICBzdGF0aWMgY29uc3Qgc3RydWN0IG9mX2RldmljZV9pZCBtdGtfaW9tbXVfb2ZfaWRzW10gPSB7
-DQo+ICAJeyAuY29tcGF0aWJsZSA9ICJtZWRpYXRlayxtdDI3MTItbTR1IiwgLmRhdGEgPSAmbXQy
-NzEyX2RhdGF9LA0KPiAgCXsgLmNvbXBhdGlibGUgPSAibWVkaWF0ZWssbXQ2Nzc5LW00dSIsIC5k
-YXRhID0gJm10Njc3OV9kYXRhfSwNCj4gKwl7IC5jb21wYXRpYmxlID0gIm1lZGlhdGVrLG10ODE2
-Ny1tNHUiLCAuZGF0YSA9ICZtdDgxNjdfZGF0YX0sDQo+ICAJeyAuY29tcGF0aWJsZSA9ICJtZWRp
-YXRlayxtdDgxNzMtbTR1IiwgLmRhdGEgPSAmbXQ4MTczX2RhdGF9LA0KPiAgCXsgLmNvbXBhdGli
-bGUgPSAibWVkaWF0ZWssbXQ4MTgzLW00dSIsIC5kYXRhID0gJm10ODE4M19kYXRhfSwNCj4gIAl7
-fQ0KPiBkaWZmIC0tZ2l0IGEvZHJpdmVycy9pb21tdS9tdGtfaW9tbXUuaCBiL2RyaXZlcnMvaW9t
-bXUvbXRrX2lvbW11LmgNCj4gaW5kZXggMTIyOTI1ZGJlNTQ3Li5kZjMyYjNlMzQwOGIgMTAwNjQ0
-DQo+IC0tLSBhL2RyaXZlcnMvaW9tbXUvbXRrX2lvbW11LmgNCj4gKysrIGIvZHJpdmVycy9pb21t
-dS9tdGtfaW9tbXUuaA0KPiBAQCAtMzksNiArMzksNyBAQCBlbnVtIG10a19pb21tdV9wbGF0IHsN
-Cj4gIAlNNFVfTVQyNzAxLA0KPiAgCU00VV9NVDI3MTIsDQo+ICAJTTRVX01UNjc3OSwNCj4gKwlN
-NFVfTVQ4MTY3LA0KPiAgCU00VV9NVDgxNzMsDQo+ICAJTTRVX01UODE4MywNCj4gIH07DQoNCg==
+Note:
+- The machine driver patch is made by the collaboration of
+  Cheng-Yi Chiang <cychiang@chromium.org>
+  Rohit kumar <rohitkr@codeaurora.org>
+  Ajit Pandey <ajitp@codeaurora.org>
+  But Ajit has left codeaurora.
+- This patch series needs HDMI DAI name SC7180_LPASS_DP defined in sc7180-lpass.h.
+  It will be posted in the newer patchset of https://patchwork.kernel.org/patch/11745565/
+
+Changes from v1 to v2:
+- Ducumentation: Addressed all suggestions from Doug.
+- Machine driver:
+  - Fix comment style for license.
+  - Sort includes.
+  - Remove sc7180_snd_hw_params.
+  - Remove sc7180_dai_init and use aux device instead for headset jack registration.
+  - Statically define format for Primary MI2S.
+  - Atomic is not a concern because there is mutex in card to make sure
+    startup and shutdown happen sequentially.
+  - Fix missing return -EINVAL in startup.
+  - Use static sound card.
+  - Use devm_kzalloc to avoid kfree.
+
+Changes from v2 to v3:
+- Ducumentation: Addressed suggestions from Srini.
+- Machine driver:
+  - Reuse qcom_snd_parse_of to parse properties.
+  - Remove playback-only and capture-only.
+  - Misc fixes to address comments.
+
+Changes from v3 to v4:
+- Ducumentation: Addressed suggestions from Rob.
+ - Remove definition of dai.
+ - Use 'sound-dai: true' for sound-dai schema.
+ - Add reg property to pass 'make dt_binding_check' check although reg is not used in the driver.
+- Machine driver:
+ - Add Reviewed-by: Tzung-Bi Shih <tzungbi@google.com>
+
+Changes from v4 to v5:
+- Documentation: Addressed suggestions from Rob.
+ - Add definition for "#address-cells" and "#size-cells".
+ - Add additionalProperties: false
+ - Add required properties.
+
+Changes from v5 to v6:
+- Documentation: Addressed suggestions from Rob.
+ - Drop contains in compatible strings.
+ - Only allow dai-link@[0-9]
+ - Remove reg ref since it has a type definition already.
+
+Changes from v6 to v7
+- Documentation:
+  - Add headset-jack and hdmi-jack to specify the codec
+    responsible for jack detection.
+- HDMI codec driver:
+  - Use component set_jack ops instead of exporting hdmi_codec_set_jack_detect.
+- Machine driver:
+  - Removed aux device following Stephan's suggestion.
+  - Use headset-jack and hdmi-jack to specify the codec
+    responsible for jack detection.
+  - Add support for HDMI(actually DP) playback.
+
+Changes from v7 to v8
+- Documentation:
+  - Remove headset-jack and hdmi-jack.
+- Machine driver:
+  - Let machine driver decide whether there is a jack on the DAI.
+
+Changes from v8 to v9
+- hdmi-codec driver:
+  - Fixed the naming.
+- Machine driver:
+  - Fixed unused fields.
+  - Moved snd_soc_card_set_drvdata
+  - Keep the naming of HDMI as dai name until v5 of lpass-hdmi patches.
+
+Changes from v9 to v10
+- Documentation:
+  - Let compatible string be more specific for board configuration to allow
+    for future changes.
+- Machine driver:
+  - Fixed unused include and macro.
+  - Add temporary macro SC7180_LPASS_DP for future change in sc7180-lpass.h.
+  - Let sound card be dynamically allocated.
+  - Change compatible string accordingly.
+
+Changes from v10 to v11
+- Machine driver:
+  - Use temporary macro LPASS_DP_RX for future change in sc7180-lpass.h.
+
+Ajit Pandey (1):
+  ASoC: qcom: sc7180: Add machine driver for sound card registration
+
+Cheng-Yi Chiang (2):
+  ASoC: hdmi-codec: Use set_jack ops to set jack
+  ASoC: qcom: dt-bindings: Add sc7180 machine bindings
+
+ .../bindings/sound/qcom,sc7180.yaml           | 130 +++++++++
+ include/sound/hdmi-codec.h                    |   3 -
+ sound/soc/codecs/hdmi-codec.c                 |  12 +-
+ sound/soc/mediatek/mt8173/mt8173-rt5650.c     |   5 +-
+ .../mediatek/mt8183/mt8183-da7219-max98357.c  |   5 +-
+ .../mt8183/mt8183-mt6358-ts3a227-max98357.c   |   5 +-
+ sound/soc/qcom/Kconfig                        |  12 +
+ sound/soc/qcom/Makefile                       |   2 +
+ sound/soc/qcom/sc7180.c                       | 266 ++++++++++++++++++
+ sound/soc/rockchip/rockchip_max98090.c        |   3 +-
+ 10 files changed, 421 insertions(+), 22 deletions(-)
+ create mode 100644 Documentation/devicetree/bindings/sound/qcom,sc7180.yaml
+ create mode 100644 sound/soc/qcom/sc7180.c
+
+-- 
+2.28.0.618.gf4bc123cb7-goog
 
