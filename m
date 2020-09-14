@@ -2,229 +2,86 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from vger.kernel.org (vger.kernel.org [23.128.96.18])
-	by mail.lfdr.de (Postfix) with ESMTP id 78574269162
-	for <lists+devicetree@lfdr.de>; Mon, 14 Sep 2020 18:23:52 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTP id DF708269301
+	for <lists+devicetree@lfdr.de>; Mon, 14 Sep 2020 19:23:11 +0200 (CEST)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S1726467AbgINQXo (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Mon, 14 Sep 2020 12:23:44 -0400
-Received: from lelv0143.ext.ti.com ([198.47.23.248]:33022 "EHLO
-        lelv0143.ext.ti.com" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S1726481AbgINQXK (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Mon, 14 Sep 2020 12:23:10 -0400
-Received: from lelv0266.itg.ti.com ([10.180.67.225])
-        by lelv0143.ext.ti.com (8.15.2/8.15.2) with ESMTP id 08EGMtcJ072710;
-        Mon, 14 Sep 2020 11:22:55 -0500
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=ti.com;
-        s=ti-com-17Q1; t=1600100575;
-        bh=CmyXyjWfosPVnPTJSZBsmcTzG4uzHJw8plca5bgWf9M=;
-        h=From:To:CC:Subject:Date:In-Reply-To:References;
-        b=E8WZVogeDbr5P2CrIohLVO4ioh+HQCm++6iWehruiJ1WKpCydhkBKrIyveyyM2Zj2
-         V/1XqBq1rBXFtr5o03xcRWqPbb/Dmd7/PKZJOEJRkljlg8oSGtb0aKUR7iBBlYKRp2
-         jvmwd42yZkEEH1c12mIHB6+PBgL3agkzbxR3ouHU=
-Received: from DLEE103.ent.ti.com (dlee103.ent.ti.com [157.170.170.33])
-        by lelv0266.itg.ti.com (8.15.2/8.15.2) with ESMTPS id 08EGMtd5025352
-        (version=TLSv1.2 cipher=AES256-GCM-SHA384 bits=256 verify=FAIL);
-        Mon, 14 Sep 2020 11:22:55 -0500
-Received: from DLEE102.ent.ti.com (157.170.170.32) by DLEE103.ent.ti.com
- (157.170.170.33) with Microsoft SMTP Server (version=TLS1_2,
- cipher=TLS_ECDHE_RSA_WITH_AES_128_CBC_SHA256_P256) id 15.1.1979.3; Mon, 14
- Sep 2020 11:22:54 -0500
-Received: from lelv0327.itg.ti.com (10.180.67.183) by DLEE102.ent.ti.com
- (157.170.170.32) with Microsoft SMTP Server (version=TLS1_2,
- cipher=TLS_ECDHE_RSA_WITH_AES_128_CBC_SHA256_P256) id 15.1.1979.3 via
- Frontend Transport; Mon, 14 Sep 2020 11:22:54 -0500
-Received: from lokesh-ssd.dhcp.ti.com (ileax41-snat.itg.ti.com [10.172.224.153])
-        by lelv0327.itg.ti.com (8.15.2/8.15.2) with ESMTP id 08EGMW6e088296;
-        Mon, 14 Sep 2020 11:22:51 -0500
-From:   Lokesh Vutla <lokeshvutla@ti.com>
-To:     Nishanth Menon <nm@ti.com>, Tero Kristo <t-kristo@ti.com>,
-        Rob Herring <robh+dt@kernel.org>
-CC:     Linux ARM Mailing List <linux-arm-kernel@lists.infradead.org>,
-        Device Tree Mailing List <devicetree@vger.kernel.org>,
-        Sekhar Nori <nsekhar@ti.com>, Suman Anna <s-anna@ti.com>,
-        Grygorii Strashko <grygorii.strashko@ti.com>,
-        Kishon Vijay Abraham I <kishon@ti.com>,
-        Lokesh Vutla <lokeshvutla@ti.com>
-Subject: [PATCH v4 5/5] arm64: dts: ti: Add support for J7200 Common Processor Board
-Date:   Mon, 14 Sep 2020 21:52:31 +0530
-Message-ID: <20200914162231.2535-6-lokeshvutla@ti.com>
-X-Mailer: git-send-email 2.28.0
-In-Reply-To: <20200914162231.2535-1-lokeshvutla@ti.com>
-References: <20200914162231.2535-1-lokeshvutla@ti.com>
+        id S1726250AbgINRXE (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Mon, 14 Sep 2020 13:23:04 -0400
+Received: from mail-oi1-f196.google.com ([209.85.167.196]:44351 "EHLO
+        mail-oi1-f196.google.com" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
+        with ESMTP id S1726200AbgINMag (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Mon, 14 Sep 2020 08:30:36 -0400
+Received: by mail-oi1-f196.google.com with SMTP id 185so17633646oie.11;
+        Mon, 14 Sep 2020 05:30:35 -0700 (PDT)
+X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+        d=1e100.net; s=20161025;
+        h=x-gm-message-state:mime-version:references:in-reply-to:from:date
+         :message-id:subject:to:cc;
+        bh=L+jbhL6fMkMsaxb8fwQQ9KI/X+FnJmmXEtjx59yCTY8=;
+        b=bydVbl2BAlEB9T2VTjvn3Yw86kHTysx2KVdO57bfKs833g0nAI4tMHEWowG6U261cJ
+         6fyORqqB7E2jQil1H22H81VXsCPkzVTUmIJ16YF6hRPhIc2XRVuria5NNm3FHl8WCqN0
+         l7QJX2uFKj+KkqRIkgQR741Hri/9mAicptyEtG6FbbyuDUloKmaa1Y4PuJEHN1HozNyt
+         vlZL7gJRHH1UOUPbld5HZWh00fkyKVxJpN3nm8R9eqINFlV64fG6GYG1f0en8mgy6ot2
+         /V2wNhO1D/pt6JCQy5Ch9xnbUI7SHwt6fGoGo65RIoT0E4dFvHWPR8+D6I2pJ22RsVz4
+         MaaQ==
+X-Gm-Message-State: AOAM532iinIkJTRqSPhFBaxG/M/fsBivcXGV54uDBg49EjBVt+MlzZmY
+        sAWfj6NUR7Dlj1QwsGHfETZ/MmcWRIRWqdeSgOS6EQY7uhM=
+X-Google-Smtp-Source: ABdhPJxWecUlEvkD5czRnfhbvWXIezlwQEVTPwks1x0nHHDWs7NJoD1rFLAao7GQAla1fDSGAwC/sv/eWpK5w0S6W3k=
+X-Received: by 2002:aca:3bc3:: with SMTP id i186mr7701067oia.148.1600086132231;
+ Mon, 14 Sep 2020 05:22:12 -0700 (PDT)
 MIME-Version: 1.0
-Content-Transfer-Encoding: 8bit
-Content-Type: text/plain
-X-EXCLAIMER-MD-CONFIG: e1e8a2fd-e40a-4ac6-ac9b-f7e9cc9ee180
+References: <20200911121259.5669-1-fabrizio.castro.jz@renesas.com>
+In-Reply-To: <20200911121259.5669-1-fabrizio.castro.jz@renesas.com>
+From:   Geert Uytterhoeven <geert@linux-m68k.org>
+Date:   Mon, 14 Sep 2020 14:22:00 +0200
+Message-ID: <CAMuHMdX3GYwVd7ezXS4Zkv1vJDe=g1=gj4KKaj==AVO1RuytXA@mail.gmail.com>
+Subject: Re: [PATCH] arm64: dts: renesas: r8a77990: Add DRIF support
+To:     Fabrizio Castro <fabrizio.castro.jz@renesas.com>
+Cc:     Rob Herring <robh+dt@kernel.org>,
+        Magnus Damm <magnus.damm@gmail.com>,
+        Linux-Renesas <linux-renesas-soc@vger.kernel.org>,
+        "open list:OPEN FIRMWARE AND FLATTENED DEVICE TREE BINDINGS" 
+        <devicetree@vger.kernel.org>,
+        Chris Paterson <Chris.Paterson2@renesas.com>,
+        Biju Das <biju.das.jz@bp.renesas.com>,
+        Prabhakar Mahadev Lad <prabhakar.mahadev-lad.rj@bp.renesas.com>,
+        Laurent Pinchart <laurent.pinchart@ideasonboard.com>
+Content-Type: text/plain; charset="UTF-8"
 Sender: devicetree-owner@vger.kernel.org
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-Add support for J7200 Common Processor Board.
-The EVM architecture is very similar to J721E as follows:
+On Fri, Sep 11, 2020 at 2:13 PM Fabrizio Castro
+<fabrizio.castro.jz@renesas.com> wrote:
+> Add the DRIF controller nodes for the r8a77990 (a.k.a. R-Car E3).
+>
+> Please note that R-Car E3 has register BITCTR located at offset
+> 0x80 (this register is not available on the r8a77960 and r8a77951,
+> whose support has already been upstreamed), and even though it is
+> not dealt with just yet within the driver, we have to keep that
+> into account with our device tree nodes.
 
-+------------------------------------------------------+
-|   +-------------------------------------------+      |
-|   |                                           |      |
-|   |        Add-on Card 1 Options              |      |
-|   |                                           |      |
-|   +-------------------------------------------+      |
-|                                                      |
-|                                                      |
-|                     +-------------------+            |
-|                     |                   |            |
-|                     |   SOM             |            |
-|  +--------------+   |                   |            |
-|  |              |   |                   |            |
-|  |  Add-on      |   +-------------------+            |
-|  |  Card 2      |                                    |    Power Supply
-|  |  Options     |                                    |    |
-|  |              |                                    |    |
-|  +--------------+                                    | <---
-+------------------------------------------------------+
-                                Common Processor Board
+Indeed.
 
-Common Processor board is the baseboard that has most of the actual
-connectors, power supply etc. A SOM (System on Module) is plugged on
-to the common processor board and this contains the SoC, PMIC, DDR and
-basic high speed components necessary for functionality.
+> Also, please note that while testing it has emerged that the
+> HW User Manual has the wrong DMA details for DRIF2 and DRIF3
+> on E3, as they are only allowed SYS-DMAC0 rather than SYS-DMAC1
+> and SYS-DMAC2. An errata addressing this issue will be available
+> soon.
+>
+> Signed-off-by: Fabrizio Castro <fabrizio.castro.jz@renesas.com>
 
-Note:
-* The minimum configuration required to boot up the board is System On
-  Module(SOM) + Common Processor Board.
-* Since there is just a single SOM and Common Processor Board, we are
-  maintaining common processor board as the base dts and SOM as the dtsi
-  that we include. In the future as more SOM's appear, we should move
-  common processor board as a dtsi and include configurations as dts.
-* All daughter cards beyond the basic boards shall be maintained as
-  overlays.
+Reviewed-by: Geert Uytterhoeven <geert+renesas@glider.be>
+i.e. will queue in renesas-devel for v5.10.
 
-Reviewed-by: Grygorii Strashko <grygorii.strashko@ti.com>
-Signed-off-by: Lokesh Vutla <lokeshvutla@ti.com>
-Signed-off-by: Peter Ujfalusi <peter.ujfalusi@ti.com>
----
- arch/arm64/boot/dts/ti/Makefile               |  2 +
- .../dts/ti/k3-j7200-common-proc-board.dts     | 64 +++++++++++++++++++
- arch/arm64/boot/dts/ti/k3-j7200-som-p0.dtsi   | 29 +++++++++
- 3 files changed, 95 insertions(+)
- create mode 100644 arch/arm64/boot/dts/ti/k3-j7200-common-proc-board.dts
- create mode 100644 arch/arm64/boot/dts/ti/k3-j7200-som-p0.dtsi
+Gr{oetje,eeting}s,
 
-diff --git a/arch/arm64/boot/dts/ti/Makefile b/arch/arm64/boot/dts/ti/Makefile
-index 7f28be62b8da..65506f21ba30 100644
---- a/arch/arm64/boot/dts/ti/Makefile
-+++ b/arch/arm64/boot/dts/ti/Makefile
-@@ -9,3 +9,5 @@
- dtb-$(CONFIG_ARCH_K3) += k3-am654-base-board.dtb
- 
- dtb-$(CONFIG_ARCH_K3) += k3-j721e-common-proc-board.dtb
-+
-+dtb-$(CONFIG_ARCH_K3) += k3-j7200-common-proc-board.dtb
-diff --git a/arch/arm64/boot/dts/ti/k3-j7200-common-proc-board.dts b/arch/arm64/boot/dts/ti/k3-j7200-common-proc-board.dts
-new file mode 100644
-index 000000000000..e27069317c4e
---- /dev/null
-+++ b/arch/arm64/boot/dts/ti/k3-j7200-common-proc-board.dts
-@@ -0,0 +1,64 @@
-+// SPDX-License-Identifier: GPL-2.0
-+/*
-+ * Copyright (C) 2020 Texas Instruments Incorporated - https://www.ti.com/
-+ */
-+
-+/dts-v1/;
-+
-+#include "k3-j7200-som-p0.dtsi"
-+
-+/ {
-+	chosen {
-+		stdout-path = "serial2:115200n8";
-+		bootargs = "console=ttyS2,115200n8 earlycon=ns16550a,mmio32,0x02800000";
-+	};
-+};
-+
-+&wkup_uart0 {
-+	/* Wakeup UART is used by System firmware */
-+	status = "disabled";
-+};
-+
-+&main_uart0 {
-+	power-domains = <&k3_pds 146 TI_SCI_PD_SHARED>;
-+};
-+
-+&main_uart2 {
-+	/* MAIN UART 2 is used by R5F firmware */
-+	status = "disabled";
-+};
-+
-+&main_uart3 {
-+	/* UART not brought out */
-+	status = "disabled";
-+};
-+
-+&main_uart4 {
-+	/* UART not brought out */
-+	status = "disabled";
-+};
-+
-+&main_uart5 {
-+	/* UART not brought out */
-+	status = "disabled";
-+};
-+
-+&main_uart6 {
-+	/* UART not brought out */
-+	status = "disabled";
-+};
-+
-+&main_uart7 {
-+	/* UART not brought out */
-+	status = "disabled";
-+};
-+
-+&main_uart8 {
-+	/* UART not brought out */
-+	status = "disabled";
-+};
-+
-+&main_uart9 {
-+	/* UART not brought out */
-+	status = "disabled";
-+};
-diff --git a/arch/arm64/boot/dts/ti/k3-j7200-som-p0.dtsi b/arch/arm64/boot/dts/ti/k3-j7200-som-p0.dtsi
-new file mode 100644
-index 000000000000..f7e271c442a0
---- /dev/null
-+++ b/arch/arm64/boot/dts/ti/k3-j7200-som-p0.dtsi
-@@ -0,0 +1,29 @@
-+// SPDX-License-Identifier: GPL-2.0
-+/*
-+ * Copyright (C) 2020 Texas Instruments Incorporated - https://www.ti.com/
-+ */
-+
-+/dts-v1/;
-+
-+#include "k3-j7200.dtsi"
-+
-+/ {
-+	memory@80000000 {
-+		device_type = "memory";
-+		/* 4G RAM */
-+		reg = <0x00 0x80000000 0x00 0x80000000>,
-+		      <0x08 0x80000000 0x00 0x80000000>;
-+	};
-+
-+	reserved_memory: reserved-memory {
-+		#address-cells = <2>;
-+		#size-cells = <2>;
-+		ranges;
-+
-+		secure_ddr: optee@9e800000 {
-+			reg = <0x00 0x9e800000 0x00 0x01800000>;
-+			alignment = <0x1000>;
-+			no-map;
-+		};
-+	};
-+};
+                        Geert
+
 -- 
-2.28.0
+Geert Uytterhoeven -- There's lots of Linux beyond ia32 -- geert@linux-m68k.org
 
+In personal conversations with technical people, I call myself a hacker. But
+when I'm talking to journalists I just say "programmer" or something like that.
+                                -- Linus Torvalds
