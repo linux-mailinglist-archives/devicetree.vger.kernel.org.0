@@ -2,43 +2,42 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from vger.kernel.org (vger.kernel.org [23.128.96.18])
-	by mail.lfdr.de (Postfix) with ESMTP id BB7772688C1
-	for <lists+devicetree@lfdr.de>; Mon, 14 Sep 2020 11:49:13 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTP id 80DF52688D7
+	for <lists+devicetree@lfdr.de>; Mon, 14 Sep 2020 11:55:35 +0200 (CEST)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S1726383AbgINJtM (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Mon, 14 Sep 2020 05:49:12 -0400
-Received: from bhuna.collabora.co.uk ([46.235.227.227]:35026 "EHLO
-        bhuna.collabora.co.uk" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S1726275AbgINJtM (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Mon, 14 Sep 2020 05:49:12 -0400
-Received: from [127.0.0.1] (localhost [127.0.0.1])
-        (Authenticated sender: eballetbo)
-        with ESMTPSA id 10169298604
-Subject: Re: [PATCH 01/12] dt-bindings: power: Add bindings for the Mediatek
- SCPSYS power domains controller
-To:     Matthias Brugger <matthias.bgg@gmail.com>,
-        Rob Herring <robh@kernel.org>
-Cc:     linux-kernel@vger.kernel.org,
-        Collabora Kernel ML <kernel@collabora.com>,
-        fparent@baylibre.com, drinkcat@chromium.org, hsinyi@chromium.org,
-        weiyi.lu@mediatek.com, Matthias Brugger <mbrugger@suse.com>,
-        devicetree@vger.kernel.org, linux-arm-kernel@lists.infradead.org,
-        linux-mediatek@lists.infradead.org,
-        Dafna Hirschfeld <dafna.hirschfeld@collabora.com>
-References: <20200910172826.3074357-1-enric.balletbo@collabora.com>
- <20200910172826.3074357-2-enric.balletbo@collabora.com>
- <20200911230255.GA2972120@bogus>
- <7a1c89b6-f483-5d57-f154-b80b72964077@gmail.com>
-From:   Enric Balletbo i Serra <enric.balletbo@collabora.com>
-Message-ID: <afa8d779-1965-f01c-3cd2-f57ebb3f7b60@collabora.com>
-Date:   Mon, 14 Sep 2020 11:49:04 +0200
-User-Agent: Mozilla/5.0 (X11; Linux x86_64; rv:68.0) Gecko/20100101
- Thunderbird/68.12.0
+        id S1726382AbgINJze (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Mon, 14 Sep 2020 05:55:34 -0400
+Received: from szxga05-in.huawei.com ([45.249.212.191]:12253 "EHLO huawei.com"
+        rhost-flags-OK-OK-OK-FAIL) by vger.kernel.org with ESMTP
+        id S1726239AbgINJze (ORCPT <rfc822;devicetree@vger.kernel.org>);
+        Mon, 14 Sep 2020 05:55:34 -0400
+Received: from DGGEMS402-HUB.china.huawei.com (unknown [172.30.72.60])
+        by Forcepoint Email with ESMTP id 195213A6CB3C1D97641C;
+        Mon, 14 Sep 2020 17:55:24 +0800 (CST)
+Received: from [127.0.0.1] (10.174.177.253) by DGGEMS402-HUB.china.huawei.com
+ (10.3.19.202) with Microsoft SMTP Server id 14.3.487.0; Mon, 14 Sep 2020
+ 17:55:15 +0800
+Subject: Re: [PATCH 3/3] ARM: dts: add SD5203 dts
+To:     Wei Xu <xuwei5@hisilicon.com>, Rob Herring <robh+dt@kernel.org>,
+        linux-arm-kernel <linux-arm-kernel@lists.infradead.org>,
+        devicetree <devicetree@vger.kernel.org>,
+        linux-kernel <linux-kernel@vger.kernel.org>
+CC:     Kefeng Wang <wangkefeng.wang@huawei.com>
+References: <20200903122734.2369-1-thunder.leizhen@huawei.com>
+ <20200903122734.2369-4-thunder.leizhen@huawei.com>
+ <5F5F37FD.8090401@hisilicon.com>
+From:   "Leizhen (ThunderTown)" <thunder.leizhen@huawei.com>
+Message-ID: <82cedabd-2178-53f3-0884-2e530e912a0e@huawei.com>
+Date:   Mon, 14 Sep 2020 17:55:14 +0800
+User-Agent: Mozilla/5.0 (Windows NT 10.0; WOW64; rv:60.0) Gecko/20100101
+ Thunderbird/60.7.0
 MIME-Version: 1.0
-In-Reply-To: <7a1c89b6-f483-5d57-f154-b80b72964077@gmail.com>
-Content-Type: text/plain; charset=utf-8
+In-Reply-To: <5F5F37FD.8090401@hisilicon.com>
+Content-Type: text/plain; charset="utf-8"
 Content-Language: en-US
-Content-Transfer-Encoding: 8bit
+Content-Transfer-Encoding: 7bit
+X-Originating-IP: [10.174.177.253]
+X-CFilter-Loop: Reflected
 Sender: devicetree-owner@vger.kernel.org
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
@@ -46,213 +45,154 @@ X-Mailing-List: devicetree@vger.kernel.org
 
 
 
-On 14/9/20 10:59, Matthias Brugger wrote:
+On 2020/9/14 17:29, Wei Xu wrote:
+> Hi Zhen,
 > 
+> On 2020/9/3 20:27, Zhen Lei wrote:
+>> From: Kefeng Wang <wangkefeng.wang@huawei.com>
+>>
+>> Add sd5203.dts for Hisilicon SD5203 SoC platform.
+>>
+>> Signed-off-by: Kefeng Wang <wangkefeng.wang@huawei.com>
+>> Signed-off-by: Zhen Lei <thunder.leizhen@huawei.com>
+>> ---
+>>  arch/arm/boot/dts/Makefile   |  2 +
+>>  arch/arm/boot/dts/sd5203.dts | 90 ++++++++++++++++++++++++++++++++++++
+>>  2 files changed, 92 insertions(+)
+>>  create mode 100644 arch/arm/boot/dts/sd5203.dts
+>>
+>> diff --git a/arch/arm/boot/dts/Makefile b/arch/arm/boot/dts/Makefile
+>> index 4572db3fa5ae..1d1262df5c55 100644
+>> --- a/arch/arm/boot/dts/Makefile
+>> +++ b/arch/arm/boot/dts/Makefile
+>> @@ -357,6 +357,8 @@ dtb-$(CONFIG_ARCH_MPS2) += \
+>>  	mps2-an399.dtb
+>>  dtb-$(CONFIG_ARCH_MOXART) += \
+>>  	moxart-uc7112lx.dtb
+>> +dtb-$(CONFIG_ARCH_SD5203) += \
+>> +	sd5203.dtb
+>>  dtb-$(CONFIG_SOC_IMX1) += \
+>>  	imx1-ads.dtb \
+>>  	imx1-apf9328.dtb
+>> diff --git a/arch/arm/boot/dts/sd5203.dts b/arch/arm/boot/dts/sd5203.dts
+>> new file mode 100644
+>> index 000000000000..99da46072f72
+>> --- /dev/null
+>> +++ b/arch/arm/boot/dts/sd5203.dts
+>> @@ -0,0 +1,90 @@
+>> +// SPDX-License-Identifier: GPL-2.0-only
+>> +/*
+>> + * Copyright (c) 2020 Hisilicon Limited.
+>> + *
+>> + * DTS file for Hisilicon SD5203 Board
+>> + */
+>> +
+>> +/dts-v1/;
+>> +
+>> +/ {
+>> +	model = "Hisilicon SD5203";
+>> +	compatible = "hisilicon,sd5203";
 > 
-> On 12/09/2020 01:02, Rob Herring wrote:
->> On Thu, Sep 10, 2020 at 07:28:15PM +0200, Enric Balletbo i Serra wrote:
->>> The System Control Processor System (SCPSYS) has several power management
->>> related tasks in the system. Add the bindings to define the power
->>> domains for the SCPSYS power controller.
->>>
->>> Co-developed-by: Matthias Brugger <mbrugger@suse.com>
->>> Signed-off-by: Matthias Brugger <mbrugger@suse.com>
->>> Signed-off-by: Enric Balletbo i Serra <enric.balletbo@collabora.com>
->>> ---
->>> Dear Rob,
->>>
->>> I am awasre that this binding is not ready, but I prefered to send because I'm
->>> kind of blocked. Compiling this binding triggers the following error:
->>>
->>>      mediatek,power-controller.example.dt.yaml: syscon@10006000: mfg_async@7:
->>>      '#address-cells', '#size-cells', 'mfg_2d@8'
->>>      do not match any of the regexes: 'pinctrl-[0-9]+'
->>>
->>> This happens when a definition of a power-domain (parent) contains
->>> another power-domain (child), like the example. I am not sure how to
->>> specify this in the yaml and deal with this, so any clue is welcome.
->>
->> You just have to keep nesting schemas all the way down. Define a
->> grandchild node under the child node and then all of its properties.
->>
->>>
->>> Thanks,
->>>    Enric
->>>
->>>   .../power/mediatek,power-controller.yaml      | 171 ++++++++++++++++++
->>>   1 file changed, 171 insertions(+)
->>>   create mode 100644
->>> Documentation/devicetree/bindings/power/mediatek,power-controller.yaml
->>>
->>> diff --git
->>> a/Documentation/devicetree/bindings/power/mediatek,power-controller.yaml
->>> b/Documentation/devicetree/bindings/power/mediatek,power-controller.yaml
->>> new file mode 100644
->>> index 000000000000..8be9244ad160
->>> --- /dev/null
->>> +++ b/Documentation/devicetree/bindings/power/mediatek,power-controller.yaml
->>> @@ -0,0 +1,171 @@
->>> +# SPDX-License-Identifier: (GPL-2.0-only OR BSD-2-Clause)
->>> +%YAML 1.2
->>> +---
->>> +$id: http://devicetree.org/schemas/power/mediatek,power-controller.yaml#
->>> +$schema: http://devicetree.org/meta-schemas/core.yaml#
->>> +
->>> +title: Mediatek Power Domains Controller
->>> +
->>> +maintainers:
->>> +  - Weiyi Lu <weiyi.lu@mediatek.com>
->>> +  - Matthias Brugger <mbrugger@suse.com>
->>> +
->>> +description: |
->>> +  Mediatek processors include support for multiple power domains which can be
->>> +  powered up/down by software based on different application scenes to save
->>> power.
->>> +
->>> +  IP cores belonging to a power domain should contain a 'power-domains'
->>> +  property that is a phandle for SCPSYS node representing the domain.
->>> +
->>> +properties:
->>> +  $nodename:
->>> +    pattern: "^syscon@[0-9a-f]+$"
->>> +
->>> +  compatible:
->>> +    items:
->>> +      - enum:
->>> +        - mediatek,mt8173-power-controller
->>> +      - const: syscon
->>> +
->>> +  reg:
->>> +    maxItems: 1
->>> +
->>> +patternProperties:
->>> +  "^.*@[0-9]$":
->>
->> Node names should be generic:
->>
->> power-domain@
->>
+> Can you please add the binding document as well?
+
+OK, I will do it.
+
 > 
-> Enric correct me if I'm wrong, if we want to see the power domains in debugfs,
-> they are listed by their name. If all are called power-domain then the listing
-> is pretty much useless.
+>> +	interrupt-parent = <&vic>;
+>> +	#address-cells = <1>;
+>> +	#size-cells = <1>;
+>> +
+>> +	chosen {
+>> +		bootargs="console=ttyS0,9600 earlycon=uart8250,mmio32,0x1600d000";
+>> +	};
+>> +
+>> +	aliases {
+>> +		serial0 = &uart0;
+>> +	};
+>> +
+>> +	cpu {
+>> +		compatible = "arm,arm926ej-s";
+>> +		device_type = "cpu";
+>> +	};
+>> +
+>> +	memory@30000000 {
+>> +		device_type = "memory";
+>> +		reg = <0x30000000 0x8000000>;
+>> +	};
+>> +
+>> +	soc {
+>> +		#address-cells = <1>;
+>> +		#size-cells = <1>;
+>> +		compatible = "simple-bus";
+>> +		ranges;
+>> +
+>> +		vic: interrupt-controller@10130000 {
+>> +			compatible = "hisilicon,sd5203-vic";
+
+As Marc Zyngier's suggestion, I discarded adding an independent SD5203-VIC
+driver, but make the dw-apb-ictl irqchip driver to support hierarchy irq domain.
+I will send V4 of this irqchip driver today.
+
+Here is the link of V3:
+https://lkml.org/lkml/2020/9/9/94
+
 > 
-
-cc'ing Dafna who might be interested in this discussion.
-
-Yes, It'd be difficult to clearly identify which domain is without looking at
-the DT. Now we have
-
-# ls /sys/kernel/debug/pm_genpd
-audio  mfg     mfg_async  pm_genpd_summary  vdec  venc_lt
-isp    mfg_2d  mm         usb
-
-
-Actually, I see two "problems" on using a generic name. The first one is that
-debugfs uses that name and doesn't allow duplicate names, so we will get a bunch
-of errors like this:
-
-debugfs: Directory 'power-domain' with parent 'pm_gendpd' already present!
-debugfs: Directory 'power-domain' with parent 'pm_gendpd' already present!
-debugfs: Directory 'power-domain' with parent 'pm_gendpd' already present!
-...
-
-And we will lost the debug information. However, that's not probably a DT
-problem as maybe debugfs should create different names in the form
-power-domain@0, power-domain@1, etc.
-
-The second one is what Matthias said, the name exported to the debugfs is
-useless. Again, maybe is not a DT problem and the debugfs infra should handle
-this cases in a better way, but that's not the case right now.
-
-
->>> +    type: object
->>> +    description: |
->>> +      Represents the power domains within the power controller node as
->>> documented
->>> +      in Documentation/devicetree/bindings/power/power-domain.yaml.
->>> +
->>> +    properties:
->>> +      reg:
->>> +        description: |
->>> +          Power domain index. Valid values are defined in:
->>> +              "include/dt-bindings/power/mt8173-power.h" - for MT8173 type
->>> power domain.
->>> +        maxItems: 1
->>> +
->>> +      '#power-domain-cells':
->>> +        description:
->>> +          Documented by the generic PM Domain bindings in
->>> +          Documentation/devicetree/bindings/power/power-domain.yaml.
->>
->> No need to redefine a common property. This should define valid values
->> for it.
->>
->>> +
->>> +      clocks:
->>> +        description: |
->>> +          A number of phandles to clocks that need to be enabled during domain
->>> +          power-up sequencing.
->>
->> No need to redefine 'clocks'. You need to define how many, what each one
->> is, and the order.
+> Ditto.
+> Thanks!
+> 
+> Best Regards,
+> Wei
+> 
+>> +			reg = <0x10130000 0x1000>;
+>> +			interrupt-controller;
+>> +			#interrupt-cells = <1>;
+>> +		};
+>> +
+>> +		refclk125mhz: refclk125mhz {
+>> +			compatible = "fixed-clock";
+>> +			#clock-cells = <0>;
+>> +			clock-frequency = <125000000>;
+>> +		};
+>> +
+>> +		timer0: timer@16002000 {
+>> +			compatible = "arm,sp804", "arm,primecell";
+>> +			reg = <0x16002000 0x1000>;
+>> +			interrupts = <4>;
+>> +			clocks = <&refclk125mhz>;
+>> +			clock-names = "apb_pclk";
+>> +		};
+>> +
+>> +		timer1: timer@16003000 {
+>> +			compatible = "arm,sp804", "arm,primecell";
+>> +			reg = <0x16003000 0x1000>;
+>> +			interrupts = <5>;
+>> +			clocks = <&refclk125mhz>;
+>> +			clock-names = "apb_pclk";
+>> +		};
+>> +
+>> +		uart0: serial@1600D000 {
+>> +			compatible = "snps,dw-apb-uart";
+>> +			reg = <0x1600D000 0x1000>;
+>> +			bus_id = "uart0";
+>> +			clocks = <&refclk125mhz>;
+>> +			clock-names = "apb_pclk";
+>> +			reg-shift = <2>;
+>> +			interrupts = <17>;
+>> +		};
+>> +
+>> +		uart1: serial@1600C000 {
+>> +			compatible = "snps,dw-apb-uart";
+>> +			reg = <0x1600C000 0x1000>;
+>> +			clocks = <&refclk125mhz>;
+>> +			clock-names = "apb_pclk";
+>> +			reg-shift = <2>;
+>> +			interrupts = <16>;
+>> +			status = "disabled";
+>> +		};
+>> +	};
+>> +};
 >>
 > 
-> Do you mean we have to define each clock for each power domain of each SoC?
+> .
 > 
->>> +
->>> +      clock-names:
->>> +        description: |
->>> +          List of names of clocks, in order to match the power-up sequencing
->>> +          for each power domain we need to group the clocks by name. BASIC
->>> +          clocks need to be enabled before enabling the corresponding power
->>> +          domain, and should not have a '-' in their name (i.e mm, mfg, venc).
->>> +          SUSBYS clocks need to be enabled before releasing the bus protection,
->>> +          and should contain a '-' in their name (i.e mm-0, isp-0, cam-0).
->>> +
->>> +          In order to follow properly the power-up sequencing, the clocks must
->>> +          be specified by order, adding first the BASIC clocks followed by the
->>> +          SUSBSYS clocks.
->>
->> You need to define the names.
->>
->>> +
->>> +      mediatek,infracfg:
->>> +        $ref: /schemas/types.yaml#definitions/phandle
->>> +        description: phandle to the device containing the INFRACFG register
->>> range.
->>> +
->>> +      mediatek,smi:
->>> +        $ref: /schemas/types.yaml#definitions/phandle
->>> +        description: phandle to the device containing the SMI register range.
->>> +
->>> +    required:
->>> +      - reg
->>> +      - '#power-domain-cells'
->>> +
->>> +    additionalProperties: false
->>> +
->>> +required:
->>> +  - compatible
->>> +  - reg
->>> +
->>> +additionalProperties: false
->>> +
->>> +examples:
->>> +  - |
->>> +    #include <dt-bindings/clock/mt8173-clk.h>
->>> +    #include <dt-bindings/power/mt8173-power.h>
->>> +
->>> +    soc {
->>> +        #address-cells = <2>;
->>> +        #size-cells = <2>;
->>> +
->>> +        scpsys: syscon@10006000 {
->>> +            compatible = "mediatek,mt8173-power-controller", "syscon";
-> 
-> The power domain controller is just one funcionality the SCPSYS block can
-> provide. I think it should be child of the SCPSYS.
-> 
-> Regards,
-> Matthias
-> 
+
