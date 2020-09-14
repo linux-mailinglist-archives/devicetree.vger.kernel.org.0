@@ -2,71 +2,71 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from vger.kernel.org (vger.kernel.org [23.128.96.18])
-	by mail.lfdr.de (Postfix) with ESMTP id C6E25268A88
-	for <lists+devicetree@lfdr.de>; Mon, 14 Sep 2020 14:01:59 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTP id 8C4AD268A98
+	for <lists+devicetree@lfdr.de>; Mon, 14 Sep 2020 14:03:57 +0200 (CEST)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S1726072AbgINMBt (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Mon, 14 Sep 2020 08:01:49 -0400
-Received: from mout.gmx.net ([212.227.17.20]:46733 "EHLO mout.gmx.net"
-        rhost-flags-OK-OK-OK-OK) by vger.kernel.org with ESMTP
-        id S1726095AbgINLk4 (ORCPT <rfc822;devicetree@vger.kernel.org>);
-        Mon, 14 Sep 2020 07:40:56 -0400
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=gmx.net;
-        s=badeba3b8450; t=1600083556;
-        bh=f0dZy9+FhBEO7GSEaqvJXC6YpjJ355zoFG9pqHjP6XQ=;
-        h=X-UI-Sender-Class:From:To:Cc:Subject:Date:In-Reply-To:References;
-        b=HJsSfvX65CWO6/YQhM6PdixgM5ul7nhZq6sfszpMOfbupJVK3byjAYuuSUuWdnW0i
-         Fk5bqywBfOhqD5+sfa30P6VnMchqmYWKfL9IVBuq9sx/542+fMQ1flJHxAGgKUHD//
-         mDItSidgQTNW0lUf9UVAY9OQ9CMC8IZduNt7nwtM=
-X-UI-Sender-Class: 01bb95c1-4bf8-414a-932a-4f6e2808ef9c
-Received: from [80.208.209.101] ([80.208.209.101]) by web-mail.gmx.net
- (3c-app-gmx-bap20.server.lan [172.19.172.90]) (via HTTP); Mon, 14 Sep 2020
- 13:39:16 +0200
+        id S1726124AbgINMDv (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Mon, 14 Sep 2020 08:03:51 -0400
+Received: from mail-yb1-f195.google.com ([209.85.219.195]:45806 "EHLO
+        mail-yb1-f195.google.com" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
+        with ESMTP id S1726096AbgINMDN (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Mon, 14 Sep 2020 08:03:13 -0400
+Received: by mail-yb1-f195.google.com with SMTP id p81so11599921ybc.12;
+        Mon, 14 Sep 2020 05:01:06 -0700 (PDT)
+X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+        d=1e100.net; s=20161025;
+        h=x-gm-message-state:mime-version:references:in-reply-to:from:date
+         :message-id:subject:to:cc;
+        bh=f1Xvnib1KAvoqjyhzUrY6wqtD7BsCds6nReVVkX9WQM=;
+        b=i1Z/uoC9R4wZHX4JyAtEAPR/qpgQAxaw4VXlczfeqn5hm+bXcA5uIJsBwIL1HQv4ON
+         MJZtwrjpDF/WONVIWt45625Bgk/pRC9x0KW3uYcryuRQGqCPjtHcR7zjSw4N4W7VPEKw
+         xCQ3BwLS5Zc5EVUzJxuHOfhi8c2h9O9nv6GbQ9iabae4uZxpj1dSBsDq1qpAp/s0QZOL
+         d5TTgArmfl0xsi1M5eDcytRy7UacqHU4VAOXti5kjkJ5wBFVLPFjv4vGqZslLTbAAAld
+         ZLWiRGBpSc71SkdxWWdnAM7GV7oBWwl1jG4sFaAqDm85UhxNYewaIDtMDP/Nzf42UAwi
+         gDYg==
+X-Gm-Message-State: AOAM530W91Q7+AO3T+naTcU1ackshz8PdEHkuULDoiueNyHEQNlJY2LU
+        v973v8QHZPsNcTlOw2+EePNmLgi2tudas4sMUq3GtdKB
+X-Google-Smtp-Source: ABdhPJy72w8a2dXJqwISoVPXy6X0f6peo1TA5+SnjUmc3HqjNuicmMLWTtDJxeSF1zpkGqCB77dveuzxHxvy766AYgg=
+X-Received: by 2002:a05:6830:1008:: with SMTP id a8mr8317812otp.107.1600084321973;
+ Mon, 14 Sep 2020 04:52:01 -0700 (PDT)
 MIME-Version: 1.0
-Message-ID: <trinity-a791b919-956f-4cde-a496-919d4f3f2ba9-1600083556775@3c-app-gmx-bap20>
-From:   Frank Wunderlich <frank-w@public-files.de>
-To:     Chuanjia Liu <chuanjia.liu@mediatek.com>
-Cc:     Bjorn Helgaas <bhelgaas@google.com>,
+References: <20200911080929.15058-1-prabhakar.mahadev-lad.rj@bp.renesas.com>
+In-Reply-To: <20200911080929.15058-1-prabhakar.mahadev-lad.rj@bp.renesas.com>
+From:   Geert Uytterhoeven <geert@linux-m68k.org>
+Date:   Mon, 14 Sep 2020 13:51:50 +0200
+Message-ID: <CAMuHMdUsxo14TA4qEajZcvJa=M9dO71Vvk8mDcvaOvTBmAOYNw@mail.gmail.com>
+Subject: Re: [PATCH] ARM: dts: r8a7742: Add VSP support
+To:     Lad Prabhakar <prabhakar.mahadev-lad.rj@bp.renesas.com>
+Cc:     Magnus Damm <magnus.damm@gmail.com>,
         Rob Herring <robh+dt@kernel.org>,
-        Lorenzo Pieralisi <lorenzo.pieralisi@arm.com>,
-        Matthias Brugger <matthias.bgg@gmail.com>,
-        devicetree@vger.kernel.org, Ryder Lee <ryder.lee@mediatek.com>,
-        linux-pci@vger.kernel.org, linux-mediatek@lists.infradead.org,
-        linux-arm-kernel@lists.infradead.org, yong.wu@mediatek.com
-Subject: Aw: [PATCH v6 0/4] Spilt PCIe node to comply with hardware design
-Content-Type: text/plain; charset=UTF-8
-Date:   Mon, 14 Sep 2020 13:39:16 +0200
-Importance: normal
-Sensitivity: Normal
-In-Reply-To: <20200914112659.7091-1-chuanjia.liu@mediatek.com>
-References: <20200914112659.7091-1-chuanjia.liu@mediatek.com>
-X-UI-Message-Type: mail
-X-Priority: 3
-X-Provags-ID: V03:K1:0PDB+aZRuNST62kZwEGOyCa7pLdlcYqnwgLUj7ZrKDks0V8Xio4QC3Ubo+Np/Ci+Ityxp
- h4alMQQsNmo4MFcxcJp8R6rh4h0FY1YPTSk0QPidhgQxb2/iyNahEr1dz/wrSg6uCXyefnyUCQju
- TYlsfLu/ioVfRJ+7GnN2a8CtWXAnwTvWd+viD1itLrq+ju6/mVtKkHFtjHZnPpig8AqEyKYFAABb
- 8Xr3KxXPX5WteQV82FDNbcYn3VcjiNqA7Nes5HC/Bh/h4VCI/cgsQvt8JWWJf7iMtjzVkr6WWKVJ
- cw=
-X-Spam-Flag: NO
-X-UI-Out-Filterresults: notjunk:1;V03:K0:0nAv7gzaFy4=:U9oXlmnt8K3fDivQOfT/rL
- 7cIJQ/ly0VcrieuCRrOv5IBVEhtbQVyDMsMV6ewbuurkifr+YrE9LIegWiTHsGIRfjWsGOHtQ
- yNmqTG74LxdVkTL7pkED2B+V4VddIJ35u+7zfAGKxDOW/kzJiFsgbaGvdAxPdEBxIUpeD4iO7
- yk9ReHHwwPH4gS2VvPLHpbm/inxzx9LA0oOv0wSZF/d0eYp59W8IMwMH8TvzCJu7ZW2Wou2fP
- 1Pgq23oWdglrooGlQo6WhUXOwUchKwN4DLzZLt9dpSAPVkEjgzlDZx/zCGYdS0M5CpgY1VCo0
- AGrtS50O52QHU/z+ROezKYk4cC7RKdVOtjxKjs7qmgKL6oKae/6anpDtk8o8AvO5bh7T5qXGZ
- COWSUTyLQOHBG8Kk0vOW56xxeQJ3aFAfDr18eqFkvI5+wNxTkwfS7q+++jDg7Klgzmp6JaoXW
- skrwilxuTQz37tv1fa2GDRLJcGMwQnGIqx/+pc+mjlyVVakJ0RsZs5xa251whzou8Tth9e7B5
- ny462jTWHaZEBHHaNhb2tX6rXLeFwsZEvKcvcQ0TK/4zUmq/8Y+q20M4YkRkyNY1JOyhcwqnp
- jqodc5EGMTekn+Cl7eTAq8/PJXs9FLJBkhPR0ogHq4XvlW7SYJbwLTZxNNucBxbeIs6+iwAl6
- YYnT3K5VbS510xMESLC2MQ3pS1aj9e7iOACrAZGIuOFQoKnSfR5vzOPLjPt3NGK7CY7k=
+        Linux-Renesas <linux-renesas-soc@vger.kernel.org>,
+        Linux Kernel Mailing List <linux-kernel@vger.kernel.org>,
+        "open list:OPEN FIRMWARE AND FLATTENED DEVICE TREE BINDINGS" 
+        <devicetree@vger.kernel.org>,
+        Prabhakar <prabhakar.csengg@gmail.com>
+Content-Type: text/plain; charset="UTF-8"
 Sender: devicetree-owner@vger.kernel.org
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-> Betreff: [PATCH v6 0/4] Spilt PCIe node to comply with hardware design
+On Fri, Sep 11, 2020 at 10:09 AM Lad Prabhakar
+<prabhakar.mahadev-lad.rj@bp.renesas.com> wrote:
+> Add VSP support to R8A7742 (RZ/G1H) SoC dtsi.
+>
+> Signed-off-by: Lad Prabhakar <prabhakar.mahadev-lad.rj@bp.renesas.com>
+> Reviewed-by: Chris Paterson <Chris.Paterson2@renesas.com>
 
-just if you need to make another version (as it is only the cover-letter) you can fix the typo in subject ;)
+Reviewed-by: Geert Uytterhoeven <geert+renesas@glider.be>
+i.e. will queue in renesas-devel for v5.10.
 
-regards Frank
+Gr{oetje,eeting}s,
 
+                        Geert
+
+-- 
+Geert Uytterhoeven -- There's lots of Linux beyond ia32 -- geert@linux-m68k.org
+
+In personal conversations with technical people, I call myself a hacker. But
+when I'm talking to journalists I just say "programmer" or something like that.
+                                -- Linus Torvalds
