@@ -2,224 +2,100 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from vger.kernel.org (vger.kernel.org [23.128.96.18])
-	by mail.lfdr.de (Postfix) with ESMTP id 9A2092699D9
-	for <lists+devicetree@lfdr.de>; Tue, 15 Sep 2020 01:42:04 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTP id AC54D2699F9
+	for <lists+devicetree@lfdr.de>; Tue, 15 Sep 2020 01:59:56 +0200 (CEST)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S1726087AbgINXmC (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Mon, 14 Sep 2020 19:42:02 -0400
-Received: from lindbergh.monkeyblade.net ([23.128.96.19]:38794 "EHLO
+        id S1726046AbgINX7z (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Mon, 14 Sep 2020 19:59:55 -0400
+Received: from lindbergh.monkeyblade.net ([23.128.96.19]:41524 "EHLO
         lindbergh.monkeyblade.net" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S1725999AbgINXl4 (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Mon, 14 Sep 2020 19:41:56 -0400
-Received: from mail.nic.cz (mail.nic.cz [IPv6:2001:1488:800:400::400])
-        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id E2292C061788;
-        Mon, 14 Sep 2020 16:41:55 -0700 (PDT)
-Received: from dellmb.labs.office.nic.cz (unknown [IPv6:2001:1488:fffe:6:cac7:3539:7f1f:463])
-        by mail.nic.cz (Postfix) with ESMTP id 45B08140AAD;
-        Tue, 15 Sep 2020 01:41:49 +0200 (CEST)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=nic.cz; s=default;
-        t=1600126909; bh=UA7SchNmxYSVilBmnx5V2M0Y/Eos2Hxg36/KANP2s8A=;
-        h=From:To:Date;
-        b=rt/sdJS0qtNmLV8m4crJ9lzUnaA1JOqYsLSKUca0TrrWRJwxJ3ZEM2Z60TKb0xUeD
-         QXvQvxr7+yepHpmAMjDqykvj1SBxUU8939GCm5x8WxilBKQw0LzPhBcFQs1LYpivke
-         HL3IFyrvqkpfqfHkW6/vQDSDJe6Ldf4xc1E2s7J8=
-From:   =?UTF-8?q?Marek=20Beh=C3=BAn?= <marek.behun@nic.cz>
-To:     linux-leds@vger.kernel.org
-Cc:     Pavel Machek <pavel@ucw.cz>, Dan Murphy <dmurphy@ti.com>,
-        =?UTF-8?q?Ond=C5=99ej=20Jirman?= <megous@megous.com>,
-        Russell King <linux@armlinux.org.uk>,
-        Andrew Lunn <andrew@lunn.ch>, linux-kernel@vger.kernel.org,
-        Matthias Schiffer <matthias.schiffer@ew.tq-group.com>,
-        =?UTF-8?q?Marek=20Beh=C3=BAn?= <marek.behun@nic.cz>,
-        Rob Herring <robh+dt@kernel.org>, devicetree@vger.kernel.org
-Subject: [PATCH leds + devicetree v1 2/2] leds: trigger: netdev: allow parsing `trigger-sources` from device tree
-Date:   Tue, 15 Sep 2020 01:41:48 +0200
-Message-Id: <20200914234148.19837-3-marek.behun@nic.cz>
-X-Mailer: git-send-email 2.26.2
-In-Reply-To: <20200914234148.19837-1-marek.behun@nic.cz>
-References: <20200914234148.19837-1-marek.behun@nic.cz>
+        with ESMTP id S1725994AbgINX7v (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Mon, 14 Sep 2020 19:59:51 -0400
+Received: from mail-qk1-x743.google.com (mail-qk1-x743.google.com [IPv6:2607:f8b0:4864:20::743])
+        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id A4BD3C061788
+        for <devicetree@vger.kernel.org>; Mon, 14 Sep 2020 16:59:51 -0700 (PDT)
+Received: by mail-qk1-x743.google.com with SMTP id w12so2447746qki.6
+        for <devicetree@vger.kernel.org>; Mon, 14 Sep 2020 16:59:51 -0700 (PDT)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+        d=marek-ca.20150623.gappssmtp.com; s=20150623;
+        h=subject:to:cc:references:from:message-id:date:user-agent
+         :mime-version:in-reply-to:content-language:content-transfer-encoding;
+        bh=s+D9XMZ1jPyuXwGqHc+ajg65qFn6d40xSHUZSsGwDms=;
+        b=aJfGo70Jabf9ZjvZMb10fhhLl23I8KWpDWnfOFg4Ru48CIqIpSHGvt3W64+QvAZ09L
+         eMMy0/7+NuAnCHtAoOAkuZiYBiLJEPSaWezzPamfq1IxrLBS6nfWQ1lPKahi386qsQR9
+         VBUS2yvrsMhEDG7Vk2ZNLpHkvHUt/RP0vtV/kbODtXEfRCA+XYK9XrelVE6FokN3Ub7W
+         Hn5tL+kZsc0zC+fSmxhS1SFLFcgVOlV5uqKwlSiQTYV5lOcomoHqE0vYNoKXOqYIs71m
+         o4S3UCx8B9xMS9dTwKcAosNr/GDx4rJFszDgPvAJuHEud8rxuonk5DxNTCWuAHZP3Cgo
+         OYAA==
+X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+        d=1e100.net; s=20161025;
+        h=x-gm-message-state:subject:to:cc:references:from:message-id:date
+         :user-agent:mime-version:in-reply-to:content-language
+         :content-transfer-encoding;
+        bh=s+D9XMZ1jPyuXwGqHc+ajg65qFn6d40xSHUZSsGwDms=;
+        b=Xh71HBuUBVkrhxJRr3M0MncrJwsMPCFLNjhx0jETQeAF2gDeW8CGtrnVJRs2Nh9ikD
+         XjypNoVMBTx6q3qrmahaStXeVp6CxWK6TAA/OQ2QU5YGNR/Yi6qf+Q40E3MiM7xhBMRh
+         CurWUTr1fUzWVeAR4cf53nlKYwEUXlPgiIkGmnme4ZMJzJzGo2QzBAFg8+nrrcLPdK3p
+         k3a+joX47zBaKWPxlyOH9pG1Ia0PX7r91WVKSBMD46tRXH/i3FBKxei2mPdt8F86b8Vd
+         5+J+dElVgpvQKBSaLZXvBx+ZjB681nbo8TAUo3y3vOujHzgLfHTmvjQBH73GfnJYEycs
+         rj5A==
+X-Gm-Message-State: AOAM530/8wuCdK1Keju3bYoJWP39OyauWfrBhFLX3sWluGjqq4I2Y6C4
+        Mhr8TIRJODwiwcgNDMIuABUlHw==
+X-Google-Smtp-Source: ABdhPJz/EKcPRQd0aezEJWSxXoe5tCiYr5gNZLNu1Xag1+dH6WurzzLTZnYoALFVujHZMCflMhPn/Q==
+X-Received: by 2002:a05:620a:546:: with SMTP id o6mr15829768qko.296.1600127990550;
+        Mon, 14 Sep 2020 16:59:50 -0700 (PDT)
+Received: from [192.168.0.189] ([147.253.86.153])
+        by smtp.gmail.com with ESMTPSA id g25sm15241941qto.47.2020.09.14.16.59.49
+        (version=TLS1_3 cipher=TLS_AES_128_GCM_SHA256 bits=128/128);
+        Mon, 14 Sep 2020 16:59:50 -0700 (PDT)
+Subject: Re: [PATCH v2 0/7] SM8150 and SM8250 dispcc drivers
+To:     Stephen Boyd <sboyd@kernel.org>,
+        Dmitry Baryshkov <dmitry.baryshkov@linaro.org>,
+        linux-arm-msm@vger.kernel.org
+Cc:     Andy Gross <agross@kernel.org>,
+        Bjorn Andersson <bjorn.andersson@linaro.org>,
+        OPEN FIRMWARE AND FLATTENED DEVICE TREE BINDINGS 
+        <devicetree@vger.kernel.org>,
+        COMMON CLK FRAMEWORK <linux-clk@vger.kernel.org>,
+        open list <linux-kernel@vger.kernel.org>,
+        Michael Turquette <mturquette@baylibre.com>,
+        Rob Herring <robh+dt@kernel.org>,
+        Taniya Das <tdas@codeaurora.org>
+References: <20200903222620.27448-1-jonathan@marek.ca>
+ <fd5fbe73-e2a5-d877-743c-ad7cc6110483@linaro.org>
+ <160012787871.4188128.16710718496771467444@swboyd.mtv.corp.google.com>
+From:   Jonathan Marek <jonathan@marek.ca>
+Message-ID: <540d95d2-ea53-f103-590e-a34d2d0cb8c5@marek.ca>
+Date:   Mon, 14 Sep 2020 19:58:45 -0400
+User-Agent: Mozilla/5.0 (X11; Linux x86_64; rv:68.0) Gecko/20100101
+ Thunderbird/68.2.2
 MIME-Version: 1.0
-Content-Type: text/plain; charset=UTF-8
-Content-Transfer-Encoding: 8bit
-X-Spam-Checker-Version: SpamAssassin 3.4.2 (2018-09-13) on mail.nic.cz
-X-Spam-Status: No, score=0.00
-X-Spamd-Bar: /
-X-Virus-Scanned: clamav-milter 0.102.2 at mail
-X-Virus-Status: Clean
+In-Reply-To: <160012787871.4188128.16710718496771467444@swboyd.mtv.corp.google.com>
+Content-Type: text/plain; charset=utf-8; format=flowed
+Content-Language: en-US
+Content-Transfer-Encoding: 7bit
 Sender: devicetree-owner@vger.kernel.org
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-Allow setting netdev LED trigger as default when given LED DT node has
-the `trigger-sources` property pointing to a node corresponding to a
-network device.
+On 9/14/20 7:57 PM, Stephen Boyd wrote:
+> Quoting Dmitry Baryshkov (2020-09-07 07:25:45)
+>> On 04/09/2020 01:26, Jonathan Marek wrote:
+>>> Add display clock drivers required to get DSI and DP displays working on
+>>> SM8150 and SM8250 SoCs.
+>>>
+>>> Derived from downstream drivers. Notable changes compared to downstream:
+>>>    - EDP clks removed (nothing uses these even in downstream it seems)
+>>>    - freq_tbl values for dp_link clk is in Hz and not kHz
+>>
+>>
+>> On SM8250:
+>> Tested-by: Dmitry Baryshkov <dmitry.baryshkov@linaro.org>
+> 
+> Can this be carried to v3?
+> 
 
-The specific netdev trigger mode is determined from the `function` LED
-property.
-
-Example:
-  eth0: ethernet@30000 {
-    compatible = "xyz";
-    #trigger-source-cells = <0>;
-  };
-
-  led {
-    color = <LED_COLOR_ID_GREEN>;
-    function = LED_FUNCTION_LINK;
-    trigger-sources = <&eth0>;
-  };
-
-Signed-off-by: Marek Behún <marek.behun@nic.cz>
-Cc: Rob Herring <robh+dt@kernel.org>
-Cc: devicetree@vger.kernel.org
----
- drivers/leds/trigger/ledtrig-netdev.c | 91 ++++++++++++++++++++++++++-
- include/dt-bindings/leds/common.h     |  1 +
- 2 files changed, 91 insertions(+), 1 deletion(-)
-
-diff --git a/drivers/leds/trigger/ledtrig-netdev.c b/drivers/leds/trigger/ledtrig-netdev.c
-index d5e774d830215..c6dce28dc52ed 100644
---- a/drivers/leds/trigger/ledtrig-netdev.c
-+++ b/drivers/leds/trigger/ledtrig-netdev.c
-@@ -20,6 +20,7 @@
- #include <linux/list.h>
- #include <linux/module.h>
- #include <linux/netdevice.h>
-+#include <linux/of_net.h>
- #include <linux/spinlock.h>
- #include <linux/timer.h>
- #include "../leds.h"
-@@ -389,6 +390,81 @@ static void netdev_trig_work(struct work_struct *work)
- 			(atomic_read(&trigger_data->interval)*2));
- }
- 
-+static bool netdev_trig_of_parse(struct led_classdev *led_cdev,
-+				 struct led_netdev_data *trigger_data)
-+{
-+	struct of_phandle_args args;
-+	struct net_device *netdev;
-+	struct device_node *np;
-+	const char *function;
-+	unsigned long mode;
-+	int count, err;
-+
-+	np = dev_of_node(led_cdev->dev);
-+	if (!np)
-+		return -EOPNOTSUPP;
-+
-+	count = of_count_phandle_with_args(np, "trigger-sources",
-+					   "#trigger-source-cells");
-+	if (count == -ENOENT) {
-+		return false;
-+	} else if (count < 0) {
-+		dev_warn(led_cdev->dev,
-+			 "Failed parsing trigger sources for %pOF!\n", np);
-+		return false;
-+	}
-+
-+	/* netdev trigger can have only one source */
-+	if (count != 1)
-+		return false;
-+
-+	err = of_parse_phandle_with_args(np, "trigger-sources",
-+					 "#trigger-source-cells", 0, &args);
-+	if (err)
-+		return false;
-+
-+	netdev = of_find_net_device_by_node(args.np);
-+	if (!netdev)
-+		return false;
-+
-+	err = of_property_read_string(np, "function", &function);
-+	if (err && err != -ENOENT) {
-+		dev_warn(led_cdev->dev, "Failed parsing function for %pOF!\n",
-+			 np);
-+		return false;
-+	} else if (err == -ENOENT) {
-+		/* default function is link */
-+		function = LED_FUNCTION_LINK;
-+	}
-+
-+	mode = 0;
-+	if (!strcmp(function, LED_FUNCTION_LINK)) {
-+		set_bit(NETDEV_LED_LINK, &mode);
-+	} else if (!strcmp(function, LED_FUNCTION_ACTIVITY)) {
-+		set_bit(NETDEV_LED_TX, &mode);
-+		set_bit(NETDEV_LED_RX, &mode);
-+	} else if (!strcmp(function, LED_FUNCTION_RX)) {
-+		set_bit(NETDEV_LED_RX, &mode);
-+	} else if (!strcmp(function, LED_FUNCTION_TX)) {
-+		set_bit(NETDEV_LED_TX, &mode);
-+	} else {
-+		dev_dbg(led_cdev->dev,
-+			"Unsupported netdev trigger function for %pOF!\n", np);
-+		return false;
-+	}
-+
-+	if (trigger_data) {
-+		dev_hold(netdev);
-+		trigger_data->net_dev = netdev;
-+		memcpy(trigger_data->device_name, netdev->name, IFNAMSIZ);
-+		trigger_data->mode = mode;
-+		if (netif_carrier_ok(netdev))
-+			set_bit(NETDEV_LED_MODE_LINKUP, &trigger_data->mode);
-+	}
-+
-+	return true;
-+}
-+
- static int netdev_trig_activate(struct led_classdev *led_cdev)
- {
- 	struct led_netdev_data *trigger_data;
-@@ -414,10 +490,17 @@ static int netdev_trig_activate(struct led_classdev *led_cdev)
- 	trigger_data->last_activity = 0;
- 
- 	led_set_trigger_data(led_cdev, trigger_data);
-+	netdev_trig_of_parse(led_cdev, trigger_data);
- 
- 	rc = register_netdevice_notifier(&trigger_data->notifier);
--	if (rc)
-+	if (rc) {
-+		if (trigger_data->net_dev)
-+			dev_put(trigger_data->net_dev);
- 		kfree(trigger_data);
-+	} else {
-+		if (trigger_data->net_dev)
-+			set_baseline_state(trigger_data);
-+	}
- 
- 	return rc;
- }
-@@ -436,10 +519,16 @@ static void netdev_trig_deactivate(struct led_classdev *led_cdev)
- 	kfree(trigger_data);
- }
- 
-+static bool netdev_trig_has_valid_source(struct led_classdev *led_cdev)
-+{
-+	return netdev_trig_of_parse(led_cdev, NULL);
-+}
-+
- static struct led_trigger netdev_led_trigger = {
- 	.name = "netdev",
- 	.activate = netdev_trig_activate,
- 	.deactivate = netdev_trig_deactivate,
-+	.has_valid_source = netdev_trig_has_valid_source,
- 	.groups = netdev_trig_groups,
- };
- 
-diff --git a/include/dt-bindings/leds/common.h b/include/dt-bindings/leds/common.h
-index 52b619d44ba25..c7f9d34d60206 100644
---- a/include/dt-bindings/leds/common.h
-+++ b/include/dt-bindings/leds/common.h
-@@ -77,6 +77,7 @@
- #define LED_FUNCTION_HEARTBEAT "heartbeat"
- #define LED_FUNCTION_INDICATOR "indicator"
- #define LED_FUNCTION_LAN "lan"
-+#define LED_FUNCTION_LINK "link"
- #define LED_FUNCTION_MAIL "mail"
- #define LED_FUNCTION_MTD "mtd"
- #define LED_FUNCTION_PANIC "panic"
--- 
-2.26.2
-
+I already included the tag in the last commit which adds the SM8250 
+dispcc driver (probably should've included it in the SM8250 dt-bindings 
+patch too though).
