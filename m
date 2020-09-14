@@ -2,102 +2,89 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from vger.kernel.org (vger.kernel.org [23.128.96.18])
-	by mail.lfdr.de (Postfix) with ESMTP id 346002688AB
-	for <lists+devicetree@lfdr.de>; Mon, 14 Sep 2020 11:42:17 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTP id 87E1C2688B7
+	for <lists+devicetree@lfdr.de>; Mon, 14 Sep 2020 11:45:31 +0200 (CEST)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S1726340AbgINJmQ (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Mon, 14 Sep 2020 05:42:16 -0400
-Received: from lindbergh.monkeyblade.net ([23.128.96.19]:49700 "EHLO
-        lindbergh.monkeyblade.net" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S1726123AbgINJmP (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Mon, 14 Sep 2020 05:42:15 -0400
-Received: from mail-vk1-xa41.google.com (mail-vk1-xa41.google.com [IPv6:2607:f8b0:4864:20::a41])
-        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id A55FFC06174A
-        for <devicetree@vger.kernel.org>; Mon, 14 Sep 2020 02:42:15 -0700 (PDT)
-Received: by mail-vk1-xa41.google.com with SMTP id t189so3967024vka.10
-        for <devicetree@vger.kernel.org>; Mon, 14 Sep 2020 02:42:15 -0700 (PDT)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=linaro.org; s=google;
-        h=mime-version:references:in-reply-to:from:date:message-id:subject:to
-         :cc;
-        bh=lofEGpAOdv9VKLTBFkELALaBiwoZZBeLnDfQKfPnGWc=;
-        b=r1HydzdJaFGX/Wb2URqDIrAkORnKcuoIiBtihscyt9IXv5tn4J2YrwHp+Rlk5HLuLw
-         jwDWgVgS4bG41AOBYzYEDqepuTN8P2g3vDbhv/NL+cUfsCfR7z+oE0R1lcYCwYsyhg3Z
-         7HjF36WMlpdrkg+/WSAANh6aQj4e08wewbAL/U/u7ROXnoRTwoifkIDoO6J62RIkZkH8
-         7e6A6VuRBGROTx51N6UOg/1WbMPZyXvUzGGXzIkdUhb8mYM8Jay2M4DcRZlc37fqm+28
-         LuiPi8YeREfkidcriQ91HOPlxxroUQ86ubQ7N0M/iO5on0nGKJIvPIiHzQolD+GXr0vk
-         AHaw==
-X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=1e100.net; s=20161025;
-        h=x-gm-message-state:mime-version:references:in-reply-to:from:date
-         :message-id:subject:to:cc;
-        bh=lofEGpAOdv9VKLTBFkELALaBiwoZZBeLnDfQKfPnGWc=;
-        b=MMoMc9e/bDd8iy6SOWqazoh/7FNTwEmKfuWTPHQpUxdvzmxAa62xXQiqXEeIcKNpV4
-         k1apAq7FbcSo0KzowrX+PdEDPAdgomYd6WGnIxo4oZ9Hftgru0wny1qIr4qwjVbDU6ss
-         6s1Tw6t55JTugh7VRwEXl//nN1fuYXMyOQkGlLoi0X3t0dBpEYrzAxyZABeLlXAamqJZ
-         51qvZAqnoMLupsu2K3FpN0b8OWjjAdtkL06BiMerZlH/febKj/+6femtge1cF2/DY5ET
-         r6VRZuMFgmHsIkeRpesdtGo801TtKEicyeqkDL+8gBmx/7hORYf6goUyzxjAwyXTVsVx
-         xXyA==
-X-Gm-Message-State: AOAM533DG5etlZWKQN3X3mTMsw2Z0cwxX8iiKM7CFLvikRwlgD4XyO6M
-        nr+dQCSFf/Q+wlCeDuh9IjNEWVO3CSjQE5TdxaZGoQ==
-X-Google-Smtp-Source: ABdhPJy5sfsoQdr+vGacO0I5WzNvlvQDDeaFC3FaJejFIceTY+cEeosM+E+6TqgF2xJnpawCwl17UKP8W1fypUrPlhE=
-X-Received: by 2002:a1f:1dcf:: with SMTP id d198mr694666vkd.30.1600076530291;
- Mon, 14 Sep 2020 02:42:10 -0700 (PDT)
+        id S1726273AbgINJp3 (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Mon, 14 Sep 2020 05:45:29 -0400
+Received: from mo4-p00-ob.smtp.rzone.de ([85.215.255.24]:16724 "EHLO
+        mo4-p00-ob.smtp.rzone.de" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
+        with ESMTP id S1726239AbgINJp2 (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Mon, 14 Sep 2020 05:45:28 -0400
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; t=1600076722;
+        s=strato-dkim-0002; d=gerhold.net;
+        h=In-Reply-To:References:Message-ID:Subject:Cc:To:From:Date:
+        X-RZG-CLASS-ID:X-RZG-AUTH:From:Subject:Sender;
+        bh=XRFqOPGjL8wggEcBctjIdnImU/A4E36qYOOqx+M8ZNg=;
+        b=VUNLRXGN1tvVc0jadbWcBdG8Q4Xz0URaYLsd3f8lNm5ZhQRwzjJNPjA7PhkZxxUOr1
+        /q3WPEaYrd8crGyMewLnCLBPzYED/bsUPsmsQEllQcPvmeHHBed6FeSoJplxeOH9yWwy
+        9bgh2LbsD0GLc5pOSauVxKNu/YdboNFMyyTbpkPiV8GbeFcZSUn11xzv6JAxX3+AknUA
+        y4kZeeM5iFMeEG4hVTKNJAfzlLzOv0UtLoMnFhrFLopI6FnR2wUzIJSvR9+eNqiBBzlk
+        Pw/CaRwNt9JsUaofTCMFQKRDo1+FRxauweUhD6D6RNSO/yWQiBSOxAmtV8YZx4KhUwwm
+        TUcg==
+X-RZG-AUTH: ":P3gBZUipdd93FF5ZZvYFPugejmSTVR2nRPhVOQ/OcYgojyw4j34+u26zEodhPgRDZ8j7IcfFBg=="
+X-RZG-CLASS-ID: mo00
+Received: from gerhold.net
+        by smtp.strato.de (RZmta 46.10.7 DYNA|AUTH)
+        with ESMTPSA id g0b6c1w8E9huht2
+        (using TLSv1.3 with cipher TLS_AES_256_GCM_SHA384 (256 bits))
+        (Client did not present a certificate);
+        Mon, 14 Sep 2020 11:43:56 +0200 (CEST)
+Date:   Mon, 14 Sep 2020 11:43:41 +0200
+From:   Stephan Gerhold <stephan@gerhold.net>
+To:     Bjorn Andersson <bjorn.andersson@linaro.org>
+Cc:     Andy Gross <agross@kernel.org>, linux-arm-msm@vger.kernel.org,
+        devicetree@vger.kernel.org,
+        Srinivas Kandagatla <srinivas.kandagatla@linaro.org>,
+        ~postmarketos/upstreaming@lists.sr.ht
+Subject: Re: [PATCH 00/10] Convert MSM8916 boards to use labels, reduce
+ duplication
+Message-ID: <20200914094341.GA1246@gerhold.net>
+References: <20200720085406.6716-1-stephan@gerhold.net>
 MIME-Version: 1.0
-References: <20200910105440.3087723-1-andrew@aj.id.au> <20200910105440.3087723-2-andrew@aj.id.au>
-In-Reply-To: <20200910105440.3087723-2-andrew@aj.id.au>
-From:   Ulf Hansson <ulf.hansson@linaro.org>
-Date:   Mon, 14 Sep 2020 11:41:34 +0200
-Message-ID: <CAPDyKFq+QYzJNT94eFt2EsQBVqQciUoqnMDdrr3DbbkpnHRpCw@mail.gmail.com>
-Subject: Re: [PATCH 1/3] dt: bindings: mmc: Add phase control properties for
- the Aspeed SDHCI
-To:     Andrew Jeffery <andrew@aj.id.au>
-Cc:     "linux-mmc@vger.kernel.org" <linux-mmc@vger.kernel.org>,
-        Adrian Hunter <adrian.hunter@intel.com>,
-        Joel Stanley <joel@jms.id.au>,
-        Rob Herring <robh+dt@kernel.org>,
-        DTML <devicetree@vger.kernel.org>,
-        Linux ARM <linux-arm-kernel@lists.infradead.org>,
-        linux-aspeed <linux-aspeed@lists.ozlabs.org>,
-        Linux Kernel Mailing List <linux-kernel@vger.kernel.org>
-Content-Type: text/plain; charset="UTF-8"
+Content-Type: text/plain; charset=us-ascii
+Content-Disposition: inline
+In-Reply-To: <20200720085406.6716-1-stephan@gerhold.net>
 Sender: devicetree-owner@vger.kernel.org
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-On Thu, 10 Sep 2020 at 12:54, Andrew Jeffery <andrew@aj.id.au> wrote:
->
-> Add properties to control the phase delay for input and output data
-> sampling.
->
-> Signed-off-by: Andrew Jeffery <andrew@aj.id.au>
-> ---
->  Documentation/devicetree/bindings/mmc/aspeed,sdhci.yaml | 8 ++++++++
->  1 file changed, 8 insertions(+)
->
-> diff --git a/Documentation/devicetree/bindings/mmc/aspeed,sdhci.yaml b/Documentation/devicetree/bindings/mmc/aspeed,sdhci.yaml
-> index 987b287f3bff..75effd411554 100644
-> --- a/Documentation/devicetree/bindings/mmc/aspeed,sdhci.yaml
-> +++ b/Documentation/devicetree/bindings/mmc/aspeed,sdhci.yaml
-> @@ -61,6 +61,14 @@ patternProperties:
->        sdhci,auto-cmd12:
->          type: boolean
->          description: Specifies that controller should use auto CMD12
-> +      "aspeed,input-phase":
-> +        $ref: '/schemas/types.yaml#/definitions/uint32'
-> +        description:
-> +          The input clock phase delay value.
-> +      "aspeed,output-phase":
-> +        $ref: '/schemas/types.yaml#/definitions/uint32'
-> +        description:
-> +          The output clock phase delay value.
+Hi Bjorn,
 
-We already have a common mmc clk-phase* binding, see
-mmc-controller.yaml. As matter of fact, there is one binding per speed
-mode.
+On Mon, Jul 20, 2020 at 10:53:56AM +0200, Stephan Gerhold wrote:
+> Board device trees for newer SoCs reference labels to override properties
+> for components of the SoC. This patch series converts all MSM8916 boards to
+> use the same style.
+> 
+> Additionally, in the second part of the series I attempt to reduce duplication
+> within the MSM8916 board device trees a bit. If we keep copying a large number
+> of properties to each and every board of a SoC then (in my opinion)
+> it makes sense to consider if those can be shared in some include.
+> 
+> This will make it easier to add new boards in the future.
+> 
+> Stephan Gerhold (10):
+>   arm64: dts: qcom: apq8016-sbc: Remove properties that are already
+>     default
+>   arm64: dts: qcom: msm8916: Declare sound node in msm8916.dtsi
+>   arm64: dts: qcom: apq8016-sbc: Define leds outside of soc node
+>   arm64: dts: qcom: msm8916: Add more labels
+>   arm64: dts: qcom: msm8916: Use labels in board device trees
+>   arm64: dts: qcom: pm8916: Add resin node
+>   arm64: dts: qcom: msm8916: Move PM8916-specific parts to
+>     msm8916-pm8916.dtsi
+>   arm64: dts: qcom: msm8916: Move more supplies to msm8916-pm8916.dtsi
+>   arm64: dts: qcom: msm8916: Set default pinctrl for blsp1_uart1/2
+>   arm64: dts: qcom: msm8916: Move common USB properties to msm8916.dtsi
+> 
 
-Could that work for this case as well?
+It's been two months since I sent this series - are there any changes
+I should make? Maybe you just overlooked it :)
 
-Kind regards
-Uffe
+Would be great to make some progress since I have a few more patch
+series ready to send out that build on top of this one (some more
+cleanup for MSM8916, converting MSM8916 to use rpmpd power domains, ...)
+
+Thanks!
+Stephan
