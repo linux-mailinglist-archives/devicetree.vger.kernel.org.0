@@ -2,71 +2,139 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from vger.kernel.org (vger.kernel.org [23.128.96.18])
-	by mail.lfdr.de (Postfix) with ESMTP id 8C4AD268A98
-	for <lists+devicetree@lfdr.de>; Mon, 14 Sep 2020 14:03:57 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTP id 28767268B11
+	for <lists+devicetree@lfdr.de>; Mon, 14 Sep 2020 14:35:38 +0200 (CEST)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S1726124AbgINMDv (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Mon, 14 Sep 2020 08:03:51 -0400
-Received: from mail-yb1-f195.google.com ([209.85.219.195]:45806 "EHLO
-        mail-yb1-f195.google.com" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S1726096AbgINMDN (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Mon, 14 Sep 2020 08:03:13 -0400
-Received: by mail-yb1-f195.google.com with SMTP id p81so11599921ybc.12;
-        Mon, 14 Sep 2020 05:01:06 -0700 (PDT)
-X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=1e100.net; s=20161025;
-        h=x-gm-message-state:mime-version:references:in-reply-to:from:date
-         :message-id:subject:to:cc;
-        bh=f1Xvnib1KAvoqjyhzUrY6wqtD7BsCds6nReVVkX9WQM=;
-        b=i1Z/uoC9R4wZHX4JyAtEAPR/qpgQAxaw4VXlczfeqn5hm+bXcA5uIJsBwIL1HQv4ON
-         MJZtwrjpDF/WONVIWt45625Bgk/pRC9x0KW3uYcryuRQGqCPjtHcR7zjSw4N4W7VPEKw
-         xCQ3BwLS5Zc5EVUzJxuHOfhi8c2h9O9nv6GbQ9iabae4uZxpj1dSBsDq1qpAp/s0QZOL
-         d5TTgArmfl0xsi1M5eDcytRy7UacqHU4VAOXti5kjkJ5wBFVLPFjv4vGqZslLTbAAAld
-         ZLWiRGBpSc71SkdxWWdnAM7GV7oBWwl1jG4sFaAqDm85UhxNYewaIDtMDP/Nzf42UAwi
-         gDYg==
-X-Gm-Message-State: AOAM530W91Q7+AO3T+naTcU1ackshz8PdEHkuULDoiueNyHEQNlJY2LU
-        v973v8QHZPsNcTlOw2+EePNmLgi2tudas4sMUq3GtdKB
-X-Google-Smtp-Source: ABdhPJy72w8a2dXJqwISoVPXy6X0f6peo1TA5+SnjUmc3HqjNuicmMLWTtDJxeSF1zpkGqCB77dveuzxHxvy766AYgg=
-X-Received: by 2002:a05:6830:1008:: with SMTP id a8mr8317812otp.107.1600084321973;
- Mon, 14 Sep 2020 04:52:01 -0700 (PDT)
+        id S1726270AbgINMfI (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Mon, 14 Sep 2020 08:35:08 -0400
+Received: from fllv0016.ext.ti.com ([198.47.19.142]:57240 "EHLO
+        fllv0016.ext.ti.com" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
+        with ESMTP id S1726534AbgINMeu (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Mon, 14 Sep 2020 08:34:50 -0400
+Received: from lelv0266.itg.ti.com ([10.180.67.225])
+        by fllv0016.ext.ti.com (8.15.2/8.15.2) with ESMTP id 08EBq8Dx109058;
+        Mon, 14 Sep 2020 06:52:08 -0500
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=ti.com;
+        s=ti-com-17Q1; t=1600084328;
+        bh=GGmby2jfJvMZfUC//Z+YkKOnqAazTLu+VDZkMWF+0Tk=;
+        h=Date:From:To:CC:Subject:References:In-Reply-To;
+        b=NcOJCe33lP5xnwFH4rCT2WwQZs54W7XYs5zmGnWVlpNz1d1qhprqkSBxzI68coFNy
+         6Ar+cZnFDq2ilKQt8hx22pk3xcbFQiPgzBek9EPF/+jR5JT8RpmQIb1m0wGRw0HwG3
+         qQggZ8QmRpl2TYeWvSEqc7tHlKE+Hvo+8iyTzxf4=
+Received: from DFLE103.ent.ti.com (dfle103.ent.ti.com [10.64.6.24])
+        by lelv0266.itg.ti.com (8.15.2/8.15.2) with ESMTPS id 08EBq83l111966
+        (version=TLSv1.2 cipher=AES256-GCM-SHA384 bits=256 verify=FAIL);
+        Mon, 14 Sep 2020 06:52:08 -0500
+Received: from DFLE111.ent.ti.com (10.64.6.32) by DFLE103.ent.ti.com
+ (10.64.6.24) with Microsoft SMTP Server (version=TLS1_2,
+ cipher=TLS_ECDHE_RSA_WITH_AES_128_CBC_SHA256_P256) id 15.1.1979.3; Mon, 14
+ Sep 2020 06:52:07 -0500
+Received: from fllv0039.itg.ti.com (10.64.41.19) by DFLE111.ent.ti.com
+ (10.64.6.32) with Microsoft SMTP Server (version=TLS1_2,
+ cipher=TLS_ECDHE_RSA_WITH_AES_128_CBC_SHA256_P256) id 15.1.1979.3 via
+ Frontend Transport; Mon, 14 Sep 2020 06:52:07 -0500
+Received: from localhost (ileax41-snat.itg.ti.com [10.172.224.153])
+        by fllv0039.itg.ti.com (8.15.2/8.15.2) with ESMTP id 08EBq7Oq038271;
+        Mon, 14 Sep 2020 06:52:07 -0500
+Date:   Mon, 14 Sep 2020 06:52:07 -0500
+From:   Nishanth Menon <nm@ti.com>
+To:     Kishon Vijay Abraham I <kishon@ti.com>
+CC:     Rob Herring <robh+dt@kernel.org>, Tero Kristo <t-kristo@ti.com>,
+        <linux-arm-kernel@lists.infradead.org>,
+        <devicetree@vger.kernel.org>, <linux-kernel@vger.kernel.org>
+Subject: Re: [RESEND PATCH 1/2] arm64: dts: ti: k3-j721e-main: Add PCIe
+ device tree nodes
+Message-ID: <20200914115207.wq4pmgrszhtgctdu@akan>
+References: <20200901140628.8800-1-kishon@ti.com>
+ <20200901140628.8800-2-kishon@ti.com>
+ <20200901145204.ayybrzqjcfhiqnfq@akan>
+ <5f23246a-a9d7-495d-a4ec-d392ad95a450@ti.com>
+ <4b17cace-09d5-af8c-6e7f-9358cfdceb4d@ti.com>
+ <e914e527-00fc-2614-fa74-f2137dbcfaf9@ti.com>
 MIME-Version: 1.0
-References: <20200911080929.15058-1-prabhakar.mahadev-lad.rj@bp.renesas.com>
-In-Reply-To: <20200911080929.15058-1-prabhakar.mahadev-lad.rj@bp.renesas.com>
-From:   Geert Uytterhoeven <geert@linux-m68k.org>
-Date:   Mon, 14 Sep 2020 13:51:50 +0200
-Message-ID: <CAMuHMdUsxo14TA4qEajZcvJa=M9dO71Vvk8mDcvaOvTBmAOYNw@mail.gmail.com>
-Subject: Re: [PATCH] ARM: dts: r8a7742: Add VSP support
-To:     Lad Prabhakar <prabhakar.mahadev-lad.rj@bp.renesas.com>
-Cc:     Magnus Damm <magnus.damm@gmail.com>,
-        Rob Herring <robh+dt@kernel.org>,
-        Linux-Renesas <linux-renesas-soc@vger.kernel.org>,
-        Linux Kernel Mailing List <linux-kernel@vger.kernel.org>,
-        "open list:OPEN FIRMWARE AND FLATTENED DEVICE TREE BINDINGS" 
-        <devicetree@vger.kernel.org>,
-        Prabhakar <prabhakar.csengg@gmail.com>
-Content-Type: text/plain; charset="UTF-8"
+Content-Type: text/plain; charset="iso-8859-1"
+Content-Disposition: inline
+Content-Transfer-Encoding: 8bit
+In-Reply-To: <e914e527-00fc-2614-fa74-f2137dbcfaf9@ti.com>
+User-Agent: NeoMutt/20171215
+X-EXCLAIMER-MD-CONFIG: e1e8a2fd-e40a-4ac6-ac9b-f7e9cc9ee180
 Sender: devicetree-owner@vger.kernel.org
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-On Fri, Sep 11, 2020 at 10:09 AM Lad Prabhakar
-<prabhakar.mahadev-lad.rj@bp.renesas.com> wrote:
-> Add VSP support to R8A7742 (RZ/G1H) SoC dtsi.
->
-> Signed-off-by: Lad Prabhakar <prabhakar.mahadev-lad.rj@bp.renesas.com>
-> Reviewed-by: Chris Paterson <Chris.Paterson2@renesas.com>
+On 16:53-20200914, Kishon Vijay Abraham I wrote:
+> Hi Rob,
+> 
+> On 02/09/20 1:07 pm, Kishon Vijay Abraham I wrote:
+> > Hi Rob,
+> > 
+> > On 02/09/20 10:24 am, Kishon Vijay Abraham I wrote:
+> >> Hi Nishanth,
+> >>
+> >> On 01/09/20 8:22 pm, Nishanth Menon wrote:
+> >>> On 19:36-20200901, Kishon Vijay Abraham I wrote:
+> >>>> Add PCIe device tree node (both RC and EP) for the four
+> >>>> PCIe instances here.
+> >>>>
+> >>>> Signed-off-by: Kishon Vijay Abraham I <kishon@ti.com>
+> >>>> ---
+> >>>>   arch/arm64/boot/dts/ti/k3-j721e-main.dtsi | 218
+> >>>> ++++++++++++++++++++++
+> >>>>   arch/arm64/boot/dts/ti/k3-j721e.dtsi      |   5 +-
+> >>>>   2 files changed, 222 insertions(+), 1 deletion(-)
+> >>>
+> >>>
+> >>> Did you look at the diff of the dtbs_check before and after this
+> >>> series? I see: https://pastebin.ubuntu.com/p/9fyfrTjx9M/
+> >>
+> >> I didn't see any errors when I checked for individual bindings
+> >> a0393678@a0393678-ssd:~/repos/linux$ mkconfig64 dtbs_check
+> >> DT_SCHEMA_FILES="Documentation/devicetree/bindings/pci/ti,j721e-pci-ep.yaml"
+> >>
+> >>    SCHEMA  Documentation/devicetree/bindings/processed-schema.yaml
+> >>    DTC     arch/arm64/boot/dts/ti/k3-am654-base-board.dt.yaml
+> >>    DTC     arch/arm64/boot/dts/ti/k3-j721e-common-proc-board.dt.yaml
+> >>    CHECK   arch/arm64/boot/dts/ti/k3-am654-base-board.dt.yaml
+> >>    CHECK   arch/arm64/boot/dts/ti/k3-j721e-common-proc-board.dt.yaml
+> >> a0393678@a0393678-ssd:~/repos/linux$ mkconfig64 dtbs_check
+> >> DT_SCHEMA_FILES="Documentation/devicetree/bindings/pci/ti,j721e-pci-host.yaml"
+> >>
+> >>    SCHEMA  Documentation/devicetree/bindings/processed-schema.yamlsimple-bus
+> >>    DTC     arch/arm64/boot/dts/ti/k3-am654-base-board.dt.yaml
+> >>    DTC     arch/arm64/boot/dts/ti/k3-j721e-common-proc-board.dt.yaml
+> >>    CHECK   arch/arm64/boot/dts/ti/k3-am654-base-board.dt.yaml
+> >>    CHECK   arch/arm64/boot/dts/ti/k3-j721e-common-proc-board.dt.yaml
+> > 
+> > Can you give hint on why I get ranges is too long error
+> > https://pastebin.ubuntu.com/p/cPm2tg3dcV/ which I give mkconfig64
+> > dtbs_check but don't see an error when I include "DT_SCHEMA_FILES"?
+> 
+> I debugged this and looks like PCIe "ranges" property conflicts with
+> simple-bus.
+> 
+> A diff like below helps to solve the issue
+> diff --git a/schemas/simple-bus.yaml b/schemas/simple-bus.yaml
+> index 248ac9d..ed818ef 100644
+> --- a/schemas/simple-bus.yaml
+> +++ b/schemas/simple-bus.yaml
+> @@ -39,7 +39,7 @@ patternProperties:
+>          oneOf:
+>            - items:
+>                minItems: 3
+> -              maxItems: 6
+> +              maxItems: 7
+>              minItems: 0
+>              maxItems: 1024
+>            - $ref: "types.yaml#/definitions/flag"
+> 
+> If this looks right to you, I can post a patch for it. Without fixing
+> this we would see false errors for PCIe DT nodes.
 
-Reviewed-by: Geert Uytterhoeven <geert+renesas@glider.be>
-i.e. will queue in renesas-devel for v5.10.
+https://github.com/devicetree-org/dt-schema/commit/3baf308b01786788e3ccb9824fce6d7136b21214
 
-Gr{oetje,eeting}s,
-
-                        Geert
-
+Part of v2020.08.1? Am i missing something?
 -- 
-Geert Uytterhoeven -- There's lots of Linux beyond ia32 -- geert@linux-m68k.org
-
-In personal conversations with technical people, I call myself a hacker. But
-when I'm talking to journalists I just say "programmer" or something like that.
-                                -- Linus Torvalds
+Regards,
+Nishanth Menon
+Key (0xDDB5849D1736249D) / Fingerprint: F8A2 8693 54EB 8232 17A3  1A34 DDB5 849D 1736 249D
