@@ -2,60 +2,61 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from vger.kernel.org (vger.kernel.org [23.128.96.18])
-	by mail.lfdr.de (Postfix) with ESMTP id 26341268E61
-	for <lists+devicetree@lfdr.de>; Mon, 14 Sep 2020 16:53:04 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTP id D5CA8268E7A
+	for <lists+devicetree@lfdr.de>; Mon, 14 Sep 2020 16:55:43 +0200 (CEST)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S1726322AbgINOwq (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Mon, 14 Sep 2020 10:52:46 -0400
-Received: from mail.kernel.org ([198.145.29.99]:52868 "EHLO mail.kernel.org"
+        id S1726659AbgINOzl (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Mon, 14 Sep 2020 10:55:41 -0400
+Received: from mail.kernel.org ([198.145.29.99]:53614 "EHLO mail.kernel.org"
         rhost-flags-OK-OK-OK-OK) by vger.kernel.org with ESMTP
-        id S1726877AbgINOwO (ORCPT <rfc822;devicetree@vger.kernel.org>);
-        Mon, 14 Sep 2020 10:52:14 -0400
+        id S1726356AbgINOxM (ORCPT <rfc822;devicetree@vger.kernel.org>);
+        Mon, 14 Sep 2020 10:53:12 -0400
 Received: from localhost (fw-tnat.cambridge.arm.com [217.140.96.140])
         (using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
         (No client certificate requested)
-        by mail.kernel.org (Postfix) with ESMTPSA id 24C3320829;
-        Mon, 14 Sep 2020 14:52:12 +0000 (UTC)
+        by mail.kernel.org (Postfix) with ESMTPSA id 1C52B20715;
+        Mon, 14 Sep 2020 14:53:10 +0000 (UTC)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=kernel.org;
-        s=default; t=1600095133;
-        bh=0Rdhj23dSlc9B+I6Z1sKv+n1S1msaVOGFY5Rifck8UY=;
+        s=default; t=1600095191;
+        bh=20if88FRBdbGtqEL7fqEJYDNeUXmQ356etNiMZV1+CE=;
         h=Date:From:To:Cc:In-Reply-To:References:Subject:From;
-        b=fHEYHty1PVdcEQnikpPvfiPNka9hST336BpqbxHDCMnUueClin5G5K5kX2SKqMrj8
-         jsuZ/zPMJHvowVIOH3/2O/2zvMvRtCaCuFp+uzqWxLkRq9yBg4vxOJSLZ1QQR3jVmA
-         /cQV/jesqMRC/2qgYMcibLfSSnzrVbtumNbPSyU0=
-Date:   Mon, 14 Sep 2020 15:51:25 +0100
+        b=uCocBov4oB89i1msgky0qozFIo2EsmibalIP2pTGI/lPgGGMyi64MKwK7Nr1Covfn
+         PvDaHOqUIms7/uIO2Rt8r11q/k1pGzTc7AeuCUcxfhbSnRSOqeoL9nCQ6Xp1ehYJku
+         lzHp6XZ1KcUwubSFEWuM/zwBomMxg44gf+dSisAc=
+Date:   Mon, 14 Sep 2020 15:52:23 +0100
 From:   Mark Brown <broonie@kernel.org>
-To:     robh+dt@kernel.org, Tzung-Bi Shih <tzungbi@google.com>
-Cc:     devicetree@vger.kernel.org, alsa-devel@alsa-project.org
-In-Reply-To: <20200911024833.1673961-1-tzungbi@google.com>
-References: <20200911024833.1673961-1-tzungbi@google.com>
-Subject: Re: [PATCH 0/2] ASoC: mediatek: mt8183-da7219: support machine driver for rt1015p
-Message-Id: <160009506912.439.1847050038899323133.b4-ty@kernel.org>
+To:     Florian Fainelli <f.fainelli@gmail.com>,
+        Rob Herring <robh+dt@kernel.org>,
+        Kamal Dasu <kdasu.kdev@gmail.com>,
+        Ray Jui <ray.jui@broadcom.com>
+Cc:     linux-kernel@vger.kernel.org, linux-spi@vger.kernel.org,
+        bcm-kernel-feedback-list@broadcom.com, devicetree@vger.kernel.org
+In-Reply-To: <20200910152539.45584-1-ray.jui@broadcom.com>
+References: <20200910152539.45584-1-ray.jui@broadcom.com>
+Subject: Re: [PATCH 1/4] dt-bindings: spi: Add compatible string for brcmstb SoCs
+Message-Id: <160009511834.5702.10954218363830361529.b4-ty@kernel.org>
 Sender: devicetree-owner@vger.kernel.org
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-On Fri, 11 Sep 2020 10:48:31 +0800, Tzung-Bi Shih wrote:
-> The series reuses mt8183-da7219-max98357.c for supporting machine
-> driver with rt1015p speaker amplifier.
-> 
-> The 1st patch adds document for the new proposed compatible string.
-> 
-> The 2nd patch changes the machine driver to support "RT1015P" codec.
-> 
-> [...]
+On Thu, 10 Sep 2020 08:25:36 -0700, Ray Jui wrote:
+> Add compatible string for brcmstb 7445 SoCs.
 
 Applied to
 
-   https://git.kernel.org/pub/scm/linux/kernel/git/broonie/sound.git for-next
+   https://git.kernel.org/pub/scm/linux/kernel/git/broonie/spi.git for-next
 
 Thanks!
 
-[1/2] ASoC: dt-bindings: mt8183-da7219: add compatible string for using rt1015p
-      commit: 5d1e0557520862c3a73b8b6a809807be1b522c3f
-[2/2] ASoC: mediatek: mt8183-da7219: support machine driver with rt1015p
-      commit: 7e5bfdddd8772011a2d38cf6be821d616db6cf8c
+[1/4] spi: Add compatible string for brcmstb SoCs
+      commit: d9f0cf9f1176d36d3824459d5b061f4719fcbb8a
+[2/4] spi: bcm-qspi: Add compatible string for BRCMSTB 7445 SoCs
+      commit: e0eeb76b818ad93718f9640b0bdad909b453a3b8
+[3/4] spi: bcm-qspi: Fix probe regression on iProc platforms
+      commit: 9a852d44b26f8e60e2ae13df563824c0f8489135
+[4/4] spi: bcm-qspi: Clean up 7425, 7429, and 7435 settings
+      commit: 3cf5d198785a6b454e6a97246795b0043aff9ac1
 
 All being well this means that it will be integrated into the linux-next
 tree (usually sometime in the next 24 hours) and sent to Linus during
