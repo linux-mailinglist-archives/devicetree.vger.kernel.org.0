@@ -2,77 +2,125 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from vger.kernel.org (vger.kernel.org [23.128.96.18])
-	by mail.lfdr.de (Postfix) with ESMTP id 8D63026949D
-	for <lists+devicetree@lfdr.de>; Mon, 14 Sep 2020 20:16:31 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTP id AD7F62694A9
+	for <lists+devicetree@lfdr.de>; Mon, 14 Sep 2020 20:20:22 +0200 (CEST)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S1725961AbgINSQ3 (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Mon, 14 Sep 2020 14:16:29 -0400
-Received: from mail-io1-f65.google.com ([209.85.166.65]:42820 "EHLO
-        mail-io1-f65.google.com" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S1725951AbgINSQ1 (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Mon, 14 Sep 2020 14:16:27 -0400
-Received: by mail-io1-f65.google.com with SMTP id u6so1108000iow.9;
-        Mon, 14 Sep 2020 11:16:27 -0700 (PDT)
+        id S1726009AbgINSUQ (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Mon, 14 Sep 2020 14:20:16 -0400
+Received: from mail-il1-f195.google.com ([209.85.166.195]:33216 "EHLO
+        mail-il1-f195.google.com" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
+        with ESMTP id S1725957AbgINSUN (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Mon, 14 Sep 2020 14:20:13 -0400
+Received: by mail-il1-f195.google.com with SMTP id x2so531230ilm.0;
+        Mon, 14 Sep 2020 11:20:12 -0700 (PDT)
 X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
         d=1e100.net; s=20161025;
         h=x-gm-message-state:date:from:to:cc:subject:message-id:references
          :mime-version:content-disposition:in-reply-to;
-        bh=gkgh20bzSMEzQBjaR/yXNkvt2d9QAmenQ6iuJ6sWbhQ=;
-        b=R0g/mKZWKD4fp75F7SXh/u4VWkMhyJzgiTQZlD9Ppn/u+Fs0xUfjr9WEEMz++QVlYv
-         +P3wSpNeVjNiTKCiu0ADGDBJ1jd954Uc5KQ0GGhDDxQH4H84KVHUGtUQufkv37emWoMA
-         5f5+g0d01wfGICN2vYP2JBRiUMHzIV839F73R2tn92M24cRhfPRQFiucWATOAVd8r+oM
-         dqZinkgwniEd4AJw95YjgeP4+XlPGZUeTptWU/7nQPC+gDtSpff0umOVfBefwOuCxbG2
-         iDbCLUaRQZRJeZrgOGKdzgM4IxtGaGiaB+6Y4nLejE1Y+2weAEFqvYqetyYo3iIUi+yC
-         zD5A==
-X-Gm-Message-State: AOAM531JqDspnUgPj23y0oUez36REtSgI8AAZoitQ8i9OVT8s7QCJwgk
-        OWo/4rFzGF1h/uzBgXaX0Q==
-X-Google-Smtp-Source: ABdhPJysQTS83/P0m/NWQcM+Si2V+AT/0soNX7Yd+tqoN1X+CxgOiIkfng9Eqf/6+mv48oGeuJ5e0w==
-X-Received: by 2002:a5d:96ce:: with SMTP id r14mr12026983iol.146.1600107386676;
-        Mon, 14 Sep 2020 11:16:26 -0700 (PDT)
+        bh=fdtDbq+D2wXO2AxeziDQlx8lKWQCn+eKp58GeSBc8HI=;
+        b=Ftl6V+Cq0t6FXqm5i0EIFs+5gdCQGXTrQawphpIBkzNemEOpp0efTfyyTU0YFN73Dd
+         fyWadD8cD1vKQ6jkbJTOStMFJwa87YJznkx9/NaoEbkfByYPpZlrYmI2nz02982bJUjL
+         H+fBOQAddAT92doesxaJf5VJ8731JLCC1LP0M0MARCkDTX43mR+2YnAvnH8lf2zbBxkX
+         uIwXNPreNiCXCNGwI/1lJ+bhKYfigUVMgVCM0ANiHxYM2WFrraW9I3FPYkcozlpGZqnp
+         IkymxpYsNpwwRFZLyETlDN2KBy7epBfmj85mqTCYrXesyTWNU+Yqf+1IDEbWjIuE5LwV
+         XEcw==
+X-Gm-Message-State: AOAM530qyPwW8tx0ZWVM2JaDp7SP9fya31fE8bXnEJTfetJeI8Hz0JRf
+        F+uSVj0WZRNdlgM8FOmxlq+Vi2PZjwt0
+X-Google-Smtp-Source: ABdhPJyaLnrvBR1GirLP6z7PnAvaEZSPl/7FkU07rnTPTggjjrfaUZoZ9Dtaxv533+HXIQmc4RkcFg==
+X-Received: by 2002:a92:7984:: with SMTP id u126mr13816635ilc.139.1600107611878;
+        Mon, 14 Sep 2020 11:20:11 -0700 (PDT)
 Received: from xps15 ([64.188.179.253])
-        by smtp.gmail.com with ESMTPSA id y10sm6300353ioy.25.2020.09.14.11.16.23
+        by smtp.gmail.com with ESMTPSA id v20sm7265643ile.42.2020.09.14.11.20.10
         (version=TLS1_3 cipher=TLS_AES_256_GCM_SHA384 bits=256/256);
-        Mon, 14 Sep 2020 11:16:26 -0700 (PDT)
-Received: (nullmailer pid 4172155 invoked by uid 1000);
-        Mon, 14 Sep 2020 18:16:22 -0000
-Date:   Mon, 14 Sep 2020 12:16:22 -0600
+        Mon, 14 Sep 2020 11:20:11 -0700 (PDT)
+Received: (nullmailer pid 4178218 invoked by uid 1000);
+        Mon, 14 Sep 2020 18:20:10 -0000
+Date:   Mon, 14 Sep 2020 12:20:10 -0600
 From:   Rob Herring <robh@kernel.org>
 To:     Krzysztof Kozlowski <krzk@kernel.org>
-Cc:     Daniel Vetter <daniel@ffwll.ch>, linux-kernel@vger.kernel.org,
-        Bartlomiej Zolnierkiewicz <b.zolnierkie@samsung.com>,
-        Rob Herring <robh+dt@kernel.org>,
-        linux-samsung-soc@vger.kernel.org, devicetree@vger.kernel.org,
-        Sam Ravnborg <sam@ravnborg.org>,
-        Marek Szyprowski <m.szyprowski@samsung.com>,
-        linux-arm-kernel@lists.infradead.org,
-        David Airlie <airlied@linux.ie>,
-        Sylwester Nawrocki <snawrocki@kernel.org>,
-        Hoegeun Kwon <hoegeun.kwon@samsung.com>,
-        dri-devel@lists.freedesktop.org, Kukjin Kim <kgene@kernel.org>,
-        Thierry Reding <thierry.reding@gmail.com>
-Subject: Re: [PATCH 1/4] dt-bindings: display: samsung, amoled-mipi-dsi: Do
- not require enable-gpios on samsung, s6e63j0x03
-Message-ID: <20200914181622.GA4172076@bogus>
-References: <20200829172532.29358-1-krzk@kernel.org>
+Cc:     Pavel Machek <pavel@ucw.cz>, Dan Murphy <dmurphy@ti.com>,
+        Jacek Anaszewski <jacek.anaszewski@gmail.com>,
+        linux-leds@vger.kernel.org, devicetree@vger.kernel.org,
+        linux-kernel@vger.kernel.org
+Subject: Re: [PATCH] dt-bindings: leds: common: Add mmc0 as default trigger
+Message-ID: <20200914182010.GA4172388@bogus>
+References: <20200830111115.32623-1-krzk@kernel.org>
 MIME-Version: 1.0
 Content-Type: text/plain; charset=us-ascii
 Content-Disposition: inline
-In-Reply-To: <20200829172532.29358-1-krzk@kernel.org>
+In-Reply-To: <20200830111115.32623-1-krzk@kernel.org>
 Sender: devicetree-owner@vger.kernel.org
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-On Sat, 29 Aug 2020 19:25:29 +0200, Krzysztof Kozlowski wrote:
-> The samsung,s6e63j0x03 does not have enable GPIO, so do not require it.
-> This fixes dtbs_check warning:
+On Sun, Aug 30, 2020 at 01:11:15PM +0200, Krzysztof Kozlowski wrote:
+> MMC could be a default trigger so add a pattern to match it and fix
+> dtbs_check warnings like:
 > 
->   arch/arm/boot/dts/exynos3250-rinato.dt.yaml: panel@0: 'enable-gpios' is a required property
+>   arch/arm/boot/dts/exynos4412-odroidx.dt.yaml: leds: led2:linux,default-trigger:0:
+>     'mmc0' is not one of ['backlight', 'default-on', 'heartbeat', 'disk-activity', 'ide-disk', 'timer', 'pattern']
+>     From schema: Documentation/devicetree/bindings/leds/leds-gpio.yaml
+
+The preference is to move from 'linux,default-trigger' to 'function' 
+with some standardization of the names or use the trigger-source binding.
+
 > 
 > Signed-off-by: Krzysztof Kozlowski <krzk@kernel.org>
 > ---
->  .../display/panel/samsung,amoled-mipi-dsi.yaml       | 12 +++++++++++-
->  1 file changed, 11 insertions(+), 1 deletion(-)
+>  .../devicetree/bindings/leds/common.yaml      | 39 ++++++++++---------
+>  1 file changed, 20 insertions(+), 19 deletions(-)
 > 
-
-Applied, thanks!
+> diff --git a/Documentation/devicetree/bindings/leds/common.yaml b/Documentation/devicetree/bindings/leds/common.yaml
+> index a2a541bca73c..6b38f9f3792c 100644
+> --- a/Documentation/devicetree/bindings/leds/common.yaml
+> +++ b/Documentation/devicetree/bindings/leds/common.yaml
+> @@ -78,25 +78,26 @@ properties:
+>        This parameter, if present, is a string defining the trigger assigned to
+>        the LED.
+>      $ref: /schemas/types.yaml#definitions/string
+> -
+> -    enum:
+> -        # LED will act as a back-light, controlled by the framebuffer system
+> -      - backlight
+> -        # LED will turn on (but for leds-gpio see "default-state" property in
+> -        # Documentation/devicetree/bindings/leds/leds-gpio.yaml)
+> -      - default-on
+> -        # LED "double" flashes at a load average based rate
+> -      - heartbeat
+> -        # LED indicates disk activity
+> -      - disk-activity
+> -        # LED indicates IDE disk activity (deprecated), in new implementations
+> -        # use "disk-activity"
+> -      - ide-disk
+> -        # LED flashes at a fixed, configurable rate
+> -      - timer
+> -        # LED alters the brightness for the specified duration with one software
+> -        # timer (requires "led-pattern" property)
+> -      - pattern
+> +    oneOf:
+> +      - enum:
+> +            # LED will act as a back-light, controlled by the framebuffer system
+> +          - backlight
+> +            # LED will turn on (but for leds-gpio see "default-state" property in
+> +            # Documentation/devicetree/bindings/leds/leds-gpio.yaml)
+> +          - default-on
+> +            # LED "double" flashes at a load average based rate
+> +          - heartbeat
+> +            # LED indicates disk activity
+> +          - disk-activity
+> +            # LED indicates IDE disk activity (deprecated), in new implementations
+> +            # use "disk-activity"
+> +          - ide-disk
+> +            # LED flashes at a fixed, configurable rate
+> +          - timer
+> +            # LED alters the brightness for the specified duration with one software
+> +            # timer (requires "led-pattern" property)
+> +          - pattern
+> +      - pattern: "^mmc[0-9]+$"
+>  
+>    led-pattern:
+>      description: |
+> -- 
+> 2.17.1
+> 
