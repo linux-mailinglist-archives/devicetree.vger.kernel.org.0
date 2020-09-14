@@ -2,126 +2,172 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from vger.kernel.org (vger.kernel.org [23.128.96.18])
-	by mail.lfdr.de (Postfix) with ESMTP id AFA2F268B78
-	for <lists+devicetree@lfdr.de>; Mon, 14 Sep 2020 14:51:43 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTP id 2F58A268BF7
+	for <lists+devicetree@lfdr.de>; Mon, 14 Sep 2020 15:15:08 +0200 (CEST)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S1726544AbgINMvc (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Mon, 14 Sep 2020 08:51:32 -0400
-Received: from lindbergh.monkeyblade.net ([23.128.96.19]:50588 "EHLO
-        lindbergh.monkeyblade.net" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S1726533AbgINMtc (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Mon, 14 Sep 2020 08:49:32 -0400
-Received: from mail-pf1-x444.google.com (mail-pf1-x444.google.com [IPv6:2607:f8b0:4864:20::444])
-        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id ED11DC06174A;
-        Mon, 14 Sep 2020 05:49:14 -0700 (PDT)
-Received: by mail-pf1-x444.google.com with SMTP id b124so12504567pfg.13;
-        Mon, 14 Sep 2020 05:49:14 -0700 (PDT)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=gmail.com; s=20161025;
-        h=mime-version:references:in-reply-to:from:date:message-id:subject:to
-         :cc;
-        bh=ROlxFZgVA2Swaooaus/a1+q0GqMXxQ0FAmAp3yP/6bY=;
-        b=aSvv3znH5p3QtfV/kQJwGkY2pRzv7SRMcndqbikAXwclu1YjKE0lVYiZNlgEY3fgEK
-         SQUUhfrDs9S3Gv7qRZOp7Qz2hfawC7lxdCdm7sNZibCD+Kgk6s8li4yLSmcJ/96Zcr0b
-         2jyha3hKUs02yriAZZAW6UyzSvxincKiIXcnlkBQ2/cUhFGAIELxFjkZ0ATMdsRIAKAX
-         5LdYGpzi558jCJy6WJQMkZugoSSpNSFoxWj+ktNGKXMzyinEj4fdG9QiS/bL658GgSik
-         ivaj15mNwpgb3NjX/UEysV0ceWHJqSSypNlu6hHMeQxBrJiAsaiJALpuaxGlXZ1a87hx
-         AB4A==
-X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=1e100.net; s=20161025;
-        h=x-gm-message-state:mime-version:references:in-reply-to:from:date
-         :message-id:subject:to:cc;
-        bh=ROlxFZgVA2Swaooaus/a1+q0GqMXxQ0FAmAp3yP/6bY=;
-        b=XZTQUwTDXGdoLMlwBOd7Uc+8J9aZJp/9t1VHnk/aQBvMoxyvG+4N/loNO8Xf0xbJ0G
-         aS9j13zWOWtbGUtlGNDicPfLCC7jxsZEQnccl8AnUCf3DWK1eRyFBsYjgvOFuHXMRWXE
-         cULfl7V+dGnlRd22WazLo4CJPlSx94q8T5YdEzJElYUSH4jQrlr3E/PRQ9zUX7z3Kddh
-         0DfxUhIdWqVsrYC9NdRyj8KOxb1i2xYFaLst2CaV4llRSkJYv/fjoY4+vSxoWGmCWUa2
-         54OsaNreZ6K29iwf1Yo9S1B9UeET57uWfX/ATAFTmyTExJ4przCDehnp5Pq+hpT7eDAK
-         zvqA==
-X-Gm-Message-State: AOAM531VzQEloQOWafjq2+iWZlLHLoNxNIUUMYT6XseRXwlw3kfowPj2
-        5a/ojTgFfaYfgn1EfbfR2C28A5khV5o/skE/H2A=
-X-Google-Smtp-Source: ABdhPJymIOiWRsrqO646XK7+kQkW9udJ13idCdF7Qj+IW0QYeT6iuSE88ABLwNuRb+kln8anCVu8Svp0jQ7dfhX/vlU=
-X-Received: by 2002:a63:c543:: with SMTP id g3mr10946987pgd.203.1600087754465;
- Mon, 14 Sep 2020 05:49:14 -0700 (PDT)
+        id S1726731AbgINNOq (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Mon, 14 Sep 2020 09:14:46 -0400
+Received: from fllv0016.ext.ti.com ([198.47.19.142]:37360 "EHLO
+        fllv0016.ext.ti.com" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
+        with ESMTP id S1726723AbgINNOl (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Mon, 14 Sep 2020 09:14:41 -0400
+Received: from lelv0266.itg.ti.com ([10.180.67.225])
+        by fllv0016.ext.ti.com (8.15.2/8.15.2) with ESMTP id 08EDEaIO010071;
+        Mon, 14 Sep 2020 08:14:36 -0500
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=ti.com;
+        s=ti-com-17Q1; t=1600089276;
+        bh=ODiKENSdzK4s3WG2D1yPBUfjra2xw8BwLPSrreBdVXg=;
+        h=Date:From:To:CC:Subject:References:In-Reply-To;
+        b=CbfjXf529a0uVnIv4Wtkk9nZb0qrRMJketYNpnyGVMu9b3UoEF9GoUH1wRtA+pBIh
+         OrevxtYidRzIMxQ2uApCax+ZioWyGN1zmn5VajLzuhyi8550nGRAK4aShoEJ2KRPPj
+         IfQ9Ni62IiSiLz5cqkHUrL03wOfggftOu0elOpOE=
+Received: from DLEE102.ent.ti.com (dlee102.ent.ti.com [157.170.170.32])
+        by lelv0266.itg.ti.com (8.15.2/8.15.2) with ESMTPS id 08EDEa4Q116335
+        (version=TLSv1.2 cipher=AES256-GCM-SHA384 bits=256 verify=FAIL);
+        Mon, 14 Sep 2020 08:14:36 -0500
+Received: from DLEE100.ent.ti.com (157.170.170.30) by DLEE102.ent.ti.com
+ (157.170.170.32) with Microsoft SMTP Server (version=TLS1_2,
+ cipher=TLS_ECDHE_RSA_WITH_AES_128_CBC_SHA256_P256) id 15.1.1979.3; Mon, 14
+ Sep 2020 08:14:36 -0500
+Received: from fllv0039.itg.ti.com (10.64.41.19) by DLEE100.ent.ti.com
+ (157.170.170.30) with Microsoft SMTP Server (version=TLS1_2,
+ cipher=TLS_ECDHE_RSA_WITH_AES_128_CBC_SHA256_P256) id 15.1.1979.3 via
+ Frontend Transport; Mon, 14 Sep 2020 08:14:36 -0500
+Received: from localhost (ileax41-snat.itg.ti.com [10.172.224.153])
+        by fllv0039.itg.ti.com (8.15.2/8.15.2) with ESMTP id 08EDEafs060421;
+        Mon, 14 Sep 2020 08:14:36 -0500
+Date:   Mon, 14 Sep 2020 08:14:36 -0500
+From:   Nishanth Menon <nm@ti.com>
+To:     Kishon Vijay Abraham I <kishon@ti.com>
+CC:     Rob Herring <robh+dt@kernel.org>, Tero Kristo <t-kristo@ti.com>,
+        <linux-arm-kernel@lists.infradead.org>,
+        <devicetree@vger.kernel.org>, <linux-kernel@vger.kernel.org>
+Subject: Re: [RESEND PATCH 1/2] arm64: dts: ti: k3-j721e-main: Add PCIe
+ device tree nodes
+Message-ID: <20200914131436.fxtvximxcrtnqddm@akan>
+References: <20200901140628.8800-1-kishon@ti.com>
+ <20200901140628.8800-2-kishon@ti.com>
+ <20200901145204.ayybrzqjcfhiqnfq@akan>
+ <5f23246a-a9d7-495d-a4ec-d392ad95a450@ti.com>
+ <4b17cace-09d5-af8c-6e7f-9358cfdceb4d@ti.com>
+ <e914e527-00fc-2614-fa74-f2137dbcfaf9@ti.com>
+ <20200914115207.wq4pmgrszhtgctdu@akan>
+ <9fe50c76-8d78-c1fe-e8f5-b43eecd32db8@ti.com>
 MIME-Version: 1.0
-References: <1599890246-21191-1-git-send-email-qii.wang@mediatek.com>
-In-Reply-To: <1599890246-21191-1-git-send-email-qii.wang@mediatek.com>
-From:   Andy Shevchenko <andy.shevchenko@gmail.com>
-Date:   Mon, 14 Sep 2020 15:48:56 +0300
-Message-ID: <CAHp75VeBuR4fkVk0z=+d7EonHz0h=4=eRj3Wfe8R_8T=eyHaeA@mail.gmail.com>
-Subject: Re: [PATCH] i2c: mediatek: Fix generic definitions for bus frequencies
-To:     qii.wang@mediatek.com
-Cc:     Wolfram Sang <wsa@the-dreams.de>,
-        linux-i2c <linux-i2c@vger.kernel.org>,
-        devicetree <devicetree@vger.kernel.org>,
-        linux-arm Mailing List <linux-arm-kernel@lists.infradead.org>,
-        Linux Kernel Mailing List <linux-kernel@vger.kernel.org>,
-        "moderated list:ARM/Mediatek SoC support" 
-        <linux-mediatek@lists.infradead.org>,
-        srv_heupstream <srv_heupstream@mediatek.com>,
-        Leilk Liu <leilk.liu@mediatek.com>
-Content-Type: text/plain; charset="UTF-8"
+Content-Type: text/plain; charset="iso-8859-1"
+Content-Disposition: inline
+Content-Transfer-Encoding: 8bit
+In-Reply-To: <9fe50c76-8d78-c1fe-e8f5-b43eecd32db8@ti.com>
+User-Agent: NeoMutt/20171215
+X-EXCLAIMER-MD-CONFIG: e1e8a2fd-e40a-4ac6-ac9b-f7e9cc9ee180
 Sender: devicetree-owner@vger.kernel.org
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-On Sat, Sep 12, 2020 at 9:02 AM <qii.wang@mediatek.com> wrote:
->
-> From: Qii Wang <qii.wang@mediatek.com>
->
-> The master code needs to being sent when the speed is more than
-> I2C_MAX_FAST_MODE_PLUS_FREQ instead of
-> I2C_MAX_HIGH_SPEED_MODE_FREQ. Fix it.
->
-> Signed-off-by: Qii Wang <qii.wang@mediatek.com>
-> ---
->  drivers/i2c/busses/i2c-mt65xx.c | 6 +++---
->  1 file changed, 3 insertions(+), 3 deletions(-)
->
-> diff --git a/drivers/i2c/busses/i2c-mt65xx.c b/drivers/i2c/busses/i2c-mt65xx.c
-> index efc1404..0cbdfbe 100644
-> --- a/drivers/i2c/busses/i2c-mt65xx.c
-> +++ b/drivers/i2c/busses/i2c-mt65xx.c
-> @@ -681,8 +681,8 @@ static int mtk_i2c_calculate_speed(struct mtk_i2c *i2c, unsigned int clk_src,
->         unsigned int cnt_mul;
->         int ret = -EINVAL;
->
-> -       if (target_speed > I2C_MAX_FAST_MODE_PLUS_FREQ)
-> -               target_speed = I2C_MAX_FAST_MODE_PLUS_FREQ;
-> +       if (target_speed > I2C_MAX_HIGH_SPEED_MODE_FREQ)
-> +               target_speed = I2C_MAX_HIGH_SPEED_MODE_FREQ;
+On 17:43-20200914, Kishon Vijay Abraham I wrote:
+> Hi Nishanth,
+> 
+> On 14/09/20 5:22 pm, Nishanth Menon wrote:
+> > On 16:53-20200914, Kishon Vijay Abraham I wrote:
+> >> Hi Rob,
+> >>
+> >> On 02/09/20 1:07 pm, Kishon Vijay Abraham I wrote:
+> >>> Hi Rob,
+> >>>
+> >>> On 02/09/20 10:24 am, Kishon Vijay Abraham I wrote:
+> >>>> Hi Nishanth,
+> >>>>
+> >>>> On 01/09/20 8:22 pm, Nishanth Menon wrote:
+> >>>>> On 19:36-20200901, Kishon Vijay Abraham I wrote:
+> >>>>>> Add PCIe device tree node (both RC and EP) for the four
+> >>>>>> PCIe instances here.
+> >>>>>>
+> >>>>>> Signed-off-by: Kishon Vijay Abraham I <kishon@ti.com>
+> >>>>>> ---
+> >>>>>>   arch/arm64/boot/dts/ti/k3-j721e-main.dtsi | 218
+> >>>>>> ++++++++++++++++++++++
+> >>>>>>   arch/arm64/boot/dts/ti/k3-j721e.dtsi      |   5 +-
+> >>>>>>   2 files changed, 222 insertions(+), 1 deletion(-)
+> >>>>>
+> >>>>>
+> >>>>> Did you look at the diff of the dtbs_check before and after this
+> >>>>> series? I see: https://pastebin.ubuntu.com/p/9fyfrTjx9M/
+> >>>>
+> >>>> I didn't see any errors when I checked for individual bindings
+> >>>> a0393678@a0393678-ssd:~/repos/linux$ mkconfig64 dtbs_check
+> >>>> DT_SCHEMA_FILES="Documentation/devicetree/bindings/pci/ti,j721e-pci-ep.yaml"
+> >>>>
+> >>>>    SCHEMA  Documentation/devicetree/bindings/processed-schema.yaml
+> >>>>    DTC     arch/arm64/boot/dts/ti/k3-am654-base-board.dt.yaml
+> >>>>    DTC     arch/arm64/boot/dts/ti/k3-j721e-common-proc-board.dt.yaml
+> >>>>    CHECK   arch/arm64/boot/dts/ti/k3-am654-base-board.dt.yaml
+> >>>>    CHECK   arch/arm64/boot/dts/ti/k3-j721e-common-proc-board.dt.yaml
+> >>>> a0393678@a0393678-ssd:~/repos/linux$ mkconfig64 dtbs_check
+> >>>> DT_SCHEMA_FILES="Documentation/devicetree/bindings/pci/ti,j721e-pci-host.yaml"
+> >>>>
+> >>>>    SCHEMA  Documentation/devicetree/bindings/processed-schema.yamlsimple-bus
+> >>>>    DTC     arch/arm64/boot/dts/ti/k3-am654-base-board.dt.yaml
+> >>>>    DTC     arch/arm64/boot/dts/ti/k3-j721e-common-proc-board.dt.yaml
+> >>>>    CHECK   arch/arm64/boot/dts/ti/k3-am654-base-board.dt.yaml
+> >>>>    CHECK   arch/arm64/boot/dts/ti/k3-j721e-common-proc-board.dt.yaml
+> >>>
+> >>> Can you give hint on why I get ranges is too long error
+> >>> https://pastebin.ubuntu.com/p/cPm2tg3dcV/ which I give mkconfig64
+> >>> dtbs_check but don't see an error when I include "DT_SCHEMA_FILES"?
+> >>
+> >> I debugged this and looks like PCIe "ranges" property conflicts with
+> >> simple-bus.
+> >>
+> >> A diff like below helps to solve the issue
+> >> diff --git a/schemas/simple-bus.yaml b/schemas/simple-bus.yaml
+> >> index 248ac9d..ed818ef 100644
+> >> --- a/schemas/simple-bus.yaml
+> >> +++ b/schemas/simple-bus.yaml
+> >> @@ -39,7 +39,7 @@ patternProperties:
+> >>          oneOf:
+> >>            - items:
+> >>                minItems: 3
+> >> -              maxItems: 6
+> >> +              maxItems: 7
+> >>              minItems: 0
+> >>              maxItems: 1024
+> >>            - $ref: "types.yaml#/definitions/flag"
+> >>
+> >> If this looks right to you, I can post a patch for it. Without fixing
+> >> this we would see false errors for PCIe DT nodes.
+> > 
+> > https://github.com/devicetree-org/dt-schema/commit/3baf308b01786788e3ccb9824fce6d7136b21214
+> > 
+> > Part of v2020.08.1? Am i missing something?
+> 
+> I think I was using a different repo
+> https://github.com/robherring/dt-schema.git.
+> 
+> Do you see the following issues you reported earlier with v2020.08.1?
+> 
+> +/home/nmenon/Src/opensource/linux/arch/arm64/boot/dts/ti/k3-j721e-common-proc-board.dt.yaml:
+> bus@100000: pcie@2900000:ranges: [[16777216, 0, 268439552, 0, 268439552,
+> 0, 65536], [33554432, 0, 268505088, 0, 268505088, 0, 134148096]] is not
+> valid under any of the given schemas (Possible causes of the failure):
+> +
+> /home/nmenon/Src/opensource/linux/arch/arm64/boot/dts/ti/k3-j721e-common-proc-board.dt.yaml:
+> bus@100000: pcie@2900000:ranges: True was expected
+> +
+> /home/nmenon/Src/opensource/linux/arch/arm64/boot/dts/ti/k3-j721e-common-proc-board.dt.yaml:
+> bus@100000: pcie@2900000:ranges:0: [16777216, 0, 268439552, 0,
+> 268439552, 0, 65536] is too long
+> +
+> /home/nmenon/Src/opensource/linux/arch/arm64/boot/dts/ti/k3-j721e-common-proc-board.dt.yaml:
+> bus@100000: pcie@2900000:ranges:1: [33554432, 0, 268505088, 0,
+> 268505088, 0, 134148096] is too long
 
-Thanks for fixing this. Indeed, somehow I messed these up.
 
->
->         max_step_cnt = mtk_i2c_max_step_cnt(target_speed);
->         base_step_cnt = max_step_cnt;
-> @@ -759,7 +759,7 @@ static int mtk_i2c_set_speed(struct mtk_i2c *i2c, unsigned int parent_clk)
->         for (clk_div = 1; clk_div <= max_clk_div; clk_div++) {
->                 clk_src = parent_clk / clk_div;
->
-> -               if (target_speed > I2C_MAX_FAST_MODE_FREQ) {
-> +               if (target_speed > I2C_MAX_FAST_MODE_PLUS_FREQ) {
-
-But this one is not related. Original code used to have
-
-#define MAX_FS_MODE_SPEED              400000
-
-       if (target_speed > MAX_FS_MODE_SPEED) {
-
-And this change doesn't fix the above mentioned problem.
-
-So, please split into two separate changes.
-
->                         /* Set master code speed register */
->                         ret = mtk_i2c_calculate_speed(i2c, clk_src,
->                                                       I2C_MAX_FAST_MODE_FREQ,
-> --
-> 1.9.1
-
-
+Arrgh.. you are right.. Looks like one of my PCs still had 2020.8
+instead of 2020.8.1. We just need to figure out what is going on with
+syscon.yaml as against ti,j721e-system-controller.yaml..
 
 -- 
-With Best Regards,
-Andy Shevchenko
+Regards,
+Nishanth Menon
+Key (0xDDB5849D1736249D) / Fingerprint: F8A2 8693 54EB 8232 17A3  1A34 DDB5 849D 1736 249D
