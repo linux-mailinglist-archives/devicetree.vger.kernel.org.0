@@ -2,263 +2,245 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from vger.kernel.org (vger.kernel.org [23.128.96.18])
-	by mail.lfdr.de (Postfix) with ESMTP id 70C87269437
-	for <lists+devicetree@lfdr.de>; Mon, 14 Sep 2020 19:54:31 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTP id 0ED1C269448
+	for <lists+devicetree@lfdr.de>; Mon, 14 Sep 2020 20:01:15 +0200 (CEST)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S1726050AbgINRyE (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Mon, 14 Sep 2020 13:54:04 -0400
-Received: from mail-il1-f193.google.com ([209.85.166.193]:37189 "EHLO
-        mail-il1-f193.google.com" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S1725999AbgINRx5 (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Mon, 14 Sep 2020 13:53:57 -0400
-Received: by mail-il1-f193.google.com with SMTP id q4so421297ils.4;
-        Mon, 14 Sep 2020 10:53:56 -0700 (PDT)
+        id S1726015AbgINSA7 (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Mon, 14 Sep 2020 14:00:59 -0400
+Received: from mail-io1-f68.google.com ([209.85.166.68]:43558 "EHLO
+        mail-io1-f68.google.com" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
+        with ESMTP id S1725914AbgINSAE (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Mon, 14 Sep 2020 14:00:04 -0400
+Received: by mail-io1-f68.google.com with SMTP id z25so1039950iol.10;
+        Mon, 14 Sep 2020 11:00:03 -0700 (PDT)
 X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
         d=1e100.net; s=20161025;
         h=x-gm-message-state:date:from:to:cc:subject:message-id:references
-         :mime-version:content-disposition:content-transfer-encoding
-         :in-reply-to;
-        bh=2qj8tRwwb6mL83OdJiTqiFtTk2+6xjuz2fEjNrt8UOA=;
-        b=bLg83qzTSRF5HwOaljMJkzL1nUBn5dPdLbvT6ZjYWZQmmr9misnlDASY1i+z7bwftD
-         A0lw9ABGMIYYErqaOQLIwAB5UHBnKfTCCflIDGxosjrXIlLHB/xw5btHvk1NcUPqeXQB
-         C5y+e/3+4wl3wcDIE9mO3MlD37SqaYwU6sxKPESxrA7syInEd+wtpFAD5YysxcZ3OZ+t
-         XaRumQLwmZbHcDjuxOMRbcWMUh+L2Ej+8AaHNXqE8idgrObyx9k1zU2bvCIrf5sz8zir
-         I9dqjQ9hfUCM75V9I02Ug3hepw4UWuSeAfhn0G5Hg4DQ6Q5U0uW0KExAPV4nqn4pd9he
-         cCZQ==
-X-Gm-Message-State: AOAM530QGbpre6ukfMgOKJSAj60e+oS4ie1zns1fD09R81tzt3sJZukv
-        caaAyMCDVx0eR76UT3h4cw==
-X-Google-Smtp-Source: ABdhPJwZuEEOjA/38pkz+xsbLFQQ6WIEeX2g3Z1se/ADcSs7SpH1DoVj5rbLnF/FSEQ/Gu+Mov/xKQ==
-X-Received: by 2002:a92:7c03:: with SMTP id x3mr13668869ilc.241.1600106036059;
-        Mon, 14 Sep 2020 10:53:56 -0700 (PDT)
+         :mime-version:content-disposition:in-reply-to;
+        bh=gzNN3HZZcC4xGOcBJqGS3DjMEJgqFY3enUUKhW0YfKM=;
+        b=rV3L3m10PheHxKdTRO+NW0B2gKngHt4H1spRs4OZJYYXLCsHw85qnSSlYSMR4AyYZm
+         4OG/GJR+zrfICtbGlI9Y1jUT7HpCBLGDpQIIxYYzxtY9/U+fCQI2if3VFdqYE/Rx0SWF
+         Kzk7IyfZqZ6jkZWJ1nSwRz0fNwRy2FR9LY3Tdz4K56oRnKSDFj8Fw3ej3zIbiLeOVnOE
+         s9TYkrzWHk6vp/63ylCoYba5BCpb+XRCaoL4WAcK7qp7OcLZ08YubgGKHyq3jxfZfXLf
+         /sQNjlXDD6Gt1xN6B/wlLeCtnBD6uhQNutlSp27vOEgLzmy2dpaLDrZ/nVWaCEOowGWY
+         aoIA==
+X-Gm-Message-State: AOAM530TcgwFc/DojHGXtrFHA8/kjmngWzvGsZ3qlb5bgL0Rri2fqvs9
+        LoARIiGF7nUZifB6+QSPcypSRlzFS73h
+X-Google-Smtp-Source: ABdhPJy1fWF8jAS3tfIaj/ZZ32fOJcUmIOzJdJiLdBMrivkmifvH6f13QOTpJlSIyKsE8qAV9BgQBg==
+X-Received: by 2002:a6b:8f10:: with SMTP id r16mr12351915iod.165.1600106403423;
+        Mon, 14 Sep 2020 11:00:03 -0700 (PDT)
 Received: from xps15 ([64.188.179.253])
-        by smtp.gmail.com with ESMTPSA id c6sm3414096ils.86.2020.09.14.10.53.54
+        by smtp.gmail.com with ESMTPSA id l10sm1015753ilm.75.2020.09.14.11.00.01
         (version=TLS1_3 cipher=TLS_AES_256_GCM_SHA384 bits=256/256);
-        Mon, 14 Sep 2020 10:53:55 -0700 (PDT)
-Received: (nullmailer pid 4136085 invoked by uid 1000);
-        Mon, 14 Sep 2020 17:53:53 -0000
-Date:   Mon, 14 Sep 2020 11:53:53 -0600
+        Mon, 14 Sep 2020 11:00:02 -0700 (PDT)
+Received: (nullmailer pid 4145728 invoked by uid 1000);
+        Mon, 14 Sep 2020 18:00:00 -0000
+Date:   Mon, 14 Sep 2020 12:00:00 -0600
 From:   Rob Herring <robh@kernel.org>
-To:     =?iso-8859-1?Q?K=E9vin_L'h=F4pital?= <kevin.lhopital@bootlin.com>
-Cc:     linux-media@vger.kernel.org, mchehab@kernel.org,
-        mark.rutland@arm.com, mripard@kernel.org, wens@csie.org,
-        devicetree@vger.kernel.org, linux-kernel@vger.kernel.org,
-        linux-arm-kernel@lists.infradead.org,
-        paul.kocialkowski@bootlin.com, thomas.petazzoni@bootlin.com
-Subject: Re: [PATCH v2 1/3] dt-bindings: media: i2c: Add documentation for
- ov8865
-Message-ID: <20200914175353.GA4127535@bogus>
-References: <20200828131134.12113-1-kevin.lhopital@bootlin.com>
- <20200828131134.12113-2-kevin.lhopital@bootlin.com>
+To:     Sagar Kadam <sagar.kadam@sifive.com>
+Cc:     linux-kernel@vger.kernel.org, linux-riscv@lists.infradead.org,
+        devicetree@vger.kernel.org, paul.walmsley@sifive.com,
+        palmer@dabbelt.com, aou@eecs.berkeley.edu, yash.shah@sifive.com
+Subject: Re: [RESEND PATCH v2 1/1] dt-bindings: riscv: sifive-l2-cache:
+ convert bindings to json-schema
+Message-ID: <20200914180000.GA4136408@bogus>
+References: <1598633743-1023-1-git-send-email-sagar.kadam@sifive.com>
+ <1598633743-1023-2-git-send-email-sagar.kadam@sifive.com>
 MIME-Version: 1.0
-Content-Type: text/plain; charset=iso-8859-1
+Content-Type: text/plain; charset=us-ascii
 Content-Disposition: inline
-Content-Transfer-Encoding: 8bit
-In-Reply-To: <20200828131134.12113-2-kevin.lhopital@bootlin.com>
+In-Reply-To: <1598633743-1023-2-git-send-email-sagar.kadam@sifive.com>
 Sender: devicetree-owner@vger.kernel.org
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-On Fri, Aug 28, 2020 at 03:11:32PM +0200, Kévin L'hôpital wrote:
-> Add a documentation for the sensor ov8865 from Omnivision.
+On Fri, Aug 28, 2020 at 10:25:43PM +0530, Sagar Kadam wrote:
+> Convert the device tree bindings for the SiFive's FU540-C000 SoC's L2 Cache
+> controller to YAML format.
 > 
-> Signed-off-by: Kévin L'hôpital <kevin.lhopital@bootlin.com>
+> Signed-off-by: Sagar Kadam <sagar.kadam@sifive.com>
 > ---
->  .../devicetree/bindings/media/i2c/ov8865.yaml | 165 ++++++++++++++++++
-
-Use the compatible string for the filename.
-
->  1 file changed, 165 insertions(+)
->  create mode 100644 Documentation/devicetree/bindings/media/i2c/ov8865.yaml
+>  .../devicetree/bindings/riscv/sifive-l2-cache.txt  | 51 ------------
+>  .../devicetree/bindings/riscv/sifive-l2-cache.yaml | 92 ++++++++++++++++++++++
+>  2 files changed, 92 insertions(+), 51 deletions(-)
+>  delete mode 100644 Documentation/devicetree/bindings/riscv/sifive-l2-cache.txt
+>  create mode 100644 Documentation/devicetree/bindings/riscv/sifive-l2-cache.yaml
 > 
-> diff --git a/Documentation/devicetree/bindings/media/i2c/ov8865.yaml b/Documentation/devicetree/bindings/media/i2c/ov8865.yaml
+> diff --git a/Documentation/devicetree/bindings/riscv/sifive-l2-cache.txt b/Documentation/devicetree/bindings/riscv/sifive-l2-cache.txt
+> deleted file mode 100644
+> index 73d8f19..0000000
+> --- a/Documentation/devicetree/bindings/riscv/sifive-l2-cache.txt
+> +++ /dev/null
+> @@ -1,51 +0,0 @@
+> -SiFive L2 Cache Controller
+> ---------------------------
+> -The SiFive Level 2 Cache Controller is used to provide access to fast copies
+> -of memory for masters in a Core Complex. The Level 2 Cache Controller also
+> -acts as directory-based coherency manager.
+> -All the properties in ePAPR/DeviceTree specification applies for this platform
+> -
+> -Required Properties:
+> ---------------------
+> -- compatible: Should be "sifive,fu540-c000-ccache" and "cache"
+> -
+> -- cache-block-size: Specifies the block size in bytes of the cache.
+> -  Should be 64
+> -
+> -- cache-level: Should be set to 2 for a level 2 cache
+> -
+> -- cache-sets: Specifies the number of associativity sets of the cache.
+> -  Should be 1024
+> -
+> -- cache-size: Specifies the size in bytes of the cache. Should be 2097152
+> -
+> -- cache-unified: Specifies the cache is a unified cache
+> -
+> -- interrupts: Must contain 3 entries (DirError, DataError and DataFail signals)
+> -
+> -- reg: Physical base address and size of L2 cache controller registers map
+> -
+> -Optional Properties:
+> ---------------------
+> -- next-level-cache: phandle to the next level cache if present.
+> -
+> -- memory-region: reference to the reserved-memory for the L2 Loosely Integrated
+> -  Memory region. The reserved memory node should be defined as per the bindings
+> -  in reserved-memory.txt
+> -
+> -
+> -Example:
+> -
+> -	cache-controller@2010000 {
+> -		compatible = "sifive,fu540-c000-ccache", "cache";
+> -		cache-block-size = <64>;
+> -		cache-level = <2>;
+> -		cache-sets = <1024>;
+> -		cache-size = <2097152>;
+> -		cache-unified;
+> -		interrupt-parent = <&plic0>;
+> -		interrupts = <1 2 3>;
+> -		reg = <0x0 0x2010000 0x0 0x1000>;
+> -		next-level-cache = <&L25 &L40 &L36>;
+> -		memory-region = <&l2_lim>;
+> -	};
+> diff --git a/Documentation/devicetree/bindings/riscv/sifive-l2-cache.yaml b/Documentation/devicetree/bindings/riscv/sifive-l2-cache.yaml
 > new file mode 100644
-> index 000000000000..468ddfd48c7a
+> index 0000000..e14c8c6
 > --- /dev/null
-> +++ b/Documentation/devicetree/bindings/media/i2c/ov8865.yaml
-> @@ -0,0 +1,165 @@
-> +# SPDX-License-Identifier: (GPL-2.0 0R BSD-2-Clause)
-> +# Copyright (C) 2020 Kévin L'hôpital
+> +++ b/Documentation/devicetree/bindings/riscv/sifive-l2-cache.yaml
+> @@ -0,0 +1,92 @@
+> +# SPDX-License-Identifier: (GPL-2.0 OR BSD-2-Clause)
+> +# Copyright (C) 2020 SiFive, Inc.
 > +%YAML 1.2
 > +---
-> +$id: http://devicetree.org/schemas/media/i2c/ov8865.yaml#
+> +$id: http://devicetree.org/schemas/riscv/sifive-l2-cache.yaml#
 > +$schema: http://devicetree.org/meta-schemas/core.yaml#
 > +
-> +title: Omnivision OV8865 Sensor Device Tree Bindings
+> +title: SiFive L2 Cache Controller
 > +
 > +maintainers:
-> +  - Kévin L'hôpital <kevin.lhopital@bootlin.com>
+> +  - Sagar Kadam <sagar.kadam@sifive.com>
+> +  - Yash Shah <yash.shah@sifive.com>
+> +  - Paul Walmsley  <paul.walmsley@sifive.com>
 > +
-> +description: |-
-> +  The Omnivision OV8865 is a image sensor that supports up to 3264x2448. It
-> +  provides a 10 bits output format and a MIPI CSI2 interface (up to 4-lane).
-> +  This chip is programmable through I2C.
+> +description:
+> +  The SiFive Level 2 Cache Controller is used to provide access to fast copies
+> +  of memory for masters in a Core Complex. The Level 2 Cache Controller also
+> +  acts as directory-based coherency manager.
+> +  All the properties in ePAPR/DeviceTree specification applies for this platform.
+> +
+> +allOf:
+> +  - $ref: /schemas/cache-controller.yaml#
 > +
 > +properties:
 > +  compatible:
-> +    const: ovti,ov8865
+> +    items:
+> +     - enum:
+> +        - sifive,fu540-c000-ccache
+> +    description: |
+> +      Should have "sifive,<soc>-cache" and "cache".
+
+That's not what the schema describes or the example has (the 'cache' 
+fallback).
+
+> +
+> +  cache-block-size:
+> +    const: 64
+> +
+> +  cache-level:
+> +    const: 2
+> +
+> +  cache-sets:
+> +    const: 1024
+> +
+> +  cache-size:
+> +    const: 2097152
+> +
+> +  cache-unified: true
+> +
+> +  interrupts:
+> +    description: |
+> +      Must contain entries for DirError, DataError and DataFail signals.
+> +    minItems: 1
+
+The old doc said must have 3 entries.
+
+> +    maxItems: 3
 > +
 > +  reg:
 > +    maxItems: 1
-> +
-> +  pinctrl-names:
-> +    description:
-> +      Default name for the ov8865 pinctrl.
-> +
-> +  pinctrl-0:
-> +    description:
-> +      Pinctrl for the ov8865.
+> +    description: address of cache controller's registers.
 
-You can drop pinctrl-*. They are automatically added.
+Drop this.
 
 > +
-> +  clocks:
-> +    maxItems: 1
 > +
-> +  clock-names:
-> +    description:
-> +      Input clock name for the sensor.
-> +
-> +    items:
-> +      - const: xclk
-> +
-> +  avdd-supply:
-> +    description:
-> +      Definition of the regulator used as analog power supply.
-> +
-> +  dovdd-supply:
-> +    description:
-> +      Definition of the regulator used as interface power supply.
-> +
-> +  vdd2-supply:
-> +    description:
-> +      Definition of the regulator used as digital power supply
-> +
-> +  afvdd-supply:
-> +    description:
-> +      Definition of the regulator used as actuator power supply.
-> +
-> +  powerdown-gpios:
-> +    description:
-> +      reference to the GPIO connceted to the powerdown pin. This is an active
-> +      low signal on the OV8865.
-> +
-> +  reset-gpios:
-> +    description:
-> +      Reference to the GPIO connected to the reset pin. This is an active low
-> +      signal for the OV8865.
-> +
-> +  rotation:
-> +    description:
-> +      Position of the sensor, the valid values are 0 (sensor mounted upright)
-> +      and 180 (sensor mounted upside down).
 
-Constraints, not free form text:
+One blank line please.
 
-enum: [ 0, 180 ]
+> +  next-level-cache:
+> +    description: |
+> +      Phandle to the next level cache if present.
+
+No need to re-describe common properties unless you have something 
+unique to this device to say. Just:
+
+'next-level-cache: true'
 
 > +
-> +  port:
-> +    type: object
-> +    additionalProperties: false
-> +    description:
-> +      A node containing an output port node with an endpoint definition as
-> +      documented in
-> +      Documentation/devicetree/bindings/media/video-interfaces.txt
-> +
-> +    properties:
-> +      endpoint:
-> +        type: object
-> +
-> +        properties:
-> +          data-lanes:
-> +            description:
-> +              The driver only supports four-lane operation.
-
-Not relevant to the h/w description.
-
-> +            items:
-> +              - const: 1
-> +              - const: 2
-> +              - const: 3
-> +              - const: 4
-> +
-> +          clock-lanes:
-> +            items:
-> +              const: 0
-
-If fixed in the h/w, it doesn't need to be in DT.
-
-> +
-> +          bus-type:
-> +            description:
-> +              The driver only supports the MIPI CSI2
-> +            items:
-> +              const: 4
-
-Both of the above comments apply here...
-
-> +
-> +        required:
-> +          - data-lanes
-> +          - clock-lanes
-> +          - bus-type
-> +
-> +    required:
-> +      - endpoint
-> +
-> +required:
-> +  - compatible
-> +  - reg
-> +  - pinctrl-names
-> +  - pinctrl-0
-> +  - clocks
-> +  - clock-names
-> +  - avdd-supply
-> +  - dovdd-supply
-> +  - vdd2-supply
-> +  - afvdd-supply
-> +  - powerdown-gpios
-> +  - reset-gpios
-> +  - port
+> +  memory-region:
+> +    description: |
+> +      The reference to the reserved-memory for the L2 Loosely Integrated memory region.
+> +      The reserved memory node should be defined as per the bindings in reserved-memory.txt.
 > +
 > +additionalProperties: false
 > +
+> +required:
+> +  - compatible
+> +  - cache-block-size
+> +  - cache-level
+> +  - cache-sets
+> +  - cache-size
+> +  - cache-unified
+> +  - interrupts
+> +  - reg
+> +
 > +examples:
 > +  - |
-> +    #include <dt-bindings/clock/sun8i-a83t-ccu.h>
-> +    #include <dt-bindings/gpio/gpio.h>
-> +
-> +    i2c2 {
-> +         #address-cells = <1>;
-> +         #size-cells = <0>;
-> +          ov8865: camera@36 {
-> +                 compatible = "ovti,ov8865";
-> +                 reg = <0x36>;
-> +                 pinctrl-names = "default";
-> +                 pinctrl-0 = <&csi_mclk_pin>; 
-> +                 clocks = <&ccu CLK_CSI_MCLK>;
-> +                 clock-names ="xclk";
-> +                 avdd-supply = <&reg_ov8865_avdd>;
-> +                 dovdd-supply = <&reg_ov8865_dovdd>;
-> +                 vdd2-supply = <&reg_ov8865_vdd2>;
-> +                 afvdd-supply = <&reg_ov8865_afvdd>;
-> +                 powerdown-gpios = <&pio 4 17 GPIO_ACTIVE_LOW>; /* PE17 */
-> +                 reset-gpios = <&pio 4 16 GPIO_ACTIVE_LOW>; /* PE16 */
-> +                 rotation = <180>;
-> +
-> +                 port {
-> +                      ov8865_to_mipi_csi2: endpoint {
-> +                                 remote-endpoint = <&mipi_csi2_from_ov8865>;
-> +                                 data-lanes = <1 2 3 4>;
-> +                                 clock-lanes = <0>;
-> +                                 bus-type = <4>; /* V4L2_FWNODE_BUS_TYPE_CSI2_DPHY */
-> +                      };
-> +                 };
-> +           };
+> +    cache-controller@2010000 {
+> +        compatible = "sifive,fu540-c000-ccache";
+> +        cache-block-size = <64>;
+> +        cache-level = <2>;
+> +        cache-sets = <1024>;
+> +        cache-size = <2097152>;
+> +        cache-unified;
+> +        reg = <0x2010000 0x1000>;
+> +        interrupt-parent = <&plic0>;
+> +        interrupts = <1 2 3>;
+> +        next-level-cache = <&L25>;
+> +        memory-region = <&l2_lim>;
 > +    };
-> +
-> +...
 > -- 
-> 2.17.1
+> 2.7.4
 > 
