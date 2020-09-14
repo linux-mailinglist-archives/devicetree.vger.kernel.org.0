@@ -2,81 +2,110 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from vger.kernel.org (vger.kernel.org [23.128.96.18])
-	by mail.lfdr.de (Postfix) with ESMTP id 1B52C2698F3
-	for <lists+devicetree@lfdr.de>; Tue, 15 Sep 2020 00:34:37 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTP id 40640269920
+	for <lists+devicetree@lfdr.de>; Tue, 15 Sep 2020 00:44:15 +0200 (CEST)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S1726123AbgINWee (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Mon, 14 Sep 2020 18:34:34 -0400
-Received: from mail-io1-f68.google.com ([209.85.166.68]:44672 "EHLO
-        mail-io1-f68.google.com" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S1726044AbgINWe1 (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Mon, 14 Sep 2020 18:34:27 -0400
-Received: by mail-io1-f68.google.com with SMTP id g128so1876542iof.11;
-        Mon, 14 Sep 2020 15:34:26 -0700 (PDT)
+        id S1725961AbgINWoO (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Mon, 14 Sep 2020 18:44:14 -0400
+Received: from mail-io1-f65.google.com ([209.85.166.65]:42401 "EHLO
+        mail-io1-f65.google.com" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
+        with ESMTP id S1725953AbgINWoM (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Mon, 14 Sep 2020 18:44:12 -0400
+Received: by mail-io1-f65.google.com with SMTP id u6so1925288iow.9;
+        Mon, 14 Sep 2020 15:44:12 -0700 (PDT)
 X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
         d=1e100.net; s=20161025;
         h=x-gm-message-state:date:from:to:cc:subject:message-id:references
          :mime-version:content-disposition:in-reply-to;
-        bh=qawHL//JCsl3s+o/MBQptvseieD2pIXqGeERB4s68y0=;
-        b=CcK3A6n6Uh1ZymP1sAKpoF2nwMsb31UvsjhinXgNv+Xio+knZBijOUsrJeXt8CKguW
-         k8NBLpBu7YPO5x1QP7+WFZOZJ7lfkNRWhgnixvQw+6CEeNknxMPsPw8UD+e9fOavux+A
-         VrVOWvLDZ9xtf43eyOZ20+0GWNIYletT1rLuWhCbvJoROoBYwdk2PKLJPjkKGqMU8X6x
-         bNsEfh/utwnudENkjUWPERSVo96TLJxTu31X7z8oyqFu/IxDvt+QGnz9TpzD7UCYHUCF
-         pdB2CbAo7rrHP1Bb/Auyhc/UEj/BY3JMvOHV827quY2ThCw27WJetsu3y2ABcO6fa1bj
-         UjoA==
-X-Gm-Message-State: AOAM5334POMcFLeL+wUAWI0E1OIKgpSRHrlK5jvJK7tVh6uqYizXSFMC
-        PBeQ0EL7G6jYnx3kdkuxuQ==
-X-Google-Smtp-Source: ABdhPJzIqAUlesX+PcK3HAo1XZVOGkzfK7XNe09zz72N2Yn2JpGtqmogpPHH5kwRGbL/iuCPfuI3Fw==
-X-Received: by 2002:a05:6638:22ba:: with SMTP id z26mr15372869jas.55.1600122866346;
-        Mon, 14 Sep 2020 15:34:26 -0700 (PDT)
+        bh=ylUrEEmYi1EaiuhHEqxtgMvlCDH6vw+JSMpMqyXXaxw=;
+        b=UexcQBz+unBFQ7HEOgOb9kUTivjWHGFMtZx1Gs88cNxTXXbWlpkR/TzBmK7xb8qo03
+         K4w81eVK0DjW1DMOE8bQbSP8r1T0ysy7FgghZTvtUzNAkf/IR/e6W9Y0O58Ew8avGzxI
+         FkobXcQo6+Bqm6tEteykqvNl1yEIUn+Td9v/xyfJC0yA2sG/uK9yyMp53SFh1JRGZc1v
+         MzTX2WQVnvU2imjKYVWN89Nez+QiXj0yNWY7kIMqjquwnj261gM4XSloDrJ4Ij6OcwD7
+         oCnC4sjrrzoUdDkL2CO/CFsLt+0Irr1yez/JtkX9Fq9BovfUosRYQEpCh93qw3ALE5WZ
+         4wjQ==
+X-Gm-Message-State: AOAM531bc2pjE/FvWXtmSBM5/Am5jaK6YQnxZMxQvxWFjQ6up0kpeFXR
+        mhbnAKIuyhTubWfW6zqmgw==
+X-Google-Smtp-Source: ABdhPJy0EiT7MplPn0+3By2fzZNnP/u2zfQZ44vJh5JI0TZD6SDZoEgp/wP3JFumGKjEqcEvAf3tFA==
+X-Received: by 2002:a02:11c2:: with SMTP id 185mr14783901jaf.35.1600123451958;
+        Mon, 14 Sep 2020 15:44:11 -0700 (PDT)
 Received: from xps15 ([64.188.179.253])
-        by smtp.gmail.com with ESMTPSA id w15sm7615180ilq.46.2020.09.14.15.34.22
+        by smtp.gmail.com with ESMTPSA id w15sm7629263ilq.46.2020.09.14.15.44.08
         (version=TLS1_3 cipher=TLS_AES_256_GCM_SHA384 bits=256/256);
-        Mon, 14 Sep 2020 15:34:25 -0700 (PDT)
-Received: (nullmailer pid 388721 invoked by uid 1000);
-        Mon, 14 Sep 2020 22:34:22 -0000
-Date:   Mon, 14 Sep 2020 16:34:22 -0600
+        Mon, 14 Sep 2020 15:44:11 -0700 (PDT)
+Received: (nullmailer pid 404103 invoked by uid 1000);
+        Mon, 14 Sep 2020 22:44:07 -0000
+Date:   Mon, 14 Sep 2020 16:44:07 -0600
 From:   Rob Herring <robh@kernel.org>
 To:     Krzysztof Kozlowski <krzk@kernel.org>
-Cc:     Christian Gmeiner <christian.gmeiner@gmail.com>,
-        NXP Linux Team <linux-imx@nxp.com>,
-        devicetree@vger.kernel.org, linux-kernel@vger.kernel.org,
-        Matti Vaittinen <matti.vaittinen@fi.rohmeurope.com>,
-        David Airlie <airlied@linux.ie>,
-        Fabio Estevam <festevam@gmail.com>,
-        Sam Ravnborg <sam@ravnborg.org>,
-        linux-arm-kernel@lists.infradead.org,
-        etnaviv@lists.freedesktop.org, Shawn Guo <shawnguo@kernel.org>,
-        Lee Jones <lee.jones@linaro.org>,
-        Russell King <linux+etnaviv@armlinux.org.uk>,
-        Robert Chiras <robert.chiras@nxp.com>,
-        Pengutronix Kernel Team <kernel@pengutronix.de>,
+Cc:     David Airlie <airlied@linux.ie>, Daniel Vetter <daniel@ffwll.ch>,
         Lucas Stach <l.stach@pengutronix.de>,
-        Daniel Vetter <daniel@ffwll.ch>,
-        dri-devel@lists.freedesktop.org, Rob Herring <robh+dt@kernel.org>,
-        Li Yang <leoyang.li@nxp.com>,
-        Sascha Hauer <s.hauer@pengutronix.de>
-Subject: Re: [PATCH 05/13] dt-bindings: gpu: vivante, gc: Remove trailing
- whitespace
-Message-ID: <20200914223422.GA388670@bogus>
+        Russell King <linux+etnaviv@armlinux.org.uk>,
+        Christian Gmeiner <christian.gmeiner@gmail.com>,
+        Lee Jones <lee.jones@linaro.org>,
+        Shawn Guo <shawnguo@kernel.org>,
+        Sascha Hauer <s.hauer@pengutronix.de>,
+        Pengutronix Kernel Team <kernel@pengutronix.de>,
+        Fabio Estevam <festevam@gmail.com>,
+        NXP Linux Team <linux-imx@nxp.com>,
+        Sam Ravnborg <sam@ravnborg.org>, Li Yang <leoyang.li@nxp.com>,
+        Robert Chiras <robert.chiras@nxp.com>,
+        Matti Vaittinen <matti.vaittinen@fi.rohmeurope.com>,
+        devicetree@vger.kernel.org, linux-kernel@vger.kernel.org,
+        dri-devel@lists.freedesktop.org, etnaviv@lists.freedesktop.org,
+        linux-arm-kernel@lists.infradead.org
+Subject: Re: [PATCH 06/13] dt-bindings: mfd: rohm,bd71837-pmic: Add common
+ properties
+Message-ID: <20200914224407.GA388924@bogus>
 References: <20200904145312.10960-1-krzk@kernel.org>
- <20200904145312.10960-6-krzk@kernel.org>
+ <20200904145312.10960-7-krzk@kernel.org>
 MIME-Version: 1.0
 Content-Type: text/plain; charset=us-ascii
 Content-Disposition: inline
-In-Reply-To: <20200904145312.10960-6-krzk@kernel.org>
+In-Reply-To: <20200904145312.10960-7-krzk@kernel.org>
 Sender: devicetree-owner@vger.kernel.org
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-On Fri, 04 Sep 2020 16:53:04 +0200, Krzysztof Kozlowski wrote:
-> Remove whitespace at the end of line.
+On Fri, Sep 04, 2020 at 04:53:05PM +0200, Krzysztof Kozlowski wrote:
+> Add common properties appearing in DTSes (clock-names,
+> clock-output-names) to fix dtbs_check warnings like:
+> 
+>   arch/arm64/boot/dts/freescale/imx8mq-librem5-r2.dt.yaml:
+>     pmic@4b: 'clock-names', 'clock-output-names', do not match any of the regexes: 'pinctrl-[0-9]+'
 > 
 > Signed-off-by: Krzysztof Kozlowski <krzk@kernel.org>
 > ---
->  Documentation/devicetree/bindings/gpu/vivante,gc.yaml | 2 +-
->  1 file changed, 1 insertion(+), 1 deletion(-)
+>  .../devicetree/bindings/mfd/rohm,bd71837-pmic.yaml          | 6 ++++++
+>  1 file changed, 6 insertions(+)
 > 
+> diff --git a/Documentation/devicetree/bindings/mfd/rohm,bd71837-pmic.yaml b/Documentation/devicetree/bindings/mfd/rohm,bd71837-pmic.yaml
+> index 65018a019e1d..ecce0d5e3a95 100644
+> --- a/Documentation/devicetree/bindings/mfd/rohm,bd71837-pmic.yaml
+> +++ b/Documentation/devicetree/bindings/mfd/rohm,bd71837-pmic.yaml
+> @@ -32,9 +32,15 @@ properties:
+>    clocks:
+>      maxItems: 1
+>  
+> +  clock-names:
+> +    maxItems: 1
 
-Applied, thanks!
+Needs to define what the name is.
+
+> +
+>    "#clock-cells":
+>      const: 0
+>  
+> +  clock-output-names:
+> +    maxItems: 1
+
+Ideally this one too, but we've been more flexible on it.
+
+> +
+>  # The BD718x7 supports two different HW states as reset target states. States
+>  # are called as SNVS and READY. At READY state all the PMIC power outputs go
+>  # down and OTP is reload. At the SNVS state all other logic and external
+> -- 
+> 2.17.1
+> 
