@@ -2,219 +2,161 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from vger.kernel.org (vger.kernel.org [23.128.96.18])
-	by mail.lfdr.de (Postfix) with ESMTP id E91B3268959
-	for <lists+devicetree@lfdr.de>; Mon, 14 Sep 2020 12:33:28 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTP id 096A5268968
+	for <lists+devicetree@lfdr.de>; Mon, 14 Sep 2020 12:41:02 +0200 (CEST)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S1726456AbgINKd0 (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Mon, 14 Sep 2020 06:33:26 -0400
-Received: from lindbergh.monkeyblade.net ([23.128.96.19]:57608 "EHLO
+        id S1726478AbgINKk7 (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Mon, 14 Sep 2020 06:40:59 -0400
+Received: from lindbergh.monkeyblade.net ([23.128.96.19]:58776 "EHLO
         lindbergh.monkeyblade.net" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S1726369AbgINKdZ (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Mon, 14 Sep 2020 06:33:25 -0400
-Received: from mail-pg1-x543.google.com (mail-pg1-x543.google.com [IPv6:2607:f8b0:4864:20::543])
-        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id DDE64C06174A
-        for <devicetree@vger.kernel.org>; Mon, 14 Sep 2020 03:33:24 -0700 (PDT)
-Received: by mail-pg1-x543.google.com with SMTP id g29so11209729pgl.2
-        for <devicetree@vger.kernel.org>; Mon, 14 Sep 2020 03:33:24 -0700 (PDT)
+        with ESMTP id S1726437AbgINKkp (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Mon, 14 Sep 2020 06:40:45 -0400
+Received: from mail-pj1-x1042.google.com (mail-pj1-x1042.google.com [IPv6:2607:f8b0:4864:20::1042])
+        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 26F77C06174A
+        for <devicetree@vger.kernel.org>; Mon, 14 Sep 2020 03:40:44 -0700 (PDT)
+Received: by mail-pj1-x1042.google.com with SMTP id t7so5316718pjd.3
+        for <devicetree@vger.kernel.org>; Mon, 14 Sep 2020 03:40:44 -0700 (PDT)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=antmicro.com; s=google;
-        h=mime-version:references:in-reply-to:from:date:message-id:subject:to
-         :cc;
-        bh=UrmuUltF9h1wduRxzXusgQVOENqaHZyFRHTcJom8cGE=;
-        b=fZ+crlcyyGFSpUt6Evj12OiQCKtFgP1RXE/IdjznGEu25ETYptqXPS3qeYFhxKkofv
-         SsjptqfuJBQIaFe0K+hCcxK9fbgdUoKM6jEZYQRCyjo4eb85NXY9gvzSrrgo/QeQZfzo
-         dJsgPUEDbGIvYRHRdi35KxR6bEpkmR6/c6Pg8=
+        d=linaro.org; s=google;
+        h=date:from:to:cc:subject:message-id:references:mime-version
+         :content-disposition:in-reply-to:user-agent;
+        bh=tv4oV7dSUEt37JZrUleD0/9Qx7JqwI1EpXcxpLdFBqk=;
+        b=kNHysigBWX65nVLt36yVbc+zFvGX0H8djJ0uWwNH2yQw9Rn4gRk5HDrFNnT+5tmiaU
+         vhvTJlVtuOhCt+Op6lM7z7BIWPE3fInZTxTHkCZjsoxFcFqMjZx6l0GvKk6aRWCIZ5KI
+         iwHAsnXR1ZD42mydc7c+RmbeDYvh711AFulqF+HZi7RSqT+3ACZIV8m+T4A0v+buaOVI
+         HiqNo5yk5QkdPPwmA9lr26NpBbU4b3ZOgXqBaSsF0o9y0RIp18MLGtm5ewgkHjhyM/V6
+         UFFZ8Qdi6PnB2/r7uUHD1yV6PAbVTjppWd4Y86cCRkk6gbsGRoMZ2lNIuhdo8kxEWA1b
+         nV4w==
 X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
         d=1e100.net; s=20161025;
-        h=x-gm-message-state:mime-version:references:in-reply-to:from:date
-         :message-id:subject:to:cc;
-        bh=UrmuUltF9h1wduRxzXusgQVOENqaHZyFRHTcJom8cGE=;
-        b=ndSAC8CYL9BoBKq4wKXfSaOI1D9FDrixKi++q+yuCB+vdFTTP6KhqZrq+AsteI8Tdf
-         YEwBRzmk1DzyEmKUy/cv6BrzoPQi9LMc0mlIVxabAlMZCENcl9+D2wjTB9xJCfXOiLiw
-         a87l7AlBDmNYAdsKYdOOWSOaJSLG94pO8AWh4T5PAl8bcTDCNrsuWwnL1NaGMHQomJAX
-         JLUfe6aGiBcvlRI215RdlE4wqz2SzV0oGMKzvUprOaYpQytMVxgP2uVD9OShJsH61PcT
-         MWikV/Pu+syFg5K+ApQN6bMey0wIa6rAkCFR8fj87gCwLuzC78c/D/WNE65D4wt4B31w
-         XMqw==
-X-Gm-Message-State: AOAM530d/ghM/JrPPcWjN9KSd90s5Zj7HQHjsm2uQQMn0ZOblRBSyzV0
-        7koliGaXI/foTFaliSi1Au35dngPALxCLq1sGAnmjQ==
-X-Google-Smtp-Source: ABdhPJxyndpwi+ymDmZJ5igPTP5mS4RnYa9l/xUnIZ4zJ3ttCGxOve1JfG0eDClKex/fOhfnpnH+LJY2hgOq/jpHDAE=
-X-Received: by 2002:a17:902:988f:b029:d0:4c09:c1 with SMTP id
- s15-20020a170902988fb02900d04c0900c1mr13651699plp.3.1600079604372; Mon, 14
- Sep 2020 03:33:24 -0700 (PDT)
+        h=x-gm-message-state:date:from:to:cc:subject:message-id:references
+         :mime-version:content-disposition:in-reply-to:user-agent;
+        bh=tv4oV7dSUEt37JZrUleD0/9Qx7JqwI1EpXcxpLdFBqk=;
+        b=GWfpuZYgve54USu33Ml7D5lo2bUfixV+ezci2KAYzA0gc4qz8TfFJdaEDZXKbOjEo2
+         3qDh/6kdk0vbz9cnMXEzDVjd1evAMKWrINfHlPmdOSQWNS5zjv+I/SQExLL5TrKE+U7i
+         AmJVAP0WbjaqJwbKf+9PNs7B7wDaX8PzRQh5GWaWdAVKCH5r6BBh75s9c3l4h+4EAcZn
+         TKO2Xl0DcVWVPPAQCI5p8kIHPwixVUTK3Kc+XAXdXomCkPNAmmSHs082zqCfGpawsp0D
+         5sQI1aIij5l4X/U2v4KI3rOmB7LF+uLRamqBJ0FrAkUtc5YjoyfW/k9Yvshir5gNXXEV
+         6Xow==
+X-Gm-Message-State: AOAM531RfGNrWxzRsDGjxVsG7lD2v8Uon9lEl+iNSxUkSmUOihj+wvpR
+        KfaAnHBhrA7DzqUit1Y0grZp
+X-Google-Smtp-Source: ABdhPJxIHSb79HSc2eQdqoZpcYDzwhMObsBcpg95bsOzd8EvE94/VCWdzXleZDKTdEQ3eeTc7c8hWw==
+X-Received: by 2002:a17:90a:eb06:: with SMTP id j6mr13397563pjz.46.1600080043538;
+        Mon, 14 Sep 2020 03:40:43 -0700 (PDT)
+Received: from mani-NUC7i5DNKE ([2409:4072:6d84:8e8a:d537:f870:596d:5afa])
+        by smtp.gmail.com with ESMTPSA id e14sm8060518pgu.47.2020.09.14.03.40.37
+        (version=TLS1_2 cipher=ECDHE-ECDSA-CHACHA20-POLY1305 bits=256/256);
+        Mon, 14 Sep 2020 03:40:43 -0700 (PDT)
+Date:   Mon, 14 Sep 2020 16:10:35 +0530
+From:   Manivannan Sadhasivam <manivannan.sadhasivam@linaro.org>
+To:     Dmitry Baryshkov <dmitry.baryshkov@linaro.org>
+Cc:     Andy Gross <agross@kernel.org>,
+        Bjorn Andersson <bjorn.andersson@linaro.org>,
+        Rob Herring <robh+dt@kernel.org>,
+        Zhang Rui <rui.zhang@intel.com>,
+        Daniel Lezcano <daniel.lezcano@linaro.org>,
+        Amit Kucheria <amitk@kernel.org>,
+        Jonathan Cameron <jic23@kernel.org>,
+        Hartmut Knaack <knaack.h@gmx.de>,
+        Lars-Peter Clausen <lars@metafoo.de>,
+        Peter Meerwald-Stadler <pmeerw@pmeerw.net>,
+        linux-arm-msm@vger.kernel.org, linux-pm@vger.kernel.org,
+        devicetree@vger.kernel.org, linux-iio@vger.kernel.org
+Subject: Re: [PATCH v4 09/10] arm64: dts: qcom: pm8150x: add definitions for
+ adc-tm5 part
+Message-ID: <20200914104035.GC19867@mani-NUC7i5DNKE>
+References: <20200910140000.324091-1-dmitry.baryshkov@linaro.org>
+ <20200910140000.324091-10-dmitry.baryshkov@linaro.org>
 MIME-Version: 1.0
-References: <20200812143324.2394375-0-mholenko@antmicro.com>
- <20200812143324.2394375-3-mholenko@antmicro.com> <20200911005740.GN3562056@lianli.shorne-pla.net>
-In-Reply-To: <20200911005740.GN3562056@lianli.shorne-pla.net>
-From:   Mateusz Holenko <mholenko@antmicro.com>
-Date:   Mon, 14 Sep 2020 12:33:11 +0200
-Message-ID: <CAPk366Tvb9g960e3ZLv3+_H8FZJRRe0Jqa4q7tejE+svMcQvLA@mail.gmail.com>
-Subject: Re: [PATCH v10 3/5] drivers/soc/litex: add LiteX SoC Controller driver
-To:     Stafford Horne <shorne@gmail.com>
-Cc:     Rob Herring <robh+dt@kernel.org>,
-        Mark Rutland <mark.rutland@arm.com>,
-        Greg Kroah-Hartman <gregkh@linuxfoundation.org>,
-        Jiri Slaby <jslaby@suse.com>,
-        devicetree <devicetree@vger.kernel.org>,
-        "open list:SERIAL DRIVERS" <linux-serial@vger.kernel.org>,
-        Karol Gugala <kgugala@antmicro.com>,
-        Mauro Carvalho Chehab <mchehab+samsung@kernel.org>,
-        "David S. Miller" <davem@davemloft.net>,
-        "Paul E. McKenney" <paulmck@linux.ibm.com>,
-        Filip Kokosinski <fkokosinski@antmicro.com>,
-        Pawel Czarnecki <pczarnecki@internships.antmicro.com>,
-        Joel Stanley <joel@jms.id.au>,
-        Jonathan Cameron <Jonathan.Cameron@huawei.com>,
-        Maxime Ripard <mripard@kernel.org>,
-        Shawn Guo <shawnguo@kernel.org>,
-        Heiko Stuebner <heiko@sntech.de>,
-        Sam Ravnborg <sam@ravnborg.org>,
-        Icenowy Zheng <icenowy@aosc.io>,
-        Laurent Pinchart <laurent.pinchart@ideasonboard.com>,
-        Linux Kernel Mailing List <linux-kernel@vger.kernel.org>,
-        "Gabriel L. Somlo" <gsomlo@gmail.com>
-Content-Type: text/plain; charset="UTF-8"
+Content-Type: text/plain; charset=us-ascii
+Content-Disposition: inline
+In-Reply-To: <20200910140000.324091-10-dmitry.baryshkov@linaro.org>
+User-Agent: Mutt/1.9.4 (2018-02-28)
 Sender: devicetree-owner@vger.kernel.org
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-On Fri, Sep 11, 2020 at 2:57 AM Stafford Horne <shorne@gmail.com> wrote:
->
-> On Wed, Aug 12, 2020 at 02:34:34PM +0200, Mateusz Holenko wrote:
-> > From: Pawel Czarnecki <pczarnecki@internships.antmicro.com>
-> >
-> > This commit adds driver for the FPGA-based LiteX SoC
-> > Controller from LiteX SoC builder.
-> >
-> > Co-developed-by: Mateusz Holenko <mholenko@antmicro.com>
-> > Signed-off-by: Mateusz Holenko <mholenko@antmicro.com>
-> > Signed-off-by: Pawel Czarnecki <pczarnecki@internships.antmicro.com>
-> > ---
-> ...
-> > +static int litex_check_csr_access(void __iomem *reg_addr)
-> > +{
-> > +     unsigned long reg;
-> > +
-> > +     reg = litex_get_reg(reg_addr + SCRATCH_REG_OFF, SCRATCH_REG_SIZE);
-> > +
-> > +     if (reg != SCRATCH_REG_VALUE) {
-> > +             panic("Scratch register read error! Expected: 0x%x but got: 0x%lx",
-> > +                     SCRATCH_REG_VALUE, reg);
-> > +             return -EINVAL;
-> > +     }
-> > +
-> > +     litex_set_reg(reg_addr + SCRATCH_REG_OFF,
-> > +             SCRATCH_REG_SIZE, SCRATCH_TEST_VALUE);
-> > +     reg = litex_get_reg(reg_addr + SCRATCH_REG_OFF, SCRATCH_REG_SIZE);
-> > +
-> > +     if (reg != SCRATCH_TEST_VALUE) {
-> > +             panic("Scratch register write error! Expected: 0x%x but got: 0x%lx",
-> > +                     SCRATCH_TEST_VALUE, reg);
-> > +             return -EINVAL;
-> > +     }
-> > +
-> > +     /* restore original value of the SCRATCH register */
-> > +     litex_set_reg(reg_addr + SCRATCH_REG_OFF,
-> > +             SCRATCH_REG_SIZE, SCRATCH_REG_VALUE);
-> > +
-> > +     /* Set flag for other drivers */
-> What does this comment mean?
+On Thu, Sep 10, 2020 at 04:59:59PM +0300, Dmitry Baryshkov wrote:
+> Define adc-tm5 thermal monitoring part. Individual channes and thermal
+> zones are to be configured in per-device dts files.
+> 
+> Signed-off-by: Dmitry Baryshkov <dmitry.baryshkov@linaro.org>
 
-This is a leftover from the previous version of the patch
-and shouldn't be there - sorry for that.
-I'll remove it.
+Acked-by: Manivannan Sadhasivam <manivannan.sadhasivam@linaro.org>
 
-> > +     pr_info("LiteX SoC Controller driver initialized");
-> > +
-> > +     return 0;
-> > +}
-> > +
-> > +struct litex_soc_ctrl_device {
-> > +     void __iomem *base;
-> > +};
-> > +
-> > +static const struct of_device_id litex_soc_ctrl_of_match[] = {
-> > +     {.compatible = "litex,soc-controller"},
-> > +     {},
-> > +};
-> > +
-> > +MODULE_DEVICE_TABLE(of, litex_soc_ctrl_of_match);
-> > +
-> > +static int litex_soc_ctrl_probe(struct platform_device *pdev)
-> > +{
-> > +     int result;
-> > +     struct device *dev;
-> > +     struct device_node *node;
-> > +     struct litex_soc_ctrl_device *soc_ctrl_dev;
-> > +
-> > +     dev = &pdev->dev;
-> > +     node = dev->of_node;
-> > +     if (!node)
-> > +             return -ENODEV;
-> > +
-> > +     soc_ctrl_dev = devm_kzalloc(dev, sizeof(*soc_ctrl_dev), GFP_KERNEL);
-> > +     if (!soc_ctrl_dev)
-> > +             return -ENOMEM;
-> > +
-> > +     soc_ctrl_dev->base = devm_platform_ioremap_resource(pdev, 0);
-> > +     if (IS_ERR(soc_ctrl_dev->base))
-> > +             return PTR_ERR(soc_ctrl_dev->base);
-> > +
-> > +     result = litex_check_csr_access(soc_ctrl_dev->base);
-> > +     if (result) {
-> > +             // LiteX CSRs access is broken which means that
-> > +             // none of LiteX drivers will most probably
-> > +             // operate correctly
-> The comment format here with // is not usually used in the kernel, but its not
-> forbidded.  Could you use the /* */ multiline style?
+Thanks,
+Mani
 
-Sure, I'll change the commenting style here.
-
->
-> > +             BUG();
-> Instead of stopping the system with BUG, could we just do:
->
->         return litex_check_csr_access(soc_ctrl_dev->base);
->
-> We already have failure for NODEV/NOMEM so might as well not call BUG() here
-> too.
-
-It's true that litex_check_csr_accessors() already generates error
-codes that could be
-returned directly.
-The point of using BUG() macro here, however, is to stop booting the
-system so that it's visible
-(and impossible to miss for the user) that an unresolvable HW issue
-was encountered.
-
-CSR-accessors - the litex_{g,s}et_reg() functions - are intended to be
-used by other LiteX drivers
-and it's very unlikely that those drivers would work properly after
-the fail of litex_check_csr_accessors().
-Since in such case the UART driver will be affected too (no boot logs
-and error messages visible to the user),
-I thought it'll be easier to spot and debug the problem if the system
-stopped in the BUG loop.
-Perhaps there are other, more linux-friendly, ways of achieving a
-similar goal - I'm open for suggestions.
-
-> > +     }
-> > +
-> > +     return 0;
-> > +}
-> > +
->
-> Other than that it looks ok to me.
->
-> -Stafford
-
-Thanks for the review!
-
-Best,
-Mateusz
-
-
---
-Mateusz Holenko
-Antmicro Ltd | www.antmicro.com
-Roosevelta 22, 60-829 Poznan, Poland
+> ---
+>  arch/arm64/boot/dts/qcom/pm8150.dtsi  | 10 ++++++++++
+>  arch/arm64/boot/dts/qcom/pm8150b.dtsi | 10 ++++++++++
+>  arch/arm64/boot/dts/qcom/pm8150l.dtsi | 10 ++++++++++
+>  3 files changed, 30 insertions(+)
+> 
+> diff --git a/arch/arm64/boot/dts/qcom/pm8150.dtsi b/arch/arm64/boot/dts/qcom/pm8150.dtsi
+> index 1b6406927509..b1b518c6a2c9 100644
+> --- a/arch/arm64/boot/dts/qcom/pm8150.dtsi
+> +++ b/arch/arm64/boot/dts/qcom/pm8150.dtsi
+> @@ -97,6 +97,16 @@ die-temp@6 {
+>  			};
+>  		};
+>  
+> +		pm8150_adc_tm: adc-tm@3500 {
+> +			compatible = "qcom,spmi-adc-tm5";
+> +			reg = <0x3500>;
+> +			interrupts = <0x0 0x35 0x0 IRQ_TYPE_EDGE_RISING>;
+> +			#thermal-sensor-cells = <1>;
+> +			#address-cells = <1>;
+> +			#size-cells = <0>;
+> +			status = "disabled";
+> +		};
+> +
+>  		rtc@6000 {
+>  			compatible = "qcom,pm8941-rtc";
+>  			reg = <0x6000>;
+> diff --git a/arch/arm64/boot/dts/qcom/pm8150b.dtsi b/arch/arm64/boot/dts/qcom/pm8150b.dtsi
+> index e112e8876db6..8e2f3250c914 100644
+> --- a/arch/arm64/boot/dts/qcom/pm8150b.dtsi
+> +++ b/arch/arm64/boot/dts/qcom/pm8150b.dtsi
+> @@ -95,6 +95,16 @@ chg-temp@9 {
+>  			};
+>  		};
+>  
+> +		pm8150b_adc_tm: adc-tm@3500 {
+> +			compatible = "qcom,spmi-adc-tm5";
+> +			reg = <0x3500>;
+> +			interrupts = <0x2 0x35 0x0 IRQ_TYPE_EDGE_RISING>;
+> +			#thermal-sensor-cells = <1>;
+> +			#address-cells = <1>;
+> +			#size-cells = <0>;
+> +			status = "disabled";
+> +		};
+> +
+>  		pm8150b_gpios: gpio@c000 {
+>  			compatible = "qcom,pm8150b-gpio";
+>  			reg = <0xc000>;
+> diff --git a/arch/arm64/boot/dts/qcom/pm8150l.dtsi b/arch/arm64/boot/dts/qcom/pm8150l.dtsi
+> index 62139538b7d9..9f214ceec2b7 100644
+> --- a/arch/arm64/boot/dts/qcom/pm8150l.dtsi
+> +++ b/arch/arm64/boot/dts/qcom/pm8150l.dtsi
+> @@ -89,6 +89,16 @@ die-temp@6 {
+>  			};
+>  		};
+>  
+> +		pm8150l_adc_tm: adc-tm@3500 {
+> +			compatible = "qcom,spmi-adc-tm5";
+> +			reg = <0x3500>;
+> +			interrupts = <0x4 0x35 0x0 IRQ_TYPE_EDGE_RISING>;
+> +			#thermal-sensor-cells = <1>;
+> +			#address-cells = <1>;
+> +			#size-cells = <0>;
+> +			status = "disabled";
+> +		};
+> +
+>  		pm8150l_gpios: gpio@c000 {
+>  			compatible = "qcom,pm8150l-gpio";
+>  			reg = <0xc000>;
+> -- 
+> 2.28.0
+> 
