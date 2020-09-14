@@ -2,67 +2,135 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from vger.kernel.org (vger.kernel.org [23.128.96.18])
-	by mail.lfdr.de (Postfix) with ESMTP id C36B1269773
-	for <lists+devicetree@lfdr.de>; Mon, 14 Sep 2020 23:11:50 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTP id 82B88269784
+	for <lists+devicetree@lfdr.de>; Mon, 14 Sep 2020 23:15:04 +0200 (CEST)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S1725926AbgINVLt (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Mon, 14 Sep 2020 17:11:49 -0400
-Received: from mail.kernel.org ([198.145.29.99]:39466 "EHLO mail.kernel.org"
-        rhost-flags-OK-OK-OK-OK) by vger.kernel.org with ESMTP
-        id S1725961AbgINVLr (ORCPT <rfc822;devicetree@vger.kernel.org>);
-        Mon, 14 Sep 2020 17:11:47 -0400
-Received: from mail-oo1-f47.google.com (mail-oo1-f47.google.com [209.85.161.47])
-        (using TLSv1.2 with cipher ECDHE-RSA-AES128-GCM-SHA256 (128/128 bits))
-        (No client certificate requested)
-        by mail.kernel.org (Postfix) with ESMTPSA id F19D4218AC;
-        Mon, 14 Sep 2020 21:11:46 +0000 (UTC)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=kernel.org;
-        s=default; t=1600117907;
-        bh=aROn/zSUcmVHeUa7RPdBtBXlg7l/7wS6mQyZeUH+vmE=;
-        h=References:In-Reply-To:From:Date:Subject:To:Cc:From;
-        b=R+TvKYeBJuWK3XiEJ9pwaEaa6LfDHiNyhHQKrtYKCRpjCmdNn+6cCpiCOcMA8wE/8
-         R7uWzrB6exXyIXhxmSFAvJQHScYCM9Zs6kF7hBtreWfUve+9u7Lw0hYKdWxT6oKJxk
-         WMGPn6/2Tf2TRPpvgzfkKXhO3MxFD+p86lenQAxs=
-Received: by mail-oo1-f47.google.com with SMTP id h9so212804ooo.10;
-        Mon, 14 Sep 2020 14:11:46 -0700 (PDT)
-X-Gm-Message-State: AOAM532aby+ncdIhPWi5+vI+xicMsHaaQd0DPY0dmJraA/tZ9uhHiZus
-        P1qMYUCpZL6/Ev32zbsIZsiu3J36TG0hIEKrFg==
-X-Google-Smtp-Source: ABdhPJzxlwm9lNaA8nMCSGFjApvtHLzHVXT7vei2Tc7G6fHN2n/+MkdTLPt2LoyoIPbsGcQAfPgYd8tNJnQ4VjdMVXA=
-X-Received: by 2002:a4a:9d48:: with SMTP id f8mr11349912ook.50.1600117906336;
- Mon, 14 Sep 2020 14:11:46 -0700 (PDT)
+        id S1726115AbgINVPA (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Mon, 14 Sep 2020 17:15:00 -0400
+Received: from lindbergh.monkeyblade.net ([23.128.96.19]:44402 "EHLO
+        lindbergh.monkeyblade.net" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
+        with ESMTP id S1726094AbgINVO4 (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Mon, 14 Sep 2020 17:14:56 -0400
+Received: from mail-pg1-x542.google.com (mail-pg1-x542.google.com [IPv6:2607:f8b0:4864:20::542])
+        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id DFDD7C061788
+        for <devicetree@vger.kernel.org>; Mon, 14 Sep 2020 14:14:54 -0700 (PDT)
+Received: by mail-pg1-x542.google.com with SMTP id 34so754361pgo.13
+        for <devicetree@vger.kernel.org>; Mon, 14 Sep 2020 14:14:54 -0700 (PDT)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+        d=chromium.org; s=google;
+        h=date:from:to:cc:subject:message-id:references:mime-version
+         :content-disposition:in-reply-to;
+        bh=vhBJpFh7LpS6l+ihl8unlGrM5gNVdzAOXOoEIys9z0M=;
+        b=XgS/+ZdxImynQIwWmSa0+yIApIdMsIityrt10mIHaPsfUV81LLX/ko9FW02rZYdER9
+         zIEOxovTxJ7duvnI3GP6hwBn9VaVcChYjoiHa5oZLkFZLo4OoQ4fqeblLWlG5LOtxoUj
+         JYuLk8CCbo+bgHVwZCheekr/04cWD7neXQJzg=
+X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+        d=1e100.net; s=20161025;
+        h=x-gm-message-state:date:from:to:cc:subject:message-id:references
+         :mime-version:content-disposition:in-reply-to;
+        bh=vhBJpFh7LpS6l+ihl8unlGrM5gNVdzAOXOoEIys9z0M=;
+        b=QbHEjVk26zzDbNR1WSv+O2NtwQDCQapEjztUeDGXI/vpz+JPmagf7bElswDUstW2Uu
+         4i9fNPAe3/sUO2Y7VN90f8Wl+9X0d36nvNLOjtjJjvK687sWTobDZeKuDZaQ6At+f+No
+         MmAZIwhr9L2TiJA6NB0X9PI0cet0uz4C4KITgAkU4fi8+clGuVDMktqGgbPSjD7dGPlL
+         s+vJe8q3ed92ni5oapHAJGTulq/7iMK6ONiaL2G+cGMijQb1IhNajRreAWJIR4Gn5mdy
+         yq/xEI6a9tOPxzV6Yq/Jk6tesYR9/acFmr4kms8Ow1sNzSMNZ7fUi0GtgIqAYS3cQNDb
+         N9HA==
+X-Gm-Message-State: AOAM530avWwUie5mWQ9CV3+qcN2d/MRWH7j+Mhh+RBGGyBlQ+2nmYhgj
+        VxHals7k8VRB/gZ9wk+8DXCAcw==
+X-Google-Smtp-Source: ABdhPJwA/MrD7V5VcAx5rbje9K+C6ArZfV14fj2XEW4biFFvVBvAOZcISeQlMVefkxiAbVCyv0N8pA==
+X-Received: by 2002:a63:2250:: with SMTP id t16mr12193817pgm.303.1600118094278;
+        Mon, 14 Sep 2020 14:14:54 -0700 (PDT)
+Received: from localhost ([2620:15c:202:1:f693:9fff:fef4:e70a])
+        by smtp.gmail.com with ESMTPSA id k6sm11444204pfh.92.2020.09.14.14.14.53
+        (version=TLS1_3 cipher=TLS_AES_128_GCM_SHA256 bits=128/128);
+        Mon, 14 Sep 2020 14:14:53 -0700 (PDT)
+Date:   Mon, 14 Sep 2020 14:14:52 -0700
+From:   Matthias Kaehlcke <mka@chromium.org>
+To:     Alan Stern <stern@rowland.harvard.edu>
+Cc:     Greg Kroah-Hartman <gregkh@linuxfoundation.org>,
+        Rob Herring <robh+dt@kernel.org>,
+        Frank Rowand <frowand.list@gmail.com>,
+        Krzysztof Kozlowski <krzk@kernel.org>,
+        Bastien Nocera <hadess@hadess.net>,
+        Ravi Chandra Sadineni <ravisadineni@chromium.org>,
+        linux-usb@vger.kernel.org, Stephen Boyd <swboyd@chromium.org>,
+        devicetree@vger.kernel.org,
+        Douglas Anderson <dianders@chromium.org>,
+        Peter Chen <peter.chen@nxp.com>, linux-kernel@vger.kernel.org,
+        "Alexander A. Klimov" <grandmaster@al2klimov.de>,
+        Masahiro Yamada <masahiroy@kernel.org>
+Subject: Re: [PATCH 2/2] USB: misc: Add onboard_usb_hub driver
+Message-ID: <20200914211452.GE2022397@google.com>
+References: <20200914112716.1.I248292623d3d0f6a4f0c5bc58478ca3c0062b49a@changeid>
+ <20200914112716.2.I7c9a1f1d6ced41dd8310e8a03da666a32364e790@changeid>
+ <20200914201403.GA977844@rowland.harvard.edu>
 MIME-Version: 1.0
-References: <cover.1599826421.git.mchehab+huawei@kernel.org> <7964c39084de5d2fd3dca30bf5abb5973eeec42b.1599826421.git.mchehab+huawei@kernel.org>
-In-Reply-To: <7964c39084de5d2fd3dca30bf5abb5973eeec42b.1599826421.git.mchehab+huawei@kernel.org>
-From:   Rob Herring <robh+dt@kernel.org>
-Date:   Mon, 14 Sep 2020 15:11:35 -0600
-X-Gmail-Original-Message-ID: <CAL_JsqLjh15Gk7kuB_YhY7NL8ctMSe9oFP0ehRMNrBfZSdFbBw@mail.gmail.com>
-Message-ID: <CAL_JsqLjh15Gk7kuB_YhY7NL8ctMSe9oFP0ehRMNrBfZSdFbBw@mail.gmail.com>
-Subject: Re: [PATCH v3 RESEND 7/8] dt-bindings: phy: convert
- phy-kirin970-usb3.txt to yaml
-To:     Mauro Carvalho Chehab <mchehab+huawei@kernel.org>
-Cc:     Linuxarm <linuxarm@huawei.com>, mauro.chehab@huawei.com,
-        John Stultz <john.stultz@linaro.org>,
-        Manivannan Sadhasivam <mani@kernel.org>,
-        Kishon Vijay Abraham I <kishon@ti.com>,
-        Vinod Koul <vkoul@kernel.org>, devicetree@vger.kernel.org,
-        "linux-kernel@vger.kernel.org" <linux-kernel@vger.kernel.org>
-Content-Type: text/plain; charset="UTF-8"
+Content-Type: text/plain; charset=utf-8
+Content-Disposition: inline
+In-Reply-To: <20200914201403.GA977844@rowland.harvard.edu>
 Sender: devicetree-owner@vger.kernel.org
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-On Fri, Sep 11, 2020 at 6:16 AM Mauro Carvalho Chehab
-<mchehab+huawei@kernel.org> wrote:
->
-> Use the new YAML for this physical layer.
->
-> Signed-off-by: Mauro Carvalho Chehab <mchehab+huawei@kernel.org>
-> ---
->  .../bindings/phy/hisilicon,hi3670-usb3.yaml   | 72 +++++++++++++++++++
->  .../bindings/phy/phy-hi3670-usb3.txt          | 25 -------
->  2 files changed, 72 insertions(+), 25 deletions(-)
->  create mode 100644 Documentation/devicetree/bindings/phy/hisilicon,hi3670-usb3.yaml
->  delete mode 100644 Documentation/devicetree/bindings/phy/phy-hi3670-usb3.txt
+Hi Alan,
 
-Reviewed-by: Rob Herring <robh@kernel.org>
+thanks for your feedback!
+
+On Mon, Sep 14, 2020 at 04:14:03PM -0400, Alan Stern wrote:
+> On Mon, Sep 14, 2020 at 11:27:49AM -0700, Matthias Kaehlcke wrote:
+> > The main issue this driver addresses is that a USB hub needs to be
+> > powered before it can be discovered. For onboard hubs this is often
+> > solved by supplying the hub with an 'always-on' regulator, which is
+> > kind of a hack. Some onboard hubs may require further initialization
+> > steps, like changing the state of a GPIO or enabling a clock, which
+> > requires further hacks. This driver creates a platform device
+> > representing the hub which performs the necessary initialization.
+> > Currently it only supports switching on a single regulator, support
+> > for multiple regulators or other actions can be added as needed.
+> > Different initialization sequences can be supported based on the
+> > compatible string.
+> > 
+> > Besides performing the initialization the driver can be configured
+> > to power the hub off during system suspend. This can help to extend
+> > battery life on battery powered devices, which have no requirements
+> > to keep the hub powered during suspend. The driver can also be
+> > configured to leave the hub powered when a wakeup capable USB device
+> > is connected when suspending, and keeping it powered otherwise.
+> > 
+> > Technically the driver consists of two drivers, the platform driver
+> > described above and a very thin USB driver that subclasses the
+> > generic hub driver.
+> 
+> Actually it subclasses the generic usb device driver, not the hub 
+> driver.
+
+ok, I'll change it in the next version.
+
+> >  The purpose of this driver is to provide the
+> > platform driver with the USB devices corresponding to the hub(s)
+> > (a hub controller may provide multiple 'logical' hubs, e.g. one
+> > to support USB 2.0 and another for USB 3.x).
+> > 
+> > Co-developed-by: Ravi Chandra Sadineni <ravisadineni@chromium.org>
+> > Signed-off-by: Ravi Chandra Sadineni <ravisadineni@chromium.org>
+> > Signed-off-by: Matthias Kaehlcke <mka@chromium.org>
+> > ---
+> > This is an evolution of '[RFC] USB: misc: Add usb_hub_pwr driver'
+> > (https://lore.kernel.org/patchwork/patch/1299239/).
+> > 
+> > Changes in v1:
+> > - renamed the driver to 'onboard_usb_hub'
+> > - single file for platform and USB driver
+> > - USB hub devices register with the platform device
+> >   - the DT includes a phandle of the platform device
+> > - the platform device now controls when power is turned off
+> > - the USB driver became a very thin subclass of the generic hub
+> >   driver
+> > - enabled autosuspend support
+> 
+> See https://marc.info/?l=linux-usb&m=159914635920888&w=2 and the 
+> accompanying submissions.  You'll probably want to include those updates 
+> in your driver.
+
+Thanks for the pointer! I'll change the driver to use pm_ptr as suggested.
