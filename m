@@ -2,108 +2,101 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from vger.kernel.org (vger.kernel.org [23.128.96.18])
-	by mail.lfdr.de (Postfix) with ESMTP id 1D2622696AB
-	for <lists+devicetree@lfdr.de>; Mon, 14 Sep 2020 22:31:52 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTP id 8487F2696B6
+	for <lists+devicetree@lfdr.de>; Mon, 14 Sep 2020 22:33:43 +0200 (CEST)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S1726100AbgINUbh (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Mon, 14 Sep 2020 16:31:37 -0400
-Received: from mail-io1-f66.google.com ([209.85.166.66]:38770 "EHLO
-        mail-io1-f66.google.com" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S1726380AbgINUbS (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Mon, 14 Sep 2020 16:31:18 -0400
-Received: by mail-io1-f66.google.com with SMTP id h4so1586217ioe.5;
-        Mon, 14 Sep 2020 13:31:13 -0700 (PDT)
+        id S1726179AbgINUdl (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Mon, 14 Sep 2020 16:33:41 -0400
+Received: from lindbergh.monkeyblade.net ([23.128.96.19]:37948 "EHLO
+        lindbergh.monkeyblade.net" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
+        with ESMTP id S1726199AbgINUdf (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Mon, 14 Sep 2020 16:33:35 -0400
+Received: from mail-ot1-x342.google.com (mail-ot1-x342.google.com [IPv6:2607:f8b0:4864:20::342])
+        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 26637C06178A
+        for <devicetree@vger.kernel.org>; Mon, 14 Sep 2020 13:33:33 -0700 (PDT)
+Received: by mail-ot1-x342.google.com with SMTP id g96so1081212otb.12
+        for <devicetree@vger.kernel.org>; Mon, 14 Sep 2020 13:33:33 -0700 (PDT)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+        d=linaro.org; s=google;
+        h=mime-version:references:in-reply-to:from:date:message-id:subject:to
+         :cc;
+        bh=2Mk3y4QTN6xRvnXKdPBhBHuIkyeIhKX+xzx1HRoc+Og=;
+        b=OTIQLfXHW0RjDPV9vcIIYHecMLZb9OV/uMKqh+bsWegXRtYmZtVl7avhDJ6GbPFe5L
+         Mydvpa/Xw2S0ui0IpPFqgSxIs1firZ3KdqZFFHaNLRLd7uY0+g196Ra6qF+/qAagO98v
+         ZEtZaBlx34trmmHI/utemWOB0m7eevHR3iD8KW1TnUdx8k3lvXOEDDI0bQYsEo1pof0S
+         o7MhOSoj7rXUJ0/fgwDRzkJ7LxWl1pQ64nNT5W2VQcrUJVDrrV6hHS71BRRT/to6TkPz
+         /iepClQDeyNBUm5MfcWEeF4Eyd99LCyIT7FxiA/KFuBxbSa9rKnLBHzRHY66mttJJ8dE
+         rVKQ==
 X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
         d=1e100.net; s=20161025;
-        h=x-gm-message-state:date:from:to:cc:subject:message-id:references
-         :mime-version:content-disposition:in-reply-to;
-        bh=ertsEXNzBAqBMP0DR44vwXjpmpZeyhjOeESoguCTNWM=;
-        b=NFZXXgdWIQ3uGOoIFNbuw4iJLWmtL7GwPHF0t28Gv6h1TEH6q34/UPdJ5nRE6Ne3yq
-         mdkv9ndvxTTH30x6vAsj4rqeZSTzEc9qDKJ4YNR010CjRSylU/B7oMPqhi3X8y9uctKz
-         pJpCa/BmYqj+EnB/dYlpRiVsKxUTkz+faBdep6/ZjAXXIEY0ynN10N/bVDUn9jw+F1+D
-         0fUx+7ZRfzA14oDPALQn4uf1zy20IRiUgGcx8/Iaa3CvMBafm7E/13Bm5/v8wDEhpmX3
-         LTOe2VhI9IknGWw1KYMfDyh6JTBvp2vSlPjhSRoJ4HJr9tjMkqNUKMhlYmWuwwNrT/8j
-         doRg==
-X-Gm-Message-State: AOAM533GHQ1HKNtX095ZADrYbOz5Wn6EkNYTVHmr8Oa0BR+Nn42RQVpj
-        ml794AnEjFdUxTWXeZl5Yg==
-X-Google-Smtp-Source: ABdhPJxJufdcERasZD1eQUMk0+yl6OsHc5GWVtQxStAhsjs6Dso/8xuXPgJ5BA0AjX/GgeKyjVrt7g==
-X-Received: by 2002:a02:62c9:: with SMTP id d192mr15087711jac.59.1600115472878;
-        Mon, 14 Sep 2020 13:31:12 -0700 (PDT)
-Received: from xps15 ([64.188.179.253])
-        by smtp.gmail.com with ESMTPSA id k16sm6428003ioc.15.2020.09.14.13.31.11
-        (version=TLS1_3 cipher=TLS_AES_256_GCM_SHA384 bits=256/256);
-        Mon, 14 Sep 2020 13:31:12 -0700 (PDT)
-Received: (nullmailer pid 191374 invoked by uid 1000);
-        Mon, 14 Sep 2020 20:31:10 -0000
-Date:   Mon, 14 Sep 2020 14:31:10 -0600
-From:   Rob Herring <robh@kernel.org>
-To:     Zhen Lei <thunder.leizhen@huawei.com>
-Cc:     Thomas Gleixner <tglx@linutronix.de>,
-        Jason Cooper <jason@lakedaemon.net>,
-        Marc Zyngier <maz@kernel.org>,
-        devicetree <devicetree@vger.kernel.org>,
-        linux-kernel <linux-kernel@vger.kernel.org>,
-        Kefeng Wang <wangkefeng.wang@huawei.com>
-Subject: Re: [PATCH 1/2] dt-bindings: interrupt-controller: add Hisilicon
- SD5203 vector interrupt controller
-Message-ID: <20200914203110.GA185427@bogus>
-References: <20200903120504.2308-1-thunder.leizhen@huawei.com>
- <20200903120504.2308-2-thunder.leizhen@huawei.com>
+        h=x-gm-message-state:mime-version:references:in-reply-to:from:date
+         :message-id:subject:to:cc;
+        bh=2Mk3y4QTN6xRvnXKdPBhBHuIkyeIhKX+xzx1HRoc+Og=;
+        b=uHvnLWrdNG5Pvb4nCD+S2SDju1qB4YxojJMeYE98HJqLAZRMP8eJsB5QP4Vg11uF5u
+         DHlG953hrjElPvZljRPP+Xkwd03p6bxVv6tWxwlo1uLts6iOZmUhTaBYVowKHlTvqd89
+         b8ihwXRHWv7orhVQpow9ZJrMCUZ+H/nwBZH7gVSim8fd9Y3itWNQlFvyI0gJpjsg1iAH
+         WVKl8ohQ6nI3JIFu75zJt2djj8OpojL8t09ZUiYZUhFYQhDlT3L93ReMOOOJD4Ca08yg
+         JMlzkIACBFtYm4opcQgDyZo4luuQUM/jxXIv43N1m8DEZixPLbU2q8lkAEV40ioZxb9t
+         rDVg==
+X-Gm-Message-State: AOAM533D6Qo5RH6nFjVeGrnve7hUwgVK8JrEDJFPdmmLa3nc1KJHm/5r
+        QiH1j8rdpCN0EBcX8nJ2hHEpErNJsqN65Y7ULFymQQ==
+X-Google-Smtp-Source: ABdhPJxNcyZxLZwBDTQiU7A9JlkrbqGBOA57WFhCgaY6YWrBJ2a42FnksGejlrLgPN53e6O0ZNxIjfqK4RVKFx0Zal4=
+X-Received: by 2002:a9d:2d81:: with SMTP id g1mr10112415otb.352.1600115612473;
+ Mon, 14 Sep 2020 13:33:32 -0700 (PDT)
 MIME-Version: 1.0
-Content-Type: text/plain; charset=us-ascii
-Content-Disposition: inline
-In-Reply-To: <20200903120504.2308-2-thunder.leizhen@huawei.com>
+References: <20200912125148.1271481-1-maz@kernel.org>
+In-Reply-To: <20200912125148.1271481-1-maz@kernel.org>
+From:   John Stultz <john.stultz@linaro.org>
+Date:   Mon, 14 Sep 2020 13:33:22 -0700
+Message-ID: <CALAqxLWKDO49=-Uh+ZYibMP-_8ubJQPWJUTiPFJZRRDxhW42hw@mail.gmail.com>
+Subject: Re: [PATCH 0/6] irqchip: Hybrid probing
+To:     Marc Zyngier <maz@kernel.org>
+Cc:     "open list:OPEN FIRMWARE AND FLATTENED DEVICE TREE BINDINGS" 
+        <devicetree@vger.kernel.org>, lkml <linux-kernel@vger.kernel.org>,
+        linux-arm-kernel <linux-arm-kernel@lists.infradead.org>,
+        Enric Balletbo i Serra <enric.balletbo@collabora.com>,
+        Frank Wunderlich <linux@fw-web.de>,
+        Saravana Kannan <saravanak@google.com>,
+        Hanks Chen <hanks.chen@mediatek.com>,
+        Andy Gross <agross@kernel.org>,
+        Bjorn Andersson <bjorn.andersson@linaro.org>,
+        Matthias Brugger <matthias.bgg@gmail.com>,
+        Thomas Gleixner <tglx@linutronix.de>,
+        Jason Cooper <jason@lakedaemon.net>,
+        Rob Herring <robh+dt@kernel.org>,
+        Frank Rowand <frowand.list@gmail.com>,
+        Android Kernel Team <kernel-team@android.com>
+Content-Type: text/plain; charset="UTF-8"
 Sender: devicetree-owner@vger.kernel.org
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-On Thu, Sep 03, 2020 at 08:05:03PM +0800, Zhen Lei wrote:
-> Add DT bindings for the Hisilicon SD5203 vector interrupt controller.
-> 
-> Signed-off-by: Zhen Lei <thunder.leizhen@huawei.com>
-> ---
->  .../hisilicon,sd5203-vic.txt                  | 27 +++++++++++++++++++
+On Sat, Sep 12, 2020 at 5:52 AM Marc Zyngier <maz@kernel.org> wrote:
+>
+> A recent attempt at converting a couple of interrupt controllers from
+> early probing to standard platform drivers have badly failed, as it
+> became evident that although an interrupt controller can easily probe
+> late, device drivers for the endpoints connected to it are rarely
+> equipped to deal with probe deferral. Changes were swiftly reverted.
+>
+> However, there is some value in *optionally* enabling this, if only
+> for development purposes, as there is otherwise a "chicken and egg"
+> problem, and a few people (cc'd) are working on a potential solution.
+>
+> This short series enables the infrastructure for modular building
+> whilst retaining the usual early probing for monolithic build, and
+> introduces it to the three drivers that were previously made to probe
+> as platform drivers.
+>
+> As I don't have any of the HW, this series is fully untested and I'd
+> welcome some feedback on it.
 
-Bindings should be in DT schema format now.
+I've tested this on db845c along with a small follow-on patch I'll
+send to you which sets the qcom-pdc as a tristate in the Kconfig, both
+as a module and as a built-in.
 
->  1 file changed, 27 insertions(+)
->  create mode 100644 Documentation/devicetree/bindings/interrupt-controller/hisilicon,sd5203-vic.txt
-> 
-> diff --git a/Documentation/devicetree/bindings/interrupt-controller/hisilicon,sd5203-vic.txt b/Documentation/devicetree/bindings/interrupt-controller/hisilicon,sd5203-vic.txt
-> new file mode 100644
-> index 000000000000..a08292e868b0
-> --- /dev/null
-> +++ b/Documentation/devicetree/bindings/interrupt-controller/hisilicon,sd5203-vic.txt
-> @@ -0,0 +1,27 @@
-> +Hisilicon SD5203 vector interrupt controller (VIC)
-> +
-> +Hisilicon SD5203 VIC based on Synopsys DesignWare APB interrupt controller, but
-> +there's something special:
-> +1. The maximum number of irqs supported is 32. The registers ENABLE, MASK and
-> +   FINALSTATUS are 32 bits.
-> +2. There is only one VIC, it's used as primary interrupt controller.
-> +
-> +Required properties:
-> +- compatible: shall be "hisilicon,sd5203-vic"
-> +- reg: physical base address of the controller and length of memory mapped
-> +  region starting with ENABLE_LOW register
-> +- interrupt-controller: identifies the node as an interrupt controller
-> +- #interrupt-cells: number of cells to encode an interrupt-specifier, shall be 1
-> +
-> +The interrupt sources map to the corresponding bits in the interrupt
-> +registers, i.e.
-> +- 0 maps to bit 0 of low interrupts,
-> +- 1 maps to bit 1 of low interrupts,
-> +
-> +Example:
-> +	vic: interrupt-controller@10130000 {
-> +		compatible = "hisilicon,sd5203-vic";
-> +		reg = <0x10130000 0x1000>;
-> +		interrupt-controller;
-> +		#interrupt-cells = <1>;
-> +	};
-> -- 
-> 2.26.0.106.g9fadedd
-> 
-> 
+Tested-by: John Stultz <john.stultz@linaro.org>
+
+thanks
+-john
