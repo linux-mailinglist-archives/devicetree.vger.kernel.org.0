@@ -2,145 +2,219 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from vger.kernel.org (vger.kernel.org [23.128.96.18])
-	by mail.lfdr.de (Postfix) with ESMTP id D3378268939
-	for <lists+devicetree@lfdr.de>; Mon, 14 Sep 2020 12:25:26 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTP id E91B3268959
+	for <lists+devicetree@lfdr.de>; Mon, 14 Sep 2020 12:33:28 +0200 (CEST)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S1726409AbgINKZZ (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Mon, 14 Sep 2020 06:25:25 -0400
-Received: from mailgw01.mediatek.com ([210.61.82.183]:27909 "EHLO
-        mailgw01.mediatek.com" rhost-flags-OK-FAIL-OK-FAIL) by vger.kernel.org
-        with ESMTP id S1726383AbgINKZY (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Mon, 14 Sep 2020 06:25:24 -0400
-X-UUID: aa63b43d134b45bd9b8c4ed090a3263b-20200914
-DKIM-Signature: v=1; a=rsa-sha256; q=dns/txt; c=relaxed/relaxed; d=mediatek.com; s=dk;
-        h=Content-Transfer-Encoding:MIME-Version:Content-Type:References:In-Reply-To:Date:CC:To:From:Subject:Message-ID; bh=xEzcpucgYacwPxI4zW8BRzU1nv7ljitEBf6N+fXDGNU=;
-        b=HAuDh/ofVwcimDuhbMuCnCSNwRW31PaagkQpu1VUjWA+8YN6A+ZwhJK3ToQg1vm5rW4uqHW1/qmQwx/MkFXSy3LgIudrN+dm4kpuRxDHMDTJZ/v+7UhcuTDw4Jx9Yzci9bKOdRT0iMBc6c8NBY2DDscV6NmERq5Ky0Ge5jUusxc=;
-X-UUID: aa63b43d134b45bd9b8c4ed090a3263b-20200914
-Received: from mtkexhb02.mediatek.inc [(172.21.101.103)] by mailgw01.mediatek.com
-        (envelope-from <jianjun.wang@mediatek.com>)
-        (Cellopoint E-mail Firewall v4.1.14 Build 0819 with TLSv1.2 ECDHE-RSA-AES256-SHA384 256/256)
-        with ESMTP id 275340207; Mon, 14 Sep 2020 18:25:18 +0800
-Received: from MTKCAS32.mediatek.inc (172.27.4.184) by mtkmbs08n2.mediatek.inc
- (172.21.101.56) with Microsoft SMTP Server (TLS) id 15.0.1497.2; Mon, 14 Sep
- 2020 18:25:14 +0800
-Received: from [10.17.3.153] (10.17.3.153) by MTKCAS32.mediatek.inc
- (172.27.4.170) with Microsoft SMTP Server id 15.0.1497.2 via Frontend
- Transport; Mon, 14 Sep 2020 18:25:13 +0800
-Message-ID: <1600078992.2521.27.camel@mhfsdcap03>
-Subject: Re: [v2,1/3] dt-bindings: PCI: mediatek: Add YAML schema
-From:   Jianjun Wang <jianjun.wang@mediatek.com>
-To:     Rob Herring <robh@kernel.org>
-CC:     Bjorn Helgaas <bhelgaas@google.com>,
-        Lorenzo Pieralisi <lorenzo.pieralisi@arm.com>,
-        Ryder Lee <ryder.lee@mediatek.com>,
-        "Philipp Zabel" <p.zabel@pengutronix.de>,
-        Matthias Brugger <matthias.bgg@gmail.com>,
-        Mauro Carvalho Chehab <mchehab+huawei@kernel.org>,
-        <davem@davemloft.net>, <linux-pci@vger.kernel.org>,
-        <linux-mediatek@lists.infradead.org>, <devicetree@vger.kernel.org>,
-        <linux-kernel@vger.kernel.org>,
-        <linux-arm-kernel@lists.infradead.org>,
-        Sj Huang <sj.huang@mediatek.com>
-Date:   Mon, 14 Sep 2020 18:23:12 +0800
-In-Reply-To: <20200911224554.GB2905744@bogus>
-References: <20200910034536.30860-1-jianjun.wang@mediatek.com>
-         <20200910034536.30860-2-jianjun.wang@mediatek.com>
-         <20200911224554.GB2905744@bogus>
-Content-Type: text/plain; charset="UTF-8"
-X-Mailer: Evolution 3.10.4-0ubuntu2 
+        id S1726456AbgINKd0 (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Mon, 14 Sep 2020 06:33:26 -0400
+Received: from lindbergh.monkeyblade.net ([23.128.96.19]:57608 "EHLO
+        lindbergh.monkeyblade.net" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
+        with ESMTP id S1726369AbgINKdZ (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Mon, 14 Sep 2020 06:33:25 -0400
+Received: from mail-pg1-x543.google.com (mail-pg1-x543.google.com [IPv6:2607:f8b0:4864:20::543])
+        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id DDE64C06174A
+        for <devicetree@vger.kernel.org>; Mon, 14 Sep 2020 03:33:24 -0700 (PDT)
+Received: by mail-pg1-x543.google.com with SMTP id g29so11209729pgl.2
+        for <devicetree@vger.kernel.org>; Mon, 14 Sep 2020 03:33:24 -0700 (PDT)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+        d=antmicro.com; s=google;
+        h=mime-version:references:in-reply-to:from:date:message-id:subject:to
+         :cc;
+        bh=UrmuUltF9h1wduRxzXusgQVOENqaHZyFRHTcJom8cGE=;
+        b=fZ+crlcyyGFSpUt6Evj12OiQCKtFgP1RXE/IdjznGEu25ETYptqXPS3qeYFhxKkofv
+         SsjptqfuJBQIaFe0K+hCcxK9fbgdUoKM6jEZYQRCyjo4eb85NXY9gvzSrrgo/QeQZfzo
+         dJsgPUEDbGIvYRHRdi35KxR6bEpkmR6/c6Pg8=
+X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+        d=1e100.net; s=20161025;
+        h=x-gm-message-state:mime-version:references:in-reply-to:from:date
+         :message-id:subject:to:cc;
+        bh=UrmuUltF9h1wduRxzXusgQVOENqaHZyFRHTcJom8cGE=;
+        b=ndSAC8CYL9BoBKq4wKXfSaOI1D9FDrixKi++q+yuCB+vdFTTP6KhqZrq+AsteI8Tdf
+         YEwBRzmk1DzyEmKUy/cv6BrzoPQi9LMc0mlIVxabAlMZCENcl9+D2wjTB9xJCfXOiLiw
+         a87l7AlBDmNYAdsKYdOOWSOaJSLG94pO8AWh4T5PAl8bcTDCNrsuWwnL1NaGMHQomJAX
+         JLUfe6aGiBcvlRI215RdlE4wqz2SzV0oGMKzvUprOaYpQytMVxgP2uVD9OShJsH61PcT
+         MWikV/Pu+syFg5K+ApQN6bMey0wIa6rAkCFR8fj87gCwLuzC78c/D/WNE65D4wt4B31w
+         XMqw==
+X-Gm-Message-State: AOAM530d/ghM/JrPPcWjN9KSd90s5Zj7HQHjsm2uQQMn0ZOblRBSyzV0
+        7koliGaXI/foTFaliSi1Au35dngPALxCLq1sGAnmjQ==
+X-Google-Smtp-Source: ABdhPJxyndpwi+ymDmZJ5igPTP5mS4RnYa9l/xUnIZ4zJ3ttCGxOve1JfG0eDClKex/fOhfnpnH+LJY2hgOq/jpHDAE=
+X-Received: by 2002:a17:902:988f:b029:d0:4c09:c1 with SMTP id
+ s15-20020a170902988fb02900d04c0900c1mr13651699plp.3.1600079604372; Mon, 14
+ Sep 2020 03:33:24 -0700 (PDT)
 MIME-Version: 1.0
-X-TM-SNTS-SMTP: 9CF3AAFAF8100D953018214FE70B22C96AE44896732AEC350BE3FCE945D1000F2000:8
-X-MTK:  N
-Content-Transfer-Encoding: base64
+References: <20200812143324.2394375-0-mholenko@antmicro.com>
+ <20200812143324.2394375-3-mholenko@antmicro.com> <20200911005740.GN3562056@lianli.shorne-pla.net>
+In-Reply-To: <20200911005740.GN3562056@lianli.shorne-pla.net>
+From:   Mateusz Holenko <mholenko@antmicro.com>
+Date:   Mon, 14 Sep 2020 12:33:11 +0200
+Message-ID: <CAPk366Tvb9g960e3ZLv3+_H8FZJRRe0Jqa4q7tejE+svMcQvLA@mail.gmail.com>
+Subject: Re: [PATCH v10 3/5] drivers/soc/litex: add LiteX SoC Controller driver
+To:     Stafford Horne <shorne@gmail.com>
+Cc:     Rob Herring <robh+dt@kernel.org>,
+        Mark Rutland <mark.rutland@arm.com>,
+        Greg Kroah-Hartman <gregkh@linuxfoundation.org>,
+        Jiri Slaby <jslaby@suse.com>,
+        devicetree <devicetree@vger.kernel.org>,
+        "open list:SERIAL DRIVERS" <linux-serial@vger.kernel.org>,
+        Karol Gugala <kgugala@antmicro.com>,
+        Mauro Carvalho Chehab <mchehab+samsung@kernel.org>,
+        "David S. Miller" <davem@davemloft.net>,
+        "Paul E. McKenney" <paulmck@linux.ibm.com>,
+        Filip Kokosinski <fkokosinski@antmicro.com>,
+        Pawel Czarnecki <pczarnecki@internships.antmicro.com>,
+        Joel Stanley <joel@jms.id.au>,
+        Jonathan Cameron <Jonathan.Cameron@huawei.com>,
+        Maxime Ripard <mripard@kernel.org>,
+        Shawn Guo <shawnguo@kernel.org>,
+        Heiko Stuebner <heiko@sntech.de>,
+        Sam Ravnborg <sam@ravnborg.org>,
+        Icenowy Zheng <icenowy@aosc.io>,
+        Laurent Pinchart <laurent.pinchart@ideasonboard.com>,
+        Linux Kernel Mailing List <linux-kernel@vger.kernel.org>,
+        "Gabriel L. Somlo" <gsomlo@gmail.com>
+Content-Type: text/plain; charset="UTF-8"
 Sender: devicetree-owner@vger.kernel.org
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-T24gRnJpLCAyMDIwLTA5LTExIGF0IDE2OjQ1IC0wNjAwLCBSb2IgSGVycmluZyB3cm90ZToNCj4g
-T24gVGh1LCBTZXAgMTAsIDIwMjAgYXQgMTE6NDU6MzRBTSArMDgwMCwgSmlhbmp1biBXYW5nIHdy
-b3RlOg0KPiA+IEFkZCBZQU1MIHNjaGVtYXMgZG9jdW1lbnRhdGlvbiBmb3IgR2VuMyBQQ0llIGNv
-bnRyb2xsZXIgb24NCj4gPiBNZWRpYVRlayBTb0NzLg0KPiA+IA0KPiA+IFNpZ25lZC1vZmYtYnk6
-IEppYW5qdW4gV2FuZyA8amlhbmp1bi53YW5nQG1lZGlhdGVrLmNvbT4NCj4gPiBBY2tlZC1ieTog
-UnlkZXIgTGVlIDxyeWRlci5sZWVAbWVkaWF0ZWsuY29tPg0KPiA+IC0tLQ0KPiA+ICAuLi4vYmlu
-ZGluZ3MvcGNpL21lZGlhdGVrLXBjaWUtZ2VuMy55YW1sICAgICAgfCAxMzAgKysrKysrKysrKysr
-KysrKysrDQo+ID4gIDEgZmlsZSBjaGFuZ2VkLCAxMzAgaW5zZXJ0aW9ucygrKQ0KPiA+ICBjcmVh
-dGUgbW9kZSAxMDA2NDQgRG9jdW1lbnRhdGlvbi9kZXZpY2V0cmVlL2JpbmRpbmdzL3BjaS9tZWRp
-YXRlay1wY2llLWdlbjMueWFtbA0KPiA+IA0KPiA+IGRpZmYgLS1naXQgYS9Eb2N1bWVudGF0aW9u
-L2RldmljZXRyZWUvYmluZGluZ3MvcGNpL21lZGlhdGVrLXBjaWUtZ2VuMy55YW1sIGIvRG9jdW1l
-bnRhdGlvbi9kZXZpY2V0cmVlL2JpbmRpbmdzL3BjaS9tZWRpYXRlay1wY2llLWdlbjMueWFtbA0K
-PiA+IG5ldyBmaWxlIG1vZGUgMTAwNjQ0DQo+ID4gaW5kZXggMDAwMDAwMDAwMDAwLi5hMmRmYzBk
-MTVkMmUNCj4gPiAtLS0gL2Rldi9udWxsDQo+ID4gKysrIGIvRG9jdW1lbnRhdGlvbi9kZXZpY2V0
-cmVlL2JpbmRpbmdzL3BjaS9tZWRpYXRlay1wY2llLWdlbjMueWFtbA0KPiA+IEBAIC0wLDAgKzEs
-MTMwIEBADQo+ID4gKyMgU1BEWC1MaWNlbnNlLUlkZW50aWZpZXI6IChHUEwtMi4wIE9SIEJTRC0y
-LUNsYXVzZSkNCj4gPiArJVlBTUwgMS4yDQo+ID4gKy0tLQ0KPiA+ICskaWQ6IGh0dHA6Ly9kZXZp
-Y2V0cmVlLm9yZy9zY2hlbWFzL3BjaS9tZWRpYXRlay1wY2llLWdlbjMueWFtbCMNCj4gPiArJHNj
-aGVtYTogaHR0cDovL2RldmljZXRyZWUub3JnL21ldGEtc2NoZW1hcy9jb3JlLnlhbWwjDQo+ID4g
-Kw0KPiA+ICt0aXRsZTogR2VuMyBQQ0llIGNvbnRyb2xsZXIgb24gTWVkaWFUZWsgU29Dcw0KPiA+
-ICsNCj4gPiArbWFpbnRhaW5lcnM6DQo+ID4gKyAgLSBKaWFuanVuIFdhbmcgPGppYW5qdW4ud2Fu
-Z0BtZWRpYXRlay5jb20+DQo+ID4gKw0KPiA+ICthbGxPZjoNCj4gPiArICAtICRyZWY6IC9zY2hl
-bWFzL3BjaS9wY2ktYnVzLnlhbWwjDQo+ID4gKw0KPiA+ICtwcm9wZXJ0aWVzOg0KPiA+ICsgIGNv
-bXBhdGlibGU6DQo+ID4gKyAgICBvbmVPZjoNCj4gPiArICAgICAgLSBjb25zdDogbWVkaWF0ZWss
-Z2VuMy1wY2llDQo+IA0KPiBHZW5lcmljIGNvbXBhdGlibGVzIGxpa2UgdGhpcyBzaG91bGQgb25s
-eSBiZSBhIGZhbGxiYWNrIHN0cmluZywgbm90IG9uIA0KPiBpdHMgb3duLg0KPiANCj4gPiArICAg
-ICAgLSBjb25zdDogbWVkaWF0ZWssbXQ4MTkyLXBjaWUNCj4gPiArDQo+ID4gKyAgcmVnOg0KPiA+
-ICsgICAgbWF4SXRlbXM6IDENCj4gPiArDQo+ID4gKyAgaW50ZXJydXB0czoNCj4gPiArICAgIG1h
-eEl0ZW1zOiAxDQo+ID4gKw0KPiA+ICsgIGJ1cy1yYW5nZToNCj4gPiArICAgIGRlc2NyaXB0aW9u
-OiBSYW5nZSBvZiBidXMgbnVtYmVycyBhc3NvY2lhdGVkIHdpdGggdGhpcyBjb250cm9sbGVyLg0K
-PiANCj4gRHJvcCB0aGlzLiBTdGFuZGFyZCBwcm9wZXJ0eS4NCg0KVGhhbmtzIGZvciB5b3VyIHJl
-dmlldywgSSB3aWxsIGRyb3AgaXQgaW4gdGhlIG5leHQgdmVyc2lvbi4NCj4gDQo+ID4gKw0KPiA+
-ICsgIHJhbmdlczoNCj4gPiArICAgIG1pbkl0ZW1zOiAxDQo+ID4gKyAgICBtYXhJdGVtczogOA0K
-PiA+ICsNCj4gPiArICByZXNldHM6DQo+ID4gKyAgICBtaW5JdGVtczogMQ0KPiA+ICsgICAgbWF4
-SXRlbXM6IDINCj4gPiArDQo+ID4gKyAgcmVzZXQtbmFtZXM6DQo+ID4gKyAgICBhbnlPZjoNCj4g
-PiArICAgICAgLSBjb25zdDogbWFjLXJzdA0KPiA+ICsgICAgICAtIGNvbnN0OiBwaHktcnN0DQo+
-ID4gKw0KPiA+ICsgIGNsb2NrczoNCj4gPiArICAgIG1heEl0ZW1zOiA1DQo+ID4gKw0KPiA+ICsg
-IGFzc2lnbmVkLWNsb2NrczoNCj4gPiArICAgIG1heEl0ZW1zOiAxDQo+ID4gKw0KPiA+ICsgIGFz
-c2lnbmVkLWNsb2NrLXBhcmVudHM6DQo+ID4gKyAgICBtYXhJdGVtczogMQ0KPiA+ICsNCj4gPiAr
-ICBwaHlzOg0KPiA+ICsgICAgbWF4SXRlbXM6IDENCj4gPiArDQo+ID4gKyAgJyNpbnRlcnJ1cHQt
-Y2VsbHMnOg0KPiA+ICsgICAgY29uc3Q6IDENCj4gPiArDQo+ID4gKyAgaW50ZXJydXB0LWNvbnRy
-b2xsZXI6DQo+ID4gKyAgICBkZXNjcmlwdGlvbjogSW50ZXJydXB0IGNvbnRyb2xsZXIgbm9kZSBm
-b3IgaGFuZGxpbmcgbGVnYWN5IFBDSSBpbnRlcnJ1cHRzLg0KPiA+ICsgICAgdHlwZTogb2JqZWN0
-DQo+ID4gKyAgICBwcm9wZXJ0aWVzOg0KPiA+ICsgICAgICAnI2FkZHJlc3MtY2VsbHMnOg0KPiA+
-ICsgICAgICAgIGNvbnN0OiAwDQo+ID4gKyAgICAgICcjaW50ZXJydXB0LWNlbGxzJzoNCj4gPiAr
-ICAgICAgICBjb25zdDogMQ0KPiA+ICsgICAgICBpbnRlcnJ1cHQtY29udHJvbGxlcjogdHJ1ZQ0K
-PiA+ICsNCj4gPiArICAgIHJlcXVpcmVkOg0KPiA+ICsgICAgICAtICcjYWRkcmVzcy1jZWxscycN
-Cj4gPiArICAgICAgLSAnI2ludGVycnVwdC1jZWxscycNCj4gPiArICAgICAgLSBpbnRlcnJ1cHQt
-Y29udHJvbGxlcg0KPiA+ICsNCj4gPiArICAgIGFkZGl0aW9uYWxQcm9wZXJ0aWVzOiBmYWxzZQ0K
-PiA+ICsNCj4gPiArcmVxdWlyZWQ6DQo+ID4gKyAgLSBjb21wYXRpYmxlDQo+ID4gKyAgLSByZWcN
-Cj4gPiArICAtIGludGVycnVwdHMNCj4gPiArICAtIHJhbmdlcw0KPiA+ICsgIC0gY2xvY2tzDQo+
-ID4gKyAgLSAnI2ludGVycnVwdC1jZWxscycNCj4gPiArICAtIGludGVycnVwdC1jb250cm9sbGVy
-DQo+ID4gKw0KPiA+ICt1bmV2YWx1YXRlZFByb3BlcnRpZXM6IGZhbHNlDQo+ID4gKw0KPiA+ICtl
-eGFtcGxlczoNCj4gPiArICAtIHwNCj4gPiArICAgICNpbmNsdWRlIDxkdC1iaW5kaW5ncy9pbnRl
-cnJ1cHQtY29udHJvbGxlci9hcm0tZ2ljLmg+DQo+ID4gKyAgICAjaW5jbHVkZSA8ZHQtYmluZGlu
-Z3MvaW50ZXJydXB0LWNvbnRyb2xsZXIvaXJxLmg+DQo+ID4gKw0KPiA+ICsgICAgYnVzIHsNCj4g
-PiArICAgICAgICAjYWRkcmVzcy1jZWxscyA9IDwyPjsNCj4gPiArICAgICAgICAjc2l6ZS1jZWxs
-cyA9IDwyPjsNCj4gPiArDQo+ID4gKyAgICAgICAgcGNpZTogcGNpZUAxMTIzMDAwMCB7DQo+ID4g
-KyAgICAgICAgICAgIGNvbXBhdGlibGUgPSAibWVkaWF0ZWssbXQ4MTkyLXBjaWUiOw0KPiA+ICsg
-ICAgICAgICAgICBkZXZpY2VfdHlwZSA9ICJwY2kiOw0KPiA+ICsgICAgICAgICAgICAjYWRkcmVz
-cy1jZWxscyA9IDwzPjsNCj4gPiArICAgICAgICAgICAgI3NpemUtY2VsbHMgPSA8Mj47DQo+ID4g
-KyAgICAgICAgICAgIHJlZyA9IDwweDAwIDB4MTEyMzAwMDAgMHgwMCAweDQwMDA+Ow0KPiA+ICsg
-ICAgICAgICAgICByZWctbmFtZXMgPSAicGNpZS1tYWMiOw0KPiA+ICsgICAgICAgICAgICBpbnRl
-cnJ1cHRzID0gPEdJQ19TUEkgMjUxIElSUV9UWVBFX0xFVkVMX0hJR0ggMD47DQo+ID4gKyAgICAg
-ICAgICAgIGJ1cy1yYW5nZSA9IDwweDAwIDB4ZmY+Ow0KPiA+ICsgICAgICAgICAgICByYW5nZXMg
-PSA8MHg4MjAwMDAwMCAweDAwIDB4MTIwMDAwMDAgMHgwMCAweDEyMDAwMDAwIDB4MDAgMHgxMDAw
-MDAwPjsNCj4gPiArICAgICAgICAgICAgY2xvY2tzID0gPCZpbmZyYWNmZyA0MD4sDQo+ID4gKyAg
-ICAgICAgICAgICAgICAgICAgIDwmaW5mcmFjZmcgNDM+LA0KPiA+ICsgICAgICAgICAgICAgICAg
-ICAgICA8JmluZnJhY2ZnIDk3PiwNCj4gPiArICAgICAgICAgICAgICAgICAgICAgPCZpbmZyYWNm
-ZyA5OT4sDQo+ID4gKyAgICAgICAgICAgICAgICAgICAgIDwmaW5mcmFjZmcgMTExPjsNCj4gPiAr
-ICAgICAgICAgICAgYXNzaWduZWQtY2xvY2tzID0gPCZ0b3Bja2dlbiA1MD47DQo+ID4gKyAgICAg
-ICAgICAgIGFzc2lnbmVkLWNsb2NrLXBhcmVudHMgPSA8JnRvcGNrZ2VuIDkxPjsNCj4gPiArDQo+
-ID4gKyAgICAgICAgICAgIHBoeXMgPSA8JnBjaWVwaHk+Ow0KPiA+ICsgICAgICAgICAgICBwaHkt
-bmFtZXMgPSAicGNpZS1waHkiOw0KPiA+ICsgICAgICAgICAgICByZXNldHMgPSA8JmluZnJhY2Zn
-X3JzdCAwPjsNCj4gPiArICAgICAgICAgICAgcmVzZXQtbmFtZXMgPSAicGh5LXJzdCI7DQo+ID4g
-Kw0KPiA+ICsgICAgICAgICAgICAjaW50ZXJydXB0LWNlbGxzID0gPDE+Ow0KPiA+ICsgICAgICAg
-ICAgICBpbnRlcnJ1cHQtbWFwLW1hc2sgPSA8MCAwIDAgMHg3PjsNCj4gPiArICAgICAgICAgICAg
-aW50ZXJydXB0LW1hcCA9IDwwIDAgMCAxICZwY2llX2ludGMgMD4sDQo+ID4gKyAgICAgICAgICAg
-ICAgICAgICAgICAgICAgICA8MCAwIDAgMiAmcGNpZV9pbnRjIDE+LA0KPiA+ICsgICAgICAgICAg
-ICAgICAgICAgICAgICAgICAgPDAgMCAwIDMgJnBjaWVfaW50YyAyPiwNCj4gPiArICAgICAgICAg
-ICAgICAgICAgICAgICAgICAgIDwwIDAgMCA0ICZwY2llX2ludGMgMz47DQo+ID4gKyAgICAgICAg
-ICAgIHBjaWVfaW50YzogaW50ZXJydXB0LWNvbnRyb2xsZXIgew0KPiA+ICsgICAgICAgICAgICAg
-ICAgICAgICAgI2FkZHJlc3MtY2VsbHMgPSA8MD47DQo+ID4gKyAgICAgICAgICAgICAgICAgICAg
-ICAjaW50ZXJydXB0LWNlbGxzID0gPDE+Ow0KPiA+ICsgICAgICAgICAgICAgICAgICAgICAgaW50
-ZXJydXB0LWNvbnRyb2xsZXI7DQo+ID4gKyAgICAgICAgICAgIH07DQo+ID4gKyAgICAgICAgfTsN
-Cj4gPiArICAgIH07DQo+ID4gLS0gDQo+ID4gMi4yNS4xDQoNCg==
+On Fri, Sep 11, 2020 at 2:57 AM Stafford Horne <shorne@gmail.com> wrote:
+>
+> On Wed, Aug 12, 2020 at 02:34:34PM +0200, Mateusz Holenko wrote:
+> > From: Pawel Czarnecki <pczarnecki@internships.antmicro.com>
+> >
+> > This commit adds driver for the FPGA-based LiteX SoC
+> > Controller from LiteX SoC builder.
+> >
+> > Co-developed-by: Mateusz Holenko <mholenko@antmicro.com>
+> > Signed-off-by: Mateusz Holenko <mholenko@antmicro.com>
+> > Signed-off-by: Pawel Czarnecki <pczarnecki@internships.antmicro.com>
+> > ---
+> ...
+> > +static int litex_check_csr_access(void __iomem *reg_addr)
+> > +{
+> > +     unsigned long reg;
+> > +
+> > +     reg = litex_get_reg(reg_addr + SCRATCH_REG_OFF, SCRATCH_REG_SIZE);
+> > +
+> > +     if (reg != SCRATCH_REG_VALUE) {
+> > +             panic("Scratch register read error! Expected: 0x%x but got: 0x%lx",
+> > +                     SCRATCH_REG_VALUE, reg);
+> > +             return -EINVAL;
+> > +     }
+> > +
+> > +     litex_set_reg(reg_addr + SCRATCH_REG_OFF,
+> > +             SCRATCH_REG_SIZE, SCRATCH_TEST_VALUE);
+> > +     reg = litex_get_reg(reg_addr + SCRATCH_REG_OFF, SCRATCH_REG_SIZE);
+> > +
+> > +     if (reg != SCRATCH_TEST_VALUE) {
+> > +             panic("Scratch register write error! Expected: 0x%x but got: 0x%lx",
+> > +                     SCRATCH_TEST_VALUE, reg);
+> > +             return -EINVAL;
+> > +     }
+> > +
+> > +     /* restore original value of the SCRATCH register */
+> > +     litex_set_reg(reg_addr + SCRATCH_REG_OFF,
+> > +             SCRATCH_REG_SIZE, SCRATCH_REG_VALUE);
+> > +
+> > +     /* Set flag for other drivers */
+> What does this comment mean?
 
+This is a leftover from the previous version of the patch
+and shouldn't be there - sorry for that.
+I'll remove it.
+
+> > +     pr_info("LiteX SoC Controller driver initialized");
+> > +
+> > +     return 0;
+> > +}
+> > +
+> > +struct litex_soc_ctrl_device {
+> > +     void __iomem *base;
+> > +};
+> > +
+> > +static const struct of_device_id litex_soc_ctrl_of_match[] = {
+> > +     {.compatible = "litex,soc-controller"},
+> > +     {},
+> > +};
+> > +
+> > +MODULE_DEVICE_TABLE(of, litex_soc_ctrl_of_match);
+> > +
+> > +static int litex_soc_ctrl_probe(struct platform_device *pdev)
+> > +{
+> > +     int result;
+> > +     struct device *dev;
+> > +     struct device_node *node;
+> > +     struct litex_soc_ctrl_device *soc_ctrl_dev;
+> > +
+> > +     dev = &pdev->dev;
+> > +     node = dev->of_node;
+> > +     if (!node)
+> > +             return -ENODEV;
+> > +
+> > +     soc_ctrl_dev = devm_kzalloc(dev, sizeof(*soc_ctrl_dev), GFP_KERNEL);
+> > +     if (!soc_ctrl_dev)
+> > +             return -ENOMEM;
+> > +
+> > +     soc_ctrl_dev->base = devm_platform_ioremap_resource(pdev, 0);
+> > +     if (IS_ERR(soc_ctrl_dev->base))
+> > +             return PTR_ERR(soc_ctrl_dev->base);
+> > +
+> > +     result = litex_check_csr_access(soc_ctrl_dev->base);
+> > +     if (result) {
+> > +             // LiteX CSRs access is broken which means that
+> > +             // none of LiteX drivers will most probably
+> > +             // operate correctly
+> The comment format here with // is not usually used in the kernel, but its not
+> forbidded.  Could you use the /* */ multiline style?
+
+Sure, I'll change the commenting style here.
+
+>
+> > +             BUG();
+> Instead of stopping the system with BUG, could we just do:
+>
+>         return litex_check_csr_access(soc_ctrl_dev->base);
+>
+> We already have failure for NODEV/NOMEM so might as well not call BUG() here
+> too.
+
+It's true that litex_check_csr_accessors() already generates error
+codes that could be
+returned directly.
+The point of using BUG() macro here, however, is to stop booting the
+system so that it's visible
+(and impossible to miss for the user) that an unresolvable HW issue
+was encountered.
+
+CSR-accessors - the litex_{g,s}et_reg() functions - are intended to be
+used by other LiteX drivers
+and it's very unlikely that those drivers would work properly after
+the fail of litex_check_csr_accessors().
+Since in such case the UART driver will be affected too (no boot logs
+and error messages visible to the user),
+I thought it'll be easier to spot and debug the problem if the system
+stopped in the BUG loop.
+Perhaps there are other, more linux-friendly, ways of achieving a
+similar goal - I'm open for suggestions.
+
+> > +     }
+> > +
+> > +     return 0;
+> > +}
+> > +
+>
+> Other than that it looks ok to me.
+>
+> -Stafford
+
+Thanks for the review!
+
+Best,
+Mateusz
+
+
+--
+Mateusz Holenko
+Antmicro Ltd | www.antmicro.com
+Roosevelta 22, 60-829 Poznan, Poland
