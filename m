@@ -2,81 +2,133 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from vger.kernel.org (vger.kernel.org [23.128.96.18])
-	by mail.lfdr.de (Postfix) with ESMTP id F17042694B5
-	for <lists+devicetree@lfdr.de>; Mon, 14 Sep 2020 20:21:57 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTP id 7354B2694C1
+	for <lists+devicetree@lfdr.de>; Mon, 14 Sep 2020 20:24:51 +0200 (CEST)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S1726033AbgINSVy (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Mon, 14 Sep 2020 14:21:54 -0400
-Received: from mail-il1-f193.google.com ([209.85.166.193]:39545 "EHLO
-        mail-il1-f193.google.com" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S1726085AbgINSVf (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Mon, 14 Sep 2020 14:21:35 -0400
-Received: by mail-il1-f193.google.com with SMTP id s88so496231ilb.6;
-        Mon, 14 Sep 2020 11:21:34 -0700 (PDT)
+        id S1726011AbgINSYt (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Mon, 14 Sep 2020 14:24:49 -0400
+Received: from mail-io1-f66.google.com ([209.85.166.66]:41377 "EHLO
+        mail-io1-f66.google.com" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
+        with ESMTP id S1725944AbgINSYq (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Mon, 14 Sep 2020 14:24:46 -0400
+Received: by mail-io1-f66.google.com with SMTP id z13so1141424iom.8;
+        Mon, 14 Sep 2020 11:24:46 -0700 (PDT)
 X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
         d=1e100.net; s=20161025;
         h=x-gm-message-state:date:from:to:cc:subject:message-id:references
          :mime-version:content-disposition:in-reply-to;
-        bh=PFZG5zCl+nbcnUAIeX7otp7vp9aNzfGw9/wGWmQANFs=;
-        b=STOc723urV+J4Fxt3cSOF5DyZKufoP4nEhZnakIOho9cnjzMDjsJKY37MtgXl7iTcV
-         D+jcyN+EVpZogxj8jfJpVmI5vuckxaTPdfYoecFAcpncn+vrGMqavYNQe2aTy5ZwbWBL
-         PxsNQzEuB0uIG3h1Po47fo2Io/YychRkSiXcBfc/aUDqYRqC83zGAkdiUz/LXD69J0eC
-         DS+c1QpKmR6hDSsgxKXrq0Nzid+70AHjCR4Ol5DUUlxxt68zCn1W8jRxxLZCXtITVH1a
-         4Vd71WMMvTnWsqEkXAZTu8ult3Z+lHBFTbXIi+9fIqAyc5HwVENp2MSF4W+hSBa/p5HF
-         KdEQ==
-X-Gm-Message-State: AOAM531STf4hQYKley6mot0hr3fNrUSd0GITw94v1rc9QQW58hpUtZpE
-        2mc9fbnUwVEOS7DUwUe8uUH7FlGfItVX
-X-Google-Smtp-Source: ABdhPJxAgsl+yxZ8v9ZEeOHkBWuwKDir8WZA+EQTe4Gz6NbyOfWE8LMSZDx3/fPHogQaEiDZDTjO0g==
-X-Received: by 2002:a92:c847:: with SMTP id b7mr1676011ilq.35.1600107694529;
-        Mon, 14 Sep 2020 11:21:34 -0700 (PDT)
+        bh=GTUBoBpz5Ene+9FeiAkhMRnwIfpjlrzqa2JaW342n2A=;
+        b=lFV1HprGhdkEU7/AWjMal4mA0IvkQo64BlmHkt5OEFX+nsHGrWI/5ndv96r0H8TbYr
+         ZjLqdRWn7ecoJn3ByoDAVxAPADq5mQXYIZEXAQf069lhO64AbXc9LkOkVtYFZev3dKf5
+         H90Q05TZ4meGsSvxlxrwQvbuBhSvZyrV2oXUs+wYSkKtm2sl/mX8AIAVWeIKAWZVqlCX
+         OBK4z8ISyE8RYbF+ZCsFzOEHj2Lh3X1ciNyEVZqQDx1gNRFqtgS+06c/DLHabLfzo2Ra
+         5WUdMfCJlZb5xZdPJKRrxKYciUMXxMNdFRd8h5AwqtLp/LBt8EORk9vUkJfzxyG3Y3pB
+         pJOw==
+X-Gm-Message-State: AOAM5312KyqMWHibynkuEOjs2+YVg2U5O7j1UWYRvXWC1j/3TYzT8EDQ
+        GjJKTj9cW5BGYu1Azsar9g==
+X-Google-Smtp-Source: ABdhPJziOCMgtflSFn5rQIYl+kkPb236Vytu9jLXj8iJmknvM5j2xSqWu7dgZX0I/hG4PmzyudThfw==
+X-Received: by 2002:a6b:b386:: with SMTP id c128mr12051803iof.157.1600107884742;
+        Mon, 14 Sep 2020 11:24:44 -0700 (PDT)
 Received: from xps15 ([64.188.179.253])
-        by smtp.gmail.com with ESMTPSA id u18sm7446820iln.78.2020.09.14.11.21.33
+        by smtp.gmail.com with ESMTPSA id w70sm7447830ilk.87.2020.09.14.11.24.43
         (version=TLS1_3 cipher=TLS_AES_256_GCM_SHA384 bits=256/256);
-        Mon, 14 Sep 2020 11:21:34 -0700 (PDT)
-Received: (nullmailer pid 4180574 invoked by uid 1000);
-        Mon, 14 Sep 2020 18:21:31 -0000
-Date:   Mon, 14 Sep 2020 12:21:31 -0600
+        Mon, 14 Sep 2020 11:24:43 -0700 (PDT)
+Received: (nullmailer pid 4185625 invoked by uid 1000);
+        Mon, 14 Sep 2020 18:24:42 -0000
+Date:   Mon, 14 Sep 2020 12:24:42 -0600
 From:   Rob Herring <robh@kernel.org>
-To:     Jonathan Cameron <jic23@kernel.org>
-Cc:     linux-iio@vger.kernel.org, David Lechner <david@lechnology.com>,
+To:     Martin Cerveny <M.Cerveny@computer.org>
+Cc:     Corentin Labbe <clabbe.montjoie@gmail.com>,
+        Maxime Ripard <maxime@cerno.tech>,
+        Chen-Yu Tsai <wens@csie.org>,
+        "David S. Miller" <davem@davemloft.net>,
         devicetree@vger.kernel.org,
-        Jonathan Cameron <Jonathan.Cameron@huawei.com>,
-        Rob Herring <robh+dt@kernel.org>
-Subject: Re: [PATCH v2 2/2] dt-bindings: iio: adc: ti,ads7950 binding
- conversion
-Message-ID: <20200914182131.GA4180513@bogus>
-References: <20200830161154.3201-1-jic23@kernel.org>
- <20200830161154.3201-3-jic23@kernel.org>
+        Herbert Xu <herbert@gondor.apana.org.au>,
+        linux-arm-kernel@lists.infradead.org, linux-crypto@vger.kernel.org,
+        linux-kernel@vger.kernel.org
+Subject: Re: [PATCH v2 1/3] dt-bindings: crypto: add new compatible for V3s
+Message-ID: <20200914182442.GA4180717@bogus>
+References: <20200831073101.3608-1-m.cerveny@computer.org>
+ <20200831073101.3608-2-m.cerveny@computer.org>
+ <20200901093249.orwyc5sr3z2y43fz@gilmour.lan>
+ <20200901105719.GA2639@Red>
+ <20200901114015.qivovvjqvmhkicdl@gilmour.lan>
+ <20200902062824.GA17544@Red>
+ <alpine.GSO.2.00.2009051749080.3102@dmz.c-home.cz>
 MIME-Version: 1.0
 Content-Type: text/plain; charset=us-ascii
 Content-Disposition: inline
-In-Reply-To: <20200830161154.3201-3-jic23@kernel.org>
+In-Reply-To: <alpine.GSO.2.00.2009051749080.3102@dmz.c-home.cz>
 Sender: devicetree-owner@vger.kernel.org
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-On Sun, 30 Aug 2020 17:11:54 +0100, Jonathan Cameron wrote:
-> From: Jonathan Cameron <Jonathan.Cameron@huawei.com>
+On Sat, Sep 05, 2020 at 05:51:48PM +0200, Martin Cerveny wrote:
 > 
-> Conversion from txt to yaml.  The binding documents that
-> as not all boards will make use of the ADC channels via a consumer
-> driver.  It does no harm however, so we will leave it as required.
+> On Wed, 2 Sep 2020, Corentin Labbe wrote:
+> > On Tue, Sep 01, 2020 at 01:40:15PM +0200, Maxime Ripard wrote:
+> > > On Tue, Sep 01, 2020 at 12:57:19PM +0200, Corentin Labbe wrote:
+> > > > On Tue, Sep 01, 2020 at 11:32:49AM +0200, Maxime Ripard wrote:
+> > > > > On Mon, Aug 31, 2020 at 09:30:59AM +0200, Martin Cerveny wrote:
+> > > > > > Like A33 "sun4i-ss" has a difference, it give SHA1 digest
+> > > > > > directly in BE. So add new compatible.
+> > > > > > 
+> > > > > > Tested-by: Martin Cerveny <m.cerveny@computer.org>
+> > > > > 
+> > > > > The Tested-by tag is for the other developpers. You're very much
+> > > > > expected to have tested your patch before contributing it.
+> > > > > 
+> > > > > > Signed-off-by: Martin Cerveny <m.cerveny@computer.org>
+> > > > > > ---
+> > > > > >  .../bindings/crypto/allwinner,sun4i-a10-crypto.yaml          | 5 ++++-
+> > > > > >  1 file changed, 4 insertions(+), 1 deletion(-)
+> > > > > > 
+> > > > > > diff --git a/Documentation/devicetree/bindings/crypto/allwinner,sun4i-a10-crypto.yaml b/Documentation/devicetree/bindings/crypto/allwinner,sun4i-a10-crypto.yaml
+> > > > > > index fc823572b..180efd13a 100644
+> > > > > > --- a/Documentation/devicetree/bindings/crypto/allwinner,sun4i-a10-crypto.yaml
+> > > > > > +++ b/Documentation/devicetree/bindings/crypto/allwinner,sun4i-a10-crypto.yaml
+> > > > > > @@ -25,6 +25,7 @@ properties:
+> > > > > >            - const: allwinner,sun4i-a10-crypto
+> > > > > >        - items:
+> > > > > >            - const: allwinner,sun8i-a33-crypto
+> > > > > > +      - const: allwinner,sun8i-v3s-crypto
+> > > > > 
+> > > > > If it's compatible with the A33, why do we need to introduce a new compatible?
+> > > > > 
+> > > > > > 
+> > > > > >    reg:
+> > > > > >      maxItems: 1
+> > > > > > @@ -59,7 +60,9 @@ if:
+> > > > > >    properties:
+> > > > > >      compatible:
+> > > > > >        contains:
+> > > > > > -        const: allwinner,sun6i-a31-crypto
+> > > > > > +        oneOf:
+> > > > > > +          - const: allwinner,sun6i-a31-crypto
+> > > > > > +          - const: allwinner,sun8i-v3s-crypto
+> > > > > 
+> > > > > I guess the A33 compatible should be on that list as well?
+> > > > 
+> > > > This is the list of "need reset".
+> > > > So we cannot use allwinner,sun8i-a33-crypto
+> > > > Probably this explanation should be in the commit message.
+> > > 
+> > > But the A33 has a reset in the DTSI
+> > > 
+> > 
+> > 
+> > Oh right so I need to send a fix for that and Martin Cerveny could simply use the "allwinner,sun8i-a33-crypto" (and so keep only patch #1(DTS))
+> > 
+> > Regards
+> > 
 > 
-> Signed-off-by: Jonathan Cameron <Jonathan.Cameron@huawei.com>
-> Cc: David Lechner <david@lechnology.com>
-> ---
-> 
-> Changes:
-> * Fix patch description to make sense.
-> * Fix a supplies instead of supply.
-> * Add maximum value for spi-bus-frequency
-> 
->  .../bindings/iio/adc/ti,ads7950.yaml          | 65 +++++++++++++++++++
->  .../bindings/iio/adc/ti-ads7950.txt           | 23 -------
->  2 files changed, 65 insertions(+), 23 deletions(-)
->  create mode 100644 Documentation/devicetree/bindings/iio/adc/ti,ads7950.yaml
->  delete mode 100644 Documentation/devicetree/bindings/iio/adc/ti-ads7950.txt
-> 
+> What is "right" solution for DTSI ?
+> - compatible = "allwinner,sun8i-a33-crypto";
+> OR
+> - compatible = "allwinner,sun8i-v3s-crypto", "allwinner,sun8i-a33-crypto";
+> (but unimplemented "allwinner,sun8i-v3s-crypto")
 
-Reviewed-by: Rob Herring <robh@kernel.org>
+Generally, this one in case you have differences like bugs or features.
+
+Rob
