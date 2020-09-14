@@ -2,121 +2,74 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from vger.kernel.org (vger.kernel.org [23.128.96.18])
-	by mail.lfdr.de (Postfix) with ESMTP id 0B88B269740
-	for <lists+devicetree@lfdr.de>; Mon, 14 Sep 2020 23:00:55 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTP id 7C121269749
+	for <lists+devicetree@lfdr.de>; Mon, 14 Sep 2020 23:01:55 +0200 (CEST)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S1725953AbgINVAx (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Mon, 14 Sep 2020 17:00:53 -0400
-Received: from mail-io1-f66.google.com ([209.85.166.66]:33548 "EHLO
-        mail-io1-f66.google.com" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S1725926AbgINVAv (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Mon, 14 Sep 2020 17:00:51 -0400
-Received: by mail-io1-f66.google.com with SMTP id r25so1728230ioj.0;
-        Mon, 14 Sep 2020 14:00:50 -0700 (PDT)
+        id S1726131AbgINVBs (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Mon, 14 Sep 2020 17:01:48 -0400
+Received: from mail-io1-f67.google.com ([209.85.166.67]:42978 "EHLO
+        mail-io1-f67.google.com" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
+        with ESMTP id S1725926AbgINVBq (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Mon, 14 Sep 2020 17:01:46 -0400
+Received: by mail-io1-f67.google.com with SMTP id u6so1656495iow.9;
+        Mon, 14 Sep 2020 14:01:45 -0700 (PDT)
 X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
         d=1e100.net; s=20161025;
         h=x-gm-message-state:date:from:to:cc:subject:message-id:references
          :mime-version:content-disposition:in-reply-to;
-        bh=1vtjUkAlc6mhyHfdc10mPS+CwPbTLyIyM4ON46GRum8=;
-        b=FBxy3Y7WJZtFpdWi0MV0lX9A2IgepaTbZPVS6noGeyzZZhHCT/Ioud/PWqO5/8AS9j
-         aVZZSbRPsoJA35277Pu9FAsi1nXHrMW2RJSPuF7Ik25wX8QIFC04SK4oAk99Xnd2QFpR
-         dApJ0jjzD9PpydPSHezPPzk0nutCTbiiNDJim+RNBFgpC5j/6iShdVLK96vqKG+5u34E
-         fVZSDibAjVS6VMhywTlkJdwm7ULXaSRFs50W0sU5t84R+EFwtXj4ExUuKU5CqHOolHFv
-         QBbLLRXe/wwxv91aTiWNd+IeNoXyd0mThyvIE2K/mC89Bx5BoCkn10cLN/T2NNE6dOmI
-         6mcw==
-X-Gm-Message-State: AOAM533IGzb3kR3rNCNBHaabH3HNkeFbDhFaw82DA2iA86YqqeMyd6gR
-        pvbWamW5F2MD/utFFqsbZg==
-X-Google-Smtp-Source: ABdhPJy2m12YZdezzBzT5cv+XqRojOX9fZtGmNqp9vR+dLVfSYmXhGC3JOTufd8GnIvv7owiKKtK6A==
-X-Received: by 2002:a6b:590c:: with SMTP id n12mr13081561iob.25.1600117250111;
-        Mon, 14 Sep 2020 14:00:50 -0700 (PDT)
+        bh=0yzmhFB8FW6nMWG0lfCfgWZCNL3FFz2PCbZSv4pGk4g=;
+        b=aQ2gbW4zNxkib1xpQ+jfcAqEOeoq4fBMN1G4xZJYUc/nygk5Cs7bbm3QCvZ6h/LC+6
+         aONDPvQnTGpinxwwn/T7ukWIoZwYL1QqYLh6QXgWldzSnE/Z3a2Aefd7Agpqi0DrpCne
+         JEb+KIJRv/LkSJ/BdURAywrJstp2bAfRrUzBX/5A7GwvgOZzsIpe6MbKRPaTXx04sHqc
+         9JGRCigt4n95399yGAZDrRWo3Fn2Oe8ZODBS9abTAtv+HxogYe5Gy5T3+ncUUKlSHmYU
+         /XSHKkEPuhzqwVky0aNZSV9Muc4K9cbE3k1rT9k0Qp7XCfoWkcvY7xiPxbcMHofVcepf
+         0fFA==
+X-Gm-Message-State: AOAM532RMJVIkK/mVgluLINuyLZMZPoVUq+yDd1wwuwXoJQgOph6vfz0
+        tuaPocrCHrzDjoAv49WlVR+764cEnzFZ
+X-Google-Smtp-Source: ABdhPJx/SVVi33qWgcG0lkKvj1W4MyI6CDYwRWghIFPxrYwpOVjpFqKvO1N2LzwP6YSeHxkFhcoxyg==
+X-Received: by 2002:a6b:6413:: with SMTP id t19mr12760136iog.193.1600117304892;
+        Mon, 14 Sep 2020 14:01:44 -0700 (PDT)
 Received: from xps15 ([64.188.179.253])
-        by smtp.gmail.com with ESMTPSA id a20sm7638304ilq.57.2020.09.14.14.00.48
+        by smtp.gmail.com with ESMTPSA id l2sm7451969ilk.19.2020.09.14.14.01.42
         (version=TLS1_3 cipher=TLS_AES_256_GCM_SHA384 bits=256/256);
-        Mon, 14 Sep 2020 14:00:49 -0700 (PDT)
-Received: (nullmailer pid 239411 invoked by uid 1000);
-        Mon, 14 Sep 2020 21:00:47 -0000
-Date:   Mon, 14 Sep 2020 15:00:47 -0600
+        Mon, 14 Sep 2020 14:01:44 -0700 (PDT)
+Received: (nullmailer pid 240941 invoked by uid 1000);
+        Mon, 14 Sep 2020 21:01:41 -0000
+Date:   Mon, 14 Sep 2020 15:01:41 -0600
 From:   Rob Herring <robh@kernel.org>
-To:     Stephen Boyd <swboyd@chromium.org>
-Cc:     Jonathan Cameron <jic23@kernel.org>, linux-kernel@vger.kernel.org,
-        linux-iio@vger.kernel.org, Daniel Campello <campello@chromium.org>,
-        Lars-Peter Clausen <lars@metafoo.de>,
-        Peter Meerwald-Stadler <pmeerw@pmeerw.net>,
-        devicetree@vger.kernel.org,
-        Douglas Anderson <dianders@chromium.org>,
-        Gwendal Grignou <gwendal@chromium.org>,
-        Evan Green <evgreen@chromium.org>
-Subject: Re: [PATCH] dt-bindings: iio: sx9310: Add various settings as DT
- properties
-Message-ID: <20200914210047.GA232617@bogus>
-References: <20200903221828.3657250-1-swboyd@chromium.org>
+To:     Jonathan Marek <jonathan@marek.ca>
+Cc:     Bjorn Andersson <bjorn.andersson@linaro.org>,
+        devicetree@vger.kernel.org, Andy Gross <agross@kernel.org>,
+        linux-arm-msm@vger.kernel.org,
+        Michael Turquette <mturquette@baylibre.com>,
+        Taniya Das <tdas@codeaurora.org>, linux-kernel@vger.kernel.org,
+        Rob Herring <robh+dt@kernel.org>,
+        Stephen Boyd <sboyd@kernel.org>, linux-clk@vger.kernel.org
+Subject: Re: [PATCH v2 1/5] dt-bindings: clock: combine qcom,sdm845-videocc
+ and qcom,sc7180-videocc
+Message-ID: <20200914210141.GA240886@bogus>
+References: <20200904030958.13325-1-jonathan@marek.ca>
+ <20200904030958.13325-2-jonathan@marek.ca>
 MIME-Version: 1.0
 Content-Type: text/plain; charset=us-ascii
 Content-Disposition: inline
-In-Reply-To: <20200903221828.3657250-1-swboyd@chromium.org>
+In-Reply-To: <20200904030958.13325-2-jonathan@marek.ca>
 Sender: devicetree-owner@vger.kernel.org
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-On Thu, Sep 03, 2020 at 03:18:28PM -0700, Stephen Boyd wrote:
-> We need to set various bits in the hardware registers for this device to
-> operate properly depending on how it is installed. Add a handful of DT
-> properties to configure these things.
+On Thu, 03 Sep 2020 23:09:50 -0400, Jonathan Marek wrote:
+> These two bindings are almost identical, so combine them into one. This
+> will make it easier to add the sm8150 and sm8250 videocc bindings.
 > 
-> Cc: Daniel Campello <campello@chromium.org>
-> Cc: Lars-Peter Clausen <lars@metafoo.de>
-> Cc: Peter Meerwald-Stadler <pmeerw@pmeerw.net>
-> Cc: Rob Herring <robh+dt@kernel.org>
-> Cc: <devicetree@vger.kernel.org>
-> Cc: Douglas Anderson <dianders@chromium.org>
-> Cc: Gwendal Grignou <gwendal@chromium.org>
-> Cc: Evan Green <evgreen@chromium.org>
-> Signed-off-by: Stephen Boyd <swboyd@chromium.org>
+> Signed-off-by: Jonathan Marek <jonathan@marek.ca>
 > ---
+>  .../bindings/clock/qcom,sc7180-videocc.yaml   | 65 -------------------
+>  ...,sdm845-videocc.yaml => qcom,videocc.yaml} | 14 ++--
+>  2 files changed, 9 insertions(+), 70 deletions(-)
+>  delete mode 100644 Documentation/devicetree/bindings/clock/qcom,sc7180-videocc.yaml
+>  rename Documentation/devicetree/bindings/clock/{qcom,sdm845-videocc.yaml => qcom,videocc.yaml} (76%)
 > 
-> I haven't written any code to handle these properties yet. I'd rather do
-> that once the binding patch is reviewed. Patch based on iio.git testing
-> branch.
-> 
->  .../iio/proximity/semtech,sx9310.yaml         | 182 ++++++++++++++++++
->  1 file changed, 182 insertions(+)
-> 
-> diff --git a/Documentation/devicetree/bindings/iio/proximity/semtech,sx9310.yaml b/Documentation/devicetree/bindings/iio/proximity/semtech,sx9310.yaml
-> index 5739074d3592..e74b81483c14 100644
-> --- a/Documentation/devicetree/bindings/iio/proximity/semtech,sx9310.yaml
-> +++ b/Documentation/devicetree/bindings/iio/proximity/semtech,sx9310.yaml
-> @@ -40,6 +40,169 @@ properties:
->    "#io-channel-cells":
->      const: 1
->  
-> +  semtech,cs0-ground:
-> +    description: Indicates the CS0 sensor is connected to ground.
-> +    type: boolean
-> +
-> +  semtech,combined-sensors:
-> +    allOf:
-> +      - $ref: /schemas/types.yaml#definitions/uint32
-> +      - enum: [0, 1, 2, 3]
-> +    default: 0
-> +    description:
-> +      Which sensors are combined. 0 for CS3, 1 for CS0+CS1, 2 for CS1+CS2,
-> +      and 3 for all sensors.
-> +
-> +  semtech,cs0-gain-factor:
-> +    allOf:
-> +      - $ref: /schemas/types.yaml#definitions/uint32
-> +      - enum: [1, 2, 4, 8]
-> +    default: 1
-> +    description:
-> +      Gain factor for CS0 (and combined if any) sensor.
-> +
-> +  semtech,cs1-gain-factor:
-> +    allOf:
-> +      - $ref: /schemas/types.yaml#definitions/uint32
-> +      - enum: [1, 2, 4, 8]
 
-Now that everyone is trained on 'allOf', you can drop it. json-schema 
-draft8 changed this behavior.
-
-Rob
+Reviewed-by: Rob Herring <robh@kernel.org>
