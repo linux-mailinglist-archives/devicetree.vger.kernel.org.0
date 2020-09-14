@@ -2,98 +2,68 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from vger.kernel.org (vger.kernel.org [23.128.96.18])
-	by mail.lfdr.de (Postfix) with ESMTP id BFBC826993B
-	for <lists+devicetree@lfdr.de>; Tue, 15 Sep 2020 00:53:42 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTP id 8F4FF26994D
+	for <lists+devicetree@lfdr.de>; Tue, 15 Sep 2020 00:58:14 +0200 (CEST)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S1725985AbgINWxk (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Mon, 14 Sep 2020 18:53:40 -0400
-Received: from mail-il1-f193.google.com ([209.85.166.193]:38038 "EHLO
-        mail-il1-f193.google.com" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S1725926AbgINWxi (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Mon, 14 Sep 2020 18:53:38 -0400
-Received: by mail-il1-f193.google.com with SMTP id t18so1199112ilp.5;
-        Mon, 14 Sep 2020 15:53:37 -0700 (PDT)
+        id S1725953AbgINW6M (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Mon, 14 Sep 2020 18:58:12 -0400
+Received: from mail-il1-f195.google.com ([209.85.166.195]:43006 "EHLO
+        mail-il1-f195.google.com" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
+        with ESMTP id S1725926AbgINW6J (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Mon, 14 Sep 2020 18:58:09 -0400
+Received: by mail-il1-f195.google.com with SMTP id t13so1178955ile.9;
+        Mon, 14 Sep 2020 15:58:08 -0700 (PDT)
 X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
         d=1e100.net; s=20161025;
         h=x-gm-message-state:date:from:to:cc:subject:message-id:references
          :mime-version:content-disposition:in-reply-to;
-        bh=qADdGXdYZqT13TlNq77A8iEBF6/xm6VQ88F8vF+6Mt0=;
-        b=ZbwWEunnv1fLjUlZfWALBywgqa/JrdFYFsEZ5uOdqAaVON/iJ2+C7cMU3jLZ+K61xg
-         +urO/m3JnJxAngXvKxmzGwcdooHPiNPi37q1SaOeylT3oHPZMYQQJy4pAUj8L1UrCinA
-         jo1O69pZd8+uC5DhlTP1dGg2/8a5onvHHFUoo96RDnKVmwDwle08G19fAytPtbRDewBn
-         SR9yFVHftFVXNBbSjX6LgxcInc4pUR6rmFSApRBoIrh0G/xzXVZ8Z/mZBVak9f1HTmgH
-         kDDGiylv0aRE0pq4AwgQ+dZKQthaej7c4IOTnLYkvonCdhB7VypvjOOKIVOumX+EYDlA
-         CfrQ==
-X-Gm-Message-State: AOAM532gritv5PYZ6UaVf9rRnMHbKTueSse2Gh4HtgNALnJk3yJAic98
-        tRlz9Ar6FMPYtzI1uhfANZ9RONpe9j8f
-X-Google-Smtp-Source: ABdhPJxQ6XmFgSPgsFsEuxc9KsSWx/uXdnk7BWY/+ZvrQLIouNhajOLGL/a9iRpmAURP/dKuGjOVsg==
-X-Received: by 2002:a92:b109:: with SMTP id t9mr13133758ilh.191.1600124017132;
-        Mon, 14 Sep 2020 15:53:37 -0700 (PDT)
+        bh=kq6qlG5VJYZXUU2sGGyka4Jem/75zC6Wn5AvRmVlrlc=;
+        b=NDB42gVLREaFd+W0A/uAsmv7H34J60SrKrcxinvqRJHcMWsbQ93rhWrgXcdSrs/Opl
+         i9FMzTVDrI2B4wkoqNA7mvrKpHBQZwQrVZRdNTTKP9EKeB8TPrmaPAbrPjKyDTksa9Wf
+         c55OQIcvhypjd0ZEDpB1rqWPtcVTu4pB28yvRSCFmWT7ieHBNpkq0lzCDVrd4Jibkrhb
+         VEe+mC+VFDs5HBV3mTW8pfaF8Q+zk8O0Wx0J5NDL7/c0gLD77v57jVP0yX3gGyZEvbUz
+         AHwytPt1Pnv+KBzpV8QJsJQ6hpRleeyImjx+AsImyYRHYvw8pvfZn63pUPm7KEcmffR0
+         +W7A==
+X-Gm-Message-State: AOAM530D8TK4OE4BjGuVXBNBGcJ81DElndkOyiCv3sEjruX59MZqFWkn
+        YTIFte6GeuEarrZBvuVZkPzj8UoB70gP
+X-Google-Smtp-Source: ABdhPJzjV3LJ6Z9bth40387EREf7eFPmbglblttVdwLb5FiWraVR0VU+a+NG+uwN+G/NZGfVF0l6zQ==
+X-Received: by 2002:a05:6e02:be6:: with SMTP id d6mr13897302ilu.76.1600124288223;
+        Mon, 14 Sep 2020 15:58:08 -0700 (PDT)
 Received: from xps15 ([64.188.179.253])
-        by smtp.gmail.com with ESMTPSA id v20sm7670949ile.42.2020.09.14.15.53.33
+        by smtp.gmail.com with ESMTPSA id u14sm7196498ilj.7.2020.09.14.15.58.07
         (version=TLS1_3 cipher=TLS_AES_256_GCM_SHA384 bits=256/256);
-        Mon, 14 Sep 2020 15:53:36 -0700 (PDT)
-Received: (nullmailer pid 419687 invoked by uid 1000);
-        Mon, 14 Sep 2020 22:53:32 -0000
-Date:   Mon, 14 Sep 2020 16:53:32 -0600
+        Mon, 14 Sep 2020 15:58:07 -0700 (PDT)
+Received: (nullmailer pid 427460 invoked by uid 1000);
+        Mon, 14 Sep 2020 22:58:06 -0000
+Date:   Mon, 14 Sep 2020 16:58:06 -0600
 From:   Rob Herring <robh@kernel.org>
-To:     Krzysztof Kozlowski <krzk@kernel.org>
-Cc:     linux-clk@vger.kernel.org, devicetree@vger.kernel.org,
-        linux-arm-kernel@lists.infradead.org, linux-kernel@vger.kernel.org,
-        linux-mtd@lists.infradead.org, linux-pwm@vger.kernel.org,
-        linux-serial@vger.kernel.org, linux-pm@vger.kernel.org,
-        linux-watchdog@vger.kernel.org,
-        Michael Turquette <mturquette@baylibre.com>,
-        Stephen Boyd <sboyd@kernel.org>,
-        Shawn Guo <shawnguo@kernel.org>,
-        Sascha Hauer <s.hauer@pengutronix.de>,
-        Pengutronix Kernel Team <kernel@pengutronix.de>,
-        Fabio Estevam <festevam@gmail.com>,
-        NXP Linux Team <linux-imx@nxp.com>,
-        Guenter Roeck <linux@roeck-us.net>
-Subject: Re: [PATCH v3 00/14] dt-bindings: Cleanup of i.MX 8
-Message-ID: <20200914225332.GA418101@bogus>
-References: <20200904152404.20636-1-krzk@kernel.org>
+To:     Neil Armstrong <narmstrong@baylibre.com>
+Cc:     linux-amlogic@lists.infradead.org,
+        linux-arm-kernel@lists.infradead.org, khilman@baylibre.com,
+        linux-kernel@vger.kernel.org, devicetree@vger.kernel.org
+Subject: Re: [PATCH RESEND 1/2] dt-bindings: power: amlogic, meson-ee-pwrc:
+ add Amlogic AXG power controller bindings
+Message-ID: <20200914225806.GA427430@bogus>
+References: <20200904161654.24141-1-narmstrong@baylibre.com>
+ <20200904161654.24141-2-narmstrong@baylibre.com>
 MIME-Version: 1.0
 Content-Type: text/plain; charset=us-ascii
 Content-Disposition: inline
-In-Reply-To: <20200904152404.20636-1-krzk@kernel.org>
+In-Reply-To: <20200904161654.24141-2-narmstrong@baylibre.com>
 Sender: devicetree-owner@vger.kernel.org
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-On Fri, Sep 04, 2020 at 05:23:50PM +0200, Krzysztof Kozlowski wrote:
-> Hi Rob,
+On Fri, 04 Sep 2020 18:16:53 +0200, Neil Armstrong wrote:
+> This adds the bindings of the Power Controller found in the Amlogic AXG SoCs.
 > 
-> I am resending the series (v3) without actual changes.  You already
-> reviewed many of them.  I think that subsystem maintainers are hesitant
-> to pick them up, so maybe this could go via your tree (all of them)?
+> Signed-off-by: Neil Armstrong <narmstrong@baylibre.com>
+> ---
+>  .../bindings/power/amlogic,meson-ee-pwrc.yaml | 23 +++++++++++++++++--
+>  include/dt-bindings/power/meson-axg-power.h   | 14 +++++++++++
+>  2 files changed, 35 insertions(+), 2 deletions(-)
+>  create mode 100644 include/dt-bindings/power/meson-axg-power.h
 > 
-> Changes against previous revisions are in individual patches.
-> 
-> Best regards,
-> Krzysztof
-> 
-> 
-> Krzysztof Kozlowski (14):
->   dt-bindings: perf: fsl-imx-ddr: Add i.MX 8M compatibles
->   dt-bindings: pwm: imx-pwm: Add i.MX 8M compatibles
->   dt-bindings: serial: fsl-imx-uart: Add i.MX 8M compatibles
->   dt-bindings: serial: fsl-lpuart: Fix compatible matching
->   dt-bindings: watchdog: fsl-imx-wdt: Add i.MX 8M compatibles
->   dt-bindings: reset: fsl,imx7-src: Add i.MX 8M compatibles
->   dt-bindings: thermal: imx8mm-thermal: Add i.MX 8M Nano compatible
->   dt-bindings: nvmem: imx-ocotp: Update i.MX 8M compatibles
->   dt-bindings: mfd: rohm,bd71847-pmic: Correct clock properties
->     requirements
->   dt-bindings: interrupt-controller: fsl,irqsteer: Fix compatible
->     matching
->   dt-bindings: mtd: gpmi-nand: Add i.MX 8M compatibles
->   dt-bindings: mtd: gpmi-nand: Fix matching of clocks on different SoCs
->   dt-bindings: mtd: nand-controller: Fix matching with size-cells==1
->   dt-bindings: clock: imx8m: Integrate duplicated i.MX 8M schemas
 
-I've applied patches 1-11 and 14.
-
-Rob
+Reviewed-by: Rob Herring <robh@kernel.org>
