@@ -2,139 +2,91 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from vger.kernel.org (vger.kernel.org [23.128.96.18])
-	by mail.lfdr.de (Postfix) with ESMTP id 28767268B11
-	for <lists+devicetree@lfdr.de>; Mon, 14 Sep 2020 14:35:38 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTP id 11A5F268B09
+	for <lists+devicetree@lfdr.de>; Mon, 14 Sep 2020 14:33:52 +0200 (CEST)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S1726270AbgINMfI (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Mon, 14 Sep 2020 08:35:08 -0400
-Received: from fllv0016.ext.ti.com ([198.47.19.142]:57240 "EHLO
-        fllv0016.ext.ti.com" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S1726534AbgINMeu (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Mon, 14 Sep 2020 08:34:50 -0400
-Received: from lelv0266.itg.ti.com ([10.180.67.225])
-        by fllv0016.ext.ti.com (8.15.2/8.15.2) with ESMTP id 08EBq8Dx109058;
-        Mon, 14 Sep 2020 06:52:08 -0500
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=ti.com;
-        s=ti-com-17Q1; t=1600084328;
-        bh=GGmby2jfJvMZfUC//Z+YkKOnqAazTLu+VDZkMWF+0Tk=;
-        h=Date:From:To:CC:Subject:References:In-Reply-To;
-        b=NcOJCe33lP5xnwFH4rCT2WwQZs54W7XYs5zmGnWVlpNz1d1qhprqkSBxzI68coFNy
-         6Ar+cZnFDq2ilKQt8hx22pk3xcbFQiPgzBek9EPF/+jR5JT8RpmQIb1m0wGRw0HwG3
-         qQggZ8QmRpl2TYeWvSEqc7tHlKE+Hvo+8iyTzxf4=
-Received: from DFLE103.ent.ti.com (dfle103.ent.ti.com [10.64.6.24])
-        by lelv0266.itg.ti.com (8.15.2/8.15.2) with ESMTPS id 08EBq83l111966
-        (version=TLSv1.2 cipher=AES256-GCM-SHA384 bits=256 verify=FAIL);
-        Mon, 14 Sep 2020 06:52:08 -0500
-Received: from DFLE111.ent.ti.com (10.64.6.32) by DFLE103.ent.ti.com
- (10.64.6.24) with Microsoft SMTP Server (version=TLS1_2,
- cipher=TLS_ECDHE_RSA_WITH_AES_128_CBC_SHA256_P256) id 15.1.1979.3; Mon, 14
- Sep 2020 06:52:07 -0500
-Received: from fllv0039.itg.ti.com (10.64.41.19) by DFLE111.ent.ti.com
- (10.64.6.32) with Microsoft SMTP Server (version=TLS1_2,
- cipher=TLS_ECDHE_RSA_WITH_AES_128_CBC_SHA256_P256) id 15.1.1979.3 via
- Frontend Transport; Mon, 14 Sep 2020 06:52:07 -0500
-Received: from localhost (ileax41-snat.itg.ti.com [10.172.224.153])
-        by fllv0039.itg.ti.com (8.15.2/8.15.2) with ESMTP id 08EBq7Oq038271;
-        Mon, 14 Sep 2020 06:52:07 -0500
-Date:   Mon, 14 Sep 2020 06:52:07 -0500
-From:   Nishanth Menon <nm@ti.com>
-To:     Kishon Vijay Abraham I <kishon@ti.com>
-CC:     Rob Herring <robh+dt@kernel.org>, Tero Kristo <t-kristo@ti.com>,
-        <linux-arm-kernel@lists.infradead.org>,
-        <devicetree@vger.kernel.org>, <linux-kernel@vger.kernel.org>
-Subject: Re: [RESEND PATCH 1/2] arm64: dts: ti: k3-j721e-main: Add PCIe
- device tree nodes
-Message-ID: <20200914115207.wq4pmgrszhtgctdu@akan>
-References: <20200901140628.8800-1-kishon@ti.com>
- <20200901140628.8800-2-kishon@ti.com>
- <20200901145204.ayybrzqjcfhiqnfq@akan>
- <5f23246a-a9d7-495d-a4ec-d392ad95a450@ti.com>
- <4b17cace-09d5-af8c-6e7f-9358cfdceb4d@ti.com>
- <e914e527-00fc-2614-fa74-f2137dbcfaf9@ti.com>
+        id S1726523AbgINMdV (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Mon, 14 Sep 2020 08:33:21 -0400
+Received: from mail.kernel.org ([198.145.29.99]:47208 "EHLO mail.kernel.org"
+        rhost-flags-OK-OK-OK-OK) by vger.kernel.org with ESMTP
+        id S1726297AbgINMc5 (ORCPT <rfc822;devicetree@vger.kernel.org>);
+        Mon, 14 Sep 2020 08:32:57 -0400
+Received: from localhost (fw-tnat.cambridge.arm.com [217.140.96.140])
+        (using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
+        (No client certificate requested)
+        by mail.kernel.org (Postfix) with ESMTPSA id 2636F20709;
+        Mon, 14 Sep 2020 12:32:51 +0000 (UTC)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=kernel.org;
+        s=default; t=1600086771;
+        bh=xFSDw8//5wJ8dFfNNw4BsdqTVRi7fxPIg8Of2LQJ/j0=;
+        h=Date:From:To:Cc:Subject:References:In-Reply-To:From;
+        b=TIBVPOh3DWEDLqP8H6eDP3hQf8byFbaCVkE4ZnVykam1Kjx1Z53p0OTqlrTbEgyCa
+         Z3MDeth+eNr7mpjp0uDcV2ZEmoM3pmi3le9tA2h3wxoJJMcm5Q23rI3tx2KHEApyen
+         KRZDFFGRpP7fNuCPUxWRlN7VrU80dJPk14bL8kxI=
+Date:   Mon, 14 Sep 2020 13:32:02 +0100
+From:   Mark Brown <broonie@kernel.org>
+To:     Henry Chen <henryc.chen@mediatek.com>
+Cc:     Georgi Djakov <georgi.djakov@linaro.org>,
+        Rob Herring <robh+dt@kernel.org>,
+        Matthias Brugger <matthias.bgg@gmail.com>,
+        Viresh Kumar <vireshk@kernel.org>,
+        Stephen Boyd <swboyd@chromium.org>,
+        Ryan Case <ryandcase@chromium.org>,
+        Mark Rutland <mark.rutland@arm.com>,
+        Nicolas Boichat <drinkcat@google.com>,
+        Fan Chen <fan.chen@mediatek.com>,
+        James Liao <jamesjj.liao@mediatek.com>,
+        Arvin Wang <arvin.wang@mediatek.com>,
+        Mike Turquette <mturquette@linaro.org>,
+        devicetree@vger.kernel.org, linux-arm-kernel@lists.infradead.org,
+        linux-mediatek@lists.infradead.org, linux-kernel@vger.kernel.org,
+        linux-pm@vger.kernel.org
+Subject: Re: [PATCH V5 14/17] dt-bindings: regulator: add DVFSRC regulator
+ dt-bindings
+Message-ID: <20200914123202.GD4821@sirena.org.uk>
+References: <1600052684-21198-1-git-send-email-henryc.chen@mediatek.com>
+ <1600052684-21198-15-git-send-email-henryc.chen@mediatek.com>
 MIME-Version: 1.0
-Content-Type: text/plain; charset="iso-8859-1"
+Content-Type: multipart/signed; micalg=pgp-sha512;
+        protocol="application/pgp-signature"; boundary="JgQwtEuHJzHdouWu"
 Content-Disposition: inline
-Content-Transfer-Encoding: 8bit
-In-Reply-To: <e914e527-00fc-2614-fa74-f2137dbcfaf9@ti.com>
-User-Agent: NeoMutt/20171215
-X-EXCLAIMER-MD-CONFIG: e1e8a2fd-e40a-4ac6-ac9b-f7e9cc9ee180
+In-Reply-To: <1600052684-21198-15-git-send-email-henryc.chen@mediatek.com>
+X-Cookie: Disc space -- the final frontier!
+User-Agent: Mutt/1.10.1 (2018-07-13)
 Sender: devicetree-owner@vger.kernel.org
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-On 16:53-20200914, Kishon Vijay Abraham I wrote:
-> Hi Rob,
-> 
-> On 02/09/20 1:07 pm, Kishon Vijay Abraham I wrote:
-> > Hi Rob,
-> > 
-> > On 02/09/20 10:24 am, Kishon Vijay Abraham I wrote:
-> >> Hi Nishanth,
-> >>
-> >> On 01/09/20 8:22 pm, Nishanth Menon wrote:
-> >>> On 19:36-20200901, Kishon Vijay Abraham I wrote:
-> >>>> Add PCIe device tree node (both RC and EP) for the four
-> >>>> PCIe instances here.
-> >>>>
-> >>>> Signed-off-by: Kishon Vijay Abraham I <kishon@ti.com>
-> >>>> ---
-> >>>>   arch/arm64/boot/dts/ti/k3-j721e-main.dtsi | 218
-> >>>> ++++++++++++++++++++++
-> >>>>   arch/arm64/boot/dts/ti/k3-j721e.dtsi      |   5 +-
-> >>>>   2 files changed, 222 insertions(+), 1 deletion(-)
-> >>>
-> >>>
-> >>> Did you look at the diff of the dtbs_check before and after this
-> >>> series? I see: https://pastebin.ubuntu.com/p/9fyfrTjx9M/
-> >>
-> >> I didn't see any errors when I checked for individual bindings
-> >> a0393678@a0393678-ssd:~/repos/linux$ mkconfig64 dtbs_check
-> >> DT_SCHEMA_FILES="Documentation/devicetree/bindings/pci/ti,j721e-pci-ep.yaml"
-> >>
-> >>    SCHEMA  Documentation/devicetree/bindings/processed-schema.yaml
-> >>    DTC     arch/arm64/boot/dts/ti/k3-am654-base-board.dt.yaml
-> >>    DTC     arch/arm64/boot/dts/ti/k3-j721e-common-proc-board.dt.yaml
-> >>    CHECK   arch/arm64/boot/dts/ti/k3-am654-base-board.dt.yaml
-> >>    CHECK   arch/arm64/boot/dts/ti/k3-j721e-common-proc-board.dt.yaml
-> >> a0393678@a0393678-ssd:~/repos/linux$ mkconfig64 dtbs_check
-> >> DT_SCHEMA_FILES="Documentation/devicetree/bindings/pci/ti,j721e-pci-host.yaml"
-> >>
-> >>    SCHEMA  Documentation/devicetree/bindings/processed-schema.yamlsimple-bus
-> >>    DTC     arch/arm64/boot/dts/ti/k3-am654-base-board.dt.yaml
-> >>    DTC     arch/arm64/boot/dts/ti/k3-j721e-common-proc-board.dt.yaml
-> >>    CHECK   arch/arm64/boot/dts/ti/k3-am654-base-board.dt.yaml
-> >>    CHECK   arch/arm64/boot/dts/ti/k3-j721e-common-proc-board.dt.yaml
-> > 
-> > Can you give hint on why I get ranges is too long error
-> > https://pastebin.ubuntu.com/p/cPm2tg3dcV/ which I give mkconfig64
-> > dtbs_check but don't see an error when I include "DT_SCHEMA_FILES"?
-> 
-> I debugged this and looks like PCIe "ranges" property conflicts with
-> simple-bus.
-> 
-> A diff like below helps to solve the issue
-> diff --git a/schemas/simple-bus.yaml b/schemas/simple-bus.yaml
-> index 248ac9d..ed818ef 100644
-> --- a/schemas/simple-bus.yaml
-> +++ b/schemas/simple-bus.yaml
-> @@ -39,7 +39,7 @@ patternProperties:
->          oneOf:
->            - items:
->                minItems: 3
-> -              maxItems: 6
-> +              maxItems: 7
->              minItems: 0
->              maxItems: 1024
->            - $ref: "types.yaml#/definitions/flag"
-> 
-> If this looks right to you, I can post a patch for it. Without fixing
-> this we would see false errors for PCIe DT nodes.
 
-https://github.com/devicetree-org/dt-schema/commit/3baf308b01786788e3ccb9824fce6d7136b21214
+--JgQwtEuHJzHdouWu
+Content-Type: text/plain; charset=us-ascii
+Content-Disposition: inline
 
-Part of v2020.08.1? Am i missing something?
--- 
-Regards,
-Nishanth Menon
-Key (0xDDB5849D1736249D) / Fingerprint: F8A2 8693 54EB 8232 17A3  1A34 DDB5 849D 1736 249D
+On Mon, Sep 14, 2020 at 11:04:41AM +0800, Henry Chen wrote:
+
+>  		clocks = <&infracfg CLK_INFRA_DVFSRC>;
+>  		clock-names = "dvfsrc";
+>  		#interconnect-cells = <1>;
+> +		dvfsrc-regulator {
+> +			compatible = "mediatek,mt8183-dvfsrc-regulator";
+
+This device has only one possible parent, why does it need a compatible
+string?
+
+--JgQwtEuHJzHdouWu
+Content-Type: application/pgp-signature; name="signature.asc"
+
+-----BEGIN PGP SIGNATURE-----
+
+iQEzBAABCgAdFiEEreZoqmdXGLWf4p/qJNaLcl1Uh9AFAl9fYsIACgkQJNaLcl1U
+h9CGAwf+NdDwxcGz6vK2nMoZx0OSox6fapvguwKcIXo6+F97ItlNsR1WVQBnDgnb
+203sE6MD8JOg6WSkRP7PnGf1oZP6C5df/tB80kqV22bPc11sqWE1i2bqiM/LQwq+
+wVLFlxVYsCHQbpq0HdRBPG0fSrzkDlE3ShgUMMD2hAn94apWUL5U1cVs9SuY3oRi
+3fSngH9WbCL1X7o/whxg5Ogq38X0Z2xahcNz8G8MNRJoqazFTMRrFHvgpI8fKcsT
+vQ6WyeukDlkXErJnCxbl47PAOdSmpuZ0z27L2NGlUPQEkzcH3FvGYRv6MEbwFr+N
+GCwB3F0SHfonZ0Sd7JobMcHzFzPKnw==
+=miPV
+-----END PGP SIGNATURE-----
+
+--JgQwtEuHJzHdouWu--
