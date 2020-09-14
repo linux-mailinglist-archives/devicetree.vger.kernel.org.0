@@ -2,151 +2,249 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from vger.kernel.org (vger.kernel.org [23.128.96.18])
-	by mail.lfdr.de (Postfix) with ESMTP id 3CE44268799
-	for <lists+devicetree@lfdr.de>; Mon, 14 Sep 2020 10:52:06 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTP id E98332687BD
+	for <lists+devicetree@lfdr.de>; Mon, 14 Sep 2020 10:59:44 +0200 (CEST)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S1726110AbgINIwF (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Mon, 14 Sep 2020 04:52:05 -0400
-Received: from lindbergh.monkeyblade.net ([23.128.96.19]:41958 "EHLO
+        id S1726135AbgINI7n (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Mon, 14 Sep 2020 04:59:43 -0400
+Received: from lindbergh.monkeyblade.net ([23.128.96.19]:43126 "EHLO
         lindbergh.monkeyblade.net" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S1726135AbgINIwA (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Mon, 14 Sep 2020 04:52:00 -0400
-Received: from mail-wm1-x343.google.com (mail-wm1-x343.google.com [IPv6:2a00:1450:4864:20::343])
-        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 9228DC06174A;
-        Mon, 14 Sep 2020 01:51:59 -0700 (PDT)
-Received: by mail-wm1-x343.google.com with SMTP id e17so9817366wme.0;
-        Mon, 14 Sep 2020 01:51:59 -0700 (PDT)
+        with ESMTP id S1726112AbgINI7m (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Mon, 14 Sep 2020 04:59:42 -0400
+Received: from mail-wm1-x341.google.com (mail-wm1-x341.google.com [IPv6:2a00:1450:4864:20::341])
+        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id BE25FC06174A;
+        Mon, 14 Sep 2020 01:59:41 -0700 (PDT)
+Received: by mail-wm1-x341.google.com with SMTP id y15so10409089wmi.0;
+        Mon, 14 Sep 2020 01:59:41 -0700 (PDT)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
         d=gmail.com; s=20161025;
-        h=date:from:to:cc:subject:message-id:references:mime-version
-         :content-disposition:in-reply-to;
-        bh=KxikpLF2+OFbtV/m24+r7ZSnG57yMpe1VFQzaF4Sh7Y=;
-        b=B1dtRXvaJGYTVutAJNv3z79M7R6GBPsh2uIjFBZbWBF7hJp40praNGFVH7FUKE5LCg
-         CVuRMmh5gqEsJc3ipH65REMFaszMwap7k0x5vKSP9jaQnJzVOK6m+gDZJjTfUKh6dK/h
-         vODikBsj5ASKoiGlBFVHxTWaPOwbLcgA36MC/BhQLndrzWxziYjhgGLnyFru3RW0SGXC
-         rUCs2ICuswFkHSbyzH/Dv9T6FswXONoNtH9bXiYl6KB0yHsjRoTp3LNFFzgNHmcr+Oxw
-         WoImJWAPfSL0BsJCYlYWrfndV9J+U4wG3/I6+UCo7AupfHU5TlgMaiHdrU3XACHL0K3F
-         cJnA==
+        h=subject:to:cc:references:from:message-id:date:user-agent
+         :mime-version:in-reply-to:content-language:content-transfer-encoding;
+        bh=/MIKedoIOUsFjweTslvur4pBQa9SNFf9T3eSu+x3ZqE=;
+        b=JFph4kBzYlVFBa10GDi5JH43OZeeNU4SUMmmwxnl5A/9diq+SmrOMfPD/GLMH3oxDe
+         hhOuJgoNfWUovkwB1tKcMiGQTDGPqZEsJjInlTw7pW7SVQNr/d680yEthOrM4IEmJSNE
+         hzdp0ZcibpG2ByVJqTWNgHax8h6YshM4TPFcP/gjlXkb1NbkxqQjozb+U3eRzibzBdAH
+         hCs6kK1VTuZS+pINj4LH0Q33/Zgbxzb4lvWYQkpUwiDMqdpNVZJV/xV5fLEqhonnjJhW
+         1jWCE44sTq0W7LbmYBbBHjScJk28qHgH5DmVJxrcUhAPjm2ja9RNQYm4AucjQAtdwQ2m
+         fZFQ==
 X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
         d=1e100.net; s=20161025;
-        h=x-gm-message-state:date:from:to:cc:subject:message-id:references
-         :mime-version:content-disposition:in-reply-to;
-        bh=KxikpLF2+OFbtV/m24+r7ZSnG57yMpe1VFQzaF4Sh7Y=;
-        b=qMVzX7RlZhQqO33XOVwSBlv3fv5zbH19XsUyFyPA+lf8eeKIoX7JKSTM1LDu/5rvYc
-         cqypN6NDwnnkN6tOQcWuYR4TcjSmplN6GZRqeeWU1shU/rBL4tp5jIDzNRZlmgvo/eV1
-         d5zhJmkK5XBut/kiSL2xQ0otD5v5lu57B8lArImFqBJ/ws5hFDD7hJrv6/dg6cyu/JVf
-         GldOQpgDw+p54qcwEf5kmsC6bVeayttCKFehU1PPhxnzaLcjNTrJifBcfVEePHhN+sXI
-         o86DdcI6fe42tNMiuAsgcEZKidByJx86ozeARrkKipkqOods6Z4EUFO67UpZixUUAw4l
-         wJJw==
-X-Gm-Message-State: AOAM531Fzl80oT7zT4OI7tYpnjY8A+av+V8yhUQfdoBxh8L8uJRRLnmn
-        1a/vrdtiojFxXIHm/YmxNSo=
-X-Google-Smtp-Source: ABdhPJyCifLIgNPlZsCx1owCD98no3A41z96/U1P34QFDGdnvOhcuAVFARIco+QqAJk7eXqTT8/QSw==
-X-Received: by 2002:a1c:740c:: with SMTP id p12mr13810557wmc.176.1600073518255;
-        Mon, 14 Sep 2020 01:51:58 -0700 (PDT)
-Received: from BV030612LT (oi48z9.static.otenet.gr. [79.129.51.141])
-        by smtp.gmail.com with ESMTPSA id h76sm19258310wme.10.2020.09.14.01.51.56
-        (version=TLS1_3 cipher=TLS_AES_256_GCM_SHA384 bits=256/256);
-        Mon, 14 Sep 2020 01:51:57 -0700 (PDT)
-Date:   Mon, 14 Sep 2020 11:51:54 +0300
-From:   Cristian Ciocaltea <cristian.ciocaltea@gmail.com>
-To:     Marc Zyngier <maz@kernel.org>
-Cc:     Rob Herring <robh+dt@kernel.org>,
-        Manivannan Sadhasivam <manivannan.sadhasivam@linaro.org>,
-        Thomas Gleixner <tglx@linutronix.de>,
-        Jason Cooper <jason@lakedaemon.net>,
-        Andreas =?iso-8859-1?Q?F=E4rber?= <afaerber@suse.de>,
-        parthiban@linumiz.com, Saravanan Sekar <sravanhome@gmail.com>,
-        linux-kernel@vger.kernel.org, devicetree@vger.kernel.org,
-        linux-arm-kernel@lists.infradead.org,
-        linux-actions@lists.infradead.org,
-        Parthiban Nallathambi <pn@denx.de>
-Subject: Re: [PATCH v6 2/3] irqchip: Add Actions Semi Owl SIRQ controller
-Message-ID: <20200914085154.GA8474@BV030612LT>
-References: <cover.1599552438.git.cristian.ciocaltea@gmail.com>
- <1167b847f6fe1da3834aeaadf5710ddac54f06a0.1599552438.git.cristian.ciocaltea@gmail.com>
- <c5115d27739e1664f808ff5f1fc315e8@kernel.org>
- <20200914070227.GA4491@BV030612LT>
- <b9053e939dea2b67ba9804aec1a110f5@kernel.org>
+        h=x-gm-message-state:subject:to:cc:references:from:message-id:date
+         :user-agent:mime-version:in-reply-to:content-language
+         :content-transfer-encoding;
+        bh=/MIKedoIOUsFjweTslvur4pBQa9SNFf9T3eSu+x3ZqE=;
+        b=XcLq8jppoOLG/V5eUKEDwPcAZdPvv0NtB9PraLC0ZLjd9bxdzKlUGDxyCzmelBvjs1
+         th/F8t4sVnRfppTMF/UxXK39URNCTBy9sYXp84uf1jaudqNuBvegohVwQZUUSJ4mCX29
+         DV1nKkp/kcww1Rv9nH1wnVlXsT4TUQpPZijphwRj0/LHtNqVpuQ5dZGEF6RhHFVpzrka
+         TRMBoy97YKTMVGoBJwSqFf1fE93Pb+S8h+bUd/qqyFjExAQW5n4bsSHNUfC/7G7XiVfK
+         MSVMiOh2UhgwWfS73fz4xTZWh52iy5iLsKJUX5Hed3D613wcX8CImBv+0eaNoPyIEmVp
+         yuNw==
+X-Gm-Message-State: AOAM533M/XOCSlh0XbrZzL2dx8SqlMTctuVkdAGHpfM30Gk/i22dP8yC
+        CyzaXOJ4du3W9Ljx3R2FVV0=
+X-Google-Smtp-Source: ABdhPJxdQrb1I8Rlz09G/IfEfX9kFrBzNcFYdPCZNmq0bpJ7m6Td4pGvrxBHZyfwPP2YvhAb4HCi5g==
+X-Received: by 2002:a1c:9654:: with SMTP id y81mr14000152wmd.9.1600073980332;
+        Mon, 14 Sep 2020 01:59:40 -0700 (PDT)
+Received: from ziggy.stardust ([213.195.113.201])
+        by smtp.gmail.com with ESMTPSA id z13sm19391670wro.97.2020.09.14.01.59.39
+        (version=TLS1_3 cipher=TLS_AES_128_GCM_SHA256 bits=128/128);
+        Mon, 14 Sep 2020 01:59:39 -0700 (PDT)
+Subject: Re: [PATCH 01/12] dt-bindings: power: Add bindings for the Mediatek
+ SCPSYS power domains controller
+To:     Rob Herring <robh@kernel.org>,
+        Enric Balletbo i Serra <enric.balletbo@collabora.com>
+Cc:     linux-kernel@vger.kernel.org,
+        Collabora Kernel ML <kernel@collabora.com>,
+        fparent@baylibre.com, drinkcat@chromium.org, hsinyi@chromium.org,
+        weiyi.lu@mediatek.com, Matthias Brugger <mbrugger@suse.com>,
+        devicetree@vger.kernel.org, linux-arm-kernel@lists.infradead.org,
+        linux-mediatek@lists.infradead.org
+References: <20200910172826.3074357-1-enric.balletbo@collabora.com>
+ <20200910172826.3074357-2-enric.balletbo@collabora.com>
+ <20200911230255.GA2972120@bogus>
+From:   Matthias Brugger <matthias.bgg@gmail.com>
+Message-ID: <7a1c89b6-f483-5d57-f154-b80b72964077@gmail.com>
+Date:   Mon, 14 Sep 2020 10:59:36 +0200
+User-Agent: Mozilla/5.0 (X11; Linux x86_64; rv:68.0) Gecko/20100101
+ Thunderbird/68.12.0
 MIME-Version: 1.0
-Content-Type: text/plain; charset=us-ascii
-Content-Disposition: inline
-In-Reply-To: <b9053e939dea2b67ba9804aec1a110f5@kernel.org>
+In-Reply-To: <20200911230255.GA2972120@bogus>
+Content-Type: text/plain; charset=utf-8; format=flowed
+Content-Language: en-US
+Content-Transfer-Encoding: 7bit
 Sender: devicetree-owner@vger.kernel.org
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-On Mon, Sep 14, 2020 at 09:07:18AM +0100, Marc Zyngier wrote:
-> Cristian,
+
+
+On 12/09/2020 01:02, Rob Herring wrote:
+> On Thu, Sep 10, 2020 at 07:28:15PM +0200, Enric Balletbo i Serra wrote:
+>> The System Control Processor System (SCPSYS) has several power management
+>> related tasks in the system. Add the bindings to define the power
+>> domains for the SCPSYS power controller.
+>>
+>> Co-developed-by: Matthias Brugger <mbrugger@suse.com>
+>> Signed-off-by: Matthias Brugger <mbrugger@suse.com>
+>> Signed-off-by: Enric Balletbo i Serra <enric.balletbo@collabora.com>
+>> ---
+>> Dear Rob,
+>>
+>> I am awasre that this binding is not ready, but I prefered to send because I'm
+>> kind of blocked. Compiling this binding triggers the following error:
+>>
+>>      mediatek,power-controller.example.dt.yaml: syscon@10006000: mfg_async@7:
+>>      '#address-cells', '#size-cells', 'mfg_2d@8'
+>>      do not match any of the regexes: 'pinctrl-[0-9]+'
+>>
+>> This happens when a definition of a power-domain (parent) contains
+>> another power-domain (child), like the example. I am not sure how to
+>> specify this in the yaml and deal with this, so any clue is welcome.
 > 
-> On 2020-09-14 08:02, Cristian Ciocaltea wrote:
-> > Hi Marc,
-> > 
-> > On Fri, Sep 11, 2020 at 05:22:41PM +0100, Marc Zyngier wrote:
-> > > On 2020-09-08 09:20, Cristian Ciocaltea wrote:
-> > > > This interrupt controller is found in the Actions Semi Owl SoCs (S500,
-> > > > S700 and S900) and provides support for handling up to 3 external
-> > > > interrupt lines.
-> > > >
-> > > > Each line can be independently configured as interrupt and triggers on
-> > > > either of the edges or either of the levels. Additionally, each line
-> > > > can also be masked individually.
-> > > >
-> > > > The patch is based on the work started by Parthiban Nallathambi:
-> > > > https://lore.kernel.org/lkml/20181126100356.2840578-1-pn@denx.de/
-> > > >
-> > > > Signed-off-by: Parthiban Nallathambi <pn@denx.de>
-> > > > Signed-off-by: Saravanan Sekar <sravanhome@gmail.com>
-> > > > [cristi: optimized DT, various fixes/cleanups/improvements]
-> > > > Signed-off-by: Cristian Ciocaltea <cristian.ciocaltea@gmail.com>
-> > > 
-> > > Who is the author of these patches? If this is a co-development,
-> > > please
-> > > use the relevant tags. Otherwise, the author of the patch must come as
-> > > the first SoB.
-> > 
-> > I took the authorship for the driver patch, as mentioned in the cover
-> > letter. So, if I understand correctly, my SoB should be moved on top and
-> > I assume I also need to drop the related comment line.
+> You just have to keep nesting schemas all the way down. Define a
+> grandchild node under the child node and then all of its properties.
 > 
-> Not quite. Please look at Documentation/process/submitting-patches.rst.
-
-Yes, I have read it, but most probably I missed the information that
-clarifies this authorship change handling.
-
-> If Parthiban and Saravanan haven't authored anything in this patch,
-> then drop them from the SoB list.
-
-Sorry I haven't properly explained this before!
-
-Their contributions to the driver code stopped in 2018, when v3 of the
-patch series has been submitted.
-
-> If they have contributed to the
-> patch (which I expect), then their SoB must be preceded by their own
-> Co-developed-by: tag.
-
-Starting with v4, the work has been done exclusively by myself.
-
-> To sum it up, it probably should look like:
+>>
+>> Thanks,
+>>    Enric
+>>
+>>   .../power/mediatek,power-controller.yaml      | 171 ++++++++++++++++++
+>>   1 file changed, 171 insertions(+)
+>>   create mode 100644 Documentation/devicetree/bindings/power/mediatek,power-controller.yaml
+>>
+>> diff --git a/Documentation/devicetree/bindings/power/mediatek,power-controller.yaml b/Documentation/devicetree/bindings/power/mediatek,power-controller.yaml
+>> new file mode 100644
+>> index 000000000000..8be9244ad160
+>> --- /dev/null
+>> +++ b/Documentation/devicetree/bindings/power/mediatek,power-controller.yaml
+>> @@ -0,0 +1,171 @@
+>> +# SPDX-License-Identifier: (GPL-2.0-only OR BSD-2-Clause)
+>> +%YAML 1.2
+>> +---
+>> +$id: http://devicetree.org/schemas/power/mediatek,power-controller.yaml#
+>> +$schema: http://devicetree.org/meta-schemas/core.yaml#
+>> +
+>> +title: Mediatek Power Domains Controller
+>> +
+>> +maintainers:
+>> +  - Weiyi Lu <weiyi.lu@mediatek.com>
+>> +  - Matthias Brugger <mbrugger@suse.com>
+>> +
+>> +description: |
+>> +  Mediatek processors include support for multiple power domains which can be
+>> +  powered up/down by software based on different application scenes to save power.
+>> +
+>> +  IP cores belonging to a power domain should contain a 'power-domains'
+>> +  property that is a phandle for SCPSYS node representing the domain.
+>> +
+>> +properties:
+>> +  $nodename:
+>> +    pattern: "^syscon@[0-9a-f]+$"
+>> +
+>> +  compatible:
+>> +    items:
+>> +      - enum:
+>> +        - mediatek,mt8173-power-controller
+>> +      - const: syscon
+>> +
+>> +  reg:
+>> +    maxItems: 1
+>> +
+>> +patternProperties:
+>> +  "^.*@[0-9]$":
 > 
-> Co-developed-by: Parthiban Nallathambi <pn@denx.de>
-> Signed-off-by: Parthiban Nallathambi <pn@denx.de>
-> Co-developed-by: Saravanan Sekar <sravanhome@gmail.com>
-> Signed-off-by: Saravanan Sekar <sravanhome@gmail.com>
-> Signed-off-by: Cristian Ciocaltea <cristian.ciocaltea@gmail.com>
+> Node names should be generic:
 > 
-> This is of course an assumption, and you should check it with the
-> individuals above.
-
-I have recently contacted Parthiban and he agreed that I can take the
-authorship. So I should proceed with the 1st approach?
-
-> Thanks,
+> power-domain@
 > 
->         M.
-> -- 
-> Jazz is not dead. It just smells funny...
 
-Thanks,
-Cristi
+Enric correct me if I'm wrong, if we want to see the power domains in debugfs, 
+they are listed by their name. If all are called power-domain then the listing 
+is pretty much useless.
+
+>> +    type: object
+>> +    description: |
+>> +      Represents the power domains within the power controller node as documented
+>> +      in Documentation/devicetree/bindings/power/power-domain.yaml.
+>> +
+>> +    properties:
+>> +      reg:
+>> +        description: |
+>> +          Power domain index. Valid values are defined in:
+>> +              "include/dt-bindings/power/mt8173-power.h" - for MT8173 type power domain.
+>> +        maxItems: 1
+>> +
+>> +      '#power-domain-cells':
+>> +        description:
+>> +          Documented by the generic PM Domain bindings in
+>> +          Documentation/devicetree/bindings/power/power-domain.yaml.
+> 
+> No need to redefine a common property. This should define valid values
+> for it.
+> 
+>> +
+>> +      clocks:
+>> +        description: |
+>> +          A number of phandles to clocks that need to be enabled during domain
+>> +          power-up sequencing.
+> 
+> No need to redefine 'clocks'. You need to define how many, what each one
+> is, and the order.
+> 
+
+Do you mean we have to define each clock for each power domain of each SoC?
+
+>> +
+>> +      clock-names:
+>> +        description: |
+>> +          List of names of clocks, in order to match the power-up sequencing
+>> +          for each power domain we need to group the clocks by name. BASIC
+>> +          clocks need to be enabled before enabling the corresponding power
+>> +          domain, and should not have a '-' in their name (i.e mm, mfg, venc).
+>> +          SUSBYS clocks need to be enabled before releasing the bus protection,
+>> +          and should contain a '-' in their name (i.e mm-0, isp-0, cam-0).
+>> +
+>> +          In order to follow properly the power-up sequencing, the clocks must
+>> +          be specified by order, adding first the BASIC clocks followed by the
+>> +          SUSBSYS clocks.
+> 
+> You need to define the names.
+> 
+>> +
+>> +      mediatek,infracfg:
+>> +        $ref: /schemas/types.yaml#definitions/phandle
+>> +        description: phandle to the device containing the INFRACFG register range.
+>> +
+>> +      mediatek,smi:
+>> +        $ref: /schemas/types.yaml#definitions/phandle
+>> +        description: phandle to the device containing the SMI register range.
+>> +
+>> +    required:
+>> +      - reg
+>> +      - '#power-domain-cells'
+>> +
+>> +    additionalProperties: false
+>> +
+>> +required:
+>> +  - compatible
+>> +  - reg
+>> +
+>> +additionalProperties: false
+>> +
+>> +examples:
+>> +  - |
+>> +    #include <dt-bindings/clock/mt8173-clk.h>
+>> +    #include <dt-bindings/power/mt8173-power.h>
+>> +
+>> +    soc {
+>> +        #address-cells = <2>;
+>> +        #size-cells = <2>;
+>> +
+>> +        scpsys: syscon@10006000 {
+>> +            compatible = "mediatek,mt8173-power-controller", "syscon";
+
+The power domain controller is just one funcionality the SCPSYS block can 
+provide. I think it should be child of the SCPSYS.
+
+Regards,
+Matthias
