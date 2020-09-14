@@ -2,85 +2,91 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from vger.kernel.org (vger.kernel.org [23.128.96.18])
-	by mail.lfdr.de (Postfix) with ESMTP id 321EF2698D5
-	for <lists+devicetree@lfdr.de>; Tue, 15 Sep 2020 00:31:38 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTP id 42A472698E6
+	for <lists+devicetree@lfdr.de>; Tue, 15 Sep 2020 00:33:52 +0200 (CEST)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S1725986AbgINWbh (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Mon, 14 Sep 2020 18:31:37 -0400
-Received: from mail-io1-f65.google.com ([209.85.166.65]:40916 "EHLO
-        mail-io1-f65.google.com" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S1725985AbgINWbg (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Mon, 14 Sep 2020 18:31:36 -0400
-Received: by mail-io1-f65.google.com with SMTP id j2so1906215ioj.7;
-        Mon, 14 Sep 2020 15:31:34 -0700 (PDT)
+        id S1725953AbgINWdv (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Mon, 14 Sep 2020 18:33:51 -0400
+Received: from mail-il1-f196.google.com ([209.85.166.196]:46470 "EHLO
+        mail-il1-f196.google.com" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
+        with ESMTP id S1726023AbgINWdt (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Mon, 14 Sep 2020 18:33:49 -0400
+Received: by mail-il1-f196.google.com with SMTP id u18so1098443iln.13;
+        Mon, 14 Sep 2020 15:33:49 -0700 (PDT)
 X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
         d=1e100.net; s=20161025;
         h=x-gm-message-state:date:from:to:cc:subject:message-id:references
          :mime-version:content-disposition:in-reply-to;
-        bh=/pD/h9E35swAdheWUiJTW2U8mtD3mvR4TbFwObgRqNQ=;
-        b=s7eke34TMsW035nc80TIYPkq2ySlz4V07pj+Zf9awkmCUsVcyQ/TXMdaZamZLBdYg1
-         tv0iE5aCF3x5cZ3e3PUyfzs/WHsIiQTEsPCmUURILy1xglSc4HgDLJCRuWgonYupdY4r
-         73PEAsmEVCcKQaVRO4+ylTW3VbnzCFcNdDBgc8/V/DbYRyIVOPAsDLqHq3DdnU+R3vQH
-         9cIuQxd387YfE13seKPO9mkWuKR4825eW55Gliv/bibYm7TDTV9Ux0+41RbtspPzj+hK
-         UJuCY2jIhu4lwZv6pZd73HNBl0XtIxdcHQuhqyiN7a46LCK3Cg6hfbiepxcOXdhOmz3E
-         twLA==
-X-Gm-Message-State: AOAM532fU7nqt7wTdg0itPuYf2nIDzBX9RTDIkzU/ACnMD0PjJqorbPH
-        RUVAev00QBtfDXWxwIdpsJu74IPPPEZw
-X-Google-Smtp-Source: ABdhPJxo23QcjWKVaJTELcfH6zvKBCo6gLwUuumBxvcGYu10LcMbvle/m6Ht8hvnRhQrVk6QQijdPw==
-X-Received: by 2002:a02:6043:: with SMTP id d3mr15339291jaf.122.1600122694328;
-        Mon, 14 Sep 2020 15:31:34 -0700 (PDT)
+        bh=LR2VIPk/kPTFwa8fumXMyfI9oQy0dFUpuBNhTXBXL14=;
+        b=q2237n7v6M1zurWOiKz9l4VMMXpL0kflCuHVV8+x5FFzmoSgdqD3s+jmHud87nKQCb
+         dlkTnAu/jbjJkPStL3xbl9pizyItmvionLhjqJNFHFPjiezRoECyqbOYTSgb18q9bR/Q
+         cR+JyXy6YHZnpKGdwzwPn089HPYq3FAPZWwFNRT1QTacOBYeBXPiZjoudMvvnPuuLtq6
+         1X3CFHUybGc0UsxHHFEMf7dl956RtUHruLwRHFRVS8oAcwT5QOXS1UctPHA63Cak9/em
+         CHAP2LSqVP0cqZelp3dY9KQp/0nAASW4unCAQZ1mLEcoODJcGdtDbH5wLsUTLww9Pkyv
+         UJmQ==
+X-Gm-Message-State: AOAM533ucDi2m0DhM0dHlk1a4Ene6G4nVM7vVjNnHOZZvWzd9sMpzWeh
+        DmkHC+PumI0GnhiA0AMkIQ==
+X-Google-Smtp-Source: ABdhPJxhBwt+joy5rC6tCThb/a9SSzByv7xa3AAq7/kp6WACPc6nel+y3jAKE5+UNG5dyb3EK6b6HQ==
+X-Received: by 2002:a92:98c5:: with SMTP id a66mr14220838ill.50.1600122828756;
+        Mon, 14 Sep 2020 15:33:48 -0700 (PDT)
 Received: from xps15 ([64.188.179.253])
-        by smtp.gmail.com with ESMTPSA id z10sm6559662ioi.13.2020.09.14.15.31.32
+        by smtp.gmail.com with ESMTPSA id x185sm6810275iof.41.2020.09.14.15.33.46
         (version=TLS1_3 cipher=TLS_AES_256_GCM_SHA384 bits=256/256);
-        Mon, 14 Sep 2020 15:31:33 -0700 (PDT)
-Received: (nullmailer pid 383796 invoked by uid 1000);
-        Mon, 14 Sep 2020 22:31:32 -0000
-Date:   Mon, 14 Sep 2020 16:31:32 -0600
+        Mon, 14 Sep 2020 15:33:48 -0700 (PDT)
+Received: (nullmailer pid 387444 invoked by uid 1000);
+        Mon, 14 Sep 2020 22:33:43 -0000
+Date:   Mon, 14 Sep 2020 16:33:43 -0600
 From:   Rob Herring <robh@kernel.org>
 To:     Krzysztof Kozlowski <krzk@kernel.org>
-Cc:     Christian Gmeiner <christian.gmeiner@gmail.com>,
-        Sascha Hauer <s.hauer@pengutronix.de>,
-        Lee Jones <lee.jones@linaro.org>,
-        Russell King <linux+etnaviv@armlinux.org.uk>,
-        Daniel Vetter <daniel@ffwll.ch>, Li Yang <leoyang.li@nxp.com>,
-        dri-devel@lists.freedesktop.org,
-        Fabio Estevam <festevam@gmail.com>, devicetree@vger.kernel.org,
+Cc:     Shawn Guo <shawnguo@kernel.org>,
+        Christian Gmeiner <christian.gmeiner@gmail.com>,
         Lucas Stach <l.stach@pengutronix.de>,
-        Robert Chiras <robert.chiras@nxp.com>,
+        devicetree@vger.kernel.org,
         Matti Vaittinen <matti.vaittinen@fi.rohmeurope.com>,
+        Russell King <linux+etnaviv@armlinux.org.uk>,
+        Daniel Vetter <daniel@ffwll.ch>,
+        Sam Ravnborg <sam@ravnborg.org>,
+        Sascha Hauer <s.hauer@pengutronix.de>,
+        dri-devel@lists.freedesktop.org, etnaviv@lists.freedesktop.org,
+        linux-kernel@vger.kernel.org, linux-arm-kernel@lists.infradead.org,
+        Lee Jones <lee.jones@linaro.org>,
+        Robert Chiras <robert.chiras@nxp.com>,
+        David Airlie <airlied@linux.ie>, Li Yang <leoyang.li@nxp.com>,
         NXP Linux Team <linux-imx@nxp.com>,
-        David Airlie <airlied@linux.ie>,
         Rob Herring <robh+dt@kernel.org>,
-        Shawn Guo <shawnguo@kernel.org>,
-        linux-arm-kernel@lists.infradead.org,
         Pengutronix Kernel Team <kernel@pengutronix.de>,
-        etnaviv@lists.freedesktop.org, linux-kernel@vger.kernel.org,
-        Sam Ravnborg <sam@ravnborg.org>
-Subject: Re: [PATCH 02/13] dt-bindings: display: bridge: nwl-dsi: Add common
- properties
-Message-ID: <20200914223132.GA383744@bogus>
+        Fabio Estevam <festevam@gmail.com>
+Subject: Re: [PATCH 03/13] dt-bindings: arm: fsl: Fix matching Purism Librem5
+ phones
+Message-ID: <20200914223343.GA386301@bogus>
 References: <20200904145312.10960-1-krzk@kernel.org>
- <20200904145312.10960-3-krzk@kernel.org>
+ <20200904145312.10960-4-krzk@kernel.org>
 MIME-Version: 1.0
 Content-Type: text/plain; charset=us-ascii
 Content-Disposition: inline
-In-Reply-To: <20200904145312.10960-3-krzk@kernel.org>
+In-Reply-To: <20200904145312.10960-4-krzk@kernel.org>
 Sender: devicetree-owner@vger.kernel.org
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-On Fri, 04 Sep 2020 16:53:01 +0200, Krzysztof Kozlowski wrote:
-> Add common properties appearing in DTSes (assigned-clocks and others) to
-> fix dtbs_check warnings like:
+On Fri, 04 Sep 2020 16:53:02 +0200, Krzysztof Kozlowski wrote:
+> All Purism Librem5 phones have three compatibles so they need their own
+> entry to fix dbts_check warnings like:
 > 
->   arch/arm64/boot/dts/freescale/imx8mq-evk.dt.yaml: mipi-dsi@30a00000:
->     'assigned-clock-parents', 'assigned-clock-rates', 'assigned-clocks' do not match any of the regexes: '^panel@[0-9]+$', 'pinctrl-[0-9]+'
+>   arch/arm64/boot/dts/freescale/imx8mq-librem5-r2.dt.yaml: /:
+>     compatible: ['purism,librem5r2', 'purism,librem5', 'fsl,imx8mq'] is not valid under any of the given schemas
+> 
+>   arch/arm64/boot/dts/freescale/imx8mq-librem5-r2.dt.yaml: /:
+>     compatible: ['purism,librem5r2', 'purism,librem5', 'fsl,imx8mq'] is too long
 > 
 > Signed-off-by: Krzysztof Kozlowski <krzk@kernel.org>
 > ---
->  Documentation/devicetree/bindings/display/bridge/nwl-dsi.yaml | 4 ++++
->  1 file changed, 4 insertions(+)
+>  Documentation/devicetree/bindings/arm/fsl.yaml | 10 ++++++++--
+>  1 file changed, 8 insertions(+), 2 deletions(-)
 > 
 
-Applied, thanks!
+Reviewed-by: Rob Herring <robh@kernel.org>
+
+I expect Shawn to pick this one up as this file gets touched a fair 
+amount.
