@@ -2,56 +2,53 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from vger.kernel.org (vger.kernel.org [23.128.96.18])
-	by mail.lfdr.de (Postfix) with ESMTP id 86573269044
-	for <lists+devicetree@lfdr.de>; Mon, 14 Sep 2020 17:42:24 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTP id 975AC269086
+	for <lists+devicetree@lfdr.de>; Mon, 14 Sep 2020 17:46:20 +0200 (CEST)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S1726467AbgINPmT (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Mon, 14 Sep 2020 11:42:19 -0400
-Received: from lindbergh.monkeyblade.net ([23.128.96.19]:49128 "EHLO
+        id S1726299AbgINPqB (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Mon, 14 Sep 2020 11:46:01 -0400
+Received: from lindbergh.monkeyblade.net ([23.128.96.19]:49778 "EHLO
         lindbergh.monkeyblade.net" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S1726450AbgINPl2 (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Mon, 14 Sep 2020 11:41:28 -0400
-Received: from mail-ot1-x344.google.com (mail-ot1-x344.google.com [IPv6:2607:f8b0:4864:20::344])
-        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 61CB7C06174A
-        for <devicetree@vger.kernel.org>; Mon, 14 Sep 2020 08:41:27 -0700 (PDT)
-Received: by mail-ot1-x344.google.com with SMTP id m12so367956otr.0
-        for <devicetree@vger.kernel.org>; Mon, 14 Sep 2020 08:41:27 -0700 (PDT)
+        with ESMTP id S1726328AbgINPpn (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Mon, 14 Sep 2020 11:45:43 -0400
+Received: from mail-lf1-x12c.google.com (mail-lf1-x12c.google.com [IPv6:2a00:1450:4864:20::12c])
+        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 81A48C06178A
+        for <devicetree@vger.kernel.org>; Mon, 14 Sep 2020 08:45:36 -0700 (PDT)
+Received: by mail-lf1-x12c.google.com with SMTP id u8so13967624lff.1
+        for <devicetree@vger.kernel.org>; Mon, 14 Sep 2020 08:45:36 -0700 (PDT)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
         d=linaro.org; s=google;
-        h=mime-version:references:in-reply-to:from:date:message-id:subject:to
-         :cc;
-        bh=ZELQhGU+/XtL/55nDBDugsi7ueM9gHLCZBficN7FL9w=;
-        b=kldHqlgVGZ/L1PYKcsqUtEnMD/Q9aXDKd/gxzvCZ7KQiWwV87i0LUwBn0BrZo8xr4K
-         FAAP45tRfhJ9KXuDoUxhjfwwcNO6alrS4tySG00FInO7DLbCqX+7pX/tDsyV5k2SI8xJ
-         S7IBlUXutBVAu+M2zfeIH2IOfe1WdG2iNSOpBlqo2YR+ovIP4Lk427LLi70ohF/Ht7hn
-         Jl02Kik0j6p5/XYhF/AK59H3zr4ZeAzThOSl8QjXW0ipDwsndDXaoow/H5mpu1yr3wYm
-         H8OaA7NZjHv6Mq+h9JurK+57q9o3kbzIPUqme/9WuZut/XtoaemL9D87iVKfOmqNKEIp
-         PB4g==
+        h=subject:to:cc:references:from:message-id:date:user-agent
+         :mime-version:in-reply-to:content-language:content-transfer-encoding;
+        bh=I1Diq3BVw3//vJqeDcLXAlMyOlmanauBDrj7DA7Bapg=;
+        b=aUDJEPCk0RcQKnW6Jt3+dgnCUbGNP8VTiZoqXo8QkUprwnChxH2RUbWoB/cLgQX2Rx
+         riIjyia/GLCJR9xVU04942RbOEFED35baENMdlCUNgF6PEUJsruLtw9P2wgxxvHcZdo1
+         8dnIN+mxtJeG9GZQl7WSoswNbvW7nvTXMlZk100dzBlnTyaoC33KqYHiLT/rDFEbelm0
+         qgYKQr7GNdiTmK3mIj6bqJhXoB4e081sdIcPTQHbneq/Cnn41Dxgybep14VDkzKaDVS5
+         37pnKSIy44Mxbs1HKblhUbJKz0QDHSYE+hvdUvhVfXHtH7oRP5H3jcG9PM67Vs2L9jYG
+         umbA==
 X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
         d=1e100.net; s=20161025;
-        h=x-gm-message-state:mime-version:references:in-reply-to:from:date
-         :message-id:subject:to:cc;
-        bh=ZELQhGU+/XtL/55nDBDugsi7ueM9gHLCZBficN7FL9w=;
-        b=Dp5X3DH5JOV4uEZhevkilbkeVSJWQzwwwrhI/IrtQJPAGmaLv400gmRGLxBUhPgbST
-         SnXfneSqi4h57NQ47O7MCTxvC8DNXlhPRAJy+khuHBKD8AtYy2kL2SFlb7+Z9nZi20OH
-         NBJc6ryuthw7FGEABTgBpxsZlOmigmp/GPaTxzRg+qaq65g9CNNNv2QSDPdckajXBK1X
-         prK2qLclEJ7g9VKCAaBskJRIfP5WfpWhDBrOyucZjXyEoeJSGZHodS2eXKBc489D7d0R
-         bI9nYnc+M+LswaLS56afWCvJg6iS8jZVX4y3PJj4uuFkly0jH0IRBzzjZDTGOKKSFste
-         5MqA==
-X-Gm-Message-State: AOAM531JK+z0EhvwfGzxlvi+ibthM4udFZPatqsKS/wnNl8u/4pmg1t5
-        5kYB6UNB25YkOhbkX4IKLz1Woh6iQzbWAW+LvxoShw==
-X-Google-Smtp-Source: ABdhPJxOXHJTmnoyvncutLUljQZPNcmmjD8ZnonC/r6sp0kl55kb8ZXthIsQjiYohus1Nn/JEPZJ+ZDFIEELZu6L0OY=
-X-Received: by 2002:a9d:7350:: with SMTP id l16mr9254540otk.368.1600098086769;
- Mon, 14 Sep 2020 08:41:26 -0700 (PDT)
-MIME-Version: 1.0
-References: <20200910140000.324091-1-dmitry.baryshkov@linaro.org>
- <20200910140000.324091-9-dmitry.baryshkov@linaro.org> <20200913111544.20a03410@archlinux>
-In-Reply-To: <20200913111544.20a03410@archlinux>
-From:   Dmitry Baryshkov <dmitry.baryshkov@linaro.org>
-Date:   Mon, 14 Sep 2020 18:41:15 +0300
-Message-ID: <CAA8EJpr4JSa9+3K1txbhyw64PgKdri_WNbW3yvQSkYMkD-zKYA@mail.gmail.com>
-Subject: Re: [PATCH v4 08/10] thermal: qcom: add support for adc-tm5 PMIC
- thermal monitor
+        h=x-gm-message-state:subject:to:cc:references:from:message-id:date
+         :user-agent:mime-version:in-reply-to:content-language
+         :content-transfer-encoding;
+        bh=I1Diq3BVw3//vJqeDcLXAlMyOlmanauBDrj7DA7Bapg=;
+        b=flJYG3NJ/dwqYJikNiRojHu3RHw3ahW3Vv5Qx1AjqdEA7nSN/RkH2IreWcX3iVjzV2
+         E34E5L5NNXpSF3pgY2xjAdDSOYuPcEMQwahZImhRkf7KEb43RpyElOC66Tpl0Yj1W0tN
+         lPAWXEt8QYN4kASdmcivZ7bBh7eHmTW5weEM+iLpF9QkH9isen4FDqT9a8khRyNDEAy6
+         ZyIPy3egF3JXuR1qtB0AK8gbTSpaObLefuBTuBE0bYITOdk+GK0r+O+N1PYEf5QIVhLA
+         r6faYA/EIWpcBz26dl/cy+BRv2qq4wqdA/sdrmbliG3xXQSjdnsgDIZQnYYxOc5S/Bx6
+         LyoQ==
+X-Gm-Message-State: AOAM5320wuqSs9RQaYD9kbNYg6bgYy7t09F72Ahqc8cAHJWD3e3oe8c4
+        acstxr2CMQOUEh3Ds8IhpgojYQ==
+X-Google-Smtp-Source: ABdhPJxtV7I4cIHpLZEVpRugay28tPPeWIt/1IZHQRAI99Q5d18DZ+ZTy9N5LpAUQnzFQm1TXpLMWA==
+X-Received: by 2002:ac2:48a2:: with SMTP id u2mr4534376lfg.359.1600098332759;
+        Mon, 14 Sep 2020 08:45:32 -0700 (PDT)
+Received: from [192.168.1.145] ([188.162.64.187])
+        by smtp.gmail.com with ESMTPSA id y17sm4115896ljm.55.2020.09.14.08.45.30
+        (version=TLS1_3 cipher=TLS_AES_128_GCM_SHA256 bits=128/128);
+        Mon, 14 Sep 2020 08:45:32 -0700 (PDT)
+Subject: Re: [PATCH v3 00/10] qcom: pm8150: add support for thermal monitoring
 To:     Jonathan Cameron <jic23@kernel.org>
 Cc:     Andy Gross <agross@kernel.org>,
         Bjorn Andersson <bjorn.andersson@linaro.org>,
@@ -62,37 +59,52 @@ Cc:     Andy Gross <agross@kernel.org>,
         Hartmut Knaack <knaack.h@gmx.de>,
         Lars-Peter Clausen <lars@metafoo.de>,
         Peter Meerwald-Stadler <pmeerw@pmeerw.net>,
-        "open list:DRM DRIVER FOR MSM ADRENO GPU" 
-        <linux-arm-msm@vger.kernel.org>, linux-pm@vger.kernel.org,
-        "open list:OPEN FIRMWARE AND FLATTENED DEVICE TREE BINDINGS" 
-        <devicetree@vger.kernel.org>, linux-iio@vger.kernel.org,
+        linux-arm-msm@vger.kernel.org, linux-pm@vger.kernel.org,
+        devicetree@vger.kernel.org, linux-iio@vger.kernel.org,
         Manivannan Sadhasivam <manivannan.sadhasivam@linaro.org>
-Content-Type: text/plain; charset="UTF-8"
+References: <20200910140000.324091-1-dmitry.baryshkov@linaro.org>
+ <20200913112122.0f4ee51b@archlinux>
+From:   Dmitry Baryshkov <dmitry.baryshkov@linaro.org>
+Message-ID: <99063ca8-c795-416c-18cb-5c026879a13c@linaro.org>
+Date:   Mon, 14 Sep 2020 18:45:29 +0300
+User-Agent: Mozilla/5.0 (X11; Linux x86_64; rv:68.0) Gecko/20100101
+ Thunderbird/68.12.0
+MIME-Version: 1.0
+In-Reply-To: <20200913112122.0f4ee51b@archlinux>
+Content-Type: text/plain; charset=utf-8; format=flowed
+Content-Language: en-US
+Content-Transfer-Encoding: 7bit
 Sender: devicetree-owner@vger.kernel.org
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-On Sun, 13 Sep 2020 at 13:15, Jonathan Cameron <jic23@kernel.org> wrote:
->
-> On Thu, 10 Sep 2020 16:59:58 +0300
+On 13/09/2020 13:21, Jonathan Cameron wrote:
+> On Thu, 10 Sep 2020 16:59:50 +0300
 > Dmitry Baryshkov <dmitry.baryshkov@linaro.org> wrote:
->
-> > Add support for Thermal Monitoring part of PMIC5. This part is closely
-> > coupled with ADC, using it's channels directly. ADC-TM support
-> > generating interrupts on ADC value crossing low or high voltage bounds,
-> > which is used to support thermal trip points.
-> >
-> > Signed-off-by: Dmitry Baryshkov <dmitry.baryshkov@linaro.org>
-> A few trivial things inline.  Only one I'm really fussed about is
-> filling in the rest of the kernel-doc. I raised that in v2.
+> 
+>> This patch serie adds support for thermal monitoring block on Qualcomm's
+>> PMIC5 chips. PM8150{,b,l} and sm8250-mtp board device trees are extended
+>> to support thermal zones provided by this thermal monitoring block.
+>> Unlike the rest of PMIC thermal senses, these thermal zones describe
+>> particular thermistors, which differ between from board to board.
+>>
+> 
+> As far as I am concerned this series is now ready to go up to one or two
+> things in patch 8.  So on to the normal question based on the assumption
+> it will pick up other necessary reviews shortly...
 
-Ugh, please excuse me. Probably I missed that comment.
+Sending v5 right now, fixing issues in patch 8.
 
->
-> With that fixed,
->
-> Reviewed-by: Jonathan Cameron <Jonathan.Cameron@huawei.com>
+> 
+> What route do we want this to take?
+> I can do an immutable branch in IIO if that works for patches 1-8 and assume
+> the dt file changes will got via usual SoC path?  We are getting a fair way
+> into this cycle, so this may well end up happening next cycle depending
+> on how quick reviews come in.
+
+I think this makes sense. Thank you for your reviews.
+
 
 -- 
 With best wishes
