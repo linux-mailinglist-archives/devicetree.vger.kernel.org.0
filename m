@@ -2,149 +2,115 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from vger.kernel.org (vger.kernel.org [23.128.96.18])
-	by mail.lfdr.de (Postfix) with ESMTP id 50ED0268974
-	for <lists+devicetree@lfdr.de>; Mon, 14 Sep 2020 12:42:39 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTP id D9D0826897F
+	for <lists+devicetree@lfdr.de>; Mon, 14 Sep 2020 12:44:52 +0200 (CEST)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S1726455AbgINKmf (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Mon, 14 Sep 2020 06:42:35 -0400
-Received: from lindbergh.monkeyblade.net ([23.128.96.19]:58968 "EHLO
+        id S1726458AbgINKon (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Mon, 14 Sep 2020 06:44:43 -0400
+Received: from lindbergh.monkeyblade.net ([23.128.96.19]:59378 "EHLO
         lindbergh.monkeyblade.net" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S1726498AbgINKmP (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Mon, 14 Sep 2020 06:42:15 -0400
-Received: from mail-pf1-x444.google.com (mail-pf1-x444.google.com [IPv6:2607:f8b0:4864:20::444])
-        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id CC2AFC06174A
-        for <devicetree@vger.kernel.org>; Mon, 14 Sep 2020 03:41:54 -0700 (PDT)
-Received: by mail-pf1-x444.google.com with SMTP id l126so12288330pfd.5
-        for <devicetree@vger.kernel.org>; Mon, 14 Sep 2020 03:41:54 -0700 (PDT)
+        with ESMTP id S1726525AbgINKog (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Mon, 14 Sep 2020 06:44:36 -0400
+Received: from mail-ej1-x643.google.com (mail-ej1-x643.google.com [IPv6:2a00:1450:4864:20::643])
+        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id C8807C06174A
+        for <devicetree@vger.kernel.org>; Mon, 14 Sep 2020 03:44:34 -0700 (PDT)
+Received: by mail-ej1-x643.google.com with SMTP id nw23so22520952ejb.4
+        for <devicetree@vger.kernel.org>; Mon, 14 Sep 2020 03:44:34 -0700 (PDT)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=linaro.org; s=google;
-        h=date:from:to:cc:subject:message-id:references:mime-version
-         :content-disposition:in-reply-to:user-agent;
-        bh=VzUJ3QPwLIyZw2XJ1DUOnt1YFGGU679pflIuplZS5Vc=;
-        b=faM9KOaXot7aaeNdDMC+kriUxTiU+vo4oAUOtAdkG/T0JG7z/QcsJdCnD1LzHp3d87
-         +5mHP4zpfSvsCJviNJ52+D2/BYhigUPM6nlFFvRA7XLir8kpceLPzUKPnKx10dYCBeEO
-         iW967zHIEyDZzbVOKM4ymL3Q2r3skUW3RH9Tv6mdgEf61cy050ELEP2sXNs93b0tvVth
-         wybhHcnMKO7cVsWfhXER58If6yVpECTnqySOF7V8eBP29TD1DZ8P/bXah6KXJukeIcZX
-         uMXRsOIuwhV0XwJphtau0YVxmMw9MUU6IXSreTowG5yLZZBdS2NulJRz8eqa5uk2PkA0
-         ZrJw==
+        d=beagleboard-org.20150623.gappssmtp.com; s=20150623;
+        h=from:to:cc:subject:date:message-id:mime-version
+         :content-transfer-encoding;
+        bh=ksDS/ZprWsM/0QY6vDk6D5ENK3u7hxsyWBog/lq82xg=;
+        b=r6u0Kq1U+z4ibfxJn9vuQomsoyfFdoh4newYhdS96ksp3m5DtiEXlaZSjofGGgjU+U
+         AJnqp8H0IqrFGnSYEicxkDidcXkF8B4/As3gz4QZEFqp7trP0ImdWZAn4sneWInh5Moz
+         ZoFJWLOOWNyJS1caKOYLUhMRUi1861fXnBmgYxwYWyvfOubXaknfDaZBDX+gxzkkoXGd
+         QBCS+wBTxihjhOVtG7X359tS8kD/uBXtx2nr6O8Y3fcq/sTWx0a4d5PaI+IxocHpijKw
+         6ub0bvn+XRqLiy7NYGUkwpC4blpsxU5aOENBcR0tV9V2hAU5ePBEakoklct+8r+EOAS4
+         lj1g==
 X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
         d=1e100.net; s=20161025;
-        h=x-gm-message-state:date:from:to:cc:subject:message-id:references
-         :mime-version:content-disposition:in-reply-to:user-agent;
-        bh=VzUJ3QPwLIyZw2XJ1DUOnt1YFGGU679pflIuplZS5Vc=;
-        b=KwLO9p6XSqDuGqcVOHy0ASEt/Yq2TXOuZGghtnd+nyygjPJLMa2qBEY6WbBcnV5QpY
-         B7V/E9M8xTI8PIaFJA3LtPzTy/Ikz0AW0dYXM1Cdw7lAEbdMUP9Y9QzdudIVFaID4C0Y
-         yGigEU1WkeGUIbSDBzb9CiAuh9aqwfxDzKAahaS3jsghL2AHiIM4b8UW+DCzvXBotum5
-         /rs9JQIMHOBb2EH7+fvgKkcpvM+v4vNiXCjBotR7fTUiRivg5Y7t24OdDZhJpEc0kpfA
-         djpamw2AfSw1Yu0XZLycfTnmZVIqjW6amKrfdpuvrBiZOm7QjfHFrWgZbnXW9/0ZfBkr
-         XYog==
-X-Gm-Message-State: AOAM531L/pZ3rGg0VFM4m7ZiSjxLEbk9x3jiqMilG/qntIin+3zxQBei
-        XoLHaduePUs2oupLPjnXOM9e
-X-Google-Smtp-Source: ABdhPJzcqYfof2QYGKpvcDvRE/7SVhF988fdSrLLieXNNnc79kqVletbRP2wG3ita4ituhekmmbndA==
-X-Received: by 2002:a63:5561:: with SMTP id f33mr10245956pgm.13.1600080114229;
-        Mon, 14 Sep 2020 03:41:54 -0700 (PDT)
-Received: from mani-NUC7i5DNKE ([2409:4072:6d84:8e8a:d537:f870:596d:5afa])
-        by smtp.gmail.com with ESMTPSA id y13sm10019753pfr.141.2020.09.14.03.41.47
-        (version=TLS1_2 cipher=ECDHE-ECDSA-CHACHA20-POLY1305 bits=256/256);
-        Mon, 14 Sep 2020 03:41:53 -0700 (PDT)
-Date:   Mon, 14 Sep 2020 16:11:45 +0530
-From:   Manivannan Sadhasivam <manivannan.sadhasivam@linaro.org>
-To:     Dmitry Baryshkov <dmitry.baryshkov@linaro.org>
-Cc:     Andy Gross <agross@kernel.org>,
-        Bjorn Andersson <bjorn.andersson@linaro.org>,
-        Rob Herring <robh+dt@kernel.org>,
-        Zhang Rui <rui.zhang@intel.com>,
-        Daniel Lezcano <daniel.lezcano@linaro.org>,
-        Amit Kucheria <amitk@kernel.org>,
-        Jonathan Cameron <jic23@kernel.org>,
-        Hartmut Knaack <knaack.h@gmx.de>,
-        Lars-Peter Clausen <lars@metafoo.de>,
-        Peter Meerwald-Stadler <pmeerw@pmeerw.net>,
-        linux-arm-msm@vger.kernel.org, linux-pm@vger.kernel.org,
-        devicetree@vger.kernel.org, linux-iio@vger.kernel.org,
-        Jonathan Cameron <Jonathan.Cameron@huawei.com>
-Subject: Re: [PATCH v4 06/10] iio: adc: qcom-spmi-adc5: use
- of_device_get_match_data
-Message-ID: <20200914104145.GD19867@mani-NUC7i5DNKE>
-References: <20200910140000.324091-1-dmitry.baryshkov@linaro.org>
- <20200910140000.324091-7-dmitry.baryshkov@linaro.org>
+        h=x-gm-message-state:from:to:cc:subject:date:message-id:mime-version
+         :content-transfer-encoding;
+        bh=ksDS/ZprWsM/0QY6vDk6D5ENK3u7hxsyWBog/lq82xg=;
+        b=FH+NDYGwsxFwKuapwXedeSGlkKm/KFJx1vD2DIHkPn/uiB0KcBn9fYCuYMp8NWJX9L
+         t7Rg2wXpB7jzb+WzDIAvyZhdGUiHmI4a2efh+SRhJIUWbnFWMfIulVFY9KUjGi0WU8wC
+         4CxdVC3bI8K5nfuW8dxj/1WhabN89YIoKvwjFbt0cH7Q/PVMOQdIuMXaPnzza8yxqj6v
+         n2pz+IwdA7QptIQwx74D6g+h5osM0HeC6nk+W0lGqmTlYSbzRnvTM+NAcIdWWHdQGWsB
+         38CjDU5PclJ9yJDq2UiHqN3DoJLUbtBdu6OE4e4vOpKP+Qyns7UI329/qYefHaeTq8ct
+         YOPQ==
+X-Gm-Message-State: AOAM531Quyp53l+h7N1cVPsako+DqdECn82OMwmtJWzbfVIpdM8Kvt9r
+        2VuEiRMhtMYeyVR0vb7MbbyxsA==
+X-Google-Smtp-Source: ABdhPJwZ8tbILc/cvjqT+PhcvmB4wl2sDoh9mhUSM6kpiEZeeojODCE0Nxkw1zXb0EN89cVEl8bM8w==
+X-Received: by 2002:a17:906:9245:: with SMTP id c5mr14732267ejx.54.1600080273490;
+        Mon, 14 Sep 2020 03:44:33 -0700 (PDT)
+Received: from localhost.localdomain ([2001:16b8:5c7c:3a01:5f2:8f03:4748:2bc6])
+        by smtp.gmail.com with ESMTPSA id i26sm8914247edq.47.2020.09.14.03.44.31
+        (version=TLS1_3 cipher=TLS_AES_256_GCM_SHA384 bits=256/256);
+        Mon, 14 Sep 2020 03:44:32 -0700 (PDT)
+From:   Drew Fustini <drew@beagleboard.org>
+To:     Tony Lindgren <tony@atomide.com>, Rob Herring <robh+dt@kernel.org>,
+        Linus Walleij <linus.walleij@linaro.org>,
+        Jason Kridner <jkridner@beagleboard.org>,
+        Robert Nelson <robertcnelson@gmail.com>,
+        Trent Piepho <tpiepho@gmail.com>, linux-omap@vger.kernel.org,
+        linux-kernel@vger.kernel.org, devicetree@vger.kernel.org,
+        linux-gpio@vger.kernel.org
+Cc:     Drew Fustini <drew@beagleboard.org>
+Subject: [PATCH] ARM: dts: document pinctrl-single,pins when #pinctrl-cells = 2
+Date:   Mon, 14 Sep 2020 12:43:53 +0200
+Message-Id: <20200914104352.2165818-1-drew@beagleboard.org>
+X-Mailer: git-send-email 2.25.1
 MIME-Version: 1.0
-Content-Type: text/plain; charset=us-ascii
-Content-Disposition: inline
-In-Reply-To: <20200910140000.324091-7-dmitry.baryshkov@linaro.org>
-User-Agent: Mutt/1.9.4 (2018-02-28)
+Content-Transfer-Encoding: 8bit
 Sender: devicetree-owner@vger.kernel.org
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-On Thu, Sep 10, 2020 at 04:59:56PM +0300, Dmitry Baryshkov wrote:
-> Use of_device_get_match_data() instead of hand-coding it manually.
-> 
-> Signed-off-by: Dmitry Baryshkov <dmitry.baryshkov@linaro.org>
-> Acked-by: Jonathan Cameron <Jonathan.Cameron@huawei.com>
+Document the values in pinctrl-single,pins when #pinctrl-cells = <2>
 
-Acked-by: Manivannan Sadhasivam <manivannan.sadhasivam@linaro.org>
+Fixes: 27c90e5e48d0 ("ARM: dts: am33xx-l4: change #pinctrl-cells from 1 to 2")
+Reported-by: Trent Piepho <tpiepho@gmail.com>
+Link: https://lore.kernel.org/linux-omap/3139716.CMS8C0sQ7x@zen.local/
+Signed-off-by: Drew Fustini <drew@beagleboard.org>
+---
+ .../bindings/pinctrl/pinctrl-single.txt       | 20 ++++++++++++-------
+ 1 file changed, 13 insertions(+), 7 deletions(-)
 
-Thanks,
-Mani
+diff --git a/Documentation/devicetree/bindings/pinctrl/pinctrl-single.txt b/Documentation/devicetree/bindings/pinctrl/pinctrl-single.txt
+index ba428d345a56..ef560afdd52e 100644
+--- a/Documentation/devicetree/bindings/pinctrl/pinctrl-single.txt
++++ b/Documentation/devicetree/bindings/pinctrl/pinctrl-single.txt
+@@ -96,16 +96,22 @@ pinctrl-single,bit-per-mux is set), and uses the common pinctrl bindings as
+ specified in the pinctrl-bindings.txt document in this directory.
+ 
+ The pin configuration nodes for pinctrl-single are specified as pinctrl
+-register offset and value pairs using pinctrl-single,pins. Only the bits
+-specified in pinctrl-single,function-mask are updated. For example, setting
+-a pin for a device could be done with:
++register offset and values using pinctrl-single,pins. Only the bits specified
++in pinctrl-single,function-mask are updated.
++
++When #pinctrl-cells = 1, then setting a pin for a device could be done with:
+ 
+ 	pinctrl-single,pins = <0xdc 0x118>;
+ 
+-Where 0xdc is the offset from the pinctrl register base address for the
+-device pinctrl register, and 0x118 contains the desired value of the
+-pinctrl register. See the device example and static board pins example
+-below for more information.
++Where 0xdc is the offset from the pinctrl register base address for the device
++pinctrl register, and 0x118 contains the desired value of the pinctrl register.
++
++When #pinctrl-cells = 2, then setting a pin for a device could be done with:
++
++	pinctrl-single,pins = <0xdc 0x30 0x07>;
++
++Where 0x30 is the pin configuration value and 0x07 is the pin mux mode value.
++See the device example and static board pins example below for more information.
+ 
+ In case when one register changes more than one pin's mux the
+ pinctrl-single,bits need to be used which takes three parameters:
+-- 
+2.25.1
 
-> ---
->  drivers/iio/adc/qcom-spmi-adc5.c | 18 +++++++-----------
->  1 file changed, 7 insertions(+), 11 deletions(-)
-> 
-> diff --git a/drivers/iio/adc/qcom-spmi-adc5.c b/drivers/iio/adc/qcom-spmi-adc5.c
-> index c2da8f068b87..ae27ed7a26ff 100644
-> --- a/drivers/iio/adc/qcom-spmi-adc5.c
-> +++ b/drivers/iio/adc/qcom-spmi-adc5.c
-> @@ -14,6 +14,7 @@
->  #include <linux/math64.h>
->  #include <linux/module.h>
->  #include <linux/of.h>
-> +#include <linux/of_device.h>
->  #include <linux/platform_device.h>
->  #include <linux/regmap.h>
->  #include <linux/slab.h>
-> @@ -807,8 +808,6 @@ static int adc5_get_dt_data(struct adc5_chip *adc, struct device_node *node)
->  	struct adc5_channel_prop prop, *chan_props;
->  	struct device_node *child;
->  	unsigned int index = 0;
-> -	const struct of_device_id *id;
-> -	const struct adc5_data *data;
->  	int ret;
->  
->  	adc->nchannels = of_get_available_child_count(node);
-> @@ -827,24 +826,21 @@ static int adc5_get_dt_data(struct adc5_chip *adc, struct device_node *node)
->  
->  	chan_props = adc->chan_props;
->  	iio_chan = adc->iio_chans;
-> -	id = of_match_node(adc5_match_table, node);
-> -	if (id)
-> -		data = id->data;
-> -	else
-> -		data = &adc5_data_pmic;
-> -	adc->data = data;
-> +	adc->data = of_device_get_match_data(adc->dev);
-> +	if (!adc->data)
-> +		adc->data = &adc5_data_pmic;
->  
->  	for_each_available_child_of_node(node, child) {
-> -		ret = adc5_get_dt_channel_data(adc, &prop, child, data);
-> +		ret = adc5_get_dt_channel_data(adc, &prop, child, adc->data);
->  		if (ret) {
->  			of_node_put(child);
->  			return ret;
->  		}
->  
->  		prop.scale_fn_type =
-> -			data->adc_chans[prop.channel].scale_fn_type;
-> +			adc->data->adc_chans[prop.channel].scale_fn_type;
->  		*chan_props = prop;
-> -		adc_chan = &data->adc_chans[prop.channel];
-> +		adc_chan = &adc->data->adc_chans[prop.channel];
->  
->  		iio_chan->channel = prop.channel;
->  		iio_chan->datasheet_name = prop.datasheet_name;
-> -- 
-> 2.28.0
-> 
