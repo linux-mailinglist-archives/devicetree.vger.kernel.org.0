@@ -2,67 +2,108 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from vger.kernel.org (vger.kernel.org [23.128.96.18])
-	by mail.lfdr.de (Postfix) with ESMTP id 79D1B2696C8
-	for <lists+devicetree@lfdr.de>; Mon, 14 Sep 2020 22:35:57 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTP id 1D2622696AB
+	for <lists+devicetree@lfdr.de>; Mon, 14 Sep 2020 22:31:52 +0200 (CEST)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S1726072AbgINUQa (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Mon, 14 Sep 2020 16:16:30 -0400
-Received: from mail-il1-f193.google.com ([209.85.166.193]:41479 "EHLO
-        mail-il1-f193.google.com" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S1725951AbgINUQ3 (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Mon, 14 Sep 2020 16:16:29 -0400
-Received: by mail-il1-f193.google.com with SMTP id f82so806645ilh.8;
-        Mon, 14 Sep 2020 13:16:29 -0700 (PDT)
+        id S1726100AbgINUbh (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Mon, 14 Sep 2020 16:31:37 -0400
+Received: from mail-io1-f66.google.com ([209.85.166.66]:38770 "EHLO
+        mail-io1-f66.google.com" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
+        with ESMTP id S1726380AbgINUbS (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Mon, 14 Sep 2020 16:31:18 -0400
+Received: by mail-io1-f66.google.com with SMTP id h4so1586217ioe.5;
+        Mon, 14 Sep 2020 13:31:13 -0700 (PDT)
 X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
         d=1e100.net; s=20161025;
         h=x-gm-message-state:date:from:to:cc:subject:message-id:references
          :mime-version:content-disposition:in-reply-to;
-        bh=a1a7lUNJSBLrVXG4F7F2y0e5PmdVZngGKciceNdaM5U=;
-        b=UhJoREZZO0qJLl9O76igRDOvum621MIm4eHd48X3NQwq9kJCKZq9r/2LgaaXfkaPRd
-         xDClPDr1cj5WAJ/b4OF2vYecXlNb/dMngX5j8CWbIzj9eOBlpQUTEgWLLZJqz9DDD6bq
-         PVHhm8tINx18JluOxGgjsY5Y1LcNYZImlRQFhOesKvenNKPdseerl3aWC2s5qfnJ+Q6L
-         9+i4pnmTcOyNtOBNnlqXq8oSeXfi3s3UtmJCLATbhiHCSUUBzWEkAsYN8Bn9PfqefcyK
-         4oxPe38lNlu6Z+EAJEEvkZTVoUXx5ecT4cjsqwbAco0nJoiGOaXu8pJa14nlycNM+8L1
-         +NBg==
-X-Gm-Message-State: AOAM533NgPzk7AJ03dpR721vY6448uTNhIGOCFQF2TzpgnDRSE8fBcLg
-        7YRivknxiN8+OAJ7nUNQcg==
-X-Google-Smtp-Source: ABdhPJxztTbv290OaW1Td1tW8xyYyVpPez3jAxNbv7RIsrs40fpjEVtg/clWhJtjcB7nlPW1fonVxw==
-X-Received: by 2002:a92:1a48:: with SMTP id z8mr13376526ill.95.1600114588765;
-        Mon, 14 Sep 2020 13:16:28 -0700 (PDT)
+        bh=ertsEXNzBAqBMP0DR44vwXjpmpZeyhjOeESoguCTNWM=;
+        b=NFZXXgdWIQ3uGOoIFNbuw4iJLWmtL7GwPHF0t28Gv6h1TEH6q34/UPdJ5nRE6Ne3yq
+         mdkv9ndvxTTH30x6vAsj4rqeZSTzEc9qDKJ4YNR010CjRSylU/B7oMPqhi3X8y9uctKz
+         pJpCa/BmYqj+EnB/dYlpRiVsKxUTkz+faBdep6/ZjAXXIEY0ynN10N/bVDUn9jw+F1+D
+         0fUx+7ZRfzA14oDPALQn4uf1zy20IRiUgGcx8/Iaa3CvMBafm7E/13Bm5/v8wDEhpmX3
+         LTOe2VhI9IknGWw1KYMfDyh6JTBvp2vSlPjhSRoJ4HJr9tjMkqNUKMhlYmWuwwNrT/8j
+         doRg==
+X-Gm-Message-State: AOAM533GHQ1HKNtX095ZADrYbOz5Wn6EkNYTVHmr8Oa0BR+Nn42RQVpj
+        ml794AnEjFdUxTWXeZl5Yg==
+X-Google-Smtp-Source: ABdhPJxJufdcERasZD1eQUMk0+yl6OsHc5GWVtQxStAhsjs6Dso/8xuXPgJ5BA0AjX/GgeKyjVrt7g==
+X-Received: by 2002:a02:62c9:: with SMTP id d192mr15087711jac.59.1600115472878;
+        Mon, 14 Sep 2020 13:31:12 -0700 (PDT)
 Received: from xps15 ([64.188.179.253])
-        by smtp.gmail.com with ESMTPSA id i144sm6363902ioa.55.2020.09.14.13.16.27
+        by smtp.gmail.com with ESMTPSA id k16sm6428003ioc.15.2020.09.14.13.31.11
         (version=TLS1_3 cipher=TLS_AES_256_GCM_SHA384 bits=256/256);
-        Mon, 14 Sep 2020 13:16:28 -0700 (PDT)
-Received: (nullmailer pid 167223 invoked by uid 1000);
-        Mon, 14 Sep 2020 20:16:27 -0000
-Date:   Mon, 14 Sep 2020 14:16:27 -0600
+        Mon, 14 Sep 2020 13:31:12 -0700 (PDT)
+Received: (nullmailer pid 191374 invoked by uid 1000);
+        Mon, 14 Sep 2020 20:31:10 -0000
+Date:   Mon, 14 Sep 2020 14:31:10 -0600
 From:   Rob Herring <robh@kernel.org>
-To:     Vincent Whitchurch <vincent.whitchurch@axis.com>
-Cc:     u.kleine-koenig@pengutronix.de, kernel@axis.com,
-        oliver@schinagl.nl, devicetree@vger.kernel.org, robh+dt@kernel.org,
-        thierry.reding@gmail.com, lee.jones@linaro.org,
-        linux-pwm@vger.kernel.org
-Subject: Re: [PATCH v2 1/2] dt-bindings: pwm: Add pwm-gpio
-Message-ID: <20200914201627.GA167169@bogus>
-References: <20200902121236.20514-1-vincent.whitchurch@axis.com>
- <20200902121236.20514-2-vincent.whitchurch@axis.com>
+To:     Zhen Lei <thunder.leizhen@huawei.com>
+Cc:     Thomas Gleixner <tglx@linutronix.de>,
+        Jason Cooper <jason@lakedaemon.net>,
+        Marc Zyngier <maz@kernel.org>,
+        devicetree <devicetree@vger.kernel.org>,
+        linux-kernel <linux-kernel@vger.kernel.org>,
+        Kefeng Wang <wangkefeng.wang@huawei.com>
+Subject: Re: [PATCH 1/2] dt-bindings: interrupt-controller: add Hisilicon
+ SD5203 vector interrupt controller
+Message-ID: <20200914203110.GA185427@bogus>
+References: <20200903120504.2308-1-thunder.leizhen@huawei.com>
+ <20200903120504.2308-2-thunder.leizhen@huawei.com>
 MIME-Version: 1.0
 Content-Type: text/plain; charset=us-ascii
 Content-Disposition: inline
-In-Reply-To: <20200902121236.20514-2-vincent.whitchurch@axis.com>
+In-Reply-To: <20200903120504.2308-2-thunder.leizhen@huawei.com>
 Sender: devicetree-owner@vger.kernel.org
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-On Wed, 02 Sep 2020 14:12:35 +0200, Vincent Whitchurch wrote:
-> Add bindings for the pwm-gpio driver.
+On Thu, Sep 03, 2020 at 08:05:03PM +0800, Zhen Lei wrote:
+> Add DT bindings for the Hisilicon SD5203 vector interrupt controller.
 > 
-> Signed-off-by: Vincent Whitchurch <vincent.whitchurch@axis.com>
+> Signed-off-by: Zhen Lei <thunder.leizhen@huawei.com>
 > ---
->  .../devicetree/bindings/pwm/pwm-gpio.yaml     | 29 +++++++++++++++++++
->  1 file changed, 29 insertions(+)
->  create mode 100644 Documentation/devicetree/bindings/pwm/pwm-gpio.yaml
-> 
+>  .../hisilicon,sd5203-vic.txt                  | 27 +++++++++++++++++++
 
-Reviewed-by: Rob Herring <robh@kernel.org>
+Bindings should be in DT schema format now.
+
+>  1 file changed, 27 insertions(+)
+>  create mode 100644 Documentation/devicetree/bindings/interrupt-controller/hisilicon,sd5203-vic.txt
+> 
+> diff --git a/Documentation/devicetree/bindings/interrupt-controller/hisilicon,sd5203-vic.txt b/Documentation/devicetree/bindings/interrupt-controller/hisilicon,sd5203-vic.txt
+> new file mode 100644
+> index 000000000000..a08292e868b0
+> --- /dev/null
+> +++ b/Documentation/devicetree/bindings/interrupt-controller/hisilicon,sd5203-vic.txt
+> @@ -0,0 +1,27 @@
+> +Hisilicon SD5203 vector interrupt controller (VIC)
+> +
+> +Hisilicon SD5203 VIC based on Synopsys DesignWare APB interrupt controller, but
+> +there's something special:
+> +1. The maximum number of irqs supported is 32. The registers ENABLE, MASK and
+> +   FINALSTATUS are 32 bits.
+> +2. There is only one VIC, it's used as primary interrupt controller.
+> +
+> +Required properties:
+> +- compatible: shall be "hisilicon,sd5203-vic"
+> +- reg: physical base address of the controller and length of memory mapped
+> +  region starting with ENABLE_LOW register
+> +- interrupt-controller: identifies the node as an interrupt controller
+> +- #interrupt-cells: number of cells to encode an interrupt-specifier, shall be 1
+> +
+> +The interrupt sources map to the corresponding bits in the interrupt
+> +registers, i.e.
+> +- 0 maps to bit 0 of low interrupts,
+> +- 1 maps to bit 1 of low interrupts,
+> +
+> +Example:
+> +	vic: interrupt-controller@10130000 {
+> +		compatible = "hisilicon,sd5203-vic";
+> +		reg = <0x10130000 0x1000>;
+> +		interrupt-controller;
+> +		#interrupt-cells = <1>;
+> +	};
+> -- 
+> 2.26.0.106.g9fadedd
+> 
+> 
