@@ -2,89 +2,46 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from vger.kernel.org (vger.kernel.org [23.128.96.18])
-	by mail.lfdr.de (Postfix) with ESMTP id E8C692687F2
-	for <lists+devicetree@lfdr.de>; Mon, 14 Sep 2020 11:06:06 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTP id 070262687FB
+	for <lists+devicetree@lfdr.de>; Mon, 14 Sep 2020 11:07:41 +0200 (CEST)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S1726233AbgINJGF (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Mon, 14 Sep 2020 05:06:05 -0400
-Received: from lelv0142.ext.ti.com ([198.47.23.249]:51298 "EHLO
-        lelv0142.ext.ti.com" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S1726123AbgINJGE (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Mon, 14 Sep 2020 05:06:04 -0400
-Received: from fllv0035.itg.ti.com ([10.64.41.0])
-        by lelv0142.ext.ti.com (8.15.2/8.15.2) with ESMTP id 08E95BZ4082332;
-        Mon, 14 Sep 2020 04:05:11 -0500
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=ti.com;
-        s=ti-com-17Q1; t=1600074311;
-        bh=45CXssVozVwhmXELW2YCJrIEZQb3TtLXZl+9P6aTm6s=;
-        h=Subject:To:CC:References:From:Date:In-Reply-To;
-        b=ET5CnVI/n8H0X3va1EDV/i1fq/RuOHbmrDJCKQr3SpYoFYu2tj1lPBmV+pj4WV5Wm
-         gN3SSBpfGLdmgPYeDletfQ2Egos/pBCCURtkwrB+i+5ly/0tmG0kiKt8HNvD1EgWpI
-         6mv67qzaj0WCN+B0/SljGgoAXTPukF97ju+qbU3M=
-Received: from DFLE105.ent.ti.com (dfle105.ent.ti.com [10.64.6.26])
-        by fllv0035.itg.ti.com (8.15.2/8.15.2) with ESMTP id 08E95A7Q129588;
-        Mon, 14 Sep 2020 04:05:10 -0500
-Received: from DFLE103.ent.ti.com (10.64.6.24) by DFLE105.ent.ti.com
- (10.64.6.26) with Microsoft SMTP Server (version=TLS1_2,
- cipher=TLS_ECDHE_RSA_WITH_AES_128_CBC_SHA256_P256) id 15.1.1979.3; Mon, 14
- Sep 2020 04:05:10 -0500
-Received: from lelv0326.itg.ti.com (10.180.67.84) by DFLE103.ent.ti.com
- (10.64.6.24) with Microsoft SMTP Server (version=TLS1_2,
- cipher=TLS_ECDHE_RSA_WITH_AES_128_CBC_SHA256_P256) id 15.1.1979.3 via
- Frontend Transport; Mon, 14 Sep 2020 04:05:10 -0500
-Received: from [10.250.100.73] (ileax41-snat.itg.ti.com [10.172.224.153])
-        by lelv0326.itg.ti.com (8.15.2/8.15.2) with ESMTP id 08E951i9030437;
-        Mon, 14 Sep 2020 04:05:01 -0500
-Subject: Re: [PATCH v2 01/15] dt-bindings: gpio: convert bindings for NXP
- PCA953x family to dtschema
-To:     Linus Walleij <linus.walleij@linaro.org>,
-        Rob Herring <robh+dt@kernel.org>
-CC:     Krzysztof Kozlowski <krzk@kernel.org>,
-        Joel Stanley <joel@jms.id.au>,
-        Bartosz Golaszewski <bgolaszewski@baylibre.com>,
-        =?UTF-8?Q?Beno=c3=aet_Cousson?= <bcousson@baylibre.com>,
-        Tony Lindgren <tony@atomide.com>,
-        Russell King <linux@armlinux.org.uk>,
+        id S1726198AbgINJHj (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Mon, 14 Sep 2020 05:07:39 -0400
+Received: from szxga05-in.huawei.com ([45.249.212.191]:12251 "EHLO huawei.com"
+        rhost-flags-OK-OK-OK-FAIL) by vger.kernel.org with ESMTP
+        id S1726110AbgINJHi (ORCPT <rfc822;devicetree@vger.kernel.org>);
+        Mon, 14 Sep 2020 05:07:38 -0400
+Received: from DGGEMS411-HUB.china.huawei.com (unknown [172.30.72.60])
+        by Forcepoint Email with ESMTP id 81DD0430855B451F977F;
+        Mon, 14 Sep 2020 17:07:36 +0800 (CST)
+Received: from [127.0.0.1] (10.174.177.253) by DGGEMS411-HUB.china.huawei.com
+ (10.3.19.211) with Microsoft SMTP Server id 14.3.487.0; Mon, 14 Sep 2020
+ 17:07:21 +0800
+Subject: Re: [PATCH v3 2/3] irqchip: dw-apb-ictl: support hierarchy irq domain
+To:     Marc Zyngier <maz@kernel.org>
+CC:     Thomas Gleixner <tglx@linutronix.de>,
         Jason Cooper <jason@lakedaemon.net>,
-        Andrew Lunn <andrew@lunn.ch>,
-        Gregory Clement <gregory.clement@bootlin.com>,
-        Sebastian Hesselbarth <sebastian.hesselbarth@gmail.com>,
-        Andrew Jeffery <andrew@aj.id.au>,
-        Shawn Guo <shawnguo@kernel.org>,
-        Sascha Hauer <s.hauer@pengutronix.de>,
-        Pengutronix Kernel Team <kernel@pengutronix.de>,
-        NXP Linux Team <linux-imx@nxp.com>,
-        Matthias Brugger <matthias.bgg@gmail.com>,
-        Geert Uytterhoeven <geert+renesas@glider.be>,
-        Magnus Damm <magnus.damm@gmail.com>,
-        Tero Kristo <t-kristo@ti.com>, Nishanth Menon <nm@ti.com>,
-        Michal Simek <michal.simek@xilinx.com>,
-        Guenter Roeck <linux@roeck-us.net>,
+        Rob Herring <robh+dt@kernel.org>,
         devicetree <devicetree@vger.kernel.org>,
-        Linux Kernel Mailing List <linux-kernel@vger.kernel.org>,
-        Linux-OMAP <linux-omap@vger.kernel.org>,
-        Linux ARM <linux-arm-kernel@lists.infradead.org>,
-        linux-aspeed <linux-aspeed@lists.ozlabs.org>,
-        "moderated list:ARM/Mediatek SoC support" 
-        <linux-mediatek@lists.infradead.org>,
-        Linux-Renesas <linux-renesas-soc@vger.kernel.org>
-References: <20200910175733.11046-1-krzk@kernel.org>
- <20200910175733.11046-2-krzk@kernel.org>
- <CACPK8XdocAX5mOXf3VP29cNXH+6unYunB9NiT3qFVKyzR6WXPg@mail.gmail.com>
- <CAJKOXPe6Tf0B5W27XaD5zLk77OBzGCHpirhTdZjFH0oh8GvWgg@mail.gmail.com>
- <c162b6ad-57f1-a75a-11e3-9c80c60bd845@ti.com>
- <CACRpkdbrrzkYVW13V89PJ5_WRGhxSL0rOxAHA_7hYSyw28Shvg@mail.gmail.com>
-From:   Grygorii Strashko <grygorii.strashko@ti.com>
-Message-ID: <1d295310-880a-0ca7-273b-ad07f1a0498b@ti.com>
-Date:   Mon, 14 Sep 2020 12:04:53 +0300
-User-Agent: Mozilla/5.0 (X11; Linux x86_64; rv:68.0) Gecko/20100101
- Thunderbird/68.10.0
+        linux-kernel <linux-kernel@vger.kernel.org>,
+        Sebastian Hesselbarth <sebastian.hesselbarth@gmail.com>,
+        Haoyu Lv <lvhaoyu@huawei.com>, Libin <huawei.libin@huawei.com>,
+        Kefeng Wang <wangkefeng.wang@huawei.com>
+References: <20200909065836.2631-1-thunder.leizhen@huawei.com>
+ <20200909065836.2631-3-thunder.leizhen@huawei.com>
+ <87o8m9r9uw.wl-maz@kernel.org>
+From:   "Leizhen (ThunderTown)" <thunder.leizhen@huawei.com>
+Message-ID: <244f8985-f26d-f956-8d54-98acf141a478@huawei.com>
+Date:   Mon, 14 Sep 2020 17:07:20 +0800
+User-Agent: Mozilla/5.0 (Windows NT 10.0; WOW64; rv:60.0) Gecko/20100101
+ Thunderbird/60.7.0
 MIME-Version: 1.0
-In-Reply-To: <CACRpkdbrrzkYVW13V89PJ5_WRGhxSL0rOxAHA_7hYSyw28Shvg@mail.gmail.com>
-Content-Type: text/plain; charset="utf-8"; format=flowed
+In-Reply-To: <87o8m9r9uw.wl-maz@kernel.org>
+Content-Type: text/plain; charset="utf-8"
 Content-Language: en-US
 Content-Transfer-Encoding: 7bit
-X-EXCLAIMER-MD-CONFIG: e1e8a2fd-e40a-4ac6-ac9b-f7e9cc9ee180
+X-Originating-IP: [10.174.177.253]
+X-CFilter-Loop: Reflected
 Sender: devicetree-owner@vger.kernel.org
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
@@ -92,26 +49,163 @@ X-Mailing-List: devicetree@vger.kernel.org
 
 
 
-On 12/09/2020 13:07, Linus Walleij wrote:
-> On Fri, Sep 11, 2020 at 11:54 AM Grygorii Strashko
-> <grygorii.strashko@ti.com> wrote:
+On 2020/9/13 23:10, Marc Zyngier wrote:
+> On Wed, 09 Sep 2020 07:58:35 +0100,
+> Zhen Lei <thunder.leizhen@huawei.com> wrote:
+>>
+>> Add support to use dw-apb-ictl as primary interrupt controller.
+>>
+>> Suggested-by: Marc Zyngier <maz@kernel.org>
+>> Signed-off-by: Zhen Lei <thunder.leizhen@huawei.com>
+>> Tested-by: Haoyu Lv <lvhaoyu@huawei.com>
+>> ---
+>>  drivers/irqchip/Kconfig           |  2 +-
+>>  drivers/irqchip/irq-dw-apb-ictl.c | 76 +++++++++++++++++++++++++++----
+>>  2 files changed, 69 insertions(+), 9 deletions(-)
+>>
+>> diff --git a/drivers/irqchip/Kconfig b/drivers/irqchip/Kconfig
+>> index bfc9719dbcdc..7c2d1c8fa551 100644
+>> --- a/drivers/irqchip/Kconfig
+>> +++ b/drivers/irqchip/Kconfig
+>> @@ -148,7 +148,7 @@ config DAVINCI_CP_INTC
+>>  config DW_APB_ICTL
+>>  	bool
+>>  	select GENERIC_IRQ_CHIP
+>> -	select IRQ_DOMAIN
+>> +	select IRQ_DOMAIN_HIERARCHY
+>>  
+>>  config FARADAY_FTINTC010
+>>  	bool
+>> diff --git a/drivers/irqchip/irq-dw-apb-ictl.c b/drivers/irqchip/irq-dw-apb-ictl.c
+>> index 5458004242e9..3c7bebe1b947 100644
+>> --- a/drivers/irqchip/irq-dw-apb-ictl.c
+>> +++ b/drivers/irqchip/irq-dw-apb-ictl.c
+>> @@ -17,6 +17,7 @@
+>>  #include <linux/irqchip/chained_irq.h>
+>>  #include <linux/of_address.h>
+>>  #include <linux/of_irq.h>
+>> +#include <linux/interrupt.h>
+>>  
+>>  #define APB_INT_ENABLE_L	0x00
+>>  #define APB_INT_ENABLE_H	0x04
+>> @@ -26,6 +27,27 @@
+>>  #define APB_INT_FINALSTATUS_H	0x34
+>>  #define APB_INT_BASE_OFFSET	0x04
+>>  
+>> +/* irq domain of the primary interrupt controller. */
+>> +static struct irq_domain *dw_apb_ictl_irq_domain;
+>> +
+>> +static void __irq_entry dw_apb_ictl_handle_irq(struct pt_regs *regs)
+>> +{
+>> +	struct irq_domain *d = dw_apb_ictl_irq_domain;
+>> +	int n;
+>> +
+>> +	for (n = 0; n < d->revmap_size; n += 32) {
+>> +		struct irq_chip_generic *gc = irq_get_domain_generic_chip(d, n);
+>> +		u32 stat = readl_relaxed(gc->reg_base + APB_INT_FINALSTATUS_L);
+>> +
+>> +		while (stat) {
+>> +			u32 hwirq = ffs(stat) - 1;
+>> +
+>> +			handle_domain_irq(d, hwirq, regs);
+>> +			stat &= ~BIT(hwirq);
+>> +		}
+>> +	}
+>> +}
+>> +
+>>  static void dw_apb_ictl_handle_irq_cascaded(struct irq_desc *desc)
+>>  {
+>>  	struct irq_domain *d = irq_desc_get_handler_data(desc);
+>> @@ -50,6 +72,30 @@ static void dw_apb_ictl_handle_irq_cascaded(struct irq_desc *desc)
+>>  	chained_irq_exit(chip, desc);
+>>  }
+>>  
+>> +static int dw_apb_ictl_irq_domain_alloc(struct irq_domain *domain, unsigned int virq,
+>> +				unsigned int nr_irqs, void *arg)
+>> +{
+>> +	int i, ret;
+>> +	irq_hw_number_t hwirq;
+>> +	unsigned int type = IRQ_TYPE_NONE;
+>> +	struct irq_fwspec *fwspec = arg;
+>> +
+>> +	ret = irq_domain_translate_onecell(domain, fwspec, &hwirq, &type);
+>> +	if (ret)
+>> +		return ret;
+>> +
+>> +	for (i = 0; i < nr_irqs; i++)
+>> +		irq_map_generic_chip(domain, virq + i, hwirq + i);
+>> +
+>> +	return 0;
+>> +}
+>> +
+>> +static const struct irq_domain_ops dw_apb_ictl_irq_domain_ops = {
+>> +	.translate = irq_domain_translate_onecell,
+>> +	.alloc = dw_apb_ictl_irq_domain_alloc,
+>> +	.free = irq_domain_free_irqs_top,
+>> +};
+>> +
+>>  #ifdef CONFIG_PM
+>>  static void dw_apb_ictl_resume(struct irq_data *d)
+>>  {
+>> @@ -75,13 +121,20 @@ static int __init dw_apb_ictl_init(struct device_node *np,
+>>  	void __iomem *iobase;
+>>  	int ret, nrirqs, parent_irq, i;
+>>  	u32 reg;
+>> -	const struct irq_domain_ops *domain_ops = &irq_generic_chip_ops;
+>> -
+>> -	/* Map the parent interrupt for the chained handler */
+>> -	parent_irq = irq_of_parse_and_map(np, 0);
+>> -	if (parent_irq <= 0) {
+>> -		pr_err("%pOF: unable to parse irq\n", np);
+>> -		return -EINVAL;
+>> +	const struct irq_domain_ops *domain_ops;
+>> +
+>> +	if (!parent || (np == parent)) {
+>> +		/* It's used as the primary interrupt controller */
+>> +		parent_irq = 0;
+>> +		domain_ops = &dw_apb_ictl_irq_domain_ops;
+>> +	} else {
+>> +		/* Map the parent interrupt for the chained handler */
+>> +		parent_irq = irq_of_parse_and_map(np, 0);
+>> +		if (parent_irq <= 0) {
+>> +			pr_err("%pOF: unable to parse irq\n", np);
+>> +			return -EINVAL;
+>> +		}
+>> +		domain_ops = &irq_generic_chip_ops;
+>>  	}
+>>  
+>>  	ret = of_address_to_resource(np, 0, &r);
+>> @@ -144,10 +197,17 @@ static int __init dw_apb_ictl_init(struct device_node *np,
+>>  		gc->chip_types[0].chip.irq_mask = irq_gc_mask_set_bit;
+>>  		gc->chip_types[0].chip.irq_unmask = irq_gc_mask_clr_bit;
+>>  		gc->chip_types[0].chip.irq_resume = dw_apb_ictl_resume;
+>> +		if (!parent_irq)
+>> +			gc->chip_types[0].chip.irq_eoi = irq_gc_noop;
 > 
->> More over, there is already generic schema for gpio hogs: gpio-hog.yaml
+> Again: what is that for? The level flow doesn't use any EOI callback.
+
+OK, I will remove it. Yes, irq_eoi is only needed by handle_fasteoi_irq().
+
 > 
-> Where is this? I don't have it in my GPIO devel branch for sure, and
-> it is not in linux-next either so not in Bartosz' tree.
+>>  	}
+>>  
+>> -	irq_set_chained_handler_and_data(parent_irq,
+>> +	if (parent_irq) {
+>> +		irq_set_chained_handler_and_data(parent_irq,
+>>  				dw_apb_ictl_handle_irq_cascaded, domain);
+>> +	} else {
+>> +		dw_apb_ictl_irq_domain = domain;
+>> +		set_handle_irq(dw_apb_ictl_handle_irq);
 > 
-> I did suggest that I want a gpio-common.yaml file which includes the
-> hogs.
+> This only exists on architectures that select GENERIC_IRQ_MULTI_HANDLER,
+> and yet this driver is used on some arc system (AXS10x), which doesn't
+> have this option selected.
+> 
+> Please make sure this at least builds on all supported architectures.
 
-There it is (am I missing smth?):
-pip3 install git+https://github.com/devicetree-org/dt-schema.git@master
+OK, I will intsall the gcc of arc and csky, and build it.
 
-as per:
-https://www.kernel.org/doc/html/latest/devicetree/writing-schema.html
+> 
+> 	M.
+> 
 
-
-
--- 
-Best regards,
-grygorii
