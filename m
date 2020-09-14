@@ -2,46 +2,71 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from vger.kernel.org (vger.kernel.org [23.128.96.18])
-	by mail.lfdr.de (Postfix) with ESMTP id 070262687FB
-	for <lists+devicetree@lfdr.de>; Mon, 14 Sep 2020 11:07:41 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTP id D4CB826882C
+	for <lists+devicetree@lfdr.de>; Mon, 14 Sep 2020 11:20:00 +0200 (CEST)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S1726198AbgINJHj (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Mon, 14 Sep 2020 05:07:39 -0400
-Received: from szxga05-in.huawei.com ([45.249.212.191]:12251 "EHLO huawei.com"
-        rhost-flags-OK-OK-OK-FAIL) by vger.kernel.org with ESMTP
-        id S1726110AbgINJHi (ORCPT <rfc822;devicetree@vger.kernel.org>);
-        Mon, 14 Sep 2020 05:07:38 -0400
-Received: from DGGEMS411-HUB.china.huawei.com (unknown [172.30.72.60])
-        by Forcepoint Email with ESMTP id 81DD0430855B451F977F;
-        Mon, 14 Sep 2020 17:07:36 +0800 (CST)
-Received: from [127.0.0.1] (10.174.177.253) by DGGEMS411-HUB.china.huawei.com
- (10.3.19.211) with Microsoft SMTP Server id 14.3.487.0; Mon, 14 Sep 2020
- 17:07:21 +0800
-Subject: Re: [PATCH v3 2/3] irqchip: dw-apb-ictl: support hierarchy irq domain
-To:     Marc Zyngier <maz@kernel.org>
-CC:     Thomas Gleixner <tglx@linutronix.de>,
-        Jason Cooper <jason@lakedaemon.net>,
-        Rob Herring <robh+dt@kernel.org>,
-        devicetree <devicetree@vger.kernel.org>,
-        linux-kernel <linux-kernel@vger.kernel.org>,
-        Sebastian Hesselbarth <sebastian.hesselbarth@gmail.com>,
-        Haoyu Lv <lvhaoyu@huawei.com>, Libin <huawei.libin@huawei.com>,
-        Kefeng Wang <wangkefeng.wang@huawei.com>
-References: <20200909065836.2631-1-thunder.leizhen@huawei.com>
- <20200909065836.2631-3-thunder.leizhen@huawei.com>
- <87o8m9r9uw.wl-maz@kernel.org>
-From:   "Leizhen (ThunderTown)" <thunder.leizhen@huawei.com>
-Message-ID: <244f8985-f26d-f956-8d54-98acf141a478@huawei.com>
-Date:   Mon, 14 Sep 2020 17:07:20 +0800
-User-Agent: Mozilla/5.0 (Windows NT 10.0; WOW64; rv:60.0) Gecko/20100101
- Thunderbird/60.7.0
+        id S1726306AbgINJTm (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Mon, 14 Sep 2020 05:19:42 -0400
+Received: from lindbergh.monkeyblade.net ([23.128.96.19]:46184 "EHLO
+        lindbergh.monkeyblade.net" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
+        with ESMTP id S1726184AbgINJTb (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Mon, 14 Sep 2020 05:19:31 -0400
+Received: from mail-wr1-x441.google.com (mail-wr1-x441.google.com [IPv6:2a00:1450:4864:20::441])
+        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id E206BC06174A;
+        Mon, 14 Sep 2020 02:19:29 -0700 (PDT)
+Received: by mail-wr1-x441.google.com with SMTP id z4so17888006wrr.4;
+        Mon, 14 Sep 2020 02:19:29 -0700 (PDT)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+        d=gmail.com; s=20161025;
+        h=subject:to:cc:references:from:message-id:date:user-agent
+         :mime-version:in-reply-to:content-language:content-transfer-encoding;
+        bh=wcF550GwyqliSCSyHw0Z/IDzm3K/ogaNto0zdoWfp60=;
+        b=tiMPrN36G6dUn/kEUQVays/uU94aZcWuAZpt/Nvk7qqLpik+PvXRFUsv/Eiw4v+VXi
+         nUPyrmVyWgm2X5NAZTkS2bjtga25N+GcOlP/8rgU3wlJRPFvOt6CD0D3XpoZb4zO7MJR
+         RTb5xROBppfNI3+h3yXQO02cMDQH+vUyMhy7m2/bsQuWqO43t/T652wnp3ccQACIrruE
+         w2NSQCEmAac+MPdWfdJqp47I7AkqnuRFn2K3zg5av1CmCkKi4fbhquKHLsLpy7oWEmTq
+         1gCex1T5rtmEO45QL7sRyL/mFyhdzteRX3EgBCk5kCAKR8O3mBNDIkkYoFl359gSPulx
+         sMIA==
+X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+        d=1e100.net; s=20161025;
+        h=x-gm-message-state:subject:to:cc:references:from:message-id:date
+         :user-agent:mime-version:in-reply-to:content-language
+         :content-transfer-encoding;
+        bh=wcF550GwyqliSCSyHw0Z/IDzm3K/ogaNto0zdoWfp60=;
+        b=BHVN6Dlw3KHHh6rgV+5YF3L93wfE1h4tmFEhoIp0gBY70K1DuS+utKj59SYe7Y9eN6
+         sdAn8CCh/UHKVwtcIY9FF2QwwqHoGmdgWQWmPQio0vf6XxECNa1D8QRLnCgr6JDZEzCE
+         k5hnl59Bna9/3ETWmTLIz6AoIqvIBoLiitGPOcfNc8+59bUi2Ati7bKxPLWx5txCEIeA
+         maDSa1ynurYjZoSZTKdxNnabP2YUNzXWA2D+oKJIrDZb9Wi3rznuA/zmaVoPVJEfKZIv
+         cnU8YgKBQiXWAp/MfAxkm52zo3dcUGbbWh8qRtRtDKZ/+PKp8QUjH96iUzn9rE+l5osg
+         +uRg==
+X-Gm-Message-State: AOAM531LXZu7qvaAm4vNPAdVY1s4Uwrb++5Ra7cFNyjOUeEjhfiKssUN
+        7GMd0dkJsG5NcqitqpGClQA=
+X-Google-Smtp-Source: ABdhPJyiYN1HRm7fTUbCjsDnDAsfhonS+0cIoWKodJ2jQ+pGXmfjQNFD7P4TdRoi2iJM10fiR86oOA==
+X-Received: by 2002:a5d:4c52:: with SMTP id n18mr14605256wrt.267.1600075168623;
+        Mon, 14 Sep 2020 02:19:28 -0700 (PDT)
+Received: from ziggy.stardust ([213.195.113.201])
+        by smtp.gmail.com with ESMTPSA id j7sm19884886wrs.11.2020.09.14.02.19.27
+        (version=TLS1_3 cipher=TLS_AES_128_GCM_SHA256 bits=128/128);
+        Mon, 14 Sep 2020 02:19:27 -0700 (PDT)
+Subject: Re: [PATCH v4 2/3] iommu/mediatek: add flag for legacy ivrp paddr
+To:     Fabien Parent <fparent@baylibre.com>,
+        iommu@lists.linux-foundation.org, devicetree@vger.kernel.org,
+        linux-kernel@vger.kernel.org, linux-arm-kernel@lists.infradead.org,
+        linux-mediatek@lists.infradead.org
+Cc:     joro@8bytes.org, robh+dt@kernel.org, yong.wu@mediatek.com,
+        miles.chen@mediatek.com
+References: <20200907101649.1573134-1-fparent@baylibre.com>
+ <20200907101649.1573134-2-fparent@baylibre.com>
+From:   Matthias Brugger <matthias.bgg@gmail.com>
+Message-ID: <cac92e0d-0789-64a4-729c-80ff5f34b6bb@gmail.com>
+Date:   Mon, 14 Sep 2020 11:19:26 +0200
+User-Agent: Mozilla/5.0 (X11; Linux x86_64; rv:68.0) Gecko/20100101
+ Thunderbird/68.12.0
 MIME-Version: 1.0
-In-Reply-To: <87o8m9r9uw.wl-maz@kernel.org>
-Content-Type: text/plain; charset="utf-8"
+In-Reply-To: <20200907101649.1573134-2-fparent@baylibre.com>
+Content-Type: text/plain; charset=utf-8; format=flowed
 Content-Language: en-US
 Content-Transfer-Encoding: 7bit
-X-Originating-IP: [10.174.177.253]
-X-CFilter-Loop: Reflected
 Sender: devicetree-owner@vger.kernel.org
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
@@ -49,163 +74,54 @@ X-Mailing-List: devicetree@vger.kernel.org
 
 
 
-On 2020/9/13 23:10, Marc Zyngier wrote:
-> On Wed, 09 Sep 2020 07:58:35 +0100,
-> Zhen Lei <thunder.leizhen@huawei.com> wrote:
->>
->> Add support to use dw-apb-ictl as primary interrupt controller.
->>
->> Suggested-by: Marc Zyngier <maz@kernel.org>
->> Signed-off-by: Zhen Lei <thunder.leizhen@huawei.com>
->> Tested-by: Haoyu Lv <lvhaoyu@huawei.com>
->> ---
->>  drivers/irqchip/Kconfig           |  2 +-
->>  drivers/irqchip/irq-dw-apb-ictl.c | 76 +++++++++++++++++++++++++++----
->>  2 files changed, 69 insertions(+), 9 deletions(-)
->>
->> diff --git a/drivers/irqchip/Kconfig b/drivers/irqchip/Kconfig
->> index bfc9719dbcdc..7c2d1c8fa551 100644
->> --- a/drivers/irqchip/Kconfig
->> +++ b/drivers/irqchip/Kconfig
->> @@ -148,7 +148,7 @@ config DAVINCI_CP_INTC
->>  config DW_APB_ICTL
->>  	bool
->>  	select GENERIC_IRQ_CHIP
->> -	select IRQ_DOMAIN
->> +	select IRQ_DOMAIN_HIERARCHY
->>  
->>  config FARADAY_FTINTC010
->>  	bool
->> diff --git a/drivers/irqchip/irq-dw-apb-ictl.c b/drivers/irqchip/irq-dw-apb-ictl.c
->> index 5458004242e9..3c7bebe1b947 100644
->> --- a/drivers/irqchip/irq-dw-apb-ictl.c
->> +++ b/drivers/irqchip/irq-dw-apb-ictl.c
->> @@ -17,6 +17,7 @@
->>  #include <linux/irqchip/chained_irq.h>
->>  #include <linux/of_address.h>
->>  #include <linux/of_irq.h>
->> +#include <linux/interrupt.h>
->>  
->>  #define APB_INT_ENABLE_L	0x00
->>  #define APB_INT_ENABLE_H	0x04
->> @@ -26,6 +27,27 @@
->>  #define APB_INT_FINALSTATUS_H	0x34
->>  #define APB_INT_BASE_OFFSET	0x04
->>  
->> +/* irq domain of the primary interrupt controller. */
->> +static struct irq_domain *dw_apb_ictl_irq_domain;
->> +
->> +static void __irq_entry dw_apb_ictl_handle_irq(struct pt_regs *regs)
->> +{
->> +	struct irq_domain *d = dw_apb_ictl_irq_domain;
->> +	int n;
->> +
->> +	for (n = 0; n < d->revmap_size; n += 32) {
->> +		struct irq_chip_generic *gc = irq_get_domain_generic_chip(d, n);
->> +		u32 stat = readl_relaxed(gc->reg_base + APB_INT_FINALSTATUS_L);
->> +
->> +		while (stat) {
->> +			u32 hwirq = ffs(stat) - 1;
->> +
->> +			handle_domain_irq(d, hwirq, regs);
->> +			stat &= ~BIT(hwirq);
->> +		}
->> +	}
->> +}
->> +
->>  static void dw_apb_ictl_handle_irq_cascaded(struct irq_desc *desc)
->>  {
->>  	struct irq_domain *d = irq_desc_get_handler_data(desc);
->> @@ -50,6 +72,30 @@ static void dw_apb_ictl_handle_irq_cascaded(struct irq_desc *desc)
->>  	chained_irq_exit(chip, desc);
->>  }
->>  
->> +static int dw_apb_ictl_irq_domain_alloc(struct irq_domain *domain, unsigned int virq,
->> +				unsigned int nr_irqs, void *arg)
->> +{
->> +	int i, ret;
->> +	irq_hw_number_t hwirq;
->> +	unsigned int type = IRQ_TYPE_NONE;
->> +	struct irq_fwspec *fwspec = arg;
->> +
->> +	ret = irq_domain_translate_onecell(domain, fwspec, &hwirq, &type);
->> +	if (ret)
->> +		return ret;
->> +
->> +	for (i = 0; i < nr_irqs; i++)
->> +		irq_map_generic_chip(domain, virq + i, hwirq + i);
->> +
->> +	return 0;
->> +}
->> +
->> +static const struct irq_domain_ops dw_apb_ictl_irq_domain_ops = {
->> +	.translate = irq_domain_translate_onecell,
->> +	.alloc = dw_apb_ictl_irq_domain_alloc,
->> +	.free = irq_domain_free_irqs_top,
->> +};
->> +
->>  #ifdef CONFIG_PM
->>  static void dw_apb_ictl_resume(struct irq_data *d)
->>  {
->> @@ -75,13 +121,20 @@ static int __init dw_apb_ictl_init(struct device_node *np,
->>  	void __iomem *iobase;
->>  	int ret, nrirqs, parent_irq, i;
->>  	u32 reg;
->> -	const struct irq_domain_ops *domain_ops = &irq_generic_chip_ops;
->> -
->> -	/* Map the parent interrupt for the chained handler */
->> -	parent_irq = irq_of_parse_and_map(np, 0);
->> -	if (parent_irq <= 0) {
->> -		pr_err("%pOF: unable to parse irq\n", np);
->> -		return -EINVAL;
->> +	const struct irq_domain_ops *domain_ops;
->> +
->> +	if (!parent || (np == parent)) {
->> +		/* It's used as the primary interrupt controller */
->> +		parent_irq = 0;
->> +		domain_ops = &dw_apb_ictl_irq_domain_ops;
->> +	} else {
->> +		/* Map the parent interrupt for the chained handler */
->> +		parent_irq = irq_of_parse_and_map(np, 0);
->> +		if (parent_irq <= 0) {
->> +			pr_err("%pOF: unable to parse irq\n", np);
->> +			return -EINVAL;
->> +		}
->> +		domain_ops = &irq_generic_chip_ops;
->>  	}
->>  
->>  	ret = of_address_to_resource(np, 0, &r);
->> @@ -144,10 +197,17 @@ static int __init dw_apb_ictl_init(struct device_node *np,
->>  		gc->chip_types[0].chip.irq_mask = irq_gc_mask_set_bit;
->>  		gc->chip_types[0].chip.irq_unmask = irq_gc_mask_clr_bit;
->>  		gc->chip_types[0].chip.irq_resume = dw_apb_ictl_resume;
->> +		if (!parent_irq)
->> +			gc->chip_types[0].chip.irq_eoi = irq_gc_noop;
+On 07/09/2020 12:16, Fabien Parent wrote:
+> Add a new flag in order to select which IVRP_PADDR format is used
+> by an SoC.
 > 
-> Again: what is that for? The level flow doesn't use any EOI callback.
+> Signed-off-by: Fabien Parent <fparent@baylibre.com>
+> Reviewed-by: Yong Wu <yong.wu@mediatek.com>
 
-OK, I will remove it. Yes, irq_eoi is only needed by handle_fasteoi_irq().
+Reviewed-by: Matthias Brugger <matthias.bgg@gmail.com>
 
+> ---
 > 
->>  	}
->>  
->> -	irq_set_chained_handler_and_data(parent_irq,
->> +	if (parent_irq) {
->> +		irq_set_chained_handler_and_data(parent_irq,
->>  				dw_apb_ictl_handle_irq_cascaded, domain);
->> +	} else {
->> +		dw_apb_ictl_irq_domain = domain;
->> +		set_handle_irq(dw_apb_ictl_handle_irq);
+> v4: no change
+> v3: set LEGACY_IVRP_PADDR as a flag instead of platform data
+> v2: new patch
 > 
-> This only exists on architectures that select GENERIC_IRQ_MULTI_HANDLER,
-> and yet this driver is used on some arc system (AXS10x), which doesn't
-> have this option selected.
+> ---
+>   drivers/iommu/mtk_iommu.c | 6 ++++--
+>   1 file changed, 4 insertions(+), 2 deletions(-)
 > 
-> Please make sure this at least builds on all supported architectures.
-
-OK, I will intsall the gcc of arc and csky, and build it.
-
+> diff --git a/drivers/iommu/mtk_iommu.c b/drivers/iommu/mtk_iommu.c
+> index 785b228d39a6..b1f85a7e9346 100644
+> --- a/drivers/iommu/mtk_iommu.c
+> +++ b/drivers/iommu/mtk_iommu.c
+> @@ -116,6 +116,7 @@
+>   #define OUT_ORDER_WR_EN			BIT(4)
+>   #define HAS_SUB_COMM			BIT(5)
+>   #define WR_THROT_EN			BIT(6)
+> +#define HAS_LEGACY_IVRP_PADDR		BIT(7)
+>   
+>   #define MTK_IOMMU_HAS_FLAG(pdata, _x) \
+>   		((((pdata)->flags) & (_x)) == (_x))
+> @@ -582,7 +583,7 @@ static int mtk_iommu_hw_init(const struct mtk_iommu_data *data)
+>   		F_INT_PRETETCH_TRANSATION_FIFO_FAULT;
+>   	writel_relaxed(regval, data->base + REG_MMU_INT_MAIN_CONTROL);
+>   
+> -	if (data->plat_data->m4u_plat == M4U_MT8173)
+> +	if (MTK_IOMMU_HAS_FLAG(data->plat_data, HAS_LEGACY_IVRP_PADDR))
+>   		regval = (data->protect_base >> 1) | (data->enable_4GB << 31);
+>   	else
+>   		regval = lower_32_bits(data->protect_base) |
+> @@ -818,7 +819,8 @@ static const struct mtk_iommu_plat_data mt6779_data = {
+>   
+>   static const struct mtk_iommu_plat_data mt8173_data = {
+>   	.m4u_plat     = M4U_MT8173,
+> -	.flags	      = HAS_4GB_MODE | HAS_BCLK | RESET_AXI,
+> +	.flags	      = HAS_4GB_MODE | HAS_BCLK | RESET_AXI |
+> +			HAS_LEGACY_IVRP_PADDR,
+>   	.inv_sel_reg  = REG_MMU_INV_SEL_GEN1,
+>   	.larbid_remap = {{0}, {1}, {2}, {3}, {4}, {5}}, /* Linear mapping. */
+>   };
 > 
-> 	M.
-> 
-
