@@ -2,81 +2,92 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from vger.kernel.org (vger.kernel.org [23.128.96.18])
-	by mail.lfdr.de (Postfix) with ESMTP id 080F4269711
-	for <lists+devicetree@lfdr.de>; Mon, 14 Sep 2020 22:51:45 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTP id 790A226971E
+	for <lists+devicetree@lfdr.de>; Mon, 14 Sep 2020 22:53:44 +0200 (CEST)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S1726100AbgINUvn (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Mon, 14 Sep 2020 16:51:43 -0400
-Received: from mail-io1-f66.google.com ([209.85.166.66]:42810 "EHLO
-        mail-io1-f66.google.com" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S1725986AbgINUvm (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Mon, 14 Sep 2020 16:51:42 -0400
-Received: by mail-io1-f66.google.com with SMTP id u6so1626667iow.9;
-        Mon, 14 Sep 2020 13:51:41 -0700 (PDT)
+        id S1725999AbgINUxn (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Mon, 14 Sep 2020 16:53:43 -0400
+Received: from mail-io1-f65.google.com ([209.85.166.65]:44504 "EHLO
+        mail-io1-f65.google.com" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
+        with ESMTP id S1725994AbgINUxm (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Mon, 14 Sep 2020 16:53:42 -0400
+Received: by mail-io1-f65.google.com with SMTP id g128so1609001iof.11;
+        Mon, 14 Sep 2020 13:53:40 -0700 (PDT)
 X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
         d=1e100.net; s=20161025;
         h=x-gm-message-state:date:from:to:cc:subject:message-id:references
          :mime-version:content-disposition:in-reply-to;
-        bh=veG+zgFelzs7P/4CDsW/IyWMer1s9H9FMEOpA6pNK+s=;
-        b=iV1fA3Zgij2RsVOPgdswsm8CxHeYMAv+7qyayZ5nSoV2zRn2rVe5a3ajeaRoR7S1Qc
-         CF9CA+jmBr1t0OzzoIVKzY/gFgXHH5ZTfYtpjydZN63uflkBlaIRRV6vuH4JT0JByBOF
-         Zo4Cxa8Yi8qia717fkzPs7YBaCGJDxL8+UlGd8ZUW/4Eub6jXskvgo4kVOXO5AlyBqjU
-         jNf8S63qq0hIjeDwCEcQicMYs7c5IRIU//Lq9+kEVyjmQdzXhsOyNk20BBGo3t8RYjhd
-         jBJlvGZ9doJUCtx41KlQXXui8k3SW56gp+AGUULqoyw9Z5bpXlLH3HwCUbtrIgpNtPGZ
-         XwFw==
-X-Gm-Message-State: AOAM5338pDBdcgvY1Tz/9F3PWxtqWpQEsFijHR+MrGu2NOgRWi5HeFMR
-        Uprnv8qeaOAZzKVe5rz5QA==
-X-Google-Smtp-Source: ABdhPJxqSOICQ+yvso2zHHwy8r+0Fr59OAQEwH7kQzNJeCVKrnQq6PVIOwAtkxhLNDCTjrOkNtEGOg==
-X-Received: by 2002:a05:6602:15c5:: with SMTP id f5mr11740218iow.42.1600116701429;
-        Mon, 14 Sep 2020 13:51:41 -0700 (PDT)
+        bh=iJOlqkDfQLNWOhs5wDhdjESRaLgN0AeGZgQDBu2MKds=;
+        b=cF/o3M6xnZ/J+S7RamVC/rhD28hzP2JK7+yhp8tjh4JlTc2G3fdTjMpy7dodyyguDj
+         CpJQEZmjNXKQ9/XGAWL/Suj4m8BFT6EtkwaJMJKDdRcHqUF9rBpeWwCC/Lm7O9jTt2yr
+         QeflAhT82FG7ip4Ota9FoRCmPEUHfHArkwIYSpZ9/uh62A61eIeDvv4ItK/OG5Z6xXGG
+         /ZbTWarsRAWLRszLVGfg1gfhymtQbLxZk22WBnZnWiW73mNMAbcQhBjAH3XO+na+JJu9
+         3rj6I8FUpr23O0746rMapKkLu/5kgK7ha2mmxBrW9G94ivcVrmfjYTW+WfoiusdUYlah
+         iwmQ==
+X-Gm-Message-State: AOAM533K9tqIZM7jDvaOtzxrTuHIXCxth4KFP2cVFVmpV5Q1eaFGYQj5
+        1oDmiT5E5kjgQPWn8PgEOHWiDB5iy9bQ
+X-Google-Smtp-Source: ABdhPJy68NE/gCPsVXkeSpMTDnxRz1ttcQMLfOfcBFbgs5ydsdMjE2/4J0W+T90WTnojvJbmbIH+gA==
+X-Received: by 2002:a5d:914a:: with SMTP id y10mr13060270ioq.108.1600116819827;
+        Mon, 14 Sep 2020 13:53:39 -0700 (PDT)
 Received: from xps15 ([64.188.179.253])
-        by smtp.gmail.com with ESMTPSA id 9sm7245845ilj.83.2020.09.14.13.51.40
+        by smtp.gmail.com with ESMTPSA id u89sm7914006ili.63.2020.09.14.13.53.38
         (version=TLS1_3 cipher=TLS_AES_256_GCM_SHA384 bits=256/256);
-        Mon, 14 Sep 2020 13:51:40 -0700 (PDT)
-Received: (nullmailer pid 224785 invoked by uid 1000);
-        Mon, 14 Sep 2020 20:51:39 -0000
-Date:   Mon, 14 Sep 2020 14:51:39 -0600
+        Mon, 14 Sep 2020 13:53:39 -0700 (PDT)
+Received: (nullmailer pid 227956 invoked by uid 1000);
+        Mon, 14 Sep 2020 20:53:38 -0000
+Date:   Mon, 14 Sep 2020 14:53:38 -0600
 From:   Rob Herring <robh@kernel.org>
 To:     Krzysztof Kozlowski <krzk@kernel.org>
-Cc:     Maxime Ripard <mripard@kernel.org>,
-        David Airlie <airlied@linux.ie>,
-        linux-samsung-soc@vger.kernel.org,
-        Heiko Stuebner <heiko@sntech.de>,
-        Inki Dae <inki.dae@samsung.com>, Kukjin Kim <kgene@kernel.org>,
-        Daniel Vetter <daniel@ffwll.ch>,
-        Rob Herring <robh+dt@kernel.org>,
-        dri-devel@lists.freedesktop.org,
-        linux-arm-kernel@lists.infradead.org, linux-kernel@vger.kernel.org,
-        devicetree@vger.kernel.org
-Subject: Re: [PATCH v2 3/6] dt-bindings: gpu: arm, mali-utgard: Correct
- Maxime's email
-Message-ID: <20200914205139.GA224734@bogus>
-References: <20200903191438.12781-1-krzk@kernel.org>
- <20200903191438.12781-3-krzk@kernel.org>
+Cc:     Jassi Brar <jassisinghbrar@gmail.com>,
+        Dong Aisheng <aisheng.dong@nxp.com>,
+        linux-kernel@vger.kernel.org, devicetree@vger.kernel.org
+Subject: Re: [PATCH v2 2/3] dt-bindings: mailbox: fsl,mu: Add missing
+ power-domains
+Message-ID: <20200914205338.GA225374@bogus>
+References: <20200903195325.5394-1-krzk@kernel.org>
+ <20200903195325.5394-2-krzk@kernel.org>
 MIME-Version: 1.0
 Content-Type: text/plain; charset=us-ascii
 Content-Disposition: inline
-In-Reply-To: <20200903191438.12781-3-krzk@kernel.org>
+In-Reply-To: <20200903195325.5394-2-krzk@kernel.org>
 Sender: devicetree-owner@vger.kernel.org
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-On Thu, 03 Sep 2020 21:14:35 +0200, Krzysztof Kozlowski wrote:
-> Update the address of Maxime Ripard as one in @free-electrons.com does
-> not work.
+On Thu, Sep 03, 2020 at 09:53:24PM +0200, Krzysztof Kozlowski wrote:
+> Add quite common property - power-domains - to fix dtbs_check warnings
+> like:
 > 
-> Cc: Maxime Ripard <mripard@kernel.org>
+>   arch/arm64/boot/dts/freescale/imx8qxp-mek.dt.yaml:
+>     mailbox@5d280000: 'power-domains' does not match any of the regexes: 'pinctrl-[0-9]+'
+> 
 > Signed-off-by: Krzysztof Kozlowski <krzk@kernel.org>
-> Acked-by: Maxime Ripard <mripard@kernel.org>
 > 
 > ---
 > 
 > Changes since v1:
-> 1. Add Ack
+> 1. Add missing properties instead of unevaluatedProperties
 > ---
->  Documentation/devicetree/bindings/gpu/arm,mali-utgard.yaml | 2 +-
->  1 file changed, 1 insertion(+), 1 deletion(-)
+>  Documentation/devicetree/bindings/mailbox/fsl,mu.yaml | 2 ++
+>  1 file changed, 2 insertions(+)
 > 
+> diff --git a/Documentation/devicetree/bindings/mailbox/fsl,mu.yaml b/Documentation/devicetree/bindings/mailbox/fsl,mu.yaml
+> index 7ed096360be2..e372dcce8037 100644
+> --- a/Documentation/devicetree/bindings/mailbox/fsl,mu.yaml
+> +++ b/Documentation/devicetree/bindings/mailbox/fsl,mu.yaml
+> @@ -72,6 +72,8 @@ properties:
+>      description: boolean, if present, means it is for side B MU.
+>      type: boolean
+>  
+> +  power-domains: true
 
-Applied, thanks!
+How many?
+
+> +
+>  required:
+>    - compatible
+>    - reg
+> -- 
+> 2.17.1
+> 
