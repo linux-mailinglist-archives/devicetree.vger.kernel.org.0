@@ -2,172 +2,181 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from vger.kernel.org (vger.kernel.org [23.128.96.18])
-	by mail.lfdr.de (Postfix) with ESMTP id 2F58A268BF7
-	for <lists+devicetree@lfdr.de>; Mon, 14 Sep 2020 15:15:08 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTP id 46539268C2C
+	for <lists+devicetree@lfdr.de>; Mon, 14 Sep 2020 15:27:47 +0200 (CEST)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S1726731AbgINNOq (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Mon, 14 Sep 2020 09:14:46 -0400
-Received: from fllv0016.ext.ti.com ([198.47.19.142]:37360 "EHLO
-        fllv0016.ext.ti.com" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S1726723AbgINNOl (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Mon, 14 Sep 2020 09:14:41 -0400
-Received: from lelv0266.itg.ti.com ([10.180.67.225])
-        by fllv0016.ext.ti.com (8.15.2/8.15.2) with ESMTP id 08EDEaIO010071;
-        Mon, 14 Sep 2020 08:14:36 -0500
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=ti.com;
-        s=ti-com-17Q1; t=1600089276;
-        bh=ODiKENSdzK4s3WG2D1yPBUfjra2xw8BwLPSrreBdVXg=;
-        h=Date:From:To:CC:Subject:References:In-Reply-To;
-        b=CbfjXf529a0uVnIv4Wtkk9nZb0qrRMJketYNpnyGVMu9b3UoEF9GoUH1wRtA+pBIh
-         OrevxtYidRzIMxQ2uApCax+ZioWyGN1zmn5VajLzuhyi8550nGRAK4aShoEJ2KRPPj
-         IfQ9Ni62IiSiLz5cqkHUrL03wOfggftOu0elOpOE=
-Received: from DLEE102.ent.ti.com (dlee102.ent.ti.com [157.170.170.32])
-        by lelv0266.itg.ti.com (8.15.2/8.15.2) with ESMTPS id 08EDEa4Q116335
-        (version=TLSv1.2 cipher=AES256-GCM-SHA384 bits=256 verify=FAIL);
-        Mon, 14 Sep 2020 08:14:36 -0500
-Received: from DLEE100.ent.ti.com (157.170.170.30) by DLEE102.ent.ti.com
- (157.170.170.32) with Microsoft SMTP Server (version=TLS1_2,
- cipher=TLS_ECDHE_RSA_WITH_AES_128_CBC_SHA256_P256) id 15.1.1979.3; Mon, 14
- Sep 2020 08:14:36 -0500
-Received: from fllv0039.itg.ti.com (10.64.41.19) by DLEE100.ent.ti.com
- (157.170.170.30) with Microsoft SMTP Server (version=TLS1_2,
- cipher=TLS_ECDHE_RSA_WITH_AES_128_CBC_SHA256_P256) id 15.1.1979.3 via
- Frontend Transport; Mon, 14 Sep 2020 08:14:36 -0500
-Received: from localhost (ileax41-snat.itg.ti.com [10.172.224.153])
-        by fllv0039.itg.ti.com (8.15.2/8.15.2) with ESMTP id 08EDEafs060421;
-        Mon, 14 Sep 2020 08:14:36 -0500
-Date:   Mon, 14 Sep 2020 08:14:36 -0500
-From:   Nishanth Menon <nm@ti.com>
-To:     Kishon Vijay Abraham I <kishon@ti.com>
-CC:     Rob Herring <robh+dt@kernel.org>, Tero Kristo <t-kristo@ti.com>,
-        <linux-arm-kernel@lists.infradead.org>,
-        <devicetree@vger.kernel.org>, <linux-kernel@vger.kernel.org>
-Subject: Re: [RESEND PATCH 1/2] arm64: dts: ti: k3-j721e-main: Add PCIe
- device tree nodes
-Message-ID: <20200914131436.fxtvximxcrtnqddm@akan>
-References: <20200901140628.8800-1-kishon@ti.com>
- <20200901140628.8800-2-kishon@ti.com>
- <20200901145204.ayybrzqjcfhiqnfq@akan>
- <5f23246a-a9d7-495d-a4ec-d392ad95a450@ti.com>
- <4b17cace-09d5-af8c-6e7f-9358cfdceb4d@ti.com>
- <e914e527-00fc-2614-fa74-f2137dbcfaf9@ti.com>
- <20200914115207.wq4pmgrszhtgctdu@akan>
- <9fe50c76-8d78-c1fe-e8f5-b43eecd32db8@ti.com>
+        id S1726705AbgINN1a (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Mon, 14 Sep 2020 09:27:30 -0400
+Received: from lindbergh.monkeyblade.net ([23.128.96.19]:56028 "EHLO
+        lindbergh.monkeyblade.net" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
+        with ESMTP id S1726751AbgINNYj (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Mon, 14 Sep 2020 09:24:39 -0400
+Received: from mail-pg1-x541.google.com (mail-pg1-x541.google.com [IPv6:2607:f8b0:4864:20::541])
+        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 04868C06174A;
+        Mon, 14 Sep 2020 06:24:37 -0700 (PDT)
+Received: by mail-pg1-x541.google.com with SMTP id k14so1172024pgi.9;
+        Mon, 14 Sep 2020 06:24:36 -0700 (PDT)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+        d=gmail.com; s=20161025;
+        h=date:from:to:cc:subject:message-id:references:mime-version
+         :content-disposition:in-reply-to;
+        bh=UxjCIDPFaDaw0Aevl12WvNq3PRFVzMo2HersEB4khs4=;
+        b=VDGB+o7nTwxg8C96CJ13YdC6HV/Nxim8U6l8TQ6xqmyhI++qDovF1C6GhdrBQp7p5x
+         EiVnEAN2Iw8yeTTAoZNwc+d4SXn7DVW7wZDQHo2/Eq1XHS64TbH2y+bWPJ/pHur49PWO
+         avp2uJlrT1GvcYsi+k/5IYhURpEm5spdbXVloVuv5ltPMMdw6fBXnEv0zUDgsdcKm7Cc
+         o2UkGkIFsVribS5rLZDBni0+cfeT1nxCtMhA28sN1r+LLCj+7G6LPshf0LaGRA9/VEL9
+         WlW/uVxeZHMSODRs3WIA3XIwDmssry8kE7DAp1k3L2KLpMAVEzJ3ngbUsH8LH1LOkBux
+         PcXA==
+X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+        d=1e100.net; s=20161025;
+        h=x-gm-message-state:date:from:to:cc:subject:message-id:references
+         :mime-version:content-disposition:in-reply-to;
+        bh=UxjCIDPFaDaw0Aevl12WvNq3PRFVzMo2HersEB4khs4=;
+        b=clDW7OKlUIWV0B32d2mVF3SXqDSLw8INGjFi0/RLzKOPbB1oNJ2N9b2bz11zXfkzw9
+         lBS6XuAt/7YAsQet82pKXmHeOI1XONOdsX2x4ZEauCKYIA1AcUU4S7t03kD7S7ghn2Bb
+         96WxJ04Ug32GUe8iTLL8M4PXVPANjLRtqeSVfqt/GHL5v32hSnpPNoijgBM6xRFk5C5P
+         ucaNCGUjft5YYagH0WytsJl+61OKiDZvoVb4TheORsok/5mDZ8JnddCCKUz9PFStngC5
+         f7DTq2BsrFlh+toOEzGAYlqJCXDbwpYUdwNyd/YuoVrlMv4sr3yj44ZZEt02firUVKsI
+         81Mg==
+X-Gm-Message-State: AOAM531S7Zx4JutOPYX6O2B7TxI9BVfeuEHHMH99VcCIabLvaba3GzVK
+        tnxADdIIc5VrdZzRPNDJrVc6rihcEWL+Vw==
+X-Google-Smtp-Source: ABdhPJxXWWq/KN5aAZ1Us02gVvFHuH0VP9PqMtqGuzlCPK3bb4MqeudCDHBMQGWWRbtQUZLauA2U4g==
+X-Received: by 2002:a65:6104:: with SMTP id z4mr4006631pgu.184.1600089876464;
+        Mon, 14 Sep 2020 06:24:36 -0700 (PDT)
+Received: from localhost (g168.115-65-169.ppp.wakwak.ne.jp. [115.65.169.168])
+        by smtp.gmail.com with ESMTPSA id y4sm10760351pfr.46.2020.09.14.06.24.35
+        (version=TLS1_3 cipher=TLS_AES_256_GCM_SHA384 bits=256/256);
+        Mon, 14 Sep 2020 06:24:35 -0700 (PDT)
+Date:   Mon, 14 Sep 2020 22:24:33 +0900
+From:   Stafford Horne <shorne@gmail.com>
+To:     Mateusz Holenko <mholenko@antmicro.com>
+Cc:     Rob Herring <robh+dt@kernel.org>,
+        Mark Rutland <mark.rutland@arm.com>,
+        Greg Kroah-Hartman <gregkh@linuxfoundation.org>,
+        Jiri Slaby <jslaby@suse.com>,
+        devicetree <devicetree@vger.kernel.org>,
+        "open list:SERIAL DRIVERS" <linux-serial@vger.kernel.org>,
+        Karol Gugala <kgugala@antmicro.com>,
+        Mauro Carvalho Chehab <mchehab+samsung@kernel.org>,
+        "David S. Miller" <davem@davemloft.net>,
+        "Paul E. McKenney" <paulmck@linux.ibm.com>,
+        Filip Kokosinski <fkokosinski@antmicro.com>,
+        Pawel Czarnecki <pczarnecki@internships.antmicro.com>,
+        Joel Stanley <joel@jms.id.au>,
+        Jonathan Cameron <Jonathan.Cameron@huawei.com>,
+        Maxime Ripard <mripard@kernel.org>,
+        Shawn Guo <shawnguo@kernel.org>,
+        Heiko Stuebner <heiko@sntech.de>,
+        Sam Ravnborg <sam@ravnborg.org>,
+        Icenowy Zheng <icenowy@aosc.io>,
+        Laurent Pinchart <laurent.pinchart@ideasonboard.com>,
+        Linux Kernel Mailing List <linux-kernel@vger.kernel.org>,
+        "Gabriel L. Somlo" <gsomlo@gmail.com>
+Subject: Re: [PATCH v10 3/5] drivers/soc/litex: add LiteX SoC Controller
+ driver
+Message-ID: <20200914132433.GB2512402@lianli.shorne-pla.net>
+References: <20200812143324.2394375-0-mholenko@antmicro.com>
+ <20200812143324.2394375-3-mholenko@antmicro.com>
+ <20200911005740.GN3562056@lianli.shorne-pla.net>
+ <CAPk366Tvb9g960e3ZLv3+_H8FZJRRe0Jqa4q7tejE+svMcQvLA@mail.gmail.com>
 MIME-Version: 1.0
-Content-Type: text/plain; charset="iso-8859-1"
+Content-Type: text/plain; charset=us-ascii
 Content-Disposition: inline
-Content-Transfer-Encoding: 8bit
-In-Reply-To: <9fe50c76-8d78-c1fe-e8f5-b43eecd32db8@ti.com>
-User-Agent: NeoMutt/20171215
-X-EXCLAIMER-MD-CONFIG: e1e8a2fd-e40a-4ac6-ac9b-f7e9cc9ee180
+In-Reply-To: <CAPk366Tvb9g960e3ZLv3+_H8FZJRRe0Jqa4q7tejE+svMcQvLA@mail.gmail.com>
 Sender: devicetree-owner@vger.kernel.org
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-On 17:43-20200914, Kishon Vijay Abraham I wrote:
-> Hi Nishanth,
-> 
-> On 14/09/20 5:22 pm, Nishanth Menon wrote:
-> > On 16:53-20200914, Kishon Vijay Abraham I wrote:
-> >> Hi Rob,
-> >>
-> >> On 02/09/20 1:07 pm, Kishon Vijay Abraham I wrote:
-> >>> Hi Rob,
-> >>>
-> >>> On 02/09/20 10:24 am, Kishon Vijay Abraham I wrote:
-> >>>> Hi Nishanth,
-> >>>>
-> >>>> On 01/09/20 8:22 pm, Nishanth Menon wrote:
-> >>>>> On 19:36-20200901, Kishon Vijay Abraham I wrote:
-> >>>>>> Add PCIe device tree node (both RC and EP) for the four
-> >>>>>> PCIe instances here.
-> >>>>>>
-> >>>>>> Signed-off-by: Kishon Vijay Abraham I <kishon@ti.com>
-> >>>>>> ---
-> >>>>>>   arch/arm64/boot/dts/ti/k3-j721e-main.dtsi | 218
-> >>>>>> ++++++++++++++++++++++
-> >>>>>>   arch/arm64/boot/dts/ti/k3-j721e.dtsi      |   5 +-
-> >>>>>>   2 files changed, 222 insertions(+), 1 deletion(-)
-> >>>>>
-> >>>>>
-> >>>>> Did you look at the diff of the dtbs_check before and after this
-> >>>>> series? I see: https://pastebin.ubuntu.com/p/9fyfrTjx9M/
-> >>>>
-> >>>> I didn't see any errors when I checked for individual bindings
-> >>>> a0393678@a0393678-ssd:~/repos/linux$ mkconfig64 dtbs_check
-> >>>> DT_SCHEMA_FILES="Documentation/devicetree/bindings/pci/ti,j721e-pci-ep.yaml"
-> >>>>
-> >>>>    SCHEMA  Documentation/devicetree/bindings/processed-schema.yaml
-> >>>>    DTC     arch/arm64/boot/dts/ti/k3-am654-base-board.dt.yaml
-> >>>>    DTC     arch/arm64/boot/dts/ti/k3-j721e-common-proc-board.dt.yaml
-> >>>>    CHECK   arch/arm64/boot/dts/ti/k3-am654-base-board.dt.yaml
-> >>>>    CHECK   arch/arm64/boot/dts/ti/k3-j721e-common-proc-board.dt.yaml
-> >>>> a0393678@a0393678-ssd:~/repos/linux$ mkconfig64 dtbs_check
-> >>>> DT_SCHEMA_FILES="Documentation/devicetree/bindings/pci/ti,j721e-pci-host.yaml"
-> >>>>
-> >>>>    SCHEMA  Documentation/devicetree/bindings/processed-schema.yamlsimple-bus
-> >>>>    DTC     arch/arm64/boot/dts/ti/k3-am654-base-board.dt.yaml
-> >>>>    DTC     arch/arm64/boot/dts/ti/k3-j721e-common-proc-board.dt.yaml
-> >>>>    CHECK   arch/arm64/boot/dts/ti/k3-am654-base-board.dt.yaml
-> >>>>    CHECK   arch/arm64/boot/dts/ti/k3-j721e-common-proc-board.dt.yaml
-> >>>
-> >>> Can you give hint on why I get ranges is too long error
-> >>> https://pastebin.ubuntu.com/p/cPm2tg3dcV/ which I give mkconfig64
-> >>> dtbs_check but don't see an error when I include "DT_SCHEMA_FILES"?
-> >>
-> >> I debugged this and looks like PCIe "ranges" property conflicts with
-> >> simple-bus.
-> >>
-> >> A diff like below helps to solve the issue
-> >> diff --git a/schemas/simple-bus.yaml b/schemas/simple-bus.yaml
-> >> index 248ac9d..ed818ef 100644
-> >> --- a/schemas/simple-bus.yaml
-> >> +++ b/schemas/simple-bus.yaml
-> >> @@ -39,7 +39,7 @@ patternProperties:
-> >>          oneOf:
-> >>            - items:
-> >>                minItems: 3
-> >> -              maxItems: 6
-> >> +              maxItems: 7
-> >>              minItems: 0
-> >>              maxItems: 1024
-> >>            - $ref: "types.yaml#/definitions/flag"
-> >>
-> >> If this looks right to you, I can post a patch for it. Without fixing
-> >> this we would see false errors for PCIe DT nodes.
-> > 
-> > https://github.com/devicetree-org/dt-schema/commit/3baf308b01786788e3ccb9824fce6d7136b21214
-> > 
-> > Part of v2020.08.1? Am i missing something?
-> 
-> I think I was using a different repo
-> https://github.com/robherring/dt-schema.git.
-> 
-> Do you see the following issues you reported earlier with v2020.08.1?
-> 
-> +/home/nmenon/Src/opensource/linux/arch/arm64/boot/dts/ti/k3-j721e-common-proc-board.dt.yaml:
-> bus@100000: pcie@2900000:ranges: [[16777216, 0, 268439552, 0, 268439552,
-> 0, 65536], [33554432, 0, 268505088, 0, 268505088, 0, 134148096]] is not
-> valid under any of the given schemas (Possible causes of the failure):
-> +
-> /home/nmenon/Src/opensource/linux/arch/arm64/boot/dts/ti/k3-j721e-common-proc-board.dt.yaml:
-> bus@100000: pcie@2900000:ranges: True was expected
-> +
-> /home/nmenon/Src/opensource/linux/arch/arm64/boot/dts/ti/k3-j721e-common-proc-board.dt.yaml:
-> bus@100000: pcie@2900000:ranges:0: [16777216, 0, 268439552, 0,
-> 268439552, 0, 65536] is too long
-> +
-> /home/nmenon/Src/opensource/linux/arch/arm64/boot/dts/ti/k3-j721e-common-proc-board.dt.yaml:
-> bus@100000: pcie@2900000:ranges:1: [33554432, 0, 268505088, 0,
-> 268505088, 0, 134148096] is too long
+On Mon, Sep 14, 2020 at 12:33:11PM +0200, Mateusz Holenko wrote:
+> On Fri, Sep 11, 2020 at 2:57 AM Stafford Horne <shorne@gmail.com> wrote:
+> >
+> > On Wed, Aug 12, 2020 at 02:34:34PM +0200, Mateusz Holenko wrote:
+> > > From: Pawel Czarnecki <pczarnecki@internships.antmicro.com>
+> > >
+> > > This commit adds driver for the FPGA-based LiteX SoC
+> > > Controller from LiteX SoC builder.
+> > >
+> > > Co-developed-by: Mateusz Holenko <mholenko@antmicro.com>
+> > > Signed-off-by: Mateusz Holenko <mholenko@antmicro.com>
+> > > Signed-off-by: Pawel Czarnecki <pczarnecki@internships.antmicro.com>
+> > > ---
+> > > +     node = dev->of_node;
+> > > +     if (!node)
+> > > +             return -ENODEV;
 
+We return here without BUG() if the setup fails.
 
-Arrgh.. you are right.. Looks like one of my PCs still had 2020.8
-instead of 2020.8.1. We just need to figure out what is going on with
-syscon.yaml as against ti,j721e-system-controller.yaml..
+> > > +
+> > > +     soc_ctrl_dev = devm_kzalloc(dev, sizeof(*soc_ctrl_dev), GFP_KERNEL);
+> > > +     if (!soc_ctrl_dev)
+> > > +             return -ENOMEM;
 
--- 
-Regards,
-Nishanth Menon
-Key (0xDDB5849D1736249D) / Fingerprint: F8A2 8693 54EB 8232 17A3  1A34 DDB5 849D 1736 249D
+We return here without BUG() if we are out of memory.
+
+> > > +
+> > > +     soc_ctrl_dev->base = devm_platform_ioremap_resource(pdev, 0);
+> > > +     if (IS_ERR(soc_ctrl_dev->base))
+> > > +             return PTR_ERR(soc_ctrl_dev->base);
+
+Etc.
+
+> > > +
+> > > +     result = litex_check_csr_access(soc_ctrl_dev->base);
+> > > +     if (result) {
+> > > +             // LiteX CSRs access is broken which means that
+> > > +             // none of LiteX drivers will most probably
+> > > +             // operate correctly
+> > The comment format here with // is not usually used in the kernel, but its not
+> > forbidded.  Could you use the /* */ multiline style?
+> 
+> Sure, I'll change the commenting style here.
+> 
+> >
+> > > +             BUG();
+> > Instead of stopping the system with BUG, could we just do:
+> >
+> >         return litex_check_csr_access(soc_ctrl_dev->base);
+> >
+> > We already have failure for NODEV/NOMEM so might as well not call BUG() here
+> > too.
+> 
+> It's true that litex_check_csr_accessors() already generates error
+> codes that could be
+> returned directly.
+> The point of using BUG() macro here, however, is to stop booting the
+> system so that it's visible
+> (and impossible to miss for the user) that an unresolvable HW issue
+> was encountered.
+> 
+> CSR-accessors - the litex_{g,s}et_reg() functions - are intended to be
+> used by other LiteX drivers
+> and it's very unlikely that those drivers would work properly after
+> the fail of litex_check_csr_accessors().
+> Since in such case the UART driver will be affected too (no boot logs
+> and error messages visible to the user),
+> I thought it'll be easier to spot and debug the problem if the system
+> stopped in the BUG loop.
+> Perhaps there are other, more linux-friendly, ways of achieving a
+> similar goal - I'm open for suggestions.
+
+I see your point, but I thought if failed with an exit status above, we could do
+the same here.  But I guess failing here means that something is really wrong as
+validation failed.
+
+Some points:
+ - If we return here, the system will still boot but there will be no UART
+ - If we bail with BUG(), here the system stops, and there is no UART
+ - Both cases the user can connect with a debugger and read "dmesg", to see what
+   is wrong, but BUG() does not print an error message on all architectures.
+
+We could also use:
+
+ - WARN(1, "Failed to validate CSR registers, the system is probably broken.");
+
+If you want to keep BUG() it may be fine.
+
+I am not an expert on handling these type of bailout's so other input is
+appreciated.
+
+-Stafford
