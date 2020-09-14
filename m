@@ -2,245 +2,264 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from vger.kernel.org (vger.kernel.org [23.128.96.18])
-	by mail.lfdr.de (Postfix) with ESMTP id 0ED1C269448
-	for <lists+devicetree@lfdr.de>; Mon, 14 Sep 2020 20:01:15 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTP id 2BD0126948D
+	for <lists+devicetree@lfdr.de>; Mon, 14 Sep 2020 20:13:24 +0200 (CEST)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S1726015AbgINSA7 (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Mon, 14 Sep 2020 14:00:59 -0400
-Received: from mail-io1-f68.google.com ([209.85.166.68]:43558 "EHLO
-        mail-io1-f68.google.com" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S1725914AbgINSAE (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Mon, 14 Sep 2020 14:00:04 -0400
-Received: by mail-io1-f68.google.com with SMTP id z25so1039950iol.10;
-        Mon, 14 Sep 2020 11:00:03 -0700 (PDT)
+        id S1726038AbgINSNT (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Mon, 14 Sep 2020 14:13:19 -0400
+Received: from mail-io1-f67.google.com ([209.85.166.67]:40471 "EHLO
+        mail-io1-f67.google.com" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
+        with ESMTP id S1726044AbgINSNG (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Mon, 14 Sep 2020 14:13:06 -0400
+Received: by mail-io1-f67.google.com with SMTP id j2so1107148ioj.7;
+        Mon, 14 Sep 2020 11:13:02 -0700 (PDT)
 X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
         d=1e100.net; s=20161025;
         h=x-gm-message-state:date:from:to:cc:subject:message-id:references
          :mime-version:content-disposition:in-reply-to;
-        bh=gzNN3HZZcC4xGOcBJqGS3DjMEJgqFY3enUUKhW0YfKM=;
-        b=rV3L3m10PheHxKdTRO+NW0B2gKngHt4H1spRs4OZJYYXLCsHw85qnSSlYSMR4AyYZm
-         4OG/GJR+zrfICtbGlI9Y1jUT7HpCBLGDpQIIxYYzxtY9/U+fCQI2if3VFdqYE/Rx0SWF
-         Kzk7IyfZqZ6jkZWJ1nSwRz0fNwRy2FR9LY3Tdz4K56oRnKSDFj8Fw3ej3zIbiLeOVnOE
-         s9TYkrzWHk6vp/63ylCoYba5BCpb+XRCaoL4WAcK7qp7OcLZ08YubgGKHyq3jxfZfXLf
-         /sQNjlXDD6Gt1xN6B/wlLeCtnBD6uhQNutlSp27vOEgLzmy2dpaLDrZ/nVWaCEOowGWY
-         aoIA==
-X-Gm-Message-State: AOAM530TcgwFc/DojHGXtrFHA8/kjmngWzvGsZ3qlb5bgL0Rri2fqvs9
-        LoARIiGF7nUZifB6+QSPcypSRlzFS73h
-X-Google-Smtp-Source: ABdhPJy1fWF8jAS3tfIaj/ZZ32fOJcUmIOzJdJiLdBMrivkmifvH6f13QOTpJlSIyKsE8qAV9BgQBg==
-X-Received: by 2002:a6b:8f10:: with SMTP id r16mr12351915iod.165.1600106403423;
-        Mon, 14 Sep 2020 11:00:03 -0700 (PDT)
+        bh=flh8Qx49o5v1NWGlnIlQV9lzKDaYx8c+g/EflzEDRhM=;
+        b=o2UZzP6beHtmsBbT/84NPmvhtzBBM8D5/a7OlKfZxQe3rfphQqSU53yV4d1GobmQG4
+         1mhC+8fAiM+NS2XeEWt40eHpSOeeWVUut9MfIoagMwG5bIbXV9AfGrCoF9eLjzxPzBYL
+         L+s/yGzmJlE8U6lJik3461yU8cloqa6ka2HC0b841kLTiYoHD09ZLzSrJN2kCkkbMGVV
+         LQiHb4UVbuNEk4szn2XAQfAqtUAwUOT1CCHDqmZ9yygsPNdXdyYLftN0JnTSAv7/sThC
+         xjefT8vR1fjRvYY/oaO6BsFq75ky+dCm+C+YQS9rpP/Aq6cn0MertZFY1AfgXQBmlr0D
+         ht3w==
+X-Gm-Message-State: AOAM531enpUmkHETchRK0sxbCH2fXurl4+nLGLLC4ywiBD3iYxDH6Zt+
+        YhXnz9/fnALjyUT86nZIOw==
+X-Google-Smtp-Source: ABdhPJzYORTqGUQ1Z+gz8wZ6y5/SfEqw40DmQXnoNlX57jjbB08mw8PJvJmpD1E7x1n5FyiJvddW5w==
+X-Received: by 2002:a02:4b07:: with SMTP id q7mr14986215jaa.84.1600107181794;
+        Mon, 14 Sep 2020 11:13:01 -0700 (PDT)
 Received: from xps15 ([64.188.179.253])
-        by smtp.gmail.com with ESMTPSA id l10sm1015753ilm.75.2020.09.14.11.00.01
+        by smtp.gmail.com with ESMTPSA id m19sm7410692ila.40.2020.09.14.11.12.58
         (version=TLS1_3 cipher=TLS_AES_256_GCM_SHA384 bits=256/256);
-        Mon, 14 Sep 2020 11:00:02 -0700 (PDT)
-Received: (nullmailer pid 4145728 invoked by uid 1000);
-        Mon, 14 Sep 2020 18:00:00 -0000
-Date:   Mon, 14 Sep 2020 12:00:00 -0600
+        Mon, 14 Sep 2020 11:13:00 -0700 (PDT)
+Received: (nullmailer pid 4166255 invoked by uid 1000);
+        Mon, 14 Sep 2020 18:12:57 -0000
+Date:   Mon, 14 Sep 2020 12:12:57 -0600
 From:   Rob Herring <robh@kernel.org>
-To:     Sagar Kadam <sagar.kadam@sifive.com>
-Cc:     linux-kernel@vger.kernel.org, linux-riscv@lists.infradead.org,
-        devicetree@vger.kernel.org, paul.walmsley@sifive.com,
-        palmer@dabbelt.com, aou@eecs.berkeley.edu, yash.shah@sifive.com
-Subject: Re: [RESEND PATCH v2 1/1] dt-bindings: riscv: sifive-l2-cache:
- convert bindings to json-schema
-Message-ID: <20200914180000.GA4136408@bogus>
-References: <1598633743-1023-1-git-send-email-sagar.kadam@sifive.com>
- <1598633743-1023-2-git-send-email-sagar.kadam@sifive.com>
+To:     Krzysztof Kozlowski <krzk@kernel.org>
+Cc:     Linus Walleij <linus.walleij@linaro.org>,
+        Bartosz Golaszewski <bgolaszewski@baylibre.com>,
+        =?iso-8859-1?Q?Beno=EEt?= Cousson <bcousson@baylibre.com>,
+        Tony Lindgren <tony@atomide.com>,
+        Joel Stanley <joel@jms.id.au>,
+        Andrew Jeffery <andrew@aj.id.au>,
+        Jason Cooper <jason@lakedaemon.net>,
+        Andrew Lunn <andrew@lunn.ch>,
+        Sebastian Hesselbarth <sebastian.hesselbarth@gmail.com>,
+        Gregory Clement <gregory.clement@bootlin.com>,
+        Shawn Guo <shawnguo@kernel.org>,
+        Sascha Hauer <s.hauer@pengutronix.de>,
+        Pengutronix Kernel Team <kernel@pengutronix.de>,
+        Stefan Agner <stefan@agner.ch>, linux-gpio@vger.kernel.org,
+        devicetree@vger.kernel.org, linux-kernel@vger.kernel.org,
+        linux-omap@vger.kernel.org, linux-arm-kernel@lists.infradead.org,
+        linux-aspeed@lists.ozlabs.org
+Subject: Re: [PATCH 2/6] dt-bindings: gpio: Convert bindings for Maxim
+ MAX732x family to dtschema
+Message-ID: <20200914181257.GA4163345@bogus>
+References: <20200829094024.31842-1-krzk@kernel.org>
+ <20200829094024.31842-2-krzk@kernel.org>
 MIME-Version: 1.0
 Content-Type: text/plain; charset=us-ascii
 Content-Disposition: inline
-In-Reply-To: <1598633743-1023-2-git-send-email-sagar.kadam@sifive.com>
+In-Reply-To: <20200829094024.31842-2-krzk@kernel.org>
 Sender: devicetree-owner@vger.kernel.org
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-On Fri, Aug 28, 2020 at 10:25:43PM +0530, Sagar Kadam wrote:
-> Convert the device tree bindings for the SiFive's FU540-C000 SoC's L2 Cache
-> controller to YAML format.
+On Sat, Aug 29, 2020 at 11:40:20AM +0200, Krzysztof Kozlowski wrote:
+> Convert the Maxim MAX732x family of GPIO expanders bindings to device
+> tree schema by merging it with existing PCA95xx schema.  These are quite
+> similar so merging reduces duplication.
 > 
-> Signed-off-by: Sagar Kadam <sagar.kadam@sifive.com>
+> Signed-off-by: Krzysztof Kozlowski <krzk@kernel.org>
 > ---
->  .../devicetree/bindings/riscv/sifive-l2-cache.txt  | 51 ------------
->  .../devicetree/bindings/riscv/sifive-l2-cache.yaml | 92 ++++++++++++++++++++++
->  2 files changed, 92 insertions(+), 51 deletions(-)
->  delete mode 100644 Documentation/devicetree/bindings/riscv/sifive-l2-cache.txt
->  create mode 100644 Documentation/devicetree/bindings/riscv/sifive-l2-cache.yaml
+>  .../devicetree/bindings/gpio/gpio-max732x.txt | 58 ---------------
+>  .../bindings/gpio/gpio-pca95xx.yaml           | 72 ++++++++++++++++++-
+>  2 files changed, 70 insertions(+), 60 deletions(-)
+>  delete mode 100644 Documentation/devicetree/bindings/gpio/gpio-max732x.txt
 > 
-> diff --git a/Documentation/devicetree/bindings/riscv/sifive-l2-cache.txt b/Documentation/devicetree/bindings/riscv/sifive-l2-cache.txt
+> diff --git a/Documentation/devicetree/bindings/gpio/gpio-max732x.txt b/Documentation/devicetree/bindings/gpio/gpio-max732x.txt
 > deleted file mode 100644
-> index 73d8f19..0000000
-> --- a/Documentation/devicetree/bindings/riscv/sifive-l2-cache.txt
+> index b3a9c0c32823..000000000000
+> --- a/Documentation/devicetree/bindings/gpio/gpio-max732x.txt
 > +++ /dev/null
-> @@ -1,51 +0,0 @@
-> -SiFive L2 Cache Controller
-> ---------------------------
-> -The SiFive Level 2 Cache Controller is used to provide access to fast copies
-> -of memory for masters in a Core Complex. The Level 2 Cache Controller also
-> -acts as directory-based coherency manager.
-> -All the properties in ePAPR/DeviceTree specification applies for this platform
+> @@ -1,58 +0,0 @@
+> -* MAX732x-compatible I/O expanders
 > -
-> -Required Properties:
-> ---------------------
-> -- compatible: Should be "sifive,fu540-c000-ccache" and "cache"
+> -Required properties:
+> -  - compatible: Should be one of the following:
+> -    - "maxim,max7319": For the Maxim MAX7319
+> -    - "maxim,max7320": For the Maxim MAX7320
+> -    - "maxim,max7321": For the Maxim MAX7321
+> -    - "maxim,max7322": For the Maxim MAX7322
+> -    - "maxim,max7323": For the Maxim MAX7323
+> -    - "maxim,max7324": For the Maxim MAX7324
+> -    - "maxim,max7325": For the Maxim MAX7325
+> -    - "maxim,max7326": For the Maxim MAX7326
+> -    - "maxim,max7327": For the Maxim MAX7327
+> -  - reg: I2C slave address for this device.
+> -  - gpio-controller: Marks the device node as a GPIO controller.
+> -  - #gpio-cells: Should be 2.
+> -    - first cell is the GPIO number
+> -    - second cell specifies GPIO flags, as defined in <dt-bindings/gpio/gpio.h>.
+> -      Only the GPIO_ACTIVE_HIGH and GPIO_ACTIVE_LOW flags are supported.
 > -
-> -- cache-block-size: Specifies the block size in bytes of the cache.
-> -  Should be 64
+> -Optional properties:
 > -
-> -- cache-level: Should be set to 2 for a level 2 cache
+> -  The I/O expander can detect input state changes, and thus optionally act as
+> -  an interrupt controller. When the expander interrupt line is connected all the
+> -  following properties must be set. For more information please see the
+> -  interrupt controller device tree bindings documentation available at
+> -  Documentation/devicetree/bindings/interrupt-controller/interrupts.txt.
 > -
-> -- cache-sets: Specifies the number of associativity sets of the cache.
-> -  Should be 1024
+> -  - interrupt-controller: Identifies the node as an interrupt controller.
+> -  - #interrupt-cells: Number of cells to encode an interrupt source, shall be 2.
+> -    - first cell is the pin number
+> -    - second cell is used to specify flags
+> -  - interrupts: Interrupt specifier for the controllers interrupt.
 > -
-> -- cache-size: Specifies the size in bytes of the cache. Should be 2097152
+> -Please refer to gpio.txt in this directory for details of the common GPIO
+> -bindings used by client devices.
 > -
-> -- cache-unified: Specifies the cache is a unified cache
+> -Example 1. MAX7325 with interrupt support enabled (CONFIG_GPIO_MAX732X_IRQ=y):
 > -
-> -- interrupts: Must contain 3 entries (DirError, DataError and DataFail signals)
-> -
-> -- reg: Physical base address and size of L2 cache controller registers map
-> -
-> -Optional Properties:
-> ---------------------
-> -- next-level-cache: phandle to the next level cache if present.
-> -
-> -- memory-region: reference to the reserved-memory for the L2 Loosely Integrated
-> -  Memory region. The reserved memory node should be defined as per the bindings
-> -  in reserved-memory.txt
-> -
-> -
-> -Example:
-> -
-> -	cache-controller@2010000 {
-> -		compatible = "sifive,fu540-c000-ccache", "cache";
-> -		cache-block-size = <64>;
-> -		cache-level = <2>;
-> -		cache-sets = <1024>;
-> -		cache-size = <2097152>;
-> -		cache-unified;
-> -		interrupt-parent = <&plic0>;
-> -		interrupts = <1 2 3>;
-> -		reg = <0x0 0x2010000 0x0 0x1000>;
-> -		next-level-cache = <&L25 &L40 &L36>;
-> -		memory-region = <&l2_lim>;
+> -	expander: max7325@6d {
+> -		compatible = "maxim,max7325";
+> -		reg = <0x6d>;
+> -		gpio-controller;
+> -		#gpio-cells = <2>;
+> -		interrupt-controller;
+> -		#interrupt-cells = <2>;
+> -		interrupt-parent = <&gpio4>;
+> -		interrupts = <29 IRQ_TYPE_EDGE_FALLING>;
 > -	};
-> diff --git a/Documentation/devicetree/bindings/riscv/sifive-l2-cache.yaml b/Documentation/devicetree/bindings/riscv/sifive-l2-cache.yaml
-> new file mode 100644
-> index 0000000..e14c8c6
-> --- /dev/null
-> +++ b/Documentation/devicetree/bindings/riscv/sifive-l2-cache.yaml
-> @@ -0,0 +1,92 @@
-> +# SPDX-License-Identifier: (GPL-2.0 OR BSD-2-Clause)
-> +# Copyright (C) 2020 SiFive, Inc.
-> +%YAML 1.2
-> +---
-> +$id: http://devicetree.org/schemas/riscv/sifive-l2-cache.yaml#
-> +$schema: http://devicetree.org/meta-schemas/core.yaml#
+> -
+> -Example 2. MAX7325 with interrupt support disabled (CONFIG_GPIO_MAX732X_IRQ=n):
+> -
+> -	expander: max7325@6d {
+> -		compatible = "maxim,max7325";
+> -		reg = <0x6d>;
+> -		gpio-controller;
+> -		#gpio-cells = <2>;
+> -	};
+> diff --git a/Documentation/devicetree/bindings/gpio/gpio-pca95xx.yaml b/Documentation/devicetree/bindings/gpio/gpio-pca95xx.yaml
+> index c5bb24b3b7b5..e90433b7d52b 100644
+> --- a/Documentation/devicetree/bindings/gpio/gpio-pca95xx.yaml
+> +++ b/Documentation/devicetree/bindings/gpio/gpio-pca95xx.yaml
+> @@ -9,6 +9,10 @@ title: NXP PCA95xx I2C GPIO multiplexer
+>  maintainers:
+>    - Krzysztof Kozlowski <krzk@kernel.org>
+>  
+> +description: |+
+> +  Bindings for the family of I2C GPIO multiplexers/expanders: NXP PCA95xx,
+> +  Maxim MAX73xx
 > +
-> +title: SiFive L2 Cache Controller
-> +
-> +maintainers:
-> +  - Sagar Kadam <sagar.kadam@sifive.com>
-> +  - Yash Shah <yash.shah@sifive.com>
-> +  - Paul Walmsley  <paul.walmsley@sifive.com>
-> +
-> +description:
-> +  The SiFive Level 2 Cache Controller is used to provide access to fast copies
-> +  of memory for masters in a Core Complex. The Level 2 Cache Controller also
-> +  acts as directory-based coherency manager.
-> +  All the properties in ePAPR/DeviceTree specification applies for this platform.
-> +
+>  properties:
+>    compatible:
+>      enum:
+> @@ -17,6 +21,15 @@ properties:
+>        - maxim,max7312
+>        - maxim,max7313
+>        - maxim,max7315
+> +      - maxim,max7319
+> +      - maxim,max7320
+> +      - maxim,max7321
+> +      - maxim,max7322
+> +      - maxim,max7323
+> +      - maxim,max7324
+> +      - maxim,max7325
+> +      - maxim,max7326
+> +      - maxim,max7327
+>        - nxp,pca6416
+>        - nxp,pca9505
+>        - nxp,pca9534
+> @@ -69,11 +82,11 @@ properties:
+>    reset-gpios:
+>      description:
+>        GPIO specification for the RESET input. This is an active low signal to
+> -      the PCA953x.
+> +      the PCA953x.  Not valid for Maxim MAX732x devices.
+>  
+>    vcc-supply:
+>      description:
+> -      Optional power supply
+> +      Optional power supply.  Not valid for Maxim MAX732x devices.
+>  
+>  required:
+>    - compatible
+> @@ -83,6 +96,27 @@ required:
+>  
+>  unevaluatedProperties: false
+>  
 > +allOf:
-> +  - $ref: /schemas/cache-controller.yaml#
-> +
-> +properties:
-> +  compatible:
-> +    items:
-> +     - enum:
-> +        - sifive,fu540-c000-ccache
-> +    description: |
-> +      Should have "sifive,<soc>-cache" and "cache".
+> +  - if:
+> +      properties:
+> +        compatible:
+> +          contains:
+> +            enum:
+> +              - maxim,max7320
+> +              - maxim,max7321
+> +              - maxim,max7322
+> +              - maxim,max7323
+> +              - maxim,max7324
+> +              - maxim,max7325
+> +              - maxim,max7326
+> +              - maxim,max7327
+> +    then:
+> +      properties:
+> +        reset-gpios:
+> +          maxItems: 0
+> +        vcc-supply:
+> +          maxItems: 0
 
-That's not what the schema describes or the example has (the 'cache' 
-fallback).
-
-> +
-> +  cache-block-size:
-> +    const: 64
-> +
-> +  cache-level:
-> +    const: 2
-> +
-> +  cache-sets:
-> +    const: 1024
-> +
-> +  cache-size:
-> +    const: 2097152
-> +
-> +  cache-unified: true
-> +
-> +  interrupts:
-> +    description: |
-> +      Must contain entries for DirError, DataError and DataFail signals.
-> +    minItems: 1
-
-The old doc said must have 3 entries.
-
-> +    maxItems: 3
-> +
-> +  reg:
-> +    maxItems: 1
-> +    description: address of cache controller's registers.
-
-Drop this.
+reset-gpios: false
+vcc-supply: false
 
 > +
+>  examples:
+>    - |
+>      #include <dt-bindings/interrupt-controller/irq.h>
+> @@ -136,3 +170,37 @@ examples:
+>              ti,micbias = <0>;	/* 2.1V */
+>          };
+>      };
 > +
-
-One blank line please.
-
-> +  next-level-cache:
-> +    description: |
-> +      Phandle to the next level cache if present.
-
-No need to re-describe common properties unless you have something 
-unique to this device to say. Just:
-
-'next-level-cache: true'
-
-> +
-> +  memory-region:
-> +    description: |
-> +      The reference to the reserved-memory for the L2 Loosely Integrated memory region.
-> +      The reserved memory node should be defined as per the bindings in reserved-memory.txt.
-> +
-> +additionalProperties: false
-> +
-> +required:
-> +  - compatible
-> +  - cache-block-size
-> +  - cache-level
-> +  - cache-sets
-> +  - cache-size
-> +  - cache-unified
-> +  - interrupts
-> +  - reg
-> +
-> +examples:
 > +  - |
-> +    cache-controller@2010000 {
-> +        compatible = "sifive,fu540-c000-ccache";
-> +        cache-block-size = <64>;
-> +        cache-level = <2>;
-> +        cache-sets = <1024>;
-> +        cache-size = <2097152>;
-> +        cache-unified;
-> +        reg = <0x2010000 0x1000>;
-> +        interrupt-parent = <&plic0>;
-> +        interrupts = <1 2 3>;
-> +        next-level-cache = <&L25>;
-> +        memory-region = <&l2_lim>;
+> +    #include <dt-bindings/interrupt-controller/irq.h>
+> +
+> +    i2c2 {
+> +        #address-cells = <1>;
+> +        #size-cells = <0>;
+> +
+> +        // MAX7325 with interrupt support enabled
+> +        gpio@6d {
+> +            compatible = "maxim,max7325";
+> +            reg = <0x6d>;
+> +            gpio-controller;
+> +            #gpio-cells = <2>;
+> +            interrupt-controller;
+> +            #interrupt-cells = <2>;
+> +            interrupt-parent = <&gpio4>;
+> +            interrupts = <29 IRQ_TYPE_EDGE_FALLING>;
+> +        };
+> +    };
+> +
+> +  - |
+> +    i2c3 {
+> +        #address-cells = <1>;
+> +        #size-cells = <0>;
+> +
+> +        // MAX7325 with interrupt support disabled
+> +        gpio@6e {
+> +            compatible = "maxim,max7325";
+> +            reg = <0x6e>;
+> +            gpio-controller;
+> +            #gpio-cells = <2>;
+> +        };
 > +    };
 > -- 
-> 2.7.4
+> 2.17.1
 > 
