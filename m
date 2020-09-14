@@ -2,51 +2,47 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from vger.kernel.org (vger.kernel.org [23.128.96.18])
-	by mail.lfdr.de (Postfix) with ESMTP id DC498268E93
-	for <lists+devicetree@lfdr.de>; Mon, 14 Sep 2020 16:57:13 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTP id 26341268E61
+	for <lists+devicetree@lfdr.de>; Mon, 14 Sep 2020 16:53:04 +0200 (CEST)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S1726570AbgINO5I (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Mon, 14 Sep 2020 10:57:08 -0400
-Received: from mail.kernel.org ([198.145.29.99]:52766 "EHLO mail.kernel.org"
+        id S1726322AbgINOwq (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Mon, 14 Sep 2020 10:52:46 -0400
+Received: from mail.kernel.org ([198.145.29.99]:52868 "EHLO mail.kernel.org"
         rhost-flags-OK-OK-OK-OK) by vger.kernel.org with ESMTP
-        id S1726847AbgINOwD (ORCPT <rfc822;devicetree@vger.kernel.org>);
-        Mon, 14 Sep 2020 10:52:03 -0400
+        id S1726877AbgINOwO (ORCPT <rfc822;devicetree@vger.kernel.org>);
+        Mon, 14 Sep 2020 10:52:14 -0400
 Received: from localhost (fw-tnat.cambridge.arm.com [217.140.96.140])
         (using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
         (No client certificate requested)
-        by mail.kernel.org (Postfix) with ESMTPSA id ED2A020936;
-        Mon, 14 Sep 2020 14:52:02 +0000 (UTC)
+        by mail.kernel.org (Postfix) with ESMTPSA id 24C3320829;
+        Mon, 14 Sep 2020 14:52:12 +0000 (UTC)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=kernel.org;
-        s=default; t=1600095123;
-        bh=1qKTCFyAmrhl/DWjwf+6VgDKAdfgJ17CixfdpPZvgzg=;
+        s=default; t=1600095133;
+        bh=0Rdhj23dSlc9B+I6Z1sKv+n1S1msaVOGFY5Rifck8UY=;
         h=Date:From:To:Cc:In-Reply-To:References:Subject:From;
-        b=xK9lRKLus8ZTZ5sP7mazOB8h5jM837B0pptkzyLD7irDdWvrqWKnFOsSh1FQKxzaG
-         SD9XV4grMNOZdvog2Y5Jgr/u+ynVWIydfGDhPRSTjw5deRqvotddJbb0lVL9IaRBB1
-         pyqgJpp/UhbMLVVR5MGBbR/5ktLTsFN23YwgzodY=
-Date:   Mon, 14 Sep 2020 15:51:15 +0100
+        b=fHEYHty1PVdcEQnikpPvfiPNka9hST336BpqbxHDCMnUueClin5G5K5kX2SKqMrj8
+         jsuZ/zPMJHvowVIOH3/2O/2zvMvRtCaCuFp+uzqWxLkRq9yBg4vxOJSLZ1QQR3jVmA
+         /cQV/jesqMRC/2qgYMcibLfSSnzrVbtumNbPSyU0=
+Date:   Mon, 14 Sep 2020 15:51:25 +0100
 From:   Mark Brown <broonie@kernel.org>
-To:     robh+dt@kernel.org, Peter Ujfalusi <peter.ujfalusi@ti.com>,
-        lgirdwood@gmail.com
-Cc:     devicetree@vger.kernel.org, linux-kernel@vger.kernel.org,
-        alsa-devel@alsa-project.org
-In-Reply-To: <20200910124110.19361-1-peter.ujfalusi@ti.com>
-References: <20200910124110.19361-1-peter.ujfalusi@ti.com>
-Subject: Re: [PATCH v2 0/2] ASoC: ti: j721e-evm: Support for j7200 variant
-Message-Id: <160009506911.439.3955483489656494834.b4-ty@kernel.org>
+To:     robh+dt@kernel.org, Tzung-Bi Shih <tzungbi@google.com>
+Cc:     devicetree@vger.kernel.org, alsa-devel@alsa-project.org
+In-Reply-To: <20200911024833.1673961-1-tzungbi@google.com>
+References: <20200911024833.1673961-1-tzungbi@google.com>
+Subject: Re: [PATCH 0/2] ASoC: mediatek: mt8183-da7219: support machine driver for rt1015p
+Message-Id: <160009506912.439.1847050038899323133.b4-ty@kernel.org>
 Sender: devicetree-owner@vger.kernel.org
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-On Thu, 10 Sep 2020 15:41:08 +0300, Peter Ujfalusi wrote:
-> Changes since v1:
-> - Suffix the 2359296000 constant with 'u' to silence C90 warning
+On Fri, 11 Sep 2020 10:48:31 +0800, Tzung-Bi Shih wrote:
+> The series reuses mt8183-da7219-max98357.c for supporting machine
+> driver with rt1015p speaker amplifier.
 > 
-> When j7200 SOM is connected to the CPB, the audio setup is a bit different:
-> Only 48KHz family have clock path, 44.1KHz is not supported.
+> The 1st patch adds document for the new proposed compatible string.
 > 
-> Update the binding documentation and add support for the j7200 version of CPB
-> to the driver.
+> The 2nd patch changes the machine driver to support "RT1015P" codec.
 > 
 > [...]
 
@@ -56,10 +52,10 @@ Applied to
 
 Thanks!
 
-[1/2] ASoC: dt-bindings: ti, j721e-cpb-audio: Document support for j7200-cpb
-      commit: 18790b1b514a202bae2863a4206b731d95302c85
-[2/2] ASoC: ti: j721e-evm: Add support for j7200-cpb audio
-      commit: 18c140f4a2de8fa674d52fe522a47133bc124f81
+[1/2] ASoC: dt-bindings: mt8183-da7219: add compatible string for using rt1015p
+      commit: 5d1e0557520862c3a73b8b6a809807be1b522c3f
+[2/2] ASoC: mediatek: mt8183-da7219: support machine driver with rt1015p
+      commit: 7e5bfdddd8772011a2d38cf6be821d616db6cf8c
 
 All being well this means that it will be integrated into the linux-next
 tree (usually sometime in the next 24 hours) and sent to Linus during
