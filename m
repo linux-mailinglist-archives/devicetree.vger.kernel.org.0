@@ -2,49 +2,49 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from vger.kernel.org (vger.kernel.org [23.128.96.18])
-	by mail.lfdr.de (Postfix) with ESMTP id 7FD212690D7
-	for <lists+devicetree@lfdr.de>; Mon, 14 Sep 2020 17:57:47 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTP id 5D20D2690FB
+	for <lists+devicetree@lfdr.de>; Mon, 14 Sep 2020 18:00:42 +0200 (CEST)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S1726451AbgINP5m (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Mon, 14 Sep 2020 11:57:42 -0400
-Received: from lindbergh.monkeyblade.net ([23.128.96.19]:51670 "EHLO
+        id S1726446AbgINQAf (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Mon, 14 Sep 2020 12:00:35 -0400
+Received: from lindbergh.monkeyblade.net ([23.128.96.19]:52134 "EHLO
         lindbergh.monkeyblade.net" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S1726396AbgINP5c (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Mon, 14 Sep 2020 11:57:32 -0400
-Received: from mail-pf1-x441.google.com (mail-pf1-x441.google.com [IPv6:2607:f8b0:4864:20::441])
-        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id B44D2C06174A
-        for <devicetree@vger.kernel.org>; Mon, 14 Sep 2020 08:57:31 -0700 (PDT)
-Received: by mail-pf1-x441.google.com with SMTP id f18so12993124pfa.10
-        for <devicetree@vger.kernel.org>; Mon, 14 Sep 2020 08:57:31 -0700 (PDT)
+        with ESMTP id S1726137AbgINQA3 (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Mon, 14 Sep 2020 12:00:29 -0400
+Received: from mail-pg1-x542.google.com (mail-pg1-x542.google.com [IPv6:2607:f8b0:4864:20::542])
+        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id D0585C06178A
+        for <devicetree@vger.kernel.org>; Mon, 14 Sep 2020 09:00:28 -0700 (PDT)
+Received: by mail-pg1-x542.google.com with SMTP id y1so117430pgk.8
+        for <devicetree@vger.kernel.org>; Mon, 14 Sep 2020 09:00:28 -0700 (PDT)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
         d=chromium.org; s=google;
         h=date:from:to:cc:subject:message-id:references:mime-version
          :content-disposition:in-reply-to;
-        bh=t/D26Uwv3mW6oiSEVXVjGFj3LJMSulQUIHEdDLLHRoU=;
-        b=gku1P5Hms+NOzxUdzlxx5ehaT95NUifp0BHFREgyr2MSeDS7+0Ep2LJYXMcBjmjFmX
-         1JnOa1Y+zHG9rvZpLud1pOc1A8aJCUHlt9ir1AXSY1UX+D5MYVjgISmiiJIOOMSiEVSo
-         ycTBU0XRRXmgy4JU+YTWFzP07XnhCk6dwUh+c=
+        bh=J3qzQNXEKPitJbZnYSgSznC4VEr1dCfbjhaeGKfkj78=;
+        b=TZ2oAOAhJlBmeifpZvQ/3DCynN/XFxVLLq9VsqytIptQTPvoIONACGQy9VzfABciGJ
+         a0WV//Q/+DHD/+Cr/UoeTsyHjgvj2CFRneZgn8KqEBWtvNI8n45SrisEtvntXSL+MsnH
+         utTNpLeG8d2pW4IsTe8A9/mJ8NdrmIjOj3/dU=
 X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
         d=1e100.net; s=20161025;
         h=x-gm-message-state:date:from:to:cc:subject:message-id:references
          :mime-version:content-disposition:in-reply-to;
-        bh=t/D26Uwv3mW6oiSEVXVjGFj3LJMSulQUIHEdDLLHRoU=;
-        b=YxUKccJz2fHs39DyD1+m8XGLay2JwDLfFTlSQap7y9IcxOZOEguOc+3O4Di1M5yWO7
-         UsPh4wyuSWbxgtlW2rmqzxJIWFsKvnTTHr/2xOUskrVAUXXxZErhejHXilXiz8Q8kazM
-         mi1cBe4TA+xmJZ5Ttp4ZG0uetR9ZhaSwE2FhMgFn5E+pydtWRe/J5MdYJQJEe9HtMSPQ
-         JuH/NGP6vSUquph4gjwK7zNZ/pQovnZn27ALoYtdWyCSpfAzw1krjB3O7L5kC+O7T7KT
-         Fpi9cjSTW6F/aQJCW80ebEwJx9r0IU17vVzYGOcv2GuQxL+TFrqsDEGFNV3k4xjoZ8g7
-         3EbA==
-X-Gm-Message-State: AOAM530Xo3wKkjWheWE0gwxhdCgotCO9/jNWiRvFewDAsCdJzUJeduwZ
-        Dzk+9Z5fv6JBxGta54OMvfS0Zg==
-X-Google-Smtp-Source: ABdhPJxUNQD/sCAAM9ssTwD5uRORxFY6nnhO0vJvu+Bn3MUZzNB6losF8axc2v+45wzv1s+xK14fRg==
-X-Received: by 2002:a62:82c8:: with SMTP id w191mr13497443pfd.147.1600099051296;
-        Mon, 14 Sep 2020 08:57:31 -0700 (PDT)
+        bh=J3qzQNXEKPitJbZnYSgSznC4VEr1dCfbjhaeGKfkj78=;
+        b=LwiqFWXp8GFypP4jAAROJjIJOydWck5DEl/S0NPLAmI313gkFDsM9UCVieyzIYzXDG
+         M8u7k8KdE61kE7ZV3qJ+h254nGoHTPMm1L10xHI28OcJjDmCPQo53lMz1G/GpO77z7j2
+         0sBcePN8GJO1HGGEbWNT5VgkZnvqyrENtqE8w5HKdKGn5iAyITTU1ax+o/XdaP0/NA43
+         aJGDbbxSCwl0jnrfyOpi/bjUR0mccv+lFbK5WnFwA9n3xt98FaJZKtrs6PKlffCR0Qrp
+         w2O6WKX8Iv+f6xpVM0KDQIST7KpazIi/WvKUEKSEZXzZ38v5j1O0dLPQjP1TpgywucBB
+         N7oA==
+X-Gm-Message-State: AOAM531UHMLaJsZqRHyiFCV5rEoOb3WOOiN8Ow+cA+DuMyhrZcJbmgKw
+        drxQ0yPP602BIj3owpz7PZKAlw==
+X-Google-Smtp-Source: ABdhPJyK/bFQuCmEiSgXJWOG3fwKFYqjHULDTgfZZht5xuc/httEWmwBgaEYmug8R3XcTwHISfjQnA==
+X-Received: by 2002:a17:902:9e08:b029:d0:8a6a:d5e8 with SMTP id d8-20020a1709029e08b02900d08a6ad5e8mr14961811plq.0.1600099228442;
+        Mon, 14 Sep 2020 09:00:28 -0700 (PDT)
 Received: from localhost ([2620:15c:202:1:f693:9fff:fef4:e70a])
-        by smtp.gmail.com with ESMTPSA id w203sm10632684pfc.97.2020.09.14.08.57.30
+        by smtp.gmail.com with ESMTPSA id z1sm6333167pfq.102.2020.09.14.09.00.27
         (version=TLS1_3 cipher=TLS_AES_128_GCM_SHA256 bits=128/128);
-        Mon, 14 Sep 2020 08:57:30 -0700 (PDT)
-Date:   Mon, 14 Sep 2020 08:57:29 -0700
+        Mon, 14 Sep 2020 09:00:27 -0700 (PDT)
+Date:   Mon, 14 Sep 2020 09:00:26 -0700
 From:   Matthias Kaehlcke <mka@chromium.org>
 To:     satya priya <skakit@codeaurora.org>
 Cc:     Bjorn Andersson <bjorn.andersson@linaro.org>,
@@ -54,21 +54,21 @@ Cc:     Bjorn Andersson <bjorn.andersson@linaro.org>,
         linux-kernel@vger.kernel.org, akashast@codeaurora.org,
         rojay@codeaurora.org, msavaliy@qti.qualcomm.com,
         dianders@chromium.org
-Subject: Re: [PATCH V6 2/4] arm64: dts: qcom: sc7180: Add wakeup support for
- BT UART on sc7180-idp
-Message-ID: <20200914155729.GA2022397@google.com>
+Subject: Re: [PATCH V6 3/4] arm64: dts: qcom: sc7180-trogdor: Add wakeup
+ support for BT UART
+Message-ID: <20200914160026.GB2022397@google.com>
 References: <1600091917-7464-1-git-send-email-skakit@codeaurora.org>
- <1600091917-7464-3-git-send-email-skakit@codeaurora.org>
+ <1600091917-7464-4-git-send-email-skakit@codeaurora.org>
 MIME-Version: 1.0
 Content-Type: text/plain; charset=utf-8
 Content-Disposition: inline
-In-Reply-To: <1600091917-7464-3-git-send-email-skakit@codeaurora.org>
+In-Reply-To: <1600091917-7464-4-git-send-email-skakit@codeaurora.org>
 Sender: devicetree-owner@vger.kernel.org
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-On Mon, Sep 14, 2020 at 07:28:35PM +0530, satya priya wrote:
+On Mon, Sep 14, 2020 at 07:28:36PM +0530, satya priya wrote:
 > Add the necessary pinctrl, interrupt property and a suitable sleep config
 > to support Bluetooth wakeup feature.
 > 
@@ -79,3 +79,4 @@ On Mon, Sep 14, 2020 at 07:28:35PM +0530, satya priya wrote:
 > Signed-off-by: satya priya <skakit@codeaurora.org>
 
 Reviewed-by: Matthias Kaehlcke <mka@chromium.org>
+Tested-by: Matthias Kaehlcke <mka@chromium.org>
