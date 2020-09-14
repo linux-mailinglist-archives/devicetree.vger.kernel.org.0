@@ -2,92 +2,111 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from vger.kernel.org (vger.kernel.org [23.128.96.18])
-	by mail.lfdr.de (Postfix) with ESMTP id 884A9269122
-	for <lists+devicetree@lfdr.de>; Mon, 14 Sep 2020 18:10:50 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTP id DC01A26916F
+	for <lists+devicetree@lfdr.de>; Mon, 14 Sep 2020 18:25:33 +0200 (CEST)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S1726424AbgINQKc (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Mon, 14 Sep 2020 12:10:32 -0400
-Received: from fllv0015.ext.ti.com ([198.47.19.141]:35744 "EHLO
-        fllv0015.ext.ti.com" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S1726518AbgINQKW (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Mon, 14 Sep 2020 12:10:22 -0400
-Received: from lelv0265.itg.ti.com ([10.180.67.224])
-        by fllv0015.ext.ti.com (8.15.2/8.15.2) with ESMTP id 08EGAGDa083367;
-        Mon, 14 Sep 2020 11:10:16 -0500
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=ti.com;
-        s=ti-com-17Q1; t=1600099816;
-        bh=hl2eOVK57eOjyraDEfcXSk1M76Td+1h4RO8wxJAZPWU=;
-        h=Date:From:To:CC:Subject:References:In-Reply-To;
-        b=uwsWAjMG2pPTYrZdQCNPFXAjbhp6RWw3jwCSlOvZl5YDQLyLQcob3CZLWHUwc8NkI
-         tXhu6eClooLmCHxlyHDdEVjd9L0JsBANo5hQtptFpfcBGCdE/aMzJfJ5Y0q67/BtTf
-         WdP4ZToISd1sQQdj+oLf4IgjBNjEIRJWaGAoCouY=
-Received: from DFLE105.ent.ti.com (dfle105.ent.ti.com [10.64.6.26])
-        by lelv0265.itg.ti.com (8.15.2/8.15.2) with ESMTPS id 08EGAGbI012881
-        (version=TLSv1.2 cipher=AES256-GCM-SHA384 bits=256 verify=FAIL);
-        Mon, 14 Sep 2020 11:10:16 -0500
-Received: from DFLE102.ent.ti.com (10.64.6.23) by DFLE105.ent.ti.com
- (10.64.6.26) with Microsoft SMTP Server (version=TLS1_2,
- cipher=TLS_ECDHE_RSA_WITH_AES_128_CBC_SHA256_P256) id 15.1.1979.3; Mon, 14
- Sep 2020 11:10:16 -0500
-Received: from lelv0326.itg.ti.com (10.180.67.84) by DFLE102.ent.ti.com
- (10.64.6.23) with Microsoft SMTP Server (version=TLS1_2,
- cipher=TLS_ECDHE_RSA_WITH_AES_128_CBC_SHA256_P256) id 15.1.1979.3 via
- Frontend Transport; Mon, 14 Sep 2020 11:10:16 -0500
-Received: from localhost (ileax41-snat.itg.ti.com [10.172.224.153])
-        by lelv0326.itg.ti.com (8.15.2/8.15.2) with ESMTP id 08EGAGZp036526;
-        Mon, 14 Sep 2020 11:10:16 -0500
-Date:   Mon, 14 Sep 2020 11:10:16 -0500
-From:   Nishanth Menon <nm@ti.com>
-To:     Kishon Vijay Abraham I <kishon@ti.com>
-CC:     Tero Kristo <t-kristo@ti.com>, Rob Herring <robh+dt@kernel.org>,
-        <linux-arm-kernel@lists.infradead.org>,
-        <devicetree@vger.kernel.org>, <linux-kernel@vger.kernel.org>
-Subject: Re: [PATCH v2 0/2] Add DT to get PCIe working in J721E SoC
-Message-ID: <20200914161016.bil575y3ig5oz5dn@akan>
-References: <20200914152115.1788-1-kishon@ti.com>
+        id S1726424AbgINQYx (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Mon, 14 Sep 2020 12:24:53 -0400
+Received: from mail29.static.mailgun.info ([104.130.122.29]:58284 "EHLO
+        mail29.static.mailgun.info" rhost-flags-OK-OK-OK-OK)
+        by vger.kernel.org with ESMTP id S1726198AbgINQTz (ORCPT
+        <rfc822;devicetree@vger.kernel.org>);
+        Mon, 14 Sep 2020 12:19:55 -0400
+DKIM-Signature: a=rsa-sha256; v=1; c=relaxed/relaxed; d=mg.codeaurora.org; q=dns/txt;
+ s=smtp; t=1600100359; h=Message-ID: References: In-Reply-To: Subject:
+ Cc: To: From: Date: Content-Transfer-Encoding: Content-Type:
+ MIME-Version: Sender; bh=6kP6V+U+oC1wCvvEWglojf58K6rS+SRnVM0PaaQN5Kk=;
+ b=EHqN4dTnKQjbDsG8t72giCAumLyrN3UtYiBfLblpTb+41Gvs3OgRuivsn9KLuWVTqSvvsnrr
+ tNFUnaB2LrOoO7hxIzfd5A0jnZKc0TUrhrwzCQ4QtFT7G9tOYjstrhovLhflxtxX33UnuXoW
+ IKi2tLfWB/D3JDEZBqrD7xPcu3s=
+X-Mailgun-Sending-Ip: 104.130.122.29
+X-Mailgun-Sid: WyI1YmJiNiIsICJkZXZpY2V0cmVlQHZnZXIua2VybmVsLm9yZyIsICJiZTllNGEiXQ==
+Received: from smtp.codeaurora.org
+ (ec2-35-166-182-171.us-west-2.compute.amazonaws.com [35.166.182.171]) by
+ smtp-out-n03.prod.us-west-2.postgun.com with SMTP id
+ 5f5f97febe06707b34d18e4c (version=TLS1.2,
+ cipher=TLS_ECDHE_RSA_WITH_AES_128_GCM_SHA256); Mon, 14 Sep 2020 16:19:10
+ GMT
+Received: by smtp.codeaurora.org (Postfix, from userid 1001)
+        id E3A41C433C8; Mon, 14 Sep 2020 16:19:09 +0000 (UTC)
+X-Spam-Checker-Version: SpamAssassin 3.4.0 (2014-02-07) on
+        aws-us-west-2-caf-mail-1.web.codeaurora.org
+X-Spam-Level: 
+X-Spam-Status: No, score=-2.9 required=2.0 tests=ALL_TRUSTED,BAYES_00,
+        URIBL_BLOCKED autolearn=unavailable autolearn_force=no version=3.4.0
+Received: from mail.codeaurora.org (localhost.localdomain [127.0.0.1])
+        (using TLSv1 with cipher ECDHE-RSA-AES256-SHA (256/256 bits))
+        (No client certificate requested)
+        (Authenticated sender: nguyenb)
+        by smtp.codeaurora.org (Postfix) with ESMTPSA id 2E83AC433CA;
+        Mon, 14 Sep 2020 16:19:09 +0000 (UTC)
 MIME-Version: 1.0
-Content-Type: text/plain; charset="us-ascii"
-Content-Disposition: inline
-In-Reply-To: <20200914152115.1788-1-kishon@ti.com>
-User-Agent: NeoMutt/20171215
-X-EXCLAIMER-MD-CONFIG: e1e8a2fd-e40a-4ac6-ac9b-f7e9cc9ee180
+Content-Type: text/plain; charset=US-ASCII;
+ format=flowed
+Content-Transfer-Encoding: 7bit
+Date:   Mon, 14 Sep 2020 09:19:09 -0700
+From:   nguyenb@codeaurora.org
+To:     Avri Altman <Avri.Altman@wdc.com>
+Cc:     cang@codeaurora.org, asutoshd@codeaurora.org,
+        martin.petersen@oracle.com, linux-scsi@vger.kernel.org,
+        linux-arm-msm@vger.kernel.org, Rob Herring <robh+dt@kernel.org>,
+        Bjorn Andersson <bjorn.andersson@linaro.org>,
+        Vinod Koul <vkoul@kernel.org>,
+        "open list:OPEN FIRMWARE AND FLATTENED DEVICE TREE BINDINGS" 
+        <devicetree@vger.kernel.org>,
+        open list <linux-kernel@vger.kernel.org>
+Subject: Re: [PATCH v1 1/2] scsi: dt-bindings: ufs: Add vcc-voltage-level for
+ UFS
+In-Reply-To: <BY5PR04MB670510941B91C0D394A23A68FC220@BY5PR04MB6705.namprd04.prod.outlook.com>
+References: <cover.1598939393.git.nguyenb@codeaurora.org>
+ <0a9d395dc38433501f9652a9236856d0ac840b77.1598939393.git.nguyenb@codeaurora.org>
+ <BY5PR04MB670510941B91C0D394A23A68FC220@BY5PR04MB6705.namprd04.prod.outlook.com>
+Message-ID: <aaed1cfb1cdee8cd6e45191814af5763@codeaurora.org>
+X-Sender: nguyenb@codeaurora.org
+User-Agent: Roundcube Webmail/1.3.9
 Sender: devicetree-owner@vger.kernel.org
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-On 20:51-20200914, Kishon Vijay Abraham I wrote:
-> Now that J721E PCIe support is merged (including the YAML bindings),
-> add PCIe device tree nodes to get PCIe working in J721E SoC both in
-> RC mode and EP mode.
+On 2020-09-13 02:35, Avri Altman wrote:
+>> 
+>> 
+>> UFS's specifications supports a range of Vcc operating
+>> voltage levels. Add documentation for the UFS's Vcc voltage
+>> levels setting.
+>> 
+>> Signed-off-by: Can Guo <cang@codeaurora.org>
+>> Signed-off-by: Asutosh Das <asutoshd@codeaurora.org>
+>> Signed-off-by: Bao D. Nguyen <nguyenb@codeaurora.org>
+>> ---
+>>  Documentation/devicetree/bindings/ufs/ufshcd-pltfrm.txt | 2 ++
+>>  1 file changed, 2 insertions(+)
+>> 
+>> diff --git a/Documentation/devicetree/bindings/ufs/ufshcd-pltfrm.txt
+>> b/Documentation/devicetree/bindings/ufs/ufshcd-pltfrm.txt
+>> index 415ccdd..7257b32 100644
+>> --- a/Documentation/devicetree/bindings/ufs/ufshcd-pltfrm.txt
+>> +++ b/Documentation/devicetree/bindings/ufs/ufshcd-pltfrm.txt
+>> @@ -23,6 +23,8 @@ Optional properties:
+>>                            with "phys" attribute, provides phandle to 
+>> UFS PHY node
+>>  - vdd-hba-supply        : phandle to UFS host controller supply 
+>> regulator node
+>>  - vcc-supply            : phandle to VCC supply regulator node
+>> +- vcc-voltage-level     : specifies voltage levels for VCC supply.
+> For ufs3.1+ devices
+Thanks for the comments, Avri.
+I am not clear what this comment means. Could you please clarify?
 > 
-> Series has been rebased to:
-> git://git.kernel.org/pub/scm/linux/kernel/git/nmenon/linux ti-k3-dts-next 
-> 
-> Changes from v1:
-> 1) Renamed all syscon dt-nodes to "syscon" instead of pcieX-ctrl.
-> 2) Add TI specific compatible for "syscon" DT nodes
-> 3) Add information about appending "ranges" property to access all PCIe
->    instances in commit log.
-> 
-> Kishon Vijay Abraham I (2):
->   arm64: dts: ti: k3-j721e-main: Add PCIe device tree nodes
->   arm64: dts: ti: k3-j721e-common-proc-board: Configure the PCIe
->     instances
-> 
->  .../dts/ti/k3-j721e-common-proc-board.dts     |  80 ++++++
->  arch/arm64/boot/dts/ti/k3-j721e-main.dtsi     | 232 +++++++++++++++++-
->  arch/arm64/boot/dts/ti/k3-j721e.dtsi          |   5 +-
->  3 files changed, 315 insertions(+), 2 deletions(-)
-> 
-> -- 
-> 2.17.1
-> 
-
-Thanks, yeah - the series is clean. If no one adds a tag in the next
-couple of days or so, I can pick it up.
-
--- 
-Regards,
-Nishanth Menon
-Key (0xDDB5849D1736249D) / Fingerprint: F8A2 8693 54EB 8232 17A3  1A34 DDB5 849D 1736 249D
+>> +                          Should be specified in pairs (min, max), 
+>> units uV.
+>>  - vccq-supply           : phandle to VCCQ supply regulator node
+>>  - vccq2-supply          : phandle to VCCQ2 supply regulator node
+>>  - vcc-supply-1p8        : For embedded UFS devices, valid VCC range 
+>> is 1.7-1.95V
+>> --
+> Why are you removing all other docs?
+> They are still relevant for non ufs3.1 devices.
+I did not remove anything. You may be confused by the "-" used as 
+listing in the original document.
