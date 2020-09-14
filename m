@@ -2,135 +2,114 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from vger.kernel.org (vger.kernel.org [23.128.96.18])
-	by mail.lfdr.de (Postfix) with ESMTP id 82B88269784
-	for <lists+devicetree@lfdr.de>; Mon, 14 Sep 2020 23:15:04 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTP id 721E926979E
+	for <lists+devicetree@lfdr.de>; Mon, 14 Sep 2020 23:21:18 +0200 (CEST)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S1726115AbgINVPA (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Mon, 14 Sep 2020 17:15:00 -0400
-Received: from lindbergh.monkeyblade.net ([23.128.96.19]:44402 "EHLO
+        id S1726057AbgINVVG (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Mon, 14 Sep 2020 17:21:06 -0400
+Received: from lindbergh.monkeyblade.net ([23.128.96.19]:45336 "EHLO
         lindbergh.monkeyblade.net" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S1726094AbgINVO4 (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Mon, 14 Sep 2020 17:14:56 -0400
-Received: from mail-pg1-x542.google.com (mail-pg1-x542.google.com [IPv6:2607:f8b0:4864:20::542])
-        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id DFDD7C061788
-        for <devicetree@vger.kernel.org>; Mon, 14 Sep 2020 14:14:54 -0700 (PDT)
-Received: by mail-pg1-x542.google.com with SMTP id 34so754361pgo.13
-        for <devicetree@vger.kernel.org>; Mon, 14 Sep 2020 14:14:54 -0700 (PDT)
+        with ESMTP id S1726034AbgINVVC (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Mon, 14 Sep 2020 17:21:02 -0400
+Received: from mail-vk1-xa44.google.com (mail-vk1-xa44.google.com [IPv6:2607:f8b0:4864:20::a44])
+        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 6EC26C06178A
+        for <devicetree@vger.kernel.org>; Mon, 14 Sep 2020 14:21:01 -0700 (PDT)
+Received: by mail-vk1-xa44.google.com with SMTP id e5so318324vkm.2
+        for <devicetree@vger.kernel.org>; Mon, 14 Sep 2020 14:21:01 -0700 (PDT)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
         d=chromium.org; s=google;
-        h=date:from:to:cc:subject:message-id:references:mime-version
-         :content-disposition:in-reply-to;
-        bh=vhBJpFh7LpS6l+ihl8unlGrM5gNVdzAOXOoEIys9z0M=;
-        b=XgS/+ZdxImynQIwWmSa0+yIApIdMsIityrt10mIHaPsfUV81LLX/ko9FW02rZYdER9
-         zIEOxovTxJ7duvnI3GP6hwBn9VaVcChYjoiHa5oZLkFZLo4OoQ4fqeblLWlG5LOtxoUj
-         JYuLk8CCbo+bgHVwZCheekr/04cWD7neXQJzg=
+        h=mime-version:references:in-reply-to:from:date:message-id:subject:to
+         :cc;
+        bh=h40Mkmyzjmx1oaGV6NYYOclBhWIiyDBMii4EWAbUUYU=;
+        b=EPnLS1RhlA0wyyP1OC7VacOLKiJxMMjRQpvYSkhipIR0qf9WC8RK564fIcvVVeFKbz
+         fC8LFeojctt1+gVlRo9X5MbmDgK1ToWp8Y9sHgCHcIzjscTuyvmbWS+p1l6qjzJAWhYZ
+         9Qu2jHMXie6FHKJSZDUVVMKxmHVG0KLRa2AC4=
 X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
         d=1e100.net; s=20161025;
-        h=x-gm-message-state:date:from:to:cc:subject:message-id:references
-         :mime-version:content-disposition:in-reply-to;
-        bh=vhBJpFh7LpS6l+ihl8unlGrM5gNVdzAOXOoEIys9z0M=;
-        b=QbHEjVk26zzDbNR1WSv+O2NtwQDCQapEjztUeDGXI/vpz+JPmagf7bElswDUstW2Uu
-         4i9fNPAe3/sUO2Y7VN90f8Wl+9X0d36nvNLOjtjJjvK687sWTobDZeKuDZaQ6At+f+No
-         MmAZIwhr9L2TiJA6NB0X9PI0cet0uz4C4KITgAkU4fi8+clGuVDMktqGgbPSjD7dGPlL
-         s+vJe8q3ed92ni5oapHAJGTulq/7iMK6ONiaL2G+cGMijQb1IhNajRreAWJIR4Gn5mdy
-         yq/xEI6a9tOPxzV6Yq/Jk6tesYR9/acFmr4kms8Ow1sNzSMNZ7fUi0GtgIqAYS3cQNDb
-         N9HA==
-X-Gm-Message-State: AOAM530avWwUie5mWQ9CV3+qcN2d/MRWH7j+Mhh+RBGGyBlQ+2nmYhgj
-        VxHals7k8VRB/gZ9wk+8DXCAcw==
-X-Google-Smtp-Source: ABdhPJwA/MrD7V5VcAx5rbje9K+C6ArZfV14fj2XEW4biFFvVBvAOZcISeQlMVefkxiAbVCyv0N8pA==
-X-Received: by 2002:a63:2250:: with SMTP id t16mr12193817pgm.303.1600118094278;
-        Mon, 14 Sep 2020 14:14:54 -0700 (PDT)
-Received: from localhost ([2620:15c:202:1:f693:9fff:fef4:e70a])
-        by smtp.gmail.com with ESMTPSA id k6sm11444204pfh.92.2020.09.14.14.14.53
+        h=x-gm-message-state:mime-version:references:in-reply-to:from:date
+         :message-id:subject:to:cc;
+        bh=h40Mkmyzjmx1oaGV6NYYOclBhWIiyDBMii4EWAbUUYU=;
+        b=JPcNOycMwI7Qm8/ql3hXWqRRlEm22buq2sLErMwlg/YjtsWQwrgle+xQAL37QMZSVg
+         nrlfFtO3bIMFWXMsnwV5DgrWRaaXeRY0Purg43Awuuoe9C3YvHLTk5+M+CIJFpQOyIOs
+         M45jibEf392qwgJKC5OggV2QKUgvCxfcjcbZf2BCrHZmqNxZD+zNzlYgQAn9CjTzDPx2
+         rkpd/Lm4ftKWluwjgess/+jSqaFyZ1enXsuF+SSbCHigjy5OAfWYwKonDTzBBIkdavKe
+         cMazAli47SlZDkTaamYwxAOknvDSeqMCdKNwLVBfyYL/rZyYpbquWA+VFOz2H/ubDHUN
+         DHZQ==
+X-Gm-Message-State: AOAM533riLMQztE+HYWleiQTKOF2JCmrrj25ApYkLKmDqM4zlQGIHcYH
+        yqm6QBrtKOsD7+Uxh4vtZ8BjdjRYAc41Kg==
+X-Google-Smtp-Source: ABdhPJyhfZqB9r+Ld8qSr9JlbFKU769l3WU4tr2xJSoTHzIpDCVAGCiE42Y1drSsuc016I8wztcVyg==
+X-Received: by 2002:a1f:ab4d:: with SMTP id u74mr8501434vke.6.1600118459754;
+        Mon, 14 Sep 2020 14:20:59 -0700 (PDT)
+Received: from mail-vs1-f46.google.com (mail-vs1-f46.google.com. [209.85.217.46])
+        by smtp.gmail.com with ESMTPSA id s8sm1988373vke.48.2020.09.14.14.20.58
+        for <devicetree@vger.kernel.org>
         (version=TLS1_3 cipher=TLS_AES_128_GCM_SHA256 bits=128/128);
-        Mon, 14 Sep 2020 14:14:53 -0700 (PDT)
-Date:   Mon, 14 Sep 2020 14:14:52 -0700
-From:   Matthias Kaehlcke <mka@chromium.org>
-To:     Alan Stern <stern@rowland.harvard.edu>
-Cc:     Greg Kroah-Hartman <gregkh@linuxfoundation.org>,
-        Rob Herring <robh+dt@kernel.org>,
-        Frank Rowand <frowand.list@gmail.com>,
-        Krzysztof Kozlowski <krzk@kernel.org>,
-        Bastien Nocera <hadess@hadess.net>,
-        Ravi Chandra Sadineni <ravisadineni@chromium.org>,
-        linux-usb@vger.kernel.org, Stephen Boyd <swboyd@chromium.org>,
-        devicetree@vger.kernel.org,
-        Douglas Anderson <dianders@chromium.org>,
-        Peter Chen <peter.chen@nxp.com>, linux-kernel@vger.kernel.org,
-        "Alexander A. Klimov" <grandmaster@al2klimov.de>,
-        Masahiro Yamada <masahiroy@kernel.org>
-Subject: Re: [PATCH 2/2] USB: misc: Add onboard_usb_hub driver
-Message-ID: <20200914211452.GE2022397@google.com>
-References: <20200914112716.1.I248292623d3d0f6a4f0c5bc58478ca3c0062b49a@changeid>
- <20200914112716.2.I7c9a1f1d6ced41dd8310e8a03da666a32364e790@changeid>
- <20200914201403.GA977844@rowland.harvard.edu>
+        Mon, 14 Sep 2020 14:20:59 -0700 (PDT)
+Received: by mail-vs1-f46.google.com with SMTP id j185so738328vsc.3
+        for <devicetree@vger.kernel.org>; Mon, 14 Sep 2020 14:20:58 -0700 (PDT)
+X-Received: by 2002:a67:ff97:: with SMTP id v23mr8916922vsq.11.1600118458295;
+ Mon, 14 Sep 2020 14:20:58 -0700 (PDT)
 MIME-Version: 1.0
-Content-Type: text/plain; charset=utf-8
-Content-Disposition: inline
-In-Reply-To: <20200914201403.GA977844@rowland.harvard.edu>
+References: <1600091917-7464-1-git-send-email-skakit@codeaurora.org> <1600091917-7464-3-git-send-email-skakit@codeaurora.org>
+In-Reply-To: <1600091917-7464-3-git-send-email-skakit@codeaurora.org>
+From:   Doug Anderson <dianders@chromium.org>
+Date:   Mon, 14 Sep 2020 14:20:46 -0700
+X-Gmail-Original-Message-ID: <CAD=FV=WsU87ZWvhsPAWAnrQmK60SvZoxrefZDdW4y4i1MAEmwg@mail.gmail.com>
+Message-ID: <CAD=FV=WsU87ZWvhsPAWAnrQmK60SvZoxrefZDdW4y4i1MAEmwg@mail.gmail.com>
+Subject: Re: [PATCH V6 2/4] arm64: dts: qcom: sc7180: Add wakeup support for
+ BT UART on sc7180-idp
+To:     satya priya <skakit@codeaurora.org>
+Cc:     Bjorn Andersson <bjorn.andersson@linaro.org>,
+        Matthias Kaehlcke <mka@chromium.org>,
+        Greg Kroah-Hartman <gregkh@linuxfoundation.org>,
+        Andy Gross <agross@kernel.org>,
+        Rob Herring <robh+dt@kernel.org>,
+        linux-arm-msm <linux-arm-msm@vger.kernel.org>,
+        "open list:OPEN FIRMWARE AND FLATTENED DEVICE TREE BINDINGS" 
+        <devicetree@vger.kernel.org>, LKML <linux-kernel@vger.kernel.org>,
+        Akash Asthana <akashast@codeaurora.org>,
+        Roja Rani Yarubandi <rojay@codeaurora.org>,
+        msavaliy@qti.qualcomm.com
+Content-Type: text/plain; charset="UTF-8"
 Sender: devicetree-owner@vger.kernel.org
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-Hi Alan,
+Hi,
 
-thanks for your feedback!
+On Mon, Sep 14, 2020 at 6:59 AM satya priya <skakit@codeaurora.org> wrote:
+>
+> Add the necessary pinctrl, interrupt property and a suitable sleep config
+> to support Bluetooth wakeup feature.
+>
+> GPIO mode is configured in sleep state to drive the RTS/RFR line low.
+> If QUP function is selected in sleep state, UART RTS/RFR is pulled high
+> during suspend and BT SoC not able to send wakeup bytes.
+>
+> Signed-off-by: satya priya <skakit@codeaurora.org>
+> ---
+> Changes in V2:
+>  - This patch adds sleep state for BT UART. Newly added in V2.
+>
+> Changes in V3:
+>  - Remove "output-high" for TX from both sleep and default states
+>    as it is not required. Configure pull-up for TX in sleep state.
+>
+> Changes in V4:
+>  - As per Matthias's comment, removed drive-strength for sleep state
+>    and fixed nit-pick.
+>
+> Changes in V5:
+>  - As per Matthias's comments, moved pinmux change for sleep state,
+>    pinctrl and interrupt config to the board specific file.
+>
+> Changes in V6:
+>  - As per Doug's comments changed subject, deleted interrupts property.
+>  - As per Bjorn's comments changed commit text and rationale for RTS,
+>    TX and RX.
+>
+>  arch/arm64/boot/dts/qcom/sc7180-idp.dts | 55 +++++++++++++++++++++++++++++++++
+>  1 file changed, 55 insertions(+)
 
-On Mon, Sep 14, 2020 at 04:14:03PM -0400, Alan Stern wrote:
-> On Mon, Sep 14, 2020 at 11:27:49AM -0700, Matthias Kaehlcke wrote:
-> > The main issue this driver addresses is that a USB hub needs to be
-> > powered before it can be discovered. For onboard hubs this is often
-> > solved by supplying the hub with an 'always-on' regulator, which is
-> > kind of a hack. Some onboard hubs may require further initialization
-> > steps, like changing the state of a GPIO or enabling a clock, which
-> > requires further hacks. This driver creates a platform device
-> > representing the hub which performs the necessary initialization.
-> > Currently it only supports switching on a single regulator, support
-> > for multiple regulators or other actions can be added as needed.
-> > Different initialization sequences can be supported based on the
-> > compatible string.
-> > 
-> > Besides performing the initialization the driver can be configured
-> > to power the hub off during system suspend. This can help to extend
-> > battery life on battery powered devices, which have no requirements
-> > to keep the hub powered during suspend. The driver can also be
-> > configured to leave the hub powered when a wakeup capable USB device
-> > is connected when suspending, and keeping it powered otherwise.
-> > 
-> > Technically the driver consists of two drivers, the platform driver
-> > described above and a very thin USB driver that subclasses the
-> > generic hub driver.
-> 
-> Actually it subclasses the generic usb device driver, not the hub 
-> driver.
-
-ok, I'll change it in the next version.
-
-> >  The purpose of this driver is to provide the
-> > platform driver with the USB devices corresponding to the hub(s)
-> > (a hub controller may provide multiple 'logical' hubs, e.g. one
-> > to support USB 2.0 and another for USB 3.x).
-> > 
-> > Co-developed-by: Ravi Chandra Sadineni <ravisadineni@chromium.org>
-> > Signed-off-by: Ravi Chandra Sadineni <ravisadineni@chromium.org>
-> > Signed-off-by: Matthias Kaehlcke <mka@chromium.org>
-> > ---
-> > This is an evolution of '[RFC] USB: misc: Add usb_hub_pwr driver'
-> > (https://lore.kernel.org/patchwork/patch/1299239/).
-> > 
-> > Changes in v1:
-> > - renamed the driver to 'onboard_usb_hub'
-> > - single file for platform and USB driver
-> > - USB hub devices register with the platform device
-> >   - the DT includes a phandle of the platform device
-> > - the platform device now controls when power is turned off
-> > - the USB driver became a very thin subclass of the generic hub
-> >   driver
-> > - enabled autosuspend support
-> 
-> See https://marc.info/?l=linux-usb&m=159914635920888&w=2 and the 
-> accompanying submissions.  You'll probably want to include those updates 
-> in your driver.
-
-Thanks for the pointer! I'll change the driver to use pm_ptr as suggested.
+Reviewed-by: Douglas Anderson <dianders@chromium.org>
