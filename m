@@ -2,71 +2,85 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from vger.kernel.org (vger.kernel.org [23.128.96.18])
-	by mail.lfdr.de (Postfix) with ESMTP id B16E226B185
-	for <lists+devicetree@lfdr.de>; Wed, 16 Sep 2020 00:31:46 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTP id 9A80226B18C
+	for <lists+devicetree@lfdr.de>; Wed, 16 Sep 2020 00:32:27 +0200 (CEST)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S1726762AbgIOWa6 (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Tue, 15 Sep 2020 18:30:58 -0400
-Received: from crapouillou.net ([89.234.176.41]:47096 "EHLO crapouillou.net"
-        rhost-flags-OK-OK-OK-OK) by vger.kernel.org with ESMTP
-        id S1727572AbgIOQRV (ORCPT <rfc822;devicetree@vger.kernel.org>);
-        Tue, 15 Sep 2020 12:17:21 -0400
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=crapouillou.net;
-        s=mail; t=1600186056; h=from:from:sender:reply-to:subject:subject:date:date:
-         message-id:message-id:to:to:cc:cc:mime-version:mime-version:
-         content-type:content-type:
-         content-transfer-encoding:content-transfer-encoding:
-         in-reply-to:in-reply-to:references:references;
-        bh=EeHYzr0958dGGkHCYK6Im3thQpiydn9WKwW0LwMC0os=;
-        b=cAzen0ldD6VoAkvHMkSApV8s0zPnzM5U2zHfIuefdFyWrCQJOYRkhAcc830BfaNWtNH79f
-        ssjL/64wOG2kFGeLSOJlJILvBjPyEtkXtLk6U3etbp80umY9gw4fK0T+VH1sBD/0oCUlyR
-        w4vs9SqnMjXCQeUKZjzpAHWv3alE7XA=
-Date:   Tue, 15 Sep 2020 18:07:26 +0200
-From:   Paul Cercueil <paul@crapouillou.net>
-Subject: Re: [PATCH 3/3] i2c: jz4780: Remove of_match_ptr()
-To:     Rob Herring <robh@kernel.org>
-Cc:     od@zcrc.me, Linux I2C <linux-i2c@vger.kernel.org>,
-        devicetree@vger.kernel.org, linux-kernel@vger.kernel.org
-Message-Id: <EGJPGQ.QVHGTYQDQR872@crapouillou.net>
-In-Reply-To: <CAL_JsqLUSZFf_3zgFrapc7vJETG9+XDTZPtD_yEBvi4GO3xPSA@mail.gmail.com>
-References: <20200904131152.17390-1-paul@crapouillou.net>
-        <20200904131152.17390-3-paul@crapouillou.net>
-        <20200914221230.GA349829@bogus> <CS2PGQ.I4UMQBYTB15I2@crapouillou.net>
-        <CAL_JsqLUSZFf_3zgFrapc7vJETG9+XDTZPtD_yEBvi4GO3xPSA@mail.gmail.com>
+        id S1727622AbgIOWbs (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Tue, 15 Sep 2020 18:31:48 -0400
+Received: from lindbergh.monkeyblade.net ([23.128.96.19]:51112 "EHLO
+        lindbergh.monkeyblade.net" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
+        with ESMTP id S1727542AbgIOQRS (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Tue, 15 Sep 2020 12:17:18 -0400
+Received: from perceval.ideasonboard.com (perceval.ideasonboard.com [IPv6:2001:4b98:dc2:55:216:3eff:fef7:d647])
+        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 166F6C061A2E;
+        Tue, 15 Sep 2020 09:17:10 -0700 (PDT)
+Received: from pendragon.ideasonboard.com (62-78-145-57.bb.dnainternet.fi [62.78.145.57])
+        by perceval.ideasonboard.com (Postfix) with ESMTPSA id 3BCE3276;
+        Tue, 15 Sep 2020 18:12:07 +0200 (CEST)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=ideasonboard.com;
+        s=mail; t=1600186327;
+        bh=yWcHzfZaIL+JJoYu6WgRXH1lmt2hAIodJaLy5+l5lQ0=;
+        h=Date:From:To:Cc:Subject:References:In-Reply-To:From;
+        b=WixtAFmwupVy7MRyDTZqdZRI02yRepxuWJ4yPMNnxeJtBh+AktZupVFYDc6j/uPZv
+         l1VpY8FBzuH0HnIh/pcPbkaK060agSmlL6VBG9R3sca6dF87vJkU+nP2QN7Zg3Jrhk
+         Z6YpX097SeLzHq2RkY1wMphh7PvJZUGsMYtNd14U=
+Date:   Tue, 15 Sep 2020 19:11:38 +0300
+From:   Laurent Pinchart <laurent.pinchart@ideasonboard.com>
+To:     Fabrizio Castro <fabrizio.castro.jz@renesas.com>
+Cc:     Mauro Carvalho Chehab <mchehab@kernel.org>,
+        Rob Herring <robh+dt@kernel.org>,
+        Geert Uytterhoeven <geert+renesas@glider.be>,
+        Ramesh Shanmugasundaram <rashanmu@gmail.com>,
+        linux-media@vger.kernel.org, devicetree@vger.kernel.org,
+        linux-kernel@vger.kernel.org, linux-renesas-soc@vger.kernel.org,
+        Chris Paterson <Chris.Paterson2@renesas.com>,
+        Biju Das <biju.das.jz@bp.renesas.com>,
+        Prabhakar Mahadev Lad <prabhakar.mahadev-lad.rj@bp.renesas.com>
+Subject: Re: [PATCH 1/3] MAINTAINERS: Add Fabrizio Castro to Renesas DRIF
+Message-ID: <20200915161138.GB26029@pendragon.ideasonboard.com>
+References: <20200915131216.21137-1-fabrizio.castro.jz@renesas.com>
+ <20200915131216.21137-2-fabrizio.castro.jz@renesas.com>
 MIME-Version: 1.0
-Content-Type: text/plain; charset=iso-8859-1; format=flowed
-Content-Transfer-Encoding: quoted-printable
+Content-Type: text/plain; charset=utf-8
+Content-Disposition: inline
+In-Reply-To: <20200915131216.21137-2-fabrizio.castro.jz@renesas.com>
 Sender: devicetree-owner@vger.kernel.org
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
+Hi Fabrizio,
 
+Thank you for the patch.
 
-Le mar. 15 sept. 2020 =E0 10:03, Rob Herring <robh@kernel.org> a =E9crit :
-> On Tue, Sep 15, 2020 at 4:07 AM Paul Cercueil <paul@crapouillou.net>=20
-> wrote:
->>=20
->>  Hi Rob,
->>=20
->>  Le lun. 14 sept. 2020 =E0 16:12, Rob Herring <robh@kernel.org> a=20
->> =E9crit :
->>  > On Fri, Sep 04, 2020 at 03:11:52PM +0200, Paul Cercueil wrote:
->>  >>  CONFIG_OF is selected by CONFIG_MACH_INGENIC, therefore we don't
->>  >> need to
->>  >>  handle the case where Device Tree is not supported.
->>  >
->>  > What about COMPILE_TEST? If not supported, why not?
->>=20
->>  What about it? It will still compile fine with COMPILE_TEST.
->=20
-> CONFIG_OF could be disabled in that case, so the above reasoning=20
-> doesn't hold.
->=20
+On Tue, Sep 15, 2020 at 02:12:14PM +0100, Fabrizio Castro wrote:
+> Renesas are expanding their DRIF support and offering,
+> I'll be the internal maintainer for DRIF.
+> 
+> Signed-off-by: Fabrizio Castro <fabrizio.castro.jz@renesas.com>
 
-CONFIG_OF can be disabled in that case, correct, but why should we=20
-care? The driver will still compile fine.
+Thank you for volunteering :-)
 
--Paul
+Reviewed-by: Laurent Pinchart <laurent.pinchart@ideasonboard.com>
 
+> ---
+>  MAINTAINERS | 1 +
+>  1 file changed, 1 insertion(+)
+> 
+> diff --git a/MAINTAINERS b/MAINTAINERS
+> index 26af84f97353..9f49e5ac90d8 100644
+> --- a/MAINTAINERS
+> +++ b/MAINTAINERS
+> @@ -10898,6 +10898,7 @@ F:	include/media/drv-intf/renesas-ceu.h
+>  
+>  MEDIA DRIVERS FOR RENESAS - DRIF
+>  M:	Ramesh Shanmugasundaram <rashanmu@gmail.com>
+> +M:	Fabrizio Castro <fabrizio.castro.jz@renesas.com>
+>  L:	linux-media@vger.kernel.org
+>  L:	linux-renesas-soc@vger.kernel.org
+>  S:	Supported
 
+-- 
+Regards,
+
+Laurent Pinchart
