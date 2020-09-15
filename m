@@ -2,115 +2,110 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from vger.kernel.org (vger.kernel.org [23.128.96.18])
-	by mail.lfdr.de (Postfix) with ESMTP id A9F3F26A57E
-	for <lists+devicetree@lfdr.de>; Tue, 15 Sep 2020 14:47:12 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTP id B1B1626A5AD
+	for <lists+devicetree@lfdr.de>; Tue, 15 Sep 2020 14:57:44 +0200 (CEST)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S1726498AbgIOMq3 (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Tue, 15 Sep 2020 08:46:29 -0400
-Received: from lindbergh.monkeyblade.net ([23.128.96.19]:46128 "EHLO
+        id S1726210AbgIOM5e (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Tue, 15 Sep 2020 08:57:34 -0400
+Received: from lindbergh.monkeyblade.net ([23.128.96.19]:46296 "EHLO
         lindbergh.monkeyblade.net" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S1726478AbgIOMpL (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Tue, 15 Sep 2020 08:45:11 -0400
-Received: from mail-wr1-x443.google.com (mail-wr1-x443.google.com [IPv6:2a00:1450:4864:20::443])
-        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 8D0B3C061788
-        for <devicetree@vger.kernel.org>; Tue, 15 Sep 2020 05:45:10 -0700 (PDT)
-Received: by mail-wr1-x443.google.com with SMTP id t10so3206078wrv.1
-        for <devicetree@vger.kernel.org>; Tue, 15 Sep 2020 05:45:10 -0700 (PDT)
+        with ESMTP id S1726495AbgIOMqD (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Tue, 15 Sep 2020 08:46:03 -0400
+Received: from mail-wr1-x444.google.com (mail-wr1-x444.google.com [IPv6:2a00:1450:4864:20::444])
+        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id B34D5C06178C
+        for <devicetree@vger.kernel.org>; Tue, 15 Sep 2020 05:46:00 -0700 (PDT)
+Received: by mail-wr1-x444.google.com with SMTP id x14so3126072wrl.12
+        for <devicetree@vger.kernel.org>; Tue, 15 Sep 2020 05:46:00 -0700 (PDT)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=chromium.org; s=google;
-        h=mime-version:references:in-reply-to:from:date:message-id:subject:to
-         :cc;
-        bh=prgbbLEwgblX++DIA6lSNe0xZAiKfHZki6I+StVAnLE=;
-        b=Q1VROlQWfmlbZeeOVVji/0iVuQbrzHv3LyXlzJKB/jZyIl7jlwtq83iMQNIuBTtIDU
-         mMJrv6XDPjLmOFIIlreqHabqlek6mVxO/yH3LCwl6pXubX3sxPWzQx+BTKkXXjULprxE
-         a9hVqPQTocex/KOq6CV5LbnS1W7amLkZEXuFg=
+        d=baylibre-com.20150623.gappssmtp.com; s=20150623;
+        h=from:to:cc:subject:date:message-id:in-reply-to:references
+         :mime-version:content-transfer-encoding;
+        bh=lY1f6BPUzB++HrA2WRJHkdA8MgAHqDCMG4dVPqyy2dw=;
+        b=maBZ3Vb8DL4XTv3jqb6hlktNtUC+mPnj7ioFAFOv8/3UOIWFfzdKHlgzW2ssBnnwyh
+         6fmP4vBycJ71D5tbvixxeSaGBgX4MjlhCVFc9XsncbxLqnRPUaVbDiysZL5+a9ejIm+9
+         75VZJtf5AsstRbHXqKc4wATG17L5+BfQzRJzGKZyLw3RXp4MZgRZ9hqYNQ8RIYHYOOzK
+         Kh1aSVnWhxbDHFJTA+VTKphT/g3O/5Kt/t+9WPvEv6B0pcUtfIghsiJsx1IvVFn+bvI0
+         7FQDHoCY1S3UHFaQsQJ5krZzE0o+eCIgpPdbtdyY93rgmb/1Z164HA2DY5F05D/OPbud
+         ILJA==
 X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
         d=1e100.net; s=20161025;
-        h=x-gm-message-state:mime-version:references:in-reply-to:from:date
-         :message-id:subject:to:cc;
-        bh=prgbbLEwgblX++DIA6lSNe0xZAiKfHZki6I+StVAnLE=;
-        b=V+CQnDvCFAjk8qy/CHanvPTqAHirj9X+dLBOKU/7aNhXzM1w/iuYl5G2MSZ5Wq5ZiX
-         fBGvyQv8PpntQb4MJXEwV5V8io1iVawFs+lCLeuwehgfPC9PVav3WqXj+Kte5THv9EmS
-         EB55O5FUs3jvmxYWs3KAT6OwuKEZYv3SYuh87Go1GuB/ggWwqA8FcXIGcJAjPt0IJ5vI
-         zTMz7z4gtGd2k8UGCbHfHqhMw7zEQO26NTAMb/qfUdfyJWxf9yvnHEaWlgEWl0T4H1nR
-         glf/1ENZ/lz3KldQThHKRNT2bDonik9kzBpJHPW4ogadUEM387wcj3owiNEPyRCwOyzS
-         M62Q==
-X-Gm-Message-State: AOAM532bWuoTjrzc/jSWvGWPYBwflONo292HNxrtIbTOrw9rZXyKOGU5
-        4lA/a+5U8A7bIOeZyPnxvLpgTSreHK8PvoeYEiKxQg==
-X-Google-Smtp-Source: ABdhPJywvAYnO/cUJA6n7jjsXdnAk2rhTKdrXd0MShhk2rxfYd1+ycLgavEuhL4DeOkvtc7FxftmCne4Gau4Rvcai7s=
-X-Received: by 2002:a5d:510d:: with SMTP id s13mr21605335wrt.177.1600173908051;
- Tue, 15 Sep 2020 05:45:08 -0700 (PDT)
+        h=x-gm-message-state:from:to:cc:subject:date:message-id:in-reply-to
+         :references:mime-version:content-transfer-encoding;
+        bh=lY1f6BPUzB++HrA2WRJHkdA8MgAHqDCMG4dVPqyy2dw=;
+        b=RgGDNrDtOdxGgbz96VgPF1ErFlyXt949zo1jlGPR2SDInA1qjS0G8+gRAloR5mgQjD
+         vFVl181wGxD//7UeRhxXru8uKuUdDdWaeaTifWLf+V7748z4XSS1D54Xb4WH1gontIZm
+         AO2SseLLiqRRG//T/U3zeD97T3DtaaRhj+fTMi7CuFGAxvCvm+rNYfdFgk1vmXv3At04
+         1NJptHwf3/mwWf/8PkMOBPAj+wk7495ZFnwjFcSHDXC5VGmk/e7bo3DnxY95Wvts+pl8
+         ar+c/smmcdbqKPNVNp8STEDyW92vTj3RfDoKN1aEj7PLswBCrlfl9RSN5IbWI/2uHnYx
+         JnLQ==
+X-Gm-Message-State: AOAM5330mKX8j4cMcmzsiQPi+YOmt7LDlqwNTsr5Tuf2tPNg5Y93dXZa
+        Q0yunqn0UWFWb3UDNcwIQmgjPQ==
+X-Google-Smtp-Source: ABdhPJy2eRTWQ+g6UmDXlmlM53iqWF2j0sszPGZYETQLzBt+ugwiGbmbWIu+s6aMP/ZkXhMe28KDEg==
+X-Received: by 2002:adf:a35d:: with SMTP id d29mr21433215wrb.307.1600173957934;
+        Tue, 15 Sep 2020 05:45:57 -0700 (PDT)
+Received: from bender.baylibre.local (home.beaume.starnux.net. [82.236.8.43])
+        by smtp.gmail.com with ESMTPSA id q8sm26548589wrx.79.2020.09.15.05.45.56
+        (version=TLS1_3 cipher=TLS_AES_256_GCM_SHA384 bits=256/256);
+        Tue, 15 Sep 2020 05:45:57 -0700 (PDT)
+From:   Neil Armstrong <narmstrong@baylibre.com>
+To:     jbrunet@baylibre.com, devicetree@vger.kernel.org
+Cc:     linux-amlogic@lists.infradead.org, linux-clk@vger.kernel.org,
+        linux-arm-kernel@lists.infradead.org, linux-kernel@vger.kernel.org,
+        Neil Armstrong <narmstrong@baylibre.com>
+Subject: [PATCH v2 1/4] dt-bindings: clk: axg-clkc: add Video Clocks
+Date:   Tue, 15 Sep 2020 14:45:50 +0200
+Message-Id: <20200915124553.8056-2-narmstrong@baylibre.com>
+X-Mailer: git-send-email 2.22.0
+In-Reply-To: <20200915124553.8056-1-narmstrong@baylibre.com>
+References: <20200915124553.8056-1-narmstrong@baylibre.com>
 MIME-Version: 1.0
-References: <20200914080619.4178587-1-cychiang@chromium.org>
- <20200914080619.4178587-3-cychiang@chromium.org> <20200914174812.GA4125843@bogus>
-In-Reply-To: <20200914174812.GA4125843@bogus>
-From:   Cheng-yi Chiang <cychiang@chromium.org>
-Date:   Tue, 15 Sep 2020 20:44:37 +0800
-Message-ID: <CAFv8NwLb4zKqc8BbRq5_B4PnGR+BAMZa2RpB0qjLez921j-diA@mail.gmail.com>
-Subject: Re: [PATCH v11 2/3] ASoC: qcom: dt-bindings: Add sc7180 machine bindings
-To:     Rob Herring <robh@kernel.org>
-Cc:     linux-kernel <linux-kernel@vger.kernel.org>,
-        Dylan Reid <dgreid@chromium.org>,
-        Bjorn Andersson <bjorn.andersson@linaro.org>,
-        Takashi Iwai <tiwai@suse.com>,
-        "open list:ARM/Rockchip SoC..." <linux-rockchip@lists.infradead.org>,
-        "moderated list:SOUND - SOC LAYER / DYNAMIC AUDIO POWER MANAGEM..." 
-        <alsa-devel@alsa-project.org>, Patrick Lai <plai@codeaurora.org>,
-        Tzung-Bi Shih <tzungbi@chromium.org>,
-        Linux ARM <linux-arm-kernel@lists.infradead.org>,
-        Mark Brown <broonie@kernel.org>,
-        Srinivasa Rao <srivasam@codeaurora.org>,
-        Rob Herring <robh+dt@kernel.org>,
-        "open list:OPEN FIRMWARE AND FLATTENED DEVICE TREE BINDINGS" 
-        <devicetree@vger.kernel.org>, Heiko Stuebner <heiko@sntech.de>,
-        linux-arm-msm <linux-arm-msm@vger.kernel.org>,
-        Matthias Brugger <matthias.bgg@gmail.com>,
-        Stephan Gerhold <stephan@gerhold.net>,
-        Doug Anderson <dianders@chromium.org>,
-        Banajit Goswami <bgoswami@codeaurora.org>,
-        Liam Girdwood <lgirdwood@gmail.com>,
-        Rohit kumar <rohitkr@codeaurora.org>,
-        Andy Gross <agross@kernel.org>,
-        "moderated list:ARM/Mediatek SoC support" 
-        <linux-mediatek@lists.infradead.org>,
-        Taniya Das <tdas@codeaurora.org>,
-        Srini Kandagatla <srinivas.kandagatla@linaro.org>
-Content-Type: text/plain; charset="UTF-8"
+Content-Transfer-Encoding: 8bit
 Sender: devicetree-owner@vger.kernel.org
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-On Tue, Sep 15, 2020 at 1:48 AM Rob Herring <robh@kernel.org> wrote:
->
-> On Mon, 14 Sep 2020 16:06:18 +0800, Cheng-Yi Chiang wrote:
-> > Add devicetree bindings documentation file for sc7180 sound card.
-> >
-> > Signed-off-by: Cheng-Yi Chiang <cychiang@chromium.org>
-> > ---
-> >  .../bindings/sound/qcom,sc7180.yaml           | 130 ++++++++++++++++++
-> >  1 file changed, 130 insertions(+)
-> >  create mode 100644 Documentation/devicetree/bindings/sound/qcom,sc7180.yaml
-> >
->
->
-> Please add Acked-by/Reviewed-by tags when posting new versions. However,
-> there's no need to repost patches *only* to add the tags. The upstream
-> maintainer will do that for acks received on the version they apply.
->
-> If a tag was not added on purpose, please state why and what changed.
->
+Add clock IDs for the video clocks.
 
-Hi Rob,
-There was a change between v9 and v10 on compatible string so I did
-not add your Reviewed-by.
-Now it is "qcom,sc7180-sndcard-rt5682-m98357-1mic" following Stephan's
-comment in
+Signed-off-by: Neil Armstrong <narmstrong@baylibre.com>
+---
+ include/dt-bindings/clock/axg-clkc.h | 24 ++++++++++++++++++++++++
+ 1 file changed, 24 insertions(+)
 
-https://patchwork.kernel.org/comment/23608881/
+diff --git a/include/dt-bindings/clock/axg-clkc.h b/include/dt-bindings/clock/axg-clkc.h
+index fd1f938c38d1..281df3e0f131 100644
+--- a/include/dt-bindings/clock/axg-clkc.h
++++ b/include/dt-bindings/clock/axg-clkc.h
+@@ -72,5 +72,29 @@
+ #define CLKID_PCIE_CML_EN1			80
+ #define CLKID_MIPI_ENABLE			81
+ #define CLKID_GEN_CLK				84
++#define CLKID_VPU_0_SEL				92
++#define CLKID_VPU_0				93
++#define CLKID_VPU_1_SEL				95
++#define CLKID_VPU_1				96
++#define CLKID_VPU				97
++#define CLKID_VAPB_0_SEL			99
++#define CLKID_VAPB_0				100
++#define CLKID_VAPB_1_SEL			102
++#define CLKID_VAPB_1				103
++#define CLKID_VAPB_SEL				104
++#define CLKID_VAPB				105
++#define CLKID_VCLK				106
++#define CLKID_VCLK2				107
++#define CLKID_VCLK_DIV1				122
++#define CLKID_VCLK_DIV2				123
++#define CLKID_VCLK_DIV4				124
++#define CLKID_VCLK_DIV6				125
++#define CLKID_VCLK_DIV12			126
++#define CLKID_VCLK2_DIV1			127
++#define CLKID_VCLK2_DIV2			128
++#define CLKID_VCLK2_DIV4			129
++#define CLKID_VCLK2_DIV6			130
++#define CLKID_VCLK2_DIV12			131
++#define CLKID_CTS_ENCL				133
+ 
+ #endif /* __AXG_CLKC_H */
+-- 
+2.22.0
 
-to make compatible string more specific to board configuration.
-I only add the note to the cover letter. Sorry the cover letter became
-too long to follow.
-I will add the note in patch mail itself for future changes.
-Thanks for taking a look again.
