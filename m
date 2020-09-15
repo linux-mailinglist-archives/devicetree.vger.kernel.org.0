@@ -2,116 +2,157 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from vger.kernel.org (vger.kernel.org [23.128.96.18])
-	by mail.lfdr.de (Postfix) with ESMTP id 9B51D269D9B
-	for <lists+devicetree@lfdr.de>; Tue, 15 Sep 2020 06:56:14 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTP id E9EFA269DA9
+	for <lists+devicetree@lfdr.de>; Tue, 15 Sep 2020 07:02:18 +0200 (CEST)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S1726089AbgIOE4M (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Tue, 15 Sep 2020 00:56:12 -0400
-Received: from lindbergh.monkeyblade.net ([23.128.96.19]:58704 "EHLO
+        id S1726132AbgIOFCQ (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Tue, 15 Sep 2020 01:02:16 -0400
+Received: from lindbergh.monkeyblade.net ([23.128.96.19]:59618 "EHLO
         lindbergh.monkeyblade.net" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S1726034AbgIOE4K (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Tue, 15 Sep 2020 00:56:10 -0400
-Received: from mail-ot1-x343.google.com (mail-ot1-x343.google.com [IPv6:2607:f8b0:4864:20::343])
-        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 556A6C06174A
-        for <devicetree@vger.kernel.org>; Mon, 14 Sep 2020 21:56:10 -0700 (PDT)
-Received: by mail-ot1-x343.google.com with SMTP id g10so2009246otq.9
-        for <devicetree@vger.kernel.org>; Mon, 14 Sep 2020 21:56:10 -0700 (PDT)
+        with ESMTP id S1726091AbgIOFCN (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Tue, 15 Sep 2020 01:02:13 -0400
+Received: from mail-pl1-x644.google.com (mail-pl1-x644.google.com [IPv6:2607:f8b0:4864:20::644])
+        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id BADB4C06174A
+        for <devicetree@vger.kernel.org>; Mon, 14 Sep 2020 22:02:10 -0700 (PDT)
+Received: by mail-pl1-x644.google.com with SMTP id d19so702590pld.0
+        for <devicetree@vger.kernel.org>; Mon, 14 Sep 2020 22:02:10 -0700 (PDT)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=linaro.org; s=google;
+        d=chromium.org; s=google;
         h=date:from:to:cc:subject:message-id:references:mime-version
          :content-disposition:in-reply-to;
-        bh=ENz4xHvD9ug6YlxqNSoJaY/XQYN66A8D8foNqmGC5KA=;
-        b=u93mVuya+d8x86g5PcEQ8jQDGeKy0pXToN3Gf38rOh9RxhkKtQWac/k7HyKfY0vOa7
-         L5U4lhotYK8jBDqlyhP8gnLzLO1wZdC4Lh1PTeonw8rNpcbF6v0oDxW2svAvXpa3Ec9G
-         TD1T1gHpwlsUCSv45z9Qu84lgenwESBMsOKcFL+SsIXmxRvHIcZtQ1zVoZa9kMnvgghZ
-         u7Vlrgdp/vDe4fLoMXqKjMOQJ6ZX6n5IQSoowuHQ7N9vKXwCPb8v1fYNy9LcyColetHS
-         ZEIREZ4n94ozxxnF60bdkdhRO3a+S1ykGDrI9dDB0ZdpNY//qse2cNBtO49wwrJUUUDm
-         9cdQ==
+        bh=+rJl/SN8VzlsuUk4obnAMb9I4I9Qt/aMpgHDEq3gB1M=;
+        b=gtDU1fvGqkOJfvyOKMx+x/wtHT8ERcOW738rREoDVGyNeJfLN2yXBdwfHvNeNIFA08
+         PvjDjU6WaxYUkjB6+1I5fuEfhJhFfrqhiV1XALUJV/avTSeZuXt7RmVK3k2C/XTgqUML
+         rstxXBqaxTn5nCKcQr6xPOQWRVLQcRWJJW6/M=
 X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
         d=1e100.net; s=20161025;
         h=x-gm-message-state:date:from:to:cc:subject:message-id:references
          :mime-version:content-disposition:in-reply-to;
-        bh=ENz4xHvD9ug6YlxqNSoJaY/XQYN66A8D8foNqmGC5KA=;
-        b=rrZJtJj0NHK25eQh94N7vZLfIVbdIXPP/HmeURRzm/mAzkN1Gsl955X5fhwqVQAJJP
-         Mcx0v07bk4zLtbF/LLbS4FzeEhDeKZ4wntbZ39Wip9OYtXeq4K28TJyVWKDGYsFiHUSn
-         g8B8XT5MZbwTFyHV4RmkbAI7FLmdTNpF7nwIEHrpD4ExBEBzUScOrJ4YkXhrP61xpKbF
-         rXeLC+8Ud3lSdZKqer5Cv5oVhPWam/BK4cfh6UL3taJVL043l7FvUJzkGL6BUOnrqTZU
-         VB4DOfmQbeoRAY4iFrhVJFpfAQziqFjan29NctrZnb5ML4Cfleihjnmb9JZh8kqj0VG4
-         YePw==
-X-Gm-Message-State: AOAM530Sr8c/hPAPs79yRJlAMTxdjDLRnRmtQ5cezix0+asDAnsRSXZ9
-        S2RY0JGl/0eDT54IU3MfzNoFcA==
-X-Google-Smtp-Source: ABdhPJzYhhH+j8Sewu8WtxPCdtjCVNeqTeENaaRi2CfPfPAk3Mn7ak211THzf+2/wOvSNI1eTM5/EA==
-X-Received: by 2002:a9d:6f85:: with SMTP id h5mr10512442otq.73.1600145769563;
-        Mon, 14 Sep 2020 21:56:09 -0700 (PDT)
-Received: from yoga ([2605:6000:e5cb:c100:8898:14ff:fe6d:34e])
-        by smtp.gmail.com with ESMTPSA id y23sm6013545ooj.34.2020.09.14.21.56.07
-        (version=TLS1_3 cipher=TLS_AES_256_GCM_SHA384 bits=256/256);
-        Mon, 14 Sep 2020 21:56:08 -0700 (PDT)
-Date:   Mon, 14 Sep 2020 23:56:05 -0500
-From:   Bjorn Andersson <bjorn.andersson@linaro.org>
-To:     Stephan Gerhold <stephan@gerhold.net>
-Cc:     Andy Gross <agross@kernel.org>, linux-arm-msm@vger.kernel.org,
-        devicetree@vger.kernel.org,
-        Srinivas Kandagatla <srinivas.kandagatla@linaro.org>,
-        ~postmarketos/upstreaming@lists.sr.ht
-Subject: Re: [PATCH 00/10] Convert MSM8916 boards to use labels, reduce
- duplication
-Message-ID: <20200915045605.GC670377@yoga>
-References: <20200720085406.6716-1-stephan@gerhold.net>
- <20200914094341.GA1246@gerhold.net>
+        bh=+rJl/SN8VzlsuUk4obnAMb9I4I9Qt/aMpgHDEq3gB1M=;
+        b=Wxo9p8jyJ0VsFKC2zIOk63+UY1+5kimzDnXpLBGI9Nmaxu835hdm798aM4pbakpozv
+         uZx0thx5DeBN1dbSY9h6KnLl1bsAWMH9xR3PBKdilKoribDnV8Zan4k2e4px4VO/Qgge
+         YXlIhKHin1dE6b+Q/lpuFAijrZ71JrE5Mr8PuhaGQPj5QXJOoiyltx3tB0JWAhcFF7nK
+         YUkD4J6M6UQB/i4OVlGO1aiK+y99uzSpCmByS+C2MDmWQC7irk/MC5+tngg12WCShfvS
+         C+AZC9pZULx8bb5kJy83I1gDHQuhA8qp30k4Am2IHvCG22wYiil4O83Z0x1dXBj/wCC5
+         IC9w==
+X-Gm-Message-State: AOAM533n60N5c8ldKTD3vnGMsVCff5cjmXsM+yvjMAihJO+JY3nlKbu7
+        p+WWvgc790GA+vWLoCyVsw4EoQ==
+X-Google-Smtp-Source: ABdhPJz6u4Q4o2XlOKbqIveLz5RbJqD2/bPya4po/sIJUgFm4LGMHmFEpKDyUa8AiZbh0y6LRzkz2Q==
+X-Received: by 2002:a17:90a:b292:: with SMTP id c18mr2329578pjr.223.1600146130093;
+        Mon, 14 Sep 2020 22:02:10 -0700 (PDT)
+Received: from localhost ([2620:15c:202:1:f693:9fff:fef4:e70a])
+        by smtp.gmail.com with ESMTPSA id j4sm12594305pfd.101.2020.09.14.22.02.08
+        (version=TLS1_3 cipher=TLS_AES_128_GCM_SHA256 bits=128/128);
+        Mon, 14 Sep 2020 22:02:09 -0700 (PDT)
+Date:   Mon, 14 Sep 2020 22:02:07 -0700
+From:   Matthias Kaehlcke <mka@chromium.org>
+To:     Peter Chen <peter.chen@nxp.com>
+Cc:     Greg Kroah-Hartman <gregkh@linuxfoundation.org>,
+        Rob Herring <robh+dt@kernel.org>,
+        Frank Rowand <frowand.list@gmail.com>,
+        Alan Stern <stern@rowland.harvard.edu>,
+        Krzysztof Kozlowski <krzk@kernel.org>,
+        Bastien Nocera <hadess@hadess.net>,
+        Ravi Chandra Sadineni <ravisadineni@chromium.org>,
+        "linux-usb@vger.kernel.org" <linux-usb@vger.kernel.org>,
+        Stephen Boyd <swboyd@chromium.org>,
+        "devicetree@vger.kernel.org" <devicetree@vger.kernel.org>,
+        Douglas Anderson <dianders@chromium.org>,
+        "linux-kernel@vger.kernel.org" <linux-kernel@vger.kernel.org>,
+        "Alexander A. Klimov" <grandmaster@al2klimov.de>,
+        Masahiro Yamada <masahiroy@kernel.org>
+Subject: Re: [PATCH 2/2] USB: misc: Add onboard_usb_hub driver
+Message-ID: <20200915050207.GF2022397@google.com>
+References: <20200914112716.1.I248292623d3d0f6a4f0c5bc58478ca3c0062b49a@changeid>
+ <20200914112716.2.I7c9a1f1d6ced41dd8310e8a03da666a32364e790@changeid>
+ <20200915025426.GA17450@b29397-desktop>
 MIME-Version: 1.0
-Content-Type: text/plain; charset=us-ascii
+Content-Type: text/plain; charset=utf-8
 Content-Disposition: inline
-In-Reply-To: <20200914094341.GA1246@gerhold.net>
+In-Reply-To: <20200915025426.GA17450@b29397-desktop>
 Sender: devicetree-owner@vger.kernel.org
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-On Mon 14 Sep 04:43 CDT 2020, Stephan Gerhold wrote:
+Hi Peter,
 
-> Hi Bjorn,
-> 
-> On Mon, Jul 20, 2020 at 10:53:56AM +0200, Stephan Gerhold wrote:
-> > Board device trees for newer SoCs reference labels to override properties
-> > for components of the SoC. This patch series converts all MSM8916 boards to
-> > use the same style.
-> > 
-> > Additionally, in the second part of the series I attempt to reduce duplication
-> > within the MSM8916 board device trees a bit. If we keep copying a large number
-> > of properties to each and every board of a SoC then (in my opinion)
-> > it makes sense to consider if those can be shared in some include.
-> > 
-> > This will make it easier to add new boards in the future.
-> > 
-> > Stephan Gerhold (10):
-> >   arm64: dts: qcom: apq8016-sbc: Remove properties that are already
-> >     default
-> >   arm64: dts: qcom: msm8916: Declare sound node in msm8916.dtsi
-> >   arm64: dts: qcom: apq8016-sbc: Define leds outside of soc node
-> >   arm64: dts: qcom: msm8916: Add more labels
-> >   arm64: dts: qcom: msm8916: Use labels in board device trees
-> >   arm64: dts: qcom: pm8916: Add resin node
-> >   arm64: dts: qcom: msm8916: Move PM8916-specific parts to
-> >     msm8916-pm8916.dtsi
-> >   arm64: dts: qcom: msm8916: Move more supplies to msm8916-pm8916.dtsi
-> >   arm64: dts: qcom: msm8916: Set default pinctrl for blsp1_uart1/2
-> >   arm64: dts: qcom: msm8916: Move common USB properties to msm8916.dtsi
-> > 
-> 
-> It's been two months since I sent this series - are there any changes
-> I should make? Maybe you just overlooked it :)
-> 
+thanks for your comments!
 
-It seems to have been overlooked as we approached the v5.9 merge window.
-I don't have any complaints and have merge the series now.
-
-Thanks,
-Bjorn
-
-> Would be great to make some progress since I have a few more patch
-> series ready to send out that build on top of this one (some more
-> cleanup for MSM8916, converting MSM8916 to use rpmpd power domains, ...)
+On Tue, Sep 15, 2020 at 02:55:06AM +0000, Peter Chen wrote:
+> On 20-09-14 11:27:49, Matthias Kaehlcke wrote:
+> > The main issue this driver addresses is that a USB hub needs to be
+> > powered before it can be discovered. For onboard hubs this is often
+> > solved by supplying the hub with an 'always-on' regulator, which is
+> > kind of a hack. Some onboard hubs may require further initialization
+> > steps, like changing the state of a GPIO or enabling a clock, which
+> > requires further hacks. This driver creates a platform device
+> > representing the hub which performs the necessary initialization.
+> > Currently it only supports switching on a single regulator, support
+> > for multiple regulators or other actions can be added as needed.
+> > Different initialization sequences can be supported based on the
+> > compatible string.
+> > 
+> > Besides performing the initialization the driver can be configured
+> > to power the hub off during system suspend. This can help to extend
+> > battery life on battery powered devices, which have no requirements
+> > to keep the hub powered during suspend. The driver can also be
+> > configured to leave the hub powered when a wakeup capable USB device
+> > is connected when suspending, and keeping it powered otherwise.
+> > 
+> > Technically the driver consists of two drivers, the platform driver
+> > described above and a very thin USB driver that subclasses the
+> > generic hub driver. The purpose of this driver is to provide the
+> > platform driver with the USB devices corresponding to the hub(s)
+> > (a hub controller may provide multiple 'logical' hubs, e.g. one
+> > to support USB 2.0 and another for USB 3.x).
 > 
-> Thanks!
-> Stephan
+> I agree with Alan, you may change this driver to apply for generic
+> onboard USB devices.
+
+I interpreted that Alan only corrected my terminology and didn't
+suggest to extend the driver to generic onboard devices. Actually I
+like that we now have a abstraction for a specific physical 'device',
+rather than the initial usb_hub_pwr/usb_hub_psupply split, which seemed
+a bit contrived (thanks Doug!).
+
+> > +static int onboard_hub_probe(struct platform_device *pdev)
+> > +{
+> > +	struct device *dev = &pdev->dev;
+> > +	struct onboard_hub *hub;
+> > +
+> > +	hub = devm_kzalloc(dev, sizeof(*hub), GFP_KERNEL);
+> > +	if (!hub)
+> > +		return -ENOMEM;
+> > +
+> > +	hub->vdd = devm_regulator_get(dev, "vdd");
+> > +	if (IS_ERR(hub->vdd))
+> > +		return PTR_ERR(hub->vdd);
+> > +
+> > +	hub->dev = dev;
+> > +	mutex_init(&hub->lock);
+> > +	INIT_LIST_HEAD(&hub->udev_list);
+> > +
+> > +	hub->cfg.power_off_in_suspend = of_property_read_bool(dev->of_node, "power-off-in-suspend");
+> > +	hub->cfg.wakeup_source = of_property_read_bool(dev->of_node, "wakeup-source");
+> 
+> Do you really need these two properties? If the device (and its children
+> if existed) has wakeup enabled, you keep power in suspend, otherwise,
+> you could close it, any exceptions?
+
+That would work for my use case, but I'm not sure it's a universally
+good configuration.
+
+I don't have a specific USB device in mind, but you could have a device
+that shouldn't lose it's context during suspend or keep operating
+autonomously (e.g. a sensor with a large buffer collecting samples). Not
+sure if something like this exists in the real though.
+
+I'm not an expert, but it seems there are USB controllers with wakeup
+support which is always enabled. A board with such a controller then
+couldn't have a policy to power down the hub regardless of wakeup
+capable devices being connected.
+
+Thanks
+
+Matthias
