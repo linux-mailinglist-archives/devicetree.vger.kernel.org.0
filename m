@@ -2,218 +2,207 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from vger.kernel.org (vger.kernel.org [23.128.96.18])
-	by mail.lfdr.de (Postfix) with ESMTP id E1DF4269E64
-	for <lists+devicetree@lfdr.de>; Tue, 15 Sep 2020 08:24:21 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTP id 36F3D269E6B
+	for <lists+devicetree@lfdr.de>; Tue, 15 Sep 2020 08:26:36 +0200 (CEST)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S1726035AbgIOGYU (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Tue, 15 Sep 2020 02:24:20 -0400
-Received: from lindbergh.monkeyblade.net ([23.128.96.19]:43854 "EHLO
+        id S1726057AbgIOG0f (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Tue, 15 Sep 2020 02:26:35 -0400
+Received: from lindbergh.monkeyblade.net ([23.128.96.19]:44202 "EHLO
         lindbergh.monkeyblade.net" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S1726031AbgIOGYT (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Tue, 15 Sep 2020 02:24:19 -0400
-Received: from mail.andi.de1.cc (mail.andi.de1.cc [IPv6:2a01:238:4321:8900:456f:ecd6:43e:202c])
-        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 065B3C06174A;
-        Mon, 14 Sep 2020 23:24:17 -0700 (PDT)
-DKIM-Signature: v=1; a=rsa-sha256; q=dns/txt; c=relaxed/relaxed;
-        d=kemnade.info; s=20180802; h=Content-Transfer-Encoding:Content-Type:
-        MIME-Version:References:In-Reply-To:Message-ID:Subject:Cc:To:From:Date:Sender
-        :Reply-To:Content-ID:Content-Description:Resent-Date:Resent-From:
-        Resent-Sender:Resent-To:Resent-Cc:Resent-Message-ID:List-Id:List-Help:
-        List-Unsubscribe:List-Subscribe:List-Post:List-Owner:List-Archive;
-        bh=QHbkyesd8bkWd5SRIkxU2MuBCURyk8IvmzYZixbpLow=; b=IcLYXYdLwXMuWNI5YNV+beexWG
-        VqKS5TR08XAcjscu1cr636dh1OtKXDLvJUekejY5Pe7iRra7sRFCN+MGjhi9L9kIITwbsU0GE/dsS
-        2lrKX43k35Tg5+myx3sKwZ5AuK/zsHpwfTcHmsogpeaPkXmV989SyD5YnzEbbS/TQG9M=;
-Received: from p200300ccff0cb3001a3da2fffebfd33a.dip0.t-ipconnect.de ([2003:cc:ff0c:b300:1a3d:a2ff:febf:d33a] helo=aktux)
-        by mail.andi.de1.cc with esmtpsa (TLS1.2:ECDHE_RSA_AES_256_GCM_SHA384:256)
-        (Exim 4.89)
-        (envelope-from <andreas@kemnade.info>)
-        id 1kI4Na-0003Xe-8h; Tue, 15 Sep 2020 08:23:50 +0200
-Date:   Tue, 15 Sep 2020 08:23:48 +0200
-From:   Andreas Kemnade <andreas@kemnade.info>
-To:     Rob Herring <robh@kernel.org>
-Cc:     Jonathan =?UTF-8?B?TmV1c2Now6RmZXI=?= <j.neuschaefer@gmx.net>,
-        linux-kernel@vger.kernel.org, Lee Jones <lee.jones@linaro.org>,
-        Thierry Reding <thierry.reding@gmail.com>,
-        Uwe =?UTF-8?B?S2xlaW5lLUvDtm5pZw==?= 
-        <u.kleine-koenig@pengutronix.de>,
-        Alessandro Zummo <a.zummo@towertech.it>,
-        Alexandre Belloni <alexandre.belloni@bootlin.com>,
-        Shawn Guo <shawnguo@kernel.org>,
-        Sascha Hauer <s.hauer@pengutronix.de>,
-        Pengutronix Kernel Team <kernel@pengutronix.de>,
-        Fabio Estevam <festevam@gmail.com>,
-        NXP Linux Team <linux-imx@nxp.com>,
-        Sam Ravnborg <sam@ravnborg.org>,
-        Linus Walleij <linus.walleij@linaro.org>,
-        Heiko Stuebner <heiko.stuebner@theobroma-systems.com>,
-        Stephan Gerhold <stephan@gerhold.net>,
-        Lubomir Rintel <lkundrak@v3.sk>,
-        Mark Brown <broonie@kernel.org>, allen <allen.chen@ite.com.tw>,
-        Mauro Carvalho Chehab <mchehab+huawei@kernel.org>,
+        with ESMTP id S1726031AbgIOG0c (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Tue, 15 Sep 2020 02:26:32 -0400
+Received: from metis.ext.pengutronix.de (metis.ext.pengutronix.de [IPv6:2001:67c:670:201:290:27ff:fe1d:cc33])
+        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id B5DF5C06174A
+        for <devicetree@vger.kernel.org>; Mon, 14 Sep 2020 23:26:31 -0700 (PDT)
+Received: from gallifrey.ext.pengutronix.de ([2001:67c:670:201:5054:ff:fe8d:eefb] helo=bjornoya.blackshift.org)
+        by metis.ext.pengutronix.de with esmtps (TLS1.3:ECDHE_RSA_AES_256_GCM_SHA384:256)
+        (Exim 4.92)
+        (envelope-from <mkl@pengutronix.de>)
+        id 1kI4Q3-0001mh-Hy; Tue, 15 Sep 2020 08:26:23 +0200
+Received: from [IPv6:2a03:f580:87bc:d400:8d0c:cfd0:3f99:a545] (unknown [IPv6:2a03:f580:87bc:d400:8d0c:cfd0:3f99:a545])
+        (using TLSv1.3 with cipher TLS_AES_256_GCM_SHA384 (256/256 bits)
+         key-exchange ECDHE (P-384) server-signature RSA-PSS (4096 bits) server-digest SHA256
+         client-signature RSA-PSS (4096 bits) client-digest SHA256)
+        (Client CN "mkl@blackshift.org", Issuer "StartCom Class 1 Client CA" (not verified))
+        (Authenticated sender: mkl@blackshift.org)
+        by smtp.blackshift.org (Postfix) with ESMTPSA id 94FEE560979;
+        Tue, 15 Sep 2020 06:26:14 +0000 (UTC)
+Subject: Re: [PATCH] dt-bindings: net: Correct interrupt flags in examples
+To:     Krzysztof Kozlowski <krzk@kernel.org>, Dan Murphy <dmurphy@ti.com>,
+        Wolfgang Grandegger <wg@grandegger.com>,
         "David S. Miller" <davem@davemloft.net>,
-        devicetree@vger.kernel.org, linux-pwm@vger.kernel.org,
-        linux-rtc@vger.kernel.org, linux-arm-kernel@lists.infradead.org,
-        Heiko Stuebner <heiko@sntech.de>,
-        Josua Mayer <josua.mayer@jm0.eu>,
-        Arnd Bergmann <arnd@arndb.de>, Daniel Palmer <daniel@0x0f.com>
-Subject: Re: [PATCH v2 04/10] dt-bindings: pwm: Add bindings for PWM
- function in Netronix EC
-Message-ID: <20200915082348.2f6fff7a@aktux>
-In-Reply-To: <20200915005443.GA604385@bogus>
-References: <20200905133230.1014581-1-j.neuschaefer@gmx.net>
- <20200905133230.1014581-5-j.neuschaefer@gmx.net>
- <20200915005443.GA604385@bogus>
-X-Mailer: Claws Mail 3.17.3 (GTK+ 2.24.32; x86_64-pc-linux-gnu)
+        Jakub Kicinski <kuba@kernel.org>,
+        Rob Herring <robh+dt@kernel.org>, linux-can@vger.kernel.org,
+        netdev@vger.kernel.org, devicetree@vger.kernel.org,
+        linux-kernel@vger.kernel.org
+References: <20200908145939.4569-1-krzk@kernel.org>
+From:   Marc Kleine-Budde <mkl@pengutronix.de>
+Autocrypt: addr=mkl@pengutronix.de; prefer-encrypt=mutual; keydata=
+ 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
+Message-ID: <101d6fb4-4b4f-feb1-dc66-410d3f0b00c5@pengutronix.de>
+Date:   Tue, 15 Sep 2020 08:26:05 +0200
+User-Agent: Mozilla/5.0 (X11; Linux x86_64; rv:68.0) Gecko/20100101
+ Thunderbird/68.11.0
 MIME-Version: 1.0
-Content-Type: text/plain; charset=UTF-8
-Content-Transfer-Encoding: quoted-printable
-X-Spam-Score: -1.0 (-)
+In-Reply-To: <20200908145939.4569-1-krzk@kernel.org>
+Content-Type: multipart/signed; micalg=pgp-sha512;
+ protocol="application/pgp-signature";
+ boundary="YQzRtHn7LtlgVYqLBghY7t3dN424f82DU"
+X-SA-Exim-Connect-IP: 2001:67c:670:201:5054:ff:fe8d:eefb
+X-SA-Exim-Mail-From: mkl@pengutronix.de
+X-SA-Exim-Scanned: No (on metis.ext.pengutronix.de); SAEximRunCond expanded to false
+X-PTX-Original-Recipient: devicetree@vger.kernel.org
 Sender: devicetree-owner@vger.kernel.org
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-Hi,
+This is an OpenPGP/MIME signed message (RFC 4880 and 3156)
+--YQzRtHn7LtlgVYqLBghY7t3dN424f82DU
+Content-Type: multipart/mixed; boundary="ZpwKSM8QMkqUYjnGxx99WGElSXS7Yy2JF";
+ protected-headers="v1"
+From: Marc Kleine-Budde <mkl@pengutronix.de>
+To: Krzysztof Kozlowski <krzk@kernel.org>, Dan Murphy <dmurphy@ti.com>,
+ Wolfgang Grandegger <wg@grandegger.com>,
+ "David S. Miller" <davem@davemloft.net>, Jakub Kicinski <kuba@kernel.org>,
+ Rob Herring <robh+dt@kernel.org>, linux-can@vger.kernel.org,
+ netdev@vger.kernel.org, devicetree@vger.kernel.org,
+ linux-kernel@vger.kernel.org
+Message-ID: <101d6fb4-4b4f-feb1-dc66-410d3f0b00c5@pengutronix.de>
+Subject: Re: [PATCH] dt-bindings: net: Correct interrupt flags in examples
+References: <20200908145939.4569-1-krzk@kernel.org>
+In-Reply-To: <20200908145939.4569-1-krzk@kernel.org>
 
-On Mon, 14 Sep 2020 18:54:43 -0600
-Rob Herring <robh@kernel.org> wrote:
+--ZpwKSM8QMkqUYjnGxx99WGElSXS7Yy2JF
+Content-Type: text/plain; charset=utf-8
+Content-Language: de-DE
+Content-Transfer-Encoding: quoted-printable
 
-> On Sat, Sep 05, 2020 at 03:32:24PM +0200, Jonathan Neusch=C3=A4fer wrote:
-> > The Netronix embedded controller as found in Kobo Aura and Tolino Shine
-> > supports one PWM channel, which is used to control the frontlight
-> > brightness on these devices.
-> >=20
-> > Signed-off-by: Jonathan Neusch=C3=A4fer <j.neuschaefer@gmx.net>
-> > ---
-> >=20
-> > v2:
-> > - Add plaintext binding to patch description, for comparison
-> > - Fix pwm-cells property (should be 2, not 1)
-> > - Add dummy regulator to example, because the pwm-backlight binding req=
-uires a
-> >   power supply
-> >=20
-> >=20
-> > For reference, here is the binding in text form:
-> >=20
-> >=20
-> >   PWM functionality in Netronix Embedded Controller
-> >=20
-> >   Required properties:
-> >   - compatible: should be "netronix,ntxec-pwm"
-> >   - #pwm-cells: should be 2.
-> >=20
-> >   Available PWM channels:
-> >   - 0: The PWM channel controlled by registers 0xa1-0xa7
-> >=20
-> >   Example:
-> >=20
-> >   	embedded-controller@43 {
-> >   		compatible =3D "netronix,ntxec";
-> >   		...
-> >=20
-> >   		ec_pwm: pwm {
-> >   			compatible =3D "netronix,ntxec-pwm";
-> >   			#pwm-cells =3D <1>;
-> >   		};
-> >   	};
-> >=20
-> >   	...
-> >=20
-> >   	backlight {
-> >   		compatible =3D "pwm-backlight";
-> >   		pwms =3D <&ec_pwm 0 50000>;
-> >   	};
-> > ---
-> >  .../bindings/mfd/netronix,ntxec.yaml          | 19 +++++++++++
-> >  .../bindings/pwm/netronix,ntxec-pwm.yaml      | 33 +++++++++++++++++++
-> >  2 files changed, 52 insertions(+)
-> >  create mode 100644 Documentation/devicetree/bindings/pwm/netronix,ntxe=
-c-pwm.yaml
-> >=20
-> > diff --git a/Documentation/devicetree/bindings/mfd/netronix,ntxec.yaml =
-b/Documentation/devicetree/bindings/mfd/netronix,ntxec.yaml
-> > index 596df460f98eb..73c873dda3e70 100644
-> > --- a/Documentation/devicetree/bindings/mfd/netronix,ntxec.yaml
-> > +++ b/Documentation/devicetree/bindings/mfd/netronix,ntxec.yaml
-> > @@ -31,6 +31,9 @@ properties:
-> >      description:
-> >        The EC can signal interrupts via a GPIO line
-> >=20
-> > +  pwm:
-> > +    $ref: ../pwm/netronix,ntxec-pwm.yaml
-> > +
-> >  required:
-> >    - compatible
-> >    - reg
-> > @@ -53,5 +56,21 @@ examples:
-> >                      interrupts =3D <11 IRQ_TYPE_EDGE_FALLING>;
-> >                      interrupt-controller;
-> >                      #interrupt-cells =3D <1>;
-> > +
-> > +                    ec_pwm: pwm {
-> > +                            compatible =3D "netronix,ntxec-pwm";
-> > +                            #pwm-cells =3D <2>;
-> > +                    };
-> >              };
-> >      };
-> > +
-> > +    backlight {
-> > +            compatible =3D "pwm-backlight";
-> > +            pwms =3D <&ec_pwm 0 50000>;
-> > +            power-supply =3D <&backlight_regulator>;
-> > +    };
-> > +
-> > +    backlight_regulator: regulator-dummy {
-> > +            compatible =3D "regulator-fixed";
-> > +            regulator-name =3D "backlight";
-> > +    };
-> > diff --git a/Documentation/devicetree/bindings/pwm/netronix,ntxec-pwm.y=
-aml b/Documentation/devicetree/bindings/pwm/netronix,ntxec-pwm.yaml
-> > new file mode 100644
-> > index 0000000000000..0c9d2801b8de1
-> > --- /dev/null
-> > +++ b/Documentation/devicetree/bindings/pwm/netronix,ntxec-pwm.yaml
-> > @@ -0,0 +1,33 @@
-> > +# SPDX-License-Identifier: (GPL-2.0-only OR BSD-2-Clause)
-> > +%YAML 1.2
-> > +---
-> > +$id: http://devicetree.org/schemas/pwm/netronix,ntxec-pwm.yaml#
-> > +$schema: http://devicetree.org/meta-schemas/core.yaml#
-> > +
-> > +title: PWM functionality in Netronix embedded controller
-> > +
-> > +maintainers:
-> > +  - Jonathan Neusch=C3=A4fer <j.neuschaefer@gmx.net>
-> > +
-> > +description: |
-> > +  See also Documentation/devicetree/bindings/mfd/netronix,ntxec.yaml
-> > +
-> > +  The Netronix EC contains PWM functionality, which is usually used to=
- drive
-> > +  the backlight LED.
-> > +
-> > +  The following PWM channels are supported:
-> > +    - 0: The PWM channel controlled by registers 0xa1-0xa7
-> > +
-> > +allOf:
-> > +  - $ref: pwm.yaml#
-> > +
-> > +properties:
-> > +  compatible:
-> > +    const: netronix,ntxec-pwm
-> > +
-> > +  "#pwm-cells":
-> > +    const: 2 =20
+On 9/8/20 4:59 PM, Krzysztof Kozlowski wrote:
+> GPIO_ACTIVE_x flags are not correct in the context of interrupt flags.
+> These are simple defines so they could be used in DTS but they will not=
+
+> have the same meaning:
+> 1. GPIO_ACTIVE_HIGH =3D 0 =3D IRQ_TYPE_NONE
+> 2. GPIO_ACTIVE_LOW  =3D 1 =3D IRQ_TYPE_EDGE_RISING
 >=20
-> Just move this to the parent and make the parent a pwm provider. There's=
-=20
-> no need for child nodes for this or the rtc.
+> Correct the interrupt flags, assuming the author of the code wanted som=
+e
+> logical behavior behind the name "ACTIVE_xxx", this is:
+>   ACTIVE_LOW  =3D> IRQ_TYPE_LEVEL_LOW
+>   ACTIVE_HIGH =3D> IRQ_TYPE_LEVEL_HIGH
 >=20
-hmm, there are apparently devices without rtc. If there is a child node
-for the rtc, the corresponding devicetrees could disable rtc by not
-having that node.
-But maybe using the controller version is also feasible for that task.
+> Signed-off-by: Krzysztof Kozlowski <krzk@kernel.org>
+> ---
+>  Documentation/devicetree/bindings/net/can/tcan4x5x.txt | 2 +-
+>  Documentation/devicetree/bindings/net/nfc/nxp-nci.txt  | 2 +-
+>  Documentation/devicetree/bindings/net/nfc/pn544.txt    | 2 +-
+>  3 files changed, 3 insertions(+), 3 deletions(-)
+>=20
+> diff --git a/Documentation/devicetree/bindings/net/can/tcan4x5x.txt b/D=
+ocumentation/devicetree/bindings/net/can/tcan4x5x.txt
+> index 3613c2c8f75d..0968b40aef1e 100644
+> --- a/Documentation/devicetree/bindings/net/can/tcan4x5x.txt
+> +++ b/Documentation/devicetree/bindings/net/can/tcan4x5x.txt
+> @@ -33,7 +33,7 @@ tcan4x5x: tcan4x5x@0 {
+>  		spi-max-frequency =3D <10000000>;
+>  		bosch,mram-cfg =3D <0x0 0 0 32 0 0 1 1>;
+>  		interrupt-parent =3D <&gpio1>;
+> -		interrupts =3D <14 GPIO_ACTIVE_LOW>;
+> +		interrupts =3D <14 IRQ_TYPE_LEVEL_LOW>;
+>  		device-state-gpios =3D <&gpio3 21 GPIO_ACTIVE_HIGH>;
+>  		device-wake-gpios =3D <&gpio1 15 GPIO_ACTIVE_HIGH>;
+>  		reset-gpios =3D <&gpio1 27 GPIO_ACTIVE_HIGH>;
 
-Regards,
-Andreas
+For the tcan4x5x.txt:
+
+Acked-by: Marc Kleine-Budde <mkl@pengutronix.de>
+
+regards,
+Marc
+
+--=20
+Pengutronix e.K.                 | Marc Kleine-Budde           |
+Embedded Linux                   | https://www.pengutronix.de  |
+Vertretung West/Dortmund         | Phone: +49-231-2826-924     |
+Amtsgericht Hildesheim, HRA 2686 | Fax:   +49-5121-206917-5555 |
+
+
+--ZpwKSM8QMkqUYjnGxx99WGElSXS7Yy2JF--
+
+--YQzRtHn7LtlgVYqLBghY7t3dN424f82DU
+Content-Type: application/pgp-signature; name="signature.asc"
+Content-Description: OpenPGP digital signature
+Content-Disposition: attachment; filename="signature.asc"
+
+-----BEGIN PGP SIGNATURE-----
+
+iQEzBAEBCgAdFiEEK3kIWJt9yTYMP3ehqclaivrt76kFAl9gXn0ACgkQqclaivrt
+76nS3ggAl6Mc8oT8fYcrTw4Zv0ertZNNnzBjXRpWW+nG9wj7u6GjcAQRHfaZkXGL
+jWptkPf8FEbO4+VMbIXDdtXkfZOABgVLRHLEcSoEPzG0RCE381nBqxdDzvTRvb/L
+Za7J6uDye81YnMC7M5XzUYfxsJP6IxMhWtaCzlvkvjFMb1lKL8odVWi1QEwlSsHu
+MJo/dT8+cyENGo7+FLDobedWiq/Lt+i/cwyT6zLeYYxRc9Wdltpi1tP0yoRo3s0m
+b75KL1567ULZAqbuAiswZVMeljpYpvTHr/1P4U1rIqoGz0kTOEJXhE38Yc0wrrSK
+xKnNLu4Aqg7yp30VtbentWbD7em4HA==
+=Yei9
+-----END PGP SIGNATURE-----
+
+--YQzRtHn7LtlgVYqLBghY7t3dN424f82DU--
