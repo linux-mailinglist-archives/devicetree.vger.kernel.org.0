@@ -2,92 +2,170 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from vger.kernel.org (vger.kernel.org [23.128.96.18])
-	by mail.lfdr.de (Postfix) with ESMTP id 3AC5826AA8B
-	for <lists+devicetree@lfdr.de>; Tue, 15 Sep 2020 19:27:43 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTP id 493AC26AB04
+	for <lists+devicetree@lfdr.de>; Tue, 15 Sep 2020 19:46:48 +0200 (CEST)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S1727728AbgIOR1b (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Tue, 15 Sep 2020 13:27:31 -0400
-Received: from lindbergh.monkeyblade.net ([23.128.96.19]:33708 "EHLO
-        lindbergh.monkeyblade.net" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S1727883AbgIOR1G (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Tue, 15 Sep 2020 13:27:06 -0400
-Received: from mail-pf1-x432.google.com (mail-pf1-x432.google.com [IPv6:2607:f8b0:4864:20::432])
-        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 2018AC06121C
-        for <devicetree@vger.kernel.org>; Tue, 15 Sep 2020 10:24:46 -0700 (PDT)
-Received: by mail-pf1-x432.google.com with SMTP id v196so2363081pfc.1
-        for <devicetree@vger.kernel.org>; Tue, 15 Sep 2020 10:24:46 -0700 (PDT)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=chromium.org; s=google;
-        h=date:from:to:cc:subject:message-id:references:mime-version
-         :content-disposition:in-reply-to;
-        bh=Y1pACzzdEBRjHi4rSdwVdVaD3WaiuT67R2deRiZ6OMY=;
-        b=UDSiHR+LAP+ogYXhBbajpDwo3AARYaSAAgnUE+8DCeEG3/tj1TtKrcUCeH3dGJ2P/f
-         gBsXNgt3HBm+BnT+GSAsh0qVMWocPQCnyuhgrCVbESLn7fpGP5upx1nascFeJO/+snp8
-         ErYaOljNvSq0Vk2IyJ3U9sqTxiaECnG5Oudk4=
+        id S1727756AbgIORqi (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Tue, 15 Sep 2020 13:46:38 -0400
+Received: from mail-pg1-f196.google.com ([209.85.215.196]:39157 "EHLO
+        mail-pg1-f196.google.com" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
+        with ESMTP id S1727786AbgIORq3 (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Tue, 15 Sep 2020 13:46:29 -0400
+Received: by mail-pg1-f196.google.com with SMTP id d13so2368386pgl.6;
+        Tue, 15 Sep 2020 10:46:28 -0700 (PDT)
 X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
         d=1e100.net; s=20161025;
         h=x-gm-message-state:date:from:to:cc:subject:message-id:references
          :mime-version:content-disposition:in-reply-to;
-        bh=Y1pACzzdEBRjHi4rSdwVdVaD3WaiuT67R2deRiZ6OMY=;
-        b=awoI/eyhtJsBnvNTArQkBMqR+dvpb760pPcSfI8zsgudcPxYs6XZPLDnJlcMYh8yty
-         mXNIogWssowlJi5t/UkSihMPr6+OkEbxICnathDMKXx0eE+ElkG6gkjx3DI9CmGtANk2
-         PYnr9GqLSu68A9hZefkvH8JeVgSovAZZ9QWOUdSKoOc8Lw/v2vSKiB6UoQjjhENaxjxx
-         A8cqVLId9UQntgcIYhKGqYOQqZk9CALqQv3CUDrawmXA1K1wZ3pLcGPHdAN6O66GPmWI
-         4pCWvFcuy2ceXeMlN7xmNsBHyMnq4SSxqKK/DcBOlVmzYrDls5hs7ynemRmD8ajpsvAt
-         9sOQ==
-X-Gm-Message-State: AOAM530p3VeIrlERtk9Z9DiAbfmCmFh/zYbjmYaaiZ3GHvjUyf73AOSf
-        M7F11LESQj7jPaI8mgJq+ey+ag==
-X-Google-Smtp-Source: ABdhPJxzIIZ3OEGJAXBsqEGT7Z5/CBoh2wSey9gTIyODiuKq2azSlSxgY08qj5qNugi92JuP7g4Glw==
-X-Received: by 2002:a62:6845:0:b029:13e:dcd:75bd with SMTP id d66-20020a6268450000b029013e0dcd75bdmr18840660pfc.12.1600190685583;
-        Tue, 15 Sep 2020 10:24:45 -0700 (PDT)
-Received: from localhost ([2620:15c:202:1:f693:9fff:fef4:e70a])
-        by smtp.gmail.com with ESMTPSA id f6sm14254540pfq.82.2020.09.15.10.24.44
-        (version=TLS1_3 cipher=TLS_AES_128_GCM_SHA256 bits=128/128);
-        Tue, 15 Sep 2020 10:24:45 -0700 (PDT)
-Date:   Tue, 15 Sep 2020 10:24:44 -0700
-From:   Matthias Kaehlcke <mka@chromium.org>
-To:     Rajendra Nayak <rnayak@codeaurora.org>,
-        Lukasz Luba <lukasz.luba@arm.com>
-Cc:     Rob Herring <robh+dt@kernel.org>,
-        DTML <devicetree@vger.kernel.org>,
-        Doug Anderson <dianders@chromium.org>,
-        linux-pm@vger.kernel.org,
-        Amit Daniel Kachhap <amit.kachhap@gmail.com>,
-        Daniel Lezcano <daniel.lezcano@linaro.org>,
-        Viresh Kumar <viresh.kumar@linaro.org>,
-        Javi Merino <javi.merino@kernel.org>
-Subject: Re: is 'dynamic-power-coefficient' expected to be based on 'real'
- power measurements?
-Message-ID: <20200915172444.GA2771744@google.com>
-References: <248bb01e-1746-c84c-78c4-3cf7d2541a70@codeaurora.org>
+        bh=BFviqgFIWRut0eU0K6H+y+f/pPgiXCv3xoSL8tn8HHs=;
+        b=Tpi/HE9Z0rVc2pzaSxVSR9m8DKWIXlSNoVs+2if3T2O6f3olmhEp0MTdHMWQeIK3Cy
+         f25y04oY/fRqs1ueDK2FvoTogkvqYrk2ofwpCmcylicyfnfcJLZ8AjrluH4CkuonhTmf
+         Y804xiMWnLQx3e2zZPUDha3K3T6k/SV7EpOUeOcexhlBAbIdYD7jzq1hcpp6m/7Y9Zy5
+         9wLOWRfj3OVzeOtKYrZBks7LDX0XVRu6v89SJ8L1YnugJI1UXjnRdy7G+2GXSR4fhNa9
+         yz8my1rD4aJHfLfM1YLGgvV3cQTuLKa0CRsPc6Y51H6d61kguwMb1XpaH8trr5M5oyT+
+         pbZw==
+X-Gm-Message-State: AOAM533rzKw9Txub4x2QNr5S8XGWIPGPM3mtO9wTCX2XQrp1HjmWMw+O
+        TgnVWc1ryndbYUTKFXs4iQgO8miAqlnEQp8=
+X-Google-Smtp-Source: ABdhPJwlOK3415SZU7crEdleYLmA5Xut63SzqKMQt4DXj3NOqdQUDv7Z1Gs9HZKBmjrRx8Wu+CD9eA==
+X-Received: by 2002:a5d:840a:: with SMTP id i10mr15791731ion.4.1600189202340;
+        Tue, 15 Sep 2020 10:00:02 -0700 (PDT)
+Received: from xps15 ([64.188.179.253])
+        by smtp.gmail.com with ESMTPSA id r5sm9320455ilc.2.2020.09.15.09.59.59
+        (version=TLS1_3 cipher=TLS_AES_256_GCM_SHA384 bits=256/256);
+        Tue, 15 Sep 2020 10:00:01 -0700 (PDT)
+Received: (nullmailer pid 2122994 invoked by uid 1000);
+        Tue, 15 Sep 2020 16:59:58 -0000
+Date:   Tue, 15 Sep 2020 10:59:58 -0600
+From:   Rob Herring <robh@kernel.org>
+To:     Srinivasa Rao Mandadapu <srivasam@codeaurora.org>
+Cc:     agross@kernel.org, bjorn.andersson@linaro.org, lgirdwood@gmail.com,
+        broonie@kernel.org, plai@codeaurora.org, bgoswami@codeaurora.org,
+        perex@perex.cz, tiwai@suse.com, srinivas.kandagatla@linaro.org,
+        rohitkr@codeaurora.org, linux-arm-msm@vger.kernel.org,
+        alsa-devel@alsa-project.org, devicetree@vger.kernel.org,
+        linux-kernel@vger.kernel.org,
+        V Sujith Kumar Reddy <vsujithk@codeaurora.org>
+Subject: Re: [PATCH v4 2/5] ASoC: dt-bindings: Add dt binding for lpass hdmi
+Message-ID: <20200915165958.GA2118432@bogus>
+References: <1599587037-6742-1-git-send-email-srivasam@codeaurora.org>
+ <010101746ed1d41a-5890a534-9c2c-4203-bce5-46075d7827da-000000@us-west-2.amazonses.com>
 MIME-Version: 1.0
-Content-Type: text/plain; charset=utf-8
+Content-Type: text/plain; charset=us-ascii
 Content-Disposition: inline
-In-Reply-To: <248bb01e-1746-c84c-78c4-3cf7d2541a70@codeaurora.org>
+In-Reply-To: <010101746ed1d41a-5890a534-9c2c-4203-bce5-46075d7827da-000000@us-west-2.amazonses.com>
 Sender: devicetree-owner@vger.kernel.org
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-+Thermal folks
-
-Hi Rajendra,
-
-On Tue, Sep 15, 2020 at 11:14:00AM +0530, Rajendra Nayak wrote:
-> Hi Rob,
+On Tue, Sep 08, 2020 at 05:44:39PM +0000, Srinivasa Rao Mandadapu wrote:
+> From: V Sujith Kumar Reddy <vsujithk@codeaurora.org>
 > 
-> There has been some discussions on another thread [1] around the DPC (dynamic-power-coefficient) values
-> for CPU's being relative vs absolute (based on real power) and should they be used to derive 'real' power
-> at various OPPs in order to calculate things like 'sustainable-power' for thermal zones.
-> I believe relative values work perfectly fine for scheduling decisions, but with others using this for
-> calculating power values in mW, is there a need to document the property as something that *has* to be
-> based on real power measurements?
+> Adds bindings for lpass hdmi interface
+> which can support audio path over dp.
+> 
+> Signed-off-by: Srinivasa Rao <srivasam@codeaurora.org>
+> Signed-off-by: V Sujith Kumar Reddy <vsujithk@codeaurora.org>
+> ---
+>  .../devicetree/bindings/sound/qcom,lpass-cpu.yaml  | 51 ++++++++++++++++++++--
+>  1 file changed, 47 insertions(+), 4 deletions(-)
+> 
+> diff --git a/Documentation/devicetree/bindings/sound/qcom,lpass-cpu.yaml b/Documentation/devicetree/bindings/sound/qcom,lpass-cpu.yaml
+> index 09c9bd2..7c2ac0c 100644
+> --- a/Documentation/devicetree/bindings/sound/qcom,lpass-cpu.yaml
+> +++ b/Documentation/devicetree/bindings/sound/qcom,lpass-cpu.yaml
+> @@ -22,6 +22,7 @@ properties:
+>        - qcom,lpass-cpu
+>        - qcom,apq8016-lpass-cpu
+>        - qcom,sc7180-lpass-cpu
+> +      - qcom,sc7180-lpass-hdmi
+>  
+>    reg:
+>      maxItems: 1
+> @@ -60,10 +61,12 @@ properties:
+>      const: 0
+>  
+>  patternProperties:
+> -  "(^mi2s-[0-9a-f]$|mi2s)":
+> +  "^dai@[0-9a-f]$":
+>      type: object
+> -    description: Required properties for each DAI
+> -
+> +    description: |
+> +      LPASS CPU dai node for each I2S device. Bindings of each node
+> +      depends on the specific driver providing the functionality and
+> +      properties.
+>      properties:
+>        reg:
+>          maxItems: 1
+> @@ -145,6 +148,22 @@ allOf:
+>          - iommus
+>          - power-domains
+>  
+> +  - if:
+> +      properties:
+> +        compatible:
+> +          contains:
+> +            const: qcom,sc7180-lpass-hdmi
+> +    then:
+> +      properties:
+> +        clock-names:
+> +          items:
+> +            - const: pcnoc-sway-clk
+> +            - const: audio-core
+> +            - const: pcnoc-mport-clk
+> +      required:
+> +        - iommus
+> +        - power-domains
+> +
+>  examples:
+>    - |
+>      #include <dt-bindings/sound/sc7180-lpass.h>
+> @@ -178,12 +197,36 @@ examples:
+>              #address-cells = <1>;
+>              #size-cells = <0>;
+>              /* Optional to set different MI2S SD lines */
+> -            mi2s-primary@0 {
+> +            dai@mi2s-primary {
 
-Relative values may work for scheduling decisions, but not for thermal
-management with the power allocator, at least not when CPU cooling devices
-are combined with others that specify their power consumption in absolute
-values. Such a configuration should be supported IMO.
+The unit address should be a number.
 
-Thanks
+As this is not failing checks, then you are missing an 
+'additionalProperties: false'.
 
-Matthias
+>                  reg = <MI2S_PRIMARY>;
+>                  qcom,playback-sd-lines = <1>;
+>                  qcom,capture-sd-lines = <0>;
+>              };
+>          };
+> +
+> +        lpassh@62d87000 {
+> +            compatible = "qcom,sc7180-lpass-hdmi";
+> +
+> +            reg = <0 0x62d87000 0 0x68000>;
+> +
+> +            iommus = <&apps_smmu 0x1032 0>;
+> +
+> +            power-domains = <&lpass_hm 0>;
+> +
+> +            clocks = <&gcc 131>,
+> +                 <&lpasscc 6>,
+> +                 <&lpasscc 10>;
+> +
+> +            clock-names = "pcnoc-sway-clk", "audio-core",
+> +                          "pcnoc-mport-clk";
+> +
+> +            #sound-dai-cells = <1>;
+> +
+> +            #address-cells = <1>;
+> +            #size-cells = <0>;
+> +
+> +            interrupts = <0 268 1>;
+> +        };
+>      };
+>  
+>  ...
+> -- 
+> Qualcomm India Private Limited, on behalf of Qualcomm Innovation Center, Inc.,
+> is a member of Code Aurora Forum, a Linux Foundation Collaborative Project.
+> 
