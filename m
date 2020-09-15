@@ -2,99 +2,79 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from vger.kernel.org (vger.kernel.org [23.128.96.18])
-	by mail.lfdr.de (Postfix) with ESMTP id A406226AA53
-	for <lists+devicetree@lfdr.de>; Tue, 15 Sep 2020 19:18:03 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTP id 589AA26AA3A
+	for <lists+devicetree@lfdr.de>; Tue, 15 Sep 2020 19:07:43 +0200 (CEST)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S1727802AbgIORRy (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Tue, 15 Sep 2020 13:17:54 -0400
-Received: from mail.kernel.org ([198.145.29.99]:49958 "EHLO mail.kernel.org"
-        rhost-flags-OK-OK-OK-OK) by vger.kernel.org with ESMTP
-        id S1727882AbgIORP6 (ORCPT <rfc822;devicetree@vger.kernel.org>);
-        Tue, 15 Sep 2020 13:15:58 -0400
-Received: from mail-oi1-f171.google.com (mail-oi1-f171.google.com [209.85.167.171])
-        (using TLSv1.2 with cipher ECDHE-RSA-AES128-GCM-SHA256 (128/128 bits))
-        (No client certificate requested)
-        by mail.kernel.org (Postfix) with ESMTPSA id 6FDA820809;
-        Tue, 15 Sep 2020 16:52:11 +0000 (UTC)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=kernel.org;
-        s=default; t=1600188731;
-        bh=TRdtoop1VJmdXleby80Gzo52XfpAZXVmNoC3tYdvNEk=;
-        h=References:In-Reply-To:From:Date:Subject:To:Cc:From;
-        b=UEoss78KVLFCCMnEiRW2BWiTvow+cEu9uR6dA8kY8bW26flU8Nx8jv3cjnvMSkYJr
-         SoaptaQCJGLi5ipiRysT6+J/RlKcbRlBE9rbKIzHez7Z28nZZYYBBzxu+QJF5b41tf
-         aCVW8JrYquK+8/Eva8gLP8p+ybaIlhh3gK0vudPU=
-Received: by mail-oi1-f171.google.com with SMTP id x69so4621255oia.8;
-        Tue, 15 Sep 2020 09:52:11 -0700 (PDT)
-X-Gm-Message-State: AOAM530Roorq8LjTyuV4KbIpdxygzT287QXR97lf8MwXXnreu0hi2cc0
-        vFOG8aaFk21w90mSd1zBGVd6QY3G/h0QeJJC+g==
-X-Google-Smtp-Source: ABdhPJzLHNlZNoyuZ6Z1PYnZ+IZasQnM2nHLrBajhxJ04YUuo20bpQujO5UgpocSo/Akl/Bzud6CQRQ2IWm7hW5n7x8=
-X-Received: by 2002:aca:fc07:: with SMTP id a7mr249688oii.106.1600188730814;
- Tue, 15 Sep 2020 09:52:10 -0700 (PDT)
+        id S1727789AbgIORHb (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Tue, 15 Sep 2020 13:07:31 -0400
+Received: from mail-pg1-f193.google.com ([209.85.215.193]:45965 "EHLO
+        mail-pg1-f193.google.com" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
+        with ESMTP id S1727800AbgIORGp (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Tue, 15 Sep 2020 13:06:45 -0400
+Received: by mail-pg1-f193.google.com with SMTP id 67so2280660pgd.12;
+        Tue, 15 Sep 2020 10:06:45 -0700 (PDT)
+X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+        d=1e100.net; s=20161025;
+        h=x-gm-message-state:date:from:to:cc:subject:message-id:references
+         :mime-version:content-disposition:in-reply-to;
+        bh=TUBLEz0hsMNnjxbU82r0TebLuBdMSe/EPOZbJ7e3QlY=;
+        b=klEICfyLYw4GIqEO5yrUxKA/LoTiKM1nieyVhMJs0btRXKMMNlq2RVjplVmFWhr23/
+         +LSefdzkxEFI36h4PloVi2zxTxha4qL4D0DoS1wF8HEG0FIIwhj7OaY7QyY5hqplGosx
+         Soobt1Fd8SbbePkoF+Tl1K0jyXd9+KaJOVSodYU0WutgCtELlk+XLd6QSS7roBdc3NfI
+         wz4HQQy9TsZnv0CEQsoTZOFOSM6g2HPm4fzN769B0sMYAzs8BUtUNtTL0uu9Yatv3w6F
+         4TdMDPNOc8oLT96YTnaR3zxxAHqgDI15OFZ83fwr4I/PvWw3EPCf34ecIg4X+Ouoo0ee
+         Ngyw==
+X-Gm-Message-State: AOAM531N+ASEV1pwD6H2VQkLH+bgY7u3kF3XZ8D26D90Sr1HbeZ0QqMs
+        +UY468X1KJA43uuz2DuSzp9SN9ZLlW/8K0I=
+X-Google-Smtp-Source: ABdhPJyjnn6vOZVu2xsfKKhOlKHlqPyeSuyRHbUErkzVYWRU9d4Gk1HXAlgAVFPbfqgBIz+7O54XCA==
+X-Received: by 2002:a92:408e:: with SMTP id d14mr17628216ill.4.1600188895920;
+        Tue, 15 Sep 2020 09:54:55 -0700 (PDT)
+Received: from xps15 ([64.188.179.253])
+        by smtp.gmail.com with ESMTPSA id v24sm7886131ioh.21.2020.09.15.09.54.54
+        (version=TLS1_3 cipher=TLS_AES_256_GCM_SHA384 bits=256/256);
+        Tue, 15 Sep 2020 09:54:55 -0700 (PDT)
+Received: (nullmailer pid 2114741 invoked by uid 1000);
+        Tue, 15 Sep 2020 16:54:53 -0000
+Date:   Tue, 15 Sep 2020 10:54:53 -0600
+From:   Rob Herring <robh@kernel.org>
+To:     Krzysztof Kozlowski <krzk@kernel.org>
+Cc:     devicetree@vger.kernel.org, linux-kernel@vger.kernel.org,
+        Rob Herring <robh+dt@kernel.org>,
+        "David S. Miller" <davem@davemloft.net>, netdev@vger.kernel.org,
+        linux-can@vger.kernel.org, Wolfgang Grandegger <wg@grandegger.com>,
+        Dan Murphy <dmurphy@ti.com>,
+        Marc Kleine-Budde <mkl@pengutronix.de>,
+        Jakub Kicinski <kuba@kernel.org>
+Subject: Re: [PATCH] dt-bindings: net: Correct interrupt flags in examples
+Message-ID: <20200915165453.GA2114689@bogus>
+References: <20200908145939.4569-1-krzk@kernel.org>
 MIME-Version: 1.0
-References: <cover.1599214329.git.mchehab+huawei@kernel.org>
- <58d6b31d0134448a35c47e822c887e994164228b.1599214329.git.mchehab+huawei@kernel.org>
- <CAL_Jsq+e44-_AFqKEkUAKKWapMB7wHCPDCtuWrPvn__NMpNxOw@mail.gmail.com> <20200910073738.0d472fde@coco.lan>
-In-Reply-To: <20200910073738.0d472fde@coco.lan>
-From:   Rob Herring <robh+dt@kernel.org>
-Date:   Tue, 15 Sep 2020 10:51:59 -0600
-X-Gmail-Original-Message-ID: <CAL_JsqK35cNgibV6ajQABCAMsPe+BvL1nOU51XPW-sdfVMgqDA@mail.gmail.com>
-Message-ID: <CAL_JsqK35cNgibV6ajQABCAMsPe+BvL1nOU51XPW-sdfVMgqDA@mail.gmail.com>
-Subject: Re: [RFC 03/10] phy: hisilicon: phy-hi3670-usb3: use a consistent namespace
-To:     Mauro Carvalho Chehab <mchehab+huawei@kernel.org>
-Cc:     Linuxarm <linuxarm@huawei.com>, mauro.chehab@huawei.com,
-        John Stultz <john.stultz@linaro.org>,
-        Manivannan Sadhasivam <mani@kernel.org>,
-        Robin Murphy <robin.murphy@arm.com>,
-        Kishon Vijay Abraham I <kishon@ti.com>,
-        Vinod Koul <vkoul@kernel.org>, Yu Chen <chenyu56@huawei.com>,
-        "linux-kernel@vger.kernel.org" <linux-kernel@vger.kernel.org>,
-        devicetree@vger.kernel.org
-Content-Type: text/plain; charset="UTF-8"
+Content-Type: text/plain; charset=us-ascii
+Content-Disposition: inline
+In-Reply-To: <20200908145939.4569-1-krzk@kernel.org>
 Sender: devicetree-owner@vger.kernel.org
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-On Wed, Sep 9, 2020 at 11:37 PM Mauro Carvalho Chehab
-<mchehab+huawei@kernel.org> wrote:
->
-> Em Wed, 9 Sep 2020 14:15:59 -0600
-> Rob Herring <robh+dt@kernel.org> escreveu:
->
-> > On Fri, Sep 4, 2020 at 4:23 AM Mauro Carvalho Chehab
-> > <mchehab+huawei@kernel.org> wrote:
-> > >
-> > > Rename hikey970 to hi3670, in order to use a namespace
-> > > similar to hi3660 driver.
-> > >
-> > > Signed-off-by: Mauro Carvalho Chehab <mchehab+huawei@kernel.org>
-> > > ---
-> > >  .../bindings/phy/phy-hi3670-usb3.txt          |  4 +-
-> >
-> > Bindings should be a separate patch.
->
-> Ok. I'll split it.
->
-> >
-> > >  drivers/phy/hisilicon/phy-hi3670-usb3.c       | 98 +++++++++----------
-> > >  2 files changed, 51 insertions(+), 51 deletions(-)
-> > >
-> > > diff --git a/Documentation/devicetree/bindings/phy/phy-hi3670-usb3.txt b/Documentation/devicetree/bindings/phy/phy-hi3670-usb3.txt
-> > > index 4cb02612ff23..2fb27cb8beaf 100644
-> > > --- a/Documentation/devicetree/bindings/phy/phy-hi3670-usb3.txt
-> > > +++ b/Documentation/devicetree/bindings/phy/phy-hi3670-usb3.txt
-> > > @@ -2,7 +2,7 @@ Hisilicon Kirin970 usb PHY
-> > >  -----------------------
-> > >
-> > >  Required properties:
-> > > -- compatible: should be "hisilicon,kirin970-usb-phy"
-> > > +- compatible: should be "hisilicon,hi3670-usb-phy"
-> >
-> > Unless this is unused, we can't just change it. It's an ABI.
->
-> From upstream PoV, this binding is for a new driver that will be added
-> via this patchset.
+On Tue, 08 Sep 2020 16:59:39 +0200, Krzysztof Kozlowski wrote:
+> GPIO_ACTIVE_x flags are not correct in the context of interrupt flags.
+> These are simple defines so they could be used in DTS but they will not
+> have the same meaning:
+> 1. GPIO_ACTIVE_HIGH = 0 = IRQ_TYPE_NONE
+> 2. GPIO_ACTIVE_LOW  = 1 = IRQ_TYPE_EDGE_RISING
+> 
+> Correct the interrupt flags, assuming the author of the code wanted some
+> logical behavior behind the name "ACTIVE_xxx", this is:
+>   ACTIVE_LOW  => IRQ_TYPE_LEVEL_LOW
+>   ACTIVE_HIGH => IRQ_TYPE_LEVEL_HIGH
+> 
+> Signed-off-by: Krzysztof Kozlowski <krzk@kernel.org>
+> ---
+>  Documentation/devicetree/bindings/net/can/tcan4x5x.txt | 2 +-
+>  Documentation/devicetree/bindings/net/nfc/nxp-nci.txt  | 2 +-
+>  Documentation/devicetree/bindings/net/nfc/pn544.txt    | 2 +-
+>  3 files changed, 3 insertions(+), 3 deletions(-)
+> 
 
-Please squash this change then.
-
-Rob
+Acked-by: Rob Herring <robh@kernel.org>
