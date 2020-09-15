@@ -2,183 +2,125 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from vger.kernel.org (vger.kernel.org [23.128.96.18])
-	by mail.lfdr.de (Postfix) with ESMTP id 63A2426AE0B
-	for <lists+devicetree@lfdr.de>; Tue, 15 Sep 2020 21:49:57 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTP id 5DB5926AE28
+	for <lists+devicetree@lfdr.de>; Tue, 15 Sep 2020 21:53:36 +0200 (CEST)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S1727924AbgIOTt4 (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Tue, 15 Sep 2020 15:49:56 -0400
-Received: from lindbergh.monkeyblade.net ([23.128.96.19]:56420 "EHLO
+        id S1727751AbgIOTxe (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Tue, 15 Sep 2020 15:53:34 -0400
+Received: from lindbergh.monkeyblade.net ([23.128.96.19]:56970 "EHLO
         lindbergh.monkeyblade.net" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S1727871AbgIOTto (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Tue, 15 Sep 2020 15:49:44 -0400
-Received: from mail.andi.de1.cc (mail.andi.de1.cc [IPv6:2a01:238:4321:8900:456f:ecd6:43e:202c])
-        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 5EB59C06178A;
-        Tue, 15 Sep 2020 12:49:40 -0700 (PDT)
-DKIM-Signature: v=1; a=rsa-sha256; q=dns/txt; c=relaxed/relaxed;
-        d=kemnade.info; s=20180802; h=Content-Transfer-Encoding:Content-Type:
-        MIME-Version:References:In-Reply-To:Message-ID:Subject:Cc:To:From:Date:Sender
-        :Reply-To:Content-ID:Content-Description:Resent-Date:Resent-From:
-        Resent-Sender:Resent-To:Resent-Cc:Resent-Message-ID:List-Id:List-Help:
-        List-Unsubscribe:List-Subscribe:List-Post:List-Owner:List-Archive;
-        bh=2f/FQQsVUE+ceJvZjFwrqZDE7+h9xmxrnKqETPyRkZE=; b=m8PoPwHNuUBO8GElPGKAh0H/CV
-        /PGxRFJbO1gjJYHNDIhMbIQ2WNTPxDrR9sA9/fejksdKaaw97RXTyP8/gpoS6b4BAg92K+lMIyRRi
-        WZxOwlId/9knHxBB/h6DKaxKRWjMYhs0PtxUrru842kZv9kd9zjYuclGP/AigB6YzIvU=;
-Received: from p200300ccff0cb3001a3da2fffebfd33a.dip0.t-ipconnect.de ([2003:cc:ff0c:b300:1a3d:a2ff:febf:d33a] helo=aktux)
-        by mail.andi.de1.cc with esmtpsa (TLS1.2:ECDHE_RSA_AES_256_GCM_SHA384:256)
-        (Exim 4.89)
-        (envelope-from <andreas@kemnade.info>)
-        id 1kIGxJ-0000nE-OP; Tue, 15 Sep 2020 21:49:34 +0200
-Date:   Tue, 15 Sep 2020 21:49:30 +0200
-From:   Andreas Kemnade <andreas@kemnade.info>
-To:     Rob Herring <robh@kernel.org>
-Cc:     lee.jones@linaro.org, devicetree@vger.kernel.org,
-        linux-kernel@vger.kernel.org, b.galvani@gmail.com, stefan@agner.ch
-Subject: Re: [PATCH] dt-bindings: mfd: Convert rn5t618 to json-schema
-Message-ID: <20200915214930.48eaff87@aktux>
-In-Reply-To: <20200915171152.GA2124960@bogus>
-References: <20200908201303.17271-1-andreas@kemnade.info>
-        <20200915171152.GA2124960@bogus>
-X-Mailer: Claws Mail 3.17.3 (GTK+ 2.24.32; x86_64-pc-linux-gnu)
+        with ESMTP id S1727825AbgIOTxQ (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Tue, 15 Sep 2020 15:53:16 -0400
+Received: from mail-vk1-xa34.google.com (mail-vk1-xa34.google.com [IPv6:2607:f8b0:4864:20::a34])
+        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 697A4C061788
+        for <devicetree@vger.kernel.org>; Tue, 15 Sep 2020 12:53:16 -0700 (PDT)
+Received: by mail-vk1-xa34.google.com with SMTP id m8so1141757vka.6
+        for <devicetree@vger.kernel.org>; Tue, 15 Sep 2020 12:53:16 -0700 (PDT)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+        d=chromium.org; s=google;
+        h=mime-version:references:in-reply-to:from:date:message-id:subject:to
+         :cc;
+        bh=JatNhbddJToYM0By7pCmtx57Fyea4GmWvkZSCincDmk=;
+        b=cs/Q6x0YzM+Pnjbl6WAD3RzDobJyyW3NLuTB+Fmlv0GjwsMl/B+GFzhyNWSmw90fQU
+         Xtqk1Uwmb+cc47MODVCKGi7K+6IaYLZkTSOlCr4/CL5Uzj5kvCqCPt+MFe2Vk3R8hL08
+         HLUmomtDf8ml9LyL4vgvTXl9tBLoW0hCaJ6V0=
+X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+        d=1e100.net; s=20161025;
+        h=x-gm-message-state:mime-version:references:in-reply-to:from:date
+         :message-id:subject:to:cc;
+        bh=JatNhbddJToYM0By7pCmtx57Fyea4GmWvkZSCincDmk=;
+        b=q49oL6O3WKDFN9VVfpcaiSFdOS6wiujeSJx/0ySGuIwQyhiRK88W4sFad7aquD7IxZ
+         RRFewu+4Xp/Nkuv2JvEUCy5fo/+Kv3vlREtXZliEG3wwvj9EqJv/Ix69Jcju59Njtb0K
+         FeRYGl1+Ak+R4QcV9t5Jym2Hj2rOyD8QxLG0Ns3c/sLiUbbpArYSZNwduS8/TEQMBeo5
+         lSkObZF/a4h569xiFBu/SWmGjz/fcumXmOnlbmtWLWjz9MolHyYDrbc9UUOV3WhU2xTC
+         Ft+Anxh7iZg96RJ82jhr0BGOeBe9ugrQMh60volxif6gmB2J225QWrButCEH2Uh1O2S5
+         3YHw==
+X-Gm-Message-State: AOAM530Q9ly5EpfWKsCNtKOqzws9dK+iJmkOV6sYfKFzJwk0uzUyFC4E
+        Xewt5D9s+gUk9DYGHgyacHQDPBd7/Gk1Ug==
+X-Google-Smtp-Source: ABdhPJwqU/rpGrpShdtQFLzrEhCC5oLfjksqnyl/+sAyv1zamUpq/2RJZpG1wZ1/Z0o90hOdPFlk0Q==
+X-Received: by 2002:a1f:4507:: with SMTP id s7mr11651904vka.9.1600199594503;
+        Tue, 15 Sep 2020 12:53:14 -0700 (PDT)
+Received: from mail-vs1-f50.google.com (mail-vs1-f50.google.com. [209.85.217.50])
+        by smtp.gmail.com with ESMTPSA id b140sm2162839vsd.14.2020.09.15.12.53.13
+        for <devicetree@vger.kernel.org>
+        (version=TLS1_3 cipher=TLS_AES_128_GCM_SHA256 bits=128/128);
+        Tue, 15 Sep 2020 12:53:13 -0700 (PDT)
+Received: by mail-vs1-f50.google.com with SMTP id j185so2637330vsc.3
+        for <devicetree@vger.kernel.org>; Tue, 15 Sep 2020 12:53:13 -0700 (PDT)
+X-Received: by 2002:a05:6102:101a:: with SMTP id q26mr2665758vsp.34.1600199593095;
+ Tue, 15 Sep 2020 12:53:13 -0700 (PDT)
 MIME-Version: 1.0
-Content-Type: text/plain; charset=US-ASCII
-Content-Transfer-Encoding: 7bit
-X-Spam-Score: -1.0 (-)
+References: <248bb01e-1746-c84c-78c4-3cf7d2541a70@codeaurora.org>
+In-Reply-To: <248bb01e-1746-c84c-78c4-3cf7d2541a70@codeaurora.org>
+From:   Doug Anderson <dianders@chromium.org>
+Date:   Tue, 15 Sep 2020 12:53:00 -0700
+X-Gmail-Original-Message-ID: <CAD=FV=WkS41m_FnZ9V-MM3uh8V6XKgHqvK7FpyWPBCjk7VuVHA@mail.gmail.com>
+Message-ID: <CAD=FV=WkS41m_FnZ9V-MM3uh8V6XKgHqvK7FpyWPBCjk7VuVHA@mail.gmail.com>
+Subject: Re: is 'dynamic-power-coefficient' expected to be based on 'real'
+ power measurements?
+To:     Rajendra Nayak <rnayak@codeaurora.org>
+Cc:     Matthias Kaehlcke <mka@chromium.org>,
+        Lukasz Luba <lukasz.luba@arm.com>,
+        Rob Herring <robh+dt@kernel.org>,
+        DTML <devicetree@vger.kernel.org>,
+        Linux PM <linux-pm@vger.kernel.org>,
+        Amit Daniel Kachhap <amit.kachhap@gmail.com>,
+        Daniel Lezcano <daniel.lezcano@linaro.org>,
+        Viresh Kumar <viresh.kumar@linaro.org>,
+        Javi Merino <javi.merino@kernel.org>
+Content-Type: text/plain; charset="UTF-8"
 Sender: devicetree-owner@vger.kernel.org
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-On Tue, 15 Sep 2020 11:11:52 -0600
-Rob Herring <robh@kernel.org> wrote:
+Hi,
 
-> On Tue, Sep 08, 2020 at 10:13:03PM +0200, Andreas Kemnade wrote:
-> > Convert the RN5T618 binding to DT schema format. Also
-> > clearly state which regulators are available.
-> > 
-> > Signed-off-by: Andreas Kemnade <andreas@kemnade.info>
-> > ---
-> > I have noted myself here as maintainer because I wrote most of the
-> > code of the several subdevices, although not of the .txt-binding.
-> > Due to its .txt-format history BSD license was not added.
-> > I happily ignored the "does MAINTAINERS need updating" thing
-> > from checkpatch.pl, I do not know whether that PMIC should
-> > have a separate entry there.
-> > 
-> >  .../bindings/mfd/ricoh,rn5t618.yaml           | 113 ++++++++++++++++++
-> >  .../devicetree/bindings/mfd/rn5t618.txt       |  52 --------
-> >  2 files changed, 113 insertions(+), 52 deletions(-)
-> >  create mode 100644 Documentation/devicetree/bindings/mfd/ricoh,rn5t618.yaml
-> >  delete mode 100644 Documentation/devicetree/bindings/mfd/rn5t618.txt
-> > 
-> > diff --git a/Documentation/devicetree/bindings/mfd/ricoh,rn5t618.yaml b/Documentation/devicetree/bindings/mfd/ricoh,rn5t618.yaml
-> > new file mode 100644
-> > index 000000000000..9596dde7a69a
-> > --- /dev/null
-> > +++ b/Documentation/devicetree/bindings/mfd/ricoh,rn5t618.yaml
-> > @@ -0,0 +1,113 @@
-> > +# SPDX-License-Identifier: GPL-2.0
-> > +%YAML 1.2
-> > +---
-> > +$id: http://devicetree.org/schemas/mfd/ricoh,rn5t618.yaml#
-> > +$schema: http://devicetree.org/meta-schemas/core.yaml#
-> > +
-> > +title: Ricoh RN5T567/RN5T618/RC5T619 PMIC
-> > +
-> > +maintainers:
-> > +  - Andreas Kemnade <andreas@kemnade.info>
-> > +
-> > +description: |
-> > +  Ricoh RN5T567/RN5T618/RC5T619 is a power management IC family which
-> > +  integrates 3 to 5 step-down DCDC converters, 7 to 10 low-dropout regulators,
-> > +  GPIOs, and a watchdog timer. It can be controlled through an I2C interface.
-> > +  The RN5T618/RC5T619 provides additionally a Li-ion battery charger,
-> > +  fuel gauge, and an ADC.
-> > +  The RC5T619 additionnally includes USB charger detection and an RTC.
-> > +
-> > +allOf:
-> > +  - if:
-> > +      properties:
-> > +        compatible:
-> > +          contains:
-> > +            const: ricoh,rn5t567
-> > +    then:
-> > +      properties:
-> > +        regulators:
-> > +          patternProperties:
-> > +            "^(DCDC[1-4]|LDO[1-5]|LDORTC[12])$":
-> > +              $ref: ../regulator/regulator.yaml
-> > +          additionalProperties: false
-> > +  - if:
-> > +      properties:
-> > +        compatible:
-> > +          contains:
-> > +            const: ricoh,rn5t618
-> > +    then:
-> > +      properties:
-> > +        regulators:
-> > +          patternProperties:
-> > +            "^(DCDC[1-3]|LDO[1-5]|LDORTC[12])$":
-> > +              $ref: ../regulator/regulator.yaml
-> > +          additionalProperties: false
-> > +  - if:
-> > +      properties:
-> > +        compatible:
-> > +          contains:
-> > +            const: ricoh,rc5t619
-> > +    then:
-> > +      properties:
-> > +        regulators:
-> > +          patternProperties:
-> > +            "^(DCDC[1-5]|LDO[1-9]|LDO10|LDORTC[12])$":
-> > +              $ref: ../regulator/regulator.yaml
-> > +          additionalProperties: false  
-> 
-> I prefer under 'regulators' below, you have all possible regulator 
-> names:
-> 
-> patternProperties:
->   "^(DCDC[1-5]|LDO[1-9]|LDO10|LDORTC[12])$":
->      $ref: ../regulator/regulator.yaml
-> 
-> and then above you just need to restrict the possible names:
-> 
-> regulators:
->   propertyNames:
->     pattern: "^(DCDC[1-3]|LDO[1-5]|LDORTC[12])$"
-> 
-> (propertyNames schema is applied to all an object's properties and you 
-> don't need additionalProperties here.)
-> 
-hmm, dt_binding_check refuses to digest things like this:
+On Mon, Sep 14, 2020 at 10:44 PM Rajendra Nayak <rnayak@codeaurora.org> wrote:
+>
+> Hi Rob,
+>
+> There has been some discussions on another thread [1] around the DPC (dynamic-power-coefficient) values
+> for CPU's being relative vs absolute (based on real power) and should they be used to derive 'real' power
+> at various OPPs in order to calculate things like 'sustainable-power' for thermal zones.
+> I believe relative values work perfectly fine for scheduling decisions, but with others using this for
+> calculating power values in mW, is there a need to document the property as something that *has* to be
+> based on real power measurements?
+>
+> Looking at the bindings,
+>
+>    dynamic-power-coefficient:
+>      $ref: '/schemas/types.yaml#/definitions/uint32'
+>      description:
+>        A u32 value that represents the running time dynamic
+>        power coefficient in units of uW/MHz/V^2. The
+>        coefficient can either be calculated from power
+>        measurements or derived by analysis.
+>
+>        The dynamic power consumption of the CPU  is
+>        proportional to the square of the Voltage (V) and
+>        the clock frequency (f). The coefficient is used to
+>        calculate the dynamic power as below -
+>
+>        Pdyn = dynamic-power-coefficient * V^2 * f
+>
+>        where voltage is in V, frequency is in MHz.
+>
+> .. the 'can either be calculated from power measurements or derived by analysis'
+> tells me we don't mandate that this be based on real power measurements.
+> If we do, then perhaps that needs to be mentioned explicitly?
 
-allOf:
-  - if:
-      properties:
-        compatible:
-          contains:
-            const: ricoh,rn5t567
-    then:
-      properties:
-        regulators:
-          propertyNames:
-            pattern: "^(DCDC[1-4]|LDO[1-5]|LDORTC[12])$"
+To me, the phrase "derived by analysis" doesn't mean that the number
+is allowed to be in completely made up units.  It means it's still
+supposed to be in the same units but it's OK if you didn't integrate a
+Coulomb counter into your system.
 
-I get:
-andi@aktux:~/kernel$ DT_SCHEMA_FILES=Documentation/devicetree/bindings/mfd/ricoh,rn5t618.yaml makearm dt_binding_check
-  CHKDT   Documentation/devicetree/bindings/mfd/ricoh,rn5t618.yaml
-/home/andi/kernel/Documentation/devicetree/bindings/mfd/ricoh,rn5t618.yaml: allOf:0:then:properties:regulators: Additional properties are not allowed ('propertyNames' was unexpected)
-/home/andi/kernel/Documentation/devicetree/bindings/mfd/ricoh,rn5t618.yaml: allOf:0:then:properties:regulators: 'propertyNames' is not one of ['$ref', 'additionalItems', 'additionalProperties', 'allOf', 'anyOf', 'const', 'contains', 'default', 'dependencies', 'deprecated', 'description', 'else', 'enum', 'exclusiveMaximum', 'exclusiveMinimum', 'items', 'if', 'minItems', 'minimum', 'maxItems', 'maximum', 'multipleOf', 'not', 'oneOf', 'pattern', 'patternProperties', 'properties', 'required', 'then', 'type', 'typeSize', 'unevaluatedProperties', 'uniqueItems']
+It's kinda like saying that the police can give you a speeding ticket
+by either measuring your speed with a radar gun or by checking a clock
+when your car passed two known places and calculating your speed based
+on that.  The radar gun is a direct measurement whereas the other is
+derived by analysis.  In both cases you're still talking about a speed
+in terms of Miles per Hour (or kilometers per hour in more sane
+countries).
 
-andi@aktux:~/kernel/Documentation$ grep -R propertyNames *
-devicetree/bindings/mfd/ricoh,rn5t618.yaml:          propertyNames:
-devicetree/bindings/mfd/ricoh,rn5t618.yaml:          propertyNames:
-devicetree/bindings/mfd/ricoh,rn5t618.yaml:          propertyNames:
-
-... and I am the only user, it is not documented.
-and yes I have updated my tools
-andi@aktux:~/kernel$ dt-validate --version
-2020.8.1
-
-Regards,
-Andreas
-
+-Doug
