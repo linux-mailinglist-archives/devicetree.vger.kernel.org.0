@@ -2,60 +2,60 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from vger.kernel.org (vger.kernel.org [23.128.96.18])
-	by mail.lfdr.de (Postfix) with ESMTP id 9217D26A4F6
-	for <lists+devicetree@lfdr.de>; Tue, 15 Sep 2020 14:20:42 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTP id 031A826A4F4
+	for <lists+devicetree@lfdr.de>; Tue, 15 Sep 2020 14:20:04 +0200 (CEST)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S1726486AbgIOMU0 (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Tue, 15 Sep 2020 08:20:26 -0400
-Received: from lindbergh.monkeyblade.net ([23.128.96.19]:42192 "EHLO
+        id S1726497AbgIOMT7 (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Tue, 15 Sep 2020 08:19:59 -0400
+Received: from lindbergh.monkeyblade.net ([23.128.96.19]:42234 "EHLO
         lindbergh.monkeyblade.net" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S1726485AbgIOMTV (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Tue, 15 Sep 2020 08:19:21 -0400
-Received: from mail-wm1-x32b.google.com (mail-wm1-x32b.google.com [IPv6:2a00:1450:4864:20::32b])
-        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id E9E3FC06178B
-        for <devicetree@vger.kernel.org>; Tue, 15 Sep 2020 05:19:20 -0700 (PDT)
-Received: by mail-wm1-x32b.google.com with SMTP id y15so3249488wmi.0
-        for <devicetree@vger.kernel.org>; Tue, 15 Sep 2020 05:19:20 -0700 (PDT)
+        with ESMTP id S1726498AbgIOMTf (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Tue, 15 Sep 2020 08:19:35 -0400
+Received: from mail-wm1-x344.google.com (mail-wm1-x344.google.com [IPv6:2a00:1450:4864:20::344])
+        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 50FBEC061351
+        for <devicetree@vger.kernel.org>; Tue, 15 Sep 2020 05:19:22 -0700 (PDT)
+Received: by mail-wm1-x344.google.com with SMTP id l9so3229130wme.3
+        for <devicetree@vger.kernel.org>; Tue, 15 Sep 2020 05:19:22 -0700 (PDT)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
         d=baylibre-com.20150623.gappssmtp.com; s=20150623;
         h=from:to:cc:subject:date:message-id:in-reply-to:references
          :mime-version:content-transfer-encoding;
-        bh=/f+R+j91elfFPYf4zfHO7Bzdv43BgZ5CODvbZ0Vzlb0=;
-        b=ALUSvXEave0lkRZzUeEbGO8h2GDfO0EU1AiDTv2SiPlJ4oOGdkbhRYuv9hFUcMyGSO
-         alirB7AKsTW6bTsLpcZ92Ic+b9IriMXONlINaxSKzFIhfodhg/IoZo/6QshxxDEFPQF9
-         +z0PYAL6PDisRD661B16WsycbbcZ61BeLzcMHp1/DvhmU7DKPBTRMHjtHkMn5RmafR2Q
-         s70bVvvdGwrgVsJxh0OiBJnXJwxMlOn6mg4OI+PW/l4Ap6wUcG33kZiGkZP+yBlpHoqh
-         dmfDxhWB79y7cZntYKBsS+i/WkkYB0rizS9oBJEauiIWy4wyfvIo6eZjTzxlPGxabafg
-         ikHQ==
+        bh=un3Gh2gweDlAUsvqGdAT6fJ9irEjsQvOrf4xpheQKFc=;
+        b=Lq9x8PS6ikykudXTzqmiSjlkw1Mv5Fjj4FKyQyXpGeeAWDF9A9ovPyTjb3Da4qoZun
+         0Qo8bZXk2A2lRtM0JArOOu82jnPkup70fFXg/EEeL7/tGd/sSGimI8b8CSJ6Epc8heO/
+         dW0IioLCpj/OBwmHmNCYc1TXGLCqSD/6EomeJWbxHNdQNcf0QWyxXRG/UfSnTIS9REVD
+         yXDRxOzEUYAIpyaO4xRjQxrFnS+f11Gin6cKWKlip0nSwAXkI4tIdX9PcL3AgppY8tmR
+         aKdTsPcHucEfk28DnxBE+2jvIqN7Nzx+Ti8b1c1mjBtsjgDQPZns2rU9G9yALoi1dnnt
+         pLtw==
 X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
         d=1e100.net; s=20161025;
         h=x-gm-message-state:from:to:cc:subject:date:message-id:in-reply-to
          :references:mime-version:content-transfer-encoding;
-        bh=/f+R+j91elfFPYf4zfHO7Bzdv43BgZ5CODvbZ0Vzlb0=;
-        b=FQQ4pdFlVyRL5VD6v1Ca8LJJcgoHsztY8qNvo3r8kdqtfTmjGZckPeT+rUXOoEwPC9
-         duBAO2/ZUEmd6fJhfKXX5obNhYXIN3SN4dV6smAkDf3wpaenXPFdYoMi3JL70FjXmR43
-         9gfklK0jI3WdDB86U91tMqYvQA90rTWlGwWBUQE86OXr35qOFvRB2YFciycBzttQ/7b0
-         9vYHl1n/EHrKVpEip51yg3eEA8bZgpOc6vRvfNKyWxDHLFZTWoQ61ONoBRuFihZHk9B9
-         88pFr2q7rOrII/pfxWnnFi0tODeiVsqkiZKoLPxeahrwZ11f68EtXSbYa1A+bum0V6cH
-         iGkA==
-X-Gm-Message-State: AOAM530O4hmQzgNwLXAZkqEtwMHHjgS0wbivdE9aUFeFctvfDZbvwRKa
-        0tABJa01071ekYUkdFEuKMXPSA==
-X-Google-Smtp-Source: ABdhPJyu3ypcdWMW/OyELVvdkIVANM6RtWY9v4+qY/DqA8slXt9wOmWk6s4o4g2lz7Q0ucEvuSK83Q==
-X-Received: by 2002:a1c:f008:: with SMTP id a8mr4634653wmb.155.1600172359411;
-        Tue, 15 Sep 2020 05:19:19 -0700 (PDT)
+        bh=un3Gh2gweDlAUsvqGdAT6fJ9irEjsQvOrf4xpheQKFc=;
+        b=rjjHt4Vz2SgddSgd7IQu5aggpQnLvRgj8enk1mpSvqXbYJA6IiBoU8rXv/xm8n6HNl
+         3wVZOOKr+fFWxByshjiczSZ9E7YPcF3fD2IgmE90ygL33KV5wiUXzobgQJYuAiOdQDQt
+         5M7UMR5Slpve45n6VbxDyXdi/5aKyIpQSEGt5gxKhv+S9ngzxwRyHPvyoTc61Wg/tZzO
+         hv08t2LP8GWMHsyENq0YM+eDubXK2+1l7Dc/jiZTY7R131PfG8G+W6ReIKyoSEwCjyiO
+         17xkz3a+1v6M5ZwnT+16n3/G5Hsg6kNP6Eq+SaBeMifz7PGa7raon8Pt8BiLi5jysJV5
+         oXWQ==
+X-Gm-Message-State: AOAM531e5r4Hze+wV/7eR79ULf4zg0mcc//duX6yy9KfJO5VRZZw/b3Q
+        gnMIGNIsRhGo8UDw8Vahz/q7mA==
+X-Google-Smtp-Source: ABdhPJzfh8abje87LbHn4Yy3eXAdcq+orthOqFQV/rOJWuOe4E/5vFnXxQuTIYJlbMLLAVPJWsKNWQ==
+X-Received: by 2002:a7b:c5cf:: with SMTP id n15mr4395014wmk.93.1600172360770;
+        Tue, 15 Sep 2020 05:19:20 -0700 (PDT)
 Received: from bender.baylibre.local (home.beaume.starnux.net. [82.236.8.43])
-        by smtp.gmail.com with ESMTPSA id 2sm18271411wmf.25.2020.09.15.05.19.18
+        by smtp.gmail.com with ESMTPSA id 2sm18271411wmf.25.2020.09.15.05.19.19
         (version=TLS1_3 cipher=TLS_AES_256_GCM_SHA384 bits=256/256);
-        Tue, 15 Sep 2020 05:19:18 -0700 (PDT)
+        Tue, 15 Sep 2020 05:19:20 -0700 (PDT)
 From:   Neil Armstrong <narmstrong@baylibre.com>
 To:     thierry.reding@gmail.com, sam@ravnborg.org,
         devicetree@vger.kernel.org
 Cc:     dri-devel@lists.freedesktop.org, linux-amlogic@lists.infradead.org,
         linux-kernel@vger.kernel.org,
         Neil Armstrong <narmstrong@baylibre.com>
-Subject: [PATCH v4 2/4] dt-bindings: display: panel-simple-dsi: add optional reset gpio
-Date:   Tue, 15 Sep 2020 14:19:10 +0200
-Message-Id: <20200915121912.4347-3-narmstrong@baylibre.com>
+Subject: [PATCH v4 3/4] dt-bindings: display: panel-simple-dsi: add TDO TL070WSH30 DSI panel bindings
+Date:   Tue, 15 Sep 2020 14:19:11 +0200
+Message-Id: <20200915121912.4347-4-narmstrong@baylibre.com>
 X-Mailer: git-send-email 2.22.0
 In-Reply-To: <20200915121912.4347-1-narmstrong@baylibre.com>
 References: <20200915121912.4347-1-narmstrong@baylibre.com>
@@ -66,28 +66,26 @@ Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-Simple DSI panels can also have a reset GPIO signal in addition/instead of an
-enable GPIO signal.
-
-This adds an optional reset-gpios property.
+This add the bindings for the 1024x600 TFT LCD TL070WSH30 DSI panel to panel-simple-dsi.
 
 Signed-off-by: Neil Armstrong <narmstrong@baylibre.com>
 ---
- .../devicetree/bindings/display/panel/panel-simple-dsi.yaml      | 1 +
- 1 file changed, 1 insertion(+)
+ .../devicetree/bindings/display/panel/panel-simple-dsi.yaml     | 2 ++
+ 1 file changed, 2 insertions(+)
 
 diff --git a/Documentation/devicetree/bindings/display/panel/panel-simple-dsi.yaml b/Documentation/devicetree/bindings/display/panel/panel-simple-dsi.yaml
-index c0dd9fa29f1d..4d08e746cb21 100644
+index 4d08e746cb21..a29ab65507f0 100644
 --- a/Documentation/devicetree/bindings/display/panel/panel-simple-dsi.yaml
 +++ b/Documentation/devicetree/bindings/display/panel/panel-simple-dsi.yaml
-@@ -54,6 +54,7 @@ properties:
+@@ -47,6 +47,8 @@ properties:
+       - panasonic,vvx10f004b00
+         # Panasonic 10" WUXGA TFT LCD panel
+       - panasonic,vvx10f034n00
++        # Shangai Top Display Optoelectronics 7" TL070WSH30 1024x600 TFT LCD panel
++      - tdo,tl070wsh30
  
-   backlight: true
-   enable-gpios: true
-+  reset-gpios: true
-   port: true
-   power-supply: true
- 
+   reg:
+     maxItems: 1
 -- 
 2.22.0
 
