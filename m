@@ -2,49 +2,49 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from vger.kernel.org (vger.kernel.org [23.128.96.18])
-	by mail.lfdr.de (Postfix) with ESMTP id C0A5726A439
-	for <lists+devicetree@lfdr.de>; Tue, 15 Sep 2020 13:35:15 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTP id CFE0C26A443
+	for <lists+devicetree@lfdr.de>; Tue, 15 Sep 2020 13:39:12 +0200 (CEST)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S1726161AbgIOLfH (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Tue, 15 Sep 2020 07:35:07 -0400
-Received: from lelv0142.ext.ti.com ([198.47.23.249]:45006 "EHLO
-        lelv0142.ext.ti.com" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S1726369AbgIOLey (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Tue, 15 Sep 2020 07:34:54 -0400
-Received: from fllv0035.itg.ti.com ([10.64.41.0])
-        by lelv0142.ext.ti.com (8.15.2/8.15.2) with ESMTP id 08FBKjGH013435;
-        Tue, 15 Sep 2020 06:20:45 -0500
+        id S1726249AbgIOLjH (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Tue, 15 Sep 2020 07:39:07 -0400
+Received: from lelv0143.ext.ti.com ([198.47.23.248]:36446 "EHLO
+        lelv0143.ext.ti.com" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
+        with ESMTP id S1726119AbgIOLh4 (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Tue, 15 Sep 2020 07:37:56 -0400
+Received: from fllv0034.itg.ti.com ([10.64.40.246])
+        by lelv0143.ext.ti.com (8.15.2/8.15.2) with ESMTP id 08FBKvHS114768;
+        Tue, 15 Sep 2020 06:20:57 -0500
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=ti.com;
-        s=ti-com-17Q1; t=1600168845;
-        bh=HB6Ek5pzLz8fCLHNM5RI59gb394ysYTfKY+ZodmGEYk=;
+        s=ti-com-17Q1; t=1600168857;
+        bh=OUFHtcMGlbsIVzGZ4BgYQuW1IbIYJmWfeWS2S85IW3Y=;
         h=From:To:CC:Subject:Date:In-Reply-To:References;
-        b=NjEq9dOtiiNZC2rwCtkYSrFW72bqENq+eG2NT2sJqQhJ92mdkO4oadZfwn33KD5Fm
-         BPERA85F1BjNGDURbGFiy15yeQTq/+MXgQhwo+Pn+YWpVCvrkjWnXREsilKIYHHF+0
-         RIpPMmMJwmLm1wPEHVdbY56aMTSJyigAuWKQi0rM=
-Received: from DLEE100.ent.ti.com (dlee100.ent.ti.com [157.170.170.30])
-        by fllv0035.itg.ti.com (8.15.2/8.15.2) with ESMTP id 08FBKj1h120680;
-        Tue, 15 Sep 2020 06:20:45 -0500
-Received: from DLEE111.ent.ti.com (157.170.170.22) by DLEE100.ent.ti.com
- (157.170.170.30) with Microsoft SMTP Server (version=TLS1_2,
+        b=DDHwJkXBkCV5MwK6ctXgEHRaObfSUBTw2P6vYHLsweNkd/QT6IaLeyk/aOrKFEn/T
+         eI98Kl75n1wmfy60bwHsGUjpSAPYoUXn4duzvI8UkIJlAaMPgZy8jIkThooymmRLkU
+         WOMiUeMCi8ItlcJllXkSuMYGBDRry53EOFnH3eLY=
+Received: from DLEE104.ent.ti.com (dlee104.ent.ti.com [157.170.170.34])
+        by fllv0034.itg.ti.com (8.15.2/8.15.2) with ESMTPS id 08FBKvwo051142
+        (version=TLSv1.2 cipher=AES256-GCM-SHA384 bits=256 verify=FAIL);
+        Tue, 15 Sep 2020 06:20:57 -0500
+Received: from DLEE106.ent.ti.com (157.170.170.36) by DLEE104.ent.ti.com
+ (157.170.170.34) with Microsoft SMTP Server (version=TLS1_2,
  cipher=TLS_ECDHE_RSA_WITH_AES_128_CBC_SHA256_P256) id 15.1.1979.3; Tue, 15
- Sep 2020 06:20:45 -0500
-Received: from fllv0040.itg.ti.com (10.64.41.20) by DLEE111.ent.ti.com
- (157.170.170.22) with Microsoft SMTP Server (version=TLS1_2,
+ Sep 2020 06:20:57 -0500
+Received: from fllv0040.itg.ti.com (10.64.41.20) by DLEE106.ent.ti.com
+ (157.170.170.36) with Microsoft SMTP Server (version=TLS1_2,
  cipher=TLS_ECDHE_RSA_WITH_AES_128_CBC_SHA256_P256) id 15.1.1979.3 via
- Frontend Transport; Tue, 15 Sep 2020 06:20:45 -0500
+ Frontend Transport; Tue, 15 Sep 2020 06:20:57 -0500
 Received: from lta0400828a.ti.com (ileax41-snat.itg.ti.com [10.172.224.153])
-        by fllv0040.itg.ti.com (8.15.2/8.15.2) with ESMTP id 08FBKdmA013285;
-        Tue, 15 Sep 2020 06:20:42 -0500
+        by fllv0040.itg.ti.com (8.15.2/8.15.2) with ESMTP id 08FBKdmF013285;
+        Tue, 15 Sep 2020 06:20:55 -0500
 From:   Roger Quadros <rogerq@ti.com>
 To:     <t-kristo@ti.com>, <nm@ti.com>
 CC:     <robh+dt@kernel.org>, <linux-kernel@vger.kernel.org>,
         <devicetree@vger.kernel.org>,
         <linux-arm-kernel@lists.infradead.org>, <nsekhar@ti.com>,
-        <kishon@ti.com>, Roger Quadros <rogerq@ti.com>,
-        Peter Rosin <peda@axentia.se>
-Subject: [PATCH v3 1/6] dt-bindings: mux-j7200-wiz: Add lane function defines
-Date:   Tue, 15 Sep 2020 14:20:33 +0300
-Message-ID: <20200915112038.30219-2-rogerq@ti.com>
+        <kishon@ti.com>, Roger Quadros <rogerq@ti.com>
+Subject: [PATCH v3 6/6] arm64: dts: ti: k3-j7200-common-proc-board: Add USB support
+Date:   Tue, 15 Sep 2020 14:20:38 +0300
+Message-ID: <20200915112038.30219-7-rogerq@ti.com>
 X-Mailer: git-send-email 2.17.1
 In-Reply-To: <20200915112038.30219-1-rogerq@ti.com>
 References: <20200915112038.30219-1-rogerq@ti.com>
@@ -56,52 +56,58 @@ Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-Each SERDES lane mux can select upto 4 different IPs.
-There are 4 lanes in each J7200 SERDES. Define all
-the possible functions in this file.
+The board uses lane 3 of SERDES for USB. Set the mux
+accordingly.
 
-Cc: Peter Rosin <peda@axentia.se>
+The USB controller and EVM supports super-speed for USB0
+on the Type-C port. However, the SERDES has a limitation
+that upto 2 protocols can be used at a time. The SERDES is
+wired for PCIe, QSGMII and USB super-speed. It has been
+chosen to use PCI2 and QSGMII as default. So restrict
+USB0 to high-speed mode.
+
 Signed-off-by: Roger Quadros <rogerq@ti.com>
 ---
- include/dt-bindings/mux/mux-j7200-wiz.h | 29 +++++++++++++++++++++++++
- 1 file changed, 29 insertions(+)
- create mode 100644 include/dt-bindings/mux/mux-j7200-wiz.h
+ .../dts/ti/k3-j7200-common-proc-board.dts     | 22 +++++++++++++++++++
+ 1 file changed, 22 insertions(+)
 
-diff --git a/include/dt-bindings/mux/mux-j7200-wiz.h b/include/dt-bindings/mux/mux-j7200-wiz.h
-new file mode 100644
-index 000000000000..b091b1185a36
---- /dev/null
-+++ b/include/dt-bindings/mux/mux-j7200-wiz.h
-@@ -0,0 +1,29 @@
-+/* SPDX-License-Identifier: GPL-2.0 */
-+/*
-+ * This header provides constants for J7200 WIZ.
-+ */
+diff --git a/arch/arm64/boot/dts/ti/k3-j7200-common-proc-board.dts b/arch/arm64/boot/dts/ti/k3-j7200-common-proc-board.dts
+index 0ecaba600704..5ce3fddbd617 100644
+--- a/arch/arm64/boot/dts/ti/k3-j7200-common-proc-board.dts
++++ b/arch/arm64/boot/dts/ti/k3-j7200-common-proc-board.dts
+@@ -42,6 +42,12 @@
+ 			J721E_IOPAD(0xe4, PIN_INPUT, 8) /* (V1) TIMER_IO0.MMC1_SDCD */
+ 		>;
+ 	};
 +
-+#ifndef _DT_BINDINGS_J7200_WIZ
-+#define _DT_BINDINGS_J7200_WIZ
++	main_usbss0_pins_default: main-usbss0-pins-default {
++		pinctrl-single,pins = <
++			J721E_IOPAD(0x120, PIN_OUTPUT, 0) /* (T4) USB0_DRVVBUS */
++		>;
++	};
+ };
+ 
+ &wkup_uart0 {
+@@ -145,3 +151,19 @@
+ 	idle-states = <SERDES0_LANE0_PCIE1_LANE0>, <SERDES0_LANE1_PCIE1_LANE1>,
+ 		      <SERDES0_LANE2_QSGMII_LANE1>, <SERDES0_LANE3_IP4_UNUSED>;
+ };
 +
-+#define SERDES0_LANE0_QSGMII_LANE3	0x0
-+#define SERDES0_LANE0_PCIE1_LANE0	0x1
-+#define SERDES0_LANE0_IP3_UNUSED	0x2
-+#define SERDES0_LANE0_IP4_UNUSED	0x3
++&usb_serdes_mux {
++	idle-states = <1>; /* USB0 to SERDES lane 3 */
++};
 +
-+#define SERDES0_LANE1_QSGMII_LANE4	0x0
-+#define SERDES0_LANE1_PCIE1_LANE1	0x1
-+#define SERDES0_LANE1_IP3_UNUSED	0x2
-+#define SERDES0_LANE1_IP4_UNUSED	0x3
++&usbss0 {
++	pinctrl-names = "default";
++	pinctrl-0 = <&main_usbss0_pins_default>;
++	ti,vbus-divider;
++	ti,usb2-only;
++};
 +
-+#define SERDES0_LANE2_QSGMII_LANE1	0x0
-+#define SERDES0_LANE2_PCIE1_LANE2	0x1
-+#define SERDES0_LANE2_IP3_UNUSED	0x2
-+#define SERDES0_LANE2_IP4_UNUSED	0x3
-+
-+#define SERDES0_LANE3_QSGMII_LANE2	0x0
-+#define SERDES0_LANE3_PCIE1_LANE3	0x1
-+#define SERDES0_LANE3_USB		0x2
-+#define SERDES0_LANE3_IP4_UNUSED	0x3
-+
-+#endif /* _DT_BINDINGS_J7200_WIZ */
++&usb0 {
++	dr_mode = "otg";
++	maximum-speed = "high-speed";
++};
 -- 
 Texas Instruments Finland Oy, Porkkalankatu 22, 00180 Helsinki.
 Y-tunnus/Business ID: 0615521-4. Kotipaikka/Domicile: Helsinki
