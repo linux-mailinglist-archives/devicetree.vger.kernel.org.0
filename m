@@ -2,141 +2,244 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from vger.kernel.org (vger.kernel.org [23.128.96.18])
-	by mail.lfdr.de (Postfix) with ESMTP id 6C0EA26B153
-	for <lists+devicetree@lfdr.de>; Wed, 16 Sep 2020 00:29:26 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTP id 4190B26B125
+	for <lists+devicetree@lfdr.de>; Wed, 16 Sep 2020 00:26:11 +0200 (CEST)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S1727766AbgIOW2m (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Tue, 15 Sep 2020 18:28:42 -0400
-Received: from lindbergh.monkeyblade.net ([23.128.96.19]:51510 "EHLO
-        lindbergh.monkeyblade.net" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S1727634AbgIOQTx (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Tue, 15 Sep 2020 12:19:53 -0400
-Received: from mail-pg1-x542.google.com (mail-pg1-x542.google.com [IPv6:2607:f8b0:4864:20::542])
-        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 8EE4FC06178C
-        for <devicetree@vger.kernel.org>; Tue, 15 Sep 2020 09:19:32 -0700 (PDT)
-Received: by mail-pg1-x542.google.com with SMTP id 34so2208694pgo.13
-        for <devicetree@vger.kernel.org>; Tue, 15 Sep 2020 09:19:32 -0700 (PDT)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=linaro.org; s=google;
-        h=date:from:to:cc:subject:message-id:references:mime-version
-         :content-disposition:in-reply-to:user-agent;
-        bh=JPZAxtgrpswTwwEctIAirCTKHMKMYlH6dKc5JaMDl+Q=;
-        b=ugddvVXPv0zV3H78FDJq245N95jL3nKJt24tR7I7m1pkIrlVBV4vo6rsKzl+SG4uOB
-         sUk8Gx5Z4uU1etfRE2XF67AXCujQNSl/9CDoH2sjlmTNtG4dlxaay11Dxime1JZJVNxS
-         wVt+mOJMw0TWFVnDndw00pySAAC6SecnAkfyk0seXyV9Nv2tTB2biZpL8bSQ3m7SCFWw
-         HEWAm0XX0/NqferzgsoepaOrApKxzY14QlR46WlhPuYKUR/D2L/yBvx+8IosL5T9zE8N
-         lcXEGMb17S4zhJLVzSsxvUfT3dNAnzZvd6w/RXhA6jWBWbDaQ2VN6P63QtXEhrGwNAE7
-         779A==
+        id S1727792AbgIOWZA (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Tue, 15 Sep 2020 18:25:00 -0400
+Received: from mail-io1-f68.google.com ([209.85.166.68]:36670 "EHLO
+        mail-io1-f68.google.com" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
+        with ESMTP id S1727660AbgIOQWn (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Tue, 15 Sep 2020 12:22:43 -0400
+Received: by mail-io1-f68.google.com with SMTP id d190so4749683iof.3;
+        Tue, 15 Sep 2020 09:22:42 -0700 (PDT)
 X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
         d=1e100.net; s=20161025;
         h=x-gm-message-state:date:from:to:cc:subject:message-id:references
-         :mime-version:content-disposition:in-reply-to:user-agent;
-        bh=JPZAxtgrpswTwwEctIAirCTKHMKMYlH6dKc5JaMDl+Q=;
-        b=kusH3okW2XWQIqu+cwhMXrg+VkJ0aorjgKwF6aB7LtL9A9XOAH9pNHJ4JYn/dIwXNt
-         HN00xdNxkSPx1qZalND3RwXCrM2adR2MvW7vVJUdNLpPdMs9+GvmlFHDRCY90+hqYxbR
-         Ee+xSSQf39o4ssSN4ywPO+WZpNQFJB3XDfobGIzkqYAUrbZ6cDSRpUcLh3PfvpE7mmKk
-         X9Rlco1n4TQyGD9U64PdoefxOpM6DM67lKExRNyvIGAwkx39GVm5OsqGM6aJ8Hm1GIp+
-         hYmV1O2w0Kmu2YK4Sri4t+5PXYYTl23JklANQ4V27dd04uH63mFa8buVYeq0fdzCkmt6
-         4n+g==
-X-Gm-Message-State: AOAM5331lJgYT/vnhEcsNrfM2CIDUXRXrExsExq4mFHSNUMsPrpdKIge
-        NAA9MwI8sZu7jOqIa9Q325nU
-X-Google-Smtp-Source: ABdhPJzbV8GmPWBPjT5CB2nfBETZ78sMZFl/QXBlTl38thUlR6URZV8Q2RBazWE59akAtZaqWkdN1Q==
-X-Received: by 2002:a05:6a00:844:b029:13f:dd99:d1a4 with SMTP id q4-20020a056a000844b029013fdd99d1a4mr10486133pfk.31.1600186771631;
-        Tue, 15 Sep 2020 09:19:31 -0700 (PDT)
-Received: from linux ([103.59.133.81])
-        by smtp.gmail.com with ESMTPSA id y203sm13707305pfb.58.2020.09.15.09.19.28
-        (version=TLS1_2 cipher=ECDHE-ECDSA-CHACHA20-POLY1305 bits=256/256);
-        Tue, 15 Sep 2020 09:19:31 -0700 (PDT)
-Date:   Tue, 15 Sep 2020 21:49:25 +0530
-From:   Manivannan Sadhasivam <manivannan.sadhasivam@linaro.org>
-To:     wg@grandegger.com, mkl@pengutronix.de, robh+dt@kernel.org
-Cc:     linux-can@vger.kernel.org, devicetree@vger.kernel.org,
-        linux-kernel@vger.kernel.org, dev.kurt@vandijck-laurijssen.be,
-        o.rempel@pengutronix.de
-Subject: Re: [PATCH 0/6] Add support for MCP25XXFD SPI-CAN Network driver
-Message-ID: <20200915161925.GA5660@linux>
-References: <20200910133806.25077-1-manivannan.sadhasivam@linaro.org>
+         :mime-version:content-disposition:in-reply-to;
+        bh=CgawolyD9zVzGxxq1UzJo1cnh/iauTPw1X6bRSSjqk4=;
+        b=KLbBFt4UZGqt+C7ycirqP9ZLsKddZM2unWEOpgI187Z5Nted3z1FbrAq37PXWpdJAy
+         r/BatKnX8+YXiRPjlyezRuCg/7iPRd6X1c6ZSZU1DaLLyiRFDLmJ/7BN/mu0dDPO2xlS
+         fbQ5X/a8vOXlXJ+pU9N2WiXsTWYE/ej/Eg8mVQzEIXhpVuAIrIC1q/NZyvl1381ouS40
+         rfGqEseO/MUmzpK+FOW778VMM9Z8JiQzq/uAlAE+8FH0Azpk2c/+ArwcMPTdRD3H2cdQ
+         y59cDOd1S05KfzFR1MYbTQhmkHVxiccUk5birZwl5SoGYzRG2Gv+gSEsXxIAytWow8KW
+         2bPw==
+X-Gm-Message-State: AOAM5326m0RhbEEs8+vK6Cg4RkFONSkQeflXX0EhjzRAMOkkjaWKOEXO
+        hrZio62J1i8yRMwL0W4juw==
+X-Google-Smtp-Source: ABdhPJyKRZCoEn6bBIzBr2ZjMeQQ5C6T/2Zw8N4qzXWUmrhNhOtb/fFpQcN6SIk+s4X1gbqkEJr3Dg==
+X-Received: by 2002:a6b:660b:: with SMTP id a11mr15409011ioc.144.1600186962053;
+        Tue, 15 Sep 2020 09:22:42 -0700 (PDT)
+Received: from xps15 ([64.188.179.253])
+        by smtp.gmail.com with ESMTPSA id h2sm7850765ioj.5.2020.09.15.09.22.40
+        (version=TLS1_3 cipher=TLS_AES_256_GCM_SHA384 bits=256/256);
+        Tue, 15 Sep 2020 09:22:41 -0700 (PDT)
+Received: (nullmailer pid 2063320 invoked by uid 1000);
+        Tue, 15 Sep 2020 16:22:39 -0000
+Date:   Tue, 15 Sep 2020 10:22:39 -0600
+From:   Rob Herring <robh@kernel.org>
+To:     Sebastian Reichel <sebastian.reichel@collabora.com>
+Cc:     Dmitry Torokhov <dmitry.torokhov@gmail.com>,
+        =?iso-8859-1?Q?Myl=E8ne?= Josserand 
+        <mylene.josserand@collabora.com>, linux-input@vger.kernel.org,
+        devicetree@vger.kernel.org, linux-kernel@vger.kernel.org,
+        kernel@collabora.com
+Subject: Re: [PATCHv2 1/4] dt-bindings: input: Convert rotary-encoder
+ bindings to schema
+Message-ID: <20200915162239.GA2053332@bogus>
+References: <20200907204045.95530-1-sebastian.reichel@collabora.com>
+ <20200907204045.95530-2-sebastian.reichel@collabora.com>
 MIME-Version: 1.0
 Content-Type: text/plain; charset=us-ascii
 Content-Disposition: inline
-In-Reply-To: <20200910133806.25077-1-manivannan.sadhasivam@linaro.org>
-User-Agent: Mutt/1.9.4 (2018-02-28)
+In-Reply-To: <20200907204045.95530-2-sebastian.reichel@collabora.com>
 Sender: devicetree-owner@vger.kernel.org
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-Hi,
+On Mon, Sep 07, 2020 at 10:40:42PM +0200, Sebastian Reichel wrote:
+> Convert rotary-encoder bindings to YAML schema.
+> 
+> Signed-off-by: Sebastian Reichel <sebastian.reichel@collabora.com>
+> ---
+>  .../bindings/input/rotary-encoder.txt         |  50 ---------
+>  .../bindings/input/rotary-encoder.yaml        | 100 ++++++++++++++++++
+>  2 files changed, 100 insertions(+), 50 deletions(-)
+>  delete mode 100644 Documentation/devicetree/bindings/input/rotary-encoder.txt
+>  create mode 100644 Documentation/devicetree/bindings/input/rotary-encoder.yaml
+> 
+> diff --git a/Documentation/devicetree/bindings/input/rotary-encoder.txt b/Documentation/devicetree/bindings/input/rotary-encoder.txt
+> deleted file mode 100644
+> index a644408b33b8..000000000000
+> --- a/Documentation/devicetree/bindings/input/rotary-encoder.txt
+> +++ /dev/null
+> @@ -1,50 +0,0 @@
+> -Rotary encoder DT bindings
+> -
+> -Required properties:
+> -- gpios: a spec for at least two GPIOs to be used, most significant first
+> -
+> -Optional properties:
+> -- linux,axis: the input subsystem axis to map to this rotary encoder.
+> -  Defaults to 0 (ABS_X / REL_X)
+> -- rotary-encoder,steps: Number of steps in a full turnaround of the
+> -  encoder. Only relevant for absolute axis. Defaults to 24 which is a
+> -  typical value for such devices.
+> -- rotary-encoder,relative-axis: register a relative axis rather than an
+> -  absolute one. Relative axis will only generate +1/-1 events on the input
+> -  device, hence no steps need to be passed.
+> -- rotary-encoder,rollover: Automatic rollover when the rotary value becomes
+> -  greater than the specified steps or smaller than 0. For absolute axis only.
+> -- rotary-encoder,steps-per-period: Number of steps (stable states) per period.
+> -  The values have the following meaning:
+> -  1: Full-period mode (default)
+> -  2: Half-period mode
+> -  4: Quarter-period mode
+> -- wakeup-source: Boolean, rotary encoder can wake up the system.
+> -- rotary-encoder,encoding: String, the method used to encode steps.
+> -  Supported are "gray" (the default and more common) and "binary".
+> -
+> -Deprecated properties:
+> -- rotary-encoder,half-period: Makes the driver work on half-period mode.
+> -  This property is deprecated. Instead, a 'steps-per-period ' value should
+> -  be used, such as "rotary-encoder,steps-per-period = <2>".
+> -
+> -See Documentation/input/devices/rotary-encoder.rst for more information.
+> -
+> -Example:
+> -
+> -		rotary@0 {
+> -			compatible = "rotary-encoder";
+> -			gpios = <&gpio 19 1>, <&gpio 20 0>; /* GPIO19 is inverted */
+> -			linux,axis = <0>; /* REL_X */
+> -			rotary-encoder,encoding = "gray";
+> -			rotary-encoder,relative-axis;
+> -		};
+> -
+> -		rotary@1 {
+> -			compatible = "rotary-encoder";
+> -			gpios = <&gpio 21 0>, <&gpio 22 0>;
+> -			linux,axis = <1>; /* ABS_Y */
+> -			rotary-encoder,steps = <24>;
+> -			rotary-encoder,encoding = "binary";
+> -			rotary-encoder,rollover;
+> -		};
+> diff --git a/Documentation/devicetree/bindings/input/rotary-encoder.yaml b/Documentation/devicetree/bindings/input/rotary-encoder.yaml
+> new file mode 100644
+> index 000000000000..5b60ea86bd62
+> --- /dev/null
+> +++ b/Documentation/devicetree/bindings/input/rotary-encoder.yaml
+> @@ -0,0 +1,100 @@
+> +# SPDX-License-Identifier: (GPL-2.0 OR BSD-2-Clause)
+> +%YAML 1.2
+> +---
+> +$id: http://devicetree.org/schemas/input/rotary-encoder.yaml#
+> +$schema: http://devicetree.org/meta-schemas/core.yaml#
+> +
+> +title: Generic Rotary Encoder
+> +
+> +maintainers:
+> +  - Dmitry Torokhov <dmitry.torokhov@gmail.com>
+> +
+> +description:
+> +  See Documentation/input/devices/rotary-encoder.rst for more information.
+> +
+> +properties:
+> +  compatible:
+> +    const: rotary-encoder
+> +
+> +  gpios:
+> +    minItems: 2
 
-On Thu, Sep 10, 2020 at 07:08:00PM +0530, Manivannan Sadhasivam wrote:
-> Hello,
-> 
-> This series is the continuation of the work done by Marc Kleine-Budde on
-> adding support for Microchip MCP25XXFD SPI-CAN driver [1]. I've taken the
-> patches from Marc's tree [2] and posted with an additional MAINTAINERS
-> patch on top since he seems to be very busy. This series has been tested
-> on RB5 board featuring MCP2518FD transceiver.
-> 
-> Marc: I'd like to co-maintain this driver in upstream hence added myself
-> as the co-maintainer. Shout at me if you do not want it! Also I've removed
-> the v4x tag since I don't think all the versions are posted to mailing
-> list.
-> 
-> I'll add my review on top of this posting.
-> 
+You need to specify maxItems too. A 'should be enough for everyone'TM 
+value is fine here if there's no real max.
 
-Just a quick question: I don't see any activity on this specific driver for
-sometime (back in Martin days itself). Is it due to lack of reviewers or
-it is due to the patch size (lines of code) so that nobody is interested
-in reviewing?
+> +    description: GPIOs for the rotation signals, most significant first
+> +
+> +  linux,axis:
+> +    description:
+> +      The input subsystem axis to map to this rotary encoder.
+> +      Defaults to (ABS_X / REL_X).
+> +    $ref: /schemas/types.yaml#/definitions/uint32
+> +    default: 0
+> +
+> +  rotary-encoder,rollover:
+> +    description:
+> +      Automatic rollover when the rotary value becomes greater than the
+> +      specified steps or smaller than 0. For absolute axis only.
+> +    type: boolean
+> +
+> +  rotary-encoder,steps-per-period:
+> +    description: The values have the following meaning
+> +      1 - Full-period mode
+> +      2 - Half-period mode
+> +      4 - Quarter-period mode
 
-How are we going to move forward?
+You need a '|' after 'descripton' to preserve formatting here.
 
-Thanks,
-Mani
+> +    $ref: /schemas/types.yaml#/definitions/uint32
+> +    enum: [1, 2, 4]
+> +    default: 1
+> +
+> +  wakeup-source:
+> +    description: Rotary encoder can wake up the system.
+> +    type: boolean
+> +
+> +  rotary-encoder,encoding:
+> +    description:
+> +      Method used to encode steps. Gray code is more common.
+> +    $ref: /schemas/types.yaml#/definitions/string
+> +    enum: ["gray", "binary"]
+> +    default: "gray"
 
-> Thanks,
-> Mani
-> 
-> [1] https://www.spinics.net/lists/linux-can/msg03712.html
-> [2] https://git.kernel.org/pub/scm/linux/kernel/git/mkl/linux-can-next.git/log/?h=mcp25xxfd-47
-> 
-> Kurt Van Dijck (1):
->   can: mcp25xxfd: add listen-only mode
-> 
-> Manivannan Sadhasivam (1):
->   MAINTAINERS: Add entry for Microchip MCP25XXFD SPI-CAN network driver
-> 
-> Marc Kleine-Budde (3):
->   can: rx-offload: can_rx_offload_add_manual(): add new initialization
->     function
->   can: mcp25xxfd: add regmap infrastructure
->   can: mcp25xxfd: add driver for Microchip MCP25xxFD SPI CAN
-> 
-> Oleksij Rempel (1):
->   dt-bindings: can: mcp25xxfd: document device tree bindings
-> 
->  .../bindings/net/can/microchip,mcp25xxfd.yaml |   79 +
->  MAINTAINERS                                   |    8 +
->  drivers/net/can/rx-offload.c                  |   11 +
->  drivers/net/can/spi/Kconfig                   |    2 +
->  drivers/net/can/spi/Makefile                  |    1 +
->  drivers/net/can/spi/mcp25xxfd/Kconfig         |   17 +
->  drivers/net/can/spi/mcp25xxfd/Makefile        |    8 +
->  .../net/can/spi/mcp25xxfd/mcp25xxfd-core.c    | 2884 +++++++++++++++++
->  .../net/can/spi/mcp25xxfd/mcp25xxfd-crc16.c   |   89 +
->  .../net/can/spi/mcp25xxfd/mcp25xxfd-regmap.c  |  556 ++++
->  drivers/net/can/spi/mcp25xxfd/mcp25xxfd.h     |  828 +++++
->  include/linux/can/rx-offload.h                |    3 +
->  12 files changed, 4486 insertions(+)
->  create mode 100644 Documentation/devicetree/bindings/net/can/microchip,mcp25xxfd.yaml
->  create mode 100644 drivers/net/can/spi/mcp25xxfd/Kconfig
->  create mode 100644 drivers/net/can/spi/mcp25xxfd/Makefile
->  create mode 100644 drivers/net/can/spi/mcp25xxfd/mcp25xxfd-core.c
->  create mode 100644 drivers/net/can/spi/mcp25xxfd/mcp25xxfd-crc16.c
->  create mode 100644 drivers/net/can/spi/mcp25xxfd/mcp25xxfd-regmap.c
->  create mode 100644 drivers/net/can/spi/mcp25xxfd/mcp25xxfd.h
-> 
+Don't need quotes.
+
+> +
+> +  rotary-encoder,half-period:
+> +    description:
+> +      Deprecated, use "rotary-encoder,steps-per-period = <2>" instead.
+> +    type: boolean
+> +    deprecated: True
+> +
+> +  rotary-encoder,steps:
+> +    description:
+> +      Number of steps in a full turnaround of the encoder. Only relevant
+> +      for absolute axis. Defaults to 24 which is a typical value for such
+> +      devices.
+> +    $ref: /schemas/types.yaml#/definitions/uint32
+> +    default: 24
+> +
+> +  rotary-encoder,relative-axis:
+> +    description:
+> +      register a relative axis rather than an absolute one. Relative axis
+> +      will only generate +1/-1 events on the input device, hence no steps
+> +      need to be passed.
+> +    type: boolean
+> +
+> +required:
+> +  - compatible
+> +  - gpios
+> +
+> +additionalProperties: false
+> +
+> +examples:
+> +  - |
+> +    #include "dt-bindings/gpio/gpio.h"
+> +    #include "dt-bindings/input/input.h"
+> +    rotary-encoder0 {
+> +            compatible = "rotary-encoder";
+> +            gpios = <&gpio 19 GPIO_ACTIVE_LOW>, <&gpio 20 GPIO_ACTIVE_HIGH>;
+> +            linux,axis = <REL_X>;
+> +            rotary-encoder,encoding = "gray";
+> +            rotary-encoder,relative-axis;
+> +    };
+> +    rotary-encoder1 {
+> +            compatible = "rotary-encoder";
+> +            gpios = <&gpio 21 GPIO_ACTIVE_HIGH>, <&gpio 22 GPIO_ACTIVE_HIGH>;
+> +            linux,axis = <ABS_Y>;
+> +            rotary-encoder,encoding = "binary";
+> +            rotary-encoder,rollover;
+> +    };
 > -- 
-> 2.17.1
+> 2.28.0
 > 
