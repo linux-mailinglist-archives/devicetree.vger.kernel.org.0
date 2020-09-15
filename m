@@ -2,122 +2,232 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from vger.kernel.org (vger.kernel.org [23.128.96.18])
-	by mail.lfdr.de (Postfix) with ESMTP id 811DC269A9D
-	for <lists+devicetree@lfdr.de>; Tue, 15 Sep 2020 02:44:38 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTP id D7654269AAF
+	for <lists+devicetree@lfdr.de>; Tue, 15 Sep 2020 02:50:50 +0200 (CEST)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S1726066AbgIOAof (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Mon, 14 Sep 2020 20:44:35 -0400
-Received: from wout5-smtp.messagingengine.com ([64.147.123.21]:39105 "EHLO
-        wout5-smtp.messagingengine.com" rhost-flags-OK-OK-OK-OK)
-        by vger.kernel.org with ESMTP id S1726062AbgIOAoc (ORCPT
-        <rfc822;devicetree@vger.kernel.org>);
-        Mon, 14 Sep 2020 20:44:32 -0400
-Received: from compute3.internal (compute3.nyi.internal [10.202.2.43])
-        by mailout.west.internal (Postfix) with ESMTP id E6D5C4B9;
-        Mon, 14 Sep 2020 20:44:30 -0400 (EDT)
-Received: from imap2 ([10.202.2.52])
-  by compute3.internal (MEProxy); Mon, 14 Sep 2020 20:44:31 -0400
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=aj.id.au; h=
-        mime-version:message-id:in-reply-to:references:date:from:to:cc
-        :subject:content-type; s=fm3; bh=Q96ecm6Fh2HW7IzVYh/+DlYr1BnZskX
-        RguVfWn9NZoY=; b=egH0gfz6DQqKjqINfH01fl+Fidfq6dOPqampmZTMi3293Ni
-        LHsMOq7B3GW9PJ4sedks1m+AnB9+dVlcmH3uplFWO/isOonmMcc5obJV21eIUtuD
-        o2KO+VvRl0CP1MxVMFq1xuiWXUrJv+RuGXHFjwOvl6qdlNDWSrswQRCoSOP+tOhd
-        2CKWfpxeh6ojXqv1jw/4+qv3IHCz8LuUU/XIZGivjvH91GjPvsevXI47Uh1ZiPBE
-        5TC+F/RcY80fZ2Qov77Dhjp+kqfvb2yohJMxbUZS7k7v4jcCfs7NQRP0F+9lC6Pp
-        +3K1DLQpLknu4S4K60PX7VZwMjy1CQjLbkeTWzQ==
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=
-        messagingengine.com; h=cc:content-type:date:from:in-reply-to
-        :message-id:mime-version:references:subject:to:x-me-proxy
-        :x-me-proxy:x-me-sender:x-me-sender:x-sasl-enc; s=fm3; bh=Q96ecm
-        6Fh2HW7IzVYh/+DlYr1BnZskXRguVfWn9NZoY=; b=SzCs7F4/rKj8sk+V9Wiy04
-        wzEtw50hcwBwTg2SW7ZlDbeUK91cuS3xF28dKNQKF2SV2ml+Fj2z0T6EzE1pNLjn
-        B2Yf23BHv9zg2+lVG/aRC43JDgdYGvKYLCJ/Uz53AhvV+CzWLYOYlRN6T+ftegUu
-        WN05FlbtEHFvu2mctp1brWCTuQAYLquX1k1IDJjFkDwdESgJmopd/MuLS81/+9XG
-        jKBHLmqLIwrQm2wl3cdZmCyNmAPG48gDfEHkAfSouh91TbMqPJ1x8fNKaGjZt/5+
-        Hls574iM88Bn3fLtwNa7Xfn9XNJw5waQlPzX9DUrq+glSqrsZrT4CfEuZVXDZHLA
-        ==
-X-ME-Sender: <xms:bQ5gX8EkLfdwFy6CfXTNiCbKtCbeBUdnOwGj404k1UkFR5yUl0ELSw>
-    <xme:bQ5gX1UoIFWmUv0WqBTrOO12wDgqXg98S3ROzAayKPyM_xPsotzQJtqJjgpLDPSUG
-    p1K9aLumxxqSZOv2w>
-X-ME-Proxy-Cause: gggruggvucftvghtrhhoucdtuddrgeduiedrudeijedgfeegucetufdoteggodetrfdotf
-    fvucfrrhhofhhilhgvmecuhfgrshhtofgrihhlpdfqfgfvpdfurfetoffkrfgpnffqhgen
-    uceurghilhhouhhtmecufedttdenucesvcftvggtihhpihgvnhhtshculddquddttddmne
-    cujfgurhepofgfggfkjghffffhvffutgesthdtredtreerjeenucfhrhhomhepfdetnhgu
-    rhgvficulfgvfhhfvghrhidfuceorghnughrvgifsegrjhdrihgurdgruheqnecuggftrf
-    grthhtvghrnhepteehteelkedukeekjeejgeelkeduieejgeejudeugeelvdekjeelffet
-    fffgjeeunecuffhomhgrihhnpeihrghmlhdrrghsnecuvehluhhsthgvrhfuihiivgeptd
-    enucfrrghrrghmpehmrghilhhfrhhomheprghnughrvgifsegrjhdrihgurdgruh
-X-ME-Proxy: <xmx:bQ5gX2Liqf7V9DlGhIdl2N4bWR1uyyCD5WBTMoMLjABvW_hFWB3YFA>
-    <xmx:bQ5gX-Hb9AL_90bdbUQtz0zwhixwyXxG-16a52V3SIm0nx5ETPrcyQ>
-    <xmx:bQ5gXyWJfU2Qy7PhE8PgZkXQUHeClznlTAAXewWhbUHCUdGR5vEs-w>
-    <xmx:bg5gX0I8oc-gCIetjU5IQH1XTcOvRg36hEUibMEnyz6iYbAamQx5eg>
-Received: by mailuser.nyi.internal (Postfix, from userid 501)
-        id 041DAE00C7; Mon, 14 Sep 2020 20:44:29 -0400 (EDT)
-X-Mailer: MessagingEngine.com Webmail Interface
-User-Agent: Cyrus-JMAP/3.3.0-259-g88fbbfa-fm-20200903.003-g88fbbfa3
-Mime-Version: 1.0
-Message-Id: <e4bab65c-8a81-4a4b-be3f-3a07d5c7f95f@www.fastmail.com>
-In-Reply-To: <CAPDyKFq+QYzJNT94eFt2EsQBVqQciUoqnMDdrr3DbbkpnHRpCw@mail.gmail.com>
-References: <20200910105440.3087723-1-andrew@aj.id.au>
- <20200910105440.3087723-2-andrew@aj.id.au>
- <CAPDyKFq+QYzJNT94eFt2EsQBVqQciUoqnMDdrr3DbbkpnHRpCw@mail.gmail.com>
-Date:   Tue, 15 Sep 2020 10:13:58 +0930
-From:   "Andrew Jeffery" <andrew@aj.id.au>
-To:     "Ulf Hansson" <ulf.hansson@linaro.org>
-Cc:     linux-mmc <linux-mmc@vger.kernel.org>,
-        "Adrian Hunter" <adrian.hunter@intel.com>,
-        "Joel Stanley" <joel@jms.id.au>,
-        "Rob Herring" <robh+dt@kernel.org>,
-        DTML <devicetree@vger.kernel.org>,
-        "Linux ARM" <linux-arm-kernel@lists.infradead.org>,
-        linux-aspeed <linux-aspeed@lists.ozlabs.org>,
-        "Linux Kernel Mailing List" <linux-kernel@vger.kernel.org>
-Subject: =?UTF-8?Q?Re:_[PATCH_1/3]_dt:_bindings:_mmc:_Add_phase_control_propertie?=
- =?UTF-8?Q?s_for_the_Aspeed_SDHCI?=
-Content-Type: text/plain
+        id S1726094AbgIOAus (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Mon, 14 Sep 2020 20:50:48 -0400
+Received: from mail-io1-f68.google.com ([209.85.166.68]:34559 "EHLO
+        mail-io1-f68.google.com" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
+        with ESMTP id S1726085AbgIOAum (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Mon, 14 Sep 2020 20:50:42 -0400
+Received: by mail-io1-f68.google.com with SMTP id m17so2247512ioo.1;
+        Mon, 14 Sep 2020 17:50:41 -0700 (PDT)
+X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+        d=1e100.net; s=20161025;
+        h=x-gm-message-state:date:from:to:cc:subject:message-id:references
+         :mime-version:content-disposition:content-transfer-encoding
+         :in-reply-to;
+        bh=numAVrZHb/8qHZ8ZB/q47ZsqxyQJj3mtvFr+S2iyq1s=;
+        b=ARCOKiCUBscvfFvDQW7E5C3sAcZM2KgjH2EktKnfNWdwu2scLAmpcXAxTIg+IEBN3C
+         8K33S9Z+1+H9IctOEOeuZdpSF/Jk2F9RBERiFKsl1I6+0pSqzpSKnZsxZvmWxIGSvZyJ
+         Iey3i4kDaAhMnP+L9J5cFbp4eKj42gPwGW77FhHpCEDZkaq6zGG7dA7JW6wE96/DRqr+
+         B2Wq6l6JGHDCH5DUk+PwCJ9nYQS+htUsI3p0gCheuDWX1xFue6DkcbEoSPfCPD9VLA8M
+         vnV1lfLxOrnZHpZgOKJPN5hFdJpPRoc0Ng1/8EwZAzKn6QX7IfCkUc1570AUDhwvOdGy
+         9f9g==
+X-Gm-Message-State: AOAM533fEsMTlQ/Tn6sQVOMQ2/47wHlWAgRD3D809oER51B6IcamUnmY
+        4fjlwBslut41nr8+09GtfBYXQFi58EG6
+X-Google-Smtp-Source: ABdhPJzkrOQ/Tj7bU50E5bkevBB2M2BB4OOXNmNinYGgnhVgF/+j7fw6h1GCd5QDyj11FlbJwqaGpw==
+X-Received: by 2002:a02:a305:: with SMTP id q5mr15660693jai.121.1600131041000;
+        Mon, 14 Sep 2020 17:50:41 -0700 (PDT)
+Received: from xps15 ([64.188.179.253])
+        by smtp.gmail.com with ESMTPSA id s85sm8227021ilk.35.2020.09.14.17.50.36
+        (version=TLS1_3 cipher=TLS_AES_256_GCM_SHA384 bits=256/256);
+        Mon, 14 Sep 2020 17:50:40 -0700 (PDT)
+Received: (nullmailer pid 604109 invoked by uid 1000);
+        Tue, 15 Sep 2020 00:50:34 -0000
+Date:   Mon, 14 Sep 2020 18:50:34 -0600
+From:   Rob Herring <robh@kernel.org>
+To:     Jonathan =?iso-8859-1?Q?Neusch=E4fer?= <j.neuschaefer@gmx.net>
+Cc:     linux-kernel@vger.kernel.org, Lee Jones <lee.jones@linaro.org>,
+        Thierry Reding <thierry.reding@gmail.com>,
+        =?UTF-8?Q?Uwe_Kleine=2DK=C3=B6nig?= 
+        <u.kleine-koenig@pengutronix.de>,
+        Alessandro Zummo <a.zummo@towertech.it>,
+        Alexandre Belloni <alexandre.belloni@bootlin.com>,
+        Shawn Guo <shawnguo@kernel.org>,
+        Sascha Hauer <s.hauer@pengutronix.de>,
+        Pengutronix Kernel Team <kernel@pengutronix.de>,
+        Fabio Estevam <festevam@gmail.com>,
+        NXP Linux Team <linux-imx@nxp.com>,
+        Sam Ravnborg <sam@ravnborg.org>,
+        Linus Walleij <linus.walleij@linaro.org>,
+        Heiko Stuebner <heiko.stuebner@theobroma-systems.com>,
+        Stephan Gerhold <stephan@gerhold.net>,
+        Lubomir Rintel <lkundrak@v3.sk>,
+        Mark Brown <broonie@kernel.org>, allen <allen.chen@ite.com.tw>,
+        Mauro Carvalho Chehab <mchehab+huawei@kernel.org>,
+        "David S. Miller" <davem@davemloft.net>,
+        devicetree@vger.kernel.org, linux-pwm@vger.kernel.org,
+        linux-rtc@vger.kernel.org, linux-arm-kernel@lists.infradead.org,
+        Heiko Stuebner <heiko@sntech.de>,
+        Josua Mayer <josua.mayer@jm0.eu>,
+        Andreas Kemnade <andreas@kemnade.info>,
+        Arnd Bergmann <arnd@arndb.de>, Daniel Palmer <daniel@0x0f.com>
+Subject: Re: [PATCH v2 02/10] dt-bindings: mfd: Add binding for Netronix's
+ embedded controller
+Message-ID: <20200915005034.GA593718@bogus>
+References: <20200905133230.1014581-1-j.neuschaefer@gmx.net>
+ <20200905133230.1014581-3-j.neuschaefer@gmx.net>
+MIME-Version: 1.0
+Content-Type: text/plain; charset=iso-8859-1
+Content-Disposition: inline
+Content-Transfer-Encoding: 8bit
+In-Reply-To: <20200905133230.1014581-3-j.neuschaefer@gmx.net>
 Sender: devicetree-owner@vger.kernel.org
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-
-
-On Mon, 14 Sep 2020, at 19:11, Ulf Hansson wrote:
-> On Thu, 10 Sep 2020 at 12:54, Andrew Jeffery <andrew@aj.id.au> wrote:
-> >
-> > Add properties to control the phase delay for input and output data
-> > sampling.
-> >
-> > Signed-off-by: Andrew Jeffery <andrew@aj.id.au>
-> > ---
-> >  Documentation/devicetree/bindings/mmc/aspeed,sdhci.yaml | 8 ++++++++
-> >  1 file changed, 8 insertions(+)
-> >
-> > diff --git a/Documentation/devicetree/bindings/mmc/aspeed,sdhci.yaml b/Documentation/devicetree/bindings/mmc/aspeed,sdhci.yaml
-> > index 987b287f3bff..75effd411554 100644
-> > --- a/Documentation/devicetree/bindings/mmc/aspeed,sdhci.yaml
-> > +++ b/Documentation/devicetree/bindings/mmc/aspeed,sdhci.yaml
-> > @@ -61,6 +61,14 @@ patternProperties:
-> >        sdhci,auto-cmd12:
-> >          type: boolean
-> >          description: Specifies that controller should use auto CMD12
-> > +      "aspeed,input-phase":
-> > +        $ref: '/schemas/types.yaml#/definitions/uint32'
-> > +        description:
-> > +          The input clock phase delay value.
-> > +      "aspeed,output-phase":
-> > +        $ref: '/schemas/types.yaml#/definitions/uint32'
-> > +        description:
-> > +          The output clock phase delay value.
+On Sat, Sep 05, 2020 at 03:32:22PM +0200, Jonathan Neuschäfer wrote:
+> This EC is found in e-book readers of multiple brands (e.g. Kobo,
+> Tolino), and is typically implemented as a TI MSP430 microcontroller.
 > 
-> We already have a common mmc clk-phase* binding, see
-> mmc-controller.yaml. As matter of fact, there is one binding per speed
-> mode.
+> It controls different functions of the system, such as power on/off,
+> RTC, PWM for the backlight. The exact functionality provided can vary
+> between boards.
 > 
-> Could that work for this case as well?
+> Signed-off-by: Jonathan Neuschäfer <j.neuschaefer@gmx.net>
+> ---
+> v2:
+> - Add the plaintext DT binding for comparison
+> 
+> 
+> For reference, here is the binding in text form:
+> 
+>   Netronix Embedded Controller
+> 
+>   This EC is found in e-book readers of multiple brands (e.g. Kobo, Tolino), and
+>   is typically implemented as a TI MSP430 microcontroller.
+> 
+> 
+>   Required properties:
+>   - compatible: should be "netronix,ntxec"
+>   - reg: The I2C address of the EC
+> 
+>   Optional properties:
+>   - system-power-controller:
+>     See Documentation/devicetree/bindings/power/power-controller.txt
+>   - interrupts or interrupts-extended
+>   - interrupt-controller
+>   - #interrupt-cells: Should be 1
+> 
+>   Optional subnodes:
+> 
+>   Sub-nodes are identified by their compatible string.
+> 
+>    compatible string              | description
+>   --------------------------------|--------------------------------------
+>    netronix,ntxec-pwm             | PWM (used for backlight)
+>    netronix,ntxec-rtc             | real time clock
+> 
+> 
+>   Example:
+> 
+>   &i2c3 {
+>   	pinctrl-names = "default";
+>   	pinctrl-0 = <&pinctrl_i2c3>;
+>   	status = "okay";
+> 
+>   	ec: embedded-controller@43 {
+>   		pinctrl-names = "default";
+>   		pinctrl-0 = <&pinctrl_ntxec>;
+> 
+>   		compatible = "netronix,ntxec";
+>   		reg = <0x43>;
+>   		system-power-controller;
+>   		interrupt-parent = <&gpio4>;
+>   		interrupts = <11 IRQ_TYPE_EDGE_FALLING>;
+>   		interrupt-controller;
+>   		#interrupt-cells = <1>;
+> 
+>   		pwm {
+>   			compatible = "netronix,ntxec-pwm";
+>   			#pwm-cells = <2>;
+>   		};
+> 
+>   		rtc {
+>   			compatible = "netronix,ntxec-rtc";
+>   			interrupts-extended = <&ec 15>;
+>   			interrupt-names = "alarm";
+>   		};
+>   	};
+>   };
+> ---
+>  .../bindings/mfd/netronix,ntxec.yaml          | 57 +++++++++++++++++++
+>  1 file changed, 57 insertions(+)
+>  create mode 100644 Documentation/devicetree/bindings/mfd/netronix,ntxec.yaml
+> 
+> diff --git a/Documentation/devicetree/bindings/mfd/netronix,ntxec.yaml b/Documentation/devicetree/bindings/mfd/netronix,ntxec.yaml
+> new file mode 100644
+> index 0000000000000..596df460f98eb
+> --- /dev/null
+> +++ b/Documentation/devicetree/bindings/mfd/netronix,ntxec.yaml
+> @@ -0,0 +1,57 @@
+> +# SPDX-License-Identifier: (GPL-2.0-only OR BSD-2-Clause)
+> +%YAML 1.2
+> +---
+> +$id: http://devicetree.org/schemas/mfd/netronix,ntxec.yaml#
+> +$schema: http://devicetree.org/meta-schemas/core.yaml#
+> +
+> +title: Netronix Embedded Controller
+> +
+> +maintainers:
+> +  - Jonathan Neuschäfer <j.neuschaefer@gmx.net>
+> +
+> +description: |
+> +  This EC is found in e-book readers of multiple brands (e.g. Kobo, Tolino), and
+> +  is typically implemented as a TI MSP430 microcontroller.
+> +
+> +
+> +properties:
+> +  compatible:
+> +    const: netronix,ntxec
+> +
+> +  reg:
+> +    items:
+> +      - description: The I2C address of the EC
+> +
+> +  system-power-controller:
+> +    type: boolean
+> +    description: See Documentation/devicetree/bindings/power/power-controller.txt
+> +
+> +  interrupts:
+> +    minItems: 1
+> +    description:
+> +      The EC can signal interrupts via a GPIO line
+> +
+> +required:
+> +  - compatible
+> +  - reg
 
-Ah, great, I think so. Sorry for overlooking that. I just need to extract from 
-Aspeed what units the damn register fields are using :/
+additionalProperties: false
 
-Andrew
+> +
+> +examples:
+> +  - |
+> +    #include <dt-bindings/interrupt-controller/irq.h>
+> +    i2c {
+> +            #address-cells = <1>;
+> +            #size-cells = <0>;
+> +
+> +            ec: embedded-controller@43 {
+> +                    pinctrl-names = "default";
+> +                    pinctrl-0 = <&pinctrl_ntxec>;
+> +
+> +                    compatible = "netronix,ntxec";
+> +                    reg = <0x43>;
+> +                    system-power-controller;
+> +                    interrupt-parent = <&gpio4>;
+> +                    interrupts = <11 IRQ_TYPE_EDGE_FALLING>;
+
+> +                    interrupt-controller;
+> +                    #interrupt-cells = <1>;
+
+These need to be documented too.
+
+> +            };
+> +    };
+> --
+> 2.28.0
+> 
