@@ -2,244 +2,306 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from vger.kernel.org (vger.kernel.org [23.128.96.18])
-	by mail.lfdr.de (Postfix) with ESMTP id 1C9CE269BF2
-	for <lists+devicetree@lfdr.de>; Tue, 15 Sep 2020 04:39:18 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTP id E507A269C2A
+	for <lists+devicetree@lfdr.de>; Tue, 15 Sep 2020 04:55:13 +0200 (CEST)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S1726057AbgIOCjH (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Mon, 14 Sep 2020 22:39:07 -0400
-Received: from lindbergh.monkeyblade.net ([23.128.96.19]:37688 "EHLO
-        lindbergh.monkeyblade.net" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S1726045AbgIOCjG (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Mon, 14 Sep 2020 22:39:06 -0400
-Received: from perceval.ideasonboard.com (perceval.ideasonboard.com [IPv6:2001:4b98:dc2:55:216:3eff:fef7:d647])
-        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 776E4C06174A;
-        Mon, 14 Sep 2020 19:39:06 -0700 (PDT)
-Received: from pendragon.ideasonboard.com (62-78-145-57.bb.dnainternet.fi [62.78.145.57])
-        by perceval.ideasonboard.com (Postfix) with ESMTPSA id A4A49275;
-        Tue, 15 Sep 2020 04:38:57 +0200 (CEST)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=ideasonboard.com;
-        s=mail; t=1600137538;
-        bh=ceWb6jetlVmK1+PMT2AVlI5YUi1hnO6JDbvNsbyGh1A=;
-        h=Date:From:To:Cc:Subject:References:In-Reply-To:From;
-        b=gi7UkDFo1MmLdvpjAPNCuF8guUHpOsMGcJeUtmsmlHYNPmrlMi547DhAkV7pyXB9n
-         6t2V4NYVKhn1IbeMI42FK0avPvMj+sjGDtJlvrqOHzxAVFJnj21ImsIYY7AQGFAi8O
-         l9AH6jIGoGXIaQgrnldofe+GRZvzuPKZVv4WTezE=
-Date:   Tue, 15 Sep 2020 05:38:29 +0300
-From:   Laurent Pinchart <laurent.pinchart@ideasonboard.com>
-To:     Hans Verkuil <hverkuil@xs4all.nl>
-Cc:     Nicolas Dufresne <nicolas@ndufresne.ca>,
-        Vishal Sagar <vsagar@xilinx.com>, Hyun Kwon <hyunk@xilinx.com>,
-        "mchehab@kernel.org" <mchehab@kernel.org>,
-        "robh+dt@kernel.org" <robh+dt@kernel.org>,
-        "mark.rutland@arm.com" <mark.rutland@arm.com>,
-        Michal Simek <michals@xilinx.com>,
-        "linux-media@vger.kernel.org" <linux-media@vger.kernel.org>,
+        id S1726120AbgIOCzM (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Mon, 14 Sep 2020 22:55:12 -0400
+Received: from mail-eopbgr70082.outbound.protection.outlook.com ([40.107.7.82]:9875
+        "EHLO EUR04-HE1-obe.outbound.protection.outlook.com"
+        rhost-flags-OK-OK-OK-FAIL) by vger.kernel.org with ESMTP
+        id S1726057AbgIOCzM (ORCPT <rfc822;devicetree@vger.kernel.org>);
+        Mon, 14 Sep 2020 22:55:12 -0400
+ARC-Seal: i=1; a=rsa-sha256; s=arcselector9901; d=microsoft.com; cv=none;
+ b=kvAJrcQPqiLEaOpeFpSlstfP3NoA8ovEiZqCtJYD1zka5fTzPaq/DoKbTQcQ4/ZqmQiVoJfjUTWG/YigxEyOFErExfOeiZj+6oIQo2PxwjZmlLNNmhccBKXe9NpqleJSe1VOVhHS4uc9WTNDvnaQPZ9I9unDqBgRqlbbNHUCX2gzHin8RkHk0TlYhA0zpVzjQVhrTgG/kctAh634bQIgdRsjOekTLaymucF+G7itojb46FPONbNcpi9AYtKx8aaIaSwlNb70PG3bBQikRSJAOIMM3PS8wbLX44VcV4fhjQtYNwah/ayhufWzUkVp9TpWkI0+gvHDuemAYUJ7IpPEGQ==
+ARC-Message-Signature: i=1; a=rsa-sha256; c=relaxed/relaxed; d=microsoft.com;
+ s=arcselector9901;
+ h=From:Date:Subject:Message-ID:Content-Type:MIME-Version:X-MS-Exchange-SenderADCheck;
+ bh=ejfxRPkrfCMErYZtnCeurYmckBPzHU/cZ1Dh+B+bZDM=;
+ b=jM6UrOExzEL68C9DPOUytV/Qd4SFv0WM74u65EXgB/qYUhIooXQQyuaZ9f8aejf/xYhMF256mERkRIu9ceVmjgWVqiCQ3SrTaoFW/QJIwqEhdMLMyyVYsUIK+MmZ92Bk3CNqb6symDod05qZDwqQJQKgTReD5RNeYC0b33nnRNzDWwM2waYwf5SfgFTQnX/LVhojiNvOIMHNYdiOiiyn3+1Y6tiAAn1m7hvBXZv7ohdHgqiMkTXL5g4exunk8u020TwvKgnd5mmlAtjec3mFlj1Df1+FJURosjy/QyELKID7rchM5NK8VeaVgr4/I4W0Wfxkjw9cA+nLhwdZV03diQ==
+ARC-Authentication-Results: i=1; mx.microsoft.com 1; spf=pass
+ smtp.mailfrom=nxp.com; dmarc=pass action=none header.from=nxp.com; dkim=pass
+ header.d=nxp.com; arc=none
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=nxp.com; s=selector2;
+ h=From:Date:Subject:Message-ID:Content-Type:MIME-Version:X-MS-Exchange-SenderADCheck;
+ bh=ejfxRPkrfCMErYZtnCeurYmckBPzHU/cZ1Dh+B+bZDM=;
+ b=LUBv0/ZcpCm9G+ObRtJ7YZHYqIC8r1VA/0/zJ9Oi880j+6FUt+L2OftgS69keaEY3eoKXPtOzJZakivQ+SooyOsfnb8IzzjbbSQVK5uaxdItzRCpdZcuhHG5hrVLbJcxNTmSkPe0Xg0CYPQU2g+45PX/BfQuIg8vaC6tC3IIwK4=
+Received: from AM7PR04MB7157.eurprd04.prod.outlook.com (2603:10a6:20b:118::20)
+ by AM6PR04MB5176.eurprd04.prod.outlook.com (2603:10a6:20b:6::19) with
+ Microsoft SMTP Server (version=TLS1_2,
+ cipher=TLS_ECDHE_RSA_WITH_AES_256_GCM_SHA384) id 15.20.3370.16; Tue, 15 Sep
+ 2020 02:55:06 +0000
+Received: from AM7PR04MB7157.eurprd04.prod.outlook.com
+ ([fe80::1023:be8d:40c:efe1]) by AM7PR04MB7157.eurprd04.prod.outlook.com
+ ([fe80::1023:be8d:40c:efe1%3]) with mapi id 15.20.3370.019; Tue, 15 Sep 2020
+ 02:55:06 +0000
+From:   Peter Chen <peter.chen@nxp.com>
+To:     Matthias Kaehlcke <mka@chromium.org>
+CC:     Greg Kroah-Hartman <gregkh@linuxfoundation.org>,
+        Rob Herring <robh+dt@kernel.org>,
+        Frank Rowand <frowand.list@gmail.com>,
+        Alan Stern <stern@rowland.harvard.edu>,
+        Krzysztof Kozlowski <krzk@kernel.org>,
+        Bastien Nocera <hadess@hadess.net>,
+        Ravi Chandra Sadineni <ravisadineni@chromium.org>,
+        "linux-usb@vger.kernel.org" <linux-usb@vger.kernel.org>,
+        Stephen Boyd <swboyd@chromium.org>,
         "devicetree@vger.kernel.org" <devicetree@vger.kernel.org>,
-        "linux-arm-kernel@lists.infradead.org" 
-        <linux-arm-kernel@lists.infradead.org>,
+        Douglas Anderson <dianders@chromium.org>,
         "linux-kernel@vger.kernel.org" <linux-kernel@vger.kernel.org>,
-        "joe@perches.com" <joe@perches.com>,
-        Sandip Kothari <sandipk@xilinx.com>,
-        Dinesh Kumar <dineshk@xilinx.com>
-Subject: Re: [PATCH v3 3/3] media: v4l: xilinx: Add Xilinx UHD-SDI Rx
- Subsystem driver
-Message-ID: <20200915023829.GE15543@pendragon.ideasonboard.com>
-References: <20200618053304.14551-1-vishal.sagar@xilinx.com>
- <20200618053304.14551-4-vishal.sagar@xilinx.com>
- <50cc4f4b-e788-c5ad-cd6a-b428b96d5377@xs4all.nl>
- <20200715213315.GF6144@pendragon.ideasonboard.com>
- <BY5PR02MB6867211CA1F22DC01D6A8F15A75D0@BY5PR02MB6867.namprd02.prod.outlook.com>
- <20200819165641.GS6049@pendragon.ideasonboard.com>
- <ae3814b877ea264b0231321d12d946761941e004.camel@ndufresne.ca>
- <f88cc98f-7e0d-cedc-6b27-a7a5fd801ebe@xs4all.nl>
+        "Alexander A. Klimov" <grandmaster@al2klimov.de>,
+        Masahiro Yamada <masahiroy@kernel.org>
+Subject: Re: [PATCH 2/2] USB: misc: Add onboard_usb_hub driver
+Thread-Topic: [PATCH 2/2] USB: misc: Add onboard_usb_hub driver
+Thread-Index: AQHWisa8s1Sayn6UyUeJIx1ZNmduw6lpAX4A
+Date:   Tue, 15 Sep 2020 02:55:06 +0000
+Message-ID: <20200915025426.GA17450@b29397-desktop>
+References: <20200914112716.1.I248292623d3d0f6a4f0c5bc58478ca3c0062b49a@changeid>
+ <20200914112716.2.I7c9a1f1d6ced41dd8310e8a03da666a32364e790@changeid>
+In-Reply-To: <20200914112716.2.I7c9a1f1d6ced41dd8310e8a03da666a32364e790@changeid>
+Accept-Language: en-US
+Content-Language: en-US
+X-MS-Has-Attach: 
+X-MS-TNEF-Correlator: 
+authentication-results: chromium.org; dkim=none (message not signed)
+ header.d=none;chromium.org; dmarc=none action=none header.from=nxp.com;
+x-originating-ip: [119.31.174.67]
+x-ms-publictraffictype: Email
+x-ms-office365-filtering-ht: Tenant
+x-ms-office365-filtering-correlation-id: 1e4ba19f-b2ed-4ba2-ae0a-08d85922c09c
+x-ms-traffictypediagnostic: AM6PR04MB5176:
+x-microsoft-antispam-prvs: <AM6PR04MB51765E096C377FFCC92922728B200@AM6PR04MB5176.eurprd04.prod.outlook.com>
+x-ms-oob-tlc-oobclassifiers: OLM:8882;
+x-ms-exchange-senderadcheck: 1
+x-microsoft-antispam: BCL:0;
+x-microsoft-antispam-message-info: xJUyS3Yc8N6RYtEnNjHScmR7lTqcdy71S97er/VCvVKcfSu2NWSwpIwdH45CV3mcATG5FLNP0Ss4koZAedSHB4EqYnvyWAWIIkO/L7luFO15jIauR1AgyAvGdxspssTbzPGf/wFhwBZ1IToWuz9vDgElA4GX80pXoAJaIbXWjfWSi7EFodN0VNrl3cnijpb48KVIgcbW6p1mzQEmFopk1Evb5QCZaEQpUzwlz09AtdY1FPSuo2wu/FNcWaNC4BXETTwUcQx40ftTP4qcgNHdqD/Ex7H8GpOAnmfhgrcmOhoHDmr2bOI+XmkAcab/JHj8MH02qc6I/4oxOuA7ndCViw==
+x-forefront-antispam-report: CIP:255.255.255.255;CTRY:;LANG:en;SCL:1;SRV:;IPV:NLI;SFV:NSPM;H:AM7PR04MB7157.eurprd04.prod.outlook.com;PTR:;CAT:NONE;SFS:(7916004)(4636009)(136003)(396003)(366004)(346002)(376002)(39860400002)(6486002)(316002)(66446008)(91956017)(76116006)(66946007)(66476007)(66556008)(64756008)(53546011)(71200400001)(6916009)(5660300002)(6506007)(6512007)(9686003)(26005)(186003)(2906002)(7416002)(8676002)(1076003)(478600001)(8936002)(44832011)(33656002)(33716001)(83380400001)(86362001)(54906003)(4326008);DIR:OUT;SFP:1101;
+x-ms-exchange-antispam-messagedata: JQf7qxdYPE1BEVdK3aQKQPAycekxUbkEsTj5Tj6zRjbWFY1hLk+ddlqS1GCtmQD61xq+1zF5O+uFvHHwJ1RrplWHnpj8+3sIjAUHglyQtbtL4R3guPd2fPkM5mxKHGfAYJHzRJkkOGS81E1JWx1dm/MzULVUymkCqm4fGntAJTUyHQZp+TupMrppjMfYrXiRLD/sVWBu9Cq2Mw1UXYYXxlLvPLbwcWu58Zk0h8RhTPvXYXacG1NpbcFTvEhUuXZnxOxAyF92YB0zkB7wEd6mwGLncus+0A8twjcw/9Km883XgyxhxXiHl9SAfmI4LEfqRpo9yLjCfhQ1W0fJencFrm6TOthTLxGkELGoVUgYeoCd0xJtKMpN1Sk/l5OLmTRAT1wAeOsu654BCJXyfzkUyqUNbaJIkaaIIms6ELMCN/Vk1bihyiQmCCg80UG2d6icxV6Q9ZJqk/xPTgkls1S9E5kKYJ4UT1H7IxDOyWR3Cuqx2wuFmVuRZEu4TbUXqhbMA3pWpRoEs0poX/upU94CS9HJi2U8ePMyQpwO7IeWTFHRfMgKC9HXApi1wA6a5dBTGPbYQSfUYSR4KfXHvv5oLOrYELU09E1GgTLN9QZy9ZpDJ+QW7WnRd8r7koPUKwNH5kzlKB4BJNNKIulXXONIyw==
+x-ms-exchange-transport-forked: True
+Content-Type: text/plain; charset="us-ascii"
+Content-ID: <F9F810C307D8AE40A49811D0D15D9038@eurprd04.prod.outlook.com>
+Content-Transfer-Encoding: quoted-printable
 MIME-Version: 1.0
-Content-Type: text/plain; charset=utf-8
-Content-Disposition: inline
-Content-Transfer-Encoding: 8bit
-In-Reply-To: <f88cc98f-7e0d-cedc-6b27-a7a5fd801ebe@xs4all.nl>
+X-OriginatorOrg: nxp.com
+X-MS-Exchange-CrossTenant-AuthAs: Internal
+X-MS-Exchange-CrossTenant-AuthSource: AM7PR04MB7157.eurprd04.prod.outlook.com
+X-MS-Exchange-CrossTenant-Network-Message-Id: 1e4ba19f-b2ed-4ba2-ae0a-08d85922c09c
+X-MS-Exchange-CrossTenant-originalarrivaltime: 15 Sep 2020 02:55:06.6785
+ (UTC)
+X-MS-Exchange-CrossTenant-fromentityheader: Hosted
+X-MS-Exchange-CrossTenant-id: 686ea1d3-bc2b-4c6f-a92c-d99c5c301635
+X-MS-Exchange-CrossTenant-mailboxtype: HOSTED
+X-MS-Exchange-CrossTenant-userprincipalname: MTTc7nPjJ788KBNeQQwK4vHJByjoFCyozpFpIaxdFiRLmVFFsGyfIDe+VBcxa2Gr9yH3DdFSpX6Q0dY5L12x+A==
+X-MS-Exchange-Transport-CrossTenantHeadersStamped: AM6PR04MB5176
 Sender: devicetree-owner@vger.kernel.org
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-Hi Hans,
+On 20-09-14 11:27:49, Matthias Kaehlcke wrote:
+> The main issue this driver addresses is that a USB hub needs to be
+> powered before it can be discovered. For onboard hubs this is often
+> solved by supplying the hub with an 'always-on' regulator, which is
+> kind of a hack. Some onboard hubs may require further initialization
+> steps, like changing the state of a GPIO or enabling a clock, which
+> requires further hacks. This driver creates a platform device
+> representing the hub which performs the necessary initialization.
+> Currently it only supports switching on a single regulator, support
+> for multiple regulators or other actions can be added as needed.
+> Different initialization sequences can be supported based on the
+> compatible string.
+>=20
+> Besides performing the initialization the driver can be configured
+> to power the hub off during system suspend. This can help to extend
+> battery life on battery powered devices, which have no requirements
+> to keep the hub powered during suspend. The driver can also be
+> configured to leave the hub powered when a wakeup capable USB device
+> is connected when suspending, and keeping it powered otherwise.
+>=20
+> Technically the driver consists of two drivers, the platform driver
+> described above and a very thin USB driver that subclasses the
+> generic hub driver. The purpose of this driver is to provide the
+> platform driver with the USB devices corresponding to the hub(s)
+> (a hub controller may provide multiple 'logical' hubs, e.g. one
+> to support USB 2.0 and another for USB 3.x).
 
-On Thu, Sep 10, 2020 at 12:22:28PM +0200, Hans Verkuil wrote:
-> On 26/08/2020 16:10, Nicolas Dufresne wrote:
-> > Le mercredi 19 août 2020 à 19:56 +0300, Laurent Pinchart a écrit :
-> >> Hi Vishal,
-> >>
-> >> (Hans, there's a question for you below)
-> >>
-> >> On Wed, Aug 19, 2020 at 01:47:49PM +0000, Vishal Sagar wrote:
-> >>> On Thursday, July 16, 2020 3:03 AM Laurent Pinchart wrote:
-> >>>> On Thu, Jun 25, 2020 at 11:43:01AM +0200, Hans Verkuil wrote:
-> >>>>> On 18/06/2020 07:33, Vishal Sagar wrote:
-> >>>>>> The Xilinx UHD-SDI Rx subsystem soft IP is used to capture native SDI
-> >>>>>> streams from SDI sources like SDI broadcast equipment like cameras and
-> >>>>>> mixers. This block outputs either native SDI, native video or
-> >>>>>> AXI4-Stream compliant data stream for further processing. Please refer
-> >>>>>> to PG290 for details.
-> >>>>>>
-> >>>>>> The driver is used to configure the IP to add framer, search for
-> >>>>>> specific modes, get the detected mode, stream parameters, errors, etc.
-> >>>>>> It also generates events for video lock/unlock, bridge over/under flow.
-> >>>>>>
-> >>>>>> The driver supports 10/12 bpc YUV 422 media bus format currently. It
-> >>>>>> also decodes the stream parameters based on the ST352 packet embedded in the
-> >>>>>> stream. In case the ST352 packet isn't present in the stream, the core's
-> >>>>>> detected properties are used to set stream properties.
-> >>>>>>
-> >>>>>> The driver currently supports only the AXI4-Stream IP configuration.
-> >>>>>>
-> >>>>>> Signed-off-by: Vishal Sagar <vishal.sagar@xilinx.com>
-> >>>>>> ---
-> >>>>>> v3
-> >>>>>> - fixed KConfig with better description
-> >>>>>> - removed unnecessary header files
-> >>>>>> - converted uppercase to lowercase for all hex values
-> >>>>>> - merged core struct to state struct
-> >>>>>> - removed most one line functions and replaced with direct reg
-> >>>>>>   read/write or macros
-> >>>>>> - dt property bpp to bpc. default 10. not mandatory.
-> >>>>>> - fixed subscribe events, log_status, s_stream
-> >>>>>> - merged overflow/underflow to one event
-> >>>>>> - moved all controls to xilinx-sdirxss.h
-> >>>>>> - max events from 128 to 8
-> >>>>>> - used FIELD_GET() instead of custom macro
-> >>>>>> - updated the controls documentation
-> >>>>>> - added spinlock
-> >>>>>> - removed 3GB control and added mode to detect bitmask
-> >>>>>> - fixed format for (width, height, colorspace, xfer func, etc)
-> >>>>>> - added dv_timings_cap, s/g_dv_timings
-> >>>>>> - fixed set/get_format
-> >>>>>> - fix v4l control registrations
-> >>>>>> - fix order of registration / deregistration in probe() remove()
-> >>>>>> - fixed other comments from Hyun, Laurent and Hans
-> >>>>>> - things yet to close
-> >>>>>>   - adding source port for connector (Laurent's suggestion)
-> >>>>>>   - adding new FIELD type for Transport Stream V4L2_FIELD_ALTERNATE_PROG (Han's suggestion)
-> >>>>>>   - Update / remove EDH or CRC related controls
-> >>>>>>
-> >>>>>> v2
-> >>>>>> - Added DV timing support based on Hans Verkuilś feedback
-> >>>>>> - More documentation to custom v4l controls and events
-> >>>>>> - Fixed Hyunś comments
-> >>>>>> - Added macro for masking and shifting as per Joe Perches comments
-> >>>>>> - Updated to latest as per Xilinx github repo driver like
-> >>>>>>   adding new DV timings not in mainline yet uptill 03/21/20
-> >>>>>>
-> >>>>>>  drivers/media/platform/xilinx/Kconfig         |   11 +
-> >>>>>>  drivers/media/platform/xilinx/Makefile        |    1 +
-> >>>>>>  .../media/platform/xilinx/xilinx-sdirxss.c    | 2121 +++++++++++++++++
-> >>>>>>  include/uapi/linux/v4l2-controls.h            |    6 +
-> >>>>>>  include/uapi/linux/xilinx-sdirxss.h           |  283 +++
-> >>>>>>  5 files changed, 2422 insertions(+)
-> >>>>>>  create mode 100644 drivers/media/platform/xilinx/xilinx-sdirxss.c
-> >>>>>>  create mode 100644 include/uapi/linux/xilinx-sdirxss.h
-> >>
-> >> [snip]
-> >>
-> >>>>>> diff --git a/drivers/media/platform/xilinx/xilinx-sdirxss.c b/drivers/media/platform/xilinx/xilinx-sdirxss.c
-> >>>>>> new file mode 100644
-> >>>>>> index 000000000000..e39aab7c656a
-> >>>>>> --- /dev/null
-> >>>>>> +++ b/drivers/media/platform/xilinx/xilinx-sdirxss.c
-> >>>>>> @@ -0,0 +1,2121 @@
-> >>
-> >> [snip]
-> >>
-> >>>>>> +	case V4L2_CID_XILINX_SDIRX_TS_IS_INTERLACED:
-> >>>>>> +		ctrl->val = xsdirxss->ts_is_interlaced;
-> >>>>>> +		break;
-> >>>>>
-> >>>>> I assume this control will disappear once you added support for
-> >>>>> FIELD_ALTERNATE_PROG?
-> >>>>
-> >>>> I'm not sure FIELD_ALTERNATE_PROG is a good idea. The v4l2_field
-> >>>> specifies today how frames are split into multiple buffers. There's an
-> >>>> implicit assumption that a frame split into two buffers is captured with
-> >>>> interlacing. In the SDI case, the two concepts get decoupled, a
-> >>>> progressive frame can be transmitted (and captured) in two separate
-> >>>> parts. If we add a *_PROG field, we'll need to duplicate most of the
-> >>>> v4l2_field values with a _PROG suffix, as the progressive frame can be
-> >>>> captured in alternate buffers on a video node, but also in separate odd
-> >>>> and even buffers on two video nodes. Tt the hardware level, data is
-> >>>> transmitted with odd lines on one link, and even lines on a second link.
-> >>>> There are then two instances of this IP core, one for each link. One
-> >>>> instance would receive and process the even lines, the other instance
-> >>>> the odd lines. The output of the two instances can then be connected to
-> >>>> two separate DMA engines, or combined in the FPGA fabric, depending on
-> >>>> how the user designs the system.
-> >>>
-> >>> My apologies to give incorrect info regarding this.
-> >>> In the progressive segmented frame, a progressive captured frame is sent
-> >>> across to receiver over an interlaced transport. The 2 fields received
-> >>> are similar to how V4L2_FIELD_ALTERNATE is except that the fields weren't
-> >>> captured at 2 different times.
-> >>
-> >> I've now read more about progressive segmented frames, and I was indeed
-> >> wrong about the fact that the two segments are transported over
-> >> different links.
-> >>
-> >> I still wonder, however, if a _PROG suffix is the best option. Wouldn't
-> >> we need to also add V4L2_FIELD_TOP_PROG, V4L2_FIELD_BOTTOM_PROG,
-> >> V4L2_FIELD_SEQ_TB_PROG and V4L2_FIELD_SEQ_BT_PROG, not necessarily for
-> >> this driver, but for other devices that would support capturing the
-> >> odd/even segments only, or support capturing both segments in a single
-> >> buffer, one after the other ?
-> >>
-> >> Maybe that's unavoidable, as enum v4l2_field combines both the buffer
-> >> layout and the fact that the frame is interlaced or progressive. If we
-> >> had to redesign it we could do better, but having to keep backward
-> >> compatibility, duplicating most values with a _PROG suffix may be the
-> >> best option.
-> >>
-> >> Hans, any opinion ?
-> 
-> I don't believe there is any need to create those other V4L2_FIELD_ variants.
-> With V4L2_FIELD_ALTERNATE_PROG each buffer will be set to V4L2_FIELD_TOP (i.e.
-> odd lines) or V4L2_FIELD_BOTTOM (i.e. even lines).
+I agree with Alan, you may change this driver to apply for generic
+onboard USB devices.
 
-What if an application wants to capture TOP or BOTTOM fields only though
-? The DMA engine would need to be configured with either
-V4L2_FIELD_TOP_PROG or V4L2_FIELD_BOTTOM_PROG, wouldn't it ? Or should
-the _PROG information be reported by this subdev only, and not
-propagated through the pipeline ?
+> +static int onboard_hub_probe(struct platform_device *pdev)
+> +{
+> +	struct device *dev =3D &pdev->dev;
+> +	struct onboard_hub *hub;
+> +
+> +	hub =3D devm_kzalloc(dev, sizeof(*hub), GFP_KERNEL);
+> +	if (!hub)
+> +		return -ENOMEM;
+> +
+> +	hub->vdd =3D devm_regulator_get(dev, "vdd");
+> +	if (IS_ERR(hub->vdd))
+> +		return PTR_ERR(hub->vdd);
+> +
+> +	hub->dev =3D dev;
+> +	mutex_init(&hub->lock);
+> +	INIT_LIST_HEAD(&hub->udev_list);
+> +
+> +	hub->cfg.power_off_in_suspend =3D of_property_read_bool(dev->of_node, "=
+power-off-in-suspend");
+> +	hub->cfg.wakeup_source =3D of_property_read_bool(dev->of_node, "wakeup-=
+source");
 
-> There is nothing else you need here.
-> 
-> A V4L2_FIELD_SEQ_TB_PROG might be needed if we get HW that does something
-> so strange.
-> 
-> > Can't your receiver store these two fragment directly into a
-> > progressive buffer instead of leaking this HW specific thing into uAPI
-> > ? All you'd need is support for stride (bytesperline) at the HW
-> > writeback level, and then you can hide this complexicuty to userspace
-> > by filling the top/bottom line only. You simply multiply the stride by
-> > two in this context.
-> 
-> Vishal, this is a good question from Nicolas.
-> 
-> An alternative solution might be to DMA the odd and even lines to the
-> same buffer, but consecutive. I.e., instead of having to create a
-> V4L2_FIELD_ALTERNATE_PROG, you'd create a V4L2_FIELD_SEQ_TB_PROG, which
-> is identical to V4L2_FIELD_SEQ_TB, except that it is for a progressive
-> frame.
-> 
-> If you can avoid V4L2_FIELD_ALTERNATE_PROG somehow and just return a
-> single buffer per frame, then that would be much better. One field per
-> buffer is a big pain for userspace.
+Do you really need these two properties? If the device (and its children
+if existed) has wakeup enabled, you keep power in suspend, otherwise,
+you could close it, any exceptions?
 
-That's out of control of this driver though, it depends on the rest of
-the pipeline. The SDI RX subdev produces alternate frames, it's up to
-the rest of the FPGA to decide how to store that in memory.
+Peter
 
-> >>> So I will add the V4L2_FIELD_ALTERNATE_PROG in next patch version.
-> >>
-> >> [snip]
 
--- 
-Regards,
+> +
+> +	dev_set_drvdata(dev, hub);
+> +
+> +	return onboard_hub_power_on(hub);
+> +}
+> +
+> +static int onboard_hub_remove(struct platform_device *pdev)
+> +{
+> +	struct onboard_hub *hub =3D dev_get_drvdata(&pdev->dev);
+> +
+> +	return onboard_hub_power_off(hub);
+> +}
+> +
+> +static const struct of_device_id onboard_hub_match[] =3D {
+> +	{ .compatible =3D "onboard-usb-hub" },
+> +	{ .compatible =3D "realtek,rts5411" },
+> +	{}
+> +};
+> +MODULE_DEVICE_TABLE(of, onboard_hub_match);
+> +
+> +static struct platform_driver onboard_hub_driver =3D {
+> +	.probe =3D onboard_hub_probe,
+> +	.remove =3D onboard_hub_remove,
+> +#ifdef CONFIG_PM
+> +	.suspend =3D onboard_hub_suspend,
+> +	.resume =3D onboard_hub_resume,
+> +#endif
+> +	.driver =3D {
+> +		.name =3D "onboard-usb-hub",
+> +		.of_match_table =3D onboard_hub_match,
+> +	},
+> +};
+> +
+> +/************************** USB driver **************************/
+> +
+> +#define VENDOR_ID_REALTEK	0x0bda
+> +
+> +static struct onboard_hub *_find_onboard_hub(struct device *dev)
+> +{
+> +	const phandle *ph;
+> +	struct device_node *np;
+> +	struct platform_device *pdev;
+> +
+> +	ph =3D of_get_property(dev->of_node, "hub", NULL);
+> +	if (!ph) {
+> +		dev_err(dev, "failed to read 'hub' property\n");
+> +		return ERR_PTR(-EINVAL);
+> +	}
+> +
+> +	np =3D of_find_node_by_phandle(be32_to_cpu(*ph));
+> +	if (!np) {
+> +		dev_err(dev, "failed find device node for onboard hub\n");
+> +		return ERR_PTR(-EINVAL);
+> +	}
+> +
+> +	pdev =3D of_find_device_by_node(np);
+> +	of_node_put(np);
+> +	if (!pdev)
+> +		return ERR_PTR(-EPROBE_DEFER);
+> +
+> +	return dev_get_drvdata(&pdev->dev);
+> +}
+> +
+> +static int onboard_hub_usbdev_probe(struct usb_device *udev)
+> +{
+> +	struct device *dev =3D &udev->dev;
+> +	struct onboard_hub *hub;
+> +
+> +	/* ignore supported hubs without device tree node */
+> +	if (!dev->of_node)
+> +		return -ENODEV;
+> +
+> +	hub =3D _find_onboard_hub(dev);
+> +	if (IS_ERR(hub))
+> +		return PTR_ERR(dev);
+> +
+> +	dev_set_drvdata(dev, hub);
+> +
+> +	onboard_hub_add_usbdev(hub, udev);
+> +
+> +	return 0;
+> +}
+> +
+> +static void onboard_hub_usbdev_disconnect(struct usb_device *udev)
+> +{
+> +	struct onboard_hub *hub =3D dev_get_drvdata(&udev->dev);
+> +
+> +	onboard_hub_remove_usbdev(hub, udev);
+> +
+> +	put_device(hub->dev);
+> +}
+> +
+> +static const struct usb_device_id onboard_hub_id_table[] =3D {
+> +	{ .idVendor =3D VENDOR_ID_REALTEK,
+> +	  .idProduct =3D 0x0411, /* RTS5411 USB 3.0 */
+> +	  .match_flags =3D USB_DEVICE_ID_MATCH_DEVICE },
+> +	{ .idVendor =3D VENDOR_ID_REALTEK,
+> +	  .idProduct =3D 0x5411, /* RTS5411 USB 2.0 */
+> +	  .match_flags =3D USB_DEVICE_ID_MATCH_DEVICE },
+> +	{},
+> +};
+> +
+> +MODULE_DEVICE_TABLE(usb, onboard_hub_id_table);
+> +
+> +static struct usb_device_driver onboard_hub_usbdev_driver =3D {
+> +
+> +	.name =3D "onboard-usb-hub",
+> +	.probe =3D onboard_hub_usbdev_probe,
+> +	.disconnect =3D onboard_hub_usbdev_disconnect,
+> +	.generic_subclass =3D 1,
+> +	.supports_autosuspend =3D	1,
+> +	.id_table =3D onboard_hub_id_table,
+> +};
+> +
+> +/************************** Driver (de)registration ********************=
+******/
+> +
+> +static int __init onboard_hub_init(void)
+> +{
+> +	int rc;
+> +
+> +	rc =3D platform_driver_register(&onboard_hub_driver);
+> +	if (rc)
+> +		return rc;
+> +
+> +	return usb_register_device_driver(&onboard_hub_usbdev_driver, THIS_MODU=
+LE);
+> +}
+> +device_initcall(onboard_hub_init);
+> +
+> +static void __exit onboard_hub_exit(void)
+> +{
+> +	usb_deregister_device_driver(&onboard_hub_usbdev_driver);
+> +	platform_driver_unregister(&onboard_hub_driver);
+> +}
+> +module_exit(onboard_hub_exit);
+> +
+> +MODULE_AUTHOR("Matthias Kaehlcke <mka@chromium.org>");
+> +MODULE_DESCRIPTION("Onboard USB Hub driver");
+> +MODULE_LICENSE("GPL v2");
+> --=20
+> 2.28.0.618.gf4bc123cb7-goog
+>=20
 
-Laurent Pinchart
+--=20
+
+Thanks,
+Peter Chen=
