@@ -2,133 +2,138 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from vger.kernel.org (vger.kernel.org [23.128.96.18])
-	by mail.lfdr.de (Postfix) with ESMTP id 7B76726AFAD
-	for <lists+devicetree@lfdr.de>; Tue, 15 Sep 2020 23:38:23 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTP id 5A72F26AFAF
+	for <lists+devicetree@lfdr.de>; Tue, 15 Sep 2020 23:38:43 +0200 (CEST)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S1728133AbgIOVgm (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Tue, 15 Sep 2020 17:36:42 -0400
-Received: from lindbergh.monkeyblade.net ([23.128.96.19]:44654 "EHLO
+        id S1728094AbgIOVij (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Tue, 15 Sep 2020 17:38:39 -0400
+Received: from lindbergh.monkeyblade.net ([23.128.96.19]:44814 "EHLO
         lindbergh.monkeyblade.net" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S1728149AbgIOVfa (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Tue, 15 Sep 2020 17:35:30 -0400
-Received: from mail-ed1-x544.google.com (mail-ed1-x544.google.com [IPv6:2a00:1450:4864:20::544])
-        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id DA81AC06174A;
-        Tue, 15 Sep 2020 14:35:29 -0700 (PDT)
-Received: by mail-ed1-x544.google.com with SMTP id n22so4513003edt.4;
-        Tue, 15 Sep 2020 14:35:29 -0700 (PDT)
+        with ESMTP id S1728153AbgIOVgm (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Tue, 15 Sep 2020 17:36:42 -0400
+Received: from mail-pj1-x1032.google.com (mail-pj1-x1032.google.com [IPv6:2607:f8b0:4864:20::1032])
+        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id E6DFAC061788
+        for <devicetree@vger.kernel.org>; Tue, 15 Sep 2020 14:36:28 -0700 (PDT)
+Received: by mail-pj1-x1032.google.com with SMTP id o16so469070pjr.2
+        for <devicetree@vger.kernel.org>; Tue, 15 Sep 2020 14:36:28 -0700 (PDT)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=gmail.com; s=20161025;
-        h=subject:to:cc:references:from:message-id:date:user-agent
-         :mime-version:in-reply-to:content-language:content-transfer-encoding;
-        bh=zYZu7AP7WKQMUwX+s8Baq3r1FNAJckxzLU8aedZLdh4=;
-        b=pQ9rUCXTUXQn6+Rgg9NiaktaiZwG3hpypdqH/VcPCAOYzWgOl5Xyh36Q2bUSEkn284
-         3KbDVq7+dB9/VZ5cgaGRwvi0oZZjYcnnJycG+JTaws/Yp6WDa+6lbra0Om+QA3jDx4kj
-         /7izJJ86gcBMauYXtbjQyiCByG8GWoChIY+fxUlojt/UVQ33Ue61jYk6U514srSjk/AA
-         I4ymrlCgynC+HEGEhvrOLRDVxZZEyT0e5RR0jKaTgn9kZlQZBYnc0utWZcC28+htSv+Y
-         6QRv1+xrDt/BVqUUI9wav4tjYrbSCB9r0F8PRrlhxZWWzjGjv9vlRyjFAKCGlVl2qhPx
-         GGrw==
+        d=chromium.org; s=google;
+        h=date:from:to:cc:subject:message-id:references:mime-version
+         :content-disposition:in-reply-to;
+        bh=Q/ONZTq8yzKfu/JZ1zGnvLWpAzIfYzhKA8qIl7mniGY=;
+        b=DoIbTW/2CtgRJq92eSPalZa5mfpmnrfT0ofKnk+wQQuLo2PGBqHmm+aHXdoVihU7L5
+         JzjBgRroHOgcgX+2B+NngYYJyN052zZ2YT/wCOWSsMVrPcBFpmPLltbSL4WleFYWk4xX
+         HmpAXktw8Z7NpIydJI23Qo7yy9zpxzYZZKZBw=
 X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
         d=1e100.net; s=20161025;
-        h=x-gm-message-state:subject:to:cc:references:from:message-id:date
-         :user-agent:mime-version:in-reply-to:content-language
-         :content-transfer-encoding;
-        bh=zYZu7AP7WKQMUwX+s8Baq3r1FNAJckxzLU8aedZLdh4=;
-        b=FoDi6vb2oXEt3UePRzeTl3N6pjAn/32GzoCRWsfVNGXa9EMg5aR/Oo6HZToUQKfrAK
-         qMhQLh8KxyXt5OdZL40o8x2tOz6r526/cTO5K7xdsHWCCr3Li0UkwIkftAQc0OGTYWyq
-         V1EAW9b1/cOkXVfl5g33os9KGJ1QWi1HxkP+0PmRvDY+uUnejse37JaCjAtRdrhxW3ok
-         fwEDDyT2gjZ2kZhuBf486cyYPq9UZHzf7xAooCyNvV4KQBF+mUW/riqsmpwSfJzxLVpb
-         19/YBzC+ysz7HySd0LbNIVIYxXUJpeWqI1UlSCjsMxRZJiXK1bn4VwJCcVul9tp3fuea
-         z5ug==
-X-Gm-Message-State: AOAM533oUPQv/uwbHYsZcYKqsmrUl+ioviU4zI7oLgIOac2r1RIPzxmA
-        lt4p+wcjMELEvgMK0yGXsi9zzNRcpWE=
-X-Google-Smtp-Source: ABdhPJx4cq8Bfgz0qvLfYh+1YC1vhuSBV3HnLLxodexKKwwoFQRmAq3XmzPZh3KkFfAa1R6QZQCmYA==
-X-Received: by 2002:aa7:ce19:: with SMTP id d25mr24674880edv.189.1600205728365;
-        Tue, 15 Sep 2020 14:35:28 -0700 (PDT)
-Received: from ?IPv6:2a01:110f:b59:fd00:dd41:db23:e250:edba? ([2a01:110f:b59:fd00:dd41:db23:e250:edba])
-        by smtp.gmail.com with ESMTPSA id f21sm12697704edw.83.2020.09.15.14.35.26
+        h=x-gm-message-state:date:from:to:cc:subject:message-id:references
+         :mime-version:content-disposition:in-reply-to;
+        bh=Q/ONZTq8yzKfu/JZ1zGnvLWpAzIfYzhKA8qIl7mniGY=;
+        b=uKDOfK/Pg0w5/Bcj9/RuRSHXrtwfvW7OKCHY9PZpJqJ5iK0x1mrY4oNGzkcJZmSnJS
+         dEORyJa87W+epE6xa+Zlrm0wWtuCCWGuGr2rtxBnRJuvPu6xAsiH4kEJUmJLfQRRJVSA
+         HEsOUduM9zxi4k7tqfOeOCxubTB4m8S8LQAPmZua0BNs9qNRlrMQREXT/DGkpgeb2qol
+         J9Cd2RFPxHsl3Lavov3XMjNvv+yA5edduJmK/UX7U+mKhR7kunpTjS0HVE80o923IakS
+         1BNVVEHOsRbhxLcWqWSo9DXqAT/7cusOPbkXrf87kDukqsy1fQTsrdTJIL67T96rxCha
+         Tp+Q==
+X-Gm-Message-State: AOAM530cyaBFuzaxR+Nkoi3E6ubYKcXcntbVWOu7hh0zxyFgWLnfHPVK
+        dNOIw3Jyd1zggAYfHX4qPVISYw==
+X-Google-Smtp-Source: ABdhPJx1PHMy//vOzR66thN4Z4MDTzaarCGbaq0XsSH22Cct3LbDQMW0bs1s+D0QMpWCoi3yZsKFvQ==
+X-Received: by 2002:a17:902:b7c7:b029:d1:cc21:9c38 with SMTP id v7-20020a170902b7c7b02900d1cc219c38mr9786815plz.21.1600205788381;
+        Tue, 15 Sep 2020 14:36:28 -0700 (PDT)
+Received: from localhost ([2620:15c:202:1:f693:9fff:fef4:e70a])
+        by smtp.gmail.com with ESMTPSA id a23sm12197586pgv.86.2020.09.15.14.36.27
         (version=TLS1_3 cipher=TLS_AES_128_GCM_SHA256 bits=128/128);
-        Tue, 15 Sep 2020 14:35:27 -0700 (PDT)
-Subject: Re: [PATCH leds + devicetree v2 2/2] leds: trigger: netdev: parse
- `trigger-sources` from device tree
-To:     =?UTF-8?Q?Marek_Beh=c3=ban?= <marek.behun@nic.cz>,
-        linux-leds@vger.kernel.org
-Cc:     Pavel Machek <pavel@ucw.cz>, Dan Murphy <dmurphy@ti.com>,
-        =?UTF-8?Q?Ond=c5=99ej_Jirman?= <megous@megous.com>,
-        Russell King <linux@armlinux.org.uk>,
-        Andrew Lunn <andrew@lunn.ch>, linux-kernel@vger.kernel.org,
-        Matthias Schiffer <matthias.schiffer@ew.tq-group.com>,
-        Rob Herring <robh+dt@kernel.org>, devicetree@vger.kernel.org
-References: <20200915152616.20591-1-marek.behun@nic.cz>
- <20200915152616.20591-3-marek.behun@nic.cz>
-From:   Jacek Anaszewski <jacek.anaszewski@gmail.com>
-Message-ID: <03fc62d8-eeaa-7b74-5ed9-7e482ea6b888@gmail.com>
-Date:   Tue, 15 Sep 2020 23:35:25 +0200
-User-Agent: Mozilla/5.0 (X11; Linux x86_64; rv:68.0) Gecko/20100101
- Thunderbird/68.12.0
+        Tue, 15 Sep 2020 14:36:28 -0700 (PDT)
+Date:   Tue, 15 Sep 2020 14:36:26 -0700
+From:   Matthias Kaehlcke <mka@chromium.org>
+To:     Daniel Lezcano <daniel.lezcano@linaro.org>
+Cc:     Rajendra Nayak <rnayak@codeaurora.org>,
+        Lukasz Luba <lukasz.luba@arm.com>,
+        Rob Herring <robh+dt@kernel.org>,
+        DTML <devicetree@vger.kernel.org>,
+        Doug Anderson <dianders@chromium.org>,
+        linux-pm@vger.kernel.org,
+        Amit Daniel Kachhap <amit.kachhap@gmail.com>,
+        Viresh Kumar <viresh.kumar@linaro.org>,
+        Javi Merino <javi.merino@kernel.org>
+Subject: Re: is 'dynamic-power-coefficient' expected to be based on 'real'
+ power measurements?
+Message-ID: <20200915213626.GD2771744@google.com>
+References: <248bb01e-1746-c84c-78c4-3cf7d2541a70@codeaurora.org>
+ <20200915172444.GA2771744@google.com>
+ <406d5d4e-d7d7-8a37-5501-119b734facb3@linaro.org>
+ <20200915175808.GB2771744@google.com>
+ <27785351-ba14-dc92-6761-d64962c29596@linaro.org>
+ <20200915211309.GC2771744@google.com>
+ <808029c4-3a05-1926-934d-10739190ab9e@linaro.org>
 MIME-Version: 1.0
-In-Reply-To: <20200915152616.20591-3-marek.behun@nic.cz>
-Content-Type: text/plain; charset=utf-8; format=flowed
-Content-Language: en-US
-Content-Transfer-Encoding: 8bit
+Content-Type: text/plain; charset=utf-8
+Content-Disposition: inline
+In-Reply-To: <808029c4-3a05-1926-934d-10739190ab9e@linaro.org>
 Sender: devicetree-owner@vger.kernel.org
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-Hi Marek,
-
-On 9/15/20 5:26 PM, Marek Behún wrote:
-> Allow setting netdev LED trigger as default when given LED DT node has
-> the `trigger-sources` property pointing to a node corresponding to a
-> network device.
+On Tue, Sep 15, 2020 at 11:23:49PM +0200, Daniel Lezcano wrote:
+> On 15/09/2020 23:13, Matthias Kaehlcke wrote:
+> > On Tue, Sep 15, 2020 at 10:55:52PM +0200, Daniel Lezcano wrote:
+> >> On 15/09/2020 19:58, Matthias Kaehlcke wrote:
+> >>> On Tue, Sep 15, 2020 at 07:50:10PM +0200, Daniel Lezcano wrote:
+> >>>> On 15/09/2020 19:24, Matthias Kaehlcke wrote:
+> >>>>> +Thermal folks
+> >>>>>
+> >>>>> Hi Rajendra,
+> >>>>>
+> >>>>> On Tue, Sep 15, 2020 at 11:14:00AM +0530, Rajendra Nayak wrote:
+> >>>>>> Hi Rob,
+> >>>>>>
+> >>>>>> There has been some discussions on another thread [1] around the DPC (dynamic-power-coefficient) values
+> >>>>>> for CPU's being relative vs absolute (based on real power) and should they be used to derive 'real' power
+> >>>>>> at various OPPs in order to calculate things like 'sustainable-power' for thermal zones.
+> >>>>>> I believe relative values work perfectly fine for scheduling decisions, but with others using this for
+> >>>>>> calculating power values in mW, is there a need to document the property as something that *has* to be
+> >>>>>> based on real power measurements?
+> >>>>>
+> >>>>> Relative values may work for scheduling decisions, but not for thermal
+> >>>>> management with the power allocator, at least not when CPU cooling devices
+> >>>>> are combined with others that specify their power consumption in absolute
+> >>>>> values. Such a configuration should be supported IMO.
+> >>>>
+> >>>> The energy model is used in the cpufreq cooling device and if the
+> >>>> sustainable power is consistent with the relative values then there is
+> >>>> no reason it shouldn't work.
+> >>>
+> >>> Agreed on thermal zones that exclusively use CPUs as cooling devices, but
+> >>> what when you have mixed zones, with CPUs with their pseudo-unit and e.g. a
+> >>> GPU that specifies its power in mW?
+> >>
+> >> Well, if a SoC vendor decides to mix the units, then there is nothing we
+> >> can do.
+> >>
+> >> When specifying the power numbers available for the SoC, they could be
+> >> all scaled against the highest power number.
+> > 
+> > The GPU was just one example, a device could have heat dissipating components
+> > that are not from the SoC vendor (e.g. WiFi, modem, backlight), and depending
+> > on the design it might not make sense to have separate thermal zones.
 > 
-> The specific netdev trigger mode is determined from the `function` LED
-> property.
-> 
-> Example:
->    eth0: ethernet@30000 {
->      compatible = "xyz";
->      #trigger-source-cells = <0>;
->    };
-> 
->    led {
->      color = <LED_COLOR_ID_GREEN>;
->      function = LED_FUNCTION_LINK;
->      trigger-sources = <&eth0>;
->    };
-> 
-> Signed-off-by: Marek Behún <marek.behun@nic.cz>
-> Cc: Rob Herring <robh+dt@kernel.org>
-> Cc: devicetree@vger.kernel.org
-> ---
->   drivers/leds/trigger/ledtrig-netdev.c | 80 ++++++++++++++++++++++++++-
->   include/dt-bindings/leds/common.h     |  1 +
->   2 files changed, 80 insertions(+), 1 deletion(-)
-> 
-> diff --git a/drivers/leds/trigger/ledtrig-netdev.c b/drivers/leds/trigger/ledtrig-netdev.c
-> index d5e774d830215..99fc2f0c68e12 100644
-> --- a/drivers/leds/trigger/ledtrig-netdev.c
-> +++ b/drivers/leds/trigger/ledtrig-netdev.c
-> @@ -20,6 +20,7 @@
-[...]
+> Is it possible to elaborate, I'm not sure to get the point ?
 
->   static int netdev_trig_activate(struct led_classdev *led_cdev)
->   {
->   	struct led_netdev_data *trigger_data;
-> @@ -414,10 +479,17 @@ static int netdev_trig_activate(struct led_classdev *led_cdev)
->   	trigger_data->last_activity = 0;
->   
->   	led_set_trigger_data(led_cdev, trigger_data);
-> +	netdev_trig_of_parse(led_cdev, trigger_data);
+A device could have a thermal zone with the following cooling
+devices:
 
-Please be aware of LED_INIT_DEFAULT_TRIGGER flag - it would make
-sense to use it here so as not to unnecessarily call
-netdev_trig_of_parse(), which makes sense only if trigger will be
-default, I presume.
+- CPUs with power consumption specified as pmW (pseudo mW
+- A modem from a third party vendor. The modem can dissipate
+  significant heat and allows to throttle the bandwidth for
+  cooling. The power consumption of the modem is given in
+  mW.
 
-See timer_trig_activate() in  drivers/leds/trigger/ledtrig-timer.c
-for reference.
+These could be crammed together in a small form factor
+(e.g. ChromeCast or Chromebit) which makes it difficult to
+discern with a sensor what exactly is generating the heat,
+which is why you have a single thermal zone.
 
--- 
-Best regards,
-Jacek Anaszewski
+IPA is used as governor for this zone, it can't make accurate
+decisions because one cooling device specifies it's power
+consumption in pmW and the other in mW.
