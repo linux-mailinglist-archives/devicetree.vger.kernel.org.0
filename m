@@ -2,191 +2,129 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from vger.kernel.org (vger.kernel.org [23.128.96.18])
-	by mail.lfdr.de (Postfix) with ESMTP id 1BF3326A5B3
-	for <lists+devicetree@lfdr.de>; Tue, 15 Sep 2020 14:58:47 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTP id 9894926A5DE
+	for <lists+devicetree@lfdr.de>; Tue, 15 Sep 2020 15:06:03 +0200 (CEST)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S1726494AbgIOM6o (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Tue, 15 Sep 2020 08:58:44 -0400
-Received: from lindbergh.monkeyblade.net ([23.128.96.19]:48202 "EHLO
+        id S1726620AbgIONFS (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Tue, 15 Sep 2020 09:05:18 -0400
+Received: from lindbergh.monkeyblade.net ([23.128.96.19]:48992 "EHLO
         lindbergh.monkeyblade.net" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S1726492AbgIOM6W (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Tue, 15 Sep 2020 08:58:22 -0400
-Received: from mail-pg1-x543.google.com (mail-pg1-x543.google.com [IPv6:2607:f8b0:4864:20::543])
-        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id B8448C06178B
-        for <devicetree@vger.kernel.org>; Tue, 15 Sep 2020 05:58:21 -0700 (PDT)
-Received: by mail-pg1-x543.google.com with SMTP id k14so1934673pgi.9
-        for <devicetree@vger.kernel.org>; Tue, 15 Sep 2020 05:58:21 -0700 (PDT)
+        with ESMTP id S1726477AbgIONDt (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Tue, 15 Sep 2020 09:03:49 -0400
+Received: from mail-wm1-x343.google.com (mail-wm1-x343.google.com [IPv6:2a00:1450:4864:20::343])
+        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id E87CAC06174A
+        for <devicetree@vger.kernel.org>; Tue, 15 Sep 2020 06:03:46 -0700 (PDT)
+Received: by mail-wm1-x343.google.com with SMTP id d4so3278859wmd.5
+        for <devicetree@vger.kernel.org>; Tue, 15 Sep 2020 06:03:46 -0700 (PDT)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=antmicro.com; s=google;
-        h=mime-version:references:in-reply-to:from:date:message-id:subject:to
-         :cc;
-        bh=z7G2CzOYqiH9ibUColb5tVhNMevQLWkjnQ9SIdmc0AU=;
-        b=bd1YdxZZomrEmxn/plX06V/cZuYuZAA+EkG5aXcyoXsX4PS9BCuGp3EjMmbgX9uEyQ
-         ITNfIiYiyR8/V7qtGzLmbiYIkbhd19hK6XNVK+GyD7VQHYlS5uhz9bCTwp52aDeyTcXG
-         CGQTqRLc3xfX0MZ2esmJAGooRl4Mar7tTboQY=
+        d=baylibre-com.20150623.gappssmtp.com; s=20150623;
+        h=from:to:cc:subject:date:message-id:in-reply-to:references
+         :mime-version:content-transfer-encoding;
+        bh=hTMmw7cDb/Q8xHmIbpSzi8XliWIPH8G939s4NmbDgjs=;
+        b=OPNLQs9bObumhLvVLyYmqL5evLWsMZSh3I09yJYb6WV+4xFmDXcR74QfOG3wAtcdDM
+         cV60Bp2v8vzOch8MOLB0HWE2oY1q4i02nHWirILnLII1tGJYr+23zqZkeeLb07fLBklZ
+         y3yB4tckZ/axNi+Tupn/DteDRvKRPQ/ajpHYyNzL0LFK1YJLV97V7dyjbVsOGDUeipT7
+         ngpWbrvDx/p7OEbdn+6+X1n2Q3CBQYhI3Mv37/JyhrYacSBSE/lKP/1hqoeeAosahcJm
+         BsuOjDUk6p4QM/EOOYpnwSISyyJa1Ow17lx88F40J4orXVbBnuM3ERBORmaLU+C3M1tO
+         xkOQ==
 X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
         d=1e100.net; s=20161025;
-        h=x-gm-message-state:mime-version:references:in-reply-to:from:date
-         :message-id:subject:to:cc;
-        bh=z7G2CzOYqiH9ibUColb5tVhNMevQLWkjnQ9SIdmc0AU=;
-        b=pgvyMKiSc3G43b1hVFTbG0AwsasVPqLPNEMaVI/LUwjp2y5UylzDLcLnWhY+VGOQJv
-         9lo+XrCR6MgpvD04crQ/XcXLNmF8OHY3TC1QwCM9kd2/bp6YK7UzU3w/Up8sjtvNL0mk
-         jF3nuRJS/czBF2IIsQigldmZTg3uExGYP+xjIDajOYGxAIoQ6YToxGXwwpfGf1Uyw2SV
-         1Bq7DKVyHdQyqEZ6mmKy0a6SJYqt2E6xsmAFdBur3Y/5hcjumaTnwSk24Pld5e6xNfjl
-         G+CPNtSRPTrazjoFbmctA0txAFugPRNl6asgFA+Rsv/xFFeGWo60T0U06j6C+0vAEkPx
-         XkBQ==
-X-Gm-Message-State: AOAM5315ZejjdHPW9/MGXwYgGSBQ6xdBSo2yuHqYLVxR9RrO0CAK0TT+
-        ki6F4bTt8EevkPYmuYHEnuZTvBEhWINHnXRASa9lMg==
-X-Google-Smtp-Source: ABdhPJze8e//GhCZuhvxKjphXB1Pvoi+mg7wGBazyHURu7t47g/o6713ZFFjPMbSdxMoGyr1OqPX6Vgp1G/RiekKwC8=
-X-Received: by 2002:aa7:956d:0:b029:142:2501:35d2 with SMTP id
- x13-20020aa7956d0000b0290142250135d2mr1682052pfq.50.1600174700627; Tue, 15
- Sep 2020 05:58:20 -0700 (PDT)
+        h=x-gm-message-state:from:to:cc:subject:date:message-id:in-reply-to
+         :references:mime-version:content-transfer-encoding;
+        bh=hTMmw7cDb/Q8xHmIbpSzi8XliWIPH8G939s4NmbDgjs=;
+        b=QQBkWC/lmEE53LIKM8CGq68MFtZtMqw0xxVvzDXxsRDE6YUKVfJlgOMTTC6ZkY7tRZ
+         YJchgrKOWGAtNvJGI+YWlyt2p3Mzr2/IrPRHzgMOfUSpLI+R5FmM+FaUFBkdOPPw04hh
+         /7mDKdOe2GwJUyrro4qPIUuA5avg6icxBw5HoYFy/9EKOXa0DqNBQZTpvcM4+JrM/iO8
+         1vuBIXtihz3VWgdJ3R/5eH1BqHWiQryuvsSIUGVZSWFktnXyMOGvmYEk7i/QENBZDnxE
+         NRs3ylHkZB9OT/6E3k5CmE4E8yDtw5wi6V1ZyHAMwmjwOSQ0x67b9lsYPYKH7arBkKub
+         D+UQ==
+X-Gm-Message-State: AOAM531RsDGlUJ5H+hywTSsHyovM62Ms+OJ4JLhkmkA4SvZO1+s4C1et
+        xmhWri3oORy2SOahjREQZwcNlVWoX7BMp9UZ
+X-Google-Smtp-Source: ABdhPJyr+qSNFVd6jRIg7M8zkUejJULi6GDU8qVcdpcAcd9/G9WIiLkoNZXXOe2hBywHmuAKX3EdOg==
+X-Received: by 2002:a1c:3bd7:: with SMTP id i206mr4714210wma.162.1600175025305;
+        Tue, 15 Sep 2020 06:03:45 -0700 (PDT)
+Received: from bender.baylibre.local (home.beaume.starnux.net. [82.236.8.43])
+        by smtp.gmail.com with ESMTPSA id t16sm27098671wrm.57.2020.09.15.06.03.44
+        (version=TLS1_3 cipher=TLS_AES_256_GCM_SHA384 bits=256/256);
+        Tue, 15 Sep 2020 06:03:44 -0700 (PDT)
+From:   Neil Armstrong <narmstrong@baylibre.com>
+To:     kishon@ti.com, repk@triplefau.lt, devicetree@vger.kernel.org
+Cc:     linux-amlogic@lists.infradead.org,
+        linux-arm-kernel@lists.infradead.org, linux-kernel@vger.kernel.org,
+        Neil Armstrong <narmstrong@baylibre.com>
+Subject: [PATCH v2 1/3] dt-bindings: phy: amlogic,meson-axg-mipi-pcie-analog: remove reg attribute
+Date:   Tue, 15 Sep 2020 15:03:37 +0200
+Message-Id: <20200915130339.11079-2-narmstrong@baylibre.com>
+X-Mailer: git-send-email 2.22.0
+In-Reply-To: <20200915130339.11079-1-narmstrong@baylibre.com>
+References: <20200915130339.11079-1-narmstrong@baylibre.com>
 MIME-Version: 1.0
-References: <20200812143324.2394375-0-mholenko@antmicro.com>
- <20200812143324.2394375-3-mholenko@antmicro.com> <20200911005740.GN3562056@lianli.shorne-pla.net>
- <CAPk366Tvb9g960e3ZLv3+_H8FZJRRe0Jqa4q7tejE+svMcQvLA@mail.gmail.com> <20200914132433.GB2512402@lianli.shorne-pla.net>
-In-Reply-To: <20200914132433.GB2512402@lianli.shorne-pla.net>
-From:   Mateusz Holenko <mholenko@antmicro.com>
-Date:   Tue, 15 Sep 2020 14:58:08 +0200
-Message-ID: <CAPk366QvUdK1EVpUEVBkgb4me5aMfx6GBWSVNy8OKb8reT0Xvw@mail.gmail.com>
-Subject: Re: [PATCH v10 3/5] drivers/soc/litex: add LiteX SoC Controller driver
-To:     Stafford Horne <shorne@gmail.com>
-Cc:     Rob Herring <robh+dt@kernel.org>,
-        Mark Rutland <mark.rutland@arm.com>,
-        Greg Kroah-Hartman <gregkh@linuxfoundation.org>,
-        Jiri Slaby <jslaby@suse.com>,
-        devicetree <devicetree@vger.kernel.org>,
-        "open list:SERIAL DRIVERS" <linux-serial@vger.kernel.org>,
-        Karol Gugala <kgugala@antmicro.com>,
-        Mauro Carvalho Chehab <mchehab+samsung@kernel.org>,
-        "David S. Miller" <davem@davemloft.net>,
-        "Paul E. McKenney" <paulmck@linux.ibm.com>,
-        Filip Kokosinski <fkokosinski@antmicro.com>,
-        Pawel Czarnecki <pczarnecki@internships.antmicro.com>,
-        Joel Stanley <joel@jms.id.au>,
-        Jonathan Cameron <Jonathan.Cameron@huawei.com>,
-        Maxime Ripard <mripard@kernel.org>,
-        Shawn Guo <shawnguo@kernel.org>,
-        Heiko Stuebner <heiko@sntech.de>,
-        Sam Ravnborg <sam@ravnborg.org>,
-        Icenowy Zheng <icenowy@aosc.io>,
-        Laurent Pinchart <laurent.pinchart@ideasonboard.com>,
-        Linux Kernel Mailing List <linux-kernel@vger.kernel.org>,
-        "Gabriel L. Somlo" <gsomlo@gmail.com>
-Content-Type: text/plain; charset="UTF-8"
+Content-Transfer-Encoding: 8bit
 Sender: devicetree-owner@vger.kernel.org
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-On Mon, Sep 14, 2020 at 3:24 PM Stafford Horne <shorne@gmail.com> wrote:
->
-> On Mon, Sep 14, 2020 at 12:33:11PM +0200, Mateusz Holenko wrote:
-> > On Fri, Sep 11, 2020 at 2:57 AM Stafford Horne <shorne@gmail.com> wrote:
-> > >
-> > > On Wed, Aug 12, 2020 at 02:34:34PM +0200, Mateusz Holenko wrote:
-> > > > From: Pawel Czarnecki <pczarnecki@internships.antmicro.com>
-> > > >
-> > > > This commit adds driver for the FPGA-based LiteX SoC
-> > > > Controller from LiteX SoC builder.
-> > > >
-> > > > Co-developed-by: Mateusz Holenko <mholenko@antmicro.com>
-> > > > Signed-off-by: Mateusz Holenko <mholenko@antmicro.com>
-> > > > Signed-off-by: Pawel Czarnecki <pczarnecki@internships.antmicro.com>
-> > > > ---
-> > > > +     node = dev->of_node;
-> > > > +     if (!node)
-> > > > +             return -ENODEV;
->
-> We return here without BUG() if the setup fails.
->
-> > > > +
-> > > > +     soc_ctrl_dev = devm_kzalloc(dev, sizeof(*soc_ctrl_dev), GFP_KERNEL);
-> > > > +     if (!soc_ctrl_dev)
-> > > > +             return -ENOMEM;
->
-> We return here without BUG() if we are out of memory.
->
-> > > > +
-> > > > +     soc_ctrl_dev->base = devm_platform_ioremap_resource(pdev, 0);
-> > > > +     if (IS_ERR(soc_ctrl_dev->base))
-> > > > +             return PTR_ERR(soc_ctrl_dev->base);
->
-> Etc.
+The PHY registers happens to be at the beginning of a large zone containing
+interleaved system registers (mainly clocks, power management, PHY control..),
+found in all Amlogic SoC so far.
 
-You are totally right - this is not consistent.
-We should probably either trigger BUG() in each case or don't bother at all.
+The goal is to model it the same way as the other "features" of this zone,
+like Documentation/devicetree/bindings/clock/amlogic,gxbb-clkc.txt
+and Documentation/devicetree/bindings/power/amlogic,meson-ee-pwrc.yaml
+and have a coherent bindings scheme over the Amlogic SoCs.
 
->
-> > > > +
-> > > > +     result = litex_check_csr_access(soc_ctrl_dev->base);
-> > > > +     if (result) {
-> > > > +             // LiteX CSRs access is broken which means that
-> > > > +             // none of LiteX drivers will most probably
-> > > > +             // operate correctly
-> > > The comment format here with // is not usually used in the kernel, but its not
-> > > forbidded.  Could you use the /* */ multiline style?
-> >
-> > Sure, I'll change the commenting style here.
-> >
-> > >
-> > > > +             BUG();
-> > > Instead of stopping the system with BUG, could we just do:
-> > >
-> > >         return litex_check_csr_access(soc_ctrl_dev->base);
-> > >
-> > > We already have failure for NODEV/NOMEM so might as well not call BUG() here
-> > > too.
-> >
-> > It's true that litex_check_csr_accessors() already generates error
-> > codes that could be
-> > returned directly.
-> > The point of using BUG() macro here, however, is to stop booting the
-> > system so that it's visible
-> > (and impossible to miss for the user) that an unresolvable HW issue
-> > was encountered.
-> >
-> > CSR-accessors - the litex_{g,s}et_reg() functions - are intended to be
-> > used by other LiteX drivers
-> > and it's very unlikely that those drivers would work properly after
-> > the fail of litex_check_csr_accessors().
-> > Since in such case the UART driver will be affected too (no boot logs
-> > and error messages visible to the user),
-> > I thought it'll be easier to spot and debug the problem if the system
-> > stopped in the BUG loop.
-> > Perhaps there are other, more linux-friendly, ways of achieving a
-> > similar goal - I'm open for suggestions.
->
-> I see your point, but I thought if failed with an exit status above, we could do
-> the same here.  But I guess failing here means that something is really wrong as
-> validation failed.
->
-> Some points:
->  - If we return here, the system will still boot but there will be no UART
->  - If we bail with BUG(), here the system stops, and there is no UART
->  - Both cases the user can connect with a debugger and read "dmesg", to see what
->    is wrong, but BUG() does not print an error message on all architectures.
->
-> We could also use:
->
->  - WARN(1, "Failed to validate CSR registers, the system is probably broken.");
->
-> If you want to keep BUG() it may be fine.
->
-> I am not an expert on handling these type of bailout's so other input is
-> appreciated.
+This update the description, removed the reg attribute then updates the example
+accordingly.
 
-I don't have a strong opinion about using BUG() here - I just thought
-it would be easier for the user.
-If this is, however, not how linux typically works, I'm ok with
-reworking this part.
+Signed-off-by: Neil Armstrong <narmstrong@baylibre.com>
+---
+ .../phy/amlogic,meson-axg-mipi-pcie-analog.yaml | 17 +++++++++++------
+ 1 file changed, 11 insertions(+), 6 deletions(-)
 
-> -Stafford
+diff --git a/Documentation/devicetree/bindings/phy/amlogic,meson-axg-mipi-pcie-analog.yaml b/Documentation/devicetree/bindings/phy/amlogic,meson-axg-mipi-pcie-analog.yaml
+index 18c1ec5e19ad..702763a84dac 100644
+--- a/Documentation/devicetree/bindings/phy/amlogic,meson-axg-mipi-pcie-analog.yaml
++++ b/Documentation/devicetree/bindings/phy/amlogic,meson-axg-mipi-pcie-analog.yaml
+@@ -9,27 +9,32 @@ title: Amlogic AXG shared MIPI/PCIE analog PHY
+ maintainers:
+   - Remi Pommarel <repk@triplefau.lt>
+ 
++description: |+
++  The Everything-Else Power Domains node should be the child of a syscon
++  node with the required property:
++
++  - compatible: Should be the following:
++                "amlogic,meson-gx-hhi-sysctrl", "simple-mfd", "syscon"
++
++  Refer to the the bindings described in
++  Documentation/devicetree/bindings/mfd/syscon.yaml
++
+ properties:
+   compatible:
+     const: amlogic,axg-mipi-pcie-analog-phy
+ 
+-  reg:
+-    maxItems: 1
+-
+   "#phy-cells":
+     const: 1
+ 
+ required:
+   - compatible
+-  - reg
+   - "#phy-cells"
+ 
+ additionalProperties: false
+ 
+ examples:
+   - |
+-    mpphy: phy@0 {
++    mpphy: phy {
+           compatible = "amlogic,axg-mipi-pcie-analog-phy";
+-          reg = <0x0 0xc>;
+           #phy-cells = <1>;
+     };
+-- 
+2.22.0
 
-Best,
-Mateusz
-
---
-Mateusz Holenko
-Antmicro Ltd | www.antmicro.com
-Roosevelta 22, 60-829 Poznan, Poland
