@@ -2,146 +2,103 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from vger.kernel.org (vger.kernel.org [23.128.96.18])
-	by mail.lfdr.de (Postfix) with ESMTP id 54B3C26A3F6
-	for <lists+devicetree@lfdr.de>; Tue, 15 Sep 2020 13:15:45 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTP id 3E4AD26A40E
+	for <lists+devicetree@lfdr.de>; Tue, 15 Sep 2020 13:22:55 +0200 (CEST)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S1726133AbgIOLO4 (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Tue, 15 Sep 2020 07:14:56 -0400
-Received: from lindbergh.monkeyblade.net ([23.128.96.19]:60182 "EHLO
-        lindbergh.monkeyblade.net" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S1726082AbgIOLNR (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Tue, 15 Sep 2020 07:13:17 -0400
-Received: from mail-lj1-x242.google.com (mail-lj1-x242.google.com [IPv6:2a00:1450:4864:20::242])
-        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 02C18C06121D
-        for <devicetree@vger.kernel.org>; Tue, 15 Sep 2020 04:01:31 -0700 (PDT)
-Received: by mail-lj1-x242.google.com with SMTP id u21so2407268ljl.6
-        for <devicetree@vger.kernel.org>; Tue, 15 Sep 2020 04:01:31 -0700 (PDT)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=linaro.org; s=google;
-        h=from:to:cc:subject:date:message-id:in-reply-to:references;
-        bh=mc2gdazpP2I7bg6WRsLz8UwRyinpHdK0stSWn7q23gw=;
-        b=WjZlN/Kd9Jjxj+pMCooXrtqM/Mbi0szwmTXaJ7skiL/yJ5v/3ifkWd5b/hsdl5pPaq
-         JBv/2KOxLgfMry2/ioIZAV9/oRcP9+nkFJyAUzwBcbyaRSfazV9xJvJMJE5AuXtzGdTS
-         KNswQQrHg28VxTj2qkvyl/G1Kd56qkD9wzLZFuMfa8KhP2wREIPZ+pGNTxIyAPNP7JLC
-         SpaPsbtFbM0Y6pgCO0PPD6BACZHwiSIgMZusSUzrUSX8WhA/a3yGEVl+RYOUXdAQkqsG
-         vPmkFc/nLjlgLirmnrW/qNsLeX3NGpeNinQSLd2S7DF09oAg+p2dwGSBv38MguzYpYS3
-         h9+Q==
-X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=1e100.net; s=20161025;
-        h=x-gm-message-state:from:to:cc:subject:date:message-id:in-reply-to
-         :references;
-        bh=mc2gdazpP2I7bg6WRsLz8UwRyinpHdK0stSWn7q23gw=;
-        b=c67r9rZGo2zY4ANobjhoBbGJZhJLQJAgoq66AJxz30YaiDcKcBtbc739mXyQYPWkv8
-         39FDWyMdgj1HFW23Yi3UK0guTPOf6aIeywQWwhBF2iaPJuJLyKLb0dkOrrng2YS2eTT7
-         j7tz4pwAr8Zu9mDd5ta8TRpR4R5gb/i2q5QIiw/0TQmPAwpolnTHB1y3uqKLdNb79GT/
-         +BIeP9diMHwW8MHfzuMMy0zEmrblzM+ChXwqCT74W8R3pHSSN6QBpUfeSyOPhgN3aXDz
-         xsl9xFZX4JpYPi9onOuA2VW1cOtL5g6JOFT7w3d5MXVvdJgeujafXOBVAWIzoEV4IZ9k
-         TSJw==
-X-Gm-Message-State: AOAM5304F0osrNDuDGs4i1OhvSJ0ODDV2pcU2hGPQdX8SoODyww2eZ+t
-        t5iTERgqImEb/HIvK6Awk/JCHw==
-X-Google-Smtp-Source: ABdhPJxBkYyDeMqg+OlqkRJ0ZOsCdWm1KltQZ9+g3/C6bPryvTmE1Oviffi01zfdU/xTwMGiInoe6w==
-X-Received: by 2002:a2e:895a:: with SMTP id b26mr6623334ljk.468.1600167685701;
-        Tue, 15 Sep 2020 04:01:25 -0700 (PDT)
-Received: from gilgamesh.semihalf.com (193-106-246-138.noc.fibertech.net.pl. [193.106.246.138])
-        by smtp.gmail.com with ESMTPSA id n3sm4588916ljj.59.2020.09.15.04.01.24
-        (version=TLS1_2 cipher=ECDHE-ECDSA-AES128-GCM-SHA256 bits=128/128);
-        Tue, 15 Sep 2020 04:01:25 -0700 (PDT)
-From:   Grzegorz Jaszczyk <grzegorz.jaszczyk@linaro.org>
-To:     tglx@linutronix.de, jason@lakedaemon.net, maz@kernel.org,
-        s-anna@ti.com
-Cc:     grzegorz.jaszczyk@linaro.org, robh+dt@kernel.org,
-        lee.jones@linaro.org, devicetree@vger.kernel.org,
-        linux-kernel@vger.kernel.org, linux-omap@vger.kernel.org,
-        linux-arm-kernel@lists.infradead.org, david@lechnology.com,
-        praneeth@ti.com
-Subject: [PATCH v6 5/5] irqchip/irq-pruss-intc: Add support for ICSSG INTC on K3 SoCs
-Date:   Tue, 15 Sep 2020 13:00:51 +0200
-Message-Id: <1600167651-20851-6-git-send-email-grzegorz.jaszczyk@linaro.org>
-X-Mailer: git-send-email 2.7.4
-In-Reply-To: <1600167651-20851-1-git-send-email-grzegorz.jaszczyk@linaro.org>
-References: <1600167651-20851-1-git-send-email-grzegorz.jaszczyk@linaro.org>
+        id S1726069AbgIOLWo (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Tue, 15 Sep 2020 07:22:44 -0400
+Received: from lelv0142.ext.ti.com ([198.47.23.249]:43342 "EHLO
+        lelv0142.ext.ti.com" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
+        with ESMTP id S1726198AbgIOLWf (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Tue, 15 Sep 2020 07:22:35 -0400
+Received: from lelv0266.itg.ti.com ([10.180.67.225])
+        by lelv0142.ext.ti.com (8.15.2/8.15.2) with ESMTP id 08FBKhh0013425;
+        Tue, 15 Sep 2020 06:20:43 -0500
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=ti.com;
+        s=ti-com-17Q1; t=1600168843;
+        bh=h+3WSyOto27sCenzTTEYF6dOn4Q7/03QKt+TepVhBzs=;
+        h=From:To:CC:Subject:Date;
+        b=Ak2EQyy+2jXVMTHSiinRlVSbqsfEv0Iko+duMAydyuH8jeTqnelJNZ3MyU9KfqCNV
+         rgQdST4G3rqU29jKlQDN2H8FJe7+Gd3n65y5OSA7hwpZEyHUpuNlYsuqCaqdb9Y4vg
+         StCJ8cgSW1Z42XnEggjMMJdM+If6dATdTtEQasmY=
+Received: from DLEE105.ent.ti.com (dlee105.ent.ti.com [157.170.170.35])
+        by lelv0266.itg.ti.com (8.15.2/8.15.2) with ESMTPS id 08FBKhwK022668
+        (version=TLSv1.2 cipher=AES256-GCM-SHA384 bits=256 verify=FAIL);
+        Tue, 15 Sep 2020 06:20:43 -0500
+Received: from DLEE103.ent.ti.com (157.170.170.33) by DLEE105.ent.ti.com
+ (157.170.170.35) with Microsoft SMTP Server (version=TLS1_2,
+ cipher=TLS_ECDHE_RSA_WITH_AES_128_CBC_SHA256_P256) id 15.1.1979.3; Tue, 15
+ Sep 2020 06:20:42 -0500
+Received: from fllv0040.itg.ti.com (10.64.41.20) by DLEE103.ent.ti.com
+ (157.170.170.33) with Microsoft SMTP Server (version=TLS1_2,
+ cipher=TLS_ECDHE_RSA_WITH_AES_128_CBC_SHA256_P256) id 15.1.1979.3 via
+ Frontend Transport; Tue, 15 Sep 2020 06:20:42 -0500
+Received: from lta0400828a.ti.com (ileax41-snat.itg.ti.com [10.172.224.153])
+        by fllv0040.itg.ti.com (8.15.2/8.15.2) with ESMTP id 08FBKdm9013285;
+        Tue, 15 Sep 2020 06:20:40 -0500
+From:   Roger Quadros <rogerq@ti.com>
+To:     <t-kristo@ti.com>, <nm@ti.com>
+CC:     <robh+dt@kernel.org>, <linux-kernel@vger.kernel.org>,
+        <devicetree@vger.kernel.org>,
+        <linux-arm-kernel@lists.infradead.org>, <nsekhar@ti.com>,
+        <kishon@ti.com>, Roger Quadros <rogerq@ti.com>
+Subject: [PATCH v3 0/6] arm64: dts: ti: Add USB support for J7200 EVM
+Date:   Tue, 15 Sep 2020 14:20:32 +0300
+Message-ID: <20200915112038.30219-1-rogerq@ti.com>
+X-Mailer: git-send-email 2.17.1
+MIME-Version: 1.0
+Content-Type: text/plain
+X-EXCLAIMER-MD-CONFIG: e1e8a2fd-e40a-4ac6-ac9b-f7e9cc9ee180
 Sender: devicetree-owner@vger.kernel.org
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-From: Suman Anna <s-anna@ti.com>
+Hi Tero/Nishanth,
 
-The K3 AM65x and J721E SoCs have the next generation of the PRU-ICSS IP,
-commonly called ICSSG. The PRUSS INTC present within the ICSSG supports
-more System Events (160 vs 64), more Interrupt Channels and Host Interrupts
-(20 vs 10) compared to the previous generation PRUSS INTC instances. The
-first 2 and the last 10 of these host interrupt lines are used by the
-PRU and other auxiliary cores and sub-modules within the ICSSG, with 8
-host interrupts connected to MPU. The host interrupts 5, 6, 7 are also
-connected to the other ICSSG instances within the SoC and can be
-partitioned as per system integration through the board dts files.
+This series adds USB2.0 support for the J7200 EVM.
 
-Enhance the PRUSS INTC driver to add support for this ICSSG INTC
-instance.
+Series is based on top of:
 
-Signed-off-by: Suman Anna <s-anna@ti.com>
-Signed-off-by: Grzegorz Jaszczyk <grzegorz.jaszczyk@linaro.org>
----
-v5->v6:
-- No change.
-v4->v5:
-- Rename: s/num_host_intrs/num_host_events/ regarding to change
-  introduced in patch #2.
-v3->v4:
-- Move generic part to "irqchip/irq-pruss-intc: Add a PRUSS irqchip
-  driver for PRUSS interrupts" patch and leave only platform related
-  code.
-v2->v3:
-- Change patch order: use it directly after "irqchip/irq-pruss-intc:
-  Implement irq_{get,set}_irqchip_state ops" and before new
-  "irqchip/irq-pruss-intc: Add event mapping support" in order to reduce
-  diff.
-v1->v2:
-- https://patchwork.kernel.org/patch/11069773/
----
- drivers/irqchip/Kconfig          | 2 +-
- drivers/irqchip/irq-pruss-intc.c | 9 +++++++++
- 2 files changed, 10 insertions(+), 1 deletion(-)
+    Faiz's MMC/SD support series
+    https://lore.kernel.org/lkml/20200907090520.25313-1-faiz_abbas@ti.com/
+    Lokesh's initial support series
+    https://patchwork.kernel.org/cover/11740039/
+    Vignesh's I2C support series
+    https://lore.kernel.org/patchwork/cover/1282152/
+    Vignesh's Hyperflash series
+    https://lore.kernel.org/patchwork/cover/1285326/
 
-diff --git a/drivers/irqchip/Kconfig b/drivers/irqchip/Kconfig
-index 733e59f..25c8944 100644
---- a/drivers/irqchip/Kconfig
-+++ b/drivers/irqchip/Kconfig
-@@ -495,7 +495,7 @@ config TI_SCI_INTA_IRQCHIP
- 
- config TI_PRUSS_INTC
- 	tristate "TI PRU-ICSS Interrupt Controller"
--	depends on ARCH_DAVINCI || SOC_AM33XX || SOC_AM43XX || SOC_DRA7XX || ARCH_KEYSTONE
-+	depends on ARCH_DAVINCI || SOC_AM33XX || SOC_AM43XX || SOC_DRA7XX || ARCH_KEYSTONE || ARCH_K3
- 	select IRQ_DOMAIN
- 	help
- 	  This enables support for the PRU-ICSS Local Interrupt Controller
-diff --git a/drivers/irqchip/irq-pruss-intc.c b/drivers/irqchip/irq-pruss-intc.c
-index 41c6271..4be501e 100644
---- a/drivers/irqchip/irq-pruss-intc.c
-+++ b/drivers/irqchip/irq-pruss-intc.c
-@@ -628,11 +628,20 @@ static const struct pruss_intc_match_data pruss_intc_data = {
- 	.num_host_events = 10,
- };
- 
-+static const struct pruss_intc_match_data icssg_intc_data = {
-+	.num_system_events = 160,
-+	.num_host_events = 20,
-+};
-+
- static const struct of_device_id pruss_intc_of_match[] = {
- 	{
- 		.compatible = "ti,pruss-intc",
- 		.data = &pruss_intc_data,
- 	},
-+	{
-+		.compatible = "ti,icssg-intc",
-+		.data = &icssg_intc_data,
-+	},
- 	{ /* sentinel */ },
- };
- MODULE_DEVICE_TABLE(of, pruss_intc_of_match);
+cheers,
+-roger
+
+Changelog:
+v3:
+- use 0x00 instead of 0x0 in device tree for consistency.
+- update commit log for USB support patch.
+
+v2:
+- fixed warnings when built with W=2. Still one warning is present
+as property name "dr_mode" by USB core contains underscore.
+
+Kishon Vijay Abraham I (1):
+  arm64: dts: ti: k3-j7200-common-proc-board: Configure the SERDES lane
+    function
+
+Roger Quadros (5):
+  dt-bindings: mux-j7200-wiz: Add lane function defines
+  arm64: dts: ti: k3-j7200-main: Add SERDES lane control mux
+  arm64: dts: ti: k3-j7200-main.dtsi: Add USB to SERDES lane MUX
+  arm64: dts: ti: k3-j7200-main: Add USB controller
+  arm64: dts: ti: k3-j7200-common-proc-board: Add USB support
+
+ .../dts/ti/k3-j7200-common-proc-board.dts     | 28 ++++++++++
+ arch/arm64/boot/dts/ti/k3-j7200-main.dtsi     | 51 +++++++++++++++++++
+ include/dt-bindings/mux/mux-j7200-wiz.h       | 29 +++++++++++
+ 3 files changed, 108 insertions(+)
+ create mode 100644 include/dt-bindings/mux/mux-j7200-wiz.h
+
 -- 
-2.7.4
+Texas Instruments Finland Oy, Porkkalankatu 22, 00180 Helsinki.
+Y-tunnus/Business ID: 0615521-4. Kotipaikka/Domicile: Helsinki
 
