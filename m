@@ -2,70 +2,87 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from vger.kernel.org (vger.kernel.org [23.128.96.18])
-	by mail.lfdr.de (Postfix) with ESMTP id 624D326A60F
-	for <lists+devicetree@lfdr.de>; Tue, 15 Sep 2020 15:14:58 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTP id 8E73326A6C5
+	for <lists+devicetree@lfdr.de>; Tue, 15 Sep 2020 16:06:47 +0200 (CEST)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S1726462AbgIONOo (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Tue, 15 Sep 2020 09:14:44 -0400
-Received: from relmlor2.renesas.com ([210.160.252.172]:51558 "EHLO
-        relmlie6.idc.renesas.com" rhost-flags-OK-OK-OK-FAIL)
-        by vger.kernel.org with ESMTP id S1726525AbgIONNL (ORCPT
-        <rfc822;devicetree@vger.kernel.org>);
-        Tue, 15 Sep 2020 09:13:11 -0400
-X-IronPort-AV: E=Sophos;i="5.76,429,1592838000"; 
-   d="scan'208";a="57115905"
-Received: from unknown (HELO relmlir6.idc.renesas.com) ([10.200.68.152])
-  by relmlie6.idc.renesas.com with ESMTP; 15 Sep 2020 22:12:47 +0900
-Received: from devel.example.org?044ree.adwin.renesas.com (unknown [10.226.36.120])
-        by relmlir6.idc.renesas.com (Postfix) with ESMTP id B0BF642BA8C2;
-        Tue, 15 Sep 2020 22:12:44 +0900 (JST)
-From:   Fabrizio Castro <fabrizio.castro.jz@renesas.com>
-To:     Mauro Carvalho Chehab <mchehab@kernel.org>,
-        Rob Herring <robh+dt@kernel.org>,
-        Geert Uytterhoeven <geert+renesas@glider.be>
-Cc:     Fabrizio Castro <fabrizio.castro.jz@renesas.com>,
-        Ramesh Shanmugasundaram <rashanmu@gmail.com>,
-        linux-media@vger.kernel.org, devicetree@vger.kernel.org,
-        linux-kernel@vger.kernel.org, linux-renesas-soc@vger.kernel.org,
-        Chris Paterson <Chris.Paterson2@renesas.com>,
-        Biju Das <biju.das.jz@bp.renesas.com>,
-        Prabhakar Mahadev Lad <prabhakar.mahadev-lad.rj@bp.renesas.com>,
-        Laurent Pinchart <laurent.pinchart@ideasonboard.com>
-Subject: [PATCH 3/3] media: dt-bindings: media: renesas,drif: Add r8a77990 support
-Date:   Tue, 15 Sep 2020 14:12:16 +0100
-Message-Id: <20200915131216.21137-4-fabrizio.castro.jz@renesas.com>
-X-Mailer: git-send-email 2.25.1
-In-Reply-To: <20200915131216.21137-1-fabrizio.castro.jz@renesas.com>
-References: <20200915131216.21137-1-fabrizio.castro.jz@renesas.com>
+        id S1726255AbgIOOGI (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Tue, 15 Sep 2020 10:06:08 -0400
+Received: from smtp2.axis.com ([195.60.68.18]:65046 "EHLO smtp2.axis.com"
+        rhost-flags-OK-OK-OK-OK) by vger.kernel.org with ESMTP
+        id S1726339AbgIOOFu (ORCPT <rfc822;devicetree@vger.kernel.org>);
+        Tue, 15 Sep 2020 10:05:50 -0400
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+  d=axis.com; l=1548; q=dns/txt; s=axis-central1;
+  t=1600178749; x=1631714749;
+  h=date:from:to:cc:subject:message-id:references:
+   mime-version:in-reply-to;
+  bh=CIoW8RV31m/+63QYI41vckbTL6oVbVgAaZMjvOnFW6w=;
+  b=ZioeXPVUTl/h9PC+14pTGSLYxI1o+Ful7eUUs388WWF+Z0/Cw6MLasBg
+   VajtoX89YBL48hn5MOjvXIWTGqRCzYGwSSILX82cHQ3bIPrNWXZ7PO2AX
+   59th3qRdaEwtlZyfrvOUkVtFfkFupNud0nZp70/1oZYlQ96S33PJX0uzw
+   09+rtwGsJulYp3ltB4LZtrUfjXk/msTAQRKeCbhVmkw+xGbK1GCsoBWje
+   53oBoFmbDIWtMD8SZssBTCRjpyRLCeLsW8h3W9LG+emtiv8I372nYAbOk
+   GWVa/KKEqlwaFdtmq5SMh1eXrijg/9ocq6dBhUjcC1zT7Fiyd6c2Pyqad
+   A==;
+IronPort-SDR: WD9wdm5am+yBY+LYYXBIo78iPXaZ3KlNq7sKmlkuHBBxotj1Ex78IpCJku15f/RJwU86GIqdog
+ 8NKxOxela/8KPV1tXwrFmKOSKyI0o37IaeKgjZPPr+qn5vqOuOqtU/k6/uC/yzfpJ5enhYBzAJ
+ AXpj4uGPYmYYnTOZAM8ZqRSqONiI6p59NZN3bpalaCV8MrrjVB833jlKvbJGExnEbNHRRzg1+S
+ v5gt1Bc5DbwrtznvmFrLjdStLtoyziPkHwivoWhKXP7vlpnsFjaT+KkC9kB4/e/Dc+/15243kW
+ ZPQ=
+X-IronPort-AV: E=Sophos;i="5.76,430,1592863200"; 
+   d="scan'208";a="12508311"
+Date:   Tue, 15 Sep 2020 16:02:08 +0200
+From:   Vincent Whitchurch <vincent.whitchurch@axis.com>
+To:     Olliver Schinagl <oliver@schinagl.nl>
+CC:     "thierry.reding@gmail.com" <thierry.reding@gmail.com>,
+        "u.kleine-koenig@pengutronix.de" <u.kleine-koenig@pengutronix.de>,
+        "lee.jones@linaro.org" <lee.jones@linaro.org>,
+        kernel <kernel@axis.com>,
+        "linux-pwm@vger.kernel.org" <linux-pwm@vger.kernel.org>,
+        "devicetree@vger.kernel.org" <devicetree@vger.kernel.org>,
+        "robh+dt@kernel.org" <robh+dt@kernel.org>
+Subject: Re: [PATCH 2/2] pwm: Add GPIO PWM driver
+Message-ID: <20200915140208.bzserxn2bgw4xiwk@axis.com>
+References: <20200814155513.31936-1-vincent.whitchurch@axis.com>
+ <20200814155513.31936-2-vincent.whitchurch@axis.com>
+ <703362fe-1454-c16e-180a-76bfc4e3ab3f@schinagl.nl>
 MIME-Version: 1.0
-Content-Transfer-Encoding: 8bit
+Content-Type: text/plain; charset="us-ascii"
+Content-Disposition: inline
+In-Reply-To: <703362fe-1454-c16e-180a-76bfc4e3ab3f@schinagl.nl>
+User-Agent: NeoMutt/20170113 (1.7.2)
 Sender: devicetree-owner@vger.kernel.org
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-The r8a77990 (a.k.a. R-Car E3) device tree schema is
-compatible with R-Car H3 and M3-W schema.
+On Thu, Sep 03, 2020 at 11:15:31AM +0200, Olliver Schinagl wrote:
+> On 14-08-2020 17:55, Vincent Whitchurch wrote:
+> > Add a software PWM which toggles a GPIO from a high-resolution timer.
+> > 
+> > This will naturally not be as accurate or as efficient as a hardware
+> > PWM, but it is useful in some cases.  I have for example used it for
+> > evaluating LED brightness handling (via leds-pwm) on a board where the
+> > LED was just hooked up to a GPIO, and for a simple verification of the
+> > timer frequency on another platform.
+> > 
+> > Since high-resolution timers are used, sleeping gpio chips are not
+> > supported and are rejected in the probe function.
+> > 
+> > Signed-off-by: Vincent Whitchurch <vincent.whitchurch@axis.com>
+> > ---
+> > While preparing this driver for posting, I found a pwm-gpio driver posted to
+> > the lists way back in 2015 by Olliver Schinagl:
+> > 
+> >   https://lore.kernel.org/linux-pwm/1445895161-2317-8-git-send-email-o.schinagl@ultimaker.com/
+> > 
+> Thanks for reminding me there :) As I think I still use this driver, I 
+> don't mind migrating to this one (if merged) but how do you suggests to 
+> proceed with regards to multiple PWM's, as this is how I am using it 
+> currently. E.g. how do we merge them? I'm fine with 'taking the simpler 
+> code method' for a start point, but i guess I solved that part 
+> (somewhat) in 2015 :p
 
-Document r8a77990 support within renesas,drif.yaml.
-
-Signed-off-by: Fabrizio Castro <fabrizio.castro.jz@renesas.com>
----
- Documentation/devicetree/bindings/media/renesas,drif.yaml | 1 +
- 1 file changed, 1 insertion(+)
-
-diff --git a/Documentation/devicetree/bindings/media/renesas,drif.yaml b/Documentation/devicetree/bindings/media/renesas,drif.yaml
-index f57fccc159d6..051d515be38d 100644
---- a/Documentation/devicetree/bindings/media/renesas,drif.yaml
-+++ b/Documentation/devicetree/bindings/media/renesas,drif.yaml
-@@ -53,6 +53,7 @@ properties:
-       - enum:
-         - renesas,r8a7795-drif        # R-Car H3
-         - renesas,r8a7796-drif        # R-Car M3-W
-+        - renesas,r8a77990-drif       # R-Car E3
-       - const: renesas,rcar-gen3-drif # Generic R-Car Gen3 compatible device
- 
-   reg:
--- 
-2.25.1
-
+Since this is just a software construct, the simplest way would just be
+to create multiple instances in the device tree if you want multiple
+PWMs, wouldn't it?
