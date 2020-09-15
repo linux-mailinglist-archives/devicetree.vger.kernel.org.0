@@ -2,81 +2,51 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from vger.kernel.org (vger.kernel.org [23.128.96.18])
-	by mail.lfdr.de (Postfix) with ESMTP id 8A2AA26A2BE
-	for <lists+devicetree@lfdr.de>; Tue, 15 Sep 2020 12:07:45 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTP id 659A026A312
+	for <lists+devicetree@lfdr.de>; Tue, 15 Sep 2020 12:27:05 +0200 (CEST)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S1726119AbgIOKHo (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Tue, 15 Sep 2020 06:07:44 -0400
-Received: from crapouillou.net ([89.234.176.41]:50084 "EHLO crapouillou.net"
-        rhost-flags-OK-OK-OK-OK) by vger.kernel.org with ESMTP
-        id S1726130AbgIOKHl (ORCPT <rfc822;devicetree@vger.kernel.org>);
-        Tue, 15 Sep 2020 06:07:41 -0400
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=crapouillou.net;
-        s=mail; t=1600164455; h=from:from:sender:reply-to:subject:subject:date:date:
-         message-id:message-id:to:to:cc:cc:mime-version:mime-version:
-         content-type:content-type:
-         content-transfer-encoding:content-transfer-encoding:
-         in-reply-to:in-reply-to:references:references;
-        bh=i0x55otxMpUkdJhAxtRyRNzid5yrQkcNryvNuSbY120=;
-        b=JjKJkr554CtSU+QnzXW0ch7pQ3bS3gqTytqZwc4VR1umrd3soq7NGPIdyiFbjMUS+Nhzhz
-        k6c4fs+MIO2EP24+rEt3Vh8+gJwbbEQ2e5qmiZFukSa0WIG94cUJWezD2ITO7GQ/XBZ2Ps
-        k0nygKqOTATm1rLY76iZ1Zc4KXNyyLs=
-Date:   Tue, 15 Sep 2020 12:07:24 +0200
-From:   Paul Cercueil <paul@crapouillou.net>
-Subject: Re: [PATCH 3/3] i2c: jz4780: Remove of_match_ptr()
-To:     Rob Herring <robh@kernel.org>
-Cc:     od@zcrc.me, linux-i2c@vger.kernel.org, devicetree@vger.kernel.org,
+        id S1726174AbgIOK0M (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Tue, 15 Sep 2020 06:26:12 -0400
+Received: from relay5-d.mail.gandi.net ([217.70.183.197]:42667 "EHLO
+        relay5-d.mail.gandi.net" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
+        with ESMTP id S1726102AbgIOK0K (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Tue, 15 Sep 2020 06:26:10 -0400
+X-Originating-IP: 90.65.88.165
+Received: from localhost (lfbn-lyo-1-1908-165.w90-65.abo.wanadoo.fr [90.65.88.165])
+        (Authenticated sender: alexandre.belloni@bootlin.com)
+        by relay5-d.mail.gandi.net (Postfix) with ESMTPSA id D24451C000C;
+        Tue, 15 Sep 2020 10:26:07 +0000 (UTC)
+From:   Alexandre Belloni <alexandre.belloni@bootlin.com>
+To:     shawnguo@kernel.org, robh+dt@kernel.org, leoyang.li@nxp.com,
+        Biwen Li <biwen.li@oss.nxp.com>, mark.rutland@arm.com
+Cc:     Alexandre Belloni <alexandre.belloni@bootlin.com>,
+        jiafei.pan@nxp.com, Biwen Li <biwen.li@nxp.com>,
+        linux-rtc@vger.kernel.org, devicetree@vger.kernel.org,
         linux-kernel@vger.kernel.org
-Message-Id: <CS2PGQ.I4UMQBYTB15I2@crapouillou.net>
-In-Reply-To: <20200914221230.GA349829@bogus>
-References: <20200904131152.17390-1-paul@crapouillou.net>
-        <20200904131152.17390-3-paul@crapouillou.net>
-        <20200914221230.GA349829@bogus>
+Subject: Re: [PATCH 1/5] rtc: pcf2127: fix a bug when not specify interrupts property
+Date:   Tue, 15 Sep 2020 12:26:07 +0200
+Message-Id: <160016555162.333730.37689786875063582.b4-ty@bootlin.com>
+X-Mailer: git-send-email 2.26.2
+In-Reply-To: <20200915073213.12779-1-biwen.li@oss.nxp.com>
+References: <20200915073213.12779-1-biwen.li@oss.nxp.com>
 MIME-Version: 1.0
-Content-Type: text/plain; charset=iso-8859-1; format=flowed
-Content-Transfer-Encoding: quoted-printable
+Content-Transfer-Encoding: 8bit
 Sender: devicetree-owner@vger.kernel.org
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-Hi Rob,
+On Tue, 15 Sep 2020 15:32:09 +0800, Biwen Li wrote:
+> Fix a bug when not specify interrupts property in dts
+> as follows,
+>     rtc-pcf2127-i2c 1-0051: failed to request alarm irq
+>     rtc-pcf2127-i2c: probe of 1-0051 failed with error -22
 
-Le lun. 14 sept. 2020 =E0 16:12, Rob Herring <robh@kernel.org> a =E9crit :
-> On Fri, Sep 04, 2020 at 03:11:52PM +0200, Paul Cercueil wrote:
->>  CONFIG_OF is selected by CONFIG_MACH_INGENIC, therefore we don't=20
->> need to
->>  handle the case where Device Tree is not supported.
->=20
-> What about COMPILE_TEST? If not supported, why not?
+Applied, thanks!
 
-What about it? It will still compile fine with COMPILE_TEST.
+[1/1] rtc: pcf2127: fix a bug when not specify interrupts property
+      commit: 35425bafc772ee189e3c3790d7c672b80ba65909
 
--Paul
-
->>=20
->>  Signed-off-by: Paul Cercueil <paul@crapouillou.net>
->>  ---
->>   drivers/i2c/busses/i2c-jz4780.c | 2 +-
->>   1 file changed, 1 insertion(+), 1 deletion(-)
->>=20
->>  diff --git a/drivers/i2c/busses/i2c-jz4780.c=20
->> b/drivers/i2c/busses/i2c-jz4780.c
->>  index ed2ec86f6f1a..cb4a25ebb890 100644
->>  --- a/drivers/i2c/busses/i2c-jz4780.c
->>  +++ b/drivers/i2c/busses/i2c-jz4780.c
->>  @@ -857,7 +857,7 @@ static struct platform_driver jz4780_i2c_driver=20
->> =3D {
->>   	.remove		=3D jz4780_i2c_remove,
->>   	.driver		=3D {
->>   		.name	=3D "jz4780-i2c",
->>  -		.of_match_table =3D of_match_ptr(jz4780_i2c_of_matches),
->>  +		.of_match_table =3D jz4780_i2c_of_matches,
->>   	},
->>   };
->>=20
->>  --
->>  2.28.0
->>=20
-
-
+Best regards,
+-- 
+Alexandre Belloni <alexandre.belloni@bootlin.com>
