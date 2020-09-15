@@ -2,128 +2,66 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from vger.kernel.org (vger.kernel.org [23.128.96.18])
-	by mail.lfdr.de (Postfix) with ESMTP id F2A9326AEFE
-	for <lists+devicetree@lfdr.de>; Tue, 15 Sep 2020 22:57:22 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTP id D3DCD26AF3D
+	for <lists+devicetree@lfdr.de>; Tue, 15 Sep 2020 23:13:17 +0200 (CEST)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S1727857AbgIOU46 (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Tue, 15 Sep 2020 16:56:58 -0400
-Received: from lindbergh.monkeyblade.net ([23.128.96.19]:38490 "EHLO
-        lindbergh.monkeyblade.net" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S1728009AbgIOU4Z (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Tue, 15 Sep 2020 16:56:25 -0400
-Received: from mail-wr1-x436.google.com (mail-wr1-x436.google.com [IPv6:2a00:1450:4864:20::436])
-        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 1E008C06174A
-        for <devicetree@vger.kernel.org>; Tue, 15 Sep 2020 13:55:57 -0700 (PDT)
-Received: by mail-wr1-x436.google.com with SMTP id j2so4706119wrx.7
-        for <devicetree@vger.kernel.org>; Tue, 15 Sep 2020 13:55:57 -0700 (PDT)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=linaro.org; s=google;
-        h=subject:to:cc:references:from:message-id:date:user-agent
-         :mime-version:in-reply-to:content-language:content-transfer-encoding;
-        bh=zAm5FtYej3fN0qgFkVHOCUoqnYYlVIOwReqe/bnLjew=;
-        b=ux1FtF1qW5zFw3PSOHPb7/BatW30OcPF30SSo6z63uGbGBF/WO7Db9YU6CIStlGma4
-         ayLTovcaU2eCRI07GjxFAJ/V37h7Ru1hEsNo3LKt8+VKdIYKeSPF7EqrEKZyX/UxP+FT
-         ObxoKTQgR4M+tlPSbzYXGI9TCwxXTYQGo0V/QtySDQMp375RmB0XV/Y4gTgvcgg0v9IQ
-         jkNATqk7T/1LQyy/EP2jhlpvB6RuxUOPIXswXvEwsw5jX0yK3qcuqDNmSMsk2UU9WGRv
-         Bp6iIcal6R8JzrbxWjjbcTw/JjQjngPP1+0v82zalsrUqxcctwI9e6TUipQc5xTmGQdg
-         85Bg==
+        id S1727931AbgIOVLG (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Tue, 15 Sep 2020 17:11:06 -0400
+Received: from mail-io1-f65.google.com ([209.85.166.65]:45868 "EHLO
+        mail-io1-f65.google.com" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
+        with ESMTP id S1727845AbgIOU0w (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Tue, 15 Sep 2020 16:26:52 -0400
+Received: by mail-io1-f65.google.com with SMTP id y74so5566403iof.12;
+        Tue, 15 Sep 2020 13:26:17 -0700 (PDT)
 X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
         d=1e100.net; s=20161025;
-        h=x-gm-message-state:subject:to:cc:references:from:message-id:date
-         :user-agent:mime-version:in-reply-to:content-language
-         :content-transfer-encoding;
-        bh=zAm5FtYej3fN0qgFkVHOCUoqnYYlVIOwReqe/bnLjew=;
-        b=KvA2dso8gSdFg4I1V4heis5wkF11UM93ucMhaajVOGRXfxstiQXuUr4dQznCB6EYuo
-         VYAJcA/8iE6ZM4OEQUE0voO5V7bekY/XuEjAQ4GZfik71i1RbBUSOdw/8e3mgfJGIB/n
-         mRGrfDAvOrZAL0YokbJJxlC5DVCUjSvXpmyKJfu6lmIHbvaJWyVXP6e9SQ1s0fcbbGNC
-         +MwnDg88dgt4BsO9qt8Iz4xnuUarGSYMmoxWa5EvJY9gtlW2TzqFz3jJ9Okm4h7kOr/B
-         UAd41aKTuJrUyFTKWlcmDmHuiq9d3HgDlqLAeynL0LBxUdlL0xnwsNEGgQ21lZHy8PWC
-         b5og==
-X-Gm-Message-State: AOAM530J+OvwkCk2bVCrvxCrulQrJJ8hDEbflNhy1h/YMh9C0hWdZ1nQ
-        0QjKJZLVizA/+lOfk0X1viemAw==
-X-Google-Smtp-Source: ABdhPJzHG0MoqMbY2qp9b7BVgr4wjyrUkoPxudbv82dLhZQ/6hff9NHcF9q5z3f70mj4bQZugzAPBQ==
-X-Received: by 2002:a5d:574e:: with SMTP id q14mr22275109wrw.281.1600203355264;
-        Tue, 15 Sep 2020 13:55:55 -0700 (PDT)
-Received: from ?IPv6:2a01:e34:ed2f:f020:75c3:cda5:890e:8e1b? ([2a01:e34:ed2f:f020:75c3:cda5:890e:8e1b])
-        by smtp.googlemail.com with ESMTPSA id i83sm1322034wma.22.2020.09.15.13.55.53
-        (version=TLS1_3 cipher=TLS_AES_128_GCM_SHA256 bits=128/128);
-        Tue, 15 Sep 2020 13:55:54 -0700 (PDT)
-Subject: Re: is 'dynamic-power-coefficient' expected to be based on 'real'
- power measurements?
-To:     Matthias Kaehlcke <mka@chromium.org>
-Cc:     Rajendra Nayak <rnayak@codeaurora.org>,
-        Lukasz Luba <lukasz.luba@arm.com>,
-        Rob Herring <robh+dt@kernel.org>,
-        DTML <devicetree@vger.kernel.org>,
-        Doug Anderson <dianders@chromium.org>,
-        linux-pm@vger.kernel.org,
-        Amit Daniel Kachhap <amit.kachhap@gmail.com>,
-        Viresh Kumar <viresh.kumar@linaro.org>,
-        Javi Merino <javi.merino@kernel.org>
-References: <248bb01e-1746-c84c-78c4-3cf7d2541a70@codeaurora.org>
- <20200915172444.GA2771744@google.com>
- <406d5d4e-d7d7-8a37-5501-119b734facb3@linaro.org>
- <20200915175808.GB2771744@google.com>
-From:   Daniel Lezcano <daniel.lezcano@linaro.org>
-Message-ID: <27785351-ba14-dc92-6761-d64962c29596@linaro.org>
-Date:   Tue, 15 Sep 2020 22:55:52 +0200
-User-Agent: Mozilla/5.0 (X11; Linux x86_64; rv:68.0) Gecko/20100101
- Thunderbird/68.10.0
+        h=x-gm-message-state:date:from:to:cc:subject:message-id:references
+         :mime-version:content-disposition:in-reply-to;
+        bh=Lkiuck1dpqoY8hk2xhRbf0iSHZzrbHgAvYh0DjmUxuk=;
+        b=rVATaa4LyhEmM4F3wHE/BTP6sp56yq/4DYk3we28co80qxgsbUlaUGzpdT1qJxQvDt
+         gk6X1uDxTkMjqQlpA9R2LSf6l6AyLaP61VxpGgdiltvsJ99Oy3D2X8vsUwqfz92FdBDv
+         kd71uaspKMjpL9G3LfitIee1yvUgfa7jCREp7V4al+7VWoN3bMevISLucC6P2PCSUjHp
+         gwkXwCK/dYOwvgTBhE1T+zNT98suJxZgn8Ra9RVhZ+EIiT1dkPFl7lazcdc8OXEhlNV0
+         cQzZsCLfNDiVH15vpZ6ShLMox3U+Gvqa3MdUQQURu/yMQWtiwcW70pHy5UJZPTkx5ezD
+         Jcrg==
+X-Gm-Message-State: AOAM532ouGF8d1/iv6od21DtNdVAaydRK6itfZ1wATgd55rjwovDKt5Y
+        QXnCf9zahVxsqKGl9YmOAg==
+X-Google-Smtp-Source: ABdhPJzyWohZ65GbQAbr2ukWUAn4GsntRKdTC/Pb9M773BsKkyysdyrVMLR3122AIM+KQWrHWt14CQ==
+X-Received: by 2002:a02:778e:: with SMTP id g136mr19740297jac.49.1600201577250;
+        Tue, 15 Sep 2020 13:26:17 -0700 (PDT)
+Received: from xps15 ([64.188.179.253])
+        by smtp.gmail.com with ESMTPSA id z4sm9293793ilh.45.2020.09.15.13.26.16
+        (version=TLS1_3 cipher=TLS_AES_256_GCM_SHA384 bits=256/256);
+        Tue, 15 Sep 2020 13:26:16 -0700 (PDT)
+Received: (nullmailer pid 2451001 invoked by uid 1000);
+        Tue, 15 Sep 2020 20:26:15 -0000
+Date:   Tue, 15 Sep 2020 14:26:15 -0600
+From:   Rob Herring <robh@kernel.org>
+To:     Heinrich Schuchardt <xypron.glpk@gmx.de>
+Cc:     Mark Rutland <mark.rutland@arm.com>,
+        Ard Biesheuvel <ardb@kernel.org>, devicetree@vger.kernel.org,
+        linux-kernel@vger.kernel.org, Grant Likely <grant.likely@arm.com>,
+        Rob Herring <robh+dt@kernel.org>
+Subject: Re: [PATCH 1/1] of: properties of reserved-memory nodes
+Message-ID: <20200915202615.GA2450947@bogus>
+References: <20200910162020.3927-1-xypron.glpk@gmx.de>
 MIME-Version: 1.0
-In-Reply-To: <20200915175808.GB2771744@google.com>
-Content-Type: text/plain; charset=utf-8
-Content-Language: en-US
-Content-Transfer-Encoding: 8bit
+Content-Type: text/plain; charset=us-ascii
+Content-Disposition: inline
+In-Reply-To: <20200910162020.3927-1-xypron.glpk@gmx.de>
 Sender: devicetree-owner@vger.kernel.org
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-On 15/09/2020 19:58, Matthias Kaehlcke wrote:
-> On Tue, Sep 15, 2020 at 07:50:10PM +0200, Daniel Lezcano wrote:
->> On 15/09/2020 19:24, Matthias Kaehlcke wrote:
->>> +Thermal folks
->>>
->>> Hi Rajendra,
->>>
->>> On Tue, Sep 15, 2020 at 11:14:00AM +0530, Rajendra Nayak wrote:
->>>> Hi Rob,
->>>>
->>>> There has been some discussions on another thread [1] around the DPC (dynamic-power-coefficient) values
->>>> for CPU's being relative vs absolute (based on real power) and should they be used to derive 'real' power
->>>> at various OPPs in order to calculate things like 'sustainable-power' for thermal zones.
->>>> I believe relative values work perfectly fine for scheduling decisions, but with others using this for
->>>> calculating power values in mW, is there a need to document the property as something that *has* to be
->>>> based on real power measurements?
->>>
->>> Relative values may work for scheduling decisions, but not for thermal
->>> management with the power allocator, at least not when CPU cooling devices
->>> are combined with others that specify their power consumption in absolute
->>> values. Such a configuration should be supported IMO.
->>
->> The energy model is used in the cpufreq cooling device and if the
->> sustainable power is consistent with the relative values then there is
->> no reason it shouldn't work.
+On Thu, 10 Sep 2020 18:20:20 +0200, Heinrich Schuchardt wrote:
+> The reusable and the no-map property are mutually exclusive.
+> Clarify this in the documentation.
 > 
-> Agreed on thermal zones that exclusively use CPUs as cooling devices, but
-> what when you have mixed zones, with CPUs with their pseudo-unit and e.g. a
-> GPU that specifies its power in mW?
+> Signed-off-by: Heinrich Schuchardt <xypron.glpk@gmx.de>
+> ---
+>  .../devicetree/bindings/reserved-memory/reserved-memory.txt    | 3 +++
+>  1 file changed, 3 insertions(+)
+> 
 
-Well, if a SoC vendor decides to mix the units, then there is nothing we
-can do.
-
-When specifying the power numbers available for the SoC, they could be
-all scaled against the highest power number.
-
-There are so many factors on the hardware, the firmware, the kernel and
-the userspace sides having an impact on the energy efficiency, I don't
-understand why SoC vendors are so shy to share the power numbers...
-
-
-
--- 
-<http://www.linaro.org/> Linaro.org │ Open source software for ARM SoCs
-
-Follow Linaro:  <http://www.facebook.com/pages/Linaro> Facebook |
-<http://twitter.com/#!/linaroorg> Twitter |
-<http://www.linaro.org/linaro-blog/> Blog
+Applied, thanks!
