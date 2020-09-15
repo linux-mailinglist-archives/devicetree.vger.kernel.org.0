@@ -2,97 +2,564 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from vger.kernel.org (vger.kernel.org [23.128.96.18])
-	by mail.lfdr.de (Postfix) with ESMTP id D12A4269B05
-	for <lists+devicetree@lfdr.de>; Tue, 15 Sep 2020 03:26:38 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTP id 2E94A269B26
+	for <lists+devicetree@lfdr.de>; Tue, 15 Sep 2020 03:30:36 +0200 (CEST)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S1726019AbgIOB0h (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Mon, 14 Sep 2020 21:26:37 -0400
-Received: from Mailgw01.mediatek.com ([1.203.163.78]:30473 "EHLO
-        mailgw01.mediatek.com" rhost-flags-OK-FAIL-OK-FAIL) by vger.kernel.org
-        with ESMTP id S1725999AbgIOB0g (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Mon, 14 Sep 2020 21:26:36 -0400
-X-UUID: 618224d777264c818e3900a54fe92d30-20200915
-DKIM-Signature: v=1; a=rsa-sha256; q=dns/txt; c=relaxed/relaxed; d=mediatek.com; s=dk;
-        h=Content-Transfer-Encoding:MIME-Version:Content-Type:References:In-Reply-To:Date:CC:To:From:Subject:Message-ID; bh=v1LAQZT/+da26rpDxPw8oEAIptxIIsuOkmEvO0weCVA=;
-        b=saX+E0ITo7RPpXuo6nhwQ3xxkMZViPxpWSDX9sVGN1cm7YMpkYb35kLKmnkw9WU/co5FhKV/emydW0fuMfYTSCzcuqTahtCwuvy1Nn5AO/UrnGm9xff9sWAZDMW9pYMsYg7VDLG4/YPdlv5zSn8C6Ab9sjzqjPobb1vmSxfxYM0=;
-X-UUID: 618224d777264c818e3900a54fe92d30-20200915
-Received: from mtkcas35.mediatek.inc [(172.27.4.253)] by mailgw01.mediatek.com
-        (envelope-from <qii.wang@mediatek.com>)
-        (mailgw01.mediatek.com ESMTP with TLSv1.2 ECDHE-RSA-AES256-SHA384 256/256)
-        with ESMTP id 1807177968; Tue, 15 Sep 2020 09:26:31 +0800
-Received: from MTKCAS36.mediatek.inc (172.27.4.186) by MTKMBS31N1.mediatek.inc
- (172.27.4.69) with Microsoft SMTP Server (TLS) id 15.0.1497.2; Tue, 15 Sep
- 2020 09:26:30 +0800
-Received: from [10.17.3.153] (10.17.3.153) by MTKCAS36.mediatek.inc
- (172.27.4.170) with Microsoft SMTP Server id 15.0.1497.2 via Frontend
- Transport; Tue, 15 Sep 2020 09:26:29 +0800
-Message-ID: <1600133066.25719.9.camel@mhfsdcap03>
-Subject: Re: [PATCH] i2c: mediatek: Fix generic definitions for bus
- frequencies
-From:   Qii Wang <qii.wang@mediatek.com>
-To:     Andy Shevchenko <andy.shevchenko@gmail.com>
-CC:     Wolfram Sang <wsa@the-dreams.de>,
-        linux-i2c <linux-i2c@vger.kernel.org>,
-        devicetree <devicetree@vger.kernel.org>,
-        linux-arm Mailing List <linux-arm-kernel@lists.infradead.org>,
-        Linux Kernel Mailing List <linux-kernel@vger.kernel.org>,
-        "moderated list:ARM/Mediatek SoC support" 
-        <linux-mediatek@lists.infradead.org>,
-        srv_heupstream <srv_heupstream@mediatek.com>,
-        Leilk Liu <leilk.liu@mediatek.com>
-Date:   Tue, 15 Sep 2020 09:24:26 +0800
-In-Reply-To: <CAHp75VeBuR4fkVk0z=+d7EonHz0h=4=eRj3Wfe8R_8T=eyHaeA@mail.gmail.com>
-References: <1599890246-21191-1-git-send-email-qii.wang@mediatek.com>
-         <CAHp75VeBuR4fkVk0z=+d7EonHz0h=4=eRj3Wfe8R_8T=eyHaeA@mail.gmail.com>
-Content-Type: text/plain; charset="UTF-8"
-X-Mailer: Evolution 3.10.4-0ubuntu2 
+        id S1726062AbgIOBaf (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Mon, 14 Sep 2020 21:30:35 -0400
+Received: from mail-io1-f68.google.com ([209.85.166.68]:38508 "EHLO
+        mail-io1-f68.google.com" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
+        with ESMTP id S1726057AbgIOBad (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Mon, 14 Sep 2020 21:30:33 -0400
+Received: by mail-io1-f68.google.com with SMTP id h4so2297656ioe.5;
+        Mon, 14 Sep 2020 18:30:32 -0700 (PDT)
+X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+        d=1e100.net; s=20161025;
+        h=x-gm-message-state:date:from:to:cc:subject:message-id:references
+         :mime-version:content-disposition:in-reply-to;
+        bh=eHXVshEfAL6AyRFt7xSU/3kJiHLIn+w2Axi1RBiOh7g=;
+        b=ZgxPL4mQA5t0jUGFFs7kj2TvgJ7ikEUndZ868P0dIAsePaS9r9/mZNjXkEopjARptw
+         r+LJ31qsEHUzj4ll85FUqqfeQIOnRtQtG4LIDsY32MFMR88gU9kIKBn1rkKTozjvgBJ0
+         lvaBz+sKu02vLcjtYDDw2JsI36GVrFpows22WMYW1Xyuyp3abZ7zjiAAN+SAKLNc6ayP
+         sK9caPbRpEGjZkiWgnk5jsZJaaqOw5pWU4QSan/9hoCoZuYYzbRpQDvU807hQm1b+nqw
+         tyRVloFu0Oz1ij/gGpmFtBRuith/XyBl2FEIKGDzKQ/EXVtmLUEKp9Wy8ZXUBYMEFQvt
+         EqHw==
+X-Gm-Message-State: AOAM533+pZk7Gwh5VbMZf+zVXng9LRlVpfbOnW8xbZAJMvYnwx2FtjON
+        qVWO5vXZNOIxVbQJOYYnmxAoRL+Y2+yW
+X-Google-Smtp-Source: ABdhPJwuNCo6pgRyHbjOZeCd6CR7YqNHKpv6OMo+rmnS50sygQehBSppwko29dOUOCNO89GEoS6BGA==
+X-Received: by 2002:a6b:6d07:: with SMTP id a7mr13089251iod.82.1600133432387;
+        Mon, 14 Sep 2020 18:30:32 -0700 (PDT)
+Received: from xps15 ([64.188.179.253])
+        by smtp.gmail.com with ESMTPSA id v24sm6871096ioh.21.2020.09.14.18.30.29
+        (version=TLS1_3 cipher=TLS_AES_256_GCM_SHA384 bits=256/256);
+        Mon, 14 Sep 2020 18:30:31 -0700 (PDT)
+Received: (nullmailer pid 667196 invoked by uid 1000);
+        Tue, 15 Sep 2020 01:30:28 -0000
+Date:   Mon, 14 Sep 2020 19:30:28 -0600
+From:   Rob Herring <robh@kernel.org>
+To:     Zhiqiang Hou <Zhiqiang.Hou@nxp.com>
+Cc:     linux-pci@vger.kernel.org, devicetree@vger.kernel.org,
+        linux-kernel@vger.kernel.org, bhelgaas@google.com,
+        shawnguo@kernel.org, leoyang.li@nxp.com, lorenzo.pieralisi@arm.com,
+        gustavo.pimentel@synopsys.com, minghuan.Lian@nxp.com,
+        mingkai.hu@nxp.com, roy.zang@nxp.com
+Subject: Re: [PATCH 7/7] PCI: layerscape: Add power management support
+Message-ID: <20200915013028.GC640859@bogus>
+References: <20200907053801.22149-1-Zhiqiang.Hou@nxp.com>
+ <20200907053801.22149-8-Zhiqiang.Hou@nxp.com>
 MIME-Version: 1.0
-X-TM-SNTS-SMTP: 72A8E3EE9FC676B4DD2AB151602F01D4F7A087AFF58CB94C603E5F97AE3294AF2000:8
-X-MTK:  N
-Content-Transfer-Encoding: base64
+Content-Type: text/plain; charset=us-ascii
+Content-Disposition: inline
+In-Reply-To: <20200907053801.22149-8-Zhiqiang.Hou@nxp.com>
 Sender: devicetree-owner@vger.kernel.org
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-T24gTW9uLCAyMDIwLTA5LTE0IGF0IDE1OjQ4ICswMzAwLCBBbmR5IFNoZXZjaGVua28gd3JvdGU6
-DQo+IE9uIFNhdCwgU2VwIDEyLCAyMDIwIGF0IDk6MDIgQU0gPHFpaS53YW5nQG1lZGlhdGVrLmNv
-bT4gd3JvdGU6DQo+ID4NCj4gPiBGcm9tOiBRaWkgV2FuZyA8cWlpLndhbmdAbWVkaWF0ZWsuY29t
-Pg0KPiA+DQo+ID4gVGhlIG1hc3RlciBjb2RlIG5lZWRzIHRvIGJlaW5nIHNlbnQgd2hlbiB0aGUg
-c3BlZWQgaXMgbW9yZSB0aGFuDQo+ID4gSTJDX01BWF9GQVNUX01PREVfUExVU19GUkVRIGluc3Rl
-YWQgb2YNCj4gPiBJMkNfTUFYX0hJR0hfU1BFRURfTU9ERV9GUkVRLiBGaXggaXQuDQo+ID4NCj4g
-PiBTaWduZWQtb2ZmLWJ5OiBRaWkgV2FuZyA8cWlpLndhbmdAbWVkaWF0ZWsuY29tPg0KPiA+IC0t
-LQ0KPiA+ICBkcml2ZXJzL2kyYy9idXNzZXMvaTJjLW10NjV4eC5jIHwgNiArKystLS0NCj4gPiAg
-MSBmaWxlIGNoYW5nZWQsIDMgaW5zZXJ0aW9ucygrKSwgMyBkZWxldGlvbnMoLSkNCj4gPg0KPiA+
-IGRpZmYgLS1naXQgYS9kcml2ZXJzL2kyYy9idXNzZXMvaTJjLW10NjV4eC5jIGIvZHJpdmVycy9p
-MmMvYnVzc2VzL2kyYy1tdDY1eHguYw0KPiA+IGluZGV4IGVmYzE0MDQuLjBjYmRmYmUgMTAwNjQ0
-DQo+ID4gLS0tIGEvZHJpdmVycy9pMmMvYnVzc2VzL2kyYy1tdDY1eHguYw0KPiA+ICsrKyBiL2Ry
-aXZlcnMvaTJjL2J1c3Nlcy9pMmMtbXQ2NXh4LmMNCj4gPiBAQCAtNjgxLDggKzY4MSw4IEBAIHN0
-YXRpYyBpbnQgbXRrX2kyY19jYWxjdWxhdGVfc3BlZWQoc3RydWN0IG10a19pMmMgKmkyYywgdW5z
-aWduZWQgaW50IGNsa19zcmMsDQo+ID4gICAgICAgICB1bnNpZ25lZCBpbnQgY250X211bDsNCj4g
-PiAgICAgICAgIGludCByZXQgPSAtRUlOVkFMOw0KPiA+DQo+ID4gLSAgICAgICBpZiAodGFyZ2V0
-X3NwZWVkID4gSTJDX01BWF9GQVNUX01PREVfUExVU19GUkVRKQ0KPiA+IC0gICAgICAgICAgICAg
-ICB0YXJnZXRfc3BlZWQgPSBJMkNfTUFYX0ZBU1RfTU9ERV9QTFVTX0ZSRVE7DQo+ID4gKyAgICAg
-ICBpZiAodGFyZ2V0X3NwZWVkID4gSTJDX01BWF9ISUdIX1NQRUVEX01PREVfRlJFUSkNCj4gPiAr
-ICAgICAgICAgICAgICAgdGFyZ2V0X3NwZWVkID0gSTJDX01BWF9ISUdIX1NQRUVEX01PREVfRlJF
-UTsNCj4gDQo+IFRoYW5rcyBmb3IgZml4aW5nIHRoaXMuIEluZGVlZCwgc29tZWhvdyBJIG1lc3Nl
-ZCB0aGVzZSB1cC4NCj4gDQo+ID4NCj4gPiAgICAgICAgIG1heF9zdGVwX2NudCA9IG10a19pMmNf
-bWF4X3N0ZXBfY250KHRhcmdldF9zcGVlZCk7DQo+ID4gICAgICAgICBiYXNlX3N0ZXBfY250ID0g
-bWF4X3N0ZXBfY250Ow0KPiA+IEBAIC03NTksNyArNzU5LDcgQEAgc3RhdGljIGludCBtdGtfaTJj
-X3NldF9zcGVlZChzdHJ1Y3QgbXRrX2kyYyAqaTJjLCB1bnNpZ25lZCBpbnQgcGFyZW50X2NsaykN
-Cj4gPiAgICAgICAgIGZvciAoY2xrX2RpdiA9IDE7IGNsa19kaXYgPD0gbWF4X2Nsa19kaXY7IGNs
-a19kaXYrKykgew0KPiA+ICAgICAgICAgICAgICAgICBjbGtfc3JjID0gcGFyZW50X2NsayAvIGNs
-a19kaXY7DQo+ID4NCj4gPiAtICAgICAgICAgICAgICAgaWYgKHRhcmdldF9zcGVlZCA+IEkyQ19N
-QVhfRkFTVF9NT0RFX0ZSRVEpIHsNCj4gPiArICAgICAgICAgICAgICAgaWYgKHRhcmdldF9zcGVl
-ZCA+IEkyQ19NQVhfRkFTVF9NT0RFX1BMVVNfRlJFUSkgew0KPiANCj4gQnV0IHRoaXMgb25lIGlz
-IG5vdCByZWxhdGVkLiBPcmlnaW5hbCBjb2RlIHVzZWQgdG8gaGF2ZQ0KPiANCj4gI2RlZmluZSBN
-QVhfRlNfTU9ERV9TUEVFRCAgICAgICAgICAgICAgNDAwMDAwDQo+IA0KPiAgICAgICAgaWYgKHRh
-cmdldF9zcGVlZCA+IE1BWF9GU19NT0RFX1NQRUVEKSB7DQo+IA0KPiBBbmQgdGhpcyBjaGFuZ2Ug
-ZG9lc24ndCBmaXggdGhlIGFib3ZlIG1lbnRpb25lZCBwcm9ibGVtLg0KPiANCj4gU28sIHBsZWFz
-ZSBzcGxpdCBpbnRvIHR3byBzZXBhcmF0ZSBjaGFuZ2VzLg0KPiANCg0Kb2ssIFRoYW5rIHlvdSBm
-b3IgeW91ciBjb21tZW50cw0KDQo+ID4gICAgICAgICAgICAgICAgICAgICAgICAgLyogU2V0IG1h
-c3RlciBjb2RlIHNwZWVkIHJlZ2lzdGVyICovDQo+ID4gICAgICAgICAgICAgICAgICAgICAgICAg
-cmV0ID0gbXRrX2kyY19jYWxjdWxhdGVfc3BlZWQoaTJjLCBjbGtfc3JjLA0KPiA+ICAgICAgICAg
-ICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgIEkyQ19NQVhfRkFT
-VF9NT0RFX0ZSRVEsDQo+ID4gLS0NCj4gPiAxLjkuMQ0KPiANCj4gDQo+IA0KDQo=
+On Mon, Sep 07, 2020 at 01:38:01PM +0800, Zhiqiang Hou wrote:
+> From: Hou Zhiqiang <Zhiqiang.Hou@nxp.com>
+> 
+> Add PME_Turn_Off/PME_TO_Ack handshake sequence, and finally
+> put the PCIe controller into D3 state after the L2/L3 ready
+> state transition process completion.
+> 
+> Signed-off-by: Hou Zhiqiang <Zhiqiang.Hou@nxp.com>
+> ---
+>  drivers/pci/controller/dwc/pci-layerscape.c  | 384 ++++++++++++++++++-
+>  drivers/pci/controller/dwc/pcie-designware.h |   1 +
+>  2 files changed, 383 insertions(+), 2 deletions(-)
+> 
+> diff --git a/drivers/pci/controller/dwc/pci-layerscape.c b/drivers/pci/controller/dwc/pci-layerscape.c
+> index be404c16bcbe..ca9ea07f77c1 100644
+> --- a/drivers/pci/controller/dwc/pci-layerscape.c
+> +++ b/drivers/pci/controller/dwc/pci-layerscape.c
+> @@ -3,13 +3,16 @@
+>   * PCIe host controller driver for Freescale Layerscape SoCs
+>   *
+>   * Copyright (C) 2014 Freescale Semiconductor.
+> + * Copyright 2020 NXP
+>   *
+>   * Author: Minghuan Lian <Minghuan.Lian@freescale.com>
+>   */
+>  
+> +#include <linux/delay.h>
+>  #include <linux/kernel.h>
+>  #include <linux/interrupt.h>
+>  #include <linux/init.h>
+> +#include <linux/iopoll.h>
+>  #include <linux/of_pci.h>
+>  #include <linux/of_platform.h>
+>  #include <linux/of_irq.h>
+> @@ -27,17 +30,66 @@
+>  #define PCIE_ABSERR		0x8d0 /* Bridge Slave Error Response Register */
+>  #define PCIE_ABSERR_SETTING	0x9401 /* Forward error of non-posted request */
+>  
+> +#define PCIE_PM_SCR		0x44
+> +#define PCIE_PM_SCR_PMEPS_D0	0x0
+> +#define PCIE_PM_SCR_PMEPS_D3	0x3
+> +
+> +#define PCIE_LNKCTL		0x80  /* PCIe link ctrl Register */
 
+Use the common defines.
+
+
+> +
+> +/* PF Message Command Register */
+> +#define LS_PCIE_PF_MCR		0x2c
+> +#define PF_MCR_PTOMR		BIT(0)
+> +#define PF_MCR_EXL2S		BIT(1)
+> +
+> +/* LS1021A PEXn PM Write Control Register */
+> +#define SCFG_PEXPMWRCR(idx)	(0x5c + (idx) * 0x64)
+> +#define PMXMTTURNOFF		BIT(31)
+> +#define SCFG_PEXSFTRSTCR	0x190
+> +#define PEXSR(idx)		BIT(idx)
+> +
+> +/* LS1043A PEX PME control register */
+> +#define SCFG_PEXPMECR		0x144
+> +#define PEXPME(idx)		BIT(31 - (idx) * 4)
+> +
+> +/* LS1043A PEX LUT debug register */
+> +#define LS_PCIE_LDBG	0x7fc
+> +#define LDBG_SR		BIT(30)
+> +#define LDBG_WE		BIT(31)
+> +
+>  #define PCIE_IATU_NUM		6
+>  
+> +#define LS_PCIE_IS_L2(v)	\
+> +	(((v) & PORT_LOGIC_LTSSM_STATE_MASK) == PORT_LOGIC_LTSSM_STATE_L2)
+> +
+> +struct ls_pcie;
+> +
+> +struct ls_pcie_host_pm_ops {
+> +	int (*pm_init)(struct ls_pcie *pcie);
+> +	void (*send_turn_off_message)(struct ls_pcie *pcie);
+> +	void (*exit_from_l2)(struct ls_pcie *pcie);
+> +};
+> +
+>  struct ls_pcie_drvdata {
+> +	const u32 pf_off;
+> +	const u32 lut_off;
+>  	const struct dw_pcie_host_ops *ops;
+> +	const struct ls_pcie_host_pm_ops *pm_ops;
+>  };
+>  
+>  struct ls_pcie {
+>  	struct dw_pcie *pci;
+>  	const struct ls_pcie_drvdata *drvdata;
+> +	void __iomem *pf_base;
+> +	void __iomem *lut_base;
+> +	bool big_endian;
+> +	bool ep_presence;
+> +	bool pm_support;
+> +	struct regmap *scfg;
+> +	int index;
+>  };
+>  
+> +#define ls_pcie_lut_readl_addr(addr)	ls_pcie_lut_readl(pcie, addr)
+> +#define ls_pcie_pf_readl_addr(addr)	ls_pcie_pf_readl(pcie, addr)
+>  #define to_ls_pcie(x)	dev_get_drvdata((x)->dev)
+>  
+>  static bool ls_pcie_is_bridge(struct ls_pcie *pcie)
+> @@ -86,6 +138,208 @@ static void ls_pcie_fix_error_response(struct ls_pcie *pcie)
+>  	iowrite32(PCIE_ABSERR_SETTING, pci->dbi_base + PCIE_ABSERR);
+>  }
+>  
+> +static u32 ls_pcie_lut_readl(struct ls_pcie *pcie, u32 off)
+> +{
+> +	if (pcie->big_endian)
+> +		return ioread32be(pcie->lut_base + off);
+> +
+> +	return ioread32(pcie->lut_base + off);
+> +}
+> +
+> +static void ls_pcie_lut_writel(struct ls_pcie *pcie, u32 off, u32 val)
+> +{
+> +	if (pcie->big_endian)
+> +		return iowrite32be(val, pcie->lut_base + off);
+> +
+> +	return iowrite32(val, pcie->lut_base + off);
+> +
+> +}
+> +
+> +static u32 ls_pcie_pf_readl(struct ls_pcie *pcie, u32 off)
+> +{
+> +	if (pcie->big_endian)
+> +		return ioread32be(pcie->pf_base + off);
+> +
+> +	return ioread32(pcie->pf_base + off);
+> +}
+> +
+> +static void ls_pcie_pf_writel(struct ls_pcie *pcie, u32 off, u32 val)
+> +{
+> +	if (pcie->big_endian)
+> +		return iowrite32be(val, pcie->pf_base + off);
+> +
+> +	return iowrite32(val, pcie->pf_base + off);
+> +
+> +}
+> +
+> +static void ls_pcie_send_turnoff_msg(struct ls_pcie *pcie)
+> +{
+> +	u32 val;
+> +	int ret;
+> +
+> +	val = ls_pcie_pf_readl(pcie, LS_PCIE_PF_MCR);
+> +	val |= PF_MCR_PTOMR;
+> +	ls_pcie_pf_writel(pcie, LS_PCIE_PF_MCR, val);
+> +
+> +	ret = readx_poll_timeout(ls_pcie_pf_readl_addr, LS_PCIE_PF_MCR,
+> +				 val, !(val & PF_MCR_PTOMR), 100, 10000);
+> +	if (ret)
+> +		dev_info(pcie->pci->dev, "poll turn off message timeout\n");
+> +}
+> +
+> +static void ls1021a_pcie_send_turnoff_msg(struct ls_pcie *pcie)
+> +{
+> +	u32 val;
+> +
+> +	if (!pcie->scfg) {
+> +		dev_dbg(pcie->pci->dev, "SYSCFG is NULL\n");
+> +		return;
+> +	}
+> +
+> +	/* Send Turn_off message */
+> +	regmap_read(pcie->scfg, SCFG_PEXPMWRCR(pcie->index), &val);
+> +	val |= PMXMTTURNOFF;
+> +	regmap_write(pcie->scfg, SCFG_PEXPMWRCR(pcie->index), val);
+> +
+> +	mdelay(10);
+> +
+> +	/* Clear Turn_off message */
+> +	regmap_read(pcie->scfg, SCFG_PEXPMWRCR(pcie->index), &val);
+> +	val &= ~PMXMTTURNOFF;
+> +	regmap_write(pcie->scfg, SCFG_PEXPMWRCR(pcie->index), val);
+> +}
+> +
+> +static void ls1043a_pcie_send_turnoff_msg(struct ls_pcie *pcie)
+> +{
+> +	u32 val;
+> +
+> +	if (!pcie->scfg) {
+> +		dev_dbg(pcie->pci->dev, "SYSCFG is NULL\n");
+> +		return;
+> +	}
+> +
+> +	/* Send Turn_off message */
+> +	regmap_read(pcie->scfg, SCFG_PEXPMECR, &val);
+> +	val |= PEXPME(pcie->index);
+> +	regmap_write(pcie->scfg, SCFG_PEXPMECR, val);
+> +
+> +	mdelay(10);
+> +
+> +	/* Clear Turn_off message */
+> +	regmap_read(pcie->scfg, SCFG_PEXPMECR, &val);
+> +	val &= ~PEXPME(pcie->index);
+> +	regmap_write(pcie->scfg, SCFG_PEXPMECR, val);
+> +}
+> +
+> +static void ls_pcie_exit_from_l2(struct ls_pcie *pcie)
+> +{
+> +	u32 val;
+> +	int ret;
+> +
+> +	val = ls_pcie_pf_readl(pcie, LS_PCIE_PF_MCR);
+> +	val |= PF_MCR_EXL2S;
+> +	ls_pcie_pf_writel(pcie, LS_PCIE_PF_MCR, val);
+> +
+> +	ret = readx_poll_timeout(ls_pcie_pf_readl_addr, LS_PCIE_PF_MCR,
+> +				 val, !(val & PF_MCR_EXL2S), 100, 10000);
+> +	if (ret)
+> +		dev_info(pcie->pci->dev, "poll exit L2 state timeout\n");
+> +}
+> +
+> +static void ls_pcie_retrain_link(struct ls_pcie *pcie)
+> +{
+> +	struct dw_pcie *pci = pcie->pci;
+> +	u32 val;
+> +
+> +	val = dw_pcie_readw_dbi(pci, PCIE_LNKCTL);
+> +	val |= PCI_EXP_LNKCTL_RL;
+> +	dw_pcie_writew_dbi(pci, PCIE_LNKCTL, val);
+> +}
+> +
+> +static void ls1021a_pcie_exit_from_l2(struct ls_pcie *pcie)
+> +{
+> +	u32 val;
+> +
+> +	regmap_read(pcie->scfg, SCFG_PEXSFTRSTCR, &val);
+> +	val |= PEXSR(pcie->index);
+> +	regmap_write(pcie->scfg, SCFG_PEXSFTRSTCR, val);
+> +
+> +	regmap_read(pcie->scfg, SCFG_PEXSFTRSTCR, &val);
+> +	val &= ~PEXSR(pcie->index);
+> +	regmap_write(pcie->scfg, SCFG_PEXSFTRSTCR, val);
+> +
+> +	mdelay(1);
+> +
+> +	ls_pcie_retrain_link(pcie);
+> +}
+> +static void ls1043a_pcie_exit_from_l2(struct ls_pcie *pcie)
+> +{
+> +	u32 val;
+> +
+> +	val = ls_pcie_lut_readl(pcie, LS_PCIE_LDBG);
+> +	val |= LDBG_WE;
+> +	ls_pcie_lut_writel(pcie, LS_PCIE_LDBG, val);
+> +
+> +	val = ls_pcie_lut_readl(pcie, LS_PCIE_LDBG);
+> +	val |= LDBG_SR;
+> +	ls_pcie_lut_writel(pcie, LS_PCIE_LDBG, val);
+> +
+> +	val = ls_pcie_lut_readl(pcie, LS_PCIE_LDBG);
+> +	val &= ~LDBG_SR;
+> +	ls_pcie_lut_writel(pcie, LS_PCIE_LDBG, val);
+> +
+> +	val = ls_pcie_lut_readl(pcie, LS_PCIE_LDBG);
+> +	val &= ~LDBG_WE;
+> +	ls_pcie_lut_writel(pcie, LS_PCIE_LDBG, val);
+> +
+> +	mdelay(1);
+> +
+> +	ls_pcie_retrain_link(pcie);
+> +}
+> +
+> +static int ls1021a_pcie_pm_init(struct ls_pcie *pcie)
+> +{
+> +	struct device *dev = pcie->pci->dev;
+> +	u32 index[2];
+> +	int ret;
+> +
+> +	pcie->scfg = syscon_regmap_lookup_by_phandle(dev->of_node,
+> +						     "fsl,pcie-scfg");
+> +	if (IS_ERR(pcie->scfg)) {
+> +		ret = PTR_ERR(pcie->scfg);
+> +		dev_err(dev, "No syscfg phandle specified\n");
+> +		pcie->scfg = NULL;
+> +		return ret;
+> +	}
+> +
+> +	ret = of_property_read_u32_array(dev->of_node, "fsl,pcie-scfg",
+> +					 index, 2);
+> +	if (ret) {
+> +		pcie->scfg = NULL;
+> +		return ret;
+> +	}
+> +
+> +	pcie->index = index[1];
+> +
+> +	return 0;
+> +}
+> +
+> +static int ls_pcie_pm_init(struct ls_pcie *pcie)
+> +{
+> +	return 0;
+> +}
+> +
+> +static void ls_pcie_set_dstate(struct ls_pcie *pcie, u32 dstate)
+> +{
+> +	struct dw_pcie *pci = pcie->pci;
+> +	u32 val;
+> +
+> +	val = dw_pcie_readw_dbi(pci, PCIE_PM_SCR);
+> +	val &= ~PCI_PM_CTRL_STATE_MASK;
+> +	val |= dstate;
+> +	dw_pcie_writew_dbi(pci, PCIE_PM_SCR, val);
+> +}
+> +
+>  static int ls_pcie_host_init(struct pcie_port *pp)
+>  {
+>  	struct dw_pcie *pci = to_dw_pcie_from_pp(pp);
+> @@ -133,20 +387,52 @@ static int ls_pcie_msi_host_init(struct pcie_port *pp)
+>  	return 0;
+>  }
+>  
+> +static struct ls_pcie_host_pm_ops ls1021a_pcie_host_pm_ops = {
+> +	.pm_init = &ls1021a_pcie_pm_init,
+> +	.send_turn_off_message = &ls1021a_pcie_send_turnoff_msg,
+> +	.exit_from_l2 = &ls1021a_pcie_exit_from_l2,
+> +};
+> +
+> +static struct ls_pcie_host_pm_ops ls1043a_pcie_host_pm_ops = {
+> +	.pm_init = &ls1021a_pcie_pm_init,
+> +	.send_turn_off_message = &ls1043a_pcie_send_turnoff_msg,
+> +	.exit_from_l2 = &ls1043a_pcie_exit_from_l2,
+> +};
+> +
+> +static struct ls_pcie_host_pm_ops ls_pcie_host_pm_ops = {
+> +	.pm_init = &ls_pcie_pm_init,
+> +	.send_turn_off_message = &ls_pcie_send_turnoff_msg,
+> +	.exit_from_l2 = &ls_pcie_exit_from_l2,
+> +};
+> +
+>  static const struct dw_pcie_host_ops ls_pcie_host_ops = {
+>  	.host_init = ls_pcie_host_init,
+>  	.msi_host_init = ls_pcie_msi_host_init,
+>  };
+>  
+> +static const struct ls_pcie_drvdata ls1021a_drvdata = {
+> +	.ops = &ls_pcie_host_ops,
+> +	.pm_ops = &ls1021a_pcie_host_pm_ops,
+> +};
+> +
+> +static const struct ls_pcie_drvdata ls1043a_drvdata = {
+> +	.ops = &ls_pcie_host_ops,
+> +	.lut_off = 0x10000,
+> +	.pm_ops = &ls1043a_pcie_host_pm_ops,
+> +};
+> +
+>  static const struct ls_pcie_drvdata layerscape_drvdata = {
+>  	.ops = &ls_pcie_host_ops,
+> +	.lut_off = 0x80000,
+> +	.pf_off = 0xc0000,
+> +	.pm_ops = &ls_pcie_host_pm_ops,
+>  };
+>  
+>  static const struct of_device_id ls_pcie_of_match[] = {
+>  	{ .compatible = "fsl,ls1012a-pcie", .data = &layerscape_drvdata },
+> -	{ .compatible = "fsl,ls1021a-pcie", .data = &layerscape_drvdata },
+> +	{ .compatible = "fsl,ls1021a-pcie", .data = &ls1021a_drvdata },
+>  	{ .compatible = "fsl,ls1028a-pcie", .data = &layerscape_drvdata },
+> -	{ .compatible = "fsl,ls1043a-pcie", .data = &layerscape_drvdata },
+> +	{ .compatible = "fsl,ls1043a-pcie", .data = &ls1043a_drvdata },
+>  	{ .compatible = "fsl,ls1046a-pcie", .data = &layerscape_drvdata },
+>  	{ .compatible = "fsl,ls2080a-pcie", .data = &layerscape_drvdata },
+>  	{ .compatible = "fsl,ls2085a-pcie", .data = &layerscape_drvdata },
+> @@ -170,6 +456,15 @@ static int __init ls_add_pcie_port(struct ls_pcie *pcie)
+>  		return ret;
+>  	}
+>  
+> +	if (dw_pcie_link_up(pci)) {
+> +		dev_dbg(pci->dev, "Endpoint is present\n");
+> +		pcie->ep_presence = true;
+> +	}
+> +
+> +	if (pcie->drvdata->pm_ops && pcie->drvdata->pm_ops->pm_init &&
+> +	    !pcie->drvdata->pm_ops->pm_init(pcie))
+> +		pcie->pm_support = true;
+> +
+>  	return 0;
+>  }
+>  
+> @@ -200,6 +495,14 @@ static int __init ls_pcie_probe(struct platform_device *pdev)
+>  	if (IS_ERR(pci->dbi_base))
+>  		return PTR_ERR(pci->dbi_base);
+>  
+> +	pcie->big_endian = of_property_read_bool(dev->of_node, "big-endian");
+> +
+> +	if (pcie->drvdata->lut_off)
+> +		pcie->lut_base = pci->dbi_base + pcie->drvdata->lut_off;
+> +
+> +	if (pcie->drvdata->pf_off)
+> +		pcie->pf_base = pci->dbi_base + pcie->drvdata->pf_off;
+> +
+>  	if (!ls_pcie_is_bridge(pcie))
+>  		return -ENODEV;
+>  
+> @@ -212,11 +515,88 @@ static int __init ls_pcie_probe(struct platform_device *pdev)
+>  	return 0;
+>  }
+>  
+> +static bool ls_pcie_pm_check(struct ls_pcie *pcie)
+> +{
+> +	if (!pcie->ep_presence) {
+> +		dev_dbg(pcie->pci->dev, "Endpoint isn't present\n");
+> +		return false;
+> +	}
+> +
+> +	if (!pcie->pm_support)
+> +		return false;
+> +
+> +	return true;
+> +}
+> +
+> +#ifdef CONFIG_PM_SLEEP
+> +static int ls_pcie_suspend_noirq(struct device *dev)
+
+Why is noirq variant needed? Most drivers don't need this.
+
+> +{
+> +	struct ls_pcie *pcie = dev_get_drvdata(dev);
+> +	struct dw_pcie *pci = pcie->pci;
+> +	u32 val;
+> +	int ret;
+> +
+> +	if (!ls_pcie_pm_check(pcie))
+> +		return 0;
+> +
+> +	pcie->drvdata->pm_ops->send_turn_off_message(pcie);
+> +
+> +	/* 10ms timeout to check L2 ready */
+> +	ret = readl_poll_timeout(pci->dbi_base + PCIE_PORT_DEBUG0,
+> +				 val, LS_PCIE_IS_L2(val), 100, 10000);
+> +	if (ret) {
+> +		dev_err(dev, "PCIe link enter L2 timeout! ltssm = 0x%x\n", val);
+> +		return ret;
+> +	}
+> +
+> +	ls_pcie_set_dstate(pcie, PCIE_PM_SCR_PMEPS_D3);
+> +
+> +	return 0;
+> +}
+> +
+> +static int ls_pcie_resume_noirq(struct device *dev)
+> +{
+> +	struct ls_pcie *pcie = dev_get_drvdata(dev);
+> +	struct dw_pcie *pci = pcie->pci;
+> +	int ret;
+> +
+> +	if (!ls_pcie_pm_check(pcie))
+> +		return 0;
+> +
+> +	ls_pcie_set_dstate(pcie, PCIE_PM_SCR_PMEPS_D0);
+> +
+> +	pcie->drvdata->pm_ops->exit_from_l2(pcie);
+> +
+> +	/* delay 10ms to access EP */
+> +	mdelay(10);
+> +
+> +	ret = ls_pcie_host_init(&pci->pp);
+> +	if (ret) {
+> +		dev_err(dev, "ls_pcie_host_init failed! ret = 0x%x\n", ret);
+> +		return ret;
+> +	}
+> +
+> +	ret = dw_pcie_wait_for_link(pci);
+> +	if (ret) {
+> +		dev_err(dev, "wait link up timeout! ret = 0x%x\n", ret);
+> +		return ret;
+> +	}
+> +
+> +	return 0;
+> +}
+> +#endif /* CONFIG_PM_SLEEP */
+> +
+> +static const struct dev_pm_ops ls_pcie_pm_ops = {
+> +	SET_NOIRQ_SYSTEM_SLEEP_PM_OPS(ls_pcie_suspend_noirq,
+> +				      ls_pcie_resume_noirq)
+> +};
+> +
+>  static struct platform_driver ls_pcie_driver = {
+>  	.driver = {
+>  		.name = "layerscape-pcie",
+>  		.of_match_table = ls_pcie_of_match,
+>  		.suppress_bind_attrs = true,
+> +		.pm = &ls_pcie_pm_ops,
+>  	},
+>  };
+>  builtin_platform_driver_probe(ls_pcie_driver, ls_pcie_probe);
+> diff --git a/drivers/pci/controller/dwc/pcie-designware.h b/drivers/pci/controller/dwc/pcie-designware.h
+> index f911760dcc69..1f2fd03d1eba 100644
+> --- a/drivers/pci/controller/dwc/pcie-designware.h
+> +++ b/drivers/pci/controller/dwc/pcie-designware.h
+> @@ -46,6 +46,7 @@
+>  #define PCIE_PORT_DEBUG0		0x728
+>  #define PORT_LOGIC_LTSSM_STATE_MASK	0x1f
+>  #define PORT_LOGIC_LTSSM_STATE_L0	0x11
+> +#define PORT_LOGIC_LTSSM_STATE_L2	0x15
+>  #define PCIE_PORT_DEBUG1		0x72C
+>  #define PCIE_PORT_DEBUG1_LINK_UP		BIT(4)
+>  #define PCIE_PORT_DEBUG1_LINK_IN_TRAINING	BIT(29)
+> -- 
+> 2.17.1
+> 
