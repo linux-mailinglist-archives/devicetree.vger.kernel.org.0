@@ -2,127 +2,111 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from vger.kernel.org (vger.kernel.org [23.128.96.18])
-	by mail.lfdr.de (Postfix) with ESMTP id 77F17269E48
-	for <lists+devicetree@lfdr.de>; Tue, 15 Sep 2020 08:13:51 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTP id 71C22269E3E
+	for <lists+devicetree@lfdr.de>; Tue, 15 Sep 2020 08:12:38 +0200 (CEST)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S1726236AbgIOGNo (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Tue, 15 Sep 2020 02:13:44 -0400
-Received: from mailgw01.mediatek.com ([210.61.82.183]:21793 "EHLO
-        mailgw01.mediatek.com" rhost-flags-OK-FAIL-OK-FAIL) by vger.kernel.org
-        with ESMTP id S1726198AbgIOGN1 (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Tue, 15 Sep 2020 02:13:27 -0400
-X-UUID: 61ed0938819e4c93ba98968d9b663810-20200915
-DKIM-Signature: v=1; a=rsa-sha256; q=dns/txt; c=relaxed/relaxed; d=mediatek.com; s=dk;
-        h=Content-Transfer-Encoding:Content-Type:MIME-Version:References:In-Reply-To:Message-ID:Date:Subject:CC:To:From; bh=XLnueKG77zqgGlKTvOF9hBmcnot7DeiZK4sccS5sVaQ=;
-        b=iArR4DRX2NGk8hjLmvgJS2foaEw8LHLUScw723dW1VhaszHVMZVeoG1r+7QAtUDSMWIKFJ5BVMKY9Kd6sxsFlsFC+1YRXhm7L76maxJFJea5+sHWOuZdtQ9UBpg/zUOhncjk0MC281MN6fNwlJtd/9Jpb0Gin8mz6oh8EuqUx10=;
-X-UUID: 61ed0938819e4c93ba98968d9b663810-20200915
-Received: from mtkcas06.mediatek.inc [(172.21.101.30)] by mailgw01.mediatek.com
-        (envelope-from <wenbin.mei@mediatek.com>)
-        (Cellopoint E-mail Firewall v4.1.14 Build 0819 with TLSv1.2 ECDHE-RSA-AES256-SHA384 256/256)
-        with ESMTP id 109680203; Tue, 15 Sep 2020 14:13:23 +0800
-Received: from MTKCAS06.mediatek.inc (172.21.101.30) by
- mtkmbs07n1.mediatek.inc (172.21.101.16) with Microsoft SMTP Server (TLS) id
- 15.0.1497.2; Tue, 15 Sep 2020 14:13:21 +0800
-Received: from localhost.localdomain (10.17.3.153) by MTKCAS06.mediatek.inc
- (172.21.101.73) with Microsoft SMTP Server id 15.0.1497.2 via Frontend
- Transport; Tue, 15 Sep 2020 14:13:21 +0800
-From:   Wenbin Mei <wenbin.mei@mediatek.com>
-To:     Ulf Hansson <ulf.hansson@linaro.org>,
-        Rob Herring <robh+dt@kernel.org>
-CC:     Chaotian Jing <chaotian.jing@mediatek.com>,
-        Matthias Brugger <matthias.bgg@gmail.com>,
-        <linux-mmc@vger.kernel.org>, <devicetree@vger.kernel.org>,
-        <linux-arm-kernel@lists.infradead.org>,
-        <linux-mediatek@lists.infradead.org>,
-        <linux-kernel@vger.kernel.org>, <srv_heupstream@mediatek.com>,
-        Wenbin Mei <wenbin.mei@mediatek.com>
-Subject: [RESEND 3/3] mmc: mediatek: Add subsys clock control for MT8192 msdc
-Date:   Tue, 15 Sep 2020 14:11:10 +0800
-Message-ID: <20200915061110.25833-4-wenbin.mei@mediatek.com>
-X-Mailer: git-send-email 2.18.0
-In-Reply-To: <20200915061110.25833-1-wenbin.mei@mediatek.com>
-References: <20200915061110.25833-1-wenbin.mei@mediatek.com>
+        id S1726120AbgIOGMh (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Tue, 15 Sep 2020 02:12:37 -0400
+Received: from szxga04-in.huawei.com ([45.249.212.190]:12284 "EHLO huawei.com"
+        rhost-flags-OK-OK-OK-FAIL) by vger.kernel.org with ESMTP
+        id S1726057AbgIOGMg (ORCPT <rfc822;devicetree@vger.kernel.org>);
+        Tue, 15 Sep 2020 02:12:36 -0400
+Received: from DGGEMS404-HUB.china.huawei.com (unknown [172.30.72.59])
+        by Forcepoint Email with ESMTP id 344B0E86A9033D05D8CC;
+        Tue, 15 Sep 2020 14:12:29 +0800 (CST)
+Received: from [127.0.0.1] (10.174.177.253) by DGGEMS404-HUB.china.huawei.com
+ (10.3.19.204) with Microsoft SMTP Server id 14.3.487.0; Tue, 15 Sep 2020
+ 14:12:22 +0800
+Subject: Re: [PATCH 1/2] dt-bindings: interrupt-controller: add Hisilicon
+ SD5203 vector interrupt controller
+To:     Rob Herring <robh@kernel.org>
+CC:     Thomas Gleixner <tglx@linutronix.de>,
+        Jason Cooper <jason@lakedaemon.net>,
+        Marc Zyngier <maz@kernel.org>,
+        devicetree <devicetree@vger.kernel.org>,
+        linux-kernel <linux-kernel@vger.kernel.org>,
+        Kefeng Wang <wangkefeng.wang@huawei.com>
+References: <20200903120504.2308-1-thunder.leizhen@huawei.com>
+ <20200903120504.2308-2-thunder.leizhen@huawei.com>
+ <20200914203110.GA185427@bogus>
+From:   "Leizhen (ThunderTown)" <thunder.leizhen@huawei.com>
+Message-ID: <4873e234-d06c-930e-6645-a832164e18ea@huawei.com>
+Date:   Tue, 15 Sep 2020 14:12:21 +0800
+User-Agent: Mozilla/5.0 (Windows NT 10.0; WOW64; rv:60.0) Gecko/20100101
+ Thunderbird/60.7.0
 MIME-Version: 1.0
-Content-Type: text/plain
-X-MTK:  N
-Content-Transfer-Encoding: base64
+In-Reply-To: <20200914203110.GA185427@bogus>
+Content-Type: text/plain; charset="utf-8"
+Content-Language: en-US
+Content-Transfer-Encoding: 7bit
+X-Originating-IP: [10.174.177.253]
+X-CFilter-Loop: Reflected
 Sender: devicetree-owner@vger.kernel.org
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-TVQ4MTkyIG1zZGMgaXMgYW4gaW5kZXBlbmRlbnQgc3ViIHN5c3RlbSwgd2UgbmVlZCBjb250cm9s
-IG1vcmUgYnVzDQpjbG9ja3MgZm9yIGl0Lg0KQWRkIHN1cHBvcnQgZm9yIHRoZSBhZGRpdGlvbmFs
-IHN1YnN5cyBjbG9ja3MgdG8gYWxsb3cgaXQgdG8gYmUNCmNvbmZpZ3VyZWQgYXBwcm9wcmlhdGVs
-eS4NCg0KU2lnbmVkLW9mZi1ieTogV2VuYmluIE1laSA8d2VuYmluLm1laUBtZWRpYXRlay5jb20+
-DQotLS0NCiBkcml2ZXJzL21tYy9ob3N0L210ay1zZC5jIHwgNzcgKysrKysrKysrKysrKysrKysr
-KysrKysrKysrKysrLS0tLS0tLS0tDQogMSBmaWxlIGNoYW5nZWQsIDU5IGluc2VydGlvbnMoKyks
-IDE4IGRlbGV0aW9ucygtKQ0KDQpkaWZmIC0tZ2l0IGEvZHJpdmVycy9tbWMvaG9zdC9tdGstc2Qu
-YyBiL2RyaXZlcnMvbW1jL2hvc3QvbXRrLXNkLmMNCmluZGV4IGVkMmIyNDY5MWI0Zi4uZjMxMTE5
-MmM4ZDA1IDEwMDY0NA0KLS0tIGEvZHJpdmVycy9tbWMvaG9zdC9tdGstc2QuYw0KKysrIGIvZHJp
-dmVycy9tbWMvaG9zdC9tdGstc2QuYw0KQEAgLTQyNiw2ICs0MjYsOCBAQCBzdHJ1Y3QgbXNkY19o
-b3N0IHsNCiAJc3RydWN0IGNsayAqaF9jbGs7ICAgICAgLyogbXNkYyBoX2NsayAqLw0KIAlzdHJ1
-Y3QgY2xrICpidXNfY2xrOwkvKiBidXMgY2xvY2sgd2hpY2ggdXNlZCB0byBhY2Nlc3MgcmVnaXN0
-ZXIgKi8NCiAJc3RydWN0IGNsayAqc3JjX2Nsa19jZzsgLyogbXNkYyBzb3VyY2UgY2xvY2sgY29u
-dHJvbCBnYXRlICovDQorCXN0cnVjdCBjbGsgKnN5c19jbGtfY2c7CS8qIG1zZGMgc3Vic3lzIGNs
-b2NrIGNvbnRyb2wgZ2F0ZSAqLw0KKwlzdHJ1Y3QgY2xrX2J1bGtfZGF0YSBidWxrX2Nsa3NbM107
-CS8qIHBjbGssIGF4aSwgYWhiIGNsb2NrIGNvbnRyb2wgZ2F0ZSAqLw0KIAl1MzIgbWNsazsJCS8q
-IG1tYyBzdWJzeXN0ZW0gY2xvY2sgZnJlcXVlbmN5ICovDQogCXUzMiBzcmNfY2xrX2ZyZXE7CS8q
-IHNvdXJjZSBjbG9jayBmcmVxdWVuY3kgKi8NCiAJdW5zaWduZWQgY2hhciB0aW1pbmc7DQpAQCAt
-Nzg0LDYgKzc4Niw4IEBAIHN0YXRpYyB2b2lkIG1zZGNfc2V0X2J1c3lfdGltZW91dChzdHJ1Y3Qg
-bXNkY19ob3N0ICpob3N0LCB1NjQgbnMsIHU2NCBjbGtzKQ0KIA0KIHN0YXRpYyB2b2lkIG1zZGNf
-Z2F0ZV9jbG9jayhzdHJ1Y3QgbXNkY19ob3N0ICpob3N0KQ0KIHsNCisJY2xrX2J1bGtfZGlzYWJs
-ZV91bnByZXBhcmUoQVJSQVlfU0laRShob3N0LT5idWxrX2Nsa3MpLA0KKwkJCQkgICBob3N0LT5i
-dWxrX2Nsa3MpOw0KIAljbGtfZGlzYWJsZV91bnByZXBhcmUoaG9zdC0+c3JjX2Nsa19jZyk7DQog
-CWNsa19kaXNhYmxlX3VucHJlcGFyZShob3N0LT5zcmNfY2xrKTsNCiAJY2xrX2Rpc2FibGVfdW5w
-cmVwYXJlKGhvc3QtPmJ1c19jbGspOw0KQEAgLTc5MiwxMCArNzk2LDE3IEBAIHN0YXRpYyB2b2lk
-IG1zZGNfZ2F0ZV9jbG9jayhzdHJ1Y3QgbXNkY19ob3N0ICpob3N0KQ0KIA0KIHN0YXRpYyB2b2lk
-IG1zZGNfdW5nYXRlX2Nsb2NrKHN0cnVjdCBtc2RjX2hvc3QgKmhvc3QpDQogew0KKwlpbnQgcmV0
-Ow0KKw0KIAljbGtfcHJlcGFyZV9lbmFibGUoaG9zdC0+aF9jbGspOw0KIAljbGtfcHJlcGFyZV9l
-bmFibGUoaG9zdC0+YnVzX2Nsayk7DQogCWNsa19wcmVwYXJlX2VuYWJsZShob3N0LT5zcmNfY2xr
-KTsNCiAJY2xrX3ByZXBhcmVfZW5hYmxlKGhvc3QtPnNyY19jbGtfY2cpOw0KKwlyZXQgPSBjbGtf
-YnVsa19wcmVwYXJlX2VuYWJsZShBUlJBWV9TSVpFKGhvc3QtPmJ1bGtfY2xrcyksDQorCQkJCSAg
-ICAgIGhvc3QtPmJ1bGtfY2xrcyk7DQorCWlmIChyZXQpDQorCQlkZXZfZGJnKGhvc3QtPmRldiwg
-ImVuYWJsZSBjbGtzIGZhaWxlZCFcbiIpOw0KKw0KIAl3aGlsZSAoIShyZWFkbChob3N0LT5iYXNl
-ICsgTVNEQ19DRkcpICYgTVNEQ19DRkdfQ0tTVEIpKQ0KIAkJY3B1X3JlbGF4KCk7DQogfQ0KQEAg
-LTIzNjEsNiArMjM3Miw1MiBAQCBzdGF0aWMgdm9pZCBtc2RjX29mX3Byb3BlcnR5X3BhcnNlKHN0
-cnVjdCBwbGF0Zm9ybV9kZXZpY2UgKnBkZXYsDQogCQlob3N0LT5jcWhjaSA9IGZhbHNlOw0KIH0N
-CiANCitzdGF0aWMgaW50IG1zZGNfb2ZfY2xvY2tfcGFyc2Uoc3RydWN0IHBsYXRmb3JtX2Rldmlj
-ZSAqcGRldiwNCisJCQkgICAgICAgc3RydWN0IG1zZGNfaG9zdCAqaG9zdCkNCit7DQorCXN0cnVj
-dCBjbGsgKmNsazsNCisNCisJaG9zdC0+c3JjX2NsayA9IGRldm1fY2xrX2dldCgmcGRldi0+ZGV2
-LCAic291cmNlIik7DQorCWlmIChJU19FUlIoaG9zdC0+c3JjX2NsaykpDQorCQlyZXR1cm4gUFRS
-X0VSUihob3N0LT5zcmNfY2xrKTsNCisNCisJaG9zdC0+aF9jbGsgPSBkZXZtX2Nsa19nZXQoJnBk
-ZXYtPmRldiwgImhjbGsiKTsNCisJaWYgKElTX0VSUihob3N0LT5oX2NsaykpDQorCQlyZXR1cm4g
-UFRSX0VSUihob3N0LT5oX2Nsayk7DQorDQorCWhvc3QtPmJ1c19jbGsgPSBkZXZtX2Nsa19nZXQo
-JnBkZXYtPmRldiwgImJ1c19jbGsiKTsNCisJaWYgKElTX0VSUihob3N0LT5idXNfY2xrKSkNCisJ
-CWhvc3QtPmJ1c19jbGsgPSBOVUxMOw0KKw0KKwkvKnNvdXJjZSBjbG9jayBjb250cm9sIGdhdGUg
-aXMgb3B0aW9uYWwgY2xvY2sqLw0KKwlob3N0LT5zcmNfY2xrX2NnID0gZGV2bV9jbGtfZ2V0KCZw
-ZGV2LT5kZXYsICJzb3VyY2VfY2ciKTsNCisJaWYgKElTX0VSUihob3N0LT5zcmNfY2xrX2NnKSkN
-CisJCWhvc3QtPnNyY19jbGtfY2cgPSBOVUxMOw0KKw0KKwlob3N0LT5zeXNfY2xrX2NnID0gZGV2
-bV9jbGtfZ2V0KCZwZGV2LT5kZXYsICJzeXNfY2ciKTsNCisJaWYgKElTX0VSUihob3N0LT5zeXNf
-Y2xrX2NnKSkNCisJCWhvc3QtPnN5c19jbGtfY2cgPSBOVUxMOw0KKwllbHNlDQorCQljbGtfcHJl
-cGFyZV9lbmFibGUoaG9zdC0+c3lzX2Nsa19jZyk7DQorDQorCWNsayA9IGRldm1fY2xrX2dldCgm
-cGRldi0+ZGV2LCAicGNsa19jZyIpOw0KKwlpZiAoSVNfRVJSKGNsaykpDQorCQljbGsgPSBOVUxM
-Ow0KKwlob3N0LT5idWxrX2Nsa3NbMF0uY2xrID0gY2xrOw0KKw0KKwljbGsgPSBkZXZtX2Nsa19n
-ZXQoJnBkZXYtPmRldiwgImF4aV9jZyIpOw0KKwlpZiAoSVNfRVJSKGNsaykpDQorCQljbGsgPSBO
-VUxMOw0KKwlob3N0LT5idWxrX2Nsa3NbMV0uY2xrID0gY2xrOw0KKw0KKwljbGsgPSBkZXZtX2Ns
-a19nZXQoJnBkZXYtPmRldiwgImFoYl9jZyIpOw0KKwlpZiAoSVNfRVJSKGNsaykpDQorCQljbGsg
-PSBOVUxMOw0KKwlob3N0LT5idWxrX2Nsa3NbMl0uY2xrID0gY2xrOw0KKw0KKwlyZXR1cm4gMDsN
-Cit9DQorDQogc3RhdGljIGludCBtc2RjX2Rydl9wcm9iZShzdHJ1Y3QgcGxhdGZvcm1fZGV2aWNl
-ICpwZGV2KQ0KIHsNCiAJc3RydWN0IG1tY19ob3N0ICptbWM7DQpAQCAtMjQwMCwyNSArMjQ1Nyw5
-IEBAIHN0YXRpYyBpbnQgbXNkY19kcnZfcHJvYmUoc3RydWN0IHBsYXRmb3JtX2RldmljZSAqcGRl
-dikNCiAJaWYgKHJldCkNCiAJCWdvdG8gaG9zdF9mcmVlOw0KIA0KLQlob3N0LT5zcmNfY2xrID0g
-ZGV2bV9jbGtfZ2V0KCZwZGV2LT5kZXYsICJzb3VyY2UiKTsNCi0JaWYgKElTX0VSUihob3N0LT5z
-cmNfY2xrKSkgew0KLQkJcmV0ID0gUFRSX0VSUihob3N0LT5zcmNfY2xrKTsNCi0JCWdvdG8gaG9z
-dF9mcmVlOw0KLQl9DQotDQotCWhvc3QtPmhfY2xrID0gZGV2bV9jbGtfZ2V0KCZwZGV2LT5kZXYs
-ICJoY2xrIik7DQotCWlmIChJU19FUlIoaG9zdC0+aF9jbGspKSB7DQotCQlyZXQgPSBQVFJfRVJS
-KGhvc3QtPmhfY2xrKTsNCisJcmV0ID0gbXNkY19vZl9jbG9ja19wYXJzZShwZGV2LCBob3N0KTsN
-CisJaWYgKHJldCkNCiAJCWdvdG8gaG9zdF9mcmVlOw0KLQl9DQotDQotCWhvc3QtPmJ1c19jbGsg
-PSBkZXZtX2Nsa19nZXQoJnBkZXYtPmRldiwgImJ1c19jbGsiKTsNCi0JaWYgKElTX0VSUihob3N0
-LT5idXNfY2xrKSkNCi0JCWhvc3QtPmJ1c19jbGsgPSBOVUxMOw0KLQkvKnNvdXJjZSBjbG9jayBj
-b250cm9sIGdhdGUgaXMgb3B0aW9uYWwgY2xvY2sqLw0KLQlob3N0LT5zcmNfY2xrX2NnID0gZGV2
-bV9jbGtfZ2V0KCZwZGV2LT5kZXYsICJzb3VyY2VfY2ciKTsNCi0JaWYgKElTX0VSUihob3N0LT5z
-cmNfY2xrX2NnKSkNCi0JCWhvc3QtPnNyY19jbGtfY2cgPSBOVUxMOw0KIA0KIAlob3N0LT5yZXNl
-dCA9IGRldm1fcmVzZXRfY29udHJvbF9nZXRfb3B0aW9uYWxfZXhjbHVzaXZlKCZwZGV2LT5kZXYs
-DQogCQkJCQkJCQkiaHJzdCIpOw0KLS0gDQoyLjE4LjANCg==
+
+
+On 2020/9/15 4:31, Rob Herring wrote:
+> On Thu, Sep 03, 2020 at 08:05:03PM +0800, Zhen Lei wrote:
+>> Add DT bindings for the Hisilicon SD5203 vector interrupt controller.
+>>
+>> Signed-off-by: Zhen Lei <thunder.leizhen@huawei.com>
+>> ---
+>>  .../hisilicon,sd5203-vic.txt                  | 27 +++++++++++++++++++
+> 
+> Bindings should be in DT schema format now.
+
+Hi, Rob Herring:
+
+As Marc Zyngier's suggestion, I discarded adding an independent SD5203-VIC
+driver, but make the dw-apb-ictl irqchip driver to support hierarchy irq domain.
+So this new file was also dropped. Now, I updated the descriptions in the existing
+file "snps,dw-apb-ictl.txt" in the following versions.
+
+> 
+>>  1 file changed, 27 insertions(+)
+>>  create mode 100644 Documentation/devicetree/bindings/interrupt-controller/hisilicon,sd5203-vic.txt
+>>
+>> diff --git a/Documentation/devicetree/bindings/interrupt-controller/hisilicon,sd5203-vic.txt b/Documentation/devicetree/bindings/interrupt-controller/hisilicon,sd5203-vic.txt
+>> new file mode 100644
+>> index 000000000000..a08292e868b0
+>> --- /dev/null
+>> +++ b/Documentation/devicetree/bindings/interrupt-controller/hisilicon,sd5203-vic.txt
+>> @@ -0,0 +1,27 @@
+>> +Hisilicon SD5203 vector interrupt controller (VIC)
+>> +
+>> +Hisilicon SD5203 VIC based on Synopsys DesignWare APB interrupt controller, but
+>> +there's something special:
+>> +1. The maximum number of irqs supported is 32. The registers ENABLE, MASK and
+>> +   FINALSTATUS are 32 bits.
+>> +2. There is only one VIC, it's used as primary interrupt controller.
+>> +
+>> +Required properties:
+>> +- compatible: shall be "hisilicon,sd5203-vic"
+>> +- reg: physical base address of the controller and length of memory mapped
+>> +  region starting with ENABLE_LOW register
+>> +- interrupt-controller: identifies the node as an interrupt controller
+>> +- #interrupt-cells: number of cells to encode an interrupt-specifier, shall be 1
+>> +
+>> +The interrupt sources map to the corresponding bits in the interrupt
+>> +registers, i.e.
+>> +- 0 maps to bit 0 of low interrupts,
+>> +- 1 maps to bit 1 of low interrupts,
+>> +
+>> +Example:
+>> +	vic: interrupt-controller@10130000 {
+>> +		compatible = "hisilicon,sd5203-vic";
+>> +		reg = <0x10130000 0x1000>;
+>> +		interrupt-controller;
+>> +		#interrupt-cells = <1>;
+>> +	};
+>> -- 
+>> 2.26.0.106.g9fadedd
+>>
+>>
+> 
+> .
+> 
 
