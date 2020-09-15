@@ -2,126 +2,77 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from vger.kernel.org (vger.kernel.org [23.128.96.18])
-	by mail.lfdr.de (Postfix) with ESMTP id B8F0126B387
-	for <lists+devicetree@lfdr.de>; Wed, 16 Sep 2020 01:04:51 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTP id 226F926B4FF
+	for <lists+devicetree@lfdr.de>; Wed, 16 Sep 2020 01:35:30 +0200 (CEST)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S1727025AbgIOXEP (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Tue, 15 Sep 2020 19:04:15 -0400
-Received: from lindbergh.monkeyblade.net ([23.128.96.19]:58356 "EHLO
-        lindbergh.monkeyblade.net" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S1727323AbgIOXDr (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Tue, 15 Sep 2020 19:03:47 -0400
-Received: from mail-pj1-x1041.google.com (mail-pj1-x1041.google.com [IPv6:2607:f8b0:4864:20::1041])
-        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 8B32BC061788
-        for <devicetree@vger.kernel.org>; Tue, 15 Sep 2020 16:03:47 -0700 (PDT)
-Received: by mail-pj1-x1041.google.com with SMTP id a9so567351pjg.1
-        for <devicetree@vger.kernel.org>; Tue, 15 Sep 2020 16:03:47 -0700 (PDT)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=chromium.org; s=google;
-        h=date:from:to:cc:subject:message-id:references:mime-version
-         :content-disposition:in-reply-to;
-        bh=Szj4HEGLJCAo0focZEdIAz4HSdQqUNWGrF8lTpz41tg=;
-        b=Al/ywHXkCLn66C3fB4LS0wK1RSE8K1XgfVUSsuH9bvAtw0RLdo2wBFXwerM1pAgULA
-         /VBg8L6Xm1vtYDF0bYsOMv2/j+akKykQ4U9gd6R66+jRn7mUdHj7ddSOoJ7JnzEd7qsH
-         ladfCPczQpkBnRc+aFmReIhIhDepPYqdxSZO4=
+        id S1727238AbgIOXfX (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Tue, 15 Sep 2020 19:35:23 -0400
+Received: from mail-oi1-f193.google.com ([209.85.167.193]:41221 "EHLO
+        mail-oi1-f193.google.com" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
+        with ESMTP id S1727057AbgIOOf3 (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Tue, 15 Sep 2020 10:35:29 -0400
+Received: by mail-oi1-f193.google.com with SMTP id x69so4080721oia.8;
+        Tue, 15 Sep 2020 07:35:28 -0700 (PDT)
 X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
         d=1e100.net; s=20161025;
-        h=x-gm-message-state:date:from:to:cc:subject:message-id:references
-         :mime-version:content-disposition:in-reply-to;
-        bh=Szj4HEGLJCAo0focZEdIAz4HSdQqUNWGrF8lTpz41tg=;
-        b=I/GJVsnQ/kpCe5B/00raJZ+Jykxfu+I2egewCJ5T4tBfeK+yXD2NFc9GEpTWEH1yRa
-         kAmJQxXotAfcT2fbZ9X3UexEXNDJEEJAJIgEVYeyDPUnb8AX8w/6JDvv7FFPQcXR2HOE
-         4+Ngtc69E06ctcRA7OV23daxpcGFCqYgZiLZuXXXKXiMlsfQQMV+SN63OtjTyGV8SgbT
-         kX8uy+SjkbfSTOPX32CX/EYyUAGoB07FuDA6jUS0ZaWV2owD6Jt13b7sFCff10n6s3VF
-         UIQDBa3F7qYrRMm1U0P6kw1Mom/blF3qTOyMFVgmk+gVcp+YoZfzfrASW85iDxn3QA58
-         qymQ==
-X-Gm-Message-State: AOAM532teLyE44Jt4DjDJ/iAJeHbxRmdNvEzKtNl4N3zTRUmsoIWwI9m
-        Rt1PphDYTz6k0cfLgEm/1zxAxA==
-X-Google-Smtp-Source: ABdhPJyN0uXuwQlv65uva/TdZOuxlc4iCI9S6l1Qqb7sv1C+xG4CJpZX6gyS9Wkm+edENuYvypjqmQ==
-X-Received: by 2002:a17:90a:b702:: with SMTP id l2mr1476282pjr.82.1600211027113;
-        Tue, 15 Sep 2020 16:03:47 -0700 (PDT)
-Received: from localhost ([2620:15c:202:1:f693:9fff:fef4:e70a])
-        by smtp.gmail.com with ESMTPSA id a20sm14251840pfa.59.2020.09.15.16.03.46
-        (version=TLS1_3 cipher=TLS_AES_128_GCM_SHA256 bits=128/128);
-        Tue, 15 Sep 2020 16:03:46 -0700 (PDT)
-Date:   Tue, 15 Sep 2020 16:03:45 -0700
-From:   Matthias Kaehlcke <mka@chromium.org>
-To:     Peter Chen <peter.chen@nxp.com>
-Cc:     Greg Kroah-Hartman <gregkh@linuxfoundation.org>,
-        Rob Herring <robh+dt@kernel.org>,
-        Frank Rowand <frowand.list@gmail.com>,
-        Alan Stern <stern@rowland.harvard.edu>,
-        Krzysztof Kozlowski <krzk@kernel.org>,
-        Bastien Nocera <hadess@hadess.net>,
-        Ravi Chandra Sadineni <ravisadineni@chromium.org>,
-        "linux-usb@vger.kernel.org" <linux-usb@vger.kernel.org>,
-        Stephen Boyd <swboyd@chromium.org>,
-        "devicetree@vger.kernel.org" <devicetree@vger.kernel.org>,
-        Douglas Anderson <dianders@chromium.org>,
-        "linux-kernel@vger.kernel.org" <linux-kernel@vger.kernel.org>,
-        "Alexander A. Klimov" <grandmaster@al2klimov.de>,
-        Masahiro Yamada <masahiroy@kernel.org>
-Subject: Re: [PATCH 2/2] USB: misc: Add onboard_usb_hub driver
-Message-ID: <20200915230345.GF2771744@google.com>
-References: <20200914112716.1.I248292623d3d0f6a4f0c5bc58478ca3c0062b49a@changeid>
- <20200914112716.2.I7c9a1f1d6ced41dd8310e8a03da666a32364e790@changeid>
- <20200915025426.GA17450@b29397-desktop>
- <20200915050207.GF2022397@google.com>
- <AM7PR04MB715735A8A102F3EC9041EA328B200@AM7PR04MB7157.eurprd04.prod.outlook.com>
+        h=x-gm-message-state:mime-version:references:in-reply-to:from:date
+         :message-id:subject:to:cc;
+        bh=XFJbV8gqtdgXON44AjHs01o37Q1aP3y+2+6LNfuSBbg=;
+        b=aMn+a2izYD0N0/HGHxw1jMkzf8xryX+UROIPQJMtvx6MkZ8aSP4tPsKyMY7IEsQsJj
+         0i/oKjOT4mrNzz3OwkhRV75lTRr7gfhfKKiBxnBWD8hGQHT608xJF7iNG8CroImYHEqy
+         uOv5DngDbmMqSUsQ844vnGmQjxYhObhdYRJk2Ddjsxeofb/0ZpzOuAyItba6rBgcpB7p
+         Uvc4Ne/CDP33v1oq+Geqpmmne9nPuxXYlFqkfdf3KtKYmXKKA2w6G/IQnn8wgCzZu6rd
+         hWINLfZ09KT1/FoJv3T261E0MZbrxbFyS2SH3qdY8IMEkTaaDcSp0n2mLFPVMovqoOTf
+         dl4w==
+X-Gm-Message-State: AOAM530NDM0ksVtY1k/u1uO/yqEmPJtMmo/ANCkkjDGhXEJhJnedrgfB
+        7VmYU9SJktJowkM0LT78Fi4MGqqQDfHbyWfQ5yOo89MS
+X-Google-Smtp-Source: ABdhPJzZ3UVmsOsTh4cqJBlDJ7vzhFrrmrBKHqhfHpds3yc77F0pv64OlNm3mClJtOeFqGGDm7n+2njVKcAuwriGQnA=
+X-Received: by 2002:aca:52d6:: with SMTP id g205mr3393965oib.54.1600176702442;
+ Tue, 15 Sep 2020 06:31:42 -0700 (PDT)
 MIME-Version: 1.0
-Content-Type: text/plain; charset=utf-8
-Content-Disposition: inline
-In-Reply-To: <AM7PR04MB715735A8A102F3EC9041EA328B200@AM7PR04MB7157.eurprd04.prod.outlook.com>
+References: <20200915131216.21137-1-fabrizio.castro.jz@renesas.com> <20200915131216.21137-4-fabrizio.castro.jz@renesas.com>
+In-Reply-To: <20200915131216.21137-4-fabrizio.castro.jz@renesas.com>
+From:   Geert Uytterhoeven <geert@linux-m68k.org>
+Date:   Tue, 15 Sep 2020 15:31:30 +0200
+Message-ID: <CAMuHMdXdsHDKZS1ZdACK0-wGsc6cfQFGETykJ_sQX=bat3WZ7w@mail.gmail.com>
+Subject: Re: [PATCH 3/3] media: dt-bindings: media: renesas,drif: Add r8a77990 support
+To:     Fabrizio Castro <fabrizio.castro.jz@renesas.com>
+Cc:     Mauro Carvalho Chehab <mchehab@kernel.org>,
+        Rob Herring <robh+dt@kernel.org>,
+        Ramesh Shanmugasundaram <rashanmu@gmail.com>,
+        Linux Media Mailing List <linux-media@vger.kernel.org>,
+        "open list:OPEN FIRMWARE AND FLATTENED DEVICE TREE BINDINGS" 
+        <devicetree@vger.kernel.org>,
+        Linux Kernel Mailing List <linux-kernel@vger.kernel.org>,
+        Linux-Renesas <linux-renesas-soc@vger.kernel.org>,
+        Chris Paterson <Chris.Paterson2@renesas.com>,
+        Biju Das <biju.das.jz@bp.renesas.com>,
+        Prabhakar Mahadev Lad <prabhakar.mahadev-lad.rj@bp.renesas.com>,
+        Laurent Pinchart <laurent.pinchart@ideasonboard.com>
+Content-Type: text/plain; charset="UTF-8"
 Sender: devicetree-owner@vger.kernel.org
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-Hi Peter,
+On Tue, Sep 15, 2020 at 3:12 PM Fabrizio Castro
+<fabrizio.castro.jz@renesas.com> wrote:
+> The r8a77990 (a.k.a. R-Car E3) device tree schema is
+> compatible with R-Car H3 and M3-W schema.
+>
+> Document r8a77990 support within renesas,drif.yaml.
+>
+> Signed-off-by: Fabrizio Castro <fabrizio.castro.jz@renesas.com>
 
-On Tue, Sep 15, 2020 at 07:05:38AM +0000, Peter Chen wrote:
->   
-> > > > +	hub->cfg.power_off_in_suspend =
-> > of_property_read_bool(dev->of_node, "power-off-in-suspend");
-> > > > +	hub->cfg.wakeup_source = of_property_read_bool(dev->of_node,
-> > > > +"wakeup-source");
-> > >
-> > > Do you really need these two properties? If the device (and its
-> > > children if existed) has wakeup enabled, you keep power in suspend,
-> > > otherwise, you could close it, any exceptions?
-> > 
-> > That would work for my use case, but I'm not sure it's a universally good
-> > configuration.
-> > 
-> > I don't have a specific USB device in mind, but you could have a device that
-> > shouldn't lose it's context during suspend or keep operating autonomously (e.g.
-> > a sensor with a large buffer collecting samples). Not sure if something like this
-> > exists in the real though.
-> > 
-> > I'm not an expert, but it seems there are USB controllers with wakeup support
-> > which is always enabled. A board with such a controller then couldn't have a
-> > policy to power down the hub regardless of wakeup capable devices being
-> > connected.
-> > 
-> 
-> Whether or not it is a wakeup_source, it could get through its or its children's
-> /sys/../power/wakeup value, you have already used usb_wakeup_enabled_descendants
-> to know it.
+Reviewed-by: Geert Uytterhoeven <geert+renesas@glider.be>
 
-I conceptually agree, but in practice there are some conflicting details:
+Gr{oetje,eeting}s,
 
-wakeup for the hubs on my system is by default disabled, yet USB wakeup works
-regardless, so the flag doesn't really provide useful information. I guess we
-could still use it if there is no better way, but it doesn't seem ideal.
+                        Geert
 
-Similar for udev->bus->controller, according to sysfs it doesn't even have wakeup
-support. Please let me know if there is a reliable way to check if wakeup is
-enabled on the controller of a device.
+-- 
+Geert Uytterhoeven -- There's lots of Linux beyond ia32 -- geert@linux-m68k.org
 
-> If the onboard HUB needs to reflect wakeup signal, it should not power off its regulator.
-> 
-> For another property power-off-in-suspend, I think it is also a user option,
-> but not a hardware feature.
-
-Ok, I think you are suggesting a sysfs attribute instead of a DT property, that
-sounds good to me.
+In personal conversations with technical people, I call myself a hacker. But
+when I'm talking to journalists I just say "programmer" or something like that.
+                                -- Linus Torvalds
