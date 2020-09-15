@@ -2,110 +2,100 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from vger.kernel.org (vger.kernel.org [23.128.96.18])
-	by mail.lfdr.de (Postfix) with ESMTP id 3F5EA26AB1F
-	for <lists+devicetree@lfdr.de>; Tue, 15 Sep 2020 19:51:24 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTP id B7A9426AB4E
+	for <lists+devicetree@lfdr.de>; Tue, 15 Sep 2020 19:58:38 +0200 (CEST)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S1727922AbgIORu5 (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Tue, 15 Sep 2020 13:50:57 -0400
-Received: from lindbergh.monkeyblade.net ([23.128.96.19]:37472 "EHLO
+        id S1727940AbgIOR6b (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Tue, 15 Sep 2020 13:58:31 -0400
+Received: from lindbergh.monkeyblade.net ([23.128.96.19]:38694 "EHLO
         lindbergh.monkeyblade.net" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S1727702AbgIORuV (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Tue, 15 Sep 2020 13:50:21 -0400
-Received: from mail-wr1-x42a.google.com (mail-wr1-x42a.google.com [IPv6:2a00:1450:4864:20::42a])
-        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 26145C061788
-        for <devicetree@vger.kernel.org>; Tue, 15 Sep 2020 10:50:14 -0700 (PDT)
-Received: by mail-wr1-x42a.google.com with SMTP id e16so4289465wrm.2
-        for <devicetree@vger.kernel.org>; Tue, 15 Sep 2020 10:50:14 -0700 (PDT)
+        with ESMTP id S1727786AbgIOR6O (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Tue, 15 Sep 2020 13:58:14 -0400
+Received: from mail-pj1-x1032.google.com (mail-pj1-x1032.google.com [IPv6:2607:f8b0:4864:20::1032])
+        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 3404BC06174A
+        for <devicetree@vger.kernel.org>; Tue, 15 Sep 2020 10:58:10 -0700 (PDT)
+Received: by mail-pj1-x1032.google.com with SMTP id md22so296237pjb.0
+        for <devicetree@vger.kernel.org>; Tue, 15 Sep 2020 10:58:10 -0700 (PDT)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=linaro.org; s=google;
-        h=subject:to:cc:references:from:message-id:date:user-agent
-         :mime-version:in-reply-to:content-language:content-transfer-encoding;
-        bh=Ra0UwZMSA18qjDYK2AtGt6BQncZY1tBEKXF6zPEuSQo=;
-        b=YwKVl4GeDkAYzX8+Xr7omJYjhQPzOKZaZZTBPR6WHuYJVvKOklBaZx/c/DTylR2jWN
-         ALjHoraylidjTnkGHY50QKUKtkQwIZ3Z3ydhZufdcUHbgVCV0WqWTB7zSdD5f5IfwaJN
-         vKMUn/qdSQuOYN6hY9pOCrX2ohILXF/SgkhzbG5fQHFakcnE/9tEqpLwbFkfydLPFPrT
-         MRhxfA6Mb+3Mk60km0jJuT6n0vbyXn1X8yj3niZG2C7FFL5ZAqSwfQM76MBb8k8e7MHf
-         2QdB8OanVyDr6UbHsSxJg0muPhGUS4Ytyot/jAKcbCsIU3nzZk5Pq7Da5zS6QlGn8w+H
-         Is+g==
+        d=chromium.org; s=google;
+        h=date:from:to:cc:subject:message-id:references:mime-version
+         :content-disposition:in-reply-to;
+        bh=j+g2akO1lz2ozUn1CRIfY/0d2i70WKcJaWsW6RG6CLQ=;
+        b=hEsZVQNwXVb5K4Iph8p76V23YfAj+k4SN8f0kxzSkN7p+uCYR8z/2IVqN8L06s78aF
+         Sb7NcBWHJB36BAYQWVD5TRuWB52QF1dvWygLsshdIPk5pOmIlQEkuQXjV+clkEAeLJm0
+         o8/5GNFXs/MWQWMRSxjJXh2KYHFGnVWvi5xWk=
 X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
         d=1e100.net; s=20161025;
-        h=x-gm-message-state:subject:to:cc:references:from:message-id:date
-         :user-agent:mime-version:in-reply-to:content-language
-         :content-transfer-encoding;
-        bh=Ra0UwZMSA18qjDYK2AtGt6BQncZY1tBEKXF6zPEuSQo=;
-        b=jj3BsWlLJfb/+Hf8+3XQkK+NuZEfeu5djs4Pa5cpPUEe64kFW81OcarL1mFLZJl5wV
-         gsxdllNUa51vRag6DAgCTJprUGg3MdbsZ+7YXEphLmYHQXsn0R08NAGWrBbb1YgxyuUZ
-         BXixh1pDM7U5HO137pUC5x0ITkjOT7kYqMgF7kgORDpyAnvYqKTkdztNP/ryix0yYSN4
-         dGyyER0JjaDfbnyRt1Pcv2AefKnBdotBi/MAJJiILpsE8mUMrIGHLqQ2NgguaLVHA/j1
-         NMHN7+Q6sYZ0XfkvYWSAvjP/q33cNO/8mnTQfjvz9Ad9gPgmS7Z6VMkyYMt98tT7TkeH
-         3tHQ==
-X-Gm-Message-State: AOAM530HiPRiuzdwemJHIM9DUnRTpMO2rk5QQYMS+Aes7q+sJRLsdEWl
-        lL8wDk15YsnMCAenSzqzk35leA==
-X-Google-Smtp-Source: ABdhPJx1YNcWQv0a8DqwHPEsoCstBIsXnKGLWt8dcuNbAYSyGZEFGGK5zfs9EbVq2XcAtMSEzWUxrg==
-X-Received: by 2002:a05:6000:1152:: with SMTP id d18mr22412835wrx.173.1600192212643;
-        Tue, 15 Sep 2020 10:50:12 -0700 (PDT)
-Received: from ?IPv6:2a01:e34:ed2f:f020:a402:e7fb:d494:d130? ([2a01:e34:ed2f:f020:a402:e7fb:d494:d130])
-        by smtp.googlemail.com with ESMTPSA id y2sm501910wmg.23.2020.09.15.10.50.11
+        h=x-gm-message-state:date:from:to:cc:subject:message-id:references
+         :mime-version:content-disposition:in-reply-to;
+        bh=j+g2akO1lz2ozUn1CRIfY/0d2i70WKcJaWsW6RG6CLQ=;
+        b=FDSyWCpLO05AzN2WCZ7agd6+Wkkg/OIAnHSwFrRtrXQhUiE97DajcqDtPHEG+TNf9d
+         LiNKUCZmbDDMyZIckBhR1UiK74l/MsEanb7WxXQDaJaMgFvuWehyMYa+lgfEYZUSHxUK
+         VEX4ZL+0r/Hf3T4S8tfSyFgJzyVXy0ay+LPnTaaZGWGY2HwvRqW77SkOGaS51DYq6dvP
+         RkuDVlkqaR2B2tLYwMX3kPXSRnzeajx10IMlKoNA5Z+H/XiAaE8H+9o/wMQbvzTumHMi
+         MhjooQo67DVdZeIy/8xe3m8AJGKOdPDjDO9Hre0nmsVTbTjLWHdBKgwH12HPzVmz9ngR
+         UDxw==
+X-Gm-Message-State: AOAM532cHaTxyKOmR64iOXMJ2NNiTYNv1vg9VAeY63xycnEG8tZ1+xtO
+        70D4T9T+PUY7qklKqex2GNBnOw==
+X-Google-Smtp-Source: ABdhPJzWSjusUL5iCMafqzidmc97rO1FaeMZvyldTmp4urHg5wJfBQZNJIuEoiZx9TlvbaxdNZZd1g==
+X-Received: by 2002:a17:902:b94b:b029:d1:e5f9:9f8 with SMTP id h11-20020a170902b94bb02900d1e5f909f8mr2678519pls.53.1600192689753;
+        Tue, 15 Sep 2020 10:58:09 -0700 (PDT)
+Received: from localhost ([2620:15c:202:1:f693:9fff:fef4:e70a])
+        by smtp.gmail.com with ESMTPSA id k5sm14843618pfp.214.2020.09.15.10.58.09
         (version=TLS1_3 cipher=TLS_AES_128_GCM_SHA256 bits=128/128);
-        Tue, 15 Sep 2020 10:50:12 -0700 (PDT)
-Subject: Re: is 'dynamic-power-coefficient' expected to be based on 'real'
- power measurements?
-To:     Matthias Kaehlcke <mka@chromium.org>,
-        Rajendra Nayak <rnayak@codeaurora.org>,
-        Lukasz Luba <lukasz.luba@arm.com>
-Cc:     Rob Herring <robh+dt@kernel.org>,
+        Tue, 15 Sep 2020 10:58:09 -0700 (PDT)
+Date:   Tue, 15 Sep 2020 10:58:08 -0700
+From:   Matthias Kaehlcke <mka@chromium.org>
+To:     Daniel Lezcano <daniel.lezcano@linaro.org>
+Cc:     Rajendra Nayak <rnayak@codeaurora.org>,
+        Lukasz Luba <lukasz.luba@arm.com>,
+        Rob Herring <robh+dt@kernel.org>,
         DTML <devicetree@vger.kernel.org>,
         Doug Anderson <dianders@chromium.org>,
         linux-pm@vger.kernel.org,
         Amit Daniel Kachhap <amit.kachhap@gmail.com>,
         Viresh Kumar <viresh.kumar@linaro.org>,
         Javi Merino <javi.merino@kernel.org>
+Subject: Re: is 'dynamic-power-coefficient' expected to be based on 'real'
+ power measurements?
+Message-ID: <20200915175808.GB2771744@google.com>
 References: <248bb01e-1746-c84c-78c4-3cf7d2541a70@codeaurora.org>
  <20200915172444.GA2771744@google.com>
-From:   Daniel Lezcano <daniel.lezcano@linaro.org>
-Message-ID: <406d5d4e-d7d7-8a37-5501-119b734facb3@linaro.org>
-Date:   Tue, 15 Sep 2020 19:50:10 +0200
-User-Agent: Mozilla/5.0 (X11; Linux x86_64; rv:68.0) Gecko/20100101
- Thunderbird/68.10.0
+ <406d5d4e-d7d7-8a37-5501-119b734facb3@linaro.org>
 MIME-Version: 1.0
-In-Reply-To: <20200915172444.GA2771744@google.com>
 Content-Type: text/plain; charset=utf-8
-Content-Language: en-US
-Content-Transfer-Encoding: 8bit
+Content-Disposition: inline
+In-Reply-To: <406d5d4e-d7d7-8a37-5501-119b734facb3@linaro.org>
 Sender: devicetree-owner@vger.kernel.org
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-On 15/09/2020 19:24, Matthias Kaehlcke wrote:
-> +Thermal folks
+On Tue, Sep 15, 2020 at 07:50:10PM +0200, Daniel Lezcano wrote:
+> On 15/09/2020 19:24, Matthias Kaehlcke wrote:
+> > +Thermal folks
+> > 
+> > Hi Rajendra,
+> > 
+> > On Tue, Sep 15, 2020 at 11:14:00AM +0530, Rajendra Nayak wrote:
+> >> Hi Rob,
+> >>
+> >> There has been some discussions on another thread [1] around the DPC (dynamic-power-coefficient) values
+> >> for CPU's being relative vs absolute (based on real power) and should they be used to derive 'real' power
+> >> at various OPPs in order to calculate things like 'sustainable-power' for thermal zones.
+> >> I believe relative values work perfectly fine for scheduling decisions, but with others using this for
+> >> calculating power values in mW, is there a need to document the property as something that *has* to be
+> >> based on real power measurements?
+> > 
+> > Relative values may work for scheduling decisions, but not for thermal
+> > management with the power allocator, at least not when CPU cooling devices
+> > are combined with others that specify their power consumption in absolute
+> > values. Such a configuration should be supported IMO.
 > 
-> Hi Rajendra,
-> 
-> On Tue, Sep 15, 2020 at 11:14:00AM +0530, Rajendra Nayak wrote:
->> Hi Rob,
->>
->> There has been some discussions on another thread [1] around the DPC (dynamic-power-coefficient) values
->> for CPU's being relative vs absolute (based on real power) and should they be used to derive 'real' power
->> at various OPPs in order to calculate things like 'sustainable-power' for thermal zones.
->> I believe relative values work perfectly fine for scheduling decisions, but with others using this for
->> calculating power values in mW, is there a need to document the property as something that *has* to be
->> based on real power measurements?
-> 
-> Relative values may work for scheduling decisions, but not for thermal
-> management with the power allocator, at least not when CPU cooling devices
-> are combined with others that specify their power consumption in absolute
-> values. Such a configuration should be supported IMO.
+> The energy model is used in the cpufreq cooling device and if the
+> sustainable power is consistent with the relative values then there is
+> no reason it shouldn't work.
 
-The energy model is used in the cpufreq cooling device and if the
-sustainable power is consistent with the relative values then there is
-no reason it shouldn't work.
-
-
-
--- 
-<http://www.linaro.org/> Linaro.org │ Open source software for ARM SoCs
-
-Follow Linaro:  <http://www.facebook.com/pages/Linaro> Facebook |
-<http://twitter.com/#!/linaroorg> Twitter |
-<http://www.linaro.org/linaro-blog/> Blog
+Agreed on thermal zones that exclusively use CPUs as cooling devices, but
+what when you have mixed zones, with CPUs with their pseudo-unit and e.g. a
+GPU that specifies its power in mW?
