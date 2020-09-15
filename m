@@ -2,113 +2,71 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from vger.kernel.org (vger.kernel.org [23.128.96.18])
-	by mail.lfdr.de (Postfix) with ESMTP id BC28726B08A
-	for <lists+devicetree@lfdr.de>; Wed, 16 Sep 2020 00:13:38 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTP id 3C46926B086
+	for <lists+devicetree@lfdr.de>; Wed, 16 Sep 2020 00:13:24 +0200 (CEST)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S1727812AbgIOWNe (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Tue, 15 Sep 2020 18:13:34 -0400
-Received: from mail-il1-f196.google.com ([209.85.166.196]:39134 "EHLO
-        mail-il1-f196.google.com" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S1727620AbgIOQjA (ORCPT
+        id S1727773AbgIOQlE (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Tue, 15 Sep 2020 12:41:04 -0400
+Received: from mail-il1-f194.google.com ([209.85.166.194]:32991 "EHLO
+        mail-il1-f194.google.com" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
+        with ESMTP id S1727755AbgIOQjA (ORCPT
         <rfc822;devicetree@vger.kernel.org>); Tue, 15 Sep 2020 12:39:00 -0400
-Received: by mail-il1-f196.google.com with SMTP id s88so3621978ilb.6;
-        Tue, 15 Sep 2020 09:38:17 -0700 (PDT)
+Received: by mail-il1-f194.google.com with SMTP id x2so3654056ilm.0;
+        Tue, 15 Sep 2020 09:38:59 -0700 (PDT)
 X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
         d=1e100.net; s=20161025;
         h=x-gm-message-state:date:from:to:cc:subject:message-id:references
          :mime-version:content-disposition:in-reply-to;
-        bh=fQjq4psADqOTnHj/5X1me47R++0Wgzo4u+nIQzoreps=;
-        b=Sfo3JtsgiNdG5PPVa8FD/kozMhckR1uaP64Uz22YZhAq/5arVVSQodJuwgBo6RpdlN
-         Z3CD6i/BmLIbCqTrOF80KjoEuF5OTTn4Oxx50F5GPP1H6D/9oDmW+BCnsI8m4JSnEMr+
-         bcyGOZkBB+VZgL6LvpUAlAeEmXnh/d8YMCJT6A9lhN43a81ffrWep8uSJO7TLTDlanis
-         p2mU6zOOS/q0q7Js6b10gJglXiMxYGs94VwaHadainnql8j4lUpCCWQzLSwz9tRFF5um
-         SkZ05777oNU82U4OeKFjxkihWOJEKKIv+3YDIJcSBv1vAnAQaBYWC0ncFFU3ZLfd8FjH
-         yESg==
-X-Gm-Message-State: AOAM53186k5WOOMn5NJVd2NQ+IxH70Uiojbqb0fBu05fF5C9tjQdKOqQ
-        6s+bG0hRwU0OjnE/ZAH5Cg==
-X-Google-Smtp-Source: ABdhPJyc/WK+I+3WGB3O4e0d/McGvpjNZjWv2eTGNesdR8lUL+lh2ZG1y+ZQBTzSh6qPvBnsqH/w/w==
-X-Received: by 2002:a92:6f0a:: with SMTP id k10mr15682854ilc.5.1600187897117;
-        Tue, 15 Sep 2020 09:38:17 -0700 (PDT)
+        bh=DTzkkYbk2jIELRszsQOMk/GOI+jJqqHog/KwqOMwjSE=;
+        b=TMp9N4f+SfGlvQFLyW3JN/5pqas+0v0ac3JHD5+1Z1p08NFAIwlOkxqIJ+hDC1+hgH
+         p0Ht37KMrG9ybD4slHhOOfeQ+EfZCGpCrHNmmKbeP2cx2/aVSOo8M6l4GhdtV+e7LeA1
+         +M8T/9l4gFn/fbP7WyCUvYIxFxAfVTJ0FfXWfL2+74T+vLyin4ne7RKZhh2rw40bgr1k
+         e4TXq/D7cQ75zammOVy7Ab2ReGZtxeH2dLVxq/Ayx6cc4DcC78lQS7Abb7qJStLXtH8E
+         pRrN88yUzwUE37GPTPY/QKvTjegXAYdy6m4cg70iBS40dhSqxtUcb1FwUVsx13hKY99x
+         5+Lg==
+X-Gm-Message-State: AOAM531Vud46FUAvPS2JYz0RvY/gYVst8dm+wxJl9ucsqqXcqYfplbYa
+        pweKGJM1phanFHt5T578rw==
+X-Google-Smtp-Source: ABdhPJzIqXAg61MtcWBLixcRoN4fp/9lBLh2wQnLqX1wSfxxtFaTCOycI/TjvPHZeEQEoMB6pi7FIw==
+X-Received: by 2002:a92:c60d:: with SMTP id p13mr12842226ilm.272.1600187939233;
+        Tue, 15 Sep 2020 09:38:59 -0700 (PDT)
 Received: from xps15 ([64.188.179.253])
-        by smtp.gmail.com with ESMTPSA id v20sm9059138ile.42.2020.09.15.09.38.15
+        by smtp.gmail.com with ESMTPSA id z10sm7762968ioi.13.2020.09.15.09.38.57
         (version=TLS1_3 cipher=TLS_AES_256_GCM_SHA384 bits=256/256);
-        Tue, 15 Sep 2020 09:38:16 -0700 (PDT)
-Received: (nullmailer pid 2088114 invoked by uid 1000);
-        Tue, 15 Sep 2020 16:38:14 -0000
-Date:   Tue, 15 Sep 2020 10:38:14 -0600
+        Tue, 15 Sep 2020 09:38:58 -0700 (PDT)
+Received: (nullmailer pid 2089328 invoked by uid 1000);
+        Tue, 15 Sep 2020 16:38:56 -0000
+Date:   Tue, 15 Sep 2020 10:38:56 -0600
 From:   Rob Herring <robh@kernel.org>
-To:     Mauro Carvalho Chehab <mchehab+huawei@kernel.org>
-Cc:     Felipe Balbi <balbi@kernel.org>, linuxarm@huawei.com,
-        mauro.chehab@huawei.com, John Stultz <john.stultz@linaro.org>,
-        Manivannan Sadhasivam <mani@kernel.org>,
-        Greg Kroah-Hartman <gregkh@linuxfoundation.org>,
-        linux-usb@vger.kernel.org, devicetree@vger.kernel.org,
-        linux-kernel@vger.kernel.org
-Subject: Re: [PATCH 2/2] dt-bindings: document a new quirk for dwc3
-Message-ID: <20200915163814.GA2084568@bogus>
-References: <cover.1599549364.git.mchehab+huawei@kernel.org>
- <cb821a8b5ef2d44ce32c8ce1d01c34b7afb70eb2.1599549364.git.mchehab+huawei@kernel.org>
+To:     Manivannan Sadhasivam <manivannan.sadhasivam@linaro.org>
+Cc:     robh+dt@kernel.org, bjorn.andersson@linaro.org, amitk@kernel.org,
+        dmitry.baryshkov@linaro.org, rjw@rjwysocki.net,
+        linux-arm-msm@vger.kernel.org, linux-kernel@vger.kernel.org,
+        agross@kernel.org, devicetree@vger.kernel.org,
+        linux-pm@vger.kernel.org, viresh.kumar@linaro.org,
+        tdas@codeaurora.org
+Subject: Re: [PATCH 1/7] dt-bindings: cpufreq: cpufreq-qcom-hw: Document
+ SM8250 compatible
+Message-ID: <20200915163856.GA2089296@bogus>
+References: <20200908075716.30357-1-manivannan.sadhasivam@linaro.org>
+ <20200908075716.30357-2-manivannan.sadhasivam@linaro.org>
 MIME-Version: 1.0
 Content-Type: text/plain; charset=us-ascii
 Content-Disposition: inline
-In-Reply-To: <cb821a8b5ef2d44ce32c8ce1d01c34b7afb70eb2.1599549364.git.mchehab+huawei@kernel.org>
+In-Reply-To: <20200908075716.30357-2-manivannan.sadhasivam@linaro.org>
 Sender: devicetree-owner@vger.kernel.org
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-On Tue, Sep 08, 2020 at 09:20:57AM +0200, Mauro Carvalho Chehab wrote:
-> At Hikey 970, setting the SPLIT disable at the General
-> User Register 3 is required.
+On Tue, 08 Sep 2020 13:27:10 +0530, Manivannan Sadhasivam wrote:
+> Document the SM8250 SoC specific compatible for Qualcomm Cpufreq HW. The
+> hardware block which carries out CPUFreq operations on SM8250 SoC is
+> called EPSS.
 > 
-> Without that, the URBs generated by the usbhid driver
-> return -EPROTO errors. That causes the code at
-> hid-core.c to call hid_io_error(), which schedules
-> a reset_work, causing a call to hid_reset().
-> 
-> In turn, the code there will call:
-> 
-> 	usb_queue_reset_device(usbhid->intf);
-> 
-> The net result is that the input devices won't work, and
-> will be reset on every 0.5 seconds:
-> 
-> 	[   33.122384] hub 1-1:1.0: state 7 ports 4 chg 0000 evt 0002
-> 	[   33.378220] usb 1-1.1: reset low-speed USB device number 3 using xhci-hcd
-> 	[   33.698394] hub 1-1:1.0: state 7 ports 4 chg 0000 evt 0000
-> 	[   34.882365] hub 1-1:1.0: state 7 ports 4 chg 0000 evt 0002
-> 	[   35.138217] usb 1-1.1: reset low-speed USB device number 3 using xhci-hcd
-> 	[   35.458617] hub 1-1:1.0: state 7 ports 4 chg 0000 evt 0000
-> 	[   36.642392] hub 1-1:1.0: state 7 ports 4 chg 0000 evt 0002
-> 	[   36.898207] usb 1-1.1: reset low-speed USB device number 3 using xhci-hcd
-> 	[   37.218598] hub 1-1:1.0: state 7 ports 4 chg 0000 evt 0000
-> 	[   38.402368] hub 1-1:1.0: state 7 ports 4 chg 0000 evt 0002
-> 	[   38.658174] usb 1-1.1: reset low-speed USB device number 3 using xhci-hcd
-> 	[   38.978594] hub 1-1:1.0: state 7 ports 4 chg 0000 evt 0000
-> 	[   40.162361] hub 1-1:1.0: state 7 ports 4 chg 0000 evt 0002
-> 	[   40.418148] usb 1-1.1: reset low-speed USB device number 3 using xhci-hcd
-> 	...
-> 	[  397.698132] usb 1-1.1: reset low-speed USB device number 3 using xhci-hcd
-> 
-> Signed-off-by: Mauro Carvalho Chehab <mchehab+huawei@kernel.org>
+> Signed-off-by: Manivannan Sadhasivam <manivannan.sadhasivam@linaro.org>
 > ---
->  Documentation/devicetree/bindings/usb/dwc3.txt | 3 +++
->  1 file changed, 3 insertions(+)
+>  Documentation/devicetree/bindings/cpufreq/cpufreq-qcom-hw.txt | 2 +-
+>  1 file changed, 1 insertion(+), 1 deletion(-)
 > 
-> diff --git a/Documentation/devicetree/bindings/usb/dwc3.txt b/Documentation/devicetree/bindings/usb/dwc3.txt
-> index d03edf9d3935..1aae2b6160c1 100644
-> --- a/Documentation/devicetree/bindings/usb/dwc3.txt
-> +++ b/Documentation/devicetree/bindings/usb/dwc3.txt
-> @@ -78,6 +78,9 @@ Optional properties:
->  			park mode are disabled.
->   - snps,dis_metastability_quirk: when set, disable metastability workaround.
->  			CAUTION: use only if you are absolutely sure of it.
-> + - snps,dis-split-quirk: when set, change the way URBs are handled by the
-> +			 driver. Needed to avoid -EPROTO errors with usbhid
-> +			 on some devices (Hikey 970).
 
-Can't this be implied by the compatible string? Yes we have quirk 
-properties already, but the problem with them is you can't address them 
-without a DT change.
-
-Rob
+Acked-by: Rob Herring <robh@kernel.org>
