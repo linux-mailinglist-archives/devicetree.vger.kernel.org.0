@@ -2,132 +2,267 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from vger.kernel.org (vger.kernel.org [23.128.96.18])
-	by mail.lfdr.de (Postfix) with ESMTP id C8ED226A213
-	for <lists+devicetree@lfdr.de>; Tue, 15 Sep 2020 11:23:22 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTP id CE78526A22E
+	for <lists+devicetree@lfdr.de>; Tue, 15 Sep 2020 11:30:40 +0200 (CEST)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S1726185AbgIOJXV convert rfc822-to-8bit (ORCPT
-        <rfc822;lists+devicetree@lfdr.de>); Tue, 15 Sep 2020 05:23:21 -0400
-Received: from relay7-d.mail.gandi.net ([217.70.183.200]:51595 "EHLO
-        relay7-d.mail.gandi.net" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S1726119AbgIOJXV (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Tue, 15 Sep 2020 05:23:21 -0400
-X-Originating-IP: 91.224.148.103
-Received: from xps13 (unknown [91.224.148.103])
-        (Authenticated sender: miquel.raynal@bootlin.com)
-        by relay7-d.mail.gandi.net (Postfix) with ESMTPSA id 0895B2000C;
-        Tue, 15 Sep 2020 09:23:16 +0000 (UTC)
-Date:   Tue, 15 Sep 2020 11:23:15 +0200
-From:   Miquel Raynal <miquel.raynal@bootlin.com>
-To:     Yifeng Zhao <yifeng.zhao@rock-chips.com>
-Cc:     richard@nod.at, vigneshr@ti.com, robh+dt@kernel.org,
-        devicetree@vger.kernel.org, linux-mtd@lists.infradead.org,
-        heiko@sntech.de, linux-rockchip@lists.infradead.org,
-        linux-arm-kernel@lists.infradead.org, linux-kernel@vger.kernel.org
-Subject: Re: [PATCH v8 2/8] mtd: rawnand: rockchip: NFC drivers for RK3308,
- RK2928 and others
-Message-ID: <20200915112315.310d89c8@xps13>
-In-Reply-To: <20200915100728.5c866f89@xps13>
-References: <20200717092420.19798-1-yifeng.zhao@rock-chips.com>
-        <20200717092420.19798-3-yifeng.zhao@rock-chips.com>
-        <20200915100728.5c866f89@xps13>
-Organization: Bootlin
-X-Mailer: Claws Mail 3.17.4 (GTK+ 2.24.32; x86_64-pc-linux-gnu)
+        id S1726119AbgIOJaj (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Tue, 15 Sep 2020 05:30:39 -0400
+Received: from lindbergh.monkeyblade.net ([23.128.96.19]:44360 "EHLO
+        lindbergh.monkeyblade.net" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
+        with ESMTP id S1726130AbgIOJaf (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Tue, 15 Sep 2020 05:30:35 -0400
+Received: from mail-wm1-x341.google.com (mail-wm1-x341.google.com [IPv6:2a00:1450:4864:20::341])
+        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 437D4C06174A;
+        Tue, 15 Sep 2020 02:30:34 -0700 (PDT)
+Received: by mail-wm1-x341.google.com with SMTP id q9so2656254wmj.2;
+        Tue, 15 Sep 2020 02:30:34 -0700 (PDT)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+        d=gmail.com; s=20161025;
+        h=subject:to:cc:references:from:message-id:date:user-agent
+         :mime-version:in-reply-to:content-language:content-transfer-encoding;
+        bh=6m9hGzpScNpe0b56EBK2dWXWtQbNdPaZy32XpIfUzGI=;
+        b=tcTDpc01riv8x8bw9x6N+eXB9D0KSc8hBff90p2TcIddrEXpagnvQwoOfHIiq2QEZe
+         4/XbDryeHTGZmotZzpbphwEpZXdn+HaPgtHeP6jyGcEBjuQyGqGgNwQ9ZJDxt85KjCLy
+         o4z236CGZfSaN6XwGWaUtvbe+8zMnoEgnegftz69F3rMtBGyqa8ZsqirnPtfnaJwE5ff
+         AkyM8GXqOTJPS09pSdKAwzkzMQ1zNqx67y//6IF5EC7cU8P2UJJ11fI00GF+ULwVCT79
+         9pidFOHnR9a0poTLnJzd4FjIlTey6nOuD3xXPFtK/rjc94UqwQLVKkGRvwuztD90ItPu
+         5Eaw==
+X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+        d=1e100.net; s=20161025;
+        h=x-gm-message-state:subject:to:cc:references:from:message-id:date
+         :user-agent:mime-version:in-reply-to:content-language
+         :content-transfer-encoding;
+        bh=6m9hGzpScNpe0b56EBK2dWXWtQbNdPaZy32XpIfUzGI=;
+        b=BGNRtww2rHXAJne1rOrvYjrFC3zwfVmU4Y31nZCT8Zpgg/65OE/LR+hUOaIX5Q/OcI
+         3hJewFdT4ml2svXtZKZAAj73QfkkbDx+6CbG4VQYUnusKHE9EGLpZ7uSZSfNfGl3Vm7G
+         ld3jVFYZ5mIOAGJmYuQgneQarxNiFrk/zzs3PrcQxkmeGW+NKPhiGmE7as5QzbZVqkTo
+         BGsZq8XsuWEzkRtx2j/5zBS1nKf9HdgUA0/j5dmFhiEZQNWoEMJHLQK4iH4Mbz/Lw66p
+         lbfuKshjaPkE50IfS4UBjWiSRZ0HuWFYvGEv4gY/MKnQ+VBb482xEVP+mylz0h/XerO5
+         OrSg==
+X-Gm-Message-State: AOAM532v8ByzzLlMWOKTqgs2qjvCL6R1P85KmRmn7J7mWbqjWi++Dsl2
+        4HDzJEJhe2wDATrHRqUAQYI=
+X-Google-Smtp-Source: ABdhPJzwyWXM3j+1zKJzsaZddm6XEeqWVpwu4h1mo5BPsGyBZnXitccFClJ0eyb6nO5CQ99v3t3EEQ==
+X-Received: by 2002:a1c:818f:: with SMTP id c137mr1724589wmd.0.1600162232889;
+        Tue, 15 Sep 2020 02:30:32 -0700 (PDT)
+Received: from ziggy.stardust ([213.195.113.201])
+        by smtp.gmail.com with ESMTPSA id l18sm19934057wrp.84.2020.09.15.02.30.31
+        (version=TLS1_3 cipher=TLS_AES_128_GCM_SHA256 bits=128/128);
+        Tue, 15 Sep 2020 02:30:32 -0700 (PDT)
+Subject: Re: [PATCH 2/2] soc: mediatek: add SCPSYS power dmain for MT8167 SoC
+To:     Fabien Parent <fparent@baylibre.com>, devicetree@vger.kernel.org,
+        linux-kernel@vger.kernel.org, linux-arm-kernel@lists.infradead.org,
+        linux-mediatek@lists.infradead.org
+Cc:     krzk@kernel.org, mars.cheng@mediatek.com, owen.chen@mediatek.com,
+        macpaul.lin@mediatek.com, ulf.hansson@linaro.org,
+        robh+dt@kernel.org,
+        Enric Balletbo i Serra <enric.balletbo@collabora.com>
+References: <20200906172337.1052933-1-fparent@baylibre.com>
+ <20200906172337.1052933-2-fparent@baylibre.com>
+From:   Matthias Brugger <matthias.bgg@gmail.com>
+Message-ID: <e0819b9c-4dfd-a36e-3ead-4a375fb244d0@gmail.com>
+Date:   Tue, 15 Sep 2020 11:30:31 +0200
+User-Agent: Mozilla/5.0 (X11; Linux x86_64; rv:68.0) Gecko/20100101
+ Thunderbird/68.12.0
 MIME-Version: 1.0
-Content-Type: text/plain; charset=UTF-8
-Content-Transfer-Encoding: 8BIT
+In-Reply-To: <20200906172337.1052933-2-fparent@baylibre.com>
+Content-Type: text/plain; charset=utf-8; format=flowed
+Content-Language: en-US
+Content-Transfer-Encoding: 7bit
 Sender: devicetree-owner@vger.kernel.org
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
+Hi Fabien,
 
-Miquel Raynal <miquel.raynal@bootlin.com> wrote on Tue, 15 Sep 2020
-10:07:28 +0200:
-
-> Hi Yifeng,
+On 06/09/2020 19:23, Fabien Parent wrote:
+> Add SCPSYS power domain support for MT8167 SoC.
 > 
-> I am very sorry for the delay it took me to review this driver, but
-> there are still some small incoherences IMHO, see below.
+> Signed-off-by: Fabien Parent <fparent@baylibre.com>
 
-One last important comment below
+First of all, thanks for your patch!
 
-> > +static int rk_nfc_attach_chip(struct nand_chip *chip)
-> > +{
-> > +	struct mtd_info *mtd = nand_to_mtd(chip);
-> > +	struct device *dev = mtd->dev.parent;
-> > +	struct rk_nfc *nfc = nand_get_controller_data(chip);
-> > +	struct rk_nfc_nand_chip *rknand = to_rknand(chip);
-> > +	struct nand_ecc_ctrl *ecc = &chip->ecc;
-> > +	int len;
-> > +	int ret;
-> > +
-> > +	if (chip->options & NAND_BUSWIDTH_16) {
-> > +		dev_err(dev, "16 bits bus width not supported");
-> > +		return -EINVAL;
-> > +	}
-> > +
-> > +	if (ecc->mode != NAND_ECC_HW)
-> > +		return 0;
-> > +
-> > +	ret = rk_nfc_ecc_init(dev, mtd);
-> > +	if (ret)
-> > +		return ret;
-> > +	rknand->spare_per_sector = ecc->bytes + NFC_SYS_DATA_SIZE;
-> > +	rknand->metadata_size = NFC_SYS_DATA_SIZE * ecc->steps;
-> > +
-> > +	if (rknand->metadata_size < NFC_SYS_DATA_SIZE + 2) {
-> > +		dev_err(dev,
-> > +			"Driver needs at least %d bytes of meta data\n",
-> > +			NFC_SYS_DATA_SIZE + 2);
-> > +		return -EIO;
-> > +	}
-> > +	/* Check buffer first, avoid duplicate alloc buffer. */
-> > +	if (nfc->buffer)
-> > +		return 0;  
-> 
-> You can't do that this way: what if the first mtd to be registered uses
-> a smaller page size than the second?
-> 
-> > +
-> > +	len = mtd->writesize + mtd->oobsize;
-> > +	nfc->buffer = devm_kzalloc(dev, len, GFP_KERNEL | GFP_DMA);
+The actual scpsys driver has some limitations. Enric and I are working on a new 
+driver [1]. My idea is to deprecate the old scpsys driver in favor of this new one.
 
-I don't think this fits your purpose. You should probably allocate with
-kzalloc or perhaps dma_alloc*.
+Would you mind to resend your series on top of [1]? From what I can see the 
+changes in the driver will be minimal (change the bus protection macros and drop 
+the clock ID). The DTS (which is not part of this series) would need some more 
+work then.
 
-Then, you'll also have to free this memory.
+Regards,
+Matthias
 
-> > +	if (!nfc->buffer)
-> > +		return -ENOMEM;
-> > +
-> > +	nfc->page_buf = nfc->buffer;
-> > +	len = ecc->steps * NFC_MAX_OOB_PER_STEP;
-> > +	nfc->oob_buf = devm_kzalloc(dev, len, GFP_KERNEL | GFP_DMA);
-> > +	if (!nfc->oob_buf) {
-> > +		nfc->buffer = NULL;
-> > +		nfc->oob_buf = NULL;  
-> 
-> I don't think this is needed
-> 
-> > +		return -ENOMEM;
-> > +	}
-> > +
-> > +	chip->ecc.write_page_raw = rk_nfc_write_page_raw;
-> > +	chip->ecc.write_page = rk_nfc_write_page_hwecc;
-> > +	chip->ecc.write_oob_raw = rk_nfc_write_oob_std;
-> > +	chip->ecc.write_oob = rk_nfc_write_oob_std;
-> > +
-> > +	chip->ecc.read_page_raw = rk_nfc_read_page_raw;
-> > +	chip->ecc.read_page = rk_nfc_read_page_hwecc;
-> > +	chip->ecc.read_oob_raw = rk_nfc_read_oob_std;
-> > +	chip->ecc.read_oob = rk_nfc_read_oob_std;  
-> 
-> I don't like the _std prefix, but it should be gone when splitting the
-> functions as advised.
-> 
-> > +
-> > +	return 0;
-> > +}
+[1] 
+https://lore.kernel.org/linux-mediatek/20200910172826.3074357-1-enric.balletbo@collabora.com/T/#t
 
-Thanks,
-Miquèl
+> ---
+>   drivers/soc/mediatek/mtk-scpsys.c     | 99 +++++++++++++++++++++++++++
+>   include/linux/soc/mediatek/infracfg.h |  8 +++
+>   2 files changed, 107 insertions(+)
+> 
+> diff --git a/drivers/soc/mediatek/mtk-scpsys.c b/drivers/soc/mediatek/mtk-scpsys.c
+> index f669d3754627..ce897720ef17 100644
+> --- a/drivers/soc/mediatek/mtk-scpsys.c
+> +++ b/drivers/soc/mediatek/mtk-scpsys.c
+> @@ -18,6 +18,7 @@
+>   #include <dt-bindings/power/mt6797-power.h>
+>   #include <dt-bindings/power/mt7622-power.h>
+>   #include <dt-bindings/power/mt7623a-power.h>
+> +#include <dt-bindings/power/mt8167-power.h>
+>   #include <dt-bindings/power/mt8173-power.h>
+>   
+>   #define MTK_POLL_DELAY_US   10
+> @@ -89,6 +90,7 @@ enum clk_id {
+>   	CLK_HIFSEL,
+>   	CLK_JPGDEC,
+>   	CLK_AUDIO,
+> +	CLK_AXI_MFG,
+>   	CLK_MAX,
+>   };
+>   
+> @@ -103,6 +105,7 @@ static const char * const clk_names[] = {
+>   	"hif_sel",
+>   	"jpgdec",
+>   	"audio",
+> +	"axi_mfg",
+>   	NULL,
+>   };
+>   
+> @@ -911,6 +914,87 @@ static const struct scp_domain_data scp_domain_data_mt7623a[] = {
+>   	},
+>   };
+>   
+> +/*
+> + * MT8167 power domain support
+> + */
+> +#define PWR_STATUS_MFG_2D_MT8167	BIT(24)
+> +#define PWR_STATUS_MFG_ASYNC_MT8167	BIT(25)
+> +
+> +static const struct scp_domain_data scp_domain_data_mt8167[] = {
+> +	[MT8167_POWER_DOMAIN_DISP] = {
+> +		.name = "disp",
+> +		.sta_mask = PWR_STATUS_DISP,
+> +		.ctl_offs = SPM_DIS_PWR_CON,
+> +		.sram_pdn_bits = GENMASK(11, 8),
+> +		.sram_pdn_ack_bits = GENMASK(12, 12),
+> +		.bus_prot_mask = MT8167_TOP_AXI_PROT_EN_MM_EMI |
+> +				 MT8167_TOP_AXI_PROT_EN_MCU_MM,
+> +		.clk_id = {CLK_MM},
+> +		.caps = MTK_SCPD_ACTIVE_WAKEUP,
+> +	},
+> +	[MT8167_POWER_DOMAIN_VDEC] = {
+> +		.name = "vdec",
+> +		.sta_mask = PWR_STATUS_VDEC,
+> +		.ctl_offs = SPM_VDE_PWR_CON,
+> +		.sram_pdn_bits = GENMASK(8, 8),
+> +		.sram_pdn_ack_bits = GENMASK(12, 12),
+> +		.clk_id = {CLK_MM, CLK_VDEC},
+> +		.caps = MTK_SCPD_ACTIVE_WAKEUP,
+> +	},
+> +	[MT8167_POWER_DOMAIN_ISP] = {
+> +		.name = "isp",
+> +		.sta_mask = PWR_STATUS_ISP,
+> +		.ctl_offs = SPM_ISP_PWR_CON,
+> +		.sram_pdn_bits = GENMASK(11, 8),
+> +		.sram_pdn_ack_bits = GENMASK(13, 12),
+> +		.clk_id = {CLK_MM},
+> +		.caps = MTK_SCPD_ACTIVE_WAKEUP,
+> +	},
+> +	[MT8167_POWER_DOMAIN_MFG_ASYNC] = {
+> +		.name = "mfg_async",
+> +		.sta_mask = PWR_STATUS_MFG_ASYNC_MT8167,
+> +		.ctl_offs = SPM_MFG_ASYNC_PWR_CON,
+> +		.sram_pdn_bits = 0,
+> +		.sram_pdn_ack_bits = 0,
+> +		.bus_prot_mask = MT8167_TOP_AXI_PROT_EN_MCU_MFG |
+> +				 MT8167_TOP_AXI_PROT_EN_MFG_EMI,
+> +		.clk_id = {CLK_MFG, CLK_AXI_MFG},
+> +	},
+> +	[MT8167_POWER_DOMAIN_MFG_2D] = {
+> +		.name = "mfg_2d",
+> +		.sta_mask = PWR_STATUS_MFG_2D_MT8167,
+> +		.ctl_offs = SPM_MFG_2D_PWR_CON,
+> +		.sram_pdn_bits = GENMASK(11, 8),
+> +		.sram_pdn_ack_bits = GENMASK(15, 12),
+> +		.clk_id = {CLK_NONE},
+> +	},
+> +	[MT8167_POWER_DOMAIN_MFG] = {
+> +		.name = "mfg",
+> +		.sta_mask = PWR_STATUS_MFG,
+> +		.ctl_offs = SPM_MFG_PWR_CON,
+> +		.sram_pdn_bits = GENMASK(11, 8),
+> +		.sram_pdn_ack_bits = GENMASK(15, 12),
+> +		.clk_id = {CLK_NONE},
+> +	},
+> +	[MT8167_POWER_DOMAIN_CONN] = {
+> +		.name = "conn",
+> +		.sta_mask = PWR_STATUS_CONN,
+> +		.ctl_offs = SPM_CONN_PWR_CON,
+> +		.sram_pdn_bits = GENMASK(8, 8),
+> +		.sram_pdn_ack_bits = 0,
+> +		.bus_prot_mask = MT8167_TOP_AXI_PROT_EN_CONN_EMI |
+> +				 MT8167_TOP_AXI_PROT_EN_CONN_MCU |
+> +				 MT8167_TOP_AXI_PROT_EN_MCU_CONN,
+> +		.clk_id = {CLK_NONE},
+> +		.caps = MTK_SCPD_ACTIVE_WAKEUP,
+> +	},
+> +};
+> +
+> +static const struct scp_subdomain scp_subdomain_mt8167[] = {
+> +	{MT8167_POWER_DOMAIN_MFG_ASYNC, MT8167_POWER_DOMAIN_MFG_2D},
+> +	{MT8167_POWER_DOMAIN_MFG_2D, MT8167_POWER_DOMAIN_MFG},
+> +};
+> +
+>   /*
+>    * MT8173 power domain support
+>    */
+> @@ -1064,6 +1148,18 @@ static const struct scp_soc_data mt7623a_data = {
+>   	.bus_prot_reg_update = true,
+>   };
+>   
+> +static const struct scp_soc_data mt8167_data = {
+> +	.domains = scp_domain_data_mt8167,
+> +	.num_domains = ARRAY_SIZE(scp_domain_data_mt8167),
+> +	.subdomains = scp_subdomain_mt8167,
+> +	.num_subdomains = ARRAY_SIZE(scp_subdomain_mt8167),
+> +	.regs = {
+> +		.pwr_sta_offs = SPM_PWR_STATUS,
+> +		.pwr_sta2nd_offs = SPM_PWR_STATUS_2ND
+> +	},
+> +	.bus_prot_reg_update = true,
+> +};
+> +
+>   static const struct scp_soc_data mt8173_data = {
+>   	.domains = scp_domain_data_mt8173,
+>   	.num_domains = ARRAY_SIZE(scp_domain_data_mt8173),
+> @@ -1096,6 +1192,9 @@ static const struct of_device_id of_scpsys_match_tbl[] = {
+>   	}, {
+>   		.compatible = "mediatek,mt7623a-scpsys",
+>   		.data = &mt7623a_data,
+> +	}, {
+> +		.compatible = "mediatek,mt8167-scpsys",
+> +		.data = &mt8167_data,
+>   	}, {
+>   		.compatible = "mediatek,mt8173-scpsys",
+>   		.data = &mt8173_data,
+> diff --git a/include/linux/soc/mediatek/infracfg.h b/include/linux/soc/mediatek/infracfg.h
+> index fd25f0148566..6ee49bf90acf 100644
+> --- a/include/linux/soc/mediatek/infracfg.h
+> +++ b/include/linux/soc/mediatek/infracfg.h
+> @@ -2,6 +2,14 @@
+>   #ifndef __SOC_MEDIATEK_INFRACFG_H
+>   #define __SOC_MEDIATEK_INFRACFG_H
+>   
+> +#define MT8167_TOP_AXI_PROT_EN_MM_EMI		BIT(1)
+> +#define MT8167_TOP_AXI_PROT_EN_MCU_MFG		BIT(2)
+> +#define MT8167_TOP_AXI_PROT_EN_CONN_EMI		BIT(4)
+> +#define MT8167_TOP_AXI_PROT_EN_MFG_EMI		BIT(5)
+> +#define MT8167_TOP_AXI_PROT_EN_CONN_MCU		BIT(8)
+> +#define MT8167_TOP_AXI_PROT_EN_MCU_CONN		BIT(9)
+> +#define MT8167_TOP_AXI_PROT_EN_MCU_MM		BIT(11)
+> +
+>   #define MT8173_TOP_AXI_PROT_EN_MCI_M2		BIT(0)
+>   #define MT8173_TOP_AXI_PROT_EN_MM_M0		BIT(1)
+>   #define MT8173_TOP_AXI_PROT_EN_MM_M1		BIT(2)
+> 
