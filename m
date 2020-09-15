@@ -2,75 +2,70 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from vger.kernel.org (vger.kernel.org [23.128.96.18])
-	by mail.lfdr.de (Postfix) with ESMTP id 7904926B1A9
-	for <lists+devicetree@lfdr.de>; Wed, 16 Sep 2020 00:34:27 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTP id 56EC426B199
+	for <lists+devicetree@lfdr.de>; Wed, 16 Sep 2020 00:33:18 +0200 (CEST)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S1727572AbgIOWeZ (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Tue, 15 Sep 2020 18:34:25 -0400
-Received: from mail-il1-f195.google.com ([209.85.166.195]:33182 "EHLO
-        mail-il1-f195.google.com" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S1727609AbgIOQPp (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Tue, 15 Sep 2020 12:15:45 -0400
-Received: by mail-il1-f195.google.com with SMTP id x2so3566877ilm.0;
-        Tue, 15 Sep 2020 09:11:55 -0700 (PDT)
-X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=1e100.net; s=20161025;
-        h=x-gm-message-state:date:from:to:cc:subject:message-id:references
-         :mime-version:content-disposition:in-reply-to;
-        bh=KSOAyNVWeqUE1eNb5fjGsEEoMGtp4LbwBVr7j3WH4jQ=;
-        b=Lbd6pRUEM90zyPS4h8bio8rONVq3O7bLTnbF3og4p1rR0ZUKzrBp+ldc8djFyDQTHR
-         wdh/jBOePPCbnhmscywDigWLYsAUF85TRJs1v6/r1m5e5nIBJUeG8bpd//wTXXxxRjKI
-         bzii89A3fs7U6MOaPbpYkI93QkWpSBgcOB68yW4mTyUKBcSwn/io0N9JrYMIDXe3atoj
-         WpG7YSAvSWGlYsEm6dWv9Ooe5BTGLhp/+iHpV34ViRBDlKcTPLybfQd1IZ0MeMbj8JcH
-         AluOQPI7t9g3dc5p8erSoiTRuawV95u31IhNsAmMuQZR37xkZ9HerdG8N+xBGON8s5h8
-         pzKg==
-X-Gm-Message-State: AOAM53022aOFoeCx65ir4ycb5h20eTu1OzFGRcFNcARr+XdHTLhTLPYK
-        rs0j8QNsSOsv9jBAVTHup01n10KTiZfT9eU=
-X-Google-Smtp-Source: ABdhPJyk0bNPAGNZuwTrEU4SGslz9cnXoPY9yjb2itUeNoFTxzwNacOA+ryWWOc0EJ4QK9zJ7ZuqfA==
-X-Received: by 2002:a92:bad9:: with SMTP id t86mr16275837ill.308.1600185674993;
-        Tue, 15 Sep 2020 09:01:14 -0700 (PDT)
-Received: from xps15 ([64.188.179.253])
-        by smtp.gmail.com with ESMTPSA id j62sm7842074iof.53.2020.09.15.09.01.13
-        (version=TLS1_3 cipher=TLS_AES_256_GCM_SHA384 bits=256/256);
-        Tue, 15 Sep 2020 09:01:14 -0700 (PDT)
-Received: (nullmailer pid 2029905 invoked by uid 1000);
-        Tue, 15 Sep 2020 16:01:12 -0000
-Date:   Tue, 15 Sep 2020 10:01:12 -0600
-From:   Rob Herring <robh@kernel.org>
-To:     Lad Prabhakar <prabhakar.mahadev-lad.rj@bp.renesas.com>
-Cc:     linux-media@vger.kernel.org, linux-kernel@vger.kernel.org,
-        linux-renesas-soc@vger.kernel.org,
-        Biju Das <biju.das.jz@bp.renesas.com>,
-        Magnus Damm <magnus.damm@gmail.com>,
-        Geert Uytterhoeven <geert+renesas@glider.be>,
-        Prabhakar <prabhakar.csengg@gmail.com>,
-        Mauro Carvalho Chehab <mchehab@kernel.org>,
-        devicetree@vger.kernel.org,
-        Niklas =?iso-8859-1?Q?S=F6derlund?= 
-        <niklas.soderlund@ragnatech.se>, Rob Herring <robh+dt@kernel.org>
-Subject: Re: [PATCH 1/2] dt-bindings: media: renesas,vin: Add device tree
- support for r8a7742
-Message-ID: <20200915160112.GA2029821@bogus>
-References: <20200907144509.8861-1-prabhakar.mahadev-lad.rj@bp.renesas.com>
- <20200907144509.8861-2-prabhakar.mahadev-lad.rj@bp.renesas.com>
+        id S1727602AbgIOWct (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Tue, 15 Sep 2020 18:32:49 -0400
+Received: from mail.kernel.org ([198.145.29.99]:58880 "EHLO mail.kernel.org"
+        rhost-flags-OK-OK-OK-OK) by vger.kernel.org with ESMTP
+        id S1727601AbgIOQRQ (ORCPT <rfc822;devicetree@vger.kernel.org>);
+        Tue, 15 Sep 2020 12:17:16 -0400
+Received: from mail-oi1-f178.google.com (mail-oi1-f178.google.com [209.85.167.178])
+        (using TLSv1.2 with cipher ECDHE-RSA-AES128-GCM-SHA256 (128/128 bits))
+        (No client certificate requested)
+        by mail.kernel.org (Postfix) with ESMTPSA id A9EE220756;
+        Tue, 15 Sep 2020 16:03:34 +0000 (UTC)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=kernel.org;
+        s=default; t=1600185814;
+        bh=q42+/wpUmN4eZ0yu5PlUG685rGa98SKdmIV9BMHWRDQ=;
+        h=References:In-Reply-To:From:Date:Subject:To:Cc:From;
+        b=RWf6/tCCvS0qMs/lq3DKOy4wAnM2Ydbn4uVhTdC+xYNTp9T01BPh1hhDaXmbKfrxE
+         9BS2Sn8TOrnO0cR2dnohIIOBmL9S4a1gzEwGzWvj5M/rfNtzcyi2jnn7afttvpPiZa
+         FC7viIn7yJKQKnVnYp+Mth73OM9gq/HopRSz7/H4=
+Received: by mail-oi1-f178.google.com with SMTP id w16so4483485oia.2;
+        Tue, 15 Sep 2020 09:03:34 -0700 (PDT)
+X-Gm-Message-State: AOAM532t5RR5O8w3e1lqJYbbMCzo4eSoyb4cR+Yg60kBu1tM0mjU1Hhd
+        79cwknahTUuQ21xQwejx/1CXMCe37RA7nKpqXw==
+X-Google-Smtp-Source: ABdhPJyUKGvP0wG/kq4Hb79DLpxwODYN7/aFfqWCgGMAQfuXXCBLhCHDWE4ybg06z4KXQ4XmDknmNU4TjMY7z9SUGf0=
+X-Received: by 2002:aca:4cc7:: with SMTP id z190mr48013oia.147.1600185814063;
+ Tue, 15 Sep 2020 09:03:34 -0700 (PDT)
 MIME-Version: 1.0
-Content-Type: text/plain; charset=us-ascii
-Content-Disposition: inline
-In-Reply-To: <20200907144509.8861-2-prabhakar.mahadev-lad.rj@bp.renesas.com>
+References: <20200904131152.17390-1-paul@crapouillou.net> <20200904131152.17390-3-paul@crapouillou.net>
+ <20200914221230.GA349829@bogus> <CS2PGQ.I4UMQBYTB15I2@crapouillou.net>
+In-Reply-To: <CS2PGQ.I4UMQBYTB15I2@crapouillou.net>
+From:   Rob Herring <robh@kernel.org>
+Date:   Tue, 15 Sep 2020 10:03:22 -0600
+X-Gmail-Original-Message-ID: <CAL_JsqLUSZFf_3zgFrapc7vJETG9+XDTZPtD_yEBvi4GO3xPSA@mail.gmail.com>
+Message-ID: <CAL_JsqLUSZFf_3zgFrapc7vJETG9+XDTZPtD_yEBvi4GO3xPSA@mail.gmail.com>
+Subject: Re: [PATCH 3/3] i2c: jz4780: Remove of_match_ptr()
+To:     Paul Cercueil <paul@crapouillou.net>
+Cc:     od@zcrc.me, Linux I2C <linux-i2c@vger.kernel.org>,
+        devicetree@vger.kernel.org,
+        "linux-kernel@vger.kernel.org" <linux-kernel@vger.kernel.org>
+Content-Type: text/plain; charset="UTF-8"
+Content-Transfer-Encoding: quoted-printable
 Sender: devicetree-owner@vger.kernel.org
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-On Mon, 07 Sep 2020 15:45:08 +0100, Lad Prabhakar wrote:
-> Add compatible string for r8a7742. No driver change is needed as
-> "renesas,rcar-gen2-vin" will activate the right code.
-> 
-> Signed-off-by: Lad Prabhakar <prabhakar.mahadev-lad.rj@bp.renesas.com>
-> Reviewed-by: Biju Das <biju.das.jz@bp.renesas.com>
-> ---
->  Documentation/devicetree/bindings/media/renesas,vin.yaml | 1 +
->  1 file changed, 1 insertion(+)
-> 
+On Tue, Sep 15, 2020 at 4:07 AM Paul Cercueil <paul@crapouillou.net> wrote:
+>
+> Hi Rob,
+>
+> Le lun. 14 sept. 2020 =C3=A0 16:12, Rob Herring <robh@kernel.org> a =C3=
+=A9crit :
+> > On Fri, Sep 04, 2020 at 03:11:52PM +0200, Paul Cercueil wrote:
+> >>  CONFIG_OF is selected by CONFIG_MACH_INGENIC, therefore we don't
+> >> need to
+> >>  handle the case where Device Tree is not supported.
+> >
+> > What about COMPILE_TEST? If not supported, why not?
+>
+> What about it? It will still compile fine with COMPILE_TEST.
 
-Acked-by: Rob Herring <robh@kernel.org>
+CONFIG_OF could be disabled in that case, so the above reasoning doesn't ho=
+ld.
+
+Rob
