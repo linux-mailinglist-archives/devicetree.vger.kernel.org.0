@@ -2,128 +2,186 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from vger.kernel.org (vger.kernel.org [23.128.96.18])
-	by mail.lfdr.de (Postfix) with ESMTP id A0B19269ADA
-	for <lists+devicetree@lfdr.de>; Tue, 15 Sep 2020 03:05:50 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTP id 2EC59269AE0
+	for <lists+devicetree@lfdr.de>; Tue, 15 Sep 2020 03:09:35 +0200 (CEST)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S1726087AbgIOBFt (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Mon, 14 Sep 2020 21:05:49 -0400
-Received: from mail-io1-f67.google.com ([209.85.166.67]:39395 "EHLO
+        id S1726046AbgIOBJ3 (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Mon, 14 Sep 2020 21:09:29 -0400
+Received: from mail-io1-f67.google.com ([209.85.166.67]:32817 "EHLO
         mail-io1-f67.google.com" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S1726057AbgIOBFr (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Mon, 14 Sep 2020 21:05:47 -0400
-Received: by mail-io1-f67.google.com with SMTP id b6so2239959iof.6
-        for <devicetree@vger.kernel.org>; Mon, 14 Sep 2020 18:05:46 -0700 (PDT)
+        with ESMTP id S1726024AbgIOBJ1 (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Mon, 14 Sep 2020 21:09:27 -0400
+Received: by mail-io1-f67.google.com with SMTP id r25so2308017ioj.0;
+        Mon, 14 Sep 2020 18:09:26 -0700 (PDT)
 X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
         d=1e100.net; s=20161025;
         h=x-gm-message-state:date:from:to:cc:subject:message-id:references
          :mime-version:content-disposition:in-reply-to;
-        bh=4K8hgYOIozb4eV4tE27z5U4/TuKGwafzOOZVveRuAWg=;
-        b=Ll/4TqOGffgj/KAPjLyTAUIAALd8hwt5v8pEEZDnQ6yL5QxFi7TKLyHKtIqgvOJLYe
-         i7AWvAqaGFxXmrbiUhORfzJuOgkEiZPHWk5DB9jrc3J/CMT1xbdn3mX9/0vI4JBFvanQ
-         tjDo9NTN+Mt++WAUF1DK9mNrI8uVxtxYRP3f+2aBc2UIT4SgzdjLduPbFoauxnOqJKem
-         PpODNvzTMjlREJ5Y7m134bjfD/E1E4Odb8JLlcbc9A/4rUdoQdQkiv3Gff9cfICJBJPe
-         ogvOyvuaS9jsgdscmDJEnu3tEbnDWChGo7AY9euTfppDaPUa6d9fRpqcCK+6Rs00rbZ5
-         iI6g==
-X-Gm-Message-State: AOAM5313Xdc/Fh7iTDyeGs11LFYRQx2Q+ZmIXn5Qt/F+XHN2G0SuAOsh
-        P9ZY4YbvsrTyc6OYFBptC6WV/a+I9v/y
-X-Google-Smtp-Source: ABdhPJyeOrm0wS6VfzxyWw018C3Pfbn90WCq5qB1yjbl7A1oksWUyEkQHM+2EgWsvF1hagglRRZ/7w==
-X-Received: by 2002:a6b:6e0b:: with SMTP id d11mr13258988ioh.155.1600131945835;
-        Mon, 14 Sep 2020 18:05:45 -0700 (PDT)
+        bh=pUxGtvaIRUoyqovEVYWusEf+ErNPYsvl3hrLi3RtD/U=;
+        b=B3QARGafoc4UVGNa5KuuuOGNTpXpe5WClvL1wRgIYeRu0gr99z/zyeYcHVJPjeWofU
+         Hbo75Xo44IdZLnLDy8E99CIdEyR29nWtUG4wNjPs7bnKv2SggIGo6rDeurYDJcBEe5hv
+         8XrczIPhYJRgA4XEjBpA1JUVS+1NQF92qr7w0BlMlIBqctngtxFLmiujTJI4uc3O3GZZ
+         uErvKwM8lmZtznknW1HiPVZCa/8roEKc9642lYNhRbcLypykqi/SOFHvHJa4UOiFZIv9
+         p9mIW5I6JCR+BY7PAmk+js5ELtbyFo3XhTAoApur4wkgpc42kJKYU17c6Jiyjd2DH1/P
+         h4Xg==
+X-Gm-Message-State: AOAM533mxkMfw39rcN4z2OpIp4D4NycsvBqwCSrsVkblsejiEPw3CrmM
+        MWaxSFwg6nccHeuODKd1SQ==
+X-Google-Smtp-Source: ABdhPJxLiHjz61DfOBs3dWFIQPtmOLahnEoMRx0JaOoZ3VNzcjZEmyPMmUqbqG6agxIN66M2mOAjag==
+X-Received: by 2002:a02:a615:: with SMTP id c21mr15364024jam.106.1600132165659;
+        Mon, 14 Sep 2020 18:09:25 -0700 (PDT)
 Received: from xps15 ([64.188.179.253])
-        by smtp.gmail.com with ESMTPSA id c6sm4023381ils.86.2020.09.14.18.05.44
+        by smtp.gmail.com with ESMTPSA id p9sm6877547iov.18.2020.09.14.18.09.24
         (version=TLS1_3 cipher=TLS_AES_256_GCM_SHA384 bits=256/256);
-        Mon, 14 Sep 2020 18:05:45 -0700 (PDT)
-Received: (nullmailer pid 628112 invoked by uid 1000);
-        Tue, 15 Sep 2020 01:05:43 -0000
-Date:   Mon, 14 Sep 2020 19:05:43 -0600
+        Mon, 14 Sep 2020 18:09:24 -0700 (PDT)
+Received: (nullmailer pid 633962 invoked by uid 1000);
+        Tue, 15 Sep 2020 01:09:22 -0000
+Date:   Mon, 14 Sep 2020 19:09:22 -0600
 From:   Rob Herring <robh@kernel.org>
-To:     Christian Lamparter <chunkeey@gmail.com>
-Cc:     linuxppc-dev@lists.ozlabs.org, devicetree@vger.kernel.org,
-        Chris Blake <chrisrblake93@gmail.com>,
-        Paul Mackerras <paulus@samba.org>,
-        Benjamin Herrenschmidt <benh@kernel.crashing.org>,
-        Michael Ellerman <mpe@ellerman.id.au>
-Subject: Re: [PATCH v3 2/5] powerpc: apm82181: create shared dtsi for APM
- bluestone
-Message-ID: <20200915010543.GB612463@bogus>
-References: <cover.1599343429.git.chunkeey@gmail.com>
- <47109d80c7bd481c7747c949e8a3ecd498d9c039.1599343429.git.chunkeey@gmail.com>
+To:     Artur Rojek <contact@artur-rojek.eu>
+Cc:     Sebastian Reichel <sre@kernel.org>,
+        Paul Cercueil <paul@crapouillou.net>, linux-pm@vger.kernel.org,
+        devicetree@vger.kernel.org, linux-kernel@vger.kernel.org
+Subject: Re: [PATCH v2 1/2] dt-bindings: power: Convert ingenic,battery.txt
+ to YAML
+Message-ID: <20200915010922.GA629419@bogus>
+References: <20200906144726.8852-1-contact@artur-rojek.eu>
 MIME-Version: 1.0
 Content-Type: text/plain; charset=us-ascii
 Content-Disposition: inline
-In-Reply-To: <47109d80c7bd481c7747c949e8a3ecd498d9c039.1599343429.git.chunkeey@gmail.com>
+In-Reply-To: <20200906144726.8852-1-contact@artur-rojek.eu>
 Sender: devicetree-owner@vger.kernel.org
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-On Sun, Sep 06, 2020 at 12:06:12AM +0200, Christian Lamparter wrote:
-> This patch adds an DTSI-File that can be used by various device-tree
-> files for APM82181-based devices.
+On Sun, Sep 06, 2020 at 04:47:25PM +0200, Artur Rojek wrote:
+> Convert the textual documentation of Device Tree bindings for the
+> Ingenic JZ47xx SoCs battery to YAML.
 > 
-> Some of the nodes (like UART, PCIE, SATA) are used by the uboot and
-> need to stick with the naming-conventions of the old times'.
-> I've added comments whenever this was the case.
-> 
-> Signed-off-by: Chris Blake <chrisrblake93@gmail.com>
-> Signed-off-by: Christian Lamparter <chunkeey@gmail.com>
+> Signed-off-by: Artur Rojek <contact@artur-rojek.eu>
 > ---
-> rfc v1 -> v2:
-> 	- removed PKA (this CryptoPU will need driver)
-> 	- stick with compatibles, nodes, ... from either
-> 	  Bluestone (APM82181) or Canyonlands (PPC460EX).
-> 	- add labels for NAND and NOR to help with access.
-> v2 -> v3:
-> 	- nodename of pciex@d.... was changed to pcie@d..
-> 	  due to upstream patch.
-> 	- use simple-bus on the ebc, opb and plb nodes
-> ---
->  arch/powerpc/boot/dts/apm82181.dtsi | 466 ++++++++++++++++++++++++++++
->  1 file changed, 466 insertions(+)
->  create mode 100644 arch/powerpc/boot/dts/apm82181.dtsi
 > 
-> diff --git a/arch/powerpc/boot/dts/apm82181.dtsi b/arch/powerpc/boot/dts/apm82181.dtsi
+> Changes:
+>     v2: move introduction of new compatibles into a separate patch
+> 
+>  .../bindings/power/supply/ingenic,battery.txt | 31 ----------
+>  .../power/supply/ingenic,battery.yaml         | 60 +++++++++++++++++++
+>  2 files changed, 60 insertions(+), 31 deletions(-)
+>  delete mode 100644 Documentation/devicetree/bindings/power/supply/ingenic,battery.txt
+>  create mode 100644 Documentation/devicetree/bindings/power/supply/ingenic,battery.yaml
+> 
+> diff --git a/Documentation/devicetree/bindings/power/supply/ingenic,battery.txt b/Documentation/devicetree/bindings/power/supply/ingenic,battery.txt
+> deleted file mode 100644
+> index 66430bf73815..000000000000
+> --- a/Documentation/devicetree/bindings/power/supply/ingenic,battery.txt
+> +++ /dev/null
+> @@ -1,31 +0,0 @@
+> -* Ingenic JZ47xx battery bindings
+> -
+> -Required properties:
+> -
+> -- compatible: Must be "ingenic,jz4740-battery".
+> -- io-channels: phandle and IIO specifier pair to the IIO device.
+> -  Format described in iio-bindings.txt.
+> -- monitored-battery: phandle to a "simple-battery" compatible node.
+> -
+> -The "monitored-battery" property must be a phandle to a node using the format
+> -described in battery.txt, with the following properties being required:
+> -
+> -- voltage-min-design-microvolt: Drained battery voltage.
+> -- voltage-max-design-microvolt: Fully charged battery voltage.
+> -
+> -Example:
+> -
+> -#include <dt-bindings/iio/adc/ingenic,adc.h>
+> -
+> -simple_battery: battery {
+> -	compatible = "simple-battery";
+> -	voltage-min-design-microvolt = <3600000>;
+> -	voltage-max-design-microvolt = <4200000>;
+> -};
+> -
+> -ingenic_battery {
+> -	compatible = "ingenic,jz4740-battery";
+> -	io-channels = <&adc INGENIC_ADC_BATTERY>;
+> -	io-channel-names = "battery";
+> -	monitored-battery = <&simple_battery>;
+> -};
+> diff --git a/Documentation/devicetree/bindings/power/supply/ingenic,battery.yaml b/Documentation/devicetree/bindings/power/supply/ingenic,battery.yaml
 > new file mode 100644
-> index 000000000000..60283430978d
+> index 000000000000..b4e0275ac63a
 > --- /dev/null
-> +++ b/arch/powerpc/boot/dts/apm82181.dtsi
-> @@ -0,0 +1,466 @@
-> +// SPDX-License-Identifier: GPL-2.0-or-later
-> +/*
-> + * Device Tree template include for various APM82181 boards.
-> + *
-> + * The SoC is an evolution of the PPC460EX predecessor.
-> + * This is why dt-nodes from the canyonlands EBC, OPB, USB,
-> + * DMA, SATA, EMAC, ... ended up in here.
-> + *
-> + * Copyright (c) 2010, Applied Micro Circuits Corporation
-> + * Author: Tirumala R Marri <tmarri@apm.com>,
-> + *	   Christian Lamparter <chunkeey@gmail.com>,
-> + *	   Chris Blake <chrisrblake93@gmail.com>
-> + */
+> +++ b/Documentation/devicetree/bindings/power/supply/ingenic,battery.yaml
+> @@ -0,0 +1,60 @@
+> +# SPDX-License-Identifier: (GPL-2.0 OR BSD-2-Clause)
+> +# Copyright 2019-2020 Artur Rojek
+> +%YAML 1.2
+> +---
+> +$id: "http://devicetree.org/schemas/power/supply/ingenic,battery.yaml#"
+> +$schema: "http://devicetree.org/meta-schemas/core.yaml#"
 > +
-> +#include <dt-bindings/dma/dw-dmac.h>
-> +#include <dt-bindings/input/input.h>
-> +#include <dt-bindings/interrupt-controller/irq.h>
-> +#include <dt-bindings/gpio/gpio.h>
+> +title: Ingenic JZ47xx battery bindings
 > +
-> +/ {
-> +	#address-cells = <2>;
-> +	#size-cells = <1>;
-> +	dcr-parent = <&{/cpus/cpu@0}>;
+> +maintainers:
+> +  - Artur Rojek <contact@artur-rojek.eu>
 > +
-> +	aliases {
-> +		ethernet0 = &EMAC0; /* needed for BSP u-boot */
-> +	};
+> +properties:
+> +  compatible:
+> +    const: ingenic,jz4740-battery
 > +
-> +	cpus {
-> +		#address-cells = <1>;
-> +		#size-cells = <0>;
-> +
-> +		CPU0: cpu@0 {
-> +			device_type = "cpu";
-> +			model = "PowerPC,apm82181";
+> +  io-channels:
+> +    items:
+> +      - description: >
+> +          phandle and IIO specifier pair to the IIO device.
+> +          See Documentation/devicetree/bindings/iio/iio-bindings.txt for more
+> +          details.
 
-This doesn't match the existing bluestone dts file.
+No need to redefine common properties. 'maxItems: 1' is sufficient here.
 
-Please separate any restructuring from changes.
+> +
+> +  io-channel-names:
+> +    const: "battery"
+
+Don't need quotes.
+
+> +
+> +  monitored-battery:
+> +    items:
+> +      - description: >
+
+'monitored-battery' is always a single item. So just need 'description'.
+
+> +          phandle to a "simple-battery" compatible node.
+> +
+> +          This property must be a phandle to a node using the format described
+> +          in battery.txt, with the following properties being required:
+> +          - voltage-min-design-microvolt: drained battery voltage,
+> +          - voltage-max-design-microvolt: fully charged battery voltage.
+> +
+> +required:
+> +  - compatible
+> +  - io-channels
+> +  - io-channel-names
+> +  - monitored-battery
+> +
+> +additionalProperties: false
+> +
+> +examples:
+> +  - |
+> +    #include <dt-bindings/iio/adc/ingenic,adc.h>
+> +
+> +    simple_battery: battery {
+> +            compatible = "simple-battery";
+> +            voltage-min-design-microvolt = <3600000>;
+> +            voltage-max-design-microvolt = <4200000>;
+> +    };
+> +
+> +    ingenic-battery {
+> +            compatible = "ingenic,jz4740-battery";
+> +            io-channels = <&adc INGENIC_ADC_BATTERY>;
+> +            io-channel-names = "battery";
+> +            monitored-battery = <&simple_battery>;
+> +    };
+> -- 
+> 2.28.0
+> 
