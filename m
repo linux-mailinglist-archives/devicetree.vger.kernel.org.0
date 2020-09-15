@@ -2,102 +2,90 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from vger.kernel.org (vger.kernel.org [23.128.96.18])
-	by mail.lfdr.de (Postfix) with ESMTP id 2F1FD269DFB
-	for <lists+devicetree@lfdr.de>; Tue, 15 Sep 2020 07:44:10 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTP id 142CD269E13
+	for <lists+devicetree@lfdr.de>; Tue, 15 Sep 2020 07:51:54 +0200 (CEST)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S1726066AbgIOFoI (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Tue, 15 Sep 2020 01:44:08 -0400
-Received: from m43-7.mailgun.net ([69.72.43.7]:30659 "EHLO m43-7.mailgun.net"
-        rhost-flags-OK-OK-OK-OK) by vger.kernel.org with ESMTP
-        id S1726046AbgIOFoH (ORCPT <rfc822;devicetree@vger.kernel.org>);
-        Tue, 15 Sep 2020 01:44:07 -0400
-DKIM-Signature: a=rsa-sha256; v=1; c=relaxed/relaxed; d=mg.codeaurora.org; q=dns/txt;
- s=smtp; t=1600148646; h=Content-Transfer-Encoding: Content-Type:
- MIME-Version: Date: Message-ID: Subject: From: To: Sender;
- bh=ETaP2+qz0CODvhFUuFPdGk674915ZERfOirpId35Wrg=; b=W4voawNUoM1UBLp9qIdeMH6BmBI3/TTdVuf0MowomYf+t7jdXIl5wRNqh+hPyMo3w7SSPvvd
- 2sJzUbVUaEkw2XRwILC4zCuHA9g4LDdJCwGc07NT3HQm2CRbMGB6SisemNf58UDnFLVtXpok
- TXjcBurNJd0NcdPOmNkTn9fWCfI=
-X-Mailgun-Sending-Ip: 69.72.43.7
-X-Mailgun-Sid: WyI1YmJiNiIsICJkZXZpY2V0cmVlQHZnZXIua2VybmVsLm9yZyIsICJiZTllNGEiXQ==
-Received: from smtp.codeaurora.org
- (ec2-35-166-182-171.us-west-2.compute.amazonaws.com [35.166.182.171]) by
- smtp-out-n06.prod.us-east-1.postgun.com with SMTP id
- 5f6054a632925f96e112793d (version=TLS1.2,
- cipher=TLS_ECDHE_RSA_WITH_AES_128_GCM_SHA256); Tue, 15 Sep 2020 05:44:06
- GMT
-Received: by smtp.codeaurora.org (Postfix, from userid 1001)
-        id 7D06CC433FE; Tue, 15 Sep 2020 05:44:05 +0000 (UTC)
-X-Spam-Checker-Version: SpamAssassin 3.4.0 (2014-02-07) on
-        aws-us-west-2-caf-mail-1.web.codeaurora.org
-X-Spam-Level: 
-X-Spam-Status: No, score=-2.9 required=2.0 tests=ALL_TRUSTED,BAYES_00,SPF_FAIL
-        autolearn=no autolearn_force=no version=3.4.0
-Received: from [192.168.1.101] (unknown [49.207.203.93])
-        (using TLSv1.2 with cipher ECDHE-RSA-AES128-GCM-SHA256 (128/128 bits))
-        (No client certificate requested)
-        (Authenticated sender: rnayak)
-        by smtp.codeaurora.org (Postfix) with ESMTPSA id 85BEAC433CA;
-        Tue, 15 Sep 2020 05:44:03 +0000 (UTC)
-DMARC-Filter: OpenDMARC Filter v1.3.2 smtp.codeaurora.org 85BEAC433CA
-Authentication-Results: aws-us-west-2-caf-mail-1.web.codeaurora.org; dmarc=none (p=none dis=none) header.from=codeaurora.org
-Authentication-Results: aws-us-west-2-caf-mail-1.web.codeaurora.org; spf=fail smtp.mailfrom=rnayak@codeaurora.org
-To:     Rob Herring <robh+dt@kernel.org>,
-        DTML <devicetree@vger.kernel.org>,
-        Doug Anderson <dianders@chromium.org>,
-        Matthias Kaehlcke <mka@chromium.org>
-From:   Rajendra Nayak <rnayak@codeaurora.org>
-Subject: is 'dynamic-power-coefficient' expected to be based on 'real' power
- measurements?
-Message-ID: <248bb01e-1746-c84c-78c4-3cf7d2541a70@codeaurora.org>
-Date:   Tue, 15 Sep 2020 11:14:00 +0530
-User-Agent: Mozilla/5.0 (Windows NT 10.0; WOW64; rv:68.0) Gecko/20100101
- Thunderbird/68.12.0
+        id S1726066AbgIOFvw (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Tue, 15 Sep 2020 01:51:52 -0400
+Received: from mailgw02.mediatek.com ([1.203.163.81]:47051 "EHLO
+        mailgw02.mediatek.com" rhost-flags-OK-FAIL-OK-FAIL) by vger.kernel.org
+        with ESMTP id S1726046AbgIOFvw (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Tue, 15 Sep 2020 01:51:52 -0400
+X-UUID: 75f0df4815ca46939aaf5de83bc32b9c-20200915
+DKIM-Signature: v=1; a=rsa-sha256; q=dns/txt; c=relaxed/relaxed; d=mediatek.com; s=dk;
+        h=Content-Transfer-Encoding:MIME-Version:Content-Type:References:In-Reply-To:Date:CC:To:From:Subject:Message-ID; bh=nJ8djf+4aZ5rpE1RVUZAt4X6QQ07QZXLCPjNDV2nP0c=;
+        b=RL4wcFJAGI/WWOo/h8kNFBRG4OXSQtq6TSLfmEjJhIIgtJWFU74DjUxhdwd7CZ6Bk4G5EvSNItOTJeEsX2/yr0p0BWnKLUFh0fBobRm6vrjZe8ii/03TiHC7bKEWvYvxSP+m4RZ/T1qhC2LoY56T5RafSglFN3hp3UgyZPQZCQs=;
+X-UUID: 75f0df4815ca46939aaf5de83bc32b9c-20200915
+Received: from mtkcas32.mediatek.inc [(172.27.4.253)] by mailgw02.mediatek.com
+        (envelope-from <yong.wu@mediatek.com>)
+        (mailgw01.mediatek.com ESMTP with TLSv1.2 ECDHE-RSA-AES256-SHA384 256/256)
+        with ESMTP id 1538148269; Tue, 15 Sep 2020 13:51:46 +0800
+Received: from MTKCAS36.mediatek.inc (172.27.4.186) by MTKMBS31N1.mediatek.inc
+ (172.27.4.69) with Microsoft SMTP Server (TLS) id 15.0.1497.2; Tue, 15 Sep
+ 2020 13:51:45 +0800
+Received: from [10.17.3.153] (10.17.3.153) by MTKCAS36.mediatek.inc
+ (172.27.4.170) with Microsoft SMTP Server id 15.0.1497.2 via Frontend
+ Transport; Tue, 15 Sep 2020 13:51:45 +0800
+Message-ID: <1600148980.25043.11.camel@mhfsdcap03>
+Subject: Re: [PATCH v2 01/23] dt-bindings: iommu: mediatek: Convert IOMMU to
+ DT schema
+From:   Yong Wu <yong.wu@mediatek.com>
+To:     Rob Herring <robh@kernel.org>
+CC:     Joerg Roedel <joro@8bytes.org>,
+        Matthias Brugger <matthias.bgg@gmail.com>,
+        Robin Murphy <robin.murphy@arm.com>,
+        Will Deacon <will@kernel.org>,
+        Evan Green <evgreen@chromium.org>,
+        Tomasz Figa <tfiga@google.com>,
+        <linux-mediatek@lists.infradead.org>,
+        <srv_heupstream@mediatek.com>, <devicetree@vger.kernel.org>,
+        <linux-kernel@vger.kernel.org>,
+        <linux-arm-kernel@lists.infradead.org>,
+        <iommu@lists.linux-foundation.org>, <youlin.pei@mediatek.com>,
+        Nicolas Boichat <drinkcat@chromium.org>,
+        <anan.sun@mediatek.com>, <chao.hao@mediatek.com>,
+        <ming-fan.chen@mediatek.com>
+Date:   Tue, 15 Sep 2020 13:49:40 +0800
+In-Reply-To: <20200914232204.GA457962@bogus>
+References: <20200905080920.13396-1-yong.wu@mediatek.com>
+         <20200905080920.13396-2-yong.wu@mediatek.com>
+         <20200914232204.GA457962@bogus>
+Content-Type: text/plain; charset="UTF-8"
+X-Mailer: Evolution 3.10.4-0ubuntu2 
 MIME-Version: 1.0
-Content-Type: text/plain; charset=utf-8; format=flowed
-Content-Language: en-US
-Content-Transfer-Encoding: 7bit
+X-TM-SNTS-SMTP: 111B958147B5710F8EC8EE31D6C3E1F8F83B044953526CC951ED6485D3399B752000:8
+X-MTK:  N
+Content-Transfer-Encoding: base64
 Sender: devicetree-owner@vger.kernel.org
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-Hi Rob,
+T24gTW9uLCAyMDIwLTA5LTE0IGF0IDE3OjIyIC0wNjAwLCBSb2IgSGVycmluZyB3cm90ZToNCj4g
+T24gU2F0LCBTZXAgMDUsIDIwMjAgYXQgMDQ6MDg6NThQTSArMDgwMCwgWW9uZyBXdSB3cm90ZToN
+Cj4gPiBDb252ZXJ0IE1lZGlhVGVrIElPTU1VIHRvIERUIHNjaGVtYS4NCj4gPiANCj4gPiBTaWdu
+ZWQtb2ZmLWJ5OiBZb25nIFd1IDx5b25nLnd1QG1lZGlhdGVrLmNvbT4NCj4gPiAtLS0NCg0KWy4u
+Ll0NCg0KPiA+ICtwcm9wZXJ0aWVzOg0KPiA+ICsgIGNvbXBhdGlibGU6DQo+ID4gKyAgICBlbnVt
+Og0KPiA+ICsgICAgICAtIG1lZGlhdGVrLG10MjcwMS1tNHUgI210MjcwMSBnZW5lcmF0aW9uIG9u
+ZSBIVw0KPiA+ICsgICAgICAtIG1lZGlhdGVrLG10MjcxMi1tNHUgI210MjcxMiBnZW5lcmF0aW9u
+IHR3byBIVw0KPiA+ICsgICAgICAtIG1lZGlhdGVrLG10Njc3OS1tNHUgI210Njc3OSBnZW5lcmF0
+aW9uIHR3byBIVw0KPiA+ICsgICAgICAtIG1lZGlhdGVrLG10NzYyMy1tNHUsIG1lZGlhdGVrLG10
+MjcwMS1tNHUgI210NzYyMyBnZW5lcmF0aW9uIG9uZSBIVw0KPiANCj4gVGhpcyBpcyBub3Qgcmln
+aHQuDQo+IA0KPiBpdGVtczoNCj4gICAtIGNvbnN0OiBtZWRpYXRlayxtdDc2MjMtbTR1DQo+ICAg
+LSBjb25zdDogbWVkaWF0ZWssbXQyNzAxLW00dQ0KPiANCj4gQW5kIHRoYXQgaGFzIHRvIGJlIHVu
+ZGVyIGEgJ29uZU9mJyB3aXRoIHRoZSByZXN0IG9mIHRoaXMuDQoNClRoYW5rcyBmb3IgdGhlIHJl
+dmlldy4gSXMgdGhpcyBPSz8NCg0KICBjb21wYXRpYmxlOg0KICAgIG9uZU9mOg0KICAgICAgLSBj
+b25zdDogbWVkaWF0ZWssbXQyNzAxLW00dSAjIG10MjcwMSBnZW5lcmF0aW9uIG9uZSBIVw0KICAg
+ICAgLSBjb25zdDogbWVkaWF0ZWssbXQyNzEyLW00dSAjIG10MjcxMiBnZW5lcmF0aW9uIHR3byBI
+Vw0KICAgICAgLSBjb25zdDogbWVkaWF0ZWssbXQ2Nzc5LW00dSAjIG10Njc3OSBnZW5lcmF0aW9u
+IHR3byBIVw0KICAgICAgLSBjb25zdDogbWVkaWF0ZWssbXQ4MTczLW00dSAjIG10ODE3MyBnZW5l
+cmF0aW9uIHR3byBIVw0KICAgICAgLSBjb25zdDogbWVkaWF0ZWssbXQ4MTgzLW00dSAjIG10ODE4
+MyBnZW5lcmF0aW9uIHR3byBIVw0KICAgICAgLSBjb25zdDogbWVkaWF0ZWssbXQ4MTkyLW00dSAj
+IG10ODE5MiBnZW5lcmF0aW9uIHR3byBIVw0KICAgICAgICAgICAgDQogICAgICAtIGRlc2NyaXB0
+aW9uOiBtdDc2MjMgZ2VuZXJhdGlvbiBvbmUgSFcNCiAgICAgICAgaXRlbXM6DQogICAgICAgICAg
+LSBjb25zdDogbWVkaWF0ZWssbXQ3NjIzLW00dQ0KICAgICAgICAgIC0gY29uc3Q6IG1lZGlhdGVr
+LG10MjcwMS1tNHUNCg0KPiANCj4gPiArICAgICAgLSBtZWRpYXRlayxtdDgxNzMtbTR1ICNtdDgx
+NzMgZ2VuZXJhdGlvbiB0d28gSFcNCj4gPiArICAgICAgLSBtZWRpYXRlayxtdDgxODMtbTR1ICNt
+dDgxODMgZ2VuZXJhdGlvbiB0d28gSFcNCj4gPiArDQo+ID4gKyAgcmVnOg0KPiA+ICsgICAgbWF4
+SXRlbXM6IDENCg0KW3NuaXBdDQo=
 
-There has been some discussions on another thread [1] around the DPC (dynamic-power-coefficient) values
-for CPU's being relative vs absolute (based on real power) and should they be used to derive 'real' power
-at various OPPs in order to calculate things like 'sustainable-power' for thermal zones.
-I believe relative values work perfectly fine for scheduling decisions, but with others using this for
-calculating power values in mW, is there a need to document the property as something that *has* to be
-based on real power measurements?
-
-Looking at the bindings,
-
-   dynamic-power-coefficient:
-     $ref: '/schemas/types.yaml#/definitions/uint32'
-     description:
-       A u32 value that represents the running time dynamic
-       power coefficient in units of uW/MHz/V^2. The
-       coefficient can either be calculated from power
-       measurements or derived by analysis.
-
-       The dynamic power consumption of the CPU  is
-       proportional to the square of the Voltage (V) and
-       the clock frequency (f). The coefficient is used to
-       calculate the dynamic power as below -
-
-       Pdyn = dynamic-power-coefficient * V^2 * f
-
-       where voltage is in V, frequency is in MHz.
-
-.. the 'can either be calculated from power measurements or derived by analysis'
-tells me we don't mandate that this be based on real power measurements.
-If we do, then perhaps that needs to be mentioned explicitly?
-
-thanks,
-Rajendra
-
-[1] https://lore.kernel.org/patchwork/patch/1287119/#1494073
-
--- 
-QUALCOMM INDIA, on behalf of Qualcomm Innovation Center, Inc. is a member
-of Code Aurora Forum, hosted by The Linux Foundation
