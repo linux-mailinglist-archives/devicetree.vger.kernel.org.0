@@ -2,92 +2,88 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from vger.kernel.org (vger.kernel.org [23.128.96.18])
-	by mail.lfdr.de (Postfix) with ESMTP id 3DC0C26B069
-	for <lists+devicetree@lfdr.de>; Wed, 16 Sep 2020 00:10:40 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTP id E65EB26B046
+	for <lists+devicetree@lfdr.de>; Wed, 16 Sep 2020 00:06:57 +0200 (CEST)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S1727859AbgIOWKS (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Tue, 15 Sep 2020 18:10:18 -0400
-Received: from mail-io1-f67.google.com ([209.85.166.67]:41568 "EHLO
-        mail-io1-f67.google.com" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S1727826AbgIOUCq (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Tue, 15 Sep 2020 16:02:46 -0400
-Received: by mail-io1-f67.google.com with SMTP id z13so5525174iom.8;
-        Tue, 15 Sep 2020 13:00:38 -0700 (PDT)
+        id S1728116AbgIOWGY (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Tue, 15 Sep 2020 18:06:24 -0400
+Received: from mail-il1-f194.google.com ([209.85.166.194]:32985 "EHLO
+        mail-il1-f194.google.com" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
+        with ESMTP id S1727977AbgIOUZc (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Tue, 15 Sep 2020 16:25:32 -0400
+Received: by mail-il1-f194.google.com with SMTP id x2so4327384ilm.0;
+        Tue, 15 Sep 2020 13:25:13 -0700 (PDT)
 X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
         d=1e100.net; s=20161025;
         h=x-gm-message-state:date:from:to:cc:subject:message-id:references
          :mime-version:content-disposition:in-reply-to;
-        bh=L7om6RUUpmy9Tp9WTJ6hem3a68ltpv04YXLuQ+XuUpg=;
-        b=GV1G4P0FlxSFwJEMqN8Qqv6F037+uwDELcHJkwzTCoNdIhyoTQFOzuSufljKDWllZL
-         nFlRD7HDagQ2B0+g7PRldlA3XgUC6zrMHBStEkM5BR/6TaD7AfJXvsC3rb8r9UKZBr32
-         Wq0cLf0QVinmVsduv6HGQ/KgpsxX2ZnHSHRfCDoAnRxGGWKV7OXeVBLkkU0ITlpSTUbo
-         t6s0kx0ryiNF4etzZVX2psYfmmQxBDaHjb8A3E/NRaXwzUvl5h4CKnEwAEWI/CYBvNZ/
-         ZUeYJXf0SwphFqg3XBJTQGNabdyGe7fFAT/Euz0J4OzkqsB87Ddt+anvJF1FbRY3Cswu
-         7yYw==
-X-Gm-Message-State: AOAM530qjV18lQRHTyb1DJZYyYwZr/PTDC/lT9mKgZpn1N51EO80XJyk
-        w5c1j7w/Yc+YlB0RuAQY1A==
-X-Google-Smtp-Source: ABdhPJyJashEW2xOKvfkZqHZZXucxwlHXqNC9JTw65ZlLFsAeTHaT5GzkbPEe9aLJArEiug2L8iMqA==
-X-Received: by 2002:a6b:590c:: with SMTP id n12mr17087310iob.25.1600200038094;
-        Tue, 15 Sep 2020 13:00:38 -0700 (PDT)
+        bh=hqrDKh/wQTHsjpamDIm7+3eHpp2tofZ94H9jUy28gw0=;
+        b=FJiSYHDrb4G+Kfhvx53ksMNzAWsC3A19koW6Wu1qBxmHGCRgeo9c/kVADzqjUqn3zE
+         SPLrR6parJtY/lpCBeqLvyOLByhnPuuhnXWB5yYfFglcua9gh0lE43TK2Xyh3wv/SBda
+         LUew6SP6RnzYvzcsl6/B51ceEH77g3TeMLte0VdBqywgXLHKJ4xMXlfoKh9yrra6oupw
+         XkzAqxZLCmm+aBuXIeMm2bObrqn8GlkGEwXD2E3HEL1hspTdrFzTnZoLpyIZuMLMC9HE
+         D5ktN0yf1BYRbwSjBFUHzujYQ7PtIXAyMwqLPTIksSYPJ2UuDOiK2QBTmGtP9DjWa0yl
+         63GQ==
+X-Gm-Message-State: AOAM533K+F/4jRQUBaFcB320/LN0GjY7lGKSPEL7pS0BPqBajJLzT1SW
+        cHSeqwzFP5wPWNV8mgAwMwz819prJmq7vVA=
+X-Google-Smtp-Source: ABdhPJzQEujayl0AnjerHGru4325MxbnU2cDr4EIKJMKs2nkbXcqIgtDujwc4j4UUUHjKfQS9RjVAw==
+X-Received: by 2002:a92:b74c:: with SMTP id c12mr18335573ilm.237.1600201513104;
+        Tue, 15 Sep 2020 13:25:13 -0700 (PDT)
 Received: from xps15 ([64.188.179.253])
-        by smtp.gmail.com with ESMTPSA id d71sm9595617ill.52.2020.09.15.13.00.33
+        by smtp.gmail.com with ESMTPSA id j77sm1847287ili.31.2020.09.15.13.25.10
         (version=TLS1_3 cipher=TLS_AES_256_GCM_SHA384 bits=256/256);
-        Tue, 15 Sep 2020 13:00:37 -0700 (PDT)
-Received: (nullmailer pid 2409290 invoked by uid 1000);
-        Tue, 15 Sep 2020 20:00:32 -0000
-Date:   Tue, 15 Sep 2020 14:00:32 -0600
+        Tue, 15 Sep 2020 13:25:12 -0700 (PDT)
+Received: (nullmailer pid 2449085 invoked by uid 1000);
+        Tue, 15 Sep 2020 20:25:09 -0000
+Date:   Tue, 15 Sep 2020 14:25:09 -0600
 From:   Rob Herring <robh@kernel.org>
-To:     Krzysztof Kozlowski <krzk@kernel.org>
-Cc:     Shawn Guo <shawnguo@kernel.org>,
-        Russell King <linux@armlinux.org.uk>,
-        linux-mediatek@lists.infradead.org,
-        Bartosz Golaszewski <bgolaszewski@baylibre.com>,
-        Sebastian Hesselbarth <sebastian.hesselbarth@gmail.com>,
-        Matthias Brugger <matthias.bgg@gmail.com>,
-        Rob Herring <robh+dt@kernel.org>,
-        Geert Uytterhoeven <geert+renesas@glider.be>,
-        Pengutronix Kernel Team <kernel@pengutronix.de>,
-        Gregory Clement <gregory.clement@bootlin.com>,
-        Sascha Hauer <s.hauer@pengutronix.de>,
-        linux-aspeed@lists.ozlabs.org,
-        =?UTF-8?Q?Beno=C3=AEt_Cousson?= <bcousson@baylibre.com>,
-        linux-kernel@vger.kernel.org, Jason Cooper <jason@lakedaemon.net>,
-        Tony Lindgren <tony@atomide.com>,
-        linux-renesas-soc@vger.kernel.org, Tero Kristo <t-kristo@ti.com>,
-        Joel Stanley <joel@jms.id.au>, Nishanth Menon <nm@ti.com>,
-        NXP Linux Team <linux-imx@nxp.com>,
-        Michal Simek <michal.simek@xilinx.com>,
-        linux-arm-kernel@lists.infradead.org,
-        Andrew Jeffery <andrew@aj.id.au>, linux-omap@vger.kernel.org,
-        devicetree@vger.kernel.org, Magnus Damm <magnus.damm@gmail.com>,
-        Linus Walleij <linus.walleij@linaro.org>,
-        Andrew Lunn <andrew@lunn.ch>,
-        Guenter Roeck <linux@roeck-us.net>
-Subject: Re: [PATCH v2 02/15] dt-bindings: gpio: convert bindings for Maxim
- MAX732x family to dtschema
-Message-ID: <20200915200032.GA2409250@bogus>
-References: <20200910175733.11046-1-krzk@kernel.org>
- <20200910175733.11046-3-krzk@kernel.org>
+To:     Jon Hunter <jonathanh@nvidia.com>
+Cc:     Bartosz Golaszewski <bgolaszewski@baylibre.com>,
+        Thierry Reding <thierry.reding@gmail.com>,
+        linux-i2c@vger.kernel.org, linux-kernel@vger.kernel.org,
+        devicetree@vger.kernel.org, linux-tegra@vger.kernel.org
+Subject: Re: [PATCH 2/5] dt-bindings: eeprom: at24: Add label property for
+ AT24
+Message-ID: <20200915202509.GA2448287@bogus>
+References: <20200910134239.192030-1-jonathanh@nvidia.com>
+ <20200910134239.192030-3-jonathanh@nvidia.com>
 MIME-Version: 1.0
 Content-Type: text/plain; charset=us-ascii
 Content-Disposition: inline
-In-Reply-To: <20200910175733.11046-3-krzk@kernel.org>
+In-Reply-To: <20200910134239.192030-3-jonathanh@nvidia.com>
 Sender: devicetree-owner@vger.kernel.org
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-On Thu, 10 Sep 2020 19:57:20 +0200, Krzysztof Kozlowski wrote:
-> Convert the Maxim MAX732x family of GPIO expanders bindings to device
-> tree schema by merging it with existing PCA95xx schema.  These are quite
-> similar so merging reduces duplication.
+On Thu, Sep 10, 2020 at 02:42:36PM +0100, Jon Hunter wrote:
+> Add a label property for the AT24 EEPROM to allow a custom name to be
+> used for identifying the EEPROM on a board. This is useful when there
+> is more than one EEPROM present.
 > 
-> Signed-off-by: Krzysztof Kozlowski <krzk@kernel.org>
+> Signed-off-by: Jon Hunter <jonathanh@nvidia.com>
 > ---
->  .../devicetree/bindings/gpio/gpio-max732x.txt | 58 ---------------
->  .../bindings/gpio/gpio-pca95xx.yaml           | 72 ++++++++++++++++++-
->  2 files changed, 70 insertions(+), 60 deletions(-)
->  delete mode 100644 Documentation/devicetree/bindings/gpio/gpio-max732x.txt
+>  Documentation/devicetree/bindings/eeprom/at24.yaml | 4 ++++
+>  1 file changed, 4 insertions(+)
 > 
+> diff --git a/Documentation/devicetree/bindings/eeprom/at24.yaml b/Documentation/devicetree/bindings/eeprom/at24.yaml
+> index 4cee72d53318..5c00d8a146b0 100644
+> --- a/Documentation/devicetree/bindings/eeprom/at24.yaml
+> +++ b/Documentation/devicetree/bindings/eeprom/at24.yaml
+> @@ -114,6 +114,10 @@ properties:
+>            - const: renesas,r1ex24128
+>            - const: atmel,24c128
+>  
+> +  label:
+> +    description: Descriptive name of the EEPROM.
+> +    maxItems: 1
 
-Reviewed-by: Rob Herring <robh@kernel.org>
+label is always a single string, so drop 'maxItems'.
+
+> +
+>    reg:
+>      maxItems: 1
+>  
+> -- 
+> 2.25.1
+> 
