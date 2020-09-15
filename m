@@ -2,106 +2,81 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from vger.kernel.org (vger.kernel.org [23.128.96.18])
-	by mail.lfdr.de (Postfix) with ESMTP id 8916A26A253
-	for <lists+devicetree@lfdr.de>; Tue, 15 Sep 2020 11:34:23 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTP id 8A2AA26A2BE
+	for <lists+devicetree@lfdr.de>; Tue, 15 Sep 2020 12:07:45 +0200 (CEST)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S1726487AbgIOJeV (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Tue, 15 Sep 2020 05:34:21 -0400
-Received: from lindbergh.monkeyblade.net ([23.128.96.19]:44932 "EHLO
-        lindbergh.monkeyblade.net" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S1726482AbgIOJeT (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Tue, 15 Sep 2020 05:34:19 -0400
-Received: from mail-wm1-x343.google.com (mail-wm1-x343.google.com [IPv6:2a00:1450:4864:20::343])
-        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 5853FC06174A;
-        Tue, 15 Sep 2020 02:34:19 -0700 (PDT)
-Received: by mail-wm1-x343.google.com with SMTP id e17so2679207wme.0;
-        Tue, 15 Sep 2020 02:34:19 -0700 (PDT)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=gmail.com; s=20161025;
-        h=subject:to:cc:references:from:message-id:date:user-agent
-         :mime-version:in-reply-to:content-language:content-transfer-encoding;
-        bh=67DGhnHI5ky9aYFAddzT1xx//rw0HE/G/UG2KwUwvZg=;
-        b=jtSqh/AVWGpCMKkgPVN4OUymijGKQV8H7Ic+ZeXAtbgB/ZfIuICvROHikgdZ9cop3X
-         fpsFP3Co1qOhVtYeiyj0DAAHB/Iq4CmkNzeQnD6uHVGO7bVP094dXQ4g8a1Edy7qKXSX
-         TstQWKr+xJEti7JHNI8qD2JDPAjpUeSN5PiTrd03/kqHts3YRWWIwoyziyt1hdg6PNLB
-         R9/28q7E52Yoa8eWPI41p82dImuZxrk+YpXkiIEF3kSjESaceXbcveC32pLsBCYzHIzH
-         8bkeeEmID6tc/suwcN1+rpDWig6uNr259S7EnQ2eQZ9QiTGTTIMuUeE6Or8wb/J9DHOT
-         gMcw==
-X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=1e100.net; s=20161025;
-        h=x-gm-message-state:subject:to:cc:references:from:message-id:date
-         :user-agent:mime-version:in-reply-to:content-language
-         :content-transfer-encoding;
-        bh=67DGhnHI5ky9aYFAddzT1xx//rw0HE/G/UG2KwUwvZg=;
-        b=f9oO/OELgvIc+YXxQaWk5t+OwJ12YLu5eT8eOk8ooT66ZpfHfd7fgCVj/pzE0/yvui
-         l6pPcnI2XMwiwX9oq7nWFsgJmyzjJIZFHpEsNT7q7ZIqujCrp9FZe1/V2sSkggMyPQuq
-         YSh+SskqYuXyHoAR0jQNFKXlHZRcMgdUAh6VmtcJ5XQuDBUCcybNvT0Lh6CorvuZP26J
-         VbsuCjq+c8Ulyf4gIcu0Qer4SH+BgxrlpBe6ZXQC6Y9XS8YrbIaoy6p0aRUyy+vL5ggs
-         TL1A4Ja68O/gvb6Qi1ZeQDcdW8WwKSzDhwcqz5VdCPzZbm92A4w0sS150k5eckepnrYn
-         VOJA==
-X-Gm-Message-State: AOAM532VzoNcrxAL9cyiBnXlUvijz4qy0b66gOmcz08cS62ttWzt+zb8
-        Iusrwwnoqqk6QXcA8WFQt84=
-X-Google-Smtp-Source: ABdhPJyzMN+PH6DddtIX0wFjsQw7cBewtV8OuM9oQ/XZCiLuwUuFUrsS4EFZipnC9IJfFm10GINqOQ==
-X-Received: by 2002:a1c:3985:: with SMTP id g127mr3914315wma.32.1600162458037;
-        Tue, 15 Sep 2020 02:34:18 -0700 (PDT)
-Received: from ziggy.stardust ([213.195.113.201])
-        by smtp.gmail.com with ESMTPSA id a15sm27345109wrn.3.2020.09.15.02.34.16
-        (version=TLS1_3 cipher=TLS_AES_128_GCM_SHA256 bits=128/128);
-        Tue, 15 Sep 2020 02:34:17 -0700 (PDT)
-Subject: Re: [PATCH 0/3] Mediatek MT8192 scpsys support
-To:     Weiyi Lu <weiyi.lu@mediatek.com>,
-        Enric Balletbo Serra <eballetbo@gmail.com>,
-        Nicolas Boichat <drinkcat@chromium.org>,
-        Rob Herring <robh@kernel.org>,
-        Sascha Hauer <kernel@pengutronix.de>
-Cc:     linux-arm-kernel@lists.infradead.org, linux-kernel@vger.kernel.org,
-        devicetree@vger.kernel.org, linux-mediatek@lists.infradead.org,
-        srv_heupstream@mediatek.com
-References: <1599201895-11013-1-git-send-email-weiyi.lu@mediatek.com>
-From:   Matthias Brugger <matthias.bgg@gmail.com>
-Message-ID: <673c1209-f71c-398d-dbce-7ad6ca3610de@gmail.com>
-Date:   Tue, 15 Sep 2020 11:34:16 +0200
-User-Agent: Mozilla/5.0 (X11; Linux x86_64; rv:68.0) Gecko/20100101
- Thunderbird/68.12.0
+        id S1726119AbgIOKHo (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Tue, 15 Sep 2020 06:07:44 -0400
+Received: from crapouillou.net ([89.234.176.41]:50084 "EHLO crapouillou.net"
+        rhost-flags-OK-OK-OK-OK) by vger.kernel.org with ESMTP
+        id S1726130AbgIOKHl (ORCPT <rfc822;devicetree@vger.kernel.org>);
+        Tue, 15 Sep 2020 06:07:41 -0400
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=crapouillou.net;
+        s=mail; t=1600164455; h=from:from:sender:reply-to:subject:subject:date:date:
+         message-id:message-id:to:to:cc:cc:mime-version:mime-version:
+         content-type:content-type:
+         content-transfer-encoding:content-transfer-encoding:
+         in-reply-to:in-reply-to:references:references;
+        bh=i0x55otxMpUkdJhAxtRyRNzid5yrQkcNryvNuSbY120=;
+        b=JjKJkr554CtSU+QnzXW0ch7pQ3bS3gqTytqZwc4VR1umrd3soq7NGPIdyiFbjMUS+Nhzhz
+        k6c4fs+MIO2EP24+rEt3Vh8+gJwbbEQ2e5qmiZFukSa0WIG94cUJWezD2ITO7GQ/XBZ2Ps
+        k0nygKqOTATm1rLY76iZ1Zc4KXNyyLs=
+Date:   Tue, 15 Sep 2020 12:07:24 +0200
+From:   Paul Cercueil <paul@crapouillou.net>
+Subject: Re: [PATCH 3/3] i2c: jz4780: Remove of_match_ptr()
+To:     Rob Herring <robh@kernel.org>
+Cc:     od@zcrc.me, linux-i2c@vger.kernel.org, devicetree@vger.kernel.org,
+        linux-kernel@vger.kernel.org
+Message-Id: <CS2PGQ.I4UMQBYTB15I2@crapouillou.net>
+In-Reply-To: <20200914221230.GA349829@bogus>
+References: <20200904131152.17390-1-paul@crapouillou.net>
+        <20200904131152.17390-3-paul@crapouillou.net>
+        <20200914221230.GA349829@bogus>
 MIME-Version: 1.0
-In-Reply-To: <1599201895-11013-1-git-send-email-weiyi.lu@mediatek.com>
-Content-Type: text/plain; charset=utf-8; format=flowed
-Content-Language: en-US
-Content-Transfer-Encoding: 7bit
+Content-Type: text/plain; charset=iso-8859-1; format=flowed
+Content-Transfer-Encoding: quoted-printable
 Sender: devicetree-owner@vger.kernel.org
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-Hi Weiyi,
+Hi Rob,
 
-On 04/09/2020 08:44, Weiyi Lu wrote:
-> This series is based on v5.9-rc1, MT8192 clock v3[1] and MT8183 scpsys v17[2].
+Le lun. 14 sept. 2020 =E0 16:12, Rob Herring <robh@kernel.org> a =E9crit :
+> On Fri, Sep 04, 2020 at 03:11:52PM +0200, Paul Cercueil wrote:
+>>  CONFIG_OF is selected by CONFIG_MACH_INGENIC, therefore we don't=20
+>> need to
+>>  handle the case where Device Tree is not supported.
+>=20
+> What about COMPILE_TEST? If not supported, why not?
 
-First of all, thanks for your patch!
+What about it? It will still compile fine with COMPILE_TEST.
 
-The actual scpsys driver has some limitations. Enric and I are working on a new 
-driver [1]. My idea is to deprecate the old scpsys driver in favor of this new one.
+-Paul
 
-Would you mind to resend your series on top of [1]?
+>>=20
+>>  Signed-off-by: Paul Cercueil <paul@crapouillou.net>
+>>  ---
+>>   drivers/i2c/busses/i2c-jz4780.c | 2 +-
+>>   1 file changed, 1 insertion(+), 1 deletion(-)
+>>=20
+>>  diff --git a/drivers/i2c/busses/i2c-jz4780.c=20
+>> b/drivers/i2c/busses/i2c-jz4780.c
+>>  index ed2ec86f6f1a..cb4a25ebb890 100644
+>>  --- a/drivers/i2c/busses/i2c-jz4780.c
+>>  +++ b/drivers/i2c/busses/i2c-jz4780.c
+>>  @@ -857,7 +857,7 @@ static struct platform_driver jz4780_i2c_driver=20
+>> =3D {
+>>   	.remove		=3D jz4780_i2c_remove,
+>>   	.driver		=3D {
+>>   		.name	=3D "jz4780-i2c",
+>>  -		.of_match_table =3D of_match_ptr(jz4780_i2c_of_matches),
+>>  +		.of_match_table =3D jz4780_i2c_of_matches,
+>>   	},
+>>   };
+>>=20
+>>  --
+>>  2.28.0
+>>=20
 
-Regards,
-Matthias
 
-> 
-> [1] https://patchwork.kernel.org/cover/11752231/
-> [2] https://patchwork.kernel.org/cover/11703253/
-> 
-> 
-> Weiyi Lu (3):
->    dt-bindings: soc: Add MT8192 power dt-bindings
->    soc: mediatek: Add MT8192 scpsys support
->    arm64: dts: Add power controller device node of MT8192
-> 
->   .../bindings/soc/mediatek/scpsys.txt          |   5 +
->   arch/arm64/boot/dts/mediatek/mt8192.dtsi      | 148 +++++++++
->   drivers/soc/mediatek/mtk-scpsys.c             | 297 ++++++++++++++++++
->   include/dt-bindings/power/mt8192-power.h      |  32 ++
->   4 files changed, 482 insertions(+)
->   create mode 100644 include/dt-bindings/power/mt8192-power.h
-> 
