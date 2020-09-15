@@ -2,55 +2,51 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from vger.kernel.org (vger.kernel.org [23.128.96.18])
-	by mail.lfdr.de (Postfix) with ESMTP id EFA0226AF86
-	for <lists+devicetree@lfdr.de>; Tue, 15 Sep 2020 23:25:20 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTP id 9C0A726B00C
+	for <lists+devicetree@lfdr.de>; Tue, 15 Sep 2020 23:58:39 +0200 (CEST)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S1728021AbgIOVYt (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Tue, 15 Sep 2020 17:24:49 -0400
-Received: from lindbergh.monkeyblade.net ([23.128.96.19]:42822 "EHLO
+        id S1728045AbgIOVQY (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Tue, 15 Sep 2020 17:16:24 -0400
+Received: from lindbergh.monkeyblade.net ([23.128.96.19]:41140 "EHLO
         lindbergh.monkeyblade.net" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S1728096AbgIOVXy (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Tue, 15 Sep 2020 17:23:54 -0400
-Received: from mail-wr1-x42b.google.com (mail-wr1-x42b.google.com [IPv6:2a00:1450:4864:20::42b])
-        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 15167C061788
-        for <devicetree@vger.kernel.org>; Tue, 15 Sep 2020 14:23:53 -0700 (PDT)
-Received: by mail-wr1-x42b.google.com with SMTP id c18so4753306wrm.9
-        for <devicetree@vger.kernel.org>; Tue, 15 Sep 2020 14:23:52 -0700 (PDT)
+        with ESMTP id S1727953AbgIOVNf (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Tue, 15 Sep 2020 17:13:35 -0400
+Received: from mail-pj1-x1036.google.com (mail-pj1-x1036.google.com [IPv6:2607:f8b0:4864:20::1036])
+        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 8B266C06174A
+        for <devicetree@vger.kernel.org>; Tue, 15 Sep 2020 14:13:12 -0700 (PDT)
+Received: by mail-pj1-x1036.google.com with SMTP id s14so489964pju.1
+        for <devicetree@vger.kernel.org>; Tue, 15 Sep 2020 14:13:12 -0700 (PDT)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=linaro.org; s=google;
-        h=subject:to:cc:references:from:message-id:date:user-agent
-         :mime-version:in-reply-to:content-language:content-transfer-encoding;
-        bh=U4vBU3oWe9dELRdCn8qdtZpVCby9MX3wx5BJONCktfM=;
-        b=kH+dSgCj5ikkoj3l26ItiM5aBmq9ccoXC+eP0bMX+EhhIqkBfMQHOFkixETK1/Bc3y
-         6gmpsl095uZjQw8MV6fGWKPD/z3VvRFL5Q6YiBuYyCvtXx2Ai6PHU31z1iKbhnT4Wsal
-         b4gRJKhH7KZk3ATxkr25TSxaVR/vIwDHfmyuusgdP7o1ZbB9mmIzWCwAlspDrQtPLlkQ
-         jNxvfGsj5UvUPF/A2mU8rUGHp5y58OPQrooDya8fhZKiuDmmn1UnyJP8N6kR9gMVhKWb
-         qKqODcV+5wpiyWFg8KGnoIc079tCk7ujqsuv8G65KbX1ePZvm47NimIMYnoSLNHVNnxQ
-         VDHg==
+        d=chromium.org; s=google;
+        h=date:from:to:cc:subject:message-id:references:mime-version
+         :content-disposition:in-reply-to;
+        bh=abKiPag/1Ozorrxyyt6wGE2JT6gcln8Nw1fbM7q+yr8=;
+        b=DDr7b+kwk53W99xWv9BTfuVx1CbeELr5NYyKBTb+Tov7SJ4uB3E2pLqTxyIdkqmdEg
+         ko73MyzlNMxCv75sJj1sF0x7vwO7gG+oyUewBCA/WSvAXwL0CgDMTjMOKCJUotpJTBbw
+         6nFjWmpaUK4i4OSl59HuZ7MCWIJCoFK5FVcnA=
 X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
         d=1e100.net; s=20161025;
-        h=x-gm-message-state:subject:to:cc:references:from:message-id:date
-         :user-agent:mime-version:in-reply-to:content-language
-         :content-transfer-encoding;
-        bh=U4vBU3oWe9dELRdCn8qdtZpVCby9MX3wx5BJONCktfM=;
-        b=rGr3OLI1CkEixYY6MJ0H5lUNxsnlXVJBdXaGSMGPIFcv8Wj2xRonSoHvlssTpeDRUF
-         KBZr9DF/S4AlaboGfjhJiaek+43w8mHCis1j+h38GWzkf2RcDz4V8CkWxlwIDqVlx+Vt
-         FEjRmmRtUN7NoM/z2CiAPPORvJaHs6ACgKh7PEXUMiGr+WpyKlvSdd5LgInRbquhlVTC
-         iH6Ff4oH0iQlhMe15UEK2yrEGNOL9Oo4JXLSjjfnpLoiBK18MiG93TvDVuCGXpfDC0P8
-         LrGBaW2O7f7fNl9xs0g4XcD5ZKYOSmYTDR7VHvqBTnJ4tHRqrSmErD7Viv3yyqNvmd8r
-         OE6g==
-X-Gm-Message-State: AOAM5315OYyXMUT9V8GPulNj/PzNw2qR1kON+nOQ+EM6JTOVIwyRCoUx
-        64UTB9T6xmHUZUU2YF4xe0hWEQ==
-X-Google-Smtp-Source: ABdhPJzVmbzcbpwx4Bi4G9zg3BwdE2Jo7HoVd17VVFfllO62FrL18dS9jUEY/EljKr1bfZmVNdYXDw==
-X-Received: by 2002:adf:e449:: with SMTP id t9mr23742970wrm.154.1600205031461;
-        Tue, 15 Sep 2020 14:23:51 -0700 (PDT)
-Received: from ?IPv6:2a01:e34:ed2f:f020:75c3:cda5:890e:8e1b? ([2a01:e34:ed2f:f020:75c3:cda5:890e:8e1b])
-        by smtp.googlemail.com with ESMTPSA id q20sm1393652wmj.5.2020.09.15.14.23.50
+        h=x-gm-message-state:date:from:to:cc:subject:message-id:references
+         :mime-version:content-disposition:in-reply-to;
+        bh=abKiPag/1Ozorrxyyt6wGE2JT6gcln8Nw1fbM7q+yr8=;
+        b=NqAoSCceAGmy0jjZeJIvfJ3YXk/wmuhsJU+DjexJOKQ0O5v5R0g2F1eigjQNitlfqw
+         yIjd6MAZN5+eGl54ZkAvgtDP6sTPSnGxm74onv2nkOFRfXJvzW6RZagIILNhkg8JDvNn
+         pwdgrFO9GPfYr4bUW6h7i5s4R3Qq4zMdwwLh1SB7t/whl+Y4632iErgPu1AbY1F/rd9W
+         n8q7yYDis/pfWXR3HCcffMTFxvPfKZelpZGU91yW/DNyK6v9ufinruPr0TspEUFs+XJl
+         0Odnf/01kUecYne0Om3aTH9QBYmk5/Pl6b9TI4cFXKT8Y/2B1pBlOAqRO/Y9s/8Hgj1U
+         pi0w==
+X-Gm-Message-State: AOAM533QbdZdUTLIHZefnIOTf8l2u4ZxLYbC3ydmrcz3A8sG1YGoHcmw
+        9MMqFQBYLQGys6ZPAZkslTrpLw==
+X-Google-Smtp-Source: ABdhPJys3IuhT1Oz35grLyPQiwfcEIAeCrRlZvnjWzwVaB82sYIWoTL1lKenyW5Yt5IgSvLtwOrkLw==
+X-Received: by 2002:a17:902:b715:b029:d1:e598:4000 with SMTP id d21-20020a170902b715b02900d1e5984000mr3456768pls.58.1600204392036;
+        Tue, 15 Sep 2020 14:13:12 -0700 (PDT)
+Received: from localhost ([2620:15c:202:1:f693:9fff:fef4:e70a])
+        by smtp.gmail.com with ESMTPSA id x6sm396935pjp.25.2020.09.15.14.13.11
         (version=TLS1_3 cipher=TLS_AES_128_GCM_SHA256 bits=128/128);
-        Tue, 15 Sep 2020 14:23:50 -0700 (PDT)
-Subject: Re: is 'dynamic-power-coefficient' expected to be based on 'real'
- power measurements?
-To:     Matthias Kaehlcke <mka@chromium.org>
+        Tue, 15 Sep 2020 14:13:11 -0700 (PDT)
+Date:   Tue, 15 Sep 2020 14:13:09 -0700
+From:   Matthias Kaehlcke <mka@chromium.org>
+To:     Daniel Lezcano <daniel.lezcano@linaro.org>
 Cc:     Rajendra Nayak <rnayak@codeaurora.org>,
         Lukasz Luba <lukasz.luba@arm.com>,
         Rob Herring <robh+dt@kernel.org>,
@@ -60,84 +56,67 @@ Cc:     Rajendra Nayak <rnayak@codeaurora.org>,
         Amit Daniel Kachhap <amit.kachhap@gmail.com>,
         Viresh Kumar <viresh.kumar@linaro.org>,
         Javi Merino <javi.merino@kernel.org>
+Subject: Re: is 'dynamic-power-coefficient' expected to be based on 'real'
+ power measurements?
+Message-ID: <20200915211309.GC2771744@google.com>
 References: <248bb01e-1746-c84c-78c4-3cf7d2541a70@codeaurora.org>
  <20200915172444.GA2771744@google.com>
  <406d5d4e-d7d7-8a37-5501-119b734facb3@linaro.org>
  <20200915175808.GB2771744@google.com>
  <27785351-ba14-dc92-6761-d64962c29596@linaro.org>
- <20200915211309.GC2771744@google.com>
-From:   Daniel Lezcano <daniel.lezcano@linaro.org>
-Message-ID: <808029c4-3a05-1926-934d-10739190ab9e@linaro.org>
-Date:   Tue, 15 Sep 2020 23:23:49 +0200
-User-Agent: Mozilla/5.0 (X11; Linux x86_64; rv:68.0) Gecko/20100101
- Thunderbird/68.10.0
 MIME-Version: 1.0
-In-Reply-To: <20200915211309.GC2771744@google.com>
 Content-Type: text/plain; charset=utf-8
-Content-Language: en-US
-Content-Transfer-Encoding: 8bit
+Content-Disposition: inline
+In-Reply-To: <27785351-ba14-dc92-6761-d64962c29596@linaro.org>
 Sender: devicetree-owner@vger.kernel.org
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-On 15/09/2020 23:13, Matthias Kaehlcke wrote:
-> On Tue, Sep 15, 2020 at 10:55:52PM +0200, Daniel Lezcano wrote:
->> On 15/09/2020 19:58, Matthias Kaehlcke wrote:
->>> On Tue, Sep 15, 2020 at 07:50:10PM +0200, Daniel Lezcano wrote:
->>>> On 15/09/2020 19:24, Matthias Kaehlcke wrote:
->>>>> +Thermal folks
->>>>>
->>>>> Hi Rajendra,
->>>>>
->>>>> On Tue, Sep 15, 2020 at 11:14:00AM +0530, Rajendra Nayak wrote:
->>>>>> Hi Rob,
->>>>>>
->>>>>> There has been some discussions on another thread [1] around the DPC (dynamic-power-coefficient) values
->>>>>> for CPU's being relative vs absolute (based on real power) and should they be used to derive 'real' power
->>>>>> at various OPPs in order to calculate things like 'sustainable-power' for thermal zones.
->>>>>> I believe relative values work perfectly fine for scheduling decisions, but with others using this for
->>>>>> calculating power values in mW, is there a need to document the property as something that *has* to be
->>>>>> based on real power measurements?
->>>>>
->>>>> Relative values may work for scheduling decisions, but not for thermal
->>>>> management with the power allocator, at least not when CPU cooling devices
->>>>> are combined with others that specify their power consumption in absolute
->>>>> values. Such a configuration should be supported IMO.
->>>>
->>>> The energy model is used in the cpufreq cooling device and if the
->>>> sustainable power is consistent with the relative values then there is
->>>> no reason it shouldn't work.
->>>
->>> Agreed on thermal zones that exclusively use CPUs as cooling devices, but
->>> what when you have mixed zones, with CPUs with their pseudo-unit and e.g. a
->>> GPU that specifies its power in mW?
->>
->> Well, if a SoC vendor decides to mix the units, then there is nothing we
->> can do.
->>
->> When specifying the power numbers available for the SoC, they could be
->> all scaled against the highest power number.
+On Tue, Sep 15, 2020 at 10:55:52PM +0200, Daniel Lezcano wrote:
+> On 15/09/2020 19:58, Matthias Kaehlcke wrote:
+> > On Tue, Sep 15, 2020 at 07:50:10PM +0200, Daniel Lezcano wrote:
+> >> On 15/09/2020 19:24, Matthias Kaehlcke wrote:
+> >>> +Thermal folks
+> >>>
+> >>> Hi Rajendra,
+> >>>
+> >>> On Tue, Sep 15, 2020 at 11:14:00AM +0530, Rajendra Nayak wrote:
+> >>>> Hi Rob,
+> >>>>
+> >>>> There has been some discussions on another thread [1] around the DPC (dynamic-power-coefficient) values
+> >>>> for CPU's being relative vs absolute (based on real power) and should they be used to derive 'real' power
+> >>>> at various OPPs in order to calculate things like 'sustainable-power' for thermal zones.
+> >>>> I believe relative values work perfectly fine for scheduling decisions, but with others using this for
+> >>>> calculating power values in mW, is there a need to document the property as something that *has* to be
+> >>>> based on real power measurements?
+> >>>
+> >>> Relative values may work for scheduling decisions, but not for thermal
+> >>> management with the power allocator, at least not when CPU cooling devices
+> >>> are combined with others that specify their power consumption in absolute
+> >>> values. Such a configuration should be supported IMO.
+> >>
+> >> The energy model is used in the cpufreq cooling device and if the
+> >> sustainable power is consistent with the relative values then there is
+> >> no reason it shouldn't work.
+> > 
+> > Agreed on thermal zones that exclusively use CPUs as cooling devices, but
+> > what when you have mixed zones, with CPUs with their pseudo-unit and e.g. a
+> > GPU that specifies its power in mW?
 > 
-> The GPU was just one example, a device could have heat dissipating components
-> that are not from the SoC vendor (e.g. WiFi, modem, backlight), and depending
-> on the design it might not make sense to have separate thermal zones.
-
-Is it possible to elaborate, I'm not sure to get the point ?
-
-
->> There are so many factors on the hardware, the firmware, the kernel and
->> the userspace sides having an impact on the energy efficiency, I don't
->> understand why SoC vendors are so shy to share the power numbers...
+> Well, if a SoC vendor decides to mix the units, then there is nothing we
+> can do.
 > 
-> nor do I, someone could just perform measurements to determine DPCs
-> with the proper scale if Qualcomm refuses to provide them ...
-> 
+> When specifying the power numbers available for the SoC, they could be
+> all scaled against the highest power number.
 
+The GPU was just one example, a device could have heat dissipating components
+that are not from the SoC vendor (e.g. WiFi, modem, backlight), and depending
+on the design it might not make sense to have separate thermal zones.
 
--- 
-<http://www.linaro.org/> Linaro.org │ Open source software for ARM SoCs
+> There are so many factors on the hardware, the firmware, the kernel and
+> the userspace sides having an impact on the energy efficiency, I don't
+> understand why SoC vendors are so shy to share the power numbers...
 
-Follow Linaro:  <http://www.facebook.com/pages/Linaro> Facebook |
-<http://twitter.com/#!/linaroorg> Twitter |
-<http://www.linaro.org/linaro-blog/> Blog
+nor do I, someone could just perform measurements to determine DPCs
+with the proper scale if Qualcomm refuses to provide them ...
