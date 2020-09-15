@@ -2,125 +2,144 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from vger.kernel.org (vger.kernel.org [23.128.96.18])
-	by mail.lfdr.de (Postfix) with ESMTP id 5DB5926AE28
-	for <lists+devicetree@lfdr.de>; Tue, 15 Sep 2020 21:53:36 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTP id 6C8A426AE38
+	for <lists+devicetree@lfdr.de>; Tue, 15 Sep 2020 21:56:35 +0200 (CEST)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S1727751AbgIOTxe (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Tue, 15 Sep 2020 15:53:34 -0400
-Received: from lindbergh.monkeyblade.net ([23.128.96.19]:56970 "EHLO
+        id S1727222AbgIOT4b (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Tue, 15 Sep 2020 15:56:31 -0400
+Received: from lindbergh.monkeyblade.net ([23.128.96.19]:57258 "EHLO
         lindbergh.monkeyblade.net" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S1727825AbgIOTxQ (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Tue, 15 Sep 2020 15:53:16 -0400
-Received: from mail-vk1-xa34.google.com (mail-vk1-xa34.google.com [IPv6:2607:f8b0:4864:20::a34])
-        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 697A4C061788
-        for <devicetree@vger.kernel.org>; Tue, 15 Sep 2020 12:53:16 -0700 (PDT)
-Received: by mail-vk1-xa34.google.com with SMTP id m8so1141757vka.6
-        for <devicetree@vger.kernel.org>; Tue, 15 Sep 2020 12:53:16 -0700 (PDT)
+        with ESMTP id S1727826AbgIOTzG (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Tue, 15 Sep 2020 15:55:06 -0400
+Received: from mail-pl1-x641.google.com (mail-pl1-x641.google.com [IPv6:2607:f8b0:4864:20::641])
+        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 87CC1C06178A
+        for <devicetree@vger.kernel.org>; Tue, 15 Sep 2020 12:55:05 -0700 (PDT)
+Received: by mail-pl1-x641.google.com with SMTP id e4so1904807pln.10
+        for <devicetree@vger.kernel.org>; Tue, 15 Sep 2020 12:55:05 -0700 (PDT)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=chromium.org; s=google;
-        h=mime-version:references:in-reply-to:from:date:message-id:subject:to
-         :cc;
-        bh=JatNhbddJToYM0By7pCmtx57Fyea4GmWvkZSCincDmk=;
-        b=cs/Q6x0YzM+Pnjbl6WAD3RzDobJyyW3NLuTB+Fmlv0GjwsMl/B+GFzhyNWSmw90fQU
-         Xtqk1Uwmb+cc47MODVCKGi7K+6IaYLZkTSOlCr4/CL5Uzj5kvCqCPt+MFe2Vk3R8hL08
-         HLUmomtDf8ml9LyL4vgvTXl9tBLoW0hCaJ6V0=
+        d=linaro.org; s=google;
+        h=date:from:to:cc:subject:message-id:references:mime-version
+         :content-disposition:in-reply-to;
+        bh=ANJOfSdlpRaHSBBO4TQnqknbM6J+0XuYtQl6sOjOU6g=;
+        b=vbKyE1eGXl1ab37xPuCgN3XERmZgx8c72CmccznAaQT/qdPIFWgEvL2g7tdxHUje1+
+         uH3g5E43P/o9/UJXb7GQiTNIYyMi0BTbo9lWzld48up8d8Dpu5ogNRBAKeUa8TQgWld4
+         mXnM7bosw+BwFaU3OdjM3MkSleUZ0pAHWgLipyCpVaQWGWHMKkgE5EtkjCyhdPbfacRb
+         BF4zvVAEvnt46T2LrUiCt+Ej1O5VNJn4gCUeqdOMVp0NP959/LyLVZ2HbrBpysEqZZ7U
+         /glUHqltfoq9EtlZslQ0cG+F+Ocwp8nEhATulLHJinhygWWgTymGqXK7y09zkav+1GU6
+         8HAA==
 X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
         d=1e100.net; s=20161025;
-        h=x-gm-message-state:mime-version:references:in-reply-to:from:date
-         :message-id:subject:to:cc;
-        bh=JatNhbddJToYM0By7pCmtx57Fyea4GmWvkZSCincDmk=;
-        b=q49oL6O3WKDFN9VVfpcaiSFdOS6wiujeSJx/0ySGuIwQyhiRK88W4sFad7aquD7IxZ
-         RRFewu+4Xp/Nkuv2JvEUCy5fo/+Kv3vlREtXZliEG3wwvj9EqJv/Ix69Jcju59Njtb0K
-         FeRYGl1+Ak+R4QcV9t5Jym2Hj2rOyD8QxLG0Ns3c/sLiUbbpArYSZNwduS8/TEQMBeo5
-         lSkObZF/a4h569xiFBu/SWmGjz/fcumXmOnlbmtWLWjz9MolHyYDrbc9UUOV3WhU2xTC
-         Ft+Anxh7iZg96RJ82jhr0BGOeBe9ugrQMh60volxif6gmB2J225QWrButCEH2Uh1O2S5
-         3YHw==
-X-Gm-Message-State: AOAM530Q9ly5EpfWKsCNtKOqzws9dK+iJmkOV6sYfKFzJwk0uzUyFC4E
-        Xewt5D9s+gUk9DYGHgyacHQDPBd7/Gk1Ug==
-X-Google-Smtp-Source: ABdhPJwqU/rpGrpShdtQFLzrEhCC5oLfjksqnyl/+sAyv1zamUpq/2RJZpG1wZ1/Z0o90hOdPFlk0Q==
-X-Received: by 2002:a1f:4507:: with SMTP id s7mr11651904vka.9.1600199594503;
-        Tue, 15 Sep 2020 12:53:14 -0700 (PDT)
-Received: from mail-vs1-f50.google.com (mail-vs1-f50.google.com. [209.85.217.50])
-        by smtp.gmail.com with ESMTPSA id b140sm2162839vsd.14.2020.09.15.12.53.13
-        for <devicetree@vger.kernel.org>
-        (version=TLS1_3 cipher=TLS_AES_128_GCM_SHA256 bits=128/128);
-        Tue, 15 Sep 2020 12:53:13 -0700 (PDT)
-Received: by mail-vs1-f50.google.com with SMTP id j185so2637330vsc.3
-        for <devicetree@vger.kernel.org>; Tue, 15 Sep 2020 12:53:13 -0700 (PDT)
-X-Received: by 2002:a05:6102:101a:: with SMTP id q26mr2665758vsp.34.1600199593095;
- Tue, 15 Sep 2020 12:53:13 -0700 (PDT)
-MIME-Version: 1.0
-References: <248bb01e-1746-c84c-78c4-3cf7d2541a70@codeaurora.org>
-In-Reply-To: <248bb01e-1746-c84c-78c4-3cf7d2541a70@codeaurora.org>
-From:   Doug Anderson <dianders@chromium.org>
-Date:   Tue, 15 Sep 2020 12:53:00 -0700
-X-Gmail-Original-Message-ID: <CAD=FV=WkS41m_FnZ9V-MM3uh8V6XKgHqvK7FpyWPBCjk7VuVHA@mail.gmail.com>
-Message-ID: <CAD=FV=WkS41m_FnZ9V-MM3uh8V6XKgHqvK7FpyWPBCjk7VuVHA@mail.gmail.com>
-Subject: Re: is 'dynamic-power-coefficient' expected to be based on 'real'
- power measurements?
-To:     Rajendra Nayak <rnayak@codeaurora.org>
-Cc:     Matthias Kaehlcke <mka@chromium.org>,
-        Lukasz Luba <lukasz.luba@arm.com>,
+        h=x-gm-message-state:date:from:to:cc:subject:message-id:references
+         :mime-version:content-disposition:in-reply-to;
+        bh=ANJOfSdlpRaHSBBO4TQnqknbM6J+0XuYtQl6sOjOU6g=;
+        b=EU2dBa9Zj0tLOqCgficObHWJK7B/6iqk4dG6a4hLzinWXoX2p+GAHXFJTDSxrv3yI0
+         VJv+in+rOJVKNLOVqsWbAz9fUYobPMuxKwYLgysR70zvDp3X7+HGzjfoI3dX/IFEX3zi
+         xLTUMyWDCCXkLGBuEoMHSPJzDDALllqwVAXFcNkHJojer+aQnZmy4UutxqWS39HWOpZb
+         EPLSCY1UGq4mashPlws1DejHQ1pAgQ+O4/eA489F+k3M3XMh33BNPu9fwCu5Mn/TbBZi
+         /0Ox/ESXR7qAVYqXW+834RJIl+ZQg24uyZwKx3aHsF7vCcMbyY+8geRalpscMUhk+CFG
+         +bdg==
+X-Gm-Message-State: AOAM532UAW4p6p8vOac4hy5D6+4a7NGetdEf7PdhRQBSD3Q57cqo05DT
+        brKs7v81FJ/LeUITngVIBC/ijQ==
+X-Google-Smtp-Source: ABdhPJypvLei95eAIfBf9YhOFqqQKZ1C34DJmEf5yt+0uB+ckb9ORNsADCaKLRMdqq9zVPIXlUuLOA==
+X-Received: by 2002:a17:902:9685:b029:d1:e5e7:be1b with SMTP id n5-20020a1709029685b02900d1e5e7be1bmr3266435plp.78.1600199704611;
+        Tue, 15 Sep 2020 12:55:04 -0700 (PDT)
+Received: from xps15 (S0106002369de4dac.cg.shawcable.net. [68.147.8.254])
+        by smtp.gmail.com with ESMTPSA id z4sm14594221pfr.197.2020.09.15.12.55.02
+        (version=TLS1_3 cipher=TLS_AES_256_GCM_SHA384 bits=256/256);
+        Tue, 15 Sep 2020 12:55:04 -0700 (PDT)
+Date:   Tue, 15 Sep 2020 13:55:01 -0600
+From:   Mathieu Poirier <mathieu.poirier@linaro.org>
+To:     Christoph Hellwig <hch@lst.de>
+Cc:     iommu@lists.linux-foundation.org,
+        Russell King <linux@armlinux.org.uk>,
+        Santosh Shilimkar <ssantosh@kernel.org>,
+        Greg Kroah-Hartman <gregkh@linuxfoundation.org>,
+        Jim Quinlan <james.quinlan@broadcom.com>,
+        Nathan Chancellor <natechancellor@gmail.com>,
+        Florian Fainelli <f.fainelli@gmail.com>,
+        Robin Murphy <robin.murphy@arm.com>,
         Rob Herring <robh+dt@kernel.org>,
-        DTML <devicetree@vger.kernel.org>,
-        Linux PM <linux-pm@vger.kernel.org>,
-        Amit Daniel Kachhap <amit.kachhap@gmail.com>,
-        Daniel Lezcano <daniel.lezcano@linaro.org>,
-        Viresh Kumar <viresh.kumar@linaro.org>,
-        Javi Merino <javi.merino@kernel.org>
-Content-Type: text/plain; charset="UTF-8"
+        Frank Rowand <frowand.list@gmail.com>,
+        Ohad Ben-Cohen <ohad@wizery.com>,
+        Bjorn Andersson <bjorn.andersson@linaro.org>,
+        linux-remoteproc@vger.kernel.org, linux-usb@vger.kernel.org,
+        linux-arm-kernel@lists.infradead.org, linux-kernel@vger.kernel.org,
+        linux-sh@vger.kernel.org, linux-pci@vger.kernel.org,
+        linux-acpi@vger.kernel.org, devicetree@vger.kernel.org,
+        arnaud.pouliquen@st.com, loic.pallardy.st.com@xps15
+Subject: Re: [PATCH 6/6] dma-mapping: introduce DMA range map, supplanting
+ dma_pfn_offset
+Message-ID: <20200915195501.GA3666944@xps15>
+References: <20200914073343.1579578-1-hch@lst.de>
+ <20200914073343.1579578-7-hch@lst.de>
+ <20200914230147.GA3251212@xps15>
+ <20200915054122.GA18079@lst.de>
+MIME-Version: 1.0
+Content-Type: text/plain; charset=us-ascii
+Content-Disposition: inline
+In-Reply-To: <20200915054122.GA18079@lst.de>
 Sender: devicetree-owner@vger.kernel.org
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-Hi,
+On Tue, Sep 15, 2020 at 07:41:22AM +0200, Christoph Hellwig wrote:
+> On Mon, Sep 14, 2020 at 05:01:47PM -0600, Mathieu Poirier wrote:
+> 
+> [700 lines of the fullquote deleted..]
+> 
+> > > +	for (r = map; r->size; r++)
+> > > +		num_ranges++;
+> > > +
+> > > +	new_map = kmemdup(map, array_size(num_ranges + 1, sizeof(*map)),
+> > > +			  GFP_KERNEL);
+> > > +	if (!new_map)
+> > > +		return -ENOMEM;
+> > > +	to->dma_range_map = new_map;
+> > > +	return 0;
+> > > +}
+> > > +
+> > 
+> > This patch seemed Ok to me but it broke the stm32 remoteproc implementation.  When
+> > I tested things out function dma_coerce_mask_and_cohenrent() returns -5 and the
+> > rest of the initialisation fails.  I isolated things to function dma_to_pfn()
+> > [2].  In the original implementation __bus_to_pfn() returns 0xfffff and
+> > dev->dma_pfn_offset is equal to 0x38000.  As such the function returns 0x137fff
+> > and dma_supported() a non-zero value[3].
+> > 
+> > With this set function dma_to_pfn() received a face lift.  Function
+> > __bus_to_pfn() still returns 0xfffff but translate_dma_to_phys() returns 0,
+> > which forces dma_supported() to also return 0 and that is where the -5 (-EIO)
+> > comes from.
+> > 
+> > Taking a futher look at translate_dma_to_phy(), @dma_addr never falls within the
+> > bus_dma_region ranges and returns 0.
+> > 
+> > I'm suspecting an initialisation problem and if it occurred here, it will
+> > likely show up elsewhere.
+> 
+> Can you try this incremental patch?
+> 
+> diff --git a/include/linux/dma-direct.h b/include/linux/dma-direct.h
+> index 088c97181ab146..c6b21acba7a459 100644
+> --- a/include/linux/dma-direct.h
+> +++ b/include/linux/dma-direct.h
+> @@ -46,7 +46,7 @@ static inline phys_addr_t translate_dma_to_phys(struct device *dev,
+>  		if (dma_addr >= m->dma_start && dma_addr - m->dma_start < m->size)
+>  			return (phys_addr_t)dma_addr + m->offset;
+>  
+> -	return 0;
+> +	return (phys_addr_t)-1;
 
-On Mon, Sep 14, 2020 at 10:44 PM Rajendra Nayak <rnayak@codeaurora.org> wrote:
->
-> Hi Rob,
->
-> There has been some discussions on another thread [1] around the DPC (dynamic-power-coefficient) values
-> for CPU's being relative vs absolute (based on real power) and should they be used to derive 'real' power
-> at various OPPs in order to calculate things like 'sustainable-power' for thermal zones.
-> I believe relative values work perfectly fine for scheduling decisions, but with others using this for
-> calculating power values in mW, is there a need to document the property as something that *has* to be
-> based on real power measurements?
->
-> Looking at the bindings,
->
->    dynamic-power-coefficient:
->      $ref: '/schemas/types.yaml#/definitions/uint32'
->      description:
->        A u32 value that represents the running time dynamic
->        power coefficient in units of uW/MHz/V^2. The
->        coefficient can either be calculated from power
->        measurements or derived by analysis.
->
->        The dynamic power consumption of the CPU  is
->        proportional to the square of the Voltage (V) and
->        the clock frequency (f). The coefficient is used to
->        calculate the dynamic power as below -
->
->        Pdyn = dynamic-power-coefficient * V^2 * f
->
->        where voltage is in V, frequency is in MHz.
->
-> .. the 'can either be calculated from power measurements or derived by analysis'
-> tells me we don't mandate that this be based on real power measurements.
-> If we do, then perhaps that needs to be mentioned explicitly?
+That did the trick - the stm32 platform driver's probe() function completes and
+the remote processor is operatinal. 
 
-To me, the phrase "derived by analysis" doesn't mean that the number
-is allowed to be in completely made up units.  It means it's still
-supposed to be in the same units but it's OK if you didn't integrate a
-Coulomb counter into your system.
+That being said the value returned by function dma_to_pfn()
+is 0x137fff in the original code and 0xfffff with your patches applied.
 
-It's kinda like saying that the police can give you a speeding ticket
-by either measuring your speed with a radar gun or by checking a clock
-when your car passed two known places and calculating your speed based
-on that.  The radar gun is a direct measurement whereas the other is
-derived by analysis.  In both cases you're still talking about a speed
-in terms of Miles per Hour (or kilometers per hour in more sane
-countries).
+Thanks,
+Mathieu
 
--Doug
+>  }
+>  
+>  #ifdef CONFIG_ARCH_HAS_PHYS_TO_DMA
