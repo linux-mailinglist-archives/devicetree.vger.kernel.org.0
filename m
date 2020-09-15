@@ -2,121 +2,230 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from vger.kernel.org (vger.kernel.org [23.128.96.18])
-	by mail.lfdr.de (Postfix) with ESMTP id 76C9826B480
-	for <lists+devicetree@lfdr.de>; Wed, 16 Sep 2020 01:25:37 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTP id EE36A26B3A4
+	for <lists+devicetree@lfdr.de>; Wed, 16 Sep 2020 01:07:20 +0200 (CEST)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S1727186AbgIOXZf (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Tue, 15 Sep 2020 19:25:35 -0400
-Received: from mailout2.w1.samsung.com ([210.118.77.12]:41751 "EHLO
-        mailout2.w1.samsung.com" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S1727192AbgIOOiA (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Tue, 15 Sep 2020 10:38:00 -0400
-Received: from eucas1p2.samsung.com (unknown [182.198.249.207])
-        by mailout2.w1.samsung.com (KnoxPortal) with ESMTP id 20200915132115euoutp0250cd2c2b03b8373aa8520a449ed187a3~096mOlYgz0422204222euoutp02W
-        for <devicetree@vger.kernel.org>; Tue, 15 Sep 2020 13:21:15 +0000 (GMT)
-DKIM-Filter: OpenDKIM Filter v2.11.0 mailout2.w1.samsung.com 20200915132115euoutp0250cd2c2b03b8373aa8520a449ed187a3~096mOlYgz0422204222euoutp02W
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=samsung.com;
-        s=mail20170921; t=1600176075;
-        bh=oYjVmJZSlUBjaVFPcJsHxcnXZt+nZprwRiCDpebwd0E=;
-        h=Subject:To:Cc:From:Date:In-Reply-To:References:From;
-        b=CwUZA//bWZCFHEtRlvObcZO22XLuucR6TCWA6mU8k4fxrm004RqjoffcVLjEHqYrU
-         v8lJI22ewkWtOucsqUM01GcaveyHKJ6vOuvuekbfxXWJ0vmaFBUbDFPAz95xV65b4O
-         ER+NrXNr+RQR5j0bP7y3F8KRq2/RL5/SpiwtZ2PE=
-Received: from eusmges1new.samsung.com (unknown [203.254.199.242]) by
-        eucas1p1.samsung.com (KnoxPortal) with ESMTP id
-        20200915132114eucas1p1e80f0c8f12a98eebafbd31c311ceb418~096l9Y_rm1375113751eucas1p1Q;
-        Tue, 15 Sep 2020 13:21:14 +0000 (GMT)
-Received: from eucas1p2.samsung.com ( [182.198.249.207]) by
-        eusmges1new.samsung.com (EUCPMTA) with SMTP id AA.E3.06456.ACFB06F5; Tue, 15
-        Sep 2020 14:21:14 +0100 (BST)
-Received: from eusmtrp2.samsung.com (unknown [182.198.249.139]) by
-        eucas1p1.samsung.com (KnoxPortal) with ESMTPA id
-        20200915132114eucas1p13a20e046ccc5006e0dcb49131fc59eab~096lmu9qs1375513755eucas1p1M;
-        Tue, 15 Sep 2020 13:21:14 +0000 (GMT)
-Received: from eusmgms1.samsung.com (unknown [182.198.249.179]) by
-        eusmtrp2.samsung.com (KnoxPortal) with ESMTP id
-        20200915132114eusmtrp2231d8512124355c4bd5a25b549b425d8~096ll169T1231912319eusmtrp2Q;
-        Tue, 15 Sep 2020 13:21:14 +0000 (GMT)
-X-AuditID: cbfec7f2-809ff70000001938-2e-5f60bfca4a41
-Received: from eusmtip1.samsung.com ( [203.254.199.221]) by
-        eusmgms1.samsung.com (EUCPMTA) with SMTP id E2.1E.06314.ACFB06F5; Tue, 15
-        Sep 2020 14:21:14 +0100 (BST)
-Received: from [106.210.123.115] (unknown [106.210.123.115]) by
-        eusmtip1.samsung.com (KnoxPortal) with ESMTPA id
-        20200915132113eusmtip142209c1b8e59cda6f5388c840060254f~096kRzyN11813018130eusmtip1Y;
-        Tue, 15 Sep 2020 13:21:13 +0000 (GMT)
-Subject: Re: [PATCH 3/3] clk: samsung: Use cached clk_hws instead of
- __clk_lookup() calls
-To:     linux-clk@vger.kernel.org
-Cc:     Tomasz Figa <tomasz.figa@gmail.com>,
-        Chanwoo Choi <cw00.choi@samsung.com>,
-        Michael Turquette <mturquette@baylibre.com>,
-        Stephen Boyd <sboyd@kernel.org>, Kukjin Kim <kgene@kernel.org>,
-        Krzysztof Kozlowski <krzk@kernel.org>,
-        Rob Herring <robh+dt@kernel.org>,
-        linux-samsung-soc@vger.kernel.org, linux-kernel@vger.kernel.org,
-        linux-arm-kernel@lists.infradead.org, devicetree@vger.kernel.org,
-        m.szyprowski@samsung.com, b.zolnierkie@samsung.com
-From:   Sylwester Nawrocki <s.nawrocki@samsung.com>
-Message-ID: <6ce620a0-429d-af4a-dd97-6ce5a8fb8aa7@samsung.com>
-Date:   Tue, 15 Sep 2020 15:21:12 +0200
-User-Agent: Mozilla/5.0 (Windows NT 10.0; WOW64; rv:68.0) Gecko/20100101
-        Thunderbird/68.12.0
+        id S1727209AbgIOXHQ (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Tue, 15 Sep 2020 19:07:16 -0400
+Received: from mail.kernel.org ([198.145.29.99]:48810 "EHLO mail.kernel.org"
+        rhost-flags-OK-OK-OK-OK) by vger.kernel.org with ESMTP
+        id S1727278AbgIOOlk (ORCPT <rfc822;devicetree@vger.kernel.org>);
+        Tue, 15 Sep 2020 10:41:40 -0400
+Received: from mail-ot1-f47.google.com (mail-ot1-f47.google.com [209.85.210.47])
+        (using TLSv1.2 with cipher ECDHE-RSA-AES128-GCM-SHA256 (128/128 bits))
+        (No client certificate requested)
+        by mail.kernel.org (Postfix) with ESMTPSA id 23F7922265;
+        Tue, 15 Sep 2020 14:32:07 +0000 (UTC)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=kernel.org;
+        s=default; t=1600180327;
+        bh=utJVhgwJTrunVJwtarb0ds5g2F08QaKajk/8z09HS/I=;
+        h=References:In-Reply-To:From:Date:Subject:To:Cc:From;
+        b=TFk0KmOgqkxPnPhwCUKPEH/u1GObeQ1s3DyU/vyGg9+rqkrmmgXCM3vQPAlVv4IwE
+         N5R1qn5EJsfYcQSTp9mJ2R9ouUzUzDtnj4xZzOJjrAcbaMdhsCpd+crPPqi8zQ+DIG
+         dari9jShrtKauwrggJ+jY94Hw+p1UL8pw3YCmTGQ=
+Received: by mail-ot1-f47.google.com with SMTP id o8so3440225otl.4;
+        Tue, 15 Sep 2020 07:32:07 -0700 (PDT)
+X-Gm-Message-State: AOAM530xGpfA2Y6dQwR6fFQ9riHJ3Om6cS6iW9j3uKlJknlZofW5VRFI
+        aAJlTzcW9FF34f/MA0B8/OWbAA6LzlkoYzn2Cw==
+X-Google-Smtp-Source: ABdhPJxotHRWZRWMUoSLoNeE7xePoRIjifT/7QqjsQ5ljfN00watvkgScFQsGBTpsE8eUJBLvPaa5rChQkwszRGChsw=
+X-Received: by 2002:a9d:411:: with SMTP id 17mr13481301otc.192.1600180326428;
+ Tue, 15 Sep 2020 07:32:06 -0700 (PDT)
 MIME-Version: 1.0
-In-Reply-To: <20200826171529.23618-3-s.nawrocki@samsung.com>
-Content-Language: en-US
-Content-Transfer-Encoding: 7bit
-X-Brightmail-Tracker: H4sIAAAAAAAAA01Sa0hTYRjm2zln5zicHWfhi5rRKKxQU5M4lVlG4SqijKDQcs52UHFT2fHa
-        jzJES1OLfmSt8FbUXKx0idcuKGuSoqaFyVIDNcwsdKk/rKnteIz893zP5Xvf5+OjMFkf4UUl
-        paSzuhSVRi6W4A3Whd6AzjdxyqChmRCm7u5zgvk0N0EwFZYegrk5NoUxvb21JGMeGyAYe/EI
-        wXxoeSBm7va+FjEmyzDJ9HUeYfJfWUhmaaAOZ4wtDnTQTTE9mE8qmvXDpMJsLBQrXjy6oiit
-        NyLFrNn3lDhaEqZmNUmZrG5neJwkcf7hEpb2Ccs2F1UTuSgPK0IuFNCh8LTEQhQhCSWjDQhs
-        eXYxL8joOQRfroEgzCJwjP0W/0u0Tt0nBeGJM7FoW43bEdxZHnXeS1EedAwYTCf4wHp6I9is
-        C2Leg9FWDIZrqkS8IKaDoeRtKeKxlA4HS+63lZ1weisYpmpX+A10LFg7R3HB4w7v7o2vYBc6
-        DApmTCSPMdoTbOMVIgFvgsafDzB+GNDzJJQvDq0WPQzT1tJV7AHfO+pJAfvAcjMf5gN5CIpb
-        P5PC4ZbzAToqkeDaB0M9/ANQzhHb4XnLToGOgPL8NpyngXaDwZ/uwhJucLuhDBNoKVwvkAnu
-        LfDHWCYSsBfcGF/GbyG5fk01/Zo6+jV19P/nViLciDzZDE6bwHLBKWxWIKfSchkpCYEXU7Vm
-        5PxoXUsdv5rQfH98O6IpJHeVxmUplTJClcnlaNsRUJh8vfRQd1esTKpW5VxidalKXYaG5dqR
-        N4XLPaW7qicvyOgEVTqbzLJprO6fKqJcvHJRfkjyRERoUkD0+Sj1Oiq+0L/JdU/V5a7JA4eK
-        CUNd+9ljVf5BH9veO7ZoOYfpZuM7i+w4OtM/s405ObeXyI4abRb5eDyeDpN+LYzojzytzgs/
-        t7970SE5qn55rC0m7cfI7mebJzSvY2btBZHeblhNUqS95LufyY8pu9pD+Y7id+Q4l6gK3oHp
-        ONVfEorxvGQDAAA=
-X-Brightmail-Tracker: H4sIAAAAAAAAA+NgFnrMIsWRmVeSWpSXmKPExsVy+t/xu7qn9ifEG+zdpmCxccZ6VovrX56z
-        Wsw/co7Vov/xa2aL8+c3sFtsenyN1eJjzz1Wi8u75rBZzDi/j8li7ZG77BYXT7latO49wm7x
-        79pGFotVu/4wOvB5vL/Ryu6xc9Zddo9NqzrZPDYvqffo27KK0ePzJrkAtig9m6L80pJUhYz8
-        4hJbpWhDCyM9Q0sLPSMTSz1DY/NYKyNTJX07m5TUnMyy1CJ9uwS9jK+L/zEXXGeu2NS1iLWB
-        sZm5i5GTQ0LARGL369nsXYxcHEICSxklviy+y9bFyAGUkJKY36IEUSMs8edaFxtEzXtGiUlX
-        7jCD1AgLREusWOsLUiMiICtx69hPsBpmgWPMEjunnGKBaDjIKPH61FomkCo2AUOJ3qN9jCA2
-        r4CdxJGGF2BXsAioSqx4vQEsLioQJ3Gm5wUbRI2gxMmZT1hAbE4BG4m2D2vZQWxmAXWJP/Mu
-        MUPY4hK3nsxngrDlJba/ncM8gVFoFpL2WUhaZiFpmYWkZQEjyypGkdTS4tz03GJDveLE3OLS
-        vHS95PzcTYzACN527OfmHYyXNgYfYhTgYFTi4U0oj48XYk0sK67MPcQowcGsJMLrdPZ0nBBv
-        SmJlVWpRfnxRaU5q8SFGU6DnJjJLiSbnA5NLXkm8oamhuYWlobmxubGZhZI4b4fAwRghgfTE
-        ktTs1NSC1CKYPiYOTqkGRksF3lb++U9r1h7lWG+ZOk/Qqb/829mjnhpnX7Z+u7UxbcY237b5
-        l7Y6rjrDGrRj96sCG7OlXVu+9nWYT3uzl0eAd4bS1BP97yPiH9Ve+LZ5ZyzH5v3zlTtYr83/
-        2xLv+2PSnoDb3c80Wm1efyjZ8OX89Dd5J5VFCn/O717RyPUta8KEGysi3rApsRRnJBpqMRcV
-        JwIAXmBABPYCAAA=
-X-CMS-MailID: 20200915132114eucas1p13a20e046ccc5006e0dcb49131fc59eab
-X-Msg-Generator: CA
-Content-Type: text/plain; charset="utf-8"
-X-RootMTR: 20200826171557eucas1p13c960ad6abc814cf53bc125f5c4d9b39
-X-EPHeader: CA
-CMS-TYPE: 201P
-X-CMS-RootMailID: 20200826171557eucas1p13c960ad6abc814cf53bc125f5c4d9b39
-References: <20200826171529.23618-1-s.nawrocki@samsung.com>
-        <CGME20200826171557eucas1p13c960ad6abc814cf53bc125f5c4d9b39@eucas1p1.samsung.com>
-        <20200826171529.23618-3-s.nawrocki@samsung.com>
+References: <20200905133230.1014581-1-j.neuschaefer@gmx.net>
+ <20200905133230.1014581-5-j.neuschaefer@gmx.net> <20200915005443.GA604385@bogus>
+ <20200915082348.2f6fff7a@aktux>
+In-Reply-To: <20200915082348.2f6fff7a@aktux>
+From:   Rob Herring <robh@kernel.org>
+Date:   Tue, 15 Sep 2020 08:31:55 -0600
+X-Gmail-Original-Message-ID: <CAL_JsqL=gQxiU5uK-AEJtG3daOy83aS_D6G2Jo8_-dzKH70NkQ@mail.gmail.com>
+Message-ID: <CAL_JsqL=gQxiU5uK-AEJtG3daOy83aS_D6G2Jo8_-dzKH70NkQ@mail.gmail.com>
+Subject: Re: [PATCH v2 04/10] dt-bindings: pwm: Add bindings for PWM function
+ in Netronix EC
+To:     Andreas Kemnade <andreas@kemnade.info>
+Cc:     =?UTF-8?Q?Jonathan_Neusch=C3=A4fer?= <j.neuschaefer@gmx.net>,
+        "linux-kernel@vger.kernel.org" <linux-kernel@vger.kernel.org>,
+        Lee Jones <lee.jones@linaro.org>,
+        Thierry Reding <thierry.reding@gmail.com>,
+        =?UTF-8?Q?Uwe_Kleine=2DK=C3=B6nig?= 
+        <u.kleine-koenig@pengutronix.de>,
+        Alessandro Zummo <a.zummo@towertech.it>,
+        Alexandre Belloni <alexandre.belloni@bootlin.com>,
+        Shawn Guo <shawnguo@kernel.org>,
+        Sascha Hauer <s.hauer@pengutronix.de>,
+        Pengutronix Kernel Team <kernel@pengutronix.de>,
+        Fabio Estevam <festevam@gmail.com>,
+        NXP Linux Team <linux-imx@nxp.com>,
+        Sam Ravnborg <sam@ravnborg.org>,
+        Linus Walleij <linus.walleij@linaro.org>,
+        Heiko Stuebner <heiko.stuebner@theobroma-systems.com>,
+        Stephan Gerhold <stephan@gerhold.net>,
+        Lubomir Rintel <lkundrak@v3.sk>,
+        Mark Brown <broonie@kernel.org>, allen <allen.chen@ite.com.tw>,
+        Mauro Carvalho Chehab <mchehab+huawei@kernel.org>,
+        "David S. Miller" <davem@davemloft.net>,
+        devicetree@vger.kernel.org,
+        Linux PWM List <linux-pwm@vger.kernel.org>,
+        "open list:REAL TIME CLOCK (RTC) SUBSYSTEM" 
+        <linux-rtc@vger.kernel.org>,
+        linux-arm-kernel <linux-arm-kernel@lists.infradead.org>,
+        Heiko Stuebner <heiko@sntech.de>,
+        Josua Mayer <josua.mayer@jm0.eu>,
+        Arnd Bergmann <arnd@arndb.de>, Daniel Palmer <daniel@0x0f.com>
+Content-Type: text/plain; charset="UTF-8"
+Content-Transfer-Encoding: quoted-printable
 Sender: devicetree-owner@vger.kernel.org
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-On 26.08.2020 19:15, Sylwester Nawrocki wrote:
-> For the CPU clock registration two parent clocks are required, these
-> are now being passed as struct clk_hw pointers, rather than by the
-> global scope names. That allows us to avoid  __clk_lookup() calls
-> and simplifies a bit the CPU clock registration function.
-> While at it drop unneeded extern keyword in the function declaration.
-> 
-> Signed-off-by: Sylwester Nawrocki <s.nawrocki@samsung.com>
+On Tue, Sep 15, 2020 at 12:24 AM Andreas Kemnade <andreas@kemnade.info> wro=
+te:
+>
+> Hi,
+>
+> On Mon, 14 Sep 2020 18:54:43 -0600
+> Rob Herring <robh@kernel.org> wrote:
+>
+> > On Sat, Sep 05, 2020 at 03:32:24PM +0200, Jonathan Neusch=C3=A4fer wrot=
+e:
+> > > The Netronix embedded controller as found in Kobo Aura and Tolino Shi=
+ne
+> > > supports one PWM channel, which is used to control the frontlight
+> > > brightness on these devices.
+> > >
+> > > Signed-off-by: Jonathan Neusch=C3=A4fer <j.neuschaefer@gmx.net>
+> > > ---
+> > >
+> > > v2:
+> > > - Add plaintext binding to patch description, for comparison
+> > > - Fix pwm-cells property (should be 2, not 1)
+> > > - Add dummy regulator to example, because the pwm-backlight binding r=
+equires a
+> > >   power supply
+> > >
+> > >
+> > > For reference, here is the binding in text form:
+> > >
+> > >
+> > >   PWM functionality in Netronix Embedded Controller
+> > >
+> > >   Required properties:
+> > >   - compatible: should be "netronix,ntxec-pwm"
+> > >   - #pwm-cells: should be 2.
+> > >
+> > >   Available PWM channels:
+> > >   - 0: The PWM channel controlled by registers 0xa1-0xa7
+> > >
+> > >   Example:
+> > >
+> > >     embedded-controller@43 {
+> > >             compatible =3D "netronix,ntxec";
+> > >             ...
+> > >
+> > >             ec_pwm: pwm {
+> > >                     compatible =3D "netronix,ntxec-pwm";
+> > >                     #pwm-cells =3D <1>;
+> > >             };
+> > >     };
+> > >
+> > >     ...
+> > >
+> > >     backlight {
+> > >             compatible =3D "pwm-backlight";
+> > >             pwms =3D <&ec_pwm 0 50000>;
+> > >     };
+> > > ---
+> > >  .../bindings/mfd/netronix,ntxec.yaml          | 19 +++++++++++
+> > >  .../bindings/pwm/netronix,ntxec-pwm.yaml      | 33 +++++++++++++++++=
+++
+> > >  2 files changed, 52 insertions(+)
+> > >  create mode 100644 Documentation/devicetree/bindings/pwm/netronix,nt=
+xec-pwm.yaml
+> > >
+> > > diff --git a/Documentation/devicetree/bindings/mfd/netronix,ntxec.yam=
+l b/Documentation/devicetree/bindings/mfd/netronix,ntxec.yaml
+> > > index 596df460f98eb..73c873dda3e70 100644
+> > > --- a/Documentation/devicetree/bindings/mfd/netronix,ntxec.yaml
+> > > +++ b/Documentation/devicetree/bindings/mfd/netronix,ntxec.yaml
+> > > @@ -31,6 +31,9 @@ properties:
+> > >      description:
+> > >        The EC can signal interrupts via a GPIO line
+> > >
+> > > +  pwm:
+> > > +    $ref: ../pwm/netronix,ntxec-pwm.yaml
+> > > +
+> > >  required:
+> > >    - compatible
+> > >    - reg
+> > > @@ -53,5 +56,21 @@ examples:
+> > >                      interrupts =3D <11 IRQ_TYPE_EDGE_FALLING>;
+> > >                      interrupt-controller;
+> > >                      #interrupt-cells =3D <1>;
+> > > +
+> > > +                    ec_pwm: pwm {
+> > > +                            compatible =3D "netronix,ntxec-pwm";
+> > > +                            #pwm-cells =3D <2>;
+> > > +                    };
+> > >              };
+> > >      };
+> > > +
+> > > +    backlight {
+> > > +            compatible =3D "pwm-backlight";
+> > > +            pwms =3D <&ec_pwm 0 50000>;
+> > > +            power-supply =3D <&backlight_regulator>;
+> > > +    };
+> > > +
+> > > +    backlight_regulator: regulator-dummy {
+> > > +            compatible =3D "regulator-fixed";
+> > > +            regulator-name =3D "backlight";
+> > > +    };
+> > > diff --git a/Documentation/devicetree/bindings/pwm/netronix,ntxec-pwm=
+.yaml b/Documentation/devicetree/bindings/pwm/netronix,ntxec-pwm.yaml
+> > > new file mode 100644
+> > > index 0000000000000..0c9d2801b8de1
+> > > --- /dev/null
+> > > +++ b/Documentation/devicetree/bindings/pwm/netronix,ntxec-pwm.yaml
+> > > @@ -0,0 +1,33 @@
+> > > +# SPDX-License-Identifier: (GPL-2.0-only OR BSD-2-Clause)
+> > > +%YAML 1.2
+> > > +---
+> > > +$id: http://devicetree.org/schemas/pwm/netronix,ntxec-pwm.yaml#
+> > > +$schema: http://devicetree.org/meta-schemas/core.yaml#
+> > > +
+> > > +title: PWM functionality in Netronix embedded controller
+> > > +
+> > > +maintainers:
+> > > +  - Jonathan Neusch=C3=A4fer <j.neuschaefer@gmx.net>
+> > > +
+> > > +description: |
+> > > +  See also Documentation/devicetree/bindings/mfd/netronix,ntxec.yaml
+> > > +
+> > > +  The Netronix EC contains PWM functionality, which is usually used =
+to drive
+> > > +  the backlight LED.
+> > > +
+> > > +  The following PWM channels are supported:
+> > > +    - 0: The PWM channel controlled by registers 0xa1-0xa7
+> > > +
+> > > +allOf:
+> > > +  - $ref: pwm.yaml#
+> > > +
+> > > +properties:
+> > > +  compatible:
+> > > +    const: netronix,ntxec-pwm
+> > > +
+> > > +  "#pwm-cells":
+> > > +    const: 2
+> >
+> > Just move this to the parent and make the parent a pwm provider. There'=
+s
+> > no need for child nodes for this or the rtc.
+> >
+> hmm, there are apparently devices without rtc. If there is a child node
+> for the rtc, the corresponding devicetrees could disable rtc by not
+> having that node.
+> But maybe using the controller version is also feasible for that task.
 
-Applied.
+If not probeable, then the compatible string should distinguish that.
+
+Rob
