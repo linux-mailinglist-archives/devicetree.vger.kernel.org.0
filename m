@@ -2,178 +2,113 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from vger.kernel.org (vger.kernel.org [23.128.96.18])
-	by mail.lfdr.de (Postfix) with ESMTP id 2AA9426B8A3
-	for <lists+devicetree@lfdr.de>; Wed, 16 Sep 2020 02:48:35 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTP id BE9DD26B897
+	for <lists+devicetree@lfdr.de>; Wed, 16 Sep 2020 02:46:58 +0200 (CEST)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S1726135AbgIPAsR (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Tue, 15 Sep 2020 20:48:17 -0400
-Received: from lindbergh.monkeyblade.net ([23.128.96.19]:44856 "EHLO
-        lindbergh.monkeyblade.net" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S1726149AbgIOMgx (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Tue, 15 Sep 2020 08:36:53 -0400
-Received: from mail-ej1-x643.google.com (mail-ej1-x643.google.com [IPv6:2a00:1450:4864:20::643])
-        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 8ED59C06174A;
-        Tue, 15 Sep 2020 05:36:52 -0700 (PDT)
-Received: by mail-ej1-x643.google.com with SMTP id lo4so4795780ejb.8;
-        Tue, 15 Sep 2020 05:36:52 -0700 (PDT)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=gmail.com; s=20161025;
-        h=date:from:to:cc:subject:message-id:references:mime-version
-         :content-disposition:in-reply-to:user-agent;
-        bh=QMpHViZdWCmsMdl07XVFEUzlf6tpqXDt+wbPmBI/w5E=;
-        b=fKJB7Rpvs15tCZdwop3qOFSTTdal+hWhYT8c3itQLABzVVqBO3fvJ1j7FVFx6ugcMx
-         nKtdwMl97GuhV5nxql1UgudP77EzRJD5gljZS3Zrdx1PP5xtWcKwmBoR6UQkOb+K/Grk
-         EQP04rSJ19Z0+k2BG6WyRktUvDvEfhGCYfLorgwlgDR7KCU00L0fiNgw/Cp7pU/iz/uB
-         X5oqz05HfHpEQxVC1YwDdbGdFZhvZ71IAYlZawHEw0QplWtTviWBRnRr2FBvVEw5YRHy
-         QCY7pS2t6tQrLt6Zaji58/tK+TG4WVZ7gYnsqXPIjB9BXPWxSDw9XZ3LGufbki4ZQLhH
-         aCbQ==
-X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=1e100.net; s=20161025;
-        h=x-gm-message-state:date:from:to:cc:subject:message-id:references
-         :mime-version:content-disposition:in-reply-to:user-agent;
-        bh=QMpHViZdWCmsMdl07XVFEUzlf6tpqXDt+wbPmBI/w5E=;
-        b=WvC/VjxuiyctjaJU+Rb01pwpU5SFH52zOrYzvFqMVAAt3QEc2cEir+R/LOuSLZjYiP
-         8f6h38KWt5SY6QSC6bReO+6Mw+gcqLTKU6/crAyKgEAHs1cwDU1NVyFBZL4WEcWrTQMm
-         xnCHkmhiy1My+Ryf+hDT2tEF81ayLG+WluNFGEOONzVt5XiRivIXnC5iHm9aU3IDaoR2
-         u4ZbiMvqpbPY7ddBNcYOu4sE7MYSmZspDVmjhjkVdVF1ZQrUDhrP9IFldEbjTPvU16ZV
-         9hJkzrwZN9CNrNyCUCCRkU2bR0iZsvQqa5h3YaesTSsxtsEGVbE6rwNXCoNhVhU35L1l
-         mu/A==
-X-Gm-Message-State: AOAM5337c2pQqZ5qIVDxTQO5g5wvioEx3X/gVAgEirSakphIeWmfG9e9
-        EDzEEMqKe/KSFnwKY5jCV2g=
-X-Google-Smtp-Source: ABdhPJzeu2PzrU8ZEiZBJ27cD9bDlgE0IOExue7Tqm+piwpRBwWsICa/ReD+KBQ14Mk5ZKs3GvW7xg==
-X-Received: by 2002:a17:906:3e08:: with SMTP id k8mr19458790eji.480.1600173411066;
-        Tue, 15 Sep 2020 05:36:51 -0700 (PDT)
-Received: from localhost ([62.96.65.119])
-        by smtp.gmail.com with ESMTPSA id u9sm10180440eje.119.2020.09.15.05.36.49
-        (version=TLS1_3 cipher=TLS_AES_256_GCM_SHA384 bits=256/256);
-        Tue, 15 Sep 2020 05:36:49 -0700 (PDT)
-Date:   Tue, 15 Sep 2020 14:36:48 +0200
-From:   Thierry Reding <thierry.reding@gmail.com>
-To:     Rob Herring <robh@kernel.org>
-Cc:     Joerg Roedel <joro@8bytes.org>,
-        Frank Rowand <frowand.list@gmail.com>,
-        Will Deacon <will@kernel.org>,
-        Robin Murphy <robin.murphy@arm.com>,
-        iommu@lists.linux-foundation.org, devicetree@vger.kernel.org,
-        linux-kernel@vger.kernel.org
-Subject: Re: [PATCH v2 1/4] dt-bindings: reserved-memory: Document "active"
- property
-Message-ID: <20200915123648.GA3496938@ulmo>
-References: <20200904130000.691933-1-thierry.reding@gmail.com>
- <20200914220829.GA330122@bogus>
+        id S1726532AbgIPAq5 (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Tue, 15 Sep 2020 20:46:57 -0400
+Received: from mail-eopbgr10092.outbound.protection.outlook.com ([40.107.1.92]:64899
+        "EHLO EUR02-HE1-obe.outbound.protection.outlook.com"
+        rhost-flags-OK-OK-OK-FAIL) by vger.kernel.org with ESMTP
+        id S1726447AbgIOMoD (ORCPT <rfc822;devicetree@vger.kernel.org>);
+        Tue, 15 Sep 2020 08:44:03 -0400
+ARC-Seal: i=1; a=rsa-sha256; s=arcselector9901; d=microsoft.com; cv=none;
+ b=edNdqL6aSU7/BJJnxLO5NDtaQ8XrbTBQ1FSqUmMFt9/PfNlyVev8eeURgjfE+Gk6mwijicJ5pIrwxX76GvRQQH4X/YPmKb2dgItLVUEpMOqv/erfNYDe8haccGlIqp7u6mWLRKBnPIgae+A7+l4mjQNQ4FEM0tEbqAxDq/bawA1+vL42Bo9Acc4rBhDlulTC/Mk/Db30knX6UK+JGgYly68HS9jH7tvpKDSXXFbd0xZYjovbeJCLhd3OruyXeUVUiZ+c+qIMuk8Jq+zq0wnh4k+HAbu+gGBKDcetY7yyRxiO5IYSwtuZobaeO5hB0tZS3/GTjw9//CP+Pd3v/CK96g==
+ARC-Message-Signature: i=1; a=rsa-sha256; c=relaxed/relaxed; d=microsoft.com;
+ s=arcselector9901;
+ h=From:Date:Subject:Message-ID:Content-Type:MIME-Version:X-MS-Exchange-SenderADCheck;
+ bh=WaV9lkqiYrTadlAPMHjZPuQhyzzc8JV/D/DgwyajNak=;
+ b=TPaU3K/LyC0kGNxjrwsZEdirBBxkV2MXelnsPwfLxuHSRX6pzSroSb50/3lZZL7SjdaAA8ExuzXEPNsxVYhiuHxf4sGRT5Uz2m0Xsm5zI1XwaMKf735Z98jBOuZ7Emg+Y7wsiCSkleMXMg8au9uCaMkDPrRr0VW9Zv1CQAQduPl8hg+3lQIjyMcRZoReSbWdFUJISLAgup9fVmFgKla7zE8azsCfkUu45JRNaCeHeRvboCduyL93I8S8UF0RoJO5uoJ1mwxrokIZy4wB6UjRkR5omHLrMuYUwiJi2A2kjIPitfmU+cDHJ8Vt8Z4Erw53+plWRSIHj/sI+CH2dLFZOg==
+ARC-Authentication-Results: i=1; mx.microsoft.com 1; spf=pass
+ smtp.mailfrom=plvision.eu; dmarc=pass action=none header.from=plvision.eu;
+ dkim=pass header.d=plvision.eu; arc=none
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=plvision.eu;
+ s=selector2;
+ h=From:Date:Subject:Message-ID:Content-Type:MIME-Version:X-MS-Exchange-SenderADCheck;
+ bh=WaV9lkqiYrTadlAPMHjZPuQhyzzc8JV/D/DgwyajNak=;
+ b=bzcJ5+x0yuyOql2zLtxvF+vNeicS0JdABtWRzBlEBx5sRjOlQeI3hSoFJVnikfA+SUVwjmaM6/pt6Xy9veDIP6DJ1hhvNTNtP2Z6vCYhfJtfAsbinYdq6ge554k8X9jYDneYqPFBi4VAgKJm4+ThAhLw088nUddKCTXhT2qoHdM=
+Authentication-Results: linaro.org; dkim=none (message not signed)
+ header.d=none;linaro.org; dmarc=none action=none header.from=plvision.eu;
+Received: from HE1P190MB0539.EURP190.PROD.OUTLOOK.COM (2603:10a6:7:56::28) by
+ HE1P190MB0331.EURP190.PROD.OUTLOOK.COM (2603:10a6:7:5b::15) with Microsoft
+ SMTP Server (version=TLS1_2, cipher=TLS_ECDHE_RSA_WITH_AES_256_GCM_SHA384) id
+ 15.20.3370.19; Tue, 15 Sep 2020 12:41:56 +0000
+Received: from HE1P190MB0539.EURP190.PROD.OUTLOOK.COM
+ ([fe80::c1ab:71de:6bc2:89fe]) by HE1P190MB0539.EURP190.PROD.OUTLOOK.COM
+ ([fe80::c1ab:71de:6bc2:89fe%6]) with mapi id 15.20.3370.019; Tue, 15 Sep 2020
+ 12:41:56 +0000
+From:   Vadym Kochan <vadym.kochan@plvision.eu>
+To:     Srinivas Kandagatla <srinivas.kandagatla@linaro.org>,
+        Rob Herring <robh+dt@kernel.org>, linux-kernel@vger.kernel.org,
+        devicetree@vger.kernel.org
+Cc:     Vadym Kochan <vadym.kochan@plvision.eu>
+Subject: [PATCH 3/3] dt-bindings: nvmem: add description for ONIE cells parser
+Date:   Tue, 15 Sep 2020 15:41:16 +0300
+Message-Id: <20200915124116.7196-4-vadym.kochan@plvision.eu>
+X-Mailer: git-send-email 2.17.1
+In-Reply-To: <20200915124116.7196-1-vadym.kochan@plvision.eu>
+References: <20200915124116.7196-1-vadym.kochan@plvision.eu>
+Content-Type: text/plain
+X-ClientProxiedBy: AM6P194CA0033.EURP194.PROD.OUTLOOK.COM
+ (2603:10a6:209:90::46) To HE1P190MB0539.EURP190.PROD.OUTLOOK.COM
+ (2603:10a6:7:56::28)
 MIME-Version: 1.0
-Content-Type: multipart/signed; micalg=pgp-sha256;
-        protocol="application/pgp-signature"; boundary="KsGdsel6WgEHnImy"
-Content-Disposition: inline
-In-Reply-To: <20200914220829.GA330122@bogus>
-User-Agent: Mutt/1.14.6 (2020-07-11)
+X-MS-Exchange-MessageSentRepresentingType: 1
+Received: from pc60716vkochan.x.ow.s (217.20.186.93) by AM6P194CA0033.EURP194.PROD.OUTLOOK.COM (2603:10a6:209:90::46) with Microsoft SMTP Server (version=TLS1_2, cipher=TLS_ECDHE_RSA_WITH_AES_256_GCM_SHA384) id 15.20.3370.16 via Frontend Transport; Tue, 15 Sep 2020 12:41:55 +0000
+X-Mailer: git-send-email 2.17.1
+X-Originating-IP: [217.20.186.93]
+X-MS-PublicTrafficType: Email
+X-MS-Office365-Filtering-Correlation-Id: 2faa391e-68a5-4c5a-f2ac-08d85974bacf
+X-MS-TrafficTypeDiagnostic: HE1P190MB0331:
+X-MS-Exchange-Transport-Forked: True
+X-Microsoft-Antispam-PRVS: <HE1P190MB0331ACB2350CC85910CAF01A95200@HE1P190MB0331.EURP190.PROD.OUTLOOK.COM>
+X-MS-Oob-TLC-OOBClassifiers: OLM:3631;
+X-MS-Exchange-SenderADCheck: 1
+X-Microsoft-Antispam: BCL:0;
+X-Microsoft-Antispam-Message-Info: nC8K2Rhsu83c5KaGHjtbtGZyETYWx+Usts3hcDyAXr+49NvQCGdEiT0wIXGgEGcBvM73QX6rdv0Zxh5dKU6KMgDqFc7ZRRnXSgN423ROeL69RrA67J2ZdSTQfAJiwDhYsPKhM7zjiAvMoySR2W3ZS/LxDM/eAFczVOuxsdb32G3P2IExljQ4m8Y2+YQlzAjdCId2O9GFoprDe3xCDxQCG1mrp6z4e6ve/4FpNg11qhCzQQGfkcPN9qo4SDfcnk4sbwkG+mfDmqgsO/cM7Yr6GdL7ijmbaP3Ex1TtBrvTaNl5Pxwik2IYzsoxxsiACxGr66oX1WgbPwR5yI5L64x05YU9ElSw14JbwhV3C1zIYg52cIhx+DfApk1ooHKHiDSa
+X-Forefront-Antispam-Report: CIP:255.255.255.255;CTRY:;LANG:en;SCL:1;SRV:;IPV:NLI;SFV:NSPM;H:HE1P190MB0539.EURP190.PROD.OUTLOOK.COM;PTR:;CAT:NONE;SFS:(39830400003)(366004)(396003)(376002)(136003)(346002)(6512007)(6506007)(4326008)(44832011)(36756003)(956004)(26005)(8676002)(2616005)(52116002)(6486002)(16526019)(186003)(2906002)(107886003)(4744005)(86362001)(6666004)(1076003)(110136005)(5660300002)(8936002)(66946007)(316002)(66476007)(478600001)(66556008);DIR:OUT;SFP:1102;
+X-MS-Exchange-AntiSpam-MessageData: kkgWSbyt//Aj+ynAIazvITNAUwQMTwK64qPngPR9B1O6HKREOfnls/3trp4gEK87Gse4Tr7BIO09WpPmj4MJLINNnijb55LeGtBZ/VX6SSoSbeULGN6WFh4tsIsqXjb/DHpqB/VeS2gSIkAwI590R37XthAR/i72LixWFunHR9DTaUqVMLsjsKUA5uSdRKawTzFqcsBcGNc1EuN+JIw5EQ0suIaEYpxi/Fx1VWCanoA7yNYyyjyngQxtzLQNPpPrXM5bZcW1Qul49WvPPfr8DYWha3XR5sXCzpobRLnp/5F4ui9I9wPN40vXtQb2Dqlaa+niGQ0xbBVHUQeoWCOy0rFyzAqLFIUbPgml+BGKhgweUdstCmE+eRpuU1jD5qPAZQp08dDnZSl9wJGfEx1EhrOvPWHUavx2/vqwg8QCFPt4pqzwQExTV4SaMs+I3+AYzoumuFu7diLZ/00lCvtBKbb1S5o40Xy6kO2s6ytQ0AClmD8i5I7OTv2lUUZEYZqP+BacbOsAE5bDLkKTN7azylBNIUFbqTsgLw7DdKpyTUGlSXzr0sSwKoUN4nGs9Ev2f4qEEMfEGC5NXilI072T+iKL/Nxi5K3BdYxvlcRIDjodSaFjSuAVMlJoBlDdPRgW/ARFxll7QCExeIcyPVw/Ig==
+X-OriginatorOrg: plvision.eu
+X-MS-Exchange-CrossTenant-Network-Message-Id: 2faa391e-68a5-4c5a-f2ac-08d85974bacf
+X-MS-Exchange-CrossTenant-AuthSource: HE1P190MB0539.EURP190.PROD.OUTLOOK.COM
+X-MS-Exchange-CrossTenant-AuthAs: Internal
+X-MS-Exchange-CrossTenant-OriginalArrivalTime: 15 Sep 2020 12:41:56.0872
+ (UTC)
+X-MS-Exchange-CrossTenant-FromEntityHeader: Hosted
+X-MS-Exchange-CrossTenant-Id: 03707b74-30f3-46b6-a0e0-ff0a7438c9c4
+X-MS-Exchange-CrossTenant-MailboxType: HOSTED
+X-MS-Exchange-CrossTenant-UserPrincipalName: 7gCyUHPwydjMWW+RwXYZsbJ5CBbbTsoEB5lLiUvWejI4xFSXYK+utZTWyIQeCYPkTfCIF2+m4Vu/0spL8t+M9uaeKyPMR6e3Q0VdEtENG/s=
+X-MS-Exchange-Transport-CrossTenantHeadersStamped: HE1P190MB0331
 Sender: devicetree-owner@vger.kernel.org
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
+Add device-tree binding description for the ONIE cells parser.
 
---KsGdsel6WgEHnImy
-Content-Type: text/plain; charset=us-ascii
-Content-Disposition: inline
-Content-Transfer-Encoding: quoted-printable
+Signed-off-by: Vadym Kochan <vadym.kochan@plvision.eu>
+---
+ .../devicetree/bindings/nvmem/onie-nvmem-cells.txt    | 11 +++++++++++
+ 1 file changed, 11 insertions(+)
+ create mode 100644 Documentation/devicetree/bindings/nvmem/onie-nvmem-cells.txt
 
-On Mon, Sep 14, 2020 at 04:08:29PM -0600, Rob Herring wrote:
-> On Fri, Sep 04, 2020 at 02:59:57PM +0200, Thierry Reding wrote:
-> > From: Thierry Reding <treding@nvidia.com>
-> >=20
-> > Reserved memory regions can be marked as "active" if hardware is
-> > expected to access the regions during boot and before the operating
-> > system can take control. One example where this is useful is for the
-> > operating system to infer whether the region needs to be identity-
-> > mapped through an IOMMU.
->=20
-> I like simple solutions, but this hardly seems adequate to solve the=20
-> problem of passing IOMMU setup from bootloader/firmware to the OS. Like=
-=20
-> what is the IOVA that's supposed to be used if identity mapping is not=20
-> used?
+diff --git a/Documentation/devicetree/bindings/nvmem/onie-nvmem-cells.txt b/Documentation/devicetree/bindings/nvmem/onie-nvmem-cells.txt
+new file mode 100644
+index 000000000000..db06d8b297b5
+--- /dev/null
++++ b/Documentation/devicetree/bindings/nvmem/onie-nvmem-cells.txt
+@@ -0,0 +1,11 @@
++= Device tree bindings for ONIE cells parser =
++
++Required properties:
++- compatible: should be "onie-nvmem-cells"
++- nvmem: phandle to nvmem device node
++
++Example:
++	onie_cells {
++		compatible = "onie-nvmem-cells"
++		nvmem = <&at24>;
++	};
+-- 
+2.17.1
 
-The assumption here is that if the region is not active there is no need
-for the IOVA to be specified because the kernel will allocate memory and
-assign any IOVA of its choosing.
-
-Also, note that this is not meant as a way of passing IOMMU setup from
-the bootloader or firmware to the OS. The purpose of this is to specify
-that some region of memory is actively being accessed during boot. The
-particular case that I'm looking at is where the bootloader set up a
-splash screen and keeps it on during boot. The bootloader has not set up
-an IOMMU mapping and the identity mapping serves as a way of keeping the
-accesses by the display hardware working during the transitional period
-after the IOMMU translations have been enabled by the kernel but before
-the kernel display driver has had a chance to set up its own IOMMU
-mappings.
-
-> If you know enough about the regions to assume identity mapping, then=20
-> can't you know if active or not?
-
-We could alternatively add some property that describes the region as
-requiring an identity mapping. But note that we can't make any
-assumptions here about the usage of these regions because the IOMMU
-driver simply has no way of knowing what they are being used for.
-
-Some additional information is required in device tree for the IOMMU
-driver to be able to make that decision.
-
-Thierry
-
->=20
-> > Signed-off-by: Thierry Reding <treding@nvidia.com>
-> > ---
-> >  .../bindings/reserved-memory/reserved-memory.txt           | 7 +++++++
-> >  1 file changed, 7 insertions(+)
-> >=20
-> > diff --git a/Documentation/devicetree/bindings/reserved-memory/reserved=
--memory.txt b/Documentation/devicetree/bindings/reserved-memory/reserved-me=
-mory.txt
-> > index 4dd20de6977f..163d2927e4fc 100644
-> > --- a/Documentation/devicetree/bindings/reserved-memory/reserved-memory=
-=2Etxt
-> > +++ b/Documentation/devicetree/bindings/reserved-memory/reserved-memory=
-=2Etxt
-> > @@ -63,6 +63,13 @@ reusable (optional) - empty property
-> >        able to reclaim it back. Typically that means that the operating
-> >        system can use that region to store volatile or cached data that
-> >        can be otherwise regenerated or migrated elsewhere.
-> > +active (optional) - empty property
-> > +    - If this property is set for a reserved memory region, it indicat=
-es
-> > +      that some piece of hardware may be actively accessing this regio=
-n.
-> > +      Should the operating system want to enable IOMMU protection for a
-> > +      device, all active memory regions must have been identity-mapped
-> > +      in order to ensure that non-quiescent hardware during boot can
-> > +      continue to access the memory.
-> > =20
-> >  Linux implementation note:
-> >  - If a "linux,cma-default" property is present, then Linux will use the
-> > --=20
-> > 2.28.0
-> >=20
-
---KsGdsel6WgEHnImy
-Content-Type: application/pgp-signature; name="signature.asc"
-
------BEGIN PGP SIGNATURE-----
-
-iQIzBAABCAAdFiEEiOrDCAFJzPfAjcif3SOs138+s6EFAl9gtV0ACgkQ3SOs138+
-s6Edvg/8DciSGbTBg9+QDCo01JmHSUcC8htGJTlXuHqgxjs9aS7GagCow3ajODFU
-MSr4b79jqQCwcDGMeVRuklj2fs4GdoPHLLnMggHd82BWo/xaWTHk4onv18igkGTz
-kq9eZkZauKzBCzRt/+XpaWO20MUYFNWcBRIw9veUcTJ4Gt0Tf68BnCW4APxEzlM6
-luZ+dPvzcwWnLM7406Kira+Rsl6GQvUPkqL1qazjV2lfAiFnFfl/PIGszXDmmbzS
-4gL9aAXiEVE9J3JjyKT4USswjMqeSeCYE5nUz9YD/jruzmw8gtgocgINrDvDZ6yJ
-q2eZdqG+EbqMZhfsvcf7zfg+XwptbaDLTWrx0P8wABT3sndwa15uIN6TN9xcPFg3
-0AdTGfv4g5iCHf/DS3ATsDEybX3a6RwVKBRuQeZDZ8/PiL4x1jSTUsqBtuniAKdJ
-lc1rFBHwW8JzbTJQhlMSs9ceINz/RfK3BR0KLUaSWCAbTsLZQ05kX2IkTiCdmOLp
-/mrRvT5/e2rrWOAM8xrrRovwobZQ2bSk0dsc2h5XSkG0kbfxrYHu/UhhVsRIL085
-GjdwI4F9zwhIBnVODvsYXhUvGtHgpgxO3nZE02RMOeh7luKVwIpOt/KZPdcmUCR+
-5C+bzZcbeDY13rs/Gpe2oLjvUjBneMyFI7w+VuJEYWHZkqIeAa4=
-=ehzD
------END PGP SIGNATURE-----
-
---KsGdsel6WgEHnImy--
