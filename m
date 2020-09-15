@@ -2,165 +2,89 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from vger.kernel.org (vger.kernel.org [23.128.96.18])
-	by mail.lfdr.de (Postfix) with ESMTP id 4256526AC17
-	for <lists+devicetree@lfdr.de>; Tue, 15 Sep 2020 20:36:39 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTP id 4BE2326ACC4
+	for <lists+devicetree@lfdr.de>; Tue, 15 Sep 2020 20:59:29 +0200 (CEST)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S1727881AbgIOSg2 (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Tue, 15 Sep 2020 14:36:28 -0400
-Received: from lindbergh.monkeyblade.net ([23.128.96.19]:44536 "EHLO
-        lindbergh.monkeyblade.net" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S1727631AbgIOSgH (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Tue, 15 Sep 2020 14:36:07 -0400
-Received: from mail-qt1-x844.google.com (mail-qt1-x844.google.com [IPv6:2607:f8b0:4864:20::844])
-        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 413A5C06174A
-        for <devicetree@vger.kernel.org>; Tue, 15 Sep 2020 11:36:06 -0700 (PDT)
-Received: by mail-qt1-x844.google.com with SMTP id p65so4009606qtd.2
-        for <devicetree@vger.kernel.org>; Tue, 15 Sep 2020 11:36:06 -0700 (PDT)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=linaro.org; s=google;
-        h=date:from:to:cc:subject:message-id:references:mime-version
-         :content-disposition:in-reply-to;
-        bh=GgZ/I9dmFcrJX4+Gcxzi1wWr8Iu40sI3TTgomrtpN/0=;
-        b=z8MJShO7zBTWm3yVC0Q2B1jLLQdjAl69a3uv6ayRBTCgRBwaOGvRCejJjlUYVvyhob
-         C515IoetU9yk0QA2QzTSEYI4Hy2csIlbO98uYArEQ6vGBlBIbqumJWE2bDSdNtbbnFfa
-         xinHnfJDeLSD/ldAg/WkI/U1uzw0rPtga9bJMz0WJ3ZKr8XLEKd/ILfjhZMJO5pHuE9D
-         7Z0c368zo5Yl2zKPJWdR7WllBb1d6b0Y+72fA1aDPG2oEFTTRcSfyZhk8vYo5TmyiUXE
-         787sDu5TyHgeDTHlhSsP6+59QdthTLl8S+QMi1DiSFc37jUvJIFJI2HNWsbPZls0YKJ/
-         Xr4w==
-X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=1e100.net; s=20161025;
-        h=x-gm-message-state:date:from:to:cc:subject:message-id:references
-         :mime-version:content-disposition:in-reply-to;
-        bh=GgZ/I9dmFcrJX4+Gcxzi1wWr8Iu40sI3TTgomrtpN/0=;
-        b=ljQt5U9kXAwwzJbn/JltsOTQnuhnCtCn69v1Lq3iP8wzKjlmrixxUgTjm2BltGJW+a
-         C8B2n+2k+eaxeLA3gpWWdPsU8P1s8imPrdq5lEXz5UjvxW4SzSnLwTLmbgtkQyFkXC/M
-         c1QJPH+wLLjtFSYJIeoV8Gf7UWT1JSOt6cQGj9kaDpQryf4bTsjzZZCHbu3+SKz78TNT
-         zKZPRK27eZB9oxta7ylaimwLYnhw/USC3Z/s9QUJMx/Lyvk83Bl6C6dPuwEqfdw5XZIm
-         23Mgha4Rdr11iu84F8IPuG6SGxlwwwD1Ukm77LITSDDa0fRw8OZXYRq++xF3d3FzHN8K
-         3Fhw==
-X-Gm-Message-State: AOAM531Eexyl7oTuE9N6eVKq37z4311fmUUKn0ac1rcDaUQA6c5Qs4c9
-        jPpBd/zHdGFXqXBlAtSqGmSOgA==
-X-Google-Smtp-Source: ABdhPJwfFRNQG2gODIPTVtMLkOKyS7JO8o2XcPk3uqPJDEyfwQbbtxIUkzEh4rOiUD1Yglft+jg0VQ==
-X-Received: by 2002:ac8:1e07:: with SMTP id n7mr270166qtl.156.1600194965114;
-        Tue, 15 Sep 2020 11:36:05 -0700 (PDT)
-Received: from uller (ec2-34-197-84-77.compute-1.amazonaws.com. [34.197.84.77])
-        by smtp.gmail.com with ESMTPSA id v18sm16726433qtq.15.2020.09.15.11.36.04
-        (version=TLS1_3 cipher=TLS_AES_256_GCM_SHA384 bits=256/256);
-        Tue, 15 Sep 2020 11:36:04 -0700 (PDT)
-Date:   Tue, 15 Sep 2020 18:36:02 +0000
-From:   Bjorn Andersson <bjorn.andersson@linaro.org>
-To:     nguyenb@codeaurora.org
-Cc:     cang@codeaurora.org, asutoshd@codeaurora.org,
-        martin.petersen@oracle.com, linux-scsi@vger.kernel.org,
-        linux-arm-msm@vger.kernel.org, Rob Herring <robh+dt@kernel.org>,
-        Avri Altman <Avri.Altman@wdc.com>,
-        Vinod Koul <vkoul@kernel.org>,
-        "open list:OPEN FIRMWARE AND FLATTENED DEVICE TREE BINDINGS" 
-        <devicetree@vger.kernel.org>,
-        open list <linux-kernel@vger.kernel.org>
-Subject: Re: [PATCH v1 1/2] scsi: dt-bindings: ufs: Add vcc-voltage-level for
- UFS
-Message-ID: <20200915183602.GK478@uller>
-References: <cover.1598939393.git.nguyenb@codeaurora.org>
- <0a9d395dc38433501f9652a9236856d0ac840b77.1598939393.git.nguyenb@codeaurora.org>
- <20200915044154.GB670377@yoga>
- <748d238a3d9e53834a498c6f37f9f3c9@codeaurora.org>
- <20200915134335.GE670377@yoga>
- <e39516da0d94a4046edbcfb48b665f82@codeaurora.org>
+        id S1727823AbgIOS7P (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Tue, 15 Sep 2020 14:59:15 -0400
+Received: from mail.kernel.org ([198.145.29.99]:36686 "EHLO mail.kernel.org"
+        rhost-flags-OK-OK-OK-OK) by vger.kernel.org with ESMTP
+        id S1727586AbgIOS66 (ORCPT <rfc822;devicetree@vger.kernel.org>);
+        Tue, 15 Sep 2020 14:58:58 -0400
+Received: from mail-ot1-f44.google.com (mail-ot1-f44.google.com [209.85.210.44])
+        (using TLSv1.2 with cipher ECDHE-RSA-AES128-GCM-SHA256 (128/128 bits))
+        (No client certificate requested)
+        by mail.kernel.org (Postfix) with ESMTPSA id C3727206A2;
+        Tue, 15 Sep 2020 18:58:57 +0000 (UTC)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=kernel.org;
+        s=default; t=1600196337;
+        bh=juSKAG7syOLlUYOT/UKl355JCRZZOGDkrasKdEEz39E=;
+        h=References:In-Reply-To:From:Date:Subject:To:Cc:From;
+        b=e2w5Hqi9JkBpUnlrN5XfE/k2m6h+fKQEj8q6iT8EZjet+xs78hLa9RwQzL8ocMMTV
+         0IY43wpGOPpuARr9YTm8piLOmfRA5PTuA7ukhAyc+M2WIs1nQZ8d6Am6TUYKnzzQMY
+         RueIR/ZYkX4ncjWgBfJrMGQ99j5Oz93RMrZ9u0F0=
+Received: by mail-ot1-f44.google.com with SMTP id g10so4262340otq.9;
+        Tue, 15 Sep 2020 11:58:57 -0700 (PDT)
+X-Gm-Message-State: AOAM533m8fAlEL1ty8lM5dXFmilB7q2AEnHcM1rMK0V4V2D5wwgNV4N8
+        K75ynTv1n3iN/DUkIYj1GbNkct12uirBSmWr1Q==
+X-Google-Smtp-Source: ABdhPJwxLB1kpbhsA7tycgvi/wQZ1bmGZ7Ya81h12b8iMN2Ulxr/O/tPMFAVeA5YU7PbFFwr6ajyqH978MziIm2iLbU=
+X-Received: by 2002:a05:6830:1008:: with SMTP id a8mr12931310otp.107.1600196337137;
+ Tue, 15 Sep 2020 11:58:57 -0700 (PDT)
 MIME-Version: 1.0
-Content-Type: text/plain; charset=us-ascii
-Content-Disposition: inline
-In-Reply-To: <e39516da0d94a4046edbcfb48b665f82@codeaurora.org>
+References: <20200904131152.17390-1-paul@crapouillou.net> <20200904131152.17390-3-paul@crapouillou.net>
+ <20200914221230.GA349829@bogus> <CS2PGQ.I4UMQBYTB15I2@crapouillou.net>
+ <CAL_JsqLUSZFf_3zgFrapc7vJETG9+XDTZPtD_yEBvi4GO3xPSA@mail.gmail.com> <EGJPGQ.QVHGTYQDQR872@crapouillou.net>
+In-Reply-To: <EGJPGQ.QVHGTYQDQR872@crapouillou.net>
+From:   Rob Herring <robh@kernel.org>
+Date:   Tue, 15 Sep 2020 12:58:44 -0600
+X-Gmail-Original-Message-ID: <CAL_Jsq+O7YD+WuABOMvWT-uyuDvt6L9wQmeFunR-z4RpXLFo2A@mail.gmail.com>
+Message-ID: <CAL_Jsq+O7YD+WuABOMvWT-uyuDvt6L9wQmeFunR-z4RpXLFo2A@mail.gmail.com>
+Subject: Re: [PATCH 3/3] i2c: jz4780: Remove of_match_ptr()
+To:     Paul Cercueil <paul@crapouillou.net>
+Cc:     od@zcrc.me, Linux I2C <linux-i2c@vger.kernel.org>,
+        devicetree@vger.kernel.org,
+        "linux-kernel@vger.kernel.org" <linux-kernel@vger.kernel.org>
+Content-Type: text/plain; charset="UTF-8"
+Content-Transfer-Encoding: quoted-printable
 Sender: devicetree-owner@vger.kernel.org
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-On Tue 15 Sep 16:47 UTC 2020, nguyenb@codeaurora.org wrote:
+On Tue, Sep 15, 2020 at 10:07 AM Paul Cercueil <paul@crapouillou.net> wrote=
+:
+>
+>
+>
+> Le mar. 15 sept. 2020 =C3=A0 10:03, Rob Herring <robh@kernel.org> a =C3=
+=A9crit :
+> > On Tue, Sep 15, 2020 at 4:07 AM Paul Cercueil <paul@crapouillou.net>
+> > wrote:
+> >>
+> >>  Hi Rob,
+> >>
+> >>  Le lun. 14 sept. 2020 =C3=A0 16:12, Rob Herring <robh@kernel.org> a
+> >> =C3=A9crit :
+> >>  > On Fri, Sep 04, 2020 at 03:11:52PM +0200, Paul Cercueil wrote:
+> >>  >>  CONFIG_OF is selected by CONFIG_MACH_INGENIC, therefore we don't
+> >>  >> need to
+> >>  >>  handle the case where Device Tree is not supported.
+> >>  >
+> >>  > What about COMPILE_TEST? If not supported, why not?
+> >>
+> >>  What about it? It will still compile fine with COMPILE_TEST.
+> >
+> > CONFIG_OF could be disabled in that case, so the above reasoning
+> > doesn't hold.
+> >
+>
+> CONFIG_OF can be disabled in that case, correct, but why should we
+> care? The driver will still compile fine.
 
-> On 2020-09-15 06:43, Bjorn Andersson wrote:
-> > On Tue 15 Sep 03:14 CDT 2020, nguyenb@codeaurora.org wrote:
-> > 
-> > > On 2020-09-14 21:41, Bjorn Andersson wrote:
-> > > > On Tue 01 Sep 01:00 CDT 2020, Bao D. Nguyen wrote:
-> > > >
-> > > > > UFS's specifications supports a range of Vcc operating
-> > > > > voltage levels. Add documentation for the UFS's Vcc voltage
-> > > > > levels setting.
-> > > > >
-> > > > > Signed-off-by: Can Guo <cang@codeaurora.org>
-> > > > > Signed-off-by: Asutosh Das <asutoshd@codeaurora.org>
-> > > > > Signed-off-by: Bao D. Nguyen <nguyenb@codeaurora.org>
-> > > > > ---
-> > > > >  Documentation/devicetree/bindings/ufs/ufshcd-pltfrm.txt | 2 ++
-> > > > >  1 file changed, 2 insertions(+)
-> > > > >
-> > > > > diff --git a/Documentation/devicetree/bindings/ufs/ufshcd-pltfrm.txt
-> > > > > b/Documentation/devicetree/bindings/ufs/ufshcd-pltfrm.txt
-> > > > > index 415ccdd..7257b32 100644
-> > > > > --- a/Documentation/devicetree/bindings/ufs/ufshcd-pltfrm.txt
-> > > > > +++ b/Documentation/devicetree/bindings/ufs/ufshcd-pltfrm.txt
-> > > > > @@ -23,6 +23,8 @@ Optional properties:
-> > > > >                            with "phys" attribute, provides phandle
-> > > > > to UFS PHY node
-> > > > >  - vdd-hba-supply        : phandle to UFS host controller supply
-> > > > > regulator node
-> > > > >  - vcc-supply            : phandle to VCC supply regulator node
-> > > > > +- vcc-voltage-level     : specifies voltage levels for VCC supply.
-> > > > > +                          Should be specified in pairs (min, max),
-> > > > > units uV.
-> > > >
-> > > > What exactly are these pairs representing?
-> > > The pair is the min and max Vcc voltage request to the PMIC chip.
-> > > As a result, the regulator output voltage would only be in this range.
-> > > 
-> > 
-> > If you have static min/max voltage constraints for a device on a
-> > particular board the right way to handle this is to adjust the board's
-> > regulator-min-microvolt and regulator-max-microvolt accordingly - and
-> > not call regulator_set_voltage() from the river at all.
-> > 
-> > In other words, you shouldn't add this new property to describe
-> > something already described in the node vcc-supply points to.
-> > 
-> > Regards,
-> > Bjorn
-> Thank you all for your comments. The current driver hardcoding 2.7V Vcc min
-> voltage
-> does not work for UFS3.0+ devices according to the UFS device JEDEC spec.
-> However, we will
-> try to address it in a different way.
-> 
+Indeed, because jz4780_i2c_of_matches isn't within a CONFIG_OF ifdef
+as is sometimes done and is when you need of_match_ptr(). IMO, the
+commit msg should have something like "The driver is only used with
+CONFIG_OF enabled, so of_match_ptr() is not necessary.
+jz4780_i2c_of_matches is always defined."
 
-Right, but what I'm saying is that you should remove the
-regulator_set_voltage() call from the driver and rely on the device's
-dts, in which case you won't have this problem.
-
-Thanks,
-Bjorn
-
-> Regards,
-> Bao
-> 
-> > 
-> > > >
-> > > > Is this supposed to be 3 pairs of (min,max) for vcc, vcc and vccq2 to be
-> > > > passed into a regulator_set_voltage() for each regulator?
-> > > Yes, that's right. I should include the other power supplies in this
-> > > change
-> > > as well.
-> > > >
-> > > > Or are these some sort of "operating points" for the vcc-supply?
-> > > >
-> > > > Regards,
-> > > > Bjorn
-> > > >
-> > > > >  - vccq-supply           : phandle to VCCQ supply regulator node
-> > > > >  - vccq2-supply          : phandle to VCCQ2 supply regulator node
-> > > > >  - vcc-supply-1p8        : For embedded UFS devices, valid VCC range
-> > > > > is 1.7-1.95V
-> > > > > --
-> > > > > The Qualcomm Innovation Center, Inc. is a member of the Code Aurora
-> > > > > Forum,
-> > > > > a Linux Foundation Collaborative Project
-> > > > >
+Rob
