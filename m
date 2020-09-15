@@ -2,77 +2,80 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from vger.kernel.org (vger.kernel.org [23.128.96.18])
-	by mail.lfdr.de (Postfix) with ESMTP id 226F926B4FF
-	for <lists+devicetree@lfdr.de>; Wed, 16 Sep 2020 01:35:30 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTP id 05A4526B552
+	for <lists+devicetree@lfdr.de>; Wed, 16 Sep 2020 01:42:14 +0200 (CEST)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S1727238AbgIOXfX (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Tue, 15 Sep 2020 19:35:23 -0400
-Received: from mail-oi1-f193.google.com ([209.85.167.193]:41221 "EHLO
-        mail-oi1-f193.google.com" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S1727057AbgIOOf3 (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Tue, 15 Sep 2020 10:35:29 -0400
-Received: by mail-oi1-f193.google.com with SMTP id x69so4080721oia.8;
-        Tue, 15 Sep 2020 07:35:28 -0700 (PDT)
-X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=1e100.net; s=20161025;
-        h=x-gm-message-state:mime-version:references:in-reply-to:from:date
-         :message-id:subject:to:cc;
-        bh=XFJbV8gqtdgXON44AjHs01o37Q1aP3y+2+6LNfuSBbg=;
-        b=aMn+a2izYD0N0/HGHxw1jMkzf8xryX+UROIPQJMtvx6MkZ8aSP4tPsKyMY7IEsQsJj
-         0i/oKjOT4mrNzz3OwkhRV75lTRr7gfhfKKiBxnBWD8hGQHT608xJF7iNG8CroImYHEqy
-         uOv5DngDbmMqSUsQ844vnGmQjxYhObhdYRJk2Ddjsxeofb/0ZpzOuAyItba6rBgcpB7p
-         Uvc4Ne/CDP33v1oq+Geqpmmne9nPuxXYlFqkfdf3KtKYmXKKA2w6G/IQnn8wgCzZu6rd
-         hWINLfZ09KT1/FoJv3T261E0MZbrxbFyS2SH3qdY8IMEkTaaDcSp0n2mLFPVMovqoOTf
-         dl4w==
-X-Gm-Message-State: AOAM530NDM0ksVtY1k/u1uO/yqEmPJtMmo/ANCkkjDGhXEJhJnedrgfB
-        7VmYU9SJktJowkM0LT78Fi4MGqqQDfHbyWfQ5yOo89MS
-X-Google-Smtp-Source: ABdhPJzZ3UVmsOsTh4cqJBlDJ7vzhFrrmrBKHqhfHpds3yc77F0pv64OlNm3mClJtOeFqGGDm7n+2njVKcAuwriGQnA=
-X-Received: by 2002:aca:52d6:: with SMTP id g205mr3393965oib.54.1600176702442;
- Tue, 15 Sep 2020 06:31:42 -0700 (PDT)
+        id S1727108AbgIOXmH convert rfc822-to-8bit (ORCPT
+        <rfc822;lists+devicetree@lfdr.de>); Tue, 15 Sep 2020 19:42:07 -0400
+Received: from mail.nic.cz ([217.31.204.67]:54312 "EHLO mail.nic.cz"
+        rhost-flags-OK-OK-OK-OK) by vger.kernel.org with ESMTP
+        id S1727480AbgIOXlz (ORCPT <rfc822;devicetree@vger.kernel.org>);
+        Tue, 15 Sep 2020 19:41:55 -0400
+Received: from localhost (unknown [IPv6:2a0e:b107:ae1:0:3e97:eff:fe61:c680])
+        by mail.nic.cz (Postfix) with ESMTPSA id B22111409FB;
+        Wed, 16 Sep 2020 01:41:53 +0200 (CEST)
+Date:   Wed, 16 Sep 2020 01:41:53 +0200
+From:   Marek Behun <marek.behun@nic.cz>
+To:     Rob Herring <robh@kernel.org>
+Cc:     linux-leds@vger.kernel.org, devicetree@vger.kernel.org,
+        Pavel Machek <pavel@ucw.cz>
+Subject: Re: [PATCH leds] dt-bindings: leds: cznic,turris-omnia-leds: fix
+ error in binding
+Message-ID: <20200916014153.4dbb05d6@nic.cz>
+In-Reply-To: <20200915212258.GA2525921@bogus>
+References: <20200915005426.15957-1-marek.behun@nic.cz>
+        <20200915212258.GA2525921@bogus>
+X-Mailer: Claws Mail 3.17.6 (GTK+ 2.24.32; x86_64-pc-linux-gnu)
 MIME-Version: 1.0
-References: <20200915131216.21137-1-fabrizio.castro.jz@renesas.com> <20200915131216.21137-4-fabrizio.castro.jz@renesas.com>
-In-Reply-To: <20200915131216.21137-4-fabrizio.castro.jz@renesas.com>
-From:   Geert Uytterhoeven <geert@linux-m68k.org>
-Date:   Tue, 15 Sep 2020 15:31:30 +0200
-Message-ID: <CAMuHMdXdsHDKZS1ZdACK0-wGsc6cfQFGETykJ_sQX=bat3WZ7w@mail.gmail.com>
-Subject: Re: [PATCH 3/3] media: dt-bindings: media: renesas,drif: Add r8a77990 support
-To:     Fabrizio Castro <fabrizio.castro.jz@renesas.com>
-Cc:     Mauro Carvalho Chehab <mchehab@kernel.org>,
-        Rob Herring <robh+dt@kernel.org>,
-        Ramesh Shanmugasundaram <rashanmu@gmail.com>,
-        Linux Media Mailing List <linux-media@vger.kernel.org>,
-        "open list:OPEN FIRMWARE AND FLATTENED DEVICE TREE BINDINGS" 
-        <devicetree@vger.kernel.org>,
-        Linux Kernel Mailing List <linux-kernel@vger.kernel.org>,
-        Linux-Renesas <linux-renesas-soc@vger.kernel.org>,
-        Chris Paterson <Chris.Paterson2@renesas.com>,
-        Biju Das <biju.das.jz@bp.renesas.com>,
-        Prabhakar Mahadev Lad <prabhakar.mahadev-lad.rj@bp.renesas.com>,
-        Laurent Pinchart <laurent.pinchart@ideasonboard.com>
-Content-Type: text/plain; charset="UTF-8"
+Content-Type: text/plain; charset=UTF-8
+Content-Transfer-Encoding: 8BIT
+X-Spam-Status: No, score=-100.0 required=5.9 tests=SHORTCIRCUIT,URIBL_BLOCKED,
+        USER_IN_WELCOMELIST,USER_IN_WHITELIST shortcircuit=ham
+        autolearn=disabled version=3.4.2
+X-Spam-Checker-Version: SpamAssassin 3.4.2 (2018-09-13) on mail.nic.cz
+X-Virus-Scanned: clamav-milter 0.102.2 at mail
+X-Virus-Status: Clean
 Sender: devicetree-owner@vger.kernel.org
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-On Tue, Sep 15, 2020 at 3:12 PM Fabrizio Castro
-<fabrizio.castro.jz@renesas.com> wrote:
-> The r8a77990 (a.k.a. R-Car E3) device tree schema is
-> compatible with R-Car H3 and M3-W schema.
->
-> Document r8a77990 support within renesas,drif.yaml.
->
-> Signed-off-by: Fabrizio Castro <fabrizio.castro.jz@renesas.com>
+On Tue, 15 Sep 2020 15:22:58 -0600
+Rob Herring <robh@kernel.org> wrote:
 
-Reviewed-by: Geert Uytterhoeven <geert+renesas@glider.be>
+> On Tue, Sep 15, 2020 at 02:54:26AM +0200, Marek Behún wrote:
+> > There is a bug in the device tree binding for cznic,turris-omnia-leds
+> > which causes make dt_binding_check to complain.
+> > 
+> > The reason is that the multi-led property binding's regular expression
+> > does not contain the `@` character, while the example nodes do.
+> > 
+> > Fix this, and also allow for longer address in property name.
+> > 
+> > Signed-off-by: Marek Behún <marek.behun@nic.cz>
+> > Cc: Rob Herring <robh+dt@kernel.org>
+> > Cc: devicetree@vger.kernel.org
+> > Cc: Pavel Machek <pavel@ucw.cz>
+> > ---
+> >  .../devicetree/bindings/leds/cznic,turris-omnia-leds.yaml       | 2 +-
+> >  1 file changed, 1 insertion(+), 1 deletion(-)
+> > 
+> > diff --git a/Documentation/devicetree/bindings/leds/cznic,turris-omnia-leds.yaml b/Documentation/devicetree/bindings/leds/cznic,turris-omnia-leds.yaml
+> > index 24ad1446445ea..486ab27d75f2f 100644
+> > --- a/Documentation/devicetree/bindings/leds/cznic,turris-omnia-leds.yaml
+> > +++ b/Documentation/devicetree/bindings/leds/cznic,turris-omnia-leds.yaml
+> > @@ -30,7 +30,7 @@ properties:
+> >      const: 0
+> >  
+> >  patternProperties:
+> > -  "^multi-led[0-9a-f]$":
+> > +  "^multi-led@[0-9a-f]+$":  
+> 
+> There are only 12 LEDs on the device based on the description and 'reg', 
+> so 'b' is the max unit-address.
+> 
+> I can fixup when applying: "^multi-led@[0-9a-b]$"
+> 
+Please do, thanks.
 
-Gr{oetje,eeting}s,
-
-                        Geert
-
--- 
-Geert Uytterhoeven -- There's lots of Linux beyond ia32 -- geert@linux-m68k.org
-
-In personal conversations with technical people, I call myself a hacker. But
-when I'm talking to journalists I just say "programmer" or something like that.
-                                -- Linus Torvalds
+Marek
