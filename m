@@ -2,100 +2,167 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from vger.kernel.org (vger.kernel.org [23.128.96.18])
-	by mail.lfdr.de (Postfix) with ESMTP id AC54D2699F9
-	for <lists+devicetree@lfdr.de>; Tue, 15 Sep 2020 01:59:56 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTP id 58DAF269A2B
+	for <lists+devicetree@lfdr.de>; Tue, 15 Sep 2020 02:07:11 +0200 (CEST)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S1726046AbgINX7z (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Mon, 14 Sep 2020 19:59:55 -0400
-Received: from lindbergh.monkeyblade.net ([23.128.96.19]:41524 "EHLO
-        lindbergh.monkeyblade.net" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S1725994AbgINX7v (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Mon, 14 Sep 2020 19:59:51 -0400
-Received: from mail-qk1-x743.google.com (mail-qk1-x743.google.com [IPv6:2607:f8b0:4864:20::743])
-        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id A4BD3C061788
-        for <devicetree@vger.kernel.org>; Mon, 14 Sep 2020 16:59:51 -0700 (PDT)
-Received: by mail-qk1-x743.google.com with SMTP id w12so2447746qki.6
-        for <devicetree@vger.kernel.org>; Mon, 14 Sep 2020 16:59:51 -0700 (PDT)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=marek-ca.20150623.gappssmtp.com; s=20150623;
-        h=subject:to:cc:references:from:message-id:date:user-agent
-         :mime-version:in-reply-to:content-language:content-transfer-encoding;
-        bh=s+D9XMZ1jPyuXwGqHc+ajg65qFn6d40xSHUZSsGwDms=;
-        b=aJfGo70Jabf9ZjvZMb10fhhLl23I8KWpDWnfOFg4Ru48CIqIpSHGvt3W64+QvAZ09L
-         eMMy0/7+NuAnCHtAoOAkuZiYBiLJEPSaWezzPamfq1IxrLBS6nfWQ1lPKahi386qsQR9
-         VBUS2yvrsMhEDG7Vk2ZNLpHkvHUt/RP0vtV/kbODtXEfRCA+XYK9XrelVE6FokN3Ub7W
-         Hn5tL+kZsc0zC+fSmxhS1SFLFcgVOlV5uqKwlSiQTYV5lOcomoHqE0vYNoKXOqYIs71m
-         o4S3UCx8B9xMS9dTwKcAosNr/GDx4rJFszDgPvAJuHEud8rxuonk5DxNTCWuAHZP3Cgo
-         OYAA==
-X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=1e100.net; s=20161025;
-        h=x-gm-message-state:subject:to:cc:references:from:message-id:date
-         :user-agent:mime-version:in-reply-to:content-language
-         :content-transfer-encoding;
-        bh=s+D9XMZ1jPyuXwGqHc+ajg65qFn6d40xSHUZSsGwDms=;
-        b=Xh71HBuUBVkrhxJRr3M0MncrJwsMPCFLNjhx0jETQeAF2gDeW8CGtrnVJRs2Nh9ikD
-         XjypNoVMBTx6q3qrmahaStXeVp6CxWK6TAA/OQ2QU5YGNR/Yi6qf+Q40E3MiM7xhBMRh
-         CurWUTr1fUzWVeAR4cf53nlKYwEUXlPgiIkGmnme4ZMJzJzGo2QzBAFg8+nrrcLPdK3p
-         k3a+joX47zBaKWPxlyOH9pG1Ia0PX7r91WVKSBMD46tRXH/i3FBKxei2mPdt8F86b8Vd
-         5+J+dElVgpvQKBSaLZXvBx+ZjB681nbo8TAUo3y3vOujHzgLfHTmvjQBH73GfnJYEycs
-         rj5A==
-X-Gm-Message-State: AOAM530/8wuCdK1Keju3bYoJWP39OyauWfrBhFLX3sWluGjqq4I2Y6C4
-        Mhr8TIRJODwiwcgNDMIuABUlHw==
-X-Google-Smtp-Source: ABdhPJz/EKcPRQd0aezEJWSxXoe5tCiYr5gNZLNu1Xag1+dH6WurzzLTZnYoALFVujHZMCflMhPn/Q==
-X-Received: by 2002:a05:620a:546:: with SMTP id o6mr15829768qko.296.1600127990550;
-        Mon, 14 Sep 2020 16:59:50 -0700 (PDT)
-Received: from [192.168.0.189] ([147.253.86.153])
-        by smtp.gmail.com with ESMTPSA id g25sm15241941qto.47.2020.09.14.16.59.49
-        (version=TLS1_3 cipher=TLS_AES_128_GCM_SHA256 bits=128/128);
-        Mon, 14 Sep 2020 16:59:50 -0700 (PDT)
-Subject: Re: [PATCH v2 0/7] SM8150 and SM8250 dispcc drivers
-To:     Stephen Boyd <sboyd@kernel.org>,
-        Dmitry Baryshkov <dmitry.baryshkov@linaro.org>,
-        linux-arm-msm@vger.kernel.org
-Cc:     Andy Gross <agross@kernel.org>,
-        Bjorn Andersson <bjorn.andersson@linaro.org>,
-        OPEN FIRMWARE AND FLATTENED DEVICE TREE BINDINGS 
-        <devicetree@vger.kernel.org>,
-        COMMON CLK FRAMEWORK <linux-clk@vger.kernel.org>,
-        open list <linux-kernel@vger.kernel.org>,
-        Michael Turquette <mturquette@baylibre.com>,
-        Rob Herring <robh+dt@kernel.org>,
-        Taniya Das <tdas@codeaurora.org>
-References: <20200903222620.27448-1-jonathan@marek.ca>
- <fd5fbe73-e2a5-d877-743c-ad7cc6110483@linaro.org>
- <160012787871.4188128.16710718496771467444@swboyd.mtv.corp.google.com>
-From:   Jonathan Marek <jonathan@marek.ca>
-Message-ID: <540d95d2-ea53-f103-590e-a34d2d0cb8c5@marek.ca>
-Date:   Mon, 14 Sep 2020 19:58:45 -0400
-User-Agent: Mozilla/5.0 (X11; Linux x86_64; rv:68.0) Gecko/20100101
- Thunderbird/68.2.2
+        id S1726035AbgIOAHD (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Mon, 14 Sep 2020 20:07:03 -0400
+Received: from mail.kernel.org ([198.145.29.99]:55742 "EHLO mail.kernel.org"
+        rhost-flags-OK-OK-OK-OK) by vger.kernel.org with ESMTP
+        id S1726013AbgIOAHC (ORCPT <rfc822;devicetree@vger.kernel.org>);
+        Mon, 14 Sep 2020 20:07:02 -0400
+Received: from kernel.org (unknown [104.132.0.74])
+        (using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
+        (No client certificate requested)
+        by mail.kernel.org (Postfix) with ESMTPSA id 53530208DB;
+        Tue, 15 Sep 2020 00:07:01 +0000 (UTC)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=kernel.org;
+        s=default; t=1600128421;
+        bh=687u1BUQg/1ZmnPl6dLZ+wNLHLAr+aXXJgaQZx/yQZ4=;
+        h=In-Reply-To:References:Subject:From:Cc:To:Date:From;
+        b=fCupoy2yZi1b6Lon2fshR3NSKREDyGmA8OXZZ7nkc8e9fHSbXXXzzvQWnR27mYkZ/
+         /UXWPHwy7KxvlYyhm8h1QnPCb+Z5SkjR72zmGqznIBzh9OGOI8duUmba83ZR+djuxq
+         wwAib1y1b3pUN10aSoObe7D152uPGBFdt7WsXPvM=
+Content-Type: text/plain; charset="utf-8"
 MIME-Version: 1.0
-In-Reply-To: <160012787871.4188128.16710718496771467444@swboyd.mtv.corp.google.com>
-Content-Type: text/plain; charset=utf-8; format=flowed
-Content-Language: en-US
-Content-Transfer-Encoding: 7bit
+Content-Transfer-Encoding: quoted-printable
+In-Reply-To: <1599734644-4791-2-git-send-email-sagar.kadam@sifive.com>
+References: <1599734644-4791-1-git-send-email-sagar.kadam@sifive.com> <1599734644-4791-2-git-send-email-sagar.kadam@sifive.com>
+Subject: Re: [PATCH v1 1/3] dt-bindings: fu540: prci: convert PRCI bindings to json-schema
+From:   Stephen Boyd <sboyd@kernel.org>
+Cc:     mturquette@baylibre.com, robh+dt@kernel.org,
+        paul.walmsley@sifive.com, palmer@dabbelt.com, tglx@linutronix.de,
+        jason@lakedaemon.net, maz@kernel.org, thierry.reding@gmail.com,
+        u.kleine-koenig@pengutronix.de, lee.jones@linaro.org,
+        aou@eecs.berkeley.edu, yash.shah@sifive.com,
+        Sagar Kadam <sagar.kadam@sifive.com>
+To:     Sagar Kadam <sagar.kadam@sifive.com>, devicetree@vger.kernel.org,
+        linux-clk@vger.kernel.org, linux-kernel@vger.kernel.org,
+        linux-pwm@vger.kernel.org, linux-riscv@lists.infradead.org
+Date:   Mon, 14 Sep 2020 17:07:00 -0700
+Message-ID: <160012842007.4188128.14895985041717484631@swboyd.mtv.corp.google.com>
+User-Agent: alot/0.9.1
 Sender: devicetree-owner@vger.kernel.org
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-On 9/14/20 7:57 PM, Stephen Boyd wrote:
-> Quoting Dmitry Baryshkov (2020-09-07 07:25:45)
->> On 04/09/2020 01:26, Jonathan Marek wrote:
->>> Add display clock drivers required to get DSI and DP displays working on
->>> SM8150 and SM8250 SoCs.
->>>
->>> Derived from downstream drivers. Notable changes compared to downstream:
->>>    - EDP clks removed (nothing uses these even in downstream it seems)
->>>    - freq_tbl values for dp_link clk is in Hz and not kHz
->>
->>
->> On SM8250:
->> Tested-by: Dmitry Baryshkov <dmitry.baryshkov@linaro.org>
-> 
-> Can this be carried to v3?
-> 
+Quoting Sagar Kadam (2020-09-10 03:44:02)
+> diff --git a/Documentation/devicetree/bindings/clock/sifive/fu540-prci.ya=
+ml b/Documentation/devicetree/bindings/clock/sifive/fu540-prci.yaml
+> new file mode 100644
+> index 0000000..49386cd
+> --- /dev/null
+> +++ b/Documentation/devicetree/bindings/clock/sifive/fu540-prci.yaml
+> @@ -0,0 +1,75 @@
+> +# SPDX-License-Identifier: (GPL-2.0-only OR BSD-2-Clause)
+> +# Copyright (C) 2020 SiFive, Inc.
+> +%YAML 1.2
+> +---
+> +$id: http://devicetree.org/schemas/clock/sifive/fu540-prci.yaml#
+> +$schema: http://devicetree.org/meta-schemas/core.yaml#
+> +
+> +title: SiFive FU540 Power Reset Clock Interrupt Controller (PRCI)
+> +
+> +maintainers:
+> +  - Sagar Kadam <sagar.kadam@sifive.com>
+> +  - Paul Walmsley  <paul.walmsley@sifive.com>
+> +
+> +description:
+> +  On the FU540 family of SoCs, most system-wide clock and reset integrat=
+ion
+> +  is via the PRCI IP block.
+> +  The clock consumer should specify the desired clock via the clock ID
+> +  macros defined in include/dt-bindings/clock/sifive-fu540-prci.h.
+> +  These macros begin with PRCI_CLK_.
+> +
+> +  The hfclk and rtcclk nodes are required, and represent physical
+> +  crystals or resonators located on the PCB.  These nodes should be pres=
+ent
+> +  underneath /, rather than /soc.
+> +
+> +properties:
+> +  compatible:
+> +    enum:
+> +      - sifive,fu540-c000-prci
+> +    description:
+> +      Should have "sifive,<soc>-prci", only one value is supported
 
-I already included the tag in the last commit which adds the SM8250 
-dispcc driver (probably should've included it in the SM8250 dt-bindings 
-patch too though).
+Drop description and have=20
+
+    compatible:
+      const: sifive,fu540-c000-prci
+
+> +
+> +  reg:
+> +    maxItems: 1
+> +    description: Describe the PRCI's register target physical address re=
+gion
+
+Drop description.
+
+> +
+> +  clocks:
+> +    description:
+> +      Should point to the hfclk device tree node and the rtcclk device t=
+ree node.
+
+s/device tree node//g
+
+> +      The RTC clock here is not a time-of-day clock, but is instead a hi=
+gh-stability
+> +      clock source for system timers and cycle counters.
+
+Better to have:
+
+    clocks:
+      items:
+        - const: high frequency clock
+	- const: RTC clock
+
+Can you add clock-names too? Making it optional is OK.
+
+> +  "#clock-cells":
+> +    const: 1
+> +
+> +required:
+> +  - compatible
+> +  - reg
+> +  - clocks
+> +  - "#clock-cells"
+> +
+> +additionalProperties: false
+> +
+> +examples:
+> +  - |
+> +    //hfclk and rtcclk present under /, in PCB-specific DT data
+> +    hfclk: hfclk {
+> +      #clock-cells =3D <0>;
+> +      compatible =3D "fixed-clock";
+> +      clock-frequency =3D <33333333>;
+> +      clock-output-names =3D "hfclk";
+> +    };
+
+Add a newline here?
+
+> +    rtcclk: rtcclk {
+> +      #clock-cells =3D <0>;
+> +      compatible =3D "fixed-clock";
+> +      clock-frequency =3D <1000000>;
+> +      clock-output-names =3D "rtcclk";
+> +    };
+
+These may not be necessary either, just have the clock-controller node
+reference phandles?
+
+> +
+> +    //under /soc, in SoC-specific DT data
+
+Don't think this comment is necessary.
+
+> +    prci: clock-controller@10000000 {
+> +      compatible =3D "sifive,fu540-c000-prci";
+> +      reg =3D <0x10000000 0x1000>;
+> +      clocks =3D <&hfclk>, <&rtcclk>;
+> +      #clock-cells =3D <1>;
+> +    };
