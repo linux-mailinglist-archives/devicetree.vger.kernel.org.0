@@ -2,106 +2,92 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from vger.kernel.org (vger.kernel.org [23.128.96.18])
-	by mail.lfdr.de (Postfix) with ESMTP id 7DB0426AF22
-	for <lists+devicetree@lfdr.de>; Tue, 15 Sep 2020 23:05:20 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTP id 50FDF26AF48
+	for <lists+devicetree@lfdr.de>; Tue, 15 Sep 2020 23:16:15 +0200 (CEST)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S1728082AbgIOVFS (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Tue, 15 Sep 2020 17:05:18 -0400
-Received: from lindbergh.monkeyblade.net ([23.128.96.19]:39702 "EHLO
-        lindbergh.monkeyblade.net" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S1728011AbgIOVDw (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Tue, 15 Sep 2020 17:03:52 -0400
-Received: from metis.ext.pengutronix.de (metis.ext.pengutronix.de [IPv6:2001:67c:670:201:290:27ff:fe1d:cc33])
-        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 29CFDC061788
-        for <devicetree@vger.kernel.org>; Tue, 15 Sep 2020 14:03:50 -0700 (PDT)
-Received: from pty.hi.pengutronix.de ([2001:67c:670:100:1d::c5])
-        by metis.ext.pengutronix.de with esmtps (TLS1.2:ECDHE_RSA_AES_256_GCM_SHA384:256)
-        (Exim 4.92)
-        (envelope-from <ukl@pengutronix.de>)
-        id 1kII79-00006G-Jl; Tue, 15 Sep 2020 23:03:47 +0200
-Received: from ukl by pty.hi.pengutronix.de with local (Exim 4.89)
-        (envelope-from <ukl@pengutronix.de>)
-        id 1kII73-00019G-6I; Tue, 15 Sep 2020 23:03:41 +0200
-Date:   Tue, 15 Sep 2020 23:03:40 +0200
-From:   Uwe =?utf-8?Q?Kleine-K=C3=B6nig?= <u.kleine-koenig@pengutronix.de>
-To:     Michael Walle <michael@walle.cc>, Lee Jones <lee.jones@linaro.org>
-Cc:     linux-gpio@vger.kernel.org, devicetree@vger.kernel.org,
-        linux-kernel@vger.kernel.org, linux-hwmon@vger.kernel.org,
-        linux-pwm@vger.kernel.org, linux-watchdog@vger.kernel.org,
+        id S1727934AbgIOVO6 (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Tue, 15 Sep 2020 17:14:58 -0400
+Received: from mail-io1-f65.google.com ([209.85.166.65]:35050 "EHLO
+        mail-io1-f65.google.com" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
+        with ESMTP id S1727998AbgIOVOE (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Tue, 15 Sep 2020 17:14:04 -0400
+Received: by mail-io1-f65.google.com with SMTP id r9so5801964ioa.2;
+        Tue, 15 Sep 2020 14:13:57 -0700 (PDT)
+X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+        d=1e100.net; s=20161025;
+        h=x-gm-message-state:date:from:to:cc:subject:message-id:references
+         :mime-version:content-disposition:in-reply-to;
+        bh=UlDLGNDfNIX30vo6TOptdsoHKv0FtXHPExY3lDotPuo=;
+        b=J8985iCyJ7DACYAYXHjhxQPobqPMDQk5NG6+FzrH/Fa6lX+UEJKLT5GPWcm6pEctaK
+         gMks02pNuA4Tr48aSMxTFwRiQ0f8b1VloWBibaIhQcLYWZoDY/mlkYLuDnGOrJ7ZSNzo
+         IaJBDc1JHBd4OSW8Kz/orzGx43JlyBOYklx1EMMw5Ox9BxK3k1SSQgx44sm06k4Wjq9E
+         wu8XC2k6VbkaiPPRgN2bJtYu5KNKDtkccEG0J/pE7hR5M8YNBATtP1QVcbVMLMIoJJ3U
+         fY6g6dLrRPCvcSzfPgiTaTzgVeAUJkAeiBTFdefTWUOiriCuaIBbg8xMAbuwpKiq+T6z
+         47qg==
+X-Gm-Message-State: AOAM532Ctdt8wcreRzKPu94MOSfKVvBVDqUCfO5xm7NeeQGBD5dishx/
+        dCJSvXW9aWIsU+zl98Lt1A==
+X-Google-Smtp-Source: ABdhPJyVWPTPAOglxQF9NhMcWNJpbFKNXF1PJ0wdUxFZLDRkQNimmK+jCC+29w1IjGTMhIWd2g0+Og==
+X-Received: by 2002:a05:6602:2003:: with SMTP id y3mr16652469iod.203.1600204436919;
+        Tue, 15 Sep 2020 14:13:56 -0700 (PDT)
+Received: from xps15 ([64.188.179.253])
+        by smtp.gmail.com with ESMTPSA id m15sm9304692ild.8.2020.09.15.14.13.55
+        (version=TLS1_3 cipher=TLS_AES_256_GCM_SHA384 bits=256/256);
+        Tue, 15 Sep 2020 14:13:56 -0700 (PDT)
+Received: (nullmailer pid 2518777 invoked by uid 1000);
+        Tue, 15 Sep 2020 21:13:54 -0000
+Date:   Tue, 15 Sep 2020 15:13:54 -0600
+From:   Rob Herring <robh@kernel.org>
+To:     Marc Zyngier <maz@kernel.org>
+Cc:     devicetree@vger.kernel.org, linux-kernel@vger.kernel.org,
         linux-arm-kernel@lists.infradead.org,
-        Linus Walleij <linus.walleij@linaro.org>,
-        Bartosz Golaszewski <bgolaszewski@baylibre.com>,
-        Rob Herring <robh+dt@kernel.org>,
-        Jean Delvare <jdelvare@suse.com>,
-        Guenter Roeck <linux@roeck-us.net>,
-        Thierry Reding <thierry.reding@gmail.com>,
-        Wim Van Sebroeck <wim@linux-watchdog.org>,
-        Shawn Guo <shawnguo@kernel.org>, Li Yang <leoyang.li@nxp.com>,
+        Enric Balletbo i Serra <enric.balletbo@collabora.com>,
+        Frank Wunderlich <linux@fw-web.de>,
+        John Stultz <john.stultz@linaro.org>,
+        Saravana Kannan <saravanak@google.com>,
+        Hanks Chen <hanks.chen@mediatek.com>,
+        Andy Gross <agross@kernel.org>,
+        Bjorn Andersson <bjorn.andersson@linaro.org>,
+        Matthias Brugger <matthias.bgg@gmail.com>,
         Thomas Gleixner <tglx@linutronix.de>,
         Jason Cooper <jason@lakedaemon.net>,
-        Marc Zyngier <maz@kernel.org>, Mark Brown <broonie@kernel.org>,
-        Greg Kroah-Hartman <gregkh@linuxfoundation.org>,
-        Andy Shevchenko <andriy.shevchenko@linux.intel.com>,
-        Catalin Marinas <catalin.marinas@arm.com>,
-        Will Deacon <will@kernel.org>, Pavel Machek <pavel@ucw.cz>
-Subject: Re: [PATCH v10 06/13] pwm: add support for sl28cpld PWM controller
-Message-ID: <20200915210340.xg5xwmajufedyltr@pengutronix.de>
-References: <20200914214341.14268-1-michael@walle.cc>
- <20200914214341.14268-7-michael@walle.cc>
+        Frank Rowand <frowand.list@gmail.com>, kernel-team@android.com
+Subject: Re: [PATCH 0/6] irqchip: Hybrid probing
+Message-ID: <20200915211354.GA2469362@bogus>
+References: <20200912125148.1271481-1-maz@kernel.org>
 MIME-Version: 1.0
-Content-Type: multipart/signed; micalg=pgp-sha512;
-        protocol="application/pgp-signature"; boundary="cyiwyjcsxpn452wt"
+Content-Type: text/plain; charset=us-ascii
 Content-Disposition: inline
-In-Reply-To: <20200914214341.14268-7-michael@walle.cc>
-X-SA-Exim-Connect-IP: 2001:67c:670:100:1d::c5
-X-SA-Exim-Mail-From: ukl@pengutronix.de
-X-SA-Exim-Scanned: No (on metis.ext.pengutronix.de); SAEximRunCond expanded to false
-X-PTX-Original-Recipient: devicetree@vger.kernel.org
+In-Reply-To: <20200912125148.1271481-1-maz@kernel.org>
 Sender: devicetree-owner@vger.kernel.org
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
+On Sat, Sep 12, 2020 at 01:51:42PM +0100, Marc Zyngier wrote:
+> A recent attempt at converting a couple of interrupt controllers from
+> early probing to standard platform drivers have badly failed, as it
+> became evident that although an interrupt controller can easily probe
+> late, device drivers for the endpoints connected to it are rarely
+> equipped to deal with probe deferral. Changes were swiftly reverted.
+>
+> However, there is some value in *optionally* enabling this, if only
+> for development purposes, as there is otherwise a "chicken and egg"
+> problem, and a few people (cc'd) are working on a potential solution.
+> 
+> This short series enables the infrastructure for modular building
+> whilst retaining the usual early probing for monolithic build, and
+> introduces it to the three drivers that were previously made to probe
+> as platform drivers.
 
---cyiwyjcsxpn452wt
-Content-Type: text/plain; charset=iso-8859-1
-Content-Disposition: inline
-Content-Transfer-Encoding: quoted-printable
+I hardly expected more OF_DECLARE macros when I opened this up. Given 
+desires to get rid of them, I don't think adding to it is the way 
+forward. That wrapping a platform driver around OF_DECLARE looks pretty 
+horrible IMO. 
 
-On Mon, Sep 14, 2020 at 11:43:34PM +0200, Michael Walle wrote:
-> Add support for the PWM controller of the sl28cpld board management
-> controller. This is part of a multi-function device driver.
->=20
-> The controller has one PWM channel and can just generate four distinct
-> frequencies.
->=20
-> Signed-off-by: Michael Walle <michael@walle.cc>
-> Acked-by: Thierry Reding <thierry.reding@gmail.com>
+I browsed some of the discussion around this. It didn't seem like it's 
+a large number of drivers that have to be fixed to defer probe 
+correctly. Am I missing something?
 
-Reviewed-by: Uwe Kleine-K=F6nig <u.kleine-koenig@pengutronix.de>
+I'd rather keep the pressure on getting fw_devlink on by default.
 
-@Lee: From my side taking the patch via your mfd tree is fine.
-
-Thanks for your effort to align your patch to my reviews
-Uwe
-
---=20
-Pengutronix e.K.                           | Uwe Kleine-K=F6nig            |
-Industrial Linux Solutions                 | https://www.pengutronix.de/ |
-
---cyiwyjcsxpn452wt
-Content-Type: application/pgp-signature; name="signature.asc"
-
------BEGIN PGP SIGNATURE-----
-
-iQEzBAABCgAdFiEEfnIqFpAYrP8+dKQLwfwUeK3K7AkFAl9hLCkACgkQwfwUeK3K
-7AmJogf/X2AMslmJpJk0/t52+83yxuLmP8HEPZ/fZLyaE9/xTy0N/O2LeLsp13pK
-Jy7h+pQXkSORq2B/y38E5O+HAYSHquEkhnJKCG6sQk6gFxBH4F4eU14Y3LB7etqM
-8mNonE4LjJoNew2Mv2hBdO+9fTMum16bEe7rcQwBY3B6BYFkmad7ZK9XoDYm4cfB
-V5aLHywUaFB9/CZ2fqXDvtN/47Rf+ejnkrijTYwwu+BGf8i6bxIOUzSTHrrm5KnF
-fZ+GAFFikBriPAKpJvrVA0w3/tOhHpaOhNu405ghN4+aNwieSq0f6OZVP8IgJP3T
-c/G/lstWFGVi0MbWlbzQfVxcrCnBpg==
-=I40k
------END PGP SIGNATURE-----
-
---cyiwyjcsxpn452wt--
+Rob
