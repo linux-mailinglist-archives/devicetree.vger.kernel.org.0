@@ -2,123 +2,115 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from vger.kernel.org (vger.kernel.org [23.128.96.18])
-	by mail.lfdr.de (Postfix) with ESMTP id AC0D026A0BE
-	for <lists+devicetree@lfdr.de>; Tue, 15 Sep 2020 10:25:03 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTP id 8AD2D26A0AD
+	for <lists+devicetree@lfdr.de>; Tue, 15 Sep 2020 10:24:09 +0200 (CEST)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S1726317AbgIOIZC (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Tue, 15 Sep 2020 04:25:02 -0400
-Received: from m43-7.mailgun.net ([69.72.43.7]:28922 "EHLO m43-7.mailgun.net"
+        id S1726413AbgIOIX6 (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Tue, 15 Sep 2020 04:23:58 -0400
+Received: from mga06.intel.com ([134.134.136.31]:47842 "EHLO mga06.intel.com"
         rhost-flags-OK-OK-OK-OK) by vger.kernel.org with ESMTP
-        id S1726315AbgIOIPz (ORCPT <rfc822;devicetree@vger.kernel.org>);
-        Tue, 15 Sep 2020 04:15:55 -0400
-DKIM-Signature: a=rsa-sha256; v=1; c=relaxed/relaxed; d=mg.codeaurora.org; q=dns/txt;
- s=smtp; t=1600157724; h=Message-ID: References: In-Reply-To: Subject:
- Cc: To: From: Date: Content-Transfer-Encoding: Content-Type:
- MIME-Version: Sender; bh=pSgbry1PAaBdRWEhUEVxrVeaHzZFoZPrjHZu+EwHtIw=;
- b=vugkcxJoL2pQEKqtdBhXWIzscb1LWw9jjNLBf+7QevmUk3PflhLx2Y0xdmi1i4QS5YXeLMnq
- SaC+X9qFdcjBBHydEIcW7JOORYVQBtIBgXhknZns8Sppary3oWJIo/6fuP4vlUoQYB8wUQo/
- P3PjdgNfc/0nJXKvtbCppJ71FC8=
-X-Mailgun-Sending-Ip: 69.72.43.7
-X-Mailgun-Sid: WyI1YmJiNiIsICJkZXZpY2V0cmVlQHZnZXIua2VybmVsLm9yZyIsICJiZTllNGEiXQ==
-Received: from smtp.codeaurora.org
- (ec2-35-166-182-171.us-west-2.compute.amazonaws.com [35.166.182.171]) by
- smtp-out-n07.prod.us-east-1.postgun.com with SMTP id
- 5f6077f8885efaea0a56a88b (version=TLS1.2,
- cipher=TLS_ECDHE_RSA_WITH_AES_128_GCM_SHA256); Tue, 15 Sep 2020 08:14:48
- GMT
-Received: by smtp.codeaurora.org (Postfix, from userid 1001)
-        id 101CDC433CA; Tue, 15 Sep 2020 08:14:48 +0000 (UTC)
-X-Spam-Checker-Version: SpamAssassin 3.4.0 (2014-02-07) on
-        aws-us-west-2-caf-mail-1.web.codeaurora.org
-X-Spam-Level: 
-X-Spam-Status: No, score=-2.9 required=2.0 tests=ALL_TRUSTED,BAYES_00,
-        URIBL_BLOCKED autolearn=unavailable autolearn_force=no version=3.4.0
-Received: from mail.codeaurora.org (localhost.localdomain [127.0.0.1])
-        (using TLSv1 with cipher ECDHE-RSA-AES256-SHA (256/256 bits))
-        (No client certificate requested)
-        (Authenticated sender: nguyenb)
-        by smtp.codeaurora.org (Postfix) with ESMTPSA id 4097EC433C8;
-        Tue, 15 Sep 2020 08:14:47 +0000 (UTC)
-MIME-Version: 1.0
-Content-Type: text/plain; charset=US-ASCII;
- format=flowed
-Content-Transfer-Encoding: 7bit
-Date:   Tue, 15 Sep 2020 01:14:47 -0700
-From:   nguyenb@codeaurora.org
-To:     Bjorn Andersson <bjorn.andersson@linaro.org>
-Cc:     cang@codeaurora.org, asutoshd@codeaurora.org,
-        martin.petersen@oracle.com, linux-scsi@vger.kernel.org,
-        linux-arm-msm@vger.kernel.org, Rob Herring <robh+dt@kernel.org>,
-        Avri Altman <Avri.Altman@wdc.com>,
-        Vinod Koul <vkoul@kernel.org>,
-        "open list:OPEN FIRMWARE AND FLATTENED DEVICE TREE BINDINGS" 
-        <devicetree@vger.kernel.org>,
-        open list <linux-kernel@vger.kernel.org>
-Subject: Re: [PATCH v1 1/2] scsi: dt-bindings: ufs: Add vcc-voltage-level for
- UFS
-In-Reply-To: <20200915044154.GB670377@yoga>
-References: <cover.1598939393.git.nguyenb@codeaurora.org>
- <0a9d395dc38433501f9652a9236856d0ac840b77.1598939393.git.nguyenb@codeaurora.org>
- <20200915044154.GB670377@yoga>
-Message-ID: <748d238a3d9e53834a498c6f37f9f3c9@codeaurora.org>
-X-Sender: nguyenb@codeaurora.org
-User-Agent: Roundcube Webmail/1.3.9
+        id S1726410AbgIOIXw (ORCPT <rfc822;devicetree@vger.kernel.org>);
+        Tue, 15 Sep 2020 04:23:52 -0400
+IronPort-SDR: iwYLntbFnubwd9LQWo4HH3NFRDvSkGT8OEsPfihWyVjf3GUbb/qyQmKE5d6xfSdrzQZ48KGqD+
+ OVFmVMC1PK7Q==
+X-IronPort-AV: E=McAfee;i="6000,8403,9744"; a="220776109"
+X-IronPort-AV: E=Sophos;i="5.76,429,1592895600"; 
+   d="scan'208";a="220776109"
+X-Amp-Result: SKIPPED(no attachment in message)
+X-Amp-File-Uploaded: False
+Received: from fmsmga008.fm.intel.com ([10.253.24.58])
+  by orsmga104.jf.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384; 15 Sep 2020 01:23:51 -0700
+IronPort-SDR: PNb1eBm69B/GvgyfbT8XFNK3WaSJEGu2zPKoLDR/ySQscqg6wEjLVPeIEyM3MdcZAbB19WZUzL
+ KYO7RXttt9rQ==
+X-ExtLoop1: 1
+X-IronPort-AV: E=Sophos;i="5.76,429,1592895600"; 
+   d="scan'208";a="287906701"
+Received: from sgsxdev001.isng.intel.com (HELO localhost) ([10.226.88.11])
+  by fmsmga008.fm.intel.com with ESMTP; 15 Sep 2020 01:23:46 -0700
+From:   Rahul Tanwar <rahul.tanwar@linux.intel.com>
+To:     u.kleine-koenig@pengutronix.de, linux-pwm@vger.kernel.org,
+        lee.jones@linaro.org
+Cc:     thierry.reding@gmail.com, p.zabel@pengutronix.de,
+        robh+dt@kernel.org, linux-kernel@vger.kernel.org,
+        devicetree@vger.kernel.org, andriy.shevchenko@intel.com,
+        songjun.Wu@intel.com, cheol.yong.kim@intel.com,
+        qi-ming.wu@intel.com, rahul.tanwar.linux@gmail.com,
+        rtanwar@maxlinear.com, Rahul Tanwar <rahul.tanwar@linux.intel.com>
+Subject: [PATCH v13 1/2] Add DT bindings YAML schema for PWM fan controller of LGM SoC
+Date:   Tue, 15 Sep 2020 16:23:36 +0800
+Message-Id: <a5b9fefb58a6fe16964219b0d443bf81c58f5445.1600158087.git.rahul.tanwar@linux.intel.com>
+X-Mailer: git-send-email 2.11.0
+In-Reply-To: <cover.1600158087.git.rahul.tanwar@linux.intel.com>
+References: <cover.1600158087.git.rahul.tanwar@linux.intel.com>
+In-Reply-To: <cover.1600158087.git.rahul.tanwar@linux.intel.com>
+References: <cover.1600158087.git.rahul.tanwar@linux.intel.com>
 Sender: devicetree-owner@vger.kernel.org
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-On 2020-09-14 21:41, Bjorn Andersson wrote:
-> On Tue 01 Sep 01:00 CDT 2020, Bao D. Nguyen wrote:
-> 
->> UFS's specifications supports a range of Vcc operating
->> voltage levels. Add documentation for the UFS's Vcc voltage
->> levels setting.
->> 
->> Signed-off-by: Can Guo <cang@codeaurora.org>
->> Signed-off-by: Asutosh Das <asutoshd@codeaurora.org>
->> Signed-off-by: Bao D. Nguyen <nguyenb@codeaurora.org>
->> ---
->>  Documentation/devicetree/bindings/ufs/ufshcd-pltfrm.txt | 2 ++
->>  1 file changed, 2 insertions(+)
->> 
->> diff --git a/Documentation/devicetree/bindings/ufs/ufshcd-pltfrm.txt 
->> b/Documentation/devicetree/bindings/ufs/ufshcd-pltfrm.txt
->> index 415ccdd..7257b32 100644
->> --- a/Documentation/devicetree/bindings/ufs/ufshcd-pltfrm.txt
->> +++ b/Documentation/devicetree/bindings/ufs/ufshcd-pltfrm.txt
->> @@ -23,6 +23,8 @@ Optional properties:
->>                            with "phys" attribute, provides phandle to 
->> UFS PHY node
->>  - vdd-hba-supply        : phandle to UFS host controller supply 
->> regulator node
->>  - vcc-supply            : phandle to VCC supply regulator node
->> +- vcc-voltage-level     : specifies voltage levels for VCC supply.
->> +                          Should be specified in pairs (min, max), 
->> units uV.
-> 
-> What exactly are these pairs representing?
-The pair is the min and max Vcc voltage request to the PMIC chip.
-As a result, the regulator output voltage would only be in this range.
+Intel's LGM(Lightning Mountain) SoC contains a PWM fan controller
+which is only used to control the fan attached to the system. This
+PWM controller does not have any other consumer other than fan.
+Add DT bindings documentation for this PWM fan controller.
 
-> 
-> Is this supposed to be 3 pairs of (min,max) for vcc, vcc and vccq2 to 
-> be
-> passed into a regulator_set_voltage() for each regulator?
-Yes, that's right. I should include the other power supplies in this 
-change as well.
-> 
-> Or are these some sort of "operating points" for the vcc-supply?
-> 
-> Regards,
-> Bjorn
-> 
->>  - vccq-supply           : phandle to VCCQ supply regulator node
->>  - vccq2-supply          : phandle to VCCQ2 supply regulator node
->>  - vcc-supply-1p8        : For embedded UFS devices, valid VCC range 
->> is 1.7-1.95V
->> --
->> The Qualcomm Innovation Center, Inc. is a member of the Code Aurora 
->> Forum,
->> a Linux Foundation Collaborative Project
->> 
+Signed-off-by: Rahul Tanwar <rahul.tanwar@linux.intel.com>
+Reviewed-by: Rob Herring <robh@kernel.org>
+---
+ .../devicetree/bindings/pwm/intel,lgm-pwm.yaml     | 44 ++++++++++++++++++++++
+ 1 file changed, 44 insertions(+)
+ create mode 100644 Documentation/devicetree/bindings/pwm/intel,lgm-pwm.yaml
+
+diff --git a/Documentation/devicetree/bindings/pwm/intel,lgm-pwm.yaml b/Documentation/devicetree/bindings/pwm/intel,lgm-pwm.yaml
+new file mode 100644
+index 000000000000..11a606536169
+--- /dev/null
++++ b/Documentation/devicetree/bindings/pwm/intel,lgm-pwm.yaml
+@@ -0,0 +1,44 @@
++# SPDX-License-Identifier: (GPL-2.0-only OR BSD-2-Clause)
++%YAML 1.2
++---
++$id: http://devicetree.org/schemas/pwm/intel,lgm-pwm.yaml#
++$schema: http://devicetree.org/meta-schemas/core.yaml#
++
++title: LGM SoC PWM fan controller
++
++maintainers:
++  - Rahul Tanwar <rtanwar@maxlinear.com>
++
++properties:
++  compatible:
++    const: intel,lgm-pwm
++
++  reg:
++    maxItems: 1
++
++  "#pwm-cells":
++    const: 2
++
++  clocks:
++    maxItems: 1
++
++  resets:
++    maxItems: 1
++
++required:
++  - compatible
++  - reg
++  - clocks
++  - resets
++
++additionalProperties: false
++
++examples:
++  - |
++    pwm: pwm@e0d00000 {
++        compatible = "intel,lgm-pwm";
++        reg = <0xe0d00000 0x30>;
++        #pwm-cells = <2>;
++        clocks = <&cgu0 126>;
++        resets = <&rcu0 0x30 21>;
++    };
+-- 
+2.11.0
+
