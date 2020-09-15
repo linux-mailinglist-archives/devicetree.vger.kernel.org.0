@@ -2,216 +2,120 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from vger.kernel.org (vger.kernel.org [23.128.96.18])
-	by mail.lfdr.de (Postfix) with ESMTP id E307926A5E1
-	for <lists+devicetree@lfdr.de>; Tue, 15 Sep 2020 15:07:08 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTP id 10E7426A5E6
+	for <lists+devicetree@lfdr.de>; Tue, 15 Sep 2020 15:07:51 +0200 (CEST)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S1726571AbgIONHC (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Tue, 15 Sep 2020 09:07:02 -0400
-Received: from lindbergh.monkeyblade.net ([23.128.96.19]:49390 "EHLO
-        lindbergh.monkeyblade.net" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S1726235AbgIONFZ (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Tue, 15 Sep 2020 09:05:25 -0400
-Received: from mail-wr1-x444.google.com (mail-wr1-x444.google.com [IPv6:2a00:1450:4864:20::444])
-        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 54564C061788
-        for <devicetree@vger.kernel.org>; Tue, 15 Sep 2020 06:05:24 -0700 (PDT)
-Received: by mail-wr1-x444.google.com with SMTP id o5so3178880wrn.13
-        for <devicetree@vger.kernel.org>; Tue, 15 Sep 2020 06:05:24 -0700 (PDT)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=baylibre-com.20150623.gappssmtp.com; s=20150623;
-        h=subject:from:to:cc:references:autocrypt:organization:message-id
-         :date:user-agent:mime-version:in-reply-to:content-language
-         :content-transfer-encoding;
-        bh=PAedulOaLRGPWn1Q+RwcE7+ai8g8vapA/ETRTpmrMvA=;
-        b=jOnakUbco4IRYyGk5bE3DYRjRvtFKeNnrPpQlHZm9vkVgtANfs6YSsuPafs8f8yxnW
-         TWYg4nID670IQYnA5nwTvH7W0QZZ353jkg24qQafVf3HdVdCgyhH58O9dSy2aAQgV8gw
-         u4iYPd9gY3vcqOQ6VESqLe0nk6F97Ds8SFPUaX7cJjku0BmYGfGOcvXIH8zy8qId7ucX
-         FZc5KZsLCRSJpLbgr5zJ3eu1nL5/6amzUR5Rq7wOIwsRfFDZfPLBixmXDUjL0i0/RAGe
-         Fd8pcxLFNcc+VQI8/h7VMZhbLSyz6qpY3hKNY27gBxmJExoDlmjUHWHijCduCInM1V8/
-         j4Wg==
-X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=1e100.net; s=20161025;
-        h=x-gm-message-state:subject:from:to:cc:references:autocrypt
-         :organization:message-id:date:user-agent:mime-version:in-reply-to
-         :content-language:content-transfer-encoding;
-        bh=PAedulOaLRGPWn1Q+RwcE7+ai8g8vapA/ETRTpmrMvA=;
-        b=Xc1GKh0V06NYJAgtOdpj7xIHpi8eJYy2D2/8jWltzmX+5u8JuZgzabxbreLweVSIlt
-         I/i5sLku7MWC7BujUldxx9LqqEds0FQeojtHtlCSYwHwJk6uqFRjWYS6NKpVWj/rLh8H
-         KKXHKoFmhFtmW9FDF2dTxZyg/3PD2Pf6sqnQlGeK1quZTg6hSaggD6BQqN3X4owp6ORq
-         09vChjz95qzQSBvV5jhpHZgkRf4r8TWAkqTY2wpyeHJvTppL5ymKT6WV5XVB1g/DGdQ+
-         1Gd2h7JPwq1sHHugBaOkjdnjJVFV+pIbJAjkv9HVuT783Japdyoy9IZEFhDeLDg8T5lI
-         Bzzg==
-X-Gm-Message-State: AOAM533Jtxp+BdF7y+ncQELXbTa0EJNj0AVczg+yxdOC0Oq4lYvldy40
-        Kh0VYwmhdlScHdBXqXtEH8E9ow==
-X-Google-Smtp-Source: ABdhPJwSgGK8pvg6vZvi16/WZcjKVDit+Y5y4mAJO1zJtZiSdJ8WtZvErg/IdDO4zNNq3uaZq7Y/zw==
-X-Received: by 2002:a5d:4842:: with SMTP id n2mr21740506wrs.260.1600175122708;
-        Tue, 15 Sep 2020 06:05:22 -0700 (PDT)
-Received: from [192.168.1.23] (home.beaume.starnux.net. [82.236.8.43])
-        by smtp.gmail.com with ESMTPSA id v9sm26339953wru.37.2020.09.15.06.05.20
-        (version=TLS1_3 cipher=TLS_AES_128_GCM_SHA256 bits=128/128);
-        Tue, 15 Sep 2020 06:05:21 -0700 (PDT)
-Subject: Re: [PATCH v9 00/11] Genericize DW MIPI DSI bridge and add i.MX 6
- driver
-From:   Neil Armstrong <narmstrong@baylibre.com>
-To:     Ezequiel Garcia <ezequiel@collabora.com>,
-        Adrian Ratiu <adrian.ratiu@collabora.com>,
+        id S1726612AbgIONHg (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Tue, 15 Sep 2020 09:07:36 -0400
+Received: from mailout1.w1.samsung.com ([210.118.77.11]:58597 "EHLO
+        mailout1.w1.samsung.com" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
+        with ESMTP id S1726556AbgIONHG (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Tue, 15 Sep 2020 09:07:06 -0400
+Received: from eucas1p2.samsung.com (unknown [182.198.249.207])
+        by mailout1.w1.samsung.com (KnoxPortal) with ESMTP id 20200915130637euoutp019230e0f4fd84dc03423c47384dacf9ba~09t0VLteu1336313363euoutp01L
+        for <devicetree@vger.kernel.org>; Tue, 15 Sep 2020 13:06:37 +0000 (GMT)
+DKIM-Filter: OpenDKIM Filter v2.11.0 mailout1.w1.samsung.com 20200915130637euoutp019230e0f4fd84dc03423c47384dacf9ba~09t0VLteu1336313363euoutp01L
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=samsung.com;
+        s=mail20170921; t=1600175197;
+        bh=l/fTqpZOZP8Z3Q9+i1hJ7n94rjLLsExK52fNSenqmaI=;
+        h=Subject:To:Cc:From:Date:In-Reply-To:References:From;
+        b=ltRv6CNK5HGwQBUN3yZDXKRiKEQJarbyO1mR/v27LQmcK2RJ+pRbQVA0KLXUEFOzj
+         pOjejLpL3oEOuePIXg90654F5tBIS85VCrLMmZF1UnGZYlcEJu5fvLfcuxsHpcCbe8
+         aEGG7dxSE1OGKO3IR6tIqMwXpQETh1/1HziGdL+c=
+Received: from eusmges2new.samsung.com (unknown [203.254.199.244]) by
+        eucas1p2.samsung.com (KnoxPortal) with ESMTP id
+        20200915130636eucas1p2c37b61d95221fdd43f485aa283ef97ff~09tzw8wh-1697016970eucas1p2u;
+        Tue, 15 Sep 2020 13:06:36 +0000 (GMT)
+Received: from eucas1p1.samsung.com ( [182.198.249.206]) by
+        eusmges2new.samsung.com (EUCPMTA) with SMTP id 72.4C.05997.C5CB06F5; Tue, 15
+        Sep 2020 14:06:36 +0100 (BST)
+Received: from eusmtrp1.samsung.com (unknown [182.198.249.138]) by
+        eucas1p2.samsung.com (KnoxPortal) with ESMTPA id
+        20200915130635eucas1p25bae1edd92e5af4b160cf0022a0e20bc~09tzRGPdm1702817028eucas1p2c;
+        Tue, 15 Sep 2020 13:06:35 +0000 (GMT)
+Received: from eusmgms2.samsung.com (unknown [182.198.249.180]) by
+        eusmtrp1.samsung.com (KnoxPortal) with ESMTP id
+        20200915130635eusmtrp121431724a8dc4a9c5e200f783b7ee8bb~09tzQVcxA2320123201eusmtrp1f;
+        Tue, 15 Sep 2020 13:06:35 +0000 (GMT)
+X-AuditID: cbfec7f4-65dff7000000176d-60-5f60bc5c0251
+Received: from eusmtip1.samsung.com ( [203.254.199.221]) by
+        eusmgms2.samsung.com (EUCPMTA) with SMTP id D6.4B.06017.B5CB06F5; Tue, 15
+        Sep 2020 14:06:35 +0100 (BST)
+Received: from [106.210.123.115] (unknown [106.210.123.115]) by
+        eusmtip1.samsung.com (KnoxPortal) with ESMTPA id
+        20200915130634eusmtip1c284351c688df26b7cf031625c45af02~09tyaR4660704907049eusmtip1Y;
+        Tue, 15 Sep 2020 13:06:34 +0000 (GMT)
+Subject: Re: [PATCH 1/3] clk: samsung: Add clk ID definitions for the CPU
+ parent clocks
+To:     linux-clk@vger.kernel.org
+Cc:     Tomasz Figa <tomasz.figa@gmail.com>,
+        Chanwoo Choi <cw00.choi@samsung.com>,
+        Michael Turquette <mturquette@baylibre.com>,
+        Stephen Boyd <sboyd@kernel.org>, Kukjin Kim <kgene@kernel.org>,
+        Krzysztof Kozlowski <krzk@kernel.org>,
+        Rob Herring <robh+dt@kernel.org>,
+        linux-samsung-soc@vger.kernel.org, linux-kernel@vger.kernel.org,
         linux-arm-kernel@lists.infradead.org, devicetree@vger.kernel.org,
-        linux-rockchip@lists.infradead.org,
-        Laurent Pinchart <Laurent.pinchart@ideasonboard.com>
-Cc:     Jernej Skrabec <jernej.skrabec@siol.net>,
-        Jonas Karlman <jonas@kwiboo.se>,
-        Philippe CORNU <philippe.cornu@st.com>,
-        dri-devel@lists.freedesktop.org, linux-kernel@vger.kernel.org,
-        Yannick FERTRE <yannick.fertre@st.com>,
-        Andrzej Hajda <a.hajda@samsung.com>, linux-imx@nxp.com,
-        kernel@collabora.com, linux-stm32@st-md-mailman.stormreply.com
-References: <20200609174959.955926-1-adrian.ratiu@collabora.com>
- <c6f10db1-7f56-a156-36a1-125e764c8c1a@baylibre.com>
- <87lfk3kaj4.fsf@iwork.i-did-not-set--mail-host-address--so-tickle-me>
- <b318069fe873e456f18d07d11f5d165667c9b04a.camel@collabora.com>
- <e0d0efec-09e0-6bf8-bab7-44accd14fa52@baylibre.com>
-Autocrypt: addr=narmstrong@baylibre.com; prefer-encrypt=mutual; keydata=
- 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
- BSwxi7g3Mu7u5kUByanqHyA=
-Organization: Baylibre
-Message-ID: <e841d90b-0f1d-d5d9-9f67-f90d64c4fbc7@baylibre.com>
-Date:   Tue, 15 Sep 2020 15:05:20 +0200
-User-Agent: Mozilla/5.0 (X11; Linux x86_64; rv:68.0) Gecko/20100101
- Thunderbird/68.10.0
+        m.szyprowski@samsung.com, b.zolnierkie@samsung.com
+From:   Sylwester Nawrocki <s.nawrocki@samsung.com>
+Message-ID: <93b6c6ce-7f13-d4a9-4b7e-aaae657cfd49@samsung.com>
+Date:   Tue, 15 Sep 2020 15:06:33 +0200
+User-Agent: Mozilla/5.0 (Windows NT 10.0; WOW64; rv:68.0) Gecko/20100101
+        Thunderbird/68.12.0
 MIME-Version: 1.0
-In-Reply-To: <e0d0efec-09e0-6bf8-bab7-44accd14fa52@baylibre.com>
-Content-Type: text/plain; charset=utf-8
+In-Reply-To: <20200826171529.23618-1-s.nawrocki@samsung.com>
 Content-Language: en-US
 Content-Transfer-Encoding: 7bit
+X-Brightmail-Tracker: H4sIAAAAAAAAA01Sa0hTYRju2zln52w4+Zzm3qyMhkGm3SMOKXaVBmkX+pWVbulBJWe2efdH
+        RiipS8UkbQle6ObM1FmmKyXEJiVqV6uZic7QNAtTKi9pbkfJf8/7vM/L8zwfH0NIX1FuTGR0
+        LKeJVkXJhWKyzjzZsfHUE2XIlqd6GVtTWEWx7ycGKba4pYNic6wjBNvZWU2zRmsXxY7pPlPs
+        G1ORkC3sbBKwlS09NPvqhT+b1thCs7NdNSRrMM2gPY6KHx/SaEWDvodWGA0ZQkXtzQuK7AcG
+        pBg3uh8VBol9w7ioyHhOs9lPKY7ovVhBxGQQibmVRjoVPRVkIhEDeAdYa8x0JhIzUnwXwd+K
+        IQE/TCC4NtGzsBlH8K3jD1o8uT+WRtqwFN9B0JARzIvGEFQPF9oXzvgE5GS8sx+44NVgMU8K
+        bSICmwnoKS+1mwvxVrjyLNsukmA/aLJ0z9sxDInXQaUlwUYvx8FgftFP8hIneH59wI5F2Bem
+        brUTNkxgGVgGigU8XgOPRosImxfgMRrezjWSfOoDMFQ+SvHYGYZbH9A8XgVtV3Ukf3AJge5x
+        N80PuQh6W0sWOvvAp44poS0dgT2hyrSZp/dC3txHZKMBO8KHUSc+hCPk1RUQPC2By+lSXu0B
+        04aChXd3g6yBOTIXyfVLqumX1NEvqaP/71uCSAOScXFadTin3RbNJWzSqtTauOjwTaHn1EY0
+        /9HaZlsn6pFp5kwzwgySO0iUCSEhUkoVr01SNyNgCLmLZF97W7BUEqZKSuY050I0cVGcthmt
+        ZEi5TLK97OtpKQ5XxXJnOS6G0yxuBYzILRVxxKmuZSMC79Avs90BRzxNQStw4O/EdF2q3/7g
+        hl0RyrJqp9snx7PyU/Pzn6W4VslxoOjs9O5fxd/XvnQtnfZw8/7ZNxX7ujFZ0R9ZcL5WVnjP
+        32/94ePWungfkXtmu2XftiAvSrwlfVByxTUlIPHGw7VzDlGH+tT+XgePOdXvNKbISW2EausG
+        QqNV/QPuO4hPZAMAAA==
+X-Brightmail-Tracker: H4sIAAAAAAAAA+NgFnrMIsWRmVeSWpSXmKPExsVy+t/xu7rRexLiDRYsNLbYOGM9q8X1L89Z
+        LeYfOcdq0f/4NbPF+fMb2C02Pb7GavGx5x6rxeVdc9gsZpzfx2Sx9shddouLp1wtWvceYbf4
+        d20ji8WqXX8YHfg83t9oZffYOesuu8emVZ1sHpuX1Hv0bVnF6PF5k1wAW5SeTVF+aUmqQkZ+
+        cYmtUrShhZGeoaWFnpGJpZ6hsXmslZGpkr6dTUpqTmZZapG+XYJexv3G1cwFncwVE9ZuYm9g
+        PMDUxcjJISFgIrHuYytLFyMXh5DAUkaJSU9Os3cxcgAlpCTmtyhB1AhL/LnWxQZR855R4sbT
+        u+wgCWGBSIn+zquMILaIgKzErWM/wYqYBY4xS+yccgpqaj+jxIFPy9hAqtgEDCV6j/aBdfAK
+        2Ensu3UbbBuLgKrE2lvlIGFRgTiJMz0v2CBKBCVOznzCAmJzCthI/Fp6lhnEZhZQl/gz7xKU
+        LS5x68l8JghbXmL72znMExiFZiFpn4WkZRaSlllIWhYwsqxiFEktLc5Nzy020itOzC0uzUvX
+        S87P3cQIjOBtx35u2cHY9S74EKMAB6MSD29CeXy8EGtiWXFl7iFGCQ5mJRFep7On44R4UxIr
+        q1KL8uOLSnNSiw8xmgL9NpFZSjQ5H5hc8kriDU0NzS0sDc2NzY3NLJTEeTsEDsYICaQnlqRm
+        p6YWpBbB9DFxcEo1MIr3fHxnl7RMbyXj2RU6CdfK/10yiuuqX+0pPNU/9EHaieOH2+O2swY5
+        FCrda+iZ6/fgHqPqad1p5fsUWqP+6nnorjvhc3mDW2H+nUyFJR9eKjpEnGaXCPCamlypWvnw
+        KJM8Y8LFdae3bt0pMHuyN/uab+9U/k27s/Bpz65vinP488W3tt+/NkeJpTgj0VCLuag4EQC4
+        DQ5T9gIAAA==
+X-CMS-MailID: 20200915130635eucas1p25bae1edd92e5af4b160cf0022a0e20bc
+X-Msg-Generator: CA
+Content-Type: text/plain; charset="utf-8"
+X-RootMTR: 20200826171539eucas1p2e999972d3e7dd6dd701e312548933e87
+X-EPHeader: CA
+CMS-TYPE: 201P
+X-CMS-RootMailID: 20200826171539eucas1p2e999972d3e7dd6dd701e312548933e87
+References: <CGME20200826171539eucas1p2e999972d3e7dd6dd701e312548933e87@eucas1p2.samsung.com>
+        <20200826171529.23618-1-s.nawrocki@samsung.com>
 Sender: devicetree-owner@vger.kernel.org
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-Hi Adrian,
+On 26.08.2020 19:15, Sylwester Nawrocki wrote:
+> Add clock ID definitions for the CPU parent clocks for SoCs
+> which don't have such definitions yet. This will allow us to
+> reference the parent clocks directly by cached struct clk_hw
+> pointers in the clock provider, rather than doing clk lookup
+> by name.
+> 
+> Signed-off-by: Sylwester Nawrocki <s.nawrocki@samsung.com>
 
-Gentle ping.
-
-can you rebase on drm-misc-next so I can apply the IMX and STM patches ?
-
-On 24/08/2020 11:47, Neil Armstrong wrote:
-> Hi,
-> 
-> 
-> On 15/08/2020 15:05, Ezequiel Garcia wrote:
->> Hi Neil,
->>
->> On Wed, 2020-07-01 at 09:35 +0300, Adrian Ratiu wrote:
->>> Hi Neil,
->>>
->>> On Mon, 29 Jun 2020, Neil Armstrong <narmstrong@baylibre.com> 
->>> wrote:
->>>> Hi Adrian, 
->>>>
->>>> On 09/06/2020 19:49, Adrian Ratiu wrote: 
-> [...]
->>>
->>
->> It's been a month so I think it's a good idea to go forward
->> applying IMX and STM patches (probably with the usual
->> rebase dance).
->>
->> As for Rockchip...
->>
->>> The binding API removal change which directly touches RK can also 
->>> be applied separately, but unfortunately I do not have access to a 
->>> RK board with a DSI display to test it (or the bridge regmap logic 
->>> on RK btw...), I just "eye-balled" the RK code based on the public 
->>> docs and it LGTM.
->>>
->>
->> ... I'll be getting some DSI hardware to help with the pending
->> Rockchip issues, so we can tackle Rockchip as well. I'm quite sure
->> we'll loop Heiko as well if needed :-)
-> 
-> Sure, Adrian, can you rebase on drm-misc-next so I can apply the IMX and STM patches ?
-> 
->>
->> Cheers,
->> Ezequiel
->>
->>>> Neil
->>>>
->>>>> Big thank you to everyone who has contributed to this up to now,
->>>>> Adrian
->>>>>
->>>>> Adrian Ratiu (11):
->>>>>   drm: bridge: dw_mipi_dsi: add initial regmap infrastructure
->>>>>   drm: bridge: dw_mipi_dsi: abstract register access using reg_fields
->>>>>   drm: bridge: dw_mipi_dsi: add dsi v1.01 support
->>>>>   drm: bridge: dw_mipi_dsi: remove bind/unbind API
->>>>>   dt-bindings: display: add i.MX6 MIPI DSI host controller doc
->>>>>   ARM: dts: imx6qdl: add missing mipi dsi properties
->>>>>   drm: imx: Add i.MX 6 MIPI DSI host platform driver
->>>>>   drm: stm: dw-mipi-dsi: let the bridge handle the HW version check
->>>>>   drm: bridge: dw-mipi-dsi: split low power cfg register into fields
->>>>>   drm: bridge: dw-mipi-dsi: fix bad register field offsets
->>>>>   Documentation: gpu: todo: Add dw-mipi-dsi consolidation plan
->>>>>
->>>>>  .../display/imx/fsl,mipi-dsi-imx6.yaml        | 112 +++
->>>>>  Documentation/gpu/todo.rst                    |  25 +
->>>>>  arch/arm/boot/dts/imx6qdl.dtsi                |   8 +
->>>>>  drivers/gpu/drm/bridge/synopsys/Kconfig       |   1 +
->>>>>  drivers/gpu/drm/bridge/synopsys/dw-mipi-dsi.c | 713 ++++++++++++------
->>>>>  drivers/gpu/drm/imx/Kconfig                   |   8 +
->>>>>  drivers/gpu/drm/imx/Makefile                  |   1 +
->>>>>  drivers/gpu/drm/imx/dw_mipi_dsi-imx6.c        | 399 ++++++++++
->>>>>  .../gpu/drm/rockchip/dw-mipi-dsi-rockchip.c   |   7 +-
->>>>>  drivers/gpu/drm/stm/dw_mipi_dsi-stm.c         |  16 +-
->>>>>  10 files changed, 1059 insertions(+), 231 deletions(-)
->>>>>  create mode 100644 Documentation/devicetree/bindings/display/imx/fsl,mipi-dsi-imx6.yaml
->>>>>  create mode 100644 drivers/gpu/drm/imx/dw_mipi_dsi-imx6.c
->>>>>
->>
-> 
-
+Applied.
