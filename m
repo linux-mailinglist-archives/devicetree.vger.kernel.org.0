@@ -2,79 +2,211 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from vger.kernel.org (vger.kernel.org [23.128.96.18])
-	by mail.lfdr.de (Postfix) with ESMTP id 6278626AD27
-	for <lists+devicetree@lfdr.de>; Tue, 15 Sep 2020 21:10:39 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTP id E0D3926AD00
+	for <lists+devicetree@lfdr.de>; Tue, 15 Sep 2020 21:07:46 +0200 (CEST)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S1727762AbgIOTKa (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Tue, 15 Sep 2020 15:10:30 -0400
-Received: from mail-io1-f67.google.com ([209.85.166.67]:44550 "EHLO
-        mail-io1-f67.google.com" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S1727973AbgIOTFZ (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Tue, 15 Sep 2020 15:05:25 -0400
-Received: by mail-io1-f67.google.com with SMTP id g128so5293433iof.11;
-        Tue, 15 Sep 2020 12:05:25 -0700 (PDT)
-X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=1e100.net; s=20161025;
-        h=x-gm-message-state:date:from:to:cc:subject:message-id:references
-         :mime-version:content-disposition:in-reply-to;
-        bh=NIx4NRubsQ/BmlJQ4RX8flhD3UuShW7nQqivaZd4oCE=;
-        b=GdL1GGQZMmdXCofZ8XQxz3udedAa6s6oOxXkp4szo+Zl2wnisFVapJ9gCH8AJ92Fls
-         yfTRflYQJhEXtkm1lJZBBbNmVgmepYi6tngrDMvuDJrlxkuq6RPO7zOpfacEW5yc5NbZ
-         TyEfEJU+aLFaZTBcDqtxndoLawzzPpxsTRAccRINMZwB5PMC9qpii6b0iYnB6cRgS4KN
-         3Ps1P8wuQxJicm+ycs1nXFdvecA6vPwTZKD1DX0Ra4QsTCIheM5vR4/CAKBGsQ/ArC80
-         xw66CHUFDHz4isyhxWspVUueysv5G+gNG6OQKowdTGBFvfgCPNqVsL1dIVab7O6QCbfV
-         vBww==
-X-Gm-Message-State: AOAM533bgF//k/+oiDDUTNhE8kI0RQmGOLpW7J/SCsnvm7PH/aC7LM5v
-        qG3Am3LzQvR5pMgXPq3DYg==
-X-Google-Smtp-Source: ABdhPJxP7mgxgIOA6ogOazTJDP1NhUeVKBYsW+PuDG/Tg+2c3XfK2f4tqcUivAnkqawCOxK2atDxOA==
-X-Received: by 2002:a5d:888b:: with SMTP id d11mr16422139ioo.188.1600196724957;
-        Tue, 15 Sep 2020 12:05:24 -0700 (PDT)
-Received: from xps15 ([64.188.179.253])
-        by smtp.gmail.com with ESMTPSA id a20sm9414527ilq.57.2020.09.15.12.05.23
-        (version=TLS1_3 cipher=TLS_AES_256_GCM_SHA384 bits=256/256);
-        Tue, 15 Sep 2020 12:05:24 -0700 (PDT)
-Received: (nullmailer pid 2320419 invoked by uid 1000);
-        Tue, 15 Sep 2020 19:05:22 -0000
-Date:   Tue, 15 Sep 2020 13:05:22 -0600
-From:   Rob Herring <robh@kernel.org>
-To:     Jonathan Cameron <jic23@kernel.org>
-Cc:     Baolin Wang <baolin.wang7@gmail.com>,
-        Chunyan Zhang <zhang.lyra@gmail.com>,
-        Jonathan Cameron <Jonathan.Cameron@huawei.com>,
-        linux-iio@vger.kernel.org, Orson Zhai <orsonzhai@gmail.com>,
-        devicetree@vger.kernel.org
-Subject: Re: [PATCH v2 06/20] dt-bindings:iio:adc:sprd,sc2720-adc yaml
- conversion.
-Message-ID: <20200915190522.GA2320364@bogus>
-References: <20200909175946.395313-1-jic23@kernel.org>
- <20200909175946.395313-7-jic23@kernel.org>
+        id S1727879AbgIOTHi (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Tue, 15 Sep 2020 15:07:38 -0400
+Received: from lelv0142.ext.ti.com ([198.47.23.249]:49730 "EHLO
+        lelv0142.ext.ti.com" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
+        with ESMTP id S1727983AbgIOTG2 (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Tue, 15 Sep 2020 15:06:28 -0400
+Received: from lelv0265.itg.ti.com ([10.180.67.224])
+        by lelv0142.ext.ti.com (8.15.2/8.15.2) with ESMTP id 08FJ6COP013395;
+        Tue, 15 Sep 2020 14:06:12 -0500
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=ti.com;
+        s=ti-com-17Q1; t=1600196772;
+        bh=EAXQSylEvOtZPY7n6DOnauI/m1zyOC+7tLJj6RWm6wE=;
+        h=From:To:CC:Subject:Date;
+        b=DZmw5M9R5+Yt4l3T8wjwVFBtFLlLpA/o/5ILZWGQY9kKgeOtiOOXdOCeaHR7bQdvW
+         JujFy96Q0B9SBmpHOTyMH1TpYW6W8fxproNal+NKFkBFpRxg1kGlbKmS/nW+99cZJU
+         Fw36sZ23yGRxrghMWgKFDbtoMgBrx4i8xjRoFpuo=
+Received: from DFLE113.ent.ti.com (dfle113.ent.ti.com [10.64.6.34])
+        by lelv0265.itg.ti.com (8.15.2/8.15.2) with ESMTPS id 08FJ6CoV073700
+        (version=TLSv1.2 cipher=AES256-GCM-SHA384 bits=256 verify=FAIL);
+        Tue, 15 Sep 2020 14:06:12 -0500
+Received: from DFLE113.ent.ti.com (10.64.6.34) by DFLE113.ent.ti.com
+ (10.64.6.34) with Microsoft SMTP Server (version=TLS1_2,
+ cipher=TLS_ECDHE_RSA_WITH_AES_128_CBC_SHA256_P256) id 15.1.1979.3; Tue, 15
+ Sep 2020 14:06:12 -0500
+Received: from lelv0326.itg.ti.com (10.180.67.84) by DFLE113.ent.ti.com
+ (10.64.6.34) with Microsoft SMTP Server (version=TLS1_2,
+ cipher=TLS_ECDHE_RSA_WITH_AES_128_CBC_SHA256_P256) id 15.1.1979.3 via
+ Frontend Transport; Tue, 15 Sep 2020 14:06:12 -0500
+Received: from localhost (ileax41-snat.itg.ti.com [10.172.224.153])
+        by lelv0326.itg.ti.com (8.15.2/8.15.2) with ESMTP id 08FJ6Bkp085621;
+        Tue, 15 Sep 2020 14:06:11 -0500
+From:   Dan Murphy <dmurphy@ti.com>
+To:     <lgirdwood@gmail.com>, <broonie@kernel.org>, <tiwai@suse.com>,
+        <robh+dt@kernel.org>
+CC:     <devicetree@vger.kernel.org>, <camel.guo@axis.com>,
+        <alsa-devel@alsa-project.org>, <linux-kernel@vger.kernel.org>,
+        Dan Murphy <dmurphy@ti.com>
+Subject: [PATCH 1/6] ASoC: tlv320adcx140: Idle the device while writing registers
+Date:   Tue, 15 Sep 2020 14:06:01 -0500
+Message-ID: <20200915190606.1744-1-dmurphy@ti.com>
+X-Mailer: git-send-email 2.27.0
 MIME-Version: 1.0
-Content-Type: text/plain; charset=us-ascii
-Content-Disposition: inline
-In-Reply-To: <20200909175946.395313-7-jic23@kernel.org>
+Content-Transfer-Encoding: 8bit
+Content-Type: text/plain
+X-EXCLAIMER-MD-CONFIG: e1e8a2fd-e40a-4ac6-ac9b-f7e9cc9ee180
 Sender: devicetree-owner@vger.kernel.org
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-On Wed, 09 Sep 2020 18:59:32 +0100, Jonathan Cameron wrote:
-> From: Jonathan Cameron <Jonathan.Cameron@huawei.com>
-> 
-> I changed the name to reflect a specific part in line with normal
-> naming conventions. If there is a particularly strong reason to
-> keep the wild cards let me know.
-> 
-> Otherwise this was a fairly simple conversion as part of converting
-> all the IIO bindings to yaml.
-> 
-> Signed-off-by: Jonathan Cameron <Jonathan.Cameron@huawei.com>
-> Acked-by: Orson Zhai <orsonzhai@gmail.com>
-> Cc: Baolin Wang <baolin.wang7@gmail.com>
-> Cc: Chunyan Zhang <zhang.lyra@gmail.com>
-> ---
->  .../bindings/iio/adc/sprd,sc2720-adc.yaml     | 72 +++++++++++++++++++
->  .../bindings/iio/adc/sprd,sc27xx-adc.txt      | 40 -----------
->  2 files changed, 72 insertions(+), 40 deletions(-)
-> 
+It was observed that if the device was active and register writes were
+performed there were some unwanted behaviors particularly when writing
+the word length and some filter options. So when writing to the device
+the device should be placed in sleep mode and then exit sleep mode once
+the register update is complete.
 
-Reviewed-by: Rob Herring <robh@kernel.org>
+Signed-off-by: Dan Murphy <dmurphy@ti.com>
+---
+ sound/soc/codecs/tlv320adcx140.c | 43 ++++++++++++++++++++++++--------
+ sound/soc/codecs/tlv320adcx140.h |  2 ++
+ 2 files changed, 34 insertions(+), 11 deletions(-)
+
+diff --git a/sound/soc/codecs/tlv320adcx140.c b/sound/soc/codecs/tlv320adcx140.c
+index 8efe20605f9b..3909c1cf52be 100644
+--- a/sound/soc/codecs/tlv320adcx140.c
++++ b/sound/soc/codecs/tlv320adcx140.c
+@@ -30,7 +30,7 @@ struct adcx140_priv {
+ 	struct regmap *regmap;
+ 	struct device *dev;
+ 
+-	int micbias_vg;
++	bool micbias_vg;
+ 
+ 	unsigned int dai_fmt;
+ 	unsigned int tdm_delay;
+@@ -614,11 +614,26 @@ static int adcx140_reset(struct adcx140_priv *adcx140)
+ 	return ret;
+ }
+ 
++static void adcx140_pwr_ctrl(struct adcx140_priv *adcx140, bool power_state)
++{
++	int pwr_ctrl = 0;
++
++	if (power_state)
++		pwr_ctrl = ADCX140_PWR_CFG_ADC_PDZ | ADCX140_PWR_CFG_PLL_PDZ;
++
++	if (adcx140->micbias_vg && power_state)
++		pwr_ctrl |= ADCX140_PWR_CFG_BIAS_PDZ;
++
++	regmap_update_bits(adcx140->regmap, ADCX140_PWR_CFG,
++			   ADCX140_PWR_CTRL_MSK, pwr_ctrl);
++}
++
+ static int adcx140_hw_params(struct snd_pcm_substream *substream,
+ 			     struct snd_pcm_hw_params *params,
+ 			     struct snd_soc_dai *dai)
+ {
+ 	struct snd_soc_component *component = dai->component;
++	struct adcx140_priv *adcx140 = snd_soc_component_get_drvdata(component);
+ 	u8 data = 0;
+ 
+ 	switch (params_width(params)) {
+@@ -640,9 +655,13 @@ static int adcx140_hw_params(struct snd_pcm_substream *substream,
+ 		return -EINVAL;
+ 	}
+ 
++	adcx140_pwr_ctrl(adcx140, false);
++
+ 	snd_soc_component_update_bits(component, ADCX140_ASI_CFG0,
+ 			    ADCX140_WORD_LEN_MSK, data);
+ 
++	adcx140_pwr_ctrl(adcx140, true);
++
+ 	return 0;
+ }
+ 
+@@ -709,6 +728,8 @@ static int adcx140_set_dai_fmt(struct snd_soc_dai *codec_dai,
+ 
+ 	adcx140->dai_fmt = fmt & SND_SOC_DAIFMT_FORMAT_MASK;
+ 
++	adcx140_pwr_ctrl(adcx140, false);
++
+ 	snd_soc_component_update_bits(component, ADCX140_ASI_CFG0,
+ 				      ADCX140_FSYNCINV_BIT |
+ 				      ADCX140_BCLKINV_BIT |
+@@ -721,6 +742,7 @@ static int adcx140_set_dai_fmt(struct snd_soc_dai *codec_dai,
+ 	snd_soc_component_update_bits(component, ADCX140_ASI_CFG1,
+ 				      ADCX140_TX_OFFSET_MASK, offset);
+ 
++	adcx140_pwr_ctrl(adcx140, true);
+ 
+ 	return 0;
+ }
+@@ -818,12 +840,11 @@ static int adcx140_codec_probe(struct snd_soc_component *component)
+ 
+ 	ret = device_property_read_u32(adcx140->dev, "ti,mic-bias-source",
+ 				      &bias_source);
+-	if (ret)
++	if (ret || bias_source > ADCX140_MIC_BIAS_VAL_AVDD) {
+ 		bias_source = ADCX140_MIC_BIAS_VAL_VREF;
+-
+-	if (bias_source > ADCX140_MIC_BIAS_VAL_AVDD) {
+-		dev_err(adcx140->dev, "Mic Bias source value is invalid\n");
+-		return -EINVAL;
++		adcx140->micbias_vg = false;
++	} else {
++		adcx140->micbias_vg = true;
+ 	}
+ 
+ 	ret = device_property_read_u32(adcx140->dev, "ti,vref-source",
+@@ -906,6 +927,8 @@ static int adcx140_codec_probe(struct snd_soc_component *component)
+ 				ADCX140_MIC_BIAS_VREF_MSK, bias_cfg);
+ 	if (ret)
+ 		dev_err(adcx140->dev, "setting MIC bias failed %d\n", ret);
++
++	adcx140_pwr_ctrl(adcx140, true);
+ out:
+ 	return ret;
+ }
+@@ -914,21 +937,19 @@ static int adcx140_set_bias_level(struct snd_soc_component *component,
+ 				  enum snd_soc_bias_level level)
+ {
+ 	struct adcx140_priv *adcx140 = snd_soc_component_get_drvdata(component);
+-	int pwr_cfg = 0;
+ 
+ 	switch (level) {
+ 	case SND_SOC_BIAS_ON:
+ 	case SND_SOC_BIAS_PREPARE:
+ 	case SND_SOC_BIAS_STANDBY:
+-		pwr_cfg = ADCX140_PWR_CFG_BIAS_PDZ | ADCX140_PWR_CFG_PLL_PDZ |
+-			  ADCX140_PWR_CFG_ADC_PDZ;
++		adcx140_pwr_ctrl(adcx140, true);
+ 		break;
+ 	case SND_SOC_BIAS_OFF:
+-		pwr_cfg = 0x0;
++		adcx140_pwr_ctrl(adcx140, false);
+ 		break;
+ 	}
+ 
+-	return regmap_write(adcx140->regmap, ADCX140_PWR_CFG, pwr_cfg);
++	return 0;
+ }
+ 
+ static const struct snd_soc_component_driver soc_codec_driver_adcx140 = {
+diff --git a/sound/soc/codecs/tlv320adcx140.h b/sound/soc/codecs/tlv320adcx140.h
+index eedbc1d7221f..94c6d1fd2977 100644
+--- a/sound/soc/codecs/tlv320adcx140.h
++++ b/sound/soc/codecs/tlv320adcx140.h
+@@ -123,6 +123,7 @@
+ #define ADCX140_MIC_BIAS_VREF_1375V	2
+ #define ADCX140_MIC_BIAS_VREF_MSK GENMASK(1, 0)
+ 
++#define ADCX140_PWR_CTRL_MSK    GENMASK(7, 5)
+ #define ADCX140_PWR_CFG_BIAS_PDZ	BIT(7)
+ #define ADCX140_PWR_CFG_ADC_PDZ		BIT(6)
+ #define ADCX140_PWR_CFG_PLL_PDZ		BIT(5)
+@@ -145,4 +146,5 @@
+ #define ADCX140_GPO_CFG_MAX		4
+ #define ADCX140_GPO_DRV_MAX		5
+ 
++
+ #endif /* _TLV320ADCX140_ */
+-- 
+2.28.0
+
