@@ -2,83 +2,132 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from vger.kernel.org (vger.kernel.org [23.128.96.18])
-	by mail.lfdr.de (Postfix) with ESMTP id 8E3B426B2B7
-	for <lists+devicetree@lfdr.de>; Wed, 16 Sep 2020 00:52:12 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTP id 53F4326B2C9
+	for <lists+devicetree@lfdr.de>; Wed, 16 Sep 2020 00:53:37 +0200 (CEST)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S1727072AbgIOWwI (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Tue, 15 Sep 2020 18:52:08 -0400
-Received: from mail-pg1-f195.google.com ([209.85.215.195]:39244 "EHLO
-        mail-pg1-f195.google.com" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S1726995AbgIOPmE (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Tue, 15 Sep 2020 11:42:04 -0400
-Received: by mail-pg1-f195.google.com with SMTP id d13so2186938pgl.6;
-        Tue, 15 Sep 2020 08:41:56 -0700 (PDT)
+        id S1727388AbgIOWxe (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Tue, 15 Sep 2020 18:53:34 -0400
+Received: from lindbergh.monkeyblade.net ([23.128.96.19]:45094 "EHLO
+        lindbergh.monkeyblade.net" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
+        with ESMTP id S1727311AbgIOPjo (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Tue, 15 Sep 2020 11:39:44 -0400
+Received: from mail-qt1-x842.google.com (mail-qt1-x842.google.com [IPv6:2607:f8b0:4864:20::842])
+        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 73C23C061220
+        for <devicetree@vger.kernel.org>; Tue, 15 Sep 2020 08:38:59 -0700 (PDT)
+Received: by mail-qt1-x842.google.com with SMTP id t20so3483111qtr.8
+        for <devicetree@vger.kernel.org>; Tue, 15 Sep 2020 08:38:59 -0700 (PDT)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+        d=linaro.org; s=google;
+        h=date:from:to:cc:subject:message-id:references:mime-version
+         :content-disposition:in-reply-to;
+        bh=HC238Ige8DRb8ygAtnYFCL6nACxI3bOXmHHkEflAUkI=;
+        b=kS8R9V2mdJvLcV9YbZYn94h6pcHob1/i65DmFV0rTmUFeBnMVwH1UwQ1e3RfuTRBr7
+         Zh3eemuHz1S8S9a6kky4amFbSTof972VgE3Gn2JEzDPVwBbxIWmt/Jcscdu55bCn3eHl
+         qB5AickfsqTZpO14l85evEOWKtuUu4m38QzYDlSyu9AHe3aXbqPX8ZBPj5jDI9tU0pST
+         VVkGollQ97Hw6Gzi9acjW4ndP/vySxGJ7Es5F2Zg5H0RroFO5sSJw/XlyBoTgE3FF2DR
+         6oGLMyC5uMT2xn5pi6UtTFLstk+Mh/pxrhdRuRdDG5iVV7YAtAVMsNG/xTsSdk4T/1Rt
+         ewCA==
 X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
         d=1e100.net; s=20161025;
         h=x-gm-message-state:date:from:to:cc:subject:message-id:references
          :mime-version:content-disposition:in-reply-to;
-        bh=1fyZNgMatRtDRm5F6K1pH9IP38hhZV0WXalrPxYTXEE=;
-        b=gRH5GNj4jis9UwagTheFb7FS9mBgVZvQG5S7DlMdrl31EGyorrn5zRvtRsCUgE9uFX
-         WnB21tzeP721uhtVrTyy7MJsFg5n3pZi6ZoE6CxOlPkX9rznkVPc9AyVZP88JQiuIvsp
-         /XU3al9FKzUwe9B9YshGaI+7CTSgIACJ5Ky5Z1f9JcZQCKn5eNCX7DQUHutVz6U/9F66
-         tXb7h+QJvrKdo5b8RggIud9mIdbOORX60KsygWaJL/wcGTdMUnQAE8KcMzD71aCbLtTE
-         RQn+UtIJFknY1CAvFfWMlksTii9eHOpuMYBfJ5RAHSvTsIj7EWdk4DnfLfz2q7feMep0
-         r0OA==
-X-Gm-Message-State: AOAM530Zt/91J8F4s4RuoSDczaAzkGLf2SWriE8pQdKPCTvCOu6icjCI
-        Nt9bRSED4Jc72zwMJ1rTOx8o66f1MR1udZw=
-X-Google-Smtp-Source: ABdhPJxblB60qGKbpa/uRK4I1ZRiB+vOa9NARrpUQLiQeXrWQ1UDd3ksQ1EdqPx06vtV1foov4egLg==
-X-Received: by 2002:a92:8509:: with SMTP id f9mr14662065ilh.253.1600184054677;
-        Tue, 15 Sep 2020 08:34:14 -0700 (PDT)
-Received: from xps15 ([64.188.179.253])
-        by smtp.gmail.com with ESMTPSA id m87sm9266352ilb.58.2020.09.15.08.34.13
+        bh=HC238Ige8DRb8ygAtnYFCL6nACxI3bOXmHHkEflAUkI=;
+        b=pHizHOO6YW3ZQtCDWseG1ckj8bqQXhMzyWebdF9XTWfE9xqlCtkXV03r2DZuR6LlOQ
+         GHlventznHd1JEutpAs23GF8zvKfncdY/Qd9/T27/qBuhDKj9IKJOlGMNqg/oqdzkwz8
+         syP6a+F/6G+11F4k5jvXry6O5NJgtHRMx8tscfkcFCld1Eq0P7/sATPqY2C9d2jXIqzB
+         NcBae7fVC6F4sMNYGLctQ9yD3hunOhbmSmMZ0A3ZBBCQBOcitzuVzNqIWkxGS1QHcII0
+         5sYNyf/7E0s3WvxJlj0yEhFmRKHI4Pnpm9Q2BbliW4WkRyeDkYYoLTmQr0rktqSPWsOJ
+         1X+w==
+X-Gm-Message-State: AOAM532TvrcQ9Hu8s0Byn5Cx6rhK5BU+7+x5LOh/j/58xN9gxaaRg69D
+        M9v3mz40nqp+ER5gTbNfo6zY/w==
+X-Google-Smtp-Source: ABdhPJzNq44unJ9cfA4NcVtVXuI98pXkT64mh9kNx76o1npSpbPUKHJCbfUfbVHS1n5Z6ufNIW+rZA==
+X-Received: by 2002:ac8:76cb:: with SMTP id q11mr6175301qtr.63.1600184336642;
+        Tue, 15 Sep 2020 08:38:56 -0700 (PDT)
+Received: from uller (ec2-34-197-84-77.compute-1.amazonaws.com. [34.197.84.77])
+        by smtp.gmail.com with ESMTPSA id x126sm18337154qka.91.2020.09.15.08.38.55
         (version=TLS1_3 cipher=TLS_AES_256_GCM_SHA384 bits=256/256);
-        Tue, 15 Sep 2020 08:34:13 -0700 (PDT)
-Received: (nullmailer pid 1988443 invoked by uid 1000);
-        Tue, 15 Sep 2020 15:34:13 -0000
-Date:   Tue, 15 Sep 2020 09:34:13 -0600
-From:   Rob Herring <robh@kernel.org>
-To:     Neil Armstrong <narmstrong@baylibre.com>
-Cc:     daniel@ffwll.ch, devicetree@vger.kernel.org,
-        dri-devel@lists.freedesktop.org, linux-amlogic@lists.infradead.org,
-        linux-kernel@vger.kernel.org
-Subject: Re: [PATCH 1/6] dt-bindings: display: amlogic,meson-vpu: add
- bindings for VPU found in AXG SoCs
-Message-ID: <20200915153413.GA1982161@bogus>
-References: <20200907081825.1654-1-narmstrong@baylibre.com>
- <20200907081825.1654-2-narmstrong@baylibre.com>
+        Tue, 15 Sep 2020 08:38:56 -0700 (PDT)
+Date:   Tue, 15 Sep 2020 15:38:54 +0000
+From:   Bjorn Andersson <bjorn.andersson@linaro.org>
+To:     Stephan Gerhold <stephan@gerhold.net>
+Cc:     Andy Gross <agross@kernel.org>, linux-arm-msm@vger.kernel.org,
+        devicetree@vger.kernel.org,
+        Amit Kucheria <amit.kucheria@linaro.org>,
+        ~postmarketos/upstreaming@lists.sr.ht
+Subject: Re: [PATCH 06/14] arm64: dts: qcom: msm8916: Drop qcom,tcsr-mutex
+ syscon
+Message-ID: <20200915153854.GE478@uller>
+References: <20200915071221.72895-1-stephan@gerhold.net>
+ <20200915071221.72895-7-stephan@gerhold.net>
 MIME-Version: 1.0
 Content-Type: text/plain; charset=us-ascii
 Content-Disposition: inline
-In-Reply-To: <20200907081825.1654-2-narmstrong@baylibre.com>
+In-Reply-To: <20200915071221.72895-7-stephan@gerhold.net>
 Sender: devicetree-owner@vger.kernel.org
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-On Mon, Sep 07, 2020 at 10:18:20AM +0200, Neil Armstrong wrote:
-> The Amlogic AXG SoC family has a downgraded VPU supporting only MIPI-DSI output
-> after it's ENCL DPI encoder output.
+On Tue 15 Sep 07:12 UTC 2020, Stephan Gerhold wrote:
+
+> The hwlock device node does not (directly) use memory resources
+> of the SoC, so we should move it outside the "soc" node.
 > 
-> Signed-off-by: Neil Armstrong <narmstrong@baylibre.com>
+> However, as of commit 7a1e6fb1c606 ("hwspinlock: qcom: Allow mmio usage
+> in addition to syscon") we can now assign the memory region directly
+> to the hwlock device node. This works because the register space
+> used by it is actually separate and not used by any other components.
+> 
+
+A side-note on that...
+
+In addition to the listed commit, it was also determined that the old
+two-node split is prohibited and the DT binding was updated to deprecate
+it.
+
+So in the event of us having to also access registers from e.g. the
+remoteproc driver (which 8916 doesn't doesn't do), we would have to use:
+
+	compatible = "qcom,tcsr-mutex", "syscon";
+
+Regards,
+Bjorn
+
+> Signed-off-by: Stephan Gerhold <stephan@gerhold.net>
 > ---
->  .../bindings/display/amlogic,meson-vpu.yaml   | 36 +++++++++++++++++--
->  1 file changed, 33 insertions(+), 3 deletions(-)
+>  arch/arm64/boot/dts/qcom/msm8916.dtsi | 11 +++--------
+>  1 file changed, 3 insertions(+), 8 deletions(-)
 > 
-> diff --git a/Documentation/devicetree/bindings/display/amlogic,meson-vpu.yaml b/Documentation/devicetree/bindings/display/amlogic,meson-vpu.yaml
-> index a8d202c9d004..e2e7d99d8ace 100644
-> --- a/Documentation/devicetree/bindings/display/amlogic,meson-vpu.yaml
-> +++ b/Documentation/devicetree/bindings/display/amlogic,meson-vpu.yaml
-> @@ -31,8 +31,10 @@ description: |
+> diff --git a/arch/arm64/boot/dts/qcom/msm8916.dtsi b/arch/arm64/boot/dts/qcom/msm8916.dtsi
+> index 003451ccf3ee..10e177988555 100644
+> --- a/arch/arm64/boot/dts/qcom/msm8916.dtsi
+> +++ b/arch/arm64/boot/dts/qcom/msm8916.dtsi
+> @@ -458,9 +458,10 @@ gcc: clock-controller@1800000 {
+>  			reg = <0x1800000 0x80000>;
+>  		};
 >  
->    The Video Input Unit is in charge of the pixel scanout from the DDR memory.
->    It fetches the frames addresses, stride and parameters from the "Canvas" memory.
-> +  On the AXG family, the Video Input Unit direclty reads from DDR memory.
->    This part is also in charge of the CSC (Colorspace Conversion).
->    It can handle 2 OSD Planes and 2 Video Planes.
-> +  On the AXG family, only a single OSD plane without scalins is supported.
-
-s/scalins/scaling/ ?
-
-Otherwise,
-
-Reviewed-by: Rob Herring <robh@kernel.org>
+> -		tcsr_mutex_regs: syscon@1905000 {
+> -			compatible = "syscon";
+> +		tcsr_mutex: hwlock@1905000 {
+> +			compatible = "qcom,tcsr-mutex";
+>  			reg = <0x1905000 0x20000>;
+> +			#hwlock-cells = <1>;
+>  		};
+>  
+>  		tcsr: syscon@1937000 {
+> @@ -468,12 +469,6 @@ tcsr: syscon@1937000 {
+>  			reg = <0x1937000 0x30000>;
+>  		};
+>  
+> -		tcsr_mutex: hwlock {
+> -			compatible = "qcom,tcsr-mutex";
+> -			syscon = <&tcsr_mutex_regs 0 0x1000>;
+> -			#hwlock-cells = <1>;
+> -		};
+> -
+>  		rpm_msg_ram: memory@60000 {
+>  			compatible = "qcom,rpm-msg-ram";
+>  			reg = <0x60000 0x8000>;
+> -- 
+> 2.28.0
+> 
