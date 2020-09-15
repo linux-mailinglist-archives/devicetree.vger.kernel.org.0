@@ -2,118 +2,76 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from vger.kernel.org (vger.kernel.org [23.128.96.18])
-	by mail.lfdr.de (Postfix) with ESMTP id AF8DF26AD0D
-	for <lists+devicetree@lfdr.de>; Tue, 15 Sep 2020 21:08:49 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTP id 21BF326AD1C
+	for <lists+devicetree@lfdr.de>; Tue, 15 Sep 2020 21:10:05 +0200 (CEST)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S1727984AbgIOTIp (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Tue, 15 Sep 2020 15:08:45 -0400
-Received: from lelv0142.ext.ti.com ([198.47.23.249]:49788 "EHLO
-        lelv0142.ext.ti.com" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S1727990AbgIOTHU (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Tue, 15 Sep 2020 15:07:20 -0400
-Received: from lelv0265.itg.ti.com ([10.180.67.224])
-        by lelv0142.ext.ti.com (8.15.2/8.15.2) with ESMTP id 08FJ6eHA013579;
-        Tue, 15 Sep 2020 14:06:40 -0500
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=ti.com;
-        s=ti-com-17Q1; t=1600196800;
-        bh=Y+ES+bpigo4uYOpFKr6Eobr2JA9TuVYc/K8vex49fgQ=;
-        h=From:To:CC:Subject:Date:In-Reply-To:References;
-        b=CaZ8BHHg5fh7g1LwFUFPuh0jHpzmbLUbDdece9KOox+R6O7nEmoR0WhqU6pW2ayxe
-         +fQS8rIvyXj56bb2+WsEq4/ICRrzkvGtVDb9hX9dDf1gqJnvoDEGaOZbbUsZcNUw8H
-         1yUYhVAD8YJLUZd6dGifiwTijLQpMVZ6S7LOknmw=
-Received: from DFLE109.ent.ti.com (dfle109.ent.ti.com [10.64.6.30])
-        by lelv0265.itg.ti.com (8.15.2/8.15.2) with ESMTPS id 08FJ6ewi074083
-        (version=TLSv1.2 cipher=AES256-GCM-SHA384 bits=256 verify=FAIL);
-        Tue, 15 Sep 2020 14:06:40 -0500
-Received: from DFLE115.ent.ti.com (10.64.6.36) by DFLE109.ent.ti.com
- (10.64.6.30) with Microsoft SMTP Server (version=TLS1_2,
- cipher=TLS_ECDHE_RSA_WITH_AES_128_CBC_SHA256_P256) id 15.1.1979.3; Tue, 15
- Sep 2020 14:06:39 -0500
-Received: from lelv0326.itg.ti.com (10.180.67.84) by DFLE115.ent.ti.com
- (10.64.6.36) with Microsoft SMTP Server (version=TLS1_2,
- cipher=TLS_ECDHE_RSA_WITH_AES_128_CBC_SHA256_P256) id 15.1.1979.3 via
- Frontend Transport; Tue, 15 Sep 2020 14:06:39 -0500
-Received: from localhost (ileax41-snat.itg.ti.com [10.172.224.153])
-        by lelv0326.itg.ti.com (8.15.2/8.15.2) with ESMTP id 08FJ6dtZ086050;
-        Tue, 15 Sep 2020 14:06:39 -0500
-From:   Dan Murphy <dmurphy@ti.com>
-To:     <lgirdwood@gmail.com>, <broonie@kernel.org>, <tiwai@suse.com>,
-        <robh+dt@kernel.org>
-CC:     <devicetree@vger.kernel.org>, <camel.guo@axis.com>,
-        <alsa-devel@alsa-project.org>, <linux-kernel@vger.kernel.org>,
-        Dan Murphy <dmurphy@ti.com>
-Subject: [PATCH 6/6] ASoC: tlv320adcx140: Add channel slot programming
-Date:   Tue, 15 Sep 2020 14:06:06 -0500
-Message-ID: <20200915190606.1744-6-dmurphy@ti.com>
-X-Mailer: git-send-email 2.27.0
-In-Reply-To: <20200915190606.1744-1-dmurphy@ti.com>
-References: <20200915190606.1744-1-dmurphy@ti.com>
+        id S1728020AbgIOTJz (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Tue, 15 Sep 2020 15:09:55 -0400
+Received: from mail-il1-f194.google.com ([209.85.166.194]:38551 "EHLO
+        mail-il1-f194.google.com" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
+        with ESMTP id S1727889AbgIOTGT (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Tue, 15 Sep 2020 15:06:19 -0400
+Received: by mail-il1-f194.google.com with SMTP id t18so4070937ilp.5;
+        Tue, 15 Sep 2020 12:06:18 -0700 (PDT)
+X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+        d=1e100.net; s=20161025;
+        h=x-gm-message-state:date:from:to:cc:subject:message-id:references
+         :mime-version:content-disposition:in-reply-to;
+        bh=P4TRYYtHdi2NxFtRdH6btCn2LecsBeel5nAXNs5xvW4=;
+        b=oHQDZetSJ86XPXbTwYJdwdsv/51jOs++jNpPHSZtDMJzLYnR9rLOV08xiuq3YKckp+
+         SQM07sERLqxoi3wo7E5UyME+UAsBMCnRc5ALw3gIcJe9QUb1JwEmSBC16hP23iKZm81O
+         uakP2husZTrIeNOgopbo0qlNzeFrAzoEdSeJf2ucz/DnYUtTktnNp8mBU0k6Bzg4I6LV
+         Ndr2NkZXlK9x+nNu0h7hs1SWUfG8zcejQiT71+05t1CI/J2aALDKOdl3zEepcgTcX9VF
+         DmW2jhC+tFikKnew3vgcjrR88PCbbYf8pfQ/qnNi9/A6e+Ef/TkhOeDaEn0XwkbPEj/y
+         WOwQ==
+X-Gm-Message-State: AOAM533VkS9DNo7oOrY1/cBQWh4nOo/KtZ4v/pBfxNTDuD4y4TYrxV38
+        wuCe1cC1PPUXtzVfOIkc8HCuly6qndYCZR8=
+X-Google-Smtp-Source: ABdhPJz5s4dyhtEaGQnCibWLHpkkFbI+Ajqw1QsH6Y2NbI/REMekGVe/67oVqhMaZDmR7GhKiE09bg==
+X-Received: by 2002:a92:a04a:: with SMTP id b10mr7089664ilm.279.1600196778216;
+        Tue, 15 Sep 2020 12:06:18 -0700 (PDT)
+Received: from xps15 ([64.188.179.253])
+        by smtp.gmail.com with ESMTPSA id u17sm9495576ilb.44.2020.09.15.12.06.17
+        (version=TLS1_3 cipher=TLS_AES_256_GCM_SHA384 bits=256/256);
+        Tue, 15 Sep 2020 12:06:17 -0700 (PDT)
+Received: (nullmailer pid 2321966 invoked by uid 1000);
+        Tue, 15 Sep 2020 19:06:16 -0000
+Date:   Tue, 15 Sep 2020 13:06:16 -0600
+From:   Rob Herring <robh@kernel.org>
+To:     Jonathan Cameron <jic23@kernel.org>
+Cc:     Maxime Ripard <maxime.ripard@free-electrons.com>,
+        Alexandre Belloni <alexandre.belloni@free-electrons.com>,
+        linux-iio@vger.kernel.org,
+        Jonathan Cameron <Jonathan.Cameron@huawei.com>,
+        devicetree@vger.kernel.org
+Subject: Re: [PATCH v2 07/20] dt-bindings:iio:adc:nuvoton,nau7802 yaml
+ conversion
+Message-ID: <20200915190616.GA2321912@bogus>
+References: <20200909175946.395313-1-jic23@kernel.org>
+ <20200909175946.395313-8-jic23@kernel.org>
 MIME-Version: 1.0
-Content-Transfer-Encoding: 8bit
-Content-Type: text/plain
-X-EXCLAIMER-MD-CONFIG: e1e8a2fd-e40a-4ac6-ac9b-f7e9cc9ee180
+Content-Type: text/plain; charset=us-ascii
+Content-Disposition: inline
+In-Reply-To: <20200909175946.395313-8-jic23@kernel.org>
 Sender: devicetree-owner@vger.kernel.org
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-Each channel can be assigned a specific slot to transmit data. This
-assignment is done in the device tree.
+On Wed, 09 Sep 2020 18:59:33 +0100, Jonathan Cameron wrote:
+> From: Jonathan Cameron <Jonathan.Cameron@huawei.com>
+> 
+> A simple conversion from txt file to yaml.  I added the #io-channel-cells
+> property as optional to allow the channels of this ADCs to be used
+> to provide services to other drivers, for example if an analog
+> accelerometer is connected.
+> 
+> Signed-off-by: Jonathan Cameron <Jonathan.Cameron@huawei.com>
+> Cc: Alexandre Belloni <alexandre.belloni@free-electrons.com>
+> Cc: Maxime Ripard <maxime.ripard@free-electrons.com>
+> ---
+>  .../bindings/iio/adc/nuvoton,nau7802.yaml     | 50 +++++++++++++++++++
+>  .../bindings/iio/adc/nuvoton-nau7802.txt      | 18 -------
+>  2 files changed, 50 insertions(+), 18 deletions(-)
+> 
 
-Signed-off-by: Dan Murphy <dmurphy@ti.com>
----
- sound/soc/codecs/tlv320adcx140.c | 17 +++++++++++++++++
- sound/soc/codecs/tlv320adcx140.h |  3 +++
- 2 files changed, 20 insertions(+)
-
-diff --git a/sound/soc/codecs/tlv320adcx140.c b/sound/soc/codecs/tlv320adcx140.c
-index 7fa5c8682c51..666b8f3091d0 100644
---- a/sound/soc/codecs/tlv320adcx140.c
-+++ b/sound/soc/codecs/tlv320adcx140.c
-@@ -837,6 +837,8 @@ static int adcx140_codec_probe(struct snd_soc_component *component)
- 	int gpi_count;
- 	u32 gpi_inputs[ADCX140_NUM_GPI_PINS];
- 	u32 gpi_input_val = 0;
-+	int slot_count;
-+	u32 slot_assignment[ADCX140_NUM_CH];
- 	int i;
- 	int ret;
- 	bool tx_high_z;
-@@ -941,6 +943,21 @@ static int adcx140_codec_probe(struct snd_soc_component *component)
- 		}
- 	}
- 
-+	slot_count = device_property_count_u32(adcx140->dev, "ti,slot-mapping");
-+	if ((slot_count <= ADCX140_NUM_CH) && (slot_count > 0)) {
-+		ret = device_property_read_u32_array(adcx140->dev, "ti,slot-mapping",
-+						     slot_assignment, slot_count);
-+		if (ret)
-+			return ret;
-+
-+		for (i = 0; i < slot_count; i++) {
-+			ret = regmap_update_bits(adcx140->regmap, ADCX140_ASI_CH1 + i,
-+						 ADCX140_SLOT_MSK, slot_assignment[i]);
-+			if (ret)
-+				return ret;
-+		}
-+	}
-+
- 	adcx140_pwr_ctrl(adcx140, true);
- out:
- 	return ret;
-diff --git a/sound/soc/codecs/tlv320adcx140.h b/sound/soc/codecs/tlv320adcx140.h
-index 107bd7927d9c..5eb27b94aa0a 100644
---- a/sound/soc/codecs/tlv320adcx140.h
-+++ b/sound/soc/codecs/tlv320adcx140.h
-@@ -147,5 +147,8 @@
- #define ADCX140_GPO_DRV_MAX		5
- 
- #define ADCX140_TX_FILL    BIT(0)
-+#define ADCX140_NUM_CH        8
-+
-+#define ADCX140_SLOT_MSK	GENMASK(5, 0)
- 
- #endif /* _TLV320ADCX140_ */
--- 
-2.28.0
-
+Reviewed-by: Rob Herring <robh@kernel.org>
