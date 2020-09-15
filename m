@@ -2,65 +2,74 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from vger.kernel.org (vger.kernel.org [23.128.96.18])
-	by mail.lfdr.de (Postfix) with ESMTP id 3E84F26B257
-	for <lists+devicetree@lfdr.de>; Wed, 16 Sep 2020 00:46:11 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTP id 7904926B1A9
+	for <lists+devicetree@lfdr.de>; Wed, 16 Sep 2020 00:34:27 +0200 (CEST)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S1727673AbgIOWpm (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Tue, 15 Sep 2020 18:45:42 -0400
-Received: from mail-io1-f67.google.com ([209.85.166.67]:46835 "EHLO
-        mail-io1-f67.google.com" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S1727456AbgIOPxx (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Tue, 15 Sep 2020 11:53:53 -0400
-Received: by mail-io1-f67.google.com with SMTP id g7so4562066iov.13;
-        Tue, 15 Sep 2020 08:53:03 -0700 (PDT)
+        id S1727572AbgIOWeZ (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Tue, 15 Sep 2020 18:34:25 -0400
+Received: from mail-il1-f195.google.com ([209.85.166.195]:33182 "EHLO
+        mail-il1-f195.google.com" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
+        with ESMTP id S1727609AbgIOQPp (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Tue, 15 Sep 2020 12:15:45 -0400
+Received: by mail-il1-f195.google.com with SMTP id x2so3566877ilm.0;
+        Tue, 15 Sep 2020 09:11:55 -0700 (PDT)
 X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
         d=1e100.net; s=20161025;
         h=x-gm-message-state:date:from:to:cc:subject:message-id:references
          :mime-version:content-disposition:in-reply-to;
-        bh=Ffvw1RavwEYs31p6FTUFrJH4oyQnQP2TfpPxRHIwLSQ=;
-        b=UaAecggEboeDJmHSAzsNnqK1rgWkCrK29UDrfDXSMyEf+R0VhoehBZKvqgwFmPP/u+
-         p2VqEcOwnwAu4JxpthyhPEDPvT6Yax2AccEqiLfonknUnQKsS4yplaAIZ/QrQvrsU9F5
-         9TrbqXvM6Zy5hDFdrAzPAZT/PqPAO/gFbLNAvyFn46t0HC+7cUrkk4XyR6m5eL/uyqg4
-         liNsQbmE8i94Wpy5FvG8yFQuKipEB9piccEP4s6rTEcs7G3JRt4oyvoforXxzdod5O8U
-         n1QexfuOa1oLw5kD9xynGAlK5ylmP7EWgVPJ+JYEY63suX2KesCl+Zmj4ZVDRmlkRFnQ
-         1JlA==
-X-Gm-Message-State: AOAM533p45Z3yovY1ckkvsXnm7//zzcin1fyfZhQv6K/fk6FWcusbDZo
-        Gc/SQVKgZtYrWQugKNuXxQ==
-X-Google-Smtp-Source: ABdhPJy+51PIhDeMmQSSuCP2lG9WkD/Av/9uK/A9S1hx/hdiU50eltj4EBryIZvU08/axCmKJ4xtmQ==
-X-Received: by 2002:a05:6638:134b:: with SMTP id u11mr18497798jad.18.1600185183409;
-        Tue, 15 Sep 2020 08:53:03 -0700 (PDT)
+        bh=KSOAyNVWeqUE1eNb5fjGsEEoMGtp4LbwBVr7j3WH4jQ=;
+        b=Lbd6pRUEM90zyPS4h8bio8rONVq3O7bLTnbF3og4p1rR0ZUKzrBp+ldc8djFyDQTHR
+         wdh/jBOePPCbnhmscywDigWLYsAUF85TRJs1v6/r1m5e5nIBJUeG8bpd//wTXXxxRjKI
+         bzii89A3fs7U6MOaPbpYkI93QkWpSBgcOB68yW4mTyUKBcSwn/io0N9JrYMIDXe3atoj
+         WpG7YSAvSWGlYsEm6dWv9Ooe5BTGLhp/+iHpV34ViRBDlKcTPLybfQd1IZ0MeMbj8JcH
+         AluOQPI7t9g3dc5p8erSoiTRuawV95u31IhNsAmMuQZR37xkZ9HerdG8N+xBGON8s5h8
+         pzKg==
+X-Gm-Message-State: AOAM53022aOFoeCx65ir4ycb5h20eTu1OzFGRcFNcARr+XdHTLhTLPYK
+        rs0j8QNsSOsv9jBAVTHup01n10KTiZfT9eU=
+X-Google-Smtp-Source: ABdhPJyk0bNPAGNZuwTrEU4SGslz9cnXoPY9yjb2itUeNoFTxzwNacOA+ryWWOc0EJ4QK9zJ7ZuqfA==
+X-Received: by 2002:a92:bad9:: with SMTP id t86mr16275837ill.308.1600185674993;
+        Tue, 15 Sep 2020 09:01:14 -0700 (PDT)
 Received: from xps15 ([64.188.179.253])
-        by smtp.gmail.com with ESMTPSA id s13sm8834631ilq.16.2020.09.15.08.53.02
+        by smtp.gmail.com with ESMTPSA id j62sm7842074iof.53.2020.09.15.09.01.13
         (version=TLS1_3 cipher=TLS_AES_256_GCM_SHA384 bits=256/256);
-        Tue, 15 Sep 2020 08:53:02 -0700 (PDT)
-Received: (nullmailer pid 2017061 invoked by uid 1000);
-        Tue, 15 Sep 2020 15:53:01 -0000
-Date:   Tue, 15 Sep 2020 09:53:01 -0600
+        Tue, 15 Sep 2020 09:01:14 -0700 (PDT)
+Received: (nullmailer pid 2029905 invoked by uid 1000);
+        Tue, 15 Sep 2020 16:01:12 -0000
+Date:   Tue, 15 Sep 2020 10:01:12 -0600
 From:   Rob Herring <robh@kernel.org>
-To:     Fabien Parent <fparent@baylibre.com>
-Cc:     matthias.bgg@gmail.com, linux-kernel@vger.kernel.org,
-        linux-arm-kernel@lists.infradead.org,
-        linux-mediatek@lists.infradead.org, linux-gpio@vger.kernel.org,
-        robh+dt@kernel.org, sean.wang@kernel.org, linus.walleij@linaro.org,
-        devicetree@vger.kernel.org
-Subject: Re: [PATCH 1/2] pinctrl: mt65xx: add OF bindings for MT8167
-Message-ID: <20200915155301.GA2017005@bogus>
-References: <20200907110221.1691168-1-fparent@baylibre.com>
+To:     Lad Prabhakar <prabhakar.mahadev-lad.rj@bp.renesas.com>
+Cc:     linux-media@vger.kernel.org, linux-kernel@vger.kernel.org,
+        linux-renesas-soc@vger.kernel.org,
+        Biju Das <biju.das.jz@bp.renesas.com>,
+        Magnus Damm <magnus.damm@gmail.com>,
+        Geert Uytterhoeven <geert+renesas@glider.be>,
+        Prabhakar <prabhakar.csengg@gmail.com>,
+        Mauro Carvalho Chehab <mchehab@kernel.org>,
+        devicetree@vger.kernel.org,
+        Niklas =?iso-8859-1?Q?S=F6derlund?= 
+        <niklas.soderlund@ragnatech.se>, Rob Herring <robh+dt@kernel.org>
+Subject: Re: [PATCH 1/2] dt-bindings: media: renesas,vin: Add device tree
+ support for r8a7742
+Message-ID: <20200915160112.GA2029821@bogus>
+References: <20200907144509.8861-1-prabhakar.mahadev-lad.rj@bp.renesas.com>
+ <20200907144509.8861-2-prabhakar.mahadev-lad.rj@bp.renesas.com>
 MIME-Version: 1.0
 Content-Type: text/plain; charset=us-ascii
 Content-Disposition: inline
-In-Reply-To: <20200907110221.1691168-1-fparent@baylibre.com>
+In-Reply-To: <20200907144509.8861-2-prabhakar.mahadev-lad.rj@bp.renesas.com>
 Sender: devicetree-owner@vger.kernel.org
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-On Mon, 07 Sep 2020 13:02:20 +0200, Fabien Parent wrote:
-> Add binding documentation of pinctrl-mt65xx for MT8167 SoC.
+On Mon, 07 Sep 2020 15:45:08 +0100, Lad Prabhakar wrote:
+> Add compatible string for r8a7742. No driver change is needed as
+> "renesas,rcar-gen2-vin" will activate the right code.
 > 
-> Signed-off-by: Fabien Parent <fparent@baylibre.com>
+> Signed-off-by: Lad Prabhakar <prabhakar.mahadev-lad.rj@bp.renesas.com>
+> Reviewed-by: Biju Das <biju.das.jz@bp.renesas.com>
 > ---
->  Documentation/devicetree/bindings/pinctrl/pinctrl-mt65xx.txt | 1 +
+>  Documentation/devicetree/bindings/media/renesas,vin.yaml | 1 +
 >  1 file changed, 1 insertion(+)
 > 
 
