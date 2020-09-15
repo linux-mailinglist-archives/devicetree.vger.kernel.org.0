@@ -2,101 +2,74 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from vger.kernel.org (vger.kernel.org [23.128.96.18])
-	by mail.lfdr.de (Postfix) with ESMTP id CEDFE269FB9
-	for <lists+devicetree@lfdr.de>; Tue, 15 Sep 2020 09:26:56 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTP id 0183E26A001
+	for <lists+devicetree@lfdr.de>; Tue, 15 Sep 2020 09:41:46 +0200 (CEST)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S1726260AbgIOHZ3 (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Tue, 15 Sep 2020 03:25:29 -0400
-Received: from lindbergh.monkeyblade.net ([23.128.96.19]:53228 "EHLO
-        lindbergh.monkeyblade.net" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S1726241AbgIOHY5 (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Tue, 15 Sep 2020 03:24:57 -0400
-Received: from mail-pf1-x441.google.com (mail-pf1-x441.google.com [IPv6:2607:f8b0:4864:20::441])
-        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 1BE5AC061352
-        for <devicetree@vger.kernel.org>; Tue, 15 Sep 2020 00:24:57 -0700 (PDT)
-Received: by mail-pf1-x441.google.com with SMTP id k15so1390954pfc.12
-        for <devicetree@vger.kernel.org>; Tue, 15 Sep 2020 00:24:57 -0700 (PDT)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=linaro.org; s=google;
-        h=from:to:cc:subject:date:message-id:in-reply-to:references;
-        bh=oBilyFEf2/Z1J1tQYW2nP7ZczzAuGj9cFol63jX5QX4=;
-        b=c4p1+4NV8NlRzHFAx/uaoR2of/ipTcrRTAY9oJ5/Unn+O8Y3rY9sp4v8IGjx++3I4r
-         SQE/jrzc3GvToZgsexffViU0bU4gxhB4jn8e7r8Wgj6WZONFg9rHG7/EWTiD5LSQL1cN
-         sx7kAdf6ra1WKzU3T+FAT1AIJ/Gvb9jto+75QuGdepiFVzW7cxVS9a/m00DapVflZYfZ
-         pGXwNmTCmgzVEdYWTrQRc9ATICYARqOHfNurbxl7hAMXgD7EXjDO/M1pime+K5lzNEjQ
-         MsU2Whc+HCUIO9vMhpGT+tyPqd1m0tPAr9Jh985YurvzyyIr5rfD426v1/6+jMW+TeXp
-         QSBg==
-X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=1e100.net; s=20161025;
-        h=x-gm-message-state:from:to:cc:subject:date:message-id:in-reply-to
-         :references;
-        bh=oBilyFEf2/Z1J1tQYW2nP7ZczzAuGj9cFol63jX5QX4=;
-        b=FH/QPqtk0CYgtiGfy4tcJEjpx9+ldrlOwjLU9Dgig1TQdJ13jbIVNdHJdk5MYqwrLT
-         9U7DZidmQl7t4ztyzqnHRrkjHCLrWubJm5K5ueXXFTAgXb00QD6vrBYrL2lcx9Ue9tVS
-         fbD4ORU6lR3HUZSDixWR9Nb7sRp+l8J3KBqWPGus+fLAGeZCUjyMDt2Vjr4i9r1NQyHI
-         e5Am+XSNEehPVCPu9Mcwu7lgSTSY1+nloTBCuFbhuimnVIPWtADMYptfddgfRiKUSZZ8
-         JBTBO8JQvvhObccvv3LuK8Tf0JmAH8ATYBT/tYsLjOaPEk3853Q8F7wbErt6Kp6hjoGn
-         1npQ==
-X-Gm-Message-State: AOAM530w0aP5vsJa0cHOSbmqQjC8Lc8VDLLC2Kkn254lS7umwqmaSTB3
-        pIH8nn4zL6lyyx7v0X6b/hHR
-X-Google-Smtp-Source: ABdhPJzKMwHn18/aJgA+m+x05Z3G9Ii3hfInh23MjGpnxaaAD9SIavHD2LgB0dnAdxapI9FuMenKoA==
-X-Received: by 2002:a62:4e8a:0:b029:13c:1611:653b with SMTP id c132-20020a624e8a0000b029013c1611653bmr16134936pfb.13.1600154696590;
-        Tue, 15 Sep 2020 00:24:56 -0700 (PDT)
-Received: from localhost.localdomain ([103.59.133.81])
-        by smtp.googlemail.com with ESMTPSA id m24sm10701501pgn.44.2020.09.15.00.24.52
-        (version=TLS1_3 cipher=TLS_AES_256_GCM_SHA384 bits=256/256);
-        Tue, 15 Sep 2020 00:24:56 -0700 (PDT)
-From:   Manivannan Sadhasivam <manivannan.sadhasivam@linaro.org>
-To:     rjw@rjwysocki.net, viresh.kumar@linaro.org, robh+dt@kernel.org,
-        agross@kernel.org, bjorn.andersson@linaro.org
-Cc:     amitk@kernel.org, linux-pm@vger.kernel.org,
-        devicetree@vger.kernel.org, linux-kernel@vger.kernel.org,
-        linux-arm-msm@vger.kernel.org, dmitry.baryshkov@linaro.org,
-        tdas@codeaurora.org,
-        Manivannan Sadhasivam <manivannan.sadhasivam@linaro.org>
-Subject: [PATCH v2 5/5] cpufreq: qcom-hw: Add cpufreq support for SM8250 SoC
-Date:   Tue, 15 Sep 2020 12:54:23 +0530
-Message-Id: <20200915072423.18437-6-manivannan.sadhasivam@linaro.org>
+        id S1726217AbgIOHlV (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Tue, 15 Sep 2020 03:41:21 -0400
+Received: from inva020.nxp.com ([92.121.34.13]:38032 "EHLO inva020.nxp.com"
+        rhost-flags-OK-OK-OK-OK) by vger.kernel.org with ESMTP
+        id S1726157AbgIOHk7 (ORCPT <rfc822;devicetree@vger.kernel.org>);
+        Tue, 15 Sep 2020 03:40:59 -0400
+Received: from inva020.nxp.com (localhost [127.0.0.1])
+        by inva020.eu-rdc02.nxp.com (Postfix) with ESMTP id 6EA691A07FB;
+        Tue, 15 Sep 2020 09:40:51 +0200 (CEST)
+Received: from invc005.ap-rdc01.nxp.com (invc005.ap-rdc01.nxp.com [165.114.16.14])
+        by inva020.eu-rdc02.nxp.com (Postfix) with ESMTP id 503B81A07CC;
+        Tue, 15 Sep 2020 09:40:47 +0200 (CEST)
+Received: from localhost.localdomain (mega.ap.freescale.net [10.192.208.232])
+        by invc005.ap-rdc01.nxp.com (Postfix) with ESMTP id AA02E402A5;
+        Tue, 15 Sep 2020 09:40:41 +0200 (CEST)
+From:   Biwen Li <biwen.li@oss.nxp.com>
+To:     alexandre.belloni@bootlin.com, leoyang.li@nxp.com,
+        shawnguo@kernel.org, robh+dt@kernel.org, mark.rutland@arm.com
+Cc:     devicetree@vger.kernel.org, linux-kernel@vger.kernel.org,
+        jiafei.pan@nxp.com, linux-rtc@vger.kernel.org,
+        Biwen Li <biwen.li@nxp.com>
+Subject: [PATCH 1/5] rtc: pcf2127: fix a bug when not specify interrupts property
+Date:   Tue, 15 Sep 2020 15:32:09 +0800
+Message-Id: <20200915073213.12779-1-biwen.li@oss.nxp.com>
 X-Mailer: git-send-email 2.17.1
-In-Reply-To: <20200915072423.18437-1-manivannan.sadhasivam@linaro.org>
-References: <20200915072423.18437-1-manivannan.sadhasivam@linaro.org>
+X-Virus-Scanned: ClamAV using ClamSMTP
 Sender: devicetree-owner@vger.kernel.org
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-SM8250 SoC uses EPSS block for carrying out the cpufreq duties. Hence, add
-support for it in the driver with relevant dev data.
+From: Biwen Li <biwen.li@nxp.com>
 
-Signed-off-by: Manivannan Sadhasivam <manivannan.sadhasivam@linaro.org>
-Reviewed-by: Amit Kucheria <amitk@kernel.org>
-Reviewed-by: Bjorn Andersson <bjorn.andersson@linaro.org>
+Fix a bug when not specify interrupts property in dts
+as follows,
+    rtc-pcf2127-i2c 1-0051: failed to request alarm irq
+    rtc-pcf2127-i2c: probe of 1-0051 failed with error -22
+
+Signed-off-by: Biwen Li <biwen.li@nxp.com>
 ---
- drivers/cpufreq/qcom-cpufreq-hw.c | 9 +++++++++
- 1 file changed, 9 insertions(+)
+ drivers/rtc/rtc-pcf2127.c | 4 ++--
+ 1 file changed, 2 insertions(+), 2 deletions(-)
 
-diff --git a/drivers/cpufreq/qcom-cpufreq-hw.c b/drivers/cpufreq/qcom-cpufreq-hw.c
-index e3c46984a037..c485be839172 100644
---- a/drivers/cpufreq/qcom-cpufreq-hw.c
-+++ b/drivers/cpufreq/qcom-cpufreq-hw.c
-@@ -256,8 +256,17 @@ static const struct qcom_cpufreq_soc_data qcom_soc_data = {
- 	.lut_row_size = 32,
- };
+diff --git a/drivers/rtc/rtc-pcf2127.c b/drivers/rtc/rtc-pcf2127.c
+index ed6316992cbb..07a5630ec841 100644
+--- a/drivers/rtc/rtc-pcf2127.c
++++ b/drivers/rtc/rtc-pcf2127.c
+@@ -559,7 +559,7 @@ static int pcf2127_probe(struct device *dev, struct regmap *regmap,
+ 	pcf2127->rtc->set_start_time = true; /* Sets actual start to 1970 */
+ 	pcf2127->rtc->uie_unsupported = 1;
  
-+static const struct qcom_cpufreq_soc_data epss_soc_data = {
-+	.reg_enable = 0x0,
-+	.reg_freq_lut = 0x100,
-+	.reg_volt_lut = 0x200,
-+	.reg_perf_state = 0x320,
-+	.lut_row_size = 4,
-+};
-+
- static const struct of_device_id qcom_cpufreq_hw_match[] = {
- 	{ .compatible = "qcom,cpufreq-hw", .data = &qcom_soc_data },
-+	{ .compatible = "qcom,cpufreq-epss", .data = &epss_soc_data },
- 	{}
- };
- MODULE_DEVICE_TABLE(of, qcom_cpufreq_hw_match);
+-	if (alarm_irq >= 0) {
++	if (alarm_irq > 0) {
+ 		ret = devm_request_threaded_irq(dev, alarm_irq, NULL,
+ 						pcf2127_rtc_irq,
+ 						IRQF_TRIGGER_LOW | IRQF_ONESHOT,
+@@ -570,7 +570,7 @@ static int pcf2127_probe(struct device *dev, struct regmap *regmap,
+ 		}
+ 	}
+ 
+-	if (alarm_irq >= 0 || device_property_read_bool(dev, "wakeup-source")) {
++	if (alarm_irq > 0 || device_property_read_bool(dev, "wakeup-source")) {
+ 		device_init_wakeup(dev, true);
+ 		pcf2127->rtc->ops = &pcf2127_rtc_alrm_ops;
+ 	}
 -- 
 2.17.1
 
