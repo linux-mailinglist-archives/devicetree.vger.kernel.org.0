@@ -2,43 +2,40 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from vger.kernel.org (vger.kernel.org [23.128.96.18])
-	by mail.lfdr.de (Postfix) with ESMTP id D491B26ADF6
-	for <lists+devicetree@lfdr.de>; Tue, 15 Sep 2020 21:47:43 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTP id 14E1526ADC4
+	for <lists+devicetree@lfdr.de>; Tue, 15 Sep 2020 21:40:00 +0200 (CEST)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S1727430AbgIOTrc (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Tue, 15 Sep 2020 15:47:32 -0400
-Received: from lindbergh.monkeyblade.net ([23.128.96.19]:55096 "EHLO
-        lindbergh.monkeyblade.net" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S1727909AbgIOTmw (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Tue, 15 Sep 2020 15:42:52 -0400
-Received: from mail-il1-x142.google.com (mail-il1-x142.google.com [IPv6:2607:f8b0:4864:20::142])
-        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 11640C06178A;
-        Tue, 15 Sep 2020 12:35:13 -0700 (PDT)
-Received: by mail-il1-x142.google.com with SMTP id f82so4130882ilh.8;
-        Tue, 15 Sep 2020 12:35:13 -0700 (PDT)
+        id S1727961AbgIOTjs (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Tue, 15 Sep 2020 15:39:48 -0400
+Received: from mail-il1-f194.google.com ([209.85.166.194]:36869 "EHLO
+        mail-il1-f194.google.com" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
+        with ESMTP id S1727586AbgIOTj0 (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Tue, 15 Sep 2020 15:39:26 -0400
+Received: by mail-il1-f194.google.com with SMTP id q4so4177497ils.4;
+        Tue, 15 Sep 2020 12:39:26 -0700 (PDT)
 X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
         d=1e100.net; s=20161025;
         h=x-gm-message-state:date:from:to:cc:subject:message-id:references
          :mime-version:content-disposition:in-reply-to;
-        bh=bEYIZJwFtkYMd++2czsZyfzHNeNAv9o1qIOqHFzs83s=;
-        b=JlvHoTyCln7peZxLP/IMUFVMjBLJJHQZG62Fz9ZlfKyucPG8A1wyGrQSr0vhAmb2b5
-         DGsaEWuIdLDqUhxlox+1ApD0vItYBDdqUgJxOV4p/STwLtFIhJfucZjwMuE9q4iCRES7
-         49u6R/DL0jbYpw2ngL2nZKaTk9lKceLTVNf/AH19ML7dvhhseKNUYYqhYuzvB0zZPdPj
-         MRaf5jMopDAql8JdFmR8pcu3KeCtvvLsYZynoDGdx3OQz2LMZOOkIcnzL6BuK0Q2luOD
-         u+8IptWjDLBeZuAO0Yv0rvc3vuPveESwNQ/WAMjlC7ud7lgcLy0n7vTcb3ashLFD6Eb+
-         cbcw==
-X-Gm-Message-State: AOAM532acJeW4yLjFvU/qopoEiMM0ooNtmwItx/BajMbsZjF8k1HUgHO
-        yIt9ACZVhGzfBdw3VDO0IQ==
-X-Google-Smtp-Source: ABdhPJxEdvAu0HMREPS2cEWjOs1/LLRV65dP5oXmITJa4Nat5+p+35d5hIBgWA7/MBqZGnzpYgIJig==
-X-Received: by 2002:a92:8b8d:: with SMTP id i135mr17718234ild.153.1600198512138;
-        Tue, 15 Sep 2020 12:35:12 -0700 (PDT)
+        bh=U2UgDFJ0TKRmCCDAAa0CKQN3PAXzQGowR+Y1XmFZbhs=;
+        b=Q+hXpjyKg+gDJhg2wToXdDpgSkgcfDJKIH2XnSwjy0N+ZLQA1ZOg/qvlKOmPhK2MCE
+         2CSdKGlsIYBCRrauxaSCBa4jY+ftt8dO4bcKjSlm7hyh/WYy/4gpzyKJTcO4QWAi8k1W
+         rIBsA0aRYpnkRaoz4mFTI2afD02N7U5PKxKstvJW64qfKjxSKbjsj5OhUjENwOAfqlnw
+         V76b4V3q6E/unaPC5ecbJgPP+ahrdO0psxok2OT1H6uL6q0R4u8fIMNzHxPp8jtQZCri
+         o2eKrVethF5T23rmVM4umO1+x4WIhLOyO/15XZ/TCYkx/mo9CW0BdG3ihqHpXaHBqVvG
+         cnrQ==
+X-Gm-Message-State: AOAM532BLer/e1t9zE5R4IO22ox0R/iVh6fB0qZLD4fZSfz77YMoGZEu
+        40AMx/Vrey9xXl9YcVklbQ==
+X-Google-Smtp-Source: ABdhPJybqsFHREh3Yp9e8K/w33mykPZgUyZ7UjYfSpEI9dtCqo5QPP9N+6j1Ro+kJbdo4yd60ytE/Q==
+X-Received: by 2002:a05:6e02:d85:: with SMTP id i5mr17620009ilj.115.1600198765639;
+        Tue, 15 Sep 2020 12:39:25 -0700 (PDT)
 Received: from xps15 ([64.188.179.253])
-        by smtp.gmail.com with ESMTPSA id f21sm7994348ioh.1.2020.09.15.12.35.10
+        by smtp.gmail.com with ESMTPSA id m87sm9620598ilb.58.2020.09.15.12.39.23
         (version=TLS1_3 cipher=TLS_AES_256_GCM_SHA384 bits=256/256);
-        Tue, 15 Sep 2020 12:35:11 -0700 (PDT)
-Received: (nullmailer pid 2368750 invoked by uid 1000);
-        Tue, 15 Sep 2020 19:35:10 -0000
-Date:   Tue, 15 Sep 2020 13:35:10 -0600
+        Tue, 15 Sep 2020 12:39:24 -0700 (PDT)
+Received: (nullmailer pid 2375353 invoked by uid 1000);
+        Tue, 15 Sep 2020 19:39:22 -0000
+Date:   Tue, 15 Sep 2020 13:39:22 -0600
 From:   Rob Herring <robh@kernel.org>
 To:     Viresh Kumar <viresh.kumar@linaro.org>
 Cc:     Jassi Brar <jassisinghbrar@gmail.com>,
@@ -51,7 +48,7 @@ Cc:     Jassi Brar <jassisinghbrar@gmail.com>,
         linux-kernel@vger.kernel.org
 Subject: Re: [PATCH V3 1/2] dt-bindings: mailbox : arm,mhu: Convert to
  Json-schema
-Message-ID: <20200915193510.GA2362311@bogus>
+Message-ID: <20200915193922.GB2362311@bogus>
 References: <7f50b23d157a97242c79bd8f2ab649a9272b9b59.1599731645.git.viresh.kumar@linaro.org>
 MIME-Version: 1.0
 Content-Type: text/plain; charset=us-ascii
@@ -82,150 +79,8 @@ On Thu, Sep 10, 2020 at 03:25:18PM +0530, Viresh Kumar wrote:
 > +++ b/Documentation/devicetree/bindings/mailbox/arm,mhu.yaml
 > @@ -0,0 +1,86 @@
 > +# SPDX-License-Identifier: GPL-2.0
-> +%YAML 1.2
-> +---
-> +$id: http://devicetree.org/schemas/mailbox/arm,mhu.yaml#
-> +$schema: http://devicetree.org/meta-schemas/core.yaml#
-> +
-> +title: ARM MHU Mailbox Controller
-> +
-> +maintainers:
-> +  - Jassi Brar <jaswinder.singh@linaro.org>
 
-Ideally, this should be someone familiar with the h/w, not the subsystem 
-maintainer. Sudeep or you in this case?
- 
-> +
-> +description: |
-> +  The ARM's Message-Handling-Unit (MHU) is a mailbox controller that has 3
-> +  independent channels/links to communicate with remote processor(s).  MHU links
-> +  are hardwired on a platform. A link raises interrupt for any received data.
-> +  However, there is no specified way of knowing if the sent data has been read
-> +  by the remote. This driver assumes the sender polls STAT register and the
-> +  remote clears it after having read the data.  The last channel is specified to
-> +  be a 'Secure' resource, hence can't be used by Linux running NS.
-> +
-> +# We need a select here so we don't match all nodes with 'arm,primecell'
-> +select:
-> +  properties:
-> +    compatible:
-> +      contains:
-> +        const: arm,mhu
-> +  required:
-> +    - compatible
-> +
-> +properties:
-> +  compatible:
-> +    items:
-> +      - const: arm,mhu
-> +      - const: arm,primecell
-> +
-> +  reg:
-> +    maxItems: 1
-> +
-> +  interrupts:
-> +    description: |
-> +      Interrupt information corresponding to each of the 3 links of MHU,
-> +      low-priority non-secure, high-priority non-secure, and secure.
-> +    maxItems: 3
+Also, as Jassi/Linaro is the only author of the txt file, please dual 
+license.
 
-items:
-  - description: low-priority non-secure
-  - description: high-priority non-secure
-  - description: Secure
-
-> +
-> +  clocks:
-> +    maxItems: 1
-> +
-> +  clock-names:
-> +    items:
-> +      - const: apb_pclk
-> +
-> +  '#mbox-cells':
-> +    description: Index of the channel.
-> +    const: 1
-> +
-> +required:
-> +  - compatible
-> +  - reg
-> +  - interrupts
-> +  - '#mbox-cells'
-> +
-> +additionalProperties: false
-> +
-> +examples:
-> +  - |
-> +    soc {
-> +        #address-cells = <2>;
-> +        #size-cells = <2>;
-> +
-> +        mhuA: mailbox@2b1f0000 {
-> +            #mbox-cells = <1>;
-> +            compatible = "arm,mhu", "arm,primecell";
-> +            reg = <0 0x2b1f0000 0 0x1000>;
-> +            interrupts = <0 36 4>, /* LP-NonSecure */
-> +                         <0 35 4>, /* HP-NonSecure */
-> +                         <0 37 4>; /* Secure */
-> +            clocks = <&clock 0 2 1>;
-> +            clock-names = "apb_pclk";
-> +        };
-> +
-> +        mhu_client_scb: scb@2e000000 {
-> +            compatible = "fujitsu,mb86s70-scb-1.0";
-> +            reg = <0 0x2e000000 0 0x4000>;
-> +            mboxes = <&mhuA 1>; /* HP-NonSecure */
-> +        };
-> +    };
-> diff --git a/Documentation/devicetree/bindings/mailbox/arm-mhu.txt b/Documentation/devicetree/bindings/mailbox/arm-mhu.txt
-> deleted file mode 100644
-> index 4971f03f0b33..000000000000
-> --- a/Documentation/devicetree/bindings/mailbox/arm-mhu.txt
-> +++ /dev/null
-> @@ -1,43 +0,0 @@
-> -ARM MHU Mailbox Driver
-> -======================
-> -
-> -The ARM's Message-Handling-Unit (MHU) is a mailbox controller that has
-> -3 independent channels/links to communicate with remote processor(s).
-> - MHU links are hardwired on a platform. A link raises interrupt for any
-> -received data. However, there is no specified way of knowing if the sent
-> -data has been read by the remote. This driver assumes the sender polls
-> -STAT register and the remote clears it after having read the data.
-> -The last channel is specified to be a 'Secure' resource, hence can't be
-> -used by Linux running NS.
-> -
-> -Mailbox Device Node:
-> -====================
-> -
-> -Required properties:
-> ---------------------
-> -- compatible:		Shall be "arm,mhu" & "arm,primecell"
-> -- reg:			Contains the mailbox register address range (base
-> -			address and length)
-> -- #mbox-cells		Shall be 1 - the index of the channel needed.
-> -- interrupts:		Contains the interrupt information corresponding to
-> -			each of the 3 links of MHU.
-> -
-> -Example:
-> ---------
-> -
-> -	mhu: mailbox@2b1f0000 {
-> -		#mbox-cells = <1>;
-> -		compatible = "arm,mhu", "arm,primecell";
-> -		reg = <0 0x2b1f0000 0x1000>;
-> -		interrupts = <0 36 4>, /* LP-NonSecure */
-> -			     <0 35 4>, /* HP-NonSecure */
-> -			     <0 37 4>; /* Secure */
-> -		clocks = <&clock 0 2 1>;
-> -		clock-names = "apb_pclk";
-> -	};
-> -
-> -	mhu_client: scb@2e000000 {
-> -		compatible = "fujitsu,mb86s70-scb-1.0";
-> -		reg = <0 0x2e000000 0x4000>;
-> -		mboxes = <&mhu 1>; /* HP-NonSecure */
-> -	};
-> -- 
-> 2.25.0.rc1.19.g042ed3e048af
-> 
+Rob
