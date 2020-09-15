@@ -2,133 +2,170 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from vger.kernel.org (vger.kernel.org [23.128.96.18])
-	by mail.lfdr.de (Postfix) with ESMTP id 24FA226B2DC
-	for <lists+devicetree@lfdr.de>; Wed, 16 Sep 2020 00:54:51 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTP id 5B09626B2B2
+	for <lists+devicetree@lfdr.de>; Wed, 16 Sep 2020 00:51:53 +0200 (CEST)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S1727565AbgIOWyf (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Tue, 15 Sep 2020 18:54:35 -0400
-Received: from mail-io1-f68.google.com ([209.85.166.68]:36754 "EHLO
-        mail-io1-f68.google.com" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S1727408AbgIOP1X (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Tue, 15 Sep 2020 11:27:23 -0400
-Received: by mail-io1-f68.google.com with SMTP id d190so4533880iof.3;
-        Tue, 15 Sep 2020 08:27:23 -0700 (PDT)
-X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=1e100.net; s=20161025;
-        h=x-gm-message-state:date:from:to:cc:subject:message-id:references
-         :mime-version:content-disposition:in-reply-to;
-        bh=dPYwHeQQ7IP3X54VVPhQeqc8s7HY2r7mj5Uv/WrGFAY=;
-        b=oRnHO+Mib9baloxWE6jo2kgWWdJTnJatKHAshKFTpsT+M5rVHg9FpJWwT7DOv2h4V6
-         kfA1ZLdiMx0G2iui6CK2rq4COgZ5N42PzcpDKIgiUev30CRdNHKkPLZ3bLjpDqZKqOIv
-         oKX09IViIRaNoT0hHooJGrRrDHaNv6n0/N3wVI5gaWfpRCAFgo4CC28zHgjOxxgCAw/0
-         FgQSl0+m/5/CyaEbAAZ1+c0xiYzEPRJj7QHamnVGhAqn59XHWKkN8Q0oYtlvL6Yv3irZ
-         WTR4to70xwpXdskawUF1HjZ7wwCUxzeEUp2syOTY2QRoLcAa5nryDQoh557dwCwaq6QK
-         qblw==
-X-Gm-Message-State: AOAM531HS/g5AbhEe3/iNVCkxuam0MgPL8sLvsmxPaV0LKZIoyUMONG2
-        NYd3PeeKrGLpgXuTM86BTg==
-X-Google-Smtp-Source: ABdhPJxDjUOE6+zDP2a0Ae0W9UtEpGt1+7MYgRW/yuvD1nijynqc1rDIB9fdJf9BCdcuWC3RKcVucA==
-X-Received: by 2002:a05:6602:22cf:: with SMTP id e15mr15463385ioe.114.1600183642802;
-        Tue, 15 Sep 2020 08:27:22 -0700 (PDT)
-Received: from xps15 ([64.188.179.253])
-        by smtp.gmail.com with ESMTPSA id c85sm9033041ilg.10.2020.09.15.08.27.21
-        (version=TLS1_3 cipher=TLS_AES_256_GCM_SHA384 bits=256/256);
-        Tue, 15 Sep 2020 08:27:22 -0700 (PDT)
-Received: (nullmailer pid 1978036 invoked by uid 1000);
-        Tue, 15 Sep 2020 15:27:20 -0000
-Date:   Tue, 15 Sep 2020 09:27:20 -0600
-From:   Rob Herring <robh@kernel.org>
-To:     Neil Armstrong <narmstrong@baylibre.com>
-Cc:     kishon@ti.com, devicetree@vger.kernel.org,
-        linux-amlogic@lists.infradead.org,
-        linux-arm-kernel@lists.infradead.org, linux-kernel@vger.kernel.org
-Subject: Re: [PATCH 1/2] dt-bindings: phy: add Amlogic AXG MIPI D-PHY bindings
-Message-ID: <20200915152720.GA1975674@bogus>
-References: <20200907072708.26043-1-narmstrong@baylibre.com>
- <20200907072708.26043-2-narmstrong@baylibre.com>
+        id S1727460AbgIOWvt (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Tue, 15 Sep 2020 18:51:49 -0400
+Received: from lelv0143.ext.ti.com ([198.47.23.248]:39944 "EHLO
+        lelv0143.ext.ti.com" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
+        with ESMTP id S1727437AbgIOPmb (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Tue, 15 Sep 2020 11:42:31 -0400
+Received: from fllv0034.itg.ti.com ([10.64.40.246])
+        by lelv0143.ext.ti.com (8.15.2/8.15.2) with ESMTP id 08FFWKpC003801;
+        Tue, 15 Sep 2020 10:32:20 -0500
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=ti.com;
+        s=ti-com-17Q1; t=1600183940;
+        bh=bkPDtLRUX+WuLwfy0rJQaDu4UuSOeknQxZCqeWsf4Ow=;
+        h=Subject:To:CC:References:From:Date:In-Reply-To;
+        b=OHDM/MBb9BbuD2q4zqPBy9zb0aX+d3B3tFL5CN7LyPA/mqxzw1Z0RkZCXQVRDIGCq
+         dlC+rzcA/rLCmJvhI+NinRyAKHJ3s6/YIWZLOIyVYBXZJjS/Hi8nkI5mXJ5ev7nX9N
+         UEpXNkI312mwLdvGXTymLwF6WJm6FrJrmly/PLeQ=
+Received: from DFLE104.ent.ti.com (dfle104.ent.ti.com [10.64.6.25])
+        by fllv0034.itg.ti.com (8.15.2/8.15.2) with ESMTPS id 08FFWKgr037363
+        (version=TLSv1.2 cipher=AES256-GCM-SHA384 bits=256 verify=FAIL);
+        Tue, 15 Sep 2020 10:32:20 -0500
+Received: from DFLE111.ent.ti.com (10.64.6.32) by DFLE104.ent.ti.com
+ (10.64.6.25) with Microsoft SMTP Server (version=TLS1_2,
+ cipher=TLS_ECDHE_RSA_WITH_AES_128_CBC_SHA256_P256) id 15.1.1979.3; Tue, 15
+ Sep 2020 10:31:17 -0500
+Received: from fllv0039.itg.ti.com (10.64.41.19) by DFLE111.ent.ti.com
+ (10.64.6.32) with Microsoft SMTP Server (version=TLS1_2,
+ cipher=TLS_ECDHE_RSA_WITH_AES_128_CBC_SHA256_P256) id 15.1.1979.3 via
+ Frontend Transport; Tue, 15 Sep 2020 10:31:17 -0500
+Received: from [10.250.66.210] (ileax41-snat.itg.ti.com [10.172.224.153])
+        by fllv0039.itg.ti.com (8.15.2/8.15.2) with ESMTP id 08FFVGqs062574;
+        Tue, 15 Sep 2020 10:31:17 -0500
+Subject: Re: [PATCH v4 2/5] dt-bindings: arm: ti: Convert K3 board/soc
+ bindings to DT schema
+To:     Lokesh Vutla <lokeshvutla@ti.com>, Nishanth Menon <nm@ti.com>,
+        Tero Kristo <t-kristo@ti.com>, Rob Herring <robh+dt@kernel.org>
+CC:     Linux ARM Mailing List <linux-arm-kernel@lists.infradead.org>,
+        Device Tree Mailing List <devicetree@vger.kernel.org>,
+        Sekhar Nori <nsekhar@ti.com>,
+        Grygorii Strashko <grygorii.strashko@ti.com>,
+        Kishon Vijay Abraham I <kishon@ti.com>
+References: <20200914162231.2535-1-lokeshvutla@ti.com>
+ <20200914162231.2535-3-lokeshvutla@ti.com>
+From:   Suman Anna <s-anna@ti.com>
+Message-ID: <04ca72b9-f6e6-c34e-8c90-09f86ad107b7@ti.com>
+Date:   Tue, 15 Sep 2020 10:31:16 -0500
+User-Agent: Mozilla/5.0 (X11; Linux x86_64; rv:68.0) Gecko/20100101
+ Thunderbird/68.10.0
 MIME-Version: 1.0
-Content-Type: text/plain; charset=us-ascii
-Content-Disposition: inline
-In-Reply-To: <20200907072708.26043-2-narmstrong@baylibre.com>
+In-Reply-To: <20200914162231.2535-3-lokeshvutla@ti.com>
+Content-Type: text/plain; charset="utf-8"
+Content-Language: en-US
+Content-Transfer-Encoding: 7bit
+X-EXCLAIMER-MD-CONFIG: e1e8a2fd-e40a-4ac6-ac9b-f7e9cc9ee180
 Sender: devicetree-owner@vger.kernel.org
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-On Mon, Sep 07, 2020 at 09:27:07AM +0200, Neil Armstrong wrote:
-> The Amlogic AXg SoCs embeds a MIPI D-PHY to communicate with DSI
-> panels, this adds the bindings.
+On 9/14/20 11:22 AM, Lokesh Vutla wrote:
+> Convert TI K3 Board/SoC bindings to DT schema format.
 > 
-> This D-PHY depends on a separate analog PHY.
-> 
-> Signed-off-by: Neil Armstrong <narmstrong@baylibre.com>
+> Reviewed-by: Grygorii Strashko <grygorii.strashko@ti.com>
+> Signed-off-by: Lokesh Vutla <lokeshvutla@ti.com>
 > ---
->  .../bindings/phy/amlogic,axg-mipi-dphy.yaml   | 68 +++++++++++++++++++
->  1 file changed, 68 insertions(+)
->  create mode 100644 Documentation/devicetree/bindings/phy/amlogic,axg-mipi-dphy.yaml
+>  .../devicetree/bindings/arm/ti/k3.txt         | 26 ----------------
+>  .../devicetree/bindings/arm/ti/k3.yaml        | 31 +++++++++++++++++++
+>  MAINTAINERS                                   |  2 +-
+>  3 files changed, 32 insertions(+), 27 deletions(-)
+>  delete mode 100644 Documentation/devicetree/bindings/arm/ti/k3.txt
+>  create mode 100644 Documentation/devicetree/bindings/arm/ti/k3.yaml
 > 
-> diff --git a/Documentation/devicetree/bindings/phy/amlogic,axg-mipi-dphy.yaml b/Documentation/devicetree/bindings/phy/amlogic,axg-mipi-dphy.yaml
+> diff --git a/Documentation/devicetree/bindings/arm/ti/k3.txt b/Documentation/devicetree/bindings/arm/ti/k3.txt
+> deleted file mode 100644
+> index 333e7256126a..000000000000
+> --- a/Documentation/devicetree/bindings/arm/ti/k3.txt
+> +++ /dev/null
+> @@ -1,26 +0,0 @@
+> -Texas Instruments K3 Multicore SoC architecture device tree bindings
+> ---------------------------------------------------------------------
+> -
+> -Platforms based on Texas Instruments K3 Multicore SoC architecture
+> -shall follow the following scheme:
+> -
+> -SoCs
+> -----
+> -
+> -Each device tree root node must specify which exact SoC in K3 Multicore SoC
+> -architecture it uses, using one of the following compatible values:
+> -
+> -- AM654
+> -  compatible = "ti,am654";
+> -
+> -- J721E
+> -  compatible = "ti,j721e";
+> -
+> -Boards
+> -------
+> -
+> -In addition, each device tree root node must specify which one or more
+> -of the following board-specific compatible values:
+> -
+> -- AM654 EVM
+> -  compatible = "ti,am654-evm", "ti,am654";
+> diff --git a/Documentation/devicetree/bindings/arm/ti/k3.yaml b/Documentation/devicetree/bindings/arm/ti/k3.yaml
 > new file mode 100644
-> index 000000000000..f7ae1135288b
+> index 000000000000..c5e3e4aeda8e
 > --- /dev/null
-> +++ b/Documentation/devicetree/bindings/phy/amlogic,axg-mipi-dphy.yaml
-> @@ -0,0 +1,68 @@
+> +++ b/Documentation/devicetree/bindings/arm/ti/k3.yaml
+> @@ -0,0 +1,31 @@
 > +# SPDX-License-Identifier: (GPL-2.0 OR BSD-2-Clause)
-> +# Copyright 2020 BayLibre, SAS
 > +%YAML 1.2
 > +---
-> +$id: "http://devicetree.org/schemas/phy/amlogic,axg-mipi-dphy.yaml#"
-> +$schema: "http://devicetree.org/meta-schemas/core.yaml#"
+> +$id: http://devicetree.org/schemas/arm/ti/k3.yaml#
+> +$schema: http://devicetree.org/meta-schemas/core.yaml#
 > +
-> +title: Amlogic AXG MIPI D-PHY
+> +title: Texas Instruments K3 Multicore SoC architecture device tree bindings
 > +
 > +maintainers:
-> +  - Neil Armstrong <narmstrong@baylibre.com>
+> +  - Nishanth Menon <nm@ti.com>
+> +
+> +description: |
+> +  Platforms based on Texas Instruments K3 Multicore SoC architecture
+> +  shall have the following properties.
 > +
 > +properties:
+> +  $nodename:
+> +    const: '/'
 > +  compatible:
-> +    enum:
-> +      - amlogic,axg-mipi-dphy
+> +    oneOf:
 > +
-> +  reg:
-> +    maxItems: 1
-> +
-> +  clocks:
-> +    maxItems: 1
-> +
-> +  clock-names:
-> +    items:
-> +      - const: pclk
-> +
-> +  resets:
-> +    maxItems: 1
-> +
-> +  reset-names:
-> +    items:
-> +      - const: phy
-> +
-> +  "#phy-cells":
-> +    const: 0
-> +
-> +  phys:
-> +    maxItems: 1
-> +
-> +  phy-names:
-> +    items:
-> +      - const: analog
-> +
-> +required:
-> +  - compatible
-> +  - reg
-> +  - clocks
-> +  - clock-names
-> +  - resets
-> +  - reset-names
-> +  - phys
-> +  - phy-names
-> +  - "#phy-cells"
+> +      - description: K3 AM654 SoC
+> +        items:
+> +          - enum:
+> +              - ti,am654-evm
 
-additionalProperties: false
+I am guessing the enum is for adding other vendors compatibles when they get
+added in the future. Otherwise, const would have sufficed. So, looks ok.
 
-With that,
+Reviewed-by: Suman Anna <s-anna@ti.com>
 
-Reviewed-by: Rob Herring <robh@kernel.org>
+regards
+Suman
+
+> +          - const: ti,am654
+> +
+> +      - description: K3 J721E SoC
+> +        items:
+> +          - const: ti,j721e
+> +...
+> diff --git a/MAINTAINERS b/MAINTAINERS
+> index e4647c84c987..076fae9aa75b 100644
+> --- a/MAINTAINERS
+> +++ b/MAINTAINERS
+> @@ -2636,7 +2636,7 @@ M:	Tero Kristo <t-kristo@ti.com>
+>  M:	Nishanth Menon <nm@ti.com>
+>  L:	linux-arm-kernel@lists.infradead.org (moderated for non-subscribers)
+>  S:	Supported
+> -F:	Documentation/devicetree/bindings/arm/ti/k3.txt
+> +F:	Documentation/devicetree/bindings/arm/ti/k3.yaml
+>  F:	arch/arm64/boot/dts/ti/Makefile
+>  F:	arch/arm64/boot/dts/ti/k3-*
+>  F:	include/dt-bindings/pinctrl/k3.h
+> 
+
