@@ -2,87 +2,128 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from vger.kernel.org (vger.kernel.org [23.128.96.18])
-	by mail.lfdr.de (Postfix) with ESMTP id 5CD06269AD4
-	for <lists+devicetree@lfdr.de>; Tue, 15 Sep 2020 03:03:39 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTP id A0B19269ADA
+	for <lists+devicetree@lfdr.de>; Tue, 15 Sep 2020 03:05:50 +0200 (CEST)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S1726069AbgIOBDc (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Mon, 14 Sep 2020 21:03:32 -0400
-Received: from lindbergh.monkeyblade.net ([23.128.96.19]:51332 "EHLO
-        lindbergh.monkeyblade.net" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S1725999AbgIOBDb (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Mon, 14 Sep 2020 21:03:31 -0400
-Received: from mail-lj1-x244.google.com (mail-lj1-x244.google.com [IPv6:2a00:1450:4864:20::244])
-        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 8D936C06174A;
-        Mon, 14 Sep 2020 18:03:29 -0700 (PDT)
-Received: by mail-lj1-x244.google.com with SMTP id a22so1237784ljp.13;
-        Mon, 14 Sep 2020 18:03:29 -0700 (PDT)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=gmail.com; s=20161025;
-        h=mime-version:references:in-reply-to:from:date:message-id:subject:to
-         :cc:content-transfer-encoding;
-        bh=E1q14rQlgrSLatoty0jVapm3PrkVuxqei5oD9yAnTYA=;
-        b=TQ0tAo4Lk8BmjNMpUM7B2v2eJgGqHIHTW2E4/JxHYLBPYEbL2GOEXa3hYcB88YPV+D
-         rsXL6SY9r8ASAgE8jpvkJDHh7GmJRqXRkxR6+qr8+tk9bxXzavjg3CwjSUtf9LgQObtW
-         Z+EHPWbFuFvC2eCxhz4QYvrSwCiSTExOiHWEXRxGeQE6M2sHxISOTWmc4reYPsdTqqTf
-         FdUJ/4a9+XPrM3y0O/QWI4f2oR7SR4EtfK7OXk6DnUduKU/fV/k6zykUVgrBbLdSMGcs
-         OguZcbCFAGKIoxi3jOmgPotq4ZsnC5XQS4jk6GvHyMXC+pkQkfjwBclCIyq+G4XyQTD1
-         eiWg==
+        id S1726087AbgIOBFt (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Mon, 14 Sep 2020 21:05:49 -0400
+Received: from mail-io1-f67.google.com ([209.85.166.67]:39395 "EHLO
+        mail-io1-f67.google.com" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
+        with ESMTP id S1726057AbgIOBFr (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Mon, 14 Sep 2020 21:05:47 -0400
+Received: by mail-io1-f67.google.com with SMTP id b6so2239959iof.6
+        for <devicetree@vger.kernel.org>; Mon, 14 Sep 2020 18:05:46 -0700 (PDT)
 X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
         d=1e100.net; s=20161025;
-        h=x-gm-message-state:mime-version:references:in-reply-to:from:date
-         :message-id:subject:to:cc:content-transfer-encoding;
-        bh=E1q14rQlgrSLatoty0jVapm3PrkVuxqei5oD9yAnTYA=;
-        b=Bw3FiwWrJAyIB8lDrbNRHplDrziMjmHy1U/+ccJljGtSS+IPGkJ06br5IKDM7pMlrd
-         HagumRy6edKOPcPt1RA5fKKl2D/msfsvgD4zhGI+HWIGG0sGeI9P6OuqRwk2co8Fm8ll
-         0ZqhgV6CtU3k9l2KP6bnT8YEdG04Pzdqpa/r/+rA0HNH7axR7Uocs6NdgLKl1kotrMMA
-         qdyR9YHlyXjqCVfzLb8mI+R5AZHWBZfRjcue7iPMqnsADqwxq9sbxPNSI1Qrj9iNzC4/
-         Qx9ctbzXewsEWOaPphGDqOHQyYONuzZVxoTCSO9pmvus9OOoZFU04Cga3j+3FshF5F/k
-         mKwg==
-X-Gm-Message-State: AOAM531JoDVe9vynewwWkILloEDuGPOxz3T4GnRtSKga16hyq3glW8RB
-        6ZefVUswhTnZad+mGmI391bCf2kj0asfKRlmVFs=
-X-Google-Smtp-Source: ABdhPJw9ifkbVP+uEe2SD7R2hIj95UXfSck4Zwdz+D0V/9bCy7pHGJ86/66K1wgr6YE3PVf6c5+qVxJJUbQVva9yrXk=
-X-Received: by 2002:a2e:9955:: with SMTP id r21mr1824267ljj.119.1600131807796;
- Mon, 14 Sep 2020 18:03:27 -0700 (PDT)
+        h=x-gm-message-state:date:from:to:cc:subject:message-id:references
+         :mime-version:content-disposition:in-reply-to;
+        bh=4K8hgYOIozb4eV4tE27z5U4/TuKGwafzOOZVveRuAWg=;
+        b=Ll/4TqOGffgj/KAPjLyTAUIAALd8hwt5v8pEEZDnQ6yL5QxFi7TKLyHKtIqgvOJLYe
+         i7AWvAqaGFxXmrbiUhORfzJuOgkEiZPHWk5DB9jrc3J/CMT1xbdn3mX9/0vI4JBFvanQ
+         tjDo9NTN+Mt++WAUF1DK9mNrI8uVxtxYRP3f+2aBc2UIT4SgzdjLduPbFoauxnOqJKem
+         PpODNvzTMjlREJ5Y7m134bjfD/E1E4Odb8JLlcbc9A/4rUdoQdQkiv3Gff9cfICJBJPe
+         ogvOyvuaS9jsgdscmDJEnu3tEbnDWChGo7AY9euTfppDaPUa6d9fRpqcCK+6Rs00rbZ5
+         iI6g==
+X-Gm-Message-State: AOAM5313Xdc/Fh7iTDyeGs11LFYRQx2Q+ZmIXn5Qt/F+XHN2G0SuAOsh
+        P9ZY4YbvsrTyc6OYFBptC6WV/a+I9v/y
+X-Google-Smtp-Source: ABdhPJyeOrm0wS6VfzxyWw018C3Pfbn90WCq5qB1yjbl7A1oksWUyEkQHM+2EgWsvF1hagglRRZ/7w==
+X-Received: by 2002:a6b:6e0b:: with SMTP id d11mr13258988ioh.155.1600131945835;
+        Mon, 14 Sep 2020 18:05:45 -0700 (PDT)
+Received: from xps15 ([64.188.179.253])
+        by smtp.gmail.com with ESMTPSA id c6sm4023381ils.86.2020.09.14.18.05.44
+        (version=TLS1_3 cipher=TLS_AES_256_GCM_SHA384 bits=256/256);
+        Mon, 14 Sep 2020 18:05:45 -0700 (PDT)
+Received: (nullmailer pid 628112 invoked by uid 1000);
+        Tue, 15 Sep 2020 01:05:43 -0000
+Date:   Mon, 14 Sep 2020 19:05:43 -0600
+From:   Rob Herring <robh@kernel.org>
+To:     Christian Lamparter <chunkeey@gmail.com>
+Cc:     linuxppc-dev@lists.ozlabs.org, devicetree@vger.kernel.org,
+        Chris Blake <chrisrblake93@gmail.com>,
+        Paul Mackerras <paulus@samba.org>,
+        Benjamin Herrenschmidt <benh@kernel.crashing.org>,
+        Michael Ellerman <mpe@ellerman.id.au>
+Subject: Re: [PATCH v3 2/5] powerpc: apm82181: create shared dtsi for APM
+ bluestone
+Message-ID: <20200915010543.GB612463@bogus>
+References: <cover.1599343429.git.chunkeey@gmail.com>
+ <47109d80c7bd481c7747c949e8a3ecd498d9c039.1599343429.git.chunkeey@gmail.com>
 MIME-Version: 1.0
-References: <1598928042-22115-1-git-send-email-u0084500@gmail.com>
- <1598928042-22115-2-git-send-email-u0084500@gmail.com> <20200914182916.GA4193162@bogus>
-In-Reply-To: <20200914182916.GA4193162@bogus>
-From:   ChiYuan Huang <u0084500@gmail.com>
-Date:   Tue, 15 Sep 2020 09:03:15 +0800
-Message-ID: <CADiBU3-Rn9wPNh_17U9yiDmhHSRcxb5L3nqtg+qigbmiYBjrbA@mail.gmail.com>
-Subject: Re: [PATCH v5 2/2] usb typec: mt6360: Add MT6360 Type-C DT binding documentation
-To:     Rob Herring <robh@kernel.org>
-Cc:     cy_huang <cy_huang@richtek.com>,
-        Heikki Krogerus <heikki.krogerus@linux.intel.com>,
-        linux-usb@vger.kernel.org, gene_chen@richtek.com,
-        Guenter Roeck <linux@roeck-us.net>,
-        linux-arm-kernel@lists.infradead.org, devicetree@vger.kernel.org,
-        robh+dt@kernel.org, linux-mediatek@lists.infradead.org,
-        linux-kernel@vger.kernel.org, Greg KH <gregkh@linuxfoundation.org>,
-        matthias.bgg@gmail.com
-Content-Type: text/plain; charset="UTF-8"
-Content-Transfer-Encoding: quoted-printable
+Content-Type: text/plain; charset=us-ascii
+Content-Disposition: inline
+In-Reply-To: <47109d80c7bd481c7747c949e8a3ecd498d9c039.1599343429.git.chunkeey@gmail.com>
 Sender: devicetree-owner@vger.kernel.org
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-Rob Herring <robh@kernel.org> =E6=96=BC 2020=E5=B9=B49=E6=9C=8815=E6=97=A5 =
-=E9=80=B1=E4=BA=8C =E4=B8=8A=E5=8D=882:29=E5=AF=AB=E9=81=93=EF=BC=9A
->
-> On Tue, 01 Sep 2020 10:40:42 +0800, cy_huang wrote:
-> > From: ChiYuan Huang <cy_huang@richtek.com>
-> >
-> > Add a devicetree binding documentation for the MT6360 Type-C driver.
-> >
-> > Signed-off-by: ChiYuan Huang <cy_huang@richtek.com>
-> > ---
-> >  .../bindings/usb/mediatek,mt6360-tcpc.yaml         | 95 ++++++++++++++=
-++++++++
-> >  1 file changed, 95 insertions(+)
-> >  create mode 100644 Documentation/devicetree/bindings/usb/mediatek,mt63=
-60-tcpc.yaml
-> >
->
-> Reviewed-by: Rob Herring <robh@kernel.org>
-Thx.
+On Sun, Sep 06, 2020 at 12:06:12AM +0200, Christian Lamparter wrote:
+> This patch adds an DTSI-File that can be used by various device-tree
+> files for APM82181-based devices.
+> 
+> Some of the nodes (like UART, PCIE, SATA) are used by the uboot and
+> need to stick with the naming-conventions of the old times'.
+> I've added comments whenever this was the case.
+> 
+> Signed-off-by: Chris Blake <chrisrblake93@gmail.com>
+> Signed-off-by: Christian Lamparter <chunkeey@gmail.com>
+> ---
+> rfc v1 -> v2:
+> 	- removed PKA (this CryptoPU will need driver)
+> 	- stick with compatibles, nodes, ... from either
+> 	  Bluestone (APM82181) or Canyonlands (PPC460EX).
+> 	- add labels for NAND and NOR to help with access.
+> v2 -> v3:
+> 	- nodename of pciex@d.... was changed to pcie@d..
+> 	  due to upstream patch.
+> 	- use simple-bus on the ebc, opb and plb nodes
+> ---
+>  arch/powerpc/boot/dts/apm82181.dtsi | 466 ++++++++++++++++++++++++++++
+>  1 file changed, 466 insertions(+)
+>  create mode 100644 arch/powerpc/boot/dts/apm82181.dtsi
+> 
+> diff --git a/arch/powerpc/boot/dts/apm82181.dtsi b/arch/powerpc/boot/dts/apm82181.dtsi
+> new file mode 100644
+> index 000000000000..60283430978d
+> --- /dev/null
+> +++ b/arch/powerpc/boot/dts/apm82181.dtsi
+> @@ -0,0 +1,466 @@
+> +// SPDX-License-Identifier: GPL-2.0-or-later
+> +/*
+> + * Device Tree template include for various APM82181 boards.
+> + *
+> + * The SoC is an evolution of the PPC460EX predecessor.
+> + * This is why dt-nodes from the canyonlands EBC, OPB, USB,
+> + * DMA, SATA, EMAC, ... ended up in here.
+> + *
+> + * Copyright (c) 2010, Applied Micro Circuits Corporation
+> + * Author: Tirumala R Marri <tmarri@apm.com>,
+> + *	   Christian Lamparter <chunkeey@gmail.com>,
+> + *	   Chris Blake <chrisrblake93@gmail.com>
+> + */
+> +
+> +#include <dt-bindings/dma/dw-dmac.h>
+> +#include <dt-bindings/input/input.h>
+> +#include <dt-bindings/interrupt-controller/irq.h>
+> +#include <dt-bindings/gpio/gpio.h>
+> +
+> +/ {
+> +	#address-cells = <2>;
+> +	#size-cells = <1>;
+> +	dcr-parent = <&{/cpus/cpu@0}>;
+> +
+> +	aliases {
+> +		ethernet0 = &EMAC0; /* needed for BSP u-boot */
+> +	};
+> +
+> +	cpus {
+> +		#address-cells = <1>;
+> +		#size-cells = <0>;
+> +
+> +		CPU0: cpu@0 {
+> +			device_type = "cpu";
+> +			model = "PowerPC,apm82181";
+
+This doesn't match the existing bluestone dts file.
+
+Please separate any restructuring from changes.
