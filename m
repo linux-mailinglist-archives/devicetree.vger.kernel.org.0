@@ -2,59 +2,59 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from vger.kernel.org (vger.kernel.org [23.128.96.18])
-	by mail.lfdr.de (Postfix) with ESMTP id B1B1626A5AD
-	for <lists+devicetree@lfdr.de>; Tue, 15 Sep 2020 14:57:44 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTP id 1C31926A582
+	for <lists+devicetree@lfdr.de>; Tue, 15 Sep 2020 14:48:02 +0200 (CEST)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S1726210AbgIOM5e (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Tue, 15 Sep 2020 08:57:34 -0400
-Received: from lindbergh.monkeyblade.net ([23.128.96.19]:46296 "EHLO
+        id S1726508AbgIOMrt (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Tue, 15 Sep 2020 08:47:49 -0400
+Received: from lindbergh.monkeyblade.net ([23.128.96.19]:46498 "EHLO
         lindbergh.monkeyblade.net" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S1726495AbgIOMqD (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Tue, 15 Sep 2020 08:46:03 -0400
-Received: from mail-wr1-x444.google.com (mail-wr1-x444.google.com [IPv6:2a00:1450:4864:20::444])
-        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id B34D5C06178C
-        for <devicetree@vger.kernel.org>; Tue, 15 Sep 2020 05:46:00 -0700 (PDT)
-Received: by mail-wr1-x444.google.com with SMTP id x14so3126072wrl.12
+        with ESMTP id S1726477AbgIOMrT (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Tue, 15 Sep 2020 08:47:19 -0400
+Received: from mail-wr1-x42e.google.com (mail-wr1-x42e.google.com [IPv6:2a00:1450:4864:20::42e])
+        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 776F0C061351
+        for <devicetree@vger.kernel.org>; Tue, 15 Sep 2020 05:46:01 -0700 (PDT)
+Received: by mail-wr1-x42e.google.com with SMTP id x14so3126153wrl.12
         for <devicetree@vger.kernel.org>; Tue, 15 Sep 2020 05:46:00 -0700 (PDT)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
         d=baylibre-com.20150623.gappssmtp.com; s=20150623;
         h=from:to:cc:subject:date:message-id:in-reply-to:references
          :mime-version:content-transfer-encoding;
-        bh=lY1f6BPUzB++HrA2WRJHkdA8MgAHqDCMG4dVPqyy2dw=;
-        b=maBZ3Vb8DL4XTv3jqb6hlktNtUC+mPnj7ioFAFOv8/3UOIWFfzdKHlgzW2ssBnnwyh
-         6fmP4vBycJ71D5tbvixxeSaGBgX4MjlhCVFc9XsncbxLqnRPUaVbDiysZL5+a9ejIm+9
-         75VZJtf5AsstRbHXqKc4wATG17L5+BfQzRJzGKZyLw3RXp4MZgRZ9hqYNQ8RIYHYOOzK
-         Kh1aSVnWhxbDHFJTA+VTKphT/g3O/5Kt/t+9WPvEv6B0pcUtfIghsiJsx1IvVFn+bvI0
-         7FQDHoCY1S3UHFaQsQJ5krZzE0o+eCIgpPdbtdyY93rgmb/1Z164HA2DY5F05D/OPbud
-         ILJA==
+        bh=GVroTBa/RDLMNit62OYeyl1hwDTywX684KnqperhLJ0=;
+        b=KzcCsQcCjNO2iAn9TLGuYKccXqq76Nj0G9UJEj75DZeAVJEgvJT6Akrl2s/t8SN2jR
+         f+VpZ3IYj0dWNYEWjt3KYBSzy+3ss8FhI3NjAX9w7PAbvdI1K75ZPZTCdZ3N9EZTpRcC
+         9KyxKduWnNaYewl+WxNSAPi5bUdQAPrc7dH2IXz/+fOpTb3AJ92YfMuVMk3VtQtucnyc
+         WeF6Z35o9CcD+fsh2JtEmSrhXeediy1NniiqbJptEfq45VvvtOXHPVKjusNu4HMMoBXC
+         CHYpVKAW42yRxwxbyVUQvVGwzhaw46d2jKslG9h9oQI15IMindO2vTldycnwE1V4VQlW
+         dF8g==
 X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
         d=1e100.net; s=20161025;
         h=x-gm-message-state:from:to:cc:subject:date:message-id:in-reply-to
          :references:mime-version:content-transfer-encoding;
-        bh=lY1f6BPUzB++HrA2WRJHkdA8MgAHqDCMG4dVPqyy2dw=;
-        b=RgGDNrDtOdxGgbz96VgPF1ErFlyXt949zo1jlGPR2SDInA1qjS0G8+gRAloR5mgQjD
-         vFVl181wGxD//7UeRhxXru8uKuUdDdWaeaTifWLf+V7748z4XSS1D54Xb4WH1gontIZm
-         AO2SseLLiqRRG//T/U3zeD97T3DtaaRhj+fTMi7CuFGAxvCvm+rNYfdFgk1vmXv3At04
-         1NJptHwf3/mwWf/8PkMOBPAj+wk7495ZFnwjFcSHDXC5VGmk/e7bo3DnxY95Wvts+pl8
-         ar+c/smmcdbqKPNVNp8STEDyW92vTj3RfDoKN1aEj7PLswBCrlfl9RSN5IbWI/2uHnYx
-         JnLQ==
-X-Gm-Message-State: AOAM5330mKX8j4cMcmzsiQPi+YOmt7LDlqwNTsr5Tuf2tPNg5Y93dXZa
-        Q0yunqn0UWFWb3UDNcwIQmgjPQ==
-X-Google-Smtp-Source: ABdhPJy2eRTWQ+g6UmDXlmlM53iqWF2j0sszPGZYETQLzBt+ugwiGbmbWIu+s6aMP/ZkXhMe28KDEg==
-X-Received: by 2002:adf:a35d:: with SMTP id d29mr21433215wrb.307.1600173957934;
-        Tue, 15 Sep 2020 05:45:57 -0700 (PDT)
+        bh=GVroTBa/RDLMNit62OYeyl1hwDTywX684KnqperhLJ0=;
+        b=RPB3IYVvQQ5NRbEuaWCIaLSbX8bauawdYCZpb56ZFAl66DlJd+WsAfZC/31Q/cH24p
+         yI5Z0Y28CBfMuu+a3mt2bVe/4qu8+t/YoENL6nT0SwGNjG5FLR+ljFSem0JF3duKzTf9
+         mvWcadxk5gGBf9UkTUI7ccotlNTqAQwqr9KJUF0NAkTSGukaC0rPUNT5ctAWX6QIQVHG
+         11/OoiFFwuZRvHQFojfiTUMSNs2rj0NnMIOvx6tEc1jcrS95SWI8yS46u2U/0S1rUtZU
+         vyqjfzp20GKbwU6zsc0zLZYQ4cYMyRBRmL3NDW6PYGIuMpo/zIUYOLYvDcFoTero8SDv
+         40HA==
+X-Gm-Message-State: AOAM530aPXCrWxF1aG3hlo0wHQVorn9eaHN0s1i2U1GbehwfTcJvWSLi
+        EtbkkW+uI2owBOXuSWswzf95Ag==
+X-Google-Smtp-Source: ABdhPJysDu/Y8r8jEY0r1n/+h2yMo4tuRHu2mdOTiCUa1sJv4dyYJnuG+Dz8/5wjkBbEz3rOODjJgg==
+X-Received: by 2002:adf:e690:: with SMTP id r16mr21086562wrm.15.1600173959260;
+        Tue, 15 Sep 2020 05:45:59 -0700 (PDT)
 Received: from bender.baylibre.local (home.beaume.starnux.net. [82.236.8.43])
-        by smtp.gmail.com with ESMTPSA id q8sm26548589wrx.79.2020.09.15.05.45.56
+        by smtp.gmail.com with ESMTPSA id q8sm26548589wrx.79.2020.09.15.05.45.58
         (version=TLS1_3 cipher=TLS_AES_256_GCM_SHA384 bits=256/256);
-        Tue, 15 Sep 2020 05:45:57 -0700 (PDT)
+        Tue, 15 Sep 2020 05:45:58 -0700 (PDT)
 From:   Neil Armstrong <narmstrong@baylibre.com>
 To:     jbrunet@baylibre.com, devicetree@vger.kernel.org
 Cc:     linux-amlogic@lists.infradead.org, linux-clk@vger.kernel.org,
         linux-arm-kernel@lists.infradead.org, linux-kernel@vger.kernel.org,
         Neil Armstrong <narmstrong@baylibre.com>
-Subject: [PATCH v2 1/4] dt-bindings: clk: axg-clkc: add Video Clocks
-Date:   Tue, 15 Sep 2020 14:45:50 +0200
-Message-Id: <20200915124553.8056-2-narmstrong@baylibre.com>
+Subject: [PATCH v2 2/4] dt-bindings: clk: axg-clkc: add MIPI DSI Host clock binding
+Date:   Tue, 15 Sep 2020 14:45:51 +0200
+Message-Id: <20200915124553.8056-3-narmstrong@baylibre.com>
 X-Mailer: git-send-email 2.22.0
 In-Reply-To: <20200915124553.8056-1-narmstrong@baylibre.com>
 References: <20200915124553.8056-1-narmstrong@baylibre.com>
@@ -65,45 +65,22 @@ Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-Add clock IDs for the video clocks.
+Add the clock ID for the MIPI DSI Host clock.
 
 Signed-off-by: Neil Armstrong <narmstrong@baylibre.com>
 ---
- include/dt-bindings/clock/axg-clkc.h | 24 ++++++++++++++++++++++++
- 1 file changed, 24 insertions(+)
+ include/dt-bindings/clock/axg-clkc.h | 1 +
+ 1 file changed, 1 insertion(+)
 
 diff --git a/include/dt-bindings/clock/axg-clkc.h b/include/dt-bindings/clock/axg-clkc.h
-index fd1f938c38d1..281df3e0f131 100644
+index 281df3e0f131..e2749dbc74b8 100644
 --- a/include/dt-bindings/clock/axg-clkc.h
 +++ b/include/dt-bindings/clock/axg-clkc.h
-@@ -72,5 +72,29 @@
- #define CLKID_PCIE_CML_EN1			80
- #define CLKID_MIPI_ENABLE			81
- #define CLKID_GEN_CLK				84
-+#define CLKID_VPU_0_SEL				92
-+#define CLKID_VPU_0				93
-+#define CLKID_VPU_1_SEL				95
-+#define CLKID_VPU_1				96
-+#define CLKID_VPU				97
-+#define CLKID_VAPB_0_SEL			99
-+#define CLKID_VAPB_0				100
-+#define CLKID_VAPB_1_SEL			102
-+#define CLKID_VAPB_1				103
-+#define CLKID_VAPB_SEL				104
-+#define CLKID_VAPB				105
-+#define CLKID_VCLK				106
-+#define CLKID_VCLK2				107
-+#define CLKID_VCLK_DIV1				122
-+#define CLKID_VCLK_DIV2				123
-+#define CLKID_VCLK_DIV4				124
-+#define CLKID_VCLK_DIV6				125
-+#define CLKID_VCLK_DIV12			126
-+#define CLKID_VCLK2_DIV1			127
-+#define CLKID_VCLK2_DIV2			128
-+#define CLKID_VCLK2_DIV4			129
-+#define CLKID_VCLK2_DIV6			130
-+#define CLKID_VCLK2_DIV12			131
-+#define CLKID_CTS_ENCL				133
+@@ -96,5 +96,6 @@
+ #define CLKID_VCLK2_DIV6			130
+ #define CLKID_VCLK2_DIV12			131
+ #define CLKID_CTS_ENCL				133
++#define CLKID_VDIN_MEAS				136
  
  #endif /* __AXG_CLKC_H */
 -- 
