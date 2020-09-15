@@ -2,157 +2,119 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from vger.kernel.org (vger.kernel.org [23.128.96.18])
-	by mail.lfdr.de (Postfix) with ESMTP id E9EFA269DA9
-	for <lists+devicetree@lfdr.de>; Tue, 15 Sep 2020 07:02:18 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTP id 3F3EB269DAE
+	for <lists+devicetree@lfdr.de>; Tue, 15 Sep 2020 07:09:55 +0200 (CEST)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S1726132AbgIOFCQ (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Tue, 15 Sep 2020 01:02:16 -0400
-Received: from lindbergh.monkeyblade.net ([23.128.96.19]:59618 "EHLO
-        lindbergh.monkeyblade.net" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S1726091AbgIOFCN (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Tue, 15 Sep 2020 01:02:13 -0400
-Received: from mail-pl1-x644.google.com (mail-pl1-x644.google.com [IPv6:2607:f8b0:4864:20::644])
-        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id BADB4C06174A
-        for <devicetree@vger.kernel.org>; Mon, 14 Sep 2020 22:02:10 -0700 (PDT)
-Received: by mail-pl1-x644.google.com with SMTP id d19so702590pld.0
-        for <devicetree@vger.kernel.org>; Mon, 14 Sep 2020 22:02:10 -0700 (PDT)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=chromium.org; s=google;
-        h=date:from:to:cc:subject:message-id:references:mime-version
-         :content-disposition:in-reply-to;
-        bh=+rJl/SN8VzlsuUk4obnAMb9I4I9Qt/aMpgHDEq3gB1M=;
-        b=gtDU1fvGqkOJfvyOKMx+x/wtHT8ERcOW738rREoDVGyNeJfLN2yXBdwfHvNeNIFA08
-         PvjDjU6WaxYUkjB6+1I5fuEfhJhFfrqhiV1XALUJV/avTSeZuXt7RmVK3k2C/XTgqUML
-         rstxXBqaxTn5nCKcQr6xPOQWRVLQcRWJJW6/M=
-X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=1e100.net; s=20161025;
-        h=x-gm-message-state:date:from:to:cc:subject:message-id:references
-         :mime-version:content-disposition:in-reply-to;
-        bh=+rJl/SN8VzlsuUk4obnAMb9I4I9Qt/aMpgHDEq3gB1M=;
-        b=Wxo9p8jyJ0VsFKC2zIOk63+UY1+5kimzDnXpLBGI9Nmaxu835hdm798aM4pbakpozv
-         uZx0thx5DeBN1dbSY9h6KnLl1bsAWMH9xR3PBKdilKoribDnV8Zan4k2e4px4VO/Qgge
-         YXlIhKHin1dE6b+Q/lpuFAijrZ71JrE5Mr8PuhaGQPj5QXJOoiyltx3tB0JWAhcFF7nK
-         YUkD4J6M6UQB/i4OVlGO1aiK+y99uzSpCmByS+C2MDmWQC7irk/MC5+tngg12WCShfvS
-         C+AZC9pZULx8bb5kJy83I1gDHQuhA8qp30k4Am2IHvCG22wYiil4O83Z0x1dXBj/wCC5
-         IC9w==
-X-Gm-Message-State: AOAM533n60N5c8ldKTD3vnGMsVCff5cjmXsM+yvjMAihJO+JY3nlKbu7
-        p+WWvgc790GA+vWLoCyVsw4EoQ==
-X-Google-Smtp-Source: ABdhPJz6u4Q4o2XlOKbqIveLz5RbJqD2/bPya4po/sIJUgFm4LGMHmFEpKDyUa8AiZbh0y6LRzkz2Q==
-X-Received: by 2002:a17:90a:b292:: with SMTP id c18mr2329578pjr.223.1600146130093;
-        Mon, 14 Sep 2020 22:02:10 -0700 (PDT)
-Received: from localhost ([2620:15c:202:1:f693:9fff:fef4:e70a])
-        by smtp.gmail.com with ESMTPSA id j4sm12594305pfd.101.2020.09.14.22.02.08
-        (version=TLS1_3 cipher=TLS_AES_128_GCM_SHA256 bits=128/128);
-        Mon, 14 Sep 2020 22:02:09 -0700 (PDT)
-Date:   Mon, 14 Sep 2020 22:02:07 -0700
-From:   Matthias Kaehlcke <mka@chromium.org>
-To:     Peter Chen <peter.chen@nxp.com>
-Cc:     Greg Kroah-Hartman <gregkh@linuxfoundation.org>,
-        Rob Herring <robh+dt@kernel.org>,
-        Frank Rowand <frowand.list@gmail.com>,
-        Alan Stern <stern@rowland.harvard.edu>,
-        Krzysztof Kozlowski <krzk@kernel.org>,
-        Bastien Nocera <hadess@hadess.net>,
-        Ravi Chandra Sadineni <ravisadineni@chromium.org>,
-        "linux-usb@vger.kernel.org" <linux-usb@vger.kernel.org>,
-        Stephen Boyd <swboyd@chromium.org>,
-        "devicetree@vger.kernel.org" <devicetree@vger.kernel.org>,
-        Douglas Anderson <dianders@chromium.org>,
-        "linux-kernel@vger.kernel.org" <linux-kernel@vger.kernel.org>,
-        "Alexander A. Klimov" <grandmaster@al2klimov.de>,
-        Masahiro Yamada <masahiroy@kernel.org>
-Subject: Re: [PATCH 2/2] USB: misc: Add onboard_usb_hub driver
-Message-ID: <20200915050207.GF2022397@google.com>
-References: <20200914112716.1.I248292623d3d0f6a4f0c5bc58478ca3c0062b49a@changeid>
- <20200914112716.2.I7c9a1f1d6ced41dd8310e8a03da666a32364e790@changeid>
- <20200915025426.GA17450@b29397-desktop>
+        id S1726057AbgIOFJw (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Tue, 15 Sep 2020 01:09:52 -0400
+Received: from lelv0143.ext.ti.com ([198.47.23.248]:41662 "EHLO
+        lelv0143.ext.ti.com" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
+        with ESMTP id S1726046AbgIOFJv (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Tue, 15 Sep 2020 01:09:51 -0400
+Received: from lelv0266.itg.ti.com ([10.180.67.225])
+        by lelv0143.ext.ti.com (8.15.2/8.15.2) with ESMTP id 08F59lQ3013226;
+        Tue, 15 Sep 2020 00:09:47 -0500
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=ti.com;
+        s=ti-com-17Q1; t=1600146587;
+        bh=HwfbaH0xe5oWdY4rvWZ+PXjJY7pmFcdt3PfWKKfGobs=;
+        h=Subject:To:CC:References:From:Date:In-Reply-To;
+        b=kwy7UTfYhmElrYFMskyqg77saqK2cCicbb4stvqkiEbPHABiDk6vdiFqXXJqTguoR
+         mKOVQRpaZwNbdELCAozJu0dzR5zJVhFxcft7Fgr8LlGhQd8hyAnEyFTG/uzfLfOPNS
+         TOEz1+ATP6osiIar8GNCsjTqFxUor7ilghAwoMU0=
+Received: from DFLE105.ent.ti.com (dfle105.ent.ti.com [10.64.6.26])
+        by lelv0266.itg.ti.com (8.15.2/8.15.2) with ESMTPS id 08F59lkk111735
+        (version=TLSv1.2 cipher=AES256-GCM-SHA384 bits=256 verify=FAIL);
+        Tue, 15 Sep 2020 00:09:47 -0500
+Received: from DFLE101.ent.ti.com (10.64.6.22) by DFLE105.ent.ti.com
+ (10.64.6.26) with Microsoft SMTP Server (version=TLS1_2,
+ cipher=TLS_ECDHE_RSA_WITH_AES_128_CBC_SHA256_P256) id 15.1.1979.3; Tue, 15
+ Sep 2020 00:09:46 -0500
+Received: from fllv0039.itg.ti.com (10.64.41.19) by DFLE101.ent.ti.com
+ (10.64.6.22) with Microsoft SMTP Server (version=TLS1_2,
+ cipher=TLS_ECDHE_RSA_WITH_AES_128_CBC_SHA256_P256) id 15.1.1979.3 via
+ Frontend Transport; Tue, 15 Sep 2020 00:09:46 -0500
+Received: from [10.250.151.93] (ileax41-snat.itg.ti.com [10.172.224.153])
+        by fllv0039.itg.ti.com (8.15.2/8.15.2) with ESMTP id 08F59hUs102356;
+        Tue, 15 Sep 2020 00:09:44 -0500
+Subject: Re: [PATCH v4 4/5] arm64: dts: ti: Add support for J7200 SoC
+To:     Lokesh Vutla <lokeshvutla@ti.com>, Nishanth Menon <nm@ti.com>,
+        Tero Kristo <t-kristo@ti.com>, Rob Herring <robh+dt@kernel.org>
+CC:     Device Tree Mailing List <devicetree@vger.kernel.org>,
+        Grygorii Strashko <grygorii.strashko@ti.com>,
+        Sekhar Nori <nsekhar@ti.com>,
+        Kishon Vijay Abraham I <kishon@ti.com>,
+        Linux ARM Mailing List <linux-arm-kernel@lists.infradead.org>
+References: <20200914162231.2535-1-lokeshvutla@ti.com>
+ <20200914162231.2535-5-lokeshvutla@ti.com>
+From:   Vignesh Raghavendra <vigneshr@ti.com>
+Message-ID: <ca98b0c7-ba9b-f5de-bffa-67290f7e61a9@ti.com>
+Date:   Tue, 15 Sep 2020 10:39:42 +0530
+User-Agent: Mozilla/5.0 (X11; Linux x86_64; rv:68.0) Gecko/20100101
+ Thunderbird/68.10.0
 MIME-Version: 1.0
-Content-Type: text/plain; charset=utf-8
-Content-Disposition: inline
-In-Reply-To: <20200915025426.GA17450@b29397-desktop>
+In-Reply-To: <20200914162231.2535-5-lokeshvutla@ti.com>
+Content-Type: text/plain; charset="utf-8"
+Content-Language: en-US
+Content-Transfer-Encoding: 7bit
+X-EXCLAIMER-MD-CONFIG: e1e8a2fd-e40a-4ac6-ac9b-f7e9cc9ee180
 Sender: devicetree-owner@vger.kernel.org
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-Hi Peter,
+[...]
 
-thanks for your comments!
+On 9/14/20 9:52 PM, Lokesh Vutla wrote:
+> +
+> +	cbass_main: bus@100000 {
+> +		compatible = "simple-bus";
+> +		#address-cells = <2>;
+> +		#size-cells = <2>;
+> +		ranges = <0x00 0x00100000 0x00 0x00100000 0x00 0x00020000>, /* ctrl mmr */
+> +			 <0x00 0x00600000 0x00 0x00600000 0x00 0x00031100>, /* GPIO */
+> +			 <0x00 0x00a40000 0x00 0x00a40000 0x00 0x00000800>, /* timesync router */
+> +			 <0x00 0x01000000 0x00 0x01000000 0x00 0x0d000000>, /* Most peripherals */
+> +			 <0x00 0x30000000 0x00 0x30000000 0x00 0x0c400000>, /* MAIN NAVSS */
+> +			 <0x00 0x70000000 0x00 0x70000000 0x00 0x00800000>, /* MSMC RAM */
+> +			 <0x00 0x18000000 0x00 0x18000000 0x00 0x08000000>, /* PCIe1 DAT0 */
+> +			 <0x41 0x00000000 0x41 0x00000000 0x01 0x00000000>, /* PCIe1 DAT1 */
+> +
+> +			 /* MCUSS_WKUP Range */
+> +			 <0x00 0x28380000 0x00 0x28380000 0x00 0x03880000>,
+> +			 <0x00 0x40200000 0x00 0x40200000 0x00 0x00998400>,
+> +			 <0x00 0x40f00000 0x00 0x40f00000 0x00 0x00020000>,
+> +			 <0x00 0x41000000 0x00 0x41000000 0x00 0x00020000>,
+> +			 <0x00 0x41400000 0x00 0x41400000 0x00 0x00020000>,
+> +			 <0x00 0x41c00000 0x00 0x41c00000 0x00 0x00100000>,
+> +			 <0x00 0x42040000 0x00 0x42040000 0x00 0x03ac2400>,
+> +			 <0x00 0x45100000 0x00 0x45100000 0x00 0x00c24000>,
+> +			 <0x00 0x46000000 0x00 0x46000000 0x00 0x00200000>,
+> +			 <0x00 0x47000000 0x00 0x47000000 0x00 0x00068400>,
+> +			 <0x00 0x50000000 0x00 0x50000000 0x00 0x10000000>,
+> +			 <0x05 0x00000000 0x05 0x00000000 0x01 0x00000000>,
+> +			 <0x07 0x00000000 0x07 0x00000000 0x01 0x00000000>;
+> +
+> +		cbass_mcu_wakeup: bus@28380000 {
+> +			compatible = "simple-bus";
+> +			#address-cells = <2>;
+> +			#size-cells = <2>;
+> +			ranges = <0x00 0x28380000 0x00 0x28380000 0x00 0x03880000>, /* MCU NAVSS*/
+> +				 <0x00 0x40200000 0x00 0x40200000 0x00 0x00998400>, /* First peripheral window */
+> +				 <0x00 0x40f00000 0x00 0x40f00000 0x00 0x00020000>, /* CTRL_MMR0 */
+> +				 <0x00 0x41000000 0x00 0x41000000 0x00 0x00020000>, /* MCU R5F Core0 */
+> +				 <0x00 0x41400000 0x00 0x41400000 0x00 0x00020000>, /* MCU R5F Core1 */
+> +				 <0x00 0x41c00000 0x00 0x41c00000 0x00 0x00100000>, /* MCU SRAM */
+> +				 <0x00 0x42040000 0x00 0x42040000 0x00 0x03ac2400>, /* WKUP peripheral window */
+> +				 <0x00 0x45100000 0x00 0x45100000 0x00 0x00c24000>, /* MMRs, remaining NAVSS */
+> +				 <0x00 0x46000000 0x00 0x46000000 0x00 0x00200000>, /* CPSW */
+> +				 <0x00 0x47000000 0x00 0x47000000 0x00 0x00068400>, /* OSPI register space */
+> +				 <0x00 0x50000000 0x00 0x50000000 0x00 0x10000000>, /* FSS OSPI0/1 data region 0 */
+> +				 <0x05 0x00000000 0x05 0x00000000 0x01 0x00000000>, /* FSS OSPI0 data region 3 */
+> +				 <0x07 0x00000000 0x07 0x00000000 0x01 0x00000000>; /* FSS OSPI1 data region 3 */
+> +		};
+> +	};
+> +};
 
-On Tue, Sep 15, 2020 at 02:55:06AM +0000, Peter Chen wrote:
-> On 20-09-14 11:27:49, Matthias Kaehlcke wrote:
-> > The main issue this driver addresses is that a USB hub needs to be
-> > powered before it can be discovered. For onboard hubs this is often
-> > solved by supplying the hub with an 'always-on' regulator, which is
-> > kind of a hack. Some onboard hubs may require further initialization
-> > steps, like changing the state of a GPIO or enabling a clock, which
-> > requires further hacks. This driver creates a platform device
-> > representing the hub which performs the necessary initialization.
-> > Currently it only supports switching on a single regulator, support
-> > for multiple regulators or other actions can be added as needed.
-> > Different initialization sequences can be supported based on the
-> > compatible string.
-> > 
-> > Besides performing the initialization the driver can be configured
-> > to power the hub off during system suspend. This can help to extend
-> > battery life on battery powered devices, which have no requirements
-> > to keep the hub powered during suspend. The driver can also be
-> > configured to leave the hub powered when a wakeup capable USB device
-> > is connected when suspending, and keeping it powered otherwise.
-> > 
-> > Technically the driver consists of two drivers, the platform driver
-> > described above and a very thin USB driver that subclasses the
-> > generic hub driver. The purpose of this driver is to provide the
-> > platform driver with the USB devices corresponding to the hub(s)
-> > (a hub controller may provide multiple 'logical' hubs, e.g. one
-> > to support USB 2.0 and another for USB 3.x).
-> 
-> I agree with Alan, you may change this driver to apply for generic
-> onboard USB devices.
+OSPI ranges look good to me... Thanks for adding them!
 
-I interpreted that Alan only corrected my terminology and didn't
-suggest to extend the driver to generic onboard devices. Actually I
-like that we now have a abstraction for a specific physical 'device',
-rather than the initial usb_hub_pwr/usb_hub_psupply split, which seemed
-a bit contrived (thanks Doug!).
-
-> > +static int onboard_hub_probe(struct platform_device *pdev)
-> > +{
-> > +	struct device *dev = &pdev->dev;
-> > +	struct onboard_hub *hub;
-> > +
-> > +	hub = devm_kzalloc(dev, sizeof(*hub), GFP_KERNEL);
-> > +	if (!hub)
-> > +		return -ENOMEM;
-> > +
-> > +	hub->vdd = devm_regulator_get(dev, "vdd");
-> > +	if (IS_ERR(hub->vdd))
-> > +		return PTR_ERR(hub->vdd);
-> > +
-> > +	hub->dev = dev;
-> > +	mutex_init(&hub->lock);
-> > +	INIT_LIST_HEAD(&hub->udev_list);
-> > +
-> > +	hub->cfg.power_off_in_suspend = of_property_read_bool(dev->of_node, "power-off-in-suspend");
-> > +	hub->cfg.wakeup_source = of_property_read_bool(dev->of_node, "wakeup-source");
-> 
-> Do you really need these two properties? If the device (and its children
-> if existed) has wakeup enabled, you keep power in suspend, otherwise,
-> you could close it, any exceptions?
-
-That would work for my use case, but I'm not sure it's a universally
-good configuration.
-
-I don't have a specific USB device in mind, but you could have a device
-that shouldn't lose it's context during suspend or keep operating
-autonomously (e.g. a sensor with a large buffer collecting samples). Not
-sure if something like this exists in the real though.
-
-I'm not an expert, but it seems there are USB controllers with wakeup
-support which is always enabled. A board with such a controller then
-couldn't have a policy to power down the hub regardless of wakeup
-capable devices being connected.
-
-Thanks
-
-Matthias
+[...]
