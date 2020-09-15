@@ -2,232 +2,78 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from vger.kernel.org (vger.kernel.org [23.128.96.18])
-	by mail.lfdr.de (Postfix) with ESMTP id D7654269AAF
-	for <lists+devicetree@lfdr.de>; Tue, 15 Sep 2020 02:50:50 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTP id 9647F269AC5
+	for <lists+devicetree@lfdr.de>; Tue, 15 Sep 2020 02:55:02 +0200 (CEST)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S1726094AbgIOAus (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Mon, 14 Sep 2020 20:50:48 -0400
-Received: from mail-io1-f68.google.com ([209.85.166.68]:34559 "EHLO
-        mail-io1-f68.google.com" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S1726085AbgIOAum (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Mon, 14 Sep 2020 20:50:42 -0400
-Received: by mail-io1-f68.google.com with SMTP id m17so2247512ioo.1;
-        Mon, 14 Sep 2020 17:50:41 -0700 (PDT)
-X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=1e100.net; s=20161025;
-        h=x-gm-message-state:date:from:to:cc:subject:message-id:references
-         :mime-version:content-disposition:content-transfer-encoding
-         :in-reply-to;
-        bh=numAVrZHb/8qHZ8ZB/q47ZsqxyQJj3mtvFr+S2iyq1s=;
-        b=ARCOKiCUBscvfFvDQW7E5C3sAcZM2KgjH2EktKnfNWdwu2scLAmpcXAxTIg+IEBN3C
-         8K33S9Z+1+H9IctOEOeuZdpSF/Jk2F9RBERiFKsl1I6+0pSqzpSKnZsxZvmWxIGSvZyJ
-         Iey3i4kDaAhMnP+L9J5cFbp4eKj42gPwGW77FhHpCEDZkaq6zGG7dA7JW6wE96/DRqr+
-         B2Wq6l6JGHDCH5DUk+PwCJ9nYQS+htUsI3p0gCheuDWX1xFue6DkcbEoSPfCPD9VLA8M
-         vnV1lfLxOrnZHpZgOKJPN5hFdJpPRoc0Ng1/8EwZAzKn6QX7IfCkUc1570AUDhwvOdGy
-         9f9g==
-X-Gm-Message-State: AOAM533fEsMTlQ/Tn6sQVOMQ2/47wHlWAgRD3D809oER51B6IcamUnmY
-        4fjlwBslut41nr8+09GtfBYXQFi58EG6
-X-Google-Smtp-Source: ABdhPJzkrOQ/Tj7bU50E5bkevBB2M2BB4OOXNmNinYGgnhVgF/+j7fw6h1GCd5QDyj11FlbJwqaGpw==
-X-Received: by 2002:a02:a305:: with SMTP id q5mr15660693jai.121.1600131041000;
-        Mon, 14 Sep 2020 17:50:41 -0700 (PDT)
-Received: from xps15 ([64.188.179.253])
-        by smtp.gmail.com with ESMTPSA id s85sm8227021ilk.35.2020.09.14.17.50.36
-        (version=TLS1_3 cipher=TLS_AES_256_GCM_SHA384 bits=256/256);
-        Mon, 14 Sep 2020 17:50:40 -0700 (PDT)
-Received: (nullmailer pid 604109 invoked by uid 1000);
-        Tue, 15 Sep 2020 00:50:34 -0000
-Date:   Mon, 14 Sep 2020 18:50:34 -0600
-From:   Rob Herring <robh@kernel.org>
-To:     Jonathan =?iso-8859-1?Q?Neusch=E4fer?= <j.neuschaefer@gmx.net>
-Cc:     linux-kernel@vger.kernel.org, Lee Jones <lee.jones@linaro.org>,
-        Thierry Reding <thierry.reding@gmail.com>,
-        =?UTF-8?Q?Uwe_Kleine=2DK=C3=B6nig?= 
-        <u.kleine-koenig@pengutronix.de>,
-        Alessandro Zummo <a.zummo@towertech.it>,
-        Alexandre Belloni <alexandre.belloni@bootlin.com>,
-        Shawn Guo <shawnguo@kernel.org>,
-        Sascha Hauer <s.hauer@pengutronix.de>,
-        Pengutronix Kernel Team <kernel@pengutronix.de>,
-        Fabio Estevam <festevam@gmail.com>,
-        NXP Linux Team <linux-imx@nxp.com>,
-        Sam Ravnborg <sam@ravnborg.org>,
-        Linus Walleij <linus.walleij@linaro.org>,
-        Heiko Stuebner <heiko.stuebner@theobroma-systems.com>,
-        Stephan Gerhold <stephan@gerhold.net>,
-        Lubomir Rintel <lkundrak@v3.sk>,
-        Mark Brown <broonie@kernel.org>, allen <allen.chen@ite.com.tw>,
-        Mauro Carvalho Chehab <mchehab+huawei@kernel.org>,
-        "David S. Miller" <davem@davemloft.net>,
-        devicetree@vger.kernel.org, linux-pwm@vger.kernel.org,
-        linux-rtc@vger.kernel.org, linux-arm-kernel@lists.infradead.org,
-        Heiko Stuebner <heiko@sntech.de>,
-        Josua Mayer <josua.mayer@jm0.eu>,
-        Andreas Kemnade <andreas@kemnade.info>,
-        Arnd Bergmann <arnd@arndb.de>, Daniel Palmer <daniel@0x0f.com>
-Subject: Re: [PATCH v2 02/10] dt-bindings: mfd: Add binding for Netronix's
- embedded controller
-Message-ID: <20200915005034.GA593718@bogus>
-References: <20200905133230.1014581-1-j.neuschaefer@gmx.net>
- <20200905133230.1014581-3-j.neuschaefer@gmx.net>
+        id S1726074AbgIOAzB (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Mon, 14 Sep 2020 20:55:01 -0400
+Received: from lindbergh.monkeyblade.net ([23.128.96.19]:50016 "EHLO
+        lindbergh.monkeyblade.net" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
+        with ESMTP id S1726045AbgIOAyz (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Mon, 14 Sep 2020 20:54:55 -0400
+Received: from mail.nic.cz (lists.nic.cz [IPv6:2001:1488:800:400::400])
+        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 35664C06174A;
+        Mon, 14 Sep 2020 17:54:53 -0700 (PDT)
+Received: from dellmb.labs.office.nic.cz (unknown [IPv6:2001:1488:fffe:6:cac7:3539:7f1f:463])
+        by mail.nic.cz (Postfix) with ESMTP id 61231140AAB;
+        Tue, 15 Sep 2020 02:54:51 +0200 (CEST)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=nic.cz; s=default;
+        t=1600131291; bh=MQum99TWcQMrKlutmkZwqmCQqTf8b/pDL4qSj7Kc4FE=;
+        h=From:To:Date;
+        b=W9rYftJZmVkosMqwwYHD6p0R28CNfSqsFtGkNqPMrI3PIbh8NsdTIPA81PE8QrvmZ
+         qOSwByCoDaLYq8+MIfXcxtEXl7K4INo0k54mnJgZxdr8CTKXWOETtMD6pdD4vhf0xz
+         xRvERZt94kI3GxUNJIJux+A32971kEixYMfh4Qhg=
+From:   =?UTF-8?q?Marek=20Beh=C3=BAn?= <marek.behun@nic.cz>
+To:     linux-leds@vger.kernel.org
+Cc:     =?UTF-8?q?Marek=20Beh=C3=BAn?= <marek.behun@nic.cz>,
+        Rob Herring <robh+dt@kernel.org>, devicetree@vger.kernel.org,
+        Pavel Machek <pavel@ucw.cz>
+Subject: [PATCH leds] dt-bindings: leds: cznic,turris-omnia-leds: fix error in binding
+Date:   Tue, 15 Sep 2020 02:54:26 +0200
+Message-Id: <20200915005426.15957-1-marek.behun@nic.cz>
+X-Mailer: git-send-email 2.26.2
 MIME-Version: 1.0
-Content-Type: text/plain; charset=iso-8859-1
-Content-Disposition: inline
+Content-Type: text/plain; charset=UTF-8
 Content-Transfer-Encoding: 8bit
-In-Reply-To: <20200905133230.1014581-3-j.neuschaefer@gmx.net>
+X-Spam-Checker-Version: SpamAssassin 3.4.2 (2018-09-13) on mail.nic.cz
+X-Spam-Status: No, score=0.00
+X-Spamd-Bar: /
+X-Virus-Scanned: clamav-milter 0.102.2 at mail
+X-Virus-Status: Clean
 Sender: devicetree-owner@vger.kernel.org
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-On Sat, Sep 05, 2020 at 03:32:22PM +0200, Jonathan Neusch‰fer wrote:
-> This EC is found in e-book readers of multiple brands (e.g. Kobo,
-> Tolino), and is typically implemented as a TI MSP430 microcontroller.
-> 
-> It controls different functions of the system, such as power on/off,
-> RTC, PWM for the backlight. The exact functionality provided can vary
-> between boards.
-> 
-> Signed-off-by: Jonathan Neusch‰fer <j.neuschaefer@gmx.net>
-> ---
-> v2:
-> - Add the plaintext DT binding for comparison
-> 
-> 
-> For reference, here is the binding in text form:
-> 
->   Netronix Embedded Controller
-> 
->   This EC is found in e-book readers of multiple brands (e.g. Kobo, Tolino), and
->   is typically implemented as a TI MSP430 microcontroller.
-> 
-> 
->   Required properties:
->   - compatible: should be "netronix,ntxec"
->   - reg: The I2C address of the EC
-> 
->   Optional properties:
->   - system-power-controller:
->     See Documentation/devicetree/bindings/power/power-controller.txt
->   - interrupts or interrupts-extended
->   - interrupt-controller
->   - #interrupt-cells: Should be 1
-> 
->   Optional subnodes:
-> 
->   Sub-nodes are identified by their compatible string.
-> 
->    compatible string              | description
->   --------------------------------|--------------------------------------
->    netronix,ntxec-pwm             | PWM (used for backlight)
->    netronix,ntxec-rtc             | real time clock
-> 
-> 
->   Example:
-> 
->   &i2c3 {
->   	pinctrl-names = "default";
->   	pinctrl-0 = <&pinctrl_i2c3>;
->   	status = "okay";
-> 
->   	ec: embedded-controller@43 {
->   		pinctrl-names = "default";
->   		pinctrl-0 = <&pinctrl_ntxec>;
-> 
->   		compatible = "netronix,ntxec";
->   		reg = <0x43>;
->   		system-power-controller;
->   		interrupt-parent = <&gpio4>;
->   		interrupts = <11 IRQ_TYPE_EDGE_FALLING>;
->   		interrupt-controller;
->   		#interrupt-cells = <1>;
-> 
->   		pwm {
->   			compatible = "netronix,ntxec-pwm";
->   			#pwm-cells = <2>;
->   		};
-> 
->   		rtc {
->   			compatible = "netronix,ntxec-rtc";
->   			interrupts-extended = <&ec 15>;
->   			interrupt-names = "alarm";
->   		};
->   	};
->   };
-> ---
->  .../bindings/mfd/netronix,ntxec.yaml          | 57 +++++++++++++++++++
->  1 file changed, 57 insertions(+)
->  create mode 100644 Documentation/devicetree/bindings/mfd/netronix,ntxec.yaml
-> 
-> diff --git a/Documentation/devicetree/bindings/mfd/netronix,ntxec.yaml b/Documentation/devicetree/bindings/mfd/netronix,ntxec.yaml
-> new file mode 100644
-> index 0000000000000..596df460f98eb
-> --- /dev/null
-> +++ b/Documentation/devicetree/bindings/mfd/netronix,ntxec.yaml
-> @@ -0,0 +1,57 @@
-> +# SPDX-License-Identifier: (GPL-2.0-only OR BSD-2-Clause)
-> +%YAML 1.2
-> +---
-> +$id: http://devicetree.org/schemas/mfd/netronix,ntxec.yaml#
-> +$schema: http://devicetree.org/meta-schemas/core.yaml#
-> +
-> +title: Netronix Embedded Controller
-> +
-> +maintainers:
-> +  - Jonathan Neusch‰fer <j.neuschaefer@gmx.net>
-> +
-> +description: |
-> +  This EC is found in e-book readers of multiple brands (e.g. Kobo, Tolino), and
-> +  is typically implemented as a TI MSP430 microcontroller.
-> +
-> +
-> +properties:
-> +  compatible:
-> +    const: netronix,ntxec
-> +
-> +  reg:
-> +    items:
-> +      - description: The I2C address of the EC
-> +
-> +  system-power-controller:
-> +    type: boolean
-> +    description: See Documentation/devicetree/bindings/power/power-controller.txt
-> +
-> +  interrupts:
-> +    minItems: 1
-> +    description:
-> +      The EC can signal interrupts via a GPIO line
-> +
-> +required:
-> +  - compatible
-> +  - reg
+There is a bug in the device tree binding for cznic,turris-omnia-leds
+which causes make dt_binding_check to complain.
 
-additionalProperties: false
+The reason is that the multi-led property binding's regular expression
+does not contain the `@` character, while the example nodes do.
 
-> +
-> +examples:
-> +  - |
-> +    #include <dt-bindings/interrupt-controller/irq.h>
-> +    i2c {
-> +            #address-cells = <1>;
-> +            #size-cells = <0>;
-> +
-> +            ec: embedded-controller@43 {
-> +                    pinctrl-names = "default";
-> +                    pinctrl-0 = <&pinctrl_ntxec>;
-> +
-> +                    compatible = "netronix,ntxec";
-> +                    reg = <0x43>;
-> +                    system-power-controller;
-> +                    interrupt-parent = <&gpio4>;
-> +                    interrupts = <11 IRQ_TYPE_EDGE_FALLING>;
+Fix this, and also allow for longer address in property name.
 
-> +                    interrupt-controller;
-> +                    #interrupt-cells = <1>;
+Signed-off-by: Marek Beh√∫n <marek.behun@nic.cz>
+Cc: Rob Herring <robh+dt@kernel.org>
+Cc: devicetree@vger.kernel.org
+Cc: Pavel Machek <pavel@ucw.cz>
+---
+ .../devicetree/bindings/leds/cznic,turris-omnia-leds.yaml       | 2 +-
+ 1 file changed, 1 insertion(+), 1 deletion(-)
 
-These need to be documented too.
+diff --git a/Documentation/devicetree/bindings/leds/cznic,turris-omnia-leds.yaml b/Documentation/devicetree/bindings/leds/cznic,turris-omnia-leds.yaml
+index 24ad1446445ea..486ab27d75f2f 100644
+--- a/Documentation/devicetree/bindings/leds/cznic,turris-omnia-leds.yaml
++++ b/Documentation/devicetree/bindings/leds/cznic,turris-omnia-leds.yaml
+@@ -30,7 +30,7 @@ properties:
+     const: 0
+ 
+ patternProperties:
+-  "^multi-led[0-9a-f]$":
++  "^multi-led@[0-9a-f]+$":
+     type: object
+     allOf:
+       - $ref: leds-class-multicolor.yaml#
+-- 
+2.26.2
 
-> +            };
-> +    };
-> --
-> 2.28.0
-> 
