@@ -2,95 +2,127 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from vger.kernel.org (vger.kernel.org [23.128.96.18])
-	by mail.lfdr.de (Postfix) with ESMTP id EF4C226B2E7
-	for <lists+devicetree@lfdr.de>; Wed, 16 Sep 2020 00:55:38 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTP id ADD4B26B2E9
+	for <lists+devicetree@lfdr.de>; Wed, 16 Sep 2020 00:55:42 +0200 (CEST)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S1726500AbgIOWzg (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Tue, 15 Sep 2020 18:55:36 -0400
-Received: from lindbergh.monkeyblade.net ([23.128.96.19]:42878 "EHLO
-        lindbergh.monkeyblade.net" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S1727450AbgIOPY6 (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Tue, 15 Sep 2020 11:24:58 -0400
-Received: from mail-wr1-x443.google.com (mail-wr1-x443.google.com [IPv6:2a00:1450:4864:20::443])
-        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 5B2ADC06178B
-        for <devicetree@vger.kernel.org>; Tue, 15 Sep 2020 08:24:43 -0700 (PDT)
-Received: by mail-wr1-x443.google.com with SMTP id a17so3781497wrn.6
-        for <devicetree@vger.kernel.org>; Tue, 15 Sep 2020 08:24:43 -0700 (PDT)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=baylibre-com.20150623.gappssmtp.com; s=20150623;
-        h=from:to:cc:subject:date:message-id:in-reply-to:references
-         :mime-version:content-transfer-encoding;
-        bh=9zNnAQ2MkHt7BqXHGEYF86S9SXA/6MmyU+PgjnLUZE8=;
-        b=xWTKaYx6VbfPz+qYm5gEn7+7VTFsbHwYSGr5nKz6BsWbkc8ps12ulnqThuBlKniQE7
-         gjHHg4hmV5luZGDXtL50DXjU+wug6jtuOWW+k5m+HKRPbb+NfCg+re9m5sCozrB/k9c5
-         ow53zqmIaehL8m+GiWBJVNdHeh/IWOMzHnf+eWH967qz/Y7cf6n5OMiSvU3O/fvqoQbb
-         G/CrXqvOPA3WDn3cpzxjxZ+jXWdyI8V6gDSdnVxTJUOpCI2OoPY3EK3HT/vls5MIM4ku
-         LU9rSgcfUmNZYJIN5TJTBUDNjTvqCVSfK8EFt8WkjI8GsxJ8HhgwcNFBtNA83JCOaXi3
-         Hstg==
+        id S1727450AbgIOWzh (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Tue, 15 Sep 2020 18:55:37 -0400
+Received: from mail-io1-f66.google.com ([209.85.166.66]:36338 "EHLO
+        mail-io1-f66.google.com" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
+        with ESMTP id S1727401AbgIOPYm (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Tue, 15 Sep 2020 11:24:42 -0400
+Received: by mail-io1-f66.google.com with SMTP id d190so4523138iof.3;
+        Tue, 15 Sep 2020 08:24:38 -0700 (PDT)
 X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
         d=1e100.net; s=20161025;
-        h=x-gm-message-state:from:to:cc:subject:date:message-id:in-reply-to
-         :references:mime-version:content-transfer-encoding;
-        bh=9zNnAQ2MkHt7BqXHGEYF86S9SXA/6MmyU+PgjnLUZE8=;
-        b=NBMp07ElmRU69DDxI0f+66HtXooXGFSah02wAjd6lBD9GOwEEOtZ1xqhfX2s6I8WmC
-         ZROl18j584uhNWS++VaYeHGnkey6oqBjGSksM1yUwFI3Aa7vWBbmEza0Mq9O10MVij9L
-         Go3U/AdNLgC3f+6kLYy/3YJAVrBDZwwe9KfbMMUXxbFpDJ94mWBcFxJ3ldFa1pphH9De
-         urz+OuDnM6wngwPFhz9dDQXHhYj7MjyyE4X4JAhNjoG0Zq12PyxjSrj+tlDDbtEJbX3h
-         +bxeE24f+Mrr4sMdoFLGETio78V9KSvEnJ6SpT2nhAkWdheMu787VbtgD0TfFEJkUvu/
-         dH0w==
-X-Gm-Message-State: AOAM530EmR03yYXdYSFZgwpJgqvn5yLnu8eMiDLeWFt9cUWSQX2ahDuW
-        psE4+BDYWNMVgf/hS7SgkQx+jQ==
-X-Google-Smtp-Source: ABdhPJy7gz3lErEQQ2j7aNm6vcpF8nabCqJUs/aUyAH2cTBwZcv7mWvyCHSt7Uc17yTTbhIsmttrnQ==
-X-Received: by 2002:a5d:5261:: with SMTP id l1mr21709707wrc.193.1600183481866;
-        Tue, 15 Sep 2020 08:24:41 -0700 (PDT)
-Received: from bender.baylibre.local (home.beaume.starnux.net. [82.236.8.43])
-        by smtp.gmail.com with ESMTPSA id 189sm25984960wmb.3.2020.09.15.08.24.40
+        h=x-gm-message-state:date:from:to:cc:subject:message-id:references
+         :mime-version:content-disposition:in-reply-to;
+        bh=TQwbsrSpPsblvvewNTAvygU6LX9JkoPG3XT5duFS2B8=;
+        b=pMa5QV6rMAf2UdR/IH7HVyXxjxlV9j/Ul8p4ApSo4Kx8qYkfv1XQ8mo3567ojZEszO
+         5ozjTyPxqBj5MSdOqddKPzohM6EW0AEiPY5yWuUG0K30hx9hGSixEpmZEsqk/Jgjsp11
+         5Amn2G9hyTLVcbf0jCq5nFFEE6eN4PNB+rgD0vfRV+evLEV6OeR+I/ywK8lGeoRsSoD8
+         dM5tAXYfC35vmXY7eXaqSD1qp9ZMe95bsyUNJXa6MHrCoMYuos5R1/BOnsb1rsXl50/1
+         UA7MASY7RDgFcjKXo6BRHTN1OitNgM6/MwbfEJPIe6sltOOYpLmE6jIbTWp/1lhvDJT9
+         jXbA==
+X-Gm-Message-State: AOAM5332WGfC6JA3bWEU4g8v9YIudeuQQxFSYiM0NVDlF0f6bsKsjb+R
+        9eTmsaaKRVDkfdhOIjNnQA==
+X-Google-Smtp-Source: ABdhPJyqKFyTIVHyJqHIrEsdIMGqq15HhgpOa6nWJTDsqIgRo7dmwPY2ATDZsR/bup7/2N61XSAUZw==
+X-Received: by 2002:a05:6602:2c4d:: with SMTP id x13mr10837671iov.94.1600183478508;
+        Tue, 15 Sep 2020 08:24:38 -0700 (PDT)
+Received: from xps15 ([64.188.179.253])
+        by smtp.gmail.com with ESMTPSA id i9sm4609484ils.34.2020.09.15.08.24.36
         (version=TLS1_3 cipher=TLS_AES_256_GCM_SHA384 bits=256/256);
-        Tue, 15 Sep 2020 08:24:40 -0700 (PDT)
-From:   Neil Armstrong <narmstrong@baylibre.com>
-To:     khilman@baylibre.com, devicetree@vger.kernel.org
-Cc:     Christian Hewitt <christianshewitt@gmail.com>,
-        tobetter@hardkernel.com, linux-arm-kernel@lists.infradead.org,
-        linux-amlogic@lists.infradead.org, linux-kernel@vger.kernel.org,
-        Rob Herring <robh@kernel.org>,
-        Neil Armstrong <narmstrong@baylibre.com>
-Subject: [PATCH v2 2/3] dt-bindings: arm: amlogic: add support for the ODROID-N2+
-Date:   Tue, 15 Sep 2020 17:24:31 +0200
-Message-Id: <20200915152432.30616-3-narmstrong@baylibre.com>
-X-Mailer: git-send-email 2.22.0
-In-Reply-To: <20200915152432.30616-1-narmstrong@baylibre.com>
-References: <20200915152432.30616-1-narmstrong@baylibre.com>
+        Tue, 15 Sep 2020 08:24:37 -0700 (PDT)
+Received: (nullmailer pid 1973925 invoked by uid 1000);
+        Tue, 15 Sep 2020 15:24:35 -0000
+Date:   Tue, 15 Sep 2020 09:24:35 -0600
+From:   Rob Herring <robh@kernel.org>
+To:     Yash Shah <yash.shah@sifive.com>
+Cc:     palmer@dabbelt.com, paul.walmsley@sifive.com, bp@alien8.de,
+        mchehab@kernel.org, tony.luck@intel.com, aou@eecs.berkeley.edu,
+        james.morse@arm.com, rrichter@marvell.com,
+        devicetree@vger.kernel.org, linux-riscv@lists.infradead.org,
+        linux-kernel@vger.kernel.org, linux-edac@vger.kernel.org,
+        sachin.ghadi@sifive.com
+Subject: Re: [PATCH v2 1/3] dt-bindings: riscv: Add DT documentation for DDR
+ Controller in SiFive SoCs
+Message-ID: <20200915152435.GB1940827@bogus>
+References: <1599457679-8947-1-git-send-email-yash.shah@sifive.com>
+ <1599457679-8947-2-git-send-email-yash.shah@sifive.com>
 MIME-Version: 1.0
-Content-Transfer-Encoding: 8bit
+Content-Type: text/plain; charset=us-ascii
+Content-Disposition: inline
+In-Reply-To: <1599457679-8947-2-git-send-email-yash.shah@sifive.com>
 Sender: devicetree-owner@vger.kernel.org
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-From: Christian Hewitt <christianshewitt@gmail.com>
+On Mon, Sep 07, 2020 at 11:17:57AM +0530, Yash Shah wrote:
+> Add device tree bindings for SiFive FU540 DDR controller driver
+> 
+> Signed-off-by: Yash Shah <yash.shah@sifive.com>
+> Reviewed-by: Palmer Dabbelt <palmerdabbelt@google.com>
+> Acked-by: Palmer Dabbelt <palmerdabbelt@google.com>
+> ---
+>  .../devicetree/bindings/riscv/sifive-ddr.yaml      | 41 ++++++++++++++++++++++
 
-HardKernel ODROID-N2+ uses a revised Amlogic S922X v2 chip that supports
-higher cpu clock speeds than the original ODROID-N2.
+Bindings are organized by function, not vendor/arch generally. This goes 
+in bindings/memory-controllers/.
 
-Signed-off-by: Christian Hewitt <christianshewitt@gmail.com>
-Acked-by: Rob Herring <robh@kernel.org>
-Signed-off-by: Neil Armstrong <narmstrong@baylibre.com>
----
- Documentation/devicetree/bindings/arm/amlogic.yaml | 1 +
- 1 file changed, 1 insertion(+)
+>  1 file changed, 41 insertions(+)
+>  create mode 100644 Documentation/devicetree/bindings/riscv/sifive-ddr.yaml
+> 
+> diff --git a/Documentation/devicetree/bindings/riscv/sifive-ddr.yaml b/Documentation/devicetree/bindings/riscv/sifive-ddr.yaml
+> new file mode 100644
+> index 0000000..0288119
+> --- /dev/null
+> +++ b/Documentation/devicetree/bindings/riscv/sifive-ddr.yaml
+> @@ -0,0 +1,41 @@
+> +# SPDX-License-Identifier: (GPL-2.0-only OR BSD-2-Clause)
+> +%YAML 1.2
+> +---
+> +$id: http://devicetree.org/schemas/riscv/sifive-ddr.yaml#
+> +$schema: http://devicetree.org/meta-schemas/core.yaml#
+> +
+> +title: SiFive DDR memory controller binding
+> +
+> +description: |
+> +  The Sifive DDR controller driver is used to manage the Cadence DDR
+> +  controller present in SiFive FU540-C000 SoC. Currently the driver is
+> +  used to manage EDAC feature of the DDR controller.
 
-diff --git a/Documentation/devicetree/bindings/arm/amlogic.yaml b/Documentation/devicetree/bindings/arm/amlogic.yaml
-index 5eba9f48823e..12ba8d074370 100644
---- a/Documentation/devicetree/bindings/arm/amlogic.yaml
-+++ b/Documentation/devicetree/bindings/arm/amlogic.yaml
-@@ -153,6 +153,7 @@ properties:
-               - azw,gtking
-               - azw,gtking-pro
-               - hardkernel,odroid-n2
-+              - hardkernel,odroid-n2-plus
-               - khadas,vim3
-               - ugoos,am6
-           - const: amlogic,s922x
--- 
-2.22.0
+Bindings describe h/w not drivers. What a driver supports is irrelevant.
 
+> +
+> +maintainers:
+> +  - Yash Shah <yash.shah@sifive.com>
+> +
+> +properties:
+> +  compatible:
+> +    enum:
+> +      - sifive,fu540-c000-ddr
+> +
+> +  reg:
+> +    maxItems: 1
+> +
+> +  interrupts:
+> +    maxItems: 1
+> +
+> +required:
+> +  - compatible
+> +  - reg
+> +  - interrupts
+> +
+> +additionalProperties: false
+> +
+> +examples:
+> +  - |
+> +    memory-controller@100b0000 {
+> +        compatible = "sifive,fu540-c000-ddr";
+> +        reg = <0x100b0000 0x4000>;
+> +        interrupts = <31>;
+> +    };
+> -- 
+> 2.7.4
+> 
