@@ -2,93 +2,111 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from vger.kernel.org (vger.kernel.org [23.128.96.18])
-	by mail.lfdr.de (Postfix) with ESMTP id D93F026AE39
-	for <lists+devicetree@lfdr.de>; Tue, 15 Sep 2020 21:56:45 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTP id 9D95626AE3E
+	for <lists+devicetree@lfdr.de>; Tue, 15 Sep 2020 21:57:25 +0200 (CEST)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S1727721AbgIOT4n (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Tue, 15 Sep 2020 15:56:43 -0400
-Received: from lindbergh.monkeyblade.net ([23.128.96.19]:57482 "EHLO
-        lindbergh.monkeyblade.net" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S1727810AbgIOT43 (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Tue, 15 Sep 2020 15:56:29 -0400
-Received: from mail-ed1-x542.google.com (mail-ed1-x542.google.com [IPv6:2a00:1450:4864:20::542])
-        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id A2E11C06174A;
-        Tue, 15 Sep 2020 12:56:24 -0700 (PDT)
-Received: by mail-ed1-x542.google.com with SMTP id w1so4283378edr.3;
-        Tue, 15 Sep 2020 12:56:24 -0700 (PDT)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=googlemail.com; s=20161025;
-        h=mime-version:references:in-reply-to:from:date:message-id:subject:to
-         :cc;
-        bh=5enmw55Fem91T+DvSEPj+IHaKM+L/svAv9/sGu5e/Ds=;
-        b=Gy4OIdYhMC4ajTg8uZCs56b6sKBkd/CL8S0ZImQKbOenS8JYsOhm18ycyFH8evinV5
-         rmc7GMn1mi9cYIBxaLiYk2r2GKAdjRg0sOoexSqDlLL+A87yqXDSLBDL8whX2LCWgbKh
-         fFLLGClMLQ/wRYvbPDPlm8gdN86iYVCgo4hKff3Ltwm4vR5AK8JHFxq+IEhnAaKqPKeZ
-         sOehcLDyjGzRQltjh6Y11gL/ALPKQTk2de7UP1wofvbOBpeT0RjWGIL3Q4j02KNLbgo1
-         bdYkVsC0jBEkj/kMmxeci910gUtO3FnPG1N5SLdLbnc+DhCyy51Tgff8nFBplAeNddci
-         RXeQ==
+        id S1727755AbgIOT5S (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Tue, 15 Sep 2020 15:57:18 -0400
+Received: from mail-io1-f66.google.com ([209.85.166.66]:42503 "EHLO
+        mail-io1-f66.google.com" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
+        with ESMTP id S1727848AbgIOT5C (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Tue, 15 Sep 2020 15:57:02 -0400
+Received: by mail-io1-f66.google.com with SMTP id u6so5504931iow.9;
+        Tue, 15 Sep 2020 12:57:01 -0700 (PDT)
 X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
         d=1e100.net; s=20161025;
-        h=x-gm-message-state:mime-version:references:in-reply-to:from:date
-         :message-id:subject:to:cc;
-        bh=5enmw55Fem91T+DvSEPj+IHaKM+L/svAv9/sGu5e/Ds=;
-        b=Fh1G92zh9xN7MLF2537aRgCfAnEdfp3MgQTLi1d3MQJLSQ2/UnOlMhbkMMIxKGoZkp
-         4ftHI76kjBAzE4DODDcBchSkd2t6nuQTvGi9Zr1Tkf8e4iiogDSK0SnNX1USmKwhwG4A
-         DUrcl4MBHERRhdUMMWtnnGHrP/d246BXHggtR+GVsV+vteTvPlCxDWwMngPybnxnhwNy
-         Hv1Q5gGyhcSU7iLll8DQJUMMlTQhp92rtnTAnNzBalC3QIxoAmUhU03K8a9Md6pSGTqx
-         dWcfSjZHkcMavtd6W4MhTcvAveBVWJ00HJOt6Qj3dNYvEvbGWea8JfYfhRMj+3hvcFNa
-         6QaA==
-X-Gm-Message-State: AOAM532s2VmEXAAO3iUNHJNfwsX14RI38nihEzC25mKoGOBRUklzrHbw
-        1EncO+PYOf5hHqE9AWKaafqmfKj1L9tGCnaieWU=
-X-Google-Smtp-Source: ABdhPJyO2Vz913/ZIwBEKyWfB1ZN+xCuIcv/RKPdD0tvxcr1S81cF3S8LwcKpW5biZPhxEtVuLj7sVRGM4i+XxBltEc=
-X-Received: by 2002:a05:6402:489:: with SMTP id k9mr23681127edv.287.1600199783611;
- Tue, 15 Sep 2020 12:56:23 -0700 (PDT)
+        h=x-gm-message-state:date:from:to:cc:subject:message-id:references
+         :mime-version:content-disposition:in-reply-to;
+        bh=fnB3WXd3CVX86l4oOXnRMqvub51IFEMuC66CQlN98to=;
+        b=duOoMrsTrqJ98YOJnymyLnO1kKiwlXKsaVaC6/kvZeo3MohvZW0pUZoUWzWZt/x5yQ
+         gyc6tROKGETI9/gzNamV/IUuvS4SragQzFnlLl6FImIGCf0R2IcpCP83uocesuocQ/Dm
+         I/H8WbBs/LunHXSaBjSl/d0Gh2eCC02ZGzT8IFVRAB6cH5qDeJYbpCGW0k1ULSJGqoqS
+         ybVKRfdQ3cF2lUWkMkO+6xQNo0MZrP0hFz0vAxSgKznR6XpEn4EhuMB/YiLKuehSqGe4
+         A3gnuXKAKQy6COVIEGnxULh8gtYBV8KrlV4A7okHyu3RQ5r7iEag1H+r5djoOYlxUpR4
+         PCJw==
+X-Gm-Message-State: AOAM531fbrcaUYpKyPXgKuzlZ7wfB0a4cx1HGiJIwUTh+NRtGBkiw3Zg
+        CWvvUu6bXAu6YyP1A6dThA==
+X-Google-Smtp-Source: ABdhPJyXC7MAHBd+l614l66gdacLiXXbyiJ4NpMgA0JFmeY2XbfsqSS7arJJq3e+Rj2HINzyPMBI/w==
+X-Received: by 2002:a05:6602:15c5:: with SMTP id f5mr15689559iow.42.1600199821359;
+        Tue, 15 Sep 2020 12:57:01 -0700 (PDT)
+Received: from xps15 ([64.188.179.253])
+        by smtp.gmail.com with ESMTPSA id 64sm8345119iob.36.2020.09.15.12.56.57
+        (version=TLS1_3 cipher=TLS_AES_256_GCM_SHA384 bits=256/256);
+        Tue, 15 Sep 2020 12:57:00 -0700 (PDT)
+Received: (nullmailer pid 2403540 invoked by uid 1000);
+        Tue, 15 Sep 2020 19:56:56 -0000
+Date:   Tue, 15 Sep 2020 13:56:56 -0600
+From:   Rob Herring <robh@kernel.org>
+To:     Linus Walleij <linus.walleij@linaro.org>
+Cc:     Grygorii Strashko <grygorii.strashko@ti.com>,
+        Krzysztof Kozlowski <krzk@kernel.org>,
+        Joel Stanley <joel@jms.id.au>,
+        Bartosz Golaszewski <bgolaszewski@baylibre.com>,
+        =?UTF-8?Q?Beno=C3=AEt_Cousson?= <bcousson@baylibre.com>,
+        Tony Lindgren <tony@atomide.com>,
+        Russell King <linux@armlinux.org.uk>,
+        Jason Cooper <jason@lakedaemon.net>,
+        Andrew Lunn <andrew@lunn.ch>,
+        Gregory Clement <gregory.clement@bootlin.com>,
+        Sebastian Hesselbarth <sebastian.hesselbarth@gmail.com>,
+        Andrew Jeffery <andrew@aj.id.au>,
+        Shawn Guo <shawnguo@kernel.org>,
+        Sascha Hauer <s.hauer@pengutronix.de>,
+        Pengutronix Kernel Team <kernel@pengutronix.de>,
+        NXP Linux Team <linux-imx@nxp.com>,
+        Matthias Brugger <matthias.bgg@gmail.com>,
+        Geert Uytterhoeven <geert+renesas@glider.be>,
+        Magnus Damm <magnus.damm@gmail.com>,
+        Tero Kristo <t-kristo@ti.com>, Nishanth Menon <nm@ti.com>,
+        Michal Simek <michal.simek@xilinx.com>,
+        Guenter Roeck <linux@roeck-us.net>,
+        devicetree <devicetree@vger.kernel.org>,
+        Linux Kernel Mailing List <linux-kernel@vger.kernel.org>,
+        Linux-OMAP <linux-omap@vger.kernel.org>,
+        Linux ARM <linux-arm-kernel@lists.infradead.org>,
+        linux-aspeed <linux-aspeed@lists.ozlabs.org>,
+        "moderated list:ARM/Mediatek SoC support" 
+        <linux-mediatek@lists.infradead.org>,
+        Linux-Renesas <linux-renesas-soc@vger.kernel.org>
+Subject: Re: [PATCH v2 01/15] dt-bindings: gpio: convert bindings for NXP
+ PCA953x family to dtschema
+Message-ID: <20200915195656.GB2385241@bogus>
+References: <20200910175733.11046-1-krzk@kernel.org>
+ <20200910175733.11046-2-krzk@kernel.org>
+ <CACPK8XdocAX5mOXf3VP29cNXH+6unYunB9NiT3qFVKyzR6WXPg@mail.gmail.com>
+ <CAJKOXPe6Tf0B5W27XaD5zLk77OBzGCHpirhTdZjFH0oh8GvWgg@mail.gmail.com>
+ <c162b6ad-57f1-a75a-11e3-9c80c60bd845@ti.com>
+ <CACRpkdbrrzkYVW13V89PJ5_WRGhxSL0rOxAHA_7hYSyw28Shvg@mail.gmail.com>
 MIME-Version: 1.0
-References: <20200909160409.8678-1-narmstrong@baylibre.com> <20200909160409.8678-3-narmstrong@baylibre.com>
-In-Reply-To: <20200909160409.8678-3-narmstrong@baylibre.com>
-From:   Martin Blumenstingl <martin.blumenstingl@googlemail.com>
-Date:   Tue, 15 Sep 2020 21:56:12 +0200
-Message-ID: <CAFBinCBEoGv5PJqG_b+HyEoe9Lm0+CaFbsBaUnFv4uB0M6J78Q@mail.gmail.com>
-Subject: Re: [PATCH 2/5] dt-bindings: usb: amlogic,meson-g12a-usb-ctrl: add
- the Amlogic AXG Families USB Glue Bindings
-To:     Neil Armstrong <narmstrong@baylibre.com>
-Cc:     khilman@baylibre.com, devicetree@vger.kernel.org,
-        linux-amlogic@lists.infradead.org,
-        linux-arm-kernel@lists.infradead.org, linux-kernel@vger.kernel.org,
-        linux-usb@vger.kernel.org
-Content-Type: text/plain; charset="UTF-8"
+Content-Type: text/plain; charset=us-ascii
+Content-Disposition: inline
+In-Reply-To: <CACRpkdbrrzkYVW13V89PJ5_WRGhxSL0rOxAHA_7hYSyw28Shvg@mail.gmail.com>
 Sender: devicetree-owner@vger.kernel.org
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-Hi Neil
+On Sat, Sep 12, 2020 at 12:07:59PM +0200, Linus Walleij wrote:
+> On Fri, Sep 11, 2020 at 11:54 AM Grygorii Strashko
+> <grygorii.strashko@ti.com> wrote:
+> 
+> > More over, there is already generic schema for gpio hogs: gpio-hog.yaml
+> 
+> Where is this? I don't have it in my GPIO devel branch for sure, and
+> it is not in linux-next either so not in Bartosz' tree.
 
-On Wed, Sep 9, 2020 at 6:04 PM Neil Armstrong <narmstrong@baylibre.com> wrote:
->
-> The Amlogic AXG is close from the GXL Glue but with a single OTG PHY.
-nit-pick: I think this should be "close to"
+https://github.com/devicetree-org/dt-schema/tree/master/schemas/gpio
 
-> Signed-off-by: Neil Armstrong <narmstrong@baylibre.com>
-Acked-by: Martin Blumenstingl <martin.blumenstingl@googlemail.com>
+> 
+> I did suggest that I want a gpio-common.yaml file which includes the
+> hogs.
 
-> ---
->  .../usb/amlogic,meson-g12a-usb-ctrl.yaml      | 22 ++++++++++++++++++-
->  1 file changed, 21 insertions(+), 1 deletion(-)
->
-> diff --git a/Documentation/devicetree/bindings/usb/amlogic,meson-g12a-usb-ctrl.yaml b/Documentation/devicetree/bindings/usb/amlogic,meson-g12a-usb-ctrl.yaml
-> index 5b04a7dfa018..c0058332b967 100644
-> --- a/Documentation/devicetree/bindings/usb/amlogic,meson-g12a-usb-ctrl.yaml
-> +++ b/Documentation/devicetree/bindings/usb/amlogic,meson-g12a-usb-ctrl.yaml
-> @@ -25,13 +25,14 @@ description: |
->    The Amlogic A1 embeds a DWC3 USB IP Core configured for USB2 in
->    host-only mode.
->
-> -  The Amlogic GXL & GXM SoCs doesn't embed an USB3 PHY.
-> +  The Amlogic GXL, GXM & AXG SoCs doesn't embed an USB3 PHY.
-nit-pick: not sure if we need to fix it here: s/doesn't/don't/
-(personally I would also put AXG first - in reality it changes nothing though)
+Already there, but not wired together ATM.
 
+> > Originally, gpio bindings were defined without restricting gpio hog node names and,
+> > generic schema follows this.
 
-Best regards,
-Martin
+Originally, almost all node names were a free-for-all even for classes 
+defined 20 years ago. Now the names are getting enforced.
+
+Rob
