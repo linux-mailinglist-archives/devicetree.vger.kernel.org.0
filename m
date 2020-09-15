@@ -2,85 +2,95 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from vger.kernel.org (vger.kernel.org [23.128.96.18])
-	by mail.lfdr.de (Postfix) with ESMTP id 14E1526ADC4
-	for <lists+devicetree@lfdr.de>; Tue, 15 Sep 2020 21:40:00 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTP id D090926ADC9
+	for <lists+devicetree@lfdr.de>; Tue, 15 Sep 2020 21:41:22 +0200 (CEST)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S1727961AbgIOTjs (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Tue, 15 Sep 2020 15:39:48 -0400
-Received: from mail-il1-f194.google.com ([209.85.166.194]:36869 "EHLO
-        mail-il1-f194.google.com" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S1727586AbgIOTj0 (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Tue, 15 Sep 2020 15:39:26 -0400
-Received: by mail-il1-f194.google.com with SMTP id q4so4177497ils.4;
-        Tue, 15 Sep 2020 12:39:26 -0700 (PDT)
+        id S1727901AbgIOTlA (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Tue, 15 Sep 2020 15:41:00 -0400
+Received: from mail-io1-f68.google.com ([209.85.166.68]:35619 "EHLO
+        mail-io1-f68.google.com" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
+        with ESMTP id S1727898AbgIOTkm (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Tue, 15 Sep 2020 15:40:42 -0400
+Received: by mail-io1-f68.google.com with SMTP id r9so5488138ioa.2;
+        Tue, 15 Sep 2020 12:40:41 -0700 (PDT)
 X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
         d=1e100.net; s=20161025;
         h=x-gm-message-state:date:from:to:cc:subject:message-id:references
          :mime-version:content-disposition:in-reply-to;
-        bh=U2UgDFJ0TKRmCCDAAa0CKQN3PAXzQGowR+Y1XmFZbhs=;
-        b=Q+hXpjyKg+gDJhg2wToXdDpgSkgcfDJKIH2XnSwjy0N+ZLQA1ZOg/qvlKOmPhK2MCE
-         2CSdKGlsIYBCRrauxaSCBa4jY+ftt8dO4bcKjSlm7hyh/WYy/4gpzyKJTcO4QWAi8k1W
-         rIBsA0aRYpnkRaoz4mFTI2afD02N7U5PKxKstvJW64qfKjxSKbjsj5OhUjENwOAfqlnw
-         V76b4V3q6E/unaPC5ecbJgPP+ahrdO0psxok2OT1H6uL6q0R4u8fIMNzHxPp8jtQZCri
-         o2eKrVethF5T23rmVM4umO1+x4WIhLOyO/15XZ/TCYkx/mo9CW0BdG3ihqHpXaHBqVvG
-         cnrQ==
-X-Gm-Message-State: AOAM532BLer/e1t9zE5R4IO22ox0R/iVh6fB0qZLD4fZSfz77YMoGZEu
-        40AMx/Vrey9xXl9YcVklbQ==
-X-Google-Smtp-Source: ABdhPJybqsFHREh3Yp9e8K/w33mykPZgUyZ7UjYfSpEI9dtCqo5QPP9N+6j1Ro+kJbdo4yd60ytE/Q==
-X-Received: by 2002:a05:6e02:d85:: with SMTP id i5mr17620009ilj.115.1600198765639;
-        Tue, 15 Sep 2020 12:39:25 -0700 (PDT)
+        bh=IfEYrvgcOiUrQghArzmubEmT7dgVoxokSlA4Pccr+ZY=;
+        b=i4zzmufcgdG1U42/Hvjhb6o9iPPlEyWrM+jg/KYcXQ1FvBUpyWYy6V5FB8udbi2hU5
+         qntdpP/KCMlif8gcab2CfrFVaOjp4VqeyJvRgyw/uRmObVd/AdjMTROYFENXyDAwSZms
+         cSJPxXcQsG9C/2OREBg/DM+Qm8efTx584GWQxwBZUuz0fO2M2NShYdnXbr4Hnr+zG/HH
+         vV5EbvGZv9a39RqkePS3t946enz9/Pndh0hqnd/+cTXyUglp5zRFji4dUE1SnoNqYDIN
+         dOinblTOL2W7tTfd9nKfvWAK037pAgyY+Hjy+YADIRVj/L6WcDHautM22snKHLzOZqgS
+         0GBg==
+X-Gm-Message-State: AOAM533lyHTf0/Ba8e1oQvAJ9jjxnC45cr8W9gzXrmQPv87GTMD99Ujf
+        atq9LJ3nvd1WGATxlNvH/x75PwT91MR+hCY=
+X-Google-Smtp-Source: ABdhPJzDB4o5XMy5QrZavFrfxZUetNl+70UR8W+YyXG9y/BnjSdmC8Czpn7UH/fsUZeasw0dEO7ckw==
+X-Received: by 2002:a02:9f0d:: with SMTP id z13mr19175961jal.60.1600198840940;
+        Tue, 15 Sep 2020 12:40:40 -0700 (PDT)
 Received: from xps15 ([64.188.179.253])
-        by smtp.gmail.com with ESMTPSA id m87sm9620598ilb.58.2020.09.15.12.39.23
+        by smtp.gmail.com with ESMTPSA id m87sm9622553ilb.58.2020.09.15.12.40.39
         (version=TLS1_3 cipher=TLS_AES_256_GCM_SHA384 bits=256/256);
-        Tue, 15 Sep 2020 12:39:24 -0700 (PDT)
-Received: (nullmailer pid 2375353 invoked by uid 1000);
-        Tue, 15 Sep 2020 19:39:22 -0000
-Date:   Tue, 15 Sep 2020 13:39:22 -0600
+        Tue, 15 Sep 2020 12:40:40 -0700 (PDT)
+Received: (nullmailer pid 2377450 invoked by uid 1000);
+        Tue, 15 Sep 2020 19:40:38 -0000
+Date:   Tue, 15 Sep 2020 13:40:38 -0600
 From:   Rob Herring <robh@kernel.org>
 To:     Viresh Kumar <viresh.kumar@linaro.org>
-Cc:     Jassi Brar <jassisinghbrar@gmail.com>,
-        Jassi Brar <jaswinder.singh@linaro.org>,
+Cc:     linux-arm-kernel@lists.infradead.org,
         Vincent Guittot <vincent.guittot@linaro.org>,
-        Arnd Bergmann <arnd@arndb.de>,
-        Frank Rowand <frowand.list@gmail.com>,
+        devicetree@vger.kernel.org, linux-kernel@vger.kernel.org,
         Bjorn Andersson <bjorn.andersson@linaro.org>,
-        linux-arm-kernel@lists.infradead.org, devicetree@vger.kernel.org,
-        linux-kernel@vger.kernel.org
-Subject: Re: [PATCH V3 1/2] dt-bindings: mailbox : arm,mhu: Convert to
- Json-schema
-Message-ID: <20200915193922.GB2362311@bogus>
+        Rob Herring <robh+dt@kernel.org>,
+        Jassi Brar <jassisinghbrar@gmail.com>,
+        Arnd Bergmann <arnd@arndb.de>,
+        Sudeep Holla <sudeep.holla@arm.com>,
+        Jassi Brar <jaswinder.singh@linaro.org>,
+        Frank Rowand <frowand.list@gmail.com>
+Subject: Re: [PATCH V3 2/2] dt-bindings: mailbox: add doorbell support to ARM
+ MHU
+Message-ID: <20200915194038.GA2377399@bogus>
 References: <7f50b23d157a97242c79bd8f2ab649a9272b9b59.1599731645.git.viresh.kumar@linaro.org>
+ <5d448f579a41345130ae25d01bb94a6e293a6460.1599731645.git.viresh.kumar@linaro.org>
 MIME-Version: 1.0
 Content-Type: text/plain; charset=us-ascii
 Content-Disposition: inline
-In-Reply-To: <7f50b23d157a97242c79bd8f2ab649a9272b9b59.1599731645.git.viresh.kumar@linaro.org>
+In-Reply-To: <5d448f579a41345130ae25d01bb94a6e293a6460.1599731645.git.viresh.kumar@linaro.org>
 Sender: devicetree-owner@vger.kernel.org
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-On Thu, Sep 10, 2020 at 03:25:18PM +0530, Viresh Kumar wrote:
-> Convert the DT binding over to Json-schema.
+On Thu, 10 Sep 2020 15:25:19 +0530, Viresh Kumar wrote:
+> From: Sudeep Holla <sudeep.holla@arm.com>
 > 
+> The ARM MHU's reference manual states following:
+> 
+> "The MHU drives the signal using a 32-bit register, with all 32 bits
+> logically ORed together. The MHU provides a set of registers to enable
+> software to set, clear, and check the status of each of the bits of this
+> register independently.  The use of 32 bits for each interrupt line
+> enables software to provide more information about the source of the
+> interrupt. For example, each bit of the register can be associated with
+> a type of event that can contribute to raising the interrupt."
+> 
+> This patch thus extends the MHU controller's DT binding to add support
+> for doorbell mode.
+> 
+> Though the same MHU hardware controller is used in the two modes, A new
+> compatible string is added here to represent the combination of the MHU
+> hardware and the firmware sitting on the other side (which expects each
+> bit to represent a different signal now).
+> 
+> Signed-off-by: Sudeep Holla <sudeep.holla@arm.com>
+> Co-developed-by: Viresh Kumar <viresh.kumar@linaro.org>
 > Signed-off-by: Viresh Kumar <viresh.kumar@linaro.org>
 > ---
-> V3: New patch.
+> V3: Update the json schema and fix number of interrupt lines.
 > 
->  .../devicetree/bindings/mailbox/arm,mhu.yaml  | 86 +++++++++++++++++++
->  .../devicetree/bindings/mailbox/arm-mhu.txt   | 43 ----------
->  2 files changed, 86 insertions(+), 43 deletions(-)
->  create mode 100644 Documentation/devicetree/bindings/mailbox/arm,mhu.yaml
->  delete mode 100644 Documentation/devicetree/bindings/mailbox/arm-mhu.txt
+>  .../devicetree/bindings/mailbox/arm,mhu.yaml  | 60 +++++++++++++++++--
+>  1 file changed, 54 insertions(+), 6 deletions(-)
 > 
-> diff --git a/Documentation/devicetree/bindings/mailbox/arm,mhu.yaml b/Documentation/devicetree/bindings/mailbox/arm,mhu.yaml
-> new file mode 100644
-> index 000000000000..4e840cedb2e4
-> --- /dev/null
-> +++ b/Documentation/devicetree/bindings/mailbox/arm,mhu.yaml
-> @@ -0,0 +1,86 @@
-> +# SPDX-License-Identifier: GPL-2.0
 
-Also, as Jassi/Linaro is the only author of the txt file, please dual 
-license.
-
-Rob
+Reviewed-by: Rob Herring <robh@kernel.org>
