@@ -2,67 +2,86 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from vger.kernel.org (vger.kernel.org [23.128.96.18])
-	by mail.lfdr.de (Postfix) with ESMTP id 4511A26AC45
-	for <lists+devicetree@lfdr.de>; Tue, 15 Sep 2020 20:41:53 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTP id 35A3B26AC42
+	for <lists+devicetree@lfdr.de>; Tue, 15 Sep 2020 20:40:54 +0200 (CEST)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S1727932AbgIORgq (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Tue, 15 Sep 2020 13:36:46 -0400
-Received: from mail-il1-f193.google.com ([209.85.166.193]:37429 "EHLO
-        mail-il1-f193.google.com" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S1727896AbgIORdL (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Tue, 15 Sep 2020 13:33:11 -0400
-Received: by mail-il1-f193.google.com with SMTP id q4so3804597ils.4;
-        Tue, 15 Sep 2020 10:32:50 -0700 (PDT)
-X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=1e100.net; s=20161025;
-        h=x-gm-message-state:date:from:to:cc:subject:message-id:references
-         :mime-version:content-disposition:in-reply-to;
-        bh=uulJ0/uPh+foHiGNPCNz1hwqcPZlO72vLvw5DYaUH18=;
-        b=XdKL8HdVqYS++emo3SfB9Lo9ogmaYFhRyxk1Z/b0RBL119R31n2MarDmcfT3fGDEu6
-         t9YH3nGsTs4I88TtB/M4gmCHl5+nY+byxmC4BjwJyv4f1bdJW2ePzGwybpuIgA1xUE5Y
-         ThW8HpTKY57el8BF9WIaLfePZ9HY9rtMvY68r6go+XATKMtYxof8PLIEXZoUJ7yx8G8k
-         dm1b+QN9QznPgnAdZHMce5xKqW3cSedXa0RHlz9nfq+l3/KBe1wEFt52uSTqtCCKalY6
-         Lh/q4demj8aj77gOYw6fTXw/HhIr/ncTjVhP+ujf4M9NeYaYRYGQJUbQjTy6yNKDonD/
-         e3eA==
-X-Gm-Message-State: AOAM532jxtGJW4vYzBe9rDQtjo2KtEWa7CiMYjHuoFjyQIeK84O6Zu54
-        nZpyVEQ8rSI+Hq8kNqORX3497JOtb5zeHMM=
-X-Google-Smtp-Source: ABdhPJw1Y7mhGsOLEdrqCVwLfhzbJ/8rNa80uaRT0MVEVBVau28or814vSSqDbkIUCKAQEpOQ+MtOg==
-X-Received: by 2002:a92:194b:: with SMTP id e11mr17113785ilm.43.1600191170055;
-        Tue, 15 Sep 2020 10:32:50 -0700 (PDT)
-Received: from xps15 ([64.188.179.253])
-        by smtp.gmail.com with ESMTPSA id k2sm7840357ioj.2.2020.09.15.10.32.48
-        (version=TLS1_3 cipher=TLS_AES_256_GCM_SHA384 bits=256/256);
-        Tue, 15 Sep 2020 10:32:49 -0700 (PDT)
-Received: (nullmailer pid 2175348 invoked by uid 1000);
-        Tue, 15 Sep 2020 17:32:47 -0000
-Date:   Tue, 15 Sep 2020 11:32:47 -0600
-From:   Rob Herring <robh@kernel.org>
-To:     Neil Armstrong <narmstrong@baylibre.com>
-Cc:     martin.blumenstingl@googlemail.com,
-        linux-arm-kernel@lists.infradead.org, devicetree@vger.kernel.org,
-        linux-amlogic@lists.infradead.org, linux-kernel@vger.kernel.org,
-        linux-usb@vger.kernel.org, khilman@baylibre.com
-Subject: Re: [PATCH 2/5] dt-bindings: usb: amlogic, meson-g12a-usb-ctrl: add
- the Amlogic AXG Families USB Glue Bindings
-Message-ID: <20200915173247.GA2175318@bogus>
-References: <20200909160409.8678-1-narmstrong@baylibre.com>
- <20200909160409.8678-3-narmstrong@baylibre.com>
+        id S1727890AbgIOSj6 (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Tue, 15 Sep 2020 14:39:58 -0400
+Received: from lindbergh.monkeyblade.net ([23.128.96.19]:35504 "EHLO
+        lindbergh.monkeyblade.net" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
+        with ESMTP id S1727540AbgIORhm (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Tue, 15 Sep 2020 13:37:42 -0400
+Received: from perceval.ideasonboard.com (perceval.ideasonboard.com [IPv6:2001:4b98:dc2:55:216:3eff:fef7:d647])
+        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 19C28C06174A;
+        Tue, 15 Sep 2020 10:37:34 -0700 (PDT)
+Received: from pendragon.ideasonboard.com (62-78-145-57.bb.dnainternet.fi [62.78.145.57])
+        by perceval.ideasonboard.com (Postfix) with ESMTPSA id ECA7814DF;
+        Tue, 15 Sep 2020 19:37:32 +0200 (CEST)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=ideasonboard.com;
+        s=mail; t=1600191453;
+        bh=8XpEjYtWxpoNmIPz2ytB8NwTWHDpXOMp4QwS1MpdbBM=;
+        h=Date:From:To:Cc:Subject:References:In-Reply-To:From;
+        b=glQ6s2yMYVYNdIKMBMJtvG7NfwXStJrmVm8xkM+ePw9ylEyUqoK1ElNXoClA8i/ZM
+         QK0Nt5QeRdHSfQVoex36hcCX7AwkHWzfZo4AhQgRLGbsQgdCCYPmeKhMaE9b/cQS9Z
+         hZFMEarS/1vNxgXztXcARR3l7Zm8t+9o1N/I6Rfo=
+Date:   Tue, 15 Sep 2020 20:37:02 +0300
+From:   Laurent Pinchart <laurent.pinchart@ideasonboard.com>
+To:     Fabrizio Castro <fabrizio.castro.jz@renesas.com>
+Cc:     Mauro Carvalho Chehab <mchehab@kernel.org>,
+        Rob Herring <robh+dt@kernel.org>,
+        Geert Uytterhoeven <geert+renesas@glider.be>,
+        Ramesh Shanmugasundaram <rashanmu@gmail.com>,
+        linux-media@vger.kernel.org, devicetree@vger.kernel.org,
+        linux-kernel@vger.kernel.org, linux-renesas-soc@vger.kernel.org,
+        Chris Paterson <Chris.Paterson2@renesas.com>,
+        Biju Das <biju.das.jz@bp.renesas.com>,
+        Prabhakar Mahadev Lad <prabhakar.mahadev-lad.rj@bp.renesas.com>
+Subject: Re: [PATCH 3/3] media: dt-bindings: media: renesas,drif: Add
+ r8a77990 support
+Message-ID: <20200915173702.GE26029@pendragon.ideasonboard.com>
+References: <20200915131216.21137-1-fabrizio.castro.jz@renesas.com>
+ <20200915131216.21137-4-fabrizio.castro.jz@renesas.com>
 MIME-Version: 1.0
-Content-Type: text/plain; charset=us-ascii
+Content-Type: text/plain; charset=utf-8
 Content-Disposition: inline
-In-Reply-To: <20200909160409.8678-3-narmstrong@baylibre.com>
+In-Reply-To: <20200915131216.21137-4-fabrizio.castro.jz@renesas.com>
 Sender: devicetree-owner@vger.kernel.org
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-On Wed, 09 Sep 2020 18:04:06 +0200, Neil Armstrong wrote:
-> The Amlogic AXG is close from the GXL Glue but with a single OTG PHY.
-> 
-> Signed-off-by: Neil Armstrong <narmstrong@baylibre.com>
-> ---
->  .../usb/amlogic,meson-g12a-usb-ctrl.yaml      | 22 ++++++++++++++++++-
->  1 file changed, 21 insertions(+), 1 deletion(-)
-> 
+Hi Fabrizio,
 
-Reviewed-by: Rob Herring <robh@kernel.org>
+Thank you for the patch.
+
+On Tue, Sep 15, 2020 at 02:12:16PM +0100, Fabrizio Castro wrote:
+> The r8a77990 (a.k.a. R-Car E3) device tree schema is
+> compatible with R-Car H3 and M3-W schema.
+> 
+> Document r8a77990 support within renesas,drif.yaml.
+> 
+> Signed-off-by: Fabrizio Castro <fabrizio.castro.jz@renesas.com>
+
+Reviewed-by: Laurent Pinchart <laurent.pinchart@ideasonboard.com>
+
+> ---
+>  Documentation/devicetree/bindings/media/renesas,drif.yaml | 1 +
+>  1 file changed, 1 insertion(+)
+> 
+> diff --git a/Documentation/devicetree/bindings/media/renesas,drif.yaml b/Documentation/devicetree/bindings/media/renesas,drif.yaml
+> index f57fccc159d6..051d515be38d 100644
+> --- a/Documentation/devicetree/bindings/media/renesas,drif.yaml
+> +++ b/Documentation/devicetree/bindings/media/renesas,drif.yaml
+> @@ -53,6 +53,7 @@ properties:
+>        - enum:
+>          - renesas,r8a7795-drif        # R-Car H3
+>          - renesas,r8a7796-drif        # R-Car M3-W
+> +        - renesas,r8a77990-drif       # R-Car E3
+>        - const: renesas,rcar-gen3-drif # Generic R-Car Gen3 compatible device
+>  
+>    reg:
+
+-- 
+Regards,
+
+Laurent Pinchart
