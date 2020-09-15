@@ -2,149 +2,101 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from vger.kernel.org (vger.kernel.org [23.128.96.18])
-	by mail.lfdr.de (Postfix) with ESMTP id BBC6426B075
-	for <lists+devicetree@lfdr.de>; Wed, 16 Sep 2020 00:11:48 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTP id 5A50926B06C
+	for <lists+devicetree@lfdr.de>; Wed, 16 Sep 2020 00:10:44 +0200 (CEST)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S1727790AbgIOWLn (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Tue, 15 Sep 2020 18:11:43 -0400
-Received: from m43-7.mailgun.net ([69.72.43.7]:24287 "EHLO m43-7.mailgun.net"
-        rhost-flags-OK-OK-OK-OK) by vger.kernel.org with ESMTP
-        id S1727774AbgIOQr3 (ORCPT <rfc822;devicetree@vger.kernel.org>);
-        Tue, 15 Sep 2020 12:47:29 -0400
-DKIM-Signature: a=rsa-sha256; v=1; c=relaxed/relaxed; d=mg.codeaurora.org; q=dns/txt;
- s=smtp; t=1600188449; h=Message-ID: References: In-Reply-To: Subject:
- Cc: To: From: Date: Content-Transfer-Encoding: Content-Type:
- MIME-Version: Sender; bh=yEHNYIgoLCIfyK1Nj7VW1RZeG1P4bPnr1BXOU5FeJZ8=;
- b=xSIa5Rwrk8N9tm8nA2rVGSbjf6LzoMVR4VpedfE7AcX94qS+1m6+kj+CKpC91p4JMUONhR5L
- sV3amvrSDA4wC2lKCXrzRZey3WLi4mWHdzFNJ9Cq55qOF1WWgp4TeEFLPTUlZUa7v+jKvnUL
- yDgazPRLjs0yo2ItJ4z7ilPREQ0=
-X-Mailgun-Sending-Ip: 69.72.43.7
-X-Mailgun-Sid: WyI1YmJiNiIsICJkZXZpY2V0cmVlQHZnZXIua2VybmVsLm9yZyIsICJiZTllNGEiXQ==
-Received: from smtp.codeaurora.org
- (ec2-35-166-182-171.us-west-2.compute.amazonaws.com [35.166.182.171]) by
- smtp-out-n02.prod.us-east-1.postgun.com with SMTP id
- 5f60f01eba408b30ce29c22f (version=TLS1.2,
- cipher=TLS_ECDHE_RSA_WITH_AES_128_GCM_SHA256); Tue, 15 Sep 2020 16:47:26
- GMT
-Received: by smtp.codeaurora.org (Postfix, from userid 1001)
-        id 8A026C43385; Tue, 15 Sep 2020 16:47:25 +0000 (UTC)
-X-Spam-Checker-Version: SpamAssassin 3.4.0 (2014-02-07) on
-        aws-us-west-2-caf-mail-1.web.codeaurora.org
-X-Spam-Level: 
-X-Spam-Status: No, score=-2.9 required=2.0 tests=ALL_TRUSTED,BAYES_00,
-        URIBL_BLOCKED autolearn=unavailable autolearn_force=no version=3.4.0
-Received: from mail.codeaurora.org (localhost.localdomain [127.0.0.1])
-        (using TLSv1 with cipher ECDHE-RSA-AES256-SHA (256/256 bits))
-        (No client certificate requested)
-        (Authenticated sender: nguyenb)
-        by smtp.codeaurora.org (Postfix) with ESMTPSA id 973EFC433F0;
-        Tue, 15 Sep 2020 16:47:24 +0000 (UTC)
+        id S1727974AbgIOWKj (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Tue, 15 Sep 2020 18:10:39 -0400
+Received: from mail-il1-f196.google.com ([209.85.166.196]:42300 "EHLO
+        mail-il1-f196.google.com" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
+        with ESMTP id S1727631AbgIOUCq (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Tue, 15 Sep 2020 16:02:46 -0400
+Received: by mail-il1-f196.google.com with SMTP id t13so4198661ile.9;
+        Tue, 15 Sep 2020 12:59:49 -0700 (PDT)
+X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+        d=1e100.net; s=20161025;
+        h=x-gm-message-state:date:from:to:cc:subject:message-id:references
+         :mime-version:content-disposition:in-reply-to;
+        bh=w5YpoxfTyrzce47e7+bq2Lzj+yxd8SjgCIV6N4Js4ic=;
+        b=Yu6XQacuR8FopmCoRCn4AOTX+plpAdY4iKLAtjlIYsIXOmh8pRL8Cluu+Ye3hPjVG1
+         PHYk9bvW3/xu65l60VPE2QOC5mUAfJQ5cL72sRw3hR5tn6q9mpzpPd/jJQhtCi7dJthU
+         eYRF/fUtl1w+cDdO+EPsPejZ41iFQYA9HFA+XH3I3HxJayoFH9bol+D6aBXx9Mpz9zGk
+         MBS34z9zbO8M9wLsUvB2V3InRl5ncjvgTgSEDhgRMCekhHbRvSdAwxKtB4cpXchqoS9C
+         ZOF9I2LEJZ/reY2hHB5upNJLn/KOObU27798HVm2xsnGoimkJ1Y5kkahTmxmFGYD9L3i
+         5YwA==
+X-Gm-Message-State: AOAM5302eJCmcqUF4oPEtfWRw2KvaHThVPnLzyHkXHJyCAiMYvIgHTa9
+        r7v9v7OEhCCxOy1prhdEMQ==
+X-Google-Smtp-Source: ABdhPJyysbHV/o3l7AFAopcgw0STvpK5TyfVIMhU4B3slSiPLWgiIgY4LBEjD+PF3te9Q+sWVDfzSA==
+X-Received: by 2002:a05:6e02:d07:: with SMTP id g7mr12751974ilj.63.1600199989032;
+        Tue, 15 Sep 2020 12:59:49 -0700 (PDT)
+Received: from xps15 ([64.188.179.253])
+        by smtp.gmail.com with ESMTPSA id q23sm8155081iob.19.2020.09.15.12.59.45
+        (version=TLS1_3 cipher=TLS_AES_256_GCM_SHA384 bits=256/256);
+        Tue, 15 Sep 2020 12:59:48 -0700 (PDT)
+Received: (nullmailer pid 2407937 invoked by uid 1000);
+        Tue, 15 Sep 2020 19:59:45 -0000
+Date:   Tue, 15 Sep 2020 13:59:45 -0600
+From:   Rob Herring <robh@kernel.org>
+To:     Krzysztof Kozlowski <krzk@kernel.org>
+Cc:     Sebastian Hesselbarth <sebastian.hesselbarth@gmail.com>,
+        Tony Lindgren <tony@atomide.com>, linux-kernel@vger.kernel.org,
+        Nishanth Menon <nm@ti.com>, Joel Stanley <joel@jms.id.au>,
+        NXP Linux Team <linux-imx@nxp.com>,
+        linux-omap@vger.kernel.org, Shawn Guo <shawnguo@kernel.org>,
+        Jason Cooper <jason@lakedaemon.net>,
+        Tero Kristo <t-kristo@ti.com>,
+        linux-arm-kernel@lists.infradead.org,
+        Bartosz Golaszewski <bgolaszewski@baylibre.com>,
+        Geert Uytterhoeven <geert+renesas@glider.be>,
+        Magnus Damm <magnus.damm@gmail.com>,
+        linux-renesas-soc@vger.kernel.org,
+        =?UTF-8?Q?Beno=C3=AEt_Cousson?= <bcousson@baylibre.com>,
+        Sascha Hauer <s.hauer@pengutronix.de>,
+        Rob Herring <robh+dt@kernel.org>, devicetree@vger.kernel.org,
+        Pengutronix Kernel Team <kernel@pengutronix.de>,
+        linux-mediatek@lists.infradead.org,
+        Guenter Roeck <linux@roeck-us.net>,
+        Andrew Jeffery <andrew@aj.id.au>,
+        Linus Walleij <linus.walleij@linaro.org>,
+        Andrew Lunn <andrew@lunn.ch>, linux-aspeed@lists.ozlabs.org,
+        Gregory Clement <gregory.clement@bootlin.com>,
+        Michal Simek <michal.simek@xilinx.com>,
+        Matthias Brugger <matthias.bgg@gmail.com>,
+        Russell King <linux@armlinux.org.uk>
+Subject: Re: [PATCH v2 01/15] dt-bindings: gpio: convert bindings for NXP
+ PCA953x family to dtschema
+Message-ID: <20200915195945.GA2407885@bogus>
+References: <20200910175733.11046-1-krzk@kernel.org>
+ <20200910175733.11046-2-krzk@kernel.org>
 MIME-Version: 1.0
-Content-Type: text/plain; charset=US-ASCII;
- format=flowed
-Content-Transfer-Encoding: 7bit
-Date:   Tue, 15 Sep 2020 09:47:24 -0700
-From:   nguyenb@codeaurora.org
-To:     Bjorn Andersson <bjorn.andersson@linaro.org>
-Cc:     cang@codeaurora.org, asutoshd@codeaurora.org,
-        martin.petersen@oracle.com, linux-scsi@vger.kernel.org,
-        linux-arm-msm@vger.kernel.org, Rob Herring <robh+dt@kernel.org>,
-        Avri Altman <Avri.Altman@wdc.com>,
-        Vinod Koul <vkoul@kernel.org>,
-        "open list:OPEN FIRMWARE AND FLATTENED DEVICE TREE BINDINGS" 
-        <devicetree@vger.kernel.org>,
-        open list <linux-kernel@vger.kernel.org>
-Subject: Re: [PATCH v1 1/2] scsi: dt-bindings: ufs: Add vcc-voltage-level for
- UFS
-In-Reply-To: <20200915134335.GE670377@yoga>
-References: <cover.1598939393.git.nguyenb@codeaurora.org>
- <0a9d395dc38433501f9652a9236856d0ac840b77.1598939393.git.nguyenb@codeaurora.org>
- <20200915044154.GB670377@yoga>
- <748d238a3d9e53834a498c6f37f9f3c9@codeaurora.org>
- <20200915134335.GE670377@yoga>
-Message-ID: <e39516da0d94a4046edbcfb48b665f82@codeaurora.org>
-X-Sender: nguyenb@codeaurora.org
-User-Agent: Roundcube Webmail/1.3.9
+Content-Type: text/plain; charset=us-ascii
+Content-Disposition: inline
+In-Reply-To: <20200910175733.11046-2-krzk@kernel.org>
 Sender: devicetree-owner@vger.kernel.org
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-On 2020-09-15 06:43, Bjorn Andersson wrote:
-> On Tue 15 Sep 03:14 CDT 2020, nguyenb@codeaurora.org wrote:
+On Thu, 10 Sep 2020 19:57:19 +0200, Krzysztof Kozlowski wrote:
+> Convert the NXP PCA953x family of GPIO expanders bindings to device tree
+> schema.
 > 
->> On 2020-09-14 21:41, Bjorn Andersson wrote:
->> > On Tue 01 Sep 01:00 CDT 2020, Bao D. Nguyen wrote:
->> >
->> > > UFS's specifications supports a range of Vcc operating
->> > > voltage levels. Add documentation for the UFS's Vcc voltage
->> > > levels setting.
->> > >
->> > > Signed-off-by: Can Guo <cang@codeaurora.org>
->> > > Signed-off-by: Asutosh Das <asutoshd@codeaurora.org>
->> > > Signed-off-by: Bao D. Nguyen <nguyenb@codeaurora.org>
->> > > ---
->> > >  Documentation/devicetree/bindings/ufs/ufshcd-pltfrm.txt | 2 ++
->> > >  1 file changed, 2 insertions(+)
->> > >
->> > > diff --git a/Documentation/devicetree/bindings/ufs/ufshcd-pltfrm.txt
->> > > b/Documentation/devicetree/bindings/ufs/ufshcd-pltfrm.txt
->> > > index 415ccdd..7257b32 100644
->> > > --- a/Documentation/devicetree/bindings/ufs/ufshcd-pltfrm.txt
->> > > +++ b/Documentation/devicetree/bindings/ufs/ufshcd-pltfrm.txt
->> > > @@ -23,6 +23,8 @@ Optional properties:
->> > >                            with "phys" attribute, provides phandle
->> > > to UFS PHY node
->> > >  - vdd-hba-supply        : phandle to UFS host controller supply
->> > > regulator node
->> > >  - vcc-supply            : phandle to VCC supply regulator node
->> > > +- vcc-voltage-level     : specifies voltage levels for VCC supply.
->> > > +                          Should be specified in pairs (min, max),
->> > > units uV.
->> >
->> > What exactly are these pairs representing?
->> The pair is the min and max Vcc voltage request to the PMIC chip.
->> As a result, the regulator output voltage would only be in this range.
->> 
+> Signed-off-by: Krzysztof Kozlowski <krzk@kernel.org>
 > 
-> If you have static min/max voltage constraints for a device on a
-> particular board the right way to handle this is to adjust the board's
-> regulator-min-microvolt and regulator-max-microvolt accordingly - and
-> not call regulator_set_voltage() from the river at all.
+> ---
 > 
-> In other words, you shouldn't add this new property to describe
-> something already described in the node vcc-supply points to.
+> Changes since v1:
+> 1. Use additionalProperties.
+> 2. Add wakeup-source.
+> 3. Add hogs.
+> 4. Extend example with hogs.
+> ---
+>  .../devicetree/bindings/gpio/gpio-pca953x.txt |  90 ----------
+>  .../bindings/gpio/gpio-pca95xx.yaml           | 166 ++++++++++++++++++
+>  .../devicetree/bindings/trivial-devices.yaml  |   4 -
+>  3 files changed, 166 insertions(+), 94 deletions(-)
+>  delete mode 100644 Documentation/devicetree/bindings/gpio/gpio-pca953x.txt
+>  create mode 100644 Documentation/devicetree/bindings/gpio/gpio-pca95xx.yaml
 > 
-> Regards,
-> Bjorn
-Thank you all for your comments. The current driver hardcoding 2.7V Vcc 
-min voltage
-does not work for UFS3.0+ devices according to the UFS device JEDEC 
-spec. However, we will
-try to address it in a different way.
 
-Regards,
-Bao
-
-> 
->> >
->> > Is this supposed to be 3 pairs of (min,max) for vcc, vcc and vccq2 to be
->> > passed into a regulator_set_voltage() for each regulator?
->> Yes, that's right. I should include the other power supplies in this 
->> change
->> as well.
->> >
->> > Or are these some sort of "operating points" for the vcc-supply?
->> >
->> > Regards,
->> > Bjorn
->> >
->> > >  - vccq-supply           : phandle to VCCQ supply regulator node
->> > >  - vccq2-supply          : phandle to VCCQ2 supply regulator node
->> > >  - vcc-supply-1p8        : For embedded UFS devices, valid VCC range
->> > > is 1.7-1.95V
->> > > --
->> > > The Qualcomm Innovation Center, Inc. is a member of the Code Aurora
->> > > Forum,
->> > > a Linux Foundation Collaborative Project
->> > >
+Reviewed-by: Rob Herring <robh@kernel.org>
