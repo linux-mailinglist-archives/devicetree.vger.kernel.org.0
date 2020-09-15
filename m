@@ -2,205 +2,113 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from vger.kernel.org (vger.kernel.org [23.128.96.18])
-	by mail.lfdr.de (Postfix) with ESMTP id A21B326B0A6
-	for <lists+devicetree@lfdr.de>; Wed, 16 Sep 2020 00:16:58 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTP id BC28726B08A
+	for <lists+devicetree@lfdr.de>; Wed, 16 Sep 2020 00:13:38 +0200 (CEST)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S1727746AbgIOWQz (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Tue, 15 Sep 2020 18:16:55 -0400
-Received: from mail-io1-f66.google.com ([209.85.166.66]:40260 "EHLO
-        mail-io1-f66.google.com" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S1727714AbgIOQdm (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Tue, 15 Sep 2020 12:33:42 -0400
-Received: by mail-io1-f66.google.com with SMTP id j2so4762378ioj.7;
-        Tue, 15 Sep 2020 09:33:38 -0700 (PDT)
+        id S1727812AbgIOWNe (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Tue, 15 Sep 2020 18:13:34 -0400
+Received: from mail-il1-f196.google.com ([209.85.166.196]:39134 "EHLO
+        mail-il1-f196.google.com" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
+        with ESMTP id S1727620AbgIOQjA (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Tue, 15 Sep 2020 12:39:00 -0400
+Received: by mail-il1-f196.google.com with SMTP id s88so3621978ilb.6;
+        Tue, 15 Sep 2020 09:38:17 -0700 (PDT)
 X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
         d=1e100.net; s=20161025;
         h=x-gm-message-state:date:from:to:cc:subject:message-id:references
-         :mime-version:content-disposition:content-transfer-encoding
-         :in-reply-to;
-        bh=YpUloxOmiyYoc4eUGVdn8xMYBlRSXLF/jQf6LOfQZOE=;
-        b=kHA8u4Kp7UreUAKfh0TUXSrZdjohutCx8dAx8ZL317Omz5jr9vwiNcxjazyI/dhl6B
-         Y9rRAJvYkU7tM3YzFMGKd48MbgLPNA/iwDG/xGtkO0Gejw+Z3PG+KCuNNo0j4vBZvaNn
-         ODauHiG2zZwfDu6wQY2+fvwvS1FZTNGoqzfS0eKLNpfnb0NkFVuqMhlCJoFhQTN3wwx8
-         AlLhrJQIREDWDzwPVryiz8Fq1QzBghwjHWAeMcWHcsW9ahjwKondFvZIdzzsPF7c/pp7
-         ICR0dPCcQl7JC2oYrXK2mh34cq/gTbC8y9Z4gaEzulXQiHQmf+8E9lrfltXxnuwOzI4H
-         Gq2w==
-X-Gm-Message-State: AOAM530pU52M6UaQKZAy+cyB0t8QW8J3Q+jHwLCQ89DN6zaHucqfRtnT
-        aT82u7frDC/xw0SLIif/gQ==
-X-Google-Smtp-Source: ABdhPJwLrL4G8mq+DgCg8GGlNZN/+c8RSkRPHwrsd/RyW2ftyn4Q26wDTuzcKVvGCACU6fzLu4toUQ==
-X-Received: by 2002:a6b:d304:: with SMTP id s4mr14424111iob.104.1600187617987;
-        Tue, 15 Sep 2020 09:33:37 -0700 (PDT)
+         :mime-version:content-disposition:in-reply-to;
+        bh=fQjq4psADqOTnHj/5X1me47R++0Wgzo4u+nIQzoreps=;
+        b=Sfo3JtsgiNdG5PPVa8FD/kozMhckR1uaP64Uz22YZhAq/5arVVSQodJuwgBo6RpdlN
+         Z3CD6i/BmLIbCqTrOF80KjoEuF5OTTn4Oxx50F5GPP1H6D/9oDmW+BCnsI8m4JSnEMr+
+         bcyGOZkBB+VZgL6LvpUAlAeEmXnh/d8YMCJT6A9lhN43a81ffrWep8uSJO7TLTDlanis
+         p2mU6zOOS/q0q7Js6b10gJglXiMxYGs94VwaHadainnql8j4lUpCCWQzLSwz9tRFF5um
+         SkZ05777oNU82U4OeKFjxkihWOJEKKIv+3YDIJcSBv1vAnAQaBYWC0ncFFU3ZLfd8FjH
+         yESg==
+X-Gm-Message-State: AOAM53186k5WOOMn5NJVd2NQ+IxH70Uiojbqb0fBu05fF5C9tjQdKOqQ
+        6s+bG0hRwU0OjnE/ZAH5Cg==
+X-Google-Smtp-Source: ABdhPJyc/WK+I+3WGB3O4e0d/McGvpjNZjWv2eTGNesdR8lUL+lh2ZG1y+ZQBTzSh6qPvBnsqH/w/w==
+X-Received: by 2002:a92:6f0a:: with SMTP id k10mr15682854ilc.5.1600187897117;
+        Tue, 15 Sep 2020 09:38:17 -0700 (PDT)
 Received: from xps15 ([64.188.179.253])
-        by smtp.gmail.com with ESMTPSA id k16sm8882262ilc.38.2020.09.15.09.33.37
+        by smtp.gmail.com with ESMTPSA id v20sm9059138ile.42.2020.09.15.09.38.15
         (version=TLS1_3 cipher=TLS_AES_256_GCM_SHA384 bits=256/256);
-        Tue, 15 Sep 2020 09:33:37 -0700 (PDT)
-Received: (nullmailer pid 2080473 invoked by uid 1000);
-        Tue, 15 Sep 2020 16:33:35 -0000
-Date:   Tue, 15 Sep 2020 10:33:35 -0600
+        Tue, 15 Sep 2020 09:38:16 -0700 (PDT)
+Received: (nullmailer pid 2088114 invoked by uid 1000);
+        Tue, 15 Sep 2020 16:38:14 -0000
+Date:   Tue, 15 Sep 2020 10:38:14 -0600
 From:   Rob Herring <robh@kernel.org>
-To:     Sebastian Reichel <sebastian.reichel@collabora.com>
-Cc:     Dmitry Torokhov <dmitry.torokhov@gmail.com>,
-        =?iso-8859-1?Q?Myl=E8ne?= Josserand 
-        <mylene.josserand@collabora.com>, linux-input@vger.kernel.org,
-        devicetree@vger.kernel.org, linux-kernel@vger.kernel.org,
-        kernel@collabora.com
-Subject: Re: [PATCHv2 4/4] Input: rotary-encoder - Add gpio as push button
-Message-ID: <20200915163335.GA2063609@bogus>
-References: <20200907204045.95530-1-sebastian.reichel@collabora.com>
- <20200907204045.95530-5-sebastian.reichel@collabora.com>
+To:     Mauro Carvalho Chehab <mchehab+huawei@kernel.org>
+Cc:     Felipe Balbi <balbi@kernel.org>, linuxarm@huawei.com,
+        mauro.chehab@huawei.com, John Stultz <john.stultz@linaro.org>,
+        Manivannan Sadhasivam <mani@kernel.org>,
+        Greg Kroah-Hartman <gregkh@linuxfoundation.org>,
+        linux-usb@vger.kernel.org, devicetree@vger.kernel.org,
+        linux-kernel@vger.kernel.org
+Subject: Re: [PATCH 2/2] dt-bindings: document a new quirk for dwc3
+Message-ID: <20200915163814.GA2084568@bogus>
+References: <cover.1599549364.git.mchehab+huawei@kernel.org>
+ <cb821a8b5ef2d44ce32c8ce1d01c34b7afb70eb2.1599549364.git.mchehab+huawei@kernel.org>
 MIME-Version: 1.0
-Content-Type: text/plain; charset=iso-8859-1
+Content-Type: text/plain; charset=us-ascii
 Content-Disposition: inline
-Content-Transfer-Encoding: 8bit
-In-Reply-To: <20200907204045.95530-5-sebastian.reichel@collabora.com>
+In-Reply-To: <cb821a8b5ef2d44ce32c8ce1d01c34b7afb70eb2.1599549364.git.mchehab+huawei@kernel.org>
 Sender: devicetree-owner@vger.kernel.org
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-On Mon, Sep 07, 2020 at 10:40:45PM +0200, Sebastian Reichel wrote:
-> From: Mylène Josserand <mylene.josserand@collabora.com>
+On Tue, Sep 08, 2020 at 09:20:57AM +0200, Mauro Carvalho Chehab wrote:
+> At Hikey 970, setting the SPLIT disable at the General
+> User Register 3 is required.
 > 
-> Add the support of a gpio that can be defined as a push button.
-> Thanks to that, it is possible to emit a keycode in case of a
-> "push" event, if the rotary supports that.
+> Without that, the URBs generated by the usbhid driver
+> return -EPROTO errors. That causes the code at
+> hid-core.c to call hid_io_error(), which schedules
+> a reset_work, causing a call to hid_reset().
 > 
-> The keycode to emit is defined using "linux,code" property
-> (such as in gpio-keys).
-
-But it is not...
-
-> Signed-off-by: Mylène Josserand <mylene.josserand@collabora.com>
-> [code cleanup to current standards and renamed some properties]
-> Signed-off-by: Sebastian Reichel <sebastian.reichel@collabora.com>
+> In turn, the code there will call:
+> 
+> 	usb_queue_reset_device(usbhid->intf);
+> 
+> The net result is that the input devices won't work, and
+> will be reset on every 0.5 seconds:
+> 
+> 	[   33.122384] hub 1-1:1.0: state 7 ports 4 chg 0000 evt 0002
+> 	[   33.378220] usb 1-1.1: reset low-speed USB device number 3 using xhci-hcd
+> 	[   33.698394] hub 1-1:1.0: state 7 ports 4 chg 0000 evt 0000
+> 	[   34.882365] hub 1-1:1.0: state 7 ports 4 chg 0000 evt 0002
+> 	[   35.138217] usb 1-1.1: reset low-speed USB device number 3 using xhci-hcd
+> 	[   35.458617] hub 1-1:1.0: state 7 ports 4 chg 0000 evt 0000
+> 	[   36.642392] hub 1-1:1.0: state 7 ports 4 chg 0000 evt 0002
+> 	[   36.898207] usb 1-1.1: reset low-speed USB device number 3 using xhci-hcd
+> 	[   37.218598] hub 1-1:1.0: state 7 ports 4 chg 0000 evt 0000
+> 	[   38.402368] hub 1-1:1.0: state 7 ports 4 chg 0000 evt 0002
+> 	[   38.658174] usb 1-1.1: reset low-speed USB device number 3 using xhci-hcd
+> 	[   38.978594] hub 1-1:1.0: state 7 ports 4 chg 0000 evt 0000
+> 	[   40.162361] hub 1-1:1.0: state 7 ports 4 chg 0000 evt 0002
+> 	[   40.418148] usb 1-1.1: reset low-speed USB device number 3 using xhci-hcd
+> 	...
+> 	[  397.698132] usb 1-1.1: reset low-speed USB device number 3 using xhci-hcd
+> 
+> Signed-off-by: Mauro Carvalho Chehab <mchehab+huawei@kernel.org>
 > ---
->  .../bindings/input/rotary-encoder.yaml        | 21 +++++++++
-
-Bindings should be a separate patch.
-
->  drivers/input/misc/rotary_encoder.c           | 43 +++++++++++++++++++
->  2 files changed, 64 insertions(+)
+>  Documentation/devicetree/bindings/usb/dwc3.txt | 3 +++
+>  1 file changed, 3 insertions(+)
 > 
-> diff --git a/Documentation/devicetree/bindings/input/rotary-encoder.yaml b/Documentation/devicetree/bindings/input/rotary-encoder.yaml
-> index 5b60ea86bd62..682fee104004 100644
-> --- a/Documentation/devicetree/bindings/input/rotary-encoder.yaml
-> +++ b/Documentation/devicetree/bindings/input/rotary-encoder.yaml
-> @@ -74,6 +74,24 @@ properties:
->        need to be passed.
->      type: boolean
->  
-> +  push-gpios:
-> +    description: GPIO used as a detection of a push from the rotary-encoder.
-> +    maxItems: 1
-> +
-> +  linux,push-code:
-> +    description:
-> +      keycode to emit with the push-gpio of this rotary encoder.
-> +      If not specified defaults to <28> == KEY_ENTER.
-> +    $ref: /schemas/types.yaml#/definitions/uint32
-> +    default: 28
-> +
-> +  linux,push-type:
-> +    description:
-> +      Specify event type this button/key generates.
-> +      If not specified defaults to <1> == EV_KEY.
-> +    $ref: /schemas/types.yaml#definitions/uint32
-> +    default: 1
+> diff --git a/Documentation/devicetree/bindings/usb/dwc3.txt b/Documentation/devicetree/bindings/usb/dwc3.txt
+> index d03edf9d3935..1aae2b6160c1 100644
+> --- a/Documentation/devicetree/bindings/usb/dwc3.txt
+> +++ b/Documentation/devicetree/bindings/usb/dwc3.txt
+> @@ -78,6 +78,9 @@ Optional properties:
+>  			park mode are disabled.
+>   - snps,dis_metastability_quirk: when set, disable metastability workaround.
+>  			CAUTION: use only if you are absolutely sure of it.
+> + - snps,dis-split-quirk: when set, change the way URBs are handled by the
+> +			 driver. Needed to avoid -EPROTO errors with usbhid
+> +			 on some devices (Hikey 970).
 
-Can we just use 'linux,code' and 'linux,input-type' here. That's 
-problematic if there's ever more than 1, but so is the current solution 
-having to make up new property names every time.
+Can't this be implied by the compatible string? Yes we have quirk 
+properties already, but the problem with them is you can't address them 
+without a DT change.
 
-Why can't the gpio-keys binding just be used here? Is it important to 
-have the events on the same device? Is there some coordination needed 
-between the functions?
-
-> +
->  required:
->    - compatible
->    - gpios
-> @@ -97,4 +115,7 @@ examples:
->              linux,axis = <ABS_Y>;
->              rotary-encoder,encoding = "binary";
->              rotary-encoder,rollover;
-> +            push-gpios = <&gpio 23 GPIO_ACTIVE_HIGH>;
-> +            linux,push-code = <KEY_ENTER>;
-> +            linux,push-type = <EV_KEY>;
->      };
-> diff --git a/drivers/input/misc/rotary_encoder.c b/drivers/input/misc/rotary_encoder.c
-> index 16ad86fad7cb..484042a5afa0 100644
-> --- a/drivers/input/misc/rotary_encoder.c
-> +++ b/drivers/input/misc/rotary_encoder.c
-> @@ -47,12 +47,33 @@ struct rotary_encoder {
->  
->  	unsigned int *irq;
->  
-> +	struct gpio_desc *push_gpio;
-> +	unsigned int push_code;
-> +	unsigned int push_type;
-> +
->  	bool armed;
->  	signed char dir;	/* 1 - clockwise, -1 - CCW */
->  
->  	unsigned int last_stable;
->  };
->  
-> +static irqreturn_t rotary_push_irq(int irq, void *dev_id)
-> +{
-> +	struct rotary_encoder *encoder = dev_id;
-> +	int val;
-> +
-> +	mutex_lock(&encoder->access_mutex);
-> +
-> +	val = gpiod_get_value_cansleep(encoder->push_gpio);
-> +
-> +	input_report_key(encoder->input, encoder->push_code, val);
-> +	input_sync(encoder->input);
-> +
-> +	mutex_unlock(&encoder->access_mutex);
-> +
-> +	return IRQ_HANDLED;
-> +}
-> +
->  static unsigned int rotary_encoder_get_state(struct rotary_encoder *encoder)
->  {
->  	int i;
-> @@ -248,6 +269,16 @@ static int rotary_encoder_probe(struct platform_device *pdev)
->  		return -EINVAL;
->  	}
->  
-> +	encoder->push_gpio = devm_gpiod_get_optional(dev, "push", GPIOD_IN);
-> +	if (IS_ERR(encoder->push_gpio))
-> +		return dev_err_probe(dev, PTR_ERR(encoder->push_gpio), "failed to get push-gpio\n");
-> +
-> +	encoder->push_code = KEY_ENTER;
-> +	device_property_read_u32(dev, "linux,push-code", &encoder->push_code);
-> +
-> +	encoder->push_type = EV_KEY;
-> +	device_property_read_u32(dev, "linux,push-type", &encoder->push_type);
-> +
->  	input = devm_input_allocate_device(dev);
->  	if (!input)
->  		return -ENOMEM;
-> @@ -304,6 +335,18 @@ static int rotary_encoder_probe(struct platform_device *pdev)
->  		}
->  	}
->  
-> +	if (encoder->push_gpio) {
-> +		input_set_capability(encoder->input, encoder->push_type, encoder->push_code);
-> +		err = devm_request_threaded_irq(dev, gpiod_to_irq(encoder->push_gpio),
-> +						NULL, rotary_push_irq,
-> +						IRQF_TRIGGER_RISING |
-> +						IRQF_TRIGGER_FALLING |
-> +						IRQF_ONESHOT,
-> +						DRV_NAME, encoder);
-> +		if (err)
-> +			return dev_err_probe(dev, err, "unable to request push IRQ\n");
-> +	}
-> +
->  	err = input_register_device(input);
->  	if (err) {
->  		dev_err(dev, "failed to register input device\n");
-> -- 
-> 2.28.0
-> 
+Rob
