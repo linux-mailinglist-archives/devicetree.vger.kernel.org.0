@@ -2,123 +2,132 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from vger.kernel.org (vger.kernel.org [23.128.96.18])
-	by mail.lfdr.de (Postfix) with ESMTP id 41C1726A1DC
-	for <lists+devicetree@lfdr.de>; Tue, 15 Sep 2020 11:15:14 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTP id C8ED226A213
+	for <lists+devicetree@lfdr.de>; Tue, 15 Sep 2020 11:23:22 +0200 (CEST)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S1726269AbgIOJPD (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Tue, 15 Sep 2020 05:15:03 -0400
-Received: from mail.thorsis.com ([92.198.35.195]:60802 "EHLO mail.thorsis.com"
-        rhost-flags-OK-OK-OK-OK) by vger.kernel.org with ESMTP
-        id S1726208AbgIOJPB (ORCPT <rfc822;devicetree@vger.kernel.org>);
-        Tue, 15 Sep 2020 05:15:01 -0400
-Received: from localhost (localhost [127.0.0.1])
-        by mail.thorsis.com (Postfix) with ESMTP id 22E4748D0;
-        Tue, 15 Sep 2020 11:14:56 +0200 (CEST)
-X-Virus-Scanned: Debian amavisd-new at mail.thorsis.com
-Received: from mail.thorsis.com ([127.0.0.1])
-        by localhost (mail.thorsis.com [127.0.0.1]) (amavisd-new, port 10024)
-        with ESMTP id WAfUJ7UoPqon; Tue, 15 Sep 2020 11:14:56 +0200 (CEST)
-Received: by mail.thorsis.com (Postfix, from userid 109)
-        id E7B454856; Tue, 15 Sep 2020 11:14:55 +0200 (CEST)
-X-Spam-Level: 
-X-Spam-Status: No, score=-1.9 required=5.0 tests=BAYES_00,NO_RECEIVED,
-        NO_RELAYS,URIBL_BLOCKED autolearn=unavailable autolearn_force=no
-        version=3.4.2
-From:   Alexander Dahl <ada@thorsis.com>
-To:     Jacek Anaszewski <jacek.anaszewski@gmail.com>
-Cc:     Alexander Dahl <post@lespocky.de>, linux-leds@vger.kernel.org,
-        devicetree@vger.kernel.org, Pavel Machek <pavel@ucw.cz>,
-        Dan Murphy <dmurphy@ti.com>, Rob Herring <robh+dt@kernel.org>,
-        linux-kernel@vger.kernel.org,
-        Peter Ujfalusi <peter.ujfalusi@ti.com>
-Subject: Re: [PATCH v4 1/3] leds: Require valid fwnode pointer for composing name
-Date:   Tue, 15 Sep 2020 11:14:49 +0200
-Message-ID: <2642665.8NmDdnWKvZ@ada>
-In-Reply-To: <6652b897-5044-713b-6f06-83d07be0dba7@gmail.com>
-References: <20200911154004.28354-1-post@lespocky.de> <20200911154004.28354-2-post@lespocky.de> <6652b897-5044-713b-6f06-83d07be0dba7@gmail.com>
-Content-Transfer-Encoding: quoted-printable
-Content-Type: text/plain; charset="UTF-8"
+        id S1726185AbgIOJXV convert rfc822-to-8bit (ORCPT
+        <rfc822;lists+devicetree@lfdr.de>); Tue, 15 Sep 2020 05:23:21 -0400
+Received: from relay7-d.mail.gandi.net ([217.70.183.200]:51595 "EHLO
+        relay7-d.mail.gandi.net" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
+        with ESMTP id S1726119AbgIOJXV (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Tue, 15 Sep 2020 05:23:21 -0400
+X-Originating-IP: 91.224.148.103
+Received: from xps13 (unknown [91.224.148.103])
+        (Authenticated sender: miquel.raynal@bootlin.com)
+        by relay7-d.mail.gandi.net (Postfix) with ESMTPSA id 0895B2000C;
+        Tue, 15 Sep 2020 09:23:16 +0000 (UTC)
+Date:   Tue, 15 Sep 2020 11:23:15 +0200
+From:   Miquel Raynal <miquel.raynal@bootlin.com>
+To:     Yifeng Zhao <yifeng.zhao@rock-chips.com>
+Cc:     richard@nod.at, vigneshr@ti.com, robh+dt@kernel.org,
+        devicetree@vger.kernel.org, linux-mtd@lists.infradead.org,
+        heiko@sntech.de, linux-rockchip@lists.infradead.org,
+        linux-arm-kernel@lists.infradead.org, linux-kernel@vger.kernel.org
+Subject: Re: [PATCH v8 2/8] mtd: rawnand: rockchip: NFC drivers for RK3308,
+ RK2928 and others
+Message-ID: <20200915112315.310d89c8@xps13>
+In-Reply-To: <20200915100728.5c866f89@xps13>
+References: <20200717092420.19798-1-yifeng.zhao@rock-chips.com>
+        <20200717092420.19798-3-yifeng.zhao@rock-chips.com>
+        <20200915100728.5c866f89@xps13>
+Organization: Bootlin
+X-Mailer: Claws Mail 3.17.4 (GTK+ 2.24.32; x86_64-pc-linux-gnu)
+MIME-Version: 1.0
+Content-Type: text/plain; charset=UTF-8
+Content-Transfer-Encoding: 8BIT
 Sender: devicetree-owner@vger.kernel.org
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-Hello Jacek,
 
-thanks for your feedback. See below.
+Miquel Raynal <miquel.raynal@bootlin.com> wrote on Tue, 15 Sep 2020
+10:07:28 +0200:
 
-Am Freitag, 11. September 2020, 23:26:43 CEST schrieb Jacek Anaszewski:
-> On 9/11/20 5:40 PM, Alexander Dahl wrote:
-> > The function 'led_compose_name()' is called in
-> > 'led_classdev_register_ext(()' only and in its implementation it always
-> > parses the fwnode passed with the init_data struct.  If there's no
-> > fwnode, EINVAL is returned and 'led_classdev_register_ext()' returns
-> > early.
-> >=20
-> > If this is detected early the same fallback mechanism can be used , as
-> > if init_data itself is NULL.  This will allow drivers to pass fully
-> > populated 'init_data' or sparse initialized 'init_data' with a NULL
-> > fwnode in a more elegant way with only one function call.
-> >=20
-> > Fixes: bb4e9af0348d ("leds: core: Add support for composing LED class
-> > device names") Suggested-by: Pavel Machek <pavel@ucw.cz>
-> > Signed-off-by: Alexander Dahl <post@lespocky.de>
-> > ---
-> >=20
-> > Notes:
-> >      v4:
-> >        * added this patch to series (Suggested-by: Pavel Machek)
-> >  =20
-> >   drivers/leds/led-class.c | 2 +-
-> >   1 file changed, 1 insertion(+), 1 deletion(-)
-> >=20
-> > diff --git a/drivers/leds/led-class.c b/drivers/leds/led-class.c
-> > index cc3929f858b6..3da50c7ecfe7 100644
-> > --- a/drivers/leds/led-class.c
-> > +++ b/drivers/leds/led-class.c
-> > @@ -346,7 +346,7 @@ int led_classdev_register_ext(struct device *parent,
-> >=20
-> >   	const char *proposed_name =3D composed_name;
-> >   	int ret;
-> >=20
-> > -	if (init_data) {
-> > +	if (init_data && init_data->fwnode) {
->=20
-> This does not cover the case when we don't have fwnode but we
-> have init_data->default_label that led_compose_name() can make use of.
->=20
-> >   		if (init_data->devname_mandatory && !init_data->devicename) {
-> >   	=09
-> >   			dev_err(parent, "Mandatory device name is missing");
-> >   			return -EINVAL;
+> Hi Yifeng,
+> 
+> I am very sorry for the delay it took me to review this driver, but
+> there are still some small incoherences IMHO, see below.
 
-You're right, I missed that part in that if/else if construct in=20
-led_compose_name() =E2=80=A6 I looked at the code for some more time now an=
-d could not=20
-come up with an elegant change to the led-core or led-class. :-/
+One last important comment below
 
-However I also had another look at leds-pwm and for me it seems that it is=
-=20
-used by fwnode (DT, ACPI, ??) based devices only.  I could not find a singl=
-e=20
-user of leds-pwm as a platform driver, which is probably why 141f15c66d94=20
-("leds: pwm: remove header") was possible?
+> > +static int rk_nfc_attach_chip(struct nand_chip *chip)
+> > +{
+> > +	struct mtd_info *mtd = nand_to_mtd(chip);
+> > +	struct device *dev = mtd->dev.parent;
+> > +	struct rk_nfc *nfc = nand_get_controller_data(chip);
+> > +	struct rk_nfc_nand_chip *rknand = to_rknand(chip);
+> > +	struct nand_ecc_ctrl *ecc = &chip->ecc;
+> > +	int len;
+> > +	int ret;
+> > +
+> > +	if (chip->options & NAND_BUSWIDTH_16) {
+> > +		dev_err(dev, "16 bits bus width not supported");
+> > +		return -EINVAL;
+> > +	}
+> > +
+> > +	if (ecc->mode != NAND_ECC_HW)
+> > +		return 0;
+> > +
+> > +	ret = rk_nfc_ecc_init(dev, mtd);
+> > +	if (ret)
+> > +		return ret;
+> > +	rknand->spare_per_sector = ecc->bytes + NFC_SYS_DATA_SIZE;
+> > +	rknand->metadata_size = NFC_SYS_DATA_SIZE * ecc->steps;
+> > +
+> > +	if (rknand->metadata_size < NFC_SYS_DATA_SIZE + 2) {
+> > +		dev_err(dev,
+> > +			"Driver needs at least %d bytes of meta data\n",
+> > +			NFC_SYS_DATA_SIZE + 2);
+> > +		return -EIO;
+> > +	}
+> > +	/* Check buffer first, avoid duplicate alloc buffer. */
+> > +	if (nfc->buffer)
+> > +		return 0;  
+> 
+> You can't do that this way: what if the first mtd to be registered uses
+> a smaller page size than the second?
+> 
+> > +
+> > +	len = mtd->writesize + mtd->oobsize;
+> > +	nfc->buffer = devm_kzalloc(dev, len, GFP_KERNEL | GFP_DMA);
 
-I had a look at the history of the leds-pwm driver and when introduced in 2=
-009=20
-platform based board files where a thing, no dt, of, or fwnode yet, at leas=
-t=20
-for arm, right?  Device tree support for leds-pwm was added in 2012 by Pete=
-r=20
-Ujfalusi.
+I don't think this fits your purpose. You should probably allocate with
+kzalloc or perhaps dma_alloc*.
 
-So if those code paths in leds-pwm are not used anymore, what about droppin=
-g=20
-that platform support in leds-pwm driver?  That would mean we always have=20
-fwnode non-null and would not require a change in led-class at all?
+Then, you'll also have to free this memory.
 
-Greets
-Alex
+> > +	if (!nfc->buffer)
+> > +		return -ENOMEM;
+> > +
+> > +	nfc->page_buf = nfc->buffer;
+> > +	len = ecc->steps * NFC_MAX_OOB_PER_STEP;
+> > +	nfc->oob_buf = devm_kzalloc(dev, len, GFP_KERNEL | GFP_DMA);
+> > +	if (!nfc->oob_buf) {
+> > +		nfc->buffer = NULL;
+> > +		nfc->oob_buf = NULL;  
+> 
+> I don't think this is needed
+> 
+> > +		return -ENOMEM;
+> > +	}
+> > +
+> > +	chip->ecc.write_page_raw = rk_nfc_write_page_raw;
+> > +	chip->ecc.write_page = rk_nfc_write_page_hwecc;
+> > +	chip->ecc.write_oob_raw = rk_nfc_write_oob_std;
+> > +	chip->ecc.write_oob = rk_nfc_write_oob_std;
+> > +
+> > +	chip->ecc.read_page_raw = rk_nfc_read_page_raw;
+> > +	chip->ecc.read_page = rk_nfc_read_page_hwecc;
+> > +	chip->ecc.read_oob_raw = rk_nfc_read_oob_std;
+> > +	chip->ecc.read_oob = rk_nfc_read_oob_std;  
+> 
+> I don't like the _std prefix, but it should be gone when splitting the
+> functions as advised.
+> 
+> > +
+> > +	return 0;
+> > +}
 
-
-
+Thanks,
+Miquèl
