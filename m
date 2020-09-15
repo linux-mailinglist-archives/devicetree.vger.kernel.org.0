@@ -2,78 +2,207 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from vger.kernel.org (vger.kernel.org [23.128.96.18])
-	by mail.lfdr.de (Postfix) with ESMTP id 9647F269AC5
-	for <lists+devicetree@lfdr.de>; Tue, 15 Sep 2020 02:55:02 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTP id EBEC7269AC1
+	for <lists+devicetree@lfdr.de>; Tue, 15 Sep 2020 02:54:52 +0200 (CEST)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S1726074AbgIOAzB (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Mon, 14 Sep 2020 20:55:01 -0400
-Received: from lindbergh.monkeyblade.net ([23.128.96.19]:50016 "EHLO
-        lindbergh.monkeyblade.net" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S1726045AbgIOAyz (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Mon, 14 Sep 2020 20:54:55 -0400
-Received: from mail.nic.cz (lists.nic.cz [IPv6:2001:1488:800:400::400])
-        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 35664C06174A;
-        Mon, 14 Sep 2020 17:54:53 -0700 (PDT)
-Received: from dellmb.labs.office.nic.cz (unknown [IPv6:2001:1488:fffe:6:cac7:3539:7f1f:463])
-        by mail.nic.cz (Postfix) with ESMTP id 61231140AAB;
-        Tue, 15 Sep 2020 02:54:51 +0200 (CEST)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=nic.cz; s=default;
-        t=1600131291; bh=MQum99TWcQMrKlutmkZwqmCQqTf8b/pDL4qSj7Kc4FE=;
-        h=From:To:Date;
-        b=W9rYftJZmVkosMqwwYHD6p0R28CNfSqsFtGkNqPMrI3PIbh8NsdTIPA81PE8QrvmZ
-         qOSwByCoDaLYq8+MIfXcxtEXl7K4INo0k54mnJgZxdr8CTKXWOETtMD6pdD4vhf0xz
-         xRvERZt94kI3GxUNJIJux+A32971kEixYMfh4Qhg=
-From:   =?UTF-8?q?Marek=20Beh=C3=BAn?= <marek.behun@nic.cz>
-To:     linux-leds@vger.kernel.org
-Cc:     =?UTF-8?q?Marek=20Beh=C3=BAn?= <marek.behun@nic.cz>,
-        Rob Herring <robh+dt@kernel.org>, devicetree@vger.kernel.org,
-        Pavel Machek <pavel@ucw.cz>
-Subject: [PATCH leds] dt-bindings: leds: cznic,turris-omnia-leds: fix error in binding
-Date:   Tue, 15 Sep 2020 02:54:26 +0200
-Message-Id: <20200915005426.15957-1-marek.behun@nic.cz>
-X-Mailer: git-send-email 2.26.2
+        id S1726091AbgIOAyu (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Mon, 14 Sep 2020 20:54:50 -0400
+Received: from mail-il1-f194.google.com ([209.85.166.194]:44787 "EHLO
+        mail-il1-f194.google.com" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
+        with ESMTP id S1726045AbgIOAys (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Mon, 14 Sep 2020 20:54:48 -0400
+Received: by mail-il1-f194.google.com with SMTP id h11so1370281ilj.11;
+        Mon, 14 Sep 2020 17:54:47 -0700 (PDT)
+X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+        d=1e100.net; s=20161025;
+        h=x-gm-message-state:date:from:to:cc:subject:message-id:references
+         :mime-version:content-disposition:content-transfer-encoding
+         :in-reply-to;
+        bh=Uu60TNaJ5WiZEoTUp5Pm6cAzGAGF09qo0+Sx8E6CGrY=;
+        b=heY3zxtdOgIrU3wtNWBxZBeB1J8d2iZkZJ4HjX0hiFBQ0bi51R99c/BjHWK5/ABfBI
+         zuRGHnQB38T+4pP6w3hwYlAbpYpUw79FOxS9I+NmvmUqDo8epzhrHkeDbLRNOf2oGi4u
+         2VpRyTDzr5XWyOBPD+Ux1UMMHaVJLvdO7WOb0kMqYFSXF+KrjIYSHFoWKHVCi0Qu6rEq
+         ctnjFSGlqxCo6n6Ows9SdFeudVluC4p6MktQZl5++Yo8f7f3autCWwqVL/rX0ZfHDm+X
+         GlGFVLTePhkgY+7Xcs+mBAUgCizZEVIA5JZTF3o2b9WrqMs7lqvSlS/cp3ZYxUqmRb5w
+         IfDQ==
+X-Gm-Message-State: AOAM532cTTgxjAq8xU12B4f/CnpwxVpihi38TPeaxEf428Tdqq718k6c
+        1P/fMuzR5N64G5npqYOWvw==
+X-Google-Smtp-Source: ABdhPJxMkfxz3ko4AaV3oT3oSGOSwswpuwFqnR3S7izCYKAmLPhb3acF+Wxp67/e7JcOa5Neo9oUbw==
+X-Received: by 2002:a92:9fcc:: with SMTP id z73mr7796328ilk.234.1600131286742;
+        Mon, 14 Sep 2020 17:54:46 -0700 (PDT)
+Received: from xps15 ([64.188.179.253])
+        by smtp.gmail.com with ESMTPSA id y10sm6805351ioy.25.2020.09.14.17.54.44
+        (version=TLS1_3 cipher=TLS_AES_256_GCM_SHA384 bits=256/256);
+        Mon, 14 Sep 2020 17:54:45 -0700 (PDT)
+Received: (nullmailer pid 610633 invoked by uid 1000);
+        Tue, 15 Sep 2020 00:54:43 -0000
+Date:   Mon, 14 Sep 2020 18:54:43 -0600
+From:   Rob Herring <robh@kernel.org>
+To:     Jonathan =?iso-8859-1?Q?Neusch=E4fer?= <j.neuschaefer@gmx.net>
+Cc:     linux-kernel@vger.kernel.org, Lee Jones <lee.jones@linaro.org>,
+        Thierry Reding <thierry.reding@gmail.com>,
+        =?UTF-8?Q?Uwe_Kleine=2DK=C3=B6nig?= 
+        <u.kleine-koenig@pengutronix.de>,
+        Alessandro Zummo <a.zummo@towertech.it>,
+        Alexandre Belloni <alexandre.belloni@bootlin.com>,
+        Shawn Guo <shawnguo@kernel.org>,
+        Sascha Hauer <s.hauer@pengutronix.de>,
+        Pengutronix Kernel Team <kernel@pengutronix.de>,
+        Fabio Estevam <festevam@gmail.com>,
+        NXP Linux Team <linux-imx@nxp.com>,
+        Sam Ravnborg <sam@ravnborg.org>,
+        Linus Walleij <linus.walleij@linaro.org>,
+        Heiko Stuebner <heiko.stuebner@theobroma-systems.com>,
+        Stephan Gerhold <stephan@gerhold.net>,
+        Lubomir Rintel <lkundrak@v3.sk>,
+        Mark Brown <broonie@kernel.org>, allen <allen.chen@ite.com.tw>,
+        Mauro Carvalho Chehab <mchehab+huawei@kernel.org>,
+        "David S. Miller" <davem@davemloft.net>,
+        devicetree@vger.kernel.org, linux-pwm@vger.kernel.org,
+        linux-rtc@vger.kernel.org, linux-arm-kernel@lists.infradead.org,
+        Heiko Stuebner <heiko@sntech.de>,
+        Josua Mayer <josua.mayer@jm0.eu>,
+        Andreas Kemnade <andreas@kemnade.info>,
+        Arnd Bergmann <arnd@arndb.de>, Daniel Palmer <daniel@0x0f.com>
+Subject: Re: [PATCH v2 04/10] dt-bindings: pwm: Add bindings for PWM function
+ in Netronix EC
+Message-ID: <20200915005443.GA604385@bogus>
+References: <20200905133230.1014581-1-j.neuschaefer@gmx.net>
+ <20200905133230.1014581-5-j.neuschaefer@gmx.net>
 MIME-Version: 1.0
-Content-Type: text/plain; charset=UTF-8
+Content-Type: text/plain; charset=iso-8859-1
+Content-Disposition: inline
 Content-Transfer-Encoding: 8bit
-X-Spam-Checker-Version: SpamAssassin 3.4.2 (2018-09-13) on mail.nic.cz
-X-Spam-Status: No, score=0.00
-X-Spamd-Bar: /
-X-Virus-Scanned: clamav-milter 0.102.2 at mail
-X-Virus-Status: Clean
+In-Reply-To: <20200905133230.1014581-5-j.neuschaefer@gmx.net>
 Sender: devicetree-owner@vger.kernel.org
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-There is a bug in the device tree binding for cznic,turris-omnia-leds
-which causes make dt_binding_check to complain.
+On Sat, Sep 05, 2020 at 03:32:24PM +0200, Jonathan Neusch‰fer wrote:
+> The Netronix embedded controller as found in Kobo Aura and Tolino Shine
+> supports one PWM channel, which is used to control the frontlight
+> brightness on these devices.
+> 
+> Signed-off-by: Jonathan Neusch‰fer <j.neuschaefer@gmx.net>
+> ---
+> 
+> v2:
+> - Add plaintext binding to patch description, for comparison
+> - Fix pwm-cells property (should be 2, not 1)
+> - Add dummy regulator to example, because the pwm-backlight binding requires a
+>   power supply
+> 
+> 
+> For reference, here is the binding in text form:
+> 
+> 
+>   PWM functionality in Netronix Embedded Controller
+> 
+>   Required properties:
+>   - compatible: should be "netronix,ntxec-pwm"
+>   - #pwm-cells: should be 2.
+> 
+>   Available PWM channels:
+>   - 0: The PWM channel controlled by registers 0xa1-0xa7
+> 
+>   Example:
+> 
+>   	embedded-controller@43 {
+>   		compatible = "netronix,ntxec";
+>   		...
+> 
+>   		ec_pwm: pwm {
+>   			compatible = "netronix,ntxec-pwm";
+>   			#pwm-cells = <1>;
+>   		};
+>   	};
+> 
+>   	...
+> 
+>   	backlight {
+>   		compatible = "pwm-backlight";
+>   		pwms = <&ec_pwm 0 50000>;
+>   	};
+> ---
+>  .../bindings/mfd/netronix,ntxec.yaml          | 19 +++++++++++
+>  .../bindings/pwm/netronix,ntxec-pwm.yaml      | 33 +++++++++++++++++++
+>  2 files changed, 52 insertions(+)
+>  create mode 100644 Documentation/devicetree/bindings/pwm/netronix,ntxec-pwm.yaml
+> 
+> diff --git a/Documentation/devicetree/bindings/mfd/netronix,ntxec.yaml b/Documentation/devicetree/bindings/mfd/netronix,ntxec.yaml
+> index 596df460f98eb..73c873dda3e70 100644
+> --- a/Documentation/devicetree/bindings/mfd/netronix,ntxec.yaml
+> +++ b/Documentation/devicetree/bindings/mfd/netronix,ntxec.yaml
+> @@ -31,6 +31,9 @@ properties:
+>      description:
+>        The EC can signal interrupts via a GPIO line
+> 
+> +  pwm:
+> +    $ref: ../pwm/netronix,ntxec-pwm.yaml
+> +
+>  required:
+>    - compatible
+>    - reg
+> @@ -53,5 +56,21 @@ examples:
+>                      interrupts = <11 IRQ_TYPE_EDGE_FALLING>;
+>                      interrupt-controller;
+>                      #interrupt-cells = <1>;
+> +
+> +                    ec_pwm: pwm {
+> +                            compatible = "netronix,ntxec-pwm";
+> +                            #pwm-cells = <2>;
+> +                    };
+>              };
+>      };
+> +
+> +    backlight {
+> +            compatible = "pwm-backlight";
+> +            pwms = <&ec_pwm 0 50000>;
+> +            power-supply = <&backlight_regulator>;
+> +    };
+> +
+> +    backlight_regulator: regulator-dummy {
+> +            compatible = "regulator-fixed";
+> +            regulator-name = "backlight";
+> +    };
+> diff --git a/Documentation/devicetree/bindings/pwm/netronix,ntxec-pwm.yaml b/Documentation/devicetree/bindings/pwm/netronix,ntxec-pwm.yaml
+> new file mode 100644
+> index 0000000000000..0c9d2801b8de1
+> --- /dev/null
+> +++ b/Documentation/devicetree/bindings/pwm/netronix,ntxec-pwm.yaml
+> @@ -0,0 +1,33 @@
+> +# SPDX-License-Identifier: (GPL-2.0-only OR BSD-2-Clause)
+> +%YAML 1.2
+> +---
+> +$id: http://devicetree.org/schemas/pwm/netronix,ntxec-pwm.yaml#
+> +$schema: http://devicetree.org/meta-schemas/core.yaml#
+> +
+> +title: PWM functionality in Netronix embedded controller
+> +
+> +maintainers:
+> +  - Jonathan Neusch‰fer <j.neuschaefer@gmx.net>
+> +
+> +description: |
+> +  See also Documentation/devicetree/bindings/mfd/netronix,ntxec.yaml
+> +
+> +  The Netronix EC contains PWM functionality, which is usually used to drive
+> +  the backlight LED.
+> +
+> +  The following PWM channels are supported:
+> +    - 0: The PWM channel controlled by registers 0xa1-0xa7
+> +
+> +allOf:
+> +  - $ref: pwm.yaml#
+> +
+> +properties:
+> +  compatible:
+> +    const: netronix,ntxec-pwm
+> +
+> +  "#pwm-cells":
+> +    const: 2
 
-The reason is that the multi-led property binding's regular expression
-does not contain the `@` character, while the example nodes do.
+Just move this to the parent and make the parent a pwm provider. There's 
+no need for child nodes for this or the rtc.
 
-Fix this, and also allow for longer address in property name.
-
-Signed-off-by: Marek Beh√∫n <marek.behun@nic.cz>
-Cc: Rob Herring <robh+dt@kernel.org>
-Cc: devicetree@vger.kernel.org
-Cc: Pavel Machek <pavel@ucw.cz>
----
- .../devicetree/bindings/leds/cznic,turris-omnia-leds.yaml       | 2 +-
- 1 file changed, 1 insertion(+), 1 deletion(-)
-
-diff --git a/Documentation/devicetree/bindings/leds/cznic,turris-omnia-leds.yaml b/Documentation/devicetree/bindings/leds/cznic,turris-omnia-leds.yaml
-index 24ad1446445ea..486ab27d75f2f 100644
---- a/Documentation/devicetree/bindings/leds/cznic,turris-omnia-leds.yaml
-+++ b/Documentation/devicetree/bindings/leds/cznic,turris-omnia-leds.yaml
-@@ -30,7 +30,7 @@ properties:
-     const: 0
- 
- patternProperties:
--  "^multi-led[0-9a-f]$":
-+  "^multi-led@[0-9a-f]+$":
-     type: object
-     allOf:
-       - $ref: leds-class-multicolor.yaml#
--- 
-2.26.2
-
+Rob
