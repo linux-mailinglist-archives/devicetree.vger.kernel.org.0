@@ -2,92 +2,120 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from vger.kernel.org (vger.kernel.org [23.128.96.18])
-	by mail.lfdr.de (Postfix) with ESMTP id E2AC026AFD8
-	for <lists+devicetree@lfdr.de>; Tue, 15 Sep 2020 23:46:18 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTP id F275526AFE0
+	for <lists+devicetree@lfdr.de>; Tue, 15 Sep 2020 23:47:31 +0200 (CEST)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S1727953AbgIOVqQ (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Tue, 15 Sep 2020 17:46:16 -0400
-Received: from lindbergh.monkeyblade.net ([23.128.96.19]:46192 "EHLO
+        id S1727787AbgIOVrN (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Tue, 15 Sep 2020 17:47:13 -0400
+Received: from lindbergh.monkeyblade.net ([23.128.96.19]:46388 "EHLO
         lindbergh.monkeyblade.net" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S1728120AbgIOVpV (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Tue, 15 Sep 2020 17:45:21 -0400
-Received: from mail-wm1-x343.google.com (mail-wm1-x343.google.com [IPv6:2a00:1450:4864:20::343])
-        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 7050EC06178C
-        for <devicetree@vger.kernel.org>; Tue, 15 Sep 2020 14:45:14 -0700 (PDT)
-Received: by mail-wm1-x343.google.com with SMTP id b79so904591wmb.4
-        for <devicetree@vger.kernel.org>; Tue, 15 Sep 2020 14:45:14 -0700 (PDT)
+        with ESMTP id S1728066AbgIOVqg (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Tue, 15 Sep 2020 17:46:36 -0400
+Received: from mail-vk1-xa32.google.com (mail-vk1-xa32.google.com [IPv6:2607:f8b0:4864:20::a32])
+        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id BCD9BC06174A
+        for <devicetree@vger.kernel.org>; Tue, 15 Sep 2020 14:46:32 -0700 (PDT)
+Received: by mail-vk1-xa32.google.com with SMTP id m8so1218785vka.6
+        for <devicetree@vger.kernel.org>; Tue, 15 Sep 2020 14:46:32 -0700 (PDT)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=linaro.org; s=google;
-        h=from:to:cc:subject:date:message-id:mime-version
-         :content-transfer-encoding;
-        bh=9KMVC1YG0Zgl+FYlCNkjyM0mDusyj+CBKlA/V00wdpg=;
-        b=Xb7UczPakAqjh0s7AzauUIfKdNEFZ0A8228lXc8AQsdh0Kmwgk5lkpS+1EIwII0dXu
-         CIt/VcnjGSZnKr7dAV5DkDLY1s7Gq0NV6PFLJXD1PpTVUFIAYwiC2/97S5XAEWMrXErs
-         hKJd0JZ1yFJRuLER8PxCsexh05g/HlAvFn3HozjVa503kS1sZ59CL+E+51w47YvCDi+F
-         /1Pcg3HMmAbbxJ4GyeZ8LShbSB7ia87HAp48UYUOeiCzSoSG5v2WR1pamdXFRFjQj3RN
-         3++WXdntatcFiy56ghIk6GgXYYYXH/vYAsDUISCeFwz62KMhrKEtOIdyFLejxoUxWCP0
-         Dtjg==
+        d=chromium.org; s=google;
+        h=mime-version:references:in-reply-to:from:date:message-id:subject:to
+         :cc;
+        bh=5lQx6ouYx3ZQgTAYfn9mY0tepBCsettlTPRkpFc3p7E=;
+        b=TfKGQEsNNXmRziL734xfQ2bxGV9BmIMhM6XTbr50j2/KdyK/QrCeRvCRkN3Tx0lfUQ
+         J0SXFFY3AIUNxGeHMtDqTbc/VuhyhEDavVTT5XjF/ClsgLOEtGOtgq0iosHZ4EzFdTrw
+         JahnUKZxAsq1kBVbY5lZ1JHgim5+EUHvkjFxo=
 X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
         d=1e100.net; s=20161025;
-        h=x-gm-message-state:from:to:cc:subject:date:message-id:mime-version
-         :content-transfer-encoding;
-        bh=9KMVC1YG0Zgl+FYlCNkjyM0mDusyj+CBKlA/V00wdpg=;
-        b=RRLskNx01SR6+tXBSmcviElS87kRUIkcPdmWz6Lyroa8G/iXikSm7er9CkbGj4YrvP
-         bPuv1GS1jBPH+AWDjEa0ahjW+/FJE3XmQ+GR9aFnCTnW/OxWMhvQOeaQ6G197EE++P5b
-         c0pTX5OdWtSCdv0R7qihcQdL69VgDp3JJnd9eyF0xXcx/eZ6JYaWSuY2dLoqwAtocxB/
-         VGeXigZlG125Nev1/MW4RLlvIOGIHOiagsh6qO3RoZ13APMH04yq7NaF2ZW/m+kCNSWA
-         nLIjYvY6BXb0PCs6Hg1eTrzBBg7xUGsp+/Z+1lTJr6E/06eXG5vGFBaeNV89z8LkwhKn
-         jqKA==
-X-Gm-Message-State: AOAM532ehd90R+oqGGVO4s5X7FNSdWIaxqe7zD/7XAQchODkZoVh8UgV
-        /sskCs7UF2Lu+/5zB9/qpOhhYw==
-X-Google-Smtp-Source: ABdhPJymR6Ry5JFvKnoD5Xxv9aObqndWEzvNlMxWJ9h6FbBqRTfoX1UHM+GtvIxRLfqeaRTG9SEQMg==
-X-Received: by 2002:a05:600c:2246:: with SMTP id a6mr1412838wmm.38.1600206313133;
-        Tue, 15 Sep 2020 14:45:13 -0700 (PDT)
-Received: from localhost.localdomain ([212.45.67.2])
-        by smtp.googlemail.com with ESMTPSA id i6sm31643363wra.1.2020.09.15.14.45.12
-        (version=TLS1_2 cipher=ECDHE-ECDSA-AES128-GCM-SHA256 bits=128/128);
-        Tue, 15 Sep 2020 14:45:12 -0700 (PDT)
-From:   Georgi Djakov <georgi.djakov@linaro.org>
-To:     bjorn.andersson@linaro.org
-Cc:     robh+dt@kernel.org, robdclark@gmail.com, amit.pundir@linaro.org,
-        linux-arm-msm@vger.kernel.org, devicetree@vger.kernel.org,
-        linux-kernel@vger.kernel.org,
-        Georgi Djakov <georgi.djakov@linaro.org>
-Subject: [PATCH] arm64: dts: qcom: sdm845: Add interconnects property for display
-Date:   Wed, 16 Sep 2020 00:45:11 +0300
-Message-Id: <20200915214511.786-1-georgi.djakov@linaro.org>
-X-Mailer: git-send-email 2.27.0
+        h=x-gm-message-state:mime-version:references:in-reply-to:from:date
+         :message-id:subject:to:cc;
+        bh=5lQx6ouYx3ZQgTAYfn9mY0tepBCsettlTPRkpFc3p7E=;
+        b=a4Tf7gfdB1hIpDSwFpDJRZ7CQwe7LD8nT4UQdDCPe4kXPiFx3xPZSArh39DguvdXXz
+         TMfw1EkNpc67rqi84gWPCGBkr7xA0GO0sidMmx04cJek6mO9QxK0XU9/80g/ijo1/OAw
+         tMwofLX2Hu0bw6DzGJmzlg5gCbQCqTAB5Ruktjl5iq681iAgn0Z578CGx8YHmXZ1fdCC
+         UoIxwmQmJ0MCHMiagZdJ0eAKKw+o4OrJf/tychWqRSgT2bDGclnqKalrh6qmL3kU0bsB
+         mBvdvRm0twhfofZZ/16DsMXzbEaSGXg5NOPbyDo4TSutpbttNk3+4xQ3dVWFqsckUOBQ
+         5ahw==
+X-Gm-Message-State: AOAM533VrkbpEU7lF7gZq2+3QZtfNuzysAt9rDGfwdM55Tj4kuGw7EGr
+        uzpjq30dWGJCNDko3onR7WBkgU7FsKRCtA==
+X-Google-Smtp-Source: ABdhPJzGQR2lxzg+gRmv+3pL/vqVJnzqm2l40Q5KMs615zHZx6mHT0YoffmtsEqdExoKJtY4zQOK7g==
+X-Received: by 2002:a1f:1f15:: with SMTP id f21mr11614285vkf.12.1600206389988;
+        Tue, 15 Sep 2020 14:46:29 -0700 (PDT)
+Received: from mail-vk1-f182.google.com (mail-vk1-f182.google.com. [209.85.221.182])
+        by smtp.gmail.com with ESMTPSA id y72sm2512970vky.19.2020.09.15.14.46.28
+        for <devicetree@vger.kernel.org>
+        (version=TLS1_3 cipher=TLS_AES_128_GCM_SHA256 bits=128/128);
+        Tue, 15 Sep 2020 14:46:29 -0700 (PDT)
+Received: by mail-vk1-f182.google.com with SMTP id q124so1207882vkb.8
+        for <devicetree@vger.kernel.org>; Tue, 15 Sep 2020 14:46:28 -0700 (PDT)
+X-Received: by 2002:a1f:d986:: with SMTP id q128mr6249379vkg.7.1600206388505;
+ Tue, 15 Sep 2020 14:46:28 -0700 (PDT)
 MIME-Version: 1.0
-Content-Transfer-Encoding: 8bit
+References: <248bb01e-1746-c84c-78c4-3cf7d2541a70@codeaurora.org>
+ <20200915172444.GA2771744@google.com> <406d5d4e-d7d7-8a37-5501-119b734facb3@linaro.org>
+ <20200915175808.GB2771744@google.com> <27785351-ba14-dc92-6761-d64962c29596@linaro.org>
+In-Reply-To: <27785351-ba14-dc92-6761-d64962c29596@linaro.org>
+From:   Doug Anderson <dianders@chromium.org>
+Date:   Tue, 15 Sep 2020 14:46:16 -0700
+X-Gmail-Original-Message-ID: <CAD=FV=XPTrA0S5OukQT4=R7HCOd8DuJCdXCDKW+xCO6YNe7xNA@mail.gmail.com>
+Message-ID: <CAD=FV=XPTrA0S5OukQT4=R7HCOd8DuJCdXCDKW+xCO6YNe7xNA@mail.gmail.com>
+Subject: Re: is 'dynamic-power-coefficient' expected to be based on 'real'
+ power measurements?
+To:     Daniel Lezcano <daniel.lezcano@linaro.org>
+Cc:     Matthias Kaehlcke <mka@chromium.org>,
+        Rajendra Nayak <rnayak@codeaurora.org>,
+        Lukasz Luba <lukasz.luba@arm.com>,
+        Rob Herring <robh+dt@kernel.org>,
+        DTML <devicetree@vger.kernel.org>,
+        Linux PM <linux-pm@vger.kernel.org>,
+        Amit Daniel Kachhap <amit.kachhap@gmail.com>,
+        Viresh Kumar <viresh.kumar@linaro.org>,
+        Javi Merino <javi.merino@kernel.org>
+Content-Type: text/plain; charset="UTF-8"
 Sender: devicetree-owner@vger.kernel.org
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-Add the interconnect paths that are used by the display (MDSS). This
-will allow the driver to request the needed bandwidth and prevent
-display flickering.
+Hi,
 
-Signed-off-by: Georgi Djakov <georgi.djakov@linaro.org>
----
-This patch depends on:
-https://lore.kernel.org/r/20200903133134.17201-6-georgi.djakov@linaro.org/
+On Tue, Sep 15, 2020 at 1:55 PM Daniel Lezcano
+<daniel.lezcano@linaro.org> wrote:
+>
+> On 15/09/2020 19:58, Matthias Kaehlcke wrote:
+> > On Tue, Sep 15, 2020 at 07:50:10PM +0200, Daniel Lezcano wrote:
+> >> On 15/09/2020 19:24, Matthias Kaehlcke wrote:
+> >>> +Thermal folks
+> >>>
+> >>> Hi Rajendra,
+> >>>
+> >>> On Tue, Sep 15, 2020 at 11:14:00AM +0530, Rajendra Nayak wrote:
+> >>>> Hi Rob,
+> >>>>
+> >>>> There has been some discussions on another thread [1] around the DPC (dynamic-power-coefficient) values
+> >>>> for CPU's being relative vs absolute (based on real power) and should they be used to derive 'real' power
+> >>>> at various OPPs in order to calculate things like 'sustainable-power' for thermal zones.
+> >>>> I believe relative values work perfectly fine for scheduling decisions, but with others using this for
+> >>>> calculating power values in mW, is there a need to document the property as something that *has* to be
+> >>>> based on real power measurements?
+> >>>
+> >>> Relative values may work for scheduling decisions, but not for thermal
+> >>> management with the power allocator, at least not when CPU cooling devices
+> >>> are combined with others that specify their power consumption in absolute
+> >>> values. Such a configuration should be supported IMO.
+> >>
+> >> The energy model is used in the cpufreq cooling device and if the
+> >> sustainable power is consistent with the relative values then there is
+> >> no reason it shouldn't work.
+> >
+> > Agreed on thermal zones that exclusively use CPUs as cooling devices, but
+> > what when you have mixed zones, with CPUs with their pseudo-unit and e.g. a
+> > GPU that specifies its power in mW?
+>
+> Well, if a SoC vendor decides to mix the units, then there is nothing we
+> can do.
 
- arch/arm64/boot/dts/qcom/sdm845.dtsi | 4 ++++
- 1 file changed, 4 insertions(+)
+I mean, there is something someone could do.  They could buy one of
+these devices, measure the power (which wouldn't actually be that hard
+to do), then submit a patch to adjust all the numbers.  ;-)
 
-diff --git a/arch/arm64/boot/dts/qcom/sdm845.dtsi b/arch/arm64/boot/dts/qcom/sdm845.dtsi
-index 86457d9bc229..f8f09ab3442f 100644
---- a/arch/arm64/boot/dts/qcom/sdm845.dtsi
-+++ b/arch/arm64/boot/dts/qcom/sdm845.dtsi
-@@ -3813,6 +3813,10 @@ mdss: mdss@ae00000 {
- 			interrupt-controller;
- 			#interrupt-cells = <1>;
- 
-+			interconnects = <&mmss_noc MASTER_MDP0 0 &mem_noc SLAVE_EBI1 0>,
-+					<&mmss_noc MASTER_MDP1 0 &mem_noc SLAVE_EBI1 0>;
-+			interconnect-names = "mdp0-mem", "mdp1-mem";
-+
- 			iommus = <&apps_smmu 0x880 0x8>,
- 			         <&apps_smmu 0xc80 0x8>;
- 
+-Doug
