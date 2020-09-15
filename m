@@ -2,87 +2,191 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from vger.kernel.org (vger.kernel.org [23.128.96.18])
-	by mail.lfdr.de (Postfix) with ESMTP id 1C31926A582
-	for <lists+devicetree@lfdr.de>; Tue, 15 Sep 2020 14:48:02 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTP id 1BF3326A5B3
+	for <lists+devicetree@lfdr.de>; Tue, 15 Sep 2020 14:58:47 +0200 (CEST)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S1726508AbgIOMrt (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Tue, 15 Sep 2020 08:47:49 -0400
-Received: from lindbergh.monkeyblade.net ([23.128.96.19]:46498 "EHLO
+        id S1726494AbgIOM6o (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Tue, 15 Sep 2020 08:58:44 -0400
+Received: from lindbergh.monkeyblade.net ([23.128.96.19]:48202 "EHLO
         lindbergh.monkeyblade.net" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S1726477AbgIOMrT (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Tue, 15 Sep 2020 08:47:19 -0400
-Received: from mail-wr1-x42e.google.com (mail-wr1-x42e.google.com [IPv6:2a00:1450:4864:20::42e])
-        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 776F0C061351
-        for <devicetree@vger.kernel.org>; Tue, 15 Sep 2020 05:46:01 -0700 (PDT)
-Received: by mail-wr1-x42e.google.com with SMTP id x14so3126153wrl.12
-        for <devicetree@vger.kernel.org>; Tue, 15 Sep 2020 05:46:00 -0700 (PDT)
+        with ESMTP id S1726492AbgIOM6W (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Tue, 15 Sep 2020 08:58:22 -0400
+Received: from mail-pg1-x543.google.com (mail-pg1-x543.google.com [IPv6:2607:f8b0:4864:20::543])
+        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id B8448C06178B
+        for <devicetree@vger.kernel.org>; Tue, 15 Sep 2020 05:58:21 -0700 (PDT)
+Received: by mail-pg1-x543.google.com with SMTP id k14so1934673pgi.9
+        for <devicetree@vger.kernel.org>; Tue, 15 Sep 2020 05:58:21 -0700 (PDT)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=baylibre-com.20150623.gappssmtp.com; s=20150623;
-        h=from:to:cc:subject:date:message-id:in-reply-to:references
-         :mime-version:content-transfer-encoding;
-        bh=GVroTBa/RDLMNit62OYeyl1hwDTywX684KnqperhLJ0=;
-        b=KzcCsQcCjNO2iAn9TLGuYKccXqq76Nj0G9UJEj75DZeAVJEgvJT6Akrl2s/t8SN2jR
-         f+VpZ3IYj0dWNYEWjt3KYBSzy+3ss8FhI3NjAX9w7PAbvdI1K75ZPZTCdZ3N9EZTpRcC
-         9KyxKduWnNaYewl+WxNSAPi5bUdQAPrc7dH2IXz/+fOpTb3AJ92YfMuVMk3VtQtucnyc
-         WeF6Z35o9CcD+fsh2JtEmSrhXeediy1NniiqbJptEfq45VvvtOXHPVKjusNu4HMMoBXC
-         CHYpVKAW42yRxwxbyVUQvVGwzhaw46d2jKslG9h9oQI15IMindO2vTldycnwE1V4VQlW
-         dF8g==
+        d=antmicro.com; s=google;
+        h=mime-version:references:in-reply-to:from:date:message-id:subject:to
+         :cc;
+        bh=z7G2CzOYqiH9ibUColb5tVhNMevQLWkjnQ9SIdmc0AU=;
+        b=bd1YdxZZomrEmxn/plX06V/cZuYuZAA+EkG5aXcyoXsX4PS9BCuGp3EjMmbgX9uEyQ
+         ITNfIiYiyR8/V7qtGzLmbiYIkbhd19hK6XNVK+GyD7VQHYlS5uhz9bCTwp52aDeyTcXG
+         CGQTqRLc3xfX0MZ2esmJAGooRl4Mar7tTboQY=
 X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
         d=1e100.net; s=20161025;
-        h=x-gm-message-state:from:to:cc:subject:date:message-id:in-reply-to
-         :references:mime-version:content-transfer-encoding;
-        bh=GVroTBa/RDLMNit62OYeyl1hwDTywX684KnqperhLJ0=;
-        b=RPB3IYVvQQ5NRbEuaWCIaLSbX8bauawdYCZpb56ZFAl66DlJd+WsAfZC/31Q/cH24p
-         yI5Z0Y28CBfMuu+a3mt2bVe/4qu8+t/YoENL6nT0SwGNjG5FLR+ljFSem0JF3duKzTf9
-         mvWcadxk5gGBf9UkTUI7ccotlNTqAQwqr9KJUF0NAkTSGukaC0rPUNT5ctAWX6QIQVHG
-         11/OoiFFwuZRvHQFojfiTUMSNs2rj0NnMIOvx6tEc1jcrS95SWI8yS46u2U/0S1rUtZU
-         vyqjfzp20GKbwU6zsc0zLZYQ4cYMyRBRmL3NDW6PYGIuMpo/zIUYOLYvDcFoTero8SDv
-         40HA==
-X-Gm-Message-State: AOAM530aPXCrWxF1aG3hlo0wHQVorn9eaHN0s1i2U1GbehwfTcJvWSLi
-        EtbkkW+uI2owBOXuSWswzf95Ag==
-X-Google-Smtp-Source: ABdhPJysDu/Y8r8jEY0r1n/+h2yMo4tuRHu2mdOTiCUa1sJv4dyYJnuG+Dz8/5wjkBbEz3rOODjJgg==
-X-Received: by 2002:adf:e690:: with SMTP id r16mr21086562wrm.15.1600173959260;
-        Tue, 15 Sep 2020 05:45:59 -0700 (PDT)
-Received: from bender.baylibre.local (home.beaume.starnux.net. [82.236.8.43])
-        by smtp.gmail.com with ESMTPSA id q8sm26548589wrx.79.2020.09.15.05.45.58
-        (version=TLS1_3 cipher=TLS_AES_256_GCM_SHA384 bits=256/256);
-        Tue, 15 Sep 2020 05:45:58 -0700 (PDT)
-From:   Neil Armstrong <narmstrong@baylibre.com>
-To:     jbrunet@baylibre.com, devicetree@vger.kernel.org
-Cc:     linux-amlogic@lists.infradead.org, linux-clk@vger.kernel.org,
-        linux-arm-kernel@lists.infradead.org, linux-kernel@vger.kernel.org,
-        Neil Armstrong <narmstrong@baylibre.com>
-Subject: [PATCH v2 2/4] dt-bindings: clk: axg-clkc: add MIPI DSI Host clock binding
-Date:   Tue, 15 Sep 2020 14:45:51 +0200
-Message-Id: <20200915124553.8056-3-narmstrong@baylibre.com>
-X-Mailer: git-send-email 2.22.0
-In-Reply-To: <20200915124553.8056-1-narmstrong@baylibre.com>
-References: <20200915124553.8056-1-narmstrong@baylibre.com>
+        h=x-gm-message-state:mime-version:references:in-reply-to:from:date
+         :message-id:subject:to:cc;
+        bh=z7G2CzOYqiH9ibUColb5tVhNMevQLWkjnQ9SIdmc0AU=;
+        b=pgvyMKiSc3G43b1hVFTbG0AwsasVPqLPNEMaVI/LUwjp2y5UylzDLcLnWhY+VGOQJv
+         9lo+XrCR6MgpvD04crQ/XcXLNmF8OHY3TC1QwCM9kd2/bp6YK7UzU3w/Up8sjtvNL0mk
+         jF3nuRJS/czBF2IIsQigldmZTg3uExGYP+xjIDajOYGxAIoQ6YToxGXwwpfGf1Uyw2SV
+         1Bq7DKVyHdQyqEZ6mmKy0a6SJYqt2E6xsmAFdBur3Y/5hcjumaTnwSk24Pld5e6xNfjl
+         G+CPNtSRPTrazjoFbmctA0txAFugPRNl6asgFA+Rsv/xFFeGWo60T0U06j6C+0vAEkPx
+         XkBQ==
+X-Gm-Message-State: AOAM5315ZejjdHPW9/MGXwYgGSBQ6xdBSo2yuHqYLVxR9RrO0CAK0TT+
+        ki6F4bTt8EevkPYmuYHEnuZTvBEhWINHnXRASa9lMg==
+X-Google-Smtp-Source: ABdhPJze8e//GhCZuhvxKjphXB1Pvoi+mg7wGBazyHURu7t47g/o6713ZFFjPMbSdxMoGyr1OqPX6Vgp1G/RiekKwC8=
+X-Received: by 2002:aa7:956d:0:b029:142:2501:35d2 with SMTP id
+ x13-20020aa7956d0000b0290142250135d2mr1682052pfq.50.1600174700627; Tue, 15
+ Sep 2020 05:58:20 -0700 (PDT)
 MIME-Version: 1.0
-Content-Transfer-Encoding: 8bit
+References: <20200812143324.2394375-0-mholenko@antmicro.com>
+ <20200812143324.2394375-3-mholenko@antmicro.com> <20200911005740.GN3562056@lianli.shorne-pla.net>
+ <CAPk366Tvb9g960e3ZLv3+_H8FZJRRe0Jqa4q7tejE+svMcQvLA@mail.gmail.com> <20200914132433.GB2512402@lianli.shorne-pla.net>
+In-Reply-To: <20200914132433.GB2512402@lianli.shorne-pla.net>
+From:   Mateusz Holenko <mholenko@antmicro.com>
+Date:   Tue, 15 Sep 2020 14:58:08 +0200
+Message-ID: <CAPk366QvUdK1EVpUEVBkgb4me5aMfx6GBWSVNy8OKb8reT0Xvw@mail.gmail.com>
+Subject: Re: [PATCH v10 3/5] drivers/soc/litex: add LiteX SoC Controller driver
+To:     Stafford Horne <shorne@gmail.com>
+Cc:     Rob Herring <robh+dt@kernel.org>,
+        Mark Rutland <mark.rutland@arm.com>,
+        Greg Kroah-Hartman <gregkh@linuxfoundation.org>,
+        Jiri Slaby <jslaby@suse.com>,
+        devicetree <devicetree@vger.kernel.org>,
+        "open list:SERIAL DRIVERS" <linux-serial@vger.kernel.org>,
+        Karol Gugala <kgugala@antmicro.com>,
+        Mauro Carvalho Chehab <mchehab+samsung@kernel.org>,
+        "David S. Miller" <davem@davemloft.net>,
+        "Paul E. McKenney" <paulmck@linux.ibm.com>,
+        Filip Kokosinski <fkokosinski@antmicro.com>,
+        Pawel Czarnecki <pczarnecki@internships.antmicro.com>,
+        Joel Stanley <joel@jms.id.au>,
+        Jonathan Cameron <Jonathan.Cameron@huawei.com>,
+        Maxime Ripard <mripard@kernel.org>,
+        Shawn Guo <shawnguo@kernel.org>,
+        Heiko Stuebner <heiko@sntech.de>,
+        Sam Ravnborg <sam@ravnborg.org>,
+        Icenowy Zheng <icenowy@aosc.io>,
+        Laurent Pinchart <laurent.pinchart@ideasonboard.com>,
+        Linux Kernel Mailing List <linux-kernel@vger.kernel.org>,
+        "Gabriel L. Somlo" <gsomlo@gmail.com>
+Content-Type: text/plain; charset="UTF-8"
 Sender: devicetree-owner@vger.kernel.org
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-Add the clock ID for the MIPI DSI Host clock.
+On Mon, Sep 14, 2020 at 3:24 PM Stafford Horne <shorne@gmail.com> wrote:
+>
+> On Mon, Sep 14, 2020 at 12:33:11PM +0200, Mateusz Holenko wrote:
+> > On Fri, Sep 11, 2020 at 2:57 AM Stafford Horne <shorne@gmail.com> wrote:
+> > >
+> > > On Wed, Aug 12, 2020 at 02:34:34PM +0200, Mateusz Holenko wrote:
+> > > > From: Pawel Czarnecki <pczarnecki@internships.antmicro.com>
+> > > >
+> > > > This commit adds driver for the FPGA-based LiteX SoC
+> > > > Controller from LiteX SoC builder.
+> > > >
+> > > > Co-developed-by: Mateusz Holenko <mholenko@antmicro.com>
+> > > > Signed-off-by: Mateusz Holenko <mholenko@antmicro.com>
+> > > > Signed-off-by: Pawel Czarnecki <pczarnecki@internships.antmicro.com>
+> > > > ---
+> > > > +     node = dev->of_node;
+> > > > +     if (!node)
+> > > > +             return -ENODEV;
+>
+> We return here without BUG() if the setup fails.
+>
+> > > > +
+> > > > +     soc_ctrl_dev = devm_kzalloc(dev, sizeof(*soc_ctrl_dev), GFP_KERNEL);
+> > > > +     if (!soc_ctrl_dev)
+> > > > +             return -ENOMEM;
+>
+> We return here without BUG() if we are out of memory.
+>
+> > > > +
+> > > > +     soc_ctrl_dev->base = devm_platform_ioremap_resource(pdev, 0);
+> > > > +     if (IS_ERR(soc_ctrl_dev->base))
+> > > > +             return PTR_ERR(soc_ctrl_dev->base);
+>
+> Etc.
 
-Signed-off-by: Neil Armstrong <narmstrong@baylibre.com>
----
- include/dt-bindings/clock/axg-clkc.h | 1 +
- 1 file changed, 1 insertion(+)
+You are totally right - this is not consistent.
+We should probably either trigger BUG() in each case or don't bother at all.
 
-diff --git a/include/dt-bindings/clock/axg-clkc.h b/include/dt-bindings/clock/axg-clkc.h
-index 281df3e0f131..e2749dbc74b8 100644
---- a/include/dt-bindings/clock/axg-clkc.h
-+++ b/include/dt-bindings/clock/axg-clkc.h
-@@ -96,5 +96,6 @@
- #define CLKID_VCLK2_DIV6			130
- #define CLKID_VCLK2_DIV12			131
- #define CLKID_CTS_ENCL				133
-+#define CLKID_VDIN_MEAS				136
- 
- #endif /* __AXG_CLKC_H */
--- 
-2.22.0
+>
+> > > > +
+> > > > +     result = litex_check_csr_access(soc_ctrl_dev->base);
+> > > > +     if (result) {
+> > > > +             // LiteX CSRs access is broken which means that
+> > > > +             // none of LiteX drivers will most probably
+> > > > +             // operate correctly
+> > > The comment format here with // is not usually used in the kernel, but its not
+> > > forbidded.  Could you use the /* */ multiline style?
+> >
+> > Sure, I'll change the commenting style here.
+> >
+> > >
+> > > > +             BUG();
+> > > Instead of stopping the system with BUG, could we just do:
+> > >
+> > >         return litex_check_csr_access(soc_ctrl_dev->base);
+> > >
+> > > We already have failure for NODEV/NOMEM so might as well not call BUG() here
+> > > too.
+> >
+> > It's true that litex_check_csr_accessors() already generates error
+> > codes that could be
+> > returned directly.
+> > The point of using BUG() macro here, however, is to stop booting the
+> > system so that it's visible
+> > (and impossible to miss for the user) that an unresolvable HW issue
+> > was encountered.
+> >
+> > CSR-accessors - the litex_{g,s}et_reg() functions - are intended to be
+> > used by other LiteX drivers
+> > and it's very unlikely that those drivers would work properly after
+> > the fail of litex_check_csr_accessors().
+> > Since in such case the UART driver will be affected too (no boot logs
+> > and error messages visible to the user),
+> > I thought it'll be easier to spot and debug the problem if the system
+> > stopped in the BUG loop.
+> > Perhaps there are other, more linux-friendly, ways of achieving a
+> > similar goal - I'm open for suggestions.
+>
+> I see your point, but I thought if failed with an exit status above, we could do
+> the same here.  But I guess failing here means that something is really wrong as
+> validation failed.
+>
+> Some points:
+>  - If we return here, the system will still boot but there will be no UART
+>  - If we bail with BUG(), here the system stops, and there is no UART
+>  - Both cases the user can connect with a debugger and read "dmesg", to see what
+>    is wrong, but BUG() does not print an error message on all architectures.
+>
+> We could also use:
+>
+>  - WARN(1, "Failed to validate CSR registers, the system is probably broken.");
+>
+> If you want to keep BUG() it may be fine.
+>
+> I am not an expert on handling these type of bailout's so other input is
+> appreciated.
 
+I don't have a strong opinion about using BUG() here - I just thought
+it would be easier for the user.
+If this is, however, not how linux typically works, I'm ok with
+reworking this part.
+
+> -Stafford
+
+Best,
+Mateusz
+
+--
+Mateusz Holenko
+Antmicro Ltd | www.antmicro.com
+Roosevelta 22, 60-829 Poznan, Poland
