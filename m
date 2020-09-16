@@ -2,107 +2,148 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from vger.kernel.org (vger.kernel.org [23.128.96.18])
-	by mail.lfdr.de (Postfix) with ESMTP id 539A126BB3F
-	for <lists+devicetree@lfdr.de>; Wed, 16 Sep 2020 06:07:51 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTP id C245726BB46
+	for <lists+devicetree@lfdr.de>; Wed, 16 Sep 2020 06:15:19 +0200 (CEST)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S1726172AbgIPEHr (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Wed, 16 Sep 2020 00:07:47 -0400
-Received: from lindbergh.monkeyblade.net ([23.128.96.19]:48984 "EHLO
-        lindbergh.monkeyblade.net" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S1726134AbgIPEHl (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Wed, 16 Sep 2020 00:07:41 -0400
-Received: from mail-pl1-x644.google.com (mail-pl1-x644.google.com [IPv6:2607:f8b0:4864:20::644])
-        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 3E6E9C061788
-        for <devicetree@vger.kernel.org>; Tue, 15 Sep 2020 21:07:40 -0700 (PDT)
-Received: by mail-pl1-x644.google.com with SMTP id d19so2469819pld.0
-        for <devicetree@vger.kernel.org>; Tue, 15 Sep 2020 21:07:40 -0700 (PDT)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=linaro.org; s=google;
-        h=date:from:to:subject:message-id:references:mime-version
-         :content-disposition:in-reply-to:user-agent;
-        bh=dwWRnwsGGp42nHyvHYAmDpO5pglBD8pM8+TllXGj8yw=;
-        b=azE3P0AgP3hJEcsTJJpcq0kIrViiGK//UpvP9mqGA6o40Im531SZGBXDNgnQdFS3PB
-         wBCQl6lf/X1c/KmzDFSGjQhPvl+ui4vi1DTHra//aKQqCOMx8rU4ZI2IcpNPGy5hJh1s
-         oolKtRnBa+gwzgRn2I9Fk8M92A3huwHa60D59WywFue23XD3CbogiTSRJB5lM1HAF7HC
-         PIuQd07NRFHwCY0YohAqIBDoJS6l38o4j18aL6BqCj5n04A2ExKWKIcmud0lQSHTYLK+
-         dfwV5huTCPPK4WMt25naEXT7bSYfyZ3JpWQeZPyP/M9Bm5r150kgss0Edr7XTPH6nKn9
-         2pJw==
-X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=1e100.net; s=20161025;
-        h=x-gm-message-state:date:from:to:subject:message-id:references
-         :mime-version:content-disposition:in-reply-to:user-agent;
-        bh=dwWRnwsGGp42nHyvHYAmDpO5pglBD8pM8+TllXGj8yw=;
-        b=XIr0AJQZOU94jwXXpoLlR2weJMOLe2am3heEjerQNpahNnE3EFXUKBT+/pO4EE9QXA
-         ZyJYy7NNi8zsqc8xzwSXmBoteOuOXuJZdyU3WDS5LqHGTMnJV3lgFVlJI/xKPS+m3EAH
-         2VoPux6SgXzdRexFaeyQ59NYduAQ4ikMNElkU9eaAtDGWMhePxeV5eImexI0oMVQ0Egn
-         9f12Giv+B5dqmm+pb59VcScmvDbZdKMUcpR62Tut8KB/AuC3f8g3N4NSAgq/p3OzD95A
-         4DEUT9HS+wKhclBnamcC7M57031H6Le4oDkzs/y/EtMLXB7tEiTlot1dwnu4Sre5LDqz
-         Gndw==
-X-Gm-Message-State: AOAM532GZfG8MpFvpd57mfWiao56/OE3BLcgv5dODwVYQ4wvWK63rvR+
-        R6Jmu4EPB/7j/kjVFbCnDfIY
-X-Google-Smtp-Source: ABdhPJxWtRMMr2pHjJ+1V7e9unODZq5jgqDHwWcJ1/MX6MPAFMT/ZxHjurIf9f4zyw22ZxVRjrPxYQ==
-X-Received: by 2002:a17:90b:3241:: with SMTP id jy1mr2307220pjb.10.1600229259610;
-        Tue, 15 Sep 2020 21:07:39 -0700 (PDT)
-Received: from linux ([103.59.133.81])
-        by smtp.gmail.com with ESMTPSA id 131sm15062480pfc.20.2020.09.15.21.07.36
-        (version=TLS1_2 cipher=ECDHE-ECDSA-CHACHA20-POLY1305 bits=256/256);
-        Tue, 15 Sep 2020 21:07:38 -0700 (PDT)
-Date:   Wed, 16 Sep 2020 09:37:32 +0530
-From:   Manivannan Sadhasivam <manivannan.sadhasivam@linaro.org>
-To:     wg@grandegger.com, mkl@pengutronix.de, robh+dt@kernel.org,
-        linux-can@vger.kernel.org, devicetree@vger.kernel.org,
-        linux-kernel@vger.kernel.org, o.rempel@pengutronix.de
-Subject: Re: [PATCH 0/6] Add support for MCP25XXFD SPI-CAN Network driver
-Message-ID: <20200916040732.GA4281@linux>
-References: <20200910133806.25077-1-manivannan.sadhasivam@linaro.org>
- <20200915161925.GA5660@linux>
- <20200915175838.GA12860@x1.vandijck-laurijssen.be>
+        id S1726131AbgIPEPS (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Wed, 16 Sep 2020 00:15:18 -0400
+Received: from m43-7.mailgun.net ([69.72.43.7]:51023 "EHLO m43-7.mailgun.net"
+        rhost-flags-OK-OK-OK-OK) by vger.kernel.org with ESMTP
+        id S1726069AbgIPEPO (ORCPT <rfc822;devicetree@vger.kernel.org>);
+        Wed, 16 Sep 2020 00:15:14 -0400
+DKIM-Signature: a=rsa-sha256; v=1; c=relaxed/relaxed; d=mg.codeaurora.org; q=dns/txt;
+ s=smtp; t=1600229713; h=Content-Transfer-Encoding: Content-Type:
+ In-Reply-To: MIME-Version: Date: Message-ID: From: References: Cc: To:
+ Subject: Sender; bh=sVyIWN/5EQf1o4rLUU8501TZYsaQWVBf+J0gC/hpHCY=; b=WtwYxjARDz25VuXxzvyh4quAZzYZUL+fG6kjCnLkCyyQfHSRVeHepdwYmQHmRlWWaEXeg5+6
+ cALKcLWvxe5zwCAQiNiwvl6tNZnVHK1Jmv7hNU+zqrQz75SFBmNcDIqhJijRMqGZ5eYJ3DcW
+ 9ygV0DlZetF+EW/1ZJu88JXRotU=
+X-Mailgun-Sending-Ip: 69.72.43.7
+X-Mailgun-Sid: WyI1YmJiNiIsICJkZXZpY2V0cmVlQHZnZXIua2VybmVsLm9yZyIsICJiZTllNGEiXQ==
+Received: from smtp.codeaurora.org
+ (ec2-35-166-182-171.us-west-2.compute.amazonaws.com [35.166.182.171]) by
+ smtp-out-n05.prod.us-west-2.postgun.com with SMTP id
+ 5f61915024954b1631c77d4c (version=TLS1.2,
+ cipher=TLS_ECDHE_RSA_WITH_AES_128_GCM_SHA256); Wed, 16 Sep 2020 04:15:12
+ GMT
+Received: by smtp.codeaurora.org (Postfix, from userid 1001)
+        id 7D2E7C433F1; Wed, 16 Sep 2020 04:15:12 +0000 (UTC)
+X-Spam-Checker-Version: SpamAssassin 3.4.0 (2014-02-07) on
+        aws-us-west-2-caf-mail-1.web.codeaurora.org
+X-Spam-Level: 
+X-Spam-Status: No, score=-2.9 required=2.0 tests=ALL_TRUSTED,BAYES_00,
+        NICE_REPLY_A,SPF_FAIL autolearn=no autolearn_force=no version=3.4.0
+Received: from [192.168.1.100] (unknown [49.207.202.65])
+        (using TLSv1.2 with cipher ECDHE-RSA-AES128-GCM-SHA256 (128/128 bits))
+        (No client certificate requested)
+        (Authenticated sender: rnayak)
+        by smtp.codeaurora.org (Postfix) with ESMTPSA id 1D10BC433C8;
+        Wed, 16 Sep 2020 04:15:07 +0000 (UTC)
+DMARC-Filter: OpenDMARC Filter v1.3.2 smtp.codeaurora.org 1D10BC433C8
+Authentication-Results: aws-us-west-2-caf-mail-1.web.codeaurora.org; dmarc=none (p=none dis=none) header.from=codeaurora.org
+Authentication-Results: aws-us-west-2-caf-mail-1.web.codeaurora.org; spf=fail smtp.mailfrom=rnayak@codeaurora.org
+Subject: Re: is 'dynamic-power-coefficient' expected to be based on 'real'
+ power measurements?
+To:     Matthias Kaehlcke <mka@chromium.org>,
+        Daniel Lezcano <daniel.lezcano@linaro.org>
+Cc:     Lukasz Luba <lukasz.luba@arm.com>,
+        Rob Herring <robh+dt@kernel.org>,
+        DTML <devicetree@vger.kernel.org>,
+        Doug Anderson <dianders@chromium.org>,
+        linux-pm@vger.kernel.org,
+        Amit Daniel Kachhap <amit.kachhap@gmail.com>,
+        Viresh Kumar <viresh.kumar@linaro.org>,
+        Javi Merino <javi.merino@kernel.org>
+References: <248bb01e-1746-c84c-78c4-3cf7d2541a70@codeaurora.org>
+ <20200915172444.GA2771744@google.com>
+ <406d5d4e-d7d7-8a37-5501-119b734facb3@linaro.org>
+ <20200915175808.GB2771744@google.com>
+ <27785351-ba14-dc92-6761-d64962c29596@linaro.org>
+ <20200915211309.GC2771744@google.com>
+ <808029c4-3a05-1926-934d-10739190ab9e@linaro.org>
+ <20200915213626.GD2771744@google.com>
+From:   Rajendra Nayak <rnayak@codeaurora.org>
+Message-ID: <5553e9c4-9681-e223-8a31-ea0b0582668f@codeaurora.org>
+Date:   Wed, 16 Sep 2020 09:45:04 +0530
+User-Agent: Mozilla/5.0 (Windows NT 10.0; WOW64; rv:68.0) Gecko/20100101
+ Thunderbird/68.12.0
 MIME-Version: 1.0
-Content-Type: text/plain; charset=us-ascii
-Content-Disposition: inline
-In-Reply-To: <20200915175838.GA12860@x1.vandijck-laurijssen.be>
-User-Agent: Mutt/1.9.4 (2018-02-28)
+In-Reply-To: <20200915213626.GD2771744@google.com>
+Content-Type: text/plain; charset=utf-8; format=flowed
+Content-Language: en-US
+Content-Transfer-Encoding: 7bit
 Sender: devicetree-owner@vger.kernel.org
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-Hi,
 
-On Tue, Sep 15, 2020 at 07:58:38PM +0200, Kurt Van Dijck wrote:
-> On di, 15 sep 2020 21:49:25 +0530, Manivannan Sadhasivam wrote:
-> > Hi,
-> > 
-> > On Thu, Sep 10, 2020 at 07:08:00PM +0530, Manivannan Sadhasivam wrote:
-> > > Hello,
-> > 
-> > Just a quick question: I don't see any activity on this specific driver for
-> > sometime (back in Martin days itself). Is it due to lack of reviewers or
-> > it is due to the patch size (lines of code) so that nobody is interested
-> > in reviewing?
+On 9/16/2020 3:06 AM, Matthias Kaehlcke wrote:
+> On Tue, Sep 15, 2020 at 11:23:49PM +0200, Daniel Lezcano wrote:
+>> On 15/09/2020 23:13, Matthias Kaehlcke wrote:
+>>> On Tue, Sep 15, 2020 at 10:55:52PM +0200, Daniel Lezcano wrote:
+>>>> On 15/09/2020 19:58, Matthias Kaehlcke wrote:
+>>>>> On Tue, Sep 15, 2020 at 07:50:10PM +0200, Daniel Lezcano wrote:
+>>>>>> On 15/09/2020 19:24, Matthias Kaehlcke wrote:
+>>>>>>> +Thermal folks
+>>>>>>>
+>>>>>>> Hi Rajendra,
+>>>>>>>
+>>>>>>> On Tue, Sep 15, 2020 at 11:14:00AM +0530, Rajendra Nayak wrote:
+>>>>>>>> Hi Rob,
+>>>>>>>>
+>>>>>>>> There has been some discussions on another thread [1] around the DPC (dynamic-power-coefficient) values
+>>>>>>>> for CPU's being relative vs absolute (based on real power) and should they be used to derive 'real' power
+>>>>>>>> at various OPPs in order to calculate things like 'sustainable-power' for thermal zones.
+>>>>>>>> I believe relative values work perfectly fine for scheduling decisions, but with others using this for
+>>>>>>>> calculating power values in mW, is there a need to document the property as something that *has* to be
+>>>>>>>> based on real power measurements?
+>>>>>>>
+>>>>>>> Relative values may work for scheduling decisions, but not for thermal
+>>>>>>> management with the power allocator, at least not when CPU cooling devices
+>>>>>>> are combined with others that specify their power consumption in absolute
+>>>>>>> values. Such a configuration should be supported IMO.
+>>>>>>
+>>>>>> The energy model is used in the cpufreq cooling device and if the
+>>>>>> sustainable power is consistent with the relative values then there is
+>>>>>> no reason it shouldn't work.
+>>>>>
+>>>>> Agreed on thermal zones that exclusively use CPUs as cooling devices, but
+>>>>> what when you have mixed zones, with CPUs with their pseudo-unit and e.g. a
+>>>>> GPU that specifies its power in mW?
+>>>>
+>>>> Well, if a SoC vendor decides to mix the units, then there is nothing we
+>>>> can do.
+>>>>
+>>>> When specifying the power numbers available for the SoC, they could be
+>>>> all scaled against the highest power number.
+>>>
+>>> The GPU was just one example, a device could have heat dissipating components
+>>> that are not from the SoC vendor (e.g. WiFi, modem, backlight), and depending
+>>> on the design it might not make sense to have separate thermal zones.
+>>
+>> Is it possible to elaborate, I'm not sure to get the point ?
 > 
-> If you look around, there are currently several versions of mcp251x
-> driver around, shipped by hardware vendors who glue the chip on there
-> SOM etc.
-> Until something more-or-less clean becomes mainline, the effort remains
-> spread.
+> A device could have a thermal zone with the following cooling
+> devices:
 > 
-> A problem to import a complete driver is that ... its complete.
-> There was an suggestion to split into several patches, but that does not
-> really affect the review work.
+> - CPUs with power consumption specified as pmW (pseudo mW
+> - A modem from a third party vendor. The modem can dissipate
+>    significant heat and allows to throttle the bandwidth for
+>    cooling. The power consumption of the modem is given in
+>    mW.
 > 
-> The original driver failed to initialize under a loaded CAN bus, on my
-> desk. The current driver is more cleanly written than the original
-> and it seems to survive more than 1 use case (although I have a MAB overflow
-> report pending to investigate).
-> So, this is a good candidate for mainline.
+> These could be crammed together in a small form factor
+> (e.g. ChromeCast or Chromebit) which makes it difficult to
+> discern with a sensor what exactly is generating the heat,
+> which is why you have a single thermal zone.
 > 
+> IPA is used as governor for this zone, it can't make accurate
+> decisions because one cooling device specifies it's power
+> consumption in pmW and the other in mW.
 
-I just saw that you've pushed these patches to your testing branch. Does this
-mean that you're going to include it in v5.10 PR?
+Is there a real example upstream for this, or is it a theoretical
+problem (which can exist in the future) we are trying to solve?
 
-Thanks,
-Mani
-
-> Kind regards,
-> Kurt
+-- 
+QUALCOMM INDIA, on behalf of Qualcomm Innovation Center, Inc. is a member
+of Code Aurora Forum, hosted by The Linux Foundation
