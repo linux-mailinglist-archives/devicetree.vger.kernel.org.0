@@ -2,131 +2,76 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from vger.kernel.org (vger.kernel.org [23.128.96.18])
-	by mail.lfdr.de (Postfix) with ESMTP id 6BEE126C53F
-	for <lists+devicetree@lfdr.de>; Wed, 16 Sep 2020 18:39:56 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTP id 039DA26C5EA
+	for <lists+devicetree@lfdr.de>; Wed, 16 Sep 2020 19:25:18 +0200 (CEST)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S1726547AbgIPQhg (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Wed, 16 Sep 2020 12:37:36 -0400
-Received: from mail.kernel.org ([198.145.29.99]:46254 "EHLO mail.kernel.org"
-        rhost-flags-OK-OK-OK-OK) by vger.kernel.org with ESMTP
-        id S1726573AbgIPQf2 (ORCPT <rfc822;devicetree@vger.kernel.org>);
-        Wed, 16 Sep 2020 12:35:28 -0400
-Received: from kozik-lap.mshome.net (unknown [194.230.155.191])
-        (using TLSv1.2 with cipher ECDHE-RSA-AES128-GCM-SHA256 (128/128 bits))
-        (No client certificate requested)
-        by mail.kernel.org (Postfix) with ESMTPSA id 720CD22211;
-        Wed, 16 Sep 2020 15:57:24 +0000 (UTC)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=kernel.org;
-        s=default; t=1600271853;
-        bh=yWzQ6WPjC8rItrDgfGhWQlUAtGLsaZ/R1keRvnf9UxY=;
-        h=From:To:Cc:Subject:Date:From;
-        b=i3SqamwnKOkrcTX1RAKNjivJMdEvwdYD85f3vO+d19vaDDdbvRewgc78OLqj/HMO6
-         tMP6KzAaZgPvEpuNQPo8El740umS7geCOGv8WLOwEXpGnKajjyF/ZfpMxJq5PK8/t0
-         oFPYzFa4hY2ewOq9WDIqWOVBRkg8/oRiQhpVN+oE=
-From:   Krzysztof Kozlowski <krzk@kernel.org>
-To:     Linus Walleij <linus.walleij@linaro.org>,
-        Bartosz Golaszewski <bgolaszewski@baylibre.com>,
+        id S1726992AbgIPRYv (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Wed, 16 Sep 2020 13:24:51 -0400
+Received: from relmlor2.renesas.com ([210.160.252.172]:42073 "EHLO
+        relmlie6.idc.renesas.com" rhost-flags-OK-OK-OK-FAIL)
+        by vger.kernel.org with ESMTP id S1726377AbgIPRYo (ORCPT
+        <rfc822;devicetree@vger.kernel.org>);
+        Wed, 16 Sep 2020 13:24:44 -0400
+X-IronPort-AV: E=Sophos;i="5.76,432,1592838000"; 
+   d="scan'208";a="57210328"
+Received: from unknown (HELO relmlir6.idc.renesas.com) ([10.200.68.152])
+  by relmlie6.idc.renesas.com with ESMTP; 16 Sep 2020 20:00:04 +0900
+Received: from devel.example.org?044ree.adwin.renesas.com (unknown [10.226.36.120])
+        by relmlir6.idc.renesas.com (Postfix) with ESMTP id A32294278DAC;
+        Wed, 16 Sep 2020 20:00:01 +0900 (JST)
+From:   Fabrizio Castro <fabrizio.castro.jz@renesas.com>
+To:     Mauro Carvalho Chehab <mchehab@kernel.org>,
         Rob Herring <robh+dt@kernel.org>,
-        =?UTF-8?q?Beno=C3=AEt=20Cousson?= <bcousson@baylibre.com>,
-        Tony Lindgren <tony@atomide.com>,
-        Jason Cooper <jason@lakedaemon.net>,
-        Andrew Lunn <andrew@lunn.ch>,
-        Gregory Clement <gregory.clement@bootlin.com>,
-        Sebastian Hesselbarth <sebastian.hesselbarth@gmail.com>,
-        Russell King <linux@armlinux.org.uk>,
-        Joel Stanley <joel@jms.id.au>,
-        Andrew Jeffery <andrew@aj.id.au>,
-        Shawn Guo <shawnguo@kernel.org>,
-        Sascha Hauer <s.hauer@pengutronix.de>,
-        Pengutronix Kernel Team <kernel@pengutronix.de>,
-        Fabio Estevam <festevam@gmail.com>,
-        NXP Linux Team <linux-imx@nxp.com>,
-        Matthias Brugger <matthias.bgg@gmail.com>,
-        Geert Uytterhoeven <geert+renesas@glider.be>,
-        Magnus Damm <magnus.damm@gmail.com>,
-        Tero Kristo <t-kristo@ti.com>, Nishanth Menon <nm@ti.com>,
-        Michal Simek <michal.simek@xilinx.com>,
-        linux-gpio@vger.kernel.org, devicetree@vger.kernel.org,
-        linux-kernel@vger.kernel.org, linux-omap@vger.kernel.org,
-        linux-arm-kernel@lists.infradead.org,
-        linux-aspeed@lists.ozlabs.org, linux-mediatek@lists.infradead.org,
-        linux-renesas-soc@vger.kernel.org
-Cc:     Krzysztof Kozlowski <krzk@kernel.org>
-Subject: [PATCH v3 00/15] ARM: dts: / gpio: Add dtschema for NXP PCA953x and correct dts
-Date:   Wed, 16 Sep 2020 17:57:00 +0200
-Message-Id: <20200916155715.21009-1-krzk@kernel.org>
-X-Mailer: git-send-email 2.17.1
+        Geert Uytterhoeven <geert+renesas@glider.be>
+Cc:     Fabrizio Castro <fabrizio.castro.jz@renesas.com>,
+        Ramesh Shanmugasundaram <rashanmu@gmail.com>,
+        linux-media@vger.kernel.org, devicetree@vger.kernel.org,
+        linux-kernel@vger.kernel.org, linux-renesas-soc@vger.kernel.org,
+        Chris Paterson <Chris.Paterson2@renesas.com>,
+        Biju Das <biju.das.jz@bp.renesas.com>,
+        Prabhakar Mahadev Lad <prabhakar.mahadev-lad.rj@bp.renesas.com>,
+        Laurent Pinchart <laurent.pinchart@ideasonboard.com>
+Subject: [PATCH v2 3/3] media: dt-bindings: media: renesas,drif: Add r8a77990 support
+Date:   Wed, 16 Sep 2020 11:59:49 +0100
+Message-Id: <20200916105949.24858-4-fabrizio.castro.jz@renesas.com>
+X-Mailer: git-send-email 2.25.1
+In-Reply-To: <20200916105949.24858-1-fabrizio.castro.jz@renesas.com>
+References: <20200916105949.24858-1-fabrizio.castro.jz@renesas.com>
+MIME-Version: 1.0
+Content-Transfer-Encoding: 8bit
 Sender: devicetree-owner@vger.kernel.org
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
+The r8a77990 (a.k.a. R-Car E3) device tree schema is
+compatible with R-Car H3 and M3-W schema.
 
-Hi,
+Document r8a77990 support within renesas,drif.yaml.
 
-Changes since v2:
-1. Add Rob's review,
-2. Minor fixup in patch #1,
-3. Add acks to 11 and 13.
+Signed-off-by: Fabrizio Castro <fabrizio.castro.jz@renesas.com>
+Reviewed-by: Geert Uytterhoeven <geert+renesas@glider.be>
+Reviewed-by: Lad Prabhakar <prabhakar.mahadev-lad.rj@bp.renesas.com>
+Reviewed-by: Laurent Pinchart <laurent.pinchart@ideasonboard.com>
+---
+v1->v2:
+* No change
 
-Changes since v1:
-1. Patch 1: Use additionalProperties, Add wakeup-source, Add hogs, Extend example with hogs.
-2. New patches: 3, 4, 5, 6, 7, 9, 10, 12, 14 and 15.
+ Documentation/devicetree/bindings/media/renesas,drif.yaml | 1 +
+ 1 file changed, 1 insertion(+)
 
-The patches could be picked up independently if dtschema makes sense.
-The fixes for pins make sense anyway, regardless of dtschema.
-
-Best regards,
-Krzysztof
-
-
-Krzysztof Kozlowski (15):
-  dt-bindings: gpio: convert bindings for NXP PCA953x family to dtschema
-  dt-bindings: gpio: convert bindings for Maxim MAX732x family to
-    dtschema
-  arm64: dts: mediatek: fix tca6416 reset GPIOs in pumpkin
-  arm64: dts: mediatek: align GPIO hog names with dtschema
-  arm64: dts: renesas: align GPIO hog names with dtschema
-  arm64: dts: ti: align GPIO hog names with dtschema
-  arm64: dts: xilinx: align GPIO hog names with dtschema
-  ARM: dts: am335x: lxm: fix PCA9539 GPIO expander properties
-  ARM: dts: am335x: t335: align GPIO hog names with dtschema
-  ARM: dts: am3874: iceboard: fix GPIO expander reset GPIOs
-  ARM: dts: aspeed: fix PCA95xx GPIO expander properties on Portwell
-  ARM: dts: aspeed: align GPIO hog names with dtschema
-  ARM: dts: dove: fix PCA95xx GPIO expander properties on A510
-  ARM: dts: armada: align GPIO hog names with dtschema
-  ARM: dts: imx6q: align GPIO hog names with dtschema
-
- .../devicetree/bindings/gpio/gpio-max732x.txt |  58 -----
- .../devicetree/bindings/gpio/gpio-pca953x.txt |  90 -------
- .../bindings/gpio/gpio-pca95xx.yaml           | 232 ++++++++++++++++++
- .../devicetree/bindings/trivial-devices.yaml  |   4 -
- arch/arm/boot/dts/am335x-lxm.dts              |   4 +
- arch/arm/boot/dts/am335x-sbc-t335.dts         |   4 +-
- arch/arm/boot/dts/am3874-iceboard.dts         |   8 +-
- arch/arm/boot/dts/armada-388-clearfog.dts     |   4 +-
- arch/arm/boot/dts/armada-388-clearfog.dtsi    |  10 +-
- arch/arm/boot/dts/armada-388-helios4.dts      |   6 +-
- arch/arm/boot/dts/aspeed-bmc-ibm-rainier.dts  |   2 +-
- arch/arm/boot/dts/aspeed-bmc-opp-mihawk.dts   |  16 +-
- .../boot/dts/aspeed-bmc-portwell-neptune.dts  |   2 +
- arch/arm/boot/dts/dove-sbc-a510.dts           |   1 +
- arch/arm/boot/dts/imx6q-b450v3.dts            |  14 +-
- arch/arm/boot/dts/imx6q-b650v3.dts            |  12 +-
- arch/arm/boot/dts/imx6q-b850v3.dts            |   4 +-
- arch/arm/boot/dts/imx6q-bx50v3.dtsi           |  12 +-
- .../boot/dts/mediatek/pumpkin-common.dtsi     |  28 +--
- .../boot/dts/renesas/r8a77951-salvator-xs.dts |   2 +-
- .../boot/dts/renesas/r8a77965-salvator-xs.dts |   2 +-
- arch/arm64/boot/dts/renesas/ulcb-kf.dtsi      |  14 +-
- .../dts/ti/k3-j721e-common-proc-board.dts     |   4 +-
- .../boot/dts/xilinx/zynqmp-zcu102-revA.dts    |   8 +-
- 24 files changed, 314 insertions(+), 227 deletions(-)
- delete mode 100644 Documentation/devicetree/bindings/gpio/gpio-max732x.txt
- delete mode 100644 Documentation/devicetree/bindings/gpio/gpio-pca953x.txt
- create mode 100644 Documentation/devicetree/bindings/gpio/gpio-pca95xx.yaml
-
+diff --git a/Documentation/devicetree/bindings/media/renesas,drif.yaml b/Documentation/devicetree/bindings/media/renesas,drif.yaml
+index 4763a6009e8b..2e12b353b395 100644
+--- a/Documentation/devicetree/bindings/media/renesas,drif.yaml
++++ b/Documentation/devicetree/bindings/media/renesas,drif.yaml
+@@ -53,6 +53,7 @@ properties:
+       - enum:
+         - renesas,r8a7795-drif        # R-Car H3
+         - renesas,r8a7796-drif        # R-Car M3-W
++        - renesas,r8a77990-drif       # R-Car E3
+       - const: renesas,rcar-gen3-drif # Generic R-Car Gen3 compatible device
+ 
+   reg:
 -- 
-2.17.1
+2.25.1
 
