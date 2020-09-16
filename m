@@ -2,79 +2,112 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from vger.kernel.org (vger.kernel.org [23.128.96.18])
-	by mail.lfdr.de (Postfix) with ESMTP id C40D826B9B8
-	for <lists+devicetree@lfdr.de>; Wed, 16 Sep 2020 04:14:31 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTP id C1C4526BA61
+	for <lists+devicetree@lfdr.de>; Wed, 16 Sep 2020 04:55:40 +0200 (CEST)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S1726314AbgIPCOY (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Tue, 15 Sep 2020 22:14:24 -0400
-Received: from netrider.rowland.org ([192.131.102.5]:49297 "HELO
-        netrider.rowland.org" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with SMTP id S1726310AbgIPCOX (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Tue, 15 Sep 2020 22:14:23 -0400
-Received: (qmail 1024888 invoked by uid 1000); 15 Sep 2020 22:14:21 -0400
-Date:   Tue, 15 Sep 2020 22:14:21 -0400
-From:   Alan Stern <stern@rowland.harvard.edu>
-To:     Matthias Kaehlcke <mka@chromium.org>
-Cc:     Peter Chen <peter.chen@nxp.com>,
-        Greg Kroah-Hartman <gregkh@linuxfoundation.org>,
-        Rob Herring <robh+dt@kernel.org>,
-        Frank Rowand <frowand.list@gmail.com>,
-        Krzysztof Kozlowski <krzk@kernel.org>,
-        Bastien Nocera <hadess@hadess.net>,
-        Ravi Chandra Sadineni <ravisadineni@chromium.org>,
-        "linux-usb@vger.kernel.org" <linux-usb@vger.kernel.org>,
-        Stephen Boyd <swboyd@chromium.org>,
-        "devicetree@vger.kernel.org" <devicetree@vger.kernel.org>,
-        Douglas Anderson <dianders@chromium.org>,
-        "linux-kernel@vger.kernel.org" <linux-kernel@vger.kernel.org>,
-        "Alexander A. Klimov" <grandmaster@al2klimov.de>,
-        Masahiro Yamada <masahiroy@kernel.org>
-Subject: Re: [PATCH 2/2] USB: misc: Add onboard_usb_hub driver
-Message-ID: <20200916021421.GA1024554@rowland.harvard.edu>
-References: <20200914112716.1.I248292623d3d0f6a4f0c5bc58478ca3c0062b49a@changeid>
- <20200914112716.2.I7c9a1f1d6ced41dd8310e8a03da666a32364e790@changeid>
- <20200915025426.GA17450@b29397-desktop>
- <20200915050207.GF2022397@google.com>
- <AM7PR04MB715735A8A102F3EC9041EA328B200@AM7PR04MB7157.eurprd04.prod.outlook.com>
- <20200915230345.GF2771744@google.com>
+        id S1726279AbgIPCzi (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Tue, 15 Sep 2020 22:55:38 -0400
+Received: from mail-db8eur05on2057.outbound.protection.outlook.com ([40.107.20.57]:22847
+        "EHLO EUR05-DB8-obe.outbound.protection.outlook.com"
+        rhost-flags-OK-OK-OK-FAIL) by vger.kernel.org with ESMTP
+        id S1726156AbgIPCzg (ORCPT <rfc822;devicetree@vger.kernel.org>);
+        Tue, 15 Sep 2020 22:55:36 -0400
+ARC-Seal: i=1; a=rsa-sha256; s=arcselector9901; d=microsoft.com; cv=none;
+ b=X93YJQ6pT6eXGOqRW5VMkxNwOQ3f7Peu6zMopTHSKY4opLfeZ/37A8fhG/I7Pm2QUHFlDoZgM8rHqrao3MPkfTAzg36pNrl6DNm3jSa9pdHHw89uZUkOHXMZGezvLLmLN7A08VLly9UOEJZ3bAm224XFWNxUjP8hx3Rz6dqpCzGEn7mhsGpbqGsmZcYemqMDmlws8DEixFeVEwtl6sipRlU7gUqdDQk72sglqav/vla3fAA9ZO+h4ai0WkuC/xKYRcPLS3902nZKcvqOGJ0M58yR/Xj160+73Iy25txMiM3CiAppSw9rVaysqD8VE23CK6YZLhc17Fpsw1tIAPzR6w==
+ARC-Message-Signature: i=1; a=rsa-sha256; c=relaxed/relaxed; d=microsoft.com;
+ s=arcselector9901;
+ h=From:Date:Subject:Message-ID:Content-Type:MIME-Version:X-MS-Exchange-SenderADCheck;
+ bh=nmqOc4d4r54+yy0rkWlK/XcI9KrH7Z0UqvaQod+2ZN8=;
+ b=Coxd5ZjgfE/gwku58CcEIEz8FEHKu6GgH4n3ETMUo/AU6UzxdIoYnTKJHOED5nSgPtCG1K6I7stFmX7loZctv3PwrAGirapFwpnH8tCr47gq0wDOuSiPRJsdzIzTaFxl8nfScYt97fzW7irSRU7px4DWFiSLBF2M/6wTW9nkGtPrahBR2bY3jFN0tdSZbvjnZjd1LBeToiqIopQ5jOYht+Cf+VE0MYG9j80VvRUv1srOCBO3wWtruzHP1v11IrsibPDWbCBvtroGaDW5wZfDOchpDTdWvwK0kiDK/SoRdrDMydq7MLfs6g1afLK/SI8QQo56ufU9Hbq7pogHtdjYzw==
+ARC-Authentication-Results: i=1; mx.microsoft.com 1; spf=pass
+ smtp.mailfrom=nxp.com; dmarc=pass action=none header.from=nxp.com; dkim=pass
+ header.d=nxp.com; arc=none
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=nxp.com; s=selector2;
+ h=From:Date:Subject:Message-ID:Content-Type:MIME-Version:X-MS-Exchange-SenderADCheck;
+ bh=nmqOc4d4r54+yy0rkWlK/XcI9KrH7Z0UqvaQod+2ZN8=;
+ b=Z8L7ezqEnPO4pkoW5Fvt3/biqOyB20Aw36FHtqva2nUJ4wHxBijuz0RkJ9WjIwal7OC8yGafbGME32UokpSqqcuyLNbFrsTGx52cMdsCI/ACvJ7zlfNGaq8nNrL6Ljz4vc5lJ3xpZVPiZfjpZv5yrcKTx6VHnyZM0UZ/muKhuGI=
+Authentication-Results: kernel.org; dkim=none (message not signed)
+ header.d=none;kernel.org; dmarc=none action=none header.from=nxp.com;
+Received: from DB6PR0402MB2760.eurprd04.prod.outlook.com (2603:10a6:4:a1::14)
+ by DB8PR04MB7177.eurprd04.prod.outlook.com (2603:10a6:10:127::23) with
+ Microsoft SMTP Server (version=TLS1_2,
+ cipher=TLS_ECDHE_RSA_WITH_AES_256_GCM_SHA384) id 15.20.3370.17; Wed, 16 Sep
+ 2020 02:55:32 +0000
+Received: from DB6PR0402MB2760.eurprd04.prod.outlook.com
+ ([fe80::39ff:13b4:4f28:1413]) by DB6PR0402MB2760.eurprd04.prod.outlook.com
+ ([fe80::39ff:13b4:4f28:1413%10]) with mapi id 15.20.3370.019; Wed, 16 Sep
+ 2020 02:55:32 +0000
+From:   peng.fan@nxp.com
+To:     shawnguo@kernel.org, s.hauer@pengutronix.de, festevam@gmail.com,
+        abel.vesa@nxp.com, robh+dt@kernel.org
+Cc:     kernel@pengutronix.de, linux-imx@nxp.com, Anson.Huang@nxp.com,
+        linux-arm-kernel@lists.infradead.org, linux-kernel@vger.kernel.org,
+        aisheng.dong@nxp.com, devicetree@vger.kernel.org,
+        Peng Fan <peng.fan@nxp.com>
+Subject: [PATCH V2 0/4] imx: support i.MX7ULP HSRUN mode
+Date:   Wed, 16 Sep 2020 10:48:33 +0800
+Message-Id: <1600224517-31465-1-git-send-email-peng.fan@nxp.com>
+X-Mailer: git-send-email 2.7.4
+Content-Type: text/plain
+X-ClientProxiedBy: SG2PR01CA0165.apcprd01.prod.exchangelabs.com
+ (2603:1096:4:28::21) To DB6PR0402MB2760.eurprd04.prod.outlook.com
+ (2603:10a6:4:a1::14)
 MIME-Version: 1.0
-Content-Type: text/plain; charset=us-ascii
-Content-Disposition: inline
-In-Reply-To: <20200915230345.GF2771744@google.com>
-User-Agent: Mutt/1.10.1 (2018-07-13)
+X-MS-Exchange-MessageSentRepresentingType: 1
+Received: from 10.192.242.69 (119.31.174.67) by SG2PR01CA0165.apcprd01.prod.exchangelabs.com (2603:1096:4:28::21) with Microsoft SMTP Server (version=TLS1_2, cipher=TLS_ECDHE_RSA_WITH_AES_128_CBC_SHA256) id 15.20.3391.11 via Frontend Transport; Wed, 16 Sep 2020 02:55:27 +0000
+X-Mailer: git-send-email 2.7.4
+X-Originating-IP: [119.31.174.67]
+X-MS-PublicTrafficType: Email
+X-MS-Office365-Filtering-HT: Tenant
+X-MS-Office365-Filtering-Correlation-Id: b48cbcaa-1594-47b9-6406-08d859ebfa15
+X-MS-TrafficTypeDiagnostic: DB8PR04MB7177:
+X-MS-Exchange-Transport-Forked: True
+X-Microsoft-Antispam-PRVS: <DB8PR04MB7177640918E2362E2527FD7A88210@DB8PR04MB7177.eurprd04.prod.outlook.com>
+X-MS-Oob-TLC-OOBClassifiers: OLM:324;
+X-MS-Exchange-SenderADCheck: 1
+X-Microsoft-Antispam: BCL:0;
+X-Microsoft-Antispam-Message-Info: COfy/ErDLT7TEtJtHM3mssyqW+IYfXonSjcUUxr+gGDCD/ZkGRWQjIJS+ScwvHfh0QS0FXa9qycWbHsUQHaHE3kiksM1CsqOcRAABaIxSt0ehvvmKllAIoNUt36ijYdLJlRwpAL/bFVkbn+5lfoFvIriNTFKqfu5rpsguX/NCGm/w+JskyVSiTozEgobbAHaXH0wn7+rHizlww+8jGVUL7+EtglzuqtXwcIExzgxrbnQurlrRsF6B5dI13d49DJWV7Iv4e68IzrllQLXqC4i5ZGIkOEnzxsQ0JXnF2sPUU8kGnTNd6od5LifoBtpGC58Nf+ePxXf/fJETwpBG3cqp6J6KmEnCE35Vkt5aHTLeiIl4c0RyXg/PAVxVb85zwSk
+X-Forefront-Antispam-Report: CIP:255.255.255.255;CTRY:;LANG:en;SCL:1;SRV:;IPV:NLI;SFV:NSPM;H:DB6PR0402MB2760.eurprd04.prod.outlook.com;PTR:;CAT:NONE;SFS:(4636009)(366004)(396003)(376002)(346002)(136003)(39860400002)(4326008)(8676002)(66946007)(36756003)(16576012)(316002)(86362001)(8936002)(9686003)(16526019)(186003)(5660300002)(6666004)(26005)(66476007)(66556008)(478600001)(52116002)(6486002)(2906002)(83380400001)(956004)(4744005)(2616005);DIR:OUT;SFP:1101;
+X-MS-Exchange-AntiSpam-MessageData: oTPH+fRx4jFO1nnvyMqzUxll55RcyZUVLOXAnW2giyBp2rwZECX75qDY16tZIrq/atXJdaUhjEYQEo/KZsMT3vVFiQIPiCIrnqxnaeq9heY9bNpPHI4nfF5vmkbpMxcG9t2AiGg6srALQovFK3Gl3XVHAPa63iNdmwcpjCzWHzLT2m336t42hn2lJEWYML9BMpELGkZHDUn8i8pMb4AdaUQvLqqzCh1hXz1KQhvZmMkspUEyROKacBgm28iZR7svGmvqEx1rWYcnn+PUAJdLFochGSheybhUjfAzzsQN++Iaq/xUNxWlABEXpIMKHl151lW5AgCnlMSMxr/57kYAYj+fie5eDYhxsXHAMpe7utwu0qI4IuDg9Nipq5ngz3JGLVR5v4ggTpPJByucaVZI0fyueJUCSONcxgry9shtc5gaeThB/5yE4mtH3sD9K5VjI/odfGU0W70GN44Vlm2HxL/vG/f6AmvjuRhHMNiIp4o50249Ww+2d4LzId1gcr/N18PM5zWGGmgwR5IBaKyh1fyXSpoeD2JMAaujFLKQoOV5rsfha0Zhkq7axTzGdbLC5FWlB1oFCgmGXq5UYfDDStv6kKDeA/AXX/r7vfKV8y5pZLPorbyLdN6MqbNQX/MiEtWmkLsFT/yP1uAp5qTI4g==
+X-OriginatorOrg: nxp.com
+X-MS-Exchange-CrossTenant-Network-Message-Id: b48cbcaa-1594-47b9-6406-08d859ebfa15
+X-MS-Exchange-CrossTenant-AuthSource: DB6PR0402MB2760.eurprd04.prod.outlook.com
+X-MS-Exchange-CrossTenant-AuthAs: Internal
+X-MS-Exchange-CrossTenant-OriginalArrivalTime: 16 Sep 2020 02:55:32.4855
+ (UTC)
+X-MS-Exchange-CrossTenant-FromEntityHeader: Hosted
+X-MS-Exchange-CrossTenant-Id: 686ea1d3-bc2b-4c6f-a92c-d99c5c301635
+X-MS-Exchange-CrossTenant-MailboxType: HOSTED
+X-MS-Exchange-CrossTenant-UserPrincipalName: wXGvWfLfrMJMmJ+ONlKBO3rsaY5rby7SGIu0ibCX9nmYCU0NCrGXUQiyvUfN0rzLqaC4SLYaE+w96suzSaUmkg==
+X-MS-Exchange-Transport-CrossTenantHeadersStamped: DB8PR04MB7177
 Sender: devicetree-owner@vger.kernel.org
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-On Tue, Sep 15, 2020 at 04:03:45PM -0700, Matthias Kaehlcke wrote:
-> Hi Peter,
-> 
-> On Tue, Sep 15, 2020 at 07:05:38AM +0000, Peter Chen wrote:
+From: Peng Fan <peng.fan@nxp.com>
 
-> > Whether or not it is a wakeup_source, it could get through its or its children's
-> > /sys/../power/wakeup value, you have already used usb_wakeup_enabled_descendants
-> > to know it.
-> 
-> I conceptually agree, but in practice there are some conflicting details:
-> 
-> wakeup for the hubs on my system is by default disabled, yet USB wakeup works
-> regardless, so the flag doesn't really provide useful information. I guess we
-> could still use it if there is no better way, but it doesn't seem ideal.
+V2:
+ Update to use pmc0/pmc1 following hardware naming
 
-The wakeup setting for USB hubs affects only the following events: port 
-connect, port disconnect, and port overcurrent.  It does not refer to 
-forwarding wakeup requests from downstream USB devices; that is always 
-enabled.  So maybe your wakeup flag really is accurate and you didn't 
-realize it.
+This patchset is to add HSRUN mode support.
+Patch 1,2 is to add binding doc and dts node
+Patch 3 is to support HSRUN mode
+Patch 4 is to use wait mode when HSRUN working per hardware state machine requirement.
 
-> Similar for udev->bus->controller, according to sysfs it doesn't even have wakeup
-> support. Please let me know if there is a reliable way to check if wakeup is
-> enabled on the controller of a device.
+Peng Fan (4):
+  dt-bindings: fsl: add i.MX7ULP PMC
+  ARM: dts: imx7ulp: add pmc node
+  ARM: imx: imx7ulp: support HSRUN mode
+  ARM: imx: cpuidle-imx7ulp: Stop mode disallowed when HSRUN
 
-The host controller's sysfs wakeup setting should always be correct.  If 
-it isn't, that indicates there is a bug in the host controller driver or 
-the corresponding platform-specific code.  What driver does your system 
-use?
+ .../arm/freescale/fsl,imx7ulp-pm.yaml         |  6 ++++-
+ arch/arm/boot/dts/imx7ulp.dtsi                | 10 ++++++++
+ arch/arm/mach-imx/common.h                    |  1 +
+ arch/arm/mach-imx/cpuidle-imx7ulp.c           | 14 ++++++++---
+ arch/arm/mach-imx/pm-imx7ulp.c                | 25 +++++++++++++++++++
+ 5 files changed, 52 insertions(+), 4 deletions(-)
 
-Alan Stern
+-- 
+2.28.0
+
