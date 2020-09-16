@@ -2,91 +2,131 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from vger.kernel.org (vger.kernel.org [23.128.96.18])
-	by mail.lfdr.de (Postfix) with ESMTP id 0342126C8CB
-	for <lists+devicetree@lfdr.de>; Wed, 16 Sep 2020 20:57:53 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTP id EA4E726C822
+	for <lists+devicetree@lfdr.de>; Wed, 16 Sep 2020 20:41:50 +0200 (CEST)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S1727771AbgIPS5q (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Wed, 16 Sep 2020 14:57:46 -0400
-Received: from lindbergh.monkeyblade.net ([23.128.96.19]:36520 "EHLO
+        id S1727815AbgIPSlh (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Wed, 16 Sep 2020 14:41:37 -0400
+Received: from lindbergh.monkeyblade.net ([23.128.96.19]:42016 "EHLO
         lindbergh.monkeyblade.net" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S1727623AbgIPRxO (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Wed, 16 Sep 2020 13:53:14 -0400
-Received: from metis.ext.pengutronix.de (metis.ext.pengutronix.de [IPv6:2001:67c:670:201:290:27ff:fe1d:cc33])
-        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id D2318C00216C
-        for <devicetree@vger.kernel.org>; Wed, 16 Sep 2020 07:25:43 -0700 (PDT)
-Received: from gallifrey.ext.pengutronix.de ([2001:67c:670:201:5054:ff:fe8d:eefb] helo=[IPv6:::1])
-        by metis.ext.pengutronix.de with esmtp (Exim 4.92)
-        (envelope-from <a.fatoum@pengutronix.de>)
-        id 1kIYNQ-0002Ex-5F; Wed, 16 Sep 2020 16:25:40 +0200
-Subject: Re: [PATCH] ARM: dts: stm32: declare device tree syscon node for TAMP
- peripheral
-To:     Rob Herring <robh+dt@kernel.org>,
-        Maxime Coquelin <mcoquelin.stm32@gmail.com>,
-        Alexandre Torgue <alexandre.torgue@st.com>
-Cc:     devicetree@vger.kernel.org,
-        linux-stm32@st-md-mailman.stormreply.com,
-        linux-arm-kernel@lists.infradead.org, linux-kernel@vger.kernel.org
-References: <20200916142216.25142-1-a.fatoum@pengutronix.de>
-From:   Ahmad Fatoum <a.fatoum@pengutronix.de>
-Message-ID: <a6038c13-45e1-1d30-9766-db3370557584@pengutronix.de>
-Date:   Wed, 16 Sep 2020 16:25:38 +0200
-User-Agent: Mozilla/5.0 (X11; Linux x86_64; rv:68.0) Gecko/20100101
- Thunderbird/68.12.0
+        with ESMTP id S1727901AbgIPS1x (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Wed, 16 Sep 2020 14:27:53 -0400
+Received: from mail-ej1-x642.google.com (mail-ej1-x642.google.com [IPv6:2a00:1450:4864:20::642])
+        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id E77FAC0D941C;
+        Wed, 16 Sep 2020 07:57:17 -0700 (PDT)
+Received: by mail-ej1-x642.google.com with SMTP id u21so10821342eja.2;
+        Wed, 16 Sep 2020 07:57:17 -0700 (PDT)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+        d=gmail.com; s=20161025;
+        h=mime-version:references:in-reply-to:from:date:message-id:subject:to
+         :cc:content-transfer-encoding;
+        bh=BavzM8dqao5JCiPkWFEijbjqferuuSqIJ7QT/mKoTAQ=;
+        b=nQn4NukiiRCo18F4AEpFB+HOHN7WOI+rKirSQpjyRP4nmmO3697PAVTWv092GNG/k8
+         kp3TKYaL+GKVqBfEzVKELXgdIhndqS+7gDH5LIOf2Awcr9rvxKba0usL6+NprjZo59y+
+         WPWNlD8cFafBUra2EOCbqnFw5K8p4HazPUNbBx+UU7RTWsr2sOYeaViwGv3XqS3yoQ9Y
+         wHAtetcNTyjbmz+LG2Dz6SNBVd2uvIpFilSf7/A4ZgdNIWZil1NME8GVqVzLN4LBnn49
+         7HxREZ2eCGJCkwRIWfMDIZftQX42C8n5ywKYWOEo6MLVN2Me+zduyJ0lBaAdPEgYMMHZ
+         fi0w==
+X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+        d=1e100.net; s=20161025;
+        h=x-gm-message-state:mime-version:references:in-reply-to:from:date
+         :message-id:subject:to:cc:content-transfer-encoding;
+        bh=BavzM8dqao5JCiPkWFEijbjqferuuSqIJ7QT/mKoTAQ=;
+        b=TXub0/Tn8OvBj2iPPdr9MNdkiIiTNOGQkzps7I/i3kMaUDA1/oe4uNHdUipIaIeeal
+         ec9TNUhi6jmOwXuX4hFUheVZH9iplzl3/uONhaDhbzwPAZyGvbP13ZAIaNOIvnqemrRi
+         TKg+ZK+OEP96tzSkeFY6Kt5hpPswk9vwidNcoL/+hpMOqR4zp9ZeG23gX30HXi+p3N39
+         /MVUKN6aSb2Y730brJywTwW16+o6fjDBR0+l6TuZOe1Lke9whhjQhuY/qdJpQLPYvULb
+         5dagtYNl34bPB0O6oRc9/+LMZqcHFAi182Sfk1Zh4d9bgLBo061uuTxh4E2AUIHel+Or
+         Es2A==
+X-Gm-Message-State: AOAM531uCLbaL21YydSXQ72P2U9HPWvMSgfM2OQ3PJW032bkKg5/LekS
+        OnAgRWHhQyTNWVBLr8f+wTIFSr/Ykg29Tckp/ZU=
+X-Google-Smtp-Source: ABdhPJx9FNTjCittOjxhqVQ8Y3/Ji00bVrlyO0GKfHoEdHIMHs+TI34YOUrZdyDTCMX0SDNkYsvmR37O4kEsPhGUX2M=
+X-Received: by 2002:a17:906:c1c6:: with SMTP id bw6mr26850175ejb.374.1600268236393;
+ Wed, 16 Sep 2020 07:57:16 -0700 (PDT)
 MIME-Version: 1.0
-In-Reply-To: <20200916142216.25142-1-a.fatoum@pengutronix.de>
-Content-Type: text/plain; charset=utf-8
-Content-Language: en-US
-Content-Transfer-Encoding: 7bit
-X-SA-Exim-Connect-IP: 2001:67c:670:201:5054:ff:fe8d:eefb
-X-SA-Exim-Mail-From: a.fatoum@pengutronix.de
-X-SA-Exim-Scanned: No (on metis.ext.pengutronix.de); SAEximRunCond expanded to false
-X-PTX-Original-Recipient: devicetree@vger.kernel.org
+References: <20200916122247.534374-1-pgwipeout@gmail.com> <20200916122247.534374-2-pgwipeout@gmail.com>
+ <3cdcb877-e4c7-aab8-b7f9-0c88f2247d03@gmail.com>
+In-Reply-To: <3cdcb877-e4c7-aab8-b7f9-0c88f2247d03@gmail.com>
+From:   Peter Geis <pgwipeout@gmail.com>
+Date:   Wed, 16 Sep 2020 10:57:04 -0400
+Message-ID: <CAMdYzYrKHBrh47PMrj=TP_FPttFOkRO2J_wrDr7oEyBNnyexAA@mail.gmail.com>
+Subject: Re: [PATCH 1/3] ARM: tegra: Add device-tree for Ouya
+To:     Dmitry Osipenko <digetx@gmail.com>
+Cc:     Rob Herring <robh+dt@kernel.org>,
+        Thierry Reding <thierry.reding@gmail.com>,
+        Jonathan Hunter <jonathanh@nvidia.com>,
+        Matt Merhar <mattmerhar@protonmail.com>,
+        Stephen Warren <swarren@wwwdotorg.org>,
+        Bob Ham <rah@settrans.net>,
+        Leonardo Bras <leobras.c@gmail.com>,
+        Michael Brougham <jusplainmike@gmail.com>,
+        linux-tegra@vger.kernel.org, devicetree@vger.kernel.org,
+        linux-kernel@vger.kernel.org
+Content-Type: text/plain; charset="UTF-8"
+Content-Transfer-Encoding: quoted-printable
 Sender: devicetree-owner@vger.kernel.org
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-On 9/16/20 4:22 PM, Ahmad Fatoum wrote:
-> The stm32mp1 TAMP (Tamper and backup registers) does tamper detection
-> and features 32 backup registers that, being in the RTC domain, may
-> survive even with Vdd switched off.
-> 
-> We don't have a driver for the peripheral, but handling it as syscon
-> allows using it with existing drivers that work with them, in particular
-> a syscon-reboot-mode child node can be defined in board.dts (or fixed up
-> by the bootloader) to exchange reboot mode information with the bootloader.
-> 
+On Wed, Sep 16, 2020 at 10:17 AM Dmitry Osipenko <digetx@gmail.com> wrote:
+>
+> 16.09.2020 15:22, Peter Geis =D0=BF=D0=B8=D1=88=D0=B5=D1=82:
+> > The Ouya was the sole device produced by Ouya Inc in 2013.
+> > It was a game console originally running Android 5 on top of Linux 3.1.=
+10.
+> >
+> > This patch adds the device tree supporting the Ouya.
+> > It has been tested on the original variant with Samsung ram.
+> >
+> > Signed-off-by: Peter Geis <pgwipeout@gmail.com>
+> > ---
+> >  arch/arm/boot/dts/Makefile         |    3 +-
+> >  arch/arm/boot/dts/tegra30-ouya.dts | 4498 ++++++++++++++++++++++++++++
+> >  2 files changed, 4500 insertions(+), 1 deletion(-)
+> >  create mode 100644 arch/arm/boot/dts/tegra30-ouya.dts
+>
+> Hello, Peter! Very nice work!
 
-Looking at the title, I see now that there is nothing stm32mp specific in it.
-I will rename the patch to
-"ARM: dts: stm32: declare syscon node for TAMP peripheral in stm32mp151.dtsi"
-when I send out v2.
+Thanks!
 
-> Signed-off-by: Ahmad Fatoum <a.fatoum@pengutronix.de>
-> ---
->  arch/arm/boot/dts/stm32mp151.dtsi | 5 +++++
->  1 file changed, 5 insertions(+)
-> 
-> diff --git a/arch/arm/boot/dts/stm32mp151.dtsi b/arch/arm/boot/dts/stm32mp151.dtsi
-> index bfe29023fbd5..fa4eb96c95af 100644
-> --- a/arch/arm/boot/dts/stm32mp151.dtsi
-> +++ b/arch/arm/boot/dts/stm32mp151.dtsi
-> @@ -1144,6 +1144,11 @@ syscfg: syscon@50020000 {
->  			clocks = <&rcc SYSCFG>;
->  		};
->  
-> +		tamp: tamp@5c00a000 {
-> +			compatible = "simple-bus", "syscon", "simple-mfd";
-> +			reg = <0x5c00a000 0x400>;
-> +		};
-> +
->  		lptimer2: timer@50021000 {
->  			#address-cells = <1>;
->  			#size-cells = <0>;
-> 
+>
+> Could you please clarify how many variants of the board exist?
 
--- 
-Pengutronix e.K.                           |                             |
-Steuerwalder Str. 21                       | http://www.pengutronix.de/  |
-31137 Hildesheim, Germany                  | Phone: +49-5121-206917-0    |
-Amtsgericht Hildesheim, HRA 2686           | Fax:   +49-5121-206917-5555 |
+It is unknown how many exist in reality.
+At least three RAM variants are supported in the downstream kernel,
+Samsung, Hynix M, and Hynix A.
+Two variants in storage capacity, the original had 8GB eMMC while the
+new variant had 16GB eMMC.
+
+>
+> What are the differences between the variants?
+
+Aside from the RAM and storage changes there should be no functional
+differences.
+It is unknown at which point the RAM changes were cut in with the eMMC chan=
+ge.
+
+>
+> Is this device-tree suitable for all variants?
+
+This device tree should support all variants, but I haven't been able
+to locate anyone with the newer variants who can test it yet.
+
+>
+> How user could determine the board's variant?
+
+On upstream:
+The tegra emc driver will output the RAM code detected in the kernel log:
+tegra30-emc 7000f400.memory-controller: got 6 timings for RAM code 0
+(min 25MHz max 800MHz)
+The mmc-core will output the storage capacity in the kernel log:
+mmcblk1: mmc1:0001 MMC08G 7.19 GiB
+
+On downstream:
+The ram variant is output in the kernel log:
+DDR Strap Pin AD4: 0
+DDR Strap Pin AD5: 0
+Init DFS table for Samsung DDR
+The mmc-core outputs the storage capacity in the kernel log:
+mmcblk0: mmc0:0001 MMC08G 7.18 GiB
