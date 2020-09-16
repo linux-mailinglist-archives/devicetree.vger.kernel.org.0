@@ -2,101 +2,91 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from vger.kernel.org (vger.kernel.org [23.128.96.18])
-	by mail.lfdr.de (Postfix) with ESMTP id 2692026C8D1
-	for <lists+devicetree@lfdr.de>; Wed, 16 Sep 2020 20:58:19 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTP id 0342126C8CB
+	for <lists+devicetree@lfdr.de>; Wed, 16 Sep 2020 20:57:53 +0200 (CEST)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S1727697AbgIPS6P (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Wed, 16 Sep 2020 14:58:15 -0400
-Received: from lindbergh.monkeyblade.net ([23.128.96.19]:36458 "EHLO
+        id S1727771AbgIPS5q (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Wed, 16 Sep 2020 14:57:46 -0400
+Received: from lindbergh.monkeyblade.net ([23.128.96.19]:36520 "EHLO
         lindbergh.monkeyblade.net" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S1727628AbgIPRxA (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Wed, 16 Sep 2020 13:53:00 -0400
-Received: from mail-ed1-x544.google.com (mail-ed1-x544.google.com [IPv6:2a00:1450:4864:20::544])
-        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 82FE1C002180
-        for <devicetree@vger.kernel.org>; Wed, 16 Sep 2020 07:11:48 -0700 (PDT)
-Received: by mail-ed1-x544.google.com with SMTP id n22so6446371edt.4
-        for <devicetree@vger.kernel.org>; Wed, 16 Sep 2020 07:11:48 -0700 (PDT)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=linaro.org; s=google;
-        h=date:from:to:cc:subject:message-id:references:mime-version
-         :content-disposition:in-reply-to;
-        bh=LlUrkn99PMIYQmVGLdB0+eN+QkGnfm38LGdCqXub4Ao=;
-        b=hAS45VSzPObmCMHNxGfkG+NDKM1TzVnv7KNEr8vj9xy4MrtNPbVMnP3E+c0FUzYGVO
-         wPqjGd58SjTgvD4ElwGMVTkJ/vQJgVksPrNujXbUCvaSYAR+nYUFKIv9GmdPmsAeTw1w
-         SLEokVTwh41c06RWTQK8ga+0WnZtxqNFStmhRekL0xLKWTqn8cVn6iVyLbEJCK4D+afx
-         gIcqGW5V3Meio++Xlq1PULg8xgNkm9FJhgcaQPYCFJl1o7cQZmddSIXGNjtX54ocOxnB
-         XkpAgcnLOKialpbNRhtfkofkZ/QjghU36lEKLA39h4h8TVkfr6on/E7w7xYxDBzj+JkY
-         +i2Q==
-X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=1e100.net; s=20161025;
-        h=x-gm-message-state:date:from:to:cc:subject:message-id:references
-         :mime-version:content-disposition:in-reply-to;
-        bh=LlUrkn99PMIYQmVGLdB0+eN+QkGnfm38LGdCqXub4Ao=;
-        b=RqNbBe8sIxZFE5etTh/iaZ0xOafVdwjGiNlMrSNv8cYWE70faWfv2LMZ3qxNOwgJQx
-         7DAvrUspba6j6xrSv/8ouWDmVOekfEwkV9uPYyk0qdqV9yutkqS5D5sKAYXerl04fjvp
-         7jQxwcXnFogZozLQqwi3KSotI78fz1jjtdO6fdkB/90xilCl6JKs4THVNesjN6RviX/J
-         rCpPVcoLP0+QzkEtXpnupxg49S/IbnNepF9IT6D1rNvw00r0hVmOiYQeCFpe/QrI+8Ot
-         0yzzd3ghXKWjea6CjhrhKpVFRUY+BbuLMGvqv9IX4da+//oA3yw8bbDgQhdDKOgEv/bu
-         WlBw==
-X-Gm-Message-State: AOAM533TST6c/ygmfI5nKLg52HF7Vf6rX+C+xVAtFXlDt8j62RLDD4Oh
-        e9Mg0CTXoYB0YOu0VUNHGOkf8g==
-X-Google-Smtp-Source: ABdhPJxCXAJVT89OOq1cTZqdGdXIDr/MyyoQoJRJeCQxhnHcd7r64qYaYdWt6ztGRzTK/qlOZ2O25Q==
-X-Received: by 2002:a05:6402:2c7:: with SMTP id b7mr28642771edx.125.1600265507151;
-        Wed, 16 Sep 2020 07:11:47 -0700 (PDT)
-Received: from myrica ([2001:1715:4e26:a7e0:116c:c27a:3e7f:5eaf])
-        by smtp.gmail.com with ESMTPSA id y25sm13933983edv.15.2020.09.16.07.11.45
-        (version=TLS1_3 cipher=TLS_AES_256_GCM_SHA384 bits=256/256);
-        Wed, 16 Sep 2020 07:11:46 -0700 (PDT)
-Date:   Wed, 16 Sep 2020 16:11:28 +0200
-From:   Jean-Philippe Brucker <jean-philippe@linaro.org>
-To:     Zenghui Yu <yuzenghui@huawei.com>
-Cc:     iommu@lists.linux-foundation.org, devicetree@vger.kernel.org,
-        linux-arm-kernel@lists.infradead.org, linux-pci@vger.kernel.org,
-        linux-mm@kvack.org, fenghua.yu@intel.com, kevin.tian@intel.com,
-        jacob.jun.pan@linux.intel.com, jgg@ziepe.ca,
-        catalin.marinas@arm.com, joro@8bytes.org, robin.murphy@arm.com,
-        hch@infradead.org, zhangfei.gao@linaro.org,
-        Jonathan.Cameron@huawei.com, felix.kuehling@amd.com,
-        xuzaibo@huawei.com, will@kernel.org, christian.koenig@amd.com,
-        baolu.lu@linux.intel.com
-Subject: Re: [PATCH v7 18/24] iommu/arm-smmu-v3: Add support for Hardware
- Translation Table Update
-Message-ID: <20200916141128.GC5316@myrica>
-References: <20200519175502.2504091-1-jean-philippe@linaro.org>
- <20200519175502.2504091-19-jean-philippe@linaro.org>
- <472fdcf6-f306-60bc-5813-4ad421ee03f2@huawei.com>
+        with ESMTP id S1727623AbgIPRxO (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Wed, 16 Sep 2020 13:53:14 -0400
+Received: from metis.ext.pengutronix.de (metis.ext.pengutronix.de [IPv6:2001:67c:670:201:290:27ff:fe1d:cc33])
+        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id D2318C00216C
+        for <devicetree@vger.kernel.org>; Wed, 16 Sep 2020 07:25:43 -0700 (PDT)
+Received: from gallifrey.ext.pengutronix.de ([2001:67c:670:201:5054:ff:fe8d:eefb] helo=[IPv6:::1])
+        by metis.ext.pengutronix.de with esmtp (Exim 4.92)
+        (envelope-from <a.fatoum@pengutronix.de>)
+        id 1kIYNQ-0002Ex-5F; Wed, 16 Sep 2020 16:25:40 +0200
+Subject: Re: [PATCH] ARM: dts: stm32: declare device tree syscon node for TAMP
+ peripheral
+To:     Rob Herring <robh+dt@kernel.org>,
+        Maxime Coquelin <mcoquelin.stm32@gmail.com>,
+        Alexandre Torgue <alexandre.torgue@st.com>
+Cc:     devicetree@vger.kernel.org,
+        linux-stm32@st-md-mailman.stormreply.com,
+        linux-arm-kernel@lists.infradead.org, linux-kernel@vger.kernel.org
+References: <20200916142216.25142-1-a.fatoum@pengutronix.de>
+From:   Ahmad Fatoum <a.fatoum@pengutronix.de>
+Message-ID: <a6038c13-45e1-1d30-9766-db3370557584@pengutronix.de>
+Date:   Wed, 16 Sep 2020 16:25:38 +0200
+User-Agent: Mozilla/5.0 (X11; Linux x86_64; rv:68.0) Gecko/20100101
+ Thunderbird/68.12.0
 MIME-Version: 1.0
-Content-Type: text/plain; charset=us-ascii
-Content-Disposition: inline
-In-Reply-To: <472fdcf6-f306-60bc-5813-4ad421ee03f2@huawei.com>
+In-Reply-To: <20200916142216.25142-1-a.fatoum@pengutronix.de>
+Content-Type: text/plain; charset=utf-8
+Content-Language: en-US
+Content-Transfer-Encoding: 7bit
+X-SA-Exim-Connect-IP: 2001:67c:670:201:5054:ff:fe8d:eefb
+X-SA-Exim-Mail-From: a.fatoum@pengutronix.de
+X-SA-Exim-Scanned: No (on metis.ext.pengutronix.de); SAEximRunCond expanded to false
+X-PTX-Original-Recipient: devicetree@vger.kernel.org
 Sender: devicetree-owner@vger.kernel.org
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-On Fri, Aug 28, 2020 at 05:28:22PM +0800, Zenghui Yu wrote:
-> On 2020/5/20 1:54, Jean-Philippe Brucker wrote:
-> > @@ -4454,6 +4470,12 @@ static int arm_smmu_device_hw_probe(struct arm_smmu_device *smmu)
-> >   			smmu->features |= ARM_SMMU_FEAT_E2H;
-> >   	}
-> > +	if (reg & (IDR0_HA | IDR0_HD)) {
-> > +		smmu->features |= ARM_SMMU_FEAT_HA;
-> > +		if (reg & IDR0_HD)
-> > +			smmu->features |= ARM_SMMU_FEAT_HD;
-> > +	}
-> > +
+On 9/16/20 4:22 PM, Ahmad Fatoum wrote:
+> The stm32mp1 TAMP (Tamper and backup registers) does tamper detection
+> and features 32 backup registers that, being in the RTC domain, may
+> survive even with Vdd switched off.
 > 
-> nitpick:
+> We don't have a driver for the peripheral, but handling it as syscon
+> allows using it with existing drivers that work with them, in particular
+> a syscon-reboot-mode child node can be defined in board.dts (or fixed up
+> by the bootloader) to exchange reboot mode information with the bootloader.
 > 
-> As per the IORT spec (DEN0049D, 3.1.1.2 SMMUv3 node, Table 10), the
-> "HTTU Override" flag of the SMMUv3 node can override the value in
-> SMMU_IDR0.HTTU. You may want to check this bit before selecting the
-> {HA,HD} features and shout if there is a mismatch between firmware and
-> the SMMU implementation. Just like how ARM_SMMU_FEAT_COHERENCY is
-> selected.
 
-Thanks for pointing this out, I didn't know about these flags but have
-added them to the patch now.
+Looking at the title, I see now that there is nothing stm32mp specific in it.
+I will rename the patch to
+"ARM: dts: stm32: declare syscon node for TAMP peripheral in stm32mp151.dtsi"
+when I send out v2.
 
-Thanks,
-Jean
+> Signed-off-by: Ahmad Fatoum <a.fatoum@pengutronix.de>
+> ---
+>  arch/arm/boot/dts/stm32mp151.dtsi | 5 +++++
+>  1 file changed, 5 insertions(+)
+> 
+> diff --git a/arch/arm/boot/dts/stm32mp151.dtsi b/arch/arm/boot/dts/stm32mp151.dtsi
+> index bfe29023fbd5..fa4eb96c95af 100644
+> --- a/arch/arm/boot/dts/stm32mp151.dtsi
+> +++ b/arch/arm/boot/dts/stm32mp151.dtsi
+> @@ -1144,6 +1144,11 @@ syscfg: syscon@50020000 {
+>  			clocks = <&rcc SYSCFG>;
+>  		};
+>  
+> +		tamp: tamp@5c00a000 {
+> +			compatible = "simple-bus", "syscon", "simple-mfd";
+> +			reg = <0x5c00a000 0x400>;
+> +		};
+> +
+>  		lptimer2: timer@50021000 {
+>  			#address-cells = <1>;
+>  			#size-cells = <0>;
+> 
+
+-- 
+Pengutronix e.K.                           |                             |
+Steuerwalder Str. 21                       | http://www.pengutronix.de/  |
+31137 Hildesheim, Germany                  | Phone: +49-5121-206917-0    |
+Amtsgericht Hildesheim, HRA 2686           | Fax:   +49-5121-206917-5555 |
