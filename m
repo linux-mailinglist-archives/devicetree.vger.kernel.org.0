@@ -2,27 +2,27 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from vger.kernel.org (vger.kernel.org [23.128.96.18])
-	by mail.lfdr.de (Postfix) with ESMTP id 7ECF426C5F2
-	for <lists+devicetree@lfdr.de>; Wed, 16 Sep 2020 19:26:09 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTP id 5DA1D26C5A6
+	for <lists+devicetree@lfdr.de>; Wed, 16 Sep 2020 19:16:56 +0200 (CEST)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S1726682AbgIPRZ5 (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Wed, 16 Sep 2020 13:25:57 -0400
-Received: from mail.kernel.org ([198.145.29.99]:41106 "EHLO mail.kernel.org"
+        id S1726923AbgIPRQm (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Wed, 16 Sep 2020 13:16:42 -0400
+Received: from mail.kernel.org ([198.145.29.99]:33768 "EHLO mail.kernel.org"
         rhost-flags-OK-OK-OK-OK) by vger.kernel.org with ESMTP
-        id S1727022AbgIPRZj (ORCPT <rfc822;devicetree@vger.kernel.org>);
-        Wed, 16 Sep 2020 13:25:39 -0400
+        id S1726925AbgIPRP6 (ORCPT <rfc822;devicetree@vger.kernel.org>);
+        Wed, 16 Sep 2020 13:15:58 -0400
 Received: from kozik-lap.mshome.net (unknown [194.230.155.191])
         (using TLSv1.2 with cipher ECDHE-RSA-AES128-GCM-SHA256 (128/128 bits))
         (No client certificate requested)
-        by mail.kernel.org (Postfix) with ESMTPSA id DDEBC22475;
-        Wed, 16 Sep 2020 15:58:00 +0000 (UTC)
+        by mail.kernel.org (Postfix) with ESMTPSA id 5532D22483;
+        Wed, 16 Sep 2020 15:59:17 +0000 (UTC)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=kernel.org;
-        s=default; t=1600271887;
-        bh=DVP8HWOezQWZwr5z1fnt3pXfVkT0SMNRUf0Uw3ZWonM=;
+        s=default; t=1600271964;
+        bh=9+RfyEFgUiqDasaKjUmJhx8ihT+9S1w76ne+qVMEqf4=;
         h=From:To:Cc:Subject:Date:In-Reply-To:References:From;
-        b=LnD48IgVPklpucRwdtNvoNlL2o5QLxTw3BGnYBoaRn1PCMLfvquqd4IvCJ9jXeq3k
-         aGR6noegEKAL2vNoZmnU3kh4cVvkdYtH4AElP2jx6NPTzW6HRlWrm61Y+vqCRtgX3m
-         zimhUjjQ2f6If3kP4q6wlz/nBD+7HSIDVSzBHgKk=
+        b=ReHiMVSOrY2Tpq0R2x5H8Q1vVDBWzXBmBLfc5eualaPr0xKGjC/n447miOTwo3Jzt
+         qomZTiLgNjLrdb3j9uOc6o/IyZ8iFtxuuPBGGb+BdMQnJohy2I79//wT/C3XFYzosB
+         WayaEjb97JjD+jDpgfQYPk+QzJ7dqdbUcl7BRxbI=
 From:   Krzysztof Kozlowski <krzk@kernel.org>
 To:     Linus Walleij <linus.walleij@linaro.org>,
         Bartosz Golaszewski <bgolaszewski@baylibre.com>,
@@ -52,9 +52,9 @@ To:     Linus Walleij <linus.walleij@linaro.org>,
         linux-aspeed@lists.ozlabs.org, linux-mediatek@lists.infradead.org,
         linux-renesas-soc@vger.kernel.org
 Cc:     Krzysztof Kozlowski <krzk@kernel.org>
-Subject: [PATCH v3 04/15] arm64: dts: mediatek: align GPIO hog names with dtschema
-Date:   Wed, 16 Sep 2020 17:57:04 +0200
-Message-Id: <20200916155715.21009-5-krzk@kernel.org>
+Subject: [PATCH v3 14/15] ARM: dts: armada: align GPIO hog names with dtschema
+Date:   Wed, 16 Sep 2020 17:57:14 +0200
+Message-Id: <20200916155715.21009-15-krzk@kernel.org>
 X-Mailer: git-send-email 2.17.1
 In-Reply-To: <20200916155715.21009-1-krzk@kernel.org>
 References: <20200916155715.21009-1-krzk@kernel.org>
@@ -68,118 +68,99 @@ dtschema for pca95xx expects GPIO hogs to end with 'hog' prefix.
 
 Signed-off-by: Krzysztof Kozlowski <krzk@kernel.org>
 ---
- .../boot/dts/mediatek/pumpkin-common.dtsi     | 26 +++++++++----------
- 1 file changed, 13 insertions(+), 13 deletions(-)
+ arch/arm/boot/dts/armada-388-clearfog.dts  |  4 ++--
+ arch/arm/boot/dts/armada-388-clearfog.dtsi | 10 +++++-----
+ arch/arm/boot/dts/armada-388-helios4.dts   |  6 +++---
+ 3 files changed, 10 insertions(+), 10 deletions(-)
 
-diff --git a/arch/arm64/boot/dts/mediatek/pumpkin-common.dtsi b/arch/arm64/boot/dts/mediatek/pumpkin-common.dtsi
-index 29d8cf6df46b..351a1905a074 100644
---- a/arch/arm64/boot/dts/mediatek/pumpkin-common.dtsi
-+++ b/arch/arm64/boot/dts/mediatek/pumpkin-common.dtsi
-@@ -63,91 +63,91 @@
- 		gpio-controller;
+diff --git a/arch/arm/boot/dts/armada-388-clearfog.dts b/arch/arm/boot/dts/armada-388-clearfog.dts
+index 20f8d4667753..4140a5303b48 100644
+--- a/arch/arm/boot/dts/armada-388-clearfog.dts
++++ b/arch/arm/boot/dts/armada-388-clearfog.dts
+@@ -73,13 +73,13 @@
+ 	 * 14-SFP_TX_DISABLE
+ 	 * 15-SFP_MOD_DEF0
+ 	 */
+-	pcie2_0_clkreq {
++	pcie2-0-clkreq-hog {
+ 		gpio-hog;
+ 		gpios = <4 GPIO_ACTIVE_LOW>;
+ 		input;
+ 		line-name = "pcie2.0-clkreq";
+ 	};
+-	pcie2_0_w_disable {
++	pcie2-0-w-disable-hog {
+ 		gpio-hog;
+ 		gpios = <7 GPIO_ACTIVE_LOW>;
+ 		output-low;
+diff --git a/arch/arm/boot/dts/armada-388-clearfog.dtsi b/arch/arm/boot/dts/armada-388-clearfog.dtsi
+index a0aa1d188f0c..f8a06ae4a3c9 100644
+--- a/arch/arm/boot/dts/armada-388-clearfog.dtsi
++++ b/arch/arm/boot/dts/armada-388-clearfog.dtsi
+@@ -141,31 +141,31 @@
  		#gpio-cells = <2>;
+ 		reg = <0x20>;
  
--		eint20_mux_sel0 {
-+		eint20-mux-sel0-hog {
+-		pcie1_0_clkreq {
++		pcie1-0-clkreq-hog {
  			gpio-hog;
- 			gpios = <0 0>;
+ 			gpios = <0 GPIO_ACTIVE_LOW>;
  			input;
- 			line-name = "eint20_mux_sel0";
+ 			line-name = "pcie1.0-clkreq";
  		};
- 
--		expcon_mux_sel1 {
-+		expcon-mux-sel1-hog {
+-		pcie1_0_w_disable {
++		pcie1-0-w-disable-hog {
  			gpio-hog;
- 			gpios = <1 0>;
- 			input;
- 			line-name = "expcon_mux_sel1";
- 		};
- 
--		mrg_di_mux_sel2 {
-+		mrg-di-mux-sel2-hog {
- 			gpio-hog;
- 			gpios = <2 0>;
- 			input;
- 			line-name = "mrg_di_mux_sel2";
- 		};
- 
--		sd_sdio_mux_sel3 {
-+		sd-sdio-mux-sel3-hog {
- 			gpio-hog;
- 			gpios = <3 0>;
- 			input;
- 			line-name = "sd_sdio_mux_sel3";
- 		};
- 
--		sd_sdio_mux_ctrl7 {
-+		sd-sdio-mux-ctrl7-hog {
- 			gpio-hog;
- 			gpios = <7 0>;
+ 			gpios = <3 GPIO_ACTIVE_LOW>;
  			output-low;
- 			line-name = "sd_sdio_mux_ctrl7";
+ 			line-name = "pcie1.0-w-disable";
  		};
- 
--		hw_id0 {
-+		hw-id0-hog {
+-		usb3_ilimit {
++		usb3-ilimit-hog {
  			gpio-hog;
- 			gpios = <8 0>;
+ 			gpios = <5 GPIO_ACTIVE_LOW>;
  			input;
- 			line-name = "hw_id0";
+ 			line-name = "usb3-current-limit";
  		};
- 
--		hw_id1 {
-+		hw-id1-hog {
+-		usb3_power {
++		usb3-power-hog {
  			gpio-hog;
- 			gpios = <9 0>;
- 			input;
- 			line-name = "hw_id1";
- 		};
- 
--		hw_id2 {
-+		hw-id2-hog {
- 			gpio-hog;
- 			gpios = <10 0>;
- 			input;
- 			line-name = "hw_id2";
- 		};
- 
--		fg_int_n {
-+		fg-int-n-hog {
- 			gpio-hog;
- 			gpios = <11 0>;
- 			input;
- 			line-name = "fg_int_n";
- 		};
- 
--		usba_pwr_en {
-+		usba-pwr-en-hog {
- 			gpio-hog;
- 			gpios = <12 0>;
+ 			gpios = <6 GPIO_ACTIVE_HIGH>;
  			output-high;
- 			line-name = "usba_pwr_en";
+ 			line-name = "usb3-power";
  		};
- 
--		wifi_3v3_pg {
-+		wifi-3v3-pg-hog {
+-		m2_devslp {
++		m2-devslp-hog {
  			gpio-hog;
- 			gpios = <13 0>;
- 			input;
- 			line-name = "wifi_3v3_pg";
- 		};
- 
--		cam_rst {
-+		cam-rst-hog {
- 			gpio-hog;
- 			gpios = <14 0>;
+ 			gpios = <11 GPIO_ACTIVE_HIGH>;
  			output-low;
- 			line-name = "cam_rst";
- 		};
+diff --git a/arch/arm/boot/dts/armada-388-helios4.dts b/arch/arm/boot/dts/armada-388-helios4.dts
+index fb49df2a3bce..b3728de3bd3f 100644
+--- a/arch/arm/boot/dts/armada-388-helios4.dts
++++ b/arch/arm/boot/dts/armada-388-helios4.dts
+@@ -166,19 +166,19 @@
+ 					interrupt-controller;
+ 					#interrupt-cells = <2>;
  
--		cam_pwdn {
-+		cam-pwdn-hog {
- 			gpio-hog;
- 			gpios = <15 0>;
- 			output-low;
+-					board_rev_bit_0 {
++					board-rev-bit-0-hog {
+ 						gpio-hog;
+ 						gpios = <0 GPIO_ACTIVE_LOW>;
+ 						input;
+ 						line-name = "board-rev-0";
+ 					};
+-					board_rev_bit_1 {
++					board-rev-bit-1-hog {
+ 						gpio-hog;
+ 						gpios = <1 GPIO_ACTIVE_LOW>;
+ 						input;
+ 						line-name = "board-rev-1";
+ 					};
+-					usb3_ilimit {
++					usb3-ilimit-hog {
+ 						gpio-hog;
+ 						gpios = <5 GPIO_ACTIVE_HIGH>;
+ 						input;
 -- 
 2.17.1
 
