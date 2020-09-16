@@ -2,218 +2,132 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from vger.kernel.org (vger.kernel.org [23.128.96.18])
-	by mail.lfdr.de (Postfix) with ESMTP id 37A7726B643
-	for <lists+devicetree@lfdr.de>; Wed, 16 Sep 2020 02:01:44 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTP id 9DBA626B703
+	for <lists+devicetree@lfdr.de>; Wed, 16 Sep 2020 02:15:57 +0200 (CEST)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S1727244AbgIPAA1 (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Tue, 15 Sep 2020 20:00:27 -0400
-Received: from lindbergh.monkeyblade.net ([23.128.96.19]:38828 "EHLO
+        id S1726925AbgIPAPw convert rfc822-to-8bit (ORCPT
+        <rfc822;lists+devicetree@lfdr.de>); Tue, 15 Sep 2020 20:15:52 -0400
+Received: from lindbergh.monkeyblade.net ([23.128.96.19]:41228 "EHLO
         lindbergh.monkeyblade.net" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S1727212AbgIPAAK (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Tue, 15 Sep 2020 20:00:10 -0400
-Received: from mail-pj1-x1043.google.com (mail-pj1-x1043.google.com [IPv6:2607:f8b0:4864:20::1043])
-        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 29353C06178A
-        for <devicetree@vger.kernel.org>; Tue, 15 Sep 2020 17:00:10 -0700 (PDT)
-Received: by mail-pj1-x1043.google.com with SMTP id mm21so614426pjb.4
-        for <devicetree@vger.kernel.org>; Tue, 15 Sep 2020 17:00:10 -0700 (PDT)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=chromium.org; s=google;
-        h=date:from:to:cc:subject:message-id:references:mime-version
-         :content-disposition:in-reply-to;
-        bh=RX3pgRSaqwuA91vHSgRiOLr6fZp+r278bl7l934MXzo=;
-        b=I182+EMgnVlXeJ47Jpn+7tZxBNwd0Q4oeX34HqBM9qVe+Kc3Ch8LGnghFtFaFDoiI+
-         HGm8fXrJUu2L+YhOwQAi8t6WDe4uJ4ADZRBofop4MrMgBTQdJC1IICusIXpVTxM24MYu
-         CHV5T8SHE9ZaD5FzAtY921nrac1crYXcu8ErQ=
-X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=1e100.net; s=20161025;
-        h=x-gm-message-state:date:from:to:cc:subject:message-id:references
-         :mime-version:content-disposition:in-reply-to;
-        bh=RX3pgRSaqwuA91vHSgRiOLr6fZp+r278bl7l934MXzo=;
-        b=E7LyomT5BCh8e6t7w25halg4CvsIp4u/gFISY+CmnukeAQ9vVwf8EET+F8jkd4n/e1
-         0i5UfOyVOlnt13DNT2WptLh+bEqo/zKuJVoXhLPPFPGSFxxsp2oLdYvBSV7ddHihellv
-         pfmP1JKNf24a5tzlj6n3uW4oN/83zUIzzKpceZFlmtSW3AZxllYa35mN1a1adI9wYmVL
-         EyLPvLQAner5ofq4Eu+d7JSuHhKk67xw5MZIWx02/WEP+YOXgb7LhI37OT/1XGTZH85h
-         EIdT39ajWtuoDo9HFA3K3c0drbCFN9sG/SPlotaza3wb7omwdtb/Ppc1tAgzhjwzzb/p
-         bwxA==
-X-Gm-Message-State: AOAM530wX8B+/bzk+n3Jw4qzGQ0yFqczH2yPK6/DmAp86YQzxffSCiLA
-        kVQCDmtoWME5TeGb03UYWdWxxA==
-X-Google-Smtp-Source: ABdhPJx2q0kjfen9gHcVuYxqbdmmHRWRJidwPFOESeIQIJnD+CHVVXk6+U17mQhEWN8yg8Sb2ToONw==
-X-Received: by 2002:a17:90a:8981:: with SMTP id v1mr1640899pjn.54.1600214409487;
-        Tue, 15 Sep 2020 17:00:09 -0700 (PDT)
-Received: from localhost ([2620:15c:202:1:f693:9fff:fef4:e70a])
-        by smtp.gmail.com with ESMTPSA id e10sm542754pjj.32.2020.09.15.17.00.08
-        (version=TLS1_3 cipher=TLS_AES_128_GCM_SHA256 bits=128/128);
-        Tue, 15 Sep 2020 17:00:09 -0700 (PDT)
-Date:   Tue, 15 Sep 2020 17:00:08 -0700
-From:   Matthias Kaehlcke <mka@chromium.org>
-To:     Rob Herring <robh@kernel.org>
-Cc:     Greg Kroah-Hartman <gregkh@linuxfoundation.org>,
-        Frank Rowand <frowand.list@gmail.com>,
-        Alan Stern <stern@rowland.harvard.edu>,
-        Krzysztof Kozlowski <krzk@kernel.org>,
-        Bastien Nocera <hadess@hadess.net>,
-        Ravi Chandra Sadineni <ravisadineni@chromium.org>,
-        linux-usb@vger.kernel.org, Stephen Boyd <swboyd@chromium.org>,
-        devicetree@vger.kernel.org,
-        Douglas Anderson <dianders@chromium.org>,
-        Peter Chen <peter.chen@nxp.com>, linux-kernel@vger.kernel.org
-Subject: Re: [PATCH 1/2] dt-bindings: usb: Add binding for onboard USB hubs
-Message-ID: <20200916000008.GG2771744@google.com>
-References: <20200914112716.1.I248292623d3d0f6a4f0c5bc58478ca3c0062b49a@changeid>
- <20200915142145.GA1861636@bogus>
+        with ESMTP id S1726736AbgIPAPp (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Tue, 15 Sep 2020 20:15:45 -0400
+Received: from mail.nic.cz (lists.nic.cz [IPv6:2001:1488:800:400::400])
+        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 44535C06174A;
+        Tue, 15 Sep 2020 17:15:45 -0700 (PDT)
+Received: from localhost (unknown [IPv6:2a0e:b107:ae1:0:3e97:eff:fe61:c680])
+        by mail.nic.cz (Postfix) with ESMTPSA id 20D78140A47;
+        Wed, 16 Sep 2020 02:15:38 +0200 (CEST)
+Date:   Wed, 16 Sep 2020 02:15:37 +0200
+From:   Marek Behun <marek.behun@nic.cz>
+To:     Jacek Anaszewski <jacek.anaszewski@gmail.com>
+Cc:     linux-leds@vger.kernel.org, Pavel Machek <pavel@ucw.cz>,
+        Dan Murphy <dmurphy@ti.com>,
+        =?UTF-8?B?T25kxZllag==?= Jirman <megous@megous.com>,
+        Russell King <linux@armlinux.org.uk>,
+        Andrew Lunn <andrew@lunn.ch>, linux-kernel@vger.kernel.org,
+        Matthias Schiffer <matthias.schiffer@ew.tq-group.com>,
+        Rob Herring <robh+dt@kernel.org>, devicetree@vger.kernel.org
+Subject: Re: [PATCH leds + devicetree v2 2/2] leds: trigger: netdev: parse
+ `trigger-sources` from device tree
+Message-ID: <20200916021537.106a29e5@nic.cz>
+In-Reply-To: <03fc62d8-eeaa-7b74-5ed9-7e482ea6b888@gmail.com>
+References: <20200915152616.20591-1-marek.behun@nic.cz>
+        <20200915152616.20591-3-marek.behun@nic.cz>
+        <03fc62d8-eeaa-7b74-5ed9-7e482ea6b888@gmail.com>
+X-Mailer: Claws Mail 3.17.6 (GTK+ 2.24.32; x86_64-pc-linux-gnu)
 MIME-Version: 1.0
-Content-Type: text/plain; charset=utf-8
-Content-Disposition: inline
-In-Reply-To: <20200915142145.GA1861636@bogus>
+Content-Type: text/plain; charset=UTF-8
+Content-Transfer-Encoding: 8BIT
+X-Spam-Status: No, score=-100.0 required=5.9 tests=SHORTCIRCUIT,URIBL_BLOCKED,
+        USER_IN_WELCOMELIST,USER_IN_WHITELIST shortcircuit=ham
+        autolearn=disabled version=3.4.2
+X-Spam-Checker-Version: SpamAssassin 3.4.2 (2018-09-13) on mail.nic.cz
+X-Virus-Scanned: clamav-milter 0.102.2 at mail
+X-Virus-Status: Clean
 Sender: devicetree-owner@vger.kernel.org
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-Hi Rob,
+On Tue, 15 Sep 2020 23:35:25 +0200
+Jacek Anaszewski <jacek.anaszewski@gmail.com> wrote:
 
-On Tue, Sep 15, 2020 at 08:21:45AM -0600, Rob Herring wrote:
-> On Mon, Sep 14, 2020 at 11:27:48AM -0700, Matthias Kaehlcke wrote:
-> > Onboard USB hubs need to be powered and may require initiaization of
-> > other resources (like GPIOs or clocks) to work properly. This adds
-> > a device tree binding for these hubs.
+> Hi Marek,
 > 
-> We already have bindings for these. 2 in fact as I2C controlled hubs are 
-> often described under the I2C bus.
-
-Yes, these are I2C controlled hubs, which need hub specific drivers. This
-driver is for hubs without an additional bus that share similar
-initialization requirements and can benefit from common functionality.
-
-> > Signed-off-by: Matthias Kaehlcke <mka@chromium.org>
+> On 9/15/20 5:26 PM, Marek Behún wrote:
+> > Allow setting netdev LED trigger as default when given LED DT node has
+> > the `trigger-sources` property pointing to a node corresponding to a
+> > network device.
+> > 
+> > The specific netdev trigger mode is determined from the `function` LED
+> > property.
+> > 
+> > Example:
+> >    eth0: ethernet@30000 {
+> >      compatible = "xyz";
+> >      #trigger-source-cells = <0>;
+> >    };
+> > 
+> >    led {
+> >      color = <LED_COLOR_ID_GREEN>;
+> >      function = LED_FUNCTION_LINK;
+> >      trigger-sources = <&eth0>;
+> >    };
+> > 
+> > Signed-off-by: Marek Behún <marek.behun@nic.cz>
+> > Cc: Rob Herring <robh+dt@kernel.org>
+> > Cc: devicetree@vger.kernel.org
 > > ---
+> >   drivers/leds/trigger/ledtrig-netdev.c | 80 ++++++++++++++++++++++++++-
+> >   include/dt-bindings/leds/common.h     |  1 +
+> >   2 files changed, 80 insertions(+), 1 deletion(-)
 > > 
-> >  .../bindings/usb/onboard_usb_hub.yaml         | 70 +++++++++++++++++++
-> >  1 file changed, 70 insertions(+)
-> >  create mode 100644 Documentation/devicetree/bindings/usb/onboard_usb_hub.yaml
-> > 
-> > diff --git a/Documentation/devicetree/bindings/usb/onboard_usb_hub.yaml b/Documentation/devicetree/bindings/usb/onboard_usb_hub.yaml
-> > new file mode 100644
-> > index 000000000000..f82d8f459eed
-> > --- /dev/null
-> > +++ b/Documentation/devicetree/bindings/usb/onboard_usb_hub.yaml
-> > @@ -0,0 +1,70 @@
-> > +# SPDX-License-Identifier: GPL-2.0-only or BSD-2-Clause
-> > +%YAML 1.2
-> > +---
-> > +$id: http://devicetree.org/schemas/usb/onboard_usb_hub.yaml#
-> > +$schema: http://devicetree.org/meta-schemas/core.yaml#
-> > +
-> > +title: Binding for onboard USB hubs
-> > +
-> > +maintainers:
-> > +  - Matthias Kaehlcke <mka@chromium.org>
-> > +
-> > +allOf:
-> > +  - $ref: /schemas/usb/onboard_usb_hub.yaml#
-> > +
-> > +properties:
-> > +  compatible:
-> > +    enum:
-> > +      - onboard-usb-hub
-> > +      - realtek,rts5411
-> > +
-> > +  power-off-in-suspend:
-> > +    description:
-> > +      The hub should be powered off during system suspend. When the
-> > +      "wakeup-source" property is also provided the hub is only powered
-> > +      off during suspend when no wakeup capable descendants are connected.
-> > +    type: boolean
-> > +
-> > +  vdd-supply:
-> > +    description:
-> > +      phandle to the regulator that provides power to the hub.
-> > +
-> > +  wakeup-source:
-> > +    description:
-> > +      Wakeup capable USB devices connected to this hub can be used as
-> > +      wakeup source.
-> > +    type: boolean
-> > +
-> > +required:
-> > +  - compatible
-> > +  - vdd-supply
-> > +
-> > +examples:
-> > +  - |
-> > +    usb_hub: usb-hub {
-> > +        compatible = "realtek,rts5411", "onboard-usb-hub";
-> > +        vdd-supply = <&pp3300_hub>;
-> > +        power-off-in-suspend;
-> > +        wakeup-source;
+> > diff --git a/drivers/leds/trigger/ledtrig-netdev.c b/drivers/leds/trigger/ledtrig-netdev.c
+> > index d5e774d830215..99fc2f0c68e12 100644
+> > --- a/drivers/leds/trigger/ledtrig-netdev.c
+> > +++ b/drivers/leds/trigger/ledtrig-netdev.c
+> > @@ -20,6 +20,7 @@  
+> [...]
 > 
-> This is the hub device?
-
-This is the physical hub device on the platform bus, which is the
-equivalent to this entry for a usb2512b hub on an I2C bus:
-
-    usb2512b@2c {
-        compatible = "microchip,usb2512b";
-	reg = <0x2c>;
-	reset-gpios = <&gpio1 4 GPIO_ACTIVE_LOW>;
-    };
-
-(source: Documentation/devicetree/bindings/usb/usb251xb.txt)
-
-It doesn't have an I2C, SPI or other bus, hence the platform bus is
-used.
-
-> > +    };
-> > +
-> > +    &usb_1_dwc3 {
-> > +	dr_mode = "host";
-> > +	#address-cells = <1>;
-> > +	#size-cells = <0>;
-> > +
-> > +	/* 2.0 hub on port 1 */
-> > +	hub@1 {
-> > +		compatible = "usbbda,5411";
-> > +		reg = <1>;
-> > +		hub = <&usb_hub>;
+> >   static int netdev_trig_activate(struct led_classdev *led_cdev)
+> >   {
+> >   	struct led_netdev_data *trigger_data;
+> > @@ -414,10 +479,17 @@ static int netdev_trig_activate(struct led_classdev *led_cdev)
+> >   	trigger_data->last_activity = 0;
+> >   
+> >   	led_set_trigger_data(led_cdev, trigger_data);
+> > +	netdev_trig_of_parse(led_cdev, trigger_data);  
 > 
-> Or this node is?
-
-It is the USB 2.0 part of the hub. The device is instantiated by
-Linux even without this node, but the system associates the node
-with the device, which suggests it 'exists'.
-
-The usb2512b mentioned above implicitly also has a node here, it just
-isn't specified since the USB controller autodetects it.
-
-> > +	};
-> > +
-> > +	/* 3.0 hub on port 2 */
-> > +	hub@2 {
-> > +		compatible = "usbbda,411";
-> > +		reg = <2>;
-> > +		hub = <&usb_hub>;
+> Please be aware of LED_INIT_DEFAULT_TRIGGER flag - it would make
+> sense to use it here so as not to unnecessarily call
+> netdev_trig_of_parse(), which makes sense only if trigger will be
+> default, I presume.
 > 
-> Or this node is?
+> See timer_trig_activate() in  drivers/leds/trigger/ledtrig-timer.c
+> for reference.
+> 
 
-It is the USB 3.0 part of the hub.
+Hmmm. Jacek, all the triggers that work with the macro
+LED_INIT_DEFAULT_TRIGGER are oneshot, timer and pattern.
+If this macro is set, they all call pattern_init function where they
+read led-pattern from fwnode.
 
-> The hub node belongs here.
+But there is no device tree in Linux sources using this property.
+In fact the command
+  git grep led-pattern
+yields only 2 files:
+  Documentation/devicetree/bindings/leds/common.yaml
+  drivers/leds/led-core.c
 
-The platform device isn't probed when the node is inside the USB
-controller node. I haven't investigated why that's the case.
+What is the purpose if no device tree uses this property? Is this used
+from other fwnode sources, like acpi or efi?
 
-> If you really have it connected to 2 upstream ports, then just do
-> one node with 'reg = <1 2>;'.
+The reason why I am asking this is that the `led-pattern` property in
+device tree goes against the principle of device tree, that it
+shouldn't set settings settable from userspace, only describe the
+devices on the system and how they are connected to each other.
 
-Yes, it is connected to two upstream ports. The platform driver needs a
-reference to both/all hubs, to be able to determine whether to keep the
-hub powered during system suspend or not.
+This is the same reason why multi-CPU DSA proposals which proposed to
+set mappings between CPU ports and user ports were rejected...
 
-Technically the hub with product id 0x5411 is connected to port 1 and the
-one with product id 0x411 to port 2, so I would say the above is more
-accurate than pretending one of the hubs is connected to both ports.
-
-I would argue that the two hub nodes are similar to a SDIO BT/WiFi combo,
-where you have one chip/module with multiple functions. The DT has entries
-for both functions, even though they reside in the same chip and share the
-same bus.
+Marek
