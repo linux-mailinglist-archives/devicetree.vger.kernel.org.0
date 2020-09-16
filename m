@@ -2,100 +2,102 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from vger.kernel.org (vger.kernel.org [23.128.96.18])
-	by mail.lfdr.de (Postfix) with ESMTP id 19C4D26C454
-	for <lists+devicetree@lfdr.de>; Wed, 16 Sep 2020 17:36:22 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTP id AAA4726C513
+	for <lists+devicetree@lfdr.de>; Wed, 16 Sep 2020 18:23:54 +0200 (CEST)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S1726338AbgIPPfK (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Wed, 16 Sep 2020 11:35:10 -0400
-Received: from lindbergh.monkeyblade.net ([23.128.96.19]:40650 "EHLO
-        lindbergh.monkeyblade.net" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S1726139AbgIPPaw (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Wed, 16 Sep 2020 11:30:52 -0400
-Received: from mail-lj1-x242.google.com (mail-lj1-x242.google.com [IPv6:2a00:1450:4864:20::242])
-        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 6EEACC002183;
-        Wed, 16 Sep 2020 07:17:29 -0700 (PDT)
-Received: by mail-lj1-x242.google.com with SMTP id b19so6037201lji.11;
-        Wed, 16 Sep 2020 07:17:29 -0700 (PDT)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=gmail.com; s=20161025;
-        h=subject:to:cc:references:from:message-id:date:user-agent
-         :mime-version:in-reply-to:content-language:content-transfer-encoding;
-        bh=HKFjjXX/Fu5zjF0HZ6s7EvKUrOD09AhmACAgWHR4WJc=;
-        b=mvqYVCPNof43k9goSUMLYsmddY1xjRWfLRyPyXaME3y2bs6i0ZkqWvjlSeIWhHMfaQ
-         9zMlCWy4xcHiWIksv02XJmn2dTAsFIqYLNfQTEhvSa6LYRoQL0Fj/oAgFZett2tq1N74
-         dozIWdEDVJH3+NP1fuu4vjT/VhSSEkJgNP3HxbUX4n3k1Tt37V5Z65FBlIEngHM9iIT/
-         wTky7fwT5+avJFvbMXDANHlNSqHC/ZmDUJA36NskKlzslATW49ZCqI0B5G/0/F/jHkUo
-         jQV79g7kxbs+TxCNRO9kt6/DW8vAdwh8MF5fwx9TTlczoxlRcGcgCRWQOpaRRrVGiYYV
-         WhVw==
-X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=1e100.net; s=20161025;
-        h=x-gm-message-state:subject:to:cc:references:from:message-id:date
-         :user-agent:mime-version:in-reply-to:content-language
-         :content-transfer-encoding;
-        bh=HKFjjXX/Fu5zjF0HZ6s7EvKUrOD09AhmACAgWHR4WJc=;
-        b=AULLrlWHiPc4LLB1wzSnCh1imXMXE7BN2QLfj+8HjM1+SkmUVURUFwndPmGEsla9M7
-         xX+Oeg8W21TSrxsypGahVtjKN++vI8phueEHDnUUZc0x0V8H+qoH6kdxKg4AAYHisYEk
-         lis8r6uOtIx7awQsWvoCktr+eG8JooE1YcXf6YF4dT3vJSZLTf9Kzwhw89bGtdS2uy4z
-         HliIRorw+yGGASmXA3fiMRN7CJWynNNUnAPx0CJJWtzSUluSzcMQbpV9xFkHPWSvElB0
-         vM7zb2rGlyeJ8Cb0EyNV3dN1qE3kUUsxnSAcwKvP3mHc/f1QoeSQwFnTR2/V6vco2+3N
-         P4Ag==
-X-Gm-Message-State: AOAM532/scEaEzY2KO2VJLXfxLT3zEBq8y9WPKP2/VRM5IgwWUhi8rQ7
-        M+2hnlECN5FyBN80wMRdZb2ZjNEq1dw=
-X-Google-Smtp-Source: ABdhPJzOWf6bO6BJSSKVvsY8LHw/SdhBM4Zq10+VY39wg1d+t9a6mejTf8wlO11e4etxzPRQ/tEJkw==
-X-Received: by 2002:a2e:b813:: with SMTP id u19mr7881504ljo.396.1600265847640;
-        Wed, 16 Sep 2020 07:17:27 -0700 (PDT)
-Received: from [192.168.2.145] (109-252-170-211.dynamic.spd-mgts.ru. [109.252.170.211])
-        by smtp.googlemail.com with ESMTPSA id c28sm4626382lfh.98.2020.09.16.07.17.26
-        (version=TLS1_3 cipher=TLS_AES_128_GCM_SHA256 bits=128/128);
-        Wed, 16 Sep 2020 07:17:26 -0700 (PDT)
-Subject: Re: [PATCH 1/3] ARM: tegra: Add device-tree for Ouya
-To:     Peter Geis <pgwipeout@gmail.com>, Rob Herring <robh+dt@kernel.org>,
-        Thierry Reding <thierry.reding@gmail.com>,
-        Jonathan Hunter <jonathanh@nvidia.com>,
-        Matt Merhar <mattmerhar@protonmail.com>,
-        Stephen Warren <swarren@wwwdotorg.org>,
-        Bob Ham <rah@settrans.net>,
-        Leonardo Bras <leobras.c@gmail.com>,
-        Michael Brougham <jusplainmike@gmail.com>
-Cc:     linux-tegra@vger.kernel.org, devicetree@vger.kernel.org,
-        linux-kernel@vger.kernel.org
-References: <20200916122247.534374-1-pgwipeout@gmail.com>
- <20200916122247.534374-2-pgwipeout@gmail.com>
-From:   Dmitry Osipenko <digetx@gmail.com>
-Message-ID: <3cdcb877-e4c7-aab8-b7f9-0c88f2247d03@gmail.com>
-Date:   Wed, 16 Sep 2020 17:17:25 +0300
-User-Agent: Mozilla/5.0 (X11; Linux x86_64; rv:68.0) Gecko/20100101
- Thunderbird/68.10.0
+        id S1726378AbgIPQW0 (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Wed, 16 Sep 2020 12:22:26 -0400
+Received: from lelv0143.ext.ti.com ([198.47.23.248]:52850 "EHLO
+        lelv0143.ext.ti.com" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
+        with ESMTP id S1726330AbgIPQVE (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Wed, 16 Sep 2020 12:21:04 -0400
+Received: from fllv0034.itg.ti.com ([10.64.40.246])
+        by lelv0143.ext.ti.com (8.15.2/8.15.2) with ESMTP id 08GCZrtR071777;
+        Wed, 16 Sep 2020 07:35:53 -0500
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=ti.com;
+        s=ti-com-17Q1; t=1600259753;
+        bh=1Da8xmW4YCbtBzyHtH9tA0Z9gjhWVtmOrMv90+ULU+Y=;
+        h=From:To:CC:Subject:Date:In-Reply-To:References;
+        b=GzTUH0486+ObN4fqS1rw2oZoDyi4ZgwmzYmWiVaCIkflaSiApb/fh8/g9zzgRLJ+k
+         2CG6/eWFf83xr8nYcZ1gFC/NuROFBb1RmywxJzo+rcB3vJs/pRyzSUnutun5gMUO1c
+         dJWM51TOCvrqx6stCUUYux8blGmZjFASGjqcu5RI=
+Received: from DLEE105.ent.ti.com (dlee105.ent.ti.com [157.170.170.35])
+        by fllv0034.itg.ti.com (8.15.2/8.15.2) with ESMTPS id 08GCZrQe085606
+        (version=TLSv1.2 cipher=AES256-GCM-SHA384 bits=256 verify=FAIL);
+        Wed, 16 Sep 2020 07:35:53 -0500
+Received: from DLEE106.ent.ti.com (157.170.170.36) by DLEE105.ent.ti.com
+ (157.170.170.35) with Microsoft SMTP Server (version=TLS1_2,
+ cipher=TLS_ECDHE_RSA_WITH_AES_128_CBC_SHA256_P256) id 15.1.1979.3; Wed, 16
+ Sep 2020 07:35:53 -0500
+Received: from fllv0039.itg.ti.com (10.64.41.19) by DLEE106.ent.ti.com
+ (157.170.170.36) with Microsoft SMTP Server (version=TLS1_2,
+ cipher=TLS_ECDHE_RSA_WITH_AES_128_CBC_SHA256_P256) id 15.1.1979.3 via
+ Frontend Transport; Wed, 16 Sep 2020 07:35:52 -0500
+Received: from localhost (ileax41-snat.itg.ti.com [10.172.224.153])
+        by fllv0039.itg.ti.com (8.15.2/8.15.2) with ESMTP id 08GCZrWa095396;
+        Wed, 16 Sep 2020 07:35:53 -0500
+From:   Nishanth Menon <nm@ti.com>
+To:     Rob Herring <robh+dt@kernel.org>,
+        Kishon Vijay Abraham I <kishon@ti.com>,
+        Tero Kristo <t-kristo@ti.com>
+CC:     Nishanth Menon <nm@ti.com>, <linux-kernel@vger.kernel.org>,
+        <devicetree@vger.kernel.org>,
+        <linux-arm-kernel@lists.infradead.org>
+Subject: Re: [PATCH v2 0/2] Add DT to get PCIe working in J721E SoC
+Date:   Wed, 16 Sep 2020 07:35:51 -0500
+Message-ID: <160025957194.1798.2528791511684340016.b4-ty@ti.com>
+X-Mailer: git-send-email 2.28.0
+In-Reply-To: <20200914152115.1788-1-kishon@ti.com>
+References: <20200914152115.1788-1-kishon@ti.com>
 MIME-Version: 1.0
-In-Reply-To: <20200916122247.534374-2-pgwipeout@gmail.com>
-Content-Type: text/plain; charset=utf-8
-Content-Language: en-US
 Content-Transfer-Encoding: 8bit
+Content-Type: text/plain
+X-EXCLAIMER-MD-CONFIG: e1e8a2fd-e40a-4ac6-ac9b-f7e9cc9ee180
 Sender: devicetree-owner@vger.kernel.org
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-16.09.2020 15:22, Peter Geis пишет:
-> The Ouya was the sole device produced by Ouya Inc in 2013.
-> It was a game console originally running Android 5 on top of Linux 3.1.10.
+On Mon, 14 Sep 2020 20:51:13 +0530, Kishon Vijay Abraham I wrote:
+> Now that J721E PCIe support is merged (including the YAML bindings),
+> add PCIe device tree nodes to get PCIe working in J721E SoC both in
+> RC mode and EP mode.
 > 
-> This patch adds the device tree supporting the Ouya.
-> It has been tested on the original variant with Samsung ram.
+> Series has been rebased to:
+> git://git.kernel.org/pub/scm/linux/kernel/git/nmenon/linux ti-k3-dts-next
 > 
-> Signed-off-by: Peter Geis <pgwipeout@gmail.com>
-> ---
->  arch/arm/boot/dts/Makefile         |    3 +-
->  arch/arm/boot/dts/tegra30-ouya.dts | 4498 ++++++++++++++++++++++++++++
->  2 files changed, 4500 insertions(+), 1 deletion(-)
->  create mode 100644 arch/arm/boot/dts/tegra30-ouya.dts
+> [...]
 
-Hello, Peter! Very nice work!
+Hi Kishon Vijay Abraham I,
 
-Could you please clarify how many variants of the board exist?
+I have applied the following to branch ti-k3-dts-next on [1].
+Thank you!
 
-What are the differences between the variants?
+[1/2] arm64: dts: ti: k3-j721e-main: Add PCIe device tree nodes
+      commit: 1a0361c153c2b241d9286d977ae6405a84efb4e4
+[2/2] arm64: dts: ti: k3-j721e-common-proc-board: Configure the PCIe instances
+      commit: c5e91b849c807949959045a2fc03754404a74faa
 
-Is this device-tree suitable for all variants?
 
-How user could determine the board's variant?
+All being well this means that it will be integrated into the linux-next
+tree (usually sometime in the next 24 hours) and sent up the chain during
+the next merge window (or sooner if it is a relevant bug fix), however if
+problems are discovered then the patch may be dropped or reverted.
+
+You may get further e-mails resulting from automated or manual testing
+and review of the tree, please engage with people reporting problems and
+send followup patches addressing any issues that are reported if needed.
+
+If any updates are required or you are submitting further changes they
+should be sent as incremental updates against current git, existing
+patches will not be replaced.
+
+Please add any relevant lists and maintainers to the CCs when replying
+to this mail.
+
+[1] git://git.kernel.org/pub/scm/linux/kernel/git/nmenon/linux.git
+-- 
+Regards,
+Nishanth Menon
+Key (0xDDB5849D1736249D) / Fingerprint: F8A2 8693 54EB 8232 17A3  1A34 DDB5 849D 1736 249D
+
