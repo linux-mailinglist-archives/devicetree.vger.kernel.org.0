@@ -2,131 +2,167 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from vger.kernel.org (vger.kernel.org [23.128.96.18])
-	by mail.lfdr.de (Postfix) with ESMTP id EA4E726C822
-	for <lists+devicetree@lfdr.de>; Wed, 16 Sep 2020 20:41:50 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTP id B97AA26C806
+	for <lists+devicetree@lfdr.de>; Wed, 16 Sep 2020 20:39:05 +0200 (CEST)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S1727815AbgIPSlh (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Wed, 16 Sep 2020 14:41:37 -0400
-Received: from lindbergh.monkeyblade.net ([23.128.96.19]:42016 "EHLO
-        lindbergh.monkeyblade.net" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S1727901AbgIPS1x (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Wed, 16 Sep 2020 14:27:53 -0400
-Received: from mail-ej1-x642.google.com (mail-ej1-x642.google.com [IPv6:2a00:1450:4864:20::642])
-        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id E77FAC0D941C;
-        Wed, 16 Sep 2020 07:57:17 -0700 (PDT)
-Received: by mail-ej1-x642.google.com with SMTP id u21so10821342eja.2;
-        Wed, 16 Sep 2020 07:57:17 -0700 (PDT)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=gmail.com; s=20161025;
-        h=mime-version:references:in-reply-to:from:date:message-id:subject:to
-         :cc:content-transfer-encoding;
-        bh=BavzM8dqao5JCiPkWFEijbjqferuuSqIJ7QT/mKoTAQ=;
-        b=nQn4NukiiRCo18F4AEpFB+HOHN7WOI+rKirSQpjyRP4nmmO3697PAVTWv092GNG/k8
-         kp3TKYaL+GKVqBfEzVKELXgdIhndqS+7gDH5LIOf2Awcr9rvxKba0usL6+NprjZo59y+
-         WPWNlD8cFafBUra2EOCbqnFw5K8p4HazPUNbBx+UU7RTWsr2sOYeaViwGv3XqS3yoQ9Y
-         wHAtetcNTyjbmz+LG2Dz6SNBVd2uvIpFilSf7/A4ZgdNIWZil1NME8GVqVzLN4LBnn49
-         7HxREZ2eCGJCkwRIWfMDIZftQX42C8n5ywKYWOEo6MLVN2Me+zduyJ0lBaAdPEgYMMHZ
-         fi0w==
-X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=1e100.net; s=20161025;
-        h=x-gm-message-state:mime-version:references:in-reply-to:from:date
-         :message-id:subject:to:cc:content-transfer-encoding;
-        bh=BavzM8dqao5JCiPkWFEijbjqferuuSqIJ7QT/mKoTAQ=;
-        b=TXub0/Tn8OvBj2iPPdr9MNdkiIiTNOGQkzps7I/i3kMaUDA1/oe4uNHdUipIaIeeal
-         ec9TNUhi6jmOwXuX4hFUheVZH9iplzl3/uONhaDhbzwPAZyGvbP13ZAIaNOIvnqemrRi
-         TKg+ZK+OEP96tzSkeFY6Kt5hpPswk9vwidNcoL/+hpMOqR4zp9ZeG23gX30HXi+p3N39
-         /MVUKN6aSb2Y730brJywTwW16+o6fjDBR0+l6TuZOe1Lke9whhjQhuY/qdJpQLPYvULb
-         5dagtYNl34bPB0O6oRc9/+LMZqcHFAi182Sfk1Zh4d9bgLBo061uuTxh4E2AUIHel+Or
-         Es2A==
-X-Gm-Message-State: AOAM531uCLbaL21YydSXQ72P2U9HPWvMSgfM2OQ3PJW032bkKg5/LekS
-        OnAgRWHhQyTNWVBLr8f+wTIFSr/Ykg29Tckp/ZU=
-X-Google-Smtp-Source: ABdhPJx9FNTjCittOjxhqVQ8Y3/Ji00bVrlyO0GKfHoEdHIMHs+TI34YOUrZdyDTCMX0SDNkYsvmR37O4kEsPhGUX2M=
-X-Received: by 2002:a17:906:c1c6:: with SMTP id bw6mr26850175ejb.374.1600268236393;
- Wed, 16 Sep 2020 07:57:16 -0700 (PDT)
+        id S1728069AbgIPSiE (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Wed, 16 Sep 2020 14:38:04 -0400
+Received: from mx0b-0014ca01.pphosted.com ([208.86.201.193]:50884 "EHLO
+        mx0a-0014ca01.pphosted.com" rhost-flags-OK-OK-OK-FAIL)
+        by vger.kernel.org with ESMTP id S1727955AbgIPS24 (ORCPT
+        <rfc822;devicetree@vger.kernel.org>);
+        Wed, 16 Sep 2020 14:28:56 -0400
+Received: from pps.filterd (m0042333.ppops.net [127.0.0.1])
+        by mx0b-0014ca01.pphosted.com (8.16.0.42/8.16.0.42) with SMTP id 08GIOjZW012142;
+        Wed, 16 Sep 2020 11:28:37 -0700
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=cadence.com; h=from : to : cc :
+ subject : date : message-id : mime-version : content-type; s=proofpoint;
+ bh=oLek3JK8uCb6RlQ3BOjAFR+x+5arA65JRUlLHiUm2DY=;
+ b=LnQ5FmkF4ccJhnt/U6qSW7EymsDNN2uDyndS4GLo1r3W6XjJdQ9z3x0ZaTM95e3f5VI+
+ hdrplHw85Ale2E+myFypzfoTmkslUjyij/Cx1xATSwxt7P6uUGJY9/O8UFLirYx306Pm
+ MbBLpMhq7IcGiiQUNzYYhm77kh8AYkuzg10VN8uQa9Qbuur4BQDXwt3fwlcDHAGlypPd
+ GXWH38pFs65MalUruDMwurv4z4XoPSp0HP9kMIJfRsg/8isJRKrtTQukZ9/PMsgjAUPH
+ P6g5AH0n8T5gYf8PW9FAVl71bMxGXxTtHqTGk+5IRTfrXnujA8r5N1cdtoFmUWPP+4v/ Hg== 
+Received: from nam12-dm6-obe.outbound.protection.outlook.com (mail-dm6nam12lp2171.outbound.protection.outlook.com [104.47.59.171])
+        by mx0b-0014ca01.pphosted.com with ESMTP id 33k5njvbh6-1
+        (version=TLSv1.2 cipher=ECDHE-RSA-AES256-GCM-SHA384 bits=256 verify=NOT);
+        Wed, 16 Sep 2020 11:28:37 -0700
+ARC-Seal: i=1; a=rsa-sha256; s=arcselector9901; d=microsoft.com; cv=none;
+ b=Qt2ThAjTz4U+7ybQl7+MKanDyk4QRrnHKeF5zbYluOpBdvgz5SpULGuEDWkfOgrm9oPYAlkhgoBcBGF4u2u1YS3PiR0ez1holoHMrskNOU4h+3/Y17GTDqcddT99dFr3vQuXdWalS5bA0NlPgj6jwXawEPSZTNNgW9/haxm4m13NCsx/QH6W5YlxdfNNS4zE1XWsBlccaiPHNqnd/g5vLKsnU6EKvId7bhQLfXIE9AMtuLQ7pIuJe1FIkI+jiD9GVc7y+N9E/h4zleiI97Us8s004y/irjo6DgGjaAC7/rc+egUref3mTitKyAOuzaG3FSSB1trfgB6obM9e9DQnnQ==
+ARC-Message-Signature: i=1; a=rsa-sha256; c=relaxed/relaxed; d=microsoft.com;
+ s=arcselector9901;
+ h=From:Date:Subject:Message-ID:Content-Type:MIME-Version:X-MS-Exchange-SenderADCheck;
+ bh=oLek3JK8uCb6RlQ3BOjAFR+x+5arA65JRUlLHiUm2DY=;
+ b=J3XeU66TR6Joc3lnqt8ywmRoJlh0VD/yWjX1g2mqu0TrniQWC9sn087Y30WsZsUvUsUdA7EhIT5VkVsfI/NNR6gB+kz3nbc3RYLtNW3VLxKN84WHDo9rPmEJEK6px0YnUuMIJSmDXFKcDexgGvnHKik5ujj5tDc8jdp9JyaaOs4IARqXluh9GRm2qilqI+1LEh4LIyZy8kR4fQQwo9H6LwBHHtRIGNx+LX47GHV/hsR+MR6yB+P/A6D1ebOgQQUbGTHigBnIiWZLEfvNCsFQIBFnr+7a5Sp3liIcA2TVZUhEK4inKS6lnkwwR+La2HEa/+e+Jjx6zDHqG0qawH0Xtg==
+ARC-Authentication-Results: i=1; mx.microsoft.com 1; spf=pass (sender ip is
+ 158.140.1.148) smtp.rcpttodomain=kernel.org smtp.mailfrom=cadence.com;
+ dmarc=pass (p=none sp=none pct=100) action=none header.from=cadence.com;
+ dkim=none (message not signed); arc=none
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=cadence.com;
+ s=selector2;
+ h=From:Date:Subject:Message-ID:Content-Type:MIME-Version:X-MS-Exchange-SenderADCheck;
+ bh=oLek3JK8uCb6RlQ3BOjAFR+x+5arA65JRUlLHiUm2DY=;
+ b=4jKS0xsUCCKBh+QmGW+adaVRG+qd2guV0KJocBCqZ4+PBeDoxIB2Z7C2GbxfAnoOpvhQwuVSTOvvoqJGssUMwWbC0yHkejIlvtawTgN/hGdA4ZRf6ZjnVp9JdXIzuFWb2HxvVKZjL7/FtwaSqnQUiHfHssGIO2Rh6z7qeQp2akE=
+Received: from DM5PR20CA0010.namprd20.prod.outlook.com (2603:10b6:3:93::20) by
+ DM6PR07MB6505.namprd07.prod.outlook.com (2603:10b6:5:1cb::21) with Microsoft
+ SMTP Server (version=TLS1_2, cipher=TLS_ECDHE_RSA_WITH_AES_256_GCM_SHA384) id
+ 15.20.3370.16; Wed, 16 Sep 2020 18:28:35 +0000
+Received: from DM6NAM12FT043.eop-nam12.prod.protection.outlook.com
+ (2603:10b6:3:93:cafe::9b) by DM5PR20CA0010.outlook.office365.com
+ (2603:10b6:3:93::20) with Microsoft SMTP Server (version=TLS1_2,
+ cipher=TLS_ECDHE_RSA_WITH_AES_256_GCM_SHA384) id 15.20.3391.11 via Frontend
+ Transport; Wed, 16 Sep 2020 18:28:35 +0000
+X-MS-Exchange-Authentication-Results: spf=pass (sender IP is 158.140.1.148)
+ smtp.mailfrom=cadence.com; kernel.org; dkim=none (message not signed)
+ header.d=none;kernel.org; dmarc=pass action=none header.from=cadence.com;
+Received-SPF: Pass (protection.outlook.com: domain of cadence.com designates
+ 158.140.1.148 as permitted sender) receiver=protection.outlook.com;
+ client-ip=158.140.1.148; helo=sjmaillnx2.cadence.com;
+Received: from sjmaillnx2.cadence.com (158.140.1.148) by
+ DM6NAM12FT043.mail.protection.outlook.com (10.13.179.162) with Microsoft SMTP
+ Server (version=TLS1_2, cipher=TLS_ECDHE_RSA_WITH_AES_256_GCM_SHA384) id
+ 15.20.3391.14 via Frontend Transport; Wed, 16 Sep 2020 18:28:35 +0000
+Received: from maileu3.global.cadence.com (maileu3.cadence.com [10.160.88.99])
+        by sjmaillnx2.cadence.com (8.14.4/8.14.4) with ESMTP id 08GISXhO016248
+        (version=TLSv1/SSLv3 cipher=AES256-SHA bits=256 verify=OK);
+        Wed, 16 Sep 2020 11:28:34 -0700
+X-CrossPremisesHeadersFilteredBySendConnector: maileu3.global.cadence.com
+Received: from maileu3.global.cadence.com (10.160.88.99) by
+ maileu3.global.cadence.com (10.160.88.99) with Microsoft SMTP Server (TLS) id
+ 15.0.1367.3; Wed, 16 Sep 2020 20:28:32 +0200
+Received: from vleu-orange.cadence.com (10.160.88.83) by
+ maileu3.global.cadence.com (10.160.88.99) with Microsoft SMTP Server (TLS) id
+ 15.0.1367.3 via Frontend Transport; Wed, 16 Sep 2020 20:28:32 +0200
+Received: from vleu-orange.cadence.com (localhost.localdomain [127.0.0.1])
+        by vleu-orange.cadence.com (8.14.4/8.14.4) with ESMTP id 08GISWMr009253;
+        Wed, 16 Sep 2020 20:28:32 +0200
+Received: (from sjakhade@localhost)
+        by vleu-orange.cadence.com (8.14.4/8.14.4/Submit) id 08GISVTB009251;
+        Wed, 16 Sep 2020 20:28:31 +0200
+From:   Swapnil Jakhade <sjakhade@cadence.com>
+To:     <vkoul@kernel.org>, <kishon@ti.com>, <robh+dt@kernel.org>,
+        <linux-kernel@vger.kernel.org>, <devicetree@vger.kernel.org>
+CC:     <mparab@cadence.com>, <sjakhade@cadence.com>,
+        <yamonkar@cadence.com>, <tomi.valkeinen@ti.com>, <jsarha@ti.com>,
+        <nsekhar@ti.com>
+Subject: [PATCH v3 0/7] PHY: Prepare Cadence Torrent PHY driver to support multilink configurations
+Date:   Wed, 16 Sep 2020 20:28:24 +0200
+Message-ID: <1600280911-9214-1-git-send-email-sjakhade@cadence.com>
+X-Mailer: git-send-email 2.4.5
 MIME-Version: 1.0
-References: <20200916122247.534374-1-pgwipeout@gmail.com> <20200916122247.534374-2-pgwipeout@gmail.com>
- <3cdcb877-e4c7-aab8-b7f9-0c88f2247d03@gmail.com>
-In-Reply-To: <3cdcb877-e4c7-aab8-b7f9-0c88f2247d03@gmail.com>
-From:   Peter Geis <pgwipeout@gmail.com>
-Date:   Wed, 16 Sep 2020 10:57:04 -0400
-Message-ID: <CAMdYzYrKHBrh47PMrj=TP_FPttFOkRO2J_wrDr7oEyBNnyexAA@mail.gmail.com>
-Subject: Re: [PATCH 1/3] ARM: tegra: Add device-tree for Ouya
-To:     Dmitry Osipenko <digetx@gmail.com>
-Cc:     Rob Herring <robh+dt@kernel.org>,
-        Thierry Reding <thierry.reding@gmail.com>,
-        Jonathan Hunter <jonathanh@nvidia.com>,
-        Matt Merhar <mattmerhar@protonmail.com>,
-        Stephen Warren <swarren@wwwdotorg.org>,
-        Bob Ham <rah@settrans.net>,
-        Leonardo Bras <leobras.c@gmail.com>,
-        Michael Brougham <jusplainmike@gmail.com>,
-        linux-tegra@vger.kernel.org, devicetree@vger.kernel.org,
-        linux-kernel@vger.kernel.org
-Content-Type: text/plain; charset="UTF-8"
-Content-Transfer-Encoding: quoted-printable
+Content-Type: text/plain
+X-OrganizationHeadersPreserved: maileu3.global.cadence.com
+X-EOPAttributedMessage: 0
+X-MS-PublicTrafficType: Email
+X-MS-Office365-Filtering-Correlation-Id: 2e53899f-b72a-4a73-e8a1-08d85a6e52bc
+X-MS-TrafficTypeDiagnostic: DM6PR07MB6505:
+X-Microsoft-Antispam-PRVS: <DM6PR07MB6505464CA9EE1150FBD7E431C5210@DM6PR07MB6505.namprd07.prod.outlook.com>
+X-MS-Oob-TLC-OOBClassifiers: OLM:8882;
+X-MS-Exchange-SenderADCheck: 1
+X-Microsoft-Antispam: BCL:0;
+X-Microsoft-Antispam-Message-Info: vrskN2ID+fMGglWKXetgYzgUdL4RX795fE95sV7+YoDsg2bPDezgEjU4RpYIHMCXR+e8TqC8rg/z0lGgJyX/vlWff5nrlNuR8IdaGVSIXtvcHke+gFXaBM8j8W8c3Ut6LA57UgrRBcfTv8UiSdOHrPf2sF1XhbBEPLJ9iN+E/i97cC3plU/fnJJjmm5YiA4B1QSowWmY4mJQPtE26Xw6BDj5Z6Oe47C9yGignqXiNRxstE/NnZw40Y9hc5Hu06BX9+cDun0K/CWWo1n+gYNjr7c+zcNiSLF4YUyFHblmx8g13+MUCYVfDdC/UMM4DU2mW4e7rdkh9HEQYGwQ4BUXAPvjDqDxiQjlodEgpz8OOgHRTCT/IhH1lsk23q+N1A29wXNJfR0VZyk52vOiz9LoEEChqpm3Q8Li7fi88ZVuaKM=
+X-Forefront-Antispam-Report: CIP:158.140.1.148;CTRY:US;LANG:en;SCL:1;SRV:;IPV:CAL;SFV:NSPM;H:sjmaillnx2.cadence.com;PTR:unknown.Cadence.COM;CAT:NONE;SFS:(4636009)(346002)(376002)(396003)(39860400002)(136003)(36092001)(46966005)(316002)(82740400003)(7636003)(356005)(426003)(86362001)(2616005)(36756003)(26005)(70586007)(6666004)(336012)(8936002)(5660300002)(47076004)(36906005)(70206006)(4326008)(8676002)(2906002)(110136005)(54906003)(83380400001)(186003)(478600001)(82310400003)(42186006);DIR:OUT;SFP:1101;
+X-OriginatorOrg: cadence.com
+X-MS-Exchange-CrossTenant-OriginalArrivalTime: 16 Sep 2020 18:28:35.2820
+ (UTC)
+X-MS-Exchange-CrossTenant-Network-Message-Id: 2e53899f-b72a-4a73-e8a1-08d85a6e52bc
+X-MS-Exchange-CrossTenant-Id: d36035c5-6ce6-4662-a3dc-e762e61ae4c9
+X-MS-Exchange-CrossTenant-OriginalAttributedTenantConnectingIp: TenantId=d36035c5-6ce6-4662-a3dc-e762e61ae4c9;Ip=[158.140.1.148];Helo=[sjmaillnx2.cadence.com]
+X-MS-Exchange-CrossTenant-AuthSource: DM6NAM12FT043.eop-nam12.prod.protection.outlook.com
+X-MS-Exchange-CrossTenant-AuthAs: Anonymous
+X-MS-Exchange-CrossTenant-FromEntityHeader: HybridOnPrem
+X-MS-Exchange-Transport-CrossTenantHeadersStamped: DM6PR07MB6505
+X-Proofpoint-Virus-Version: vendor=fsecure engine=2.50.10434:6.0.235,18.0.687
+ definitions=2020-09-16_11:2020-09-16,2020-09-16 signatures=0
+X-Proofpoint-Spam-Details: rule=outbound_check_notspam policy=outbound_check score=0 malwarescore=0
+ bulkscore=0 spamscore=0 mlxlogscore=610 phishscore=0 lowpriorityscore=0
+ clxscore=1015 priorityscore=1501 suspectscore=0 adultscore=0
+ impostorscore=0 mlxscore=0 classifier=spam adjust=0 reason=mlx scancount=1
+ engine=8.12.0-2006250000 definitions=main-2009160130
 Sender: devicetree-owner@vger.kernel.org
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-On Wed, Sep 16, 2020 at 10:17 AM Dmitry Osipenko <digetx@gmail.com> wrote:
->
-> 16.09.2020 15:22, Peter Geis =D0=BF=D0=B8=D1=88=D0=B5=D1=82:
-> > The Ouya was the sole device produced by Ouya Inc in 2013.
-> > It was a game console originally running Android 5 on top of Linux 3.1.=
-10.
-> >
-> > This patch adds the device tree supporting the Ouya.
-> > It has been tested on the original variant with Samsung ram.
-> >
-> > Signed-off-by: Peter Geis <pgwipeout@gmail.com>
-> > ---
-> >  arch/arm/boot/dts/Makefile         |    3 +-
-> >  arch/arm/boot/dts/tegra30-ouya.dts | 4498 ++++++++++++++++++++++++++++
-> >  2 files changed, 4500 insertions(+), 1 deletion(-)
-> >  create mode 100644 arch/arm/boot/dts/tegra30-ouya.dts
->
-> Hello, Peter! Very nice work!
+Cadence Torrent PHY is a multiprotocol PHY supporting different multilink
+PHY configurations including DisplayPort, PCIe, USB, SGMII, QSGMII etc.
+Existing Torrent PHY driver supports only DisplayPort. This patch series
+prepares Torrent PHY driver so that different multilink configurations can
+be supported. It also updates DT bindings accordingly. This doesn't affect
+ABI as Torrent PHY driver has never been functional, and therefore do not
+exist in any active use case.
 
-Thanks!
+Support for different multilink configurations with register sequences for
+protocols above will be added in a separate patch series.
 
->
-> Could you please clarify how many variants of the board exist?
+Version History:
 
-It is unknown how many exist in reality.
-At least three RAM variants are supported in the downstream kernel,
-Samsung, Hynix M, and Hynix A.
-Two variants in storage capacity, the original had 8GB eMMC while the
-new variant had 16GB eMMC.
+v3:
+   - Rebased on latest PHY next
+   - Fixed v2 review comments for DT patch 7/7
 
->
-> What are the differences between the variants?
+v2:
+   - Rebased on latest PHY next and new PHY attributes patch series [1]
 
-Aside from the RAM and storage changes there should be no functional
-differences.
-It is unknown at which point the RAM changes were cut in with the eMMC chan=
-ge.
+Swapnil Jakhade (7):
+  phy: cadence-torrent: Use of_device_get_match_data() to get driver
+    data
+  phy: cadence-torrent: Use devm_platform_ioremap_resource() to get reg
+    addresses
+  phy: cadence-torrent: Enable support for multiple subnodes
+  phy: cadence-torrent: Add separate regmap functions for torrent and DP
+  phy: cadence-torrent: Check total lane count for all subnodes is
+    within limit
+  dt-bindings: phy: cadence-torrent: Add binding to specify SSC mode
+  dt-bindings: phy: cadence-torrent: Update Torrent PHY bindings for
+    generic use
 
->
-> Is this device-tree suitable for all variants?
+ .../bindings/phy/phy-cadence-torrent.yaml     |  86 +++++++++--
+ drivers/phy/cadence/phy-cadence-torrent.c     | 146 ++++++++++--------
+ include/dt-bindings/phy/phy-cadence-torrent.h |  13 ++
+ 3 files changed, 166 insertions(+), 79 deletions(-)
+ create mode 100644 include/dt-bindings/phy/phy-cadence-torrent.h
 
-This device tree should support all variants, but I haven't been able
-to locate anyone with the newer variants who can test it yet.
+-- 
+2.26.1
 
->
-> How user could determine the board's variant?
-
-On upstream:
-The tegra emc driver will output the RAM code detected in the kernel log:
-tegra30-emc 7000f400.memory-controller: got 6 timings for RAM code 0
-(min 25MHz max 800MHz)
-The mmc-core will output the storage capacity in the kernel log:
-mmcblk1: mmc1:0001 MMC08G 7.19 GiB
-
-On downstream:
-The ram variant is output in the kernel log:
-DDR Strap Pin AD4: 0
-DDR Strap Pin AD5: 0
-Init DFS table for Samsung DDR
-The mmc-core outputs the storage capacity in the kernel log:
-mmcblk0: mmc0:0001 MMC08G 7.18 GiB
