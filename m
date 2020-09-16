@@ -2,97 +2,76 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from vger.kernel.org (vger.kernel.org [23.128.96.18])
-	by mail.lfdr.de (Postfix) with ESMTP id B7A2126C6AB
-	for <lists+devicetree@lfdr.de>; Wed, 16 Sep 2020 19:59:21 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTP id 064FA26C63D
+	for <lists+devicetree@lfdr.de>; Wed, 16 Sep 2020 19:41:00 +0200 (CEST)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S1727474AbgIPR7Q (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Wed, 16 Sep 2020 13:59:16 -0400
-Received: from lindbergh.monkeyblade.net ([23.128.96.19]:37310 "EHLO
-        lindbergh.monkeyblade.net" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S1727698AbgIPR7C (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Wed, 16 Sep 2020 13:59:02 -0400
-Received: from mail-qk1-x742.google.com (mail-qk1-x742.google.com [IPv6:2607:f8b0:4864:20::742])
-        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id F0D3FC0A3BD1;
-        Wed, 16 Sep 2020 05:23:25 -0700 (PDT)
-Received: by mail-qk1-x742.google.com with SMTP id 16so7871202qkf.4;
-        Wed, 16 Sep 2020 05:23:25 -0700 (PDT)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=gmail.com; s=20161025;
-        h=from:to:cc:subject:date:message-id:in-reply-to:references
-         :mime-version:content-transfer-encoding;
-        bh=KjN1xG5sjWQRqcaRckvacRsUDodaOjx8p9tlYP1iS0o=;
-        b=tmpiBjPctPdzvpmVke7u6smlNs4MOxeU11JCl77bUYFGygxvLRERsx0XmaDUb2kv/z
-         gxQOFoEbySV4NHe41YoZxaEVQLLbr4p4R1IW89fUXKtDgv74ociGfP3xwqkldZZyPfhk
-         j2Mm5qGf0Uu1GJTRNej2C2rH0spFHpztgDS1KQ6Skfjgi1RCpYuXWQlCREU/b+uilX1h
-         oY6syD+dTqCv2X/HhQl/cMEb6sTHFX5vTWgLsrenPHPEq9ISWLxu7w3NfVNKfRUdW1R3
-         TmifYft6tmIPr740s6I5uj3ecDhA3I6pmWahhqKgvX1W+FP/fVQdz9nU27TUEgzQ6E0G
-         bK+A==
-X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=1e100.net; s=20161025;
-        h=x-gm-message-state:from:to:cc:subject:date:message-id:in-reply-to
-         :references:mime-version:content-transfer-encoding;
-        bh=KjN1xG5sjWQRqcaRckvacRsUDodaOjx8p9tlYP1iS0o=;
-        b=nrIesqcuT+O3saE3MTHzMEmlcQDaxd9BOXTcZAxV+e5Eug9Q8v2t52T+VSubprjDY8
-         k2U4nicAVJo0Fna+Y9B2RhWihT8kpKzbjqCIffeDgit79uVBpbnKTE+MicAtkpKeGW+b
-         sIHjdJ/dFlmsCmji2Ca5gtCDt6ZeHApKH+78EP7W09sPDwD1b4j5+EuoykU1Wdwy9bNY
-         yPFEpVjbU513NL6anSlQ1PAQ9xGjTWC/vihRpzz95Oh7jIHWkMiwfGrC+ti4tpHqermO
-         4tUOK1/cKTyp5vex3IYxVk9Rw0yq+3YLP9Hp5NoT9KjIGiy9+O7V6ueoKU5y+/6MDxdr
-         pb2w==
-X-Gm-Message-State: AOAM5335JpxWxfIzkwfp7IBHHPhqDuoUX8lLAVVl27Su6bb2pxtIPO7w
-        vodfd9jvM7pez8BGhS1d2DM=
-X-Google-Smtp-Source: ABdhPJzpCNHHz9khqC42ReqEOfqbQ8T8oSeAMRELXxY+ooUAOmXlBcMMD/FWWLhVyPP3YrMNGcDlFQ==
-X-Received: by 2002:a05:620a:c10:: with SMTP id l16mr21679806qki.245.1600259005118;
-        Wed, 16 Sep 2020 05:23:25 -0700 (PDT)
-Received: from rockpro64.hsd1.md.comcast.net ([2601:153:900:7730::20])
-        by smtp.gmail.com with ESMTPSA id v30sm19916177qtj.52.2020.09.16.05.23.24
-        (version=TLS1_3 cipher=TLS_AES_256_GCM_SHA384 bits=256/256);
-        Wed, 16 Sep 2020 05:23:24 -0700 (PDT)
-From:   Peter Geis <pgwipeout@gmail.com>
-To:     Rob Herring <robh+dt@kernel.org>,
-        Thierry Reding <thierry.reding@gmail.com>,
-        Jonathan Hunter <jonathanh@nvidia.com>,
-        Matt Merhar <mattmerhar@protonmail.com>,
-        Dmitry Osipenko <digetx@gmail.com>,
-        Stephen Warren <swarren@wwwdotorg.org>,
-        Bob Ham <rah@settrans.net>,
-        Leonardo Bras <leobras.c@gmail.com>,
-        Michael Brougham <jusplainmike@gmail.com>
-Cc:     linux-tegra@vger.kernel.org, devicetree@vger.kernel.org,
-        linux-kernel@vger.kernel.org, Peter Geis <pgwipeout@gmail.com>
-Subject: [PATCH 3/3] dt-bindings: ARM: tegra: Add Ouya game console
-Date:   Wed, 16 Sep 2020 12:22:47 +0000
-Message-Id: <20200916122247.534374-4-pgwipeout@gmail.com>
-X-Mailer: git-send-email 2.25.1
-In-Reply-To: <20200916122247.534374-1-pgwipeout@gmail.com>
-References: <20200916122247.534374-1-pgwipeout@gmail.com>
+        id S1727343AbgIPRk5 (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Wed, 16 Sep 2020 13:40:57 -0400
+Received: from mail.kernel.org ([198.145.29.99]:56308 "EHLO mail.kernel.org"
+        rhost-flags-OK-OK-OK-OK) by vger.kernel.org with ESMTP
+        id S1727279AbgIPRkl (ORCPT <rfc822;devicetree@vger.kernel.org>);
+        Wed, 16 Sep 2020 13:40:41 -0400
+Received: from localhost (83-86-74-64.cable.dynamic.v4.ziggo.nl [83.86.74.64])
+        (using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
+        (No client certificate requested)
+        by mail.kernel.org (Postfix) with ESMTPSA id E717F2223C;
+        Wed, 16 Sep 2020 12:25:21 +0000 (UTC)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=kernel.org;
+        s=default; t=1600259122;
+        bh=fvCW/yn//rNf2DCvUhVeerd0f2FRK4KmVGnAWhv8i0k=;
+        h=Date:From:To:Cc:Subject:References:In-Reply-To:From;
+        b=pwgwgbhXSsRbXfNwqjzRbJvnPlbl+v1XgK3uZnPf9g60wTxWOk8hPxcR0XF5e3qyx
+         DyPw5mbuZmriU2G6BtTRt4Xa14Yw3I5csDnxNvG2uHsBKcJLZSqpxap0IapeHAGmoS
+         ovcO6Z2FVgTo2A88nuLPMaRZswR2W+DnKMoAKMEE=
+Date:   Wed, 16 Sep 2020 14:25:57 +0200
+From:   Greg KH <gregkh@linuxfoundation.org>
+To:     Bjorn Andersson <bjorn.andersson@linaro.org>
+Cc:     satya priya <skakit@codeaurora.org>,
+        Matthias Kaehlcke <mka@chromium.org>,
+        Andy Gross <agross@kernel.org>,
+        Rob Herring <robh+dt@kernel.org>,
+        linux-arm-msm@vger.kernel.org, devicetree@vger.kernel.org,
+        linux-kernel@vger.kernel.org, akashast@codeaurora.org,
+        rojay@codeaurora.org, msavaliy@qti.qualcomm.com,
+        dianders@chromium.org
+Subject: Re: [PATCH V5 4/4] tty: serial: qcom_geni_serial: Fix the UART
+ wakeup issue
+Message-ID: <20200916122557.GA2790503@kroah.com>
+References: <1599742438-16811-1-git-send-email-skakit@codeaurora.org>
+ <1599742438-16811-5-git-send-email-skakit@codeaurora.org>
+ <20200910230639.GB472@uller>
 MIME-Version: 1.0
-Content-Transfer-Encoding: 8bit
+Content-Type: text/plain; charset=us-ascii
+Content-Disposition: inline
+In-Reply-To: <20200910230639.GB472@uller>
 Sender: devicetree-owner@vger.kernel.org
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-Add a binding for the Tegra30-based Ouya game console.
+On Thu, Sep 10, 2020 at 11:06:39PM +0000, Bjorn Andersson wrote:
+> On Thu 10 Sep 12:53 UTC 2020, satya priya wrote:
+> 
+> > As a part of system suspend uart_port_suspend is called from the
+> > Serial driver, which calls set_mctrl passing mctrl as 0. This
+> > makes RFR high(NOT_READY) during suspend.
+> > 
+> > Due to this BT SoC is not able to send wakeup bytes to UART during
+> > suspend. Include if check for non-suspend case to keep RFR low
+> > during suspend.
+> > 
+> 
+> Seems reasonable.
+> 
+> Reviewed-by: Bjorn Andersson <bjorn.andersson@linaro.org>
+> 
+> > Signed-off-by: satya priya <skakit@codeaurora.org>
+> > Acked-by: Greg Kroah-Hartman <gregkh@linuxfoundation.org>
+> 
+> Greg, I don't see this depending on anything else, will you pick this
+> patch through your tree? I will take the dts patches through the qcom
+> tree.
 
-Signed-off-by: Peter Geis <pgwipeout@gmail.com>
----
- Documentation/devicetree/bindings/arm/tegra.yaml | 3 +++
- 1 file changed, 3 insertions(+)
+Sure, will pick it up now, thanks.
 
-diff --git a/Documentation/devicetree/bindings/arm/tegra.yaml b/Documentation/devicetree/bindings/arm/tegra.yaml
-index e0b3debaee9e..a8bafe68315f 100644
---- a/Documentation/devicetree/bindings/arm/tegra.yaml
-+++ b/Documentation/devicetree/bindings/arm/tegra.yaml
-@@ -69,6 +69,9 @@ properties:
-           - const: asus,tilapia
-           - const: asus,grouper
-           - const: nvidia,tegra30
-+      - items:
-+          - const: ouya,ouya
-+          - const: nvidia,tegra30
-       - items:
-           - enum:
-               - nvidia,dalmore
--- 
-2.25.1
-
+greg k-h
