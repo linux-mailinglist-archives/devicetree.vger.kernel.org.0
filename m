@@ -2,60 +2,110 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from vger.kernel.org (vger.kernel.org [23.128.96.18])
-	by mail.lfdr.de (Postfix) with ESMTP id 0463A26CC0D
-	for <lists+devicetree@lfdr.de>; Wed, 16 Sep 2020 22:38:43 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTP id 0ED5326CCB6
+	for <lists+devicetree@lfdr.de>; Wed, 16 Sep 2020 22:48:45 +0200 (CEST)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S1726672AbgIPUiU (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Wed, 16 Sep 2020 16:38:20 -0400
-Received: from 212.199.177.27.static.012.net.il ([212.199.177.27]:55127 "EHLO
-        herzl.nuvoton.co.il" rhost-flags-OK-OK-OK-FAIL) by vger.kernel.org
-        with ESMTP id S1726841AbgIPRJS (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Wed, 16 Sep 2020 13:09:18 -0400
-Received: from taln60.nuvoton.co.il (ntil-fw [212.199.177.25])
-        by herzl.nuvoton.co.il (8.13.8/8.13.8) with ESMTP id 08GCtvFC031128;
-        Wed, 16 Sep 2020 15:55:57 +0300
-Received: by taln60.nuvoton.co.il (Postfix, from userid 10070)
-        id ACFE5639D8; Wed, 16 Sep 2020 15:55:57 +0300 (IDT)
-From:   Tomer Maimon <tmaimon77@gmail.com>
-To:     robh+dt@kernel.org, mark.rutland@arm.com, avifishman70@gmail.com,
-        tali.perry1@gmail.com, venture@google.com, yuenn@google.com,
-        benjaminfair@google.com, joel@jms.id.au
-Cc:     devicetree@vger.kernel.org, linux-kernel@vger.kernel.org,
-        openbmc@lists.ozlabs.org, tmaimon77@gmail.com
-Subject: [PATCH v5 2/3] arm: dts: modify NPCM7xx device tree timer register size
-Date:   Wed, 16 Sep 2020 15:55:53 +0300
-Message-Id: <20200916125554.195749-3-tmaimon77@gmail.com>
-X-Mailer: git-send-email 2.22.0
-In-Reply-To: <20200916125554.195749-1-tmaimon77@gmail.com>
-References: <20200916125554.195749-1-tmaimon77@gmail.com>
+        id S1726719AbgIPUs0 (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Wed, 16 Sep 2020 16:48:26 -0400
+Received: from lindbergh.monkeyblade.net ([23.128.96.19]:55618 "EHLO
+        lindbergh.monkeyblade.net" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
+        with ESMTP id S1726645AbgIPRBO (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Wed, 16 Sep 2020 13:01:14 -0400
+Received: from mail-ej1-x644.google.com (mail-ej1-x644.google.com [IPv6:2a00:1450:4864:20::644])
+        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id CF971C0A889C;
+        Wed, 16 Sep 2020 05:59:39 -0700 (PDT)
+Received: by mail-ej1-x644.google.com with SMTP id q13so10168371ejo.9;
+        Wed, 16 Sep 2020 05:59:39 -0700 (PDT)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+        d=jms.id.au; s=google;
+        h=mime-version:references:in-reply-to:from:date:message-id:subject:to
+         :cc;
+        bh=LykIIjwDcAPlXpe116USPIGPMiw/gn67hYo/dfyuguc=;
+        b=EPYT+N9pg6qQsR2GbJfFotejWklLP0rj8JOmihomV/mb/ET2IEoPdf9F4gI260Q6pj
+         iW2YjRFunmacaut439pkVKHTb+K+Bsfgb2WE2cjgiPCtLqcMDAXtvxiDRJpPmxJuaRNl
+         5RtTN7wxPptFnpPRrBOa9emhchndttrJkFwoo=
+X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+        d=1e100.net; s=20161025;
+        h=x-gm-message-state:mime-version:references:in-reply-to:from:date
+         :message-id:subject:to:cc;
+        bh=LykIIjwDcAPlXpe116USPIGPMiw/gn67hYo/dfyuguc=;
+        b=iWTUj6Af7xMVhg4CvCSJcN+MkfYtsQCWa8bx5QcJ+aJ3u5aXSUyMH7CQ+INn2jFAy5
+         0HgVeeJHtWL11L0MqWBfaV6LtH5o0n9uZCRKxc5Pdm9zA0n8MYZtQ9cZTXMBjo1grP1X
+         raHfUCJKi1fHJNgAVU7VHhFSM37h1i/MtVmRWLruRyb0+SuM0kSI01WqbUZ8IQyt5tKS
+         519nNr+DufBtcxSgckg7I/FgYaDt9y2rJ6/kcCU5+N/LFSa3a/p2ywiP6wDrWIqw1wap
+         hqtI4reV7Z0RkunA4AqXlgD5/WNOJIH/AV9jsCL2d5ZkrOfhVrekHU8nqC/PkHPI72y8
+         iWoA==
+X-Gm-Message-State: AOAM530mQbi0sekm+4WqvuadKrQAYWIDo/Adtgl4Cq9tCgeZdvruIRCJ
+        GeWIDrvTSg5rGh5rIxnEd4a+7ilNq2lEoeBGGQg=
+X-Google-Smtp-Source: ABdhPJwrELSEtB2NvnOU4b9otvda3Yi7Dh3dlIzm9DOmSAaqun5cjYIE1611v65fJhzN7mxe3uxa4apYV9musqXRShk=
+X-Received: by 2002:a17:906:fcc7:: with SMTP id qx7mr26579286ejb.254.1600261178452;
+ Wed, 16 Sep 2020 05:59:38 -0700 (PDT)
 MIME-Version: 1.0
-Content-Transfer-Encoding: 8bit
+References: <20200911015105.48581-1-jk@codeconstruct.com.au>
+ <CACPK8XdCkw7ix2J9WyOXDcwsMThXwQ62=E6cDLX+-9WJMsqrnA@mail.gmail.com>
+ <CACPK8XeQWNTyS53M9PLwkud9RnGNp3j87X8_UXtg4ZHJrQqQSQ@mail.gmail.com> <CAMpxmJW+PMV1+q66ywEAiZhrOu+kiSPXQCK0mTGLLwW-yfisSg@mail.gmail.com>
+In-Reply-To: <CAMpxmJW+PMV1+q66ywEAiZhrOu+kiSPXQCK0mTGLLwW-yfisSg@mail.gmail.com>
+From:   Joel Stanley <joel@jms.id.au>
+Date:   Wed, 16 Sep 2020 12:59:26 +0000
+Message-ID: <CACPK8Xcqu3UN3o=9pZ269O6pxLOra98jYxZqVL7sfjkUZ4Wang@mail.gmail.com>
+Subject: Re: [PATCH v2 1/2] gpio/aspeed-sgpio: enable access to all 80 input &
+ output sgpios
+To:     Bartosz Golaszewski <bgolaszewski@baylibre.com>
+Cc:     Jeremy Kerr <jk@codeconstruct.com.au>,
+        Linus Walleij <linus.walleij@linaro.org>,
+        "open list:GPIO SUBSYSTEM" <linux-gpio@vger.kernel.org>,
+        linux-aspeed <linux-aspeed@lists.ozlabs.org>,
+        devicetree <devicetree@vger.kernel.org>,
+        Andrew Jeffery <andrew@aj.id.au>
+Content-Type: text/plain; charset="UTF-8"
 Sender: devicetree-owner@vger.kernel.org
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-Modify NPCM7xx device tree timer register size
-from 0x50 to 0x1C.
+On Wed, 16 Sep 2020 at 11:09, Bartosz Golaszewski
+<bgolaszewski@baylibre.com> wrote:
+>
+> On Wed, Sep 16, 2020 at 6:51 AM Joel Stanley <joel@jms.id.au> wrote:
+> >
+> > Hi GPIO maintainers,
+> >
+> > On Fri, 11 Sep 2020 at 02:20, Joel Stanley <joel@jms.id.au> wrote:
+> > >
+> > > On Fri, 11 Sep 2020 at 02:11, Jeremy Kerr <jk@codeconstruct.com.au> wrote:
+> > > >
+> > > > Currently, the aspeed-sgpio driver exposes up to 80 GPIO lines,
+> > > > corresponding to the 80 status bits available in hardware. Each of these
+> > > > lines can be configured as either an input or an output.
+> > > >
+> > > > However, each of these GPIOs is actually an input *and* an output; we
+> > > > actually have 80 inputs plus 80 outputs.
+> > > >
+> > > > This change expands the maximum number of GPIOs to 160; the lower half
+> > > > of this range are the input-only GPIOs, the upper half are the outputs.
+> > > > We fix the GPIO directions to correspond to this mapping.
+> > > >
+> > > > This also fixes a bug when setting GPIOs - we were reading from the
+> > > > input register, making it impossible to set more than one output GPIO.
+> > > >
+> > > > Signed-off-by: Jeremy Kerr <jk@codeconstruct.com.au>
+> > > > Fixes: 7db47faae79b ("gpio: aspeed: Add SGPIO driver")
+> > >
+> > > Reviewed-by: Joel Stanley <joel@jms.id.au>
+> >
+> > This series is good to go in for 5.10:
+> >
+>
+> Hi Joel,
+>
+> I don't have this in my inbox. Did you copy me on this series?
 
-Signed-off-by: Tomer Maimon <tmaimon77@gmail.com>
----
- arch/arm/boot/dts/nuvoton-common-npcm7xx.dtsi | 2 +-
- 1 file changed, 1 insertion(+), 1 deletion(-)
+I did not; I am not the author of the patches as you can see.
 
-diff --git a/arch/arm/boot/dts/nuvoton-common-npcm7xx.dtsi b/arch/arm/boot/dts/nuvoton-common-npcm7xx.dtsi
-index 16a28c5c4131..72e364054e72 100644
---- a/arch/arm/boot/dts/nuvoton-common-npcm7xx.dtsi
-+++ b/arch/arm/boot/dts/nuvoton-common-npcm7xx.dtsi
-@@ -120,7 +120,7 @@
- 			timer0: timer@8000 {
- 				compatible = "nuvoton,npcm750-timer";
- 				interrupts = <GIC_SPI 32 IRQ_TYPE_LEVEL_HIGH>;
--				reg = <0x8000 0x50>;
-+				reg = <0x8000 0x1C>;
- 				clocks = <&clk NPCM7XX_CLK_TIMER>;
- 			};
- 
--- 
-2.22.0
+I notice that Jeremy sent them to the linux-gpio list, but you were
+not copied. Are you able to grab them from lore, or do you need him to
+resend them?
 
+Cheers,
+
+Joel
