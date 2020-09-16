@@ -2,144 +2,89 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from vger.kernel.org (vger.kernel.org [23.128.96.18])
-	by mail.lfdr.de (Postfix) with ESMTP id 2A3C026BEAC
-	for <lists+devicetree@lfdr.de>; Wed, 16 Sep 2020 10:00:18 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTP id AEA5B26BF31
+	for <lists+devicetree@lfdr.de>; Wed, 16 Sep 2020 10:26:58 +0200 (CEST)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S1726532AbgIPIAA (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Wed, 16 Sep 2020 04:00:00 -0400
-Received: from smtp1.axis.com ([195.60.68.17]:44530 "EHLO smtp1.axis.com"
+        id S1726553AbgIPI04 (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Wed, 16 Sep 2020 04:26:56 -0400
+Received: from inva021.nxp.com ([92.121.34.21]:34480 "EHLO inva021.nxp.com"
         rhost-flags-OK-OK-OK-OK) by vger.kernel.org with ESMTP
-        id S1726369AbgIPH75 (ORCPT <rfc822;devicetree@vger.kernel.org>);
-        Wed, 16 Sep 2020 03:59:57 -0400
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-  d=axis.com; l=2719; q=dns/txt; s=axis-central1;
-  t=1600243197; x=1631779197;
-  h=from:to:cc:subject:date:message-id:in-reply-to:
-   references:mime-version:content-transfer-encoding;
-  bh=+Bee2oDYV5ypb/Wdn/uiK1X779bbbI4wm+9E+eFG2P4=;
-  b=XQF7lgxI9TZSKhzBooFkQVtnbzReFFK+suC24sUxID740fqtANbYlxeN
-   zuYJYBiDIoFAyGar/YsvuNwXAZY4Oc66DfIxFG0zYKvw/5PG27mU/Yh1q
-   7gGcBZS6vTTACnMHN19xasO9YQTj49cysqS51bQmUyhcw/tVj7Wz9YtMI
-   KEiqOVnjEgIgRHXFvS+WbSgn4WkSEnEBnX/cVQJ0It7n6yBCjDDLIaQNP
-   yI+4Gcd4w8UXzvwDpAu0Uz12YZPng0SiIR4I0Y4rkruYtx6dqy3IuKbcF
-   5yQ3REmWyOyHFznm2QYDotsiNx+/QzpgnuLYiKg0Gp0jFGmeZyv7qHRNH
-   g==;
-IronPort-SDR: G4MZK7x65pmT/cNZCF+JKxe8wY0W522UpF9odulQr4TM0Y70oo98Jc/eVjPJS9NiG0buT9juFx
- kkYGXIvYdGmxyPdw9G7dHxCVA97/PQTZzvzDnzSeofNxNmz8BWDHdNyIVSJVuKkHiNlaTBvFuY
- wbamjoRakn2lJuIE1vutaI3DBdtChFLIEqhtR9FeqF73F7nuiSPycrrwHCLGOsGOlZvhLw9Dih
- grVSYZBTqn62PuplOE/E+jiJqdPx3p7DJ6UXXnb4MLJjHkRyRz6Mct6Ncp6GPKMNJUvYSoBgFj
- Vg4=
-X-IronPort-AV: E=Sophos;i="5.76,432,1592863200"; 
-   d="scan'208";a="12999945"
-From:   Camel Guo <camel.guo@axis.com>
-To:     <lgirdwood@gmail.com>, <broonie@kernel.org>, <tiwai@suse.com>,
-        <dmurphy@ti.com>, <robh+dt@kernel.org>,
-        <devicetree@vger.kernel.org>
-CC:     <alsa-devel@alsa-project.org>, <linux-kernel@vger.kernel.org>,
-        <kernel@axis.com>, Camel Guo <camelg@axis.com>
-Subject: [PATCH v3 2/2] ASoC: tlv320adcx140: Add support for configuring GPIO pin
-Date:   Wed, 16 Sep 2020 09:59:49 +0200
-Message-ID: <20200916075949.28479-2-camel.guo@axis.com>
-X-Mailer: git-send-email 2.20.1
-In-Reply-To: <20200916075949.28479-1-camel.guo@axis.com>
-References: <20200916075949.28479-1-camel.guo@axis.com>
-MIME-Version: 1.0
-Content-Transfer-Encoding: 8bit
-Content-Type: text/plain
+        id S1726381AbgIPI0w (ORCPT <rfc822;devicetree@vger.kernel.org>);
+        Wed, 16 Sep 2020 04:26:52 -0400
+Received: from inva021.nxp.com (localhost [127.0.0.1])
+        by inva021.eu-rdc02.nxp.com (Postfix) with ESMTP id B5869200AB8;
+        Wed, 16 Sep 2020 10:26:49 +0200 (CEST)
+Received: from invc005.ap-rdc01.nxp.com (invc005.ap-rdc01.nxp.com [165.114.16.14])
+        by inva021.eu-rdc02.nxp.com (Postfix) with ESMTP id DE370200AC2;
+        Wed, 16 Sep 2020 10:26:45 +0200 (CEST)
+Received: from localhost.localdomain (mega.ap.freescale.net [10.192.208.232])
+        by invc005.ap-rdc01.nxp.com (Postfix) with ESMTP id 3FAE0402AE;
+        Wed, 16 Sep 2020 10:26:41 +0200 (CEST)
+From:   Ran Wang <ran.wang_1@nxp.com>
+To:     Li Yang <leoyang.li@nxp.com>, Rob Herring <robh+dt@kernel.org>,
+        Shawn Guo <shawnguo@kernel.org>
+Cc:     linuxppc-dev@lists.ozlabs.org,
+        linux-arm-kernel@lists.infradead.org, devicetree@vger.kernel.org,
+        linux-kernel@vger.kernel.org, Biwen Li <biwen.li@nxp.com>,
+        Ran Wang <ran.wang_1@nxp.com>
+Subject: [PATCH 1/5] Documentation: dt: binding: fsl: Add 'fsl,ippdexpcr1-alt-addr' property
+Date:   Wed, 16 Sep 2020 16:18:27 +0800
+Message-Id: <20200916081831.24747-1-ran.wang_1@nxp.com>
+X-Mailer: git-send-email 2.17.1
+X-Virus-Scanned: ClamAV using ClamSMTP
 Sender: devicetree-owner@vger.kernel.org
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-From: Camel Guo <camelg@axis.com>
+From: Biwen Li <biwen.li@nxp.com>
 
-Add support to configure the GPIO pin to the specific configuration.
-The GPIO pin can be configured as GPO, IRQ, SDOUT2, PDMCLK, MICBASE_EN,
-GPI, MCLK, SDIN, PDMDIN1, PDMDIN2, PDMDIN3 or PDMDIN4 and the output
-drive can be configured with various configuration.
+The 'fsl,ippdexpcr1-alt-addr' property is used to handle an errata A-008646
+on LS1021A
 
-Signed-off-by: Camel Guo <camelg@axis.com>
+Signed-off-by: Biwen Li <biwen.li@nxp.com>
+Signed-off-by: Ran Wang <ran.wang_1@nxp.com>
 ---
- v3:
-  - Add ADCX140_NUM_GPIO_CFGS avoiding using magic number
-  - Remove unneeded check on ret in adcx140_configure_gpio
+ Documentation/devicetree/bindings/soc/fsl/rcpm.txt | 19 +++++++++++++++++++
+ 1 file changed, 19 insertions(+)
 
- sound/soc/codecs/tlv320adcx140.c | 40 ++++++++++++++++++++++++++++++++
- sound/soc/codecs/tlv320adcx140.h |  5 ++++
- 2 files changed, 45 insertions(+)
-
-diff --git a/sound/soc/codecs/tlv320adcx140.c b/sound/soc/codecs/tlv320adcx140.c
-index f33ee604ee78..fe6fc6df66cc 100644
---- a/sound/soc/codecs/tlv320adcx140.c
-+++ b/sound/soc/codecs/tlv320adcx140.c
-@@ -837,6 +837,42 @@ static int adcx140_configure_gpo(struct adcx140_priv *adcx140)
+diff --git a/Documentation/devicetree/bindings/soc/fsl/rcpm.txt b/Documentation/devicetree/bindings/soc/fsl/rcpm.txt
+index 5a33619..1be58a3 100644
+--- a/Documentation/devicetree/bindings/soc/fsl/rcpm.txt
++++ b/Documentation/devicetree/bindings/soc/fsl/rcpm.txt
+@@ -34,6 +34,11 @@ Chassis Version		Example Chips
+ Optional properties:
+  - little-endian : RCPM register block is Little Endian. Without it RCPM
+    will be Big Endian (default case).
++ - fsl,ippdexpcr1-alt-addr : The property is related to a hardware issue
++   on SoC LS1021A and only needed on SoC LS1021A.
++   Must include 2 entries:
++   The first entry must be a link to the SCFG device node.
++   The 2nd entry must be offset of register IPPDEXPCR1 in SCFG.
  
- }
+ Example:
+ The RCPM node for T4240:
+@@ -43,6 +48,20 @@ The RCPM node for T4240:
+ 		#fsl,rcpm-wakeup-cells = <2>;
+ 	};
  
-+static int adcx140_configure_gpio(struct adcx140_priv *adcx140)
-+{
-+	int gpio_count = 0;
-+	u32 gpio_outputs[ADCX140_NUM_GPIO_CFGS];
-+	u32 gpio_output_val = 0;
-+	int ret;
++The RCPM node for LS1021A:
++	rcpm: rcpm@1ee2140 {
++		compatible = "fsl,ls1021a-rcpm", "fsl,qoriq-rcpm-2.1+";
++		reg = <0x0 0x1ee2140 0x0 0x8>;
++		#fsl,rcpm-wakeup-cells = <2>;
 +
-+	gpio_count = device_property_count_u32(adcx140->dev,
-+			"ti,gpio-config");
-+	if (gpio_count == 0)
-+		return 0;
++		/*
++		 * The second and third entry compose an alt offset
++		 * address for IPPDEXPCR1(SCFG_SPARECR8)
++		 */
++		fsl,ippdexpcr1-alt-addr = <&scfg 0x51c>;
++	};
 +
-+	if (gpio_count != ADCX140_NUM_GPIO_CFGS)
-+		return -EINVAL;
 +
-+	ret = device_property_read_u32_array(adcx140->dev, "ti,gpio-config",
-+			gpio_outputs, gpio_count);
-+	if (ret)
-+		return ret;
-+
-+	if (gpio_outputs[0] > ADCX140_GPIO_CFG_MAX) {
-+		dev_err(adcx140->dev, "GPIO config out of range\n");
-+		return -EINVAL;
-+	}
-+
-+	if (gpio_outputs[1] > ADCX140_GPIO_DRV_MAX) {
-+		dev_err(adcx140->dev, "GPIO drive out of range\n");
-+		return -EINVAL;
-+	}
-+
-+	gpio_output_val = gpio_outputs[0] << ADCX140_GPIO_SHIFT
-+		| gpio_outputs[1];
-+
-+	return regmap_write(adcx140->regmap, ADCX140_GPIO_CFG0, gpio_output_val);
-+}
-+
- static int adcx140_codec_probe(struct snd_soc_component *component)
- {
- 	struct adcx140_priv *adcx140 = snd_soc_component_get_drvdata(component);
-@@ -934,6 +970,10 @@ static int adcx140_codec_probe(struct snd_soc_component *component)
- 			return ret;
- 	}
- 
-+	ret = adcx140_configure_gpio(adcx140);
-+	if (ret)
-+		return ret;
-+
- 	ret = adcx140_configure_gpo(adcx140);
- 	if (ret)
- 		goto out;
-diff --git a/sound/soc/codecs/tlv320adcx140.h b/sound/soc/codecs/tlv320adcx140.h
-index eedbc1d7221f..9d04dec374d1 100644
---- a/sound/soc/codecs/tlv320adcx140.h
-+++ b/sound/soc/codecs/tlv320adcx140.h
-@@ -145,4 +145,9 @@
- #define ADCX140_GPO_CFG_MAX		4
- #define ADCX140_GPO_DRV_MAX		5
- 
-+#define ADCX140_NUM_GPIO_CFGS		2
-+#define ADCX140_GPIO_SHIFT		4
-+#define ADCX140_GPIO_CFG_MAX		15
-+#define ADCX140_GPIO_DRV_MAX		5
-+
- #endif /* _TLV320ADCX140_ */
+ * Freescale RCPM Wakeup Source Device Tree Bindings
+ -------------------------------------------
+ Required fsl,rcpm-wakeup property should be added to a device node if the device
 -- 
-2.20.1
+2.7.4
 
