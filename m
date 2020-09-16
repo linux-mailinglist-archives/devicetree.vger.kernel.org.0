@@ -2,80 +2,100 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from vger.kernel.org (vger.kernel.org [23.128.96.18])
-	by mail.lfdr.de (Postfix) with ESMTP id 160B626C5B6
-	for <lists+devicetree@lfdr.de>; Wed, 16 Sep 2020 19:17:22 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTP id BD44126C669
+	for <lists+devicetree@lfdr.de>; Wed, 16 Sep 2020 19:48:49 +0200 (CEST)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S1726871AbgIPRPM (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Wed, 16 Sep 2020 13:15:12 -0400
-Received: from mail-wr1-f68.google.com ([209.85.221.68]:35683 "EHLO
-        mail-wr1-f68.google.com" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S1726919AbgIPRO7 (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Wed, 16 Sep 2020 13:14:59 -0400
-Received: by mail-wr1-f68.google.com with SMTP id e16so7741767wrm.2;
-        Wed, 16 Sep 2020 10:12:25 -0700 (PDT)
-X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=1e100.net; s=20161025;
-        h=x-gm-message-state:date:from:to:subject:message-id:references
-         :mime-version:content-disposition:in-reply-to:user-agent;
-        bh=7K53KnV3RB0dBmHomdKTRhU0IiLbQ4+LVNa0ye9IqpI=;
-        b=MmRJ1A6OzggEvpu4rztnFuSeaeFfU4FD5upFCNDsGoWRhWypkLF4RAjQnwYaJCReHx
-         q2NmkP/y3Tsg5bBqUkLi+RgAwvnFm4AKJe5sCHUoFNIw6kcgC8HQs39hrfl3EZOaLVWO
-         EgZ+/mVEFuiWvMkg6hgpL/f4y1BzNLwXs54DCHbUj9TEF5NmD4ZqRnqbjwyfTacH/L/n
-         gGrkdJTO+JmP4oUUllf7TG4Z8M5zJjCBoVnRO6R0blaBrPQ1/q33WEkw+hHRzuOtT8Oj
-         fs56mjFj7HGMQiETQc04bN4rIBJotmjqyw2VQUtrmeGlx4KtWtDw3f3ZpP7YF8N8yHMN
-         31xw==
-X-Gm-Message-State: AOAM533AcDpVit/sWzpSrOCZW/rAntLJJWCcNr1W2kotcsoLqK6zOWYy
-        AXyDBRMugXWuPFWyBQBtM7+2xcPqS2my1wV3
-X-Google-Smtp-Source: ABdhPJxBtful0Z+qE+L5pXwSxbO+yea+lOU0v+qNQxTnSCG1x8dx7LmcGHJsv0G0v/GE5JcpanqZ4A==
-X-Received: by 2002:adf:f084:: with SMTP id n4mr4551624wro.26.1600276345057;
-        Wed, 16 Sep 2020 10:12:25 -0700 (PDT)
-Received: from kozik-lap ([194.230.155.191])
-        by smtp.googlemail.com with ESMTPSA id n11sm34074076wrx.91.2020.09.16.10.12.23
-        (version=TLS1_2 cipher=ECDHE-ECDSA-CHACHA20-POLY1305 bits=256/256);
-        Wed, 16 Sep 2020 10:12:24 -0700 (PDT)
-Date:   Wed, 16 Sep 2020 19:12:21 +0200
-From:   Krzysztof Kozlowski <krzk@kernel.org>
-To:     David Airlie <airlied@linux.ie>, Daniel Vetter <daniel@ffwll.ch>,
-        Rob Herring <robh+dt@kernel.org>,
-        Kukjin Kim <kgene@kernel.org>,
-        Maxime Ripard <mripard@kernel.org>,
-        Heiko Stuebner <heiko@sntech.de>,
-        Inki Dae <inki.dae@samsung.com>,
-        dri-devel@lists.freedesktop.org, devicetree@vger.kernel.org,
-        linux-kernel@vger.kernel.org, linux-arm-kernel@lists.infradead.org,
-        linux-samsung-soc@vger.kernel.org
-Subject: Re: [PATCH v2 5/6] ARM: dts: exynos: Align OPP table name with
- dt-schema
-Message-ID: <20200916171221.GC19427@kozik-lap>
-References: <20200903191438.12781-1-krzk@kernel.org>
- <20200903191438.12781-5-krzk@kernel.org>
+        id S1727518AbgIPRsp (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Wed, 16 Sep 2020 13:48:45 -0400
+Received: from lindbergh.monkeyblade.net ([23.128.96.19]:35708 "EHLO
+        lindbergh.monkeyblade.net" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
+        with ESMTP id S1727474AbgIPRsR (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Wed, 16 Sep 2020 13:48:17 -0400
+Received: from mo6-p01-ob.smtp.rzone.de (mo6-p01-ob.smtp.rzone.de [IPv6:2a01:238:20a:202:5301::12])
+        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 7969EC061A29;
+        Wed, 16 Sep 2020 04:14:43 -0700 (PDT)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; t=1600254281;
+        s=strato-dkim-0002; d=gerhold.net;
+        h=Message-Id:Date:Subject:Cc:To:From:X-RZG-CLASS-ID:X-RZG-AUTH:From:
+        Subject:Sender;
+        bh=wPJEoYyYQh25xISg8G/qnJXW/NhFz+5NwkRwlfMN4Pk=;
+        b=L36NFn4FY0GaczKmi5lTJbt0jDO13heQag5KxTiKSfQ7gme7lDU2eIvCF220iwc6zW
+        o0SCH4LuRw04+rMTNVoVsCZoMHAt1jv9ozzZEa/TQyix2NfsyPjrGpSrh46S5WEMMmHv
+        +4K7hu9Nk/juK+tKcK9ZW7NUXV/xgU1YKtNqIVr2E1a4DNeMCKSNBVlVMjDitcM488U2
+        so70wbwRuhm3Oan1ZviDgLAw7XJhKQQYwJ4Jb8+oSm4FhwNXtIhmCH85vFUewbmXq3AK
+        ad1jRgyxjUwlHxU0S9IwEfCkuPSbqtlcx1trY2DNXdUkUFHY8QQIdo8edZRnWBP83Nfu
+        HSgQ==
+X-RZG-AUTH: ":P3gBZUipdd93FF5ZZvYFPugejmSTVR2nRPhVORvLd4SsytBXS7IYBkLahKxB4W6Nahc="
+X-RZG-CLASS-ID: mo00
+Received: from localhost.localdomain
+        by smtp.strato.de (RZmta 46.10.7 DYNA|AUTH)
+        with ESMTPSA id g0b6c1w8GAfnzlN
+        (using TLSv1.3 with cipher TLS_AES_256_GCM_SHA384 (256 bits))
+        (Client did not present a certificate);
+        Wed, 16 Sep 2020 12:41:49 +0200 (CEST)
+From:   Stephan Gerhold <stephan@gerhold.net>
+To:     Bjorn Andersson <bjorn.andersson@linaro.org>
+Cc:     Andy Gross <agross@kernel.org>, Rob Herring <robh+dt@kernel.org>,
+        Ohad Ben-Cohen <ohad@wizery.com>,
+        Rajendra Nayak <rnayak@codeaurora.org>,
+        linux-arm-msm@vger.kernel.org, devicetree@vger.kernel.org,
+        linux-remoteproc@vger.kernel.org,
+        ~postmarketos/upstreaming@lists.sr.ht,
+        Stephan Gerhold <stephan@gerhold.net>
+Subject: [PATCH 00/10] Convert MSM8916 to use rpmpd/power domains
+Date:   Wed, 16 Sep 2020 12:41:25 +0200
+Message-Id: <20200916104135.25085-1-stephan@gerhold.net>
+X-Mailer: git-send-email 2.28.0
 MIME-Version: 1.0
-Content-Type: text/plain; charset=utf-8
-Content-Disposition: inline
-In-Reply-To: <20200903191438.12781-5-krzk@kernel.org>
-User-Agent: Mutt/1.9.4 (2018-02-28)
+Content-Transfer-Encoding: 8bit
 Sender: devicetree-owner@vger.kernel.org
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-On Thu, Sep 03, 2020 at 09:14:37PM +0200, Krzysztof Kozlowski wrote:
-> Device tree nodes should have hyphens instead of underscores.  This is
-> also expected by the bindings.
-> 
-> Signed-off-by: Krzysztof Kozlowski <krzk@kernel.org>
-> 
-> ---
-> 
-> Changes since v1:
-> 1. New patch
-> ---
->  arch/arm/boot/dts/exynos4412.dtsi | 16 ++++++++--------
->  arch/arm/boot/dts/exynos5250.dtsi |  2 +-
->  2 files changed, 9 insertions(+), 9 deletions(-)
+Newer platforms vote for necessary power domains through the power
+domain subsystem. For historical reasons older platforms like MSM8916
+or MSM8974 still control these as regulators.
 
-Applied.
+This patch series adds the power domain definitions for MSM8916
+to the rpmpd driver. Then, qcom_q6v5_mss and qcom_wcnss are updated
+to use power domains for MSM8916/MSM8974. For compatibility with old
+device trees (and for MSM8974) we still need to support using the
+power domains through the regulator interface. This is implemented by
+falling back to the regulators if requesting the power domains fails.
 
-Best regards,
-Krzysztof
+Finally, we remove the regulators that provide the power domains
+(s1 and l3) entirely from the MSM8916 device tree: They should only
+be used through the power domain subsystem from now on.
+
+Stephan Gerhold (10):
+  soc: qcom: rpmpd: Rename MAX_8996_RPMPD_STATE to
+    MAX_CORNER_RPMPD_STATE
+  dt-bindings: power: rpmpd: Add MSM8916 RPM power domains
+  soc: qcom: rpmpd: Add MSM8916 power domains
+  arm64: dts: qcom: msm8916: Add RPM power domains
+  dt-bindings: remoteproc: qcom,q6v5: Deprecate regulators for PDs
+  remoteproc: qcom_q6v5_mss: Allow replacing regulators with power
+    domains
+  dt-bindings: remoteproc: qcom,wcnss: Deprecate regulators for PDs
+  remoteproc: qcom_wcnss: Allow replacing regulators with power domains
+  arm64: dts: qcom: msm8916: Use power domains for MSS/WCNSS remoteprocs
+  arm64: dts: qcom: msm8916-pm8916: Stop using s1/l3 as regulators
+
+ .../devicetree/bindings/power/qcom,rpmpd.yaml |   1 +
+ .../bindings/remoteproc/qcom,q6v5.txt         |  12 +-
+ .../bindings/remoteproc/qcom,wcnss-pil.txt    |  20 +++-
+ arch/arm64/boot/dts/qcom/apq8016-sbc.dtsi     |  10 --
+ .../boot/dts/qcom/msm8916-longcheer-l8150.dts |  10 --
+ arch/arm64/boot/dts/qcom/msm8916-pm8916.dtsi  |   7 +-
+ .../qcom/msm8916-samsung-a2015-common.dtsi    |  10 --
+ arch/arm64/boot/dts/qcom/msm8916.dtsi         |  38 ++++++
+ drivers/remoteproc/qcom_q6v5_mss.c            |  68 +++++++++--
+ drivers/remoteproc/qcom_wcnss.c               | 109 +++++++++++++++---
+ drivers/soc/qcom/rpmpd.c                      |  25 +++-
+ include/dt-bindings/power/qcom-rpmpd.h        |   7 ++
+ 12 files changed, 242 insertions(+), 75 deletions(-)
+
+-- 
+2.28.0
 
