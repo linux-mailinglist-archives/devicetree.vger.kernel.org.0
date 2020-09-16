@@ -2,130 +2,57 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from vger.kernel.org (vger.kernel.org [23.128.96.18])
-	by mail.lfdr.de (Postfix) with ESMTP id 90DED26BC12
-	for <lists+devicetree@lfdr.de>; Wed, 16 Sep 2020 08:00:26 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTP id 0ED9D26BC52
+	for <lists+devicetree@lfdr.de>; Wed, 16 Sep 2020 08:14:06 +0200 (CEST)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S1726131AbgIPGAZ (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Wed, 16 Sep 2020 02:00:25 -0400
-Received: from lindbergh.monkeyblade.net ([23.128.96.19]:37980 "EHLO
-        lindbergh.monkeyblade.net" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S1726129AbgIPGAV (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Wed, 16 Sep 2020 02:00:21 -0400
-Received: from metis.ext.pengutronix.de (metis.ext.pengutronix.de [IPv6:2001:67c:670:201:290:27ff:fe1d:cc33])
-        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 66873C061788
-        for <devicetree@vger.kernel.org>; Tue, 15 Sep 2020 23:00:20 -0700 (PDT)
-Received: from pty.hi.pengutronix.de ([2001:67c:670:100:1d::c5])
-        by metis.ext.pengutronix.de with esmtps (TLS1.2:ECDHE_RSA_AES_256_GCM_SHA384:256)
-        (Exim 4.92)
-        (envelope-from <ukl@pengutronix.de>)
-        id 1kIQUK-0007Vi-Rc; Wed, 16 Sep 2020 08:00:16 +0200
-Received: from ukl by pty.hi.pengutronix.de with local (Exim 4.89)
-        (envelope-from <ukl@pengutronix.de>)
-        id 1kIQUH-0000w3-CK; Wed, 16 Sep 2020 08:00:13 +0200
-Date:   Wed, 16 Sep 2020 08:00:13 +0200
-From:   Uwe =?utf-8?Q?Kleine-K=C3=B6nig?= <u.kleine-koenig@pengutronix.de>
-To:     Vincent Whitchurch <vincent.whitchurch@axis.com>,
-        thierry.reding@gmail.com
-Cc:     lee.jones@linaro.org, kernel@axis.com, linux-pwm@vger.kernel.org,
-        devicetree@vger.kernel.org, robh+dt@kernel.org, oliver@schinagl.nl
-Subject: Re: [PATCH v2 0/2] GPIO PWM driver
-Message-ID: <20200916060013.r6vctk3pda2ucq3g@pengutronix.de>
-References: <20200902121236.20514-1-vincent.whitchurch@axis.com>
- <20200905164249.5vy23gizpwstbs5c@pengutronix.de>
- <20200915135445.al75xmjxudj2rgcp@axis.com>
+        id S1726145AbgIPGOE (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Wed, 16 Sep 2020 02:14:04 -0400
+Received: from verein.lst.de ([213.95.11.211]:51030 "EHLO verein.lst.de"
+        rhost-flags-OK-OK-OK-OK) by vger.kernel.org with ESMTP
+        id S1726129AbgIPGOD (ORCPT <rfc822;devicetree@vger.kernel.org>);
+        Wed, 16 Sep 2020 02:14:03 -0400
+Received: by verein.lst.de (Postfix, from userid 2407)
+        id 3122868B05; Wed, 16 Sep 2020 08:13:59 +0200 (CEST)
+Date:   Wed, 16 Sep 2020 08:13:59 +0200
+From:   Christoph Hellwig <hch@lst.de>
+To:     Mathieu Poirier <mathieu.poirier@linaro.org>
+Cc:     Christoph Hellwig <hch@lst.de>, iommu@lists.linux-foundation.org,
+        Russell King <linux@armlinux.org.uk>,
+        Santosh Shilimkar <ssantosh@kernel.org>,
+        Greg Kroah-Hartman <gregkh@linuxfoundation.org>,
+        Jim Quinlan <james.quinlan@broadcom.com>,
+        Nathan Chancellor <natechancellor@gmail.com>,
+        Florian Fainelli <f.fainelli@gmail.com>,
+        Robin Murphy <robin.murphy@arm.com>,
+        Rob Herring <robh+dt@kernel.org>,
+        Frank Rowand <frowand.list@gmail.com>,
+        Ohad Ben-Cohen <ohad@wizery.com>,
+        Bjorn Andersson <bjorn.andersson@linaro.org>,
+        linux-remoteproc@vger.kernel.org, linux-usb@vger.kernel.org,
+        linux-arm-kernel@lists.infradead.org, linux-kernel@vger.kernel.org,
+        linux-sh@vger.kernel.org, linux-pci@vger.kernel.org,
+        linux-acpi@vger.kernel.org, devicetree@vger.kernel.org,
+        arnaud.pouliquen@st.com, loic.pallardy.st.com@lst.de
+Subject: Re: [PATCH 6/6] dma-mapping: introduce DMA range map, supplanting
+ dma_pfn_offset
+Message-ID: <20200916061359.GA8424@lst.de>
+References: <20200914073343.1579578-1-hch@lst.de> <20200914073343.1579578-7-hch@lst.de> <20200914230147.GA3251212@xps15> <20200915054122.GA18079@lst.de> <20200915195501.GA3666944@xps15>
 MIME-Version: 1.0
-Content-Type: multipart/signed; micalg=pgp-sha512;
-        protocol="application/pgp-signature"; boundary="rsw2j3kru5d6gthh"
+Content-Type: text/plain; charset=us-ascii
 Content-Disposition: inline
-In-Reply-To: <20200915135445.al75xmjxudj2rgcp@axis.com>
-X-SA-Exim-Connect-IP: 2001:67c:670:100:1d::c5
-X-SA-Exim-Mail-From: ukl@pengutronix.de
-X-SA-Exim-Scanned: No (on metis.ext.pengutronix.de); SAEximRunCond expanded to false
-X-PTX-Original-Recipient: devicetree@vger.kernel.org
+In-Reply-To: <20200915195501.GA3666944@xps15>
+User-Agent: Mutt/1.5.17 (2007-11-01)
 Sender: devicetree-owner@vger.kernel.org
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
+On Tue, Sep 15, 2020 at 01:55:01PM -0600, Mathieu Poirier wrote:
+> That did the trick - the stm32 platform driver's probe() function completes and
+> the remote processor is operatinal. 
+> 
+> That being said the value returned by function dma_to_pfn()
+> is 0x137fff in the original code and 0xfffff with your patches applied.
 
---rsw2j3kru5d6gthh
-Content-Type: text/plain; charset=iso-8859-1
-Content-Disposition: inline
-Content-Transfer-Encoding: quoted-printable
-
-On Tue, Sep 15, 2020 at 03:54:45PM +0200, Vincent Whitchurch wrote:
-> On Sat, Sep 05, 2020 at 06:42:49PM +0200, Uwe Kleine-K=F6nig wrote:
-> > On Wed, Sep 02, 2020 at 02:12:34PM +0200, Vincent Whitchurch wrote:
-> > > v2:
-> > >  - [..]
-> > >  - Stop PWM before unregister
-> >=20
-> > I didn't take the time yet to look at v2, but just spotted this which is
-> > wrong. .remove() is not supposed to modify the output. (If the PWM is
-> > still running in .remove() this is either because it was running at
-> > bootup and was never modified or is a bug in the consumer code.)
->=20
-> If the PWM is not stopped while unregistering, the hrtimer will still
-> be active and unloading the module will result in a crash when the next
-> callback hits.  The consumer can be userspace via sysfs.
-
-This definitely outweighs my argument. So please stop the timer and put
-a comment above like:
-
-	The PWM should be already off here. Even if it is not we have to
-	remove the timer because the timer function is about to go away
-	and failing to stop it most probably results in an oops.
-
-> # insmod /pwm-gpio.ko
-> # lsmod
-> Module                  Size  Used by    Not tainted
-> pwm_gpio               16384  0
-> # cd /sys/class/pwm/
-> # ls
-> pwmchip0
-> # cd pwmchip0/
-> # ls
-> device     export     npwm       power      subsystem  uevent     unexport
-> # echo 0 > export
-> # ls
-> device     npwm       pwm0       uevent
-> export     power      subsystem  unexport
-> # cd pwm0/
-> # ls
-> capture     enable      polarity    uevent
-> duty_cycle  period      power
-> # echo 100000 > period
-> # echo 10000 > duty_cycle
-> # echo 1 > enable
-> # lsmod
-> Module                  Size  Used by    Not tainted
-> pwm_gpio               16384  1
-> # echo 0 > unexport
-
-I'm a bit torn if I should claim that this is a bug in sysfs.
-
-Thierry, do you have an opinion here?
-
-Best regards
-Uwe
-
---=20
-Pengutronix e.K.                           | Uwe Kleine-K=F6nig            |
-Industrial Linux Solutions                 | https://www.pengutronix.de/ |
-
---rsw2j3kru5d6gthh
-Content-Type: application/pgp-signature; name="signature.asc"
-
------BEGIN PGP SIGNATURE-----
-
-iQEzBAABCgAdFiEEfnIqFpAYrP8+dKQLwfwUeK3K7AkFAl9hqeoACgkQwfwUeK3K
-7AnHHQgAj4JZsIbLvK579+gj9ug19ZQnOrL5yNuBed/vVkj7YBDT9hQr+lX4Yzsa
-lmdgWzGweTuVg/9gxAIIuJ6Z8zC2VNXv7x2wW+emrtqI6UfBKlWTnBN7kISeEozO
-k4mLq4bNoyJNTFqZb8IpAjQnQcVSpSUfo3xAt40xySpD1iHc4e2HOPACq01hTqv1
-Zj4RBsbLlIt5Bo2Gs6gjAEAVjn6HYvn2PwsNV4WbQ0FYGdLeF684K7xI6RuD6cpP
-SrBmL8nYkIKQcqp2BwLnEHmQLtKUjZ3bIlLP45hgYBZiE/8UsOEo0Jzr9gMCCZtN
-s309L0mcQW12nYxwCEgx2ltQm3Mu/w==
-=ecUA
------END PGP SIGNATURE-----
-
---rsw2j3kru5d6gthh--
+Yes, that is intentional.  The old code just applied the range and got
+an out of range offset, the new one reports the max offset.
