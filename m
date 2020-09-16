@@ -2,95 +2,101 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from vger.kernel.org (vger.kernel.org [23.128.96.18])
-	by mail.lfdr.de (Postfix) with ESMTP id 8018F26C969
-	for <lists+devicetree@lfdr.de>; Wed, 16 Sep 2020 21:08:55 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTP id 3B22626C959
+	for <lists+devicetree@lfdr.de>; Wed, 16 Sep 2020 21:07:51 +0200 (CEST)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S1727781AbgIPTIy (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Wed, 16 Sep 2020 15:08:54 -0400
-Received: from mout.kundenserver.de ([212.227.126.134]:50747 "EHLO
-        mout.kundenserver.de" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S1727289AbgIPRoe (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Wed, 16 Sep 2020 13:44:34 -0400
-Received: from mail-qv1-f48.google.com ([209.85.219.48]) by
- mrelayeu.kundenserver.de (mreue010 [212.227.15.129]) with ESMTPSA (Nemesis)
- id 1MIdS1-1kEsiK2Mj7-00Eg3I; Wed, 16 Sep 2020 13:02:41 +0200
-Received: by mail-qv1-f48.google.com with SMTP id cy2so3295687qvb.0;
-        Wed, 16 Sep 2020 04:02:41 -0700 (PDT)
-X-Gm-Message-State: AOAM531Nw7irZ9H4kuVPXD2jf5EI5/Q14R2lvKDnmZ/xxfZ+XWL8Ec6L
-        cQDXehcl2Hy0zlUxhDe4Ze0rimrugrrPPGi0am0=
-X-Google-Smtp-Source: ABdhPJzuJrJvQsGtUiuL+16EpeBsTP/ldoobNcDcIEbx2eyk3x9px1nSg/L5LCAG0u9JFS+7UkZs1YcP/VO4yVMMwcA=
-X-Received: by 2002:ad4:4594:: with SMTP id x20mr23091171qvu.4.1600254160175;
- Wed, 16 Sep 2020 04:02:40 -0700 (PDT)
+        id S1727496AbgIPTHn (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Wed, 16 Sep 2020 15:07:43 -0400
+Received: from lindbergh.monkeyblade.net ([23.128.96.19]:35182 "EHLO
+        lindbergh.monkeyblade.net" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
+        with ESMTP id S1727257AbgIPRoz (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Wed, 16 Sep 2020 13:44:55 -0400
+Received: from mail-ed1-x543.google.com (mail-ed1-x543.google.com [IPv6:2a00:1450:4864:20::543])
+        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 7E8E7C061226
+        for <devicetree@vger.kernel.org>; Wed, 16 Sep 2020 04:09:32 -0700 (PDT)
+Received: by mail-ed1-x543.google.com with SMTP id w1so5873086edr.3
+        for <devicetree@vger.kernel.org>; Wed, 16 Sep 2020 04:09:32 -0700 (PDT)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+        d=baylibre-com.20150623.gappssmtp.com; s=20150623;
+        h=mime-version:references:in-reply-to:from:date:message-id:subject:to
+         :cc;
+        bh=PE/vVbtZ2t56eMH+tLAsyelGad3azKLrl8SBN4ILqow=;
+        b=oeZNumN4eLapOPjgfGKkLMwW5SvcAEDtbJncpyNzl7vHRtvO+lrXXaCXI3EXtGHqc4
+         QbEDPsjacGEyVqGbgPg65rqE19c5Wiw1db3tqGdMRh+T3NvuWnDHwgQ6oI6UVp4cc2uB
+         +iivoeIYo+ePgSLsQON36XhjUgaUbRtJ8ETChvga+MykeScfKQlSo4O2YTOf4QR9tUKI
+         OsWNviLlJnInjnp6gaFHPctijKGoNQb1QPlxU8hFG7meM0iTmgrmOC43P4Ff2dKmhfk1
+         B9rF/X/x6EeWFyIeC2cXpjNg70FixKga+U16QN0yMyE2Cyg5NBojO9k4Kech7k+JdbWs
+         SONQ==
+X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+        d=1e100.net; s=20161025;
+        h=x-gm-message-state:mime-version:references:in-reply-to:from:date
+         :message-id:subject:to:cc;
+        bh=PE/vVbtZ2t56eMH+tLAsyelGad3azKLrl8SBN4ILqow=;
+        b=PRUWsWpjtWI2GbC1kzpkXXZHcsI8PpAHZAs7cRKMmFdIKJ3jwRBtU2mcLTfaBmekq4
+         tfobh+3kFRz7FpfxlnJM+BE2reY9pgiwwX3TkrrKeMQkGcNVj/DI/BAQOc+yei1gKjDd
+         VMcVVKrlv7mlksAunZ7AiHCrZRpcWftY4TFiq1qLrqMnw74GSx2JL3baA6WmsR+yojlf
+         mtrs9WrkoIKpSLF8tVmoX9iS4wlQo3+HqVKcdLmOmJaXvtf6O44tM0ovV12rnMBVSmHd
+         MamF+yjNXRyjGLqP1SYsbOB37rC5eRCXiPvFpKnk1eGrcFe3WvvcWQ0PkAUXw3f58+k8
+         sPQQ==
+X-Gm-Message-State: AOAM532+xKn+KhpMEEnubIbnqU4hbhME1mZz5ts9i2+21QLZTkC1pYZL
+        w/mHpF889XGN7Vx2RPholZa2loza48a/8xYbVX8DmQ==
+X-Google-Smtp-Source: ABdhPJxdmac/FBfQsivBhz7Pi6CatnN7TB0meCEyrxgrANGU4k4nt7pw7+Ma40m3cYcGTP8UnaI2CvvHIWr7yfoEilw=
+X-Received: by 2002:a50:e79c:: with SMTP id b28mr27679411edn.371.1600254571184;
+ Wed, 16 Sep 2020 04:09:31 -0700 (PDT)
 MIME-Version: 1.0
-References: <3874de094d193a08624a00a35067a3237e0b42b1.1600249102.git.viresh.kumar@linaro.org>
- <7f4a98d4dac9257d9577e48992cbfb62a968f127.1600249102.git.viresh.kumar@linaro.org>
-In-Reply-To: <7f4a98d4dac9257d9577e48992cbfb62a968f127.1600249102.git.viresh.kumar@linaro.org>
-From:   Arnd Bergmann <arnd@arndb.de>
-Date:   Wed, 16 Sep 2020 13:02:24 +0200
-X-Gmail-Original-Message-ID: <CAK8P3a1o5Ey9KVPW0Tk+bOCH_TC8PgbO=Oh3Lgm=kHEioUtgpw@mail.gmail.com>
-Message-ID: <CAK8P3a1o5Ey9KVPW0Tk+bOCH_TC8PgbO=Oh3Lgm=kHEioUtgpw@mail.gmail.com>
-Subject: Re: [PATCH V4 2/2] dt-bindings: mailbox: add doorbell support to ARM MHU
-To:     Viresh Kumar <viresh.kumar@linaro.org>
-Cc:     Rob Herring <robh+dt@kernel.org>,
-        Jassi Brar <jassisinghbrar@gmail.com>,
-        Jassi Brar <jaswinder.singh@linaro.org>,
-        Vincent Guittot <vincent.guittot@linaro.org>,
-        Frank Rowand <frowand.list@gmail.com>,
-        Bjorn Andersson <bjorn.andersson@linaro.org>,
-        Linux ARM <linux-arm-kernel@lists.infradead.org>,
-        Sudeep Holla <sudeep.holla@arm.com>,
-        Rob Herring <robh@kernel.org>,
-        DTML <devicetree@vger.kernel.org>,
-        "linux-kernel@vger.kernel.org" <linux-kernel@vger.kernel.org>
+References: <20200911015105.48581-1-jk@codeconstruct.com.au>
+ <CACPK8XdCkw7ix2J9WyOXDcwsMThXwQ62=E6cDLX+-9WJMsqrnA@mail.gmail.com> <CACPK8XeQWNTyS53M9PLwkud9RnGNp3j87X8_UXtg4ZHJrQqQSQ@mail.gmail.com>
+In-Reply-To: <CACPK8XeQWNTyS53M9PLwkud9RnGNp3j87X8_UXtg4ZHJrQqQSQ@mail.gmail.com>
+From:   Bartosz Golaszewski <bgolaszewski@baylibre.com>
+Date:   Wed, 16 Sep 2020 13:09:20 +0200
+Message-ID: <CAMpxmJW+PMV1+q66ywEAiZhrOu+kiSPXQCK0mTGLLwW-yfisSg@mail.gmail.com>
+Subject: Re: [PATCH v2 1/2] gpio/aspeed-sgpio: enable access to all 80 input &
+ output sgpios
+To:     Joel Stanley <joel@jms.id.au>
+Cc:     Jeremy Kerr <jk@codeconstruct.com.au>,
+        Linus Walleij <linus.walleij@linaro.org>,
+        "open list:GPIO SUBSYSTEM" <linux-gpio@vger.kernel.org>,
+        linux-aspeed <linux-aspeed@lists.ozlabs.org>,
+        devicetree <devicetree@vger.kernel.org>,
+        Andrew Jeffery <andrew@aj.id.au>
 Content-Type: text/plain; charset="UTF-8"
-X-Provags-ID: V03:K1:IBDXzLfe8wcS6Fxyzqi/6+81janeqXRabL6eFrjtAeBjocYUk0J
- rsDPVXSk9tFgtV2m/zMBvZNpfhhIfHjAk/69yVNhVrccZvg25kF38DWxP/+h0V6nawBWN2r
- kQb7To1K4HL85zLGSY6CsySlts6WW9vw74shU7/NArkFUVodhdujCTJedh7dNBjq4dNqNs0
- AXHytEFWqkHM9u1/626NA==
-X-Spam-Flag: NO
-X-UI-Out-Filterresults: notjunk:1;V03:K0:JQ3jHQkw4Fo=:8Bkhm7HxadNbhAniMIaUvO
- nMau930v1WACDKbBAZwQnuS07IhONEpPdDtd4y26vh7/y1yCztUuHSCbBgqrmBZN/QJoUaSmu
- VlX6HfvzGh3LI3+zEkV+P7m1UUidH4HfrFymf/yoCVX9AOVinLcdfjQz4uvWKq5bWVbdNzk2n
- kMksALgYZLcOKDwYv7NLb8ahLoG5RNuAX85cbmZ6C8jYq3KRXuZmSl+Ov4YZw5ETZi4y5ZzQ9
- Y/3RHpjIvVJjR/v/48RL8JG3KFeaZ3mQuVfiAIxPKgl2rNuJIqMLKyLuEPW4W4JXz/2M85KEB
- ygRue99SbNw2M/nZSHef+Ulzpz+ovAdwI/ODFC2QwNnC8nRYtKnV2D09KnRqfZ3lztelUe9sh
- M5+lfygftf7UUx90lFIKZSPl6ffIQjvufxPOPV6nVGnKKlFlgXh4ST7TBeZ84pYHBE0bWOEOL
- vvUSfiUUZvlPvwGpiqcskOExveWrY59pA432o4ACAR0p+Bk/EMM30K2vWC46FEQMz3Yi8/MPD
- XVFXZm3rglaQohYixadoqNS6ODzwfgckvdHSVN+8lsa758p+zxerk0BulldQ5ahobPB0Lb1pn
- Ghtj+ubQA/Xu1842P1mDlfNPYVemZ9oja5QrQk8bIVDXmA/xvzgdtG1PZYTlpnevtYJwn/jIa
- E7I1C9RqZnVjAGD4oAoYtm3/GMvi0+S9G1HF0eESVfTJuYIwDFjOEyEENp0xB4wRCqx1Zb8vJ
- Trd00vhcnvsC94neMFgoYKfMnF5IhcH7Ehk/JWVEvbVtkxDadRtTtp8TuWq5yrCfAAqLI7q2k
- FbIMw37yMyk0DVfaGXCrSf/6ZRay+8TE6FWH1H61rcrlx4EGWvmDKg6lk0mSB545bmuQf+S
 Sender: devicetree-owner@vger.kernel.org
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-On Wed, Sep 16, 2020 at 11:39 AM Viresh Kumar <viresh.kumar@linaro.org> wrote:
+On Wed, Sep 16, 2020 at 6:51 AM Joel Stanley <joel@jms.id.au> wrote:
 >
-> From: Sudeep Holla <sudeep.holla@arm.com>
+> Hi GPIO maintainers,
 >
-> The ARM MHU's reference manual states following:
+> On Fri, 11 Sep 2020 at 02:20, Joel Stanley <joel@jms.id.au> wrote:
+> >
+> > On Fri, 11 Sep 2020 at 02:11, Jeremy Kerr <jk@codeconstruct.com.au> wrote:
+> > >
+> > > Currently, the aspeed-sgpio driver exposes up to 80 GPIO lines,
+> > > corresponding to the 80 status bits available in hardware. Each of these
+> > > lines can be configured as either an input or an output.
+> > >
+> > > However, each of these GPIOs is actually an input *and* an output; we
+> > > actually have 80 inputs plus 80 outputs.
+> > >
+> > > This change expands the maximum number of GPIOs to 160; the lower half
+> > > of this range are the input-only GPIOs, the upper half are the outputs.
+> > > We fix the GPIO directions to correspond to this mapping.
+> > >
+> > > This also fixes a bug when setting GPIOs - we were reading from the
+> > > input register, making it impossible to set more than one output GPIO.
+> > >
+> > > Signed-off-by: Jeremy Kerr <jk@codeconstruct.com.au>
+> > > Fixes: 7db47faae79b ("gpio: aspeed: Add SGPIO driver")
+> >
+> > Reviewed-by: Joel Stanley <joel@jms.id.au>
 >
-> "The MHU drives the signal using a 32-bit register, with all 32 bits
-> logically ORed together. The MHU provides a set of registers to enable
-> software to set, clear, and check the status of each of the bits of this
-> register independently.  The use of 32 bits for each interrupt line
-> enables software to provide more information about the source of the
-> interrupt. For example, each bit of the register can be associated with
-> a type of event that can contribute to raising the interrupt."
+> This series is good to go in for 5.10:
 >
-> This patch thus extends the MHU controller's DT binding to add support
-> for doorbell mode.
->
-> Though the same MHU hardware controller is used in the two modes, A new
-> compatible string is added here to represent the combination of the MHU
-> hardware and the firmware sitting on the other side (which expects each
-> bit to represent a different signal now).
->
-> Reviewed-by: Rob Herring <robh@kernel.org>
-> Signed-off-by: Sudeep Holla <sudeep.holla@arm.com>
-> Co-developed-by: Viresh Kumar <viresh.kumar@linaro.org>
-> Signed-off-by: Viresh Kumar <viresh.kumar@linaro.org>
 
-Acked-by: Arnd Bergmann <arnd@arndb.de>
+Hi Joel,
+
+I don't have this in my inbox. Did you copy me on this series?
+
+Bartosz
