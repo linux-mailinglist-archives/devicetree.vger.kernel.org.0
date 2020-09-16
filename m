@@ -2,76 +2,94 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from vger.kernel.org (vger.kernel.org [23.128.96.18])
-	by mail.lfdr.de (Postfix) with ESMTP id 9341F26C6B4
-	for <lists+devicetree@lfdr.de>; Wed, 16 Sep 2020 20:00:50 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTP id 655DA26C6C9
+	for <lists+devicetree@lfdr.de>; Wed, 16 Sep 2020 20:04:26 +0200 (CEST)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S1727721AbgIPSAr (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Wed, 16 Sep 2020 14:00:47 -0400
-Received: from gw.c-home.cz ([89.24.150.100]:33357 "EHLO dmz.c-home.cz"
+        id S1727791AbgIPSEM (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Wed, 16 Sep 2020 14:04:12 -0400
+Received: from mail.kernel.org ([198.145.29.99]:49232 "EHLO mail.kernel.org"
         rhost-flags-OK-OK-OK-OK) by vger.kernel.org with ESMTP
-        id S1727717AbgIPSAl (ORCPT <rfc822;devicetree@vger.kernel.org>);
-        Wed, 16 Sep 2020 14:00:41 -0400
-Received: from ubuntu1804.c-home.cz (unifi.c-home.cz [192.168.1.239])
-        by dmz.c-home.cz (8.14.4+Sun/8.14.4) with ESMTP id 08GHxoiF015914;
-        Wed, 16 Sep 2020 19:59:56 +0200 (CEST)
-From:   Martin Cerveny <m.cerveny@computer.org>
-To:     Maxime Ripard <mripard@kernel.org>
-Cc:     Martin Cerveny <m.cerveny@computer.org>,
-        Chen-Yu Tsai <wens@csie.org>, devicetree@vger.kernel.org,
-        linux-arm-kernel@lists.infradead.org, linux-kernel@vger.kernel.org,
-        Rob Herring <robh+dt@kernel.org>
-Subject: [PATCH] ARM: dts: sun8i: v3s: Add simple-framebuffer
-Date:   Wed, 16 Sep 2020 19:59:41 +0200
-Message-Id: <20200916175941.8448-1-m.cerveny@computer.org>
-X-Mailer: git-send-email 2.17.1
+        id S1727614AbgIPSDa (ORCPT <rfc822;devicetree@vger.kernel.org>);
+        Wed, 16 Sep 2020 14:03:30 -0400
+Received: from archlinux (cpc149474-cmbg20-2-0-cust94.5-4.cable.virginm.net [82.4.196.95])
+        (using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
+        (No client certificate requested)
+        by mail.kernel.org (Postfix) with ESMTPSA id 6CDC32137B;
+        Wed, 16 Sep 2020 18:03:27 +0000 (UTC)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=kernel.org;
+        s=default; t=1600279409;
+        bh=wekwBAIKPu1Rz5oUbsaznCNgfQb4fGuy2YA7PTMymvk=;
+        h=Date:From:To:Cc:Subject:In-Reply-To:References:From;
+        b=SVFaNdjRvlX2xA5CJGz4fdD1CDDM/wAVxm3wfv9vsDjqVmFBZqoj/HoT/8KZEifIP
+         V0C+2baqHooYe68TrshZU7HmpYZ745fbWOYXd66Lcj3vt1sMRGimbCHk2Uwu9xFxzt
+         gn7DIsychTc3yYLT6scbS7MrQ0q0Y11qrN0qwTMo=
+Date:   Wed, 16 Sep 2020 19:03:26 +0100
+From:   Jonathan Cameron <jic23@kernel.org>
+To:     Krzysztof Kozlowski <krzk@kernel.org>
+Cc:     linux-arm-kernel@lists.infradead.org,
+        Hartmut Knaack <knaack.h@gmx.de>,
+        Rob Herring <robh@kernel.org>,
+        Peter Meerwald-Stadler <pmeerw@pmeerw.net>,
+        Rob Herring <robh+dt@kernel.org>,
+        Lars-Peter Clausen <lars@metafoo.de>,
+        Kukjin Kim <kgene@kernel.org>,
+        linux-samsung-soc@vger.kernel.org, linux-iio@vger.kernel.org,
+        devicetree@vger.kernel.org, linux-kernel@vger.kernel.org
+Subject: Re: [PATCH v2 1/2] dt-bindings: iio: adc: exynos-adc: require
+ second interrupt with touch screen
+Message-ID: <20200916190326.3095e945@archlinux>
+In-Reply-To: <20200916061747.GB5719@kozik-lap>
+References: <20200910161933.9156-1-krzk@kernel.org>
+        <20200915194444.GA2384148@bogus>
+        <20200916061747.GB5719@kozik-lap>
+X-Mailer: Claws Mail 3.17.6 (GTK+ 2.24.32; x86_64-pc-linux-gnu)
+MIME-Version: 1.0
+Content-Type: text/plain; charset=US-ASCII
+Content-Transfer-Encoding: 7bit
 Sender: devicetree-owner@vger.kernel.org
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-Add support for "allwinner,simple-framebuffer"
-with "mixer0-lcd0" pipeline from boot loader (u-boot).
-It depends on boot loader implementation of DE2/TCON0
-setup with LCD.
+On Wed, 16 Sep 2020 08:17:47 +0200
+Krzysztof Kozlowski <krzk@kernel.org> wrote:
 
-Signed-off-by: Martin Cerveny <m.cerveny@computer.org>
----
- arch/arm/boot/dts/sun8i-v3s.dtsi | 16 ++++++++++++++++
- 1 file changed, 16 insertions(+)
+> On Tue, Sep 15, 2020 at 01:44:44PM -0600, Rob Herring wrote:
+> > On Thu, 10 Sep 2020 18:19:32 +0200, Krzysztof Kozlowski wrote:  
+> > > The ADC in S3C/S5P/Exynos SoCs can be used also for handling touch
+> > > screen.  In such case the second interrupt is required.  This second
+> > > interrupt can be anyway provided, even without touch screens.  This
+> > > fixes dtbs_check warnings like:
+> > > 
+> > >   arch/arm/boot/dts/s5pv210-aquila.dt.yaml: adc@e1700000: interrupts: [[23], [24]] is too long
+> > > 
+> > > Signed-off-by: Krzysztof Kozlowski <krzk@kernel.org>
+> > > Acked-by: Jonathan Cameron <Jonathan.Cameron@huwei.com>
+> > > 
+> > > ---
+> > > 
+> > > Changes since v1:
+> > > 1. Fix if:has-touchscreen, as pointed by Rob.
+> > > 2. Add Ack.
+> > > ---
+> > >  .../bindings/iio/adc/samsung,exynos-adc.yaml       | 14 +++++++++++++-
+> > >  1 file changed, 13 insertions(+), 1 deletion(-)
+> > >   
+> > 
+> > Reviewed-by: Rob Herring <robh@kernel.org>  
+> 
+> Jonathan,
+> 
+> Could you pick up these two?
+Done.  Applied to the togreg branch of iio.git and pushed out
+as testing for the autobuilders to possibly poke them.
 
-diff --git a/arch/arm/boot/dts/sun8i-v3s.dtsi b/arch/arm/boot/dts/sun8i-v3s.dtsi
-index e5312869c0d2..b93dd69bf309 100644
---- a/arch/arm/boot/dts/sun8i-v3s.dtsi
-+++ b/arch/arm/boot/dts/sun8i-v3s.dtsi
-@@ -43,12 +43,28 @@
- #include <dt-bindings/interrupt-controller/arm-gic.h>
- #include <dt-bindings/clock/sun8i-v3s-ccu.h>
- #include <dt-bindings/reset/sun8i-v3s-ccu.h>
-+#include <dt-bindings/clock/sun8i-de2.h>
- 
- / {
- 	#address-cells = <1>;
- 	#size-cells = <1>;
- 	interrupt-parent = <&gic>;
- 
-+	chosen {
-+		#address-cells = <1>;
-+		#size-cells = <1>;
-+		ranges;
-+
-+		framebuffer-lcd {
-+			compatible = "allwinner,simple-framebuffer",
-+				     "simple-framebuffer";
-+			allwinner,pipeline = "mixer0-lcd0";
-+			clocks = <&display_clocks CLK_MIXER0>,
-+				 <&ccu CLK_TCON0>;
-+			status = "disabled";
-+		};
-+	};
-+
- 	cpus {
- 		#address-cells = <1>;
- 		#size-cells = <0>;
--- 
-2.17.1
+Thanks,
+
+Jonathan
+
+> 
+> Best regards,
+> Krzysztof
+> 
 
