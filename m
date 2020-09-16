@@ -2,76 +2,60 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from vger.kernel.org (vger.kernel.org [23.128.96.18])
-	by mail.lfdr.de (Postfix) with ESMTP id CEE7526CB7C
-	for <lists+devicetree@lfdr.de>; Wed, 16 Sep 2020 22:28:55 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTP id C2B6B26CD1F
+	for <lists+devicetree@lfdr.de>; Wed, 16 Sep 2020 22:54:20 +0200 (CEST)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S1727948AbgIPU2K (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Wed, 16 Sep 2020 16:28:10 -0400
-Received: from mail-wm1-f44.google.com ([209.85.128.44]:52744 "EHLO
-        mail-wm1-f44.google.com" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S1726951AbgIPRYS (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Wed, 16 Sep 2020 13:24:18 -0400
-Received: by mail-wm1-f44.google.com with SMTP id q9so3550174wmj.2;
-        Wed, 16 Sep 2020 10:22:07 -0700 (PDT)
-X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=1e100.net; s=20161025;
-        h=x-gm-message-state:date:from:to:subject:message-id:references
-         :mime-version:content-disposition:in-reply-to:user-agent;
-        bh=NsVNkWfU/xN6v/3RuJ+E3lKyP7RLysQnfO7peLpE7kY=;
-        b=f0zPUYRGlh3qAxMgly2B/LzWvT8taui53CFNWcOoxyq4hPUie/Mi2XjrpgE0u0KV1w
-         uiWFk/ryZoOcw2xB5NC+81avMFnTDYznyFtQx5JdhAvYYO7M/V4mG5cYqZZKha9EDIF5
-         z0kvqGQzDvKNwQetquer/Od/SFHPbug/IuEOAPhHsZFwqHhOvRrEXPo4K4YoBVcw5Mfj
-         etKTklBrZT/s+DrZRFinj0bz8FDigx0i9lEuvpHc3iFx2tDJAgIaltMOD8vTfvnqDcAL
-         amSqX1yxlMkiXSCALDgVXkWoI5ct2kWEc4dEJCb7qXVi7Js50h66kGeoLIkBf8YPQgzc
-         nA2w==
-X-Gm-Message-State: AOAM531mwBHaxi7NEk6aeGCNnW2QptPOTgV7gk4pJJsL6TCC6IwlRYAZ
-        vEf3UO7Effh6Ig1xeIpkgm2E7IporeGRLlca
-X-Google-Smtp-Source: ABdhPJwCjPvgxD4dQGPl4rSxujR29N2FIrmsHbZlFKpyM6D15ecoUifRyyZYzgPH1gpbcK+Vzu7mfQ==
-X-Received: by 2002:a1c:b407:: with SMTP id d7mr6142610wmf.59.1600276640309;
-        Wed, 16 Sep 2020 10:17:20 -0700 (PDT)
-Received: from kozik-lap ([194.230.155.191])
-        by smtp.googlemail.com with ESMTPSA id p1sm8727158wma.0.2020.09.16.10.17.18
-        (version=TLS1_2 cipher=ECDHE-ECDSA-CHACHA20-POLY1305 bits=256/256);
-        Wed, 16 Sep 2020 10:17:19 -0700 (PDT)
-Date:   Wed, 16 Sep 2020 19:17:17 +0200
-From:   Krzysztof Kozlowski <krzk@kernel.org>
-To:     Kukjin Kim <kgene@kernel.org>, Rob Herring <robh+dt@kernel.org>,
-        Jonathan Cameron <jic23@kernel.org>,
-        Lars-Peter Clausen <lars@metafoo.de>,
-        Peter Meerwald-Stadler <pmeerw@pmeerw.net>,
-        Jonathan Bakker <xc-racer2@live.ca>,
-        =?utf-8?B?UGF3ZcWC?= Chmiel <pawel.mikolaj.chmiel@gmail.com>,
-        linux-arm-kernel@lists.infradead.org,
-        linux-samsung-soc@vger.kernel.org, devicetree@vger.kernel.org,
-        linux-kernel@vger.kernel.org, linux-iio@vger.kernel.org
-Subject: Re: [RFT 23/25] ARM: dts: s5pv210: replace deprecated "gpios"
- i2c-gpio property in Goni
-Message-ID: <20200916171717.GH19427@kozik-lap>
-References: <20200907161141.31034-1-krzk@kernel.org>
- <20200907161141.31034-24-krzk@kernel.org>
+        id S1726200AbgIPUyB (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Wed, 16 Sep 2020 16:54:01 -0400
+Received: from lelv0142.ext.ti.com ([198.47.23.249]:54108 "EHLO
+        lelv0142.ext.ti.com" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
+        with ESMTP id S1726588AbgIPQxF (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Wed, 16 Sep 2020 12:53:05 -0400
+Received: from fllv0034.itg.ti.com ([10.64.40.246])
+        by lelv0142.ext.ti.com (8.15.2/8.15.2) with ESMTP id 08GClLqX043458;
+        Wed, 16 Sep 2020 07:47:21 -0500
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=ti.com;
+        s=ti-com-17Q1; t=1600260441;
+        bh=BoLji1jDPhuJCxrV8+eJr3d2Zu6IFzNElVtPtmkib9Q=;
+        h=From:To:CC:Subject:Date;
+        b=kwZA42v45JxKnrxNk1inRxTz8tXL73G/oiO4Vihi8gJSJt2U5Hz456o1JglrDU/7U
+         sgviUdpAvKnSL0LOm6+/5SVReYURyUD/xDthCupxBoJtavg7WOHfIXPr3RgS3FXhty
+         iGI3Ma44Rqduy9y0pt2QeajLJEDTF2d0GBx6l+WA=
+Received: from DFLE100.ent.ti.com (dfle100.ent.ti.com [10.64.6.21])
+        by fllv0034.itg.ti.com (8.15.2/8.15.2) with ESMTPS id 08GClLQQ106494
+        (version=TLSv1.2 cipher=AES256-GCM-SHA384 bits=256 verify=FAIL);
+        Wed, 16 Sep 2020 07:47:21 -0500
+Received: from DFLE112.ent.ti.com (10.64.6.33) by DFLE100.ent.ti.com
+ (10.64.6.21) with Microsoft SMTP Server (version=TLS1_2,
+ cipher=TLS_ECDHE_RSA_WITH_AES_128_CBC_SHA256_P256) id 15.1.1979.3; Wed, 16
+ Sep 2020 07:47:20 -0500
+Received: from fllv0040.itg.ti.com (10.64.41.20) by DFLE112.ent.ti.com
+ (10.64.6.33) with Microsoft SMTP Server (version=TLS1_2,
+ cipher=TLS_ECDHE_RSA_WITH_AES_128_CBC_SHA256_P256) id 15.1.1979.3 via
+ Frontend Transport; Wed, 16 Sep 2020 07:47:20 -0500
+Received: from deskari.ti.com (ileax41-snat.itg.ti.com [10.172.224.153])
+        by fllv0040.itg.ti.com (8.15.2/8.15.2) with ESMTP id 08GClIou027623;
+        Wed, 16 Sep 2020 07:47:18 -0500
+From:   Tomi Valkeinen <tomi.valkeinen@ti.com>
+To:     Kishon Vijay Abraham I <kishon@ti.com>,
+        Vinod Koul <vkoul@kernel.org>,
+        Rob Herring <robh+dt@kernel.org>,
+        Swapnil Jakhade <sjakhade@cadence.com>,
+        Yuti Amonkar <yamonkar@cadence.com>
+CC:     <linux-kernel@vger.kernel.org>, <devicetree@vger.kernel.org>,
+        Sekhar Nori <nsekhar@ti.com>,
+        Tomi Valkeinen <tomi.valkeinen@ti.com>
+Subject: [PATCH 1/2] dt-bindings: phy: ti,phy-j721e-wiz: fix bindings for torrent phy
+Date:   Wed, 16 Sep 2020 15:47:10 +0300
+Message-ID: <20200916124711.166643-1-tomi.valkeinen@ti.com>
+X-Mailer: git-send-email 2.25.1
 MIME-Version: 1.0
-Content-Type: text/plain; charset=utf-8
-Content-Disposition: inline
-In-Reply-To: <20200907161141.31034-24-krzk@kernel.org>
-User-Agent: Mutt/1.9.4 (2018-02-28)
+Content-Transfer-Encoding: 8bit
+Content-Type: text/plain
+X-EXCLAIMER-MD-CONFIG: e1e8a2fd-e40a-4ac6-ac9b-f7e9cc9ee180
 Sender: devicetree-owner@vger.kernel.org
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-On Mon, Sep 07, 2020 at 06:11:39PM +0200, Krzysztof Kozlowski wrote:
-> "gpios" property is deprecated.  Update the Goni DTS to fix
-> dtbs_checks warnings like:
-> 
->   i2c-pmic: 'sda-gpios' is a required property
->   i2c-pmic: 'scl-gpios' is a required property
-> 
-> Signed-off-by: Krzysztof Kozlowski <krzk@kernel.org>
-> ---
->  arch/arm/boot/dts/s5pv210-goni.dts | 4 ++--
-
-Applied.
-
-Best regards,
-Krzysztof
 
