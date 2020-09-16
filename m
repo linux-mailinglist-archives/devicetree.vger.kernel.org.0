@@ -2,117 +2,109 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from vger.kernel.org (vger.kernel.org [23.128.96.18])
-	by mail.lfdr.de (Postfix) with ESMTP id 9FEA426BF41
-	for <lists+devicetree@lfdr.de>; Wed, 16 Sep 2020 10:27:53 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTP id F258426BFD5
+	for <lists+devicetree@lfdr.de>; Wed, 16 Sep 2020 10:51:24 +0200 (CEST)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S1726572AbgIPI1n (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Wed, 16 Sep 2020 04:27:43 -0400
-Received: from lindbergh.monkeyblade.net ([23.128.96.19]:60556 "EHLO
-        lindbergh.monkeyblade.net" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S1726068AbgIPI0s (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Wed, 16 Sep 2020 04:26:48 -0400
-Received: from mail-oi1-x244.google.com (mail-oi1-x244.google.com [IPv6:2607:f8b0:4864:20::244])
-        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id EACB3C06174A;
-        Wed, 16 Sep 2020 01:26:46 -0700 (PDT)
-Received: by mail-oi1-x244.google.com with SMTP id w16so7228783oia.2;
-        Wed, 16 Sep 2020 01:26:46 -0700 (PDT)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=gmail.com; s=20161025;
-        h=mime-version:references:in-reply-to:from:date:message-id:subject:to
-         :cc;
-        bh=91zh4RimXAEVlpOKUCGDUKoc77/FjASLS3nmPi0RCO8=;
-        b=nU3utdsbpOTVLmMNRYLNojwbz8TGY9gJu612u6xFKIBalDKxuxbanLJBgpWSpsoJCi
-         n7NarMlAsCwK60CM/1AquzvTJdvcRujw92/K/5EDNcqKThCFqpdXJVgsvjtXE0n6ktZm
-         x7I7fHXflkGmWq7uteyBDKOFsU2rVfWn4AiWDyVru8ttXtbg5iTDHYmdOlO3ruLHNL0O
-         SyeIrb/tAQ4glQONRp+/UXw0RZBC/PiA0EJ+y9egkpy5I/yrf1KldWYw3+BrJaUi6yLD
-         tmbZO0fO9LcGB0q8Klsc+NgDyQ4QfgvtoW5ln44I+H59X3LjRjdQrrC81MwRdiC/N2XV
-         q4nw==
-X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=1e100.net; s=20161025;
-        h=x-gm-message-state:mime-version:references:in-reply-to:from:date
-         :message-id:subject:to:cc;
-        bh=91zh4RimXAEVlpOKUCGDUKoc77/FjASLS3nmPi0RCO8=;
-        b=SKctX7n3O15Wt2aWFcj60lXvhKB2UW7UAor/oAlo8GagCqpvrbrYJ1SzZjcdNPuOBe
-         jOKtvFitak29z5/8CzeB90WPLT4crzzD9ymFkwVlFUGpfz+pC9nEi2qO/K7BhoVhAcZo
-         QFhzRaXJ08w0QVEcl29ZJ2z4YEW0md+HjBZzj7nU4e1o8pKs/mkxyfJnOJhNNbjL8+4/
-         gl9MH2vLD9LX5s8Nswb7HLCF7/dpPBRJN6eYsvktKEgt4Q2lvctYW70WEB/7ZDz5G6C1
-         Pkp09FQct16Ou+TvMXt59lIQD2ryL6wx8d2eEsiILenJT2rjlkmP6qKLrLKI/NuudWKo
-         HMOw==
-X-Gm-Message-State: AOAM533EUL/3r76w1QhIGuNu+0Gr0ZZJg/nqIbXt/huOh2kY8Pqx32ZC
-        V065kW10Z3VUkdUThh4XBDAp/3HEB/DCPJdTg6U=
-X-Google-Smtp-Source: ABdhPJy14BRcrFOpKMyzRkdWnrZd8nyOOg8ZdKxIHwRAq6PaHTh0y40U6xBixjCCazylMyxh8o50zDrJ3j+WVgKydBU=
-X-Received: by 2002:aca:b48b:: with SMTP id d133mr2447100oif.47.1600244806223;
- Wed, 16 Sep 2020 01:26:46 -0700 (PDT)
+        id S1726543AbgIPIvW (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Wed, 16 Sep 2020 04:51:22 -0400
+Received: from mail.kernel.org ([198.145.29.99]:42806 "EHLO mail.kernel.org"
+        rhost-flags-OK-OK-OK-OK) by vger.kernel.org with ESMTP
+        id S1725840AbgIPIvQ (ORCPT <rfc822;devicetree@vger.kernel.org>);
+        Wed, 16 Sep 2020 04:51:16 -0400
+Received: from disco-boy.misterjones.org (disco-boy.misterjones.org [51.254.78.96])
+        (using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
+        (No client certificate requested)
+        by mail.kernel.org (Postfix) with ESMTPSA id F0760208E4;
+        Wed, 16 Sep 2020 08:51:15 +0000 (UTC)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=kernel.org;
+        s=default; t=1600246276;
+        bh=KW3/g7BAIMnFaj7E3IiooHnGIsgdMNc+XdCPiC3BoXM=;
+        h=Date:From:To:Cc:Subject:In-Reply-To:References:From;
+        b=B/ARG8qnWbc7qqaonuGTy3bo/TX6m7TAs8sJ7sS4zzhHQAKkxMJ2070K0lZRZBdul
+         XzL2kFk1B3r22UoC8Uwar9tInxzzgONXRoopwnDmECRNRNWD4hJ0ksvzdKb6WEULXE
+         NIil94B1EnH0HaM9uZtgcPijH5SSdCaJi7/FjWSI=
+Received: from disco-boy.misterjones.org ([51.254.78.96] helo=www.loen.fr)
+        by disco-boy.misterjones.org with esmtpsa (TLS1.2:ECDHE_RSA_AES_128_GCM_SHA256:128)
+        (Exim 4.92)
+        (envelope-from <maz@kernel.org>)
+        id 1kIT9l-00CJ8a-WC; Wed, 16 Sep 2020 09:51:14 +0100
 MIME-Version: 1.0
-References: <20200912125148.1271481-1-maz@kernel.org> <20200912125148.1271481-5-maz@kernel.org>
- <20200912232203.GH3715@yoga>
-In-Reply-To: <20200912232203.GH3715@yoga>
-From:   Enric Balletbo Serra <eballetbo@gmail.com>
-Date:   Wed, 16 Sep 2020 10:26:34 +0200
-Message-ID: <CAFqH_53iWr+KeteGzL3uJnpgWqFezDn=tzD70oUuvSQ+P3A_DQ@mail.gmail.com>
-Subject: Re: [PATCH 4/6] irqchip/mtk-cirq: Allow modular build
-To:     Bjorn Andersson <bjorn.andersson@linaro.org>
-Cc:     Marc Zyngier <maz@kernel.org>,
-        "devicetree@vger.kernel.org" <devicetree@vger.kernel.org>,
-        linux-kernel <linux-kernel@vger.kernel.org>,
-        Linux ARM <linux-arm-kernel@lists.infradead.org>,
+Content-Type: text/plain; charset=US-ASCII;
+ format=flowed
+Content-Transfer-Encoding: 7bit
+Date:   Wed, 16 Sep 2020 09:51:13 +0100
+From:   Marc Zyngier <maz@kernel.org>
+To:     Rob Herring <robh@kernel.org>
+Cc:     devicetree@vger.kernel.org, linux-kernel@vger.kernel.org,
+        linux-arm-kernel@lists.infradead.org,
         Enric Balletbo i Serra <enric.balletbo@collabora.com>,
         Frank Wunderlich <linux@fw-web.de>,
         John Stultz <john.stultz@linaro.org>,
         Saravana Kannan <saravanak@google.com>,
         Hanks Chen <hanks.chen@mediatek.com>,
         Andy Gross <agross@kernel.org>,
+        Bjorn Andersson <bjorn.andersson@linaro.org>,
         Matthias Brugger <matthias.bgg@gmail.com>,
         Thomas Gleixner <tglx@linutronix.de>,
         Jason Cooper <jason@lakedaemon.net>,
-        Rob Herring <robh+dt@kernel.org>,
         Frank Rowand <frowand.list@gmail.com>, kernel-team@android.com
-Content-Type: text/plain; charset="UTF-8"
+Subject: Re: [PATCH 0/6] irqchip: Hybrid probing
+In-Reply-To: <20200915211354.GA2469362@bogus>
+References: <20200912125148.1271481-1-maz@kernel.org>
+ <20200915211354.GA2469362@bogus>
+User-Agent: Roundcube Webmail/1.4.8
+Message-ID: <cd0a52739dcb3b238a1c600d46cad711@kernel.org>
+X-Sender: maz@kernel.org
+X-SA-Exim-Connect-IP: 51.254.78.96
+X-SA-Exim-Rcpt-To: robh@kernel.org, devicetree@vger.kernel.org, linux-kernel@vger.kernel.org, linux-arm-kernel@lists.infradead.org, enric.balletbo@collabora.com, linux@fw-web.de, john.stultz@linaro.org, saravanak@google.com, hanks.chen@mediatek.com, agross@kernel.org, bjorn.andersson@linaro.org, matthias.bgg@gmail.com, tglx@linutronix.de, jason@lakedaemon.net, frowand.list@gmail.com, kernel-team@android.com
+X-SA-Exim-Mail-From: maz@kernel.org
+X-SA-Exim-Scanned: No (on disco-boy.misterjones.org); SAEximRunCond expanded to false
 Sender: devicetree-owner@vger.kernel.org
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-Missatge de Bjorn Andersson <bjorn.andersson@linaro.org> del dia dg.,
-13 de set. 2020 a les 1:26:
->
-> On Sat 12 Sep 07:51 CDT 2020, Marc Zyngier wrote:
->
-> > Switch the driver to a "hybrid probe" model which preserves the
-> > built-in behaviour while allowing the driver to be optionnally
-> > built as a module for development purposes.
-> >
->
-> Reviewed-by: Bjorn Andersson <bjorn.andersson@linaro.org>
->
-> > Signed-off-by: Marc Zyngier <maz@kernel.org>
+On 2020-09-15 22:13, Rob Herring wrote:
+> On Sat, Sep 12, 2020 at 01:51:42PM +0100, Marc Zyngier wrote:
+>> A recent attempt at converting a couple of interrupt controllers from
+>> early probing to standard platform drivers have badly failed, as it
+>> became evident that although an interrupt controller can easily probe
+>> late, device drivers for the endpoints connected to it are rarely
+>> equipped to deal with probe deferral. Changes were swiftly reverted.
+>> 
+>> However, there is some value in *optionally* enabling this, if only
+>> for development purposes, as there is otherwise a "chicken and egg"
+>> problem, and a few people (cc'd) are working on a potential solution.
+>> 
+>> This short series enables the infrastructure for modular building
+>> whilst retaining the usual early probing for monolithic build, and
+>> introduces it to the three drivers that were previously made to probe
+>> as platform drivers.
+> 
+> I hardly expected more OF_DECLARE macros when I opened this up. Given
+> desires to get rid of them, I don't think adding to it is the way
+> forward. That wrapping a platform driver around OF_DECLARE looks pretty
+> horrible IMO.
 
-I've tested this on mt8173 and mt8183, and this time, the patches
-didn't break booting on these platforms. For MediaTek, right now, only
-makes sense the driver to be built-in as other drivers that use it are
-not ready for deferring their probe. So,
+Nobody said it was cute. It's a band aid that allows us to move from the
+status-quo that exists today. How would you propose we allow people to
+go and start "fixing" drivers if you don't give them the opportunity
+to even start trying?
 
-Tested-by: Enric Balletbo i Serra <enric.balletbo@collabora.com>
+> I browsed some of the discussion around this. It didn't seem like it's
+> a large number of drivers that have to be fixed to defer probe
+> correctly. Am I missing something?
 
-Thanks
-  Enric
+Well, that was enough drivers for the two platforms that had it enabled
+to break horribly, without a way to go back to a working state. Do you
+find that acceptable? I don't.
 
-> > ---
-> >  drivers/irqchip/irq-mtk-cirq.c | 4 +++-
-> >  1 file changed, 3 insertions(+), 1 deletion(-)
-> >
-> > diff --git a/drivers/irqchip/irq-mtk-cirq.c b/drivers/irqchip/irq-mtk-cirq.c
-> > index 69ba8ce3c178..43e880b63ed2 100644
-> > --- a/drivers/irqchip/irq-mtk-cirq.c
-> > +++ b/drivers/irqchip/irq-mtk-cirq.c
-> > @@ -295,4 +295,6 @@ static int __init mtk_cirq_of_init(struct device_node *node,
-> >       return ret;
-> >  }
-> >
-> > -IRQCHIP_DECLARE(mtk_cirq, "mediatek,mtk-cirq", mtk_cirq_of_init);
-> > +IRQCHIP_HYBRID_DRIVER_BEGIN(mtk_cirq)
-> > +IRQCHIP_MATCH("mediatek,mtk-cirq", mtk_cirq_of_init)
-> > +IRQCHIP_HYBRID_DRIVER_END(mtk_cirq)
-> > --
-> > 2.28.0
-> >
+> I'd rather keep the pressure on getting fw_devlink on by default.
+
+So far, fw_devlink breaks everything under the sun, even without modular
+irqchips. Most of my systems fail to boot if I enable it. So yes, it
+really needs some work. And this series allows this work to happen.
+
+         M.
+-- 
+Jazz is not dead. It just smells funny...
