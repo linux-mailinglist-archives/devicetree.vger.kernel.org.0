@@ -2,111 +2,130 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from vger.kernel.org (vger.kernel.org [23.128.96.18])
-	by mail.lfdr.de (Postfix) with ESMTP id 7426C26BBD2
-	for <lists+devicetree@lfdr.de>; Wed, 16 Sep 2020 07:33:33 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTP id 90DED26BC12
+	for <lists+devicetree@lfdr.de>; Wed, 16 Sep 2020 08:00:26 +0200 (CEST)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S1726179AbgIPFdW (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Wed, 16 Sep 2020 01:33:22 -0400
-Received: from mail29.static.mailgun.info ([104.130.122.29]:49256 "EHLO
-        mail29.static.mailgun.info" rhost-flags-OK-OK-OK-OK)
-        by vger.kernel.org with ESMTP id S1726159AbgIPFdV (ORCPT
-        <rfc822;devicetree@vger.kernel.org>);
-        Wed, 16 Sep 2020 01:33:21 -0400
-DKIM-Signature: a=rsa-sha256; v=1; c=relaxed/relaxed; d=mg.codeaurora.org; q=dns/txt;
- s=smtp; t=1600234400; h=Content-Transfer-Encoding: Content-Type:
- In-Reply-To: MIME-Version: Date: Message-ID: From: References: Cc: To:
- Subject: Sender; bh=3j+QTm64Oi/tUW8ti81ih3zzkyWdq/GkExlCHs4LZkI=; b=E3c781CY1lywqUH8jirFJbP1gDQrK+15M3vo82BqtPVcaAaXStviBTU8+V3Xhu48ViIc1PRc
- adudMTcRaoE0cTA8EF+8D5URIVLOGLnMkNqmYYq8fb7QLx1zYyqH/BH0u3DZ7vfXwX6sypLG
- HaCifpo+JYzOkVjwh0/fXbBlqL0=
-X-Mailgun-Sending-Ip: 104.130.122.29
-X-Mailgun-Sid: WyI1YmJiNiIsICJkZXZpY2V0cmVlQHZnZXIua2VybmVsLm9yZyIsICJiZTllNGEiXQ==
-Received: from smtp.codeaurora.org
- (ec2-35-166-182-171.us-west-2.compute.amazonaws.com [35.166.182.171]) by
- smtp-out-n01.prod.us-east-1.postgun.com with SMTP id
- 5f61a39f73afa3417e2510a6 (version=TLS1.2,
- cipher=TLS_ECDHE_RSA_WITH_AES_128_GCM_SHA256); Wed, 16 Sep 2020 05:33:19
- GMT
-Received: by smtp.codeaurora.org (Postfix, from userid 1001)
-        id A9D8AC433CA; Wed, 16 Sep 2020 05:33:18 +0000 (UTC)
-X-Spam-Checker-Version: SpamAssassin 3.4.0 (2014-02-07) on
-        aws-us-west-2-caf-mail-1.web.codeaurora.org
-X-Spam-Level: 
-X-Spam-Status: No, score=-3.0 required=2.0 tests=ALL_TRUSTED,BAYES_00,
-        NICE_REPLY_A,SPF_FAIL autolearn=no autolearn_force=no version=3.4.0
-Received: from [192.168.1.100] (unknown [49.207.203.124])
-        (using TLSv1.2 with cipher ECDHE-RSA-AES128-GCM-SHA256 (128/128 bits))
-        (No client certificate requested)
-        (Authenticated sender: rnayak)
-        by smtp.codeaurora.org (Postfix) with ESMTPSA id EA0A8C433C8;
-        Wed, 16 Sep 2020 05:33:14 +0000 (UTC)
-DMARC-Filter: OpenDMARC Filter v1.3.2 smtp.codeaurora.org EA0A8C433C8
-Authentication-Results: aws-us-west-2-caf-mail-1.web.codeaurora.org; dmarc=none (p=none dis=none) header.from=codeaurora.org
-Authentication-Results: aws-us-west-2-caf-mail-1.web.codeaurora.org; spf=fail smtp.mailfrom=rnayak@codeaurora.org
-Subject: Re: [PATCH v6 0/5] DVFS support for Venus
-To:     stanimir.varbanov@linaro.org, robh+dt@kernel.org,
-        agross@kernel.org, bjorn.andersson@linaro.org
-Cc:     linux-arm-msm@vger.kernel.org, linux-media@vger.kernel.org,
-        devicetree@vger.kernel.org, linux-kernel@vger.kernel.org,
-        mka@chromium.org
-References: <1598970026-7199-1-git-send-email-rnayak@codeaurora.org>
-From:   Rajendra Nayak <rnayak@codeaurora.org>
-Message-ID: <34ed34bd-90fd-0e84-6020-c487d612ad2f@codeaurora.org>
-Date:   Wed, 16 Sep 2020 11:03:11 +0530
-User-Agent: Mozilla/5.0 (Windows NT 10.0; WOW64; rv:68.0) Gecko/20100101
- Thunderbird/68.12.0
+        id S1726131AbgIPGAZ (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Wed, 16 Sep 2020 02:00:25 -0400
+Received: from lindbergh.monkeyblade.net ([23.128.96.19]:37980 "EHLO
+        lindbergh.monkeyblade.net" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
+        with ESMTP id S1726129AbgIPGAV (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Wed, 16 Sep 2020 02:00:21 -0400
+Received: from metis.ext.pengutronix.de (metis.ext.pengutronix.de [IPv6:2001:67c:670:201:290:27ff:fe1d:cc33])
+        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 66873C061788
+        for <devicetree@vger.kernel.org>; Tue, 15 Sep 2020 23:00:20 -0700 (PDT)
+Received: from pty.hi.pengutronix.de ([2001:67c:670:100:1d::c5])
+        by metis.ext.pengutronix.de with esmtps (TLS1.2:ECDHE_RSA_AES_256_GCM_SHA384:256)
+        (Exim 4.92)
+        (envelope-from <ukl@pengutronix.de>)
+        id 1kIQUK-0007Vi-Rc; Wed, 16 Sep 2020 08:00:16 +0200
+Received: from ukl by pty.hi.pengutronix.de with local (Exim 4.89)
+        (envelope-from <ukl@pengutronix.de>)
+        id 1kIQUH-0000w3-CK; Wed, 16 Sep 2020 08:00:13 +0200
+Date:   Wed, 16 Sep 2020 08:00:13 +0200
+From:   Uwe =?utf-8?Q?Kleine-K=C3=B6nig?= <u.kleine-koenig@pengutronix.de>
+To:     Vincent Whitchurch <vincent.whitchurch@axis.com>,
+        thierry.reding@gmail.com
+Cc:     lee.jones@linaro.org, kernel@axis.com, linux-pwm@vger.kernel.org,
+        devicetree@vger.kernel.org, robh+dt@kernel.org, oliver@schinagl.nl
+Subject: Re: [PATCH v2 0/2] GPIO PWM driver
+Message-ID: <20200916060013.r6vctk3pda2ucq3g@pengutronix.de>
+References: <20200902121236.20514-1-vincent.whitchurch@axis.com>
+ <20200905164249.5vy23gizpwstbs5c@pengutronix.de>
+ <20200915135445.al75xmjxudj2rgcp@axis.com>
 MIME-Version: 1.0
-In-Reply-To: <1598970026-7199-1-git-send-email-rnayak@codeaurora.org>
-Content-Type: text/plain; charset=utf-8; format=flowed
-Content-Language: en-US
-Content-Transfer-Encoding: 7bit
+Content-Type: multipart/signed; micalg=pgp-sha512;
+        protocol="application/pgp-signature"; boundary="rsw2j3kru5d6gthh"
+Content-Disposition: inline
+In-Reply-To: <20200915135445.al75xmjxudj2rgcp@axis.com>
+X-SA-Exim-Connect-IP: 2001:67c:670:100:1d::c5
+X-SA-Exim-Mail-From: ukl@pengutronix.de
+X-SA-Exim-Scanned: No (on metis.ext.pengutronix.de); SAEximRunCond expanded to false
+X-PTX-Original-Recipient: devicetree@vger.kernel.org
 Sender: devicetree-owner@vger.kernel.org
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
 
-On 9/1/2020 7:50 PM, Rajendra Nayak wrote:
-> Rob, can you pick PATCH 1 since its already reviewed by you.
-> Stan, Patch 2 and 3 will need to be picked by you and they both have your ACKs
+--rsw2j3kru5d6gthh
+Content-Type: text/plain; charset=iso-8859-1
+Content-Disposition: inline
+Content-Transfer-Encoding: quoted-printable
 
-Rob/Stan, any plans to get the patches merged for 5.10?
+On Tue, Sep 15, 2020 at 03:54:45PM +0200, Vincent Whitchurch wrote:
+> On Sat, Sep 05, 2020 at 06:42:49PM +0200, Uwe Kleine-K=F6nig wrote:
+> > On Wed, Sep 02, 2020 at 02:12:34PM +0200, Vincent Whitchurch wrote:
+> > > v2:
+> > >  - [..]
+> > >  - Stop PWM before unregister
+> >=20
+> > I didn't take the time yet to look at v2, but just spotted this which is
+> > wrong. .remove() is not supposed to modify the output. (If the PWM is
+> > still running in .remove() this is either because it was running at
+> > bootup and was never modified or is a bug in the consumer code.)
+>=20
+> If the PWM is not stopped while unregistering, the hrtimer will still
+> be active and unloading the module will result in a crash when the next
+> callback hits.  The consumer can be userspace via sysfs.
 
-> Patch 4 and 5 will need to be merged via the qcom tree once we have them reviewed.
-> 
-> v6: No changes, rebased on 5.9-rc3
-> 
-> v5: Fixed the opp-tables (patch 4/5) to avoid -ERANGE from
-> dev_pm_opp_set_rate
-> 
-> v4: Moved code from probe/remove/runtime_suspend into
-> different pm_ops callbacks
-> 
-> v3: Renamed the optional power domain as cx
-> 
-> v2: Fixed up the labels of OPP nodes in patch 4
->      Included the bindings update patch as part of this series,
->      a resend of https://lore.kernel.org/patchwork/patch/1241077/
-> 
-> These patches add DVFS support for Venus
-> 
-> Rajendra Nayak (5):
->    dt-bindings: media: venus: Add an optional power domain for perf
->      voting
->    media: venus: core: Fix error handling in probe
->    media: venus: core: Add support for opp tables/perf voting
->    arm64: dts: sdm845: Add OPP tables and power-domains for venus
->    arm64: dts: sc7180: Add OPP tables and power-domains for venus
-> 
->   .../bindings/media/qcom,sc7180-venus.yaml          |  6 +-
->   .../bindings/media/qcom,sdm845-venus-v2.yaml       |  6 +-
->   arch/arm64/boot/dts/qcom/sc7180.dtsi               | 35 +++++++-
->   arch/arm64/boot/dts/qcom/sdm845.dtsi               | 40 +++++++++-
->   drivers/media/platform/qcom/venus/core.c           | 17 ++--
->   drivers/media/platform/qcom/venus/core.h           |  5 ++
->   drivers/media/platform/qcom/venus/pm_helpers.c     | 92 ++++++++++++++++++++--
->   7 files changed, 183 insertions(+), 18 deletions(-)
-> 
+This definitely outweighs my argument. So please stop the timer and put
+a comment above like:
 
--- 
-QUALCOMM INDIA, on behalf of Qualcomm Innovation Center, Inc. is a member
-of Code Aurora Forum, hosted by The Linux Foundation
+	The PWM should be already off here. Even if it is not we have to
+	remove the timer because the timer function is about to go away
+	and failing to stop it most probably results in an oops.
+
+> # insmod /pwm-gpio.ko
+> # lsmod
+> Module                  Size  Used by    Not tainted
+> pwm_gpio               16384  0
+> # cd /sys/class/pwm/
+> # ls
+> pwmchip0
+> # cd pwmchip0/
+> # ls
+> device     export     npwm       power      subsystem  uevent     unexport
+> # echo 0 > export
+> # ls
+> device     npwm       pwm0       uevent
+> export     power      subsystem  unexport
+> # cd pwm0/
+> # ls
+> capture     enable      polarity    uevent
+> duty_cycle  period      power
+> # echo 100000 > period
+> # echo 10000 > duty_cycle
+> # echo 1 > enable
+> # lsmod
+> Module                  Size  Used by    Not tainted
+> pwm_gpio               16384  1
+> # echo 0 > unexport
+
+I'm a bit torn if I should claim that this is a bug in sysfs.
+
+Thierry, do you have an opinion here?
+
+Best regards
+Uwe
+
+--=20
+Pengutronix e.K.                           | Uwe Kleine-K=F6nig            |
+Industrial Linux Solutions                 | https://www.pengutronix.de/ |
+
+--rsw2j3kru5d6gthh
+Content-Type: application/pgp-signature; name="signature.asc"
+
+-----BEGIN PGP SIGNATURE-----
+
+iQEzBAABCgAdFiEEfnIqFpAYrP8+dKQLwfwUeK3K7AkFAl9hqeoACgkQwfwUeK3K
+7AnHHQgAj4JZsIbLvK579+gj9ug19ZQnOrL5yNuBed/vVkj7YBDT9hQr+lX4Yzsa
+lmdgWzGweTuVg/9gxAIIuJ6Z8zC2VNXv7x2wW+emrtqI6UfBKlWTnBN7kISeEozO
+k4mLq4bNoyJNTFqZb8IpAjQnQcVSpSUfo3xAt40xySpD1iHc4e2HOPACq01hTqv1
+Zj4RBsbLlIt5Bo2Gs6gjAEAVjn6HYvn2PwsNV4WbQ0FYGdLeF684K7xI6RuD6cpP
+SrBmL8nYkIKQcqp2BwLnEHmQLtKUjZ3bIlLP45hgYBZiE/8UsOEo0Jzr9gMCCZtN
+s309L0mcQW12nYxwCEgx2ltQm3Mu/w==
+=ecUA
+-----END PGP SIGNATURE-----
+
+--rsw2j3kru5d6gthh--
