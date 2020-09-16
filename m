@@ -2,322 +2,79 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from vger.kernel.org (vger.kernel.org [23.128.96.18])
-	by mail.lfdr.de (Postfix) with ESMTP id 4E1B126B97C
-	for <lists+devicetree@lfdr.de>; Wed, 16 Sep 2020 03:46:35 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTP id C40D826B9B8
+	for <lists+devicetree@lfdr.de>; Wed, 16 Sep 2020 04:14:31 +0200 (CEST)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S1726174AbgIPBqd (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Tue, 15 Sep 2020 21:46:33 -0400
-Received: from szxga04-in.huawei.com ([45.249.212.190]:12294 "EHLO huawei.com"
-        rhost-flags-OK-OK-OK-FAIL) by vger.kernel.org with ESMTP
-        id S1726023AbgIPBqc (ORCPT <rfc822;devicetree@vger.kernel.org>);
-        Tue, 15 Sep 2020 21:46:32 -0400
-Received: from DGGEMS407-HUB.china.huawei.com (unknown [172.30.72.59])
-        by Forcepoint Email with ESMTP id 9BB58704D1F6EFDE3521;
-        Wed, 16 Sep 2020 09:46:30 +0800 (CST)
-Received: from [10.57.101.250] (10.57.101.250) by
- DGGEMS407-HUB.china.huawei.com (10.3.19.207) with Microsoft SMTP Server id
- 14.3.487.0; Wed, 16 Sep 2020 09:46:27 +0800
-Subject: Re: [PATCH] arm64: dts: hisilicon: replace status value "ok" by
- "okay"
-To:     Adrian Schmutzler <freifunk@adrianschmutzler.de>,
+        id S1726314AbgIPCOY (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Tue, 15 Sep 2020 22:14:24 -0400
+Received: from netrider.rowland.org ([192.131.102.5]:49297 "HELO
+        netrider.rowland.org" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
+        with SMTP id S1726310AbgIPCOX (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Tue, 15 Sep 2020 22:14:23 -0400
+Received: (qmail 1024888 invoked by uid 1000); 15 Sep 2020 22:14:21 -0400
+Date:   Tue, 15 Sep 2020 22:14:21 -0400
+From:   Alan Stern <stern@rowland.harvard.edu>
+To:     Matthias Kaehlcke <mka@chromium.org>
+Cc:     Peter Chen <peter.chen@nxp.com>,
+        Greg Kroah-Hartman <gregkh@linuxfoundation.org>,
         Rob Herring <robh+dt@kernel.org>,
-        <linux-arm-kernel@lists.infradead.org>,
-        <devicetree@vger.kernel.org>
-References: <20200830200551.1474-1-freifunk@adrianschmutzler.de>
-From:   Wei Xu <xuwei5@hisilicon.com>
-Message-ID: <5F616E73.4080707@hisilicon.com>
-Date:   Wed, 16 Sep 2020 09:46:27 +0800
-User-Agent: Mozilla/5.0 (Windows NT 6.1; WOW64; rv:38.0) Gecko/20100101
- Thunderbird/38.2.0
+        Frank Rowand <frowand.list@gmail.com>,
+        Krzysztof Kozlowski <krzk@kernel.org>,
+        Bastien Nocera <hadess@hadess.net>,
+        Ravi Chandra Sadineni <ravisadineni@chromium.org>,
+        "linux-usb@vger.kernel.org" <linux-usb@vger.kernel.org>,
+        Stephen Boyd <swboyd@chromium.org>,
+        "devicetree@vger.kernel.org" <devicetree@vger.kernel.org>,
+        Douglas Anderson <dianders@chromium.org>,
+        "linux-kernel@vger.kernel.org" <linux-kernel@vger.kernel.org>,
+        "Alexander A. Klimov" <grandmaster@al2klimov.de>,
+        Masahiro Yamada <masahiroy@kernel.org>
+Subject: Re: [PATCH 2/2] USB: misc: Add onboard_usb_hub driver
+Message-ID: <20200916021421.GA1024554@rowland.harvard.edu>
+References: <20200914112716.1.I248292623d3d0f6a4f0c5bc58478ca3c0062b49a@changeid>
+ <20200914112716.2.I7c9a1f1d6ced41dd8310e8a03da666a32364e790@changeid>
+ <20200915025426.GA17450@b29397-desktop>
+ <20200915050207.GF2022397@google.com>
+ <AM7PR04MB715735A8A102F3EC9041EA328B200@AM7PR04MB7157.eurprd04.prod.outlook.com>
+ <20200915230345.GF2771744@google.com>
 MIME-Version: 1.0
-In-Reply-To: <20200830200551.1474-1-freifunk@adrianschmutzler.de>
-Content-Type: text/plain; charset="utf-8"
-Content-Transfer-Encoding: 7bit
-X-Originating-IP: [10.57.101.250]
-X-CFilter-Loop: Reflected
+Content-Type: text/plain; charset=us-ascii
+Content-Disposition: inline
+In-Reply-To: <20200915230345.GF2771744@google.com>
+User-Agent: Mutt/1.10.1 (2018-07-13)
 Sender: devicetree-owner@vger.kernel.org
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-Hi Adrian,
-
-On 2020/8/31 4:05, Adrian Schmutzler wrote:
-> While the DT parser recognizes "ok" as a valid value for the
-> "status" property, it is actually mentioned nowhere. Use the
-> proper value "okay" instead, as done in the majority of files
-> already.
+On Tue, Sep 15, 2020 at 04:03:45PM -0700, Matthias Kaehlcke wrote:
+> Hi Peter,
 > 
-> Signed-off-by: Adrian Schmutzler <freifunk@adrianschmutzler.de>
+> On Tue, Sep 15, 2020 at 07:05:38AM +0000, Peter Chen wrote:
 
-Thanks!
-Applied to the hisilicon arm64 dt tree.
-
-Best Regards,
-Wei
-
-> ---
->  .../boot/dts/hisilicon/hi3660-hikey960.dts    |  6 +++---
->  .../boot/dts/hisilicon/hi3670-hikey970.dts    |  2 +-
->  .../arm64/boot/dts/hisilicon/hi6220-hikey.dts | 18 ++++++++---------
->  arch/arm64/boot/dts/hisilicon/hi6220.dtsi     |  2 +-
->  arch/arm64/boot/dts/hisilicon/hip05-d02.dts   |  6 +++---
->  arch/arm64/boot/dts/hisilicon/hip06-d03.dts   | 18 ++++++++---------
->  arch/arm64/boot/dts/hisilicon/hip07-d05.dts   | 20 +++++++++----------
->  7 files changed, 36 insertions(+), 36 deletions(-)
+> > Whether or not it is a wakeup_source, it could get through its or its children's
+> > /sys/../power/wakeup value, you have already used usb_wakeup_enabled_descendants
+> > to know it.
 > 
-> diff --git a/arch/arm64/boot/dts/hisilicon/hi3660-hikey960.dts b/arch/arm64/boot/dts/hisilicon/hi3660-hikey960.dts
-> index c1b614dabb8e..963300eede17 100644
-> --- a/arch/arm64/boot/dts/hisilicon/hi3660-hikey960.dts
-> +++ b/arch/arm64/boot/dts/hisilicon/hi3660-hikey960.dts
-> @@ -530,7 +530,7 @@
->  	rt1711h: rt1711h@4e {
->  		compatible = "richtek,rt1711h";
->  		reg = <0x4e>;
-> -		status = "ok";
-> +		status = "okay";
->  		interrupt-parent = <&gpio27>;
->  		interrupts = <3 IRQ_TYPE_LEVEL_LOW>;
->  		pinctrl-names = "default";
-> @@ -570,7 +570,7 @@
->  	};
->  
->  	adv7533: adv7533@39 {
-> -		status = "ok";
-> +		status = "okay";
->  		compatible = "adi,adv7533";
->  		reg = <0x39>;
->  		adi,dsi-lanes = <4>;
-> @@ -656,7 +656,7 @@
->  		     &sdio_cfg_func>;
->  	/* WL_EN */
->  	vmmc-supply = <&wlan_en>;
-> -	status = "ok";
-> +	status = "okay";
->  
->  	wlcore: wlcore@2 {
->  		compatible = "ti,wl1837";
-> diff --git a/arch/arm64/boot/dts/hisilicon/hi3670-hikey970.dts b/arch/arm64/boot/dts/hisilicon/hi3670-hikey970.dts
-> index 7dac33d4fd5c..7f9f9886c349 100644
-> --- a/arch/arm64/boot/dts/hisilicon/hi3670-hikey970.dts
-> +++ b/arch/arm64/boot/dts/hisilicon/hi3670-hikey970.dts
-> @@ -418,7 +418,7 @@
->  		     &sdio_cfg_func>;
->  	/* WL_EN */
->  	vmmc-supply = <&wlan_en>;
-> -	status = "ok";
-> +	status = "okay";
->  
->  	wlcore: wlcore@2 {
->  		compatible = "ti,wl1837";
-> diff --git a/arch/arm64/boot/dts/hisilicon/hi6220-hikey.dts b/arch/arm64/boot/dts/hisilicon/hi6220-hikey.dts
-> index 533ed523888d..91d08673c02e 100644
-> --- a/arch/arm64/boot/dts/hisilicon/hi6220-hikey.dts
-> +++ b/arch/arm64/boot/dts/hisilicon/hi6220-hikey.dts
-> @@ -267,7 +267,7 @@
->  &uart1 {
->  	assigned-clocks = <&sys_ctrl HI6220_UART1_SRC>;
->  	assigned-clock-rates = <150000000>;
-> -	status = "ok";
-> +	status = "okay";
->  
->  	bluetooth {
->  		compatible = "ti,wl1835-st";
-> @@ -278,21 +278,21 @@
->  };
->  
->  &uart2 {
-> -	status = "ok";
-> +	status = "okay";
->  	label = "LS-UART0";
->  };
->  
->  &uart3 {
-> -	status = "ok";
-> +	status = "okay";
->  	label = "LS-UART1";
->  };
->  
->  &ade {
-> -	status = "ok";
-> +	status = "okay";
->  };
->  
->  &dsi {
-> -	status = "ok";
-> +	status = "okay";
->  
->  	ports {
->  		/* 1 for output port */
-> @@ -489,17 +489,17 @@
->  
->  
->  &i2c0 {
-> -	status = "ok";
-> +	status = "okay";
->  };
->  
->  &i2c1 {
-> -	status = "ok";
-> +	status = "okay";
->  };
->  
->  &i2c2 {
->  	#address-cells = <1>;
->  	#size-cells = <0>;
-> -	status = "ok";
-> +	status = "okay";
->  
->  	adv7533: adv7533@39 {
->  		compatible = "adi,adv7533";
-> @@ -541,5 +541,5 @@
->  };
->  
->  &spi0 {
-> -	status = "ok";
-> +	status = "okay";
->  };
-> diff --git a/arch/arm64/boot/dts/hisilicon/hi6220.dtsi b/arch/arm64/boot/dts/hisilicon/hi6220.dtsi
-> index 3d189d9f0d24..3bab4bc6ff99 100644
-> --- a/arch/arm64/boot/dts/hisilicon/hi6220.dtsi
-> +++ b/arch/arm64/boot/dts/hisilicon/hi6220.dtsi
-> @@ -371,7 +371,7 @@
->  			clocks = <&sys_ctrl HI6220_EDMAC_ACLK>;
->  			dma-no-cci;
->  			dma-type = "hi6220_dma";
-> -			status = "ok";
-> +			status = "okay";
->  		};
->  
->  		dual_timer0: timer@f8008000 {
-> diff --git a/arch/arm64/boot/dts/hisilicon/hip05-d02.dts b/arch/arm64/boot/dts/hisilicon/hip05-d02.dts
-> index e93c65ede06c..369b69b17b91 100644
-> --- a/arch/arm64/boot/dts/hisilicon/hip05-d02.dts
-> +++ b/arch/arm64/boot/dts/hisilicon/hip05-d02.dts
-> @@ -42,15 +42,15 @@
->  };
->  
->  &uart0 {
-> -	status = "ok";
-> +	status = "okay";
->  };
->  
->  &peri_gpio0 {
-> -	status = "ok";
-> +	status = "okay";
->  };
->  
->  &lbc {
-> -	status = "ok";
-> +	status = "okay";
->  	#address-cells = <2>;
->  	#size-cells = <1>;
->  	ranges = <0 0 0x0 0x90000000 0x08000000>,
-> diff --git a/arch/arm64/boot/dts/hisilicon/hip06-d03.dts b/arch/arm64/boot/dts/hisilicon/hip06-d03.dts
-> index 677862beebef..9f4a930e734d 100644
-> --- a/arch/arm64/boot/dts/hisilicon/hip06-d03.dts
-> +++ b/arch/arm64/boot/dts/hisilicon/hip06-d03.dts
-> @@ -22,37 +22,37 @@
->  };
->  
->  &ipmi0 {
-> -	status = "ok";
-> +	status = "okay";
->  };
->  
->  &uart0 {
-> -	status = "ok";
-> +	status = "okay";
->  };
->  
->  &eth0 {
-> -	status = "ok";
-> +	status = "okay";
->  };
->  
->  &eth1 {
-> -	status = "ok";
-> +	status = "okay";
->  };
->  
->  &eth2 {
-> -	status = "ok";
-> +	status = "okay";
->  };
->  
->  &eth3 {
-> -	status = "ok";
-> +	status = "okay";
->  };
->  
->  &sas1 {
-> -	status = "ok";
-> +	status = "okay";
->  };
->  
->  &usb_ohci {
-> -	status = "ok";
-> +	status = "okay";
->  };
->  
->  &usb_ehci {
-> -	status = "ok";
-> +	status = "okay";
->  };
-> diff --git a/arch/arm64/boot/dts/hisilicon/hip07-d05.dts b/arch/arm64/boot/dts/hisilicon/hip07-d05.dts
-> index fcbdffe0868b..81a2312c8a26 100644
-> --- a/arch/arm64/boot/dts/hisilicon/hip07-d05.dts
-> +++ b/arch/arm64/boot/dts/hisilicon/hip07-d05.dts
-> @@ -50,41 +50,41 @@
->  };
->  
->  &uart0 {
-> -	status = "ok";
-> +	status = "okay";
->  };
->  
->  &ipmi0 {
-> -	status = "ok";
-> +	status = "okay";
->  };
->  
->  &usb_ohci {
-> -	status = "ok";
-> +	status = "okay";
->  };
->  
->  &usb_ehci {
-> -	status = "ok";
-> +	status = "okay";
->  };
->  
->  &eth0 {
-> -	status = "ok";
-> +	status = "okay";
->  };
->  
->  &eth1 {
-> -	status = "ok";
-> +	status = "okay";
->  };
->  
->  &eth2 {
-> -	status = "ok";
-> +	status = "okay";
->  };
->  
->  &eth3 {
-> -	status = "ok";
-> +	status = "okay";
->  };
->  
->  &sas1 {
-> -	status = "ok";
-> +	status = "okay";
->  };
->  
->  &p0_pcie2_a {
-> -	status = "ok";
-> +	status = "okay";
->  };
+> I conceptually agree, but in practice there are some conflicting details:
 > 
+> wakeup for the hubs on my system is by default disabled, yet USB wakeup works
+> regardless, so the flag doesn't really provide useful information. I guess we
+> could still use it if there is no better way, but it doesn't seem ideal.
+
+The wakeup setting for USB hubs affects only the following events: port 
+connect, port disconnect, and port overcurrent.  It does not refer to 
+forwarding wakeup requests from downstream USB devices; that is always 
+enabled.  So maybe your wakeup flag really is accurate and you didn't 
+realize it.
+
+> Similar for udev->bus->controller, according to sysfs it doesn't even have wakeup
+> support. Please let me know if there is a reliable way to check if wakeup is
+> enabled on the controller of a device.
+
+The host controller's sysfs wakeup setting should always be correct.  If 
+it isn't, that indicates there is a bug in the host controller driver or 
+the corresponding platform-specific code.  What driver does your system 
+use?
+
+Alan Stern
