@@ -2,15 +2,15 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from vger.kernel.org (vger.kernel.org [23.128.96.18])
-	by mail.lfdr.de (Postfix) with ESMTP id 61C9126C841
-	for <lists+devicetree@lfdr.de>; Wed, 16 Sep 2020 20:44:26 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTP id 5A61F26C798
+	for <lists+devicetree@lfdr.de>; Wed, 16 Sep 2020 20:31:18 +0200 (CEST)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S1728221AbgIPSoT (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Wed, 16 Sep 2020 14:44:19 -0400
-Received: from fllv0015.ext.ti.com ([198.47.19.141]:39436 "EHLO
+        id S1727949AbgIPSbQ (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Wed, 16 Sep 2020 14:31:16 -0400
+Received: from fllv0015.ext.ti.com ([198.47.19.141]:36498 "EHLO
         fllv0015.ext.ti.com" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S1728109AbgIPSoS (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Wed, 16 Sep 2020 14:44:18 -0400
+        with ESMTP id S1727989AbgIPSaN (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Wed, 16 Sep 2020 14:30:13 -0400
 Received: from fllv0034.itg.ti.com ([10.64.40.246])
         by fllv0015.ext.ti.com (8.15.2/8.15.2) with ESMTP id 08GCHxrx021539;
         Wed, 16 Sep 2020 07:17:59 -0500
@@ -64,68 +64,4 @@ Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-Hi Swapnil, Yuti,
 
-On 14/09/2020 15:48, Swapnil Jakhade wrote:
-> From: Yuti Amonkar <yamonkar@cadence.com>
-> 
-> Document the bindings used for the Cadence MHDP8546 DPI/DP bridge in
-> yaml format.
-> 
-> Signed-off-by: Yuti Amonkar <yamonkar@cadence.com>
-> Signed-off-by: Swapnil Jakhade <sjakhade@cadence.com>
-> Reviewed-by: Rob Herring <robh@kernel.org>
-> Reviewed-by: Laurent Pinchart <laurent.pinchart@ideasonboard.com>
-> ---
->  .../display/bridge/cdns,mhdp8546.yaml         | 154 ++++++++++++++++++
->  1 file changed, 154 insertions(+)
->  create mode 100644 Documentation/devicetree/bindings/display/bridge/cdns,mhdp8546.yaml
-I was testing this on J7 EVM, and looking at the dts files and DT bindings. To
-get rid of the warnings from dtbs_check, I made the following changes.
-
-I think the interrupt one is clear. The driver needs the interrupt, but it was
-not defined in the yaml file.
-
-For phy-names, we had that in the out-of-tree dts file, so I added it here. The
-driver just looks for the PHY via index, but I guess we should require it.
-
-The power-domain is not needed by the driver, but if I'm not mistaken, has to
-be defined here.
-
-
-diff --git a/Documentation/devicetree/bindings/display/bridge/cdns,mhdp8546.yaml b/Documentation/devicetree/bindings/display/bridge/cdns,mhdp8546.yaml
-index a21a4bfe15cf..c5f5781c1ed6 100644
---- a/Documentation/devicetree/bindings/display/bridge/cdns,mhdp8546.yaml
-+++ b/Documentation/devicetree/bindings/display/bridge/cdns,mhdp8546.yaml
-@@ -46,6 +46,16 @@ properties:
-     description:
-       phandle to the DisplayPort PHY.
- 
-+  phy-names:
-+    items:
-+      - const: dpphy
-+
-+  power-domains:
-+    maxItems: 1
-+
-+  interrupts:
-+    maxItems: 1
-+
-   ports:
-     type: object
-     description:
-@@ -114,6 +124,8 @@ required:
-   - reg
-   - reg-names
-   - phys
-+  - phy-names
-+  - interrupts
-   - ports
- 
- additionalProperties: false
-
- Tomi
-
--- 
-Texas Instruments Finland Oy, Porkkalankatu 22, 00180 Helsinki.
-Y-tunnus/Business ID: 0615521-4. Kotipaikka/Domicile: Helsinki
