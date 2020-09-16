@@ -2,120 +2,107 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from vger.kernel.org (vger.kernel.org [23.128.96.18])
-	by mail.lfdr.de (Postfix) with ESMTP id B532726BAE4
-	for <lists+devicetree@lfdr.de>; Wed, 16 Sep 2020 05:49:02 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTP id 539A126BB3F
+	for <lists+devicetree@lfdr.de>; Wed, 16 Sep 2020 06:07:51 +0200 (CEST)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S1726508AbgIPDtA (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Tue, 15 Sep 2020 23:49:00 -0400
-Received: from inva021.nxp.com ([92.121.34.21]:45670 "EHLO inva021.nxp.com"
-        rhost-flags-OK-OK-OK-OK) by vger.kernel.org with ESMTP
-        id S1726486AbgIPDs4 (ORCPT <rfc822;devicetree@vger.kernel.org>);
-        Tue, 15 Sep 2020 23:48:56 -0400
-Received: from inva021.nxp.com (localhost [127.0.0.1])
-        by inva021.eu-rdc02.nxp.com (Postfix) with ESMTP id 095602008D0;
-        Wed, 16 Sep 2020 05:48:54 +0200 (CEST)
-Received: from invc005.ap-rdc01.nxp.com (invc005.ap-rdc01.nxp.com [165.114.16.14])
-        by inva021.eu-rdc02.nxp.com (Postfix) with ESMTP id 9905B2008BD;
-        Wed, 16 Sep 2020 05:48:50 +0200 (CEST)
-Received: from localhost.localdomain (mega.ap.freescale.net [10.192.208.232])
-        by invc005.ap-rdc01.nxp.com (Postfix) with ESMTP id 105C14035E;
-        Wed, 16 Sep 2020 05:11:22 +0200 (CEST)
-From:   Qiang Zhao <qiang.zhao@nxp.com>
-To:     shawnguo@kernel.org, robh+dt@kernel.org, mturquette@baylibre.com
-Cc:     andy.tang@nxp.com, linux-kernel@vger.kernel.org,
-        devicetree@vger.kernel.org, linux-clk@vger.kernel.org,
-        Zhao Qiang <qiang.zhao@nxp.com>
-Subject: [PATCH 2/2] arm64: dts: layerscape: modify clocks divider to 32 for wdt
-Date:   Wed, 16 Sep 2020 11:03:11 +0800
-Message-Id: <20200916030311.17280-2-qiang.zhao@nxp.com>
-X-Mailer: git-send-email 2.17.1
-In-Reply-To: <20200916030311.17280-1-qiang.zhao@nxp.com>
-References: <20200916030311.17280-1-qiang.zhao@nxp.com>
-X-Virus-Scanned: ClamAV using ClamSMTP
+        id S1726172AbgIPEHr (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Wed, 16 Sep 2020 00:07:47 -0400
+Received: from lindbergh.monkeyblade.net ([23.128.96.19]:48984 "EHLO
+        lindbergh.monkeyblade.net" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
+        with ESMTP id S1726134AbgIPEHl (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Wed, 16 Sep 2020 00:07:41 -0400
+Received: from mail-pl1-x644.google.com (mail-pl1-x644.google.com [IPv6:2607:f8b0:4864:20::644])
+        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 3E6E9C061788
+        for <devicetree@vger.kernel.org>; Tue, 15 Sep 2020 21:07:40 -0700 (PDT)
+Received: by mail-pl1-x644.google.com with SMTP id d19so2469819pld.0
+        for <devicetree@vger.kernel.org>; Tue, 15 Sep 2020 21:07:40 -0700 (PDT)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+        d=linaro.org; s=google;
+        h=date:from:to:subject:message-id:references:mime-version
+         :content-disposition:in-reply-to:user-agent;
+        bh=dwWRnwsGGp42nHyvHYAmDpO5pglBD8pM8+TllXGj8yw=;
+        b=azE3P0AgP3hJEcsTJJpcq0kIrViiGK//UpvP9mqGA6o40Im531SZGBXDNgnQdFS3PB
+         wBCQl6lf/X1c/KmzDFSGjQhPvl+ui4vi1DTHra//aKQqCOMx8rU4ZI2IcpNPGy5hJh1s
+         oolKtRnBa+gwzgRn2I9Fk8M92A3huwHa60D59WywFue23XD3CbogiTSRJB5lM1HAF7HC
+         PIuQd07NRFHwCY0YohAqIBDoJS6l38o4j18aL6BqCj5n04A2ExKWKIcmud0lQSHTYLK+
+         dfwV5huTCPPK4WMt25naEXT7bSYfyZ3JpWQeZPyP/M9Bm5r150kgss0Edr7XTPH6nKn9
+         2pJw==
+X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+        d=1e100.net; s=20161025;
+        h=x-gm-message-state:date:from:to:subject:message-id:references
+         :mime-version:content-disposition:in-reply-to:user-agent;
+        bh=dwWRnwsGGp42nHyvHYAmDpO5pglBD8pM8+TllXGj8yw=;
+        b=XIr0AJQZOU94jwXXpoLlR2weJMOLe2am3heEjerQNpahNnE3EFXUKBT+/pO4EE9QXA
+         ZyJYy7NNi8zsqc8xzwSXmBoteOuOXuJZdyU3WDS5LqHGTMnJV3lgFVlJI/xKPS+m3EAH
+         2VoPux6SgXzdRexFaeyQ59NYduAQ4ikMNElkU9eaAtDGWMhePxeV5eImexI0oMVQ0Egn
+         9f12Giv+B5dqmm+pb59VcScmvDbZdKMUcpR62Tut8KB/AuC3f8g3N4NSAgq/p3OzD95A
+         4DEUT9HS+wKhclBnamcC7M57031H6Le4oDkzs/y/EtMLXB7tEiTlot1dwnu4Sre5LDqz
+         Gndw==
+X-Gm-Message-State: AOAM532GZfG8MpFvpd57mfWiao56/OE3BLcgv5dODwVYQ4wvWK63rvR+
+        R6Jmu4EPB/7j/kjVFbCnDfIY
+X-Google-Smtp-Source: ABdhPJxWtRMMr2pHjJ+1V7e9unODZq5jgqDHwWcJ1/MX6MPAFMT/ZxHjurIf9f4zyw22ZxVRjrPxYQ==
+X-Received: by 2002:a17:90b:3241:: with SMTP id jy1mr2307220pjb.10.1600229259610;
+        Tue, 15 Sep 2020 21:07:39 -0700 (PDT)
+Received: from linux ([103.59.133.81])
+        by smtp.gmail.com with ESMTPSA id 131sm15062480pfc.20.2020.09.15.21.07.36
+        (version=TLS1_2 cipher=ECDHE-ECDSA-CHACHA20-POLY1305 bits=256/256);
+        Tue, 15 Sep 2020 21:07:38 -0700 (PDT)
+Date:   Wed, 16 Sep 2020 09:37:32 +0530
+From:   Manivannan Sadhasivam <manivannan.sadhasivam@linaro.org>
+To:     wg@grandegger.com, mkl@pengutronix.de, robh+dt@kernel.org,
+        linux-can@vger.kernel.org, devicetree@vger.kernel.org,
+        linux-kernel@vger.kernel.org, o.rempel@pengutronix.de
+Subject: Re: [PATCH 0/6] Add support for MCP25XXFD SPI-CAN Network driver
+Message-ID: <20200916040732.GA4281@linux>
+References: <20200910133806.25077-1-manivannan.sadhasivam@linaro.org>
+ <20200915161925.GA5660@linux>
+ <20200915175838.GA12860@x1.vandijck-laurijssen.be>
+MIME-Version: 1.0
+Content-Type: text/plain; charset=us-ascii
+Content-Disposition: inline
+In-Reply-To: <20200915175838.GA12860@x1.vandijck-laurijssen.be>
+User-Agent: Mutt/1.9.4 (2018-02-28)
 Sender: devicetree-owner@vger.kernel.org
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-From: Zhao Qiang <qiang.zhao@nxp.com>
+Hi,
 
-On LX2088A, wdt's clock are get from clockgen divided by 32,
-so modify clocks in device tree.
+On Tue, Sep 15, 2020 at 07:58:38PM +0200, Kurt Van Dijck wrote:
+> On di, 15 sep 2020 21:49:25 +0530, Manivannan Sadhasivam wrote:
+> > Hi,
+> > 
+> > On Thu, Sep 10, 2020 at 07:08:00PM +0530, Manivannan Sadhasivam wrote:
+> > > Hello,
+> > 
+> > Just a quick question: I don't see any activity on this specific driver for
+> > sometime (back in Martin days itself). Is it due to lack of reviewers or
+> > it is due to the patch size (lines of code) so that nobody is interested
+> > in reviewing?
+> 
+> If you look around, there are currently several versions of mcp251x
+> driver around, shipped by hardware vendors who glue the chip on there
+> SOM etc.
+> Until something more-or-less clean becomes mainline, the effort remains
+> spread.
+> 
+> A problem to import a complete driver is that ... its complete.
+> There was an suggestion to split into several patches, but that does not
+> really affect the review work.
+> 
+> The original driver failed to initialize under a loaded CAN bus, on my
+> desk. The current driver is more cleanly written than the original
+> and it seems to survive more than 1 use case (although I have a MAB overflow
+> report pending to investigate).
+> So, this is a good candidate for mainline.
+> 
 
-Signed-off-by: Zhao Qiang <qiang.zhao@nxp.com>
----
- arch/arm64/boot/dts/freescale/fsl-ls208xa.dtsi | 16 ++++++++--------
- 1 file changed, 8 insertions(+), 8 deletions(-)
+I just saw that you've pushed these patches to your testing branch. Does this
+mean that you're going to include it in v5.10 PR?
 
-diff --git a/arch/arm64/boot/dts/freescale/fsl-ls208xa.dtsi b/arch/arm64/boot/dts/freescale/fsl-ls208xa.dtsi
-index 7016791..de6c751 100644
---- a/arch/arm64/boot/dts/freescale/fsl-ls208xa.dtsi
-+++ b/arch/arm64/boot/dts/freescale/fsl-ls208xa.dtsi
-@@ -194,56 +194,56 @@
- 		cluster1_core0_watchdog: wdt@c000000 {
- 			compatible = "arm,sp805-wdt", "arm,primecell";
- 			reg = <0x0 0xc000000 0x0 0x1000>;
--			clocks = <&clockgen 4 3>, <&clockgen 4 3>;
-+			clocks = <&clockgen 4 31>, <&clockgen 4 31>;
- 			clock-names = "apb_pclk", "wdog_clk";
- 		};
- 
- 		cluster1_core1_watchdog: wdt@c010000 {
- 			compatible = "arm,sp805-wdt", "arm,primecell";
- 			reg = <0x0 0xc010000 0x0 0x1000>;
--			clocks = <&clockgen 4 3>, <&clockgen 4 3>;
-+			clocks = <&clockgen 4 31>, <&clockgen 4 31>;
- 			clock-names = "apb_pclk", "wdog_clk";
- 		};
- 
- 		cluster2_core0_watchdog: wdt@c100000 {
- 			compatible = "arm,sp805-wdt", "arm,primecell";
- 			reg = <0x0 0xc100000 0x0 0x1000>;
--			clocks = <&clockgen 4 3>, <&clockgen 4 3>;
-+			clocks = <&clockgen 4 31>, <&clockgen 4 31>;
- 			clock-names = "apb_pclk", "wdog_clk";
- 		};
- 
- 		cluster2_core1_watchdog: wdt@c110000 {
- 			compatible = "arm,sp805-wdt", "arm,primecell";
- 			reg = <0x0 0xc110000 0x0 0x1000>;
--			clocks = <&clockgen 4 3>, <&clockgen 4 3>;
-+			clocks = <&clockgen 4 31>, <&clockgen 4 31>;
- 			clock-names = "apb_pclk", "wdog_clk";
- 		};
- 
- 		cluster3_core0_watchdog: wdt@c200000 {
- 			compatible = "arm,sp805-wdt", "arm,primecell";
- 			reg = <0x0 0xc200000 0x0 0x1000>;
--			clocks = <&clockgen 4 3>, <&clockgen 4 3>;
-+			clocks = <&clockgen 4 31>, <&clockgen 4 31>;
- 			clock-names = "apb_pclk", "wdog_clk";
- 		};
- 
- 		cluster3_core1_watchdog: wdt@c210000 {
- 			compatible = "arm,sp805-wdt", "arm,primecell";
- 			reg = <0x0 0xc210000 0x0 0x1000>;
--			clocks = <&clockgen 4 3>, <&clockgen 4 3>;
-+			clocks = <&clockgen 4 31>, <&clockgen 4 31>;
- 			clock-names = "apb_pclk", "wdog_clk";
- 		};
- 
- 		cluster4_core0_watchdog: wdt@c300000 {
- 			compatible = "arm,sp805-wdt", "arm,primecell";
- 			reg = <0x0 0xc300000 0x0 0x1000>;
--			clocks = <&clockgen 4 3>, <&clockgen 4 3>;
-+			clocks = <&clockgen 4 31>, <&clockgen 4 31>;
- 			clock-names = "apb_pclk", "wdog_clk";
- 		};
- 
- 		cluster4_core1_watchdog: wdt@c310000 {
- 			compatible = "arm,sp805-wdt", "arm,primecell";
- 			reg = <0x0 0xc310000 0x0 0x1000>;
--			clocks = <&clockgen 4 3>, <&clockgen 4 3>;
-+			clocks = <&clockgen 4 31>, <&clockgen 4 31>;
- 			clock-names = "apb_pclk", "wdog_clk";
- 		};
- 
--- 
-2.7.4
+Thanks,
+Mani
 
+> Kind regards,
+> Kurt
