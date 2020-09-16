@@ -2,27 +2,27 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from vger.kernel.org (vger.kernel.org [23.128.96.18])
-	by mail.lfdr.de (Postfix) with ESMTP id AFA6C26C76A
-	for <lists+devicetree@lfdr.de>; Wed, 16 Sep 2020 20:26:21 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTP id DB01D26C75F
+	for <lists+devicetree@lfdr.de>; Wed, 16 Sep 2020 20:25:53 +0200 (CEST)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S1728012AbgIPS0S (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Wed, 16 Sep 2020 14:26:18 -0400
-Received: from mail.kernel.org ([198.145.29.99]:56704 "EHLO mail.kernel.org"
+        id S1727929AbgIPSZo (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Wed, 16 Sep 2020 14:25:44 -0400
+Received: from mail.kernel.org ([198.145.29.99]:56740 "EHLO mail.kernel.org"
         rhost-flags-OK-OK-OK-OK) by vger.kernel.org with ESMTP
-        id S1728006AbgIPSZl (ORCPT <rfc822;devicetree@vger.kernel.org>);
-        Wed, 16 Sep 2020 14:25:41 -0400
+        id S1727789AbgIPSZn (ORCPT <rfc822;devicetree@vger.kernel.org>);
+        Wed, 16 Sep 2020 14:25:43 -0400
 Received: from kozik-lap.mshome.net (unknown [194.230.155.191])
         (using TLSv1.2 with cipher ECDHE-RSA-AES128-GCM-SHA256 (128/128 bits))
         (No client certificate requested)
-        by mail.kernel.org (Postfix) with ESMTPSA id 33249208E4;
-        Wed, 16 Sep 2020 15:57:34 +0000 (UTC)
+        by mail.kernel.org (Postfix) with ESMTPSA id E571022472;
+        Wed, 16 Sep 2020 15:58:14 +0000 (UTC)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=kernel.org;
-        s=default; t=1600271861;
-        bh=mwfyYKJFeZITqcC9w7zWalo9zJ3c6qn+uP8pO8tqZTk=;
+        s=default; t=1600271901;
+        bh=Ty18eFbR1LQ96gqxXM+8sE2Q1P8WRnMu4EObDZv2/zk=;
         h=From:To:Cc:Subject:Date:In-Reply-To:References:From;
-        b=2XNMsAMn5xjxKI5EEvTgOkMnGgcZTQTeGswXgHaUtGSkF/gREa2oE1OUFAXJzK4rE
-         6d7XD0xnuaSkXyqSp8VX8iUj6n/GQy83eH+6vobJRrXV27PaeQLUBKAzmmJHqfqvzw
-         a/39TW1Cs26rKiXSMBEq5clso97LQKVAmtHL5xr0=
+        b=hcD1MRTTKLJUVNVTe1M/7hjIPTwl4PEdGwc3NKI5mW7umBw+PpdChTixDl/LPB3ZO
+         EyF6tdHwuE94pBwX9llb65GacZaR+ZzMafTewQzccZUQ8DMpU1Apm/fxMhxvLlHcxs
+         xWcx3ouuKgd6ZaZ9hM0Af5dMetJnlE/0JTGUazA4=
 From:   Krzysztof Kozlowski <krzk@kernel.org>
 To:     Linus Walleij <linus.walleij@linaro.org>,
         Bartosz Golaszewski <bgolaszewski@baylibre.com>,
@@ -52,9 +52,9 @@ To:     Linus Walleij <linus.walleij@linaro.org>,
         linux-aspeed@lists.ozlabs.org, linux-mediatek@lists.infradead.org,
         linux-renesas-soc@vger.kernel.org
 Cc:     Krzysztof Kozlowski <krzk@kernel.org>
-Subject: [PATCH v3 01/15] dt-bindings: gpio: convert bindings for NXP PCA953x family to dtschema
-Date:   Wed, 16 Sep 2020 17:57:01 +0200
-Message-Id: <20200916155715.21009-2-krzk@kernel.org>
+Subject: [PATCH v3 06/15] arm64: dts: ti: align GPIO hog names with dtschema
+Date:   Wed, 16 Sep 2020 17:57:06 +0200
+Message-Id: <20200916155715.21009-7-krzk@kernel.org>
 X-Mailer: git-send-email 2.17.1
 In-Reply-To: <20200916155715.21009-1-krzk@kernel.org>
 References: <20200916155715.21009-1-krzk@kernel.org>
@@ -63,313 +63,36 @@ Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-Convert the NXP PCA953x family of GPIO expanders bindings to device tree
-schema.
+The convention for node names is to use hyphens, not underscores.
+dtschema for pca95xx expects GPIO hogs to end with 'hog' prefix.
 
 Signed-off-by: Krzysztof Kozlowski <krzk@kernel.org>
-Reviewed-by: Rob Herring <robh@kernel.org>
-
 ---
+ arch/arm64/boot/dts/ti/k3-j721e-common-proc-board.dts | 4 ++--
+ 1 file changed, 2 insertions(+), 2 deletions(-)
 
-Changes since v2:
-1. Add Rob's review tag
-
-Changes since v1:
-1. Use additionalProperties.
-2. Add wakeup-source.
-3. Add hogs.
-4. Extend example with hogs.
----
- .../devicetree/bindings/gpio/gpio-pca953x.txt |  90 ----------
- .../bindings/gpio/gpio-pca95xx.yaml           | 166 ++++++++++++++++++
- .../devicetree/bindings/trivial-devices.yaml  |   4 -
- 3 files changed, 166 insertions(+), 94 deletions(-)
- delete mode 100644 Documentation/devicetree/bindings/gpio/gpio-pca953x.txt
- create mode 100644 Documentation/devicetree/bindings/gpio/gpio-pca95xx.yaml
-
-diff --git a/Documentation/devicetree/bindings/gpio/gpio-pca953x.txt b/Documentation/devicetree/bindings/gpio/gpio-pca953x.txt
-deleted file mode 100644
-index 3126c3817e2a..000000000000
---- a/Documentation/devicetree/bindings/gpio/gpio-pca953x.txt
-+++ /dev/null
-@@ -1,90 +0,0 @@
--* NXP PCA953x I2C GPIO multiplexer
--
--Required properties:
-- - compatible: Has to contain one of the following:
--	nxp,pca6416
--	nxp,pca9505
--	nxp,pca9534
--	nxp,pca9535
--	nxp,pca9536
--	nxp,pca9537
--	nxp,pca9538
--	nxp,pca9539
--	nxp,pca9554
--	nxp,pca9555
--	nxp,pca9556
--	nxp,pca9557
--	nxp,pca9574
--	nxp,pca9575
--	nxp,pca9698
--	nxp,pcal6416
--	nxp,pcal6524
--	nxp,pcal9535
--	nxp,pcal9555a
--	maxim,max7310
--	maxim,max7312
--	maxim,max7313
--	maxim,max7315
--	ti,pca6107
--	ti,pca9536
--	ti,tca6408
--	ti,tca6416
--	ti,tca6424
--	ti,tca9539
--	ti,tca9554
--	onnn,cat9554
--	onnn,pca9654
--	exar,xra1202
-- - gpio-controller: if used as gpio expander.
-- - #gpio-cells: if used as gpio expander.
-- - interrupt-controller: if to be used as interrupt expander.
-- - #interrupt-cells: if to be used as interrupt expander.
--
--Optional properties:
-- - interrupts: interrupt specifier for the device's interrupt output.
-- - reset-gpios: GPIO specification for the RESET input. This is an
--		active low signal to the PCA953x.
-- - vcc-supply:	power supply regulator.
--
--Example:
--
--
--	gpio@20 {
--		compatible = "nxp,pca9505";
--		reg = <0x20>;
--		pinctrl-names = "default";
--		pinctrl-0 = <&pinctrl_pca9505>;
--		gpio-controller;
--		#gpio-cells = <2>;
--		interrupt-parent = <&gpio3>;
--		interrupts = <23 IRQ_TYPE_LEVEL_LOW>;
--	};
--
--
--Example with Interrupts:
--
--
--	gpio99: gpio@22 {
--		compatible = "nxp,pcal6524";
--		reg = <0x22>;
--		interrupt-parent = <&gpio6>;
--		interrupts = <1 IRQ_TYPE_EDGE_FALLING>;	/* gpio6_161 */
--		interrupt-controller;
--		#interrupt-cells = <2>;
--		vcc-supply = <&vdds_1v8_main>;
--		gpio-controller;
--		#gpio-cells = <2>;
--		gpio-line-names =
--			"hdmi-ct-hpd", "hdmi.ls-oe", "p02", "p03", "vibra", "fault2", "p06", "p07",
--			"en-usb", "en-host1", "en-host2", "chg-int", "p14", "p15", "mic-int", "en-modem",
--			"shdn-hs-amp", "chg-status+red", "green", "blue", "en-esata", "fault1", "p26", "p27";
--	};
--
--	ts3a227@3b {
--		compatible = "ti,ts3a227e";
--		reg = <0x3b>;
--		interrupt-parent = <&gpio99>;
--		interrupts = <14 IRQ_TYPE_EDGE_RISING>;
--		ti,micbias = <0>;	/* 2.1V */
--	};
--
-diff --git a/Documentation/devicetree/bindings/gpio/gpio-pca95xx.yaml b/Documentation/devicetree/bindings/gpio/gpio-pca95xx.yaml
-new file mode 100644
-index 000000000000..7ff6efadf797
---- /dev/null
-+++ b/Documentation/devicetree/bindings/gpio/gpio-pca95xx.yaml
-@@ -0,0 +1,166 @@
-+# SPDX-License-Identifier: (GPL-2.0-only OR BSD-2-Clause)
-+%YAML 1.2
-+---
-+$id: http://devicetree.org/schemas/gpio/gpio-pca95xx.yaml#
-+$schema: http://devicetree.org/meta-schemas/core.yaml#
-+
-+title: NXP PCA95xx I2C GPIO multiplexer
-+
-+maintainers:
-+  - Krzysztof Kozlowski <krzk@kernel.org>
-+
-+properties:
-+  compatible:
-+    enum:
-+      - exar,xra1202
-+      - maxim,max7310
-+      - maxim,max7312
-+      - maxim,max7313
-+      - maxim,max7315
-+      - nxp,pca6416
-+      - nxp,pca9505
-+      - nxp,pca9534
-+      - nxp,pca9535
-+      - nxp,pca9536
-+      - nxp,pca9537
-+      - nxp,pca9538
-+      - nxp,pca9539
-+      - nxp,pca9554
-+      - nxp,pca9555
-+      - nxp,pca9556
-+      - nxp,pca9557
-+      - nxp,pca9574
-+      - nxp,pca9575
-+      - nxp,pca9698
-+      - nxp,pcal6416
-+      - nxp,pcal6524
-+      - nxp,pcal9535
-+      - nxp,pcal9555a
-+      - onnn,cat9554
-+      - onnn,pca9654
-+      - ti,pca6107
-+      - ti,pca9536
-+      - ti,tca6408
-+      - ti,tca6416
-+      - ti,tca6424
-+      - ti,tca9539
-+      - ti,tca9554
-+
-+  reg:
-+    maxItems: 1
-+
-+  gpio-controller: true
-+
-+  '#gpio-cells':
-+    const: 2
-+
-+  gpio-line-names:
-+    minItems: 1
-+    maxItems: 32
-+
-+  interrupts:
-+    maxItems: 1
-+
-+  interrupt-controller: true
-+
-+  '#interrupt-cells':
-+    const: 2
-+
-+  reset-gpios:
-+    description:
-+      GPIO specification for the RESET input. This is an active low signal to
-+      the PCA953x.
-+
-+  vcc-supply:
-+    description:
-+      Optional power supply
-+
-+  wakeup-source:
-+    $ref: /schemas/types.yaml#/definitions/flag
-+
-+patternProperties:
-+  "^(hog-[0-9]+|.+-hog(-[0-9]+)?)$":
-+    type: object
-+    properties:
-+      gpio-hog: true
-+      gpios: true
-+      input: true
-+      output-high: true
-+      output-low: true
-+      line-name: true
-+
-+    required:
-+      - gpio-hog
-+      - gpios
-+
-+    additionalProperties: false
-+
-+required:
-+  - compatible
-+  - reg
-+  - gpio-controller
-+  - "#gpio-cells"
-+
-+additionalProperties: false
-+
-+examples:
-+  - |
-+    #include <dt-bindings/gpio/gpio.h>
-+    #include <dt-bindings/interrupt-controller/irq.h>
-+
-+    i2c0 {
-+        #address-cells = <1>;
-+        #size-cells = <0>;
-+
-+        gpio@20 {
-+            compatible = "nxp,pca9505";
-+            reg = <0x20>;
-+            pinctrl-names = "default";
-+            pinctrl-0 = <&pinctrl_pca9505>;
-+            gpio-controller;
-+            #gpio-cells = <2>;
-+            interrupt-parent = <&gpio3>;
-+            interrupts = <23 IRQ_TYPE_LEVEL_LOW>;
-+
-+            usb3-sata-sel-hog {
-+                gpio-hog;
-+                gpios = <4 GPIO_ACTIVE_HIGH>;
-+                output-low;
-+                line-name = "usb3_sata_sel";
-+            };
-+        };
-+    };
-+
-+  - |
-+    #include <dt-bindings/interrupt-controller/irq.h>
-+
-+    i2c1 {
-+        #address-cells = <1>;
-+        #size-cells = <0>;
-+
-+        gpio99: gpio@22 {
-+            compatible = "nxp,pcal6524";
-+            reg = <0x22>;
-+            interrupt-parent = <&gpio6>;
-+            interrupts = <1 IRQ_TYPE_EDGE_FALLING>; /* gpio6_161 */
-+            interrupt-controller;
-+            #interrupt-cells = <2>;
-+            vcc-supply = <&vdds_1v8_main>;
-+            gpio-controller;
-+            #gpio-cells = <2>;
-+            gpio-line-names = "hdmi-ct-hpd", "hdmi.ls-oe", "p02", "p03",
-+                              "vibra", "fault2", "p06", "p07", "en-usb",
-+                              "en-host1", "en-host2", "chg-int", "p14", "p15",
-+                              "mic-int", "en-modem", "shdn-hs-amp",
-+                              "chg-status+red", "green", "blue", "en-esata",
-+                              "fault1", "p26", "p27";
-+        };
-+
-+        ts3a227@3b {
-+            compatible = "ti,ts3a227e";
-+            reg = <0x3b>;
-+            interrupt-parent = <&gpio99>;
-+            interrupts = <14 IRQ_TYPE_EDGE_RISING>;
-+            ti,micbias = <0>; /* 2.1V */
-+        };
-+    };
-diff --git a/Documentation/devicetree/bindings/trivial-devices.yaml b/Documentation/devicetree/bindings/trivial-devices.yaml
-index 25cfcc904240..442a1f537651 100644
---- a/Documentation/devicetree/bindings/trivial-devices.yaml
-+++ b/Documentation/devicetree/bindings/trivial-devices.yaml
-@@ -322,10 +322,6 @@ properties:
-           - nuvoton,npct601
-             # Nuvoton Temperature Sensor
-           - nuvoton,w83773g
--            # Octal SMBus and I2C registered interface
--          - nxp,pca9556
--            # 8-bit I2C-bus and SMBus I/O port with reset
--          - nxp,pca9557
-             # OKI ML86V7667 video decoder
-           - oki,ml86v7667
-             # OV5642: Color CMOS QSXGA (5-megapixel) Image Sensor with OmniBSI and Embedded TrueFocus
+diff --git a/arch/arm64/boot/dts/ti/k3-j721e-common-proc-board.dts b/arch/arm64/boot/dts/ti/k3-j721e-common-proc-board.dts
+index 648267284582..456e7818b521 100644
+--- a/arch/arm64/boot/dts/ti/k3-j721e-common-proc-board.dts
++++ b/arch/arm64/boot/dts/ti/k3-j721e-common-proc-board.dts
+@@ -407,7 +407,7 @@
+ 		gpio-controller;
+ 		#gpio-cells = <2>;
+ 
+-		p09 {
++		p09-hog {
+ 			/* P11 - MCASP/TRACE_MUX_S0 */
+ 			gpio-hog;
+ 			gpios = <9 GPIO_ACTIVE_HIGH>;
+@@ -415,7 +415,7 @@
+ 			line-name = "MCASP/TRACE_MUX_S0";
+ 		};
+ 
+-		p10 {
++		p10-hog {
+ 			/* P12 - MCASP/TRACE_MUX_S1 */
+ 			gpio-hog;
+ 			gpios = <10 GPIO_ACTIVE_HIGH>;
 -- 
 2.17.1
 
