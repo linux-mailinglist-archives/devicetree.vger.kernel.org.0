@@ -2,100 +2,97 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from vger.kernel.org (vger.kernel.org [23.128.96.18])
-	by mail.lfdr.de (Postfix) with ESMTP id 1537626BD5A
-	for <lists+devicetree@lfdr.de>; Wed, 16 Sep 2020 08:38:27 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTP id 2F6B626BDB0
+	for <lists+devicetree@lfdr.de>; Wed, 16 Sep 2020 09:10:22 +0200 (CEST)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S1726234AbgIPGiZ (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Wed, 16 Sep 2020 02:38:25 -0400
-Received: from mail-wr1-f65.google.com ([209.85.221.65]:43521 "EHLO
-        mail-wr1-f65.google.com" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S1726149AbgIPGiY (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Wed, 16 Sep 2020 02:38:24 -0400
-Received: by mail-wr1-f65.google.com with SMTP id k15so5603880wrn.10;
-        Tue, 15 Sep 2020 23:38:23 -0700 (PDT)
+        id S1726381AbgIPHKU (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Wed, 16 Sep 2020 03:10:20 -0400
+Received: from lindbergh.monkeyblade.net ([23.128.96.19]:48762 "EHLO
+        lindbergh.monkeyblade.net" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
+        with ESMTP id S1726375AbgIPHKR (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Wed, 16 Sep 2020 03:10:17 -0400
+Received: from mail-pg1-x543.google.com (mail-pg1-x543.google.com [IPv6:2607:f8b0:4864:20::543])
+        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 302DAC06178B
+        for <devicetree@vger.kernel.org>; Wed, 16 Sep 2020 00:10:15 -0700 (PDT)
+Received: by mail-pg1-x543.google.com with SMTP id t14so3358459pgl.10
+        for <devicetree@vger.kernel.org>; Wed, 16 Sep 2020 00:10:15 -0700 (PDT)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+        d=linaro.org; s=google;
+        h=date:from:to:cc:subject:message-id:references:mime-version
+         :content-disposition:in-reply-to:user-agent;
+        bh=dCN2AFryqy+FayqDrktseJf4Knff8xTZtC15klQo6HI=;
+        b=DKkZQkytUjTwB6aIU6j4eONmza9A70oFPJkSMH1+DRwON/kyhR42FZpvfsHiJSz+XI
+         ARVeqU8mDPxQLyrOJFsBNdpHwNfNn8x4RG8R/lJ3aehUm98MzbYsCszFoM3gPpLorwXK
+         W86jyHqMG9qbjO8RFsoK9KEtvhfRe+lkWU5n9riBFiJXcegLPo3K947iuKofzQ45gGWd
+         irFLCM0HgE01iIgV6oA3Vi3DXlVz/ogf9kZ1SfZnc/pKJOl+Bs3D1aWzpKj9S8HlCOkJ
+         AkNo2w5m3ON8yB/tSWt0a5T1EX3jqbxnL1c2xj2uYTz0mvBV3VjAHZ4KC9/LnHqTj6de
+         dncQ==
 X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
         d=1e100.net; s=20161025;
         h=x-gm-message-state:date:from:to:cc:subject:message-id:references
          :mime-version:content-disposition:in-reply-to:user-agent;
-        bh=OIJLGGGniVhQVtQMrqVCccoyI58LfU7rsBw2hzyYuuI=;
-        b=HLljIdornHtRj2Jq/h73nvjIlh8BtfpPrxEihiwWtQnS4jDdS1NAoMapDjfh4xArLr
-         /DfgoSd6uSIj3V7qiYCked9Romadt8VNpVYXE1/4qX3P5qk/iXbb76D6SL4mWRV2ewdl
-         mwSTD0d4LOipDaaO61D4jPKbEt1KZCQK3aPksBOBkoEiMoz0mFatmRNppfjA82vXXStq
-         UuTd7La3jwkr7Rc/KczKr7SUnpVWQh8m1F2DLTjy7/ILc/BAXpHr4ucMvWgV/69YUVtD
-         m2sNwarTuGWAshgfoo45mjly1Ln/iLLSQDnkZ+MWlbFJwUUov502higrYEIyscGh2hXu
-         DMrQ==
-X-Gm-Message-State: AOAM533gWmxRHKxyvXiY61dyft7O2mVyGHTv5la86TsHcnQEnhuH9Ddl
-        sltNZ+1M9Hljx4Udo436Qnw=
-X-Google-Smtp-Source: ABdhPJyQlteL0N/pU4eGx+adqZwehoEnOdIRonAvDPv+rO2M8s8kM/CkVEgxf3jd4rBP/JE1VfY6cg==
-X-Received: by 2002:adf:f3c6:: with SMTP id g6mr27189618wrp.340.1600238303133;
-        Tue, 15 Sep 2020 23:38:23 -0700 (PDT)
-Received: from kozik-lap ([194.230.155.124])
-        by smtp.googlemail.com with ESMTPSA id 18sm3308363wmj.28.2020.09.15.23.38.20
-        (version=TLS1_2 cipher=ECDHE-ECDSA-CHACHA20-POLY1305 bits=256/256);
-        Tue, 15 Sep 2020 23:38:22 -0700 (PDT)
-Date:   Wed, 16 Sep 2020 08:38:19 +0200
-From:   Krzysztof Kozlowski <krzk@kernel.org>
-To:     Shawn Guo <shawnguo@kernel.org>
-Cc:     Christian Gmeiner <christian.gmeiner@gmail.com>,
-        Lucas Stach <l.stach@pengutronix.de>,
-        devicetree@vger.kernel.org,
-        Matti Vaittinen <matti.vaittinen@fi.rohmeurope.com>,
-        Rob Herring <robh@kernel.org>,
-        Russell King <linux+etnaviv@armlinux.org.uk>,
-        Daniel Vetter <daniel@ffwll.ch>,
-        Sam Ravnborg <sam@ravnborg.org>,
-        Sascha Hauer <s.hauer@pengutronix.de>,
-        dri-devel@lists.freedesktop.org, etnaviv@lists.freedesktop.org,
-        linux-kernel@vger.kernel.org, linux-arm-kernel@lists.infradead.org,
-        Lee Jones <lee.jones@linaro.org>,
-        Robert Chiras <robert.chiras@nxp.com>,
-        David Airlie <airlied@linux.ie>, Li Yang <leoyang.li@nxp.com>,
-        NXP Linux Team <linux-imx@nxp.com>,
-        Rob Herring <robh+dt@kernel.org>,
-        Pengutronix Kernel Team <kernel@pengutronix.de>,
-        Fabio Estevam <festevam@gmail.com>
-Subject: Re: [PATCH 03/13] dt-bindings: arm: fsl: Fix matching Purism Librem5
- phones
-Message-ID: <20200916063819.GA6687@kozik-lap>
-References: <20200904145312.10960-1-krzk@kernel.org>
- <20200904145312.10960-4-krzk@kernel.org>
- <20200914223343.GA386301@bogus>
+        bh=dCN2AFryqy+FayqDrktseJf4Knff8xTZtC15klQo6HI=;
+        b=VazmG4Nv6pG5T0mVWMH4ZsKrA00If0rZ4P+WrWq5JOf23tUP7P7gmeVN4LDt58FUQG
+         bnApwrC5oGOzgzN5wwvRviKTXe9XbIN/aOV+Lz9ay5sNr5kEoZjTb0W7uU7zDK/uRanb
+         bbuVsKUkgnNN3D8ajwZ4s1C+6A6GIspWI7u+btz6vivHzuxgMdLvV62BILMtJwx6NXHe
+         +SX/1E/MLJQn74GAaV8H3iD1DhJ+fPMm4M2/b6r7Jx83ktKJdjzRBzb9QRU8Rz4OxHea
+         I5am/Vhydqe8va1lPHIJmew2vjPZMmpZCXgi1jnb9DbKXBlCDZNaSuu5qTQXS4GoCZzq
+         vvWQ==
+X-Gm-Message-State: AOAM531Fcmrp6yaRwSfCq3146LJ7yRiErdHVAmt/32N1zP4Nx/cdii+u
+        OIn2gBCocpuOXwKJj4OXcQNkXQ==
+X-Google-Smtp-Source: ABdhPJwEKxo7Fjj0kYT7JCpuobL1YW/w9j9hFb9Ge9no8gjp05kHeLFv593g9FA9eT2Uix1Bqu/DpQ==
+X-Received: by 2002:a63:5f8b:: with SMTP id t133mr18058069pgb.238.1600240215289;
+        Wed, 16 Sep 2020 00:10:15 -0700 (PDT)
+Received: from localhost ([122.181.54.133])
+        by smtp.gmail.com with ESMTPSA id j4sm16730075pfd.101.2020.09.16.00.10.14
+        (version=TLS1_2 cipher=ECDHE-ECDSA-AES128-GCM-SHA256 bits=128/128);
+        Wed, 16 Sep 2020 00:10:14 -0700 (PDT)
+Date:   Wed, 16 Sep 2020 12:40:01 +0530
+From:   Viresh Kumar <viresh.kumar@linaro.org>
+To:     Manivannan Sadhasivam <manivannan.sadhasivam@linaro.org>
+Cc:     rjw@rjwysocki.net, robh+dt@kernel.org, agross@kernel.org,
+        bjorn.andersson@linaro.org, amitk@kernel.org,
+        linux-pm@vger.kernel.org, devicetree@vger.kernel.org,
+        linux-kernel@vger.kernel.org, linux-arm-msm@vger.kernel.org,
+        dmitry.baryshkov@linaro.org, tdas@codeaurora.org
+Subject: Re: [PATCH v2 0/5] Add CPUFreq support for SM8250 SoC
+Message-ID: <20200916071001.vr3wxpprfrordpcj@vireshk-i7>
+References: <20200915072423.18437-1-manivannan.sadhasivam@linaro.org>
 MIME-Version: 1.0
-Content-Type: text/plain; charset=utf-8
+Content-Type: text/plain; charset=us-ascii
 Content-Disposition: inline
-In-Reply-To: <20200914223343.GA386301@bogus>
-User-Agent: Mutt/1.9.4 (2018-02-28)
+In-Reply-To: <20200915072423.18437-1-manivannan.sadhasivam@linaro.org>
+User-Agent: NeoMutt/20180716-391-311a52
 Sender: devicetree-owner@vger.kernel.org
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-On Mon, Sep 14, 2020 at 04:33:43PM -0600, Rob Herring wrote:
-> On Fri, 04 Sep 2020 16:53:02 +0200, Krzysztof Kozlowski wrote:
-> > All Purism Librem5 phones have three compatibles so they need their own
-> > entry to fix dbts_check warnings like:
-> > 
-> >   arch/arm64/boot/dts/freescale/imx8mq-librem5-r2.dt.yaml: /:
-> >     compatible: ['purism,librem5r2', 'purism,librem5', 'fsl,imx8mq'] is not valid under any of the given schemas
-> > 
-> >   arch/arm64/boot/dts/freescale/imx8mq-librem5-r2.dt.yaml: /:
-> >     compatible: ['purism,librem5r2', 'purism,librem5', 'fsl,imx8mq'] is too long
-> > 
-> > Signed-off-by: Krzysztof Kozlowski <krzk@kernel.org>
-> > ---
-> >  Documentation/devicetree/bindings/arm/fsl.yaml | 10 ++++++++--
-> >  1 file changed, 8 insertions(+), 2 deletions(-)
-> > 
+On 15-09-20, 12:54, Manivannan Sadhasivam wrote:
+> Hello,
 > 
-> Reviewed-by: Rob Herring <robh@kernel.org>
+> This series adds CPUFreq support for Qualcomm SM8250 SoC. The existing
+> qcom-hw driver is reworked to support the EPSS block on this SoC which
+> handles the CPUFreq duties.
 > 
-> I expect Shawn to pick this one up as this file gets touched a fair 
-> amount.
+> The EPSS block supports additional features for which incremental patches
+> will be submitted on top of this series!
+> 
+> Thanks,
+> Mani
+> 
+> Changes in v2:
+> 
+> * Dropped the regmap conversion patch
+> * Used "qcom,cpufreq-epss" compatible and "epss_soc_data" for dev data
+> * Switched to "of_device_get_match_data" API
+> * Collected reviews from Amit, Viresh and Bjorn
+> * Dropped patch [3/7] which got applied by Viresh
+> 
+> Bjorn Andersson (1):
+>   arm64: dts: qcom: sm8250: Add cpufreq hw node
 
-Hi Shawn,
+Applied all except this one, as it will go through ARM Soc tree.
 
-Could you pick up this patch as well?
-
-Best regards,
-Krzysztof
-
+-- 
+viresh
