@@ -2,208 +2,128 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from vger.kernel.org (vger.kernel.org [23.128.96.18])
-	by mail.lfdr.de (Postfix) with ESMTP id 10C6226C723
-	for <lists+devicetree@lfdr.de>; Wed, 16 Sep 2020 20:19:47 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTP id 08A4726C6D3
+	for <lists+devicetree@lfdr.de>; Wed, 16 Sep 2020 20:05:32 +0200 (CEST)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S1727737AbgIPSTo (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Wed, 16 Sep 2020 14:19:44 -0400
-Received: from lhrrgout.huawei.com ([185.176.76.210]:2869 "EHLO huawei.com"
-        rhost-flags-OK-OK-OK-FAIL) by vger.kernel.org with ESMTP
-        id S1727924AbgIPST2 (ORCPT <rfc822;devicetree@vger.kernel.org>);
-        Wed, 16 Sep 2020 14:19:28 -0400
-Received: from lhreml710-chm.china.huawei.com (unknown [172.18.7.107])
-        by Forcepoint Email with ESMTP id 1227132E3641F3C2C336;
-        Wed, 16 Sep 2020 15:19:29 +0100 (IST)
-Received: from localhost (10.52.126.84) by lhreml710-chm.china.huawei.com
- (10.201.108.61) with Microsoft SMTP Server (version=TLS1_2,
- cipher=TLS_ECDHE_RSA_WITH_AES_128_CBC_SHA256) id 15.1.1913.5; Wed, 16 Sep
- 2020 15:19:28 +0100
-Date:   Wed, 16 Sep 2020 15:17:51 +0100
-From:   Jonathan Cameron <Jonathan.Cameron@Huawei.com>
-To:     Joel Stanley <joel@jms.id.au>
-CC:     Jonathan Cameron <jic23@kernel.org>, <linux-iio@vger.kernel.org>,
-        "Rob Herring" <robh@kernel.org>,
-        devicetree <devicetree@vger.kernel.org>,
-        "Rick Altherr" <raltherr@google.com>,
-        Andrew Jeffery <andrew@aj.id.au>
-Subject: Re: [PATCH v2 04/20] dt-bindings:iio:adc: aspeed,ast2400 yaml
- conversion
-Message-ID: <20200916151751.00001947@Huawei.com>
-In-Reply-To: <CACPK8Xdb2um+DN9q9P7o2AppYHenYoZ607r-s36BvZET=QCwiw@mail.gmail.com>
-References: <20200909175946.395313-1-jic23@kernel.org>
-        <20200909175946.395313-5-jic23@kernel.org>
-        <CACPK8Xc+GpVVLvBdz5zHTndBeP0bd7SKLDZq7H6rDUDsd0kMdA@mail.gmail.com>
-        <20200916113625.0000641e@Huawei.com>
-        <CACPK8Xdb2um+DN9q9P7o2AppYHenYoZ607r-s36BvZET=QCwiw@mail.gmail.com>
-Organization: Huawei Technologies Research and Development (UK) Ltd.
-X-Mailer: Claws Mail 3.17.4 (GTK+ 2.24.32; i686-w64-mingw32)
+        id S1727747AbgIPSF1 (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Wed, 16 Sep 2020 14:05:27 -0400
+Received: from fllv0016.ext.ti.com ([198.47.19.142]:43126 "EHLO
+        fllv0016.ext.ti.com" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
+        with ESMTP id S1727782AbgIPSFK (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Wed, 16 Sep 2020 14:05:10 -0400
+Received: from fllv0034.itg.ti.com ([10.64.40.246])
+        by fllv0016.ext.ti.com (8.15.2/8.15.2) with ESMTP id 08GFja2L128927;
+        Wed, 16 Sep 2020 10:45:36 -0500
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=ti.com;
+        s=ti-com-17Q1; t=1600271137;
+        bh=CiYSe7E3zVW/oh1AM7cOjfgZJ00Tsipq0Ada6KWoncI=;
+        h=Date:From:To:CC:Subject:References:In-Reply-To;
+        b=WKFQaakhlqRUDRsbIVjlNFKMFEyFy+OvL7AvEbTq9PuzXKgQhFm/hIZKcbrTB34a5
+         IkIsO8GPk/pIq6UGtDmON7BZxciBTtZ8Sypver7TCivlAWry6x3h0xB2LNWDIOU1cC
+         GTxStAn/BGM/z5K1wi4L6CE2pExwUhR1QtU5v08s=
+Received: from DLEE109.ent.ti.com (dlee109.ent.ti.com [157.170.170.41])
+        by fllv0034.itg.ti.com (8.15.2/8.15.2) with ESMTPS id 08GFjarI125114
+        (version=TLSv1.2 cipher=AES256-GCM-SHA384 bits=256 verify=FAIL);
+        Wed, 16 Sep 2020 10:45:36 -0500
+Received: from DLEE111.ent.ti.com (157.170.170.22) by DLEE109.ent.ti.com
+ (157.170.170.41) with Microsoft SMTP Server (version=TLS1_2,
+ cipher=TLS_ECDHE_RSA_WITH_AES_128_CBC_SHA256_P256) id 15.1.1979.3; Wed, 16
+ Sep 2020 10:45:36 -0500
+Received: from lelv0327.itg.ti.com (10.180.67.183) by DLEE111.ent.ti.com
+ (157.170.170.22) with Microsoft SMTP Server (version=TLS1_2,
+ cipher=TLS_ECDHE_RSA_WITH_AES_128_CBC_SHA256_P256) id 15.1.1979.3 via
+ Frontend Transport; Wed, 16 Sep 2020 10:45:36 -0500
+Received: from localhost (ileax41-snat.itg.ti.com [10.172.224.153])
+        by lelv0327.itg.ti.com (8.15.2/8.15.2) with ESMTP id 08GFja9g028183;
+        Wed, 16 Sep 2020 10:45:36 -0500
+Date:   Wed, 16 Sep 2020 10:45:36 -0500
+From:   Nishanth Menon <nm@ti.com>
+To:     Peter Rosin <peda@axentia.se>
+CC:     Roger Quadros <rogerq@ti.com>, <t-kristo@ti.com>,
+        <robh+dt@kernel.org>, <linux-kernel@vger.kernel.org>,
+        <devicetree@vger.kernel.org>,
+        <linux-arm-kernel@lists.infradead.org>, <nsekhar@ti.com>,
+        <kishon@ti.com>
+Subject: Re: [PATCH v3 1/6] dt-bindings: mux-j7200-wiz: Add lane function
+ defines
+Message-ID: <20200916154536.m552ft2jzfsaeokr@akan>
+References: <20200915112038.30219-1-rogerq@ti.com>
+ <20200915112038.30219-2-rogerq@ti.com>
+ <e28e98a0-f3fc-29bd-d7a6-cc45f3a69ede@axentia.se>
 MIME-Version: 1.0
-Content-Type: text/plain; charset="US-ASCII"
-Content-Transfer-Encoding: 7bit
-X-Originating-IP: [10.52.126.84]
-X-ClientProxiedBy: lhreml707-chm.china.huawei.com (10.201.108.56) To
- lhreml710-chm.china.huawei.com (10.201.108.61)
-X-CFilter-Loop: Reflected
+Content-Type: text/plain; charset="us-ascii"
+Content-Disposition: inline
+In-Reply-To: <e28e98a0-f3fc-29bd-d7a6-cc45f3a69ede@axentia.se>
+User-Agent: NeoMutt/20171215
+X-EXCLAIMER-MD-CONFIG: e1e8a2fd-e40a-4ac6-ac9b-f7e9cc9ee180
 Sender: devicetree-owner@vger.kernel.org
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-On Wed, 16 Sep 2020 12:39:36 +0000
-Joel Stanley <joel@jms.id.au> wrote:
-
-> On Wed, 16 Sep 2020 at 10:38, Jonathan Cameron
-> <Jonathan.Cameron@huawei.com> wrote:
-> >
-> > On Thu, 10 Sep 2020 02:32:19 +0000
-> > Joel Stanley <joel@jms.id.au> wrote:
-> >  
-> > > On Wed, 9 Sep 2020 at 18:02, Jonathan Cameron <jic23@kernel.org> wrote:  
-> > > >
-> > > > From: Jonathan Cameron <Jonathan.Cameron@huawei.com>
-> > > >
-> > > > Simple txt to yaml conversion. Part of a general move to convert
-> > > > all the IIO bindings over to yaml.
-> > > >
-> > > > Signed-off-by: Jonathan Cameron <Jonathan.Cameron@huawei.com>
-> > > > Cc: Rick Altherr <raltherr@google.com>
-> > > > Cc: Joel Stanley <joel@jms.id.au>
-> > > > Cc: Andrew Jeffery <andrew@aj.id.au>  
-> > >
-> > > Acked-by: Joel Stanley <joel@jms.id.au>
-> > >
-> > >  
-> > > > ---
-> > > >  .../bindings/iio/adc/aspeed,ast2400-adc.yaml  | 54 +++++++++++++++++++
-> > > >  .../bindings/iio/adc/aspeed_adc.txt           | 22 --------
-> > > >  2 files changed, 54 insertions(+), 22 deletions(-)
-> > > >
-> > > > diff --git a/Documentation/devicetree/bindings/iio/adc/aspeed,ast2400-adc.yaml b/Documentation/devicetree/bindings/iio/adc/aspeed,ast2400-adc.yaml
-> > > > new file mode 100644
-> > > > index 000000000000..09018487d690
-> > > > --- /dev/null
-> > > > +++ b/Documentation/devicetree/bindings/iio/adc/aspeed,ast2400-adc.yaml  
-> > >
-> > > This naming doesn't make sense, as the bindings are for the ast2500
-> > > too (and they also apply for the ast2600).  
-> >
-> > Convention is to name after a supported device and not use
-> > wild cards or generic names because the chances of it going
-> > wrong in future is far too high. Will every aspeed adc look the same?
-> > Seems impossible to predict so best we can do safely is to pick a
-> > part number.  
+On 06:52-20200916, Peter Rosin wrote:
+> Hi,
 > 
-> It already supports three different generations of SoC, which I was
-> bringing to your attention. Therefore having the name '2400' is
-> already incorrect.
-
-I'm happy to change it to a specific part number of your choice but you
-have to chose one.  The file name is not a list of all the parts supported.
-
-There are bindings that attach to hundreds of different part numbers but the
-file is named after a specific one.  Normally the first part supported
-is the one chosen (because the binding is normally written at that time).
-
-Jonathan
-
+> Sorry for the delay.
 > 
-> >
-> > There are enormous numbers of examples of this in dt bindings and
-> > for that matter driver naming.
-> >
-> > Thanks,
-> >
-> > Jonathan
-> >
-> >  
-> > >  
-> > > > @@ -0,0 +1,54 @@
-> > > > +# SPDX-License-Identifier: (GPL-2.0 OR BSD-2-Clause)
-> > > > +%YAML 1.2
-> > > > +---
-> > > > +$id: http://devicetree.org/schemas/iio/adc/aspeed,ast2400-adc.yaml#
-> > > > +$schema: http://devicetree.org/meta-schemas/core.yaml#
-> > > > +
-> > > > +title: ADC that forms part of an ASPEED server management processor.
-> > > > +
-> > > > +maintainers:
-> > > > +  - Rick Altherr <raltherr@google.com>
-> > > > +
-> > > > +description:
-> > > > +  This device is a 10-bit converter for 16 voltage channels.  All inputs are
-> > > > +  single ended.
-> > > > +
-> > > > +properties:
-> > > > +  compatible:
-> > > > +    enum:
-> > > > +      - aspeed,ast2400-adc
-> > > > +      - aspeed,ast2500-adc
-> > > > +
-> > > > +  reg:
-> > > > +    maxItems: 1
-> > > > +
-> > > > +  clocks:
-> > > > +    description:
-> > > > +      Input clock used to derive the sample clock. Expected to be the
-> > > > +      SoC's APB clock.
-> > > > +
-> > > > +  resets: true
-> > > > +
-> > > > +  "#io-channel-cells":
-> > > > +    const: 1
-> > > > +
-> > > > +required:
-> > > > +  - compatible
-> > > > +  - reg
-> > > > +  - clocks
-> > > > +  - resets
-> > > > +  - "#io-channel-cells"
-> > > > +
-> > > > +additionalProperties: false
-> > > > +
-> > > > +examples:
-> > > > +  - |
-> > > > +    #include <dt-bindings/clock/aspeed-clock.h>
-> > > > +    adc@1e6e9000 {
-> > > > +        compatible = "aspeed,ast2400-adc";
-> > > > +        reg = <0x1e6e9000 0xb0>;
-> > > > +        clocks = <&syscon ASPEED_CLK_APB>;
-> > > > +        resets = <&syscon ASPEED_RESET_ADC>;
-> > > > +        #io-channel-cells = <1>;
-> > > > +    };
-> > > > +...
-> > > > diff --git a/Documentation/devicetree/bindings/iio/adc/aspeed_adc.txt b/Documentation/devicetree/bindings/iio/adc/aspeed_adc.txt
-> > > > deleted file mode 100644
-> > > > index 034fc2ba100e..000000000000
-> > > > --- a/Documentation/devicetree/bindings/iio/adc/aspeed_adc.txt
-> > > > +++ /dev/null
-> > > > @@ -1,22 +0,0 @@
-> > > > -Aspeed ADC
-> > > > -
-> > > > -This device is a 10-bit converter for 16 voltage channels.  All inputs are
-> > > > -single ended.
-> > > > -
-> > > > -Required properties:
-> > > > -- compatible: Should be "aspeed,ast2400-adc" or "aspeed,ast2500-adc"
-> > > > -- reg: memory window mapping address and length
-> > > > -- clocks: Input clock used to derive the sample clock. Expected to be the
-> > > > -          SoC's APB clock.
-> > > > -- resets: Reset controller phandle
-> > > > -- #io-channel-cells: Must be set to <1> to indicate channels are selected
-> > > > -                     by index.
-> > > > -
-> > > > -Example:
-> > > > -       adc@1e6e9000 {
-> > > > -               compatible = "aspeed,ast2400-adc";
-> > > > -               reg = <0x1e6e9000 0xb0>;
-> > > > -               clocks = <&syscon ASPEED_CLK_APB>;
-> > > > -               resets = <&syscon ASPEED_RESET_ADC>;
-> > > > -               #io-channel-cells = <1>;
-> > > > -       };
-> > > > --
-> > > > 2.28.0
-> > > >  
-> >
-> >  
+> On 2020-09-15 13:20, Roger Quadros wrote:
+> > Each SERDES lane mux can select upto 4 different IPs.
+> > There are 4 lanes in each J7200 SERDES. Define all
+> > the possible functions in this file.
+> > 
+> > Cc: Peter Rosin <peda@axentia.se>
+> > Signed-off-by: Roger Quadros <rogerq@ti.com>
+> > ---
+> >  include/dt-bindings/mux/mux-j7200-wiz.h | 29 +++++++++++++++++++++++++
+> >  1 file changed, 29 insertions(+)
+> >  create mode 100644 include/dt-bindings/mux/mux-j7200-wiz.h
+> > 
+> > diff --git a/include/dt-bindings/mux/mux-j7200-wiz.h b/include/dt-bindings/mux/mux-j7200-wiz.h
+> > new file mode 100644
+> > index 000000000000..b091b1185a36
+> > --- /dev/null
+> > +++ b/include/dt-bindings/mux/mux-j7200-wiz.h
+> > @@ -0,0 +1,29 @@
+> > +/* SPDX-License-Identifier: GPL-2.0 */
+> > +/*
+> > + * This header provides constants for J7200 WIZ.
+> > + */
+> > +
+> > +#ifndef _DT_BINDINGS_J7200_WIZ
+> > +#define _DT_BINDINGS_J7200_WIZ
+> > +
+> > +#define SERDES0_LANE0_QSGMII_LANE3	0x0
+> > +#define SERDES0_LANE0_PCIE1_LANE0	0x1
+> > +#define SERDES0_LANE0_IP3_UNUSED	0x2
+> > +#define SERDES0_LANE0_IP4_UNUSED	0x3
+> > +
+> > +#define SERDES0_LANE1_QSGMII_LANE4	0x0
+> > +#define SERDES0_LANE1_PCIE1_LANE1	0x1
+> > +#define SERDES0_LANE1_IP3_UNUSED	0x2
+> > +#define SERDES0_LANE1_IP4_UNUSED	0x3
+> > +
+> > +#define SERDES0_LANE2_QSGMII_LANE1	0x0
+> > +#define SERDES0_LANE2_PCIE1_LANE2	0x1
+> > +#define SERDES0_LANE2_IP3_UNUSED	0x2
+> > +#define SERDES0_LANE2_IP4_UNUSED	0x3
+> > +
+> > +#define SERDES0_LANE3_QSGMII_LANE2	0x0
+> > +#define SERDES0_LANE3_PCIE1_LANE3	0x1
+> > +#define SERDES0_LANE3_USB		0x2
+> > +#define SERDES0_LANE3_IP4_UNUSED	0x3
+> > +
+> > +#endif /* _DT_BINDINGS_J7200_WIZ */
+> 
+> Should not the defines start with J7200_WIZ? SERDES0 seems like a too
+> generic prefix, at least to me.
 
+Thanks, good point. I am not sure if WIZ should even be used.. It is
+a TI internal prefix for various serdes solutions, but I agree that
+SERDES0 is too generic a terminology. That said, we should cleanup
+include/dt-bindings/mux/mux-j721e-wiz.h as well, prior to introducing
+j7200 changes.
 
+-- 
+Regards,
+Nishanth Menon
+Key (0xDDB5849D1736249D) / Fingerprint: F8A2 8693 54EB 8232 17A3  1A34 DDB5 849D 1736 249D
