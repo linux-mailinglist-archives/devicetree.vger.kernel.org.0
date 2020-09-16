@@ -2,178 +2,176 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from vger.kernel.org (vger.kernel.org [23.128.96.18])
-	by mail.lfdr.de (Postfix) with ESMTP id E988A26BA79
-	for <lists+devicetree@lfdr.de>; Wed, 16 Sep 2020 05:04:28 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTP id 5880126BA7F
+	for <lists+devicetree@lfdr.de>; Wed, 16 Sep 2020 05:06:04 +0200 (CEST)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S1726119AbgIPDE1 (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Tue, 15 Sep 2020 23:04:27 -0400
-Received: from lindbergh.monkeyblade.net ([23.128.96.19]:39066 "EHLO
-        lindbergh.monkeyblade.net" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S1726093AbgIPDE1 (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Tue, 15 Sep 2020 23:04:27 -0400
-Received: from mail-ot1-x341.google.com (mail-ot1-x341.google.com [IPv6:2607:f8b0:4864:20::341])
-        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id D46DFC06174A;
-        Tue, 15 Sep 2020 20:04:26 -0700 (PDT)
-Received: by mail-ot1-x341.google.com with SMTP id u25so5317095otq.6;
-        Tue, 15 Sep 2020 20:04:26 -0700 (PDT)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=gmail.com; s=20161025;
-        h=sender:subject:to:references:from:autocrypt:message-id:date
-         :user-agent:mime-version:in-reply-to:content-language
-         :content-transfer-encoding;
-        bh=v49V7vbkYoTBj10sWwziFhYTHsbTXwr8gPL6z6VrHDY=;
-        b=NyKoj3h+7Y+cgmDT9PEMxObBB5K6BnXXaQ7+DL6wHS+lguPyCCZaY8Vzk6/sS5NFlb
-         PnpF0hKSqFzMg6k0Ba+MStsE7ITCuMtOE3AInJL20J3szJm7aidFRxKPOjbAacTWvcf5
-         AmT7sqMkNHr96b0TInLOy+ha/29mpZRibe7wfCg7REVCAU611TETSjJs770FNkSDymzi
-         r7m1dlH87F4c78c0xmi9meN2vgTong0pXI5jVbKoN0+ziJpwgCcitB/wOCZbQFFtyMTM
-         f1mrlau1DZ2n9YxGrhLHPTjgGOd9s4cTT+bsTf4dxZervXwoIEo+dg0igtx00wNII+21
-         jZgw==
-X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=1e100.net; s=20161025;
-        h=x-gm-message-state:sender:subject:to:references:from:autocrypt
-         :message-id:date:user-agent:mime-version:in-reply-to
-         :content-language:content-transfer-encoding;
-        bh=v49V7vbkYoTBj10sWwziFhYTHsbTXwr8gPL6z6VrHDY=;
-        b=PmVfuz9BI9C+InG9mKEu1hC0H2rKYXZYjUHgPBMMAvW4FeknuB41vYs0K6ZCc2V1Qi
-         tS+TW+0YghwJCb+YHC0U46fihL/H+NzkMWDjJ5lXWKgjTzkdnEVOhgWdTX4igR8P2k7w
-         AGiEMRWP7DD19O2/SWhqdpApkOjWriGJRQStZqpLbPY/6XxaoOyve0q2uSmGpFPrsnv2
-         EiBF9xVDjVvZD7+QK/zpOFwKP/jzeX2dY0vXgsUr/YLokzU/8RYiQv49NTG78ujk7eVZ
-         Ph4TYickCxKtvKNO8jHLezCXDq+MmVRRbDMMaAwBbu0+WG1WqVM1cookqNaGbo/Yo+aQ
-         zrdQ==
-X-Gm-Message-State: AOAM5338MNBlyrwKMXfXmNsWGTrKO4zZa9d8J4bq3vhEayBGMZghtreB
-        /4NKKLNlGxoOXY814Se35pw=
-X-Google-Smtp-Source: ABdhPJzMFc8bt+miVOUHkbe431Dux/uc6vPnQFzvSn+2Pft9G/cUr0K3UZVP4OqOL0NM3l2/4d5Z7Q==
-X-Received: by 2002:a9d:5e8a:: with SMTP id f10mr14494565otl.242.1600225466292;
-        Tue, 15 Sep 2020 20:04:26 -0700 (PDT)
-Received: from server.roeck-us.net ([2600:1700:e321:62f0:329c:23ff:fee3:9d7c])
-        by smtp.gmail.com with ESMTPSA id j1sm8097451oig.45.2020.09.15.20.04.25
-        (version=TLS1_3 cipher=TLS_AES_128_GCM_SHA256 bits=128/128);
-        Tue, 15 Sep 2020 20:04:25 -0700 (PDT)
-Subject: Re: [PATCH] dt-bindings: hwmon: max20730: adding device tree doc for
- max20730
-To:     Chu Lin <linchuyuan@google.com>, jdelvare@suse.com,
-        robh+dt@kernel.org, linux-hwmon@vger.kernel.org,
-        devicetree@vger.kernel.org, linux-kernel@vger.kernel.org,
-        qiongwang@google.com, zhongqil@google.com, jasonling@google.com,
-        belgaied@google.com
-References: <20200910170638.1985729-1-linchuyuan@google.com>
-From:   Guenter Roeck <linux@roeck-us.net>
-Autocrypt: addr=linux@roeck-us.net; keydata=
- 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
- mDW4+i+XlNFUPUYMrIKi9joBhu18ssf5i5Q=
-Message-ID: <6059ab76-02ff-0ab6-15bf-e34026a2f855@roeck-us.net>
-Date:   Tue, 15 Sep 2020 20:04:24 -0700
+        id S1726069AbgIPDGC (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Tue, 15 Sep 2020 23:06:02 -0400
+Received: from lelv0142.ext.ti.com ([198.47.23.249]:57750 "EHLO
+        lelv0142.ext.ti.com" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
+        with ESMTP id S1726023AbgIPDGA (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Tue, 15 Sep 2020 23:06:00 -0400
+Received: from fllv0034.itg.ti.com ([10.64.40.246])
+        by lelv0142.ext.ti.com (8.15.2/8.15.2) with ESMTP id 08G35tj5016117;
+        Tue, 15 Sep 2020 22:05:55 -0500
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=ti.com;
+        s=ti-com-17Q1; t=1600225555;
+        bh=+mw4dZ7Q6EFWL1p0anBoew3DexgHj4u+eruxZMbJXZs=;
+        h=Subject:To:CC:References:From:Date:In-Reply-To;
+        b=E5u3DSHgPErv6jCxC8rTyef29u6nM94suaZ30ImcUVmz8nNwQlGcz64ZnmcvlCnWY
+         agwsmjonjqLhbU/UhsoTvSNCi1APRA1yzxvFAS0u9BUAQZZAExVwIuqi2f+FGNWfj2
+         iBSl0qztnkhzYGtM3pwuJxmKb8zoEhHfkaIQGzs0=
+Received: from DLEE112.ent.ti.com (dlee112.ent.ti.com [157.170.170.23])
+        by fllv0034.itg.ti.com (8.15.2/8.15.2) with ESMTPS id 08G35td9017529
+        (version=TLSv1.2 cipher=AES256-GCM-SHA384 bits=256 verify=FAIL);
+        Tue, 15 Sep 2020 22:05:55 -0500
+Received: from DLEE113.ent.ti.com (157.170.170.24) by DLEE112.ent.ti.com
+ (157.170.170.23) with Microsoft SMTP Server (version=TLS1_2,
+ cipher=TLS_ECDHE_RSA_WITH_AES_128_CBC_SHA256_P256) id 15.1.1979.3; Tue, 15
+ Sep 2020 22:05:54 -0500
+Received: from fllv0039.itg.ti.com (10.64.41.19) by DLEE113.ent.ti.com
+ (157.170.170.24) with Microsoft SMTP Server (version=TLS1_2,
+ cipher=TLS_ECDHE_RSA_WITH_AES_128_CBC_SHA256_P256) id 15.1.1979.3 via
+ Frontend Transport; Tue, 15 Sep 2020 22:05:54 -0500
+Received: from [10.250.66.210] (ileax41-snat.itg.ti.com [10.172.224.153])
+        by fllv0039.itg.ti.com (8.15.2/8.15.2) with ESMTP id 08G35srA127593;
+        Tue, 15 Sep 2020 22:05:54 -0500
+Subject: Re: [PATCH v4 5/5] arm64: dts: ti: Add support for J7200 Common
+ Processor Board
+To:     Nishanth Menon <nm@ti.com>
+CC:     Lokesh Vutla <lokeshvutla@ti.com>, Tero Kristo <t-kristo@ti.com>,
+        Rob Herring <robh+dt@kernel.org>,
+        Linux ARM Mailing List <linux-arm-kernel@lists.infradead.org>,
+        Device Tree Mailing List <devicetree@vger.kernel.org>,
+        Sekhar Nori <nsekhar@ti.com>,
+        Grygorii Strashko <grygorii.strashko@ti.com>,
+        Kishon Vijay Abraham I <kishon@ti.com>
+References: <20200914162231.2535-1-lokeshvutla@ti.com>
+ <20200914162231.2535-6-lokeshvutla@ti.com>
+ <7d7f3ba2-d687-a90b-e4e9-6bec835e093f@ti.com>
+ <20200916011552.armvw6s7jxr4gxca@akan>
+From:   Suman Anna <s-anna@ti.com>
+Message-ID: <5494f50f-62d9-ad3e-f30a-95a5cd4bf4fc@ti.com>
+Date:   Tue, 15 Sep 2020 22:05:54 -0500
 User-Agent: Mozilla/5.0 (X11; Linux x86_64; rv:68.0) Gecko/20100101
  Thunderbird/68.10.0
 MIME-Version: 1.0
-In-Reply-To: <20200910170638.1985729-1-linchuyuan@google.com>
-Content-Type: text/plain; charset=utf-8
+In-Reply-To: <20200916011552.armvw6s7jxr4gxca@akan>
+Content-Type: text/plain; charset="utf-8"
 Content-Language: en-US
 Content-Transfer-Encoding: 7bit
+X-EXCLAIMER-MD-CONFIG: e1e8a2fd-e40a-4ac6-ac9b-f7e9cc9ee180
 Sender: devicetree-owner@vger.kernel.org
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-On 9/10/20 10:06 AM, Chu Lin wrote:
-> Testing:
-> make dt_binding_check
+On 9/15/20 8:15 PM, Nishanth Menon wrote:
+> On 10:33-20200915, Suman Anna wrote:
+>> On 9/14/20 11:22 AM, Lokesh Vutla wrote:
+>>> Add support for J7200 Common Processor Board.
+>>> The EVM architecture is very similar to J721E as follows:
+>>>
+>>> +------------------------------------------------------+
+>>> |   +-------------------------------------------+      |
+>>> |   |                                           |      |
+>>> |   |        Add-on Card 1 Options              |      |
+>>> |   |                                           |      |
+>>> |   +-------------------------------------------+      |
+>>> |                                                      |
+>>> |                                                      |
+>>> |                     +-------------------+            |
+>>> |                     |                   |            |
+>>> |                     |   SOM             |            |
+>>> |  +--------------+   |                   |            |
+>>> |  |              |   |                   |            |
+>>> |  |  Add-on      |   +-------------------+            |
+>>> |  |  Card 2      |                                    |    Power Supply
+>>> |  |  Options     |                                    |    |
+>>> |  |              |                                    |    |
+>>> |  +--------------+                                    | <---
+>>> +------------------------------------------------------+
+>>>                                 Common Processor Board
+>>>
+>>> Common Processor board is the baseboard that has most of the actual
+>>> connectors, power supply etc. A SOM (System on Module) is plugged on
+>>> to the common processor board and this contains the SoC, PMIC, DDR and
+>>> basic high speed components necessary for functionality.
+>>>
+>>> Note:
+>>> * The minimum configuration required to boot up the board is System On
+>>>   Module(SOM) + Common Processor Board.
+>>> * Since there is just a single SOM and Common Processor Board, we are
+>>>   maintaining common processor board as the base dts and SOM as the dtsi
+>>>   that we include. In the future as more SOM's appear, we should move
+>>>   common processor board as a dtsi and include configurations as dts.
+>>> * All daughter cards beyond the basic boards shall be maintained as
+>>>   overlays.
+>>>
+>>> Reviewed-by: Grygorii Strashko <grygorii.strashko@ti.com>
+>>> Signed-off-by: Lokesh Vutla <lokeshvutla@ti.com>
+>>> Signed-off-by: Peter Ujfalusi <peter.ujfalusi@ti.com>
+>>> ---
+>>>  arch/arm64/boot/dts/ti/Makefile               |  2 +
+>>>  .../dts/ti/k3-j7200-common-proc-board.dts     | 64 +++++++++++++++++++
+>>>  arch/arm64/boot/dts/ti/k3-j7200-som-p0.dtsi   | 29 +++++++++
+>>>  3 files changed, 95 insertions(+)
+>>>  create mode 100644 arch/arm64/boot/dts/ti/k3-j7200-common-proc-board.dts
+>>>  create mode 100644 arch/arm64/boot/dts/ti/k3-j7200-som-p0.dtsi
+>>>
+>>> diff --git a/arch/arm64/boot/dts/ti/Makefile b/arch/arm64/boot/dts/ti/Makefile
+>>> index 7f28be62b8da..65506f21ba30 100644
+>>> --- a/arch/arm64/boot/dts/ti/Makefile
+>>> +++ b/arch/arm64/boot/dts/ti/Makefile
+>>> @@ -9,3 +9,5 @@
+>>>  dtb-$(CONFIG_ARCH_K3) += k3-am654-base-board.dtb
+>>>  
+>>>  dtb-$(CONFIG_ARCH_K3) += k3-j721e-common-proc-board.dtb
+>>> +
+>>> +dtb-$(CONFIG_ARCH_K3) += k3-j7200-common-proc-board.dtb
+>>> diff --git a/arch/arm64/boot/dts/ti/k3-j7200-common-proc-board.dts b/arch/arm64/boot/dts/ti/k3-j7200-common-proc-board.dts
+>>> new file mode 100644
+>>> index 000000000000..e27069317c4e
+>>> --- /dev/null
+>>> +++ b/arch/arm64/boot/dts/ti/k3-j7200-common-proc-board.dts
+>>> @@ -0,0 +1,64 @@
+>>> +// SPDX-License-Identifier: GPL-2.0
+>>> +/*
+>>> + * Copyright (C) 2020 Texas Instruments Incorporated - https://www.ti.com/
+>>> + */
+>>> +
+>>> +/dts-v1/;
+>>> +
+>>> +#include "k3-j7200-som-p0.dtsi"
+>>> +
+>>> +/ {
+>>> +	chosen {
+>>> +		stdout-path = "serial2:115200n8";
+>>> +		bootargs = "console=ttyS2,115200n8 earlycon=ns16550a,mmio32,0x02800000";
+>>> +	};
+>>> +};
+>>> +
+>>> +&wkup_uart0 {
+>>> +	/* Wakeup UART is used by System firmware */
+>>> +	status = "disabled";
+>>> +};
+>>> +
+>>> +&main_uart0 {
+>>> +	power-domains = <&k3_pds 146 TI_SCI_PD_SHARED>;
+>>
+>> Perhaps a comment here to explain why this is being overwritten to use
+>> PD_SHARED. I don't see anything in the Changelog either.
+> Shared with ATF on this platform -> I can add this comment on applying.
+>>
+>> Otherwise, looks good.
+> 
+> Would that be a reviewed-by?
 > 
 
-This isn't really an appropriate patch description.
+Yes, with the comment added,
 
-> Signed-off-by: Chu Lin <linchuyuan@google.com>
-> ---
->  .../devicetree/bindings/hwmon/max20730.txt    | 23 +++++++++++++++++++
+Reviewed-by: Suman Anna <s-anna@ti.com>
 
-AFAIK this needs to be written as .yaml file.
-
-Guenter
-
->  MAINTAINERS                                   |  1 +
->  2 files changed, 24 insertions(+)
->  create mode 100644 Documentation/devicetree/bindings/hwmon/max20730.txt
-> 
-> diff --git a/Documentation/devicetree/bindings/hwmon/max20730.txt b/Documentation/devicetree/bindings/hwmon/max20730.txt
-> new file mode 100644
-> index 000000000000..3afb42b04567
-> --- /dev/null
-> +++ b/Documentation/devicetree/bindings/hwmon/max20730.txt
-> @@ -0,0 +1,23 @@
-> +max20730 properties
-> +
-> +Required properties:
-> +- compatible: Must be one of the supported compatible strings:
-> +	"maxim,max20730" for max20730
-> +	"maxim,max20734" for max20734
-> +	"maxim,max20743" for max20743
-> +- reg: I2C address
-> +
-> +Optional properties:
-> +
-> +- vout-voltage-divider
-> +	Resistance of the vout voltage divider.
-> +	Two numbers, the first number is the output resistor,
-> +	the second number is the total resistance.
-> +
-> +Example:
-> +
-> +max20730@10 {
-> +	compatible = "maxim,max20730";
-> +	reg = <0x10>;
-> +	vout-voltage-divider = <1000 2000>;
-> +};
-> diff --git a/MAINTAINERS b/MAINTAINERS
-> index 0a6ac3f00ed5..a04bf34a65b8 100644
-> --- a/MAINTAINERS
-> +++ b/MAINTAINERS
-> @@ -12371,6 +12371,7 @@ W:	http://www.roeck-us.net/linux/drivers/
->  T:	git git://git.kernel.org/pub/scm/linux/kernel/git/groeck/linux-staging.git
->  S:	Maintained
->  F:	Documentation/devicetree/bindings/hwmon/ibm,cffps1.txt
-> +F:	Documentation/devicetree/bindings/hwmon/max20730.txt
->  F:	Documentation/devicetree/bindings/hwmon/max31785.txt
->  F:	Documentation/devicetree/bindings/hwmon/ltc2978.txt
->  F:	Documentation/hwmon/adm1275
-> 
+regards
+Suman
 
