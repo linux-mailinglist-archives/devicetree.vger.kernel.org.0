@@ -2,88 +2,60 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from vger.kernel.org (vger.kernel.org [23.128.96.18])
-	by mail.lfdr.de (Postfix) with ESMTP id 2152B26C4E1
-	for <lists+devicetree@lfdr.de>; Wed, 16 Sep 2020 18:09:47 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTP id D719D26C55F
+	for <lists+devicetree@lfdr.de>; Wed, 16 Sep 2020 18:53:05 +0200 (CEST)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S1726310AbgIPQJc (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Wed, 16 Sep 2020 12:09:32 -0400
-Received: from mail.kernel.org ([198.145.29.99]:33988 "EHLO mail.kernel.org"
-        rhost-flags-OK-OK-OK-OK) by vger.kernel.org with ESMTP
-        id S1726388AbgIPQIb (ORCPT <rfc822;devicetree@vger.kernel.org>);
-        Wed, 16 Sep 2020 12:08:31 -0400
-Received: from kozik-lap.mshome.net (unknown [194.230.155.191])
-        (using TLSv1.2 with cipher ECDHE-RSA-AES128-GCM-SHA256 (128/128 bits))
-        (No client certificate requested)
-        by mail.kernel.org (Postfix) with ESMTPSA id EC99D224BE;
-        Wed, 16 Sep 2020 15:59:09 +0000 (UTC)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=kernel.org;
-        s=default; t=1600271956;
-        bh=nvskr1+D9obXaMbDfZyLjyzIPbiTAGWd9iB4g/+Kc0U=;
-        h=From:To:Cc:Subject:Date:In-Reply-To:References:From;
-        b=YTeS3iuxG8yxC4hEj6utIjUJUoYa1OQMcJ+8zesYwSyOeN4OONfNJWUOjPI6x6u1K
-         Op+AxGXSn8ZFmnLXPw+XRqaU+dopclTQpu3KAH6HzRuDFk2i7EDl6RtvOlP1/G4a8v
-         0LGrjW5uqieq+VfZoTXzlj9T5cGhZrws9DM9fz/I=
-From:   Krzysztof Kozlowski <krzk@kernel.org>
-To:     Linus Walleij <linus.walleij@linaro.org>,
-        Bartosz Golaszewski <bgolaszewski@baylibre.com>,
-        Rob Herring <robh+dt@kernel.org>,
-        =?UTF-8?q?Beno=C3=AEt=20Cousson?= <bcousson@baylibre.com>,
-        Tony Lindgren <tony@atomide.com>,
-        Jason Cooper <jason@lakedaemon.net>,
-        Andrew Lunn <andrew@lunn.ch>,
-        Gregory Clement <gregory.clement@bootlin.com>,
-        Sebastian Hesselbarth <sebastian.hesselbarth@gmail.com>,
-        Russell King <linux@armlinux.org.uk>,
-        Joel Stanley <joel@jms.id.au>,
-        Andrew Jeffery <andrew@aj.id.au>,
-        Shawn Guo <shawnguo@kernel.org>,
-        Sascha Hauer <s.hauer@pengutronix.de>,
-        Pengutronix Kernel Team <kernel@pengutronix.de>,
-        Fabio Estevam <festevam@gmail.com>,
-        NXP Linux Team <linux-imx@nxp.com>,
-        Matthias Brugger <matthias.bgg@gmail.com>,
-        Geert Uytterhoeven <geert+renesas@glider.be>,
-        Magnus Damm <magnus.damm@gmail.com>,
-        Tero Kristo <t-kristo@ti.com>, Nishanth Menon <nm@ti.com>,
-        Michal Simek <michal.simek@xilinx.com>,
-        linux-gpio@vger.kernel.org, devicetree@vger.kernel.org,
-        linux-kernel@vger.kernel.org, linux-omap@vger.kernel.org,
-        linux-arm-kernel@lists.infradead.org,
-        linux-aspeed@lists.ozlabs.org, linux-mediatek@lists.infradead.org,
-        linux-renesas-soc@vger.kernel.org
-Cc:     Krzysztof Kozlowski <krzk@kernel.org>
-Subject: [PATCH v3 13/15] ARM: dts: dove: fix PCA95xx GPIO expander properties on A510
-Date:   Wed, 16 Sep 2020 17:57:13 +0200
-Message-Id: <20200916155715.21009-14-krzk@kernel.org>
-X-Mailer: git-send-email 2.17.1
-In-Reply-To: <20200916155715.21009-1-krzk@kernel.org>
-References: <20200916155715.21009-1-krzk@kernel.org>
+        id S1726583AbgIPQw7 (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Wed, 16 Sep 2020 12:52:59 -0400
+Received: from lelv0143.ext.ti.com ([198.47.23.248]:56564 "EHLO
+        lelv0143.ext.ti.com" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
+        with ESMTP id S1726526AbgIPQwW (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Wed, 16 Sep 2020 12:52:22 -0400
+Received: from fllv0034.itg.ti.com ([10.64.40.246])
+        by lelv0143.ext.ti.com (8.15.2/8.15.2) with ESMTP id 08GCZrtR071777;
+        Wed, 16 Sep 2020 07:35:53 -0500
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=ti.com;
+        s=ti-com-17Q1; t=1600259753;
+        bh=1Da8xmW4YCbtBzyHtH9tA0Z9gjhWVtmOrMv90+ULU+Y=;
+        h=From:To:CC:Subject:Date:In-Reply-To:References;
+        b=GzTUH0486+ObN4fqS1rw2oZoDyi4ZgwmzYmWiVaCIkflaSiApb/fh8/g9zzgRLJ+k
+         2CG6/eWFf83xr8nYcZ1gFC/NuROFBb1RmywxJzo+rcB3vJs/pRyzSUnutun5gMUO1c
+         dJWM51TOCvrqx6stCUUYux8blGmZjFASGjqcu5RI=
+Received: from DLEE105.ent.ti.com (dlee105.ent.ti.com [157.170.170.35])
+        by fllv0034.itg.ti.com (8.15.2/8.15.2) with ESMTPS id 08GCZrQe085606
+        (version=TLSv1.2 cipher=AES256-GCM-SHA384 bits=256 verify=FAIL);
+        Wed, 16 Sep 2020 07:35:53 -0500
+Received: from DLEE106.ent.ti.com (157.170.170.36) by DLEE105.ent.ti.com
+ (157.170.170.35) with Microsoft SMTP Server (version=TLS1_2,
+ cipher=TLS_ECDHE_RSA_WITH_AES_128_CBC_SHA256_P256) id 15.1.1979.3; Wed, 16
+ Sep 2020 07:35:53 -0500
+Received: from fllv0039.itg.ti.com (10.64.41.19) by DLEE106.ent.ti.com
+ (157.170.170.36) with Microsoft SMTP Server (version=TLS1_2,
+ cipher=TLS_ECDHE_RSA_WITH_AES_128_CBC_SHA256_P256) id 15.1.1979.3 via
+ Frontend Transport; Wed, 16 Sep 2020 07:35:52 -0500
+Received: from localhost (ileax41-snat.itg.ti.com [10.172.224.153])
+        by fllv0039.itg.ti.com (8.15.2/8.15.2) with ESMTP id 08GCZrWa095396;
+        Wed, 16 Sep 2020 07:35:53 -0500
+From:   Nishanth Menon <nm@ti.com>
+To:     Rob Herring <robh+dt@kernel.org>,
+        Kishon Vijay Abraham I <kishon@ti.com>,
+        Tero Kristo <t-kristo@ti.com>
+CC:     Nishanth Menon <nm@ti.com>, <linux-kernel@vger.kernel.org>,
+        <devicetree@vger.kernel.org>,
+        <linux-arm-kernel@lists.infradead.org>
+Subject: Re: [PATCH v2 0/2] Add DT to get PCIe working in J721E SoC
+Date:   Wed, 16 Sep 2020 07:35:51 -0500
+Message-ID: <160025957194.1798.2528791511684340016.b4-ty@ti.com>
+X-Mailer: git-send-email 2.28.0
+In-Reply-To: <20200914152115.1788-1-kishon@ti.com>
+References: <20200914152115.1788-1-kishon@ti.com>
+MIME-Version: 1.0
+Content-Transfer-Encoding: 8bit
+Content-Type: text/plain
+X-EXCLAIMER-MD-CONFIG: e1e8a2fd-e40a-4ac6-ac9b-f7e9cc9ee180
 Sender: devicetree-owner@vger.kernel.org
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-The PCA95xx GPIO expander requires GPIO controller properties to operate
-properly.
-
-Signed-off-by: Krzysztof Kozlowski <krzk@kernel.org>
-Reviewed-by: Linus Walleij <linus.walleij@linaro.org>
----
- arch/arm/boot/dts/dove-sbc-a510.dts | 1 +
- 1 file changed, 1 insertion(+)
-
-diff --git a/arch/arm/boot/dts/dove-sbc-a510.dts b/arch/arm/boot/dts/dove-sbc-a510.dts
-index 2bb85a9b7614..df021f9b0117 100644
---- a/arch/arm/boot/dts/dove-sbc-a510.dts
-+++ b/arch/arm/boot/dts/dove-sbc-a510.dts
-@@ -143,6 +143,7 @@
- 	gpio_ext: gpio@20 {
- 		compatible = "nxp,pca9555";
- 		reg = <0x20>;
-+		gpio-controller;
- 		#gpio-cells = <2>;
- 	};
- };
--- 
-2.17.1
 
