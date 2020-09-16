@@ -2,27 +2,27 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from vger.kernel.org (vger.kernel.org [23.128.96.18])
-	by mail.lfdr.de (Postfix) with ESMTP id E0AB126C4EB
-	for <lists+devicetree@lfdr.de>; Wed, 16 Sep 2020 18:12:22 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTP id D282726C4E9
+	for <lists+devicetree@lfdr.de>; Wed, 16 Sep 2020 18:11:48 +0200 (CEST)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S1726180AbgIPQLR (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Wed, 16 Sep 2020 12:11:17 -0400
-Received: from mail.kernel.org ([198.145.29.99]:33798 "EHLO mail.kernel.org"
+        id S1726370AbgIPQLT (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Wed, 16 Sep 2020 12:11:19 -0400
+Received: from mail.kernel.org ([198.145.29.99]:33846 "EHLO mail.kernel.org"
         rhost-flags-OK-OK-OK-OK) by vger.kernel.org with ESMTP
-        id S1726444AbgIPQHv (ORCPT <rfc822;devicetree@vger.kernel.org>);
-        Wed, 16 Sep 2020 12:07:51 -0400
+        id S1726433AbgIPQHz (ORCPT <rfc822;devicetree@vger.kernel.org>);
+        Wed, 16 Sep 2020 12:07:55 -0400
 Received: from kozik-lap.mshome.net (unknown [194.230.155.191])
         (using TLSv1.2 with cipher ECDHE-RSA-AES128-GCM-SHA256 (128/128 bits))
         (No client certificate requested)
-        by mail.kernel.org (Postfix) with ESMTPSA id 5F04B2245D;
-        Wed, 16 Sep 2020 15:58:29 +0000 (UTC)
+        by mail.kernel.org (Postfix) with ESMTPSA id 6614422470;
+        Wed, 16 Sep 2020 15:58:36 +0000 (UTC)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=kernel.org;
-        s=default; t=1600271915;
-        bh=wyPmzC4NHbsZu5CEn9G5Z8eCB/nHoC/xFKB5B2bqx3c=;
+        s=default; t=1600271923;
+        bh=z54NT2te4cQqCwvnxGuhIvp2W2PqIQwX8Rfrwo03n6k=;
         h=From:To:Cc:Subject:Date:In-Reply-To:References:From;
-        b=kFmrLMvHie1rZdTr2MQXMcBAEJNhP9kC7phlzQSPUc6Rbu1gF/gl9XyoAFvVHOYcz
-         YKDErYBxNoI8NdNaXX4AS5DmlalS5OaBdgI/Hu4M46Fyf9G5rsj8ETJbN+t/3q+UJP
-         8HUppa3L8lmRCEKlvCdPbAGCqZs2sleWD0Nu9IEY=
+        b=HK32OVkYHkBdJOofLkJ+eUoiFHxyVHCmMnup/A7LJvnMbmFRiwsgEMgYtwJqubXXq
+         JCspG3tYh6jh9B4NAgWMrK96wSIlk+dYeGSlk9dnzukQSbkIiOSIKR8DOI5Es5fyRl
+         4yJvpL+qxOp5+HXbERF/ET+85d6NF+YAf9Huy1sY=
 From:   Krzysztof Kozlowski <krzk@kernel.org>
 To:     Linus Walleij <linus.walleij@linaro.org>,
         Bartosz Golaszewski <bgolaszewski@baylibre.com>,
@@ -52,9 +52,9 @@ To:     Linus Walleij <linus.walleij@linaro.org>,
         linux-aspeed@lists.ozlabs.org, linux-mediatek@lists.infradead.org,
         linux-renesas-soc@vger.kernel.org
 Cc:     Krzysztof Kozlowski <krzk@kernel.org>
-Subject: [PATCH v3 08/15] ARM: dts: am335x: lxm: fix PCA9539 GPIO expander properties
-Date:   Wed, 16 Sep 2020 17:57:08 +0200
-Message-Id: <20200916155715.21009-9-krzk@kernel.org>
+Subject: [PATCH v3 09/15] ARM: dts: am335x: t335: align GPIO hog names with dtschema
+Date:   Wed, 16 Sep 2020 17:57:09 +0200
+Message-Id: <20200916155715.21009-10-krzk@kernel.org>
 X-Mailer: git-send-email 2.17.1
 In-Reply-To: <20200916155715.21009-1-krzk@kernel.org>
 References: <20200916155715.21009-1-krzk@kernel.org>
@@ -63,35 +63,34 @@ Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-The PCA9539 GPIO expander requires GPIO controller properties to operate
-properly.
+The convention for node names is to use hyphens, not underscores.
+dtschema for pca95xx expects GPIO hogs to end with 'hog' prefix.
 
 Signed-off-by: Krzysztof Kozlowski <krzk@kernel.org>
-Acked-by: Tony Lindgren <tony@atomide.com>
 ---
- arch/arm/boot/dts/am335x-lxm.dts | 4 ++++
- 1 file changed, 4 insertions(+)
+ arch/arm/boot/dts/am335x-sbc-t335.dts | 4 ++--
+ 1 file changed, 2 insertions(+), 2 deletions(-)
 
-diff --git a/arch/arm/boot/dts/am335x-lxm.dts b/arch/arm/boot/dts/am335x-lxm.dts
-index cd55f11260ea..0f078465297a 100644
---- a/arch/arm/boot/dts/am335x-lxm.dts
-+++ b/arch/arm/boot/dts/am335x-lxm.dts
-@@ -160,11 +160,15 @@
- 	serial_config1: serial_config1@20 {
- 		compatible = "nxp,pca9539";
- 		reg = <0x20>;
-+		gpio-controller;
-+		#gpio-cells = <2>;
- 	};
- 
- 	serial_config2: serial_config2@21 {
- 		compatible = "nxp,pca9539";
- 		reg = <0x21>;
-+		gpio-controller;
-+		#gpio-cells = <2>;
- 	};
- 
- 	tps: tps@2d {
+diff --git a/arch/arm/boot/dts/am335x-sbc-t335.dts b/arch/arm/boot/dts/am335x-sbc-t335.dts
+index a3f6bc4072d9..81e4453687ba 100644
+--- a/arch/arm/boot/dts/am335x-sbc-t335.dts
++++ b/arch/arm/boot/dts/am335x-sbc-t335.dts
+@@ -155,13 +155,13 @@
+ 		gpio-controller;
+ 		#gpio-cells = <2>;
+ 		reg = <0x26>;
+-		dvi_ena {
++		dvi-ena-hog {
+ 			gpio-hog;
+ 			gpios = <13 GPIO_ACTIVE_HIGH>;
+ 			output-high;
+ 			line-name = "dvi-enable";
+ 		};
+-		lcd_ena {
++		lcd-ena-hog {
+ 			gpio-hog;
+ 			gpios = <11 GPIO_ACTIVE_HIGH>;
+ 			output-high;
 -- 
 2.17.1
 
