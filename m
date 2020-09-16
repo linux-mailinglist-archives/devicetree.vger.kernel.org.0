@@ -2,164 +2,79 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from vger.kernel.org (vger.kernel.org [23.128.96.18])
-	by mail.lfdr.de (Postfix) with ESMTP id 2FCBF26CB0A
-	for <lists+devicetree@lfdr.de>; Wed, 16 Sep 2020 22:21:47 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTP id C0AD126CB3F
+	for <lists+devicetree@lfdr.de>; Wed, 16 Sep 2020 22:24:42 +0200 (CEST)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S1727772AbgIPUV0 (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Wed, 16 Sep 2020 16:21:26 -0400
-Received: from mail.kernel.org ([198.145.29.99]:43846 "EHLO mail.kernel.org"
-        rhost-flags-OK-OK-OK-OK) by vger.kernel.org with ESMTP
-        id S1727160AbgIPRau (ORCPT <rfc822;devicetree@vger.kernel.org>);
-        Wed, 16 Sep 2020 13:30:50 -0400
-Received: from kozik-lap.mshome.net (unknown [194.230.155.191])
-        (using TLSv1.2 with cipher ECDHE-RSA-AES128-GCM-SHA256 (128/128 bits))
-        (No client certificate requested)
-        by mail.kernel.org (Postfix) with ESMTPSA id 1D3B922464;
-        Wed, 16 Sep 2020 15:58:07 +0000 (UTC)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=kernel.org;
-        s=default; t=1600271894;
-        bh=wdAkw2TjM1udxEqqVOzxHnXaiuAOFMCD3JyJ0x6GXJI=;
-        h=From:To:Cc:Subject:Date:In-Reply-To:References:From;
-        b=CEkiTIX+Fl0xgU9GaFowB3IBFoj0LdQvWJp6D/j5lf4NecsiG9e7rpukGJOxIsOGX
-         OiHfB2CHjp8UzjXsoU4dCoauEfCjSPEEzbwnAko1gQFeuf/NUQwGG6LcEcvfRUlBi8
-         pOcI/Xun6ff/784JHIbliYALEOTgbG6oNJuCy1EA=
+        id S1728401AbgIPUYl (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Wed, 16 Sep 2020 16:24:41 -0400
+Received: from mail-wm1-f46.google.com ([209.85.128.46]:51234 "EHLO
+        mail-wm1-f46.google.com" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
+        with ESMTP id S1727062AbgIPR1m (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Wed, 16 Sep 2020 13:27:42 -0400
+Received: by mail-wm1-f46.google.com with SMTP id w2so3550457wmi.1;
+        Wed, 16 Sep 2020 10:27:40 -0700 (PDT)
+X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+        d=1e100.net; s=20161025;
+        h=x-gm-message-state:date:from:to:subject:message-id:references
+         :mime-version:content-disposition:in-reply-to:user-agent;
+        bh=2G9Vre6ygYWYscEDxjFrH06674QIzY1lSU789kkd58Q=;
+        b=stql/mUNEE+pobtSmmmcGBiKg7G7oducRkGVK6PGSfKf7gct5o7svteHK0vfYc+TmL
+         rA8lONDAKCvQgnZHXeRVdY1cu60zH8/yZ1BmOpMm9kb9zb35lMEzlZR5dGpmarDrt3D/
+         FMf7QdCDo6cUcEp8ByYcZ3tVkIieXfjVqDRc87Q7AzS/fIr1g0KAFkplwU4F9vVL4F/R
+         vOvGvxaMTeXlTjQuFKKQoUKEoCHADeJb/QveGP/pzmjfOILoTFbRTXUKjQeFuWf5Cfn6
+         2LIGYbbojiDFz/2Bs+Mw1J1ApUAROk5pWrVELOagLOQvtSrdke24MyYkKaBslHuMUKqP
+         ptsw==
+X-Gm-Message-State: AOAM5332t3tNEY0S1yLZ3mjSqweLwT+utkIfrY7dGtDUdhQCbT4kJ78v
+        lbMU990kTzzoah3tPUAl0MX0E9d2H0uYVSTh
+X-Google-Smtp-Source: ABdhPJxDTK8p4ApdB9MFWXHtAf+xwxeBYv+4T8CavWRUosM979T0uxFvHh1F2ljVlnTpTAvLzldZ4g==
+X-Received: by 2002:a05:600c:2cc1:: with SMTP id l1mr5691891wmc.78.1600276598136;
+        Wed, 16 Sep 2020 10:16:38 -0700 (PDT)
+Received: from kozik-lap ([194.230.155.191])
+        by smtp.googlemail.com with ESMTPSA id 63sm7061260wrc.63.2020.09.16.10.16.36
+        (version=TLS1_2 cipher=ECDHE-ECDSA-CHACHA20-POLY1305 bits=256/256);
+        Wed, 16 Sep 2020 10:16:37 -0700 (PDT)
+Date:   Wed, 16 Sep 2020 19:16:35 +0200
 From:   Krzysztof Kozlowski <krzk@kernel.org>
-To:     Linus Walleij <linus.walleij@linaro.org>,
-        Bartosz Golaszewski <bgolaszewski@baylibre.com>,
-        Rob Herring <robh+dt@kernel.org>,
-        =?UTF-8?q?Beno=C3=AEt=20Cousson?= <bcousson@baylibre.com>,
-        Tony Lindgren <tony@atomide.com>,
-        Jason Cooper <jason@lakedaemon.net>,
-        Andrew Lunn <andrew@lunn.ch>,
-        Gregory Clement <gregory.clement@bootlin.com>,
-        Sebastian Hesselbarth <sebastian.hesselbarth@gmail.com>,
-        Russell King <linux@armlinux.org.uk>,
-        Joel Stanley <joel@jms.id.au>,
-        Andrew Jeffery <andrew@aj.id.au>,
-        Shawn Guo <shawnguo@kernel.org>,
-        Sascha Hauer <s.hauer@pengutronix.de>,
-        Pengutronix Kernel Team <kernel@pengutronix.de>,
-        Fabio Estevam <festevam@gmail.com>,
-        NXP Linux Team <linux-imx@nxp.com>,
-        Matthias Brugger <matthias.bgg@gmail.com>,
-        Geert Uytterhoeven <geert+renesas@glider.be>,
-        Magnus Damm <magnus.damm@gmail.com>,
-        Tero Kristo <t-kristo@ti.com>, Nishanth Menon <nm@ti.com>,
-        Michal Simek <michal.simek@xilinx.com>,
-        linux-gpio@vger.kernel.org, devicetree@vger.kernel.org,
-        linux-kernel@vger.kernel.org, linux-omap@vger.kernel.org,
+To:     Kukjin Kim <kgene@kernel.org>, Rob Herring <robh+dt@kernel.org>,
+        Jonathan Cameron <jic23@kernel.org>,
+        Lars-Peter Clausen <lars@metafoo.de>,
+        Peter Meerwald-Stadler <pmeerw@pmeerw.net>,
+        Jonathan Bakker <xc-racer2@live.ca>,
+        =?utf-8?B?UGF3ZcWC?= Chmiel <pawel.mikolaj.chmiel@gmail.com>,
         linux-arm-kernel@lists.infradead.org,
-        linux-aspeed@lists.ozlabs.org, linux-mediatek@lists.infradead.org,
-        linux-renesas-soc@vger.kernel.org
-Cc:     Krzysztof Kozlowski <krzk@kernel.org>
-Subject: [PATCH v3 05/15] arm64: dts: renesas: align GPIO hog names with dtschema
-Date:   Wed, 16 Sep 2020 17:57:05 +0200
-Message-Id: <20200916155715.21009-6-krzk@kernel.org>
-X-Mailer: git-send-email 2.17.1
-In-Reply-To: <20200916155715.21009-1-krzk@kernel.org>
-References: <20200916155715.21009-1-krzk@kernel.org>
+        linux-samsung-soc@vger.kernel.org, devicetree@vger.kernel.org,
+        linux-kernel@vger.kernel.org, linux-iio@vger.kernel.org
+Subject: Re: [RFT 20/25] ARM: dts: s5pv210: move fixed regulators under root
+ node in Aquila
+Message-ID: <20200916171635.GE19427@kozik-lap>
+References: <20200907161141.31034-1-krzk@kernel.org>
+ <20200907161141.31034-21-krzk@kernel.org>
+MIME-Version: 1.0
+Content-Type: text/plain; charset=utf-8
+Content-Disposition: inline
+In-Reply-To: <20200907161141.31034-21-krzk@kernel.org>
+User-Agent: Mutt/1.9.4 (2018-02-28)
 Sender: devicetree-owner@vger.kernel.org
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-The convention for node names is to use hyphens, not underscores.
-dtschema for pca95xx expects GPIO hogs to end with 'hog' prefix.
+On Mon, Sep 07, 2020 at 06:11:36PM +0200, Krzysztof Kozlowski wrote:
+> The fixed regulators are kept under dedicated "regulators" node but this
+> causes multiple dtschema warnings:
+> 
+>   regulators: $nodename:0: 'regulators' does not match '^([a-z][a-z0-9\\-]+-bus|bus|soc|axi|ahb|apb)(@[0-9a-f]+)?$'
+>   regulators: #size-cells:0:0: 0 is not one of [1, 2]
+>   regulators: fixed-regulator@0:reg:0: [0] is too short
+>   regulators: fixed-regulator@1:reg:0: [1] is too short
+>   regulators: fixed-regulator@2:reg:0: [2] is too short
+> 
+> Signed-off-by: Krzysztof Kozlowski <krzk@kernel.org>
+> ---
+>  arch/arm/boot/dts/s5pv210-aquila.dts | 47 +++++++++++-----------------
 
-Signed-off-by: Krzysztof Kozlowski <krzk@kernel.org>
----
- .../boot/dts/renesas/r8a77951-salvator-xs.dts      |  2 +-
- .../boot/dts/renesas/r8a77965-salvator-xs.dts      |  2 +-
- arch/arm64/boot/dts/renesas/ulcb-kf.dtsi           | 14 +++++++-------
- 3 files changed, 9 insertions(+), 9 deletions(-)
+Applied.
 
-diff --git a/arch/arm64/boot/dts/renesas/r8a77951-salvator-xs.dts b/arch/arm64/boot/dts/renesas/r8a77951-salvator-xs.dts
-index cef9da4376a3..e5922329a4b8 100644
---- a/arch/arm64/boot/dts/renesas/r8a77951-salvator-xs.dts
-+++ b/arch/arm64/boot/dts/renesas/r8a77951-salvator-xs.dts
-@@ -118,7 +118,7 @@
- };
- 
- &pca9654 {
--	pcie_sata_switch {
-+	pcie-sata-switch-hog {
- 		gpio-hog;
- 		gpios = <7 GPIO_ACTIVE_HIGH>;
- 		output-low; /* enable SATA by default */
-diff --git a/arch/arm64/boot/dts/renesas/r8a77965-salvator-xs.dts b/arch/arm64/boot/dts/renesas/r8a77965-salvator-xs.dts
-index 5cef64605464..d7e621101af7 100644
---- a/arch/arm64/boot/dts/renesas/r8a77965-salvator-xs.dts
-+++ b/arch/arm64/boot/dts/renesas/r8a77965-salvator-xs.dts
-@@ -55,7 +55,7 @@
- };
- 
- &pca9654 {
--	pcie_sata_switch {
-+	pcie-sata-switch-hog {
- 		gpio-hog;
- 		gpios = <7 GPIO_ACTIVE_HIGH>;
- 		output-low; /* enable SATA by default */
-diff --git a/arch/arm64/boot/dts/renesas/ulcb-kf.dtsi b/arch/arm64/boot/dts/renesas/ulcb-kf.dtsi
-index 202177706cde..e9ed2597f1c2 100644
---- a/arch/arm64/boot/dts/renesas/ulcb-kf.dtsi
-+++ b/arch/arm64/boot/dts/renesas/ulcb-kf.dtsi
-@@ -143,49 +143,49 @@
- 		interrupt-parent = <&gpio6>;
- 		interrupts = <8 IRQ_TYPE_EDGE_FALLING>;
- 
--		audio_out_off {
-+		audio-out-off-hog {
- 			gpio-hog;
- 			gpios = <0 GPIO_ACTIVE_HIGH>; /* P00 */
- 			output-high;
- 			line-name = "Audio_Out_OFF";
- 		};
- 
--		hub_pwen {
-+		hub-pwen-hog {
- 			gpio-hog;
- 			gpios = <6 GPIO_ACTIVE_HIGH>;
- 			output-high;
- 			line-name = "HUB pwen";
- 		};
- 
--		hub_rst {
-+		hub-rst-hog {
- 			gpio-hog;
- 			gpios = <7 GPIO_ACTIVE_HIGH>;
- 			output-high;
- 			line-name = "HUB rst";
- 		};
- 
--		otg_extlpn {
-+		otg-extlpn-hog {
- 			gpio-hog;
- 			gpios = <9 GPIO_ACTIVE_HIGH>;
- 			output-high;
- 			line-name = "OTG EXTLPn";
- 		};
- 
--		otg_offvbusn {
-+		otg-offvbusn-hog {
- 			gpio-hog;
- 			gpios = <8 GPIO_ACTIVE_HIGH>;
- 			output-low;
- 			line-name = "OTG OFFVBUSn";
- 		};
- 
--		sd-wifi-mux {
-+		sd-wifi-mux-hog {
- 			gpio-hog;
- 			gpios = <5 GPIO_ACTIVE_HIGH>;
- 			output-low;	/* Connect WL1837 */
- 			line-name = "SD WiFi mux";
- 		};
- 
--		snd_rst {
-+		snd-rst-hog {
- 			gpio-hog;
- 			gpios = <15 GPIO_ACTIVE_HIGH>; /* P17 */
- 			output-high;
--- 
-2.17.1
+Best regards,
+Krzysztof
 
