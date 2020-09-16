@@ -2,121 +2,121 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from vger.kernel.org (vger.kernel.org [23.128.96.18])
-	by mail.lfdr.de (Postfix) with ESMTP id 09D5826C9D4
-	for <lists+devicetree@lfdr.de>; Wed, 16 Sep 2020 21:29:36 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTP id 6DBA026CA6C
+	for <lists+devicetree@lfdr.de>; Wed, 16 Sep 2020 21:59:24 +0200 (CEST)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S1727663AbgIPT2q (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Wed, 16 Sep 2020 15:28:46 -0400
-Received: from lindbergh.monkeyblade.net ([23.128.96.19]:51330 "EHLO
-        lindbergh.monkeyblade.net" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S1728193AbgIPT1s (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Wed, 16 Sep 2020 15:27:48 -0400
-Received: from mail-pf1-x443.google.com (mail-pf1-x443.google.com [IPv6:2607:f8b0:4864:20::443])
-        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 9CF9FC061788
-        for <devicetree@vger.kernel.org>; Wed, 16 Sep 2020 12:27:18 -0700 (PDT)
-Received: by mail-pf1-x443.google.com with SMTP id k8so1214044pfk.2
-        for <devicetree@vger.kernel.org>; Wed, 16 Sep 2020 12:27:18 -0700 (PDT)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=chromium.org; s=google;
-        h=date:from:to:cc:subject:message-id:references:mime-version
-         :content-disposition:in-reply-to;
-        bh=sR/xYZr4LEgOrl+IbZ9jlJQDRZY5vQLajnenX9LFols=;
-        b=MNVF8TvcPWY3eeFn4HzT6kU1YkW7DvEZmNLo7UYzumvDpZ4mECWs58glstVCILzfW+
-         yaY5Ar/3V3T6TrxxrGNtBWUfp2Mh4ZOcb8StDZf0Z7XH6/zRv0WYYyUVFzY5m2Nu1v7p
-         FkL2YwUOGv+fA3lNECNbUWaSIFtnnE0C1krC8=
-X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=1e100.net; s=20161025;
-        h=x-gm-message-state:date:from:to:cc:subject:message-id:references
-         :mime-version:content-disposition:in-reply-to;
-        bh=sR/xYZr4LEgOrl+IbZ9jlJQDRZY5vQLajnenX9LFols=;
-        b=I9IBUJLzGRwuIRRFKJSPQ0CN7pwN0ofj2+bSpHX4rwoOEJgEVOb+I9s7FYJ/GSS5fG
-         wubDfghJTYRCX+yhNioR/GITz3mHNaPkEGsdO/xXggl+EnibbFAPqh3ziEf/LN5byZeY
-         /jHO4e7AN11ilPAsXMTWV1opaPCifSkoWmqvxsIOB8Jypn1WH64Pgnyuis8Obmyy58bC
-         b5eZKlR1Sad8hfRB1GFp5GIoqrMMcqi9KC71WS5k6ImR2u6D8Z+lixIYbLh5q+yF/4VF
-         xocnndstBXYV0Nrsq/TazwiLQ9SQgirImjnIG+2lGgLG+jNvgm8Qqr+Z7BUijsM+qP6G
-         HTsA==
-X-Gm-Message-State: AOAM533b1qBr7fDhMtp2A937qpdcKI6oBbLTMrmbw+6GzJTKJVHGIgO3
-        n/C1toFO7H3Q6rP7qjmIJNTjYg==
-X-Google-Smtp-Source: ABdhPJy0DnJtx4hulvq3KJWtC6BUsatwfwJXaBeWhCGFtsumy/RNBJ1kLXeNp7WDRc9RK+97rX8DRQ==
-X-Received: by 2002:a05:6a00:1481:b029:142:2501:35d7 with SMTP id v1-20020a056a001481b0290142250135d7mr7928007pfu.55.1600284437582;
-        Wed, 16 Sep 2020 12:27:17 -0700 (PDT)
-Received: from localhost ([2620:15c:202:1:f693:9fff:fef4:e70a])
-        by smtp.gmail.com with ESMTPSA id k24sm17799139pfg.148.2020.09.16.12.27.16
-        (version=TLS1_3 cipher=TLS_AES_128_GCM_SHA256 bits=128/128);
-        Wed, 16 Sep 2020 12:27:17 -0700 (PDT)
-Date:   Wed, 16 Sep 2020 12:27:15 -0700
-From:   Matthias Kaehlcke <mka@chromium.org>
-To:     Alan Stern <stern@rowland.harvard.edu>
-Cc:     Peter Chen <peter.chen@nxp.com>,
-        Greg Kroah-Hartman <gregkh@linuxfoundation.org>,
-        Rob Herring <robh+dt@kernel.org>,
-        Frank Rowand <frowand.list@gmail.com>,
-        Krzysztof Kozlowski <krzk@kernel.org>,
-        Bastien Nocera <hadess@hadess.net>,
-        Ravi Chandra Sadineni <ravisadineni@chromium.org>,
-        "linux-usb@vger.kernel.org" <linux-usb@vger.kernel.org>,
-        Stephen Boyd <swboyd@chromium.org>,
-        "devicetree@vger.kernel.org" <devicetree@vger.kernel.org>,
-        Douglas Anderson <dianders@chromium.org>,
-        "linux-kernel@vger.kernel.org" <linux-kernel@vger.kernel.org>,
-        "Alexander A. Klimov" <grandmaster@al2klimov.de>,
-        Masahiro Yamada <masahiroy@kernel.org>
-Subject: Re: [PATCH 2/2] USB: misc: Add onboard_usb_hub driver
-Message-ID: <20200916192715.GC3560556@google.com>
-References: <20200914112716.1.I248292623d3d0f6a4f0c5bc58478ca3c0062b49a@changeid>
- <20200914112716.2.I7c9a1f1d6ced41dd8310e8a03da666a32364e790@changeid>
- <20200915025426.GA17450@b29397-desktop>
- <20200915050207.GF2022397@google.com>
- <AM7PR04MB715735A8A102F3EC9041EA328B200@AM7PR04MB7157.eurprd04.prod.outlook.com>
- <20200915230345.GF2771744@google.com>
- <20200916021421.GA1024554@rowland.harvard.edu>
+        id S1727333AbgIPT4K (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Wed, 16 Sep 2020 15:56:10 -0400
+Received: from mail.kernel.org ([198.145.29.99]:47568 "EHLO mail.kernel.org"
+        rhost-flags-OK-OK-OK-OK) by vger.kernel.org with ESMTP
+        id S1727185AbgIPRfl (ORCPT <rfc822;devicetree@vger.kernel.org>);
+        Wed, 16 Sep 2020 13:35:41 -0400
+Received: from mail-oo1-f46.google.com (mail-oo1-f46.google.com [209.85.161.46])
+        (using TLSv1.2 with cipher ECDHE-RSA-AES128-GCM-SHA256 (128/128 bits))
+        (No client certificate requested)
+        by mail.kernel.org (Postfix) with ESMTPSA id 90D6522454;
+        Wed, 16 Sep 2020 15:19:01 +0000 (UTC)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=kernel.org;
+        s=default; t=1600269541;
+        bh=+u+iBUStfXZhxVvTL45VF65DMw9+bO0zIH+FBH5vXD4=;
+        h=References:In-Reply-To:From:Date:Subject:To:Cc:From;
+        b=fTRddlD5h2LlrZOL/gjybkaLvAgL+rqttYVl27VTQEqEUymCoZrnfmORLURplV8WW
+         nsKdRVP61glJpTy/239mpcACqI5PB+A7YrelAiVFI0XaqX9fs5NbV1n/tkjsxOoIN0
+         +mF6WaE1yCS/hKgh8Mal1SUMQ43yRE4vSvCYxNYI=
+Received: by mail-oo1-f46.google.com with SMTP id t3so1726976ook.8;
+        Wed, 16 Sep 2020 08:19:01 -0700 (PDT)
+X-Gm-Message-State: AOAM531SSkGylMpgA31vhCcAbRScXtkSl4hhvHFlX2fjmNud8G082bn2
+        j6saiu/d4Ak8Vz12aqDACEPdJ9B/wuCltg7llA==
+X-Google-Smtp-Source: ABdhPJz/b8TPDSJj3O7N75dIlJvA8pCiElwvjXPGobFsh05L01VXkrgeK9dm+p1I2RLMxv4sgzXP2/FylZGo+kLQZSI=
+X-Received: by 2002:a4a:d306:: with SMTP id g6mr18164233oos.25.1600269540821;
+ Wed, 16 Sep 2020 08:19:00 -0700 (PDT)
 MIME-Version: 1.0
-Content-Type: text/plain; charset=utf-8
-Content-Disposition: inline
-In-Reply-To: <20200916021421.GA1024554@rowland.harvard.edu>
+References: <20200912125148.1271481-1-maz@kernel.org> <20200915211354.GA2469362@bogus>
+ <cd0a52739dcb3b238a1c600d46cad711@kernel.org>
+In-Reply-To: <cd0a52739dcb3b238a1c600d46cad711@kernel.org>
+From:   Rob Herring <robh@kernel.org>
+Date:   Wed, 16 Sep 2020 09:18:49 -0600
+X-Gmail-Original-Message-ID: <CAL_Jsq+91WBF7VPkHQOAju5Hky=snNj44H3-xy9xM3hzN2N=2Q@mail.gmail.com>
+Message-ID: <CAL_Jsq+91WBF7VPkHQOAju5Hky=snNj44H3-xy9xM3hzN2N=2Q@mail.gmail.com>
+Subject: Re: [PATCH 0/6] irqchip: Hybrid probing
+To:     Marc Zyngier <maz@kernel.org>
+Cc:     devicetree@vger.kernel.org,
+        "linux-kernel@vger.kernel.org" <linux-kernel@vger.kernel.org>,
+        linux-arm-kernel <linux-arm-kernel@lists.infradead.org>,
+        Enric Balletbo i Serra <enric.balletbo@collabora.com>,
+        Frank Wunderlich <linux@fw-web.de>,
+        John Stultz <john.stultz@linaro.org>,
+        Saravana Kannan <saravanak@google.com>,
+        Hanks Chen <hanks.chen@mediatek.com>,
+        Andy Gross <agross@kernel.org>,
+        Bjorn Andersson <bjorn.andersson@linaro.org>,
+        Matthias Brugger <matthias.bgg@gmail.com>,
+        Thomas Gleixner <tglx@linutronix.de>,
+        Jason Cooper <jason@lakedaemon.net>,
+        Frank Rowand <frowand.list@gmail.com>,
+        Android Kernel Team <kernel-team@android.com>
+Content-Type: text/plain; charset="UTF-8"
 Sender: devicetree-owner@vger.kernel.org
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-On Tue, Sep 15, 2020 at 10:14:21PM -0400, Alan Stern wrote:
-> On Tue, Sep 15, 2020 at 04:03:45PM -0700, Matthias Kaehlcke wrote:
-> > Hi Peter,
-> > 
-> > On Tue, Sep 15, 2020 at 07:05:38AM +0000, Peter Chen wrote:
-> 
-> > > Whether or not it is a wakeup_source, it could get through its or its children's
-> > > /sys/../power/wakeup value, you have already used usb_wakeup_enabled_descendants
-> > > to know it.
-> > 
-> > I conceptually agree, but in practice there are some conflicting details:
-> > 
-> > wakeup for the hubs on my system is by default disabled, yet USB wakeup works
-> > regardless, so the flag doesn't really provide useful information. I guess we
-> > could still use it if there is no better way, but it doesn't seem ideal.
-> 
-> The wakeup setting for USB hubs affects only the following events: port 
-> connect, port disconnect, and port overcurrent.  It does not refer to 
-> forwarding wakeup requests from downstream USB devices; that is always 
-> enabled.  So maybe your wakeup flag really is accurate and you didn't 
-> realize it.
+On Wed, Sep 16, 2020 at 2:51 AM Marc Zyngier <maz@kernel.org> wrote:
+>
+> On 2020-09-15 22:13, Rob Herring wrote:
+> > On Sat, Sep 12, 2020 at 01:51:42PM +0100, Marc Zyngier wrote:
+> >> A recent attempt at converting a couple of interrupt controllers from
+> >> early probing to standard platform drivers have badly failed, as it
+> >> became evident that although an interrupt controller can easily probe
+> >> late, device drivers for the endpoints connected to it are rarely
+> >> equipped to deal with probe deferral. Changes were swiftly reverted.
+> >>
+> >> However, there is some value in *optionally* enabling this, if only
+> >> for development purposes, as there is otherwise a "chicken and egg"
+> >> problem, and a few people (cc'd) are working on a potential solution.
+> >>
+> >> This short series enables the infrastructure for modular building
+> >> whilst retaining the usual early probing for monolithic build, and
+> >> introduces it to the three drivers that were previously made to probe
+> >> as platform drivers.
+> >
+> > I hardly expected more OF_DECLARE macros when I opened this up. Given
+> > desires to get rid of them, I don't think adding to it is the way
+> > forward. That wrapping a platform driver around OF_DECLARE looks pretty
+> > horrible IMO.
+>
+> Nobody said it was cute. It's a band aid that allows us to move from the
+> status-quo that exists today. How would you propose we allow people to
+> go and start "fixing" drivers if you don't give them the opportunity
+> to even start trying?
 
-Thanks for the clarification!
+Apply the reverted patches and start fixing the drivers.
 
-> > Similar for udev->bus->controller, according to sysfs it doesn't even have wakeup
-> > support. Please let me know if there is a reliable way to check if wakeup is
-> > enabled on the controller of a device.
-> 
-> The host controller's sysfs wakeup setting should always be correct.  If 
-> it isn't, that indicates there is a bug in the host controller driver or 
-> the corresponding platform-specific code.
+> > I browsed some of the discussion around this. It didn't seem like it's
+> > a large number of drivers that have to be fixed to defer probe
+> > correctly. Am I missing something?
+>
+> Well, that was enough drivers for the two platforms that had it enabled
+> to break horribly, without a way to go back to a working state. Do you
+> find that acceptable? I don't.
 
-Good to know :)
+I understand reverting for v5.9, that was the right choice. But
+Mediatek had 3 drivers broken. Is there more to it than getting
+EPROBE_DEFER handled correctly in those drivers?
 
-> What driver does your system use?
+> > I'd rather keep the pressure on getting fw_devlink on by default.
+>
+> So far, fw_devlink breaks everything under the sun, even without modular
+> irqchips. Most of my systems fail to boot if I enable it. So yes, it
+> really needs some work. And this series allows this work to happen.
 
-The driver is dwc3-qcom, Peter pointed me to a patch he recently sent to add
-the missing wakeup entry (https://patchwork.kernel.org/patch/11717835/). It
-seems that should solve the problem, except for some confusion on my side
-about the wakeup flag of the xHCI device vs. that of the platform device
-(details in my reply to Peter).
+I think we can do something more simple here. We just need to
+instantiate the irqchip devices earlier to get them to probe first and
+not cause deferrals. That's just a matter of calling
+of_platform_device_create() in an earlier initcall (<=
+arch_initcall_sync ('=' because of link order)). Then once dependent
+drivers are all fixed, all that has to be done is rip out that
+initcall and the default of_platform_populate call will create the
+device instead.
+
+Rob
