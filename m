@@ -2,253 +2,188 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from vger.kernel.org (vger.kernel.org [23.128.96.18])
-	by mail.lfdr.de (Postfix) with ESMTP id 7875E26CF5A
-	for <lists+devicetree@lfdr.de>; Thu, 17 Sep 2020 01:13:46 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTP id A970726CF60
+	for <lists+devicetree@lfdr.de>; Thu, 17 Sep 2020 01:16:56 +0200 (CEST)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S1726490AbgIPXMH (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Wed, 16 Sep 2020 19:12:07 -0400
-Received: from lindbergh.monkeyblade.net ([23.128.96.19]:58016 "EHLO
-        lindbergh.monkeyblade.net" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S1726338AbgIPXMH (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Wed, 16 Sep 2020 19:12:07 -0400
-Received: from mail-pj1-x1044.google.com (mail-pj1-x1044.google.com [IPv6:2607:f8b0:4864:20::1044])
-        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id BFD90C06178B
-        for <devicetree@vger.kernel.org>; Wed, 16 Sep 2020 16:12:06 -0700 (PDT)
-Received: by mail-pj1-x1044.google.com with SMTP id q4so242139pjh.5
-        for <devicetree@vger.kernel.org>; Wed, 16 Sep 2020 16:12:06 -0700 (PDT)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=chromium.org; s=google;
-        h=from:to:cc:subject:date:message-id:in-reply-to:references
-         :mime-version:content-transfer-encoding;
-        bh=81p7+yZhOC19karpCT36EA8EczbSyI7n2JwiT6I3I5o=;
-        b=nxNHW0ENNHgzSW/k9RNdi23ksGkQcvNDP4Y1yhqLNVZx1cw3WWoBUW08x6RuHMMX9j
-         MLiM0i+vQv8lycpxY/YoFMPfHWcCPRiAnRtlc2ovoFNL4xjfJ+AIGI3XvV2xxdiXFd2P
-         uI8EvFy9kQKPu6TNvKvJlxKUc5r9LlIgYyNLU=
-X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=1e100.net; s=20161025;
-        h=x-gm-message-state:from:to:cc:subject:date:message-id:in-reply-to
-         :references:mime-version:content-transfer-encoding;
-        bh=81p7+yZhOC19karpCT36EA8EczbSyI7n2JwiT6I3I5o=;
-        b=h63DcF/x7YUH53B1eJNKGB9S99GncksZJ3cnfgfM9waITxTqAC320eViA6dZQL83B6
-         fdZfsSDIHfDBEchaNK3ggrn14rydjvlvhyllpr1Ut5wcq+qVehYoULbgSkArrlo3MvkY
-         uEc7DMTho72KuN6vCOd2JojqPtAIhEAdN1yxP1XjJFVJWvpS2OfFMwlhUHbjT9ZY8P/x
-         wvAp1l9a1QILAU18eIAizP81bts42M3ZmaDSdCQjr2QuRy8vvqPQn+v4lUg8cRlUVt44
-         aDp2cpZIZpxPGAKRorx8fRiXr+7UqjTf3LThEu61Y8L95tQtPLsfRr1E78KsgcmVXZLb
-         4+2g==
-X-Gm-Message-State: AOAM531/KnS2ndOqdE8ieiCZDUO/HHDJ5fcpL3i8yzVKKJWik+rjT32s
-        q3Q0xuLLY35Gw/djIKPxbyNQKA==
-X-Google-Smtp-Source: ABdhPJxDEI+n0NncCCwY/Zj3xmtOi9fBOH5lbXRFRHszW3OL7lS4R45LhX5UIlbym9d64H8mzre6EQ==
-X-Received: by 2002:a17:90a:1903:: with SMTP id 3mr5996818pjg.74.1600297926192;
-        Wed, 16 Sep 2020 16:12:06 -0700 (PDT)
-Received: from smtp.gmail.com ([2620:15c:202:1:3e52:82ff:fe6c:83ab])
-        by smtp.gmail.com with ESMTPSA id u6sm3643254pjy.37.2020.09.16.16.12.05
-        (version=TLS1_3 cipher=TLS_AES_256_GCM_SHA384 bits=256/256);
-        Wed, 16 Sep 2020 16:12:05 -0700 (PDT)
-From:   Stephen Boyd <swboyd@chromium.org>
-To:     Kishon Vijay Abraham I <kishon@ti.com>,
-        Vinod Koul <vkoul@kernel.org>
-Cc:     linux-kernel@vger.kernel.org, linux-arm-msm@vger.kernel.org,
-        Jeykumar Sankaran <jsanka@codeaurora.org>,
-        Chandan Uddaraju <chandanu@codeaurora.org>,
-        Vara Reddy <varar@codeaurora.org>,
-        Tanmay Shah <tanmay@codeaurora.org>,
+        id S1726489AbgIPXQz (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Wed, 16 Sep 2020 19:16:55 -0400
+Received: from mail.nic.cz ([217.31.204.67]:53728 "EHLO mail.nic.cz"
+        rhost-flags-OK-OK-OK-OK) by vger.kernel.org with ESMTP
+        id S1726338AbgIPXQy (ORCPT <rfc822;devicetree@vger.kernel.org>);
+        Wed, 16 Sep 2020 19:16:54 -0400
+Received: from dellmb.labs.office.nic.cz (unknown [IPv6:2001:1488:fffe:6:cac7:3539:7f1f:463])
+        by mail.nic.cz (Postfix) with ESMTP id EE03A14087C;
+        Thu, 17 Sep 2020 01:16:51 +0200 (CEST)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=nic.cz; s=default;
+        t=1600298212; bh=Qzc2oeb5j3zVH60aJj9N0ARs+prgEmmPeOQqVCkt/KE=;
+        h=From:To:Date;
+        b=SLUTaYh2xQ9QgjWtW1B+v0AoTBW9QbFJefLZ+s7jVFr0pyu2inlJNRAdlDeNGlqX8
+         ZqjibhVIwWjLoOX+Rdd59vQfjronAaTPxPhdJGzL7cn7POB4xCu2C2Hs/cSh03ReUD
+         JmLz+PnowTwfplSWZjsfd3VG5z/vUrMw5TA2BTVk=
+From:   =?UTF-8?q?Marek=20Beh=C3=BAn?= <marek.behun@nic.cz>
+To:     linux-leds@vger.kernel.org
+Cc:     Pavel Machek <pavel@ucw.cz>, Dan Murphy <dmurphy@ti.com>,
+        =?UTF-8?q?Ond=C5=99ej=20Jirman?= <megous@megous.com>,
+        linux-kernel@vger.kernel.org, Rob Herring <robh+dt@kernel.org>,
+        devicetree@vger.kernel.org,
+        =?UTF-8?q?Marek=20Beh=C3=BAn?= <marek.behun@nic.cz>,
+        =?UTF-8?q?=C3=81lvaro=20Fern=C3=A1ndez=20Rojas?= 
+        <noltari@gmail.com>,
+        Bartosz Golaszewski <bgolaszewski@baylibre.com>,
         Bjorn Andersson <bjorn.andersson@linaro.org>,
-        Manu Gautam <mgautam@codeaurora.org>,
-        Sandeep Maheswaram <sanm@codeaurora.org>,
-        Douglas Anderson <dianders@chromium.org>,
-        Sean Paul <seanpaul@chromium.org>,
-        Jonathan Marek <jonathan@marek.ca>,
-        Dmitry Baryshkov <dmitry.baryshkov@linaro.org>,
-        devicetree@vger.kernel.org, Rob Herring <robh+dt@kernel.org>,
-        Rob Clark <robdclark@chromium.org>
-Subject: [PATCH v4 01/10] dt-bindings: phy: qcom,qmp-usb3-dp: Add DP phy information
-Date:   Wed, 16 Sep 2020 16:11:53 -0700
-Message-Id: <20200916231202.3637932-2-swboyd@chromium.org>
-X-Mailer: git-send-email 2.28.0.618.gf4bc123cb7-goog
-In-Reply-To: <20200916231202.3637932-1-swboyd@chromium.org>
-References: <20200916231202.3637932-1-swboyd@chromium.org>
+        David Rivshin <drivshin@allworx.com>,
+        "H . Nikolaus Schaller" <hns@goldelico.com>,
+        Jaedon Shin <jaedon.shin@gmail.com>,
+        John Crispin <john@phrozen.org>,
+        Kevin Cernekee <cernekee@gmail.com>,
+        Linus Walleij <linus.walleij@linaro.org>,
+        Ryder Lee <ryder.lee@mediatek.com>,
+        Sean Wang <sean.wang@mediatek.com>,
+        Simon Guinot <sguinot@lacie.com>,
+        Simon Guinot <simon.guinot@sequanux.org>,
+        Thomas Petazzoni <thomas.petazzoni@free-electrons.com>,
+        Vincent Donnefort <vdonnefort@gmail.com>
+Subject: [PATCH leds v1 00/10] Start moving parsing of `linux,default-trigger` to LED core (a cleanup of LED drivers)
+Date:   Thu, 17 Sep 2020 01:16:40 +0200
+Message-Id: <20200916231650.11484-1-marek.behun@nic.cz>
+X-Mailer: git-send-email 2.26.2
 MIME-Version: 1.0
+Content-Type: text/plain; charset=UTF-8
 Content-Transfer-Encoding: 8bit
+X-Spam-Checker-Version: SpamAssassin 3.4.2 (2018-09-13) on mail.nic.cz
+X-Spam-Status: No, score=0.00
+X-Spamd-Bar: /
+X-Virus-Scanned: clamav-milter 0.102.2 at mail
+X-Virus-Status: Clean
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-This binding only describes the USB phy inside the USB3 + DP "combo"
-phy. Add information for the DP phy and describe the sub-nodes that
-represent the DP and USB3 phys that exist inside the combo wrapper.
-Remove reg-names from required properties because it isn't required nor
-used by the kernel driver.
+Hi,
 
-Cc: Jeykumar Sankaran <jsanka@codeaurora.org>
-Cc: Chandan Uddaraju <chandanu@codeaurora.org>
-Cc: Vara Reddy <varar@codeaurora.org>
-Cc: Tanmay Shah <tanmay@codeaurora.org>
+this series is also available at
+  https://git.kernel.org/pub/scm/linux/kernel/git/kabel/linux.git/log/?h=leds-cleanup-for-pavel
+
+this is a cleanup of some LED subsystem drivers. The main reason behind
+this is that I wanted to avoid code repetition by moving the parsing
+of `linux,default-trigger` DT property from specific drivers to LED
+core. Before this series 32 drivers parse this property (31 in
+drivers/leds and one in drivers/input/keyboard/cap11xx.c).
+After applying this series only 10 drivers are parsing this property.
+
+The reason is that in discussion [1] Rob Herring says that
+`linux,default-trigger` DT property is deprecated in favor of the
+`function` DT property. This makes sense in a way since DT should not
+be Linux specific.
+
+After all drivers are converted we can maybe start work on slow
+deprecation of this property. I do realize that we can't take it away,
+but we can at least convert device trees in Linux repository to stop
+using it in favor of `function` (and for default-on trigger in favor
+of the `default-state` DT property), and print a deprecation warning
+to the user when this `linux,default-trigger` property is present.
+
+I wanted to prepare the way for slow deprecation of the DT property,
+but it turns out that it is more difficult.
+
+The first thing I wanted to do was to move the parsing of the
+`linux,default-trigger` property to LED core. Currently many drivers
+do this themselves. But it can't be moved that simply.
+
+The first patch in this series adds the parsing of this DT property
+into led_classdev_register_ext. If fwnode is given in init_data, the
+property is read. This patch also removes the parsing of this property
+from drivers where led_classdev_register_ext is already called. These
+are:
+  an30259a, aw2013, cr0014114, el15203000, gpio, lm3532, lm3692x,
+  lp8860, lt3593, tlc591xx and turris-omnia.
+
+Patches 2 to 6 do a simple conversion of some drivers to use
+led_classdev_register_ext. These drivers are:
+  bcm6328, bcm6358, lm3697, max77650, mt6323 and pm8058.
+
+In patches 7 to 10 I did a bigger refactor: either they first parsed
+all LED nodes and only after that started registering them, or they
+used too deep nesting or were weird in some other ways:
+  is31fl32xx, is31fl319x, lm36274 and ns2.
+
+There is still a long way to go: some drivers still use the old
+platform_data framework (which has a different structure for every
+driver) instead of device properties via fwnode_* functions or OF).
+
+Some of these can be changed to use device tree only, since they
+already support it and the platform_data isn't used by anything in
+the kernel (for example tca6507 can work with platform_data but
+there is no board definition using it, all usage is via DT).
+
+Some will be harder, because the platform_data code is still used
+(pca9532 is used in arch/arm/mach-iop32x/n2100.c). Even this can
+be done by converting the drivers to use fwnode_* API and converting
+the mach code to use swnodes. I shall look into this later.
+
+This series is compile tested on top of Pavel's tree. Since I
+obviously don't have the various hardware that this code touches,
+I am unable to test it. I therefore add maintainers and authors of
+these drivers to Cc.
+
+Marek
+
+[1] https://lore.kernel.org/linux-leds/20200909235819.0b0fe7ce@nic.cz/T/#m3b6c154f49d0467a707c0f9a552ec87bcbd89df2
+
+Cc: Álvaro Fernández Rojas <noltari@gmail.com>
+Cc: Bartosz Golaszewski <bgolaszewski@baylibre.com>
 Cc: Bjorn Andersson <bjorn.andersson@linaro.org>
-Cc: Manu Gautam <mgautam@codeaurora.org>
-Cc: Sandeep Maheswaram <sanm@codeaurora.org>
-Cc: Douglas Anderson <dianders@chromium.org>
-Cc: Sean Paul <seanpaul@chromium.org>
-Cc: Jonathan Marek <jonathan@marek.ca>
-Cc: Dmitry Baryshkov <dmitry.baryshkov@linaro.org>
-Cc: <devicetree@vger.kernel.org>
-Cc: Rob Herring <robh+dt@kernel.org>
-Cc: Rob Clark <robdclark@chromium.org>
-Signed-off-by: Stephen Boyd <swboyd@chromium.org>
----
- .../bindings/phy/qcom,qmp-usb3-dp-phy.yaml    | 95 ++++++++++++++++---
- 1 file changed, 84 insertions(+), 11 deletions(-)
+Cc: Dan Murphy <dmurphy@ti.com>
+Cc: David Rivshin <drivshin@allworx.com>
+Cc: H. Nikolaus Schaller <hns@goldelico.com>
+Cc: Jaedon Shin <jaedon.shin@gmail.com>
+Cc: John Crispin <john@phrozen.org>
+Cc: Kevin Cernekee <cernekee@gmail.com>
+Cc: Linus Walleij <linus.walleij@linaro.org>
+Cc: Ryder Lee <ryder.lee@mediatek.com>
+Cc: Sean Wang <sean.wang@mediatek.com>
+Cc: Simon Guinot <sguinot@lacie.com>
+Cc: Simon Guinot <simon.guinot@sequanux.org>
+Cc: Thomas Petazzoni <thomas.petazzoni@free-electrons.com>
+Cc: Vincent Donnefort <vdonnefort@gmail.com>
 
-diff --git a/Documentation/devicetree/bindings/phy/qcom,qmp-usb3-dp-phy.yaml b/Documentation/devicetree/bindings/phy/qcom,qmp-usb3-dp-phy.yaml
-index ef8ae9f73092..33974ad10afe 100644
---- a/Documentation/devicetree/bindings/phy/qcom,qmp-usb3-dp-phy.yaml
-+++ b/Documentation/devicetree/bindings/phy/qcom,qmp-usb3-dp-phy.yaml
-@@ -13,17 +13,21 @@ maintainers:
- properties:
-   compatible:
-     enum:
-+      - qcom,sc7180-qmp-usb3-dp-phy
-       - qcom,sc7180-qmp-usb3-phy
-+      - qcom,sdm845-qmp-usb3-dp-phy
-       - qcom,sdm845-qmp-usb3-phy
-   reg:
-     items:
--      - description: Address and length of PHY's common serdes block.
-+      - description: Address and length of PHY's USB serdes block.
-       - description: Address and length of the DP_COM control block.
-+      - description: Address and length of PHY's DP serdes block.
- 
-   reg-names:
-     items:
--      - const: reg-base
-+      - const: usb
-       - const: dp_com
-+      - const: dp
- 
-   "#clock-cells":
-     enum: [ 1, 2 ]
-@@ -74,16 +78,74 @@ properties:
- 
- #Required nodes:
- patternProperties:
--  "^phy@[0-9a-f]+$":
-+  "^usb3-phy@[0-9a-f]+$":
-     type: object
-     description:
--      Each device node of QMP phy is required to have as many child nodes as
--      the number of lanes the PHY has.
-+      The USB3 PHY.
-+
-+    properties:
-+      reg:
-+        items:
-+          - description: Address and length of TX.
-+          - description: Address and length of RX.
-+          - description: Address and length of PCS.
-+          - description: Address and length of TX2.
-+          - description: Address and length of RX2.
-+          - description: Address and length of pcs_misc.
-+
-+      clocks:
-+        items:
-+          - description: pipe clock
-+
-+      clock-names:
-+        items:
-+          - const: pipe0
-+
-+      clock-output-names:
-+        items:
-+          - const: usb3_phy_pipe_clk_src
-+
-+      '#clock-cells':
-+        const: 0
-+
-+      '#phy-cells':
-+        const: 0
-+
-+    required:
-+      - reg
-+      - clocks
-+      - clock-names
-+      - '#clock-cells'
-+      - '#phy-cells'
-+
-+  "^dp-phy@[0-9a-f]+$":
-+    type: object
-+    description:
-+      The DP PHY.
-+
-+    properties:
-+      reg:
-+        items:
-+          - description: Address and length of TX.
-+          - description: Address and length of RX.
-+          - description: Address and length of PCS.
-+          - description: Address and length of TX2.
-+          - description: Address and length of RX2.
-+
-+      '#clock-cells':
-+        const: 1
-+
-+      '#phy-cells':
-+        const: 0
-+
-+    required:
-+      - reg
-+      - '#clock-cells'
-+      - '#phy-cells'
- 
- required:
-   - compatible
-   - reg
--  - reg-names
-   - "#clock-cells"
-   - "#address-cells"
-   - "#size-cells"
-@@ -101,14 +163,15 @@ examples:
-   - |
-     #include <dt-bindings/clock/qcom,gcc-sdm845.h>
-     usb_1_qmpphy: phy-wrapper@88e9000 {
--        compatible = "qcom,sdm845-qmp-usb3-phy";
-+        compatible = "qcom,sdm845-qmp-usb3-dp-phy";
-         reg = <0x088e9000 0x18c>,
--              <0x088e8000 0x10>;
--        reg-names = "reg-base", "dp_com";
-+              <0x088e8000 0x10>,
-+              <0x088ea000 0x40>;
-+        reg-names = "usb", "dp_com", "dp";
-         #clock-cells = <1>;
-         #address-cells = <1>;
-         #size-cells = <1>;
--        ranges = <0x0 0x088e9000 0x1000>;
-+        ranges = <0x0 0x088e9000 0x2000>;
- 
-         clocks = <&gcc GCC_USB3_PRIM_PHY_AUX_CLK>,
-                  <&gcc GCC_USB_PHY_CFG_AHB2PHY_CLK>,
-@@ -123,7 +186,7 @@ examples:
-         vdda-phy-supply = <&vdda_usb2_ss_1p2>;
-         vdda-pll-supply = <&vdda_usb2_ss_core>;
- 
--        phy@200 {
-+        usb3-phy@200 {
-             reg = <0x200 0x128>,
-                   <0x400 0x200>,
-                   <0xc00 0x218>,
-@@ -136,4 +199,14 @@ examples:
-             clock-names = "pipe0";
-             clock-output-names = "usb3_phy_pipe_clk_src";
-         };
-+
-+        dp-phy@88ea200 {
-+            reg = <0xa200 0x200>,
-+                  <0xa400 0x200>,
-+                  <0xaa00 0x200>,
-+                  <0xa600 0x200>,
-+                  <0xa800 0x200>;
-+            #clock-cells = <1>;
-+            #phy-cells = <0>;
-+        };
-     };
+Marek Behún (10):
+  leds: parse linux,default-trigger DT property in LED core
+  leds: bcm6328, bcm6358: use struct led_init_data when registering
+  leds: lm3697: use struct led_init_data when registering
+  leds: max77650: use struct led_init_data when registering
+  leds: mt6323: use struct led_init_data when registering
+  leds: pm8058: use struct led_init_data when registering
+  leds: is31fl32xx: use struct led_init_data when registering
+  leds: is31fl319x: use struct led_init_data when registering
+  leds: lm36274: use struct led_init_data when registering
+  leds: ns2: refactor and use struct led_init_data
+
+ drivers/leds/Kconfig             |   2 +-
+ drivers/leds/led-class.c         |   5 +
+ drivers/leds/leds-an30259a.c     |   3 -
+ drivers/leds/leds-aw2013.c       |   3 -
+ drivers/leds/leds-bcm6328.c      |  10 +-
+ drivers/leds/leds-bcm6358.c      |  10 +-
+ drivers/leds/leds-cr0014114.c    |   3 -
+ drivers/leds/leds-el15203000.c   |   3 -
+ drivers/leds/leds-gpio.c         |   3 -
+ drivers/leds/leds-is31fl319x.c   | 204 ++++++++---------
+ drivers/leds/leds-is31fl32xx.c   |  95 +++-----
+ drivers/leds/leds-lm3532.c       |   3 -
+ drivers/leds/leds-lm36274.c      | 100 +++++----
+ drivers/leds/leds-lm3692x.c      |   3 -
+ drivers/leds/leds-lm3697.c       |  18 +-
+ drivers/leds/leds-lp8860.c       |   4 -
+ drivers/leds/leds-lt3593.c       |   3 -
+ drivers/leds/leds-max77650.c     |  24 +-
+ drivers/leds/leds-mt6323.c       |  13 +-
+ drivers/leds/leds-ns2.c          | 361 ++++++++++---------------------
+ drivers/leds/leds-pm8058.c       |  38 ++--
+ drivers/leds/leds-tlc591xx.c     |   2 -
+ drivers/leds/leds-turris-omnia.c |   2 -
+ 23 files changed, 337 insertions(+), 575 deletions(-)
+
 -- 
-Sent by a computer, using git, on the internet
+2.26.2
 
