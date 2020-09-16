@@ -2,148 +2,202 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from vger.kernel.org (vger.kernel.org [23.128.96.18])
-	by mail.lfdr.de (Postfix) with ESMTP id C245726BB46
-	for <lists+devicetree@lfdr.de>; Wed, 16 Sep 2020 06:15:19 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTP id 6A74E26BB82
+	for <lists+devicetree@lfdr.de>; Wed, 16 Sep 2020 06:29:48 +0200 (CEST)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S1726131AbgIPEPS (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Wed, 16 Sep 2020 00:15:18 -0400
-Received: from m43-7.mailgun.net ([69.72.43.7]:51023 "EHLO m43-7.mailgun.net"
-        rhost-flags-OK-OK-OK-OK) by vger.kernel.org with ESMTP
-        id S1726069AbgIPEPO (ORCPT <rfc822;devicetree@vger.kernel.org>);
-        Wed, 16 Sep 2020 00:15:14 -0400
-DKIM-Signature: a=rsa-sha256; v=1; c=relaxed/relaxed; d=mg.codeaurora.org; q=dns/txt;
- s=smtp; t=1600229713; h=Content-Transfer-Encoding: Content-Type:
- In-Reply-To: MIME-Version: Date: Message-ID: From: References: Cc: To:
- Subject: Sender; bh=sVyIWN/5EQf1o4rLUU8501TZYsaQWVBf+J0gC/hpHCY=; b=WtwYxjARDz25VuXxzvyh4quAZzYZUL+fG6kjCnLkCyyQfHSRVeHepdwYmQHmRlWWaEXeg5+6
- cALKcLWvxe5zwCAQiNiwvl6tNZnVHK1Jmv7hNU+zqrQz75SFBmNcDIqhJijRMqGZ5eYJ3DcW
- 9ygV0DlZetF+EW/1ZJu88JXRotU=
-X-Mailgun-Sending-Ip: 69.72.43.7
-X-Mailgun-Sid: WyI1YmJiNiIsICJkZXZpY2V0cmVlQHZnZXIua2VybmVsLm9yZyIsICJiZTllNGEiXQ==
-Received: from smtp.codeaurora.org
- (ec2-35-166-182-171.us-west-2.compute.amazonaws.com [35.166.182.171]) by
- smtp-out-n05.prod.us-west-2.postgun.com with SMTP id
- 5f61915024954b1631c77d4c (version=TLS1.2,
- cipher=TLS_ECDHE_RSA_WITH_AES_128_GCM_SHA256); Wed, 16 Sep 2020 04:15:12
- GMT
-Received: by smtp.codeaurora.org (Postfix, from userid 1001)
-        id 7D2E7C433F1; Wed, 16 Sep 2020 04:15:12 +0000 (UTC)
-X-Spam-Checker-Version: SpamAssassin 3.4.0 (2014-02-07) on
-        aws-us-west-2-caf-mail-1.web.codeaurora.org
-X-Spam-Level: 
-X-Spam-Status: No, score=-2.9 required=2.0 tests=ALL_TRUSTED,BAYES_00,
-        NICE_REPLY_A,SPF_FAIL autolearn=no autolearn_force=no version=3.4.0
-Received: from [192.168.1.100] (unknown [49.207.202.65])
-        (using TLSv1.2 with cipher ECDHE-RSA-AES128-GCM-SHA256 (128/128 bits))
-        (No client certificate requested)
-        (Authenticated sender: rnayak)
-        by smtp.codeaurora.org (Postfix) with ESMTPSA id 1D10BC433C8;
-        Wed, 16 Sep 2020 04:15:07 +0000 (UTC)
-DMARC-Filter: OpenDMARC Filter v1.3.2 smtp.codeaurora.org 1D10BC433C8
-Authentication-Results: aws-us-west-2-caf-mail-1.web.codeaurora.org; dmarc=none (p=none dis=none) header.from=codeaurora.org
-Authentication-Results: aws-us-west-2-caf-mail-1.web.codeaurora.org; spf=fail smtp.mailfrom=rnayak@codeaurora.org
-Subject: Re: is 'dynamic-power-coefficient' expected to be based on 'real'
- power measurements?
-To:     Matthias Kaehlcke <mka@chromium.org>,
-        Daniel Lezcano <daniel.lezcano@linaro.org>
-Cc:     Lukasz Luba <lukasz.luba@arm.com>,
-        Rob Herring <robh+dt@kernel.org>,
-        DTML <devicetree@vger.kernel.org>,
-        Doug Anderson <dianders@chromium.org>,
-        linux-pm@vger.kernel.org,
-        Amit Daniel Kachhap <amit.kachhap@gmail.com>,
-        Viresh Kumar <viresh.kumar@linaro.org>,
-        Javi Merino <javi.merino@kernel.org>
-References: <248bb01e-1746-c84c-78c4-3cf7d2541a70@codeaurora.org>
- <20200915172444.GA2771744@google.com>
- <406d5d4e-d7d7-8a37-5501-119b734facb3@linaro.org>
- <20200915175808.GB2771744@google.com>
- <27785351-ba14-dc92-6761-d64962c29596@linaro.org>
- <20200915211309.GC2771744@google.com>
- <808029c4-3a05-1926-934d-10739190ab9e@linaro.org>
- <20200915213626.GD2771744@google.com>
-From:   Rajendra Nayak <rnayak@codeaurora.org>
-Message-ID: <5553e9c4-9681-e223-8a31-ea0b0582668f@codeaurora.org>
-Date:   Wed, 16 Sep 2020 09:45:04 +0530
-User-Agent: Mozilla/5.0 (Windows NT 10.0; WOW64; rv:68.0) Gecko/20100101
- Thunderbird/68.12.0
+        id S1726142AbgIPE3p (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Wed, 16 Sep 2020 00:29:45 -0400
+Received: from lindbergh.monkeyblade.net ([23.128.96.19]:52362 "EHLO
+        lindbergh.monkeyblade.net" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
+        with ESMTP id S1726079AbgIPE3o (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Wed, 16 Sep 2020 00:29:44 -0400
+Received: from mail-ot1-x341.google.com (mail-ot1-x341.google.com [IPv6:2607:f8b0:4864:20::341])
+        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 92F37C061788
+        for <devicetree@vger.kernel.org>; Tue, 15 Sep 2020 21:29:43 -0700 (PDT)
+Received: by mail-ot1-x341.google.com with SMTP id o8so5475320otl.4
+        for <devicetree@vger.kernel.org>; Tue, 15 Sep 2020 21:29:43 -0700 (PDT)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+        d=linaro.org; s=google;
+        h=date:from:to:cc:subject:message-id:references:mime-version
+         :content-disposition:in-reply-to;
+        bh=CbpPK/Siu+d9dTl8nIly6n0m2jPY9tJNIXsIgkbDIw4=;
+        b=PHMmuZn8tH1B1bgMVfEoXDoPiabkrcZ6bbZGs9xDoF0tLy2NlnrQkkqBE8HK17mmkY
+         EAVs1/DLqAl0Vy0+xa40q0htbrPg3qvNcw7g1ijYV6d9IaA8QKZmCPaipsta3RP4X+xy
+         gp8P37uvp7V0sWhUIrdnx7UHVa8wzWnnaU6Ocm6ZflBzlG+4UDKykJHP2eXH0QVsjIjC
+         S0j6gFks8JwCKAnYzdySzaIgCsnEIkl4oSnRg9/p1PrjTySy5rC0+x5NQwI1PCZjW/lC
+         +rUhUDub8AJwUFWeg8KI2UK+VSoLECoyaRP/BLIcLHPWHsUR7K/s1hI1+L4m03EN1wwG
+         yPzw==
+X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+        d=1e100.net; s=20161025;
+        h=x-gm-message-state:date:from:to:cc:subject:message-id:references
+         :mime-version:content-disposition:in-reply-to;
+        bh=CbpPK/Siu+d9dTl8nIly6n0m2jPY9tJNIXsIgkbDIw4=;
+        b=PqnCqW5spsPLQal+v2QKtF6UITcLqBz9QDn/Mw8i2OV2HI76dnJRLBbC2AKyQEnpXf
+         4MDFHaGT14MeIErJu5VM3JufCx/q9mVMBGpOT1pwD81k9ZB/De5RB7BM41tQbDstjNdV
+         LL7GRcvBFzJ4Vo2ebMZAkmdG6JxL1I/OwwxK0kEbIo51QB4bKwnbt4o8qOFIyul9zpxr
+         +6eL2wBrIAhElDt1sMCUQnwKZqIodMBk7Lz5xChhTcjdgTkvMIu5vvShzvhGVueMnyTp
+         9jwhxfrFFOnukERWKnxSrlR6pqJiKggXd7wwxkALb6+v2RCCtkICsmH9l1cGYgLHxMn6
+         YM7A==
+X-Gm-Message-State: AOAM530U50NSjdRlcRoUXeUlLLo09aEqLG9+AhyJ21L+u5LVe08hFpno
+        ioo9zGIMuliI0yBmBhlhlRslhA==
+X-Google-Smtp-Source: ABdhPJzRiqydG/HYSbv1upl3PnSI4mgAlWvKqm4Ls2OyNROQKt+mgWEtMm3v8Ebm1p+C9lhBgSlkTA==
+X-Received: by 2002:a05:6830:1ac8:: with SMTP id r8mr14353983otc.70.1600230582598;
+        Tue, 15 Sep 2020 21:29:42 -0700 (PDT)
+Received: from yoga ([2605:6000:e5cb:c100:7cad:6eff:fec8:37e4])
+        by smtp.gmail.com with ESMTPSA id c124sm8557751oib.22.2020.09.15.21.29.41
+        (version=TLS1_3 cipher=TLS_AES_256_GCM_SHA384 bits=256/256);
+        Tue, 15 Sep 2020 21:29:41 -0700 (PDT)
+Date:   Tue, 15 Sep 2020 23:29:39 -0500
+From:   Bjorn Andersson <bjorn.andersson@linaro.org>
+To:     Sumit Semwal <sumit.semwal@linaro.org>
+Cc:     Thierry Reding <thierry.reding@gmail.com>,
+        Sam Ravnborg <sam@ravnborg.org>,
+        David Airlie <airlied@linux.ie>,
+        Daniel Vetter <daniel@ffwll.ch>,
+        Mauro Carvalho Chehab <mchehab+huawei@kernel.org>,
+        "David S . Miller" <davem@davemloft.net>,
+        Rob Herring <robh@kernel.org>, linux-kernel@vger.kernel.org,
+        dri-devel@lists.freedesktop.org, devicetree@vger.kernel.org
+Subject: Re: [PATCH v7 1/2] dt-bindings: display: panel: Add bindings for
+ Novatek nt36672a
+Message-ID: <20200916042939.GC1893@yoga>
+References: <20200902064407.30712-1-sumit.semwal@linaro.org>
+ <20200902064407.30712-2-sumit.semwal@linaro.org>
 MIME-Version: 1.0
-In-Reply-To: <20200915213626.GD2771744@google.com>
-Content-Type: text/plain; charset=utf-8; format=flowed
-Content-Language: en-US
-Content-Transfer-Encoding: 7bit
+Content-Type: text/plain; charset=us-ascii
+Content-Disposition: inline
+In-Reply-To: <20200902064407.30712-2-sumit.semwal@linaro.org>
 Sender: devicetree-owner@vger.kernel.org
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
+On Wed 02 Sep 01:44 CDT 2020, Sumit Semwal wrote:
 
-On 9/16/2020 3:06 AM, Matthias Kaehlcke wrote:
-> On Tue, Sep 15, 2020 at 11:23:49PM +0200, Daniel Lezcano wrote:
->> On 15/09/2020 23:13, Matthias Kaehlcke wrote:
->>> On Tue, Sep 15, 2020 at 10:55:52PM +0200, Daniel Lezcano wrote:
->>>> On 15/09/2020 19:58, Matthias Kaehlcke wrote:
->>>>> On Tue, Sep 15, 2020 at 07:50:10PM +0200, Daniel Lezcano wrote:
->>>>>> On 15/09/2020 19:24, Matthias Kaehlcke wrote:
->>>>>>> +Thermal folks
->>>>>>>
->>>>>>> Hi Rajendra,
->>>>>>>
->>>>>>> On Tue, Sep 15, 2020 at 11:14:00AM +0530, Rajendra Nayak wrote:
->>>>>>>> Hi Rob,
->>>>>>>>
->>>>>>>> There has been some discussions on another thread [1] around the DPC (dynamic-power-coefficient) values
->>>>>>>> for CPU's being relative vs absolute (based on real power) and should they be used to derive 'real' power
->>>>>>>> at various OPPs in order to calculate things like 'sustainable-power' for thermal zones.
->>>>>>>> I believe relative values work perfectly fine for scheduling decisions, but with others using this for
->>>>>>>> calculating power values in mW, is there a need to document the property as something that *has* to be
->>>>>>>> based on real power measurements?
->>>>>>>
->>>>>>> Relative values may work for scheduling decisions, but not for thermal
->>>>>>> management with the power allocator, at least not when CPU cooling devices
->>>>>>> are combined with others that specify their power consumption in absolute
->>>>>>> values. Such a configuration should be supported IMO.
->>>>>>
->>>>>> The energy model is used in the cpufreq cooling device and if the
->>>>>> sustainable power is consistent with the relative values then there is
->>>>>> no reason it shouldn't work.
->>>>>
->>>>> Agreed on thermal zones that exclusively use CPUs as cooling devices, but
->>>>> what when you have mixed zones, with CPUs with their pseudo-unit and e.g. a
->>>>> GPU that specifies its power in mW?
->>>>
->>>> Well, if a SoC vendor decides to mix the units, then there is nothing we
->>>> can do.
->>>>
->>>> When specifying the power numbers available for the SoC, they could be
->>>> all scaled against the highest power number.
->>>
->>> The GPU was just one example, a device could have heat dissipating components
->>> that are not from the SoC vendor (e.g. WiFi, modem, backlight), and depending
->>> on the design it might not make sense to have separate thermal zones.
->>
->> Is it possible to elaborate, I'm not sure to get the point ?
+> Novatek nt36672a is a display driver IC that can drive DSI panel. It
+> is also present in the Tianma video mode panel, which is a FHD+ panel
+> with a resolution of 1080x2246 and 6.18 inches size. It is found in
+> some of the Poco F1 phones.
 > 
-> A device could have a thermal zone with the following cooling
-> devices:
+> This patch adds the display driver for the IC, with support added for
+> this tianma fhd video mode panel.
 > 
-> - CPUs with power consumption specified as pmW (pseudo mW
-> - A modem from a third party vendor. The modem can dissipate
->    significant heat and allows to throttle the bandwidth for
->    cooling. The power consumption of the modem is given in
->    mW.
-> 
-> These could be crammed together in a small form factor
-> (e.g. ChromeCast or Chromebit) which makes it difficult to
-> discern with a sensor what exactly is generating the heat,
-> which is why you have a single thermal zone.
-> 
-> IPA is used as governor for this zone, it can't make accurate
-> decisions because one cooling device specifies it's power
-> consumption in pmW and the other in mW.
+> Signed-off-by: Sumit Semwal <sumit.semwal@linaro.org>
+> Reviewed-by: Rob Herring <robh@kernel.org>
 
-Is there a real example upstream for this, or is it a theoretical
-problem (which can exist in the future) we are trying to solve?
+Reviewed-by: Bjorn Andersson <bjorn.andersson@linaro.org>
 
--- 
-QUALCOMM INDIA, on behalf of Qualcomm Innovation Center, Inc. is a member
-of Code Aurora Forum, hosted by The Linux Foundation
+Regards,
+Bjorn
+
+> 
+> ---
+> v2: remove ports node, making port@0 directly under panel@0 node.
+> v3: updated to replace port@0 to just 'port'.
+> v5: renamed to novatek,nt36672a, since the binding is for the IC and not
+>       the panel.
+> v6: v5 review comments incorporated.
+>     - added enum for the compatible part, since it can be extended in
+>       future.
+>     - few cosmetic updates.
+> ---
+>  .../display/panel/novatek,nt36672a.yaml       | 87 +++++++++++++++++++
+>  1 file changed, 87 insertions(+)
+>  create mode 100644 Documentation/devicetree/bindings/display/panel/novatek,nt36672a.yaml
+> 
+> diff --git a/Documentation/devicetree/bindings/display/panel/novatek,nt36672a.yaml b/Documentation/devicetree/bindings/display/panel/novatek,nt36672a.yaml
+> new file mode 100644
+> index 000000000000..d2170de6b723
+> --- /dev/null
+> +++ b/Documentation/devicetree/bindings/display/panel/novatek,nt36672a.yaml
+> @@ -0,0 +1,87 @@
+> +# SPDX-License-Identifier: GPL-2.0-only OR BSD-2-Clause
+> +%YAML 1.2
+> +---
+> +$id: http://devicetree.org/schemas/display/panel/novatek,nt36672a.yaml#
+> +$schema: http://devicetree.org/meta-schemas/core.yaml#
+> +
+> +title: Novatek NT36672A based DSI display Panels
+> +
+> +maintainers:
+> +  - Sumit Semwal <sumit.semwal@linaro.org>
+> +
+> +description: |
+> +  The nt36672a IC from Novatek is a generic DSI Panel IC used to drive dsi
+> +  panels.
+> +  Right now, support is added only for a Tianma FHD+ LCD display panel with a
+> +  resolution of 1080x2246. It is a video mode DSI panel.
+> +
+> +allOf:
+> +  - $ref: panel-common.yaml#
+> +
+> +properties:
+> +  compatible:
+> +    items:
+> +      - enum:
+> +         - tianma,fhd-video
+> +      - const: novatek,nt36672a
+> +    description: This indicates the panel manufacturer of the panel that is
+> +      in turn using the NT36672A panel driver. This compatible string
+> +      determines how the NT36672A panel driver is configured for the indicated
+> +      panel. The novatek,nt36672a compatible shall always be provided as a fallback.
+> +
+> +  reset-gpios:
+> +    description: phandle of gpio for reset line - This should be 8mA, gpio
+> +      can be configured using mux, pinctrl, pinctrl-names (active high)
+> +
+> +  vddio-supply:
+> +    description: phandle of the regulator that provides the supply voltage
+> +      Power IC supply
+> +
+> +  vddpos-supply:
+> +    description: phandle of the positive boost supply regulator
+> +
+> +  vddneg-supply:
+> +    description: phandle of the negative boost supply regulator
+> +
+> +  reg: true
+> +  port: true
+> +
+> +required:
+> +  - compatible
+> +  - reg
+> +  - vddi0-supply
+> +  - vddpos-supply
+> +  - vddneg-supply
+> +  - reset-gpios
+> +  - port
+> +
+> +unevaluatedProperties: false
+> +
+> +examples:
+> +  - |+
+> +    #include <dt-bindings/gpio/gpio.h>
+> +
+> +    dsi0 {
+> +        #address-cells = <1>;
+> +        #size-cells = <0>;
+> +
+> +        panel@0 {
+> +            compatible = "tianma,fhd-video", "novatek,nt36672a";
+> +            reg = <0>;
+> +            vddi0-supply = <&vreg_l14a_1p88>;
+> +            vddpos-supply = <&lab>;
+> +            vddneg-supply = <&ibb>;
+> +
+> +            reset-gpios = <&tlmm 6 GPIO_ACTIVE_HIGH>;
+> +
+> +            #address-cells = <1>;
+> +            #size-cells = <0>;
+> +            port {
+> +                tianma_nt36672a_in_0: endpoint {
+> +                    remote-endpoint = <&dsi0_out>;
+> +                };
+> +            };
+> +        };
+> +    };
+> +
+> +...
+> -- 
+> 2.28.0
+> 
