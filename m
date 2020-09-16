@@ -2,88 +2,158 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from vger.kernel.org (vger.kernel.org [23.128.96.18])
-	by mail.lfdr.de (Postfix) with ESMTP id AD4F926C6F1
-	for <lists+devicetree@lfdr.de>; Wed, 16 Sep 2020 20:12:27 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTP id B3B5B26C6C5
+	for <lists+devicetree@lfdr.de>; Wed, 16 Sep 2020 20:03:27 +0200 (CEST)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S1727722AbgIPSMY (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Wed, 16 Sep 2020 14:12:24 -0400
-Received: from mail.kernel.org ([198.145.29.99]:52646 "EHLO mail.kernel.org"
-        rhost-flags-OK-OK-OK-OK) by vger.kernel.org with ESMTP
-        id S1727819AbgIPSKp (ORCPT <rfc822;devicetree@vger.kernel.org>);
-        Wed, 16 Sep 2020 14:10:45 -0400
-Received: from kozik-lap.mshome.net (unknown [194.230.155.191])
-        (using TLSv1.2 with cipher ECDHE-RSA-AES128-GCM-SHA256 (128/128 bits))
-        (No client certificate requested)
-        by mail.kernel.org (Postfix) with ESMTPSA id 5B7AE22AAD;
-        Wed, 16 Sep 2020 16:23:58 +0000 (UTC)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=kernel.org;
-        s=default; t=1600273445;
-        bh=Jyj1xhY3bfoHP8MamoDVB6jYumTCPOuxehh3CoJHYe8=;
-        h=From:To:Cc:Subject:Date:In-Reply-To:References:From;
-        b=b5tyTJTJejhb/FIGR9kdHGFYDxnRuqn1kL953jieGY7lUS9QvXS/58u7ZzvIzBaY/
-         dZKdf0zyJGDFlj2eRmx3c49c4cU3rxA4bMc97/o6RLhKJb3B5DMCK33+dcVE8UbInQ
-         kgtpJHVuJjWhxUtg4bJlieN4RdKjAzpp0U0xdir8=
-From:   Krzysztof Kozlowski <krzk@kernel.org>
-To:     Linus Walleij <linus.walleij@linaro.org>,
-        Bartosz Golaszewski <bgolaszewski@baylibre.com>,
-        Rob Herring <robh+dt@kernel.org>, Ray Jui <rjui@broadcom.com>,
-        Scott Branden <sbranden@broadcom.com>,
-        bcm-kernel-feedback-list@broadcom.com,
-        Shawn Guo <shawnguo@kernel.org>,
-        Sascha Hauer <s.hauer@pengutronix.de>,
-        Pengutronix Kernel Team <kernel@pengutronix.de>,
-        Fabio Estevam <festevam@gmail.com>,
-        NXP Linux Team <linux-imx@nxp.com>,
-        Manivannan Sadhasivam <manivannan.sadhasivam@linaro.org>,
-        Andy Gross <agross@kernel.org>,
-        Bjorn Andersson <bjorn.andersson@linaro.org>,
-        Palmer Dabbelt <palmer@dabbelt.com>,
-        Paul Walmsley <paul.walmsley@sifive.com>,
-        Masahiro Yamada <yamada.masahiro@socionext.com>,
-        Chris Packham <chris.packham@alliedtelesis.co.nz>,
-        Anson Huang <Anson.Huang@nxp.com>,
-        Sungbo Eo <mans0n@gorani.run>, Stefan Agner <stefan@agner.ch>,
-        Srinivas Kandagatla <srinivas.kandagatla@linaro.org>,
-        Magnus Damm <magnus.damm@gmail.com>,
-        Geert Uytterhoeven <geert+renesas@glider.be>,
-        Yash Shah <yash.shah@sifive.com>,
-        Paul Kocialkowski <paul.kocialkowski@bootlin.com>,
-        linux-gpio@vger.kernel.org, devicetree@vger.kernel.org,
-        linux-arm-kernel@lists.infradead.org, linux-kernel@vger.kernel.org,
-        linux-unisoc@lists.infradead.org, linux-arm-msm@vger.kernel.org,
-        linux-riscv@lists.infradead.org
-Cc:     Krzysztof Kozlowski <krzk@kernel.org>
-Subject: [PATCH 7/8] arm64: dts: imx8mq-librem5: align GPIO hog names with dtschema
-Date:   Wed, 16 Sep 2020 18:22:49 +0200
-Message-Id: <20200916162250.16098-8-krzk@kernel.org>
-X-Mailer: git-send-email 2.17.1
-In-Reply-To: <20200916162250.16098-1-krzk@kernel.org>
-References: <20200916162250.16098-1-krzk@kernel.org>
+        id S1727608AbgIPSDJ (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Wed, 16 Sep 2020 14:03:09 -0400
+Received: from lindbergh.monkeyblade.net ([23.128.96.19]:38054 "EHLO
+        lindbergh.monkeyblade.net" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
+        with ESMTP id S1727614AbgIPSCx (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Wed, 16 Sep 2020 14:02:53 -0400
+Received: from mail-pg1-x533.google.com (mail-pg1-x533.google.com [IPv6:2607:f8b0:4864:20::533])
+        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id A13D2C02C2BF
+        for <devicetree@vger.kernel.org>; Wed, 16 Sep 2020 09:41:00 -0700 (PDT)
+Received: by mail-pg1-x533.google.com with SMTP id y1so4211240pgk.8
+        for <devicetree@vger.kernel.org>; Wed, 16 Sep 2020 09:41:00 -0700 (PDT)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+        d=chromium.org; s=google;
+        h=date:from:to:cc:subject:message-id:references:mime-version
+         :content-disposition:in-reply-to;
+        bh=WhlGWVI3LaTH1p8+ldz6Qi6juBzyGEgCmFwW9Q3lN6w=;
+        b=duLh2jWD5Dgb7ko3teI+il54V3ud9S5mViXog9DWH845vNxR6yLnMgzngf/1tU1cpQ
+         u4rpIF1qiQji7whRdll2vGn+nmP/IQL7plBW3mcwU51tjdElN3oPVxJwaPvYM1ocONic
+         EFYaUtuJNTHvmwrpuDMWUh46BudzieMMzHfuE=
+X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+        d=1e100.net; s=20161025;
+        h=x-gm-message-state:date:from:to:cc:subject:message-id:references
+         :mime-version:content-disposition:in-reply-to;
+        bh=WhlGWVI3LaTH1p8+ldz6Qi6juBzyGEgCmFwW9Q3lN6w=;
+        b=sv8OPls3YJPUrMkAejazzSoVHGDMBoq4PaPcnbNnboZXtZlbhyu5TdEQpNClVS2Pek
+         BDkvMmbi4ohmq/dKGVfdtdxXVBvHAUZcRyCOssDzBjbsZK3HQMuTKjsWNsgDqvBQSMK4
+         49aKqpVZjwc9TedLTdXniJGAHMnMdvdKk5gihdTuaKiwQCBtIQ7PvcponvlANmWI6D07
+         VAhZt49iXb7HPXbolZ+hzwa6aSIFXCV3dDUU/IHCNgvMIlDdqbCs/cjMgJCGHPveQKbk
+         LSudujGTRW318Zf0hjtUiALJjAfYqb4LBMxmKz4YtR09B7JHWXfbKETealO5d+FLVJ59
+         EZRQ==
+X-Gm-Message-State: AOAM5335oDKHgvD6+RmFW9YJaYyh75XCgKT3qM8ho2vN7UIYgmsLkY3L
+        qS3r/OhECy2wz96lhMcMzSD69g==
+X-Google-Smtp-Source: ABdhPJznGYU6LeZ9pKpPyRSNH2dEyT60pWBW0HCpYhZxfcK3eIVGa5mgxE9gqJq+UvYYbS0477ghFg==
+X-Received: by 2002:a62:ac18:0:b029:142:2501:34ef with SMTP id v24-20020a62ac180000b0290142250134efmr6829574pfe.72.1600274457743;
+        Wed, 16 Sep 2020 09:40:57 -0700 (PDT)
+Received: from localhost ([2620:15c:202:1:f693:9fff:fef4:e70a])
+        by smtp.gmail.com with ESMTPSA id g24sm3282695pfk.65.2020.09.16.09.40.56
+        (version=TLS1_3 cipher=TLS_AES_128_GCM_SHA256 bits=128/128);
+        Wed, 16 Sep 2020 09:40:56 -0700 (PDT)
+Date:   Wed, 16 Sep 2020 09:40:55 -0700
+From:   Matthias Kaehlcke <mka@chromium.org>
+To:     Rajendra Nayak <rnayak@codeaurora.org>
+Cc:     Daniel Lezcano <daniel.lezcano@linaro.org>,
+        Lukasz Luba <lukasz.luba@arm.com>,
+        Rob Herring <robh+dt@kernel.org>,
+        DTML <devicetree@vger.kernel.org>,
+        Doug Anderson <dianders@chromium.org>,
+        linux-pm@vger.kernel.org,
+        Amit Daniel Kachhap <amit.kachhap@gmail.com>,
+        Viresh Kumar <viresh.kumar@linaro.org>,
+        Javi Merino <javi.merino@kernel.org>
+Subject: Re: is 'dynamic-power-coefficient' expected to be based on 'real'
+ power measurements?
+Message-ID: <20200916164055.GH2771744@google.com>
+References: <248bb01e-1746-c84c-78c4-3cf7d2541a70@codeaurora.org>
+ <20200915172444.GA2771744@google.com>
+ <406d5d4e-d7d7-8a37-5501-119b734facb3@linaro.org>
+ <20200915175808.GB2771744@google.com>
+ <27785351-ba14-dc92-6761-d64962c29596@linaro.org>
+ <20200915211309.GC2771744@google.com>
+ <808029c4-3a05-1926-934d-10739190ab9e@linaro.org>
+ <20200915213626.GD2771744@google.com>
+ <5553e9c4-9681-e223-8a31-ea0b0582668f@codeaurora.org>
+MIME-Version: 1.0
+Content-Type: text/plain; charset=utf-8
+Content-Disposition: inline
+In-Reply-To: <5553e9c4-9681-e223-8a31-ea0b0582668f@codeaurora.org>
 Sender: devicetree-owner@vger.kernel.org
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-dtschema expects GPIO hogs to end with 'hog' prefix.
+On Wed, Sep 16, 2020 at 09:45:04AM +0530, Rajendra Nayak wrote:
+> 
+> On 9/16/2020 3:06 AM, Matthias Kaehlcke wrote:
+> > On Tue, Sep 15, 2020 at 11:23:49PM +0200, Daniel Lezcano wrote:
+> > > On 15/09/2020 23:13, Matthias Kaehlcke wrote:
+> > > > On Tue, Sep 15, 2020 at 10:55:52PM +0200, Daniel Lezcano wrote:
+> > > > > On 15/09/2020 19:58, Matthias Kaehlcke wrote:
+> > > > > > On Tue, Sep 15, 2020 at 07:50:10PM +0200, Daniel Lezcano wrote:
+> > > > > > > On 15/09/2020 19:24, Matthias Kaehlcke wrote:
+> > > > > > > > +Thermal folks
+> > > > > > > > 
+> > > > > > > > Hi Rajendra,
+> > > > > > > > 
+> > > > > > > > On Tue, Sep 15, 2020 at 11:14:00AM +0530, Rajendra Nayak wrote:
+> > > > > > > > > Hi Rob,
+> > > > > > > > > 
+> > > > > > > > > There has been some discussions on another thread [1] around the DPC (dynamic-power-coefficient) values
+> > > > > > > > > for CPU's being relative vs absolute (based on real power) and should they be used to derive 'real' power
+> > > > > > > > > at various OPPs in order to calculate things like 'sustainable-power' for thermal zones.
+> > > > > > > > > I believe relative values work perfectly fine for scheduling decisions, but with others using this for
+> > > > > > > > > calculating power values in mW, is there a need to document the property as something that *has* to be
+> > > > > > > > > based on real power measurements?
+> > > > > > > > 
+> > > > > > > > Relative values may work for scheduling decisions, but not for thermal
+> > > > > > > > management with the power allocator, at least not when CPU cooling devices
+> > > > > > > > are combined with others that specify their power consumption in absolute
+> > > > > > > > values. Such a configuration should be supported IMO.
+> > > > > > > 
+> > > > > > > The energy model is used in the cpufreq cooling device and if the
+> > > > > > > sustainable power is consistent with the relative values then there is
+> > > > > > > no reason it shouldn't work.
+> > > > > > 
+> > > > > > Agreed on thermal zones that exclusively use CPUs as cooling devices, but
+> > > > > > what when you have mixed zones, with CPUs with their pseudo-unit and e.g. a
+> > > > > > GPU that specifies its power in mW?
+> > > > > 
+> > > > > Well, if a SoC vendor decides to mix the units, then there is nothing we
+> > > > > can do.
+> > > > > 
+> > > > > When specifying the power numbers available for the SoC, they could be
+> > > > > all scaled against the highest power number.
+> > > > 
+> > > > The GPU was just one example, a device could have heat dissipating components
+> > > > that are not from the SoC vendor (e.g. WiFi, modem, backlight), and depending
+> > > > on the design it might not make sense to have separate thermal zones.
+> > > 
+> > > Is it possible to elaborate, I'm not sure to get the point ?
+> > 
+> > A device could have a thermal zone with the following cooling
+> > devices:
+> > 
+> > - CPUs with power consumption specified as pmW (pseudo mW
+> > - A modem from a third party vendor. The modem can dissipate
+> >    significant heat and allows to throttle the bandwidth for
+> >    cooling. The power consumption of the modem is given in
+> >    mW.
+> > 
+> > These could be crammed together in a small form factor
+> > (e.g. ChromeCast or Chromebit) which makes it difficult to
+> > discern with a sensor what exactly is generating the heat,
+> > which is why you have a single thermal zone.
+> > 
+> > IPA is used as governor for this zone, it can't make accurate
+> > decisions because one cooling device specifies it's power
+> > consumption in pmW and the other in mW.
+> 
+> Is there a real example upstream for this, or is it a theoretical
+> problem (which can exist in the future) we are trying to solve?
 
-Signed-off-by: Krzysztof Kozlowski <krzk@kernel.org>
----
- arch/arm64/boot/dts/freescale/imx8mq-librem5.dtsi | 2 +-
- 1 file changed, 1 insertion(+), 1 deletion(-)
+Sort of, there is the rk3288-based veyron-mickey, which uses CPUs,
+the GPU and ddrfreq as cooling devices in the same zone:
 
-diff --git a/arch/arm64/boot/dts/freescale/imx8mq-librem5.dtsi b/arch/arm64/boot/dts/freescale/imx8mq-librem5.dtsi
-index e4dedcb58f76..6cbcee2fb938 100644
---- a/arch/arm64/boot/dts/freescale/imx8mq-librem5.dtsi
-+++ b/arch/arm64/boot/dts/freescale/imx8mq-librem5.dtsi
-@@ -249,7 +249,7 @@
- 	pinctrl-names = "default";
- 	pinctrl-0 = <&pinctrl_pmic_5v>;
- 
--	pmic-5v {
-+	pmic-5v-hog {
- 		gpio-hog;
- 		gpios = <&gpio1 1 GPIO_ACTIVE_HIGH>;
- 		input;
--- 
-2.17.1
+https://chromium.googlesource.com/chromiumos/third_party/kernel/+/refs/heads/chromeos-4.19/arch/arm/boot/dts/rk3288-veyron-mickey.dts#42
 
+The device doesn't use IPA though, so mixed up units wouldn't matter in this
+case.
+
+From a quick grep in arch/arm(64)/boot/dts/ at least it seems that mixing
+cooling devices of different types is not a common case, though it doesn't
+necessarily reflect what is done in custom DTs.
