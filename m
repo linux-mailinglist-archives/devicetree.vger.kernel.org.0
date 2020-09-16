@@ -2,164 +2,150 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from vger.kernel.org (vger.kernel.org [23.128.96.18])
-	by mail.lfdr.de (Postfix) with ESMTP id E1EB826CBF8
-	for <lists+devicetree@lfdr.de>; Wed, 16 Sep 2020 22:37:39 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTP id 9662526CCA7
+	for <lists+devicetree@lfdr.de>; Wed, 16 Sep 2020 22:48:04 +0200 (CEST)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S1726361AbgIPUhh (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Wed, 16 Sep 2020 16:37:37 -0400
-Received: from lindbergh.monkeyblade.net ([23.128.96.19]:57456 "EHLO
+        id S1726747AbgIPUre (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Wed, 16 Sep 2020 16:47:34 -0400
+Received: from lindbergh.monkeyblade.net ([23.128.96.19]:56202 "EHLO
         lindbergh.monkeyblade.net" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S1726672AbgIPRKN (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Wed, 16 Sep 2020 13:10:13 -0400
-Received: from mail-lj1-x242.google.com (mail-lj1-x242.google.com [IPv6:2a00:1450:4864:20::242])
-        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id F05D4C02C2B6
-        for <devicetree@vger.kernel.org>; Wed, 16 Sep 2020 09:37:09 -0700 (PDT)
-Received: by mail-lj1-x242.google.com with SMTP id b19so6457707lji.11
-        for <devicetree@vger.kernel.org>; Wed, 16 Sep 2020 09:37:09 -0700 (PDT)
+        with ESMTP id S1726704AbgIPRBX (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Wed, 16 Sep 2020 13:01:23 -0400
+Received: from mail-pg1-x52b.google.com (mail-pg1-x52b.google.com [IPv6:2607:f8b0:4864:20::52b])
+        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id AE85DC002179
+        for <devicetree@vger.kernel.org>; Wed, 16 Sep 2020 09:48:42 -0700 (PDT)
+Received: by mail-pg1-x52b.google.com with SMTP id j34so4226125pgi.7
+        for <devicetree@vger.kernel.org>; Wed, 16 Sep 2020 09:48:42 -0700 (PDT)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=linaro.org; s=google;
-        h=from:to:cc:subject:date:message-id:in-reply-to:references;
-        bh=EkdGaMAWsiITjixL8vtqkk4znvOu3Q/xzFs2YIEcfEY=;
-        b=dpvpqsnv1se+B+N0B3X73ZARW0xp0qYtrllJbwUMEaTaPYAhDr3QA1JvBn8NUzvi/Z
-         s8/YO99GSsIQU66VS4Y21URWzrqFy3MCSfvxw+pZqn4rifzBbNx2BJgMeksakO170Z52
-         JPksnTeACT5MlZRIedoBUIaPfuTTJMYrmuNm4nBCXCwlym2M+aUB2z4kYkJ0ouJaSY00
-         70k7LERJHRRCJjPRwRId0KijyzilqRY9bkwG2n2Sba11nDKP2TEzW5F79CkYt4U8RCAV
-         +RMne5o9ys2+dp6NFUda1mLsnvldt8KlUv+Tr51FA+G/lZn1INDC4VhR7AUJMAsKGndQ
-         DMuQ==
+        d=chromium.org; s=google;
+        h=date:from:to:cc:subject:message-id:references:mime-version
+         :content-disposition:in-reply-to;
+        bh=P8PPXyb+uFO9XkdIEQXnPdIy8/a63GyCLZBdgHTWNo8=;
+        b=lTDGuCkV4IpGXWAcjxk5BI+Lv7DinZHeRstTh98asodjwaKRYM6TBI3SJKbdw1HcIn
+         fqSJbx6cDg+fyoEw64N8t2MEV1jOOPH2Lrbh1EaKTop2krATgdmP0Aq14j8fEiIbL7Pd
+         /nvqgKZZWwpsjhblH7u1GDOQJMqqWNqfiLQ2A=
 X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
         d=1e100.net; s=20161025;
-        h=x-gm-message-state:from:to:cc:subject:date:message-id:in-reply-to
-         :references;
-        bh=EkdGaMAWsiITjixL8vtqkk4znvOu3Q/xzFs2YIEcfEY=;
-        b=TWcJfIEjnTm1wFdJjkogXPeGJG2Z2oblhy9TrakDfYAakr1uGgrN9amdPx6w53nlgG
-         hqKL5DNYWcnyPH5TesGE+q6si8CcAMJSpsrzwUWKgcdDd4ftpk02nI+kDdDulHBGE841
-         agwOJYsDglxr7IIPgJhPMZxeoc8wgYE8ufzvJbZ9bxVpu++Nn6m8RZCCU8juGBGIF/EP
-         WkreUZ+KqamGOKrfHgCbJz/lvw/5ercnNgYeZVK+LdY4JWASPgmcdBI0n3kEwoFHD9CS
-         M4Gvx/jgkQk7tlX+PInjMsF2u5W5GCjPUb8wqdrTrKRT9kbPoIzXv3+efRSp6/0Zeeag
-         R29Q==
-X-Gm-Message-State: AOAM5310bMOSC/URL7HWhS914v4qd004b+suuqANyGY+XgzHOH+cgPIk
-        UxdCXoHBeampdaVLEfanOGcZvw==
-X-Google-Smtp-Source: ABdhPJweMbctsM8dhw1DMsPTH+UQrB1ETp35qvjl+dAbRFkt1qlxj5Z1ZMezb9PHcSl/mT5nBIGqww==
-X-Received: by 2002:a2e:a587:: with SMTP id m7mr8896222ljp.133.1600274227566;
-        Wed, 16 Sep 2020 09:37:07 -0700 (PDT)
-Received: from gilgamesh.semihalf.com (193-106-246-138.noc.fibertech.net.pl. [193.106.246.138])
-        by smtp.gmail.com with ESMTPSA id o15sm4684400lfo.188.2020.09.16.09.37.06
-        (version=TLS1_2 cipher=ECDHE-ECDSA-AES128-GCM-SHA256 bits=128/128);
-        Wed, 16 Sep 2020 09:37:07 -0700 (PDT)
-From:   Grzegorz Jaszczyk <grzegorz.jaszczyk@linaro.org>
-To:     tglx@linutronix.de, jason@lakedaemon.net, maz@kernel.org,
-        s-anna@ti.com
-Cc:     grzegorz.jaszczyk@linaro.org, robh+dt@kernel.org,
-        lee.jones@linaro.org, devicetree@vger.kernel.org,
-        linux-kernel@vger.kernel.org, linux-omap@vger.kernel.org,
-        linux-arm-kernel@lists.infradead.org, david@lechnology.com,
-        praneeth@ti.com
-Subject: [PATCH v7 4/5] irqchip/irq-pruss-intc: Implement irq_{get,set}_irqchip_state ops
-Date:   Wed, 16 Sep 2020 18:36:37 +0200
-Message-Id: <1600274198-30470-2-git-send-email-grzegorz.jaszczyk@linaro.org>
-X-Mailer: git-send-email 2.7.4
-In-Reply-To: <1600274198-30470-1-git-send-email-grzegorz.jaszczyk@linaro.org>
-References: <1600274198-30470-1-git-send-email-grzegorz.jaszczyk@linaro.org>
+        h=x-gm-message-state:date:from:to:cc:subject:message-id:references
+         :mime-version:content-disposition:in-reply-to;
+        bh=P8PPXyb+uFO9XkdIEQXnPdIy8/a63GyCLZBdgHTWNo8=;
+        b=E113JHXKz5GDR/g5XzPRkAYH5QIYxB47np1KoTxKR8RUk3B/Ga/JXUUJJqDWZ652GP
+         BuePmrgQsfbURpfqjr1uCDj6KH32kUaI1sq41e8C8idnBVxbHiWhFW5DwG5h13kS9x7v
+         xplh68MQ0WPI4UR6sE1OJLYQ3Wlh7OnYI7xNi1g+CDVvOrY/yG0Dx9K4oe9uJK7rbgWv
+         HLDaLiP0Pk3NshLPEWrJdofHCyiU/tKPsQcIMU+XYuX+ChWGkeB/H6cgfTUs9jPomPKZ
+         u5GTytmDdqKiwJaomAvzJYgdo+jXdBpmCunY1Pf37Uox53s4OG7MJQ+XekvmtwKUPuED
+         /QJw==
+X-Gm-Message-State: AOAM530NgogRbTN7UQdVGH+Ohv5DlXQwYzxhwbpGVyC5p0F3cYOxO87j
+        vgPGPApRivPKVEZH1aubQprzfg==
+X-Google-Smtp-Source: ABdhPJx8tcqUHrkBE71+UqAnT8KwW1vKZLiih2uNUfDW7wnlCFQ6vPb7NtG00XO3kjlvM3ePTTZyKg==
+X-Received: by 2002:a63:cd47:: with SMTP id a7mr3384877pgj.394.1600274922218;
+        Wed, 16 Sep 2020 09:48:42 -0700 (PDT)
+Received: from localhost ([2620:15c:202:1:f693:9fff:fef4:e70a])
+        by smtp.gmail.com with ESMTPSA id p11sm17317866pfq.130.2020.09.16.09.48.41
+        (version=TLS1_3 cipher=TLS_AES_128_GCM_SHA256 bits=128/128);
+        Wed, 16 Sep 2020 09:48:41 -0700 (PDT)
+Date:   Wed, 16 Sep 2020 09:48:40 -0700
+From:   Matthias Kaehlcke <mka@chromium.org>
+To:     Lukasz Luba <lukasz.luba@arm.com>
+Cc:     Daniel Lezcano <daniel.lezcano@linaro.org>,
+        Rajendra Nayak <rnayak@codeaurora.org>,
+        Rob Herring <robh+dt@kernel.org>,
+        DTML <devicetree@vger.kernel.org>,
+        Doug Anderson <dianders@chromium.org>,
+        linux-pm@vger.kernel.org,
+        Amit Daniel Kachhap <amit.kachhap@gmail.com>,
+        Viresh Kumar <viresh.kumar@linaro.org>,
+        Javi Merino <javi.merino@kernel.org>
+Subject: Re: is 'dynamic-power-coefficient' expected to be based on 'real'
+ power measurements?
+Message-ID: <20200916164840.GI2771744@google.com>
+References: <248bb01e-1746-c84c-78c4-3cf7d2541a70@codeaurora.org>
+ <20200915172444.GA2771744@google.com>
+ <406d5d4e-d7d7-8a37-5501-119b734facb3@linaro.org>
+ <20200915175808.GB2771744@google.com>
+ <27785351-ba14-dc92-6761-d64962c29596@linaro.org>
+ <b0d32e2b-1e21-b921-2d5f-335abafd0a37@arm.com>
+MIME-Version: 1.0
+Content-Type: text/plain; charset=utf-8
+Content-Disposition: inline
+In-Reply-To: <b0d32e2b-1e21-b921-2d5f-335abafd0a37@arm.com>
 Sender: devicetree-owner@vger.kernel.org
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-From: David Lechner <david@lechnology.com>
+On Wed, Sep 16, 2020 at 10:53:48AM +0100, Lukasz Luba wrote:
+> 
+> 
+> On 9/15/20 9:55 PM, Daniel Lezcano wrote:
+> > On 15/09/2020 19:58, Matthias Kaehlcke wrote:
+> > > On Tue, Sep 15, 2020 at 07:50:10PM +0200, Daniel Lezcano wrote:
+> > > > On 15/09/2020 19:24, Matthias Kaehlcke wrote:
+> > > > > +Thermal folks
+> > > > > 
+> > > > > Hi Rajendra,
+> > > > > 
+> > > > > On Tue, Sep 15, 2020 at 11:14:00AM +0530, Rajendra Nayak wrote:
+> > > > > > Hi Rob,
+> > > > > > 
+> > > > > > There has been some discussions on another thread [1] around the DPC (dynamic-power-coefficient) values
+> > > > > > for CPU's being relative vs absolute (based on real power) and should they be used to derive 'real' power
+> > > > > > at various OPPs in order to calculate things like 'sustainable-power' for thermal zones.
+> > > > > > I believe relative values work perfectly fine for scheduling decisions, but with others using this for
+> > > > > > calculating power values in mW, is there a need to document the property as something that *has* to be
+> > > > > > based on real power measurements?
+> > > > > 
+> > > > > Relative values may work for scheduling decisions, but not for thermal
+> > > > > management with the power allocator, at least not when CPU cooling devices
+> > > > > are combined with others that specify their power consumption in absolute
+> > > > > values. Such a configuration should be supported IMO.
+> > > > 
+> > > > The energy model is used in the cpufreq cooling device and if the
+> > > > sustainable power is consistent with the relative values then there is
+> > > > no reason it shouldn't work.
+> > > 
+> > > Agreed on thermal zones that exclusively use CPUs as cooling devices, but
+> > > what when you have mixed zones, with CPUs with their pseudo-unit and e.g. a
+> > > GPU that specifies its power in mW?
+> > 
+> > Well, if a SoC vendor decides to mix the units, then there is nothing we
+> > can do.
+> > 
+> > When specifying the power numbers available for the SoC, they could be
+> > all scaled against the highest power number.
+> > 
+> > There are so many factors on the hardware, the firmware, the kernel and
+> > the userspace sides having an impact on the energy efficiency, I don't
+> > understand why SoC vendors are so shy to share the power numbers...
+> > 
+> 
+> Unfortunately (because it might confuse engineers in some cases like
+> this one), even in the SCMI spec DEN0056B [1] we have this statement
+> which allows to expose an 'abstract scale' values from firmware:
+> '4.5.1 Performance domain management protocol background
+> ...The power can be expressed in mW or in an abstract scale. Vendors
+> are not obliged to reveal power costs if it is undesirable, but a linear
+> scale is required.'
+> 
+> This is the source of our Energy Model values when we use SCMI cpufreq
+> driver [2].
+> 
+> So this might be an issue in the future, when some SoC vendor decides to
+> not expose the real mW, but the phone OEM would then take the SoC and
+> try to add some other cooling device into the thermal zone. That new
+> device is not part of the SCMI perf but some custom and has the real mW.
+> 
+> Do you think Daniel it should be somewhere documented in the kernel
+> thermal that the firmware might silently populate EM with 'abstract
+> scale'? Then special care should be taken when combining new
+> cooling devices.
+> 
+> Regards,
+> Lukasz
+> 
+> [1] https://developer.arm.com/documentation/den0056/b/?lang=en
+> [2] https://elixir.bootlin.com/linux/latest/source/drivers/cpufreq/scmi-cpufreq.c#L121
 
-This implements the irq_get_irqchip_state and irq_set_irqchip_state
-callbacks for the TI PRUSS INTC driver. The set callback can be used
-by drivers to "kick" a PRU by injecting a PRU system event.
-
-Co-developed-by: Suman Anna <s-anna@ti.com>
-Signed-off-by: Suman Anna <s-anna@ti.com>
-Signed-off-by: David Lechner <david@lechnology.com>
-Co-developed-by: Grzegorz Jaszczyk <grzegorz.jaszczyk@linaro.org>
-Signed-off-by: Grzegorz Jaszczyk <grzegorz.jaszczyk@linaro.org>
-Reviewed-by: Lee Jones <lee.jones@linaro.org>
----
-v6->v7:
-- Add Co-developed-by tags.
-v5->v6:
-- Drop example from the commit log
-v4->v5:
-- No change.
-v3->v4:
-- Update commit message
-v2->v3:
-- Get rid of unnecessary pruss_intc_check_write() and use
-  pruss_intc_write_reg directly.
-v1->v2:
-- https://patchwork.kernel.org/patch/11069769/
----
- drivers/irqchip/irq-pruss-intc.c | 40 ++++++++++++++++++++++++++++++++++++++++
- 1 file changed, 40 insertions(+)
-
-diff --git a/drivers/irqchip/irq-pruss-intc.c b/drivers/irqchip/irq-pruss-intc.c
-index e7ba358..bfe529a 100644
---- a/drivers/irqchip/irq-pruss-intc.c
-+++ b/drivers/irqchip/irq-pruss-intc.c
-@@ -12,6 +12,7 @@
-  * Copyright (C) 2019 David Lechner <david@lechnology.com>
-  */
- 
-+#include <linux/interrupt.h>
- #include <linux/irq.h>
- #include <linux/irqchip/chained_irq.h>
- #include <linux/irqdomain.h>
-@@ -323,6 +324,43 @@ static void pruss_intc_irq_relres(struct irq_data *data)
- 	module_put(THIS_MODULE);
- }
- 
-+static int pruss_intc_irq_get_irqchip_state(struct irq_data *data,
-+					    enum irqchip_irq_state which,
-+					    bool *state)
-+{
-+	struct pruss_intc *intc = irq_data_get_irq_chip_data(data);
-+	u32 reg, mask, srsr;
-+
-+	if (which != IRQCHIP_STATE_PENDING)
-+		return -EINVAL;
-+
-+	reg = PRU_INTC_SRSR(data->hwirq / 32);
-+	mask = BIT(data->hwirq % 32);
-+
-+	srsr = pruss_intc_read_reg(intc, reg);
-+
-+	*state = !!(srsr & mask);
-+
-+	return 0;
-+}
-+
-+static int pruss_intc_irq_set_irqchip_state(struct irq_data *data,
-+					    enum irqchip_irq_state which,
-+					    bool state)
-+{
-+	struct pruss_intc *intc = irq_data_get_irq_chip_data(data);
-+
-+	if (which != IRQCHIP_STATE_PENDING)
-+		return -EINVAL;
-+
-+	if (state)
-+		pruss_intc_write_reg(intc, PRU_INTC_SISR, data->hwirq);
-+	else
-+		pruss_intc_write_reg(intc, PRU_INTC_SICR, data->hwirq);
-+
-+	return 0;
-+}
-+
- static struct irq_chip pruss_irqchip = {
- 	.name			= "pruss-intc",
- 	.irq_ack		= pruss_intc_irq_ack,
-@@ -330,6 +368,8 @@ static struct irq_chip pruss_irqchip = {
- 	.irq_unmask		= pruss_intc_irq_unmask,
- 	.irq_request_resources	= pruss_intc_irq_reqres,
- 	.irq_release_resources	= pruss_intc_irq_relres,
-+	.irq_get_irqchip_state	= pruss_intc_irq_get_irqchip_state,
-+	.irq_set_irqchip_state	= pruss_intc_irq_set_irqchip_state,
- };
- 
- static int pruss_intc_validate_mapping(struct pruss_intc *intc, int event,
--- 
-2.7.4
-
+If an 'abstract scale' is explicitly allowed I think it should be documented
+to avoid confusion and make engineers aware of the peril of combining cooling
+devices of different types in the same thermal zone.
