@@ -2,333 +2,135 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from vger.kernel.org (vger.kernel.org [23.128.96.18])
-	by mail.lfdr.de (Postfix) with ESMTP id 962A326C53B
-	for <lists+devicetree@lfdr.de>; Wed, 16 Sep 2020 18:39:17 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTP id EA89D26C571
+	for <lists+devicetree@lfdr.de>; Wed, 16 Sep 2020 18:58:18 +0200 (CEST)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S1726626AbgIPQiP (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Wed, 16 Sep 2020 12:38:15 -0400
-Received: from mail.kernel.org ([198.145.29.99]:46248 "EHLO mail.kernel.org"
-        rhost-flags-OK-OK-OK-OK) by vger.kernel.org with ESMTP
-        id S1726566AbgIPQe2 (ORCPT <rfc822;devicetree@vger.kernel.org>);
-        Wed, 16 Sep 2020 12:34:28 -0400
-Received: from localhost (unknown [122.172.186.249])
-        (using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
-        (No client certificate requested)
-        by mail.kernel.org (Postfix) with ESMTPSA id BDD05221EB;
-        Wed, 16 Sep 2020 13:05:56 +0000 (UTC)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=kernel.org;
-        s=default; t=1600261557;
-        bh=PImqcFtzvvSk4TPQwCNpCjFClWEk9Y7NrcjrlDub7Fw=;
-        h=Date:From:To:Cc:Subject:References:In-Reply-To:From;
-        b=HMygxyah/1wVclzSw+uMchV9nGXWDuGh46jBjSbIxCmUbvbuQyntyvrrpn9OS+tjv
-         locWYncScFSvdN5gH3LoESwjadrMnSpSdu1vWwHFSe+R1y6jGl4g1EXmkrLR1Y55cF
-         dkFF9vlZQqdamTY6SMqFLLjRtZpATBXdSWrXcZZQ=
-Date:   Wed, 16 Sep 2020 18:35:53 +0530
-From:   Vinod Koul <vkoul@kernel.org>
-To:     Mauro Carvalho Chehab <mchehab+huawei@kernel.org>
-Cc:     linuxarm@huawei.com, mauro.chehab@huawei.com,
-        Yu Chen <chenyu56@huawei.com>,
-        John Stultz <john.stultz@linaro.org>,
-        Manivannan Sadhasivam <mani@kernel.org>,
-        Kishon Vijay Abraham I <kishon@ti.com>,
-        Krzysztof Kozlowski <krzk@kernel.org>,
-        Rob Herring <robh+dt@kernel.org>, devicetree@vger.kernel.org,
-        linux-kernel@vger.kernel.org
-Subject: Re: [PATCH v3 RESEND 1/8] phy: hisilicon: add USB physical layer for
- Kirin 3670
-Message-ID: <20200916130553.GO2968@vkoul-mobl>
-References: <cover.1599826421.git.mchehab+huawei@kernel.org>
- <2bcc14afcbd1cc8972ab8f1a561a13aae04b881a.1599826421.git.mchehab+huawei@kernel.org>
+        id S1726664AbgIPQ5y (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Wed, 16 Sep 2020 12:57:54 -0400
+Received: from lindbergh.monkeyblade.net ([23.128.96.19]:55404 "EHLO
+        lindbergh.monkeyblade.net" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
+        with ESMTP id S1726620AbgIPQy4 (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Wed, 16 Sep 2020 12:54:56 -0400
+Received: from mail-ej1-x644.google.com (mail-ej1-x644.google.com [IPv6:2a00:1450:4864:20::644])
+        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 2D45EC014D9D;
+        Wed, 16 Sep 2020 06:14:54 -0700 (PDT)
+Received: by mail-ej1-x644.google.com with SMTP id u21so10325239eja.2;
+        Wed, 16 Sep 2020 06:14:54 -0700 (PDT)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+        d=jms.id.au; s=google;
+        h=mime-version:references:in-reply-to:from:date:message-id:subject:to
+         :cc;
+        bh=L8c70bjdvGVrcsac+XpFC4DW7+UbOmn2FO+QEpKETtU=;
+        b=Em6XgWp6dhDu4a2sVPZc1dCkrMGHLQvdRAi+t0cgxe6Z2wZ4BP+F/sVngK1Z+kkLis
+         uDZT2tBXQlDep2WXS1WMr2OBzVgIravmSa/gd9+DJeWGuD3UOkJZyORqmQP4J/r90n4v
+         6eHKLQdKoLYSbUpg/7FGjXbE/rwfe0Lu+ZEgk=
+X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+        d=1e100.net; s=20161025;
+        h=x-gm-message-state:mime-version:references:in-reply-to:from:date
+         :message-id:subject:to:cc;
+        bh=L8c70bjdvGVrcsac+XpFC4DW7+UbOmn2FO+QEpKETtU=;
+        b=OCrBy4njvaIemwLdftMBZepzDgfnCqZBCtjfrPAFXvbrKvRqbLfAHFMBfUQ7uKNaKF
+         fJu7VLNmknEwfixQV5JK+OaT2IKIgnvU7wb9IPUYIcvzBuHbAOQqRoaJ5dF/W9W66pnv
+         VxGetwQCrtZ6LKAIsG+TaV0in+UEFTUgDfLW5aag+EddHPS1R9y78es/A2HQSbkMb4xQ
+         jIAkmu7raOhYwwuGuFaanMjE2lkmV/gF2wEKmdU3g+qLdrExjTjW2zeuLZ1emEIi7QD7
+         WPeKjGL0ktwZvZjLzu1MJfU1S8gvOksfiuKY/2b97zoUTl+Ph99VbXCOt0lI+tQXO/Ia
+         RX1Q==
+X-Gm-Message-State: AOAM533yvlfXkQFykf2b+R7f7m8LwY2ksGN1drdj4rzJ0rhxhL5CTBrn
+        DEGeL7uDVtUhZzdipw/VZteKGrm9JL2C1wg3V38=
+X-Google-Smtp-Source: ABdhPJyEymYowEXN9Sqs2b7MV5IulS2sjphlMu8IRCGDHXmKJR9ZNsWTTJa6UtJWYJncIfBGvRQ86hfTja+eDRuW9Os=
+X-Received: by 2002:a17:906:441:: with SMTP id e1mr2604781eja.396.1600262092781;
+ Wed, 16 Sep 2020 06:14:52 -0700 (PDT)
 MIME-Version: 1.0
-Content-Type: text/plain; charset=us-ascii
-Content-Disposition: inline
-In-Reply-To: <2bcc14afcbd1cc8972ab8f1a561a13aae04b881a.1599826421.git.mchehab+huawei@kernel.org>
+References: <20200916125554.195749-1-tmaimon77@gmail.com>
+In-Reply-To: <20200916125554.195749-1-tmaimon77@gmail.com>
+From:   Joel Stanley <joel@jms.id.au>
+Date:   Wed, 16 Sep 2020 13:14:40 +0000
+Message-ID: <CACPK8XcobhqHG1tQgjY2PH_Lvf3LLfzn7Ex=DVhBO58cUKv2jQ@mail.gmail.com>
+Subject: Re: [PATCH v5 0/3] arm: dts: add and modify device node in NPCM7xx
+ device tree
+To:     Tomer Maimon <tmaimon77@gmail.com>
+Cc:     Rob Herring <robh+dt@kernel.org>,
+        Mark Rutland <mark.rutland@arm.com>,
+        Avi Fishman <avifishman70@gmail.com>,
+        Tali Perry <tali.perry1@gmail.com>,
+        Patrick Venture <venture@google.com>,
+        Nancy Yuen <yuenn@google.com>,
+        Benjamin Fair <benjaminfair@google.com>,
+        devicetree <devicetree@vger.kernel.org>,
+        Linux Kernel Mailing List <linux-kernel@vger.kernel.org>,
+        OpenBMC Maillist <openbmc@lists.ozlabs.org>
+Content-Type: text/plain; charset="UTF-8"
 Sender: devicetree-owner@vger.kernel.org
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-On 11-09-20, 14:16, Mauro Carvalho Chehab wrote:
-> From: Yu Chen <chenyu56@huawei.com>
-> 
-> Add the Hisilicon Kirin 3670 USB phy driver just after the
-> hi3660, using the same namespace.
-> 
-> This driver was imported from Linaro's official Hikey 970
-> tree, from the original patch, removing the addition of
-> the dwg3-specific parts.
-> 
-> Signed-off-by: Yu Chen <chenyu56@huawei.com>
-> Signed-off-by: Mauro Carvalho Chehab <mchehab+huawei@kernel.org>
-> ---
->  .../bindings/phy/phy-hi3670-usb3.txt          |  25 +
->  drivers/phy/hisilicon/Kconfig                 |  10 +
->  drivers/phy/hisilicon/Makefile                |   1 +
->  drivers/phy/hisilicon/phy-hi3670-usb3.c       | 682 ++++++++++++++++++
->  4 files changed, 718 insertions(+)
->  create mode 100644 Documentation/devicetree/bindings/phy/phy-hi3670-usb3.txt
->  create mode 100644 drivers/phy/hisilicon/phy-hi3670-usb3.c
-> 
-> diff --git a/Documentation/devicetree/bindings/phy/phy-hi3670-usb3.txt b/Documentation/devicetree/bindings/phy/phy-hi3670-usb3.txt
-> new file mode 100644
-> index 000000000000..4cb02612ff23
-> --- /dev/null
-> +++ b/Documentation/devicetree/bindings/phy/phy-hi3670-usb3.txt
+Hi Tomer,
 
-Not yaml bindings?
+On Wed, 16 Sep 2020 at 12:56, Tomer Maimon <tmaimon77@gmail.com> wrote:
+>
+> This patch set adds and modify device tree nodes in the NPCM7xx
+> Baseboard Management Controller (BMC) device tree.
 
-> +#define CTRL0_USB3_VBUSVLD		BIT(7)
-> +#define CTRL0_USB3_VBUSVLD_SEL		BIT(6)
-> +
-> +#define CTRL3_USB2_VBUSVLDEXT0		BIT(6)
-> +#define CTRL3_USB2_VBUSVLDEXTSEL0	BIT(5)
-> +
-> +#define CTRL5_USB2_SIDDQ		BIT(0)
-> +
-> +#define CTRL7_USB2_REFCLKSEL_MASK	(3 << 3)
-> +#define CTRL7_USB2_REFCLKSEL_ABB	(3 << 3)
-> +#define CTRL7_USB2_REFCLKSEL_PAD	(2 << 3)
+Thanks Tomer. I smoke tested these by booting on the npcm730 qemu
+machine. Are you able to submit the gsj device tree (or get someone
+who has worked on that to do so?) for inclusion too? Similarly for the
+runbmc device tree.
 
-GENMASK() for these please?
+We also lack a nuvoton configuration. We can submit one, or rely on
+the multi_v7 for upstream testing. What would you prefer?
 
-> +
-> +#define CFG50_USB3_PHY_TEST_POWERDOWN	BIT(23)
-> +
-> +#define CFG54_USB31PHY_CR_ADDR_MASK	(0xFFFF)
+> The following device node add:
+>         - NPCM7xx Pin controller and GPIO
+>         - NPCM7xx PWM and FAN.
+>         - NPCM7xx EHCI USB.
+>         - NPCM7xx KCS.
+>         - NPCM Reset.
+>         - NPCM Peripheral SPI.
+>         - NPCM FIU SPI.
+>         - NPCM HWRNG.
+>         - NPCM I2C.
+>         - STMicro STMMAC.
 
-Here and other places as well
+Does the STMMAC only appear in the 750 (and not the 730)? I was
+wondering why it appeared in the 750 dtsi and not the common dtsi.
 
-> +#define CFG54_USB31PHY_CR_ADDR_SHIFT	(16)
+Cheers,
 
-Okay we should get rid of all shift define. See <linux/bitfield.h> it
-has FIELD_PREP, xxx_encode_bits() you can use these to program teh bit
-fields
+Joel
 
-> +static int kirin970_phy_cr_clk(struct regmap *usb31misc)
-> +{
-> +	int ret;
-> +
-> +	/* Clock up */
-> +	ret = regmap_update_bits(usb31misc, USB_MISC_CFG54,
-> +			CFG54_USB31PHY_CR_CLK, CFG54_USB31PHY_CR_CLK);
-> +	if (ret)
-> +		return ret;
-> +
-> +	/* Clock down */
-> +	ret = regmap_update_bits(usb31misc, USB_MISC_CFG54,
-> +			CFG54_USB31PHY_CR_CLK, 0);
-> +
-> +	return ret;
-
-        return regmap_update_bits()
-
-> +static int kirin970_phy_cr_start(struct regmap *usb31misc, int direction)
-> +{
-> +	int ret;
-> +
-> +	if (direction)
-> +		ret = regmap_update_bits(usb31misc, USB_MISC_CFG54,
-> +			CFG54_USB31PHY_CR_WR_EN, CFG54_USB31PHY_CR_WR_EN);
-> +	else
-> +		ret = regmap_update_bits(usb31misc, USB_MISC_CFG54,
-> +			CFG54_USB31PHY_CR_RD_EN, CFG54_USB31PHY_CR_RD_EN);
-> +
-> +	if (ret)
-> +		return ret;
-> +
-> +	ret = kirin970_phy_cr_clk(usb31misc);
-> +	if (ret)
-> +		return ret;
-> +
-> +	ret = regmap_update_bits(usb31misc, USB_MISC_CFG54,
-> +			CFG54_USB31PHY_CR_RD_EN | CFG54_USB31PHY_CR_WR_EN, 0);
-> +
-> +	return ret;
-
-here as well
-
-> +static int kirin970_phy_cr_wait_ack(struct regmap *usb31misc)
-> +{
-> +	u32 reg;
-> +	int retry = 100000;
-> +	int ret;
-> +
-> +	while (retry-- > 0) {
-> +		ret = regmap_read(usb31misc, USB_MISC_CFG54, &reg);
-> +		if (ret)
-> +			return ret;
-> +		if ((reg & CFG54_USB31PHY_CR_ACK) == CFG54_USB31PHY_CR_ACK)
-> +			return 0;
-> +
-> +		ret = kirin970_phy_cr_clk(usb31misc);
-> +		if (ret)
-> +			return ret;
-
-no delay here while checking?
-
-> +static int kirin970_phy_cr_set_addr(struct regmap *usb31misc, u32 addr)
-> +{
-> +	u32 reg;
-> +	int ret;
-> +
-> +	ret = regmap_read(usb31misc, USB_MISC_CFG54, &reg);
-> +	if (ret)
-> +		return ret;
-> +
-> +	reg &= ~(CFG54_USB31PHY_CR_ADDR_MASK << CFG54_USB31PHY_CR_ADDR_SHIFT);
-> +	reg |= ((addr & CFG54_USB31PHY_CR_ADDR_MASK) <<
-> +			CFG54_USB31PHY_CR_ADDR_SHIFT);
-
-u32_replace_bits() looks apt here
-
-> +static int kirin970_phy_cr_read(struct regmap *usb31misc, u32 addr, u32 *val)
-> +{
-> +	int reg;
-> +	int i;
-> +	int ret;
-> +
-> +	for (i = 0; i < 100; i++) {
-> +		ret = kirin970_phy_cr_clk(usb31misc);
-> +		if (ret)
-> +			return ret;
-> +	}
-> +
-> +	ret = kirin970_phy_cr_set_sel(usb31misc);
-> +	if (ret)
-> +		return ret;
-> +
-> +	ret = kirin970_phy_cr_set_addr(usb31misc, addr);
-> +	if (ret)
-> +		return ret;
-> +
-> +	ret = kirin970_phy_cr_start(usb31misc, 0);
-> +	if (ret)
-> +		return ret;
-> +
-> +	ret = kirin970_phy_cr_wait_ack(usb31misc);
-> +	if (ret)
-> +		return ret;
-> +
-> +	ret = regmap_read(usb31misc, USB_MISC_CFG58, &reg);
-> +	if (ret)
-> +		return ret;
-
-Do you really care about each step error check? if not, we can have:
-        ret |= step_1;
-        ret |= step_n;
-
-        if (ret)
-                ...
-
-> +static int kirin970_phy_init(struct phy *phy)
-> +{
-> +	struct kirin970_priv *priv = phy_get_drvdata(phy);
-> +	u32 val;
-> +	int ret;
-> +
-> +	kirin970_phy_exit(phy);
-> +	dev_info(priv->dev, "%s in\n", __func__);
-
-Lower to debug level?
-
-> +	/* assert controller */
-> +	val = CFGA0_VAUX_RESET | CFGA0_USB31C_RESET;
-> +	ret = regmap_update_bits(priv->usb31misc, USB_MISC_CFGA0, val, 0);
-> +	if (ret)
-> +		goto out;
-> +
-> +	ret = kirin970_config_phy_clock(priv);
-> +	if (ret)
-> +		goto out;
-> +
-> +	/* Exit from IDDQ mode */
-> +	ret = regmap_update_bits(priv->usb31misc, USB3OTG_CTRL5,
-> +			CTRL5_USB2_SIDDQ, 0);
-> +	if (ret)
-> +		goto out;
-> +
-> +	/* Release USB31 PHY out of TestPowerDown mode */
-> +	ret = regmap_update_bits(priv->usb31misc, USB_MISC_CFG50,
-> +			CFG50_USB3_PHY_TEST_POWERDOWN, 0);
-> +	if (ret)
-> +		goto out;
-> +
-> +	/* Tell the PHY power is stable */
-> +	val = CFG54_USB3_PHY0_ANA_PWR_EN | CFG54_PHY0_PCS_PWR_STABLE |
-> +		CFG54_PHY0_PMA_PWR_STABLE;
-> +	ret = regmap_update_bits(priv->usb31misc, USB_MISC_CFG54,
-> +			val, val);
-> +	if (ret)
-> +		goto out;
-> +
-> +	ret = kirin970_config_tca(priv);
-> +	if (ret)
-> +		goto out;
-> +
-> +	/* Enable SSC */
-> +	ret = regmap_update_bits(priv->usb31misc, USB_MISC_CFG5C,
-> +			CFG5C_USB3_PHY0_SS_MPLLA_SSC_EN,
-> +			CFG5C_USB3_PHY0_SS_MPLLA_SSC_EN);
-> +	if (ret)
-> +		goto out;
-> +
-> +	/* Deassert phy */
-> +	val = CFGA0_USB3PHY_RESET | CFGA0_USB2PHY_POR;
-> +	ret = regmap_update_bits(priv->usb31misc, USB_MISC_CFGA0, val, val);
-> +	if (ret)
-> +		goto out;
-> +
-> +	udelay(100);
-> +
-> +	/* Deassert controller */
-> +	val = CFGA0_VAUX_RESET | CFGA0_USB31C_RESET;
-> +	ret = regmap_update_bits(priv->usb31misc, USB_MISC_CFGA0, val, val);
-> +	if (ret)
-> +		goto out;
-> +
-> +	udelay(100);
-> +
-> +	/* Set fake vbus valid signal */
-> +	val = CTRL0_USB3_VBUSVLD | CTRL0_USB3_VBUSVLD_SEL;
-> +	ret = regmap_update_bits(priv->usb31misc, USB3OTG_CTRL0, val, val);
-> +	if (ret)
-> +		goto out;
-> +
-> +	val = CTRL3_USB2_VBUSVLDEXT0 | CTRL3_USB2_VBUSVLDEXTSEL0;
-> +	ret = regmap_update_bits(priv->usb31misc, USB3OTG_CTRL3, val, val);
-> +	if (ret)
-> +		goto out;
-> +
-> +	udelay(100);
-> +
-> +	ret = kirin970_phy_set_params(priv);
-> +	if (ret)
-> +		goto out;
-> +
-> +	{
-> +		ret = regmap_read(priv->peri_crg, 0x4c,
-> +				&val);
-> +		if (!ret)
-> +			dev_info(priv->dev, "peri_crg 0x4c %x\n", val);
-> +		ret = regmap_read(priv->peri_crg, 0x404,
-> +				&val);
-> +		if (!ret)
-> +			dev_info(priv->dev, "peri_crg 0x404 %x\n", val);
-> +		ret = regmap_read(priv->peri_crg, 0xc,
-> +				&val);
-> +		if (!ret)
-> +			dev_info(priv->dev, "peri_crg 0xc %x\n", val);
-> +		ret = regmap_read(priv->peri_crg, 0xac,
-> +				&val);
-> +		if (!ret)
-> +			dev_info(priv->dev, "peri_crg 0xac %x\n", val);
-> +		ret = regmap_read(priv->pctrl, 0x10,
-> +				&val);
-> +		if (!ret)
-> +			dev_info(priv->dev, "pctrl 0x10 %x\n", val);
-> +	}
-
-Whats with the funny braces and one more level on indentation here ?
-
--- 
-~Vinod
+>
+> The following device node modified:
+>         - NPCM7xx timer.
+>         - NPCM7xx clock constants parameters.
+>
+> NPCM7xx device tree tested on NPCM750 evaluation board.
+>
+> Changes since version 4:
+>  - Tested patches in Linux kernel 5.9.
+>
+> Changes since version 3:
+>  - Tested patches in Linux kernel 5.6.
+>
+> Changes since version 2:
+>  - Remove unnecessary output-enable flags.
+>
+> Changes since version 1:
+>  - Add NPCM reset device node.
+>  - Add reset parameters to NPCM driver device nodes.
+>
+> Tomer Maimon (3):
+>   arm: dts: modify NPCM7xx device tree clock parameter
+>   arm: dts: modify NPCM7xx device tree timer register size
+>   arm: dts: add new device nodes to NPCM750 device tree
+>
+>  arch/arm/boot/dts/nuvoton-common-npcm7xx.dtsi | 974 +++++++++++++++++-
+>  arch/arm/boot/dts/nuvoton-npcm750-evb.dts     | 404 +++++++-
+>  .../boot/dts/nuvoton-npcm750-pincfg-evb.dtsi  | 157 +++
+>  arch/arm/boot/dts/nuvoton-npcm750.dtsi        |  24 +-
+>  4 files changed, 1522 insertions(+), 37 deletions(-)
+>  create mode 100644 arch/arm/boot/dts/nuvoton-npcm750-pincfg-evb.dtsi
+>
+> --
+> 2.22.0
+>
