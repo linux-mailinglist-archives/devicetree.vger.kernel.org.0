@@ -2,127 +2,101 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from vger.kernel.org (vger.kernel.org [23.128.96.18])
-	by mail.lfdr.de (Postfix) with ESMTP id D4FB126BD07
-	for <lists+devicetree@lfdr.de>; Wed, 16 Sep 2020 08:28:17 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTP id D8C8C26BC65
+	for <lists+devicetree@lfdr.de>; Wed, 16 Sep 2020 08:15:30 +0200 (CEST)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S1726269AbgIPG2Q (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Wed, 16 Sep 2020 02:28:16 -0400
-Received: from lindbergh.monkeyblade.net ([23.128.96.19]:42270 "EHLO
-        lindbergh.monkeyblade.net" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S1726140AbgIPG2N (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Wed, 16 Sep 2020 02:28:13 -0400
-Received: from casper.infradead.org (casper.infradead.org [IPv6:2001:8b0:10b:1236::1])
-        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 2C234C06174A;
-        Tue, 15 Sep 2020 23:28:13 -0700 (PDT)
-DKIM-Signature: v=1; a=rsa-sha256; q=dns/txt; c=relaxed/relaxed;
-        d=infradead.org; s=casper.20170209; h=Content-Transfer-Encoding:MIME-Version:
-        References:In-Reply-To:Message-Id:Date:Subject:Cc:To:From:Sender:Reply-To:
-        Content-Type:Content-ID:Content-Description;
-        bh=Sj9/6zg3jBvpe8GWBJtfj7ccMtl/cKmotOW4AeELf0k=; b=kaFJQyPGFngO1rYezn8V4WHTVt
-        bifyPF57Tk4KW6ZXJihhjLUmUxhyNOZUK4hogmfIPx4IEGF7HmjMlXwQkKqSoC5DKQpOh5mz2TcwA
-        h9nqDo+Hc9Y9pLTBIuIX5O9eFitiNQINnXhnSwQhAzSOotBpjP7fmuWmPg0Y9ZmrdERGPmzxV+V2b
-        AZ/toz2BrsjHtlWvKHpmxhL+b5NqgTFXzS5c3QQEHrKB9waDNeovto1ihomE50eY44nWiFIVDJO+4
-        QGH2ncs+/Sp2SIcFzjs2cQ98GYmTPQnEHa8fZDL77q5xqeenvtITFLDMI/+OrdxwONe8RJgfDTcCM
-        4+kjLiaA==;
-Received: from 089144214092.atnat0023.highway.a1.net ([89.144.214.92] helo=localhost)
-        by casper.infradead.org with esmtpsa (Exim 4.92.3 #3 (Red Hat Linux))
-        id 1kIQvG-0007fh-Mj; Wed, 16 Sep 2020 06:28:07 +0000
-From:   Christoph Hellwig <hch@lst.de>
-To:     iommu@lists.linux-foundation.org,
-        Russell King <linux@armlinux.org.uk>,
-        Santosh Shilimkar <ssantosh@kernel.org>,
-        Greg Kroah-Hartman <gregkh@linuxfoundation.org>
-Cc:     Jim Quinlan <james.quinlan@broadcom.com>,
-        Nathan Chancellor <natechancellor@gmail.com>,
-        Florian Fainelli <f.fainelli@gmail.com>,
-        Robin Murphy <robin.murphy@arm.com>,
+        id S1726155AbgIPGPU (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Wed, 16 Sep 2020 02:15:20 -0400
+Received: from mail-wm1-f67.google.com ([209.85.128.67]:39462 "EHLO
+        mail-wm1-f67.google.com" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
+        with ESMTP id S1726172AbgIPGPS (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Wed, 16 Sep 2020 02:15:18 -0400
+Received: by mail-wm1-f67.google.com with SMTP id b79so1627678wmb.4;
+        Tue, 15 Sep 2020 23:15:16 -0700 (PDT)
+X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+        d=1e100.net; s=20161025;
+        h=x-gm-message-state:date:from:to:cc:subject:message-id:references
+         :mime-version:content-disposition:in-reply-to:user-agent;
+        bh=1Uh7Ou5BUk6cJr1eeO8uTrFUHXPcK3jWLNCgC2OA24Q=;
+        b=iimM/rgA0sVbd2BUccvtCaS7S8lZwIZ7g2PlklMvADdLFem6OiWM1Cp8u574+7BbwY
+         SuZEVwd7epJNsDiJRE4+Jq1VKQJc9yrwdy0nCpNDLE3qBumZMKQGHyCLvEQq/GmJGGsn
+         lozDRkW7Lotntmdd7cNzedQTsHViXLvwODXKDobv18aWWxeqPYoh48hYp2hLFT8LGU4N
+         pnFMZ1tCbbmtAcrR45kBgT8VnPgzcULDPzWkXGrLHXGhH72tVQYcEuKf3ckL/FGM+RGC
+         4WLF+bKvDqb5ah5X8IjI6+nzJYaqjewQidr10BCM5H+fzQURWokGmPOeAUwiovp3wews
+         AY6w==
+X-Gm-Message-State: AOAM5315rbuqAsuieb5cut2/3K3WbfXNMeFrmbFiJ+iRqZT6D6JTixeY
+        SAiTwWdm09T9zz0g9+peMUE=
+X-Google-Smtp-Source: ABdhPJw7nNn+CFhmnzt169e4rqB2CZP7AUPFZ9UBjFZbfGui7iEULE8AHLZ3m9ra4r8Pv7DiLjNGnw==
+X-Received: by 2002:a7b:c92c:: with SMTP id h12mr2849155wml.121.1600236916238;
+        Tue, 15 Sep 2020 23:15:16 -0700 (PDT)
+Received: from kozik-lap ([194.230.155.124])
+        by smtp.googlemail.com with ESMTPSA id u126sm4022642wmu.9.2020.09.15.23.15.13
+        (version=TLS1_2 cipher=ECDHE-ECDSA-CHACHA20-POLY1305 bits=256/256);
+        Tue, 15 Sep 2020 23:15:15 -0700 (PDT)
+Date:   Wed, 16 Sep 2020 08:15:11 +0200
+From:   Krzysztof Kozlowski <krzk@kernel.org>
+To:     Linus Walleij <linus.walleij@linaro.org>
+Cc:     Bartosz Golaszewski <bgolaszewski@baylibre.com>,
         Rob Herring <robh+dt@kernel.org>,
-        Frank Rowand <frowand.list@gmail.com>,
-        Ohad Ben-Cohen <ohad@wizery.com>,
-        Bjorn Andersson <bjorn.andersson@linaro.org>,
-        linux-remoteproc@vger.kernel.org, linux-usb@vger.kernel.org,
-        linux-arm-kernel@lists.infradead.org, linux-kernel@vger.kernel.org,
-        linux-sh@vger.kernel.org, linux-pci@vger.kernel.org,
-        linux-acpi@vger.kernel.org, devicetree@vger.kernel.org
-Subject: [PATCH 5/6] usb: don't inherity DMA properties for USB devices
-Date:   Wed, 16 Sep 2020 08:14:58 +0200
-Message-Id: <20200916061500.1970090-6-hch@lst.de>
-X-Mailer: git-send-email 2.28.0
-In-Reply-To: <20200916061500.1970090-1-hch@lst.de>
-References: <20200916061500.1970090-1-hch@lst.de>
+        =?utf-8?Q?Beno=C3=AEt?= Cousson <bcousson@baylibre.com>,
+        Tony Lindgren <tony@atomide.com>,
+        Russell King <linux@armlinux.org.uk>,
+        Jason Cooper <jason@lakedaemon.net>,
+        Andrew Lunn <andrew@lunn.ch>,
+        Gregory Clement <gregory.clement@bootlin.com>,
+        Sebastian Hesselbarth <sebastian.hesselbarth@gmail.com>,
+        Joel Stanley <joel@jms.id.au>,
+        Andrew Jeffery <andrew@aj.id.au>,
+        Shawn Guo <shawnguo@kernel.org>,
+        Sascha Hauer <s.hauer@pengutronix.de>,
+        Pengutronix Kernel Team <kernel@pengutronix.de>,
+        NXP Linux Team <linux-imx@nxp.com>,
+        Matthias Brugger <matthias.bgg@gmail.com>,
+        Geert Uytterhoeven <geert+renesas@glider.be>,
+        Magnus Damm <magnus.damm@gmail.com>,
+        Tero Kristo <t-kristo@ti.com>, Nishanth Menon <nm@ti.com>,
+        Michal Simek <michal.simek@xilinx.com>,
+        Guenter Roeck <linux@roeck-us.net>,
+        "open list:OPEN FIRMWARE AND FLATTENED DEVICE TREE BINDINGS" 
+        <devicetree@vger.kernel.org>,
+        "linux-kernel@vger.kernel.org" <linux-kernel@vger.kernel.org>,
+        Linux-OMAP <linux-omap@vger.kernel.org>,
+        Linux ARM <linux-arm-kernel@lists.infradead.org>,
+        linux-aspeed <linux-aspeed@lists.ozlabs.org>,
+        "moderated list:ARM/Mediatek SoC support" 
+        <linux-mediatek@lists.infradead.org>,
+        Linux-Renesas <linux-renesas-soc@vger.kernel.org>
+Subject: Re: [PATCH v2 02/15] dt-bindings: gpio: convert bindings for Maxim
+ MAX732x family to dtschema
+Message-ID: <20200916061511.GA5719@kozik-lap>
+References: <20200910175733.11046-1-krzk@kernel.org>
+ <20200910175733.11046-3-krzk@kernel.org>
+ <CACRpkdZXu2J4z=1j-syxSbz2x-QiLeTBpwHSOVNfmZ31RgM6Ng@mail.gmail.com>
 MIME-Version: 1.0
-Content-Transfer-Encoding: 8bit
-X-SRS-Rewrite: SMTP reverse-path rewritten from <hch@infradead.org> by casper.infradead.org. See http://www.infradead.org/rpr.html
+Content-Type: text/plain; charset=utf-8
+Content-Disposition: inline
+In-Reply-To: <CACRpkdZXu2J4z=1j-syxSbz2x-QiLeTBpwHSOVNfmZ31RgM6Ng@mail.gmail.com>
+User-Agent: Mutt/1.9.4 (2018-02-28)
 Sender: devicetree-owner@vger.kernel.org
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-As the comment in usb_alloc_dev correctly states, drivers can't use
-the DMA API on usb device, and at least calling dma_set_mask on them
-is highly dangerous.  Unlike what the comment states upper level drivers
-also can't really use the presence of a dma mask to check for DMA
-support, as the dma_mask is set by default for most busses.
+On Sat, Sep 12, 2020 at 11:58:22AM +0200, Linus Walleij wrote:
+> On Thu, Sep 10, 2020 at 7:58 PM Krzysztof Kozlowski <krzk@kernel.org> wrote:
+> 
+> > Convert the Maxim MAX732x family of GPIO expanders bindings to device
+> > tree schema by merging it with existing PCA95xx schema.  These are quite
+> > similar so merging reduces duplication.
+> >
+> > Signed-off-by: Krzysztof Kozlowski <krzk@kernel.org>
+> 
+> Can I just apply this one patch to the GPIO tree?
 
-Setting the dma_mask comes from "[PATCH] usbcore dma updates (and doc)"
-in BitKeeper times, as it seems like it was primarily for setting the
-NETIF_F_HIGHDMA flag in USB drivers, something that has long been
-fixed up since.
+No, this requires the previous one (1/15) because it merges the max732x
+into pca95xx.
 
-Setting the dma_pfn_offset comes from commit b44bbc46a8bb
-("usb: core: setup dma_pfn_offset for USB devices and, interfaces"),
-which worked around the fact that the scsi_calculate_bounce_limits
-functions wasn't going through the proper driver interface to query
-DMA information, but that function was removed in commit 21e07dba9fb1
-("scsi: reduce use of block bounce buffers") years ago.
+Although now Rob reviewed both so you can pick them up.
 
-Signed-off-by: Christoph Hellwig <hch@lst.de>
-Reviewed-by: Greg Kroah-Hartman <gregkh@linuxfoundation.org>
----
- drivers/usb/core/message.c |  6 ------
- drivers/usb/core/usb.c     | 12 ------------
- 2 files changed, 18 deletions(-)
-
-diff --git a/drivers/usb/core/message.c b/drivers/usb/core/message.c
-index 6197938dcc2d8f..9e45732dc1d1d1 100644
---- a/drivers/usb/core/message.c
-+++ b/drivers/usb/core/message.c
-@@ -1954,12 +1954,6 @@ int usb_set_configuration(struct usb_device *dev, int configuration)
- 		intf->dev.bus = &usb_bus_type;
- 		intf->dev.type = &usb_if_device_type;
- 		intf->dev.groups = usb_interface_groups;
--		/*
--		 * Please refer to usb_alloc_dev() to see why we set
--		 * dma_mask and dma_pfn_offset.
--		 */
--		intf->dev.dma_mask = dev->dev.dma_mask;
--		intf->dev.dma_pfn_offset = dev->dev.dma_pfn_offset;
- 		INIT_WORK(&intf->reset_ws, __usb_queue_reset_device);
- 		intf->minor = -1;
- 		device_initialize(&intf->dev);
-diff --git a/drivers/usb/core/usb.c b/drivers/usb/core/usb.c
-index bafc113f2b3ef3..9b4ac4415f1a47 100644
---- a/drivers/usb/core/usb.c
-+++ b/drivers/usb/core/usb.c
-@@ -599,18 +599,6 @@ struct usb_device *usb_alloc_dev(struct usb_device *parent,
- 	dev->dev.bus = &usb_bus_type;
- 	dev->dev.type = &usb_device_type;
- 	dev->dev.groups = usb_device_groups;
--	/*
--	 * Fake a dma_mask/offset for the USB device:
--	 * We cannot really use the dma-mapping API (dma_alloc_* and
--	 * dma_map_*) for USB devices but instead need to use
--	 * usb_alloc_coherent and pass data in 'urb's, but some subsystems
--	 * manually look into the mask/offset pair to determine whether
--	 * they need bounce buffers.
--	 * Note: calling dma_set_mask() on a USB device would set the
--	 * mask for the entire HCD, so don't do that.
--	 */
--	dev->dev.dma_mask = bus->sysdev->dma_mask;
--	dev->dev.dma_pfn_offset = bus->sysdev->dma_pfn_offset;
- 	set_dev_node(&dev->dev, dev_to_node(bus->sysdev));
- 	dev->state = USB_STATE_ATTACHED;
- 	dev->lpm_disable_count = 1;
--- 
-2.28.0
-
+Best regards,
+Krzysztof
