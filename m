@@ -2,128 +2,158 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from vger.kernel.org (vger.kernel.org [23.128.96.18])
-	by mail.lfdr.de (Postfix) with ESMTP id 88FE726BDEA
-	for <lists+devicetree@lfdr.de>; Wed, 16 Sep 2020 09:27:02 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTP id F11C126BEA2
+	for <lists+devicetree@lfdr.de>; Wed, 16 Sep 2020 09:59:15 +0200 (CEST)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S1726068AbgIPH0w (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Wed, 16 Sep 2020 03:26:52 -0400
-Received: from lindbergh.monkeyblade.net ([23.128.96.19]:51318 "EHLO
-        lindbergh.monkeyblade.net" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S1726189AbgIPH0r (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Wed, 16 Sep 2020 03:26:47 -0400
-Received: from mail-wr1-x442.google.com (mail-wr1-x442.google.com [IPv6:2a00:1450:4864:20::442])
-        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 4405EC061788
-        for <devicetree@vger.kernel.org>; Wed, 16 Sep 2020 00:26:47 -0700 (PDT)
-Received: by mail-wr1-x442.google.com with SMTP id m6so5790746wrn.0
-        for <devicetree@vger.kernel.org>; Wed, 16 Sep 2020 00:26:47 -0700 (PDT)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=linaro.org; s=google;
-        h=subject:to:cc:references:from:message-id:date:user-agent
-         :mime-version:in-reply-to:content-language:content-transfer-encoding;
-        bh=7fnd1H7JWR0H2Ed0PevksPXMw8NbHRfcO8lkjwpN2/E=;
-        b=LryN3IjtR9Z/niCTVz4RcZC/v679mEEOZVfLF/kJ1QH9y+hKN36URiG8+/hSflXbcX
-         tSakH/dk15eNWGGZnYu0FXQLXWc7xFJxK1t95pgh+flnrLfGdOpjS2TyKJlJnJVR0Xd7
-         G4fm+9mma0ZqK7hYm7pkYxPV5R7EmEUlrQmLttkAn7jsqbZIEc7xInD4aoYgOtBERbId
-         Z2uAqVhXNuYlITJbLssgUDhTQOdR5n2BJ1quHGPj8zEZQONCuoFWSVcvODdiSnWChlTl
-         XE0e/JNcCn9d2+jSj69L+v/FQ19BScLgDQ/MMv31ETqChNs6gOgsS/6jfDiYyVe1TQf+
-         7nKQ==
+        id S1726243AbgIPH7P (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Wed, 16 Sep 2020 03:59:15 -0400
+Received: from mail-wm1-f68.google.com ([209.85.128.68]:33514 "EHLO
+        mail-wm1-f68.google.com" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
+        with ESMTP id S1726068AbgIPH7N (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Wed, 16 Sep 2020 03:59:13 -0400
+Received: by mail-wm1-f68.google.com with SMTP id e11so1643363wme.0;
+        Wed, 16 Sep 2020 00:59:11 -0700 (PDT)
 X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
         d=1e100.net; s=20161025;
-        h=x-gm-message-state:subject:to:cc:references:from:message-id:date
-         :user-agent:mime-version:in-reply-to:content-language
-         :content-transfer-encoding;
-        bh=7fnd1H7JWR0H2Ed0PevksPXMw8NbHRfcO8lkjwpN2/E=;
-        b=AdaSUAgWhg3EzUKl7kYKE0fnlIIkomkPJFp+PmePoeQLGkAGLG5dFxaDTzsLilSYxI
-         XO1hL770smAhYlkFFTGk6CsevDfGcwl5sdC+hSfm9FPNSMFALPgALU95D81s6FpR8+J6
-         Fxejk64RUVYjfgrt5XHPi3YiJYdey6/VLr4XFDSJGcjCSYpbdSVR6H6OyRTdH+7CHHT6
-         QHYOwAzQkArUdZkj45zGgSKgu5D82S6cA/p1148CpEd1iYa8MQcvs9YlxM87hq8eyJsI
-         0rsVi1AwmdcXsasKwcEnr33eweSqY3YtiAbcgLAd63NZY31BXR6OV0YT7/uKD8JgjhjU
-         Lm9Q==
-X-Gm-Message-State: AOAM532HfnUyddJfVtresSChn2Sy+jJZOm7ALRE3aHNGaNJxUc71yT7D
-        SfBAOlWAbG5I8llkfkr8iUPNPw==
-X-Google-Smtp-Source: ABdhPJw/SzVNV/DTty8lHNTUmF68J0FX3tyEi7nWyRXPIJaq7XAjq2KEOUsDQuL94WSNYffK7IEARg==
-X-Received: by 2002:adf:eb04:: with SMTP id s4mr27142757wrn.81.1600241205735;
-        Wed, 16 Sep 2020 00:26:45 -0700 (PDT)
-Received: from [192.168.1.8] ([195.24.90.54])
-        by smtp.googlemail.com with ESMTPSA id y6sm31567954wrn.41.2020.09.16.00.26.44
-        (version=TLS1_3 cipher=TLS_AES_128_GCM_SHA256 bits=128/128);
-        Wed, 16 Sep 2020 00:26:45 -0700 (PDT)
-Subject: Re: [PATCH v6 0/5] DVFS support for Venus
-To:     Rajendra Nayak <rnayak@codeaurora.org>, robh+dt@kernel.org,
-        agross@kernel.org, bjorn.andersson@linaro.org
-Cc:     linux-arm-msm@vger.kernel.org, linux-media@vger.kernel.org,
-        devicetree@vger.kernel.org, linux-kernel@vger.kernel.org,
-        mka@chromium.org
-References: <1598970026-7199-1-git-send-email-rnayak@codeaurora.org>
- <34ed34bd-90fd-0e84-6020-c487d612ad2f@codeaurora.org>
-From:   Stanimir Varbanov <stanimir.varbanov@linaro.org>
-Message-ID: <aec87de2-500d-763c-df01-c0daec56b1e2@linaro.org>
-Date:   Wed, 16 Sep 2020 10:26:43 +0300
-User-Agent: Mozilla/5.0 (X11; Linux x86_64; rv:68.0) Gecko/20100101
- Thunderbird/68.10.0
+        h=x-gm-message-state:date:from:to:cc:subject:message-id:references
+         :mime-version:content-disposition:in-reply-to:user-agent;
+        bh=f9vR3Ti7HGJjlVupS35gCwKRPU2ouBmpdxOZm0a6pHg=;
+        b=BmuQBVVSUC2pe7DhJ4tbxn9qCGs3gOOhWAmdEuzUuHsjCRvEBEq6Q9jwU/k25KWu5Z
+         mSRa2w8K5yQ3LQ0ackCIfxI0TzdKrzTqvfGBhl7luuEAnvaF7Jr/YtOTr/7L+m043xku
+         aPgV/0A13JtZ3RsznqMLNoGNCGTSblJJl22ePdGFx4rDd3ySJSr+X7moEfvvVmvREZye
+         Wg7w3ry9w1XNBKWX2SrIZnFW7T8FpHILeOqfoFPUqFYJywOQMAemgqY2JDNFLwqz/iO2
+         jqRdGun0DIuA4F215lMgAPw9P+pzB2EYBoDT1sl/czYOZ5UWWtzJKMov9CWBFs/+EyLT
+         bdcQ==
+X-Gm-Message-State: AOAM532E4cHjIWXC/Y4UdPy8EdJMdmjvf022S1rXiVMkRNONKJYiCkrW
+        UoGzBk8pquPlKmn2mwR5TC4=
+X-Google-Smtp-Source: ABdhPJxvAiLHTzMl+wXAqNoAvB4Yv/BV83AUKMAclJ4hQWRQUQ98jocoP+WC+dpkBraRRwrLGVhbrg==
+X-Received: by 2002:a1c:7c1a:: with SMTP id x26mr3467656wmc.112.1600243151114;
+        Wed, 16 Sep 2020 00:59:11 -0700 (PDT)
+Received: from kozik-lap ([194.230.155.124])
+        by smtp.googlemail.com with ESMTPSA id a81sm4022587wmf.32.2020.09.16.00.59.08
+        (version=TLS1_2 cipher=ECDHE-ECDSA-CHACHA20-POLY1305 bits=256/256);
+        Wed, 16 Sep 2020 00:59:09 -0700 (PDT)
+Date:   Wed, 16 Sep 2020 09:59:07 +0200
+From:   Krzysztof Kozlowski <krzk@kernel.org>
+To:     Andrzej Hajda <a.hajda@samsung.com>
+Cc:     Marek Szyprowski <m.szyprowski@samsung.com>,
+        Kukjin Kim <kgene@kernel.org>,
+        Rob Herring <robh+dt@kernel.org>,
+        David Airlie <airlied@linux.ie>,
+        Daniel Vetter <daniel@ffwll.ch>,
+        Lee Jones <lee.jones@linaro.org>,
+        Sangbeom Kim <sbkim73@samsung.com>,
+        Sylwester Nawrocki <s.nawrocki@samsung.com>,
+        Liam Girdwood <lgirdwood@gmail.com>,
+        Mark Brown <broonie@kernel.org>,
+        Daniel Lezcano <daniel.lezcano@linaro.org>,
+        Thomas Gleixner <tglx@linutronix.de>,
+        linux-arm-kernel@lists.infradead.org,
+        linux-samsung-soc@vger.kernel.org, devicetree@vger.kernel.org,
+        linux-kernel@vger.kernel.org, dri-devel@lists.freedesktop.org,
+        alsa-devel@alsa-project.org,
+        Sylwester Nawrocki <snawrocki@kernel.org>,
+        Chanwoo Choi <cw00.choi@samsung.com>,
+        Bartlomiej Zolnierkiewicz <b.zolnierkie@samsung.com>
+Subject: Re: [RFT 09/10] arm64: dts: exynos: Correct port of USB-C connector
+ node on Exynos5433 TM2
+Message-ID: <20200916075907.GA10270@kozik-lap>
+References: <20200829142501.31478-1-krzk@kernel.org>
+ <CGME20200829142602eucas1p1ce457a8fddc6b1fba4bf8c08992fa0b3@eucas1p1.samsung.com>
+ <20200829142501.31478-9-krzk@kernel.org>
+ <4eb7d0d9-29e2-9162-4521-10e4422f9c71@samsung.com>
+ <021495a9-7a00-eb91-ddfa-885cc2fb5462@samsung.com>
 MIME-Version: 1.0
-In-Reply-To: <34ed34bd-90fd-0e84-6020-c487d612ad2f@codeaurora.org>
 Content-Type: text/plain; charset=utf-8
-Content-Language: en-US
-Content-Transfer-Encoding: 8bit
+Content-Disposition: inline
+In-Reply-To: <021495a9-7a00-eb91-ddfa-885cc2fb5462@samsung.com>
+User-Agent: Mutt/1.9.4 (2018-02-28)
 Sender: devicetree-owner@vger.kernel.org
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-Hi,
-
-On 9/16/20 8:33 AM, Rajendra Nayak wrote:
+On Wed, Sep 02, 2020 at 01:23:50PM +0200, Andrzej Hajda wrote:
 > 
-> On 9/1/2020 7:50 PM, Rajendra Nayak wrote:
->> Rob, can you pick PATCH 1 since its already reviewed by you.
->> Stan, Patch 2 and 3 will need to be picked by you and they both have
->> your ACKs
+> On 31.08.2020 14:50, Marek Szyprowski wrote:
+> > Hi Krzysztof,
+> >
+> > On 29.08.2020 16:25, Krzysztof Kozlowski wrote:
+> >> The USB-C connector bindings require port@0.  Such port was already
+> >> described in DTS but outside of the connector itself.  Put it into
+> >> proper place to fix dtbs_check warnings like:
+> >>
+> >>     arch/arm64/boot/dts/exynos/exynos5433-tm2.dt.yaml: musb_connector: ports: 'port@0' is a required property
+> >>
+> >> Signed-off-by: Krzysztof Kozlowski <krzk@kernel.org>
+> > I'm not sure if topic should be about USB-C, I will call it simply USB
+> > connector node. TM2(e) uses Samsung's 11-pin micro USB 2.0 connector,
+> > which has nothing in common with USB Type-C.
+> >
+> > Anyway, this patch breaks DWC3 (tested in Device mode) driver operation,
+> > so something has to be somehow adjusted or fixed. Added CC Andrzej
+> > Hajda, who actually worked on this.
+> >
+> >> ---
+> >>
+> >> Not tested on HQ. Please kindly review and test.
+> >>
+> >> Best regards,
+> >> Krzysztof
+> >> ---
+> >>    .../boot/dts/exynos/exynos5433-tm2-common.dtsi    | 15 +++++++--------
+> >>    1 file changed, 7 insertions(+), 8 deletions(-)
+> >>
+> >> diff --git a/arch/arm64/boot/dts/exynos/exynos5433-tm2-common.dtsi b/arch/arm64/boot/dts/exynos/exynos5433-tm2-common.dtsi
+> >> index 6246cce2a15e..bab6c1addd5f 100644
+> >> --- a/arch/arm64/boot/dts/exynos/exynos5433-tm2-common.dtsi
+> >> +++ b/arch/arm64/boot/dts/exynos/exynos5433-tm2-common.dtsi
+> >> @@ -871,6 +871,13 @@
+> >>    					#address-cells = <1>;
+> >>    					#size-cells = <0>;
+> >>    
+> >> +					port@0 {
+> >> +						reg = <0>;
+> >> +						muic_to_usb: endpoint {
+> >> +							remote-endpoint = <&usb_to_muic>;
+> >> +						};
+> >> +					};
+> >> +
 > 
-> Rob/Stan, any plans to get the patches merged for 5.10?
-
-2/5 and 3/5 are queued up for v5.10 through media tree.
-
 > 
->> Patch 4 and 5 will need to be merged via the qcom tree once we have
->> them reviewed.
->>
->> v6: No changes, rebased on 5.9-rc3
->>
->> v5: Fixed the opp-tables (patch 4/5) to avoid -ERANGE from
->> dev_pm_opp_set_rate
->>
->> v4: Moved code from probe/remove/runtime_suspend into
->> different pm_ops callbacks
->>
->> v3: Renamed the optional power domain as cx
->>
->> v2: Fixed up the labels of OPP nodes in patch 4
->>      Included the bindings update patch as part of this series,
->>      a resend of https://lore.kernel.org/patchwork/patch/1241077/
->>
->> These patches add DVFS support for Venus
->>
->> Rajendra Nayak (5):
->>    dt-bindings: media: venus: Add an optional power domain for perf
->>      voting
->>    media: venus: core: Fix error handling in probe
->>    media: venus: core: Add support for opp tables/perf voting
->>    arm64: dts: sdm845: Add OPP tables and power-domains for venus
->>    arm64: dts: sc7180: Add OPP tables and power-domains for venus
->>
->>   .../bindings/media/qcom,sc7180-venus.yaml          |  6 +-
->>   .../bindings/media/qcom,sdm845-venus-v2.yaml       |  6 +-
->>   arch/arm64/boot/dts/qcom/sc7180.dtsi               | 35 +++++++-
->>   arch/arm64/boot/dts/qcom/sdm845.dtsi               | 40 +++++++++-
->>   drivers/media/platform/qcom/venus/core.c           | 17 ++--
->>   drivers/media/platform/qcom/venus/core.h           |  5 ++
->>   drivers/media/platform/qcom/venus/pm_helpers.c     | 92
->> ++++++++++++++++++++--
->>   7 files changed, 183 insertions(+), 18 deletions(-)
->>
+> According to not-yet-yaml documentation of dt-bindings (patch 05/10):
+> > -Required nodes:
+> > -- any data bus to the connector should be modeled using the OF graph bindings
+> > -  specified in bindings/graph.txt, unless the bus is between parent node and
+> > -  the connector.
 > 
+> This is 'unless' case - muic is parent of the connector, so the port 0 is not necessary.
+> 
+> 
+> >>    					port@3 {
+> >>    						reg = <3>;
+> >>    						musb_con_to_mhl: endpoint {
+> >> @@ -879,14 +886,6 @@
+> >>    					};
+> >>    				};
+> >>    			};
+> >> -
+> >> -			ports {
+> >> -				port {
+> >> -					muic_to_usb: endpoint {
+> >> -						remote-endpoint = <&usb_to_muic>;
+> >> -					};
+> >> -				};
+> 
+> 
+> And this port belongs to MUIC - it describes connection between USB-HOST 
+> and MUIC, it has nothing to do with the connector, and is necessary.
 
--- 
-regards,
-Stan
+Thanks for checking this. It's really appreciated!
+
+I'll work on v2 later to address the schema warning, hopefully without
+breaking things...
+
+Best regards,
+Krzysztof
+
