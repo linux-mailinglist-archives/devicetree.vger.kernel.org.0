@@ -2,121 +2,164 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from vger.kernel.org (vger.kernel.org [23.128.96.18])
-	by mail.lfdr.de (Postfix) with ESMTP id 98B2326CB67
-	for <lists+devicetree@lfdr.de>; Wed, 16 Sep 2020 22:27:03 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTP id 2FCBF26CB0A
+	for <lists+devicetree@lfdr.de>; Wed, 16 Sep 2020 22:21:47 +0200 (CEST)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S1727111AbgIPU0w (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Wed, 16 Sep 2020 16:26:52 -0400
-Received: from lelv0142.ext.ti.com ([198.47.23.249]:58446 "EHLO
-        lelv0142.ext.ti.com" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S1727004AbgIPRZi (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Wed, 16 Sep 2020 13:25:38 -0400
-Received: from fllv0034.itg.ti.com ([10.64.40.246])
-        by lelv0142.ext.ti.com (8.15.2/8.15.2) with ESMTP id 08GClLqX043458;
-        Wed, 16 Sep 2020 07:47:21 -0500
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=ti.com;
-        s=ti-com-17Q1; t=1600260441;
-        bh=BoLji1jDPhuJCxrV8+eJr3d2Zu6IFzNElVtPtmkib9Q=;
-        h=From:To:CC:Subject:Date;
-        b=kwZA42v45JxKnrxNk1inRxTz8tXL73G/oiO4Vihi8gJSJt2U5Hz456o1JglrDU/7U
-         sgviUdpAvKnSL0LOm6+/5SVReYURyUD/xDthCupxBoJtavg7WOHfIXPr3RgS3FXhty
-         iGI3Ma44Rqduy9y0pt2QeajLJEDTF2d0GBx6l+WA=
-Received: from DFLE100.ent.ti.com (dfle100.ent.ti.com [10.64.6.21])
-        by fllv0034.itg.ti.com (8.15.2/8.15.2) with ESMTPS id 08GClLQQ106494
-        (version=TLSv1.2 cipher=AES256-GCM-SHA384 bits=256 verify=FAIL);
-        Wed, 16 Sep 2020 07:47:21 -0500
-Received: from DFLE112.ent.ti.com (10.64.6.33) by DFLE100.ent.ti.com
- (10.64.6.21) with Microsoft SMTP Server (version=TLS1_2,
- cipher=TLS_ECDHE_RSA_WITH_AES_128_CBC_SHA256_P256) id 15.1.1979.3; Wed, 16
- Sep 2020 07:47:20 -0500
-Received: from fllv0040.itg.ti.com (10.64.41.20) by DFLE112.ent.ti.com
- (10.64.6.33) with Microsoft SMTP Server (version=TLS1_2,
- cipher=TLS_ECDHE_RSA_WITH_AES_128_CBC_SHA256_P256) id 15.1.1979.3 via
- Frontend Transport; Wed, 16 Sep 2020 07:47:20 -0500
-Received: from deskari.ti.com (ileax41-snat.itg.ti.com [10.172.224.153])
-        by fllv0040.itg.ti.com (8.15.2/8.15.2) with ESMTP id 08GClIou027623;
-        Wed, 16 Sep 2020 07:47:18 -0500
-From:   Tomi Valkeinen <tomi.valkeinen@ti.com>
-To:     Kishon Vijay Abraham I <kishon@ti.com>,
-        Vinod Koul <vkoul@kernel.org>,
+        id S1727772AbgIPUV0 (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Wed, 16 Sep 2020 16:21:26 -0400
+Received: from mail.kernel.org ([198.145.29.99]:43846 "EHLO mail.kernel.org"
+        rhost-flags-OK-OK-OK-OK) by vger.kernel.org with ESMTP
+        id S1727160AbgIPRau (ORCPT <rfc822;devicetree@vger.kernel.org>);
+        Wed, 16 Sep 2020 13:30:50 -0400
+Received: from kozik-lap.mshome.net (unknown [194.230.155.191])
+        (using TLSv1.2 with cipher ECDHE-RSA-AES128-GCM-SHA256 (128/128 bits))
+        (No client certificate requested)
+        by mail.kernel.org (Postfix) with ESMTPSA id 1D3B922464;
+        Wed, 16 Sep 2020 15:58:07 +0000 (UTC)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=kernel.org;
+        s=default; t=1600271894;
+        bh=wdAkw2TjM1udxEqqVOzxHnXaiuAOFMCD3JyJ0x6GXJI=;
+        h=From:To:Cc:Subject:Date:In-Reply-To:References:From;
+        b=CEkiTIX+Fl0xgU9GaFowB3IBFoj0LdQvWJp6D/j5lf4NecsiG9e7rpukGJOxIsOGX
+         OiHfB2CHjp8UzjXsoU4dCoauEfCjSPEEzbwnAko1gQFeuf/NUQwGG6LcEcvfRUlBi8
+         pOcI/Xun6ff/784JHIbliYALEOTgbG6oNJuCy1EA=
+From:   Krzysztof Kozlowski <krzk@kernel.org>
+To:     Linus Walleij <linus.walleij@linaro.org>,
+        Bartosz Golaszewski <bgolaszewski@baylibre.com>,
         Rob Herring <robh+dt@kernel.org>,
-        Swapnil Jakhade <sjakhade@cadence.com>,
-        Yuti Amonkar <yamonkar@cadence.com>
-CC:     <linux-kernel@vger.kernel.org>, <devicetree@vger.kernel.org>,
-        Sekhar Nori <nsekhar@ti.com>,
-        Tomi Valkeinen <tomi.valkeinen@ti.com>
-Subject: [PATCH 1/2] dt-bindings: phy: ti,phy-j721e-wiz: fix bindings for torrent phy
-Date:   Wed, 16 Sep 2020 15:47:10 +0300
-Message-ID: <20200916124711.166643-1-tomi.valkeinen@ti.com>
-X-Mailer: git-send-email 2.25.1
-MIME-Version: 1.0
-Content-Transfer-Encoding: 8bit
-Content-Type: text/plain
-X-EXCLAIMER-MD-CONFIG: e1e8a2fd-e40a-4ac6-ac9b-f7e9cc9ee180
+        =?UTF-8?q?Beno=C3=AEt=20Cousson?= <bcousson@baylibre.com>,
+        Tony Lindgren <tony@atomide.com>,
+        Jason Cooper <jason@lakedaemon.net>,
+        Andrew Lunn <andrew@lunn.ch>,
+        Gregory Clement <gregory.clement@bootlin.com>,
+        Sebastian Hesselbarth <sebastian.hesselbarth@gmail.com>,
+        Russell King <linux@armlinux.org.uk>,
+        Joel Stanley <joel@jms.id.au>,
+        Andrew Jeffery <andrew@aj.id.au>,
+        Shawn Guo <shawnguo@kernel.org>,
+        Sascha Hauer <s.hauer@pengutronix.de>,
+        Pengutronix Kernel Team <kernel@pengutronix.de>,
+        Fabio Estevam <festevam@gmail.com>,
+        NXP Linux Team <linux-imx@nxp.com>,
+        Matthias Brugger <matthias.bgg@gmail.com>,
+        Geert Uytterhoeven <geert+renesas@glider.be>,
+        Magnus Damm <magnus.damm@gmail.com>,
+        Tero Kristo <t-kristo@ti.com>, Nishanth Menon <nm@ti.com>,
+        Michal Simek <michal.simek@xilinx.com>,
+        linux-gpio@vger.kernel.org, devicetree@vger.kernel.org,
+        linux-kernel@vger.kernel.org, linux-omap@vger.kernel.org,
+        linux-arm-kernel@lists.infradead.org,
+        linux-aspeed@lists.ozlabs.org, linux-mediatek@lists.infradead.org,
+        linux-renesas-soc@vger.kernel.org
+Cc:     Krzysztof Kozlowski <krzk@kernel.org>
+Subject: [PATCH v3 05/15] arm64: dts: renesas: align GPIO hog names with dtschema
+Date:   Wed, 16 Sep 2020 17:57:05 +0200
+Message-Id: <20200916155715.21009-6-krzk@kernel.org>
+X-Mailer: git-send-email 2.17.1
+In-Reply-To: <20200916155715.21009-1-krzk@kernel.org>
+References: <20200916155715.21009-1-krzk@kernel.org>
 Sender: devicetree-owner@vger.kernel.org
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-When WIZ wraps a Cadence Torrent PHY (instead of Cadence Sierra PHY)
-there is a difference in the refclk-dig node: Torrent only has two
-clocks instead of Sierra's four clocks. Add minItems: 2 to solve this.
+The convention for node names is to use hyphens, not underscores.
+dtschema for pca95xx expects GPIO hogs to end with 'hog' prefix.
 
-Additionally, in our use case we only need to use assigned-clock for a
-single clock, but the current binding requires either no assigned-clocks
-or two. Fix this by adding minItems: 1 to all the assigned-clock
-properties.
-
-There was also an extra trailing whitespace, which this patch removes.
-
-Signed-off-by: Tomi Valkeinen <tomi.valkeinen@ti.com>
+Signed-off-by: Krzysztof Kozlowski <krzk@kernel.org>
 ---
- .../devicetree/bindings/phy/ti,phy-j721e-wiz.yaml   | 13 ++++++++++---
- 1 file changed, 10 insertions(+), 3 deletions(-)
+ .../boot/dts/renesas/r8a77951-salvator-xs.dts      |  2 +-
+ .../boot/dts/renesas/r8a77965-salvator-xs.dts      |  2 +-
+ arch/arm64/boot/dts/renesas/ulcb-kf.dtsi           | 14 +++++++-------
+ 3 files changed, 9 insertions(+), 9 deletions(-)
 
-diff --git a/Documentation/devicetree/bindings/phy/ti,phy-j721e-wiz.yaml b/Documentation/devicetree/bindings/phy/ti,phy-j721e-wiz.yaml
-index 5ffc95c62909..c33e9bc79521 100644
---- a/Documentation/devicetree/bindings/phy/ti,phy-j721e-wiz.yaml
-+++ b/Documentation/devicetree/bindings/phy/ti,phy-j721e-wiz.yaml
-@@ -45,9 +45,15 @@ properties:
-   ranges: true
+diff --git a/arch/arm64/boot/dts/renesas/r8a77951-salvator-xs.dts b/arch/arm64/boot/dts/renesas/r8a77951-salvator-xs.dts
+index cef9da4376a3..e5922329a4b8 100644
+--- a/arch/arm64/boot/dts/renesas/r8a77951-salvator-xs.dts
++++ b/arch/arm64/boot/dts/renesas/r8a77951-salvator-xs.dts
+@@ -118,7 +118,7 @@
+ };
  
-   assigned-clocks:
-+    minItems: 1
-     maxItems: 2
+ &pca9654 {
+-	pcie_sata_switch {
++	pcie-sata-switch-hog {
+ 		gpio-hog;
+ 		gpios = <7 GPIO_ACTIVE_HIGH>;
+ 		output-low; /* enable SATA by default */
+diff --git a/arch/arm64/boot/dts/renesas/r8a77965-salvator-xs.dts b/arch/arm64/boot/dts/renesas/r8a77965-salvator-xs.dts
+index 5cef64605464..d7e621101af7 100644
+--- a/arch/arm64/boot/dts/renesas/r8a77965-salvator-xs.dts
++++ b/arch/arm64/boot/dts/renesas/r8a77965-salvator-xs.dts
+@@ -55,7 +55,7 @@
+ };
  
-   assigned-clock-parents:
-+    minItems: 1
-+    maxItems: 2
-+
-+  assigned-clock-rates:
-+    minItems: 1
-     maxItems: 2
+ &pca9654 {
+-	pcie_sata_switch {
++	pcie-sata-switch-hog {
+ 		gpio-hog;
+ 		gpios = <7 GPIO_ACTIVE_HIGH>;
+ 		output-low; /* enable SATA by default */
+diff --git a/arch/arm64/boot/dts/renesas/ulcb-kf.dtsi b/arch/arm64/boot/dts/renesas/ulcb-kf.dtsi
+index 202177706cde..e9ed2597f1c2 100644
+--- a/arch/arm64/boot/dts/renesas/ulcb-kf.dtsi
++++ b/arch/arm64/boot/dts/renesas/ulcb-kf.dtsi
+@@ -143,49 +143,49 @@
+ 		interrupt-parent = <&gpio6>;
+ 		interrupts = <8 IRQ_TYPE_EDGE_FALLING>;
  
-   typec-dir-gpios:
-@@ -119,9 +125,10 @@ patternProperties:
-       logic.
-     properties:
-       clocks:
-+        minItems: 2
-         maxItems: 4
--        description: Phandle to four clock nodes representing the inputs to
--          refclk_dig
-+        description: Phandle to two (Torrent) or four (Sierra) clock nodes representing
-+          the inputs to refclk_dig
+-		audio_out_off {
++		audio-out-off-hog {
+ 			gpio-hog;
+ 			gpios = <0 GPIO_ACTIVE_HIGH>; /* P00 */
+ 			output-high;
+ 			line-name = "Audio_Out_OFF";
+ 		};
  
-       "#clock-cells":
-         const: 0
-@@ -203,7 +210,7 @@ examples:
-            };
+-		hub_pwen {
++		hub-pwen-hog {
+ 			gpio-hog;
+ 			gpios = <6 GPIO_ACTIVE_HIGH>;
+ 			output-high;
+ 			line-name = "HUB pwen";
+ 		};
  
-            refclk-dig {
--                  clocks = <&k3_clks 292 11>, <&k3_clks 292 0>, 
-+                  clocks = <&k3_clks 292 11>, <&k3_clks 292 0>,
-                           <&dummy_cmn_refclk>, <&dummy_cmn_refclk1>;
-                   #clock-cells = <0>;
-                   assigned-clocks = <&wiz0_refclk_dig>;
+-		hub_rst {
++		hub-rst-hog {
+ 			gpio-hog;
+ 			gpios = <7 GPIO_ACTIVE_HIGH>;
+ 			output-high;
+ 			line-name = "HUB rst";
+ 		};
+ 
+-		otg_extlpn {
++		otg-extlpn-hog {
+ 			gpio-hog;
+ 			gpios = <9 GPIO_ACTIVE_HIGH>;
+ 			output-high;
+ 			line-name = "OTG EXTLPn";
+ 		};
+ 
+-		otg_offvbusn {
++		otg-offvbusn-hog {
+ 			gpio-hog;
+ 			gpios = <8 GPIO_ACTIVE_HIGH>;
+ 			output-low;
+ 			line-name = "OTG OFFVBUSn";
+ 		};
+ 
+-		sd-wifi-mux {
++		sd-wifi-mux-hog {
+ 			gpio-hog;
+ 			gpios = <5 GPIO_ACTIVE_HIGH>;
+ 			output-low;	/* Connect WL1837 */
+ 			line-name = "SD WiFi mux";
+ 		};
+ 
+-		snd_rst {
++		snd-rst-hog {
+ 			gpio-hog;
+ 			gpios = <15 GPIO_ACTIVE_HIGH>; /* P17 */
+ 			output-high;
 -- 
-Texas Instruments Finland Oy, Porkkalankatu 22, 00180 Helsinki.
-Y-tunnus/Business ID: 0615521-4. Kotipaikka/Domicile: Helsinki
+2.17.1
 
