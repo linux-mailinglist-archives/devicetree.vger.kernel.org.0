@@ -2,109 +2,76 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from vger.kernel.org (vger.kernel.org [23.128.96.18])
-	by mail.lfdr.de (Postfix) with ESMTP id BEEDA26C7EB
-	for <lists+devicetree@lfdr.de>; Wed, 16 Sep 2020 20:36:42 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTP id 0518D26C8E1
+	for <lists+devicetree@lfdr.de>; Wed, 16 Sep 2020 20:59:31 +0200 (CEST)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S1728071AbgIPSgN (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Wed, 16 Sep 2020 14:36:13 -0400
-Received: from lindbergh.monkeyblade.net ([23.128.96.19]:42154 "EHLO
-        lindbergh.monkeyblade.net" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S1728079AbgIPS3N (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Wed, 16 Sep 2020 14:29:13 -0400
-Received: from mail-wm1-x343.google.com (mail-wm1-x343.google.com [IPv6:2a00:1450:4864:20::343])
-        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 13DC0C0A8938;
-        Wed, 16 Sep 2020 06:07:25 -0700 (PDT)
-Received: by mail-wm1-x343.google.com with SMTP id w2so2725651wmi.1;
-        Wed, 16 Sep 2020 06:07:25 -0700 (PDT)
-X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=1e100.net; s=20161025;
-        h=x-gm-message-state:date:from:to:cc:subject:message-id:references
-         :mime-version:content-disposition:in-reply-to:user-agent;
-        bh=wXAbzU7xs3GHOx4VbALatUig0WdQIdhicYVb4LS021Q=;
-        b=HkQLLmAJhe1yxNGBO1sfG4gpKaDhSTi5NwsXdTXpKIBovg3XuA3g6/xN3j70bITbU4
-         QxjVP0nBEk9CQMbCYGT+u/aBsOGp5zfyrVXQx7I89bg4wEANFhrCw2dfiGY/E052yt3I
-         hP2dHzR39YBwGEPHXfXDepc1lPBLt8iuRW+waPSVRhgqd08ZYSdBtKYU5hACthSGW/4X
-         lkoZ0zEcqC20TM9vkle2lW8Zij/nvQodlaTf0X61PLM17lVyPxfo9A+nTDUntHYXMiQA
-         VeEvEmry8SX0PdlBRMVdFFgaISOKNdZl/qrv/3NQn0kQqNn/cIq+zwt4Zt7UkozUmRcL
-         +bKw==
-X-Gm-Message-State: AOAM532tlUdVMXhLtggnAgtO1EC2QqIDJh6TroQwMcyWXZ9LVX+bUHD/
-        xfVKnUptdkYVmg80LcqyPhbJgJmCVmcXkUoZ
-X-Google-Smtp-Source: ABdhPJz6nAcPpzE0Afvi4kc8Wd3d/N2pmOcJi2+gV9N28HTCz/M5xCuuIuDYCxyhmfn+uomSVR6/sQ==
-X-Received: by 2002:a1c:152:: with SMTP id 79mr4146687wmb.90.1600254559712;
-        Wed, 16 Sep 2020 04:09:19 -0700 (PDT)
-Received: from kozik-lap ([194.230.155.191])
-        by smtp.googlemail.com with ESMTPSA id n2sm4944652wma.29.2020.09.16.04.09.16
-        (version=TLS1_2 cipher=ECDHE-ECDSA-CHACHA20-POLY1305 bits=256/256);
-        Wed, 16 Sep 2020 04:09:18 -0700 (PDT)
-Date:   Wed, 16 Sep 2020 13:09:15 +0200
+        id S1728267AbgIPS71 (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Wed, 16 Sep 2020 14:59:27 -0400
+Received: from mail.kernel.org ([198.145.29.99]:42050 "EHLO mail.kernel.org"
+        rhost-flags-OK-OK-OK-OK) by vger.kernel.org with ESMTP
+        id S1727520AbgIPRvQ (ORCPT <rfc822;devicetree@vger.kernel.org>);
+        Wed, 16 Sep 2020 13:51:16 -0400
+Received: from mail-ej1-f54.google.com (mail-ej1-f54.google.com [209.85.218.54])
+        (using TLSv1.2 with cipher ECDHE-RSA-AES128-GCM-SHA256 (128/128 bits))
+        (No client certificate requested)
+        by mail.kernel.org (Postfix) with ESMTPSA id 740AC2220A;
+        Wed, 16 Sep 2020 11:56:15 +0000 (UTC)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=kernel.org;
+        s=default; t=1600257375;
+        bh=eoaV9szsjFgk7Uijv0L7H5VhZbtE8Hl/Zr7ID+M87nY=;
+        h=References:In-Reply-To:From:Date:Subject:To:Cc:From;
+        b=S41QI6QNEwoTFUhPFQbHwcgGYxGkiNeZjlx89US+9eB0ouV5jXDQVbtws8fAeszyA
+         TWRVI4D+K+DO/dgAew8K1QnwoRJeTj50wecYRg73J365TMWFBcia/zuujHwFodwzD5
+         KMrWVjsw7IXSR27cjO9eEqGuHJvOZG/V81fMmavs=
+Received: by mail-ej1-f54.google.com with SMTP id i26so9889834ejb.12;
+        Wed, 16 Sep 2020 04:56:15 -0700 (PDT)
+X-Gm-Message-State: AOAM533T5gAR4yTs5Gl3wGOvLbiwjUxuAR+L38xQO6EpKxLOV9v8mqit
+        JZZaoVGCMJ16MBsHumn9mfzqySS8nVm68D+jsH8=
+X-Google-Smtp-Source: ABdhPJxVC4NLF4LipwZPQbtgcVYYzgMLywjdrV+ZxmsIZAFCCtHHjAh+3P/NtChDS4r5OJpcCax05AMA1bTlcwSk55Y=
+X-Received: by 2002:a17:906:4a51:: with SMTP id a17mr24651233ejv.381.1600257374080;
+ Wed, 16 Sep 2020 04:56:14 -0700 (PDT)
+MIME-Version: 1.0
+References: <20200904151139.18715-1-krzk@kernel.org> <CACRpkdbGTQTFAWoQtxrODYdADyUJ0JohL-63oCv9aWj53H_0Xw@mail.gmail.com>
+In-Reply-To: <CACRpkdbGTQTFAWoQtxrODYdADyUJ0JohL-63oCv9aWj53H_0Xw@mail.gmail.com>
 From:   Krzysztof Kozlowski <krzk@kernel.org>
+Date:   Wed, 16 Sep 2020 13:56:02 +0200
+X-Gmail-Original-Message-ID: <CAJKOXPeSVEU-O_vgkJpCq-zt_DzP5b-1+GvqshvGyK2ChBuyTA@mail.gmail.com>
+Message-ID: <CAJKOXPeSVEU-O_vgkJpCq-zt_DzP5b-1+GvqshvGyK2ChBuyTA@mail.gmail.com>
+Subject: Re: [GIT PULL] dt-bindings: gpio: fsl-imx-gpio: Cleanup for v5.10
 To:     Linus Walleij <linus.walleij@linaro.org>
-Cc:     Bartosz Golaszewski <bgolaszewski@baylibre.com>,
-        Rob Herring <robh+dt@kernel.org>,
-        =?utf-8?Q?Beno=C3=AEt?= Cousson <bcousson@baylibre.com>,
-        Tony Lindgren <tony@atomide.com>,
-        Russell King <linux@armlinux.org.uk>,
-        Jason Cooper <jason@lakedaemon.net>,
-        Andrew Lunn <andrew@lunn.ch>,
-        Gregory Clement <gregory.clement@bootlin.com>,
-        Sebastian Hesselbarth <sebastian.hesselbarth@gmail.com>,
-        Joel Stanley <joel@jms.id.au>,
-        Andrew Jeffery <andrew@aj.id.au>,
-        Shawn Guo <shawnguo@kernel.org>,
-        Sascha Hauer <s.hauer@pengutronix.de>,
-        Pengutronix Kernel Team <kernel@pengutronix.de>,
-        NXP Linux Team <linux-imx@nxp.com>,
-        Matthias Brugger <matthias.bgg@gmail.com>,
-        Geert Uytterhoeven <geert+renesas@glider.be>,
-        Magnus Damm <magnus.damm@gmail.com>,
-        Tero Kristo <t-kristo@ti.com>, Nishanth Menon <nm@ti.com>,
-        Michal Simek <michal.simek@xilinx.com>,
-        Guenter Roeck <linux@roeck-us.net>,
+Cc:     Linux ARM <linux-arm-kernel@lists.infradead.org>,
         "open list:OPEN FIRMWARE AND FLATTENED DEVICE TREE BINDINGS" 
         <devicetree@vger.kernel.org>,
         "linux-kernel@vger.kernel.org" <linux-kernel@vger.kernel.org>,
-        Linux-OMAP <linux-omap@vger.kernel.org>,
-        Linux ARM <linux-arm-kernel@lists.infradead.org>,
-        linux-aspeed <linux-aspeed@lists.ozlabs.org>,
-        "moderated list:ARM/Mediatek SoC support" 
-        <linux-mediatek@lists.infradead.org>,
-        Linux-Renesas <linux-renesas-soc@vger.kernel.org>
-Subject: Re: [PATCH v2 02/15] dt-bindings: gpio: convert bindings for Maxim
- MAX732x family to dtschema
-Message-ID: <20200916110915.GA17710@kozik-lap>
-References: <20200910175733.11046-1-krzk@kernel.org>
- <20200910175733.11046-3-krzk@kernel.org>
- <CACRpkdZXu2J4z=1j-syxSbz2x-QiLeTBpwHSOVNfmZ31RgM6Ng@mail.gmail.com>
- <20200916061511.GA5719@kozik-lap>
-MIME-Version: 1.0
-Content-Type: text/plain; charset=utf-8
-Content-Disposition: inline
-In-Reply-To: <20200916061511.GA5719@kozik-lap>
-User-Agent: Mutt/1.9.4 (2018-02-28)
+        "open list:GPIO SUBSYSTEM" <linux-gpio@vger.kernel.org>
+Content-Type: text/plain; charset="UTF-8"
 Sender: devicetree-owner@vger.kernel.org
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-On Wed, Sep 16, 2020 at 08:15:11AM +0200, Krzysztof Kozlowski wrote:
-> On Sat, Sep 12, 2020 at 11:58:22AM +0200, Linus Walleij wrote:
-> > On Thu, Sep 10, 2020 at 7:58 PM Krzysztof Kozlowski <krzk@kernel.org> wrote:
-> > 
-> > > Convert the Maxim MAX732x family of GPIO expanders bindings to device
-> > > tree schema by merging it with existing PCA95xx schema.  These are quite
-> > > similar so merging reduces duplication.
-> > >
-> > > Signed-off-by: Krzysztof Kozlowski <krzk@kernel.org>
-> > 
-> > Can I just apply this one patch to the GPIO tree?
-> 
-> No, this requires the previous one (1/15) because it merges the max732x
-> into pca95xx.
-> 
-> Although now Rob reviewed both so you can pick them up.
+On Sat, 12 Sep 2020 at 11:40, Linus Walleij <linus.walleij@linaro.org> wrote:
+>
+> On Fri, Sep 4, 2020 at 5:11 PM Krzysztof Kozlowski <krzk@kernel.org> wrote:
+>
+> > These were on the list for some time. They got review from Rob so I guess they
+> > are good to go via subsystem tree.
+>
+> Pulled in to my devel branch, thanks!
+>
+> Documentation/devicetree/bindings/gpio/fsl-imx-gpio.yaml
+> looks very, very good.
+>
+> One thing I was thinking of was to abstract out
+> gpio-common.yaml from these bindings as a start, since
+> you made the effort to even parse hogs properly.
+> That way others could benefit from the work.
+>
+> Do you want to do it or should I take a stab?
 
-I found now one comment from Rob so I will send a v3.
+Hi Linus,
+
+I can prepare common bindings.
 
 Best regards,
 Krzysztof
-
