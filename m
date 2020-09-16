@@ -2,84 +2,121 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from vger.kernel.org (vger.kernel.org [23.128.96.18])
-	by mail.lfdr.de (Postfix) with ESMTP id F2CEB26CE50
-	for <lists+devicetree@lfdr.de>; Thu, 17 Sep 2020 00:06:29 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTP id 6A96C26CF0E
+	for <lists+devicetree@lfdr.de>; Thu, 17 Sep 2020 00:45:51 +0200 (CEST)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S1726312AbgIPWGV (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Wed, 16 Sep 2020 18:06:21 -0400
-Received: from mail.kernel.org ([198.145.29.99]:36050 "EHLO mail.kernel.org"
-        rhost-flags-OK-OK-OK-OK) by vger.kernel.org with ESMTP
-        id S1726084AbgIPWGV (ORCPT <rfc822;devicetree@vger.kernel.org>);
-        Wed, 16 Sep 2020 18:06:21 -0400
-Received: from localhost (52.sub-72-107-123.myvzw.com [72.107.123.52])
-        (using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
-        (No client certificate requested)
-        by mail.kernel.org (Postfix) with ESMTPSA id E40DE206CA;
-        Wed, 16 Sep 2020 22:06:19 +0000 (UTC)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=kernel.org;
-        s=default; t=1600293980;
-        bh=HhexOyxrZbLvVV+72b1lIviOhvFDH6uZ/bUlsYtWPio=;
-        h=Date:From:To:Cc:Subject:In-Reply-To:From;
-        b=rVwpXrDi3mbuLSa4Ub9e3VirMVCIepbV/7Whdx6YK92YJtdSelaMZH42apzK4nFUs
-         ur40xEI3g3IxpyKvxIGk7q+UDh06FhQ4GEb8/Jrnejk5U2+ATbaKRyq017p/GvA8w6
-         e2FtQc53AxUd8aU2Hr7XMeP4Uw8qk+f8TKT+4c6I=
-Date:   Wed, 16 Sep 2020 17:06:18 -0500
-From:   Bjorn Helgaas <helgaas@kernel.org>
+        id S1726515AbgIPWpu (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Wed, 16 Sep 2020 18:45:50 -0400
+Received: from lindbergh.monkeyblade.net ([23.128.96.19]:53966 "EHLO
+        lindbergh.monkeyblade.net" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
+        with ESMTP id S1726280AbgIPWpr (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Wed, 16 Sep 2020 18:45:47 -0400
+Received: from mail-ot1-x341.google.com (mail-ot1-x341.google.com [IPv6:2607:f8b0:4864:20::341])
+        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 4B448C061756
+        for <devicetree@vger.kernel.org>; Wed, 16 Sep 2020 15:45:47 -0700 (PDT)
+Received: by mail-ot1-x341.google.com with SMTP id g96so90354otb.12
+        for <devicetree@vger.kernel.org>; Wed, 16 Sep 2020 15:45:47 -0700 (PDT)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+        d=linaro.org; s=google;
+        h=date:from:to:cc:subject:message-id:references:mime-version
+         :content-disposition:in-reply-to;
+        bh=mSPBN6R1sa+s+aXjb7bLc56lTmvRIEa3Tj0pNL1DtAs=;
+        b=Xyr66PPEDJ2lFdT1dZgEBP7yEoadnPkYbN2OeOWbUjE051q2HkIHFh2DY8Z0MZe6rR
+         Z+xXrgXrQtkqVs2JUo039Lstewge9fiTWYW3zFy0c5ynnVisMotuE2fCxMSskz/ON0wt
+         jfeV+IRhzMyXg0ckLRz/r2ChSXRhtwsCsjLxwIqYgEk1XnckrTTd7/RnTsFIfVi+qwJZ
+         S+LOSriDUUu7yzbGXYFQ55l/Q0+zvAvA63NoEMDTjYoqJmqu+Axhdg7HEz9ujJ1Mbt+k
+         ef9N+MmkdeybRs4009fkUu3460b0XWVVnC4udkVC/IUhIcOJDHf0b9WIl9FBOTMSM4+9
+         LxmQ==
+X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+        d=1e100.net; s=20161025;
+        h=x-gm-message-state:date:from:to:cc:subject:message-id:references
+         :mime-version:content-disposition:in-reply-to;
+        bh=mSPBN6R1sa+s+aXjb7bLc56lTmvRIEa3Tj0pNL1DtAs=;
+        b=lA9y4QEESxf6bWVaHXLdr9nLESO04JWNNOKb+DRIVJlXJ14gghrL8ewFhHblxdSBAW
+         If0UNMvw2udcrvrXA6J1BGAekfZ3J56Rjr9JOut5/IZ01exT6AXNFT9GQ6YAxrUU97TO
+         bcRWiL+yZNLd25uzwL3RVHR6bp0XwiOzIJEfiuK3YhFgcKVXdroHv3P2jW9y6t4mkG8R
+         m1PzDa3nntq1iuJsHae/Ku3rRlpN6/8AZ6bzPm97fVyLeKiWfvbBAAXmcXoDFFISNQAr
+         GpqyBQ4dcmwHhYepBXJHRdI3rEDrttFvJbSi2u/BYFTHk5wYRL5tzqfuuaV2M6lTJs3k
+         y7Qw==
+X-Gm-Message-State: AOAM531d1S2SDhQi8g5AIYHNg6/z/mrWFUa/wXVdCSCvU5S6gRqTN5oU
+        EZV+ZgOcROzqYAT1aIjerJQIfA==
+X-Google-Smtp-Source: ABdhPJxm0s45AtmEZVAKj5PYYYbpECFzxiWfua7H6FDMJJAeMl76CZ0dlEyNMoQn+qRQtUFYQhiRng==
+X-Received: by 2002:a9d:6219:: with SMTP id g25mr18071407otj.58.1600296346467;
+        Wed, 16 Sep 2020 15:45:46 -0700 (PDT)
+Received: from yoga ([2605:6000:e5cb:c100:7cad:6eff:fec8:37e4])
+        by smtp.gmail.com with ESMTPSA id c34sm9253888otb.69.2020.09.16.15.45.44
+        (version=TLS1_3 cipher=TLS_AES_256_GCM_SHA384 bits=256/256);
+        Wed, 16 Sep 2020 15:45:45 -0700 (PDT)
+Date:   Wed, 16 Sep 2020 17:45:41 -0500
+From:   Bjorn Andersson <bjorn.andersson@linaro.org>
 To:     Manivannan Sadhasivam <manivannan.sadhasivam@linaro.org>
-Cc:     agross@kernel.org, bjorn.andersson@linaro.org, kishon@ti.com,
-        vkoul@kernel.org, robh@kernel.org, svarbanov@mm-sol.com,
-        bhelgaas@google.com, lorenzo.pieralisi@arm.com,
-        linux-arm-msm@vger.kernel.org, linux-pci@vger.kernel.org,
-        linux-kernel@vger.kernel.org, mgautam@codeaurora.org,
-        devicetree@vger.kernel.org, Jonathan Marek <jonathan@marek.ca>
-Subject: Re: [PATCH 5/5] pci: controller: dwc: qcom: Harcode PCIe config SID
-Message-ID: <20200916220618.GA1589351@bjorn-Precision-5520>
+Cc:     agross@kernel.org, kishon@ti.com, vkoul@kernel.org,
+        robh@kernel.org, svarbanov@mm-sol.com, bhelgaas@google.com,
+        lorenzo.pieralisi@arm.com, linux-arm-msm@vger.kernel.org,
+        linux-pci@vger.kernel.org, linux-kernel@vger.kernel.org,
+        mgautam@codeaurora.org, devicetree@vger.kernel.org
+Subject: Re: [PATCH 1/5] dt-bindings: phy: qcom,qmp: Document SM8250 PCIe PHY
+ bindings
+Message-ID: <20200916224541.GF1893@yoga>
+References: <20200916132000.1850-1-manivannan.sadhasivam@linaro.org>
+ <20200916132000.1850-2-manivannan.sadhasivam@linaro.org>
 MIME-Version: 1.0
 Content-Type: text/plain; charset=us-ascii
 Content-Disposition: inline
-In-Reply-To: <20200916132000.1850-6-manivannan.sadhasivam@linaro.org>
-Sender: devicetree-owner@vger.kernel.org
+In-Reply-To: <20200916132000.1850-2-manivannan.sadhasivam@linaro.org>
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-s/Harcode/Hardcode/ (in subject)
+On Wed 16 Sep 08:19 CDT 2020, Manivannan Sadhasivam wrote:
 
-Also fix subject format as for 4/5.
-
-On Wed, Sep 16, 2020 at 06:50:00PM +0530, Manivannan Sadhasivam wrote:
-> Hardcode the PCIe config SID table value. This is needed to avoid random
-> MHI failure observed during reboot on SM8250.
+> Document the DT bindings of below PCIe PHY versions used on SM8250:
 > 
-> Signed-off-by: Jonathan Marek <jonathan@marek.ca>
-> [mani: stripped out unnecessary settings and ported for upstream]
+> QMP GEN3x1 PHY - 1 lane
+> QMP GEN3x2 PHY - 2 lanes
+> QMP Modem PHY - 2 lanes
+
+How about something like "Add the three PCIe PHYs found in SM8250 to the
+QMP binding"?
+
+> 
 > Signed-off-by: Manivannan Sadhasivam <manivannan.sadhasivam@linaro.org>
 > ---
->  drivers/pci/controller/dwc/pcie-qcom.c | 4 ++++
->  1 file changed, 4 insertions(+)
+>  Documentation/devicetree/bindings/phy/qcom,qmp-phy.yaml | 5 +++++
+>  1 file changed, 5 insertions(+)
 > 
-> diff --git a/drivers/pci/controller/dwc/pcie-qcom.c b/drivers/pci/controller/dwc/pcie-qcom.c
-> index ca8ad354e09d..50748016ce96 100644
-> --- a/drivers/pci/controller/dwc/pcie-qcom.c
-> +++ b/drivers/pci/controller/dwc/pcie-qcom.c
-> @@ -57,6 +57,7 @@
->  #define PCIE20_PARF_SID_OFFSET			0x234
->  #define PCIE20_PARF_BDF_TRANSLATE_CFG		0x24C
->  #define PCIE20_PARF_DEVICE_TYPE			0x1000
-> +#define PCIE20_PARF_BDF_TO_SID_TABLE_N		0x2000
+> diff --git a/Documentation/devicetree/bindings/phy/qcom,qmp-phy.yaml b/Documentation/devicetree/bindings/phy/qcom,qmp-phy.yaml
+> index 185cdea9cf81..69b67f79075c 100644
+> --- a/Documentation/devicetree/bindings/phy/qcom,qmp-phy.yaml
+> +++ b/Documentation/devicetree/bindings/phy/qcom,qmp-phy.yaml
+> @@ -31,6 +31,9 @@ properties:
+>        - qcom,sdm845-qmp-usb3-uni-phy
+>        - qcom,sm8150-qmp-ufs-phy
+>        - qcom,sm8250-qmp-ufs-phy
+> +      - qcom,qcom,sm8250-qmp-gen3x1-pcie-phy
+> +      - qcom,qcom,sm8250-qmp-gen3x2-pcie-phy
+> +      - qcom,qcom,sm8250-qmp-modem-pcie-phy
+
+One "qcom," should be enough.
+
 >  
->  #define PCIE20_ELBI_SYS_CTRL			0x04
->  #define PCIE20_ELBI_SYS_CTRL_LT_ENABLE		BIT(0)
-> @@ -1290,6 +1291,9 @@ static int qcom_pcie_host_init(struct pcie_port *pp)
->  	if (ret)
->  		goto err;
->  
-> +	writel(0x0, pcie->parf + PCIE20_PARF_BDF_TO_SID_TABLE_N);
-> +	writel(0x01000100, pcie->parf + PCIE20_PARF_BDF_TO_SID_TABLE_N + 0x054);
-> +
->  	return 0;
->  err:
->  	qcom_ep_reset_assert(pcie);
+>    reg:
+>      items:
+> @@ -259,6 +262,8 @@ allOf:
+>              enum:
+>                - qcom,sdm845-qhp-pcie-phy
+>                - qcom,sdm845-qmp-pcie-phy
+> +              - qcom,sm8250-qhp-pcie-phy
+> +              - qcom,sm8250-qmp-pcie-phy
+
+Adjust these.
+
+Regards,
+Bjorn
+
+>      then:
+>        properties:
+>          clocks:
 > -- 
 > 2.17.1
 > 
