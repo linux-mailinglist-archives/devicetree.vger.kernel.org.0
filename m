@@ -2,66 +2,121 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from vger.kernel.org (vger.kernel.org [23.128.96.18])
-	by mail.lfdr.de (Postfix) with ESMTP id BF5C026CB21
-	for <lists+devicetree@lfdr.de>; Wed, 16 Sep 2020 22:22:34 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTP id 98B2326CB67
+	for <lists+devicetree@lfdr.de>; Wed, 16 Sep 2020 22:27:03 +0200 (CEST)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S1727279AbgIPUWI (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Wed, 16 Sep 2020 16:22:08 -0400
-Received: from relmlor1.renesas.com ([210.160.252.171]:38446 "EHLO
-        relmlie5.idc.renesas.com" rhost-flags-OK-OK-OK-FAIL)
-        by vger.kernel.org with ESMTP id S1727133AbgIPR3d (ORCPT
-        <rfc822;devicetree@vger.kernel.org>);
-        Wed, 16 Sep 2020 13:29:33 -0400
-X-IronPort-AV: E=Sophos;i="5.76,432,1592838000"; 
-   d="scan'208";a="57427880"
-Received: from unknown (HELO relmlir6.idc.renesas.com) ([10.200.68.152])
-  by relmlie5.idc.renesas.com with ESMTP; 16 Sep 2020 19:59:55 +0900
-Received: from devel.example.org?044ree.adwin.renesas.com (unknown [10.226.36.120])
-        by relmlir6.idc.renesas.com (Postfix) with ESMTP id 746884277746;
-        Wed, 16 Sep 2020 19:59:52 +0900 (JST)
-From:   Fabrizio Castro <fabrizio.castro.jz@renesas.com>
-To:     Mauro Carvalho Chehab <mchehab@kernel.org>,
+        id S1727111AbgIPU0w (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Wed, 16 Sep 2020 16:26:52 -0400
+Received: from lelv0142.ext.ti.com ([198.47.23.249]:58446 "EHLO
+        lelv0142.ext.ti.com" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
+        with ESMTP id S1727004AbgIPRZi (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Wed, 16 Sep 2020 13:25:38 -0400
+Received: from fllv0034.itg.ti.com ([10.64.40.246])
+        by lelv0142.ext.ti.com (8.15.2/8.15.2) with ESMTP id 08GClLqX043458;
+        Wed, 16 Sep 2020 07:47:21 -0500
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=ti.com;
+        s=ti-com-17Q1; t=1600260441;
+        bh=BoLji1jDPhuJCxrV8+eJr3d2Zu6IFzNElVtPtmkib9Q=;
+        h=From:To:CC:Subject:Date;
+        b=kwZA42v45JxKnrxNk1inRxTz8tXL73G/oiO4Vihi8gJSJt2U5Hz456o1JglrDU/7U
+         sgviUdpAvKnSL0LOm6+/5SVReYURyUD/xDthCupxBoJtavg7WOHfIXPr3RgS3FXhty
+         iGI3Ma44Rqduy9y0pt2QeajLJEDTF2d0GBx6l+WA=
+Received: from DFLE100.ent.ti.com (dfle100.ent.ti.com [10.64.6.21])
+        by fllv0034.itg.ti.com (8.15.2/8.15.2) with ESMTPS id 08GClLQQ106494
+        (version=TLSv1.2 cipher=AES256-GCM-SHA384 bits=256 verify=FAIL);
+        Wed, 16 Sep 2020 07:47:21 -0500
+Received: from DFLE112.ent.ti.com (10.64.6.33) by DFLE100.ent.ti.com
+ (10.64.6.21) with Microsoft SMTP Server (version=TLS1_2,
+ cipher=TLS_ECDHE_RSA_WITH_AES_128_CBC_SHA256_P256) id 15.1.1979.3; Wed, 16
+ Sep 2020 07:47:20 -0500
+Received: from fllv0040.itg.ti.com (10.64.41.20) by DFLE112.ent.ti.com
+ (10.64.6.33) with Microsoft SMTP Server (version=TLS1_2,
+ cipher=TLS_ECDHE_RSA_WITH_AES_128_CBC_SHA256_P256) id 15.1.1979.3 via
+ Frontend Transport; Wed, 16 Sep 2020 07:47:20 -0500
+Received: from deskari.ti.com (ileax41-snat.itg.ti.com [10.172.224.153])
+        by fllv0040.itg.ti.com (8.15.2/8.15.2) with ESMTP id 08GClIou027623;
+        Wed, 16 Sep 2020 07:47:18 -0500
+From:   Tomi Valkeinen <tomi.valkeinen@ti.com>
+To:     Kishon Vijay Abraham I <kishon@ti.com>,
+        Vinod Koul <vkoul@kernel.org>,
         Rob Herring <robh+dt@kernel.org>,
-        Geert Uytterhoeven <geert+renesas@glider.be>
-Cc:     Fabrizio Castro <fabrizio.castro.jz@renesas.com>,
-        Ramesh Shanmugasundaram <rashanmu@gmail.com>,
-        linux-media@vger.kernel.org, devicetree@vger.kernel.org,
-        linux-kernel@vger.kernel.org, linux-renesas-soc@vger.kernel.org,
-        Chris Paterson <Chris.Paterson2@renesas.com>,
-        Biju Das <biju.das.jz@bp.renesas.com>,
-        Prabhakar Mahadev Lad <prabhakar.mahadev-lad.rj@bp.renesas.com>,
-        Laurent Pinchart <laurent.pinchart@ideasonboard.com>
-Subject: [PATCH v2 0/3] Document r8a77990 DRIF support
-Date:   Wed, 16 Sep 2020 11:59:46 +0100
-Message-Id: <20200916105949.24858-1-fabrizio.castro.jz@renesas.com>
+        Swapnil Jakhade <sjakhade@cadence.com>,
+        Yuti Amonkar <yamonkar@cadence.com>
+CC:     <linux-kernel@vger.kernel.org>, <devicetree@vger.kernel.org>,
+        Sekhar Nori <nsekhar@ti.com>,
+        Tomi Valkeinen <tomi.valkeinen@ti.com>
+Subject: [PATCH 1/2] dt-bindings: phy: ti,phy-j721e-wiz: fix bindings for torrent phy
+Date:   Wed, 16 Sep 2020 15:47:10 +0300
+Message-ID: <20200916124711.166643-1-tomi.valkeinen@ti.com>
 X-Mailer: git-send-email 2.25.1
 MIME-Version: 1.0
 Content-Transfer-Encoding: 8bit
+Content-Type: text/plain
+X-EXCLAIMER-MD-CONFIG: e1e8a2fd-e40a-4ac6-ac9b-f7e9cc9ee180
 Sender: devicetree-owner@vger.kernel.org
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-Dear All,
+When WIZ wraps a Cadence Torrent PHY (instead of Cadence Sierra PHY)
+there is a difference in the refclk-dig node: Torrent only has two
+clocks instead of Sierra's four clocks. Add minItems: 2 to solve this.
 
-this series documents DRIF support for the r8a77990
-(a.k.a. R-Car E3).
+Additionally, in our use case we only need to use assigned-clock for a
+single clock, but the current binding requires either no assigned-clocks
+or two. Fix this by adding minItems: 1 to all the assigned-clock
+properties.
 
-Thanks,
-Fab
+There was also an extra trailing whitespace, which this patch removes.
 
-Fabrizio Castro (3):
-  MAINTAINERS: Add Fabrizio Castro to Renesas DRIF
-  media: dt-bindings: media: renesas,drif: Convert to json-schema
-  media: dt-bindings: media: renesas,drif: Add r8a77990 support
+Signed-off-by: Tomi Valkeinen <tomi.valkeinen@ti.com>
+---
+ .../devicetree/bindings/phy/ti,phy-j721e-wiz.yaml   | 13 ++++++++++---
+ 1 file changed, 10 insertions(+), 3 deletions(-)
 
- .../bindings/media/renesas,drif.txt           | 177 ------------
- .../bindings/media/renesas,drif.yaml          | 271 ++++++++++++++++++
- MAINTAINERS                                   |   3 +-
- 3 files changed, 273 insertions(+), 178 deletions(-)
- delete mode 100644 Documentation/devicetree/bindings/media/renesas,drif.txt
- create mode 100644 Documentation/devicetree/bindings/media/renesas,drif.yaml
-
+diff --git a/Documentation/devicetree/bindings/phy/ti,phy-j721e-wiz.yaml b/Documentation/devicetree/bindings/phy/ti,phy-j721e-wiz.yaml
+index 5ffc95c62909..c33e9bc79521 100644
+--- a/Documentation/devicetree/bindings/phy/ti,phy-j721e-wiz.yaml
++++ b/Documentation/devicetree/bindings/phy/ti,phy-j721e-wiz.yaml
+@@ -45,9 +45,15 @@ properties:
+   ranges: true
+ 
+   assigned-clocks:
++    minItems: 1
+     maxItems: 2
+ 
+   assigned-clock-parents:
++    minItems: 1
++    maxItems: 2
++
++  assigned-clock-rates:
++    minItems: 1
+     maxItems: 2
+ 
+   typec-dir-gpios:
+@@ -119,9 +125,10 @@ patternProperties:
+       logic.
+     properties:
+       clocks:
++        minItems: 2
+         maxItems: 4
+-        description: Phandle to four clock nodes representing the inputs to
+-          refclk_dig
++        description: Phandle to two (Torrent) or four (Sierra) clock nodes representing
++          the inputs to refclk_dig
+ 
+       "#clock-cells":
+         const: 0
+@@ -203,7 +210,7 @@ examples:
+            };
+ 
+            refclk-dig {
+-                  clocks = <&k3_clks 292 11>, <&k3_clks 292 0>, 
++                  clocks = <&k3_clks 292 11>, <&k3_clks 292 0>,
+                           <&dummy_cmn_refclk>, <&dummy_cmn_refclk1>;
+                   #clock-cells = <0>;
+                   assigned-clocks = <&wiz0_refclk_dig>;
 -- 
-2.25.1
+Texas Instruments Finland Oy, Porkkalankatu 22, 00180 Helsinki.
+Y-tunnus/Business ID: 0615521-4. Kotipaikka/Domicile: Helsinki
 
