@@ -2,238 +2,125 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from vger.kernel.org (vger.kernel.org [23.128.96.18])
-	by mail.lfdr.de (Postfix) with ESMTP id CDBF926CC23
-	for <lists+devicetree@lfdr.de>; Wed, 16 Sep 2020 22:39:41 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTP id 87D8826CCE6
+	for <lists+devicetree@lfdr.de>; Wed, 16 Sep 2020 22:51:01 +0200 (CEST)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S1728439AbgIPUjh (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Wed, 16 Sep 2020 16:39:37 -0400
-Received: from new4-smtp.messagingengine.com ([66.111.4.230]:33013 "EHLO
-        new4-smtp.messagingengine.com" rhost-flags-OK-OK-OK-OK)
-        by vger.kernel.org with ESMTP id S1726736AbgIPRGS (ORCPT
-        <rfc822;devicetree@vger.kernel.org>);
-        Wed, 16 Sep 2020 13:06:18 -0400
-Received: from compute4.internal (compute4.nyi.internal [10.202.2.44])
-        by mailnew.nyi.internal (Postfix) with ESMTP id 28A7D58011F;
-        Wed, 16 Sep 2020 12:57:08 -0400 (EDT)
-Received: from mailfrontend1 ([10.202.2.162])
-  by compute4.internal (MEProxy); Wed, 16 Sep 2020 12:57:08 -0400
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=cerno.tech; h=
-        date:from:to:cc:subject:message-id:references:mime-version
-        :content-type:in-reply-to; s=fm3; bh=u8jbHISbSUUNQj4aheiIBcbQzWT
-        dwA6DbD/UfopS5AA=; b=EyG/8c0/G9xXeiBHnZNVdtJY6d8BC2rME/t6/EmIQFV
-        47BAhwZnUMP/57J73C7Iyn9wyo+lbqv+5FBwjwE8AUg+U+PDqkt2R5DOunVh6Zk8
-        F4rtXpTUCOP5f/2bzEzPbKZjaZSR448COTL0a+H6eve3TzS/Y67ZwZoCmsciVgmQ
-        1rNtEy3kz44B4cNmbogojSsgi4qtGeQaN4ikvROrFDAuCOSgtCIW6VWXOJBby9qe
-        eJgW/Ri0E1hAo+b7DWfu555RGsrNoW5daaKJ1sxqqgoubECBq2GCTb/wqUVOwXFZ
-        SEdBDYItV/nZ7ldBsl8Th6zxWoyTRUVO+OyOTRR0nqQ==
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=
-        messagingengine.com; h=cc:content-type:date:from:in-reply-to
-        :message-id:mime-version:references:subject:to:x-me-proxy
-        :x-me-proxy:x-me-sender:x-me-sender:x-sasl-enc; s=fm3; bh=u8jbHI
-        SbSUUNQj4aheiIBcbQzWTdwA6DbD/UfopS5AA=; b=uJDj+5FtdycqWiX+jymszg
-        EiwsCklp8q3zAgck221U68jcnEEbhAeOD+kWt9idE/lYtvpqUyYTkgemngX3GAhZ
-        yTdM2INsE6lvgwggnqv8/iWKmBhJgfL4A6oDbYpxbzNLIOvwmMwt6uGiAQ+zCOZ2
-        nodz4iceUK8FjwA7F7Ex5O8QvwZdT6zwPeq/hGrG2RR5fmQ/nc21oP5+Z095Vd0J
-        HVynvFBwQBffR5Bbphmt6Qd956KywUykDT4MCe9AGOFgUI5Kefq9iAnYlBSO6EAE
-        4jaVVVPvndPJmecnlQurDaFh0jKLOWEG/VdrGY37DJC9ldMsrvPFJp/16HBOmQjA
-        ==
-X-ME-Sender: <xms:40NiX3FHSwns3-axUffiqCEEWFqGOzn8S_ksziv9ujsChYZryjvRaw>
-    <xme:40NiX0UNX7k-QKF5ppRL_KIpMv8le1QLFCBgqgAGnH7jv2cAg6e8QObmTkBZ3Fdpl
-    vsfjlsDGJKaFlbDjE8>
-X-ME-Proxy-Cause: gggruggvucftvghtrhhoucdtuddrgedujedrtddvgddutdejucetufdoteggodetrfdotf
-    fvucfrrhhofhhilhgvmecuhfgrshhtofgrihhlpdfqfgfvpdfurfetoffkrfgpnffqhgen
-    uceurghilhhouhhtmecufedttdenucesvcftvggtihhpihgvnhhtshculddquddttddmne
-    cujfgurhepfffhvffukfhfgggtuggjsehgtderredttddunecuhfhrohhmpeforgigihhm
-    vgcutfhiphgrrhguuceomhgrgihimhgvsegtvghrnhhordhtvggthheqnecuggftrfgrth
-    htvghrnhepuddvudfhkeekhefgffetffelgffftdehffduffegveetffehueeivddvjedv
-    gfevnecukfhppeeltddrkeelrdeikedrjeeinecuvehluhhsthgvrhfuihiivgeptdenuc
-    frrghrrghmpehmrghilhhfrhhomhepmhgrgihimhgvsegtvghrnhhordhtvggthh
-X-ME-Proxy: <xmx:40NiX5L8YFxWD87DxqL82ByOECI-Uhnz3y4uIeJ4LDXoJadxV602Pw>
-    <xmx:40NiX1Eisi8ZQUrdtBAuCoH6rujI8a4e9zuHLEM8OzhIsuaz0bX8LA>
-    <xmx:40NiX9UmnXZK-WgPiCWYtkw5AmMRKq3ZbnTLwMcx8Nz37fX575kmNw>
-    <xmx:5ENiXyXwG9nD99Dbg66Jo-yaLSiGwo9usCJELBPOl13zI49bmVWEPQ>
-Received: from localhost (lfbn-tou-1-1502-76.w90-89.abo.wanadoo.fr [90.89.68.76])
-        by mail.messagingengine.com (Postfix) with ESMTPA id 017CD328005A;
-        Wed, 16 Sep 2020 12:57:06 -0400 (EDT)
-Date:   Wed, 16 Sep 2020 18:57:05 +0200
-From:   Maxime Ripard <maxime@cerno.tech>
-To:     Hoegeun Kwon <hoegeun.kwon@samsung.com>
-Cc:     Nicolas Saenz Julienne <nsaenzjulienne@suse.de>,
-        Eric Anholt <eric@anholt.net>, devicetree@vger.kernel.org,
-        Tim Gover <tim.gover@raspberrypi.com>,
-        Dave Stevenson <dave.stevenson@raspberrypi.com>,
-        Stephen Boyd <sboyd@kernel.org>,
-        Kamal Dasu <kdasu.kdev@gmail.com>,
-        linux-kernel@vger.kernel.org, dri-devel@lists.freedesktop.org,
-        Rob Herring <robh+dt@kernel.org>,
-        bcm-kernel-feedback-list@broadcom.com,
-        linux-rpi-kernel@lists.infradead.org,
-        Phil Elwell <phil@raspberrypi.com>,
-        linux-arm-kernel@lists.infradead.org,
-        =?utf-8?B?64KY7ISx6rWt?= <sungguk.na@samsung.com>
-Subject: Re: [PATCH v5 00/80] drm/vc4: Support BCM2711 Display Pipeline
-Message-ID: <20200916165705.7pfgesma47vgkfxt@gilmour.lan>
-References: <CGME20200904071259epcas1p3de4209531c0bc5ed6ea9ef19827b6ed5@epcas1p3.samsung.com>
- <cover.dddc064d8bb83e46744336af67dcb13139e5747d.1599120059.git-series.maxime@cerno.tech>
- <cca5234f-e1e8-b642-048b-b710f402409d@samsung.com>
- <20200908120019.3rmhzoijoijrbb7d@gilmour.lan>
- <3e113525-aa89-b1e2-56b7-ca55bd41d057@samsung.com>
+        id S1727097AbgIPUu7 (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Wed, 16 Sep 2020 16:50:59 -0400
+Received: from mail-dm6nam10on2045.outbound.protection.outlook.com ([40.107.93.45]:10357
+        "EHLO NAM10-DM6-obe.outbound.protection.outlook.com"
+        rhost-flags-OK-OK-OK-FAIL) by vger.kernel.org with ESMTP
+        id S1726605AbgIPUu5 (ORCPT <rfc822;devicetree@vger.kernel.org>);
+        Wed, 16 Sep 2020 16:50:57 -0400
+ARC-Seal: i=1; a=rsa-sha256; s=arcselector9901; d=microsoft.com; cv=none;
+ b=XATUIzh8i+kqCo4PJwTYNOx4NUt0pkdiLHj9Q5Fjx+3/bgAYJKQ7rxtexEfCIsBPt7oT6EPVUZwI3XtfQGF0qLuHvLXDKol5lCDdRAOTan3u6bpR90vjtB8mUGN/r7VJvsfVILTjc86D+kZMmvfjSqWIPWLTyLzhmXVrThW0bp4m7717+lsPnIvh4wIPhgelPujGsOvAAK5I8zS8o0swTs3FnRIW2oyeuytDnZWVcQk7KcPomDrUocpha2wj3ke30MtmEBAeFvwYbyAMYIiO10SlWcboVSoijVwiiEJ+vTYgFpaRiyB3TyXCUXZLYN7tHix89Ca9tiTCfCK1kuys3g==
+ARC-Message-Signature: i=1; a=rsa-sha256; c=relaxed/relaxed; d=microsoft.com;
+ s=arcselector9901;
+ h=From:Date:Subject:Message-ID:Content-Type:MIME-Version:X-MS-Exchange-SenderADCheck;
+ bh=Gv8mhwSVvD3KjnRxCDVhIyl9/NpZ+gyPsAhOjRqXzxs=;
+ b=P60IjjqFEz6jeMMDxJ6Uy/tIAf50yHyTaxQHSbWScurrBt75TDpEhjY/16u6LLGcTUpMMqRGJFy+0LD4GLlw157P099ALa/uqFEchQGwkxVEGR0hZd9gNZ8O1c3lewNRKTV8MhWrZX2cZvi1z2RvMFjh6cw7KELU+NCnLp2ur5mlOhOmtsj6BqHovmhh3+unUH7mhQywniqiOkmUgs6AmwrDjfcqB98wDWzR66goMQMI0jip73ipYZUKbL0D+Yb67kuf5Qa29bvHrMRWM2GprxvgP/tOHt9O2fxHL5TnVWVZ6XvNwmr141rBpo25/t4FXrzz2dadYQClgirO34RuHw==
+ARC-Authentication-Results: i=1; mx.microsoft.com 1; spf=pass
+ smtp.mailfrom=labundy.com; dmarc=pass action=none header.from=labundy.com;
+ dkim=pass header.d=labundy.com; arc=none
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+ d=NETORG5796793.onmicrosoft.com; s=selector1-NETORG5796793-onmicrosoft-com;
+ h=From:Date:Subject:Message-ID:Content-Type:MIME-Version:X-MS-Exchange-SenderADCheck;
+ bh=Gv8mhwSVvD3KjnRxCDVhIyl9/NpZ+gyPsAhOjRqXzxs=;
+ b=HH+tuRmE1Oajq4xIlChCUJoLuIN/TkcXVR8QdH3FZZgdNXnndLAkGIPk2Lv9sYm/p6CiGYEtmhUIUYSdzpr0uVVQdaVCllr1UpnkicMsWkQiaHsk94ZNUec8FW+j7RcttOBp4WVV7LeL+s/dMz3Fg70ORDhhIrvcM3gG2N3+wwo=
+Authentication-Results: gmail.com; dkim=none (message not signed)
+ header.d=none;gmail.com; dmarc=none action=none header.from=labundy.com;
+Received: from SN6PR08MB5517.namprd08.prod.outlook.com (2603:10b6:805:fb::32)
+ by SN6PR08MB4848.namprd08.prod.outlook.com (2603:10b6:805:6d::33) with
+ Microsoft SMTP Server (version=TLS1_2,
+ cipher=TLS_ECDHE_RSA_WITH_AES_256_GCM_SHA384) id 15.20.3370.16; Wed, 16 Sep
+ 2020 20:50:51 +0000
+Received: from SN6PR08MB5517.namprd08.prod.outlook.com
+ ([fe80::d19a:589c:d9e8:b5e2]) by SN6PR08MB5517.namprd08.prod.outlook.com
+ ([fe80::d19a:589c:d9e8:b5e2%7]) with mapi id 15.20.3391.014; Wed, 16 Sep 2020
+ 20:50:51 +0000
+From:   Jeff LaBundy <jeff@labundy.com>
+To:     dmitry.torokhov@gmail.com, robh+dt@kernel.org
+Cc:     linux-input@vger.kernel.org, devicetree@vger.kernel.org,
+        Jeff LaBundy <jeff@labundy.com>
+Subject: [RESEND 0/5] input: iqs269a: Add support for slider gestures and OTP variants
+Date:   Wed, 16 Sep 2020 15:49:55 -0500
+Message-Id: <1600289400-27632-1-git-send-email-jeff@labundy.com>
+X-Mailer: git-send-email 2.7.4
+Content-Type: text/plain
+X-ClientProxiedBy: SN6PR16CA0057.namprd16.prod.outlook.com
+ (2603:10b6:805:ca::34) To SN6PR08MB5517.namprd08.prod.outlook.com
+ (2603:10b6:805:fb::32)
 MIME-Version: 1.0
-Content-Type: multipart/signed; micalg=pgp-sha256;
-        protocol="application/pgp-signature"; boundary="zlz5rlu4elwsvrxu"
-Content-Disposition: inline
-In-Reply-To: <3e113525-aa89-b1e2-56b7-ca55bd41d057@samsung.com>
+X-MS-Exchange-MessageSentRepresentingType: 1
+Received: from localhost.localdomain (136.49.227.119) by SN6PR16CA0057.namprd16.prod.outlook.com (2603:10b6:805:ca::34) with Microsoft SMTP Server (version=TLS1_2, cipher=TLS_ECDHE_RSA_WITH_AES_128_CBC_SHA256) id 15.20.3391.11 via Frontend Transport; Wed, 16 Sep 2020 20:50:49 +0000
+X-Mailer: git-send-email 2.7.4
+X-Originating-IP: [136.49.227.119]
+X-MS-PublicTrafficType: Email
+X-MS-Office365-Filtering-Correlation-Id: 1a27e3a1-2636-4bca-ff0e-08d85a8231bc
+X-MS-TrafficTypeDiagnostic: SN6PR08MB4848:
+X-MS-Exchange-Transport-Forked: True
+X-Microsoft-Antispam-PRVS: <SN6PR08MB4848C0698DF0D1AA7BD995CAD3210@SN6PR08MB4848.namprd08.prod.outlook.com>
+X-MS-Oob-TLC-OOBClassifiers: OLM:8882;
+X-MS-Exchange-SenderADCheck: 1
+X-Microsoft-Antispam: BCL:0;
+X-Microsoft-Antispam-Message-Info: sc2ixc7VGl4e/pS1S6K73UmcCSomM690gaykmPK8JiXBh/Cdt9iSN6Uk25PxH9ZZDAiNKUWfHWstcfx4zVrf46O/9dQ3eO3MfTZQ9T1+MzNs4cOWwvHAwVOLclHRjCTwPkPRAYLrjKw5ISH+ftj5Z+cKIfjDS/9xXTydSNl4qk1Ou+EycpKQbkhXwKzh6x8olskM/J4oLYcgk2nLrG7h9QkLO6SDs4M2DTHczX9pg9ulszXBtPHHkLEbWKlXVKYsFXu29fRMsuAoR+a0birXyts1EHwqwWawmiwZOsxzF/qWzjde/TXe6jNASGZzkjhPGbKU6ZgybrwDVYoBJCFA5+TSNsLbdgV1cNifCKgXizf06x9AUxM1gNDlULQDHWOL7h7L3+a2UJUDyIwemJY6NkLnZlnaucFlsOU4pKfbusAidjobpkWGezYGStvOmxbCU3cZnoraE704sBL/gF0gRoBc1QyHHQPptF7ywH66RoJ7nFHOd7JMzhK2rhTOZORj
+X-Forefront-Antispam-Report: CIP:255.255.255.255;CTRY:;LANG:en;SCL:1;SRV:;IPV:NLI;SFV:NSPM;H:SN6PR08MB5517.namprd08.prod.outlook.com;PTR:;CAT:NONE;SFS:(396003)(39830400003)(376002)(346002)(366004)(136003)(956004)(316002)(4326008)(2616005)(26005)(186003)(2906002)(83380400001)(8936002)(107886003)(16526019)(478600001)(6666004)(86362001)(6512007)(5660300002)(69590400008)(66946007)(8676002)(6506007)(66556008)(52116002)(36756003)(66476007)(6486002)(966005);DIR:OUT;SFP:1101;
+X-MS-Exchange-AntiSpam-MessageData: ECdzHag+TdacpQj3drU8nQMAFJwZFPk9PkE6YiVG890SXdGzAV3Co8bJujVffZrZcJhTmBsaDUv0r0ROMr1SRcMXxvxQzVUGyue8pV5AWYjZdGChTCdthkNIpUXr3/2ExfS4f7hZBD7e2czmhi+gZFVcr0GkK5WWTmT208SdcgqhWEspmyP41E3n1LhUZcoQ31qWTxAoA2H57r+d3Z1SwTxhc+4rZO3bbTkyM28ZRe9J182FfafmLifd9UsRV3lUgX26IbNZ5Ep0c2DqIQ8c50F8K8U6cAcb7D5do9oenqipDv72mTP0mf0Wdb9CFyF72csxbfFuqApT1n2xuDCCQgeHqjFJijxTpKYyVHaBgo4qVGwyQHrgziN1GpXkr7NKazuFryhOlbJZo75It+bPoYWWRgqA/ydgSZwceH3yKkNWL48hj6LZe1AC5NjoGjQpYCIaiCHXuPewi9Jm60+ho5sLPGn8hJdxDUlxFRNPjwOkzfCHzIyFWBO3AVf0FvJj+f22SKNJUdX8zReSa+udBSFGKYKXrw4u3Fo2aw6a/Cpug4bahItLLiQtRsTFr0zI3Zay5j9+9NgGerPrOT462MD0Y7NPPxTySPfCM78ns2QejV/1PO8pDzyAANX8B180G8oL6qVQ9u6q2J7x0C61cQ==
+X-OriginatorOrg: labundy.com
+X-MS-Exchange-CrossTenant-Network-Message-Id: 1a27e3a1-2636-4bca-ff0e-08d85a8231bc
+X-MS-Exchange-CrossTenant-AuthSource: SN6PR08MB5517.namprd08.prod.outlook.com
+X-MS-Exchange-CrossTenant-AuthAs: Internal
+X-MS-Exchange-CrossTenant-OriginalArrivalTime: 16 Sep 2020 20:50:50.8018
+ (UTC)
+X-MS-Exchange-CrossTenant-FromEntityHeader: Hosted
+X-MS-Exchange-CrossTenant-Id: 00b69d09-acab-4585-aca7-8fb7c6323e6f
+X-MS-Exchange-CrossTenant-MailboxType: HOSTED
+X-MS-Exchange-CrossTenant-UserPrincipalName: jiL66NcPe/KrKvHtGDMMAXFeHyxDIF5HRMWTytrrlQkFhsa3PWC7vOqAQdEPTunPHe3bJkOuEFIkcTj31pGoDA==
+X-MS-Exchange-Transport-CrossTenantHeadersStamped: SN6PR08MB4848
 Sender: devicetree-owner@vger.kernel.org
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
+This series introduces support for some additional features offered by the
+Azoteq IQS269A capacitive touch controller.
 
---zlz5rlu4elwsvrxu
-Content-Type: text/plain; charset=iso-8859-1
-Content-Disposition: inline
-Content-Transfer-Encoding: quoted-printable
+Patches 1 and 2 add support for slider gestures (e.g. tap or swipe). Gestures
+are recognized by the hardware itself based on touch activity across the chan-
+nels associated with the slider. This feature is useful for lightweight systems
+that do not post-process absolute coordinates to determine gestures expressed
+by the user.
 
-On Mon, Sep 14, 2020 at 07:14:11PM +0900, Hoegeun Kwon wrote:
-> Hi Maxime,
->=20
-> On 9/8/20 9:00 PM, Maxime Ripard wrote:
-> > Hi Hoegeun,
-> >
-> > On Mon, Sep 07, 2020 at 08:49:12PM +0900, Hoegeun Kwon wrote:
-> >> On 9/3/20 5:00 PM, Maxime Ripard wrote:
-> >>> Hi everyone,
-> >>>
-> >>> Here's a (pretty long) series to introduce support in the VC4 DRM dri=
-ver
-> >>> for the display pipeline found in the BCM2711 (and thus the Raspberry=
-Pi 4).
-> >>>
-> >>> The main differences are that there's two HDMI controllers and that t=
-here's
-> >>> more pixelvalve now. Those pixelvalve come with a mux in the HVS that=
- still
-> >>> have only 3 FIFOs. Both of those differences are breaking a bunch of
-> >>> expectations in the driver, so we first need a good bunch of cleanup =
-and
-> >>> reworks to introduce support for the new controllers.
-> >>>
-> >>> Similarly, the HDMI controller has all its registers shuffled and spl=
-it in
-> >>> multiple controllers now, so we need a bunch of changes to support th=
-is as
-> >>> well.
-> >>>
-> >>> Only the HDMI support is enabled for now (even though the DPI and DSI
-> >>> outputs have been tested too).
-> >>>
-> >>> Let me know if you have any comments
-> >>> Maxime
-> >>>
-> >>> Cc: bcm-kernel-feedback-list@broadcom.com
-> >>> Cc: devicetree@vger.kernel.org
-> >>> Cc: Kamal Dasu <kdasu.kdev@gmail.com>
-> >>> Cc: Philipp Zabel <p.zabel@pengutronix.de>
-> >>> Cc: Rob Herring <robh+dt@kernel.org>
-> >>> Cc: Stephen Boyd <sboyd@kernel.org>
-> >>>
-> >>> Changes from v4:
-> >>>     - Rebased on top of next-20200828
-> >>>     - Collected the various tags
-> >>>     - Fixed some issues with 4k support and dual output (thanks Hoege=
-un!)
-> >> Thanks for your v5 patchset.
-> >>
-> >> I tested all patches based on the next-20200812.
-> > Thanks again for testing all the patches
-> >
-> >> Everything else is fine, but the dual hdmi modetest doesn't work well =
-in my
-> >> environment...
-> >>
-> >> In my environment, dsi is not connected, I have seen your answer[1].
-> > Can you share a bit more your setup? What monitors are being connected
-> > to each HDMI port? Do you hotplug any?
-> Yes, Monitors are being connected to each HDMI ports. (did not use hotplu=
-g)
->=20
-> When booting, both HDMI-0 and 1 are recognized and the kernel log is outp=
-ut.
-> But after run modetest on HDMI-0(works) and modetest on HDMI-1(works),
-> crtc timed out occurs on HDMI-0 and does not work.
->=20
-> When HDMI-0 is not working we do a modetest on HDMI-0, it will work agin
-> after about 40 sec.
->=20
-> Below is the log for modetest.
->=20
->=20
-> root:~> modetest -Mvc4 -s 32:1280x720 =A0=A0=A0 =A0=A0=A0 - HDMI-0 works
-> setting mode 1280x720-60Hz@XR24 on connectors 32, crtc 64
-> failed to set gamma: Invalid argument
->=20
-> root:~> modetest -Mvc4 -s 32:1280x720 =A0=A0=A0 =A0=A0=A0 - HDMI-0 works
-> setting mode 1280x720-60Hz@XR24 on connectors 32, crtc 64
-> failed to set gamma: Invalid argument
->=20
-> root:~> modetest -Mvc4 -s 38:1280x720 =A0=A0=A0 =A0=A0=A0 - HDMI-1 works
-> setting mode 1280x720-60Hz@XR24 on connectors 38, crtc 69
-> failed to set gamma: Invalid argument
->=20
->  =A0=A0=A0=A0=A0 =A0=A0=A0 =A0=A0=A0 =A0=A0=A0 =A0=A0=A0 =A0=A0=A0 =A0=A0=
-=A0 =A0=A0=A0 - Crtc timed out occurs on HDMI-0 and=20
-> does not work.
->=20
-> [=A0=A0 71.134283] [drm:drm_atomic_helper_wait_for_flip_done] *ERROR*=20
-> [CRTC:64:crtc-3] flip_done timed out
-> [=A0=A0 81.374296] [drm:drm_atomic_helper_wait_for_dependencies] *ERROR*=
-=20
-> [CRTC:64:crtc-3] flip_done timed out
-> [=A0=A0 91.618380] [drm:drm_atomic_helper_wait_for_dependencies] *ERROR*=
-=20
-> [CONNECTOR:32:HDMI-A-1] flip_done timed out
-> [=A0 101.854274] [drm:drm_atomic_helper_wait_for_dependencies] *ERROR*=20
-> [PLANE:60:plane-3] flip_done timed out
->=20
-> [=A0 112.094271] [drm:drm_atomic_helper_wait_for_flip_done] *ERROR*=20
-> [CRTC:64:crtc-3] flip_done timed out
-> [=A0 122.590311] [drm:drm_atomic_helper_wait_for_dependencies] *ERROR*=20
-> [CRTC:64:crtc-3] flip_done timed out
->=20
-> root:~> modetest -Mvc4 -s 32:1280x720
-> [=A0 132.830309] [drm:drm_atomic_helper_wait_for_dependencies] *ERROR*=20
-> [CONNECTOR:32:HDMI-A-1] flip_done timed out
-> [=A0 143.070307] [drm:drm_atomic_helper_wait_for_dependencies] *ERROR*=20
-> [PLANE:60:plane-3] flip_done timed out
-> [=A0 153.310303] [drm:drm_atomic_helper_wait_for_flip_done] *ERROR*=20
-> [CRTC:64:crtc-3] flip_done timed out
-> setting mode 1280x720-60Hz@XR24 on connectors 32, crtc 64
-> [=A0 163.550340] [drm:drm_atomic_helper_wait_for_dependencies] *ERROR*=20
-> [CRTC:64:crtc-3] flip_done timed out
-> [=A0 173.790277] [drm:drm_atomic_helper_wait_for_dependencies] *ERROR*=20
-> [CONNECTOR:32:HDMI-A-1] flip_done timed out
-> [=A0 184.030286] [drm:drm_atomic_helper_wait_for_dependencies] *ERROR*=20
-> [PLANE:60:plane-3] flip_done timed out
-> failed to set gamma: Invalid argument =A0=A0=A0 =A0=A0=A0 - HDMI-0 works
+Gestures are presented to user space as keycodes. An example use-case is an
+array of multimedia keys as seen in the following demo:
 
-Thanks :)
+https://youtu.be/k_vMRQiHLgA
 
-I was able to reproduce it just by also letting X boot. I'm on a good
-path to fix it and found a workaround. I'll send you the patch in the
-upcoming days :)
+Patches 3 and 4 add support for the device's available OTP variants, which
+trade features or exhibit errata that require workarounds. Patch 5 represents
+a minor fix that is included in the series because it requires patch 2 in order
+to apply cleanly.
 
-Thanks again,
-Maxime
+This series is being resent with a previous patch 6 ("input: iqs269a: Disable
+channels before configuring them") dropped, as a more optimal workaround that
+prevents GPIO3 from inadvertently toggling during calibration has since been
+highlighted. If found to be viable, it will be sent as a future patch.
 
---zlz5rlu4elwsvrxu
-Content-Type: application/pgp-signature; name="signature.asc"
+Note that this series is based on mainline as the binding patches require
+086e9074f52f ("dt-bindings: Remove more cases of 'allOf' containing a '$ref'")
+in order to apply cleanly.
 
------BEGIN PGP SIGNATURE-----
+Jeff LaBundy (5):
+  dt-bindings: input: iqs269a: Add bindings for slider gestures
+  input: iqs269a: Add support for slider gestures
+  dt-bindings: input: iqs269a: Add bindings for OTP variants
+  input: iqs269a: Add support for OTP variants
+  input: iqs269a: Make sliders two-dimensional
 
-iHUEABYIAB0WIQRcEzekXsqa64kGDp7j7w1vZxhRxQUCX2JD4QAKCRDj7w1vZxhR
-xRSMAQDJUj9nSuN6IyZmgUE3IaFEuev8g+P2MdyQzGg10MpHBQEA00Yn3whT31br
-uSzvMFoupb5cWMsYQo6Zh1bdS0ejIAg=
-=BQPM
------END PGP SIGNATURE-----
+ .../devicetree/bindings/input/iqs269a.yaml         |  95 ++++++-
+ drivers/input/misc/iqs269a.c                       | 315 ++++++++++++++++++---
+ 2 files changed, 377 insertions(+), 33 deletions(-)
 
---zlz5rlu4elwsvrxu--
+--
+2.7.4
+
