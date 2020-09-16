@@ -2,50 +2,41 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from vger.kernel.org (vger.kernel.org [23.128.96.18])
-	by mail.lfdr.de (Postfix) with ESMTP id BD44126C669
-	for <lists+devicetree@lfdr.de>; Wed, 16 Sep 2020 19:48:49 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTP id 52EFC26C672
+	for <lists+devicetree@lfdr.de>; Wed, 16 Sep 2020 19:50:27 +0200 (CEST)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S1727518AbgIPRsp (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Wed, 16 Sep 2020 13:48:45 -0400
-Received: from lindbergh.monkeyblade.net ([23.128.96.19]:35708 "EHLO
-        lindbergh.monkeyblade.net" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S1727474AbgIPRsR (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Wed, 16 Sep 2020 13:48:17 -0400
-Received: from mo6-p01-ob.smtp.rzone.de (mo6-p01-ob.smtp.rzone.de [IPv6:2a01:238:20a:202:5301::12])
-        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 7969EC061A29;
-        Wed, 16 Sep 2020 04:14:43 -0700 (PDT)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; t=1600254281;
-        s=strato-dkim-0002; d=gerhold.net;
-        h=Message-Id:Date:Subject:Cc:To:From:X-RZG-CLASS-ID:X-RZG-AUTH:From:
-        Subject:Sender;
-        bh=wPJEoYyYQh25xISg8G/qnJXW/NhFz+5NwkRwlfMN4Pk=;
-        b=L36NFn4FY0GaczKmi5lTJbt0jDO13heQag5KxTiKSfQ7gme7lDU2eIvCF220iwc6zW
-        o0SCH4LuRw04+rMTNVoVsCZoMHAt1jv9ozzZEa/TQyix2NfsyPjrGpSrh46S5WEMMmHv
-        +4K7hu9Nk/juK+tKcK9ZW7NUXV/xgU1YKtNqIVr2E1a4DNeMCKSNBVlVMjDitcM488U2
-        so70wbwRuhm3Oan1ZviDgLAw7XJhKQQYwJ4Jb8+oSm4FhwNXtIhmCH85vFUewbmXq3AK
-        ad1jRgyxjUwlHxU0S9IwEfCkuPSbqtlcx1trY2DNXdUkUFHY8QQIdo8edZRnWBP83Nfu
-        HSgQ==
-X-RZG-AUTH: ":P3gBZUipdd93FF5ZZvYFPugejmSTVR2nRPhVORvLd4SsytBXS7IYBkLahKxB4W6Nahc="
-X-RZG-CLASS-ID: mo00
-Received: from localhost.localdomain
-        by smtp.strato.de (RZmta 46.10.7 DYNA|AUTH)
-        with ESMTPSA id g0b6c1w8GAfnzlN
-        (using TLSv1.3 with cipher TLS_AES_256_GCM_SHA384 (256 bits))
-        (Client did not present a certificate);
-        Wed, 16 Sep 2020 12:41:49 +0200 (CEST)
-From:   Stephan Gerhold <stephan@gerhold.net>
-To:     Bjorn Andersson <bjorn.andersson@linaro.org>
-Cc:     Andy Gross <agross@kernel.org>, Rob Herring <robh+dt@kernel.org>,
-        Ohad Ben-Cohen <ohad@wizery.com>,
-        Rajendra Nayak <rnayak@codeaurora.org>,
-        linux-arm-msm@vger.kernel.org, devicetree@vger.kernel.org,
-        linux-remoteproc@vger.kernel.org,
-        ~postmarketos/upstreaming@lists.sr.ht,
-        Stephan Gerhold <stephan@gerhold.net>
-Subject: [PATCH 00/10] Convert MSM8916 to use rpmpd/power domains
-Date:   Wed, 16 Sep 2020 12:41:25 +0200
-Message-Id: <20200916104135.25085-1-stephan@gerhold.net>
-X-Mailer: git-send-email 2.28.0
+        id S1727321AbgIPRt4 (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Wed, 16 Sep 2020 13:49:56 -0400
+Received: from relmlor1.renesas.com ([210.160.252.171]:44627 "EHLO
+        relmlie5.idc.renesas.com" rhost-flags-OK-OK-OK-FAIL)
+        by vger.kernel.org with ESMTP id S1727450AbgIPRtI (ORCPT
+        <rfc822;devicetree@vger.kernel.org>);
+        Wed, 16 Sep 2020 13:49:08 -0400
+X-IronPort-AV: E=Sophos;i="5.76,432,1592838000"; 
+   d="scan'208";a="57427885"
+Received: from unknown (HELO relmlir6.idc.renesas.com) ([10.200.68.152])
+  by relmlie5.idc.renesas.com with ESMTP; 16 Sep 2020 19:59:58 +0900
+Received: from devel.example.org?044ree.adwin.renesas.com (unknown [10.226.36.120])
+        by relmlir6.idc.renesas.com (Postfix) with ESMTP id 6E7F74277746;
+        Wed, 16 Sep 2020 19:59:55 +0900 (JST)
+From:   Fabrizio Castro <fabrizio.castro.jz@renesas.com>
+To:     Mauro Carvalho Chehab <mchehab@kernel.org>,
+        Rob Herring <robh+dt@kernel.org>,
+        Geert Uytterhoeven <geert+renesas@glider.be>
+Cc:     Fabrizio Castro <fabrizio.castro.jz@renesas.com>,
+        Ramesh Shanmugasundaram <rashanmu@gmail.com>,
+        linux-media@vger.kernel.org, devicetree@vger.kernel.org,
+        linux-kernel@vger.kernel.org, linux-renesas-soc@vger.kernel.org,
+        Chris Paterson <Chris.Paterson2@renesas.com>,
+        Biju Das <biju.das.jz@bp.renesas.com>,
+        Prabhakar Mahadev Lad <prabhakar.mahadev-lad.rj@bp.renesas.com>,
+        Laurent Pinchart <laurent.pinchart@ideasonboard.com>
+Subject: [PATCH v2 1/3] MAINTAINERS: Add Fabrizio Castro to Renesas DRIF
+Date:   Wed, 16 Sep 2020 11:59:47 +0100
+Message-Id: <20200916105949.24858-2-fabrizio.castro.jz@renesas.com>
+X-Mailer: git-send-email 2.25.1
+In-Reply-To: <20200916105949.24858-1-fabrizio.castro.jz@renesas.com>
+References: <20200916105949.24858-1-fabrizio.castro.jz@renesas.com>
 MIME-Version: 1.0
 Content-Transfer-Encoding: 8bit
 Sender: devicetree-owner@vger.kernel.org
@@ -53,49 +44,30 @@ Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-Newer platforms vote for necessary power domains through the power
-domain subsystem. For historical reasons older platforms like MSM8916
-or MSM8974 still control these as regulators.
+Renesas are expanding their DRIF support and offering,
+I'll be the internal maintainer for DRIF.
 
-This patch series adds the power domain definitions for MSM8916
-to the rpmpd driver. Then, qcom_q6v5_mss and qcom_wcnss are updated
-to use power domains for MSM8916/MSM8974. For compatibility with old
-device trees (and for MSM8974) we still need to support using the
-power domains through the regulator interface. This is implemented by
-falling back to the regulators if requesting the power domains fails.
+Signed-off-by: Fabrizio Castro <fabrizio.castro.jz@renesas.com>
+Reviewed-by: Laurent Pinchart <laurent.pinchart@ideasonboard.com>
+---
+v1->v2:
+* No change
 
-Finally, we remove the regulators that provide the power domains
-(s1 and l3) entirely from the MSM8916 device tree: They should only
-be used through the power domain subsystem from now on.
+ MAINTAINERS | 1 +
+ 1 file changed, 1 insertion(+)
 
-Stephan Gerhold (10):
-  soc: qcom: rpmpd: Rename MAX_8996_RPMPD_STATE to
-    MAX_CORNER_RPMPD_STATE
-  dt-bindings: power: rpmpd: Add MSM8916 RPM power domains
-  soc: qcom: rpmpd: Add MSM8916 power domains
-  arm64: dts: qcom: msm8916: Add RPM power domains
-  dt-bindings: remoteproc: qcom,q6v5: Deprecate regulators for PDs
-  remoteproc: qcom_q6v5_mss: Allow replacing regulators with power
-    domains
-  dt-bindings: remoteproc: qcom,wcnss: Deprecate regulators for PDs
-  remoteproc: qcom_wcnss: Allow replacing regulators with power domains
-  arm64: dts: qcom: msm8916: Use power domains for MSS/WCNSS remoteprocs
-  arm64: dts: qcom: msm8916-pm8916: Stop using s1/l3 as regulators
-
- .../devicetree/bindings/power/qcom,rpmpd.yaml |   1 +
- .../bindings/remoteproc/qcom,q6v5.txt         |  12 +-
- .../bindings/remoteproc/qcom,wcnss-pil.txt    |  20 +++-
- arch/arm64/boot/dts/qcom/apq8016-sbc.dtsi     |  10 --
- .../boot/dts/qcom/msm8916-longcheer-l8150.dts |  10 --
- arch/arm64/boot/dts/qcom/msm8916-pm8916.dtsi  |   7 +-
- .../qcom/msm8916-samsung-a2015-common.dtsi    |  10 --
- arch/arm64/boot/dts/qcom/msm8916.dtsi         |  38 ++++++
- drivers/remoteproc/qcom_q6v5_mss.c            |  68 +++++++++--
- drivers/remoteproc/qcom_wcnss.c               | 109 +++++++++++++++---
- drivers/soc/qcom/rpmpd.c                      |  25 +++-
- include/dt-bindings/power/qcom-rpmpd.h        |   7 ++
- 12 files changed, 242 insertions(+), 75 deletions(-)
-
+diff --git a/MAINTAINERS b/MAINTAINERS
+index 2575f449139a..d9ebaf0c179b 100644
+--- a/MAINTAINERS
++++ b/MAINTAINERS
+@@ -10909,6 +10909,7 @@ F:	include/media/drv-intf/renesas-ceu.h
+ 
+ MEDIA DRIVERS FOR RENESAS - DRIF
+ M:	Ramesh Shanmugasundaram <rashanmu@gmail.com>
++M:	Fabrizio Castro <fabrizio.castro.jz@renesas.com>
+ L:	linux-media@vger.kernel.org
+ L:	linux-renesas-soc@vger.kernel.org
+ S:	Supported
 -- 
-2.28.0
+2.25.1
 
