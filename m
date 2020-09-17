@@ -2,75 +2,89 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from vger.kernel.org (vger.kernel.org [23.128.96.18])
-	by mail.lfdr.de (Postfix) with ESMTP id EDB7726E497
-	for <lists+devicetree@lfdr.de>; Thu, 17 Sep 2020 20:53:29 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTP id 0587626E4A8
+	for <lists+devicetree@lfdr.de>; Thu, 17 Sep 2020 20:54:31 +0200 (CEST)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S1728479AbgIQQXB convert rfc822-to-8bit (ORCPT
-        <rfc822;lists+devicetree@lfdr.de>); Thu, 17 Sep 2020 12:23:01 -0400
-Received: from lindbergh.monkeyblade.net ([23.128.96.19]:48572 "EHLO
-        lindbergh.monkeyblade.net" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S1728474AbgIQQW7 (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Thu, 17 Sep 2020 12:22:59 -0400
-Received: from mail.nic.cz (lists.nic.cz [IPv6:2001:1488:800:400::400])
-        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 32365C061354;
-        Thu, 17 Sep 2020 08:54:09 -0700 (PDT)
-Received: from localhost (unknown [IPv6:2a0e:b107:ae1:0:3e97:eff:fe61:c680])
-        by mail.nic.cz (Postfix) with ESMTPSA id F3C5113F681;
-        Thu, 17 Sep 2020 17:54:06 +0200 (CEST)
-Date:   Thu, 17 Sep 2020 17:54:06 +0200
-From:   Marek Behun <marek.behun@nic.cz>
-To:     Dan Murphy <dmurphy@ti.com>
-Cc:     <linux-leds@vger.kernel.org>, Pavel Machek <pavel@ucw.cz>,
-        =?UTF-8?B?T25kxZllag==?= Jirman <megous@megous.com>,
-        <linux-kernel@vger.kernel.org>, Rob Herring <robh+dt@kernel.org>,
-        <devicetree@vger.kernel.org>
-Subject: Re: [PATCH leds v1 09/10] leds: lm36274: use struct led_init_data
- when registering
-Message-ID: <20200917175406.361395d3@nic.cz>
-In-Reply-To: <7940ab2f-f4a5-c909-9270-4b713b76261d@ti.com>
-References: <20200916231650.11484-1-marek.behun@nic.cz>
-        <20200916231650.11484-10-marek.behun@nic.cz>
-        <7940ab2f-f4a5-c909-9270-4b713b76261d@ti.com>
-X-Mailer: Claws Mail 3.17.6 (GTK+ 2.24.32; x86_64-pc-linux-gnu)
+        id S1726353AbgIQSxm (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Thu, 17 Sep 2020 14:53:42 -0400
+Received: from foss.arm.com ([217.140.110.172]:48708 "EHLO foss.arm.com"
+        rhost-flags-OK-OK-OK-OK) by vger.kernel.org with ESMTP
+        id S1728408AbgIQQUb (ORCPT <rfc822;devicetree@vger.kernel.org>);
+        Thu, 17 Sep 2020 12:20:31 -0400
+Received: from usa-sjc-imap-foss1.foss.arm.com (unknown [10.121.207.14])
+        by usa-sjc-mx-foss1.foss.arm.com (Postfix) with ESMTP id 4C88412FC;
+        Thu, 17 Sep 2020 09:20:25 -0700 (PDT)
+Received: from e121166-lin.cambridge.arm.com (e121166-lin.cambridge.arm.com [10.1.196.255])
+        by usa-sjc-imap-foss1.foss.arm.com (Postfix) with ESMTPSA id D90443F68F;
+        Thu, 17 Sep 2020 09:20:22 -0700 (PDT)
+Date:   Thu, 17 Sep 2020 17:20:17 +0100
+From:   Lorenzo Pieralisi <lorenzo.pieralisi@arm.com>
+To:     Zhiqiang Hou <Zhiqiang.Hou@nxp.com>
+Cc:     linux-pci@vger.kernel.org, devicetree@vger.kernel.org,
+        linux-kernel@vger.kernel.org, linux-arm-kernel@lists.infradead.org,
+        linuxppc-dev@lists.ozlabs.org, robh+dt@kernel.org,
+        bhelgaas@google.com, shawnguo@kernel.org, leoyang.li@nxp.com,
+        kishon@ti.com, gustavo.pimentel@synopsys.com, roy.zang@nxp.com,
+        jingoohan1@gmail.com, andrew.murray@arm.com, mingkai.hu@nxp.com,
+        minghuan.Lian@nxp.com
+Subject: Re: [PATCHv7 00/12]PCI: dwc: Add the multiple PF support for DWC and
+ Layerscape
+Message-ID: <20200917162017.GA6830@e121166-lin.cambridge.arm.com>
+References: <20200811095441.7636-1-Zhiqiang.Hou@nxp.com>
 MIME-Version: 1.0
-Content-Type: text/plain; charset=UTF-8
-Content-Transfer-Encoding: 8BIT
-X-Spam-Status: No, score=-100.0 required=5.9 tests=SHORTCIRCUIT,URIBL_BLOCKED,
-        USER_IN_WELCOMELIST,USER_IN_WHITELIST shortcircuit=ham
-        autolearn=disabled version=3.4.2
-X-Spam-Checker-Version: SpamAssassin 3.4.2 (2018-09-13) on mail.nic.cz
-X-Virus-Scanned: clamav-milter 0.102.2 at mail
-X-Virus-Status: Clean
+Content-Type: text/plain; charset=us-ascii
+Content-Disposition: inline
+In-Reply-To: <20200811095441.7636-1-Zhiqiang.Hou@nxp.com>
+User-Agent: Mutt/1.9.4 (2018-02-28)
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-On Thu, 17 Sep 2020 10:28:12 -0500
-Dan Murphy <dmurphy@ti.com> wrote:
+On Tue, Aug 11, 2020 at 05:54:29PM +0800, Zhiqiang Hou wrote:
+> From: Hou Zhiqiang <Zhiqiang.Hou@nxp.com>
+> 
+> Add the PCIe EP multiple PF support for DWC and Layerscape, and use
+> a list to manage the PFs of each PCIe controller; add the doorbell
+> MSIX function for DWC; and refactor the Layerscape EP driver due to
+> some difference in Layercape platforms PCIe integration.
+> 
+> Hou Zhiqiang (1):
+>   misc: pci_endpoint_test: Add driver data for Layerscape PCIe
+>     controllers
+> 
+> Xiaowei Bao (11):
+>   PCI: designware-ep: Add multiple PFs support for DWC
+>   PCI: designware-ep: Add the doorbell mode of MSI-X in EP mode
+>   PCI: designware-ep: Move the function of getting MSI capability
+>     forward
+>   PCI: designware-ep: Modify MSI and MSIX CAP way of finding
+>   dt-bindings: pci: layerscape-pci: Add compatible strings for ls1088a
+>     and ls2088a
+>   PCI: layerscape: Fix some format issue of the code
+>   PCI: layerscape: Modify the way of getting capability with different
+>     PEX
+>   PCI: layerscape: Modify the MSIX to the doorbell mode
+>   PCI: layerscape: Add EP mode support for ls1088a and ls2088a
+>   arm64: dts: layerscape: Add PCIe EP node for ls1088a
+>   misc: pci_endpoint_test: Add LS1088a in pci_device_id table
+> 
+>  .../bindings/pci/layerscape-pci.txt           |   2 +
+>  .../arm64/boot/dts/freescale/fsl-ls1088a.dtsi |  31 +++
+>  drivers/misc/pci_endpoint_test.c              |   8 +-
+>  .../pci/controller/dwc/pci-layerscape-ep.c    | 100 +++++--
+>  .../pci/controller/dwc/pcie-designware-ep.c   | 258 ++++++++++++++----
+>  drivers/pci/controller/dwc/pcie-designware.c  |  59 ++--
+>  drivers/pci/controller/dwc/pcie-designware.h  |  48 +++-
+>  7 files changed, 410 insertions(+), 96 deletions(-)
 
-> Marek
-> 
-> On 9/16/20 6:16 PM, Marek Behún wrote:
-> > By using struct led_init_data when registering we do not need to parse
-> > `label` DT property nor `linux,default-trigger` property.
-> >
-> > A small refactor was also done:
-> > - with using devm_led_classdev_register_ext the driver remove method is
-> >    not needed
-> > - since only one child node is allowed for this driver, use
-> >    device_get_next_child_node instead of device_for_each_child_node
-> >
-> > Previously if the `label` DT property was not present, the code composed
-> > name for the LED in the form
-> >    "parent_name::"
-> > For backwards compatibility we therefore set
-> >    init_data->default_label = ":";
-> > so that the LED will not get a different name if `label` property is not
-> > present.  
-> 
-> You are going to re-factor this as well a lot of changes in a single 
-> patch is hard to review
-> 
-> Dan
-> 
-I am trying to do this now.
+Side note: I will change it for you but please keep Signed-off-by:
+tags together in the log instead of mixing them with other tags
+randomly.
+
+Can you rebase this series against my pci/dwc branch please and
+send a v8 ?
+
+I will apply it then.
+
+Thanks,
+Lorenzo
