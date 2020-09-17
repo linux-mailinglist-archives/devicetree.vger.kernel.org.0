@@ -2,47 +2,37 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from vger.kernel.org (vger.kernel.org [23.128.96.18])
-	by mail.lfdr.de (Postfix) with ESMTP id E526D26E4B4
-	for <lists+devicetree@lfdr.de>; Thu, 17 Sep 2020 20:55:35 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTP id AB01526E4B8
+	for <lists+devicetree@lfdr.de>; Thu, 17 Sep 2020 20:55:44 +0200 (CEST)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S1726180AbgIQSzR (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Thu, 17 Sep 2020 14:55:17 -0400
-Received: from mail.kernel.org ([198.145.29.99]:56764 "EHLO mail.kernel.org"
+        id S1726414AbgIQSzj (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Thu, 17 Sep 2020 14:55:39 -0400
+Received: from mail.kernel.org ([198.145.29.99]:57062 "EHLO mail.kernel.org"
         rhost-flags-OK-OK-OK-OK) by vger.kernel.org with ESMTP
-        id S1726405AbgIQSzO (ORCPT <rfc822;devicetree@vger.kernel.org>);
-        Thu, 17 Sep 2020 14:55:14 -0400
+        id S1726617AbgIQSzh (ORCPT <rfc822;devicetree@vger.kernel.org>);
+        Thu, 17 Sep 2020 14:55:37 -0400
 Received: from kozik-lap.mshome.net (unknown [194.230.155.191])
         (using TLSv1.2 with cipher ECDHE-RSA-AES128-GCM-SHA256 (128/128 bits))
         (No client certificate requested)
-        by mail.kernel.org (Postfix) with ESMTPSA id E5F272087D;
-        Thu, 17 Sep 2020 18:55:08 +0000 (UTC)
+        by mail.kernel.org (Postfix) with ESMTPSA id E9F72206A1;
+        Thu, 17 Sep 2020 18:55:34 +0000 (UTC)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=kernel.org;
-        s=default; t=1600368913;
-        bh=m4d0Mo6h1I7U3GsnUnxj8fcz6YwDuFfT5VSLKP1B/iY=;
-        h=From:To:Cc:Subject:Date:In-Reply-To:References:From;
-        b=x/xflhKP6mZ4B8OkK2KFxTyt9GC+YDF1SisePZY73pcj9lxWGr+Ylo1IAXBSQ3HgF
-         gd85f0TkUkWb/cK/FvJpmotOOkvJKKsBZGDzdkSVuFP5iyClQosrLaMp4VrtIXwqa1
-         JvDCy4SIGZvANA4TI3WUYyU/1fRw02dc5D1xvwHo=
+        s=default; t=1600368936;
+        bh=TcWpXRuKNGWf4r5fT3GPAnP7GNeAIyJRhsuIKlcRMJA=;
+        h=From:To:Cc:Subject:Date:From;
+        b=FLR3+OwJ5PWgyCw6aRB1kh6ZrPamNBj79QVxZNHpq/jbuD8j9KEQYfIK1mQGDe1V1
+         EGcQkCpLrT48TSmUTHMmceGSDpex5ZnmLZv92XAjXcBw0kpvFqfg5V2oA09txMf/th
+         WIsvY0Q2TemI4eKn0bPBs7RFT4uSKg5q9gJOLVOw=
 From:   Krzysztof Kozlowski <krzk@kernel.org>
-To:     Rob Herring <robh+dt@kernel.org>, Shawn Guo <shawnguo@kernel.org>,
-        Sascha Hauer <s.hauer@pengutronix.de>,
-        Pengutronix Kernel Team <kernel@pengutronix.de>,
-        Fabio Estevam <festevam@gmail.com>,
-        NXP Linux Team <linux-imx@nxp.com>,
-        Krzysztof Kozlowski <krzk@kernel.org>,
-        Adam Ford <aford173@gmail.com>,
-        Daniel Baluta <daniel.baluta@nxp.com>,
-        Anson Huang <Anson.Huang@nxp.com>,
-        Jacky Bai <ping.bai@nxp.com>, Robin Gong <yibin.gong@nxp.com>,
-        Peter Chen <peter.chen@nxp.com>, devicetree@vger.kernel.org,
-        linux-arm-kernel@lists.infradead.org, linux-kernel@vger.kernel.org
-Cc:     Tim Harvey <tharvey@gateworks.com>
-Subject: [PATCH v2 4/4] arm64: dts: imx8mq: correct interrupt flags
-Date:   Thu, 17 Sep 2020 20:54:49 +0200
-Message-Id: <20200917185449.5687-4-krzk@kernel.org>
+To:     Liam Girdwood <lgirdwood@gmail.com>,
+        Mark Brown <broonie@kernel.org>,
+        Rob Herring <robh+dt@kernel.org>, alsa-devel@alsa-project.org,
+        devicetree@vger.kernel.org, linux-kernel@vger.kernel.org
+Cc:     Krzysztof Kozlowski <krzk@kernel.org>
+Subject: [PATCH v2] ASoC: dt-bindings: correct interrupt flags in examples
+Date:   Thu, 17 Sep 2020 20:55:31 +0200
+Message-Id: <20200917185531.5767-1-krzk@kernel.org>
 X-Mailer: git-send-email 2.17.1
-In-Reply-To: <20200917185449.5687-1-krzk@kernel.org>
-References: <20200917185449.5687-1-krzk@kernel.org>
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
@@ -55,116 +45,114 @@ have the same meaning:
 
 Correct the interrupt flags, assuming the author of the code wanted same
 logical behavior behind the name "ACTIVE_xxx", this is:
-  ACTIVE_LOW  => IRQ_TYPE_LEVEL_LOW
+  ACTIVE_HIGH => IRQ_TYPE_LEVEL_HIGH
 
 Signed-off-by: Krzysztof Kozlowski <krzk@kernel.org>
+Acked-by: Rob Herring <robh@kernel.org>
 
 ---
-
-Not tested on HW.
 
 Changes since v1:
-1. Correct title
+1. Add acks
 ---
- arch/arm64/boot/dts/freescale/imx8mq-librem5-devkit.dts | 5 +++--
- arch/arm64/boot/dts/freescale/imx8mq-librem5.dtsi       | 3 ++-
- arch/arm64/boot/dts/freescale/imx8mq-phanbell.dts       | 3 ++-
- arch/arm64/boot/dts/freescale/imx8mq-pico-pi.dts        | 3 ++-
- 4 files changed, 9 insertions(+), 5 deletions(-)
+ Documentation/devicetree/bindings/sound/max98090.txt | 2 +-
+ Documentation/devicetree/bindings/sound/rt5640.txt   | 2 +-
+ Documentation/devicetree/bindings/sound/rt5659.txt   | 2 +-
+ Documentation/devicetree/bindings/sound/rt5665.txt   | 2 +-
+ Documentation/devicetree/bindings/sound/rt5668.txt   | 2 +-
+ Documentation/devicetree/bindings/sound/rt5677.txt   | 2 +-
+ Documentation/devicetree/bindings/sound/rt5682.txt   | 2 +-
+ 7 files changed, 7 insertions(+), 7 deletions(-)
 
-diff --git a/arch/arm64/boot/dts/freescale/imx8mq-librem5-devkit.dts b/arch/arm64/boot/dts/freescale/imx8mq-librem5-devkit.dts
-index cce1b595e2d6..af139b283daf 100644
---- a/arch/arm64/boot/dts/freescale/imx8mq-librem5-devkit.dts
-+++ b/arch/arm64/boot/dts/freescale/imx8mq-librem5-devkit.dts
-@@ -6,6 +6,7 @@
- /dts-v1/;
+diff --git a/Documentation/devicetree/bindings/sound/max98090.txt b/Documentation/devicetree/bindings/sound/max98090.txt
+index 7e1bbd5c27fd..39d640294c62 100644
+--- a/Documentation/devicetree/bindings/sound/max98090.txt
++++ b/Documentation/devicetree/bindings/sound/max98090.txt
+@@ -55,5 +55,5 @@ audio-codec@10 {
+ 	compatible = "maxim,max98090";
+ 	reg = <0x10>;
+ 	interrupt-parent = <&gpio>;
+-	interrupts = <TEGRA_GPIO(H, 4) GPIO_ACTIVE_HIGH>;
++	interrupts = <TEGRA_GPIO(H, 4) IRQ_TYPE_LEVEL_HIGH>;
+ };
+diff --git a/Documentation/devicetree/bindings/sound/rt5640.txt b/Documentation/devicetree/bindings/sound/rt5640.txt
+index e40e4893eed8..ff1228713f7e 100644
+--- a/Documentation/devicetree/bindings/sound/rt5640.txt
++++ b/Documentation/devicetree/bindings/sound/rt5640.txt
+@@ -88,7 +88,7 @@ rt5640 {
+ 	compatible = "realtek,rt5640";
+ 	reg = <0x1c>;
+ 	interrupt-parent = <&gpio>;
+-	interrupts = <TEGRA_GPIO(W, 3) GPIO_ACTIVE_HIGH>;
++	interrupts = <TEGRA_GPIO(W, 3) IRQ_TYPE_LEVEL_HIGH>;
+ 	realtek,ldo1-en-gpios =
+ 		<&gpio TEGRA_GPIO(V, 3) GPIO_ACTIVE_HIGH>;
+ };
+diff --git a/Documentation/devicetree/bindings/sound/rt5659.txt b/Documentation/devicetree/bindings/sound/rt5659.txt
+index 1766e0543fc5..56788f50b6cf 100644
+--- a/Documentation/devicetree/bindings/sound/rt5659.txt
++++ b/Documentation/devicetree/bindings/sound/rt5659.txt
+@@ -72,7 +72,7 @@ rt5659 {
+ 	compatible = "realtek,rt5659";
+ 	reg = <0x1b>;
+ 	interrupt-parent = <&gpio>;
+-	interrupts = <TEGRA_GPIO(W, 3) GPIO_ACTIVE_HIGH>;
++	interrupts = <TEGRA_GPIO(W, 3) IRQ_TYPE_LEVEL_HIGH>;
+ 	realtek,ldo1-en-gpios =
+ 		<&gpio TEGRA_GPIO(V, 3) GPIO_ACTIVE_HIGH>;
+ };
+diff --git a/Documentation/devicetree/bindings/sound/rt5665.txt b/Documentation/devicetree/bindings/sound/rt5665.txt
+index 8df170506986..f6ca96b4ce98 100644
+--- a/Documentation/devicetree/bindings/sound/rt5665.txt
++++ b/Documentation/devicetree/bindings/sound/rt5665.txt
+@@ -62,7 +62,7 @@ rt5659 {
+ 	compatible = "realtek,rt5665";
+ 	reg = <0x1b>;
+ 	interrupt-parent = <&gpio>;
+-	interrupts = <TEGRA_GPIO(W, 3) GPIO_ACTIVE_HIGH>;
++	interrupts = <TEGRA_GPIO(W, 3) IRQ_TYPE_LEVEL_HIGH>;
+ 	realtek,ldo1-en-gpios =
+ 		<&gpio TEGRA_GPIO(V, 3) GPIO_ACTIVE_HIGH>;
+ };
+diff --git a/Documentation/devicetree/bindings/sound/rt5668.txt b/Documentation/devicetree/bindings/sound/rt5668.txt
+index c88b96e7764b..a2b7e9a2f2f3 100644
+--- a/Documentation/devicetree/bindings/sound/rt5668.txt
++++ b/Documentation/devicetree/bindings/sound/rt5668.txt
+@@ -41,7 +41,7 @@ rt5668 {
+ 	compatible = "realtek,rt5668b";
+ 	reg = <0x1a>;
+ 	interrupt-parent = <&gpio>;
+-	interrupts = <TEGRA_GPIO(U, 6) GPIO_ACTIVE_HIGH>;
++	interrupts = <TEGRA_GPIO(U, 6) IRQ_TYPE_LEVEL_HIGH>;
+ 	realtek,ldo1-en-gpios =
+ 		<&gpio TEGRA_GPIO(R, 2) GPIO_ACTIVE_HIGH>;
+ 	realtek,dmic1-data-pin = <1>;
+diff --git a/Documentation/devicetree/bindings/sound/rt5677.txt b/Documentation/devicetree/bindings/sound/rt5677.txt
+index 1b3c13d206ff..da2430099181 100644
+--- a/Documentation/devicetree/bindings/sound/rt5677.txt
++++ b/Documentation/devicetree/bindings/sound/rt5677.txt
+@@ -64,7 +64,7 @@ rt5677 {
+ 	compatible = "realtek,rt5677";
+ 	reg = <0x2c>;
+ 	interrupt-parent = <&gpio>;
+-	interrupts = <TEGRA_GPIO(W, 3) GPIO_ACTIVE_HIGH>;
++	interrupts = <TEGRA_GPIO(W, 3) IRQ_TYPE_LEVEL_HIGH>;
  
- #include "dt-bindings/input/input.h"
-+#include <dt-bindings/interrupt-controller/irq.h>
- #include "dt-bindings/pwm/pwm.h"
- #include "dt-bindings/usb/pd.h"
- #include "imx8mq.dtsi"
-@@ -60,7 +61,7 @@
- 			label = "WWAN_WAKE";
- 			gpios = <&gpio3 8 GPIO_ACTIVE_LOW>;
- 			interrupt-parent = <&gpio3>;
--			interrupts = <8 GPIO_ACTIVE_LOW>;
-+			interrupts = <8 IRQ_TYPE_LEVEL_LOW>;
- 			wakeup-source;
- 			linux,code = <KEY_PHONE>;
- 		};
-@@ -288,7 +289,7 @@
- 		#clock-cells = <0>;
- 		clock-output-names = "pmic_clk";
- 		interrupt-parent = <&gpio1>;
--		interrupts = <3 GPIO_ACTIVE_LOW>;
-+		interrupts = <3 IRQ_TYPE_LEVEL_LOW>;
- 		rohm,reset-snvs-powered;
- 
- 		regulators {
-diff --git a/arch/arm64/boot/dts/freescale/imx8mq-librem5.dtsi b/arch/arm64/boot/dts/freescale/imx8mq-librem5.dtsi
-index 56295dd2fa8f..0c13b70192af 100644
---- a/arch/arm64/boot/dts/freescale/imx8mq-librem5.dtsi
-+++ b/arch/arm64/boot/dts/freescale/imx8mq-librem5.dtsi
-@@ -6,6 +6,7 @@
- /dts-v1/;
- 
- #include "dt-bindings/input/input.h"
-+#include <dt-bindings/interrupt-controller/irq.h>
- #include "dt-bindings/pwm/pwm.h"
- #include "dt-bindings/usb/pd.h"
- #include "imx8mq.dtsi"
-@@ -640,7 +641,7 @@
- 		clock-names = "osc";
- 		clock-output-names = "pmic_clk";
- 		interrupt-parent = <&gpio1>;
--		interrupts = <7 GPIO_ACTIVE_LOW>;
-+		interrupts = <7 IRQ_TYPE_LEVEL_LOW>;
- 		rohm,reset-snvs-powered;
- 
- 		regulators {
-diff --git a/arch/arm64/boot/dts/freescale/imx8mq-phanbell.dts b/arch/arm64/boot/dts/freescale/imx8mq-phanbell.dts
-index d6d3a3d5abc3..a3b9d615a3b4 100644
---- a/arch/arm64/boot/dts/freescale/imx8mq-phanbell.dts
-+++ b/arch/arm64/boot/dts/freescale/imx8mq-phanbell.dts
-@@ -6,6 +6,7 @@
- /dts-v1/;
- 
- #include "imx8mq.dtsi"
-+#include <dt-bindings/interrupt-controller/irq.h>
- 
- / {
- 	model = "Google i.MX8MQ Phanbell";
-@@ -125,7 +126,7 @@
- 		clocks = <&pmic_osc>;
- 		clock-output-names = "pmic_clk";
- 		interrupt-parent = <&gpio1>;
--		interrupts = <3 GPIO_ACTIVE_LOW>;
-+		interrupts = <3 IRQ_TYPE_LEVEL_LOW>;
- 
- 		regulators {
- 			buck1: BUCK1 {
-diff --git a/arch/arm64/boot/dts/freescale/imx8mq-pico-pi.dts b/arch/arm64/boot/dts/freescale/imx8mq-pico-pi.dts
-index f4d5748a7bd6..89cbec5c41b2 100644
---- a/arch/arm64/boot/dts/freescale/imx8mq-pico-pi.dts
-+++ b/arch/arm64/boot/dts/freescale/imx8mq-pico-pi.dts
-@@ -9,6 +9,7 @@
- /dts-v1/;
- 
- #include "imx8mq.dtsi"
-+#include <dt-bindings/interrupt-controller/irq.h>
- 
- / {
- 	model = "TechNexion PICO-PI-8M";
-@@ -70,7 +71,7 @@
- 		clock-names = "osc";
- 		clock-output-names = "pmic_clk";
- 		interrupt-parent = <&gpio1>;
--		interrupts = <3 GPIO_ACTIVE_LOW>;
-+		interrupts = <3 IRQ_TYPE_LEVEL_LOW>;
- 		interrupt-names = "irq";
- 
- 		regulators {
+ 	gpio-controller;
+ 	#gpio-cells = <2>;
+diff --git a/Documentation/devicetree/bindings/sound/rt5682.txt b/Documentation/devicetree/bindings/sound/rt5682.txt
+index ade1ece8b45f..707fa98d1310 100644
+--- a/Documentation/devicetree/bindings/sound/rt5682.txt
++++ b/Documentation/devicetree/bindings/sound/rt5682.txt
+@@ -58,7 +58,7 @@ rt5682 {
+ 	compatible = "realtek,rt5682i";
+ 	reg = <0x1a>;
+ 	interrupt-parent = <&gpio>;
+-	interrupts = <TEGRA_GPIO(U, 6) GPIO_ACTIVE_HIGH>;
++	interrupts = <TEGRA_GPIO(U, 6) IRQ_TYPE_LEVEL_HIGH>;
+ 	realtek,ldo1-en-gpios =
+ 		<&gpio TEGRA_GPIO(R, 2) GPIO_ACTIVE_HIGH>;
+ 	realtek,dmic1-data-pin = <1>;
 -- 
 2.17.1
 
