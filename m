@@ -2,92 +2,152 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from vger.kernel.org (vger.kernel.org [23.128.96.18])
-	by mail.lfdr.de (Postfix) with ESMTP id 6CBB126D3D4
-	for <lists+devicetree@lfdr.de>; Thu, 17 Sep 2020 08:41:16 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTP id 79DBF26D3E5
+	for <lists+devicetree@lfdr.de>; Thu, 17 Sep 2020 08:47:26 +0200 (CEST)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S1726260AbgIQGlN (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Thu, 17 Sep 2020 02:41:13 -0400
-Received: from mail.kernel.org ([198.145.29.99]:47666 "EHLO mail.kernel.org"
-        rhost-flags-OK-OK-OK-OK) by vger.kernel.org with ESMTP
-        id S1726112AbgIQGlM (ORCPT <rfc822;devicetree@vger.kernel.org>);
-        Thu, 17 Sep 2020 02:41:12 -0400
-Received: from mail-ej1-f46.google.com (mail-ej1-f46.google.com [209.85.218.46])
-        (using TLSv1.2 with cipher ECDHE-RSA-AES128-GCM-SHA256 (128/128 bits))
-        (No client certificate requested)
-        by mail.kernel.org (Postfix) with ESMTPSA id 3870B21974;
-        Thu, 17 Sep 2020 06:41:11 +0000 (UTC)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=kernel.org;
-        s=default; t=1600324871;
-        bh=gTdZKSX6NgS308trS+0JD2GfHaXkhosgKfxozY4cd/g=;
-        h=References:In-Reply-To:From:Date:Subject:To:Cc:From;
-        b=b1Tl65StLVPpR2Yl3IZ1RY6XfXzE4ybHiRueZCD/PjFAmE76n9BxSME04p87xrnz5
-         ZFOSyyjfQCNGGzSj1c8YwUnd+9xcBoyXLuY0gh1pB4EiNsVtwlR0gBZ8mcFoE7eyNj
-         w1LgRGpPDO6/nr09+uJkOsiYG2A01bfFirqnNpbU=
-Received: by mail-ej1-f46.google.com with SMTP id z22so1625825ejl.7;
-        Wed, 16 Sep 2020 23:41:11 -0700 (PDT)
-X-Gm-Message-State: AOAM531pK62v6+u6Tg4rjoNiLUv2MVQ2P/VqbEj4BIDWY5pg4OfClLBl
-        CtRyOQO3M9pJM1ngjbrDViza/CIcUnW7j4xV964=
-X-Google-Smtp-Source: ABdhPJwT9pc66JXvXrI1tZ2stBeP+SeOm2JL4s7jgRmwKi39beZJM27SYqdw3mYmThUvsSUuM1YzS0U/hvcyOvNsbaY=
-X-Received: by 2002:a17:906:4046:: with SMTP id y6mr30579927ejj.148.1600324869747;
- Wed, 16 Sep 2020 23:41:09 -0700 (PDT)
+        id S1726109AbgIQGrQ (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Thu, 17 Sep 2020 02:47:16 -0400
+Received: from lindbergh.monkeyblade.net ([23.128.96.19]:43464 "EHLO
+        lindbergh.monkeyblade.net" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
+        with ESMTP id S1726192AbgIQGrN (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Thu, 17 Sep 2020 02:47:13 -0400
+Received: from mail-wr1-x42a.google.com (mail-wr1-x42a.google.com [IPv6:2a00:1450:4864:20::42a])
+        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 7C06BC06174A
+        for <devicetree@vger.kernel.org>; Wed, 16 Sep 2020 23:47:12 -0700 (PDT)
+Received: by mail-wr1-x42a.google.com with SMTP id t10so767062wrv.1
+        for <devicetree@vger.kernel.org>; Wed, 16 Sep 2020 23:47:12 -0700 (PDT)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+        d=baylibre-com.20150623.gappssmtp.com; s=20150623;
+        h=from:to:cc:subject:date:message-id:in-reply-to:references
+         :mime-version:content-transfer-encoding;
+        bh=YHTRbSYxiwB3ZQDUmxVKEyXQSDMyANy7ZOYYgytHKAA=;
+        b=QlhqD01DrDGFTX1xNMS4ZO5VEJ9/raT3dY10P/Zw2hTR94Skm6WAiAAU81PST0DAqH
+         q+rMkfmQwGpA+ZNn9UOb2tr3/OVYlYJu3t/ilm4+NYTy+pGEW8dbuWpyELG4VVIqdfB8
+         4M8RiJZNx47fdlpnwzS5bmfh+VRbYQVQx8txafbC2UqaOG8oFqzV7DY/BI4Poj48RXH5
+         +UhvtC8dbScM5tJtksdKLqwSuwHtJVti+ag+4VwC5gebJxrSkNJ3J9nQNLD/KcP3ZBj8
+         MW9jGeaLnBkK0RUItsv7nbt3Uvl9h2O/MZGdVWQfTXbL81RTn4pWkhhZklCg0GSSmunY
+         11cQ==
+X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+        d=1e100.net; s=20161025;
+        h=x-gm-message-state:from:to:cc:subject:date:message-id:in-reply-to
+         :references:mime-version:content-transfer-encoding;
+        bh=YHTRbSYxiwB3ZQDUmxVKEyXQSDMyANy7ZOYYgytHKAA=;
+        b=Fj1WCdqW9roz5hNgXe92BltbaEAaPOQ3MgmxvowOGVw3eeg+HY2Fspw+EChVHolRqN
+         NalvvIAk7idb6zfx57MzW6XjN/Hdmvgj13hJH0Fs0udlEu9ko5J+5s+yJN6/NNSbk8k3
+         Tm5nmp8VkRllXbwoB6XWqYipEWJ73pql7T1qzVJ90Ji/Vt7CgtNjA/sm8gG4s4nPyihD
+         zN1y7zxtbV5qOSik7hn1QiNZuSTdemclZBUmoOYj/e6lxrDWpHIQOhE43TQFv2mGGgZQ
+         jLjJfMC74iVX83PfERHteMOdAlaHzYdG502X5S87qd1YKWuf6zkDtBxklIEeB/t3pnrg
+         kv9A==
+X-Gm-Message-State: AOAM531u7m+B6zELuRRj3k7/9bhycXszqyxYb39YnAiup3ZpPdd2BzH3
+        nJmXkfg5wU7t4L5n7xyaXJV1NB6pd8p5yCRu
+X-Google-Smtp-Source: ABdhPJxxOngjpGTOMOIimvND/eMb+ZnzvjapG2m/s/ngeNrtLBfT0YebWIFLbPnbSpWgQt7+efFd9g==
+X-Received: by 2002:adf:f106:: with SMTP id r6mr30908636wro.106.1600325228729;
+        Wed, 16 Sep 2020 23:47:08 -0700 (PDT)
+Received: from bender.baylibre.local (laubervilliers-658-1-213-31.w90-63.abo.wanadoo.fr. [90.63.244.31])
+        by smtp.gmail.com with ESMTPSA id q4sm38516552wru.65.2020.09.16.23.47.07
+        (version=TLS1_3 cipher=TLS_AES_256_GCM_SHA384 bits=256/256);
+        Wed, 16 Sep 2020 23:47:08 -0700 (PDT)
+From:   Neil Armstrong <narmstrong@baylibre.com>
+To:     khilman@baylibre.com, devicetree@vger.kernel.org
+Cc:     Neil Armstrong <narmstrong@baylibre.com>,
+        linux-amlogic@lists.infradead.org,
+        linux-arm-kernel@lists.infradead.org, linux-kernel@vger.kernel.org,
+        Rob Herring <robh@kernel.org>,
+        Martin Blumenstingl <martin.blumenstingl@googlemail.com>
+Subject: [PATCH v2 1/2] dt-bindings: power: amlogic,meson-ee-pwrc: add Amlogic AXG power controller bindings
+Date:   Thu, 17 Sep 2020 08:47:01 +0200
+Message-Id: <20200917064702.1459-2-narmstrong@baylibre.com>
+X-Mailer: git-send-email 2.22.0
+In-Reply-To: <20200917064702.1459-1-narmstrong@baylibre.com>
+References: <20200917064702.1459-1-narmstrong@baylibre.com>
 MIME-Version: 1.0
-References: <20200908150241.5771-1-krzk@kernel.org> <20200913023152.GH25109@dragon>
-In-Reply-To: <20200913023152.GH25109@dragon>
-From:   Krzysztof Kozlowski <krzk@kernel.org>
-Date:   Thu, 17 Sep 2020 08:40:57 +0200
-X-Gmail-Original-Message-ID: <CAJKOXPeQ8ZV5H4KY3dTacggyNbWxZRJoyMYNwevmTVjZ+bmHfA@mail.gmail.com>
-Message-ID: <CAJKOXPeQ8ZV5H4KY3dTacggyNbWxZRJoyMYNwevmTVjZ+bmHfA@mail.gmail.com>
-Subject: Re: [PATCH 1/8] ARM: dts: imx6qdl: Correct interrupt flags in examples
-To:     Shawn Guo <shawnguo@kernel.org>
-Cc:     Tim Harvey <tharvey@gateworks.com>,
-        Rob Herring <robh+dt@kernel.org>,
-        Sascha Hauer <s.hauer@pengutronix.de>,
-        Pengutronix Kernel Team <kernel@pengutronix.de>,
-        Fabio Estevam <festevam@gmail.com>,
-        NXP Linux Team <linux-imx@nxp.com>,
-        Heiko Stuebner <heiko@sntech.de>,
-        Michal Simek <michal.simek@xilinx.com>,
-        Adam Ford <aford173@gmail.com>,
-        Daniel Baluta <daniel.baluta@nxp.com>,
-        Anson Huang <Anson.Huang@nxp.com>,
-        Robin Gong <yibin.gong@nxp.com>,
-        Alifer Moraes <alifer.wsdm@gmail.com>,
-        Leonard Crestez <leonard.crestez@nxp.com>,
-        "Angus Ainslie (Purism)" <angus@akkea.ca>,
-        Vitor Massaru Iha <vitor@massaru.org>,
-        Kever Yang <kever.yang@rock-chips.com>,
-        Rajan Vaja <rajan.vaja@xilinx.com>,
-        Anurag Kumar Vulisha <anurag.kumar.vulisha@xilinx.com>,
-        devicetree@vger.kernel.org, linux-arm-kernel@lists.infradead.org,
-        "linux-kernel@vger.kernel.org" <linux-kernel@vger.kernel.org>,
-        linux-rockchip@lists.infradead.org
-Content-Type: text/plain; charset="UTF-8"
+Content-Transfer-Encoding: 8bit
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-On Sun, 13 Sep 2020 at 04:32, Shawn Guo <shawnguo@kernel.org> wrote:
->
-> Add Tim who is the board owner.
->
-> On Tue, Sep 08, 2020 at 05:02:34PM +0200, Krzysztof Kozlowski wrote:
-> > GPIO_ACTIVE_x flags are not correct in the context of interrupt flags.
-> > These are simple defines so they could be used in DTS but they will not
-> > have the same meaning:
-> > 1. GPIO_ACTIVE_HIGH = 0 = IRQ_TYPE_NONE
-> > 2. GPIO_ACTIVE_LOW  = 1 = IRQ_TYPE_EDGE_RISING
-> >
-> > Correct the interrupt flags, assuming the author of the code wanted some
-> > logical behavior behind the name "ACTIVE_xxx", this is:
-> >   ACTIVE_LOW  => IRQ_TYPE_LEVEL_LOW
-> >
-> > Signed-off-by: Krzysztof Kozlowski <krzk@kernel.org>
->
-> The subject prefix could be a bit more specific, like 'ARM: dts:
-> imx6qdl-gw5xxx'.  Also, I do not quite understand meaning of 'in
-> examples' in subject.
+This add the bindings of the Power Controller found in the Amlogic AXG SoCs.
 
-That's my copy-paste error. I'll resend with a proper subject.
+Signed-off-by: Neil Armstrong <narmstrong@baylibre.com>
+Reviewed-by: Rob Herring <robh@kernel.org>
+Acked-by: Martin Blumenstingl <martin.blumenstingl@googlemail.com>
+---
+ .../bindings/power/amlogic,meson-ee-pwrc.yaml | 23 +++++++++++++++++--
+ include/dt-bindings/power/meson-axg-power.h   | 14 +++++++++++
+ 2 files changed, 35 insertions(+), 2 deletions(-)
+ create mode 100644 include/dt-bindings/power/meson-axg-power.h
 
-Best regards,
-Krzysztof
+diff --git a/Documentation/devicetree/bindings/power/amlogic,meson-ee-pwrc.yaml b/Documentation/devicetree/bindings/power/amlogic,meson-ee-pwrc.yaml
+index 4f524f822e84..d30f85cc395e 100644
+--- a/Documentation/devicetree/bindings/power/amlogic,meson-ee-pwrc.yaml
++++ b/Documentation/devicetree/bindings/power/amlogic,meson-ee-pwrc.yaml
+@@ -27,6 +27,7 @@ properties:
+       - amlogic,meson8b-pwrc
+       - amlogic,meson8m2-pwrc
+       - amlogic,meson-gxbb-pwrc
++      - amlogic,meson-axg-pwrc
+       - amlogic,meson-g12a-pwrc
+       - amlogic,meson-sm1-pwrc
+ 
+@@ -42,11 +43,11 @@ properties:
+       - const: vapb
+ 
+   resets:
+-    minItems: 11
++    minItems: 5
+     maxItems: 12
+ 
+   reset-names:
+-    minItems: 11
++    minItems: 5
+     maxItems: 12
+ 
+   "#power-domain-cells":
+@@ -107,6 +108,24 @@ allOf:
+         - resets
+         - reset-names
+ 
++  - if:
++      properties:
++        compatible:
++          enum:
++            - amlogic,meson-axg-pwrc
++    then:
++      properties:
++        reset-names:
++          items:
++            - const: viu
++            - const: venc
++            - const: vcbus
++            - const: vencl
++            - const: vid_lock
++      required:
++        - resets
++        - reset-names
++
+   - if:
+       properties:
+         compatible:
+diff --git a/include/dt-bindings/power/meson-axg-power.h b/include/dt-bindings/power/meson-axg-power.h
+new file mode 100644
+index 000000000000..e5243884b249
+--- /dev/null
++++ b/include/dt-bindings/power/meson-axg-power.h
+@@ -0,0 +1,14 @@
++/* SPDX-License-Identifier: (GPL-2.0+ or MIT) */
++/*
++ * Copyright (c) 2020 BayLibre, SAS
++ * Author: Neil Armstrong <narmstrong@baylibre.com>
++ */
++
++#ifndef _DT_BINDINGS_MESON_AXG_POWER_H
++#define _DT_BINDINGS_MESON_AXG_POWER_H
++
++#define PWRC_AXG_VPU_ID			0
++#define PWRC_AXG_ETHERNET_MEM_ID	1
++#define PWRC_AXG_AUDIO_ID		2
++
++#endif
+-- 
+2.22.0
+
