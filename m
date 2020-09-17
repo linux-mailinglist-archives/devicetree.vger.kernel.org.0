@@ -2,218 +2,347 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from vger.kernel.org (vger.kernel.org [23.128.96.18])
-	by mail.lfdr.de (Postfix) with ESMTP id B7E1D26DC78
-	for <lists+devicetree@lfdr.de>; Thu, 17 Sep 2020 15:08:21 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTP id 13F8126DCD1
+	for <lists+devicetree@lfdr.de>; Thu, 17 Sep 2020 15:30:04 +0200 (CEST)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S1726955AbgIQNIM (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Thu, 17 Sep 2020 09:08:12 -0400
-Received: from lelv0142.ext.ti.com ([198.47.23.249]:49922 "EHLO
-        lelv0142.ext.ti.com" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S1727073AbgIQNHo (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Thu, 17 Sep 2020 09:07:44 -0400
-Received: from fllv0034.itg.ti.com ([10.64.40.246])
-        by lelv0142.ext.ti.com (8.15.2/8.15.2) with ESMTP id 08HD7OQQ055911;
-        Thu, 17 Sep 2020 08:07:24 -0500
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=ti.com;
-        s=ti-com-17Q1; t=1600348044;
-        bh=5cm1TYMgzmYFsX/9vDRmJO8ddQ80zLzAZqagHAFcE68=;
-        h=Date:From:To:CC:Subject:References:In-Reply-To;
-        b=XaZhJS2LJHntSUTcfps6ZYMp6o330/0+BDM2L7W4+6jN+ajft2YUfT5/zNTPvXZol
-         LCCUBC122/6mOvvWWp9eLUAEmsQV0PaUHb68Z0Ec8DXt0VD06kZ8Z/DlGKYxEwmjZG
-         YDZHozkn3lpE/GAWyZGpQFPI6R3qXj56WHXzL3Rc=
-Received: from DLEE103.ent.ti.com (dlee103.ent.ti.com [157.170.170.33])
-        by fllv0034.itg.ti.com (8.15.2/8.15.2) with ESMTPS id 08HD7Ojc086086
-        (version=TLSv1.2 cipher=AES256-GCM-SHA384 bits=256 verify=FAIL);
-        Thu, 17 Sep 2020 08:07:24 -0500
-Received: from DLEE113.ent.ti.com (157.170.170.24) by DLEE103.ent.ti.com
- (157.170.170.33) with Microsoft SMTP Server (version=TLS1_2,
- cipher=TLS_ECDHE_RSA_WITH_AES_128_CBC_SHA256_P256) id 15.1.1979.3; Thu, 17
- Sep 2020 08:07:23 -0500
-Received: from lelv0327.itg.ti.com (10.180.67.183) by DLEE113.ent.ti.com
- (157.170.170.24) with Microsoft SMTP Server (version=TLS1_2,
- cipher=TLS_ECDHE_RSA_WITH_AES_128_CBC_SHA256_P256) id 15.1.1979.3 via
- Frontend Transport; Thu, 17 Sep 2020 08:07:23 -0500
-Received: from localhost (ileax41-snat.itg.ti.com [10.172.224.153])
-        by lelv0327.itg.ti.com (8.15.2/8.15.2) with ESMTP id 08HD7N4o114751;
-        Thu, 17 Sep 2020 08:07:23 -0500
-Date:   Thu, 17 Sep 2020 08:07:23 -0500
-From:   Nishanth Menon <nm@ti.com>
-To:     Tomi Valkeinen <tomi.valkeinen@ti.com>
-CC:     Tero Kristo <t-kristo@ti.com>, Rob Herring <robh+dt@kernel.org>,
-        <linux-arm-kernel@lists.infradead.org>,
-        <devicetree@vger.kernel.org>,
-        Swapnil Jakhade <sjakhade@cadence.com>, <yamonkar@cadence.com>,
-        Kishon Vijay Abraham I <kishon@ti.com>,
-        Laurent Pinchart <laurent.pinchart@ideasonboard.com>,
-        Sekhar Nori <nsekhar@ti.com>
-Subject: Re: [PATCH 1/2] arm64: dts: ti: k3-j721e-main: add DP & DP PHY
-Message-ID: <20200917130723.q3asxcb6uoenady5@akan>
-References: <20200917071248.71284-1-tomi.valkeinen@ti.com>
- <20200917071248.71284-2-tomi.valkeinen@ti.com>
+        id S1727000AbgIQN3n (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Thu, 17 Sep 2020 09:29:43 -0400
+Received: from lindbergh.monkeyblade.net ([23.128.96.19]:49472 "EHLO
+        lindbergh.monkeyblade.net" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
+        with ESMTP id S1726954AbgIQN3j (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Thu, 17 Sep 2020 09:29:39 -0400
+Received: from mail-wr1-x443.google.com (mail-wr1-x443.google.com [IPv6:2a00:1450:4864:20::443])
+        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id C5A6AC061222
+        for <devicetree@vger.kernel.org>; Thu, 17 Sep 2020 06:29:01 -0700 (PDT)
+Received: by mail-wr1-x443.google.com with SMTP id j2so2080269wrx.7
+        for <devicetree@vger.kernel.org>; Thu, 17 Sep 2020 06:29:01 -0700 (PDT)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+        d=linaro.org; s=google;
+        h=from:to:cc:subject:date:message-id:in-reply-to:references
+         :mime-version:content-transfer-encoding;
+        bh=55Fl8iRTWry8sClQedunMDBGG4ZcDw9WhyqWY+z9CDM=;
+        b=SaVtwZvEUlCSrKLSB/jfZIitdreCGj+Ltia5Xq+RfwUITIXjmTZipSdjeKv2qSA8hM
+         9m+oUjPEarkhjH0fdqZpHuylyxJkH1JatbCY/sFYvNZAnOe5Od9/BTOgfWfRcw2+wbSq
+         HNVGHyXKzr6FjEtDo6kooTPpyZRf3F3sQP4I/+w8Jv8mbM3r516VnMFu4b4Tz1pc3bYa
+         jf971i3CiAuuhi7d4RXMgmHbGmsoMVXre1PDLabRSkOaqTxPZeMAUR6ftxj/sh3WPul/
+         EJNEUb41JMhSbZ+MQWSsHwdgLOF+juDG+V4ob/fCPGjartfkzRHYq/YUmFBsf2eFW5JE
+         QvSQ==
+X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+        d=1e100.net; s=20161025;
+        h=x-gm-message-state:from:to:cc:subject:date:message-id:in-reply-to
+         :references:mime-version:content-transfer-encoding;
+        bh=55Fl8iRTWry8sClQedunMDBGG4ZcDw9WhyqWY+z9CDM=;
+        b=Rp/H8SSAY1qB3bZXWwy1qZ4IapTD7BzkG+btiZu6PBW2B9y2HWo9y4OQaUOnGMJyzC
+         +TLRldobd13QfF6At4uXgkQ31Y8kHAl/sdvlTbPLfSQikPCxCHuc3bSvVAGnUPCNDku6
+         V9NRmybOcXhDEGGcRzB8aCSMn8Epig8RwjXeJ0zVXihZxyKLd5ifibexLm4rTwshFsCK
+         FYRCYz1+rkpFCgsrYCApCK0u56deKRmJ5Me1biVxE7WhzCOsTWpWEMASGPK5qrKWH1dj
+         fEoqofSgt0POCTObeahaI/KpIGYNk2P0El9w2702+3yM/YAcRBtt8chjHm91DNzViDgA
+         3DtA==
+X-Gm-Message-State: AOAM530DlbT7/YFbv7beIj6g98YqySHfhh/beTmo+owcfdJ76j5+wu83
+        /Ce75V2v9k6PrSYf560Fi12OdQ==
+X-Google-Smtp-Source: ABdhPJxXjTMt3U1zADgl3ZVp6/v2FO6MZgS1jdesv+YId1tuFMuQm3yZn4cYLO0pVVRZzbFerEJT2w==
+X-Received: by 2002:a5d:470e:: with SMTP id y14mr32111551wrq.354.1600349340278;
+        Thu, 17 Sep 2020 06:29:00 -0700 (PDT)
+Received: from srini-hackbox.lan (cpc86377-aztw32-2-0-cust226.18-1.cable.virginm.net. [92.233.226.227])
+        by smtp.gmail.com with ESMTPSA id n10sm11486910wmk.7.2020.09.17.06.28.58
+        (version=TLS1_3 cipher=TLS_AES_256_GCM_SHA384 bits=256/256);
+        Thu, 17 Sep 2020 06:28:59 -0700 (PDT)
+From:   Srinivas Kandagatla <srinivas.kandagatla@linaro.org>
+To:     sboyd@kernel.org, linux-clk@vger.kernel.org,
+        devicetree@vger.kernel.org
+Cc:     bjorn.andersson@linaro.org, mturquette@baylibre.com,
+        robh+dt@kernel.org, linux-arm-msm@vger.kernel.org,
+        linux-kernel@vger.kernel.org,
+        Srinivas Kandagatla <srinivas.kandagatla@linaro.org>
+Subject: [PATCH 3/4] clk: qcom: Add support to LPASS AUDIO_CC Glitch Free Mux clocks
+Date:   Thu, 17 Sep 2020 14:28:49 +0100
+Message-Id: <20200917132850.7730-4-srinivas.kandagatla@linaro.org>
+X-Mailer: git-send-email 2.21.0
+In-Reply-To: <20200917132850.7730-1-srinivas.kandagatla@linaro.org>
+References: <20200917132850.7730-1-srinivas.kandagatla@linaro.org>
 MIME-Version: 1.0
-Content-Type: text/plain; charset="us-ascii"
-Content-Disposition: inline
-In-Reply-To: <20200917071248.71284-2-tomi.valkeinen@ti.com>
-User-Agent: NeoMutt/20171215
-X-EXCLAIMER-MD-CONFIG: e1e8a2fd-e40a-4ac6-ac9b-f7e9cc9ee180
+Content-Transfer-Encoding: 8bit
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-On 10:12-20200917, Tomi Valkeinen wrote:
-> Add DT nodes for DisplayPort and DisplayPort PHY. The DP is Cadence MHDP
-> 8546 and the PHY is a Cadence Torrent PHY with TI WIZ wrapper.
-> 
-> A slight irregularity in the bindings is the DPTX PHY register block,
-> which is in the MHDP IP, but is needed and mapped by the PHY.
-> 
-> Signed-off-by: Tomi Valkeinen <tomi.valkeinen@ti.com>
+GFM Muxes in AUDIO_CC control clocks to LPASS WSA and RX Codec Macros.
+This patch adds support to these muxes.
 
-just quick notes below:
+Signed-off-by: Srinivas Kandagatla <srinivas.kandagatla@linaro.org>
+---
+ drivers/clk/qcom/Kconfig            |   7 +
+ drivers/clk/qcom/Makefile           |   1 +
+ drivers/clk/qcom/lpass-gfm-sm8250.c | 235 ++++++++++++++++++++++++++++
+ 3 files changed, 243 insertions(+)
+ create mode 100644 drivers/clk/qcom/lpass-gfm-sm8250.c
 
-> ---
->  arch/arm64/boot/dts/ti/k3-j721e-main.dtsi | 104 ++++++++++++++++++++++
->  1 file changed, 104 insertions(+)
-> 
-> diff --git a/arch/arm64/boot/dts/ti/k3-j721e-main.dtsi b/arch/arm64/boot/dts/ti/k3-j721e-main.dtsi
-> index 12ceea9b3c9a..82d89dd3faf5 100644
-> --- a/arch/arm64/boot/dts/ti/k3-j721e-main.dtsi
-> +++ b/arch/arm64/boot/dts/ti/k3-j721e-main.dtsi
-> @@ -553,6 +553,82 @@ serdes3: serdes@5030000 {
->  		};
->  	};
->  
-> +	serdes_wiz4: wiz@5050000 {
-serdes-mux ? - I think we might want to cleanup other similar usage
-instead of "wiz" or maybe just "mux"?
-
-> +		compatible = "ti,j721e-wiz-10g";
-> +		#address-cells = <1>;
-> +		#size-cells = <1>;
-> +		power-domains = <&k3_pds 297 TI_SCI_PD_EXCLUSIVE>;
-> +		clocks = <&k3_clks 297 1>, <&k3_clks 297 9>, <&dummy_cmn_refclk>;
-> +		clock-names = "fck", "core_ref_clk", "ext_ref_clk";
-> +		assigned-clocks = <&k3_clks 297 9>;
-> +		assigned-clock-parents = <&k3_clks 297 10>;
-> +		assigned-clock-rates = <19200000>;
-> +		num-lanes = <4>;
-> +		#reset-cells = <1>;
-> +		ranges = <0x5050000 0x0 0x5050000 0x10000>,
-> +			<0xa030a00 0x0 0xa030a00 0x40>;
-> +
-> +		wiz4_pll0_refclk: pll0-refclk {
-	clock@ ?
-> +			clocks = <&k3_clks 297 9>, <&dummy_cmn_refclk>;
-> +			clock-output-names = "wiz4_pll0_refclk";
-> +			#clock-cells = <0>;
-> +			assigned-clocks = <&wiz4_pll0_refclk>;
-> +			assigned-clock-parents = <&k3_clks 297 9>;
-> +		};
-> +
-> +		wiz4_pll1_refclk: pll1-refclk {
-	same?
-> +			clocks = <&k3_clks 297 9>, <&dummy_cmn_refclk>;
-> +			clock-output-names = "wiz4_pll1_refclk";
-> +			#clock-cells = <0>;
-> +			assigned-clocks = <&wiz4_pll1_refclk>;
-> +			assigned-clock-parents = <&k3_clks 297 9>;
-> +		};
-> +
-> +		wiz4_refclk_dig: refclk-dig {
-	same?
-> +			clocks = <&k3_clks 297 9>, <&dummy_cmn_refclk>;
-> +			clock-output-names = "wiz4_refclk_dig";
-> +			#clock-cells = <0>;
-> +			assigned-clocks = <&wiz4_refclk_dig>;
-> +			assigned-clock-parents = <&k3_clks 297 9>;
-> +		};
-> +
-> +		wiz4_cmn_refclk_dig_div: cmn-refclk-dig-div {
-	same?
-> +			clocks = <&wiz4_refclk_dig>;
-> +			#clock-cells = <0>;
-> +		};
-> +
-> +		wiz4_cmn_refclk1_dig_div: cmn-refclk1-dig-div {
-	same?
-> +			clocks = <&wiz4_pll1_refclk>;
-> +			#clock-cells = <0>;
-> +		};
-> +
-> +		serdes4: serdes@5050000 {
-> +			/*
-> +			 * Note: we also map DPTX PHY registers as the Torrent
-> +			 * needs to manage those.
-> +			 */
-> +			compatible = "ti,j721e-serdes-10g";
-> +			reg = <0x5050000 0x10000>,
-> +			      <0xa030a00 0x40>; /* DPTX PHY */
-> +			reg-names = "torrent_phy", "dptx_phy";
-> +
-> +			resets = <&serdes_wiz4 0>;
-> +			reset-names = "torrent_reset";
-> +			clocks = <&wiz4_pll0_refclk>;
-> +			clock-names = "refclk";
-> +			#address-cells = <1>;
-> +			#size-cells = <0>;
-> +			torrent_phy_dp: phy@0 {
-> +				reg = <0>;
-> +				resets = <&serdes_wiz4 1>;
-> +				cdns,phy-type = <PHY_TYPE_DP>;
-> +				cdns,num-lanes = <4>;
-> +				cdns,max-bit-rate = <5400>;
-> +				#phy-cells = <0>;
-> +			};
-> +		};
-> +	};
-> +
-Do you see any impact of the discussions we are having at [1] ?
-
->  	main_uart0: serial@2800000 {
->  		compatible = "ti,j721e-uart", "ti,am654-uart";
->  		reg = <0x00 0x02800000 0x00 0x100>;
-> @@ -1024,6 +1100,34 @@ ufs@4e84000 {
->  		};
->  	};
->  
-> +	mhdp: dp-bridge@a000000 {
-> +		compatible = "ti,j721e-mhdp8546";
-> +		/*
-> +		 * Note: we do not map DPTX PHY area, as that is handled by
-> +		 * the PHY driver.
-> +		 */
-> +		reg = <0x0 0xa000000 0x0 0x30a00>, /* DSS_EDP0_V2A_CORE_VP_REGS_APB */
-> +		      <0x0 0x4f40000 0x0 0x20>;    /* DSS_EDP0_INTG_CFG_VP */
-> +		reg-names = "mhdptx", "j721e-intg";
-> +
-> +		status = "disabled";
-> +
-> +		clocks = <&k3_clks 151 36>;
-> +
-> +		phys = <&torrent_phy_dp>;
-> +		phy-names = "dpphy";
-> +
-> +		interrupt-parent = <&gic500>;
-> +		interrupts = <GIC_SPI 614 IRQ_TYPE_LEVEL_HIGH>;
-> +
-> +		power-domains = <&k3_pds 151 TI_SCI_PD_EXCLUSIVE>;
-> +
-> +		dp0_ports: ports {
-> +			#address-cells = <1>;
-> +			#size-cells = <0>;
-> +		};
-> +	};
-> +
->  	dss: dss@04a00000 {
->  		compatible = "ti,j721e-dss";
->  		reg =
-> -- 
-> Texas Instruments Finland Oy, Porkkalankatu 22, 00180 Helsinki.
-> Y-tunnus/Business ID: 0615521-4. Kotipaikka/Domicile: Helsinki
-> 
-
-[1] https://lore.kernel.org/linux-devicetree/8a27f8f3-20c4-f72c-b683-81153107d867@ti.com/
+diff --git a/drivers/clk/qcom/Kconfig b/drivers/clk/qcom/Kconfig
+index 2eda63b7c46c..4e46fd339e62 100644
+--- a/drivers/clk/qcom/Kconfig
++++ b/drivers/clk/qcom/Kconfig
+@@ -494,4 +494,11 @@ config KRAITCC
+ 	  Support for the Krait CPU clocks on Qualcomm devices.
+ 	  Say Y if you want to support CPU frequency scaling.
+ 
++config CLK_GFM_LPASS_SM8250
++	tristate "GFM LPASS Clocks"
++	depends on SND_SOC_QDSP6_COMMON
++	help
++	  Support for the GFM Glitch Free Mux LPASS clock. Say Y
++	  if you want to support GFM Clocks on LPASS for SM8250 SoC.
++
+ endif
+diff --git a/drivers/clk/qcom/Makefile b/drivers/clk/qcom/Makefile
+index 8eb395d02a32..c18e4ead6c9e 100644
+--- a/drivers/clk/qcom/Makefile
++++ b/drivers/clk/qcom/Makefile
+@@ -74,3 +74,4 @@ obj-$(CONFIG_SPMI_PMIC_CLKDIV) += clk-spmi-pmic-div.o
+ obj-$(CONFIG_KPSS_XCC) += kpss-xcc.o
+ obj-$(CONFIG_QCOM_HFPLL) += hfpll.o
+ obj-$(CONFIG_KRAITCC) += krait-cc.o
++obj-$(CONFIG_CLK_GFM_LPASS_SM8250) += lpass-gfm-sm8250.o
+diff --git a/drivers/clk/qcom/lpass-gfm-sm8250.c b/drivers/clk/qcom/lpass-gfm-sm8250.c
+new file mode 100644
+index 000000000000..2d5c41ae4969
+--- /dev/null
++++ b/drivers/clk/qcom/lpass-gfm-sm8250.c
+@@ -0,0 +1,235 @@
++// SPDX-License-Identifier: GPL-2.0
++
++#include <linux/kernel.h>
++#include <linux/module.h>
++#include <linux/clk-provider.h>
++#include <linux/io.h>
++#include <linux/clk.h>
++#include <linux/slab.h>
++#include <linux/err.h>
++#include <linux/notifier.h>
++#include <linux/device.h>
++#include <linux/platform_device.h>
++#include <linux/of_device.h>
++#include <dt-bindings/clock/qcom,sm8250-lpass-audiocc.h>
++
++struct lpass_gfm {
++	struct device *dev;
++	void __iomem *base;
++	struct clk *core_vote;
++	struct clk *bus_clk;
++};
++
++struct clk_gfm {
++	unsigned int mux_reg;
++	unsigned int mux_mask;
++	struct clk_hw	hw;
++	struct lpass_gfm *priv;
++	void __iomem *gfm_mux;
++};
++
++#define GFM_MASK	BIT(1)
++#define to_clk_gfm(_hw) container_of(_hw, struct clk_gfm, hw)
++
++static u8 clk_gfm_get_parent(struct clk_hw *hw)
++{
++	struct clk_gfm *clk = to_clk_gfm(hw);
++
++	return readl(clk->gfm_mux) & GFM_MASK;
++}
++
++static int clk_gfm_set_parent(struct clk_hw *hw, u8 index)
++{
++	struct clk_gfm *clk = to_clk_gfm(hw);
++	unsigned int val;
++
++	val = readl(clk->gfm_mux);
++
++	if (index)
++		val |= GFM_MASK;
++	else
++		val &= ~GFM_MASK;
++
++	writel(val, clk->gfm_mux);
++
++	return 0;
++}
++
++static const struct clk_ops clk_gfm_ops = {
++	.get_parent = clk_gfm_get_parent,
++	.set_parent = clk_gfm_set_parent,
++	.determine_rate = __clk_mux_determine_rate,
++};
++
++static struct clk_gfm lpass_gfm_wsa_mclk = {
++	.mux_reg = 0x220d8,
++	.mux_mask = BIT(0),
++	.hw.init = &(struct clk_init_data) {
++		.name = "WSA_MCLK",
++		.ops = &clk_gfm_ops,
++		.flags = CLK_SET_RATE_PARENT | CLK_OPS_PARENT_ENABLE,
++		.parent_names = (const char *[]){
++			"LPASS_CLK_ID_TX_CORE_MCLK",
++			"LPASS_CLK_ID_WSA_CORE_MCLK",
++		},
++		.parent_data = (const struct clk_parent_data[]){
++				{ .index = 0 },
++				{ .index = 1 },
++		},
++		.num_parents = 2,
++	},
++};
++
++static struct clk_gfm lpass_gfm_wsa_npl = {
++	.mux_reg = 0x220d8,
++	.mux_mask = BIT(0),
++	.hw.init = &(struct clk_init_data) {
++		.name = "WSA_NPL",
++		.ops = &clk_gfm_ops,
++		.flags = CLK_SET_RATE_PARENT | CLK_OPS_PARENT_ENABLE,
++		.parent_names = (const char *[]){
++			"LPASS_CLK_ID_TX_CORE_NPL_MCLK",
++			"LPASS_CLK_ID_WSA_CORE_NPL_MCLK",
++		},
++		.parent_data = (const struct clk_parent_data[]){
++				{ .index = 0 },
++				{ .index = 1 },
++		},
++		.num_parents = 2,
++	},
++};
++
++static struct clk_gfm lpass_gfm_rx_mclk_mclk2 = {
++	.mux_reg = 0x240d8,
++	.mux_mask = BIT(0),
++	.hw.init = &(struct clk_init_data) {
++		.name = "RX_MCLK_MCLK2",
++		.ops = &clk_gfm_ops,
++		.flags = CLK_SET_RATE_PARENT | CLK_OPS_PARENT_ENABLE,
++		.parent_names = (const char *[]){
++			"LPASS_CLK_ID_TX_CORE_MCLK",
++			"LPASS_CLK_ID_RX_CORE_MCLK",
++		},
++		.parent_data = (const struct clk_parent_data[]){
++				{ .index = 0 },
++				{ .index = 1 },
++		},
++		.num_parents = 2,
++	},
++};
++
++static struct clk_gfm lpass_gfm_rx_npl = {
++	.mux_reg = 0x240d8,
++	.mux_mask = BIT(0),
++	.hw.init = &(struct clk_init_data) {
++		.name = "RX_NPL",
++		.ops = &clk_gfm_ops,
++		.flags = CLK_SET_RATE_PARENT | CLK_OPS_PARENT_ENABLE,
++		.parent_names = (const char *[]){
++			"LPASS_CLK_ID_TX_CORE_NPL_MCLK",
++			"LPASS_CLK_ID_RX_CORE_NPL_MCLK",
++		},
++		.parent_data = (const struct clk_parent_data[]){
++				{ .index = 0 },
++				{ .index = 1 },
++		},
++		.num_parents = 2,
++	},
++};
++
++static struct clk_gfm *audiocc_gfm_clks[] = {
++	[LPASS_CDC_WSA_NPL]		= &lpass_gfm_wsa_npl,
++	[LPASS_CDC_WSA_MCLK]		= &lpass_gfm_wsa_mclk,
++	[LPASS_CDC_RX_NPL]		= &lpass_gfm_rx_npl,
++	[LPASS_CDC_RX_MCLK_MCLK2]	= &lpass_gfm_rx_mclk_mclk2,
++};
++
++static struct clk_hw_onecell_data audiocc_hw_onecell_data = {
++	.hws = {
++		[LPASS_CDC_WSA_NPL]	= &lpass_gfm_wsa_npl.hw,
++		[LPASS_CDC_WSA_MCLK]	= &lpass_gfm_wsa_mclk.hw,
++		[LPASS_CDC_RX_NPL]	= &lpass_gfm_rx_npl.hw,
++		[LPASS_CDC_RX_MCLK_MCLK2] = &lpass_gfm_rx_mclk_mclk2.hw,
++	},
++	.num = ARRAY_SIZE(audiocc_gfm_clks),
++};
++
++struct lpass_gfm_data {
++	struct clk_hw_onecell_data *onecell_data;
++	struct clk_gfm **gfm_clks;
++};
++
++static struct lpass_gfm_data audiocc_data = {
++	.onecell_data = &audiocc_hw_onecell_data,
++	.gfm_clks = audiocc_gfm_clks,
++};
++
++static int lpass_gfm_clk_driver_probe(struct platform_device *pdev)
++{
++	const struct lpass_gfm_data *data;
++	struct device *dev = &pdev->dev;
++	struct resource *res;
++	struct clk_gfm *gfm;
++	struct lpass_gfm *cc;
++	int err, i;
++
++	cc = devm_kzalloc(dev, sizeof(*cc), GFP_KERNEL);
++	if (!cc)
++		return -ENOMEM;
++
++	cc->core_vote = devm_clk_get(&pdev->dev, "core");
++	if (IS_ERR(cc->core_vote)) {
++		dev_dbg(dev, "Failed to get lpass core clk\n");
++		return PTR_ERR(cc->core_vote);
++	}
++
++	data = of_device_get_match_data(dev);
++	cc->bus_clk = devm_clk_get(&pdev->dev, "bus");
++	if (IS_ERR(cc->bus_clk)) {
++		dev_dbg(dev, "Failed to get lpass bus clk\n");
++		return PTR_ERR(cc->bus_clk);
++	}
++
++	res = platform_get_resource(pdev, IORESOURCE_MEM, 0);
++	cc->base = devm_ioremap_resource(dev, res);
++	if (IS_ERR(cc->base))
++		return PTR_ERR(cc->base);
++
++	clk_prepare_enable(cc->core_vote);
++	clk_prepare_enable(cc->bus_clk);
++
++	for (i = 0; i < data->onecell_data->num; i++) {
++		if (!data->gfm_clks[i])
++			continue;
++
++		gfm = data->gfm_clks[i];
++		gfm->priv = cc;
++		gfm->gfm_mux = cc->base;
++		gfm->gfm_mux = gfm->gfm_mux + data->gfm_clks[i]->mux_reg;
++
++		err = devm_clk_hw_register(dev, &data->gfm_clks[i]->hw);
++		if (err)
++			return err;
++
++	}
++
++	return devm_of_clk_add_hw_provider(dev, of_clk_hw_onecell_get,
++					   data->onecell_data);
++}
++
++static const struct of_device_id lpass_gfm_clk_match_table[] = {
++	{
++		.compatible = "qcom,sm8250-lpass-audiocc",
++		.data = &audiocc_data,
++	},
++	{ }
++};
++
++static struct platform_driver lpass_gfm_clk_driver = {
++	.probe		= lpass_gfm_clk_driver_probe,
++	.driver		= {
++		.name	= "lpass-gfm-clk",
++		.of_match_table = lpass_gfm_clk_match_table,
++	},
++};
++builtin_platform_driver(lpass_gfm_clk_driver);
 -- 
-Regards,
-Nishanth Menon
-Key (0xDDB5849D1736249D) / Fingerprint: F8A2 8693 54EB 8232 17A3  1A34 DDB5 849D 1736 249D
+2.21.0
+
