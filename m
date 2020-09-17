@@ -2,180 +2,162 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from vger.kernel.org (vger.kernel.org [23.128.96.18])
-	by mail.lfdr.de (Postfix) with ESMTP id 7BB1626D024
-	for <lists+devicetree@lfdr.de>; Thu, 17 Sep 2020 02:46:37 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTP id 66CF726D046
+	for <lists+devicetree@lfdr.de>; Thu, 17 Sep 2020 02:58:02 +0200 (CEST)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S1726098AbgIQAqc (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Wed, 16 Sep 2020 20:46:32 -0400
-Received: from lindbergh.monkeyblade.net ([23.128.96.19]:44312 "EHLO
+        id S1726101AbgIQA57 (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Wed, 16 Sep 2020 20:57:59 -0400
+Received: from lindbergh.monkeyblade.net ([23.128.96.19]:46086 "EHLO
         lindbergh.monkeyblade.net" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S1726072AbgIQAqb (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Wed, 16 Sep 2020 20:46:31 -0400
-Received: from mail-oi1-x244.google.com (mail-oi1-x244.google.com [IPv6:2607:f8b0:4864:20::244])
-        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 06518C061356
-        for <devicetree@vger.kernel.org>; Wed, 16 Sep 2020 17:46:30 -0700 (PDT)
-Received: by mail-oi1-x244.google.com with SMTP id a3so480165oib.4
-        for <devicetree@vger.kernel.org>; Wed, 16 Sep 2020 17:46:30 -0700 (PDT)
+        with ESMTP id S1726054AbgIQA57 (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Wed, 16 Sep 2020 20:57:59 -0400
+Received: from mail-pg1-x542.google.com (mail-pg1-x542.google.com [IPv6:2607:f8b0:4864:20::542])
+        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 5E007C061356
+        for <devicetree@vger.kernel.org>; Wed, 16 Sep 2020 17:48:00 -0700 (PDT)
+Received: by mail-pg1-x542.google.com with SMTP id u13so350152pgh.1
+        for <devicetree@vger.kernel.org>; Wed, 16 Sep 2020 17:48:00 -0700 (PDT)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=linaro.org; s=google;
+        d=chromium.org; s=google;
         h=date:from:to:cc:subject:message-id:references:mime-version
-         :content-disposition:content-transfer-encoding:in-reply-to;
-        bh=xPfF/+vHZ8xULDak5kE3Di70hl+PzaH5PBbg6iuyFFM=;
-        b=Zbt3vPlHy3YASoVcQRtmExxjDK9LYi8zfmrC+8SVKZwsmZrRDgo3laAVlvKH/05dNd
-         zXIr/6NLQ52gEsE5syvHRvxlZkUCJ1v4YyHIeRV7jXyGvxzNWzDlaSQMeKklDyLAxOYc
-         v40p05Y/X8G/EhRRP0LgSWLb//JPsAgaaSvokwHYCMiAS7/y7PVrTVmsjd+bIVuum/FC
-         yLC3Sx4RRtIyvKNkNqQby4x9ii2xJbaQuVM+FS7If4XInO7mbscnYZVRZH7j7gGxKFO9
-         2BszYiF9xEN3nz+IhfoOShY4FTKBy1UIAdthCZP8p2sMkwkgNvESkXGkstd1V2UmHEpo
-         tKcA==
+         :content-disposition:in-reply-to;
+        bh=IMde5+fYLTM+LOpHLAIsusiBE2VPJ2NXLJ4iOEOG7wU=;
+        b=aUt3jA0/JEquIMq6Bi8plKnqKOdfJW1ODHcJcvZKrvECJwNR0m4dKcgN5SVSfE5Bad
+         MRZE6XLXjgGx7HG9zPSUAne9BRoUjvCrYhli0NoJGnwmWnldf+TD0ehElLXcM3PQWvbo
+         sjFCmiUclRBH9IF8dW5pSz1KiDgdtzdi2yUZ4=
 X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
         d=1e100.net; s=20161025;
         h=x-gm-message-state:date:from:to:cc:subject:message-id:references
-         :mime-version:content-disposition:content-transfer-encoding
-         :in-reply-to;
-        bh=xPfF/+vHZ8xULDak5kE3Di70hl+PzaH5PBbg6iuyFFM=;
-        b=mNdFrCHjUCpaQ5bBieoFDues7EIkT2V7JZcUCMTjktk4Qb096dwYkC8uEoF5gg7dlo
-         7+4Y0/iGijcwgsPPU8Q//wg6SdmEscVxbDcqgTRbv/xzwMsS7A984hckAmGIg04Rm7Pw
-         84S4MdT2zVsbIgBtl5lnnJLRMtfHDGWk0wwX/b5McFRVd7XBgVAU062W3+5wB8bk9HpU
-         btjK3NBmAh30Q4+hlkW7HHj9LncuEKnKqO8LN6bthMKY3W6Ehk85XY+hj3SY6pCjY+GH
-         ENfnFNzI+CchSR1IXtkCDyNhuC/qsB3YEpHGlJ2EWISD8zOdx2AoHkchE89I209NiY+h
-         ZgwQ==
-X-Gm-Message-State: AOAM531Q3gebbowkFB6wxM9h6vK/h4XYoZSzJMZyx+aakf0+tKBbspw3
-        IBr6FDChtpWHijZ9XBc9CXhJm2o+IFqziIZo
-X-Google-Smtp-Source: ABdhPJyvdeAESwOnVofeOkEEXJbZoFus3jAmQOAYorS8U5WznmT9jpjEZek/Y/mXG1+xL43TucnVqg==
-X-Received: by 2002:aca:2301:: with SMTP id e1mr5001999oie.177.1600303590034;
-        Wed, 16 Sep 2020 17:46:30 -0700 (PDT)
-Received: from yoga ([2605:6000:e5cb:c100:7cad:6eff:fec8:37e4])
-        by smtp.gmail.com with ESMTPSA id j34sm262867otc.15.2020.09.16.17.46.27
-        (version=TLS1_3 cipher=TLS_AES_256_GCM_SHA384 bits=256/256);
-        Wed, 16 Sep 2020 17:46:29 -0700 (PDT)
-Date:   Wed, 16 Sep 2020 19:46:25 -0500
-From:   Bjorn Andersson <bjorn.andersson@linaro.org>
-To:     Marek Beh?n <marek.behun@nic.cz>
-Cc:     linux-leds@vger.kernel.org, Pavel Machek <pavel@ucw.cz>,
-        Dan Murphy <dmurphy@ti.com>,
-        Ond??ej Jirman <megous@megous.com>,
-        linux-kernel@vger.kernel.org, Rob Herring <robh+dt@kernel.org>,
-        devicetree@vger.kernel.org,
-        Linus Walleij <linus.walleij@linaro.org>
-Subject: Re: [PATCH leds v1 06/10] leds: pm8058: use struct led_init_data
- when registering
-Message-ID: <20200917004625.GJ1893@yoga>
-References: <20200916231650.11484-1-marek.behun@nic.cz>
- <20200916231650.11484-7-marek.behun@nic.cz>
+         :mime-version:content-disposition:in-reply-to;
+        bh=IMde5+fYLTM+LOpHLAIsusiBE2VPJ2NXLJ4iOEOG7wU=;
+        b=T9OkHmzKvZvxfMVu/iet+25pX623Xt9kA3A01XfAsiycNCob3KYH/ZLTeS9DIg9dtq
+         xqueQv/tNaSHB+7TbLMGkx7V5BvbF9pNAKEu99mdONV6Se7JYkZtDMfRscj6/g2vxA7q
+         Lk8wEe+pqv6gKKP/2fHLznntgiSYowSkavllwDZkdA/BOndsPXo+4Y/XDvkEhjwJ3TRk
+         RtfcKDRwvxvJCquSygeQgikMVICGcaO8MUahhBkW4/KNts9qxLQvIfsrNgPYYE32PJl8
+         N9E7sWE7+oIw1Gkhbx4wGrTu9zqGcZWmd9BbTrkKL/kDd5SxLYg9xaq+Xz9AfVUQZUXV
+         qRIA==
+X-Gm-Message-State: AOAM531+u8S7ck2CA6gv4lMnIYdSFqVF6KdMtI/KlwKI1qUS9iQsfw1X
+        NIqnDuoWkCHwhBlLwzGRMpz02w==
+X-Google-Smtp-Source: ABdhPJzYFfzVAE8rlAhPr5U+QgUbg0E1wVpjBgma6AiQLVXZtRMtOe4ImZGaaD0CzGvgiOD0pW8tmg==
+X-Received: by 2002:aa7:8a54:0:b029:142:2501:34f6 with SMTP id n20-20020aa78a540000b0290142250134f6mr8783278pfa.79.1600303679889;
+        Wed, 16 Sep 2020 17:47:59 -0700 (PDT)
+Received: from localhost ([2620:15c:202:1:f693:9fff:fef4:e70a])
+        by smtp.gmail.com with ESMTPSA id o15sm15519028pgi.74.2020.09.16.17.47.59
+        (version=TLS1_3 cipher=TLS_AES_128_GCM_SHA256 bits=128/128);
+        Wed, 16 Sep 2020 17:47:59 -0700 (PDT)
+Date:   Wed, 16 Sep 2020 17:47:58 -0700
+From:   Matthias Kaehlcke <mka@chromium.org>
+To:     Peter Chen <peter.chen@nxp.com>
+Cc:     Greg Kroah-Hartman <gregkh@linuxfoundation.org>,
+        Rob Herring <robh+dt@kernel.org>,
+        Frank Rowand <frowand.list@gmail.com>,
+        Alan Stern <stern@rowland.harvard.edu>,
+        Krzysztof Kozlowski <krzk@kernel.org>,
+        Bastien Nocera <hadess@hadess.net>,
+        Ravi Chandra Sadineni <ravisadineni@chromium.org>,
+        "linux-usb@vger.kernel.org" <linux-usb@vger.kernel.org>,
+        Stephen Boyd <swboyd@chromium.org>,
+        "devicetree@vger.kernel.org" <devicetree@vger.kernel.org>,
+        Douglas Anderson <dianders@chromium.org>,
+        "linux-kernel@vger.kernel.org" <linux-kernel@vger.kernel.org>,
+        "Alexander A. Klimov" <grandmaster@al2klimov.de>,
+        Masahiro Yamada <masahiroy@kernel.org>
+Subject: Re: [PATCH 2/2] USB: misc: Add onboard_usb_hub driver
+Message-ID: <20200917004758.GD3560556@google.com>
+References: <20200914112716.1.I248292623d3d0f6a4f0c5bc58478ca3c0062b49a@changeid>
+ <20200914112716.2.I7c9a1f1d6ced41dd8310e8a03da666a32364e790@changeid>
+ <20200915025426.GA17450@b29397-desktop>
+ <20200915050207.GF2022397@google.com>
+ <AM7PR04MB715735A8A102F3EC9041EA328B200@AM7PR04MB7157.eurprd04.prod.outlook.com>
+ <20200915230345.GF2771744@google.com>
+ <20200916081821.GA14376@b29397-desktop>
+ <20200916191607.GB3560556@google.com>
+ <20200917002646.GA23310@b29397-desktop>
 MIME-Version: 1.0
-Content-Type: text/plain; charset=iso-8859-1
+Content-Type: text/plain; charset=utf-8
 Content-Disposition: inline
-Content-Transfer-Encoding: 8bit
-In-Reply-To: <20200916231650.11484-7-marek.behun@nic.cz>
+In-Reply-To: <20200917002646.GA23310@b29397-desktop>
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-On Wed 16 Sep 18:16 CDT 2020, Marek Beh?n wrote:
-
-> By using struct led_init_data when registering we do not need to parse
-> `label` DT property nor `linux,default-trigger` property.
+On Thu, Sep 17, 2020 at 12:27:29AM +0000, Peter Chen wrote:
+> On 20-09-16 12:16:07, Matthias Kaehlcke wrote:
+> > Hi Peter,
+> > 
+> > On Wed, Sep 16, 2020 at 08:19:07AM +0000, Peter Chen wrote:
+> > > On 20-09-15 16:03:45, Matthias Kaehlcke wrote:
+> > > > Hi Peter,
+> > > > 
+> > > > On Tue, Sep 15, 2020 at 07:05:38AM +0000, Peter Chen wrote:
+> > > > >   
+> > > > > > > > +	hub->cfg.power_off_in_suspend =
+> > > > > > of_property_read_bool(dev->of_node, "power-off-in-suspend");
+> > > > > > > > +	hub->cfg.wakeup_source = of_property_read_bool(dev->of_node,
+> > > > > > > > +"wakeup-source");
+> > > > > > >
+> > > > > > > Do you really need these two properties? If the device (and its
+> > > > > > > children if existed) has wakeup enabled, you keep power in suspend,
+> > > > > > > otherwise, you could close it, any exceptions?
+> > > > > > 
+> > > > > > That would work for my use case, but I'm not sure it's a universally good
+> > > > > > configuration.
+> > > > > > 
+> > > > > > I don't have a specific USB device in mind, but you could have a device that
+> > > > > > shouldn't lose it's context during suspend or keep operating autonomously (e.g.
+> > > > > > a sensor with a large buffer collecting samples). Not sure if something like this
+> > > > > > exists in the real though.
+> > > > > > 
+> > > > > > I'm not an expert, but it seems there are USB controllers with wakeup support
+> > > > > > which is always enabled. A board with such a controller then couldn't have a
+> > > > > > policy to power down the hub regardless of wakeup capable devices being
+> > > > > > connected.
+> > > > > > 
+> > > > > 
+> > > > > Whether or not it is a wakeup_source, it could get through its or its children's
+> > > > > /sys/../power/wakeup value, you have already used usb_wakeup_enabled_descendants
+> > > > > to know it.
+> > > > 
+> > > > I conceptually agree, but in practice there are some conflicting details:
+> > > > 
+> > > > wakeup for the hubs on my system is by default disabled, yet USB wakeup works
+> > > > regardless, so the flag doesn't really provide useful information. I guess we
+> > > > could still use it if there is no better way, but it doesn't seem ideal.
+> > > > 
+> > > > Similar for udev->bus->controller, according to sysfs it doesn't even have wakeup
+> > > > support. Please let me know if there is a reliable way to check if wakeup is
+> > > > enabled on the controller of a device.
+> > > 
+> > > Then, how could your code work, you use usb_wakeup_enabled_descendants
+> > > to get if HUB or the descendants under the HUB has wakeup enabled?
+> > 
+> > Doing just that would not allow to switch the hub off when wakeup enabled
+> > descendants are connected, which might be desirable in some configurations.
+> > 
+> > > If you use dwc3, you need to enable xhci-plat.c's wakeup entry if your
+> > > system needs xHCI connect/disconnect wakeup event. I have one pending
+> > > patch to do it:
+> > > 
+> > > https://eur01.safelinks.protection.outlook.com/?url=https%3A%2F%2Fwww.spinics.net%2Flists%2Flinux-usb%2Fmsg199406.html&amp;data=02%7C01%7Cpeter.chen%40nxp.com%7C02c4cc75e26a47d0224d08d85a74f945%7C686ea1d3bc2b4c6fa92cd99c5c301635%7C0%7C0%7C637358805725394858&amp;sdata=cjZhSmQiXVJoLsN5PjFACsLwsikH%2BeRTztPhsckJFNs%3D&amp;reserved=0
+> > 
+> > Thanks, my system has indeed a dwc3(-qcom) controller, your patch adds
+> > the missing wakeup entry to sysfs. So it seems your patch should solve
+> > my problem (sharp timing!), however you mention specifically the 'xHCI
+> > connect/disconnect wakeup event', so I wonder if the xHCI wakeup flag
+> > isn't applicable to other wakeup events. I know the dwc3-qcom platform
+> > device has its own wakeup flag. The driver currently enables wakeup
+> > interrupts unconditionally, I sent a patch to change that
+> > (https://eur01.safelinks.protection.outlook.com/?url=https%3A%2F%2Flore.kernel.org%2Fpatchwork%2Fpatch%2F1305894%2F&amp;data=02%7C01%7Cpeter.chen%40nxp.com%7C02c4cc75e26a47d0224d08d85a74f945%7C686ea1d3bc2b4c6fa92cd99c5c301635%7C0%7C0%7C637358805725394858&amp;sdata=6IjiiHJql%2FW4vzDla9q3qdfiiOzOQy1Vk7ryUhKOOTc%3D&amp;reserved=0), however I now wonder
+> > if it should evaluate the xHCI wakeup flag instead of its own.
+> > 
 > 
-> Signed-off-by: Marek Behún <marek.behun@nic.cz>
-> Cc: Linus Walleij <linus.walleij@linaro.org>
-> Cc: Bjorn Andersson <bjorn.andersson@linaro.org>
-> ---
->  drivers/leds/leds-pm8058.c | 38 +++++++++++++++++++-------------------
->  1 file changed, 19 insertions(+), 19 deletions(-)
-> 
-> diff --git a/drivers/leds/leds-pm8058.c b/drivers/leds/leds-pm8058.c
-> index 7869ccdf70ce6..f6190e4af60fe 100644
-> --- a/drivers/leds/leds-pm8058.c
-> +++ b/drivers/leds/leds-pm8058.c
-> @@ -87,36 +87,37 @@ static enum led_brightness pm8058_led_get(struct led_classdev *cled)
->  
->  static int pm8058_led_probe(struct platform_device *pdev)
->  {
-> +	struct led_init_data init_data = {};
-> +	struct device *dev = &pdev->dev;
-> +	enum led_brightness maxbright;
-> +	struct device_node *np;
->  	struct pm8058_led *led;
-> -	struct device_node *np = pdev->dev.of_node;
-> -	int ret;
->  	struct regmap *map;
->  	const char *state;
-> -	enum led_brightness maxbright;
-> +	int ret;
->  
-> -	led = devm_kzalloc(&pdev->dev, sizeof(*led), GFP_KERNEL);
-> +	led = devm_kzalloc(dev, sizeof(*led), GFP_KERNEL);
+> You may need both (glue & xhci), it depends on system design, and
+> usually, these two kinds of wakeup setting isn't conflict.
 
-The pdev->dev -> dev and of_node changes are reasonable, but shouldn't
-be part of this patch. It simply makes it hard to reason about he actual
-change.
-
-Please respin this with only the introduction of led_init_data.
-
-Thanks,
-Bjorn
-
->  	if (!led)
->  		return -ENOMEM;
->  
-> -	led->ledtype = (u32)(unsigned long)of_device_get_match_data(&pdev->dev);
-> +	led->ledtype = (u32)(unsigned long)device_get_match_data(dev);
->  
-> -	map = dev_get_regmap(pdev->dev.parent, NULL);
-> +	map = dev_get_regmap(dev->parent, NULL);
->  	if (!map) {
-> -		dev_err(&pdev->dev, "Parent regmap unavailable.\n");
-> +		dev_err(dev, "Parent regmap unavailable.\n");
->  		return -ENXIO;
->  	}
->  	led->map = map;
->  
-> +	np = dev_of_node(dev);
-> +
->  	ret = of_property_read_u32(np, "reg", &led->reg);
->  	if (ret) {
-> -		dev_err(&pdev->dev, "no register offset specified\n");
-> +		dev_err(dev, "no register offset specified\n");
->  		return -EINVAL;
->  	}
->  
->  	/* Use label else node name */
-> -	led->cdev.name = of_get_property(np, "label", NULL) ? : np->name;
-> -	led->cdev.default_trigger =
-> -		of_get_property(np, "linux,default-trigger", NULL);
->  	led->cdev.brightness_set = pm8058_led_set;
->  	led->cdev.brightness_get = pm8058_led_get;
->  	if (led->ledtype == PM8058_LED_TYPE_COMMON)
-> @@ -142,14 +143,13 @@ static int pm8058_led_probe(struct platform_device *pdev)
->  	    led->ledtype == PM8058_LED_TYPE_FLASH)
->  		led->cdev.flags	= LED_CORE_SUSPENDRESUME;
->  
-> -	ret = devm_led_classdev_register(&pdev->dev, &led->cdev);
-> -	if (ret) {
-> -		dev_err(&pdev->dev, "unable to register led \"%s\"\n",
-> -			led->cdev.name);
-> -		return ret;
-> -	}
-> +	init_data.fwnode = of_fwnode_handle(np);
-> +
-> +	ret = devm_led_classdev_register_ext(dev, &led->cdev, &init_data);
-> +	if (ret)
-> +		dev_err(dev, "Failed to register LED for node %pOF\n", np);
->  
-> -	return 0;
-> +	return ret;
->  }
->  
->  static const struct of_device_id pm8058_leds_id_table[] = {
-> @@ -173,7 +173,7 @@ static struct platform_driver pm8058_led_driver = {
->  	.probe		= pm8058_led_probe,
->  	.driver		= {
->  		.name	= "pm8058-leds",
-> -		.of_match_table = pm8058_leds_id_table,
-> +		.of_match_table = of_match_ptr(pm8058_leds_id_table),
->  	},
->  };
->  module_platform_driver(pm8058_led_driver);
-> -- 
-> 2.26.2
-> 
+Ok, thanks. So if I understand correctly the onboard hub driver should
+check the wakeup state of the xHCI to determine if remote wakeup is
+enabled for the controller (after all it doesn't know anything about
+the platform device). Wakeup might not work properly if it is disabled
+for the platform device, but it's the responsability of the board
+software/config to make sure it is enabled (possibly this could be done
+by making the dwc3-qcom driver understand the 'wakeup-source' property,
+as the xhci-mtk driver does).
