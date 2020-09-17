@@ -2,287 +2,229 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from vger.kernel.org (vger.kernel.org [23.128.96.18])
-	by mail.lfdr.de (Postfix) with ESMTP id A2F4A26E909
-	for <lists+devicetree@lfdr.de>; Fri, 18 Sep 2020 00:40:03 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTP id D0BF826E927
+	for <lists+devicetree@lfdr.de>; Fri, 18 Sep 2020 00:50:47 +0200 (CEST)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S1725886AbgIQWkC (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Thu, 17 Sep 2020 18:40:02 -0400
-Received: from mo-csw1514.securemx.jp ([210.130.202.153]:49804 "EHLO
-        mo-csw.securemx.jp" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S1726002AbgIQWkC (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Thu, 17 Sep 2020 18:40:02 -0400
-Received: by mo-csw.securemx.jp (mx-mo-csw1514) id 08HMdZMq004674; Fri, 18 Sep 2020 07:39:35 +0900
-X-Iguazu-Qid: 34ts08I8PmoHVh2cE4
-X-Iguazu-QSIG: v=2; s=0; t=1600382375; q=34ts08I8PmoHVh2cE4; m=Vg3uAyMwItN/E9/IJUyFEZ3X2SodBcMmZG3zllJbkeo=
-Received: from imx12.toshiba.co.jp (imx12.toshiba.co.jp [61.202.160.132])
-        by relay.securemx.jp (mx-mr1511) id 08HMdXnf018876;
-        Fri, 18 Sep 2020 07:39:33 +0900
-Received: from enc02.toshiba.co.jp ([61.202.160.51])
-        by imx12.toshiba.co.jp  with ESMTP id 08HMdX9S021373;
-        Fri, 18 Sep 2020 07:39:33 +0900 (JST)
-Received: from hop101.toshiba.co.jp ([133.199.85.107])
-        by enc02.toshiba.co.jp  with ESMTP id 08HMdWd7005325;
-        Fri, 18 Sep 2020 07:39:32 +0900
-From:   Nobuhiro Iwamatsu <nobuhiro1.iwamatsu@toshiba.co.jp>
-To:     Rob Herring <robh+dt@kernel.org>,
-        Wim Van Sebroeck <wim@linux-watchdog.org>,
-        Guenter Roeck <linux@roeck-us.net>
-Cc:     punit1.agrawal@toshiba.co.jp, yuji2.ishikawa@toshiba.co.jp,
-        devicetree@vger.kernel.org, linux-arm-kernel@lists.infradead.org,
-        linux-watchdog@vger.kernel.org,
-        Nobuhiro Iwamatsu <nobuhiro1.iwamatsu@toshiba.co.jp>
-Subject: [PATCH 2/2] watchdog: Add Toshiba Visconti watchdog driver
-Date:   Fri, 18 Sep 2020 07:39:24 +0900
-X-TSB-HOP: ON
-Message-Id: <20200917223924.227997-3-nobuhiro1.iwamatsu@toshiba.co.jp>
-X-Mailer: git-send-email 2.27.0
-In-Reply-To: <20200917223924.227997-1-nobuhiro1.iwamatsu@toshiba.co.jp>
-References: <20200917223924.227997-1-nobuhiro1.iwamatsu@toshiba.co.jp>
+        id S1726101AbgIQWuq (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Thu, 17 Sep 2020 18:50:46 -0400
+Received: from mail-dm6nam11on2042.outbound.protection.outlook.com ([40.107.223.42]:7777
+        "EHLO NAM11-DM6-obe.outbound.protection.outlook.com"
+        rhost-flags-OK-OK-OK-FAIL) by vger.kernel.org with ESMTP
+        id S1725858AbgIQWuq (ORCPT <rfc822;devicetree@vger.kernel.org>);
+        Thu, 17 Sep 2020 18:50:46 -0400
+ARC-Seal: i=1; a=rsa-sha256; s=arcselector9901; d=microsoft.com; cv=none;
+ b=kckCpwHplbEGAt+SO4yjH14TffKFCfZxjDr9Q0m9X7bLCjm+NENDvplaVFQwWzesGKF6+WIR/0w+9gMes+QHLe99PFM5kfgcpF7qnCB2mx7scDKeDkoWdNg7EJjXGhqsAFThqorBhVP88KtOcgQyCD8p1HTafSi/OAJ0qHiuR/3pGsUQSf61s6JeaKK1UgY719E8+y2wZWyvOPT/R1zbY83XFCXX+1Yp3k4RSGuW6A5EQltBIpY22lUZ/CYM6I36pccaB+/LKCDGl9NWZTrTjwwQJkxpEsCmrWU0bHmTaYZMeGQhvtyBYO2jgn+OBvWy4JgKeBD63oLu7MOa2euO/g==
+ARC-Message-Signature: i=1; a=rsa-sha256; c=relaxed/relaxed; d=microsoft.com;
+ s=arcselector9901;
+ h=From:Date:Subject:Message-ID:Content-Type:MIME-Version:X-MS-Exchange-SenderADCheck;
+ bh=3sOKZHLHkK1mgGZP/iObMu7uDeEW+RWFtoZsLP9+QoQ=;
+ b=AAEn7AkCMVjE5JB2kY+ifcF4ve0yrF9Two0TV02Co4qxGaHOyw8x4uRYzj+emd6WF/IJR3ekOlSUUwBncDAey6Q0J0H69sgngjrxClFAhuJxQ05aP13ALvczgvwPy9IQg9NWr61ZchsbnZN8q5noio0h3HQ0kMRXEy6xnAG+cNZMV7ikrzlKbMyZ/cAZjAjL87vtyqMbjB2GJzEPN2jnToCF27dnlbNPBKuePn+x8CQVNLRbWvIvJ6Ut8G+KFTmnxpsYe7m4U7PSmHsNQAfM7ywbDKaitg8x/9dWdH4RR6tI48JUI8mxJ5BdZSuyr8gngU4tG3C4nrDfG4ECF49xzg==
+ARC-Authentication-Results: i=1; mx.microsoft.com 1; spf=pass
+ smtp.mailfrom=xilinx.com; dmarc=pass action=none header.from=xilinx.com;
+ dkim=pass header.d=xilinx.com; arc=none
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+ d=xilinx.onmicrosoft.com; s=selector2-xilinx-onmicrosoft-com;
+ h=From:Date:Subject:Message-ID:Content-Type:MIME-Version:X-MS-Exchange-SenderADCheck;
+ bh=3sOKZHLHkK1mgGZP/iObMu7uDeEW+RWFtoZsLP9+QoQ=;
+ b=bK3Kj01u2eMpooHCjq924bETDkdFOKUaT56iVa23i49ocwVt+iboJkrPkYKB89VlKGxPurdmB/mR94mfpoAGIS5IlzLMT40vzo0Bai2bCB1bqQPygKi15sZ7pgQ/Qm17HvVdvr5OgOV4CD3QbeG/EXic7gHbFEVEQWtr0c7gUCA=
+Received: from BYAPR02MB4407.namprd02.prod.outlook.com (2603:10b6:a03:55::31)
+ by BYAPR02MB5127.namprd02.prod.outlook.com (2603:10b6:a03:6c::26) with
+ Microsoft SMTP Server (version=TLS1_2,
+ cipher=TLS_ECDHE_RSA_WITH_AES_256_GCM_SHA384) id 15.20.3370.16; Thu, 17 Sep
+ 2020 22:50:42 +0000
+Received: from BYAPR02MB4407.namprd02.prod.outlook.com
+ ([fe80::b0f6:b3a:6543:26f5]) by BYAPR02MB4407.namprd02.prod.outlook.com
+ ([fe80::b0f6:b3a:6543:26f5%5]) with mapi id 15.20.3391.011; Thu, 17 Sep 2020
+ 22:50:42 +0000
+From:   Ben Levinsky <BLEVINSK@xilinx.com>
+To:     Michael Auchter <michael.auchter@ni.com>
+CC:     "devicetree@vger.kernel.org" <devicetree@vger.kernel.org>,
+        "linux-remoteproc@vger.kernel.org" <linux-remoteproc@vger.kernel.org>,
+        "linux-kernel@vger.kernel.org" <linux-kernel@vger.kernel.org>,
+        "linux-arm-kernel@lists.infradead.org" 
+        <linux-arm-kernel@lists.infradead.org>
+Subject: RE: [PATCH v14 5/5] remoteproc: Add initial zynqmp R5 remoteproc
+ driver
+Thread-Topic: [PATCH v14 5/5] remoteproc: Add initial zynqmp R5 remoteproc
+ driver
+Thread-Index: AQHWjSzx2v36zrUuJk25DA+tFuTaOqltZJcAgAAAbzCAAAnbcA==
+Date:   Thu, 17 Sep 2020 22:50:42 +0000
+Message-ID: <BYAPR02MB4407A552ECBA907DFC3CEC91B53E0@BYAPR02MB4407.namprd02.prod.outlook.com>
+References: <20200917194341.16272-1-ben.levinsky@xilinx.com>
+ <20200917194341.16272-6-ben.levinsky@xilinx.com>
+ <20200917221120.GA15530@xaphan>
+ <BYAPR02MB44073E7A3BEA401FF4684E95B53E0@BYAPR02MB4407.namprd02.prod.outlook.com>
+In-Reply-To: <BYAPR02MB44073E7A3BEA401FF4684E95B53E0@BYAPR02MB4407.namprd02.prod.outlook.com>
+Accept-Language: en-US
+Content-Language: en-US
+X-MS-Has-Attach: 
+X-Auto-Response-Suppress: DR, RN, NRN, OOF, AutoReply
+X-MS-TNEF-Correlator: 
+authentication-results: ni.com; dkim=none (message not signed)
+ header.d=none;ni.com; dmarc=none action=none header.from=xilinx.com;
+x-originating-ip: [24.5.142.107]
+x-ms-publictraffictype: Email
+x-ms-office365-filtering-ht: Tenant
+x-ms-office365-filtering-correlation-id: 3440f0b9-3af2-4945-7718-08d85b5c1b31
+x-ms-traffictypediagnostic: BYAPR02MB5127:
+x-microsoft-antispam-prvs: <BYAPR02MB5127859F8CBC7907DDD1D57AB53E0@BYAPR02MB5127.namprd02.prod.outlook.com>
+x-ms-oob-tlc-oobclassifiers: OLM:9508;
+x-ms-exchange-senderadcheck: 1
+x-microsoft-antispam: BCL:0;
+x-microsoft-antispam-message-info: gS3/TwZ1wrOUJ1XkfjoQgzRWbO7kvVssWAgrv6tEHK96ee+PGXEy1cx6qQ+1Jtu53Xcu/jf2ZRWMrGK/UFUfM4FXx73BqjM2PSvKh+FUgoFoD/+1OJyqVmImurfTk0tB6Y3yoYYMBpIy0TZUYx73DyflvLGtx66CSZojDXfid+QqAgLyYZFAwvRRbpetQeTaTDuly6duEW+SBONuWLqVwf/uGzFVXl0UWpuI8aq4Bx9YOcwP3K1FA+WgSzaiocl6HD5ULsic5h0wPP9RuBeyWfqujlS8ZytD1mFNbLRqhSU5feGhyf2I2nfGkrx1iz4auRpBdRk1TPPoqga9brZ5sR9VXny3otI5Bj/axJRnwjlGkcBgm7o3hrlJK4Vytb2H
+x-forefront-antispam-report: CIP:255.255.255.255;CTRY:;LANG:en;SCL:1;SRV:;IPV:NLI;SFV:NSPM;H:BYAPR02MB4407.namprd02.prod.outlook.com;PTR:;CAT:NONE;SFS:(376002)(396003)(346002)(366004)(39860400002)(136003)(4326008)(54906003)(83380400001)(8676002)(52536014)(8936002)(33656002)(66946007)(71200400001)(5660300002)(76116006)(66556008)(64756008)(66446008)(66476007)(186003)(2940100002)(86362001)(2906002)(7696005)(9686003)(55016002)(316002)(6506007)(53546011)(478600001)(26005)(6916009);DIR:OUT;SFP:1101;
+x-ms-exchange-antispam-messagedata: g2an5XUhrZMQ4QzDzdkHtDwpLADXtd2OVw6sQXAD7qKaE6eIzqUdT/86LvX57v6YvU+i6cR67H2JxJNWMzPDp4n1dIiRZSRvqnXhz6WQ4UWeMiatmH0wLaSHpgQBll7DYyPPwmo+zm0OSX+Eu7LrU+8VSodA/hFIfi3ghp/vIaGG1jPtL6VKUiVV7MkpJtpTVBUzunav0WS/YvgxHjawlhnkhDaG5VfqdNlc+zUtM8IJDadwXtNf3Oad3IpsmwpL2sKNUqnZYx//gIjPSwM/Z3XKwk62Gd2+T8yQ8Ktjo5MUgJv2nnwDnFvYqB3JYxwSKdDDk6vk11HdtwUB0FhqGfGmte6hUJMXjzOu92eytkGfuyfeitmeSD1/HemS045Gj6CeZFT4oeMwjPhQvsx5eefHBpdCdocpV1N9U7cT/s1JWCa4P1uqIM5iYiT1XWWaBQw+0LWsOf0wm+jOfKLl72jzGfZfDF16D274KpGkyy835DV9fw/NzRIQIq7ul9blKmEEkWv9OogyEs3LgSh01alGB2qdeDaAJ07c6JJnuZdC5qiEa3sw4niHu1QEZmLp/+Z4UGomgF9UrHiEBrivSbP2MzytEeQDDZ3ug8b+iacOlksKQQ2TqnrnsTX8cIb3AErVu/l3t86fEKirIXUdHg==
+x-ms-exchange-transport-forked: True
+Content-Type: text/plain; charset="us-ascii"
+Content-Transfer-Encoding: quoted-printable
 MIME-Version: 1.0
-Content-Transfer-Encoding: 8bit
+X-OriginatorOrg: xilinx.com
+X-MS-Exchange-CrossTenant-AuthAs: Internal
+X-MS-Exchange-CrossTenant-AuthSource: BYAPR02MB4407.namprd02.prod.outlook.com
+X-MS-Exchange-CrossTenant-Network-Message-Id: 3440f0b9-3af2-4945-7718-08d85b5c1b31
+X-MS-Exchange-CrossTenant-originalarrivaltime: 17 Sep 2020 22:50:42.3041
+ (UTC)
+X-MS-Exchange-CrossTenant-fromentityheader: Hosted
+X-MS-Exchange-CrossTenant-id: 657af505-d5df-48d0-8300-c31994686c5c
+X-MS-Exchange-CrossTenant-mailboxtype: HOSTED
+X-MS-Exchange-CrossTenant-userprincipalname: zO6pj6LHN8Tj7+/keujHQwh5l2EzEuYZrkiR0Q/Dn3Tz1Ywr2MpF3maWApQyZe0a+Vnuu4VPcJrNZCGu6MaHSA==
+X-MS-Exchange-Transport-CrossTenantHeadersStamped: BYAPR02MB5127
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-Add the watchdog driver for Toshiba Visconti series.
+> -----Original Message-----
+> From: Ben Levinsky <BLEVINSK@xilinx.com>
+> Sent: Thursday, September 17, 2020 3:19 PM
+> To: Michael Auchter <michael.auchter@ni.com>
+> Cc: punit1.agrawal@toshiba.co.jp; Stefano Stabellini <stefanos@xilinx.com=
+>;
+> Michal Simek <michals@xilinx.com>; devicetree@vger.kernel.org;
+> mathieu.poirier@linaro.org; Ed T. Mooring <emooring@xilinx.com>; linux-
+> remoteproc@vger.kernel.org; linux-kernel@vger.kernel.org; Jiaying Liang
+> <jliang@xilinx.com>; robh+dt@kernel.org; linux-arm-
+> kernel@lists.infradead.org; Jiaying Liang <jliang@xilinx.com>; Michal Sim=
+ek
+> <michals@xilinx.com>; Ed T. Mooring <emooring@xilinx.com>; Jason Wu
+> <j.wu@xilinx.com>
+> Subject: RE: [PATCH v14 5/5] remoteproc: Add initial zynqmp R5 remoteproc
+> driver
+>=20
+> Hi Michael,
+>=20
+> Thanks for the comments,
+>=20
+> > -----Original Message-----
+> > From: Michael Auchter <michael.auchter@ni.com>
+> > Sent: Thursday, September 17, 2020 3:11 PM
+> > To: Ben Levinsky <BLEVINSK@xilinx.com>
+> > Cc: punit1.agrawal@toshiba.co.jp; Stefano Stabellini <stefanos@xilinx.c=
+om>;
+> > Michal Simek <michals@xilinx.com>; devicetree@vger.kernel.org;
+> > mathieu.poirier@linaro.org; Ed T. Mooring <emooring@xilinx.com>; linux-
+> > remoteproc@vger.kernel.org; linux-kernel@vger.kernel.org; Jiaying Liang
+> > <jliang@xilinx.com>; robh+dt@kernel.org; linux-arm-
+> > kernel@lists.infradead.org; Jiaying Liang <jliang@xilinx.com>; Michal S=
+imek
+> > <michals@xilinx.com>; Ed T. Mooring <emooring@xilinx.com>; Jason Wu
+> > <j.wu@xilinx.com>
+> > Subject: Re: [PATCH v14 5/5] remoteproc: Add initial zynqmp R5 remotepr=
+oc
+> > driver
+> >
+> > Hey Ben,
+> >
+> > Split mode is still not functional in this patch series (as was the cas=
+e
+> > with the last few revisions).
+> >
+> > Before sending out the next revision, can you _please_ ensure you're
+> > testing all supported configurations?
+> >
+> [Ben Levinsky]  I will make sure to update in next revision.
+>  As per review, I tested on QEMU and hardware firmware loading in split
+> mode on R5 0 split, R5 1 split and R5 lockstep and  was  able to successf=
+ully
+> load, start and establish IPC links
+>=20
+> That being said, I will update the to reflect the values between the enum=
+ for
+> rpu operation mode and the documentation in the binding.
+>=20
+> For testing, I can provide a pointer to a publicly available device tree =
+I am
+> using if that helps. If not, can you expand on the testing of supported
+> configurations?
+>=20
+In addition to device tree, is there particular linker script you use for y=
+our R5 application? For example with OCM? As presently this driver only has=
+ DDR and TCM as supported regions to load into=20
+And I planned to add OCM support if/when the driver gets in.
 
-Signed-off-by: Nobuhiro Iwamatsu <nobuhiro1.iwamatsu@toshiba.co.jp>
----
- drivers/watchdog/Kconfig        |   8 ++
- drivers/watchdog/Makefile       |   1 +
- drivers/watchdog/visconti_wdt.c | 192 ++++++++++++++++++++++++++++++++
- 3 files changed, 201 insertions(+)
- create mode 100644 drivers/watchdog/visconti_wdt.c
-
-diff --git a/drivers/watchdog/Kconfig b/drivers/watchdog/Kconfig
-index ab7aad5a1e69..0cb078ce5e9d 100644
---- a/drivers/watchdog/Kconfig
-+++ b/drivers/watchdog/Kconfig
-@@ -1004,6 +1004,14 @@ config PM8916_WATCHDOG
- 	  Say Y here to include support watchdog timer embedded into the
- 	  pm8916 module.
- 
-+config VISCONTI_WATCHDOG
-+	tristate "Toshiba Visconti series watchdog support"
-+	depends on ARCH_VISCONTI || COMPILE_TEST
-+	select WATCHDOG_CORE
-+	help
-+	  Say Y here to include support for the watchdog timer in Toshiba
-+	  Visconti SoCs.
-+
- # X86 (i386 + ia64 + x86_64) Architecture
- 
- config ACQUIRE_WDT
-diff --git a/drivers/watchdog/Makefile b/drivers/watchdog/Makefile
-index 97bed1d3d97c..a7747e76fd29 100644
---- a/drivers/watchdog/Makefile
-+++ b/drivers/watchdog/Makefile
-@@ -95,6 +95,7 @@ obj-$(CONFIG_RTD119X_WATCHDOG) += rtd119x_wdt.o
- obj-$(CONFIG_SPRD_WATCHDOG) += sprd_wdt.o
- obj-$(CONFIG_PM8916_WATCHDOG) += pm8916_wdt.o
- obj-$(CONFIG_ARM_SMC_WATCHDOG) += arm_smc_wdt.o
-+obj-$(CONFIG_VISCONTI_WATCHDOG) += visconti_wdt.o
- 
- # X86 (i386 + ia64 + x86_64) Architecture
- obj-$(CONFIG_ACQUIRE_WDT) += acquirewdt.o
-diff --git a/drivers/watchdog/visconti_wdt.c b/drivers/watchdog/visconti_wdt.c
-new file mode 100644
-index 000000000000..b82849d68c4c
---- /dev/null
-+++ b/drivers/watchdog/visconti_wdt.c
-@@ -0,0 +1,192 @@
-+// SPDX-License-Identifier: GPL-2.0
-+/*
-+ * Copyright (c) 2020 TOSHIBA CORPORATION
-+ * Copyright (c) 2020 Toshiba Electronic Devices & Storage Corporation
-+ * Copyright (c) 2020 Nobuhiro Iwamatsu <nobuhiro1.iwamatsu@toshiba.co.jp>
-+ */
-+
-+#include <linux/kernel.h>
-+#include <linux/module.h>
-+#include <linux/interrupt.h>
-+#include <linux/io.h>
-+#include <linux/of.h>
-+#include <linux/clk.h>
-+#include <linux/platform_device.h>
-+#include <linux/watchdog.h>
-+
-+#define WDT_CNT			0x00
-+#define WDT_MIN			0x04
-+#define WDT_MAX			0x08
-+#define WDT_CTL			0x0c
-+#define WDT_CMD			0x10
-+#define WDT_CMD_CLEAR		0x4352
-+#define WDT_CMD_START_STOP	0x5354
-+#define WDT_DIV			0x30
-+
-+#define VISCONTI_WDT_FREQ	2000000 /* 2MHz */
-+#define WDT_DEFAULT_TIMEOUT	10U /* in seconds */
-+
-+static bool nowayout = WATCHDOG_NOWAYOUT;
-+module_param(nowayout, bool, 0);
-+MODULE_PARM_DESC(
-+	nowayout,
-+	"Watchdog cannot be stopped once started (default=" __MODULE_STRING(
-+		WATCHDOG_NOWAYOUT) ")");
-+
-+struct visconti_wdt_priv {
-+	struct watchdog_device wdev;
-+	void __iomem *base;
-+	u32 div;
-+};
-+
-+static int visconti_wdt_start(struct watchdog_device *wdev)
-+{
-+	struct visconti_wdt_priv *priv = watchdog_get_drvdata(wdev);
-+	u32 timeout = wdev->timeout * VISCONTI_WDT_FREQ;
-+
-+	writel(priv->div, priv->base + WDT_DIV);
-+	writel(0, priv->base + WDT_MIN);
-+	writel(timeout, priv->base + WDT_MAX);
-+	writel(0, priv->base + WDT_CTL);
-+	writel(WDT_CMD_START_STOP, priv->base + WDT_CMD);
-+
-+	return 0;
-+}
-+
-+static int visconti_wdt_stop(struct watchdog_device *wdev)
-+{
-+	struct visconti_wdt_priv *priv = watchdog_get_drvdata(wdev);
-+
-+	writel(1, priv->base + WDT_CTL);
-+	writel(WDT_CMD_START_STOP, priv->base + WDT_CMD);
-+
-+	return 0;
-+}
-+
-+static int visconti_wdt_ping(struct watchdog_device *wdd)
-+{
-+	struct visconti_wdt_priv *priv = watchdog_get_drvdata(wdd);
-+
-+	writel(WDT_CMD_CLEAR, priv->base + WDT_CMD);
-+
-+	return 0;
-+}
-+
-+static unsigned int visconti_wdt_get_timeleft(struct watchdog_device *wdev)
-+{
-+	struct visconti_wdt_priv *priv = watchdog_get_drvdata(wdev);
-+	u32 timeout = wdev->timeout * VISCONTI_WDT_FREQ;
-+
-+	timeout -= readl(priv->base + WDT_CNT);
-+
-+	return timeout / VISCONTI_WDT_FREQ;
-+}
-+
-+static int visconti_wdt_set_timeout(struct watchdog_device *wdev,
-+				    unsigned int timeout)
-+{
-+	u32 val;
-+	struct visconti_wdt_priv *priv = watchdog_get_drvdata(wdev);
-+
-+	wdev->timeout = timeout;
-+	val = wdev->timeout * VISCONTI_WDT_FREQ;
-+
-+	/* Clear counter before setting timeout because WDT expires */
-+	writel(WDT_CMD_CLEAR, priv->base + WDT_CMD);
-+	writel(val, priv->base + WDT_MAX);
-+
-+	return 0;
-+}
-+
-+static const struct watchdog_info visconti_wdt_info = {
-+	.options = WDIOF_SETTIMEOUT | WDIOF_MAGICCLOSE | WDIOF_KEEPALIVEPING,
-+	.identity = "Visconti Watchdog",
-+};
-+
-+static const struct watchdog_ops visconti_wdt_ops = {
-+	.owner		= THIS_MODULE,
-+	.start		= visconti_wdt_start,
-+	.stop		= visconti_wdt_stop,
-+	.ping		= visconti_wdt_ping,
-+	.get_timeleft	= visconti_wdt_get_timeleft,
-+	.set_timeout	= visconti_wdt_set_timeout,
-+};
-+
-+static int visconti_wdt_probe(struct platform_device *pdev)
-+{
-+	struct watchdog_device *wdev;
-+	struct visconti_wdt_priv *priv;
-+	struct device *dev = &pdev->dev;
-+	struct clk *clk;
-+	int ret;
-+	unsigned long clk_freq;
-+
-+	priv = devm_kzalloc(dev, sizeof(*priv), GFP_KERNEL);
-+	if (!priv)
-+		return -ENOMEM;
-+
-+	priv->base = devm_platform_ioremap_resource(pdev, 0);
-+	if (IS_ERR(priv->base))
-+		return PTR_ERR(priv->base);
-+
-+	clk = devm_clk_get(dev, NULL);
-+	if (IS_ERR(clk)) {
-+		dev_err(dev, "Could not get clock\n");
-+		return PTR_ERR(clk);
-+	}
-+
-+	ret = clk_prepare_enable(clk);
-+	if (ret) {
-+		dev_err(dev, "Could not enable clock\n");
-+		return ret;
-+	}
-+
-+	clk_freq = clk_get_rate(clk);
-+	if (!clk_freq) {
-+		clk_disable_unprepare(clk);
-+		dev_err(dev, "Could not get clock rate\n");
-+		return -EINVAL;
-+	}
-+
-+	priv->div = clk_freq / VISCONTI_WDT_FREQ;
-+
-+	/* Initialize struct watchdog_device. */
-+	wdev = &priv->wdev;
-+	wdev->info = &visconti_wdt_info;
-+	wdev->ops = &visconti_wdt_ops;
-+	wdev->parent = dev;
-+	wdev->min_timeout = 1;
-+	wdev->max_timeout = 0xffffffff / VISCONTI_WDT_FREQ;
-+	wdev->timeout = min(wdev->max_timeout, WDT_DEFAULT_TIMEOUT);
-+
-+	watchdog_set_drvdata(wdev, priv);
-+	watchdog_set_nowayout(wdev, nowayout);
-+	watchdog_stop_on_unregister(wdev);
-+
-+	/* This overrides the default timeout only if DT configuration was found */
-+	ret = watchdog_init_timeout(wdev, 0, dev);
-+	if (ret)
-+		dev_warn(dev, "Specified timeout value invalid, using default\n");
-+
-+	return devm_watchdog_register_device(dev, wdev);
-+}
-+
-+static const struct of_device_id visconti_wdt_of_match[] = {
-+	{ .compatible = "toshiba,visconti-wdt", },
-+	{}
-+};
-+MODULE_DEVICE_TABLE(of, visconti_wdt_of_match);
-+
-+static struct platform_driver visconti_wdt_driver = {
-+	.driver = {
-+			.name = "visconti_wdt",
-+			.of_match_table = visconti_wdt_of_match,
-+		},
-+	.probe = visconti_wdt_probe,
-+};
-+module_platform_driver(visconti_wdt_driver);
-+
-+MODULE_DESCRIPTION("TOSHIBA Visconti Watchdog Driver");
-+MODULE_AUTHOR("TOSHIBA ELECTRONIC DEVICES & STORAGE CORPORATION");
-+MODULE_AUTHOR("Nobuhiro Iwamatsu <nobuhiro1.iwamatsu@toshiba.co.jp");
-+MODULE_LICENSE("GPL v2");
--- 
-2.27.0
-
+Thanks,
+Ben
+> > On Thu, Sep 17, 2020 at 12:43:41PM -0700, Ben Levinsky wrote:
+> > > +/**
+> > > + * RPU core configuration
+> > > + */
+> > > +static enum rpu_oper_mode rpu_mode;
+> > > +
+> >
+> > <.. snip ..>
+> >
+> > > +static int zynqmp_r5_remoteproc_probe(struct platform_device *pdev)
+> > > +{
+> > > +	int ret, i =3D 0;
+> > > +	u32 lockstep_mode;
+> > > +	struct device *dev =3D &pdev->dev;
+> > > +	struct device_node *nc;
+> > > +
+> > > +	ret =3D of_property_read_u32(dev->of_node,
+> > > +				   "lockstep-mode",
+> > > +				   &lockstep_mode);
+> > > +	if (ret < 0) {
+> > > +		return ret;
+> > > +	} else if (lockstep_mode !=3D PM_RPU_MODE_LOCKSTEP &&
+> > > +	    lockstep_mode !=3D PM_RPU_MODE_SPLIT) {
+> > > +		dev_err(dev,
+> > > +			"Invalid lockstep-mode %x in %pOF\n",
+> > > +			lockstep_mode, dev->of_node);
+> > > +		return -EINVAL;
+> > > +	}
+> > > +
+> > > +	rpu_mode =3D lockstep_mode;
+> > > +
+> > > +	dev_dbg(dev, "RPU configuration: %s\n",
+> > > +		lockstep_mode ? "lockstep" : "split");
+> >
+> > The binding documents lockstep-mode as:
+> >
+> > > +  lockstep-mode:
+> > > +    description:
+> > > +      R5 core configuration (split is 0 or lock-step and 1)
+> > > +    maxItems: 1
+> >
+> will update this as you note so that lockstep and split mode are accurate=
+ly
+> reflected.
+>=20
+> > (Which needs to be reworded, but it looks like the intent was "split is
+> > 0 and lock-step is 1")
+> >
+> > However, rpu_oper_mode is defined as:
+> >
+> > > +enum rpu_oper_mode {
+> > > +       PM_RPU_MODE_LOCKSTEP =3D 0,
+> > > +       PM_RPU_MODE_SPLIT =3D 1,
+> > > +};
+> >
+> > so the assignment "rpu_mode =3D lockstep_mode" is incorrect.
+> >
+> once the binding is updated, why would this still be incorrect? Assuming =
+the
+> documentation is updated, the above line would be ok, right?
+>=20
+> Thank you for the review
+> Ben
+>=20
+> > - Michael
