@@ -2,87 +2,275 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from vger.kernel.org (vger.kernel.org [23.128.96.18])
-	by mail.lfdr.de (Postfix) with ESMTP id A422426DC5E
-	for <lists+devicetree@lfdr.de>; Thu, 17 Sep 2020 15:03:56 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTP id 2CBC826DC97
+	for <lists+devicetree@lfdr.de>; Thu, 17 Sep 2020 15:14:44 +0200 (CEST)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S1727055AbgIQNDr (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Thu, 17 Sep 2020 09:03:47 -0400
-Received: from mail.kernel.org ([198.145.29.99]:34974 "EHLO mail.kernel.org"
+        id S1726786AbgIQNOm (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Thu, 17 Sep 2020 09:14:42 -0400
+Received: from mga18.intel.com ([134.134.136.126]:12865 "EHLO mga18.intel.com"
         rhost-flags-OK-OK-OK-OK) by vger.kernel.org with ESMTP
-        id S1727101AbgIQNDn (ORCPT <rfc822;devicetree@vger.kernel.org>);
-        Thu, 17 Sep 2020 09:03:43 -0400
-Received: from localhost (fw-tnat.cambridge.arm.com [217.140.96.140])
-        (using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
-        (No client certificate requested)
-        by mail.kernel.org (Postfix) with ESMTPSA id 6BECD2083B;
-        Thu, 17 Sep 2020 13:03:25 +0000 (UTC)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=kernel.org;
-        s=default; t=1600347805;
-        bh=Q6IpJ77FCD9H833/+eXE2yE3D58BO49AZXC7Kjdp4I4=;
-        h=Date:From:To:Cc:Subject:References:In-Reply-To:From;
-        b=vYQGVyKqzlRLvhGU3T+FLcyMZBl2qFEDU3MCSqL23dvTSzH2Xb6lkZyfa4degPqdT
-         mzgLNEkursN/aKlHBe2FFFaNh5V2xv0lUmwP3LlizICJ7aYwsXtZkr3OiUV2TtDJIL
-         qtQ+OhqWZhZkYmMcWOzfyPulF9OKSZGGKesKzxck=
-Date:   Thu, 17 Sep 2020 14:02:36 +0100
-From:   Mark Brown <broonie@kernel.org>
-To:     Dan Murphy <dmurphy@ti.com>
-Cc:     lgirdwood@gmail.com, tiwai@suse.com, robh+dt@kernel.org,
-        devicetree@vger.kernel.org, alsa-devel@alsa-project.org,
-        linux-kernel@vger.kernel.org, camel.guo@axis.com
-Subject: Re: [PATCH 5/6] dt-bindings: tlv320adcx140: Add slot programming
- property
-Message-ID: <20200917130236.GA2954@sirena.org.uk>
-References: <20200915190606.1744-1-dmurphy@ti.com>
- <20200915190606.1744-5-dmurphy@ti.com>
+        id S1726741AbgIQNOl (ORCPT <rfc822;devicetree@vger.kernel.org>);
+        Thu, 17 Sep 2020 09:14:41 -0400
+X-Greylist: delayed 542 seconds by postgrey-1.27 at vger.kernel.org; Thu, 17 Sep 2020 09:14:40 EDT
+IronPort-SDR: KlxdyiqaKuYPChhx2hNeuMJmkCuWufyyxFKLCgKNu0F9UHN6d42HinL98E6EcptlqqdxtNoIeZ
+ yyxQFgUhQzvw==
+X-IronPort-AV: E=McAfee;i="6000,8403,9746"; a="147437332"
+X-IronPort-AV: E=Sophos;i="5.76,437,1592895600"; 
+   d="scan'208";a="147437332"
+X-Amp-Result: SKIPPED(no attachment in message)
+X-Amp-File-Uploaded: False
+Received: from orsmga008.jf.intel.com ([10.7.209.65])
+  by orsmga106.jf.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384; 17 Sep 2020 06:05:31 -0700
+IronPort-SDR: EYFvTNo2NH3yfO4zyr/tVVhYq3VMufkGzPYoelI/DIlCq3Yufk1BgOtUWKD2P9IMupk8rEdCLe
+ ObCTRim+6d8Q==
+X-ExtLoop1: 1
+X-IronPort-AV: E=Sophos;i="5.76,437,1592895600"; 
+   d="scan'208";a="336413914"
+Received: from smile.fi.intel.com (HELO smile) ([10.237.68.40])
+  by orsmga008.jf.intel.com with ESMTP; 17 Sep 2020 06:05:27 -0700
+Received: from andy by smile with local (Exim 4.94)
+        (envelope-from <andriy.shevchenko@intel.com>)
+        id 1kItbH-00HKOZ-1S; Thu, 17 Sep 2020 16:05:23 +0300
+Date:   Thu, 17 Sep 2020 16:05:23 +0300
+From:   Andy Shevchenko <andriy.shevchenko@intel.com>
+To:     "Ramuthevar,Vadivel MuruganX" 
+        <vadivel.muruganx.ramuthevar@linux.intel.com>
+Cc:     miquel.raynal@bootlin.com, linux-kernel@vger.kernel.org,
+        linux-mtd@lists.infradead.org, richard@nod.at, vigneshr@ti.com,
+        boris.brezillon@collabora.com, christophe.kerello@st.com,
+        piotrs@cadence.com, robert.jarzmik@free.fr,
+        brendanhiggins@google.com, devicetree@vger.kernel.org,
+        tglx@linutronix.de, hauke.mehrtens@intel.com, robh+dt@kernel.org,
+        linux-mips@vger.kernel.org, arnd@arndb.de,
+        cheol.yong.kim@intel.com, qi-ming.wu@intel.com
+Subject: Re: [PATCH v13 2/2] mtd: rawnand: Add NAND controller support on
+ Intel LGM SoC
+Message-ID: <20200917130523.GM3956970@smile.fi.intel.com>
+References: <20200917003308.57038-1-vadivel.muruganx.ramuthevar@linux.intel.com>
+ <20200917003308.57038-3-vadivel.muruganx.ramuthevar@linux.intel.com>
 MIME-Version: 1.0
-Content-Type: multipart/signed; micalg=pgp-sha512;
-        protocol="application/pgp-signature"; boundary="BXVAT5kNtrzKuDFl"
+Content-Type: text/plain; charset=us-ascii
 Content-Disposition: inline
-In-Reply-To: <20200915190606.1744-5-dmurphy@ti.com>
-X-Cookie: Don't SANFORIZE me!!
-User-Agent: Mutt/1.10.1 (2018-07-13)
+In-Reply-To: <20200917003308.57038-3-vadivel.muruganx.ramuthevar@linux.intel.com>
+Organization: Intel Finland Oy - BIC 0357606-4 - Westendinkatu 7, 02160 Espoo
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
+On Thu, Sep 17, 2020 at 08:33:08AM +0800, Ramuthevar,Vadivel MuruganX wrote:
+> From: Ramuthevar Vadivel Murugan <vadivel.muruganx.ramuthevar@linux.intel.com>
+> 
+> This patch adds the new IP of Nand Flash Controller(NFC) support
+> on Intel's Lightning Mountain(LGM) SoC.
+> 
+> DMA is used for burst data transfer operation, also DMA HW supports
+> aligned 32bit memory address and aligned data access by default.
+> DMA burst of 8 supported. Data register used to support the read/write
+> operation from/to device.
+> 
+> NAND controller driver implements ->exec_op() to replace legacy hooks,
+> these specific call-back method to execute NAND operations.
 
---BXVAT5kNtrzKuDFl
-Content-Type: text/plain; charset=us-ascii
-Content-Disposition: inline
+...
 
-On Tue, Sep 15, 2020 at 02:06:05PM -0500, Dan Murphy wrote:
+> +#include <linux/clk.h>
+> +#include <linux/completion.h>
+> +#include <linux/dmaengine.h>
+> +#include <linux/dma-direction.h>
+> +#include <linux/dma-mapping.h>
+> +#include <linux/err.h>
+> +#include <linux/init.h>
 
-> +  ti,slot-mapping:
-> +    type: boolean
-> +    description: |
-> +      Each channel can be assigned a specific TDM slot for either a left or
-> +      right channel. The left channel values are from 0-31d and the right
-> +      channel values are from 32-63d. If the right channel value is 32 then the
-> +      right channel slot will be slot 31.
-> +      The array index is sequential audio channel to be set.
-> +      [ch1, ch2, ch3, ch4, ch5, ch6, ch7, ch8]
-> +      If the channel is not to be used then the channel should be set to it's
-> +      default value.
+> +#include <linux/io.h>
+> +#include <linux/iopoll.h>
 
-This is something I'd expect to be done by the machine driver rather
-than in the CODEC specific DT bindings, and apart from anything else
-everything involved in the DAI will need to agree on the mapping so this
-doesn't look like something that should be done in a device specific
-binding.
+io.h is guaranteed to be included by iopoll.h.
 
---BXVAT5kNtrzKuDFl
-Content-Type: application/pgp-signature; name="signature.asc"
+> +#include <linux/kernel.h>
+> +#include <linux/platform_device.h>
+> +#include <linux/module.h>
 
------BEGIN PGP SIGNATURE-----
+> +#include <linux/mtd/mtd.h>
+> +#include <linux/mtd/rawnand.h>
+> +#include <linux/mtd/nand_ecc.h>
+> +#include <linux/mtd/nand.h>
 
-iQEzBAABCgAdFiEEreZoqmdXGLWf4p/qJNaLcl1Uh9AFAl9jXmsACgkQJNaLcl1U
-h9C/Rgf+IMC1QTgLSmNF/gJuZlCcieaK8BfTxcfHEBBykWRyvmdqNW9ZPHFXODK/
-scOFFkEWwz1YvqreSRdrXXUAJ7RHpUcO3KT1YKyPnRlo7m7dqiyJhePSjkG1rtPQ
-1rg7EVnqS8IIKMrr5XDSeqpJrEet2KcRBJ4eqrXotx5t8s8VcK3DDDZO6UNhEyRN
-8NKwX+MiUs2b2/d/xkfC3ILN/3bV7K5Mnej2bQS8kzkEArvI4DT4Hr7QtXbBkLsZ
-/Vu9XuVXIitkCHq9akNFyJjevgIrMFmm4htRV95YcbfZWLF5BV7uOf5nbwokvZA9
-jHGvK8hTXVdF9T/e4D/kiXEGvAJR2Q==
-=usXR
------END PGP SIGNATURE-----
+Since mtd is a hosting framework for this driver, I would move this group of headers after more generic ones with a blank line in between.
 
---BXVAT5kNtrzKuDFl--
+
+> +#include <linux/resource.h>
+
+And this I think is guaranteed to be included by io.h.
+
+> +#include <linux/sched.h>
+> +#include <linux/slab.h>
+> +#include <linux/types.h>
+
+> +#include <linux/platform_device.h>
+
+Dup? It's exactly the reason how alphabetical order can help.
+
+...
+
+> +#define EBU_ADDR_SEL(n)		(0x20 + (n) * 4)
+
+I think 0x20 is an offset here, and better to have it as 0x020 to be consistent
+with all other offsets.
+
+...
+
+> +#define EBU_BUSCON(n)		(0x60 + (n) * 4)
+
+Ditto.
+
+...
+
+> +static void ebu_nand_setup_timing(struct ebu_nand_controller *ctrl,
+> +				  const struct nand_sdr_timings *timings)
+> +{
+> +	unsigned int rate = clk_get_rate(ctrl->clk) / 1000000;
+
+HZ_PER_MHZ?
+
+> +	unsigned int period = DIV_ROUND_UP(1000000, rate);
+
+USEC_PER_SEC?
+
+> +	u32 trecov, thold, twrwait, trdwait;
+> +	u32 reg = 0;
+> +
+> +	trecov = DIV_ROUND_UP(max(timings->tREA_max, timings->tREH_min),
+> +			      period);
+> +	reg |= EBU_BUSCON_RECOVC(trecov);
+> +
+> +	thold = DIV_ROUND_UP(max(timings->tDH_min, timings->tDS_min), period);
+> +	reg |= EBU_BUSCON_HOLDC(thold);
+> +
+> +	trdwait = DIV_ROUND_UP(max(timings->tRC_min, timings->tREH_min),
+> +			       period);
+> +	reg |= EBU_BUSCON_WAITRDC(trdwait);
+> +
+> +	twrwait = DIV_ROUND_UP(max(timings->tWC_min, timings->tWH_min), period);
+> +	reg |= EBU_BUSCON_WAITWRC(twrwait);
+> +
+> +	reg |= EBU_BUSCON_CMULT_V4 | EBU_BUSCON_BCGEN_CS | EBU_BUSCON_ALEC |
+> +		EBU_BUSCON_SETUP_EN;
+> +
+> +	writel(reg, ctrl->ebu + EBU_BUSCON(ctrl->cs_num));
+> +}
+
+...
+
+> +	if (oob_required) {
+> +		reg = (chip->oob_poi[3] << 24) | (chip->oob_poi[2] << 16) |
+> +			(chip->oob_poi[1] << 8) | chip->oob_poi[0];
+
+get_unligned_le32()?
+
+...
+
+> +		reg = (chip->oob_poi[7] << 24) | (chip->oob_poi[6] << 16) |
+> +			(chip->oob_poi[5] << 8) | chip->oob_poi[4];
+
+Ditto.
+
+...
+
+> +	ret = readl_poll_timeout_atomic(int_sta, val,
+> +					!(val & HSNAND_INT_STA_WR_C), 10, 1000);
+
+Slightly better (logically split between lines):
+
+	ret = readl_poll_timeout_atomic(int_sta, val, !(val & HSNAND_INT_STA_WR_C),
+					10, 1000);
+
+
+> +	if (ret)
+> +		return ret;
+
+...
+
+> +	res = platform_get_resource_byname(pdev, IORESOURCE_MEM, "ebunand");
+> +	ebu_host->ebu = devm_ioremap_resource(&pdev->dev, res);
+
+Why not to use
+
+	ebu_host->ebu = devm_platform_ioremap_resource_byname(&pdev->dev, "ebunand");
+
+?
+
+> +	if (IS_ERR(ebu_host->ebu))
+> +		return PTR_ERR(ebu_host->ebu);
+> +
+> +	res = platform_get_resource_byname(pdev, IORESOURCE_MEM, "hsnand");
+> +	ebu_host->hsnand = devm_ioremap_resource(&pdev->dev, res);
+
+Ditto.
+
+> +	if (IS_ERR(ebu_host->hsnand))
+> +		return PTR_ERR(ebu_host->hsnand);
+
+...
+
+
+> +	for (i = 0; i < MAX_CS; i++) {
+> +		resname = devm_kasprintf(dev, GFP_KERNEL, "nand_cs%d", i);
+> +		res = platform_get_resource_byname(pdev, IORESOURCE_MEM,
+> +						   resname);
+
+> +		if (!res)
+> +			return -EINVAL;
+
+Redundant check.
+
+> +		ebu_host->cs[i].chipaddr = devm_ioremap_resource(dev, res);
+
+Ditto (see above).
+
+> +		ebu_host->cs[i].nand_pa = res->start;
+> +		if (IS_ERR(ebu_host->cs[i].chipaddr))
+> +			return PTR_ERR(ebu_host->cs[i].chipaddr);
+> +	}
+
+...
+
+> +	ebu_host->clk = devm_clk_get(dev, NULL);
+> +	if (IS_ERR(ebu_host->clk)) {
+
+> +		ret = PTR_ERR(ebu_host->clk);
+> +		dev_err(dev, "failed to get clock: %d\n", ret);
+> +		return ret;
+
+	return dev_err_probe() ?
+
+> +	}
+
+...
+
+> +	ebu_host->dma_tx = dma_request_chan(dev, "tx");
+> +	if (IS_ERR(ebu_host->dma_tx)) {
+
+> +		ret = PTR_ERR(ebu_host->dma_tx);
+> +		dev_err(dev, "DMA tx channel request fail!.\n");
+> +		goto err_cleanup_dma;
+
+Ditto. On top why !. ???
+
+> +	}
+> +
+> +	ebu_host->dma_rx = dma_request_chan(dev, "rx");
+> +	if (IS_ERR(ebu_host->dma_rx)) {
+
+> +		ret = PTR_ERR(ebu_host->dma_rx);
+> +		dev_err(dev, "DMA rx channel request fail!.\n");
+> +		goto err_cleanup_dma;
+
+Ditto.
+
+> +	}
+
+-- 
+With Best Regards,
+Andy Shevchenko
+
+
