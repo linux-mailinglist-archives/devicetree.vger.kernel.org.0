@@ -2,126 +2,74 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from vger.kernel.org (vger.kernel.org [23.128.96.18])
-	by mail.lfdr.de (Postfix) with ESMTP id F086B26E5EB
-	for <lists+devicetree@lfdr.de>; Thu, 17 Sep 2020 21:58:25 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTP id 720F226E5FA
+	for <lists+devicetree@lfdr.de>; Thu, 17 Sep 2020 22:00:31 +0200 (CEST)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S1726565AbgIQT6A (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Thu, 17 Sep 2020 15:58:00 -0400
-Received: from lindbergh.monkeyblade.net ([23.128.96.19]:53500 "EHLO
-        lindbergh.monkeyblade.net" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S1726424AbgIQT57 (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Thu, 17 Sep 2020 15:57:59 -0400
-Received: from mail-ed1-x541.google.com (mail-ed1-x541.google.com [IPv6:2a00:1450:4864:20::541])
-        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 40407C061355;
-        Thu, 17 Sep 2020 12:29:21 -0700 (PDT)
-Received: by mail-ed1-x541.google.com with SMTP id j2so3679052eds.9;
-        Thu, 17 Sep 2020 12:29:21 -0700 (PDT)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=gmail.com; s=20161025;
-        h=mime-version:references:in-reply-to:from:date:message-id:subject:to
-         :cc;
-        bh=jj1NYDHlCzwQu/Kib7EFw2erEDA1Fuy+oKP7IZvnOMA=;
-        b=KqGdOe/enJaOZIkuti5nTMI7rgvsIlf73k5XMbvRdt+cR9DCpA6KGv59gbaJC2YK7e
-         Iq+W0RlRAc1nGYbtScmzZ4cyVS7oEiHG8x3cyFXPEZ9qNeNP9mNmGS3ftHTbW33BTmBU
-         Sck+8J+YHQYgjHPkh84CQqrgmceWQ+MmpUgo+lLY3JhRymA4AxUL0rauLlpbuH5mVxi1
-         MmeXfszygeeVzaMO2VcxD62LjtT9oFw4X8+e29XT1GR+RUGq1+8dSJOOqsxNogXbCtuX
-         jaNRsG0jYODsCxfye5k0qyfOodg8lhfnJYX7KNOSRihMzl7BCsDGYdS3zt4aaollA9Mk
-         DsRQ==
-X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=1e100.net; s=20161025;
-        h=x-gm-message-state:mime-version:references:in-reply-to:from:date
-         :message-id:subject:to:cc;
-        bh=jj1NYDHlCzwQu/Kib7EFw2erEDA1Fuy+oKP7IZvnOMA=;
-        b=VVg5+P//MZxAs4dnq2/tpjFqPGOzv18o5Irrwc/C+zlGb8DTYjXEI394dTYMPrrUY3
-         yUdVzYBDjAYCB4goif9CAThw2jUhOtTvcoqmNjbJODXSvFGR0lw1X9f+YN+26x9iFq/e
-         ilhHtcxfDq3dLyWZ2izdoZt49RMLxb5qnxJf+KQo+sEU+LDdbrmWkec7idUk7kKEuHBV
-         7eAf5jzyIwpUfWVInhW2WKzFYldni/WlXtdDlpJ4j3gOYaVayF2bncHfb9dc8pFi5VSs
-         Y2Y/JUJhSScMw0FiPrCweW/ut0KOgLqAWrMPr8D9s1lST+Fdj/wPVvr0s92M0PQ3WE72
-         lgzw==
-X-Gm-Message-State: AOAM533nvrTbG2B4V0w/SBuo832+SmwkR5shEFZ/mYQoxqrQ3Qa3hStV
-        sHn/uAeV/j9acWE3TBRKSr3xtFMYDndeM2FerYU=
-X-Google-Smtp-Source: ABdhPJzA3dLWUoHTqvdw58Fcn7ViL3Xce9QemwoZRQ0np0RaFSOpwhtb2LL6kwQC0qntPblEuVLPOrR5AfhwMNaQmfo=
-X-Received: by 2002:aa7:d959:: with SMTP id l25mr34054370eds.383.1600370959694;
- Thu, 17 Sep 2020 12:29:19 -0700 (PDT)
-MIME-Version: 1.0
-References: <20200827091441.12972-1-qiang.zhao@nxp.com> <20200909202456.GA3019412@bogus>
- <VE1PR04MB676899EEA79D59061FE91BF691270@VE1PR04MB6768.eurprd04.prod.outlook.com>
- <CAL_JsqJx=7npNYNe4MybNvdNRxBj_XjvEOJsSm+gNGEkvbh2VA@mail.gmail.com> <VE1PR04MB6768F9352B510CB6E873515A91230@VE1PR04MB6768.eurprd04.prod.outlook.com>
-In-Reply-To: <VE1PR04MB6768F9352B510CB6E873515A91230@VE1PR04MB6768.eurprd04.prod.outlook.com>
-From:   Bruno Thomsen <bruno.thomsen@gmail.com>
-Date:   Thu, 17 Sep 2020 21:29:03 +0200
-Message-ID: <CAH+2xPAVhivJJ4DGZ+79kyeiLN-f93xMBbMEXTVUN-rrm4hawQ@mail.gmail.com>
-Subject: Re: [PATCH 1/3] dt-bindings: rtc-2127: Add bindings for nxp,rtc-2127.txt
-To:     Qiang Zhao <qiang.zhao@nxp.com>
-Cc:     Rob Herring <robh@kernel.org>,
-        "a.zummo@towertech.it" <a.zummo@towertech.it>,
-        "alexandre.belloni@bootlin.com" <alexandre.belloni@bootlin.com>,
-        "linux-rtc@vger.kernel.org" <linux-rtc@vger.kernel.org>,
-        "devicetree@vger.kernel.org" <devicetree@vger.kernel.org>,
-        "linux-kernel@vger.kernel.org" <linux-kernel@vger.kernel.org>
-Content-Type: text/plain; charset="UTF-8"
+        id S1726405AbgIQUAa (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Thu, 17 Sep 2020 16:00:30 -0400
+Received: from mail.kernel.org ([198.145.29.99]:59862 "EHLO mail.kernel.org"
+        rhost-flags-OK-OK-OK-OK) by vger.kernel.org with ESMTP
+        id S1726361AbgIQUAa (ORCPT <rfc822;devicetree@vger.kernel.org>);
+        Thu, 17 Sep 2020 16:00:30 -0400
+Received: from kozik-lap.mshome.net (unknown [194.230.155.191])
+        (using TLSv1.2 with cipher ECDHE-RSA-AES128-GCM-SHA256 (128/128 bits))
+        (No client certificate requested)
+        by mail.kernel.org (Postfix) with ESMTPSA id C9C7421D7F;
+        Thu, 17 Sep 2020 19:42:26 +0000 (UTC)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=kernel.org;
+        s=default; t=1600371748;
+        bh=wQHjDZC0ekxu/nOFQiHuthajbxoZfgJzYmR5G57q94Y=;
+        h=From:To:Cc:Subject:Date:From;
+        b=rCuEO9JoJtj7mInSFfuc0oOHXSHHDdCcPbGX6IuXIq9aDPFjWCo/6gGw0k9MYIs9O
+         vBgtRvMWVcWZDjKLYbzf0t7VeHqBjLyvk0k/g6DjqqLcvwSd9FZVlF8w/6RZ4U+h2c
+         wjyAkBXQTljOn/Zl3PGWIMgTfNhqCXZzgM51cfJc=
+From:   Krzysztof Kozlowski <krzk@kernel.org>
+To:     Jassi Brar <jassisinghbrar@gmail.com>,
+        Rob Herring <robh+dt@kernel.org>,
+        Dong Aisheng <aisheng.dong@nxp.com>,
+        linux-kernel@vger.kernel.org, devicetree@vger.kernel.org
+Cc:     Krzysztof Kozlowski <krzk@kernel.org>
+Subject: [PATCH v3] dt-bindings: mailbox: fsl,mu: Add missing power-domains
+Date:   Thu, 17 Sep 2020 21:42:20 +0200
+Message-Id: <20200917194220.6625-1-krzk@kernel.org>
+X-Mailer: git-send-email 2.17.1
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-Den man. 14. sep. 2020 kl. 09.08 skrev Qiang Zhao <qiang.zhao@nxp.com>:
->
-> On Fri, Sep 11, 2020 at 22:03, Rob Herring <robh@kernel.org> wrote:
+Add quite common property - power-domains - to fix dtbs_check warnings
+like:
 
-> Please help to review as below, if it is ok, I will send the new version patch. Thank you!
->
-> diff --git a/Documentation/devicetree/bindings/rtc/nxp,pcf2127.yaml b/Documentation/devicetree/bindings/rtc/nxp,pcf2127.yaml
-> new file mode 100644
-> index 0000000..809dd59
-> --- /dev/null
-> +++ b/Documentation/devicetree/bindings/rtc/nxp,pcf2127.yaml
-> @@ -0,0 +1,38 @@
-> +# SPDX-License-Identifier: GPL-2.0
-> +%YAML 1.2
-> +---
-> +$id: http://devicetree.org/schemas/rtc/nxp,pcf2127.yaml#
-> +$schema: http://devicetree.org/meta-schemas/core.yaml#
-> +
-> +title: PCF RTCs
-> +
-> +maintainers:
-> +  - Qiang Zhao <qiang.zhao@nxp.com>
-> +
-> +allOf:
-> +  - $ref: "rtc.yaml#"
-> +
-> +properties:
-> +  compatible:
-> +    enum:
-> +      - nxp,pcf2127
-> +      - nxp,pcf2129
+  arch/arm64/boot/dts/freescale/imx8qxp-mek.dt.yaml:
+    mailbox@5d280000: 'power-domains' does not match any of the regexes: 'pinctrl-[0-9]+'
 
-The device driver have 3 compatible strings, "nxp,pca2129" is missing.
+Signed-off-by: Krzysztof Kozlowski <krzk@kernel.org>
 
-/Bruno
+---
 
-> +
-> +  reg:
-> +    maxItems: 1
-> +
-> +  interrupts:
-> +    maxItems: 1
-> +
-> +  no-watchdog:
-> +    maxItems: 1
-> +
-> +  start-year: true
-> +
-> +required:
-> +  - compatible
-> +  - reg
-> +
-> +additionalProperties: false
-> +
-> +...
->
-> >
-> > Documentation/devicetree/writing-schema.rst and about 1000 examples in the
-> > kernel tree.
-> >
-> > Rob
+Changes since v2:
+1. Set maxItems to power domains to 1
+
+Changes since v1:
+1. Add missing properties instead of unevaluatedProperties
+---
+ Documentation/devicetree/bindings/mailbox/fsl,mu.yaml | 3 +++
+ 1 file changed, 3 insertions(+)
+
+diff --git a/Documentation/devicetree/bindings/mailbox/fsl,mu.yaml b/Documentation/devicetree/bindings/mailbox/fsl,mu.yaml
+index 7ed096360be2..15cef82cd356 100644
+--- a/Documentation/devicetree/bindings/mailbox/fsl,mu.yaml
++++ b/Documentation/devicetree/bindings/mailbox/fsl,mu.yaml
+@@ -72,6 +72,9 @@ properties:
+     description: boolean, if present, means it is for side B MU.
+     type: boolean
+ 
++  power-domains:
++    maxItems: 1
++
+ required:
+   - compatible
+   - reg
+-- 
+2.17.1
+
