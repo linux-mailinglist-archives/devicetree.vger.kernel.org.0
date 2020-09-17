@@ -2,275 +2,218 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from vger.kernel.org (vger.kernel.org [23.128.96.18])
-	by mail.lfdr.de (Postfix) with ESMTP id 2CBC826DC97
-	for <lists+devicetree@lfdr.de>; Thu, 17 Sep 2020 15:14:44 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTP id B7E1D26DC78
+	for <lists+devicetree@lfdr.de>; Thu, 17 Sep 2020 15:08:21 +0200 (CEST)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S1726786AbgIQNOm (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Thu, 17 Sep 2020 09:14:42 -0400
-Received: from mga18.intel.com ([134.134.136.126]:12865 "EHLO mga18.intel.com"
-        rhost-flags-OK-OK-OK-OK) by vger.kernel.org with ESMTP
-        id S1726741AbgIQNOl (ORCPT <rfc822;devicetree@vger.kernel.org>);
-        Thu, 17 Sep 2020 09:14:41 -0400
-X-Greylist: delayed 542 seconds by postgrey-1.27 at vger.kernel.org; Thu, 17 Sep 2020 09:14:40 EDT
-IronPort-SDR: KlxdyiqaKuYPChhx2hNeuMJmkCuWufyyxFKLCgKNu0F9UHN6d42HinL98E6EcptlqqdxtNoIeZ
- yyxQFgUhQzvw==
-X-IronPort-AV: E=McAfee;i="6000,8403,9746"; a="147437332"
-X-IronPort-AV: E=Sophos;i="5.76,437,1592895600"; 
-   d="scan'208";a="147437332"
-X-Amp-Result: SKIPPED(no attachment in message)
-X-Amp-File-Uploaded: False
-Received: from orsmga008.jf.intel.com ([10.7.209.65])
-  by orsmga106.jf.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384; 17 Sep 2020 06:05:31 -0700
-IronPort-SDR: EYFvTNo2NH3yfO4zyr/tVVhYq3VMufkGzPYoelI/DIlCq3Yufk1BgOtUWKD2P9IMupk8rEdCLe
- ObCTRim+6d8Q==
-X-ExtLoop1: 1
-X-IronPort-AV: E=Sophos;i="5.76,437,1592895600"; 
-   d="scan'208";a="336413914"
-Received: from smile.fi.intel.com (HELO smile) ([10.237.68.40])
-  by orsmga008.jf.intel.com with ESMTP; 17 Sep 2020 06:05:27 -0700
-Received: from andy by smile with local (Exim 4.94)
-        (envelope-from <andriy.shevchenko@intel.com>)
-        id 1kItbH-00HKOZ-1S; Thu, 17 Sep 2020 16:05:23 +0300
-Date:   Thu, 17 Sep 2020 16:05:23 +0300
-From:   Andy Shevchenko <andriy.shevchenko@intel.com>
-To:     "Ramuthevar,Vadivel MuruganX" 
-        <vadivel.muruganx.ramuthevar@linux.intel.com>
-Cc:     miquel.raynal@bootlin.com, linux-kernel@vger.kernel.org,
-        linux-mtd@lists.infradead.org, richard@nod.at, vigneshr@ti.com,
-        boris.brezillon@collabora.com, christophe.kerello@st.com,
-        piotrs@cadence.com, robert.jarzmik@free.fr,
-        brendanhiggins@google.com, devicetree@vger.kernel.org,
-        tglx@linutronix.de, hauke.mehrtens@intel.com, robh+dt@kernel.org,
-        linux-mips@vger.kernel.org, arnd@arndb.de,
-        cheol.yong.kim@intel.com, qi-ming.wu@intel.com
-Subject: Re: [PATCH v13 2/2] mtd: rawnand: Add NAND controller support on
- Intel LGM SoC
-Message-ID: <20200917130523.GM3956970@smile.fi.intel.com>
-References: <20200917003308.57038-1-vadivel.muruganx.ramuthevar@linux.intel.com>
- <20200917003308.57038-3-vadivel.muruganx.ramuthevar@linux.intel.com>
+        id S1726955AbgIQNIM (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Thu, 17 Sep 2020 09:08:12 -0400
+Received: from lelv0142.ext.ti.com ([198.47.23.249]:49922 "EHLO
+        lelv0142.ext.ti.com" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
+        with ESMTP id S1727073AbgIQNHo (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Thu, 17 Sep 2020 09:07:44 -0400
+Received: from fllv0034.itg.ti.com ([10.64.40.246])
+        by lelv0142.ext.ti.com (8.15.2/8.15.2) with ESMTP id 08HD7OQQ055911;
+        Thu, 17 Sep 2020 08:07:24 -0500
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=ti.com;
+        s=ti-com-17Q1; t=1600348044;
+        bh=5cm1TYMgzmYFsX/9vDRmJO8ddQ80zLzAZqagHAFcE68=;
+        h=Date:From:To:CC:Subject:References:In-Reply-To;
+        b=XaZhJS2LJHntSUTcfps6ZYMp6o330/0+BDM2L7W4+6jN+ajft2YUfT5/zNTPvXZol
+         LCCUBC122/6mOvvWWp9eLUAEmsQV0PaUHb68Z0Ec8DXt0VD06kZ8Z/DlGKYxEwmjZG
+         YDZHozkn3lpE/GAWyZGpQFPI6R3qXj56WHXzL3Rc=
+Received: from DLEE103.ent.ti.com (dlee103.ent.ti.com [157.170.170.33])
+        by fllv0034.itg.ti.com (8.15.2/8.15.2) with ESMTPS id 08HD7Ojc086086
+        (version=TLSv1.2 cipher=AES256-GCM-SHA384 bits=256 verify=FAIL);
+        Thu, 17 Sep 2020 08:07:24 -0500
+Received: from DLEE113.ent.ti.com (157.170.170.24) by DLEE103.ent.ti.com
+ (157.170.170.33) with Microsoft SMTP Server (version=TLS1_2,
+ cipher=TLS_ECDHE_RSA_WITH_AES_128_CBC_SHA256_P256) id 15.1.1979.3; Thu, 17
+ Sep 2020 08:07:23 -0500
+Received: from lelv0327.itg.ti.com (10.180.67.183) by DLEE113.ent.ti.com
+ (157.170.170.24) with Microsoft SMTP Server (version=TLS1_2,
+ cipher=TLS_ECDHE_RSA_WITH_AES_128_CBC_SHA256_P256) id 15.1.1979.3 via
+ Frontend Transport; Thu, 17 Sep 2020 08:07:23 -0500
+Received: from localhost (ileax41-snat.itg.ti.com [10.172.224.153])
+        by lelv0327.itg.ti.com (8.15.2/8.15.2) with ESMTP id 08HD7N4o114751;
+        Thu, 17 Sep 2020 08:07:23 -0500
+Date:   Thu, 17 Sep 2020 08:07:23 -0500
+From:   Nishanth Menon <nm@ti.com>
+To:     Tomi Valkeinen <tomi.valkeinen@ti.com>
+CC:     Tero Kristo <t-kristo@ti.com>, Rob Herring <robh+dt@kernel.org>,
+        <linux-arm-kernel@lists.infradead.org>,
+        <devicetree@vger.kernel.org>,
+        Swapnil Jakhade <sjakhade@cadence.com>, <yamonkar@cadence.com>,
+        Kishon Vijay Abraham I <kishon@ti.com>,
+        Laurent Pinchart <laurent.pinchart@ideasonboard.com>,
+        Sekhar Nori <nsekhar@ti.com>
+Subject: Re: [PATCH 1/2] arm64: dts: ti: k3-j721e-main: add DP & DP PHY
+Message-ID: <20200917130723.q3asxcb6uoenady5@akan>
+References: <20200917071248.71284-1-tomi.valkeinen@ti.com>
+ <20200917071248.71284-2-tomi.valkeinen@ti.com>
 MIME-Version: 1.0
-Content-Type: text/plain; charset=us-ascii
+Content-Type: text/plain; charset="us-ascii"
 Content-Disposition: inline
-In-Reply-To: <20200917003308.57038-3-vadivel.muruganx.ramuthevar@linux.intel.com>
-Organization: Intel Finland Oy - BIC 0357606-4 - Westendinkatu 7, 02160 Espoo
+In-Reply-To: <20200917071248.71284-2-tomi.valkeinen@ti.com>
+User-Agent: NeoMutt/20171215
+X-EXCLAIMER-MD-CONFIG: e1e8a2fd-e40a-4ac6-ac9b-f7e9cc9ee180
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-On Thu, Sep 17, 2020 at 08:33:08AM +0800, Ramuthevar,Vadivel MuruganX wrote:
-> From: Ramuthevar Vadivel Murugan <vadivel.muruganx.ramuthevar@linux.intel.com>
+On 10:12-20200917, Tomi Valkeinen wrote:
+> Add DT nodes for DisplayPort and DisplayPort PHY. The DP is Cadence MHDP
+> 8546 and the PHY is a Cadence Torrent PHY with TI WIZ wrapper.
 > 
-> This patch adds the new IP of Nand Flash Controller(NFC) support
-> on Intel's Lightning Mountain(LGM) SoC.
+> A slight irregularity in the bindings is the DPTX PHY register block,
+> which is in the MHDP IP, but is needed and mapped by the PHY.
 > 
-> DMA is used for burst data transfer operation, also DMA HW supports
-> aligned 32bit memory address and aligned data access by default.
-> DMA burst of 8 supported. Data register used to support the read/write
-> operation from/to device.
+> Signed-off-by: Tomi Valkeinen <tomi.valkeinen@ti.com>
+
+just quick notes below:
+
+> ---
+>  arch/arm64/boot/dts/ti/k3-j721e-main.dtsi | 104 ++++++++++++++++++++++
+>  1 file changed, 104 insertions(+)
 > 
-> NAND controller driver implements ->exec_op() to replace legacy hooks,
-> these specific call-back method to execute NAND operations.
+> diff --git a/arch/arm64/boot/dts/ti/k3-j721e-main.dtsi b/arch/arm64/boot/dts/ti/k3-j721e-main.dtsi
+> index 12ceea9b3c9a..82d89dd3faf5 100644
+> --- a/arch/arm64/boot/dts/ti/k3-j721e-main.dtsi
+> +++ b/arch/arm64/boot/dts/ti/k3-j721e-main.dtsi
+> @@ -553,6 +553,82 @@ serdes3: serdes@5030000 {
+>  		};
+>  	};
+>  
+> +	serdes_wiz4: wiz@5050000 {
+serdes-mux ? - I think we might want to cleanup other similar usage
+instead of "wiz" or maybe just "mux"?
 
-...
-
-> +#include <linux/clk.h>
-> +#include <linux/completion.h>
-> +#include <linux/dmaengine.h>
-> +#include <linux/dma-direction.h>
-> +#include <linux/dma-mapping.h>
-> +#include <linux/err.h>
-> +#include <linux/init.h>
-
-> +#include <linux/io.h>
-> +#include <linux/iopoll.h>
-
-io.h is guaranteed to be included by iopoll.h.
-
-> +#include <linux/kernel.h>
-> +#include <linux/platform_device.h>
-> +#include <linux/module.h>
-
-> +#include <linux/mtd/mtd.h>
-> +#include <linux/mtd/rawnand.h>
-> +#include <linux/mtd/nand_ecc.h>
-> +#include <linux/mtd/nand.h>
-
-Since mtd is a hosting framework for this driver, I would move this group of headers after more generic ones with a blank line in between.
-
-
-> +#include <linux/resource.h>
-
-And this I think is guaranteed to be included by io.h.
-
-> +#include <linux/sched.h>
-> +#include <linux/slab.h>
-> +#include <linux/types.h>
-
-> +#include <linux/platform_device.h>
-
-Dup? It's exactly the reason how alphabetical order can help.
-
-...
-
-> +#define EBU_ADDR_SEL(n)		(0x20 + (n) * 4)
-
-I think 0x20 is an offset here, and better to have it as 0x020 to be consistent
-with all other offsets.
-
-...
-
-> +#define EBU_BUSCON(n)		(0x60 + (n) * 4)
-
-Ditto.
-
-...
-
-> +static void ebu_nand_setup_timing(struct ebu_nand_controller *ctrl,
-> +				  const struct nand_sdr_timings *timings)
-> +{
-> +	unsigned int rate = clk_get_rate(ctrl->clk) / 1000000;
-
-HZ_PER_MHZ?
-
-> +	unsigned int period = DIV_ROUND_UP(1000000, rate);
-
-USEC_PER_SEC?
-
-> +	u32 trecov, thold, twrwait, trdwait;
-> +	u32 reg = 0;
+> +		compatible = "ti,j721e-wiz-10g";
+> +		#address-cells = <1>;
+> +		#size-cells = <1>;
+> +		power-domains = <&k3_pds 297 TI_SCI_PD_EXCLUSIVE>;
+> +		clocks = <&k3_clks 297 1>, <&k3_clks 297 9>, <&dummy_cmn_refclk>;
+> +		clock-names = "fck", "core_ref_clk", "ext_ref_clk";
+> +		assigned-clocks = <&k3_clks 297 9>;
+> +		assigned-clock-parents = <&k3_clks 297 10>;
+> +		assigned-clock-rates = <19200000>;
+> +		num-lanes = <4>;
+> +		#reset-cells = <1>;
+> +		ranges = <0x5050000 0x0 0x5050000 0x10000>,
+> +			<0xa030a00 0x0 0xa030a00 0x40>;
 > +
-> +	trecov = DIV_ROUND_UP(max(timings->tREA_max, timings->tREH_min),
-> +			      period);
-> +	reg |= EBU_BUSCON_RECOVC(trecov);
+> +		wiz4_pll0_refclk: pll0-refclk {
+	clock@ ?
+> +			clocks = <&k3_clks 297 9>, <&dummy_cmn_refclk>;
+> +			clock-output-names = "wiz4_pll0_refclk";
+> +			#clock-cells = <0>;
+> +			assigned-clocks = <&wiz4_pll0_refclk>;
+> +			assigned-clock-parents = <&k3_clks 297 9>;
+> +		};
 > +
-> +	thold = DIV_ROUND_UP(max(timings->tDH_min, timings->tDS_min), period);
-> +	reg |= EBU_BUSCON_HOLDC(thold);
+> +		wiz4_pll1_refclk: pll1-refclk {
+	same?
+> +			clocks = <&k3_clks 297 9>, <&dummy_cmn_refclk>;
+> +			clock-output-names = "wiz4_pll1_refclk";
+> +			#clock-cells = <0>;
+> +			assigned-clocks = <&wiz4_pll1_refclk>;
+> +			assigned-clock-parents = <&k3_clks 297 9>;
+> +		};
 > +
-> +	trdwait = DIV_ROUND_UP(max(timings->tRC_min, timings->tREH_min),
-> +			       period);
-> +	reg |= EBU_BUSCON_WAITRDC(trdwait);
+> +		wiz4_refclk_dig: refclk-dig {
+	same?
+> +			clocks = <&k3_clks 297 9>, <&dummy_cmn_refclk>;
+> +			clock-output-names = "wiz4_refclk_dig";
+> +			#clock-cells = <0>;
+> +			assigned-clocks = <&wiz4_refclk_dig>;
+> +			assigned-clock-parents = <&k3_clks 297 9>;
+> +		};
 > +
-> +	twrwait = DIV_ROUND_UP(max(timings->tWC_min, timings->tWH_min), period);
-> +	reg |= EBU_BUSCON_WAITWRC(twrwait);
+> +		wiz4_cmn_refclk_dig_div: cmn-refclk-dig-div {
+	same?
+> +			clocks = <&wiz4_refclk_dig>;
+> +			#clock-cells = <0>;
+> +		};
 > +
-> +	reg |= EBU_BUSCON_CMULT_V4 | EBU_BUSCON_BCGEN_CS | EBU_BUSCON_ALEC |
-> +		EBU_BUSCON_SETUP_EN;
+> +		wiz4_cmn_refclk1_dig_div: cmn-refclk1-dig-div {
+	same?
+> +			clocks = <&wiz4_pll1_refclk>;
+> +			#clock-cells = <0>;
+> +		};
 > +
-> +	writel(reg, ctrl->ebu + EBU_BUSCON(ctrl->cs_num));
-> +}
-
-...
-
-> +	if (oob_required) {
-> +		reg = (chip->oob_poi[3] << 24) | (chip->oob_poi[2] << 16) |
-> +			(chip->oob_poi[1] << 8) | chip->oob_poi[0];
-
-get_unligned_le32()?
-
-...
-
-> +		reg = (chip->oob_poi[7] << 24) | (chip->oob_poi[6] << 16) |
-> +			(chip->oob_poi[5] << 8) | chip->oob_poi[4];
-
-Ditto.
-
-...
-
-> +	ret = readl_poll_timeout_atomic(int_sta, val,
-> +					!(val & HSNAND_INT_STA_WR_C), 10, 1000);
-
-Slightly better (logically split between lines):
-
-	ret = readl_poll_timeout_atomic(int_sta, val, !(val & HSNAND_INT_STA_WR_C),
-					10, 1000);
-
-
-> +	if (ret)
-> +		return ret;
-
-...
-
-> +	res = platform_get_resource_byname(pdev, IORESOURCE_MEM, "ebunand");
-> +	ebu_host->ebu = devm_ioremap_resource(&pdev->dev, res);
-
-Why not to use
-
-	ebu_host->ebu = devm_platform_ioremap_resource_byname(&pdev->dev, "ebunand");
-
-?
-
-> +	if (IS_ERR(ebu_host->ebu))
-> +		return PTR_ERR(ebu_host->ebu);
+> +		serdes4: serdes@5050000 {
+> +			/*
+> +			 * Note: we also map DPTX PHY registers as the Torrent
+> +			 * needs to manage those.
+> +			 */
+> +			compatible = "ti,j721e-serdes-10g";
+> +			reg = <0x5050000 0x10000>,
+> +			      <0xa030a00 0x40>; /* DPTX PHY */
+> +			reg-names = "torrent_phy", "dptx_phy";
 > +
-> +	res = platform_get_resource_byname(pdev, IORESOURCE_MEM, "hsnand");
-> +	ebu_host->hsnand = devm_ioremap_resource(&pdev->dev, res);
-
-Ditto.
-
-> +	if (IS_ERR(ebu_host->hsnand))
-> +		return PTR_ERR(ebu_host->hsnand);
-
-...
-
-
-> +	for (i = 0; i < MAX_CS; i++) {
-> +		resname = devm_kasprintf(dev, GFP_KERNEL, "nand_cs%d", i);
-> +		res = platform_get_resource_byname(pdev, IORESOURCE_MEM,
-> +						   resname);
-
-> +		if (!res)
-> +			return -EINVAL;
-
-Redundant check.
-
-> +		ebu_host->cs[i].chipaddr = devm_ioremap_resource(dev, res);
-
-Ditto (see above).
-
-> +		ebu_host->cs[i].nand_pa = res->start;
-> +		if (IS_ERR(ebu_host->cs[i].chipaddr))
-> +			return PTR_ERR(ebu_host->cs[i].chipaddr);
-> +	}
-
-...
-
-> +	ebu_host->clk = devm_clk_get(dev, NULL);
-> +	if (IS_ERR(ebu_host->clk)) {
-
-> +		ret = PTR_ERR(ebu_host->clk);
-> +		dev_err(dev, "failed to get clock: %d\n", ret);
-> +		return ret;
-
-	return dev_err_probe() ?
-
-> +	}
-
-...
-
-> +	ebu_host->dma_tx = dma_request_chan(dev, "tx");
-> +	if (IS_ERR(ebu_host->dma_tx)) {
-
-> +		ret = PTR_ERR(ebu_host->dma_tx);
-> +		dev_err(dev, "DMA tx channel request fail!.\n");
-> +		goto err_cleanup_dma;
-
-Ditto. On top why !. ???
-
-> +	}
+> +			resets = <&serdes_wiz4 0>;
+> +			reset-names = "torrent_reset";
+> +			clocks = <&wiz4_pll0_refclk>;
+> +			clock-names = "refclk";
+> +			#address-cells = <1>;
+> +			#size-cells = <0>;
+> +			torrent_phy_dp: phy@0 {
+> +				reg = <0>;
+> +				resets = <&serdes_wiz4 1>;
+> +				cdns,phy-type = <PHY_TYPE_DP>;
+> +				cdns,num-lanes = <4>;
+> +				cdns,max-bit-rate = <5400>;
+> +				#phy-cells = <0>;
+> +			};
+> +		};
+> +	};
 > +
-> +	ebu_host->dma_rx = dma_request_chan(dev, "rx");
-> +	if (IS_ERR(ebu_host->dma_rx)) {
+Do you see any impact of the discussions we are having at [1] ?
 
-> +		ret = PTR_ERR(ebu_host->dma_rx);
-> +		dev_err(dev, "DMA rx channel request fail!.\n");
-> +		goto err_cleanup_dma;
+>  	main_uart0: serial@2800000 {
+>  		compatible = "ti,j721e-uart", "ti,am654-uart";
+>  		reg = <0x00 0x02800000 0x00 0x100>;
+> @@ -1024,6 +1100,34 @@ ufs@4e84000 {
+>  		};
+>  	};
+>  
+> +	mhdp: dp-bridge@a000000 {
+> +		compatible = "ti,j721e-mhdp8546";
+> +		/*
+> +		 * Note: we do not map DPTX PHY area, as that is handled by
+> +		 * the PHY driver.
+> +		 */
+> +		reg = <0x0 0xa000000 0x0 0x30a00>, /* DSS_EDP0_V2A_CORE_VP_REGS_APB */
+> +		      <0x0 0x4f40000 0x0 0x20>;    /* DSS_EDP0_INTG_CFG_VP */
+> +		reg-names = "mhdptx", "j721e-intg";
+> +
+> +		status = "disabled";
+> +
+> +		clocks = <&k3_clks 151 36>;
+> +
+> +		phys = <&torrent_phy_dp>;
+> +		phy-names = "dpphy";
+> +
+> +		interrupt-parent = <&gic500>;
+> +		interrupts = <GIC_SPI 614 IRQ_TYPE_LEVEL_HIGH>;
+> +
+> +		power-domains = <&k3_pds 151 TI_SCI_PD_EXCLUSIVE>;
+> +
+> +		dp0_ports: ports {
+> +			#address-cells = <1>;
+> +			#size-cells = <0>;
+> +		};
+> +	};
+> +
+>  	dss: dss@04a00000 {
+>  		compatible = "ti,j721e-dss";
+>  		reg =
+> -- 
+> Texas Instruments Finland Oy, Porkkalankatu 22, 00180 Helsinki.
+> Y-tunnus/Business ID: 0615521-4. Kotipaikka/Domicile: Helsinki
+> 
 
-Ditto.
-
-> +	}
-
+[1] https://lore.kernel.org/linux-devicetree/8a27f8f3-20c4-f72c-b683-81153107d867@ti.com/
 -- 
-With Best Regards,
-Andy Shevchenko
-
-
+Regards,
+Nishanth Menon
+Key (0xDDB5849D1736249D) / Fingerprint: F8A2 8693 54EB 8232 17A3  1A34 DDB5 849D 1736 249D
