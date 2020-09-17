@@ -2,114 +2,125 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from vger.kernel.org (vger.kernel.org [23.128.96.18])
-	by mail.lfdr.de (Postfix) with ESMTP id 69BF626D40C
-	for <lists+devicetree@lfdr.de>; Thu, 17 Sep 2020 08:58:41 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTP id EA69E26D442
+	for <lists+devicetree@lfdr.de>; Thu, 17 Sep 2020 09:07:43 +0200 (CEST)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S1726151AbgIQG6d (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Thu, 17 Sep 2020 02:58:33 -0400
-Received: from mail.kernel.org ([198.145.29.99]:52590 "EHLO mail.kernel.org"
-        rhost-flags-OK-OK-OK-OK) by vger.kernel.org with ESMTP
-        id S1726142AbgIQG62 (ORCPT <rfc822;devicetree@vger.kernel.org>);
-        Thu, 17 Sep 2020 02:58:28 -0400
-Received: from mail-ed1-f43.google.com (mail-ed1-f43.google.com [209.85.208.43])
-        (using TLSv1.2 with cipher ECDHE-RSA-AES128-GCM-SHA256 (128/128 bits))
-        (No client certificate requested)
-        by mail.kernel.org (Postfix) with ESMTPSA id 9DA8C21D41;
-        Thu, 17 Sep 2020 06:58:26 +0000 (UTC)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=kernel.org;
-        s=default; t=1600325906;
-        bh=nPSrDuBIqK++Cs2Yf8watCT9FKUAvE8l/UEvBK+iyoI=;
-        h=References:In-Reply-To:From:Date:Subject:To:Cc:From;
-        b=R8+Zxy8DVnHIGDtj/rxH1HYE7+ZI7x6ClAOFZg+v/22EvmPQmS0iR+V1m6PRFpW3X
-         X873efb8X9+8WoporP624GJXUCGLxqPWvml5scUjhzOAEvZNxJr7BjL3kGMyKIHRIa
-         H25+QiYH6WFTG3Sh7e7uJRiq2cQfj0Qetv1YjJ4k=
-Received: by mail-ed1-f43.google.com with SMTP id n22so1324522edt.4;
-        Wed, 16 Sep 2020 23:58:26 -0700 (PDT)
-X-Gm-Message-State: AOAM533xf7kos8Rcs+nf+MxotAttzjoFfbIq9U+TD7aKPz2l89rq5mbZ
-        qhys+waoSlxfQM72s1cF7a4C95/G/ii+VuZdo4c=
-X-Google-Smtp-Source: ABdhPJw6oBjGfpKJpPCFXBca1WTyVw1bjowRIiOkT6Iq1M84hhnCUG0jSC0ArmHu21bBl/Bc3OMUftiIy2mZoqPT59s=
-X-Received: by 2002:a50:e78f:: with SMTP id b15mr31833332edn.104.1600325905101;
- Wed, 16 Sep 2020 23:58:25 -0700 (PDT)
+        id S1726265AbgIQHH0 (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Thu, 17 Sep 2020 03:07:26 -0400
+Received: from lindbergh.monkeyblade.net ([23.128.96.19]:45462 "EHLO
+        lindbergh.monkeyblade.net" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
+        with ESMTP id S1726192AbgIQHAK (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Thu, 17 Sep 2020 03:00:10 -0400
+Received: from mail-wr1-x441.google.com (mail-wr1-x441.google.com [IPv6:2a00:1450:4864:20::441])
+        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 5A65CC06178C
+        for <devicetree@vger.kernel.org>; Thu, 17 Sep 2020 00:00:03 -0700 (PDT)
+Received: by mail-wr1-x441.google.com with SMTP id t10so799148wrv.1
+        for <devicetree@vger.kernel.org>; Thu, 17 Sep 2020 00:00:03 -0700 (PDT)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+        d=baylibre-com.20150623.gappssmtp.com; s=20150623;
+        h=from:to:cc:subject:date:message-id:in-reply-to:references
+         :mime-version:content-transfer-encoding;
+        bh=+Sr8oVzKvyD/zquOuBfsibXPcOOdCUHxve0EXAZkgxo=;
+        b=zAxziCPISkzSXUnEHDjswb1aWbCu/F/BgQ37nODlVtfT7XQxc3p+BB7uTBkX6ifJzF
+         y9u7LKoOphxoUm60u1XcFt1Gj8Ck+ohOzAU86JxyEPPurTfDqxhGtDl4ZF2G3pruZvWQ
+         gDqeZa6RlXly7ApknGR4IA26N9gUADNnyDgxf6wiYzts2Ef4WKHPU9v/RQLJrMA0YwHS
+         RlKwbBuy193Irpy25bB++7/APngy9hCbRTEkl2Y7uryqPB9MDloSuc/m/3iNTRNkNNF3
+         tmyF3fpRfqXLWUFpb2SOVIVV2OmqNEyehJg6BOgIGHrabOk4PhfDTt9qakpbly9ayxeM
+         jHNQ==
+X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+        d=1e100.net; s=20161025;
+        h=x-gm-message-state:from:to:cc:subject:date:message-id:in-reply-to
+         :references:mime-version:content-transfer-encoding;
+        bh=+Sr8oVzKvyD/zquOuBfsibXPcOOdCUHxve0EXAZkgxo=;
+        b=rv6QEghOhRlwq/n5+efiOxOOwa4J9flDmcZMk8IUI59TZSPOpw9dW82wDmy5tzfM9J
+         l/bB9XZnmE+t7OVAscRj5tD7oIkZYYVtAG2GN02l1qPpoIaShJLxSrYYOqRpQWicFb+l
+         VSCl+bED7BItFknfBVY30O1NbVDvFFLXg7YmZmjWOpvcIxgklWwE+1CZKAh6Vz5yI75s
+         kGOOIc4h7Dfjq8OM8NdzpGM2yPCZ01fgHoWDeni6Tb+PoLxLzVbs/Lpp8nOdBzHs+02f
+         q6jTd+WmyOFy7Ky1q5CqSixXEgYuhLwbimAH72OmuLttATB99OXgzLN5CYDFG0p/Jm/6
+         lf4Q==
+X-Gm-Message-State: AOAM5335LJYVUrwp966QLJ9zAJdsHiQGIrAJTpwR4IPgbpnILKIaFxQS
+        TLyov2WOBtQuDznF7SXFCfsiVw==
+X-Google-Smtp-Source: ABdhPJxZcc1dB/8PenT4vG8pyjqgyZKjF4FfZZo+k5kkR1VqWS7d/qJLCfVQ1jjZVVPcRSk9o9jyiA==
+X-Received: by 2002:adf:9c93:: with SMTP id d19mr31158974wre.275.1600326001840;
+        Thu, 17 Sep 2020 00:00:01 -0700 (PDT)
+Received: from bender.baylibre.local (laubervilliers-658-1-213-31.w90-63.abo.wanadoo.fr. [90.63.244.31])
+        by smtp.gmail.com with ESMTPSA id z14sm35709055wrh.14.2020.09.16.23.59.59
+        (version=TLS1_3 cipher=TLS_AES_256_GCM_SHA384 bits=256/256);
+        Thu, 17 Sep 2020 00:00:00 -0700 (PDT)
+From:   Neil Armstrong <narmstrong@baylibre.com>
+To:     khilman@baylibre.com, martin.blumenstingl@googlemail.com,
+        devicetree@vger.kernel.org
+Cc:     linux-amlogic@lists.infradead.org,
+        linux-arm-kernel@lists.infradead.org, linux-kernel@vger.kernel.org,
+        Neil Armstrong <narmstrong@baylibre.com>,
+        linux-usb@vger.kernel.org
+Subject: [PATCH v2 2/5] dt-bindings: usb: amlogic,meson-g12a-usb-ctrl: add the Amlogic AXG Families USB Glue Bindings
+Date:   Thu, 17 Sep 2020 08:59:46 +0200
+Message-Id: <20200917065949.3476-3-narmstrong@baylibre.com>
+X-Mailer: git-send-email 2.22.0
+In-Reply-To: <20200917065949.3476-1-narmstrong@baylibre.com>
+References: <20200917065949.3476-1-narmstrong@baylibre.com>
 MIME-Version: 1.0
-References: <20200916162250.16098-1-krzk@kernel.org> <20200916162250.16098-3-krzk@kernel.org>
- <CAMuHMdUS134fokz9Xus_pnL6tVYvgQE_uAS4Q-+B4r77VeY=xg@mail.gmail.com>
-In-Reply-To: <CAMuHMdUS134fokz9Xus_pnL6tVYvgQE_uAS4Q-+B4r77VeY=xg@mail.gmail.com>
-From:   Krzysztof Kozlowski <krzk@kernel.org>
-Date:   Thu, 17 Sep 2020 08:58:13 +0200
-X-Gmail-Original-Message-ID: <CAJKOXPeTTbrz5Ja8Y=qeCx_vbUub9sBzQqQY1yNa8dWN0nafGg@mail.gmail.com>
-Message-ID: <CAJKOXPeTTbrz5Ja8Y=qeCx_vbUub9sBzQqQY1yNa8dWN0nafGg@mail.gmail.com>
-Subject: Re: [PATCH 2/8] dt-bindings: gpio: include common schema in GPIO controllers
-To:     Geert Uytterhoeven <geert@linux-m68k.org>
-Cc:     Linus Walleij <linus.walleij@linaro.org>,
-        Bartosz Golaszewski <bgolaszewski@baylibre.com>,
-        Rob Herring <robh+dt@kernel.org>, Ray Jui <rjui@broadcom.com>,
-        Scott Branden <sbranden@broadcom.com>,
-        bcm-kernel-feedback-list <bcm-kernel-feedback-list@broadcom.com>,
-        Shawn Guo <shawnguo@kernel.org>,
-        Sascha Hauer <s.hauer@pengutronix.de>,
-        Pengutronix Kernel Team <kernel@pengutronix.de>,
-        Fabio Estevam <festevam@gmail.com>,
-        NXP Linux Team <linux-imx@nxp.com>,
-        Manivannan Sadhasivam <manivannan.sadhasivam@linaro.org>,
-        Andy Gross <agross@kernel.org>,
-        Bjorn Andersson <bjorn.andersson@linaro.org>,
-        Palmer Dabbelt <palmer@dabbelt.com>,
-        Paul Walmsley <paul.walmsley@sifive.com>,
-        Masahiro Yamada <yamada.masahiro@socionext.com>,
-        Chris Packham <chris.packham@alliedtelesis.co.nz>,
-        Anson Huang <Anson.Huang@nxp.com>,
-        Sungbo Eo <mans0n@gorani.run>, Stefan Agner <stefan@agner.ch>,
-        Srinivas Kandagatla <srinivas.kandagatla@linaro.org>,
-        Magnus Damm <magnus.damm@gmail.com>,
-        Geert Uytterhoeven <geert+renesas@glider.be>,
-        Yash Shah <yash.shah@sifive.com>,
-        Paul Kocialkowski <paul.kocialkowski@bootlin.com>,
-        "open list:GPIO SUBSYSTEM" <linux-gpio@vger.kernel.org>,
-        "open list:OPEN FIRMWARE AND FLATTENED DEVICE TREE BINDINGS" 
-        <devicetree@vger.kernel.org>,
-        Linux ARM <linux-arm-kernel@lists.infradead.org>,
-        Linux Kernel Mailing List <linux-kernel@vger.kernel.org>,
-        linux-unisoc@lists.infradead.org,
-        linux-arm-msm <linux-arm-msm@vger.kernel.org>,
-        linux-riscv <linux-riscv@lists.infradead.org>
-Content-Type: text/plain; charset="UTF-8"
+Content-Transfer-Encoding: 8bit
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-On Thu, 17 Sep 2020 at 08:40, Geert Uytterhoeven <geert@linux-m68k.org> wrote:
->
-> Hi Krzysztof,
->
-> On Wed, Sep 16, 2020 at 6:23 PM Krzysztof Kozlowski <krzk@kernel.org> wrote:
-> > Include the common GPIO schema in GPIO controllers to be sure all common
-> > properties are properly validated.
-> >
-> > Signed-off-by: Krzysztof Kozlowski <krzk@kernel.org>
->
-> Thanks for your patch!
->
-> > ---
-> >  .../devicetree/bindings/gpio/brcm,xgs-iproc-gpio.yaml          | 3 +++
-> >  Documentation/devicetree/bindings/gpio/fsl-imx-gpio.yaml       | 3 +++
-> >  Documentation/devicetree/bindings/gpio/gpio-mxs.yaml           | 3 +++
-> >  Documentation/devicetree/bindings/gpio/gpio-pca9570.yaml       | 3 +++
-> >  Documentation/devicetree/bindings/gpio/gpio-rda.yaml           | 3 +++
-> >  Documentation/devicetree/bindings/gpio/gpio-vf610.yaml         | 3 +++
-> >  Documentation/devicetree/bindings/gpio/mrvl-gpio.yaml          | 1 +
-> >  Documentation/devicetree/bindings/gpio/qcom,wcd934x-gpio.yaml  | 3 +++
-> >  Documentation/devicetree/bindings/gpio/renesas,em-gio.yaml     | 3 +++
-> >  Documentation/devicetree/bindings/gpio/renesas,rcar-gpio.yaml  | 3 +++
-> >  Documentation/devicetree/bindings/gpio/sifive,gpio.yaml        | 3 +++
-> >  .../devicetree/bindings/gpio/socionext,uniphier-gpio.yaml      | 3 +++
-> >  Documentation/devicetree/bindings/gpio/xylon,logicvc-gpio.yaml | 3 +++
-> >  13 files changed, 37 insertions(+)
->
-> There are more binding files describing GPIO controllers outside the
-> Documentation/devicetree/bindings/gpio/ subdirectory, cfr.
-> 'git grep gpio-controller:.true -- "Doc*yaml"'
+The Amlogic AXG is close to the GXL Glue but with a single OTG PHY.
 
-Oh, indeed. Thanks for spotting these. I will check them and send a follow up.
+Signed-off-by: Neil Armstrong <narmstrong@baylibre.com>
+Reviewed-by: Kevin Hilman <khilman@baylibre.com>
+Acked-by: Martin Blumenstingl <martin.blumenstingl@googlemail.com>
+---
+ .../usb/amlogic,meson-g12a-usb-ctrl.yaml      | 22 ++++++++++++++++++-
+ 1 file changed, 21 insertions(+), 1 deletion(-)
 
-Best regards,
-Krzysztof
+diff --git a/Documentation/devicetree/bindings/usb/amlogic,meson-g12a-usb-ctrl.yaml b/Documentation/devicetree/bindings/usb/amlogic,meson-g12a-usb-ctrl.yaml
+index 5b04a7dfa018..c0058332b967 100644
+--- a/Documentation/devicetree/bindings/usb/amlogic,meson-g12a-usb-ctrl.yaml
++++ b/Documentation/devicetree/bindings/usb/amlogic,meson-g12a-usb-ctrl.yaml
+@@ -25,13 +25,14 @@ description: |
+   The Amlogic A1 embeds a DWC3 USB IP Core configured for USB2 in
+   host-only mode.
+ 
+-  The Amlogic GXL & GXM SoCs doesn't embed an USB3 PHY.
++  The Amlogic GXL, GXM & AXG SoCs doesn't embed an USB3 PHY.
+ 
+ properties:
+   compatible:
+     enum:
+       - amlogic,meson-gxl-usb-ctrl
+       - amlogic,meson-gxm-usb-ctrl
++      - amlogic,meson-axg-usb-ctrl
+       - amlogic,meson-g12a-usb-ctrl
+       - amlogic,meson-a1-usb-ctrl
+ 
+@@ -151,6 +152,25 @@ allOf:
+ 
+       required:
+         - clock-names
++  - if:
++      properties:
++        compatible:
++          enum:
++            - amlogic,meson-axg-usb-ctrl
++
++    then:
++      properties:
++        phy-names:
++          items:
++            - const: usb2-phy1 # USB2 PHY1 if USBOTG_B port is used
++        clocks:
++          minItems: 2
++        clock-names:
++          items:
++            - const: usb_ctrl
++            - const: ddr
++      required:
++        - clock-names
+   - if:
+       properties:
+         compatible:
+-- 
+2.22.0
+
