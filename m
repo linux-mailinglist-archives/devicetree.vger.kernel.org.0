@@ -2,27 +2,27 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from vger.kernel.org (vger.kernel.org [23.128.96.18])
-	by mail.lfdr.de (Postfix) with ESMTP id 7A43A26E425
-	for <lists+devicetree@lfdr.de>; Thu, 17 Sep 2020 20:41:54 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTP id 8F2C126E428
+	for <lists+devicetree@lfdr.de>; Thu, 17 Sep 2020 20:42:12 +0200 (CEST)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S1728751AbgIQQzc (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Thu, 17 Sep 2020 12:55:32 -0400
-Received: from mail.kernel.org ([198.145.29.99]:33146 "EHLO mail.kernel.org"
+        id S1726414AbgIQSl6 (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Thu, 17 Sep 2020 14:41:58 -0400
+Received: from mail.kernel.org ([198.145.29.99]:33764 "EHLO mail.kernel.org"
         rhost-flags-OK-OK-OK-OK) by vger.kernel.org with ESMTP
-        id S1728744AbgIQQzP (ORCPT <rfc822;devicetree@vger.kernel.org>);
-        Thu, 17 Sep 2020 12:55:15 -0400
+        id S1728747AbgIQQza (ORCPT <rfc822;devicetree@vger.kernel.org>);
+        Thu, 17 Sep 2020 12:55:30 -0400
 Received: from kozik-lap.mshome.net (unknown [194.230.155.191])
         (using TLSv1.2 with cipher ECDHE-RSA-AES128-GCM-SHA256 (128/128 bits))
         (No client certificate requested)
-        by mail.kernel.org (Postfix) with ESMTPSA id CE174221E7;
-        Thu, 17 Sep 2020 16:54:58 +0000 (UTC)
+        by mail.kernel.org (Postfix) with ESMTPSA id 647A521D24;
+        Thu, 17 Sep 2020 16:55:14 +0000 (UTC)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=kernel.org;
-        s=default; t=1600361713;
-        bh=HczLzPQr6OtHbam5qOdkdD+vA7dPuNPd8y9fq4tyixw=;
+        s=default; t=1600361729;
+        bh=pV5NUEmeW9mZ1TS+/Jc3oFxArHOIVWs9UQjncMMV5dA=;
         h=From:To:Cc:Subject:Date:In-Reply-To:References:From;
-        b=iuy5p0+Ez3XMnKjk08wzzH6pMKBcMSmcBzBBWZcw06qb8eATzdQsyeG9aZ85bT4hW
-         pzU2ynkwfqqkI3EYoJgoOZJzpq2CFcQ0Gp/XY+1Gpqr1vebfRY/wroBvMS2AHGEVvi
-         YCKCmQK5gyP55HfTJ9BhRkNS8uT2a5HUIDR0Sudo=
+        b=ZezngZwDO3KQgBWc5kH7o+363k3VkzXLGbSLbSc0tebpQso6t6pYwNkEyZCDiQPmV
+         SDInDhjroyojBh7Mphf9Czz2rjH6R5ZkFLMbtuCEXnnrfdP8uQrsgKQcvItrVphoK1
+         F0JF12gmB5ueiJxBeEsZOAKj0ouhtPyo/iU8CgBA=
 From:   Krzysztof Kozlowski <krzk@kernel.org>
 To:     Linus Walleij <linus.walleij@linaro.org>,
         Bartosz Golaszewski <bgolaszewski@baylibre.com>,
@@ -86,9 +86,9 @@ To:     Linus Walleij <linus.walleij@linaro.org>,
         linux-mediatek@lists.infradead.org,
         linux-renesas-soc@vger.kernel.org
 Cc:     Krzysztof Kozlowski <krzk@kernel.org>
-Subject: [PATCH v2 05/13] dt-bindings: gpio: fsl-imx-gpio: add gpio-line-names
-Date:   Thu, 17 Sep 2020 18:52:53 +0200
-Message-Id: <20200917165301.23100-6-krzk@kernel.org>
+Subject: [PATCH v2 06/13] dt-bindings: gpio: gpio-vf610: fix iMX 7ULP compatible matching
+Date:   Thu, 17 Sep 2020 18:52:54 +0200
+Message-Id: <20200917165301.23100-7-krzk@kernel.org>
 X-Mailer: git-send-email 2.17.1
 In-Reply-To: <20200917165301.23100-1-krzk@kernel.org>
 References: <20200917165301.23100-1-krzk@kernel.org>
@@ -96,30 +96,44 @@ Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-Describe common "gpio-line-names" property to fix dtbs_check warnings
-like:
+The i.MX 7ULP DTSes use two compatibles so update the binding to fix
+dtbs_check warnings like:
 
-  arch/arm/boot/dts/imx53-m53menlo.dt.yaml: gpio@53f84000:
-    'gpio-line-names' does not match any of the regexes: '^(hog-[0-9]+|.+-hog(-[0-9]+)?)$', 'pinctrl-[0-9]+'
+  arch/arm/boot/dts/imx7ulp-com.dt.yaml: gpio@40ae0000:
+    compatible: ['fsl,imx7ulp-gpio', 'fsl,vf610-gpio'] is too long
+
+  arch/arm/boot/dts/imx7ulp-com.dt.yaml: gpio@40ae0000:
+    compatible: Additional items are not allowed ('fsl,vf610-gpio' was unexpected)
 
 Signed-off-by: Krzysztof Kozlowski <krzk@kernel.org>
----
- Documentation/devicetree/bindings/gpio/fsl-imx-gpio.yaml | 2 +-
- 1 file changed, 1 insertion(+), 1 deletion(-)
 
-diff --git a/Documentation/devicetree/bindings/gpio/fsl-imx-gpio.yaml b/Documentation/devicetree/bindings/gpio/fsl-imx-gpio.yaml
-index ad761e2f380a..347f059d347a 100644
---- a/Documentation/devicetree/bindings/gpio/fsl-imx-gpio.yaml
-+++ b/Documentation/devicetree/bindings/gpio/fsl-imx-gpio.yaml
-@@ -65,7 +65,7 @@ properties:
-     const: 2
+---
+
+Changes since v1:
+1. New patch
+---
+ Documentation/devicetree/bindings/gpio/gpio-vf610.yaml | 8 +++++---
+ 1 file changed, 5 insertions(+), 3 deletions(-)
+
+diff --git a/Documentation/devicetree/bindings/gpio/gpio-vf610.yaml b/Documentation/devicetree/bindings/gpio/gpio-vf610.yaml
+index 82f3e4b407d1..7a5745255969 100644
+--- a/Documentation/devicetree/bindings/gpio/gpio-vf610.yaml
++++ b/Documentation/devicetree/bindings/gpio/gpio-vf610.yaml
+@@ -22,9 +22,11 @@ allOf:
  
-   gpio-controller: true
--
-+  gpio-line-names: true
-   gpio-ranges: true
+ properties:
+   compatible:
+-    enum:
+-      - fsl,vf610-gpio
+-      - fsl,imx7ulp-gpio
++    oneOf:
++      - const: fsl,vf610-gpio
++      - items:
++          - const: fsl,imx7ulp-gpio
++          - const: fsl,vf610-gpio
  
-   power-domains:
+   reg:
+     description: The first reg tuple represents the PORT module, the second tuple
 -- 
 2.17.1
 
