@@ -2,109 +2,114 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from vger.kernel.org (vger.kernel.org [23.128.96.18])
-	by mail.lfdr.de (Postfix) with ESMTP id 7010526D1B0
-	for <lists+devicetree@lfdr.de>; Thu, 17 Sep 2020 05:29:14 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTP id D2A3D26D1CF
+	for <lists+devicetree@lfdr.de>; Thu, 17 Sep 2020 05:35:59 +0200 (CEST)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S1726186AbgIQD3M (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Wed, 16 Sep 2020 23:29:12 -0400
-Received: from lindbergh.monkeyblade.net ([23.128.96.19]:41028 "EHLO
-        lindbergh.monkeyblade.net" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S1726154AbgIQD2J (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Wed, 16 Sep 2020 23:28:09 -0400
-Received: from mail-qt1-x844.google.com (mail-qt1-x844.google.com [IPv6:2607:f8b0:4864:20::844])
-        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id D6718C061A29
-        for <devicetree@vger.kernel.org>; Wed, 16 Sep 2020 20:22:35 -0700 (PDT)
-Received: by mail-qt1-x844.google.com with SMTP id g3so773073qtq.10
-        for <devicetree@vger.kernel.org>; Wed, 16 Sep 2020 20:22:35 -0700 (PDT)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=linaro.org; s=google;
-        h=from:to:cc:subject:date:message-id:in-reply-to:references
-         :mime-version:content-transfer-encoding;
-        bh=7uYlLNN0UyKBRIab8OLOITLg387YzzBqmIZv+ipj1Bk=;
-        b=WgQWIsUlbXN3VVXSecXh6NSwzMBUdXegJ1UbE5dZ5hL0zTZqMnJXK3IU1YodWCoeuB
-         Y4OEpjgNajgPg+yhYvIAF872GecFsE1BgxlzwnqnA2jGT679cwonprKHeJe8p+UZy5J4
-         r72IIPcyanDumuLDsqhSxQlUc1HrTMomgmZd3gWrEDjF51lbPdFbSTdtKnYDJe3bi49z
-         HEdjA9fmvjxIv9m2vCLCmsz7H6ZD+ixW5RTucdXqj8nak9ZZl5Ra/dU9HxJrqjt1fx3v
-         5Uc6+JFwsR2u575L2MXyGO88rbRgDz78wJEGc2KS0sgSp02IBTsoU+HrrDclIL7UUzD5
-         yPIA==
-X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=1e100.net; s=20161025;
-        h=x-gm-message-state:from:to:cc:subject:date:message-id:in-reply-to
-         :references:mime-version:content-transfer-encoding;
-        bh=7uYlLNN0UyKBRIab8OLOITLg387YzzBqmIZv+ipj1Bk=;
-        b=rahnta0FhyE8YSYHZZ2EV3dFtxUaD6+z32QstWuR57Ovl3g3L1FoWVkT6ecQ8yZMey
-         PToYo9kCKikvzQGFR2vfmGHbv1qy3wpNLh5SaVViDVEnMYIreCcv32ctmnKk3Cvq8dDe
-         3JyeVFRQ/zgwM6bRBYOSXC3I8F1peR4p0YH0Izfqnbpk4jTGffUT0WDIeRp06Kb96DyT
-         BsXvKW7AUYRPaeXMC9Gpkdn3FpYe6M3QjcevbIOzQ46fZN0ACVoq4XfHNvsTo6sCaNf2
-         XJS9mm2/A6H6bKg+9fJcupHK8RJLGyVBBRNmTFSm0iTewO4vrUC/CyyTFlqu7yRW0tdi
-         +Qxg==
-X-Gm-Message-State: AOAM532MfXKKJ7NTlFoG1IHevIlkPtanFY5+0Ej9dnH5RAQ07JHc4pra
-        dCCLq8f9iBuSzkZYr660r2vQnJ5bdk1zfg==
-X-Google-Smtp-Source: ABdhPJzGL4YEJnZLHDs2gCK48wqeWdvZlE8nmVrQmjPTUaQ1EXFV5sqoz+sP/iUjbWjWIJ3lhJr+wg==
-X-Received: by 2002:aed:2b86:: with SMTP id e6mr25582795qtd.86.1600312955087;
-        Wed, 16 Sep 2020 20:22:35 -0700 (PDT)
-Received: from pop-os.fios-router.home (pool-71-163-245-5.washdc.fios.verizon.net. [71.163.245.5])
-        by smtp.googlemail.com with ESMTPSA id g45sm21370801qtb.60.2020.09.16.20.22.34
-        (version=TLS1_3 cipher=TLS_AES_256_GCM_SHA384 bits=256/256);
-        Wed, 16 Sep 2020 20:22:34 -0700 (PDT)
-From:   Thara Gopinath <thara.gopinath@linaro.org>
-To:     rui.zhang@intel.com, daniel.lezcano@linaro.org, robh+dt@kernel.org,
-        agross@kernel.org, bjorn.andersson@linaro.org
-Cc:     linux-pm@vger.kernel.org, devicetree@vger.kernel.org,
-        linux-kernel@vger.kernel.org, linux-arm-msm@vger.kernel.org,
-        lukasz.luba@arm.com, amitk@kernel.org
-Subject: [PATCH RFC 8/8] soc:qcom:qcom_aoss: Change cooling_device_register to warming_device_register
-Date:   Wed, 16 Sep 2020 23:22:26 -0400
-Message-Id: <20200917032226.820371-9-thara.gopinath@linaro.org>
-X-Mailer: git-send-email 2.25.1
-In-Reply-To: <20200917032226.820371-1-thara.gopinath@linaro.org>
-References: <20200917032226.820371-1-thara.gopinath@linaro.org>
+        id S1725987AbgIQDf6 (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Wed, 16 Sep 2020 23:35:58 -0400
+Received: from mailgw02.mediatek.com ([1.203.163.81]:23060 "EHLO
+        mailgw02.mediatek.com" rhost-flags-OK-FAIL-OK-FAIL) by vger.kernel.org
+        with ESMTP id S1725267AbgIQDf6 (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Wed, 16 Sep 2020 23:35:58 -0400
+X-Greylist: delayed 301 seconds by postgrey-1.27 at vger.kernel.org; Wed, 16 Sep 2020 23:35:56 EDT
+X-UUID: f693411af7824f15b89d931fbc3367a3-20200917
+DKIM-Signature: v=1; a=rsa-sha256; q=dns/txt; c=relaxed/relaxed; d=mediatek.com; s=dk;
+        h=Content-Transfer-Encoding:Content-Type:MIME-Version:Message-ID:Date:Subject:CC:To:From; bh=3c+peDytuMhcMrnaVbpiJTnq5XNIuqy9R+l3Dgk+J4U=;
+        b=fTV3hx2DEfFsTzyLe/FreJRhD5icjfam73hkA3WSve8mAhsYRBcGTjzCcQYdErCtd5cDQR6sIMtGDNPE5ymV0SG357RcnIVQQYD0MAFvvWv8SyA+iaQc8Lm4mgNJGDM3fWHGYrxEWrcOu7fyTX8uUQgbxxvYUwZmGbXsXN2YQng=;
+X-UUID: f693411af7824f15b89d931fbc3367a3-20200917
+Received: from mtkcas36.mediatek.inc [(172.27.4.253)] by mailgw02.mediatek.com
+        (envelope-from <jitao.shi@mediatek.com>)
+        (mailgw01.mediatek.com ESMTP with TLSv1.2 ECDHE-RSA-AES256-SHA384 256/256)
+        with ESMTP id 1797150735; Thu, 17 Sep 2020 11:30:48 +0800
+Received: from MTKCAS32.mediatek.inc (172.27.4.184) by MTKMBS33N2.mediatek.inc
+ (172.27.4.76) with Microsoft SMTP Server (TLS) id 15.0.1497.2; Thu, 17 Sep
+ 2020 11:30:42 +0800
+Received: from mszsdaap41.gcn.mediatek.inc (10.16.6.141) by
+ MTKCAS32.mediatek.inc (172.27.4.170) with Microsoft SMTP Server id
+ 15.0.1497.2 via Frontend Transport; Thu, 17 Sep 2020 11:30:46 +0800
+From:   Jitao Shi <jitao.shi@mediatek.com>
+To:     Rob Herring <robh+dt@kernel.org>,
+        Mark Rutland <mark.rutland@arm.com>,
+        Matthias Brugger <matthias.bgg@gmail.com>,
+        Daniel Vetter <daniel@ffwll.ch>,
+        David Airlie <airlied@linux.ie>,
+        <dri-devel@lists.freedesktop.org>, <linux-kernel@vger.kernel.org>
+CC:     <linux-mediatek@lists.infradead.org>, <devicetree@vger.kernel.org>,
+        <linux-arm-kernel@lists.infradead.org>,
+        <srv_heupstream@mediatek.com>, <yingjoe.chen@mediatek.com>,
+        <eddie.huang@mediatek.com>, <cawa.cheng@mediatek.com>,
+        <bibby.hsieh@mediatek.com>, <ck.hu@mediatek.com>,
+        <stonea168@163.com>, <huijuan.xie@mediatek.com>,
+        Jitao Shi <jitao.shi@mediatek.com>
+Subject: [v3 PATCH] drm/mediatek: dsi: fix scrolling of panel with small hfp or hbp
+Date:   Thu, 17 Sep 2020 11:30:09 +0800
+Message-ID: <20200917033009.24799-1-jitao.shi@mediatek.com>
+X-Mailer: git-send-email 2.12.5
 MIME-Version: 1.0
-Content-Transfer-Encoding: 8bit
+Content-Type: text/plain
+X-TM-SNTS-SMTP: 4F827BECC77D9F2C29EC3F76CEDA6B6B769F669CE4672B087A307F8E1E8E80442000:8
+X-MTK:  N
+Content-Transfer-Encoding: base64
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-Always on subsystem host resources cx and ebi that are used as warming
-devices. Use the newly introduce _warming_device_register to register
-these devices with the thermal framework.
-
-Signed-off-by: Thara Gopinath <thara.gopinath@linaro.org>
----
- drivers/soc/qcom/qcom_aoss.c | 6 +++---
- 1 file changed, 3 insertions(+), 3 deletions(-)
-
-diff --git a/drivers/soc/qcom/qcom_aoss.c b/drivers/soc/qcom/qcom_aoss.c
-index ed2c687c16b3..4f65c03a5def 100644
---- a/drivers/soc/qcom/qcom_aoss.c
-+++ b/drivers/soc/qcom/qcom_aoss.c
-@@ -461,7 +461,7 @@ static int qmp_cooling_device_add(struct qmp *qmp,
- 	qmp_cdev->qmp = qmp;
- 	qmp_cdev->state = !qmp_cdev_max_state;
- 	qmp_cdev->name = cdev_name;
--	qmp_cdev->cdev = devm_thermal_of_cooling_device_register
-+	qmp_cdev->cdev = devm_thermal_of_warming_device_register
- 				(qmp->dev, node,
- 				cdev_name,
- 				qmp_cdev, &qmp_cooling_device_ops);
-@@ -501,7 +501,7 @@ static int qmp_cooling_devices_register(struct qmp *qmp)
- 
- unroll:
- 	while (--count >= 0)
--		thermal_cooling_device_unregister
-+		thermal_warming_device_unregister
- 			(qmp->cooling_devs[count].cdev);
- 
- 	return ret;
-@@ -512,7 +512,7 @@ static void qmp_cooling_devices_remove(struct qmp *qmp)
- 	int i;
- 
- 	for (i = 0; i < QMP_NUM_COOLING_RESOURCES; i++)
--		thermal_cooling_device_unregister(qmp->cooling_devs[i].cdev);
-+		thermal_warming_device_unregister(qmp->cooling_devs[i].cdev);
- }
- 
- static int qmp_probe(struct platform_device *pdev)
--- 
-2.25.1
+UmVwbGFjZSBob3Jpem9udGFsX2JhY2twb3JjaF9ieXRlIHdpdGggdm0tPmhiYWNrX3BvcmNoICog
+YnBwIHRvIGFvdmlkDQpmbG93aW5nIGp1ZGdlbWVudCBuZWdhdGl2ZSBudW1iZXIuDQoNCmlmICgo
+dm0tPmhmcm9udF9wb3JjaCAqIGRzaV90bXBfYnVmX2JwcCArIGhvcml6b250YWxfYmFja3BvcmNo
+X2J5dGUpID4NCglkYXRhX3BoeV9jeWNsZXMgKiBkc2ktPmxhbmVzICsgZGVsdGEpDQoNClNpZ25l
+ZC1vZmYtYnk6IEppdGFvIFNoaSA8aml0YW8uc2hpQG1lZGlhdGVrLmNvbT4NCi0tLQ0KIGRyaXZl
+cnMvZ3B1L2RybS9tZWRpYXRlay9tdGtfZHNpLmMgfCA1NCArKysrKysrKysrKysrKy0tLS0tLS0t
+LS0tLS0tLS0tLS0tLS0tLQ0KIDEgZmlsZSBjaGFuZ2VkLCAxOSBpbnNlcnRpb25zKCspLCAzNSBk
+ZWxldGlvbnMoLSkNCg0KZGlmZiAtLWdpdCBhL2RyaXZlcnMvZ3B1L2RybS9tZWRpYXRlay9tdGtf
+ZHNpLmMgYi9kcml2ZXJzL2dwdS9kcm0vbWVkaWF0ZWsvbXRrX2RzaS5jDQppbmRleCAxNmZkOTlk
+Y2RhY2YuLmRkZGRmNjllYmVhZiAxMDA2NDQNCi0tLSBhL2RyaXZlcnMvZ3B1L2RybS9tZWRpYXRl
+ay9tdGtfZHNpLmMNCisrKyBiL2RyaXZlcnMvZ3B1L2RybS9tZWRpYXRlay9tdGtfZHNpLmMNCkBA
+IC00NDUsNiArNDQ1LDcgQEAgc3RhdGljIHZvaWQgbXRrX2RzaV9jb25maWdfdmRvX3RpbWluZyhz
+dHJ1Y3QgbXRrX2RzaSAqZHNpKQ0KIAl1MzIgaG9yaXpvbnRhbF9iYWNrcG9yY2hfYnl0ZTsNCiAJ
+dTMyIGhvcml6b250YWxfZnJvbnRwb3JjaF9ieXRlOw0KIAl1MzIgZHNpX3RtcF9idWZfYnBwLCBk
+YXRhX3BoeV9jeWNsZXM7DQorCXUzMiBkZWx0YTsNCiAJc3RydWN0IG10a19waHlfdGltaW5nICp0
+aW1pbmcgPSAmZHNpLT5waHlfdGltaW5nOw0KIA0KIAlzdHJ1Y3QgdmlkZW9tb2RlICp2bSA9ICZk
+c2ktPnZtOw0KQEAgLTQ3NSw0MiArNDc2LDI1IEBAIHN0YXRpYyB2b2lkIG10a19kc2lfY29uZmln
+X3Zkb190aW1pbmcoc3RydWN0IG10a19kc2kgKmRzaSkNCiAJZGF0YV9waHlfY3ljbGVzID0gdGlt
+aW5nLT5scHggKyB0aW1pbmctPmRhX2hzX3ByZXBhcmUgKw0KIAkJCSAgdGltaW5nLT5kYV9oc196
+ZXJvICsgdGltaW5nLT5kYV9oc19leGl0ICsgMzsNCiANCi0JaWYgKGRzaS0+bW9kZV9mbGFncyAm
+IE1JUElfRFNJX01PREVfVklERU9fQlVSU1QpIHsNCi0JCWlmICgodm0tPmhmcm9udF9wb3JjaCAr
+IHZtLT5oYmFja19wb3JjaCkgKiBkc2lfdG1wX2J1Zl9icHAgPg0KLQkJICAgIGRhdGFfcGh5X2N5
+Y2xlcyAqIGRzaS0+bGFuZXMgKyAxOCkgew0KLQkJCWhvcml6b250YWxfZnJvbnRwb3JjaF9ieXRl
+ID0NCi0JCQkJdm0tPmhmcm9udF9wb3JjaCAqIGRzaV90bXBfYnVmX2JwcCAtDQotCQkJCShkYXRh
+X3BoeV9jeWNsZXMgKiBkc2ktPmxhbmVzICsgMTgpICoNCi0JCQkJdm0tPmhmcm9udF9wb3JjaCAv
+DQotCQkJCSh2bS0+aGZyb250X3BvcmNoICsgdm0tPmhiYWNrX3BvcmNoKTsNCi0NCi0JCQlob3Jp
+em9udGFsX2JhY2twb3JjaF9ieXRlID0NCi0JCQkJaG9yaXpvbnRhbF9iYWNrcG9yY2hfYnl0ZSAt
+DQotCQkJCShkYXRhX3BoeV9jeWNsZXMgKiBkc2ktPmxhbmVzICsgMTgpICoNCi0JCQkJdm0tPmhi
+YWNrX3BvcmNoIC8NCi0JCQkJKHZtLT5oZnJvbnRfcG9yY2ggKyB2bS0+aGJhY2tfcG9yY2gpOw0K
+LQkJfSBlbHNlIHsNCi0JCQlEUk1fV0FSTigiSEZQIGxlc3MgdGhhbiBkLXBoeSwgRlBTIHdpbGwg
+dW5kZXIgNjBIelxuIik7DQotCQkJaG9yaXpvbnRhbF9mcm9udHBvcmNoX2J5dGUgPSB2bS0+aGZy
+b250X3BvcmNoICoNCi0JCQkJCQkgICAgIGRzaV90bXBfYnVmX2JwcDsNCi0JCX0NCisJZGVsdGEg
+PSAoZHNpLT5tb2RlX2ZsYWdzICYgTUlQSV9EU0lfTU9ERV9WSURFT19CVVJTVCkgPyAxOCA6IDEy
+Ow0KKw0KKwlpZiAoKHZtLT5oZnJvbnRfcG9yY2ggKiBkc2lfdG1wX2J1Zl9icHAgKyBob3Jpem9u
+dGFsX2JhY2twb3JjaF9ieXRlKSA+DQorCSAgICBkYXRhX3BoeV9jeWNsZXMgKiBkc2ktPmxhbmVz
+ICsgZGVsdGEpIHsNCisJCWhvcml6b250YWxfZnJvbnRwb3JjaF9ieXRlID0NCisJCQl2bS0+aGZy
+b250X3BvcmNoICogZHNpX3RtcF9idWZfYnBwIC0NCisJCQkoZGF0YV9waHlfY3ljbGVzICogZHNp
+LT5sYW5lcyArIGRlbHRhKSAqDQorCQkJdm0tPmhmcm9udF9wb3JjaCAvDQorCQkJKHZtLT5oZnJv
+bnRfcG9yY2ggKyB2bS0+aGJhY2tfcG9yY2gpOw0KKw0KKwkJaG9yaXpvbnRhbF9iYWNrcG9yY2hf
+Ynl0ZSA9DQorCQkJaG9yaXpvbnRhbF9iYWNrcG9yY2hfYnl0ZSAtDQorCQkJKGRhdGFfcGh5X2N5
+Y2xlcyAqIGRzaS0+bGFuZXMgKyBkZWx0YSkgKg0KKwkJCXZtLT5oYmFja19wb3JjaCAvDQorCQkJ
+KHZtLT5oZnJvbnRfcG9yY2ggKyB2bS0+aGJhY2tfcG9yY2gpOw0KIAl9IGVsc2Ugew0KLQkJaWYg
+KCh2bS0+aGZyb250X3BvcmNoICsgdm0tPmhiYWNrX3BvcmNoKSAqIGRzaV90bXBfYnVmX2JwcCA+
+DQotCQkgICAgZGF0YV9waHlfY3ljbGVzICogZHNpLT5sYW5lcyArIDEyKSB7DQotCQkJaG9yaXpv
+bnRhbF9mcm9udHBvcmNoX2J5dGUgPQ0KLQkJCQl2bS0+aGZyb250X3BvcmNoICogZHNpX3RtcF9i
+dWZfYnBwIC0NCi0JCQkJKGRhdGFfcGh5X2N5Y2xlcyAqIGRzaS0+bGFuZXMgKyAxMikgKg0KLQkJ
+CQl2bS0+aGZyb250X3BvcmNoIC8NCi0JCQkJKHZtLT5oZnJvbnRfcG9yY2ggKyB2bS0+aGJhY2tf
+cG9yY2gpOw0KLQkJCWhvcml6b250YWxfYmFja3BvcmNoX2J5dGUgPSBob3Jpem9udGFsX2JhY2tw
+b3JjaF9ieXRlIC0NCi0JCQkJKGRhdGFfcGh5X2N5Y2xlcyAqIGRzaS0+bGFuZXMgKyAxMikgKg0K
+LQkJCQl2bS0+aGJhY2tfcG9yY2ggLw0KLQkJCQkodm0tPmhmcm9udF9wb3JjaCArIHZtLT5oYmFj
+a19wb3JjaCk7DQotCQl9IGVsc2Ugew0KLQkJCURSTV9XQVJOKCJIRlAgbGVzcyB0aGFuIGQtcGh5
+LCBGUFMgd2lsbCB1bmRlciA2MEh6XG4iKTsNCi0JCQlob3Jpem9udGFsX2Zyb250cG9yY2hfYnl0
+ZSA9IHZtLT5oZnJvbnRfcG9yY2ggKg0KLQkJCQkJCSAgICAgZHNpX3RtcF9idWZfYnBwOw0KLQkJ
+fQ0KKwkJRFJNX1dBUk4oIkhGUCArIEhCUCBsZXNzIHRoYW4gZC1waHksIEZQUyB3aWxsIHVuZGVy
+IDYwSHpcbiIpOw0KKwkJaG9yaXpvbnRhbF9mcm9udHBvcmNoX2J5dGUgPSB2bS0+aGZyb250X3Bv
+cmNoICoNCisJCQkJCSAgICAgZHNpX3RtcF9idWZfYnBwOw0KIAl9DQogDQogCXdyaXRlbChob3Jp
+em9udGFsX3N5bmNfYWN0aXZlX2J5dGUsIGRzaS0+cmVncyArIERTSV9IU0FfV0MpOw0KLS0gDQoy
+LjEyLjUNCg==
 
