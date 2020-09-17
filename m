@@ -2,112 +2,86 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from vger.kernel.org (vger.kernel.org [23.128.96.18])
-	by mail.lfdr.de (Postfix) with ESMTP id 6F90A26E953
-	for <lists+devicetree@lfdr.de>; Fri, 18 Sep 2020 01:16:17 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTP id 0F1CD26E9C9
+	for <lists+devicetree@lfdr.de>; Fri, 18 Sep 2020 02:08:29 +0200 (CEST)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S1726054AbgIQXQQ (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Thu, 17 Sep 2020 19:16:16 -0400
-Received: from mo-csw-fb1514.securemx.jp ([210.130.202.170]:45122 "EHLO
-        mo-csw-fb.securemx.jp" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S1726040AbgIQXQQ (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Thu, 17 Sep 2020 19:16:16 -0400
-Received: by mo-csw-fb.securemx.jp (mx-mo-csw-fb1514) id 08HMWExS023499; Fri, 18 Sep 2020 07:32:14 +0900
-Received: by mo-csw.securemx.jp (mx-mo-csw1514) id 08HMVqfK029069; Fri, 18 Sep 2020 07:31:52 +0900
-X-Iguazu-Qid: 34trRpZzTmG2XpMcy6
-X-Iguazu-QSIG: v=2; s=0; t=1600381911; q=34trRpZzTmG2XpMcy6; m=VBTIbfjMOovm/MfxIujNATw7A5El/AJAFSdlK+q5IiE=
-Received: from imx12.toshiba.co.jp (imx12.toshiba.co.jp [61.202.160.132])
-        by relay.securemx.jp (mx-mr1513) id 08HMVoIH012505;
-        Fri, 18 Sep 2020 07:31:51 +0900
-Received: from enc02.toshiba.co.jp ([61.202.160.51])
-        by imx12.toshiba.co.jp  with ESMTP id 08HMVoag020156;
-        Fri, 18 Sep 2020 07:31:50 +0900 (JST)
-Received: from hop101.toshiba.co.jp ([133.199.85.107])
-        by enc02.toshiba.co.jp  with ESMTP id 08HMVoIX003096;
-        Fri, 18 Sep 2020 07:31:50 +0900
-From:   Nobuhiro Iwamatsu <nobuhiro1.iwamatsu@toshiba.co.jp>
-To:     Rob Herring <robh+dt@kernel.org>,
-        Thierry Reding <thierry.reding@gmail.com>,
-        =?UTF-8?q?Uwe=20Kleine-K=C3=B6nig?= 
-        <u.kleine-koenig@pengutronix.de>, Lee Jones <lee.jones@linaro.org>
-Cc:     punit1.agrawal@toshiba.co.jp, yuji2.ishikawa@toshiba.co.jp,
-        devicetree@vger.kernel.org, linux-arm-kernel@lists.infradead.org,
-        linux-pwm@vger.kernel.org,
-        Nobuhiro Iwamatsu <nobuhiro1.iwamatsu@toshiba.co.jp>
-Subject: [PATCH 1/2] dt-bindings: pwm: Add bindings for Toshiba Visconti PWM Controller
-Date:   Fri, 18 Sep 2020 07:31:39 +0900
-X-TSB-HOP: ON
-Message-Id: <20200917223140.227542-2-nobuhiro1.iwamatsu@toshiba.co.jp>
-X-Mailer: git-send-email 2.27.0
-In-Reply-To: <20200917223140.227542-1-nobuhiro1.iwamatsu@toshiba.co.jp>
-References: <20200917223140.227542-1-nobuhiro1.iwamatsu@toshiba.co.jp>
+        id S1726196AbgIRAIZ (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Thu, 17 Sep 2020 20:08:25 -0400
+Received: from 212.199.177.27.static.012.net.il ([212.199.177.27]:55293 "EHLO
+        herzl.nuvoton.co.il" rhost-flags-OK-OK-OK-FAIL) by vger.kernel.org
+        with ESMTP id S1725987AbgIRAIX (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Thu, 17 Sep 2020 20:08:23 -0400
+X-Greylist: delayed 1407 seconds by postgrey-1.27 at vger.kernel.org; Thu, 17 Sep 2020 20:08:21 EDT
+Received: from taln60.nuvoton.co.il (ntil-fw [212.199.177.25])
+        by herzl.nuvoton.co.il (8.13.8/8.13.8) with ESMTP id 08HNiMqK008721;
+        Fri, 18 Sep 2020 02:44:22 +0300
+Received: by taln60.nuvoton.co.il (Postfix, from userid 10070)
+        id 6EE6A639D6; Fri, 18 Sep 2020 02:44:22 +0300 (IDT)
+From:   Tomer Maimon <tmaimon77@gmail.com>
+To:     robh+dt@kernel.org, mark.rutland@arm.com, avifishman70@gmail.com,
+        tali.perry1@gmail.com, venture@google.com, yuenn@google.com,
+        benjaminfair@google.com, joel@jms.id.au
+Cc:     devicetree@vger.kernel.org, linux-kernel@vger.kernel.org,
+        openbmc@lists.ozlabs.org, tmaimon77@gmail.com
+Subject: [PATCH v6 0/3] arm: dts: add and modify device node in NPCM7xx device tree
+Date:   Fri, 18 Sep 2020 02:44:17 +0300
+Message-Id: <20200917234420.86137-1-tmaimon77@gmail.com>
+X-Mailer: git-send-email 2.22.0
 MIME-Version: 1.0
 Content-Transfer-Encoding: 8bit
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-Add bindings for the Toshiba Visconti PWM Controller.
+This patch set adds and modify device tree nodes in the NPCM7xx
+Baseboard Management Controller (BMC) device tree.
 
-Signed-off-by: Nobuhiro Iwamatsu <nobuhiro1.iwamatsu@toshiba.co.jp>
----
- .../bindings/pwm/toshiba,pwm-visconti.yaml    | 48 +++++++++++++++++++
- 1 file changed, 48 insertions(+)
- create mode 100644 Documentation/devicetree/bindings/pwm/toshiba,pwm-visconti.yaml
+The following device node add:
+        - NPCM7xx Pin controller and GPIO
+        - NPCM7xx PWM and FAN.
+        - NPCM7xx EHCI USB.
+        - NPCM7xx KCS.
+        - NPCM Reset.
+        - NPCM Peripheral SPI.
+        - NPCM FIU SPI.
+        - NPCM HWRNG.
+        - NPCM I2C.
+        - STMicro STMMAC.
 
-diff --git a/Documentation/devicetree/bindings/pwm/toshiba,pwm-visconti.yaml b/Documentation/devicetree/bindings/pwm/toshiba,pwm-visconti.yaml
-new file mode 100644
-index 000000000000..9145e9478b41
---- /dev/null
-+++ b/Documentation/devicetree/bindings/pwm/toshiba,pwm-visconti.yaml
-@@ -0,0 +1,48 @@
-+# SPDX-License-Identifier: GPL-2.0
-+%YAML 1.2
-+---
-+$id: http://devicetree.org/schemas/pwm/toshiba,pwm-visconti.yaml#
-+$schema: http://devicetree.org/meta-schemas/core.yaml#
-+
-+title: Toshiba Visconti PWM Controller
-+
-+maintainers:
-+  - Nobuhiro Iwamatsu <nobuhiro1.iwamatsu@toshiba.co.jp>
-+
-+properties:
-+  compatible:
-+    items:
-+      - enum:
-+          - toshiba,pwm-tmpv7708
-+      - const: toshiba,pwm-visconti
-+
-+  reg:
-+    # base address and length of the registers block for the PWM.
-+    maxItems: 1
-+
-+  '#pwm-cells':
-+    # should be 2. See pwm.yaml in this directory for a description of
-+    # the cells format.
-+    const: 2
-+
-+required:
-+  - compatible
-+  - reg
-+  - '#pwm-cells'
-+
-+additionalProperties: false
-+
-+examples:
-+  - |
-+    soc {
-+        #address-cells = <2>;
-+        #size-cells = <2>;
-+
-+        pwm: pwm@241c0000 {
-+            compatible = "toshiba,pwm-tmpv7708", "toshiba,pwm-visconti";
-+            reg = <0 0x241c0000 0 0x1000>;
-+            pinctrl-names = "default";
-+            pinctrl-0 = <&pwm_mux>;
-+            #pwm-cells = <2>;
-+        };
-+    };
+The following device node modified:
+        - NPCM7xx timer.
+        - NPCM7xx clock constants parameters.
+
+NPCM7xx device tree tested on NPCM750 evaluation board.
+
+Changes since version 5:
+Address comments from Joel Stanely: https://lkml.org/lkml/2020/9/16/994
+ 
+Changes since version 4:
+ - Tested patches in Linux kernel 5.9.
+
+Changes since version 3:
+ - Tested patches in Linux kernel 5.6.
+
+Changes since version 2:
+ - Remove unnecessary output-enable flags.
+
+Changes since version 1:
+ - Add NPCM reset device node.
+ - Add reset parameters to NPCM driver device nodes.
+
+Tomer Maimon (3):
+  arm: dts: modify NPCM7xx device tree clock parameter
+  arm: dts: modify NPCM7xx device tree timer register size
+  arm: dts: add new device nodes to NPCM750 device tree
+
+ arch/arm/boot/dts/nuvoton-common-npcm7xx.dtsi | 968 +++++++++++++++++-
+ arch/arm/boot/dts/nuvoton-npcm750-evb.dts     | 404 +++++++-
+ .../boot/dts/nuvoton-npcm750-pincfg-evb.dtsi  | 157 +++
+ arch/arm/boot/dts/nuvoton-npcm750.dtsi        |  24 +-
+ 4 files changed, 1516 insertions(+), 37 deletions(-)
+ create mode 100644 arch/arm/boot/dts/nuvoton-npcm750-pincfg-evb.dtsi
+
 -- 
-2.27.0
+2.22.0
 
