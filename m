@@ -2,87 +2,79 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from vger.kernel.org (vger.kernel.org [23.128.96.18])
-	by mail.lfdr.de (Postfix) with ESMTP id 4E76826DFBC
-	for <lists+devicetree@lfdr.de>; Thu, 17 Sep 2020 17:33:25 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTP id 69CE726E01A
+	for <lists+devicetree@lfdr.de>; Thu, 17 Sep 2020 17:57:19 +0200 (CEST)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S1728234AbgIQPb1 (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Thu, 17 Sep 2020 11:31:27 -0400
-Received: from fllv0015.ext.ti.com ([198.47.19.141]:44540 "EHLO
-        fllv0015.ext.ti.com" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S1728209AbgIQPbP (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Thu, 17 Sep 2020 11:31:15 -0400
-Received: from lelv0265.itg.ti.com ([10.180.67.224])
-        by fllv0015.ext.ti.com (8.15.2/8.15.2) with ESMTP id 08HFSIAH001723;
-        Thu, 17 Sep 2020 10:28:18 -0500
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=ti.com;
-        s=ti-com-17Q1; t=1600356498;
-        bh=siJy1EKhfjcCdqMsI44fOj+ia0rT8MmnXgBZFzQBwXo=;
-        h=Subject:To:CC:References:From:Date:In-Reply-To;
-        b=GEfHVVtLScqsGacz35p+/ydlG5RjUshjuqP94zp27F9YoBD0JEfaaMIsoDK0rOeko
-         sWrm8mt1zKdawK13663snGOuwpqjHpZajY6oDox0TzUs1Bez9FMrBMrwX5rJvxsyEC
-         l+i40ywgWYTCpsK0jwf9vErrkCZhgVzRv55UfYro=
-Received: from DFLE112.ent.ti.com (dfle112.ent.ti.com [10.64.6.33])
-        by lelv0265.itg.ti.com (8.15.2/8.15.2) with ESMTPS id 08HFSIVw020538
-        (version=TLSv1.2 cipher=AES256-GCM-SHA384 bits=256 verify=FAIL);
-        Thu, 17 Sep 2020 10:28:18 -0500
-Received: from DFLE104.ent.ti.com (10.64.6.25) by DFLE112.ent.ti.com
- (10.64.6.33) with Microsoft SMTP Server (version=TLS1_2,
- cipher=TLS_ECDHE_RSA_WITH_AES_128_CBC_SHA256_P256) id 15.1.1979.3; Thu, 17
- Sep 2020 10:28:18 -0500
-Received: from fllv0039.itg.ti.com (10.64.41.19) by DFLE104.ent.ti.com
- (10.64.6.25) with Microsoft SMTP Server (version=TLS1_2,
- cipher=TLS_ECDHE_RSA_WITH_AES_128_CBC_SHA256_P256) id 15.1.1979.3 via
- Frontend Transport; Thu, 17 Sep 2020 10:28:18 -0500
-Received: from [10.250.32.129] (ileax41-snat.itg.ti.com [10.172.224.153])
-        by fllv0039.itg.ti.com (8.15.2/8.15.2) with ESMTP id 08HFSIxJ025276;
-        Thu, 17 Sep 2020 10:28:18 -0500
-Subject: Re: [PATCH leds v1 09/10] leds: lm36274: use struct led_init_data
- when registering
-To:     =?UTF-8?Q?Marek_Beh=c3=ban?= <marek.behun@nic.cz>,
-        <linux-leds@vger.kernel.org>
-CC:     Pavel Machek <pavel@ucw.cz>,
-        =?UTF-8?Q?Ond=c5=99ej_Jirman?= <megous@megous.com>,
-        <linux-kernel@vger.kernel.org>, Rob Herring <robh+dt@kernel.org>,
-        <devicetree@vger.kernel.org>
-References: <20200916231650.11484-1-marek.behun@nic.cz>
- <20200916231650.11484-10-marek.behun@nic.cz>
-From:   Dan Murphy <dmurphy@ti.com>
-Message-ID: <7940ab2f-f4a5-c909-9270-4b713b76261d@ti.com>
-Date:   Thu, 17 Sep 2020 10:28:12 -0500
-User-Agent: Mozilla/5.0 (X11; Linux x86_64; rv:68.0) Gecko/20100101
- Thunderbird/68.10.0
+        id S1728053AbgIQP5Q (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Thu, 17 Sep 2020 11:57:16 -0400
+Received: from mail.kernel.org ([198.145.29.99]:48964 "EHLO mail.kernel.org"
+        rhost-flags-OK-OK-OK-OK) by vger.kernel.org with ESMTP
+        id S1728091AbgIQPuz (ORCPT <rfc822;devicetree@vger.kernel.org>);
+        Thu, 17 Sep 2020 11:50:55 -0400
+Received: from localhost (fw-tnat.cambridge.arm.com [217.140.96.140])
+        (using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
+        (No client certificate requested)
+        by mail.kernel.org (Postfix) with ESMTPSA id DE91022208;
+        Thu, 17 Sep 2020 15:39:20 +0000 (UTC)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=kernel.org;
+        s=default; t=1600357161;
+        bh=foIc7Z858N2p4XZA330YvH1DcfvYDxEcLkBk7zkfsCI=;
+        h=Date:From:To:Cc:Subject:References:In-Reply-To:From;
+        b=APBHbryybIPEnTDquUs9mdmt/sgejwNywahLxDGrCmjMdcrkA39jjU82n5w1c+Vyq
+         xlJ63C8Ct/yMGxOgqqrLjhY7KinvOqat6u7G0hBgQi91bTa+uI4XgyQfzw892sSjjw
+         ZZk4z7NyHBMB+SBw6zxJ4ZwbMgsQ00viF9tRu8tE=
+Date:   Thu, 17 Sep 2020 16:38:31 +0100
+From:   Mark Brown <broonie@kernel.org>
+To:     Camel Guo <camel.guo@axis.com>
+Cc:     lgirdwood@gmail.com, tiwai@suse.com, dmurphy@ti.com,
+        robh+dt@kernel.org, devicetree@vger.kernel.org,
+        alsa-devel@alsa-project.org, kernel@axis.com,
+        linux-kernel@vger.kernel.org, Camel Guo <camelg@axis.com>
+Subject: Re: [PATCH v3 2/2] ASoC: tlv320adcx140: Add support for configuring
+ GPIO pin
+Message-ID: <20200917153831.GA18737@sirena.org.uk>
+References: <20200916075949.28479-1-camel.guo@axis.com>
+ <20200916075949.28479-2-camel.guo@axis.com>
 MIME-Version: 1.0
-In-Reply-To: <20200916231650.11484-10-marek.behun@nic.cz>
-Content-Type: text/plain; charset="utf-8"; format=flowed
-Content-Transfer-Encoding: 8bit
-Content-Language: en-US
-X-EXCLAIMER-MD-CONFIG: e1e8a2fd-e40a-4ac6-ac9b-f7e9cc9ee180
+Content-Type: multipart/signed; micalg=pgp-sha512;
+        protocol="application/pgp-signature"; boundary="lrZ03NoBR/3+SXJZ"
+Content-Disposition: inline
+In-Reply-To: <20200916075949.28479-2-camel.guo@axis.com>
+X-Cookie: Is death legally binding?
+User-Agent: Mutt/1.10.1 (2018-07-13)
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-Marek
 
-On 9/16/20 6:16 PM, Marek Behún wrote:
-> By using struct led_init_data when registering we do not need to parse
-> `label` DT property nor `linux,default-trigger` property.
->
-> A small refactor was also done:
-> - with using devm_led_classdev_register_ext the driver remove method is
->    not needed
-> - since only one child node is allowed for this driver, use
->    device_get_next_child_node instead of device_for_each_child_node
->
-> Previously if the `label` DT property was not present, the code composed
-> name for the LED in the form
->    "parent_name::"
-> For backwards compatibility we therefore set
->    init_data->default_label = ":";
-> so that the LED will not get a different name if `label` property is not
-> present.
+--lrZ03NoBR/3+SXJZ
+Content-Type: text/plain; charset=us-ascii
+Content-Disposition: inline
+Content-Transfer-Encoding: quoted-printable
 
-You are going to re-factor this as well a lot of changes in a single 
-patch is hard to review
+On Wed, Sep 16, 2020 at 09:59:49AM +0200, Camel Guo wrote:
+> From: Camel Guo <camelg@axis.com>
+>=20
+> Add support to configure the GPIO pin to the specific configuration.
+> The GPIO pin can be configured as GPO, IRQ, SDOUT2, PDMCLK, MICBASE_EN,
+> GPI, MCLK, SDIN, PDMDIN1, PDMDIN2, PDMDIN3 or PDMDIN4 and the output
+> drive can be configured with various configuration.
 
-Dan
+This doesn't apply against current code, please check and resend.
 
+--lrZ03NoBR/3+SXJZ
+Content-Type: application/pgp-signature; name="signature.asc"
+
+-----BEGIN PGP SIGNATURE-----
+
+iQEzBAABCgAdFiEEreZoqmdXGLWf4p/qJNaLcl1Uh9AFAl9jgvYACgkQJNaLcl1U
+h9AyLwf9EH7X0DHtsQ7448LbugWVzhYsAZhE7+gdgpJHOOyKf2f6t7uhAgl6ed6u
+o+rFZVGSrUzOZu2cmttfGl57bhRLmqQkClvQERhBghtlRPWOUezGXBUwUSGqat+W
+UrTjwI2iewYY0dsJ45lFCYzYkcy0JaIfGLUSDSF5gWBXmN+76jFYGg2n3J4rCdUD
+COUOOoyek00/nwyKAa/4K+HxAu94OgdvMWJ4dStWFfr7Fqkb2GD8nlDSW2jDo/W7
+ixvN7qlrPNptfcpcQ39EczEAWEyAGKLs3usR3xoyGCea3hP8wrqxy8C2OwwAEYJt
+WjgKpgEky87IzA6wUfyJsQF9ev+OOA==
+=eqoB
+-----END PGP SIGNATURE-----
+
+--lrZ03NoBR/3+SXJZ--
