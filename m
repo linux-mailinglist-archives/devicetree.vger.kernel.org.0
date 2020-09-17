@@ -2,123 +2,90 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from vger.kernel.org (vger.kernel.org [23.128.96.18])
-	by mail.lfdr.de (Postfix) with ESMTP id 8486326E282
-	for <lists+devicetree@lfdr.de>; Thu, 17 Sep 2020 19:33:48 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTP id 9865126E32F
+	for <lists+devicetree@lfdr.de>; Thu, 17 Sep 2020 20:05:48 +0200 (CEST)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S1726475AbgIQRdp (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Thu, 17 Sep 2020 13:33:45 -0400
-Received: from mail.kernel.org ([198.145.29.99]:38868 "EHLO mail.kernel.org"
-        rhost-flags-OK-OK-OK-OK) by vger.kernel.org with ESMTP
-        id S1726531AbgIQRd2 (ORCPT <rfc822;devicetree@vger.kernel.org>);
-        Thu, 17 Sep 2020 13:33:28 -0400
-Received: from archlinux (cpc149474-cmbg20-2-0-cust94.5-4.cable.virginm.net [82.4.196.95])
-        (using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
+        id S1726383AbgIQSFp (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Thu, 17 Sep 2020 14:05:45 -0400
+Received: from mail29.static.mailgun.info ([104.130.122.29]:37760 "EHLO
+        mail29.static.mailgun.info" rhost-flags-OK-OK-OK-OK)
+        by vger.kernel.org with ESMTP id S1726544AbgIQRj1 (ORCPT
+        <rfc822;devicetree@vger.kernel.org>);
+        Thu, 17 Sep 2020 13:39:27 -0400
+DKIM-Signature: a=rsa-sha256; v=1; c=relaxed/relaxed; d=mg.codeaurora.org; q=dns/txt;
+ s=smtp; t=1600364366; h=References: In-Reply-To: Message-Id: Date:
+ Subject: Cc: To: From: Sender;
+ bh=th7Iul2/9lwsUjSVNHNDqHf6F3apGE82wygTBJiOoLE=; b=srn+WQyO3GflpfSnaBtffZI/qbK7EmI5+fOKflF0yrQgYNUq5bIjooSAoZWs6+zZFYgtKSk7
+ cD69VIMY8CQa+E0g10WSqeuqybmK6lPMR8+M3WujcjcZBcROAIb8qpWsabXQhHhsDT6MUbSy
+ 4dbZqvVBv7m/+ZPIa/iBE6Kw+X4=
+X-Mailgun-Sending-Ip: 104.130.122.29
+X-Mailgun-Sid: WyI1YmJiNiIsICJkZXZpY2V0cmVlQHZnZXIua2VybmVsLm9yZyIsICJiZTllNGEiXQ==
+Received: from smtp.codeaurora.org
+ (ec2-35-166-182-171.us-west-2.compute.amazonaws.com [35.166.182.171]) by
+ smtp-out-n02.prod.us-west-2.postgun.com with SMTP id
+ 5f6366a091755cb92b3965cb (version=TLS1.2,
+ cipher=TLS_ECDHE_RSA_WITH_AES_128_GCM_SHA256); Thu, 17 Sep 2020 13:37:36
+ GMT
+Received: by smtp.codeaurora.org (Postfix, from userid 1001)
+        id 4022EC43385; Thu, 17 Sep 2020 13:37:36 +0000 (UTC)
+X-Spam-Checker-Version: SpamAssassin 3.4.0 (2014-02-07) on
+        aws-us-west-2-caf-mail-1.web.codeaurora.org
+X-Spam-Level: 
+X-Spam-Status: No, score=-2.9 required=2.0 tests=ALL_TRUSTED,BAYES_00,SPF_FAIL,
+        URIBL_BLOCKED autolearn=no autolearn_force=no version=3.4.0
+Received: from hyd-lnxbld210.qualcomm.com (unknown [202.46.22.19])
+        (using TLSv1.2 with cipher ECDHE-RSA-AES128-SHA256 (128/128 bits))
         (No client certificate requested)
-        by mail.kernel.org (Postfix) with ESMTPSA id 52F6020725;
-        Thu, 17 Sep 2020 17:33:25 +0000 (UTC)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=kernel.org;
-        s=default; t=1600364008;
-        bh=wNoTCGcfcB/3veX9mEs1zGpPBnfxajFdOgvN0afMW7M=;
-        h=Date:From:To:Cc:Subject:In-Reply-To:References:From;
-        b=iQwRuDux4teckfNDKQ3XeTDN+ueiBL9tB+it3+a1Qg22UTK6i5b/CCinsmV4ZL/Bl
-         TkpcMJnMm40OKktvu/LZSVx9xyxhyNdN1K4dNoS9qO7g19sG9BWch8y8DaJwxS8BFm
-         QA/X58JzpxNkXVYNohgO3bAyf1vnxnH/P07dLSKI=
-Date:   Thu, 17 Sep 2020 18:33:22 +0100
-From:   Jonathan Cameron <jic23@kernel.org>
-To:     Gene Chen <gene.chen.richtek@gmail.com>
-Cc:     matthias.bgg@gmail.com, knaack.h@gmx.de, lars@metafoo.de,
-        pmeerw@pmeerw.net, linux-iio@vger.kernel.org,
-        linux-arm-kernel@lists.infradead.org,
-        linux-mediatek@lists.infradead.org, linux-kernel@vger.kernel.org,
-        gene_chen@richtek.com, Wilma.Wu@mediatek.com,
-        shufan_lee@richtek.com, cy_huang@richtek.com,
-        benjamin.chao@mediatek.com, Rob Herring <robh+dt@kernel.org>,
-        devicetree@vger.kernel.org
-Subject: Re: [PATCH v4 1/3] dt-bindings: iio: adc: add bindings doc for
- MT6360 ADC
-Message-ID: <20200917183322.25fa2aea@archlinux>
-In-Reply-To: <1600191369-28040-2-git-send-email-gene.chen.richtek@gmail.com>
-References: <1600191369-28040-1-git-send-email-gene.chen.richtek@gmail.com>
-        <1600191369-28040-2-git-send-email-gene.chen.richtek@gmail.com>
-X-Mailer: Claws Mail 3.17.6 (GTK+ 2.24.32; x86_64-pc-linux-gnu)
-MIME-Version: 1.0
-Content-Type: text/plain; charset=US-ASCII
-Content-Transfer-Encoding: 7bit
+        (Authenticated sender: srivasam)
+        by smtp.codeaurora.org (Postfix) with ESMTPSA id B2852C43382;
+        Thu, 17 Sep 2020 13:37:30 +0000 (UTC)
+DMARC-Filter: OpenDMARC Filter v1.3.2 smtp.codeaurora.org B2852C43382
+Authentication-Results: aws-us-west-2-caf-mail-1.web.codeaurora.org; dmarc=none (p=none dis=none) header.from=codeaurora.org
+Authentication-Results: aws-us-west-2-caf-mail-1.web.codeaurora.org; spf=fail smtp.mailfrom=srivasam@codeaurora.org
+From:   Srinivasa Rao Mandadapu <srivasam@codeaurora.org>
+To:     agross@kernel.org, bjorn.andersson@linaro.org, lgirdwood@gmail.com,
+        broonie@kernel.org, robh+dt@kernel.org, plai@codeaurora.org,
+        bgoswami@codeaurora.org, perex@perex.cz, tiwai@suse.com,
+        srinivas.kandagatla@linaro.org, rohitkr@codeaurora.org,
+        linux-arm-msm@vger.kernel.org, alsa-devel@alsa-project.org,
+        devicetree@vger.kernel.org, linux-kernel@vger.kernel.org
+Cc:     V Sujith Kumar Reddy <vsujithk@codeaurora.org>,
+        Srinivasa Rao <srivasam@codeaurora.org>
+Subject: [PATCH v5 1/5] ASoC: Add sc7180-lpass binding header hdmi define
+Date:   Thu, 17 Sep 2020 19:07:04 +0530
+Message-Id: <1600349828-10727-2-git-send-email-srivasam@codeaurora.org>
+X-Mailer: git-send-email 2.7.4
+In-Reply-To: <1600349828-10727-1-git-send-email-srivasam@codeaurora.org>
+References: <1600349828-10727-1-git-send-email-srivasam@codeaurora.org>
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-On Wed, 16 Sep 2020 01:36:07 +0800
-Gene Chen <gene.chen.richtek@gmail.com> wrote:
+From: V Sujith Kumar Reddy <vsujithk@codeaurora.org>
 
-> From: Gene Chen <gene_chen@richtek.com>
-> 
-> This change adds the binding doc for the MT6360 ADC.
-> 
-> Signed-off-by: Gene Chen <gene_chen@richtek.com>
-Hi Gene
+Add header defining hdmi dai-id for SC7180 lpass soc
+in dt bindings.
 
-A few things inline I missed before.  Ideally this wants
-a device-tree ack which it isn't likely to get without
-cc'ing the binding Maintainers. I've added Rob and the list.
+Signed-off-by: Srinivasa Rao <srivasam@codeaurora.org>
+Signed-off-by: V Sujith Kumar Reddy <vsujithk@codeaurora.org>
+Acked-by: Rob Herring <robh@kernel.org>
+---
+ include/dt-bindings/sound/sc7180-lpass.h | 1 +
+ 1 file changed, 1 insertion(+)
 
-Thanks,
-
-Jonathan
-
-> ---
->  .../bindings/iio/adc/mediatek,mt6360.yaml          | 32 ++++++++++++++++++++++
->  1 file changed, 32 insertions(+)
->  create mode 100644 Documentation/devicetree/bindings/iio/adc/mediatek,mt6360.yaml
-> 
-> diff --git a/Documentation/devicetree/bindings/iio/adc/mediatek,mt6360.yaml b/Documentation/devicetree/bindings/iio/adc/mediatek,mt6360.yaml
-> new file mode 100644
-> index 0000000..2fa2fe7
-> --- /dev/null
-> +++ b/Documentation/devicetree/bindings/iio/adc/mediatek,mt6360.yaml
-> @@ -0,0 +1,32 @@
-> +# SPDX-License-Identifier: (GPL-2.0 OR BSD-2-Clause)
-> +%YAML 1.2
-> +---
-> +$id: http://devicetree.org/schemas/iio/adc/mediatek,mt6360.yaml#
-
-I think this should probably match the compatible as should the file name.
-(sorry missed this on previous review!)
-
-> +$schema: http://devicetree.org/meta-schemas/core.yaml#
-> +
-> +title: Mediatek MT6360 and similar ADCs
-> +
-> +maintainers:
-> +  - Gene Chen <gene_chen@richtek.com>
-> +
-> +description: |
-> +  Family of simple ADCs with i2c interface and internal references.
-> +
-> +properties:
-> +  compatible:
-> +    const: mediatek,mt6360-adc
-> +
-> +  "#io-channel-cells":
-> +    const: 1
-> +
-> +required:
-> +  - compatible
-> +  - "#io-channel-cells"
-As it's fresh in my mind from forgetting it myself, can we
-add
-
-additionalProperties: false
-
-?
-
-
-> +
-> +examples:
-> +  - |
-> +    adc {
-> +      compatible = "mediatek,mt6360-adc";
-> +      #io-channel-cells = <1>;
-> +    };
-> +...
+diff --git a/include/dt-bindings/sound/sc7180-lpass.h b/include/dt-bindings/sound/sc7180-lpass.h
+index 7d988f6..56ecaaf 100644
+--- a/include/dt-bindings/sound/sc7180-lpass.h
++++ b/include/dt-bindings/sound/sc7180-lpass.h
+@@ -4,6 +4,7 @@
+ 
+ #define MI2S_PRIMARY	0
+ #define MI2S_SECONDARY	1
++#define LPASS_DP_RX	2
+ 
+ #define LPASS_MCLK0	0
+ 
+-- 
+Qualcomm India Private Limited, on behalf of Qualcomm Innovation Center, Inc.,
+is a member of Code Aurora Forum, a Linux Foundation Collaborative Project.
 
