@@ -2,89 +2,246 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from vger.kernel.org (vger.kernel.org [23.128.96.18])
-	by mail.lfdr.de (Postfix) with ESMTP id D5CA526E088
-	for <lists+devicetree@lfdr.de>; Thu, 17 Sep 2020 18:22:13 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTP id 1616C26E073
+	for <lists+devicetree@lfdr.de>; Thu, 17 Sep 2020 18:18:07 +0200 (CEST)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S1727447AbgIQQVx (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Thu, 17 Sep 2020 12:21:53 -0400
-Received: from mail.kernel.org ([198.145.29.99]:37064 "EHLO mail.kernel.org"
-        rhost-flags-OK-OK-OK-OK) by vger.kernel.org with ESMTP
-        id S1728447AbgIQQUv (ORCPT <rfc822;devicetree@vger.kernel.org>);
-        Thu, 17 Sep 2020 12:20:51 -0400
-Received: from localhost (fw-tnat.cambridge.arm.com [217.140.96.140])
-        (using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
-        (No client certificate requested)
-        by mail.kernel.org (Postfix) with ESMTPSA id EEB372220F;
-        Thu, 17 Sep 2020 15:57:07 +0000 (UTC)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=kernel.org;
-        s=default; t=1600358228;
-        bh=0R8wQ8wtOhNvgIX+2H28XDlxNwOFHmlyptZe/q+b84M=;
-        h=Date:From:To:Cc:Subject:References:In-Reply-To:From;
-        b=prSjxzW19p/f7/IiwXidlQxWIH4yvQe3YiglaEZOzU+xmrU8Rdom+UWXBbTRDidKX
-         47oehxQHgFGKaSQk54UP3d5JFCxVhVjp7Z2ltXy9Ke6DVUeKqG61MIDETd/c0i8zSC
-         hjUAYjlLMOFUMr0yoF6qhtl/U0F7s3ucTW+AdapM=
-Date:   Thu, 17 Sep 2020 16:56:18 +0100
-From:   Mark Brown <broonie@kernel.org>
-To:     Dan Murphy <dmurphy@ti.com>
-Cc:     lgirdwood@gmail.com, tiwai@suse.com, robh+dt@kernel.org,
-        devicetree@vger.kernel.org, alsa-devel@alsa-project.org,
-        linux-kernel@vger.kernel.org, camel.guo@axis.com
-Subject: Re: [PATCH 5/6] dt-bindings: tlv320adcx140: Add slot programming
- property
-Message-ID: <20200917155618.GG4755@sirena.org.uk>
-References: <20200915190606.1744-1-dmurphy@ti.com>
- <20200915190606.1744-5-dmurphy@ti.com>
- <20200917130236.GA2954@sirena.org.uk>
- <f4a83c01-58e2-1b7a-677e-44d5bde7b175@ti.com>
+        id S1728377AbgIQQR1 (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Thu, 17 Sep 2020 12:17:27 -0400
+Received: from fllv0015.ext.ti.com ([198.47.19.141]:49622 "EHLO
+        fllv0015.ext.ti.com" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
+        with ESMTP id S1728081AbgIQQRX (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Thu, 17 Sep 2020 12:17:23 -0400
+Received: from lelv0266.itg.ti.com ([10.180.67.225])
+        by fllv0015.ext.ti.com (8.15.2/8.15.2) with ESMTP id 08HGGrqq042236;
+        Thu, 17 Sep 2020 11:16:53 -0500
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=ti.com;
+        s=ti-com-17Q1; t=1600359413;
+        bh=5lU20OTzeQcU31eieOtb5nIQ85me365Qr/oGPgGuChI=;
+        h=From:To:CC:Subject:Date;
+        b=WomWtlRDesaoRWc4UbG1X7VCiYB9rrIQ56UuR7H+kWPGH5yM0f8S0BpL7vHGLw+6M
+         GHW3T3+BMwqfFRhPtiLixKIlY6MWTzYUmldXPyBh8xyjs+0QfjqKuEJrFe1hVVcerT
+         Xj+onhARwNKUCevEfj3A5H6eXnNXGOBMQFK6aUEI=
+Received: from DLEE102.ent.ti.com (dlee102.ent.ti.com [157.170.170.32])
+        by lelv0266.itg.ti.com (8.15.2/8.15.2) with ESMTPS id 08HGGr4j102902
+        (version=TLSv1.2 cipher=AES256-GCM-SHA384 bits=256 verify=FAIL);
+        Thu, 17 Sep 2020 11:16:53 -0500
+Received: from DLEE105.ent.ti.com (157.170.170.35) by DLEE102.ent.ti.com
+ (157.170.170.32) with Microsoft SMTP Server (version=TLS1_2,
+ cipher=TLS_ECDHE_RSA_WITH_AES_128_CBC_SHA256_P256) id 15.1.1979.3; Thu, 17
+ Sep 2020 11:16:53 -0500
+Received: from lelv0326.itg.ti.com (10.180.67.84) by DLEE105.ent.ti.com
+ (157.170.170.35) with Microsoft SMTP Server (version=TLS1_2,
+ cipher=TLS_ECDHE_RSA_WITH_AES_128_CBC_SHA256_P256) id 15.1.1979.3 via
+ Frontend Transport; Thu, 17 Sep 2020 11:16:53 -0500
+Received: from lta0400828a.ti.com (ileax41-snat.itg.ti.com [10.172.224.153])
+        by lelv0326.itg.ti.com (8.15.2/8.15.2) with ESMTP id 08HGGo39004196;
+        Thu, 17 Sep 2020 11:16:51 -0500
+From:   Roger Quadros <rogerq@ti.com>
+To:     <peda@axentia.se>, <nm@ti.com>
+CC:     <t-kristo@ti.com>, <nsekhar@ti.com>, <kishon@ti.com>,
+        <robh+dt@kernel.org>, <devicetree@vger.kernel.org>,
+        <linux-arm-kernel@lists.infradead.org>,
+        <linux-kernel@vger.kernel.org>, Roger Quadros <rogerq@ti.com>
+Subject: [PATCH] arm64: dts: ti: k3-j721e: Rename mux header and update macro names
+Date:   Thu, 17 Sep 2020 19:16:49 +0300
+Message-ID: <20200917161649.27667-1-rogerq@ti.com>
+X-Mailer: git-send-email 2.17.1
 MIME-Version: 1.0
-Content-Type: multipart/signed; micalg=pgp-sha512;
-        protocol="application/pgp-signature"; boundary="+sHJum3is6Tsg7/J"
-Content-Disposition: inline
-In-Reply-To: <f4a83c01-58e2-1b7a-677e-44d5bde7b175@ti.com>
-X-Cookie: If you fail to plan, plan to fail.
-User-Agent: Mutt/1.10.1 (2018-07-13)
+Content-Type: text/plain
+X-EXCLAIMER-MD-CONFIG: e1e8a2fd-e40a-4ac6-ac9b-f7e9cc9ee180
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
+We intend to use one header file for SERDES MUX for all
+TI SoCs so rename the header file.
 
---+sHJum3is6Tsg7/J
-Content-Type: text/plain; charset=us-ascii
-Content-Disposition: inline
+The exsting macros are too generic. Prefix them with SoC name.
 
-On Thu, Sep 17, 2020 at 10:15:27AM -0500, Dan Murphy wrote:
-> On 9/17/20 8:02 AM, Mark Brown wrote:
+Signed-off-by: Roger Quadros <rogerq@ti.com>
+---
+ .../dts/ti/k3-j721e-common-proc-board.dts     | 11 ++--
+ arch/arm64/boot/dts/ti/k3-j721e-main.dtsi     | 13 +++--
+ include/dt-bindings/mux/mux-j721e-wiz.h       | 53 ------------------
+ include/dt-bindings/mux/ti-serdes.h           | 55 +++++++++++++++++++
+ 4 files changed, 68 insertions(+), 64 deletions(-)
+ delete mode 100644 include/dt-bindings/mux/mux-j721e-wiz.h
+ create mode 100644 include/dt-bindings/mux/ti-serdes.h
 
-> > This is something I'd expect to be done by the machine driver rather
-> > than in the CODEC specific DT bindings, and apart from anything else
+diff --git a/arch/arm64/boot/dts/ti/k3-j721e-common-proc-board.dts b/arch/arm64/boot/dts/ti/k3-j721e-common-proc-board.dts
+index 8bc1e6ecc50e..493f64ee7a2a 100644
+--- a/arch/arm64/boot/dts/ti/k3-j721e-common-proc-board.dts
++++ b/arch/arm64/boot/dts/ti/k3-j721e-common-proc-board.dts
+@@ -404,11 +404,12 @@
+ };
+ 
+ &serdes_ln_ctrl {
+-	idle-states = <SERDES0_LANE0_PCIE0_LANE0>, <SERDES0_LANE1_PCIE0_LANE1>,
+-		      <SERDES1_LANE0_PCIE1_LANE0>, <SERDES1_LANE1_PCIE1_LANE1>,
+-		      <SERDES2_LANE0_PCIE2_LANE0>, <SERDES2_LANE1_PCIE2_LANE1>,
+-		      <SERDES3_LANE0_USB3_0_SWAP>, <SERDES3_LANE1_USB3_0>,
+-		      <SERDES4_LANE0_EDP_LANE0>, <SERDES4_LANE1_EDP_LANE1>, <SERDES4_LANE2_EDP_LANE2>, <SERDES4_LANE3_EDP_LANE3>;
++	idle-states = <J721E_SERDES0_LANE0_PCIE0_LANE0>, <J721E_SERDES0_LANE1_PCIE0_LANE1>,
++		      <J721E_SERDES1_LANE0_PCIE1_LANE0>, <J721E_SERDES1_LANE1_PCIE1_LANE1>,
++		      <J721E_SERDES2_LANE0_PCIE2_LANE0>, <J721E_SERDES2_LANE1_PCIE2_LANE1>,
++		      <J721E_SERDES3_LANE0_USB3_0_SWAP>, <J721E_SERDES3_LANE1_USB3_0>,
++		      <J721E_SERDES4_LANE0_EDP_LANE0>, <J721E_SERDES4_LANE1_EDP_LANE1>,
++		      <J721E_SERDES4_LANE2_EDP_LANE2>, <J721E_SERDES4_LANE3_EDP_LANE3>;
+ };
+ 
+ &serdes_wiz3 {
+diff --git a/arch/arm64/boot/dts/ti/k3-j721e-main.dtsi b/arch/arm64/boot/dts/ti/k3-j721e-main.dtsi
+index d14060207f00..924c51146d01 100644
+--- a/arch/arm64/boot/dts/ti/k3-j721e-main.dtsi
++++ b/arch/arm64/boot/dts/ti/k3-j721e-main.dtsi
+@@ -6,7 +6,7 @@
+  */
+ #include <dt-bindings/phy/phy.h>
+ #include <dt-bindings/mux/mux.h>
+-#include <dt-bindings/mux/mux-j721e-wiz.h>
++#include <dt-bindings/mux/ti-serdes.h>
+ 
+ &cbass_main {
+ 	msmc_ram: sram@70000000 {
+@@ -38,11 +38,12 @@
+ 					<0x40b0 0x3>, <0x40b4 0x3>, /* SERDES3 lane0/1 select */
+ 					<0x40c0 0x3>, <0x40c4 0x3>, <0x40c8 0x3>, <0x40cc 0x3>;
+ 					/* SERDES4 lane0/1/2/3 select */
+-			idle-states = <SERDES0_LANE0_PCIE0_LANE0>, <SERDES0_LANE1_PCIE0_LANE1>,
+-				      <SERDES1_LANE0_PCIE1_LANE0>, <SERDES1_LANE1_PCIE1_LANE1>,
+-				      <SERDES2_LANE0_PCIE2_LANE0>, <SERDES2_LANE1_PCIE2_LANE1>,
+-				      <MUX_IDLE_AS_IS>, <SERDES3_LANE1_USB3_0>,
+-				      <SERDES4_LANE0_EDP_LANE0>, <SERDES4_LANE1_EDP_LANE1>, <SERDES4_LANE2_EDP_LANE2>, <SERDES4_LANE3_EDP_LANE3>;
++			idle-states = <J721E_SERDES0_LANE0_PCIE0_LANE0>, <J721E_SERDES0_LANE1_PCIE0_LANE1>,
++				      <J721E_SERDES1_LANE0_PCIE1_LANE0>, <J721E_SERDES1_LANE1_PCIE1_LANE1>,
++				      <J721E_SERDES2_LANE0_PCIE2_LANE0>, <J721E_SERDES2_LANE1_PCIE2_LANE1>,
++				      <MUX_IDLE_AS_IS>, <J721E_SERDES3_LANE1_USB3_0>,
++				      <J721E_SERDES4_LANE0_EDP_LANE0>, <J721E_SERDES4_LANE1_EDP_LANE1>,
++				      <J721E_SERDES4_LANE2_EDP_LANE2>, <J721E_SERDES4_LANE3_EDP_LANE3>;
+ 		};
+ 
+ 		usb_serdes_mux: mux-controller@4000 {
+diff --git a/include/dt-bindings/mux/mux-j721e-wiz.h b/include/dt-bindings/mux/mux-j721e-wiz.h
+deleted file mode 100644
+index fd1c4ea9fc7f..000000000000
+--- a/include/dt-bindings/mux/mux-j721e-wiz.h
++++ /dev/null
+@@ -1,53 +0,0 @@
+-/* SPDX-License-Identifier: GPL-2.0 */
+-/*
+- * This header provides constants for J721E WIZ.
+- */
+-
+-#ifndef _DT_BINDINGS_J721E_WIZ
+-#define _DT_BINDINGS_J721E_WIZ
+-
+-#define SERDES0_LANE0_QSGMII_LANE1	0x0
+-#define SERDES0_LANE0_PCIE0_LANE0	0x1
+-#define SERDES0_LANE0_USB3_0_SWAP	0x2
+-
+-#define SERDES0_LANE1_QSGMII_LANE2	0x0
+-#define SERDES0_LANE1_PCIE0_LANE1	0x1
+-#define SERDES0_LANE1_USB3_0		0x2
+-
+-#define SERDES1_LANE0_QSGMII_LANE3	0x0
+-#define SERDES1_LANE0_PCIE1_LANE0	0x1
+-#define SERDES1_LANE0_USB3_1_SWAP	0x2
+-#define SERDES1_LANE0_SGMII_LANE0	0x3
+-
+-#define SERDES1_LANE1_QSGMII_LANE4	0x0
+-#define SERDES1_LANE1_PCIE1_LANE1	0x1
+-#define SERDES1_LANE1_USB3_1		0x2
+-#define SERDES1_LANE1_SGMII_LANE1	0x3
+-
+-#define SERDES2_LANE0_PCIE2_LANE0	0x1
+-#define SERDES2_LANE0_SGMII_LANE0	0x3
+-#define SERDES2_LANE0_USB3_1_SWAP	0x2
+-
+-#define SERDES2_LANE1_PCIE2_LANE1	0x1
+-#define SERDES2_LANE1_USB3_1		0x2
+-#define SERDES2_LANE1_SGMII_LANE1	0x3
+-
+-#define SERDES3_LANE0_PCIE3_LANE0	0x1
+-#define SERDES3_LANE0_USB3_0_SWAP	0x2
+-
+-#define SERDES3_LANE1_PCIE3_LANE1	0x1
+-#define SERDES3_LANE1_USB3_0		0x2
+-
+-#define SERDES4_LANE0_EDP_LANE0		0x0
+-#define SERDES4_LANE0_QSGMII_LANE5	0x2
+-
+-#define SERDES4_LANE1_EDP_LANE1		0x0
+-#define SERDES4_LANE1_QSGMII_LANE6	0x2
+-
+-#define SERDES4_LANE2_EDP_LANE2		0x0
+-#define SERDES4_LANE2_QSGMII_LANE7	0x2
+-
+-#define SERDES4_LANE3_EDP_LANE3		0x0
+-#define SERDES4_LANE3_QSGMII_LANE8	0x2
+-
+-#endif /* _DT_BINDINGS_J721E_WIZ */
+diff --git a/include/dt-bindings/mux/ti-serdes.h b/include/dt-bindings/mux/ti-serdes.h
+new file mode 100644
+index 000000000000..3e1f2d243e4a
+--- /dev/null
++++ b/include/dt-bindings/mux/ti-serdes.h
+@@ -0,0 +1,55 @@
++/* SPDX-License-Identifier: GPL-2.0 */
++/*
++ * This header provides constants for SERDES MUX for TI SoCs
++ */
++
++#ifndef _DT_BINDINGS_TI_SERDES_MUX
++#define _DT_BINDINGS_TI_SERDES_MUX
++
++/* J721E */
++
++#define J721E_SERDES0_LANE0_QSGMII_LANE1	0x0
++#define J721E_SERDES0_LANE0_PCIE0_LANE0		0x1
++#define J721E_SERDES0_LANE0_USB3_0_SWAP		0x2
++
++#define J721E_SERDES0_LANE1_QSGMII_LANE2	0x0
++#define J721E_SERDES0_LANE1_PCIE0_LANE1		0x1
++#define J721E_SERDES0_LANE1_USB3_0		0x2
++
++#define J721E_SERDES1_LANE0_QSGMII_LANE3	0x0
++#define J721E_SERDES1_LANE0_PCIE1_LANE0		0x1
++#define J721E_SERDES1_LANE0_USB3_1_SWAP		0x2
++#define J721E_SERDES1_LANE0_SGMII_LANE0		0x3
++
++#define J721E_SERDES1_LANE1_QSGMII_LANE4	0x0
++#define J721E_SERDES1_LANE1_PCIE1_LANE1		0x1
++#define J721E_SERDES1_LANE1_USB3_1		0x2
++#define J721E_SERDES1_LANE1_SGMII_LANE1		0x3
++
++#define J721E_SERDES2_LANE0_PCIE2_LANE0		0x1
++#define J721E_SERDES2_LANE0_SGMII_LANE0		0x3
++#define J721E_SERDES2_LANE0_USB3_1_SWAP		0x2
++
++#define J721E_SERDES2_LANE1_PCIE2_LANE1		0x1
++#define J721E_SERDES2_LANE1_USB3_1		0x2
++#define J721E_SERDES2_LANE1_SGMII_LANE1		0x3
++
++#define J721E_SERDES3_LANE0_PCIE3_LANE0		0x1
++#define J721E_SERDES3_LANE0_USB3_0_SWAP		0x2
++
++#define J721E_SERDES3_LANE1_PCIE3_LANE1		0x1
++#define J721E_SERDES3_LANE1_USB3_0		0x2
++
++#define J721E_SERDES4_LANE0_EDP_LANE0		0x0
++#define J721E_SERDES4_LANE0_QSGMII_LANE5	0x2
++
++#define J721E_SERDES4_LANE1_EDP_LANE1		0x0
++#define J721E_SERDES4_LANE1_QSGMII_LANE6	0x2
++
++#define J721E_SERDES4_LANE2_EDP_LANE2		0x0
++#define J721E_SERDES4_LANE2_QSGMII_LANE7	0x2
++
++#define J721E_SERDES4_LANE3_EDP_LANE3		0x0
++#define J721E_SERDES4_LANE3_QSGMII_LANE8	0x2
++
++#endif /* _DT_BINDINGS_TI_SERDES_MUX */
+-- 
+Texas Instruments Finland Oy, Porkkalankatu 22, 00180 Helsinki.
+Y-tunnus/Business ID: 0615521-4. Kotipaikka/Domicile: Helsinki
 
-> Customers need the ability to not transmit on a TDM slot, since another
-> device could be using the slot.
-
-TDM is not an issue, we already have the set_tdm_slot() API.  The issue
-is how you're configuring it.
-
-> The dai-tdm-slot-num would be a good candidate to add to the sound card to
-> define the slot number but it's definition is "Number of slots in use." So
-> it is not really setting the needed slot.
-> I am not finding any good way to assign specific slots to specific channels.
-
-If the generic features are not sufficent then please extend the generic
-features rather than bodging around them in individual drivers.
-
---+sHJum3is6Tsg7/J
-Content-Type: application/pgp-signature; name="signature.asc"
-
------BEGIN PGP SIGNATURE-----
-
-iQEzBAABCgAdFiEEreZoqmdXGLWf4p/qJNaLcl1Uh9AFAl9jhyEACgkQJNaLcl1U
-h9B6/Qf+M5hvEXVKhLg+PkuggYW/zHPqIs79pJjddV/tkBhy612mpeKAAj8Crp4G
-WTsAdCZ8gh0xhUu5quFCArp73bD+tVGMcp2OidYjpG9sZ/4sBW36oYeBRei3zPw0
-531VEYn5lS95/BbYlXyTJGT09zHbPRIv2PReev6s+3pUmK1DFsgaLitDRwLz+Ndt
-DiJLHewySrOXdvwg3VBE04nQjYW5qAgkF9EVKAyKU68NKpAw3NAYcaIlOe7KFubg
-Gy1yyCiYFNmdfDGcGJ+H8JdhpvUKc8fh4dUbNJGl5n1X3S4R78IunjNw9fnR/l3U
-yiO+EE3d5A1qgWqlUDXSOLr+om19xA==
-=OC0y
------END PGP SIGNATURE-----
-
---+sHJum3is6Tsg7/J--
