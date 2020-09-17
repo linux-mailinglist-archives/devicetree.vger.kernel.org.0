@@ -2,85 +2,76 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from vger.kernel.org (vger.kernel.org [23.128.96.18])
-	by mail.lfdr.de (Postfix) with ESMTP id 2F2FF26D96A
-	for <lists+devicetree@lfdr.de>; Thu, 17 Sep 2020 12:47:30 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTP id 3634C26D9D2
+	for <lists+devicetree@lfdr.de>; Thu, 17 Sep 2020 13:05:51 +0200 (CEST)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S1726731AbgIQKpO (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Thu, 17 Sep 2020 06:45:14 -0400
-Received: from mail.kernel.org ([198.145.29.99]:55282 "EHLO mail.kernel.org"
+        id S1726625AbgIQLFH (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Thu, 17 Sep 2020 07:05:07 -0400
+Received: from mail.kernel.org ([198.145.29.99]:38060 "EHLO mail.kernel.org"
         rhost-flags-OK-OK-OK-OK) by vger.kernel.org with ESMTP
-        id S1726673AbgIQKpL (ORCPT <rfc822;devicetree@vger.kernel.org>);
-        Thu, 17 Sep 2020 06:45:11 -0400
-Received: from disco-boy.misterjones.org (disco-boy.misterjones.org [51.254.78.96])
+        id S1726559AbgIQLDZ (ORCPT <rfc822;devicetree@vger.kernel.org>);
+        Thu, 17 Sep 2020 07:03:25 -0400
+Received: from localhost (fw-tnat.cambridge.arm.com [217.140.96.140])
         (using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
         (No client certificate requested)
-        by mail.kernel.org (Postfix) with ESMTPSA id 4B6802074B;
-        Thu, 17 Sep 2020 10:45:10 +0000 (UTC)
+        by mail.kernel.org (Postfix) with ESMTPSA id D74522076D;
+        Thu, 17 Sep 2020 11:01:42 +0000 (UTC)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=kernel.org;
-        s=default; t=1600339510;
-        bh=Y3pNyjgpqIuPmidpfw5syd0Vtwjq4sR1GRHDIvultYU=;
-        h=Date:From:To:Cc:Subject:In-Reply-To:References:From;
-        b=uZM3YnUfcF23+TJ0a0nblZ4x9bUao61YD2kRnz0gDu5l74v5xplkAWK4CZzWKZTwY
-         JhxlawsmeVyf3smotvrKUrWA3Ge+WYhZwgcAZshKunNVU/4e3ZJjPVmwkqiLbfnUkX
-         4KTFGgpTlgOwTjVh+x74i3YRJ8kcpToc480koSdY=
-Received: from disco-boy.misterjones.org ([51.254.78.96] helo=www.loen.fr)
-        by disco-boy.misterjones.org with esmtpsa (TLS1.2:ECDHE_RSA_AES_128_GCM_SHA256:128)
-        (Exim 4.92)
-        (envelope-from <maz@kernel.org>)
-        id 1kIrPY-00Cbmd-Co; Thu, 17 Sep 2020 11:45:08 +0100
+        s=default; t=1600340503;
+        bh=aPCEwcIAuMvYoCEBtOQo2eERHoS019qUBYLdVY0/hTk=;
+        h=Date:From:To:Cc:Subject:References:In-Reply-To:From;
+        b=1ccLIq0l0KnciBSQeBF5gPuenyxYph0LJQ4FgwgULOzMRDnR8LzMTkkgaclkQ6UOy
+         BHB6aUZLthOo8hUIvk2Cgr43XmGm9QSZr1+/9U9L1iBbPajP4pWOXKfFHocssoYmDM
+         iXVEVmsro/blj+Bt9nPVVgCsq0g3ZRBa7MDjEk0k=
+Date:   Thu, 17 Sep 2020 12:00:53 +0100
+From:   Mark Brown <broonie@kernel.org>
+To:     Alban Bedel <alban.bedel@aerq.com>
+Cc:     linux-hwmon@vger.kernel.org, Jean Delvare <jdelvare@suse.com>,
+        Guenter Roeck <linux@roeck-us.net>,
+        Rob Herring <robh+dt@kernel.org>,
+        Liam Girdwood <lgirdwood@gmail.com>,
+        devicetree@vger.kernel.org, linux-kernel@vger.kernel.org
+Subject: Re: [PATCH 3/3] hwmon: (lm75) Add regulator support
+Message-ID: <20200917110053.GA4755@sirena.org.uk>
+References: <20200917101819.32045-1-alban.bedel@aerq.com>
+ <20200917101819.32045-4-alban.bedel@aerq.com>
 MIME-Version: 1.0
-Content-Type: text/plain; charset=US-ASCII;
- format=flowed
-Content-Transfer-Encoding: 7bit
-Date:   Thu, 17 Sep 2020 11:45:08 +0100
-From:   Marc Zyngier <maz@kernel.org>
-To:     Grzegorz Jaszczyk <grzegorz.jaszczyk@linaro.org>
-Cc:     tglx@linutronix.de, jason@lakedaemon.net, s-anna@ti.com,
-        robh+dt@kernel.org, lee.jones@linaro.org,
-        devicetree@vger.kernel.org, linux-kernel@vger.kernel.org,
-        linux-omap@vger.kernel.org, linux-arm-kernel@lists.infradead.org,
-        david@lechnology.com, praneeth@ti.com
-Subject: Re: [PATCH v7 0/5] Add TI PRUSS Local Interrupt Controller IRQChip
- driver
-In-Reply-To: <1600274110-30384-1-git-send-email-grzegorz.jaszczyk@linaro.org>
-References: <1600274110-30384-1-git-send-email-grzegorz.jaszczyk@linaro.org>
-User-Agent: Roundcube Webmail/1.4.8
-Message-ID: <9797030dd2c11b24ae0f7ef760f12ffa@kernel.org>
-X-Sender: maz@kernel.org
-X-SA-Exim-Connect-IP: 51.254.78.96
-X-SA-Exim-Rcpt-To: grzegorz.jaszczyk@linaro.org, tglx@linutronix.de, jason@lakedaemon.net, s-anna@ti.com, robh+dt@kernel.org, lee.jones@linaro.org, devicetree@vger.kernel.org, linux-kernel@vger.kernel.org, linux-omap@vger.kernel.org, linux-arm-kernel@lists.infradead.org, david@lechnology.com, praneeth@ti.com
-X-SA-Exim-Mail-From: maz@kernel.org
-X-SA-Exim-Scanned: No (on disco-boy.misterjones.org); SAEximRunCond expanded to false
+Content-Type: multipart/signed; micalg=pgp-sha512;
+        protocol="application/pgp-signature"; boundary="fdj2RfSjLxBAspz7"
+Content-Disposition: inline
+In-Reply-To: <20200917101819.32045-4-alban.bedel@aerq.com>
+X-Cookie: If you fail to plan, plan to fail.
+User-Agent: Mutt/1.10.1 (2018-07-13)
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-On 2020-09-16 17:35, Grzegorz Jaszczyk wrote:
-> Hi All,
-> 
-> The following is a v7 version of the series [1-6] that adds an IRQChip
-> driver for the local interrupt controller present within a Programmable
-> Real-Time Unit and Industrial Communication Subsystem (PRU-ICSS) 
-> present on a
-> number of TI SoCs including OMAP architecture based AM335x, AM437x, 
-> AM57xx SoCs,
-> Keystone 2 architecture based 66AK2G SoCs, Davinci architecture based
-> OMAP-L138/DA850 SoCs and the latest K3 architecture based AM65x and 
-> J721E SoCs.
-> Please see the v1 cover-letter [1] for details about the features of 
-> this
-> interrupt controller.  More details can be found in any of the 
-> supported SoC
-> TRMs.  Eg: Chapter 30.1.6 of AM5728 TRM [7]
-> 
-> Please see the individual patches for exact changes in each patch, 
-> following are
-> the main changes from v5:
->  - Add Co-developed-by tags.
->  - Change the irq type to IRQ_TYPE_LEVEL_HIGH in patch #2.
 
-Applied to irq/irqchip-next.
+--fdj2RfSjLxBAspz7
+Content-Type: text/plain; charset=us-ascii
+Content-Disposition: inline
 
-         M.
--- 
-Jazz is not dead. It just smells funny...
+On Thu, Sep 17, 2020 at 12:18:19PM +0200, Alban Bedel wrote:
+
+> +	data->vs = devm_regulator_get_optional(dev, "vs");
+> +	if (IS_ERR(data->vs)) {
+
+Unless the device can work without power you should not be using
+regulator_get_optional().
+
+--fdj2RfSjLxBAspz7
+Content-Type: application/pgp-signature; name="signature.asc"
+
+-----BEGIN PGP SIGNATURE-----
+
+iQEzBAABCgAdFiEEreZoqmdXGLWf4p/qJNaLcl1Uh9AFAl9jQeQACgkQJNaLcl1U
+h9B2Jwf9FsOfhx52XRbTX0EQlV1uzHXTjKYKY0f/VVzp1/NtZQjgJW/qzpGIstuH
+JgAoa98HRd+Dd7MSfrLgDepC1+7MHNaMlFL4Dv28/V9NkM9atu9dvxduwckp+1sR
+sIdeHldh7jw5Tmjz5dmKbKbWn17r5MX4eTR8pv1hZlKfCraIIVMq145NgBiV0q6R
+JurB8qhGznwolBc4hHz6X+rAyNo+ZrvE/hsfxtKaXVjziSQwgRopaSbXlD5pTYsD
+teudpthwvxrG9lg/HVY+WAaBhpNxHSLKfr7IMV1tptOqxRvnOKn+c+6/CicnpZiZ
+fDHkDqIsFPj98T7sHutzo79R6A6xHw==
+=XT8Y
+-----END PGP SIGNATURE-----
+
+--fdj2RfSjLxBAspz7--
