@@ -2,157 +2,82 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from vger.kernel.org (vger.kernel.org [23.128.96.18])
-	by mail.lfdr.de (Postfix) with ESMTP id AB01526E4B8
-	for <lists+devicetree@lfdr.de>; Thu, 17 Sep 2020 20:55:44 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTP id C479D26E4C9
+	for <lists+devicetree@lfdr.de>; Thu, 17 Sep 2020 20:58:35 +0200 (CEST)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S1726414AbgIQSzj (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Thu, 17 Sep 2020 14:55:39 -0400
-Received: from mail.kernel.org ([198.145.29.99]:57062 "EHLO mail.kernel.org"
+        id S1726468AbgIQS6N (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Thu, 17 Sep 2020 14:58:13 -0400
+Received: from mail.kernel.org ([198.145.29.99]:58720 "EHLO mail.kernel.org"
         rhost-flags-OK-OK-OK-OK) by vger.kernel.org with ESMTP
-        id S1726617AbgIQSzh (ORCPT <rfc822;devicetree@vger.kernel.org>);
-        Thu, 17 Sep 2020 14:55:37 -0400
-Received: from kozik-lap.mshome.net (unknown [194.230.155.191])
-        (using TLSv1.2 with cipher ECDHE-RSA-AES128-GCM-SHA256 (128/128 bits))
+        id S1726646AbgIQS6M (ORCPT <rfc822;devicetree@vger.kernel.org>);
+        Thu, 17 Sep 2020 14:58:12 -0400
+Received: from localhost (fw-tnat.cambridge.arm.com [217.140.96.140])
+        (using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
         (No client certificate requested)
-        by mail.kernel.org (Postfix) with ESMTPSA id E9F72206A1;
-        Thu, 17 Sep 2020 18:55:34 +0000 (UTC)
+        by mail.kernel.org (Postfix) with ESMTPSA id 1D2832072E;
+        Thu, 17 Sep 2020 18:57:59 +0000 (UTC)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=kernel.org;
-        s=default; t=1600368936;
-        bh=TcWpXRuKNGWf4r5fT3GPAnP7GNeAIyJRhsuIKlcRMJA=;
-        h=From:To:Cc:Subject:Date:From;
-        b=FLR3+OwJ5PWgyCw6aRB1kh6ZrPamNBj79QVxZNHpq/jbuD8j9KEQYfIK1mQGDe1V1
-         EGcQkCpLrT48TSmUTHMmceGSDpex5ZnmLZv92XAjXcBw0kpvFqfg5V2oA09txMf/th
-         WIsvY0Q2TemI4eKn0bPBs7RFT4uSKg5q9gJOLVOw=
-From:   Krzysztof Kozlowski <krzk@kernel.org>
-To:     Liam Girdwood <lgirdwood@gmail.com>,
-        Mark Brown <broonie@kernel.org>,
-        Rob Herring <robh+dt@kernel.org>, alsa-devel@alsa-project.org,
-        devicetree@vger.kernel.org, linux-kernel@vger.kernel.org
-Cc:     Krzysztof Kozlowski <krzk@kernel.org>
-Subject: [PATCH v2] ASoC: dt-bindings: correct interrupt flags in examples
-Date:   Thu, 17 Sep 2020 20:55:31 +0200
-Message-Id: <20200917185531.5767-1-krzk@kernel.org>
-X-Mailer: git-send-email 2.17.1
+        s=default; t=1600369080;
+        bh=h2oBzSRlDP6lx+rd4sKX9zHni5NLmneiOlwvYFS28v4=;
+        h=Date:From:To:Cc:In-Reply-To:References:Subject:From;
+        b=COy9VIGawcbUC2qB47O6ifSy3VHIHqyKV/Slg/r590Y0r1xhwDQLyjWdTHieGTVa1
+         ekqEU3m4TvI+HUfQNCzoMc529Mwgs4mau+JK2IkbI+5LX0EnIdCgSeDb8uOPgAgvep
+         WjSJoYVYU9b70EnDGw7VXkRzUdzV7YrrpEAiKQhs=
+Date:   Thu, 17 Sep 2020 19:57:10 +0100
+From:   Mark Brown <broonie@kernel.org>
+To:     robh+dt@kernel.org,
+        Srinivas Kandagatla <srinivas.kandagatla@linaro.org>
+Cc:     tiwai@suse.com, lgirdwood@gmail.com, bgoswami@codeaurora.org,
+        plai@codeaurora.org, linux-kernel@vger.kernel.org,
+        sboyd@kernel.org, devicetree@vger.kernel.org,
+        alsa-devel@alsa-project.org
+In-Reply-To: <20200910135708.14842-1-srinivas.kandagatla@linaro.org>
+References: <20200910135708.14842-1-srinivas.kandagatla@linaro.org>
+Subject: Re: [PATCH 0/2] ASoC: q6afe: add clocks support
+Message-Id: <160036900935.20113.3270260230921504372.b4-ty@kernel.org>
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-GPIO_ACTIVE_x flags are not correct in the context of interrupt flags.
-These are simple defines so they could be used in DTS but they will not
-have the same meaning:
-1. GPIO_ACTIVE_HIGH = 0 = IRQ_TYPE_NONE
-2. GPIO_ACTIVE_LOW  = 1 = IRQ_TYPE_EDGE_RISING
+On Thu, 10 Sep 2020 14:57:06 +0100, Srinivas Kandagatla wrote:
+> q6afe already exposes clocks using apis, but not as proper
+> clock controller driver. This patch puts those clocks
+> in to a proper clock controller so that other drivers that
+> depend on those clocks can be properly expressed.
+> 
+> 
+> Srinivas Kandagatla (2):
+>   ASoC: q6afe: dt-bindings: add q6afe clock bindings
+>   ASoC: q6afe-clocks: add q6afe clock controller
+> 
+> [...]
 
-Correct the interrupt flags, assuming the author of the code wanted same
-logical behavior behind the name "ACTIVE_xxx", this is:
-  ACTIVE_HIGH => IRQ_TYPE_LEVEL_HIGH
+Applied to
 
-Signed-off-by: Krzysztof Kozlowski <krzk@kernel.org>
-Acked-by: Rob Herring <robh@kernel.org>
+   https://git.kernel.org/pub/scm/linux/kernel/git/broonie/sound.git for-next
 
----
+Thanks!
 
-Changes since v1:
-1. Add acks
----
- Documentation/devicetree/bindings/sound/max98090.txt | 2 +-
- Documentation/devicetree/bindings/sound/rt5640.txt   | 2 +-
- Documentation/devicetree/bindings/sound/rt5659.txt   | 2 +-
- Documentation/devicetree/bindings/sound/rt5665.txt   | 2 +-
- Documentation/devicetree/bindings/sound/rt5668.txt   | 2 +-
- Documentation/devicetree/bindings/sound/rt5677.txt   | 2 +-
- Documentation/devicetree/bindings/sound/rt5682.txt   | 2 +-
- 7 files changed, 7 insertions(+), 7 deletions(-)
+[1/2] ASoC: q6afe: dt-bindings: add q6afe clock bindings
+      commit: 4e398353a7e51410c34fd19f8b7dfc56fff5901b
+[2/2] ASoC: q6afe-clocks: add q6afe clock controller
+      commit: 520a1c396d1966b64884d8e0176a580150d5a09e
 
-diff --git a/Documentation/devicetree/bindings/sound/max98090.txt b/Documentation/devicetree/bindings/sound/max98090.txt
-index 7e1bbd5c27fd..39d640294c62 100644
---- a/Documentation/devicetree/bindings/sound/max98090.txt
-+++ b/Documentation/devicetree/bindings/sound/max98090.txt
-@@ -55,5 +55,5 @@ audio-codec@10 {
- 	compatible = "maxim,max98090";
- 	reg = <0x10>;
- 	interrupt-parent = <&gpio>;
--	interrupts = <TEGRA_GPIO(H, 4) GPIO_ACTIVE_HIGH>;
-+	interrupts = <TEGRA_GPIO(H, 4) IRQ_TYPE_LEVEL_HIGH>;
- };
-diff --git a/Documentation/devicetree/bindings/sound/rt5640.txt b/Documentation/devicetree/bindings/sound/rt5640.txt
-index e40e4893eed8..ff1228713f7e 100644
---- a/Documentation/devicetree/bindings/sound/rt5640.txt
-+++ b/Documentation/devicetree/bindings/sound/rt5640.txt
-@@ -88,7 +88,7 @@ rt5640 {
- 	compatible = "realtek,rt5640";
- 	reg = <0x1c>;
- 	interrupt-parent = <&gpio>;
--	interrupts = <TEGRA_GPIO(W, 3) GPIO_ACTIVE_HIGH>;
-+	interrupts = <TEGRA_GPIO(W, 3) IRQ_TYPE_LEVEL_HIGH>;
- 	realtek,ldo1-en-gpios =
- 		<&gpio TEGRA_GPIO(V, 3) GPIO_ACTIVE_HIGH>;
- };
-diff --git a/Documentation/devicetree/bindings/sound/rt5659.txt b/Documentation/devicetree/bindings/sound/rt5659.txt
-index 1766e0543fc5..56788f50b6cf 100644
---- a/Documentation/devicetree/bindings/sound/rt5659.txt
-+++ b/Documentation/devicetree/bindings/sound/rt5659.txt
-@@ -72,7 +72,7 @@ rt5659 {
- 	compatible = "realtek,rt5659";
- 	reg = <0x1b>;
- 	interrupt-parent = <&gpio>;
--	interrupts = <TEGRA_GPIO(W, 3) GPIO_ACTIVE_HIGH>;
-+	interrupts = <TEGRA_GPIO(W, 3) IRQ_TYPE_LEVEL_HIGH>;
- 	realtek,ldo1-en-gpios =
- 		<&gpio TEGRA_GPIO(V, 3) GPIO_ACTIVE_HIGH>;
- };
-diff --git a/Documentation/devicetree/bindings/sound/rt5665.txt b/Documentation/devicetree/bindings/sound/rt5665.txt
-index 8df170506986..f6ca96b4ce98 100644
---- a/Documentation/devicetree/bindings/sound/rt5665.txt
-+++ b/Documentation/devicetree/bindings/sound/rt5665.txt
-@@ -62,7 +62,7 @@ rt5659 {
- 	compatible = "realtek,rt5665";
- 	reg = <0x1b>;
- 	interrupt-parent = <&gpio>;
--	interrupts = <TEGRA_GPIO(W, 3) GPIO_ACTIVE_HIGH>;
-+	interrupts = <TEGRA_GPIO(W, 3) IRQ_TYPE_LEVEL_HIGH>;
- 	realtek,ldo1-en-gpios =
- 		<&gpio TEGRA_GPIO(V, 3) GPIO_ACTIVE_HIGH>;
- };
-diff --git a/Documentation/devicetree/bindings/sound/rt5668.txt b/Documentation/devicetree/bindings/sound/rt5668.txt
-index c88b96e7764b..a2b7e9a2f2f3 100644
---- a/Documentation/devicetree/bindings/sound/rt5668.txt
-+++ b/Documentation/devicetree/bindings/sound/rt5668.txt
-@@ -41,7 +41,7 @@ rt5668 {
- 	compatible = "realtek,rt5668b";
- 	reg = <0x1a>;
- 	interrupt-parent = <&gpio>;
--	interrupts = <TEGRA_GPIO(U, 6) GPIO_ACTIVE_HIGH>;
-+	interrupts = <TEGRA_GPIO(U, 6) IRQ_TYPE_LEVEL_HIGH>;
- 	realtek,ldo1-en-gpios =
- 		<&gpio TEGRA_GPIO(R, 2) GPIO_ACTIVE_HIGH>;
- 	realtek,dmic1-data-pin = <1>;
-diff --git a/Documentation/devicetree/bindings/sound/rt5677.txt b/Documentation/devicetree/bindings/sound/rt5677.txt
-index 1b3c13d206ff..da2430099181 100644
---- a/Documentation/devicetree/bindings/sound/rt5677.txt
-+++ b/Documentation/devicetree/bindings/sound/rt5677.txt
-@@ -64,7 +64,7 @@ rt5677 {
- 	compatible = "realtek,rt5677";
- 	reg = <0x2c>;
- 	interrupt-parent = <&gpio>;
--	interrupts = <TEGRA_GPIO(W, 3) GPIO_ACTIVE_HIGH>;
-+	interrupts = <TEGRA_GPIO(W, 3) IRQ_TYPE_LEVEL_HIGH>;
- 
- 	gpio-controller;
- 	#gpio-cells = <2>;
-diff --git a/Documentation/devicetree/bindings/sound/rt5682.txt b/Documentation/devicetree/bindings/sound/rt5682.txt
-index ade1ece8b45f..707fa98d1310 100644
---- a/Documentation/devicetree/bindings/sound/rt5682.txt
-+++ b/Documentation/devicetree/bindings/sound/rt5682.txt
-@@ -58,7 +58,7 @@ rt5682 {
- 	compatible = "realtek,rt5682i";
- 	reg = <0x1a>;
- 	interrupt-parent = <&gpio>;
--	interrupts = <TEGRA_GPIO(U, 6) GPIO_ACTIVE_HIGH>;
-+	interrupts = <TEGRA_GPIO(U, 6) IRQ_TYPE_LEVEL_HIGH>;
- 	realtek,ldo1-en-gpios =
- 		<&gpio TEGRA_GPIO(R, 2) GPIO_ACTIVE_HIGH>;
- 	realtek,dmic1-data-pin = <1>;
--- 
-2.17.1
+All being well this means that it will be integrated into the linux-next
+tree (usually sometime in the next 24 hours) and sent to Linus during
+the next merge window (or sooner if it is a bug fix), however if
+problems are discovered then the patch may be dropped or reverted.
 
+You may get further e-mails resulting from automated or manual testing
+and review of the tree, please engage with people reporting problems and
+send followup patches addressing any issues that are reported if needed.
+
+If any updates are required or you are submitting further changes they
+should be sent as incremental updates against current git, existing
+patches will not be replaced.
+
+Please add any relevant lists and maintainers to the CCs when replying
+to this mail.
+
+Thanks,
+Mark
