@@ -2,32 +2,31 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from vger.kernel.org (vger.kernel.org [23.128.96.18])
-	by mail.lfdr.de (Postfix) with ESMTP id DA8B126D6F5
-	for <lists+devicetree@lfdr.de>; Thu, 17 Sep 2020 10:45:10 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTP id 6754626D6FE
+	for <lists+devicetree@lfdr.de>; Thu, 17 Sep 2020 10:47:45 +0200 (CEST)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S1726348AbgIQIpJ (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Thu, 17 Sep 2020 04:45:09 -0400
-Received: from mickerik.phytec.de ([195.145.39.210]:51698 "EHLO
+        id S1726200AbgIQIp1 (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Thu, 17 Sep 2020 04:45:27 -0400
+Received: from mickerik.phytec.de ([195.145.39.210]:51704 "EHLO
         mickerik.phytec.de" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S1726285AbgIQIpI (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Thu, 17 Sep 2020 04:45:08 -0400
-X-Greylist: delayed 901 seconds by postgrey-1.27 at vger.kernel.org; Thu, 17 Sep 2020 04:45:07 EDT
+        with ESMTP id S1726142AbgIQIpY (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Thu, 17 Sep 2020 04:45:24 -0400
 DKIM-Signature: v=1; a=rsa-sha256; d=phytec.de; s=a1; c=relaxed/simple;
         q=dns/txt; i=@phytec.de; t=1600331403; x=1602923403;
         h=From:Sender:Reply-To:Subject:Date:Message-Id:To:Cc:MIME-Version:Content-Type:
         Content-Transfer-Encoding:Content-ID:Content-Description:Resent-Date:Resent-From:
         Resent-Sender:Resent-To:Resent-Cc:Resent-Message-ID:In-Reply-To:References:List-Id:
         List-Help:List-Unsubscribe:List-Subscribe:List-Post:List-Owner:List-Archive;
-        bh=YRai6qnabbddu7egjEjwFlo6sQ7qw2/V7y9yWxRav4M=;
-        b=W1QJI3bGuOl0jI6w4s36/E8kpkQHM5I9flpReXZdlYXC24XyDVZU+nav4t29Ie+U
-        Oh3rM5OJPWdAN7pxADn0rWQH/V3QsMJ8jsOVIm1ygDZFA/9KArtpYCTDXXWMl0zv
-        DcFiXkfUUoCRMH7B6eNpyi/Cw3dEB1Y1I/LtGaayhg0=;
-X-AuditID: c39127d2-269ff70000001c25-51-5f631e8b3dee
+        bh=Weoo3mAKzcnwFrCnd2LoDRznrHY7tepOpVj9Trnztro=;
+        b=VJWjknhEcBkKSJ+hRYBhckx81Qd9viRKZk5oJLq6Th3r1kgGKjzdsOLoOBkRJDQU
+        KTFFtTEdwDXYMMkyOciJ/Lz9XVoXf1sWyavFF9TK/cT28u8f5Z6quhqjAUjRvpOr
+        3TF2HAG5IIV2a8zfm6N9XmXKysJKET9KdyoEev2+w+g=;
+X-AuditID: c39127d2-253ff70000001c25-52-5f631e8bec44
 Received: from idefix.phytec.de (Unknown_Domain [172.16.0.10])
-        by mickerik.phytec.de (PHYTEC Mail Gateway) with SMTP id 22.43.07205.B8E136F5; Thu, 17 Sep 2020 10:30:03 +0200 (CEST)
+        by mickerik.phytec.de (PHYTEC Mail Gateway) with SMTP id A2.43.07205.B8E136F5; Thu, 17 Sep 2020 10:30:03 +0200 (CEST)
 Received: from lws-riedmueller.phytec.de ([172.16.23.108])
           by idefix.phytec.de (IBM Domino Release 9.0.1FP7)
-          with ESMTP id 2020091710300349-444531 ;
+          with ESMTP id 2020091710300353-444532 ;
           Thu, 17 Sep 2020 10:30:03 +0200 
 From:   Stefan Riedmueller <s.riedmueller@phytec.de>
 To:     Shawn Guo <shawnguo@kernel.org>
@@ -37,10 +36,12 @@ Cc:     Rob Herring <robh@kernel.org>, devicetree@vger.kernel.org,
         Fabio Estevam <festevam@gmail.com>,
         NXP Linux Team <linux-imx@nxp.com>,
         Stefan Riedmueller <s.riedmueller@phytec.de>
-Subject: [PATCH v3 1/2] dt-bindings: arm: fsl: Add PHYTEC i.MX6 UL/ULL devicetree bindings
-Date:   Thu, 17 Sep 2020 10:30:02 +0200
-Message-Id: <20200917083003.96352-1-s.riedmueller@phytec.de>
+Subject: [PATCH v3 2/2] dt-bindings: arm: fsl: Add PHYTEC i.MX6 devicetree bindings
+Date:   Thu, 17 Sep 2020 10:30:03 +0200
+Message-Id: <20200917083003.96352-2-s.riedmueller@phytec.de>
 X-Mailer: git-send-email 2.25.1
+In-Reply-To: <20200917083003.96352-1-s.riedmueller@phytec.de>
+References: <20200917083003.96352-1-s.riedmueller@phytec.de>
 MIME-Version: 1.0
 X-MIMETrack: Itemize by SMTP Server on Idefix/Phytec(Release 9.0.1FP7|August  17, 2016) at
  17.09.2020 10:30:03,
@@ -48,23 +49,23 @@ X-MIMETrack: Itemize by SMTP Server on Idefix/Phytec(Release 9.0.1FP7|August  17
  17.09.2020 10:30:03
 X-TNEFEvaluated: 1
 Content-Transfer-Encoding: quoted-printable
-X-Brightmail-Tracker: H4sIAAAAAAAAA+NgFlrFLMWRmVeSWpSXmKPExsWyRoCBS7dbLjneYNJPVYv5R86xWjy86m+x
+X-Brightmail-Tracker: H4sIAAAAAAAAA+NgFtrPLMWRmVeSWpSXmKPExsWyRoCBS7dbLjneYN45E4v5R86xWjy86m+x
         6fE1VouuXyuZLf7v2cFu8Xf7JhaLF1vEHdg9ds66y+6xaVUnm8fmJfUeG9/tYPLo/2vg8XmT
-        XABbFJdNSmpOZllqkb5dAldG+/aj7AWP+CvW71nI2MB4iruLkZNDQsBEonXmVbYuRi4OIYFt
-        jBLz+pezQzjXGCUOTdrOAlLFJmAksWBaIxOILSKgLHFqYx9YEbNAA5PE8oM/2UESwgJREksv
-        /WAFsVkEVCUePj7GCGLzCthIPFmxnw1inbzEzEvf2SHighInZz5hARkkIXCFUeL/jRMsEEVC
-        EqcXn2UGsZkFtCWWLXzNPIGRbxaSnllIUgsYmVYxCuVmJmenFmVm6xVkVJakJuulpG5iBIbn
-        4Ynql3Yw9s3xOMTIxMF4iFGCg1lJhPdAY3y8EG9KYmVValF+fFFpTmrxIUZpDhYlcd4NvCVh
-        QgLpiSWp2ampBalFMFkmDk6pBsa1uiY2V5fV60S0nPdxEFLtZvI65B11843Lmt6jp1jPer2c
-        lFd8jTGW5+xZrtxHRe13VANtly+XludZkFh/+mRA2c22+Yf/LVoeU1Qcc+7hi32rLd6Unvth
-        fPHPDsODF+YFqh79MnG5p/68/qv1sUYNXhcfbfrhG3E/4HKN/fsPCmkxExzYnzYrsRRnJBpq
-        MRcVJwIA8lLU7z0CAAA=
+        XABbFJdNSmpOZllqkb5dAlfG4vdTGAt+ilVMePCJrYFxskAXIweHhICJxME+gy5GLg4hgW2M
+        Ep8vv2OHcK4xSuyfOJ+1i5GTg03ASGLBtEYmEFtEQFni1MY+sCJmgQYmieUHf7KDJIQFgiW2
+        t89jAbFZBFQl1tw4ygiygVfARuLKLGuQsISAvMTMS9/ByjkFbCUWnJzJDlIiBFQy+ZsWSJhX
+        QFDi5MwnLCDjJQSuMEr8v3GCBaJXSOL04rPMIDazgLbEsoWvmScwCsxC0jMLSWoBI9MqRqHc
+        zOTs1KLMbL2CjMqS1GS9lNRNjMBAPjxR/dIOxr45HocYmTgYDzFKcDArifAeaIyPF+JNSays
+        Si3Kjy8qzUktPsQozcGiJM67gbckTEggPbEkNTs1tSC1CCbLxMEp1cCoe/8Sn4HKU1Vrc5k4
+        g4c8z240uuc/ufDmfpavf3B/shKv88RbEXd2Tl7Duz4ootVIKVRw1zQ2z64TcxnW1ooseH36
+        qETlZ1/98KBlG3coH5k8p9ii9Mee9V993VPWs9gzia4WKz9e23vrY3n//ZvH2YM2dS5el7ZL
+        7YjNs6qDLZ01++tqZK8qsRRnJBpqMRcVJwIArGeyBFICAAA=
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-Add devicetree bindings for i.MX6 UL/ULL based phyCORE-i.MX6 UL/ULL and
-phyBOARD-Segin.
+Add devicetree bindings for i.MX6 based phyCORE-i.MX6, phyBOARD-Mira and
+phyFLEX-i.MX6.
 
 Signed-off-by: Stefan Riedmueller <s.riedmueller@phytec.de>
 Reviewed-by: Rob Herring <robh@kernel.org>
@@ -74,49 +75,73 @@ Changes in v3:
    current master.
  - Added Reviewed-by tag
 ---
- Documentation/devicetree/bindings/arm/fsl.yaml | 18 ++++++++++++++++++
- 1 file changed, 18 insertions(+)
+ .../devicetree/bindings/arm/fsl.yaml          | 37 +++++++++++++++++++
+ 1 file changed, 37 insertions(+)
 
 diff --git a/Documentation/devicetree/bindings/arm/fsl.yaml b/Documentation=
 /devicetree/bindings/arm/fsl.yaml
-index 6da9d734cdb7..07de6afe792f 100644
+index 07de6afe792f..4a8b25271e64 100644
 --- a/Documentation/devicetree/bindings/arm/fsl.yaml
 +++ b/Documentation/devicetree/bindings/arm/fsl.yaml
-@@ -246,6 +246,15 @@ properties:
-               - technexion,imx6ul-pico-pi      # TechNexion i.MX6UL Pico-Pi
-           - const: fsl,imx6ul
+@@ -156,6 +156,21 @@ properties:
+           - const: gw,ventana
+           - const: fsl,imx6q
 =20
-+      - description: i.MX6UL PHYTEC phyBOARD-Segin
++      - description: i.MX6Q PHYTEC phyBOARD-Mira
 +        items:
 +          - enum:
-+              - phytec,imx6ul-pbacd10-emmc
-+              - phytec,imx6ul-pbacd10-nand
-+          - const: phytec,imx6ul-pbacd10  # PHYTEC phyBOARD-Segin with i.M=
-X6 UL
-+          - const: phytec,imx6ul-pcl063   # PHYTEC phyCORE-i.MX 6UL
-+          - const: fsl,imx6ul
++              - phytec,imx6q-pbac06-emmc  # PHYTEC phyBOARD-Mira eMMC RDK
++              - phytec,imx6q-pbac06-nand  # PHYTEC phyBOARD-Mira NAND RDK
++          - const: phytec,imx6q-pbac06    # PHYTEC phyBOARD-Mira
++          - const: phytec,imx6qdl-pcm058  # PHYTEC phyCORE-i.MX6
++          - const: fsl,imx6q
 +
-       - description: Kontron N6310 S Board
++      - description: i.MX6Q PHYTEC phyFLEX-i.MX6
++        items:
++          - const: phytec,imx6q-pbab01    # PHYTEC phyFLEX carrier board
++          - const: phytec,imx6q-pfla02    # PHYTEC phyFLEX-i.MX6 Quad
++          - const: fsl,imx6q
++
+       - description: i.MX6QP based Boards
          items:
-           - const: kontron,imx6ul-n6310-s
-@@ -277,6 +286,15 @@ properties:
-               - toradex,colibri-imx6ull-wifi-eval # Colibri iMX6ULL Wi-Fi =
-/ BT Module on Colibri Eval Board
-           - const: fsl,imx6ull
+           - enum:
+@@ -163,6 +178,13 @@ properties:
+               - fsl,imx6qp-sabresd        # i.MX6 Quad Plus SABRE Smart De=
+vice Board
+           - const: fsl,imx6qp
 =20
-+      - description: i.MX6ULL PHYTEC phyBOARD-Segin
++      - description: i.MX6QP PHYTEC phyBOARD-Mira
++        items:
++          - const: phytec,imx6qp-pbac06-nand
++          - const: phytec,imx6qp-pbac06   # PHYTEC phyBOARD-Mira
++          - const: phytec,imx6qdl-pcm058  # PHYTEC phyCORE-i.MX6
++          - const: fsl,imx6qp
++
+       - description: i.MX6DL based Boards
+         items:
+           - enum:
+@@ -211,6 +233,21 @@ properties:
+           - const: gw,ventana
+           - const: fsl,imx6dl
+=20
++      - description: i.MX6DL PHYTEC phyBOARD-Mira
 +        items:
 +          - enum:
-+              - phytec,imx6ull-pbacd10-emmc
-+              - phytec,imx6ull-pbacd10-nand
-+          - const: phytec,imx6ull-pbacd10 # PHYTEC phyBOARD-Segin with i.M=
-X6 ULL
-+          - const: phytec,imx6ull-pcl063  # PHYTEC phyCORE-i.MX 6ULL
-+          - const: fsl,imx6ull
++              - phytec,imx6dl-pbac06-emmc # PHYTEC phyBOARD-Mira eMMC RDK
++              - phytec,imx6dl-pbac06-nand # PHYTEC phyBOARD-Mira NAND RDK
++          - const: phytec,imx6dl-pbac06   # PHYTEC phyBOARD-Mira
++          - const: phytec,imx6qdl-pcm058  # PHYTEC phyCORE-i.MX6
++          - const: fsl,imx6dl
 +
-       - description: Kontron N6411 S Board
++      - description: i.MX6DL PHYTEC phyFLEX-i.MX6
++        items:
++          - const: phytec,imx6dl-pbab01   # PHYTEC phyFLEX carrier board
++          - const: phytec,imx6dl-pfla02   # PHYTEC phyFLEX-i.MX6 Quad
++          - const: fsl,imx6dl
++
+       - description: i.MX6SL based Boards
          items:
-           - const: kontron,imx6ull-n6411-s
+           - enum:
 --=20
 2.25.1
 
