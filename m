@@ -2,51 +2,51 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from vger.kernel.org (vger.kernel.org [23.128.96.18])
-	by mail.lfdr.de (Postfix) with ESMTP id 144CB26DD17
-	for <lists+devicetree@lfdr.de>; Thu, 17 Sep 2020 15:49:00 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTP id 2715426DD12
+	for <lists+devicetree@lfdr.de>; Thu, 17 Sep 2020 15:48:45 +0200 (CEST)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S1727084AbgIQNsz (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Thu, 17 Sep 2020 09:48:55 -0400
-Received: from lindbergh.monkeyblade.net ([23.128.96.19]:49446 "EHLO
+        id S1727091AbgIQNrz (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Thu, 17 Sep 2020 09:47:55 -0400
+Received: from lindbergh.monkeyblade.net ([23.128.96.19]:49510 "EHLO
         lindbergh.monkeyblade.net" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S1726869AbgIQN3i (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Thu, 17 Sep 2020 09:29:38 -0400
+        with ESMTP id S1726986AbgIQN3k (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Thu, 17 Sep 2020 09:29:40 -0400
 Received: from mail-wr1-x441.google.com (mail-wr1-x441.google.com [IPv6:2a00:1450:4864:20::441])
-        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 3DEF0C06121D
-        for <devicetree@vger.kernel.org>; Thu, 17 Sep 2020 06:29:00 -0700 (PDT)
-Received: by mail-wr1-x441.google.com with SMTP id z4so2083542wrr.4
-        for <devicetree@vger.kernel.org>; Thu, 17 Sep 2020 06:29:00 -0700 (PDT)
+        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 0C95AC0611C0
+        for <devicetree@vger.kernel.org>; Thu, 17 Sep 2020 06:29:02 -0700 (PDT)
+Received: by mail-wr1-x441.google.com with SMTP id z4so2083700wrr.4
+        for <devicetree@vger.kernel.org>; Thu, 17 Sep 2020 06:29:02 -0700 (PDT)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
         d=linaro.org; s=google;
         h=from:to:cc:subject:date:message-id:in-reply-to:references
          :mime-version:content-transfer-encoding;
-        bh=yUMo3GZuZkiCAs7huH9d/ejZ9gr6xHUFGAKzWL17mgQ=;
-        b=i9DpJQqXX4EdOMnZfe9sNIegP+26XkuputedjvvKwhyoMrHu5zSZWPIW4+bEcx3gIu
-         tp9SKOmM40h8aWqV0uxpxJdyfvnUvIMtphzMY8hnr/J1I/ugvF1T4Vyiv9QqSStvxPsp
-         6kCjdDgy8qRxWtx8+EvO72PiONBF/Bb2RO4QKIXzo+59euX2/7uvKSVZW5Nrz5og5I5m
-         fSxreDQIzoE9ihVb1gRgq8M5cLxSRDDh7Jn/YLmmrGPbXgzRmFV2JV4atFoJkdvjYpr/
-         vT3/ScxH3vtSs6CbSARaciwRRKrbQfsj/hZ/7KKqHD9aRbqT7ffwzYr7y+IZtFF11a1B
-         8K9Q==
+        bh=VXnokbFwaIT7VX7ySLaYW+p97LOfw5oIrujXpIr02w0=;
+        b=YhtNwsS5EvW9wWdW0ET2SOg7FW6/fm0TOPmHQKipPLCr3EfGF1dYktxktoMauq3MyG
+         Gtc3F4EdJm7Skmycwfiti1rvHXn5w5Y+pIYmtfz13lf8DovTFs5+WjrgOttK2mGIVDr4
+         zO2h4zetldL4/9owZvYijsqtb4D3ppFAcTZ8rJdchatZnRbckqS4T9VAkUO4YrAN0DGt
+         u8B+VB+3oyqvl6kYwKaYfrnVUEEf0fzPGxl+jWb/LCHto6aXmR1hOeWB0luqBgcw3Rlq
+         P877I2RYE/VhlaQzsra3l3wYNn9/ADDUZ3Cn//OBjx9/4s+8gFiAtN+nA3kkLgls4TXp
+         K1Hw==
 X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
         d=1e100.net; s=20161025;
         h=x-gm-message-state:from:to:cc:subject:date:message-id:in-reply-to
          :references:mime-version:content-transfer-encoding;
-        bh=yUMo3GZuZkiCAs7huH9d/ejZ9gr6xHUFGAKzWL17mgQ=;
-        b=nSuvRsZbkjhQcMtF6E+0Dt3ZzV+8nlbmqDDsokjuko6OEgCdqjzFpWjzzMmqfwoDpp
-         OfOd5kTG9CFf78hysKsUqf5Hj+eS4u8WfX253bj1ljCHPBqtFN+NHkIlHEDg55+BwOaj
-         1YZFkWWDZRTkLABR+mjECQx3siJt8cpc6Y4hNoW9iAtAXNh9R8gNJCKAN9WOq9A1aujI
-         EQYuTTCRa2f7JdQklk2uS1xPPs2/aNJFdR5DUaTmKBbijZjv2KUpTilBOKgx9OloJaAD
-         aOR6lH7C5cykZJpchnIx4I4jHCRJClE5yhtBsVLK0mjPv62g6ixgYjxkzb/tTnQYw+4u
-         pU+g==
-X-Gm-Message-State: AOAM531AJj1c5TEGJN/JXYTteKoiBdV+mV45To6VHGhLcSTcr6UVp+5H
-        GmyY+qbuzekFAU1KZEL8MJhG9w==
-X-Google-Smtp-Source: ABdhPJxe2gpW2Ll4hNvhqzTx8vE2OnSQkybD+M3SsRe0FQvXFOnYQmf3b09tZtXWiIaoWYkfRE9dzw==
-X-Received: by 2002:adf:dd44:: with SMTP id u4mr30915898wrm.22.1600349338913;
-        Thu, 17 Sep 2020 06:28:58 -0700 (PDT)
+        bh=VXnokbFwaIT7VX7ySLaYW+p97LOfw5oIrujXpIr02w0=;
+        b=s67wmv89S7vbJR9ycm7CcSDefpRI9ZvyNyRJ9CnsDqeDVT4Avj2RLQM3MZFd5fydsC
+         z7jJ4rsOen2G8ZGYxCmonyred0OUAMiELhEWhrHLkscykHNi62+TL7rIi9KmiVDL14IB
+         fujphwcReBsldimckIO4YVO5pcCp3Wi4iOdrgJoLL/I9DnXhedigz9CsEK7qLMNk0Sq3
+         ClTJG+vJCN36wrn97yrACHgoN5gYWTrBNTCL+Djubh8uE1kZQm5FlzYZIP6eWdxVvpJf
+         qvCIb1DoCK86CR1u1c2wQm3+m1skRvV2LeJSFSiUqIWbYxAU4raKjDgzaBmVGyzfEIfU
+         l1UQ==
+X-Gm-Message-State: AOAM530oD7lPILSwYlkGibUp1ifCW4qqBnHXoAn+xc5kTuf1nVRQ7caq
+        O0xX2C0A1O4l0MY6MF6v91J/UA==
+X-Google-Smtp-Source: ABdhPJxwtR7oBdq4afBifC7Rg+K/286K5d8bHf/oiQjz59hxtnrtlu7e7eCW1oFzS8JgGdVTD3B3GA==
+X-Received: by 2002:adf:e304:: with SMTP id b4mr31131498wrj.141.1600349341564;
+        Thu, 17 Sep 2020 06:29:01 -0700 (PDT)
 Received: from srini-hackbox.lan (cpc86377-aztw32-2-0-cust226.18-1.cable.virginm.net. [92.233.226.227])
-        by smtp.gmail.com with ESMTPSA id n10sm11486910wmk.7.2020.09.17.06.28.57
+        by smtp.gmail.com with ESMTPSA id n10sm11486910wmk.7.2020.09.17.06.29.00
         (version=TLS1_3 cipher=TLS_AES_256_GCM_SHA384 bits=256/256);
-        Thu, 17 Sep 2020 06:28:58 -0700 (PDT)
+        Thu, 17 Sep 2020 06:29:00 -0700 (PDT)
 From:   Srinivas Kandagatla <srinivas.kandagatla@linaro.org>
 To:     sboyd@kernel.org, linux-clk@vger.kernel.org,
         devicetree@vger.kernel.org
@@ -54,9 +54,9 @@ Cc:     bjorn.andersson@linaro.org, mturquette@baylibre.com,
         robh+dt@kernel.org, linux-arm-msm@vger.kernel.org,
         linux-kernel@vger.kernel.org,
         Srinivas Kandagatla <srinivas.kandagatla@linaro.org>
-Subject: [PATCH 2/4] dt-bindings: clock: Add support for LPASS Always ON Controller
-Date:   Thu, 17 Sep 2020 14:28:48 +0100
-Message-Id: <20200917132850.7730-3-srinivas.kandagatla@linaro.org>
+Subject: [PATCH 4/4] clk: qcom: Add support to LPASS AON_CC Glitch Free Mux clocks
+Date:   Thu, 17 Sep 2020 14:28:50 +0100
+Message-Id: <20200917132850.7730-5-srinivas.kandagatla@linaro.org>
 X-Mailer: git-send-email 2.21.0
 In-Reply-To: <20200917132850.7730-1-srinivas.kandagatla@linaro.org>
 References: <20200917132850.7730-1-srinivas.kandagatla@linaro.org>
@@ -66,98 +66,115 @@ Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-Always ON Clock controller is a block inside LPASS which controls
-1 Glitch free muxes to LPASS codec Macros.
+LPASS Always ON Clock controller has one GFM mux to control VA
+and TX clocks to codec macro on LPASS.
+This patch adds support to this mux.
 
 Signed-off-by: Srinivas Kandagatla <srinivas.kandagatla@linaro.org>
 ---
- .../bindings/clock/qcom,aoncc-sm8250.yaml     | 58 +++++++++++++++++++
- .../clock/qcom,sm8250-lpass-aoncc.h           | 11 ++++
- 2 files changed, 69 insertions(+)
- create mode 100644 Documentation/devicetree/bindings/clock/qcom,aoncc-sm8250.yaml
- create mode 100644 include/dt-bindings/clock/qcom,sm8250-lpass-aoncc.h
+ drivers/clk/qcom/lpass-gfm-sm8250.c | 61 +++++++++++++++++++++++++++++
+ 1 file changed, 61 insertions(+)
 
-diff --git a/Documentation/devicetree/bindings/clock/qcom,aoncc-sm8250.yaml b/Documentation/devicetree/bindings/clock/qcom,aoncc-sm8250.yaml
-new file mode 100644
-index 000000000000..1846c79c6535
---- /dev/null
-+++ b/Documentation/devicetree/bindings/clock/qcom,aoncc-sm8250.yaml
-@@ -0,0 +1,58 @@
-+# SPDX-License-Identifier: (GPL-2.0-only OR BSD-2-Clause)
-+%YAML 1.2
-+---
-+$id: http://devicetree.org/schemas/clock/qcom,aoncc-sm8250.yaml#
-+$schema: http://devicetree.org/meta-schemas/core.yaml#
+diff --git a/drivers/clk/qcom/lpass-gfm-sm8250.c b/drivers/clk/qcom/lpass-gfm-sm8250.c
+index 2d5c41ae4969..6b11bea912bf 100644
+--- a/drivers/clk/qcom/lpass-gfm-sm8250.c
++++ b/drivers/clk/qcom/lpass-gfm-sm8250.c
+@@ -12,6 +12,7 @@
+ #include <linux/platform_device.h>
+ #include <linux/of_device.h>
+ #include <dt-bindings/clock/qcom,sm8250-lpass-audiocc.h>
++#include <dt-bindings/clock/qcom,sm8250-lpass-aoncc.h>
+ 
+ struct lpass_gfm {
+ 	struct device *dev;
+@@ -61,6 +62,44 @@ static const struct clk_ops clk_gfm_ops = {
+ 	.determine_rate = __clk_mux_determine_rate,
+ };
+ 
++static struct clk_gfm lpass_gfm_va_mclk = {
++	.mux_reg = 0x20000,
++	.mux_mask = BIT(0),
++	.hw.init = &(struct clk_init_data) {
++		.name = "VA_MCLK",
++		.ops = &clk_gfm_ops,
++		.flags = CLK_SET_RATE_PARENT | CLK_OPS_PARENT_ENABLE,
++		.parent_names = (const char *[]) {
++			"LPASS_CLK_ID_TX_CORE_MCLK",
++			"LPASS_CLK_ID_VA_CORE_MCLK",
++		},
++		.num_parents = 2,
++		.parent_data = (const struct clk_parent_data[]){
++				{ .index = 0 },
++				{ .index = 1 },
++		},
++	},
++};
 +
-+title: Clock bindings for LPASS Always ON Clock Controller on SM8250 SoCs
++static struct clk_gfm lpass_gfm_tx_npl = {
++	.mux_reg = 0x20000,
++	.mux_mask = BIT(0),
++	.hw.init = &(struct clk_init_data) {
++		.name = "TX_NPL",
++		.ops = &clk_gfm_ops,
++		.flags = CLK_SET_RATE_PARENT | CLK_OPS_PARENT_ENABLE,
++		.parent_names = (const char *[]){
++			"LPASS_CLK_ID_TX_CORE_NPL_MCLK",
++			"LPASS_CLK_ID_VA_CORE_2X_MCLK",
++		},
++		.parent_data = (const struct clk_parent_data[]){
++				{ .index = 0 },
++				{ .index = 1 },
++		},
++		.num_parents = 2,
++	},
++};
 +
-+maintainers:
-+  - Srinivas Kandagatla <srinivas.kandagatla@linaro.org>
+ static struct clk_gfm lpass_gfm_wsa_mclk = {
+ 	.mux_reg = 0x220d8,
+ 	.mux_mask = BIT(0),
+@@ -137,6 +176,19 @@ static struct clk_gfm lpass_gfm_rx_npl = {
+ 	},
+ };
+ 
++static struct clk_gfm *aoncc_gfm_clks[] = {
++	[LPASS_CDC_VA_MCLK]		= &lpass_gfm_va_mclk,
++	[LPASS_CDC_TX_NPL]		= &lpass_gfm_tx_npl,
++};
 +
-+description: |
-+  The clock consumer should specify the desired clock by having the clock
-+  ID in its "clocks" phandle cell.
-+  See include/dt-bindings/clock/qcom,sm8250-lpass-aoncc.h for the full list
-+  of Audio Clock controller clock IDs.
++static struct clk_hw_onecell_data aoncc_hw_onecell_data = {
++	.hws = {
++		[LPASS_CDC_VA_MCLK]	= &lpass_gfm_va_mclk.hw,
++		[LPASS_CDC_TX_NPL]	= &lpass_gfm_tx_npl.hw,
++	},
++	.num = ARRAY_SIZE(aoncc_gfm_clks),
++};
 +
-+properties:
-+  compatible:
-+    const: qcom,sm8250-lpass-aon
+ static struct clk_gfm *audiocc_gfm_clks[] = {
+ 	[LPASS_CDC_WSA_NPL]		= &lpass_gfm_wsa_npl,
+ 	[LPASS_CDC_WSA_MCLK]		= &lpass_gfm_wsa_mclk,
+@@ -164,6 +216,11 @@ static struct lpass_gfm_data audiocc_data = {
+ 	.gfm_clks = audiocc_gfm_clks,
+ };
+ 
++static struct lpass_gfm_data aoncc_data = {
++	.onecell_data = &aoncc_hw_onecell_data,
++	.gfm_clks = aoncc_gfm_clks,
++};
 +
-+  reg:
-+    maxItems: 1
-+
-+  '#clock-cells':
-+    const: 1
-+
-+  clocks:
-+    items:
-+      - description: LPASS Core voting clock
-+      - description: Glitch Free Mux register clock
-+
-+  clock-names:
-+    items:
-+      - const: core
-+      - const: bus
-+
-+required:
-+  - compatible
-+  - reg
-+  - '#clock-cells'
-+  - clocks
-+  - clock-names
-+
-+additionalProperties: false
-+
-+examples:
-+  - |
-+    #include <dt-bindings/clock/qcom,sm8250-lpass-aoncc.h>
-+    #include <dt-bindings/sound/qcom,q6afe.h>
-+    clock-controller@3800000 {
-+      #clock-cells = <1>;
-+      compatible = "qcom,sm8250-lpass-aon";
-+      reg = <0 0x03380000 0 0x40000>;
-+      clocks = <&q6afecc LPASS_HW_MACRO_VOTE LPASS_CLK_ATTRIBUTE_COUPLE_NO>,
-+               <&q6afecc LPASS_CLK_ID_TX_CORE_MCLK LPASS_CLK_ATTRIBUTE_COUPLE_NO>;
-+      clock-names = "core", "bus";
-+    };
-diff --git a/include/dt-bindings/clock/qcom,sm8250-lpass-aoncc.h b/include/dt-bindings/clock/qcom,sm8250-lpass-aoncc.h
-new file mode 100644
-index 000000000000..f5a1cfac8612
---- /dev/null
-+++ b/include/dt-bindings/clock/qcom,sm8250-lpass-aoncc.h
-@@ -0,0 +1,11 @@
-+/* SPDX-License-Identifier: GPL-2.0 */
-+
-+#ifndef _DT_BINDINGS_CLK_LPASS_AONCC_SM8250_H
-+#define _DT_BINDINGS_CLK_LPASS_AONCC_SM8250_H
-+
-+/* from AOCC */
-+#define LPASS_CDC_VA_MCLK				0
-+#define LPASS_CDC_TX_NPL				1
-+#define LPASS_CDC_TX_MCLK				2
-+
-+#endif /* _DT_BINDINGS_CLK_LPASS_AONCC_SM8250_H */
+ static int lpass_gfm_clk_driver_probe(struct platform_device *pdev)
+ {
+ 	const struct lpass_gfm_data *data;
+@@ -218,6 +275,10 @@ static int lpass_gfm_clk_driver_probe(struct platform_device *pdev)
+ }
+ 
+ static const struct of_device_id lpass_gfm_clk_match_table[] = {
++	{
++		.compatible = "qcom,sm8250-lpass-aoncc",
++		.data = &aoncc_data,
++	},
+ 	{
+ 		.compatible = "qcom,sm8250-lpass-audiocc",
+ 		.data = &audiocc_data,
 -- 
 2.21.0
 
