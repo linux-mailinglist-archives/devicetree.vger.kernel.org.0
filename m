@@ -2,244 +2,185 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from vger.kernel.org (vger.kernel.org [23.128.96.18])
-	by mail.lfdr.de (Postfix) with ESMTP id A05F826DE64
-	for <lists+devicetree@lfdr.de>; Thu, 17 Sep 2020 16:39:03 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTP id 9E20026DE91
+	for <lists+devicetree@lfdr.de>; Thu, 17 Sep 2020 16:44:12 +0200 (CEST)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S1727230AbgIQOiV (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Thu, 17 Sep 2020 10:38:21 -0400
-Received: from mail29.static.mailgun.info ([104.130.122.29]:54034 "EHLO
-        mail29.static.mailgun.info" rhost-flags-OK-OK-OK-OK)
-        by vger.kernel.org with ESMTP id S1727648AbgIQOiD (ORCPT
-        <rfc822;devicetree@vger.kernel.org>);
-        Thu, 17 Sep 2020 10:38:03 -0400
-DKIM-Signature: a=rsa-sha256; v=1; c=relaxed/relaxed; d=mg.codeaurora.org; q=dns/txt;
- s=smtp; t=1600353422; h=References: In-Reply-To: Message-Id: Date:
- Subject: Cc: To: From: Sender;
- bh=7Sm5zlmuS6dtNCaEUMlHA+OIjhjC9XiXWyfX26b/NUQ=; b=aDexHC+bwZ5f7qcJTlaGi8lrW5+RRLI+S4/6T/aZaS8eWuGtZ3TouUzJRR8UchsqczrJE8+N
- IrSZED+V36w7PuUcaUVkS3uVBreiXGpw4zbI2yHOwwSovimKMLfkMwvDoFZ0xUw1267FVglA
- kdUv2UB2IHd87gzG/NnMWkTPHm4=
-X-Mailgun-Sending-Ip: 104.130.122.29
-X-Mailgun-Sid: WyI1YmJiNiIsICJkZXZpY2V0cmVlQHZnZXIua2VybmVsLm9yZyIsICJiZTllNGEiXQ==
-Received: from smtp.codeaurora.org
- (ec2-35-166-182-171.us-west-2.compute.amazonaws.com [35.166.182.171]) by
- smtp-out-n03.prod.us-west-2.postgun.com with SMTP id
- 5f6366b6aac06013549bfc94 (version=TLS1.2,
- cipher=TLS_ECDHE_RSA_WITH_AES_128_GCM_SHA256); Thu, 17 Sep 2020 13:37:58
- GMT
-Received: by smtp.codeaurora.org (Postfix, from userid 1001)
-        id CCBC8C43387; Thu, 17 Sep 2020 13:37:58 +0000 (UTC)
-X-Spam-Checker-Version: SpamAssassin 3.4.0 (2014-02-07) on
-        aws-us-west-2-caf-mail-1.web.codeaurora.org
-X-Spam-Level: 
-X-Spam-Status: No, score=-2.9 required=2.0 tests=ALL_TRUSTED,BAYES_00,SPF_FAIL,
-        URIBL_BLOCKED autolearn=no autolearn_force=no version=3.4.0
-Received: from hyd-lnxbld210.qualcomm.com (unknown [202.46.22.19])
-        (using TLSv1.2 with cipher ECDHE-RSA-AES128-SHA256 (128/128 bits))
-        (No client certificate requested)
-        (Authenticated sender: srivasam)
-        by smtp.codeaurora.org (Postfix) with ESMTPSA id 0A175C433CA;
-        Thu, 17 Sep 2020 13:37:52 +0000 (UTC)
-DMARC-Filter: OpenDMARC Filter v1.3.2 smtp.codeaurora.org 0A175C433CA
-Authentication-Results: aws-us-west-2-caf-mail-1.web.codeaurora.org; dmarc=none (p=none dis=none) header.from=codeaurora.org
-Authentication-Results: aws-us-west-2-caf-mail-1.web.codeaurora.org; spf=fail smtp.mailfrom=srivasam@codeaurora.org
-From:   Srinivasa Rao Mandadapu <srivasam@codeaurora.org>
-To:     agross@kernel.org, bjorn.andersson@linaro.org, lgirdwood@gmail.com,
-        broonie@kernel.org, robh+dt@kernel.org, plai@codeaurora.org,
-        bgoswami@codeaurora.org, perex@perex.cz, tiwai@suse.com,
-        srinivas.kandagatla@linaro.org, rohitkr@codeaurora.org,
-        linux-arm-msm@vger.kernel.org, alsa-devel@alsa-project.org,
-        devicetree@vger.kernel.org, linux-kernel@vger.kernel.org
-Cc:     V Sujith Kumar Reddy <vsujithk@codeaurora.org>,
-        Srinivasa Rao <srivasam@codeaurora.org>
-Subject: [PATCH v5 5/5] ASoC: qcom: sc7180: Add support for audio over DP
-Date:   Thu, 17 Sep 2020 19:07:08 +0530
-Message-Id: <1600349828-10727-6-git-send-email-srivasam@codeaurora.org>
-X-Mailer: git-send-email 2.7.4
-In-Reply-To: <1600349828-10727-1-git-send-email-srivasam@codeaurora.org>
-References: <1600349828-10727-1-git-send-email-srivasam@codeaurora.org>
+        id S1727314AbgIQOWF (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Thu, 17 Sep 2020 10:22:05 -0400
+Received: from lelv0142.ext.ti.com ([198.47.23.249]:55598 "EHLO
+        lelv0142.ext.ti.com" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
+        with ESMTP id S1727073AbgIQNxG (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Thu, 17 Sep 2020 09:53:06 -0400
+Received: from fllv0035.itg.ti.com ([10.64.41.0])
+        by lelv0142.ext.ti.com (8.15.2/8.15.2) with ESMTP id 08HDqAA7067946;
+        Thu, 17 Sep 2020 08:52:10 -0500
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=ti.com;
+        s=ti-com-17Q1; t=1600350730;
+        bh=ELS8QfAru0Zhz0CCZfm+n+0o9Zu+0e8fUZ1p29oMWgY=;
+        h=Subject:To:CC:References:From:Date:In-Reply-To;
+        b=RA4tm6tRD29bvEA+okPYlU7OETrD+3Wd0ZGLnm9TnLQW+cArWyxysqr8iHfibr/le
+         dNOphhuuJHCJwOcLPLOtExBct2Jos4fUh48YG1I/gDylLHZbg0Kne4TaInFT2rRDzb
+         uPKaa0vv9dVdeL3nBrEIUONG27Q0aSs995viBz0Y=
+Received: from DLEE109.ent.ti.com (dlee109.ent.ti.com [157.170.170.41])
+        by fllv0035.itg.ti.com (8.15.2/8.15.2) with ESMTP id 08HDqAj5122911;
+        Thu, 17 Sep 2020 08:52:10 -0500
+Received: from DLEE102.ent.ti.com (157.170.170.32) by DLEE109.ent.ti.com
+ (157.170.170.41) with Microsoft SMTP Server (version=TLS1_2,
+ cipher=TLS_ECDHE_RSA_WITH_AES_128_CBC_SHA256_P256) id 15.1.1979.3; Thu, 17
+ Sep 2020 08:52:09 -0500
+Received: from fllv0039.itg.ti.com (10.64.41.19) by DLEE102.ent.ti.com
+ (157.170.170.32) with Microsoft SMTP Server (version=TLS1_2,
+ cipher=TLS_ECDHE_RSA_WITH_AES_128_CBC_SHA256_P256) id 15.1.1979.3 via
+ Frontend Transport; Thu, 17 Sep 2020 08:52:09 -0500
+Received: from [192.168.2.6] (ileax41-snat.itg.ti.com [10.172.224.153])
+        by fllv0039.itg.ti.com (8.15.2/8.15.2) with ESMTP id 08HDq7C9103626;
+        Thu, 17 Sep 2020 08:52:07 -0500
+Subject: Re: [PATCH 1/2] arm64: dts: ti: k3-j721e-main: add DP & DP PHY
+To:     Nishanth Menon <nm@ti.com>, Kishon Vijay Abraham I <kishon@ti.com>
+CC:     Tero Kristo <t-kristo@ti.com>, Rob Herring <robh+dt@kernel.org>,
+        <linux-arm-kernel@lists.infradead.org>,
+        <devicetree@vger.kernel.org>,
+        Swapnil Jakhade <sjakhade@cadence.com>, <yamonkar@cadence.com>,
+        Laurent Pinchart <laurent.pinchart@ideasonboard.com>,
+        Sekhar Nori <nsekhar@ti.com>
+References: <20200917071248.71284-1-tomi.valkeinen@ti.com>
+ <20200917071248.71284-2-tomi.valkeinen@ti.com>
+ <20200917130723.q3asxcb6uoenady5@akan>
+From:   Tomi Valkeinen <tomi.valkeinen@ti.com>
+Message-ID: <933cccf5-fa5c-dc46-36e5-3200e7b7801d@ti.com>
+Date:   Thu, 17 Sep 2020 16:52:06 +0300
+User-Agent: Mozilla/5.0 (X11; Linux x86_64; rv:68.0) Gecko/20100101
+ Thunderbird/68.10.0
+MIME-Version: 1.0
+In-Reply-To: <20200917130723.q3asxcb6uoenady5@akan>
+Content-Type: text/plain; charset="utf-8"
+Content-Language: en-US
+Content-Transfer-Encoding: 7bit
+X-EXCLAIMER-MD-CONFIG: e1e8a2fd-e40a-4ac6-ac9b-f7e9cc9ee180
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-From: V Sujith Kumar Reddy <vsujithk@codeaurora.org>
+Hi Nishanth,
 
-Add support for audio playback over DP in lpass sc7180 platform driver.
-Update lpass_variant structure for hdmi data configuaration.
+On 17/09/2020 16:07, Nishanth Menon wrote:
+> On 10:12-20200917, Tomi Valkeinen wrote:
+>> Add DT nodes for DisplayPort and DisplayPort PHY. The DP is Cadence MHDP
+>> 8546 and the PHY is a Cadence Torrent PHY with TI WIZ wrapper.
+>>
+>> A slight irregularity in the bindings is the DPTX PHY register block,
+>> which is in the MHDP IP, but is needed and mapped by the PHY.
+>>
+>> Signed-off-by: Tomi Valkeinen <tomi.valkeinen@ti.com>
+> 
+> just quick notes below:
+> 
+>> ---
+>>  arch/arm64/boot/dts/ti/k3-j721e-main.dtsi | 104 ++++++++++++++++++++++
+>>  1 file changed, 104 insertions(+)
+>>
+>> diff --git a/arch/arm64/boot/dts/ti/k3-j721e-main.dtsi b/arch/arm64/boot/dts/ti/k3-j721e-main.dtsi
+>> index 12ceea9b3c9a..82d89dd3faf5 100644
+>> --- a/arch/arm64/boot/dts/ti/k3-j721e-main.dtsi
+>> +++ b/arch/arm64/boot/dts/ti/k3-j721e-main.dtsi
+>> @@ -553,6 +553,82 @@ serdes3: serdes@5030000 {
+>>  		};
+>>  	};
+>>  
+>> +	serdes_wiz4: wiz@5050000 {
+> serdes-mux ? - I think we might want to cleanup other similar usage
+> instead of "wiz" or maybe just "mux"?
+> 
+>> +		compatible = "ti,j721e-wiz-10g";
+>> +		#address-cells = <1>;
+>> +		#size-cells = <1>;
+>> +		power-domains = <&k3_pds 297 TI_SCI_PD_EXCLUSIVE>;
+>> +		clocks = <&k3_clks 297 1>, <&k3_clks 297 9>, <&dummy_cmn_refclk>;
+>> +		clock-names = "fck", "core_ref_clk", "ext_ref_clk";
+>> +		assigned-clocks = <&k3_clks 297 9>;
+>> +		assigned-clock-parents = <&k3_clks 297 10>;
+>> +		assigned-clock-rates = <19200000>;
+>> +		num-lanes = <4>;
+>> +		#reset-cells = <1>;
+>> +		ranges = <0x5050000 0x0 0x5050000 0x10000>,
+>> +			<0xa030a00 0x0 0xa030a00 0x40>;
+>> +
+>> +		wiz4_pll0_refclk: pll0-refclk {
+> 	clock@ ?
+>> +			clocks = <&k3_clks 297 9>, <&dummy_cmn_refclk>;
+>> +			clock-output-names = "wiz4_pll0_refclk";
+>> +			#clock-cells = <0>;
+>> +			assigned-clocks = <&wiz4_pll0_refclk>;
+>> +			assigned-clock-parents = <&k3_clks 297 9>;
+>> +		};
+>> +
+>> +		wiz4_pll1_refclk: pll1-refclk {
+> 	same?
+>> +			clocks = <&k3_clks 297 9>, <&dummy_cmn_refclk>;
+>> +			clock-output-names = "wiz4_pll1_refclk";
+>> +			#clock-cells = <0>;
+>> +			assigned-clocks = <&wiz4_pll1_refclk>;
+>> +			assigned-clock-parents = <&k3_clks 297 9>;
+>> +		};
+>> +
+>> +		wiz4_refclk_dig: refclk-dig {
+> 	same?
+>> +			clocks = <&k3_clks 297 9>, <&dummy_cmn_refclk>;
+>> +			clock-output-names = "wiz4_refclk_dig";
+>> +			#clock-cells = <0>;
+>> +			assigned-clocks = <&wiz4_refclk_dig>;
+>> +			assigned-clock-parents = <&k3_clks 297 9>;
+>> +		};
+>> +
+>> +		wiz4_cmn_refclk_dig_div: cmn-refclk-dig-div {
+> 	same?
+>> +			clocks = <&wiz4_refclk_dig>;
+>> +			#clock-cells = <0>;
+>> +		};
+>> +
+>> +		wiz4_cmn_refclk1_dig_div: cmn-refclk1-dig-div {
+> 	same?
+>> +			clocks = <&wiz4_pll1_refclk>;
+>> +			#clock-cells = <0>;
+>> +		};
+>> +
+>> +		serdes4: serdes@5050000 {
+>> +			/*
+>> +			 * Note: we also map DPTX PHY registers as the Torrent
+>> +			 * needs to manage those.
+>> +			 */
+>> +			compatible = "ti,j721e-serdes-10g";
+>> +			reg = <0x5050000 0x10000>,
+>> +			      <0xa030a00 0x40>; /* DPTX PHY */
+>> +			reg-names = "torrent_phy", "dptx_phy";
+>> +
+>> +			resets = <&serdes_wiz4 0>;
+>> +			reset-names = "torrent_reset";
+>> +			clocks = <&wiz4_pll0_refclk>;
+>> +			clock-names = "refclk";
+>> +			#address-cells = <1>;
+>> +			#size-cells = <0>;
+>> +			torrent_phy_dp: phy@0 {
+>> +				reg = <0>;
+>> +				resets = <&serdes_wiz4 1>;
+>> +				cdns,phy-type = <PHY_TYPE_DP>;
+>> +				cdns,num-lanes = <4>;
+>> +				cdns,max-bit-rate = <5400>;
+>> +				#phy-cells = <0>;
+>> +			};
+>> +		};
+>> +	};
+>> +
+> Do you see any impact of the discussions we are having at [1] ?
+You mean using wiz or serdes naming all around?
 
-Signed-off-by: Srinivasa Rao <srivasam@codeaurora.org>
-Signed-off-by: V Sujith Kumar Reddy <vsujithk@codeaurora.org>
----
- sound/soc/qcom/lpass-sc7180.c | 116 +++++++++++++++++++++++++++++++++++++-----
- 1 file changed, 102 insertions(+), 14 deletions(-)
+But I think the answer to all the comments is the same: I'm following what's already there for
+serdes 0-3 in k3-j721e-main.dtsi, and what's defined in ti,phy-j721e-wiz.yaml.
 
-diff --git a/sound/soc/qcom/lpass-sc7180.c b/sound/soc/qcom/lpass-sc7180.c
-index 167bf2c..59f115e 100644
---- a/sound/soc/qcom/lpass-sc7180.c
-+++ b/sound/soc/qcom/lpass-sc7180.c
-@@ -60,38 +60,65 @@ static struct snd_soc_dai_driver sc7180_lpass_cpu_dai_driver[] = {
- 		.probe	= &asoc_qcom_lpass_cpu_dai_probe,
- 		.ops    = &asoc_qcom_lpass_cpu_dai_ops,
- 	},
-+	[LPASS_DP_RX] = {
-+		.id = LPASS_DP_RX,
-+		.name = "Hdmi",
-+		.playback = {
-+			.stream_name = "Hdmi Playback",
-+			.formats	= SNDRV_PCM_FMTBIT_S24,
-+			.rates = SNDRV_PCM_RATE_48000,
-+			.rate_min	= 48000,
-+			.rate_max	= 48000,
-+			.channels_min	= 2,
-+			.channels_max	= 2,
-+		},
-+		.ops    = &asoc_qcom_lpass_hdmi_dai_ops,
-+	},
- };
- 
- static int sc7180_lpass_alloc_dma_channel(struct lpass_data *drvdata,
--					   int direction)
-+					   int direction, unsigned int dai_id)
- {
- 	struct lpass_variant *v = drvdata->variant;
- 	int chan = 0;
- 
--	if (direction == SNDRV_PCM_STREAM_PLAYBACK) {
--		chan = find_first_zero_bit(&drvdata->dma_ch_bit_map,
--					v->rdma_channels);
-+	if (dai_id == LPASS_DP_RX) {
-+		if (direction == SNDRV_PCM_STREAM_PLAYBACK) {
-+			chan = find_first_zero_bit(&drvdata->hdmi_dma_ch_bit_map,
-+						v->hdmi_rdma_channels);
-+
-+			if (chan >= v->hdmi_rdma_channels)
-+				return -EBUSY;
-+		}
-+		set_bit(chan, &drvdata->hdmi_dma_ch_bit_map);
-+	} else {
-+		if (direction == SNDRV_PCM_STREAM_PLAYBACK) {
-+			chan = find_first_zero_bit(&drvdata->dma_ch_bit_map,
-+						v->rdma_channels);
- 
- 		if (chan >= v->rdma_channels)
- 			return -EBUSY;
--	} else {
--		chan = find_next_zero_bit(&drvdata->dma_ch_bit_map,
-+		} else {
-+			chan = find_next_zero_bit(&drvdata->dma_ch_bit_map,
- 					v->wrdma_channel_start +
- 					v->wrdma_channels,
- 					v->wrdma_channel_start);
- 
--		if (chan >=  v->wrdma_channel_start + v->wrdma_channels)
--			return -EBUSY;
--	}
--
--	set_bit(chan, &drvdata->dma_ch_bit_map);
-+			if (chan >=  v->wrdma_channel_start + v->wrdma_channels)
-+				return -EBUSY;
-+		}
- 
-+		set_bit(chan, &drvdata->dma_ch_bit_map);
-+	}
- 	return chan;
- }
- 
--static int sc7180_lpass_free_dma_channel(struct lpass_data *drvdata, int chan)
-+static int sc7180_lpass_free_dma_channel(struct lpass_data *drvdata, int chan, unsigned int dai_id)
- {
--	clear_bit(chan, &drvdata->dma_ch_bit_map);
-+	if (dai_id == LPASS_DP_RX)
-+		clear_bit(chan, &drvdata->hdmi_dma_ch_bit_map);
-+	else
-+		clear_bit(chan, &drvdata->dma_ch_bit_map);
- 
- 	return 0;
- }
-@@ -144,6 +171,9 @@ static struct lpass_variant sc7180_data = {
- 	.rdma_reg_base		= 0xC000,
- 	.rdma_reg_stride	= 0x1000,
- 	.rdma_channels		= 5,
-+	.hdmi_rdma_reg_base		= 0x64000,
-+	.hdmi_rdma_reg_stride	= 0x1000,
-+	.hdmi_rdma_channels		= 4,
- 	.dmactl_audif_start	= 1,
- 	.wrdma_reg_base		= 0x18000,
- 	.wrdma_reg_stride	= 0x1000,
-@@ -163,7 +193,7 @@ static struct lpass_variant sc7180_data = {
- 	.rdma_dyncclk		= REG_FIELD_ID(0xC000, 21, 21, 5, 0x1000),
- 	.rdma_bursten		= REG_FIELD_ID(0xC000, 20, 20, 5, 0x1000),
- 	.rdma_wpscnt		= REG_FIELD_ID(0xC000, 16, 19, 5, 0x1000),
--	.rdma_intf		= REG_FIELD_ID(0xC000, 12, 15, 5, 0x1000),
-+	.rdma_intf			= REG_FIELD_ID(0xC000, 12, 15, 5, 0x1000),
- 	.rdma_fifowm		= REG_FIELD_ID(0xC000, 1, 5, 5, 0x1000),
- 	.rdma_enable		= REG_FIELD_ID(0xC000, 0, 0, 5, 0x1000),
- 
-@@ -174,6 +204,64 @@ static struct lpass_variant sc7180_data = {
- 	.wrdma_fifowm		= REG_FIELD_ID(0x18000, 1, 5, 4, 0x1000),
- 	.wrdma_enable		= REG_FIELD_ID(0x18000, 0, 0, 4, 0x1000),
- 
-+	.hdmi_tx_ctl_addr	= 0x1000,
-+	.hdmi_legacy_addr	= 0x1008,
-+	.hdmi_vbit_addr		= 0x610c0,
-+	.hdmi_ch_lsb_addr	= 0x61048,
-+	.hdmi_ch_msb_addr	= 0x6104c,
-+	.ch_stride		= 0x8,
-+	.hdmi_parity_addr	= 0x61034,
-+	.hdmi_dmactl_addr	= 0x61038,
-+	.hdmi_dma_stride	= 0x4,
-+	.hdmi_DP_addr		= 0x610c8,
-+	.hdmi_sstream_addr	= 0x6101c,
-+	.hdmi_irq_reg_base		= 0x63000,
-+	.hdmi_irq_ports		= 1,
-+
-+	.hdmi_rdma_dyncclk		= REG_FIELD_ID(0x64000, 14, 14, 4, 0x1000),
-+	.hdmi_rdma_bursten		= REG_FIELD_ID(0x64000, 13, 13, 4, 0x1000),
-+	.hdmi_rdma_burst8		= REG_FIELD_ID(0x64000, 15, 15, 4, 0x1000),
-+	.hdmi_rdma_burst16		= REG_FIELD_ID(0x64000, 16, 16, 4, 0x1000),
-+	.hdmi_rdma_dynburst		= REG_FIELD_ID(0x64000, 18, 18, 4, 0x1000),
-+	.hdmi_rdma_wpscnt		= REG_FIELD_ID(0x64000, 10, 12, 4, 0x1000),
-+	.hdmi_rdma_fifowm		= REG_FIELD_ID(0x64000, 1, 5, 4, 0x1000),
-+	.hdmi_rdma_enable		= REG_FIELD_ID(0x64000, 0, 0, 4, 0x1000),
-+
-+	.sstream_en		= REG_FIELD(0x6101c, 0, 0),
-+	.dma_sel			= REG_FIELD(0x6101c, 1, 2),
-+	.auto_bbit_en	= REG_FIELD(0x6101c, 3, 3),
-+	.layout			= REG_FIELD(0x6101c, 4, 4),
-+	.layout_sp		= REG_FIELD(0x6101c, 5, 8),
-+	.set_sp_on_en	= REG_FIELD(0x6101c, 10, 10),
-+	.dp_audio		= REG_FIELD(0x6101c, 11, 11),
-+	.dp_staffing_en	= REG_FIELD(0x6101c, 12, 12),
-+	.dp_sp_b_hw_en	= REG_FIELD(0x6101c, 13, 13),
-+
-+	.mute			= REG_FIELD(0x610c8, 0, 0),
-+	.as_sdp_cc		= REG_FIELD(0x610c8, 1, 3),
-+	.as_sdp_ct		= REG_FIELD(0x610c8, 4, 7),
-+	.aif_db4			= REG_FIELD(0x610c8, 8, 15),
-+	.frequency		= REG_FIELD(0x610c8, 16, 21),
-+	.mst_index		= REG_FIELD(0x610c8, 28, 29),
-+	.dptx_index		= REG_FIELD(0x610c8, 30, 31),
-+
-+	.soft_reset		= REG_FIELD(0x1000, 31, 31),
-+	.force_reset	= REG_FIELD(0x1000, 30, 30),
-+
-+	.use_hw_chs		= REG_FIELD(0x61038, 0, 0),
-+	.use_hw_usr		= REG_FIELD(0x61038, 1, 1),
-+	.hw_chs_sel		= REG_FIELD(0x61038, 2, 4),
-+	.hw_usr_sel		= REG_FIELD(0x61038, 5, 6),
-+
-+	.replace_vbit	= REG_FIELD(0x610c0, 0, 0),
-+	.vbit_stream	= REG_FIELD(0x610c0, 1, 1),
-+
-+	.legacy_en		=  REG_FIELD(0x1008, 0, 0),
-+	.calc_en		=  REG_FIELD(0x61034, 0, 0),
-+	.lsb_bits		=  REG_FIELD(0x61048, 0, 31),
-+	.msb_bits		=  REG_FIELD(0x6104c, 0, 31),
-+
-+
- 	.clk_name		= (const char*[]) {
- 				   "pcnoc-sway-clk",
- 				   "audio-core",
+Kishon is probably better person to answer about changes to the wiz naming.
+
+ Tomi
+
 -- 
-Qualcomm India Private Limited, on behalf of Qualcomm Innovation Center, Inc.,
-is a member of Code Aurora Forum, a Linux Foundation Collaborative Project.
-
+Texas Instruments Finland Oy, Porkkalankatu 22, 00180 Helsinki.
+Y-tunnus/Business ID: 0615521-4. Kotipaikka/Domicile: Helsinki
