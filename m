@@ -2,49 +2,49 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from vger.kernel.org (vger.kernel.org [23.128.96.18])
-	by mail.lfdr.de (Postfix) with ESMTP id D773626D1A8
-	for <lists+devicetree@lfdr.de>; Thu, 17 Sep 2020 05:29:02 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTP id 5C70526D1B9
+	for <lists+devicetree@lfdr.de>; Thu, 17 Sep 2020 05:29:32 +0200 (CEST)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S1726185AbgIQD27 (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Wed, 16 Sep 2020 23:28:59 -0400
-Received: from lindbergh.monkeyblade.net ([23.128.96.19]:41034 "EHLO
+        id S1726112AbgIQD32 (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Wed, 16 Sep 2020 23:29:28 -0400
+Received: from lindbergh.monkeyblade.net ([23.128.96.19]:41028 "EHLO
         lindbergh.monkeyblade.net" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S1726178AbgIQD2N (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Wed, 16 Sep 2020 23:28:13 -0400
-Received: from mail-qt1-x841.google.com (mail-qt1-x841.google.com [IPv6:2607:f8b0:4864:20::841])
-        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 3DF5AC061222
-        for <devicetree@vger.kernel.org>; Wed, 16 Sep 2020 20:22:33 -0700 (PDT)
-Received: by mail-qt1-x841.google.com with SMTP id n10so809111qtv.3
+        with ESMTP id S1726109AbgIQD2C (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Wed, 16 Sep 2020 23:28:02 -0400
+Received: from mail-qt1-x843.google.com (mail-qt1-x843.google.com [IPv6:2607:f8b0:4864:20::843])
+        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 06ACCC0611C2
+        for <devicetree@vger.kernel.org>; Wed, 16 Sep 2020 20:22:34 -0700 (PDT)
+Received: by mail-qt1-x843.google.com with SMTP id n18so827981qtw.0
         for <devicetree@vger.kernel.org>; Wed, 16 Sep 2020 20:22:33 -0700 (PDT)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
         d=linaro.org; s=google;
         h=from:to:cc:subject:date:message-id:in-reply-to:references
          :mime-version:content-transfer-encoding;
-        bh=wyquXDsI5PpUswweH/QuIkj+hc4Cb9K+5Ghm5R3vs34=;
-        b=TMVcDNfEewcm+Zlud5OWrLGCMtmG1XeduU2v6C81w3F27mDgOu5Dyjif/uvvhdsYNA
-         ZF8agjfrxmavZWYFccuoVVZlNqDx0D0M8v89KjTasVKsAGJ0woopsXMrlfQW6hml+tj7
-         HbYKk+7NjJA1wjTkgwVq8paXmKSU7anwXtDDTxJ6UI0n9HIBv1l/7FIFf3nujZ/cMksP
-         D30K4FMm77sR/DQzZYi3o8+kiBT5hGNj53VO3GKFGrms6Ft+lOz/pPXHxlP5KppRbvmu
-         gvcisGJ/2G+AGfGNjBI+cqLJF6D8VAqNrlUesqay0E9Wqa6RHukc2cdU2ZZifdEo+a52
-         uZkg==
+        bh=qA8w6GQLbaTlzp5n8dcgkY3X2oVEZB3DGcmvh59/aDQ=;
+        b=Mn11vOjh/Pgg9MhlRULSR7tXA6ZixO1ybWFY4R1A5pbm+l+dZi99Ik6Dz8/SFCJOZZ
+         s1YfqhkXUuWOVzORUi9/hJLnBRejNT4uBEiqF1uhwCh+pGVe6rI8/wH0UBySQdONPnu2
+         yLjurEjdnc0DLZb4vBbq62+ijn8pt4QrMJPhkemj1PrGRBphp12LOpX4opxL05I0RVtj
+         4O8+mjdNL1tEpF8H1h0qLT9RgAl/fEtohF2mzCGlU5XBR+wBCslchXHtSLCafKXLJPmR
+         zg2SqEEqEGnveFdXk3e4S3pvw9LtRrrTjsExiE6jAfAf8k8PpJCoWkHQ+RQB432IqekD
+         qG9Q==
 X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
         d=1e100.net; s=20161025;
         h=x-gm-message-state:from:to:cc:subject:date:message-id:in-reply-to
          :references:mime-version:content-transfer-encoding;
-        bh=wyquXDsI5PpUswweH/QuIkj+hc4Cb9K+5Ghm5R3vs34=;
-        b=cxkrL7BLqETacPC28vhw38Kx/eEIcQrIzK8Xai+mzR+TbGgmaf81BI5VG/OtbEQS1g
-         e0KNORFirw0d+RsIvQdM4qW4Ac8hJ4hNwQHl8ot73Fb5p4yUFYUzfZckBxkV++ixw7ci
-         tIZdlMiTi290evIdWWmBtw5L6RaS64J1O+XTNBYWTXmFAMbOJ+VbOXWG8tchXJGmr498
-         2mVfB0btg7nPxEwCR0MOYOjhVdqG/mA28LRVWvvr2do8wCYqgnxr1jrj4Dob5DUvnjSd
-         p2uXepQFSrOAhtQmtBpXEJfDG5HblVxykunETw+T6zxhVbckBoINhX0Yu0w8MZTNwCST
-         nEzw==
-X-Gm-Message-State: AOAM531DdDuNgD+pdi87gyrEhW2XQEbphHiQI8/3c+rNvCO1h2Se3jOy
-        Tro/9AiGFHdF1m2Z8MVf4PKfQA==
-X-Google-Smtp-Source: ABdhPJyKE5XKI9TJVppgF3SUV9hJyConQ72DMtIOPoTixmFeCTdqRn/0DKS2tG949jP/2DuCt8Ac/A==
-X-Received: by 2002:ac8:1108:: with SMTP id c8mr13557566qtj.323.1600312952482;
-        Wed, 16 Sep 2020 20:22:32 -0700 (PDT)
+        bh=qA8w6GQLbaTlzp5n8dcgkY3X2oVEZB3DGcmvh59/aDQ=;
+        b=MSV7zGNjgkaXZPyGpZ0iw9rBmcrK+cV0FDnB5SLZnmu6SXHPnffKJm8BOHQfgq51FL
+         LT1tc9vKVp48Yu60ZcphgustCNRgH0r+5wzljBBzI3rfFSpZY3K0P31QtWbGHzxxOk6o
+         JOzoQttHbrQun2O6YmnMOWjXh3M/voO7DTumoNQpmbTOe3NPVGfO9Dc3TZIFGuivdRry
+         gF0RQuz3JkbHRTOO9GQw9jljpMPKj/nN0xz3XFNeWl8Yp/NJb8V67d/wEE7axFpSh7Tb
+         rRbl9mzwoGTRpJzAHK5x5pPjmV5pYPvszL21c6xjB36wQsQJ61XmvkqUEvBRST08xJeD
+         72fg==
+X-Gm-Message-State: AOAM532FbWEiqFZzPoCMOzL3wkoWr5DLa/0wv3bjHuXkpMhtv30koH8U
+        Su7dAdJqibFRsK8d/MbekERhKg==
+X-Google-Smtp-Source: ABdhPJwE1MP6yxSojZ/oW1Dvar69y++Fse0YxIRP8jIkfmkccLGWZ2OFc+TBgA+kkS9idIbPZJJT8Q==
+X-Received: by 2002:ac8:44b5:: with SMTP id a21mr13087829qto.314.1600312953278;
+        Wed, 16 Sep 2020 20:22:33 -0700 (PDT)
 Received: from pop-os.fios-router.home (pool-71-163-245-5.washdc.fios.verizon.net. [71.163.245.5])
-        by smtp.googlemail.com with ESMTPSA id g45sm21370801qtb.60.2020.09.16.20.22.31
+        by smtp.googlemail.com with ESMTPSA id g45sm21370801qtb.60.2020.09.16.20.22.32
         (version=TLS1_3 cipher=TLS_AES_256_GCM_SHA384 bits=256/256);
         Wed, 16 Sep 2020 20:22:32 -0700 (PDT)
 From:   Thara Gopinath <thara.gopinath@linaro.org>
@@ -53,9 +53,9 @@ To:     rui.zhang@intel.com, daniel.lezcano@linaro.org, robh+dt@kernel.org,
 Cc:     linux-pm@vger.kernel.org, devicetree@vger.kernel.org,
         linux-kernel@vger.kernel.org, linux-arm-msm@vger.kernel.org,
         lukasz.luba@arm.com, amitk@kernel.org
-Subject: [PATCH RFC 5/8] thermal: gov_step_wise: Extend thermal step-wise governor to monitor falling temperature.
-Date:   Wed, 16 Sep 2020 23:22:23 -0400
-Message-Id: <20200917032226.820371-6-thara.gopinath@linaro.org>
+Subject: [PATCH RFC 6/8] thermal: Modify thermal governors to do nothing for trip points being monitored for falling temperature
+Date:   Wed, 16 Sep 2020 23:22:24 -0400
+Message-Id: <20200917032226.820371-7-thara.gopinath@linaro.org>
 X-Mailer: git-send-email 2.25.1
 In-Reply-To: <20200917032226.820371-1-thara.gopinath@linaro.org>
 References: <20200917032226.820371-1-thara.gopinath@linaro.org>
@@ -65,127 +65,94 @@ Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-From the step wise governor point of view, the policy decisions
-that has to taken on a thermal trip point that is defined to be monitored
-for falling temperature is the mirror opposite of the decisions it has
-to take on a trip point that is monitored for rising temperature.
+For now, thermal governors other than step wise governorr do not support
+monitoring of falling temperature. Hence, in case of calls to the governor
+for trip points marked as THERMAL_TRIP_MONITOR_FALLING, return doing
+nothing.
 
 Signed-off-by: Thara Gopinath <thara.gopinath@linaro.org>
 ---
- drivers/thermal/gov_step_wise.c | 62 +++++++++++++++++++++++++--------
- 1 file changed, 47 insertions(+), 15 deletions(-)
+ drivers/thermal/gov_bang_bang.c       | 12 ++++++++++++
+ drivers/thermal/gov_fair_share.c      | 12 ++++++++++++
+ drivers/thermal/gov_power_allocator.c | 12 ++++++++++++
+ 3 files changed, 36 insertions(+)
 
-diff --git a/drivers/thermal/gov_step_wise.c b/drivers/thermal/gov_step_wise.c
-index 2ae7198d3067..c036ff7b4fb2 100644
---- a/drivers/thermal/gov_step_wise.c
-+++ b/drivers/thermal/gov_step_wise.c
-@@ -35,7 +35,8 @@
-  *       deactivate the thermal instance
-  */
- static unsigned long get_target_state(struct thermal_instance *instance,
--				enum thermal_trend trend, bool throttle)
-+				enum thermal_trend trend, bool throttle,
-+				enum thermal_trip_monitor_type type)
+diff --git a/drivers/thermal/gov_bang_bang.c b/drivers/thermal/gov_bang_bang.c
+index 991a1c54296d..a662047e5961 100644
+--- a/drivers/thermal/gov_bang_bang.c
++++ b/drivers/thermal/gov_bang_bang.c
+@@ -99,6 +99,18 @@ static void thermal_zone_trip_update(struct thermal_zone_device *tz, int trip)
+ static int bang_bang_control(struct thermal_zone_device *tz, int trip)
  {
- 	struct thermal_cooling_device *cdev = instance->cdev;
- 	unsigned long cur_state;
-@@ -65,11 +66,24 @@ static unsigned long get_target_state(struct thermal_instance *instance,
- 
- 	switch (trend) {
- 	case THERMAL_TREND_RAISING:
--		if (throttle) {
--			next_target = cur_state < instance->upper ?
--				    (cur_state + 1) : instance->upper;
--			if (next_target < instance->lower)
--				next_target = instance->lower;
-+		if (type == THERMAL_TRIP_MONITOR_FALLING) {
-+			if (cur_state <= instance->lower) {
-+				if (!throttle)
-+					next_target = THERMAL_NO_TARGET;
-+			} else {
-+				if (!throttle) {
-+					next_target = cur_state - 1;
-+					if (next_target > instance->upper)
-+						next_target = instance->upper;
-+				}
-+			}
-+		} else {
-+			if (throttle) {
-+				next_target = cur_state < instance->upper ?
-+					    (cur_state + 1) : instance->upper;
-+				if (next_target < instance->lower)
-+					next_target = instance->lower;
-+			}
- 		}
- 		break;
- 	case THERMAL_TREND_RAISE_FULL:
-@@ -77,14 +91,23 @@ static unsigned long get_target_state(struct thermal_instance *instance,
- 			next_target = instance->upper;
- 		break;
- 	case THERMAL_TREND_DROPPING:
--		if (cur_state <= instance->lower) {
--			if (!throttle)
--				next_target = THERMAL_NO_TARGET;
-+		if (type == THERMAL_TRIP_MONITOR_FALLING) {
-+			if (throttle) {
-+				next_target = cur_state < instance->upper ?
-+					    (cur_state + 1) : instance->upper;
-+				if (next_target < instance->lower)
-+					next_target = instance->lower;
-+			}
- 		} else {
--			if (!throttle) {
--				next_target = cur_state - 1;
--				if (next_target > instance->upper)
--					next_target = instance->upper;
-+			if (cur_state <= instance->lower) {
-+				if (!throttle)
-+					next_target = THERMAL_NO_TARGET;
-+			} else {
-+				if (!throttle) {
-+					next_target = cur_state - 1;
-+					if (next_target > instance->upper)
-+						next_target = instance->upper;
-+				}
- 			}
- 		}
- 		break;
-@@ -117,6 +140,8 @@ static void thermal_zone_trip_update(struct thermal_zone_device *tz, int trip)
- {
- 	int trip_temp;
- 	enum thermal_trip_type trip_type;
-+	enum thermal_trip_monitor_type monitor_type =
-+					THERMAL_TRIP_MONITOR_RISING;
- 	enum thermal_trend trend;
  	struct thermal_instance *instance;
- 	bool throttle = false;
-@@ -130,9 +155,15 @@ static void thermal_zone_trip_update(struct thermal_zone_device *tz, int trip)
- 		tz->ops->get_trip_type(tz, trip, &trip_type);
- 	}
- 
-+	if (tz->ops->get_trip_mon_type)
-+		tz->ops->get_trip_mon_type(tz, trip, &monitor_type);
++	enum thermal_trip_monitor_type monitor_type =
++						THERMAL_TRIP_MONITOR_RISING;
 +
- 	trend = get_tz_trend(tz, trip);
++	/*
++	 * Return doing nothing if the trip point is monitored for
++	 * falling temperature
++	 */
++	if (tz->ops->get_trip_mon_type) {
++		tz->ops->get_trip_mon_type(tz, trip, &monitor_type);
++		if (monitor_type == THERMAL_TRIP_MONITOR_FALLING)
++			return 0;
++	}
  
--	if (tz->temperature >= trip_temp) {
-+	if (((monitor_type == THERMAL_TRIP_MONITOR_RISING) &&
-+	     (tz->temperature >= trip_temp)) ||
-+	     ((monitor_type == THERMAL_TRIP_MONITOR_FALLING) &&
-+	     (tz->temperature <= trip_temp))) {
- 		throttle = true;
- 		trace_thermal_zone_trip(tz, trip, trip_type);
- 	}
-@@ -147,7 +178,8 @@ static void thermal_zone_trip_update(struct thermal_zone_device *tz, int trip)
- 			continue;
+ 	thermal_zone_trip_update(tz, trip);
  
- 		old_target = instance->target;
--		instance->target = get_target_state(instance, trend, throttle);
-+		instance->target = get_target_state(instance, trend,
-+						    throttle, monitor_type);
- 		dev_dbg(&instance->cdev->device, "old_target=%d, target=%d\n",
- 					old_target, (int)instance->target);
+diff --git a/drivers/thermal/gov_fair_share.c b/drivers/thermal/gov_fair_share.c
+index aaa07180ab48..064ad6ed67ad 100644
+--- a/drivers/thermal/gov_fair_share.c
++++ b/drivers/thermal/gov_fair_share.c
+@@ -81,6 +81,18 @@ static int fair_share_throttle(struct thermal_zone_device *tz, int trip)
+ 	int total_weight = 0;
+ 	int total_instance = 0;
+ 	int cur_trip_level = get_trip_level(tz);
++	enum thermal_trip_monitor_type monitor_type =
++						THERMAL_TRIP_MONITOR_RISING;
++
++	/*
++	 * Return doing nothing if the trip point is monitored for
++	 * falling temperature
++	 */
++	if (tz->ops->get_trip_mon_type) {
++		tz->ops->get_trip_mon_type(tz, trip, &monitor_type);
++		if (monitor_type == THERMAL_TRIP_MONITOR_FALLING)
++			return 0;
++	}
  
+ 	list_for_each_entry(instance, &tz->thermal_instances, tz_node) {
+ 		if (instance->trip != trip)
+diff --git a/drivers/thermal/gov_power_allocator.c b/drivers/thermal/gov_power_allocator.c
+index 5cb518d8f156..0f674cd1b9b8 100644
+--- a/drivers/thermal/gov_power_allocator.c
++++ b/drivers/thermal/gov_power_allocator.c
+@@ -606,6 +606,8 @@ static int power_allocator_throttle(struct thermal_zone_device *tz, int trip)
+ {
+ 	int ret;
+ 	int switch_on_temp, control_temp;
++	enum thermal_trip_monitor_type monitor_type =
++						THERMAL_TRIP_MONITOR_RISING;
+ 	struct power_allocator_params *params = tz->governor_data;
+ 
+ 	/*
+@@ -615,6 +617,16 @@ static int power_allocator_throttle(struct thermal_zone_device *tz, int trip)
+ 	if (trip != params->trip_max_desired_temperature)
+ 		return 0;
+ 
++	/*
++	 * Return doing nothing if the trip point is monitored for
++	 * falling temperature
++	 */
++	if (tz->ops->get_trip_mon_type) {
++		tz->ops->get_trip_mon_type(tz, trip, &monitor_type);
++		if (monitor_type == THERMAL_TRIP_MONITOR_FALLING)
++			return 0;
++	}
++
+ 	ret = tz->ops->get_trip_temp(tz, params->trip_switch_on,
+ 				     &switch_on_temp);
+ 	if (!ret && (tz->temperature < switch_on_temp)) {
 -- 
 2.25.1
 
