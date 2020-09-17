@@ -2,115 +2,109 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from vger.kernel.org (vger.kernel.org [23.128.96.18])
-	by mail.lfdr.de (Postfix) with ESMTP id ECBB826DBCD
-	for <lists+devicetree@lfdr.de>; Thu, 17 Sep 2020 14:42:29 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTP id 1D90D26DC0B
+	for <lists+devicetree@lfdr.de>; Thu, 17 Sep 2020 14:51:45 +0200 (CEST)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S1727017AbgIQMmX (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Thu, 17 Sep 2020 08:42:23 -0400
-Received: from lelv0143.ext.ti.com ([198.47.23.248]:35430 "EHLO
-        lelv0143.ext.ti.com" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S1727032AbgIQMkJ (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Thu, 17 Sep 2020 08:40:09 -0400
-Received: from fllv0034.itg.ti.com ([10.64.40.246])
-        by lelv0143.ext.ti.com (8.15.2/8.15.2) with ESMTP id 08HCdgxq054466;
-        Thu, 17 Sep 2020 07:39:42 -0500
+        id S1727032AbgIQMvk (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Thu, 17 Sep 2020 08:51:40 -0400
+Received: from lelv0142.ext.ti.com ([198.47.23.249]:47590 "EHLO
+        lelv0142.ext.ti.com" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
+        with ESMTP id S1727080AbgIQMv2 (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Thu, 17 Sep 2020 08:51:28 -0400
+Received: from lelv0266.itg.ti.com ([10.180.67.225])
+        by lelv0142.ext.ti.com (8.15.2/8.15.2) with ESMTP id 08HCp58F051343;
+        Thu, 17 Sep 2020 07:51:05 -0500
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=ti.com;
-        s=ti-com-17Q1; t=1600346382;
-        bh=FSxwoPL7aSoYCkxBrZForrCAzlbC92v79w5BQmsdNss=;
-        h=Subject:To:CC:References:From:Date:In-Reply-To;
-        b=HznG9ARTc3qmGgjk4fJmV+S3pVgtetMzjo6El+rR7+AAENDTRgf1cs3kcPWwBDriX
-         DZ8ormumBmFIOGp9Bj9de5xC+G9BoT3Y17Hey6sobsNjmc8r8fiKYs+zksxk0x0gPG
-         kMlWUBEpun0XwozxUrO/wPqSE9Ap4EXGO3cj3Opc=
-Received: from DFLE102.ent.ti.com (dfle102.ent.ti.com [10.64.6.23])
-        by fllv0034.itg.ti.com (8.15.2/8.15.2) with ESMTPS id 08HCdgVp041779
+        s=ti-com-17Q1; t=1600347065;
+        bh=h1+j6WmExINKlQygCh7j0c5ayp42nqCQ1rs/Cq/b8uU=;
+        h=Date:From:To:CC:Subject:References:In-Reply-To;
+        b=qrL5Uq9ifDK0pkNIIsIzSFOlAXxjP1ST9zzxe/KHVEj5Vf0vUsGNo5MKBG6GT7onC
+         0AzHa7hOpmByLmNOJe7kRkQhtrC/ghJ4GgWcgBmn6li6PkoF27WNN8HCOrKRcnTfA3
+         hWM+kLwL3JBNR4BMUxRls9n4eIxWpiDmlz2lOUGc=
+Received: from DLEE109.ent.ti.com (dlee109.ent.ti.com [157.170.170.41])
+        by lelv0266.itg.ti.com (8.15.2/8.15.2) with ESMTPS id 08HCp51O012763
         (version=TLSv1.2 cipher=AES256-GCM-SHA384 bits=256 verify=FAIL);
-        Thu, 17 Sep 2020 07:39:42 -0500
-Received: from DFLE112.ent.ti.com (10.64.6.33) by DFLE102.ent.ti.com
- (10.64.6.23) with Microsoft SMTP Server (version=TLS1_2,
+        Thu, 17 Sep 2020 07:51:05 -0500
+Received: from DLEE104.ent.ti.com (157.170.170.34) by DLEE109.ent.ti.com
+ (157.170.170.41) with Microsoft SMTP Server (version=TLS1_2,
  cipher=TLS_ECDHE_RSA_WITH_AES_128_CBC_SHA256_P256) id 15.1.1979.3; Thu, 17
- Sep 2020 07:39:42 -0500
-Received: from fllv0040.itg.ti.com (10.64.41.20) by DFLE112.ent.ti.com
- (10.64.6.33) with Microsoft SMTP Server (version=TLS1_2,
+ Sep 2020 07:51:05 -0500
+Received: from fllv0040.itg.ti.com (10.64.41.20) by DLEE104.ent.ti.com
+ (157.170.170.34) with Microsoft SMTP Server (version=TLS1_2,
  cipher=TLS_ECDHE_RSA_WITH_AES_128_CBC_SHA256_P256) id 15.1.1979.3 via
- Frontend Transport; Thu, 17 Sep 2020 07:39:42 -0500
-Received: from [192.168.2.6] (ileax41-snat.itg.ti.com [10.172.224.153])
-        by fllv0040.itg.ti.com (8.15.2/8.15.2) with ESMTP id 08HCdddv017095;
-        Thu, 17 Sep 2020 07:39:40 -0500
-Subject: Re: [PATCHv2] dt-bindings: dp-connector: add binding for DisplayPort
- connector
-To:     =?UTF-8?B?VmlsbGUgU3lyasOkbMOk?= <ville.syrjala@linux.intel.com>
-CC:     <dri-devel@lists.freedesktop.org>, <devicetree@vger.kernel.org>,
-        David Airlie <airlied@linux.ie>,
-        Daniel Vetter <daniel@ffwll.ch>,
-        Rob Herring <robh+dt@kernel.org>,
-        Laurent Pinchart <laurent.pinchart@ideasonboard.com>,
-        Andrzej Hajda <a.hajda@samsung.com>,
-        Swapnil Kashinath Jakhade <sjakhade@cadence.com>,
-        Neil Armstrong <narmstrong@baylibre.com>
-References: <20200917055210.22868-1-tomi.valkeinen@ti.com>
- <20200917112229.GR6112@intel.com>
-From:   Tomi Valkeinen <tomi.valkeinen@ti.com>
-Message-ID: <5265c620-ee51-3896-4c5a-9e3284c52327@ti.com>
-Date:   Thu, 17 Sep 2020 15:39:38 +0300
-User-Agent: Mozilla/5.0 (X11; Linux x86_64; rv:68.0) Gecko/20100101
- Thunderbird/68.10.0
+ Frontend Transport; Thu, 17 Sep 2020 07:51:05 -0500
+Received: from localhost (ileax41-snat.itg.ti.com [10.172.224.153])
+        by fllv0040.itg.ti.com (8.15.2/8.15.2) with ESMTP id 08HCp54b041373;
+        Thu, 17 Sep 2020 07:51:05 -0500
+Date:   Thu, 17 Sep 2020 07:51:04 -0500
+From:   Nishanth Menon <nm@ti.com>
+To:     Peter Rosin <peda@axentia.se>
+CC:     Roger Quadros <rogerq@ti.com>, <devicetree@vger.kernel.org>,
+        <nsekhar@ti.com>, <linux-kernel@vger.kernel.org>, <kishon@ti.com>,
+        <t-kristo@ti.com>, <robh+dt@kernel.org>,
+        <linux-arm-kernel@lists.infradead.org>
+Subject: Re: [PATCH v3 1/6] dt-bindings: mux-j7200-wiz: Add lane function
+ defines
+Message-ID: <20200917125104.xznpg2fhv5iilbtl@akan>
+References: <20200915112038.30219-1-rogerq@ti.com>
+ <20200915112038.30219-2-rogerq@ti.com>
+ <e28e98a0-f3fc-29bd-d7a6-cc45f3a69ede@axentia.se>
+ <20200916154536.m552ft2jzfsaeokr@akan>
+ <08c84d02-abe1-8399-50fb-9268c7130f8a@ti.com>
+ <ad1d6964-f553-3a22-65fd-58bc5a166f80@axentia.se>
 MIME-Version: 1.0
-In-Reply-To: <20200917112229.GR6112@intel.com>
-Content-Type: text/plain; charset="utf-8"
-Content-Language: en-US
-Content-Transfer-Encoding: 8bit
+Content-Type: text/plain; charset="us-ascii"
+Content-Disposition: inline
+In-Reply-To: <ad1d6964-f553-3a22-65fd-58bc5a166f80@axentia.se>
+User-Agent: NeoMutt/20171215
 X-EXCLAIMER-MD-CONFIG: e1e8a2fd-e40a-4ac6-ac9b-f7e9cc9ee180
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-On 17/09/2020 14:22, Ville Syrjälä wrote:
-> On Thu, Sep 17, 2020 at 08:52:10AM +0300, Tomi Valkeinen wrote:
->> Add binding for DisplayPort connector. A few notes:
->>
->> * Similar to hdmi-connector, it has hpd-gpios as an optional property,
->>   as the HPD could also be handled by, e.g., the DP bridge.
->>
->> * dp-pwr-supply, which provides 3.3V on DP_PWR pin, is optional, as it
->>   is not strictly required: standard DP cables do not even have the pin
->>   connected.
->>
->> * Connector type. Full size and mini connectors are identical except for
->>   the connector size and form, so I believe there is no functional need
->>   for this property. But similar to 'label' property, it might be used
->>   to present information about the connector to the userspace.
->>
->> * No eDP. There's really no "eDP connector", as it's always a custom
->>   made connection between the DP and the DP panel. So possibly there is
->>   no need for edp-connector binding, but even if there is, I don't want
->>   to guess what it could look like, and could it be part of the
->>   dp-connector binding.
->>
->> * No DP++. I'm not familiar with DP++, but I think it's all handled by
->>   the DP bridge, and does not need any new properties to the dp-connector.
+On 14:37-20200917, Peter Rosin wrote:
+[...]
+
+> >>> Should not the defines start with J7200_WIZ? SERDES0 seems like a too
+> >>> generic prefix, at least to me.
+> >>
+> >> Thanks, good point. I am not sure if WIZ should even be used.. It is
+> >> a TI internal prefix for various serdes solutions, but I agree that
+> >> SERDES0 is too generic a terminology. That said, we should cleanup
+> >> include/dt-bindings/mux/mux-j721e-wiz.h as well, prior to introducing
+> >> j7200 changes.
+> >>
+> > 
+> > I'm planning to put all TI SERDES definitions in one header file "ti-serdes-mux.h"
+> > and add SOC specific prefixes to the macros.
+> > 
+> > This will mean some churn in the existing DT files. (only 2 so far)
+> > 
+> > Are you guys OK if I do the change in one patch to avoid a broken build in between.
+> > You guys can then decide whose tree it goes through.
+> > 
+> > The new SoC addition will be separate of course.
 > 
-> You might need an i2c bus for this. It's up to the source device
-> to either hook up just AUX CH, or both AUX CH and DDC to a DP++
-> connector. If just AUX CH is wired up you are limited to using
-> only type2 DP dual mode adapters, whereas if you also have DDC
-> the crappier type1 adapters will also work.
+> We should get these changes done before 5.9 is released.
 
-Ok, thanks for the clarifications on this.
+OK.
 
-> I guess it's possible some bridges might handle all that for you.
-> But eg. on i915 we always set up both AUX CH and DDC, and some
-> extra circuitry on the board will isolate one or the other
-> depending on what kind of dongle/cable gets plugged in
-> (identified via the CONFIG pins).
+> Not breaking the build for each intermediate step is always a priority.
+> Also, renaming mux-j721e-wiz.h to ti-serdes-mux.h and renaming the macros
+> could be seen as orthogonal, and it is certainly possible to do that
+> as two patches without breaking the build in between. It would just need
+> changes on both sides of the interface in both patches. But I wouldn't
+> worry about separating this into two patches, just do a rename patch and
+> be done with it. Then follow up with additions for j7200.
+> 
+> However, now that we are renaming things anyway, do we really need "mux"
+> in the name of the file itself?
+> I personally find .../dt-dbindings/mux/ti-serdes.h descriptive enough.
 
-Is that automatic on i915? I could imagine a gpio-controlled mux doing the isolation, and then we
-need some driver controlling the gpio.
+yep, OK with me.
 
-I could add the ddc bus the same way as on hdmi-connector.yaml, but perhaps it's better to leave
-that for someone with a DP++ board. Afaics, there should be no problems adding this later.
-
- Tomi
 
 -- 
-Texas Instruments Finland Oy, Porkkalankatu 22, 00180 Helsinki.
-Y-tunnus/Business ID: 0615521-4. Kotipaikka/Domicile: Helsinki
+Regards,
+Nishanth Menon
+Key (0xDDB5849D1736249D) / Fingerprint: F8A2 8693 54EB 8232 17A3  1A34 DDB5 849D 1736 249D
