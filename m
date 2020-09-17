@@ -2,143 +2,49 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from vger.kernel.org (vger.kernel.org [23.128.96.18])
-	by mail.lfdr.de (Postfix) with ESMTP id 1A28326DF79
-	for <lists+devicetree@lfdr.de>; Thu, 17 Sep 2020 17:20:37 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTP id CCF0726DF8D
+	for <lists+devicetree@lfdr.de>; Thu, 17 Sep 2020 17:24:17 +0200 (CEST)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S1727881AbgIQPUe (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Thu, 17 Sep 2020 11:20:34 -0400
-Received: from fllv0016.ext.ti.com ([198.47.19.142]:44232 "EHLO
-        fllv0016.ext.ti.com" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S1727800AbgIQPT6 (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Thu, 17 Sep 2020 11:19:58 -0400
-Received: from fllv0035.itg.ti.com ([10.64.41.0])
-        by fllv0016.ext.ti.com (8.15.2/8.15.2) with ESMTP id 08HC0X61059792;
-        Thu, 17 Sep 2020 07:00:33 -0500
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=ti.com;
-        s=ti-com-17Q1; t=1600344033;
-        bh=cdbe+Y1msYZUZho4J9GT8Lb/U6fSW1HOJKJwJCjY6vI=;
-        h=Subject:To:CC:References:From:Date:In-Reply-To;
-        b=pIc5siM+52+t8PtNjdlea3M55mMhBi8bY/ZfeVlMx2O+6BHaCdX42OGD1iGik1SxX
-         JywogSaSFbB54zOoEI0dlGz/bmKnNv5nsIAzYUsu20ASbglz/WmKPAX7NpNgedekkq
-         kbSh0bo+epls6ccKhO+u9ooJU37FwpJLG4ZsUty8=
-Received: from DFLE103.ent.ti.com (dfle103.ent.ti.com [10.64.6.24])
-        by fllv0035.itg.ti.com (8.15.2/8.15.2) with ESMTP id 08HC0Xxg087303;
-        Thu, 17 Sep 2020 07:00:33 -0500
-Received: from DFLE113.ent.ti.com (10.64.6.34) by DFLE103.ent.ti.com
- (10.64.6.24) with Microsoft SMTP Server (version=TLS1_2,
- cipher=TLS_ECDHE_RSA_WITH_AES_128_CBC_SHA256_P256) id 15.1.1979.3; Thu, 17
- Sep 2020 07:00:33 -0500
-Received: from fllv0040.itg.ti.com (10.64.41.20) by DFLE113.ent.ti.com
- (10.64.6.34) with Microsoft SMTP Server (version=TLS1_2,
- cipher=TLS_ECDHE_RSA_WITH_AES_128_CBC_SHA256_P256) id 15.1.1979.3 via
- Frontend Transport; Thu, 17 Sep 2020 07:00:33 -0500
-Received: from [192.168.2.14] (ileax41-snat.itg.ti.com [10.172.224.153])
-        by fllv0040.itg.ti.com (8.15.2/8.15.2) with ESMTP id 08HC0VnM079871;
-        Thu, 17 Sep 2020 07:00:31 -0500
-Subject: Re: [PATCH v3 1/6] dt-bindings: mux-j7200-wiz: Add lane function
- defines
-To:     Nishanth Menon <nm@ti.com>, Peter Rosin <peda@axentia.se>
-CC:     <t-kristo@ti.com>, <robh+dt@kernel.org>,
-        <linux-kernel@vger.kernel.org>, <devicetree@vger.kernel.org>,
-        <linux-arm-kernel@lists.infradead.org>, <nsekhar@ti.com>,
-        <kishon@ti.com>
-References: <20200915112038.30219-1-rogerq@ti.com>
- <20200915112038.30219-2-rogerq@ti.com>
- <e28e98a0-f3fc-29bd-d7a6-cc45f3a69ede@axentia.se>
- <20200916154536.m552ft2jzfsaeokr@akan>
-From:   Roger Quadros <rogerq@ti.com>
-Message-ID: <08c84d02-abe1-8399-50fb-9268c7130f8a@ti.com>
-Date:   Thu, 17 Sep 2020 15:00:30 +0300
-User-Agent: Mozilla/5.0 (X11; Linux x86_64; rv:68.0) Gecko/20100101
- Thunderbird/68.10.0
+        id S1728154AbgIQPYM (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Thu, 17 Sep 2020 11:24:12 -0400
+Received: from lindbergh.monkeyblade.net ([23.128.96.19]:39350 "EHLO
+        lindbergh.monkeyblade.net" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
+        with ESMTP id S1728116AbgIQPYD (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Thu, 17 Sep 2020 11:24:03 -0400
+Received: from mail.nic.cz (mail.nic.cz [IPv6:2001:1488:800:400::400])
+        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id F2E8BC06174A;
+        Thu, 17 Sep 2020 08:23:52 -0700 (PDT)
+Received: from localhost (unknown [IPv6:2a0e:b107:ae1:0:3e97:eff:fe61:c680])
+        by mail.nic.cz (Postfix) with ESMTPSA id 13668140A58;
+        Thu, 17 Sep 2020 17:23:48 +0200 (CEST)
+Date:   Thu, 17 Sep 2020 17:23:47 +0200
+From:   Marek Behun <marek.behun@nic.cz>
+To:     linux-leds@vger.kernel.org
+Cc:     Pavel Machek <pavel@ucw.cz>, Dan Murphy <dmurphy@ti.com>,
+        =?UTF-8?B?T25kxZllag==?= Jirman <megous@megous.com>,
+        linux-kernel@vger.kernel.org, Rob Herring <robh+dt@kernel.org>,
+        devicetree@vger.kernel.org,
+        "H . Nikolaus Schaller" <hns@goldelico.com>,
+        David Rivshin <drivshin@allworx.com>
+Subject: Re: [PATCH leds v1 07/10] leds: is31fl32xx: use struct
+ led_init_data when registering
+Message-ID: <20200917172347.41c3dacf@nic.cz>
+In-Reply-To: <20200916231650.11484-8-marek.behun@nic.cz>
+References: <20200916231650.11484-1-marek.behun@nic.cz>
+        <20200916231650.11484-8-marek.behun@nic.cz>
+X-Mailer: Claws Mail 3.17.6 (GTK+ 2.24.32; x86_64-pc-linux-gnu)
 MIME-Version: 1.0
-In-Reply-To: <20200916154536.m552ft2jzfsaeokr@akan>
-Content-Type: text/plain; charset="utf-8"; format=flowed
-Content-Language: en-US
+Content-Type: text/plain; charset=US-ASCII
 Content-Transfer-Encoding: 7bit
-X-EXCLAIMER-MD-CONFIG: e1e8a2fd-e40a-4ac6-ac9b-f7e9cc9ee180
+X-Spam-Status: No, score=-100.0 required=5.9 tests=SHORTCIRCUIT,
+        USER_IN_WELCOMELIST,USER_IN_WHITELIST shortcircuit=ham
+        autolearn=disabled version=3.4.2
+X-Spam-Checker-Version: SpamAssassin 3.4.2 (2018-09-13) on mail.nic.cz
+X-Virus-Scanned: clamav-milter 0.102.2 at mail
+X-Virus-Status: Clean
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-Hi Peter & Nishanth,
-
-On 16/09/2020 18:45, Nishanth Menon wrote:
-> On 06:52-20200916, Peter Rosin wrote:
->> Hi,
->>
->> Sorry for the delay.
->>
->> On 2020-09-15 13:20, Roger Quadros wrote:
->>> Each SERDES lane mux can select upto 4 different IPs.
->>> There are 4 lanes in each J7200 SERDES. Define all
->>> the possible functions in this file.
->>>
->>> Cc: Peter Rosin <peda@axentia.se>
->>> Signed-off-by: Roger Quadros <rogerq@ti.com>
->>> ---
->>>   include/dt-bindings/mux/mux-j7200-wiz.h | 29 +++++++++++++++++++++++++
->>>   1 file changed, 29 insertions(+)
->>>   create mode 100644 include/dt-bindings/mux/mux-j7200-wiz.h
->>>
->>> diff --git a/include/dt-bindings/mux/mux-j7200-wiz.h b/include/dt-bindings/mux/mux-j7200-wiz.h
->>> new file mode 100644
->>> index 000000000000..b091b1185a36
->>> --- /dev/null
->>> +++ b/include/dt-bindings/mux/mux-j7200-wiz.h
->>> @@ -0,0 +1,29 @@
->>> +/* SPDX-License-Identifier: GPL-2.0 */
->>> +/*
->>> + * This header provides constants for J7200 WIZ.
->>> + */
->>> +
->>> +#ifndef _DT_BINDINGS_J7200_WIZ
->>> +#define _DT_BINDINGS_J7200_WIZ
->>> +
->>> +#define SERDES0_LANE0_QSGMII_LANE3	0x0
->>> +#define SERDES0_LANE0_PCIE1_LANE0	0x1
->>> +#define SERDES0_LANE0_IP3_UNUSED	0x2
->>> +#define SERDES0_LANE0_IP4_UNUSED	0x3
->>> +
->>> +#define SERDES0_LANE1_QSGMII_LANE4	0x0
->>> +#define SERDES0_LANE1_PCIE1_LANE1	0x1
->>> +#define SERDES0_LANE1_IP3_UNUSED	0x2
->>> +#define SERDES0_LANE1_IP4_UNUSED	0x3
->>> +
->>> +#define SERDES0_LANE2_QSGMII_LANE1	0x0
->>> +#define SERDES0_LANE2_PCIE1_LANE2	0x1
->>> +#define SERDES0_LANE2_IP3_UNUSED	0x2
->>> +#define SERDES0_LANE2_IP4_UNUSED	0x3
->>> +
->>> +#define SERDES0_LANE3_QSGMII_LANE2	0x0
->>> +#define SERDES0_LANE3_PCIE1_LANE3	0x1
->>> +#define SERDES0_LANE3_USB		0x2
->>> +#define SERDES0_LANE3_IP4_UNUSED	0x3
->>> +
->>> +#endif /* _DT_BINDINGS_J7200_WIZ */
->>
->> Should not the defines start with J7200_WIZ? SERDES0 seems like a too
->> generic prefix, at least to me.
-> 
-> Thanks, good point. I am not sure if WIZ should even be used.. It is
-> a TI internal prefix for various serdes solutions, but I agree that
-> SERDES0 is too generic a terminology. That said, we should cleanup
-> include/dt-bindings/mux/mux-j721e-wiz.h as well, prior to introducing
-> j7200 changes.
-> 
-
-I'm planning to put all TI SERDES definitions in one header file "ti-serdes-mux.h"
-and add SOC specific prefixes to the macros.
-
-This will mean some churn in the existing DT files. (only 2 so far)
-
-Are you guys OK if I do the change in one patch to avoid a broken build in between.
-You guys can then decide whose tree it goes through.
-
-The new SoC addition will be separate of course.
-
-cheers,
--roger
--- 
-Texas Instruments Finland Oy, Porkkalankatu 22, 00180 Helsinki.
-Y-tunnus/Business ID: 0615521-4. Kotipaikka/Domicile: Helsinki
+This can be done without refactoring, please ignore this patch in this
+spin.
