@@ -2,128 +2,197 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from vger.kernel.org (vger.kernel.org [23.128.96.18])
-	by mail.lfdr.de (Postfix) with ESMTP id C68EB26D08E
-	for <lists+devicetree@lfdr.de>; Thu, 17 Sep 2020 03:24:38 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTP id 0D84C26D114
+	for <lists+devicetree@lfdr.de>; Thu, 17 Sep 2020 04:24:43 +0200 (CEST)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S1726002AbgIQBYg (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Wed, 16 Sep 2020 21:24:36 -0400
-Received: from mail-eopbgr40078.outbound.protection.outlook.com ([40.107.4.78]:42913
-        "EHLO EUR03-DB5-obe.outbound.protection.outlook.com"
+        id S1726079AbgIQCYl (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Wed, 16 Sep 2020 22:24:41 -0400
+Received: from mail-eopbgr70081.outbound.protection.outlook.com ([40.107.7.81]:5574
+        "EHLO EUR04-HE1-obe.outbound.protection.outlook.com"
         rhost-flags-OK-OK-OK-FAIL) by vger.kernel.org with ESMTP
-        id S1725858AbgIQBYf (ORCPT <rfc822;devicetree@vger.kernel.org>);
-        Wed, 16 Sep 2020 21:24:35 -0400
+        id S1725858AbgIQCYl (ORCPT <rfc822;devicetree@vger.kernel.org>);
+        Wed, 16 Sep 2020 22:24:41 -0400
 ARC-Seal: i=1; a=rsa-sha256; s=arcselector9901; d=microsoft.com; cv=none;
- b=oFXTatEeR3Cn5nEvH0U92pMvbuG7L5v/A9Pp5mUjASVwy9n+08aivvlWmxIzKeeqj87MohMTTGI/uYE1mrYRI5/7o7r18O1uFEseTW/FVWXtUfI5Wji4viY1zHW4eGa2tZCZTacue+ETER13NhwLReHj0fmLuBDHPSiR9fib7KG6NA0d1BzkceUL6UQqnRw/pmEYS6upXkuGYXVX1Uhgircri19DlMVCNsOKgvWIv11WGrjXtaXodW96eYuz+wTLrPRNE18OrhsOpzqFebWObs9XeCpQRcoK5r2X5mfxPQ5bQZQ7/M+g0VEjJ6pJTffXlpkClTugodyc3Fjd861jyg==
+ b=Y96hdvbBNPQrkM/hugcF0SyUBiLP+6QPB5ya1fawL0f6K/APhh9PLh5PEvbeI9T6Am9QGRw5/90Qf+XnWdZLMC62IsMQWTgM5NGXMpsYUoGCmQlZYl8SSMFEGjqr6oLYkKYWa/SjZ6loda1H5mo5TQrLIVi88EORUF8kuvfCPQdQhHI0mEaXYhVCqC8Kh590SHi7AlbPBLTm/g64Lg0DGLo3bsEGiPRrK3jVxV/0rInXuRAH6NnXGv/9w0UBijqvYTdvbM9S6AYYGS3UgUMeyjo39huO0Vs2xUBrKnBs8NUJES0HggHtkmPbgL54uUNN3fCSjADpZpEVCSz7WQUQKg==
 ARC-Message-Signature: i=1; a=rsa-sha256; c=relaxed/relaxed; d=microsoft.com;
  s=arcselector9901;
  h=From:Date:Subject:Message-ID:Content-Type:MIME-Version:X-MS-Exchange-SenderADCheck;
- bh=KqeZrWtPyvvRz7CD6spZhdrQUa8cmzkzp5WhJiGaC1c=;
- b=FP4jYsQlYbsGFt1d/AdX5r6+znKrltv/e+M6PmlTw5X8WiZuY+iE8dX9bpNNqsb1XnomX8bnwKYV0OYScXZa/fzCL/1BZ8QfPnSSc+i7Of219lRgZNItDC4I51MiaD24EZnd4XBlJxPudi62HdyUecWEuXX+jc/JprcETYmYgy8Q36L9FU1t/kwVtK2zZtRSW40WwTyVhYjNlXwExjo2En+LEu+KgklERoRXBedmiEGOY9b9CP+EGI7gvydWzd0Yj/UrVdymsddJMcMvB8KIGoZxtQkpsVoUVr/5qf9Ov8fow+bCuxNGf6WTu/32DKXUTe5tG17Z4Idfl+qemUaiSw==
+ bh=JF0H+TQjARfEfK57TCOimyfXVGSPEn0Bl9bS/CTxB8g=;
+ b=lmOClnh8I3HQK2pXKvdyvokJZ+WJa2pVrYlVDgz1uhWq4ltb5McDDbKEFLx4uYqlAMZh74FPFzWZFrBjfunc14sT7buqUSfDz+G6lKRVtgaNg1NV54bM2wUDQT3nYdfJTzVuQytG9znvkxc81x/FvuV1bNXMAq7D9OOsdMDyCyHq13rfd9UV8mPFyCg9a7r02DpEymTV+c3M3PvR+/ffSsv3zdFKHOzFhrm1Hr1qK5qWXHRRhrtfXeKW29ZSt8vzjYotTJyV5OkcNRnQOx+Jr6FS6Ov3+qvUohJfuXpNbjc5Q1QrucWA4Z169BBWuje+S3Vlnuv9qU4TxPL6UTLlPw==
 ARC-Authentication-Results: i=1; mx.microsoft.com 1; spf=pass
  smtp.mailfrom=nxp.com; dmarc=pass action=none header.from=nxp.com; dkim=pass
  header.d=nxp.com; arc=none
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=nxp.com; s=selector2;
  h=From:Date:Subject:Message-ID:Content-Type:MIME-Version:X-MS-Exchange-SenderADCheck;
- bh=KqeZrWtPyvvRz7CD6spZhdrQUa8cmzkzp5WhJiGaC1c=;
- b=QLpHFa8m/kSsXWct3xlZ6y+j8PcBNKm5lg7pU0+3N3xdUQ+tqRhyVtAE7mDlXawd7vpAZ2W8JY8p+zohm1AEYGVZ2zmWncRDL48rv5D/XD00g405eTW2h6zbteAfjjggzBLPMwWOykihvMd/gPVcb/LHibtTMAndxHFNETTyiqE=
-Received: from AM7PR04MB7157.eurprd04.prod.outlook.com (2603:10a6:20b:118::20)
- by AM5PR0401MB2481.eurprd04.prod.outlook.com (2603:10a6:203:39::23) with
+ bh=JF0H+TQjARfEfK57TCOimyfXVGSPEn0Bl9bS/CTxB8g=;
+ b=sa+XgjAS8TeHCtxF3v4eyFEDMPxUIpxok1Yi6255cCNE1W1V44OrDr/EsZZUgUc3F+CyLVJSl7Vo3pH0DWjJwezgIj0MRWxvMOIFVRWos00cUdO7RwfxvWUPbk4ZRWkFHxc54z0F+x6hShJgJhltBA2arHmFkcfUg4YnQ1evIg8=
+Received: from AM8PR04MB7315.eurprd04.prod.outlook.com (2603:10a6:20b:1d4::7)
+ by AM0PR0402MB3636.eurprd04.prod.outlook.com (2603:10a6:208:6::13) with
  Microsoft SMTP Server (version=TLS1_2,
- cipher=TLS_ECDHE_RSA_WITH_AES_256_GCM_SHA384) id 15.20.3391.14; Thu, 17 Sep
- 2020 01:24:30 +0000
-Received: from AM7PR04MB7157.eurprd04.prod.outlook.com
- ([fe80::1023:be8d:40c:efe1]) by AM7PR04MB7157.eurprd04.prod.outlook.com
- ([fe80::1023:be8d:40c:efe1%3]) with mapi id 15.20.3391.013; Thu, 17 Sep 2020
- 01:24:30 +0000
-From:   Peter Chen <peter.chen@nxp.com>
-To:     Matthias Kaehlcke <mka@chromium.org>
-CC:     Greg Kroah-Hartman <gregkh@linuxfoundation.org>,
-        Rob Herring <robh+dt@kernel.org>,
-        Frank Rowand <frowand.list@gmail.com>,
-        Alan Stern <stern@rowland.harvard.edu>,
-        Krzysztof Kozlowski <krzk@kernel.org>,
-        Bastien Nocera <hadess@hadess.net>,
-        Ravi Chandra Sadineni <ravisadineni@chromium.org>,
-        "linux-usb@vger.kernel.org" <linux-usb@vger.kernel.org>,
-        Stephen Boyd <swboyd@chromium.org>,
+ cipher=TLS_ECDHE_RSA_WITH_AES_256_GCM_SHA384) id 15.20.3348.15; Thu, 17 Sep
+ 2020 02:24:36 +0000
+Received: from AM8PR04MB7315.eurprd04.prod.outlook.com
+ ([fe80::11e6:d413:2d3d:d271]) by AM8PR04MB7315.eurprd04.prod.outlook.com
+ ([fe80::11e6:d413:2d3d:d271%6]) with mapi id 15.20.3391.014; Thu, 17 Sep 2020
+ 02:24:36 +0000
+From:   Andy Duan <fugang.duan@nxp.com>
+To:     Jonathan Cameron <Jonathan.Cameron@Huawei.com>,
+        Rob Herring <robh@kernel.org>
+CC:     Jonathan Cameron <jic23@kernel.org>,
+        "open list:IIO SUBSYSTEM AND DRIVERS" <linux-iio@vger.kernel.org>,
         "devicetree@vger.kernel.org" <devicetree@vger.kernel.org>,
-        Douglas Anderson <dianders@chromium.org>,
-        "linux-kernel@vger.kernel.org" <linux-kernel@vger.kernel.org>,
-        "Alexander A. Klimov" <grandmaster@al2klimov.de>,
-        Masahiro Yamada <masahiroy@kernel.org>
-Subject: RE: [PATCH 2/2] USB: misc: Add onboard_usb_hub driver
-Thread-Topic: [PATCH 2/2] USB: misc: Add onboard_usb_hub driver
-Thread-Index: AQHWisa8s1Sayn6UyUeJIx1ZNmduw6lpAX4AgAAjrICAAB3x4IABEESAgACa9ICAALfHgIAAVssAgAAF7QCAAAESkA==
-Date:   Thu, 17 Sep 2020 01:24:30 +0000
-Message-ID: <AM7PR04MB7157872B1019B748119B7DBA8B3E0@AM7PR04MB7157.eurprd04.prod.outlook.com>
-References: <20200914112716.1.I248292623d3d0f6a4f0c5bc58478ca3c0062b49a@changeid>
- <20200914112716.2.I7c9a1f1d6ced41dd8310e8a03da666a32364e790@changeid>
- <20200915025426.GA17450@b29397-desktop> <20200915050207.GF2022397@google.com>
- <AM7PR04MB715735A8A102F3EC9041EA328B200@AM7PR04MB7157.eurprd04.prod.outlook.com>
- <20200915230345.GF2771744@google.com> <20200916081821.GA14376@b29397-desktop>
- <20200916191607.GB3560556@google.com> <20200917002646.GA23310@b29397-desktop>
- <20200917004758.GD3560556@google.com>
-In-Reply-To: <20200917004758.GD3560556@google.com>
-Accept-Language: en-US
+        Shawn Guo <shawnguo@kernel.org>,
+        Sascha Hauer <s.hauer@pengutronix.de>
+Subject: RE: [PATCH v2 01/20] dt-bindings:iio:adc:fsl,vf610-adc conversion to
+ yaml.
+Thread-Topic: [PATCH v2 01/20] dt-bindings:iio:adc:fsl,vf610-adc conversion to
+ yaml.
+Thread-Index: AQHWjBUiWEi78ms8FEON5M75n4QP9KlsGqYA
+Date:   Thu, 17 Sep 2020 02:24:36 +0000
+Message-ID: <AM8PR04MB73155DCE23BC613898AD43FDFF3E0@AM8PR04MB7315.eurprd04.prod.outlook.com>
+References: <20200909175946.395313-1-jic23@kernel.org>
+        <20200909175946.395313-2-jic23@kernel.org>
+        <CAL_JsqJhBFqi8=gku8sv5=8MTB1uCTq=DkuoVzEaUMxO1QhBAg@mail.gmail.com>
+ <20200916113401.00006d86@Huawei.com>
+In-Reply-To: <20200916113401.00006d86@Huawei.com>
+Accept-Language: zh-CN, en-US
 Content-Language: en-US
 X-MS-Has-Attach: 
 X-MS-TNEF-Correlator: 
-authentication-results: chromium.org; dkim=none (message not signed)
- header.d=none;chromium.org; dmarc=none action=none header.from=nxp.com;
-x-originating-ip: [180.164.158.209]
+authentication-results: Huawei.com; dkim=none (message not signed)
+ header.d=none;Huawei.com; dmarc=none action=none header.from=nxp.com;
+x-originating-ip: [119.31.174.67]
 x-ms-publictraffictype: Email
 x-ms-office365-filtering-ht: Tenant
-x-ms-office365-filtering-correlation-id: e6e754db-2dcb-488a-4f21-08d85aa86d11
-x-ms-traffictypediagnostic: AM5PR0401MB2481:
-x-microsoft-antispam-prvs: <AM5PR0401MB24811D502FB68FE2313FF0578B3E0@AM5PR0401MB2481.eurprd04.prod.outlook.com>
-x-ms-oob-tlc-oobclassifiers: OLM:8273;
+x-ms-office365-filtering-correlation-id: b06238ca-5651-40fe-0dee-08d85ab0d2ac
+x-ms-traffictypediagnostic: AM0PR0402MB3636:
+x-microsoft-antispam-prvs: <AM0PR0402MB36364C058E78B24185954CDEFF3E0@AM0PR0402MB3636.eurprd04.prod.outlook.com>
+x-ms-oob-tlc-oobclassifiers: OLM:7691;
 x-ms-exchange-senderadcheck: 1
 x-microsoft-antispam: BCL:0;
-x-microsoft-antispam-message-info: MVhy3kiwnvdfrolWyIW6gj0Ty5uSnRq8CyKajdbHYvI2ZkA2/gRvCCQA7Ac14AxeeqxU2f+QKctqv5jQUi3Q6PB0cMUlxYU+eZyhoasDF36Kc6jTlj9p15MhGxsu8TkX2Ju8FpgvJ0ZYZCQj0UBEAfhsr0jLN8QkRpQytWsMmyr8JCGCi8FpkxUsSKmzON33dwVTywCiDxG2Bl6mw+vpVYLWqX20cFrwTDpN7AHZTjRj3sDJ9fznZdRK5HjEuLWtMbfefjKaqVhbHJNJxm277GqjfHa09Vjn9YGvkcW+hBvyFwV/x+Ep5D0+oZj5s1amL6OZ/xSj03bOfv6gS88HTUp2A/6GvRngEpuFGlguyVPh3lZMugbMD195QmK+5W6B
-x-forefront-antispam-report: CIP:255.255.255.255;CTRY:;LANG:en;SCL:1;SRV:;IPV:NLI;SFV:NSPM;H:AM7PR04MB7157.eurprd04.prod.outlook.com;PTR:;CAT:NONE;SFS:(4636009)(366004)(396003)(39850400004)(136003)(376002)(346002)(316002)(76116006)(7416002)(8676002)(33656002)(5660300002)(6916009)(9686003)(64756008)(54906003)(66446008)(478600001)(66476007)(52536014)(66556008)(66946007)(6506007)(4326008)(83380400001)(7696005)(86362001)(44832011)(55016002)(71200400001)(26005)(2906002)(186003)(8936002);DIR:OUT;SFP:1101;
-x-ms-exchange-antispam-messagedata: nFyc4QoBHWT7SLM9ogQKd+quhbeljGF4IMuQKUEBVk8jgDxGxcIr4DwE5ulJvxVNnNxkMEhd3Fx2HePLOhHJot+TXOeDFpzTRds5bViwGCn7zV4E6A6Tm00ydBqxJtmwPuPkb67ERR5GQCDUsT/TomiRqIkAIssJz+OYW1yKzyvWRZCzkYd4jqV6vFPi3oZIl72eysiZBMWDul3UjK6Ea4S2ZFN6aApDHFT0QXuQaJ/fJis94dsORsEA3hUa7utd/fJHzOtQYGXHqp/sftgACGjgIic6lph8bUXpW+mqI4bjN94o9H+B6ck0ngxf8kAdPILZtDsdTqwOlLrfpJ8JdudoIvwHIT2MxXPiX7CC/1jMEHwVOlag31yOa8cAbLri4eAWsEWh7Al+OFx6ye/QUr5c1y/bOsqE3PuRGKkIsr2Cvnfs+v99i5Iia7jCGnNr/B+d8ITbWztjujbg+Yz9LCrPtabIZR/Wh5RaG2hmL1m9uXixYfyse3+n2W8NXf7vdHNvuGRIHkSgt1iA71ir06L7jcBIyL45UmQiKbEuM2w2cIzfLt9G461Ht3CrryKaRRN4/sDhVtR4CffFb2cyl4l7lEYxOzonkYKE2r9cBZbYHlKP2a+MqZYW7gOgzMxZJy6JJUXzQDYabJLHi1GRsA==
+x-microsoft-antispam-message-info: wpQwWuuKYLtJ05A6vl1n1RT17zYVHm/54b4snalxs4tU/rCAS+xvkf5onZ++UZSxowfjvvp8LKL+dgBgQk61cD8W49mquIhKezmrx/W8+iPN2UJCLDAp54IVHAf/XPiVp0vNfuyqmECWgtZUJv0zlNdFUrZGmCWHSkXH3uVyMq1j96aAdwn7Kryx7zuBED76dfwQOM3vhV572r0bzg8hbWFMQsPNJ5lLbCfo6YSNY2eANRO4wgNOHBL3PmPhBokq8i55QY/3w55TqZBQVTmS9Aljkk0cTbdpIelBLz2Nxus5CgRxapbGcxPf5yhtBRM13Z3/6mqhDRsBTooffHKcdCIsDEj1wyKBQyRmkEKzVAEj4u0Wbw46uZZMKNwlDj3sCLqAMs0qeMS7em6z//ji/pcmIiOVYP78qi8ZFp4aSKPrppZgN32KHBzFj9VPJU6uE0klr5A7YVAVO1rJJNp9sw==
+x-forefront-antispam-report: CIP:255.255.255.255;CTRY:;LANG:en;SCL:1;SRV:;IPV:NLI;SFV:NSPM;H:AM8PR04MB7315.eurprd04.prod.outlook.com;PTR:;CAT:NONE;SFS:(4636009)(346002)(396003)(376002)(366004)(136003)(39860400002)(8676002)(186003)(33656002)(83380400001)(26005)(7696005)(2906002)(86362001)(8936002)(6506007)(478600001)(45080400002)(53546011)(5660300002)(55016002)(83080400001)(52536014)(4326008)(54906003)(316002)(66446008)(76116006)(64756008)(66556008)(66476007)(110136005)(71200400001)(66946007)(9686003)(142933001);DIR:OUT;SFP:1101;
+x-ms-exchange-antispam-messagedata: CBWRBLATp+Jpx3eEUEjm+DVr3OuuafD+yUUWdO5n1dfHfNcRIw87Gyk//0Ld/eYKFjFUgLrOzAC5SG5aQjQr1nPfDklG85U9e8oVKabcNnobWrtc/t+KNr2lwdZgqWu8IYKlAPu0qqi+Qx5DJwvwSHFX1kC1SpdCOBXAOk+A0wa0xLiZJshBGj44gXjo+xQDehbD35HMw8I4Itfxos5Ktbcqw8giU53U/OQ1vkXfY1J03u6+wkOW3+sKTz/NjdZJlb61uzc9tx04vTaWqULQfhZyo3MhWahuH2KDpLpSuEuQkzkeWdWyQDmebB6KPtU44ObCg5LoVJJYFnWNm5fPpNfVO8rkHcIeDcgttqj+HN1bfdytpJOoVanftR8ekS02xjJD3+M+lGgtXIamnH74dQlbUyeZmDv6QONEFr18CyAA5a9pIY3ViE1GNP9MCQDTy6KKCILEh2e/3xEn2nhHVlr2a2wYeh99UBAwSAuud6ob7yzHDLNeAcagTCMtFkrOLLbbHwoFgQyhiLP06VLM0i5oqNl5BDnPeDi+8uv03hq2Nzu7HUCoPxBxWi+IZgjb+fa2MwPT3D8gRXKiejJCyjXOPr0AGwQuqVRzHcSJWauUrSRxWY6qFulnzXYK/QRE0qUSLLQ43Gl5S0nyPmKwKQ==
 x-ms-exchange-transport-forked: True
-Content-Type: text/plain; charset="utf-8"
-Content-Transfer-Encoding: base64
+Content-Type: text/plain; charset="us-ascii"
+Content-Transfer-Encoding: quoted-printable
 MIME-Version: 1.0
 X-OriginatorOrg: nxp.com
 X-MS-Exchange-CrossTenant-AuthAs: Internal
-X-MS-Exchange-CrossTenant-AuthSource: AM7PR04MB7157.eurprd04.prod.outlook.com
-X-MS-Exchange-CrossTenant-Network-Message-Id: e6e754db-2dcb-488a-4f21-08d85aa86d11
-X-MS-Exchange-CrossTenant-originalarrivaltime: 17 Sep 2020 01:24:30.3263
+X-MS-Exchange-CrossTenant-AuthSource: AM8PR04MB7315.eurprd04.prod.outlook.com
+X-MS-Exchange-CrossTenant-Network-Message-Id: b06238ca-5651-40fe-0dee-08d85ab0d2ac
+X-MS-Exchange-CrossTenant-originalarrivaltime: 17 Sep 2020 02:24:36.7443
  (UTC)
 X-MS-Exchange-CrossTenant-fromentityheader: Hosted
 X-MS-Exchange-CrossTenant-id: 686ea1d3-bc2b-4c6f-a92c-d99c5c301635
 X-MS-Exchange-CrossTenant-mailboxtype: HOSTED
-X-MS-Exchange-CrossTenant-userprincipalname: 6YpO1AlNo6Bs08s9RNeXLqKghJacTNWGwI1JxKf2DX+9X9WfLRXhF3gLHBmplS9w3vAPdx9jYtidf+dX7wBlhw==
-X-MS-Exchange-Transport-CrossTenantHeadersStamped: AM5PR0401MB2481
+X-MS-Exchange-CrossTenant-userprincipalname: uA8EfZrUz1zh2YHke9TueD6HzPUrhFZnOjjbcaumTJp9M/J7bfAx0Oi5K8JKxSYgXeLGZHOpYUYMFMcRXZFWXw==
+X-MS-Exchange-Transport-CrossTenantHeadersStamped: AM0PR0402MB3636
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-PiA+ID4NCj4gPg0KPiA+IFlvdSBtYXkgbmVlZCBib3RoIChnbHVlICYgeGhjaSksIGl0IGRlcGVu
-ZHMgb24gc3lzdGVtIGRlc2lnbiwgYW5kDQo+ID4gdXN1YWxseSwgdGhlc2UgdHdvIGtpbmRzIG9m
-IHdha2V1cCBzZXR0aW5nIGlzbid0IGNvbmZsaWN0Lg0KPiANCj4gT2ssIHRoYW5rcy4gU28gaWYg
-SSB1bmRlcnN0YW5kIGNvcnJlY3RseSB0aGUgb25ib2FyZCBodWIgZHJpdmVyIHNob3VsZCBjaGVj
-ayB0aGUNCj4gd2FrZXVwIHN0YXRlIG9mIHRoZSB4SENJIHRvIGRldGVybWluZSBpZiByZW1vdGUg
-d2FrZXVwIGlzIGVuYWJsZWQgZm9yIHRoZQ0KPiBjb250cm9sbGVyIChhZnRlciBhbGwgaXQgZG9l
-c24ndCBrbm93IGFueXRoaW5nIGFib3V0IHRoZSBwbGF0Zm9ybSBkZXZpY2UpLg0KPiBXYWtldXAg
-bWlnaHQgbm90IHdvcmsgcHJvcGVybHkgaWYgaXQgaXMgZGlzYWJsZWQgZm9yIHRoZSBwbGF0Zm9y
-bSBkZXZpY2UsIGJ1dCBpdCdzDQo+IHRoZSByZXNwb25zYWJpbGl0eSBvZiB0aGUgYm9hcmQgc29m
-dHdhcmUvY29uZmlnIHRvIG1ha2Ugc3VyZSBpdCBpcyBlbmFibGVkDQo+IChwb3NzaWJseSB0aGlz
-IGNvdWxkIGJlIGRvbmUgYnkgbWFraW5nIHRoZSBkd2MzLXFjb20gZHJpdmVyIHVuZGVyc3RhbmQg
-dGhlDQo+ICd3YWtldXAtc291cmNlJyBwcm9wZXJ0eSwgYXMgdGhlIHhoY2ktbXRrIGRyaXZlciBk
-b2VzKS4NCg0KTm8sIGV2ZXJ5IGxldmVsIHNob3VsZCBoYW5kbGUgaXRzIG93biB3YWtldXAgc2V0
-dGluZy4gWW91IG1heSBoYXZlIHRvIGRvIHRoaXMgc2luY2UgdGhlIFVTQiBidXMgYW5kIHBsYXRm
-b3JtIGJ1cw0KYXJlIHR3byBkaWZmZXJlbnQgYnVzZXMsIHlvdSBzaG91bGQgbm90IHZpc2l0IGRl
-dmljZSBzdHJ1Y3R1cmUgYWNyb3NzIHRoZSBidXMuIEFuZCB5b3UgZG9uJ3QgbmVlZCBhIGRldmlj
-ZSB0cmVlIHByb3BlcnR5DQp0byBkbyBpdC4gRm9yIHBsYXRmb3JtIGRyaXZlciwgeW91IGNvdWxk
-IHVzZSBkZXZpY2VfbWF5X3dha2V1cCwgZm9yIG9uYm9hcmQgaHViIHBvd2VyIGRyaXZlciwgeW91
-IGNvdWxkIHVzZQ0KdXNiX3dha2V1cF9lbmFibGVkX2Rlc2NlbmRhbnRzIHNpbmNlIHlvdSBuZWVk
-IHRvIGNvdmVyIGRlc2NlbmRhbnRzLg0KDQpUaGUgcHVycG9zZSBvZiB0aGVzZSB0d28gd2FrZXVw
-IGxvZ2ljIGlzIGRpZmZlcmVudCwgZm9yIFVTQiBidXMsIGl0IGlzIHVzZWQgdG8gdGVsbCBVU0Ig
-ZGV2aWNlcyB0byBlbmFibGUgcmVtb3RlIHdha2V1cA0KYW5kIGRvIG5vdCBwb3dlciBvZmYgaXRz
-IHJlZ3VsYXRvcjsgZm9yIHBsYXRmb3JtIGJ1cywgaXQgaXMgdXNlZCB0byB0ZWxsIHRoZSBjb250
-cm9sbGVyIHRvIGVuYWJsZSBpdHMgd2FrZXVwIHNldHRpbmcgYW5kIGtlZXANCnRoZSByZWd1bGF0
-b3IgZm9yIGl0cyBVU0IgY29udHJvbGxlciBhbmQgVVNCIFBIWSAoaWYgbmVlZGVkKS4NCg0KUGV0
-ZXINCg0K
+From: Jonathan Cameron <Jonathan.Cameron@Huawei.com> Sent: Wednesday, Septe=
+mber 16, 2020 6:34 PM
+> On Tue, 15 Sep 2020 14:45:58 -0600
+> Rob Herring <robh@kernel.org> wrote:
+>=20
+> > On Wed, Sep 9, 2020 at 12:02 PM Jonathan Cameron <jic23@kernel.org>
+> wrote:
+> > >
+> > > From: Jonathan Cameron <Jonathan.Cameron@huawei.com>
+> > >
+> > > A simple conversion of this freescale ADC binding from txt to yaml.
+> > > For maintainer I went with Fugang Duan as the original author of the
+> > > binding. Would be great to have confirmation of this.
+> > >
+> > > Signed-off-by: Jonathan Cameron <Jonathan.Cameron@huawei.com>
+> > > Cc: Fugang Duan <B38611@freescale.com>
+> > > Cc: Shawn Guo <shawnguo@kernel.org>
+> > > Cc: Sascha Hauer <s.hauer@pengutronix.de>
+> > > ---
+> > >  .../bindings/iio/adc/fsl,vf610-adc.yaml       | 81
+> +++++++++++++++++++
+> > >  .../devicetree/bindings/iio/adc/vf610-adc.txt | 36 ---------
+> > >  2 files changed, 81 insertions(+), 36 deletions(-)
+> > >
+> > > diff --git
+> > > a/Documentation/devicetree/bindings/iio/adc/fsl,vf610-adc.yaml
+> > > b/Documentation/devicetree/bindings/iio/adc/fsl,vf610-adc.yaml
+> > > new file mode 100644
+> > > index 000000000000..99b6b55fd0a3
+> > > --- /dev/null
+> > > +++ b/Documentation/devicetree/bindings/iio/adc/fsl,vf610-adc.yaml
+> > > @@ -0,0 +1,81 @@
+> > > +# SPDX-License-Identifier: (GPL-2.0 OR BSD-2-Clause) %YAML 1.2
+> > > +---
+> > > +$id:
+> > > +https://eur01.safelinks.protection.outlook.com/?url=3Dhttp%3A%2F%2Fd=
+e
+> > >
+> +vicetree.org%2Fschemas%2Fiio%2Fadc%2Ffsl%2Cvf610-adc.yaml%23&amp;da
+> > >
+> +ta=3D02%7C01%7Cfugang.duan%40nxp.com%7C750fcd8ebdf34af6655308d85a2
+> c41
+> > >
+> +8d%7C686ea1d3bc2b4c6fa92cd99c5c301635%7C0%7C0%7C63735849344455
+> 0580&
+> > >
+> +amp;sdata=3DSwRIWqN5caXEUZBTmnjKKHJKAZ1FQ03s1Gdpf%2FTyXzE%3D&am
+> p;rese
+> > > +rved=3D0
+> > > +$schema:
+> > > +https://eur01.safelinks.protection.outlook.com/?url=3Dhttp%3A%2F%2Fd=
+e
+> > >
+> +vicetree.org%2Fmeta-schemas%2Fcore.yaml%23&amp;data=3D02%7C01%7Cfug
+> an
+> > >
+> +g.duan%40nxp.com%7C750fcd8ebdf34af6655308d85a2c418d%7C686ea1d3bc
+> 2b4
+> > >
+> +c6fa92cd99c5c301635%7C0%7C0%7C637358493444550580&amp;sdata=3Dc4To
+> ZCOG
+> > > +iPM0XbxCnLGJEEXvnMvFKqSgg3gtLeDYACI%3D&amp;reserved=3D0
+> > > +
+> > > +title: ADC found on Freescale vf610 and similar SoCs
+> > > +
+> > > +maintainers:
+> > > +  - Fugang Duan <B38611@freescale.com>
+> >
+> > I assume you got a bunch of bounces on this series, too? Looks like 1,
+> > 4, 7, 9, 13, 16, 19, and 20 bounced. Please fix those addresses before
+> > applying.
+>=20
+> Yup. I missed them on v1, but have saved the set for v2 to be able to fix=
+ those I
+> can.
+>=20
+> for some I can make a reasonable stab at a suitable maintainer as covered=
+ by a
+> catch all.  For the others if I can't find a newer address I'll cover the=
+m myself
+> until someone else steps up.
+> I think that's just 9 and 13.  For 4 I didn't get a bounce but can add th=
+at to my
+> list!
+>=20
+> For this particular one looks like fugang duan is still active but now wi=
+th an NXP
+> address so I'll update that. I've changed the cc on this mail.
+>=20
+> Thanks,
+>=20
+> Jonathan
+
+Thanks, Jonathan.
+
+For the patch, it looks good.
+
+Reviewed-by: Fugang Duan <fugang.duan@nxp.com>
+>=20
+>=20
+> >
+> > Rob
+>=20
+
