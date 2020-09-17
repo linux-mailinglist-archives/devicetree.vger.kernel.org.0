@@ -2,203 +2,144 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from vger.kernel.org (vger.kernel.org [23.128.96.18])
-	by mail.lfdr.de (Postfix) with ESMTP id 0481C26D46E
-	for <lists+devicetree@lfdr.de>; Thu, 17 Sep 2020 09:17:50 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTP id C1CE926D461
+	for <lists+devicetree@lfdr.de>; Thu, 17 Sep 2020 09:15:00 +0200 (CEST)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S1726169AbgIQHRt (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Thu, 17 Sep 2020 03:17:49 -0400
-Received: from lindbergh.monkeyblade.net ([23.128.96.19]:48200 "EHLO
-        lindbergh.monkeyblade.net" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S1726106AbgIQHRs (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Thu, 17 Sep 2020 03:17:48 -0400
-Received: from mail-pl1-x642.google.com (mail-pl1-x642.google.com [IPv6:2607:f8b0:4864:20::642])
-        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 4B3CFC06174A;
-        Thu, 17 Sep 2020 00:17:48 -0700 (PDT)
-Received: by mail-pl1-x642.google.com with SMTP id d19so666661pld.0;
-        Thu, 17 Sep 2020 00:17:48 -0700 (PDT)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=gmail.com; s=20161025;
-        h=date:from:to:cc:subject:message-id:references:mime-version
-         :content-disposition:in-reply-to:user-agent;
-        bh=elJEb2l35w0tALnlBgQjk/9l2iBwh6a2tE1YVDZoSvk=;
-        b=kfSDwjK/583sxlPWBU4K30L6qY5yFOHg4TaP/g2kKTHVrbUMxPsSo3cr0oNyd9kK/I
-         n6Vsy1v7d/rgMZQrlIWuK1z3+RZOa/gSSCG7sYeMKhkJT2JQvSzqbc2e3raCr0dOVN39
-         XKMDGl9vfQOTodpBHV1eD8EgozdndmaBbqOAdPaW/2wFZ/f37Bo0XjiDqxgvhN8ddvjp
-         KfHvl91euVMXY62y1FCqAbvCidWS9MdrG3Y6DHzHbR8EOFMHVg964SXT9ELd/KN5nttG
-         mHb47XyEK+kpFNYeCiT/8Q1sRDO+I1EIjMyYurStOuDBW3epttxcwxSpXCDTkUJOH4lp
-         mVtw==
+        id S1726169AbgIQHPA (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Thu, 17 Sep 2020 03:15:00 -0400
+Received: from mail-wm1-f68.google.com ([209.85.128.68]:37198 "EHLO
+        mail-wm1-f68.google.com" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
+        with ESMTP id S1726109AbgIQHO7 (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Thu, 17 Sep 2020 03:14:59 -0400
+Received: by mail-wm1-f68.google.com with SMTP id a9so924115wmm.2;
+        Thu, 17 Sep 2020 00:14:57 -0700 (PDT)
 X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
         d=1e100.net; s=20161025;
-        h=x-gm-message-state:date:from:to:cc:subject:message-id:references
+        h=x-gm-message-state:date:from:to:subject:message-id:references
          :mime-version:content-disposition:in-reply-to:user-agent;
-        bh=elJEb2l35w0tALnlBgQjk/9l2iBwh6a2tE1YVDZoSvk=;
-        b=MsQM1ydfcDk4sdIw6pUVRNs03DmDhpCVWeVHt7x+L4CeA01t49rMScyeao4gemMGdK
-         +cf7iIHut4IHaghcUj7Aapu7Q8bNgbAXqlmblHUeqiBK+jjmNyJpOB9+Qbdt8X1Rik4g
-         tAsjCu/QDCs8EwqxXefDuR2YA51wIkDWXxwhkAym02xXY+2dzWYXjUrDzI2lCt32XFJW
-         3JhGY1TpqFYIFr4Pmos3hjWCtbyFtgUtZy3L2sgwWeBQWt5TTyk30cUugJ1MPXQgxJxD
-         jKWaseloGQJhyIzRAtORk+DOQn8d+9z3CtWQR0pxH1JPmqC2n0z//QY9Sksjd9CukIRg
-         zfSg==
-X-Gm-Message-State: AOAM532aEyRnT74w/Zj1CCpzBJQgH3Rw0YA5N/Vi0mwSXnqBe4NVBV/N
-        DBEgo6QyU8KPsCsm81AR1Mg=
-X-Google-Smtp-Source: ABdhPJyA7geCwMU1Brnj82CuOczTA8QY77ieRbYd6gK//+zTtaFvTP+ByLJcIbfYjqJna5Bxk8PXBg==
-X-Received: by 2002:a17:90a:6a4e:: with SMTP id d14mr6885754pjm.63.1600327067650;
-        Thu, 17 Sep 2020 00:17:47 -0700 (PDT)
-Received: from Asurada-Nvidia (thunderhill.nvidia.com. [216.228.112.22])
-        by smtp.gmail.com with ESMTPSA id 72sm18958272pfx.79.2020.09.17.00.17.46
+        bh=uaz9kepgEXq9uBdXqyYSIYC/gVUhci+I1g61k9mFWnQ=;
+        b=mZBMk5UeweX0q+du3MNn+k65e1Tlsy+++1i7IVGQya9+avXR872473DvD2MWmN92BW
+         xuu4EuYruFXemP5zk127LMCqqEaeGUiVVm9jK34ZJTTlCn4mYs/VOCZQb0KC/JNnB36J
+         iprUD3fXBkDy6laua1+UyJsTBoMfZ4tPxwbX8wcLpYpW49IsGS2dbF38t8WwzVz17860
+         Y3T5E2K0yZAS7I7QfORVqOFmkdQ728/2MmAj2wqM/1V25drBehSDZxzTJueB7zfrHC4h
+         grttuFGv2+aXpCOgo4dBDtUDDIhAUpd46a2EtFdiRVp5J7G9R8+3BIKRXloSkuAFXnE9
+         ZZog==
+X-Gm-Message-State: AOAM5317lmn84Dzsbv4n0pXcatZ6EM3vvAih7q+aGnaXxuD8WT86QyIx
+        pJcksSkpP0lUMiRgFcXnWbI=
+X-Google-Smtp-Source: ABdhPJwJoXbRCDZ7Y0+x+9aKWBixTbcBqY473DlXztmst9+kEcc+7QCYPQ3dhqjJGZomFsfeIuz1bg==
+X-Received: by 2002:a7b:cb17:: with SMTP id u23mr8250390wmj.166.1600326896325;
+        Thu, 17 Sep 2020 00:14:56 -0700 (PDT)
+Received: from kozik-lap ([194.230.155.191])
+        by smtp.googlemail.com with ESMTPSA id x16sm36483228wrq.62.2020.09.17.00.14.53
         (version=TLS1_2 cipher=ECDHE-ECDSA-CHACHA20-POLY1305 bits=256/256);
-        Thu, 17 Sep 2020 00:17:47 -0700 (PDT)
-Date:   Thu, 17 Sep 2020 00:14:31 -0700
-From:   Nicolin Chen <nicoleotsuka@gmail.com>
-To:     "Viorel Suman (OSS)" <viorel.suman@oss.nxp.com>
-Cc:     Liam Girdwood <lgirdwood@gmail.com>,
-        Mark Brown <broonie@kernel.org>,
-        Rob Herring <robh+dt@kernel.org>,
-        Jaroslav Kysela <perex@perex.cz>,
-        Takashi Iwai <tiwai@suse.com>, Timur Tabi <timur@kernel.org>,
-        Xiubo Li <Xiubo.Lee@gmail.com>,
+        Thu, 17 Sep 2020 00:14:55 -0700 (PDT)
+Date:   Thu, 17 Sep 2020 09:14:51 +0200
+From:   Krzysztof Kozlowski <krzk@kernel.org>
+To:     Linus Walleij <linus.walleij@linaro.org>,
+        Bartosz Golaszewski <bgolaszewski@baylibre.com>,
+        Rob Herring <robh+dt@kernel.org>, Ray Jui <rjui@broadcom.com>,
+        Scott Branden <sbranden@broadcom.com>,
+        bcm-kernel-feedback-list@broadcom.com,
+        Shawn Guo <shawnguo@kernel.org>,
+        Sascha Hauer <s.hauer@pengutronix.de>,
+        Pengutronix Kernel Team <kernel@pengutronix.de>,
         Fabio Estevam <festevam@gmail.com>,
-        Shengjiu Wang <shengjiu.wang@gmail.com>,
-        Philipp Zabel <p.zabel@pengutronix.de>,
-        Matthias Schiffer <matthias.schiffer@ew.tq-group.com>,
-        Cosmin-Gabriel Samoila <cosmin.samoila@nxp.com>,
-        Viorel Suman <viorel.suman@nxp.com>,
-        alsa-devel@alsa-project.org, devicetree@vger.kernel.org,
-        linux-kernel@vger.kernel.org, linuxppc-dev@lists.ozlabs.org,
         NXP Linux Team <linux-imx@nxp.com>,
-        Viorel Suman <viorel.suman@gmail.com>
-Subject: Re: [PATCH 1/2] ASoC: fsl_xcvr: Add XCVR ASoC CPU DAI driver
-Message-ID: <20200917071431.GA17970@Asurada-Nvidia>
-References: <1600247876-8013-1-git-send-email-viorel.suman@oss.nxp.com>
- <1600247876-8013-2-git-send-email-viorel.suman@oss.nxp.com>
+        Manivannan Sadhasivam <manivannan.sadhasivam@linaro.org>,
+        Andy Gross <agross@kernel.org>,
+        Bjorn Andersson <bjorn.andersson@linaro.org>,
+        Palmer Dabbelt <palmer@dabbelt.com>,
+        Paul Walmsley <paul.walmsley@sifive.com>,
+        Masahiro Yamada <yamada.masahiro@socionext.com>,
+        Chris Packham <chris.packham@alliedtelesis.co.nz>,
+        Anson Huang <Anson.Huang@nxp.com>,
+        Sungbo Eo <mans0n@gorani.run>, Stefan Agner <stefan@agner.ch>,
+        Srinivas Kandagatla <srinivas.kandagatla@linaro.org>,
+        Magnus Damm <magnus.damm@gmail.com>,
+        Geert Uytterhoeven <geert+renesas@glider.be>,
+        Yash Shah <yash.shah@sifive.com>,
+        Paul Kocialkowski <paul.kocialkowski@bootlin.com>,
+        linux-gpio@vger.kernel.org, devicetree@vger.kernel.org,
+        linux-arm-kernel@lists.infradead.org, linux-kernel@vger.kernel.org,
+        linux-unisoc@lists.infradead.org, linux-arm-msm@vger.kernel.org,
+        linux-riscv@lists.infradead.org
+Subject: Re: [PATCH 2/8] dt-bindings: gpio: include common schema in GPIO
+ controllers
+Message-ID: <20200917071451.GA30367@kozik-lap>
+References: <20200916162250.16098-1-krzk@kernel.org>
+ <20200916162250.16098-3-krzk@kernel.org>
 MIME-Version: 1.0
-Content-Type: text/plain; charset=us-ascii
+Content-Type: text/plain; charset=utf-8
 Content-Disposition: inline
-In-Reply-To: <1600247876-8013-2-git-send-email-viorel.suman@oss.nxp.com>
+In-Reply-To: <20200916162250.16098-3-krzk@kernel.org>
 User-Agent: Mutt/1.9.4 (2018-02-28)
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-Hi Viorel,
-
-It looks pretty clean to me, though some small comments inline.
-
-On Wed, Sep 16, 2020 at 12:17:55PM +0300, Viorel Suman (OSS) wrote:
-> From: Viorel Suman <viorel.suman@nxp.com>
+On Wed, Sep 16, 2020 at 06:22:44PM +0200, Krzysztof Kozlowski wrote:
+> Include the common GPIO schema in GPIO controllers to be sure all common
+> properties are properly validated.
 > 
-> XCVR (Audio Transceiver) is a on-chip functional module found
-> on i.MX8MP. It support HDMI2.1 eARC, HDMI1.4 ARC and SPDIF.
+> Signed-off-by: Krzysztof Kozlowski <krzk@kernel.org>
+> ---
+>  .../devicetree/bindings/gpio/brcm,xgs-iproc-gpio.yaml          | 3 +++
+>  Documentation/devicetree/bindings/gpio/fsl-imx-gpio.yaml       | 3 +++
+>  Documentation/devicetree/bindings/gpio/gpio-mxs.yaml           | 3 +++
+>  Documentation/devicetree/bindings/gpio/gpio-pca9570.yaml       | 3 +++
+>  Documentation/devicetree/bindings/gpio/gpio-rda.yaml           | 3 +++
+>  Documentation/devicetree/bindings/gpio/gpio-vf610.yaml         | 3 +++
+>  Documentation/devicetree/bindings/gpio/mrvl-gpio.yaml          | 1 +
+>  Documentation/devicetree/bindings/gpio/qcom,wcd934x-gpio.yaml  | 3 +++
+>  Documentation/devicetree/bindings/gpio/renesas,em-gio.yaml     | 3 +++
+>  Documentation/devicetree/bindings/gpio/renesas,rcar-gpio.yaml  | 3 +++
+>  Documentation/devicetree/bindings/gpio/sifive,gpio.yaml        | 3 +++
+>  .../devicetree/bindings/gpio/socionext,uniphier-gpio.yaml      | 3 +++
+>  Documentation/devicetree/bindings/gpio/xylon,logicvc-gpio.yaml | 3 +++
+>  13 files changed, 37 insertions(+)
 > 
-> Signed-off-by: Viorel Suman <viorel.suman@nxp.com>
-
-> +static const u32 fsl_xcvr_earc_channels[] = { 1, 2, 8, 16, 32, }; /* one bit 6, 12 ? */
-
-What's the meaning of the comments?
-
-> +static const int fsl_xcvr_phy_arc_cfg[] = {
-> +	FSL_XCVR_PHY_CTRL_ARC_MODE_SE_EN, FSL_XCVR_PHY_CTRL_ARC_MODE_CM_EN,
-> +};
-
-Nit: better be u32 vs. int?
-
-> +/** phy: true => phy, false => pll */
-> +static int fsl_xcvr_ai_write(struct fsl_xcvr *xcvr, u8 reg, u32 data, bool phy)
-> +{
-> +	u32 val, idx, tidx;
+> diff --git a/Documentation/devicetree/bindings/gpio/brcm,xgs-iproc-gpio.yaml b/Documentation/devicetree/bindings/gpio/brcm,xgs-iproc-gpio.yaml
+> index c213cb9ddb9f..1ac69b9c03f9 100644
+> --- a/Documentation/devicetree/bindings/gpio/brcm,xgs-iproc-gpio.yaml
+> +++ b/Documentation/devicetree/bindings/gpio/brcm,xgs-iproc-gpio.yaml
+> @@ -13,6 +13,9 @@ description: |
+>    This controller is the Chip Common A GPIO present on a number of Broadcom
+>    switch ASICs with integrated SoCs.
+>  
+> +allOf:
+> +  - $ref: gpio-common.yaml#
 > +
-> +	idx  = BIT(phy ? 26 : 24);
-> +	tidx = BIT(phy ? 27 : 25);
+>  properties:
+>    compatible:
+>      const: brcm,iproc-gpio-cca
+> diff --git a/Documentation/devicetree/bindings/gpio/fsl-imx-gpio.yaml b/Documentation/devicetree/bindings/gpio/fsl-imx-gpio.yaml
+> index de0b9b5f6a70..737756e081fb 100644
+> --- a/Documentation/devicetree/bindings/gpio/fsl-imx-gpio.yaml
+> +++ b/Documentation/devicetree/bindings/gpio/fsl-imx-gpio.yaml
+> @@ -9,6 +9,9 @@ title: Freescale i.MX/MXC GPIO controller
+>  maintainers:
+>    - Anson Huang <Anson.Huang@nxp.com>
+>  
+> +allOf:
+> +  - $ref: gpio-common.yaml#
 > +
-> +	regmap_write(xcvr->regmap, FSL_XCVR_PHY_AI_CTRL_CLR, 0xFF);
-> +	regmap_write(xcvr->regmap, FSL_XCVR_PHY_AI_CTRL_SET, reg);
-> +	regmap_write(xcvr->regmap, FSL_XCVR_PHY_AI_WDATA, data);
-> +	regmap_write(xcvr->regmap, FSL_XCVR_PHY_AI_CTRL_TOG, idx);
+>  properties:
+>    compatible:
+>      oneOf:
+> diff --git a/Documentation/devicetree/bindings/gpio/gpio-mxs.yaml b/Documentation/devicetree/bindings/gpio/gpio-mxs.yaml
+> index dfa1133f8c5e..7fc04ab35044 100644
+> --- a/Documentation/devicetree/bindings/gpio/gpio-mxs.yaml
+> +++ b/Documentation/devicetree/bindings/gpio/gpio-mxs.yaml
+> @@ -17,6 +17,9 @@ description: |
+>    GPIO ports share the same IO space with PIN controller, the GPIO node
+>    will be represented as sub-nodes of MXS pinctrl node.
+>  
+> +allOf:
+> +  - $ref: gpio-common.yaml#
 > +
-> +	do {
-> +		regmap_read(xcvr->regmap, FSL_XCVR_PHY_AI_CTRL, &val);
-> +	} while ((val & idx) != ((val & tidx) >> 1));
 
-Might regmap_read_poll_timeout() be better? And it seems to poll
-intentionally with no sleep nor timeout -- would be nice to have
-a line of comments to explain why.
+I found something to fix - this one should go under patternProperties,
+not here.
 
-> > +static int fsl_xcvr_runtime_resume(struct device *dev)
-> +{
-> +	struct fsl_xcvr *xcvr = dev_get_drvdata(dev);
-> +	int ret;
-> +
-> +	ret = clk_prepare_enable(xcvr->ipg_clk);
-> +	if (ret) {
-> +		dev_err(dev, "failed to start IPG clock.\n");
-> +		return ret;
-> +	}
-> +
-> +	ret = clk_prepare_enable(xcvr->pll_ipg_clk);
-> +	if (ret) {
-> +		dev_err(dev, "failed to start PLL IPG clock.\n");
-
-Should it disable ipg_clk?
-
-> +		return ret;
-> +	}
-> +
-> +	ret = clk_prepare_enable(xcvr->phy_clk);
-> +	if (ret) {
-> +		dev_err(dev, "failed to start PHY clock: %d\n", ret);
-> +		clk_disable_unprepare(xcvr->ipg_clk);
-
-Should it disable pll_ipg_clk?
-
-> +		return ret;
-> +	}
-> +
-> +	ret = clk_prepare_enable(xcvr->spba_clk);
-> +	if (ret) {
-> +		dev_err(dev, "failed to start SPBA clock.\n");
-> +		clk_disable_unprepare(xcvr->phy_clk);
-> +		clk_disable_unprepare(xcvr->ipg_clk);
-
-Ditto
-
-> +		return ret;
-> +	}
-> +
-> +	regcache_cache_only(xcvr->regmap, false);
-> +	regcache_mark_dirty(xcvr->regmap);
-> +	ret = regcache_sync(xcvr->regmap);
-> +
-> +	if (ret) {
-> +		dev_err(dev, "failed to sync regcache.\n");
-> +		return ret;
-
-What about those clocks? Probably better to have some error-out
-labels at the end of the function?
-
-> +	}
-> +
-> +	reset_control_assert(xcvr->reset);
-> +	reset_control_deassert(xcvr->reset);
-> +
-> +	ret = fsl_xcvr_load_firmware(xcvr);
-> +	if (ret) {
-> +		dev_err(dev, "failed to load firmware.\n");
-> +		return ret;
-
-Ditto
-
-> +	}
-> +
-> +	/* Release M0+ reset */
-> +	ret = regmap_update_bits(xcvr->regmap, FSL_XCVR_EXT_CTRL,
-> +				 FSL_XCVR_EXT_CTRL_CORE_RESET, 0);
-> +	if (ret < 0) {
-> +		dev_err(dev, "M0+ core release failed: %d\n", ret);
-> +		return ret;
-
-Ditto
-
-> +	}
-> +	mdelay(50);
-
-Any reason to use mdelay over msleep for a 50ms wait? May add a
-line of comments if mdelay is a must?
+Best regards,
+Krzysztof
