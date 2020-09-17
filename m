@@ -2,95 +2,100 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from vger.kernel.org (vger.kernel.org [23.128.96.18])
-	by mail.lfdr.de (Postfix) with ESMTP id F085426DDFF
-	for <lists+devicetree@lfdr.de>; Thu, 17 Sep 2020 16:20:59 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTP id 2326626DE6C
+	for <lists+devicetree@lfdr.de>; Thu, 17 Sep 2020 16:39:43 +0200 (CEST)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S1727461AbgIQOU4 (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Thu, 17 Sep 2020 10:20:56 -0400
-Received: from lindbergh.monkeyblade.net ([23.128.96.19]:57514 "EHLO
-        lindbergh.monkeyblade.net" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S1727468AbgIQOUh (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Thu, 17 Sep 2020 10:20:37 -0400
-Received: from mail-qv1-xf41.google.com (mail-qv1-xf41.google.com [IPv6:2607:f8b0:4864:20::f41])
-        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id B510FC061A29
-        for <devicetree@vger.kernel.org>; Thu, 17 Sep 2020 07:20:22 -0700 (PDT)
-Received: by mail-qv1-xf41.google.com with SMTP id p15so1040596qvk.5
-        for <devicetree@vger.kernel.org>; Thu, 17 Sep 2020 07:20:22 -0700 (PDT)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=linaro.org; s=google;
-        h=mime-version:references:in-reply-to:from:date:message-id:subject:to
-         :cc;
-        bh=M7jZEG2Sruw3Jx4XQRAj0GDBXLVaPTMEGlVWTk6ugBI=;
-        b=Zq1phMQAKGYqJWuXNL0yZLtOuPC6XEm8SZDz33cEnAJUyc/4q021fuLhFs53dtzuE2
-         lX3OQeSDXqzF0+nGbWzTsZZzEc69i4icLE7jvV9WCYbTJvRwWeaPqDvFU6z2oN/0z5us
-         i77gKNaXxZ4k4oehzh7O6nFoCLjtYCovgSZCqpX7tnBLfOWabI9OhbNiq1HZkFqALWAE
-         Rvniy59LTFJBqxd4Xu5DtsM1TJT/0HAofrXp64PtT3FwCfbviGH3uw66qBczPiRdIex5
-         ba/xkV5IOt6231SSZLzoRX8beU/dsIR4pNMcW7qLM1Y9meXOc0O7rg4VneOYg/cMsKJw
-         pFJw==
-X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=1e100.net; s=20161025;
-        h=x-gm-message-state:mime-version:references:in-reply-to:from:date
-         :message-id:subject:to:cc;
-        bh=M7jZEG2Sruw3Jx4XQRAj0GDBXLVaPTMEGlVWTk6ugBI=;
-        b=hOPeTKUYrB0dM+h3BqeugZYunSp7KGXYtd/cnFCc8Dlfp22G5Vu4MFglc/6AZm3Cyc
-         qtSk8W8uxcl+gByUYtOqYjv7fyPbM1H7C2eePr9JOJhkPyKtps4KUtzfvtc0nKov08ez
-         oQF7V9YnwG3vOM48HGqZG7vxSrkmVcifPKU43P85U4SQULgxjkaaeMdeluDEdp+9WrI8
-         MYMEp/ckvEZZXuo1pJ/uGXb126EEhJm05QOSvbdSU7H87T793M8eIN6wbGfDtjhgR4yL
-         hp+bapIwkjZLoWH2bGs6DVR7wB4OfOBDklnTi6h+eh4zcgXvK4pAmKjIlBobTyHkRPCP
-         28OQ==
-X-Gm-Message-State: AOAM531Fz1g8abjqsuZBBU9SubY99Fn4aFQI7+6ip+Sv+0eqixTUgWUf
-        qRE/qz2733DwUGiYhKWe1azdfQDnecuuvYreMrR2LQ==
-X-Google-Smtp-Source: ABdhPJwMCn4z6UNz8c+Wp5fWTbuMOdJQrYNPE8efSjlFDxPEi/5DlPH02wBB60WIc/pNmJqU0u1f/FQRQ+txF6naRMA=
-X-Received: by 2002:a0c:e348:: with SMTP id a8mr12621270qvm.49.1600352419745;
- Thu, 17 Sep 2020 07:20:19 -0700 (PDT)
-MIME-Version: 1.0
-References: <1600274110-30384-1-git-send-email-grzegorz.jaszczyk@linaro.org> <9797030dd2c11b24ae0f7ef760f12ffa@kernel.org>
-In-Reply-To: <9797030dd2c11b24ae0f7ef760f12ffa@kernel.org>
-From:   Grzegorz Jaszczyk <grzegorz.jaszczyk@linaro.org>
-Date:   Thu, 17 Sep 2020 16:20:08 +0200
-Message-ID: <CAMxfBF6P7qz0WQs8j18j93Jjw5H3VfmP+1KOwHKw_giCAFKg1A@mail.gmail.com>
-Subject: Re: [PATCH v7 0/5] Add TI PRUSS Local Interrupt Controller IRQChip driver
-To:     Marc Zyngier <maz@kernel.org>
-Cc:     tglx@linutronix.de, jason@lakedaemon.net,
-        "Anna, Suman" <s-anna@ti.com>, Rob Herring <robh+dt@kernel.org>,
-        Lee Jones <lee.jones@linaro.org>, devicetree@vger.kernel.org,
-        linux-kernel@vger.kernel.org, linux-omap@vger.kernel.org,
-        linux-arm-kernel@lists.infradead.org,
-        David Lechner <david@lechnology.com>,
-        "Bajjuri, Praneeth" <praneeth@ti.com>
-Content-Type: text/plain; charset="UTF-8"
+        id S1727624AbgIQOjV (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Thu, 17 Sep 2020 10:39:21 -0400
+Received: from m43-7.mailgun.net ([69.72.43.7]:27004 "EHLO m43-7.mailgun.net"
+        rhost-flags-OK-OK-OK-OK) by vger.kernel.org with ESMTP
+        id S1727450AbgIQOjD (ORCPT <rfc822;devicetree@vger.kernel.org>);
+        Thu, 17 Sep 2020 10:39:03 -0400
+DKIM-Signature: a=rsa-sha256; v=1; c=relaxed/relaxed; d=mg.codeaurora.org; q=dns/txt;
+ s=smtp; t=1600353485; h=References: In-Reply-To: Message-Id: Date:
+ Subject: Cc: To: From: Sender;
+ bh=KZxsDFejn7ORCqaarzqmfK220hxxkkdgOel4U335+iI=; b=JNOVl99Z487OodTfmJNlIgtC5oRePuZF7Z0KvI+/5lmPBj9tur6M1GLu5NGAbXRM4d6MPhdN
+ OFM5vxUvKUCrUB/eum53T+LFkdpqOUrHgPq8MHLwSW/xqw5MGDlLhf73br03mEmaORPHR0if
+ pvjcpOYPBZ3ReasfI+VbHU9xRyI=
+X-Mailgun-Sending-Ip: 69.72.43.7
+X-Mailgun-Sid: WyI1YmJiNiIsICJkZXZpY2V0cmVlQHZnZXIua2VybmVsLm9yZyIsICJiZTllNGEiXQ==
+Received: from smtp.codeaurora.org
+ (ec2-35-166-182-171.us-west-2.compute.amazonaws.com [35.166.182.171]) by
+ smtp-out-n02.prod.us-east-1.postgun.com with SMTP id
+ 5f6366abf1e3eb89c7028307 (version=TLS1.2,
+ cipher=TLS_ECDHE_RSA_WITH_AES_128_GCM_SHA256); Thu, 17 Sep 2020 13:37:47
+ GMT
+Received: by smtp.codeaurora.org (Postfix, from userid 1001)
+        id D5BE6C433C8; Thu, 17 Sep 2020 13:37:46 +0000 (UTC)
+X-Spam-Checker-Version: SpamAssassin 3.4.0 (2014-02-07) on
+        aws-us-west-2-caf-mail-1.web.codeaurora.org
+X-Spam-Level: 
+X-Spam-Status: No, score=-2.9 required=2.0 tests=ALL_TRUSTED,BAYES_00,SPF_FAIL,
+        URIBL_BLOCKED autolearn=no autolearn_force=no version=3.4.0
+Received: from hyd-lnxbld210.qualcomm.com (unknown [202.46.22.19])
+        (using TLSv1.2 with cipher ECDHE-RSA-AES128-SHA256 (128/128 bits))
+        (No client certificate requested)
+        (Authenticated sender: srivasam)
+        by smtp.codeaurora.org (Postfix) with ESMTPSA id 7F51AC433CA;
+        Thu, 17 Sep 2020 13:37:41 +0000 (UTC)
+DMARC-Filter: OpenDMARC Filter v1.3.2 smtp.codeaurora.org 7F51AC433CA
+Authentication-Results: aws-us-west-2-caf-mail-1.web.codeaurora.org; dmarc=none (p=none dis=none) header.from=codeaurora.org
+Authentication-Results: aws-us-west-2-caf-mail-1.web.codeaurora.org; spf=fail smtp.mailfrom=srivasam@codeaurora.org
+From:   Srinivasa Rao Mandadapu <srivasam@codeaurora.org>
+To:     agross@kernel.org, bjorn.andersson@linaro.org, lgirdwood@gmail.com,
+        broonie@kernel.org, robh+dt@kernel.org, plai@codeaurora.org,
+        bgoswami@codeaurora.org, perex@perex.cz, tiwai@suse.com,
+        srinivas.kandagatla@linaro.org, rohitkr@codeaurora.org,
+        linux-arm-msm@vger.kernel.org, alsa-devel@alsa-project.org,
+        devicetree@vger.kernel.org, linux-kernel@vger.kernel.org
+Cc:     V Sujith Kumar Reddy <vsujithk@codeaurora.org>,
+        Srinivasa Rao <srivasam@codeaurora.org>
+Subject: [PATCH v5 3/5] Asoc:qcom:lpass-cpu:Update dts property read API
+Date:   Thu, 17 Sep 2020 19:07:06 +0530
+Message-Id: <1600349828-10727-4-git-send-email-srivasam@codeaurora.org>
+X-Mailer: git-send-email 2.7.4
+In-Reply-To: <1600349828-10727-1-git-send-email-srivasam@codeaurora.org>
+References: <1600349828-10727-1-git-send-email-srivasam@codeaurora.org>
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-On Thu, 17 Sep 2020 at 12:45, Marc Zyngier <maz@kernel.org> wrote:
->
-> On 2020-09-16 17:35, Grzegorz Jaszczyk wrote:
-> > Hi All,
-> >
-> > The following is a v7 version of the series [1-6] that adds an IRQChip
-> > driver for the local interrupt controller present within a Programmable
-> > Real-Time Unit and Industrial Communication Subsystem (PRU-ICSS)
-> > present on a
-> > number of TI SoCs including OMAP architecture based AM335x, AM437x,
-> > AM57xx SoCs,
-> > Keystone 2 architecture based 66AK2G SoCs, Davinci architecture based
-> > OMAP-L138/DA850 SoCs and the latest K3 architecture based AM65x and
-> > J721E SoCs.
-> > Please see the v1 cover-letter [1] for details about the features of
-> > this
-> > interrupt controller.  More details can be found in any of the
-> > supported SoC
-> > TRMs.  Eg: Chapter 30.1.6 of AM5728 TRM [7]
-> >
-> > Please see the individual patches for exact changes in each patch,
-> > following are
-> > the main changes from v5:
-> >  - Add Co-developed-by tags.
-> >  - Change the irq type to IRQ_TYPE_LEVEL_HIGH in patch #2.
->
-> Applied to irq/irqchip-next.
->
+From: V Sujith Kumar Reddy <vsujithk@codeaurora.org>
 
-Thank you!
-Grzegorz
+Signed-off-by: Srinivasa Rao <srivasam@codeaurora.org>
+Signed-off-by: V Sujith Kumar Reddy <vsujithk@codeaurora.org>
+---
+ sound/soc/qcom/lpass-cpu.c      | 2 +-
+ sound/soc/qcom/lpass-platform.c | 2 +-
+ 2 files changed, 2 insertions(+), 2 deletions(-)
+
+diff --git a/sound/soc/qcom/lpass-cpu.c b/sound/soc/qcom/lpass-cpu.c
+index 1ee6d8b..5d84f63 100644
+--- a/sound/soc/qcom/lpass-cpu.c
++++ b/sound/soc/qcom/lpass-cpu.c
+@@ -575,7 +575,7 @@ int asoc_qcom_lpass_cpu_platform_probe(struct platform_device *pdev)
+ 
+ 	of_lpass_cpu_parse_dai_data(dev, drvdata);
+ 
+-	res = platform_get_resource(pdev, IORESOURCE_MEM, 0);
++	res = platform_get_resource_byname(pdev, IORESOURCE_MEM, "lpass-lpaif");
+ 
+ 	drvdata->lpaif = devm_ioremap_resource(dev, res);
+ 	if (IS_ERR((void const __force *)drvdata->lpaif)) {
+diff --git a/sound/soc/qcom/lpass-platform.c b/sound/soc/qcom/lpass-platform.c
+index df692ed..35aead1 100644
+--- a/sound/soc/qcom/lpass-platform.c
++++ b/sound/soc/qcom/lpass-platform.c
+@@ -638,7 +638,7 @@ int asoc_qcom_lpass_platform_register(struct platform_device *pdev)
+ 	struct lpass_variant *v = drvdata->variant;
+ 	int ret;
+ 
+-	drvdata->lpaif_irq = platform_get_irq(pdev, 0);
++	drvdata->lpaif_irq = platform_get_irq_byname(pdev, "lpass-irq-lpaif");
+ 	if (drvdata->lpaif_irq < 0)
+ 		return -ENODEV;
+ 
+-- 
+Qualcomm India Private Limited, on behalf of Qualcomm Innovation Center, Inc.,
+is a member of Code Aurora Forum, a Linux Foundation Collaborative Project.
+
