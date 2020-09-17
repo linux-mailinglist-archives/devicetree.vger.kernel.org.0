@@ -2,90 +2,246 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from vger.kernel.org (vger.kernel.org [23.128.96.18])
-	by mail.lfdr.de (Postfix) with ESMTP id 9865126E32F
-	for <lists+devicetree@lfdr.de>; Thu, 17 Sep 2020 20:05:48 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTP id 5938D26E342
+	for <lists+devicetree@lfdr.de>; Thu, 17 Sep 2020 20:09:21 +0200 (CEST)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S1726383AbgIQSFp (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Thu, 17 Sep 2020 14:05:45 -0400
-Received: from mail29.static.mailgun.info ([104.130.122.29]:37760 "EHLO
+        id S1726342AbgIQSHp (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Thu, 17 Sep 2020 14:07:45 -0400
+Received: from mail29.static.mailgun.info ([104.130.122.29]:59066 "EHLO
         mail29.static.mailgun.info" rhost-flags-OK-OK-OK-OK)
-        by vger.kernel.org with ESMTP id S1726544AbgIQRj1 (ORCPT
+        by vger.kernel.org with ESMTP id S1726438AbgIQRby (ORCPT
         <rfc822;devicetree@vger.kernel.org>);
-        Thu, 17 Sep 2020 13:39:27 -0400
+        Thu, 17 Sep 2020 13:31:54 -0400
 DKIM-Signature: a=rsa-sha256; v=1; c=relaxed/relaxed; d=mg.codeaurora.org; q=dns/txt;
- s=smtp; t=1600364366; h=References: In-Reply-To: Message-Id: Date:
- Subject: Cc: To: From: Sender;
- bh=th7Iul2/9lwsUjSVNHNDqHf6F3apGE82wygTBJiOoLE=; b=srn+WQyO3GflpfSnaBtffZI/qbK7EmI5+fOKflF0yrQgYNUq5bIjooSAoZWs6+zZFYgtKSk7
- cD69VIMY8CQa+E0g10WSqeuqybmK6lPMR8+M3WujcjcZBcROAIb8qpWsabXQhHhsDT6MUbSy
- 4dbZqvVBv7m/+ZPIa/iBE6Kw+X4=
+ s=smtp; t=1600363896; h=Content-Transfer-Encoding: Content-Type:
+ In-Reply-To: MIME-Version: Date: Message-ID: From: References: Cc: To:
+ Subject: Sender; bh=OsGJzh7AbAIFeAPQukAez6thOj5mT0cSe2xT4U55hI0=; b=jTjxzIbDL6p4W+EkA6lAeWda8b9IWogbLjhPU1PCr1nuL9QWddv9vSZuZipDtp+V+9uy54tn
+ osH86yLCAieC424TstjmndsfHKZQ+yHTWUnmViE0qU1vrLzqcaXaeSCl1BbirGQ7ydxxeb5i
+ 5DKadeUOWVpxee31PxjvyvoLepQ=
 X-Mailgun-Sending-Ip: 104.130.122.29
 X-Mailgun-Sid: WyI1YmJiNiIsICJkZXZpY2V0cmVlQHZnZXIua2VybmVsLm9yZyIsICJiZTllNGEiXQ==
 Received: from smtp.codeaurora.org
  (ec2-35-166-182-171.us-west-2.compute.amazonaws.com [35.166.182.171]) by
- smtp-out-n02.prod.us-west-2.postgun.com with SMTP id
- 5f6366a091755cb92b3965cb (version=TLS1.2,
- cipher=TLS_ECDHE_RSA_WITH_AES_128_GCM_SHA256); Thu, 17 Sep 2020 13:37:36
+ smtp-out-n02.prod.us-east-1.postgun.com with SMTP id
+ 5f639d5e6fe64d5a7f3747fe (version=TLS1.2,
+ cipher=TLS_ECDHE_RSA_WITH_AES_128_GCM_SHA256); Thu, 17 Sep 2020 17:31:10
  GMT
 Received: by smtp.codeaurora.org (Postfix, from userid 1001)
-        id 4022EC43385; Thu, 17 Sep 2020 13:37:36 +0000 (UTC)
+        id 5A7A4C433FE; Thu, 17 Sep 2020 17:31:09 +0000 (UTC)
 X-Spam-Checker-Version: SpamAssassin 3.4.0 (2014-02-07) on
         aws-us-west-2-caf-mail-1.web.codeaurora.org
 X-Spam-Level: 
-X-Spam-Status: No, score=-2.9 required=2.0 tests=ALL_TRUSTED,BAYES_00,SPF_FAIL,
-        URIBL_BLOCKED autolearn=no autolearn_force=no version=3.4.0
-Received: from hyd-lnxbld210.qualcomm.com (unknown [202.46.22.19])
-        (using TLSv1.2 with cipher ECDHE-RSA-AES128-SHA256 (128/128 bits))
+X-Spam-Status: No, score=-2.9 required=2.0 tests=ALL_TRUSTED,BAYES_00,
+        NICE_REPLY_A,SPF_FAIL,URIBL_BLOCKED autolearn=no autolearn_force=no
+        version=3.4.0
+Received: from [10.110.125.142] (i-global254.qualcomm.com [199.106.103.254])
+        (using TLSv1.2 with cipher ECDHE-RSA-AES128-GCM-SHA256 (128/128 bits))
         (No client certificate requested)
-        (Authenticated sender: srivasam)
-        by smtp.codeaurora.org (Postfix) with ESMTPSA id B2852C43382;
-        Thu, 17 Sep 2020 13:37:30 +0000 (UTC)
-DMARC-Filter: OpenDMARC Filter v1.3.2 smtp.codeaurora.org B2852C43382
+        (Authenticated sender: wcheng)
+        by smtp.codeaurora.org (Postfix) with ESMTPSA id 4F3FBC433C8;
+        Thu, 17 Sep 2020 17:31:07 +0000 (UTC)
+DMARC-Filter: OpenDMARC Filter v1.3.2 smtp.codeaurora.org 4F3FBC433C8
 Authentication-Results: aws-us-west-2-caf-mail-1.web.codeaurora.org; dmarc=none (p=none dis=none) header.from=codeaurora.org
-Authentication-Results: aws-us-west-2-caf-mail-1.web.codeaurora.org; spf=fail smtp.mailfrom=srivasam@codeaurora.org
-From:   Srinivasa Rao Mandadapu <srivasam@codeaurora.org>
-To:     agross@kernel.org, bjorn.andersson@linaro.org, lgirdwood@gmail.com,
-        broonie@kernel.org, robh+dt@kernel.org, plai@codeaurora.org,
-        bgoswami@codeaurora.org, perex@perex.cz, tiwai@suse.com,
-        srinivas.kandagatla@linaro.org, rohitkr@codeaurora.org,
-        linux-arm-msm@vger.kernel.org, alsa-devel@alsa-project.org,
-        devicetree@vger.kernel.org, linux-kernel@vger.kernel.org
-Cc:     V Sujith Kumar Reddy <vsujithk@codeaurora.org>,
-        Srinivasa Rao <srivasam@codeaurora.org>
-Subject: [PATCH v5 1/5] ASoC: Add sc7180-lpass binding header hdmi define
-Date:   Thu, 17 Sep 2020 19:07:04 +0530
-Message-Id: <1600349828-10727-2-git-send-email-srivasam@codeaurora.org>
-X-Mailer: git-send-email 2.7.4
-In-Reply-To: <1600349828-10727-1-git-send-email-srivasam@codeaurora.org>
-References: <1600349828-10727-1-git-send-email-srivasam@codeaurora.org>
+Authentication-Results: aws-us-west-2-caf-mail-1.web.codeaurora.org; spf=fail smtp.mailfrom=wcheng@codeaurora.org
+Subject: Re: [PATCH v3 1/5] dt-bindings: usb: convert ti,hd3ss3220 bindings to
+ json-schema
+To:     Biju Das <biju.das.jz@bp.renesas.com>,
+        Rob Herring <robh+dt@kernel.org>,
+        Greg Kroah-Hartman <gregkh@linuxfoundation.org>
+Cc:     Lad Prabhakar <prabhakar.mahadev-lad.rj@bp.renesas.com>,
+        Yoshihiro Shimoda <yoshihiro.shimoda.uh@renesas.com>,
+        Heikki Krogerus <heikki.krogerus@linux.intel.com>,
+        linux-usb@vger.kernel.org, devicetree@vger.kernel.org,
+        Geert Uytterhoeven <geert+renesas@glider.be>,
+        Chris Paterson <Chris.Paterson2@renesas.com>,
+        Biju Das <biju.das@bp.renesas.com>,
+        linux-renesas-soc@vger.kernel.org
+References: <20200824141053.5062-1-biju.das.jz@bp.renesas.com>
+ <20200824141053.5062-2-biju.das.jz@bp.renesas.com>
+From:   Wesley Cheng <wcheng@codeaurora.org>
+Message-ID: <da7b8ea3-8cc1-5590-2200-c495e6c733af@codeaurora.org>
+Date:   Thu, 17 Sep 2020 10:31:06 -0700
+User-Agent: Mozilla/5.0 (Windows NT 10.0; WOW64; rv:68.0) Gecko/20100101
+ Thunderbird/68.12.0
+MIME-Version: 1.0
+In-Reply-To: <20200824141053.5062-2-biju.das.jz@bp.renesas.com>
+Content-Type: text/plain; charset=utf-8
+Content-Language: en-US
+Content-Transfer-Encoding: 7bit
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-From: V Sujith Kumar Reddy <vsujithk@codeaurora.org>
 
-Add header defining hdmi dai-id for SC7180 lpass soc
-in dt bindings.
 
-Signed-off-by: Srinivasa Rao <srivasam@codeaurora.org>
-Signed-off-by: V Sujith Kumar Reddy <vsujithk@codeaurora.org>
-Acked-by: Rob Herring <robh@kernel.org>
----
- include/dt-bindings/sound/sc7180-lpass.h | 1 +
- 1 file changed, 1 insertion(+)
+On 8/24/2020 7:10 AM, Biju Das wrote:
+> From: Lad Prabhakar <prabhakar.mahadev-lad.rj@bp.renesas.com>
+> 
+> Convert ti,hd3ss3220.txt to YAML. Updated the binding documentation
+> as graph bindings of this device model Super Speed (SS) data bus to
+> the Super Speed (SS) capable connector.
+> 
+> Signed-off-by: Lad Prabhakar <prabhakar.mahadev-lad.rj@bp.renesas.com>
+> Signed-off-by: Biju Das <biju.das.jz@bp.renesas.com>
+> ---
+> v2->v3: Replaced Tabs with spaces in the example section.
+> v1->v2 : No change
+> Ref: https://patchwork.kernel.org/patch/11669423/
+> ---
+>  .../devicetree/bindings/usb/ti,hd3ss3220.txt  | 38 ---------
+>  .../devicetree/bindings/usb/ti,hd3ss3220.yaml | 81 +++++++++++++++++++
+>  2 files changed, 81 insertions(+), 38 deletions(-)
+>  delete mode 100644 Documentation/devicetree/bindings/usb/ti,hd3ss3220.txt
+>  create mode 100644 Documentation/devicetree/bindings/usb/ti,hd3ss3220.yaml
+> 
+> diff --git a/Documentation/devicetree/bindings/usb/ti,hd3ss3220.txt b/Documentation/devicetree/bindings/usb/ti,hd3ss3220.txt
+> deleted file mode 100644
+> index 2bd21b22ce95..000000000000
+> --- a/Documentation/devicetree/bindings/usb/ti,hd3ss3220.txt
+> +++ /dev/null
+> @@ -1,38 +0,0 @@
+> -TI HD3SS3220 TypeC DRP Port Controller.
+> -
+> -Required properties:
+> - - compatible: Must be "ti,hd3ss3220".
+> - - reg: I2C slave address, must be 0x47 or 0x67 based on ADDR pin.
+> - - interrupts: An interrupt specifier.
+> -
+> -Required sub-node:
+> - - connector: The "usb-c-connector" attached to the hd3ss3220 chip. The
+> -   bindings of the connector node are specified in:
+> -
+> -	Documentation/devicetree/bindings/connector/usb-connector.yaml
+> -
+> -Example:
+> -hd3ss3220@47 {
+> -	compatible = "ti,hd3ss3220";
+> -	reg = <0x47>;
+> -	interrupt-parent = <&gpio6>;
+> -	interrupts = <3 IRQ_TYPE_LEVEL_LOW>;
+> -
+> -	connector {
+> -		compatible = "usb-c-connector";
+> -		label = "USB-C";
+> -		data-role = "dual";
+> -
+> -		ports {
+> -			#address-cells = <1>;
+> -			#size-cells = <0>;
+> -
+> -			port@1 {
+> -				reg = <1>;
+> -				hd3ss3220_ep: endpoint {
+> -					remote-endpoint = <&usb3_role_switch>;
+> -				};
+> -			};
+> -		};
+> -	};
+> -};
+> diff --git a/Documentation/devicetree/bindings/usb/ti,hd3ss3220.yaml b/Documentation/devicetree/bindings/usb/ti,hd3ss3220.yaml
+> new file mode 100644
+> index 000000000000..750a099529c0
+> --- /dev/null
+> +++ b/Documentation/devicetree/bindings/usb/ti,hd3ss3220.yaml
+> @@ -0,0 +1,81 @@
+> +# SPDX-License-Identifier: (GPL-2.0 OR BSD-2-Clause)
+> +%YAML 1.2
+> +---
+> +$id: http://devicetree.org/schemas/usb/ti,hd3ss3220.yaml#
+> +$schema: http://devicetree.org/meta-schemas/core.yaml#
+> +
+> +title: TI HD3SS3220 TypeC DRP Port Controller
+> +
+> +maintainers:
+> +  - Biju Das <biju.das.jz@bp.renesas.com>
+> +
+> +description: |-
+> +  HD3SS3220 is a USB SuperSpeed (SS) 2:1 mux with DRP port controller. The device provides Channel
+> +  Configuration (CC) logic and 5V VCONN sourcing for ecosystems implementing USB Type-C. The
+> +  HD3SS3220 can be configured as a Downstream Facing Port (DFP), Upstream Facing Port (UFP) or a
+> +  Dual Role Port (DRP) making it ideal for any application.
+> +
+> +properties:
+> +  compatible:
+> +   const: ti,hd3ss3220
+> +
+> +  reg:
+> +    maxItems: 1
+> +
+> +  interrupts:
+> +    maxItems: 1
+> +
+> +  ports:
+> +    description: OF graph bindings (specified in bindings/graph.txt) that model
+> +      SS data bus to the SS capable connector.
+> +    type: object
+> +    properties:
+> +      port@0:
+> +        type: object
+> +        description: Super Speed (SS) capable connector.
+> +
+> +      port@1:
+> +        type: object
+> +        description: Super Speed (SS) data bus.
+> +
+> +    required:
+> +      - port@0
+> +      - port@1
+> +
+> +required:
+> +  - compatible
+> +  - reg
+> +  - interrupts
+> +
+> +additionalProperties: false
+> +
+> +examples:
+> +  - |
+> +    i2c0 {
+> +        #address-cells = <1>;
+> +        #size-cells = <0>;
+> +
+> +        hd3ss3220@47 {
+> +                compatible = "ti,hd3ss3220";
+> +                reg = <0x47>;
+> +                interrupt-parent = <&gpio6>;
+> +                interrupts = <3>;
+> +
+> +                ports {
+> +                        #address-cells = <1>;
+> +                        #size-cells = <0>;
+> +                        port@0 {
+> +                                reg = <0>;
+> +                                hd3ss3220_in_ep: endpoint {
+> +                                        remote-endpoint = <&ss_ep>;
+> +                                };
 
-diff --git a/include/dt-bindings/sound/sc7180-lpass.h b/include/dt-bindings/sound/sc7180-lpass.h
-index 7d988f6..56ecaaf 100644
---- a/include/dt-bindings/sound/sc7180-lpass.h
-+++ b/include/dt-bindings/sound/sc7180-lpass.h
-@@ -4,6 +4,7 @@
- 
- #define MI2S_PRIMARY	0
- #define MI2S_SECONDARY	1
-+#define LPASS_DP_RX	2
- 
- #define LPASS_MCLK0	0
- 
+Hi Biju,
+
+I'm involved in a separate thread[1] and I just wanted to get your
+inputs on how you understood the port and endpoint assignments for the
+USB type C connectors in different designs.
+
+Since the hd3ss3220 does the type C lane detect and has an integrated
+lane select mux, what is the ss_ep being used for?
+
+Thanks
+Wesley
+
+[1]
+https://lore.kernel.org/linux-usb/0101017458361303-16620b87-c433-4c00-a061-b1e688363539-000000@us-west-2.amazonses.com/
+> +                        };
+> +                        port@1 {
+> +                                reg = <1>;
+> +                                hd3ss3220_out_ep: endpoint {
+> +                                        remote-endpoint = <&usb3_role_switch>;
+> +                                };
+> +                        };
+> +                };
+> +        };
+> +    };
+> 
+
 -- 
-Qualcomm India Private Limited, on behalf of Qualcomm Innovation Center, Inc.,
-is a member of Code Aurora Forum, a Linux Foundation Collaborative Project.
-
+The Qualcomm Innovation Center, Inc. is a member of the Code Aurora Forum,
+a Linux Foundation Collaborative Project
