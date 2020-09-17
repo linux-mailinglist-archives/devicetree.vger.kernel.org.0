@@ -2,123 +2,123 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from vger.kernel.org (vger.kernel.org [23.128.96.18])
-	by mail.lfdr.de (Postfix) with ESMTP id 13BEC26E2CB
-	for <lists+devicetree@lfdr.de>; Thu, 17 Sep 2020 19:47:21 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTP id 8486326E282
+	for <lists+devicetree@lfdr.de>; Thu, 17 Sep 2020 19:33:48 +0200 (CEST)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S1726444AbgIQRqj (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Thu, 17 Sep 2020 13:46:39 -0400
-Received: from fllv0015.ext.ti.com ([198.47.19.141]:35538 "EHLO
-        fllv0015.ext.ti.com" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S1726603AbgIQRqZ (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Thu, 17 Sep 2020 13:46:25 -0400
-Received: from lelv0265.itg.ti.com ([10.180.67.224])
-        by fllv0015.ext.ti.com (8.15.2/8.15.2) with ESMTP id 08HEv5XR076594;
-        Thu, 17 Sep 2020 09:57:05 -0500
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=ti.com;
-        s=ti-com-17Q1; t=1600354625;
-        bh=lwel9jR3MUubR3w9CBXWSKGdcMrbCrgrM9DNikesG4E=;
-        h=Subject:To:CC:References:From:Date:In-Reply-To;
-        b=o98P/fX9YDR/sDkCSJI6xZrD78ImaM4fabxiaHzxiOmXWiwRcAEMjzAn7/3QhbIAc
-         twobkheLi2Os6/Wbc+KjSFdHeKjqgM7wmrhFLZO/HppsYM24TUcaWlbyzxhPrdTvhB
-         W7Z97mmQNn/ZUKtWVIII1N0nWlN+w2SMClL4QBbs=
-Received: from DFLE112.ent.ti.com (dfle112.ent.ti.com [10.64.6.33])
-        by lelv0265.itg.ti.com (8.15.2/8.15.2) with ESMTPS id 08HEv5tu103936
-        (version=TLSv1.2 cipher=AES256-GCM-SHA384 bits=256 verify=FAIL);
-        Thu, 17 Sep 2020 09:57:05 -0500
-Received: from DFLE103.ent.ti.com (10.64.6.24) by DFLE112.ent.ti.com
- (10.64.6.33) with Microsoft SMTP Server (version=TLS1_2,
- cipher=TLS_ECDHE_RSA_WITH_AES_128_CBC_SHA256_P256) id 15.1.1979.3; Thu, 17
- Sep 2020 09:57:04 -0500
-Received: from fllv0039.itg.ti.com (10.64.41.19) by DFLE103.ent.ti.com
- (10.64.6.24) with Microsoft SMTP Server (version=TLS1_2,
- cipher=TLS_ECDHE_RSA_WITH_AES_128_CBC_SHA256_P256) id 15.1.1979.3 via
- Frontend Transport; Thu, 17 Sep 2020 09:57:04 -0500
-Received: from [10.250.33.187] (ileax41-snat.itg.ti.com [10.172.224.153])
-        by fllv0039.itg.ti.com (8.15.2/8.15.2) with ESMTP id 08HEv4mO095616;
-        Thu, 17 Sep 2020 09:57:04 -0500
-Subject: Re: [PATCH] dt-bindings: soc: ti: ti,pruss: fix schema ID
-To:     Krzysztof Kozlowski <krzk@kernel.org>,
-        Grzegorz Jaszczyk <grzegorz.jaszczyk@linaro.org>,
-        Santosh Shilimkar <ssantosh@kernel.org>
-CC:     Rob Herring <robh+dt@kernel.org>,
-        Santosh Shilimkar <santosh.shilimkar@oracle.com>,
-        Roger Quadros <rogerq@ti.com>, <devicetree@vger.kernel.org>,
-        "linux-kernel@vger.kernel.org" <linux-kernel@vger.kernel.org>
-References: <20200917070543.19064-1-krzk@kernel.org>
- <CAMxfBF5WWQX3ZH0YcRZ_N8q4njTdG-RA4eM+zyQwmK7tYvw6DQ@mail.gmail.com>
- <CAJKOXPfd9iWHDNo9v=COroD_wuYL0xmOkRt-63WS_7G3As=kXQ@mail.gmail.com>
-From:   Suman Anna <s-anna@ti.com>
-Message-ID: <4a49d5c2-f4eb-edda-6ec2-157bfb3db3d9@ti.com>
-Date:   Thu, 17 Sep 2020 09:57:04 -0500
-User-Agent: Mozilla/5.0 (X11; Linux x86_64; rv:68.0) Gecko/20100101
- Thunderbird/68.10.0
+        id S1726475AbgIQRdp (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Thu, 17 Sep 2020 13:33:45 -0400
+Received: from mail.kernel.org ([198.145.29.99]:38868 "EHLO mail.kernel.org"
+        rhost-flags-OK-OK-OK-OK) by vger.kernel.org with ESMTP
+        id S1726531AbgIQRd2 (ORCPT <rfc822;devicetree@vger.kernel.org>);
+        Thu, 17 Sep 2020 13:33:28 -0400
+Received: from archlinux (cpc149474-cmbg20-2-0-cust94.5-4.cable.virginm.net [82.4.196.95])
+        (using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
+        (No client certificate requested)
+        by mail.kernel.org (Postfix) with ESMTPSA id 52F6020725;
+        Thu, 17 Sep 2020 17:33:25 +0000 (UTC)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=kernel.org;
+        s=default; t=1600364008;
+        bh=wNoTCGcfcB/3veX9mEs1zGpPBnfxajFdOgvN0afMW7M=;
+        h=Date:From:To:Cc:Subject:In-Reply-To:References:From;
+        b=iQwRuDux4teckfNDKQ3XeTDN+ueiBL9tB+it3+a1Qg22UTK6i5b/CCinsmV4ZL/Bl
+         TkpcMJnMm40OKktvu/LZSVx9xyxhyNdN1K4dNoS9qO7g19sG9BWch8y8DaJwxS8BFm
+         QA/X58JzpxNkXVYNohgO3bAyf1vnxnH/P07dLSKI=
+Date:   Thu, 17 Sep 2020 18:33:22 +0100
+From:   Jonathan Cameron <jic23@kernel.org>
+To:     Gene Chen <gene.chen.richtek@gmail.com>
+Cc:     matthias.bgg@gmail.com, knaack.h@gmx.de, lars@metafoo.de,
+        pmeerw@pmeerw.net, linux-iio@vger.kernel.org,
+        linux-arm-kernel@lists.infradead.org,
+        linux-mediatek@lists.infradead.org, linux-kernel@vger.kernel.org,
+        gene_chen@richtek.com, Wilma.Wu@mediatek.com,
+        shufan_lee@richtek.com, cy_huang@richtek.com,
+        benjamin.chao@mediatek.com, Rob Herring <robh+dt@kernel.org>,
+        devicetree@vger.kernel.org
+Subject: Re: [PATCH v4 1/3] dt-bindings: iio: adc: add bindings doc for
+ MT6360 ADC
+Message-ID: <20200917183322.25fa2aea@archlinux>
+In-Reply-To: <1600191369-28040-2-git-send-email-gene.chen.richtek@gmail.com>
+References: <1600191369-28040-1-git-send-email-gene.chen.richtek@gmail.com>
+        <1600191369-28040-2-git-send-email-gene.chen.richtek@gmail.com>
+X-Mailer: Claws Mail 3.17.6 (GTK+ 2.24.32; x86_64-pc-linux-gnu)
 MIME-Version: 1.0
-In-Reply-To: <CAJKOXPfd9iWHDNo9v=COroD_wuYL0xmOkRt-63WS_7G3As=kXQ@mail.gmail.com>
-Content-Type: text/plain; charset="utf-8"
-Content-Language: en-US
+Content-Type: text/plain; charset=US-ASCII
 Content-Transfer-Encoding: 7bit
-X-EXCLAIMER-MD-CONFIG: e1e8a2fd-e40a-4ac6-ac9b-f7e9cc9ee180
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-On 9/17/20 3:35 AM, Krzysztof Kozlowski wrote:
-> On Thu, 17 Sep 2020 at 10:32, Grzegorz Jaszczyk
-> <grzegorz.jaszczyk@linaro.org> wrote:
->>
->> On Thu, 17 Sep 2020 at 09:05, Krzysztof Kozlowski <krzk@kernel.org> wrote:
->>>
->>> Add missing '#' to fix schema errors:
->>>
->>>   $id: 'http://devicetree.org/schemas/soc/ti/ti,pruss.yaml' does not match 'http://devicetree.org/schemas/.*\\.yaml#'
->>>   $schema: 'http://devicetree.org/meta-schemas/core.yaml' is not one of ['http://devicetree.org/meta-schemas/core.yaml#', 'http://devicetree.org/meta-schemas/base.yaml#']
->>>   Documentation/devicetree/bindings/soc/ti/ti,pruss.yaml: ignoring, error in schema: $id
->>>
+On Wed, 16 Sep 2020 01:36:07 +0800
+Gene Chen <gene.chen.richtek@gmail.com> wrote:
 
-Thanks for the fix, Krzysztof.
-
-Fixes: bd691ce0ba9d ("dt-bindings: soc: ti: Add TI PRUSS bindings")
->>> Signed-off-by: Krzysztof Kozlowski <krzk@kernel.org>
-
-With that,
-Acked-by: Suman Anna <s-anna@ti.com>
-
-Santosh,
-Can you please pick this up before you send your pull request to arm-soc
-maintainers?
-
-You may also want to check your tooling to see what happened.
-
-regards
-Suman
-
-
->>> ---
->>>  Documentation/devicetree/bindings/soc/ti/ti,pruss.yaml | 4 ++--
->>>  1 file changed, 2 insertions(+), 2 deletions(-)
->>>
->>> diff --git a/Documentation/devicetree/bindings/soc/ti/ti,pruss.yaml b/Documentation/devicetree/bindings/soc/ti/ti,pruss.yaml
->>> index cf7dc83f724f..037c51b2f972 100644
->>> --- a/Documentation/devicetree/bindings/soc/ti/ti,pruss.yaml
->>> +++ b/Documentation/devicetree/bindings/soc/ti/ti,pruss.yaml
->>> @@ -1,8 +1,8 @@
->>>  # SPDX-License-Identifier: (GPL-2.0-only OR BSD-2-Clause)
->>>  %YAML 1.2
->>>  ---
->>> -$id: http://devicetree.org/schemas/soc/ti/ti,pruss.yaml
->>> -$schema: http://devicetree.org/meta-schemas/core.yaml
->>> +$id: http://devicetree.org/schemas/soc/ti/ti,pruss.yaml#
->>> +$schema: http://devicetree.org/meta-schemas/core.yaml#
->>
->> I've double checked and "#" was present in the original patch sent and
->> ack for upstream: https://patchwork.kernel.org/patch/11729649/
->> It seems like something got wrong on linux-next but this is the only
->> diff between original patch and one found in linux-next. Thank you for
->> taking care of it.
+> From: Gene Chen <gene_chen@richtek.com>
 > 
-> Indeed that's weird. It must get lost when applying...
+> This change adds the binding doc for the MT6360 ADC.
 > 
-> Best regards,
-> Krzysztof
+> Signed-off-by: Gene Chen <gene_chen@richtek.com>
+Hi Gene
+
+A few things inline I missed before.  Ideally this wants
+a device-tree ack which it isn't likely to get without
+cc'ing the binding Maintainers. I've added Rob and the list.
+
+Thanks,
+
+Jonathan
+
+> ---
+>  .../bindings/iio/adc/mediatek,mt6360.yaml          | 32 ++++++++++++++++++++++
+>  1 file changed, 32 insertions(+)
+>  create mode 100644 Documentation/devicetree/bindings/iio/adc/mediatek,mt6360.yaml
 > 
+> diff --git a/Documentation/devicetree/bindings/iio/adc/mediatek,mt6360.yaml b/Documentation/devicetree/bindings/iio/adc/mediatek,mt6360.yaml
+> new file mode 100644
+> index 0000000..2fa2fe7
+> --- /dev/null
+> +++ b/Documentation/devicetree/bindings/iio/adc/mediatek,mt6360.yaml
+> @@ -0,0 +1,32 @@
+> +# SPDX-License-Identifier: (GPL-2.0 OR BSD-2-Clause)
+> +%YAML 1.2
+> +---
+> +$id: http://devicetree.org/schemas/iio/adc/mediatek,mt6360.yaml#
+
+I think this should probably match the compatible as should the file name.
+(sorry missed this on previous review!)
+
+> +$schema: http://devicetree.org/meta-schemas/core.yaml#
+> +
+> +title: Mediatek MT6360 and similar ADCs
+> +
+> +maintainers:
+> +  - Gene Chen <gene_chen@richtek.com>
+> +
+> +description: |
+> +  Family of simple ADCs with i2c interface and internal references.
+> +
+> +properties:
+> +  compatible:
+> +    const: mediatek,mt6360-adc
+> +
+> +  "#io-channel-cells":
+> +    const: 1
+> +
+> +required:
+> +  - compatible
+> +  - "#io-channel-cells"
+As it's fresh in my mind from forgetting it myself, can we
+add
+
+additionalProperties: false
+
+?
+
+
+> +
+> +examples:
+> +  - |
+> +    adc {
+> +      compatible = "mediatek,mt6360-adc";
+> +      #io-channel-cells = <1>;
+> +    };
+> +...
 
