@@ -2,145 +2,157 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from vger.kernel.org (vger.kernel.org [23.128.96.18])
-	by mail.lfdr.de (Postfix) with ESMTP id 2AFA026D2E7
-	for <lists+devicetree@lfdr.de>; Thu, 17 Sep 2020 07:10:25 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTP id DB7B326D345
+	for <lists+devicetree@lfdr.de>; Thu, 17 Sep 2020 07:52:32 +0200 (CEST)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S1726109AbgIQFKV (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Thu, 17 Sep 2020 01:10:21 -0400
-Received: from lindbergh.monkeyblade.net ([23.128.96.19]:56760 "EHLO
-        lindbergh.monkeyblade.net" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S1726152AbgIQFKO (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Thu, 17 Sep 2020 01:10:14 -0400
-Received: from mail-oi1-x242.google.com (mail-oi1-x242.google.com [IPv6:2607:f8b0:4864:20::242])
-        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 0AF4CC06178A
-        for <devicetree@vger.kernel.org>; Wed, 16 Sep 2020 22:10:13 -0700 (PDT)
-Received: by mail-oi1-x242.google.com with SMTP id u126so1016469oif.13
-        for <devicetree@vger.kernel.org>; Wed, 16 Sep 2020 22:10:13 -0700 (PDT)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=linaro.org; s=google;
-        h=date:from:to:cc:subject:message-id:references:mime-version
-         :content-disposition:in-reply-to;
-        bh=FSMe0eSMdIe3Gfx6n3S8crTzPvy5rJ0iSHhhJ3uKFKQ=;
-        b=iepgFmQ3Sui7+BcQEaNk/iFybMWOQ0B86m5XI/ZdRIUoMN0f6VUK8V3Lt68EYUEwzR
-         NpyYa7w3a4CU1H8rh9UvWl9FqtD3Uu5eWb0rKPoG6AKl0UN1EzZjRvvE6StOxT9q0lNq
-         vcVV3rZYILRRUqUzHt+DmzHj0nSe3fFpJhcomgoDBLLT1t44r44j7SKLiT4p4w46u+Sa
-         NFRDONt4EAwfsR/1HsbxT6jZCEV5QpNj90MLkARVC9L1OhfnoZnnFrA5gIue3tLt5lN2
-         Z/M3T73c4p53V2IFF3EX20OaB/yePEHVRIz5NVEn5vcFAbcz05Td3rGBNkWoWu7zt7gd
-         cYXQ==
-X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=1e100.net; s=20161025;
-        h=x-gm-message-state:date:from:to:cc:subject:message-id:references
-         :mime-version:content-disposition:in-reply-to;
-        bh=FSMe0eSMdIe3Gfx6n3S8crTzPvy5rJ0iSHhhJ3uKFKQ=;
-        b=o3fGur7YUHuyTdpt/NvfD9a+iYIMR+pZQytV2DzCHARo9MMkVPLT4f11uWBQGXEKHM
-         vqchdQlCUb9jWca/Az/andj2j50w+mriF2x1Pn9f3WgBMgGgNvqytHlDceuiMqc3gqyu
-         wXdOArweMGRIVNzqX6629WmWW1068YQlHyeLtLxGGCpTaHi3p+blk2vVtpLnhiDKKl85
-         LAdNNlIP2q9mx4Z5Yzp8IHIhVxnakfoYTt8vpcoTkwOrMvFOrSbr1bN6twrRGsqNVcRq
-         kzBUjsqFtwf//RyiE4/fO5yxZ1vWcNsPZs/92kYRjvuP47DAFZ1LjeelQQv4QnhAQqYo
-         GXHw==
-X-Gm-Message-State: AOAM5325GkqlA/84jZwWLX0zcFFgFnwy53WWDJEqBVXvD77po1NmdBlg
-        +1vd6eQ4aYc5zjuEcJoMYWG/PQ==
-X-Google-Smtp-Source: ABdhPJwlxnRFSwIwfe8pWnIKka7QS5n3Xntowx6Mq4Fdts+kaIq8AluucE5JQFb/Uuoh9uwg/npQDg==
-X-Received: by 2002:aca:c7c5:: with SMTP id x188mr5535465oif.34.1600319412788;
-        Wed, 16 Sep 2020 22:10:12 -0700 (PDT)
-Received: from yoga ([2605:6000:e5cb:c100:7cad:6eff:fec8:37e4])
-        by smtp.gmail.com with ESMTPSA id 189sm10965833oid.40.2020.09.16.22.10.10
-        (version=TLS1_3 cipher=TLS_AES_256_GCM_SHA384 bits=256/256);
-        Wed, 16 Sep 2020 22:10:11 -0700 (PDT)
-Date:   Thu, 17 Sep 2020 00:10:08 -0500
-From:   Bjorn Andersson <bjorn.andersson@linaro.org>
-To:     Vinod Koul <vkoul@kernel.org>
-Cc:     Manivannan Sadhasivam <manivannan.sadhasivam@linaro.org>,
-        agross@kernel.org, kishon@ti.com, robh@kernel.org,
-        svarbanov@mm-sol.com, bhelgaas@google.com,
-        lorenzo.pieralisi@arm.com, linux-arm-msm@vger.kernel.org,
-        linux-pci@vger.kernel.org, linux-kernel@vger.kernel.org,
-        mgautam@codeaurora.org, devicetree@vger.kernel.org
-Subject: Re: [PATCH 1/5] dt-bindings: phy: qcom,qmp: Document SM8250 PCIe PHY
- bindings
-Message-ID: <20200917051008.GM1893@yoga>
-References: <20200916132000.1850-1-manivannan.sadhasivam@linaro.org>
- <20200916132000.1850-2-manivannan.sadhasivam@linaro.org>
- <20200916224541.GF1893@yoga>
- <20200917043239.GW2968@vkoul-mobl>
+        id S1726112AbgIQFwb (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Thu, 17 Sep 2020 01:52:31 -0400
+Received: from lelv0143.ext.ti.com ([198.47.23.248]:40468 "EHLO
+        lelv0143.ext.ti.com" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
+        with ESMTP id S1725267AbgIQFwa (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Thu, 17 Sep 2020 01:52:30 -0400
+Received: from fllv0034.itg.ti.com ([10.64.40.246])
+        by lelv0143.ext.ti.com (8.15.2/8.15.2) with ESMTP id 08H5qIrD078199;
+        Thu, 17 Sep 2020 00:52:18 -0500
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=ti.com;
+        s=ti-com-17Q1; t=1600321938;
+        bh=SICXoOieM2uc9FJrfUuOfTfVBWoYANiwpphFfhvvh2s=;
+        h=From:To:CC:Subject:Date;
+        b=v+j4O2/BBzai3F030wbUG9FMh2NL3Tnz4ej2u8vmlVXmrVusHc4LTieIk18adEnqa
+         91O3rnDA1DMix/22Kzpy3tLjgPRrbAocPGPdPnESGk/tBKBA1ju6D53Md3YMTrSmQP
+         p2/etACjp3jaGuM3hbYSZW93+vq8ZJV+CJkaYbYA=
+Received: from DFLE100.ent.ti.com (dfle100.ent.ti.com [10.64.6.21])
+        by fllv0034.itg.ti.com (8.15.2/8.15.2) with ESMTPS id 08H5qIPf083732
+        (version=TLSv1.2 cipher=AES256-GCM-SHA384 bits=256 verify=FAIL);
+        Thu, 17 Sep 2020 00:52:18 -0500
+Received: from DFLE115.ent.ti.com (10.64.6.36) by DFLE100.ent.ti.com
+ (10.64.6.21) with Microsoft SMTP Server (version=TLS1_2,
+ cipher=TLS_ECDHE_RSA_WITH_AES_128_CBC_SHA256_P256) id 15.1.1979.3; Thu, 17
+ Sep 2020 00:52:18 -0500
+Received: from fllv0040.itg.ti.com (10.64.41.20) by DFLE115.ent.ti.com
+ (10.64.6.36) with Microsoft SMTP Server (version=TLS1_2,
+ cipher=TLS_ECDHE_RSA_WITH_AES_128_CBC_SHA256_P256) id 15.1.1979.3 via
+ Frontend Transport; Thu, 17 Sep 2020 00:52:18 -0500
+Received: from deskari.lan (ileax41-snat.itg.ti.com [10.172.224.153])
+        by fllv0040.itg.ti.com (8.15.2/8.15.2) with ESMTP id 08H5qFku071024;
+        Thu, 17 Sep 2020 00:52:16 -0500
+From:   Tomi Valkeinen <tomi.valkeinen@ti.com>
+To:     <dri-devel@lists.freedesktop.org>, <devicetree@vger.kernel.org>,
+        David Airlie <airlied@linux.ie>,
+        Daniel Vetter <daniel@ffwll.ch>,
+        Rob Herring <robh+dt@kernel.org>,
+        Laurent Pinchart <laurent.pinchart@ideasonboard.com>
+CC:     Andrzej Hajda <a.hajda@samsung.com>,
+        Neil Armstrong <narmstrong@baylibre.com>,
+        Swapnil Kashinath Jakhade <sjakhade@cadence.com>,
+        Tomi Valkeinen <tomi.valkeinen@ti.com>
+Subject: [PATCHv2] dt-bindings: dp-connector: add binding for DisplayPort connector
+Date:   Thu, 17 Sep 2020 08:52:10 +0300
+Message-ID: <20200917055210.22868-1-tomi.valkeinen@ti.com>
+X-Mailer: git-send-email 2.25.1
 MIME-Version: 1.0
-Content-Type: text/plain; charset=us-ascii
-Content-Disposition: inline
-In-Reply-To: <20200917043239.GW2968@vkoul-mobl>
+Content-Transfer-Encoding: 8bit
+Content-Type: text/plain
+X-EXCLAIMER-MD-CONFIG: e1e8a2fd-e40a-4ac6-ac9b-f7e9cc9ee180
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-On Wed 16 Sep 23:32 CDT 2020, Vinod Koul wrote:
+Add binding for DisplayPort connector. A few notes:
 
-> On 16-09-20, 17:45, Bjorn Andersson wrote:
-> > On Wed 16 Sep 08:19 CDT 2020, Manivannan Sadhasivam wrote:
-> > 
-> > > Document the DT bindings of below PCIe PHY versions used on SM8250:
-> > > 
-> > > QMP GEN3x1 PHY - 1 lane
-> > > QMP GEN3x2 PHY - 2 lanes
-> > > QMP Modem PHY - 2 lanes
-> > 
-> > How about something like "Add the three PCIe PHYs found in SM8250 to the
-> > QMP binding"?
-> 
-> Or add just one compatible sm8250-qmp-pcie and then use number of lanes
-> as dt property?
-> 
+* Similar to hdmi-connector, it has hpd-gpios as an optional property,
+  as the HPD could also be handled by, e.g., the DP bridge.
 
-If we have the same initialization sequence then that sounds reasonable.
-Perhaps we can derive the number of lanes from the child node?
+* dp-pwr-supply, which provides 3.3V on DP_PWR pin, is optional, as it
+  is not strictly required: standard DP cables do not even have the pin
+  connected.
 
-A bigger question is how we deal with this going forward, if there are
-more crazy setups like on sc8180x where the lanes might be grouped
-differently based on board...
+* Connector type. Full size and mini connectors are identical except for
+  the connector size and form, so I believe there is no functional need
+  for this property. But similar to 'label' property, it might be used
+  to present information about the connector to the userspace.
 
-Regards,
-Bjorn
+* No eDP. There's really no "eDP connector", as it's always a custom
+  made connection between the DP and the DP panel. So possibly there is
+  no need for edp-connector binding, but even if there is, I don't want
+  to guess what it could look like, and could it be part of the
+  dp-connector binding.
 
-> > 
-> > > 
-> > > Signed-off-by: Manivannan Sadhasivam <manivannan.sadhasivam@linaro.org>
-> > > ---
-> > >  Documentation/devicetree/bindings/phy/qcom,qmp-phy.yaml | 5 +++++
-> > >  1 file changed, 5 insertions(+)
-> > > 
-> > > diff --git a/Documentation/devicetree/bindings/phy/qcom,qmp-phy.yaml b/Documentation/devicetree/bindings/phy/qcom,qmp-phy.yaml
-> > > index 185cdea9cf81..69b67f79075c 100644
-> > > --- a/Documentation/devicetree/bindings/phy/qcom,qmp-phy.yaml
-> > > +++ b/Documentation/devicetree/bindings/phy/qcom,qmp-phy.yaml
-> > > @@ -31,6 +31,9 @@ properties:
-> > >        - qcom,sdm845-qmp-usb3-uni-phy
-> > >        - qcom,sm8150-qmp-ufs-phy
-> > >        - qcom,sm8250-qmp-ufs-phy
-> > > +      - qcom,qcom,sm8250-qmp-gen3x1-pcie-phy
-> > > +      - qcom,qcom,sm8250-qmp-gen3x2-pcie-phy
-> > > +      - qcom,qcom,sm8250-qmp-modem-pcie-phy
-> > 
-> > One "qcom," should be enough.
-> > 
-> > >  
-> > >    reg:
-> > >      items:
-> > > @@ -259,6 +262,8 @@ allOf:
-> > >              enum:
-> > >                - qcom,sdm845-qhp-pcie-phy
-> > >                - qcom,sdm845-qmp-pcie-phy
-> > > +              - qcom,sm8250-qhp-pcie-phy
-> > > +              - qcom,sm8250-qmp-pcie-phy
-> > 
-> > Adjust these.
-> > 
-> > Regards,
-> > Bjorn
-> > 
-> > >      then:
-> > >        properties:
-> > >          clocks:
-> > > -- 
-> > > 2.17.1
-> > > 
-> 
-> -- 
-> ~Vinod
+* No DP++. I'm not familiar with DP++, but I think it's all handled by
+  the DP bridge, and does not need any new properties to the dp-connector.
+
+Signed-off-by: Tomi Valkeinen <tomi.valkeinen@ti.com>
+---
+
+Changes in v2: Add connector type.
+
+
+ .../display/connector/dp-connector.yaml       | 55 +++++++++++++++++++
+ 1 file changed, 55 insertions(+)
+ create mode 100644 Documentation/devicetree/bindings/display/connector/dp-connector.yaml
+
+diff --git a/Documentation/devicetree/bindings/display/connector/dp-connector.yaml b/Documentation/devicetree/bindings/display/connector/dp-connector.yaml
+new file mode 100644
+index 000000000000..b5fc3e52899e
+--- /dev/null
++++ b/Documentation/devicetree/bindings/display/connector/dp-connector.yaml
+@@ -0,0 +1,55 @@
++# SPDX-License-Identifier: (GPL-2.0-only OR BSD-2-Clause)
++%YAML 1.2
++---
++$id: http://devicetree.org/schemas/display/connector/dp-connector.yaml#
++$schema: http://devicetree.org/meta-schemas/core.yaml#
++
++title: DisplayPort Connector
++
++maintainers:
++  - Tomi Valkeinen <tomi.valkeinen@ti.com>
++
++properties:
++  compatible:
++    const: dp-connector
++
++  label: true
++
++  type:
++    enum:
++      - full-size
++      - mini
++
++  hpd-gpios:
++    description: A GPIO line connected to HPD
++    maxItems: 1
++
++  dp-pwr-supply:
++    description: Power supply for the DP_PWR pin
++    maxItems: 1
++
++  port:
++    description: Connection to controller providing DP signals
++
++required:
++  - compatible
++  - type
++  - port
++
++additionalProperties: false
++
++examples:
++  - |
++    connector {
++        compatible = "dp-connector";
++        label = "dp0";
++        type = "full-size";
++
++        port {
++            dp_connector_in: endpoint {
++                remote-endpoint = <&dp_out>;
++            };
++        };
++    };
++
++...
+-- 
+Texas Instruments Finland Oy, Porkkalankatu 22, 00180 Helsinki.
+Y-tunnus/Business ID: 0615521-4. Kotipaikka/Domicile: Helsinki
+
