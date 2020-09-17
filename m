@@ -2,60 +2,60 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from vger.kernel.org (vger.kernel.org [23.128.96.18])
-	by mail.lfdr.de (Postfix) with ESMTP id 2A19726D197
-	for <lists+devicetree@lfdr.de>; Thu, 17 Sep 2020 05:28:34 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTP id CD91626D19A
+	for <lists+devicetree@lfdr.de>; Thu, 17 Sep 2020 05:28:38 +0200 (CEST)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S1726201AbgIQD2c (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Wed, 16 Sep 2020 23:28:32 -0400
-Received: from lindbergh.monkeyblade.net ([23.128.96.19]:41040 "EHLO
+        id S1726043AbgIQD2e (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Wed, 16 Sep 2020 23:28:34 -0400
+Received: from lindbergh.monkeyblade.net ([23.128.96.19]:41066 "EHLO
         lindbergh.monkeyblade.net" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S1726210AbgIQD2T (ORCPT
+        with ESMTP id S1726191AbgIQD2T (ORCPT
         <rfc822;devicetree@vger.kernel.org>); Wed, 16 Sep 2020 23:28:19 -0400
-Received: from mail-qk1-x742.google.com (mail-qk1-x742.google.com [IPv6:2607:f8b0:4864:20::742])
-        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id BCFB8C06178B
-        for <devicetree@vger.kernel.org>; Wed, 16 Sep 2020 20:22:29 -0700 (PDT)
-Received: by mail-qk1-x742.google.com with SMTP id n133so828974qkn.11
-        for <devicetree@vger.kernel.org>; Wed, 16 Sep 2020 20:22:29 -0700 (PDT)
+Received: from mail-qk1-x743.google.com (mail-qk1-x743.google.com [IPv6:2607:f8b0:4864:20::743])
+        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id AF780C061353
+        for <devicetree@vger.kernel.org>; Wed, 16 Sep 2020 20:22:30 -0700 (PDT)
+Received: by mail-qk1-x743.google.com with SMTP id w186so888783qkd.1
+        for <devicetree@vger.kernel.org>; Wed, 16 Sep 2020 20:22:30 -0700 (PDT)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
         d=linaro.org; s=google;
         h=from:to:cc:subject:date:message-id:in-reply-to:references
          :mime-version:content-transfer-encoding;
-        bh=gOjR8vxr5WwVeS1m/lfV7tbojY1ErwXvE0dsI9QW/uo=;
-        b=kPWL4eCuolVXw35vyUzORP0/S/rIAepUZMAvp7ZZdAhaDRpkH1E25kh74NGxkqvub6
-         EHm7NsrHU7o8gAX4/7USoUt2l7awOKN6znJPoujEb9pcEkXkf6C0D+fZuW4s0eA0dKsL
-         pYXjrlIcUsEe2LpunJ4kvAnWvvQSJ0NCJSXQ4dZ8R62GQw9TYY0cgCnEM+cmgHMfsMIu
-         kLYLB+SnzfkuWKUf2lRGiJxt4TWy94+YT0h203bINrOr9nJvTELxnsSvjonnFlzPTfwb
-         wyJcbIu0O1rtvGkQT61nfZ0I77Foo3LV8MySGrc2Vvt7r7QD1ULzvuaTFiGDgnFfq+/5
-         DTHA==
+        bh=myxUO6gc+lFpyY6bxPaw2oxrXJNbpjbu9J+ggDGNP1Q=;
+        b=iYF9saol7Uya9S+s+a5H00YbWk1vk/5ld+bL+/IoAQzNJ84leuLdIk4WZKQoc3IjJ7
+         458Luy1hzBiiGiPzkWs+JegOxXStBqnEASvcNydckoGa7tcJ7F3c14FGQttP7joLwjfZ
+         qw1Eohni5Xmwr8EyOfpZyf2VSI2daffRU4FDuOU+ocHwwIEy8SsNZ8E3bJqTDd9NxNKz
+         N1zHygoqOkMvs+n02vrxFKxNZrzLWawNw/FjF74zU0xzcGLt7BkPLhyCZ0MY8D39DkVl
+         xia9YMQcIYE6ykJstBekisdhdf0vr588cfSuqVv09iHwjh9ydJg5kh0OXIX+1akr4yqs
+         kD+g==
 X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
         d=1e100.net; s=20161025;
         h=x-gm-message-state:from:to:cc:subject:date:message-id:in-reply-to
          :references:mime-version:content-transfer-encoding;
-        bh=gOjR8vxr5WwVeS1m/lfV7tbojY1ErwXvE0dsI9QW/uo=;
-        b=BkCq2m6Nc7QBwAqW8sID0fD1B86ja6e6lnA7Lfygp7P9I0vfVr+/GJSNOo2j8fNvwC
-         PjniYiYU/+ijZok5W0QWWFAgOhypdeh1Sc6OuP8qNiI2f7zctc3uJYCepDBgtxYvA3SH
-         2E5bd8MLFCzbpnMYhVxyVxXUhLG0bgpZeT1/YNy0MQEcOtL83K/coGbPE1K26eMZIj0u
-         axd5c6dMMbJ0elnVPKB2GE9FnDLPFY4QeQm/nzHRtkSB43cjd6gGXPeXdSWW72ScGqqv
-         XRkJqRjY17qriXZr/DMsNzT/3l1MCO4wq1lxBHeLTz2FXqOdvtPfOtzHqSzWNkxOmboT
-         r1Fw==
-X-Gm-Message-State: AOAM532YrCzFeKghFvzbK+YcuTcXv/iC2WVfzmBY2k6Bw7eIqM0PGBqj
-        gmbAgjlToZgfunVyIf5r/y20Ug==
-X-Google-Smtp-Source: ABdhPJwrZ4vSxdjRvdBIWTFXormzDUQW/UqI1T+x0gkPM8a4jmLPzyFxrDQyZ0xg8jAV6ESq5T3LxQ==
-X-Received: by 2002:a37:5042:: with SMTP id e63mr25056428qkb.453.1600312948930;
-        Wed, 16 Sep 2020 20:22:28 -0700 (PDT)
+        bh=myxUO6gc+lFpyY6bxPaw2oxrXJNbpjbu9J+ggDGNP1Q=;
+        b=VqZubGWTSh4Fwq6tdR0m8PsllAf5jgUaXHq/GWI1iYoHbypvINXcYQ8r7oSFbHRdia
+         QlMsC6lbonPVmx3Gtb68DqayGjO7I1Lg4XuuHcv+fGdF83hxwV8JBZdJhZWhSBPvgo0K
+         CjONrkhmqlGSoj/2T7IPBpZ8kJv2Ui/eMDpGId3BDIP8Wa9PcbciGKbYslXDSq8zm8Uy
+         NOmOxEMfUI0I8L48q0NEUvvvDa1s1jkzMvJ0iTubdLG+ohSw7weo22nGqQGVr8ScN+nQ
+         FvMTSvGQQGMRinVuqwBiwHnyMpP5CGjTStn2W7Wch4ZP/A3J//D5NW/g1fbVk9MkFFhG
+         E+/g==
+X-Gm-Message-State: AOAM531oTxUJFKOXDmBmDVn//cNrq35m0lZkhhuDB2JC9uQMJVF63/Nk
+        pUPVnCfpGBNZEyX5SHYvXRu0fA==
+X-Google-Smtp-Source: ABdhPJyC733LwHdlOPKyh0SJj9Ov7zceVdFCYbRyxyeI44PNS39rWktdOG6zOgaxjUTzbgJIqt7rUg==
+X-Received: by 2002:ae9:c310:: with SMTP id n16mr11085776qkg.318.1600312949899;
+        Wed, 16 Sep 2020 20:22:29 -0700 (PDT)
 Received: from pop-os.fios-router.home (pool-71-163-245-5.washdc.fios.verizon.net. [71.163.245.5])
-        by smtp.googlemail.com with ESMTPSA id g45sm21370801qtb.60.2020.09.16.20.22.27
+        by smtp.googlemail.com with ESMTPSA id g45sm21370801qtb.60.2020.09.16.20.22.29
         (version=TLS1_3 cipher=TLS_AES_256_GCM_SHA384 bits=256/256);
-        Wed, 16 Sep 2020 20:22:28 -0700 (PDT)
+        Wed, 16 Sep 2020 20:22:29 -0700 (PDT)
 From:   Thara Gopinath <thara.gopinath@linaro.org>
 To:     rui.zhang@intel.com, daniel.lezcano@linaro.org, robh+dt@kernel.org,
         agross@kernel.org, bjorn.andersson@linaro.org
 Cc:     linux-pm@vger.kernel.org, devicetree@vger.kernel.org,
         linux-kernel@vger.kernel.org, linux-arm-msm@vger.kernel.org,
         lukasz.luba@arm.com, amitk@kernel.org
-Subject: [PATCH RFC 1/8] dt-bindings: thermal: Introduce monitor-falling parameter to thermal trip point binding
-Date:   Wed, 16 Sep 2020 23:22:19 -0400
-Message-Id: <20200917032226.820371-2-thara.gopinath@linaro.org>
+Subject: [PATCH RFC 2/8] thermal: Introduce new property monitor_type for trip point.
+Date:   Wed, 16 Sep 2020 23:22:20 -0400
+Message-Id: <20200917032226.820371-3-thara.gopinath@linaro.org>
 X-Mailer: git-send-email 2.25.1
 In-Reply-To: <20200917032226.820371-1-thara.gopinath@linaro.org>
 References: <20200917032226.820371-1-thara.gopinath@linaro.org>
@@ -65,33 +65,74 @@ Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-Introduce a new binding parameter to thermal trip point description
-to indicate whether the temperature level specified by the trip point
-is monitored for a rise or fall in temperature.
+Thermal trip points can be defined to indicate whether a
+temperature rise or a temperature fall is to be monitored. This
+property can now be defined in the DT bindings for a trip point.
+To support this following three changes are introduced to thermal
+core and sysfs code.
+1. Define a new variable in thermal_trip to capture the monitor
+   rising/falling information from trip point DT bindings.
+2. Define a new ops in thermal_zone_device_ops that can be populated
+   to indicate whether a trip is being monitored for rising or falling
+   temperature. If the ops is not populated or if the binding is missing
+   in the DT, it is assumed that the trip is being monitored for rising
+   temperature. (default behavior today)
 
 Signed-off-by: Thara Gopinath <thara.gopinath@linaro.org>
 ---
- .../devicetree/bindings/thermal/thermal-zones.yaml         | 7 +++++++
- 1 file changed, 7 insertions(+)
+ drivers/thermal/thermal_core.h | 2 ++
+ include/linux/thermal.h        | 2 ++
+ include/uapi/linux/thermal.h   | 5 +++++
+ 3 files changed, 9 insertions(+)
 
-diff --git a/Documentation/devicetree/bindings/thermal/thermal-zones.yaml b/Documentation/devicetree/bindings/thermal/thermal-zones.yaml
-index 3ec9cc87ec50..cc1332ad6c16 100644
---- a/Documentation/devicetree/bindings/thermal/thermal-zones.yaml
-+++ b/Documentation/devicetree/bindings/thermal/thermal-zones.yaml
-@@ -161,6 +161,13 @@ patternProperties:
-                   The active trip type can be used to control other HW to
-                   help in cooling e.g. fans can be sped up or slowed down
+diff --git a/drivers/thermal/thermal_core.h b/drivers/thermal/thermal_core.h
+index e00fc5585ea8..c56addfe2284 100644
+--- a/drivers/thermal/thermal_core.h
++++ b/drivers/thermal/thermal_core.h
+@@ -77,12 +77,14 @@ int power_actor_set_power(struct thermal_cooling_device *cdev,
+  * @temperature: temperature value in miliCelsius
+  * @hysteresis: relative hysteresis in miliCelsius
+  * @type: trip point type
++ * @monitor_type: trip point monitor type
+  */
+ struct thermal_trip {
+ 	struct device_node *np;
+ 	int temperature;
+ 	int hysteresis;
+ 	enum thermal_trip_type type;
++	enum thermal_trip_monitor_type monitor_type;
+ };
  
-+              monitor-falling:
-+                description: |
-+                  boolean, If true, the trip point is being monitored for
-+                  falling temperature. If false/absent/default, the trip
-+                  point is being monitored for rising temperature.
-+                type: boolean
+ int get_tz_trend(struct thermal_zone_device *tz, int trip);
+diff --git a/include/linux/thermal.h b/include/linux/thermal.h
+index 42ef807e5d84..a50ed958d0bd 100644
+--- a/include/linux/thermal.h
++++ b/include/linux/thermal.h
+@@ -72,6 +72,8 @@ struct thermal_zone_device_ops {
+ 	int (*set_trip_temp) (struct thermal_zone_device *, int, int);
+ 	int (*get_trip_hyst) (struct thermal_zone_device *, int, int *);
+ 	int (*set_trip_hyst) (struct thermal_zone_device *, int, int);
++	int (*get_trip_mon_type)(struct thermal_zone_device *, int,
++				     enum thermal_trip_monitor_type *);
+ 	int (*get_crit_temp) (struct thermal_zone_device *, int *);
+ 	int (*set_emul_temp) (struct thermal_zone_device *, int);
+ 	int (*get_trend) (struct thermal_zone_device *, int,
+diff --git a/include/uapi/linux/thermal.h b/include/uapi/linux/thermal.h
+index c105054cbb57..d3bb4e4fad69 100644
+--- a/include/uapi/linux/thermal.h
++++ b/include/uapi/linux/thermal.h
+@@ -16,6 +16,11 @@ enum thermal_trip_type {
+ 	THERMAL_TRIP_CRITICAL,
+ };
+ 
++enum thermal_trip_monitor_type {
++	THERMAL_TRIP_MONITOR_RISING = 0,
++	THERMAL_TRIP_MONITOR_FALLING
++};
 +
-             required:
-               - temperature
-               - hysteresis
+ /* Adding event notification support elements */
+ #define THERMAL_GENL_FAMILY_NAME		"thermal"
+ #define THERMAL_GENL_VERSION			0x01
 -- 
 2.25.1
 
