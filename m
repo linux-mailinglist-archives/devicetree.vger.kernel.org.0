@@ -2,90 +2,115 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from vger.kernel.org (vger.kernel.org [23.128.96.18])
-	by mail.lfdr.de (Postfix) with ESMTP id 0FD8D26E74D
-	for <lists+devicetree@lfdr.de>; Thu, 17 Sep 2020 23:23:01 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTP id 2F4E626E775
+	for <lists+devicetree@lfdr.de>; Thu, 17 Sep 2020 23:35:29 +0200 (CEST)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S1726174AbgIQVW7 (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Thu, 17 Sep 2020 17:22:59 -0400
-Received: from lindbergh.monkeyblade.net ([23.128.96.19]:38474 "EHLO
-        lindbergh.monkeyblade.net" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S1726037AbgIQVW7 (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Thu, 17 Sep 2020 17:22:59 -0400
-Received: from mail-lj1-x242.google.com (mail-lj1-x242.google.com [IPv6:2a00:1450:4864:20::242])
-        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 35333C06178A
-        for <devicetree@vger.kernel.org>; Thu, 17 Sep 2020 14:13:29 -0700 (PDT)
-Received: by mail-lj1-x242.google.com with SMTP id r24so3269475ljm.3
-        for <devicetree@vger.kernel.org>; Thu, 17 Sep 2020 14:13:29 -0700 (PDT)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=linaro.org; s=google;
-        h=from:to:cc:subject:date:message-id:in-reply-to:references
-         :mime-version:content-transfer-encoding;
-        bh=I+q32KKfvQ8vwPBE7D57+tI6W4ETqZSqkktr32GH0s8=;
-        b=SoiNw2WFQ2njmegjpwS6mxU+DxXK0K3LYLdZ63AGM4ciNfEy5pJRDj0Iu6+1DdgoS8
-         gUr/MeFr6g0XJcFKfuz+C3PDCtzCo0B++ivyH+Bc53MpYz+161HXmGgIMfdRpaIsg3b+
-         eVqSCRmMTLnFIMmqXdMVJfzGhGack3BLegki4Fcn9k08kRTlyJCSJu4KGapVXJiDKopV
-         5Jk+nKzGyrr96xkRJ3zGrdq668drF9S20MzPYFMtEHqQ1azbHLl60SZva6isXAxLMzwe
-         EcA/zFi8W0QmH0wSiK2rX9zQ2SzGSHJwZgVlcf7nMTGp4rcN7sj+pPDPHfsuucK/Kzuv
-         upng==
-X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=1e100.net; s=20161025;
-        h=x-gm-message-state:from:to:cc:subject:date:message-id:in-reply-to
-         :references:mime-version:content-transfer-encoding;
-        bh=I+q32KKfvQ8vwPBE7D57+tI6W4ETqZSqkktr32GH0s8=;
-        b=IVFcP0tX+3J3LWtVuGBHqXnt1HRVzwnYffxWPoHIcOWIeLIjSqHbi+4D9oFI1gV+qd
-         NIujfWP1Mc7tYRIklhl6OkL/K8keD9sGGx+6a66u77GN+ownZUMdXcQVxdgT3X4OHdmf
-         hFdCvD3bBxkIQjrhrMVigfTAQmgRUmSne1dj8bp5A177k83L/MPbWflJSHNUcQPdlusC
-         GnhNoQ8MlwnFjR48mUJZ11K0ardjRdqOh2fyy9SsMS93MYJeEWVyFRxRJP0pFs0XNI+e
-         /996ABS/k4AF2ApGASiFDNQxdGS/4tAfebmaX7B+PUNvl27nChTRgEjJWdIv+gA7hgUS
-         jCxA==
-X-Gm-Message-State: AOAM533blTrvx9cRCesjucpJkvZ/OnMD2Nfih0A6z9yEP2/bwW8rijZt
-        3lLZKpST3IIcCRSQTxYDZgqrpQ==
-X-Google-Smtp-Source: ABdhPJx0MrgPCAWI08JRyqGMYdNLcjDf7BwswkxiwDkLY+Q/0KwRYNGluzsAZpupPnPMGOL72q9qlg==
-X-Received: by 2002:a2e:b178:: with SMTP id a24mr9729704ljm.276.1600377207536;
-        Thu, 17 Sep 2020 14:13:27 -0700 (PDT)
-Received: from eriador.lan ([188.162.64.171])
-        by smtp.gmail.com with ESMTPSA id h124sm136711lfd.203.2020.09.17.14.13.26
-        (version=TLS1_3 cipher=TLS_AES_256_GCM_SHA384 bits=256/256);
-        Thu, 17 Sep 2020 14:13:26 -0700 (PDT)
-From:   Dmitry Baryshkov <dmitry.baryshkov@linaro.org>
-To:     Andy Gross <agross@kernel.org>,
-        Bjorn Andersson <bjorn.andersson@linaro.org>,
-        Rob Herring <robh+dt@kernel.org>
-Cc:     linux-arm-msm@vger.kernel.org, devicetree@vger.kernel.org
-Subject: [PATCH 2/2] arm64: dts: qcom: enable rtc on sm8250-mtp board
-Date:   Fri, 18 Sep 2020 00:13:21 +0300
-Message-Id: <20200917211321.3295947-2-dmitry.baryshkov@linaro.org>
-X-Mailer: git-send-email 2.28.0
-In-Reply-To: <20200917211321.3295947-1-dmitry.baryshkov@linaro.org>
-References: <20200917211321.3295947-1-dmitry.baryshkov@linaro.org>
+        id S1725900AbgIQVf0 (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Thu, 17 Sep 2020 17:35:26 -0400
+Received: from mga04.intel.com ([192.55.52.120]:43989 "EHLO mga04.intel.com"
+        rhost-flags-OK-OK-OK-OK) by vger.kernel.org with ESMTP
+        id S1725844AbgIQVfX (ORCPT <rfc822;devicetree@vger.kernel.org>);
+        Thu, 17 Sep 2020 17:35:23 -0400
+IronPort-SDR: VtNHeK/IEKAw35sRnwxfdpjzVRm8z+Fj4P6j1ES+MiGd9/7zByi2GE+GdbwpNjjjuUAzlzIyHz
+ wGBg7OS/Uj4w==
+X-IronPort-AV: E=McAfee;i="6000,8403,9747"; a="157184423"
+X-IronPort-AV: E=Sophos;i="5.77,272,1596524400"; 
+   d="scan'208";a="157184423"
+X-Amp-Result: SKIPPED(no attachment in message)
+X-Amp-File-Uploaded: False
+Received: from orsmga006.jf.intel.com ([10.7.209.51])
+  by fmsmga104.fm.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384; 17 Sep 2020 14:35:20 -0700
+IronPort-SDR: Q9dXyvDnpLJrDbIMCfVjW0S0GMnX5iGEkiwByOun0p3b/BedA2YB+zHByRuX8thjy2H13dfdqa
+ XhO/7GHPuxdA==
+X-ExtLoop1: 1
+X-IronPort-AV: E=Sophos;i="5.77,272,1596524400"; 
+   d="scan'208";a="307628762"
+Received: from stinkbox.fi.intel.com (HELO stinkbox) ([10.237.72.174])
+  by orsmga006.jf.intel.com with SMTP; 17 Sep 2020 14:35:16 -0700
+Received: by stinkbox (sSMTP sendmail emulation); Fri, 18 Sep 2020 00:35:15 +0300
+Date:   Fri, 18 Sep 2020 00:35:15 +0300
+From:   Ville =?iso-8859-1?Q?Syrj=E4l=E4?= <ville.syrjala@linux.intel.com>
+To:     Tomi Valkeinen <tomi.valkeinen@ti.com>
+Cc:     dri-devel@lists.freedesktop.org, devicetree@vger.kernel.org,
+        David Airlie <airlied@linux.ie>,
+        Daniel Vetter <daniel@ffwll.ch>,
+        Rob Herring <robh+dt@kernel.org>,
+        Laurent Pinchart <laurent.pinchart@ideasonboard.com>,
+        Andrzej Hajda <a.hajda@samsung.com>,
+        Swapnil Kashinath Jakhade <sjakhade@cadence.com>,
+        Neil Armstrong <narmstrong@baylibre.com>
+Subject: Re: [PATCHv2] dt-bindings: dp-connector: add binding for DisplayPort
+ connector
+Message-ID: <20200917213515.GE6112@intel.com>
+References: <20200917055210.22868-1-tomi.valkeinen@ti.com>
+ <20200917112229.GR6112@intel.com>
+ <5265c620-ee51-3896-4c5a-9e3284c52327@ti.com>
 MIME-Version: 1.0
+Content-Type: text/plain; charset=iso-8859-1
+Content-Disposition: inline
 Content-Transfer-Encoding: 8bit
+In-Reply-To: <5265c620-ee51-3896-4c5a-9e3284c52327@ti.com>
+X-Patchwork-Hint: comment
+User-Agent: Mutt/1.10.1 (2018-07-13)
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-Enable PMIC's RTC device on SM8250-MTP board.
+On Thu, Sep 17, 2020 at 03:39:38PM +0300, Tomi Valkeinen wrote:
+> On 17/09/2020 14:22, Ville Syrjälä wrote:
+> > On Thu, Sep 17, 2020 at 08:52:10AM +0300, Tomi Valkeinen wrote:
+> >> Add binding for DisplayPort connector. A few notes:
+> >>
+> >> * Similar to hdmi-connector, it has hpd-gpios as an optional property,
+> >>   as the HPD could also be handled by, e.g., the DP bridge.
+> >>
+> >> * dp-pwr-supply, which provides 3.3V on DP_PWR pin, is optional, as it
+> >>   is not strictly required: standard DP cables do not even have the pin
+> >>   connected.
+> >>
+> >> * Connector type. Full size and mini connectors are identical except for
+> >>   the connector size and form, so I believe there is no functional need
+> >>   for this property. But similar to 'label' property, it might be used
+> >>   to present information about the connector to the userspace.
+> >>
+> >> * No eDP. There's really no "eDP connector", as it's always a custom
+> >>   made connection between the DP and the DP panel. So possibly there is
+> >>   no need for edp-connector binding, but even if there is, I don't want
+> >>   to guess what it could look like, and could it be part of the
+> >>   dp-connector binding.
+> >>
+> >> * No DP++. I'm not familiar with DP++, but I think it's all handled by
+> >>   the DP bridge, and does not need any new properties to the dp-connector.
+> > 
+> > You might need an i2c bus for this. It's up to the source device
+> > to either hook up just AUX CH, or both AUX CH and DDC to a DP++
+> > connector. If just AUX CH is wired up you are limited to using
+> > only type2 DP dual mode adapters, whereas if you also have DDC
+> > the crappier type1 adapters will also work.
+> 
+> Ok, thanks for the clarifications on this.
+> 
+> > I guess it's possible some bridges might handle all that for you.
+> > But eg. on i915 we always set up both AUX CH and DDC, and some
+> > extra circuitry on the board will isolate one or the other
+> > depending on what kind of dongle/cable gets plugged in
+> > (identified via the CONFIG pins).
+> 
+> Is that automatic on i915? I could imagine a gpio-controlled mux doing the isolation, and then we
+> need some driver controlling the gpio.
 
-Signed-off-by: Dmitry Baryshkov <dmitry.baryshkov@linaro.org>
----
- arch/arm64/boot/dts/qcom/sm8250-mtp.dts | 4 ++++
- 1 file changed, 4 insertions(+)
+Yeah, we don't even get the state of that pin in the driver.
+We just blindly probe both DDC and AUX CH. Due to the isolation
+only one goes through, the other other just times out.
 
-diff --git a/arch/arm64/boot/dts/qcom/sm8250-mtp.dts b/arch/arm64/boot/dts/qcom/sm8250-mtp.dts
-index fd194ed7fbc8..c85cab9c9b41 100644
---- a/arch/arm64/boot/dts/qcom/sm8250-mtp.dts
-+++ b/arch/arm64/boot/dts/qcom/sm8250-mtp.dts
-@@ -378,6 +378,10 @@ &i2c15 {
- 	/* rtc6226 @ 64 */
- };
- 
-+&pm8150_rtc {
-+	status = "okay";
-+};
-+
- &qupv3_id_0 {
- 	status = "okay";
- };
+> 
+> I could add the ddc bus the same way as on hdmi-connector.yaml, but perhaps it's better to leave
+> that for someone with a DP++ board. Afaics, there should be no problems adding this later.
+
+Another option might be to declare both dp and hdmi connectors for
+the same physical connector. That's the approach we use for
+drm_connectors in i915. But dunno if that's a good idea for dt.
+
 -- 
-2.28.0
-
+Ville Syrjälä
+Intel
