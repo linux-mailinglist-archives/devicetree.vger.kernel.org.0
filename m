@@ -2,111 +2,115 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from vger.kernel.org (vger.kernel.org [23.128.96.18])
-	by mail.lfdr.de (Postfix) with ESMTP id 2D67C26DBEB
-	for <lists+devicetree@lfdr.de>; Thu, 17 Sep 2020 14:46:21 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTP id ECBB826DBCD
+	for <lists+devicetree@lfdr.de>; Thu, 17 Sep 2020 14:42:29 +0200 (CEST)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S1727076AbgIQMp6 (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Thu, 17 Sep 2020 08:45:58 -0400
-Received: from mail.loongson.cn ([114.242.206.163]:44074 "EHLO loongson.cn"
-        rhost-flags-OK-OK-OK-FAIL) by vger.kernel.org with ESMTP
-        id S1726859AbgIQMpt (ORCPT <rfc822;devicetree@vger.kernel.org>);
-        Thu, 17 Sep 2020 08:45:49 -0400
-X-Greylist: delayed 389 seconds by postgrey-1.27 at vger.kernel.org; Thu, 17 Sep 2020 08:45:42 EDT
-Received: from linux.localdomain (unknown [113.200.148.30])
-        by mail.loongson.cn (Coremail) with SMTP id AQAAf9Dxj8flWGNf7PsVAA--.770S2;
-        Thu, 17 Sep 2020 20:39:01 +0800 (CST)
-From:   Tiezhu Yang <yangtiezhu@loongson.cn>
-To:     Thomas Bogendoerfer <tsbogend@alpha.franken.de>,
+        id S1727017AbgIQMmX (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Thu, 17 Sep 2020 08:42:23 -0400
+Received: from lelv0143.ext.ti.com ([198.47.23.248]:35430 "EHLO
+        lelv0143.ext.ti.com" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
+        with ESMTP id S1727032AbgIQMkJ (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Thu, 17 Sep 2020 08:40:09 -0400
+Received: from fllv0034.itg.ti.com ([10.64.40.246])
+        by lelv0143.ext.ti.com (8.15.2/8.15.2) with ESMTP id 08HCdgxq054466;
+        Thu, 17 Sep 2020 07:39:42 -0500
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=ti.com;
+        s=ti-com-17Q1; t=1600346382;
+        bh=FSxwoPL7aSoYCkxBrZForrCAzlbC92v79w5BQmsdNss=;
+        h=Subject:To:CC:References:From:Date:In-Reply-To;
+        b=HznG9ARTc3qmGgjk4fJmV+S3pVgtetMzjo6El+rR7+AAENDTRgf1cs3kcPWwBDriX
+         DZ8ormumBmFIOGp9Bj9de5xC+G9BoT3Y17Hey6sobsNjmc8r8fiKYs+zksxk0x0gPG
+         kMlWUBEpun0XwozxUrO/wPqSE9Ap4EXGO3cj3Opc=
+Received: from DFLE102.ent.ti.com (dfle102.ent.ti.com [10.64.6.23])
+        by fllv0034.itg.ti.com (8.15.2/8.15.2) with ESMTPS id 08HCdgVp041779
+        (version=TLSv1.2 cipher=AES256-GCM-SHA384 bits=256 verify=FAIL);
+        Thu, 17 Sep 2020 07:39:42 -0500
+Received: from DFLE112.ent.ti.com (10.64.6.33) by DFLE102.ent.ti.com
+ (10.64.6.23) with Microsoft SMTP Server (version=TLS1_2,
+ cipher=TLS_ECDHE_RSA_WITH_AES_128_CBC_SHA256_P256) id 15.1.1979.3; Thu, 17
+ Sep 2020 07:39:42 -0500
+Received: from fllv0040.itg.ti.com (10.64.41.20) by DFLE112.ent.ti.com
+ (10.64.6.33) with Microsoft SMTP Server (version=TLS1_2,
+ cipher=TLS_ECDHE_RSA_WITH_AES_128_CBC_SHA256_P256) id 15.1.1979.3 via
+ Frontend Transport; Thu, 17 Sep 2020 07:39:42 -0500
+Received: from [192.168.2.6] (ileax41-snat.itg.ti.com [10.172.224.153])
+        by fllv0040.itg.ti.com (8.15.2/8.15.2) with ESMTP id 08HCdddv017095;
+        Thu, 17 Sep 2020 07:39:40 -0500
+Subject: Re: [PATCHv2] dt-bindings: dp-connector: add binding for DisplayPort
+ connector
+To:     =?UTF-8?B?VmlsbGUgU3lyasOkbMOk?= <ville.syrjala@linux.intel.com>
+CC:     <dri-devel@lists.freedesktop.org>, <devicetree@vger.kernel.org>,
+        David Airlie <airlied@linux.ie>,
+        Daniel Vetter <daniel@ffwll.ch>,
         Rob Herring <robh+dt@kernel.org>,
-        Huacai Chen <chenhc@lemote.com>,
-        Jiaxun Yang <jiaxun.yang@flygoat.com>
-Cc:     linux-mips@vger.kernel.org, devicetree@vger.kernel.org,
-        linux-kernel@vger.kernel.org, Xuefeng Li <lixuefeng@loongson.cn>
-Subject: [PATCH] MIPS: Loongson64: Add UART node for LS7A PCH
-Date:   Thu, 17 Sep 2020 20:39:01 +0800
-Message-Id: <1600346341-5158-1-git-send-email-yangtiezhu@loongson.cn>
-X-Mailer: git-send-email 2.1.0
-X-CM-TRANSID: AQAAf9Dxj8flWGNf7PsVAA--.770S2
-X-Coremail-Antispam: 1UD129KBjvJXoW7Cr1kAr4DCrW3Xr47ZrWxCrg_yoW8AFWxpF
-        4jya9YgrWxXFnI9w13JFy8KF4fGFZ5CF9rWrn2y3y8Jws5K3Z0vr1xJFy8tF17WrW8ZayU
-        Wan2934q9FsrZw7anT9S1TB71UUUUUUqnTZGkaVYY2UrUUUUjbIjqfuFe4nvWSU5nxnvy2
-        9KBjDU0xBIdaVrnRJUUUkv14x267AKxVW8JVW5JwAFc2x0x2IEx4CE42xK8VAvwI8IcIk0
-        rVWrJVCq3wAFIxvE14AKwVWUJVWUGwA2ocxC64kIII0Yj41l84x0c7CEw4AK67xGY2AK02
-        1l84ACjcxK6xIIjxv20xvE14v26r4j6ryUM28EF7xvwVC0I7IYx2IY6xkF7I0E14v26r4j
-        6F4UM28EF7xvwVC2z280aVAFwI0_GcCE3s1l84ACjcxK6I8E87Iv6xkF7I0E14v26rxl6s
-        0DM2AIxVAIcxkEcVAq07x20xvEncxIr21l5I8CrVACY4xI64kE6c02F40Ex7xfMcIj6xII
-        jxv20xvE14v26r1Y6r17McIj6I8E87Iv67AKxVWxJVW8Jr1lOx8S6xCaFVCjc4AY6r1j6r
-        4UM4x0Y48IcxkI7VAKI48JM4x0x7Aq67IIx4CEVc8vx2IErcIFxwCY02Avz4vE14v_Xr1l
-        42xK82IYc2Ij64vIr41l4I8I3I0E4IkC6x0Yz7v_Jr0_Gr1lx2IqxVAqx4xG67AKxVWUJV
-        WUGwC20s026x8GjcxK67AKxVWUGVWUWwC2zVAF1VAY17CE14v26r1q6r43MIIYrxkI7VAK
-        I48JMIIF0xvE2Ix0cI8IcVAFwI0_Jr0_JF4lIxAIcVC0I7IYx2IY6xkF7I0E14v26r1j6r
-        4UMIIF0xvE42xK8VAvwI8IcIk0rVWrZr1j6s0DMIIF0xvEx4A2jsIE14v26r1j6r4UMIIF
-        0xvEx4A2jsIEc7CjxVAFwI0_Gr0_Gr1UYxBIdaVFxhVjvjDU0xZFpf9x0JUL0eQUUUUU=
-X-CM-SenderInfo: p1dqw3xlh2x3gn0dqz5rrqw2lrqou0/
+        Laurent Pinchart <laurent.pinchart@ideasonboard.com>,
+        Andrzej Hajda <a.hajda@samsung.com>,
+        Swapnil Kashinath Jakhade <sjakhade@cadence.com>,
+        Neil Armstrong <narmstrong@baylibre.com>
+References: <20200917055210.22868-1-tomi.valkeinen@ti.com>
+ <20200917112229.GR6112@intel.com>
+From:   Tomi Valkeinen <tomi.valkeinen@ti.com>
+Message-ID: <5265c620-ee51-3896-4c5a-9e3284c52327@ti.com>
+Date:   Thu, 17 Sep 2020 15:39:38 +0300
+User-Agent: Mozilla/5.0 (X11; Linux x86_64; rv:68.0) Gecko/20100101
+ Thunderbird/68.10.0
+MIME-Version: 1.0
+In-Reply-To: <20200917112229.GR6112@intel.com>
+Content-Type: text/plain; charset="utf-8"
+Content-Language: en-US
+Content-Transfer-Encoding: 8bit
+X-EXCLAIMER-MD-CONFIG: e1e8a2fd-e40a-4ac6-ac9b-f7e9cc9ee180
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-When I update the latest kernel on the Loongson platform used with
-LS7A bridge chip, the serial console has no output, this is because
-the machine uses LS7A UART0 instead of CPU UART0, add UART node for
-LS7A PCH to enhance the compatibility.
+On 17/09/2020 14:22, Ville Syrjälä wrote:
+> On Thu, Sep 17, 2020 at 08:52:10AM +0300, Tomi Valkeinen wrote:
+>> Add binding for DisplayPort connector. A few notes:
+>>
+>> * Similar to hdmi-connector, it has hpd-gpios as an optional property,
+>>   as the HPD could also be handled by, e.g., the DP bridge.
+>>
+>> * dp-pwr-supply, which provides 3.3V on DP_PWR pin, is optional, as it
+>>   is not strictly required: standard DP cables do not even have the pin
+>>   connected.
+>>
+>> * Connector type. Full size and mini connectors are identical except for
+>>   the connector size and form, so I believe there is no functional need
+>>   for this property. But similar to 'label' property, it might be used
+>>   to present information about the connector to the userspace.
+>>
+>> * No eDP. There's really no "eDP connector", as it's always a custom
+>>   made connection between the DP and the DP panel. So possibly there is
+>>   no need for edp-connector binding, but even if there is, I don't want
+>>   to guess what it could look like, and could it be part of the
+>>   dp-connector binding.
+>>
+>> * No DP++. I'm not familiar with DP++, but I think it's all handled by
+>>   the DP bridge, and does not need any new properties to the dp-connector.
+> 
+> You might need an i2c bus for this. It's up to the source device
+> to either hook up just AUX CH, or both AUX CH and DDC to a DP++
+> connector. If just AUX CH is wired up you are limited to using
+> only type2 DP dual mode adapters, whereas if you also have DDC
+> the crappier type1 adapters will also work.
 
-Signed-off-by: Tiezhu Yang <yangtiezhu@loongson.cn>
----
- arch/mips/boot/dts/loongson/ls7a-pch.dtsi | 39 +++++++++++++++++++++++++++++++
- 1 file changed, 39 insertions(+)
+Ok, thanks for the clarifications on this.
 
-diff --git a/arch/mips/boot/dts/loongson/ls7a-pch.dtsi b/arch/mips/boot/dts/loongson/ls7a-pch.dtsi
-index e574a06..f99a7a1 100644
---- a/arch/mips/boot/dts/loongson/ls7a-pch.dtsi
-+++ b/arch/mips/boot/dts/loongson/ls7a-pch.dtsi
-@@ -19,6 +19,45 @@
- 			#interrupt-cells = <2>;
- 		};
- 
-+		ls7a_uart0: serial@10080000 {
-+			compatible = "ns16550a";
-+			reg = <0 0x10080000 0 0x100>;
-+			clock-frequency = <50000000>;
-+			interrupt-parent = <&pic>;
-+			interrupts = <8 IRQ_TYPE_LEVEL_HIGH>;
-+			no-loopback-test;
-+		};
-+
-+		ls7a_uart1: serial@10080100 {
-+			status = "disabled";
-+			compatible = "ns16550a";
-+			reg = <0 0x10080100 0 0x100>;
-+			clock-frequency = <50000000>;
-+			interrupt-parent = <&pic>;
-+			interrupts = <8 IRQ_TYPE_LEVEL_HIGH>;
-+			no-loopback-test;
-+		};
-+
-+		ls7a_uart2: serial@10080200 {
-+			status = "disabled";
-+			compatible = "ns16550a";
-+			reg = <0 0x10080200 0 0x100>;
-+			clock-frequency = <50000000>;
-+			interrupt-parent = <&pic>;
-+			interrupts = <8 IRQ_TYPE_LEVEL_HIGH>;
-+			no-loopback-test;
-+		};
-+
-+		ls7a_uart3: serial@10080300 {
-+			status = "disabled";
-+			compatible = "ns16550a";
-+			reg = <0 0x10080300 0 0x100>;
-+			clock-frequency = <50000000>;
-+			interrupt-parent = <&pic>;
-+			interrupts = <8 IRQ_TYPE_LEVEL_HIGH>;
-+			no-loopback-test;
-+		};
-+
- 		pci@1a000000 {
- 			compatible = "loongson,ls7a-pci";
- 			device_type = "pci";
+> I guess it's possible some bridges might handle all that for you.
+> But eg. on i915 we always set up both AUX CH and DDC, and some
+> extra circuitry on the board will isolate one or the other
+> depending on what kind of dongle/cable gets plugged in
+> (identified via the CONFIG pins).
+
+Is that automatic on i915? I could imagine a gpio-controlled mux doing the isolation, and then we
+need some driver controlling the gpio.
+
+I could add the ddc bus the same way as on hdmi-connector.yaml, but perhaps it's better to leave
+that for someone with a DP++ board. Afaics, there should be no problems adding this later.
+
+ Tomi
+
 -- 
-2.1.0
-
+Texas Instruments Finland Oy, Porkkalankatu 22, 00180 Helsinki.
+Y-tunnus/Business ID: 0615521-4. Kotipaikka/Domicile: Helsinki
