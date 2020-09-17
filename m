@@ -2,114 +2,151 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from vger.kernel.org (vger.kernel.org [23.128.96.18])
-	by mail.lfdr.de (Postfix) with ESMTP id 86D1726D840
-	for <lists+devicetree@lfdr.de>; Thu, 17 Sep 2020 12:00:50 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTP id 9E00F26D879
+	for <lists+devicetree@lfdr.de>; Thu, 17 Sep 2020 12:10:20 +0200 (CEST)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S1726343AbgIQKAt (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Thu, 17 Sep 2020 06:00:49 -0400
-Received: from lindbergh.monkeyblade.net ([23.128.96.19]:45280 "EHLO
+        id S1726180AbgIQKKQ (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Thu, 17 Sep 2020 06:10:16 -0400
+Received: from lindbergh.monkeyblade.net ([23.128.96.19]:46736 "EHLO
         lindbergh.monkeyblade.net" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S1726185AbgIQKAs (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Thu, 17 Sep 2020 06:00:48 -0400
-Received: from mail-ed1-x542.google.com (mail-ed1-x542.google.com [IPv6:2a00:1450:4864:20::542])
-        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 7E556C06174A;
-        Thu, 17 Sep 2020 03:00:48 -0700 (PDT)
-Received: by mail-ed1-x542.google.com with SMTP id g4so1940487edk.0;
-        Thu, 17 Sep 2020 03:00:48 -0700 (PDT)
+        with ESMTP id S1726478AbgIQKKI (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Thu, 17 Sep 2020 06:10:08 -0400
+Received: from mail-ej1-x642.google.com (mail-ej1-x642.google.com [IPv6:2a00:1450:4864:20::642])
+        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 7C28AC061788
+        for <devicetree@vger.kernel.org>; Thu, 17 Sep 2020 03:10:07 -0700 (PDT)
+Received: by mail-ej1-x642.google.com with SMTP id nw23so2472573ejb.4
+        for <devicetree@vger.kernel.org>; Thu, 17 Sep 2020 03:10:07 -0700 (PDT)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=gmail.com; s=20161025;
+        d=baylibre-com.20150623.gappssmtp.com; s=20150623;
         h=mime-version:references:in-reply-to:from:date:message-id:subject:to
-         :cc;
-        bh=mog08lfqfxZzqsQp+fqJ0msYK0VIdpvG6vqtJbveMak=;
-        b=SlBMAFa/OpI0zd49+YKJFEQ0ZK3dD9P4CbN595u9woZwVueEgYYMkJniC503Wcr2PC
-         eZg2NUWHVACE+RzvlTyayY/zXL3b81IuTsRdqg/CjdCLVPh8G6Ejz0Ly+xIWWwLonzOd
-         LBGMxG0DUEDHR3ujW/6eK+DyHp8uYFb7umfRHqn/Gj7gP0l6HLE7IcwoZoIRnEVPlK+Y
-         0OB38ajIkvuXNXZjbBE6Mg/H8t6eOlCVToAcfAkg7h14Vw2TONtVyklrmbrnTy/CGWhB
-         eeO+HwJBDKHmEb270FdDh5Qr8K8QgpcCtXmFs31Djh21bKeiqlcenixj/OK3eyFwRV5v
-         96Ag==
+         :cc:content-transfer-encoding;
+        bh=04WngnQ0jFkRbt43U2XgSIOKzRq0Sv9eq28pqM57V98=;
+        b=1Y3onGh9sya70Zj5ROGYqM0vDIhG4Pml5qhYfxy8YUxodW4UyPXuWfE/5qvPW18y0G
+         RsCoULWffDaThKdKHgV+HTshDZ76MBK1aNpTI/wJSVJT07+//6anf7CuheYFg56aKYGw
+         bui1WW6rC7/1DHCi7LCOhxD5lqFdGhQaSRO+y9neK0mYMG0lTmyEMGgELYPpzU4HDDH2
+         R3faJ4NB2MbBMe01Gnya+Z4mLbSxarcksrAe47iJArFWde/7tMEwGOWnlAXKFwAA6/lc
+         +QsP8F6ezv0foahLyTK0ZRf82TXdj960eZvjztPyUV2eEpInVwBH9ZmvQGzsyDh2k1dD
+         52ag==
 X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
         d=1e100.net; s=20161025;
         h=x-gm-message-state:mime-version:references:in-reply-to:from:date
-         :message-id:subject:to:cc;
-        bh=mog08lfqfxZzqsQp+fqJ0msYK0VIdpvG6vqtJbveMak=;
-        b=Uya7H+tp5sodYjymRkMOHtwmWc8CaU0r0gIaFidQmeQpDKBSjLgl3S65XP8jXTk1KU
-         DJxME3RTTOH57tPPIxKepZ6mqv5h502ICi+67Ar/RDEjwaapGaMOFCSsZ0mLbSlgxIVT
-         5sC/v32IseZHoZ8a4HWSLF5Chl/fOvIfM8fmr2rnA9jImsXhwpKDVhyjysJ7Ih14az+I
-         TD8wkLB2MbXITr524jc21ASJk+8xz5dLriOW0wpGVtlo0vqayz80F8ATkNasvLOzrLfE
-         /8flzIMmCW5iTJ8y+kpJLCu7ARqmc+2jnOF3ABCCdXOttz3VWgQEBszx8/oPnSPkQtgT
-         UPqQ==
-X-Gm-Message-State: AOAM530O+a3kv0icHeE37kHWH2X5x+2DE29CFXOLM7EfHwDDPqwb1DkO
-        71OP2YzprUN/ZQ7OHsYvIFW9NUanS8iRk6e4J9luSw7euB3T8g==
-X-Google-Smtp-Source: ABdhPJyoXk0WoHOaaTu86WVRwuhzB9IwesJGlfmWyPQl7ZCPRCnONgv/KQ2/fx4Hv9opaQcE91DGnzo8sfhHvoE4NQE=
-X-Received: by 2002:aa7:d458:: with SMTP id q24mr32711156edr.23.1600336847136;
- Thu, 17 Sep 2020 03:00:47 -0700 (PDT)
+         :message-id:subject:to:cc:content-transfer-encoding;
+        bh=04WngnQ0jFkRbt43U2XgSIOKzRq0Sv9eq28pqM57V98=;
+        b=WfDNq7ROK7NPgYzQwRsNfoaiSoQt3aOHvg0Ur2J+Plt7Upl1GtdT62CmNOCoBaIF4s
+         VDfVr801mmm581i+aM2okOAvM0gr4uh/aee2h5CfEnyz3DjyQIIoIEf2f95Vty9yGyZY
+         h4yRI0nvGn4imcL8sakxf1PDD8KorwFR9RzaOoiRAWbCKEUjWUWsp4Anh+WDoD2zOltW
+         c5XnwVLWMbWyhudCZieB57bXIvH1FSV0A3t+PEByUI0pjduZWzyJAEpfEaz55Kifbe6i
+         YEA9zTSgRBXQfi9jCWr07NCt3yeTtHEig+Os1z/Qp5aCiVjQkbjhTSZhyMQyjVA1kYkp
+         soSw==
+X-Gm-Message-State: AOAM532uvMVOFinVBedD1H2HQpVoPzFnIO8Q4ZKhD3ShRZ7AwLTzZCIE
+        L/cya0WrMwQUbd61vLccteTJCv+bGaAyhuUmNycl5ziv1pk=
+X-Google-Smtp-Source: ABdhPJxdb1PMRdnzgj842p+yq28ULJU3QGXnN/dhAo9RWsiz8goGZ+9Bi/ZDVoXn/zlS2GMz9d9ggFcKkxLuvSaAscM=
+X-Received: by 2002:a17:906:f11:: with SMTP id z17mr30847115eji.88.1600337406050;
+ Thu, 17 Sep 2020 03:10:06 -0700 (PDT)
 MIME-Version: 1.0
-References: <20200914104352.2165818-1-drew@beagleboard.org>
- <CA+7tXii8rwBexgAHeqYsvBywhWLmk-Hf5_VWUU5bQkBREeFcSA@mail.gmail.com> <20200917092004.GA2468349@x1>
-In-Reply-To: <20200917092004.GA2468349@x1>
-From:   Trent Piepho <tpiepho@gmail.com>
-Date:   Thu, 17 Sep 2020 03:00:36 -0700
-Message-ID: <CA+7tXihwHbcuxZ10jGZrQkET9+Dbs31SfsYDt_6XB+-JM99gqA@mail.gmail.com>
-Subject: Re: [PATCH] ARM: dts: document pinctrl-single,pins when
- #pinctrl-cells = 2
-To:     Drew Fustini <drew@beagleboard.org>
-Cc:     Tony Lindgren <tony@atomide.com>, Rob Herring <robh+dt@kernel.org>,
-        Linus Walleij <linus.walleij@linaro.org>,
-        Jason Kridner <jkridner@beagleboard.org>,
-        Robert Nelson <robertcnelson@gmail.com>,
-        linux-omap@vger.kernel.org, linux-kernel@vger.kernel.org,
-        devicetree@vger.kernel.org, linux-gpio <linux-gpio@vger.kernel.org>
+References: <20200916231650.11484-1-marek.behun@nic.cz> <20200916231650.11484-5-marek.behun@nic.cz>
+In-Reply-To: <20200916231650.11484-5-marek.behun@nic.cz>
+From:   Bartosz Golaszewski <bgolaszewski@baylibre.com>
+Date:   Thu, 17 Sep 2020 12:09:55 +0200
+Message-ID: <CAMpxmJVC7J3awjDWVC49JaBQVrqiubG7Nz761FAv=zdXe_6Reg@mail.gmail.com>
+Subject: Re: [PATCH leds v1 04/10] leds: max77650: use struct led_init_data
+ when registering
+To:     =?UTF-8?B?TWFyZWsgQmVow7pu?= <marek.behun@nic.cz>
+Cc:     Linux LED Subsystem <linux-leds@vger.kernel.org>,
+        Pavel Machek <pavel@ucw.cz>, Dan Murphy <dmurphy@ti.com>,
+        =?UTF-8?Q?Ond=C5=99ej_Jirman?= <megous@megous.com>,
+        LKML <linux-kernel@vger.kernel.org>,
+        Rob Herring <robh+dt@kernel.org>,
+        linux-devicetree <devicetree@vger.kernel.org>
 Content-Type: text/plain; charset="UTF-8"
+Content-Transfer-Encoding: quoted-printable
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-On Thu, Sep 17, 2020 at 2:20 AM Drew Fustini <drew@beagleboard.org> wrote:
+On Thu, Sep 17, 2020 at 1:16 AM Marek Beh=C3=BAn <marek.behun@nic.cz> wrote=
+:
 >
-> On Thu, Sep 17, 2020 at 02:03:46AM -0700, Trent Piepho wrote:
-> > On Mon, Sep 14, 2020 at 3:44 AM Drew Fustini <drew@beagleboard.org> wrote:
-> > >
-> > > +
-> > > +When #pinctrl-cells = 2, then setting a pin for a device could be done with:
-> > > +
-> > > +       pinctrl-single,pins = <0xdc 0x30 0x07>;
-> > > +
-> > > +Where 0x30 is the pin configuration value and 0x07 is the pin mux mode value.
-> > > +See the device example and static board pins example below for more information.
-> >
-> > Pin configuration and mux mode don't mean anything in pinctrl-single.
-> > On another machine, mux mode might not be programmed this way or even
-> > exist.  Or the location of bits would probably be different, and this
-> > would seem to imply the 0x07 would get shifted to the correct location
-> > for where the pin mux setting was on that machine's pinctrl registers.
-> >
-> > It seems like it would be better to explain the values are ORed together.
+> By using struct led_init_data when registering we do not need to parse
+> `label` DT property nor `linux,default-trigger` property.
 >
-> I descirbed it as seoerate values as I did not want to prescribe what
-> the pcs driver would do with those values.  But, yes, it is a just an OR
-> operation, so I could change the language to reflect tat.
-
-If you don't say what the pinctrl-single driver does with the values,
-how would anyone know how to use it?
-
-> > What is the purpose of this change anyway?  It seems like in the end
-> > it just does what it did before.  The data is now split into two cells
-> > in the device tree, but why?
+> Previously if the `label` DT property was not present, the code composed
+> name for the LED in the form
+>   "max77650::"
+> For backwards compatibility we therefore set
+>   init_data->default_label =3D ":";
+> so that the LED will not get a different name if `label` property is not
+> present.
 >
-> These changes were a result of desire to seperate pinconf and pinmux.
-> Tony raised the idea in a thread at the end of May [1].
+> Signed-off-by: Marek Beh=C3=BAn <marek.behun@nic.cz>
+> Cc: Bartosz Golaszewski <bgolaszewski@baylibre.com>
+> ---
+>  drivers/leds/leds-max77650.c | 24 ++++++++----------------
+>  1 file changed, 8 insertions(+), 16 deletions(-)
 >
-> Tony wrote:
-> > Only slightly related, but we should really eventually move omaps to use
-> > #pinctrl-cells = <2> (or 3) instead of 1, and pass the pinconf seprately
-> > from the mux mode. We already treat them separately with the new
-> > AM33XX_PADCONF macro, so we'd only have to change one SoC at a time to
-> > use updated #pinctrl-cells. But I think pinctrl-single might need some
-> > changes before we can do that.
+> diff --git a/drivers/leds/leds-max77650.c b/drivers/leds/leds-max77650.c
+> index a0d4b725c9178..1eeac56b00146 100644
+> --- a/drivers/leds/leds-max77650.c
+> +++ b/drivers/leds/leds-max77650.c
+> @@ -66,7 +66,6 @@ static int max77650_led_probe(struct platform_device *p=
+dev)
+>         struct max77650_led *leds, *led;
+>         struct device *dev;
+>         struct regmap *map;
+> -       const char *label;
+>         int rv, num_leds;
+>         u32 reg;
+>
+> @@ -86,6 +85,8 @@ static int max77650_led_probe(struct platform_device *p=
+dev)
+>                 return -ENODEV;
+>
+>         device_for_each_child_node(dev, child) {
+> +               struct led_init_data init_data =3D {};
+> +
+>                 rv =3D fwnode_property_read_u32(child, "reg", &reg);
+>                 if (rv || reg >=3D MAX77650_LED_NUM_LEDS) {
+>                         rv =3D -EINVAL;
+> @@ -99,22 +100,13 @@ static int max77650_led_probe(struct platform_device=
+ *pdev)
+>                 led->cdev.brightness_set_blocking =3D max77650_led_bright=
+ness_set;
+>                 led->cdev.max_brightness =3D MAX77650_LED_MAX_BRIGHTNESS;
+>
+> -               rv =3D fwnode_property_read_string(child, "label", &label=
+);
+> -               if (rv) {
+> -                       led->cdev.name =3D "max77650::";
+> -               } else {
+> -                       led->cdev.name =3D devm_kasprintf(dev, GFP_KERNEL=
+,
+> -                                                       "max77650:%s", la=
+bel);
+> -                       if (!led->cdev.name) {
+> -                               rv =3D -ENOMEM;
+> -                               goto err_node_put;
+> -                       }
+> -               }
+> -
+> -               fwnode_property_read_string(child, "linux,default-trigger=
+",
+> -                                           &led->cdev.default_trigger);
+> +               init_data.fwnode =3D child;
+> +               init_data.devicename =3D "max77650";
+> +               /* for backwards compatibility if `label` is not present =
+*/
+> +               init_data.default_label =3D ":";
+>
+> -               rv =3D devm_led_classdev_register(dev, &led->cdev);
+> +               rv =3D devm_led_classdev_register_ext(dev, &led->cdev,
+> +                                                   &init_data);
+>                 if (rv)
+>                         goto err_node_put;
+>
+> --
+> 2.26.2
+>
 
-I still don't see what the goal is here.  Support generic pinconf?
+I don't know this new API very well but looks good to me.
 
-Also note that while AM33XX_PADCONF() is changed, there is an in tree
-board that doesn't use it, so it's broken now.  I found this change
-when it broke my out of tree board, due to the dtsi change not being
-reflected in my board's pinctrl values.
+Acked-by: Bartosz Golaszewski <bgolaszewski@baylibre.com>
