@@ -2,115 +2,66 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from vger.kernel.org (vger.kernel.org [23.128.96.18])
-	by mail.lfdr.de (Postfix) with ESMTP id A519926E3B1
-	for <lists+devicetree@lfdr.de>; Thu, 17 Sep 2020 20:34:42 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTP id 84F1126E42F
+	for <lists+devicetree@lfdr.de>; Thu, 17 Sep 2020 20:42:39 +0200 (CEST)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S1726385AbgIQSej (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Thu, 17 Sep 2020 14:34:39 -0400
-Received: from lindbergh.monkeyblade.net ([23.128.96.19]:40638 "EHLO
-        lindbergh.monkeyblade.net" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S1726557AbgIQSdk (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Thu, 17 Sep 2020 14:33:40 -0400
-Received: from metis.ext.pengutronix.de (metis.ext.pengutronix.de [IPv6:2001:67c:670:201:290:27ff:fe1d:cc33])
-        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 78F5CC06121E
-        for <devicetree@vger.kernel.org>; Thu, 17 Sep 2020 11:32:56 -0700 (PDT)
-Received: from dude.hi.pengutronix.de ([2001:67c:670:100:1d::7] helo=dude.pengutronix.de.)
-        by metis.ext.pengutronix.de with esmtp (Exim 4.92)
-        (envelope-from <bst@pengutronix.de>)
-        id 1kIyiE-0004GR-Vd; Thu, 17 Sep 2020 20:32:54 +0200
-From:   Bastian Krause <bst@pengutronix.de>
-To:     linux-rtc@vger.kernel.org
-Cc:     devicetree@vger.kernel.org,
-        Alessandro Zummo <a.zummo@towertech.it>,
-        Alexandre Belloni <alexandre.belloni@bootlin.com>,
-        Rob Herring <robh+dt@kernel.org>,
-        Arnaud Ebalard <arno@natisbad.org>,
-        Marek Vasut <marex@denx.de>, kernel@pengutronix.de,
-        Bastian Krause <bst@pengutronix.de>
-Subject: [PATCH v2 8/8] rtc: ds1307: enable rx8130's backup battery, make it chargeable optionally
-Date:   Thu, 17 Sep 2020 20:32:46 +0200
-Message-Id: <20200917183246.19446-9-bst@pengutronix.de>
-X-Mailer: git-send-email 2.28.0
-In-Reply-To: <20200917183246.19446-1-bst@pengutronix.de>
-References: <20200917183246.19446-1-bst@pengutronix.de>
-MIME-Version: 1.0
-Content-Transfer-Encoding: 8bit
-X-SA-Exim-Connect-IP: 2001:67c:670:100:1d::7
-X-SA-Exim-Mail-From: bst@pengutronix.de
-X-SA-Exim-Scanned: No (on metis.ext.pengutronix.de); SAEximRunCond expanded to false
-X-PTX-Original-Recipient: devicetree@vger.kernel.org
+        id S1726453AbgIQSm1 (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Thu, 17 Sep 2020 14:42:27 -0400
+Received: from mail.kernel.org ([198.145.29.99]:45646 "EHLO mail.kernel.org"
+        rhost-flags-OK-OK-OK-OK) by vger.kernel.org with ESMTP
+        id S1726325AbgIQSlm (ORCPT <rfc822;devicetree@vger.kernel.org>);
+        Thu, 17 Sep 2020 14:41:42 -0400
+Received: from kozik-lap.mshome.net (unknown [194.230.155.191])
+        (using TLSv1.2 with cipher ECDHE-RSA-AES128-GCM-SHA256 (128/128 bits))
+        (No client certificate requested)
+        by mail.kernel.org (Postfix) with ESMTPSA id 3B549208E4;
+        Thu, 17 Sep 2020 18:41:39 +0000 (UTC)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=kernel.org;
+        s=default; t=1600368102;
+        bh=uCeoYS1WM7mLuDFhPwrThQkz1h44ZUgeNbtoDxCFJFI=;
+        h=From:To:Subject:Date:From;
+        b=L4gTo1Sx/q1x967UZSyvgj2MBVYErMEU3GYogXde/e5jUTTAFg3E9IGUfJMi3X3Yh
+         Q2ol8iezMA+VLZwAsWUSILU5h5j2nMB4Z2f6feNxfpWD4/f8uwvnPtS11LQb51K6PZ
+         SAuu/liLOVtnSr4xu1z34saNZnjPd260r3Z5u0ig=
+From:   Krzysztof Kozlowski <krzk@kernel.org>
+To:     Rob Herring <robh+dt@kernel.org>, Shawn Guo <shawnguo@kernel.org>,
+        Sascha Hauer <s.hauer@pengutronix.de>,
+        Pengutronix Kernel Team <kernel@pengutronix.de>,
+        Fabio Estevam <festevam@gmail.com>,
+        NXP Linux Team <linux-imx@nxp.com>,
+        Krzysztof Kozlowski <krzk@kernel.org>,
+        devicetree@vger.kernel.org, linux-arm-kernel@lists.infradead.org,
+        linux-kernel@vger.kernel.org
+Subject: [PATCH] arm64: dts: imx8mm-var-som-symphony: fix ptn5150 interrupts
+Date:   Thu, 17 Sep 2020 20:41:31 +0200
+Message-Id: <20200917184131.2087-1-krzk@kernel.org>
+X-Mailer: git-send-email 2.17.1
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-The ds1307 charger infrastructure now allows to add a rx8130 charger
-setup that..
+Conversion of int-gpios into interrupts property requires also
+interrupt-parent and uses different flags.
 
-- does not depend on trickle-resistor-ohms
-- does not use DS13XX_TRICKLE_CHARGER_MAGIC trickle-charge select (TCS)
-  bits
-- keeps previous no-charge behavior for device trees without
-  aux-voltage-chargeable
-
-Make that happen.
-
-Signed-off-by: Bastian Krause <bst@pengutronix.de>
+Signed-off-by: Krzysztof Kozlowski <krzk@kernel.org>
 ---
-No changes since v1.
+ arch/arm64/boot/dts/freescale/imx8mm-var-som-symphony.dts | 3 ++-
+ 1 file changed, 2 insertions(+), 1 deletion(-)
 
-v1 notes:
-Based on:
-- https://lore.kernel.org/linux-rtc/20200415163701.21989-1-bst@pengutronix.de/
-- https://lore.kernel.org/linux-rtc/20200415163701.21989-3-bst@pengutronix.de/
-
-Changes since then:
-- use chager_reg (called trickle_charger_reg before patch 4/8)
-- use charger setup function to set backup battery enable bit, charge
-  bit optionally (introduced by patch 5/8)
----
- drivers/rtc/rtc-ds1307.c | 15 +++++++++++++++
- 1 file changed, 15 insertions(+)
-
-diff --git a/drivers/rtc/rtc-ds1307.c b/drivers/rtc/rtc-ds1307.c
-index 9bf1822a989f..1fe0c2df2578 100644
---- a/drivers/rtc/rtc-ds1307.c
-+++ b/drivers/rtc/rtc-ds1307.c
-@@ -122,6 +122,9 @@ enum ds_type {
- #define RX8130_REG_FLAG_AF		BIT(3)
- #define RX8130_REG_CONTROL0		0x1e
- #define RX8130_REG_CONTROL0_AIE		BIT(3)
-+#define RX8130_REG_CONTROL1		0x1f
-+#define RX8130_REG_CONTROL1_INIEN	BIT(4)
-+#define RX8130_REG_CONTROL1_CHGEN	BIT(5)
- 
- #define MCP794XX_REG_CONTROL		0x07
- #	define MCP794XX_BIT_ALM0_EN	0x10
-@@ -536,6 +539,16 @@ static u8 do_trickle_setup_ds1339(struct ds1307 *ds1307, u32 ohms, bool diode)
- 	return setup;
- }
- 
-+static u8 do_trickle_setup_rx8130(struct ds1307 *ds1307, u32 ohms, bool diode)
-+{
-+	/* make sure that the backup battery is enabled */
-+	u8 setup = RX8130_REG_CONTROL1_INIEN;
-+	if (diode)
-+		setup |= RX8130_REG_CONTROL1_CHGEN;
-+
-+	return setup;
-+}
-+
- static irqreturn_t rx8130_irq(int irq, void *dev_id)
- {
- 	struct ds1307           *ds1307 = dev_id;
-@@ -1024,6 +1037,8 @@ static const struct chip_desc chips[last_ds_type] = {
- 		.offset		= 0x10,
- 		.irq_handler = rx8130_irq,
- 		.rtc_ops = &rx8130_rtc_ops,
-+		.trickle_charger_reg = RX8130_REG_CONTROL1,
-+		.do_trickle_setup = &do_trickle_setup_rx8130,
- 	},
- 	[m41t0] = {
- 		.rtc_ops	= &m41txx_rtc_ops,
+diff --git a/arch/arm64/boot/dts/freescale/imx8mm-var-som-symphony.dts b/arch/arm64/boot/dts/freescale/imx8mm-var-som-symphony.dts
+index 630a7ee159e3..a56f602ba0a3 100644
+--- a/arch/arm64/boot/dts/freescale/imx8mm-var-som-symphony.dts
++++ b/arch/arm64/boot/dts/freescale/imx8mm-var-som-symphony.dts
+@@ -113,7 +113,8 @@
+ 	extcon_usbotg1: typec@3d {
+ 		compatible = "nxp,ptn5150";
+ 		reg = <0x3d>;
+-		interrupts = <&gpio1 11 GPIO_ACTIVE_LOW>;
++		interrupt-parent = <&gpio1>;
++		interrupts = <11 IRQ_TYPE_LEVEL_LOW>;
+ 		pinctrl-names = "default";
+ 		pinctrl-0 = <&pinctrl_ptn5150>;
+ 		status = "okay";
 -- 
-2.28.0
+2.17.1
 
