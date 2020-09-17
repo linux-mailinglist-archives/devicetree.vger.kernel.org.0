@@ -2,414 +2,102 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from vger.kernel.org (vger.kernel.org [23.128.96.18])
-	by mail.lfdr.de (Postfix) with ESMTP id 2375426E718
-	for <lists+devicetree@lfdr.de>; Thu, 17 Sep 2020 23:07:44 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTP id DE16626E74C
+	for <lists+devicetree@lfdr.de>; Thu, 17 Sep 2020 23:23:00 +0200 (CEST)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S1726353AbgIQVHi (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Thu, 17 Sep 2020 17:07:38 -0400
-Received: from lindbergh.monkeyblade.net ([23.128.96.19]:36084 "EHLO
+        id S1726135AbgIQVW7 (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Thu, 17 Sep 2020 17:22:59 -0400
+Received: from lindbergh.monkeyblade.net ([23.128.96.19]:38464 "EHLO
         lindbergh.monkeyblade.net" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S1726104AbgIQVHi (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Thu, 17 Sep 2020 17:07:38 -0400
-Received: from mail-ej1-x642.google.com (mail-ej1-x642.google.com [IPv6:2a00:1450:4864:20::642])
-        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 49052C061756
-        for <devicetree@vger.kernel.org>; Thu, 17 Sep 2020 14:07:38 -0700 (PDT)
-Received: by mail-ej1-x642.google.com with SMTP id nw23so5214941ejb.4
-        for <devicetree@vger.kernel.org>; Thu, 17 Sep 2020 14:07:38 -0700 (PDT)
+        with ESMTP id S1725858AbgIQVW7 (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Thu, 17 Sep 2020 17:22:59 -0400
+Received: from mail-lf1-x141.google.com (mail-lf1-x141.google.com [IPv6:2a00:1450:4864:20::141])
+        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 9FD4BC06174A
+        for <devicetree@vger.kernel.org>; Thu, 17 Sep 2020 14:13:27 -0700 (PDT)
+Received: by mail-lf1-x141.google.com with SMTP id z19so3762356lfr.4
+        for <devicetree@vger.kernel.org>; Thu, 17 Sep 2020 14:13:27 -0700 (PDT)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=gateworks-com.20150623.gappssmtp.com; s=20150623;
-        h=mime-version:references:in-reply-to:from:date:message-id:subject:to
-         :cc;
-        bh=ZLPIFqmOpuZBruUHp3l18k9PeqDA8K70keqtKFWuBvA=;
-        b=qUbqArMtLnslN4hZE9C58h8tbzqTr8yyZi+vRFRSg+KTFfuoi32APXnvxRVAzUq7H8
-         TkegtlEnpSCi39iG84+u0h8FXMj/X+DwuuuO3ZjrnyJ769DS8QvneZR+4SvathuoBvEr
-         C29NAKj4jUJ7MuRDpZ8TKqnmdrORAVZlwVCFAHf2/EiT7Iyd6Zhox0pawAkY7oxBHlqF
-         6GmsnbigIWDvGw0QqJjNj3a/uc1xP44SnXqfbVs0vPVT3kdLEnEyMWBvCnK0BwERjPsa
-         gr+Aqb87wGNRlsk1EqfO7a/LiSHXHillYs9jNNeFpiKwiBwPV0fNsDl0CWWPSeUOP+IU
-         BZdA==
+        d=linaro.org; s=google;
+        h=from:to:cc:subject:date:message-id:mime-version
+         :content-transfer-encoding;
+        bh=MAoskpdgpwqYFVZy1SWoFP45MNq0LuspN6fWJIM1v0A=;
+        b=mnMdWqVqHNSYwmfiDtcie4ATSrHFx25ewoZcUtt80mEmfbjZ8VE4ad7io0EATi9h34
+         RDPDTrx/FJJr2VETLCKgqBKvqshxmcDMnkQ4POgfmm9VjUCmkQdx1xNcjogKsHVAX/mU
+         PGTceiMMnCclWYthPXhf9e33SVl1UjEDQm6g8nanB8kAIgHB6+DDrYcKCLKTsQgYHK1V
+         6iiqH5wFNZ8nM2Q2nSjyVLtAz2g9uNFfMDH+TaPn5CnwQFtfWmCKpCFAPqvSqjLgrw5j
+         dHTLWTk/jrHJPE5sHxhsFskmBU+C9JQa3sZgcwPxDO7FVX2Lb0LO3QNHhQMWrD901BoB
+         cPtw==
 X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
         d=1e100.net; s=20161025;
-        h=x-gm-message-state:mime-version:references:in-reply-to:from:date
-         :message-id:subject:to:cc;
-        bh=ZLPIFqmOpuZBruUHp3l18k9PeqDA8K70keqtKFWuBvA=;
-        b=m5/VyZcsYo4G1tk2/KKyRGLATuveSM/+xEVZsyN6LbQXbGJPz39ITzxxNM1icnjXK1
-         EO6DCmdD9jul7AYnZN29Skq5ib+jhamqinpCkVsq+g3uF2wkjJatc1ruCdqVttBGrfZV
-         KXfHKB85DjiACuv2XEJMEPSyesE9A3WC/VjOTAVrFO68q3IoE8/uE9++wSCkLr7ezytI
-         HpOV1g8zrwHWNvllKdcoAvpAG/SKaIjifEsS4ZFaFL7dMHuraiDu4QCfyvlqdlU4odmP
-         rZcVdUZTuZ89YeH/THpqkk2OTYsfsGcLR/+dEfWmG6ze3VAdXeDlty+twUjaiE5wmnxY
-         Pqpg==
-X-Gm-Message-State: AOAM530/NE/m2eQDRRIW2DdNu1ZCZQrsBpPLKEz+Zfd+PCGtVYWIdzB9
-        S78uDiEPF7nn1gU9HGr9o3MacXXY4XLscG8oX3sh+mOscatI3Q==
-X-Google-Smtp-Source: ABdhPJwK/n3WP8r/2NUFgW+dV6PxseRxCw4pWewYNRtqxRfV3pPkA5e6kuui17/rlKB70eHybGKbXTUJifHkOw3E8Js=
-X-Received: by 2002:a17:906:eb11:: with SMTP id mb17mr32020191ejb.255.1600376856595;
- Thu, 17 Sep 2020 14:07:36 -0700 (PDT)
+        h=x-gm-message-state:from:to:cc:subject:date:message-id:mime-version
+         :content-transfer-encoding;
+        bh=MAoskpdgpwqYFVZy1SWoFP45MNq0LuspN6fWJIM1v0A=;
+        b=Lw5BrKzxLbLc5UXzev5hdfIVq0wrzkgandTBaJOBWgUwR09XX0kmVJ3thm70Q6aD7W
+         gnG9gNLpeGyGAr0EPNzaphg0HWUCqmyUwgpWQ3kxBYCTlbQQ0nlXM5mMWNX5F3TNAdat
+         nmJFlFRMnHmPDzO35wwVAKR36fHM8OgcLGTl/hGXBlnQSEV6RqVTJm2oRPNbJje5Y1FO
+         7i34wRCHquN9KVXz9XLLh5catifXmlz30GwDbaz9dHblSY/0nVThM/l/6TxHQgC8PRlM
+         n2cwBWjo8dx44aKi3v932m1Xfs+j2m6uch9cEOYKh37HRtbGPBzRZjKQlvZ6EKmRG36z
+         tPJQ==
+X-Gm-Message-State: AOAM531tsvrurzlg+VJ9aEx5pPNqdekK6l6kXVIWFvKMHI2oS2LQq4HV
+        L0q13cyBHIcpNWt+dOleotGlZQ==
+X-Google-Smtp-Source: ABdhPJy/uv5bDEos5SGJ6p0EhHqRHU0QI3bA2SKQg4SqXX8u+0dcJoxWvnm9LDksQ3KY3vabX07S4A==
+X-Received: by 2002:a19:8357:: with SMTP id f84mr9067385lfd.406.1600377205906;
+        Thu, 17 Sep 2020 14:13:25 -0700 (PDT)
+Received: from eriador.lan ([188.162.64.171])
+        by smtp.gmail.com with ESMTPSA id h124sm136711lfd.203.2020.09.17.14.13.24
+        (version=TLS1_3 cipher=TLS_AES_256_GCM_SHA384 bits=256/256);
+        Thu, 17 Sep 2020 14:13:25 -0700 (PDT)
+From:   Dmitry Baryshkov <dmitry.baryshkov@linaro.org>
+To:     Andy Gross <agross@kernel.org>,
+        Bjorn Andersson <bjorn.andersson@linaro.org>,
+        Rob Herring <robh+dt@kernel.org>
+Cc:     linux-arm-msm@vger.kernel.org, devicetree@vger.kernel.org
+Subject: [PATCH 1/2] arm64: dts: qcom: enable rtc on qrb5165-rb5 board
+Date:   Fri, 18 Sep 2020 00:13:20 +0300
+Message-Id: <20200917211321.3295947-1-dmitry.baryshkov@linaro.org>
+X-Mailer: git-send-email 2.28.0
 MIME-Version: 1.0
-References: <20200917185449.5687-1-krzk@kernel.org>
-In-Reply-To: <20200917185449.5687-1-krzk@kernel.org>
-From:   Tim Harvey <tharvey@gateworks.com>
-Date:   Thu, 17 Sep 2020 14:07:24 -0700
-Message-ID: <CAJ+vNU189235n+ucj3O+zArkRkWAzK2Zr5RLtw4j+VvBXivFkQ@mail.gmail.com>
-Subject: Re: [PATCH v2 1/4] ARM: dts: imx6qdl-gw5xxx: correct interrupt flags
-To:     Krzysztof Kozlowski <krzk@kernel.org>
-Cc:     Rob Herring <robh+dt@kernel.org>, Shawn Guo <shawnguo@kernel.org>,
-        Sascha Hauer <s.hauer@pengutronix.de>,
-        Pengutronix Kernel Team <kernel@pengutronix.de>,
-        Fabio Estevam <festevam@gmail.com>,
-        NXP Linux Team <linux-imx@nxp.com>,
-        Adam Ford <aford173@gmail.com>,
-        Daniel Baluta <daniel.baluta@nxp.com>,
-        Anson Huang <Anson.Huang@nxp.com>,
-        Jacky Bai <ping.bai@nxp.com>, Robin Gong <yibin.gong@nxp.com>,
-        Peter Chen <peter.chen@nxp.com>,
-        Device Tree Mailing List <devicetree@vger.kernel.org>,
-        Linux ARM Mailing List <linux-arm-kernel@lists.infradead.org>,
-        open list <linux-kernel@vger.kernel.org>
-Content-Type: text/plain; charset="UTF-8"
+Content-Transfer-Encoding: 8bit
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-On Thu, Sep 17, 2020 at 11:54 AM Krzysztof Kozlowski <krzk@kernel.org> wrote:
->
-> GPIO_ACTIVE_x flags are not correct in the context of interrupt flags.
-> These are simple defines so they could be used in DTS but they will not
-> have the same meaning:
-> 1. GPIO_ACTIVE_HIGH = 0 = IRQ_TYPE_NONE
-> 2. GPIO_ACTIVE_LOW  = 1 = IRQ_TYPE_EDGE_RISING
->
-> Correct the interrupt flags, assuming the author of the code wanted same
-> logical behavior behind the name "ACTIVE_xxx", this is:
->   ACTIVE_LOW  => IRQ_TYPE_LEVEL_LOW
->
-> Signed-off-by: Krzysztof Kozlowski <krzk@kernel.org>
->
-> ---
->
-> Not tested on HW.
->
-> Changes since v1:
-> 1. Correct title
-> ---
->  arch/arm/boot/dts/imx6qdl-gw51xx.dtsi | 3 ++-
->  arch/arm/boot/dts/imx6qdl-gw52xx.dtsi | 3 ++-
->  arch/arm/boot/dts/imx6qdl-gw53xx.dtsi | 3 ++-
->  arch/arm/boot/dts/imx6qdl-gw54xx.dtsi | 3 ++-
->  arch/arm/boot/dts/imx6qdl-gw551x.dtsi | 3 ++-
->  arch/arm/boot/dts/imx6qdl-gw552x.dtsi | 3 ++-
->  arch/arm/boot/dts/imx6qdl-gw553x.dtsi | 3 ++-
->  arch/arm/boot/dts/imx6qdl-gw560x.dtsi | 3 ++-
->  arch/arm/boot/dts/imx6qdl-gw5903.dtsi | 3 ++-
->  arch/arm/boot/dts/imx6qdl-gw5904.dtsi | 3 ++-
->  arch/arm/boot/dts/imx6qdl-gw5907.dtsi | 3 ++-
->  arch/arm/boot/dts/imx6qdl-gw5910.dtsi | 3 ++-
->  arch/arm/boot/dts/imx6qdl-gw5912.dtsi | 3 ++-
->  arch/arm/boot/dts/imx6qdl-gw5913.dtsi | 3 ++-
->  14 files changed, 28 insertions(+), 14 deletions(-)
->
-> diff --git a/arch/arm/boot/dts/imx6qdl-gw51xx.dtsi b/arch/arm/boot/dts/imx6qdl-gw51xx.dtsi
-> index 4d01c3300b97..3c04b5a4f3cb 100644
-> --- a/arch/arm/boot/dts/imx6qdl-gw51xx.dtsi
-> +++ b/arch/arm/boot/dts/imx6qdl-gw51xx.dtsi
-> @@ -5,6 +5,7 @@
->
->  #include <dt-bindings/gpio/gpio.h>
->  #include <dt-bindings/input/linux-event-codes.h>
-> +#include <dt-bindings/interrupt-controller/irq.h>
->
->  / {
->         /* these are used by bootloader for disabling nodes */
-> @@ -152,7 +153,7 @@
->                 compatible = "gw,gsc";
->                 reg = <0x20>;
->                 interrupt-parent = <&gpio1>;
-> -               interrupts = <4 GPIO_ACTIVE_LOW>;
-> +               interrupts = <4 IRQ_TYPE_LEVEL_LOW>;
->                 interrupt-controller;
->                 #interrupt-cells = <1>;
->                 #size-cells = <0>;
-> diff --git a/arch/arm/boot/dts/imx6qdl-gw52xx.dtsi b/arch/arm/boot/dts/imx6qdl-gw52xx.dtsi
-> index f6182a9d201c..736074f1c3ef 100644
-> --- a/arch/arm/boot/dts/imx6qdl-gw52xx.dtsi
-> +++ b/arch/arm/boot/dts/imx6qdl-gw52xx.dtsi
-> @@ -5,6 +5,7 @@
->
->  #include <dt-bindings/gpio/gpio.h>
->  #include <dt-bindings/input/linux-event-codes.h>
-> +#include <dt-bindings/interrupt-controller/irq.h>
->
->  / {
->         /* these are used by bootloader for disabling nodes */
-> @@ -217,7 +218,7 @@
->                 compatible = "gw,gsc";
->                 reg = <0x20>;
->                 interrupt-parent = <&gpio1>;
-> -               interrupts = <4 GPIO_ACTIVE_LOW>;
-> +               interrupts = <4 IRQ_TYPE_LEVEL_LOW>;
->                 interrupt-controller;
->                 #interrupt-cells = <1>;
->                 #size-cells = <0>;
-> diff --git a/arch/arm/boot/dts/imx6qdl-gw53xx.dtsi b/arch/arm/boot/dts/imx6qdl-gw53xx.dtsi
-> index a28e79463d0c..8072ed47c6bb 100644
-> --- a/arch/arm/boot/dts/imx6qdl-gw53xx.dtsi
-> +++ b/arch/arm/boot/dts/imx6qdl-gw53xx.dtsi
-> @@ -5,6 +5,7 @@
->
->  #include <dt-bindings/gpio/gpio.h>
->  #include <dt-bindings/input/linux-event-codes.h>
-> +#include <dt-bindings/interrupt-controller/irq.h>
->
->  / {
->         /* these are used by bootloader for disabling nodes */
-> @@ -210,7 +211,7 @@
->                 compatible = "gw,gsc";
->                 reg = <0x20>;
->                 interrupt-parent = <&gpio1>;
-> -               interrupts = <4 GPIO_ACTIVE_LOW>;
-> +               interrupts = <4 IRQ_TYPE_LEVEL_LOW>;
->                 interrupt-controller;
->                 #interrupt-cells = <1>;
->                 #size-cells = <0>;
-> diff --git a/arch/arm/boot/dts/imx6qdl-gw54xx.dtsi b/arch/arm/boot/dts/imx6qdl-gw54xx.dtsi
-> index 55f368e192c0..8c9bcdd39830 100644
-> --- a/arch/arm/boot/dts/imx6qdl-gw54xx.dtsi
-> +++ b/arch/arm/boot/dts/imx6qdl-gw54xx.dtsi
-> @@ -5,6 +5,7 @@
->
->  #include <dt-bindings/gpio/gpio.h>
->  #include <dt-bindings/input/linux-event-codes.h>
-> +#include <dt-bindings/interrupt-controller/irq.h>
->  #include <dt-bindings/sound/fsl-imx-audmux.h>
->
->  / {
-> @@ -247,7 +248,7 @@
->                 compatible = "gw,gsc";
->                 reg = <0x20>;
->                 interrupt-parent = <&gpio1>;
-> -               interrupts = <4 GPIO_ACTIVE_LOW>;
-> +               interrupts = <4 IRQ_TYPE_LEVEL_LOW>;
->                 interrupt-controller;
->                 #interrupt-cells = <1>;
->                 #address-cells = <1>;
-> diff --git a/arch/arm/boot/dts/imx6qdl-gw551x.dtsi b/arch/arm/boot/dts/imx6qdl-gw551x.dtsi
-> index 1516e2b0bcde..e5d803d023c8 100644
-> --- a/arch/arm/boot/dts/imx6qdl-gw551x.dtsi
-> +++ b/arch/arm/boot/dts/imx6qdl-gw551x.dtsi
-> @@ -48,6 +48,7 @@
->  #include <dt-bindings/gpio/gpio.h>
->  #include <dt-bindings/media/tda1997x.h>
->  #include <dt-bindings/input/linux-event-codes.h>
-> +#include <dt-bindings/interrupt-controller/irq.h>
->  #include <dt-bindings/sound/fsl-imx-audmux.h>
->
->  / {
-> @@ -219,7 +220,7 @@
->                 compatible = "gw,gsc";
->                 reg = <0x20>;
->                 interrupt-parent = <&gpio1>;
-> -               interrupts = <4 GPIO_ACTIVE_LOW>;
-> +               interrupts = <4 IRQ_TYPE_LEVEL_LOW>;
->                 interrupt-controller;
->                 #interrupt-cells = <1>;
->                 #size-cells = <0>;
-> diff --git a/arch/arm/boot/dts/imx6qdl-gw552x.dtsi b/arch/arm/boot/dts/imx6qdl-gw552x.dtsi
-> index 0da6e6f7482b..290a607fede9 100644
-> --- a/arch/arm/boot/dts/imx6qdl-gw552x.dtsi
-> +++ b/arch/arm/boot/dts/imx6qdl-gw552x.dtsi
-> @@ -5,6 +5,7 @@
->
->  #include <dt-bindings/gpio/gpio.h>
->  #include <dt-bindings/input/linux-event-codes.h>
-> +#include <dt-bindings/interrupt-controller/irq.h>
->
->  / {
->         /* these are used by bootloader for disabling nodes */
-> @@ -144,7 +145,7 @@
->                 compatible = "gw,gsc";
->                 reg = <0x20>;
->                 interrupt-parent = <&gpio1>;
-> -               interrupts = <4 GPIO_ACTIVE_LOW>;
-> +               interrupts = <4 IRQ_TYPE_LEVEL_LOW>;
->                 interrupt-controller;
->                 #interrupt-cells = <1>;
->                 #size-cells = <0>;
-> diff --git a/arch/arm/boot/dts/imx6qdl-gw553x.dtsi b/arch/arm/boot/dts/imx6qdl-gw553x.dtsi
-> index faf9a3ba61b2..c15b9cc63bf8 100644
-> --- a/arch/arm/boot/dts/imx6qdl-gw553x.dtsi
-> +++ b/arch/arm/boot/dts/imx6qdl-gw553x.dtsi
-> @@ -47,6 +47,7 @@
->
->  #include <dt-bindings/gpio/gpio.h>
->  #include <dt-bindings/input/linux-event-codes.h>
-> +#include <dt-bindings/interrupt-controller/irq.h>
->
->  / {
->         /* these are used by bootloader for disabling nodes */
-> @@ -180,7 +181,7 @@
->                 compatible = "gw,gsc";
->                 reg = <0x20>;
->                 interrupt-parent = <&gpio1>;
-> -               interrupts = <4 GPIO_ACTIVE_LOW>;
-> +               interrupts = <4 IRQ_TYPE_LEVEL_LOW>;
->                 interrupt-controller;
->                 #interrupt-cells = <1>;
->                 #size-cells = <0>;
-> diff --git a/arch/arm/boot/dts/imx6qdl-gw560x.dtsi b/arch/arm/boot/dts/imx6qdl-gw560x.dtsi
-> index f68f9dada5b0..093a219a77ae 100644
-> --- a/arch/arm/boot/dts/imx6qdl-gw560x.dtsi
-> +++ b/arch/arm/boot/dts/imx6qdl-gw560x.dtsi
-> @@ -47,6 +47,7 @@
->
->  #include <dt-bindings/gpio/gpio.h>
->  #include <dt-bindings/input/input.h>
-> +#include <dt-bindings/interrupt-controller/irq.h>
->
->  / {
->         /* these are used by bootloader for disabling nodes */
-> @@ -294,7 +295,7 @@
->                 compatible = "gw,gsc";
->                 reg = <0x20>;
->                 interrupt-parent = <&gpio1>;
-> -               interrupts = <4 GPIO_ACTIVE_LOW>;
-> +               interrupts = <4 IRQ_TYPE_LEVEL_LOW>;
->                 interrupt-controller;
->                 #interrupt-cells = <1>;
->                 #size-cells = <0>;
-> diff --git a/arch/arm/boot/dts/imx6qdl-gw5903.dtsi b/arch/arm/boot/dts/imx6qdl-gw5903.dtsi
-> index fbe6c32bd756..e1c8dd233cab 100644
-> --- a/arch/arm/boot/dts/imx6qdl-gw5903.dtsi
-> +++ b/arch/arm/boot/dts/imx6qdl-gw5903.dtsi
-> @@ -47,6 +47,7 @@
->
->  #include <dt-bindings/gpio/gpio.h>
->  #include <dt-bindings/input/linux-event-codes.h>
-> +#include <dt-bindings/interrupt-controller/irq.h>
->
->  / {
->         chosen {
-> @@ -235,7 +236,7 @@
->                 compatible = "gw,gsc";
->                 reg = <0x20>;
->                 interrupt-parent = <&gpio1>;
-> -               interrupts = <4 GPIO_ACTIVE_LOW>;
-> +               interrupts = <4 IRQ_TYPE_LEVEL_LOW>;
->                 interrupt-controller;
->                 #interrupt-cells = <1>;
->                 #size-cells = <0>;
-> diff --git a/arch/arm/boot/dts/imx6qdl-gw5904.dtsi b/arch/arm/boot/dts/imx6qdl-gw5904.dtsi
-> index 23c6e4047621..3cd2e717c1da 100644
-> --- a/arch/arm/boot/dts/imx6qdl-gw5904.dtsi
-> +++ b/arch/arm/boot/dts/imx6qdl-gw5904.dtsi
-> @@ -47,6 +47,7 @@
->
->  #include <dt-bindings/gpio/gpio.h>
->  #include <dt-bindings/input/linux-event-codes.h>
-> +#include <dt-bindings/interrupt-controller/irq.h>
->
->  / {
->         /* these are used by bootloader for disabling nodes */
-> @@ -257,7 +258,7 @@
->                 compatible = "gw,gsc";
->                 reg = <0x20>;
->                 interrupt-parent = <&gpio1>;
-> -               interrupts = <4 GPIO_ACTIVE_LOW>;
-> +               interrupts = <4 IRQ_TYPE_LEVEL_LOW>;
->                 interrupt-controller;
->                 #interrupt-cells = <1>;
->                 #size-cells = <0>;
-> diff --git a/arch/arm/boot/dts/imx6qdl-gw5907.dtsi b/arch/arm/boot/dts/imx6qdl-gw5907.dtsi
-> index b1ff7c859c4d..21c68a55bcb9 100644
-> --- a/arch/arm/boot/dts/imx6qdl-gw5907.dtsi
-> +++ b/arch/arm/boot/dts/imx6qdl-gw5907.dtsi
-> @@ -5,6 +5,7 @@
->
->  #include <dt-bindings/gpio/gpio.h>
->  #include <dt-bindings/input/linux-event-codes.h>
-> +#include <dt-bindings/interrupt-controller/irq.h>
->
->  / {
->         /* these are used by bootloader for disabling nodes */
-> @@ -154,7 +155,7 @@
->                 compatible = "gw,gsc";
->                 reg = <0x20>;
->                 interrupt-parent = <&gpio1>;
-> -               interrupts = <4 GPIO_ACTIVE_LOW>;
-> +               interrupts = <4 IRQ_TYPE_LEVEL_LOW>;
->                 interrupt-controller;
->                 #interrupt-cells = <1>;
->                 #size-cells = <0>;
-> diff --git a/arch/arm/boot/dts/imx6qdl-gw5910.dtsi b/arch/arm/boot/dts/imx6qdl-gw5910.dtsi
-> index 6c943a517ad7..ed4e22259959 100644
-> --- a/arch/arm/boot/dts/imx6qdl-gw5910.dtsi
-> +++ b/arch/arm/boot/dts/imx6qdl-gw5910.dtsi
-> @@ -5,6 +5,7 @@
->
->  #include <dt-bindings/gpio/gpio.h>
->  #include <dt-bindings/input/linux-event-codes.h>
-> +#include <dt-bindings/interrupt-controller/irq.h>
->
->  / {
->         /* these are used by bootloader for disabling nodes */
-> @@ -163,7 +164,7 @@
->                 compatible = "gw,gsc";
->                 reg = <0x20>;
->                 interrupt-parent = <&gpio1>;
-> -               interrupts = <4 GPIO_ACTIVE_LOW>;
-> +               interrupts = <4 IRQ_TYPE_LEVEL_LOW>;
->                 interrupt-controller;
->                 #interrupt-cells = <1>;
->                 #size-cells = <0>;
-> diff --git a/arch/arm/boot/dts/imx6qdl-gw5912.dtsi b/arch/arm/boot/dts/imx6qdl-gw5912.dtsi
-> index 441d8ce97aa4..797f160249f7 100644
-> --- a/arch/arm/boot/dts/imx6qdl-gw5912.dtsi
-> +++ b/arch/arm/boot/dts/imx6qdl-gw5912.dtsi
-> @@ -5,6 +5,7 @@
->
->  #include <dt-bindings/gpio/gpio.h>
->  #include <dt-bindings/input/linux-event-codes.h>
-> +#include <dt-bindings/interrupt-controller/irq.h>
->
->  / {
->         /* these are used by bootloader for disabling nodes */
-> @@ -158,7 +159,7 @@
->                 compatible = "gw,gsc";
->                 reg = <0x20>;
->                 interrupt-parent = <&gpio1>;
-> -               interrupts = <4 GPIO_ACTIVE_LOW>;
-> +               interrupts = <4 IRQ_TYPE_LEVEL_LOW>;
->                 interrupt-controller;
->                 #interrupt-cells = <1>;
->                 #address-cells = <1>;
-> diff --git a/arch/arm/boot/dts/imx6qdl-gw5913.dtsi b/arch/arm/boot/dts/imx6qdl-gw5913.dtsi
-> index d62a8da49367..4cd7d290f5b2 100644
-> --- a/arch/arm/boot/dts/imx6qdl-gw5913.dtsi
-> +++ b/arch/arm/boot/dts/imx6qdl-gw5913.dtsi
-> @@ -5,6 +5,7 @@
->
->  #include <dt-bindings/gpio/gpio.h>
->  #include <dt-bindings/input/linux-event-codes.h>
-> +#include <dt-bindings/interrupt-controller/irq.h>
->
->  / {
->         /* these are used by bootloader for disabling nodes */
-> @@ -139,7 +140,7 @@
->                 compatible = "gw,gsc";
->                 reg = <0x20>;
->                 interrupt-parent = <&gpio1>;
-> -               interrupts = <4 GPIO_ACTIVE_LOW>;
-> +               interrupts = <4 IRQ_TYPE_LEVEL_LOW>;
->                 interrupt-controller;
->                 #interrupt-cells = <1>;
->                 #size-cells = <0>;
-> --
-> 2.17.1
->
+Enable PMIC's RTC device on RB5 board.
 
-for series:
-Acked-By: Tim Harvey <tharvey@gateworks.com>
+Signed-off-by: Dmitry Baryshkov <dmitry.baryshkov@linaro.org>
+---
+ arch/arm64/boot/dts/qcom/pm8150.dtsi     | 2 +-
+ arch/arm64/boot/dts/qcom/qrb5165-rb5.dts | 4 ++++
+ 2 files changed, 5 insertions(+), 1 deletion(-)
 
-Thanks Krzysztof
+diff --git a/arch/arm64/boot/dts/qcom/pm8150.dtsi b/arch/arm64/boot/dts/qcom/pm8150.dtsi
+index 1b6406927509..a53eccf2b695 100644
+--- a/arch/arm64/boot/dts/qcom/pm8150.dtsi
++++ b/arch/arm64/boot/dts/qcom/pm8150.dtsi
+@@ -97,7 +97,7 @@ die-temp@6 {
+ 			};
+ 		};
+ 
+-		rtc@6000 {
++		pm8150_rtc: rtc@6000 {
+ 			compatible = "qcom,pm8941-rtc";
+ 			reg = <0x6000>;
+ 			reg-names = "rtc", "alarm";
+diff --git a/arch/arm64/boot/dts/qcom/qrb5165-rb5.dts b/arch/arm64/boot/dts/qcom/qrb5165-rb5.dts
+index 1528a865f1f8..fec31655141c 100644
+--- a/arch/arm64/boot/dts/qcom/qrb5165-rb5.dts
++++ b/arch/arm64/boot/dts/qcom/qrb5165-rb5.dts
+@@ -459,6 +459,10 @@ &pm8150l_gpios {
+ 		"PM3003A_MODE";
+ };
+ 
++&pm8150_rtc {
++	status = "okay";
++};
++
+ &qupv3_id_0 {
+ 	status = "okay";
+ };
+-- 
+2.28.0
 
-Tim
-
-
-Tim
