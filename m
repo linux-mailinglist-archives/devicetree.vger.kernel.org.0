@@ -2,154 +2,160 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from vger.kernel.org (vger.kernel.org [23.128.96.18])
-	by mail.lfdr.de (Postfix) with ESMTP id BE4A626DFD8
-	for <lists+devicetree@lfdr.de>; Thu, 17 Sep 2020 17:41:42 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTP id 290F126E01F
+	for <lists+devicetree@lfdr.de>; Thu, 17 Sep 2020 17:58:44 +0200 (CEST)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S1727943AbgIQPlg (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Thu, 17 Sep 2020 11:41:36 -0400
-Received: from fllv0016.ext.ti.com ([198.47.19.142]:44232 "EHLO
-        fllv0016.ext.ti.com" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S1728094AbgIQPUk (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Thu, 17 Sep 2020 11:20:40 -0400
+        id S1728214AbgIQP6g (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Thu, 17 Sep 2020 11:58:36 -0400
+Received: from lelv0142.ext.ti.com ([198.47.23.249]:36138 "EHLO
+        lelv0142.ext.ti.com" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
+        with ESMTP id S1728075AbgIQPpa (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Thu, 17 Sep 2020 11:45:30 -0400
 Received: from lelv0266.itg.ti.com ([10.180.67.225])
-        by fllv0016.ext.ti.com (8.15.2/8.15.2) with ESMTP id 08HBg4ce055141;
-        Thu, 17 Sep 2020 06:42:04 -0500
+        by lelv0142.ext.ti.com (8.15.2/8.15.2) with ESMTP id 08HCEqlZ040922;
+        Thu, 17 Sep 2020 07:14:52 -0500
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=ti.com;
-        s=ti-com-17Q1; t=1600342924;
-        bh=y520wGsDhS1XSzX21A9XTTvZro3KlWBo64bgJuekHQI=;
-        h=Subject:To:CC:References:From:Date:In-Reply-To;
-        b=rSKLKEfXAZUPflKQYLcfuY+C68HX5iwdon/nbOZ7ev1xWm0v0wDE/YYr6/ujfb5rQ
-         ccEWaP7l9hY79Ku59Wj86wJPna9MUeGJjR9tHsAaLiLr/8aPx+Wfs/ejcmlK2M346f
-         Ip1+T63EKoA8nqBliYQ6WZd8p1of7cBRVkvsFTnc=
-Received: from DLEE114.ent.ti.com (dlee114.ent.ti.com [157.170.170.25])
-        by lelv0266.itg.ti.com (8.15.2/8.15.2) with ESMTPS id 08HBg3pb042538
+        s=ti-com-17Q1; t=1600344892;
+        bh=cGd0Zeuy4+fUXyw2xolJhUi55PGX5GYAQgVtJo/AyC4=;
+        h=Date:From:To:CC:Subject:References:In-Reply-To;
+        b=E6UgGNdeQX6dbpJ4gAkJ65gVnBRDaQ9Skax2apqdMdlFOvb9W8bL+Z0iofqK932j4
+         adlW/Pt/M8ZfCEU/ZUrW+PB/KDMCrGICol8hrwIlEpbeS3nqjkiOxMysyNcn3L9P8t
+         p8m6LibnfbctlgKpdbhq1uONMaoL/5PHMV5Bxz5w=
+Received: from DFLE112.ent.ti.com (dfle112.ent.ti.com [10.64.6.33])
+        by lelv0266.itg.ti.com (8.15.2/8.15.2) with ESMTPS id 08HCEqq6085548
         (version=TLSv1.2 cipher=AES256-GCM-SHA384 bits=256 verify=FAIL);
-        Thu, 17 Sep 2020 06:42:03 -0500
-Received: from DLEE101.ent.ti.com (157.170.170.31) by DLEE114.ent.ti.com
- (157.170.170.25) with Microsoft SMTP Server (version=TLS1_2,
+        Thu, 17 Sep 2020 07:14:52 -0500
+Received: from DFLE108.ent.ti.com (10.64.6.29) by DFLE112.ent.ti.com
+ (10.64.6.33) with Microsoft SMTP Server (version=TLS1_2,
  cipher=TLS_ECDHE_RSA_WITH_AES_128_CBC_SHA256_P256) id 15.1.1979.3; Thu, 17
- Sep 2020 06:42:02 -0500
-Received: from fllv0039.itg.ti.com (10.64.41.19) by DLEE101.ent.ti.com
- (157.170.170.31) with Microsoft SMTP Server (version=TLS1_2,
+ Sep 2020 07:14:52 -0500
+Received: from lelv0326.itg.ti.com (10.180.67.84) by DFLE108.ent.ti.com
+ (10.64.6.29) with Microsoft SMTP Server (version=TLS1_2,
  cipher=TLS_ECDHE_RSA_WITH_AES_128_CBC_SHA256_P256) id 15.1.1979.3 via
- Frontend Transport; Thu, 17 Sep 2020 06:42:02 -0500
-Received: from [10.250.32.129] (ileax41-snat.itg.ti.com [10.172.224.153])
-        by fllv0039.itg.ti.com (8.15.2/8.15.2) with ESMTP id 08HBg20q127931;
-        Thu, 17 Sep 2020 06:42:02 -0500
-Subject: Re: [PATCH v3 2/2] ASoC: tlv320adcx140: Add support for configuring
- GPIO pin
-To:     Camel Guo <camel.guo@axis.com>, <lgirdwood@gmail.com>,
-        <broonie@kernel.org>, <tiwai@suse.com>, <robh+dt@kernel.org>,
-        <devicetree@vger.kernel.org>
-CC:     <alsa-devel@alsa-project.org>, <linux-kernel@vger.kernel.org>,
-        <kernel@axis.com>, Camel Guo <camelg@axis.com>
-References: <20200916075949.28479-1-camel.guo@axis.com>
- <20200916075949.28479-2-camel.guo@axis.com>
-From:   Dan Murphy <dmurphy@ti.com>
-Message-ID: <b9b0a159-905b-6d18-6b7c-db63c2f61c0d@ti.com>
-Date:   Thu, 17 Sep 2020 06:42:02 -0500
-User-Agent: Mozilla/5.0 (X11; Linux x86_64; rv:68.0) Gecko/20100101
- Thunderbird/68.10.0
+ Frontend Transport; Thu, 17 Sep 2020 07:14:52 -0500
+Received: from localhost (ileax41-snat.itg.ti.com [10.172.224.153])
+        by lelv0326.itg.ti.com (8.15.2/8.15.2) with ESMTP id 08HCEpmP058482;
+        Thu, 17 Sep 2020 07:14:51 -0500
+Date:   Thu, 17 Sep 2020 07:14:51 -0500
+From:   Nishanth Menon <nm@ti.com>
+To:     Roger Quadros <rogerq@ti.com>
+CC:     Peter Rosin <peda@axentia.se>, <t-kristo@ti.com>,
+        <robh+dt@kernel.org>, <linux-kernel@vger.kernel.org>,
+        <devicetree@vger.kernel.org>,
+        <linux-arm-kernel@lists.infradead.org>, <nsekhar@ti.com>,
+        <kishon@ti.com>
+Subject: Re: [PATCH v3 1/6] dt-bindings: mux-j7200-wiz: Add lane function
+ defines
+Message-ID: <20200917121451.mp4pdld5w6qkv6d3@akan>
+References: <20200915112038.30219-1-rogerq@ti.com>
+ <20200915112038.30219-2-rogerq@ti.com>
+ <e28e98a0-f3fc-29bd-d7a6-cc45f3a69ede@axentia.se>
+ <20200916154536.m552ft2jzfsaeokr@akan>
+ <08c84d02-abe1-8399-50fb-9268c7130f8a@ti.com>
 MIME-Version: 1.0
-In-Reply-To: <20200916075949.28479-2-camel.guo@axis.com>
-Content-Type: text/plain; charset="utf-8"; format=flowed
-Content-Transfer-Encoding: 7bit
-Content-Language: en-US
+Content-Type: text/plain; charset="us-ascii"
+Content-Disposition: inline
+In-Reply-To: <08c84d02-abe1-8399-50fb-9268c7130f8a@ti.com>
+User-Agent: NeoMutt/20171215
 X-EXCLAIMER-MD-CONFIG: e1e8a2fd-e40a-4ac6-ac9b-f7e9cc9ee180
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-Camel
+On 15:00-20200917, Roger Quadros wrote:
+> Hi Peter & Nishanth,
+> 
+> On 16/09/2020 18:45, Nishanth Menon wrote:
+> > On 06:52-20200916, Peter Rosin wrote:
+> > > Hi,
+> > > 
+> > > Sorry for the delay.
+> > > 
+> > > On 2020-09-15 13:20, Roger Quadros wrote:
+> > > > Each SERDES lane mux can select upto 4 different IPs.
+> > > > There are 4 lanes in each J7200 SERDES. Define all
+> > > > the possible functions in this file.
+> > > > 
+> > > > Cc: Peter Rosin <peda@axentia.se>
+> > > > Signed-off-by: Roger Quadros <rogerq@ti.com>
+> > > > ---
+> > > >   include/dt-bindings/mux/mux-j7200-wiz.h | 29 +++++++++++++++++++++++++
+> > > >   1 file changed, 29 insertions(+)
+> > > >   create mode 100644 include/dt-bindings/mux/mux-j7200-wiz.h
+> > > > 
+> > > > diff --git a/include/dt-bindings/mux/mux-j7200-wiz.h b/include/dt-bindings/mux/mux-j7200-wiz.h
+> > > > new file mode 100644
+> > > > index 000000000000..b091b1185a36
+> > > > --- /dev/null
+> > > > +++ b/include/dt-bindings/mux/mux-j7200-wiz.h
+> > > > @@ -0,0 +1,29 @@
+> > > > +/* SPDX-License-Identifier: GPL-2.0 */
+> > > > +/*
+> > > > + * This header provides constants for J7200 WIZ.
+> > > > + */
+> > > > +
+> > > > +#ifndef _DT_BINDINGS_J7200_WIZ
+> > > > +#define _DT_BINDINGS_J7200_WIZ
+> > > > +
+> > > > +#define SERDES0_LANE0_QSGMII_LANE3	0x0
+> > > > +#define SERDES0_LANE0_PCIE1_LANE0	0x1
+> > > > +#define SERDES0_LANE0_IP3_UNUSED	0x2
+> > > > +#define SERDES0_LANE0_IP4_UNUSED	0x3
+> > > > +
+> > > > +#define SERDES0_LANE1_QSGMII_LANE4	0x0
+> > > > +#define SERDES0_LANE1_PCIE1_LANE1	0x1
+> > > > +#define SERDES0_LANE1_IP3_UNUSED	0x2
+> > > > +#define SERDES0_LANE1_IP4_UNUSED	0x3
+> > > > +
+> > > > +#define SERDES0_LANE2_QSGMII_LANE1	0x0
+> > > > +#define SERDES0_LANE2_PCIE1_LANE2	0x1
+> > > > +#define SERDES0_LANE2_IP3_UNUSED	0x2
+> > > > +#define SERDES0_LANE2_IP4_UNUSED	0x3
+> > > > +
+> > > > +#define SERDES0_LANE3_QSGMII_LANE2	0x0
+> > > > +#define SERDES0_LANE3_PCIE1_LANE3	0x1
+> > > > +#define SERDES0_LANE3_USB		0x2
+> > > > +#define SERDES0_LANE3_IP4_UNUSED	0x3
+> > > > +
+> > > > +#endif /* _DT_BINDINGS_J7200_WIZ */
+> > > 
+> > > Should not the defines start with J7200_WIZ? SERDES0 seems like a too
+> > > generic prefix, at least to me.
+> > 
+> > Thanks, good point. I am not sure if WIZ should even be used.. It is
+> > a TI internal prefix for various serdes solutions, but I agree that
+> > SERDES0 is too generic a terminology. That said, we should cleanup
+> > include/dt-bindings/mux/mux-j721e-wiz.h as well, prior to introducing
+> > j7200 changes.
+> > 
+> 
+> I'm planning to put all TI SERDES definitions in one header file "ti-serdes-mux.h"
+> and add SOC specific prefixes to the macros.
+> 
+> This will mean some churn in the existing DT files. (only 2 so far)
 
-On 9/16/20 2:59 AM, Camel Guo wrote:
-> From: Camel Guo <camelg@axis.com>
->
-> Add support to configure the GPIO pin to the specific configuration.
-> The GPIO pin can be configured as GPO, IRQ, SDOUT2, PDMCLK, MICBASE_EN,
-> GPI, MCLK, SDIN, PDMDIN1, PDMDIN2, PDMDIN3 or PDMDIN4 and the output
-> drive can be configured with various configuration.
->
-> Signed-off-by: Camel Guo <camelg@axis.com>
-> ---
->   v3:
->    - Add ADCX140_NUM_GPIO_CFGS avoiding using magic number
->    - Remove unneeded check on ret in adcx140_configure_gpio
->
->   sound/soc/codecs/tlv320adcx140.c | 40 ++++++++++++++++++++++++++++++++
->   sound/soc/codecs/tlv320adcx140.h |  5 ++++
->   2 files changed, 45 insertions(+)
->
-> diff --git a/sound/soc/codecs/tlv320adcx140.c b/sound/soc/codecs/tlv320adcx140.c
-> index f33ee604ee78..fe6fc6df66cc 100644
-> --- a/sound/soc/codecs/tlv320adcx140.c
-> +++ b/sound/soc/codecs/tlv320adcx140.c
-> @@ -837,6 +837,42 @@ static int adcx140_configure_gpo(struct adcx140_priv *adcx140)
->   
->   }
->   
-> +static int adcx140_configure_gpio(struct adcx140_priv *adcx140)
-> +{
-> +	int gpio_count = 0;
-> +	u32 gpio_outputs[ADCX140_NUM_GPIO_CFGS];
-> +	u32 gpio_output_val = 0;
-> +	int ret;
-> +
-> +	gpio_count = device_property_count_u32(adcx140->dev,
-> +			"ti,gpio-config");
-> +	if (gpio_count == 0)
-> +		return 0;
-> +
-> +	if (gpio_count != ADCX140_NUM_GPIO_CFGS)
-> +		return -EINVAL;
-> +
-> +	ret = device_property_read_u32_array(adcx140->dev, "ti,gpio-config",
-> +			gpio_outputs, gpio_count);
-> +	if (ret)
-> +		return ret;
-> +
-> +	if (gpio_outputs[0] > ADCX140_GPIO_CFG_MAX) {
-> +		dev_err(adcx140->dev, "GPIO config out of range\n");
-> +		return -EINVAL;
-> +	}
-> +
-> +	if (gpio_outputs[1] > ADCX140_GPIO_DRV_MAX) {
-> +		dev_err(adcx140->dev, "GPIO drive out of range\n");
-> +		return -EINVAL;
-> +	}
-> +
-> +	gpio_output_val = gpio_outputs[0] << ADCX140_GPIO_SHIFT
-> +		| gpio_outputs[1];
-> +
-> +	return regmap_write(adcx140->regmap, ADCX140_GPIO_CFG0, gpio_output_val);
-> +}
-> +
->   static int adcx140_codec_probe(struct snd_soc_component *component)
->   {
->   	struct adcx140_priv *adcx140 = snd_soc_component_get_drvdata(component);
-> @@ -934,6 +970,10 @@ static int adcx140_codec_probe(struct snd_soc_component *component)
->   			return ret;
->   	}
->   
-> +	ret = adcx140_configure_gpio(adcx140);
-> +	if (ret)
-> +		return ret;
-> +
->   	ret = adcx140_configure_gpo(adcx140);
->   	if (ret)
->   		goto out;
-> diff --git a/sound/soc/codecs/tlv320adcx140.h b/sound/soc/codecs/tlv320adcx140.h
-> index eedbc1d7221f..9d04dec374d1 100644
-> --- a/sound/soc/codecs/tlv320adcx140.h
-> +++ b/sound/soc/codecs/tlv320adcx140.h
-> @@ -145,4 +145,9 @@
->   #define ADCX140_GPO_CFG_MAX		4
->   #define ADCX140_GPO_DRV_MAX		5
->   
-> +#define ADCX140_NUM_GPIO_CFGS		2
-> +#define ADCX140_GPIO_SHIFT		4
-> +#define ADCX140_GPIO_CFG_MAX		15
-> +#define ADCX140_GPIO_DRV_MAX		5
-> +
->   #endif /* _TLV320ADCX140_ */
-Acked-by: Dan Murphy <dmurphy@ti.com>
+Please check bindings and examples if any reference as well. Those
+changes will need to be considered as well.
+
+> 
+> Are you guys OK if I do the change in one patch to avoid a broken build in between.
+> You guys can then decide whose tree it goes through.
+> 
+> The new SoC addition will be separate of course.
+
+If Peter acks and is OK with the changes, then based on Peter's opinion,
+I'd rather take the changes via SoC tree for 5.10+ for maintaining
+bisectability.
+
+I prefer we name it ti-serdes-mux or something that Peter is OK with as
+well. reasons:
+
+i) "wiz" is yet another TLA deal even if documented in public TI TRM in some
+   remote chapter, other non-TI folks are going to go scratching their
+   heads..
+ii) There is no way this can scale with one header per SoC!
+
+-- 
+Regards,
+Nishanth Menon
+Key (0xDDB5849D1736249D) / Fingerprint: F8A2 8693 54EB 8232 17A3  1A34 DDB5 849D 1736 249D
