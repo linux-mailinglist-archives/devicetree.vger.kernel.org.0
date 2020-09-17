@@ -2,89 +2,85 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from vger.kernel.org (vger.kernel.org [23.128.96.18])
-	by mail.lfdr.de (Postfix) with ESMTP id DD5E526D6C7
-	for <lists+devicetree@lfdr.de>; Thu, 17 Sep 2020 10:35:47 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTP id B2AE126D756
+	for <lists+devicetree@lfdr.de>; Thu, 17 Sep 2020 11:04:01 +0200 (CEST)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S1726285AbgIQIfq (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Thu, 17 Sep 2020 04:35:46 -0400
-Received: from mail.kernel.org ([198.145.29.99]:36122 "EHLO mail.kernel.org"
-        rhost-flags-OK-OK-OK-OK) by vger.kernel.org with ESMTP
-        id S1726106AbgIQIfp (ORCPT <rfc822;devicetree@vger.kernel.org>);
-        Thu, 17 Sep 2020 04:35:45 -0400
-Received: from mail-ed1-f43.google.com (mail-ed1-f43.google.com [209.85.208.43])
-        (using TLSv1.2 with cipher ECDHE-RSA-AES128-GCM-SHA256 (128/128 bits))
-        (No client certificate requested)
-        by mail.kernel.org (Postfix) with ESMTPSA id 6420520770;
-        Thu, 17 Sep 2020 08:35:44 +0000 (UTC)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=kernel.org;
-        s=default; t=1600331744;
-        bh=mRSVv+vx8znjGJcarG67oS8oQgK+tcjmcnrKxbwgTb4=;
-        h=References:In-Reply-To:From:Date:Subject:To:Cc:From;
-        b=sZeGDWo5RzrZbk518kgncPbrpIDewL7XJD/AsZsKE1EpH+6fUORuRfF4SudQgicjt
-         vZUmDSAsPTf7Rmz54eOnZRlQs/+bhEfhb2lDpS4xn+1+iYldqM4un/SMN6TsO3OqrN
-         ffCVBgCERHpBQZ0tVRyKXbFIPXeYW/buz9T83F10=
-Received: by mail-ed1-f43.google.com with SMTP id ay8so1602136edb.8;
-        Thu, 17 Sep 2020 01:35:44 -0700 (PDT)
-X-Gm-Message-State: AOAM530AfGG0Qbhz9aT7Lbo5Rd/0JaQSvrpMnzXa2S774aAr+c9BTqlH
-        2SHvCO2R4FNLCq8IlbgzkfI482sNwRwRdF5xVSc=
-X-Google-Smtp-Source: ABdhPJwR4QxzWTBTJu+tZgpe6V1W/uKkOfOafsDCntpeBU/CCaBG1l6xe8J4VkUwGz1JChPKh8NPIQ3cChRLOhHGhrc=
-X-Received: by 2002:a05:6402:ca7:: with SMTP id cn7mr31147447edb.143.1600331742874;
- Thu, 17 Sep 2020 01:35:42 -0700 (PDT)
+        id S1726336AbgIQJEA (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Thu, 17 Sep 2020 05:04:00 -0400
+Received: from lindbergh.monkeyblade.net ([23.128.96.19]:36556 "EHLO
+        lindbergh.monkeyblade.net" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
+        with ESMTP id S1726211AbgIQJD7 (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Thu, 17 Sep 2020 05:03:59 -0400
+Received: from mail-ej1-x642.google.com (mail-ej1-x642.google.com [IPv6:2a00:1450:4864:20::642])
+        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 4354BC06174A;
+        Thu, 17 Sep 2020 02:03:58 -0700 (PDT)
+Received: by mail-ej1-x642.google.com with SMTP id i22so2217256eja.5;
+        Thu, 17 Sep 2020 02:03:58 -0700 (PDT)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+        d=gmail.com; s=20161025;
+        h=mime-version:references:in-reply-to:from:date:message-id:subject:to
+         :cc;
+        bh=Igtq6uu7KJrv2n58bm+ZDKMIbznG6BAqe68oGhP+b4s=;
+        b=VG+m/5sKOeinoDaoVnzeOTtq2OzKYhz7+iqitoMVWzDDvniTyCCg9eT+LY4JQOm+wd
+         rRWef4XXXh0B3TX8W70ky3UZW6hfLoT0trHa017tZ1PEV+2E1gZcRLD4kgfDJr33P7dB
+         jW+gMoK+LsmbPfuubcUGBZpjwhgRk4aeFr96yTxI5WMn3mRicoc7PEKLUrFqQ+A+dcX5
+         zFnDai1pktXDNjeBl8DFO5ATy+XqlzCssQmc58hlhm/abfmPC8Ecpf9wVp7B0PI14Gtw
+         HSN9VS9zq2XT+1e/o4Pjbl4tn6tS1QyojP+RuZO/NNRDNk7DM/QZFoAnjWe84uhlXEza
+         EerA==
+X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+        d=1e100.net; s=20161025;
+        h=x-gm-message-state:mime-version:references:in-reply-to:from:date
+         :message-id:subject:to:cc;
+        bh=Igtq6uu7KJrv2n58bm+ZDKMIbznG6BAqe68oGhP+b4s=;
+        b=Y4fOLL+8C/EBpSMS99F4COw804cfWKHJ90aLZb9AG+2WF0xOiZROLSpzdP2C34Zc8Q
+         FXUv+Tm+sBhf/WANETda0s6ofVxJggET4++ArNhi914PzywfsQnZRqsowKNXgeDX/In6
+         gP7aOOC+WNt/96dSy4KQlxMYp+FuGdPKgLzutz0o0//VdhtCNnxelOnAoR4IoaP2lZvW
+         8edeQSxS+/5uRiv/Maq8SdSIauQcNAhO/7Ip/WmwLBf9LWmQj84UCE6z3UmwtjVJ/CJE
+         bz53Kzeze+HmebPylc4ePN8cpKWvJsHWJRnSa+12T65qXkXSLETp39x1POeU4icyQGUF
+         i1Rw==
+X-Gm-Message-State: AOAM533OKFOf8VUjgHg2ibijrnsgYK+zqocL+JuuK/7mqywfo15vjI70
+        4tsRsJFj7ntH/j8DIl5GUEjg0vSv+mshelivHdQXSwpvcIA=
+X-Google-Smtp-Source: ABdhPJyVjQKWOe8cx7o4BVt+1Y/GaF1ao/JasLf4SDBbKCTzUkyNP7gp+H9B3pD0+rNaqcAiYLxqpsd2cDFf3n/Tq2c=
+X-Received: by 2002:a17:906:82c1:: with SMTP id a1mr18573837ejy.270.1600333437454;
+ Thu, 17 Sep 2020 02:03:57 -0700 (PDT)
 MIME-Version: 1.0
-References: <20200917070543.19064-1-krzk@kernel.org> <CAMxfBF5WWQX3ZH0YcRZ_N8q4njTdG-RA4eM+zyQwmK7tYvw6DQ@mail.gmail.com>
-In-Reply-To: <CAMxfBF5WWQX3ZH0YcRZ_N8q4njTdG-RA4eM+zyQwmK7tYvw6DQ@mail.gmail.com>
-From:   Krzysztof Kozlowski <krzk@kernel.org>
-Date:   Thu, 17 Sep 2020 10:35:30 +0200
-X-Gmail-Original-Message-ID: <CAJKOXPfd9iWHDNo9v=COroD_wuYL0xmOkRt-63WS_7G3As=kXQ@mail.gmail.com>
-Message-ID: <CAJKOXPfd9iWHDNo9v=COroD_wuYL0xmOkRt-63WS_7G3As=kXQ@mail.gmail.com>
-Subject: Re: [PATCH] dt-bindings: soc: ti: ti,pruss: fix schema ID
-To:     Grzegorz Jaszczyk <grzegorz.jaszczyk@linaro.org>
-Cc:     Rob Herring <robh+dt@kernel.org>,
-        Santosh Shilimkar <santosh.shilimkar@oracle.com>,
-        Roger Quadros <rogerq@ti.com>, Suman Anna <s-anna@ti.com>,
-        devicetree@vger.kernel.org,
-        "linux-kernel@vger.kernel.org" <linux-kernel@vger.kernel.org>
+References: <20200914104352.2165818-1-drew@beagleboard.org>
+In-Reply-To: <20200914104352.2165818-1-drew@beagleboard.org>
+From:   Trent Piepho <tpiepho@gmail.com>
+Date:   Thu, 17 Sep 2020 02:03:46 -0700
+Message-ID: <CA+7tXii8rwBexgAHeqYsvBywhWLmk-Hf5_VWUU5bQkBREeFcSA@mail.gmail.com>
+Subject: Re: [PATCH] ARM: dts: document pinctrl-single,pins when
+ #pinctrl-cells = 2
+To:     Drew Fustini <drew@beagleboard.org>
+Cc:     Tony Lindgren <tony@atomide.com>, Rob Herring <robh+dt@kernel.org>,
+        Linus Walleij <linus.walleij@linaro.org>,
+        Jason Kridner <jkridner@beagleboard.org>,
+        Robert Nelson <robertcnelson@gmail.com>,
+        linux-omap@vger.kernel.org, linux-kernel@vger.kernel.org,
+        devicetree@vger.kernel.org, linux-gpio <linux-gpio@vger.kernel.org>
 Content-Type: text/plain; charset="UTF-8"
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-On Thu, 17 Sep 2020 at 10:32, Grzegorz Jaszczyk
-<grzegorz.jaszczyk@linaro.org> wrote:
+On Mon, Sep 14, 2020 at 3:44 AM Drew Fustini <drew@beagleboard.org> wrote:
 >
-> On Thu, 17 Sep 2020 at 09:05, Krzysztof Kozlowski <krzk@kernel.org> wrote:
-> >
-> > Add missing '#' to fix schema errors:
-> >
-> >   $id: 'http://devicetree.org/schemas/soc/ti/ti,pruss.yaml' does not match 'http://devicetree.org/schemas/.*\\.yaml#'
-> >   $schema: 'http://devicetree.org/meta-schemas/core.yaml' is not one of ['http://devicetree.org/meta-schemas/core.yaml#', 'http://devicetree.org/meta-schemas/base.yaml#']
-> >   Documentation/devicetree/bindings/soc/ti/ti,pruss.yaml: ignoring, error in schema: $id
-> >
-> > Signed-off-by: Krzysztof Kozlowski <krzk@kernel.org>
-> > ---
-> >  Documentation/devicetree/bindings/soc/ti/ti,pruss.yaml | 4 ++--
-> >  1 file changed, 2 insertions(+), 2 deletions(-)
-> >
-> > diff --git a/Documentation/devicetree/bindings/soc/ti/ti,pruss.yaml b/Documentation/devicetree/bindings/soc/ti/ti,pruss.yaml
-> > index cf7dc83f724f..037c51b2f972 100644
-> > --- a/Documentation/devicetree/bindings/soc/ti/ti,pruss.yaml
-> > +++ b/Documentation/devicetree/bindings/soc/ti/ti,pruss.yaml
-> > @@ -1,8 +1,8 @@
-> >  # SPDX-License-Identifier: (GPL-2.0-only OR BSD-2-Clause)
-> >  %YAML 1.2
-> >  ---
-> > -$id: http://devicetree.org/schemas/soc/ti/ti,pruss.yaml
-> > -$schema: http://devicetree.org/meta-schemas/core.yaml
-> > +$id: http://devicetree.org/schemas/soc/ti/ti,pruss.yaml#
-> > +$schema: http://devicetree.org/meta-schemas/core.yaml#
->
-> I've double checked and "#" was present in the original patch sent and
-> ack for upstream: https://patchwork.kernel.org/patch/11729649/
-> It seems like something got wrong on linux-next but this is the only
-> diff between original patch and one found in linux-next. Thank you for
-> taking care of it.
+> +
+> +When #pinctrl-cells = 2, then setting a pin for a device could be done with:
+> +
+> +       pinctrl-single,pins = <0xdc 0x30 0x07>;
+> +
+> +Where 0x30 is the pin configuration value and 0x07 is the pin mux mode value.
+> +See the device example and static board pins example below for more information.
 
-Indeed that's weird. It must get lost when applying...
+Pin configuration and mux mode don't mean anything in pinctrl-single.
+On another machine, mux mode might not be programmed this way or even
+exist.  Or the location of bits would probably be different, and this
+would seem to imply the 0x07 would get shifted to the correct location
+for where the pin mux setting was on that machine's pinctrl registers.
 
-Best regards,
-Krzysztof
+It seems like it would be better to explain the values are ORed together.
+
+What is the purpose of this change anyway?  It seems like in the end
+it just does what it did before.  The data is now split into two cells
+in the device tree, but why?
