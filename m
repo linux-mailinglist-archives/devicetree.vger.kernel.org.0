@@ -2,134 +2,199 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from vger.kernel.org (vger.kernel.org [23.128.96.18])
-	by mail.lfdr.de (Postfix) with ESMTP id 26E2126D674
-	for <lists+devicetree@lfdr.de>; Thu, 17 Sep 2020 10:26:49 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTP id BB5A026D6D5
+	for <lists+devicetree@lfdr.de>; Thu, 17 Sep 2020 10:37:28 +0200 (CEST)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S1726408AbgIQI0p (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Thu, 17 Sep 2020 04:26:45 -0400
-Received: from lindbergh.monkeyblade.net ([23.128.96.19]:59008 "EHLO
-        lindbergh.monkeyblade.net" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S1726399AbgIQI0l (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Thu, 17 Sep 2020 04:26:41 -0400
-Received: from mail-pl1-x641.google.com (mail-pl1-x641.google.com [IPv6:2607:f8b0:4864:20::641])
-        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 46620C061756
-        for <devicetree@vger.kernel.org>; Thu, 17 Sep 2020 01:26:41 -0700 (PDT)
-Received: by mail-pl1-x641.google.com with SMTP id d19so759609pld.0
-        for <devicetree@vger.kernel.org>; Thu, 17 Sep 2020 01:26:41 -0700 (PDT)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=linaro.org; s=google;
-        h=from:to:cc:subject:date:message-id:in-reply-to:references;
-        bh=Oi8lbN5PJDRQE+iSBWgwU9oDc6wIuFWvYfEWRaH/5pI=;
-        b=M9H5ftN4oUtIuuJDpSKHEGjzTr2hAZfkTMzi1TYBt5HhoiYhKLQdpODJqOWZGu7KPO
-         Qfh5YBhZ+xCfhBsQq0Z4wl+T3e4zywr675DlkDjpNs8/KUhYhYVMIv8n0wEU0V4kmaGX
-         p+uDT85RvLumaoRSR+CjQaxLsoBPVcSjraQgWeSCWTgeHmKIgwTF/a0WQHwFzNOIN3Yq
-         nmpaLDAEt63oFVY8dGVgOEzDP0GzqtXR9yIL4ic9Rs2tC3RWLdjU/dDhJi3kDOjPFvGH
-         bqv3Lx3mTYbKoyKhMIoFqQBFeEC6QS8+cTQTGHo6Dx8TMnVB1i+aFGf8EYtJt+QEAssN
-         KWcQ==
-X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=1e100.net; s=20161025;
-        h=x-gm-message-state:from:to:cc:subject:date:message-id:in-reply-to
-         :references;
-        bh=Oi8lbN5PJDRQE+iSBWgwU9oDc6wIuFWvYfEWRaH/5pI=;
-        b=UlquEmDqoXlDt0vUMqQxBbZ7MXaxocjxjW+MP0QdiHLCxZV/1toSndbME/5pi6VqKh
-         DM80X+LH8xMmhH5DltfYWOWjZGQnDuTZ0ubeU8Edl/DklXb49EtOdVb1zi2cw3GIXJH5
-         Pxqk0AsXL3vHQeDqXJ8xWbAc6gKPN1vxtDKGliiV+rFCbGjoEPc8gwC5xj0ogLgsIHJo
-         NBsN+8DmVrrnfdfvWLnNx/1okZi8GSRjNGcSJycWt9u/yEF7cmHUY3MCcyso9k7R2P8f
-         dm2E2D5mXBHVu8YwzrIgNAGIl8ZAV8WDcGXbBBY9y4Zx4GPxgmJD0CfuYO1XOT4ADAzu
-         cDsQ==
-X-Gm-Message-State: AOAM533Ejkaj3cSr4e0qjJp+QZU+XjXHC/yrveGS5bNyzRmjW3lf2KXZ
-        AMVqEyqOakSUusoDmAuW2KBw
-X-Google-Smtp-Source: ABdhPJxyAvFUcLLGLA+PHHamxiaJgNx9inQLxxyB39a/BJ6NeF3R8QCWDEDUgz3MUXumpKfbrCmZHQ==
-X-Received: by 2002:a17:90a:160f:: with SMTP id n15mr7325454pja.75.1600331200762;
-        Thu, 17 Sep 2020 01:26:40 -0700 (PDT)
-Received: from Mani-XPS-13-9360.localdomain ([103.59.133.81])
-        by smtp.gmail.com with ESMTPSA id g129sm8233194pfb.9.2020.09.17.01.26.37
-        (version=TLS1_3 cipher=TLS_AES_256_GCM_SHA384 bits=256/256);
-        Thu, 17 Sep 2020 01:26:40 -0700 (PDT)
-From:   Manivannan Sadhasivam <manivannan.sadhasivam@linaro.org>
-To:     agross@kernel.org, bjorn.andersson@linaro.org
-Cc:     linux-arm-msm@vger.kernel.org, devicetree@vger.kernel.org,
-        linux-kernel@vger.kernel.org, dmitry.baryshkov@linaro.org,
-        Manivannan Sadhasivam <manivannan.sadhasivam@linaro.org>
-Subject: [PATCH 3/3] arm64: dts: qcom: qrb5165-rb5: Add USB support
-Date:   Thu, 17 Sep 2020 13:56:22 +0530
-Message-Id: <20200917082622.6823-4-manivannan.sadhasivam@linaro.org>
-X-Mailer: git-send-email 2.17.1
-In-Reply-To: <20200917082622.6823-1-manivannan.sadhasivam@linaro.org>
-References: <20200917082622.6823-1-manivannan.sadhasivam@linaro.org>
+        id S1726153AbgIQIh1 (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Thu, 17 Sep 2020 04:37:27 -0400
+Received: from fllv0016.ext.ti.com ([198.47.19.142]:45726 "EHLO
+        fllv0016.ext.ti.com" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
+        with ESMTP id S1726169AbgIQIh1 (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Thu, 17 Sep 2020 04:37:27 -0400
+X-Greylist: delayed 5056 seconds by postgrey-1.27 at vger.kernel.org; Thu, 17 Sep 2020 04:37:25 EDT
+Received: from lelv0266.itg.ti.com ([10.180.67.225])
+        by fllv0016.ext.ti.com (8.15.2/8.15.2) with ESMTP id 08H7Cxdr115161;
+        Thu, 17 Sep 2020 02:12:59 -0500
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=ti.com;
+        s=ti-com-17Q1; t=1600326779;
+        bh=mEbRNhnKemZbrcBLhnLL1/ySyCsJMEYfXC1AWoLg980=;
+        h=From:To:CC:Subject:Date:In-Reply-To:References;
+        b=gX+tvLFh21E7KtEVEomZF7Ei7Rhr5WbPw32dbN5yIT1cxbPMO3y0Q3hditN7Mg0FN
+         pJ9vI+GxWS7e8ozcn+1zE0lcOCMGIlTrztJuHdsap8/yIO19DrT/EGQLeohdDbb4Qw
+         916FME/SA9PXXuG//O6h7QYmENGZzMTlILXNmHdA=
+Received: from DLEE101.ent.ti.com (dlee101.ent.ti.com [157.170.170.31])
+        by lelv0266.itg.ti.com (8.15.2/8.15.2) with ESMTPS id 08H7Cxb9033009
+        (version=TLSv1.2 cipher=AES256-GCM-SHA384 bits=256 verify=FAIL);
+        Thu, 17 Sep 2020 02:12:59 -0500
+Received: from DLEE103.ent.ti.com (157.170.170.33) by DLEE101.ent.ti.com
+ (157.170.170.31) with Microsoft SMTP Server (version=TLS1_2,
+ cipher=TLS_ECDHE_RSA_WITH_AES_128_CBC_SHA256_P256) id 15.1.1979.3; Thu, 17
+ Sep 2020 02:12:59 -0500
+Received: from fllv0040.itg.ti.com (10.64.41.20) by DLEE103.ent.ti.com
+ (157.170.170.33) with Microsoft SMTP Server (version=TLS1_2,
+ cipher=TLS_ECDHE_RSA_WITH_AES_128_CBC_SHA256_P256) id 15.1.1979.3 via
+ Frontend Transport; Thu, 17 Sep 2020 02:12:59 -0500
+Received: from deskari.lan (ileax41-snat.itg.ti.com [10.172.224.153])
+        by fllv0040.itg.ti.com (8.15.2/8.15.2) with ESMTP id 08H7Crh3085779;
+        Thu, 17 Sep 2020 02:12:56 -0500
+From:   Tomi Valkeinen <tomi.valkeinen@ti.com>
+To:     Tero Kristo <t-kristo@ti.com>, Nishanth Menon <nm@ti.com>,
+        Rob Herring <robh+dt@kernel.org>,
+        <linux-arm-kernel@lists.infradead.org>,
+        <devicetree@vger.kernel.org>,
+        Swapnil Jakhade <sjakhade@cadence.com>, <yamonkar@cadence.com>,
+        Kishon Vijay Abraham I <kishon@ti.com>
+CC:     Laurent Pinchart <laurent.pinchart@ideasonboard.com>,
+        Sekhar Nori <nsekhar@ti.com>,
+        Tomi Valkeinen <tomi.valkeinen@ti.com>
+Subject: [PATCH 1/2] arm64: dts: ti: k3-j721e-main: add DP & DP PHY
+Date:   Thu, 17 Sep 2020 10:12:47 +0300
+Message-ID: <20200917071248.71284-2-tomi.valkeinen@ti.com>
+X-Mailer: git-send-email 2.25.1
+In-Reply-To: <20200917071248.71284-1-tomi.valkeinen@ti.com>
+References: <20200917071248.71284-1-tomi.valkeinen@ti.com>
+MIME-Version: 1.0
+Content-Transfer-Encoding: 8bit
+Content-Type: text/plain
+X-EXCLAIMER-MD-CONFIG: e1e8a2fd-e40a-4ac6-ac9b-f7e9cc9ee180
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-RB5 makes use of the two USB controllers onboard. USB0 is connected
-to the Type C port and USB1 is connected to USB3.1 HUB which exposes
-following downstream ports:
+Add DT nodes for DisplayPort and DisplayPort PHY. The DP is Cadence MHDP
+8546 and the PHY is a Cadence Torrent PHY with TI WIZ wrapper.
 
-* 2 Type A ports
-* 2 HS/SS ports on the expansion connector
-* USB to LAN device
+A slight irregularity in the bindings is the DPTX PHY register block,
+which is in the MHDP IP, but is needed and mapped by the PHY.
 
-Hence, enable these two controllers with the required PHYs.
-
-Signed-off-by: Manivannan Sadhasivam <manivannan.sadhasivam@linaro.org>
+Signed-off-by: Tomi Valkeinen <tomi.valkeinen@ti.com>
 ---
- arch/arm64/boot/dts/qcom/qrb5165-rb5.dts | 46 ++++++++++++++++++++++++
- 1 file changed, 46 insertions(+)
+ arch/arm64/boot/dts/ti/k3-j721e-main.dtsi | 104 ++++++++++++++++++++++
+ 1 file changed, 104 insertions(+)
 
-diff --git a/arch/arm64/boot/dts/qcom/qrb5165-rb5.dts b/arch/arm64/boot/dts/qcom/qrb5165-rb5.dts
-index 1528a865f1f8..e020013c1add 100644
---- a/arch/arm64/boot/dts/qcom/qrb5165-rb5.dts
-+++ b/arch/arm64/boot/dts/qcom/qrb5165-rb5.dts
-@@ -684,3 +684,49 @@
- 	vdda-pll-supply = <&vreg_l9a_1p2>;
- 	vdda-pll-max-microamp = <18800>;
- };
+diff --git a/arch/arm64/boot/dts/ti/k3-j721e-main.dtsi b/arch/arm64/boot/dts/ti/k3-j721e-main.dtsi
+index 12ceea9b3c9a..82d89dd3faf5 100644
+--- a/arch/arm64/boot/dts/ti/k3-j721e-main.dtsi
++++ b/arch/arm64/boot/dts/ti/k3-j721e-main.dtsi
+@@ -553,6 +553,82 @@ serdes3: serdes@5030000 {
+ 		};
+ 	};
+ 
++	serdes_wiz4: wiz@5050000 {
++		compatible = "ti,j721e-wiz-10g";
++		#address-cells = <1>;
++		#size-cells = <1>;
++		power-domains = <&k3_pds 297 TI_SCI_PD_EXCLUSIVE>;
++		clocks = <&k3_clks 297 1>, <&k3_clks 297 9>, <&dummy_cmn_refclk>;
++		clock-names = "fck", "core_ref_clk", "ext_ref_clk";
++		assigned-clocks = <&k3_clks 297 9>;
++		assigned-clock-parents = <&k3_clks 297 10>;
++		assigned-clock-rates = <19200000>;
++		num-lanes = <4>;
++		#reset-cells = <1>;
++		ranges = <0x5050000 0x0 0x5050000 0x10000>,
++			<0xa030a00 0x0 0xa030a00 0x40>;
 +
-+&usb_1 {
-+	status = "okay";
-+};
++		wiz4_pll0_refclk: pll0-refclk {
++			clocks = <&k3_clks 297 9>, <&dummy_cmn_refclk>;
++			clock-output-names = "wiz4_pll0_refclk";
++			#clock-cells = <0>;
++			assigned-clocks = <&wiz4_pll0_refclk>;
++			assigned-clock-parents = <&k3_clks 297 9>;
++		};
 +
-+&usb_1_dwc3 {
-+	dr_mode = "peripheral";
-+};
++		wiz4_pll1_refclk: pll1-refclk {
++			clocks = <&k3_clks 297 9>, <&dummy_cmn_refclk>;
++			clock-output-names = "wiz4_pll1_refclk";
++			#clock-cells = <0>;
++			assigned-clocks = <&wiz4_pll1_refclk>;
++			assigned-clock-parents = <&k3_clks 297 9>;
++		};
 +
-+&usb_1_hsphy {
-+	status = "okay";
++		wiz4_refclk_dig: refclk-dig {
++			clocks = <&k3_clks 297 9>, <&dummy_cmn_refclk>;
++			clock-output-names = "wiz4_refclk_dig";
++			#clock-cells = <0>;
++			assigned-clocks = <&wiz4_refclk_dig>;
++			assigned-clock-parents = <&k3_clks 297 9>;
++		};
 +
-+	vdda-pll-supply = <&vreg_l5a_0p88>;
-+	vdda33-supply = <&vreg_l2a_3p1>;
-+	vdda18-supply = <&vreg_l12a_1p8>;
-+};
++		wiz4_cmn_refclk_dig_div: cmn-refclk-dig-div {
++			clocks = <&wiz4_refclk_dig>;
++			#clock-cells = <0>;
++		};
 +
-+&usb_1_qmpphy {
-+	status = "okay";
++		wiz4_cmn_refclk1_dig_div: cmn-refclk1-dig-div {
++			clocks = <&wiz4_pll1_refclk>;
++			#clock-cells = <0>;
++		};
 +
-+	vdda-phy-supply = <&vreg_l9a_1p2>;
-+	vdda-pll-supply = <&vreg_l18a_0p92>;
-+};
++		serdes4: serdes@5050000 {
++			/*
++			 * Note: we also map DPTX PHY registers as the Torrent
++			 * needs to manage those.
++			 */
++			compatible = "ti,j721e-serdes-10g";
++			reg = <0x5050000 0x10000>,
++			      <0xa030a00 0x40>; /* DPTX PHY */
++			reg-names = "torrent_phy", "dptx_phy";
 +
-+&usb_2 {
-+	status = "okay";
-+};
++			resets = <&serdes_wiz4 0>;
++			reset-names = "torrent_reset";
++			clocks = <&wiz4_pll0_refclk>;
++			clock-names = "refclk";
++			#address-cells = <1>;
++			#size-cells = <0>;
++			torrent_phy_dp: phy@0 {
++				reg = <0>;
++				resets = <&serdes_wiz4 1>;
++				cdns,phy-type = <PHY_TYPE_DP>;
++				cdns,num-lanes = <4>;
++				cdns,max-bit-rate = <5400>;
++				#phy-cells = <0>;
++			};
++		};
++	};
 +
-+&usb_2_dwc3 {
-+	dr_mode = "host";
-+};
+ 	main_uart0: serial@2800000 {
+ 		compatible = "ti,j721e-uart", "ti,am654-uart";
+ 		reg = <0x00 0x02800000 0x00 0x100>;
+@@ -1024,6 +1100,34 @@ ufs@4e84000 {
+ 		};
+ 	};
+ 
++	mhdp: dp-bridge@a000000 {
++		compatible = "ti,j721e-mhdp8546";
++		/*
++		 * Note: we do not map DPTX PHY area, as that is handled by
++		 * the PHY driver.
++		 */
++		reg = <0x0 0xa000000 0x0 0x30a00>, /* DSS_EDP0_V2A_CORE_VP_REGS_APB */
++		      <0x0 0x4f40000 0x0 0x20>;    /* DSS_EDP0_INTG_CFG_VP */
++		reg-names = "mhdptx", "j721e-intg";
 +
-+&usb_2_hsphy {
-+	status = "okay";
++		status = "disabled";
 +
-+	vdda-pll-supply = <&vreg_l5a_0p88>;
-+	vdda33-supply = <&vreg_l2a_3p1>;
-+	vdda18-supply = <&vreg_l12a_1p8>;
-+};
++		clocks = <&k3_clks 151 36>;
 +
-+&usb_2_qmpphy {
-+	status = "okay";
++		phys = <&torrent_phy_dp>;
++		phy-names = "dpphy";
 +
-+	vdda-phy-supply = <&vreg_l9a_1p2>;
-+	vdda-pll-supply = <&vreg_l18a_0p92>;
-+};
++		interrupt-parent = <&gic500>;
++		interrupts = <GIC_SPI 614 IRQ_TYPE_LEVEL_HIGH>;
++
++		power-domains = <&k3_pds 151 TI_SCI_PD_EXCLUSIVE>;
++
++		dp0_ports: ports {
++			#address-cells = <1>;
++			#size-cells = <0>;
++		};
++	};
++
+ 	dss: dss@04a00000 {
+ 		compatible = "ti,j721e-dss";
+ 		reg =
 -- 
-2.17.1
+Texas Instruments Finland Oy, Porkkalankatu 22, 00180 Helsinki.
+Y-tunnus/Business ID: 0615521-4. Kotipaikka/Domicile: Helsinki
 
