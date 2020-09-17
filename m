@@ -2,131 +2,180 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from vger.kernel.org (vger.kernel.org [23.128.96.18])
-	by mail.lfdr.de (Postfix) with ESMTP id A338526D02A
-	for <lists+devicetree@lfdr.de>; Thu, 17 Sep 2020 02:48:19 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTP id 7BB1626D024
+	for <lists+devicetree@lfdr.de>; Thu, 17 Sep 2020 02:46:37 +0200 (CEST)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S1726241AbgIQAsB (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Wed, 16 Sep 2020 20:48:01 -0400
-Received: from lindbergh.monkeyblade.net ([23.128.96.19]:44538 "EHLO
+        id S1726098AbgIQAqc (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Wed, 16 Sep 2020 20:46:32 -0400
+Received: from lindbergh.monkeyblade.net ([23.128.96.19]:44312 "EHLO
         lindbergh.monkeyblade.net" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S1726043AbgIQAsA (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Wed, 16 Sep 2020 20:48:00 -0400
-Received: from mail-ot1-x344.google.com (mail-ot1-x344.google.com [IPv6:2607:f8b0:4864:20::344])
-        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 26BA3C06178B
-        for <devicetree@vger.kernel.org>; Wed, 16 Sep 2020 17:39:42 -0700 (PDT)
-Received: by mail-ot1-x344.google.com with SMTP id h17so342184otr.1
-        for <devicetree@vger.kernel.org>; Wed, 16 Sep 2020 17:39:42 -0700 (PDT)
+        with ESMTP id S1726072AbgIQAqb (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Wed, 16 Sep 2020 20:46:31 -0400
+Received: from mail-oi1-x244.google.com (mail-oi1-x244.google.com [IPv6:2607:f8b0:4864:20::244])
+        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 06518C061356
+        for <devicetree@vger.kernel.org>; Wed, 16 Sep 2020 17:46:30 -0700 (PDT)
+Received: by mail-oi1-x244.google.com with SMTP id a3so480165oib.4
+        for <devicetree@vger.kernel.org>; Wed, 16 Sep 2020 17:46:30 -0700 (PDT)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
         d=linaro.org; s=google;
         h=date:from:to:cc:subject:message-id:references:mime-version
-         :content-disposition:in-reply-to;
-        bh=qnQdbtqxCDTIqKqOna77dN+ZLQyEkOzOK58YwCfa3H0=;
-        b=XBAadIW9bVAGcIfHj9raEdIjBWaRKYLD5ma49V74gb5amE/rxRwD89ELv8aJK5GhCF
-         g1V25+4dqH1vN3CXRDMj0Cp2+YXyDxcXTFX3mum5Mws9Tdj6d9KpshqpiQfJoW87E12v
-         iy2hdSvA4fm0U+tImJWAFOwoE04Qt1KzTZXbkGLU4IuttxOh0fp9voDy4ewqGNVrYqIO
-         6Zx26upjeuOiz1MaDt9bS1g/oR3eRrp5DYc24ayXEJI904gH/TBAsy5YsaZLDqKOMkDA
-         ACHMb3MYiUK8xyn5/jcZbEZ5UYahXAWyu5UWRg33iZUp1JgnSiTl1gp90GDwEhUpPnXa
-         gzsw==
+         :content-disposition:content-transfer-encoding:in-reply-to;
+        bh=xPfF/+vHZ8xULDak5kE3Di70hl+PzaH5PBbg6iuyFFM=;
+        b=Zbt3vPlHy3YASoVcQRtmExxjDK9LYi8zfmrC+8SVKZwsmZrRDgo3laAVlvKH/05dNd
+         zXIr/6NLQ52gEsE5syvHRvxlZkUCJ1v4YyHIeRV7jXyGvxzNWzDlaSQMeKklDyLAxOYc
+         v40p05Y/X8G/EhRRP0LgSWLb//JPsAgaaSvokwHYCMiAS7/y7PVrTVmsjd+bIVuum/FC
+         yLC3Sx4RRtIyvKNkNqQby4x9ii2xJbaQuVM+FS7If4XInO7mbscnYZVRZH7j7gGxKFO9
+         2BszYiF9xEN3nz+IhfoOShY4FTKBy1UIAdthCZP8p2sMkwkgNvESkXGkstd1V2UmHEpo
+         tKcA==
 X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
         d=1e100.net; s=20161025;
         h=x-gm-message-state:date:from:to:cc:subject:message-id:references
-         :mime-version:content-disposition:in-reply-to;
-        bh=qnQdbtqxCDTIqKqOna77dN+ZLQyEkOzOK58YwCfa3H0=;
-        b=PCd77jDpmXc3ol5xbkg0qqBX/dhqNYDXznUf8AhH5gTcjHYO2jPrU36ruG7jsnLIX9
-         g+x9MOVJw+TMw+iJvSTLst2QMYlBJE0IMGomLWHSC097lww4Wtm9kA+3PaYWGma2x/9p
-         5jhBIFt5/V4f/GcB9R0l+JqhBdXA0dqS0LSmIYtLnjeQVVJcZTjoAcMbWLcy1Xj9cjeE
-         JPg79g95pgCILt1QyxyDEWFLErQ3zS/JEp2cUh4MOqJ71u3TTgxeu+qRVETSOtQ9SEC5
-         qzElFAA3GhvjgqOHRfdJCMlfFjWKuqMpPNEXda+estf65QZKaat6CM18Jt8q45QsFMMG
-         X3rQ==
-X-Gm-Message-State: AOAM532xkapMjuz2wqhlolneiQsybqHRygDNxQeBNVRuTnN70C+/l9E/
-        a1x78pM9yDuJs2Mes2uDPU0AZA==
-X-Google-Smtp-Source: ABdhPJzYgxc/qCjtDcdsd3TwLr0HUaOJpA8OKmX8Hc2wBd9RfexwmyUmEf463C3CLCZQpPADunp2YQ==
-X-Received: by 2002:a9d:335:: with SMTP id 50mr3923676otv.90.1600303181463;
-        Wed, 16 Sep 2020 17:39:41 -0700 (PDT)
+         :mime-version:content-disposition:content-transfer-encoding
+         :in-reply-to;
+        bh=xPfF/+vHZ8xULDak5kE3Di70hl+PzaH5PBbg6iuyFFM=;
+        b=mNdFrCHjUCpaQ5bBieoFDues7EIkT2V7JZcUCMTjktk4Qb096dwYkC8uEoF5gg7dlo
+         7+4Y0/iGijcwgsPPU8Q//wg6SdmEscVxbDcqgTRbv/xzwMsS7A984hckAmGIg04Rm7Pw
+         84S4MdT2zVsbIgBtl5lnnJLRMtfHDGWk0wwX/b5McFRVd7XBgVAU062W3+5wB8bk9HpU
+         btjK3NBmAh30Q4+hlkW7HHj9LncuEKnKqO8LN6bthMKY3W6Ehk85XY+hj3SY6pCjY+GH
+         ENfnFNzI+CchSR1IXtkCDyNhuC/qsB3YEpHGlJ2EWISD8zOdx2AoHkchE89I209NiY+h
+         ZgwQ==
+X-Gm-Message-State: AOAM531Q3gebbowkFB6wxM9h6vK/h4XYoZSzJMZyx+aakf0+tKBbspw3
+        IBr6FDChtpWHijZ9XBc9CXhJm2o+IFqziIZo
+X-Google-Smtp-Source: ABdhPJyvdeAESwOnVofeOkEEXJbZoFus3jAmQOAYorS8U5WznmT9jpjEZek/Y/mXG1+xL43TucnVqg==
+X-Received: by 2002:aca:2301:: with SMTP id e1mr5001999oie.177.1600303590034;
+        Wed, 16 Sep 2020 17:46:30 -0700 (PDT)
 Received: from yoga ([2605:6000:e5cb:c100:7cad:6eff:fec8:37e4])
-        by smtp.gmail.com with ESMTPSA id u2sm10507631oig.48.2020.09.16.17.39.39
+        by smtp.gmail.com with ESMTPSA id j34sm262867otc.15.2020.09.16.17.46.27
         (version=TLS1_3 cipher=TLS_AES_256_GCM_SHA384 bits=256/256);
-        Wed, 16 Sep 2020 17:39:40 -0700 (PDT)
-Date:   Wed, 16 Sep 2020 19:39:37 -0500
+        Wed, 16 Sep 2020 17:46:29 -0700 (PDT)
+Date:   Wed, 16 Sep 2020 19:46:25 -0500
 From:   Bjorn Andersson <bjorn.andersson@linaro.org>
-To:     Manivannan Sadhasivam <manivannan.sadhasivam@linaro.org>
-Cc:     agross@kernel.org, kishon@ti.com, vkoul@kernel.org,
-        robh@kernel.org, svarbanov@mm-sol.com, bhelgaas@google.com,
-        lorenzo.pieralisi@arm.com, linux-arm-msm@vger.kernel.org,
-        linux-pci@vger.kernel.org, linux-kernel@vger.kernel.org,
-        mgautam@codeaurora.org, devicetree@vger.kernel.org,
-        Jonathan Marek <jonathan@marek.ca>
-Subject: Re: [PATCH 5/5] pci: controller: dwc: qcom: Harcode PCIe config SID
-Message-ID: <20200917003937.GI1893@yoga>
-References: <20200916132000.1850-1-manivannan.sadhasivam@linaro.org>
- <20200916132000.1850-6-manivannan.sadhasivam@linaro.org>
+To:     Marek Beh?n <marek.behun@nic.cz>
+Cc:     linux-leds@vger.kernel.org, Pavel Machek <pavel@ucw.cz>,
+        Dan Murphy <dmurphy@ti.com>,
+        Ond??ej Jirman <megous@megous.com>,
+        linux-kernel@vger.kernel.org, Rob Herring <robh+dt@kernel.org>,
+        devicetree@vger.kernel.org,
+        Linus Walleij <linus.walleij@linaro.org>
+Subject: Re: [PATCH leds v1 06/10] leds: pm8058: use struct led_init_data
+ when registering
+Message-ID: <20200917004625.GJ1893@yoga>
+References: <20200916231650.11484-1-marek.behun@nic.cz>
+ <20200916231650.11484-7-marek.behun@nic.cz>
 MIME-Version: 1.0
-Content-Type: text/plain; charset=us-ascii
+Content-Type: text/plain; charset=iso-8859-1
 Content-Disposition: inline
-In-Reply-To: <20200916132000.1850-6-manivannan.sadhasivam@linaro.org>
+Content-Transfer-Encoding: 8bit
+In-Reply-To: <20200916231650.11484-7-marek.behun@nic.cz>
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-On Wed 16 Sep 08:20 CDT 2020, Manivannan Sadhasivam wrote:
+On Wed 16 Sep 18:16 CDT 2020, Marek Beh?n wrote:
 
-> Hardcode the PCIe config SID table value. This is needed to avoid random
-> MHI failure observed during reboot on SM8250.
+> By using struct led_init_data when registering we do not need to parse
+> `label` DT property nor `linux,default-trigger` property.
 > 
-> Signed-off-by: Jonathan Marek <jonathan@marek.ca>
-> [mani: stripped out unnecessary settings and ported for upstream]
-> Signed-off-by: Manivannan Sadhasivam <manivannan.sadhasivam@linaro.org>
+> Signed-off-by: Marek Behún <marek.behun@nic.cz>
+> Cc: Linus Walleij <linus.walleij@linaro.org>
+> Cc: Bjorn Andersson <bjorn.andersson@linaro.org>
 > ---
->  drivers/pci/controller/dwc/pcie-qcom.c | 4 ++++
->  1 file changed, 4 insertions(+)
+>  drivers/leds/leds-pm8058.c | 38 +++++++++++++++++++-------------------
+>  1 file changed, 19 insertions(+), 19 deletions(-)
 > 
-> diff --git a/drivers/pci/controller/dwc/pcie-qcom.c b/drivers/pci/controller/dwc/pcie-qcom.c
-> index ca8ad354e09d..50748016ce96 100644
-> --- a/drivers/pci/controller/dwc/pcie-qcom.c
-> +++ b/drivers/pci/controller/dwc/pcie-qcom.c
-> @@ -57,6 +57,7 @@
->  #define PCIE20_PARF_SID_OFFSET			0x234
->  #define PCIE20_PARF_BDF_TRANSLATE_CFG		0x24C
->  #define PCIE20_PARF_DEVICE_TYPE			0x1000
-> +#define PCIE20_PARF_BDF_TO_SID_TABLE_N		0x2000
+> diff --git a/drivers/leds/leds-pm8058.c b/drivers/leds/leds-pm8058.c
+> index 7869ccdf70ce6..f6190e4af60fe 100644
+> --- a/drivers/leds/leds-pm8058.c
+> +++ b/drivers/leds/leds-pm8058.c
+> @@ -87,36 +87,37 @@ static enum led_brightness pm8058_led_get(struct led_classdev *cled)
 >  
->  #define PCIE20_ELBI_SYS_CTRL			0x04
->  #define PCIE20_ELBI_SYS_CTRL_LT_ENABLE		BIT(0)
-> @@ -1290,6 +1291,9 @@ static int qcom_pcie_host_init(struct pcie_port *pp)
->  	if (ret)
->  		goto err;
+>  static int pm8058_led_probe(struct platform_device *pdev)
+>  {
+> +	struct led_init_data init_data = {};
+> +	struct device *dev = &pdev->dev;
+> +	enum led_brightness maxbright;
+> +	struct device_node *np;
+>  	struct pm8058_led *led;
+> -	struct device_node *np = pdev->dev.of_node;
+> -	int ret;
+>  	struct regmap *map;
+>  	const char *state;
+> -	enum led_brightness maxbright;
+> +	int ret;
 >  
-> +	writel(0x0, pcie->parf + PCIE20_PARF_BDF_TO_SID_TABLE_N);
-> +	writel(0x01000100, pcie->parf + PCIE20_PARF_BDF_TO_SID_TABLE_N + 0x054);
+> -	led = devm_kzalloc(&pdev->dev, sizeof(*led), GFP_KERNEL);
+> +	led = devm_kzalloc(dev, sizeof(*led), GFP_KERNEL);
 
-This needs to be properly implemented.
+The pdev->dev -> dev and of_node changes are reasonable, but shouldn't
+be part of this patch. It simply makes it hard to reason about he actual
+change.
 
-The mechanism at hand is responsible for mapping BDFs by the means of a
-BDF->SID hash table.  Per the downstream kernel the hash is 256 entries
-of 32 bits registers.  The slot is selected by taking the crc8() of the
-BDF (in big endian) and in that slot encode the BDF in the upper 16
-bits, followed by the SID (relative to the first SID of the controller)
-in the next 8 and finally the index of the next entry in cases of
-collisions.
+Please respin this with only the introduction of led_init_data.
 
-Also like the downstream kernel you can extract this information from
-the iommu-map property. But note that the last cell in the iommu-map is
-"length", not mask as in the typical iommus property - so you would need
-to install "length" entries in the hash table, for each iommu-map.
-
-
-
-Finally, this was first introduced in SM8150, so it can not be done
-unconditionally in qcom_pcie_host_init(). The previous hardware used a
-different mechanism for configuring this information.
-
-Regards,
+Thanks,
 Bjorn
 
+>  	if (!led)
+>  		return -ENOMEM;
+>  
+> -	led->ledtype = (u32)(unsigned long)of_device_get_match_data(&pdev->dev);
+> +	led->ledtype = (u32)(unsigned long)device_get_match_data(dev);
+>  
+> -	map = dev_get_regmap(pdev->dev.parent, NULL);
+> +	map = dev_get_regmap(dev->parent, NULL);
+>  	if (!map) {
+> -		dev_err(&pdev->dev, "Parent regmap unavailable.\n");
+> +		dev_err(dev, "Parent regmap unavailable.\n");
+>  		return -ENXIO;
+>  	}
+>  	led->map = map;
+>  
+> +	np = dev_of_node(dev);
 > +
->  	return 0;
->  err:
->  	qcom_ep_reset_assert(pcie);
+>  	ret = of_property_read_u32(np, "reg", &led->reg);
+>  	if (ret) {
+> -		dev_err(&pdev->dev, "no register offset specified\n");
+> +		dev_err(dev, "no register offset specified\n");
+>  		return -EINVAL;
+>  	}
+>  
+>  	/* Use label else node name */
+> -	led->cdev.name = of_get_property(np, "label", NULL) ? : np->name;
+> -	led->cdev.default_trigger =
+> -		of_get_property(np, "linux,default-trigger", NULL);
+>  	led->cdev.brightness_set = pm8058_led_set;
+>  	led->cdev.brightness_get = pm8058_led_get;
+>  	if (led->ledtype == PM8058_LED_TYPE_COMMON)
+> @@ -142,14 +143,13 @@ static int pm8058_led_probe(struct platform_device *pdev)
+>  	    led->ledtype == PM8058_LED_TYPE_FLASH)
+>  		led->cdev.flags	= LED_CORE_SUSPENDRESUME;
+>  
+> -	ret = devm_led_classdev_register(&pdev->dev, &led->cdev);
+> -	if (ret) {
+> -		dev_err(&pdev->dev, "unable to register led \"%s\"\n",
+> -			led->cdev.name);
+> -		return ret;
+> -	}
+> +	init_data.fwnode = of_fwnode_handle(np);
+> +
+> +	ret = devm_led_classdev_register_ext(dev, &led->cdev, &init_data);
+> +	if (ret)
+> +		dev_err(dev, "Failed to register LED for node %pOF\n", np);
+>  
+> -	return 0;
+> +	return ret;
+>  }
+>  
+>  static const struct of_device_id pm8058_leds_id_table[] = {
+> @@ -173,7 +173,7 @@ static struct platform_driver pm8058_led_driver = {
+>  	.probe		= pm8058_led_probe,
+>  	.driver		= {
+>  		.name	= "pm8058-leds",
+> -		.of_match_table = pm8058_leds_id_table,
+> +		.of_match_table = of_match_ptr(pm8058_leds_id_table),
+>  	},
+>  };
+>  module_platform_driver(pm8058_led_driver);
 > -- 
-> 2.17.1
+> 2.26.2
 > 
