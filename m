@@ -2,265 +2,143 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from vger.kernel.org (vger.kernel.org [23.128.96.18])
-	by mail.lfdr.de (Postfix) with ESMTP id 0BD3826DEB6
-	for <lists+devicetree@lfdr.de>; Thu, 17 Sep 2020 16:50:27 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTP id 1A28326DF79
+	for <lists+devicetree@lfdr.de>; Thu, 17 Sep 2020 17:20:37 +0200 (CEST)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S1727622AbgIQOt4 (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Thu, 17 Sep 2020 10:49:56 -0400
-Received: from mail.kernel.org ([198.145.29.99]:45960 "EHLO mail.kernel.org"
-        rhost-flags-OK-OK-OK-OK) by vger.kernel.org with ESMTP
-        id S1727778AbgIQOtZ (ORCPT <rfc822;devicetree@vger.kernel.org>);
-        Thu, 17 Sep 2020 10:49:25 -0400
-Received: from mail-ot1-f52.google.com (mail-ot1-f52.google.com [209.85.210.52])
-        (using TLSv1.2 with cipher ECDHE-RSA-AES128-GCM-SHA256 (128/128 bits))
-        (No client certificate requested)
-        by mail.kernel.org (Postfix) with ESMTPSA id 3CD4F206DB;
-        Thu, 17 Sep 2020 14:48:00 +0000 (UTC)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=kernel.org;
-        s=default; t=1600354080;
-        bh=sfthpgU6LTh5kEwIKbE0LbgLu/hukWCbFKyb2zfPjUw=;
-        h=References:In-Reply-To:From:Date:Subject:To:Cc:From;
-        b=RgxZxtOcni3OEB0z47zK9B9KjJApk/zCyq7cwuET1X6qz8/ySDyo58jSVr52zvqNh
-         AurUOkhyoZdFHPZE0XYJXhW0ekKytUL0YiDHHprXi8o4jFiJVzqSdozyE7IUfZ4meH
-         lEQWnuRVgyCE6jZDPQ40k/BV2KmHi46Zs8zDuLhY=
-Received: by mail-ot1-f52.google.com with SMTP id c10so2103873otm.13;
-        Thu, 17 Sep 2020 07:48:00 -0700 (PDT)
-X-Gm-Message-State: AOAM531DeItYnyLFwGrkSi+tBXCHZ2wFyspKRrNJIN8EdemLf++cZPJJ
-        aQO9fdF0qD59jcPbqdHWe32R8Oq679ZhF3LJCQ==
-X-Google-Smtp-Source: ABdhPJx2OKNTrIWy6fhiXMZseiLqqWeXElK00F/L2kA3QdEqg6K0YRW8p/L0K2YEJOVZQVqmenQQlcLShDoEwzbktss=
-X-Received: by 2002:a9d:6b0d:: with SMTP id g13mr20255042otp.129.1600354079374;
- Thu, 17 Sep 2020 07:47:59 -0700 (PDT)
+        id S1727881AbgIQPUe (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Thu, 17 Sep 2020 11:20:34 -0400
+Received: from fllv0016.ext.ti.com ([198.47.19.142]:44232 "EHLO
+        fllv0016.ext.ti.com" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
+        with ESMTP id S1727800AbgIQPT6 (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Thu, 17 Sep 2020 11:19:58 -0400
+Received: from fllv0035.itg.ti.com ([10.64.41.0])
+        by fllv0016.ext.ti.com (8.15.2/8.15.2) with ESMTP id 08HC0X61059792;
+        Thu, 17 Sep 2020 07:00:33 -0500
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=ti.com;
+        s=ti-com-17Q1; t=1600344033;
+        bh=cdbe+Y1msYZUZho4J9GT8Lb/U6fSW1HOJKJwJCjY6vI=;
+        h=Subject:To:CC:References:From:Date:In-Reply-To;
+        b=pIc5siM+52+t8PtNjdlea3M55mMhBi8bY/ZfeVlMx2O+6BHaCdX42OGD1iGik1SxX
+         JywogSaSFbB54zOoEI0dlGz/bmKnNv5nsIAzYUsu20ASbglz/WmKPAX7NpNgedekkq
+         kbSh0bo+epls6ccKhO+u9ooJU37FwpJLG4ZsUty8=
+Received: from DFLE103.ent.ti.com (dfle103.ent.ti.com [10.64.6.24])
+        by fllv0035.itg.ti.com (8.15.2/8.15.2) with ESMTP id 08HC0Xxg087303;
+        Thu, 17 Sep 2020 07:00:33 -0500
+Received: from DFLE113.ent.ti.com (10.64.6.34) by DFLE103.ent.ti.com
+ (10.64.6.24) with Microsoft SMTP Server (version=TLS1_2,
+ cipher=TLS_ECDHE_RSA_WITH_AES_128_CBC_SHA256_P256) id 15.1.1979.3; Thu, 17
+ Sep 2020 07:00:33 -0500
+Received: from fllv0040.itg.ti.com (10.64.41.20) by DFLE113.ent.ti.com
+ (10.64.6.34) with Microsoft SMTP Server (version=TLS1_2,
+ cipher=TLS_ECDHE_RSA_WITH_AES_128_CBC_SHA256_P256) id 15.1.1979.3 via
+ Frontend Transport; Thu, 17 Sep 2020 07:00:33 -0500
+Received: from [192.168.2.14] (ileax41-snat.itg.ti.com [10.172.224.153])
+        by fllv0040.itg.ti.com (8.15.2/8.15.2) with ESMTP id 08HC0VnM079871;
+        Thu, 17 Sep 2020 07:00:31 -0500
+Subject: Re: [PATCH v3 1/6] dt-bindings: mux-j7200-wiz: Add lane function
+ defines
+To:     Nishanth Menon <nm@ti.com>, Peter Rosin <peda@axentia.se>
+CC:     <t-kristo@ti.com>, <robh+dt@kernel.org>,
+        <linux-kernel@vger.kernel.org>, <devicetree@vger.kernel.org>,
+        <linux-arm-kernel@lists.infradead.org>, <nsekhar@ti.com>,
+        <kishon@ti.com>
+References: <20200915112038.30219-1-rogerq@ti.com>
+ <20200915112038.30219-2-rogerq@ti.com>
+ <e28e98a0-f3fc-29bd-d7a6-cc45f3a69ede@axentia.se>
+ <20200916154536.m552ft2jzfsaeokr@akan>
+From:   Roger Quadros <rogerq@ti.com>
+Message-ID: <08c84d02-abe1-8399-50fb-9268c7130f8a@ti.com>
+Date:   Thu, 17 Sep 2020 15:00:30 +0300
+User-Agent: Mozilla/5.0 (X11; Linux x86_64; rv:68.0) Gecko/20100101
+ Thunderbird/68.10.0
 MIME-Version: 1.0
-References: <cover.1599549364.git.mchehab+huawei@kernel.org>
- <cb821a8b5ef2d44ce32c8ce1d01c34b7afb70eb2.1599549364.git.mchehab+huawei@kernel.org>
- <20200915163814.GA2084568@bogus> <20200917091821.0de18caa@coco.lan>
-In-Reply-To: <20200917091821.0de18caa@coco.lan>
-From:   Rob Herring <robh@kernel.org>
-Date:   Thu, 17 Sep 2020 08:47:48 -0600
-X-Gmail-Original-Message-ID: <CAL_JsqLucKWwgBVAoyXpm1mCD5-OvFj2pM_q2+tcyA+K9fCnKg@mail.gmail.com>
-Message-ID: <CAL_JsqLucKWwgBVAoyXpm1mCD5-OvFj2pM_q2+tcyA+K9fCnKg@mail.gmail.com>
-Subject: Re: [PATCH 2/2] dt-bindings: document a new quirk for dwc3
-To:     Mauro Carvalho Chehab <mchehab+huawei@kernel.org>
-Cc:     Felipe Balbi <balbi@kernel.org>, Linuxarm <linuxarm@huawei.com>,
-        mauro.chehab@huawei.com, John Stultz <john.stultz@linaro.org>,
-        Manivannan Sadhasivam <mani@kernel.org>,
-        Greg Kroah-Hartman <gregkh@linuxfoundation.org>,
-        Linux USB List <linux-usb@vger.kernel.org>,
-        devicetree@vger.kernel.org,
-        "linux-kernel@vger.kernel.org" <linux-kernel@vger.kernel.org>
-Content-Type: text/plain; charset="UTF-8"
+In-Reply-To: <20200916154536.m552ft2jzfsaeokr@akan>
+Content-Type: text/plain; charset="utf-8"; format=flowed
+Content-Language: en-US
+Content-Transfer-Encoding: 7bit
+X-EXCLAIMER-MD-CONFIG: e1e8a2fd-e40a-4ac6-ac9b-f7e9cc9ee180
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-On Thu, Sep 17, 2020 at 1:18 AM Mauro Carvalho Chehab
-<mchehab+huawei@kernel.org> wrote:
->
-> Em Tue, 15 Sep 2020 10:38:14 -0600
-> Rob Herring <robh@kernel.org> escreveu:
->
-> > On Tue, Sep 08, 2020 at 09:20:57AM +0200, Mauro Carvalho Chehab wrote:
-> > > At Hikey 970, setting the SPLIT disable at the General
-> > > User Register 3 is required.
-> > >
-> > > Without that, the URBs generated by the usbhid driver
-> > > return -EPROTO errors. That causes the code at
-> > > hid-core.c to call hid_io_error(), which schedules
-> > > a reset_work, causing a call to hid_reset().
-> > >
-> > > In turn, the code there will call:
-> > >
-> > >     usb_queue_reset_device(usbhid->intf);
-> > >
-> > > The net result is that the input devices won't work, and
-> > > will be reset on every 0.5 seconds:
-> > >
-> > >     [   33.122384] hub 1-1:1.0: state 7 ports 4 chg 0000 evt 0002
-> > >     [   33.378220] usb 1-1.1: reset low-speed USB device number 3 using xhci-hcd
-> > >     [   33.698394] hub 1-1:1.0: state 7 ports 4 chg 0000 evt 0000
-> > >     [   34.882365] hub 1-1:1.0: state 7 ports 4 chg 0000 evt 0002
-> > >     [   35.138217] usb 1-1.1: reset low-speed USB device number 3 using xhci-hcd
-> > >     [   35.458617] hub 1-1:1.0: state 7 ports 4 chg 0000 evt 0000
-> > >     [   36.642392] hub 1-1:1.0: state 7 ports 4 chg 0000 evt 0002
-> > >     [   36.898207] usb 1-1.1: reset low-speed USB device number 3 using xhci-hcd
-> > >     [   37.218598] hub 1-1:1.0: state 7 ports 4 chg 0000 evt 0000
-> > >     [   38.402368] hub 1-1:1.0: state 7 ports 4 chg 0000 evt 0002
-> > >     [   38.658174] usb 1-1.1: reset low-speed USB device number 3 using xhci-hcd
-> > >     [   38.978594] hub 1-1:1.0: state 7 ports 4 chg 0000 evt 0000
-> > >     [   40.162361] hub 1-1:1.0: state 7 ports 4 chg 0000 evt 0002
-> > >     [   40.418148] usb 1-1.1: reset low-speed USB device number 3 using xhci-hcd
-> > >     ...
-> > >     [  397.698132] usb 1-1.1: reset low-speed USB device number 3 using xhci-hcd
-> > >
-> > > Signed-off-by: Mauro Carvalho Chehab <mchehab+huawei@kernel.org>
-> > > ---
-> > >  Documentation/devicetree/bindings/usb/dwc3.txt | 3 +++
-> > >  1 file changed, 3 insertions(+)
-> > >
-> > > diff --git a/Documentation/devicetree/bindings/usb/dwc3.txt b/Documentation/devicetree/bindings/usb/dwc3.txt
-> > > index d03edf9d3935..1aae2b6160c1 100644
-> > > --- a/Documentation/devicetree/bindings/usb/dwc3.txt
-> > > +++ b/Documentation/devicetree/bindings/usb/dwc3.txt
-> > > @@ -78,6 +78,9 @@ Optional properties:
-> > >                     park mode are disabled.
-> > >   - snps,dis_metastability_quirk: when set, disable metastability workaround.
-> > >                     CAUTION: use only if you are absolutely sure of it.
-> > > + - snps,dis-split-quirk: when set, change the way URBs are handled by the
-> > > +                    driver. Needed to avoid -EPROTO errors with usbhid
-> > > +                    on some devices (Hikey 970).
-> >
-> > Can't this be implied by the compatible string? Yes we have quirk
-> > properties already, but the problem with them is you can't address them
-> > without a DT change.
->
-> Short answer:
->
-> While technically doable, I don't think that this would be a good idea.
->
-> -
->
-> Long answer:
->
-> The first thing is related to the compatible namespace: should such
-> quirk be added at SoC level or at board level?
->
-> I don't know if the need to disable split mode came from a different
-> dwc3 variant used by the Kirin 970 SoC, or if this is due to the way
-> USB is wired at the Hikey 970 board.
+Hi Peter & Nishanth,
 
-If board specific, then I agree that a separate property makes sense.
-This doesn't really sound board specific though.
+On 16/09/2020 18:45, Nishanth Menon wrote:
+> On 06:52-20200916, Peter Rosin wrote:
+>> Hi,
+>>
+>> Sorry for the delay.
+>>
+>> On 2020-09-15 13:20, Roger Quadros wrote:
+>>> Each SERDES lane mux can select upto 4 different IPs.
+>>> There are 4 lanes in each J7200 SERDES. Define all
+>>> the possible functions in this file.
+>>>
+>>> Cc: Peter Rosin <peda@axentia.se>
+>>> Signed-off-by: Roger Quadros <rogerq@ti.com>
+>>> ---
+>>>   include/dt-bindings/mux/mux-j7200-wiz.h | 29 +++++++++++++++++++++++++
+>>>   1 file changed, 29 insertions(+)
+>>>   create mode 100644 include/dt-bindings/mux/mux-j7200-wiz.h
+>>>
+>>> diff --git a/include/dt-bindings/mux/mux-j7200-wiz.h b/include/dt-bindings/mux/mux-j7200-wiz.h
+>>> new file mode 100644
+>>> index 000000000000..b091b1185a36
+>>> --- /dev/null
+>>> +++ b/include/dt-bindings/mux/mux-j7200-wiz.h
+>>> @@ -0,0 +1,29 @@
+>>> +/* SPDX-License-Identifier: GPL-2.0 */
+>>> +/*
+>>> + * This header provides constants for J7200 WIZ.
+>>> + */
+>>> +
+>>> +#ifndef _DT_BINDINGS_J7200_WIZ
+>>> +#define _DT_BINDINGS_J7200_WIZ
+>>> +
+>>> +#define SERDES0_LANE0_QSGMII_LANE3	0x0
+>>> +#define SERDES0_LANE0_PCIE1_LANE0	0x1
+>>> +#define SERDES0_LANE0_IP3_UNUSED	0x2
+>>> +#define SERDES0_LANE0_IP4_UNUSED	0x3
+>>> +
+>>> +#define SERDES0_LANE1_QSGMII_LANE4	0x0
+>>> +#define SERDES0_LANE1_PCIE1_LANE1	0x1
+>>> +#define SERDES0_LANE1_IP3_UNUSED	0x2
+>>> +#define SERDES0_LANE1_IP4_UNUSED	0x3
+>>> +
+>>> +#define SERDES0_LANE2_QSGMII_LANE1	0x0
+>>> +#define SERDES0_LANE2_PCIE1_LANE2	0x1
+>>> +#define SERDES0_LANE2_IP3_UNUSED	0x2
+>>> +#define SERDES0_LANE2_IP4_UNUSED	0x3
+>>> +
+>>> +#define SERDES0_LANE3_QSGMII_LANE2	0x0
+>>> +#define SERDES0_LANE3_PCIE1_LANE3	0x1
+>>> +#define SERDES0_LANE3_USB		0x2
+>>> +#define SERDES0_LANE3_IP4_UNUSED	0x3
+>>> +
+>>> +#endif /* _DT_BINDINGS_J7200_WIZ */
+>>
+>> Should not the defines start with J7200_WIZ? SERDES0 seems like a too
+>> generic prefix, at least to me.
+> 
+> Thanks, good point. I am not sure if WIZ should even be used.. It is
+> a TI internal prefix for various serdes solutions, but I agree that
+> SERDES0 is too generic a terminology. That said, we should cleanup
+> include/dt-bindings/mux/mux-j721e-wiz.h as well, prior to introducing
+> j7200 changes.
+> 
 
-> Right now, I'm assuming the latter, but Felipe suggested that this
-> might be due to a different version of the IP. Currently, we have
-> no means to check.
->
-> So, I'm placing all Hikey 970 specific quirks under the board-specific
-> part, e. g., at:
->
->         arch/arm64/boot/dts/hisilicon/hi3670-hikey970.dts
->
-> This sounds more flexible, as, if some different hardware based on
-> the same chipset reaches upstream, it could use a different set of
-> quirks, if needed.
->
-> However, if we decide to bind quirks with compatible strings,
-> we need to know if we would create a board-specific compatible
-> or just SoC-specific ones.
->
-> -
->
-> Another possibility would be to add generic compatible bindings
-> for each quirk featureset. Right now the dwc3 core driver accepts
-> only two compatible strings:
->
->        .compatible = "snps,dwc3"
->        .compatible = "synopsys,dwc3"
+I'm planning to put all TI SERDES definitions in one header file "ti-serdes-mux.h"
+and add SOC specific prefixes to the macros.
 
-Yeah, the binding for DWC3 is odd.
+This will mean some churn in the existing DT files. (only 2 so far)
 
-> And both are equivalent. No quirks are added there via compatible
-> strings.
->
-> Ok, we might start adding different compatible strings for different
-> sets of quirks, like:
->
->         .compatible = "snps,dwc3-splitdisable"
+Are you guys OK if I do the change in one patch to avoid a broken build in between.
+You guys can then decide whose tree it goes through.
 
-Um, no.
+The new SoC addition will be separate of course.
 
->
-> but, this sounds really ugly, specially when multiple quirks
-> would be required.
->
-> We might also deprecate the usage of "snps,dwc3"/"synopsys,dwc3",
-> in favor of SoC-specific and board-specific compatible strings,
-> but that would add a long list of boards there, with lots of code
-> to set quirks. IMHO, it is a lot nicer to rely on DT to enable
-> or disable those SoC and board-specific optional features of the
-> Designware IP.
->
-> -
->
-> In the specific case of Hikey 970, there are two other
-> alternatives:
->
-> 1) we ended needing to create a new compatible for the Kirin 970
-> SoC, for it to be probed via this driver:
->
->         drivers/usb/dwc3/dwc3-of-simple.c
->
-> as, otherwise an async ARM error happens, making the SoC to
-> crash. All dwc3-of-simple driver does is to use a different
-> code for initializing the clocks.
->
-> However, dwc3-of-simple driver is completely independent from
-> dwc3: it doesn't pass platform data to the main dwc3 driver.
-> So, it doesn't propagate any quirk to the main driver.
->
-> One possible hack would be to make dwc3 driver to also
-> accept platform data, using it as an interface for the
-> dwc3-of-simple to pass quirks.
->
-> If we go on that direction, we could also remove all other
-> quirks from Kirin 970 dwc3, coding them inside the driver,
-> instead of using DT, e. g. the driver would do something like:
->
->         if (of_device_is_compatible(np,
->                                    "hisilicon,hi3670-dwc3")) {
->                 cfg->dis_split_quirk = true;
->                 cfg->foo = true;
->                 cfg->bar = true;
-
-Normally, this would all be driver match data.
-
->                 ...
->
->         }
->
-> such change would require a re-design at the logic around
-> dwc3_get_properties(), as the driver should start accepting
-> quirks either from platform_data or from DT (or both?).
->
-> 2) Because this specific device uses the dwc3-of-simple driver,
-> the actual DT binding is:
->
->         usb3: hisi_dwc3 {
->                 compatible = "hisilicon,hi3670-dwc3";
->         ...
->                 dwc3: dwc3@ff100000 {
->                         compatible = "snps,dwc3";
->         ...
->                 };
->         };
-
-This parent child split should never have happened for the cases that
-don't have 'wrapper registers'. We should have had on node here with
-just:
-
-compatible = "hisilicon,hi3670-dwc3", "snps,dwc3";
-
-> For boards that use dwc3-of-simple drivers, we could add a hack
-> at the dwc3 core that would seek for the parent's device's
-> compatible string with something like (not tested):
->
->         if (of_device_is_compatible(pdev->parent->dev.of_node,
->                                    "hisilicon,hi3670-dwc3"))
->                 dwc->dis_split_quirk = true;
-
-This is what I'd do. You could have a match table instead as that
-would scale better.
-
-> It should be noticed that both platform_data and pdev->parent
-> alternatives will only work for boards using dwc3-of-simple driver.
-> This could limit this quirk usage on future devices.
->
-> -
->
-> IMO, adding a new quirk is cleaner, and adopts the same solution
-> that it is currently used by other drivers with Designware IP.
-
-We already have a bunch of quirk properties. What's one more, sigh. So
-if that's what you want, fine.
-
-Rob
+cheers,
+-roger
+-- 
+Texas Instruments Finland Oy, Porkkalankatu 22, 00180 Helsinki.
+Y-tunnus/Business ID: 0615521-4. Kotipaikka/Domicile: Helsinki
