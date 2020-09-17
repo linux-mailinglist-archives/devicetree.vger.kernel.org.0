@@ -2,109 +2,154 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from vger.kernel.org (vger.kernel.org [23.128.96.18])
-	by mail.lfdr.de (Postfix) with ESMTP id 1D90D26DC0B
-	for <lists+devicetree@lfdr.de>; Thu, 17 Sep 2020 14:51:45 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTP id 4FA9526DC1B
+	for <lists+devicetree@lfdr.de>; Thu, 17 Sep 2020 14:54:41 +0200 (CEST)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S1727032AbgIQMvk (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Thu, 17 Sep 2020 08:51:40 -0400
-Received: from lelv0142.ext.ti.com ([198.47.23.249]:47590 "EHLO
-        lelv0142.ext.ti.com" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S1727080AbgIQMv2 (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Thu, 17 Sep 2020 08:51:28 -0400
-Received: from lelv0266.itg.ti.com ([10.180.67.225])
-        by lelv0142.ext.ti.com (8.15.2/8.15.2) with ESMTP id 08HCp58F051343;
-        Thu, 17 Sep 2020 07:51:05 -0500
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=ti.com;
-        s=ti-com-17Q1; t=1600347065;
-        bh=h1+j6WmExINKlQygCh7j0c5ayp42nqCQ1rs/Cq/b8uU=;
-        h=Date:From:To:CC:Subject:References:In-Reply-To;
-        b=qrL5Uq9ifDK0pkNIIsIzSFOlAXxjP1ST9zzxe/KHVEj5Vf0vUsGNo5MKBG6GT7onC
-         0AzHa7hOpmByLmNOJe7kRkQhtrC/ghJ4GgWcgBmn6li6PkoF27WNN8HCOrKRcnTfA3
-         hWM+kLwL3JBNR4BMUxRls9n4eIxWpiDmlz2lOUGc=
-Received: from DLEE109.ent.ti.com (dlee109.ent.ti.com [157.170.170.41])
-        by lelv0266.itg.ti.com (8.15.2/8.15.2) with ESMTPS id 08HCp51O012763
-        (version=TLSv1.2 cipher=AES256-GCM-SHA384 bits=256 verify=FAIL);
-        Thu, 17 Sep 2020 07:51:05 -0500
-Received: from DLEE104.ent.ti.com (157.170.170.34) by DLEE109.ent.ti.com
- (157.170.170.41) with Microsoft SMTP Server (version=TLS1_2,
- cipher=TLS_ECDHE_RSA_WITH_AES_128_CBC_SHA256_P256) id 15.1.1979.3; Thu, 17
- Sep 2020 07:51:05 -0500
-Received: from fllv0040.itg.ti.com (10.64.41.20) by DLEE104.ent.ti.com
- (157.170.170.34) with Microsoft SMTP Server (version=TLS1_2,
- cipher=TLS_ECDHE_RSA_WITH_AES_128_CBC_SHA256_P256) id 15.1.1979.3 via
- Frontend Transport; Thu, 17 Sep 2020 07:51:05 -0500
-Received: from localhost (ileax41-snat.itg.ti.com [10.172.224.153])
-        by fllv0040.itg.ti.com (8.15.2/8.15.2) with ESMTP id 08HCp54b041373;
-        Thu, 17 Sep 2020 07:51:05 -0500
-Date:   Thu, 17 Sep 2020 07:51:04 -0500
-From:   Nishanth Menon <nm@ti.com>
-To:     Peter Rosin <peda@axentia.se>
-CC:     Roger Quadros <rogerq@ti.com>, <devicetree@vger.kernel.org>,
-        <nsekhar@ti.com>, <linux-kernel@vger.kernel.org>, <kishon@ti.com>,
-        <t-kristo@ti.com>, <robh+dt@kernel.org>,
-        <linux-arm-kernel@lists.infradead.org>
+        id S1727066AbgIQMyh (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Thu, 17 Sep 2020 08:54:37 -0400
+Received: from mail-eopbgr60103.outbound.protection.outlook.com ([40.107.6.103]:22257
+        "EHLO EUR04-DB3-obe.outbound.protection.outlook.com"
+        rhost-flags-OK-OK-OK-FAIL) by vger.kernel.org with ESMTP
+        id S1727118AbgIQMxw (ORCPT <rfc822;devicetree@vger.kernel.org>);
+        Thu, 17 Sep 2020 08:53:52 -0400
+ARC-Seal: i=1; a=rsa-sha256; s=arcselector9901; d=microsoft.com; cv=none;
+ b=F6mZwmstit6AnovMAu8eMQ3KW5R9/m5Mepgv+TKrxAt7KExpsFmZaKgYV/WJlEJ991iE3pHo4MAEEm3HsT7RKpEUIHSkA99fiGrFJKfHBMGBXmsQ3wZ7TbbQUL/RLwT3sjq0yYolPW2xMP4w+coji55VcxAo2dPSw9qpppE4Jja0LGz9566oxvbUP6KdzGTk4CX2+8iM43nibZgbV0vo5GiK6k1lTjX7mKodDL4a6nftKbgmhqBZyvswWvGpKVzfgqDwatkW68ew4TNqMOmU4CLbFpzFscKnSPaqTX7kyiD1hrBwQtHwj3ZeMbWrx7fBfgUsamYnJPy2hDNPq9b6aA==
+ARC-Message-Signature: i=1; a=rsa-sha256; c=relaxed/relaxed; d=microsoft.com;
+ s=arcselector9901;
+ h=From:Date:Subject:Message-ID:Content-Type:MIME-Version:X-MS-Exchange-SenderADCheck;
+ bh=FJ7xLLSWmCCFjyGM+3ppYpPCn6c0lzRR0uXjAYHNFKc=;
+ b=cPbGXeLUZfBe2KQIK9d75i44UuiuVGuh04y3yp/P5Zdj8rAT7xueuGE7DAbZljUjPSkLV0v9v1nDLJMZZmspebHWfq3QTDNUc7LEypVDFEoTV/H5s7VfXAv28CqqG/CgVL3UTqtNPgoSJnXnPk/AsDshO2WYDvPNhLZAfzNjxbTeY0ukX94V0ZujZ+m5dJ6obKlIkq7UEfv2xZBHLp9SEXwlq/b/oZ85hHm/ITgdo8VoidaBW2RF+Ak8crliRFp2fAlt91fUhnHpKZiT+PuCFFaOWz8/OptdNcKPK6LfN4QiQKjux/HQvh4JI8nngLZhV/gLhQb7ER0/+zaRt8iQpw==
+ARC-Authentication-Results: i=1; mx.microsoft.com 1; spf=pass
+ smtp.mailfrom=axentia.se; dmarc=pass action=none header.from=axentia.se;
+ dkim=pass header.d=axentia.se; arc=none
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=axentia.se;
+ s=selector2;
+ h=From:Date:Subject:Message-ID:Content-Type:MIME-Version:X-MS-Exchange-SenderADCheck;
+ bh=FJ7xLLSWmCCFjyGM+3ppYpPCn6c0lzRR0uXjAYHNFKc=;
+ b=hncvn+iv7qIrFufsDeJcrJGS6KxhLzI+4UBRyj84TfFEKzEakqC6gBPb9vnT8MLNaBpdvBeg0LeoyApDWr/8+mrgSkxYl99BPQWfIJXyLmecubfIo2VaF9kIBLsRtSJswkh7BHRnvzoVVg9riIS6inKHjpsS6jEbkJqhE/PosbE=
+Authentication-Results: ti.com; dkim=none (message not signed)
+ header.d=none;ti.com; dmarc=none action=none header.from=axentia.se;
+Received: from DB8PR02MB5482.eurprd02.prod.outlook.com (2603:10a6:10:eb::29)
+ by DBAPR02MB6485.eurprd02.prod.outlook.com (2603:10a6:10:19d::16) with
+ Microsoft SMTP Server (version=TLS1_2,
+ cipher=TLS_ECDHE_RSA_WITH_AES_256_GCM_SHA384) id 15.20.3391.13; Thu, 17 Sep
+ 2020 12:53:46 +0000
+Received: from DB8PR02MB5482.eurprd02.prod.outlook.com
+ ([fe80::3890:7b1:97a6:1e47]) by DB8PR02MB5482.eurprd02.prod.outlook.com
+ ([fe80::3890:7b1:97a6:1e47%7]) with mapi id 15.20.3391.011; Thu, 17 Sep 2020
+ 12:53:45 +0000
 Subject: Re: [PATCH v3 1/6] dt-bindings: mux-j7200-wiz: Add lane function
  defines
-Message-ID: <20200917125104.xznpg2fhv5iilbtl@akan>
+To:     Nishanth Menon <nm@ti.com>
+Cc:     Roger Quadros <rogerq@ti.com>, t-kristo@ti.com, robh+dt@kernel.org,
+        linux-kernel@vger.kernel.org, devicetree@vger.kernel.org,
+        linux-arm-kernel@lists.infradead.org, nsekhar@ti.com, kishon@ti.com
 References: <20200915112038.30219-1-rogerq@ti.com>
  <20200915112038.30219-2-rogerq@ti.com>
  <e28e98a0-f3fc-29bd-d7a6-cc45f3a69ede@axentia.se>
  <20200916154536.m552ft2jzfsaeokr@akan>
- <08c84d02-abe1-8399-50fb-9268c7130f8a@ti.com>
- <ad1d6964-f553-3a22-65fd-58bc5a166f80@axentia.se>
+ <d8b8c070-577f-f778-e595-58517ffce6e3@axentia.se>
+ <20200917122703.ojuzn6b3tvqbnssc@akan>
+From:   Peter Rosin <peda@axentia.se>
+Organization: Axentia Technologies AB
+Message-ID: <02d57a88-ba7a-5944-8053-8f4ad03242d2@axentia.se>
+Date:   Thu, 17 Sep 2020 14:53:38 +0200
+User-Agent: Mozilla/5.0 (Windows NT 10.0; WOW64; rv:68.0) Gecko/20100101
+ Thunderbird/68.12.0
+In-Reply-To: <20200917122703.ojuzn6b3tvqbnssc@akan>
+Content-Type: text/plain; charset=utf-8
+Content-Language: en-US
+Content-Transfer-Encoding: 7bit
+X-ClientProxiedBy: HE1PR0701CA0046.eurprd07.prod.outlook.com
+ (2603:10a6:3:9e::14) To DB8PR02MB5482.eurprd02.prod.outlook.com
+ (2603:10a6:10:eb::29)
 MIME-Version: 1.0
-Content-Type: text/plain; charset="us-ascii"
-Content-Disposition: inline
-In-Reply-To: <ad1d6964-f553-3a22-65fd-58bc5a166f80@axentia.se>
-User-Agent: NeoMutt/20171215
-X-EXCLAIMER-MD-CONFIG: e1e8a2fd-e40a-4ac6-ac9b-f7e9cc9ee180
+X-MS-Exchange-MessageSentRepresentingType: 1
+Received: from [192.168.13.3] (85.226.217.78) by HE1PR0701CA0046.eurprd07.prod.outlook.com (2603:10a6:3:9e::14) with Microsoft SMTP Server (version=TLS1_2, cipher=TLS_ECDHE_RSA_WITH_AES_256_GCM_SHA384) id 15.20.3412.4 via Frontend Transport; Thu, 17 Sep 2020 12:53:43 +0000
+X-Originating-IP: [85.226.217.78]
+X-MS-PublicTrafficType: Email
+X-MS-Office365-Filtering-Correlation-Id: e07bf107-963f-4db6-219e-08d85b08b674
+X-MS-TrafficTypeDiagnostic: DBAPR02MB6485:
+X-Microsoft-Antispam-PRVS: <DBAPR02MB6485D957F71DA6D44BB215F7BC3E0@DBAPR02MB6485.eurprd02.prod.outlook.com>
+X-MS-Oob-TLC-OOBClassifiers: OLM:9508;
+X-MS-Exchange-SenderADCheck: 1
+X-Microsoft-Antispam: BCL:0;
+X-Microsoft-Antispam-Message-Info: vUpRBS/j6nYjO+qq0FIftnVUH7mOVWjN/iZWJyP0eiaelcYJFhuSXcSqMDIaqLTdWJKju7ftTPQycKQoaUBP7i1Rqh3lIX9qnogRU0Mg2OEf9laHbOZt6VgvYpNV0MNT79+z1u99yLLuyQqEp9Ne1aLnjvsmuTUMzXIINIppQbrae/+OET7kPmhUlXFFCjtGNA4RyycJqr9727zCg1DAYs/TgMiE1k9qSgnFBc3Y/n4vfC07BfuoGgAyHsRPXReUuVpmjctXIxTh5U7vaHktEUrJQMPyHjFb0vyv+zaUQvqWTvT0qvMyxikIk7yDr1K/6D5YDbMf4/a4gGZ7dCWBOs45adeGIVd/hH3Y2wiFNv1LNIiVAdqWEr/37dIazC19
+X-Forefront-Antispam-Report: CIP:255.255.255.255;CTRY:;LANG:en;SCL:1;SRV:;IPV:NLI;SFV:NSPM;H:DB8PR02MB5482.eurprd02.prod.outlook.com;PTR:;CAT:NONE;SFS:(366004)(346002)(39830400003)(376002)(136003)(396003)(31696002)(6916009)(5660300002)(2906002)(36916002)(8676002)(52116002)(4326008)(53546011)(86362001)(186003)(26005)(83380400001)(16526019)(31686004)(36756003)(66556008)(66946007)(6666004)(478600001)(16576012)(956004)(2616005)(316002)(6486002)(8936002)(66476007)(43740500002);DIR:OUT;SFP:1102;
+X-MS-Exchange-AntiSpam-MessageData: tktUZYyJEQ2hAht5jKiRJeis7bXXBAGoH/nIL6vBlpVtmK/YqxhMeQmUHjZ0g1nJyRxvl5OkMMTwBlPn4O090Mi58onXZGspHWtgHdboW+VhSP5koD9bwo+QvOwNDZ2/INcaUiLcaQhobOBSTkfjbMiRrIRXS5iuV4MWspV7/j17KgMnIXuw93sZOhIBEOTe6dxCJ2q9sLsTjxI4qO0MPMvbYg1hqTvfLiYedX2ieg069n3R/NtyqByHoKzQmbUbEx++ZKV2WNIO8tU4YJrFYY1LkyFUSLxDYEs056kJv/vovDArSAJS+iyHRntDEU3TLHdaQoK0EG3UjcfIPXXn96BhbUIeDqfGhjGPESApquAWuZrFhV/xdEkMGIDxuOSuD9FAzWdYbkSBCBVLUoRSMj87Ui8xd393qE0MYqs7Brnnr3ahb3gYU9JRVDw7TsXe9Djd944wwm2i2GObTFhRH4PZvsdueupRjssrHDPnGk2k7fr39c2DUt9n52Ba2A0eiP0DtwVfnoFG0zbshD7j4KoN1HafsGFiXc7g3pybKalc5IjF5SWcYaXbelNlOQ+PAZFW/ZhDZUgZ1u1oU0wPB5FrKDgpu6dA6zm68tb0Cbtkk0Kp+0dJXuJP2pCuqRgLst1CMyWe6UYuqP+lQ7dnJg==
+X-OriginatorOrg: axentia.se
+X-MS-Exchange-CrossTenant-Network-Message-Id: e07bf107-963f-4db6-219e-08d85b08b674
+X-MS-Exchange-CrossTenant-AuthSource: DB8PR02MB5482.eurprd02.prod.outlook.com
+X-MS-Exchange-CrossTenant-AuthAs: Internal
+X-MS-Exchange-CrossTenant-OriginalArrivalTime: 17 Sep 2020 12:53:45.4373
+ (UTC)
+X-MS-Exchange-CrossTenant-FromEntityHeader: Hosted
+X-MS-Exchange-CrossTenant-Id: 4ee68585-03e1-4785-942a-df9c1871a234
+X-MS-Exchange-CrossTenant-MailboxType: HOSTED
+X-MS-Exchange-CrossTenant-UserPrincipalName: uDLfuoDsM47XqL3Fkwi5msPPIgdOQZGk7re9Me/JBB5JqMz4ISn4Yj07cnTOctaE
+X-MS-Exchange-Transport-CrossTenantHeadersStamped: DBAPR02MB6485
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-On 14:37-20200917, Peter Rosin wrote:
-[...]
 
-> >>> Should not the defines start with J7200_WIZ? SERDES0 seems like a too
-> >>> generic prefix, at least to me.
-> >>
-> >> Thanks, good point. I am not sure if WIZ should even be used.. It is
-> >> a TI internal prefix for various serdes solutions, but I agree that
-> >> SERDES0 is too generic a terminology. That said, we should cleanup
-> >> include/dt-bindings/mux/mux-j721e-wiz.h as well, prior to introducing
-> >> j7200 changes.
-> >>
-> > 
-> > I'm planning to put all TI SERDES definitions in one header file "ti-serdes-mux.h"
-> > and add SOC specific prefixes to the macros.
-> > 
-> > This will mean some churn in the existing DT files. (only 2 so far)
-> > 
-> > Are you guys OK if I do the change in one patch to avoid a broken build in between.
-> > You guys can then decide whose tree it goes through.
-> > 
-> > The new SoC addition will be separate of course.
+
+On 2020-09-17 14:27, Nishanth Menon wrote:
+> On 11:45-20200917, Peter Rosin wrote:
+> [...]
+>>
+>>>> Should not the defines start with J7200_WIZ? SERDES0 seems like a too
+>>>> generic prefix, at least to me.
+>>>
+>>> Thanks, good point. I am not sure if WIZ should even be used.. It is
+>>> a TI internal prefix for various serdes solutions, but I agree that
+>>> SERDES0 is too generic a terminology. That said, we should cleanup
+>>> include/dt-bindings/mux/mux-j721e-wiz.h as well, prior to introducing
+>>> j7200 changes.
+>>
+>> Right. As maintainer for the directory in question, I should have
+>> been on Cc for that series too, but it appears I wasn't. Hence, I
 > 
-> We should get these changes done before 5.9 is released.
-
-OK.
-
-> Not breaking the build for each intermediate step is always a priority.
-> Also, renaming mux-j721e-wiz.h to ti-serdes-mux.h and renaming the macros
-> could be seen as orthogonal, and it is certainly possible to do that
-> as two patches without breaking the build in between. It would just need
-> changes on both sides of the interface in both patches. But I wouldn't
-> worry about separating this into two patches, just do a rename patch and
-> be done with it. Then follow up with additions for j7200.
+> yes, you should have been. The following commit introduced it.
 > 
-> However, now that we are renaming things anyway, do we really need "mux"
-> in the name of the file itself?
-> I personally find .../dt-dbindings/mux/ti-serdes.h descriptive enough.
+> commit b766e3b0d5f6 ("arm64: dts: ti: k3-j721e-main: Add system controller
+> node and SERDES lane mux")
+> 
+>> didn't notice that file until now when I went looking for it. Why
+>> wasn't I on Cc?
+> 
+> Got through the SoC tree - an oversight on our part[1] and should'nt have,
+> Apologies on the bad call.
+> 
+> I would like to propose the following:
+> a) The header should be renamed to be something more human friendly.
+> b) The header should be renamed to be something TI specific and NOT per
+> TI SoC.
+> c) The macros need renaming to be less generic as it stands right now.
+> 
+> 
+> If you ack the changes, I am guessing that the changes will impact dts
+> a lot and would rather take the cleanups through SoC tree to maintain
+> bisectability? OR I can pick on an immutable tag from you with just the
+> header file change and pick on the dts - but I doubt that would be
+> bisectable. Just worried that I have picked a bunch of cleanups already
+> on the dts for 5.10, and would like to avoid a merge conflict.
 
-yep, OK with me.
+[Our mails crossed.]
 
+I do not have a tree and dt-patches should normally not go *through* me.
+But I'd still like to see what's happening.
 
--- 
-Regards,
-Nishanth Menon
-Key (0xDDB5849D1736249D) / Fingerprint: F8A2 8693 54EB 8232 17A3  1A34 DDB5 849D 1736 249D
+I did not realize this was going to cause a *lot* of churn in the dt
+files. How bad can it be when the file is new in this cycle? And is it
+worth it? But it seems you all see problems with the current naming and
+in that case it must surely be better to fix it early?
+
+And if it's a lot, maybe it needs to be more than one patch? I get the
+feeling this will need to be taken care of by someone other than me,
+because I'm just the maintainer of a very small subsystem and I don't
+normally have to deal with "big" issues involving several trees. I would
+be a bottleneck.
+
+Cheers,
+Peter
