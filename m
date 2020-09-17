@@ -2,160 +2,101 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from vger.kernel.org (vger.kernel.org [23.128.96.18])
-	by mail.lfdr.de (Postfix) with ESMTP id 290F126E01F
-	for <lists+devicetree@lfdr.de>; Thu, 17 Sep 2020 17:58:44 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTP id B5D3B26DFE7
+	for <lists+devicetree@lfdr.de>; Thu, 17 Sep 2020 17:42:33 +0200 (CEST)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S1728214AbgIQP6g (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Thu, 17 Sep 2020 11:58:36 -0400
-Received: from lelv0142.ext.ti.com ([198.47.23.249]:36138 "EHLO
-        lelv0142.ext.ti.com" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S1728075AbgIQPpa (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Thu, 17 Sep 2020 11:45:30 -0400
-Received: from lelv0266.itg.ti.com ([10.180.67.225])
-        by lelv0142.ext.ti.com (8.15.2/8.15.2) with ESMTP id 08HCEqlZ040922;
-        Thu, 17 Sep 2020 07:14:52 -0500
+        id S1728105AbgIQPmb (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Thu, 17 Sep 2020 11:42:31 -0400
+Received: from fllv0015.ext.ti.com ([198.47.19.141]:37186 "EHLO
+        fllv0015.ext.ti.com" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
+        with ESMTP id S1728098AbgIQPQS (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Thu, 17 Sep 2020 11:16:18 -0400
+Received: from fllv0035.itg.ti.com ([10.64.41.0])
+        by fllv0015.ext.ti.com (8.15.2/8.15.2) with ESMTP id 08HFFXRu101141;
+        Thu, 17 Sep 2020 10:15:33 -0500
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=ti.com;
-        s=ti-com-17Q1; t=1600344892;
-        bh=cGd0Zeuy4+fUXyw2xolJhUi55PGX5GYAQgVtJo/AyC4=;
-        h=Date:From:To:CC:Subject:References:In-Reply-To;
-        b=E6UgGNdeQX6dbpJ4gAkJ65gVnBRDaQ9Skax2apqdMdlFOvb9W8bL+Z0iofqK932j4
-         adlW/Pt/M8ZfCEU/ZUrW+PB/KDMCrGICol8hrwIlEpbeS3nqjkiOxMysyNcn3L9P8t
-         p8m6LibnfbctlgKpdbhq1uONMaoL/5PHMV5Bxz5w=
-Received: from DFLE112.ent.ti.com (dfle112.ent.ti.com [10.64.6.33])
-        by lelv0266.itg.ti.com (8.15.2/8.15.2) with ESMTPS id 08HCEqq6085548
-        (version=TLSv1.2 cipher=AES256-GCM-SHA384 bits=256 verify=FAIL);
-        Thu, 17 Sep 2020 07:14:52 -0500
-Received: from DFLE108.ent.ti.com (10.64.6.29) by DFLE112.ent.ti.com
- (10.64.6.33) with Microsoft SMTP Server (version=TLS1_2,
+        s=ti-com-17Q1; t=1600355733;
+        bh=zJUvUPlDG3fjTS6W6hFpNIPLT9BdATy27+PbP+vGrPs=;
+        h=Subject:To:CC:References:From:Date:In-Reply-To;
+        b=BeCOCdSyBx881M4VX9eLbF/b3wotePX5ouLGLCmPnRF1IEbV4bxpZrJdGfR/FHZ7V
+         wjyNgtTgNVK1fFFL2wjQSVXP87c0bIbKLNy5ogG3Gl7zGB+bUH4vonwcM91+kWfH2M
+         y8V/6HIYDzMWzK74m9gaHS5hE9C9Rh+7WETtmg50=
+Received: from DLEE113.ent.ti.com (dlee113.ent.ti.com [157.170.170.24])
+        by fllv0035.itg.ti.com (8.15.2/8.15.2) with ESMTP id 08HFFXSS120076;
+        Thu, 17 Sep 2020 10:15:33 -0500
+Received: from DLEE107.ent.ti.com (157.170.170.37) by DLEE113.ent.ti.com
+ (157.170.170.24) with Microsoft SMTP Server (version=TLS1_2,
  cipher=TLS_ECDHE_RSA_WITH_AES_128_CBC_SHA256_P256) id 15.1.1979.3; Thu, 17
- Sep 2020 07:14:52 -0500
-Received: from lelv0326.itg.ti.com (10.180.67.84) by DFLE108.ent.ti.com
- (10.64.6.29) with Microsoft SMTP Server (version=TLS1_2,
+ Sep 2020 10:15:33 -0500
+Received: from lelv0326.itg.ti.com (10.180.67.84) by DLEE107.ent.ti.com
+ (157.170.170.37) with Microsoft SMTP Server (version=TLS1_2,
  cipher=TLS_ECDHE_RSA_WITH_AES_128_CBC_SHA256_P256) id 15.1.1979.3 via
- Frontend Transport; Thu, 17 Sep 2020 07:14:52 -0500
-Received: from localhost (ileax41-snat.itg.ti.com [10.172.224.153])
-        by lelv0326.itg.ti.com (8.15.2/8.15.2) with ESMTP id 08HCEpmP058482;
-        Thu, 17 Sep 2020 07:14:51 -0500
-Date:   Thu, 17 Sep 2020 07:14:51 -0500
-From:   Nishanth Menon <nm@ti.com>
-To:     Roger Quadros <rogerq@ti.com>
-CC:     Peter Rosin <peda@axentia.se>, <t-kristo@ti.com>,
-        <robh+dt@kernel.org>, <linux-kernel@vger.kernel.org>,
-        <devicetree@vger.kernel.org>,
-        <linux-arm-kernel@lists.infradead.org>, <nsekhar@ti.com>,
-        <kishon@ti.com>
-Subject: Re: [PATCH v3 1/6] dt-bindings: mux-j7200-wiz: Add lane function
- defines
-Message-ID: <20200917121451.mp4pdld5w6qkv6d3@akan>
-References: <20200915112038.30219-1-rogerq@ti.com>
- <20200915112038.30219-2-rogerq@ti.com>
- <e28e98a0-f3fc-29bd-d7a6-cc45f3a69ede@axentia.se>
- <20200916154536.m552ft2jzfsaeokr@akan>
- <08c84d02-abe1-8399-50fb-9268c7130f8a@ti.com>
+ Frontend Transport; Thu, 17 Sep 2020 10:15:33 -0500
+Received: from [10.250.32.129] (ileax41-snat.itg.ti.com [10.172.224.153])
+        by lelv0326.itg.ti.com (8.15.2/8.15.2) with ESMTP id 08HFFWuJ008246;
+        Thu, 17 Sep 2020 10:15:32 -0500
+Subject: Re: [PATCH 5/6] dt-bindings: tlv320adcx140: Add slot programming
+ property
+To:     Mark Brown <broonie@kernel.org>
+CC:     <lgirdwood@gmail.com>, <tiwai@suse.com>, <robh+dt@kernel.org>,
+        <devicetree@vger.kernel.org>, <alsa-devel@alsa-project.org>,
+        <linux-kernel@vger.kernel.org>, <camel.guo@axis.com>
+References: <20200915190606.1744-1-dmurphy@ti.com>
+ <20200915190606.1744-5-dmurphy@ti.com> <20200917130236.GA2954@sirena.org.uk>
+From:   Dan Murphy <dmurphy@ti.com>
+Message-ID: <f4a83c01-58e2-1b7a-677e-44d5bde7b175@ti.com>
+Date:   Thu, 17 Sep 2020 10:15:27 -0500
+User-Agent: Mozilla/5.0 (X11; Linux x86_64; rv:68.0) Gecko/20100101
+ Thunderbird/68.10.0
 MIME-Version: 1.0
-Content-Type: text/plain; charset="us-ascii"
-Content-Disposition: inline
-In-Reply-To: <08c84d02-abe1-8399-50fb-9268c7130f8a@ti.com>
-User-Agent: NeoMutt/20171215
+In-Reply-To: <20200917130236.GA2954@sirena.org.uk>
+Content-Type: text/plain; charset="windows-1252"; format=flowed
+Content-Transfer-Encoding: 7bit
+Content-Language: en-US
 X-EXCLAIMER-MD-CONFIG: e1e8a2fd-e40a-4ac6-ac9b-f7e9cc9ee180
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-On 15:00-20200917, Roger Quadros wrote:
-> Hi Peter & Nishanth,
-> 
-> On 16/09/2020 18:45, Nishanth Menon wrote:
-> > On 06:52-20200916, Peter Rosin wrote:
-> > > Hi,
-> > > 
-> > > Sorry for the delay.
-> > > 
-> > > On 2020-09-15 13:20, Roger Quadros wrote:
-> > > > Each SERDES lane mux can select upto 4 different IPs.
-> > > > There are 4 lanes in each J7200 SERDES. Define all
-> > > > the possible functions in this file.
-> > > > 
-> > > > Cc: Peter Rosin <peda@axentia.se>
-> > > > Signed-off-by: Roger Quadros <rogerq@ti.com>
-> > > > ---
-> > > >   include/dt-bindings/mux/mux-j7200-wiz.h | 29 +++++++++++++++++++++++++
-> > > >   1 file changed, 29 insertions(+)
-> > > >   create mode 100644 include/dt-bindings/mux/mux-j7200-wiz.h
-> > > > 
-> > > > diff --git a/include/dt-bindings/mux/mux-j7200-wiz.h b/include/dt-bindings/mux/mux-j7200-wiz.h
-> > > > new file mode 100644
-> > > > index 000000000000..b091b1185a36
-> > > > --- /dev/null
-> > > > +++ b/include/dt-bindings/mux/mux-j7200-wiz.h
-> > > > @@ -0,0 +1,29 @@
-> > > > +/* SPDX-License-Identifier: GPL-2.0 */
-> > > > +/*
-> > > > + * This header provides constants for J7200 WIZ.
-> > > > + */
-> > > > +
-> > > > +#ifndef _DT_BINDINGS_J7200_WIZ
-> > > > +#define _DT_BINDINGS_J7200_WIZ
-> > > > +
-> > > > +#define SERDES0_LANE0_QSGMII_LANE3	0x0
-> > > > +#define SERDES0_LANE0_PCIE1_LANE0	0x1
-> > > > +#define SERDES0_LANE0_IP3_UNUSED	0x2
-> > > > +#define SERDES0_LANE0_IP4_UNUSED	0x3
-> > > > +
-> > > > +#define SERDES0_LANE1_QSGMII_LANE4	0x0
-> > > > +#define SERDES0_LANE1_PCIE1_LANE1	0x1
-> > > > +#define SERDES0_LANE1_IP3_UNUSED	0x2
-> > > > +#define SERDES0_LANE1_IP4_UNUSED	0x3
-> > > > +
-> > > > +#define SERDES0_LANE2_QSGMII_LANE1	0x0
-> > > > +#define SERDES0_LANE2_PCIE1_LANE2	0x1
-> > > > +#define SERDES0_LANE2_IP3_UNUSED	0x2
-> > > > +#define SERDES0_LANE2_IP4_UNUSED	0x3
-> > > > +
-> > > > +#define SERDES0_LANE3_QSGMII_LANE2	0x0
-> > > > +#define SERDES0_LANE3_PCIE1_LANE3	0x1
-> > > > +#define SERDES0_LANE3_USB		0x2
-> > > > +#define SERDES0_LANE3_IP4_UNUSED	0x3
-> > > > +
-> > > > +#endif /* _DT_BINDINGS_J7200_WIZ */
-> > > 
-> > > Should not the defines start with J7200_WIZ? SERDES0 seems like a too
-> > > generic prefix, at least to me.
-> > 
-> > Thanks, good point. I am not sure if WIZ should even be used.. It is
-> > a TI internal prefix for various serdes solutions, but I agree that
-> > SERDES0 is too generic a terminology. That said, we should cleanup
-> > include/dt-bindings/mux/mux-j721e-wiz.h as well, prior to introducing
-> > j7200 changes.
-> > 
-> 
-> I'm planning to put all TI SERDES definitions in one header file "ti-serdes-mux.h"
-> and add SOC specific prefixes to the macros.
-> 
-> This will mean some churn in the existing DT files. (only 2 so far)
+Mark
 
-Please check bindings and examples if any reference as well. Those
-changes will need to be considered as well.
+On 9/17/20 8:02 AM, Mark Brown wrote:
+> On Tue, Sep 15, 2020 at 02:06:05PM -0500, Dan Murphy wrote:
+>
+>> +  ti,slot-mapping:
+>> +    type: boolean
+>> +    description: |
+>> +      Each channel can be assigned a specific TDM slot for either a left or
+>> +      right channel. The left channel values are from 0-31d and the right
+>> +      channel values are from 32-63d. If the right channel value is 32 then the
+>> +      right channel slot will be slot 31.
+>> +      The array index is sequential audio channel to be set.
+>> +      [ch1, ch2, ch3, ch4, ch5, ch6, ch7, ch8]
+>> +      If the channel is not to be used then the channel should be set to it's
+>> +      default value.
+> This is something I'd expect to be done by the machine driver rather
+> than in the CODEC specific DT bindings, and apart from anything else
+> everything involved in the DAI will need to agree on the mapping so this
+> doesn't look like something that should be done in a device specific
+> binding.
 
-> 
-> Are you guys OK if I do the change in one patch to avoid a broken build in between.
-> You guys can then decide whose tree it goes through.
-> 
-> The new SoC addition will be separate of course.
+Here is the use case from our customers
 
-If Peter acks and is OK with the changes, then based on Peter's opinion,
-I'd rather take the changes via SoC tree for 5.10+ for maintaining
-bisectability.
+Customers need the ability to not transmit on a TDM slot, since another 
+device could be using the slot.
+For example, the customer has an amp and dig microphone sharing one TDM 
+bus. The amp uses slot 0 while dig microphone use slots 1-3.
+In another example, customers use 2 dig microphones. One device 
+transmits on slots 0-3, the second device transmits on slots 4-7.
+In a third example, customers use 4 dig microphones. Device 1 uses Slots 
+0-3, Device 2 uses Slots 4-7, Device 3 uses Slots 8-11, and Device 4 
+uses Slots 12-15.
 
-I prefer we name it ti-serdes-mux or something that Peter is OK with as
-well. reasons:
+The dai-tdm-slot-num would be a good candidate to add to the sound card 
+to define the slot number but it's definition is "Number of slots in 
+use." So it is not really setting the needed slot.
+I am not finding any good way to assign specific slots to specific channels.
 
-i) "wiz" is yet another TLA deal even if documented in public TI TRM in some
-   remote chapter, other non-TI folks are going to go scratching their
-   heads..
-ii) There is no way this can scale with one header per SoC!
+I can add DAI slot numbering parameter for specific codecs.
 
--- 
-Regards,
-Nishanth Menon
-Key (0xDDB5849D1736249D) / Fingerprint: F8A2 8693 54EB 8232 17A3  1A34 DDB5 849D 1736 249D
+Dan
