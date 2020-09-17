@@ -2,154 +2,131 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from vger.kernel.org (vger.kernel.org [23.128.96.18])
-	by mail.lfdr.de (Postfix) with ESMTP id 9A07C26D027
-	for <lists+devicetree@lfdr.de>; Thu, 17 Sep 2020 02:48:10 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTP id A338526D02A
+	for <lists+devicetree@lfdr.de>; Thu, 17 Sep 2020 02:48:19 +0200 (CEST)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S1726065AbgIQAsB (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        id S1726241AbgIQAsB (ORCPT <rfc822;lists+devicetree@lfdr.de>);
         Wed, 16 Sep 2020 20:48:01 -0400
-Received: from lindbergh.monkeyblade.net ([23.128.96.19]:44536 "EHLO
+Received: from lindbergh.monkeyblade.net ([23.128.96.19]:44538 "EHLO
         lindbergh.monkeyblade.net" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S1726004AbgIQAsA (ORCPT
+        with ESMTP id S1726043AbgIQAsA (ORCPT
         <rfc822;devicetree@vger.kernel.org>); Wed, 16 Sep 2020 20:48:00 -0400
-X-Greylist: delayed 512 seconds by postgrey-1.27 at vger.kernel.org; Wed, 16 Sep 2020 20:48:00 EDT
-Received: from perceval.ideasonboard.com (perceval.ideasonboard.com [IPv6:2001:4b98:dc2:55:216:3eff:fef7:d647])
-        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 8D953C061756
-        for <devicetree@vger.kernel.org>; Wed, 16 Sep 2020 17:39:25 -0700 (PDT)
-Received: from pendragon.ideasonboard.com (62-78-145-57.bb.dnainternet.fi [62.78.145.57])
-        by perceval.ideasonboard.com (Postfix) with ESMTPSA id 3055D276;
-        Thu, 17 Sep 2020 02:39:18 +0200 (CEST)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=ideasonboard.com;
-        s=mail; t=1600303158;
-        bh=Tltwwb5/vif8GfymqHivlccgOKoi7hBKt4at6lyMSPQ=;
-        h=Date:From:To:Cc:Subject:References:In-Reply-To:From;
-        b=U1O8AGVgrl/WeOdlQuIVcZ/XGaVqdT6g5c2hVhdeYj+coXCQ9J2tlFxA+6qkHpcsd
-         dT4sGEVP3BVb/9tLlpI9ozL0lF+WdMxgbYC/SIJBTtjnJC7fB01qU5AKUue3TC80Gu
-         8pPHdR/CNkV/amGC188IoKAY4/QgyVRzp8hRTyLs=
-Date:   Thu, 17 Sep 2020 03:38:48 +0300
-From:   Laurent Pinchart <laurent.pinchart@ideasonboard.com>
-To:     Tomi Valkeinen <tomi.valkeinen@ti.com>
-Cc:     dri-devel@lists.freedesktop.org, devicetree@vger.kernel.org,
-        David Airlie <airlied@linux.ie>,
-        Daniel Vetter <daniel@ffwll.ch>,
-        Rob Herring <robh+dt@kernel.org>,
-        Andrzej Hajda <a.hajda@samsung.com>,
-        Neil Armstrong <narmstrong@baylibre.com>,
-        Swapnil Kashinath Jakhade <sjakhade@cadence.com>
-Subject: Re: [PATCH] dt-bindings: dp-connector: add binding for DisplayPort
- connector
-Message-ID: <20200917003848.GN3853@pendragon.ideasonboard.com>
-References: <20200916144440.233714-1-tomi.valkeinen@ti.com>
+Received: from mail-ot1-x344.google.com (mail-ot1-x344.google.com [IPv6:2607:f8b0:4864:20::344])
+        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 26BA3C06178B
+        for <devicetree@vger.kernel.org>; Wed, 16 Sep 2020 17:39:42 -0700 (PDT)
+Received: by mail-ot1-x344.google.com with SMTP id h17so342184otr.1
+        for <devicetree@vger.kernel.org>; Wed, 16 Sep 2020 17:39:42 -0700 (PDT)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+        d=linaro.org; s=google;
+        h=date:from:to:cc:subject:message-id:references:mime-version
+         :content-disposition:in-reply-to;
+        bh=qnQdbtqxCDTIqKqOna77dN+ZLQyEkOzOK58YwCfa3H0=;
+        b=XBAadIW9bVAGcIfHj9raEdIjBWaRKYLD5ma49V74gb5amE/rxRwD89ELv8aJK5GhCF
+         g1V25+4dqH1vN3CXRDMj0Cp2+YXyDxcXTFX3mum5Mws9Tdj6d9KpshqpiQfJoW87E12v
+         iy2hdSvA4fm0U+tImJWAFOwoE04Qt1KzTZXbkGLU4IuttxOh0fp9voDy4ewqGNVrYqIO
+         6Zx26upjeuOiz1MaDt9bS1g/oR3eRrp5DYc24ayXEJI904gH/TBAsy5YsaZLDqKOMkDA
+         ACHMb3MYiUK8xyn5/jcZbEZ5UYahXAWyu5UWRg33iZUp1JgnSiTl1gp90GDwEhUpPnXa
+         gzsw==
+X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+        d=1e100.net; s=20161025;
+        h=x-gm-message-state:date:from:to:cc:subject:message-id:references
+         :mime-version:content-disposition:in-reply-to;
+        bh=qnQdbtqxCDTIqKqOna77dN+ZLQyEkOzOK58YwCfa3H0=;
+        b=PCd77jDpmXc3ol5xbkg0qqBX/dhqNYDXznUf8AhH5gTcjHYO2jPrU36ruG7jsnLIX9
+         g+x9MOVJw+TMw+iJvSTLst2QMYlBJE0IMGomLWHSC097lww4Wtm9kA+3PaYWGma2x/9p
+         5jhBIFt5/V4f/GcB9R0l+JqhBdXA0dqS0LSmIYtLnjeQVVJcZTjoAcMbWLcy1Xj9cjeE
+         JPg79g95pgCILt1QyxyDEWFLErQ3zS/JEp2cUh4MOqJ71u3TTgxeu+qRVETSOtQ9SEC5
+         qzElFAA3GhvjgqOHRfdJCMlfFjWKuqMpPNEXda+estf65QZKaat6CM18Jt8q45QsFMMG
+         X3rQ==
+X-Gm-Message-State: AOAM532xkapMjuz2wqhlolneiQsybqHRygDNxQeBNVRuTnN70C+/l9E/
+        a1x78pM9yDuJs2Mes2uDPU0AZA==
+X-Google-Smtp-Source: ABdhPJzYgxc/qCjtDcdsd3TwLr0HUaOJpA8OKmX8Hc2wBd9RfexwmyUmEf463C3CLCZQpPADunp2YQ==
+X-Received: by 2002:a9d:335:: with SMTP id 50mr3923676otv.90.1600303181463;
+        Wed, 16 Sep 2020 17:39:41 -0700 (PDT)
+Received: from yoga ([2605:6000:e5cb:c100:7cad:6eff:fec8:37e4])
+        by smtp.gmail.com with ESMTPSA id u2sm10507631oig.48.2020.09.16.17.39.39
+        (version=TLS1_3 cipher=TLS_AES_256_GCM_SHA384 bits=256/256);
+        Wed, 16 Sep 2020 17:39:40 -0700 (PDT)
+Date:   Wed, 16 Sep 2020 19:39:37 -0500
+From:   Bjorn Andersson <bjorn.andersson@linaro.org>
+To:     Manivannan Sadhasivam <manivannan.sadhasivam@linaro.org>
+Cc:     agross@kernel.org, kishon@ti.com, vkoul@kernel.org,
+        robh@kernel.org, svarbanov@mm-sol.com, bhelgaas@google.com,
+        lorenzo.pieralisi@arm.com, linux-arm-msm@vger.kernel.org,
+        linux-pci@vger.kernel.org, linux-kernel@vger.kernel.org,
+        mgautam@codeaurora.org, devicetree@vger.kernel.org,
+        Jonathan Marek <jonathan@marek.ca>
+Subject: Re: [PATCH 5/5] pci: controller: dwc: qcom: Harcode PCIe config SID
+Message-ID: <20200917003937.GI1893@yoga>
+References: <20200916132000.1850-1-manivannan.sadhasivam@linaro.org>
+ <20200916132000.1850-6-manivannan.sadhasivam@linaro.org>
 MIME-Version: 1.0
-Content-Type: text/plain; charset=utf-8
+Content-Type: text/plain; charset=us-ascii
 Content-Disposition: inline
-In-Reply-To: <20200916144440.233714-1-tomi.valkeinen@ti.com>
+In-Reply-To: <20200916132000.1850-6-manivannan.sadhasivam@linaro.org>
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-Hi Tomi,
+On Wed 16 Sep 08:20 CDT 2020, Manivannan Sadhasivam wrote:
 
-Thank you for the patch.
-
-On Wed, Sep 16, 2020 at 05:44:40PM +0300, Tomi Valkeinen wrote:
-> Add binding for DisplayPort connector. A few notes:
+> Hardcode the PCIe config SID table value. This is needed to avoid random
+> MHI failure observed during reboot on SM8250.
 > 
-> * Similar to hdmi-connector, it has hpd-gpios as an optional property,
->   as the HPD could also be handled by, e.g., the DP bridge.
-> 
-> * dp-pwr-supply, which provides 3.3V on DP_PWR pin, is optional, as it
->   is not strictly required: standard DP cables do not even have the pin
->   connected.
-> 
-> * No property for the connector type. Full size and mini connectors are
->   identical except for the connector size and form, so I believe there
->   is no need to include the type in the bindings.
-
-It could be useful to present information about the connector to
-userspace. For instance, a GUI could show a picture of the connector
-that the user should plug a cable in. This can also be added later, but
-I think it would be useful to have it from the start.
-
-> * No eDP. There's really no "eDP connector", as it's always a custom
->   made connection between the DP and the DP panel. So possibly there is
->   no need for edp-connector binding, but even if there is, I don't want
->   to guess what it could look like, and could it be part of the
->   dp-connector binding.
-
-Agreed.
-
-> * No DP++. I'm not familiar with DP++, but I think it's all handled by
->   the DP bridge, and does not need any new properties to the dp-connector.
-
-I'm not familiar with this either.
-
-> Signed-off-by: Tomi Valkeinen <tomi.valkeinen@ti.com>
-
-Possibly with a type property added,
-
-Reviewed-by: Laurent Pinchart <laurent.pinchart@ideasonboard.com>
-
+> Signed-off-by: Jonathan Marek <jonathan@marek.ca>
+> [mani: stripped out unnecessary settings and ported for upstream]
+> Signed-off-by: Manivannan Sadhasivam <manivannan.sadhasivam@linaro.org>
 > ---
->  .../display/connector/dp-connector.yaml       | 48 +++++++++++++++++++
->  1 file changed, 48 insertions(+)
->  create mode 100644 Documentation/devicetree/bindings/display/connector/dp-connector.yaml
+>  drivers/pci/controller/dwc/pcie-qcom.c | 4 ++++
+>  1 file changed, 4 insertions(+)
 > 
-> diff --git a/Documentation/devicetree/bindings/display/connector/dp-connector.yaml b/Documentation/devicetree/bindings/display/connector/dp-connector.yaml
-> new file mode 100644
-> index 000000000000..983be1fe43f0
-> --- /dev/null
-> +++ b/Documentation/devicetree/bindings/display/connector/dp-connector.yaml
-> @@ -0,0 +1,48 @@
-> +# SPDX-License-Identifier: (GPL-2.0-only OR BSD-2-Clause)
-> +%YAML 1.2
-> +---
-> +$id: http://devicetree.org/schemas/display/connector/dp-connector.yaml#
-> +$schema: http://devicetree.org/meta-schemas/core.yaml#
-> +
-> +title: DisplayPort Connector
-> +
-> +maintainers:
-> +  - Tomi Valkeinen <tomi.valkeinen@ti.com>
-> +
-> +properties:
-> +  compatible:
-> +    const: dp-connector
-> +
-> +  label: true
-> +
-> +  hpd-gpios:
-> +    description: A GPIO line connected to HPD
-> +    maxItems: 1
-> +
-> +  dp-pwr-supply:
-> +    description: Power supply for the DP_PWR pin
-> +    maxItems: 1
-> +
-> +  port:
-> +    description: Connection to controller providing DP signals
-> +
-> +required:
-> +  - compatible
-> +  - port
-> +
-> +additionalProperties: false
-> +
-> +examples:
-> +  - |
-> +    connector {
-> +        compatible = "dp-connector";
-> +        label = "dp0";
-> +
-> +        port {
-> +            dp_connector_in: endpoint {
-> +                remote-endpoint = <&dp_out>;
-> +            };
-> +        };
-> +    };
-> +
-> +...
+> diff --git a/drivers/pci/controller/dwc/pcie-qcom.c b/drivers/pci/controller/dwc/pcie-qcom.c
+> index ca8ad354e09d..50748016ce96 100644
+> --- a/drivers/pci/controller/dwc/pcie-qcom.c
+> +++ b/drivers/pci/controller/dwc/pcie-qcom.c
+> @@ -57,6 +57,7 @@
+>  #define PCIE20_PARF_SID_OFFSET			0x234
+>  #define PCIE20_PARF_BDF_TRANSLATE_CFG		0x24C
+>  #define PCIE20_PARF_DEVICE_TYPE			0x1000
+> +#define PCIE20_PARF_BDF_TO_SID_TABLE_N		0x2000
+>  
+>  #define PCIE20_ELBI_SYS_CTRL			0x04
+>  #define PCIE20_ELBI_SYS_CTRL_LT_ENABLE		BIT(0)
+> @@ -1290,6 +1291,9 @@ static int qcom_pcie_host_init(struct pcie_port *pp)
+>  	if (ret)
+>  		goto err;
+>  
+> +	writel(0x0, pcie->parf + PCIE20_PARF_BDF_TO_SID_TABLE_N);
+> +	writel(0x01000100, pcie->parf + PCIE20_PARF_BDF_TO_SID_TABLE_N + 0x054);
 
--- 
+This needs to be properly implemented.
+
+The mechanism at hand is responsible for mapping BDFs by the means of a
+BDF->SID hash table.  Per the downstream kernel the hash is 256 entries
+of 32 bits registers.  The slot is selected by taking the crc8() of the
+BDF (in big endian) and in that slot encode the BDF in the upper 16
+bits, followed by the SID (relative to the first SID of the controller)
+in the next 8 and finally the index of the next entry in cases of
+collisions.
+
+Also like the downstream kernel you can extract this information from
+the iommu-map property. But note that the last cell in the iommu-map is
+"length", not mask as in the typical iommus property - so you would need
+to install "length" entries in the hash table, for each iommu-map.
+
+
+
+Finally, this was first introduced in SM8150, so it can not be done
+unconditionally in qcom_pcie_host_init(). The previous hardware used a
+different mechanism for configuring this information.
+
 Regards,
+Bjorn
 
-Laurent Pinchart
+> +
+>  	return 0;
+>  err:
+>  	qcom_ep_reset_assert(pcie);
+> -- 
+> 2.17.1
+> 
