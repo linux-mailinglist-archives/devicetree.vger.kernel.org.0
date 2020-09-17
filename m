@@ -2,222 +2,123 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from vger.kernel.org (vger.kernel.org [23.128.96.18])
-	by mail.lfdr.de (Postfix) with ESMTP id EC78426E2ED
-	for <lists+devicetree@lfdr.de>; Thu, 17 Sep 2020 19:52:33 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTP id 13BEC26E2CB
+	for <lists+devicetree@lfdr.de>; Thu, 17 Sep 2020 19:47:21 +0200 (CEST)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S1726342AbgIQRwX (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Thu, 17 Sep 2020 13:52:23 -0400
-Received: from mail29.static.mailgun.info ([104.130.122.29]:39235 "EHLO
-        mail29.static.mailgun.info" rhost-flags-OK-OK-OK-OK)
-        by vger.kernel.org with ESMTP id S1726601AbgIQRkA (ORCPT
-        <rfc822;devicetree@vger.kernel.org>);
-        Thu, 17 Sep 2020 13:40:00 -0400
-DKIM-Signature: a=rsa-sha256; v=1; c=relaxed/relaxed; d=mg.codeaurora.org; q=dns/txt;
- s=smtp; t=1600364392; h=References: In-Reply-To: Message-Id: Date:
- Subject: Cc: To: From: Sender;
- bh=gPyLpnk35md75z42y0gXvz/xNdSmi34X9M0nhz3DYJ8=; b=dpLFuhpeF46LbUDy2MdsgylludYQqCESLC7BZYayOXCEfpCTFDehxrsxV4UKGsDASED8TK9U
- +PjASux/WOU1oAq2vGgdINvo78bcuSUsS0Nb9mUGawuBHv5rOdaL6y7SDAGH8aTzz7SAHdBW
- Bp6DSuzpNoQ0Rtc+0lUIKk+NJxQ=
-X-Mailgun-Sending-Ip: 104.130.122.29
-X-Mailgun-Sid: WyI1YmJiNiIsICJkZXZpY2V0cmVlQHZnZXIua2VybmVsLm9yZyIsICJiZTllNGEiXQ==
-Received: from smtp.codeaurora.org
- (ec2-35-166-182-171.us-west-2.compute.amazonaws.com [35.166.182.171]) by
- smtp-out-n05.prod.us-west-2.postgun.com with SMTP id
- 5f6366a591755cb92b39744c (version=TLS1.2,
- cipher=TLS_ECDHE_RSA_WITH_AES_128_GCM_SHA256); Thu, 17 Sep 2020 13:37:41
- GMT
-Received: by smtp.codeaurora.org (Postfix, from userid 1001)
-        id 4FE8EC433CA; Thu, 17 Sep 2020 13:37:41 +0000 (UTC)
-X-Spam-Checker-Version: SpamAssassin 3.4.0 (2014-02-07) on
-        aws-us-west-2-caf-mail-1.web.codeaurora.org
-X-Spam-Level: 
-X-Spam-Status: No, score=-2.9 required=2.0 tests=ALL_TRUSTED,BAYES_00,SPF_FAIL,
-        URIBL_BLOCKED autolearn=no autolearn_force=no version=3.4.0
-Received: from hyd-lnxbld210.qualcomm.com (unknown [202.46.22.19])
-        (using TLSv1.2 with cipher ECDHE-RSA-AES128-SHA256 (128/128 bits))
-        (No client certificate requested)
-        (Authenticated sender: srivasam)
-        by smtp.codeaurora.org (Postfix) with ESMTPSA id 214B4C433FE;
-        Thu, 17 Sep 2020 13:37:35 +0000 (UTC)
-DMARC-Filter: OpenDMARC Filter v1.3.2 smtp.codeaurora.org 214B4C433FE
-Authentication-Results: aws-us-west-2-caf-mail-1.web.codeaurora.org; dmarc=none (p=none dis=none) header.from=codeaurora.org
-Authentication-Results: aws-us-west-2-caf-mail-1.web.codeaurora.org; spf=fail smtp.mailfrom=srivasam@codeaurora.org
-From:   Srinivasa Rao Mandadapu <srivasam@codeaurora.org>
-To:     agross@kernel.org, bjorn.andersson@linaro.org, lgirdwood@gmail.com,
-        broonie@kernel.org, robh+dt@kernel.org, plai@codeaurora.org,
-        bgoswami@codeaurora.org, perex@perex.cz, tiwai@suse.com,
-        srinivas.kandagatla@linaro.org, rohitkr@codeaurora.org,
-        linux-arm-msm@vger.kernel.org, alsa-devel@alsa-project.org,
-        devicetree@vger.kernel.org, linux-kernel@vger.kernel.org
-Cc:     V Sujith Kumar Reddy <vsujithk@codeaurora.org>,
-        Srinivasa Rao <srivasam@codeaurora.org>
-Subject: [PATCH v5 2/5] ASoC: dt-bindings: Add dt binding for lpass hdmi
-Date:   Thu, 17 Sep 2020 19:07:05 +0530
-Message-Id: <1600349828-10727-3-git-send-email-srivasam@codeaurora.org>
-X-Mailer: git-send-email 2.7.4
-In-Reply-To: <1600349828-10727-1-git-send-email-srivasam@codeaurora.org>
-References: <1600349828-10727-1-git-send-email-srivasam@codeaurora.org>
+        id S1726444AbgIQRqj (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Thu, 17 Sep 2020 13:46:39 -0400
+Received: from fllv0015.ext.ti.com ([198.47.19.141]:35538 "EHLO
+        fllv0015.ext.ti.com" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
+        with ESMTP id S1726603AbgIQRqZ (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Thu, 17 Sep 2020 13:46:25 -0400
+Received: from lelv0265.itg.ti.com ([10.180.67.224])
+        by fllv0015.ext.ti.com (8.15.2/8.15.2) with ESMTP id 08HEv5XR076594;
+        Thu, 17 Sep 2020 09:57:05 -0500
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=ti.com;
+        s=ti-com-17Q1; t=1600354625;
+        bh=lwel9jR3MUubR3w9CBXWSKGdcMrbCrgrM9DNikesG4E=;
+        h=Subject:To:CC:References:From:Date:In-Reply-To;
+        b=o98P/fX9YDR/sDkCSJI6xZrD78ImaM4fabxiaHzxiOmXWiwRcAEMjzAn7/3QhbIAc
+         twobkheLi2Os6/Wbc+KjSFdHeKjqgM7wmrhFLZO/HppsYM24TUcaWlbyzxhPrdTvhB
+         W7Z97mmQNn/ZUKtWVIII1N0nWlN+w2SMClL4QBbs=
+Received: from DFLE112.ent.ti.com (dfle112.ent.ti.com [10.64.6.33])
+        by lelv0265.itg.ti.com (8.15.2/8.15.2) with ESMTPS id 08HEv5tu103936
+        (version=TLSv1.2 cipher=AES256-GCM-SHA384 bits=256 verify=FAIL);
+        Thu, 17 Sep 2020 09:57:05 -0500
+Received: from DFLE103.ent.ti.com (10.64.6.24) by DFLE112.ent.ti.com
+ (10.64.6.33) with Microsoft SMTP Server (version=TLS1_2,
+ cipher=TLS_ECDHE_RSA_WITH_AES_128_CBC_SHA256_P256) id 15.1.1979.3; Thu, 17
+ Sep 2020 09:57:04 -0500
+Received: from fllv0039.itg.ti.com (10.64.41.19) by DFLE103.ent.ti.com
+ (10.64.6.24) with Microsoft SMTP Server (version=TLS1_2,
+ cipher=TLS_ECDHE_RSA_WITH_AES_128_CBC_SHA256_P256) id 15.1.1979.3 via
+ Frontend Transport; Thu, 17 Sep 2020 09:57:04 -0500
+Received: from [10.250.33.187] (ileax41-snat.itg.ti.com [10.172.224.153])
+        by fllv0039.itg.ti.com (8.15.2/8.15.2) with ESMTP id 08HEv4mO095616;
+        Thu, 17 Sep 2020 09:57:04 -0500
+Subject: Re: [PATCH] dt-bindings: soc: ti: ti,pruss: fix schema ID
+To:     Krzysztof Kozlowski <krzk@kernel.org>,
+        Grzegorz Jaszczyk <grzegorz.jaszczyk@linaro.org>,
+        Santosh Shilimkar <ssantosh@kernel.org>
+CC:     Rob Herring <robh+dt@kernel.org>,
+        Santosh Shilimkar <santosh.shilimkar@oracle.com>,
+        Roger Quadros <rogerq@ti.com>, <devicetree@vger.kernel.org>,
+        "linux-kernel@vger.kernel.org" <linux-kernel@vger.kernel.org>
+References: <20200917070543.19064-1-krzk@kernel.org>
+ <CAMxfBF5WWQX3ZH0YcRZ_N8q4njTdG-RA4eM+zyQwmK7tYvw6DQ@mail.gmail.com>
+ <CAJKOXPfd9iWHDNo9v=COroD_wuYL0xmOkRt-63WS_7G3As=kXQ@mail.gmail.com>
+From:   Suman Anna <s-anna@ti.com>
+Message-ID: <4a49d5c2-f4eb-edda-6ec2-157bfb3db3d9@ti.com>
+Date:   Thu, 17 Sep 2020 09:57:04 -0500
+User-Agent: Mozilla/5.0 (X11; Linux x86_64; rv:68.0) Gecko/20100101
+ Thunderbird/68.10.0
+MIME-Version: 1.0
+In-Reply-To: <CAJKOXPfd9iWHDNo9v=COroD_wuYL0xmOkRt-63WS_7G3As=kXQ@mail.gmail.com>
+Content-Type: text/plain; charset="utf-8"
+Content-Language: en-US
+Content-Transfer-Encoding: 7bit
+X-EXCLAIMER-MD-CONFIG: e1e8a2fd-e40a-4ac6-ac9b-f7e9cc9ee180
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-From: V Sujith Kumar Reddy <vsujithk@codeaurora.org>
+On 9/17/20 3:35 AM, Krzysztof Kozlowski wrote:
+> On Thu, 17 Sep 2020 at 10:32, Grzegorz Jaszczyk
+> <grzegorz.jaszczyk@linaro.org> wrote:
+>>
+>> On Thu, 17 Sep 2020 at 09:05, Krzysztof Kozlowski <krzk@kernel.org> wrote:
+>>>
+>>> Add missing '#' to fix schema errors:
+>>>
+>>>   $id: 'http://devicetree.org/schemas/soc/ti/ti,pruss.yaml' does not match 'http://devicetree.org/schemas/.*\\.yaml#'
+>>>   $schema: 'http://devicetree.org/meta-schemas/core.yaml' is not one of ['http://devicetree.org/meta-schemas/core.yaml#', 'http://devicetree.org/meta-schemas/base.yaml#']
+>>>   Documentation/devicetree/bindings/soc/ti/ti,pruss.yaml: ignoring, error in schema: $id
+>>>
 
-Adds bindings for lpass hdmi interface
-which can support audio path over dp.
+Thanks for the fix, Krzysztof.
 
-Signed-off-by: Srinivasa Rao <srivasam@codeaurora.org>
-Signed-off-by: V Sujith Kumar Reddy <vsujithk@codeaurora.org>
----
- .../devicetree/bindings/sound/qcom,lpass-cpu.yaml  | 74 +++++++++++++++-------
- 1 file changed, 52 insertions(+), 22 deletions(-)
+Fixes: bd691ce0ba9d ("dt-bindings: soc: ti: Add TI PRUSS bindings")
+>>> Signed-off-by: Krzysztof Kozlowski <krzk@kernel.org>
 
-diff --git a/Documentation/devicetree/bindings/sound/qcom,lpass-cpu.yaml b/Documentation/devicetree/bindings/sound/qcom,lpass-cpu.yaml
-index 09c9bd2..f95ef70 100644
---- a/Documentation/devicetree/bindings/sound/qcom,lpass-cpu.yaml
-+++ b/Documentation/devicetree/bindings/sound/qcom,lpass-cpu.yaml
-@@ -24,9 +24,10 @@ properties:
-       - qcom,sc7180-lpass-cpu
- 
-   reg:
--    maxItems: 1
-+    maxItems: 2
-     description: LPAIF core registers
--
-+  reg-names:
-+     maxItems: 2
-   clocks:
-     minItems: 3
-     maxItems: 6
-@@ -36,15 +37,16 @@ properties:
-     maxItems: 6
- 
-   interrupts:
--    maxItems: 1
-+    maxItems: 2
-     description: LPAIF DMA buffer interrupt
--
-+  interrupt-names:
-+    maxItems: 2
-   qcom,adsp:
-     $ref: /schemas/types.yaml#/definitions/phandle
-     description: Phandle for the audio DSP node
- 
-   iommus:
--    maxItems: 1
-+    maxItems: 2
-     description: Phandle to apps_smmu node with sid mask
- 
-   power-domains:
-@@ -60,10 +62,12 @@ properties:
-     const: 0
- 
- patternProperties:
--  "(^mi2s-[0-9a-f]$|mi2s)":
-+  "^dai-link@[0-9a-f]$":
-     type: object
--    description: Required properties for each DAI
--
-+    description: |
-+      LPASS CPU dai node for each I2S device. Bindings of each node
-+      depends on the specific driver providing the functionality and
-+      properties.
-     properties:
-       reg:
-         maxItems: 1
-@@ -85,9 +89,11 @@ patternProperties:
- required:
-   - compatible
-   - reg
-+  - reg-names
-   - clocks
-   - clock-names
-   - interrupts
-+  - interrupt-names
-   - '#sound-dai-cells'
- 
- additionalProperties: false
-@@ -134,13 +140,32 @@ allOf:
-     then:
-       properties:
-         clock-names:
--          items:
--            - const: pcnoc-sway-clk
--            - const: audio-core
--            - const: mclk0
--            - const: pcnoc-mport-clk
--            - const: mi2s-bit-clk0
--            - const: mi2s-bit-clk1
-+          oneOf:
-+           - items:   #for I2S
-+              - const: pcnoc-sway-clk
-+              - const: audio-core
-+              - const: mclk0
-+              - const: pcnoc-mport-clk
-+              - const: mi2s-bit-clk0
-+              - const: mi2s-bit-clk1
-+           - items:   #for HDMI
-+              - const: pcnoc-sway-clk
-+              - const: audio-core
-+              - const: pcnoc-mport-clk
-+        reg-names:
-+          anyOf:
-+            - items:   #for I2S and HDMI
-+              - const: lpass-hdmiif
-+              - const: lpass-lpaif
-+            - items:   #for I2S
-+              - const: lpass-lpaif
-+        interrupt-names:
-+          anyOf:
-+            - items:   #for I2S and HDMI
-+              - const: lpass-irq-lpaif
-+              - const: lpass-irq-hdmi
-+            - items:   #for I2S
-+              - const: lpass-irq-lpaif
-       required:
-         - iommus
-         - power-domains
-@@ -152,12 +177,15 @@ examples:
-     soc {
-         #address-cells = <2>;
-         #size-cells = <2>;
--        lpass@62f00000 {
-+        lpass@62d80000 {
-             compatible = "qcom,sc7180-lpass-cpu";
- 
--            reg = <0 0x62f00000  0 0x29000>;
--
--            iommus = <&apps_smmu 0x1020 0>;
-+            reg = <0 0x62d87000 0 0x68000>,
-+                  <0 0x62f00000 0 0x29000>;
-+            reg-names = "lpass-hdmiif",
-+                        "lpass-lpaif";
-+            iommus = <&apps_smmu 0x1020 0>,
-+                     <&apps_smmu 0x1032 0>;
-             power-domains = <&lpass_hm 0>;
- 
-             clocks = <&gcc 131>,
-@@ -171,14 +199,16 @@ examples:
-                           "mclk0", "pcnoc-mport-clk",
-                           "mi2s-bit-clk0", "mi2s-bit-clk1";
- 
--            interrupts = <0 160 1>;
--
-+            interrupts = <0 160 1>,
-+                         <0 268 1>;
-+            interrupt-names = "lpass-irq-lpaif",
-+                              "lpass-irq-hdmi";
-             #sound-dai-cells = <1>;
- 
-             #address-cells = <1>;
-             #size-cells = <0>;
-             /* Optional to set different MI2S SD lines */
--            mi2s-primary@0 {
-+            dai-link@0 {
-                 reg = <MI2S_PRIMARY>;
-                 qcom,playback-sd-lines = <1>;
-                 qcom,capture-sd-lines = <0>;
--- 
-Qualcomm India Private Limited, on behalf of Qualcomm Innovation Center, Inc.,
-is a member of Code Aurora Forum, a Linux Foundation Collaborative Project.
+With that,
+Acked-by: Suman Anna <s-anna@ti.com>
+
+Santosh,
+Can you please pick this up before you send your pull request to arm-soc
+maintainers?
+
+You may also want to check your tooling to see what happened.
+
+regards
+Suman
+
+
+>>> ---
+>>>  Documentation/devicetree/bindings/soc/ti/ti,pruss.yaml | 4 ++--
+>>>  1 file changed, 2 insertions(+), 2 deletions(-)
+>>>
+>>> diff --git a/Documentation/devicetree/bindings/soc/ti/ti,pruss.yaml b/Documentation/devicetree/bindings/soc/ti/ti,pruss.yaml
+>>> index cf7dc83f724f..037c51b2f972 100644
+>>> --- a/Documentation/devicetree/bindings/soc/ti/ti,pruss.yaml
+>>> +++ b/Documentation/devicetree/bindings/soc/ti/ti,pruss.yaml
+>>> @@ -1,8 +1,8 @@
+>>>  # SPDX-License-Identifier: (GPL-2.0-only OR BSD-2-Clause)
+>>>  %YAML 1.2
+>>>  ---
+>>> -$id: http://devicetree.org/schemas/soc/ti/ti,pruss.yaml
+>>> -$schema: http://devicetree.org/meta-schemas/core.yaml
+>>> +$id: http://devicetree.org/schemas/soc/ti/ti,pruss.yaml#
+>>> +$schema: http://devicetree.org/meta-schemas/core.yaml#
+>>
+>> I've double checked and "#" was present in the original patch sent and
+>> ack for upstream: https://patchwork.kernel.org/patch/11729649/
+>> It seems like something got wrong on linux-next but this is the only
+>> diff between original patch and one found in linux-next. Thank you for
+>> taking care of it.
+> 
+> Indeed that's weird. It must get lost when applying...
+> 
+> Best regards,
+> Krzysztof
+> 
 
