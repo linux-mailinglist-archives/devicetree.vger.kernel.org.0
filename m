@@ -2,185 +2,241 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from vger.kernel.org (vger.kernel.org [23.128.96.18])
-	by mail.lfdr.de (Postfix) with ESMTP id 9E20026DE91
-	for <lists+devicetree@lfdr.de>; Thu, 17 Sep 2020 16:44:12 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTP id A25DE26DE4E
+	for <lists+devicetree@lfdr.de>; Thu, 17 Sep 2020 16:33:59 +0200 (CEST)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S1727314AbgIQOWF (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Thu, 17 Sep 2020 10:22:05 -0400
-Received: from lelv0142.ext.ti.com ([198.47.23.249]:55598 "EHLO
-        lelv0142.ext.ti.com" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S1727073AbgIQNxG (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Thu, 17 Sep 2020 09:53:06 -0400
-Received: from fllv0035.itg.ti.com ([10.64.41.0])
-        by lelv0142.ext.ti.com (8.15.2/8.15.2) with ESMTP id 08HDqAA7067946;
-        Thu, 17 Sep 2020 08:52:10 -0500
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=ti.com;
-        s=ti-com-17Q1; t=1600350730;
-        bh=ELS8QfAru0Zhz0CCZfm+n+0o9Zu+0e8fUZ1p29oMWgY=;
-        h=Subject:To:CC:References:From:Date:In-Reply-To;
-        b=RA4tm6tRD29bvEA+okPYlU7OETrD+3Wd0ZGLnm9TnLQW+cArWyxysqr8iHfibr/le
-         dNOphhuuJHCJwOcLPLOtExBct2Jos4fUh48YG1I/gDylLHZbg0Kne4TaInFT2rRDzb
-         uPKaa0vv9dVdeL3nBrEIUONG27Q0aSs995viBz0Y=
-Received: from DLEE109.ent.ti.com (dlee109.ent.ti.com [157.170.170.41])
-        by fllv0035.itg.ti.com (8.15.2/8.15.2) with ESMTP id 08HDqAj5122911;
-        Thu, 17 Sep 2020 08:52:10 -0500
-Received: from DLEE102.ent.ti.com (157.170.170.32) by DLEE109.ent.ti.com
- (157.170.170.41) with Microsoft SMTP Server (version=TLS1_2,
- cipher=TLS_ECDHE_RSA_WITH_AES_128_CBC_SHA256_P256) id 15.1.1979.3; Thu, 17
- Sep 2020 08:52:09 -0500
-Received: from fllv0039.itg.ti.com (10.64.41.19) by DLEE102.ent.ti.com
- (157.170.170.32) with Microsoft SMTP Server (version=TLS1_2,
- cipher=TLS_ECDHE_RSA_WITH_AES_128_CBC_SHA256_P256) id 15.1.1979.3 via
- Frontend Transport; Thu, 17 Sep 2020 08:52:09 -0500
-Received: from [192.168.2.6] (ileax41-snat.itg.ti.com [10.172.224.153])
-        by fllv0039.itg.ti.com (8.15.2/8.15.2) with ESMTP id 08HDq7C9103626;
-        Thu, 17 Sep 2020 08:52:07 -0500
-Subject: Re: [PATCH 1/2] arm64: dts: ti: k3-j721e-main: add DP & DP PHY
-To:     Nishanth Menon <nm@ti.com>, Kishon Vijay Abraham I <kishon@ti.com>
-CC:     Tero Kristo <t-kristo@ti.com>, Rob Herring <robh+dt@kernel.org>,
-        <linux-arm-kernel@lists.infradead.org>,
-        <devicetree@vger.kernel.org>,
-        Swapnil Jakhade <sjakhade@cadence.com>, <yamonkar@cadence.com>,
-        Laurent Pinchart <laurent.pinchart@ideasonboard.com>,
-        Sekhar Nori <nsekhar@ti.com>
-References: <20200917071248.71284-1-tomi.valkeinen@ti.com>
- <20200917071248.71284-2-tomi.valkeinen@ti.com>
- <20200917130723.q3asxcb6uoenady5@akan>
-From:   Tomi Valkeinen <tomi.valkeinen@ti.com>
-Message-ID: <933cccf5-fa5c-dc46-36e5-3200e7b7801d@ti.com>
-Date:   Thu, 17 Sep 2020 16:52:06 +0300
-User-Agent: Mozilla/5.0 (X11; Linux x86_64; rv:68.0) Gecko/20100101
- Thunderbird/68.10.0
+        id S1727610AbgIQOc4 (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Thu, 17 Sep 2020 10:32:56 -0400
+Received: from wnew3-smtp.messagingengine.com ([64.147.123.17]:42273 "EHLO
+        wnew3-smtp.messagingengine.com" rhost-flags-OK-OK-OK-OK)
+        by vger.kernel.org with ESMTP id S1727452AbgIQObs (ORCPT
+        <rfc822;devicetree@vger.kernel.org>);
+        Thu, 17 Sep 2020 10:31:48 -0400
+Received: from compute4.internal (compute4.nyi.internal [10.202.2.44])
+        by mailnew.west.internal (Postfix) with ESMTP id AB3E92DE;
+        Thu, 17 Sep 2020 10:06:17 -0400 (EDT)
+Received: from mailfrontend1 ([10.202.2.162])
+  by compute4.internal (MEProxy); Thu, 17 Sep 2020 10:06:18 -0400
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=cerno.tech; h=
+        date:from:to:cc:subject:message-id:references:mime-version
+        :content-type:in-reply-to; s=fm3; bh=dBcaRg6P4rVD8VwgeNGJk/SEdhP
+        6leuSbEdEW1YCNws=; b=SCyVaRuKlcoPbbT6EFa1cbOegF9VSphyTErRlGUsEdQ
+        z8NMD5ILBT3tdbwFO/mwkCcxrYrh7vBPjMS9WCjOrFPpGCXUR7hNQpAx09D45ODP
+        HkB1W8H90oBG+Fb1nR9cdxCro3waB4/MwfjWPfDkU/OWjt0PRKy+80rfmiHXSoy3
+        HlD9Koj00iANSVYxm4mgXcYcJ1xtyipErHgEAFMNnGuOIc2/7v3Z5nqmsi67bCMz
+        cVDcCQQNaGg0yB61PbaldzTKAGG/HC8wN2wQZLCvTdtHWC66C1wi7j4kluBgrKY2
+        IUPe24hWtI0sowcj1zIHo9mhLf7Uv85UZyBPwpT0+vw==
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=
+        messagingengine.com; h=cc:content-type:date:from:in-reply-to
+        :message-id:mime-version:references:subject:to:x-me-proxy
+        :x-me-proxy:x-me-sender:x-me-sender:x-sasl-enc; s=fm3; bh=dBcaRg
+        6P4rVD8VwgeNGJk/SEdhP6leuSbEdEW1YCNws=; b=LZvQpw5tm1mnjd4zGiXs+s
+        I4ExZZTNj1QuOuE4KzMlvpZxokOSEGPyzH/Sd765fW7ViYcOhAGvyRWxoHDz/BSz
+        OGpWG+SgByF0sQuGQYtcXgMDxvWh8hbbA4+1dhcBsXLFm+6aQ1sSO9pAOrvEwZnl
+        v6jNWi/2s6R26viwSecdZU1KQY5dZ5jvd7RQXCyrDM0aqOPQFsiVVQ0jyHu9xs8C
+        voVt03dbSSl/kooe3H7tEadyLWzWnVs8p5lxn1LeiJfRio16ttRvCqdUdsrl9ZD4
+        owfMHa03hvYeDr1GgqODnFWs3DqE2dF1E93DEgPeV7JLpGbgTbR+FRbX3Pn3cJSw
+        ==
+X-ME-Sender: <xms:VW1jX8ptKxN6mzo0ATeDsYCcRuwNIEVcVUxrBNlhU2NUZYQGEu0JLg>
+    <xme:VW1jXypXT9h-3FhBcFyIYzPD83NG9ykJ9gLvJiRXasddkH5fEfseHlh5M1BVGOK0F
+    tVCmrGRAkSJ9ZkiJxk>
+X-ME-Proxy-Cause: gggruggvucftvghtrhhoucdtuddrgedujedrtdeggdejfecutefuodetggdotefrodftvf
+    curfhrohhfihhlvgemucfhrghsthforghilhdpqfgfvfdpuffrtefokffrpgfnqfghnecu
+    uegrihhlohhuthemuceftddtnecusecvtfgvtghiphhivghnthhsucdlqddutddtmdenuc
+    fjughrpeffhffvuffkfhggtggujgesghdtreertddtudenucfhrhhomhepofgrgihimhgv
+    ucftihhprghrugcuoehmrgigihhmvgestggvrhhnohdrthgvtghhqeenucggtffrrghtth
+    gvrhhnpeetgfejtdelgeffffeitdfhtddvfeeijeffteelkefhledvvefggfdujeegieeg
+    hfenucffohhmrghinhepghhithhhuhgsrdgtohhmnecukfhppeeltddrkeelrdeikedrje
+    einecuvehluhhsthgvrhfuihiivgeptdenucfrrghrrghmpehmrghilhhfrhhomhepmhgr
+    gihimhgvsegtvghrnhhordhtvggthh
+X-ME-Proxy: <xmx:VW1jXxMxMCCI1CM4cs2qiQGWtjg_Wk7X9X_27aLidvCrlmYCWmes5A>
+    <xmx:VW1jXz5jA_0INEvL0vXKTZm4qV6vDZi3x7v1ZUu7TvsmjN6l4lw4uw>
+    <xmx:VW1jX765BkO4ysL_ZXYO29PtPhuRcUgOIQ-kulQ0VnNN-E8uRlamng>
+    <xmx:WW1jX_h2qHDy4Bt-VmJzKH35s3RSMAELqhKLtJJRZ7vdfLnzgeT4UjihXmI>
+Received: from localhost (lfbn-tou-1-1502-76.w90-89.abo.wanadoo.fr [90.89.68.76])
+        by mail.messagingengine.com (Postfix) with ESMTPA id E8DAA3280060;
+        Thu, 17 Sep 2020 10:06:12 -0400 (EDT)
+Date:   Thu, 17 Sep 2020 16:06:11 +0200
+From:   Maxime Ripard <maxime@cerno.tech>
+To:     =?utf-8?B?Q2zDqW1lbnQgUMOpcm9u?= <peron.clem@gmail.com>
+Cc:     Samuel Holland <samuel@sholland.org>,
+        Mark Brown <broonie@kernel.org>,
+        Liam Girdwood <lgirdwood@gmail.com>,
+        Rob Herring <robh+dt@kernel.org>, Chen-Yu Tsai <wens@csie.org>,
+        Jaroslav Kysela <perex@perex.cz>,
+        Takashi Iwai <tiwai@suse.com>,
+        Linux-ALSA <alsa-devel@alsa-project.org>,
+        devicetree <devicetree@vger.kernel.org>,
+        linux-arm-kernel <linux-arm-kernel@lists.infradead.org>,
+        linux-kernel <linux-kernel@vger.kernel.org>,
+        Jernej Skrabec <jernej.skrabec@siol.net>,
+        Marcus Cooper <codekipper@gmail.com>
+Subject: Re: [PATCH v3 3/7] ASoC: sun4i-i2s: Add support for H6 I2S
+Message-ID: <20200917140611.5qpsz24yfii5kzcn@gilmour.lan>
+References: <CAJiuCceF340FiLvyeXNZtvqftQMAmk=MtFDLT_9696ix+eH1Yw@mail.gmail.com>
+ <20200729143927.47f5tbuaob4ph3lp@gilmour.lan>
+ <20200729151548.GB5612@sirena.org.uk>
+ <CAJiuCcdf=TNLPTUPzHP9NzPHqdxG06TRDkQfONY+ScK0DV_v5w@mail.gmail.com>
+ <20200903205851.gdnpthserywsxrbs@gilmour.lan>
+ <80b5a4e3-c8bc-9521-4ff1-12bb6424516f@sholland.org>
+ <20200910143314.qku7po6htiiq5lzf@gilmour.lan>
+ <57f8bdeb-14dc-583e-ffa8-43d7a9f1bb24@sholland.org>
+ <20200917132128.e6z4gwoluipbzigm@gilmour.lan>
+ <CAJiuCcdWQRVMeTLvxibZ37CF9BMiC_L2bWBDiin2Uz0CWq2FuQ@mail.gmail.com>
 MIME-Version: 1.0
-In-Reply-To: <20200917130723.q3asxcb6uoenady5@akan>
-Content-Type: text/plain; charset="utf-8"
-Content-Language: en-US
-Content-Transfer-Encoding: 7bit
-X-EXCLAIMER-MD-CONFIG: e1e8a2fd-e40a-4ac6-ac9b-f7e9cc9ee180
+Content-Type: multipart/signed; micalg=pgp-sha256;
+        protocol="application/pgp-signature"; boundary="ey2pcwi4beb67jg7"
+Content-Disposition: inline
+In-Reply-To: <CAJiuCcdWQRVMeTLvxibZ37CF9BMiC_L2bWBDiin2Uz0CWq2FuQ@mail.gmail.com>
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-Hi Nishanth,
 
-On 17/09/2020 16:07, Nishanth Menon wrote:
-> On 10:12-20200917, Tomi Valkeinen wrote:
->> Add DT nodes for DisplayPort and DisplayPort PHY. The DP is Cadence MHDP
->> 8546 and the PHY is a Cadence Torrent PHY with TI WIZ wrapper.
->>
->> A slight irregularity in the bindings is the DPTX PHY register block,
->> which is in the MHDP IP, but is needed and mapped by the PHY.
->>
->> Signed-off-by: Tomi Valkeinen <tomi.valkeinen@ti.com>
-> 
-> just quick notes below:
-> 
->> ---
->>  arch/arm64/boot/dts/ti/k3-j721e-main.dtsi | 104 ++++++++++++++++++++++
->>  1 file changed, 104 insertions(+)
->>
->> diff --git a/arch/arm64/boot/dts/ti/k3-j721e-main.dtsi b/arch/arm64/boot/dts/ti/k3-j721e-main.dtsi
->> index 12ceea9b3c9a..82d89dd3faf5 100644
->> --- a/arch/arm64/boot/dts/ti/k3-j721e-main.dtsi
->> +++ b/arch/arm64/boot/dts/ti/k3-j721e-main.dtsi
->> @@ -553,6 +553,82 @@ serdes3: serdes@5030000 {
->>  		};
->>  	};
->>  
->> +	serdes_wiz4: wiz@5050000 {
-> serdes-mux ? - I think we might want to cleanup other similar usage
-> instead of "wiz" or maybe just "mux"?
-> 
->> +		compatible = "ti,j721e-wiz-10g";
->> +		#address-cells = <1>;
->> +		#size-cells = <1>;
->> +		power-domains = <&k3_pds 297 TI_SCI_PD_EXCLUSIVE>;
->> +		clocks = <&k3_clks 297 1>, <&k3_clks 297 9>, <&dummy_cmn_refclk>;
->> +		clock-names = "fck", "core_ref_clk", "ext_ref_clk";
->> +		assigned-clocks = <&k3_clks 297 9>;
->> +		assigned-clock-parents = <&k3_clks 297 10>;
->> +		assigned-clock-rates = <19200000>;
->> +		num-lanes = <4>;
->> +		#reset-cells = <1>;
->> +		ranges = <0x5050000 0x0 0x5050000 0x10000>,
->> +			<0xa030a00 0x0 0xa030a00 0x40>;
->> +
->> +		wiz4_pll0_refclk: pll0-refclk {
-> 	clock@ ?
->> +			clocks = <&k3_clks 297 9>, <&dummy_cmn_refclk>;
->> +			clock-output-names = "wiz4_pll0_refclk";
->> +			#clock-cells = <0>;
->> +			assigned-clocks = <&wiz4_pll0_refclk>;
->> +			assigned-clock-parents = <&k3_clks 297 9>;
->> +		};
->> +
->> +		wiz4_pll1_refclk: pll1-refclk {
-> 	same?
->> +			clocks = <&k3_clks 297 9>, <&dummy_cmn_refclk>;
->> +			clock-output-names = "wiz4_pll1_refclk";
->> +			#clock-cells = <0>;
->> +			assigned-clocks = <&wiz4_pll1_refclk>;
->> +			assigned-clock-parents = <&k3_clks 297 9>;
->> +		};
->> +
->> +		wiz4_refclk_dig: refclk-dig {
-> 	same?
->> +			clocks = <&k3_clks 297 9>, <&dummy_cmn_refclk>;
->> +			clock-output-names = "wiz4_refclk_dig";
->> +			#clock-cells = <0>;
->> +			assigned-clocks = <&wiz4_refclk_dig>;
->> +			assigned-clock-parents = <&k3_clks 297 9>;
->> +		};
->> +
->> +		wiz4_cmn_refclk_dig_div: cmn-refclk-dig-div {
-> 	same?
->> +			clocks = <&wiz4_refclk_dig>;
->> +			#clock-cells = <0>;
->> +		};
->> +
->> +		wiz4_cmn_refclk1_dig_div: cmn-refclk1-dig-div {
-> 	same?
->> +			clocks = <&wiz4_pll1_refclk>;
->> +			#clock-cells = <0>;
->> +		};
->> +
->> +		serdes4: serdes@5050000 {
->> +			/*
->> +			 * Note: we also map DPTX PHY registers as the Torrent
->> +			 * needs to manage those.
->> +			 */
->> +			compatible = "ti,j721e-serdes-10g";
->> +			reg = <0x5050000 0x10000>,
->> +			      <0xa030a00 0x40>; /* DPTX PHY */
->> +			reg-names = "torrent_phy", "dptx_phy";
->> +
->> +			resets = <&serdes_wiz4 0>;
->> +			reset-names = "torrent_reset";
->> +			clocks = <&wiz4_pll0_refclk>;
->> +			clock-names = "refclk";
->> +			#address-cells = <1>;
->> +			#size-cells = <0>;
->> +			torrent_phy_dp: phy@0 {
->> +				reg = <0>;
->> +				resets = <&serdes_wiz4 1>;
->> +				cdns,phy-type = <PHY_TYPE_DP>;
->> +				cdns,num-lanes = <4>;
->> +				cdns,max-bit-rate = <5400>;
->> +				#phy-cells = <0>;
->> +			};
->> +		};
->> +	};
->> +
-> Do you see any impact of the discussions we are having at [1] ?
-You mean using wiz or serdes naming all around?
+--ey2pcwi4beb67jg7
+Content-Type: text/plain; charset=iso-8859-1
+Content-Disposition: inline
+Content-Transfer-Encoding: quoted-printable
 
-But I think the answer to all the comments is the same: I'm following what's already there for
-serdes 0-3 in k3-j721e-main.dtsi, and what's defined in ti,phy-j721e-wiz.yaml.
+Hi Clement,
 
-Kishon is probably better person to answer about changes to the wiz naming.
+On Thu, Sep 17, 2020 at 03:55:45PM +0200, Cl=E9ment P=E9ron wrote:
+> Hi Maxime and Samuel,
+>=20
+> On Thu, 17 Sep 2020 at 15:21, Maxime Ripard <maxime@cerno.tech> wrote:
+> >
+> > Hi,
+> >
+> > On Sat, Sep 12, 2020 at 03:29:55PM -0500, Samuel Holland wrote:
+> > > On 9/10/20 9:33 AM, Maxime Ripard wrote:
+> > > > On Thu, Sep 03, 2020 at 09:54:39PM -0500, Samuel Holland wrote:
+> > > >> On 9/3/20 3:58 PM, Maxime Ripard wrote:
+> > > >>> On Thu, Sep 03, 2020 at 10:02:31PM +0200, Cl=E9ment P=E9ron wrote:
+> > > >>>> Hi Maxime,
+> > > >>>>
+> > > >>>> On Wed, 29 Jul 2020 at 17:16, Mark Brown <broonie@kernel.org> wr=
+ote:
+> > > >>>>>
+> > > >>>>> On Wed, Jul 29, 2020 at 04:39:27PM +0200, Maxime Ripard wrote:
+> > > >>>>>
+> > > >>>>>> It really looks like the polarity of LRCK is fine though. The =
+first word
+> > > >>>>>> is sent with LRCK low, and then high, so we have channel 0 and=
+ then
+> > > >>>>>> channel 1 which seems to be the proper ordering?
+> > > >>
+> > > >> Which image file is this in reference to?
+> > > >>
+> > > >>>>> Yes, that's normal.
+> > > >>>>
+> > > >>>> Thank you very much for this test.
+> > > >>>>
+> > > >>>> So I will revert the following commit:
+> > > >>>>
+> > > >>>> ASoC: sun4i-i2s: Fix the LRCK polarity
+> > > >>>>
+> > > >>>> https://github.com/clementperon/linux/commit/dd657eae8164f7e4baf=
+e8b875031a7c6c50646a9
+> > > >>>
+> > > >>> Like I said, the current code is working as expected with regard =
+to the
+> > > >>> LRCK polarity. The issue is that the samples are delayed and star=
+t to be
+> > > >>> transmitted on the wrong phase of the signal.
+> > > >>
+> > > >> Since an I2S LRCK frame is radially symmetric, "wrong phase" and "=
+inverted
+> > > >> polarity" look the same. The only way to definitively distinguish =
+them is by
+> > > >> looking at the sample data.
+> > > >>
+> > > >> In "i2s-h6.png", the samples are all zeroes, so you're assuming th=
+at the first
+> > > >> sample transmitted (that is, when the bit clock starts transitioni=
+ng) was a
+> > > >> "left" sample.
+> > > >>
+> > > >> However, in "h6-i2s-start-data.png", there are pairs of samples we=
+ can look at.
+> > > >> I'm still assuming that similar samples are a left/right pair, but=
+ that's
+> > > >> probably a safe assumption. Here we see the first sample in each p=
+air is
+> > > >> transmitted with LRCK *high*, and the second sample in the pair is=
+ transmitted
+> > > >> with LRCK *low*. This is the opposite of your claim above.
+> > > >>
+> > > >> An ideal test would put left/right markers and frame numbers in th=
+e data
+> > > >> channel. The Python script below can generate such a file. Then yo=
+u would know
+> > > >> how much startup delay there is, which channel the "first sample" =
+came from, and
+> > > >> how each channel maps to the LRCK level.
+> > > >>
+> > > >> It would also be helpful to test DSP_A mode, where the LRCK signal=
+ is
+> > > >> asymmetric and an inversion would be obvious.
+> > > >
+> > > > I had no idea that there was a wave module in Python, that's a great
+> > > > suggestion, thanks!
+> > > >
+> > > > You'll find attached the screenshots for both the I2S and DSP_A for=
+mats.
+> > > > I zoomed out a bit to be able to have the first valid samples, but =
+it
+> > > > should be readable.
+> > > >
+> > > > The code I used is there:
+> > > > https://github.com/mripard/linux/tree/sunxi/h6-i2s-test
+> > > >
+> > > > It's basically the v3, plus the DT bits.
+> > > >
+> > > > As you can see, in the i2s case, LRCK starts low and then goes up, =
+with
+> > > > the first channel (0x2*** samples) transmitted first, so everything
+> > > > looks right here.
+> > > >
+> > > > On the DSP_A screenshot, LRCK will be low with small bursts high, a=
+nd
+> > > > once again with the first channel being transmitted first, so it lo=
+oks
+> > > > right to me too.
+> > >
+> > > Indeed, for H6 i2s0 with LRCK inversion in software, everything looks=
+ correct on
+> > > the wire.
+> > >
+> > > It's still concerning to me that the BSP has no evidence of this inve=
+rsion,
+> > > either for i2s0 or i2s1[1]. And the inversion seems not to be require=
+d for HDMI
+> > > audio on mainline either (but there could be an inversion on the HDMI=
+ side or on
+> > > the interconnect).
+> >
+> > One can only guess here, but it's also quite easy to fix it at the card
+> > level (or maybe there's a similar inversion in the codecs, or whatever).
+>=20
+> Thanks for the test and the explanation.
+>=20
+> Quite disturbing that there is no evidence of the LRCK inversion in
+> kernel vendor indeed...
+> Could it be an issue with the mainline code?
 
- Tomi
+I'm not sure what you mean here, this was tested with mainline?
 
--- 
-Texas Instruments Finland Oy, Porkkalankatu 22, 00180 Helsinki.
-Y-tunnus/Business ID: 0615521-4. Kotipaikka/Domicile: Helsinki
+Maxime
+
+--ey2pcwi4beb67jg7
+Content-Type: application/pgp-signature; name="signature.asc"
+
+-----BEGIN PGP SIGNATURE-----
+
+iHUEABYIAB0WIQRcEzekXsqa64kGDp7j7w1vZxhRxQUCX2NtUwAKCRDj7w1vZxhR
+xRxrAP9nfs6U0OX/BDrHjiklGxUIoLAabc0Z/9aAw07KkAHqpAEAgRBRlNIKp8G7
+4IxaaK0DyUTmRogFehPd8RumWrKeqw0=
+=OY86
+-----END PGP SIGNATURE-----
+
+--ey2pcwi4beb67jg7--
