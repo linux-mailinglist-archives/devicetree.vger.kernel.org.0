@@ -2,256 +2,221 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from vger.kernel.org (vger.kernel.org [23.128.96.18])
-	by mail.lfdr.de (Postfix) with ESMTP id 1829226FFB8
-	for <lists+devicetree@lfdr.de>; Fri, 18 Sep 2020 16:21:47 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTP id 98C9E26FFDD
+	for <lists+devicetree@lfdr.de>; Fri, 18 Sep 2020 16:30:18 +0200 (CEST)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S1726129AbgIROVi (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Fri, 18 Sep 2020 10:21:38 -0400
-Received: from mail-eopbgr70078.outbound.protection.outlook.com ([40.107.7.78]:2270
-        "EHLO EUR04-HE1-obe.outbound.protection.outlook.com"
-        rhost-flags-OK-OK-OK-FAIL) by vger.kernel.org with ESMTP
-        id S1726130AbgIROVi (ORCPT <rfc822;devicetree@vger.kernel.org>);
-        Fri, 18 Sep 2020 10:21:38 -0400
-ARC-Seal: i=1; a=rsa-sha256; s=arcselector9901; d=microsoft.com; cv=none;
- b=RxQKs5t6KtU2Xj/Ilc7xpe6t8R8OkSxF9P4oxwAXJWphoQv7Y3nuUsC+NIE4pfPN9u34VHQ/oNyV9wTOTT5KynvW/jQvBQaDF2m0NYfTm2W7gHxo7wgRPwI1num5LUjC2N16s4krnNIQ10KzyVIR38du0gzv4ryvwjND1fNnHAtGJG31nzpqqRGWCafoZLk+OTF8UlPCSh4rSAqlqfr5zsKVm2mVqn1CCvlRrxMMenCb0xooYGqMGqr4ipHySIU8YQb7k5S+uESrL+99FjVB5tonldPBHhIbqVJCvDojQeHHbQlmRkqSQwmhGp4S7jbRrfFQCtJlHh9zBZFuqpMcjw==
-ARC-Message-Signature: i=1; a=rsa-sha256; c=relaxed/relaxed; d=microsoft.com;
- s=arcselector9901;
- h=From:Date:Subject:Message-ID:Content-Type:MIME-Version:X-MS-Exchange-SenderADCheck;
- bh=Kf+9JHemzgUGqRt041FNR8uy/cdOZuWl5UbLEczzYWE=;
- b=REYe5w55XlOo5LxJTz0qjTKKPVUmwLYPSGSCyFqijxTBOQEGhw8frtwpaGG6iGuyibDMny5pWVEUB46U2rl9rUKCD80SBWXzcew2vJoeby1MtNxzvO17Ru10w6madsMIHG2qkadpBz7oIW78Vs0uHRb4iOcw45D/ets5m0Hx9//wvHUHpK7x1S1L36MOSbdUqUR7/SZx/3UuF9/7bLd/zbAyCcvecMO9YiaD/dNkixxaChcHplMWex9D6P3kxdI8FYZjxv33Sw7P/OOUQO4TaAQ5vAUcB84J+2pN8hQpvrL6c75345/K562YLpHHu2PLSzdyi+THmMBSuYrp7mxGfA==
-ARC-Authentication-Results: i=1; mx.microsoft.com 1; spf=pass
- smtp.mailfrom=oss.nxp.com; dmarc=pass action=none header.from=oss.nxp.com;
- dkim=pass header.d=oss.nxp.com; arc=none
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=NXP1.onmicrosoft.com;
- s=selector2-NXP1-onmicrosoft-com;
- h=From:Date:Subject:Message-ID:Content-Type:MIME-Version:X-MS-Exchange-SenderADCheck;
- bh=Kf+9JHemzgUGqRt041FNR8uy/cdOZuWl5UbLEczzYWE=;
- b=fPvum+n4lBiJm1B/yO14fGuHwB4lU+dpqa6EEr2vCpkqKN52pzUQKaZBIZDxP8oEF2df9SFb6m6Au/Zk5YOVgirybMhy5YJoqeCFgpxNd8mIliNkWYLn91H+3gEK424yMxnAKQlSfhwEYuv5YeAz5IJizaMzpMeuf2Ie6tT8ZPg=
-Received: from VI1PR0401MB2272.eurprd04.prod.outlook.com
- (2603:10a6:800:31::12) by VI1PR04MB4093.eurprd04.prod.outlook.com
- (2603:10a6:803:40::33) with Microsoft SMTP Server (version=TLS1_2,
- cipher=TLS_ECDHE_RSA_WITH_AES_256_GCM_SHA384) id 15.20.3391.15; Fri, 18 Sep
- 2020 14:21:32 +0000
-Received: from VI1PR0401MB2272.eurprd04.prod.outlook.com
- ([fe80::e00e:ad13:489b:8000]) by VI1PR0401MB2272.eurprd04.prod.outlook.com
- ([fe80::e00e:ad13:489b:8000%6]) with mapi id 15.20.3391.011; Fri, 18 Sep 2020
- 14:21:32 +0000
-From:   "Viorel Suman (OSS)" <viorel.suman@oss.nxp.com>
-To:     Nicolin Chen <nicoleotsuka@gmail.com>,
-        "Viorel Suman (OSS)" <viorel.suman@oss.nxp.com>
-CC:     Liam Girdwood <lgirdwood@gmail.com>,
-        Mark Brown <broonie@kernel.org>,
-        Rob Herring <robh+dt@kernel.org>,
-        Jaroslav Kysela <perex@perex.cz>,
-        Takashi Iwai <tiwai@suse.com>, Timur Tabi <timur@kernel.org>,
-        Xiubo Li <Xiubo.Lee@gmail.com>,
-        Fabio Estevam <festevam@gmail.com>,
-        Shengjiu Wang <shengjiu.wang@gmail.com>,
-        Philipp Zabel <p.zabel@pengutronix.de>,
-        Matthias Schiffer <matthias.schiffer@ew.tq-group.com>,
-        Cosmin-Gabriel Samoila <cosmin.samoila@nxp.com>,
-        "alsa-devel@alsa-project.org" <alsa-devel@alsa-project.org>,
-        "devicetree@vger.kernel.org" <devicetree@vger.kernel.org>,
-        "linux-kernel@vger.kernel.org" <linux-kernel@vger.kernel.org>,
-        "linuxppc-dev@lists.ozlabs.org" <linuxppc-dev@lists.ozlabs.org>,
-        dl-linux-imx <linux-imx@nxp.com>,
-        Viorel Suman <viorel.suman@gmail.com>
-Subject: RE: [PATCH 1/2] ASoC: fsl_xcvr: Add XCVR ASoC CPU DAI driver
-Thread-Topic: [PATCH 1/2] ASoC: fsl_xcvr: Add XCVR ASoC CPU DAI driver
-Thread-Index: AQHWjApN0GGys4KDOUW4RdRuflK20alsbEuAgAIJndA=
-Date:   Fri, 18 Sep 2020 14:21:31 +0000
-Message-ID: <VI1PR0401MB2272659A8126D01D9A53F7C5923F0@VI1PR0401MB2272.eurprd04.prod.outlook.com>
-References: <1600247876-8013-1-git-send-email-viorel.suman@oss.nxp.com>
- <1600247876-8013-2-git-send-email-viorel.suman@oss.nxp.com>
- <20200917071431.GA17970@Asurada-Nvidia>
-In-Reply-To: <20200917071431.GA17970@Asurada-Nvidia>
-Accept-Language: en-US
-Content-Language: en-US
-X-MS-Has-Attach: 
-X-MS-TNEF-Correlator: 
-authentication-results: gmail.com; dkim=none (message not signed)
- header.d=none;gmail.com; dmarc=none action=none header.from=oss.nxp.com;
-x-ms-exchange-messagesentrepresentingtype: 1
-x-originating-ip: [86.127.156.60]
-x-ms-publictraffictype: Email
-x-ms-office365-filtering-ht: Tenant
-x-ms-office365-filtering-correlation-id: f3ab6e4b-08c5-4814-790e-08d85bde2429
-x-ms-traffictypediagnostic: VI1PR04MB4093:
-x-ms-exchange-sharedmailbox-routingagent-processed: True
-x-ms-exchange-transport-forked: True
-x-microsoft-antispam-prvs: <VI1PR04MB4093C10CB11D4B0816A881EFD33F0@VI1PR04MB4093.eurprd04.prod.outlook.com>
-x-ms-oob-tlc-oobclassifiers: OLM:10000;
-x-ms-exchange-senderadcheck: 1
-x-microsoft-antispam: BCL:0;
-x-microsoft-antispam-message-info: C2u1dlHvvdM3gt095OcR/sO4baFd6ojSXih93e+q6t/Q5JPE2IWJF6L9mc51fPwRhHpVPmBuQ6BjwYJeGp51a/iTLZHCDPJyt74vP5CunyM5KGrqM2GLuSYg2TzZYVASLs48yw36+zujF5xYCdy/ZVArdbogVmrqz+9mWZNOKgCPxX90BJ2xWvzST5d/QgVesQoLtFeUJ1oQ8DMTZmPM5d13J/d3Pm/nCQ99rtaGNSSg/f9M1pG07yX33pSpoKrMSekgpNOIdzIb+DERRY/xDUR1AZVRls/GvSC3jUN9AJO2moh3G0MXJLchXAbP6X6HW+mVC3sphWlQlpzjV+0oLA==
-x-forefront-antispam-report: CIP:255.255.255.255;CTRY:;LANG:en;SCL:1;SRV:;IPV:NLI;SFV:NSPM;H:VI1PR0401MB2272.eurprd04.prod.outlook.com;PTR:;CAT:NONE;SFS:(4636009)(376002)(346002)(39860400002)(396003)(366004)(136003)(33656002)(83380400001)(66946007)(66446008)(64756008)(66556008)(66476007)(316002)(8676002)(6506007)(4326008)(7696005)(71200400001)(26005)(5660300002)(186003)(86362001)(110136005)(54906003)(76116006)(2906002)(55016002)(478600001)(9686003)(7416002)(8936002)(52536014);DIR:OUT;SFP:1101;
-x-ms-exchange-antispam-messagedata: M4mRlQSFvpzaB6KBtk9hhHu66/7JiXb9r9yTt+kwVAyRsDt1sDYLG7FnXldIYwOOwuvk90U1hFHt5qrchUe1y3hzqtIWV+3fjw6/WzCamIhEK0yOcUD1q5HxxwBgaoH9W962kgQ8/W/WZsK7izL7GP+C8Bi3Jj8ZxQlwCMuRzF+9ESrBSBrHRNMXFX3aQgUx4SpMT2rCO7adANt6Rokf1XXRgl2l/1gHtDTSx/tuQ3PGdYGUWviBSNywHhu1EmQ4/NpyyHaMoyBRgFpv2rUQBlu5Mz725SoYPEmq5fBd0X/wHTKdGSQpnGqCelR/Dz/1qvVeHTxJlEmgD98/Nxl1Hp44UA7aarNNfSxTwR1zgFARuaeV9AroYSFBRvjMBLsoT65WUC6Dvly1W9I1/2iWWVrcA5zX7Ke2bjr/889p9iI3sJwl4dg3/nNp0WD6fpWRjnz4WIrtExtGesLX2DawMEc6CfZWdADgwh1z6+GllmxkNKdH7hffpgvwQ+9vo2zbO01G6rrsKy6m8EnS1S0QDFG/c47kiPmr//KpN4z2yH/oLd/o2HBvJHErDHCuPQIR9/FwBwFjRuk2YrQH/RJksGFsSJoDR1JQ0iEkr8oSvTI66FoQr20MAGXFGqsTLJsrk89DMcddBXWF4zH/q6rklA==
-Content-Type: text/plain; charset="us-ascii"
-Content-Transfer-Encoding: quoted-printable
+        id S1726566AbgIROaS (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Fri, 18 Sep 2020 10:30:18 -0400
+Received: from mail.kernel.org ([198.145.29.99]:42616 "EHLO mail.kernel.org"
+        rhost-flags-OK-OK-OK-OK) by vger.kernel.org with ESMTP
+        id S1725955AbgIROaR (ORCPT <rfc822;devicetree@vger.kernel.org>);
+        Fri, 18 Sep 2020 10:30:17 -0400
+Received: from mail-ot1-f49.google.com (mail-ot1-f49.google.com [209.85.210.49])
+        (using TLSv1.2 with cipher ECDHE-RSA-AES128-GCM-SHA256 (128/128 bits))
+        (No client certificate requested)
+        by mail.kernel.org (Postfix) with ESMTPSA id 7449A2396D;
+        Fri, 18 Sep 2020 14:30:15 +0000 (UTC)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=kernel.org;
+        s=default; t=1600439415;
+        bh=BzRCCHrMyRtEbFXS+WPF2C06UQOXtwZQ6+AR7KwiNeY=;
+        h=References:In-Reply-To:From:Date:Subject:To:Cc:From;
+        b=M78Nd8HJqpaE3j9eXFP+0zTJkt2DJ3JP2vG2rY2s+E2Ucjhb1yZtupM/PYNzuUdOV
+         7j9z8YCTnNoaiuky8aGripKJaCqvG3MNujOgGJ57GaOrjyaHNHJWRRh2mRAdM4mzf/
+         0+TNIX/OYTI78EOul2yVt4CZmk8rrF0HMp4lqS3s=
+Received: by mail-ot1-f49.google.com with SMTP id a2so5528319otr.11;
+        Fri, 18 Sep 2020 07:30:15 -0700 (PDT)
+X-Gm-Message-State: AOAM532yQ4ObGx0RRqNObm0vMioebQcY79P4fcFTvc63A6dO6JrV2Nvh
+        VFP4l8AqTF2AMbkI4se2Zg2iLnqxZ12qVBdp0g==
+X-Google-Smtp-Source: ABdhPJwB1Ma/MKweZxwzRdC4MQG3s3W4wg0oVoNXdP8sSb8gUQ626v5DX61EKMyUVGmHFAKJsNKSrOjgarNcaCyLkpU=
+X-Received: by 2002:a05:6830:1008:: with SMTP id a8mr21429982otp.107.1600439413814;
+ Fri, 18 Sep 2020 07:30:13 -0700 (PDT)
 MIME-Version: 1.0
-X-OriginatorOrg: oss.nxp.com
-X-MS-Exchange-CrossTenant-AuthAs: Internal
-X-MS-Exchange-CrossTenant-AuthSource: VI1PR0401MB2272.eurprd04.prod.outlook.com
-X-MS-Exchange-CrossTenant-Network-Message-Id: f3ab6e4b-08c5-4814-790e-08d85bde2429
-X-MS-Exchange-CrossTenant-originalarrivaltime: 18 Sep 2020 14:21:31.9960
- (UTC)
-X-MS-Exchange-CrossTenant-fromentityheader: Hosted
-X-MS-Exchange-CrossTenant-id: 686ea1d3-bc2b-4c6f-a92c-d99c5c301635
-X-MS-Exchange-CrossTenant-mailboxtype: HOSTED
-X-MS-Exchange-CrossTenant-userprincipalname: ss/XjU7ErlcL2LdPktnZQHb3pEvD9FSAGOpOajFs2ZC5ox+8bVEAbVu2Qt8R9HqJAkTw4O80/xxucv+0+yxZOw==
-X-MS-Exchange-Transport-CrossTenantHeadersStamped: VI1PR04MB4093
+References: <20200917165301.23100-1-krzk@kernel.org> <20200917165301.23100-2-krzk@kernel.org>
+In-Reply-To: <20200917165301.23100-2-krzk@kernel.org>
+From:   Rob Herring <robh+dt@kernel.org>
+Date:   Fri, 18 Sep 2020 08:30:02 -0600
+X-Gmail-Original-Message-ID: <CAL_JsqJCLgf6syqV=jNPHPyu02ygwWCDDV+U9VCm0qRpLkirSQ@mail.gmail.com>
+Message-ID: <CAL_JsqJCLgf6syqV=jNPHPyu02ygwWCDDV+U9VCm0qRpLkirSQ@mail.gmail.com>
+Subject: Re: [PATCH v2 01/13] dt-bindings: gpio: add common schema for GPIO controllers
+To:     Krzysztof Kozlowski <krzk@kernel.org>
+Cc:     Linus Walleij <linus.walleij@linaro.org>,
+        Bartosz Golaszewski <bgolaszewski@baylibre.com>,
+        Ray Jui <rjui@broadcom.com>,
+        Scott Branden <sbranden@broadcom.com>,
+        "maintainer:BROADCOM BCM7XXX ARM ARCHITECTURE" 
+        <bcm-kernel-feedback-list@broadcom.com>,
+        Shawn Guo <shawnguo@kernel.org>,
+        Sascha Hauer <s.hauer@pengutronix.de>,
+        Pengutronix Kernel Team <kernel@pengutronix.de>,
+        Fabio Estevam <festevam@gmail.com>,
+        NXP Linux Team <linux-imx@nxp.com>,
+        Manivannan Sadhasivam <manivannan.sadhasivam@linaro.org>,
+        Andy Gross <agross@kernel.org>,
+        Bjorn Andersson <bjorn.andersson@linaro.org>,
+        Palmer Dabbelt <palmer@dabbelt.com>,
+        Paul Walmsley <paul.walmsley@sifive.com>,
+        Hoan Tran <hoan@os.amperecomputing.com>,
+        Serge Semin <fancer.lancer@gmail.com>,
+        Masahiro Yamada <yamada.masahiro@socionext.com>,
+        Jacopo Mondi <jacopo+renesas@jmondi.org>,
+        Kieran Bingham <kieran.bingham+renesas@ideasonboard.com>,
+        Laurent Pinchart <laurent.pinchart+renesas@ideasonboard.com>,
+        =?UTF-8?Q?Niklas_S=C3=B6derlund?= 
+        <niklas.soderlund+renesas@ragnatech.se>,
+        Mauro Carvalho Chehab <mchehab@kernel.org>,
+        Charles Keepax <ckeepax@opensource.cirrus.com>,
+        Richard Fitzgerald <rf@opensource.cirrus.com>,
+        Lee Jones <lee.jones@linaro.org>,
+        Maxime Coquelin <mcoquelin.stm32@gmail.com>,
+        Alexandre Torgue <alexandre.torgue@st.com>,
+        =?UTF-8?Q?Andreas_F=C3=A4rber?= <afaerber@suse.de>,
+        Maxime Ripard <mripard@kernel.org>,
+        Chen-Yu Tsai <wens@csie.org>,
+        Matthias Brugger <matthias.bgg@gmail.com>,
+        Geert Uytterhoeven <geert+renesas@glider.be>,
+        Liam Girdwood <lgirdwood@gmail.com>,
+        Mark Brown <broonie@kernel.org>,
+        Chris Packham <chris.packham@alliedtelesis.co.nz>,
+        Anson Huang <Anson.Huang@nxp.com>,
+        Sungbo Eo <mans0n@gorani.run>, Stefan Agner <stefan@agner.ch>,
+        Srinivas Kandagatla <srinivas.kandagatla@linaro.org>,
+        Magnus Damm <magnus.damm@gmail.com>,
+        Yash Shah <yash.shah@sifive.com>,
+        Paul Kocialkowski <paul.kocialkowski@bootlin.com>,
+        - <patches@opensource.cirrus.com>,
+        Matti Vaittinen <matti.vaittinen@fi.rohmeurope.com>,
+        Amelie Delaunay <amelie.delaunay@st.com>,
+        Cristian Ciocaltea <cristian.ciocaltea@gmail.com>,
+        Paul Cercueil <paul@crapouillou.net>,
+        Andy Teng <andy.teng@mediatek.com>,
+        Sean Wang <sean.wang@mediatek.com>,
+        Sricharan R <sricharan@codeaurora.org>,
+        Chris Brandt <chris.brandt@renesas.com>,
+        Jaroslav Kysela <perex@perex.cz>,
+        Takashi Iwai <tiwai@suse.com>,
+        "open list:GPIO SUBSYSTEM" <linux-gpio@vger.kernel.org>,
+        devicetree@vger.kernel.org,
+        linux-arm-kernel <linux-arm-kernel@lists.infradead.org>,
+        "linux-kernel@vger.kernel.org" <linux-kernel@vger.kernel.org>,
+        linux-unisoc@lists.infradead.org,
+        linux-arm-msm <linux-arm-msm@vger.kernel.org>,
+        linux-riscv <linux-riscv@lists.infradead.org>,
+        Linux Media Mailing List <linux-media@vger.kernel.org>,
+        Linux-ALSA <alsa-devel@alsa-project.org>,
+        "moderated list:ARM/STM32 ARCHITECTURE" 
+        <linux-stm32@st-md-mailman.stormreply.com>,
+        "moderated list:ARM/Mediatek SoC support" 
+        <linux-mediatek@lists.infradead.org>,
+        "open list:MEDIA DRIVERS FOR RENESAS - FCP" 
+        <linux-renesas-soc@vger.kernel.org>
+Content-Type: text/plain; charset="UTF-8"
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-Hi Nicolin,
+On Thu, Sep 17, 2020 at 10:53 AM Krzysztof Kozlowski <krzk@kernel.org> wrote:
+>
+> Convert parts of gpio.txt bindings into common dtschema file for GPIO
+> controllers.  The schema enforces proper naming of GPIO controller nodes
+> and GPIO hogs.
 
-Thank you for your review.
+Did you not see my previous reply about a common schema? We already
+have a common GPIO and hog schema in dtschema. Please add to it
+whatever is missing.
 
-> > +static const u32 fsl_xcvr_earc_channels[] =3D { 1, 2, 8, 16, 32, }; /*
-> > +one bit 6, 12 ? */
->=20
-> What's the meaning of the comments?
+My goal is all common schema end up in dtschema, but I haven't pushed
+folks to do that yet. Ones I've done are there though. One issue is
+what's in dtschema should be GPL/BSD and the existing text bindings
+are default GPL, so there's a relicensing exercise. In some cases, the
+schema is there but I haven't copied over the descriptions.
 
-Just a thought noted as comment. HDMI2.1 spec defines 6- and 12-channels la=
-yout when
-one bit audio stream is transmitted - I was wandering how can this be enfor=
-ced. Is a @todo like of comment.
+Rob
 
->=20
-> > +static const int fsl_xcvr_phy_arc_cfg[] =3D {
-> > +	FSL_XCVR_PHY_CTRL_ARC_MODE_SE_EN,
-> FSL_XCVR_PHY_CTRL_ARC_MODE_CM_EN,
-> > +};
->=20
-> Nit: better be u32 vs. int?
 
-Yes, will fix it in v2.
-
->=20
-> > +/** phy: true =3D> phy, false =3D> pll */ static int
-> > +fsl_xcvr_ai_write(struct fsl_xcvr *xcvr, u8 reg, u32 data, bool phy)
-> > +{
-> > +	u32 val, idx, tidx;
-> > +
-> > +	idx  =3D BIT(phy ? 26 : 24);
-> > +	tidx =3D BIT(phy ? 27 : 25);
-> > +
-> > +	regmap_write(xcvr->regmap, FSL_XCVR_PHY_AI_CTRL_CLR, 0xFF);
-> > +	regmap_write(xcvr->regmap, FSL_XCVR_PHY_AI_CTRL_SET, reg);
-> > +	regmap_write(xcvr->regmap, FSL_XCVR_PHY_AI_WDATA, data);
-> > +	regmap_write(xcvr->regmap, FSL_XCVR_PHY_AI_CTRL_TOG, idx);
-> > +
-> > +	do {
-> > +		regmap_read(xcvr->regmap, FSL_XCVR_PHY_AI_CTRL, &val);
-> > +	} while ((val & idx) !=3D ((val & tidx) >> 1));
->=20
-> Might regmap_read_poll_timeout() be better? And it seems to poll intentio=
-nally
-> with no sleep nor timeout -- would be nice to have a line of comments to =
-explain
-> why.
-
-No particular reason to do it with no sleep or timeout here, will check and=
- fix it in v2.
-
->=20
-> > > +static int fsl_xcvr_runtime_resume(struct device *dev)
-> > +{
-> > +	struct fsl_xcvr *xcvr =3D dev_get_drvdata(dev);
-> > +	int ret;
-> > +
-> > +	ret =3D clk_prepare_enable(xcvr->ipg_clk);
-> > +	if (ret) {
-> > +		dev_err(dev, "failed to start IPG clock.\n");
-> > +		return ret;
-> > +	}
-> > +
-> > +	ret =3D clk_prepare_enable(xcvr->pll_ipg_clk);
-> > +	if (ret) {
-> > +		dev_err(dev, "failed to start PLL IPG clock.\n");
->=20
-> Should it disable ipg_clk?
-
-Yes, thank you, will fix in v2.
-
->=20
-> > +		return ret;
-> > +	}
-> > +
-> > +	ret =3D clk_prepare_enable(xcvr->phy_clk);
-> > +	if (ret) {
-> > +		dev_err(dev, "failed to start PHY clock: %d\n", ret);
-> > +		clk_disable_unprepare(xcvr->ipg_clk);
->=20
-> Should it disable pll_ipg_clk?
-
-Yes, will fix in v2.
-
->=20
-> > +		return ret;
-> > +	}
-> > +
-> > +	ret =3D clk_prepare_enable(xcvr->spba_clk);
-> > +	if (ret) {
-> > +		dev_err(dev, "failed to start SPBA clock.\n");
-> > +		clk_disable_unprepare(xcvr->phy_clk);
-> > +		clk_disable_unprepare(xcvr->ipg_clk);
->=20
-> Ditto
-
-Ok.
-
->=20
-> > +		return ret;
-> > +	}
-> > +
-> > +	regcache_cache_only(xcvr->regmap, false);
-> > +	regcache_mark_dirty(xcvr->regmap);
-> > +	ret =3D regcache_sync(xcvr->regmap);
-> > +
-> > +	if (ret) {
-> > +		dev_err(dev, "failed to sync regcache.\n");
-> > +		return ret;
->=20
-> What about those clocks? Probably better to have some error-out labels at=
- the
-> end of the function?
-
-Make sense, will fix in v2.
-
->=20
-> > +	}
-> > +
-> > +	reset_control_assert(xcvr->reset);
-> > +	reset_control_deassert(xcvr->reset);
-> > +
-> > +	ret =3D fsl_xcvr_load_firmware(xcvr);
-> > +	if (ret) {
-> > +		dev_err(dev, "failed to load firmware.\n");
-> > +		return ret;
->=20
-> Ditto
->=20
-> > +	}
-> > +
-> > +	/* Release M0+ reset */
-> > +	ret =3D regmap_update_bits(xcvr->regmap, FSL_XCVR_EXT_CTRL,
-> > +				 FSL_XCVR_EXT_CTRL_CORE_RESET, 0);
-> > +	if (ret < 0) {
-> > +		dev_err(dev, "M0+ core release failed: %d\n", ret);
-> > +		return ret;
->=20
-> Ditto
->=20
-> > +	}
-> > +	mdelay(50);
->=20
-> Any reason to use mdelay over msleep for a 50ms wait? May add a line of
-> comments if mdelay is a must?
-
-No particular reason, will fix it in v2.
-
-Thank you,
-Viorel
-
+> +    description:
+> +      Indicates the start and size of the GPIOs that can't be used.
+> +
+> +  ngpios:
+> +    description: |
+> +      Optionally, a GPIO controller may have a "ngpios" property. This property
+> +      indicates the number of in-use slots of available slots for GPIOs. The
+> +      typical example is something like this: the hardware register is 32 bits
+> +      wide, but only 18 of the bits have a physical counterpart. The driver is
+> +      generally written so that all 32 bits can be used, but the IP block is
+> +      reused in a lot of designs, some using all 32 bits, some using 18 and
+> +      some using 12. In this case, setting "ngpios = <18>;" informs the driver
+> +      that only the first 18 GPIOs, at local offset 0 .. 17, are in use.
+> +
+> +      If these GPIOs do not happen to be the first N GPIOs at offset 0...N-1,
+> +      an additional set of tuples is needed to specify which GPIOs are
+> +      unusable, with the gpio-reserved-ranges binding.
+> +
+> +patternProperties:
+> +  "^(hog-[0-9]+|.+-hog(-[0-9]+)?)$":
+> +    type: object
+> +    description:
+> +      The GPIO chip may contain GPIO hog definitions. GPIO hogging is a mechanism
+> +      providing automatic GPIO request and configuration as part of the
+> +      gpio-controller's driver probe function.
+> +      Each GPIO hog definition is represented as a child node of the GPIO controller.
+> +
+> +    properties:
+> +      gpio-hog: true
+> +      gpios: true
+> +      input: true
+> +      output-high: true
+> +      output-low: true
+> +      line-name:
+> +        description:
+> +          The GPIO label name. If not present the node name is used.
+> +
+> +    required:
+> +      - gpio-hog
+> +      - gpios
+> +
+> +    oneOf:
+> +      - required:
+> +          - input
+> +      - required:
+> +          - output-high
+> +      - required:
+> +          - output-low
+> +
+> +    additionalProperties: false
+> +
+> +required:
+> +  - "#gpio-cells"
+> +  - gpio-controller
+> +
+> +examples:
+> +  - |
+> +    gpio-controller@15000000 {
+> +        compatible = "foo";
+> +        reg = <0x15000000 0x1000>;
+> +        gpio-controller;
+> +        #gpio-cells = <2>;
+> +        ngpios = <18>;
+> +        gpio-reserved-ranges = <0 4>, <12 2>;
+> +        gpio-line-names = "MMC-CD", "MMC-WP", "VDD eth", "RST eth", "LED R",
+> +                          "LED G", "LED B", "Col A", "Col B", "Col C", "Col D",
+> +                          "Row A", "Row B", "Row C", "Row D", "NMI button",
+> +                          "poweroff", "reset";
+> +    };
+> +
+> +  - |
+> +    gpio-controller@1400 {
+> +        compatible = "fsl,qe-pario-bank-a", "fsl,qe-pario-bank";
+> +        reg = <0x1400 0x18>;
+> +        gpio-controller;
+> +        #gpio-cells = <2>;
+> +
+> +        line-b-hog {
+> +            gpio-hog;
+> +            gpios = <6 0>;
+> +            input;
+> +            line-name = "foo-bar-gpio";
+> +        };
+> +    };
+> --
+> 2.17.1
+>
