@@ -2,126 +2,368 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from vger.kernel.org (vger.kernel.org [23.128.96.18])
-	by mail.lfdr.de (Postfix) with ESMTP id A48CB26F57E
-	for <lists+devicetree@lfdr.de>; Fri, 18 Sep 2020 07:49:00 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTP id 19B8B26F58A
+	for <lists+devicetree@lfdr.de>; Fri, 18 Sep 2020 07:51:19 +0200 (CEST)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S1726647AbgIRFs7 (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Fri, 18 Sep 2020 01:48:59 -0400
-Received: from mail-db8eur05on2056.outbound.protection.outlook.com ([40.107.20.56]:38785
-        "EHLO EUR05-DB8-obe.outbound.protection.outlook.com"
-        rhost-flags-OK-OK-OK-FAIL) by vger.kernel.org with ESMTP
-        id S1726420AbgIRFs7 (ORCPT <rfc822;devicetree@vger.kernel.org>);
-        Fri, 18 Sep 2020 01:48:59 -0400
-ARC-Seal: i=1; a=rsa-sha256; s=arcselector9901; d=microsoft.com; cv=none;
- b=WMqid4MM8gQbX/Z1muhDM04U2xexeqpgSMLksPtCCFlCShBRHLAnbppvD6rxGabfcDBSu+PCcRdKVIczT/IFfbIHJ8X+ogqoWCOSmxRIflsg4wP9oKzks96qmRwOFcMWD/wFaazSuH4cmPlKwFQJ5w0wqjy8coVAv71ps3dplcguK9vz7UV/p8mTWx0ypJzeK+4bXs2ECDjhAmPkG+aVg2+egvykY8Zn8dqjvTdeLfFAf1MtBQ90s45L75Tu9Xswif1i8cSjkuz8sRwDW9HDVVHNpdOvkgLnc7AmyLkDy3a6q6lzZBNXwG+yJ8f1fKICLXSQtVdKYBM5KXwhLiOxLw==
-ARC-Message-Signature: i=1; a=rsa-sha256; c=relaxed/relaxed; d=microsoft.com;
- s=arcselector9901;
- h=From:Date:Subject:Message-ID:Content-Type:MIME-Version:X-MS-Exchange-SenderADCheck;
- bh=2RSlAm+A0cBk6W4JLRKhOZqse4H+gxG9cjinC63jP3Y=;
- b=L8W1inaFH5mdsH7D4Xr1IG6II/6lzzBr/2Mfq4/LtpOLKrtQVC+8YFoq3xVBkNkwD8nRBERjKtSW0bh9KDYrhFyA+j9KTPCO+RR5VfATPhogj8cCKH3EvuHwRxIozOPfWZpr94UbRGKC8/ZSps56I4v+hI91vs/Xdz+DQK4iBDiHVyLDOg7FqUyzDXWreOM20qpmndqXKdKX1YnwB9hqSmnTtWGM6w+s8OlwKTsIG7mwOA+ZlrXMneZNxjMAmI4+OcH4ojmvWgUBsVMczYFzuVU3qb5bV0JyWPwj6pbiRrA9D7lZPUp783tXdv2qAeF9MRqGkPSuv2nVu//ZoKr2UQ==
-ARC-Authentication-Results: i=1; mx.microsoft.com 1; spf=pass
- smtp.mailfrom=fi.rohmeurope.com; dmarc=pass action=none
- header.from=fi.rohmeurope.com; dkim=pass header.d=fi.rohmeurope.com; arc=none
+        id S1726395AbgIRFvR (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Fri, 18 Sep 2020 01:51:17 -0400
+Received: from lindbergh.monkeyblade.net ([23.128.96.19]:60366 "EHLO
+        lindbergh.monkeyblade.net" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
+        with ESMTP id S1726126AbgIRFvR (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Fri, 18 Sep 2020 01:51:17 -0400
+Received: from mail-oi1-x244.google.com (mail-oi1-x244.google.com [IPv6:2607:f8b0:4864:20::244])
+        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id D72E7C06174A;
+        Thu, 17 Sep 2020 22:51:16 -0700 (PDT)
+Received: by mail-oi1-x244.google.com with SMTP id x14so5612305oic.9;
+        Thu, 17 Sep 2020 22:51:16 -0700 (PDT)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
- d=rohmsemiconductoreurope.onmicrosoft.com;
- s=selector1-rohmsemiconductoreurope-onmicrosoft-com;
- h=From:Date:Subject:Message-ID:Content-Type:MIME-Version:X-MS-Exchange-SenderADCheck;
- bh=2RSlAm+A0cBk6W4JLRKhOZqse4H+gxG9cjinC63jP3Y=;
- b=RYMYIEfOH6xQf0LRcbeucoWlm6ZyWWvkIyZu1xpO1D12MN80OyDxJHo/t3PArBA2JcmzPh1X8BLfziuk17uocG0YYQSwPOyQl+F5RAw7/xdmPaNE96AQKNxPzGIU5ml3LSAMNe5LPc0JWUQAj2zzY3F0X75n0RWb8Dh0vwDydFI=
-Received: from DB6PR03MB3160.eurprd03.prod.outlook.com (2603:10a6:6:37::21) by
- DBAPR03MB6424.eurprd03.prod.outlook.com (2603:10a6:10:192::15) with Microsoft
- SMTP Server (version=TLS1_2, cipher=TLS_ECDHE_RSA_WITH_AES_256_GCM_SHA384) id
- 15.20.3391.11; Fri, 18 Sep 2020 05:48:55 +0000
-Received: from DB6PR03MB3160.eurprd03.prod.outlook.com
- ([fe80::3c50:c4c8:c54e:19e3]) by DB6PR03MB3160.eurprd03.prod.outlook.com
- ([fe80::3c50:c4c8:c54e:19e3%2]) with mapi id 15.20.3391.014; Fri, 18 Sep 2020
- 05:48:55 +0000
-From:   "Vaittinen, Matti" <Matti.Vaittinen@fi.rohmeurope.com>
-To:     "robh+dt@kernel.org" <robh+dt@kernel.org>,
-        "devicetree@vger.kernel.org" <devicetree@vger.kernel.org>,
-        "linux-kernel@vger.kernel.org" <linux-kernel@vger.kernel.org>,
-        "krzk@kernel.org" <krzk@kernel.org>,
-        "lee.jones@linaro.org" <lee.jones@linaro.org>
-Subject: Re: [PATCH v2] dt-bindings: mfd: rohm,bd71837-pmic: Add common
- properties
-Thread-Topic: [PATCH v2] dt-bindings: mfd: rohm,bd71837-pmic: Add common
- properties
-Thread-Index: AQHWjSoOiuv+9mc+IEipLl5urzAe76lt5HOA
-Date:   Fri, 18 Sep 2020 05:48:54 +0000
-Message-ID: <cf55864a2d9ff7fcd397273b27cb10619029bd58.camel@fi.rohmeurope.com>
-References: <20200917193754.542-1-krzk@kernel.org>
-In-Reply-To: <20200917193754.542-1-krzk@kernel.org>
-Reply-To: "Vaittinen, Matti" <Matti.Vaittinen@fi.rohmeurope.com>
-Accept-Language: fi-FI, en-US
-Content-Language: en-US
-X-MS-Has-Attach: 
-X-MS-TNEF-Correlator: 
-authentication-results: kernel.org; dkim=none (message not signed)
- header.d=none;kernel.org; dmarc=none action=none
- header.from=fi.rohmeurope.com;
-x-originating-ip: [213.255.186.46]
-x-ms-publictraffictype: Email
-x-ms-office365-filtering-correlation-id: 03b0075a-3b25-42fd-a33d-08d85b968804
-x-ms-traffictypediagnostic: DBAPR03MB6424:
-x-microsoft-antispam-prvs: <DBAPR03MB64246DA9D5C3FAC4D523110EAD3F0@DBAPR03MB6424.eurprd03.prod.outlook.com>
-x-ms-oob-tlc-oobclassifiers: OLM:10000;
-x-ms-exchange-senderadcheck: 1
-x-microsoft-antispam: BCL:0;
-x-microsoft-antispam-message-info: iE1FY/sdattjh0j04vVONcWweLI65jPK1Kosr32QKOY/nTNOI4ZYpSYpxm5VJBu/0BHPBBSHLKV7MeGH7fH1eiA+XjToPx9oCZbiEoLCeEYF7ve8yGGwmnx/skySdVaQs6P8Y+l3qR4cpFSoRnYKlJuQNMBHHX1mAkba/f7wz/OJ4YPT+thwq+2WkTxMXa2rY4Q6jYM2QbwxHehbbGA+9lYSG3sGz36T2cum9VN8GcXzf/tF9y0pPXFNhBMbf+Ow0Lye/pt71/dtBtaLtdToK6bK+haCyI3mVyi7doViukZ2+FDWkds7L9mU6K9g5yjZTLGFws2kJAlzFTKhXzTsyZM8bT9RsC5GFG6mWCA6QXIsvXZsHb7jDFvvgG6bQjIXim/ZvoB7Vgx599aw1ueyQ+fHtX4rU/+pcgKoGidx0Fk=
-x-forefront-antispam-report: CIP:255.255.255.255;CTRY:;LANG:en;SCL:1;SRV:;IPV:NLI;SFV:NSPM;H:DB6PR03MB3160.eurprd03.prod.outlook.com;PTR:;CAT:NONE;SFS:(4636009)(366004)(39850400004)(396003)(346002)(376002)(136003)(2616005)(26005)(478600001)(3450700001)(83380400001)(6486002)(110136005)(8936002)(316002)(86362001)(66556008)(6512007)(66476007)(186003)(64756008)(66446008)(76116006)(5660300002)(91956017)(2906002)(6506007)(66946007)(8676002)(71200400001)(142933001);DIR:OUT;SFP:1101;
-x-ms-exchange-antispam-messagedata: Gd9X/pIms3qx6gcpgmea4+UOS5As4HDiKJsmbWz7HYur1Iy5irh5hqMC35i5brlGI1aCu7sFCjkTsyi8DxIIViKyuOM+P6zs6LSUeVvbWiHcLY+PUBEqv/39g2l7lrzCYIKvAGGtdpQVdeAMytn5ubQG79dRm+ndzZlEHkotoCoydxW/6JVVh1y8wke48AtDwROZ+ViO+B6RrnjtK2r9ch19d8GyD+zjJWkgFj7OfZ6ZIeYXjBpMBZTMhN+peBLP3AeMc+DDiDzWJwCUsO5VlThuroeWQuMgUklAy+Bd3qEjFK6/kge7DLMCaVT36acI0zhcCMfSTAHm594//kweTIS7xsEOvjTfbekKAZ1Ga1aWZnLCmt/H4eySZPFnV1PCuu0RFd5kzseS1p6VfqoDApg/YGJCGQ8Jm1I2Hcs5RW35oVPDh1sOAGNeKuSy5NPQiZlCT/F3kdq4ooBlyH0MKLi8+TJirW6amWlcHr9PkRBdqPfyUoQGhm2vcy2P050lpwdOmXTwYcuXujZe/QpjGkHX/fL236doVzPdCdN9yH1Gj8EyGobbik+kS//3XnVQ/X6zo4UIhRw+Ajahog9Dq/lyX/pAQNQGZDBIOGkG0NdhWCvkqrwEea1S/6Ua72mxQn98sP5GOmCk1qVAtkKMxQ==
-x-ms-exchange-transport-forked: True
-Content-Type: text/plain; charset="utf-8"
-Content-ID: <7C8D1140C683DC498C60DE6C371A6623@eurprd03.prod.outlook.com>
-Content-Transfer-Encoding: base64
+        d=gmail.com; s=20161025;
+        h=sender:subject:to:cc:references:from:autocrypt:message-id:date
+         :user-agent:mime-version:in-reply-to:content-language
+         :content-transfer-encoding;
+        bh=+P82EwWYIUoSRENRstNCiFfj4PUNjpisjxEcP7lCWEU=;
+        b=EqDLSXNodqUFGj9nN6XM7kO77mSVwV1uCDjsaG/1GaWq6eBrWeuxz/PC5JUXR8hlpk
+         5G58yPEbKDTCcX5fJ2DithWJeMRprewJjZJqOUVqHagreb3dvsYanWOSDO+bz4No/EAB
+         YRMwdbqsOeSaHU0JhuWdAKjXvb6q5gznn+iYeEjw/ZcvTRSKEs3YHOA6pNbPHzN96hSK
+         LLu0kP55DRccg8V3MrXM0mgQ6A26yFORagOZ6s+tbnFtthH3rIlgxQhxsdJeK+Jnie5d
+         MCZrFnn4RH33LhUsjyM47sRObCRVJMebsT+0kyyDNHVTxkQOTNmipJ8rmrEOgh6/P3GP
+         VFig==
+X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+        d=1e100.net; s=20161025;
+        h=x-gm-message-state:sender:subject:to:cc:references:from:autocrypt
+         :message-id:date:user-agent:mime-version:in-reply-to
+         :content-language:content-transfer-encoding;
+        bh=+P82EwWYIUoSRENRstNCiFfj4PUNjpisjxEcP7lCWEU=;
+        b=BxytMOp9BCWoE+TlvvHanDhLrG8KSZJGMvSyFymIe3rwxORj5g1Hi3fxqpPGQm5SMq
+         yHBVDDLtNktiuv5NiflA9jsc9bCOwDuqqIvNR/i62Mrplpe2FJK6wJcuEUwB/Ww/u1PE
+         AEaG/SZSlqZWuu4/AxLLD9q+rKUtE3oT5b94SWHu9mTkzU9tzV8AB/4mpsBYx3/+rBbZ
+         PF6sKiOFhpZkl5VPHLhkSyUhfyX1cwDnuOVFcEpKinpAgXccKl8DLSYe6zezgt3wyASh
+         to2YJQ3mT+nf/wl3rEG6MLkCv5ligOXyVQ0SLVp7DDjNF8QNFt7ysjxIKFbauo5kKhQC
+         Z/Sw==
+X-Gm-Message-State: AOAM533Q2NzBar5UsDUOQYwvW/oDZcJ33kYIveogr5jHzdnHSJxBmi5c
+        2CNEXnDAvwd8XOmapGaAxmdPZ2DogS0=
+X-Google-Smtp-Source: ABdhPJyWJsuiTBg7AtJutn2T32mEu2Rso/bjhZSNd6EIDUfozgMSuDrxfo7kc9BdaTzuDV1GSo3suA==
+X-Received: by 2002:a05:6808:686:: with SMTP id k6mr7318160oig.129.1600408276042;
+        Thu, 17 Sep 2020 22:51:16 -0700 (PDT)
+Received: from server.roeck-us.net ([2600:1700:e321:62f0:329c:23ff:fee3:9d7c])
+        by smtp.gmail.com with ESMTPSA id d63sm1882831oig.53.2020.09.17.22.51.14
+        (version=TLS1_3 cipher=TLS_AES_128_GCM_SHA256 bits=128/128);
+        Thu, 17 Sep 2020 22:51:15 -0700 (PDT)
+Subject: Re: [PATCH 2/2] watchdog: Add Toshiba Visconti watchdog driver
+To:     Nobuhiro Iwamatsu <nobuhiro1.iwamatsu@toshiba.co.jp>,
+        Rob Herring <robh+dt@kernel.org>,
+        Wim Van Sebroeck <wim@linux-watchdog.org>
+Cc:     punit1.agrawal@toshiba.co.jp, yuji2.ishikawa@toshiba.co.jp,
+        devicetree@vger.kernel.org, linux-arm-kernel@lists.infradead.org,
+        linux-watchdog@vger.kernel.org
+References: <20200917223924.227997-1-nobuhiro1.iwamatsu@toshiba.co.jp>
+ <20200917223924.227997-3-nobuhiro1.iwamatsu@toshiba.co.jp>
+From:   Guenter Roeck <linux@roeck-us.net>
+Autocrypt: addr=linux@roeck-us.net; keydata=
+ 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
+ mDW4+i+XlNFUPUYMrIKi9joBhu18ssf5i5Q=
+Message-ID: <71bd6d23-8995-c006-2a4f-a7cc039924ad@roeck-us.net>
+Date:   Thu, 17 Sep 2020 22:51:14 -0700
+User-Agent: Mozilla/5.0 (X11; Linux x86_64; rv:68.0) Gecko/20100101
+ Thunderbird/68.10.0
 MIME-Version: 1.0
-X-OriginatorOrg: fi.rohmeurope.com
-X-MS-Exchange-CrossTenant-AuthAs: Internal
-X-MS-Exchange-CrossTenant-AuthSource: DB6PR03MB3160.eurprd03.prod.outlook.com
-X-MS-Exchange-CrossTenant-Network-Message-Id: 03b0075a-3b25-42fd-a33d-08d85b968804
-X-MS-Exchange-CrossTenant-originalarrivaltime: 18 Sep 2020 05:48:54.1432
- (UTC)
-X-MS-Exchange-CrossTenant-fromentityheader: Hosted
-X-MS-Exchange-CrossTenant-id: 94f2c475-a538-4112-b5dd-63f17273d67a
-X-MS-Exchange-CrossTenant-mailboxtype: HOSTED
-X-MS-Exchange-CrossTenant-userprincipalname: ojmYdY4wdjRdpyALhzfavYOw6lBkDt9iUHDQijjycsRuEh2rDiGzHUm1KTyB/d9fatsiQ1bQlRzSOcmAqv4OwRjyipSf69P9u1+P1OP5sWCDjTrzNdX6jz/o/fzSoCAY
-X-MS-Exchange-Transport-CrossTenantHeadersStamped: DBAPR03MB6424
+In-Reply-To: <20200917223924.227997-3-nobuhiro1.iwamatsu@toshiba.co.jp>
+Content-Type: text/plain; charset=utf-8
+Content-Language: en-US
+Content-Transfer-Encoding: 8bit
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-SGkgZGVlZWUgSG8gcGVlcHMhDQoNCk9uIFRodSwgMjAyMC0wOS0xNyBhdCAyMTozNyArMDIwMCwg
-S3J6eXN6dG9mIEtvemxvd3NraSB3cm90ZToNCj4gQWRkIGNvbW1vbiBwcm9wZXJ0aWVzIGFwcGVh
-cmluZyBpbiBEVFNlcyAoY2xvY2stbmFtZXMsDQo+IGNsb2NrLW91dHB1dC1uYW1lcykgd2l0aCB0
-aGUgY29tbW9uIHZhbHVlcyAoYWN0dWFsbHkgdXNlZCBpbiBEVFNlcykNCj4gdG8NCj4gZml4IGR0
-YnNfY2hlY2sgd2FybmluZ3MgbGlrZToNCj4gDQo+ICAgYXJjaC9hcm02NC9ib290L2R0cy9mcmVl
-c2NhbGUvaW14OG1xLWxpYnJlbTUtcjIuZHQueWFtbDoNCj4gICAgIHBtaWNANGI6ICdjbG9jay1u
-YW1lcycsICdjbG9jay1vdXRwdXQtbmFtZXMnLCBkbyBub3QgbWF0Y2ggYW55IG9mDQo+IHRoZSBy
-ZWdleGVzOiAncGluY3RybC1bMC05XSsnDQo+IA0KPiBTaWduZWQtb2ZmLWJ5OiBLcnp5c3p0b2Yg
-S296bG93c2tpIDxrcnprQGtlcm5lbC5vcmc+DQo+IA0KPiAtLS0NCj4gDQo+IENoYW5nZXMgc2lu
-Y2UgdjE6DQo+IDEuIERlZmluZSB0aGUgbmFtZXMsIGFzIHVzZWQgaW4gZXhpc3RpbmcgRFRTIGZp
-bGVzLg0KPiAtLS0NCj4gIC4uLi9kZXZpY2V0cmVlL2JpbmRpbmdzL21mZC9yb2htLGJkNzE4Mzct
-cG1pYy55YW1sICAgICAgICAgIHwgNg0KPiArKysrKysNCj4gIDEgZmlsZSBjaGFuZ2VkLCA2IGlu
-c2VydGlvbnMoKykNCj4gDQo+IGRpZmYgLS1naXQgYS9Eb2N1bWVudGF0aW9uL2RldmljZXRyZWUv
-YmluZGluZ3MvbWZkL3JvaG0sYmQ3MTgzNy0NCj4gcG1pYy55YW1sIGIvRG9jdW1lbnRhdGlvbi9k
-ZXZpY2V0cmVlL2JpbmRpbmdzL21mZC9yb2htLGJkNzE4MzctDQo+IHBtaWMueWFtbA0KPiBpbmRl
-eCA2NTAxOGEwMTllMWQuLjNiZmRkMzM3MDJhZCAxMDA2NDQNCj4gLS0tIGEvRG9jdW1lbnRhdGlv
-bi9kZXZpY2V0cmVlL2JpbmRpbmdzL21mZC9yb2htLGJkNzE4MzctcG1pYy55YW1sDQo+ICsrKyBi
-L0RvY3VtZW50YXRpb24vZGV2aWNldHJlZS9iaW5kaW5ncy9tZmQvcm9obSxiZDcxODM3LXBtaWMu
-eWFtbA0KPiBAQCAtMzIsOSArMzIsMTUgQEAgcHJvcGVydGllczoNCj4gICAgY2xvY2tzOg0KPiAg
-ICAgIG1heEl0ZW1zOiAxDQo+ICANCj4gKyAgY2xvY2stbmFtZXM6DQo+ICsgICAgY29uc3Q6IG9z
-Yw0KDQpJIGd1ZXNzIGV4aXN0aW5nIGJvYXJkIGR0c2VzIHVzZSAib3NjIiB0aGVuPyBPay4NCg0K
-PiAgICAiI2Nsb2NrLWNlbGxzIjoNCj4gICAgICBjb25zdDogMA0KPiAgDQo+ICsgIGNsb2NrLW91
-dHB1dC1uYW1lczoNCj4gKyAgICBjb25zdDogcG1pY19jbGsNCg0KVGhpcyBpcyBub3QgYSBzdHJv
-bmcgb3BpbmlvbiBidXQgSSBmZWVsIHRoYXQgcG1pY19jbGsgaXMgYSBiaXQgdG9vDQpnZW5lcmlj
-IG5hbWU/IEkgbWVhbiwgd2hhdCBpZiB0aGVyZSBpcyBhIHN5c3RlbSB3aXRoIG1vcmUgdGhhbiBv
-bmUNClBNSUNzPyAoSSBkb24ndCBzZWUgc3VjaCB1c2UtY2FzZSB3aXRoIHRoZSBCRDcxOHg3IHRo
-b3VnaCAtIGJ1dCBwZXJoYXBzDQp0aGlzIGNhbiBzZXJ2ZSBhcyBhIG1pc2xlYWRpbmcgZXhhbXBs
-ZSBmb3Igb3RoZXIgUE1JQ3M/IEZvciBleGFtcGxlDQp3aXRoIHRoZSBST0hNIEJEOTY4MDEgZmFt
-aWx5IHRoZXJlIG1heSBiZSBtdWx0aXBsZSBQTUlDcyBpbiBvbmUNCnN5c3RlbSkuIEFueXdheXMg
-LSBpZiBSb2IgaXMgaGFwcHkgd2l0aCB0aGlzIHRoZW4gcGxlYXNlIGdvIHdpdGggaXQgOikNCg0K
-QWNrZWQtQnk6IE1hdHRpIFZhaXR0aW5lbiA8bWF0dGkudmFpdHRpbmVuQGZpLnJvaG1ldXJvcGUu
-Y29tPg0KICogDQpUaGFua3MgYWdhaW4gZm9yIGltcHJvdmluZyB0aGVzZSBiaW5kaW5ncyEgSSBh
-bSBjb25zdGFudGx5IHN0cnVnZ2xpbmcNCndpdGggdGhlc2UgeF94LiBXcml0aW5nIHRoZSBiaW5k
-aW5ncyBpcyBwcm9iYWJseSBoYXJkZXN0IHBhcnQgb2YgUE1JQw0KZHJpdmVyIGRldmVsb3BtZW50
-IC1fLTsNCg0KDQo=
+On 9/17/20 3:39 PM, Nobuhiro Iwamatsu wrote:
+> Add the watchdog driver for Toshiba Visconti series.
+> 
+> Signed-off-by: Nobuhiro Iwamatsu <nobuhiro1.iwamatsu@toshiba.co.jp>
+> ---
+>  drivers/watchdog/Kconfig        |   8 ++
+>  drivers/watchdog/Makefile       |   1 +
+>  drivers/watchdog/visconti_wdt.c | 192 ++++++++++++++++++++++++++++++++
+>  3 files changed, 201 insertions(+)
+>  create mode 100644 drivers/watchdog/visconti_wdt.c
+> 
+> diff --git a/drivers/watchdog/Kconfig b/drivers/watchdog/Kconfig
+> index ab7aad5a1e69..0cb078ce5e9d 100644
+> --- a/drivers/watchdog/Kconfig
+> +++ b/drivers/watchdog/Kconfig
+> @@ -1004,6 +1004,14 @@ config PM8916_WATCHDOG
+>  	  Say Y here to include support watchdog timer embedded into the
+>  	  pm8916 module.
+>  
+> +config VISCONTI_WATCHDOG
+> +	tristate "Toshiba Visconti series watchdog support"
+> +	depends on ARCH_VISCONTI || COMPILE_TEST
+> +	select WATCHDOG_CORE
+> +	help
+> +	  Say Y here to include support for the watchdog timer in Toshiba
+> +	  Visconti SoCs.
+> +
+>  # X86 (i386 + ia64 + x86_64) Architecture
+>  
+>  config ACQUIRE_WDT
+> diff --git a/drivers/watchdog/Makefile b/drivers/watchdog/Makefile
+> index 97bed1d3d97c..a7747e76fd29 100644
+> --- a/drivers/watchdog/Makefile
+> +++ b/drivers/watchdog/Makefile
+> @@ -95,6 +95,7 @@ obj-$(CONFIG_RTD119X_WATCHDOG) += rtd119x_wdt.o
+>  obj-$(CONFIG_SPRD_WATCHDOG) += sprd_wdt.o
+>  obj-$(CONFIG_PM8916_WATCHDOG) += pm8916_wdt.o
+>  obj-$(CONFIG_ARM_SMC_WATCHDOG) += arm_smc_wdt.o
+> +obj-$(CONFIG_VISCONTI_WATCHDOG) += visconti_wdt.o
+>  
+>  # X86 (i386 + ia64 + x86_64) Architecture
+>  obj-$(CONFIG_ACQUIRE_WDT) += acquirewdt.o
+> diff --git a/drivers/watchdog/visconti_wdt.c b/drivers/watchdog/visconti_wdt.c
+> new file mode 100644
+> index 000000000000..b82849d68c4c
+> --- /dev/null
+> +++ b/drivers/watchdog/visconti_wdt.c
+> @@ -0,0 +1,192 @@
+> +// SPDX-License-Identifier: GPL-2.0
+> +/*
+> + * Copyright (c) 2020 TOSHIBA CORPORATION
+> + * Copyright (c) 2020 Toshiba Electronic Devices & Storage Corporation
+> + * Copyright (c) 2020 Nobuhiro Iwamatsu <nobuhiro1.iwamatsu@toshiba.co.jp>
+> + */
+> +
+> +#include <linux/kernel.h>
+> +#include <linux/module.h>
+> +#include <linux/interrupt.h>
+> +#include <linux/io.h>
+> +#include <linux/of.h>
+> +#include <linux/clk.h>
+> +#include <linux/platform_device.h>
+> +#include <linux/watchdog.h>
+
+Alphabetically, please.
+
+> +
+> +#define WDT_CNT			0x00
+> +#define WDT_MIN			0x04
+> +#define WDT_MAX			0x08
+> +#define WDT_CTL			0x0c
+> +#define WDT_CMD			0x10
+> +#define WDT_CMD_CLEAR		0x4352
+> +#define WDT_CMD_START_STOP	0x5354
+> +#define WDT_DIV			0x30
+> +
+> +#define VISCONTI_WDT_FREQ	2000000 /* 2MHz */
+> +#define WDT_DEFAULT_TIMEOUT	10U /* in seconds */
+> +
+> +static bool nowayout = WATCHDOG_NOWAYOUT;
+> +module_param(nowayout, bool, 0);
+> +MODULE_PARM_DESC(
+> +	nowayout,
+> +	"Watchdog cannot be stopped once started (default=" __MODULE_STRING(
+> +		WATCHDOG_NOWAYOUT) ")");
+> +
+> +struct visconti_wdt_priv {
+> +	struct watchdog_device wdev;
+> +	void __iomem *base;
+> +	u32 div;
+> +};
+> +
+> +static int visconti_wdt_start(struct watchdog_device *wdev)
+> +{
+> +	struct visconti_wdt_priv *priv = watchdog_get_drvdata(wdev);
+> +	u32 timeout = wdev->timeout * VISCONTI_WDT_FREQ;
+> +
+> +	writel(priv->div, priv->base + WDT_DIV);
+> +	writel(0, priv->base + WDT_MIN);
+> +	writel(timeout, priv->base + WDT_MAX);
+> +	writel(0, priv->base + WDT_CTL);
+> +	writel(WDT_CMD_START_STOP, priv->base + WDT_CMD);
+> +
+> +	return 0;
+> +}
+> +
+> +static int visconti_wdt_stop(struct watchdog_device *wdev)
+> +{
+> +	struct visconti_wdt_priv *priv = watchdog_get_drvdata(wdev);
+> +
+> +	writel(1, priv->base + WDT_CTL);
+> +	writel(WDT_CMD_START_STOP, priv->base + WDT_CMD);
+> +
+> +	return 0;
+> +}
+> +
+> +static int visconti_wdt_ping(struct watchdog_device *wdd)
+> +{
+> +	struct visconti_wdt_priv *priv = watchdog_get_drvdata(wdd);
+> +
+> +	writel(WDT_CMD_CLEAR, priv->base + WDT_CMD);
+> +
+> +	return 0;
+> +}
+> +
+> +static unsigned int visconti_wdt_get_timeleft(struct watchdog_device *wdev)
+> +{
+> +	struct visconti_wdt_priv *priv = watchdog_get_drvdata(wdev);
+> +	u32 timeout = wdev->timeout * VISCONTI_WDT_FREQ;
+> +
+> +	timeout -= readl(priv->base + WDT_CNT);
+> +
+
+What happens if this is negative for whatever reason ?
+
+> +	return timeout / VISCONTI_WDT_FREQ;
+> +}
+> +
+> +static int visconti_wdt_set_timeout(struct watchdog_device *wdev,
+> +				    unsigned int timeout)
+> +{
+> +	u32 val;
+> +	struct visconti_wdt_priv *priv = watchdog_get_drvdata(wdev);
+> +
+> +	wdev->timeout = timeout;
+> +	val = wdev->timeout * VISCONTI_WDT_FREQ;
+> +
+> +	/* Clear counter before setting timeout because WDT expires */
+> +	writel(WDT_CMD_CLEAR, priv->base + WDT_CMD);
+> +	writel(val, priv->base + WDT_MAX);
+> +
+> +	return 0;
+> +}
+> +
+> +static const struct watchdog_info visconti_wdt_info = {
+> +	.options = WDIOF_SETTIMEOUT | WDIOF_MAGICCLOSE | WDIOF_KEEPALIVEPING,
+> +	.identity = "Visconti Watchdog",
+> +};
+> +
+> +static const struct watchdog_ops visconti_wdt_ops = {
+> +	.owner		= THIS_MODULE,
+> +	.start		= visconti_wdt_start,
+> +	.stop		= visconti_wdt_stop,
+> +	.ping		= visconti_wdt_ping,
+> +	.get_timeleft	= visconti_wdt_get_timeleft,
+> +	.set_timeout	= visconti_wdt_set_timeout,
+> +};
+> +
+> +static int visconti_wdt_probe(struct platform_device *pdev)
+> +{
+> +	struct watchdog_device *wdev;
+> +	struct visconti_wdt_priv *priv;
+> +	struct device *dev = &pdev->dev;
+> +	struct clk *clk;
+> +	int ret;
+> +	unsigned long clk_freq;
+> +
+> +	priv = devm_kzalloc(dev, sizeof(*priv), GFP_KERNEL);
+> +	if (!priv)
+> +		return -ENOMEM;
+> +
+> +	priv->base = devm_platform_ioremap_resource(pdev, 0);
+> +	if (IS_ERR(priv->base))
+> +		return PTR_ERR(priv->base);
+> +
+> +	clk = devm_clk_get(dev, NULL);
+> +	if (IS_ERR(clk)) {
+> +		dev_err(dev, "Could not get clock\n");
+
+devm_clk_get() can return -EPROBE_DEFER. In that case we don't
+want to see an error message. Consider using dev_err_probe().
+
+> +		return PTR_ERR(clk);
+> +	}
+> +
+> +	ret = clk_prepare_enable(clk);
+> +	if (ret) {
+> +		dev_err(dev, "Could not enable clock\n");
+> +		return ret;
+> +	}
+> +
+> +	clk_freq = clk_get_rate(clk);
+> +	if (!clk_freq) {
+> +		clk_disable_unprepare(clk);
+> +		dev_err(dev, "Could not get clock rate\n");
+> +		return -EINVAL;
+> +	}
+> +
+> +	priv->div = clk_freq / VISCONTI_WDT_FREQ;
+> +
+> +	/* Initialize struct watchdog_device. */
+> +	wdev = &priv->wdev;
+> +	wdev->info = &visconti_wdt_info;
+> +	wdev->ops = &visconti_wdt_ops;
+> +	wdev->parent = dev;
+> +	wdev->min_timeout = 1;
+> +	wdev->max_timeout = 0xffffffff / VISCONTI_WDT_FREQ;
+> +	wdev->timeout = min(wdev->max_timeout, WDT_DEFAULT_TIMEOUT);
+> +
+> +	watchdog_set_drvdata(wdev, priv);
+> +	watchdog_set_nowayout(wdev, nowayout);
+> +	watchdog_stop_on_unregister(wdev);
+> +
+> +	/* This overrides the default timeout only if DT configuration was found */
+> +	ret = watchdog_init_timeout(wdev, 0, dev);
+> +	if (ret)
+> +		dev_warn(dev, "Specified timeout value invalid, using default\n");
+> +
+> +	return devm_watchdog_register_device(dev, wdev);
+> +}
+> +
+> +static const struct of_device_id visconti_wdt_of_match[] = {
+> +	{ .compatible = "toshiba,visconti-wdt", },
+> +	{}
+> +};
+> +MODULE_DEVICE_TABLE(of, visconti_wdt_of_match);
+> +
+> +static struct platform_driver visconti_wdt_driver = {
+> +	.driver = {
+> +			.name = "visconti_wdt",
+> +			.of_match_table = visconti_wdt_of_match,
+> +		},
+> +	.probe = visconti_wdt_probe,
+> +};
+> +module_platform_driver(visconti_wdt_driver);
+> +
+> +MODULE_DESCRIPTION("TOSHIBA Visconti Watchdog Driver");
+> +MODULE_AUTHOR("TOSHIBA ELECTRONIC DEVICES & STORAGE CORPORATION");
+> +MODULE_AUTHOR("Nobuhiro Iwamatsu <nobuhiro1.iwamatsu@toshiba.co.jp");
+> +MODULE_LICENSE("GPL v2");
+> 
+
