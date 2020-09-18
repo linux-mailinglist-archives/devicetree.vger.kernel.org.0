@@ -2,78 +2,151 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from vger.kernel.org (vger.kernel.org [23.128.96.18])
-	by mail.lfdr.de (Postfix) with ESMTP id 312D927001F
-	for <lists+devicetree@lfdr.de>; Fri, 18 Sep 2020 16:47:08 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTP id D9105270053
+	for <lists+devicetree@lfdr.de>; Fri, 18 Sep 2020 16:57:28 +0200 (CEST)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S1726835AbgIROrA (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Fri, 18 Sep 2020 10:47:00 -0400
-Received: from mslow2.mail.gandi.net ([217.70.178.242]:34024 "EHLO
-        mslow2.mail.gandi.net" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S1726830AbgIROq7 (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Fri, 18 Sep 2020 10:46:59 -0400
-X-Greylist: delayed 1301 seconds by postgrey-1.27 at vger.kernel.org; Fri, 18 Sep 2020 10:46:58 EDT
-Received: from relay10.mail.gandi.net (unknown [217.70.178.230])
-        by mslow2.mail.gandi.net (Postfix) with ESMTP id 2899E3AF79A;
-        Fri, 18 Sep 2020 14:25:37 +0000 (UTC)
-Received: from pc-2.home (lfbn-tou-1-1532-46.w90-89.abo.wanadoo.fr [90.89.95.46])
-        (Authenticated sender: maxime.chevallier@bootlin.com)
-        by relay10.mail.gandi.net (Postfix) with ESMTPSA id 641E424000E;
-        Fri, 18 Sep 2020 14:25:10 +0000 (UTC)
-From:   Maxime Chevallier <maxime.chevallier@bootlin.com>
-To:     Mauro Carvalho Chehab <mchehab@kernel.org>,
-        Rob Herring <robh+dt@kernel.org>,
-        Mark Rutland <mark.rutland@arm.com>,
-        Heiko Stuebner <heiko@sntech.de>,
-        Hans Verkuil <hverkuil-cisco@xs4all.nl>,
-        Laurent Pinchart <laurent.pinchart@ideasonboard.com>
-Cc:     Maxime Chevallier <maxime.chevallier@bootlin.com>,
-        linux-media@vger.kernel.org, devicetree@vger.kernel.org,
-        linux-arm-kernel@lists.infradead.org, linux-kernel@vger.kernel.org,
-        Thomas Petazzoni <thomas.petazzoni@bootlin.com>,
-        Miquel Raynal <miquel.raynal@bootlin.com>,
-        Paul Kocialkowski <paul.kocialkowski@bootlin.com>
-Subject: [PATCH 0/3] media: Add support for the Techwell TW9900 video decoder
-Date:   Fri, 18 Sep 2020 16:24:19 +0200
-Message-Id: <20200918142422.1086555-1-maxime.chevallier@bootlin.com>
-X-Mailer: git-send-email 2.25.4
-MIME-Version: 1.0
-Content-Transfer-Encoding: 8bit
+        id S1726130AbgIRO5R (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Fri, 18 Sep 2020 10:57:17 -0400
+Received: from m42-11.mailgun.net ([69.72.42.11]:52489 "EHLO
+        m42-11.mailgun.net" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
+        with ESMTP id S1726129AbgIRO5R (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Fri, 18 Sep 2020 10:57:17 -0400
+DKIM-Signature: a=rsa-sha256; v=1; c=relaxed/relaxed; d=mg.codeaurora.org; q=dns/txt;
+ s=smtp; t=1600441036; h=Message-Id: Date: Subject: Cc: To: From:
+ Sender; bh=VCaK/PjSr2IoSDpVniOKKKF8ojfJ6Hs8WRbfiUdiwk8=; b=Xr8SAxeFyC+ccLNtTgtpu5dc7KFIADE2VDHnX2j6KXNn38b/uBzSChAgy33Ju6ApzkndPDi2
+ A86S/lbUN6oDX6rG9ZaDK0kCKEinrPBDX0AZAbNGKYJAft5Kz4AYFv6S7vWfeHqbW27lwp06
+ dmUPxsacd9F0qUYwU9BEDjx/u8g=
+X-Mailgun-Sending-Ip: 69.72.42.11
+X-Mailgun-Sid: WyI1YmJiNiIsICJkZXZpY2V0cmVlQHZnZXIua2VybmVsLm9yZyIsICJiZTllNGEiXQ==
+Received: from smtp.codeaurora.org
+ (ec2-35-166-182-171.us-west-2.compute.amazonaws.com [35.166.182.171]) by
+ smtp-out-n03.prod.us-west-2.postgun.com with SMTP id
+ 5f64c9774a8a578ddc320164 (version=TLS1.2,
+ cipher=TLS_ECDHE_RSA_WITH_AES_128_GCM_SHA256); Fri, 18 Sep 2020 14:51:35
+ GMT
+Received: by smtp.codeaurora.org (Postfix, from userid 1001)
+        id 08CD9C433C8; Fri, 18 Sep 2020 14:51:35 +0000 (UTC)
+X-Spam-Checker-Version: SpamAssassin 3.4.0 (2014-02-07) on
+        aws-us-west-2-caf-mail-1.web.codeaurora.org
+X-Spam-Level: 
+X-Spam-Status: No, score=-2.9 required=2.0 tests=ALL_TRUSTED,BAYES_00,SPF_FAIL,
+        URIBL_BLOCKED autolearn=no autolearn_force=no version=3.4.0
+Received: from hyd-lnxbld210.qualcomm.com (unknown [202.46.22.19])
+        (using TLSv1.2 with cipher ECDHE-RSA-AES128-SHA256 (128/128 bits))
+        (No client certificate requested)
+        (Authenticated sender: srivasam)
+        by smtp.codeaurora.org (Postfix) with ESMTPSA id 0F58FC433C8;
+        Fri, 18 Sep 2020 14:51:30 +0000 (UTC)
+DMARC-Filter: OpenDMARC Filter v1.3.2 smtp.codeaurora.org 0F58FC433C8
+Authentication-Results: aws-us-west-2-caf-mail-1.web.codeaurora.org; dmarc=none (p=none dis=none) header.from=codeaurora.org
+Authentication-Results: aws-us-west-2-caf-mail-1.web.codeaurora.org; spf=fail smtp.mailfrom=srivasam@codeaurora.org
+From:   Srinivasa Rao Mandadapu <srivasam@codeaurora.org>
+To:     agross@kernel.org, bjorn.andersson@linaro.org, robh+dt@kernel.org,
+        linux-arm-msm@vger.kernel.org, devicetree@vger.kernel.org,
+        linux-kernel@vger.kernel.org, rohitkr@codeaurora.org,
+        srinivas.kandagatla@linaro.org
+Cc:     Ajit Pandey <ajitp@codeaurora.org>,
+        Srinivasa Rao Mandadapu <srivasam@codeaurora.org>,
+        V Sujith Kumar Reddy <vsujithk@codeaurora.org>
+Subject: [PATCH] arm64: dts: qcom: sc7180-trogdor: Add lpass dai link for I2S driver
+Date:   Fri, 18 Sep 2020 20:21:18 +0530
+Message-Id: <1600440678-2137-1-git-send-email-srivasam@codeaurora.org>
+X-Mailer: git-send-email 2.7.4
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-Hi everyone,
+From: Ajit Pandey <ajitp@codeaurora.org>
 
-Here's a series to add basic support for the Techwell TW9900 low-power
-video decoder. This decoder support PAL, NTSC and SECAM inputs, with a
-built-in comb filter and automatic input standard detection.
+Add dai link for supporting lpass I2S driver, which is used
+for audio capture and playback.
+Add lpass-cpu node with  pin controls and i2s primary
+and secondary dai-links
 
-This series was based on previous work done by Rockchip, and is based on
-vendor code. I apologise if there are some rough edges remaining in this
-driver, as I'm not yet fully familiar with the media and V4L2
-frameworks, so any review is appreciated.
+Signed-off-by: Srinivasa Rao Mandadapu <srivasam@codeaurora.org>
+Signed-off-by: V Sujith Kumar Reddy <vsujithk@codeaurora.org>
+---
+ arch/arm64/boot/dts/qcom/sc7180-trogdor.dtsi | 59 ++++++++++++++++++++++++++++
+ 1 file changed, 59 insertions(+)
 
-This series adds basic support for NTSC and PAL B/D/G/H/I, along with
-some very basic controls for brightness and contrast.
-
-Thanks,
-
-Maxime
-
-Maxime Chevallier (3):
-  dt-bindings: vendor-prefixes: Add techwell vendor prefix
-  media: dt-bindings: media: i2c: Add bindings for TW9900
-  media: i2c: Introduce a driver for the Techwell TW9900 decoder
-
- .../devicetree/bindings/media/i2c/tw9900.yaml |  59 ++
- .../devicetree/bindings/vendor-prefixes.yaml  |   2 +
- drivers/media/i2c/Kconfig                     |   9 +
- drivers/media/i2c/Makefile                    |   1 +
- drivers/media/i2c/tw9900.c                    | 671 ++++++++++++++++++
- 5 files changed, 742 insertions(+)
- create mode 100644 Documentation/devicetree/bindings/media/i2c/tw9900.yaml
- create mode 100644 drivers/media/i2c/tw9900.c
-
+diff --git a/arch/arm64/boot/dts/qcom/sc7180-trogdor.dtsi b/arch/arm64/boot/dts/qcom/sc7180-trogdor.dtsi
+index bf87558..5724982 100644
+--- a/arch/arm64/boot/dts/qcom/sc7180-trogdor.dtsi
++++ b/arch/arm64/boot/dts/qcom/sc7180-trogdor.dtsi
+@@ -220,6 +220,44 @@
+ 			max-brightness = <1023>;
+ 		};
+ 	};
++
++	sound {
++		compatible = "qcom,sc7180-sndcard";
++		model = "sc7180-snd-card";
++
++		audio-routing =
++			"Headphone Jack", "HPOL",
++			"Headphone Jack", "HPOR";
++
++		audio-jack = <&alc5682>;
++
++		#address-cells = <1>;
++		#size-cells = <0>;
++
++		dai-link@0 {
++			link-name = "MultiMedia0";
++			reg = <0>;
++			cpu {
++				sound-dai = <&lpass_cpu 0>;
++			};
++
++			codec {
++				sound-dai = <&alc5682 0>;
++			};
++		};
++
++		dai-link@1 {
++			link-name = "MultiMedia1";
++			reg = <1>;
++			cpu {
++				sound-dai = <&lpass_cpu 1>;
++			};
++
++			codec {
++				sound-dai = <&max98357a>;
++			};
++		};
++	};
+ };
+ 
+ &qfprom {
+@@ -725,6 +763,27 @@ hp_i2c: &i2c9 {
+ 	modem-init;
+ };
+ 
++&lpass_cpu {
++	status = "okay";
++
++	pinctrl-names = "default";
++	pinctrl-0 = <&sec_mi2s_active &pri_mi2s_active &pri_mi2s_mclk_active>;
++
++	#address-cells = <1>;
++	#size-cells = <0>;
++
++	mi2s-primary@0 {
++		reg = <MI2S_PRIMARY>;
++		qcom,playback-sd-lines = <1>;
++		qcom,capture-sd-lines = <0>;
++	};
++
++	mi2s-secondary@1 {
++		reg = <MI2S_SECONDARY>;
++		qcom,playback-sd-lines = <0>;
++	};
++};
++
+ &mdp {
+ 	status = "okay";
+ };
 -- 
-2.25.4
+Qualcomm India Private Limited, on behalf of Qualcomm Innovation Center, Inc.,
+is a member of Code Aurora Forum, a Linux Foundation Collaborative Project.
 
