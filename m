@@ -2,103 +2,125 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from vger.kernel.org (vger.kernel.org [23.128.96.18])
-	by mail.lfdr.de (Postfix) with ESMTP id 5BFAC27004D
-	for <lists+devicetree@lfdr.de>; Fri, 18 Sep 2020 16:57:13 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTP id 5D4D22700F9
+	for <lists+devicetree@lfdr.de>; Fri, 18 Sep 2020 17:29:27 +0200 (CEST)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S1726629AbgIRO5M (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Fri, 18 Sep 2020 10:57:12 -0400
-Received: from so254-54.mailgun.net ([198.61.254.54]:21383 "EHLO
-        so254-54.mailgun.net" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S1726130AbgIRO5L (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Fri, 18 Sep 2020 10:57:11 -0400
-DKIM-Signature: a=rsa-sha256; v=1; c=relaxed/relaxed; d=mg.codeaurora.org; q=dns/txt;
- s=smtp; t=1600441031; h=References: In-Reply-To: Message-Id: Date:
- Subject: Cc: To: From: Sender;
- bh=t+7g+pEV5SjJC4AvV+pwWDH02tzEERCBUCn9AGMC6Pw=; b=xIxI3+K/LOBR0H+NLf5Fcl3JJmpgK/lV6dnq5BgAYLaVqQWvJI2FauOEBi7DB9i/mMzAATES
- E3V+nH57x1J1wNkQp5ha5msWe/82Yf+Ad6ZstKlnzYnnKpGy7pMExqfHJARNWKsRn4FF329q
- oZJuGX+M1L7OWu/xnXFmKSNrMaY=
-X-Mailgun-Sending-Ip: 198.61.254.54
-X-Mailgun-Sid: WyI1YmJiNiIsICJkZXZpY2V0cmVlQHZnZXIua2VybmVsLm9yZyIsICJiZTllNGEiXQ==
-Received: from smtp.codeaurora.org
- (ec2-35-166-182-171.us-west-2.compute.amazonaws.com [35.166.182.171]) by
- smtp-out-n05.prod.us-east-1.postgun.com with SMTP id
- 5f64cac60566e2dcd77cf8f4 (version=TLS1.2,
- cipher=TLS_ECDHE_RSA_WITH_AES_128_GCM_SHA256); Fri, 18 Sep 2020 14:57:10
- GMT
-Received: by smtp.codeaurora.org (Postfix, from userid 1001)
-        id 8C024C433CB; Fri, 18 Sep 2020 14:57:09 +0000 (UTC)
-X-Spam-Checker-Version: SpamAssassin 3.4.0 (2014-02-07) on
-        aws-us-west-2-caf-mail-1.web.codeaurora.org
-X-Spam-Level: 
-X-Spam-Status: No, score=-2.9 required=2.0 tests=ALL_TRUSTED,BAYES_00,SPF_FAIL,
-        URIBL_BLOCKED autolearn=no autolearn_force=no version=3.4.0
-Received: from hyd-lnxbld210.qualcomm.com (unknown [202.46.22.19])
-        (using TLSv1.2 with cipher ECDHE-RSA-AES128-SHA256 (128/128 bits))
-        (No client certificate requested)
-        (Authenticated sender: srivasam)
-        by smtp.codeaurora.org (Postfix) with ESMTPSA id E9E1BC433CB;
-        Fri, 18 Sep 2020 14:57:05 +0000 (UTC)
-DMARC-Filter: OpenDMARC Filter v1.3.2 smtp.codeaurora.org E9E1BC433CB
-Authentication-Results: aws-us-west-2-caf-mail-1.web.codeaurora.org; dmarc=none (p=none dis=none) header.from=codeaurora.org
-Authentication-Results: aws-us-west-2-caf-mail-1.web.codeaurora.org; spf=fail smtp.mailfrom=srivasam@codeaurora.org
-From:   Srinivasa Rao Mandadapu <srivasam@codeaurora.org>
-To:     agross@kernel.org, bjorn.andersson@linaro.org, robh+dt@kernel.org,
-        linux-arm-msm@vger.kernel.org, devicetree@vger.kernel.org,
-        linux-kernel@vger.kernel.org, rohitkr@codeaurora.org,
-        srinivas.kandagatla@linaro.org
-Cc:     V Sujith Kumar Reddy <vsujithk@codeaurora.org>,
-        Srinivasa Rao Mandadapu <srivasam@codeaurora.org>
-Subject: [PATCH 2/2] arm64: dts: qcom: sc7180-trogdor: Add lpass dai link for HDMI
-Date:   Fri, 18 Sep 2020 20:26:47 +0530
-Message-Id: <1600441007-2427-3-git-send-email-srivasam@codeaurora.org>
-X-Mailer: git-send-email 2.7.4
-In-Reply-To: <1600441007-2427-1-git-send-email-srivasam@codeaurora.org>
-References: <1600441007-2427-1-git-send-email-srivasam@codeaurora.org>
+        id S1726367AbgIRP30 (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Fri, 18 Sep 2020 11:29:26 -0400
+Received: from mslow2.mail.gandi.net ([217.70.178.242]:43988 "EHLO
+        mslow2.mail.gandi.net" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
+        with ESMTP id S1726174AbgIRP30 (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Fri, 18 Sep 2020 11:29:26 -0400
+Received: from relay10.mail.gandi.net (unknown [217.70.178.230])
+        by mslow2.mail.gandi.net (Postfix) with ESMTP id 665143AF7DB;
+        Fri, 18 Sep 2020 14:25:44 +0000 (UTC)
+Received: from pc-2.home (lfbn-tou-1-1532-46.w90-89.abo.wanadoo.fr [90.89.95.46])
+        (Authenticated sender: maxime.chevallier@bootlin.com)
+        by relay10.mail.gandi.net (Postfix) with ESMTPSA id C88D9240012;
+        Fri, 18 Sep 2020 14:25:19 +0000 (UTC)
+From:   Maxime Chevallier <maxime.chevallier@bootlin.com>
+To:     Mauro Carvalho Chehab <mchehab@kernel.org>,
+        Rob Herring <robh+dt@kernel.org>,
+        Mark Rutland <mark.rutland@arm.com>,
+        Heiko Stuebner <heiko@sntech.de>,
+        Hans Verkuil <hverkuil-cisco@xs4all.nl>,
+        Laurent Pinchart <laurent.pinchart@ideasonboard.com>
+Cc:     Maxime Chevallier <maxime.chevallier@bootlin.com>,
+        linux-media@vger.kernel.org, devicetree@vger.kernel.org,
+        linux-arm-kernel@lists.infradead.org, linux-kernel@vger.kernel.org,
+        Thomas Petazzoni <thomas.petazzoni@bootlin.com>,
+        Miquel Raynal <miquel.raynal@bootlin.com>,
+        Paul Kocialkowski <paul.kocialkowski@bootlin.com>
+Subject: [PATCH 2/3] media: dt-bindings: media: i2c: Add bindings for TW9900
+Date:   Fri, 18 Sep 2020 16:24:21 +0200
+Message-Id: <20200918142422.1086555-3-maxime.chevallier@bootlin.com>
+X-Mailer: git-send-email 2.25.4
+In-Reply-To: <20200918142422.1086555-1-maxime.chevallier@bootlin.com>
+References: <20200918142422.1086555-1-maxime.chevallier@bootlin.com>
+MIME-Version: 1.0
+Content-Transfer-Encoding: 8bit
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-From: V Sujith Kumar Reddy <vsujithk@codeaurora.org>
+The Techwell TW9900 is a video decoder supporting multiple input
+standards, such as PAL, NTSC and SECAM, and outputs a BT.656 video
+signal.
 
-Add dai link in sc7180-trogdor.dtsi for supporting audio over DP
+It's designed to be low-power, posesses some features such as a
+programmable comb-filter, and automatic input standard detection.
 
-Signed-off-by: Srinivasa Rao Mandadapu <srivasam@codeaurora.org>
-Signed-off-by: V Sujith Kumar Reddy <vsujithk@codeaurora.org>
+Signed-off-by: Maxime Chevallier <maxime.chevallier@bootlin.com>
 ---
- arch/arm64/boot/dts/qcom/sc7180-trogdor.dtsi | 12 ++++++++++++
- 1 file changed, 12 insertions(+)
+ .../devicetree/bindings/media/i2c/tw9900.yaml | 59 +++++++++++++++++++
+ 1 file changed, 59 insertions(+)
+ create mode 100644 Documentation/devicetree/bindings/media/i2c/tw9900.yaml
 
-diff --git a/arch/arm64/boot/dts/qcom/sc7180-trogdor.dtsi b/arch/arm64/boot/dts/qcom/sc7180-trogdor.dtsi
-index 5724982..adbbb2d 100644
---- a/arch/arm64/boot/dts/qcom/sc7180-trogdor.dtsi
-+++ b/arch/arm64/boot/dts/qcom/sc7180-trogdor.dtsi
-@@ -230,6 +230,7 @@
- 			"Headphone Jack", "HPOR";
- 
- 		audio-jack = <&alc5682>;
-+		hdmi-jack = <&msm_dp>;
- 
- 		#address-cells = <1>;
- 		#size-cells = <0>;
-@@ -257,6 +258,17 @@
- 				sound-dai = <&max98357a>;
- 			};
- 		};
-+		dai-link@2 {
-+			link-name = "MultiMedia2";
-+			reg = <2>;
-+			cpu {
-+				sound-dai = <&lpass_cpu 2>;
-+			};
+diff --git a/Documentation/devicetree/bindings/media/i2c/tw9900.yaml b/Documentation/devicetree/bindings/media/i2c/tw9900.yaml
+new file mode 100644
+index 000000000000..fdc2c35875aa
+--- /dev/null
++++ b/Documentation/devicetree/bindings/media/i2c/tw9900.yaml
+@@ -0,0 +1,59 @@
++# SPDX-License-Identifier: (GPL-2.0-only OR BSD-2-Clause)
++%YAML 1.2
++---
++$id: http://devicetree.org/schemas/media/i2c/tw9900.yaml#
++$schema: http://devicetree.org/meta-schemas/core.yaml#
 +
-+			codec {
-+				sound-dai = <&msm_dp>;
-+			};
-+		};
- 	};
- };
- 
++title: Techwell TW9900 NTSC/PAL/SECAM video decoder
++
++maintainers:
++  - Maxime Chevallier <maxime.chevallier@bootlin.com>
++
++description:
++  The tw9900 is a multi-standard video decoder, supporting NTSC, PAL and SECAM
++  standards with auto-detection features.
++
++properties:
++  compatible:
++    items:
++      - enum:
++          - techwell,tw9900
++
++  reg:
++    maxItems: 1
++
++  vdd-supply:
++    description: VDD power supply
++
++  port:
++    type: object
++    description:
++      A node containing a single endpoint as doucmented in
++      Documentation/devicetree/bindings/media/video-interfaces.txt
++
++additionalProperties: false
++
++required:
++  - compatible
++  - reg
++
++examples:
++  - |
++    i2c {
++            #address-cells = <1>;
++            #size-cells = <0>;
++
++            tw9900: tw9900@44 {
++                    compatible = "techwell,tw9900";
++                    reg = <0x44>;
++
++                    vdd-supply = <&tw9900_supply>;
++                    reset-gpio = <&gpio2 RK_PB5 GPIO_ACTIVE_LOW>;
++
++                    port {
++                            tw9900_out: endpoint {
++                                    remote-endpoint = <&vip_in>;
++                            };
++                    };
++            };
++    };
 -- 
-Qualcomm India Private Limited, on behalf of Qualcomm Innovation Center, Inc.,
-is a member of Code Aurora Forum, a Linux Foundation Collaborative Project.
+2.25.4
 
