@@ -2,64 +2,87 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from vger.kernel.org (vger.kernel.org [23.128.96.18])
-	by mail.lfdr.de (Postfix) with ESMTP id C5E3526F9DC
-	for <lists+devicetree@lfdr.de>; Fri, 18 Sep 2020 12:05:46 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTP id EC1B626F9CF
+	for <lists+devicetree@lfdr.de>; Fri, 18 Sep 2020 12:04:33 +0200 (CEST)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S1726473AbgIRKFl (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Fri, 18 Sep 2020 06:05:41 -0400
-Received: from mailgw02.mediatek.com ([210.61.82.184]:10275 "EHLO
-        mailgw02.mediatek.com" rhost-flags-OK-FAIL-OK-FAIL) by vger.kernel.org
-        with ESMTP id S1725874AbgIRKFl (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Fri, 18 Sep 2020 06:05:41 -0400
-X-UUID: 71acfbe5a8ca4eda9afe2e1c83c49ae7-20200918
-DKIM-Signature: v=1; a=rsa-sha256; q=dns/txt; c=relaxed/relaxed; d=mediatek.com; s=dk;
-        h=Content-Transfer-Encoding:Content-Type:MIME-Version:References:In-Reply-To:Message-ID:Date:Subject:CC:To:From; bh=DTzHJ0x3J7AjDNKHrUyRTj2CRSv0RSJyT9HCWPEn1sY=;
-        b=uYLROxXBCzgU0DUKwJTITwNdgQbPEt7g0lOwclFMaWCZg6HTSrc6ZUpaquAVcQnfJLLpbJACzTPi/fSsBt/yGLmYivEGwQe8hj19ezM2AdjTdGu4xEZ3bOrMyxpqf4RdYFUsXt0MQBdpWETq9Ge+9gjb1yALX7QdrmwFhtmwSLo=;
-X-UUID: 71acfbe5a8ca4eda9afe2e1c83c49ae7-20200918
-Received: from mtkexhb01.mediatek.inc [(172.21.101.102)] by mailgw02.mediatek.com
-        (envelope-from <shane.chien@mediatek.com>)
-        (Cellopoint E-mail Firewall v4.1.14 Build 0819 with TLSv1.2 ECDHE-RSA-AES256-SHA384 256/256)
-        with ESMTP id 178364160; Fri, 18 Sep 2020 18:00:37 +0800
-Received: from mtkcas08.mediatek.inc (172.21.101.126) by
- mtkmbs07n1.mediatek.inc (172.21.101.16) with Microsoft SMTP Server (TLS) id
- 15.0.1497.2; Fri, 18 Sep 2020 18:00:35 +0800
-Received: from mtkswgap22.mediatek.inc (172.21.77.33) by mtkcas08.mediatek.inc
- (172.21.101.73) with Microsoft SMTP Server id 15.0.1497.2 via Frontend
- Transport; Fri, 18 Sep 2020 18:00:35 +0800
-From:   Shane Chien <shane.chien@mediatek.com>
-To:     Matthias Brugger <matthias.bgg@gmail.com>,
-        Mark Brown <broonie@kernel.org>
-CC:     <linux-kernel@vger.kernel.org>,
-        <linux-mediatek@lists.infradead.org>, <devicetree@vger.kernel.org>,
-        <wsd_upstream@mediatek.com>, <jiaxin.yu@mediatek.com>,
-        <eason.yen@mediatek.com>, <shane.chien@mediatek.com>
-Subject: [PATCH] ASoC: Use memset_io to access I/O memory
-Date:   Fri, 18 Sep 2020 18:00:19 +0800
-Message-ID: <1600423219-29058-2-git-send-email-shane.chien@mediatek.com>
-X-Mailer: git-send-email 1.7.9.5
-In-Reply-To: <1600423219-29058-1-git-send-email-shane.chien@mediatek.com>
-References: <1600423219-29058-1-git-send-email-shane.chien@mediatek.com>
+        id S1726118AbgIRKEV (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Fri, 18 Sep 2020 06:04:21 -0400
+Received: from mail.kernel.org ([198.145.29.99]:50364 "EHLO mail.kernel.org"
+        rhost-flags-OK-OK-OK-OK) by vger.kernel.org with ESMTP
+        id S1725941AbgIRKEV (ORCPT <rfc822;devicetree@vger.kernel.org>);
+        Fri, 18 Sep 2020 06:04:21 -0400
+Received: from localhost (fw-tnat.cambridge.arm.com [217.140.96.140])
+        (using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
+        (No client certificate requested)
+        by mail.kernel.org (Postfix) with ESMTPSA id 4627F208B8;
+        Fri, 18 Sep 2020 10:04:20 +0000 (UTC)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=kernel.org;
+        s=default; t=1600423460;
+        bh=rHX2SJofq2IV2gFxJYFKOzylhVaYmIes7RqnZSio3jI=;
+        h=Date:From:To:Cc:Subject:References:In-Reply-To:From;
+        b=kG8rJC4Cp3hvPot3IGhEDxr/XcztZKD0zBEoAcGY/UDvmDIIJspf24TsdjkIGywuC
+         zSbCqfERK3B448QOXLpaLB45J6Tl3VodqOmJvcVMwMEsg5OO6S6oEzLyXS/PNKoz0l
+         wPU+1g6T84vkWW85jwFPbT0tY9oOlsmRulj+eVfQ=
+Date:   Fri, 18 Sep 2020 11:03:30 +0100
+From:   Mark Brown <broonie@kernel.org>
+To:     Guenter Roeck <linux@roeck-us.net>
+Cc:     Alban Bedel <alban.bedel@aerq.com>, linux-hwmon@vger.kernel.org,
+        Jean Delvare <jdelvare@suse.com>,
+        Rob Herring <robh+dt@kernel.org>,
+        Liam Girdwood <lgirdwood@gmail.com>,
+        devicetree@vger.kernel.org, linux-kernel@vger.kernel.org
+Subject: Re: [PATCH 3/3] hwmon: (lm75) Add regulator support
+Message-ID: <20200918100330.GA5703@sirena.org.uk>
+References: <20200917101819.32045-1-alban.bedel@aerq.com>
+ <20200917101819.32045-4-alban.bedel@aerq.com>
+ <20200917110053.GA4755@sirena.org.uk>
+ <e5863e71-2531-b0de-c432-4bc2967d56c8@roeck-us.net>
 MIME-Version: 1.0
-Content-Type: text/plain
-X-MTK:  N
-Content-Transfer-Encoding: base64
+Content-Type: multipart/signed; micalg=pgp-sha512;
+        protocol="application/pgp-signature"; boundary="fdj2RfSjLxBAspz7"
+Content-Disposition: inline
+In-Reply-To: <e5863e71-2531-b0de-c432-4bc2967d56c8@roeck-us.net>
+X-Cookie: Beware of geeks bearing graft.
+User-Agent: Mutt/1.10.1 (2018-07-13)
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-RnJvbTogIlNoYW5lLkNoaWVuIiA8c2hhbmUuY2hpZW5AbWVkaWF0ZWsuY29tPg0KDQpVc2UgbWVt
-c2V0X2lvIHRvIGFjY2VzcyBJL08gbWVtb3J5LCBpbnN0ZWFkIG9mDQptZW1zZXQuDQoNClNpZ25l
-ZC1vZmYtYnk6IFNoYW5lLkNoaWVuIDxzaGFuZS5jaGllbkBtZWRpYXRlay5jb20+DQotLS0NCiBz
-b3VuZC9jb3JlL3BjbV9uYXRpdmUuYyB8ICAgIDIgKy0NCiAxIGZpbGUgY2hhbmdlZCwgMSBpbnNl
-cnRpb24oKyksIDEgZGVsZXRpb24oLSkNCg0KZGlmZiAtLWdpdCBhL3NvdW5kL2NvcmUvcGNtX25h
-dGl2ZS5jIGIvc291bmQvY29yZS9wY21fbmF0aXZlLmMNCmluZGV4IDllMGIyZDcuLmE0ZWZhODQg
-MTAwNjQ0DQotLS0gYS9zb3VuZC9jb3JlL3BjbV9uYXRpdmUuYw0KKysrIGIvc291bmQvY29yZS9w
-Y21fbmF0aXZlLmMNCkBAIC03NTYsNyArNzU2LDcgQEAgc3RhdGljIGludCBzbmRfcGNtX2h3X3Bh
-cmFtcyhzdHJ1Y3Qgc25kX3BjbV9zdWJzdHJlYW0gKnN1YnN0cmVhbSwNCiANCiAJLyogY2xlYXIg
-dGhlIGJ1ZmZlciBmb3IgYXZvaWRpbmcgcG9zc2libGUga2VybmVsIGluZm8gbGVha3MgKi8NCiAJ
-aWYgKHJ1bnRpbWUtPmRtYV9hcmVhICYmICFzdWJzdHJlYW0tPm9wcy0+Y29weV91c2VyKQ0KLQkJ
-bWVtc2V0KHJ1bnRpbWUtPmRtYV9hcmVhLCAwLCBydW50aW1lLT5kbWFfYnl0ZXMpOw0KKwkJbWVt
-c2V0X2lvKHJ1bnRpbWUtPmRtYV9hcmVhLCAwLCBydW50aW1lLT5kbWFfYnl0ZXMpOw0KIA0KIAlz
-bmRfcGNtX3RpbWVyX3Jlc29sdXRpb25fY2hhbmdlKHN1YnN0cmVhbSk7DQogCXNuZF9wY21fc2V0
-X3N0YXRlKHN1YnN0cmVhbSwgU05EUlZfUENNX1NUQVRFX1NFVFVQKTsNCi0tIA0KMS43LjkuNQ0K
 
+--fdj2RfSjLxBAspz7
+Content-Type: text/plain; charset=us-ascii
+Content-Disposition: inline
+
+On Thu, Sep 17, 2020 at 07:04:51PM -0700, Guenter Roeck wrote:
+> On 9/17/20 4:00 AM, Mark Brown wrote:
+> > On Thu, Sep 17, 2020 at 12:18:19PM +0200, Alban Bedel wrote:
+
+> >> +	data->vs = devm_regulator_get_optional(dev, "vs");
+> >> +	if (IS_ERR(data->vs)) {
+
+> > Unless the device can work without power you should not be using
+> > regulator_get_optional().
+
+> The driver works today without regulator, and needs to continue
+> doing so.
+
+And it will continue to do so if it uses the normal regulator API, it
+will as ever ensure that if no regulator is provided by the firmware a
+dummy is provided.
+
+--fdj2RfSjLxBAspz7
+Content-Type: application/pgp-signature; name="signature.asc"
+
+-----BEGIN PGP SIGNATURE-----
+
+iQEzBAABCgAdFiEEreZoqmdXGLWf4p/qJNaLcl1Uh9AFAl9khfEACgkQJNaLcl1U
+h9Bepwf9EYuxEZIeHPaK2Y0tAjFZp9YXlbTfjm444mUIeGVycPVpixaad4WmaFfx
+GwhiOO9mbYjzskCaeTjuY365KEofDOqY68qR1D1PmX0inyYE6WQfS+gYhDaS/JFd
+LKLOM6oSst+LamCt4GljU5hPd8khylSGriDqAZey/HArmFsjiMjf/P/+kHoe6NHy
+hhDqj2FY47DZq5OfJgHnOHGWZckVlJhzprcBhXJI1fbgzsWrwN/D0yDdBNj2c6LE
+P3fPIoM4nTZCfBLydMrMoDDeSmhYb7xAeMFeeaXAVUAfbo6JJjOXb1FySeThLvAv
+H+r0E+jRWuNtHjjSZli7ckZzBOZ0eQ==
+=dCm7
+-----END PGP SIGNATURE-----
+
+--fdj2RfSjLxBAspz7--
