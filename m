@@ -2,116 +2,122 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from vger.kernel.org (vger.kernel.org [23.128.96.18])
-	by mail.lfdr.de (Postfix) with ESMTP id EA1392703E1
-	for <lists+devicetree@lfdr.de>; Fri, 18 Sep 2020 20:24:16 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTP id 6B22B270403
+	for <lists+devicetree@lfdr.de>; Fri, 18 Sep 2020 20:31:34 +0200 (CEST)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S1726139AbgIRSYP (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Fri, 18 Sep 2020 14:24:15 -0400
-Received: from foss.arm.com ([217.140.110.172]:52044 "EHLO foss.arm.com"
-        rhost-flags-OK-OK-OK-OK) by vger.kernel.org with ESMTP
-        id S1726118AbgIRSYP (ORCPT <rfc822;devicetree@vger.kernel.org>);
-        Fri, 18 Sep 2020 14:24:15 -0400
-Received: from usa-sjc-imap-foss1.foss.arm.com (unknown [10.121.207.14])
-        by usa-sjc-mx-foss1.foss.arm.com (Postfix) with ESMTP id D210D30E;
-        Fri, 18 Sep 2020 11:24:14 -0700 (PDT)
-Received: from e121345-lin.cambridge.arm.com (e121345-lin.cambridge.arm.com [10.1.196.37])
-        by usa-sjc-imap-foss1.foss.arm.com (Postfix) with ESMTPA id 7CDD93F718;
-        Fri, 18 Sep 2020 11:24:13 -0700 (PDT)
-From:   Robin Murphy <robin.murphy@arm.com>
-To:     will@kernel.org, mark.rutland@arm.com,
-        linux-arm-kernel@lists.infradead.org
-Cc:     devicetree@vger.kernel.org, alisaidi@amazon.com, tsahee@amazon.com,
-        harb@amperecomputing.com, tuanphan@os.amperecomputing.com,
-        james.yang@arm.com, patrik.berglund@arm.com
-Subject: [PATCH v2.1 1/3] perf: Add Arm CMN-600 DT binding
-Date:   Fri, 18 Sep 2020 19:24:09 +0100
-Message-Id: <3647765303e8936d45a69fe7c1f92b8d1b45de4b.1600452762.git.robin.murphy@arm.com>
-X-Mailer: git-send-email 2.28.0.dirty
-In-Reply-To: <cover.1600357241.git.robin.murphy@arm.com>
-References: <cover.1600357241.git.robin.murphy@arm.com>
+        id S1726174AbgIRSbY (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Fri, 18 Sep 2020 14:31:24 -0400
+Received: from lindbergh.monkeyblade.net ([23.128.96.19]:36736 "EHLO
+        lindbergh.monkeyblade.net" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
+        with ESMTP id S1726115AbgIRSbX (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Fri, 18 Sep 2020 14:31:23 -0400
+Received: from mail-wm1-x341.google.com (mail-wm1-x341.google.com [IPv6:2a00:1450:4864:20::341])
+        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 51BB1C0613CE;
+        Fri, 18 Sep 2020 11:31:23 -0700 (PDT)
+Received: by mail-wm1-x341.google.com with SMTP id z9so6501328wmk.1;
+        Fri, 18 Sep 2020 11:31:23 -0700 (PDT)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+        d=gmail.com; s=20161025;
+        h=from:to:cc:references:in-reply-to:subject:date:message-id
+         :mime-version:content-transfer-encoding:thread-index
+         :content-language;
+        bh=aq4S41RXE1vAQKwL/QYWeFUP5HTyFU3O/6rS50qdZsE=;
+        b=fTNJQYUPRjCv2jqehMXxCqoGu4qw4qcHntIzB6h/UkQq6e+wiXyKftBV4EgCPvHw53
+         LJzF6I7V2XJNSiiyZIQiTDyTuX+oey6c9gME8nBPQ3jpc3A+DsjTWkq16BC7SMYywtEd
+         7HroLi6axJlnSoWmbbkU+JHcZOwpWdfnSyagXLieeDNXPKJYgpI2xgEshv/URf4HCyc8
+         nI1WCxEBuxh7sfUEKHeng/28wAEP5EzruotnCQ5XFbizYjfuwfPyjCguXwQLaFDsWOPi
+         Um2/1v0Sip/meE/W1PMmB6KHrCrQ4HlvDihF362x19MMyR26WSLNJNA1kCySf4dH60+N
+         QmSw==
+X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+        d=1e100.net; s=20161025;
+        h=x-gm-message-state:from:to:cc:references:in-reply-to:subject:date
+         :message-id:mime-version:content-transfer-encoding:thread-index
+         :content-language;
+        bh=aq4S41RXE1vAQKwL/QYWeFUP5HTyFU3O/6rS50qdZsE=;
+        b=huQJx6kb7nsqVQf989CYTg1VITUSxOqndOB00kvi6jjNW/AeOezGG8PlmiboBN5PGx
+         odQlcAh0IuqXDNVkVPN/J5TbugF0DNf1f4dTt/tw1ZB86a1HJcZqY+rC6AAPdc4n5sOD
+         VOmd7Yy0sZ8R+LiZCnSL/pFIp4uIN05RUvq0XtOpRXm7aG+OTZwfssdYjPCYmp5ipr4k
+         GpJpqsFhA1Qy99MLbP0oS/IQsexJhc40P2+IjZC4Yp7sP4QSfrJXDmC/QuSWkOvYzMX9
+         YgM06npkfnopAzjckc/QUYHuFsK0GHWH2gIILCQ8OpfZkh27BO1AR8mtCruO/QPyJXOc
+         D+8w==
+X-Gm-Message-State: AOAM5314scLH2t3VkJd0ASC63QB0r8Bpd317LF4Efa6cM7aKxEbH2tGS
+        /WyaZbmMH/RTrzG55p1OcsM=
+X-Google-Smtp-Source: ABdhPJy3Ubjg/Kg+A3AeGariVlXaUlhZ7Hiy38mgi+9UBFB8tesMKZR+49HLkc2mbq7LGh/ZOWVzwA==
+X-Received: by 2002:a7b:c3c8:: with SMTP id t8mr16894073wmj.101.1600453881837;
+        Fri, 18 Sep 2020 11:31:21 -0700 (PDT)
+Received: from AnsuelXPS (93-39-149-95.ip76.fastwebnet.it. [93.39.149.95])
+        by smtp.gmail.com with ESMTPSA id d9sm61650wmb.30.2020.09.18.11.31.20
+        (version=TLS1_2 cipher=ECDHE-ECDSA-AES128-GCM-SHA256 bits=128/128);
+        Fri, 18 Sep 2020 11:31:20 -0700 (PDT)
+From:   <ansuelsmth@gmail.com>
+To:     "'Christian Lamparter'" <chunkeey@gmail.com>,
+        "'Kalle Valo'" <kvalo@codeaurora.org>
+Cc:     <devicetree@vger.kernel.org>, <netdev@vger.kernel.org>,
+        <linux-wireless@vger.kernel.org>, <linux-kernel@vger.kernel.org>,
+        <ath10k@lists.infradead.org>,
+        "'David S. Miller'" <davem@davemloft.net>,
+        "'Rob Herring'" <robh+dt@kernel.org>,
+        "'Jakub Kicinski'" <kuba@kernel.org>,
+        <linux-mtd@lists.infradead.org>,
+        "'Srinivas Kandagatla'" <srinivas.kandagatla@linaro.org>,
+        "'Bartosz Golaszewski'" <bgolaszewski@baylibre.com>
+References: <20200918162928.14335-1-ansuelsmth@gmail.com> <20200918162928.14335-2-ansuelsmth@gmail.com> <8f886e3d-e2ee-cbf8-a676-28ebed4977aa@gmail.com>
+In-Reply-To: <8f886e3d-e2ee-cbf8-a676-28ebed4977aa@gmail.com>
+Subject: R: [PATCH 2/2] dt: bindings: ath10k: Document qcom, ath10k-pre-calibration-data-mtd
+Date:   Fri, 18 Sep 2020 20:31:18 +0200
+Message-ID: <000001d68de9$e7916450$b6b42cf0$@gmail.com>
 MIME-Version: 1.0
-Content-Transfer-Encoding: 8bit
+Content-Type: text/plain;
+        charset="utf-8"
+Content-Transfer-Encoding: quoted-printable
+X-Mailer: Microsoft Outlook 16.0
+Thread-Index: AQJEWVdigiv7VEZfce04PgG7d9c+lQHuGaaaAYeoZCCod3HyIA==
+Content-Language: it
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-Document the requirements for the CMN-600 DT binding. The internal
-topology is almost entirely discoverable by walking a tree of ID
-registers, but sadly both the starting point for that walk and the
-exact format of those registers are configuration-dependent and not
-discoverable from some sane fixed location. Oh well.
 
-Signed-off-by: Robin Murphy <robin.murphy@arm.com>
----
 
-fix up $id as well, oops...
+> -----Messaggio originale-----
+> Da: Christian Lamparter <chunkeey@gmail.com>
+> Inviato: venerd=C3=AC 18 settembre 2020 18:54
+> A: Ansuel Smith <ansuelsmth@gmail.com>; Kalle Valo
+> <kvalo@codeaurora.org>
+> Cc: devicetree@vger.kernel.org; netdev@vger.kernel.org; linux-
+> wireless@vger.kernel.org; linux-kernel@vger.kernel.org;
+> ath10k@lists.infradead.org; David S. Miller <davem@davemloft.net>; Rob
+> Herring <robh+dt@kernel.org>; Jakub Kicinski <kuba@kernel.org>; linux-
+> mtd@lists.infradead.org; Srinivas Kandagatla
+> <srinivas.kandagatla@linaro.org>; Bartosz Golaszewski
+> <bgolaszewski@baylibre.com>
+> Oggetto: Re: [PATCH 2/2] dt: bindings: ath10k: Document qcom, ath10k-
+> pre-calibration-data-mtd
+>=20
+> On 2020-09-18 18:29, Ansuel Smith wrote:
+> > Document use of qcom,ath10k-pre-calibration-data-mtd bindings used =
+to
+> > define from where the driver will load the pre-cal data in the =
+defined
+> > mtd partition.
+> >
+> > Signed-off-by: Ansuel Smith <ansuelsmth@gmail.com>
+>=20
+> Q: Doesn't mtd now come with nvmem support from the get go? So
+> the MAC-Addresses and pre-caldata could be specified as a
+> nvmem-node in the devicetree? I remember seeing that this was
+> worked on or was this mtd->nvmem dropped?
+>=20
+> Cheers,
+> Christian
 
- .../devicetree/bindings/perf/arm,cmn.yaml     | 57 +++++++++++++++++++
- 1 file changed, 57 insertions(+)
- create mode 100644 Documentation/devicetree/bindings/perf/arm,cmn.yaml
+Sorry a lot for the double email... I think I found what you are talking =
+about.
+It looks like the code was merged but not the documentation.
+Will do some test and check if this works.
 
-diff --git a/Documentation/devicetree/bindings/perf/arm,cmn.yaml b/Documentation/devicetree/bindings/perf/arm,cmn.yaml
-new file mode 100644
-index 000000000000..e4fcc0de25e2
---- /dev/null
-+++ b/Documentation/devicetree/bindings/perf/arm,cmn.yaml
-@@ -0,0 +1,57 @@
-+# SPDX-License-Identifier: (GPL-2.0-only OR BSD-2-Clause)
-+# Copyright 2020 Arm Ltd.
-+%YAML 1.2
-+---
-+$id: http://devicetree.org/schemas/perf/arm,cmn.yaml#
-+$schema: http://devicetree.org/meta-schemas/core.yaml#
-+
-+title: Arm CMN (Coherent Mesh Network) Performance Monitors
-+
-+maintainers:
-+  - Robin Murphy <robin.murphy@arm.com>
-+
-+properties:
-+  compatible:
-+    const: arm,cmn-600
-+
-+  reg:
-+    items:
-+      - description: Physical address of the base (PERIPHBASE) and
-+          size (up to 64MB) of the configuration address space.
-+
-+  interrupts:
-+    minItems: 1
-+    maxItems: 4
-+    items:
-+      - description: Overflow interrupt for DTC0
-+      - description: Overflow interrupt for DTC1
-+      - description: Overflow interrupt for DTC2
-+      - description: Overflow interrupt for DTC3
-+    description: One interrupt for each DTC domain implemented must
-+      be specified, in order. DTC0 is always present.
-+
-+  arm,root-node:
-+    $ref: /schemas/types.yaml#/definitions/uint32
-+    description: Offset from PERIPHBASE of the configuration
-+      discovery node (see TRM definition of ROOTNODEBASE).
-+
-+required:
-+  - compatible
-+  - reg
-+  - interrupts
-+  - arm,root-node
-+
-+additionalProperties: false
-+
-+examples:
-+  - |
-+    #include <dt-bindings/interrupt-controller/arm-gic.h>
-+    #include <dt-bindings/interrupt-controller/irq.h>
-+    pmu@50000000 {
-+        compatible = "arm,cmn-600";
-+        reg = <0x50000000 0x4000000>;
-+        /* 4x2 mesh with one DTC, and CFG node at 0,1,1,0 */
-+        interrupts = <GIC_SPI 46 IRQ_TYPE_LEVEL_HIGH>;
-+        arm,root-node = <0x104000>;
-+    };
-+...
---
-2.28.0.dirty
+This should be the related patch.
+https://patchwork.ozlabs.org/project/linux-mtd/patch/1521933899-362-4-git=
+-send-email-albeu@free.fr/
+
+
