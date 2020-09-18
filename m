@@ -2,85 +2,70 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from vger.kernel.org (vger.kernel.org [23.128.96.18])
-	by mail.lfdr.de (Postfix) with ESMTP id 5BBCD26F5CB
-	for <lists+devicetree@lfdr.de>; Fri, 18 Sep 2020 08:15:11 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTP id 0CDC126F5E6
+	for <lists+devicetree@lfdr.de>; Fri, 18 Sep 2020 08:30:19 +0200 (CEST)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S1726054AbgIRGPK (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Fri, 18 Sep 2020 02:15:10 -0400
-Received: from mga11.intel.com ([192.55.52.93]:13106 "EHLO mga11.intel.com"
+        id S1726293AbgIRGaR (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Fri, 18 Sep 2020 02:30:17 -0400
+Received: from mail.kernel.org ([198.145.29.99]:33090 "EHLO mail.kernel.org"
         rhost-flags-OK-OK-OK-OK) by vger.kernel.org with ESMTP
-        id S1726022AbgIRGPK (ORCPT <rfc822;devicetree@vger.kernel.org>);
-        Fri, 18 Sep 2020 02:15:10 -0400
-IronPort-SDR: jeDSxMVcU5lko8yRIl+tMleUWk9TFGoWopf+2i56J3WPPi4EYUgXKSv0Gd3e0d6TML0CgAmnLp
- jq5rewbk1o2w==
-X-IronPort-AV: E=McAfee;i="6000,8403,9747"; a="157260707"
-X-IronPort-AV: E=Sophos;i="5.77,273,1596524400"; 
-   d="scan'208";a="157260707"
-X-Amp-Result: SKIPPED(no attachment in message)
-X-Amp-File-Uploaded: False
-Received: from orsmga002.jf.intel.com ([10.7.209.21])
-  by fmsmga102.fm.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384; 17 Sep 2020 23:15:08 -0700
-IronPort-SDR: riPwM3NP52txiavt/pPSqmqhMUVTPj8iAM6ZS9GNMcnm82YEpR68Ab/8u+gJDnWeDjNgydcr7P
- CuQ7HJ4nnvfQ==
-X-IronPort-AV: E=Sophos;i="5.77,273,1596524400"; 
-   d="scan'208";a="320503919"
-Received: from paasikivi.fi.intel.com ([10.237.72.42])
-  by orsmga002-auth.jf.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384; 17 Sep 2020 23:15:02 -0700
-Received: by paasikivi.fi.intel.com (Postfix, from userid 1000)
-        id 444EF20815; Fri, 18 Sep 2020 09:15:00 +0300 (EEST)
-Date:   Fri, 18 Sep 2020 09:15:00 +0300
-From:   Sakari Ailus <sakari.ailus@linux.intel.com>
-To:     Marek =?iso-8859-1?Q?Beh=FAn?= <marek.behun@nic.cz>
-Cc:     linux-leds@vger.kernel.org, Pavel Machek <pavel@ucw.cz>,
-        Dan Murphy <dmurphy@ti.com>,
-        =?utf-8?Q?Ond=C5=99ej?= Jirman <megous@megous.com>,
-        linux-kernel@vger.kernel.org, Rob Herring <robh+dt@kernel.org>,
-        devicetree@vger.kernel.org,
-        Bartosz Golaszewski <bgolaszewski@baylibre.com>,
-        Sean Wang <sean.wang@mediatek.com>,
-        Matthias Brugger <matthias.bgg@gmail.com>,
-        Michael Ellerman <mpe@ellerman.id.au>,
-        Benjamin Herrenschmidt <benh@kernel.crashing.org>,
-        Paul Mackerras <paulus@samba.org>,
-        Orson Zhai <orsonzhai@gmail.com>,
-        Baolin Wang <baolin.wang7@gmail.com>,
-        Chunyan Zhang <zhang.lyra@gmail.com>,
-        Thierry Reding <thierry.reding@gmail.com>,
-        Uwe =?iso-8859-1?Q?Kleine-K=F6nig?= 
-        <u.kleine-koenig@pengutronix.de>, Lee Jones <lee.jones@linaro.org>,
-        Liam Girdwood <lgirdwood@gmail.com>,
-        Mark Brown <broonie@kernel.org>
-Subject: Re: [PATCH leds v2 05/50] leds: various: guard of_match_table member
- value with of_match_ptr
-Message-ID: <20200918061500.GD26842@paasikivi.fi.intel.com>
-References: <20200917223338.14164-1-marek.behun@nic.cz>
- <20200917223338.14164-6-marek.behun@nic.cz>
+        id S1725886AbgIRGaR (ORCPT <rfc822;devicetree@vger.kernel.org>);
+        Fri, 18 Sep 2020 02:30:17 -0400
+Received: from localhost.localdomain (unknown [136.185.124.244])
+        (using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
+        (No client certificate requested)
+        by mail.kernel.org (Postfix) with ESMTPSA id C0D2E20DD4;
+        Fri, 18 Sep 2020 06:30:13 +0000 (UTC)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=kernel.org;
+        s=default; t=1600410616;
+        bh=f+UJt77FBOV84lPqPvwhu9odrmdgbM8zk/JtwKt07OY=;
+        h=From:To:Cc:Subject:Date:From;
+        b=trVJbqszaKuIBUzrb1htkXECCg/C4bCqnlp8I5XWN493UuKcIlx9WF6MZfouw4Rtg
+         D6vfqDHqP3ynJBdQC1zqwuXiuqGqRLMFwRLAbcvsoc0p7hg9AFgphvA1lrJVdMcqbz
+         m3nXpJ/DoLgV/Dzz8CwCIyE7CdDi7cWWjTmTDjzI=
+From:   Vinod Koul <vkoul@kernel.org>
+To:     dmaengine@vger.kernel.org
+Cc:     Vinod Koul <vkoul@kernel.org>, Rob Herring <robh+dt@kernel.org>,
+        Bjorn Andersson <bjorn.andersson@linaro.org>,
+        linux-arm-msm@vger.kernel.org, devicetree@vger.kernel.org,
+        linux-kernel@vger.kernel.org,
+        Peter Ujfalusi <peter.ujfalusi@ti.com>
+Subject: [PATCH v2 0/3] dmaengine: Add support for QCOM GSI dma controller
+Date:   Fri, 18 Sep 2020 11:59:52 +0530
+Message-Id: <20200918062955.2095156-1-vkoul@kernel.org>
+X-Mailer: git-send-email 2.26.2
 MIME-Version: 1.0
-Content-Type: text/plain; charset=iso-8859-1
-Content-Disposition: inline
 Content-Transfer-Encoding: 8bit
-In-Reply-To: <20200917223338.14164-6-marek.behun@nic.cz>
-User-Agent: Mutt/1.10.1 (2018-07-13)
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-Hi Marek,
+This series adds support for Qcom GSI dma controller found on Qualcomm SoCs.
+This controller can program the peripheral configuration so we add
+additional parameters in dma_slave_config for configuring the peripherals
+like spi and i2c.
 
-On Fri, Sep 18, 2020 at 12:32:53AM +0200, Marek Behún wrote:
-> Change
->   .of_match_table = xxx,
-> to
->   .of_match_table = of_match_ptr(xxx),
-> in various drivers.
-> 
-> This should be standard even for drivers that depend on OF.
+Changes in v2:
+ - Update the binding and drop qcom specific properties
+ - Move peripheral configuration as a pointer
+ - Move submit queue for transactions to issue_pending
 
-After this patch, none of these drivers will work on ACPI systems anymore.
+Vinod Koul (3):
+  dt-bindings: dmaengine: Document qcom,gpi dma binding
+  dmaengine: add peripheral configuration
+  dmaengine: qcom: Add GPI dma driver
 
-How many of them really depend on OF?
+ .../devicetree/bindings/dma/qcom,gpi.yaml     |   86 +
+ drivers/dma/qcom/Kconfig                      |   12 +
+ drivers/dma/qcom/Makefile                     |    1 +
+ drivers/dma/qcom/gpi.c                        | 2280 +++++++++++++++++
+ include/dt-bindings/dma/qcom-gpi.h            |   11 +
+ include/linux/dmaengine.h                     |   90 +
+ 6 files changed, 2480 insertions(+)
+ create mode 100644 Documentation/devicetree/bindings/dma/qcom,gpi.yaml
+ create mode 100644 drivers/dma/qcom/gpi.c
+ create mode 100644 include/dt-bindings/dma/qcom-gpi.h
 
 -- 
-Regards,
+2.26.2
 
-Sakari Ailus
