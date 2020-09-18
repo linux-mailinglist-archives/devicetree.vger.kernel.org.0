@@ -2,238 +2,296 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from vger.kernel.org (vger.kernel.org [23.128.96.18])
-	by mail.lfdr.de (Postfix) with ESMTP id 5F0A526F64E
-	for <lists+devicetree@lfdr.de>; Fri, 18 Sep 2020 08:49:19 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTP id 7E57626F65F
+	for <lists+devicetree@lfdr.de>; Fri, 18 Sep 2020 08:57:29 +0200 (CEST)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S1726484AbgIRGtS (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Fri, 18 Sep 2020 02:49:18 -0400
-Received: from mga03.intel.com ([134.134.136.65]:41598 "EHLO mga03.intel.com"
+        id S1726380AbgIRG5Y (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Fri, 18 Sep 2020 02:57:24 -0400
+Received: from mga09.intel.com ([134.134.136.24]:16007 "EHLO mga09.intel.com"
         rhost-flags-OK-OK-OK-OK) by vger.kernel.org with ESMTP
-        id S1726419AbgIRGtR (ORCPT <rfc822;devicetree@vger.kernel.org>);
-        Fri, 18 Sep 2020 02:49:17 -0400
-IronPort-SDR: 2neD4BOhGjq7nqQV/8lK9JhY5BWzN+jfzojhY1pKs574HhxTkczL+l6B8dKkMdlO6JKEcfqI0F
- p+d1Xy9Iwx7A==
-X-IronPort-AV: E=McAfee;i="6000,8403,9747"; a="159928514"
+        id S1726290AbgIRG5Y (ORCPT <rfc822;devicetree@vger.kernel.org>);
+        Fri, 18 Sep 2020 02:57:24 -0400
+IronPort-SDR: +H/DtMPrJAQ23wNxqypfZ2HHwfvozuAUjA/O8194IWcdofJZy9bOoxt7sw5/8Q3Frm3Fk/NZdj
+ ibx9YE9pT3kg==
+X-IronPort-AV: E=McAfee;i="6000,8403,9747"; a="160794754"
 X-IronPort-AV: E=Sophos;i="5.77,274,1596524400"; 
-   d="scan'208";a="159928514"
+   d="scan'208";a="160794754"
 X-Amp-Result: SKIPPED(no attachment in message)
 X-Amp-File-Uploaded: False
-Received: from fmsmga002.fm.intel.com ([10.253.24.26])
-  by orsmga103.jf.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384; 17 Sep 2020 23:49:15 -0700
-IronPort-SDR: k2gK2acwbQJMYPTHLYVqEjB7XTp0fNOqEUcpovNjMGU78+Hsn5l8sDK2DXr9GstvJrcJHsJdHw
- zbhBxZS/ONmQ==
+Received: from fmsmga001.fm.intel.com ([10.253.24.23])
+  by orsmga102.jf.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384; 17 Sep 2020 23:57:23 -0700
+IronPort-SDR: apw7X2tvrgEQ7JKnAgRMaAoUZeIxL1xJNnaI32NwBvFJSn0GcYXTmUdp3i9V/rNOnOk5/eMijP
+ QVwGYzN+AxOA==
 X-ExtLoop1: 1
 X-IronPort-AV: E=Sophos;i="5.77,274,1596524400"; 
-   d="scan'208";a="339702383"
-Received: from fmsmsx604.amr.corp.intel.com ([10.18.126.84])
-  by fmsmga002.fm.intel.com with ESMTP; 17 Sep 2020 23:49:15 -0700
-Received: from fmsmsx607.amr.corp.intel.com (10.18.126.87) by
- fmsmsx604.amr.corp.intel.com (10.18.126.84) with Microsoft SMTP Server
- (version=TLS1_2, cipher=TLS_ECDHE_RSA_WITH_AES_128_GCM_SHA256) id
- 15.1.1713.5; Thu, 17 Sep 2020 23:49:15 -0700
-Received: from fmsmsx601.amr.corp.intel.com (10.18.126.81) by
- fmsmsx607.amr.corp.intel.com (10.18.126.87) with Microsoft SMTP Server
- (version=TLS1_2, cipher=TLS_ECDHE_RSA_WITH_AES_128_GCM_SHA256) id
- 15.1.1713.5; Thu, 17 Sep 2020 23:49:15 -0700
-Received: from fmsedg601.ED.cps.intel.com (10.1.192.135) by
- fmsmsx601.amr.corp.intel.com (10.18.126.81) with Microsoft SMTP Server
- (version=TLS1_2, cipher=TLS_ECDHE_RSA_WITH_AES_128_GCM_SHA256) id 15.1.1713.5
- via Frontend Transport; Thu, 17 Sep 2020 23:49:14 -0700
-Received: from NAM11-DM6-obe.outbound.protection.outlook.com (104.47.57.170)
- by edgegateway.intel.com (192.55.55.70) with Microsoft SMTP Server
- (version=TLS1_2, cipher=TLS_ECDHE_RSA_WITH_AES_256_GCM_SHA384) id
- 15.1.1713.5; Thu, 17 Sep 2020 23:49:14 -0700
-ARC-Seal: i=1; a=rsa-sha256; s=arcselector9901; d=microsoft.com; cv=none;
- b=R0xImQBTWen8xxGfEucj07ICPqFyOdpawEIRCm4NBINV0mLN6SPorBGUsiQ97B6gFA8OWJ+1cMfnn7dEbLjf78I3Fa/Rn8O/vi/dWy383tg83PdWKKw77MBNN4eSuGjPGXTTY4OfNmZqP25K1asm8vujj3cMrV4AICxjqhGs5HPAydFz6BPHFGskGAuX2ExEcE7VbPDw2Q5Ug9W5aYVuiBRCC/W0hR3RmCMIYvWQgKIfuCjCosL0UBQ8PrGwDu+pUbFuNXMhVDiyI8MkxlhOj2WTT5wS6wR6z+5WqkRhUIkaxsTahh/WZonREXlwAmgbX4ZVaupJ6rb8fDdlHES+mQ==
-ARC-Message-Signature: i=1; a=rsa-sha256; c=relaxed/relaxed; d=microsoft.com;
- s=arcselector9901;
- h=From:Date:Subject:Message-ID:Content-Type:MIME-Version:X-MS-Exchange-SenderADCheck;
- bh=ps6bzA9eK3+bxMAo5J3bewQxc0W8e8GHACu+2nga/T8=;
- b=nWBGypplGq3Mp7YZikFwJnJUkZDrfl0EsSVj5fpQmmv0sbp7y2sgfnXjnJeCaksTqPEmbH/GpHWK7m3iMclDFUBuX1A51FpjXet6i9M8gIWNXwBHwEW+cFIbeSDPlH1arXWMwhn8cmkK3PSY4gqfsR83Gv7cTMY5Cw9CSr3/vIQ5KopbtVxwyt2HOT8qMMxIWyjkQ77lUN5kLZYfj4+ZD4aPivOJQsSqsly+WaIxHrfKPynhGgOAubEnRgm0/PuAjZHy80fuauOtpiAU1fDDdMWJNZFMlThdudEhO0lV30n3Ul9ja9rPWaSFgboLXb7KM+jhZpfBKefL9bvt4rnTVg==
-ARC-Authentication-Results: i=1; mx.microsoft.com 1; spf=pass
- smtp.mailfrom=intel.com; dmarc=pass action=none header.from=intel.com;
- dkim=pass header.d=intel.com; arc=none
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=intel.onmicrosoft.com;
- s=selector2-intel-onmicrosoft-com;
- h=From:Date:Subject:Message-ID:Content-Type:MIME-Version:X-MS-Exchange-SenderADCheck;
- bh=ps6bzA9eK3+bxMAo5J3bewQxc0W8e8GHACu+2nga/T8=;
- b=S2jF9+FL7YrhlQgn9QCL3Rq2I0x+YwoXGZfdt9i4tUp7Kmrj54uk8ZInvUzE+OF3fwwDOhmJ3CdCFyeKbp3e8x+kD5eY0vQTQweerMd7lHkGff+ycMIhGBn83KLBfzZLQsQnZDOZZ6NasSvhP1mRLBydhLcaqEsD5WCTOQ9uDro=
-Received: from DM6PR11MB4250.namprd11.prod.outlook.com (2603:10b6:5:1df::18)
- by DM6PR11MB4300.namprd11.prod.outlook.com (2603:10b6:5:1dc::16) with
- Microsoft SMTP Server (version=TLS1_2,
- cipher=TLS_ECDHE_RSA_WITH_AES_256_GCM_SHA384) id 15.20.3391.13; Fri, 18 Sep
- 2020 06:49:13 +0000
-Received: from DM6PR11MB4250.namprd11.prod.outlook.com
- ([fe80::7448:c067:e80d:3c09]) by DM6PR11MB4250.namprd11.prod.outlook.com
- ([fe80::7448:c067:e80d:3c09%3]) with mapi id 15.20.3391.015; Fri, 18 Sep 2020
- 06:49:13 +0000
-From:   "Ayyathurai, Vijayakannan" <vijayakannan.ayyathurai@intel.com>
-To:     "mgross@linux.intel.com" <mgross@linux.intel.com>
-CC:     "thierry.reding@gmail.com" <thierry.reding@gmail.com>,
-        "u.kleine-koenig@pengutronix.de" <u.kleine-koenig@pengutronix.de>,
-        "robh+dt@kernel.org" <robh+dt@kernel.org>,
-        "linux-pwm@vger.kernel.org" <linux-pwm@vger.kernel.org>,
-        "devicetree@vger.kernel.org" <devicetree@vger.kernel.org>,
-        "Wan Mohamad, Wan Ahmad Zainie" 
-        <wan.ahmad.zainie.wan.mohamad@intel.com>,
-        "andriy.shevchenko@linux.intel.com" 
-        <andriy.shevchenko@linux.intel.com>,
-        "Raja Subramanian, Lakshmi Bai" 
-        <lakshmi.bai.raja.subramanian@intel.com>
-Subject: RE: [PATCH v7 0/2] Add PWM support for Intel Keem Bay SoC
-Thread-Topic: [PATCH v7 0/2] Add PWM support for Intel Keem Bay SoC
-Thread-Index: AQHWjTV9TLiZaO2qqEyeArSN+HjUI6lt8vpg
-Date:   Fri, 18 Sep 2020 06:49:13 +0000
-Message-ID: <DM6PR11MB4250D2357EF1ABFDF5D8B0F6FB3F0@DM6PR11MB4250.namprd11.prod.outlook.com>
-References: <20200909162719.7585-1-vijayakannan.ayyathurai@intel.com>
- <20200917205942.GE4535@mtg-dev.jf.intel.com>
-In-Reply-To: <20200917205942.GE4535@mtg-dev.jf.intel.com>
-Accept-Language: en-US
-Content-Language: en-US
-X-MS-Has-Attach: 
-X-MS-TNEF-Correlator: 
-dlp-product: dlpe-windows
-dlp-reaction: no-action
-dlp-version: 11.5.1.3
-authentication-results: linux.intel.com; dkim=none (message not signed)
- header.d=none;linux.intel.com; dmarc=none action=none header.from=intel.com;
-x-originating-ip: [42.111.145.14]
-x-ms-publictraffictype: Email
-x-ms-office365-filtering-correlation-id: 85cd6205-ee4c-41bb-b0bf-08d85b9ef490
-x-ms-traffictypediagnostic: DM6PR11MB4300:
-x-ms-exchange-transport-forked: True
-x-microsoft-antispam-prvs: <DM6PR11MB430005A0C86CD36BBD5D2C7FFB3F0@DM6PR11MB4300.namprd11.prod.outlook.com>
-x-ms-oob-tlc-oobclassifiers: OLM:207;
-x-ms-exchange-senderadcheck: 1
-x-microsoft-antispam: BCL:0;
-x-microsoft-antispam-message-info: 4MzmJ+q4L3iPcCHtKULT/SwVjUm8+Bp1Sa7gAe55li4gyIJk/KY+J+CbWXSnd+TPMwvT87fL3OhMBIWNi1uIF/w0lyWGT0zjh+0PDQpPWbwkRkEENk2T5CKpcQD6mUwzEYraf62AChm97vldMey1uSmbXxg/fHXuluUcLAOi3O1DbtL5CBQGa581jaQU3mcBn+nocKEAXT3vcnhZiYSq2TxJ+ZTXChb/70d5BOPY1PU1T4NXrCLAAU0xoZvEpCH1sUqiqE0A4GulnmNBSYDKPaL2NHs89zTkxID1QXuKWwewAwa8ffXK0Y9CO/yN7RTVck7GdSu/fZP0R0XGYIopCw==
-x-forefront-antispam-report: CIP:255.255.255.255;CTRY:;LANG:en;SCL:1;SRV:;IPV:NLI;SFV:NSPM;H:DM6PR11MB4250.namprd11.prod.outlook.com;PTR:;CAT:NONE;SFS:(4636009)(346002)(136003)(39860400002)(366004)(376002)(396003)(66446008)(64756008)(4326008)(7696005)(186003)(8676002)(33656002)(9686003)(86362001)(316002)(6916009)(478600001)(26005)(6506007)(71200400001)(5660300002)(53546011)(54906003)(66556008)(55016002)(66476007)(66946007)(52536014)(8936002)(83380400001)(2906002)(76116006);DIR:OUT;SFP:1102;
-x-ms-exchange-antispam-messagedata: rzMJPge9yyCSCzCfdAfl+q/8HXnWO7adL9jy3oak8W8X6v/lmduTSFvuzICMREwHaTZwNdBPA07hKOCDIHRLv7LMjCZjPPhuiYIN9MSQ+4Nj3X9ydJO2+bZDLdnJcC5jC5gZ8GfDDtTcY8EOKV/O0fFvRwmA9e+tAEDBKGVFPkbA44b5bj++TIzbLkG7FjfqlSOiRRgJMGyMGVfDkCZySgL91vmKot37O++qPxMGrhCp2vzgGaC+SXI1J+8hyW40x/EsI9djOMH3F+kQrj/k8ljv7KzUhAk9T4zBLLz/y6nCUqV7T3aieOFUFRgy2UqGNv2xorR2BTb/ZXsfm8/yVeqiY952Yoc780MN6MLC+6BJd47wEVa+aU3Ql7Anqm+fvdcCSRbSIm86fUypY5f4hNL6utcSwo30ggIDUKVXoQNQBVo7oOF59jFeC+PrDm8jpdgweukCTWU0+Jq/yXkyDIbI+KbnwFCqcLKlgoCOrne77R+bHMpi6GT7NK4DvrihIJr5liB3FDAvaZN0GSJ23O2dp3J8B9c0nY0k+Bs4UcczkT+6AyAVdSOhAllTKitUyLkdvscbF/SrFpogRcNf/Cuinj5hkqrNzjQ5Bqp8ta5L/hEv6VyusTxjMrSUb0F/chV8q676V5MTlojg9RumVQ==
-Content-Type: text/plain; charset="us-ascii"
-Content-Transfer-Encoding: quoted-printable
+   d="scan'208";a="410196068"
+Received: from linux.intel.com ([10.54.29.200])
+  by fmsmga001.fm.intel.com with ESMTP; 17 Sep 2020 23:57:22 -0700
+Received: from [10.249.68.124] (vramuthx-MOBL1.gar.corp.intel.com [10.249.68.124])
+        by linux.intel.com (Postfix) with ESMTP id 94A7958053A;
+        Thu, 17 Sep 2020 23:57:17 -0700 (PDT)
+Reply-To: vadivel.muruganx.ramuthevar@linux.intel.com
+Subject: Re: [PATCH v13 2/2] mtd: rawnand: Add NAND controller support on
+ Intel LGM SoC
+To:     Andy Shevchenko <andriy.shevchenko@intel.com>
+Cc:     miquel.raynal@bootlin.com, linux-kernel@vger.kernel.org,
+        linux-mtd@lists.infradead.org, richard@nod.at, vigneshr@ti.com,
+        boris.brezillon@collabora.com, christophe.kerello@st.com,
+        piotrs@cadence.com, robert.jarzmik@free.fr,
+        brendanhiggins@google.com, devicetree@vger.kernel.org,
+        tglx@linutronix.de, hauke.mehrtens@intel.com, robh+dt@kernel.org,
+        linux-mips@vger.kernel.org, arnd@arndb.de,
+        cheol.yong.kim@intel.com, qi-ming.wu@intel.com
+References: <20200917003308.57038-1-vadivel.muruganx.ramuthevar@linux.intel.com>
+ <20200917003308.57038-3-vadivel.muruganx.ramuthevar@linux.intel.com>
+ <20200917130523.GM3956970@smile.fi.intel.com>
+From:   "Ramuthevar, Vadivel MuruganX" 
+        <vadivel.muruganx.ramuthevar@linux.intel.com>
+Message-ID: <bb8606e9-e102-916d-359c-5ce7a94cc4e4@linux.intel.com>
+Date:   Fri, 18 Sep 2020 14:57:16 +0800
+User-Agent: Mozilla/5.0 (Windows NT 10.0; WOW64; rv:68.0) Gecko/20100101
+ Thunderbird/68.12.0
 MIME-Version: 1.0
-X-MS-Exchange-CrossTenant-AuthAs: Internal
-X-MS-Exchange-CrossTenant-AuthSource: DM6PR11MB4250.namprd11.prod.outlook.com
-X-MS-Exchange-CrossTenant-Network-Message-Id: 85cd6205-ee4c-41bb-b0bf-08d85b9ef490
-X-MS-Exchange-CrossTenant-originalarrivaltime: 18 Sep 2020 06:49:13.6680
- (UTC)
-X-MS-Exchange-CrossTenant-fromentityheader: Hosted
-X-MS-Exchange-CrossTenant-id: 46c98d88-e344-4ed4-8496-4ed7712e255d
-X-MS-Exchange-CrossTenant-mailboxtype: HOSTED
-X-MS-Exchange-CrossTenant-userprincipalname: 4K06WG2iX44gXZV4UlX5E6vB5FEKiXhROiwHQwNzSzp3i9jXV5tQ5caDBd175LvYVUgiZyDGXcRcrbMHiTJBguBJshfWkQmOaykn0BaGlc2PSonSSkFZwgZt3Zsg5riE
-X-MS-Exchange-Transport-CrossTenantHeadersStamped: DM6PR11MB4300
-X-OriginatorOrg: intel.com
+In-Reply-To: <20200917130523.GM3956970@smile.fi.intel.com>
+Content-Type: text/plain; charset=utf-8; format=flowed
+Content-Language: en-US
+Content-Transfer-Encoding: 7bit
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-Hi Mark,
-It is an ongoing patch handled by Vineetha(earlier PWM developer with IOTG)=
-. I am filling the rest of the review comments after she has gone for her h=
-igher Studies.=20
+Hi Andy,
 
-If required, let me push another thread internally for your review.
-=20
-Thanks,
-Vijay=20
------Original Message-----
-From: mark gross <mgross@linux.intel.com>=20
-Sent: Friday, 18 September, 2020 5:00 AM
-To: Ayyathurai, Vijayakannan <vijayakannan.ayyathurai@intel.com>
-Cc: thierry.reding@gmail.com; u.kleine-koenig@pengutronix.de; robh+dt@kerne=
-l.org; linux-pwm@vger.kernel.org; devicetree@vger.kernel.org; Wan Mohamad, =
-Wan Ahmad Zainie <wan.ahmad.zainie.wan.mohamad@intel.com>; andriy.shevchenk=
-o@linux.intel.com; Raja Subramanian, Lakshmi Bai <lakshmi.bai.raja.subraman=
-ian@intel.com>
-Subject: Re: [PATCH v7 0/2] Add PWM support for Intel Keem Bay SoC
+  Thank you for the review comments...
 
-Have I reviewed this yet?
-are you waiting on feedback?
---mark
+On 17/9/2020 9:05 pm, Andy Shevchenko wrote:
+> On Thu, Sep 17, 2020 at 08:33:08AM +0800, Ramuthevar,Vadivel MuruganX wrote:
+>> From: Ramuthevar Vadivel Murugan <vadivel.muruganx.ramuthevar@linux.intel.com>
+>>
+>> This patch adds the new IP of Nand Flash Controller(NFC) support
+>> on Intel's Lightning Mountain(LGM) SoC.
+>>
+>> DMA is used for burst data transfer operation, also DMA HW supports
+>> aligned 32bit memory address and aligned data access by default.
+>> DMA burst of 8 supported. Data register used to support the read/write
+>> operation from/to device.
+>>
+>> NAND controller driver implements ->exec_op() to replace legacy hooks,
+>> these specific call-back method to execute NAND operations.
+> 
+> ...
+> 
+>> +#include <linux/clk.h>
+>> +#include <linux/completion.h>
+>> +#include <linux/dmaengine.h>
+>> +#include <linux/dma-direction.h>
+>> +#include <linux/dma-mapping.h>
+>> +#include <linux/err.h>
+>> +#include <linux/init.h>
+> 
+>> +#include <linux/io.h>
+>> +#include <linux/iopoll.h>
+> 
+> io.h is guaranteed to be included by iopoll.h.
+Noted
+> 
+>> +#include <linux/kernel.h>
+>> +#include <linux/platform_device.h>
+>> +#include <linux/module.h>
+> 
+>> +#include <linux/mtd/mtd.h>
+>> +#include <linux/mtd/rawnand.h>
+>> +#include <linux/mtd/nand_ecc.h>
+>> +#include <linux/mtd/nand.h>
+> 
+> Since mtd is a hosting framework for this driver, I would move this group of headers after more generic ones with a blank line in between.
+okay, noted
+> 
+> 
+>> +#include <linux/resource.h>
+> 
+> And this I think is guaranteed to be included by io.h.
+Sure, will check and update.
+> 
+>> +#include <linux/sched.h>
+>> +#include <linux/slab.h>
+>> +#include <linux/types.h>
+> 
+>> +#include <linux/platform_device.h>
+> 
+> Dup? It's exactly the reason how alphabetical order can help.
+Good catch
+> 
+> ...
+> 
+>> +#define EBU_ADDR_SEL(n)		(0x20 + (n) * 4)
+> 
+> I think 0x20 is an offset here, and better to have it as 0x020 to be consistent
+> with all other offsets.
+> 
+> ...
+> 
+>> +#define EBU_BUSCON(n)		(0x60 + (n) * 4)
+> 
+> Ditto.
+Noted, will update
+> 
+> ...
+> 
+>> +static void ebu_nand_setup_timing(struct ebu_nand_controller *ctrl,
+>> +				  const struct nand_sdr_timings *timings)
+>> +{
+>> +	unsigned int rate = clk_get_rate(ctrl->clk) / 1000000;
+> 
+> HZ_PER_MHZ?
+yes, you're right we can use it.
+> 
+>> +	unsigned int period = DIV_ROUND_UP(1000000, rate);
+> 
+> USEC_PER_SEC?
+yes, you're right we can use it.
+> 
+>> +	u32 trecov, thold, twrwait, trdwait;
+>> +	u32 reg = 0;
+>> +
+>> +	trecov = DIV_ROUND_UP(max(timings->tREA_max, timings->tREH_min),
+>> +			      period);
+>> +	reg |= EBU_BUSCON_RECOVC(trecov);
+>> +
+>> +	thold = DIV_ROUND_UP(max(timings->tDH_min, timings->tDS_min), period);
+>> +	reg |= EBU_BUSCON_HOLDC(thold);
+>> +
+>> +	trdwait = DIV_ROUND_UP(max(timings->tRC_min, timings->tREH_min),
+>> +			       period);
+>> +	reg |= EBU_BUSCON_WAITRDC(trdwait);
+>> +
+>> +	twrwait = DIV_ROUND_UP(max(timings->tWC_min, timings->tWH_min), period);
+>> +	reg |= EBU_BUSCON_WAITWRC(twrwait);
+>> +
+>> +	reg |= EBU_BUSCON_CMULT_V4 | EBU_BUSCON_BCGEN_CS | EBU_BUSCON_ALEC |
+>> +		EBU_BUSCON_SETUP_EN;
+>> +
+>> +	writel(reg, ctrl->ebu + EBU_BUSCON(ctrl->cs_num));
+>> +}
+> 
+> ...
+> 
+>> +	if (oob_required) {
+>> +		reg = (chip->oob_poi[3] << 24) | (chip->oob_poi[2] << 16) |
+>> +			(chip->oob_poi[1] << 8) | chip->oob_poi[0];
+> 
+> get_unligned_le32()?
+last time seen system crash ,so I left it.
+> 
+> ...
+> 
+>> +		reg = (chip->oob_poi[7] << 24) | (chip->oob_poi[6] << 16) |
+>> +			(chip->oob_poi[5] << 8) | chip->oob_poi[4];
+> 
+> Ditto.
+Let me double check will add it, keep the same if not
+> 
+> ...
+> 
+>> +	ret = readl_poll_timeout_atomic(int_sta, val,
+>> +					!(val & HSNAND_INT_STA_WR_C), 10, 1000);
+> 
+> Slightly better (logically split between lines):
+> 
+> 	ret = readl_poll_timeout_atomic(int_sta, val, !(val & HSNAND_INT_STA_WR_C),
+> 					10, 1000);
+Thanks!, will update
+> 
+> 
+>> +	if (ret)
+>> +		return ret;
+> 
+> ...
+> 
+>> +	res = platform_get_resource_byname(pdev, IORESOURCE_MEM, "ebunand");
+>> +	ebu_host->ebu = devm_ioremap_resource(&pdev->dev, res);
+> 
+> Why not to use
+> 
+> 	ebu_host->ebu = devm_platform_ioremap_resource_byname(&pdev->dev, "ebunand");
+As Boris mtd-maintainer suggested me to split into 2 API's, thanks!.
+> 
+> ?
+> 
+>> +	if (IS_ERR(ebu_host->ebu))
+>> +		return PTR_ERR(ebu_host->ebu);
+>> +
+>> +	res = platform_get_resource_byname(pdev, IORESOURCE_MEM, "hsnand");
+>> +	ebu_host->hsnand = devm_ioremap_resource(&pdev->dev, res);
+> 
+> Ditto.
+> 
+>> +	if (IS_ERR(ebu_host->hsnand))
+>> +		return PTR_ERR(ebu_host->hsnand);
+> 
+> ...
+> 
+> 
+>> +	for (i = 0; i < MAX_CS; i++) {
+>> +		resname = devm_kasprintf(dev, GFP_KERNEL, "nand_cs%d", i);
+>> +		res = platform_get_resource_byname(pdev, IORESOURCE_MEM,
+>> +						   resname);
+> 
+>> +		if (!res)
+>> +			return -EINVAL;
+> 
+> Redundant check.
+> 
+>> +		ebu_host->cs[i].chipaddr = devm_ioremap_resource(dev, res);
+> 
+> Ditto (see above).
+Noted
+> 
+>> +		ebu_host->cs[i].nand_pa = res->start;
+>> +		if (IS_ERR(ebu_host->cs[i].chipaddr))
+>> +			return PTR_ERR(ebu_host->cs[i].chipaddr);
+>> +	}
+> 
+> ...
+> 
+>> +	ebu_host->clk = devm_clk_get(dev, NULL);
+>> +	if (IS_ERR(ebu_host->clk)) {
+> 
+>> +		ret = PTR_ERR(ebu_host->clk);
+>> +		dev_err(dev, "failed to get clock: %d\n", ret);
+>> +		return ret;
+> 
+> 	return dev_err_probe() ?
+Noted, will add it.
+> 
+>> +	}
+> 
+> ...
+> 
+>> +	ebu_host->dma_tx = dma_request_chan(dev, "tx");
+>> +	if (IS_ERR(ebu_host->dma_tx)) {
+> 
+>> +		ret = PTR_ERR(ebu_host->dma_tx);
+>> +		dev_err(dev, "DMA tx channel request fail!.\n");
+>> +		goto err_cleanup_dma;
+> 
+> Ditto. On top why !. ???
+sorry missed it,Noted
+> 
+>> +	}
+>> +
+>> +	ebu_host->dma_rx = dma_request_chan(dev, "rx");
+>> +	if (IS_ERR(ebu_host->dma_rx)) {
+> 
+>> +		ret = PTR_ERR(ebu_host->dma_rx);
+>> +		dev_err(dev, "DMA rx channel request fail!.\n");
+>> +		goto err_cleanup_dma;
+> 
+> Ditto.
+Noted
 
-On Thu, Sep 10, 2020 at 12:27:17AM +0800, vijayakannan.ayyathurai@intel.com=
- wrote:
-> From: Vijayakannan Ayyathurai <vijayakannan.ayyathurai@intel.com>
->=20
-> Hi,
->=20
-> This patch set enables support for PWM on the Intel Keem Bay SoC.
-> Keem Bay is an ARM based SoC, and the GPIO module allows configuration=20
-> of 6 PWM outputs.
->=20
-> Patch 1 adds the PWM driver and Patch 2 is for the required Device=20
-> Tree bindings documentation.
->=20
-> This driver was tested on the Keem Bay evaluation module board.
->=20
-> Thank you.
->=20
-> Regards,
-> Vijay
->=20
-> Changes since v6:
-> - Add reviewed-by tag
->=20
-> Changes since v5:
-> -Reorder symbols/Kconfig in drivers/pwm/Kconfig and=20
-> drivers/pwm/Makefile -Use "Limitations" for consistency -Add=20
-> clk_prepare_enable() -Reorder keembay_pwm_get_state() function call=20
-> -Rework if conditional for channel disablement in .apply() -Remove=20
-> channel disabling from .probe(), and clear LEADIN register bits in=20
-> .apply instead -Update commit message for Patch 1
->=20
-> Changes since v4:
-> -Add co-developed-by tag
-> -Include mod_devicetable.h and remove of.h -Update comment with=20
-> correct calulation for high/low time -Fix missing return from=20
-> dev_err_probe
->=20
-> Changes since v3:
-> -Removed variable for address and calculate in place instead -Utilized=20
-> u32_replace_bits() when updating KMB_PWM_LEADIN_OFFSET -Utilized=20
-> dev_err_probe() for error reporting -Updated comments to use physical=20
-> units -Updated error check for pwmchip_add()
->=20
-> Changes since v2:
-> -Include documentation about HW limitation/behaviour -Use hex values=20
-> for KMB_PWM_COUNT_MAX -Redefine register macros -Utilize=20
-> FIELD_GET/FIELD_PREP for calculating pwm_l/h_count and pwm_count=20
-> -Round up duty cycle/period values -Get current hardware state in=20
-> .apply instead of cached values -Do a polarity check before .enabled=20
-> -Round high time/low time to closest value -Set enable bit in=20
-> KMB_PWM_LEADIN_OFFSET to 0 in probe -Correct the naming for=20
-> MODULE_ALIAS -Add additionalProperties: false in DT bindings
->=20
-> Changes since v1:
-> -Updated licensing info, "clocks" property and example in DT bindings=20
-> -Updated name of DT bindings document to match compatible string=20
-> -Removed 1 patch for addition of new sysfs attribute "count"
-> -Added support for COMPILE_TEST in Kconfig -Updated naming of defines=20
-> and regmap attribute -Updated calculation of waveform high time and=20
-> low time -Added range checking for waveform high/low time -Implemented=20
-> .get_state -Removed register writes for lead-in and count values (left=20
-> to default) -Updated register access to single-access -Folded=20
-> keembay_pwm_enable/disable_channel,
-> keembay_pwm_config_period/duty_cycle,
->  and keembay_pwm_config into keembay_pwm_apply -Updated error=20
-> messages/error codes -Removed pwm_disable from keembay_pwm_remove=20
-> -Removed clk_prepare/clk_enable/clk_disable from driver
->=20
-> Lai, Poey Seng (1):
->   pwm: Add PWM driver for Intel Keem Bay
->=20
-> Vineetha G. Jaya Kumaran (1):
->   dt-bindings: pwm: keembay: Add bindings for Intel Keem Bay PWM
->=20
-> .../bindings/pwm/intel,keembay-pwm.yaml       |  47 ++++
->  drivers/pwm/Kconfig                           |   9 +
->  drivers/pwm/Makefile                          |   1 +
->  drivers/pwm/pwm-keembay.c                     | 232 ++++++++++++++++++
->  4 files changed, 289 insertions(+)
->  create mode 100644=20
-> Documentation/devicetree/bindings/pwm/intel,keembay-pwm.yaml
->  create mode 100644 drivers/pwm/pwm-keembay.c
->=20
-> --
-> 2.17.1
->=20
+Regards
+Vadivel
+> 
+>> +	}
+> 
