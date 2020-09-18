@@ -2,71 +2,152 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from vger.kernel.org (vger.kernel.org [23.128.96.18])
-	by mail.lfdr.de (Postfix) with ESMTP id C64422704CE
-	for <lists+devicetree@lfdr.de>; Fri, 18 Sep 2020 21:13:45 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTP id 6CC0D2705AD
+	for <lists+devicetree@lfdr.de>; Fri, 18 Sep 2020 21:39:44 +0200 (CEST)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S1726139AbgIRTNp (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Fri, 18 Sep 2020 15:13:45 -0400
-Received: from fllv0015.ext.ti.com ([198.47.19.141]:42824 "EHLO
-        fllv0015.ext.ti.com" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S1726115AbgIRTNp (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Fri, 18 Sep 2020 15:13:45 -0400
-Received: from fllv0035.itg.ti.com ([10.64.41.0])
-        by fllv0015.ext.ti.com (8.15.2/8.15.2) with ESMTP id 08IJDbN2086743;
-        Fri, 18 Sep 2020 14:13:37 -0500
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=ti.com;
-        s=ti-com-17Q1; t=1600456417;
-        bh=AHq/5X/zt7ouB8G4cT7Ae9eA79pwUrSvwVhNR0JQuWk=;
-        h=Subject:To:CC:References:From:Date:In-Reply-To;
-        b=dKhxMio8DpXhdFrvlOPT7PeTHaFsgOu/ybn/oNVNgrpXqJlPChoqCEPDAe8J+Jj7C
-         O2YCzNyAwei+j4Ngx/eF1qYv7AkXCqS/o0ZnOZGMttn06jcaW6REb+6oz02zoQsus6
-         EsAyMoOUZqp4mHTVv5w+lk5olvoOfM1hXPUQYuVQ=
-Received: from DLEE114.ent.ti.com (dlee114.ent.ti.com [157.170.170.25])
-        by fllv0035.itg.ti.com (8.15.2/8.15.2) with ESMTP id 08IJDbPs110407;
-        Fri, 18 Sep 2020 14:13:37 -0500
-Received: from DLEE107.ent.ti.com (157.170.170.37) by DLEE114.ent.ti.com
- (157.170.170.25) with Microsoft SMTP Server (version=TLS1_2,
- cipher=TLS_ECDHE_RSA_WITH_AES_128_CBC_SHA256_P256) id 15.1.1979.3; Fri, 18
- Sep 2020 14:13:37 -0500
-Received: from lelv0326.itg.ti.com (10.180.67.84) by DLEE107.ent.ti.com
- (157.170.170.37) with Microsoft SMTP Server (version=TLS1_2,
- cipher=TLS_ECDHE_RSA_WITH_AES_128_CBC_SHA256_P256) id 15.1.1979.3 via
- Frontend Transport; Fri, 18 Sep 2020 14:13:36 -0500
-Received: from [10.250.35.164] (ileax41-snat.itg.ti.com [10.172.224.153])
-        by lelv0326.itg.ti.com (8.15.2/8.15.2) with ESMTP id 08IJDamK028660;
-        Fri, 18 Sep 2020 14:13:36 -0500
-Subject: Re: [PATCH] dt-bindings: tas2770: Fix I2C addresses for the TAS2770
-To:     <lgirdwood@gmail.com>, <broonie@kernel.org>, <tiwai@suse.com>,
-        <robh+dt@kernel.org>
-CC:     <devicetree@vger.kernel.org>, <alsa-devel@alsa-project.org>,
-        <linux-kernel@vger.kernel.org>
-References: <20200918164320.11577-1-dmurphy@ti.com>
-From:   Dan Murphy <dmurphy@ti.com>
-Message-ID: <bcae2b35-8b64-6736-4fc1-23cfa5912924@ti.com>
-Date:   Fri, 18 Sep 2020 14:13:36 -0500
-User-Agent: Mozilla/5.0 (X11; Linux x86_64; rv:68.0) Gecko/20100101
- Thunderbird/68.10.0
+        id S1726115AbgIRTjm (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Fri, 18 Sep 2020 15:39:42 -0400
+Received: from lindbergh.monkeyblade.net ([23.128.96.19]:47228 "EHLO
+        lindbergh.monkeyblade.net" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
+        with ESMTP id S1726252AbgIRTjj (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Fri, 18 Sep 2020 15:39:39 -0400
+Received: from mail-pj1-x1041.google.com (mail-pj1-x1041.google.com [IPv6:2607:f8b0:4864:20::1041])
+        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 443FBC0613CF
+        for <devicetree@vger.kernel.org>; Fri, 18 Sep 2020 12:39:39 -0700 (PDT)
+Received: by mail-pj1-x1041.google.com with SMTP id jw11so3549134pjb.0
+        for <devicetree@vger.kernel.org>; Fri, 18 Sep 2020 12:39:39 -0700 (PDT)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+        d=google.com; s=20161025;
+        h=mime-version:references:in-reply-to:from:date:message-id:subject:to
+         :cc;
+        bh=ugDHAjreJcjr2sWmhzBxhqb0r9L38OJhgw/SK5/hXcA=;
+        b=MMijeS5iSCBD6TdcsROq3wTBNGom0mymBli3Y7GoxookncCyXLPhiCD1hGXMM0OPi5
+         FseDWPW8AhtFzulUwDfOV2C3xvDwwnImE4cEeDboLKnfr5d0EoqWPWaiBKAtg9etgxJ1
+         QsnrQSM3hWlZXg8UiHNO4ulb7iMZt/9OiWq3v38GuXw68fRaJ2bKNZWfI61k64ntRwZf
+         uzPs70jvLCyw0j05qFjWEogD5N0tr2ki5DrGgtt/3hABsWDoXC1CkjoQAc0IsqUrG0bC
+         LACfKgVvIhbxEGYIP5RFTiKMGlbl71EUpNLtn63mpCgEKqp3RqIyxU20U5v4ocLq8a11
+         8OFA==
+X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+        d=1e100.net; s=20161025;
+        h=x-gm-message-state:mime-version:references:in-reply-to:from:date
+         :message-id:subject:to:cc;
+        bh=ugDHAjreJcjr2sWmhzBxhqb0r9L38OJhgw/SK5/hXcA=;
+        b=IM0TLuQir2hR8Wi5CnKZI0vh5aLHUmvhJkrr7vjqa180tltlpq3Q2mjZNDYeHe/8NJ
+         S5+rleDcMSzWD7G0JUT4FtYz1/aJnywNizXtnVDn/WPNjHZxLN+GHoRkRD1ohxzU88bF
+         s2N7LRqkHA4EPEXEhjBq6p9is8PfxMOwA7YurypUUVHXu4EIxLbUUcKJrwcGRYfMESX8
+         0KK25bY7XCo31m4mwl9TklxVKi1v3wITLle8NzTVLOG2+k7DPsJmW0aYGtEUgJr1qCNA
+         rBSKx4cpyGu5WSwsMzsOtl0LLNIsy/rccJzyLiMp3JXk/NBsJpsS/OKqK6e/fKGsQO09
+         29AQ==
+X-Gm-Message-State: AOAM530WUpzkMEVPPro/vB0l6Gqq7HzklvZLGMHBubCtG3lirE/wfGy0
+        6RWqXi1N3amjV1zD0SQT0v99ieoJU3kelo9N/D0F+A==
+X-Google-Smtp-Source: ABdhPJyuTQ6eWHseHu6pz8Fdfd7MU+vsvAbZLf6HZw27l+sY0R/11CACwcB2ADGtOmcQ/AT2rgvgSVZPcMhDmT/R5Yo=
+X-Received: by 2002:a17:90b:f18:: with SMTP id br24mr1807074pjb.32.1600457977854;
+ Fri, 18 Sep 2020 12:39:37 -0700 (PDT)
 MIME-Version: 1.0
-In-Reply-To: <20200918164320.11577-1-dmurphy@ti.com>
-Content-Type: text/plain; charset="utf-8"; format=flowed
-Content-Transfer-Encoding: 7bit
-Content-Language: en-US
-X-EXCLAIMER-MD-CONFIG: e1e8a2fd-e40a-4ac6-ac9b-f7e9cc9ee180
+References: <20200916071950.1493-3-gilad@benyossef.com> <202009162154.fxQ0Z6wT%lkp@intel.com>
+ <CAOtvUMdv9QNVdaU7N6wJVq27Asyrckuu9bf15fO=+oZUh5iKOg@mail.gmail.com>
+In-Reply-To: <CAOtvUMdv9QNVdaU7N6wJVq27Asyrckuu9bf15fO=+oZUh5iKOg@mail.gmail.com>
+From:   Nick Desaulniers <ndesaulniers@google.com>
+Date:   Fri, 18 Sep 2020 12:39:26 -0700
+Message-ID: <CAKwvOdmW+n_g4C_pXnF+8wh2q0gZZyXAfaYR9cVNm3p1QeJ-xA@mail.gmail.com>
+Subject: Re: [PATCH 2/2] crypto: ccree - add custom cache params from DT file
+To:     Gilad Ben-Yossef <gilad@benyossef.com>
+Cc:     kernel test robot <lkp@intel.com>,
+        Herbert Xu <herbert@gondor.apana.org.au>,
+        "David S. Miller" <davem@davemloft.net>,
+        Rob Herring <robh+dt@kernel.org>, kbuild-all@lists.01.org,
+        clang-built-linux <clang-built-linux@googlegroups.com>,
+        Network Development <netdev@vger.kernel.org>,
+        Ofir Drang <ofir.drang@arm.com>,
+        Linux Crypto Mailing List <linux-crypto@vger.kernel.org>,
+        "open list:OPEN FIRMWARE AND FLATTENED DEVICE TREE BINDINGS" 
+        <devicetree@vger.kernel.org>,
+        Linux kernel mailing list <linux-kernel@vger.kernel.org>,
+        Sami Tolvanen <samitolvanen@google.com>,
+        Alex Elder <elder@linaro.org>, Jakub Kicinski <kuba@kernel.org>
+Content-Type: text/plain; charset="UTF-8"
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-All
+On Thu, Sep 17, 2020 at 12:20 AM Gilad Ben-Yossef <gilad@benyossef.com> wrote:
+>
+> hmm...
+>
+> On Wed, Sep 16, 2020 at 4:48 PM kernel test robot <lkp@intel.com> wrote:
+> >
+> > url:    https://github.com/0day-ci/linux/commits/Gilad-Ben-Yossef/add-optional-cache-params-from-DT/20200916-152151
+> > base:   https://git.kernel.org/pub/scm/linux/kernel/git/herbert/cryptodev-2.6.git master
+> > config: arm64-randconfig-r015-20200916 (attached as .config)
+> > compiler: clang version 12.0.0 (https://github.com/llvm/llvm-project 9e3842d60351f986d77dfe0a94f76e4fd895f188)
+> > reproduce (this is a W=1 build):
+> >         wget https://raw.githubusercontent.com/intel/lkp-tests/master/sbin/make.cross -O ~/bin/make.cross
+> >         chmod +x ~/bin/make.cross
+> >         # install arm64 cross compiling tool for clang build
+> >         # apt-get install binutils-aarch64-linux-gnu
+> >         # save the attached .config to linux build tree
+> >         COMPILER_INSTALL_PATH=$HOME/0day COMPILER=clang make.cross ARCH=arm64
+> >
+> > If you fix the issue, kindly add following tag as appropriate
+> > Reported-by: kernel test robot <lkp@intel.com>
+> >
+> > All warnings (new ones prefixed by >>):
+> >
+> > >> drivers/crypto/ccree/cc_driver.c:120:18: warning: result of comparison of constant 18446744073709551615 with expression of type 'u32' (aka 'unsigned int') is always false [-Wtautological-constant-out-of-range-compare]
+> >            cache_params |= FIELD_PREP(mask, val);
+> >                            ^~~~~~~~~~~~~~~~~~~~~
+> >    include/linux/bitfield.h:94:3: note: expanded from macro 'FIELD_PREP'
+> >                    __BF_FIELD_CHECK(_mask, 0ULL, _val, "FIELD_PREP: ");    \
+> >                    ^~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
+> >    include/linux/bitfield.h:52:28: note: expanded from macro '__BF_FIELD_CHECK'
+> >                    BUILD_BUG_ON_MSG((_mask) > (typeof(_reg))~0ull,         \
+> >                    ~~~~~~~~~~~~~~~~~~~~~~~~~^~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
+> >    include/linux/build_bug.h:39:58: note: expanded from macro 'BUILD_BUG_ON_MSG'
+> >    #define BUILD_BUG_ON_MSG(cond, msg) compiletime_assert(!(cond), msg)
+> >                                        ~~~~~~~~~~~~~~~~~~~~~^~~~~~~~~~~
+> >    include/linux/compiler_types.h:319:22: note: expanded from macro 'compiletime_assert'
+> >            _compiletime_assert(condition, msg, __compiletime_assert_, __COUNTER__)
+> >            ~~~~~~~~~~~~~~~~~~~~^~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
+> >    include/linux/compiler_types.h:307:23: note: expanded from macro '_compiletime_assert'
+> >            __compiletime_assert(condition, msg, prefix, suffix)
+> >            ~~~~~~~~~~~~~~~~~~~~~^~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
+> >    include/linux/compiler_types.h:299:9: note: expanded from macro '__compiletime_assert'
+> >                    if (!(condition))                                       \
+> >                          ^~~~~~~~~
+>
+> I am unable to understand this warning. It looks like it is
+> complaining about a FIELD_GET sanity check that is always false, which
+> makes sense since we're using a constant.
+>
+> Anyone can enlighten me if I've missed something?
 
-On 9/18/20 11:43 AM, Dan Murphy wrote:
-> The I2C addresses listed in the yaml are not correct. The addresses can
-> range from 0x41 through 0x48 based on register configurations. Fix the
-> example and the description.
+Looked at some of this code recently.  I think it may have an issue
+for masks where sizeof(mask) < sizeof(unsigned long long).
 
-Please ignore this patch I added this patch intp a different patch 
-series because there were just that many fixes.
+In your code, via 0day bot:
 
-https://lore.kernel.org/patchwork/project/lkml/list/?series=463738
+   107          u32 cache_params, ace_const, val, mask;
+...
+> 120          cache_params |= FIELD_PREP(mask, val);
 
-Dan
+then in include/linux/bitfield.h, we have:
 
+ 92 #define FIELD_PREP(_mask, _val)           \
+ 93   ({                \
+ 94     __BF_FIELD_CHECK(_mask, 0ULL, _val, "FIELD_PREP: ");  \
+
+ 44 #define __BF_FIELD_CHECK(_mask, _reg, _val, _pfx)     \
+...
+ 52     BUILD_BUG_ON_MSG((_mask) > (typeof(_reg))~0ull,   \
+ 53          _pfx "type of reg too small for mask"); \
+
+so the 0ULL in FIELD_PREP is important.  In __BF_FIELD_CHECK, the
+typeof(_reg) is unsigned long long (because 0ULL was passed).  So we
+have a comparison between a u32 and a u64; indeed any u32 can never be
+greater than a u64 that we know has the value of ULLONG_MAX.
+
+I did send a series splitting these up, I wonder if they'd help here:
+https://lore.kernel.org/lkml/20200708230402.1644819-3-ndesaulniers@google.com/
+-- 
+Thanks,
+~Nick Desaulniers
