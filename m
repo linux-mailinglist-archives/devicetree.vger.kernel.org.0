@@ -2,410 +2,214 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from vger.kernel.org (vger.kernel.org [23.128.96.18])
-	by mail.lfdr.de (Postfix) with ESMTP id 8F03C26F959
-	for <lists+devicetree@lfdr.de>; Fri, 18 Sep 2020 11:33:45 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTP id D65E626F973
+	for <lists+devicetree@lfdr.de>; Fri, 18 Sep 2020 11:40:28 +0200 (CEST)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S1726119AbgIRJck (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Fri, 18 Sep 2020 05:32:40 -0400
-Received: from lindbergh.monkeyblade.net ([23.128.96.19]:38248 "EHLO
-        lindbergh.monkeyblade.net" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S1726064AbgIRJcj (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Fri, 18 Sep 2020 05:32:39 -0400
-Received: from bhuna.collabora.co.uk (bhuna.collabora.co.uk [IPv6:2a00:1098:0:82:1000:25:2eeb:e3e3])
-        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 87959C06174A;
-        Fri, 18 Sep 2020 02:32:39 -0700 (PDT)
-Received: from [127.0.0.1] (localhost [127.0.0.1])
-        (Authenticated sender: eballetbo)
-        with ESMTPSA id 2C0CC28D566
-From:   Enric Balletbo i Serra <enric.balletbo@collabora.com>
-To:     linux-kernel@vger.kernel.org
-Cc:     Collabora Kernel ML <kernel@collabora.com>, dianders@chromium.org,
-        heiko@sntech.de, Caesar Wang <wxt@rock-chips.com>,
-        Rob Herring <robh+dt@kernel.org>, devicetree@vger.kernel.org,
-        linux-arm-kernel@lists.infradead.org,
-        linux-rockchip@lists.infradead.org
-Subject: [PATCH v2] dt-bindings: power: rockchip: Convert to json-schema
-Date:   Fri, 18 Sep 2020 11:32:29 +0200
-Message-Id: <20200918093229.252766-1-enric.balletbo@collabora.com>
-X-Mailer: git-send-email 2.28.0
+        id S1726159AbgIRJk2 (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Fri, 18 Sep 2020 05:40:28 -0400
+Received: from mail.kernel.org ([198.145.29.99]:45064 "EHLO mail.kernel.org"
+        rhost-flags-OK-OK-OK-OK) by vger.kernel.org with ESMTP
+        id S1726109AbgIRJk1 (ORCPT <rfc822;devicetree@vger.kernel.org>);
+        Fri, 18 Sep 2020 05:40:27 -0400
+Received: from coco.lan (ip5f5ad5d2.dynamic.kabel-deutschland.de [95.90.213.210])
+        (using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
+        (No client certificate requested)
+        by mail.kernel.org (Postfix) with ESMTPSA id E7BA621973;
+        Fri, 18 Sep 2020 09:40:24 +0000 (UTC)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=kernel.org;
+        s=default; t=1600422027;
+        bh=JEO9vjwBuQ6Zi3z0GE1BJYqfFToSd0zOu/hoFWxXemA=;
+        h=Date:From:To:Cc:Subject:In-Reply-To:References:From;
+        b=UJlD56RObZe0dUkYz3ZGNzJRKEN1+2QE0kuzfmT6J5hpsJk54yCXqDVnv75O0cIzU
+         iyxwoDQVwE1l0JpJ1J5vcRDxmL+WNjT1x9XNHFgMo1NFqW4YxIZxgyrdYujtc9JSX3
+         B9m4Trh5V19cVU4HbxgHLZzoJsTAeinNH7huwkAY=
+Date:   Fri, 18 Sep 2020 11:40:21 +0200
+From:   Mauro Carvalho Chehab <mchehab+huawei@kernel.org>
+To:     Rob Herring <robh@kernel.org>
+Cc:     Felipe Balbi <balbi@kernel.org>, Linuxarm <linuxarm@huawei.com>,
+        mauro.chehab@huawei.com, John Stultz <john.stultz@linaro.org>,
+        Manivannan Sadhasivam <mani@kernel.org>,
+        Greg Kroah-Hartman <gregkh@linuxfoundation.org>,
+        Linux USB List <linux-usb@vger.kernel.org>,
+        devicetree@vger.kernel.org,
+        "linux-kernel@vger.kernel.org" <linux-kernel@vger.kernel.org>
+Subject: Re: [PATCH 2/2] dt-bindings: document a new quirk for dwc3
+Message-ID: <20200918114021.5c67610e@coco.lan>
+In-Reply-To: <CAL_JsqLucKWwgBVAoyXpm1mCD5-OvFj2pM_q2+tcyA+K9fCnKg@mail.gmail.com>
+References: <cover.1599549364.git.mchehab+huawei@kernel.org>
+        <cb821a8b5ef2d44ce32c8ce1d01c34b7afb70eb2.1599549364.git.mchehab+huawei@kernel.org>
+        <20200915163814.GA2084568@bogus>
+        <20200917091821.0de18caa@coco.lan>
+        <CAL_JsqLucKWwgBVAoyXpm1mCD5-OvFj2pM_q2+tcyA+K9fCnKg@mail.gmail.com>
+X-Mailer: Claws Mail 3.17.6 (GTK+ 2.24.32; x86_64-redhat-linux-gnu)
 MIME-Version: 1.0
-Content-Transfer-Encoding: 8bit
+Content-Type: text/plain; charset=US-ASCII
+Content-Transfer-Encoding: quoted-printable
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-Convert the soc/rockchip/power_domain.txt binding document to json-schema
-and move to the power bindings directory.
+Em Thu, 17 Sep 2020 08:47:48 -0600
+Rob Herring <robh@kernel.org> escreveu:
 
-Signed-off-by: Enric Balletbo i Serra <enric.balletbo@collabora.com>
----
+> On Thu, Sep 17, 2020 at 1:18 AM Mauro Carvalho Chehab
+> <mchehab+huawei@kernel.org> wrote:
+> >
+> > Em Tue, 15 Sep 2020 10:38:14 -0600
+> > Rob Herring <robh@kernel.org> escreveu:
+> > =20
+> > > On Tue, Sep 08, 2020 at 09:20:57AM +0200, Mauro Carvalho Chehab wrote=
+: =20
+> > > > At Hikey 970, setting the SPLIT disable at the General
+> > > > User Register 3 is required.
+> > > >
+> > > > Without that, the URBs generated by the usbhid driver
+> > > > return -EPROTO errors. That causes the code at
+> > > > hid-core.c to call hid_io_error(), which schedules
+> > > > a reset_work, causing a call to hid_reset().
+> > > >
+> > > > In turn, the code there will call:
+> > > >
+> > > >     usb_queue_reset_device(usbhid->intf);
+> > > >
+> > > > The net result is that the input devices won't work, and
+> > > > will be reset on every 0.5 seconds:
+> > > >
+> > > >     [   33.122384] hub 1-1:1.0: state 7 ports 4 chg 0000 evt 0002
+> > > >     [   33.378220] usb 1-1.1: reset low-speed USB device number 3 u=
+sing xhci-hcd
+> > > >     [   33.698394] hub 1-1:1.0: state 7 ports 4 chg 0000 evt 0000
+> > > >     [   34.882365] hub 1-1:1.0: state 7 ports 4 chg 0000 evt 0002
+> > > >     [   35.138217] usb 1-1.1: reset low-speed USB device number 3 u=
+sing xhci-hcd
+> > > >     [   35.458617] hub 1-1:1.0: state 7 ports 4 chg 0000 evt 0000
+> > > >     [   36.642392] hub 1-1:1.0: state 7 ports 4 chg 0000 evt 0002
+> > > >     [   36.898207] usb 1-1.1: reset low-speed USB device number 3 u=
+sing xhci-hcd
+> > > >     [   37.218598] hub 1-1:1.0: state 7 ports 4 chg 0000 evt 0000
+> > > >     [   38.402368] hub 1-1:1.0: state 7 ports 4 chg 0000 evt 0002
+> > > >     [   38.658174] usb 1-1.1: reset low-speed USB device number 3 u=
+sing xhci-hcd
+> > > >     [   38.978594] hub 1-1:1.0: state 7 ports 4 chg 0000 evt 0000
+> > > >     [   40.162361] hub 1-1:1.0: state 7 ports 4 chg 0000 evt 0002
+> > > >     [   40.418148] usb 1-1.1: reset low-speed USB device number 3 u=
+sing xhci-hcd
+> > > >     ...
+> > > >     [  397.698132] usb 1-1.1: reset low-speed USB device number 3 u=
+sing xhci-hcd
+> > > >
+> > > > Signed-off-by: Mauro Carvalho Chehab <mchehab+huawei@kernel.org>
+> > > > ---
+> > > >  Documentation/devicetree/bindings/usb/dwc3.txt | 3 +++
+> > > >  1 file changed, 3 insertions(+)
+> > > >
+> > > > diff --git a/Documentation/devicetree/bindings/usb/dwc3.txt b/Docum=
+entation/devicetree/bindings/usb/dwc3.txt
+> > > > index d03edf9d3935..1aae2b6160c1 100644
+> > > > --- a/Documentation/devicetree/bindings/usb/dwc3.txt
+> > > > +++ b/Documentation/devicetree/bindings/usb/dwc3.txt
+> > > > @@ -78,6 +78,9 @@ Optional properties:
+> > > >                     park mode are disabled.
+> > > >   - snps,dis_metastability_quirk: when set, disable metastability w=
+orkaround.
+> > > >                     CAUTION: use only if you are absolutely sure of=
+ it.
+> > > > + - snps,dis-split-quirk: when set, change the way URBs are handled=
+ by the
+> > > > +                    driver. Needed to avoid -EPROTO errors with us=
+bhid
+> > > > +                    on some devices (Hikey 970). =20
+> > >
+> > > Can't this be implied by the compatible string? Yes we have quirk
+> > > properties already, but the problem with them is you can't address th=
+em
+> > > without a DT change. =20
+> >
+> > Short answer:
+> >
+> > While technically doable, I don't think that this would be a good idea.
+> >
+> > -
+> >
+> > Long answer:
+> >
+> > The first thing is related to the compatible namespace: should such
+> > quirk be added at SoC level or at board level?
+> >
+> > I don't know if the need to disable split mode came from a different
+> > dwc3 variant used by the Kirin 970 SoC, or if this is due to the way
+> > USB is wired at the Hikey 970 board. =20
+>=20
+> If board specific, then I agree that a separate property makes sense.
+> This doesn't really sound board specific though.
 
-Changes in v2:
-- Fixed a warning that says that 'syscon' should not be used alone.
-- Use patternProperties to define a new level for power-domains.
-- Add const values for power-domain-cells, address-cells, etc.
+Yeah, I agree that the higher chance is that this would be SoC specific,
+but I can't discard being board-specific either, as, on this board,
+all the output ports are all connected via an USB GPIO hub provided
+on a different chipset. Funny enough, setting this is only required
+for HID. The USB ports work fine either with split mode enabled or
+disabled for USB sticks. So, I guess this affects only INT (and maybe
+ISOC) URB transfers. So I wouldn't doubt that such quirk would be
+required due to some limitation at the USB GPIO hub.
 
- .../power/rockchip,power-controller.yaml      | 207 ++++++++++++++++++
- .../bindings/soc/rockchip/power_domain.txt    | 136 ------------
- 2 files changed, 207 insertions(+), 136 deletions(-)
- create mode 100644 Documentation/devicetree/bindings/power/rockchip,power-controller.yaml
- delete mode 100644 Documentation/devicetree/bindings/soc/rockchip/power_domain.txt
+> > 2) Because this specific device uses the dwc3-of-simple driver,
+> > the actual DT binding is:
+> >
+> >         usb3: hisi_dwc3 {
+> >                 compatible =3D "hisilicon,hi3670-dwc3";
+> >         ...
+> >                 dwc3: dwc3@ff100000 {
+> >                         compatible =3D "snps,dwc3";
+> >         ...
+> >                 };
+> >         }; =20
+>=20
+> This parent child split should never have happened for the cases that
+> don't have 'wrapper registers'. We should have had on node here with
+> just:
+>=20
+> compatible =3D "hisilicon,hi3670-dwc3", "snps,dwc3";
 
-diff --git a/Documentation/devicetree/bindings/power/rockchip,power-controller.yaml b/Documentation/devicetree/bindings/power/rockchip,power-controller.yaml
-new file mode 100644
-index 000000000000..571ca6e8428c
---- /dev/null
-+++ b/Documentation/devicetree/bindings/power/rockchip,power-controller.yaml
-@@ -0,0 +1,207 @@
-+# SPDX-License-Identifier: (GPL-2.0-only OR BSD-2-Clause)
-+%YAML 1.2
-+---
-+$id: http://devicetree.org/schemas/power/rockchip,power-controller.yaml#
-+$schema: http://devicetree.org/meta-schemas/core.yaml#
-+
-+title: Rockchip Power Domains
-+
-+maintainers:
-+  - Caesar Wang <wxt@rock-chips.com>
-+  - Heiko Stuebner <heiko@sntech.de>
-+
-+description: |
-+  Rockchip processors include support for multiple power domains which can be
-+  powered up/down by software based on different application scenes to save power.
-+
-+  Power domains contained within power-controller node are generic power domain
-+  providers documented in Documentation/devicetree/bindings/power/power-domain.yaml.
-+
-+  IP cores belonging to a power domain should contain a 'power-domains'
-+  property that is a phandle for the power domain node representing the domain.
-+
-+properties:
-+  $nodename:
-+    const: power-controller
-+
-+  compatible:
-+    enum:
-+      - rockchip,px30-power-controller
-+      - rockchip,rk3036-power-controller
-+      - rockchip,rk3066-power-controller
-+      - rockchip,rk3128-power-controller
-+      - rockchip,rk3188-power-controller
-+      - rockchip,rk3228-power-controller
-+      - rockchip,rk3288-power-controller
-+      - rockchip,rk3328-power-controller
-+      - rockchip,rk3366-power-controller
-+      - rockchip,rk3368-power-controller
-+      - rockchip,rk3399-power-controller
-+
-+  '#power-domain-cells':
-+    const: 1
-+
-+  '#address-cells':
-+    const: 1
-+
-+  '#size-cells':
-+    const: 0
-+
-+patternProperties:
-+  "^power-domain@[0-9]+$":
-+    type: object
-+    description: |
-+      Represents the power domains within the power controller node as documented
-+      in Documentation/devicetree/bindings/power/power-domain.yaml.
-+
-+    properties:
-+
-+      '#power-domain-cells':
-+        description:
-+            Must be 0 for nodes representing a single PM domain and 1 for nodes
-+            providing multiple PM domains.
-+
-+      '#address-cells':
-+        const: 1
-+
-+      '#size-cells':
-+        const: 0
-+
-+      reg:
-+        description: |
-+          Power domain index. Valid values are defined in:
-+          "include/dt-bindings/power/px30-power.h" - for PX30 type power domain.
-+          "include/dt-bindings/power/rk3036-power.h" - for RK3036 type power domain.
-+          "include/dt-bindings/power/rk3066-power.h" - for RK3066 type power domain.
-+          "include/dt-bindings/power/rk3128-power.h" - for RK3128 type power domain.
-+          "include/dt-bindings/power/rk3188-power.h" - for RK3188 type power domain.
-+          "include/dt-bindings/power/rk3228-power.h" - for RK3228 type power domain.
-+          "include/dt-bindings/power/rk3288-power.h" - for RK3288 type power domain.
-+          "include/dt-bindings/power/rk3328-power.h" - for RK3328 type power domain.
-+          "include/dt-bindings/power/rk3366-power.h" - for RK3366 type power domain.
-+          "include/dt-bindings/power/rk3368-power.h" - for RK3368 type power domain.
-+          "include/dt-bindings/power/rk3399-power.h" - for RK3399 type power domain.
-+        maxItems: 1
-+
-+      clocks:
-+        description: |
-+          A number of phandles to clocks that need to be enabled while power domain
-+          switches state.
-+
-+      pm_qos:
-+        description: |
-+          A number of phandles to qos blocks which need to be saved and restored
-+          while power domain switches state.
-+
-+    required:
-+      - reg
-+
-+required:
-+  - compatible
-+  - '#power-domain-cells'
-+
-+additionalProperties: false
-+
-+examples:
-+  - |
-+    #include <dt-bindings/clock/rk3399-cru.h>
-+    #include <dt-bindings/power/rk3399-power.h>
-+
-+    soc {
-+        #address-cells = <2>;
-+        #size-cells = <2>;
-+
-+	qos_hdcp: qos@ffa90000 {
-+		compatible = "rockchip,rk3399-qos","syscon";
-+		reg = <0x0 0xffa90000 0x0 0x20>;
-+	};
-+
-+        qos_iep: qos@ffa98000 {
-+            compatible = "rk3399-qos","syscon";
-+            reg = <0x0 0xffa98000 0x0 0x20>;
-+        };
-+
-+        qos_rga_r: qos@ffab0000 {
-+            compatible = "rk3399-qos","syscon";
-+            reg = <0x0 0xffab0000 0x0 0x20>;
-+        };
-+
-+        qos_rga_w: qos@ffab0080 {
-+            compatible = "rk3399-qos","syscon";
-+            reg = <0x0 0xffab0080 0x0 0x20>;
-+        };
-+
-+        qos_video_m0: qos@ffab8000 {
-+            compatible = "rk3399-qos","syscon";
-+            reg = <0x0 0xffab8000 0x0 0x20>;
-+        };
-+
-+        qos_video_m1_r: qos@ffac0000 {
-+            compatible = "rk3399-qos","syscon";
-+            reg = <0x0 0xffac0000 0x0 0x20>;
-+        };
-+
-+        qos_video_m1_w: qos@ffac0080 {
-+            compatible = "rk3399-qos","syscon";
-+            reg = <0x0 0xffac0080 0x0 0x20>;
-+        };
-+
-+        power-management@ff310000 {
-+            compatible = "rockchip,rk3399-pmu", "syscon", "simple-mfd";
-+            reg = <0x0 0xff310000 0x0 0x1000>;
-+
-+            power-controller {
-+                compatible = "rockchip,rk3399-power-controller";
-+                #power-domain-cells = <1>;
-+                #address-cells = <1>;
-+                #size-cells = <0>;
-+
-+                /* These power domains are grouped by VD_CENTER */
-+                power-domain@RK3399_PD_IEP {
-+                    reg = <RK3399_PD_IEP>;
-+                    clocks = <&cru ACLK_IEP>,
-+                             <&cru HCLK_IEP>;
-+                    pm_qos = <&qos_iep>;
-+                    #power-domain-cells = <0>;
-+                };
-+                power-domain@RK3399_PD_RGA {
-+                    reg = <RK3399_PD_RGA>;
-+                    clocks = <&cru ACLK_RGA>,
-+                             <&cru HCLK_RGA>;
-+                    pm_qos = <&qos_rga_r>,
-+                             <&qos_rga_w>;
-+                    #power-domain-cells = <0>;
-+                };
-+                power-domain@RK3399_PD_VCODEC {
-+                    reg = <RK3399_PD_VCODEC>;
-+                    clocks = <&cru ACLK_VCODEC>,
-+                             <&cru HCLK_VCODEC>;
-+                    pm_qos = <&qos_video_m0>;
-+                    #power-domain-cells = <0>;
-+                };
-+                power-domain@RK3399_PD_VDU {
-+                    reg = <RK3399_PD_VDU>;
-+                    clocks = <&cru ACLK_VDU>,
-+                             <&cru HCLK_VDU>;
-+                    pm_qos = <&qos_video_m1_r>,
-+                             <&qos_video_m1_w>;
-+                    #power-domain-cells = <0>;
-+                };
-+                power-domain@RK3399_PD_VIO {
-+                    reg = <RK3399_PD_VIO>;
-+                    #power-domain-cells = <1>;
-+                    #address-cells = <1>;
-+                    #size-cells = <0>;
-+
-+                    power-domain@RK3399_PD_HDCP {
-+                        reg = <RK3399_PD_HDCP>;
-+                        clocks = <&cru ACLK_HDCP>,
-+                                 <&cru HCLK_HDCP>,
-+                                 <&cru PCLK_HDCP>;
-+                        pm_qos = <&qos_hdcp>;
-+                        #power-domain-cells = <0>;
-+                    };
-+                };
-+            };
-+        };
-+    };
-diff --git a/Documentation/devicetree/bindings/soc/rockchip/power_domain.txt b/Documentation/devicetree/bindings/soc/rockchip/power_domain.txt
-deleted file mode 100644
-index 8304eceb62e4..000000000000
---- a/Documentation/devicetree/bindings/soc/rockchip/power_domain.txt
-+++ /dev/null
-@@ -1,136 +0,0 @@
--* Rockchip Power Domains
--
--Rockchip processors include support for multiple power domains which can be
--powered up/down by software based on different application scenes to save power.
--
--Required properties for power domain controller:
--- compatible: Should be one of the following.
--	"rockchip,px30-power-controller" - for PX30 SoCs.
--	"rockchip,rk3036-power-controller" - for RK3036 SoCs.
--	"rockchip,rk3066-power-controller" - for RK3066 SoCs.
--	"rockchip,rk3128-power-controller" - for RK3128 SoCs.
--	"rockchip,rk3188-power-controller" - for RK3188 SoCs.
--	"rockchip,rk3228-power-controller" - for RK3228 SoCs.
--	"rockchip,rk3288-power-controller" - for RK3288 SoCs.
--	"rockchip,rk3328-power-controller" - for RK3328 SoCs.
--	"rockchip,rk3366-power-controller" - for RK3366 SoCs.
--	"rockchip,rk3368-power-controller" - for RK3368 SoCs.
--	"rockchip,rk3399-power-controller" - for RK3399 SoCs.
--- #power-domain-cells: Number of cells in a power-domain specifier.
--	Should be 1 for multiple PM domains.
--- #address-cells: Should be 1.
--- #size-cells: Should be 0.
--
--Required properties for power domain sub nodes:
--- reg: index of the power domain, should use macros in:
--	"include/dt-bindings/power/px30-power.h" - for PX30 type power domain.
--	"include/dt-bindings/power/rk3036-power.h" - for RK3036 type power domain.
--	"include/dt-bindings/power/rk3066-power.h" - for RK3066 type power domain.
--	"include/dt-bindings/power/rk3128-power.h" - for RK3128 type power domain.
--	"include/dt-bindings/power/rk3188-power.h" - for RK3188 type power domain.
--	"include/dt-bindings/power/rk3228-power.h" - for RK3228 type power domain.
--	"include/dt-bindings/power/rk3288-power.h" - for RK3288 type power domain.
--	"include/dt-bindings/power/rk3328-power.h" - for RK3328 type power domain.
--	"include/dt-bindings/power/rk3366-power.h" - for RK3366 type power domain.
--	"include/dt-bindings/power/rk3368-power.h" - for RK3368 type power domain.
--	"include/dt-bindings/power/rk3399-power.h" - for RK3399 type power domain.
--- clocks (optional): phandles to clocks which need to be enabled while power domain
--	switches state.
--- pm_qos (optional): phandles to qos blocks which need to be saved and restored
--	while power domain switches state.
--
--Qos Example:
--
--	qos_gpu: qos_gpu@ffaf0000 {
--		compatible ="syscon";
--		reg = <0x0 0xffaf0000 0x0 0x20>;
--	};
--
--Example:
--
--	power: power-controller {
--		compatible = "rockchip,rk3288-power-controller";
--		#power-domain-cells = <1>;
--		#address-cells = <1>;
--		#size-cells = <0>;
--
--		pd_gpu {
--			reg = <RK3288_PD_GPU>;
--			clocks = <&cru ACLK_GPU>;
--			pm_qos = <&qos_gpu>;
--		};
--	};
--
--	 power: power-controller {
--                compatible = "rockchip,rk3368-power-controller";
--                #power-domain-cells = <1>;
--                #address-cells = <1>;
--                #size-cells = <0>;
--
--                pd_gpu_1 {
--                        reg = <RK3368_PD_GPU_1>;
--                        clocks = <&cru ACLK_GPU_CFG>;
--                };
--        };
--
--Example 2:
--		power: power-controller {
--			compatible = "rockchip,rk3399-power-controller";
--			#power-domain-cells = <1>;
--			#address-cells = <1>;
--			#size-cells = <0>;
--
--			pd_vio {
--				#address-cells = <1>;
--				#size-cells = <0>;
--				reg = <RK3399_PD_VIO>;
--
--				pd_vo {
--					#address-cells = <1>;
--					#size-cells = <0>;
--					reg = <RK3399_PD_VO>;
--
--					pd_vopb {
--						reg = <RK3399_PD_VOPB>;
--					};
--
--					pd_vopl {
--						reg = <RK3399_PD_VOPL>;
--					};
--				};
--			};
--		};
--
--Node of a device using power domains must have a power-domains property,
--containing a phandle to the power device node and an index specifying which
--power domain to use.
--The index should use macros in:
--	"include/dt-bindings/power/px30-power.h" - for px30 type power domain.
--	"include/dt-bindings/power/rk3036-power.h" - for rk3036 type power domain.
--	"include/dt-bindings/power/rk3128-power.h" - for rk3128 type power domain.
--	"include/dt-bindings/power/rk3128-power.h" - for rk3228 type power domain.
--	"include/dt-bindings/power/rk3288-power.h" - for rk3288 type power domain.
--	"include/dt-bindings/power/rk3328-power.h" - for rk3328 type power domain.
--	"include/dt-bindings/power/rk3366-power.h" - for rk3366 type power domain.
--	"include/dt-bindings/power/rk3368-power.h" - for rk3368 type power domain.
--	"include/dt-bindings/power/rk3399-power.h" - for rk3399 type power domain.
--
--Example of the node using power domain:
--
--	node {
--		/* ... */
--		power-domains = <&power RK3288_PD_GPU>;
--		/* ... */
--	};
--
--	node {
--                /* ... */
--                power-domains = <&power RK3368_PD_GPU_1>;
--                /* ... */
--        };
--
--	node {
--		/* ... */
--		power-domains = <&power RK3399_PD_VOPB>;
--		/* ... */
--	};
--- 
-2.28.0
+I tried to do that, but the ARM CPU panics:
 
+	https://lore.kernel.org/linux-usb/731e13f9fbba3a81bedb39f1c1deaf41200acd0c=
+.1599559004.git.mchehab+huawei@kernel.org/
+
+=46rom my tests, it sounds that this is due to some (minor) differences on=20
+how the power clocks are enabled/suspended when using dwc3-of-simple as
+the parent node.=20
+
+It sounds that, if the PM clocks are not stable yet by the time
+dwc3 tries to initialize, the CPU crashes.
+=09
+> > For boards that use dwc3-of-simple drivers, we could add a hack
+> > at the dwc3 core that would seek for the parent's device's
+> > compatible string with something like (not tested):
+> >
+> >         if (of_device_is_compatible(pdev->parent->dev.of_node,
+> >                                    "hisilicon,hi3670-dwc3"))
+> >                 dwc->dis_split_quirk =3D true; =20
+>=20
+> This is what I'd do. You could have a match table instead as that
+> would scale better.
+
+Not sure if a match table would work here, because we need to
+enforce that the parent node will be called before dwc3, as
+otherwise the panic() will occur.
+
+> > It should be noticed that both platform_data and pdev->parent
+> > alternatives will only work for boards using dwc3-of-simple driver.
+> > This could limit this quirk usage on future devices.
+> >
+> > -
+> >
+> > IMO, adding a new quirk is cleaner, and adopts the same solution
+> > that it is currently used by other drivers with Designware IP. =20
+>=20
+> We already have a bunch of quirk properties. What's one more, sigh. So
+> if that's what you want, fine.
+
+Ok, thanks!
+
+Thanks,
+Mauro
