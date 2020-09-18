@@ -2,106 +2,85 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from vger.kernel.org (vger.kernel.org [23.128.96.18])
-	by mail.lfdr.de (Postfix) with ESMTP id 97CFA270773
-	for <lists+devicetree@lfdr.de>; Fri, 18 Sep 2020 22:50:51 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTP id 339512708CD
+	for <lists+devicetree@lfdr.de>; Sat, 19 Sep 2020 00:14:17 +0200 (CEST)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S1726154AbgIRUuu (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Fri, 18 Sep 2020 16:50:50 -0400
-Received: from lindbergh.monkeyblade.net ([23.128.96.19]:58514 "EHLO
-        lindbergh.monkeyblade.net" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S1726118AbgIRUuu (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Fri, 18 Sep 2020 16:50:50 -0400
-Received: from mail-oi1-x233.google.com (mail-oi1-x233.google.com [IPv6:2607:f8b0:4864:20::233])
-        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 53B78C0613CE;
-        Fri, 18 Sep 2020 13:50:50 -0700 (PDT)
-Received: by mail-oi1-x233.google.com with SMTP id i17so8573853oig.10;
-        Fri, 18 Sep 2020 13:50:50 -0700 (PDT)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=gmail.com; s=20161025;
-        h=mime-version:references:in-reply-to:from:date:message-id:subject:to
-         :cc;
-        bh=LQBTYd/i7TL56jJTVQHkU8FPXDKYu/R4V8hCfAPSzJo=;
-        b=r5aGYz+rFyzfIoItLLPRg0TWqJvXc782/dbNt7PSwOTmfECPgbPftiexIoJkmFTXtY
-         vK4UuJdscGwkJgnTX/t8tlx9Z7Q/eOVC0jbIuSuj/58XQV9sWNdOS+A82CTSgiMta/u7
-         uWQ/AYufjXogcJQpODpjD2prPYEWNCRPkks3c2V8pRp4Vv1LgYC+cVsE+kJPPCw0FBj7
-         U3e2A6CFjMd12j5aCHGLnlMRvVRHngzVR0UYL7Y7dNZk8OYyal5IYSmOiSEQuNazDCAR
-         Qh+MUj5CCTduEz3ESmgu6tb6KIFSCO6DgMyIbu4nv4eveg7nFsKcRcOce2Ou2wCbVKqy
-         bBfw==
-X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=1e100.net; s=20161025;
-        h=x-gm-message-state:mime-version:references:in-reply-to:from:date
-         :message-id:subject:to:cc;
-        bh=LQBTYd/i7TL56jJTVQHkU8FPXDKYu/R4V8hCfAPSzJo=;
-        b=XKLs9W4Qm2C/RipJ/HAiiZvKFtnyoKja2BlyCiVzA5RRLjU5rgw9QwLrTcpbBM0PRU
-         bn/5PnPcp+b4cY+scWrMFpmvl2FEvKOY+dTkRDXGTda49QRiuiYtRyqehnDGQgXLrnS/
-         m666k5ibdbFD8dXLAgVCAsMVZWIuVNZ5Rzh5nashvRaEnAZ+9+hGjT1og85OaBFFGZjs
-         uXvYCEMD+YOmt/TXxUIIFlVvMxhvWr0JyUtgS0Yf5uTgsiFJUf61wyelEideh7EEby+k
-         1azxlVgF4KEsxx+TUe/A3gxy9sLbHp4l8PXTYJ0HjwkzIUV3VcEX55KAtumQsiOURS2Q
-         Lzrw==
-X-Gm-Message-State: AOAM533mH74Hn2fVdyNFayw5eYeDPODHUc+FBWSGzzqgy0b98FT9/jh2
-        OV6ZdjUkGZe13w+wuLP7IiyJBUbqdXHfjeXauXw=
-X-Google-Smtp-Source: ABdhPJwLFCTn89gsNeMXFYjEgZOXfTDO437610Y8/ZpvSrOdjvvz3QGyVx9hb5/bIum5U6OkxJE/NlABUGT6UuwFT+0=
-X-Received: by 2002:aca:5b45:: with SMTP id p66mr11082126oib.39.1600462249606;
- Fri, 18 Sep 2020 13:50:49 -0700 (PDT)
+        id S1726064AbgIRWOQ (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Fri, 18 Sep 2020 18:14:16 -0400
+Received: from mo-csw1114.securemx.jp ([210.130.202.156]:46096 "EHLO
+        mo-csw.securemx.jp" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
+        with ESMTP id S1726236AbgIRWOP (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Fri, 18 Sep 2020 18:14:15 -0400
+Received: by mo-csw.securemx.jp (mx-mo-csw1114) id 08IMDgrr028511; Sat, 19 Sep 2020 07:13:42 +0900
+X-Iguazu-Qid: 2wHHJOhcAqHaqqtrF2
+X-Iguazu-QSIG: v=2; s=0; t=1600467222; q=2wHHJOhcAqHaqqtrF2; m=+e83SuaEvc+u1JKStEGOxviBGLalvTecjWwG7h8fLBM=
+Received: from imx2.toshiba.co.jp (imx2.toshiba.co.jp [106.186.93.51])
+        by relay.securemx.jp (mx-mr1111) id 08IMDdHF013283;
+        Sat, 19 Sep 2020 07:13:39 +0900
+Received: from enc01.toshiba.co.jp ([106.186.93.100])
+        by imx2.toshiba.co.jp  with ESMTP id 08IMDdss000631;
+        Sat, 19 Sep 2020 07:13:39 +0900 (JST)
+Received: from hop001.toshiba.co.jp ([133.199.164.63])
+        by enc01.toshiba.co.jp  with ESMTP id 08IMDdh0010966;
+        Sat, 19 Sep 2020 07:13:39 +0900
+From:   Nobuhiro Iwamatsu <nobuhiro1.iwamatsu@toshiba.co.jp>
+To:     Rob Herring <robh+dt@kernel.org>,
+        Wim Van Sebroeck <wim@linux-watchdog.org>,
+        Guenter Roeck <linux@roeck-us.net>
+Cc:     punit1.agrawal@toshiba.co.jp, yuji2.ishikawa@toshiba.co.jp,
+        devicetree@vger.kernel.org, linux-arm-kernel@lists.infradead.org,
+        linux-watchdog@vger.kernel.org,
+        Nobuhiro Iwamatsu <nobuhiro1.iwamatsu@toshiba.co.jp>
+Subject: [PATCH v2 0/2] Add WDT driver for Toshiba Visconti ARM SoC
+Date:   Sat, 19 Sep 2020 07:13:35 +0900
+X-TSB-HOP: ON
+Message-Id: <20200918221337.257157-1-nobuhiro1.iwamatsu@toshiba.co.jp>
+X-Mailer: git-send-email 2.27.0
 MIME-Version: 1.0
-References: <20200910172826.3074357-1-enric.balletbo@collabora.com>
- <20200910172826.3074357-4-enric.balletbo@collabora.com> <CAOwMV_z9OBpNqStCH+HEcwAK-TwPVeMH4LwJbp78T1P=t9bEKg@mail.gmail.com>
-In-Reply-To: <CAOwMV_z9OBpNqStCH+HEcwAK-TwPVeMH4LwJbp78T1P=t9bEKg@mail.gmail.com>
-From:   Enric Balletbo Serra <eballetbo@gmail.com>
-Date:   Fri, 18 Sep 2020 22:50:37 +0200
-Message-ID: <CAFqH_535GA6nFGKTu4wms1FGySfdrJPeZOf0tuFzaYwVwQuucg@mail.gmail.com>
-Subject: Re: [PATCH 03/12] arm64: dts: mediatek: Add mt8173 power domain controller
-To:     Fabien Parent <fparent@baylibre.com>
-Cc:     Enric Balletbo i Serra <enric.balletbo@collabora.com>,
-        linux-kernel <linux-kernel@vger.kernel.org>,
-        Collabora Kernel ML <kernel@collabora.com>,
-        Matthias Brugger <matthias.bgg@gmail.com>,
-        Nicolas Boichat <drinkcat@chromium.org>,
-        Hsin-Yi Wang <hsinyi@chromium.org>,
-        Weiyi Lu <weiyi.lu@mediatek.com>,
-        Rob Herring <robh+dt@kernel.org>,
-        DTML <devicetree@vger.kernel.org>,
-        Linux ARM <linux-arm-kernel@lists.infradead.org>,
-        "moderated list:ARM/Mediatek SoC support" 
-        <linux-mediatek@lists.infradead.org>
-Content-Type: text/plain; charset="UTF-8"
+Content-Transfer-Encoding: 8bit
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-Hi Fabien,
+Hi,
 
-Thank you to look at this.
+This is the PWM driver for Toshiba's ARM SoC, Visconti[0].
+This has not yet been included in Linux kernel, but patches have been posted [1]
+and some patches have been applied [2].
 
-Missatge de Fabien Parent <fparent@baylibre.com> del dia dv., 18 de
-set. 2020 a les 22:24:
->
-> Hi Enric,
->
-> > -               scpsys: power-controller@10006000 {
-> > -                       compatible = "mediatek,mt8173-scpsys";
-> > -                       #power-domain-cells = <1>;
->
-> This change generates a lot of warning when compiling the MT8173 device-trees.
->
-> Warning (power_domains_property): /soc/mutex@14020000: Missing
-> property '#power-domain-cells' in node /soc/syscon@10006000 or bad
-> phandle (referred from power-domains[0])
+Since this is a SoC driver, this cannot work by itself, but I have confirmed that it
+works with the patch series sent as [1] with DT setting.
 
-I think that there is a mistake in that patch #power-domain-cells =
-<1>; should not be removed. Anyway, I talked with Matthias and I'm
-going to redefine this part as doesn't really match with the hardware.
-We're thinking on something like this:
+Best regards,
+  Nobuhiro
 
-scpsys: syscon@10006000 {
-     compatible = "mediatek,mtk-scpsys", "syscon";
-      reg = ...
+[0]: https://toshiba.semicon-storage.com/ap-en/semiconductor/product/image-recognition-processors-visconti.html
+[1]: http://lists.infradead.org/pipermail/linux-arm-kernel/2020-September/599678.html
+[2]: http://lists.infradead.org/pipermail/linux-arm-kernel/2020-September/600578.html
 
-     power-controller {
-           compatible = "mediatek,mt8173-power-controller";
-           #power-domain-cells = <1>;
+watchdog: bindings: Add binding documentation for Toshiba Visconti watchdog device
+  v1 - > v2:
+    - no update
 
-           <- the list of domains ->
+watchdog: Add Toshiba Visconti watchdog driver
+  v1 - > v2:
+    - Sort incclude alphabetically.
+    - Add negative value check and handling for visconti_wdt_get_timelef()
+    - Use dev_err_probe() with devm_clk_get()
 
-Thanks,
-  Enric
+Nobuhiro Iwamatsu (2):
+  watchdog: bindings: Add binding documentation for Toshiba Visconti
+    watchdog device
+  watchdog: Add Toshiba Visconti watchdog driver
+
+ .../watchdog/toshiba,visconti-wdt.yaml        |  49 +++++
+ drivers/watchdog/Kconfig                      |   8 +
+ drivers/watchdog/Makefile                     |   1 +
+ drivers/watchdog/visconti_wdt.c               | 195 ++++++++++++++++++
+ 4 files changed, 253 insertions(+)
+ create mode 100644 Documentation/devicetree/bindings/watchdog/toshiba,visconti-wdt.yaml
+ create mode 100644 drivers/watchdog/visconti_wdt.c
+
+-- 
+2.27.0
+
