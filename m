@@ -2,61 +2,87 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from vger.kernel.org (vger.kernel.org [23.128.96.18])
-	by mail.lfdr.de (Postfix) with ESMTP id A468526F555
-	for <lists+devicetree@lfdr.de>; Fri, 18 Sep 2020 07:17:57 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTP id E2D6526F55B
+	for <lists+devicetree@lfdr.de>; Fri, 18 Sep 2020 07:22:09 +0200 (CEST)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S1726309AbgIRFR4 (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Fri, 18 Sep 2020 01:17:56 -0400
-Received: from mail.kernel.org ([198.145.29.99]:40450 "EHLO mail.kernel.org"
+        id S1726366AbgIRFWJ (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Fri, 18 Sep 2020 01:22:09 -0400
+Received: from mail.kernel.org ([198.145.29.99]:46322 "EHLO mail.kernel.org"
         rhost-flags-OK-OK-OK-OK) by vger.kernel.org with ESMTP
-        id S1726222AbgIRFR4 (ORCPT <rfc822;devicetree@vger.kernel.org>);
-        Fri, 18 Sep 2020 01:17:56 -0400
+        id S1726222AbgIRFWI (ORCPT <rfc822;devicetree@vger.kernel.org>);
+        Fri, 18 Sep 2020 01:22:08 -0400
 Received: from localhost (unknown [136.185.124.244])
         (using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
         (No client certificate requested)
-        by mail.kernel.org (Postfix) with ESMTPSA id DE33F21D43;
-        Fri, 18 Sep 2020 05:17:54 +0000 (UTC)
+        by mail.kernel.org (Postfix) with ESMTPSA id 81C4C21D43;
+        Fri, 18 Sep 2020 05:22:07 +0000 (UTC)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=kernel.org;
-        s=default; t=1600406275;
-        bh=YX/IjhRwKaeUYwIYimZuhaCzEubqiwx+Y8BcqNSb48g=;
+        s=default; t=1600406528;
+        bh=M2L6Nhwv2Jf3Qkvji6FJCO0fIsaAe+TTYGoQo4TMliM=;
         h=Date:From:To:Cc:Subject:References:In-Reply-To:From;
-        b=V484eNC7n0mQlhgy5pLQAIrZkmL6ilomd8f00UlQJH7UueT9RGg6w1NV6glZui7hN
-         bAA4jOdfiNAMVPEI4Q2/jl0rsed7vwVwmPZco/MR+kn2BlNEey36aFNMwfvXH+4DUj
-         +vJ0nRtk+19Up/T+wDrym1WtyX7TYmChfql7QNHs=
-Date:   Fri, 18 Sep 2020 10:47:51 +0530
+        b=F2cs8pSMEyPObFx93eofQrBq5o39O70ZPdhN1V0rbGoqERxcW6WvoYYqM4xuT+Wxy
+         AxW+gIeAn6BwLwQnSyIo7X1zHey+znBJQ/gnoUjutniEl37PfjxG+KvONG1FMptFSF
+         DmB4u4unswq8FmnrMlw0eKwntMVTREDX3kW7d478=
+Date:   Fri, 18 Sep 2020 10:52:04 +0530
 From:   Vinod Koul <vkoul@kernel.org>
-To:     Swapnil Jakhade <sjakhade@cadence.com>
-Cc:     kishon@ti.com, robh+dt@kernel.org, p.zabel@pengutronix.de,
+To:     Tomi Valkeinen <tomi.valkeinen@ti.com>
+Cc:     Kishon Vijay Abraham I <kishon@ti.com>,
+        Rob Herring <robh+dt@kernel.org>,
+        Swapnil Jakhade <sjakhade@cadence.com>,
+        Yuti Amonkar <yamonkar@cadence.com>,
         linux-kernel@vger.kernel.org, devicetree@vger.kernel.org,
-        mparab@cadence.com, yamonkar@cadence.com, tomi.valkeinen@ti.com,
-        jsarha@ti.com, nsekhar@ti.com
-Subject: Re: [PATCH v3 00/13] PHY: Add support for multilink configurations
- in Cadence Torrent PHY driver
-Message-ID: <20200918051751.GC2968@vkoul-mobl>
-References: <1600327846-9733-1-git-send-email-sjakhade@cadence.com>
+        Sekhar Nori <nsekhar@ti.com>
+Subject: Re: [PATCH 2/2] dt-bindings: phy: cdns,torrent-phy: add reset-names
+Message-ID: <20200918052204.GD2968@vkoul-mobl>
+References: <20200916124711.166643-1-tomi.valkeinen@ti.com>
+ <20200916124711.166643-2-tomi.valkeinen@ti.com>
 MIME-Version: 1.0
 Content-Type: text/plain; charset=us-ascii
 Content-Disposition: inline
-In-Reply-To: <1600327846-9733-1-git-send-email-sjakhade@cadence.com>
+In-Reply-To: <20200916124711.166643-2-tomi.valkeinen@ti.com>
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-On 17-09-20, 09:30, Swapnil Jakhade wrote:
-> Cadence Torrent PHY is a multiprotocol PHY supporting different multilink
-> PHY configurations including DisplayPort, PCIe, USB, SGMII, QSGMII etc.
-> This patch series extends functionality of Torrent PHY driver to support
-> following configurations:
-> - Single link PCIe configuration
-> - PCIe + SGMII/QSGMII Unique SSC multilink configuration
-> - Single link SGMII/QSGMII configuration
-> - Single link USB configuration
-> - PCIe + USB Unique SSC multilink configuration
-> - USB + SGMII/QSGMII multilink configuration
+On 16-09-20, 15:47, Tomi Valkeinen wrote:
+> Add reset-names as a required property.
 > 
-> The changes have been validated on TI J7200 platform.
+> There are no dts files using torrent phy yet, so it is safe to add a new
+> required property.
+> 
+> Signed-off-by: Tomi Valkeinen <tomi.valkeinen@ti.com>
+> ---
+>  .../devicetree/bindings/phy/phy-cadence-torrent.yaml         | 5 +++++
+>  1 file changed, 5 insertions(+)
+> 
+> diff --git a/Documentation/devicetree/bindings/phy/phy-cadence-torrent.yaml b/Documentation/devicetree/bindings/phy/phy-cadence-torrent.yaml
+> index 4071438be2ba..12ce022e4764 100644
+> --- a/Documentation/devicetree/bindings/phy/phy-cadence-torrent.yaml
+> +++ b/Documentation/devicetree/bindings/phy/phy-cadence-torrent.yaml
+> @@ -54,6 +54,10 @@ properties:
+>        Torrent PHY reset.
+>        See Documentation/devicetree/bindings/reset/reset.txt
+>  
+> +  reset-names:
+> +    items:
+> +      - const: torrent_reset
+> +
+>  patternProperties:
+>    '^phy@[0-7]+$':
+>      type: object
+> @@ -111,6 +115,7 @@ required:
+>    - reg
+>    - reg-names
+>    - resets
+> +  - reset-names
 
-Applied, thanks
+Update the example as well please.
+>  
+>  additionalProperties: false
+>  
+> -- 
+> Texas Instruments Finland Oy, Porkkalankatu 22, 00180 Helsinki.
+> Y-tunnus/Business ID: 0615521-4. Kotipaikka/Domicile: Helsinki
 
 -- 
 ~Vinod
