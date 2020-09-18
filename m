@@ -2,39 +2,39 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from vger.kernel.org (vger.kernel.org [23.128.96.18])
-	by mail.lfdr.de (Postfix) with ESMTP id 34B5726ED74
-	for <lists+devicetree@lfdr.de>; Fri, 18 Sep 2020 04:21:56 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTP id 2DCAB26F25D
+	for <lists+devicetree@lfdr.de>; Fri, 18 Sep 2020 04:59:02 +0200 (CEST)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S1729562AbgIRCUy (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Thu, 17 Sep 2020 22:20:54 -0400
-Received: from mail.kernel.org ([198.145.29.99]:48564 "EHLO mail.kernel.org"
+        id S1727987AbgIRC6R (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Thu, 17 Sep 2020 22:58:17 -0400
+Received: from mail.kernel.org ([198.145.29.99]:55510 "EHLO mail.kernel.org"
         rhost-flags-OK-OK-OK-OK) by vger.kernel.org with ESMTP
-        id S1728943AbgIRCRl (ORCPT <rfc822;devicetree@vger.kernel.org>);
-        Thu, 17 Sep 2020 22:17:41 -0400
+        id S1727738AbgIRCGS (ORCPT <rfc822;devicetree@vger.kernel.org>);
+        Thu, 17 Sep 2020 22:06:18 -0400
 Received: from sasha-vm.mshome.net (c-73-47-72-35.hsd1.nh.comcast.net [73.47.72.35])
         (using TLSv1.2 with cipher ECDHE-RSA-AES128-GCM-SHA256 (128/128 bits))
         (No client certificate requested)
-        by mail.kernel.org (Postfix) with ESMTPSA id 986EA239D1;
-        Fri, 18 Sep 2020 02:17:39 +0000 (UTC)
+        by mail.kernel.org (Postfix) with ESMTPSA id 9B33E23772;
+        Fri, 18 Sep 2020 02:06:16 +0000 (UTC)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=kernel.org;
-        s=default; t=1600395460;
-        bh=OYL88p2MpTjomQuoo+r7Vw4vpYgnhDKWkh8UXNmMVcU=;
+        s=default; t=1600394777;
+        bh=lDDGUL4kvJ5mex8eDO//IqOW71j0i6XZXgohdWZWS0A=;
         h=From:To:Cc:Subject:Date:In-Reply-To:References:From;
-        b=X2H6MCImfpAvPyCJaBA2Hsxejc0pc+pWqFZD6Lzj3I0wZqGbqjl1StyzQmrrVhHZ5
-         WtSpaHuCBL5qaeYBc19LvlKp1XnQ1b/fticTsuvFLawmgV/PIYp8bx7BiZE/T5sraN
-         5zHuluoOLdgei89XcLhQYWADsT1SR5XZALj3bDqo=
+        b=qgOHs3rg8KxpwAaxuyrO/XOniCXYp1V82O6SCbr4hf352OCmPVuBbiORM0Eye4lAE
+         PkY+gmy4dBk291b7EsEJ1XGOMRU8m82mX5FaSjCQvbQdvPP8Yjmko3I7ABZEtHQnLP
+         PEXmKiNEs1NC/Du9zheVCQ3OTzlbyrpunq5+TmNA=
 From:   Sasha Levin <sashal@kernel.org>
 To:     linux-kernel@vger.kernel.org, stable@vger.kernel.org
 Cc:     Krzysztof Kozlowski <krzk@kernel.org>,
         Jonathan Bakker <xc-racer2@live.ca>,
         Mark Brown <broonie@kernel.org>,
         Sasha Levin <sashal@kernel.org>, devicetree@vger.kernel.org
-Subject: [PATCH AUTOSEL 4.4 46/64] dt-bindings: sound: wm8994: Correct required supplies based on actual implementaion
-Date:   Thu, 17 Sep 2020 22:16:25 -0400
-Message-Id: <20200918021643.2067895-46-sashal@kernel.org>
+Subject: [PATCH AUTOSEL 5.4 251/330] dt-bindings: sound: wm8994: Correct required supplies based on actual implementaion
+Date:   Thu, 17 Sep 2020 21:59:51 -0400
+Message-Id: <20200918020110.2063155-251-sashal@kernel.org>
 X-Mailer: git-send-email 2.25.1
-In-Reply-To: <20200918021643.2067895-1-sashal@kernel.org>
-References: <20200918021643.2067895-1-sashal@kernel.org>
+In-Reply-To: <20200918020110.2063155-1-sashal@kernel.org>
+References: <20200918020110.2063155-1-sashal@kernel.org>
 MIME-Version: 1.0
 X-stable: review
 X-Patchwork-Hint: Ignore
@@ -62,7 +62,7 @@ Signed-off-by: Sasha Levin <sashal@kernel.org>
  1 file changed, 12 insertions(+), 6 deletions(-)
 
 diff --git a/Documentation/devicetree/bindings/sound/wm8994.txt b/Documentation/devicetree/bindings/sound/wm8994.txt
-index e045e90a0924b..0f03b8228d080 100644
+index 68cccc4653ba3..367b58ce1bb92 100644
 --- a/Documentation/devicetree/bindings/sound/wm8994.txt
 +++ b/Documentation/devicetree/bindings/sound/wm8994.txt
 @@ -14,9 +14,15 @@ Required properties:
@@ -84,7 +84,7 @@ index e045e90a0924b..0f03b8228d080 100644
  
  Optional properties:
  
-@@ -68,11 +74,11 @@ codec: wm8994@1a {
+@@ -73,11 +79,11 @@ wm8994: codec@1a {
  
  	lineout1-se;
  
