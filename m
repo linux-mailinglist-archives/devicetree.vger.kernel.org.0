@@ -2,172 +2,67 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from vger.kernel.org (vger.kernel.org [23.128.96.18])
-	by mail.lfdr.de (Postfix) with ESMTP id 05CB1270165
-	for <lists+devicetree@lfdr.de>; Fri, 18 Sep 2020 17:54:30 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTP id 71B70270216
+	for <lists+devicetree@lfdr.de>; Fri, 18 Sep 2020 18:29:20 +0200 (CEST)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S1726115AbgIRPy3 (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Fri, 18 Sep 2020 11:54:29 -0400
-Received: from fllv0016.ext.ti.com ([198.47.19.142]:42480 "EHLO
-        fllv0016.ext.ti.com" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S1725941AbgIRPy3 (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Fri, 18 Sep 2020 11:54:29 -0400
-Received: from fllv0035.itg.ti.com ([10.64.41.0])
-        by fllv0016.ext.ti.com (8.15.2/8.15.2) with ESMTP id 08IFsPkr015228;
-        Fri, 18 Sep 2020 10:54:25 -0500
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=ti.com;
-        s=ti-com-17Q1; t=1600444465;
-        bh=mZca12QdjutSUgtx8i6xeoCkiMtA63bYwdbL9ND/Ui0=;
-        h=Subject:To:CC:References:From:Date:In-Reply-To;
-        b=zCkQlQBmP1WGWVxHxUeRJXlNhgJwa7S+sTMMH3KVActX5V0VkA7y0l1eaosEL3RZE
-         k24RlvTLEl2C0RxfwYruopXVRyc0FKz1VtyNkGL78xDphYa9H18jHwEuppmktDxjN8
-         0UMqUHdjV/mOxGAbIRQzHsC0wVruncQGbqZwuLQM=
-Received: from DFLE114.ent.ti.com (dfle114.ent.ti.com [10.64.6.35])
-        by fllv0035.itg.ti.com (8.15.2/8.15.2) with ESMTP id 08IFsPYw081290;
-        Fri, 18 Sep 2020 10:54:25 -0500
-Received: from DFLE115.ent.ti.com (10.64.6.36) by DFLE114.ent.ti.com
- (10.64.6.35) with Microsoft SMTP Server (version=TLS1_2,
- cipher=TLS_ECDHE_RSA_WITH_AES_128_CBC_SHA256_P256) id 15.1.1979.3; Fri, 18
- Sep 2020 10:54:25 -0500
-Received: from lelv0327.itg.ti.com (10.180.67.183) by DFLE115.ent.ti.com
- (10.64.6.36) with Microsoft SMTP Server (version=TLS1_2,
- cipher=TLS_ECDHE_RSA_WITH_AES_128_CBC_SHA256_P256) id 15.1.1979.3 via
- Frontend Transport; Fri, 18 Sep 2020 10:54:25 -0500
-Received: from [10.250.66.210] (ileax41-snat.itg.ti.com [10.172.224.153])
-        by lelv0327.itg.ti.com (8.15.2/8.15.2) with ESMTP id 08IFsOQC044792;
-        Fri, 18 Sep 2020 10:54:24 -0500
-Subject: Re: [PATCH v3 3/4] arm64: dts: ti: k3-j7200-mcu: add mcu cpsw nuss
- node
-To:     Grygorii Strashko <grygorii.strashko@ti.com>,
-        Tero Kristo <t-kristo@ti.com>,
-        Rob Herring <robh+dt@kernel.org>, Nishanth Menon <nm@ti.com>
-CC:     Peter Ujfalusi <peter.ujfalusi@ti.com>,
-        Sekhar Nori <nsekhar@ti.com>, <linux-kernel@vger.kernel.org>,
-        <devicetree@vger.kernel.org>,
-        <linux-arm-kernel@lists.infradead.org>,
-        Vignesh Raghavendra <vigneshr@ti.com>,
-        Kishon Vijay Abraham I <kishon@ti.com>
-References: <20200918153829.14686-1-grygorii.strashko@ti.com>
- <20200918153829.14686-4-grygorii.strashko@ti.com>
-From:   Suman Anna <s-anna@ti.com>
-Message-ID: <e63ec6f1-d4f0-2b14-5513-eb3eeb3f6fe2@ti.com>
-Date:   Fri, 18 Sep 2020 10:54:24 -0500
-User-Agent: Mozilla/5.0 (X11; Linux x86_64; rv:68.0) Gecko/20100101
- Thunderbird/68.10.0
+        id S1726383AbgIRQ3M (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Fri, 18 Sep 2020 12:29:12 -0400
+Received: from mslow2.mail.gandi.net ([217.70.178.242]:60028 "EHLO
+        mslow2.mail.gandi.net" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
+        with ESMTP id S1725955AbgIRQ3M (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Fri, 18 Sep 2020 12:29:12 -0400
+Received: from relay10.mail.gandi.net (unknown [217.70.178.230])
+        by mslow2.mail.gandi.net (Postfix) with ESMTP id DA9EB3AD322;
+        Fri, 18 Sep 2020 14:25:40 +0000 (UTC)
+Received: from pc-2.home (lfbn-tou-1-1532-46.w90-89.abo.wanadoo.fr [90.89.95.46])
+        (Authenticated sender: maxime.chevallier@bootlin.com)
+        by relay10.mail.gandi.net (Postfix) with ESMTPSA id BE24E24000C;
+        Fri, 18 Sep 2020 14:25:15 +0000 (UTC)
+From:   Maxime Chevallier <maxime.chevallier@bootlin.com>
+To:     Mauro Carvalho Chehab <mchehab@kernel.org>,
+        Rob Herring <robh+dt@kernel.org>,
+        Mark Rutland <mark.rutland@arm.com>,
+        Heiko Stuebner <heiko@sntech.de>,
+        Hans Verkuil <hverkuil-cisco@xs4all.nl>,
+        Laurent Pinchart <laurent.pinchart@ideasonboard.com>
+Cc:     Maxime Chevallier <maxime.chevallier@bootlin.com>,
+        linux-media@vger.kernel.org, devicetree@vger.kernel.org,
+        linux-arm-kernel@lists.infradead.org, linux-kernel@vger.kernel.org,
+        Thomas Petazzoni <thomas.petazzoni@bootlin.com>,
+        Miquel Raynal <miquel.raynal@bootlin.com>,
+        Paul Kocialkowski <paul.kocialkowski@bootlin.com>
+Subject: [PATCH 1/3] dt-bindings: vendor-prefixes: Add techwell vendor prefix
+Date:   Fri, 18 Sep 2020 16:24:20 +0200
+Message-Id: <20200918142422.1086555-2-maxime.chevallier@bootlin.com>
+X-Mailer: git-send-email 2.25.4
+In-Reply-To: <20200918142422.1086555-1-maxime.chevallier@bootlin.com>
+References: <20200918142422.1086555-1-maxime.chevallier@bootlin.com>
 MIME-Version: 1.0
-In-Reply-To: <20200918153829.14686-4-grygorii.strashko@ti.com>
-Content-Type: text/plain; charset="utf-8"
-Content-Language: en-US
-Content-Transfer-Encoding: 7bit
-X-EXCLAIMER-MD-CONFIG: e1e8a2fd-e40a-4ac6-ac9b-f7e9cc9ee180
+Content-Transfer-Encoding: 8bit
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-On 9/18/20 10:38 AM, Grygorii Strashko wrote:
-> Add DT node for The TI j7200 MCU SoC Gigabit Ethernet two ports Switch
-> subsystem (MCU CPSW NUSS).
+Add prefix for Techwell, Inc.
 
-nit, %s/j7200/J7200/ on this patch and the next.
+Signed-off-by: Maxime Chevallier <maxime.chevallier@bootlin.com>
+---
+ Documentation/devicetree/bindings/vendor-prefixes.yaml | 2 ++
+ 1 file changed, 2 insertions(+)
 
-regards
-Suman
-
-> 
-> Signed-off-by: Grygorii Strashko <grygorii.strashko@ti.com>
-> Tested-by: Kishon Vijay Abraham I <kishon@ti.com>
-> ---
->  .../boot/dts/ti/k3-j7200-mcu-wakeup.dtsi      | 74 +++++++++++++++++++
->  1 file changed, 74 insertions(+)
-> 
-> diff --git a/arch/arm64/boot/dts/ti/k3-j7200-mcu-wakeup.dtsi b/arch/arm64/boot/dts/ti/k3-j7200-mcu-wakeup.dtsi
-> index 7ecdfdb46436..a994276a8b3d 100644
-> --- a/arch/arm64/boot/dts/ti/k3-j7200-mcu-wakeup.dtsi
-> +++ b/arch/arm64/boot/dts/ti/k3-j7200-mcu-wakeup.dtsi
-> @@ -34,6 +34,20 @@
->  		};
->  	};
->  
-> +	mcu_conf: syscon@40f00000 {
-> +		compatible = "syscon", "simple-mfd";
-> +		reg = <0x0 0x40f00000 0x0 0x20000>;
-> +		#address-cells = <1>;
-> +		#size-cells = <1>;
-> +		ranges = <0x0 0x0 0x40f00000 0x20000>;
-> +
-> +		phy_gmii_sel: phy@4040 {
-> +			compatible = "ti,am654-phy-gmii-sel";
-> +			reg = <0x4040 0x4>;
-> +			#phy-cells = <1>;
-> +		};
-> +	};
-> +
->  	chipid@43000014 {
->  		compatible = "ti,am654-chipid";
->  		reg = <0x00 0x43000014 0x00 0x4>;
-> @@ -136,4 +150,64 @@
->  			ti,sci-rm-range-rflow = <0x00>; /* GP RFLOW */
->  		};
->  	};
-> +
-> +	mcu_cpsw: ethernet@46000000 {
-> +		compatible = "ti,j721e-cpsw-nuss";
-> +		#address-cells = <2>;
-> +		#size-cells = <2>;
-> +		reg = <0x0 0x46000000 0x0 0x200000>;
-> +		reg-names = "cpsw_nuss";
-> +		ranges = <0x0 0x0 0x0 0x46000000 0x0 0x200000>;
-> +		dma-coherent;
-> +		clocks = <&k3_clks 18 21>;
-> +		clock-names = "fck";
-> +		power-domains = <&k3_pds 18 TI_SCI_PD_EXCLUSIVE>;
-> +
-> +		dmas = <&mcu_udmap 0xf000>,
-> +		       <&mcu_udmap 0xf001>,
-> +		       <&mcu_udmap 0xf002>,
-> +		       <&mcu_udmap 0xf003>,
-> +		       <&mcu_udmap 0xf004>,
-> +		       <&mcu_udmap 0xf005>,
-> +		       <&mcu_udmap 0xf006>,
-> +		       <&mcu_udmap 0xf007>,
-> +		       <&mcu_udmap 0x7000>;
-> +		dma-names = "tx0", "tx1", "tx2", "tx3",
-> +			    "tx4", "tx5", "tx6", "tx7",
-> +			    "rx";
-> +
-> +		ethernet-ports {
-> +			#address-cells = <1>;
-> +			#size-cells = <0>;
-> +
-> +			cpsw_port1: port@1 {
-> +				reg = <1>;
-> +				ti,mac-only;
-> +				label = "port1";
-> +				ti,syscon-efuse = <&mcu_conf 0x200>;
-> +				phys = <&phy_gmii_sel 1>;
-> +			};
-> +		};
-> +
-> +		davinci_mdio: mdio@f00 {
-> +			compatible = "ti,cpsw-mdio","ti,davinci_mdio";
-> +			reg = <0x0 0xf00 0x0 0x100>;
-> +			#address-cells = <1>;
-> +			#size-cells = <0>;
-> +			clocks = <&k3_clks 18 21>;
-> +			clock-names = "fck";
-> +			bus_freq = <1000000>;
-> +		};
-> +
-> +		cpts@3d000 {
-> +			compatible = "ti,am65-cpts";
-> +			reg = <0x0 0x3d000 0x0 0x400>;
-> +			clocks = <&k3_clks 18 2>;
-> +			clock-names = "cpts";
-> +			interrupts-extended = <&gic500 GIC_SPI 858 IRQ_TYPE_LEVEL_HIGH>;
-> +			interrupt-names = "cpts";
-> +			ti,cpts-ext-ts-inputs = <4>;
-> +			ti,cpts-periodic-outputs = <2>;
-> +		};
-> +	};
->  };
-> 
+diff --git a/Documentation/devicetree/bindings/vendor-prefixes.yaml b/Documentation/devicetree/bindings/vendor-prefixes.yaml
+index 63996ab03521..3fcf071c4467 100644
+--- a/Documentation/devicetree/bindings/vendor-prefixes.yaml
++++ b/Documentation/devicetree/bindings/vendor-prefixes.yaml
+@@ -1033,6 +1033,8 @@ patternProperties:
+     description: TechNexion
+   "^technologic,.*":
+     description: Technologic Systems
++  "^techwell,.*":
++    description: Techwell, Inc.
+   "^tempo,.*":
+     description: Tempo Semiconductor
+   "^techstar,.*":
+-- 
+2.25.4
 
