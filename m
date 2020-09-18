@@ -2,111 +2,116 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from vger.kernel.org (vger.kernel.org [23.128.96.18])
-	by mail.lfdr.de (Postfix) with ESMTP id 5D3B02703C4
-	for <lists+devicetree@lfdr.de>; Fri, 18 Sep 2020 20:11:34 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTP id EA1392703E1
+	for <lists+devicetree@lfdr.de>; Fri, 18 Sep 2020 20:24:16 +0200 (CEST)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S1726305AbgIRSLb (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Fri, 18 Sep 2020 14:11:31 -0400
-Received: from lindbergh.monkeyblade.net ([23.128.96.19]:33674 "EHLO
-        lindbergh.monkeyblade.net" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S1726007AbgIRSLZ (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Fri, 18 Sep 2020 14:11:25 -0400
-Received: from mail-wr1-x444.google.com (mail-wr1-x444.google.com [IPv6:2a00:1450:4864:20::444])
-        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 8A846C0613CE;
-        Fri, 18 Sep 2020 11:11:24 -0700 (PDT)
-Received: by mail-wr1-x444.google.com with SMTP id k15so6514661wrn.10;
-        Fri, 18 Sep 2020 11:11:24 -0700 (PDT)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=gmail.com; s=20161025;
-        h=from:to:cc:subject:date:message-id:in-reply-to:references
-         :mime-version:content-transfer-encoding;
-        bh=+ALrwdNETU2MxK86SGthSKgE8MUMcPyrI0lP0CVqjQI=;
-        b=C5sqb2yxcvsNocPhY2Lt3IwIlIROvFB5l5wNHYnGsMCGx9n+mMxLjFgVBddP5hBPCT
-         yY3ecasFwG1FymqjnUMeSkZ/bEtd5QDDKud901OlHdDIdUhaPQHonwK7ECAeCD39iGzo
-         1ceBzNiaEq5YGLyRWnZ73Sycp6czdV7kbXa4acm1kpyvzNrzxkb9lDCiaW+tqRYxLugN
-         WOxtIBRfR9PMygYkUZObTRnxLppsgc3A01wLrB2gKfcjPhbogE+ebXlgJy9hAmL9dswg
-         WdZojnwDp94191WZEhe8+W5lPfw5iN/HT4g+o81iXlgjUdMAWKFwB689QEIYiagiFbxj
-         mF/g==
-X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=1e100.net; s=20161025;
-        h=x-gm-message-state:from:to:cc:subject:date:message-id:in-reply-to
-         :references:mime-version:content-transfer-encoding;
-        bh=+ALrwdNETU2MxK86SGthSKgE8MUMcPyrI0lP0CVqjQI=;
-        b=oNuPlL+A/HvRAnqA89UKXAYEP1sRMr8lwbZmKlI4hePHNxAp/KjhrGeWJU3G5ZysZ3
-         3vSxaVgAPoS1lGAtseZt9dVXKqHVzZTonhRabpk41pf2NqgNIVT2mpeSduZQxM3ZHSMh
-         u7P+mEFDGitm+celQYbnP4odY+hRz59f/0rWSXAvaubzMJxUyhmg7+roB9S37E/rXfQc
-         uQqGmlLWbBL1xOn9JoYUhBZVnrbpxPujuhbCTENs8EBu0WrpqVgLFA8ioxizaN/ECPUK
-         0pR/kNdvSJ1io/Cf4xGB908pZhy0g8ARXGdkoONRRpSG5lkd+4jwdtLIy2rS1wvoztWU
-         2GrQ==
-X-Gm-Message-State: AOAM533II/SL+qLDPUmcfcGGqaW25nxYYtDs4rNkQczWmtGKnKOjLrFc
-        iN6R9qhdzwPBO2lvD0+b6dA=
-X-Google-Smtp-Source: ABdhPJwDlGeI6/TcQ1Yi8Z/1litjaMhehBdyMUqomeNKRCP/fWUFevqhp2m/vY3A2LUYX6AyOu/7xw==
-X-Received: by 2002:a5d:5261:: with SMTP id l1mr38534694wrc.193.1600452682915;
-        Fri, 18 Sep 2020 11:11:22 -0700 (PDT)
-Received: from Ansuel-XPS.localdomain (host-95-248-206-89.retail.telecomitalia.it. [95.248.206.89])
-        by smtp.googlemail.com with ESMTPSA id f23sm21461466wmc.3.2020.09.18.11.11.20
-        (version=TLS1_3 cipher=TLS_AES_256_GCM_SHA384 bits=256/256);
-        Fri, 18 Sep 2020 11:11:21 -0700 (PDT)
-From:   Ansuel Smith <ansuelsmth@gmail.com>
-To:     Kalle Valo <kvalo@codeaurora.org>
-Cc:     Ansuel Smith <ansuelsmth@gmail.com>,
-        "David S. Miller" <davem@davemloft.net>,
-        Jakub Kicinski <kuba@kernel.org>,
-        Rob Herring <robh+dt@kernel.org>,
-        linux-wireless@vger.kernel.org, netdev@vger.kernel.org,
-        devicetree@vger.kernel.org, linux-kernel@vger.kernel.org,
-        ath10k@lists.infradead.org
-Subject: [PATCH v2 2/2] dt: bindings: ath10k: Document qcom,ath10k-pre-calibration-data-mtd
-Date:   Fri, 18 Sep 2020 20:11:03 +0200
-Message-Id: <20200918181104.98-2-ansuelsmth@gmail.com>
-X-Mailer: git-send-email 2.27.0
-In-Reply-To: <20200918181104.98-1-ansuelsmth@gmail.com>
-References: <20200918181104.98-1-ansuelsmth@gmail.com>
+        id S1726139AbgIRSYP (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Fri, 18 Sep 2020 14:24:15 -0400
+Received: from foss.arm.com ([217.140.110.172]:52044 "EHLO foss.arm.com"
+        rhost-flags-OK-OK-OK-OK) by vger.kernel.org with ESMTP
+        id S1726118AbgIRSYP (ORCPT <rfc822;devicetree@vger.kernel.org>);
+        Fri, 18 Sep 2020 14:24:15 -0400
+Received: from usa-sjc-imap-foss1.foss.arm.com (unknown [10.121.207.14])
+        by usa-sjc-mx-foss1.foss.arm.com (Postfix) with ESMTP id D210D30E;
+        Fri, 18 Sep 2020 11:24:14 -0700 (PDT)
+Received: from e121345-lin.cambridge.arm.com (e121345-lin.cambridge.arm.com [10.1.196.37])
+        by usa-sjc-imap-foss1.foss.arm.com (Postfix) with ESMTPA id 7CDD93F718;
+        Fri, 18 Sep 2020 11:24:13 -0700 (PDT)
+From:   Robin Murphy <robin.murphy@arm.com>
+To:     will@kernel.org, mark.rutland@arm.com,
+        linux-arm-kernel@lists.infradead.org
+Cc:     devicetree@vger.kernel.org, alisaidi@amazon.com, tsahee@amazon.com,
+        harb@amperecomputing.com, tuanphan@os.amperecomputing.com,
+        james.yang@arm.com, patrik.berglund@arm.com
+Subject: [PATCH v2.1 1/3] perf: Add Arm CMN-600 DT binding
+Date:   Fri, 18 Sep 2020 19:24:09 +0100
+Message-Id: <3647765303e8936d45a69fe7c1f92b8d1b45de4b.1600452762.git.robin.murphy@arm.com>
+X-Mailer: git-send-email 2.28.0.dirty
+In-Reply-To: <cover.1600357241.git.robin.murphy@arm.com>
+References: <cover.1600357241.git.robin.murphy@arm.com>
 MIME-Version: 1.0
 Content-Transfer-Encoding: 8bit
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-Document use of qcom,ath10k-pre-calibration-data-mtd bindings used to
-define from where the driver will load the pre-cal data in the defined
-mtd partition.
+Document the requirements for the CMN-600 DT binding. The internal
+topology is almost entirely discoverable by walking a tree of ID
+registers, but sadly both the starting point for that walk and the
+exact format of those registers are configuration-dependent and not
+discoverable from some sane fixed location. Oh well.
 
-Signed-off-by: Ansuel Smith <ansuelsmth@gmail.com>
+Signed-off-by: Robin Murphy <robin.murphy@arm.com>
 ---
- .../devicetree/bindings/net/wireless/qcom,ath10k.txt | 12 +++++++++---
- 1 file changed, 9 insertions(+), 3 deletions(-)
 
-diff --git a/Documentation/devicetree/bindings/net/wireless/qcom,ath10k.txt b/Documentation/devicetree/bindings/net/wireless/qcom,ath10k.txt
-index b61c2d5a0..568364243 100644
---- a/Documentation/devicetree/bindings/net/wireless/qcom,ath10k.txt
-+++ b/Documentation/devicetree/bindings/net/wireless/qcom,ath10k.txt
-@@ -15,9 +15,9 @@ and also uses most of the properties defined in this doc (except
- "qcom,ath10k-calibration-data"). It uses "qcom,ath10k-pre-calibration-data"
- to carry pre calibration data.
- 
--In general, entry "qcom,ath10k-pre-calibration-data" and
--"qcom,ath10k-calibration-data" conflict with each other and only one
--can be provided per device.
-+In general, entry "qcom,ath10k-pre-calibration-data",
-+"qcom,ath10k-calibration-data-mtd" and "qcom,ath10k-calibration-data" conflict with
-+each other and only one can be provided per device.
- 
- SNOC based devices (i.e. wcn3990) uses compatible string "qcom,wcn3990-wifi".
- 
-@@ -63,6 +63,12 @@ Optional properties:
- 				 hw versions.
- - qcom,ath10k-pre-calibration-data : pre calibration data as an array,
- 				     the length can vary between hw versions.
-+- qcom,ath10k-pre-calibration-data-mtd :
-+	Usage: optional
-+	Value type: <phandle offset size>
-+	Definition: pre calibration data read from mtd partition. Take 3 value, the
-+		    mtd to read data from, the offset in the mtd partition and the
-+		    size of data to read.
- - <supply-name>-supply: handle to the regulator device tree node
- 			   optional "supply-name" are "vdd-0.8-cx-mx",
- 			   "vdd-1.8-xo", "vdd-1.3-rfa", "vdd-3.3-ch0",
--- 
-2.27.0
+fix up $id as well, oops...
 
+ .../devicetree/bindings/perf/arm,cmn.yaml     | 57 +++++++++++++++++++
+ 1 file changed, 57 insertions(+)
+ create mode 100644 Documentation/devicetree/bindings/perf/arm,cmn.yaml
+
+diff --git a/Documentation/devicetree/bindings/perf/arm,cmn.yaml b/Documentation/devicetree/bindings/perf/arm,cmn.yaml
+new file mode 100644
+index 000000000000..e4fcc0de25e2
+--- /dev/null
++++ b/Documentation/devicetree/bindings/perf/arm,cmn.yaml
+@@ -0,0 +1,57 @@
++# SPDX-License-Identifier: (GPL-2.0-only OR BSD-2-Clause)
++# Copyright 2020 Arm Ltd.
++%YAML 1.2
++---
++$id: http://devicetree.org/schemas/perf/arm,cmn.yaml#
++$schema: http://devicetree.org/meta-schemas/core.yaml#
++
++title: Arm CMN (Coherent Mesh Network) Performance Monitors
++
++maintainers:
++  - Robin Murphy <robin.murphy@arm.com>
++
++properties:
++  compatible:
++    const: arm,cmn-600
++
++  reg:
++    items:
++      - description: Physical address of the base (PERIPHBASE) and
++          size (up to 64MB) of the configuration address space.
++
++  interrupts:
++    minItems: 1
++    maxItems: 4
++    items:
++      - description: Overflow interrupt for DTC0
++      - description: Overflow interrupt for DTC1
++      - description: Overflow interrupt for DTC2
++      - description: Overflow interrupt for DTC3
++    description: One interrupt for each DTC domain implemented must
++      be specified, in order. DTC0 is always present.
++
++  arm,root-node:
++    $ref: /schemas/types.yaml#/definitions/uint32
++    description: Offset from PERIPHBASE of the configuration
++      discovery node (see TRM definition of ROOTNODEBASE).
++
++required:
++  - compatible
++  - reg
++  - interrupts
++  - arm,root-node
++
++additionalProperties: false
++
++examples:
++  - |
++    #include <dt-bindings/interrupt-controller/arm-gic.h>
++    #include <dt-bindings/interrupt-controller/irq.h>
++    pmu@50000000 {
++        compatible = "arm,cmn-600";
++        reg = <0x50000000 0x4000000>;
++        /* 4x2 mesh with one DTC, and CFG node at 0,1,1,0 */
++        interrupts = <GIC_SPI 46 IRQ_TYPE_LEVEL_HIGH>;
++        arm,root-node = <0x104000>;
++    };
++...
+--
+2.28.0.dirty
