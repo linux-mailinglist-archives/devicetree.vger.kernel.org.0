@@ -2,95 +2,96 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from vger.kernel.org (vger.kernel.org [23.128.96.18])
-	by mail.lfdr.de (Postfix) with ESMTP id 48E5B26FE90
-	for <lists+devicetree@lfdr.de>; Fri, 18 Sep 2020 15:34:02 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTP id D8CB526FF5B
+	for <lists+devicetree@lfdr.de>; Fri, 18 Sep 2020 15:59:11 +0200 (CEST)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S1726192AbgIRNdp (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Fri, 18 Sep 2020 09:33:45 -0400
-Received: from lindbergh.monkeyblade.net ([23.128.96.19]:47306 "EHLO
+        id S1726415AbgIRN7K (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Fri, 18 Sep 2020 09:59:10 -0400
+Received: from lindbergh.monkeyblade.net ([23.128.96.19]:51270 "EHLO
         lindbergh.monkeyblade.net" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S1725955AbgIRNdp (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Fri, 18 Sep 2020 09:33:45 -0400
-Received: from mail-il1-x144.google.com (mail-il1-x144.google.com [IPv6:2607:f8b0:4864:20::144])
-        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id E9A7AC0613CE;
-        Fri, 18 Sep 2020 06:33:44 -0700 (PDT)
-Received: by mail-il1-x144.google.com with SMTP id x2so6247984ilm.0;
-        Fri, 18 Sep 2020 06:33:44 -0700 (PDT)
+        with ESMTP id S1726253AbgIRN7J (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Fri, 18 Sep 2020 09:59:09 -0400
+Received: from mail-vk1-xa43.google.com (mail-vk1-xa43.google.com [IPv6:2607:f8b0:4864:20::a43])
+        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 9B282C0613CE
+        for <devicetree@vger.kernel.org>; Fri, 18 Sep 2020 06:59:09 -0700 (PDT)
+Received: by mail-vk1-xa43.google.com with SMTP id t189so1435455vka.10
+        for <devicetree@vger.kernel.org>; Fri, 18 Sep 2020 06:59:09 -0700 (PDT)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=gmail.com; s=20161025;
+        d=chromium.org; s=google;
         h=mime-version:references:in-reply-to:from:date:message-id:subject:to
          :cc;
-        bh=vHP6a/n1DUHQQL99sdaOgDDLN4fD6Mu08+md9guUmtw=;
-        b=JAHVq72phYgsTz7+cCz2K98bwVoT3voMNXxrRvYlKds4E2Tcwdic91D/30M3J8KHaM
-         HnnjFuvQEB0yHzEx/+o1bOBU06cjVuNivsU3zCGkB0dLwyvZ3GRpdMpC4QuS7aFMIC+x
-         oOJ6l2yRi3794WPpPUrCpcyqcpH/rQ7qDu9tKB/ADiCp0eguh3XjoX3ebrqNcGRRpXGU
-         v6bcRj2GhLbxfvcPcDMbzsHnOlu9IGabU5vGcCXLMOdXMEa40kyhFbI8+AQ+15pFNCUY
-         QqaESEET6BaX3HH9e1DhRzYgb733Uj+aRTGX/Vf34sTEHtPKJqHhyb/fCvOiBiYgaU/c
-         y20w==
+        bh=yZx4kJcNFEjGr4SDJUskmqm2bu+XUaenHe1fGMPrn78=;
+        b=lYx6gFCUgc1VTSHP5PLNZP54DR80Q6CK2e/EdfEDUk7E69mE+ebuqQm1OJW4ypV1cE
+         TMIbDp9vCVl0fSbB/Aoaq0Hgm2akeSa+Zbv+NBsd9lcl+T5zSJSbdajbhcUAfqBYNdhm
+         WvLwJ2X4e+ScmVFy4f2N+n6AmyCTkLe7jvwk0=
 X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
         d=1e100.net; s=20161025;
         h=x-gm-message-state:mime-version:references:in-reply-to:from:date
          :message-id:subject:to:cc;
-        bh=vHP6a/n1DUHQQL99sdaOgDDLN4fD6Mu08+md9guUmtw=;
-        b=EsybWkCMvtofHdIG/3MvMgV3eclVfMmeL/lk1Ep3OvHjWRv0pIjknH3vKVhszlNyKd
-         DAm8//+hKrB5jsz++i0B0JUkjwn1BVgSEzGpEb31fCtho+3kvRj/TJ9QvZ42SjNomavg
-         yTR4GPCUfqzffN9Qn+JjkUhbIcXH0ir9nElnum9RXgq1GtD/lsbwtpDMr24bnU6xPNjl
-         ZWL5ROkqST2exxjBt19or3xRYEhJY22yNMQfnRyVLRAoT6q+1ua5+ocvftgWBOr+eRoe
-         ujOYOYYYWDZ15qkGBqYnyFXTP27e0JP0A9cqGMkixaD/NJ63wT6X5PlEpR6W7gQWCXmu
-         qBKA==
-X-Gm-Message-State: AOAM531rdf5O1wne4KrXG0r+iyDSrMSP3MCylQM6k/KqtYpd3HnVe91B
-        kHdUpBhUsEbhsbl5AzaybTObTM6xotFXS/zgjLY=
-X-Google-Smtp-Source: ABdhPJz0qCBmtrO5zOnB3h0Skn1hRjcb6T2inQdpc5g/md9N8CbDjqyk4Bo7jWnekfjpoPmERo9MJNhIILGUXPyk2vM=
-X-Received: by 2002:a92:c10c:: with SMTP id p12mr4688358ile.274.1600436024267;
- Fri, 18 Sep 2020 06:33:44 -0700 (PDT)
+        bh=yZx4kJcNFEjGr4SDJUskmqm2bu+XUaenHe1fGMPrn78=;
+        b=I9uNpqf15pZDxaTG85SVh53YVAu4Yyc64HGIxxa8ssB7+E3xL7OSvuAfdoAdQ24eDW
+         0mYaLWOoBKT7v27JAmtLpBqd2R7L6L8GtJpa0+DlAt4nQqBU4+m1IDWlguHKWOsWsjJ8
+         OqZgpbqUgcAeoFEaVg4ezfHCwcSzBx+8HxOe1VVC8mbMo4ZMSPk5PY3btG1y/0LP2Ane
+         pGmaruiMF8HG6u+ErjZBxk2iLB0AW9Arpj18z20BvQBj44GQrPjJUJ1Ft1vPY7vaC/lx
+         v/S7QiX1iavvezhkdKJSR5sqeVc9vwj+ZK/BWGtfCLz+YEJdpTlDsY7pZYmwBha2Img2
+         Rsjw==
+X-Gm-Message-State: AOAM530JBG2mDkiYPbQXfHl/UQ4x6S4slDXzHH/6ChSMS7RGfpWbgt08
+        kNka9v+6xyrwUUJnewXO/SM78ZJqytFjAQ==
+X-Google-Smtp-Source: ABdhPJzgf55rrgDZ4wvCnpBkNtl2K5MNk7BFtB/vKdP3KFYfY7rr5xuotYIboLDP8n2ev+S/83eBwQ==
+X-Received: by 2002:a1f:bf53:: with SMTP id p80mr20322116vkf.5.1600437548361;
+        Fri, 18 Sep 2020 06:59:08 -0700 (PDT)
+Received: from mail-vs1-f50.google.com (mail-vs1-f50.google.com. [209.85.217.50])
+        by smtp.gmail.com with ESMTPSA id s8sm473039vke.48.2020.09.18.06.59.07
+        for <devicetree@vger.kernel.org>
+        (version=TLS1_3 cipher=TLS_AES_128_GCM_SHA256 bits=128/128);
+        Fri, 18 Sep 2020 06:59:07 -0700 (PDT)
+Received: by mail-vs1-f50.google.com with SMTP id b123so3616514vsd.10
+        for <devicetree@vger.kernel.org>; Fri, 18 Sep 2020 06:59:07 -0700 (PDT)
+X-Received: by 2002:a67:8bc2:: with SMTP id n185mr12030703vsd.49.1600437546889;
+ Fri, 18 Sep 2020 06:59:06 -0700 (PDT)
 MIME-Version: 1.0
-References: <20200918083124.3921207-1-ikjn@chromium.org> <20200918162834.v2.2.I3de2918f09b817cc2ae6d324f1ece62779ecc7cf@changeid>
- <CAJsYDV+Um3aEsgW-829BsZSaiVCp3O2LkrTmgCthhFv4fuEnLg@mail.gmail.com>
-In-Reply-To: <CAJsYDV+Um3aEsgW-829BsZSaiVCp3O2LkrTmgCthhFv4fuEnLg@mail.gmail.com>
-From:   Chuanhong Guo <gch981213@gmail.com>
-Date:   Fri, 18 Sep 2020 21:33:33 +0800
-Message-ID: <CAJsYDVLcNZ6kyRnZS8zcsC7R_XTZgSVqwqR+SNmNB-rbWrF=CQ@mail.gmail.com>
-Subject: Re: [PATCH v2 2/5] spi: spi-mtk-nor: fix mishandled logics in
- checking SPI memory operation
-To:     Ikjoon Jang <ikjn@chromium.org>
-Cc:     Rob Herring <robh+dt@kernel.org>, Mark Brown <broonie@kernel.org>,
+References: <1600435026-1876-1-git-send-email-srivasam@codeaurora.org>
+In-Reply-To: <1600435026-1876-1-git-send-email-srivasam@codeaurora.org>
+From:   Doug Anderson <dianders@chromium.org>
+Date:   Fri, 18 Sep 2020 06:58:55 -0700
+X-Gmail-Original-Message-ID: <CAD=FV=WtSEB6-M8x564t=RuSEKHwH3YvcmuZ9VGpxY+5kcL7rA@mail.gmail.com>
+Message-ID: <CAD=FV=WtSEB6-M8x564t=RuSEKHwH3YvcmuZ9VGpxY+5kcL7rA@mail.gmail.com>
+Subject: Re: [PATCH v3] arm64: dts: qcom: sc7180: Add lpass cpu node for I2S driver
+To:     Srinivasa Rao Mandadapu <srivasam@codeaurora.org>
+Cc:     Andy Gross <agross@kernel.org>,
+        Bjorn Andersson <bjorn.andersson@linaro.org>,
+        Rob Herring <robh+dt@kernel.org>,
+        linux-arm-msm <linux-arm-msm@vger.kernel.org>,
         "open list:OPEN FIRMWARE AND FLATTENED DEVICE TREE BINDINGS" 
-        <devicetree@vger.kernel.org>, linux-spi@vger.kernel.org,
-        linux-mtd@lists.infradead.org,
-        Matthias Brugger <matthias.bgg@gmail.com>,
-        "moderated list:ARM/Mediatek SoC support" 
-        <linux-arm-kernel@lists.infradead.org>,
-        open list <linux-kernel@vger.kernel.org>,
-        "moderated list:ARM/Mediatek SoC support" 
-        <linux-mediatek@lists.infradead.org>
+        <devicetree@vger.kernel.org>, LKML <linux-kernel@vger.kernel.org>,
+        Rohit kumar <rohitkr@codeaurora.org>,
+        Srinivas Kandagatla <srinivas.kandagatla@linaro.org>,
+        Ajit Pandey <ajitp@codeaurora.org>,
+        Cheng-Yi Chiang <cychiang@chromium.org>,
+        V Sujith Kumar Reddy <vsujithk@codeaurora.org>
 Content-Type: text/plain; charset="UTF-8"
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-Hi!
+Hi,
 
-On Fri, Sep 18, 2020 at 9:09 PM Chuanhong Guo <gch981213@gmail.com> wrote:
-> On Fri, Sep 18, 2020 at 4:34 PM Ikjoon Jang <ikjn@chromium.org> wrote:
-> > [...]
-> > +               switch (op->data.dir) {
-> > +               case SPI_MEM_DATA_IN:
-> > +                       if (!mtk_nor_match_read(op))
-> > +                               return -EINVAL;
+On Fri, Sep 18, 2020 at 6:18 AM Srinivasa Rao Mandadapu
+<srivasam@codeaurora.org> wrote:
 >
-> You are changing the code logic here.
-> mtk_nor_match_read checks if the operation can be executed
-> using controller PIO/DMA reading. Even if it's not supported,
-> we can still use PRG mode to execute the operation.
-> One example of such an operation is SPI NOR SFDP reading.
-> Your change breaks that which then breaks 1_2_2 and 1_4_4
-> reading capability because spi-nor driver parses these op formats
-> from SFDP table.
+> --- a/arch/arm64/boot/dts/qcom/sc7180.dtsi
+> +++ b/arch/arm64/boot/dts/qcom/sc7180.dtsi
+> @@ -1742,6 +1742,45 @@
+>                                 };
+>                         };
+>
+> +                       sec_mi2s_active: sec-mi2s-active {
+> +                               pinmux {
+> +                                       pins = "gpio49", "gpio50", "gpio51";
+> +                                       function = "mi2s_1";
+> +                               };
+> +
+> +                               pinconf {
+> +                                       pins = "gpio49", "gpio50", "gpio51";;
 
-I just noticed that you already broke this in:
-spi: spi-mtk-nor: support standard spi properties
-Please also fix the same logic in mtk_nor_supports_op in your v3.
-
--- 
-Regards,
-Chuanhong Guo
+There are still two ";" on the above line.
