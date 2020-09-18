@@ -2,164 +2,237 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from vger.kernel.org (vger.kernel.org [23.128.96.18])
-	by mail.lfdr.de (Postfix) with ESMTP id 75C0326F312
-	for <lists+devicetree@lfdr.de>; Fri, 18 Sep 2020 05:04:22 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTP id B2F3726F4A4
+	for <lists+devicetree@lfdr.de>; Fri, 18 Sep 2020 05:18:33 +0200 (CEST)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S1728054AbgIRDDz (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Thu, 17 Sep 2020 23:03:55 -0400
-Received: from lindbergh.monkeyblade.net ([23.128.96.19]:53634 "EHLO
+        id S1726316AbgIRDSd (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Thu, 17 Sep 2020 23:18:33 -0400
+Received: from lindbergh.monkeyblade.net ([23.128.96.19]:37010 "EHLO
         lindbergh.monkeyblade.net" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S1727407AbgIRCE4 (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Thu, 17 Sep 2020 22:04:56 -0400
-Received: from mail-ot1-x341.google.com (mail-ot1-x341.google.com [IPv6:2607:f8b0:4864:20::341])
-        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 06957C06174A;
-        Thu, 17 Sep 2020 19:04:55 -0700 (PDT)
-Received: by mail-ot1-x341.google.com with SMTP id a2so3958599otr.11;
-        Thu, 17 Sep 2020 19:04:55 -0700 (PDT)
+        with ESMTP id S1726201AbgIRDSd (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Thu, 17 Sep 2020 23:18:33 -0400
+Received: from mail-ej1-x643.google.com (mail-ej1-x643.google.com [IPv6:2a00:1450:4864:20::643])
+        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id AD454C06174A;
+        Thu, 17 Sep 2020 20:18:32 -0700 (PDT)
+Received: by mail-ej1-x643.google.com with SMTP id e23so6130641eja.3;
+        Thu, 17 Sep 2020 20:18:32 -0700 (PDT)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
         d=gmail.com; s=20161025;
-        h=sender:subject:to:cc:references:from:autocrypt:message-id:date
-         :user-agent:mime-version:in-reply-to;
-        bh=JgBAyZtv1KdUHX/gAQyyrYj55BDEy/By7Xa7DxmA1yI=;
-        b=Fk2j1F/6itl71FwnA+DrSNdR2Wl4XO0gb/aUDB6WAYUFedng0MONlpyMhjVjTT+fS3
-         HHbvyIUosrWw6yeLdAbDpHhFPwI/pfas9exYY5AYf+IAMXcaIxXycpQGmb90dhc7oC3R
-         PJ8gwax+R+1fF8h6nfEqb4/T17sW5eDgFk8JWLJ45KtLLe1NnJnIwfOc0NNWMhotA22J
-         bJPi4MlWu426BIRZFiUVJBL580KjnKTeUm+VR88DMK4MYMr1wHFhSv0ej3L8lYTAvd7G
-         JHX8sI40oTjDbOuEKs+sefx5kpQXlWs4XYu6yDiS4idYdEb2ektkFpl2Y9pF5obKAxTM
-         OD0g==
+        h=mime-version:references:in-reply-to:from:date:message-id:subject:to
+         :cc;
+        bh=M6PnPj4Sw4zuNKtUjGj8+UjzMcuXjg8lWfZXTOiE9Qg=;
+        b=QPBnvPFkQPq5DeZstFRhQhGfZuJXS3IGMDaeKIjYkpYAA1T5g68eZvVcPOQIKJ86kU
+         V0Pe7vIW7L3LOZLh511TZtEOkCEbW7UBlR5BTjTO7FmCC21KinefShrvnE3btUEMediR
+         SS/HdkuTVrOm1LWX5lIWFb71CoAmPZRHI/EhC6wjMArDMDfAY/Y4EhlTZiRg4VRmKoAr
+         /xMXYA2pTMI12dRDTnfvMWdUJcMe2ZjH+oAJdn/Sv/IX26BX1KPqQ130fIC4HmoJkyZU
+         VscLC33+6NIAqCuleuNHIcdTvg3cwAUKl+aUDJEJbPpjD8lzA5aRyOPPRDO5MmQ38iNR
+         IItw==
 X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
         d=1e100.net; s=20161025;
-        h=x-gm-message-state:sender:subject:to:cc:references:from:autocrypt
-         :message-id:date:user-agent:mime-version:in-reply-to;
-        bh=JgBAyZtv1KdUHX/gAQyyrYj55BDEy/By7Xa7DxmA1yI=;
-        b=RcF3E3aXXorEGCRXI6jycoVikpSnU7LfmxlkiNZjRkiHA7SIyI3KMaLPPNXqRPuuy7
-         zcjECYKNd93r1fQSFLsyhymyw0aTJsXt+8FjwgeCd0JJDQi+qRnVSWxC9ui2JkgozwUe
-         9rCH2YlbCCdGf8bBgs70ncACD86DxfORM1n3L/WSC45LINjWzMbFXK6sSWbOw6sSrgbr
-         QJMcGIbQJ6meazwoIZUn1fs1RsxiSSbOFgahI6TCec9iG0wNIcsjLBSZPk2g1Ye69qBT
-         cftjTUwtaM+VeI6DIwPzFzoQ0b4DAZAymiT1oZudUWoz7LQ4Ji+R8anS9SsMPFgY+uZk
-         77ZA==
-X-Gm-Message-State: AOAM531UVrF2IqxfeuTFOkTLxfjZNpQwy/5+4hAvyzkC83HToVhYUWF3
-        b/ZwGUPYex5vZgNnlNNUHjqtjqSpl1g=
-X-Google-Smtp-Source: ABdhPJxSH5SMmhGU7Eiwux8Xtw+fyQLP+N+Rn6/6zrWE/sT42KA/mudBE3nDiZtNdbRd2Co0MVISMw==
-X-Received: by 2002:a9d:7459:: with SMTP id p25mr20537769otk.234.1600394695181;
-        Thu, 17 Sep 2020 19:04:55 -0700 (PDT)
-Received: from server.roeck-us.net ([2600:1700:e321:62f0:329c:23ff:fee3:9d7c])
-        by smtp.gmail.com with ESMTPSA id 91sm1214705ott.55.2020.09.17.19.04.52
-        (version=TLS1_3 cipher=TLS_AES_128_GCM_SHA256 bits=128/128);
-        Thu, 17 Sep 2020 19:04:53 -0700 (PDT)
-Subject: Re: [PATCH 3/3] hwmon: (lm75) Add regulator support
-To:     Mark Brown <broonie@kernel.org>, Alban Bedel <alban.bedel@aerq.com>
-Cc:     linux-hwmon@vger.kernel.org, Jean Delvare <jdelvare@suse.com>,
-        Rob Herring <robh+dt@kernel.org>,
-        Liam Girdwood <lgirdwood@gmail.com>,
-        devicetree@vger.kernel.org, linux-kernel@vger.kernel.org
-References: <20200917101819.32045-1-alban.bedel@aerq.com>
- <20200917101819.32045-4-alban.bedel@aerq.com>
- <20200917110053.GA4755@sirena.org.uk>
-From:   Guenter Roeck <linux@roeck-us.net>
-Autocrypt: addr=linux@roeck-us.net; keydata=
- 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
- mDW4+i+XlNFUPUYMrIKi9joBhu18ssf5i5Q=
-Message-ID: <e5863e71-2531-b0de-c432-4bc2967d56c8@roeck-us.net>
-Date:   Thu, 17 Sep 2020 19:04:51 -0700
-User-Agent: Mozilla/5.0 (X11; Linux x86_64; rv:68.0) Gecko/20100101
- Thunderbird/68.10.0
+        h=x-gm-message-state:mime-version:references:in-reply-to:from:date
+         :message-id:subject:to:cc;
+        bh=M6PnPj4Sw4zuNKtUjGj8+UjzMcuXjg8lWfZXTOiE9Qg=;
+        b=EO9WjzLdRssuIy3HEZIQTUJ7akx1dlEthoYEMkvWv/8jYyxA9oC4ooEbBU9s02fqI/
+         alg9nX7ZyyAEgLYcHO44V8vpKRC90m+5D7rWXRkqAJmpxJc1dIzdH+T/AJqx3tpVtyfv
+         /ZQvd0O6eshWSvFdNzaZppKL0ungY1Ok5OX/CSDYsCThF5GBU6ChsktF/6B2eyE9FPeB
+         Jy3OaRjC/XlC7+RXi3+XKGU4qoycN2qEy0JArbeyBRmfb0N0p4hbACFIoimw/pOQYftB
+         13VJBuY26o+EkI2aogE/+TD0P90A1UjNvFFpEfGzlveYli0ZNLGGn/lnD0GNIDvbQFil
+         O1Hg==
+X-Gm-Message-State: AOAM532kHOuYhd9F5h2t75lnx9BDNXzBYZQqNAMSxiS1z1bOA761JkDG
+        K8eqBP3A70x2+ERPvtqiV/B9DLR/LgjnbTBJND8=
+X-Google-Smtp-Source: ABdhPJzn5xjNPEmrRqG86NPTPRnCb7XHzWPcl3KJ4FUWp/Xzi6Xh4bJ/4bULiv7vpRQGPYCRWgxVF2J7NwVsylUypzg=
+X-Received: by 2002:a17:906:1b58:: with SMTP id p24mr35251625ejg.77.1600399111121;
+ Thu, 17 Sep 2020 20:18:31 -0700 (PDT)
 MIME-Version: 1.0
-In-Reply-To: <20200917110053.GA4755@sirena.org.uk>
-Content-Type: multipart/signed; micalg=pgp-sha256;
- protocol="application/pgp-signature";
- boundary="oNLHzmw1I7aHb2xcXcXGZxEdnGQCFEQkp"
+References: <1599644912-29245-1-git-send-email-wuht06@gmail.com>
+ <1599644912-29245-2-git-send-email-wuht06@gmail.com> <20200915172501.GA2146778@bogus>
+In-Reply-To: <20200915172501.GA2146778@bogus>
+From:   Hongtao Wu <wuht06@gmail.com>
+Date:   Fri, 18 Sep 2020 11:18:19 +0800
+Message-ID: <CAG_R4_Xv86KE3NQtYEq-3mJjMucrULLVA0=JUkWAVDJPjucKKA@mail.gmail.com>
+Subject: Re: [PATCH v3 1/2] dt-bindings: PCI: sprd: Document Unisoc PCIe RC
+ host controller
+To:     Rob Herring <robh@kernel.org>
+Cc:     Lorenzo Pieralisi <lorenzo.pieralisi@arm.com>,
+        Orson Zhai <orsonzhai@gmail.com>,
+        Baolin Wang <baolin.wang7@gmail.com>,
+        Chunyan Zhang <zhang.lyra@gmail.com>,
+        linux-pci@vger.kernel.org, devicetree@vger.kernel.org,
+        linux-kernel@vger.kernel.org, Hongtao Wu <billows.wu@unisoc.com>
+Content-Type: text/plain; charset="UTF-8"
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-This is an OpenPGP/MIME signed message (RFC 4880 and 3156)
---oNLHzmw1I7aHb2xcXcXGZxEdnGQCFEQkp
-Content-Type: multipart/mixed; boundary="npx1QPJMHHXPGiElNcnf2YFJTuHRgqEye"
+On Wed, Sep 16, 2020 at 1:25 AM Rob Herring <robh@kernel.org> wrote:
+>
+> On Wed, Sep 09, 2020 at 05:48:31PM +0800, Hongtao Wu wrote:
+> > From: Hongtao Wu <billows.wu@unisoc.com>
+> >
+> > This series adds PCIe bindings for Unisoc SoCs.
+> > This controller is based on DesignWare PCIe IP.
+> >
+> > Signed-off-by: Hongtao Wu <billows.wu@unisoc.com>
+> > ---
+> >  .../devicetree/bindings/pci/sprd-pcie.yaml         | 101 +++++++++++++++++++++
+> >  1 file changed, 101 insertions(+)
+> >  create mode 100644 Documentation/devicetree/bindings/pci/sprd-pcie.yaml
+> >
+> > diff --git a/Documentation/devicetree/bindings/pci/sprd-pcie.yaml b/Documentation/devicetree/bindings/pci/sprd-pcie.yaml
+> > new file mode 100644
+> > index 0000000..c52edfb
+> > --- /dev/null
+> > +++ b/Documentation/devicetree/bindings/pci/sprd-pcie.yaml
+> > @@ -0,0 +1,101 @@
+> > +# SPDX-License-Identifier: (GPL-2.0-only OR BSD-2-Clause)
+> > +%YAML 1.2
+> > +---
+> > +$id: http://devicetree.org/schemas/pci/sprd-pcie.yaml#
+> > +$schema: http://devicetree.org/meta-schemas/core.yaml#
+> > +
+> > +title: SoC PCIe Host Controller Device Tree Bindings
+> > +
+> > +maintainers:
+> > +  - Hongtao Wu <billows.wu@unisoc.com>
+> > +
+> > +allOf:
+> > +  - $ref: /schemas/pci/pci-bus.yaml#
+> > +
+> > +properties:
+> > +  compatible:
+> > +    items:
+> > +      - const: sprd,pcie-rc
+> > +
+> > +  reg:
+> > +    minItems: 2
+> > +    items:
+> > +      - description: Controller control and status registers.
+> > +      - description: PCIe configuration registers.
+> > +
+> > +  reg-names:
+> > +    items:
+> > +      - const: dbi
+> > +      - const: config
+> > +
+> > +  ranges:
+> > +    maxItems: 2
+> > +
+> > +  num-lanes:
+> > +    maximum: 1
+> > +    description: Number of lanes to use for this port.
+> > +
+> > +  interrupts:
+> > +    minItems: 1
+> > +    description: Builtin MSI controller and PCIe host controller.
+> > +
+> > +  interrupt-names:
+> > +    items:
+> > +      - const: msi
+> > +
+> > +  sprd-pcie-poweron-syscons:
+>
 
---npx1QPJMHHXPGiElNcnf2YFJTuHRgqEye
-Content-Type: text/plain; charset=windows-1252
-Content-Language: en-US
-Content-Transfer-Encoding: quoted-printable
+I am Sorry!
+I'll fix it.
 
-On 9/17/20 4:00 AM, Mark Brown wrote:
-> On Thu, Sep 17, 2020 at 12:18:19PM +0200, Alban Bedel wrote:
->=20
->> +	data->vs =3D devm_regulator_get_optional(dev, "vs");
->> +	if (IS_ERR(data->vs)) {
->=20
-> Unless the device can work without power you should not be using
-> regulator_get_optional().
->=20
+> Doesn't match the example.
+>
+> > +    minItems: 1
+> > +    description: Global register.
+> > +      The first value is the phandle to the global registers required to
+> > +      confige PCIe phy, clock and so on.
+> > +      The second value is the global register type which indicates whether it
+> > +      is a set/clear register or not.
+> > +      The third value is the time to delay after the global register is set or
+> > +      cleared.
+> > +      The fourth value is the global register address.
+> > +      The fifth value is the the mask value that the global register must
+> > +      be operate.
+> > +      The sixth value is the value that will be set to the global register.
+> > +      Note that Some Unisoc global registers have not been upstreamed.
+> > +      The global register and its mask can't be found in linux kernel,
+> > +      so we use an offset address and a number to instead them.
+>
+> From the example, it looks like you set/clear 2 bits for power on/off.
+> What's the worst case you expect here? What do the 2 bits do? If they
+> are for clocks, resets, or power domains, then we have bindings for
+> those which should be used. This use of phandles to syscons should be
+> avoided whenever possible.
+>
 
-The driver works today without regulator, and needs to continue
-doing so.
+There are two kinds of global register ( set/clear registers and
+non-set/clear registers )
+about PCIe on Unisoc SoCs.
+Each set of set/clear registers contain two addresses. One can be
+written and the other one
+can be read. Different bits in  the set/clear register indicate
+different functions, so we
+set/clear one bit for power on/off.
+The non-set/clear registers are normal which only have one address.
 
-Guenter
+The second value in property 'sprd,pcie-poweron-syscons' is a flag
+which indicates whether
+the global register is set/clear or not. If this value is 1, we think
+that it's a set/clear register.
+If this value is 0, we think it's a non-set/clear register.
 
+I wanted to parse all of the global registers about power on/off in an
+array (include set/clear
+registers and non-set/clear registers). However, it may not be a good idea.
+I'll split the property 'sprd,pcie-poweron-syscons' info clocks, power
+domains, phy and so on
+in the next version.
 
---npx1QPJMHHXPGiElNcnf2YFJTuHRgqEye--
+> If we wanted a language for specifying sequences of register accesses in
+> DT, we would have defined that a long time ago.
+>
 
---oNLHzmw1I7aHb2xcXcXGZxEdnGQCFEQkp
-Content-Type: application/pgp-signature; name="signature.asc"
-Content-Description: OpenPGP digital signature
-Content-Disposition: attachment; filename="signature.asc"
+> > +
+> > +required:
+> > +  - compatible
+> > +  - reg
+> > +  - reg-names
+> > +  - num-lanes
+> > +  - ranges
+> > +  - interrupts
+> > +  - interrupt-names
+> > +
+> > +examples:
+> > +  - |
+> > +    #include <dt-bindings/interrupt-controller/arm-gic.h>
+> > +
+> > +    ipa {
+> > +        #address-cells = <2>;
+> > +        #size-cells = <2>;
+> > +
+> > +        pcie0: pcie@2b100000 {
+> > +            compatible = "sprd,pcie-rc";
+> > +            reg = <0x0 0x2b100000 0x0 0x2000>,
+> > +                  <0x2 0x00000000 0x0 0x2000>;
+> > +            reg-names = "dbi", "config";
+> > +            #address-cells = <3>;
+> > +            #size-cells = <2>;
+> > +            device_type = "pci";
+> > +            ranges = <0x01000000 0x0 0x00000000 0x2 0x00002000 0x0 0x00010000>,
+> > +                     <0x03000000 0x0 0x10000000 0x2 0x10000000 0x1 0xefffffff>;
+> > +            num-lanes = <1>;
+> > +            interrupts = <GIC_SPI 153 IRQ_TYPE_LEVEL_HIGH>;
+> > +            interrupt-names = "msi";
+> > +
+> > +            sprd,pcie-poweron-syscons =
+> > +                <&ap_ipa_ahb_regs 0 0 0x0000 0x40 0x40>,
+> > +                <&ap_ipa_ahb_regs 0 0 0x0000 0x20 0x20>;
+> > +            sprd,pcie-poweroff-syscons =
+>
+> Not documented.
+>
 
------BEGIN PGP SIGNATURE-----
+Thanks! I'll fix it in the next version.
 
-iQIzBAEBCAAdFiEEiHPvMQj9QTOCiqgVyx8mb86fmYEFAl9kFcMACgkQyx8mb86f
-mYFkCRAApbWUrLrU34NeN2pqWh8G1DFeWcrTFJHjcEO4jFDbX/nsgcNR2GCK/JS5
-uQ4/zrbbz0QudxFS79L9xjr7YTOoolp0nGsAfv6hXmum1ljGiS1iOk6PeeFC47zg
-xzJzxfjsOucXH+QwOqisD9iBX/ITl+iIc8enxvehhVKWJjgDw+e6xT6XNhgb7IGh
-uZNrp1kOYgvrFRS2fe6RO6pid1ZLiiPiG3UaydUP7N11nVXL3XUAKKuP9Bk2f1qR
-96CJ1OgQqs4wz6iAXq4zayB6RPa8vmtMqHEK710aYqhWNcnz1c8A/UdRwLx6uOXC
-xAc6IDqXEADQU0oDUGzPe64A7W9/5MFBsMrNcQ2f6oQ09NzH/fQkb0KTB5tEw4y8
-57Uqbh3CsywaybRYDzmyCy+WhafDyDy07ZL/KvlZgf+qJuZYi0bIGfFxi0ipMxU4
-0qq2Xz7TRQwTPikSG/Fo96/wmQpQkhV/01I1yUDHAbPnbZf8xpCQocisd9BQKnFm
-dHjN19iPkDrhMfEsTscRAm5ldw0toBDdk9zV3j8oV3INkfuKeXXimrSi8aMoKLJY
-CtxRMlodBvZ/0x8G5JUDjsyNBW4tVEm0fjYZghlHEryP3YIgT4RxHyKyb0NffGg1
-Z7TFnrfCTqve+5kg0XjrIJBeONjmiJCQpthGJRiQF288j6lv/+U=
-=Zv+s
------END PGP SIGNATURE-----
-
---oNLHzmw1I7aHb2xcXcXGZxEdnGQCFEQkp--
+> > +                <&ap_ipa_ahb_regs 0 0 0x0000 0x20 0x0>,
+> > +                <&ap_ipa_ahb_regs 0 0 0x0000 0x40 0x0>;
+> > +        };
+> > +    };
+> > --
+> > 2.7.4
+> >
