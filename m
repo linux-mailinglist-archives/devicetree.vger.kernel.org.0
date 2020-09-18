@@ -2,83 +2,131 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from vger.kernel.org (vger.kernel.org [23.128.96.18])
-	by mail.lfdr.de (Postfix) with ESMTP id 72D6326FBAC
-	for <lists+devicetree@lfdr.de>; Fri, 18 Sep 2020 13:39:45 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTP id A5F1A26FBB2
+	for <lists+devicetree@lfdr.de>; Fri, 18 Sep 2020 13:40:32 +0200 (CEST)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S1726528AbgIRLjo (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Fri, 18 Sep 2020 07:39:44 -0400
-Received: from mout.kundenserver.de ([212.227.126.133]:54883 "EHLO
-        mout.kundenserver.de" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S1726121AbgIRLjm (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Fri, 18 Sep 2020 07:39:42 -0400
-X-Greylist: delayed 323 seconds by postgrey-1.27 at vger.kernel.org; Fri, 18 Sep 2020 07:39:42 EDT
-Received: from mail-qt1-f182.google.com ([209.85.160.182]) by
- mrelayeu.kundenserver.de (mreue011 [212.227.15.129]) with ESMTPSA (Nemesis)
- id 1MTi9N-1juJGu2Jg5-00TzGO; Fri, 18 Sep 2020 13:34:17 +0200
-Received: by mail-qt1-f182.google.com with SMTP id r8so4592851qtp.13;
-        Fri, 18 Sep 2020 04:34:17 -0700 (PDT)
-X-Gm-Message-State: AOAM5331lbpKJop+RpHXhr+BmIY9mKunn++UU++H33RDSavq4PKO4ChL
-        nd/LKxDmzh+837zwoxDoATT3b6675qXfaRTeZtI=
-X-Google-Smtp-Source: ABdhPJyR7zz5So72V6SYhWYgwZh755GPHRackIOcSX7igL5IA735dwZVSQSG8A3tNsW/k/LOoRgJv264m3fyry8q1/w=
-X-Received: by 2002:aed:31e5:: with SMTP id 92mr23933594qth.18.1600428856277;
- Fri, 18 Sep 2020 04:34:16 -0700 (PDT)
+        id S1726306AbgIRLkb (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Fri, 18 Sep 2020 07:40:31 -0400
+Received: from smtp2.axis.com ([195.60.68.18]:42506 "EHLO smtp2.axis.com"
+        rhost-flags-OK-OK-OK-OK) by vger.kernel.org with ESMTP
+        id S1726239AbgIRLkb (ORCPT <rfc822;devicetree@vger.kernel.org>);
+        Fri, 18 Sep 2020 07:40:31 -0400
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+  d=axis.com; l=2871; q=dns/txt; s=axis-central1;
+  t=1600429230; x=1631965230;
+  h=from:to:cc:subject:date:message-id:mime-version:
+   content-transfer-encoding;
+  bh=nf9xyKjOJLYLLbRB2/HBWzS8DPHd3qUqka4CHMmC6qo=;
+  b=Wt6XPdfycJ7vMjy8x1/G2X8fi9ZyreP2xIWDwteh580/eTo2qVQ3YYO4
+   pxx3oCKYaj0aM4berUo0LPtjhzEhR/spuXBWemALl22dHepHKnbyuOliX
+   IWubtbUUXU1Fw4LHzMYYJrzeBzn5FpYT9f/UhlMola90fvdSYuv3sAFRo
+   1d6oEMFbUa+Lhr0zAd2FF+iVrbmAsun+Lvjk4gsCKinjnSbbRM+xQfZRx
+   baK0MfJJQ2JitTK1C2Dgg9cFAk0FcjBH9n7d3/Vmy62Lxq2O7gTuTJOxP
+   eNDYFD0ErC/OaIOlmUp4Va0IOiSMc7GgOl3eQdWvTEjbC+rIPW3d3RvZQ
+   g==;
+IronPort-SDR: MeyJ+ipT9q80W1KxznfMpqfE4aU7/yQs4lPs05Y8+BohAR/d1+bypJN+EFkzhVi983AtROHYn3
+ ym2J9g1K7jb7RiyEiWv2AFz6CT2cr7UMwvuqFW2nI7POTFlt7WidD+GBobSLbfUM+QnFfrtQBT
+ Lbp7AD5Y2+iu9873B8TEGalLKd4h5EMo0qLDNkn4HDHF3PPVh3G4VUWbvWbOJD8BTsgFqckxQ7
+ sGWCqfgQqZ1zMVP/O9fms0Z2auo9axhc73YzkDFHi8pNqIvtgnJUXO/4iDAQc9lWZPNKIavsF2
+ Pmo=
+X-IronPort-AV: E=Sophos;i="5.77,274,1596492000"; 
+   d="scan'208";a="12637619"
+From:   Camel Guo <camel.guo@axis.com>
+To:     <robh+dt@kernel.org>, <lgirdwood@gmail.com>, <broonie@kernel.org>,
+        <tiwai@suse.com>, <dmurphy@ti.com>
+CC:     <devicetree@vger.kernel.org>, <alsa-devel@alsa-project.org>,
+        <linux-kernel@vger.kernel.org>, <kernel@axis.com>,
+        Camel Guo <camelg@axis.com>
+Subject: [PATCH v5 1/2] dt-bindings: tlv320adcx140: Add GPIO config and drive config
+Date:   Fri, 18 Sep 2020 13:40:24 +0200
+Message-ID: <20200918114025.18205-1-camel.guo@axis.com>
+X-Mailer: git-send-email 2.20.1
 MIME-Version: 1.0
-References: <20200918104949.3260823-1-daniel@0x0f.com>
-In-Reply-To: <20200918104949.3260823-1-daniel@0x0f.com>
-From:   Arnd Bergmann <arnd@arndb.de>
-Date:   Fri, 18 Sep 2020 13:34:00 +0200
-X-Gmail-Original-Message-ID: <CAK8P3a0maQhfaerwG4KgFZOrUPwueKOp2+MOeG9C=+8ZNzc2Kg@mail.gmail.com>
-Message-ID: <CAK8P3a0maQhfaerwG4KgFZOrUPwueKOp2+MOeG9C=+8ZNzc2Kg@mail.gmail.com>
-Subject: Re: [PATCH 0/3] ARM: mstar: wire up interrupt controllers
-To:     Daniel Palmer <daniel@0x0f.com>
-Cc:     Linux ARM <linux-arm-kernel@lists.infradead.org>,
-        DTML <devicetree@vger.kernel.org>, mark-pk.tsai@mediatek.com,
-        Marc Zyngier <maz@kernel.org>,
-        "linux-kernel@vger.kernel.org" <linux-kernel@vger.kernel.org>
-Content-Type: text/plain; charset="UTF-8"
-X-Provags-ID: V03:K1:ZLTm1dOtWm2PCZmPhXJpOWUvMIa2mQq/w3KitFF+MUsUBHcqSMU
- x/u2iMUH9q6NpzTNjuKhQpeBIYpdk9rxa6f+5b4a4dhcB6SX4nBH7vX2E0dY3FL4KoAXsOe
- q4tKtnGAljvEpfW3W1TVJeH/XBuBj4PzSdRMFrKdo4G+p0LYgbM6HtqZBwGKqsuwuDz5ZTH
- BVtPJC8XkPUieR/9KknoQ==
-X-Spam-Flag: NO
-X-UI-Out-Filterresults: notjunk:1;V03:K0:0i5DYDuQr0M=:SEU9GLMn2T4Pbc+uQToUXJ
- 3fcK8TKBTpLZzUvHcE9YevliiFFZUdCeVHKWF24YAswTRqP74FEMw1cbht1naop4UMHQpx4VT
- AGzu71GMhGuxP8P8JYp1Q9NisNcx3p+2uZtvRxrDYPr4dpbcN0DPgeCHY7i1Ez0jjRShAEQE1
- RIzrmJjqkW6LmEwKN+PD3+HcniOTSxjwkSnRovXSCCybj9YVBtta3LK/QMQ9MC0Y4TYpVAFl/
- MlHRIeuRqGM25QWZtfDYJTIo8gi+FalOmJp9K/NFhiJgN2WpumSrXo9HDfsRN2E+R8p2hB7iz
- 78oZLiS4M+rtsfI3J+ZYiQUf6Df8fl9j07ilvU7CYfPvHHCgRm9Gk0q+luNYOyGwY6dWMWQUL
- lPmVHNYX2x+qPm065y5rBMQkw7Yvj/EGh1HhxjfO6s08qeA+VeN0a2CfszGt1guOCIzXTQgUI
- up21+y7ZVdZLgxYdFgxNuAyx5mIQcvTYMrf9Up6sxYagVP2SMGUjXhV9dwMQzCWbIIz/fXUYz
- CX3x/PQcZE7z48AbwKSEQp2OGLX9X/yJqTaWCwThr/to/Uu0PXQB7Tr2ie9JIUlav3qxCHJqb
- dmRFu/LN6UBwgaV8iazLRK0jA7+RS/UdGGwOCdYUfexHnXB3WM2J2GYhleVcudlRzxftZg2sx
- ZuQaDxnKRlylUTXht3yNbDFBs/MO7LLJrydLrpu5Ndreh1+bHt+ZThSHaKVSt5NWTBuz5k+Wm
- ZKMuk5aj0zifIYXL6oRBz29V2gzDUhQ0KM9EV5fv1gUpFuZDg+1qltmNsFRuZEhuOf9dYqdRD
- 0qGpymzwaW5UMTWraqQNiTWyL68sqeAbbPERKtDzuJk+pzG8rYVQZhcXEXeN5LTT5O4QbIj
+Content-Transfer-Encoding: 8bit
+Content-Type: text/plain
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-On Fri, Sep 18, 2020 at 12:49 PM Daniel Palmer <daniel@0x0f.com> wrote:
->
-> Mark-PK Tsai's driver for the MStar interrupt
-> controller should be going into 5.10[0].
->
-> This small series selects the driver when building
-> support for MStar/SigmaStar Arm v7 SoCs, adds the
-> instances of it to the base dtsi and wires up the
-> interrupt for pm_uart.
->
-> 0 - https://lore.kernel.org/linux-arm-kernel/87lfhdr7l6.wl-maz@kernel.org/
+From: Camel Guo <camelg@axis.com>
 
-Whole series,
+Add properties for configuring the General Purpose Input Output (GPIO).
+There are 2 settings for GPIO, configuration and the output drive type.
 
-Acked-by: Arnd Bergmann <arnd@arndb.de>
+Signed-off-by: Camel Guo <camelg@axis.com>
+Acked-by: Dan Murphy <dmurphy@ti.com>
+---
+ v4:
+  - Rebase
+ v3: 
+  - Fix typo
+  - Add Acked-By from Dan 
 
-Please send these to soc@kernel.org for inclusion.
+ .../bindings/sound/tlv320adcx140.yaml         | 44 +++++++++++++++++++
+ 1 file changed, 44 insertions(+)
 
-On a different note: I realized too late that the dts files should have been
-named more consistently when we originally merged them. Can you
-also add patches to rename the infinity and mercury files to start
-with "mstar-"?
+diff --git a/Documentation/devicetree/bindings/sound/tlv320adcx140.yaml b/Documentation/devicetree/bindings/sound/tlv320adcx140.yaml
+index e79f8d1891e4..798b366fe6d1 100644
+--- a/Documentation/devicetree/bindings/sound/tlv320adcx140.yaml
++++ b/Documentation/devicetree/bindings/sound/tlv320adcx140.yaml
+@@ -140,6 +140,49 @@ patternProperties:
+        4d - Drive weak low and active high
+        5d - Drive Hi-Z and active high
+ 
++  ti,gpio-config:
++    description: |
++       Defines the configuration and output drive for the General Purpose
++       Input and Output pin (GPIO1). Its value is a pair, the first value is for
++       the configuration type and the second value is for the output drive
++       type. The array is defined as <GPIO1_CFG GPIO1_DRV>
++
++       configuration for the GPIO pin can be one of the following:
++       0 - disabled
++       1 - GPIO1 is configured as a general-purpose output (GPO)
++       2 - (default) GPIO1 is configured as a device interrupt output (IRQ)
++       3 - GPIO1 is configured as a secondary ASI output (SDOUT2)
++       4 - GPIO1 is configured as a PDM clock output (PDMCLK)
++       8 - GPIO1 is configured as an input to control when MICBIAS turns on or
++           off (MICBIAS_EN)
++       9 - GPIO1 is configured as a general-purpose input (GPI)
++       10 - GPIO1 is configured as a master clock input (MCLK)
++       11 - GPIO1 is configured as an ASI input for daisy-chain (SDIN)
++       12 - GPIO1 is configured as a PDM data input for channel 1 and channel 2
++            (PDMDIN1)
++       13 - GPIO1 is configured as a PDM data input for channel 3 and channel 4
++            (PDMDIN2)
++       14 - GPIO1 is configured as a PDM data input for channel 5 and channel 6
++            (PDMDIN3)
++       15 - GPIO1 is configured as a PDM data input for channel 7 and channel 8
++            (PDMDIN4)
++
++       output drive type for the GPIO pin can be one of the following:
++       0 - Hi-Z output
++       1 - Drive active low and active high
++       2 - (default) Drive active low and weak high
++       3 - Drive active low and Hi-Z
++       4 - Drive weak low and active high
++       5 - Drive Hi-Z and active high
++
++    allOf:
++      - $ref: /schemas/types.yaml#/definitions/uint32-array
++      - minItems: 2
++        maxItems: 2
++        items:
++          maximum: 15
++        default: [2, 2]
++
+ required:
+   - compatible
+   - reg
+@@ -156,6 +199,7 @@ examples:
+         ti,mic-bias-source = <6>;
+         ti,pdm-edge-select = <0 1 0 1>;
+         ti,gpi-config = <4 5 6 7>;
++        ti,gpio-config = <10 2>;
+         ti,gpo-config-1 = <0 0>;
+         ti,gpo-config-2 = <0 0>;
+         reset-gpios = <&gpio0 14 GPIO_ACTIVE_HIGH>;
+-- 
+2.20.1
 
-    Arnd
