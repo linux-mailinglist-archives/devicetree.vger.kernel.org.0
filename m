@@ -2,492 +2,126 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from vger.kernel.org (vger.kernel.org [23.128.96.18])
-	by mail.lfdr.de (Postfix) with ESMTP id CC0D626F56E
-	for <lists+devicetree@lfdr.de>; Fri, 18 Sep 2020 07:45:13 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTP id A48CB26F57E
+	for <lists+devicetree@lfdr.de>; Fri, 18 Sep 2020 07:49:00 +0200 (CEST)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S1726205AbgIRFpM (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Fri, 18 Sep 2020 01:45:12 -0400
-Received: from lindbergh.monkeyblade.net ([23.128.96.19]:59424 "EHLO
-        lindbergh.monkeyblade.net" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S1725886AbgIRFpL (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Fri, 18 Sep 2020 01:45:11 -0400
-Received: from mail-oo1-xc43.google.com (mail-oo1-xc43.google.com [IPv6:2607:f8b0:4864:20::c43])
-        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id B5066C06174A;
-        Thu, 17 Sep 2020 22:45:11 -0700 (PDT)
-Received: by mail-oo1-xc43.google.com with SMTP id s17so1161346ooe.6;
-        Thu, 17 Sep 2020 22:45:11 -0700 (PDT)
+        id S1726647AbgIRFs7 (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Fri, 18 Sep 2020 01:48:59 -0400
+Received: from mail-db8eur05on2056.outbound.protection.outlook.com ([40.107.20.56]:38785
+        "EHLO EUR05-DB8-obe.outbound.protection.outlook.com"
+        rhost-flags-OK-OK-OK-FAIL) by vger.kernel.org with ESMTP
+        id S1726420AbgIRFs7 (ORCPT <rfc822;devicetree@vger.kernel.org>);
+        Fri, 18 Sep 2020 01:48:59 -0400
+ARC-Seal: i=1; a=rsa-sha256; s=arcselector9901; d=microsoft.com; cv=none;
+ b=WMqid4MM8gQbX/Z1muhDM04U2xexeqpgSMLksPtCCFlCShBRHLAnbppvD6rxGabfcDBSu+PCcRdKVIczT/IFfbIHJ8X+ogqoWCOSmxRIflsg4wP9oKzks96qmRwOFcMWD/wFaazSuH4cmPlKwFQJ5w0wqjy8coVAv71ps3dplcguK9vz7UV/p8mTWx0ypJzeK+4bXs2ECDjhAmPkG+aVg2+egvykY8Zn8dqjvTdeLfFAf1MtBQ90s45L75Tu9Xswif1i8cSjkuz8sRwDW9HDVVHNpdOvkgLnc7AmyLkDy3a6q6lzZBNXwG+yJ8f1fKICLXSQtVdKYBM5KXwhLiOxLw==
+ARC-Message-Signature: i=1; a=rsa-sha256; c=relaxed/relaxed; d=microsoft.com;
+ s=arcselector9901;
+ h=From:Date:Subject:Message-ID:Content-Type:MIME-Version:X-MS-Exchange-SenderADCheck;
+ bh=2RSlAm+A0cBk6W4JLRKhOZqse4H+gxG9cjinC63jP3Y=;
+ b=L8W1inaFH5mdsH7D4Xr1IG6II/6lzzBr/2Mfq4/LtpOLKrtQVC+8YFoq3xVBkNkwD8nRBERjKtSW0bh9KDYrhFyA+j9KTPCO+RR5VfATPhogj8cCKH3EvuHwRxIozOPfWZpr94UbRGKC8/ZSps56I4v+hI91vs/Xdz+DQK4iBDiHVyLDOg7FqUyzDXWreOM20qpmndqXKdKX1YnwB9hqSmnTtWGM6w+s8OlwKTsIG7mwOA+ZlrXMneZNxjMAmI4+OcH4ojmvWgUBsVMczYFzuVU3qb5bV0JyWPwj6pbiRrA9D7lZPUp783tXdv2qAeF9MRqGkPSuv2nVu//ZoKr2UQ==
+ARC-Authentication-Results: i=1; mx.microsoft.com 1; spf=pass
+ smtp.mailfrom=fi.rohmeurope.com; dmarc=pass action=none
+ header.from=fi.rohmeurope.com; dkim=pass header.d=fi.rohmeurope.com; arc=none
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=gmail.com; s=20161025;
-        h=sender:subject:to:cc:references:from:autocrypt:message-id:date
-         :user-agent:mime-version:in-reply-to:content-language
-         :content-transfer-encoding;
-        bh=YPjK/x/SddhnfR7LKitgrGhtW1DKJMelig3osvTD0Jw=;
-        b=TLYo9gQapiiVSYeXWTcWDxRkg4bzkuXDkdgzw9hFLYkjWeeZyZzl1WbR3nqdqzH6et
-         ONL4XvJsdnpRZLLyTEBzf03KxonJ8LA+uki4iPQW+hIcU2M+Ue++opNk+ez52VQGn5w+
-         iNWbF11FvRxKrHSSIxIL4ojYwerDYtlIYhIb29gzQ2ZODZ5ZAkvnd5Ouga687uwNxl+G
-         8qqSOfUUBJfkvDW9BwWKoCJEv3xauCiZfn0dVj5e8OS5K8Q7s487LzItHikYBtwZlRxO
-         v8RqCKKIWrV+Z7WsZNnCq4IhaIm1qfPt7ZzRSA48E+TJsm+ZxbOe3W2DDQxdKRAOOj8y
-         16gQ==
-X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=1e100.net; s=20161025;
-        h=x-gm-message-state:sender:subject:to:cc:references:from:autocrypt
-         :message-id:date:user-agent:mime-version:in-reply-to
-         :content-language:content-transfer-encoding;
-        bh=YPjK/x/SddhnfR7LKitgrGhtW1DKJMelig3osvTD0Jw=;
-        b=koPulDOG8AuyaUkeb/4gR5nQ92VpmiRdB9nD1o6WF4HxV0wpVKX2Y6zbqHHE3cRnfu
-         gv1dt74VKEFVy09AAf0bREyRHZnAcDCfFBFuQfIC1I190OXpH+hyY+YEU48qoqqxoMTU
-         Hk0/nw1M1pfQ+9Nm96XRSjcnZWhMxCtWLNt4fWNt2kyIqanEKB24KL7kycPFagD4R7gS
-         5r+9etoym9eP8i5ljFJdT5gURE7W7NOz4z136Qn+xBhKwNTA4JnsLlT2YyWMDWeq45NH
-         xWdYkwYanp5E3aHEPmyps5dVraqMydBXyiazNgu/3o0ckAQLYC3CM/hJwlRCZFissuVb
-         82VA==
-X-Gm-Message-State: AOAM533fogtdd0r3jCXPi7r2VoVFbiUbHmcTW8lO+RfpI/lLGBb9+sDT
-        OqTdlwFqMtP02vUeKhlrZ3cig0udTS0=
-X-Google-Smtp-Source: ABdhPJx/cU4dx48gxmF0lFI7e3oEvXIo4G+332d+LV4mTgCNtdM3nz2qGD81wSU3YKsupaWVsNiHHg==
-X-Received: by 2002:a4a:d38c:: with SMTP id i12mr23069595oos.81.1600407910614;
-        Thu, 17 Sep 2020 22:45:10 -0700 (PDT)
-Received: from server.roeck-us.net ([2600:1700:e321:62f0:329c:23ff:fee3:9d7c])
-        by smtp.gmail.com with ESMTPSA id 34sm1505159otg.23.2020.09.17.22.45.09
-        (version=TLS1_3 cipher=TLS_AES_128_GCM_SHA256 bits=128/128);
-        Thu, 17 Sep 2020 22:45:10 -0700 (PDT)
-Subject: Re: [PATCH v1 4/6] wdt: Support wdt on ROHM BD9576MUF and BD9573MUF
-To:     Matti Vaittinen <matti.vaittinen@fi.rohmeurope.com>,
-        mazziesaccount@gmail.com
-Cc:     Lee Jones <lee.jones@linaro.org>, Rob Herring <robh+dt@kernel.org>,
-        Liam Girdwood <lgirdwood@gmail.com>,
-        Mark Brown <broonie@kernel.org>,
-        Wim Van Sebroeck <wim@linux-watchdog.org>,
-        devicetree@vger.kernel.org, linux-kernel@vger.kernel.org,
-        linux-power@fi.rohmeurope.com, linux-watchdog@vger.kernel.org
-References: <cover.1600329307.git.matti.vaittinen@fi.rohmeurope.com>
- <1993b8516fefd3d8ea16e926c4db379b89ae4096.1600329307.git.matti.vaittinen@fi.rohmeurope.com>
-From:   Guenter Roeck <linux@roeck-us.net>
-Autocrypt: addr=linux@roeck-us.net; keydata=
- xsFNBE6H1WcBEACu6jIcw5kZ5dGeJ7E7B2uweQR/4FGxH10/H1O1+ApmcQ9i87XdZQiB9cpN
- RYHA7RCEK2dh6dDccykQk3bC90xXMPg+O3R+C/SkwcnUak1UZaeK/SwQbq/t0tkMzYDRxfJ7
- nyFiKxUehbNF3r9qlJgPqONwX5vJy4/GvDHdddSCxV41P/ejsZ8PykxyJs98UWhF54tGRWFl
- 7i1xvaDB9lN5WTLRKSO7wICuLiSz5WZHXMkyF4d+/O5ll7yz/o/JxK5vO/sduYDIlFTvBZDh
- gzaEtNf5tQjsjG4io8E0Yq0ViobLkS2RTNZT8ICq/Jmvl0SpbHRvYwa2DhNsK0YjHFQBB0FX
- IdhdUEzNefcNcYvqigJpdICoP2e4yJSyflHFO4dr0OrdnGLe1Zi/8Xo/2+M1dSSEt196rXaC
- kwu2KgIgmkRBb3cp2vIBBIIowU8W3qC1+w+RdMUrZxKGWJ3juwcgveJlzMpMZNyM1jobSXZ0
- VHGMNJ3MwXlrEFPXaYJgibcg6brM6wGfX/LBvc/haWw4yO24lT5eitm4UBdIy9pKkKmHHh7s
- jfZJkB5fWKVdoCv/omy6UyH6ykLOPFugl+hVL2Prf8xrXuZe1CMS7ID9Lc8FaL1ROIN/W8Vk
- BIsJMaWOhks//7d92Uf3EArDlDShwR2+D+AMon8NULuLBHiEUQARAQABzTJHdWVudGVyIFJv
- ZWNrIChMaW51eCBhY2NvdW50KSA8bGludXhAcm9lY2stdXMubmV0PsLBgQQTAQIAKwIbAwYL
- CQgHAwIGFQgCCQoLBBYCAwECHgECF4ACGQEFAlVcphcFCRmg06EACgkQyx8mb86fmYFg0RAA
- nzXJzuPkLJaOmSIzPAqqnutACchT/meCOgMEpS5oLf6xn5ySZkl23OxuhpMZTVX+49c9pvBx
- hpvl5bCWFu5qC1jC2eWRYU+aZZE4sxMaAGeWenQJsiG9lP8wkfCJP3ockNu0ZXXAXwIbY1O1
- c+l11zQkZw89zNgWgKobKzrDMBFOYtAh0pAInZ9TSn7oA4Ctejouo5wUugmk8MrDtUVXmEA9
- 7f9fgKYSwl/H7dfKKsS1bDOpyJlqhEAH94BHJdK/b1tzwJCFAXFhMlmlbYEk8kWjcxQgDWMu
- GAthQzSuAyhqyZwFcOlMCNbAcTSQawSo3B9yM9mHJne5RrAbVz4TWLnEaX8gA5xK3uCNCeyI
- sqYuzA4OzcMwnnTASvzsGZoYHTFP3DQwf2nzxD6yBGCfwNGIYfS0i8YN8XcBgEcDFMWpOQhT
- Pu3HeztMnF3HXrc0t7e5rDW9zCh3k2PA6D2NV4fews9KDFhLlTfCVzf0PS1dRVVWM+4jVl6l
- HRIAgWp+2/f8dx5vPc4Ycp4IsZN0l1h9uT7qm1KTwz+sSl1zOqKD/BpfGNZfLRRxrXthvvY8
- BltcuZ4+PGFTcRkMytUbMDFMF9Cjd2W9dXD35PEtvj8wnEyzIos8bbgtLrGTv/SYhmPpahJA
- l8hPhYvmAvpOmusUUyB30StsHIU2LLccUPPOwU0ETofVZwEQALlLbQeBDTDbwQYrj0gbx3bq
- 7kpKABxN2MqeuqGr02DpS9883d/t7ontxasXoEz2GTioevvRmllJlPQERVxM8gQoNg22twF7
- pB/zsrIjxkE9heE4wYfN1AyzT+AxgYN6f8hVQ7Nrc9XgZZe+8IkuW/Nf64KzNJXnSH4u6nJM
- J2+Dt274YoFcXR1nG76Q259mKwzbCukKbd6piL+VsT/qBrLhZe9Ivbjq5WMdkQKnP7gYKCAi
- pNVJC4enWfivZsYupMd9qn7Uv/oCZDYoBTdMSBUblaLMwlcjnPpOYK5rfHvC4opxl+P/Vzyz
- 6WC2TLkPtKvYvXmdsI6rnEI4Uucg0Au/Ulg7aqqKhzGPIbVaL+U0Wk82nz6hz+WP2ggTrY1w
- ZlPlRt8WM9w6WfLf2j+PuGklj37m+KvaOEfLsF1v464dSpy1tQVHhhp8LFTxh/6RWkRIR2uF
- I4v3Xu/k5D0LhaZHpQ4C+xKsQxpTGuYh2tnRaRL14YMW1dlI3HfeB2gj7Yc8XdHh9vkpPyuT
- nY/ZsFbnvBtiw7GchKKri2gDhRb2QNNDyBnQn5mRFw7CyuFclAksOdV/sdpQnYlYcRQWOUGY
- HhQ5eqTRZjm9z+qQe/T0HQpmiPTqQcIaG/edgKVTUjITfA7AJMKLQHgp04Vylb+G6jocnQQX
- JqvvP09whbqrABEBAAHCwWUEGAECAA8CGwwFAlVcpi8FCRmg08MACgkQyx8mb86fmYHNRQ/+
- J0OZsBYP4leJvQF8lx9zif+v4ZY/6C9tTcUv/KNAE5leyrD4IKbnV4PnbrVhjq861it/zRQW
- cFpWQszZyWRwNPWUUz7ejmm9lAwPbr8xWT4qMSA43VKQ7ZCeTQJ4TC8kjqtcbw41SjkjrcTG
- wF52zFO4bOWyovVAPncvV9eGA/vtnd3xEZXQiSt91kBSqK28yjxAqK/c3G6i7IX2rg6pzgqh
- hiH3/1qM2M/LSuqAv0Rwrt/k+pZXE+B4Ud42hwmMr0TfhNxG+X7YKvjKC+SjPjqp0CaztQ0H
- nsDLSLElVROxCd9m8CAUuHplgmR3seYCOrT4jriMFBtKNPtj2EE4DNV4s7k0Zy+6iRQ8G8ng
- QjsSqYJx8iAR8JRB7Gm2rQOMv8lSRdjva++GT0VLXtHULdlzg8VjDnFZ3lfz5PWEOeIMk7Rj
- trjv82EZtrhLuLjHRCaG50OOm0hwPSk1J64R8O3HjSLdertmw7eyAYOo4RuWJguYMg5DRnBk
- WkRwrSuCn7UG+qVWZeKEsFKFOkynOs3pVbcbq1pxbhk3TRWCGRU5JolI4ohy/7JV1TVbjiDI
- HP/aVnm6NC8of26P40Pg8EdAhajZnHHjA7FrJXsy3cyIGqvg9os4rNkUWmrCfLLsZDHD8FnU
- mDW4+i+XlNFUPUYMrIKi9joBhu18ssf5i5Q=
-Message-ID: <2683bcbd-7ff2-f451-2e6c-79a2ff9e69ea@roeck-us.net>
-Date:   Thu, 17 Sep 2020 22:45:08 -0700
-User-Agent: Mozilla/5.0 (X11; Linux x86_64; rv:68.0) Gecko/20100101
- Thunderbird/68.10.0
-MIME-Version: 1.0
-In-Reply-To: <1993b8516fefd3d8ea16e926c4db379b89ae4096.1600329307.git.matti.vaittinen@fi.rohmeurope.com>
-Content-Type: text/plain; charset=utf-8
+ d=rohmsemiconductoreurope.onmicrosoft.com;
+ s=selector1-rohmsemiconductoreurope-onmicrosoft-com;
+ h=From:Date:Subject:Message-ID:Content-Type:MIME-Version:X-MS-Exchange-SenderADCheck;
+ bh=2RSlAm+A0cBk6W4JLRKhOZqse4H+gxG9cjinC63jP3Y=;
+ b=RYMYIEfOH6xQf0LRcbeucoWlm6ZyWWvkIyZu1xpO1D12MN80OyDxJHo/t3PArBA2JcmzPh1X8BLfziuk17uocG0YYQSwPOyQl+F5RAw7/xdmPaNE96AQKNxPzGIU5ml3LSAMNe5LPc0JWUQAj2zzY3F0X75n0RWb8Dh0vwDydFI=
+Received: from DB6PR03MB3160.eurprd03.prod.outlook.com (2603:10a6:6:37::21) by
+ DBAPR03MB6424.eurprd03.prod.outlook.com (2603:10a6:10:192::15) with Microsoft
+ SMTP Server (version=TLS1_2, cipher=TLS_ECDHE_RSA_WITH_AES_256_GCM_SHA384) id
+ 15.20.3391.11; Fri, 18 Sep 2020 05:48:55 +0000
+Received: from DB6PR03MB3160.eurprd03.prod.outlook.com
+ ([fe80::3c50:c4c8:c54e:19e3]) by DB6PR03MB3160.eurprd03.prod.outlook.com
+ ([fe80::3c50:c4c8:c54e:19e3%2]) with mapi id 15.20.3391.014; Fri, 18 Sep 2020
+ 05:48:55 +0000
+From:   "Vaittinen, Matti" <Matti.Vaittinen@fi.rohmeurope.com>
+To:     "robh+dt@kernel.org" <robh+dt@kernel.org>,
+        "devicetree@vger.kernel.org" <devicetree@vger.kernel.org>,
+        "linux-kernel@vger.kernel.org" <linux-kernel@vger.kernel.org>,
+        "krzk@kernel.org" <krzk@kernel.org>,
+        "lee.jones@linaro.org" <lee.jones@linaro.org>
+Subject: Re: [PATCH v2] dt-bindings: mfd: rohm,bd71837-pmic: Add common
+ properties
+Thread-Topic: [PATCH v2] dt-bindings: mfd: rohm,bd71837-pmic: Add common
+ properties
+Thread-Index: AQHWjSoOiuv+9mc+IEipLl5urzAe76lt5HOA
+Date:   Fri, 18 Sep 2020 05:48:54 +0000
+Message-ID: <cf55864a2d9ff7fcd397273b27cb10619029bd58.camel@fi.rohmeurope.com>
+References: <20200917193754.542-1-krzk@kernel.org>
+In-Reply-To: <20200917193754.542-1-krzk@kernel.org>
+Reply-To: "Vaittinen, Matti" <Matti.Vaittinen@fi.rohmeurope.com>
+Accept-Language: fi-FI, en-US
 Content-Language: en-US
-Content-Transfer-Encoding: 8bit
+X-MS-Has-Attach: 
+X-MS-TNEF-Correlator: 
+authentication-results: kernel.org; dkim=none (message not signed)
+ header.d=none;kernel.org; dmarc=none action=none
+ header.from=fi.rohmeurope.com;
+x-originating-ip: [213.255.186.46]
+x-ms-publictraffictype: Email
+x-ms-office365-filtering-correlation-id: 03b0075a-3b25-42fd-a33d-08d85b968804
+x-ms-traffictypediagnostic: DBAPR03MB6424:
+x-microsoft-antispam-prvs: <DBAPR03MB64246DA9D5C3FAC4D523110EAD3F0@DBAPR03MB6424.eurprd03.prod.outlook.com>
+x-ms-oob-tlc-oobclassifiers: OLM:10000;
+x-ms-exchange-senderadcheck: 1
+x-microsoft-antispam: BCL:0;
+x-microsoft-antispam-message-info: iE1FY/sdattjh0j04vVONcWweLI65jPK1Kosr32QKOY/nTNOI4ZYpSYpxm5VJBu/0BHPBBSHLKV7MeGH7fH1eiA+XjToPx9oCZbiEoLCeEYF7ve8yGGwmnx/skySdVaQs6P8Y+l3qR4cpFSoRnYKlJuQNMBHHX1mAkba/f7wz/OJ4YPT+thwq+2WkTxMXa2rY4Q6jYM2QbwxHehbbGA+9lYSG3sGz36T2cum9VN8GcXzf/tF9y0pPXFNhBMbf+Ow0Lye/pt71/dtBtaLtdToK6bK+haCyI3mVyi7doViukZ2+FDWkds7L9mU6K9g5yjZTLGFws2kJAlzFTKhXzTsyZM8bT9RsC5GFG6mWCA6QXIsvXZsHb7jDFvvgG6bQjIXim/ZvoB7Vgx599aw1ueyQ+fHtX4rU/+pcgKoGidx0Fk=
+x-forefront-antispam-report: CIP:255.255.255.255;CTRY:;LANG:en;SCL:1;SRV:;IPV:NLI;SFV:NSPM;H:DB6PR03MB3160.eurprd03.prod.outlook.com;PTR:;CAT:NONE;SFS:(4636009)(366004)(39850400004)(396003)(346002)(376002)(136003)(2616005)(26005)(478600001)(3450700001)(83380400001)(6486002)(110136005)(8936002)(316002)(86362001)(66556008)(6512007)(66476007)(186003)(64756008)(66446008)(76116006)(5660300002)(91956017)(2906002)(6506007)(66946007)(8676002)(71200400001)(142933001);DIR:OUT;SFP:1101;
+x-ms-exchange-antispam-messagedata: Gd9X/pIms3qx6gcpgmea4+UOS5As4HDiKJsmbWz7HYur1Iy5irh5hqMC35i5brlGI1aCu7sFCjkTsyi8DxIIViKyuOM+P6zs6LSUeVvbWiHcLY+PUBEqv/39g2l7lrzCYIKvAGGtdpQVdeAMytn5ubQG79dRm+ndzZlEHkotoCoydxW/6JVVh1y8wke48AtDwROZ+ViO+B6RrnjtK2r9ch19d8GyD+zjJWkgFj7OfZ6ZIeYXjBpMBZTMhN+peBLP3AeMc+DDiDzWJwCUsO5VlThuroeWQuMgUklAy+Bd3qEjFK6/kge7DLMCaVT36acI0zhcCMfSTAHm594//kweTIS7xsEOvjTfbekKAZ1Ga1aWZnLCmt/H4eySZPFnV1PCuu0RFd5kzseS1p6VfqoDApg/YGJCGQ8Jm1I2Hcs5RW35oVPDh1sOAGNeKuSy5NPQiZlCT/F3kdq4ooBlyH0MKLi8+TJirW6amWlcHr9PkRBdqPfyUoQGhm2vcy2P050lpwdOmXTwYcuXujZe/QpjGkHX/fL236doVzPdCdN9yH1Gj8EyGobbik+kS//3XnVQ/X6zo4UIhRw+Ajahog9Dq/lyX/pAQNQGZDBIOGkG0NdhWCvkqrwEea1S/6Ua72mxQn98sP5GOmCk1qVAtkKMxQ==
+x-ms-exchange-transport-forked: True
+Content-Type: text/plain; charset="utf-8"
+Content-ID: <7C8D1140C683DC498C60DE6C371A6623@eurprd03.prod.outlook.com>
+Content-Transfer-Encoding: base64
+MIME-Version: 1.0
+X-OriginatorOrg: fi.rohmeurope.com
+X-MS-Exchange-CrossTenant-AuthAs: Internal
+X-MS-Exchange-CrossTenant-AuthSource: DB6PR03MB3160.eurprd03.prod.outlook.com
+X-MS-Exchange-CrossTenant-Network-Message-Id: 03b0075a-3b25-42fd-a33d-08d85b968804
+X-MS-Exchange-CrossTenant-originalarrivaltime: 18 Sep 2020 05:48:54.1432
+ (UTC)
+X-MS-Exchange-CrossTenant-fromentityheader: Hosted
+X-MS-Exchange-CrossTenant-id: 94f2c475-a538-4112-b5dd-63f17273d67a
+X-MS-Exchange-CrossTenant-mailboxtype: HOSTED
+X-MS-Exchange-CrossTenant-userprincipalname: ojmYdY4wdjRdpyALhzfavYOw6lBkDt9iUHDQijjycsRuEh2rDiGzHUm1KTyB/d9fatsiQ1bQlRzSOcmAqv4OwRjyipSf69P9u1+P1OP5sWCDjTrzNdX6jz/o/fzSoCAY
+X-MS-Exchange-Transport-CrossTenantHeadersStamped: DBAPR03MB6424
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-On 9/17/20 1:03 AM, Matti Vaittinen wrote:
-> Add Watchdog support for ROHM BD9576MUF and BD9573MUF PMICs which are
-> mainly used to power the R-Car series processors. The watchdog is
-> pinged using a GPIO and enabled using another GPIO. Additionally
-> watchdog time-out can be configured to HW prior starting the watchdog.
-> Watchdog timeout can be configured to detect only delayed ping or in
-> a window mode where also too fast pings are detected.
-> 
-> Signed-off-by: Matti Vaittinen <matti.vaittinen@fi.rohmeurope.com>
-> ---
->  drivers/watchdog/Kconfig      |  13 ++
->  drivers/watchdog/Makefile     |   1 +
->  drivers/watchdog/bd9576_wdt.c | 295 ++++++++++++++++++++++++++++++++++
->  3 files changed, 309 insertions(+)
->  create mode 100644 drivers/watchdog/bd9576_wdt.c
-> 
-> diff --git a/drivers/watchdog/Kconfig b/drivers/watchdog/Kconfig
-> index ab7aad5a1e69..d042a517a946 100644
-> --- a/drivers/watchdog/Kconfig
-> +++ b/drivers/watchdog/Kconfig
-> @@ -172,6 +172,19 @@ config BD70528_WATCHDOG
->  	  Alternatively say M to compile the driver as a module,
->  	  which will be called bd70528_wdt.
->  
-> +config BD957XMUF_WATCHDOG
-> +	tristate "ROHM BD9576MUF and BD9573MUF PMIC Watchdog"
-> +	depends on MFD_ROHM_BD957XMUF
-> +	select WATCHDOG_CORE
-> +	help
-> +	  Support for the watchdog in the ROHM BD9576 and BD9573 PMICs.
-> +	  These PMIC ICs contain watchdog block which can be configured
-> +	  to toggle reset line if SoC fails to ping watchdog via GPIO.
-> +
-> +	  Say Y here to include support for the ROHM BD9576 or BD9573
-> +	  watchdog. Alternatively say M to compile the driver as a module,
-> +	  which will be called bd9576_wdt.
-> +
->  config DA9052_WATCHDOG
->  	tristate "Dialog DA9052 Watchdog"
->  	depends on PMIC_DA9052 || COMPILE_TEST
-> diff --git a/drivers/watchdog/Makefile b/drivers/watchdog/Makefile
-> index 97bed1d3d97c..14d75f98e3df 100644
-> --- a/drivers/watchdog/Makefile
-> +++ b/drivers/watchdog/Makefile
-> @@ -208,6 +208,7 @@ obj-$(CONFIG_XEN_WDT) += xen_wdt.o
->  
->  # Architecture Independent
->  obj-$(CONFIG_BD70528_WATCHDOG) += bd70528_wdt.o
-> +obj-$(CONFIG_BD957XMUF_WATCHDOG) += bd9576_wdt.o
->  obj-$(CONFIG_DA9052_WATCHDOG) += da9052_wdt.o
->  obj-$(CONFIG_DA9055_WATCHDOG) += da9055_wdt.o
->  obj-$(CONFIG_DA9062_WATCHDOG) += da9062_wdt.o
-> diff --git a/drivers/watchdog/bd9576_wdt.c b/drivers/watchdog/bd9576_wdt.c
-> new file mode 100644
-> index 000000000000..917c8c7ddeb1
-> --- /dev/null
-> +++ b/drivers/watchdog/bd9576_wdt.c
-> @@ -0,0 +1,295 @@
-> +// SPDX-License-Identifier: GPL-2.0-or-later
-> +/*
-> + * Copyright (C) 2020 ROHM Semiconductors
-> + *
-> + * ROHM BD9576MUF and BD9573MUF Watchdog driver
-> + */
-> +
-> +#include <linux/err.h>
-> +#include <linux/delay.h>
-
-Alphabetic include file order please.
-
-> +#include <linux/mfd/rohm-bd957x.h>
-> +#include <linux/module.h>
-> +#include <linux/gpio/consumer.h>
-> +#include <linux/of.h>
-> +#include <linux/platform_device.h>
-> +#include <linux/regmap.h>
-> +#include <linux/watchdog.h>
-> +
-> +static bool nowayout;
-> +module_param(nowayout, bool, 0);
-> +MODULE_PARM_DESC(nowayout,
-> +		"Watchdog cannot be stopped once started (default=\"false\")");
-> +
-> +#define HW_MARGIN_MIN 2
-> +#define HW_MARGIN_MAX 4416
-> +#define BD957X_WDT_DEFAULT_MARGIN 4416
-> +
-> +struct bd9576_wdt_priv {
-> +	struct gpio_desc	*gpiod_ping;
-> +	struct gpio_desc	*gpiod_en;
-> +	struct device		*dev;
-> +	struct regmap		*regmap;
-> +	bool			always_running;
-> +	struct watchdog_device	wdd;
-> +};
-> +
-> +static void bd9576_wdt_disable(struct bd9576_wdt_priv *priv)
-> +{
-> +	gpiod_set_value_cansleep(priv->gpiod_en, 0);
-> +}
-> +
-> +static int bd9576_wdt_ping(struct watchdog_device *wdd)
-> +{
-> +	struct bd9576_wdt_priv *priv = watchdog_get_drvdata(wdd);
-> +
-> +	/* Pulse */
-> +	gpiod_set_value_cansleep(priv->gpiod_ping, 1);
-> +	gpiod_set_value_cansleep(priv->gpiod_ping, 0);
-> +
-> +	return 0;
-> +}
-> +
-> +static int bd9576_wdt_start(struct watchdog_device *wdd)
-> +{
-> +	struct bd9576_wdt_priv *priv = watchdog_get_drvdata(wdd);
-> +
-> +	gpiod_set_value_cansleep(priv->gpiod_en, 1);
-> +
-> +	return bd9576_wdt_ping(wdd);
-> +}
-> +
-> +static int bd9576_wdt_stop(struct watchdog_device *wdd)
-> +{
-> +	struct bd9576_wdt_priv *priv = watchdog_get_drvdata(wdd);
-> +
-> +	if (!priv->always_running)
-> +		bd9576_wdt_disable(priv);
-> +	else
-> +		set_bit(WDOG_HW_RUNNING, &wdd->status);
-> +
-> +	return 0;
-> +}
-> +
-> +static const struct watchdog_info bd957x_wdt_ident = {
-> +	.options	= WDIOF_MAGICCLOSE | WDIOF_KEEPALIVEPING |
-> +			  WDIOF_SETTIMEOUT,
-> +	.identity	= "BD957x Watchdog",
-> +};
-> +
-> +static const struct watchdog_ops bd957x_wdt_ops = {
-> +	.owner		= THIS_MODULE,
-> +	.start		= bd9576_wdt_start,
-> +	.stop		= bd9576_wdt_stop,
-> +	.ping		= bd9576_wdt_ping,
-> +};
-> +
-> +/* Unit is hundreds of uS */
-> +#define FASTNG_MIN 23
-> +
-> +static int find_closest_fast(int target, int *sel, int *val)
-> +{
-> +	int i;
-> +	int window = FASTNG_MIN;
-> +
-> +	for (i = 0; i < 8 && window < target; i++)
-> +		window <<= 1;
-> +
-> +	*val = window;
-> +	*sel = i;
-> +
-> +	if (i == 8)
-> +		return -EINVAL;
-> +
-> +	return 0;
-> +
-> +}
-> +
-> +static int find_closest_slow_by_fast(int fast_val, int target, int *slowsel)
-> +{
-> +	int sel;
-> +	static const int multipliers[] = {2, 3, 7, 15};
-> +
-> +	for (sel = 0; sel < ARRAY_SIZE(multipliers) &&
-> +	     multipliers[sel] * fast_val < target; sel++)
-> +		;
-> +
-> +	if (sel == ARRAY_SIZE(multipliers))
-> +		return -EINVAL;
-> +
-> +	*slowsel = sel;
-> +
-> +	return 0;
-> +}
-> +
-> +static int find_closest_slow(int target, int *slow_sel, int *fast_sel)
-> +{
-> +	static const int multipliers[] = {2, 3, 7, 15};
-> +	int i, j;
-> +	int val = 0;
-> +	int window = FASTNG_MIN;
-> +
-> +	for (i = 0; i < 8; i++) {
-> +		for (j = 0; j < ARRAY_SIZE(multipliers); j++) {
-> +			int slow;
-> +
-> +			slow = window * multipliers[j];
-> +			if (slow >= target && (!val || slow < val)) {
-> +				val = slow;
-> +				*fast_sel = i;
-> +				*slow_sel = j;
-> +			}
-> +		}
-> +		window <<= 1;
-> +	}
-> +	if (!val)
-> +		return -EINVAL;
-> +
-> +	return 0;
-> +}
-> +
-> +#define BD957X_WDG_TYPE_WINDOW BIT(5)
-> +#define BD957X_WDG_TYPE_SLOW 0
-> +#define BD957X_WDG_TYPE_MASK BIT(5)
-> +#define BD957X_WDG_NG_RATIO_MASK 0x18
-> +#define BD957X_WDG_FASTNG_MASK 0x7
-> +
-> +static int bd957x_set_wdt_mode(struct bd9576_wdt_priv *priv, int hw_margin,
-> +			       int hw_margin_min)
-> +{
-> +	int ret, fastng, slowng, type, reg, mask;
-> +	struct device *dev = priv->dev;
-> +
-> +	/* convert to 100uS */
-> +	hw_margin *= 10;
-> +	hw_margin_min *= 10;
-> +	if (hw_margin_min) {
-> +		int min;
-> +
-> +		type = BD957X_WDG_TYPE_WINDOW;
-> +		dev_dbg(dev, "Setting type WINDOW 0x%x\n", type);
-> +		ret = find_closest_fast(hw_margin_min, &fastng, &min);
-> +		if (ret) {
-> +			dev_err(dev, "bad WDT window for fast timeout\n");
-> +			return ret;
-> +		}
-> +
-> +		ret = find_closest_slow_by_fast(min, hw_margin, &slowng);
-> +		if (ret) {
-> +			dev_err(dev, "bad WDT window\n");
-> +			return ret;
-> +		}
-> +
-> +	} else {
-> +		type = BD957X_WDG_TYPE_SLOW;
-> +		dev_dbg(dev, "Setting type SLOW 0x%x\n", type);
-> +		ret = find_closest_slow(hw_margin, &slowng, &fastng);
-> +		if (ret) {
-> +			dev_err(dev, "bad WDT window\n");
-> +			return ret;
-> +		}
-> +	}
-> +
-> +	slowng <<= ffs(BD957X_WDG_NG_RATIO_MASK) - 1;
-> +	reg = type | slowng | fastng;
-> +	mask = BD957X_WDG_TYPE_MASK | BD957X_WDG_NG_RATIO_MASK |
-> +	       BD957X_WDG_FASTNG_MASK;
-> +	ret = regmap_update_bits(priv->regmap, BD957X_REG_WDT_CONF,
-> +				 mask, reg);
-> +
-> +	return ret;
-> +}
-> +
-> +static int bd9576_wdt_probe(struct platform_device *pdev)
-> +{
-> +	struct device *dev = &pdev->dev;
-> +	struct device_node *np = dev->parent->of_node;
-> +	struct bd9576_wdt_priv *priv;
-> +	u32 hw_margin, hw_margin_min;
-> +	int ret;
-> +
-> +	priv = devm_kzalloc(dev, sizeof(*priv), GFP_KERNEL);
-> +	if (!priv)
-> +		return -ENOMEM;
-> +
-> +	platform_set_drvdata(pdev, priv);
-> +
-> +	priv->dev = dev;
-> +	priv->regmap = dev_get_regmap(dev->parent, NULL);
-> +	if (!priv->regmap) {
-> +		dev_err(dev, "No regmap found\n");
-> +		return -ENODEV;
-> +	}
-> +
-> +	priv->gpiod_en = devm_gpiod_get_from_of_node(dev, dev->parent->of_node,
-> +						     "rohm,watchdog-enable-gpios",
-> +						     0, GPIOD_OUT_LOW,
-> +						     "watchdog-enable");
-> +	if (IS_ERR(priv->gpiod_en)) {
-
-devm_gpiod_get_from_of_node() can return -EPROBE_DEFER in which case we don't want to see
-an error message. I would suggest to use dev_err_probe().
-
-> +		dev_err(dev, "getting watchdog-enable GPIO failed\n");
-> +		return PTR_ERR(priv->gpiod_en);
-> +	}
-> +
-> +	priv->gpiod_ping = devm_gpiod_get_from_of_node(dev, dev->parent->of_node,
-> +						     "rohm,watchdog-ping-gpios",
-> +						     0, GPIOD_OUT_LOW,
-> +						     "watchdog-ping");
-> +	if (IS_ERR(priv->gpiod_ping)) {
-> +		dev_err(dev, "getting watchdog-ping GPIO failed\n");
-> +		return PTR_ERR(priv->gpiod_ping);
-> +	}
-
-Same as above.
-
-> +
-> +	ret = of_property_read_u32(np,
-> +				   "hw_margin_ms", &hw_margin);
-
-Line splits are arbitrary. Why is this "hw_margin_ms" and not "rohm,hw_margin_ms" ?
-
-> +	if (ret) {
-> +		if (ret != -EINVAL)
-> +			return ret;
-> +
-> +		hw_margin = BD957X_WDT_DEFAULT_MARGIN;
-> +	}
-> +
-> +	ret = of_property_read_u32(np, "rohm,hw-margin-min-ms", &hw_margin_min);
-> +	if (ret == -EINVAL)
-> +		hw_margin_min = 0;
-> +	else if (ret)
-> +		return ret;
-
-Please use a single mechanism to handle -EINVAL after of_property_read_u32().
-
-> +
-> +	ret = bd957x_set_wdt_mode(priv, hw_margin, hw_margin_min);
-> +	if (ret)
-> +		return ret;
-> +
-> +	priv->always_running = of_property_read_bool(np,
-> +						     "always-running");
-
-Another arbitrary line split.
-
-> +
-> +	watchdog_set_drvdata(&priv->wdd, priv);
-> +
-> +	priv->wdd.info			= &bd957x_wdt_ident;
-> +	priv->wdd.ops			= &bd957x_wdt_ops;
-> +	priv->wdd.min_hw_heartbeat_ms	= hw_margin_min;
-> +	priv->wdd.max_hw_heartbeat_ms	= hw_margin;
-> +	priv->wdd.parent		= dev;
-> +	priv->wdd.timeout		= (hw_margin / 2) * 1000;
-> +
-> +	watchdog_init_timeout(&priv->wdd, 0, dev);
-> +	watchdog_set_nowayout(&priv->wdd, nowayout);
-> +
-> +	watchdog_stop_on_reboot(&priv->wdd);
-> +
-> +	if (priv->always_running)
-> +		bd9576_wdt_start(&priv->wdd);
-> +
-> +	return devm_watchdog_register_device(dev, &priv->wdd);
-> +}
-> +
-> +static struct platform_driver bd9576_wdt_driver = {
-> +	.driver	= {
-> +		.name		= "bd9576-wdt",
-> +	},
-> +	.probe	= bd9576_wdt_probe,
-> +};
-> +
-> +module_platform_driver(bd9576_wdt_driver);
-> +
-> +MODULE_AUTHOR("Matti Vaittinen <matti.vaittinen@fi.rohmeurope.com>");
-> +MODULE_DESCRIPTION("ROHM BD9576/BD9573 Watchdog driver");
-> +MODULE_LICENSE("GPL");
-> +MODULE_ALIAS("platform:bd9576-wdt");
-> 
-
+SGkgZGVlZWUgSG8gcGVlcHMhDQoNCk9uIFRodSwgMjAyMC0wOS0xNyBhdCAyMTozNyArMDIwMCwg
+S3J6eXN6dG9mIEtvemxvd3NraSB3cm90ZToNCj4gQWRkIGNvbW1vbiBwcm9wZXJ0aWVzIGFwcGVh
+cmluZyBpbiBEVFNlcyAoY2xvY2stbmFtZXMsDQo+IGNsb2NrLW91dHB1dC1uYW1lcykgd2l0aCB0
+aGUgY29tbW9uIHZhbHVlcyAoYWN0dWFsbHkgdXNlZCBpbiBEVFNlcykNCj4gdG8NCj4gZml4IGR0
+YnNfY2hlY2sgd2FybmluZ3MgbGlrZToNCj4gDQo+ICAgYXJjaC9hcm02NC9ib290L2R0cy9mcmVl
+c2NhbGUvaW14OG1xLWxpYnJlbTUtcjIuZHQueWFtbDoNCj4gICAgIHBtaWNANGI6ICdjbG9jay1u
+YW1lcycsICdjbG9jay1vdXRwdXQtbmFtZXMnLCBkbyBub3QgbWF0Y2ggYW55IG9mDQo+IHRoZSBy
+ZWdleGVzOiAncGluY3RybC1bMC05XSsnDQo+IA0KPiBTaWduZWQtb2ZmLWJ5OiBLcnp5c3p0b2Yg
+S296bG93c2tpIDxrcnprQGtlcm5lbC5vcmc+DQo+IA0KPiAtLS0NCj4gDQo+IENoYW5nZXMgc2lu
+Y2UgdjE6DQo+IDEuIERlZmluZSB0aGUgbmFtZXMsIGFzIHVzZWQgaW4gZXhpc3RpbmcgRFRTIGZp
+bGVzLg0KPiAtLS0NCj4gIC4uLi9kZXZpY2V0cmVlL2JpbmRpbmdzL21mZC9yb2htLGJkNzE4Mzct
+cG1pYy55YW1sICAgICAgICAgIHwgNg0KPiArKysrKysNCj4gIDEgZmlsZSBjaGFuZ2VkLCA2IGlu
+c2VydGlvbnMoKykNCj4gDQo+IGRpZmYgLS1naXQgYS9Eb2N1bWVudGF0aW9uL2RldmljZXRyZWUv
+YmluZGluZ3MvbWZkL3JvaG0sYmQ3MTgzNy0NCj4gcG1pYy55YW1sIGIvRG9jdW1lbnRhdGlvbi9k
+ZXZpY2V0cmVlL2JpbmRpbmdzL21mZC9yb2htLGJkNzE4MzctDQo+IHBtaWMueWFtbA0KPiBpbmRl
+eCA2NTAxOGEwMTllMWQuLjNiZmRkMzM3MDJhZCAxMDA2NDQNCj4gLS0tIGEvRG9jdW1lbnRhdGlv
+bi9kZXZpY2V0cmVlL2JpbmRpbmdzL21mZC9yb2htLGJkNzE4MzctcG1pYy55YW1sDQo+ICsrKyBi
+L0RvY3VtZW50YXRpb24vZGV2aWNldHJlZS9iaW5kaW5ncy9tZmQvcm9obSxiZDcxODM3LXBtaWMu
+eWFtbA0KPiBAQCAtMzIsOSArMzIsMTUgQEAgcHJvcGVydGllczoNCj4gICAgY2xvY2tzOg0KPiAg
+ICAgIG1heEl0ZW1zOiAxDQo+ICANCj4gKyAgY2xvY2stbmFtZXM6DQo+ICsgICAgY29uc3Q6IG9z
+Yw0KDQpJIGd1ZXNzIGV4aXN0aW5nIGJvYXJkIGR0c2VzIHVzZSAib3NjIiB0aGVuPyBPay4NCg0K
+PiAgICAiI2Nsb2NrLWNlbGxzIjoNCj4gICAgICBjb25zdDogMA0KPiAgDQo+ICsgIGNsb2NrLW91
+dHB1dC1uYW1lczoNCj4gKyAgICBjb25zdDogcG1pY19jbGsNCg0KVGhpcyBpcyBub3QgYSBzdHJv
+bmcgb3BpbmlvbiBidXQgSSBmZWVsIHRoYXQgcG1pY19jbGsgaXMgYSBiaXQgdG9vDQpnZW5lcmlj
+IG5hbWU/IEkgbWVhbiwgd2hhdCBpZiB0aGVyZSBpcyBhIHN5c3RlbSB3aXRoIG1vcmUgdGhhbiBv
+bmUNClBNSUNzPyAoSSBkb24ndCBzZWUgc3VjaCB1c2UtY2FzZSB3aXRoIHRoZSBCRDcxOHg3IHRo
+b3VnaCAtIGJ1dCBwZXJoYXBzDQp0aGlzIGNhbiBzZXJ2ZSBhcyBhIG1pc2xlYWRpbmcgZXhhbXBs
+ZSBmb3Igb3RoZXIgUE1JQ3M/IEZvciBleGFtcGxlDQp3aXRoIHRoZSBST0hNIEJEOTY4MDEgZmFt
+aWx5IHRoZXJlIG1heSBiZSBtdWx0aXBsZSBQTUlDcyBpbiBvbmUNCnN5c3RlbSkuIEFueXdheXMg
+LSBpZiBSb2IgaXMgaGFwcHkgd2l0aCB0aGlzIHRoZW4gcGxlYXNlIGdvIHdpdGggaXQgOikNCg0K
+QWNrZWQtQnk6IE1hdHRpIFZhaXR0aW5lbiA8bWF0dGkudmFpdHRpbmVuQGZpLnJvaG1ldXJvcGUu
+Y29tPg0KICogDQpUaGFua3MgYWdhaW4gZm9yIGltcHJvdmluZyB0aGVzZSBiaW5kaW5ncyEgSSBh
+bSBjb25zdGFudGx5IHN0cnVnZ2xpbmcNCndpdGggdGhlc2UgeF94LiBXcml0aW5nIHRoZSBiaW5k
+aW5ncyBpcyBwcm9iYWJseSBoYXJkZXN0IHBhcnQgb2YgUE1JQw0KZHJpdmVyIGRldmVsb3BtZW50
+IC1fLTsNCg0KDQo=
