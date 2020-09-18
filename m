@@ -2,105 +2,53 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from vger.kernel.org (vger.kernel.org [23.128.96.18])
-	by mail.lfdr.de (Postfix) with ESMTP id 12C4626F9BE
-	for <lists+devicetree@lfdr.de>; Fri, 18 Sep 2020 11:58:54 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTP id 2E0D926F9DA
+	for <lists+devicetree@lfdr.de>; Fri, 18 Sep 2020 12:05:41 +0200 (CEST)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S1726118AbgIRJ6j (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Fri, 18 Sep 2020 05:58:39 -0400
-Received: from mga01.intel.com ([192.55.52.88]:8132 "EHLO mga01.intel.com"
-        rhost-flags-OK-OK-OK-OK) by vger.kernel.org with ESMTP
-        id S1726115AbgIRJ6i (ORCPT <rfc822;devicetree@vger.kernel.org>);
-        Fri, 18 Sep 2020 05:58:38 -0400
-IronPort-SDR: xo7Dkotoieh324yOb8EuIfQaISSC1ppYU+XGhLu6dFrNZNBcBM6u4MgIhqLnxuNJPhGoUsqKbl
- WXQR9QZDkSrw==
-X-IronPort-AV: E=McAfee;i="6000,8403,9747"; a="177994163"
-X-IronPort-AV: E=Sophos;i="5.77,274,1596524400"; 
-   d="scan'208";a="177994163"
-X-Amp-Result: SKIPPED(no attachment in message)
-X-Amp-File-Uploaded: False
-Received: from fmsmga003.fm.intel.com ([10.253.24.29])
-  by fmsmga101.fm.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384; 18 Sep 2020 02:58:37 -0700
-IronPort-SDR: DM20wbBrmnoRBgQ0MDZp4J4CXwPRFPXD8sJB+wqEsS0O65H4KHh/Oe1K/7Yo0CyhbYM2YRrZpa
- jAH1COn3YC4Q==
-X-IronPort-AV: E=Sophos;i="5.77,274,1596524400"; 
-   d="scan'208";a="344694904"
-Received: from paasikivi.fi.intel.com ([10.237.72.42])
-  by fmsmga003-auth.fm.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384; 18 Sep 2020 02:58:31 -0700
-Received: by paasikivi.fi.intel.com (Postfix, from userid 1000)
-        id DD46A20815; Fri, 18 Sep 2020 12:57:59 +0300 (EEST)
-Date:   Fri, 18 Sep 2020 12:57:59 +0300
-From:   Sakari Ailus <sakari.ailus@linux.intel.com>
-To:     Marek Behun <marek.behun@nic.cz>
-Cc:     linux-leds@vger.kernel.org, Pavel Machek <pavel@ucw.cz>,
-        Dan Murphy <dmurphy@ti.com>,
-        =?utf-8?Q?Ond=C5=99ej?= Jirman <megous@megous.com>,
-        linux-kernel@vger.kernel.org, Rob Herring <robh+dt@kernel.org>,
-        devicetree@vger.kernel.org,
-        Bartosz Golaszewski <bgolaszewski@baylibre.com>,
-        Sean Wang <sean.wang@mediatek.com>,
-        Matthias Brugger <matthias.bgg@gmail.com>,
-        Michael Ellerman <mpe@ellerman.id.au>,
-        Benjamin Herrenschmidt <benh@kernel.crashing.org>,
-        Paul Mackerras <paulus@samba.org>,
-        Orson Zhai <orsonzhai@gmail.com>,
-        Baolin Wang <baolin.wang7@gmail.com>,
-        Chunyan Zhang <zhang.lyra@gmail.com>,
-        Thierry Reding <thierry.reding@gmail.com>,
-        Uwe =?iso-8859-1?Q?Kleine-K=F6nig?= 
-        <u.kleine-koenig@pengutronix.de>, Lee Jones <lee.jones@linaro.org>,
-        Liam Girdwood <lgirdwood@gmail.com>,
+        id S1726370AbgIRKFg (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Fri, 18 Sep 2020 06:05:36 -0400
+Received: from mailgw02.mediatek.com ([210.61.82.184]:2451 "EHLO
+        mailgw02.mediatek.com" rhost-flags-OK-FAIL-OK-FAIL) by vger.kernel.org
+        with ESMTP id S1725874AbgIRKFg (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Fri, 18 Sep 2020 06:05:36 -0400
+X-Greylist: delayed 302 seconds by postgrey-1.27 at vger.kernel.org; Fri, 18 Sep 2020 06:05:35 EDT
+X-UUID: 3d65e3b0b821458c84a42662c187f36e-20200918
+DKIM-Signature: v=1; a=rsa-sha256; q=dns/txt; c=relaxed/relaxed; d=mediatek.com; s=dk;
+        h=Content-Transfer-Encoding:Content-Type:MIME-Version:Message-ID:Date:Subject:CC:To:From; bh=5KG7Ielhe3B+dvZYJjzHGPLnsgOSiwr2/zpF1goKrCU=;
+        b=iLp3H6t0Mz4fO8j1qhV/AO4qSiJrZVY+QLopvfEyBu0HCH1bHGedVZmPW8r8i2Ip8zsC8Hy2cG0fXnC/qV2f37hdjlDqD4FCddprGElV2yqiXVp4kVM85teh7YlkF3mNMbopEMcEe+oh/jwuIk+JNf7tngr8JzO2gnKnYuwEzvA=;
+X-UUID: 3d65e3b0b821458c84a42662c187f36e-20200918
+Received: from mtkexhb02.mediatek.inc [(172.21.101.103)] by mailgw02.mediatek.com
+        (envelope-from <shane.chien@mediatek.com>)
+        (Cellopoint E-mail Firewall v4.1.14 Build 0819 with TLSv1.2 ECDHE-RSA-AES256-SHA384 256/256)
+        with ESMTP id 989043934; Fri, 18 Sep 2020 18:00:29 +0800
+Received: from mtkcas08.mediatek.inc (172.21.101.126) by
+ mtkmbs05n1.mediatek.inc (172.21.101.15) with Microsoft SMTP Server (TLS) id
+ 15.0.1497.2; Fri, 18 Sep 2020 18:00:26 +0800
+Received: from mtkswgap22.mediatek.inc (172.21.77.33) by mtkcas08.mediatek.inc
+ (172.21.101.73) with Microsoft SMTP Server id 15.0.1497.2 via Frontend
+ Transport; Fri, 18 Sep 2020 18:00:27 +0800
+From:   Shane Chien <shane.chien@mediatek.com>
+To:     Matthias Brugger <matthias.bgg@gmail.com>,
         Mark Brown <broonie@kernel.org>
-Subject: Re: [PATCH leds v2 05/50] leds: various: guard of_match_table member
- value with of_match_ptr
-Message-ID: <20200918095759.GG26842@paasikivi.fi.intel.com>
-References: <20200917223338.14164-1-marek.behun@nic.cz>
- <20200917223338.14164-6-marek.behun@nic.cz>
- <20200918061500.GD26842@paasikivi.fi.intel.com>
- <20200918112058.6d3b0d5d@nic.cz>
+CC:     <linux-kernel@vger.kernel.org>,
+        <linux-mediatek@lists.infradead.org>, <devicetree@vger.kernel.org>,
+        <wsd_upstream@mediatek.com>, <jiaxin.yu@mediatek.com>,
+        <eason.yen@mediatek.com>, <shane.chien@mediatek.com>
+Subject: [PATCH 0/1] Use memset_io to access I/O memory
+Date:   Fri, 18 Sep 2020 18:00:18 +0800
+Message-ID: <1600423219-29058-1-git-send-email-shane.chien@mediatek.com>
+X-Mailer: git-send-email 1.7.9.5
 MIME-Version: 1.0
-Content-Type: text/plain; charset=iso-8859-1
-Content-Disposition: inline
-Content-Transfer-Encoding: 8bit
-In-Reply-To: <20200918112058.6d3b0d5d@nic.cz>
-User-Agent: Mutt/1.10.1 (2018-07-13)
+Content-Type: text/plain
+X-MTK:  N
+Content-Transfer-Encoding: base64
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-On Fri, Sep 18, 2020 at 11:20:58AM +0200, Marek Behun wrote:
-> On Fri, 18 Sep 2020 09:15:00 +0300
-> Sakari Ailus <sakari.ailus@linux.intel.com> wrote:
-> 
-> > Hi Marek,
-> > 
-> > On Fri, Sep 18, 2020 at 12:32:53AM +0200, Marek Behún wrote:
-> > > Change
-> > >   .of_match_table = xxx,
-> > > to
-> > >   .of_match_table = of_match_ptr(xxx),
-> > > in various drivers.
-> > > 
-> > > This should be standard even for drivers that depend on OF.  
-> > 
-> > After this patch, none of these drivers will work on ACPI systems anymore.
+RnJvbTogIlNoYW5lLkNoaWVuIiA8c2hhbmUuY2hpZW5AbWVkaWF0ZWsuY29tPg0KDQpVc2UgbWVt
+c2V0X2lvIHRvIGFjY2VzcyBJL08gbWVtb3J5LCBpbnN0ZWFkIG9mDQptZW1zZXQuDQoNClNoYW5l
+LkNoaWVuICgxKToNCiAgQVNvQzogVXNlIG1lbXNldF9pbyB0byBhY2Nlc3MgSS9PIG1lbW9yeQ0K
+DQogc291bmQvY29yZS9wY21fbmF0aXZlLmMgfCAgICAyICstDQogMSBmaWxlIGNoYW5nZWQsIDEg
+aW5zZXJ0aW9uKCspLCAxIGRlbGV0aW9uKC0pDQoNCi0tIA0KMS43LjkuNQ0K
 
-^
-
-If CONFIG_OF is disabled, that is.
-
-> 
-> Hi Sakari,
-> 
-> I don't understand. Why not? Does ACPI subsystem parse of_match_table
-> as well?
-
-It does. The compatible string is used the same way as in DT for matching
-devices with "PRP0001" _HID or _CID.
-
-Please read Documentation/firmware-guide/acpi/enumeration.rst .
-
-IOW, you can safely do the above only for drivers that depend on OF in
-Kconfig. Otherwise you'll probably break something.
-
--- 
-Sakari Ailus
