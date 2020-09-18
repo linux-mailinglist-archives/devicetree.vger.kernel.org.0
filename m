@@ -2,96 +2,81 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from vger.kernel.org (vger.kernel.org [23.128.96.18])
-	by mail.lfdr.de (Postfix) with ESMTP id D8CB526FF5B
-	for <lists+devicetree@lfdr.de>; Fri, 18 Sep 2020 15:59:11 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTP id 4F5C126FF70
+	for <lists+devicetree@lfdr.de>; Fri, 18 Sep 2020 16:03:06 +0200 (CEST)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S1726415AbgIRN7K (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Fri, 18 Sep 2020 09:59:10 -0400
-Received: from lindbergh.monkeyblade.net ([23.128.96.19]:51270 "EHLO
-        lindbergh.monkeyblade.net" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S1726253AbgIRN7J (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Fri, 18 Sep 2020 09:59:09 -0400
-Received: from mail-vk1-xa43.google.com (mail-vk1-xa43.google.com [IPv6:2607:f8b0:4864:20::a43])
-        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 9B282C0613CE
-        for <devicetree@vger.kernel.org>; Fri, 18 Sep 2020 06:59:09 -0700 (PDT)
-Received: by mail-vk1-xa43.google.com with SMTP id t189so1435455vka.10
-        for <devicetree@vger.kernel.org>; Fri, 18 Sep 2020 06:59:09 -0700 (PDT)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=chromium.org; s=google;
-        h=mime-version:references:in-reply-to:from:date:message-id:subject:to
-         :cc;
-        bh=yZx4kJcNFEjGr4SDJUskmqm2bu+XUaenHe1fGMPrn78=;
-        b=lYx6gFCUgc1VTSHP5PLNZP54DR80Q6CK2e/EdfEDUk7E69mE+ebuqQm1OJW4ypV1cE
-         TMIbDp9vCVl0fSbB/Aoaq0Hgm2akeSa+Zbv+NBsd9lcl+T5zSJSbdajbhcUAfqBYNdhm
-         WvLwJ2X4e+ScmVFy4f2N+n6AmyCTkLe7jvwk0=
-X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=1e100.net; s=20161025;
-        h=x-gm-message-state:mime-version:references:in-reply-to:from:date
-         :message-id:subject:to:cc;
-        bh=yZx4kJcNFEjGr4SDJUskmqm2bu+XUaenHe1fGMPrn78=;
-        b=I9uNpqf15pZDxaTG85SVh53YVAu4Yyc64HGIxxa8ssB7+E3xL7OSvuAfdoAdQ24eDW
-         0mYaLWOoBKT7v27JAmtLpBqd2R7L6L8GtJpa0+DlAt4nQqBU4+m1IDWlguHKWOsWsjJ8
-         OqZgpbqUgcAeoFEaVg4ezfHCwcSzBx+8HxOe1VVC8mbMo4ZMSPk5PY3btG1y/0LP2Ane
-         pGmaruiMF8HG6u+ErjZBxk2iLB0AW9Arpj18z20BvQBj44GQrPjJUJ1Ft1vPY7vaC/lx
-         v/S7QiX1iavvezhkdKJSR5sqeVc9vwj+ZK/BWGtfCLz+YEJdpTlDsY7pZYmwBha2Img2
-         Rsjw==
-X-Gm-Message-State: AOAM530JBG2mDkiYPbQXfHl/UQ4x6S4slDXzHH/6ChSMS7RGfpWbgt08
-        kNka9v+6xyrwUUJnewXO/SM78ZJqytFjAQ==
-X-Google-Smtp-Source: ABdhPJzgf55rrgDZ4wvCnpBkNtl2K5MNk7BFtB/vKdP3KFYfY7rr5xuotYIboLDP8n2ev+S/83eBwQ==
-X-Received: by 2002:a1f:bf53:: with SMTP id p80mr20322116vkf.5.1600437548361;
-        Fri, 18 Sep 2020 06:59:08 -0700 (PDT)
-Received: from mail-vs1-f50.google.com (mail-vs1-f50.google.com. [209.85.217.50])
-        by smtp.gmail.com with ESMTPSA id s8sm473039vke.48.2020.09.18.06.59.07
-        for <devicetree@vger.kernel.org>
-        (version=TLS1_3 cipher=TLS_AES_128_GCM_SHA256 bits=128/128);
-        Fri, 18 Sep 2020 06:59:07 -0700 (PDT)
-Received: by mail-vs1-f50.google.com with SMTP id b123so3616514vsd.10
-        for <devicetree@vger.kernel.org>; Fri, 18 Sep 2020 06:59:07 -0700 (PDT)
-X-Received: by 2002:a67:8bc2:: with SMTP id n185mr12030703vsd.49.1600437546889;
- Fri, 18 Sep 2020 06:59:06 -0700 (PDT)
+        id S1726301AbgIRODF (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Fri, 18 Sep 2020 10:03:05 -0400
+Received: from mail.kernel.org ([198.145.29.99]:32778 "EHLO mail.kernel.org"
+        rhost-flags-OK-OK-OK-OK) by vger.kernel.org with ESMTP
+        id S1726273AbgIRODF (ORCPT <rfc822;devicetree@vger.kernel.org>);
+        Fri, 18 Sep 2020 10:03:05 -0400
+Received: from mail-ot1-f42.google.com (mail-ot1-f42.google.com [209.85.210.42])
+        (using TLSv1.2 with cipher ECDHE-RSA-AES128-GCM-SHA256 (128/128 bits))
+        (No client certificate requested)
+        by mail.kernel.org (Postfix) with ESMTPSA id 6E8E7235FA;
+        Fri, 18 Sep 2020 14:03:04 +0000 (UTC)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=kernel.org;
+        s=default; t=1600437784;
+        bh=ceMp5e2PEx8+OXFUL08K6kd8nS2HTjT3yL8yWWmw/XY=;
+        h=References:In-Reply-To:From:Date:Subject:To:Cc:From;
+        b=aN1L5afhODcB6oZbb3gXe25GiRn6TznrDNDCmMA15uZWO5FXTxYUT2+HApeOJAZJX
+         VRkk+dX1u/ZsU98LrqqKjArYsJ/0g1yO0a4xDO9IWfLu7EgS/m6jCTi1buG9DXSmHY
+         N1vxXeFCCJxB/wvlroPm6j1i1QAPrPUSRfOP8C8M=
+Received: by mail-ot1-f42.google.com with SMTP id n61so5446592ota.10;
+        Fri, 18 Sep 2020 07:03:04 -0700 (PDT)
+X-Gm-Message-State: AOAM533TAFbDPO2iUYBh45neEDqVGPxvbDW5lh566InUrvMg6XyDc0WS
+        FKlMMo05/363oAa+FvelYfIezQthPGmbeOOmew==
+X-Google-Smtp-Source: ABdhPJzFRdqI6xDMxO2WwbAZUoxvL1C2s8llhjhqxIM2uXpb4VM3ABM4S06vvLPwRuD/6HYmbQsubXallQ2te0BX6Og=
+X-Received: by 2002:a9d:6ada:: with SMTP id m26mr9287562otq.192.1600437783776;
+ Fri, 18 Sep 2020 07:03:03 -0700 (PDT)
 MIME-Version: 1.0
-References: <1600435026-1876-1-git-send-email-srivasam@codeaurora.org>
-In-Reply-To: <1600435026-1876-1-git-send-email-srivasam@codeaurora.org>
-From:   Doug Anderson <dianders@chromium.org>
-Date:   Fri, 18 Sep 2020 06:58:55 -0700
-X-Gmail-Original-Message-ID: <CAD=FV=WtSEB6-M8x564t=RuSEKHwH3YvcmuZ9VGpxY+5kcL7rA@mail.gmail.com>
-Message-ID: <CAD=FV=WtSEB6-M8x564t=RuSEKHwH3YvcmuZ9VGpxY+5kcL7rA@mail.gmail.com>
-Subject: Re: [PATCH v3] arm64: dts: qcom: sc7180: Add lpass cpu node for I2S driver
-To:     Srinivasa Rao Mandadapu <srivasam@codeaurora.org>
-Cc:     Andy Gross <agross@kernel.org>,
-        Bjorn Andersson <bjorn.andersson@linaro.org>,
-        Rob Herring <robh+dt@kernel.org>,
-        linux-arm-msm <linux-arm-msm@vger.kernel.org>,
-        "open list:OPEN FIRMWARE AND FLATTENED DEVICE TREE BINDINGS" 
-        <devicetree@vger.kernel.org>, LKML <linux-kernel@vger.kernel.org>,
-        Rohit kumar <rohitkr@codeaurora.org>,
-        Srinivas Kandagatla <srinivas.kandagatla@linaro.org>,
-        Ajit Pandey <ajitp@codeaurora.org>,
-        Cheng-Yi Chiang <cychiang@chromium.org>,
-        V Sujith Kumar Reddy <vsujithk@codeaurora.org>
+References: <20200722155533.252844-1-helen.koike@collabora.com> <20200722155533.252844-2-helen.koike@collabora.com>
+In-Reply-To: <20200722155533.252844-2-helen.koike@collabora.com>
+From:   Rob Herring <robh+dt@kernel.org>
+Date:   Fri, 18 Sep 2020 08:02:52 -0600
+X-Gmail-Original-Message-ID: <CAL_JsqLB2wJE0VBmonSC_hBETgE-he50HJGbBBKy8RKS6GyjxQ@mail.gmail.com>
+Message-ID: <CAL_JsqLB2wJE0VBmonSC_hBETgE-he50HJGbBBKy8RKS6GyjxQ@mail.gmail.com>
+Subject: Re: [PATCH v5 1/9] media: staging: dt-bindings: rkisp1: add missing
+ required nodes
+To:     Helen Koike <helen.koike@collabora.com>
+Cc:     devicetree@vger.kernel.org,
+        Linux Media Mailing List <linux-media@vger.kernel.org>,
+        "open list:ARM/Rockchip SoC..." <linux-rockchip@lists.infradead.org>,
+        "linux-kernel@vger.kernel.org" <linux-kernel@vger.kernel.org>,
+        "open list:STAGING SUBSYSTEM" <devel@driverdev.osuosl.org>,
+        "heiko@sntech.de" <heiko@sntech.de>,
+        Hans Verkuil <hverkuil-cisco@xs4all.nl>,
+        Collabora Kernel ML <kernel@collabora.com>,
+        Dafna Hirschfeld <dafna.hirschfeld@collabora.com>,
+        Ezequiel Garcia <ezequiel@collabora.com>,
+        Mark Rutland <mark.rutland@arm.com>, karthik.poduval@gmail.com,
+        Johan Jonker <jbx6244@gmail.com>,
+        Tomasz Figa <tfiga@chromium.org>,
+        Eddie Cai <eddie.cai.linux@gmail.com>,
+        Shunqian Zheng <zhengsq@rock-chips.com>,
+        Robin Murphy <robin.murphy@arm.com>
 Content-Type: text/plain; charset="UTF-8"
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-Hi,
-
-On Fri, Sep 18, 2020 at 6:18 AM Srinivasa Rao Mandadapu
-<srivasam@codeaurora.org> wrote:
+On Wed, Jul 22, 2020 at 9:55 AM Helen Koike <helen.koike@collabora.com> wrote:
 >
-> --- a/arch/arm64/boot/dts/qcom/sc7180.dtsi
-> +++ b/arch/arm64/boot/dts/qcom/sc7180.dtsi
-> @@ -1742,6 +1742,45 @@
->                                 };
->                         };
+> Add missing required nodes in json-schema yaml file for
+> Rockchip ISP1 dt-bindings.
 >
-> +                       sec_mi2s_active: sec-mi2s-active {
-> +                               pinmux {
-> +                                       pins = "gpio49", "gpio50", "gpio51";
-> +                                       function = "mi2s_1";
-> +                               };
-> +
-> +                               pinconf {
-> +                                       pins = "gpio49", "gpio50", "gpio51";;
+> Signed-off-by: Helen Koike <helen.koike@collabora.com>
+> Acked-by: Rob Herring <robh@kernel.org>
+> ---
+>
+> Changes in v2:
+> - New patch in the series
+> ---
+>  .../devicetree/bindings/media/rockchip-isp1.yaml          | 8 ++++++++
+>  1 file changed, 8 insertions(+)
 
-There are still two ";" on the above line.
+Sorry, PW filters patches and this isn't under
+Documentation/devicetree/bindings/.
+
+Acked-by: Rob Herring <robh@kernel.org>
