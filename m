@@ -2,120 +2,281 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from vger.kernel.org (vger.kernel.org [23.128.96.18])
-	by mail.lfdr.de (Postfix) with ESMTP id CAFF2270127
-	for <lists+devicetree@lfdr.de>; Fri, 18 Sep 2020 17:36:10 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTP id 175A5270129
+	for <lists+devicetree@lfdr.de>; Fri, 18 Sep 2020 17:36:15 +0200 (CEST)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S1726130AbgIRPgJ (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Fri, 18 Sep 2020 11:36:09 -0400
-Received: from lindbergh.monkeyblade.net ([23.128.96.19]:38066 "EHLO
-        lindbergh.monkeyblade.net" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S1726044AbgIRPgJ (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Fri, 18 Sep 2020 11:36:09 -0400
-Received: from mail-ed1-x542.google.com (mail-ed1-x542.google.com [IPv6:2a00:1450:4864:20::542])
-        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 679BFC0613CE
-        for <devicetree@vger.kernel.org>; Fri, 18 Sep 2020 08:36:09 -0700 (PDT)
-Received: by mail-ed1-x542.google.com with SMTP id a12so6433235eds.13
-        for <devicetree@vger.kernel.org>; Fri, 18 Sep 2020 08:36:09 -0700 (PDT)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=linaro.org; s=google;
-        h=mime-version:references:in-reply-to:from:date:message-id:subject:to
-         :cc;
-        bh=WveLPwxte8BNoxoMIlXLIgv/Aiiq1ZIY8kNPvPeIDoE=;
-        b=k1by4YA7dTBFe8ff3zdpPES5vmi76Q13ceAuL5wGpkdRC7yHm1/HwVo5r1/G0h556H
-         fJACyD/EKYHPZO0Ic/VVrlgtk5StadM5g4X/eGJHSTX9G3CYZC9IWhTxcnY0Xauu9WEn
-         cEJtyMnFUJGMB/R1o9CkM3VHbfVH2BSzZh70M8ZJsdt9HDie+zYv5QmYeRefIVKTWsLm
-         BsGDTaG0qJoCNaqyAyzNSyahT8lZpn2bWSK9I6YaiR2mwoueFNdHl1At0PH2+ILODcZL
-         tW5cvaoRc9bCqfbLP/pFEY5cTY4FGwAYAyLfKG/LDI5d7mkUwx+W0/RJZMuE+ZNrADHm
-         yNHA==
-X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=1e100.net; s=20161025;
-        h=x-gm-message-state:mime-version:references:in-reply-to:from:date
-         :message-id:subject:to:cc;
-        bh=WveLPwxte8BNoxoMIlXLIgv/Aiiq1ZIY8kNPvPeIDoE=;
-        b=n/Ir48+qTg7CS/oWmYlCpmrIChhBToWd78IDZDb5NfMBXbPy/GOd6mBw32B/CQbeMe
-         OJxNTtbvwI2VeilF4gCEgzg4u2SlBUFqpubSOHBXJ0rg42sNWMy9Cu559Q2qVqaUjOTO
-         G3FQGeZwuYlOGtqfaosGHu1VlXul0RzQCObCzZavAQqHlYKT22mnimP6yeZ3UALXxB+r
-         bbhD2/5xHWlyJNSV3VEhgjXqqTfzK7Q3Guip1ghOzHkGfeoEgACcldmnBMLwQdeOqfz8
-         5dK5Jc3vUgnnb5TfVjnKz7aQmkt41jNElm0Y5qoqCdd5+JGrzM3UBsAT7TASswwKxhIJ
-         CmcQ==
-X-Gm-Message-State: AOAM5323fGUwwLaS+teNCoJbUYzMb+COxaeOEimFz4cdhXZzu+3Oasty
-        QNBckQcUQAy4L2W1xNZH0D9p9NUcdUmO0GevUf+zpA==
-X-Google-Smtp-Source: ABdhPJzZuAxRQfefmN/3K7ZkWHJ9XCjJmxI8la6kJ+kuLqddcjt57Pvxb9Ni+59rXoZeMqL3jjADNrFwaSEi2bf+hWU=
-X-Received: by 2002:aa7:d403:: with SMTP id z3mr38253584edq.310.1600443367977;
- Fri, 18 Sep 2020 08:36:07 -0700 (PDT)
+        id S1726205AbgIRPgO (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Fri, 18 Sep 2020 11:36:14 -0400
+Received: from mail.kernel.org ([198.145.29.99]:43076 "EHLO mail.kernel.org"
+        rhost-flags-OK-OK-OK-OK) by vger.kernel.org with ESMTP
+        id S1726044AbgIRPgO (ORCPT <rfc822;devicetree@vger.kernel.org>);
+        Fri, 18 Sep 2020 11:36:14 -0400
+Received: from mail-oo1-f48.google.com (mail-oo1-f48.google.com [209.85.161.48])
+        (using TLSv1.2 with cipher ECDHE-RSA-AES128-GCM-SHA256 (128/128 bits))
+        (No client certificate requested)
+        by mail.kernel.org (Postfix) with ESMTPSA id 1DBB222208;
+        Fri, 18 Sep 2020 15:36:13 +0000 (UTC)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=kernel.org;
+        s=default; t=1600443373;
+        bh=ioSr4RUMgwEtF4GQs3qxG3d4Z1XOMNstf8JGn9xlT2Q=;
+        h=References:In-Reply-To:From:Date:Subject:To:Cc:From;
+        b=WbjlpD5LTq9k7Sf1N0QWRfTO8VlU7eKkf+5KC2IneiZfgtGbJBsQPPczIfqBPTOaK
+         YeQMal8rvoXk08cPbK2JBR1vo4UZz/cehqqlD+NiLjztk8EjNZmG81oN2MP/gcBrMw
+         VeihVvj9Ni4CQYKBajgT0Mbx66VUl4f/om8RxKbI=
+Received: by mail-oo1-f48.google.com with SMTP id s17so1522600ooe.6;
+        Fri, 18 Sep 2020 08:36:13 -0700 (PDT)
+X-Gm-Message-State: AOAM531qvkywFHGt/fziAqi837EXC/dl4bzU7IiwdeAkhzBxp1Yd+CZv
+        mL8mfag7Gk10hWIo9zjHiBsF9HUnuhYTJaKMUQ==
+X-Google-Smtp-Source: ABdhPJwaNmplyhbL9ZZkhg3gsZ4yWwcfCyiPNhijxsnAzD2PsWil/W/tZCTbumQWjh0J1DxfW0sB1xIJ+ijilzOi29k=
+X-Received: by 2002:a4a:d306:: with SMTP id g6mr24544764oos.25.1600443372327;
+ Fri, 18 Sep 2020 08:36:12 -0700 (PDT)
 MIME-Version: 1.0
-References: <20200911084119.1080694-1-suzuki.poulose@arm.com> <20200911084119.1080694-20-suzuki.poulose@arm.com>
-In-Reply-To: <20200911084119.1080694-20-suzuki.poulose@arm.com>
-From:   Mike Leach <mike.leach@linaro.org>
-Date:   Fri, 18 Sep 2020 16:35:57 +0100
-Message-ID: <CAJ9a7ViGcasXU2e8HV2RzzobQ7YBHE=YQSqQkCqcb7OyDk_aKA@mail.gmail.com>
-Subject: Re: [PATCH 19/19] dts: bindings: coresight: ETMv4.4 system register
- access only units
-To:     Suzuki K Poulose <suzuki.poulose@arm.com>
-Cc:     linux-arm-kernel <linux-arm-kernel@lists.infradead.org>,
-        Coresight ML <coresight@lists.linaro.org>,
-        Mathieu Poirier <mathieu.poirier@linaro.org>,
-        Leo Yan <leo.yan@linaro.org>, Anshuman.Khandual@arm.com,
-        devicetree@vger.kernel.org, Rob Herring <robh@kernel.org>
+References: <20200911154004.28354-1-post@lespocky.de> <20200911154004.28354-4-post@lespocky.de>
+ <20200915203735.GB2453633@bogus> <4676987.BC07iakZNo@ada>
+In-Reply-To: <4676987.BC07iakZNo@ada>
+From:   Rob Herring <robh@kernel.org>
+Date:   Fri, 18 Sep 2020 09:35:59 -0600
+X-Gmail-Original-Message-ID: <CAL_Jsq++aTK=Us1_z0qh_q_iS8UJHnOLHzgzey3KZMSMSo9jzw@mail.gmail.com>
+Message-ID: <CAL_Jsq++aTK=Us1_z0qh_q_iS8UJHnOLHzgzey3KZMSMSo9jzw@mail.gmail.com>
+Subject: Re: [PATCH v4 3/3] dt-bindings: leds: Convert pwm to yaml
+To:     Alexander Dahl <ada@thorsis.com>
+Cc:     Linux LED Subsystem <linux-leds@vger.kernel.org>,
+        Alexander Dahl <post@lespocky.de>, devicetree@vger.kernel.org,
+        Jacek Anaszewski <jacek.anaszewski@gmail.com>,
+        Pavel Machek <pavel@ucw.cz>, Dan Murphy <dmurphy@ti.com>,
+        "linux-kernel@vger.kernel.org" <linux-kernel@vger.kernel.org>,
+        Peter Ujfalusi <peter.ujfalusi@ti.com>
 Content-Type: text/plain; charset="UTF-8"
+Content-Transfer-Encoding: quoted-printable
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-On Fri, 11 Sep 2020 at 09:41, Suzuki K Poulose <suzuki.poulose@arm.com> wrote:
+On Fri, Sep 18, 2020 at 9:12 AM Alexander Dahl <ada@thorsis.com> wrote:
 >
-> Document the bindings for ETMv4.4 and later with only system register
-> access.
+> Hello Rob,
 >
-> Cc: devicetree@vger.kernel.org
-> Cc: Mathieu Poirier <mathieu.poirier@linaro.org>
-> Cc: Mike Leach <mike.leach@linaro.org>
-> Reviewed-by: Rob Herring <robh@kernel.org>
-> Signed-off-by: Suzuki K Poulose <suzuki.poulose@arm.com>
-> ---
->  Documentation/devicetree/bindings/arm/coresight.txt | 6 +++++-
->  1 file changed, 5 insertions(+), 1 deletion(-)
+> thanks for your feedback. I have some questions/remarks on this new yaml
+> binding stuff before sending v5 (which will also replace patch 1/3 with a
+> different approach btw).
 >
-> diff --git a/Documentation/devicetree/bindings/arm/coresight.txt b/Documentation/devicetree/bindings/arm/coresight.txt
-> index d711676b4a51..cfe47bdda728 100644
-> --- a/Documentation/devicetree/bindings/arm/coresight.txt
-> +++ b/Documentation/devicetree/bindings/arm/coresight.txt
-> @@ -34,9 +34,13 @@ its hardware characteristcs.
->                                         Program Flow Trace Macrocell:
->                         "arm,coresight-etm3x", "arm,primecell";
+> Am Dienstag, 15. September 2020, 22:37:35 CEST schrieb Rob Herring:
+> > On Fri, Sep 11, 2020 at 05:40:04PM +0200, Alexander Dahl wrote:
+> > > The example was adapted slightly to make use of the 'function' and
+> > > 'color' properties.  License discussed with the original author.
+> > >
+> > > Suggested-by: Jacek Anaszewski <jacek.anaszewski@gmail.com>
+> > > Signed-off-by: Alexander Dahl <post@lespocky.de>
+> > > Acked-by: Jacek Anaszewski <jacek.anaszewski@gmail.com>
+> > > Cc: Peter Ujfalusi <peter.ujfalusi@ti.com>
+> > > ---
+> > >
+> > > Notes:
+> > >     v3 -> v4:
+> > >       * added Cc to original author of the binding
+> > >
+> > >     v2 -> v3:
+> > >       * changed license identifier to recommended one
+> > >       * added Acked-by
+> > >
+> > >     v2:
+> > >       * added this patch to series (Suggested-by: Jacek Anaszewski)
+> > >
+> > >  .../devicetree/bindings/leds/leds-pwm.txt     | 50 -----------
+> > >  .../devicetree/bindings/leds/leds-pwm.yaml    | 85 +++++++++++++++++=
+++
+> > >  2 files changed, 85 insertions(+), 50 deletions(-)
+> > >  delete mode 100644 Documentation/devicetree/bindings/leds/leds-pwm.t=
+xt
+> > >  create mode 100644 Documentation/devicetree/bindings/leds/leds-pwm.y=
+aml
+> > >
+> > > diff --git a/Documentation/devicetree/bindings/leds/leds-pwm.txt
+> > > b/Documentation/devicetree/bindings/leds/leds-pwm.txt deleted file mo=
+de
+> > > 100644
+> > > index 6c6583c35f2f..000000000000
+> > > --- a/Documentation/devicetree/bindings/leds/leds-pwm.txt
+> > > +++ /dev/null
+> > > @@ -1,50 +0,0 @@
+> > > -LED connected to PWM
+> > > -
+> > > -Required properties:
+> > > -- compatible : should be "pwm-leds".
+> > > -
+> > > -Each LED is represented as a sub-node of the pwm-leds device.  Each
+> > > -node's name represents the name of the corresponding LED.
+> > > -
+> > > -LED sub-node properties:
+> > > -- pwms : PWM property to point to the PWM device (phandle)/port (id)=
+ and
+> > > to -  specify the period time to be used: <&phandle id period_ns>;
+> > > -- pwm-names : (optional) Name to be used by the PWM subsystem for th=
+e PWM
+> > > device -  For the pwms and pwm-names property please refer to:
+> > > -  Documentation/devicetree/bindings/pwm/pwm.txt
+> > > -- max-brightness : Maximum brightness possible for the LED
+> > > -- active-low : (optional) For PWMs where the LED is wired to supply
+> > > -  rather than ground.
+> > > -- label :  (optional)
+> > > -  see Documentation/devicetree/bindings/leds/common.txt
+> > > -- linux,default-trigger :  (optional)
+> > > -  see Documentation/devicetree/bindings/leds/common.txt
+> > > -
+> > > -Example:
+> > > -
+> > > -twl_pwm: pwm {
+> > > -   /* provides two PWMs (id 0, 1 for PWM1 and PWM2) */
+> > > -   compatible =3D "ti,twl6030-pwm";
+> > > -   #pwm-cells =3D <2>;
+> > > -};
+> > > -
+> > > -twl_pwmled: pwmled {
+> > > -   /* provides one PWM (id 0 for Charing indicator LED) */
+> > > -   compatible =3D "ti,twl6030-pwmled";
+> > > -   #pwm-cells =3D <2>;
+> > > -};
+> > > -
+> > > -pwmleds {
+> > > -   compatible =3D "pwm-leds";
+> > > -   kpad {
+> > > -           label =3D "omap4::keypad";
+> > > -           pwms =3D <&twl_pwm 0 7812500>;
+> > > -           max-brightness =3D <127>;
+> > > -   };
+> > > -
+> > > -   charging {
+> > > -           label =3D "omap4:green:chrg";
+> > > -           pwms =3D <&twl_pwmled 0 7812500>;
+> > > -           max-brightness =3D <255>;
+> > > -   };
+> > > -};
+> > > diff --git a/Documentation/devicetree/bindings/leds/leds-pwm.yaml
+> > > b/Documentation/devicetree/bindings/leds/leds-pwm.yaml new file mode
+> > > 100644
+> > > index 000000000000..c74867492424
+> > > --- /dev/null
+> > > +++ b/Documentation/devicetree/bindings/leds/leds-pwm.yaml
+> > > @@ -0,0 +1,85 @@
+> > > +# SPDX-License-Identifier: (GPL-2.0-only OR BSD-2-Clause)
+> > > +%YAML 1.2
+> > > +---
+> > > +$id: http://devicetree.org/schemas/leds/leds-pwm.yaml#
+> > > +$schema: http://devicetree.org/meta-schemas/core.yaml#
+> > > +
+> > > +title: LEDs connected to PWM
+> > > +
+> > > +maintainers:
+> > > +  - Pavel Machek <pavel@ucw.cz>
+> > > +
+> > > +description:
+> > > +  Each LED is represented as a sub-node of the pwm-leds device.  Eac=
+h
+> > > +  node's name represents the name of the corresponding LED.
+> > > +
+> > > +properties:
+> > > +  compatible:
+> > > +    const: pwm-leds
+> > > +
+> > > +patternProperties:
+> >
+> > > +  "^pwm-led-([0-9a-f])$":
+> > '^led-([0-9a-f])' would be my preference. A bit more on that below.
 >
-> -               - Embedded Trace Macrocell (version 4.x):
-> +               - Embedded Trace Macrocell (version 4.x), with memory mapped access.
->                         "arm,coresight-etm4x", "arm,primecell";
+> Fine for me.
 >
-> +               - Embedded Trace Macrocell (version 4.4 and later) with system
-> +                 register access only.
-> +                       "arm,coresight-etm-v4.4";
-
-Any version of ETM can implement register access - including those pre
-ETM 4.4. Perhaps the new name should simply reflect sys reg access
-rather than a version.
-
-Given that the two compatibility strings should be mutually exclusive
-for a given device, should the bindings doc (or at least the etm4x
-component part) be re-written into the .yaml format so that this can
-be enforced?
-
-Regards
-
-Mike
-
-
-> +
->                 - Coresight programmable Replicator :
->                         "arm,coresight-dynamic-replicator", "arm,primecell";
+> > What about a single child case?
 >
-> --
-> 2.24.1
+> One child or multiple childs.  I found .dts files with one to four sub-no=
+des
+> of the pwm-leds device in current master.
+
+For the single child case, you need to allow for just 'led' then. So
+this I think: '^led(-[0-9a-f]+)?$'
+
+> > > +    type: object
+> > > +
+> > > +    $ref: common.yaml#
+> > > +
+> > > +    properties:
+> > > +      pwms:
+> > > +        description:
+> > > +          "PWM property to point to the PWM device (phandle)/port (i=
+d)
+> > > +          and to specify the period time to be used:
+> > > +          <&phandle id period_ns>;"
+> >
+> > No need to redefine a common property.
 >
+> Should this look like in 'Documentation/devicetree/bindings/leds/backligh=
+t/
+> pwm-backlight.yaml' then?
 
+Yes.
 
---
-Mike Leach
-Principal Engineer, ARM Ltd.
-Manchester Design Centre. UK
+>
+> > What is needed is how many pwms? I'd assume 1 only: 'maxItems: 1'
+>
+> Yes, one pwm channel per LED.
+>
+> > > +
+> > > +      pwm-names:
+> > > +        description:
+> > > +          "Name to be used by the PWM subsystem for the PWM device F=
+or
+> > > +          the pwms and pwm-names property please refer to:
+> > > +          Documentation/devicetree/bindings/pwm/pwm.txt"
+> >
+> > Same here.
+> >
+> > > +
+> > > +      max-brightness:
+> > > +        description:
+> > > +          Maximum brightness possible for the LED
+> >
+> > Needs a type $ref.
+>
+> fwnode_property_read_u32() is used to read this.
+
+$ref: /schemas/types.yaml#/definitions/uint32
+
+>
+> >
+> > > +
+> > > +      active-low:
+> > > +        description:
+> > > +          For PWMs where the LED is wired to supply rather than grou=
+nd.
+> >
+> > type: boolean
+> >
+> > > +
+> > > +    required:
+> > > +      - pwms
+> > > +      - max-brightness
+> >
+> > additionalProperties: false
+> >
+> > That will cause errors if child node names were not consistent (no one
+> > checked, so they won't be). We could just allow anything, but I prefer
+> > to move things to be consistent yet try to capture any existing pattern=
+.
+>
+> Child node names follow no scheme at all currently as far as I could see,
+> examples from real current .dts files:
+>
+>   panel, led-red, blueled, kpad, front, green, pwm_blue, ds1, network_red=
+,
+> alarm-brightness, pmu_stat, overo, heartbeat, power, =E2=80=A6
+
+So you can do this to allow any child node name:
+
+additonalProperties:
+  type: object
+  $ref: common.yaml#
+
+  ... everything you have under pwm-led-*
+
+Or how gpio-keys.yaml was done also works.
+
+Rob
