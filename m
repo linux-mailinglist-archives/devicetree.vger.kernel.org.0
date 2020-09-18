@@ -2,45 +2,42 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from vger.kernel.org (vger.kernel.org [23.128.96.18])
-	by mail.lfdr.de (Postfix) with ESMTP id C382926F9D7
-	for <lists+devicetree@lfdr.de>; Fri, 18 Sep 2020 12:05:33 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTP id 29BF926F9E6
+	for <lists+devicetree@lfdr.de>; Fri, 18 Sep 2020 12:07:01 +0200 (CEST)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S1726414AbgIRKFc (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Fri, 18 Sep 2020 06:05:32 -0400
-Received: from mail.kernel.org ([198.145.29.99]:50712 "EHLO mail.kernel.org"
+        id S1726118AbgIRKGs (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Fri, 18 Sep 2020 06:06:48 -0400
+Received: from mail.kernel.org ([198.145.29.99]:51190 "EHLO mail.kernel.org"
         rhost-flags-OK-OK-OK-OK) by vger.kernel.org with ESMTP
-        id S1725874AbgIRKFb (ORCPT <rfc822;devicetree@vger.kernel.org>);
-        Fri, 18 Sep 2020 06:05:31 -0400
+        id S1726009AbgIRKGs (ORCPT <rfc822;devicetree@vger.kernel.org>);
+        Fri, 18 Sep 2020 06:06:48 -0400
 Received: from localhost (fw-tnat.cambridge.arm.com [217.140.96.140])
         (using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
         (No client certificate requested)
-        by mail.kernel.org (Postfix) with ESMTPSA id C487520665;
-        Fri, 18 Sep 2020 10:05:30 +0000 (UTC)
+        by mail.kernel.org (Postfix) with ESMTPSA id 278E1208B8;
+        Fri, 18 Sep 2020 10:06:46 +0000 (UTC)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=kernel.org;
-        s=default; t=1600423531;
-        bh=h0lkuxqUPtrrUnI9EjvXQhkOT9wfxsfGvLGrRfcRWpw=;
+        s=default; t=1600423607;
+        bh=V1UR/oMfYclAQFVbLCQej+74LjNSUS6YHHIZUTJOjvQ=;
         h=Date:From:To:Cc:Subject:References:In-Reply-To:From;
-        b=bHddCIFCZn4+sdX5R0OHIYUPadPzF8mhaCWTel5RLNX1E0Row0SILO/lOvsav2PCO
-         8lc0l0iFGenegjZeJyefH34rt6vrt7hwHMimIz1+tXzsggxE6OsLuf4nfV+aRo639+
-         Tb4MRuZx6/tMbSOv9EQ7X/TY2wR3ZrF3p02ZI6Js=
-Date:   Fri, 18 Sep 2020 11:04:40 +0100
+        b=kJOegUPRHafH1Q8GTSSJwmwNgPiPKBaaXPF3RUU6RQj7JIWS+jXfLkRVaNjQBHp55
+         6SsbYecbaeXFn5DMNW+kKT0pFn5iQAY2pxoF0W+l3I1vCcYjGrie/GkHXukEk1nn5z
+         dtRh/A536DgIlixmtv5NI8XjoGDG3PCbjBeB/gS4=
+Date:   Fri, 18 Sep 2020 11:05:57 +0100
 From:   Mark Brown <broonie@kernel.org>
-To:     Guenter Roeck <linux@roeck-us.net>
-Cc:     Alban Bedel <alban.bedel@aerq.com>, linux-hwmon@vger.kernel.org,
-        Jean Delvare <jdelvare@suse.com>,
-        Rob Herring <robh+dt@kernel.org>,
-        Liam Girdwood <lgirdwood@gmail.com>,
-        devicetree@vger.kernel.org, linux-kernel@vger.kernel.org
-Subject: Re: [PATCH 3/3] hwmon: (lm75) Add regulator support
-Message-ID: <20200918100440.GB5703@sirena.org.uk>
-References: <20200917101819.32045-1-alban.bedel@aerq.com>
- <20200917101819.32045-4-alban.bedel@aerq.com>
- <7986c014-b826-bad1-f19c-cdda31d20804@roeck-us.net>
+To:     Shane Chien <shane.chien@mediatek.com>
+Cc:     Matthias Brugger <matthias.bgg@gmail.com>,
+        linux-kernel@vger.kernel.org, linux-mediatek@lists.infradead.org,
+        devicetree@vger.kernel.org, wsd_upstream@mediatek.com,
+        jiaxin.yu@mediatek.com, eason.yen@mediatek.com
+Subject: Re: [PATCH 0/1] Use memset_io to access I/O memory
+Message-ID: <20200918100557.GC5703@sirena.org.uk>
+References: <1600423219-29058-1-git-send-email-shane.chien@mediatek.com>
 MIME-Version: 1.0
 Content-Type: multipart/signed; micalg=pgp-sha512;
-        protocol="application/pgp-signature"; boundary="0eh6TmSyL6TZE2Uz"
+        protocol="application/pgp-signature"; boundary="s9fJI615cBHmzTOP"
 Content-Disposition: inline
-In-Reply-To: <7986c014-b826-bad1-f19c-cdda31d20804@roeck-us.net>
+In-Reply-To: <1600423219-29058-1-git-send-email-shane.chien@mediatek.com>
 X-Cookie: Beware of geeks bearing graft.
 User-Agent: Mutt/1.10.1 (2018-07-13)
 Precedence: bulk
@@ -48,35 +45,36 @@ List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
 
---0eh6TmSyL6TZE2Uz
+--s9fJI615cBHmzTOP
 Content-Type: text/plain; charset=us-ascii
 Content-Disposition: inline
+Content-Transfer-Encoding: quoted-printable
 
-On Thu, Sep 17, 2020 at 10:33:37PM -0700, Guenter Roeck wrote:
-> On 9/17/20 3:18 AM, Alban Bedel wrote:
+On Fri, Sep 18, 2020 at 06:00:18PM +0800, Shane Chien wrote:
+> From: "Shane.Chien" <shane.chien@mediatek.com>
+>=20
+> Use memset_io to access I/O memory, instead of
+> memset.
 
-> > +		err = regulator_enable(data->vs);
+Please don't send cover letters for single patches, if there is anything
+that needs saying put it in the changelog of the patch or after the ---
+if it's administrative stuff.  This reduces mail volume and ensures that=20
+any important information is recorded in the changelog rather than being
+lost.=20
 
-> How about device removal ? Don't you have to call regulator_disable()
-> there as well ? If so, it might be best to use devm_add_action_or_reset()
-> to register a disable function.
-
-Yes, disables should be balanced (and any attempt to unregister the
-regulator with references still held should result in a warning).
-
---0eh6TmSyL6TZE2Uz
+--s9fJI615cBHmzTOP
 Content-Type: application/pgp-signature; name="signature.asc"
 
 -----BEGIN PGP SIGNATURE-----
 
-iQEzBAABCgAdFiEEreZoqmdXGLWf4p/qJNaLcl1Uh9AFAl9khjgACgkQJNaLcl1U
-h9AdDAf/YNuWEsjoIefRmZlEaEFDrFOFf++WJDvAcSCC0fP0VeoLuRhuNjHGdYDM
-jmwCuCSjeb0sX74vrLNmK6/SIsny3ffxorGP+OVo2mluxO8VRnLQT/DkgXiZ6eAH
-1Tk7/v3jzHDyeRNvXEnGmGTq4BqmSa7LgOozSOJkVWuJvfPDJQyipK4/bYF+taN0
-c5I8179rpeBwQXFfT5SywLx1G2MIxg7TfgmBqdftTnc7+dLlJ94iN7twLoprtYt4
-ujfCjaEM2+Bq3EZgIFBzIWW+j2x79l95Tm0JGPqVog4c72At13ZjgWdvBQknHzIT
-H7hOtmKbybGcenxIEVbo/ebAD8H/3A==
-=n9tP
+iQEzBAABCgAdFiEEreZoqmdXGLWf4p/qJNaLcl1Uh9AFAl9khoQACgkQJNaLcl1U
+h9DtOwf/WTTtgps3JFXuBDzVizur5HrnD6gYOcj1TkF0zTEjc6nIYk1whl18GX2U
+VAwmX8EzHwafKucWuQDRbB0bYN6Zrlo1Lm9OCJAUaAHgKeajlo1DcT2Jgryo9IGK
+Dn3V8g736VJNJhxhc7yFwS+lEaKhHceVtFbjyDH9zYeD9B4zOc6E1pHHIJGEGNPb
++ebRwCOPzRJGb0St9GqtFEwaTLc8KWxNSDGt7BzQWpx6X82QcxO5JfQEPrwxFhGH
+E2JPvzmisE3hNtY6Sb54Wq6tNoulmC9X6QKALIPD/6v3OIEePwzQSlNRI8qNegSM
+uAXb3kdPY/j1FQbnVXl4RidsWKoSiw==
+=1WN4
 -----END PGP SIGNATURE-----
 
---0eh6TmSyL6TZE2Uz--
+--s9fJI615cBHmzTOP--
