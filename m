@@ -2,88 +2,106 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from vger.kernel.org (vger.kernel.org [23.128.96.18])
-	by mail.lfdr.de (Postfix) with ESMTP id EA33827077C
-	for <lists+devicetree@lfdr.de>; Fri, 18 Sep 2020 22:51:54 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTP id 97CFA270773
+	for <lists+devicetree@lfdr.de>; Fri, 18 Sep 2020 22:50:51 +0200 (CEST)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S1726276AbgIRUvy (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Fri, 18 Sep 2020 16:51:54 -0400
-Received: from sauhun.de ([88.99.104.3]:48582 "EHLO pokefinder.org"
-        rhost-flags-OK-OK-OK-OK) by vger.kernel.org with ESMTP
-        id S1726267AbgIRUvy (ORCPT <rfc822;devicetree@vger.kernel.org>);
-        Fri, 18 Sep 2020 16:51:54 -0400
-X-Greylist: delayed 377 seconds by postgrey-1.27 at vger.kernel.org; Fri, 18 Sep 2020 16:51:53 EDT
-Received: from localhost (router.4pisysteme.de [80.79.225.122])
-        by pokefinder.org (Postfix) with ESMTPSA id 73B1B2C079A;
-        Fri, 18 Sep 2020 22:45:35 +0200 (CEST)
-Date:   Fri, 18 Sep 2020 22:45:35 +0200
-From:   Wolfram Sang <wsa@the-dreams.de>
-To:     Andy Shevchenko <andy.shevchenko@gmail.com>
-Cc:     qii.wang@mediatek.com, linux-i2c <linux-i2c@vger.kernel.org>,
-        devicetree <devicetree@vger.kernel.org>,
-        linux-arm Mailing List <linux-arm-kernel@lists.infradead.org>,
-        Linux Kernel Mailing List <linux-kernel@vger.kernel.org>,
-        "moderated list:ARM/Mediatek SoC support" 
-        <linux-mediatek@lists.infradead.org>,
-        srv_heupstream <srv_heupstream@mediatek.com>,
-        Leilk Liu <leilk.liu@mediatek.com>
-Subject: Re: [PATCH] i2c: mediatek: Fix generic definitions for bus
- frequencies
-Message-ID: <20200918204535.GA52206@kunai>
-Mail-Followup-To: Wolfram Sang <wsa@the-dreams.de>,
-        Andy Shevchenko <andy.shevchenko@gmail.com>, qii.wang@mediatek.com,
-        linux-i2c <linux-i2c@vger.kernel.org>,
-        devicetree <devicetree@vger.kernel.org>,
-        linux-arm Mailing List <linux-arm-kernel@lists.infradead.org>,
-        Linux Kernel Mailing List <linux-kernel@vger.kernel.org>,
-        "moderated list:ARM/Mediatek SoC support" <linux-mediatek@lists.infradead.org>,
-        srv_heupstream <srv_heupstream@mediatek.com>,
-        Leilk Liu <leilk.liu@mediatek.com>
-References: <1599890246-21191-1-git-send-email-qii.wang@mediatek.com>
- <CAHp75VeBuR4fkVk0z=+d7EonHz0h=4=eRj3Wfe8R_8T=eyHaeA@mail.gmail.com>
+        id S1726154AbgIRUuu (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Fri, 18 Sep 2020 16:50:50 -0400
+Received: from lindbergh.monkeyblade.net ([23.128.96.19]:58514 "EHLO
+        lindbergh.monkeyblade.net" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
+        with ESMTP id S1726118AbgIRUuu (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Fri, 18 Sep 2020 16:50:50 -0400
+Received: from mail-oi1-x233.google.com (mail-oi1-x233.google.com [IPv6:2607:f8b0:4864:20::233])
+        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 53B78C0613CE;
+        Fri, 18 Sep 2020 13:50:50 -0700 (PDT)
+Received: by mail-oi1-x233.google.com with SMTP id i17so8573853oig.10;
+        Fri, 18 Sep 2020 13:50:50 -0700 (PDT)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+        d=gmail.com; s=20161025;
+        h=mime-version:references:in-reply-to:from:date:message-id:subject:to
+         :cc;
+        bh=LQBTYd/i7TL56jJTVQHkU8FPXDKYu/R4V8hCfAPSzJo=;
+        b=r5aGYz+rFyzfIoItLLPRg0TWqJvXc782/dbNt7PSwOTmfECPgbPftiexIoJkmFTXtY
+         vK4UuJdscGwkJgnTX/t8tlx9Z7Q/eOVC0jbIuSuj/58XQV9sWNdOS+A82CTSgiMta/u7
+         uWQ/AYufjXogcJQpODpjD2prPYEWNCRPkks3c2V8pRp4Vv1LgYC+cVsE+kJPPCw0FBj7
+         U3e2A6CFjMd12j5aCHGLnlMRvVRHngzVR0UYL7Y7dNZk8OYyal5IYSmOiSEQuNazDCAR
+         Qh+MUj5CCTduEz3ESmgu6tb6KIFSCO6DgMyIbu4nv4eveg7nFsKcRcOce2Ou2wCbVKqy
+         bBfw==
+X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+        d=1e100.net; s=20161025;
+        h=x-gm-message-state:mime-version:references:in-reply-to:from:date
+         :message-id:subject:to:cc;
+        bh=LQBTYd/i7TL56jJTVQHkU8FPXDKYu/R4V8hCfAPSzJo=;
+        b=XKLs9W4Qm2C/RipJ/HAiiZvKFtnyoKja2BlyCiVzA5RRLjU5rgw9QwLrTcpbBM0PRU
+         bn/5PnPcp+b4cY+scWrMFpmvl2FEvKOY+dTkRDXGTda49QRiuiYtRyqehnDGQgXLrnS/
+         m666k5ibdbFD8dXLAgVCAsMVZWIuVNZ5Rzh5nashvRaEnAZ+9+hGjT1og85OaBFFGZjs
+         uXvYCEMD+YOmt/TXxUIIFlVvMxhvWr0JyUtgS0Yf5uTgsiFJUf61wyelEideh7EEby+k
+         1azxlVgF4KEsxx+TUe/A3gxy9sLbHp4l8PXTYJ0HjwkzIUV3VcEX55KAtumQsiOURS2Q
+         Lzrw==
+X-Gm-Message-State: AOAM533mH74Hn2fVdyNFayw5eYeDPODHUc+FBWSGzzqgy0b98FT9/jh2
+        OV6ZdjUkGZe13w+wuLP7IiyJBUbqdXHfjeXauXw=
+X-Google-Smtp-Source: ABdhPJwLFCTn89gsNeMXFYjEgZOXfTDO437610Y8/ZpvSrOdjvvz3QGyVx9hb5/bIum5U6OkxJE/NlABUGT6UuwFT+0=
+X-Received: by 2002:aca:5b45:: with SMTP id p66mr11082126oib.39.1600462249606;
+ Fri, 18 Sep 2020 13:50:49 -0700 (PDT)
 MIME-Version: 1.0
-Content-Type: multipart/signed; micalg=pgp-sha512;
-        protocol="application/pgp-signature"; boundary="FCuugMFkClbJLl1L"
-Content-Disposition: inline
-In-Reply-To: <CAHp75VeBuR4fkVk0z=+d7EonHz0h=4=eRj3Wfe8R_8T=eyHaeA@mail.gmail.com>
+References: <20200910172826.3074357-1-enric.balletbo@collabora.com>
+ <20200910172826.3074357-4-enric.balletbo@collabora.com> <CAOwMV_z9OBpNqStCH+HEcwAK-TwPVeMH4LwJbp78T1P=t9bEKg@mail.gmail.com>
+In-Reply-To: <CAOwMV_z9OBpNqStCH+HEcwAK-TwPVeMH4LwJbp78T1P=t9bEKg@mail.gmail.com>
+From:   Enric Balletbo Serra <eballetbo@gmail.com>
+Date:   Fri, 18 Sep 2020 22:50:37 +0200
+Message-ID: <CAFqH_535GA6nFGKTu4wms1FGySfdrJPeZOf0tuFzaYwVwQuucg@mail.gmail.com>
+Subject: Re: [PATCH 03/12] arm64: dts: mediatek: Add mt8173 power domain controller
+To:     Fabien Parent <fparent@baylibre.com>
+Cc:     Enric Balletbo i Serra <enric.balletbo@collabora.com>,
+        linux-kernel <linux-kernel@vger.kernel.org>,
+        Collabora Kernel ML <kernel@collabora.com>,
+        Matthias Brugger <matthias.bgg@gmail.com>,
+        Nicolas Boichat <drinkcat@chromium.org>,
+        Hsin-Yi Wang <hsinyi@chromium.org>,
+        Weiyi Lu <weiyi.lu@mediatek.com>,
+        Rob Herring <robh+dt@kernel.org>,
+        DTML <devicetree@vger.kernel.org>,
+        Linux ARM <linux-arm-kernel@lists.infradead.org>,
+        "moderated list:ARM/Mediatek SoC support" 
+        <linux-mediatek@lists.infradead.org>
+Content-Type: text/plain; charset="UTF-8"
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
+Hi Fabien,
 
---FCuugMFkClbJLl1L
-Content-Type: text/plain; charset=us-ascii
-Content-Disposition: inline
-Content-Transfer-Encoding: quoted-printable
+Thank you to look at this.
 
+Missatge de Fabien Parent <fparent@baylibre.com> del dia dv., 18 de
+set. 2020 a les 22:24:
+>
+> Hi Enric,
+>
+> > -               scpsys: power-controller@10006000 {
+> > -                       compatible = "mediatek,mt8173-scpsys";
+> > -                       #power-domain-cells = <1>;
+>
+> This change generates a lot of warning when compiling the MT8173 device-trees.
+>
+> Warning (power_domains_property): /soc/mutex@14020000: Missing
+> property '#power-domain-cells' in node /soc/syscon@10006000 or bad
+> phandle (referred from power-domains[0])
 
-> > -       if (target_speed > I2C_MAX_FAST_MODE_PLUS_FREQ)
-> > -               target_speed =3D I2C_MAX_FAST_MODE_PLUS_FREQ;
-> > +       if (target_speed > I2C_MAX_HIGH_SPEED_MODE_FREQ)
-> > +               target_speed =3D I2C_MAX_HIGH_SPEED_MODE_FREQ;
->=20
-> Thanks for fixing this. Indeed, somehow I messed these up.
+I think that there is a mistake in that patch #power-domain-cells =
+<1>; should not be removed. Anyway, I talked with Matthias and I'm
+going to redefine this part as doesn't really match with the hardware.
+We're thinking on something like this:
 
-I read this as Rev-by for v2. Thanks!
+scpsys: syscon@10006000 {
+     compatible = "mediatek,mtk-scpsys", "syscon";
+      reg = ...
 
+     power-controller {
+           compatible = "mediatek,mt8173-power-controller";
+           #power-domain-cells = <1>;
 
---FCuugMFkClbJLl1L
-Content-Type: application/pgp-signature; name="signature.asc"
+           <- the list of domains ->
 
------BEGIN PGP SIGNATURE-----
-
-iQIzBAABCgAdFiEEOZGx6rniZ1Gk92RdFA3kzBSgKbYFAl9lHGsACgkQFA3kzBSg
-Kbb8+Q//d12J/hP68UWUVx1wF2vUsU24vGA8FJZMSyvSlrcOD6QZRalGsA6LR8k1
-w6G70LEDSRlDVe1Q/9NuYJT6enGqXhGKs2up0qnGHAB14N6S5WS7hMQJXSFvc6Mm
-xXnNV4gFGcXfcqZMRgl3er6mDeMKJh+Sa5mnmaDhViT11VegGYkAr+VjFOyg5qLh
-EzR4ZO8NoMCi/hvTkiIu3MQNyKPQy33Xq4SdQqGC/x1ew7DWAwopPmQsooL7zQv2
-dqYd7X4FN6qcd/oF0K6tMyY6bbUVf/XiCfruyJjRf7hSESw/fc8HkFjF4oN8oIKR
-x/sVPceOiMjHpu186UGBK8ieupBQduP5PgewXmFM6Xgsj2hOBV/lwIFF2JoV7wO4
-ETFZJVJUNbLb8XjavbTVRbfaVSHTEa4pR1dGjOARj5sUdpEV6jOGY1ziRGntUh0u
-7DTZK0uZym8qms+6SB2dmHakkkXISGeAi/RNjx7vrmhShh1C4auluXWO8/SbIkGU
-Nm6lrKP4hmEXTAdvAcivMwnLHHZ+MgaWGaAZtSJv3EfqoYpnZRSNTCkFTLiRyAh/
-nkZn0naZnd5tO7jMr7U/43ZSHi7sTDBcPNnmx+e/qE+EZakkDBTXO107YHnks69E
-CQRE6DyZ3jdjeTjG301Y65dMW3n+gJq7ZlpE+pUJZVQUyW9zyz0=
-=/Aw9
------END PGP SIGNATURE-----
-
---FCuugMFkClbJLl1L--
+Thanks,
+  Enric
