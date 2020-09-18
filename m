@@ -2,285 +2,129 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from vger.kernel.org (vger.kernel.org [23.128.96.18])
-	by mail.lfdr.de (Postfix) with ESMTP id 45B16270093
-	for <lists+devicetree@lfdr.de>; Fri, 18 Sep 2020 17:12:13 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTP id AA7782700D1
+	for <lists+devicetree@lfdr.de>; Fri, 18 Sep 2020 17:20:56 +0200 (CEST)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S1726044AbgIRPMM (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Fri, 18 Sep 2020 11:12:12 -0400
-Received: from mail.thorsis.com ([92.198.35.195]:47283 "EHLO mail.thorsis.com"
+        id S1726205AbgIRPUz (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Fri, 18 Sep 2020 11:20:55 -0400
+Received: from mail.kernel.org ([198.145.29.99]:36632 "EHLO mail.kernel.org"
         rhost-flags-OK-OK-OK-OK) by vger.kernel.org with ESMTP
-        id S1725941AbgIRPMM (ORCPT <rfc822;devicetree@vger.kernel.org>);
-        Fri, 18 Sep 2020 11:12:12 -0400
-X-Greylist: delayed 531 seconds by postgrey-1.27 at vger.kernel.org; Fri, 18 Sep 2020 11:12:10 EDT
-Received: from localhost (localhost [127.0.0.1])
-        by mail.thorsis.com (Postfix) with ESMTP id 248323F0C;
-        Fri, 18 Sep 2020 17:03:18 +0200 (CEST)
-X-Virus-Scanned: Debian amavisd-new at mail.thorsis.com
-Received: from mail.thorsis.com ([127.0.0.1])
-        by localhost (mail.thorsis.com [127.0.0.1]) (amavisd-new, port 10024)
-        with ESMTP id 0JmBXd8FvHA9; Fri, 18 Sep 2020 17:03:18 +0200 (CEST)
-Received: by mail.thorsis.com (Postfix, from userid 109)
-        id C89E64904; Fri, 18 Sep 2020 17:03:17 +0200 (CEST)
-X-Spam-Level: 
-X-Spam-Status: No, score=-1.9 required=5.0 tests=BAYES_00,NO_RECEIVED,
-        NO_RELAYS,URIBL_BLOCKED autolearn=unavailable autolearn_force=no
-        version=3.4.2
-From:   Alexander Dahl <ada@thorsis.com>
-To:     linux-leds@vger.kernel.org
-Cc:     Rob Herring <robh@kernel.org>, Alexander Dahl <post@lespocky.de>,
-        devicetree@vger.kernel.org,
-        Jacek Anaszewski <jacek.anaszewski@gmail.com>,
-        Pavel Machek <pavel@ucw.cz>, Dan Murphy <dmurphy@ti.com>,
-        linux-kernel@vger.kernel.org,
-        Peter Ujfalusi <peter.ujfalusi@ti.com>
-Subject: Re: [PATCH v4 3/3] dt-bindings: leds: Convert pwm to yaml
-Date:   Fri, 18 Sep 2020 17:03:08 +0200
-Message-ID: <4676987.BC07iakZNo@ada>
-In-Reply-To: <20200915203735.GB2453633@bogus>
-References: <20200911154004.28354-1-post@lespocky.de> <20200911154004.28354-4-post@lespocky.de> <20200915203735.GB2453633@bogus>
-Content-Transfer-Encoding: quoted-printable
-Content-Type: text/plain; charset="UTF-8"
+        id S1726159AbgIRPUz (ORCPT <rfc822;devicetree@vger.kernel.org>);
+        Fri, 18 Sep 2020 11:20:55 -0400
+Received: from localhost (fw-tnat.cambridge.arm.com [217.140.96.140])
+        (using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
+        (No client certificate requested)
+        by mail.kernel.org (Postfix) with ESMTPSA id 53E9620717;
+        Fri, 18 Sep 2020 15:20:54 +0000 (UTC)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=kernel.org;
+        s=default; t=1600442454;
+        bh=fHdy2jgIL1gT8eHlMhxL5qzlAZKIso5bkMdmqKFANCs=;
+        h=Date:From:To:Cc:Subject:References:In-Reply-To:From;
+        b=SHVKBgUMSO00ctM08cOUUSoNTfkDuOLL7/22rOM01uTF7AXeQQ8gRbAoi5767i7wB
+         dj6OPjX4HmjlgJuxcJhpzalHzL7M3gdVDj1Z54sOnM06KgI5gf3YJdHfv/0c1v7CF5
+         IP8DVBlE5snSVSIZ/SyJQhcgnUlqRdnsAsqoWWgU=
+Date:   Fri, 18 Sep 2020 16:20:04 +0100
+From:   Mark Brown <broonie@kernel.org>
+To:     "Viorel Suman (OSS)" <viorel.suman@oss.nxp.com>
+Cc:     Liam Girdwood <lgirdwood@gmail.com>,
+        Rob Herring <robh+dt@kernel.org>,
+        Jaroslav Kysela <perex@perex.cz>,
+        Takashi Iwai <tiwai@suse.com>, Timur Tabi <timur@kernel.org>,
+        Nicolin Chen <nicoleotsuka@gmail.com>,
+        Xiubo Li <Xiubo.Lee@gmail.com>,
+        Fabio Estevam <festevam@gmail.com>,
+        Shengjiu Wang <shengjiu.wang@gmail.com>,
+        Philipp Zabel <p.zabel@pengutronix.de>,
+        Matthias Schiffer <matthias.schiffer@ew.tq-group.com>,
+        Cosmin-Gabriel Samoila <cosmin.samoila@nxp.com>,
+        "alsa-devel@alsa-project.org" <alsa-devel@alsa-project.org>,
+        "devicetree@vger.kernel.org" <devicetree@vger.kernel.org>,
+        "linux-kernel@vger.kernel.org" <linux-kernel@vger.kernel.org>,
+        "linuxppc-dev@lists.ozlabs.org" <linuxppc-dev@lists.ozlabs.org>,
+        dl-linux-imx <linux-imx@nxp.com>,
+        Viorel Suman <viorel.suman@gmail.com>
+Subject: Re: [PATCH 1/2] ASoC: fsl_xcvr: Add XCVR ASoC CPU DAI driver
+Message-ID: <20200918152004.GJ5703@sirena.org.uk>
+References: <1600247876-8013-1-git-send-email-viorel.suman@oss.nxp.com>
+ <1600247876-8013-2-git-send-email-viorel.suman@oss.nxp.com>
+ <20200917135306.GF4755@sirena.org.uk>
+ <VI1PR0401MB22726CC099099547A0502C27923F0@VI1PR0401MB2272.eurprd04.prod.outlook.com>
+MIME-Version: 1.0
+Content-Type: multipart/signed; micalg=pgp-sha512;
+        protocol="application/pgp-signature"; boundary="F4+N/OgRSdC8YnqX"
+Content-Disposition: inline
+In-Reply-To: <VI1PR0401MB22726CC099099547A0502C27923F0@VI1PR0401MB2272.eurprd04.prod.outlook.com>
+X-Cookie: Beware of geeks bearing graft.
+User-Agent: Mutt/1.10.1 (2018-07-13)
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-Hello Rob,
 
-thanks for your feedback. I have some questions/remarks on this new yaml=20
-binding stuff before sending v5 (which will also replace patch 1/3 with a=20
-different approach btw).
+--F4+N/OgRSdC8YnqX
+Content-Type: text/plain; charset=us-ascii
+Content-Disposition: inline
+Content-Transfer-Encoding: quoted-printable
 
-Am Dienstag, 15. September 2020, 22:37:35 CEST schrieb Rob Herring:
-> On Fri, Sep 11, 2020 at 05:40:04PM +0200, Alexander Dahl wrote:
-> > The example was adapted slightly to make use of the 'function' and
-> > 'color' properties.  License discussed with the original author.
-> >=20
-> > Suggested-by: Jacek Anaszewski <jacek.anaszewski@gmail.com>
-> > Signed-off-by: Alexander Dahl <post@lespocky.de>
-> > Acked-by: Jacek Anaszewski <jacek.anaszewski@gmail.com>
-> > Cc: Peter Ujfalusi <peter.ujfalusi@ti.com>
-> > ---
-> >=20
-> > Notes:
-> >     v3 -> v4:
-> >       * added Cc to original author of the binding
-> >    =20
-> >     v2 -> v3:
-> >       * changed license identifier to recommended one
-> >       * added Acked-by
-> >    =20
-> >     v2:
-> >       * added this patch to series (Suggested-by: Jacek Anaszewski)
-> > =20
-> >  .../devicetree/bindings/leds/leds-pwm.txt     | 50 -----------
-> >  .../devicetree/bindings/leds/leds-pwm.yaml    | 85 +++++++++++++++++++
-> >  2 files changed, 85 insertions(+), 50 deletions(-)
-> >  delete mode 100644 Documentation/devicetree/bindings/leds/leds-pwm.txt
-> >  create mode 100644 Documentation/devicetree/bindings/leds/leds-pwm.yaml
-> >=20
-> > diff --git a/Documentation/devicetree/bindings/leds/leds-pwm.txt
-> > b/Documentation/devicetree/bindings/leds/leds-pwm.txt deleted file mode
-> > 100644
-> > index 6c6583c35f2f..000000000000
-> > --- a/Documentation/devicetree/bindings/leds/leds-pwm.txt
-> > +++ /dev/null
-> > @@ -1,50 +0,0 @@
-> > -LED connected to PWM
-> > -
-> > -Required properties:
-> > -- compatible : should be "pwm-leds".
-> > -
-> > -Each LED is represented as a sub-node of the pwm-leds device.  Each
-> > -node's name represents the name of the corresponding LED.
-> > -
-> > -LED sub-node properties:
-> > -- pwms : PWM property to point to the PWM device (phandle)/port (id) a=
-nd
-> > to -  specify the period time to be used: <&phandle id period_ns>;
-> > -- pwm-names : (optional) Name to be used by the PWM subsystem for the =
-PWM
-> > device -  For the pwms and pwm-names property please refer to:
-> > -  Documentation/devicetree/bindings/pwm/pwm.txt
-> > -- max-brightness : Maximum brightness possible for the LED
-> > -- active-low : (optional) For PWMs where the LED is wired to supply
-> > -  rather than ground.
-> > -- label :  (optional)
-> > -  see Documentation/devicetree/bindings/leds/common.txt
-> > -- linux,default-trigger :  (optional)
-> > -  see Documentation/devicetree/bindings/leds/common.txt
-> > -
-> > -Example:
-> > -
-> > -twl_pwm: pwm {
-> > -	/* provides two PWMs (id 0, 1 for PWM1 and PWM2) */
-> > -	compatible =3D "ti,twl6030-pwm";
-> > -	#pwm-cells =3D <2>;
-> > -};
-> > -
-> > -twl_pwmled: pwmled {
-> > -	/* provides one PWM (id 0 for Charing indicator LED) */
-> > -	compatible =3D "ti,twl6030-pwmled";
-> > -	#pwm-cells =3D <2>;
-> > -};
-> > -
-> > -pwmleds {
-> > -	compatible =3D "pwm-leds";
-> > -	kpad {
-> > -		label =3D "omap4::keypad";
-> > -		pwms =3D <&twl_pwm 0 7812500>;
-> > -		max-brightness =3D <127>;
-> > -	};
-> > -
-> > -	charging {
-> > -		label =3D "omap4:green:chrg";
-> > -		pwms =3D <&twl_pwmled 0 7812500>;
-> > -		max-brightness =3D <255>;
-> > -	};
-> > -};
-> > diff --git a/Documentation/devicetree/bindings/leds/leds-pwm.yaml
-> > b/Documentation/devicetree/bindings/leds/leds-pwm.yaml new file mode
-> > 100644
-> > index 000000000000..c74867492424
-> > --- /dev/null
-> > +++ b/Documentation/devicetree/bindings/leds/leds-pwm.yaml
-> > @@ -0,0 +1,85 @@
-> > +# SPDX-License-Identifier: (GPL-2.0-only OR BSD-2-Clause)
-> > +%YAML 1.2
-> > +---
-> > +$id: http://devicetree.org/schemas/leds/leds-pwm.yaml#
-> > +$schema: http://devicetree.org/meta-schemas/core.yaml#
-> > +
-> > +title: LEDs connected to PWM
-> > +
-> > +maintainers:
-> > +  - Pavel Machek <pavel@ucw.cz>
-> > +
-> > +description:
-> > +  Each LED is represented as a sub-node of the pwm-leds device.  Each
-> > +  node's name represents the name of the corresponding LED.
-> > +
-> > +properties:
-> > +  compatible:
-> > +    const: pwm-leds
-> > +
-> > +patternProperties:
->=20
-> > +  "^pwm-led-([0-9a-f])$":
-> '^led-([0-9a-f])' would be my preference. A bit more on that below.
+On Fri, Sep 18, 2020 at 03:02:39PM +0000, Viorel Suman (OSS) wrote:
 
-=46ine for me.
+Please fix your mail client to word wrap within paragraphs at something
+substantially less than 80 columns.  Doing this makes your messages much
+easier to read and reply to.
 
-> What about a single child case?
+> > > +	regmap_read(regmap, FSL_XCVR_EXT_ISR, &isr);
+> > > +	regmap_write(regmap, FSL_XCVR_EXT_ISR_CLR, isr);
 
-One child or multiple childs.  I found .dts files with one to four sub-node=
-s=20
-of the pwm-leds device in current master.
+> > This will unconditionally clear any interrupts, even those we don't und=
+erstand - it
+> > might be better to only clear bits that are supported so the IRQ core c=
+an
+> > complain if there's something unexpected showing up.
 
-> > +    type: object
-> > +
-> > +    $ref: common.yaml#
-> > +
-> > +    properties:
-> > +      pwms:
-> > +        description:
-> > +          "PWM property to point to the PWM device (phandle)/port (id)
-> > +          and to specify the period time to be used:
-> > +          <&phandle id period_ns>;"
->=20
-> No need to redefine a common property.
+> The ARM core registers itself in "fsl_xcvr_prepare" (the code below) just=
+ for a subset of all supported interrupts:=20
+> =3D=3D=3D=3D=3D
+> 	ret =3D regmap_update_bits(xcvr->regmap, FSL_XCVR_EXT_IER0,
+> 				 FSL_XCVR_IRQ_EARC_ALL, FSL_XCVR_IRQ_EARC_ALL);
+> =3D=3D=3D=3D=3D
+> FSL_XCVR_IRQ_EARC_ALL - this mask represents all the interrupts we are in=
+terested in and we handle in interrupt handler,
+> But this is just a subset of all interrupts the M0+ core is able to asser=
+t. Not very intuitive, I think I need to reword it somehow.
 
-Should this look like in 'Documentation/devicetree/bindings/leds/backlight/
-pwm-backlight.yaml' then?
+That's not the issue, the issue is that if we get into the ISR we just
+ack all the bits that are flagged by the hardware regardless of if we
+actually handled them.  This won't work if there are ever systems that
+share the interrupt and it works against safety/debugging features that
+the interrupt has in case something goes wrong and we get spurious
+interrupts.
 
-> What is needed is how many pwms? I'd assume 1 only: 'maxItems: 1'
+> > > +	if (isr & FSL_XCVR_IRQ_FIFO_UOFL_ERR)
+> > > +		dev_dbg(dev, "RX/TX FIFO full/empty\n");
 
-Yes, one pwm channel per LED.
+> > Should this be dev_err()?
 
-> > +
-> > +      pwm-names:
-> > +        description:
-> > +          "Name to be used by the PWM subsystem for the PWM device For
-> > +          the pwms and pwm-names property please refer to:
-> > +          Documentation/devicetree/bindings/pwm/pwm.txt"
->=20
-> Same here.
->=20
-> > +
-> > +      max-brightness:
-> > +        description:
-> > +          Maximum brightness possible for the LED
->=20
-> Needs a type $ref.
+> The interrupt may be asserted right before DMA starts to fill the TX FIFO=
+ if I recall correctly.
+> I've added it just to debug the IP behavior, will check and change it to =
+err it in next version if it is the case.
 
-fwnode_property_read_u32() is used to read this.
+If it does come up normally then a comment or something to explain why
+this happens normally would probably be good.
 
->=20
-> > +
-> > +      active-low:
-> > +        description:
-> > +          For PWMs where the LED is wired to supply rather than ground.
->=20
-> type: boolean
->=20
-> > +
-> > +    required:
-> > +      - pwms
-> > +      - max-brightness
->=20
-> additionalProperties: false
->=20
-> That will cause errors if child node names were not consistent (no one
-> checked, so they won't be). We could just allow anything, but I prefer
-> to move things to be consistent yet try to capture any existing pattern.
+--F4+N/OgRSdC8YnqX
+Content-Type: application/pgp-signature; name="signature.asc"
 
-Child node names follow no scheme at all currently as far as I could see,=20
-examples from real current .dts files:
+-----BEGIN PGP SIGNATURE-----
 
-  panel, led-red, blueled, kpad, front, green, pwm_blue, ds1, network_red,=
-=20
-alarm-brightness, pmu_stat, overo, heartbeat, power, =E2=80=A6
+iQEzBAABCgAdFiEEreZoqmdXGLWf4p/qJNaLcl1Uh9AFAl9k0CMACgkQJNaLcl1U
+h9DcBgf+Mec3OgimxY8yiVXyrZUIW0gGGPBXQrAkJUznWhSE7X28lGpkKn3aYFA0
+Ywc1L43catYkwLHqYo0yTeOHxOsSmsT91+59bNq+DQdrGlaS2VSn929TPSTuBS0P
+MrxaWOCZrXVZGhnAM4EbDDiXxwpB6Z0NQ62KFDRPpzov/K3lNHNpKu2vocEO3Wp9
+1yND+bQGnXrdBbdnMMSPwAVdstUjh1NjuFTEJFWM/WnYxqTbhlKpe5RJnVhebpip
+t+rRT2GJcQzQzL/fU/19eqPQvEBoc5EewDRtbfd6Cnkw4Ej0XLtbwxXEJWVkBj+5
+jlIwADk7NAla1AraL4grDGLJvM/Y+Q==
+=riPP
+-----END PGP SIGNATURE-----
 
-Greets
-Alex
-
->=20
-> > +
-> > +examples:
-> > +  - |
-> > +
-> > +    #include <dt-bindings/leds/common.h>
-> > +
-> > +    twl_pwm: pwm {
-> > +        /* provides two PWMs (id 0, 1 for PWM1 and PWM2) */
-> > +        compatible =3D "ti,twl6030-pwm";
-> > +        #pwm-cells =3D <2>;
-> > +    };
-> > +
-> > +    twl_pwmled: pwmled {
-> > +        /* provides one PWM (id 0 for Charing indicator LED) */
-> > +        compatible =3D "ti,twl6030-pwmled";
-> > +        #pwm-cells =3D <2>;
-> > +    };
-> > +
-> > +    pwm_leds {
-> > +        compatible =3D "pwm-leds";
-> > +
-> > +        pwm-led-1 {
-> > +            label =3D "omap4::keypad";
-> > +            pwms =3D <&twl_pwm 0 7812500>;
-> > +            max-brightness =3D <127>;
-> > +        };
-> > +
-> > +        pwm-led-2 {
-> > +            color =3D <LED_COLOR_ID_GREEN>;
-> > +            function =3D LED_FUNCTION_CHARGING;
-> > +            pwms =3D <&twl_pwmled 0 7812500>;
-> > +            max-brightness =3D <255>;
-> > +        };
-> > +    };
-> > +
-> > +...
-
-
-
-
+--F4+N/OgRSdC8YnqX--
