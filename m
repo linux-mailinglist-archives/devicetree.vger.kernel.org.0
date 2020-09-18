@@ -2,112 +2,84 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from vger.kernel.org (vger.kernel.org [23.128.96.18])
-	by mail.lfdr.de (Postfix) with ESMTP id E8E09270366
-	for <lists+devicetree@lfdr.de>; Fri, 18 Sep 2020 19:31:06 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTP id 355AE270368
+	for <lists+devicetree@lfdr.de>; Fri, 18 Sep 2020 19:31:39 +0200 (CEST)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S1726152AbgIRRbF (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Fri, 18 Sep 2020 13:31:05 -0400
-Received: from mail-il1-f194.google.com ([209.85.166.194]:37282 "EHLO
-        mail-il1-f194.google.com" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S1726126AbgIRRbF (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Fri, 18 Sep 2020 13:31:05 -0400
-Received: by mail-il1-f194.google.com with SMTP id q4so6979647ils.4;
-        Fri, 18 Sep 2020 10:31:04 -0700 (PDT)
+        id S1726159AbgIRRbi (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Fri, 18 Sep 2020 13:31:38 -0400
+Received: from mail-il1-f193.google.com ([209.85.166.193]:33808 "EHLO
+        mail-il1-f193.google.com" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
+        with ESMTP id S1726126AbgIRRbh (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Fri, 18 Sep 2020 13:31:37 -0400
+Received: by mail-il1-f193.google.com with SMTP id q5so454245ilj.1
+        for <devicetree@vger.kernel.org>; Fri, 18 Sep 2020 10:31:37 -0700 (PDT)
 X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
         d=1e100.net; s=20161025;
         h=x-gm-message-state:date:from:to:cc:subject:message-id:references
          :mime-version:content-disposition:in-reply-to;
-        bh=/dnvjIk6kRdN9RcFTnO38ZI6MysMJcAHfnKv4EKjfks=;
-        b=H05V3hrHu/63Xm1EgF7c/YpZHxI1w9H8hK7y+KtxftxmjJpSi5ebwdyOJ5wEbLUUq7
-         CLlQ3pX7Di5WE+VvNBMaXTre4wkYUN5w8h3/WeFbfTQ9eK6rFoSmR9cbL4COyjTf3HCj
-         6OZlllHYwl/FTKYxBik0CNLWuRQozqtiEdS5R23Whf1qIYr0sbPMgOJgLAcL3Z8NTuml
-         KGdNLBgJ/8mAMzsTMPSCMWWMBP6+bJGp9DPYgzGy1fPXh1mOVVSAcJn1enOUGldfiQeE
-         yUgLwTo66eMejPz9P5ie8CMhYXw52+Rldbn0seFyobLwxsRf7A3h5upQktbipFLPoyUF
-         D2rA==
-X-Gm-Message-State: AOAM532bnYg8uy7zp4S0cY42YBlk39zenM6h+DcBFQ9QVu4o0hFDPy8F
-        ynAmA9/GvDzbRn4UZPyAoA==
-X-Google-Smtp-Source: ABdhPJxkH6B9G6X/6iPqMXB9irFe8HwwInqRi2YG3MjO/aEkkg5cZ4OtYHLY9D9pcWcU5yptwEZF+A==
-X-Received: by 2002:a92:c146:: with SMTP id b6mr21903884ilh.244.1600450264414;
-        Fri, 18 Sep 2020 10:31:04 -0700 (PDT)
+        bh=sqtkzS/HNUH1P/WMAuboQz04kwehzQ/TgGVlePpY+UQ=;
+        b=L6y/vMS1A0nrpjwb8wg5+85sTZwKQvU1hjTx+7U6U0AL+Xop6B2Npw8w8rULLWOJS5
+         Kjk4TGfvYfyWX4S8KKakuFH73+Zn1EBviRD+r7GvsGNKXLNvEstNIxpKHssmBb8TN3m/
+         6O1TdtfM+UBK+neYpP0BNaff/jGdggXGN67po+9SIn2c7KGmEeZruXCASK+JeB2a5q2M
+         pq1m/ft2ioLStuSUtahYb8Otm/PI9ZalEMNGxjRGf4n5cIms44hNcKtin4e2cdgtRSMW
+         vyxU6RJoMbC+tDElP96gxMBJ3vuclFc9MBWbh95XgN2o/ozq18jP3gfsXOncak7SRYCP
+         3qng==
+X-Gm-Message-State: AOAM531qM7uSa6fZYliXCGMH9ihZnorNunqsS/O8GBUUvX5JNe7R6K5j
+        MEUCcUaq0xw8qeIEdulajQ==
+X-Google-Smtp-Source: ABdhPJzEfvIj0idmxBiMVQvguucWCLD+aQHmXlcb22dcrEXjFQW5dHO183UIsyXQLckL/p+iysZ1MA==
+X-Received: by 2002:a92:999c:: with SMTP id t28mr30067006ilk.230.1600450296973;
+        Fri, 18 Sep 2020 10:31:36 -0700 (PDT)
 Received: from xps15 ([64.188.179.253])
-        by smtp.gmail.com with ESMTPSA id s1sm1941570iln.22.2020.09.18.10.31.02
+        by smtp.gmail.com with ESMTPSA id a23sm1710525ioc.54.2020.09.18.10.31.35
         (version=TLS1_3 cipher=TLS_AES_256_GCM_SHA384 bits=256/256);
-        Fri, 18 Sep 2020 10:31:03 -0700 (PDT)
-Received: (nullmailer pid 3830090 invoked by uid 1000);
-        Fri, 18 Sep 2020 17:31:01 -0000
-Date:   Fri, 18 Sep 2020 11:31:01 -0600
+        Fri, 18 Sep 2020 10:31:36 -0700 (PDT)
+Received: (nullmailer pid 3830952 invoked by uid 1000);
+        Fri, 18 Sep 2020 17:31:34 -0000
+Date:   Fri, 18 Sep 2020 11:31:34 -0600
 From:   Rob Herring <robh@kernel.org>
-To:     Enric Balletbo i Serra <enric.balletbo@collabora.com>
-Cc:     Caesar Wang <wxt@rock-chips.com>, dianders@chromium.org,
-        linux-kernel@vger.kernel.org, devicetree@vger.kernel.org,
-        linux-rockchip@lists.infradead.org,
-        linux-arm-kernel@lists.infradead.org, heiko@sntech.de,
-        Collabora Kernel ML <kernel@collabora.com>,
-        Rob Herring <robh+dt@kernel.org>
-Subject: Re: [PATCH v2] dt-bindings: power: rockchip: Convert to json-schema
-Message-ID: <20200918173101.GA3829772@bogus>
-References: <20200918093229.252766-1-enric.balletbo@collabora.com>
+To:     Robin Murphy <robin.murphy@arm.com>
+Cc:     mark.rutland@arm.com, devicetree@vger.kernel.org,
+        james.yang@arm.com, linux-arm-kernel@lists.infradead.org,
+        tuanphan@os.amperecomputing.com, tsahee@amazon.com,
+        will@kernel.org, alisaidi@amazon.com, harb@amperecomputing.com,
+        patrik.berglund@arm.com
+Subject: Re: [PATCH v2 1/3] perf: Add Arm CMN-600 DT binding
+Message-ID: <20200918173134.GA3830613@bogus>
+References: <cover.1600357241.git.robin.murphy@arm.com>
+ <394449fba250349c2251832da31ac709c5a21fdc.1600357241.git.robin.murphy@arm.com>
 MIME-Version: 1.0
 Content-Type: text/plain; charset=us-ascii
 Content-Disposition: inline
-In-Reply-To: <20200918093229.252766-1-enric.balletbo@collabora.com>
+In-Reply-To: <394449fba250349c2251832da31ac709c5a21fdc.1600357241.git.robin.murphy@arm.com>
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-On Fri, 18 Sep 2020 11:32:29 +0200, Enric Balletbo i Serra wrote:
-> Convert the soc/rockchip/power_domain.txt binding document to json-schema
-> and move to the power bindings directory.
+On Fri, 18 Sep 2020 14:28:37 +0100, Robin Murphy wrote:
+> Document the requirements for the CMN-600 DT binding. The internal
+> topology is almost entirely discoverable by walking a tree of ID
+> registers, but sadly both the starting point for that walk and the
+> exact format of those registers are configuration-dependent and not
+> discoverable from some sane fixed location. Oh well.
 > 
-> Signed-off-by: Enric Balletbo i Serra <enric.balletbo@collabora.com>
+> Signed-off-by: Robin Murphy <robin.murphy@arm.com>
 > ---
 > 
-> Changes in v2:
-> - Fixed a warning that says that 'syscon' should not be used alone.
-> - Use patternProperties to define a new level for power-domains.
-> - Add const values for power-domain-cells, address-cells, etc.
+> v2: fix filename, license and whitespace per Rob's comments
 > 
->  .../power/rockchip,power-controller.yaml      | 207 ++++++++++++++++++
->  .../bindings/soc/rockchip/power_domain.txt    | 136 ------------
->  2 files changed, 207 insertions(+), 136 deletions(-)
->  create mode 100644 Documentation/devicetree/bindings/power/rockchip,power-controller.yaml
->  delete mode 100644 Documentation/devicetree/bindings/soc/rockchip/power_domain.txt
+>  .../devicetree/bindings/perf/arm,cmn.yaml     | 57 +++++++++++++++++++
+>  1 file changed, 57 insertions(+)
+>  create mode 100644 Documentation/devicetree/bindings/perf/arm,cmn.yaml
 > 
 
 
 My bot found errors running 'make dt_binding_check' on your patch:
 
-Traceback (most recent call last):
-  File "/usr/local/bin/dt-extract-example", line 45, in <module>
-    binding = yaml.load(open(args.yamlfile, encoding='utf-8').read())
-  File "/usr/local/lib/python3.8/dist-packages/ruamel/yaml/main.py", line 343, in load
-    return constructor.get_single_data()
-  File "/usr/local/lib/python3.8/dist-packages/ruamel/yaml/constructor.py", line 111, in get_single_data
-    node = self.composer.get_single_node()
-  File "_ruamel_yaml.pyx", line 706, in _ruamel_yaml.CParser.get_single_node
-  File "_ruamel_yaml.pyx", line 724, in _ruamel_yaml.CParser._compose_document
-  File "_ruamel_yaml.pyx", line 775, in _ruamel_yaml.CParser._compose_node
-  File "_ruamel_yaml.pyx", line 889, in _ruamel_yaml.CParser._compose_mapping_node
-  File "_ruamel_yaml.pyx", line 773, in _ruamel_yaml.CParser._compose_node
-  File "_ruamel_yaml.pyx", line 848, in _ruamel_yaml.CParser._compose_sequence_node
-  File "_ruamel_yaml.pyx", line 904, in _ruamel_yaml.CParser._parse_next_event
-ruamel.yaml.scanner.ScannerError: while scanning a block scalar
-  in "<unicode string>", line 106, column 5
-found a tab character where an indentation space is expected
-  in "<unicode string>", line 114, column 1
-make[1]: *** [Documentation/devicetree/bindings/Makefile:18: Documentation/devicetree/bindings/power/rockchip,power-controller.example.dts] Error 1
-make[1]: *** Deleting file 'Documentation/devicetree/bindings/power/rockchip,power-controller.example.dts'
-make[1]: *** Waiting for unfinished jobs....
-./Documentation/devicetree/bindings/power/rockchip,power-controller.yaml:  while scanning a block scalar
-  in "<unicode string>", line 106, column 5
-found a tab character where an indentation space is expected
-  in "<unicode string>", line 114, column 1
-/builds/robherring/linux-dt-review/Documentation/devicetree/bindings/power/rockchip,power-controller.yaml: ignoring, error parsing file
-warning: no schema found in file: ./Documentation/devicetree/bindings/power/rockchip,power-controller.yaml
-make: *** [Makefile:1366: dt_binding_check] Error 2
+./Documentation/devicetree/bindings/perf/arm,cmn.yaml: $id: relative path/filename doesn't match actual path or filename
+	expected: http://devicetree.org/schemas/perf/arm,cmn.yaml#
 
 
-See https://patchwork.ozlabs.org/patch/1366725
+See https://patchwork.ozlabs.org/patch/1366940
 
 If you already ran 'make dt_binding_check' and didn't see the above
 error(s), then make sure dt-schema is up to date:
