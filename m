@@ -2,243 +2,145 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from vger.kernel.org (vger.kernel.org [23.128.96.18])
-	by mail.lfdr.de (Postfix) with ESMTP id BE87326F5AB
-	for <lists+devicetree@lfdr.de>; Fri, 18 Sep 2020 08:05:48 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTP id 9610926F5AF
+	for <lists+devicetree@lfdr.de>; Fri, 18 Sep 2020 08:06:30 +0200 (CEST)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S1726411AbgIRGFr (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Fri, 18 Sep 2020 02:05:47 -0400
-Received: from m43-7.mailgun.net ([69.72.43.7]:61093 "EHLO m43-7.mailgun.net"
-        rhost-flags-OK-OK-OK-OK) by vger.kernel.org with ESMTP
-        id S1726112AbgIRGFr (ORCPT <rfc822;devicetree@vger.kernel.org>);
-        Fri, 18 Sep 2020 02:05:47 -0400
-DKIM-Signature: a=rsa-sha256; v=1; c=relaxed/relaxed; d=mg.codeaurora.org; q=dns/txt;
- s=smtp; t=1600409146; h=References: In-Reply-To: Message-Id: Date:
- Subject: Cc: To: From: Sender;
- bh=7Sm5zlmuS6dtNCaEUMlHA+OIjhjC9XiXWyfX26b/NUQ=; b=mdR/ol513droh6yPgJMBlI4QFc0ryQ+wZoJdVGgtO9Ckx7iEjVaSXlUvcUniKhyKskbgW1Uk
- f+lBozNcKLiLAPerhLFyrs3AvF3EFimgXh/5Ivu7FrkGb7A3z/f85EmUCy/luqbzmltAXkHf
- Ny1AIiK7MVcRsXlfPEArPWHmOG8=
-X-Mailgun-Sending-Ip: 69.72.43.7
-X-Mailgun-Sid: WyI1YmJiNiIsICJkZXZpY2V0cmVlQHZnZXIua2VybmVsLm9yZyIsICJiZTllNGEiXQ==
-Received: from smtp.codeaurora.org
- (ec2-35-166-182-171.us-west-2.compute.amazonaws.com [35.166.182.171]) by
- smtp-out-n05.prod.us-east-1.postgun.com with SMTP id
- 5f644e2b6fe64d5a7f7038e3 (version=TLS1.2,
- cipher=TLS_ECDHE_RSA_WITH_AES_128_GCM_SHA256); Fri, 18 Sep 2020 06:05:31
- GMT
-Received: by smtp.codeaurora.org (Postfix, from userid 1001)
-        id 7BF5BC43385; Fri, 18 Sep 2020 06:05:30 +0000 (UTC)
-X-Spam-Checker-Version: SpamAssassin 3.4.0 (2014-02-07) on
-        aws-us-west-2-caf-mail-1.web.codeaurora.org
-X-Spam-Level: 
-X-Spam-Status: No, score=-2.9 required=2.0 tests=ALL_TRUSTED,BAYES_00,SPF_FAIL,
-        URIBL_BLOCKED autolearn=no autolearn_force=no version=3.4.0
-Received: from hyd-lnxbld210.qualcomm.com (unknown [202.46.22.19])
-        (using TLSv1.2 with cipher ECDHE-RSA-AES128-SHA256 (128/128 bits))
-        (No client certificate requested)
-        (Authenticated sender: srivasam)
-        by smtp.codeaurora.org (Postfix) with ESMTPSA id 7938BC433CA;
-        Fri, 18 Sep 2020 06:05:24 +0000 (UTC)
-DMARC-Filter: OpenDMARC Filter v1.3.2 smtp.codeaurora.org 7938BC433CA
-Authentication-Results: aws-us-west-2-caf-mail-1.web.codeaurora.org; dmarc=none (p=none dis=none) header.from=codeaurora.org
-Authentication-Results: aws-us-west-2-caf-mail-1.web.codeaurora.org; spf=fail smtp.mailfrom=srivasam@codeaurora.org
-From:   Srinivasa Rao Mandadapu <srivasam@codeaurora.org>
-To:     agross@kernel.org, bjorn.andersson@linaro.org, lgirdwood@gmail.com,
-        broonie@kernel.org, robh+dt@kernel.org, plai@codeaurora.org,
-        bgoswami@codeaurora.org, perex@perex.cz, tiwai@suse.com,
-        srinivas.kandagatla@linaro.org, rohitkr@codeaurora.org,
-        linux-arm-msm@vger.kernel.org, alsa-devel@alsa-project.org,
-        devicetree@vger.kernel.org, linux-kernel@vger.kernel.org
-Cc:     V Sujith Kumar Reddy <vsujithk@codeaurora.org>,
-        Srinivasa Rao <srivasam@codeaurora.org>
-Subject: [PATCH v6 5/5] ASoC: qcom: sc7180: Add support for audio over DP
-Date:   Fri, 18 Sep 2020 11:34:44 +0530
-Message-Id: <1600409084-29093-6-git-send-email-srivasam@codeaurora.org>
-X-Mailer: git-send-email 2.7.4
-In-Reply-To: <1600409084-29093-1-git-send-email-srivasam@codeaurora.org>
-References: <1600409084-29093-1-git-send-email-srivasam@codeaurora.org>
+        id S1726293AbgIRGG3 (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Fri, 18 Sep 2020 02:06:29 -0400
+Received: from mail-am6eur05on2056.outbound.protection.outlook.com ([40.107.22.56]:25006
+        "EHLO EUR05-AM6-obe.outbound.protection.outlook.com"
+        rhost-flags-OK-OK-OK-FAIL) by vger.kernel.org with ESMTP
+        id S1726119AbgIRGG3 (ORCPT <rfc822;devicetree@vger.kernel.org>);
+        Fri, 18 Sep 2020 02:06:29 -0400
+ARC-Seal: i=1; a=rsa-sha256; s=arcselector9901; d=microsoft.com; cv=none;
+ b=gA2u6p0TN7CsBv5EhRANHsb8zvUiXtFHk03UAzEGVBA2ugCeHJfA3qYWgwtcC52HPuFZHS5/nEN0n7sQRR51N58cJ/3JnnlzDlVWnK0GzsWRlr4dDAjqIMcIFUZusdykPT1MUCNsf2mEHTx3bq5zR+vnzmeNLE3IghGU/vXdYGnnMM7uSdDdBKVj/4q7yl0hCUhkI73Qpfg/uO0/2d1KY1JXMu2wx1XMc4rofcHQtKi4u6p0Gdn3iLnLvDovovQ33M2yruK5Nw3xNDP7KBTndQvzpJ/UOzpLOQLfZ/PGwftMsETVGp0sBNHt+2OZncWk0nAVajeY6tiA+iUJluv/fg==
+ARC-Message-Signature: i=1; a=rsa-sha256; c=relaxed/relaxed; d=microsoft.com;
+ s=arcselector9901;
+ h=From:Date:Subject:Message-ID:Content-Type:MIME-Version:X-MS-Exchange-SenderADCheck;
+ bh=kiPRmFUmVwQyrERNAti+cATV/BLcrJCG2WCaGRnl8Rw=;
+ b=cxOuSoM3TvBFErZeJsVYGAZiBw4b6CpLaPGlCK0yCXUajfHTXEl+FKk5L8JmfqgHKUyFu8+e/bpBpVAgyE2CpAplSTsdGYADl4M+w+YKYyVaiAA1SplGMNPplBJ0cD+bqHOhS9DIhSH7wyz8MSJmy5RYSguBWbX//pE/Kxw4hJTjWO/Q5LCsUjg3jCz31y9COYJiG5/xI6pqJMtcMYZofHDQejYh0sekCe8Sn9qKFLQM91OjkZBKWWn16Ufe8ZSaVZguLWBLRNuEfqINzdy8QfypsSYOZEZYtUUXOlDVn1Mv7d77czhlxmTCT+w0+ZB5e0/PsG70GWByx3CufcHmIQ==
+ARC-Authentication-Results: i=1; mx.microsoft.com 1; spf=pass
+ smtp.mailfrom=fi.rohmeurope.com; dmarc=pass action=none
+ header.from=fi.rohmeurope.com; dkim=pass header.d=fi.rohmeurope.com; arc=none
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+ d=rohmsemiconductoreurope.onmicrosoft.com;
+ s=selector1-rohmsemiconductoreurope-onmicrosoft-com;
+ h=From:Date:Subject:Message-ID:Content-Type:MIME-Version:X-MS-Exchange-SenderADCheck;
+ bh=kiPRmFUmVwQyrERNAti+cATV/BLcrJCG2WCaGRnl8Rw=;
+ b=HjDP1OkUKAy0OBtNdpc7Dc90dkDSt/asCYluc2DwzdVMyLHRmeO+J0aVkXADydTSlS2cfefQeJKBxZX9fQ/NzkvWeHVMGeawCe8TDffKAFZ7W2h/m52Of5fVp0GUsmoF8W1YxBH0M6Fva7rfv36WYV8bMJFE2c1xM4nBSOJZaZs=
+Received: from DB6PR03MB3160.eurprd03.prod.outlook.com (2603:10a6:6:37::21) by
+ DB6PR0301MB2456.eurprd03.prod.outlook.com (2603:10a6:4:62::8) with Microsoft
+ SMTP Server (version=TLS1_2, cipher=TLS_ECDHE_RSA_WITH_AES_256_GCM_SHA384) id
+ 15.20.3391.14; Fri, 18 Sep 2020 06:06:24 +0000
+Received: from DB6PR03MB3160.eurprd03.prod.outlook.com
+ ([fe80::3c50:c4c8:c54e:19e3]) by DB6PR03MB3160.eurprd03.prod.outlook.com
+ ([fe80::3c50:c4c8:c54e:19e3%2]) with mapi id 15.20.3391.014; Fri, 18 Sep 2020
+ 06:06:24 +0000
+From:   "Vaittinen, Matti" <Matti.Vaittinen@fi.rohmeurope.com>
+To:     "linux@roeck-us.net" <linux@roeck-us.net>,
+        "mazziesaccount@gmail.com" <mazziesaccount@gmail.com>
+CC:     "wim@linux-watchdog.org" <wim@linux-watchdog.org>,
+        "broonie@kernel.org" <broonie@kernel.org>,
+        "devicetree@vger.kernel.org" <devicetree@vger.kernel.org>,
+        linux-power <linux-power@fi.rohmeurope.com>,
+        "linux-kernel@vger.kernel.org" <linux-kernel@vger.kernel.org>,
+        "lee.jones@linaro.org" <lee.jones@linaro.org>,
+        "linux-watchdog@vger.kernel.org" <linux-watchdog@vger.kernel.org>,
+        "lgirdwood@gmail.com" <lgirdwood@gmail.com>,
+        "robh+dt@kernel.org" <robh+dt@kernel.org>
+Subject: Re: [PATCH v1 4/6] wdt: Support wdt on ROHM BD9576MUF and BD9573MUF
+Thread-Topic: [PATCH v1 4/6] wdt: Support wdt on ROHM BD9576MUF and BD9573MUF
+Thread-Index: AQHWjMkDDUSch7IdMEekC07U3XaBAqlt5CkAgAAF8IA=
+Date:   Fri, 18 Sep 2020 06:06:24 +0000
+Message-ID: <3b9d7ba7f59b5c6787c40f86e0258f55fe73e10c.camel@fi.rohmeurope.com>
+References: <cover.1600329307.git.matti.vaittinen@fi.rohmeurope.com>
+         <1993b8516fefd3d8ea16e926c4db379b89ae4096.1600329307.git.matti.vaittinen@fi.rohmeurope.com>
+         <2683bcbd-7ff2-f451-2e6c-79a2ff9e69ea@roeck-us.net>
+In-Reply-To: <2683bcbd-7ff2-f451-2e6c-79a2ff9e69ea@roeck-us.net>
+Reply-To: "Vaittinen, Matti" <Matti.Vaittinen@fi.rohmeurope.com>
+Accept-Language: fi-FI, en-US
+Content-Language: en-US
+X-MS-Has-Attach: 
+X-MS-TNEF-Correlator: 
+authentication-results: roeck-us.net; dkim=none (message not signed)
+ header.d=none;roeck-us.net; dmarc=none action=none
+ header.from=fi.rohmeurope.com;
+x-originating-ip: [213.255.186.46]
+x-ms-publictraffictype: Email
+x-ms-office365-filtering-correlation-id: b21dc254-b5db-43d1-0570-08d85b98f943
+x-ms-traffictypediagnostic: DB6PR0301MB2456:
+x-ms-exchange-transport-forked: True
+x-microsoft-antispam-prvs: <DB6PR0301MB2456CAF71AE358EDC4E21E8FAD3F0@DB6PR0301MB2456.eurprd03.prod.outlook.com>
+x-ms-oob-tlc-oobclassifiers: OLM:9508;
+x-ms-exchange-senderadcheck: 1
+x-microsoft-antispam: BCL:0;
+x-microsoft-antispam-message-info: tQZ7/dY3jX71dmL6YFND7/9yW2xZoen7L9vnvQkzN6hfACMfuz2y+ovakBlYVM1OOj1YKhAm26htvrV5fR4b6rag4nvO5KdESxBYNuXBC+jg0QixbeLkJhA06/jaRK/a230vkIQeacN4/J8RlvGNmwUdE9eIe3tPZXWcdlU30GSWZwo1e6ovnRK18gb/AWR4DAtzzZnvfQwcCuOeVbYgUskRwGBMoOvLaEhrK6QRNXgDxkr2/Q909c1SH37RVgaZjB2k740cfDYZh/KSOmLoNnNDbvrLcphc4r37p7VcZnsbVbIhVUfkxEjaM13B4MY4WyeVwl26VkYy0az+/NcBaMbZy1ovLSXx/4C1anY+MFaKpsWLEIAZDMokq4kxHGBfTtL2bDRT4+R1xIyrcWE3Xg==
+x-forefront-antispam-report: CIP:255.255.255.255;CTRY:;LANG:en;SCL:1;SRV:;IPV:NLI;SFV:NSPM;H:DB6PR03MB3160.eurprd03.prod.outlook.com;PTR:;CAT:NONE;SFS:(4636009)(366004)(136003)(376002)(396003)(346002)(39850400004)(7416002)(76116006)(186003)(83380400001)(3450700001)(966005)(4326008)(6512007)(86362001)(54906003)(316002)(110136005)(26005)(478600001)(8936002)(66446008)(66556008)(66476007)(64756008)(66946007)(91956017)(53546011)(2906002)(6506007)(6486002)(5660300002)(8676002)(71200400001)(2616005);DIR:OUT;SFP:1101;
+x-ms-exchange-antispam-messagedata: BdL8bqiew1OJjJbeCtXpwqWxcM3094rnG3XbZbF3sfiH/zL8A9chAjmdiqN0nHkLpUu1YWpyWPSaW74+Zu4kVvKzir2liZts2+R6DZEXmGRf9cmZ0wJkkbVlOlTAtdIfjE04dpHI3ejXlHW0adIWh0Ux+K2X5fceXwn14XRzHfDq+4xYRBqWxoSnavG82ljBKTSw9RO+Bor7DT8e98KolQH0GJsvFYAOrA8UEto07J+sLhIT2xau0kHMY0gwjHnvNF9+8/2WeSJILHTNxcQIE1IlkglzIF5CNlLU6aQFpxw03YLfop+ZUCpvrKk5cslmbjEyRLh7H06OGtoRpxa6Th3C+i3XqHLTLz95FEY0enMApLr5HrxDMPRws9HVCIIipk3pW2EmPDDomn5twRs6eyZP5QhX1pikUMBijDo0wuV+rMcl7OdIt6Ss6/Ma5MtOURFBfndX4GRPGRe0BFw7icgHXPRt1GvhAielV2LqGFL+Zl8UfPaLREIjAuKmPn5rq+xq+HiTYj/qv+sKl0WMksLwskzazFEeZOOxrFN5eCpdb392RxYVttjv5PcMtpHHN3mdzsOZuW7Xu5ZYWGqXRuUONrw63AL89BJF3NhmW0kwv9r2rpVldtHOFdTmqdAMK0kMiYKf0RDI5QgXGWaOCw==
+Content-Type: text/plain; charset="utf-8"
+Content-ID: <529863431A77484881A31BCB1351090F@eurprd03.prod.outlook.com>
+Content-Transfer-Encoding: base64
+MIME-Version: 1.0
+X-OriginatorOrg: fi.rohmeurope.com
+X-MS-Exchange-CrossTenant-AuthAs: Internal
+X-MS-Exchange-CrossTenant-AuthSource: DB6PR03MB3160.eurprd03.prod.outlook.com
+X-MS-Exchange-CrossTenant-Network-Message-Id: b21dc254-b5db-43d1-0570-08d85b98f943
+X-MS-Exchange-CrossTenant-originalarrivaltime: 18 Sep 2020 06:06:24.6811
+ (UTC)
+X-MS-Exchange-CrossTenant-fromentityheader: Hosted
+X-MS-Exchange-CrossTenant-id: 94f2c475-a538-4112-b5dd-63f17273d67a
+X-MS-Exchange-CrossTenant-mailboxtype: HOSTED
+X-MS-Exchange-CrossTenant-userprincipalname: 7Fw1EFsZOrvIjl+EsCO3/JVCVhF9nM5no6jQyT80bdDJ5u19WRbBRoTLtm1KM5ikoJcdWaZbt1na8QogvLXuVDpIGIrx7XxwJyWQpXCdxyPqSzqMx1yOERVW1aVA5+7r
+X-MS-Exchange-Transport-CrossTenantHeadersStamped: DB6PR0301MB2456
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-From: V Sujith Kumar Reddy <vsujithk@codeaurora.org>
-
-Add support for audio playback over DP in lpass sc7180 platform driver.
-Update lpass_variant structure for hdmi data configuaration.
-
-Signed-off-by: Srinivasa Rao <srivasam@codeaurora.org>
-Signed-off-by: V Sujith Kumar Reddy <vsujithk@codeaurora.org>
----
- sound/soc/qcom/lpass-sc7180.c | 116 +++++++++++++++++++++++++++++++++++++-----
- 1 file changed, 102 insertions(+), 14 deletions(-)
-
-diff --git a/sound/soc/qcom/lpass-sc7180.c b/sound/soc/qcom/lpass-sc7180.c
-index 167bf2c..59f115e 100644
---- a/sound/soc/qcom/lpass-sc7180.c
-+++ b/sound/soc/qcom/lpass-sc7180.c
-@@ -60,38 +60,65 @@ static struct snd_soc_dai_driver sc7180_lpass_cpu_dai_driver[] = {
- 		.probe	= &asoc_qcom_lpass_cpu_dai_probe,
- 		.ops    = &asoc_qcom_lpass_cpu_dai_ops,
- 	},
-+	[LPASS_DP_RX] = {
-+		.id = LPASS_DP_RX,
-+		.name = "Hdmi",
-+		.playback = {
-+			.stream_name = "Hdmi Playback",
-+			.formats	= SNDRV_PCM_FMTBIT_S24,
-+			.rates = SNDRV_PCM_RATE_48000,
-+			.rate_min	= 48000,
-+			.rate_max	= 48000,
-+			.channels_min	= 2,
-+			.channels_max	= 2,
-+		},
-+		.ops    = &asoc_qcom_lpass_hdmi_dai_ops,
-+	},
- };
- 
- static int sc7180_lpass_alloc_dma_channel(struct lpass_data *drvdata,
--					   int direction)
-+					   int direction, unsigned int dai_id)
- {
- 	struct lpass_variant *v = drvdata->variant;
- 	int chan = 0;
- 
--	if (direction == SNDRV_PCM_STREAM_PLAYBACK) {
--		chan = find_first_zero_bit(&drvdata->dma_ch_bit_map,
--					v->rdma_channels);
-+	if (dai_id == LPASS_DP_RX) {
-+		if (direction == SNDRV_PCM_STREAM_PLAYBACK) {
-+			chan = find_first_zero_bit(&drvdata->hdmi_dma_ch_bit_map,
-+						v->hdmi_rdma_channels);
-+
-+			if (chan >= v->hdmi_rdma_channels)
-+				return -EBUSY;
-+		}
-+		set_bit(chan, &drvdata->hdmi_dma_ch_bit_map);
-+	} else {
-+		if (direction == SNDRV_PCM_STREAM_PLAYBACK) {
-+			chan = find_first_zero_bit(&drvdata->dma_ch_bit_map,
-+						v->rdma_channels);
- 
- 		if (chan >= v->rdma_channels)
- 			return -EBUSY;
--	} else {
--		chan = find_next_zero_bit(&drvdata->dma_ch_bit_map,
-+		} else {
-+			chan = find_next_zero_bit(&drvdata->dma_ch_bit_map,
- 					v->wrdma_channel_start +
- 					v->wrdma_channels,
- 					v->wrdma_channel_start);
- 
--		if (chan >=  v->wrdma_channel_start + v->wrdma_channels)
--			return -EBUSY;
--	}
--
--	set_bit(chan, &drvdata->dma_ch_bit_map);
-+			if (chan >=  v->wrdma_channel_start + v->wrdma_channels)
-+				return -EBUSY;
-+		}
- 
-+		set_bit(chan, &drvdata->dma_ch_bit_map);
-+	}
- 	return chan;
- }
- 
--static int sc7180_lpass_free_dma_channel(struct lpass_data *drvdata, int chan)
-+static int sc7180_lpass_free_dma_channel(struct lpass_data *drvdata, int chan, unsigned int dai_id)
- {
--	clear_bit(chan, &drvdata->dma_ch_bit_map);
-+	if (dai_id == LPASS_DP_RX)
-+		clear_bit(chan, &drvdata->hdmi_dma_ch_bit_map);
-+	else
-+		clear_bit(chan, &drvdata->dma_ch_bit_map);
- 
- 	return 0;
- }
-@@ -144,6 +171,9 @@ static struct lpass_variant sc7180_data = {
- 	.rdma_reg_base		= 0xC000,
- 	.rdma_reg_stride	= 0x1000,
- 	.rdma_channels		= 5,
-+	.hdmi_rdma_reg_base		= 0x64000,
-+	.hdmi_rdma_reg_stride	= 0x1000,
-+	.hdmi_rdma_channels		= 4,
- 	.dmactl_audif_start	= 1,
- 	.wrdma_reg_base		= 0x18000,
- 	.wrdma_reg_stride	= 0x1000,
-@@ -163,7 +193,7 @@ static struct lpass_variant sc7180_data = {
- 	.rdma_dyncclk		= REG_FIELD_ID(0xC000, 21, 21, 5, 0x1000),
- 	.rdma_bursten		= REG_FIELD_ID(0xC000, 20, 20, 5, 0x1000),
- 	.rdma_wpscnt		= REG_FIELD_ID(0xC000, 16, 19, 5, 0x1000),
--	.rdma_intf		= REG_FIELD_ID(0xC000, 12, 15, 5, 0x1000),
-+	.rdma_intf			= REG_FIELD_ID(0xC000, 12, 15, 5, 0x1000),
- 	.rdma_fifowm		= REG_FIELD_ID(0xC000, 1, 5, 5, 0x1000),
- 	.rdma_enable		= REG_FIELD_ID(0xC000, 0, 0, 5, 0x1000),
- 
-@@ -174,6 +204,64 @@ static struct lpass_variant sc7180_data = {
- 	.wrdma_fifowm		= REG_FIELD_ID(0x18000, 1, 5, 4, 0x1000),
- 	.wrdma_enable		= REG_FIELD_ID(0x18000, 0, 0, 4, 0x1000),
- 
-+	.hdmi_tx_ctl_addr	= 0x1000,
-+	.hdmi_legacy_addr	= 0x1008,
-+	.hdmi_vbit_addr		= 0x610c0,
-+	.hdmi_ch_lsb_addr	= 0x61048,
-+	.hdmi_ch_msb_addr	= 0x6104c,
-+	.ch_stride		= 0x8,
-+	.hdmi_parity_addr	= 0x61034,
-+	.hdmi_dmactl_addr	= 0x61038,
-+	.hdmi_dma_stride	= 0x4,
-+	.hdmi_DP_addr		= 0x610c8,
-+	.hdmi_sstream_addr	= 0x6101c,
-+	.hdmi_irq_reg_base		= 0x63000,
-+	.hdmi_irq_ports		= 1,
-+
-+	.hdmi_rdma_dyncclk		= REG_FIELD_ID(0x64000, 14, 14, 4, 0x1000),
-+	.hdmi_rdma_bursten		= REG_FIELD_ID(0x64000, 13, 13, 4, 0x1000),
-+	.hdmi_rdma_burst8		= REG_FIELD_ID(0x64000, 15, 15, 4, 0x1000),
-+	.hdmi_rdma_burst16		= REG_FIELD_ID(0x64000, 16, 16, 4, 0x1000),
-+	.hdmi_rdma_dynburst		= REG_FIELD_ID(0x64000, 18, 18, 4, 0x1000),
-+	.hdmi_rdma_wpscnt		= REG_FIELD_ID(0x64000, 10, 12, 4, 0x1000),
-+	.hdmi_rdma_fifowm		= REG_FIELD_ID(0x64000, 1, 5, 4, 0x1000),
-+	.hdmi_rdma_enable		= REG_FIELD_ID(0x64000, 0, 0, 4, 0x1000),
-+
-+	.sstream_en		= REG_FIELD(0x6101c, 0, 0),
-+	.dma_sel			= REG_FIELD(0x6101c, 1, 2),
-+	.auto_bbit_en	= REG_FIELD(0x6101c, 3, 3),
-+	.layout			= REG_FIELD(0x6101c, 4, 4),
-+	.layout_sp		= REG_FIELD(0x6101c, 5, 8),
-+	.set_sp_on_en	= REG_FIELD(0x6101c, 10, 10),
-+	.dp_audio		= REG_FIELD(0x6101c, 11, 11),
-+	.dp_staffing_en	= REG_FIELD(0x6101c, 12, 12),
-+	.dp_sp_b_hw_en	= REG_FIELD(0x6101c, 13, 13),
-+
-+	.mute			= REG_FIELD(0x610c8, 0, 0),
-+	.as_sdp_cc		= REG_FIELD(0x610c8, 1, 3),
-+	.as_sdp_ct		= REG_FIELD(0x610c8, 4, 7),
-+	.aif_db4			= REG_FIELD(0x610c8, 8, 15),
-+	.frequency		= REG_FIELD(0x610c8, 16, 21),
-+	.mst_index		= REG_FIELD(0x610c8, 28, 29),
-+	.dptx_index		= REG_FIELD(0x610c8, 30, 31),
-+
-+	.soft_reset		= REG_FIELD(0x1000, 31, 31),
-+	.force_reset	= REG_FIELD(0x1000, 30, 30),
-+
-+	.use_hw_chs		= REG_FIELD(0x61038, 0, 0),
-+	.use_hw_usr		= REG_FIELD(0x61038, 1, 1),
-+	.hw_chs_sel		= REG_FIELD(0x61038, 2, 4),
-+	.hw_usr_sel		= REG_FIELD(0x61038, 5, 6),
-+
-+	.replace_vbit	= REG_FIELD(0x610c0, 0, 0),
-+	.vbit_stream	= REG_FIELD(0x610c0, 1, 1),
-+
-+	.legacy_en		=  REG_FIELD(0x1008, 0, 0),
-+	.calc_en		=  REG_FIELD(0x61034, 0, 0),
-+	.lsb_bits		=  REG_FIELD(0x61048, 0, 31),
-+	.msb_bits		=  REG_FIELD(0x6104c, 0, 31),
-+
-+
- 	.clk_name		= (const char*[]) {
- 				   "pcnoc-sway-clk",
- 				   "audio-core",
--- 
-Qualcomm India Private Limited, on behalf of Qualcomm Innovation Center, Inc.,
-is a member of Code Aurora Forum, a Linux Foundation Collaborative Project.
-
+VGhhbmtzIChhZ2FpbikgZm9yIHJldmlldyBHdWVudGVyIQ0KDQpPbiBUaHUsIDIwMjAtMDktMTcg
+YXQgMjI6NDUgLTA3MDAsIEd1ZW50ZXIgUm9lY2sgd3JvdGU6DQo+IE9uIDkvMTcvMjAgMTowMyBB
+TSwgTWF0dGkgVmFpdHRpbmVuIHdyb3RlOg0KPiA+IEFkZCBXYXRjaGRvZyBzdXBwb3J0IGZvciBS
+T0hNIEJEOTU3Nk1VRiBhbmQgQkQ5NTczTVVGIFBNSUNzIHdoaWNoDQo+ID4gYXJlDQo+ID4gbWFp
+bmx5IHVzZWQgdG8gcG93ZXIgdGhlIFItQ2FyIHNlcmllcyBwcm9jZXNzb3JzLiBUaGUgd2F0Y2hk
+b2cgaXMNCj4gPiBwaW5nZWQgdXNpbmcgYSBHUElPIGFuZCBlbmFibGVkIHVzaW5nIGFub3RoZXIg
+R1BJTy4gQWRkaXRpb25hbGx5DQo+ID4gd2F0Y2hkb2cgdGltZS1vdXQgY2FuIGJlIGNvbmZpZ3Vy
+ZWQgdG8gSFcgcHJpb3Igc3RhcnRpbmcgdGhlDQo+ID4gd2F0Y2hkb2cuDQo+ID4gV2F0Y2hkb2cg
+dGltZW91dCBjYW4gYmUgY29uZmlndXJlZCB0byBkZXRlY3Qgb25seSBkZWxheWVkIHBpbmcgb3IN
+Cj4gPiBpbg0KPiA+IGEgd2luZG93IG1vZGUgd2hlcmUgYWxzbyB0b28gZmFzdCBwaW5ncyBhcmUg
+ZGV0ZWN0ZWQuDQo+ID4gDQo+ID4gU2lnbmVkLW9mZi1ieTogTWF0dGkgVmFpdHRpbmVuIDxtYXR0
+aS52YWl0dGluZW5AZmkucm9obWV1cm9wZS5jb20+DQo+ID4gLS0tDQo+ID4gIGRyaXZlcnMvd2F0
+Y2hkb2cvS2NvbmZpZyAgICAgIHwgIDEzICsrDQo+ID4gIGRyaXZlcnMvd2F0Y2hkb2cvTWFrZWZp
+bGUgICAgIHwgICAxICsNCj4gPiAgZHJpdmVycy93YXRjaGRvZy9iZDk1NzZfd2R0LmMgfCAyOTUN
+Cj4gPiArKysrKysrKysrKysrKysrKysrKysrKysrKysrKysrKysrDQo+ID4gIDMgZmlsZXMgY2hh
+bmdlZCwgMzA5IGluc2VydGlvbnMoKykNCj4gPiAgY3JlYXRlIG1vZGUgMTAwNjQ0IGRyaXZlcnMv
+d2F0Y2hkb2cvYmQ5NTc2X3dkdC5jDQoNCj4gDQo+ID4gKw0KPiA+ICsJcmV0ID0gb2ZfcHJvcGVy
+dHlfcmVhZF91MzIobnAsDQo+ID4gKwkJCQkgICAiaHdfbWFyZ2luX21zIiwgJmh3X21hcmdpbik7
+DQo+IA0KPiBMaW5lIHNwbGl0cyBhcmUgYXJiaXRyYXJ5LiBXaHkgaXMgdGhpcyAiaHdfbWFyZ2lu
+X21zIiBhbmQgbm90DQo+ICJyb2htLGh3X21hcmdpbl9tcyIgPw0KDQoiaHdfbWFyZ2luX21zIiBp
+cyBhbiBleGlzdGluZyBiaW5kaW5nIGZvciBzcGVjaWZ5aW5nIHRoZSBtYXhpbXVtIFRNTyBpbg0K
+SFcgKGlmIEkgdW5kZXJzdG9vZCBpdCBjb3JyZWN0bHkpLiAoSXQgaXMgdXNlZCBhdCBsZWFzdCBi
+eSB0aGUgZ2VuZXJpZw0KR1BJTyB3YXRjaGRvZykgSSB0aG91Z2h0IGl0J3MgYmV0dGVyIHRvIG5v
+dCBpbnZlbnQgYSBuZXcgdmVuZG9yDQpzcGVjaWZpYyBiaW5kaW5nIHdoZW4gd2UgaGF2ZSBhIGdl
+bmVyaWMgb25lLg0KDQpodHRwczovL2VsaXhpci5ib290bGluLmNvbS9saW51eC92NS45LXJjMi9z
+b3VyY2UvRG9jdW1lbnRhdGlvbi9kZXZpY2V0cmVlL2JpbmRpbmdzL3dhdGNoZG9nL2dwaW8td2R0
+LnR4dA0KDQo+IA0KPiA+ICsJaWYgKHJldCkgew0KPiA+ICsJCWlmIChyZXQgIT0gLUVJTlZBTCkN
+Cj4gPiArCQkJcmV0dXJuIHJldDsNCj4gPiArDQo+ID4gKwkJaHdfbWFyZ2luID0gQkQ5NTdYX1dE
+VF9ERUZBVUxUX01BUkdJTjsNCj4gPiArCX0NCj4gPiArDQo+ID4gKwlyZXQgPSBvZl9wcm9wZXJ0
+eV9yZWFkX3UzMihucCwgInJvaG0saHctbWFyZ2luLW1pbi1tcyIsDQo+ID4gJmh3X21hcmdpbl9t
+aW4pOw0KPiA+ICsJaWYgKHJldCA9PSAtRUlOVkFMKQ0KPiA+ICsJCWh3X21hcmdpbl9taW4gPSAw
+Ow0KPiA+ICsJZWxzZSBpZiAocmV0KQ0KPiA+ICsJCXJldHVybiByZXQ7DQo+IA0KPiBQbGVhc2Ug
+dXNlIGEgc2luZ2xlIG1lY2hhbmlzbSB0byBoYW5kbGUgLUVJTlZBTCBhZnRlcg0KPiBvZl9wcm9w
+ZXJ0eV9yZWFkX3UzMigpLg0KDQpTb3JyeSBHdWVudGVyIC0gSSBhbSBwcm9iYWJseSBhIGJpdCBz
+bG93IHRvZGF5IGJ1dCBJIGFtIHVuc3VyZSBpZiBJDQp1bmRlcnN0YW5kIHRoZSBzdWdnZXN0aW9u
+LiBEbyB5b3UgbWVhbiBzb21ldGhpbmcgbGlrZToNCg0KaHdfbWFyZ2luX21pbiA9IDA7DQoNCnJl
+dCA9IG9mX3Byb3BlcnR5X3JlYWRfdTMyKG5wLCAicm9obSxody1tYXJnaW4tbWluLW1zIiwNCiZo
+d19tYXJnaW5fbWluKTsNCmlmIChyZXQgJiYgcmV0ICE9IC1FSU5WQUwpDQoJcmV0dXJuIHJldDsN
+Cg0KT3RoZXIgdGhhbiB0aGF0IC0gYWxsIGZpbmRpbmdzIGFyZSBjbGVhciB0byBtZS4gSSdsbCBj
+cmFmdCBhIG5ldw0KdmVyc2lvbiBidXQgSSdsbCB3YWl0IGZvciBhIHdoaWxlIHRvIHNlZSBpZiBM
+ZWUgaGFzIHRpbWUgdG8gc2VuZCBzb21lDQpmZWVkYmFjayBvbiBNRkQgc28gSSBjb3VsZCBnZXQg
+Ym90aCBXREcgYW5kIE1GRCBmaXhlcyB0byBzYW1lIHZlcnNpb24NCjopDQoNCkJlc3QgUmVnYXJk
+cw0KCS0tTWF0dGkNCg0KDQotLQ0KTWF0dGkgVmFpdHRpbmVuLCBMaW51eCBkZXZpY2UgZHJpdmVy
+cw0KUk9ITSBTZW1pY29uZHVjdG9ycywgRmlubGFuZA0KU1dEQw0KS2l2aWhhcmp1bmxlbmtraSAx
+RQ0KOTAyMjAgT1VMVQ0KRklOTEFORA0KDQp+fn4gIkkgZG9uJ3QgdGhpbmsgc28sIiBzYWlkIFJl
+bmUgRGVzY2FydGVzLiBKdXN0IHRoZW4gaGUgdmFuaXNoZWQgfn5+DQoNClNpbW9uIHNheXMgLSBp
+biBMYXRpbiBwbGVhc2UuDQoibm9uIGNvZ2l0byBtZSIgZGl4aXQgUmVuZSBEZXNjYXJ0ZSwgZGVp
+bmRlIGV2YW5lc2Nhdml0DQoNCihUaGFua3MgZm9yIHRoZSB0cmFuc2xhdGlvbiBTaW1vbikNCg0K
