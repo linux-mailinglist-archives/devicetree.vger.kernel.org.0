@@ -2,102 +2,84 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from vger.kernel.org (vger.kernel.org [23.128.96.18])
-	by mail.lfdr.de (Postfix) with ESMTP id 0F6EF27027E
-	for <lists+devicetree@lfdr.de>; Fri, 18 Sep 2020 18:46:42 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTP id 087E02702A3
+	for <lists+devicetree@lfdr.de>; Fri, 18 Sep 2020 18:53:58 +0200 (CEST)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S1726367AbgIRQqj (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Fri, 18 Sep 2020 12:46:39 -0400
-Received: from m42-11.mailgun.net ([69.72.42.11]:36110 "EHLO
-        m42-11.mailgun.net" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S1726474AbgIRQqg (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Fri, 18 Sep 2020 12:46:36 -0400
-DKIM-Signature: a=rsa-sha256; v=1; c=relaxed/relaxed; d=mg.codeaurora.org; q=dns/txt;
- s=smtp; t=1600447595; h=Content-Transfer-Encoding: Content-Type:
- In-Reply-To: MIME-Version: Date: Message-ID: From: References: Cc: To:
- Subject: Sender; bh=aDUDmyWvcWkfN3QFAfQxmB92TzviMMAi90RnbNQlrIo=; b=oh4s7VMSSi2E3X87gzzsWrRZusnis0gxA4ZiNC7e/usOMljVrAyqQoV0JCjIf3rcLWOWgLOq
- k3hzLBNwH4VVHdr0ip75eMU6F3mcV6Vji9bKlfhxoxbq79XBLWsWl/+4jatO6G/YgHUTbSag
- iW95iJF21CE/rebiXG0f/gy8Vxk=
-X-Mailgun-Sending-Ip: 69.72.42.11
-X-Mailgun-Sid: WyI1YmJiNiIsICJkZXZpY2V0cmVlQHZnZXIua2VybmVsLm9yZyIsICJiZTllNGEiXQ==
-Received: from smtp.codeaurora.org
- (ec2-35-166-182-171.us-west-2.compute.amazonaws.com [35.166.182.171]) by
- smtp-out-n06.prod.us-east-1.postgun.com with SMTP id
- 5f64e464f1e3eb89c71cd390 (version=TLS1.2,
- cipher=TLS_ECDHE_RSA_WITH_AES_128_GCM_SHA256); Fri, 18 Sep 2020 16:46:28
- GMT
-Received: by smtp.codeaurora.org (Postfix, from userid 1001)
-        id 91307C433FF; Fri, 18 Sep 2020 16:46:27 +0000 (UTC)
-X-Spam-Checker-Version: SpamAssassin 3.4.0 (2014-02-07) on
-        aws-us-west-2-caf-mail-1.web.codeaurora.org
-X-Spam-Level: 
-X-Spam-Status: No, score=-4.8 required=2.0 tests=ALL_TRUSTED,BAYES_00,
-        NICE_REPLY_A,SPF_FAIL,URIBL_BLOCKED autolearn=unavailable autolearn_force=no
-        version=3.4.0
-Received: from [10.131.172.121] (blr-bdr-fw-01_GlobalNAT_AllZones-Outside.qualcomm.com [103.229.18.19])
-        (using TLSv1.2 with cipher ECDHE-RSA-AES128-GCM-SHA256 (128/128 bits))
-        (No client certificate requested)
-        (Authenticated sender: srivasam)
-        by smtp.codeaurora.org (Postfix) with ESMTPSA id A6DA4C433C8;
-        Fri, 18 Sep 2020 16:46:23 +0000 (UTC)
-DMARC-Filter: OpenDMARC Filter v1.3.2 smtp.codeaurora.org A6DA4C433C8
-Authentication-Results: aws-us-west-2-caf-mail-1.web.codeaurora.org; dmarc=none (p=none dis=none) header.from=codeaurora.org
-Authentication-Results: aws-us-west-2-caf-mail-1.web.codeaurora.org; spf=fail smtp.mailfrom=srivasam@codeaurora.org
-Subject: Re: [PATCH v3] arm64: dts: qcom: sc7180: Add lpass cpu node for I2S
- driver
-To:     Doug Anderson <dianders@chromium.org>
-Cc:     Andy Gross <agross@kernel.org>,
-        Bjorn Andersson <bjorn.andersson@linaro.org>,
-        Rob Herring <robh+dt@kernel.org>,
-        linux-arm-msm <linux-arm-msm@vger.kernel.org>,
-        "open list:OPEN FIRMWARE AND FLATTENED DEVICE TREE BINDINGS" 
-        <devicetree@vger.kernel.org>, LKML <linux-kernel@vger.kernel.org>,
-        Rohit kumar <rohitkr@codeaurora.org>,
-        Srinivas Kandagatla <srinivas.kandagatla@linaro.org>,
-        Ajit Pandey <ajitp@codeaurora.org>,
-        Cheng-Yi Chiang <cychiang@chromium.org>,
-        V Sujith Kumar Reddy <vsujithk@codeaurora.org>
-References: <1600435026-1876-1-git-send-email-srivasam@codeaurora.org>
- <CAD=FV=WtSEB6-M8x564t=RuSEKHwH3YvcmuZ9VGpxY+5kcL7rA@mail.gmail.com>
-From:   Srinivasa Rao Mandadapu <srivasam@codeaurora.org>
-Organization: Qualcomm India Private Limited
-Message-ID: <c55995fa-5233-b1c9-7c4c-13b5cd8fe178@codeaurora.org>
-Date:   Fri, 18 Sep 2020 22:16:21 +0530
-User-Agent: Mozilla/5.0 (Windows NT 10.0; Win64; x64; rv:78.0) Gecko/20100101
- Thunderbird/78.2.2
+        id S1726250AbgIRQx4 (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Fri, 18 Sep 2020 12:53:56 -0400
+Received: from plasma31.jpberlin.de ([80.241.56.82]:16853 "EHLO
+        plasma31.jpberlin.de" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
+        with ESMTP id S1726192AbgIRQx4 (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Fri, 18 Sep 2020 12:53:56 -0400
+Received: from spamfilter02.heinlein-hosting.de (spamfilter02.heinlein-hosting.de [80.241.56.116])
+        by plasma.jpberlin.de (Postfix) with ESMTP id 6AADA10155D;
+        Fri, 18 Sep 2020 18:53:51 +0200 (CEST)
+X-Virus-Scanned: amavisd-new at heinlein-support.de
+Received: from plasma.jpberlin.de ([80.241.56.76])
+        by spamfilter02.heinlein-hosting.de (spamfilter02.heinlein-hosting.de [80.241.56.116]) (amavisd-new, port 10030)
+        with ESMTP id q5yVNH_U4n5l; Fri, 18 Sep 2020 18:53:50 +0200 (CEST)
+Received: from webmail.opensynergy.com (unknown [217.66.60.5])
+        (using TLSv1.2 with cipher ECDHE-RSA-AES256-SHA384 (256/256 bits))
+        (Client CN "*.opensynergy.com", Issuer "Starfield Secure Certificate Authority - G2" (not verified))
+        (Authenticated sender: opensynergy@jpberlin.de)
+        by plasma.jpberlin.de (Postfix) with ESMTPSA id 6ED8A100F02;
+        Fri, 18 Sep 2020 18:53:50 +0200 (CEST)
+From:   Peter Hilber <peter.hilber@opensynergy.com>
+To:     <linux-arm-kernel@lists.infradead.org>,
+        <devicetree@vger.kernel.org>
+CC:     Rob Herring <robh+dt@kernel.org>, <linux-kernel@vger.kernel.org>,
+        <sudeep.holla@arm.com>, <souvik.chakravarty@arm.com>,
+        <alex.bennee@linaro.org>, <jean-philippe@linaro.org>,
+        <igor.skalkin@opensynergy.com>, <mikhail.golubev@opensynergy.com>,
+        <anton.yakovlev@opensynergy.com>,
+        Peter Hilber <peter.hilber@opensynergy.com>
+Subject: [RFC PATCH 2/7] firmware: arm_scmi: Document that max_msg is a per channel type limit
+Date:   Fri, 18 Sep 2020 18:52:51 +0200
+Message-ID: <20200918165251.256802-1-peter.hilber@opensynergy.com>
+In-Reply-To: <20200918162311.254564-1-peter.hilber@opensynergy.com>
+References: <20200918162311.254564-1-peter.hilber@opensynergy.com>
 MIME-Version: 1.0
-In-Reply-To: <CAD=FV=WtSEB6-M8x564t=RuSEKHwH3YvcmuZ9VGpxY+5kcL7rA@mail.gmail.com>
-Content-Type: text/plain; charset=utf-8; format=flowed
-Content-Transfer-Encoding: 7bit
-Content-Language: en-US
+Content-Transfer-Encoding: 7BIT
+Content-Type:   text/plain; charset=US-ASCII
+X-ClientProxiedBy: SR-MAIL-01.open-synergy.com (10.26.10.21) To
+ SR-MAIL-01.open-synergy.com (10.26.10.21)
+X-MBO-SPAM-Probability: 
+X-Rspamd-Score: -1.83 / 15.00 / 15.00
+X-Rspamd-Queue-Id: 6AADA10155D
+X-Rspamd-UID: 4de0b1
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-Thanks Mr. Doug for Review comments!!
+From: Igor Skalkin <igor.skalkin@opensynergy.com>
 
-On 9/18/2020 7:28 PM, Doug Anderson wrote:
-> Hi,
->
-> On Fri, Sep 18, 2020 at 6:18 AM Srinivasa Rao Mandadapu
-> <srivasam@codeaurora.org> wrote:
->> --- a/arch/arm64/boot/dts/qcom/sc7180.dtsi
->> +++ b/arch/arm64/boot/dts/qcom/sc7180.dtsi
->> @@ -1742,6 +1742,45 @@
->>                                  };
->>                          };
->>
->> +                       sec_mi2s_active: sec-mi2s-active {
->> +                               pinmux {
->> +                                       pins = "gpio49", "gpio50", "gpio51";
->> +                                       function = "mi2s_1";
->> +                               };
->> +
->> +                               pinconf {
->> +                                       pins = "gpio49", "gpio50", "gpio51";;
-> There are still two ";" on the above line.
-will fix this type error.
+struct scmi_desc.max_msg specifies a limit for the pending messages.
+This limit is a per SCMI channel type (tx, rx) limit. State that
+explicitly in the inline documentation. The following patch will add an
+op to override the limit per channel type.
 
+Co-developed-by: Peter Hilber <peter.hilber@opensynergy.com>
+Signed-off-by: Peter Hilber <peter.hilber@opensynergy.com>
+Signed-off-by: Igor Skalkin <igor.skalkin@opensynergy.com>
+---
+ drivers/firmware/arm_scmi/common.h | 4 ++--
+ 1 file changed, 2 insertions(+), 2 deletions(-)
+
+diff --git a/drivers/firmware/arm_scmi/common.h b/drivers/firmware/arm_scmi/common.h
+index 36c38334a045..4cc78eb27f14 100644
+--- a/drivers/firmware/arm_scmi/common.h
++++ b/drivers/firmware/arm_scmi/common.h
+@@ -229,8 +229,8 @@ struct scmi_transport_ops {
+  *
+  * @ops: Pointer to the transport specific ops structure
+  * @max_rx_timeout_ms: Timeout for communication with SoC (in Milliseconds)
+- * @max_msg: Maximum number of messages that can be pending
+- *	simultaneously in the system
++ * @max_msg: Maximum number of messages for a channel type (tx or rx) that can
++ *	be pending simultaneously in the system
+  * @max_msg_size: Maximum size of data per message that can be handled.
+  */
+ struct scmi_desc {
 -- 
-Qualcomm India Private Limited, on behalf of Qualcomm Innovation Center, Inc.,
-is a member of Code Aurora Forum, a Linux Foundation Collaborative Project.
+2.25.1
 
