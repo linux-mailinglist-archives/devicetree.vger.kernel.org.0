@@ -2,126 +2,137 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from vger.kernel.org (vger.kernel.org [23.128.96.18])
-	by mail.lfdr.de (Postfix) with ESMTP id 63D1926F87A
-	for <lists+devicetree@lfdr.de>; Fri, 18 Sep 2020 10:38:03 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTP id 92E8926F8E6
+	for <lists+devicetree@lfdr.de>; Fri, 18 Sep 2020 11:04:23 +0200 (CEST)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S1726577AbgIRIh5 (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Fri, 18 Sep 2020 04:37:57 -0400
-Received: from fllv0015.ext.ti.com ([198.47.19.141]:44288 "EHLO
-        fllv0015.ext.ti.com" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S1726360AbgIRIhx (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Fri, 18 Sep 2020 04:37:53 -0400
-Received: from fllv0035.itg.ti.com ([10.64.41.0])
-        by fllv0015.ext.ti.com (8.15.2/8.15.2) with ESMTP id 08I8boJR048568;
-        Fri, 18 Sep 2020 03:37:50 -0500
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=ti.com;
-        s=ti-com-17Q1; t=1600418270;
-        bh=DMsl67xK5NX7DtbdJD5aclNCh7kwQUztauT0LlKtQyw=;
-        h=From:To:CC:Subject:Date:In-Reply-To:References;
-        b=sOxYsAFwJXzyq/icRnEz6L/E+juWLlY/HIPKZLyqVVTlxi8IidQu2gc+2gFk1cpEr
-         P+ZPSoRHGqzQGjY5bEhrUe+XzZXx+gDePiRtSXli4HSJ14weNUZowOeOOyWI4vQIVm
-         lFICmJQEQ+gejerj//H1gwObnD0ku44Jr0TT5oTc=
-Received: from DLEE104.ent.ti.com (dlee104.ent.ti.com [157.170.170.34])
-        by fllv0035.itg.ti.com (8.15.2/8.15.2) with ESMTP id 08I8bojw091020;
-        Fri, 18 Sep 2020 03:37:50 -0500
-Received: from DLEE105.ent.ti.com (157.170.170.35) by DLEE104.ent.ti.com
- (157.170.170.34) with Microsoft SMTP Server (version=TLS1_2,
- cipher=TLS_ECDHE_RSA_WITH_AES_128_CBC_SHA256_P256) id 15.1.1979.3; Fri, 18
- Sep 2020 03:37:49 -0500
-Received: from fllv0040.itg.ti.com (10.64.41.20) by DLEE105.ent.ti.com
- (157.170.170.35) with Microsoft SMTP Server (version=TLS1_2,
- cipher=TLS_ECDHE_RSA_WITH_AES_128_CBC_SHA256_P256) id 15.1.1979.3 via
- Frontend Transport; Fri, 18 Sep 2020 03:37:49 -0500
-Received: from deskari.ti.com (ileax41-snat.itg.ti.com [10.172.224.153])
-        by fllv0040.itg.ti.com (8.15.2/8.15.2) with ESMTP id 08I8bjT1109595;
-        Fri, 18 Sep 2020 03:37:48 -0500
-From:   Tomi Valkeinen <tomi.valkeinen@ti.com>
-To:     Kishon Vijay Abraham I <kishon@ti.com>,
-        Vinod Koul <vkoul@kernel.org>,
-        Rob Herring <robh+dt@kernel.org>,
-        Swapnil Jakhade <sjakhade@cadence.com>,
-        Yuti Amonkar <yamonkar@cadence.com>
-CC:     <linux-kernel@vger.kernel.org>, <devicetree@vger.kernel.org>,
-        Sekhar Nori <nsekhar@ti.com>,
-        Tomi Valkeinen <tomi.valkeinen@ti.com>
-Subject: [PATCH v2 2/2] dt-bindings: phy: ti,phy-j721e-wiz: fix bindings for torrent phy
-Date:   Fri, 18 Sep 2020 11:37:43 +0300
-Message-ID: <20200918083743.213874-2-tomi.valkeinen@ti.com>
-X-Mailer: git-send-email 2.25.1
-In-Reply-To: <20200918083743.213874-1-tomi.valkeinen@ti.com>
-References: <20200918083743.213874-1-tomi.valkeinen@ti.com>
+        id S1726421AbgIRJEO (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Fri, 18 Sep 2020 05:04:14 -0400
+Received: from mail-ot1-f67.google.com ([209.85.210.67]:38021 "EHLO
+        mail-ot1-f67.google.com" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
+        with ESMTP id S1726260AbgIRJEO (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Fri, 18 Sep 2020 05:04:14 -0400
+Received: by mail-ot1-f67.google.com with SMTP id y5so4748721otg.5;
+        Fri, 18 Sep 2020 02:04:13 -0700 (PDT)
+X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+        d=1e100.net; s=20161025;
+        h=x-gm-message-state:mime-version:references:in-reply-to:from:date
+         :message-id:subject:to:cc;
+        bh=cbUyg3pwnmxhvAaCD6PCL+qYrsMttHAaaWRKhDG5T68=;
+        b=uAOIJJQz1dn9ic37IQOaQiQzp51lNyUYpOLGTYdnM9XJKj+nKyfgLDJB1Gm3W7uSLO
+         KG8u8/Wr40SCT7CD/xi/zHcjQhOb10SIihTFfpZKDu2V5IAGuIXpE14jqB0tS+pX5Qzw
+         qyh90Z0M+IBvSiWL63+E5jDDSaYLcBNwqJ/dA7KcgzMyOgGQWOy78UsqF8+bH3MH5Gji
+         Xmb+v24swixRjMzIf1SxW7LQ4FQJ2L0jT/3Cw6lxZ4kksHWwBg7HQwCabclv7tgVaEhZ
+         7MuB/KMe3Ij4wYrgMNqP229oUjohRJBs0KdyVR8ET2K9C3GcLhhFx/LqIvCAHqbkLPPr
+         YQFg==
+X-Gm-Message-State: AOAM530Mr7JbL3ZGHTgj5kAX+zNZJ+sCNCqnJXvoI8O5sB/Pffn5BRAB
+        4+PAfbOf1EjcxB9oin0046LqgHvJXIB/RUnndPI=
+X-Google-Smtp-Source: ABdhPJyGdJI0FyOn41YC2WoL2riEjhmCGQfFPKCsWbzOPXUXLsiSpeV5/4ZSuAQVcG/fpFn5TzdIpI3Mc4uXYZysqKw=
+X-Received: by 2002:a05:6830:1008:: with SMTP id a8mr20644042otp.107.1600419853345;
+ Fri, 18 Sep 2020 02:04:13 -0700 (PDT)
 MIME-Version: 1.0
-Content-Transfer-Encoding: 8bit
-Content-Type: text/plain
-X-EXCLAIMER-MD-CONFIG: e1e8a2fd-e40a-4ac6-ac9b-f7e9cc9ee180
+References: <20200917135707.12563-1-geert+renesas@glider.be>
+ <20200917135707.12563-6-geert+renesas@glider.be> <29970fbf-9779-d182-5df9-4f563f377311@ti.com>
+In-Reply-To: <29970fbf-9779-d182-5df9-4f563f377311@ti.com>
+From:   Geert Uytterhoeven <geert@linux-m68k.org>
+Date:   Fri, 18 Sep 2020 11:04:02 +0200
+Message-ID: <CAMuHMdU+C9_mKJHtpevohkMkbHyur0gaVq1PvXnmY7cMHrSmWQ@mail.gmail.com>
+Subject: Re: [PATCH net-next v4 5/5] ravb: Add support for explicit internal
+ clock delay configuration
+To:     Dan Murphy <dmurphy@ti.com>
+Cc:     "David S . Miller" <davem@davemloft.net>,
+        Jakub Kicinski <kuba@kernel.org>,
+        Rob Herring <robh+dt@kernel.org>,
+        Sergei Shtylyov <sergei.shtylyov@gmail.com>,
+        Florian Fainelli <f.fainelli@gmail.com>,
+        Andrew Lunn <andrew@lunn.ch>,
+        Oleksij Rempel <linux@rempel-privat.de>,
+        Philippe Schenker <philippe.schenker@toradex.com>,
+        Heiner Kallweit <hkallweit1@gmail.com>,
+        Kazuya Mizuguchi <kazuya.mizuguchi.ks@renesas.com>,
+        Wolfram Sang <wsa+renesas@sang-engineering.com>,
+        Magnus Damm <magnus.damm@gmail.com>,
+        netdev <netdev@vger.kernel.org>,
+        "open list:OPEN FIRMWARE AND FLATTENED DEVICE TREE BINDINGS" 
+        <devicetree@vger.kernel.org>,
+        Linux-Renesas <linux-renesas-soc@vger.kernel.org>,
+        Linux Kernel Mailing List <linux-kernel@vger.kernel.org>
+Content-Type: text/plain; charset="UTF-8"
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-When WIZ wraps a Cadence Torrent PHY (instead of Cadence Sierra PHY)
-there is a difference in the refclk-dig node: Torrent only has two
-clocks instead of Sierra's four clocks. Add minItems: 2 to solve this.
+Hi Dan,
 
-Additionally, in our use case we only need to use assigned-clock for a
-single clock, but the current binding requires either no assigned-clocks
-or two. Fix this by adding minItems: 1 to all the assigned-clock
-properties.
+On Thu, Sep 17, 2020 at 8:50 PM Dan Murphy <dmurphy@ti.com> wrote:
+> On 9/17/20 8:57 AM, Geert Uytterhoeven wrote:
+> > Some EtherAVB variants support internal clock delay configuration, which
+> > can add larger delays than the delays that are typically supported by
+> > the PHY (using an "rgmii-*id" PHY mode, and/or "[rt]xc-skew-ps"
+> > properties).
+> >
+> > Historically, the EtherAVB driver configured these delays based on the
+> > "rgmii-*id" PHY mode.  This caused issues with PHY drivers that
+> > implement PHY internal delays properly[1].  Hence a backwards-compatible
+> > workaround was added by masking the PHY mode[2].
+> >
+> > Add proper support for explicit configuration of the MAC internal clock
+> > delays using the new "[rt]x-internal-delay-ps" properties.
+> > Fall back to the old handling if none of these properties is present.
+> >
+> > [1] Commit bcf3440c6dd78bfe ("net: phy: micrel: add phy-mode support for
+> >      the KSZ9031 PHY")
+> > [2] Commit 9b23203c32ee02cd ("ravb: Mask PHY mode to avoid inserting
+> >      delays twice").
+> >
+> > Signed-off-by: Geert Uytterhoeven <geert+renesas@glider.be>
+> > Reviewed-by: Sergei Shtylyov <sergei.shtylyov@cogentembedded.com>
+> > Reviewed-by: Florian Fainelli <f.fainelli@gmail.com>
 
-There was also an extra trailing whitespace, which this patch removes.
+> > @@ -1989,20 +1986,41 @@ static const struct soc_device_attribute ravb_delay_mode_quirk_match[] = {
+> >   };
+> >
+> >   /* Set tx and rx clock internal delay modes */
+> > -static void ravb_parse_delay_mode(struct net_device *ndev)
+> > +static void ravb_parse_delay_mode(struct device_node *np, struct net_device *ndev)
+> >   {
+> >       struct ravb_private *priv = netdev_priv(ndev);
+> > +     bool explicit_delay = false;
+> > +     u32 delay;
+> > +
+> > +     if (!of_property_read_u32(np, "rx-internal-delay-ps", &delay)) {
+> > +             /* Valid values are 0 and 1800, according to DT bindings */
+> > +             priv->rxcidm = !!delay;
+> > +             explicit_delay = true;
+> > +     }
+> > +     if (!of_property_read_u32(np, "tx-internal-delay-ps", &delay)) {
+> > +             /* Valid values are 0 and 2000, according to DT bindings */
+> > +             priv->txcidm = !!delay;
+> > +             explicit_delay = true;
+> > +     }
+> There are helper functions for this
+>
+> s32 phy_get_internal_delay(struct phy_device *phydev, struct device
+> *dev, const int *delay_values, int size, bool is_rx)
 
-Signed-off-by: Tomi Valkeinen <tomi.valkeinen@ti.com>
----
+That helper operates on the PHY device, not on the MAC device.
+Cfr. what I stated in the cover letter:
 
-Changes in v2:
+    This can be considered the MAC counterpart of commit 9150069bf5fc0e86
+    ("dt-bindings: net: Add tx and rx internal delays"), which applies to
+    the PHY.  Note that unlike commit 92252eec913b2dd5 ("net: phy: Add a
+    helper to return the index for of the internal delay"), no helpers are
+    provided to parse the DT properties, as so far there is a single user
+    only, which supports only zero or a single fixed value.  Of course such
+    helpers can be added later, when the need arises, or when deemed useful
+    otherwise.
 
-* Base on phy-next
+Gr{oetje,eeting}s,
 
- .../devicetree/bindings/phy/ti,phy-j721e-wiz.yaml   | 13 ++++++++++---
- 1 file changed, 10 insertions(+), 3 deletions(-)
+                        Geert
 
-diff --git a/Documentation/devicetree/bindings/phy/ti,phy-j721e-wiz.yaml b/Documentation/devicetree/bindings/phy/ti,phy-j721e-wiz.yaml
-index 5ffc95c62909..c33e9bc79521 100644
---- a/Documentation/devicetree/bindings/phy/ti,phy-j721e-wiz.yaml
-+++ b/Documentation/devicetree/bindings/phy/ti,phy-j721e-wiz.yaml
-@@ -45,9 +45,15 @@ properties:
-   ranges: true
- 
-   assigned-clocks:
-+    minItems: 1
-     maxItems: 2
- 
-   assigned-clock-parents:
-+    minItems: 1
-+    maxItems: 2
-+
-+  assigned-clock-rates:
-+    minItems: 1
-     maxItems: 2
- 
-   typec-dir-gpios:
-@@ -119,9 +125,10 @@ patternProperties:
-       logic.
-     properties:
-       clocks:
-+        minItems: 2
-         maxItems: 4
--        description: Phandle to four clock nodes representing the inputs to
--          refclk_dig
-+        description: Phandle to two (Torrent) or four (Sierra) clock nodes representing
-+          the inputs to refclk_dig
- 
-       "#clock-cells":
-         const: 0
-@@ -203,7 +210,7 @@ examples:
-            };
- 
-            refclk-dig {
--                  clocks = <&k3_clks 292 11>, <&k3_clks 292 0>, 
-+                  clocks = <&k3_clks 292 11>, <&k3_clks 292 0>,
-                           <&dummy_cmn_refclk>, <&dummy_cmn_refclk1>;
-                   #clock-cells = <0>;
-                   assigned-clocks = <&wiz0_refclk_dig>;
 -- 
-Texas Instruments Finland Oy, Porkkalankatu 22, 00180 Helsinki.
-Y-tunnus/Business ID: 0615521-4. Kotipaikka/Domicile: Helsinki
+Geert Uytterhoeven -- There's lots of Linux beyond ia32 -- geert@linux-m68k.org
 
+In personal conversations with technical people, I call myself a hacker. But
+when I'm talking to journalists I just say "programmer" or something like that.
+                                -- Linus Torvalds
