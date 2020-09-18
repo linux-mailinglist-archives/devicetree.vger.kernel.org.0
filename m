@@ -2,137 +2,96 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from vger.kernel.org (vger.kernel.org [23.128.96.18])
-	by mail.lfdr.de (Postfix) with ESMTP id 92E8926F8E6
-	for <lists+devicetree@lfdr.de>; Fri, 18 Sep 2020 11:04:23 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTP id 26C7F26F900
+	for <lists+devicetree@lfdr.de>; Fri, 18 Sep 2020 11:14:17 +0200 (CEST)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S1726421AbgIRJEO (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Fri, 18 Sep 2020 05:04:14 -0400
-Received: from mail-ot1-f67.google.com ([209.85.210.67]:38021 "EHLO
-        mail-ot1-f67.google.com" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S1726260AbgIRJEO (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Fri, 18 Sep 2020 05:04:14 -0400
-Received: by mail-ot1-f67.google.com with SMTP id y5so4748721otg.5;
-        Fri, 18 Sep 2020 02:04:13 -0700 (PDT)
+        id S1726119AbgIRJOQ (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Fri, 18 Sep 2020 05:14:16 -0400
+Received: from lindbergh.monkeyblade.net ([23.128.96.19]:35396 "EHLO
+        lindbergh.monkeyblade.net" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
+        with ESMTP id S1726118AbgIRJOQ (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Fri, 18 Sep 2020 05:14:16 -0400
+Received: from mail-oi1-x242.google.com (mail-oi1-x242.google.com [IPv6:2607:f8b0:4864:20::242])
+        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 4D31BC06174A
+        for <devicetree@vger.kernel.org>; Fri, 18 Sep 2020 02:14:16 -0700 (PDT)
+Received: by mail-oi1-x242.google.com with SMTP id x14so6177269oic.9
+        for <devicetree@vger.kernel.org>; Fri, 18 Sep 2020 02:14:16 -0700 (PDT)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+        d=gmail.com; s=20161025;
+        h=mime-version:sender:from:date:message-id:subject:to
+         :content-transfer-encoding;
+        bh=l8o/PxZLRUsXqbfQdaHQ/PhODuJFQTqIyS1z/DNGmXE=;
+        b=AyymwP5/fKEuutEeQFj5LKZunfo4KVV4tvAs+YbceEsg5/Q1KwEKdbgs6hdai3fW60
+         xCD8pUiYyWaljFMmPvqTNG7/SBOIGyYrufhreu/yViqIYjGdJL8VgXotMzGTWaCYNqQv
+         fjy4tciSbt2jTkqjZ0YIEVirGUhR3zPTmgNPTavWEgA9ZR4ope4vyNd31AJKRYNrWOPu
+         Yw5V4VMJWtEkAz1QLLttdKTUhEqLJ+d3tjnxWy+UI6YcIWuBnHOKTF9PvHmcutCYizAh
+         4fCXbC7RXxWfhtTe5j8SiZVLcoZPHz27c3Vcj4S408xITnINcJVvY/f5mMUXajs2EHAp
+         iQyg==
 X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
         d=1e100.net; s=20161025;
-        h=x-gm-message-state:mime-version:references:in-reply-to:from:date
-         :message-id:subject:to:cc;
-        bh=cbUyg3pwnmxhvAaCD6PCL+qYrsMttHAaaWRKhDG5T68=;
-        b=uAOIJJQz1dn9ic37IQOaQiQzp51lNyUYpOLGTYdnM9XJKj+nKyfgLDJB1Gm3W7uSLO
-         KG8u8/Wr40SCT7CD/xi/zHcjQhOb10SIihTFfpZKDu2V5IAGuIXpE14jqB0tS+pX5Qzw
-         qyh90Z0M+IBvSiWL63+E5jDDSaYLcBNwqJ/dA7KcgzMyOgGQWOy78UsqF8+bH3MH5Gji
-         Xmb+v24swixRjMzIf1SxW7LQ4FQJ2L0jT/3Cw6lxZ4kksHWwBg7HQwCabclv7tgVaEhZ
-         7MuB/KMe3Ij4wYrgMNqP229oUjohRJBs0KdyVR8ET2K9C3GcLhhFx/LqIvCAHqbkLPPr
-         YQFg==
-X-Gm-Message-State: AOAM530Mr7JbL3ZGHTgj5kAX+zNZJ+sCNCqnJXvoI8O5sB/Pffn5BRAB
-        4+PAfbOf1EjcxB9oin0046LqgHvJXIB/RUnndPI=
-X-Google-Smtp-Source: ABdhPJyGdJI0FyOn41YC2WoL2riEjhmCGQfFPKCsWbzOPXUXLsiSpeV5/4ZSuAQVcG/fpFn5TzdIpI3Mc4uXYZysqKw=
-X-Received: by 2002:a05:6830:1008:: with SMTP id a8mr20644042otp.107.1600419853345;
- Fri, 18 Sep 2020 02:04:13 -0700 (PDT)
+        h=x-gm-message-state:mime-version:sender:from:date:message-id:subject
+         :to:content-transfer-encoding;
+        bh=l8o/PxZLRUsXqbfQdaHQ/PhODuJFQTqIyS1z/DNGmXE=;
+        b=S4nO8ZHippW8O+m7FE2bBSaaVAHjWCpiPqAsfydqU6B3fSoEgzFu3qIF2ZYLv4bj4N
+         aQWETTc/UtTmbDyGr0dSmHMcOa58rYfWnH5ajBA637F7LFY2LBurH1Uu0eVJXRFtOcOx
+         wqTClu+pOoSEZbBAmRniTqYYZKIUpUvNJeYjEIWom7PZFc37dLV421YlFcrGveWo8vgG
+         o0XwO29uqqWNBEanQYsv6bJvd107vy3gY5Q9LLTvWdfccaeVZ2mp+/QwQFWb+/jjQLRZ
+         323Wo1KMHPMEKTp02Cq3/SgtAUTzff5cw54fwab7aKRa9cCatYk20bbZ80JDdz1gLWOw
+         eBGA==
+X-Gm-Message-State: AOAM532cpfkcFoh4/cAC8cUTSPEdURkiGq0l+jJHti9khwgjzxDSjDzb
+        wG6YPtV0qHPolNPQ0W2gMVLhBFrpkQUDCbvWlI4=
+X-Google-Smtp-Source: ABdhPJx/XPMMOQIWBVL/8shg29I2keaov5hKsPp6TypXr+t5AteTC2guetu4+Im88S/OeosJpbZviBkXm8z2mUyV6IY=
+X-Received: by 2002:aca:f417:: with SMTP id s23mr8760992oih.168.1600420455656;
+ Fri, 18 Sep 2020 02:14:15 -0700 (PDT)
 MIME-Version: 1.0
-References: <20200917135707.12563-1-geert+renesas@glider.be>
- <20200917135707.12563-6-geert+renesas@glider.be> <29970fbf-9779-d182-5df9-4f563f377311@ti.com>
-In-Reply-To: <29970fbf-9779-d182-5df9-4f563f377311@ti.com>
-From:   Geert Uytterhoeven <geert@linux-m68k.org>
-Date:   Fri, 18 Sep 2020 11:04:02 +0200
-Message-ID: <CAMuHMdU+C9_mKJHtpevohkMkbHyur0gaVq1PvXnmY7cMHrSmWQ@mail.gmail.com>
-Subject: Re: [PATCH net-next v4 5/5] ravb: Add support for explicit internal
- clock delay configuration
-To:     Dan Murphy <dmurphy@ti.com>
-Cc:     "David S . Miller" <davem@davemloft.net>,
-        Jakub Kicinski <kuba@kernel.org>,
-        Rob Herring <robh+dt@kernel.org>,
-        Sergei Shtylyov <sergei.shtylyov@gmail.com>,
-        Florian Fainelli <f.fainelli@gmail.com>,
-        Andrew Lunn <andrew@lunn.ch>,
-        Oleksij Rempel <linux@rempel-privat.de>,
-        Philippe Schenker <philippe.schenker@toradex.com>,
-        Heiner Kallweit <hkallweit1@gmail.com>,
-        Kazuya Mizuguchi <kazuya.mizuguchi.ks@renesas.com>,
-        Wolfram Sang <wsa+renesas@sang-engineering.com>,
-        Magnus Damm <magnus.damm@gmail.com>,
-        netdev <netdev@vger.kernel.org>,
-        "open list:OPEN FIRMWARE AND FLATTENED DEVICE TREE BINDINGS" 
-        <devicetree@vger.kernel.org>,
-        Linux-Renesas <linux-renesas-soc@vger.kernel.org>,
-        Linux Kernel Mailing List <linux-kernel@vger.kernel.org>
+Received: by 2002:a4a:e588:0:0:0:0:0 with HTTP; Fri, 18 Sep 2020 02:14:15
+ -0700 (PDT)
+From:   Donna Louise <donnamcinneslouise@gmail.com>
+Date:   Thu, 17 Sep 2020 21:14:15 -1200
+X-Google-Sender-Auth: -hOxfVXr9fK-G33qshCaN2sTg8k
+Message-ID: <CABTbXjKLrGN-6wy2egWPA3hLdHOQqxE7x_gC2n2jrVMT25fFNA@mail.gmail.com>
+Subject: Hello,
+To:     undisclosed-recipients:;
 Content-Type: text/plain; charset="UTF-8"
+Content-Transfer-Encoding: quoted-printable
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-Hi Dan,
+ Dear Friend,
 
-On Thu, Sep 17, 2020 at 8:50 PM Dan Murphy <dmurphy@ti.com> wrote:
-> On 9/17/20 8:57 AM, Geert Uytterhoeven wrote:
-> > Some EtherAVB variants support internal clock delay configuration, which
-> > can add larger delays than the delays that are typically supported by
-> > the PHY (using an "rgmii-*id" PHY mode, and/or "[rt]xc-skew-ps"
-> > properties).
-> >
-> > Historically, the EtherAVB driver configured these delays based on the
-> > "rgmii-*id" PHY mode.  This caused issues with PHY drivers that
-> > implement PHY internal delays properly[1].  Hence a backwards-compatible
-> > workaround was added by masking the PHY mode[2].
-> >
-> > Add proper support for explicit configuration of the MAC internal clock
-> > delays using the new "[rt]x-internal-delay-ps" properties.
-> > Fall back to the old handling if none of these properties is present.
-> >
-> > [1] Commit bcf3440c6dd78bfe ("net: phy: micrel: add phy-mode support for
-> >      the KSZ9031 PHY")
-> > [2] Commit 9b23203c32ee02cd ("ravb: Mask PHY mode to avoid inserting
-> >      delays twice").
-> >
-> > Signed-off-by: Geert Uytterhoeven <geert+renesas@glider.be>
-> > Reviewed-by: Sergei Shtylyov <sergei.shtylyov@cogentembedded.com>
-> > Reviewed-by: Florian Fainelli <f.fainelli@gmail.com>
+  I am glad to know you, but God knows you better and he knows why he
+has directed me to you at this point in time so do not be surprised at
+all. My name is Mrs. Donna Louise McInnes, a widow, i have been
+suffering from ovarian cancer disease. At this moment i am about to
+end the race like this because the illness has gotten to a very bad
+stage, without any family members and no child. I hope that you will
+not expose or betray this trust and confidence that I am about to
+entrust to you for the mutual benefit of the orphans and the less
+privileged ones. I have some funds I inherited from my late husband,
+the sum of ($11.000.000 Eleven million dollars.) deposited in the
+Bank.  Having known my present health status, I decided to entrust
+this fund to you believing that you will utilize it the way i am going
+to instruct herein.
 
-> > @@ -1989,20 +1986,41 @@ static const struct soc_device_attribute ravb_delay_mode_quirk_match[] = {
-> >   };
-> >
-> >   /* Set tx and rx clock internal delay modes */
-> > -static void ravb_parse_delay_mode(struct net_device *ndev)
-> > +static void ravb_parse_delay_mode(struct device_node *np, struct net_device *ndev)
-> >   {
-> >       struct ravb_private *priv = netdev_priv(ndev);
-> > +     bool explicit_delay = false;
-> > +     u32 delay;
-> > +
-> > +     if (!of_property_read_u32(np, "rx-internal-delay-ps", &delay)) {
-> > +             /* Valid values are 0 and 1800, according to DT bindings */
-> > +             priv->rxcidm = !!delay;
-> > +             explicit_delay = true;
-> > +     }
-> > +     if (!of_property_read_u32(np, "tx-internal-delay-ps", &delay)) {
-> > +             /* Valid values are 0 and 2000, according to DT bindings */
-> > +             priv->txcidm = !!delay;
-> > +             explicit_delay = true;
-> > +     }
-> There are helper functions for this
->
-> s32 phy_get_internal_delay(struct phy_device *phydev, struct device
-> *dev, const int *delay_values, int size, bool is_rx)
+Therefore I need you to assist me and reclaim this money and use it
+for Charity works, for orphanages and giving justice and help to the
+poor, needy and to promote the words of God and the effort that the
+house of God will be maintained says The Lord." Jeremiah 22:15-16.=E2=80=9C
 
-That helper operates on the PHY device, not on the MAC device.
-Cfr. what I stated in the cover letter:
+It will be my great pleasure to compensate you with 35 % percent of
+the total money for your personal use, 5 % percent for any expenses
+that may occur during the international transfer process while 60% of
+the money will go to the charity project.
 
-    This can be considered the MAC counterpart of commit 9150069bf5fc0e86
-    ("dt-bindings: net: Add tx and rx internal delays"), which applies to
-    the PHY.  Note that unlike commit 92252eec913b2dd5 ("net: phy: Add a
-    helper to return the index for of the internal delay"), no helpers are
-    provided to parse the DT properties, as so far there is a single user
-    only, which supports only zero or a single fixed value.  Of course such
-    helpers can be added later, when the need arises, or when deemed useful
-    otherwise.
+All I require from you is sincerity and the ability to complete God's
+task without any failure. It will be my pleasure to see that the bank
+has finally released and transferred the fund into your bank account
+therein your country even before I die here in the hospital, because
+of my present health status everything needs to be processed rapidly
+as soon as possible. I am waiting for your immediate reply, if only
+you are interested for further details of the transaction and
+execution of this charitable project.
 
-Gr{oetje,eeting}s,
-
-                        Geert
-
--- 
-Geert Uytterhoeven -- There's lots of Linux beyond ia32 -- geert@linux-m68k.org
-
-In personal conversations with technical people, I call myself a hacker. But
-when I'm talking to journalists I just say "programmer" or something like that.
-                                -- Linus Torvalds
+Best Regards your friend Mrs.
+Donna Louise McInnes.
