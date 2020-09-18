@@ -2,119 +2,111 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from vger.kernel.org (vger.kernel.org [23.128.96.18])
-	by mail.lfdr.de (Postfix) with ESMTP id E949527019D
-	for <lists+devicetree@lfdr.de>; Fri, 18 Sep 2020 18:08:06 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTP id 43D3B270225
+	for <lists+devicetree@lfdr.de>; Fri, 18 Sep 2020 18:30:09 +0200 (CEST)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S1726247AbgIRQIF (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Fri, 18 Sep 2020 12:08:05 -0400
-Received: from mail.kernel.org ([198.145.29.99]:55374 "EHLO mail.kernel.org"
-        rhost-flags-OK-OK-OK-OK) by vger.kernel.org with ESMTP
-        id S1725955AbgIRQIF (ORCPT <rfc822;devicetree@vger.kernel.org>);
-        Fri, 18 Sep 2020 12:08:05 -0400
-Received: from mail-ot1-f51.google.com (mail-ot1-f51.google.com [209.85.210.51])
-        (using TLSv1.2 with cipher ECDHE-RSA-AES128-GCM-SHA256 (128/128 bits))
-        (No client certificate requested)
-        by mail.kernel.org (Postfix) with ESMTPSA id 06D37238E6;
-        Fri, 18 Sep 2020 16:08:04 +0000 (UTC)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=kernel.org;
-        s=default; t=1600445284;
-        bh=HsD1zmlNgcDp2ntiGGXDt1Iu4ADx6rxNh/Bto2esBP8=;
-        h=References:In-Reply-To:From:Date:Subject:To:Cc:From;
-        b=emUrEqNiAaIypaaqR0DFyojY3bKTuLzedv4LJNpN6r92gOZux9m/t+i1gDj1JpGUw
-         XdzfnJhSce31jn8yRunVP1TffGoAH3jyT3yCKqPfFryCodyr5Ku1NvsvKOnpWwHFs+
-         9mXeIHyvZEiaP3nGp2V20W14pf9i4HBfMJMoBQV8=
-Received: by mail-ot1-f51.google.com with SMTP id u25so5877282otq.6;
-        Fri, 18 Sep 2020 09:08:04 -0700 (PDT)
-X-Gm-Message-State: AOAM533VSNj/ijoXeEHV4diRaslxHgYQJaDG1LQjeSCoSjFU+0cEtVnv
-        oXZfNFot6kvZII9E/Dc75CcNNHuM3pyBL6RUNA==
-X-Google-Smtp-Source: ABdhPJwgdQQ94kk1CAJVTaLgyAzK5jSLiZzPbGFE5cSpTlp+14Bb87D1OUAiLGeIZ3x+kwKNZ39GOoJ1D5VzhOMWVEw=
-X-Received: by 2002:a05:6830:1008:: with SMTP id a8mr21705872otp.107.1600445283255;
- Fri, 18 Sep 2020 09:08:03 -0700 (PDT)
+        id S1726540AbgIRQ3y (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Fri, 18 Sep 2020 12:29:54 -0400
+Received: from lindbergh.monkeyblade.net ([23.128.96.19]:46252 "EHLO
+        lindbergh.monkeyblade.net" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
+        with ESMTP id S1726473AbgIRQ3j (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Fri, 18 Sep 2020 12:29:39 -0400
+Received: from mail-wm1-x341.google.com (mail-wm1-x341.google.com [IPv6:2a00:1450:4864:20::341])
+        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id AD2B7C0613CE;
+        Fri, 18 Sep 2020 09:29:38 -0700 (PDT)
+Received: by mail-wm1-x341.google.com with SMTP id x23so5889499wmi.3;
+        Fri, 18 Sep 2020 09:29:38 -0700 (PDT)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+        d=gmail.com; s=20161025;
+        h=from:to:cc:subject:date:message-id:in-reply-to:references
+         :mime-version:content-transfer-encoding;
+        bh=+ALrwdNETU2MxK86SGthSKgE8MUMcPyrI0lP0CVqjQI=;
+        b=Il95zl7ds9a5Wa/+A3ecWvYzrSZ+BLTqfj6ec6fYPbvqhhdmJVYxEZzqRc9s9v/yP2
+         4m4R4HC+r9fa7HBll/1tev5GP4Bjq/AaAPYaGzfbpTCEF7ibb/gsMgFbIbQ/WBJcC5ee
+         woI+46IAtNgGvB/Nj6BfLGomZmU5ngVz+pqPO02a1iVbRydvRydQqCj7Jby1G6R3yCb1
+         /WScm3GI19p5i0BhBzU7+4GN6PDp9B8Rm1iEcS6qckXfU6hf621shoGLV2zYv/gfIqS9
+         w3YMCAa/ZdDbPiPz957p3OFF83IzcNHRrAWKezqElxGFg5UDXiYgO3LlVaZ7iudwLXkO
+         MfvQ==
+X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+        d=1e100.net; s=20161025;
+        h=x-gm-message-state:from:to:cc:subject:date:message-id:in-reply-to
+         :references:mime-version:content-transfer-encoding;
+        bh=+ALrwdNETU2MxK86SGthSKgE8MUMcPyrI0lP0CVqjQI=;
+        b=XbxGB2ilTCyB3uYiEGJLXI4UoavwEA7TvQMlfWhdXqw4/HPJY6YVPHFkgufJJzGqWl
+         2RX8PcHLWVqz4sG+jDUnjO/MCkWIInCbVyt0jXDiu/Fe3EarHpp89QRECdjshpMcTyJ7
+         5UTdgdFZtAhTjFlewRVNKQyibarpa1OamiGXZpCMuSoTAOXFvr2JkUWCWSnIxQ5VK5zw
+         dJcO82a8RIoAGEQHP56jldXyI7INXZ1y5Q7ESIZLOX1IH86b+pTKPRWLLeefz8Ec9nBK
+         caFgMDwdCixiVGZMSPBH8uj+Qhax2D2RRkqe9beNFQjWjgiGDxLzfd6iZFTrum6j2s2l
+         I0lA==
+X-Gm-Message-State: AOAM530AVTw5fcErBJ7pXzJHyFeUzr/3AZt8EGtCx4W+LkgTeKfW7oDW
+        dRvXc/vhZl9qqdGnpHJ3fiY=
+X-Google-Smtp-Source: ABdhPJwhMLFx/NFsWruwmp6xyVAv5jlnAK8e/0Ui5smBeskjIRpqc6rufsaW1nM9w8xzSUglIbmcnQ==
+X-Received: by 2002:a7b:cc8f:: with SMTP id p15mr16559476wma.18.1600446577309;
+        Fri, 18 Sep 2020 09:29:37 -0700 (PDT)
+Received: from Ansuel-XPS.localdomain (93-39-149-95.ip76.fastwebnet.it. [93.39.149.95])
+        by smtp.googlemail.com with ESMTPSA id b11sm6028921wrt.38.2020.09.18.09.29.34
+        (version=TLS1_3 cipher=TLS_AES_256_GCM_SHA384 bits=256/256);
+        Fri, 18 Sep 2020 09:29:36 -0700 (PDT)
+From:   Ansuel Smith <ansuelsmth@gmail.com>
+To:     Kalle Valo <kvalo@codeaurora.org>
+Cc:     Ansuel Smith <ansuelsmth@gmail.com>,
+        "David S. Miller" <davem@davemloft.net>,
+        Jakub Kicinski <kuba@kernel.org>,
+        Rob Herring <robh+dt@kernel.org>,
+        linux-wireless@vger.kernel.org, netdev@vger.kernel.org,
+        devicetree@vger.kernel.org, linux-kernel@vger.kernel.org,
+        ath10k@lists.infradead.org
+Subject: [PATCH 2/2] dt: bindings: ath10k: Document qcom,ath10k-pre-calibration-data-mtd
+Date:   Fri, 18 Sep 2020 18:29:28 +0200
+Message-Id: <20200918162928.14335-2-ansuelsmth@gmail.com>
+X-Mailer: git-send-email 2.27.0
+In-Reply-To: <20200918162928.14335-1-ansuelsmth@gmail.com>
+References: <20200918162928.14335-1-ansuelsmth@gmail.com>
 MIME-Version: 1.0
-References: <20200905080920.13396-1-yong.wu@mediatek.com> <20200905080920.13396-2-yong.wu@mediatek.com>
- <20200914232204.GA457962@bogus> <1600148980.25043.11.camel@mhfsdcap03>
-In-Reply-To: <1600148980.25043.11.camel@mhfsdcap03>
-From:   Rob Herring <robh@kernel.org>
-Date:   Fri, 18 Sep 2020 10:07:51 -0600
-X-Gmail-Original-Message-ID: <CAL_JsqKj+-_vvZfoLiJ-ox255cFaAD4SPmrk2qCusGWAs-b+XQ@mail.gmail.com>
-Message-ID: <CAL_JsqKj+-_vvZfoLiJ-ox255cFaAD4SPmrk2qCusGWAs-b+XQ@mail.gmail.com>
-Subject: Re: [PATCH v2 01/23] dt-bindings: iommu: mediatek: Convert IOMMU to
- DT schema
-To:     Yong Wu <yong.wu@mediatek.com>
-Cc:     Joerg Roedel <joro@8bytes.org>,
-        Matthias Brugger <matthias.bgg@gmail.com>,
-        Robin Murphy <robin.murphy@arm.com>,
-        Will Deacon <will@kernel.org>,
-        Evan Green <evgreen@chromium.org>,
-        Tomasz Figa <tfiga@google.com>,
-        "moderated list:ARM/Mediatek SoC support" 
-        <linux-mediatek@lists.infradead.org>,
-        srv_heupstream <srv_heupstream@mediatek.com>,
-        devicetree@vger.kernel.org,
-        "linux-kernel@vger.kernel.org" <linux-kernel@vger.kernel.org>,
-        linux-arm-kernel <linux-arm-kernel@lists.infradead.org>,
-        Linux IOMMU <iommu@lists.linux-foundation.org>,
-        Youlin Pei <youlin.pei@mediatek.com>,
-        Nicolas Boichat <drinkcat@chromium.org>,
-        Anan Sun <anan.sun@mediatek.com>,
-        Chao Hao <chao.hao@mediatek.com>,
-        Ming-Fan Chen <ming-fan.chen@mediatek.com>
-Content-Type: text/plain; charset="UTF-8"
+Content-Transfer-Encoding: 8bit
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-On Mon, Sep 14, 2020 at 11:51 PM Yong Wu <yong.wu@mediatek.com> wrote:
->
-> On Mon, 2020-09-14 at 17:22 -0600, Rob Herring wrote:
-> > On Sat, Sep 05, 2020 at 04:08:58PM +0800, Yong Wu wrote:
-> > > Convert MediaTek IOMMU to DT schema.
-> > >
-> > > Signed-off-by: Yong Wu <yong.wu@mediatek.com>
-> > > ---
->
-> [...]
->
-> > > +properties:
-> > > +  compatible:
-> > > +    enum:
-> > > +      - mediatek,mt2701-m4u #mt2701 generation one HW
-> > > +      - mediatek,mt2712-m4u #mt2712 generation two HW
-> > > +      - mediatek,mt6779-m4u #mt6779 generation two HW
-> > > +      - mediatek,mt7623-m4u, mediatek,mt2701-m4u #mt7623 generation one HW
-> >
-> > This is not right.
-> >
-> > items:
-> >   - const: mediatek,mt7623-m4u
-> >   - const: mediatek,mt2701-m4u
-> >
-> > And that has to be under a 'oneOf' with the rest of this.
->
-> Thanks for the review. Is this OK?
->
->   compatible:
->     oneOf:
->       - const: mediatek,mt2701-m4u # mt2701 generation one HW
->       - const: mediatek,mt2712-m4u # mt2712 generation two HW
->       - const: mediatek,mt6779-m4u # mt6779 generation two HW
->       - const: mediatek,mt8173-m4u # mt8173 generation two HW
->       - const: mediatek,mt8183-m4u # mt8183 generation two HW
->       - const: mediatek,mt8192-m4u # mt8192 generation two HW
+Document use of qcom,ath10k-pre-calibration-data-mtd bindings used to
+define from where the driver will load the pre-cal data in the defined
+mtd partition.
 
-It is correct, but I prefer all these to be a single enum. So 'oneOf'
-would have 2 entries.
+Signed-off-by: Ansuel Smith <ansuelsmth@gmail.com>
+---
+ .../devicetree/bindings/net/wireless/qcom,ath10k.txt | 12 +++++++++---
+ 1 file changed, 9 insertions(+), 3 deletions(-)
 
->       - description: mt7623 generation one HW
->         items:
->           - const: mediatek,mt7623-m4u
->           - const: mediatek,mt2701-m4u
->
-> >
-> > > +      - mediatek,mt8173-m4u #mt8173 generation two HW
-> > > +      - mediatek,mt8183-m4u #mt8183 generation two HW
-> > > +
-> > > +  reg:
-> > > +    maxItems: 1
->
-> [snip]
+diff --git a/Documentation/devicetree/bindings/net/wireless/qcom,ath10k.txt b/Documentation/devicetree/bindings/net/wireless/qcom,ath10k.txt
+index b61c2d5a0..568364243 100644
+--- a/Documentation/devicetree/bindings/net/wireless/qcom,ath10k.txt
++++ b/Documentation/devicetree/bindings/net/wireless/qcom,ath10k.txt
+@@ -15,9 +15,9 @@ and also uses most of the properties defined in this doc (except
+ "qcom,ath10k-calibration-data"). It uses "qcom,ath10k-pre-calibration-data"
+ to carry pre calibration data.
+ 
+-In general, entry "qcom,ath10k-pre-calibration-data" and
+-"qcom,ath10k-calibration-data" conflict with each other and only one
+-can be provided per device.
++In general, entry "qcom,ath10k-pre-calibration-data",
++"qcom,ath10k-calibration-data-mtd" and "qcom,ath10k-calibration-data" conflict with
++each other and only one can be provided per device.
+ 
+ SNOC based devices (i.e. wcn3990) uses compatible string "qcom,wcn3990-wifi".
+ 
+@@ -63,6 +63,12 @@ Optional properties:
+ 				 hw versions.
+ - qcom,ath10k-pre-calibration-data : pre calibration data as an array,
+ 				     the length can vary between hw versions.
++- qcom,ath10k-pre-calibration-data-mtd :
++	Usage: optional
++	Value type: <phandle offset size>
++	Definition: pre calibration data read from mtd partition. Take 3 value, the
++		    mtd to read data from, the offset in the mtd partition and the
++		    size of data to read.
+ - <supply-name>-supply: handle to the regulator device tree node
+ 			   optional "supply-name" are "vdd-0.8-cx-mx",
+ 			   "vdd-1.8-xo", "vdd-1.3-rfa", "vdd-3.3-ch0",
+-- 
+2.27.0
+
