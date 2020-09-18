@@ -2,145 +2,142 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from vger.kernel.org (vger.kernel.org [23.128.96.18])
-	by mail.lfdr.de (Postfix) with ESMTP id B6C96270466
-	for <lists+devicetree@lfdr.de>; Fri, 18 Sep 2020 20:54:33 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTP id BAAC827046B
+	for <lists+devicetree@lfdr.de>; Fri, 18 Sep 2020 20:55:37 +0200 (CEST)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S1726192AbgIRSyc (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Fri, 18 Sep 2020 14:54:32 -0400
-Received: from mail.kernel.org ([198.145.29.99]:55116 "EHLO mail.kernel.org"
-        rhost-flags-OK-OK-OK-OK) by vger.kernel.org with ESMTP
-        id S1726121AbgIRSyc (ORCPT <rfc822;devicetree@vger.kernel.org>);
-        Fri, 18 Sep 2020 14:54:32 -0400
-Received: from mail-oi1-f177.google.com (mail-oi1-f177.google.com [209.85.167.177])
-        (using TLSv1.2 with cipher ECDHE-RSA-AES128-GCM-SHA256 (128/128 bits))
-        (No client certificate requested)
-        by mail.kernel.org (Postfix) with ESMTPSA id BE448221EC
-        for <devicetree@vger.kernel.org>; Fri, 18 Sep 2020 18:54:31 +0000 (UTC)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=kernel.org;
-        s=default; t=1600455271;
-        bh=MTIW355N5770LNhcizrqElTPdd1Z+DWoNy1nh/Pxcl4=;
-        h=References:In-Reply-To:From:Date:Subject:To:Cc:From;
-        b=Z65fD12qWO+Hysp4hF9eF3cwQFnHUIMY4Vq6zn0+8yflj7K8k8Bt/MfTu8ETyyztR
-         +YRRz3NBHOETOtVvwh/zsDArvpdUwaAIB+ldQnWtuvi5eYASPNFCfvsgNyzbUhk7dX
-         DVRni2BN0VMebNzgQJbEf46+Z+cUrR8ze5DBIsBo=
-Received: by mail-oi1-f177.google.com with SMTP id u126so8168639oif.13
-        for <devicetree@vger.kernel.org>; Fri, 18 Sep 2020 11:54:31 -0700 (PDT)
-X-Gm-Message-State: AOAM531uZVdCg+Z01DZvI3PRoyBhwv5RL8Cb9uDMbIZrmthF03EBaB/5
-        +jH0ccmwoboa619DCReS4lbt7kFrtygtM+nX8Q==
-X-Google-Smtp-Source: ABdhPJxa6SLEyrvMzE3y4VWtdB3vRAq+p/PX6Wl96kp1WSzwdGBy4xUeNHXIzNU74uh8nZT63Cc+aFS3bX0n680JWbg=
-X-Received: by 2002:aca:1711:: with SMTP id j17mr10713572oii.152.1600455270993;
- Fri, 18 Sep 2020 11:54:30 -0700 (PDT)
+        id S1726139AbgIRSzh (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Fri, 18 Sep 2020 14:55:37 -0400
+Received: from lindbergh.monkeyblade.net ([23.128.96.19]:40506 "EHLO
+        lindbergh.monkeyblade.net" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
+        with ESMTP id S1726115AbgIRSzh (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Fri, 18 Sep 2020 14:55:37 -0400
+Received: from mail-ej1-x641.google.com (mail-ej1-x641.google.com [IPv6:2a00:1450:4864:20::641])
+        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 96297C0613CE;
+        Fri, 18 Sep 2020 11:55:36 -0700 (PDT)
+Received: by mail-ej1-x641.google.com with SMTP id gr14so9533065ejb.1;
+        Fri, 18 Sep 2020 11:55:36 -0700 (PDT)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+        d=gmail.com; s=20161025;
+        h=subject:to:cc:references:from:message-id:date:user-agent
+         :mime-version:in-reply-to:content-language:content-transfer-encoding;
+        bh=WNM04UE29uKK3wuddyaGzKe7MOJATBofLHcEB320/PU=;
+        b=kYt7LzIcrvpwqmMbdRI4hVqkpGAD7KxGijYF6mTQ3/5ONN12qgv/k5ziY2mQdb+SeP
+         KNPx1Y/ZVFNZmI2GTqg72XriWkAleHufZsVYNQKU7LFwNFeTh9r7QrEhoWMdbnhUL68U
+         4fbU0Ok6TdApx4BqA+EcEgZnceEYdFgHPcF32rDsfai2DnCUvTWcAaPrKrGr90/uqIHx
+         BGX4f8MFP4WS1LoB1WW0pUONRCPzbPcvTk2IVhYdMPt6DTpVwaz5A+DD5RslYI7dusGB
+         GOFbFLZjf5ueQmvs8M/LO9yIW04SriR7hlArvhBLSJxG3ELdHuFMWlYMGKKJSubN+fDw
+         1G6w==
+X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+        d=1e100.net; s=20161025;
+        h=x-gm-message-state:subject:to:cc:references:from:message-id:date
+         :user-agent:mime-version:in-reply-to:content-language
+         :content-transfer-encoding;
+        bh=WNM04UE29uKK3wuddyaGzKe7MOJATBofLHcEB320/PU=;
+        b=AMPtqjHYiqJdh1ZiK1FZ2YWIm3HXd3Q1DxBst6tHFPyFjrPnffzMoHQPOnxr81MUS6
+         etV+UXcQqDsy3xKc4aj8B7mvtYdzA5itk1ERDqQTb/uoS6Fhjqvlx7GwKYTEB+UxeLLP
+         7E/tVX1yeaCpuFi4DinitTWslxa3LDDS0xdsEpp37KoZJ5HjjonGGlhvROyxLrDR2wFU
+         9FnkgMr2u4/g+MR6iN0Qdpf9yGpBXcVmmi0ItH2NaJnLCpuI0C1PA2O2G1v1OzrxZRFK
+         eBDOOznjTsFNjw90tEHEH/jsW1cDxha+Mrxv1ylyryR1vmYSYV4CSJRQIM8SYlbh8bBI
+         noFg==
+X-Gm-Message-State: AOAM532qlEAlUnU16WWnrCvf7O8qB/bAofxfRlwjrm+4NeDlNdOPG3r2
+        4by6/NVoo/O8ya00oTCvCP4=
+X-Google-Smtp-Source: ABdhPJw6Je8MyCyx1IKpKToYRbax3WHJephEh6KetCjzQlLc6TjZ+XzB332+bwWysX/YLfSGb3jebA==
+X-Received: by 2002:a17:906:4d97:: with SMTP id s23mr38635830eju.157.1600455335218;
+        Fri, 18 Sep 2020 11:55:35 -0700 (PDT)
+Received: from debian64.daheim (p5b0d776c.dip0.t-ipconnect.de. [91.13.119.108])
+        by smtp.gmail.com with ESMTPSA id e15sm2728253eds.5.2020.09.18.11.55.34
+        (version=TLS1_3 cipher=TLS_AES_256_GCM_SHA384 bits=256/256);
+        Fri, 18 Sep 2020 11:55:34 -0700 (PDT)
+Received: from localhost.daheim ([127.0.0.1])
+        by debian64.daheim with esmtp (Exim 4.94)
+        (envelope-from <chunkeey@gmail.com>)
+        id 1kJLXZ-002oKt-Oq; Fri, 18 Sep 2020 20:55:30 +0200
+Subject: Re: R: [PATCH 2/2] dt: bindings: ath10k: Document qcom,
+ ath10k-pre-calibration-data-mtd
+To:     ansuelsmth@gmail.com, 'Kalle Valo' <kvalo@codeaurora.org>
+Cc:     devicetree@vger.kernel.org, netdev@vger.kernel.org,
+        linux-wireless@vger.kernel.org, linux-kernel@vger.kernel.org,
+        ath10k@lists.infradead.org,
+        "'David S. Miller'" <davem@davemloft.net>,
+        'Rob Herring' <robh+dt@kernel.org>,
+        'Jakub Kicinski' <kuba@kernel.org>,
+        linux-mtd@lists.infradead.org,
+        'Srinivas Kandagatla' <srinivas.kandagatla@linaro.org>,
+        'Bartosz Golaszewski' <bgolaszewski@baylibre.com>
+References: <20200918162928.14335-1-ansuelsmth@gmail.com>
+ <20200918162928.14335-2-ansuelsmth@gmail.com>
+ <8f886e3d-e2ee-cbf8-a676-28ebed4977aa@gmail.com>
+ <000001d68de9$e7916450$b6b42cf0$@gmail.com>
+From:   Christian Lamparter <chunkeey@gmail.com>
+Message-ID: <ea0efd8f-6dd4-8b46-caeb-d49240882cb2@gmail.com>
+Date:   Fri, 18 Sep 2020 20:55:27 +0200
+User-Agent: Mozilla/5.0 (X11; Linux x86_64; rv:68.0) Gecko/20100101
+ Thunderbird/68.12.0
 MIME-Version: 1.0
-References: <cover.1600357241.git.robin.murphy@arm.com> <3647765303e8936d45a69fe7c1f92b8d1b45de4b.1600452762.git.robin.murphy@arm.com>
-In-Reply-To: <3647765303e8936d45a69fe7c1f92b8d1b45de4b.1600452762.git.robin.murphy@arm.com>
-From:   Rob Herring <robh@kernel.org>
-Date:   Fri, 18 Sep 2020 12:54:19 -0600
-X-Gmail-Original-Message-ID: <CAL_JsqKQUyp4tUrw149yF5PHgz6HQ3_Szy1PD=L8=pzU_vWotw@mail.gmail.com>
-Message-ID: <CAL_JsqKQUyp4tUrw149yF5PHgz6HQ3_Szy1PD=L8=pzU_vWotw@mail.gmail.com>
-Subject: Re: [PATCH v2.1 1/3] perf: Add Arm CMN-600 DT binding
-To:     Robin Murphy <robin.murphy@arm.com>
-Cc:     Will Deacon <will@kernel.org>, Mark Rutland <mark.rutland@arm.com>,
-        linux-arm-kernel <linux-arm-kernel@lists.infradead.org>,
-        devicetree@vger.kernel.org, "Saidi, Ali" <alisaidi@amazon.com>,
-        tsahee@amazon.com, harb@amperecomputing.com,
-        tuanphan@os.amperecomputing.com, james.yang@arm.com,
-        patrik.berglund@arm.com
-Content-Type: text/plain; charset="UTF-8"
+In-Reply-To: <000001d68de9$e7916450$b6b42cf0$@gmail.com>
+Content-Type: text/plain; charset=utf-8; format=flowed
+Content-Language: de-DE
+Content-Transfer-Encoding: 8bit
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-On Fri, Sep 18, 2020 at 12:24 PM Robin Murphy <robin.murphy@arm.com> wrote:
->
-> Document the requirements for the CMN-600 DT binding. The internal
-> topology is almost entirely discoverable by walking a tree of ID
-> registers, but sadly both the starting point for that walk and the
-> exact format of those registers are configuration-dependent and not
-> discoverable from some sane fixed location. Oh well.
->
-> Signed-off-by: Robin Murphy <robin.murphy@arm.com>
-> ---
->
-> fix up $id as well, oops...
->
->  .../devicetree/bindings/perf/arm,cmn.yaml     | 57 +++++++++++++++++++
->  1 file changed, 57 insertions(+)
->  create mode 100644 Documentation/devicetree/bindings/perf/arm,cmn.yaml
+On 2020-09-18 20:31, ansuelsmth@gmail.com wrote:
+> 
+> 
+>> -----Messaggio originale-----
+>> Da: Christian Lamparter <chunkeey@gmail.com>
+>> Inviato: venerdì 18 settembre 2020 18:54
+>> A: Ansuel Smith <ansuelsmth@gmail.com>; Kalle Valo
+>> <kvalo@codeaurora.org>
+>> Cc: devicetree@vger.kernel.org; netdev@vger.kernel.org; linux-
+>> wireless@vger.kernel.org; linux-kernel@vger.kernel.org;
+>> ath10k@lists.infradead.org; David S. Miller <davem@davemloft.net>; Rob
+>> Herring <robh+dt@kernel.org>; Jakub Kicinski <kuba@kernel.org>; linux-
+>> mtd@lists.infradead.org; Srinivas Kandagatla
+>> <srinivas.kandagatla@linaro.org>; Bartosz Golaszewski
+>> <bgolaszewski@baylibre.com>
+>> Oggetto: Re: [PATCH 2/2] dt: bindings: ath10k: Document qcom, ath10k-
+>> pre-calibration-data-mtd
+>>
+>> On 2020-09-18 18:29, Ansuel Smith wrote:
+>>> Document use of qcom,ath10k-pre-calibration-data-mtd bindings used to
+>>> define from where the driver will load the pre-cal data in the defined
+>>> mtd partition.
+>>>
+>>> Signed-off-by: Ansuel Smith <ansuelsmth@gmail.com>
+>>
+>> Q: Doesn't mtd now come with nvmem support from the get go? So
+>> the MAC-Addresses and pre-caldata could be specified as a
+>> nvmem-node in the devicetree? I remember seeing that this was
+>> worked on or was this mtd->nvmem dropped?
+>>
+>> Cheers,
+>> Christian
+> 
+> Sorry a lot for the double email... I think I found what you are talking about.
+> It looks like the code was merged but not the documentation.
+> Will do some test and check if this works.
+> 
+> This should be the related patch.
+> https://patchwork.ozlabs.org/project/linux-mtd/patch/1521933899-362-4-git-send-email-albeu@free.fr/
+> 
 
-Do you expect this to cover more than cmn-600? If not, use the
-compatible string for the file name.
+Well, I guess the version that was merged:
 
->
-> diff --git a/Documentation/devicetree/bindings/perf/arm,cmn.yaml b/Documentation/devicetree/bindings/perf/arm,cmn.yaml
-> new file mode 100644
-> index 000000000000..e4fcc0de25e2
-> --- /dev/null
-> +++ b/Documentation/devicetree/bindings/perf/arm,cmn.yaml
-> @@ -0,0 +1,57 @@
-> +# SPDX-License-Identifier: (GPL-2.0-only OR BSD-2-Clause)
-> +# Copyright 2020 Arm Ltd.
-> +%YAML 1.2
-> +---
-> +$id: http://devicetree.org/schemas/perf/arm,cmn.yaml#
-> +$schema: http://devicetree.org/meta-schemas/core.yaml#
-> +
-> +title: Arm CMN (Coherent Mesh Network) Performance Monitors
-> +
-> +maintainers:
-> +  - Robin Murphy <robin.murphy@arm.com>
-> +
-> +properties:
-> +  compatible:
-> +    const: arm,cmn-600
-> +
-> +  reg:
-> +    items:
-> +      - description: Physical address of the base (PERIPHBASE) and
-> +          size (up to 64MB) of the configuration address space.
-> +
-> +  interrupts:
-> +    minItems: 1
-> +    maxItems: 4
-> +    items:
-> +      - description: Overflow interrupt for DTC0
-> +      - description: Overflow interrupt for DTC1
-> +      - description: Overflow interrupt for DTC2
-> +      - description: Overflow interrupt for DTC3
-> +    description: One interrupt for each DTC domain implemented must
-> +      be specified, in order. DTC0 is always present.
+|commit c4dfa25ab307a277eafa7067cd927fbe4d9be4ba
+|Author: Alban Bedel <albeu@free.fr>
+|Date:   Tue Nov 13 15:01:10 2018 +0100
+|
+|    mtd: add support for reading MTD devices via the nvmem API
+|
+|    Allow drivers that use the nvmem API to read data stored on MTD devices.
+|    For this the mtd devices are registered as read-only NVMEM providers.
+|
+| >>>We don't support device tree systems for now.<<<
 
-What's DTC?
+answers this. Sorry for the noise. Yee, this likely isn't going to work
+as it is still disabled on purpose.
 
-> +
-> +  arm,root-node:
-> +    $ref: /schemas/types.yaml#/definitions/uint32
-> +    description: Offset from PERIPHBASE of the configuration
-> +      discovery node (see TRM definition of ROOTNODEBASE).
-
-You can enforce some alignment:
-
-multipleOf: 0x4000
-
-> +
-> +required:
-> +  - compatible
-> +  - reg
-> +  - interrupts
-> +  - arm,root-node
-> +
-> +additionalProperties: false
-> +
-> +examples:
-> +  - |
-> +    #include <dt-bindings/interrupt-controller/arm-gic.h>
-> +    #include <dt-bindings/interrupt-controller/irq.h>
-> +    pmu@50000000 {
-> +        compatible = "arm,cmn-600";
-> +        reg = <0x50000000 0x4000000>;
-> +        /* 4x2 mesh with one DTC, and CFG node at 0,1,1,0 */
-> +        interrupts = <GIC_SPI 46 IRQ_TYPE_LEVEL_HIGH>;
-> +        arm,root-node = <0x104000>;
-> +    };
-> +...
-> --
-> 2.28.0.dirty
+Regards,
+Christian
