@@ -2,54 +2,89 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from vger.kernel.org (vger.kernel.org [23.128.96.18])
-	by mail.lfdr.de (Postfix) with ESMTP id C225326F82B
-	for <lists+devicetree@lfdr.de>; Fri, 18 Sep 2020 10:29:47 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTP id 2FF2B26F857
+	for <lists+devicetree@lfdr.de>; Fri, 18 Sep 2020 10:31:55 +0200 (CEST)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S1726335AbgIRI3q (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Fri, 18 Sep 2020 04:29:46 -0400
-Received: from lindbergh.monkeyblade.net ([23.128.96.19]:56696 "EHLO
+        id S1726696AbgIRIbb (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Fri, 18 Sep 2020 04:31:31 -0400
+Received: from lindbergh.monkeyblade.net ([23.128.96.19]:56974 "EHLO
         lindbergh.monkeyblade.net" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S1725874AbgIRI3q (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Fri, 18 Sep 2020 04:29:46 -0400
-Received: from theia.8bytes.org (8bytes.org [IPv6:2a01:238:4383:600:38bc:a715:4b6d:a889])
-        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 57BA3C06174A;
-        Fri, 18 Sep 2020 01:29:45 -0700 (PDT)
-Received: by theia.8bytes.org (Postfix, from userid 1000)
-        id 068E5396; Fri, 18 Sep 2020 10:29:42 +0200 (CEST)
-Date:   Fri, 18 Sep 2020 10:29:41 +0200
-From:   Joerg Roedel <joro@8bytes.org>
-To:     Fabien Parent <fparent@baylibre.com>
-Cc:     iommu@lists.linux-foundation.org, devicetree@vger.kernel.org,
-        linux-kernel@vger.kernel.org, linux-arm-kernel@lists.infradead.org,
-        linux-mediatek@lists.infradead.org, robh+dt@kernel.org,
-        matthias.bgg@gmail.com, yong.wu@mediatek.com,
-        miles.chen@mediatek.com, Rob Herring <robh@kernel.org>
-Subject: Re: [PATCH v4 1/3] dt-bindings: iommu: Add binding for MediaTek
- MT8167 IOMMU
-Message-ID: <20200918082941.GE31590@8bytes.org>
-References: <20200907101649.1573134-1-fparent@baylibre.com>
+        with ESMTP id S1726635AbgIRIb3 (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Fri, 18 Sep 2020 04:31:29 -0400
+Received: from mail-pg1-x534.google.com (mail-pg1-x534.google.com [IPv6:2607:f8b0:4864:20::534])
+        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 94207C06174A
+        for <devicetree@vger.kernel.org>; Fri, 18 Sep 2020 01:31:29 -0700 (PDT)
+Received: by mail-pg1-x534.google.com with SMTP id g29so3064645pgl.2
+        for <devicetree@vger.kernel.org>; Fri, 18 Sep 2020 01:31:29 -0700 (PDT)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+        d=chromium.org; s=google;
+        h=from:to:cc:subject:date:message-id:mime-version
+         :content-transfer-encoding;
+        bh=7g3/3HRNTSbPMO+XtztpkLjskFShJd05xhi/n73t2b4=;
+        b=J3Jq/M3KnJTcWXxQ/OmDCmtw9TKMVom83ObJCwfMadXSAPRuA4l/Jm2QB0eR4ojdNs
+         fPQo5XjYTFreg2ms90MvHm4DvWmPFmn67LMERc9pHP3vJ0cCl4LLTglj56jPBMAbtfpq
+         rB5yxrY/2z7aI/sV6h7qHpU7ZHO+WQxXuMtTM=
+X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+        d=1e100.net; s=20161025;
+        h=x-gm-message-state:from:to:cc:subject:date:message-id:mime-version
+         :content-transfer-encoding;
+        bh=7g3/3HRNTSbPMO+XtztpkLjskFShJd05xhi/n73t2b4=;
+        b=SGbLyLyTwQ30kzCxTYztqzLWXp0YCMzs6xGY8+tEzif8EW+peXeix0hDKnoDN7knJI
+         ZonEckMywL3+uSuPpYmSawEkmU6s5D72d/NC5WMkkfKtYEOGUrfOUpQbE1xSTjkyr8LK
+         bkIwQi7vu6xFmd734o82d3kuoi8Eo+6IGisAVsN1mBg/3cgx3lWi/L/eTCnqOxX9j8iP
+         2ADNsdgYBmE1ZlixsIejX+O3nd6XgvsFRCCSaW+d23iVXmtYsqqOOr9uT6AYFFxwQdcG
+         TPsnELIWIZp+AKNYz+qLvfUDlLbI9XXciXmx57WgJOVmGmkp7J66cVNUXgcq0z6gHAt6
+         G4Qg==
+X-Gm-Message-State: AOAM532yzovHWy9Iir2gWCJyfm2th0beROqrDCL1W6xbKTL5vqvNiD/I
+        XVIp058saFRRq8WEmy7EIYTynA==
+X-Google-Smtp-Source: ABdhPJyo5ajOR3Sys6kLV1edGsPyxX+u0k7ZFoM2H/iELQtDmH1lb8MEP86ne6oEPQdxsCBI364jDQ==
+X-Received: by 2002:a62:3585:0:b029:142:2501:3985 with SMTP id c127-20020a6235850000b029014225013985mr15239835pfa.74.1600417889074;
+        Fri, 18 Sep 2020 01:31:29 -0700 (PDT)
+Received: from ikjn-p920.tpe.corp.google.com ([2401:fa00:1:10:f693:9fff:fef4:a8fc])
+        by smtp.gmail.com with ESMTPSA id g206sm2193172pfb.178.2020.09.18.01.31.26
+        (version=TLS1_3 cipher=TLS_AES_256_GCM_SHA384 bits=256/256);
+        Fri, 18 Sep 2020 01:31:28 -0700 (PDT)
+From:   Ikjoon Jang <ikjn@chromium.org>
+To:     Rob Herring <robh+dt@kernel.org>, Mark Brown <broonie@kernel.org>,
+        devicetree@vger.kernel.org, linux-spi@vger.kernel.org,
+        linux-mtd@lists.infradead.org
+Cc:     Ikjoon Jang <ikjn@chromium.org>,
+        Bayi Cheng <bayi.cheng@mediatek.com>,
+        Chuanhong Guo <gch981213@gmail.com>,
+        Matthias Brugger <matthias.bgg@gmail.com>,
+        linux-arm-kernel@lists.infradead.org, linux-kernel@vger.kernel.org,
+        linux-mediatek@lists.infradead.org
+Subject: [PATCH v2 0/5] spi: spi-mtk-nor: Add mt8192 support.
+Date:   Fri, 18 Sep 2020 16:31:18 +0800
+Message-Id: <20200918083124.3921207-1-ikjn@chromium.org>
+X-Mailer: git-send-email 2.28.0.681.g6f77f65b4e-goog
 MIME-Version: 1.0
-Content-Type: text/plain; charset=us-ascii
-Content-Disposition: inline
-In-Reply-To: <20200907101649.1573134-1-fparent@baylibre.com>
-User-Agent: Mutt/1.10.1 (2018-07-13)
+Content-Transfer-Encoding: 8bit
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-On Mon, Sep 07, 2020 at 12:16:47PM +0200, Fabien Parent wrote:
-> This commit adds IOMMU binding documentation and larb port definitions
-> for the MT8167 SoC.
-> 
-> Signed-off-by: Fabien Parent <fparent@baylibre.com>
-> Acked-by: Rob Herring <robh@kernel.org>
-> ---
-> 
-> V4:
-> 	* Added path to mt8167 larb header file
-> 	* Added Honghui Zhang in copyright header
-> V3: Added mt8167-larb-port.h file for iommu port definitions
-> V2: no change
+This patchset adds 36bit dma address and power management
+supports for mt8192-nor.
 
-Applied all, thanks.
+Changes in v2:
+- Add power management support
+- Fix bugs in checking spi memory operation.
+- use dma_alloc_coherent for allocating bounce buffer
+- code cleanups
+
+Ikjoon Jang (5):
+  dt-bindings: spi: add mt8192-nor compatible string
+  spi: spi-mtk-nor: fix mishandled logics in checking SPI memory
+    operation
+  spi: spi-mtk-nor: use dma_alloc_coherent() for bounce buffer
+  spi: spi-mtk-nor: support 36bit dma addressing to mediatek
+  spi: spi-mtk-nor: Add power management support
+
+ .../bindings/spi/mediatek,spi-mtk-nor.yaml    |   1 +
+ drivers/spi/spi-mtk-nor.c                     | 242 ++++++++++++------
+ 2 files changed, 170 insertions(+), 73 deletions(-)
+
+-- 
+2.28.0.681.g6f77f65b4e-goog
 
