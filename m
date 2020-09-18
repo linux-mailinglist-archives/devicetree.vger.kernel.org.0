@@ -2,80 +2,73 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from vger.kernel.org (vger.kernel.org [23.128.96.18])
-	by mail.lfdr.de (Postfix) with ESMTP id 8D08826FBBA
-	for <lists+devicetree@lfdr.de>; Fri, 18 Sep 2020 13:43:27 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTP id BE2B626FBC6
+	for <lists+devicetree@lfdr.de>; Fri, 18 Sep 2020 13:47:37 +0200 (CEST)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S1726139AbgIRLn1 (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Fri, 18 Sep 2020 07:43:27 -0400
-Received: from lindbergh.monkeyblade.net ([23.128.96.19]:58388 "EHLO
-        lindbergh.monkeyblade.net" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S1725882AbgIRLn0 (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Fri, 18 Sep 2020 07:43:26 -0400
-Received: from mail-wr1-x443.google.com (mail-wr1-x443.google.com [IPv6:2a00:1450:4864:20::443])
-        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 641A9C06174A
-        for <devicetree@vger.kernel.org>; Fri, 18 Sep 2020 04:43:26 -0700 (PDT)
-Received: by mail-wr1-x443.google.com with SMTP id c18so5289429wrm.9
-        for <devicetree@vger.kernel.org>; Fri, 18 Sep 2020 04:43:26 -0700 (PDT)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=0x0f.com; s=google;
-        h=mime-version:references:in-reply-to:from:date:message-id:subject:to
-         :cc;
-        bh=K97UnnWaXHCA9mdDf1hIn381oNSULipsH/KozFLAVqE=;
-        b=uC739EFaMMxgDUS+tivWSVZSRcnWkwwN1le4x+on9red0IRY6OpJcxhvoEyYvuyEEA
-         EZwWrQkyj899K4LCzidEowO/8WMKFovDqlu7GcWoUHwU/jBFWSkv7eKIZ7aDA7wHQmmY
-         j6b204iW3JLcjYH+Z3j8TemfHwBsqRCPn6Bxo=
-X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=1e100.net; s=20161025;
-        h=x-gm-message-state:mime-version:references:in-reply-to:from:date
-         :message-id:subject:to:cc;
-        bh=K97UnnWaXHCA9mdDf1hIn381oNSULipsH/KozFLAVqE=;
-        b=jfzi5ogYJ0FGoI1klKCHmcRa1wzfTpkL2ZDnRfcD1tnVO7ECIqW2sA2i8Jt24XUg3S
-         qtJn6G1CMWv3w4hxR19uFs3q4l7qIgFeiCuBTpDP3phX2sOkYSkZYJTRhSDD81nEAJpy
-         w/hqtpb3IbaP+vpOoIS10oQyXKrcfCQJcrZvmWk8yrgdm4N4C3qsPlAJTT9MgToS26On
-         utC/d0IzUo50Az/T1+zcDQRaj87lF7fOej739XJtZDkwRExWgFhzYJGT5GoV1XoLoFjU
-         B2UqfY1iLMng+dcIv0qrcXG1yvJEPkjsDTeOi1sG2AVdT8+eYqDgQFYBdWbJ7WAHciQl
-         Eb6g==
-X-Gm-Message-State: AOAM532Ndi6kDQNWqKjsAQ6FPamAqshgGNY3Ov8DYaoxuP6HghiFds+E
-        iP+0FSxMUuUOAK7r/nohA7GfEX3+k6kOIwsHChyyiA==
-X-Google-Smtp-Source: ABdhPJyG37IWlFiaYOgkRi93n8rgESeSK7ShBbYTA+SEBRmjCBrDgr5XFEa4/+Co4em4AH8lFNVgZhmo+O/RaT8u5V0=
-X-Received: by 2002:adf:e8c3:: with SMTP id k3mr37917462wrn.228.1600429404823;
- Fri, 18 Sep 2020 04:43:24 -0700 (PDT)
+        id S1726154AbgIRLrh (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Fri, 18 Sep 2020 07:47:37 -0400
+Received: from lelv0143.ext.ti.com ([198.47.23.248]:46050 "EHLO
+        lelv0143.ext.ti.com" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
+        with ESMTP id S1726121AbgIRLrh (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Fri, 18 Sep 2020 07:47:37 -0400
+Received: from lelv0266.itg.ti.com ([10.180.67.225])
+        by lelv0143.ext.ti.com (8.15.2/8.15.2) with ESMTP id 08IBlLvI055055;
+        Fri, 18 Sep 2020 06:47:21 -0500
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=ti.com;
+        s=ti-com-17Q1; t=1600429641;
+        bh=r7lWb4Yfy9eEgjb/19AC0jLQoO5CNUwNrKO9yWFpfZw=;
+        h=Subject:To:CC:References:From:Date:In-Reply-To;
+        b=hem+CTSTR2BRTa3mSxtuac+ZR+kz2UsN+cIlw5uOf5d6rClzPd0/XqdRd7TUZzcnv
+         wiPIAhuS+yFakVv8j4MRL5VFK5Bp5qF5yo2oubKt1SOM7bbxrSUkonlF//g8UEcINj
+         +k0ObhLBxAtCae3fPBLfmWwoZ2BC4FOO85MQSfBA=
+Received: from DLEE105.ent.ti.com (dlee105.ent.ti.com [157.170.170.35])
+        by lelv0266.itg.ti.com (8.15.2/8.15.2) with ESMTPS id 08IBlKeM028774
+        (version=TLSv1.2 cipher=AES256-GCM-SHA384 bits=256 verify=FAIL);
+        Fri, 18 Sep 2020 06:47:21 -0500
+Received: from DLEE113.ent.ti.com (157.170.170.24) by DLEE105.ent.ti.com
+ (157.170.170.35) with Microsoft SMTP Server (version=TLS1_2,
+ cipher=TLS_ECDHE_RSA_WITH_AES_128_CBC_SHA256_P256) id 15.1.1979.3; Fri, 18
+ Sep 2020 06:47:20 -0500
+Received: from fllv0039.itg.ti.com (10.64.41.19) by DLEE113.ent.ti.com
+ (157.170.170.24) with Microsoft SMTP Server (version=TLS1_2,
+ cipher=TLS_ECDHE_RSA_WITH_AES_128_CBC_SHA256_P256) id 15.1.1979.3 via
+ Frontend Transport; Fri, 18 Sep 2020 06:47:20 -0500
+Received: from [10.250.35.164] (ileax41-snat.itg.ti.com [10.172.224.153])
+        by fllv0039.itg.ti.com (8.15.2/8.15.2) with ESMTP id 08IBlKPk128830;
+        Fri, 18 Sep 2020 06:47:20 -0500
+Subject: Re: [PATCH leds v2 15/50] leds: lm3697: cosmetic change: use helper
+ variable, reverse christmas tree
+To:     =?UTF-8?Q?Marek_Beh=c3=ban?= <marek.behun@nic.cz>,
+        <linux-leds@vger.kernel.org>
+CC:     Pavel Machek <pavel@ucw.cz>,
+        =?UTF-8?Q?Ond=c5=99ej_Jirman?= <megous@megous.com>,
+        <linux-kernel@vger.kernel.org>, Rob Herring <robh+dt@kernel.org>,
+        <devicetree@vger.kernel.org>
+References: <20200917223338.14164-1-marek.behun@nic.cz>
+ <20200917223338.14164-16-marek.behun@nic.cz>
+From:   Dan Murphy <dmurphy@ti.com>
+Message-ID: <7d91fc92-0b56-afd6-a948-c25be9bfed38@ti.com>
+Date:   Fri, 18 Sep 2020 06:47:20 -0500
+User-Agent: Mozilla/5.0 (X11; Linux x86_64; rv:68.0) Gecko/20100101
+ Thunderbird/68.10.0
 MIME-Version: 1.0
-References: <20200918104949.3260823-1-daniel@0x0f.com> <CAK8P3a0maQhfaerwG4KgFZOrUPwueKOp2+MOeG9C=+8ZNzc2Kg@mail.gmail.com>
-In-Reply-To: <CAK8P3a0maQhfaerwG4KgFZOrUPwueKOp2+MOeG9C=+8ZNzc2Kg@mail.gmail.com>
-From:   Daniel Palmer <daniel@0x0f.com>
-Date:   Fri, 18 Sep 2020 20:43:49 +0900
-Message-ID: <CAFr9PXnQs57acM4GuHVdWxMeArousEjiMPsuUnsATQYjNK4-sA@mail.gmail.com>
-Subject: Re: [PATCH 0/3] ARM: mstar: wire up interrupt controllers
-To:     Arnd Bergmann <arnd@arndb.de>
-Cc:     Linux ARM <linux-arm-kernel@lists.infradead.org>,
-        DTML <devicetree@vger.kernel.org>,
-        Mark-PK Tsai <mark-pk.tsai@mediatek.com>,
-        Marc Zyngier <maz@kernel.org>,
-        "linux-kernel@vger.kernel.org" <linux-kernel@vger.kernel.org>
-Content-Type: text/plain; charset="UTF-8"
+In-Reply-To: <20200917223338.14164-16-marek.behun@nic.cz>
+Content-Type: text/plain; charset="utf-8"; format=flowed
+Content-Transfer-Encoding: 8bit
+Content-Language: en-US
+X-EXCLAIMER-MD-CONFIG: e1e8a2fd-e40a-4ac6-ac9b-f7e9cc9ee180
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-Hi Arnd,
+Marek
 
-On Fri, 18 Sep 2020 at 20:34, Arnd Bergmann <arnd@arndb.de> wrote:
-> Acked-by: Arnd Bergmann <arnd@arndb.de>
+On 9/17/20 5:33 PM, Marek Behún wrote:
+> Use helper variable dev instead of always writing &client->dev, or
+> &priv->client->dev, or even &led->priv->client->dev.
+>
+> With one more line moved reverse christmas tree is also achieved.
 
-Thanks,
+Reviewed-by: Dan Murphy <dmurphy@ti.com>
 
-> Please send these to soc@kernel.org for inclusion.
 
-Ok will do.
-
-> On a different note: I realized too late that the dts files should have been
-> named more consistently when we originally merged them. Can you
-> also add patches to rename the infinity and mercury files to start
-> with "mstar-"?
-
-That makes sense. I will add an extra patch to the series when I send the v2.
-
-Thanks,
-
-Daniel
