@@ -2,125 +2,83 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from vger.kernel.org (vger.kernel.org [23.128.96.18])
-	by mail.lfdr.de (Postfix) with ESMTP id 5D4D22700F9
-	for <lists+devicetree@lfdr.de>; Fri, 18 Sep 2020 17:29:27 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTP id 21861270067
+	for <lists+devicetree@lfdr.de>; Fri, 18 Sep 2020 17:01:50 +0200 (CEST)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S1726367AbgIRP30 (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Fri, 18 Sep 2020 11:29:26 -0400
-Received: from mslow2.mail.gandi.net ([217.70.178.242]:43988 "EHLO
-        mslow2.mail.gandi.net" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S1726174AbgIRP30 (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Fri, 18 Sep 2020 11:29:26 -0400
-Received: from relay10.mail.gandi.net (unknown [217.70.178.230])
-        by mslow2.mail.gandi.net (Postfix) with ESMTP id 665143AF7DB;
-        Fri, 18 Sep 2020 14:25:44 +0000 (UTC)
-Received: from pc-2.home (lfbn-tou-1-1532-46.w90-89.abo.wanadoo.fr [90.89.95.46])
-        (Authenticated sender: maxime.chevallier@bootlin.com)
-        by relay10.mail.gandi.net (Postfix) with ESMTPSA id C88D9240012;
-        Fri, 18 Sep 2020 14:25:19 +0000 (UTC)
-From:   Maxime Chevallier <maxime.chevallier@bootlin.com>
-To:     Mauro Carvalho Chehab <mchehab@kernel.org>,
-        Rob Herring <robh+dt@kernel.org>,
-        Mark Rutland <mark.rutland@arm.com>,
-        Heiko Stuebner <heiko@sntech.de>,
-        Hans Verkuil <hverkuil-cisco@xs4all.nl>,
-        Laurent Pinchart <laurent.pinchart@ideasonboard.com>
-Cc:     Maxime Chevallier <maxime.chevallier@bootlin.com>,
-        linux-media@vger.kernel.org, devicetree@vger.kernel.org,
-        linux-arm-kernel@lists.infradead.org, linux-kernel@vger.kernel.org,
-        Thomas Petazzoni <thomas.petazzoni@bootlin.com>,
-        Miquel Raynal <miquel.raynal@bootlin.com>,
-        Paul Kocialkowski <paul.kocialkowski@bootlin.com>
-Subject: [PATCH 2/3] media: dt-bindings: media: i2c: Add bindings for TW9900
-Date:   Fri, 18 Sep 2020 16:24:21 +0200
-Message-Id: <20200918142422.1086555-3-maxime.chevallier@bootlin.com>
-X-Mailer: git-send-email 2.25.4
-In-Reply-To: <20200918142422.1086555-1-maxime.chevallier@bootlin.com>
-References: <20200918142422.1086555-1-maxime.chevallier@bootlin.com>
+        id S1726168AbgIRPBt (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Fri, 18 Sep 2020 11:01:49 -0400
+Received: from fllv0016.ext.ti.com ([198.47.19.142]:35384 "EHLO
+        fllv0016.ext.ti.com" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
+        with ESMTP id S1725955AbgIRPBt (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Fri, 18 Sep 2020 11:01:49 -0400
+Received: from fllv0034.itg.ti.com ([10.64.40.246])
+        by fllv0016.ext.ti.com (8.15.2/8.15.2) with ESMTP id 08IF1bfp000552;
+        Fri, 18 Sep 2020 10:01:37 -0500
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=ti.com;
+        s=ti-com-17Q1; t=1600441297;
+        bh=cculzV7ksjHj/TDw+mWoaOkcAbeMDQU2mQqAXhup+Wk=;
+        h=From:To:CC:Subject:Date;
+        b=wZ1CuwlwZS5MFwkWuz5yfO3YnIPnBrrZ8NGD6hEdru+QUvIXcLbiJqsW4bUWZTxFE
+         SMeD8tBJ5/DDKn/f08/vGFZbUPD9buFQStFwW8wGLS+ogypeL2ftLL22pv6tE1nla0
+         j65CFlJc4x8LLWgY/l9h3KLqwoMeR2cDfN2aISIw=
+Received: from DLEE113.ent.ti.com (dlee113.ent.ti.com [157.170.170.24])
+        by fllv0034.itg.ti.com (8.15.2/8.15.2) with ESMTPS id 08IF1bvo099600
+        (version=TLSv1.2 cipher=AES256-GCM-SHA384 bits=256 verify=FAIL);
+        Fri, 18 Sep 2020 10:01:37 -0500
+Received: from DLEE101.ent.ti.com (157.170.170.31) by DLEE113.ent.ti.com
+ (157.170.170.24) with Microsoft SMTP Server (version=TLS1_2,
+ cipher=TLS_ECDHE_RSA_WITH_AES_128_CBC_SHA256_P256) id 15.1.1979.3; Fri, 18
+ Sep 2020 10:01:37 -0500
+Received: from fllv0040.itg.ti.com (10.64.41.20) by DLEE101.ent.ti.com
+ (157.170.170.31) with Microsoft SMTP Server (version=TLS1_2,
+ cipher=TLS_ECDHE_RSA_WITH_AES_128_CBC_SHA256_P256) id 15.1.1979.3 via
+ Frontend Transport; Fri, 18 Sep 2020 10:01:37 -0500
+Received: from localhost (ileax41-snat.itg.ti.com [10.172.224.153])
+        by fllv0040.itg.ti.com (8.15.2/8.15.2) with ESMTP id 08IF1bNI023971;
+        Fri, 18 Sep 2020 10:01:37 -0500
+From:   Dan Murphy <dmurphy@ti.com>
+To:     <lgirdwood@gmail.com>, <broonie@kernel.org>, <tiwai@suse.com>,
+        <robh+dt@kernel.org>
+CC:     <devicetree@vger.kernel.org>, <alsa-devel@alsa-project.org>,
+        <linux-kernel@vger.kernel.org>, Dan Murphy <dmurphy@ti.com>
+Subject: [PATCH 1/2] dt-bindings: tas2562: Add TAS2564 to binding
+Date:   Fri, 18 Sep 2020 10:01:29 -0500
+Message-ID: <20200918150130.21015-1-dmurphy@ti.com>
+X-Mailer: git-send-email 2.27.0
 MIME-Version: 1.0
 Content-Transfer-Encoding: 8bit
+Content-Type: text/plain
+X-EXCLAIMER-MD-CONFIG: e1e8a2fd-e40a-4ac6-ac9b-f7e9cc9ee180
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-The Techwell TW9900 is a video decoder supporting multiple input
-standards, such as PAL, NTSC and SECAM, and outputs a BT.656 video
-signal.
+Add the TAS2564 compatible and data sheet link to the binding.
 
-It's designed to be low-power, posesses some features such as a
-programmable comb-filter, and automatic input standard detection.
-
-Signed-off-by: Maxime Chevallier <maxime.chevallier@bootlin.com>
+Signed-off-by: Dan Murphy <dmurphy@ti.com>
 ---
- .../devicetree/bindings/media/i2c/tw9900.yaml | 59 +++++++++++++++++++
- 1 file changed, 59 insertions(+)
- create mode 100644 Documentation/devicetree/bindings/media/i2c/tw9900.yaml
+ Documentation/devicetree/bindings/sound/tas2562.yaml | 2 ++
+ 1 file changed, 2 insertions(+)
 
-diff --git a/Documentation/devicetree/bindings/media/i2c/tw9900.yaml b/Documentation/devicetree/bindings/media/i2c/tw9900.yaml
-new file mode 100644
-index 000000000000..fdc2c35875aa
---- /dev/null
-+++ b/Documentation/devicetree/bindings/media/i2c/tw9900.yaml
-@@ -0,0 +1,59 @@
-+# SPDX-License-Identifier: (GPL-2.0-only OR BSD-2-Clause)
-+%YAML 1.2
-+---
-+$id: http://devicetree.org/schemas/media/i2c/tw9900.yaml#
-+$schema: http://devicetree.org/meta-schemas/core.yaml#
-+
-+title: Techwell TW9900 NTSC/PAL/SECAM video decoder
-+
-+maintainers:
-+  - Maxime Chevallier <maxime.chevallier@bootlin.com>
-+
-+description:
-+  The tw9900 is a multi-standard video decoder, supporting NTSC, PAL and SECAM
-+  standards with auto-detection features.
-+
-+properties:
-+  compatible:
-+    items:
-+      - enum:
-+          - techwell,tw9900
-+
-+  reg:
-+    maxItems: 1
-+
-+  vdd-supply:
-+    description: VDD power supply
-+
-+  port:
-+    type: object
-+    description:
-+      A node containing a single endpoint as doucmented in
-+      Documentation/devicetree/bindings/media/video-interfaces.txt
-+
-+additionalProperties: false
-+
-+required:
-+  - compatible
-+  - reg
-+
-+examples:
-+  - |
-+    i2c {
-+            #address-cells = <1>;
-+            #size-cells = <0>;
-+
-+            tw9900: tw9900@44 {
-+                    compatible = "techwell,tw9900";
-+                    reg = <0x44>;
-+
-+                    vdd-supply = <&tw9900_supply>;
-+                    reset-gpio = <&gpio2 RK_PB5 GPIO_ACTIVE_LOW>;
-+
-+                    port {
-+                            tw9900_out: endpoint {
-+                                    remote-endpoint = <&vip_in>;
-+                            };
-+                    };
-+            };
-+    };
+diff --git a/Documentation/devicetree/bindings/sound/tas2562.yaml b/Documentation/devicetree/bindings/sound/tas2562.yaml
+index c3b7e19a0d44..d3ceda356aaa 100644
+--- a/Documentation/devicetree/bindings/sound/tas2562.yaml
++++ b/Documentation/devicetree/bindings/sound/tas2562.yaml
+@@ -19,12 +19,14 @@ description: |
+   Specifications about the audio amplifier can be found at:
+     https://www.ti.com/lit/gpn/tas2562
+     https://www.ti.com/lit/gpn/tas2563
++    https://www.ti.com/lit/gpn/tas2564
+ 
+ properties:
+   compatible:
+     enum:
+       - ti,tas2562
+       - ti,tas2563
++      - ti,tas2564
+ 
+   reg:
+     maxItems: 1
 -- 
-2.25.4
+2.28.0
 
