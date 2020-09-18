@@ -2,196 +2,170 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from vger.kernel.org (vger.kernel.org [23.128.96.18])
-	by mail.lfdr.de (Postfix) with ESMTP id E67E62700CF
-	for <lists+devicetree@lfdr.de>; Fri, 18 Sep 2020 17:20:19 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTP id 2815F270115
+	for <lists+devicetree@lfdr.de>; Fri, 18 Sep 2020 17:34:04 +0200 (CEST)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S1726285AbgIRPUP (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Fri, 18 Sep 2020 11:20:15 -0400
-Received: from lindbergh.monkeyblade.net ([23.128.96.19]:35614 "EHLO
-        lindbergh.monkeyblade.net" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S1725955AbgIRPUO (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Fri, 18 Sep 2020 11:20:14 -0400
-Received: from mail-oi1-x242.google.com (mail-oi1-x242.google.com [IPv6:2607:f8b0:4864:20::242])
-        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 874EDC0613CE
-        for <devicetree@vger.kernel.org>; Fri, 18 Sep 2020 08:20:14 -0700 (PDT)
-Received: by mail-oi1-x242.google.com with SMTP id u126so7392420oif.13
-        for <devicetree@vger.kernel.org>; Fri, 18 Sep 2020 08:20:14 -0700 (PDT)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=linaro.org; s=google;
-        h=date:from:to:cc:subject:message-id:references:mime-version
-         :content-disposition:in-reply-to;
-        bh=nJCca1Gpz/qntKkkfuhUuqPAs19Va9nMUQHb7GNjxCg=;
-        b=G0JQIiIhW4dKr073ygInqGVY5kUDcU8THtTlLrQPIHIrlwNpPWOojEhsaxVflOlROF
-         op5FB8vXuuCwPRKf04D2j486HVcIKrDbw8hIHvi5bY9XQ7EdeGncm2txHPe7puzA+6BI
-         e5Kzk6rZYBabdhTK6VTqSwzW93dXXdjwSBjgg4nMP5i/04aZ3UolON6FZVlCwfdYo7je
-         nS8ZXdGOCcdWuYQOhTLx3Fzy7Kf/21SMXSGUmIzrnsKTDZXvydeXQugMbSZWDk3aOkuo
-         cXf1w/3YUSVHVnAI+652d4V/vbz4rMEFnK1pqeNFrVtmRAj1kwXOWKOESAR3s+vqrEKM
-         VQpg==
-X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=1e100.net; s=20161025;
-        h=x-gm-message-state:date:from:to:cc:subject:message-id:references
-         :mime-version:content-disposition:in-reply-to;
-        bh=nJCca1Gpz/qntKkkfuhUuqPAs19Va9nMUQHb7GNjxCg=;
-        b=tk7NGckcJzGZEP7IfNmX9BGkNmo4cxx95wx/6lpFwGOGFtfUvG6Nu6HYudsNB7IWZa
-         NnuHOAm8k1o17oib55TKEGWG8XvNxAUtvHQYcjjPdK8kryjLebn7b6ozmDOfH0/2A0N5
-         eB23jRu403iEL/nMVAuEpdHOHDescM44McMvILowJb4lAbEULZISjzMlSBk+SHgXNqtB
-         46etWYNmFsl0kwHYWR6o89zJ2DSShQ5tv0NYSj93YjLK1MTFIZf8dbET+tAsDxns780G
-         9apPeEdHb/AL6GqL4xoLw8bj16voiIXLO6T27Yi02u5wawXG5BmX4g25zQfIbgUaWQBC
-         ynaA==
-X-Gm-Message-State: AOAM533Paib+7fjEDxqiMVL9sk3yHWu8BPvDtnofU/24oLajyijTnZ4Q
-        pM786C5oKtX5swpsOos9cn4Nbw==
-X-Google-Smtp-Source: ABdhPJwxwD0KlJLfqNq5E0fE74Vl81bSoHj+6hUtjJSAc48pb3MwGBc1WyGkrk3bQn9hMvBPv9EyCw==
-X-Received: by 2002:aca:5903:: with SMTP id n3mr10026260oib.159.1600442412373;
-        Fri, 18 Sep 2020 08:20:12 -0700 (PDT)
-Received: from yoga ([2605:6000:e5cb:c100:7cad:6eff:fec8:37e4])
-        by smtp.gmail.com with ESMTPSA id l3sm3306211oom.18.2020.09.18.08.20.11
-        (version=TLS1_3 cipher=TLS_AES_256_GCM_SHA384 bits=256/256);
-        Fri, 18 Sep 2020 08:20:11 -0700 (PDT)
-Date:   Fri, 18 Sep 2020 10:20:09 -0500
-From:   Bjorn Andersson <bjorn.andersson@linaro.org>
-To:     Srinivasa Rao Mandadapu <srivasam@codeaurora.org>
-Cc:     agross@kernel.org, robh+dt@kernel.org,
-        linux-arm-msm@vger.kernel.org, devicetree@vger.kernel.org,
-        linux-kernel@vger.kernel.org, rohitkr@codeaurora.org,
-        srinivas.kandagatla@linaro.org, Ajit Pandey <ajitp@codeaurora.org>,
-        Cheng-Yi Chiang <cychiang@chromium.org>,
-        V Sujith Kumar Reddy <vsujithk@codeaurora.org>
-Subject: Re: [PATCH v3] arm64: dts: qcom: sc7180: Add lpass cpu node for I2S
- driver
-Message-ID: <20200918152009.GQ1893@yoga>
-References: <1600435026-1876-1-git-send-email-srivasam@codeaurora.org>
+        id S1726115AbgIRPeD (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Fri, 18 Sep 2020 11:34:03 -0400
+Received: from mail-eopbgr140052.outbound.protection.outlook.com ([40.107.14.52]:25304
+        "EHLO EUR01-VE1-obe.outbound.protection.outlook.com"
+        rhost-flags-OK-OK-OK-FAIL) by vger.kernel.org with ESMTP
+        id S1726044AbgIRPeC (ORCPT <rfc822;devicetree@vger.kernel.org>);
+        Fri, 18 Sep 2020 11:34:02 -0400
+ARC-Seal: i=1; a=rsa-sha256; s=arcselector9901; d=microsoft.com; cv=none;
+ b=f1H7fzvO1Mnx13cOmbkOWMEp6tpcK4MZymWFaIcyDXxzhpF5NFzsKSfNuKyws8j210QmUcc6M4NwHJXUY4iwMn2eyigsUhlovLONbngtLVavNlOrFpCFYJzzMAqOZEY/48JKI3ZoMlvyRGpLYvY6VzwvC5lz0oXuCOEpR2HVXhU8eya64oFhC8b5uXFm8+3eO7UqP4gwdOyyghchkNRuXPzf+sJxxycs5eoYceGtvnZUazMLXdNDoy1x4W7aCiTn3P7xh0ZIY/Mi5YWYC4faBYcxLymGnPprLhnw0ziK5gXJ3zT9cK9XqJnL6fZSFSqfbXwee13Fro0QSCbES6uKsA==
+ARC-Message-Signature: i=1; a=rsa-sha256; c=relaxed/relaxed; d=microsoft.com;
+ s=arcselector9901;
+ h=From:Date:Subject:Message-ID:Content-Type:MIME-Version:X-MS-Exchange-SenderADCheck;
+ bh=Xqk7SkV9FlCBqzb4cpkt8Puj3Xb7hkJWzlBLEcq6Jfo=;
+ b=XeritZKIJn/KRyYa9TfYieUjLYb1PVjqHMOYUwv4vT616X5EprH4nSnggf/tzPLk3KpWaia4PofjjC+c0L3zKEuwU56nY/zrJxZIfP7N32zXcGfYI4nRR90QblR0RZjaYcQW9aR1LrENh0CEB1PoQwKVPgJUh4qSrFQC7kfNf3B3HqOJ0UMMv0ZHF4WVbwB5d+X6i1ZLVb78cdLYa7QGGYuZupT5rwwvGKbzML5YPOOg+li7oNEQCNp/xxgYl19DRI9hxSrnt9RndgvHAI6lzDEJok6lajERbWmSl2c3vn2S0Ctx+9lJ12x6NFb8QGSz2WAlIrs3LHl4+ztI9NALqQ==
+ARC-Authentication-Results: i=1; mx.microsoft.com 1; spf=pass
+ smtp.mailfrom=oss.nxp.com; dmarc=pass action=none header.from=oss.nxp.com;
+ dkim=pass header.d=oss.nxp.com; arc=none
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=NXP1.onmicrosoft.com;
+ s=selector2-NXP1-onmicrosoft-com;
+ h=From:Date:Subject:Message-ID:Content-Type:MIME-Version:X-MS-Exchange-SenderADCheck;
+ bh=Xqk7SkV9FlCBqzb4cpkt8Puj3Xb7hkJWzlBLEcq6Jfo=;
+ b=fDdTnKL5fqW0Bw1Y9gg7Rw6BKFRwDT58n78ErD2K/hGfIbE6nVavBMf4UnxRrASFALNhdCg0u2egw7ddTF6L0cIMQQhsgKZ2E6UesV0aWRTkseKsqLzD4WiVwH0VbB1UvUcfMBUPgGvzZU3/9kDnFRg6nrMhPIykRziCXGXjJDY=
+Received: from VI1PR0401MB2272.eurprd04.prod.outlook.com
+ (2603:10a6:800:31::12) by VI1PR04MB5359.eurprd04.prod.outlook.com
+ (2603:10a6:803:d1::28) with Microsoft SMTP Server (version=TLS1_2,
+ cipher=TLS_ECDHE_RSA_WITH_AES_256_GCM_SHA384) id 15.20.3391.14; Fri, 18 Sep
+ 2020 15:33:56 +0000
+Received: from VI1PR0401MB2272.eurprd04.prod.outlook.com
+ ([fe80::e00e:ad13:489b:8000]) by VI1PR0401MB2272.eurprd04.prod.outlook.com
+ ([fe80::e00e:ad13:489b:8000%6]) with mapi id 15.20.3391.011; Fri, 18 Sep 2020
+ 15:33:56 +0000
+From:   "Viorel Suman (OSS)" <viorel.suman@oss.nxp.com>
+To:     Mark Brown <broonie@kernel.org>,
+        "Viorel Suman (OSS)" <viorel.suman@oss.nxp.com>
+CC:     Liam Girdwood <lgirdwood@gmail.com>,
+        Rob Herring <robh+dt@kernel.org>,
+        Jaroslav Kysela <perex@perex.cz>,
+        Takashi Iwai <tiwai@suse.com>, Timur Tabi <timur@kernel.org>,
+        Nicolin Chen <nicoleotsuka@gmail.com>,
+        Xiubo Li <Xiubo.Lee@gmail.com>,
+        Fabio Estevam <festevam@gmail.com>,
+        Shengjiu Wang <shengjiu.wang@gmail.com>,
+        Philipp Zabel <p.zabel@pengutronix.de>,
+        Matthias Schiffer <matthias.schiffer@ew.tq-group.com>,
+        Cosmin-Gabriel Samoila <cosmin.samoila@nxp.com>,
+        "alsa-devel@alsa-project.org" <alsa-devel@alsa-project.org>,
+        "devicetree@vger.kernel.org" <devicetree@vger.kernel.org>,
+        "linux-kernel@vger.kernel.org" <linux-kernel@vger.kernel.org>,
+        "linuxppc-dev@lists.ozlabs.org" <linuxppc-dev@lists.ozlabs.org>,
+        dl-linux-imx <linux-imx@nxp.com>,
+        Viorel Suman <viorel.suman@gmail.com>
+Subject: RE: [PATCH 1/2] ASoC: fsl_xcvr: Add XCVR ASoC CPU DAI driver
+Thread-Topic: [PATCH 1/2] ASoC: fsl_xcvr: Add XCVR ASoC CPU DAI driver
+Thread-Index: AQHWjApN0GGys4KDOUW4RdRuflK20als26gAgAGlwnCAAATfAIAAA9/g
+Date:   Fri, 18 Sep 2020 15:33:56 +0000
+Message-ID: <VI1PR0401MB2272D66A58EDE0E5C0C8F32D923F0@VI1PR0401MB2272.eurprd04.prod.outlook.com>
+References: <1600247876-8013-1-git-send-email-viorel.suman@oss.nxp.com>
+ <1600247876-8013-2-git-send-email-viorel.suman@oss.nxp.com>
+ <20200917135306.GF4755@sirena.org.uk>
+ <VI1PR0401MB22726CC099099547A0502C27923F0@VI1PR0401MB2272.eurprd04.prod.outlook.com>
+ <20200918152004.GJ5703@sirena.org.uk>
+In-Reply-To: <20200918152004.GJ5703@sirena.org.uk>
+Accept-Language: en-US
+Content-Language: en-US
+X-MS-Has-Attach: 
+X-MS-TNEF-Correlator: 
+authentication-results: kernel.org; dkim=none (message not signed)
+ header.d=none;kernel.org; dmarc=none action=none header.from=oss.nxp.com;
+x-ms-exchange-messagesentrepresentingtype: 1
+x-originating-ip: [86.127.156.60]
+x-ms-publictraffictype: Email
+x-ms-office365-filtering-ht: Tenant
+x-ms-office365-filtering-correlation-id: 818b1fec-2111-48e9-b3b2-08d85be841de
+x-ms-traffictypediagnostic: VI1PR04MB5359:
+x-ms-exchange-sharedmailbox-routingagent-processed: True
+x-ms-exchange-transport-forked: True
+x-microsoft-antispam-prvs: <VI1PR04MB5359BE2F51190012598500E4D33F0@VI1PR04MB5359.eurprd04.prod.outlook.com>
+x-ms-oob-tlc-oobclassifiers: OLM:10000;
+x-ms-exchange-senderadcheck: 1
+x-microsoft-antispam: BCL:0;
+x-microsoft-antispam-message-info: lzzAop5mmEHd8+9dqvcyPeePvKsAfjVUC4MNiAmv1P403OXSg0EAVr75Ash1puAHV/4hFKfocbdHbrOLSe4fg2EV5ePzEknD9h2x9emIDVWDhk4rjY8S9eag+fXVaNrN6YdZnR3hMfitWRJvh6jCauuapvjwVViBBPc5ywrZqamqRf+4dEfSDw2RG/6YOMaxuWfoKG+DYwpDuerA7Y4ZJZazyMX2c5kTn5SeNz5dOArrMb0Y0GrqiA6xEkaMN7nK9sABHVVAY2lmFSd5FDjnhnCmnqKMAqcX5EK+UJGaWANn7rls2vey/Q1w4s8XwjB8pTcuANlZSkGXUvgv8T/lp10Ksa6fO+0XL+5A9mksvVK0vwxXYgzkzjhXmulbK/eN
+x-forefront-antispam-report: CIP:255.255.255.255;CTRY:;LANG:en;SCL:1;SRV:;IPV:NLI;SFV:NSPM;H:VI1PR0401MB2272.eurprd04.prod.outlook.com;PTR:;CAT:NONE;SFS:(4636009)(346002)(136003)(39860400002)(366004)(376002)(396003)(66446008)(64756008)(4326008)(7696005)(186003)(8676002)(86362001)(33656002)(9686003)(316002)(478600001)(26005)(55016002)(6506007)(110136005)(5660300002)(54906003)(66556008)(66476007)(66946007)(7416002)(52536014)(83380400001)(71200400001)(2906002)(8936002)(76116006);DIR:OUT;SFP:1101;
+x-ms-exchange-antispam-messagedata: 7nwAk6G7SsNmKvlMDEK8tPk7burm/+bfodLUtWn9LMU/dFuQovCsX1ilX6hUHRcrvSKG7tr0ndh7Z3qdlZhaVVtjmHeaN/+alg6R67Iwa0hO19zwOhtzIfIEiQIRsdy0CY5pTZ7dwby+dgkeu97nBCI1FSFULZvLUs79cqcP7jH4LsVASjm5MiiHjrSCRnqfLbiGS7A1psv1gpZP81+NgspdAMKo6Crk48IcNAbG2a/6qR6PyB8a1ddwLCD07yjnUMQ1Bx3teIz0HFTRn/DS4Lq9mJzNcnyuYFkslv/FB8TIzhFWdMic2POszo39YU/7hpTe8tuArtD02wsJ+QLTW6fy94ZIe5OI13p9D2TD/+fHurE5qODLsTkn9E2AafaKqnXo7l4kCPqq8UpG1+884LVM8Kep44TyhqF8XRJCP9GATN3hr4HnARxn7NuFYV18goMVhf44cZi7ItPqHZstmYtIAexLs9ysXUXBgdqY8w/XMs8D8OacBBXCqCS2A0BB5fkoVoWOeedSxUGQGJP0VE4UgSibOYiy5Hd5Ri8OTuLoEcNbVKqG86n4XcNOJk3N9hF/0tiY/Oiz2TtEnuaVqwHQiwgPWvvIB1C3HrAkurePdY4Njz4V0wjNxdK1Jyljpth73srUAyLuouEmaRIY9g==
+Content-Type: text/plain; charset="us-ascii"
+Content-Transfer-Encoding: quoted-printable
 MIME-Version: 1.0
-Content-Type: text/plain; charset=us-ascii
-Content-Disposition: inline
-In-Reply-To: <1600435026-1876-1-git-send-email-srivasam@codeaurora.org>
+X-OriginatorOrg: oss.nxp.com
+X-MS-Exchange-CrossTenant-AuthAs: Internal
+X-MS-Exchange-CrossTenant-AuthSource: VI1PR0401MB2272.eurprd04.prod.outlook.com
+X-MS-Exchange-CrossTenant-Network-Message-Id: 818b1fec-2111-48e9-b3b2-08d85be841de
+X-MS-Exchange-CrossTenant-originalarrivaltime: 18 Sep 2020 15:33:56.6890
+ (UTC)
+X-MS-Exchange-CrossTenant-fromentityheader: Hosted
+X-MS-Exchange-CrossTenant-id: 686ea1d3-bc2b-4c6f-a92c-d99c5c301635
+X-MS-Exchange-CrossTenant-mailboxtype: HOSTED
+X-MS-Exchange-CrossTenant-userprincipalname: OI+7A30krELdCsKyekaIO6Gc8FTJP3ZizEuqo+HSn61P3xlr11d/XTVP9kKEisx1wOYRPYaOsHysr9+aB5TnRQ==
+X-MS-Exchange-Transport-CrossTenantHeadersStamped: VI1PR04MB5359
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-On Fri 18 Sep 08:17 CDT 2020, Srinivasa Rao Mandadapu wrote:
+> On Fri, Sep 18, 2020 at 03:02:39PM +0000, Viorel Suman (OSS) wrote:
+>=20
+> Please fix your mail client to word wrap within paragraphs at something
+> substantially less than 80 columns.  Doing this makes your messages much =
+easier
+> to read and reply to.
+>=20
 
-> From: Ajit Pandey <ajitp@codeaurora.org>
-> 
-> Add the I2S controller node to sc7180 dtsi.
-> Add pinmux for primary and secondary I2S.
-> 
-> Signed-off-by: Ajit Pandey <ajitp@codeaurora.org>
-> Signed-off-by: Cheng-Yi Chiang <cychiang@chromium.org>
-> Signed-off-by: Srinivasa Rao Mandadapu <srivasam@codeaurora.org>
-> Signed-off-by: V Sujith Kumar Reddy <vsujithk@codeaurora.org>
+My bad, will do.
 
-Each s-o-b is a statement that this patch conforms to the license
-requirements of the Linux project. As such it describes the history of
-how this patch reached this point; starting with Ajit writing the patch,
-Cheng-Yi handling it, then you and finally Sujith.
+> > > > +	regmap_read(regmap, FSL_XCVR_EXT_ISR, &isr);
+> > > > +	regmap_write(regmap, FSL_XCVR_EXT_ISR_CLR, isr);
+>=20
+> > > This will unconditionally clear any interrupts, even those we don't
+> > > understand - it might be better to only clear bits that are
+> > > supported so the IRQ core can complain if there's something unexpecte=
+d
+> showing up.
+>=20
+> > The ARM core registers itself in "fsl_xcvr_prepare" (the code below) ju=
+st for a
+> subset of all supported interrupts:
+> > =3D=3D=3D=3D=3D
+> > 	ret =3D regmap_update_bits(xcvr->regmap, FSL_XCVR_EXT_IER0,
+> > 				 FSL_XCVR_IRQ_EARC_ALL,
+> FSL_XCVR_IRQ_EARC_ALL); =3D=3D=3D=3D=3D
+> > FSL_XCVR_IRQ_EARC_ALL - this mask represents all the interrupts we are
+> > interested in and we handle in interrupt handler, But this is just a su=
+bset of all
+> interrupts the M0+ core is able to assert. Not very intuitive, I think I =
+need to
+> reword it somehow.
+>=20
+> That's not the issue, the issue is that if we get into the ISR we just ac=
+k all the bits
+> that are flagged by the hardware regardless of if we actually handled the=
+m.  This
+> won't work if there are ever systems that share the interrupt and it work=
+s
+> against safety/debugging features that the interrupt has in case somethin=
+g goes
+> wrong and we get spurious interrupts.
+>=20
 
-You sending the patch would indicate that you handled it last, so your
-certification should be last (and if Sujith handled the patch inbetween
-you should be listed twice).
+Thank you for explanation, will fix it in next version.
 
-Please read https://www.kernel.org/doc/html/latest/process/submitting-patches.html?highlight=certificate#sign-your-work-the-developer-s-certificate-of-origin
+> > > > +	if (isr & FSL_XCVR_IRQ_FIFO_UOFL_ERR)
+> > > > +		dev_dbg(dev, "RX/TX FIFO full/empty\n");
+>=20
+> > > Should this be dev_err()?
+>=20
+> > The interrupt may be asserted right before DMA starts to fill the TX FI=
+FO if I
+> recall correctly.
+> > I've added it just to debug the IP behavior, will check and change it t=
+o err it in
+> next version if it is the case.
+>=20
+> If it does come up normally then a comment or something to explain why th=
+is
+> happens normally would probably be good.
 
-Regards,
-Bjorn
-
-> ---
-> Changes since v1:
->    -- Updated I2S pin control nodes  with grouping common pin controls
->    -- Updated lpass_cpu node with proper control names
-> Changes since v2:
->    -- The plement of lpass_cpu node is changed
->  
->  arch/arm64/boot/dts/qcom/sc7180.dtsi | 69 ++++++++++++++++++++++++++++++++++++
->  1 file changed, 69 insertions(+)
-> 
-> diff --git a/arch/arm64/boot/dts/qcom/sc7180.dtsi b/arch/arm64/boot/dts/qcom/sc7180.dtsi
-> index 6678f1e..59c39cf 100644
-> --- a/arch/arm64/boot/dts/qcom/sc7180.dtsi
-> +++ b/arch/arm64/boot/dts/qcom/sc7180.dtsi
-> @@ -1742,6 +1742,45 @@
->  				};
->  			};
->  
-> +			sec_mi2s_active: sec-mi2s-active {
-> +				pinmux {
-> +					pins = "gpio49", "gpio50", "gpio51";
-> +					function = "mi2s_1";
-> +				};
-> +
-> +				pinconf {
-> +					pins = "gpio49", "gpio50", "gpio51";;
-> +					drive-strength = <8>;
-> +					bias-pull-up;
-> +				};
-> +			};
-> +
-> +			pri_mi2s_active: pri-mi2s-active {
-> +				pinmux {
-> +					pins = "gpio53", "gpio54", "gpio55", "gpio56";
-> +					function = "mi2s_0";
-> +				};
-> +
-> +				pinconf {
-> +					pins = "gpio53", "gpio54", "gpio55", "gpio56";
-> +					drive-strength = <8>;
-> +					bias-pull-up;
-> +				};
-> +			};
-> +
-> +			pri_mi2s_mclk_active: pri-mi2s-mclk-active {
-> +				pinmux {
-> +					pins = "gpio57";
-> +					function = "lpass_ext";
-> +				};
-> +
-> +				pinconf {
-> +					pins = "gpio57";
-> +					drive-strength = <8>;
-> +					bias-pull-up;
-> +				};
-> +			};
-> +
->  			sdc1_on: sdc1-on {
->  				pinconf-clk {
->  					pins = "sdc1_clk";
-> @@ -3389,6 +3428,36 @@
->  			#power-domain-cells = <1>;
->  		};
->  
-> +		lpass_cpu: lpass@62f00000 {
-> +			compatible = "qcom,sc7180-lpass-cpu";
-> +
-> +			reg = <0 0x62f00000 0 0x29000>;
-> +			reg-names = "lpass-lpaif";
-> +
-> +			iommus = <&apps_smmu 0x1020 0>;
-> +
-> +			power-domains = <&lpass_hm LPASS_CORE_HM_GDSCR>;
-> +
-> +			clocks = <&gcc GCC_LPASS_CFG_NOC_SWAY_CLK>,
-> +				 <&lpasscc LPASS_AUDIO_CORE_CORE_CLK>,
-> +				 <&lpasscc LPASS_AUDIO_CORE_EXT_MCLK0_CLK>,
-> +				 <&lpasscc LPASS_AUDIO_CORE_SYSNOC_MPORT_CORE_CLK>,
-> +				 <&lpasscc LPASS_AUDIO_CORE_LPAIF_PRI_IBIT_CLK>,
-> +				 <&lpasscc LPASS_AUDIO_CORE_LPAIF_SEC_IBIT_CLK>;
-> +
-> +			clock-names = "pcnoc-sway-clk", "audio-core",
-> +					"mclk0", "pcnoc-mport-clk",
-> +					"mi2s-bit-clk0", "mi2s-bit-clk1";
-> +
-> +
-> +			#sound-dai-cells = <1>;
-> +			#address-cells = <1>;
-> +			#size-cells = <0>;
-> +
-> +			interrupts = <GIC_SPI 160 IRQ_TYPE_LEVEL_HIGH>;
-> +			interrupt-names = "lpass-irq-lpaif";
-> +		};
-> +
->  		lpass_hm: clock-controller@63000000 {
->  			compatible = "qcom,sc7180-lpasshm";
->  			reg = <0 0x63000000 0 0x28>;
-> -- 
-> Qualcomm India Private Limited, on behalf of Qualcomm Innovation Center, Inc.,
-> is a member of Code Aurora Forum, a Linux Foundation Collaborative Project.
-> 
+Sure, ok.
