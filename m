@@ -2,132 +2,132 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from vger.kernel.org (vger.kernel.org [23.128.96.18])
-	by mail.lfdr.de (Postfix) with ESMTP id B022226FB57
-	for <lists+devicetree@lfdr.de>; Fri, 18 Sep 2020 13:23:00 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTP id 7841A26FB99
+	for <lists+devicetree@lfdr.de>; Fri, 18 Sep 2020 13:36:15 +0200 (CEST)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S1726396AbgIRLW7 (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Fri, 18 Sep 2020 07:22:59 -0400
-Received: from szxga07-in.huawei.com ([45.249.212.35]:34122 "EHLO huawei.com"
-        rhost-flags-OK-OK-OK-FAIL) by vger.kernel.org with ESMTP
-        id S1725900AbgIRLW7 (ORCPT <rfc822;devicetree@vger.kernel.org>);
-        Fri, 18 Sep 2020 07:22:59 -0400
-Received: from DGGEMS405-HUB.china.huawei.com (unknown [172.30.72.58])
-        by Forcepoint Email with ESMTP id 2939F63E3C0AF96437F3;
-        Fri, 18 Sep 2020 19:22:57 +0800 (CST)
-Received: from thunder-town.china.huawei.com (10.174.177.253) by
- DGGEMS405-HUB.china.huawei.com (10.3.19.205) with Microsoft SMTP Server id
- 14.3.487.0; Fri, 18 Sep 2020 19:22:50 +0800
-From:   Zhen Lei <thunder.leizhen@huawei.com>
-To:     Thomas Gleixner <tglx@linutronix.de>,
-        Jason Cooper <jason@lakedaemon.net>,
-        Marc Zyngier <maz@kernel.org>,
-        Rob Herring <robh+dt@kernel.org>,
-        "Alexey Brodkin" <abrodkin@synopsys.com>,
-        Vineet Gupta <vgupta@synopsys.com>,
-        devicetree <devicetree@vger.kernel.org>,
-        linux-snps-arc <linux-snps-arc@lists.infradead.org>,
-        linux-kernel <linux-kernel@vger.kernel.org>
-CC:     Zhen Lei <thunder.leizhen@huawei.com>,
-        Sebastian Hesselbarth <sebastian.hesselbarth@gmail.com>,
-        Haoyu Lv <lvhaoyu@huawei.com>, Libin <huawei.libin@huawei.com>,
-        Kefeng Wang <wangkefeng.wang@huawei.com>
-Subject: [PATCH v5 6/6] ARC: [dts] fix the errors detected by dtbs_check
-Date:   Fri, 18 Sep 2020 19:22:02 +0800
-Message-ID: <20200918112202.3418-7-thunder.leizhen@huawei.com>
-X-Mailer: git-send-email 2.26.0.windows.1
-In-Reply-To: <20200918112202.3418-1-thunder.leizhen@huawei.com>
-References: <20200918112202.3418-1-thunder.leizhen@huawei.com>
+        id S1726168AbgIRLgO (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Fri, 18 Sep 2020 07:36:14 -0400
+Received: from smtp2.axis.com ([195.60.68.18]:30465 "EHLO smtp2.axis.com"
+        rhost-flags-OK-OK-OK-OK) by vger.kernel.org with ESMTP
+        id S1726064AbgIRLgO (ORCPT <rfc822;devicetree@vger.kernel.org>);
+        Fri, 18 Sep 2020 07:36:14 -0400
+X-Greylist: delayed 517 seconds by postgrey-1.27 at vger.kernel.org; Fri, 18 Sep 2020 07:36:12 EDT
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+  d=axis.com; l=2871; q=dns/txt; s=axis-central1;
+  t=1600428972; x=1631964972;
+  h=from:to:cc:subject:date:message-id:mime-version:
+   content-transfer-encoding;
+  bh=nf9xyKjOJLYLLbRB2/HBWzS8DPHd3qUqka4CHMmC6qo=;
+  b=X4VXgjEiujxNxFwJv9Sxwja0KyL0M1Ut/fW2OVwX06HH8WVHcCe2Iwth
+   ogajjwGpBtlsaajgmFVl7xGJw4MBjHkoPq4s6R8xzrgVUYVUWhWsBETlG
+   W5TtNfFvHr/KHoSAQg+wjXZ//tKMAeeuArTuj9LvY7xXrCe83jb1Kcl+g
+   QV8xxkWovhqAqWTUBHbCbgi1z+7UWhYv/6uJTEvBKCijaFmhgc8ea2fyp
+   dsTvFnez4Wp4xZ/fWwrXeyK6QF8Xv3xoymOLO/a8KLsDTVyLlSS7TkmHY
+   boHpLVPAmKKSTt27pWAO70VMS8p78PF4ZsPXLtY8wF/tVk267jlxQBqN6
+   w==;
+IronPort-SDR: Wm68cUyutQ/yZufGg2RwvdgbyWG4H6Us9tO92e0nTRFhcL5G7fU2xmjltFz4EL6lutkaTb21Mx
+ akPkFIUJ/kazqwkvHURjIqsrnL/0XAxDhDhahUzXf6ARYEw/DLK1faCn1aBQsvduNODlhk0/fv
+ R2fTtMY4d4AYk2nymM6/apcdM3weTefCZm9YfEUuOQ0UB9cEcH0tR9wdyjLgBWi+5xb0tfkW3g
+ 2uMIDBAGbqx7i++lzvnX0nveQUcLUDaAWWiZZUxRH/AT8Y7oBRS2Nc+DNkbXUvs/FFnSOjGXHV
+ 9t4=
+X-IronPort-AV: E=Sophos;i="5.77,274,1596492000"; 
+   d="scan'208";a="12636759"
+From:   Camel Guo <camel.guo@axis.com>
+To:     <robh+dt@kernel.org>, <lgirdwood@gmail.com>, <broonie@kernel.org>,
+        <tiwai@suse.com>, <dmurphy@ti.com>
+CC:     <devicetree@vger.kernel.org>, <alsa-devel@alsa-project.org>,
+        <linux-kernel@vger.kernel.org>, <kernel@axis.com>,
+        Camel Guo <camelg@axis.com>
+Subject: [PATCH v4 1/2] dt-bindings: tlv320adcx140: Add GPIO config and drive config
+Date:   Fri, 18 Sep 2020 13:26:21 +0200
+Message-ID: <20200918112622.17262-1-camel.guo@axis.com>
+X-Mailer: git-send-email 2.20.1
 MIME-Version: 1.0
-Content-Transfer-Encoding: 7BIT
-Content-Type:   text/plain; charset=US-ASCII
-X-Originating-IP: [10.174.177.253]
-X-CFilter-Loop: Reflected
+Content-Transfer-Encoding: 8bit
+Content-Type: text/plain
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-xxx/arc/boot/dts/axs101.dt.yaml: dw-apb-ictl@e0012000: $nodename:0: \
-'dw-apb-ictl@e0012000' does not match '^interrupt-controller(@[0-9a-f,]+)*$'
-From schema: xxx/interrupt-controller/snps,dw-apb-ictl.yaml
+From: Camel Guo <camelg@axis.com>
 
-The node name of the interrupt controller must start with
-"interrupt-controller" instead of "dw-apb-ictl".
+Add properties for configuring the General Purpose Input Output (GPIO).
+There are 2 settings for GPIO, configuration and the output drive type.
 
-Signed-off-by: Zhen Lei <thunder.leizhen@huawei.com>
+Signed-off-by: Camel Guo <camelg@axis.com>
+Acked-by: Dan Murphy <dmurphy@ti.com>
 ---
- arch/arc/boot/dts/axc001.dtsi         | 2 +-
- arch/arc/boot/dts/axc003.dtsi         | 2 +-
- arch/arc/boot/dts/axc003_idu.dtsi     | 2 +-
- arch/arc/boot/dts/vdk_axc003.dtsi     | 2 +-
- arch/arc/boot/dts/vdk_axc003_idu.dtsi | 2 +-
- 5 files changed, 5 insertions(+), 5 deletions(-)
+ v4:
+  - Rebase
+ v3: 
+  - Fix typo
+  - Add Acked-By from Dan 
 
-diff --git a/arch/arc/boot/dts/axc001.dtsi b/arch/arc/boot/dts/axc001.dtsi
-index 79ec27c043c1da7..2a151607b08057c 100644
---- a/arch/arc/boot/dts/axc001.dtsi
-+++ b/arch/arc/boot/dts/axc001.dtsi
-@@ -91,7 +91,7 @@
- 	 * avoid duplicating the MB dtsi file given that IRQ from
- 	 * this intc to cpu intc are different for axs101 and axs103
- 	 */
--	mb_intc: dw-apb-ictl@e0012000 {
-+	mb_intc: interrupt-controller@e0012000 {
- 		#interrupt-cells = <1>;
- 		compatible = "snps,dw-apb-ictl";
- 		reg = < 0x0 0xe0012000 0x0 0x200 >;
-diff --git a/arch/arc/boot/dts/axc003.dtsi b/arch/arc/boot/dts/axc003.dtsi
-index ac8e1b463a70992..cd1edcf4f95efe6 100644
---- a/arch/arc/boot/dts/axc003.dtsi
-+++ b/arch/arc/boot/dts/axc003.dtsi
-@@ -129,7 +129,7 @@
- 	 * avoid duplicating the MB dtsi file given that IRQ from
- 	 * this intc to cpu intc are different for axs101 and axs103
- 	 */
--	mb_intc: dw-apb-ictl@e0012000 {
-+	mb_intc: interrupt-controller@e0012000 {
- 		#interrupt-cells = <1>;
- 		compatible = "snps,dw-apb-ictl";
- 		reg = < 0x0 0xe0012000 0x0 0x200 >;
-diff --git a/arch/arc/boot/dts/axc003_idu.dtsi b/arch/arc/boot/dts/axc003_idu.dtsi
-index 9da21e7fd246f9f..70779386ca7963a 100644
---- a/arch/arc/boot/dts/axc003_idu.dtsi
-+++ b/arch/arc/boot/dts/axc003_idu.dtsi
-@@ -135,7 +135,7 @@
- 	 * avoid duplicating the MB dtsi file given that IRQ from
- 	 * this intc to cpu intc are different for axs101 and axs103
- 	 */
--	mb_intc: dw-apb-ictl@e0012000 {
-+	mb_intc: interrupt-controller@e0012000 {
- 		#interrupt-cells = <1>;
- 		compatible = "snps,dw-apb-ictl";
- 		reg = < 0x0 0xe0012000 0x0 0x200 >;
-diff --git a/arch/arc/boot/dts/vdk_axc003.dtsi b/arch/arc/boot/dts/vdk_axc003.dtsi
-index f8be7ba8dad499c..c21d0eb07bf6737 100644
---- a/arch/arc/boot/dts/vdk_axc003.dtsi
-+++ b/arch/arc/boot/dts/vdk_axc003.dtsi
-@@ -46,7 +46,7 @@
+ .../bindings/sound/tlv320adcx140.yaml         | 44 +++++++++++++++++++
+ 1 file changed, 44 insertions(+)
+
+diff --git a/Documentation/devicetree/bindings/sound/tlv320adcx140.yaml b/Documentation/devicetree/bindings/sound/tlv320adcx140.yaml
+index e79f8d1891e4..798b366fe6d1 100644
+--- a/Documentation/devicetree/bindings/sound/tlv320adcx140.yaml
++++ b/Documentation/devicetree/bindings/sound/tlv320adcx140.yaml
+@@ -140,6 +140,49 @@ patternProperties:
+        4d - Drive weak low and active high
+        5d - Drive Hi-Z and active high
  
- 	};
- 
--	mb_intc: dw-apb-ictl@e0012000 {
-+	mb_intc: interrupt-controller@e0012000 {
- 		#interrupt-cells = <1>;
- 		compatible = "snps,dw-apb-ictl";
- 		reg = < 0xe0012000 0x200 >;
-diff --git a/arch/arc/boot/dts/vdk_axc003_idu.dtsi b/arch/arc/boot/dts/vdk_axc003_idu.dtsi
-index 0afa3e53a4e3932..4d348853ac7c5dc 100644
---- a/arch/arc/boot/dts/vdk_axc003_idu.dtsi
-+++ b/arch/arc/boot/dts/vdk_axc003_idu.dtsi
-@@ -54,7 +54,7 @@
- 
- 	};
- 
--	mb_intc: dw-apb-ictl@e0012000 {
-+	mb_intc: interrupt-controller@e0012000 {
- 		#interrupt-cells = <1>;
- 		compatible = "snps,dw-apb-ictl";
- 		reg = < 0xe0012000 0x200 >;
++  ti,gpio-config:
++    description: |
++       Defines the configuration and output drive for the General Purpose
++       Input and Output pin (GPIO1). Its value is a pair, the first value is for
++       the configuration type and the second value is for the output drive
++       type. The array is defined as <GPIO1_CFG GPIO1_DRV>
++
++       configuration for the GPIO pin can be one of the following:
++       0 - disabled
++       1 - GPIO1 is configured as a general-purpose output (GPO)
++       2 - (default) GPIO1 is configured as a device interrupt output (IRQ)
++       3 - GPIO1 is configured as a secondary ASI output (SDOUT2)
++       4 - GPIO1 is configured as a PDM clock output (PDMCLK)
++       8 - GPIO1 is configured as an input to control when MICBIAS turns on or
++           off (MICBIAS_EN)
++       9 - GPIO1 is configured as a general-purpose input (GPI)
++       10 - GPIO1 is configured as a master clock input (MCLK)
++       11 - GPIO1 is configured as an ASI input for daisy-chain (SDIN)
++       12 - GPIO1 is configured as a PDM data input for channel 1 and channel 2
++            (PDMDIN1)
++       13 - GPIO1 is configured as a PDM data input for channel 3 and channel 4
++            (PDMDIN2)
++       14 - GPIO1 is configured as a PDM data input for channel 5 and channel 6
++            (PDMDIN3)
++       15 - GPIO1 is configured as a PDM data input for channel 7 and channel 8
++            (PDMDIN4)
++
++       output drive type for the GPIO pin can be one of the following:
++       0 - Hi-Z output
++       1 - Drive active low and active high
++       2 - (default) Drive active low and weak high
++       3 - Drive active low and Hi-Z
++       4 - Drive weak low and active high
++       5 - Drive Hi-Z and active high
++
++    allOf:
++      - $ref: /schemas/types.yaml#/definitions/uint32-array
++      - minItems: 2
++        maxItems: 2
++        items:
++          maximum: 15
++        default: [2, 2]
++
+ required:
+   - compatible
+   - reg
+@@ -156,6 +199,7 @@ examples:
+         ti,mic-bias-source = <6>;
+         ti,pdm-edge-select = <0 1 0 1>;
+         ti,gpi-config = <4 5 6 7>;
++        ti,gpio-config = <10 2>;
+         ti,gpo-config-1 = <0 0>;
+         ti,gpo-config-2 = <0 0>;
+         reset-gpios = <&gpio0 14 GPIO_ACTIVE_HIGH>;
 -- 
-1.8.3
-
+2.20.1
 
