@@ -2,213 +2,95 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from vger.kernel.org (vger.kernel.org [23.128.96.18])
-	by mail.lfdr.de (Postfix) with ESMTP id 8AD5A26FA83
-	for <lists+devicetree@lfdr.de>; Fri, 18 Sep 2020 12:23:11 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTP id 9E5C126FA41
+	for <lists+devicetree@lfdr.de>; Fri, 18 Sep 2020 12:17:34 +0200 (CEST)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S1726149AbgIRKXL (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Fri, 18 Sep 2020 06:23:11 -0400
-Received: from mail-bn8nam12on2126.outbound.protection.outlook.com ([40.107.237.126]:36129
-        "EHLO NAM12-BN8-obe.outbound.protection.outlook.com"
+        id S1725941AbgIRKRd (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Fri, 18 Sep 2020 06:17:33 -0400
+Received: from mail-eopbgr20075.outbound.protection.outlook.com ([40.107.2.75]:21221
+        "EHLO EUR02-VE1-obe.outbound.protection.outlook.com"
         rhost-flags-OK-OK-OK-FAIL) by vger.kernel.org with ESMTP
-        id S1725882AbgIRKXK (ORCPT <rfc822;devicetree@vger.kernel.org>);
-        Fri, 18 Sep 2020 06:23:10 -0400
+        id S1725882AbgIRKRd (ORCPT <rfc822;devicetree@vger.kernel.org>);
+        Fri, 18 Sep 2020 06:17:33 -0400
 ARC-Seal: i=1; a=rsa-sha256; s=arcselector9901; d=microsoft.com; cv=none;
- b=ZZvlAQFM74ifM6Ew5RPMr5xipUIMs0lRULI1i8m/pcxuTyc5HeI5kE2rhPwBITXIXEgZ/T+L1jr8l391prqjyPwQ2k3Ej5XlRXtGSVyjFriabXlVYn45j+q10t5wt3+Hri3LTvUIXVv8w5HihEH0olIyXXhKoV3JvWad93DEHWdwBeq8zSK5u83szQKftrz76fmCacu0EZyt03D/ia7Gj+a630cV3eiAElUa50AoE2o1h7PvsDoV38VEIzNw5BujGlyI5bIOSVOhlJ0/65t9Eh3XQdrB3EjiXb52bSKRifKfJl/5tprWtUSvzY/FQkWYqdZyroh1gwKHZx+AgXy/hQ==
+ b=IfeRVjYQyu7Lao1h9Gtk5B0tatuoD6RRlc0CqfLS7Evzvj36uBp+n/I69lZjQrJYfEzD+vRevfwkAfOsfg3eFwhVNR6zfN7R/NTPu7/RFx3pPVppddAOT30jp+nPixol7NQdX7AH/wnuhHiSKk90OUzU/6XfnSuGPcmZjh24gCDJwVxsGKEcMEFpLDBcitXgqneJVheyXBvMZDzfwhgKtBIXHLIlyoJtBG5g/on1sleOu1GXTN7mJ5l7/zABCdVI115hii5o0KQS6q6K2RTF9AXWnFA1waXylUgW26qPH1PnPFwh8QP06/JXAqw+Yqyt2pCDT7nZNgTgYuwF0FD7hQ==
 ARC-Message-Signature: i=1; a=rsa-sha256; c=relaxed/relaxed; d=microsoft.com;
  s=arcselector9901;
  h=From:Date:Subject:Message-ID:Content-Type:MIME-Version:X-MS-Exchange-SenderADCheck;
- bh=g2l02bwqOJcFgzvXOM1FKabFhPQkV7mDdw5aOX8Ym6k=;
- b=gPHI4O0y2Q7m77fXNsAK6eQBXDZXvDZN7o+UsTfRmr3DqD8qRLg1/nJ/Q6CFhN6d1mWTd1CoqZDNnloCfw8qTt1FCY0d/amnV9KSSBpcWvAHeeW0YGJRupxBMMpgBI+3HVPhXOAagXnJOJo1FT4z3dNCQWHCwLpsHByZVGnX20h59vy9P3s3X1GW10R+JbfxfZxlFfdJZPH/mn+70W1ESvqAGA7pL5d8oTRMSpF8i3X2A3Hn3FYlsa72N+LMLskRXLlrcMpSCrXE1blkJuTTPjCooWlOareFvBqmp3/QsO27zwY/KE/zinmJFgY9Xa+p8IXj2uD85Hsp0wp8V5iM8Q==
+ bh=/x81aBQNbky9R0P7DOxNBSdIHjueubXbYucT47hSEsg=;
+ b=cDwJ626p1N64nU9sNdoCDiq+R/1MdXYkA1rLb9RWQOqSHrJziSOKmQBjCRkiqc7Z0xb9Omit0+0OwBOjF1idz09wQF0DaWGzO/Fovm09L3h4ZdadmLUtqJ15Xve2MrNkSMuFWLxwwnJ1YPwyf7Mq0NUsCTCDqU2EXtGLTIL0VAviRvNUtwcwWXeLA/5J63AMuZWqziklYLtCrE5YTvAl3NQh79xO2KnkaQTJ7Gj3UcY72yU8JnwalfoCiDi2HVXzd6+ArG3zCuwBRXZN443U4C6Ok9naAIOoEswtVwLSOwxHKURqc+hHjYCrF9J6LOCssxTqmqnE6aLD0iiHbbA9MQ==
 ARC-Authentication-Results: i=1; mx.microsoft.com 1; spf=pass
- smtp.mailfrom=analogixsemi.com; dmarc=pass action=none
- header.from=analogixsemi.com; dkim=pass header.d=analogixsemi.com; arc=none
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
- d=Analogixsemi.onmicrosoft.com; s=selector2-Analogixsemi-onmicrosoft-com;
+ smtp.mailfrom=nxp.com; dmarc=pass action=none header.from=nxp.com; dkim=pass
+ header.d=nxp.com; arc=none
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=nxp.com; s=selector2;
  h=From:Date:Subject:Message-ID:Content-Type:MIME-Version:X-MS-Exchange-SenderADCheck;
- bh=g2l02bwqOJcFgzvXOM1FKabFhPQkV7mDdw5aOX8Ym6k=;
- b=0jYQp1tU0BMv0ECxAN6n/vGRdxFRZyn2gAZOCM7zRfqrbjx9or7aGLswQfMjh+CTvijOcp2H0dJAEmWUWj54shsd9Ncrjwh5niuARlzciFItI/peMBzoWUfEtZPOIy6oy2dIywB46x9u78MtZ6vPYEEwdvb7m5JBa2nfZ6pt7YE=
-Authentication-Results: analogixsemi.com; dkim=none (message not signed)
- header.d=none;analogixsemi.com; dmarc=none action=none
- header.from=analogixsemi.com;
-Received: from BY5PR04MB6739.namprd04.prod.outlook.com (2603:10b6:a03:229::8)
- by BYAPR04MB4582.namprd04.prod.outlook.com (2603:10b6:a03:13::23) with
+ bh=/x81aBQNbky9R0P7DOxNBSdIHjueubXbYucT47hSEsg=;
+ b=bTPrwM6zEx/p5Qf8u+rwiEo8DZ+qN0qE+KQRCiQaMSV9iQmpHMnjA6wfwrbRD1VTyAgzNXfXOtruDiEDlaKZJ1kdspVmAQhNLDR4SJY05F16mWjd5vJri3O6gZBPKcBNkZYf2Yk+XygOz75lydxuZmwJyGNBTJgIZfq6NKO8s/c=
+Authentication-Results: kernel.org; dkim=none (message not signed)
+ header.d=none;kernel.org; dmarc=none action=none header.from=nxp.com;
+Received: from DB8PR04MB6795.eurprd04.prod.outlook.com (2603:10a6:10:fa::15)
+ by DBAPR04MB7432.eurprd04.prod.outlook.com (2603:10a6:10:1a9::21) with
  Microsoft SMTP Server (version=TLS1_2,
- cipher=TLS_ECDHE_RSA_WITH_AES_256_GCM_SHA384) id 15.20.3370.18; Fri, 18 Sep
- 2020 10:23:06 +0000
-Received: from BY5PR04MB6739.namprd04.prod.outlook.com
- ([fe80::1dc0:7d4b:9820:e68]) by BY5PR04MB6739.namprd04.prod.outlook.com
- ([fe80::3c04:982f:7d75:779e%7]) with mapi id 15.20.3370.019; Fri, 18 Sep 2020
- 10:23:06 +0000
-Date:   Fri, 18 Sep 2020 18:22:57 +0800
-From:   Xin Ji <xji@analogixsemi.com>
-To:     devicetree@vger.kernel.org, devel@driverdev.osuosl.org,
-        Laurent Pinchart <laurent.pinchart@ideasonboard.com>,
-        Andrzej Hajda <a.hajda@samsung.com>,
-        Nicolas Boichat <drinkcat@google.com>,
-        Sam Ravnborg <sam@ravnborg.org>
-Cc:     Neil Armstrong <narmstrong@baylibre.com>,
-        Jonas Karlman <jonas@kwiboo.se>,
-        Jernej Skrabec <jernej.skrabec@siol.net>,
-        Hsin-Yi Wang <hsinyi@chromium.org>,
-        Sam Ravnborg <sam@ravnborg.org>,
-        David Airlie <airlied@linux.ie>,
-        Daniel Vetter <daniel@ffwll.ch>,
-        Dan Carpenter <dan.carpenter@oracle.com>,
-        Nicolas Boichat <drinkcat@chromium.org>,
-        linux-kernel@vger.kernel.org, dri-devel@lists.freedesktop.org,
-        Pi-Hsun Shih <pihsun@chromium.org>,
-        Sheng Pan <span@analogixsemi.com>
-Subject: [PATCH v17 1/2] dt-bindings: drm/bridge: anx7625: MIPI to DP
- transmitter DT schema
-Message-ID: <bafa02aa50c5c29b3336ca6930c406150a3c60d2.1600423932.git.xji@analogixsemi.com>
-References: <cover.1600423931.git.xji@analogixsemi.com>
-Content-Type: text/plain; charset=us-ascii
-Content-Disposition: inline
-In-Reply-To: <cover.1600423931.git.xji@analogixsemi.com>
-User-Agent: Mutt/1.5.24 (2015-08-30)
-X-ClientProxiedBy: HK2PR06CA0007.apcprd06.prod.outlook.com
- (2603:1096:202:2e::19) To BY5PR04MB6739.namprd04.prod.outlook.com
- (2603:10b6:a03:229::8)
+ cipher=TLS_ECDHE_RSA_WITH_AES_256_GCM_SHA384) id 15.20.3370.16; Fri, 18 Sep
+ 2020 10:17:27 +0000
+Received: from DB8PR04MB6795.eurprd04.prod.outlook.com
+ ([fe80::d12e:689a:169:fd68]) by DB8PR04MB6795.eurprd04.prod.outlook.com
+ ([fe80::d12e:689a:169:fd68%8]) with mapi id 15.20.3391.011; Fri, 18 Sep 2020
+ 10:17:27 +0000
+From:   Joakim Zhang <qiangqing.zhang@nxp.com>
+To:     mchehab@kernel.org, robh+dt@kernel.org, sean@mess.org
+Cc:     linux-media@vger.kernel.org, devicetree@vger.kernel.org,
+        linux-kernel@vger.kernel.org, linux-imx@nxp.com
+Subject: [PATCH V2 0/2] add QoS support for cpuidle system
+Date:   Sat, 19 Sep 2020 02:17:15 +0800
+Message-Id: <20200918181717.24056-1-qiangqing.zhang@nxp.com>
+X-Mailer: git-send-email 2.17.1
+Content-Type: text/plain
+X-ClientProxiedBy: SGBP274CA0020.SGPP274.PROD.OUTLOOK.COM (2603:1096:4:b0::32)
+ To DB8PR04MB6795.eurprd04.prod.outlook.com (2603:10a6:10:fa::15)
 MIME-Version: 1.0
 X-MS-Exchange-MessageSentRepresentingType: 1
-Received: from pc-user (114.247.245.146) by HK2PR06CA0007.apcprd06.prod.outlook.com (2603:1096:202:2e::19) with Microsoft SMTP Server (version=TLS1_0, cipher=TLS_ECDHE_RSA_WITH_AES_256_CBC_SHA) id 15.20.3391.11 via Frontend Transport; Fri, 18 Sep 2020 10:23:05 +0000
-X-Originating-IP: [114.247.245.146]
+Received: from localhost.localdomain (119.31.174.71) by SGBP274CA0020.SGPP274.PROD.OUTLOOK.COM (2603:1096:4:b0::32) with Microsoft SMTP Server (version=TLS1_2, cipher=TLS_ECDHE_RSA_WITH_AES_256_GCM_SHA384) id 15.20.3391.13 via Frontend Transport; Fri, 18 Sep 2020 10:17:25 +0000
+X-Mailer: git-send-email 2.17.1
+X-Originating-IP: [119.31.174.71]
 X-MS-PublicTrafficType: Email
-X-MS-Office365-Filtering-Correlation-Id: 0b2ca01c-b94b-480f-5680-08d85bbcd52b
-X-MS-TrafficTypeDiagnostic: BYAPR04MB4582:
+X-MS-Office365-Filtering-HT: Tenant
+X-MS-Office365-Filtering-Correlation-Id: 21b83955-453b-4045-97a2-08d85bbc0b2d
+X-MS-TrafficTypeDiagnostic: DBAPR04MB7432:
 X-MS-Exchange-Transport-Forked: True
-X-Microsoft-Antispam-PRVS: <BYAPR04MB458212F657954815060D33C6C73F0@BYAPR04MB4582.namprd04.prod.outlook.com>
-X-MS-Oob-TLC-OOBClassifiers: OLM:2733;
+X-Microsoft-Antispam-PRVS: <DBAPR04MB743231B7DB4A09D75EBF455FE63F0@DBAPR04MB7432.eurprd04.prod.outlook.com>
+X-MS-Oob-TLC-OOBClassifiers: OLM:2582;
 X-MS-Exchange-SenderADCheck: 1
 X-Microsoft-Antispam: BCL:0;
-X-Microsoft-Antispam-Message-Info: bZBmPKBNbe/pBtuNWJhJUOIuMhT5LsdpW9RDp+jGHlQF0s3YtIxnz5bPla++EuO4bmFqlHNvWhHsaQeyvPQyHBtMaW5AGkYutIToJLCDmbnGhHbcBFEdWijy35VyR+C0bVGyuUJxhdT7LbI6K6IkhHpAT4QMe+wa2JTLuN7bBGK32/kKLu5k1QLDt/5k4VI0EvMnHGwgr1nJ0krS3KtSpn7POFmmJlWAlbJvip0gLORJ1Gtt9eccNz/xXmh9O30B/nor9va2quMUAGdo6Y8P7Iz0cAT229Lfs3jFTWLAXoC7Wq3BOS5tzSf+8P4haQiTncw50stnTM+O+98XxVBDIZHez6Vu6cGJQLYEcord4c9/oG9kjlBzAZ3V4MtZ0HzESvl8QPbJniQVj93+FFbFbA==
-X-Forefront-Antispam-Report: CIP:255.255.255.255;CTRY:;LANG:en;SCL:1;SRV:;IPV:NLI;SFV:NSPM;H:BY5PR04MB6739.namprd04.prod.outlook.com;PTR:;CAT:NONE;SFS:(366004)(39840400004)(346002)(396003)(376002)(136003)(2906002)(5660300002)(52116002)(956004)(2616005)(7416002)(16526019)(478600001)(6496006)(4326008)(186003)(26005)(54906003)(6486002)(110136005)(8676002)(107886003)(6666004)(8936002)(316002)(66556008)(36756003)(66946007)(66476007)(86362001);DIR:OUT;SFP:1102;
-X-MS-Exchange-AntiSpam-MessageData: xOXFOvCIZJkuUwCEhSTG0D6x59WfLfWb6F3qLQTaxBOhpiVR4KvStR/cncqBT+BEEFSKwFs0yaSBKV5L8QKiAV72skyGNUYebcCi9Z/A0ofR8P6KoFn1eLdFIDxv+CPkc0QG9RorA7oVVxVw457aRmlIIpveAzeQODjGtiLJa6FW2akhs9CgqbDmdxOMhaQVK0lOsogCo2SbQAQFaTj4Rz+Y+UckbvbS3hOEmXzY3lVxQruXqLsheW0pk838SRR7ZywSgs+4d7f8njgG6cUPnC+oSb6m2Zvj9OGlyEXol/+UgwemVr1DOAPWYVqM4V0SlEbxtgA9M21a0GkRj+b250ZnltVDaDvKKPb9ml4FnXeefzMt7T50wSBCrSnlh0+ZkfUzAyGf6oOKWxXFek3tOUReDxVEruelLFSwqAmfly+rFVK4nI2ZNgGEAQ+rciFBa3LvaLOpQ6FUThb7Md7fAkPJu8HZDvgzCskVPr90TLVYWL0qNZuZ36XO/W8j1YaZxdjTuyDxpYegjZazyBVgoxR3v3ZPulcTC5JthcK10nIPSwWVNGA6BRU+P81zkiQ1vRLT4IPexYIHuip+vdYKwaishHVpQ8qtMBDuVgUBqakSiqwZVt85n8xH9JFhdBg82jL+iVZTte39lkBzPiXgAw==
-X-OriginatorOrg: analogixsemi.com
-X-MS-Exchange-CrossTenant-Network-Message-Id: 0b2ca01c-b94b-480f-5680-08d85bbcd52b
-X-MS-Exchange-CrossTenant-AuthSource: BY5PR04MB6739.namprd04.prod.outlook.com
+X-Microsoft-Antispam-Message-Info: eKeQNZ+cj8Q0eMW0uYvqa9beb3DT8Fqs058tDAXuvHmFAzvTcQA/TvuboZhxSFnnEFToa2cn4DzWhz+koDIaw0mg4+qhyUztLx9kkRkXEf+EaA3xcWK4Uycuk4EtzMEYubRl5KjKn/1NcADcsWd+hiMPGITiNzhZJpi9+FqJSonDdt1/6G3B4WyMMAxKBiIe0t63CUsilyD7Ci3mJQR6oPLJqHRflisTvnphzTKet53GgJEs6M8DwS8cYc69gpELEEkwpmhYXyoDPc7xYWLl8QXO7FtUleMFXEsZt/AYlaPQvu3jMhheJnDqsDJk8dnPcx7m/QsJiP2t/9qIlG8E4JHL+hOZhqAJMV6yXNUzapKCn6njS4XARYWpBeUXtXaX1R/+rwvYQ5oWys16KIztS8+KrRKMXCVeJ07H8RE/lJPP/X21g+G5ipze+Yd/Woau
+X-Forefront-Antispam-Report: CIP:255.255.255.255;CTRY:;LANG:en;SCL:1;SRV:;IPV:NLI;SFV:NSPM;H:DB8PR04MB6795.eurprd04.prod.outlook.com;PTR:;CAT:NONE;SFS:(4636009)(366004)(396003)(136003)(346002)(376002)(39860400002)(4744005)(2906002)(1076003)(66946007)(4326008)(6666004)(52116002)(6486002)(478600001)(86362001)(316002)(69590400008)(6506007)(26005)(16526019)(83380400001)(186003)(66476007)(2616005)(66556008)(8936002)(8676002)(6512007)(956004)(5660300002)(36756003);DIR:OUT;SFP:1101;
+X-MS-Exchange-AntiSpam-MessageData: oWOWHaCILaUy44QHXLDDax4napnkO79f881AkKbNgaVc/svkpz3Jz64ybgrOHrQ+qvsZQrwHmqSw9Ep9YsSXmSy3Md4ovpp66RwL86faCSLCKZJ59+uErLCDMqzaCEike9HYKAFq498drya0XBiZoAjgGqJa293FYJbUh3C/Ih9JhQasgV1/Rm8A08KgaJJJb3fqJOGwk0jNrqg8YHAAgA5RfYn5AXT7R+/AP1CLtaB481SKN7DsotSrbXsrVKT46c19Z0WV71VxcioLMmuLiIaEUsKxCCCO6OyYyqwN7iC2CQ32z3K3GN0fGF8wS7z52TuSmmdHe3p0LDe7Jc3b8U0ca6nJuG5/N6x22H040EixL/amKXI0F4zbLFkG1aLRu74dgAZ6I1eG3Cmwur1NSxKHePhlJ7irmJRdZLnhsC5HSPo6m5jeLC63wiHxmSTcuHylf2ccEDDWe9/JFevRvbQ88HsTXUdO8tFKkboScK8J6JUkn9k9sTye5s8GhqhPZra2ZBTF2lKXtzR9aEg1eC2pAPpC5ThP+GMcdfG1Fn56D6nG2fWMMhsg2Ja/FfCdhvOwOd+EhxvKn2y0zTA6+hoeMfyzzqMBautbXFayFJ7ZMIQJkeUJcySX4UYyI4UNjlxHeVXoUzuVbsKw5Jc1WA==
+X-OriginatorOrg: nxp.com
+X-MS-Exchange-CrossTenant-Network-Message-Id: 21b83955-453b-4045-97a2-08d85bbc0b2d
+X-MS-Exchange-CrossTenant-AuthSource: DB8PR04MB6795.eurprd04.prod.outlook.com
 X-MS-Exchange-CrossTenant-AuthAs: Internal
-X-MS-Exchange-CrossTenant-OriginalArrivalTime: 18 Sep 2020 10:23:06.3870
+X-MS-Exchange-CrossTenant-OriginalArrivalTime: 18 Sep 2020 10:17:27.6025
  (UTC)
 X-MS-Exchange-CrossTenant-FromEntityHeader: Hosted
-X-MS-Exchange-CrossTenant-Id: b099b0b4-f26c-4cf5-9a0f-d5be9acab205
+X-MS-Exchange-CrossTenant-Id: 686ea1d3-bc2b-4c6f-a92c-d99c5c301635
 X-MS-Exchange-CrossTenant-MailboxType: HOSTED
-X-MS-Exchange-CrossTenant-UserPrincipalName: atdc3vlAWu54U+/OO5MyrIrDJ0e/92RS2fX1H4BhOFeUFGvdHfJLq0mFWJ+A2tzrgjPNjRXT7kl0CLkamKwXSA==
-X-MS-Exchange-Transport-CrossTenantHeadersStamped: BYAPR04MB4582
+X-MS-Exchange-CrossTenant-UserPrincipalName: RoG4FLLphYUbmkhHcBLhxjnKW8prG27zPKRFaUb84VdVlZWdf8iQeCraDyiRS2f8pOcsnCJ7SBHJIPCia7l4iA==
+X-MS-Exchange-Transport-CrossTenantHeadersStamped: DBAPR04MB7432
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-anx7625: MIPI to DP transmitter DT schema
+Add QoS support for cpuidle system.
 
-Signed-off-by: Xin Ji <xji@analogixsemi.com>
-Reviewed-by: Rob Herring <robh@kernel.org>
----
- .../bindings/display/bridge/analogix,anx7625.yaml  | 95 ++++++++++++++++++++++
- 1 file changed, 95 insertions(+)
- create mode 100644 Documentation/devicetree/bindings/display/bridge/analogix,anx7625.yaml
+Joakim Zhang (2):
+  bindings: media: gpio-ir-receiver: add linux,autosuspend-period
+    property
+  media: rc: gpio-ir-recv: add QoS support for cpuidle system
 
-diff --git a/Documentation/devicetree/bindings/display/bridge/analogix,anx7625.yaml b/Documentation/devicetree/bindings/display/bridge/analogix,anx7625.yaml
-new file mode 100644
-index 0000000..60585a4
---- /dev/null
-+++ b/Documentation/devicetree/bindings/display/bridge/analogix,anx7625.yaml
-@@ -0,0 +1,95 @@
-+# SPDX-License-Identifier: (GPL-2.0 OR BSD-2-Clause)
-+# Copyright 2019 Analogix Semiconductor, Inc.
-+%YAML 1.2
-+---
-+$id: "http://devicetree.org/schemas/display/bridge/analogix,anx7625.yaml#"
-+$schema: "http://devicetree.org/meta-schemas/core.yaml#"
-+
-+title: Analogix ANX7625 SlimPort (4K Mobile HD Transmitter)
-+
-+maintainers:
-+  - Xin Ji <xji@analogixsemi.com>
-+
-+description: |
-+  The ANX7625 is an ultra-low power 4K Mobile HD Transmitter
-+  designed for portable devices.
-+
-+properties:
-+  compatible:
-+    items:
-+      - const: analogix,anx7625
-+
-+  reg:
-+    maxItems: 1
-+
-+  interrupts:
-+    description: used for interrupt pin B8.
-+    maxItems: 1
-+
-+  enable-gpios:
-+    description: used for power on chip control, POWER_EN pin D2.
-+    maxItems: 1
-+
-+  reset-gpios:
-+    description: used for reset chip control, RESET_N pin B7.
-+    maxItems: 1
-+
-+  ports:
-+    type: object
-+
-+    properties:
-+      port@0:
-+        type: object
-+        description:
-+          Video port for MIPI DSI input.
-+
-+      port@1:
-+        type: object
-+        description:
-+          Video port for panel or connector.
-+
-+    required:
-+        - port@0
-+        - port@1
-+
-+required:
-+  - compatible
-+  - reg
-+  - ports
-+
-+additionalProperties: false
-+
-+examples:
-+  - |
-+    #include <dt-bindings/gpio/gpio.h>
-+
-+    i2c0 {
-+        #address-cells = <1>;
-+        #size-cells = <0>;
-+
-+        encoder@58 {
-+            compatible = "analogix,anx7625";
-+            reg = <0x58>;
-+            enable-gpios = <&pio 45 GPIO_ACTIVE_HIGH>;
-+            reset-gpios = <&pio 73 GPIO_ACTIVE_HIGH>;
-+
-+            ports {
-+                #address-cells = <1>;
-+                #size-cells = <0>;
-+
-+                mipi2dp_bridge_in: port@0 {
-+                    reg = <0>;
-+                    anx7625_in: endpoint {
-+                        remote-endpoint = <&mipi_dsi>;
-+                    };
-+                };
-+
-+                mipi2dp_bridge_out: port@1 {
-+                    reg = <1>;
-+                    anx7625_out: endpoint {
-+                        remote-endpoint = <&panel_in>;
-+                    };
-+                };
-+            };
-+        };
-+    };
+ .../bindings/media/gpio-ir-receiver.txt       |  3 ++
+ drivers/media/rc/gpio-ir-recv.c               | 50 +++++++++++++++++++
+ 2 files changed, 53 insertions(+)
+
 -- 
-2.7.4
+2.17.1
 
