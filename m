@@ -2,125 +2,152 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from vger.kernel.org (vger.kernel.org [23.128.96.18])
-	by mail.lfdr.de (Postfix) with ESMTP id E183426F662
-	for <lists+devicetree@lfdr.de>; Fri, 18 Sep 2020 08:58:39 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTP id F208B26F67F
+	for <lists+devicetree@lfdr.de>; Fri, 18 Sep 2020 09:11:08 +0200 (CEST)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S1726115AbgIRG6j (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Fri, 18 Sep 2020 02:58:39 -0400
-Received: from mail.kernel.org ([198.145.29.99]:39904 "EHLO mail.kernel.org"
-        rhost-flags-OK-OK-OK-OK) by vger.kernel.org with ESMTP
-        id S1726064AbgIRG6j (ORCPT <rfc822;devicetree@vger.kernel.org>);
-        Fri, 18 Sep 2020 02:58:39 -0400
-Received: from mail-ej1-f44.google.com (mail-ej1-f44.google.com [209.85.218.44])
-        (using TLSv1.2 with cipher ECDHE-RSA-AES128-GCM-SHA256 (128/128 bits))
-        (No client certificate requested)
-        by mail.kernel.org (Postfix) with ESMTPSA id 12EAA21741;
-        Fri, 18 Sep 2020 06:58:38 +0000 (UTC)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=kernel.org;
-        s=default; t=1600412318;
-        bh=mjp2wDE0CPx5yKOwcHLy7u2mCk/dtE5oFHoNPu9lgt0=;
-        h=References:In-Reply-To:From:Date:Subject:To:Cc:From;
-        b=2mgmv2TT1Rddp0gW0w5fTvKfGGQn4xNtmmH8NYbXmjZ2ELZwXf6/Gcaz7INVj+CQ9
-         +R8cv4OHrPdMgJdl2fSFdkRkN7cJtUCk6z5FZbZEJeuffRGdMCHY/yry2khNUVMWU9
-         t1izuwNvWQuiAf85mPI3J1vJCj70n+Omw+UUckAk=
-Received: by mail-ej1-f44.google.com with SMTP id nw23so6645020ejb.4;
-        Thu, 17 Sep 2020 23:58:38 -0700 (PDT)
-X-Gm-Message-State: AOAM531H7699Q/s0JhVhgHL67Vosp9ZVQLvGgSXwKcVunU5bNATDZ6pd
-        024dHnEwrWVqv8wV3p0DM57AhmjwD+X8BcwJZ9I=
-X-Google-Smtp-Source: ABdhPJxuUdNI1kI9EGKoX661IH6CqKsTqOJr2EABaLTyHqaGDXbYSQO6uutOU1nYbQDBXfIETEqoXrPjCNQOLRAANdI=
-X-Received: by 2002:a17:906:4a51:: with SMTP id a17mr34126508ejv.381.1600412316471;
- Thu, 17 Sep 2020 23:58:36 -0700 (PDT)
+        id S1726494AbgIRHLH (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Fri, 18 Sep 2020 03:11:07 -0400
+Received: from mo-csw1516.securemx.jp ([210.130.202.155]:49908 "EHLO
+        mo-csw.securemx.jp" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
+        with ESMTP id S1726479AbgIRHLH (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Fri, 18 Sep 2020 03:11:07 -0400
+Received: by mo-csw.securemx.jp (mx-mo-csw1516) id 08I7AapY013494; Fri, 18 Sep 2020 16:10:36 +0900
+X-Iguazu-Qid: 34ts08I8PnPfx23pWH
+X-Iguazu-QSIG: v=2; s=0; t=1600413036; q=34ts08I8PnPfx23pWH; m=DkeX3tA3s3UCiDbAmxO+TYixCsAuMJ4xGg7czA4J/8g=
+Received: from imx2.toshiba.co.jp (imx2.toshiba.co.jp [106.186.93.51])
+        by relay.securemx.jp (mx-mr1513) id 08I7AYxs029089;
+        Fri, 18 Sep 2020 16:10:34 +0900
+Received: from enc01.toshiba.co.jp ([106.186.93.100])
+        by imx2.toshiba.co.jp  with ESMTP id 08I7AYxS001073;
+        Fri, 18 Sep 2020 16:10:34 +0900 (JST)
+Received: from hop001.toshiba.co.jp ([133.199.164.63])
+        by enc01.toshiba.co.jp  with ESMTP id 08I7AX1s014572;
+        Fri, 18 Sep 2020 16:10:33 +0900
+Date:   Fri, 18 Sep 2020 16:10:31 +0900
+From:   Nobuhiro Iwamatsu <nobuhiro1.iwamatsu@toshiba.co.jp>
+To:     Guenter Roeck <linux@roeck-us.net>
+Cc:     Rob Herring <robh+dt@kernel.org>,
+        Wim Van Sebroeck <wim@linux-watchdog.org>,
+        yuji2.ishikawa@toshiba.co.jp, punit1.agrawal@toshiba.co.jp,
+        linux-watchdog@vger.kernel.org,
+        linux-arm-kernel@lists.infradead.org, devicetree@vger.kernel.org
+Subject: Re: [PATCH 2/2] watchdog: Add Toshiba Visconti watchdog driver
+X-TSB-HOP: ON
+Message-ID: <20200918071031.6uj4kgt6mwpkxs2o@toshiba.co.jp>
+References: <20200917223924.227997-1-nobuhiro1.iwamatsu@toshiba.co.jp>
+ <20200917223924.227997-3-nobuhiro1.iwamatsu@toshiba.co.jp>
+ <71bd6d23-8995-c006-2a4f-a7cc039924ad@roeck-us.net>
 MIME-Version: 1.0
-References: <20200917193754.542-1-krzk@kernel.org> <cf55864a2d9ff7fcd397273b27cb10619029bd58.camel@fi.rohmeurope.com>
-In-Reply-To: <cf55864a2d9ff7fcd397273b27cb10619029bd58.camel@fi.rohmeurope.com>
-From:   Krzysztof Kozlowski <krzk@kernel.org>
-Date:   Fri, 18 Sep 2020 08:58:24 +0200
-X-Gmail-Original-Message-ID: <CAJKOXPcYquTA8FMFxQ6-ANZdmVJ+Va2VmbudNyqXrmgUx+T=oQ@mail.gmail.com>
-Message-ID: <CAJKOXPcYquTA8FMFxQ6-ANZdmVJ+Va2VmbudNyqXrmgUx+T=oQ@mail.gmail.com>
-Subject: Re: [PATCH v2] dt-bindings: mfd: rohm,bd71837-pmic: Add common properties
-To:     "Vaittinen, Matti" <Matti.Vaittinen@fi.rohmeurope.com>
-Cc:     "robh+dt@kernel.org" <robh+dt@kernel.org>,
-        "devicetree@vger.kernel.org" <devicetree@vger.kernel.org>,
-        "linux-kernel@vger.kernel.org" <linux-kernel@vger.kernel.org>,
-        "lee.jones@linaro.org" <lee.jones@linaro.org>
-Content-Type: text/plain; charset="UTF-8"
+Content-Type: text/plain; charset=us-ascii
+Content-Disposition: inline
+In-Reply-To: <71bd6d23-8995-c006-2a4f-a7cc039924ad@roeck-us.net>
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-On Fri, 18 Sep 2020 at 07:48, Vaittinen, Matti
-<Matti.Vaittinen@fi.rohmeurope.com> wrote:
->
-> Hi deeee Ho peeps!
->
-> On Thu, 2020-09-17 at 21:37 +0200, Krzysztof Kozlowski wrote:
-> > Add common properties appearing in DTSes (clock-names,
-> > clock-output-names) with the common values (actually used in DTSes)
-> > to
-> > fix dtbs_check warnings like:
-> >
-> >   arch/arm64/boot/dts/freescale/imx8mq-librem5-r2.dt.yaml:
-> >     pmic@4b: 'clock-names', 'clock-output-names', do not match any of
-> > the regexes: 'pinctrl-[0-9]+'
-> >
-> > Signed-off-by: Krzysztof Kozlowski <krzk@kernel.org>
-> >
+Hi,
+
+Thanks for your review.
+
+On Thu, Sep 17, 2020 at 10:51:14PM -0700, Guenter Roeck wrote:
+> On 9/17/20 3:39 PM, Nobuhiro Iwamatsu wrote:
+> > Add the watchdog driver for Toshiba Visconti series.
+> > 
+> > Signed-off-by: Nobuhiro Iwamatsu <nobuhiro1.iwamatsu@toshiba.co.jp>
 > > ---
-> >
-> > Changes since v1:
-> > 1. Define the names, as used in existing DTS files.
-> > ---
-> >  .../devicetree/bindings/mfd/rohm,bd71837-pmic.yaml          | 6
-> > ++++++
-> >  1 file changed, 6 insertions(+)
-> >
-> > diff --git a/Documentation/devicetree/bindings/mfd/rohm,bd71837-
-> > pmic.yaml b/Documentation/devicetree/bindings/mfd/rohm,bd71837-
-> > pmic.yaml
-> > index 65018a019e1d..3bfdd33702ad 100644
-> > --- a/Documentation/devicetree/bindings/mfd/rohm,bd71837-pmic.yaml
-> > +++ b/Documentation/devicetree/bindings/mfd/rohm,bd71837-pmic.yaml
-> > @@ -32,9 +32,15 @@ properties:
-> >    clocks:
-> >      maxItems: 1
-> >
-> > +  clock-names:
-> > +    const: osc
+> >  drivers/watchdog/Kconfig        |   8 ++
+> >  drivers/watchdog/Makefile       |   1 +
+> >  drivers/watchdog/visconti_wdt.c | 192 ++++++++++++++++++++++++++++++++
+> >  3 files changed, 201 insertions(+)
+> >  create mode 100644 drivers/watchdog/visconti_wdt.c
+> > 
+
+<snip>
+
+> > +#include <linux/module.h>
+> > +#include <linux/interrupt.h>
+> > +#include <linux/io.h>
+> > +#include <linux/of.h>
+> > +#include <linux/clk.h>
+> > +#include <linux/platform_device.h>
+> > +#include <linux/watchdog.h>
+> 
+> Alphabetically, please.
+> 
+
+OK, I will fix this.
+
+> > +
+> > +#define WDT_CNT			0x00
+> > +#define WDT_MIN			0x04
+> > +#define WDT_MAX			0x08
+> > +#define WDT_CTL			0x0c
+> > +#define WDT_CMD			0x10
+> > +#define WDT_CMD_CLEAR		0x4352
+> > +#define WDT_CMD_START_STOP	0x5354
+> > +#define WDT_DIV			0x30
+> > +
+
+<snip>
+
+> > +
+> > +static unsigned int visconti_wdt_get_timeleft(struct watchdog_device *wdev)
+> > +{
+> > +	struct visconti_wdt_priv *priv = watchdog_get_drvdata(wdev);
+> > +	u32 timeout = wdev->timeout * VISCONTI_WDT_FREQ;
+> > +
+> > +	timeout -= readl(priv->base + WDT_CNT);
+> > +
+> 
+> What happens if this is negative for whatever reason ?
 >
-> I guess existing board dtses use "osc" then? Ok.
 
-Yes.
+Oh, thanks. I will add a negative check and handling.
 
->
-> >    "#clock-cells":
-> >      const: 0
-> >
-> > +  clock-output-names:
-> > +    const: pmic_clk
->
-> This is not a strong opinion but I feel that pmic_clk is a bit too
-> generic name? I mean, what if there is a system with more than one
-> PMICs? (I don't see such use-case with the BD718x7 though - but perhaps
-> this can serve as a misleading example for other PMICs?
+> > +	return timeout / VISCONTI_WDT_FREQ;
+> > +}
+> > +
+> > +static int visconti_wdt_set_timeout(struct watchdog_device *wdev,
+> > +				    unsigned int timeout)
+> > +{
+> > +	u32 val;
+> > +	struct visconti_wdt_priv *priv = watchdog_get_drvdata(wdev);
+> > +
+> > +	wdev->timeout = timeout;
+> > +	val = wdev->timeout * VISCONTI_WDT_FREQ;
+> > +
+> > +	/* Clear counter before setting timeout because WDT expires */
+> > +	writel(WDT_CMD_CLEAR, priv->base + WDT_CMD);
+> > +	writel(val, priv->base + WDT_MAX);
+> > +
+> > +	return 0;
+> > +}
 
-I don't expect two PMICs. Sometimes secondary device is added with few
-regulators, e.g. a MUIC. Still only one device can supply the CPU and
-probably this would be called PMIC.
+<snip>
 
-> For example
-> with the ROHM BD96801 family there may be multiple PMICs in one
-> system). Anyways - if Rob is happy with this then please go with it :)
+> > +	if (IS_ERR(priv->base))
+> > +		return PTR_ERR(priv->base);
+> > +
+> > +	clk = devm_clk_get(dev, NULL);
+> > +	if (IS_ERR(clk)) {
+> > +		dev_err(dev, "Could not get clock\n");
+> 
+> devm_clk_get() can return -EPROBE_DEFER. In that case we don't
+> want to see an error message. Consider using dev_err_probe().
 
-The name was taken from existing DTS files. That was Rob's idea as well.
+OK, I will rewrite using using dev_err_probe().
+
+> 
+> > +		return PTR_ERR(clk);
+> > +	}
+> > +
+> > +	ret = clk_prepare_enable(clk);
+> > +	if (ret) {
+> > +		dev_err(dev, "Could not enable clock\n");
+> > +		return ret;
+> > +	}
+
+<snip>
 
 Best regards,
-Krzysztof
-
->
-> Acked-By: Matti Vaittinen <matti.vaittinen@fi.rohmeurope.com>
->  *
-> Thanks again for improving these bindings! I am constantly struggling
-> with these x_x. Writing the bindings is probably hardest part of PMIC
-> driver development -_-;
->
->
+  Nobuhiro
