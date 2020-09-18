@@ -2,39 +2,39 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from vger.kernel.org (vger.kernel.org [23.128.96.18])
-	by mail.lfdr.de (Postfix) with ESMTP id 2DCAB26F25D
-	for <lists+devicetree@lfdr.de>; Fri, 18 Sep 2020 04:59:02 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTP id F395226EEF7
+	for <lists+devicetree@lfdr.de>; Fri, 18 Sep 2020 04:32:27 +0200 (CEST)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S1727987AbgIRC6R (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Thu, 17 Sep 2020 22:58:17 -0400
-Received: from mail.kernel.org ([198.145.29.99]:55510 "EHLO mail.kernel.org"
+        id S1726606AbgIRCcA (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Thu, 17 Sep 2020 22:32:00 -0400
+Received: from mail.kernel.org ([198.145.29.99]:42090 "EHLO mail.kernel.org"
         rhost-flags-OK-OK-OK-OK) by vger.kernel.org with ESMTP
-        id S1727738AbgIRCGS (ORCPT <rfc822;devicetree@vger.kernel.org>);
-        Thu, 17 Sep 2020 22:06:18 -0400
+        id S1728230AbgIRCOL (ORCPT <rfc822;devicetree@vger.kernel.org>);
+        Thu, 17 Sep 2020 22:14:11 -0400
 Received: from sasha-vm.mshome.net (c-73-47-72-35.hsd1.nh.comcast.net [73.47.72.35])
         (using TLSv1.2 with cipher ECDHE-RSA-AES128-GCM-SHA256 (128/128 bits))
         (No client certificate requested)
-        by mail.kernel.org (Postfix) with ESMTPSA id 9B33E23772;
-        Fri, 18 Sep 2020 02:06:16 +0000 (UTC)
+        by mail.kernel.org (Postfix) with ESMTPSA id 679392388D;
+        Fri, 18 Sep 2020 02:14:10 +0000 (UTC)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=kernel.org;
-        s=default; t=1600394777;
-        bh=lDDGUL4kvJ5mex8eDO//IqOW71j0i6XZXgohdWZWS0A=;
+        s=default; t=1600395251;
+        bh=JhkyNonEfdkzvlR7tiCFHlN7ZQwpU6Pomj+ZQSfG9BQ=;
         h=From:To:Cc:Subject:Date:In-Reply-To:References:From;
-        b=qgOHs3rg8KxpwAaxuyrO/XOniCXYp1V82O6SCbr4hf352OCmPVuBbiORM0Eye4lAE
-         PkY+gmy4dBk291b7EsEJ1XGOMRU8m82mX5FaSjCQvbQdvPP8Yjmko3I7ABZEtHQnLP
-         PEXmKiNEs1NC/Du9zheVCQ3OTzlbyrpunq5+TmNA=
+        b=MlmkKWAAYmMZKjBm6bC3WpHP+Ms9qrIfolp2TfIvpCHMuZj5/uFH0/ID+d1rcS3YM
+         ZiP4VrfbUA3HmMuT5j9VdSIwEu87fvdXplLU8JySr67dYXquCQ2wree4RcGxNSzyCc
+         acGmffSz1wTNd8fTSkDRA8LNZjJrHVz2vLNEpAi4=
 From:   Sasha Levin <sashal@kernel.org>
 To:     linux-kernel@vger.kernel.org, stable@vger.kernel.org
 Cc:     Krzysztof Kozlowski <krzk@kernel.org>,
         Jonathan Bakker <xc-racer2@live.ca>,
         Mark Brown <broonie@kernel.org>,
         Sasha Levin <sashal@kernel.org>, devicetree@vger.kernel.org
-Subject: [PATCH AUTOSEL 5.4 251/330] dt-bindings: sound: wm8994: Correct required supplies based on actual implementaion
-Date:   Thu, 17 Sep 2020 21:59:51 -0400
-Message-Id: <20200918020110.2063155-251-sashal@kernel.org>
+Subject: [PATCH AUTOSEL 4.14 093/127] dt-bindings: sound: wm8994: Correct required supplies based on actual implementaion
+Date:   Thu, 17 Sep 2020 22:11:46 -0400
+Message-Id: <20200918021220.2066485-93-sashal@kernel.org>
 X-Mailer: git-send-email 2.25.1
-In-Reply-To: <20200918020110.2063155-1-sashal@kernel.org>
-References: <20200918020110.2063155-1-sashal@kernel.org>
+In-Reply-To: <20200918021220.2066485-1-sashal@kernel.org>
+References: <20200918021220.2066485-1-sashal@kernel.org>
 MIME-Version: 1.0
 X-stable: review
 X-Patchwork-Hint: Ignore
@@ -62,7 +62,7 @@ Signed-off-by: Sasha Levin <sashal@kernel.org>
  1 file changed, 12 insertions(+), 6 deletions(-)
 
 diff --git a/Documentation/devicetree/bindings/sound/wm8994.txt b/Documentation/devicetree/bindings/sound/wm8994.txt
-index 68cccc4653ba3..367b58ce1bb92 100644
+index 68c4e8d96bed6..b309de00cd836 100644
 --- a/Documentation/devicetree/bindings/sound/wm8994.txt
 +++ b/Documentation/devicetree/bindings/sound/wm8994.txt
 @@ -14,9 +14,15 @@ Required properties:
@@ -84,7 +84,7 @@ index 68cccc4653ba3..367b58ce1bb92 100644
  
  Optional properties:
  
-@@ -73,11 +79,11 @@ wm8994: codec@1a {
+@@ -68,11 +74,11 @@ codec: wm8994@1a {
  
  	lineout1-se;
  
