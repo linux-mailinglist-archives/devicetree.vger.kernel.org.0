@@ -2,116 +2,89 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from vger.kernel.org (vger.kernel.org [23.128.96.18])
-	by mail.lfdr.de (Postfix) with ESMTP id 8B25E270483
-	for <lists+devicetree@lfdr.de>; Fri, 18 Sep 2020 21:01:59 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTP id 18670270499
+	for <lists+devicetree@lfdr.de>; Fri, 18 Sep 2020 21:06:13 +0200 (CEST)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S1726168AbgIRTB7 (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Fri, 18 Sep 2020 15:01:59 -0400
-Received: from mail.kernel.org ([198.145.29.99]:56430 "EHLO mail.kernel.org"
-        rhost-flags-OK-OK-OK-OK) by vger.kernel.org with ESMTP
-        id S1726115AbgIRTB6 (ORCPT <rfc822;devicetree@vger.kernel.org>);
-        Fri, 18 Sep 2020 15:01:58 -0400
-Received: from mail-ot1-f42.google.com (mail-ot1-f42.google.com [209.85.210.42])
-        (using TLSv1.2 with cipher ECDHE-RSA-AES128-GCM-SHA256 (128/128 bits))
-        (No client certificate requested)
-        by mail.kernel.org (Postfix) with ESMTPSA id AE02222208;
-        Fri, 18 Sep 2020 19:01:57 +0000 (UTC)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=kernel.org;
-        s=default; t=1600455717;
-        bh=rS84A/OaBg23yNAtPTq3plT5X3kOb7286omQM12f1Fk=;
-        h=References:In-Reply-To:From:Date:Subject:To:Cc:From;
-        b=lBQ48smIRQIhIDWuplFGl2mJEcnYqMPakqetKj4pW2yatfyCMH9c1wXgyli7z/ZWn
-         d39s0E0thPumFHv24BQtFlkwIcPw+9x6/8zHIf3wONcRQKvVaYgCAcAnNhkzELO5Ha
-         C8pkBB5efZA4/zZ+GSLRZGH835T6n/Un3UenVLJ8=
-Received: by mail-ot1-f42.google.com with SMTP id q21so6340787ota.8;
-        Fri, 18 Sep 2020 12:01:57 -0700 (PDT)
-X-Gm-Message-State: AOAM531Jb/tm6KXclqaZDWkbJ2BJma/eMT9KBJlFxRdIktggCP9VRyLt
-        pW+AkTVm6W0i660/j08UDyysUqQET85EG6fMwA==
-X-Google-Smtp-Source: ABdhPJy5SRe4iLnIuK1LSlYLAhKMK7cdeAyXWOah9n6KqXUDNjHoxqZWwPaLaSunMfwZS1MlOrEAELY5ORhtsHG4Pek=
-X-Received: by 2002:a9d:6ada:: with SMTP id m26mr10145370otq.192.1600455716990;
- Fri, 18 Sep 2020 12:01:56 -0700 (PDT)
+        id S1726139AbgIRTGK (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Fri, 18 Sep 2020 15:06:10 -0400
+Received: from fllv0015.ext.ti.com ([198.47.19.141]:41840 "EHLO
+        fllv0015.ext.ti.com" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
+        with ESMTP id S1726185AbgIRTGJ (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Fri, 18 Sep 2020 15:06:09 -0400
+Received: from fllv0035.itg.ti.com ([10.64.41.0])
+        by fllv0015.ext.ti.com (8.15.2/8.15.2) with ESMTP id 08IJ5tlL084774;
+        Fri, 18 Sep 2020 14:05:55 -0500
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=ti.com;
+        s=ti-com-17Q1; t=1600455955;
+        bh=CoXhZYsCP8vlZjkExtcfpn4Zh4jMPI7Jl8YtUqogz7E=;
+        h=From:To:CC:Subject:Date;
+        b=Gi7uKkM9NcR8XxGj4RxCXIu7pAerEZL6eJ0jZhQ/7YIq+zOQT0+rBRC4+a7EkJuIL
+         +rwfSj/p4ue6+Qn/j9c8FJup/iGYp0mhHF1ppA4/IIgNGe7usZdnYU9Nx0fADc2w/4
+         iYJtZ5TakjbTqF8R/qRUhmAMJcLiF9GHPTB3k3Vo=
+Received: from DFLE113.ent.ti.com (dfle113.ent.ti.com [10.64.6.34])
+        by fllv0035.itg.ti.com (8.15.2/8.15.2) with ESMTP id 08IJ5t3X100400;
+        Fri, 18 Sep 2020 14:05:55 -0500
+Received: from DFLE108.ent.ti.com (10.64.6.29) by DFLE113.ent.ti.com
+ (10.64.6.34) with Microsoft SMTP Server (version=TLS1_2,
+ cipher=TLS_ECDHE_RSA_WITH_AES_128_CBC_SHA256_P256) id 15.1.1979.3; Fri, 18
+ Sep 2020 14:05:54 -0500
+Received: from fllv0040.itg.ti.com (10.64.41.20) by DFLE108.ent.ti.com
+ (10.64.6.29) with Microsoft SMTP Server (version=TLS1_2,
+ cipher=TLS_ECDHE_RSA_WITH_AES_128_CBC_SHA256_P256) id 15.1.1979.3 via
+ Frontend Transport; Fri, 18 Sep 2020 14:05:55 -0500
+Received: from localhost (ileax41-snat.itg.ti.com [10.172.224.153])
+        by fllv0040.itg.ti.com (8.15.2/8.15.2) with ESMTP id 08IJ5shj082266;
+        Fri, 18 Sep 2020 14:05:54 -0500
+From:   Dan Murphy <dmurphy@ti.com>
+To:     <lgirdwood@gmail.com>, <broonie@kernel.org>, <tiwai@suse.com>,
+        <robh+dt@kernel.org>
+CC:     <devicetree@vger.kernel.org>, <alsa-devel@alsa-project.org>,
+        <linux-kernel@vger.kernel.org>, Dan Murphy <dmurphy@ti.com>
+Subject: [PATCH 1/9] ASoC: tas2770: Fix calling reset in probe
+Date:   Fri, 18 Sep 2020 14:05:40 -0500
+Message-ID: <20200918190548.12598-1-dmurphy@ti.com>
+X-Mailer: git-send-email 2.27.0
 MIME-Version: 1.0
-References: <cover.1598939393.git.nguyenb@codeaurora.org> <0a9d395dc38433501f9652a9236856d0ac840b77.1598939393.git.nguyenb@codeaurora.org>
- <20200914183505.GA357@bogus> <d332e61cea4fef237507f1404efa724a@codeaurora.org>
-In-Reply-To: <d332e61cea4fef237507f1404efa724a@codeaurora.org>
-From:   Rob Herring <robh@kernel.org>
-Date:   Fri, 18 Sep 2020 13:01:45 -0600
-X-Gmail-Original-Message-ID: <CAL_Jsq+YV-GjAhVVHtgNz6xFR=bEgSwWKY+QGixRQJ5Ov75pag@mail.gmail.com>
-Message-ID: <CAL_Jsq+YV-GjAhVVHtgNz6xFR=bEgSwWKY+QGixRQJ5Ov75pag@mail.gmail.com>
-Subject: Re: [PATCH v1 1/2] scsi: dt-bindings: ufs: Add vcc-voltage-level for UFS
-To:     "Bao D. Nguyen" <nguyenb@codeaurora.org>
-Cc:     Can Guo <cang@codeaurora.org>,
-        Asutosh Das <asutoshd@codeaurora.org>,
-        "Martin K. Petersen" <martin.petersen@oracle.com>,
-        SCSI <linux-scsi@vger.kernel.org>,
-        linux-arm-msm <linux-arm-msm@vger.kernel.org>,
-        Bjorn Andersson <bjorn.andersson@linaro.org>,
-        Avri Altman <Avri.Altman@wdc.com>,
-        Vinod Koul <vkoul@kernel.org>,
-        "open list:OPEN FIRMWARE AND FLATTENED DEVICE TREE BINDINGS" 
-        <devicetree@vger.kernel.org>,
-        open list <linux-kernel@vger.kernel.org>
-Content-Type: text/plain; charset="UTF-8"
+Content-Transfer-Encoding: 8bit
+Content-Type: text/plain
+X-EXCLAIMER-MD-CONFIG: e1e8a2fd-e40a-4ac6-ac9b-f7e9cc9ee180
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-On Tue, Sep 15, 2020 at 2:10 AM <nguyenb@codeaurora.org> wrote:
->
-> On 2020-09-14 11:35, Rob Herring wrote:
-> > On Mon, Aug 31, 2020 at 11:00:47PM -0700, Bao D. Nguyen wrote:
-> >> UFS's specifications supports a range of Vcc operating
-> >> voltage levels. Add documentation for the UFS's Vcc voltage
-> >> levels setting.
-> >>
-> >> Signed-off-by: Can Guo <cang@codeaurora.org>
-> >> Signed-off-by: Asutosh Das <asutoshd@codeaurora.org>
-> >> Signed-off-by: Bao D. Nguyen <nguyenb@codeaurora.org>
-> >> ---
-> >>  Documentation/devicetree/bindings/ufs/ufshcd-pltfrm.txt | 2 ++
-> >>  1 file changed, 2 insertions(+)
-> >>
-> >> diff --git a/Documentation/devicetree/bindings/ufs/ufshcd-pltfrm.txt
-> >> b/Documentation/devicetree/bindings/ufs/ufshcd-pltfrm.txt
-> >> index 415ccdd..7257b32 100644
-> >> --- a/Documentation/devicetree/bindings/ufs/ufshcd-pltfrm.txt
-> >> +++ b/Documentation/devicetree/bindings/ufs/ufshcd-pltfrm.txt
-> >> @@ -23,6 +23,8 @@ Optional properties:
-> >>                            with "phys" attribute, provides phandle to
-> >> UFS PHY node
-> >>  - vdd-hba-supply        : phandle to UFS host controller supply
-> >> regulator node
-> >>  - vcc-supply            : phandle to VCC supply regulator node
-> >> +- vcc-voltage-level     : specifies voltage levels for VCC supply.
-> >> +                          Should be specified in pairs (min, max),
-> >> units uV.
-> >
-> > The expectation is the regulator pointed to by 'vcc-supply' has the
-> > voltage constraints. Those constraints are supposed to be the board
-> > constraints, not the regulator operating design constraints. If that
-> > doesn't work for your case, then it should be addressed in a common way
-> > for the regulator binding.
-> The UFS regulator has a min_uV and max_uV limits. Currently, the min and
-> max are hardcoded
-> to UFS2.1 Spec allowed values of 2.7V and 3.6V respectively.
-> With this change, I am trying to fix a couple issues:
-> 1. The 2.7V min value only applies to UFS2.1 devices. with UFS3.0+
-> devices, the VCC min should be 2.4V.
-> Hardcoding the min_uV to 2.7V does not work for UFS3.0+ devices.
+tas2770_reset is called during i2c probe. The reset calls the
+snd_soc_component_write which depends on the tas2770->component being
+available. The component pointer is not set until codec_probe so move
+the reset to the codec_probe after the pointer is set.
 
-Don't you know the device version attached and can adjust the voltage
-based on that? Or you have to set the voltage first?
+Fixes: 1a476abc723e6 ("tas2770: add tas2770 smart PA kernel driver")
+Signed-off-by: Dan Murphy <dmurphy@ti.com>
+---
+ sound/soc/codecs/tas2770.c | 4 ++--
+ 1 file changed, 2 insertions(+), 2 deletions(-)
 
-> 2. Allow users to select a different Vcc voltage within the allowed
-> range.
-> Using the min value, the UFS device is operating at marginal Vcc
-> voltage.
-> In addition the PMIC and the board designs may add some variables
-> especially at extreme
-> temperatures. We observe stability issues when using the min Vcc
-> voltage.
+diff --git a/sound/soc/codecs/tas2770.c b/sound/soc/codecs/tas2770.c
+index c09851834395..03d7ad1885b8 100644
+--- a/sound/soc/codecs/tas2770.c
++++ b/sound/soc/codecs/tas2770.c
+@@ -575,6 +575,8 @@ static int tas2770_codec_probe(struct snd_soc_component *component)
+ 
+ 	tas2770->component = component;
+ 
++	tas2770_reset(tas2770);
++
+ 	return 0;
+ }
+ 
+@@ -771,8 +773,6 @@ static int tas2770_i2c_probe(struct i2c_client *client,
+ 	tas2770->channel_size = 0;
+ 	tas2770->slot_width = 0;
+ 
+-	tas2770_reset(tas2770);
+-
+ 	result = tas2770_register_codec(tas2770);
+ 	if (result)
+ 		dev_err(tas2770->dev, "Register codec failed.\n");
+-- 
+2.28.0
 
-Again, we have standard regulator properties for this already that you
-can tune per board.
-
-Rob
