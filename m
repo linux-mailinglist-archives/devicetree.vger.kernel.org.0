@@ -2,111 +2,175 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from vger.kernel.org (vger.kernel.org [23.128.96.18])
-	by mail.lfdr.de (Postfix) with ESMTP id 43D3B270225
-	for <lists+devicetree@lfdr.de>; Fri, 18 Sep 2020 18:30:09 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTP id 1B04427027F
+	for <lists+devicetree@lfdr.de>; Fri, 18 Sep 2020 18:46:49 +0200 (CEST)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S1726540AbgIRQ3y (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Fri, 18 Sep 2020 12:29:54 -0400
-Received: from lindbergh.monkeyblade.net ([23.128.96.19]:46252 "EHLO
-        lindbergh.monkeyblade.net" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S1726473AbgIRQ3j (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Fri, 18 Sep 2020 12:29:39 -0400
-Received: from mail-wm1-x341.google.com (mail-wm1-x341.google.com [IPv6:2a00:1450:4864:20::341])
-        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id AD2B7C0613CE;
-        Fri, 18 Sep 2020 09:29:38 -0700 (PDT)
-Received: by mail-wm1-x341.google.com with SMTP id x23so5889499wmi.3;
-        Fri, 18 Sep 2020 09:29:38 -0700 (PDT)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=gmail.com; s=20161025;
-        h=from:to:cc:subject:date:message-id:in-reply-to:references
-         :mime-version:content-transfer-encoding;
-        bh=+ALrwdNETU2MxK86SGthSKgE8MUMcPyrI0lP0CVqjQI=;
-        b=Il95zl7ds9a5Wa/+A3ecWvYzrSZ+BLTqfj6ec6fYPbvqhhdmJVYxEZzqRc9s9v/yP2
-         4m4R4HC+r9fa7HBll/1tev5GP4Bjq/AaAPYaGzfbpTCEF7ibb/gsMgFbIbQ/WBJcC5ee
-         woI+46IAtNgGvB/Nj6BfLGomZmU5ngVz+pqPO02a1iVbRydvRydQqCj7Jby1G6R3yCb1
-         /WScm3GI19p5i0BhBzU7+4GN6PDp9B8Rm1iEcS6qckXfU6hf621shoGLV2zYv/gfIqS9
-         w3YMCAa/ZdDbPiPz957p3OFF83IzcNHRrAWKezqElxGFg5UDXiYgO3LlVaZ7iudwLXkO
-         MfvQ==
-X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=1e100.net; s=20161025;
-        h=x-gm-message-state:from:to:cc:subject:date:message-id:in-reply-to
-         :references:mime-version:content-transfer-encoding;
-        bh=+ALrwdNETU2MxK86SGthSKgE8MUMcPyrI0lP0CVqjQI=;
-        b=XbxGB2ilTCyB3uYiEGJLXI4UoavwEA7TvQMlfWhdXqw4/HPJY6YVPHFkgufJJzGqWl
-         2RX8PcHLWVqz4sG+jDUnjO/MCkWIInCbVyt0jXDiu/Fe3EarHpp89QRECdjshpMcTyJ7
-         5UTdgdFZtAhTjFlewRVNKQyibarpa1OamiGXZpCMuSoTAOXFvr2JkUWCWSnIxQ5VK5zw
-         dJcO82a8RIoAGEQHP56jldXyI7INXZ1y5Q7ESIZLOX1IH86b+pTKPRWLLeefz8Ec9nBK
-         caFgMDwdCixiVGZMSPBH8uj+Qhax2D2RRkqe9beNFQjWjgiGDxLzfd6iZFTrum6j2s2l
-         I0lA==
-X-Gm-Message-State: AOAM530AVTw5fcErBJ7pXzJHyFeUzr/3AZt8EGtCx4W+LkgTeKfW7oDW
-        dRvXc/vhZl9qqdGnpHJ3fiY=
-X-Google-Smtp-Source: ABdhPJwhMLFx/NFsWruwmp6xyVAv5jlnAK8e/0Ui5smBeskjIRpqc6rufsaW1nM9w8xzSUglIbmcnQ==
-X-Received: by 2002:a7b:cc8f:: with SMTP id p15mr16559476wma.18.1600446577309;
-        Fri, 18 Sep 2020 09:29:37 -0700 (PDT)
-Received: from Ansuel-XPS.localdomain (93-39-149-95.ip76.fastwebnet.it. [93.39.149.95])
-        by smtp.googlemail.com with ESMTPSA id b11sm6028921wrt.38.2020.09.18.09.29.34
-        (version=TLS1_3 cipher=TLS_AES_256_GCM_SHA384 bits=256/256);
-        Fri, 18 Sep 2020 09:29:36 -0700 (PDT)
-From:   Ansuel Smith <ansuelsmth@gmail.com>
-To:     Kalle Valo <kvalo@codeaurora.org>
-Cc:     Ansuel Smith <ansuelsmth@gmail.com>,
-        "David S. Miller" <davem@davemloft.net>,
-        Jakub Kicinski <kuba@kernel.org>,
-        Rob Herring <robh+dt@kernel.org>,
-        linux-wireless@vger.kernel.org, netdev@vger.kernel.org,
-        devicetree@vger.kernel.org, linux-kernel@vger.kernel.org,
-        ath10k@lists.infradead.org
-Subject: [PATCH 2/2] dt: bindings: ath10k: Document qcom,ath10k-pre-calibration-data-mtd
-Date:   Fri, 18 Sep 2020 18:29:28 +0200
-Message-Id: <20200918162928.14335-2-ansuelsmth@gmail.com>
-X-Mailer: git-send-email 2.27.0
-In-Reply-To: <20200918162928.14335-1-ansuelsmth@gmail.com>
-References: <20200918162928.14335-1-ansuelsmth@gmail.com>
+        id S1726462AbgIRQqr (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Fri, 18 Sep 2020 12:46:47 -0400
+Received: from lelv0143.ext.ti.com ([198.47.23.248]:57582 "EHLO
+        lelv0143.ext.ti.com" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
+        with ESMTP id S1726421AbgIRQqr (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Fri, 18 Sep 2020 12:46:47 -0400
+Received: from fllv0035.itg.ti.com ([10.64.41.0])
+        by lelv0143.ext.ti.com (8.15.2/8.15.2) with ESMTP id 08IFck4t117018;
+        Fri, 18 Sep 2020 10:38:46 -0500
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=ti.com;
+        s=ti-com-17Q1; t=1600443526;
+        bh=WxwKsniN95GxFXt38joTOrhR5U6EWbgf2dDdlx0+WD8=;
+        h=From:To:CC:Subject:Date:In-Reply-To:References;
+        b=jSOnU8gjoHFaBcJcKRMODaCtBZRN6silWN8qnzIWx8B3jAroQzSB8u1BlL1voLFzz
+         NV45AmXv7xnbmN4LkBK1ZuIDB+pzRnMCAuSsZL1L39TUa1/Oj9RFWhMMYUGUJayrH+
+         PZMBtE3swDs5u7lC+XgkmBNcOccVN+wSqPF04/5U=
+Received: from DLEE111.ent.ti.com (dlee111.ent.ti.com [157.170.170.22])
+        by fllv0035.itg.ti.com (8.15.2/8.15.2) with ESMTP id 08IFckBk056323;
+        Fri, 18 Sep 2020 10:38:46 -0500
+Received: from DLEE104.ent.ti.com (157.170.170.34) by DLEE111.ent.ti.com
+ (157.170.170.22) with Microsoft SMTP Server (version=TLS1_2,
+ cipher=TLS_ECDHE_RSA_WITH_AES_128_CBC_SHA256_P256) id 15.1.1979.3; Fri, 18
+ Sep 2020 10:38:46 -0500
+Received: from lelv0326.itg.ti.com (10.180.67.84) by DLEE104.ent.ti.com
+ (157.170.170.34) with Microsoft SMTP Server (version=TLS1_2,
+ cipher=TLS_ECDHE_RSA_WITH_AES_128_CBC_SHA256_P256) id 15.1.1979.3 via
+ Frontend Transport; Fri, 18 Sep 2020 10:38:45 -0500
+Received: from localhost (ileax41-snat.itg.ti.com [10.172.224.153])
+        by lelv0326.itg.ti.com (8.15.2/8.15.2) with ESMTP id 08IFciCk026243;
+        Fri, 18 Sep 2020 10:38:45 -0500
+From:   Grygorii Strashko <grygorii.strashko@ti.com>
+To:     Tero Kristo <t-kristo@ti.com>, Rob Herring <robh+dt@kernel.org>,
+        Nishanth Menon <nm@ti.com>
+CC:     Peter Ujfalusi <peter.ujfalusi@ti.com>,
+        Sekhar Nori <nsekhar@ti.com>, <linux-kernel@vger.kernel.org>,
+        <devicetree@vger.kernel.org>,
+        <linux-arm-kernel@lists.infradead.org>,
+        Vignesh Raghavendra <vigneshr@ti.com>,
+        Suman Anna <s-anna@ti.com>,
+        Kishon Vijay Abraham I <kishon@ti.com>,
+        Grygorii Strashko <grygorii.strashko@ti.com>
+Subject: [PATCH v3 1/4] arm64: dts: ti: k3-j7200: add DMA support
+Date:   Fri, 18 Sep 2020 18:38:26 +0300
+Message-ID: <20200918153829.14686-2-grygorii.strashko@ti.com>
+X-Mailer: git-send-email 2.17.1
+In-Reply-To: <20200918153829.14686-1-grygorii.strashko@ti.com>
+References: <20200918153829.14686-1-grygorii.strashko@ti.com>
 MIME-Version: 1.0
-Content-Transfer-Encoding: 8bit
+Content-Type: text/plain
+X-EXCLAIMER-MD-CONFIG: e1e8a2fd-e40a-4ac6-ac9b-f7e9cc9ee180
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-Document use of qcom,ath10k-pre-calibration-data-mtd bindings used to
-define from where the driver will load the pre-cal data in the defined
-mtd partition.
+From: Peter Ujfalusi <peter.ujfalusi@ti.com>
 
-Signed-off-by: Ansuel Smith <ansuelsmth@gmail.com>
+Add the intr, inta, ringacc and udmap nodes for main and mcu NAVSS.
+
+Signed-off-by: Peter Ujfalusi <peter.ujfalusi@ti.com>
+Signed-off-by: Grygorii Strashko <grygorii.strashko@ti.com>
+Tested-by: Kishon Vijay Abraham I <kishon@ti.com>
 ---
- .../devicetree/bindings/net/wireless/qcom,ath10k.txt | 12 +++++++++---
- 1 file changed, 9 insertions(+), 3 deletions(-)
+ arch/arm64/boot/dts/ti/k3-j7200-main.dtsi     | 36 +++++++++++++++
+ .../boot/dts/ti/k3-j7200-mcu-wakeup.dtsi      | 44 +++++++++++++++++++
+ 2 files changed, 80 insertions(+)
 
-diff --git a/Documentation/devicetree/bindings/net/wireless/qcom,ath10k.txt b/Documentation/devicetree/bindings/net/wireless/qcom,ath10k.txt
-index b61c2d5a0..568364243 100644
---- a/Documentation/devicetree/bindings/net/wireless/qcom,ath10k.txt
-+++ b/Documentation/devicetree/bindings/net/wireless/qcom,ath10k.txt
-@@ -15,9 +15,9 @@ and also uses most of the properties defined in this doc (except
- "qcom,ath10k-calibration-data"). It uses "qcom,ath10k-pre-calibration-data"
- to carry pre calibration data.
+diff --git a/arch/arm64/boot/dts/ti/k3-j7200-main.dtsi b/arch/arm64/boot/dts/ti/k3-j7200-main.dtsi
+index 3df49577b06a..c5015df58cd4 100644
+--- a/arch/arm64/boot/dts/ti/k3-j7200-main.dtsi
++++ b/arch/arm64/boot/dts/ti/k3-j7200-main.dtsi
+@@ -93,6 +93,42 @@
+ 			interrupt-names = "rx_011";
+ 			interrupts = <GIC_SPI 37 IRQ_TYPE_LEVEL_HIGH>;
+ 		};
++
++		main_ringacc: ringacc@3c000000 {
++			compatible = "ti,am654-navss-ringacc";
++			reg =	<0x0 0x3c000000 0x0 0x400000>,
++				<0x0 0x38000000 0x0 0x400000>,
++				<0x0 0x31120000 0x0 0x100>,
++				<0x0 0x33000000 0x0 0x40000>;
++			reg-names = "rt", "fifos", "proxy_gcfg", "proxy_target";
++			ti,num-rings = <1024>;
++			ti,sci-rm-range-gp-rings = <0x1>; /* GP ring range */
++			ti,sci = <&dmsc>;
++			ti,sci-dev-id = <211>;
++			msi-parent = <&main_udmass_inta>;
++		};
++
++		main_udmap: dma-controller@31150000 {
++			compatible = "ti,j721e-navss-main-udmap";
++			reg =	<0x0 0x31150000 0x0 0x100>,
++				<0x0 0x34000000 0x0 0x100000>,
++				<0x0 0x35000000 0x0 0x100000>;
++			reg-names = "gcfg", "rchanrt", "tchanrt";
++			msi-parent = <&main_udmass_inta>;
++			#dma-cells = <1>;
++
++			ti,sci = <&dmsc>;
++			ti,sci-dev-id = <212>;
++			ti,ringacc = <&main_ringacc>;
++
++			ti,sci-rm-range-tchan = <0x0d>, /* TX_CHAN */
++						<0x0f>, /* TX_HCHAN */
++						<0x10>; /* TX_UHCHAN */
++			ti,sci-rm-range-rchan = <0x0a>, /* RX_CHAN */
++						<0x0b>, /* RX_HCHAN */
++						<0x0c>; /* RX_UHCHAN */
++			ti,sci-rm-range-rflow = <0x00>; /* GP RFLOW */
++		};
+ 	};
  
--In general, entry "qcom,ath10k-pre-calibration-data" and
--"qcom,ath10k-calibration-data" conflict with each other and only one
--can be provided per device.
-+In general, entry "qcom,ath10k-pre-calibration-data",
-+"qcom,ath10k-calibration-data-mtd" and "qcom,ath10k-calibration-data" conflict with
-+each other and only one can be provided per device.
- 
- SNOC based devices (i.e. wcn3990) uses compatible string "qcom,wcn3990-wifi".
- 
-@@ -63,6 +63,12 @@ Optional properties:
- 				 hw versions.
- - qcom,ath10k-pre-calibration-data : pre calibration data as an array,
- 				     the length can vary between hw versions.
-+- qcom,ath10k-pre-calibration-data-mtd :
-+	Usage: optional
-+	Value type: <phandle offset size>
-+	Definition: pre calibration data read from mtd partition. Take 3 value, the
-+		    mtd to read data from, the offset in the mtd partition and the
-+		    size of data to read.
- - <supply-name>-supply: handle to the regulator device tree node
- 			   optional "supply-name" are "vdd-0.8-cx-mx",
- 			   "vdd-1.8-xo", "vdd-1.3-rfa", "vdd-3.3-ch0",
+ 	main_pmx0: pinctrl@11c000 {
+diff --git a/arch/arm64/boot/dts/ti/k3-j7200-mcu-wakeup.dtsi b/arch/arm64/boot/dts/ti/k3-j7200-mcu-wakeup.dtsi
+index ec2745e0768e..7ecdfdb46436 100644
+--- a/arch/arm64/boot/dts/ti/k3-j7200-mcu-wakeup.dtsi
++++ b/arch/arm64/boot/dts/ti/k3-j7200-mcu-wakeup.dtsi
+@@ -92,4 +92,48 @@
+ 		ti,sci-dev-id = <137>;
+ 		ti,interrupt-ranges = <16 960 16>;
+ 	};
++
++	cbass_mcu_navss: navss@28380000 {
++		compatible = "simple-mfd";
++		#address-cells = <2>;
++		#size-cells = <2>;
++		ranges;
++		dma-coherent;
++		dma-ranges;
++		ti,sci-dev-id = <232>;
++
++		mcu_ringacc: ringacc@2b800000 {
++			compatible = "ti,am654-navss-ringacc";
++			reg =	<0x0 0x2b800000 0x0 0x400000>,
++				<0x0 0x2b000000 0x0 0x400000>,
++				<0x0 0x28590000 0x0 0x100>,
++				<0x0 0x2a500000 0x0 0x40000>;
++			reg-names = "rt", "fifos", "proxy_gcfg", "proxy_target";
++			ti,num-rings = <286>;
++			ti,sci-rm-range-gp-rings = <0x1>; /* GP ring range */
++			ti,sci = <&dmsc>;
++			ti,sci-dev-id = <235>;
++			msi-parent = <&main_udmass_inta>;
++		};
++
++		mcu_udmap: dma-controller@285c0000 {
++			compatible = "ti,j721e-navss-mcu-udmap";
++			reg =	<0x0 0x285c0000 0x0 0x100>,
++				<0x0 0x2a800000 0x0 0x40000>,
++				<0x0 0x2aa00000 0x0 0x40000>;
++			reg-names = "gcfg", "rchanrt", "tchanrt";
++			msi-parent = <&main_udmass_inta>;
++			#dma-cells = <1>;
++
++			ti,sci = <&dmsc>;
++			ti,sci-dev-id = <236>;
++			ti,ringacc = <&mcu_ringacc>;
++
++			ti,sci-rm-range-tchan = <0x0d>, /* TX_CHAN */
++						<0x0f>; /* TX_HCHAN */
++			ti,sci-rm-range-rchan = <0x0a>, /* RX_CHAN */
++						<0x0b>; /* RX_HCHAN */
++			ti,sci-rm-range-rflow = <0x00>; /* GP RFLOW */
++		};
++	};
+ };
 -- 
-2.27.0
+2.17.1
 
