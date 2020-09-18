@@ -2,108 +2,100 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from vger.kernel.org (vger.kernel.org [23.128.96.18])
-	by mail.lfdr.de (Postfix) with ESMTP id 8C6D52702E1
-	for <lists+devicetree@lfdr.de>; Fri, 18 Sep 2020 19:06:22 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTP id A00A52702FE
+	for <lists+devicetree@lfdr.de>; Fri, 18 Sep 2020 19:14:16 +0200 (CEST)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S1725955AbgIRRGW (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Fri, 18 Sep 2020 13:06:22 -0400
-Received: from so254-54.mailgun.net ([198.61.254.54]:13485 "EHLO
-        so254-54.mailgun.net" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S1726118AbgIRRGV (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Fri, 18 Sep 2020 13:06:21 -0400
-DKIM-Signature: a=rsa-sha256; v=1; c=relaxed/relaxed; d=mg.codeaurora.org; q=dns/txt;
- s=smtp; t=1600448781; h=Message-Id: Date: Subject: Cc: To: From:
- Sender; bh=GvoHhNZXEhEePaycPGrMSPaqU1/ITiUda54Uc4ClNck=; b=ViwHZOyjbKAnYgJNL9fQqaVcO7wb1n1hayykZrTrxtbeJEzH9H8suR8+h9owMZuTDaQ47DUO
- 3FKzNEgpI1TrKI0eyX9MMR3gb9pMQq1sMTySH98ya7Zxpzp4ZMejzuQbJK2poWlUogCq2o68
- K0wG59ocHwQ+kjRV3K+QVc6YWzU=
-X-Mailgun-Sending-Ip: 198.61.254.54
-X-Mailgun-Sid: WyI1YmJiNiIsICJkZXZpY2V0cmVlQHZnZXIua2VybmVsLm9yZyIsICJiZTllNGEiXQ==
-Received: from smtp.codeaurora.org
- (ec2-35-166-182-171.us-west-2.compute.amazonaws.com [35.166.182.171]) by
- smtp-out-n05.prod.us-east-1.postgun.com with SMTP id
- 5f64e8f9ae7ca421d2a55e51 (version=TLS1.2,
- cipher=TLS_ECDHE_RSA_WITH_AES_128_GCM_SHA256); Fri, 18 Sep 2020 17:06:01
- GMT
-Received: by smtp.codeaurora.org (Postfix, from userid 1001)
-        id 1C69FC433FF; Fri, 18 Sep 2020 17:06:01 +0000 (UTC)
-X-Spam-Checker-Version: SpamAssassin 3.4.0 (2014-02-07) on
-        aws-us-west-2-caf-mail-1.web.codeaurora.org
-X-Spam-Level: 
-X-Spam-Status: No, score=-2.9 required=2.0 tests=ALL_TRUSTED,BAYES_00,SPF_FAIL,
-        URIBL_BLOCKED autolearn=no autolearn_force=no version=3.4.0
-Received: from hyd-lnxbld210.qualcomm.com (unknown [202.46.22.19])
-        (using TLSv1.2 with cipher ECDHE-RSA-AES128-SHA256 (128/128 bits))
-        (No client certificate requested)
-        (Authenticated sender: srivasam)
-        by smtp.codeaurora.org (Postfix) with ESMTPSA id A29BCC433C8;
-        Fri, 18 Sep 2020 17:05:55 +0000 (UTC)
-DMARC-Filter: OpenDMARC Filter v1.3.2 smtp.codeaurora.org A29BCC433C8
-Authentication-Results: aws-us-west-2-caf-mail-1.web.codeaurora.org; dmarc=none (p=none dis=none) header.from=codeaurora.org
-Authentication-Results: aws-us-west-2-caf-mail-1.web.codeaurora.org; spf=fail smtp.mailfrom=srivasam@codeaurora.org
-From:   Srinivasa Rao Mandadapu <srivasam@codeaurora.org>
-To:     agross@kernel.org, bjorn.andersson@linaro.org, lgirdwood@gmail.com,
-        broonie@kernel.org, robh+dt@kernel.org, plai@codeaurora.org,
-        bgoswami@codeaurora.org, perex@perex.cz, tiwai@suse.com,
-        srinivas.kandagatla@linaro.org, rohitkr@codeaurora.org,
-        linux-arm-msm@vger.kernel.org, alsa-devel@alsa-project.org,
-        devicetree@vger.kernel.org, linux-kernel@vger.kernel.org
-Cc:     vsujithk <vsujithk@codeaurora.org>,
-        Srinivasa Rao Mandadapu <srivasam@codeaurora.org>
-Subject: [PATCH] Asoc: qcom: lpass-cpu: Enable MI2S BCLK and LRCLK together
-Date:   Fri, 18 Sep 2020 22:24:33 +0530
-Message-Id: <1600448073-6709-1-git-send-email-srivasam@codeaurora.org>
-X-Mailer: git-send-email 2.7.4
+        id S1726187AbgIRROJ convert rfc822-to-8bit (ORCPT
+        <rfc822;lists+devicetree@lfdr.de>); Fri, 18 Sep 2020 13:14:09 -0400
+Received: from lindbergh.monkeyblade.net ([23.128.96.19]:53138 "EHLO
+        lindbergh.monkeyblade.net" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
+        with ESMTP id S1726118AbgIRROJ (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Fri, 18 Sep 2020 13:14:09 -0400
+Received: from mail.nic.cz (mail.nic.cz [IPv6:2001:1488:800:400::400])
+        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 4A361C0613CE;
+        Fri, 18 Sep 2020 10:14:09 -0700 (PDT)
+Received: from localhost (unknown [IPv6:2a0e:b107:ae1:0:3e97:eff:fe61:c680])
+        by mail.nic.cz (Postfix) with ESMTPSA id 394E514093B;
+        Fri, 18 Sep 2020 19:14:06 +0200 (CEST)
+Date:   Fri, 18 Sep 2020 19:14:05 +0200
+From:   Marek Behun <marek.behun@nic.cz>
+To:     Simon Guinot <simon.guinot@sequanux.org>
+Cc:     linux-leds@vger.kernel.org, Pavel Machek <pavel@ucw.cz>,
+        Dan Murphy <dmurphy@ti.com>,
+        =?UTF-8?B?T25kxZllag==?= Jirman <megous@megous.com>,
+        linux-kernel@vger.kernel.org, Rob Herring <robh+dt@kernel.org>,
+        devicetree@vger.kernel.org, Simon Guinot <sguinot@lacie.com>,
+        Vincent Donnefort <vdonnefort@gmail.com>,
+        Thomas Petazzoni <thomas.petazzoni@free-electrons.com>,
+        Linus Walleij <linus.walleij@linaro.org>
+Subject: Re: [PATCH leds v1 10/10] leds: ns2: refactor and use struct
+ led_init_data
+Message-ID: <20200918191405.516b51ff@nic.cz>
+In-Reply-To: <20200918130206.GE29951@kw.sim.vm.gnt>
+References: <20200916231650.11484-1-marek.behun@nic.cz>
+        <20200916231650.11484-11-marek.behun@nic.cz>
+        <20200918130206.GE29951@kw.sim.vm.gnt>
+X-Mailer: Claws Mail 3.17.6 (GTK+ 2.24.32; x86_64-pc-linux-gnu)
+MIME-Version: 1.0
+Content-Type: text/plain; charset=UTF-8
+Content-Transfer-Encoding: 8BIT
+X-Spam-Status: No, score=-100.0 required=5.9 tests=SHORTCIRCUIT,
+        USER_IN_WELCOMELIST,USER_IN_WHITELIST shortcircuit=ham
+        autolearn=disabled version=3.4.2
+X-Spam-Checker-Version: SpamAssassin 3.4.2 (2018-09-13) on mail.nic.cz
+X-Virus-Scanned: clamav-milter 0.102.2 at mail
+X-Virus-Status: Clean
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-From: vsujithk <vsujithk@codeaurora.org>
+On Fri, 18 Sep 2020 15:02:06 +0200
+Simon Guinot <simon.guinot@sequanux.org> wrote:
 
-Update lpass-cpu.c to enable I2S BCLK and LRCLK together.
-Remove BCLK enable in lpass_cpu_daiops_startup and
-add in lpass_cpu_daiops_trigger API.
+> On Thu, Sep 17, 2020 at 01:16:50AM +0200, Marek Behún wrote:
+> 
+> Hi Marek,
+> 
+> > By using struct led_init_data when registering we do not need to parse
+> > `label` DT property nor `linux,default-trigger` property.
+> > 
+> > Also, move forward from platform data to device tree only:
+> > since commit c7896490dd1a ("leds: ns2: Absorb platform data") the
+> > platform data structure is absorbed into the driver, because nothing
+> > else in the source tree used it. Since nobody complained and all usage  
+> 
+> Well, I probably should have...
+> 
+> I am using this driver on the Seagate Superbee NAS devices. This devices
+> are based on a x86 SoC. Since I have been unable to get from the ODM the
+> LED information written in the ACPI tables, then platform data are used
+> to pass the LED description to the driver.
+> 
+> The support of this boards is not available mainline yet but it is still
+> on my todo list. So that's why I am complaining right now :) If it is
+> not too much trouble I'd like to keep platform data support in this
+> driver.
+> 
+> Thanks in advance.
+> 
+> Simon
+> 
 
-Signed-off-by: V Sujith Kumar Reddy <vsujithk@codeaurora.org>
-Signed-off-by: Srinivasa Rao Mandadapu <srivasam@codeaurora.org>
----
- sound/soc/qcom/lpass-cpu.c | 16 ++++++++--------
- 1 file changed, 8 insertions(+), 8 deletions(-)
+Simon, what if we refactored the driver to use fwnode API instead of OF
+API? Then if it is impossible for you to write DTS for that device,
+instead of platform data you could implement your device via swnode
+fwnodes. :)
 
-diff --git a/sound/soc/qcom/lpass-cpu.c b/sound/soc/qcom/lpass-cpu.c
-index 41a2470..8db2cdb 100644
---- a/sound/soc/qcom/lpass-cpu.c
-+++ b/sound/soc/qcom/lpass-cpu.c
-@@ -80,14 +80,6 @@ static int lpass_cpu_daiops_startup(struct snd_pcm_substream *substream,
- 		dev_err(dai->dev, "error in enabling mi2s osr clk: %d\n", ret);
- 		return ret;
- 	}
--
--	ret = clk_prepare_enable(drvdata->mi2s_bit_clk[dai->driver->id]);
--	if (ret) {
--		dev_err(dai->dev, "error in enabling mi2s bit clk: %d\n", ret);
--		clk_disable_unprepare(drvdata->mi2s_osr_clk[dai->driver->id]);
--		return ret;
--	}
--
- 	return 0;
- }
- 
-@@ -310,6 +302,14 @@ static int lpass_cpu_daiops_trigger(struct snd_pcm_substream *substream,
- 		if (ret)
- 			dev_err(dai->dev, "error writing to i2sctl reg: %d\n",
- 				ret);
-+
-+		ret = clk_prepare_enable(drvdata->mi2s_bit_clk[id]);
-+		if (ret) {
-+			dev_err(dai->dev, "error in enabling mi2s bit clk: %d\n", ret);
-+			clk_disable_unprepare(drvdata->mi2s_osr_clk[id]);
-+			return ret;
-+		}
-+
- 		break;
- 	case SNDRV_PCM_TRIGGER_STOP:
- 	case SNDRV_PCM_TRIGGER_SUSPEND:
--- 
-Qualcomm India Private Limited, on behalf of Qualcomm Innovation Center, Inc.,
-is a member of Code Aurora Forum, a Linux Foundation Collaborative Project.
+static const struct property_entry entries[] = {
+	PROPERTY_ENTRY_STRING("compatible", "lacie,ns2-leds"),
+	...
+};
 
+Look at
+https://git.kernel.org/pub/scm/linux/kernel/git/torvalds/linux.git/tree/drivers/platform/chrome/chromeos_laptop.c?h=v5.9-rc5
+search for PROPERTY_ENTRY.
+
+I am willing to work on this with you, but I would really like to rid
+the LED drivers of platform data.
+
+Marek
