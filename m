@@ -2,122 +2,105 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from vger.kernel.org (vger.kernel.org [23.128.96.18])
-	by mail.lfdr.de (Postfix) with ESMTP id 683472710C7
-	for <lists+devicetree@lfdr.de>; Sat, 19 Sep 2020 23:50:35 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTP id B283E2710F8
+	for <lists+devicetree@lfdr.de>; Sun, 20 Sep 2020 00:15:55 +0200 (CEST)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S1726821AbgISVu3 (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Sat, 19 Sep 2020 17:50:29 -0400
-Received: from lindbergh.monkeyblade.net ([23.128.96.19]:35632 "EHLO
+        id S1726730AbgISWPx (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Sat, 19 Sep 2020 18:15:53 -0400
+Received: from lindbergh.monkeyblade.net ([23.128.96.19]:39486 "EHLO
         lindbergh.monkeyblade.net" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S1726617AbgISVu2 (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Sat, 19 Sep 2020 17:50:28 -0400
-Received: from mail-qt1-x832.google.com (mail-qt1-x832.google.com [IPv6:2607:f8b0:4864:20::832])
-        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 8BE67C0613CE;
-        Sat, 19 Sep 2020 14:50:28 -0700 (PDT)
-Received: by mail-qt1-x832.google.com with SMTP id k25so8768023qtu.4;
-        Sat, 19 Sep 2020 14:50:28 -0700 (PDT)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=gmail.com; s=20161025;
-        h=from:to:cc:subject:date:message-id:in-reply-to:references
-         :mime-version:content-transfer-encoding;
-        bh=FuUvgB8iMkHgcxvxhIPaKesqPeUDTnfXOpNMPbDpmVY=;
-        b=a1U4iKqhfo4da2k6ZMM0pR3UEwpnjniDmb2MM9Ml7eYFtKSG4Ku8nDDx02mS0ysf2A
-         zF/Qo8LRemksaeTJtLkCO/1e4oaYQkSd/Mq96dFWTLkuHfeZomuha1g9UvL00j+KtoiC
-         4+1mLqqxrZQ0iIHLNOek3O/spp6usolVcdXfQiiF7AgnDINl43oRQkvU0zOn+qfLV26v
-         Cy1O5i5hjsOxWwUU3B2y4YyWmkwtnpmBZLCj2p4XMorJOR+FLW87mes8h6mmchPMvkRW
-         y20p00TJNqCjG6hF0BEoTGUnoAC67gPkqPQ7qavyHjQGWvTp40Vf3WIl9VE2L1aeFCGg
-         KRdQ==
-X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=1e100.net; s=20161025;
-        h=x-gm-message-state:from:to:cc:subject:date:message-id:in-reply-to
-         :references:mime-version:content-transfer-encoding;
-        bh=FuUvgB8iMkHgcxvxhIPaKesqPeUDTnfXOpNMPbDpmVY=;
-        b=NMKgUMttN4DAPqFd/7gW1rjQrBX+sLi42td9I4lYT2L3bh67mfEsK5n40N9oILX8nF
-         QBJLvFsyiej59xhN9x1BjMNoiTYl8Ah7g3sUrpWOKWwWPJ9aVgxU1OMrtsBYR7CeGEsK
-         DfTMTkOJXYqEUyjXDtUbSSJx2V6woldx3VnurFBHTCc78jEFAfM+Kozy1L21moKex4Ob
-         I+lflPA7fcLcxwjzJ+UK432gmm5rXqvFXVL6lzY2VADaxezCiwelMHdiANUOaalGv10W
-         3tcCJK+TenKEOvaWGEgf74Qv/U9eyx/qqX6/L7332B/Jd8Jbt8q47kpfNiZq8Y+sZlVW
-         1keg==
-X-Gm-Message-State: AOAM5306zDIPFTGy7EA1d4i+LagYGfJVXktNA+NKJXgq8JJeBo7ZfnWw
-        KdcL2Tow8dcVnmVSi4/J+F4=
-X-Google-Smtp-Source: ABdhPJzma4TX4Rjz79pVVDKKfg+gBUBcVH8tV+LWgy9AVIm0GMUcqLSOQvPA8LlC72BFBXfESKGGTg==
-X-Received: by 2002:ac8:409e:: with SMTP id p30mr37958612qtl.208.1600552227678;
-        Sat, 19 Sep 2020 14:50:27 -0700 (PDT)
-Received: from Ansuel-XPS.localdomain (93-39-149-95.ip76.fastwebnet.it. [93.39.149.95])
-        by smtp.googlemail.com with ESMTPSA id y30sm5617173qth.7.2020.09.19.14.50.24
-        (version=TLS1_3 cipher=TLS_AES_256_GCM_SHA384 bits=256/256);
-        Sat, 19 Sep 2020 14:50:27 -0700 (PDT)
-From:   Ansuel Smith <ansuelsmth@gmail.com>
-To:     Miquel Raynal <miquel.raynal@bootlin.com>
-Cc:     Ansuel Smith <ansuelsmth@gmail.com>,
-        Richard Weinberger <richard@nod.at>,
-        Vignesh Raghavendra <vigneshr@ti.com>,
-        Rob Herring <robh+dt@kernel.org>,
-        "David S. Miller" <davem@davemloft.net>,
-        Jakub Kicinski <kuba@kernel.org>, Andrew Lunn <andrew@lunn.ch>,
-        Heiner Kallweit <hkallweit1@gmail.com>,
-        Russell King <linux@armlinux.org.uk>,
-        Frank Rowand <frowand.list@gmail.com>,
-        Boris Brezillon <bbrezillon@kernel.org>,
-        linux-mtd@lists.infradead.org, devicetree@vger.kernel.org,
-        linux-kernel@vger.kernel.org, netdev@vger.kernel.org
-Subject: [PATCH 4/4] dt-bindings: net: Document use of mac-address-increment
-Date:   Sat, 19 Sep 2020 23:49:38 +0200
-Message-Id: <20200919214941.8038-5-ansuelsmth@gmail.com>
-X-Mailer: git-send-email 2.27.0
-In-Reply-To: <20200919214941.8038-1-ansuelsmth@gmail.com>
-References: <20200919214941.8038-1-ansuelsmth@gmail.com>
+        with ESMTP id S1726617AbgISWPx (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Sat, 19 Sep 2020 18:15:53 -0400
+Received: from mail.nic.cz (mail.nic.cz [IPv6:2001:1488:800:400::400])
+        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 16548C0613CE;
+        Sat, 19 Sep 2020 15:15:52 -0700 (PDT)
+Received: from dellmb.labs.office.nic.cz (unknown [IPv6:2001:1488:fffe:6:cac7:3539:7f1f:463])
+        by mail.nic.cz (Postfix) with ESMTP id 5A00A140925;
+        Sun, 20 Sep 2020 00:15:49 +0200 (CEST)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=nic.cz; s=default;
+        t=1600553749; bh=zCbpIM/C4TLd7NaidOQ92vSkSL8MTP7HW502znmDqcE=;
+        h=From:To:Date;
+        b=M+YV9S1lx1aeX/qUFLBHxb6+4fmWRQQ1JJpCisjFf5kH3RcScov34gpsJAssT114w
+         Wye+CM+hQzE9ZWdWkU++pzUVGZQHVzgm8lCIzg2f5SgvF0q7BGFgPQ+2XtUmetRU0J
+         11JNGPwYTvV/a11/MgrROdYkM5Wo5U15tCjdbIC4=
+From:   =?UTF-8?q?Marek=20Beh=C3=BAn?= <marek.behun@nic.cz>
+To:     linux-leds@vger.kernel.org
+Cc:     Pavel Machek <pavel@ucw.cz>, Dan Murphy <dmurphy@ti.com>,
+        =?UTF-8?q?Marek=20Beh=C3=BAn?= <marek.behun@nic.cz>,
+        NeilBrown <neilb@suse.de>,
+        Linus Walleij <linus.walleij@linaro.org>,
+        "H . Nikolaus Schaller" <hns@goldelico.com>,
+        Tony Lindgren <tony@atomide.com>,
+        Adam Ford <aford173@gmail.com>,
+        Viresh Kumar <viresh.kumar@linaro.org>,
+        Rob Herring <robh+dt@kernel.org>, devicetree@vger.kernel.org
+Subject: [PATCH leds + devicetree 00/13] leds: tca6507 cleanup
+Date:   Sun, 20 Sep 2020 00:15:35 +0200
+Message-Id: <20200919221548.29984-1-marek.behun@nic.cz>
+X-Mailer: git-send-email 2.26.2
 MIME-Version: 1.0
+Content-Type: text/plain; charset=UTF-8
 Content-Transfer-Encoding: 8bit
+X-Spam-Checker-Version: SpamAssassin 3.4.2 (2018-09-13) on mail.nic.cz
+X-Spam-Status: No, score=0.00
+X-Spamd-Bar: /
+X-Virus-Scanned: clamav-milter 0.102.2 at mail
+X-Virus-Status: Clean
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-Two new bindings are now supported by the of_net driver to increase (or
-decrease) a mac-address. This can be very useful in case where the
-system extract the mac-address for the device from a dedicated partition
-and have a generic mac-address that needs to be incremented based on the
-device number.
-- mac-address-increment-byte is used to tell what byte must be
-  incremented (if not set the last byte is increased)
-- mac-address-increment is used to tell how much to increment of the
-  extracted mac-address decided byte.
+Hi Pavel,
 
-Signed-off-by: Ansuel Smith <ansuelsmth@gmail.com>
----
- .../bindings/net/ethernet-controller.yaml     | 19 +++++++++++++++++++
- 1 file changed, 19 insertions(+)
+this is a cleanup of tca6507 LED driver.
 
-diff --git a/Documentation/devicetree/bindings/net/ethernet-controller.yaml b/Documentation/devicetree/bindings/net/ethernet-controller.yaml
-index fa2baca8c726..43f2f21faf41 100644
---- a/Documentation/devicetree/bindings/net/ethernet-controller.yaml
-+++ b/Documentation/devicetree/bindings/net/ethernet-controller.yaml
-@@ -32,6 +32,25 @@ properties:
-       - minItems: 6
-         maxItems: 6
- 
-+  mac-address-increment:
-+    description:
-+      The MAC address can optionally be increased (or decreased using
-+      negative values) from the original value readed (from a nvmem cell
-+      for example). This can be used if the mac is readed from a dedicated
-+      partition and must be increased based on the number of device
-+      present in the system.
-+    minimum: -255
-+    maximum: 255
-+
-+  mac-address-increment-byte:
-+    description:
-+      If 'mac-address-increment' is defined, this will tell what byte of
-+      the mac-address will be increased. If 'mac-address-increment' is
-+      not defined, this option will do nothing.
-+    default: 5
-+    minimum: 0
-+    maximum: 5
-+
-   max-frame-size:
-     $ref: /schemas/types.yaml#definitions/uint32
-     description:
+This series applies on your for-next, but:
+- the last patch should be added only after LED core parses
+  `linux,default-trigger` property
+- there is DT binding change and device tree change, I am not sure
+  who should apply those patches
+
+Mainly we are getting rid of platform data, but also a potential bug is
+being fixed and bindings are DT being aligned.
+
+Marek
+
+Cc: NeilBrown <neilb@suse.de>
+Cc: Linus Walleij <linus.walleij@linaro.org>
+Cc: H. Nikolaus Schaller <hns@goldelico.com>
+Cc: Tony Lindgren <tony@atomide.com>
+Cc: Adam Ford <aford173@gmail.com>
+Cc: Viresh Kumar <viresh.kumar@linaro.org>
+Cc: Rob Herring <robh+dt@kernel.org>
+Cc: devicetree@vger.kernel.org
+
+Marek Behún (13):
+  leds: tca6507: Absorb platform data
+  leds: tca6507: use fwnode API instead of OF
+  dt-bindings: leds: tca6507: convert to YAML
+  ARM: dts: omap3: gta04: rename LED controlled subnodes
+  leds: tca6507: do not set GPIO names
+  leds: tca6507: cosmetic change: use helper variable
+  leds: tca6507: register LEDs and GPIOs immediately after parsing
+  leds: tca6507: remove binding comment
+  leds: tca6507: use devres for LED and gpiochip registration
+  leds: tca6507: let gpiolib set gpiochip's of_node
+  leds: tca6507: fail on reg value conflict
+  leds: tca6507: set registers to zero before LEDs/GPIOs registration
+  leds: tca6507: use struct led_init_data when registering
+
+ .../devicetree/bindings/leds/tca6507.txt      |  49 ----
+ .../devicetree/bindings/leds/ti,tca6507.yaml  | 134 ++++++++++
+ arch/arm/boot/dts/omap3-gta04.dtsi            |  12 +-
+ drivers/leds/leds-tca6507.c                   | 234 ++++++------------
+ include/linux/leds-tca6507.h                  |  21 --
+ 5 files changed, 217 insertions(+), 233 deletions(-)
+ delete mode 100644 Documentation/devicetree/bindings/leds/tca6507.txt
+ create mode 100644 Documentation/devicetree/bindings/leds/ti,tca6507.yaml
+ delete mode 100644 include/linux/leds-tca6507.h
+
+
+base-commit: a0e550dc351ab5fabe8ea86e45b974494a0a6bf8
 -- 
-2.27.0
+2.26.2
 
