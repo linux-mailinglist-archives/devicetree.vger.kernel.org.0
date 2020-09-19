@@ -2,79 +2,86 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from vger.kernel.org (vger.kernel.org [23.128.96.18])
-	by mail.lfdr.de (Postfix) with ESMTP id B596D270FC2
-	for <lists+devicetree@lfdr.de>; Sat, 19 Sep 2020 19:26:24 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTP id C71C2270FD0
+	for <lists+devicetree@lfdr.de>; Sat, 19 Sep 2020 19:33:53 +0200 (CEST)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S1726537AbgISR0X (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Sat, 19 Sep 2020 13:26:23 -0400
-Received: from mout.kundenserver.de ([217.72.192.75]:47547 "EHLO
+        id S1726463AbgISRdx (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Sat, 19 Sep 2020 13:33:53 -0400
+Received: from mout.kundenserver.de ([212.227.126.134]:38643 "EHLO
         mout.kundenserver.de" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S1726449AbgISR0W (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Sat, 19 Sep 2020 13:26:22 -0400
+        with ESMTP id S1726449AbgISRdx (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Sat, 19 Sep 2020 13:33:53 -0400
+X-Greylist: delayed 306 seconds by postgrey-1.27 at vger.kernel.org; Sat, 19 Sep 2020 13:33:52 EDT
 Received: from buildfff.adridolf.com ([188.192.134.246]) by
- mrelayeu.kundenserver.de (mreue109 [212.227.15.183]) with ESMTPSA (Nemesis)
- id 1Md6V3-1kskJR3frX-00aI0z; Sat, 19 Sep 2020 19:21:02 +0200
+ mrelayeu.kundenserver.de (mreue012 [212.227.15.167]) with ESMTPSA (Nemesis)
+ id 1Mrwnt-1knjxx1YHN-00o1VP; Sat, 19 Sep 2020 19:28:36 +0200
 From:   Adrian Schmutzler <freifunk@adrianschmutzler.de>
 To:     Rob Herring <robh+dt@kernel.org>, Pavel Machek <pavel@ucw.cz>,
         Dan Murphy <dmurphy@ti.com>,
         Linus Walleij <linus.walleij@linaro.org>,
         devicetree@vger.kernel.org,
         Adrian Schmutzler <freifunk@adrianschmutzler.de>
-Subject: [PATCH 2/2] dt-bindings: leds: add LED_FUNCTION_RSSI
-Date:   Sat, 19 Sep 2020 19:19:13 +0200
-Message-Id: <20200919171913.56765-2-freifunk@adrianschmutzler.de>
+Subject: [PATCH v2 1/2] dt-bindings: leds: add LED_FUNCTION for wlan2g/wlan5g
+Date:   Sat, 19 Sep 2020 19:27:32 +0200
+Message-Id: <20200919172733.57217-1-freifunk@adrianschmutzler.de>
 X-Mailer: git-send-email 2.20.1
-In-Reply-To: <20200919171913.56765-1-freifunk@adrianschmutzler.de>
-References: <20200919171913.56765-1-freifunk@adrianschmutzler.de>
 MIME-Version: 1.0
 Content-Transfer-Encoding: 8bit
-X-Provags-ID: V03:K1:X65rZNj8ZNzhyeKQCyk+CfHkTF1m3K7MBaOg6SHtM++umzNlRVD
- dKjPUAQ8Ha5qx4LV6rKQPOe8lh84MvytywSFSAZOqeojcsr+3tkAdaKo52oplAvCwH+9OgB
- XlgrgKqj8OOLKSruDwO7DtYqq/C+7UaacdCp9VnWbF0VueqM+/0zV4+txS+Vb+pgqSYRcYS
- 1Il4MaEw5aZWfoqqFqNvw==
+X-Provags-ID: V03:K1:tJS1jptO4dxvs5pFeZ/EXR4mk/L90eRsDR3y7NsmBJR/tdI+mjv
+ Q8NWtcGzonE9aUXe9Md3ntOWK883nGILur2NiSPNazWq7+/moxu5m4PXXHW5IFbcQQdoLEG
+ uXE/mHwfRUlvUgvbdMnIJAeo1Q6gAoyY5DLmLPEg9djFWoPGBK6Dd0xUfnBeRnkyZNshPO1
+ iUfrZ/lYKwmBORW1N3hmw==
 X-Spam-Flag: NO
-X-UI-Out-Filterresults: notjunk:1;V03:K0:Wb5d/nj52p0=:8ZsJX4lHHCe5zTGsZkDPz3
- c2Xa/ZeXRfY/1suoG6rdC0Xe1Lc7OhLSlgGGVHAVf8xfV5NLZxfjbNwjSSGQFDf7/WRRJWu3r
- 7yjCpWzdetuJkZE5I8ho26Gq+GehPxHhmtGa4VAex9eZ6k5rKUzBQylh1yUQUE3V5gsB1jvLW
- Vx01rNh1MYUS5NiDrC3D8wXh2hAsQttoHDUitsaEQgMzuaA2oFfFSi9VGPoKLufNC386vjeuJ
- To8bh8WCmHAsYLDAkEkjqDFqmFx6gxeEUfp0CyRQLV9L8YvuCJM1In8Xy1p7eko7FjzZZC+WL
- +Df0x+H651fCGt9o6YzKUOJGpUYYmDBYuzb3XhhvhpdXPzqwyfmzOwNcS11OCMGsSOTBiniBW
- EhiwczqXZ+sGPnyAtdPv44GYjjGnjW1OVPpk7zINVGeck0ORSsHjedT+Pqsti7xUqPn0lpEsZ
- bkAIy+iYRFEcf6w1Bc3LryFs7RJjsWcJMqzYCBRwq5vf8byr16hNlyugkZgi/9ae2i9DsHycL
- DwuCg7qyLWFwmNkAzhWSixtttPlMODBP6HRJ1ehuP81SU8K/arVCZtV1lQ/olp6wULuuiThOr
- 4gMrnwghzW3l6nS/BTVQvTzIjdjvIuzFkPtVa3La0WzaWliB4Zs1ZswbIWQPQyT2+N+8eG0Pk
- vKBS+/UFiuyoAIeTnLNJaFHAQXNI8q3Q8MOtlBNRzWG7PWzCWAu9+PpIkfyjAI+Nc5O9SlnKB
- qGPBZT9zSiyR1qHCKYS4CLri5/aGrBFQULjwlqnOSf8I/tOs1ZWxHekwNBEjI1TLA8WWyXec1
- D5fR0C57jCG1Sq9bx5/T2VkSLZmh8oE3yPsbv5r0WwKkSvcAviWjEepV6MniU/SUbcKR+3REQ
- Yj6/aZYFyDK6yRJ/ZCvA==
+X-UI-Out-Filterresults: notjunk:1;V03:K0:YvqbjMGBkGM=:4iQX257/5AJRHgAn8v22Bk
+ mdERwaJqW8TSqwJRIAWLTM+bVKNo+Mj0Xnwg/b6xqOuk+i3I4NIGY3lYzAi3wtoHZAeS9Sk1U
+ AKOxuDI+obHSbXSdsjUa8nyofi9GKv7H5XNKSd5fSNVKNwj9LOUuAyt9JDwmt494FBzv0Ze/d
+ SD3TT1D1sDNSfbxCr0N699q3PlGnxHct5HMlMVCjVdU8hQIe7ZebPXSVxGhTgz3VEX1kJduGz
+ R2RZ4K5/1/jprWtESKEPEs5h7tsSbSNcpIUFZh32RqJTBaIMk0Uz2xApo1e5A+6e7rVEmX6XK
+ Wn//Vx1fSyrSoLsTwLdYEtgiDLzdVVVmVsVWysUUiSeD/vE0Ix/5Bii4WgcMIzxquWx6Mwh25
+ mMDUW1ZDUBRUIrHkC4KwRNaOCLGElG74Y0mKEw5uj2KZgxVU/MdUelvaHByr8MiZbb/w7kRyH
+ pEuimDc24R1Zsh4eXnv7deYR9fVkIYilogmDb9iE4/2kbhgznQIIzXWsGz/+7hsXG26Z8iSp7
+ bf2II183VXw8lDVd3OmT33PsisVEE88fpI8ZKp+SvWWjaPM8S8McV8w1dIGsKb/ZSnSG9KdjE
+ /qu191XVWRnyblTLs3VC8zFiBJL87x+LRPGGeOIFEC8Gpeyy2QIlb4VL8kotpnsHxCPHILOuD
+ UlMsj1ToMU6uZdK5JOdrL+MZoJ2misDDbWC2lMd8ARY27BoDNwGHoZLcaL7AGhDaXPEHCId4+
+ r3FcGPeT7OLJyvI2rMJA+MptI6kYA4SIv/NJRtq3bynRemsqNhcNzLJ5MH6kAb87LM8MRX0fV
+ /KPwbWRIWfF3sAq3X4mhZg2k2XWlhO61qiPwP24lRL6l3EBKjxUGR71T4KPcPQqhJbmWaUq/A
+ 9csCK94NCSgCNP0dZ0Yw==
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-Several consumer "routers" and CPE devices have dedicated LEDs to
-show the received signal strength indicator (RSSI). This is
-different from the "WLAN" LEDs that just show enabled/disabled
-state and sometimes rx/tx activity.
+Many consumer "routers" have dedicated LEDs for specific WiFi bands,
+e.g. one for 2.4 GHz and one for 5 GHz. These LEDs specifically
+indicate the state of the relevant band, so the latter should be
+included in the function name. LED_FUNCTION_WLAN will remain for
+general cases or when the LED is used for more than one band.
 
-Add a LED function for these LEDs.
+This essentially is equivalent to how we use LED_FUNCTION_LAN and
+LED_FUNCTION_WAN instead of just having LED_FUNCTION_ETHERNET.
 
 Signed-off-by: Adrian Schmutzler <freifunk@adrianschmutzler.de>
+
 ---
- include/dt-bindings/leds/common.h | 1 +
- 1 file changed, 1 insertion(+)
+
+Changes in v2:
+- Without typo this time. Sorry.
+---
+ include/dt-bindings/leds/common.h | 2 ++
+ 1 file changed, 2 insertions(+)
 
 diff --git a/include/dt-bindings/leds/common.h b/include/dt-bindings/leds/common.h
-index 52db8a9032d0..139573579e7f 100644
+index 52b619d44ba2..debbd406ff17 100644
 --- a/include/dt-bindings/leds/common.h
 +++ b/include/dt-bindings/leds/common.h
-@@ -81,6 +81,7 @@
- #define LED_FUNCTION_MTD "mtd"
- #define LED_FUNCTION_PANIC "panic"
- #define LED_FUNCTION_PROGRAMMING "programming"
-+#define LED_FUNCTION_RSSI "rssi"
- #define LED_FUNCTION_RX "rx"
- #define LED_FUNCTION_SD "sd"
- #define LED_FUNCTION_STANDBY "standby"
+@@ -89,6 +89,8 @@
+ #define LED_FUNCTION_USB "usb"
+ #define LED_FUNCTION_WAN "wan"
+ #define LED_FUNCTION_WLAN "wlan"
++#define LED_FUNCTION_WLAN2G "wlan2g"
++#define LED_FUNCTION_WLAN5G "wlan5g"
+ #define LED_FUNCTION_WPS "wps"
+ 
+ #endif /* __DT_BINDINGS_LEDS_H */
 -- 
 2.20.1
 
