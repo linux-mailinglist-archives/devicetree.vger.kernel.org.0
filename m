@@ -2,324 +2,180 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from vger.kernel.org (vger.kernel.org [23.128.96.18])
-	by mail.lfdr.de (Postfix) with ESMTP id 5CB20270E6F
-	for <lists+devicetree@lfdr.de>; Sat, 19 Sep 2020 16:13:59 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTP id 426BF270E72
+	for <lists+devicetree@lfdr.de>; Sat, 19 Sep 2020 16:15:02 +0200 (CEST)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S1726510AbgISON6 (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Sat, 19 Sep 2020 10:13:58 -0400
-Received: from mail.kernel.org ([198.145.29.99]:46974 "EHLO mail.kernel.org"
+        id S1726400AbgISOPA (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Sat, 19 Sep 2020 10:15:00 -0400
+Received: from mail.kernel.org ([198.145.29.99]:47358 "EHLO mail.kernel.org"
         rhost-flags-OK-OK-OK-OK) by vger.kernel.org with ESMTP
-        id S1726159AbgISON5 (ORCPT <rfc822;devicetree@vger.kernel.org>);
-        Sat, 19 Sep 2020 10:13:57 -0400
-Received: from localhost.localdomain (unknown [194.230.155.191])
-        (using TLSv1.2 with cipher ECDHE-RSA-AES128-GCM-SHA256 (128/128 bits))
+        id S1726159AbgISOPA (ORCPT <rfc822;devicetree@vger.kernel.org>);
+        Sat, 19 Sep 2020 10:15:00 -0400
+Received: from archlinux (cpc149474-cmbg20-2-0-cust94.5-4.cable.virginm.net [82.4.196.95])
+        (using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
         (No client certificate requested)
-        by mail.kernel.org (Postfix) with ESMTPSA id A50E021582;
-        Sat, 19 Sep 2020 14:13:52 +0000 (UTC)
+        by mail.kernel.org (Postfix) with ESMTPSA id 518F42085B;
+        Sat, 19 Sep 2020 14:14:58 +0000 (UTC)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=kernel.org;
-        s=default; t=1600524836;
-        bh=lBHpIaEQEA0hwJz1aWk1HdsShTkLdgBJrh4IfJNUNoA=;
-        h=From:To:Cc:Subject:Date:In-Reply-To:References:From;
-        b=dhUjaG3u1deZv01LKAE6u4qszEqKRj1qnTFc5rm+ljCziJcuX5KlfK6nTgj6iYIho
-         dpqFsH+Bq3hoKDlDBwctYi8HfnCoABcoSibC8aYr7lWyLU2LHifJye8wbm/Exvcuw7
-         BbGMAuptBTksZpSP5WqyHczNXWDDxQXlhh/NaEF4=
-From:   Krzysztof Kozlowski <krzk@kernel.org>
-To:     Rob Herring <robh+dt@kernel.org>, Shawn Guo <shawnguo@kernel.org>,
-        Sascha Hauer <s.hauer@pengutronix.de>,
-        Pengutronix Kernel Team <kernel@pengutronix.de>,
-        Fabio Estevam <festevam@gmail.com>,
-        NXP Linux Team <linux-imx@nxp.com>,
-        Li Yang <leoyang.li@nxp.com>, devicetree@vger.kernel.org,
-        linux-kernel@vger.kernel.org, linux-arm-kernel@lists.infradead.org
-Cc:     Krzysztof Kozlowski <krzk@kernel.org>
-Subject: [PATCH v2 3/3] arm64: dts: imx8mn-var-som-symphony: Add Variscite Symphony board with VAR-SOM-MX8MN
-Date:   Sat, 19 Sep 2020 16:13:32 +0200
-Message-Id: <20200919141332.5095-3-krzk@kernel.org>
-X-Mailer: git-send-email 2.17.1
-In-Reply-To: <20200919141332.5095-1-krzk@kernel.org>
-References: <20200919141332.5095-1-krzk@kernel.org>
+        s=default; t=1600524899;
+        bh=L43UCMnV3PrpyRchPp32e0yjDIK44P5/CO8iCbNV51o=;
+        h=Date:From:To:Cc:Subject:In-Reply-To:References:From;
+        b=vA+KSthNv2UBTaQYDhA570c9bUsCrbn9awyjuoqcoJFyV/k+g5pnjS9lECDXkDrvB
+         gzUJSs116/UtKKDB7v6XFKfWT3lN3ZUnFlW2RY6pChLWkP9ZFS10gDSp7cBZEsWtGf
+         CDHoqyNWT4xIqMNkQkJPw7YKkMvO7OsYG7JR69L0=
+Date:   Sat, 19 Sep 2020 15:14:55 +0100
+From:   Jonathan Cameron <jic23@kernel.org>
+To:     Jonathan Cameron <Jonathan.Cameron@Huawei.com>
+Cc:     <linux-iio@vger.kernel.org>, Rob Herring <robh@kernel.org>,
+        <devicetree@vger.kernel.org>, Haibo Chen <haibo.chen@nxp.com>,
+        Shawn Guo <shawnguo@kernel.org>,
+        Sascha Hauer <s.hauer@pengutronix.de>
+Subject: Re: [PATCH v2 19/20] dt-bindings:iio:adc:fsl,imx7d-adc yaml
+ conversion
+Message-ID: <20200919151455.25568afb@archlinux>
+In-Reply-To: <20200916112721.00003803@Huawei.com>
+References: <20200909175946.395313-1-jic23@kernel.org>
+        <20200909175946.395313-20-jic23@kernel.org>
+        <20200916112721.00003803@Huawei.com>
+X-Mailer: Claws Mail 3.17.6 (GTK+ 2.24.32; x86_64-pc-linux-gnu)
+MIME-Version: 1.0
+Content-Type: text/plain; charset=US-ASCII
+Content-Transfer-Encoding: 7bit
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-Add a basic DTS for Variscite Symphony evaluation kit with VAR-SOM-MX8MN
-(i.MX 8M Nano) System on Module.  This brings up the board with basic
-functionalities although still few issues remain (e.g. I2C3 and USB OTG
-port, although it might not be the problem of DTS).
+On Wed, 16 Sep 2020 11:27:21 +0100
+Jonathan Cameron <Jonathan.Cameron@Huawei.com> wrote:
 
-Signed-off-by: Krzysztof Kozlowski <krzk@kernel.org>
+> On Wed, 9 Sep 2020 18:59:45 +0100
+> Jonathan Cameron <jic23@kernel.org> wrote:
+> 
+> > From: Jonathan Cameron <Jonathan.Cameron@huawei.com>
+> > 
+> > A nice simple binding.  Only real different from txt is that I dropped
+> > some descriptions where the naming of the parameter was self explanatory
+> > 
+> > Signed-off-by: Jonathan Cameron <Jonathan.Cameron@huawei.com>
+> > Cc: Haibo Chen <haibo.chen@freescale.com>
+> > Cc: Shawn Guo <shawnguo@kernel.org>
+> > Cc: Sascha Hauer <s.hauer@pengutronix.de>  
+> Update Haibo Chen's email address. I'll also fix it whilst applying the
+> patch if this version goes in!
+Applied with that updated address for Haibo Chen.
 
----
+thanks,
 
-Changes since v1:
-1. Add Variscite copyright. The work was based on my previous
-   imx8mm-var-som work which was based on imx8mm-evk, however few device
-   nodes were configured based on Variscite GPLv2 work.
-2. Drop wakeup-source from RTC.
----
- arch/arm64/boot/dts/freescale/Makefile        |   1 +
- .../dts/freescale/imx8mn-var-som-symphony.dts | 240 ++++++++++++++++++
- 2 files changed, 241 insertions(+)
- create mode 100644 arch/arm64/boot/dts/freescale/imx8mn-var-som-symphony.dts
+Jonathan
 
-diff --git a/arch/arm64/boot/dts/freescale/Makefile b/arch/arm64/boot/dts/freescale/Makefile
-index 6b3494b6aa99..28904ebd92cf 100644
---- a/arch/arm64/boot/dts/freescale/Makefile
-+++ b/arch/arm64/boot/dts/freescale/Makefile
-@@ -33,6 +33,7 @@ dtb-$(CONFIG_ARCH_MXC) += imx8mm-evk.dtb
- dtb-$(CONFIG_ARCH_MXC) += imx8mm-var-som-symphony.dtb
- dtb-$(CONFIG_ARCH_MXC) += imx8mn-evk.dtb
- dtb-$(CONFIG_ARCH_MXC) += imx8mn-ddr4-evk.dtb
-+dtb-$(CONFIG_ARCH_MXC) += imx8mn-var-som-symphony.dtb
- dtb-$(CONFIG_ARCH_MXC) += imx8mp-evk.dtb
- dtb-$(CONFIG_ARCH_MXC) += imx8mq-evk.dtb
- dtb-$(CONFIG_ARCH_MXC) += imx8mq-hummingboard-pulse.dtb
-diff --git a/arch/arm64/boot/dts/freescale/imx8mn-var-som-symphony.dts b/arch/arm64/boot/dts/freescale/imx8mn-var-som-symphony.dts
-new file mode 100644
-index 000000000000..f61c48776cf3
---- /dev/null
-+++ b/arch/arm64/boot/dts/freescale/imx8mn-var-som-symphony.dts
-@@ -0,0 +1,240 @@
-+// SPDX-License-Identifier: (GPL-2.0+ OR MIT)
-+/*
-+ * Copyright 2019-2020 Variscite Ltd.
-+ * Copyright (C) 2020 Krzysztof Kozlowski <krzk@kernel.org>
-+ */
-+
-+/dts-v1/;
-+
-+#include "imx8mn-var-som.dtsi"
-+
-+/ {
-+	model = "Variscite VAR-SOM-MX8MN Symphony evaluation board";
-+	compatible = "variscite,var-som-mx8mn-symphony", "variscite,var-som-mx8mn", "fsl,imx8mn";
-+
-+	reg_usdhc2_vmmc: regulator-usdhc2-vmmc {
-+		compatible = "regulator-fixed";
-+		pinctrl-names = "default";
-+		pinctrl-0 = <&pinctrl_reg_usdhc2_vmmc>;
-+		regulator-name = "VSD_3V3";
-+		regulator-min-microvolt = <3300000>;
-+		regulator-max-microvolt = <3300000>;
-+		gpio = <&gpio4 22 GPIO_ACTIVE_HIGH>;
-+		enable-active-high;
-+	};
-+
-+	gpio-keys {
-+		compatible = "gpio-keys";
-+
-+		back {
-+			label = "Back";
-+			gpios = <&pca9534 1 GPIO_ACTIVE_LOW>;
-+			linux,code = <KEY_BACK>;
-+		};
-+
-+		home {
-+			label = "Home";
-+			gpios = <&pca9534 2 GPIO_ACTIVE_LOW>;
-+			linux,code = <KEY_HOME>;
-+		};
-+
-+		menu {
-+			label = "Menu";
-+			gpios = <&pca9534 3 GPIO_ACTIVE_LOW>;
-+			linux,code = <KEY_MENU>;
-+		};
-+	};
-+
-+	leds {
-+		compatible = "gpio-leds";
-+
-+		led {
-+			label = "Heartbeat";
-+			gpios = <&pca9534 0 GPIO_ACTIVE_LOW>;
-+			linux,default-trigger = "heartbeat";
-+		};
-+	};
-+};
-+
-+&ethphy {
-+	reset-gpios = <&pca9534 5 GPIO_ACTIVE_HIGH>;
-+};
-+
-+&i2c2 {
-+	clock-frequency = <400000>;
-+	pinctrl-names = "default";
-+	pinctrl-0 = <&pinctrl_i2c2>;
-+	status = "okay";
-+
-+	pca9534: gpio@20 {
-+		compatible = "nxp,pca9534";
-+		reg = <0x20>;
-+		gpio-controller;
-+		pinctrl-names = "default";
-+		pinctrl-0 = <&pinctrl_pca9534>;
-+		interrupt-parent = <&gpio1>;
-+		interrupts = <7 IRQ_TYPE_EDGE_FALLING>;
-+		#gpio-cells = <2>;
-+		wakeup-source;
-+
-+		/* USB 3.0 OTG (usbotg1) / SATA port switch, set to USB 3.0 */
-+		usb3-sata-sel-hog {
-+			gpio-hog;
-+			gpios = <4 GPIO_ACTIVE_HIGH>;
-+			output-low;
-+			line-name = "usb3_sata_sel";
-+		};
-+
-+		som-vselect-hog {
-+			gpio-hog;
-+			gpios = <6 GPIO_ACTIVE_HIGH>;
-+			output-low;
-+			line-name = "som_vselect";
-+		};
-+
-+		enet-sel-hog {
-+			gpio-hog;
-+			gpios = <7 GPIO_ACTIVE_HIGH>;
-+			output-low;
-+			line-name = "enet_sel";
-+		};
-+	};
-+
-+	extcon_usbotg1: typec@3d {
-+		compatible = "nxp,ptn5150";
-+		reg = <0x3d>;
-+		interrupt-parent = <&gpio1>;
-+		interrupts = <11 IRQ_TYPE_LEVEL_LOW>;
-+		pinctrl-names = "default";
-+		pinctrl-0 = <&pinctrl_ptn5150>;
-+		status = "okay";
-+	};
-+};
-+
-+&i2c3 {
-+	/* Capacitive touch controller */
-+	ft5x06_ts: touchscreen@38 {
-+		compatible = "edt,edt-ft5406";
-+		reg = <0x38>;
-+		pinctrl-names = "default";
-+		pinctrl-0 = <&pinctrl_captouch>;
-+		interrupt-parent = <&gpio5>;
-+		interrupts = <4 IRQ_TYPE_LEVEL_HIGH>;
-+
-+		touchscreen-size-x = <800>;
-+		touchscreen-size-y = <480>;
-+		touchscreen-inverted-x;
-+		touchscreen-inverted-y;
-+	};
-+
-+	rtc@68 {
-+		compatible = "dallas,ds1337";
-+		reg = <0x68>;
-+	};
-+};
-+
-+/* Header */
-+&uart1 {
-+	pinctrl-names = "default";
-+	pinctrl-0 = <&pinctrl_uart1>;
-+	status = "okay";
-+};
-+
-+/* Header */
-+&uart3 {
-+	pinctrl-names = "default";
-+	pinctrl-0 = <&pinctrl_uart3>;
-+	status = "okay";
-+};
-+
-+&usbotg1 {
-+	disable-over-current;
-+	extcon = <&extcon_usbotg1>, <&extcon_usbotg1>;
-+};
-+
-+&pinctrl_fec1 {
-+	fsl,pins = <
-+		MX8MN_IOMUXC_ENET_MDC_ENET1_MDC			0x3
-+		MX8MN_IOMUXC_ENET_MDIO_ENET1_MDIO		0x3
-+		MX8MN_IOMUXC_ENET_TD3_ENET1_RGMII_TD3		0x1f
-+		MX8MN_IOMUXC_ENET_TD2_ENET1_RGMII_TD2		0x1f
-+		MX8MN_IOMUXC_ENET_TD1_ENET1_RGMII_TD1		0x1f
-+		MX8MN_IOMUXC_ENET_TD0_ENET1_RGMII_TD0		0x1f
-+		MX8MN_IOMUXC_ENET_RD3_ENET1_RGMII_RD3		0x91
-+		MX8MN_IOMUXC_ENET_RD2_ENET1_RGMII_RD2		0x91
-+		MX8MN_IOMUXC_ENET_RD1_ENET1_RGMII_RD1		0x91
-+		MX8MN_IOMUXC_ENET_RD0_ENET1_RGMII_RD0		0x91
-+		MX8MN_IOMUXC_ENET_TXC_ENET1_RGMII_TXC		0x1f
-+		MX8MN_IOMUXC_ENET_RXC_ENET1_RGMII_RXC		0x91
-+		MX8MN_IOMUXC_ENET_RX_CTL_ENET1_RGMII_RX_CTL	0x91
-+		MX8MN_IOMUXC_ENET_TX_CTL_ENET1_RGMII_TX_CTL	0x1f
-+		/* Remove the MX8MM_IOMUXC_GPIO1_IO09_GPIO1_IO9 as not used */
-+	>;
-+};
-+
-+&pinctrl_fec1_sleep {
-+	fsl,pins = <
-+		MX8MN_IOMUXC_ENET_MDC_GPIO1_IO16		0x120
-+		MX8MN_IOMUXC_ENET_MDIO_GPIO1_IO17		0x120
-+		MX8MN_IOMUXC_ENET_TD3_GPIO1_IO18		0x120
-+		MX8MN_IOMUXC_ENET_TD2_GPIO1_IO19		0x120
-+		MX8MN_IOMUXC_ENET_TD1_GPIO1_IO20		0x120
-+		MX8MN_IOMUXC_ENET_TD0_GPIO1_IO21		0x120
-+		MX8MN_IOMUXC_ENET_RD3_GPIO1_IO29		0x120
-+		MX8MN_IOMUXC_ENET_RD2_GPIO1_IO28		0x120
-+		MX8MN_IOMUXC_ENET_RD1_GPIO1_IO27		0x120
-+		MX8MN_IOMUXC_ENET_RD0_GPIO1_IO26		0x120
-+		MX8MN_IOMUXC_ENET_TXC_GPIO1_IO23		0x120
-+		MX8MN_IOMUXC_ENET_RXC_GPIO1_IO25		0x120
-+		MX8MN_IOMUXC_ENET_RX_CTL_GPIO1_IO24		0x120
-+		MX8MN_IOMUXC_ENET_TX_CTL_GPIO1_IO22		0x120
-+		/* Remove the MX8MM_IOMUXC_GPIO1_IO09_GPIO1_IO9 as not used */
-+	>;
-+};
-+
-+&iomuxc {
-+	pinctrl_captouch: captouchgrp {
-+		fsl,pins = <
-+			MX8MN_IOMUXC_SPDIF_RX_GPIO5_IO4		0x16
-+		>;
-+	};
-+
-+	pinctrl_i2c2: i2c2grp {
-+		fsl,pins = <
-+			MX8MN_IOMUXC_I2C2_SCL_I2C2_SCL		0x400001c3
-+			MX8MN_IOMUXC_I2C2_SDA_I2C2_SDA		0x400001c3
-+		>;
-+	};
-+
-+	pinctrl_pca9534: pca9534grp {
-+		fsl,pins = <
-+			MX8MN_IOMUXC_GPIO1_IO07_GPIO1_IO7	0x16
-+		>;
-+	};
-+
-+	pinctrl_ptn5150: ptn5150grp {
-+		fsl,pins = <
-+			MX8MN_IOMUXC_GPIO1_IO11_GPIO1_IO11	0x16
-+		>;
-+	};
-+
-+	pinctrl_reg_usdhc2_vmmc: regusdhc2vmmcgrp {
-+		fsl,pins = <
-+			MX8MN_IOMUXC_SAI2_RXC_GPIO4_IO22	0x41
-+		>;
-+	};
-+
-+	pinctrl_uart1: uart1grp {
-+		fsl,pins = <
-+			MX8MN_IOMUXC_UART1_RXD_UART1_DCE_RX	0x140
-+			MX8MN_IOMUXC_UART1_TXD_UART1_DCE_TX	0x140
-+		>;
-+	};
-+
-+	pinctrl_uart3: uart3grp {
-+		fsl,pins = <
-+			MX8MN_IOMUXC_UART3_RXD_UART3_DCE_RX	0x140
-+			MX8MN_IOMUXC_UART3_TXD_UART3_DCE_TX	0x140
-+		>;
-+	};
-+};
--- 
-2.17.1
+> 
+> Thanks,
+> 
+> Jonathan
+> 
+> > ---
+> >  .../bindings/iio/adc/fsl,imx7d-adc.yaml       | 62 +++++++++++++++++++
+> >  .../devicetree/bindings/iio/adc/imx7d-adc.txt | 24 -------
+> >  2 files changed, 62 insertions(+), 24 deletions(-)
+> > 
+> > diff --git a/Documentation/devicetree/bindings/iio/adc/fsl,imx7d-adc.yaml b/Documentation/devicetree/bindings/iio/adc/fsl,imx7d-adc.yaml
+> > new file mode 100644
+> > index 000000000000..dc5eacb38046
+> > --- /dev/null
+> > +++ b/Documentation/devicetree/bindings/iio/adc/fsl,imx7d-adc.yaml
+> > @@ -0,0 +1,62 @@
+> > +# SPDX-License-Identifier: (GPL-2.0 OR BSD-2-Clause)
+> > +%YAML 1.2
+> > +---
+> > +$id: http://devicetree.org/schemas/iio/adc/fsl,imx7d-adc.yaml#
+> > +$schema: http://devicetree.org/meta-schemas/core.yaml#
+> > +
+> > +title: Freescale ADC found on the imx7d SoC
+> > +
+> > +maintainers:
+> > +  - Haibo Chen <haibo.chen@freescale.com>
+> > +
+> > +properties:
+> > +  compatible:
+> > +    const: fsl,imx7d-adc
+> > +
+> > +  reg:
+> > +    maxItems: 1
+> > +
+> > +  interrupts:
+> > +    maxItems: 1
+> > +
+> > +  clocks:
+> > +    maxItems: 1
+> > +
+> > +  clock-names:
+> > +    const: adc
+> > +
+> > +  vref-supply: true
+> > +
+> > +  "#io-channel-cells":
+> > +    const: 1
+> > +
+> > +required:
+> > +  - compatible
+> > +  - reg
+> > +  - interrupts
+> > +  - clocks
+> > +  - clock-names
+> > +  - vref-supply
+> > +  - "#io-channel-cells"
+> > +
+> > +additionalProperties: false
+> > +
+> > +examples:
+> > +  - |
+> > +    #include <dt-bindings/interrupt-controller/irq.h>
+> > +    #include <dt-bindings/clock/imx7d-clock.h>
+> > +    #include <dt-bindings/interrupt-controller/arm-gic.h>
+> > +    soc {
+> > +        #address-cells = <1>;
+> > +        #size-cells = <1>;
+> > +        adc@30610000 {
+> > +            compatible = "fsl,imx7d-adc";
+> > +            reg = <0x30610000 0x10000>;
+> > +            interrupts = <GIC_SPI 98 IRQ_TYPE_LEVEL_HIGH>;
+> > +            clocks = <&clks IMX7D_ADC_ROOT_CLK>;
+> > +            clock-names = "adc";
+> > +            vref-supply = <&reg_vcc_3v3_mcu>;
+> > +            #io-channel-cells = <1>;
+> > +        };
+> > +    };
+> > +...
+> > diff --git a/Documentation/devicetree/bindings/iio/adc/imx7d-adc.txt b/Documentation/devicetree/bindings/iio/adc/imx7d-adc.txt
+> > deleted file mode 100644
+> > index f1f3a552459b..000000000000
+> > --- a/Documentation/devicetree/bindings/iio/adc/imx7d-adc.txt
+> > +++ /dev/null
+> > @@ -1,24 +0,0 @@
+> > -Freescale imx7d ADC bindings
+> > -
+> > -The devicetree bindings are for the ADC driver written for
+> > -imx7d SoC.
+> > -
+> > -Required properties:
+> > -- compatible: Should be "fsl,imx7d-adc"
+> > -- reg: Offset and length of the register set for the ADC device
+> > -- interrupts: The interrupt number for the ADC device
+> > -- clocks: The root clock of the ADC controller
+> > -- clock-names: Must contain "adc", matching entry in the clocks property
+> > -- vref-supply: The regulator supply ADC reference voltage
+> > -- #io-channel-cells: Must be 1 as per ../iio-bindings.txt
+> > -
+> > -Example:
+> > -adc1: adc@30610000 {
+> > -	compatible = "fsl,imx7d-adc";
+> > -	reg = <0x30610000 0x10000>;
+> > -	interrupts = <GIC_SPI 98 IRQ_TYPE_LEVEL_HIGH>;
+> > -	clocks = <&clks IMX7D_ADC_ROOT_CLK>;
+> > -	clock-names = "adc";
+> > -	vref-supply = <&reg_vcc_3v3_mcu>;
+> > -	#io-channel-cells = <1>;
+> > -};  
+> 
+> 
 
