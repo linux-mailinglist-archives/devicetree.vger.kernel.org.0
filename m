@@ -2,91 +2,159 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from vger.kernel.org (vger.kernel.org [23.128.96.18])
-	by mail.lfdr.de (Postfix) with ESMTP id EABC3270DE8
-	for <lists+devicetree@lfdr.de>; Sat, 19 Sep 2020 14:45:22 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTP id 95794270E25
+	for <lists+devicetree@lfdr.de>; Sat, 19 Sep 2020 15:33:56 +0200 (CEST)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S1726385AbgISMpH (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Sat, 19 Sep 2020 08:45:07 -0400
-Received: from szxga07-in.huawei.com ([45.249.212.35]:39996 "EHLO huawei.com"
-        rhost-flags-OK-OK-OK-FAIL) by vger.kernel.org with ESMTP
-        id S1726218AbgISMpG (ORCPT <rfc822;devicetree@vger.kernel.org>);
-        Sat, 19 Sep 2020 08:45:06 -0400
-Received: from DGGEMS414-HUB.china.huawei.com (unknown [172.30.72.59])
-        by Forcepoint Email with ESMTP id D81B814E6D6CAD530CEB;
-        Sat, 19 Sep 2020 20:45:02 +0800 (CST)
-Received: from thunder-town.china.huawei.com (10.174.177.253) by
- DGGEMS414-HUB.china.huawei.com (10.3.19.214) with Microsoft SMTP Server id
- 14.3.487.0; Sat, 19 Sep 2020 20:44:56 +0800
-From:   Zhen Lei <thunder.leizhen@huawei.com>
-To:     devicetree <devicetree@vger.kernel.org>,
-        Daniel Lezcano <daniel.lezcano@linaro.org>,
-        Thomas Gleixner <tglx@linutronix.de>,
-        "Haojian Zhuang" <haojian.zhuang@linaro.org>,
-        Andrew Morton <akpm@linux-foundation.org>,
-        Russell King <rmk+kernel@armlinux.org.uk>,
-        Catalin Marinas <catalin.marinas@arm.com>,
-        linux-arm-kernel <linux-arm-kernel@lists.infradead.org>,
-        linux-kernel <linux-kernel@vger.kernel.org>
-CC:     Zhen Lei <thunder.leizhen@huawei.com>,
-        Libin <huawei.libin@huawei.com>,
-        Kefeng Wang <wangkefeng.wang@huawei.com>
-Subject: [PATCH 1/1] dt-bindings: sp804: add support for Hisilicon sp804 timer
-Date:   Sat, 19 Sep 2020 20:44:12 +0800
-Message-ID: <20200919124412.4135-2-thunder.leizhen@huawei.com>
-X-Mailer: git-send-email 2.26.0.windows.1
-In-Reply-To: <20200919124412.4135-1-thunder.leizhen@huawei.com>
-References: <20200919124412.4135-1-thunder.leizhen@huawei.com>
+        id S1726312AbgISNdy (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Sat, 19 Sep 2020 09:33:54 -0400
+Received: from mail.kernel.org ([198.145.29.99]:41430 "EHLO mail.kernel.org"
+        rhost-flags-OK-OK-OK-OK) by vger.kernel.org with ESMTP
+        id S1726159AbgISNdy (ORCPT <rfc822;devicetree@vger.kernel.org>);
+        Sat, 19 Sep 2020 09:33:54 -0400
+Received: from archlinux (cpc149474-cmbg20-2-0-cust94.5-4.cable.virginm.net [82.4.196.95])
+        (using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
+        (No client certificate requested)
+        by mail.kernel.org (Postfix) with ESMTPSA id 9B10A20709;
+        Sat, 19 Sep 2020 13:33:52 +0000 (UTC)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=kernel.org;
+        s=default; t=1600522433;
+        bh=O6A21An7afWZtqrmulH4Ozq6BM/kRyb6vZ8Y+wavVxg=;
+        h=Date:From:To:Cc:Subject:In-Reply-To:References:From;
+        b=TQ9hXU1d3SUx3H1qefokNDQxEL3pKGABtcxVZyymZmhGBd7mSIHZs5Mwqq9SDvIyI
+         Fs45nh+EqVQfdGkoYZKGta9RjBmd/vZaTgYUAnPCYXu8mdKd+M0KxrNJ9ljixTgcEp
+         9aH/ArDdosHf19uQ6aLu7qSZXxgyhWslSk1jIhRY=
+Date:   Sat, 19 Sep 2020 14:33:48 +0100
+From:   Jonathan Cameron <jic23@kernel.org>
+To:     Andy Duan <fugang.duan@nxp.com>
+Cc:     Jonathan Cameron <Jonathan.Cameron@Huawei.com>,
+        Rob Herring <robh@kernel.org>,
+        "open list:IIO SUBSYSTEM AND DRIVERS" <linux-iio@vger.kernel.org>,
+        "devicetree@vger.kernel.org" <devicetree@vger.kernel.org>,
+        Shawn Guo <shawnguo@kernel.org>,
+        Sascha Hauer <s.hauer@pengutronix.de>
+Subject: Re: [PATCH v2 01/20] dt-bindings:iio:adc:fsl,vf610-adc conversion
+ to yaml.
+Message-ID: <20200919143348.624cab27@archlinux>
+In-Reply-To: <AM8PR04MB73155DCE23BC613898AD43FDFF3E0@AM8PR04MB7315.eurprd04.prod.outlook.com>
+References: <20200909175946.395313-1-jic23@kernel.org>
+        <20200909175946.395313-2-jic23@kernel.org>
+        <CAL_JsqJhBFqi8=gku8sv5=8MTB1uCTq=DkuoVzEaUMxO1QhBAg@mail.gmail.com>
+        <20200916113401.00006d86@Huawei.com>
+        <AM8PR04MB73155DCE23BC613898AD43FDFF3E0@AM8PR04MB7315.eurprd04.prod.outlook.com>
+X-Mailer: Claws Mail 3.17.6 (GTK+ 2.24.32; x86_64-pc-linux-gnu)
 MIME-Version: 1.0
-Content-Transfer-Encoding: 7BIT
-Content-Type:   text/plain; charset=US-ASCII
-X-Originating-IP: [10.174.177.253]
-X-CFilter-Loop: Reflected
+Content-Type: text/plain; charset=US-ASCII
+Content-Transfer-Encoding: 7bit
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-Some Hisilicon SoCs, such as Hi1212, use the Hisilicon extended sp804
-timer.
+On Thu, 17 Sep 2020 02:24:36 +0000
+Andy Duan <fugang.duan@nxp.com> wrote:
 
-Signed-off-by: Zhen Lei <thunder.leizhen@huawei.com>
----
- Documentation/devicetree/bindings/timer/arm,sp804.yaml | 11 +++++++++--
- 1 file changed, 9 insertions(+), 2 deletions(-)
+> From: Jonathan Cameron <Jonathan.Cameron@Huawei.com> Sent: Wednesday, September 16, 2020 6:34 PM
+> > On Tue, 15 Sep 2020 14:45:58 -0600
+> > Rob Herring <robh@kernel.org> wrote:
+> >   
+> > > On Wed, Sep 9, 2020 at 12:02 PM Jonathan Cameron <jic23@kernel.org>  
+> > wrote:  
+> > > >
+> > > > From: Jonathan Cameron <Jonathan.Cameron@huawei.com>
+> > > >
+> > > > A simple conversion of this freescale ADC binding from txt to yaml.
+> > > > For maintainer I went with Fugang Duan as the original author of the
+> > > > binding. Would be great to have confirmation of this.
+> > > >
+> > > > Signed-off-by: Jonathan Cameron <Jonathan.Cameron@huawei.com>
+> > > > Cc: Fugang Duan <B38611@freescale.com>
+> > > > Cc: Shawn Guo <shawnguo@kernel.org>
+> > > > Cc: Sascha Hauer <s.hauer@pengutronix.de>
+> > > > ---
+> > > >  .../bindings/iio/adc/fsl,vf610-adc.yaml       | 81  
+> > +++++++++++++++++++  
+> > > >  .../devicetree/bindings/iio/adc/vf610-adc.txt | 36 ---------
+> > > >  2 files changed, 81 insertions(+), 36 deletions(-)
+> > > >
+> > > > diff --git
+> > > > a/Documentation/devicetree/bindings/iio/adc/fsl,vf610-adc.yaml
+> > > > b/Documentation/devicetree/bindings/iio/adc/fsl,vf610-adc.yaml
+> > > > new file mode 100644
+> > > > index 000000000000..99b6b55fd0a3
+> > > > --- /dev/null
+> > > > +++ b/Documentation/devicetree/bindings/iio/adc/fsl,vf610-adc.yaml
+> > > > @@ -0,0 +1,81 @@
+> > > > +# SPDX-License-Identifier: (GPL-2.0 OR BSD-2-Clause) %YAML 1.2
+> > > > +---
+> > > > +$id:
+> > > > +https://eur01.safelinks.protection.outlook.com/?url=http%3A%2F%2Fde
+> > > >  
+> > +vicetree.org%2Fschemas%2Fiio%2Fadc%2Ffsl%2Cvf610-adc.yaml%23&amp;da  
+> > > >  
+> > +ta=02%7C01%7Cfugang.duan%40nxp.com%7C750fcd8ebdf34af6655308d85a2
+> > c41  
+> > > >  
+> > +8d%7C686ea1d3bc2b4c6fa92cd99c5c301635%7C0%7C0%7C63735849344455
+> > 0580&  
+> > > >  
+> > +amp;sdata=SwRIWqN5caXEUZBTmnjKKHJKAZ1FQ03s1Gdpf%2FTyXzE%3D&am
+> > p;rese  
+> > > > +rved=0
+> > > > +$schema:
+> > > > +https://eur01.safelinks.protection.outlook.com/?url=http%3A%2F%2Fde
+> > > >  
+> > +vicetree.org%2Fmeta-schemas%2Fcore.yaml%23&amp;data=02%7C01%7Cfug
+> > an  
+> > > >  
+> > +g.duan%40nxp.com%7C750fcd8ebdf34af6655308d85a2c418d%7C686ea1d3bc
+> > 2b4  
+> > > >  
+> > +c6fa92cd99c5c301635%7C0%7C0%7C637358493444550580&amp;sdata=c4To
+> > ZCOG  
+> > > > +iPM0XbxCnLGJEEXvnMvFKqSgg3gtLeDYACI%3D&amp;reserved=0
+> > > > +
+> > > > +title: ADC found on Freescale vf610 and similar SoCs
+> > > > +
+> > > > +maintainers:
+> > > > +  - Fugang Duan <B38611@freescale.com>  
+> > >
+> > > I assume you got a bunch of bounces on this series, too? Looks like 1,
+> > > 4, 7, 9, 13, 16, 19, and 20 bounced. Please fix those addresses before
+> > > applying.  
+> > 
+> > Yup. I missed them on v1, but have saved the set for v2 to be able to fix those I
+> > can.
+> > 
+> > for some I can make a reasonable stab at a suitable maintainer as covered by a
+> > catch all.  For the others if I can't find a newer address I'll cover them myself
+> > until someone else steps up.
+> > I think that's just 9 and 13.  For 4 I didn't get a bounce but can add that to my
+> > list!
+> > 
+> > For this particular one looks like fugang duan is still active but now with an NXP
+> > address so I'll update that. I've changed the cc on this mail.
+> > 
+> > Thanks,
+> > 
+> > Jonathan  
+> 
+> Thanks, Jonathan.
+> 
+> For the patch, it looks good.
+> 
+> Reviewed-by: Fugang Duan <fugang.duan@nxp.com>
 
-diff --git a/Documentation/devicetree/bindings/timer/arm,sp804.yaml b/Documentation/devicetree/bindings/timer/arm,sp804.yaml
-index ba0945cf799ee0b..e35d3053250a557 100644
---- a/Documentation/devicetree/bindings/timer/arm,sp804.yaml
-+++ b/Documentation/devicetree/bindings/timer/arm,sp804.yaml
-@@ -15,19 +15,26 @@ description: |+
-   free-running mode. The input clock is shared, but can be gated and prescaled
-   independently for each timer.
- 
-+  There is a viriant of Arm SP804: Hisilicon 64-bit SP804 timer. Some Hisilicon
-+  SoCs, such as Hi1212, should use the dedicated compatible: "hisilicon,sp804".
-+
- # Need a custom select here or 'arm,primecell' will match on lots of nodes
- select:
-   properties:
-     compatible:
-       contains:
--        const: arm,sp804
-+        oneOf:
-+          - const: arm,sp804
-+          - const: hisilicon,sp804
-   required:
-     - compatible
- 
- properties:
-   compatible:
-     items:
--      - const: arm,sp804
-+      - enum:
-+        - arm,sp804
-+        - hisilicon,sp804
-       - const: arm,primecell
- 
-   interrupts:
--- 
-1.8.3
+I've updated the maintainer address to the one you have for this tag
+and applied to the togreg branch of iio.git, pushing out as testing
+for the autobuilders to perhaps poke at it.
 
+Thanks,
+
+Jonathan
+
+> > 
+> >   
+> > >
+> > > Rob  
+> >   
+> 
 
