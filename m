@@ -2,111 +2,125 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from vger.kernel.org (vger.kernel.org [23.128.96.18])
-	by mail.lfdr.de (Postfix) with ESMTP id 835FD2710EE
-	for <lists+devicetree@lfdr.de>; Sun, 20 Sep 2020 00:15:53 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTP id 04C19271125
+	for <lists+devicetree@lfdr.de>; Sun, 20 Sep 2020 00:30:49 +0200 (CEST)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S1726582AbgISWPw (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Sat, 19 Sep 2020 18:15:52 -0400
-Received: from lists.nic.cz ([217.31.204.67]:49994 "EHLO mail.nic.cz"
-        rhost-flags-OK-OK-OK-OK) by vger.kernel.org with ESMTP
-        id S1726626AbgISWPw (ORCPT <rfc822;devicetree@vger.kernel.org>);
-        Sat, 19 Sep 2020 18:15:52 -0400
-Received: from dellmb.labs.office.nic.cz (unknown [IPv6:2001:1488:fffe:6:cac7:3539:7f1f:463])
-        by mail.nic.cz (Postfix) with ESMTP id 461AE140A7D;
-        Sun, 20 Sep 2020 00:15:50 +0200 (CEST)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=nic.cz; s=default;
-        t=1600553750; bh=4GFIuoGep6B/Lp8izOufEKIIzt3hVVrrJhDzcEp36lM=;
-        h=From:To:Date;
-        b=FKtu2sxEEJJkm+ke71jJkOg+WzF+gAVwrp7Sgb5BjgEtWx5E3HD0F6ved0QRoIppT
-         FYh39twpS6M6pzS7WeLPlPJ61vjgu5YrvEBTyci/gE8SIcIMaNSkueg62T9dGSDDFA
-         dEEB2qeOlAKIhYqamW9QLAGOwZuqtO+eQwxS7GCk=
-From:   =?UTF-8?q?Marek=20Beh=C3=BAn?= <marek.behun@nic.cz>
-To:     linux-leds@vger.kernel.org
-Cc:     Pavel Machek <pavel@ucw.cz>, Dan Murphy <dmurphy@ti.com>,
-        =?UTF-8?q?Marek=20Beh=C3=BAn?= <marek.behun@nic.cz>,
-        NeilBrown <neilb@suse.de>,
-        Linus Walleij <linus.walleij@linaro.org>,
-        "H . Nikolaus Schaller" <hns@goldelico.com>,
-        Tony Lindgren <tony@atomide.com>,
-        Adam Ford <aford173@gmail.com>,
-        Viresh Kumar <viresh.kumar@linaro.org>,
-        Rob Herring <robh+dt@kernel.org>, devicetree@vger.kernel.org
-Subject: [PATCH leds + devicetree 04/13] ARM: dts: omap3: gta04: rename LED controlled subnodes
-Date:   Sun, 20 Sep 2020 00:15:39 +0200
-Message-Id: <20200919221548.29984-5-marek.behun@nic.cz>
-X-Mailer: git-send-email 2.26.2
-In-Reply-To: <20200919221548.29984-1-marek.behun@nic.cz>
-References: <20200919221548.29984-1-marek.behun@nic.cz>
+        id S1726765AbgISWao (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Sat, 19 Sep 2020 18:30:44 -0400
+Received: from lindbergh.monkeyblade.net ([23.128.96.19]:41796 "EHLO
+        lindbergh.monkeyblade.net" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
+        with ESMTP id S1726626AbgISWan (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Sat, 19 Sep 2020 18:30:43 -0400
+Received: from mail-qt1-x841.google.com (mail-qt1-x841.google.com [IPv6:2607:f8b0:4864:20::841])
+        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id BC3C5C0613CE;
+        Sat, 19 Sep 2020 15:30:43 -0700 (PDT)
+Received: by mail-qt1-x841.google.com with SMTP id r8so8795340qtp.13;
+        Sat, 19 Sep 2020 15:30:43 -0700 (PDT)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+        d=gmail.com; s=20161025;
+        h=from:to:cc:subject:date:message-id:mime-version
+         :content-transfer-encoding;
+        bh=c4ohihBLzAbKs8Bu/1T1sqja6nMDJKebNRtsvfxozrU=;
+        b=F1M+nA1BK8MrKcCRrhAR+fRA9MxHi6Uxh0pY04x9jQh/zRqIqpda7BM2qoyFq/zAim
+         nPcr2l964AH1N/SS/2c9qq9g8rtyGxSDVUyb+RJ158cVeUt2hlmTJ3DsDqbYjfujBObP
+         UsqsYK+WJkU05nfZJtBQsGhfibHHdIxs+9MU3+1+IahewsFVmj4g6iQ3+tLSkpGhMLMM
+         Wd7Li4oyaOVdWWUYNvAkFGAssdfsIZqqe4TnJJ64W8Qs7VwsRS5insGrK0H11ubm3aXc
+         gLkrzDjIdbrreRnSPjjeBS9FmoyrLH9BtgHrdphTftihjmJvAqcz04Y/kkgE4H9XjdmH
+         w4MA==
+X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+        d=1e100.net; s=20161025;
+        h=x-gm-message-state:from:to:cc:subject:date:message-id:mime-version
+         :content-transfer-encoding;
+        bh=c4ohihBLzAbKs8Bu/1T1sqja6nMDJKebNRtsvfxozrU=;
+        b=Pqq4rjRfRi2gBL8GmkxeC3El8Aoa9l71k3XcR1yvrG8kE2LLNTpx3oJP9flIt4b7hG
+         qhAkfwNIteVF2aolAcrkEeksWxm6BsKDkyLkeev2j0h7GTnmGqhHnUtgBktK0epiUCMN
+         WvYWUHWZtXBHDUzc0agCzPPuUYec0P78EDCza16sSbZSMR/Z3OCElLWqmezwFbWrowcL
+         5VRsOXlLRszwZdIA2MECT9UdcSeBydty10i9G/keKvm3onLLvO10SHJbHLES2MGSIf78
+         JNLN7A4gUyTMZ2XWB5M37s2finjWyF3klpN0o25JObA5ViVwpCKCS+v0fyUVnu0Lk69O
+         ncpQ==
+X-Gm-Message-State: AOAM5301vHZkx9vnH/OLSQVpZRSTmy+vXWxX22ad/JBUcyvp/KrH9FuI
+        oAMWWRbTdDHLJ5ZOXEFKsZM=
+X-Google-Smtp-Source: ABdhPJyy8Go+AqwEioL7G5p0Y7q3etaRJByxYyhWS9KBVNcx1f2oAfBAY6yN6okxvP5+o2cRDOP36A==
+X-Received: by 2002:aed:3e3d:: with SMTP id l58mr40839873qtf.350.1600554642920;
+        Sat, 19 Sep 2020 15:30:42 -0700 (PDT)
+Received: from Ansuel-XPS.localdomain (93-39-149-95.ip76.fastwebnet.it. [93.39.149.95])
+        by smtp.googlemail.com with ESMTPSA id f24sm2581139qkk.136.2020.09.19.15.30.39
+        (version=TLS1_3 cipher=TLS_AES_256_GCM_SHA384 bits=256/256);
+        Sat, 19 Sep 2020 15:30:42 -0700 (PDT)
+From:   Ansuel Smith <ansuelsmth@gmail.com>
+To:     Miquel Raynal <miquel.raynal@bootlin.com>
+Cc:     Ansuel Smith <ansuelsmth@gmail.com>,
+        Richard Weinberger <richard@nod.at>,
+        Vignesh Raghavendra <vigneshr@ti.com>,
+        Rob Herring <robh+dt@kernel.org>,
+        "David S. Miller" <davem@davemloft.net>,
+        Jakub Kicinski <kuba@kernel.org>, Andrew Lunn <andrew@lunn.ch>,
+        Heiner Kallweit <hkallweit1@gmail.com>,
+        Russell King <linux@armlinux.org.uk>,
+        Frank Rowand <frowand.list@gmail.com>,
+        Boris Brezillon <bbrezillon@kernel.org>,
+        linux-mtd@lists.infradead.org, devicetree@vger.kernel.org,
+        linux-kernel@vger.kernel.org, netdev@vger.kernel.org
+Subject: [PATCH v2 0/4] Actually implement nvmem support for mtd
+Date:   Sun, 20 Sep 2020 00:30:19 +0200
+Message-Id: <20200919223026.20803-1-ansuelsmth@gmail.com>
+X-Mailer: git-send-email 2.27.0
 MIME-Version: 1.0
-Content-Type: text/plain; charset=UTF-8
 Content-Transfer-Encoding: 8bit
-X-Spam-Checker-Version: SpamAssassin 3.4.2 (2018-09-13) on mail.nic.cz
-X-Spam-Status: No, score=0.00
-X-Spamd-Bar: /
-X-Virus-Scanned: clamav-milter 0.102.2 at mail
-X-Virus-Status: Clean
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-Rename LED controller subnodes to format "led@[0-6]" or "gpio@[0-6]" to
-conform to the new YAML defined binding.
+The mtd support for the nvmem api has been stalled from 2018 with a patch
+half pushed hoping that a scheme is found for the mtd name later. This
+pathset try to address this and add a very needed feature for the
+mac-address.
 
-Use the `gpio-line-names` property to define GPIO names.
+My solution to the already discussed problem here [1] is to keep it simple.
+A mtd subpartition can be set as a nvmem-provider with a specific tag and
+each direct subnode is treat by the nvmem api as a nvmem-cell and gets
+correctly registred. The mtd driver will treat a direct subnode of the
+subpartition as a legacy subpartition of the subpartition using the
+'fixed-partition' parser. To fix this every nvmem-cell has to have the
+'nvmem-cell' tag and the fixed-partition parser will skip these node if 
+this tag is detected. Simple as that. The subpartition with the tag 
+'nvmem-provider' will then be set by the config to not skip the of
+registration in the config and the nvmem-cells are correctly registred
+and can be used to set mac-address of the devices on the system.
 
-Signed-off-by: Marek Behún <marek.behun@nic.cz>
-Cc: NeilBrown <neilb@suse.de>
-Cc: Linus Walleij <linus.walleij@linaro.org>
-Cc: H. Nikolaus Schaller <hns@goldelico.com>
-Cc: Tony Lindgren <tony@atomide.com>
-Cc: Adam Ford <aford173@gmail.com>
-Cc: Viresh Kumar <viresh.kumar@linaro.org>
-Cc: Rob Herring <robh+dt@kernel.org>
-Cc: devicetree@vger.kernel.org
----
- arch/arm/boot/dts/omap3-gta04.dtsi | 12 +++++++-----
- 1 file changed, 7 insertions(+), 5 deletions(-)
+The last 2 patch try to address a problem in the embedded devices (mostly
+routers) that have the mac-address saved in a dedicated partition and is
+a ""master"" mac-address. Each device increment or decrement the extracted
+mac-address based on the device number. The increment function is
+implemented in the of_net function to get the mac-address that every net
+driver should allready use if they don't have a trusty mac-address source.
+(One example of this implementation are many ath10k device that gets the
+mac-address from the art mtd partition assigned to the network driver and
+increments it 1 for the wifi 2.4ghz and 2 for the wifi 5ghz).
 
-diff --git a/arch/arm/boot/dts/omap3-gta04.dtsi b/arch/arm/boot/dts/omap3-gta04.dtsi
-index ecc45862b4f34..a28fe1b07215c 100644
---- a/arch/arm/boot/dts/omap3-gta04.dtsi
-+++ b/arch/arm/boot/dts/omap3-gta04.dtsi
-@@ -541,28 +541,30 @@ tca6507: tca6507@45 {
- 		gpio-controller;
- 		#gpio-cells = <2>;
- 
--		gta04_led0: red_aux@0 {
-+		gpio-line-names = "wifi_reset@6";
-+
-+		gta04_led0: led@0 {
- 			label = "gta04:red:aux";
- 			reg = <0x0>;
- 		};
- 
--		gta04_led1: green_aux@1 {
-+		gta04_led1: led@1 {
- 			label = "gta04:green:aux";
- 			reg = <0x1>;
- 		};
- 
--		gta04_led3: red_power@3 {
-+		gta04_led3: led@3 {
- 			label = "gta04:red:power";
- 			reg = <0x3>;
- 			linux,default-trigger = "default-on";
- 		};
- 
--		gta04_led4: green_power@4 {
-+		gta04_led4: led@4 {
- 			label = "gta04:green:power";
- 			reg = <0x4>;
- 		};
- 
--		wifi_reset: wifi_reset@6 { /* reference as <&tca_gpios 0 0> since it is currently the only GPIO */
-+		wifi_reset: gpio@6 { /* reference as <&tca_gpios 0 0> since it is currently the only GPIO */
- 			reg = <0x6>;
- 			compatible = "gpio";
- 		};
+I really hope my mtd nvmem implementation doesn't conflicts with others
+and can be used, since this would remove many patch used to get mac-address
+and other nvmem data.
+
+[1] https://lore.kernel.org/patchwork/patch/765435/
+
+Changes:
+v2:
+* Fix compile error (missing mtd_node in mtdcore)
+
+Ansuel Smith (4):
+  mtd: Add nvmem support for mtd nvmem-providers
+  dt-bindings: mtd: partition: Document use of nvmem-provider
+  of_net: add mac-address-increment support
+  dt-bindings: net: Document use of mac-address-increment
+
+ .../devicetree/bindings/mtd/partition.txt     | 59 +++++++++++++++++++
+ .../bindings/net/ethernet-controller.yaml     | 19 ++++++
+ drivers/mtd/mtdcore.c                         |  3 +-
+ drivers/mtd/parsers/ofpart.c                  |  8 +++
+ drivers/of/of_net.c                           | 53 +++++++++++++----
+ 5 files changed, 129 insertions(+), 13 deletions(-)
+
 -- 
-2.26.2
+2.27.0
 
