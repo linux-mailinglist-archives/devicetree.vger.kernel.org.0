@@ -2,77 +2,71 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from vger.kernel.org (vger.kernel.org [23.128.96.18])
-	by mail.lfdr.de (Postfix) with ESMTP id 3EB09270DB0
-	for <lists+devicetree@lfdr.de>; Sat, 19 Sep 2020 13:48:53 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTP id 082F3270DCD
+	for <lists+devicetree@lfdr.de>; Sat, 19 Sep 2020 13:51:30 +0200 (CEST)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S1726371AbgISLst (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Sat, 19 Sep 2020 07:48:49 -0400
-Received: from lindbergh.monkeyblade.net ([23.128.96.19]:56264 "EHLO
+        id S1726170AbgISLv3 (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Sat, 19 Sep 2020 07:51:29 -0400
+Received: from lindbergh.monkeyblade.net ([23.128.96.19]:56712 "EHLO
         lindbergh.monkeyblade.net" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S1726168AbgISLst (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Sat, 19 Sep 2020 07:48:49 -0400
-Received: from mail-wm1-x343.google.com (mail-wm1-x343.google.com [IPv6:2a00:1450:4864:20::343])
-        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 14E10C0613D1
-        for <devicetree@vger.kernel.org>; Sat, 19 Sep 2020 04:48:49 -0700 (PDT)
-Received: by mail-wm1-x343.google.com with SMTP id q9so7663724wmj.2
-        for <devicetree@vger.kernel.org>; Sat, 19 Sep 2020 04:48:48 -0700 (PDT)
+        with ESMTP id S1726168AbgISLv3 (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Sat, 19 Sep 2020 07:51:29 -0400
+Received: from mail-wm1-x342.google.com (mail-wm1-x342.google.com [IPv6:2a00:1450:4864:20::342])
+        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 0A9B3C0613CF
+        for <devicetree@vger.kernel.org>; Sat, 19 Sep 2020 04:51:29 -0700 (PDT)
+Received: by mail-wm1-x342.google.com with SMTP id x23so7649494wmi.3
+        for <devicetree@vger.kernel.org>; Sat, 19 Sep 2020 04:51:28 -0700 (PDT)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
         d=linaro.org; s=google;
         h=subject:to:cc:references:from:message-id:date:user-agent
          :mime-version:in-reply-to:content-language:content-transfer-encoding;
-        bh=wqfVNx3hhEhUsnViEg4Q3DfHCFM9fuSUQF+oW2vIHtc=;
-        b=knwDHDCT0dgHd5iowBldBQNOWvFeAysrLCHH0maY7muKugQgRbnbz1P8vnCw6DaSpJ
-         ciXUjDTQVZmD9PoH6MGDfHQ4jHBZCg6PAgD9ujI56sjJoNElITaY8F5buRZTNFK6BnEt
-         Mco3caQQnX+JEnrDckrMAU6j3wd7mrdtr3gHl40FDE2T3/xPdvwHx1FGlj3Fn/CuVCZx
-         fQIIL7+WDALe+bkd1YRUCQttMbHbNVGkHjsv9bzNkdfbbpm59zYQNFLfC50/f+8HoyA6
-         U5GwXFvICRvQGaZcnl+YCXd60MnrdaqhBTZ7xA7e3YyULNvpepBEfbUKgtFNYCVdekW8
-         ddGQ==
+        bh=Op/a2HEXudfmbL2zW3KfDGxdlIacPR52588lQsIE5KA=;
+        b=OTgvtXMERaFupZE/K9in1OTN8nd+50HAwoG/pYCDpN3sQZPt7AjISa8Q8zYVpYFJeD
+         kK6jWfEyvjgnC01KPmbzta+UtwVdIWKelNh8uhXSfLe8hNNlSQlhWSuJrZABBu7rIbGa
+         VO88huBjklSVaKlfXBsEwdRGUxL1UflH5YK17GnfuDtVhlwtd0VXjLP4RlqGDo2MArq/
+         4Ulu+bCOirkEr8uQsJkswrH5bbjba+HoE5QwRIQARDEIP8oURwZkgwR4lCA8gBJsF4Xf
+         z+LdjnyL4vpm9+KxNve5nOzwINStAVr7pddVSYvOSGjEhCo1ui+DRAtLwrVL16fyT9Mk
+         ZH9A==
 X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
         d=1e100.net; s=20161025;
         h=x-gm-message-state:subject:to:cc:references:from:message-id:date
          :user-agent:mime-version:in-reply-to:content-language
          :content-transfer-encoding;
-        bh=wqfVNx3hhEhUsnViEg4Q3DfHCFM9fuSUQF+oW2vIHtc=;
-        b=iQja9r+lrdSKd9G6G+NKAAfExx5F+q3msCCmh18Pk5rSIIb4OQzdTJ3O+FnvCvP2Pl
-         pCoDOriCmdrfZgVUYlzt3WWVTSBEGrLO/pCzeGoCp52/I9Yl0wDDcQgDlw/v9ysq5SWF
-         MdHUdtnkMtK+8sAXePX1fLV8CZSoHH3agVoC9aaThsWDYCB/kg4I0xBOHQn9YoIFdz/Q
-         NvEpcSADPZ7FVM5uGVeMmcQBoJpZY0tktKt2pFwaHPtMb4DSx2NAxjnQ60z4KPdco9sh
-         m8uuxipwWrR9S0WqKjTh68pPWo2QCqU+lwpn2IeYTca/QsuJ+JctvB7eb0IYoAgze9Qk
-         zzIQ==
-X-Gm-Message-State: AOAM532//CkqibMEMIpCcI2wlEoBqlcaKD2zM1L2PxibEboykgPYtNAc
-        7A/6g4QIsRP4RKDLua9Lk9ZMgw==
-X-Google-Smtp-Source: ABdhPJyHe040jXDZbspHnU3tY6SFVLZqfiVYrksVkx0hl6AeqxBHjwI6XAXEGClfvHTNjsJJN7YyuA==
-X-Received: by 2002:a1c:c383:: with SMTP id t125mr2830251wmf.13.1600516127445;
-        Sat, 19 Sep 2020 04:48:47 -0700 (PDT)
+        bh=Op/a2HEXudfmbL2zW3KfDGxdlIacPR52588lQsIE5KA=;
+        b=CeRzRUAo6PeigefVC+puZ/mEgpfP5/Ox9mqz1RDnA9hWmANr1XqxNAjITBN6mSCraX
+         xf9omfEb/0nwwtzDwoZKnBsg6y0z69ruvBdKRbae/V8muWaXnYyZxQwvuc0R+BOaAjUI
+         35syMSTf5ehUsK9OJKD3W/KOwOjZjjEYoz1ir66BT6Vq7kFWFyG0SVWXZFWdow1lVODL
+         qj/nYKLykQICBzV3I3Kn5gVvi3ppIUx6yb4GpzNKUGcPONMO7ds9AZn9ZC4dPppy4RBw
+         zIIQq0rOoEtCUiKbm3y+OR2WcX0toBcImuV7PXbYUQ4Q4Vywuxihionyo3MW/4QpXBtn
+         iSfQ==
+X-Gm-Message-State: AOAM533dLzfGWscUjhUVgnpiCtnrJvOlaoA+Ei9oBLGqiaB5J2VHQxhd
+        +t1+/smM3pocalOfG601ppWseg==
+X-Google-Smtp-Source: ABdhPJwgT6nK9YXWOVF+UkEDm96RavXOm+FO28P0ROMSRcmaOXxV2OnLJmNZ+QzGadWivPfO20vhXw==
+X-Received: by 2002:a7b:ce86:: with SMTP id q6mr21370324wmj.163.1600516287482;
+        Sat, 19 Sep 2020 04:51:27 -0700 (PDT)
 Received: from ?IPv6:2a01:e34:ed2f:f020:9142:20e7:201d:cd11? ([2a01:e34:ed2f:f020:9142:20e7:201d:cd11])
-        by smtp.googlemail.com with ESMTPSA id y2sm9766752wmg.23.2020.09.19.04.48.44
+        by smtp.googlemail.com with ESMTPSA id k5sm10132879wmb.19.2020.09.19.04.51.26
         (version=TLS1_3 cipher=TLS_AES_128_GCM_SHA256 bits=128/128);
-        Sat, 19 Sep 2020 04:48:46 -0700 (PDT)
-Subject: Re: [PATCH v3 07/14] dt-bindings: thermal: imx8mm-thermal: Add i.MX
- 8M Nano compatible
-To:     Krzysztof Kozlowski <krzk@kernel.org>,
-        Rob Herring <robh+dt@kernel.org>, linux-clk@vger.kernel.org,
-        devicetree@vger.kernel.org, linux-arm-kernel@lists.infradead.org,
-        linux-kernel@vger.kernel.org, linux-mtd@lists.infradead.org,
-        linux-pwm@vger.kernel.org, linux-serial@vger.kernel.org,
-        linux-pm@vger.kernel.org, linux-watchdog@vger.kernel.org
-Cc:     Michael Turquette <mturquette@baylibre.com>,
-        Stephen Boyd <sboyd@kernel.org>,
-        Shawn Guo <shawnguo@kernel.org>,
-        Sascha Hauer <s.hauer@pengutronix.de>,
-        Pengutronix Kernel Team <kernel@pengutronix.de>,
-        Fabio Estevam <festevam@gmail.com>,
-        NXP Linux Team <linux-imx@nxp.com>,
-        Guenter Roeck <linux@roeck-us.net>
-References: <20200904152404.20636-1-krzk@kernel.org>
- <20200904152404.20636-8-krzk@kernel.org>
+        Sat, 19 Sep 2020 04:51:27 -0700 (PDT)
+Subject: Re: [PATCH v3 0/9] clocksource: sp804: add support for Hisilicon
+ sp804 timer
+To:     Zhen Lei <thunder.leizhen@huawei.com>,
+        Rob Herring <robh+dt@kernel.org>,
+        devicetree <devicetree@vger.kernel.org>,
+        Thomas Gleixner <tglx@linutronix.de>,
+        Haojian Zhuang <haojian.zhuang@linaro.org>,
+        linux-kernel <linux-kernel@vger.kernel.org>
+Cc:     Libin <huawei.libin@huawei.com>,
+        Kefeng Wang <wangkefeng.wang@huawei.com>,
+        Jianguo Chen <chenjianguo3@huawei.com>
+References: <20200918132237.3552-1-thunder.leizhen@huawei.com>
 From:   Daniel Lezcano <daniel.lezcano@linaro.org>
-Message-ID: <81a8248f-0d02-5646-36b2-5d4c3a7c4211@linaro.org>
-Date:   Sat, 19 Sep 2020 13:48:43 +0200
+Message-ID: <f25d4aa6-80f9-0ff6-25f5-f1def38ef824@linaro.org>
+Date:   Sat, 19 Sep 2020 13:51:25 +0200
 User-Agent: Mozilla/5.0 (X11; Linux x86_64; rv:68.0) Gecko/20100101
  Thunderbird/68.10.0
 MIME-Version: 1.0
-In-Reply-To: <20200904152404.20636-8-krzk@kernel.org>
+In-Reply-To: <20200918132237.3552-1-thunder.leizhen@huawei.com>
 Content-Type: text/plain; charset=utf-8
 Content-Language: en-US
 Content-Transfer-Encoding: 8bit
@@ -80,51 +74,24 @@ Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-On 04/09/2020 17:23, Krzysztof Kozlowski wrote:
-> DTSes with new i.MX 8M SoCs introduce their own compatibles so add them
-> to fix dtbs_check warnings like:
-> 
->   arch/arm64/boot/dts/freescale/imx8mn-evk.dt.yaml: tmu@30260000:
->     compatible:0: 'fsl,imx8mn-tmu' is not one of ['fsl,imx8mm-tmu', 'fsl,imx8mp-tmu']
->     From schema: Documentation/devicetree/bindings/thermal/imx8mm-thermal.yaml
-> 
->   arch/arm64/boot/dts/freescale/imx8mn-evk.dt.yaml: tmu@30260000:
->     compatible: ['fsl,imx8mn-tmu', 'fsl,imx8mm-tmu'] is too long
-> 
->   arch/arm64/boot/dts/freescale/imx8mn-evk.dt.yaml: tmu@30260000:
->     compatible: Additional items are not allowed ('fsl,imx8mm-tmu' was unexpected)
-> 
-> Signed-off-by: Krzysztof Kozlowski <krzk@kernel.org>
-> Reviewed-by: Rob Herring <robh@kernel.org>
-> ---
+On 18/09/2020 15:22, Zhen Lei wrote:
 
-Shall I pick this patch separately or did you merge the entire series ?
+[ ... ]
 
->  .../devicetree/bindings/thermal/imx8mm-thermal.yaml    | 10 +++++++---
->  1 file changed, 7 insertions(+), 3 deletions(-)
 > 
-> diff --git a/Documentation/devicetree/bindings/thermal/imx8mm-thermal.yaml b/Documentation/devicetree/bindings/thermal/imx8mm-thermal.yaml
-> index 38852877b8e3..89c54e08ee61 100644
-> --- a/Documentation/devicetree/bindings/thermal/imx8mm-thermal.yaml
-> +++ b/Documentation/devicetree/bindings/thermal/imx8mm-thermal.yaml
-> @@ -18,9 +18,13 @@ description: |
->  
->  properties:
->    compatible:
-> -    enum:
-> -      - fsl,imx8mm-tmu
-> -      - fsl,imx8mp-tmu
-> +    oneOf:
-> +      - enum:
-> +          - fsl,imx8mm-tmu
-> +          - fsl,imx8mp-tmu
-> +      - items:
-> +          - const: fsl,imx8mn-tmu
-> +          - const: fsl,imx8mm-tmu
->  
->    reg:
->      maxItems: 1
-> 
+> Zhen Lei (8):
+>   clocksource: sp804: remove unused sp804_timer_disable() and
+>     timer-sp804.h
+>   clocksource: sp804: delete the leading "__" of some functions
+>   clocksource: sp804: remove a mismatched comment
+>   clocksource: sp804: prepare for support non-standard register offset
+>   clocksource: sp804: support non-standard register offset
+>   clocksource: sp804: add support for Hisilicon sp804 timer
+>   clocksource: sp804: enable Hisilicon sp804 timer 64bit mode
+>   dt-bindings: sp804: add support for Hisilicon sp804 timer
+
+Applied all patches, except 9/9 which should go through Rob's tree as
+the yaml conversion is there.
 
 
 -- 
