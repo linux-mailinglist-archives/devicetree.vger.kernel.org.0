@@ -2,80 +2,70 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from vger.kernel.org (vger.kernel.org [23.128.96.18])
-	by mail.lfdr.de (Postfix) with ESMTP id 92D3E270E6A
-	for <lists+devicetree@lfdr.de>; Sat, 19 Sep 2020 16:12:28 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTP id 4B9EF270E6B
+	for <lists+devicetree@lfdr.de>; Sat, 19 Sep 2020 16:13:48 +0200 (CEST)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S1726408AbgISOM1 (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Sat, 19 Sep 2020 10:12:27 -0400
-Received: from mail.kernel.org ([198.145.29.99]:46678 "EHLO mail.kernel.org"
+        id S1726408AbgISONr (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Sat, 19 Sep 2020 10:13:47 -0400
+Received: from mail.kernel.org ([198.145.29.99]:46846 "EHLO mail.kernel.org"
         rhost-flags-OK-OK-OK-OK) by vger.kernel.org with ESMTP
-        id S1726159AbgISOM1 (ORCPT <rfc822;devicetree@vger.kernel.org>);
-        Sat, 19 Sep 2020 10:12:27 -0400
-Received: from archlinux (cpc149474-cmbg20-2-0-cust94.5-4.cable.virginm.net [82.4.196.95])
-        (using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
+        id S1726159AbgISONr (ORCPT <rfc822;devicetree@vger.kernel.org>);
+        Sat, 19 Sep 2020 10:13:47 -0400
+Received: from localhost.localdomain (unknown [194.230.155.191])
+        (using TLSv1.2 with cipher ECDHE-RSA-AES128-GCM-SHA256 (128/128 bits))
         (No client certificate requested)
-        by mail.kernel.org (Postfix) with ESMTPSA id 9E7342085B;
-        Sat, 19 Sep 2020 14:12:25 +0000 (UTC)
+        by mail.kernel.org (Postfix) with ESMTPSA id 5CE4D2085B;
+        Sat, 19 Sep 2020 14:13:42 +0000 (UTC)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=kernel.org;
-        s=default; t=1600524746;
-        bh=fKbtO5wb4DXVnj6NUy2cvcKObNdGrHEtYsuuIhAXqb0=;
-        h=Date:From:To:Cc:Subject:In-Reply-To:References:From;
-        b=jYWJMfhdB0LJEHLdw8RiW5/QYvU6VARZbt6i4VDoHmRTykLbQBFhZV6GKVI2eLeZW
-         QT/28V8d0eHhtLVHfvbtoqyZP8GHJgzDw7HpW6qnJelWHyZJGbwqq+1t3Ug2XxJKTy
-         PTcHm06bK3gk9QQ2hmE5hsffgE1KlNehutRpIFlM=
-Date:   Sat, 19 Sep 2020 15:12:21 +0100
-From:   Jonathan Cameron <jic23@kernel.org>
-To:     Rob Herring <robh@kernel.org>
-Cc:     linux-iio@vger.kernel.org,
-        Jonathan Cameron <Jonathan.Cameron@huawei.com>,
-        Daniel Baluta <daniel.baluta@nxp.com>,
-        devicetree@vger.kernel.org
-Subject: Re: [PATCH v2 16/20] dt-bindings:iio:adc:ti,ads1015 yaml conversion
-Message-ID: <20200919151221.49d3ceed@archlinux>
-In-Reply-To: <20200915191658.GA2339714@bogus>
-References: <20200909175946.395313-1-jic23@kernel.org>
-        <20200909175946.395313-17-jic23@kernel.org>
-        <20200915191658.GA2339714@bogus>
-X-Mailer: Claws Mail 3.17.6 (GTK+ 2.24.32; x86_64-pc-linux-gnu)
-MIME-Version: 1.0
-Content-Type: text/plain; charset=US-ASCII
-Content-Transfer-Encoding: 7bit
+        s=default; t=1600524827;
+        bh=8wAw0Q365W7tsmcBMClDmjAwWiPQu9hbx67W53TmY4M=;
+        h=From:To:Cc:Subject:Date:From;
+        b=SjdNaCRBoD65sHqiWenIGm3StGBa0mWgFeq3pNSQhd+9fUnYENVpaNPQCXjw/tje5
+         B/71stHiFa31PSxJp9J/UaWT5V29pcg9dFBfctumegzlrgGmseo0cuHYS3E6N0PWvE
+         r0TiJ2gVxao/oKXuEV9CSEDkbxYiQECouPWVNiVg=
+From:   Krzysztof Kozlowski <krzk@kernel.org>
+To:     Rob Herring <robh+dt@kernel.org>, Shawn Guo <shawnguo@kernel.org>,
+        Sascha Hauer <s.hauer@pengutronix.de>,
+        Pengutronix Kernel Team <kernel@pengutronix.de>,
+        Fabio Estevam <festevam@gmail.com>,
+        NXP Linux Team <linux-imx@nxp.com>,
+        Li Yang <leoyang.li@nxp.com>, devicetree@vger.kernel.org,
+        linux-kernel@vger.kernel.org, linux-arm-kernel@lists.infradead.org
+Cc:     Krzysztof Kozlowski <krzk@kernel.org>
+Subject: [PATCH v2 1/3] dt-bindings: arm: fsl: Add binding for Variscite Symphony board with VAR-SOM-MX8MN
+Date:   Sat, 19 Sep 2020 16:13:30 +0200
+Message-Id: <20200919141332.5095-1-krzk@kernel.org>
+X-Mailer: git-send-email 2.17.1
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-On Tue, 15 Sep 2020 13:16:58 -0600
-Rob Herring <robh@kernel.org> wrote:
+Add a binding for the Variscite Symphony evaluation kit board with
+VAR-SOM-MX8MN System on Module.
 
-> On Wed, 09 Sep 2020 18:59:42 +0100, Jonathan Cameron wrote:
-> > From: Jonathan Cameron <Jonathan.Cameron@huawei.com>
-> > 
-> > This binding was moved over from hwmon some time ago so is a bit
-> > unusual in terms of IIO bindings.  However, conversion was fairly
-> > straight forwards.
-> > 
-> > I've listed both Dirk (who think wrote original binding) and Daniel
-> > who added the IIO driver for this device.
-> > 
-> > Signed-off-by: Jonathan Cameron <Jonathan.Cameron@huawei.com>
-> > Cc: Dirk Eibach <eibach@gdsys.de>
-> > Cc: Daniel Baluta <daniel.baluta@nxp.com>
-> > ---
-> >  .../devicetree/bindings/iio/adc/ads1015.txt   |  73 -----------
-> >  .../bindings/iio/adc/ti,ads1015.yaml          | 113 ++++++++++++++++++
-> >  2 files changed, 113 insertions(+), 73 deletions(-)
-> >   
-> 
-> Reviewed-by: Rob Herring <robh@kernel.org>
-Dropped Dirk as maintainer on this one as I don't have an up to date
-address.  That leaves Daniel as the sole listed maintainer.
+Signed-off-by: Krzysztof Kozlowski <krzk@kernel.org>
+Reviewed-by: Rob Herring <robh@kernel.org>
+---
+ Documentation/devicetree/bindings/arm/fsl.yaml | 6 ++++++
+ 1 file changed, 6 insertions(+)
 
-Hope that's fine!
-
-Applied to the togreg branch of iio.git and pushed out as testing for
-the autobuilders to maybe run some tests on it.
-
-Thanks,
-
-Jonathan
+diff --git a/Documentation/devicetree/bindings/arm/fsl.yaml b/Documentation/devicetree/bindings/arm/fsl.yaml
+index 37cef8653541..8a8284715baf 100644
+--- a/Documentation/devicetree/bindings/arm/fsl.yaml
++++ b/Documentation/devicetree/bindings/arm/fsl.yaml
+@@ -363,6 +363,12 @@ properties:
+               - fsl,imx8mn-evk            # i.MX8MN LPDDR4 EVK Board
+           - const: fsl,imx8mn
+ 
++      - description: Variscite VAR-SOM-MX8MN based boards
++        items:
++          - const: variscite,var-som-mx8mn-symphony
++          - const: variscite,var-som-mx8mn
++          - const: fsl,imx8mn
++
+       - description: i.MX8MP based Boards
+         items:
+           - enum:
+-- 
+2.17.1
 
