@@ -2,175 +2,148 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from vger.kernel.org (vger.kernel.org [23.128.96.18])
-	by mail.lfdr.de (Postfix) with ESMTP id 2CE43271074
-	for <lists+devicetree@lfdr.de>; Sat, 19 Sep 2020 22:23:55 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTP id 0D0732710CC
+	for <lists+devicetree@lfdr.de>; Sat, 19 Sep 2020 23:58:20 +0200 (CEST)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S1726575AbgISUXw (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Sat, 19 Sep 2020 16:23:52 -0400
-Received: from lindbergh.monkeyblade.net ([23.128.96.19]:50690 "EHLO
-        lindbergh.monkeyblade.net" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S1726520AbgISUXw (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Sat, 19 Sep 2020 16:23:52 -0400
-Received: from mail-ed1-x543.google.com (mail-ed1-x543.google.com [IPv6:2a00:1450:4864:20::543])
-        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 1C73CC0613CE
-        for <devicetree@vger.kernel.org>; Sat, 19 Sep 2020 13:23:52 -0700 (PDT)
-Received: by mail-ed1-x543.google.com with SMTP id j2so9228912eds.9
-        for <devicetree@vger.kernel.org>; Sat, 19 Sep 2020 13:23:51 -0700 (PDT)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=gmail.com; s=20161025;
-        h=subject:to:cc:references:from:message-id:date:user-agent
-         :mime-version:in-reply-to:content-language:content-transfer-encoding;
-        bh=zHuRaA2/CnjUUNxSbT4FFuVSrFckwW2Ag/ouqgH/+jU=;
-        b=VvQWFnB9NXB8aiWawVT1ZIxQCSFhnNPawfdmjuNgQhzHNimUidmW+lw9/J3DK4/yPB
-         rWS8lv8jYdpYX3Zi7HgEp3Fq5LuR3CdjvsWVmmSQmU8ZV0tKz3Aog/Xfhh3DN/KSLqB5
-         7AD+h7wBzFfcug8DnOoZUgaiph4r+23nf5HOW0Gg/K7YzG4+yyk5GAFoLjoDs7mGNpKL
-         L1dp5vJut3EW0h8Mml32i/PYKgtRQE1EkMXBLJsX936pPusb5rfCSuAjmMKj55Pwb2VQ
-         Nb+WgMQYGUrSSHCsykRFPNb+X6gVkdI3pe/JWMYsLeJBnFG5Mf0Kj1O8ubpfvh1mZ8u3
-         ql2Q==
-X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=1e100.net; s=20161025;
-        h=x-gm-message-state:subject:to:cc:references:from:message-id:date
-         :user-agent:mime-version:in-reply-to:content-language
-         :content-transfer-encoding;
-        bh=zHuRaA2/CnjUUNxSbT4FFuVSrFckwW2Ag/ouqgH/+jU=;
-        b=bIe8MKntQtZPRsDZAoe1kOj4R8pKRuPzm5FIcSIFOkYszkbEbMnf6pCXHiijkJqEEb
-         LwWS+brNmblKEp97uhWaEN3T6ASjBBoRrrRaotVHN0xE79lyf/fHx1+QJ+LK0Eecuk+9
-         ypulxm26KsUJqf69DYdq41FiLaebe7P4710j+vezYmPpxX3Tsz1tTv6FgU1lwtjH7eGY
-         i12wq2Oo72UUPoHNlTaowr4qoqC3pEHkFffXt21UavflsIZc6ds9bmGfGpcLRPKNiXsv
-         BXakum56n+Tbf14GPJXOo2cPB1GPTFCvM7kS1/4WKk8nRACGBXLNOW9lXhWGkyI1us5Z
-         b/iw==
-X-Gm-Message-State: AOAM532wyBH1yCViVsX4GWKn6Gd8PEUT3X0mR0eaNgJ012u4FEfdzFpR
-        hTA7/W2aLAVMT+BOzXd+o068c0WuuT0A1g==
-X-Google-Smtp-Source: ABdhPJy+l50sz8n7UzSviMLzVte2BOL/AxXz0YDUysZ/WuQPfyWZ43QazhKMB9BCD8aRAQ3yDYGauA==
-X-Received: by 2002:a05:6402:1d93:: with SMTP id dk19mr45557611edb.198.1600547030580;
-        Sat, 19 Sep 2020 13:23:50 -0700 (PDT)
-Received: from debian64.daheim (p4fd09180.dip0.t-ipconnect.de. [79.208.145.128])
-        by smtp.gmail.com with ESMTPSA id b6sm5097448eds.46.2020.09.19.13.23.49
-        (version=TLS1_3 cipher=TLS_AES_256_GCM_SHA384 bits=256/256);
-        Sat, 19 Sep 2020 13:23:49 -0700 (PDT)
-Received: from localhost.daheim ([127.0.0.1])
-        by debian64.daheim with esmtp (Exim 4.94)
-        (envelope-from <chunkeey@gmail.com>)
-        id 1kJjOV-000iiJ-8M; Sat, 19 Sep 2020 22:23:39 +0200
-Subject: Re: [PATCH v3 2/5] powerpc: apm82181: create shared dtsi for APM
- bluestone
-To:     Rob Herring <robh@kernel.org>
-Cc:     linuxppc-dev@lists.ozlabs.org, devicetree@vger.kernel.org,
-        Chris Blake <chrisrblake93@gmail.com>,
-        Paul Mackerras <paulus@samba.org>,
-        Benjamin Herrenschmidt <benh@kernel.crashing.org>,
-        Michael Ellerman <mpe@ellerman.id.au>, arnd@arndb.de,
-        andriy.shevchenko@linux.intel.com
-References: <cover.1599343429.git.chunkeey@gmail.com>
- <47109d80c7bd481c7747c949e8a3ecd498d9c039.1599343429.git.chunkeey@gmail.com>
- <20200915010543.GB612463@bogus>
-From:   Christian Lamparter <chunkeey@gmail.com>
-Message-ID: <7bf866fd-6499-68e4-9825-5c3e2042ef65@gmail.com>
-Date:   Sat, 19 Sep 2020 22:23:38 +0200
-User-Agent: Mozilla/5.0 (X11; Linux x86_64; rv:68.0) Gecko/20100101
- Thunderbird/68.12.0
+        id S1726598AbgISV6S (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Sat, 19 Sep 2020 17:58:18 -0400
+Received: from mout.kundenserver.de ([212.227.17.24]:45933 "EHLO
+        mout.kundenserver.de" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
+        with ESMTP id S1726582AbgISV6S (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Sat, 19 Sep 2020 17:58:18 -0400
+X-Greylist: delayed 460 seconds by postgrey-1.27 at vger.kernel.org; Sat, 19 Sep 2020 17:58:18 EDT
+Received: from desktop ([188.192.134.246]) by mrelayeu.kundenserver.de
+ (mreue106 [212.227.15.183]) with ESMTPSA (Nemesis) id
+ 1MOiYD-1k7Heq0pIt-00QB5p; Sat, 19 Sep 2020 23:45:19 +0200
+From:   "Adrian Schmutzler" <mail@adrianschmutzler.de>
+To:     "'Rob Herring'" <robh+dt@kernel.org>,
+        "'Pavel Machek'" <pavel@ucw.cz>, "'Dan Murphy'" <dmurphy@ti.com>,
+        "'Linus Walleij'" <linus.walleij@linaro.org>,
+        <devicetree@vger.kernel.org>
+References: <20200919172733.57217-1-freifunk@adrianschmutzler.de>
+In-Reply-To: <20200919172733.57217-1-freifunk@adrianschmutzler.de>
+Subject: RE: [PATCH v2 1/2] dt-bindings: leds: add LED_FUNCTION for wlan2g/wlan5g
+Date:   Sat, 19 Sep 2020 23:45:18 +0200
+Message-ID: <00b701d68ece$2b237700$816a6500$@adrianschmutzler.de>
+X-Mailer: Microsoft Outlook 15.0
 MIME-Version: 1.0
-In-Reply-To: <20200915010543.GB612463@bogus>
-Content-Type: text/plain; charset=utf-8; format=flowed
-Content-Language: de-DE
-Content-Transfer-Encoding: 7bit
+Thread-Index: AQG1TwnwTMbKf63SskEKKK9dlWmXWKmy/bsQ
+Content-Language: de
+Content-Type: multipart/signed;
+        protocol="application/pgp-signature";
+        micalg=pgp-sha256;
+        boundary="=-=KXC5f58wMA/gNH=-="
+X-Provags-ID: V03:K1:afldmJu3o5M5MgYqA2ciJpk3hc+L9gku5oPa9D2F+xzgWSxIzfN
+ qii2D453hypyFvoIHa0W3YeuSpuuf1q1xBJFXnUiBqmXsoioimSo1YRZ188zfovXwebPQO6
+ b4EK2YKMcz5dNNNIAXOKmU6mf009MMxU8yyKukZr9C8DmwcueEoWXMRfk899pL5OBZzBI6q
+ Gf9WWHefq40gQslRu6aiw==
+X-Spam-Flag: NO
+X-UI-Out-Filterresults: notjunk:1;V03:K0:eP/fpIus7S0=:syBiKeqvZsB98NE5pCfsUm
+ JyUNGL6kg3fHtTM5tKF2GeGQNDiUlDdAoHHVe5glNdoPwxhjQNd7tj4Vty4wBbfR14rHOhSbM
+ IxKsicmWgo0aSgp90cfTPHg8qR9RprlfLCJOMP8tjuMPKcU/Ez+tQXQad5czQVFiEXWG9UvdF
+ CZyg3jX3rlYQvACk5Q3Nnawe0E+z5HnsKHx6jE3pY3ovhqW+22lzDOVgXi7uoOrmX4l4+kK4A
+ RYxSECc0MwlfFRgCPcSpnm1HQN/ISyF+ZGSGTv7dP6yBH8iZ7NhsRVM6MjLk0/kO4Zoi6OcU1
+ fb3rDK8gt0qxN8GejqI6tNPyBx0aYbNsK3M+I8D8tNuW2bbRqukXsq89EU0TxvIX+1bm+VNxv
+ +61Cd7aJNmiqkudp+/X1c9AjqUNwG9ZxNAZj2d1lS+Qy4Vl8p/8rJhd3izI+cjt7BP74s/5lk
+ +vRyvOfRBTWzYshYBqJYI5wNNSuRRNKpx7wcM/tMtzPKSIrrZANdbC+1XcLDljjf+o9uC1DM6
+ VTIdr7CNBuY/1v1dlmQ/9YB2j81Ckja4e8BL0uTc99ktRPoQw/1IcJtI7k+KO76+sm8bxCerL
+ FzgGYMIBcIDIh2RgRSzG/SXiPjt6/qK4IH8rynSHg4US8lguK9tq4Tw1h6TeXr2GESo4lNdVO
+ E1SxdPXqsb0JpJGXUJBWVg+uMHahnPwopw5Vsw8LVmZu+rOsE+cZ3XYVyhP6e42Sc/bz/KHnr
+ Dw95XB6eBrrk5WCDCiqQXGzJ0sQq3b5w+lion42Tx7RQ8OaiGyGpknh2jPgNXOVyZCB8GRQtQ
+ BxMX0jZ11Sacc3iCjPsurdUnnkgC8x9qJi7Eeb9icke38t8EhwMws4mmit8ChdwIY08r7HaYs
+ tPIIfmWF6ifguT1O18tg==
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-On 2020-09-15 03:05, Rob Herring wrote:
-> On Sun, Sep 06, 2020 at 12:06:12AM +0200, Christian Lamparter wrote:
->> This patch adds an DTSI-File that can be used by various device-tree
->> files for APM82181-based devices.
->>
->> Some of the nodes (like UART, PCIE, SATA) are used by the uboot and
->> need to stick with the naming-conventions of the old times'.
->> I've added comments whenever this was the case.
->>
->> Signed-off-by: Chris Blake <chrisrblake93@gmail.com>
->> Signed-off-by: Christian Lamparter <chunkeey@gmail.com>
->> ---
->> rfc v1 -> v2:
->> 	- removed PKA (this CryptoPU will need driver)
->> 	- stick with compatibles, nodes, ... from either
->> 	  Bluestone (APM82181) or Canyonlands (PPC460EX).
->> 	- add labels for NAND and NOR to help with access.
->> v2 -> v3:
->> 	- nodename of pciex@d.... was changed to pcie@d..
->> 	  due to upstream patch.
->> 	- use simple-bus on the ebc, opb and plb nodes
->> ---
->>   arch/powerpc/boot/dts/apm82181.dtsi | 466 ++++++++++++++++++++++++++++
->>   1 file changed, 466 insertions(+)
->>   create mode 100644 arch/powerpc/boot/dts/apm82181.dtsi
->>
->> diff --git a/arch/powerpc/boot/dts/apm82181.dtsi b/arch/powerpc/boot/dts/apm82181.dtsi
->> new file mode 100644
->> index 000000000000..60283430978d
->> --- /dev/null
->> +++ b/arch/powerpc/boot/dts/apm82181.dtsi
->> @@ -0,0 +1,466 @@
->> +// SPDX-License-Identifier: GPL-2.0-or-later
->> +/*
->> + * Device Tree template include for various APM82181 boards.
->> + *
->> + * The SoC is an evolution of the PPC460EX predecessor.
->> + * This is why dt-nodes from the canyonlands EBC, OPB, USB,
->> + * DMA, SATA, EMAC, ... ended up in here.
->> + *
->> + * Copyright (c) 2010, Applied Micro Circuits Corporation
->> + * Author: Tirumala R Marri <tmarri@apm.com>,
->> + *	   Christian Lamparter <chunkeey@gmail.com>,
->> + *	   Chris Blake <chrisrblake93@gmail.com>
->> + */
->> +
->> +#include <dt-bindings/dma/dw-dmac.h>
->> +#include <dt-bindings/input/input.h>
->> +#include <dt-bindings/interrupt-controller/irq.h>
->> +#include <dt-bindings/gpio/gpio.h>
->> +
->> +/ {
->> +	#address-cells = <2>;
->> +	#size-cells = <1>;
->> +	dcr-parent = <&{/cpus/cpu@0}>;
->> +
->> +	aliases {
->> +		ethernet0 = &EMAC0; /* needed for BSP u-boot */
->> +	};
->> +
->> +	cpus {
->> +		#address-cells = <1>;
->> +		#size-cells = <0>;
->> +
->> +		CPU0: cpu@0 {
->> +			device_type = "cpu";
->> +			model = "PowerPC,apm82181";
-> 
-> This doesn't match the existing bluestone dts file.
-> 
-> Please separate any restructuring from changes.
+This is a multipart message in MIME format.
+
+--=-=KXC5f58wMA/gNH=-=
+Content-Type: text/plain;
+	charset="utf-8"
+Content-Transfer-Encoding: quoted-printable
+
+> -----Original Message-----
+> From: Adrian Schmutzler [mailto:freifunk@adrianschmutzler.de]
+> Sent: Samstag, 19. September 2020 19:28
+> To: Rob Herring <robh+dt@kernel.org>; Pavel Machek <pavel@ucw.cz>; Dan
+> Murphy <dmurphy@ti.com>; Linus Walleij <linus.walleij@linaro.org>;
+> devicetree@vger.kernel.org; Adrian Schmutzler
+> <freifunk@adrianschmutzler.de>
+> Subject: [PATCH v2 1/2] dt-bindings: leds: add LED_FUNCTION for
+> wlan2g/wlan5g
+>=20
+> Many consumer "routers" have dedicated LEDs for specific WiFi bands, e.g.
+> one for 2.4 GHz and one for 5 GHz. These LEDs specifically indicate the s=
+tate
+> of the relevant band, so the latter should be included in the function na=
+me.
+> LED_FUNCTION_WLAN will remain for general cases or when the LED is used
+> for more than one band.
+>=20
+> This essentially is equivalent to how we use LED_FUNCTION_LAN and
+> LED_FUNCTION_WAN instead of just having LED_FUNCTION_ETHERNET.
+
+I only just became aware of the linux-leds@vger.kernel.org mailing list, an=
+d resubmitted there.
+
+Sorry for the noise. Maybe get_maintainers.sh should be updated for this fi=
+le.
+
+Best
+
+Adrian
+
+>=20
+> Signed-off-by: Adrian Schmutzler <freifunk@adrianschmutzler.de>
+>=20
+> ---
+>=20
+> Changes in v2:
+> - Without typo this time. Sorry.
+> ---
+>  include/dt-bindings/leds/common.h | 2 ++
+>  1 file changed, 2 insertions(+)
+>=20
+> diff --git a/include/dt-bindings/leds/common.h b/include/dt-
+> bindings/leds/common.h
+> index 52b619d44ba2..debbd406ff17 100644
+> --- a/include/dt-bindings/leds/common.h
+> +++ b/include/dt-bindings/leds/common.h
+> @@ -89,6 +89,8 @@
+>  #define LED_FUNCTION_USB "usb"
+>  #define LED_FUNCTION_WAN "wan"
+>  #define LED_FUNCTION_WLAN "wlan"
+> +#define LED_FUNCTION_WLAN2G "wlan2g"
+> +#define LED_FUNCTION_WLAN5G "wlan5g"
+>  #define LED_FUNCTION_WPS "wps"
+>=20
+>  #endif /* __DT_BINDINGS_LEDS_H */
+> --
+> 2.20.1
+
+--=-=KXC5f58wMA/gNH=-=
+Content-Type: application/pgp-signature;
+	name="openpgp-digital-signature.asc"
+Content-Transfer-Encoding: 7bit
+
+-----BEGIN PGP SIGNATURE-----
+
+iQIzBAEBCAAdFiEESgN6p2H3WoMOAf81oNyKO7qxAnAFAl9me+4ACgkQoNyKO7qx
+AnBIVg/8CntY7VA0Gs3wv8X81X0XwDCuXMgYCk1QyvTslAOEd5kIti2/ibYfjkA/
+s6KclE1V4d2xP+K106bEHiEuSWnVHB7q1WOkwlWIpymkTKhf3GrgENtw1PEzLgZt
+LdwSNPhEX0mBPwiiL4iUHocaifRq/TnppZG6WOsGaQopUT/glI84pJQwo0jwHYdC
+bLlhWYxmRXjDB39H0zcxIyA0rqjXaGBBf0CDvvYxOlM4iUQuiFUDL3vHLFbcO9qc
+Pr2lQT9TyMOuxHoAVg2arNCm88A0BWCCuOheQL7FNaU7AFMpnrTiEV9gGpYqtb80
+0nwQ6X1h8vfF44/Am4MqAMvej4okflNyWRfqCtzqIupHmJK7Z98kVsetFf0yf6my
+JzsECcD0b3bjipCC3eXpfLQ8dAdtP+nGHS5VDAGvO8UN2JWRZqbwSPNwGzn84KQT
+ubjfZU+6kT2aX312PieKhcDl7bjQD1/vc97xAq31PbXAwIRda4Rtxe9+hi0a5JGq
+Q61OBpvYp/qcjVug/SbHMS90Jpu0p9UIAIkiDB4qm8PQyP7nVPeMWtlwqGSEpr/E
+jldvuYi4QF/WgAwrdyl8JBKCv72aqKVrzlwZd+JJi8gjAux9TIhxs5If6+eZl693
+pddHWbz0JXiouX4m7a1wJ2O0wsOMQtm4y5Vl5PlnaYsFzc+pLaU=
+=bunp
+-----END PGP SIGNATURE-----
 
 
-"I see" (I'm including your comment of the dt-binding as well).
+--=-=KXC5f58wMA/gNH=-=--
 
-I'm getting the vibe that I better should not touch that bluestone.dts.
-An honestly, looking at the series and patches that the APM-engineers
-posted back in the day, I can see why this well is so poisoned... and
-stuff like SATA/AHBDMA/USB/GPIO/CPM/... was missing.
-
-As for the devices. In the spirit of Arnd Bergmann's post of
-<https://lkml.org/lkml/2020/3/30/195>
-
-|It would be nice to move over the the bluestone .dts to the apm82181.dtsi file
-|when that gets added, if only to ensure they use the same description for each
-|node, but that shouldn't stop the addition of the new file if that is needed for
-|distros to make use of a popular device.
-|I see a couple of additional files in openwrt.
-
-I mean I don't have the bluestone dev board, just the consumer devices.
-Would it be possible to support those? I can start from a "skeleton" apm82181.dtsi
-This would just include CPU, Memory (SD-RAM+L2C+OCM), UIC (Interrupt-Controller),
-the PLB+OBP+EBC Busses and UART. Just enough to make a board "boot from ram".
-
-And then add nodes for PCIE+MSI, AHBDMA+SATA, I2C, Ethernet, NAND+NOR and finally
-the Crypto each in separate patches.
