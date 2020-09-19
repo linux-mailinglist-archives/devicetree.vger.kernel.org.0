@@ -2,127 +2,53 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from vger.kernel.org (vger.kernel.org [23.128.96.18])
-	by mail.lfdr.de (Postfix) with ESMTP id C9128270D93
-	for <lists+devicetree@lfdr.de>; Sat, 19 Sep 2020 13:25:49 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTP id EADAE270DA3
+	for <lists+devicetree@lfdr.de>; Sat, 19 Sep 2020 13:39:58 +0200 (CEST)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S1726343AbgISLZr (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Sat, 19 Sep 2020 07:25:47 -0400
-Received: from lindbergh.monkeyblade.net ([23.128.96.19]:52458 "EHLO
-        lindbergh.monkeyblade.net" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S1726354AbgISLZr (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Sat, 19 Sep 2020 07:25:47 -0400
-Received: from mail-wm1-x341.google.com (mail-wm1-x341.google.com [IPv6:2a00:1450:4864:20::341])
-        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id C216BC0613D3
-        for <devicetree@vger.kernel.org>; Sat, 19 Sep 2020 04:25:46 -0700 (PDT)
-Received: by mail-wm1-x341.google.com with SMTP id x23so7613050wmi.3
-        for <devicetree@vger.kernel.org>; Sat, 19 Sep 2020 04:25:46 -0700 (PDT)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=linaro.org; s=google;
-        h=subject:to:cc:references:from:message-id:date:user-agent
-         :mime-version:in-reply-to:content-language:content-transfer-encoding;
-        bh=1DD3p2InLpuc1wZ6+ArMyt2jtw02/u4MJluFtFegrEw=;
-        b=gTwa8afSUvU9hYVm25e8bTxFk8cwpK81K+DidtbkYO89iBSHHyR/GIwwcI2jI/icij
-         A6/kXqxyXGjBqbWqczg7y3pl6t6dHXLJZQCdIVOUyW8tLWz5b1hMAiuMFgiUCgaJ7N3v
-         139DYyKaGI0R/ANXO1O1LXdogdyg9d9xBt3uvFv4w84GLY3oukI16YzcwV1dTNZwnG2y
-         WddNukhTiNaf3Iv/SKpKDZVnXf0CK4uComulK2a24yN56vXuHh707XIS05ceKKCZjbdG
-         Py/GmWOu5hhdmP0Q47tu/Nbgc4dpNu7o4laDoHGNQFhHO1HQxi0oYJsExxCGju+McK7l
-         MnSg==
-X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=1e100.net; s=20161025;
-        h=x-gm-message-state:subject:to:cc:references:from:message-id:date
-         :user-agent:mime-version:in-reply-to:content-language
-         :content-transfer-encoding;
-        bh=1DD3p2InLpuc1wZ6+ArMyt2jtw02/u4MJluFtFegrEw=;
-        b=FfS1EIyUWFz5IU6bzQQ0iv4qtlF16+e88BAEMog3yz7KLa6gEeHaReXLEdE3HpCNPN
-         aM2+YEF1c2UPFJd71MjEu7go0q1HmOGBUYz8v/0diZuJjht0z0EQEWWOPebs4eiqA2oO
-         05TplfK0Re3ezdv+fFKghNeeLTncSwbmCKbtH5XArMGSydR3+r9D1M/fO4YWy1JhL1Q+
-         Q+FFUcaEw87xtO5XNQOQGiE6dlHnCHSh+sh4u2CSfPqcjvQYIK2A9cLQKjaCPtw+NRQs
-         K3BHaxgKFSnRoGnxJNzxowwWOREPZfpr3Cs9bFpx0WGpL5J5LaDyEF3GbHY04kwgFWsG
-         SK8A==
-X-Gm-Message-State: AOAM5312aDP/7Ni/WIRC2RLVp6NWBKfAWOMGQdqsXbvVXBe6JSAhe6T0
-        oxARzCtw6UJoQlR+MaMNdtbvJQ==
-X-Google-Smtp-Source: ABdhPJyF1kBWHNq5hH1sVEgtu3Qk1xgHZAzNNJKdql79su8qhtMOz0aVE29ME9G064v4G9FJtGlgVw==
-X-Received: by 2002:a7b:cbd4:: with SMTP id n20mr21318770wmi.105.1600514744986;
-        Sat, 19 Sep 2020 04:25:44 -0700 (PDT)
-Received: from ?IPv6:2a01:e34:ed2f:f020:9142:20e7:201d:cd11? ([2a01:e34:ed2f:f020:9142:20e7:201d:cd11])
-        by smtp.googlemail.com with ESMTPSA id x2sm11083178wrl.13.2020.09.19.04.25.42
-        (version=TLS1_3 cipher=TLS_AES_128_GCM_SHA256 bits=128/128);
-        Sat, 19 Sep 2020 04:25:44 -0700 (PDT)
-Subject: Re: [PATCH 02/20] dt-bindings: thermal: rcar-gen3-thermal: Add
- r8a774e1 support
-To:     "Lad, Prabhakar" <prabhakar.csengg@gmail.com>,
-        Niklas <niklas.soderlund@ragnatech.se>,
-        Zhang Rui <rui.zhang@intel.com>
-Cc:     Geert Uytterhoeven <geert+renesas@glider.be>,
-        Amit Kucheria <amit.kucheria@verdurent.com>,
-        Wolfram Sang <wsa+renesas@sang-engineering.com>,
-        Rob Herring <robh+dt@kernel.org>,
-        Wolfgang Grandegger <wg@grandegger.com>,
-        Marc Kleine-Budde <mkl@pengutronix.de>,
-        "David S. Miller" <davem@davemloft.net>,
-        Lad Prabhakar <prabhakar.mahadev-lad.rj@bp.renesas.com>,
-        Jakub Kicinski <kuba@kernel.org>,
-        Mark Brown <broonie@kernel.org>,
-        Wim Van Sebroeck <wim@linux-watchdog.org>,
-        Guenter Roeck <linux@roeck-us.net>,
-        Magnus Damm <magnus.damm@gmail.com>,
-        Thomas Gleixner <tglx@linutronix.de>,
-        Laurent Pinchart <laurent.pinchart+renesas@ideasonboard.com>,
-        Linux I2C <linux-i2c@vger.kernel.org>,
-        LKML <linux-kernel@vger.kernel.org>,
-        "open list:OPEN FIRMWARE AND FLATTENED DEVICE TREE BINDINGS" 
-        <devicetree@vger.kernel.org>, linux-can@vger.kernel.org,
-        netdev <netdev@vger.kernel.org>,
-        linux-spi <linux-spi@vger.kernel.org>,
-        Linux-Renesas <linux-renesas-soc@vger.kernel.org>,
-        Linux PM list <linux-pm@vger.kernel.org>,
-        Linux Watchdog Mailing List <linux-watchdog@vger.kernel.org>
-References: <1594811350-14066-1-git-send-email-prabhakar.mahadev-lad.rj@bp.renesas.com>
- <1594811350-14066-3-git-send-email-prabhakar.mahadev-lad.rj@bp.renesas.com>
- <CA+V-a8vwhtTWjaoXkfMBjKx90WkcoejD5ryPkXnQNEbtgnJGXQ@mail.gmail.com>
- <CA+V-a8tzELW-F3GLqq+M3pKoYZwfsc28K-PVVQq-sxJN0pL73Q@mail.gmail.com>
-From:   Daniel Lezcano <daniel.lezcano@linaro.org>
-Message-ID: <39217547-dc5d-b84f-e709-dbf3a9d688e1@linaro.org>
-Date:   Sat, 19 Sep 2020 13:25:41 +0200
-User-Agent: Mozilla/5.0 (X11; Linux x86_64; rv:68.0) Gecko/20100101
- Thunderbird/68.10.0
+        id S1726202AbgISLj5 (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Sat, 19 Sep 2020 07:39:57 -0400
+Received: from out28-122.mail.aliyun.com ([115.124.28.122]:33436 "EHLO
+        out28-122.mail.aliyun.com" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
+        with ESMTP id S1726041AbgISLj5 (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Sat, 19 Sep 2020 07:39:57 -0400
+X-Alimail-AntiSpam: AC=CONTINUE;BC=0.2629207|-1;CH=green;DM=|CONTINUE|false|;DS=CONTINUE|ham_system_inform|0.0103773-0.000517928-0.989105;FP=0|0|0|0|0|-1|-1|-1;HT=e02c03307;MF=zhouyanjie@wanyeetech.com;NM=1;PH=DS;RN=12;RT=12;SR=0;TI=SMTPD_---.IZIG6YS_1600515567;
+Received: from localhost.localdomain(mailfrom:zhouyanjie@wanyeetech.com fp:SMTPD_---.IZIG6YS_1600515567)
+          by smtp.aliyun-inc.com(10.147.40.7);
+          Sat, 19 Sep 2020 19:39:54 +0800
+From:   =?UTF-8?q?=E5=91=A8=E7=90=B0=E6=9D=B0=20=28Zhou=20Yanjie=29?= 
+        <zhouyanjie@wanyeetech.com>
+To:     robh+dt@kernel.org, tsbogend@alpha.franken.de, paul@crapouillou.net
+Cc:     linux-kernel@vger.kernel.org, linux-mips@vger.kernel.org,
+        devicetree@vger.kernel.org, dongsheng.qiu@ingenic.com,
+        aric.pzqi@ingenic.com, rick.tyliu@ingenic.com,
+        yanfei.li@ingenic.com, sernia.zhou@foxmail.com,
+        zhenwenjin@gmail.com
+Subject: [PATCH 0/1] Add CPU nodes for Ingenic SoCs.
+Date:   Sat, 19 Sep 2020 19:38:58 +0800
+Message-Id: <20200919113859.88566-1-zhouyanjie@wanyeetech.com>
+X-Mailer: git-send-email 2.11.0
 MIME-Version: 1.0
-In-Reply-To: <CA+V-a8tzELW-F3GLqq+M3pKoYZwfsc28K-PVVQq-sxJN0pL73Q@mail.gmail.com>
-Content-Type: text/plain; charset=utf-8
-Content-Language: en-US
+Content-Type: text/plain; charset=UTF-8
 Content-Transfer-Encoding: 8bit
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-On 19/09/2020 13:05, Lad, Prabhakar wrote:
-> Hi Niklas/Zhang/Daniel,
-> 
-> On Thu, Aug 27, 2020 at 5:52 PM Lad, Prabhakar
-> <prabhakar.csengg@gmail.com> wrote:
->>
->> Hi Zhang,Daniel,Amit,
->>
->> On Wed, Jul 15, 2020 at 12:09 PM Lad Prabhakar
->> <prabhakar.mahadev-lad.rj@bp.renesas.com> wrote:
->>>
->>> Document RZ/G2H (R8A774E1) SoC bindings.
->>>
->>> Signed-off-by: Lad Prabhakar <prabhakar.mahadev-lad.rj@bp.renesas.com>
->>> ---
->>>  Documentation/devicetree/bindings/thermal/rcar-gen3-thermal.yaml | 1 +
->>>  1 file changed, 1 insertion(+)
->>>
->> Gentle ping.
->>
-> Could either of please pick this patch.
+Add 'cpus' node to the jz4725b.dtsi, jz4740.dtsi, jz4770.dtsi,
+jz4780.dtsi, x1000.dtsi, and x1830.dtsi files. This will be
+used in the SMP driver later.
 
-Applied, thanks
+周琰杰 (Zhou Yanjie) (1):
+  MIPS: Ingenic: Add CPU nodes for Ingenic SoCs.
 
+ arch/mips/boot/dts/ingenic/jz4725b.dtsi | 14 ++++++++++++++
+ arch/mips/boot/dts/ingenic/jz4740.dtsi  | 14 ++++++++++++++
+ arch/mips/boot/dts/ingenic/jz4770.dtsi  | 15 ++++++++++++++-
+ arch/mips/boot/dts/ingenic/jz4780.dtsi  | 23 +++++++++++++++++++++++
+ arch/mips/boot/dts/ingenic/x1000.dtsi   | 14 ++++++++++++++
+ arch/mips/boot/dts/ingenic/x1830.dtsi   | 14 ++++++++++++++
+ 6 files changed, 93 insertions(+), 1 deletion(-)
 
 -- 
-<http://www.linaro.org/> Linaro.org │ Open source software for ARM SoCs
+2.11.0
 
-Follow Linaro:  <http://www.facebook.com/pages/Linaro> Facebook |
-<http://twitter.com/#!/linaroorg> Twitter |
-<http://www.linaro.org/linaro-blog/> Blog
