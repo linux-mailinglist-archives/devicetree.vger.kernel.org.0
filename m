@@ -2,84 +2,124 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from vger.kernel.org (vger.kernel.org [23.128.96.18])
-	by mail.lfdr.de (Postfix) with ESMTP id 1A15E2709CE
-	for <lists+devicetree@lfdr.de>; Sat, 19 Sep 2020 04:02:25 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTP id 77B29270AFE
+	for <lists+devicetree@lfdr.de>; Sat, 19 Sep 2020 07:45:36 +0200 (CEST)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S1726134AbgISCCX (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Fri, 18 Sep 2020 22:02:23 -0400
-Received: from szxga05-in.huawei.com ([45.249.212.191]:13704 "EHLO huawei.com"
-        rhost-flags-OK-OK-OK-FAIL) by vger.kernel.org with ESMTP
-        id S1726009AbgISCCX (ORCPT <rfc822;devicetree@vger.kernel.org>);
-        Fri, 18 Sep 2020 22:02:23 -0400
-Received: from DGGEMS410-HUB.china.huawei.com (unknown [172.30.72.58])
-        by Forcepoint Email with ESMTP id D84F1914A9015C7DD5F5;
-        Sat, 19 Sep 2020 10:02:21 +0800 (CST)
-Received: from [127.0.0.1] (10.174.177.253) by DGGEMS410-HUB.china.huawei.com
- (10.3.19.210) with Microsoft SMTP Server id 14.3.487.0; Sat, 19 Sep 2020
- 10:02:12 +0800
-Subject: Re: [PATCH 1/2] dt-bindings: interrupt-controller: add Hisilicon
- SD5203 vector interrupt controller
-To:     Rob Herring <robh@kernel.org>
-CC:     Thomas Gleixner <tglx@linutronix.de>,
-        Jason Cooper <jason@lakedaemon.net>,
-        Marc Zyngier <maz@kernel.org>,
-        devicetree <devicetree@vger.kernel.org>,
-        linux-kernel <linux-kernel@vger.kernel.org>,
-        Kefeng Wang <wangkefeng.wang@huawei.com>
-References: <20200903120504.2308-1-thunder.leizhen@huawei.com>
- <20200903120504.2308-2-thunder.leizhen@huawei.com>
- <20200914203110.GA185427@bogus>
- <4873e234-d06c-930e-6645-a832164e18ea@huawei.com>
- <0928ac6a-2295-4e87-5191-4fd4580f87b5@huawei.com>
- <CAL_JsqK3635vQGK+mw+GKz5Sj2YKEt6+sj8MNo0d3hFESbfUKw@mail.gmail.com>
-From:   "Leizhen (ThunderTown)" <thunder.leizhen@huawei.com>
-Message-ID: <1c5f44ba-7093-9828-c9d7-186dbd7f6892@huawei.com>
-Date:   Sat, 19 Sep 2020 10:02:11 +0800
-User-Agent: Mozilla/5.0 (Windows NT 10.0; WOW64; rv:60.0) Gecko/20100101
- Thunderbird/60.7.0
+        id S1726112AbgISFpf (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Sat, 19 Sep 2020 01:45:35 -0400
+Received: from mout.kundenserver.de ([212.227.17.24]:43765 "EHLO
+        mout.kundenserver.de" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
+        with ESMTP id S1726054AbgISFpf (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Sat, 19 Sep 2020 01:45:35 -0400
+X-Greylist: delayed 780 seconds by postgrey-1.27 at vger.kernel.org; Sat, 19 Sep 2020 01:45:34 EDT
+Received: from methusalix.internal.home.lespocky.de ([92.117.44.159]) by
+ mrelayeu.kundenserver.de (mreue106 [212.227.15.183]) with ESMTPSA (Nemesis)
+ id 1MtfeD-1kcPbe3KyF-00v676; Sat, 19 Sep 2020 07:32:13 +0200
+Received: from lemmy.internal.home.lespocky.de ([192.168.243.176] helo=lemmy.home.lespocky.de)
+        by methusalix.internal.home.lespocky.de with esmtpsa  (TLS1.3) tls TLS_AES_256_GCM_SHA384
+        (Exim 4.94)
+        (envelope-from <alex@home.lespocky.de>)
+        id 1kJVTm-0004mv-6F; Sat, 19 Sep 2020 07:32:11 +0200
+Received: (nullmailer pid 7638 invoked by uid 2001);
+        Sat, 19 Sep 2020 05:32:09 -0000
+From:   Alexander Dahl <post@lespocky.de>
+To:     linux-leds@vger.kernel.org, devicetree@vger.kernel.org
+Cc:     Jacek Anaszewski <jacek.anaszewski@gmail.com>,
+        Pavel Machek <pavel@ucw.cz>, Dan Murphy <dmurphy@ti.com>,
+        Rob Herring <robh+dt@kernel.org>, linux-kernel@vger.kernel.org,
+        Peter Ujfalusi <peter.ujfalusi@ti.com>,
+        =?UTF-8?q?Marek=20Beh=C3=BAn?= <marek.behun@nic.cz>,
+        Alexander Dahl <ada@thorsis.com>,
+        Alexander Dahl <post@lespocky.de>
+Subject: [PATCH v5 0/3] leds: pwm: Make automatic labels work
+Date:   Sat, 19 Sep 2020 07:31:42 +0200
+Message-Id: <20200919053145.7564-1-post@lespocky.de>
+X-Mailer: git-send-email 2.20.1
 MIME-Version: 1.0
-In-Reply-To: <CAL_JsqK3635vQGK+mw+GKz5Sj2YKEt6+sj8MNo0d3hFESbfUKw@mail.gmail.com>
-Content-Type: text/plain; charset="utf-8"
-Content-Language: en-US
-Content-Transfer-Encoding: 7bit
-X-Originating-IP: [10.174.177.253]
-X-CFilter-Loop: Reflected
+Content-Type: text/plain; charset=UTF-8
+Content-Transfer-Encoding: 8bit
+X-Scan-Signature: 3b5b4ff3ca3583cb7f12014899502a35
+X-Spam-Score: -2.9 (--)
+X-Provags-ID: V03:K1:lq4IJsOe1g2SSinIL81Ac6vmNVDBhOTg7BqnGfzcGHy4V6soo2J
+ uH7qOPwmitn/GQitYIFZWIVY4BTvpHXF7nwqQQBpeI0Ae4zjy5POOAyulbsr3gzIRmuA2yw
+ tzEH9RyzvShIpJGZ1ykaVN+C4r8ePANfO5VjeF3NoX44AAfTnQN5DjEAMQnXsiggkmhNOMd
+ AH9NOWXHnumPpVajy67EQ==
+X-Spam-Flag: NO
+X-UI-Out-Filterresults: notjunk:1;V03:K0:gnHs68amGnY=:VSrlcf9W5TJlXhsenUwuKN
+ HeozVt3iH3lWYD6yjMEJSch83arRnaFdF64UrdBkef6ywGbTYOd6k0yxQ3b8AUecV2CwB8eEX
+ Yzv1YjAIUVt/RVdG/6ZC6Hmjd8OKq5/CzUfZNbt+ktIfjb/GaMZsQd+Ih5CB41uxL/L7+fHWU
+ x2Ejf8MaugQ9kNcYBSI6qwAEL06blzPZvjKlnRVZSwcwz9egeMymmk1d6aZ6Ip5HSvPlrquuJ
+ nDxxpAxkJuhEnda5Ui8n8xcEWZ7HIJnhPvmQWqWI5DPvIxoKi9Isc19Hf38XW+lIyklfQzoo+
+ CeklTaFJ+99m2XTL29owAwFaXvRtSTcdnJIqWIBHOXMXNodhAToV/XAKyXvrExoKXMQq31D3q
+ efKYSsybp7ZAHCZQDSgCfWnq6DvXRNeYqqkFsi5aTfTXidEWDJ25Gec5KFG+Lmljn20CxNed7
+ 3nDD08DQhFTz4MyFSyKAsa1L9DBFoStR9BER6E6cYyNtqSdf+4aCke8yAM2gGX6k4a9IQ536t
+ CZMXvyN+paVb7KEhJYXOv1boiHOKC/huFfpU0ere+e8zCB7fM+jAa9cliejtXCFoNUlnWI8rz
+ zDYjQ0sg3WRyt9UUXOuO3L2Y3KUd5938Wez82e4LlRcEFZBr7M2F3b7Hh9ArOMsX0d7pW0rPc
+ OHRDDyCM6hzqWa0YrS+l3zYyxAgCOYihJC6bXv+hRr9owxJ1ixqZDqp7aMa6jZWhnU6XOHvmF
+ is/lEaCdq/1pCe57Z5nwcSWnkByMAwhxLH7dZU7fZp8r6b3HJFmwHK17QrksqSRGxRbN6GRWy
+ opBaDTjuydQKnieduAQRBy2tGprM4U5JCDfo+1crFkTw1vqDay8TyWfmGRMrNw+XvPvpzmk
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
+Hei hei,
+
+for leds-gpio you can use the properties 'function' and 'color' in the
+devicetree node and omit 'label', the label is constructed
+automatically.  This is a common feature supposed to be working for all
+LED drivers.  However it did not yet work for the 'leds-pwm' driver.
+
+This series removes platform_data support for the leds-pwm driver and
+takes the opportunity to update the leds-pwm dt-bindings accordingly.
+
+v5 was tested on a at91 sama5d2 based platform with LEDs connected to
+GPIO and PWM.
+
+Greets
+Alex
+
+v5:
+- replaced patch 1/3 by a new patch removing platform_data support for
+  the leds-pwm driver
+- little rewording of commit message in patch 2/3
+- updated patch 3/3 based on feedback by Rob Herring
+- added Marek Behún to Cc, because he also works on removing
+  platform_data support
+- rebased series on pavel/for-next
+
+v4:
+- added led-class patch handling fwnode passing differently (patch 1/3)
+- adapted leds-pwm patch to new led-class (patch 2/3)
+- contacted original author of leds-pwm dt binding on license issue
+  (patch 3/3)
+
+v3:
+- series rebased on v5.9-rc4
+- changed license of .yaml file to recommended one (patch 2/2)
+- added Acked-by to both patches
+
+v2:
+- series rebased on v5.9-rc3
+- added the dt-bindings update patch (2/2)
+
+v1:
+- based on v5.9-rc2
+- backport on v5.4.59 tested and working
+
+Alexander Dahl (3):
+  leds: pwm: Remove platform_data support
+  leds: pwm: Allow automatic labels for DT based devices
+  dt-bindings: leds: Convert pwm to yaml
+
+ .../devicetree/bindings/leds/leds-pwm.txt     | 50 -----------
+ .../devicetree/bindings/leds/leds-pwm.yaml    | 82 +++++++++++++++++++
+ drivers/leds/leds-pwm.c                       | 33 ++------
+ 3 files changed, 89 insertions(+), 76 deletions(-)
+ delete mode 100644 Documentation/devicetree/bindings/leds/leds-pwm.txt
+ create mode 100644 Documentation/devicetree/bindings/leds/leds-pwm.yaml
 
 
-On 2020/9/19 2:55, Rob Herring wrote:
-> On Wed, Sep 16, 2020 at 9:30 PM Leizhen (ThunderTown)
-> <thunder.leizhen@huawei.com> wrote:
->>
->>
->>
->> On 2020/9/15 14:12, Leizhen (ThunderTown) wrote:
->>>
->>>
->>> On 2020/9/15 4:31, Rob Herring wrote:
->>>> On Thu, Sep 03, 2020 at 08:05:03PM +0800, Zhen Lei wrote:
->>>>> Add DT bindings for the Hisilicon SD5203 vector interrupt controller.
->>>>>
->>>>> Signed-off-by: Zhen Lei <thunder.leizhen@huawei.com>
->>>>> ---
->>>>>  .../hisilicon,sd5203-vic.txt                  | 27 +++++++++++++++++++
->>>>
->>>> Bindings should be in DT schema format now.
->>
->> Do I need to change the existing "snps,dw-apb-ictl.txt" to DT schema format?
-> 
-> That would be nice, but not necessary for minor changes.
-
-I had done it before you replied to me. Can you check it out?
-
-https://www.spinics.net/lists/devicetree/msg378632.html
-
-> 
-> Rob
-> 
-> .
-> 
+base-commit: 03eb2ca44a95105d1482d5e7471016cf8b383f97
+-- 
+2.20.1
 
