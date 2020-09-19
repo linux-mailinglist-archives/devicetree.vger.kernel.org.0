@@ -2,71 +2,65 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from vger.kernel.org (vger.kernel.org [23.128.96.18])
-	by mail.lfdr.de (Postfix) with ESMTP id 6C88D270E4E
-	for <lists+devicetree@lfdr.de>; Sat, 19 Sep 2020 16:03:28 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTP id EB801270E51
+	for <lists+devicetree@lfdr.de>; Sat, 19 Sep 2020 16:04:33 +0200 (CEST)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S1726371AbgISOD1 (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Sat, 19 Sep 2020 10:03:27 -0400
-Received: from mail.kernel.org ([198.145.29.99]:40214 "EHLO mail.kernel.org"
+        id S1726371AbgISOE3 (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Sat, 19 Sep 2020 10:04:29 -0400
+Received: from mail.kernel.org ([198.145.29.99]:41056 "EHLO mail.kernel.org"
         rhost-flags-OK-OK-OK-OK) by vger.kernel.org with ESMTP
-        id S1726159AbgISOD1 (ORCPT <rfc822;devicetree@vger.kernel.org>);
-        Sat, 19 Sep 2020 10:03:27 -0400
-Received: from archlinux (cpc149474-cmbg20-2-0-cust94.5-4.cable.virginm.net [82.4.196.95])
-        (using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
+        id S1726159AbgISOE3 (ORCPT <rfc822;devicetree@vger.kernel.org>);
+        Sat, 19 Sep 2020 10:04:29 -0400
+Received: from localhost.localdomain (unknown [194.230.155.191])
+        (using TLSv1.2 with cipher ECDHE-RSA-AES128-GCM-SHA256 (128/128 bits))
         (No client certificate requested)
-        by mail.kernel.org (Postfix) with ESMTPSA id D70F321481;
-        Sat, 19 Sep 2020 14:03:25 +0000 (UTC)
+        by mail.kernel.org (Postfix) with ESMTPSA id C7A6F21481;
+        Sat, 19 Sep 2020 14:04:26 +0000 (UTC)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=kernel.org;
-        s=default; t=1600524206;
-        bh=5H+kZp7w2EpfoW58pTv2wQpSgZtpe+WgUF7CWW6OXIo=;
-        h=Date:From:To:Cc:Subject:In-Reply-To:References:From;
-        b=yuX6+qZY3BPfsRPs/GmLoEwxAzwyN/eIId4I+TTSX9UWJA+UXkRkUdg33UrjC0qis
-         IEvlPKfhu8MIDCI1Y4/Fev0yLQF4OKYY6TMsQl4E9dvIE42A2qVB271viFJIJnzNfQ
-         jdzM7eAICzL2NLFvV9DZnYL6VVBUgELheJ6m00F0=
-Date:   Sat, 19 Sep 2020 15:03:21 +0100
-From:   Jonathan Cameron <jic23@kernel.org>
-To:     Rob Herring <robh@kernel.org>
-Cc:     devicetree@vger.kernel.org, linux-iio@vger.kernel.org,
-        Jonathan Cameron <Jonathan.Cameron@huawei.com>,
-        Tomer Maimon <tmaimon77@gmail.com>
-Subject: Re: [PATCH v2 08/20] dt-bindings:iio:adc:nuvoton,npcm750-adc yaml
- conversion
-Message-ID: <20200919150321.36fa5dae@archlinux>
-In-Reply-To: <20200915190724.GA2323735@bogus>
-References: <20200909175946.395313-1-jic23@kernel.org>
-        <20200909175946.395313-9-jic23@kernel.org>
-        <20200915190724.GA2323735@bogus>
-X-Mailer: Claws Mail 3.17.6 (GTK+ 2.24.32; x86_64-pc-linux-gnu)
-MIME-Version: 1.0
-Content-Type: text/plain; charset=US-ASCII
-Content-Transfer-Encoding: 7bit
+        s=default; t=1600524269;
+        bh=lTUgSGbTRxSMnW+nqzLb39zreeAe56fmXb+310bskNM=;
+        h=From:To:Subject:Date:From;
+        b=XSiIgnBQ4hRba20jld08Gptyjvu7A5rZ6gneRXN37dzuEjLNkUXkQXxRqgVdF0mvA
+         04SUcMjI/Wr2wNybvU0Anp2auPjwYUafo1NsHYkgdufm/7fC8ni2H+362OxpIhTWOg
+         Yt/9gXGL5/w+7qt6wIkMchmGfM7x4PvMG76NGsLo=
+From:   Krzysztof Kozlowski <krzk@kernel.org>
+To:     Sebastian Reichel <sre@kernel.org>,
+        Rob Herring <robh+dt@kernel.org>,
+        =?UTF-8?q?Pali=20Roh=C3=A1r?= <pali@kernel.org>,
+        Dan Murphy <dmurphy@ti.com>,
+        Krzysztof Kozlowski <krzk@kernel.org>,
+        linux-pm@vger.kernel.org, devicetree@vger.kernel.org,
+        linux-kernel@vger.kernel.org
+Subject: [PATCH v2 0/6] power: supply: bq27xxx: add bq34z100
+Date:   Sat, 19 Sep 2020 16:04:12 +0200
+Message-Id: <20200919140418.3705-1-krzk@kernel.org>
+X-Mailer: git-send-email 2.17.1
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-On Tue, 15 Sep 2020 13:07:24 -0600
-Rob Herring <robh@kernel.org> wrote:
+Hi,
 
-> On Wed, 09 Sep 2020 18:59:34 +0100, Jonathan Cameron wrote:
-> > From: Jonathan Cameron <Jonathan.Cameron@huawei.com>
-> > 
-> > Renamed the file to reflect the only compatible.
-> > Added #io-channel-cells to make it easier to support consumers of the
-> > ADC channels this device provides.
-> > 
-> > Signed-off-by: Jonathan Cameron <Jonathan.Cameron@huawei.com>
-> > Cc: Tomer Maimon <tmaimon77@gmail.com>
-> > ---
-> >  .../bindings/iio/adc/nuvoton,npcm-adc.txt     | 26 --------
-> >  .../bindings/iio/adc/nuvoton,npcm750-adc.yaml | 64 +++++++++++++++++++
-> >  2 files changed, 64 insertions(+), 26 deletions(-)
-> >   
-> 
-> Reviewed-by: Rob Herring <robh@kernel.org>
+Changes since v1:
+1. Squash patch 3 and 4 - cleanups, as suggested.
 
-Applied to the togreg branch of iio.git and pushed out as testing for
-the autobuilders to possible poke at it.
+Best regards,
+Krzysztof
 
-Thanks,
+Krzysztof Kozlowski (6):
+  dt-bindings: power: bq27xxx: add bq34z100
+  power: supply: bq27xxx: report "not charging" on all types
+  power: supply: bq27xxx: adjust whitespace and use BIT() for bitflags
+  power: supply: bq27xxx: add separate flag for single SoC register
+  power: supply: bq27xxx: add separate flag for capacity inaccurate
+  power: supply: bq27xxx: add support for TI bq34z100
 
-Jonathan
+ .../bindings/power/supply/bq27xxx.yaml        |  1 +
+ drivers/power/supply/bq27xxx_battery.c        | 83 +++++++++++++++----
+ drivers/power/supply/bq27xxx_battery_i2c.c    |  2 +
+ include/linux/power/bq27xxx_battery.h         |  1 +
+ 4 files changed, 72 insertions(+), 15 deletions(-)
+
+-- 
+2.17.1
+
