@@ -2,172 +2,70 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from vger.kernel.org (vger.kernel.org [23.128.96.18])
-	by mail.lfdr.de (Postfix) with ESMTP id 4D4A3270B3D
-	for <lists+devicetree@lfdr.de>; Sat, 19 Sep 2020 08:46:51 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTP id BD5B0270C30
+	for <lists+devicetree@lfdr.de>; Sat, 19 Sep 2020 11:23:27 +0200 (CEST)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S1726380AbgISGqq (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Sat, 19 Sep 2020 02:46:46 -0400
-Received: from szxga07-in.huawei.com ([45.249.212.35]:33104 "EHLO huawei.com"
-        rhost-flags-OK-OK-OK-FAIL) by vger.kernel.org with ESMTP
-        id S1726097AbgISGqc (ORCPT <rfc822;devicetree@vger.kernel.org>);
-        Sat, 19 Sep 2020 02:46:32 -0400
-Received: from DGGEMS405-HUB.china.huawei.com (unknown [172.30.72.59])
-        by Forcepoint Email with ESMTP id 8C066BDEA0A1AD18A0AE;
-        Sat, 19 Sep 2020 14:46:29 +0800 (CST)
-Received: from thunder-town.china.huawei.com (10.174.177.253) by
- DGGEMS405-HUB.china.huawei.com (10.3.19.205) with Microsoft SMTP Server id
- 14.3.487.0; Sat, 19 Sep 2020 14:46:21 +0800
-From:   Zhen Lei <thunder.leizhen@huawei.com>
-To:     Wei Xu <xuwei5@hisilicon.com>, Rob Herring <robh+dt@kernel.org>,
-        devicetree <devicetree@vger.kernel.org>,
-        linux-arm-kernel <linux-arm-kernel@lists.infradead.org>,
-        linux-kernel <linux-kernel@vger.kernel.org>
-CC:     Zhen Lei <thunder.leizhen@huawei.com>,
-        Libin <huawei.libin@huawei.com>,
-        Kefeng Wang <wangkefeng.wang@huawei.com>
-Subject: [PATCH v2 4/4] ARM: dts: add SD5203 dts
-Date:   Sat, 19 Sep 2020 14:45:55 +0800
-Message-ID: <20200919064555.3616-5-thunder.leizhen@huawei.com>
-X-Mailer: git-send-email 2.26.0.windows.1
-In-Reply-To: <20200919064555.3616-1-thunder.leizhen@huawei.com>
-References: <20200919064555.3616-1-thunder.leizhen@huawei.com>
+        id S1726201AbgISJX0 (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Sat, 19 Sep 2020 05:23:26 -0400
+Received: from jabberwock.ucw.cz ([46.255.230.98]:40148 "EHLO
+        jabberwock.ucw.cz" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
+        with ESMTP id S1726200AbgISJX0 (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Sat, 19 Sep 2020 05:23:26 -0400
+X-Greylist: delayed 303 seconds by postgrey-1.27 at vger.kernel.org; Sat, 19 Sep 2020 05:23:25 EDT
+Received: by jabberwock.ucw.cz (Postfix, from userid 1017)
+        id C2DDF1C0B88; Sat, 19 Sep 2020 11:18:20 +0200 (CEST)
+Date:   Sat, 19 Sep 2020 11:18:20 +0200
+From:   Pavel Machek <pavel@ucw.cz>
+To:     Marek =?iso-8859-1?Q?Beh=FAn?= <marek.behun@nic.cz>
+Cc:     linux-leds@vger.kernel.org, Dan Murphy <dmurphy@ti.com>,
+        =?utf-8?Q?Ond=C5=99ej?= Jirman <megous@megous.com>,
+        linux-kernel@vger.kernel.org, Rob Herring <robh+dt@kernel.org>,
+        devicetree@vger.kernel.org,
+        =?iso-8859-1?Q?=C1lvaro_Fern=E1ndez?= Rojas <noltari@gmail.com>,
+        Kevin Cernekee <cernekee@gmail.com>,
+        Jaedon Shin <jaedon.shin@gmail.com>
+Subject: Re: [PATCH leds v2 12/50] leds: bcm6328: cosmetic: use reverse
+ christmas tree
+Message-ID: <20200919091820.GA18034@amd>
+References: <20200917223338.14164-1-marek.behun@nic.cz>
+ <20200917223338.14164-13-marek.behun@nic.cz>
 MIME-Version: 1.0
-Content-Transfer-Encoding: 7BIT
-Content-Type:   text/plain; charset=US-ASCII
-X-Originating-IP: [10.174.177.253]
-X-CFilter-Loop: Reflected
+Content-Type: multipart/signed; micalg=pgp-sha1;
+        protocol="application/pgp-signature"; boundary="xHFwDpU9dbj6ez1V"
+Content-Disposition: inline
+In-Reply-To: <20200917223338.14164-13-marek.behun@nic.cz>
+User-Agent: Mutt/1.5.23 (2014-03-12)
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-From: Kefeng Wang <wangkefeng.wang@huawei.com>
 
-Add sd5203.dts for Hisilicon SD5203 SoC platform.
+--xHFwDpU9dbj6ez1V
+Content-Type: text/plain; charset=iso-8859-1
+Content-Disposition: inline
+Content-Transfer-Encoding: quoted-printable
 
-Signed-off-by: Kefeng Wang <wangkefeng.wang@huawei.com>
-Signed-off-by: Zhen Lei <thunder.leizhen@huawei.com>
----
- arch/arm/boot/dts/Makefile   |  2 +
- arch/arm/boot/dts/sd5203.dts | 96 ++++++++++++++++++++++++++++++++++++++++++++
- 2 files changed, 98 insertions(+)
- create mode 100644 arch/arm/boot/dts/sd5203.dts
+On Fri 2020-09-18 00:33:00, Marek Beh=FAn wrote:
+> Only a cosmetic change: use reverse christmas tree variables
+> declaration.
 
-diff --git a/arch/arm/boot/dts/Makefile b/arch/arm/boot/dts/Makefile
-index 4572db3fa5ae302..1d1262df5c55907 100644
---- a/arch/arm/boot/dts/Makefile
-+++ b/arch/arm/boot/dts/Makefile
-@@ -357,6 +357,8 @@ dtb-$(CONFIG_ARCH_MPS2) += \
- 	mps2-an399.dtb
- dtb-$(CONFIG_ARCH_MOXART) += \
- 	moxart-uc7112lx.dtb
-+dtb-$(CONFIG_ARCH_SD5203) += \
-+	sd5203.dtb
- dtb-$(CONFIG_SOC_IMX1) += \
- 	imx1-ads.dtb \
- 	imx1-apf9328.dtb
-diff --git a/arch/arm/boot/dts/sd5203.dts b/arch/arm/boot/dts/sd5203.dts
-new file mode 100644
-index 000000000000000..41113a46a71a584
---- /dev/null
-+++ b/arch/arm/boot/dts/sd5203.dts
-@@ -0,0 +1,96 @@
-+// SPDX-License-Identifier: GPL-2.0-only
-+/*
-+ * Copyright (c) 2020 Hisilicon Limited.
-+ *
-+ * DTS file for Hisilicon SD5203 Board
-+ */
-+
-+/dts-v1/;
-+
-+/ {
-+	model = "Hisilicon SD5203";
-+	compatible = "hisilicon,sd5203";
-+	interrupt-parent = <&vic>;
-+	#address-cells = <1>;
-+	#size-cells = <1>;
-+
-+	chosen {
-+		bootargs="console=ttyS0,9600 earlycon=uart8250,mmio32,0x1600d000";
-+	};
-+
-+	aliases {
-+		serial0 = &uart0;
-+	};
-+
-+	cpus {
-+		#address-cells = <1>;
-+		#size-cells = <0>;
-+
-+		cpu0 {
-+			device_type = "cpu";
-+			compatible = "arm,arm926ej-s";
-+			reg = <0x0>;
-+		};
-+	};
-+
-+	memory@30000000 {
-+		device_type = "memory";
-+		reg = <0x30000000 0x8000000>;
-+	};
-+
-+	soc {
-+		#address-cells = <1>;
-+		#size-cells = <1>;
-+		compatible = "simple-bus";
-+		ranges;
-+
-+		vic: interrupt-controller@10130000 {
-+			compatible = "snps,dw-apb-ictl";
-+			reg = <0x10130000 0x1000>;
-+			interrupt-controller;
-+			#interrupt-cells = <1>;
-+		};
-+
-+		refclk125mhz: refclk125mhz {
-+			compatible = "fixed-clock";
-+			#clock-cells = <0>;
-+			clock-frequency = <125000000>;
-+		};
-+
-+		timer0: timer@16002000 {
-+			compatible = "arm,sp804", "arm,primecell";
-+			reg = <0x16002000 0x1000>;
-+			interrupts = <4>;
-+			clocks = <&refclk125mhz>;
-+			clock-names = "apb_pclk";
-+		};
-+
-+		timer1: timer@16003000 {
-+			compatible = "arm,sp804", "arm,primecell";
-+			reg = <0x16003000 0x1000>;
-+			interrupts = <5>;
-+			clocks = <&refclk125mhz>;
-+			clock-names = "apb_pclk";
-+		};
-+
-+		uart0: serial@1600d000 {
-+			compatible = "snps,dw-apb-uart";
-+			reg = <0x1600d000 0x1000>;
-+			bus_id = "uart0";
-+			clocks = <&refclk125mhz>;
-+			clock-names = "baudclk", "apb_pclk";
-+			reg-shift = <2>;
-+			interrupts = <17>;
-+		};
-+
-+		uart1: serial@1600c000 {
-+			compatible = "snps,dw-apb-uart";
-+			reg = <0x1600c000 0x1000>;
-+			clocks = <&refclk125mhz>;
-+			clock-names = "baudclk", "apb_pclk";
-+			reg-shift = <2>;
-+			interrupts = <16>;
-+			status = "disabled";
-+		};
-+	};
-+};
--- 
-1.8.3
+Yeah. Don't do that. Code changes for no reason.
+								Pavel
+--=20
+(english) http://www.livejournal.com/~pavelmachek
+(cesky, pictures) http://atrey.karlin.mff.cuni.cz/~pavel/picture/horses/blo=
+g.html
 
+--xHFwDpU9dbj6ez1V
+Content-Type: application/pgp-signature; name="signature.asc"
+Content-Description: Digital signature
 
+-----BEGIN PGP SIGNATURE-----
+Version: GnuPG v1
+
+iEYEARECAAYFAl9lzNwACgkQMOfwapXb+vLJvACcD0vLQD6i6rq1yLChubBfrCj+
+9XgAn39SLCKSUnzregAPCR/15/5OW9YD
+=J83J
+-----END PGP SIGNATURE-----
+
+--xHFwDpU9dbj6ez1V--
