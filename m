@@ -2,71 +2,87 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from vger.kernel.org (vger.kernel.org [23.128.96.18])
-	by mail.lfdr.de (Postfix) with ESMTP id 8C983270E7F
-	for <lists+devicetree@lfdr.de>; Sat, 19 Sep 2020 16:22:40 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTP id 4092D270E86
+	for <lists+devicetree@lfdr.de>; Sat, 19 Sep 2020 16:25:16 +0200 (CEST)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S1726486AbgISOWj (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Sat, 19 Sep 2020 10:22:39 -0400
-Received: from mail.kernel.org ([198.145.29.99]:55714 "EHLO mail.kernel.org"
+        id S1726469AbgISOZK (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Sat, 19 Sep 2020 10:25:10 -0400
+Received: from mail.kernel.org ([198.145.29.99]:57108 "EHLO mail.kernel.org"
         rhost-flags-OK-OK-OK-OK) by vger.kernel.org with ESMTP
-        id S1726159AbgISOWj (ORCPT <rfc822;devicetree@vger.kernel.org>);
-        Sat, 19 Sep 2020 10:22:39 -0400
-Received: from archlinux (cpc149474-cmbg20-2-0-cust94.5-4.cable.virginm.net [82.4.196.95])
-        (using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
+        id S1726434AbgISOZK (ORCPT <rfc822;devicetree@vger.kernel.org>);
+        Sat, 19 Sep 2020 10:25:10 -0400
+Received: from mail-ej1-f50.google.com (mail-ej1-f50.google.com [209.85.218.50])
+        (using TLSv1.2 with cipher ECDHE-RSA-AES128-GCM-SHA256 (128/128 bits))
         (No client certificate requested)
-        by mail.kernel.org (Postfix) with ESMTPSA id ED9E520866;
-        Sat, 19 Sep 2020 14:22:37 +0000 (UTC)
+        by mail.kernel.org (Postfix) with ESMTPSA id 60E4D21582;
+        Sat, 19 Sep 2020 14:25:09 +0000 (UTC)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=kernel.org;
-        s=default; t=1600525359;
-        bh=COHXhNHo8MIv809b8MxbgN95Y1iodNWyzoxuJJX9eXc=;
-        h=Date:From:To:Cc:Subject:In-Reply-To:References:From;
-        b=DIDfvbhb/JaK4H3Pyjqc04zZf7GVeW1zamZoyL/fK8COxcLpV/StsCas/BeFsPTgN
-         SskGT57Os2WpLDqY7fHaE/PCoYDnSOp7plgrZ9oqQsueEqqIysulhSRtQ0XWE86oHM
-         6EvjUM02BpZRRaGaKYXQO2/Y2U3SIC47lLV2wL4g=
-Date:   Sat, 19 Sep 2020 15:22:34 +0100
-From:   Jonathan Cameron <jic23@kernel.org>
-To:     Rob Herring <robh@kernel.org>
-Cc:     linux-iio@vger.kernel.org,
-        Gregory Clement <gregory.clement@bootlin.com>,
-        devicetree@vger.kernel.org,
-        Jonathan Cameron <Jonathan.Cameron@huawei.com>
-Subject: Re: [PATCH v2 10/20] dt-bindings:iio:adc:lpc3220-adc yaml
- conversion
-Message-ID: <20200919152234.4b185e42@archlinux>
-In-Reply-To: <20200915190933.GA2327420@bogus>
-References: <20200909175946.395313-1-jic23@kernel.org>
-        <20200909175946.395313-11-jic23@kernel.org>
-        <20200915190933.GA2327420@bogus>
-X-Mailer: Claws Mail 3.17.6 (GTK+ 2.24.32; x86_64-pc-linux-gnu)
+        s=default; t=1600525509;
+        bh=kHRkKnYP82SMnFqUKvGenb2khehyXzI7WLF+nQ+tzgw=;
+        h=References:In-Reply-To:From:Date:Subject:To:Cc:From;
+        b=2oYZ4BVC2fLdI6wdQldYFviXX+QrY8yA0ESlee7qs0Kg3rxm+3/6PF7RDdoanWhzk
+         7SCrbarFFlCxPmeN8jVVYZ6eN2Dx0WuxN9pBX7Bej1bF3XrffumU+pypQxtnac8AZo
+         1o0OYgAJM/AzKyeyqbeC+5fYnJHhdKDn1nORlUAE=
+Received: by mail-ej1-f50.google.com with SMTP id r7so11824075ejs.11;
+        Sat, 19 Sep 2020 07:25:09 -0700 (PDT)
+X-Gm-Message-State: AOAM532oRJHdcR+yYRD/+FzSvaJSpRXr9lctERxcnRkNsxrPBQ9JP2RJ
+        cRn2Nzdz5QLi/RRmIX6NtWC3RAaQZv6d2xxPMe0=
+X-Google-Smtp-Source: ABdhPJxqLwyyHgA5Kx4Q6V81m6PRoMJ6U0hi/KURq0qDLpn+NftnXz1sAVg2ynpJvB3sE/6Veg68lbEq0jaBtPYIvhc=
+X-Received: by 2002:a17:906:4046:: with SMTP id y6mr43178032ejj.148.1600525507972;
+ Sat, 19 Sep 2020 07:25:07 -0700 (PDT)
 MIME-Version: 1.0
-Content-Type: text/plain; charset=US-ASCII
-Content-Transfer-Encoding: 7bit
+References: <20200904152404.20636-1-krzk@kernel.org> <20200904152404.20636-8-krzk@kernel.org>
+ <81a8248f-0d02-5646-36b2-5d4c3a7c4211@linaro.org>
+In-Reply-To: <81a8248f-0d02-5646-36b2-5d4c3a7c4211@linaro.org>
+From:   Krzysztof Kozlowski <krzk@kernel.org>
+Date:   Sat, 19 Sep 2020 16:24:56 +0200
+X-Gmail-Original-Message-ID: <CAJKOXPdJhfUsTqrTCouF+xQ1ChBWipBc6UaOBbewSPfrEw9Mtg@mail.gmail.com>
+Message-ID: <CAJKOXPdJhfUsTqrTCouF+xQ1ChBWipBc6UaOBbewSPfrEw9Mtg@mail.gmail.com>
+Subject: Re: [PATCH v3 07/14] dt-bindings: thermal: imx8mm-thermal: Add i.MX
+ 8M Nano compatible
+To:     Daniel Lezcano <daniel.lezcano@linaro.org>
+Cc:     Rob Herring <robh+dt@kernel.org>, linux-clk@vger.kernel.org,
+        devicetree@vger.kernel.org, linux-arm-kernel@lists.infradead.org,
+        "linux-kernel@vger.kernel.org" <linux-kernel@vger.kernel.org>,
+        linux-mtd@lists.infradead.org, linux-pwm@vger.kernel.org,
+        linux-serial@vger.kernel.org, linux-pm@vger.kernel.org,
+        linux-watchdog@vger.kernel.org,
+        Michael Turquette <mturquette@baylibre.com>,
+        Stephen Boyd <sboyd@kernel.org>,
+        Shawn Guo <shawnguo@kernel.org>,
+        Sascha Hauer <s.hauer@pengutronix.de>,
+        Pengutronix Kernel Team <kernel@pengutronix.de>,
+        Fabio Estevam <festevam@gmail.com>,
+        NXP Linux Team <linux-imx@nxp.com>,
+        Guenter Roeck <linux@roeck-us.net>
+Content-Type: text/plain; charset="UTF-8"
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-On Tue, 15 Sep 2020 13:09:33 -0600
-Rob Herring <robh@kernel.org> wrote:
-
-> On Wed, 09 Sep 2020 18:59:36 +0100, Jonathan Cameron wrote:
-> > From: Jonathan Cameron <Jonathan.Cameron@huawei.com>
-> > 
-> > Renamed to remove the wild cards.  These go wrong far too often so
-> > in general preferred to use the name of a specific part.  As this
-> > binding only provides one compatible, I went with that.
-> > 
-> > Signed-off-by: Jonathan Cameron <Jonathan.Cameron@huawei.com>
-> > Cc: Gregory Clement <gregory.clement@bootlin.com>
+On Sat, 19 Sep 2020 at 13:48, Daniel Lezcano <daniel.lezcano@linaro.org> wrote:
+>
+> On 04/09/2020 17:23, Krzysztof Kozlowski wrote:
+> > DTSes with new i.MX 8M SoCs introduce their own compatibles so add them
+> > to fix dtbs_check warnings like:
+> >
+> >   arch/arm64/boot/dts/freescale/imx8mn-evk.dt.yaml: tmu@30260000:
+> >     compatible:0: 'fsl,imx8mn-tmu' is not one of ['fsl,imx8mm-tmu', 'fsl,imx8mp-tmu']
+> >     From schema: Documentation/devicetree/bindings/thermal/imx8mm-thermal.yaml
+> >
+> >   arch/arm64/boot/dts/freescale/imx8mn-evk.dt.yaml: tmu@30260000:
+> >     compatible: ['fsl,imx8mn-tmu', 'fsl,imx8mm-tmu'] is too long
+> >
+> >   arch/arm64/boot/dts/freescale/imx8mn-evk.dt.yaml: tmu@30260000:
+> >     compatible: Additional items are not allowed ('fsl,imx8mm-tmu' was unexpected)
+> >
+> > Signed-off-by: Krzysztof Kozlowski <krzk@kernel.org>
+> > Reviewed-by: Rob Herring <robh@kernel.org>
 > > ---
-> >  .../bindings/iio/adc/lpc32xx-adc.txt          | 21 --------
-> >  .../bindings/iio/adc/nxp,lpc3220-adc.yaml     | 50 +++++++++++++++++++
-> >  2 files changed, 50 insertions(+), 21 deletions(-)
-> >   
-> 
-> Reviewed-by: Rob Herring <robh@kernel.org>
-Applied,
+>
+> Shall I pick this patch separately or did you merge the entire series ?
 
-thanks,
+Thanks. Rob already picked this up.
 
-Jonathan
-
+Best regards,
+Krzysztof
