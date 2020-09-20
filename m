@@ -2,126 +2,80 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from vger.kernel.org (vger.kernel.org [23.128.96.18])
-	by mail.lfdr.de (Postfix) with ESMTP id 4C9F22717AE
-	for <lists+devicetree@lfdr.de>; Sun, 20 Sep 2020 21:58:42 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTP id 40A6C2717B1
+	for <lists+devicetree@lfdr.de>; Sun, 20 Sep 2020 21:59:01 +0200 (CEST)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S1726387AbgITT6K (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Sun, 20 Sep 2020 15:58:10 -0400
-Received: from mail.kernel.org ([198.145.29.99]:44344 "EHLO mail.kernel.org"
+        id S1726440AbgITT7A (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Sun, 20 Sep 2020 15:59:00 -0400
+Received: from mail.kernel.org ([198.145.29.99]:44940 "EHLO mail.kernel.org"
         rhost-flags-OK-OK-OK-OK) by vger.kernel.org with ESMTP
-        id S1726126AbgITT6K (ORCPT <rfc822;devicetree@vger.kernel.org>);
-        Sun, 20 Sep 2020 15:58:10 -0400
+        id S1726126AbgITT67 (ORCPT <rfc822;devicetree@vger.kernel.org>);
+        Sun, 20 Sep 2020 15:58:59 -0400
 Received: from localhost.localdomain (unknown [194.230.155.191])
         (using TLSv1.2 with cipher ECDHE-RSA-AES128-GCM-SHA256 (128/128 bits))
         (No client certificate requested)
-        by mail.kernel.org (Postfix) with ESMTPSA id 183982085B;
-        Sun, 20 Sep 2020 19:58:05 +0000 (UTC)
+        by mail.kernel.org (Postfix) with ESMTPSA id A80312085B;
+        Sun, 20 Sep 2020 19:58:55 +0000 (UTC)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=kernel.org;
-        s=default; t=1600631889;
-        bh=nqvXD5D7Mr/h/yGU6/GXdQyDXzmq2/uouXSAGKcyvL8=;
-        h=From:To:Subject:Date:In-Reply-To:References:From;
-        b=jxULAT1guPzQBCkshqdEG0cRHrzwKy9gBdw8uE0d1uQAaMIky5trkoPZ9BvZtl6Qy
-         2NqwzROljAubRWfxtgAjiqrVBtTcCe0yeL6/3SukqOyGxAFEmskYW5p5tcecpC1ia8
-         Z4Qm8ZXsDv94ne1QwD3tk0WKipAYSmcc8i1zYVms=
+        s=default; t=1600631939;
+        bh=qE/XNWOxN2w9q5YVj7knCuVoes9uF5n3abGxzM2Z+W4=;
+        h=From:To:Cc:Subject:Date:From;
+        b=Ha8P/imBl3wD1AWwjK3A7QC8+fabyc9+n2hkGToE0oI4/70U+xYAHRInRgDNNntwd
+         KoUZrm+DbHQxl6meWzKWsrDk3rhpYORqNi4UDAUj277nFMatb8Y9TnfmWwVTg7CIqE
+         FLgjjokJ1hHgQwP+bUWXaz0bGE5hTnn51x77HDEY=
 From:   Krzysztof Kozlowski <krzk@kernel.org>
-To:     Rob Herring <robh+dt@kernel.org>, Shawn Guo <shawnguo@kernel.org>,
+To:     Linus Walleij <linus.walleij@linaro.org>,
+        Bartosz Golaszewski <bgolaszewski@baylibre.com>,
+        Rob Herring <robh+dt@kernel.org>,
+        Shawn Guo <shawnguo@kernel.org>,
         Sascha Hauer <s.hauer@pengutronix.de>,
         Pengutronix Kernel Team <kernel@pengutronix.de>,
         Fabio Estevam <festevam@gmail.com>,
         NXP Linux Team <linux-imx@nxp.com>,
-        Martin Kepplinger <martink@posteo.de>,
-        "Angus Ainslie (Purism)" <angus@akkea.ca>,
-        Krzysztof Kozlowski <krzk@kernel.org>,
+        Anson Huang <Anson.Huang@nxp.com>,
+        Stefan Agner <stefan@agner.ch>, linux-gpio@vger.kernel.org,
         devicetree@vger.kernel.org, linux-arm-kernel@lists.infradead.org,
         linux-kernel@vger.kernel.org
-Subject: [PATCH v3 3/3] ARM: dts: imx: align GPIO hog names with dtschema
-Date:   Sun, 20 Sep 2020 21:57:49 +0200
-Message-Id: <20200920195749.26952-3-krzk@kernel.org>
+Cc:     Krzysztof Kozlowski <krzk@kernel.org>
+Subject: [PATCH v3 1/4] dt-bindings: gpio: pl061: add gpio-line-names
+Date:   Sun, 20 Sep 2020 21:58:45 +0200
+Message-Id: <20200920195848.27075-1-krzk@kernel.org>
 X-Mailer: git-send-email 2.17.1
-In-Reply-To: <20200920195749.26952-1-krzk@kernel.org>
-References: <20200920195749.26952-1-krzk@kernel.org>
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-dtschema for GPIO controllers expects GPIO hogs to end with 'hog'
-suffix.
+Describe common "gpio-line-names" property to fix dtbs_check warnings
+like:
+
+  arch/arm64/boot/dts/hisilicon/hi3670-hikey970.dt.yaml: gpio@e8a0b000:
+    'gpio-line-names' does not match any of the regexes: 'pinctrl-[0-9]+'
 
 Signed-off-by: Krzysztof Kozlowski <krzk@kernel.org>
 
 ---
 
 Changes since v2:
-1. None, split from previous patchset using common GPIO schema
+1. Common GPIO goes to dt-schema
 ---
- arch/arm/boot/dts/imx51-zii-rdu1.dts        | 2 +-
- arch/arm/boot/dts/imx6qdl-zii-rdu2.dtsi     | 8 ++++----
- arch/arm/boot/dts/imx6ul-ccimx6ulsbcpro.dts | 2 +-
- 3 files changed, 6 insertions(+), 6 deletions(-)
+ Documentation/devicetree/bindings/gpio/pl061-gpio.yaml | 3 +++
+ 1 file changed, 3 insertions(+)
 
-diff --git a/arch/arm/boot/dts/imx51-zii-rdu1.dts b/arch/arm/boot/dts/imx51-zii-rdu1.dts
-index e559ab0c3645..ec8ca3ac2c1c 100644
---- a/arch/arm/boot/dts/imx51-zii-rdu1.dts
-+++ b/arch/arm/boot/dts/imx51-zii-rdu1.dts
-@@ -451,7 +451,7 @@
- 			  "", "", "", "",
- 			  "", "", "", "";
+diff --git a/Documentation/devicetree/bindings/gpio/pl061-gpio.yaml b/Documentation/devicetree/bindings/gpio/pl061-gpio.yaml
+index 313b17229247..bd35cbf7fa09 100644
+--- a/Documentation/devicetree/bindings/gpio/pl061-gpio.yaml
++++ b/Documentation/devicetree/bindings/gpio/pl061-gpio.yaml
+@@ -51,7 +51,10 @@ properties:
  
--	unused-sd3-wp-gpio {
-+	unused-sd3-wp-hog {
- 		/*
- 		 * See pinctrl_esdhc1 below for more details on this
- 		 */
-diff --git a/arch/arm/boot/dts/imx6qdl-zii-rdu2.dtsi b/arch/arm/boot/dts/imx6qdl-zii-rdu2.dtsi
-index 66b15748e287..c0a76202e16b 100644
---- a/arch/arm/boot/dts/imx6qdl-zii-rdu2.dtsi
-+++ b/arch/arm/boot/dts/imx6qdl-zii-rdu2.dtsi
-@@ -330,28 +330,28 @@
- 	pinctrl-names = "default";
- 	pinctrl-0 = <&pinctrl_gpio3_hog>;
+   gpio-controller: true
  
--	usb-emulation {
-+	usb-emulation-hog {
- 		gpio-hog;
- 		gpios = <19 GPIO_ACTIVE_HIGH>;
- 		output-low;
- 		line-name = "usb-emulation";
- 	};
++  gpio-line-names: true
++
+   gpio-ranges:
++    minItems: 1
+     maxItems: 8
  
--	usb-mode1 {
-+	usb-mode1-hog {
- 		gpio-hog;
- 		gpios = <20 GPIO_ACTIVE_HIGH>;
- 		output-high;
- 		line-name = "usb-mode1";
- 	};
- 
--	usb-pwr {
-+	usb-pwr-hog {
- 		gpio-hog;
- 		gpios = <22 GPIO_ACTIVE_LOW>;
- 		output-high;
- 		line-name = "usb-pwr-ctrl-en-n";
- 	};
- 
--	usb-mode2 {
-+	usb-mode2-hog {
- 		gpio-hog;
- 		gpios = <23 GPIO_ACTIVE_HIGH>;
- 		output-high;
-diff --git a/arch/arm/boot/dts/imx6ul-ccimx6ulsbcpro.dts b/arch/arm/boot/dts/imx6ul-ccimx6ulsbcpro.dts
-index a0bbec57ddc7..3ec042bfccba 100644
---- a/arch/arm/boot/dts/imx6ul-ccimx6ulsbcpro.dts
-+++ b/arch/arm/boot/dts/imx6ul-ccimx6ulsbcpro.dts
-@@ -110,7 +110,7 @@
- };
- 
- &gpio5 {
--	emmc-usd-mux {
-+	emmc-usd-mux-hog {
- 		gpio-hog;
- 		gpios = <1 GPIO_ACTIVE_LOW>;
- 		output-high;
+ required:
 -- 
 2.17.1
 
