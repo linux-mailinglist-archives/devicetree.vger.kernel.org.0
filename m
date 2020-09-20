@@ -2,466 +2,280 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from vger.kernel.org (vger.kernel.org [23.128.96.18])
-	by mail.lfdr.de (Postfix) with ESMTP id 5AA6B271402
-	for <lists+devicetree@lfdr.de>; Sun, 20 Sep 2020 13:41:45 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTP id 232A4271452
+	for <lists+devicetree@lfdr.de>; Sun, 20 Sep 2020 14:38:44 +0200 (CEST)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S1726368AbgITLln (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Sun, 20 Sep 2020 07:41:43 -0400
-Received: from mail.baikalelectronics.com ([87.245.175.226]:54178 "EHLO
-        mail.baikalelectronics.ru" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S1726273AbgITLlm (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Sun, 20 Sep 2020 07:41:42 -0400
-Received: from localhost (unknown [127.0.0.1])
-        by mail.baikalelectronics.ru (Postfix) with ESMTP id E94F38030833;
-        Sun, 20 Sep 2020 11:41:35 +0000 (UTC)
-X-Virus-Scanned: amavisd-new at baikalelectronics.ru
-Received: from mail.baikalelectronics.ru ([127.0.0.1])
-        by localhost (mail.baikalelectronics.ru [127.0.0.1]) (amavisd-new, port 10024)
-        with ESMTP id y2PHjjegGspm; Sun, 20 Sep 2020 14:41:34 +0300 (MSK)
-From:   Serge Semin <Sergey.Semin@baikalelectronics.ru>
-To:     Mark Brown <broonie@kernel.org>
-CC:     Alexey Malahov <Alexey.Malahov@baikalelectronics.ru>,
-        Ramil Zaripov <Ramil.Zaripov@baikalelectronics.ru>,
-        Pavel Parkhomenko <Pavel.Parkhomenko@baikalelectronics.ru>,
-        Andy Shevchenko <andy.shevchenko@gmail.com>,
-        Andy Shevchenko <andriy.shevchenko@linux.intel.com>,
-        Lars Povlsen <lars.povlsen@microchip.com>,
-        "wuxu . wu" <wuxu.wu@huawei.com>, Feng Tang <feng.tang@intel.com>,
-        Rob Herring <robh+dt@kernel.org>, <linux-spi@vger.kernel.org>,
-        <devicetree@vger.kernel.org>, <linux-kernel@vger.kernel.org>
-Subject: [PATCH 30/30] spi: dw: Add Baikal-T1 SPI Controller glue driver
-Date:   Sun, 20 Sep 2020 14:41:03 +0300
-Message-ID: <20200920112914.26501-31-Sergey.Semin@baikalelectronics.ru>
-In-Reply-To: <20200920112914.26501-1-Sergey.Semin@baikalelectronics.ru>
-References: <20200920112914.26501-1-Sergey.Semin@baikalelectronics.ru>
+        id S1726305AbgITMil (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Sun, 20 Sep 2020 08:38:41 -0400
+Received: from lindbergh.monkeyblade.net ([23.128.96.19]:57828 "EHLO
+        lindbergh.monkeyblade.net" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
+        with ESMTP id S1726301AbgITMik (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Sun, 20 Sep 2020 08:38:40 -0400
+Received: from mail-io1-xd43.google.com (mail-io1-xd43.google.com [IPv6:2607:f8b0:4864:20::d43])
+        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 9321DC061755;
+        Sun, 20 Sep 2020 05:38:40 -0700 (PDT)
+Received: by mail-io1-xd43.google.com with SMTP id m17so12474172ioo.1;
+        Sun, 20 Sep 2020 05:38:40 -0700 (PDT)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+        d=gmail.com; s=20161025;
+        h=mime-version:references:in-reply-to:from:date:message-id:subject:to
+         :cc:content-transfer-encoding;
+        bh=7yLC45oNPBKamsN5IPYHoKjdcmeugfCFnTTGzw/Mp7k=;
+        b=Zq+i9zAbfyWQfSJr9OKDJifsxf3ndrkd5j44FWFcFw/Gmr1KeQdT8BMHR/9Buq0lvq
+         Re9hE/hHEr6qlUlqI8PPwM+hCdLzTUREY2ROmHSm7xpyb0UT9XVJJ9ktPI29FsvUbQCd
+         ZhAoYeoLInbl9H1KtclMlfY6fF1wx1lZ6dMSG5zoV4FB/HJd0tTL1jix9AjJ+GKgPYHG
+         +NZaufQcn176FB/emFwPzkEfgB1g5o+PyR7Sk8N6QoHUC2sesVF8fMmj+tM9N6W4QFke
+         omKqKMy1y1qQ8/oaC4RiY56moUZbSAsd1LyoQ07tvvsDoXrlRiPZ7o9mxgneHWiIOcA6
+         u03Q==
+X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+        d=1e100.net; s=20161025;
+        h=x-gm-message-state:mime-version:references:in-reply-to:from:date
+         :message-id:subject:to:cc:content-transfer-encoding;
+        bh=7yLC45oNPBKamsN5IPYHoKjdcmeugfCFnTTGzw/Mp7k=;
+        b=ffodxADIxIecP9/duI2pYr4z5aN0taNZ7mY3ERIqObzcvEAGuSzCHlGz/w9UgPssPD
+         gxH6Xh6foFvudYTdxr+nBb9gwYuPy24y2V3H8e6AvRPJq9kftI2N9WtwZ6Gn27OU3zPF
+         UYU9mccDbu9qr4KhNBm2+QxB3brZgY7FhlNYSO/dJhGFjNSJcTMjWoKnyzXFahtM9/Jr
+         gMm34miUmF4SklZpXJAxHOvL6H8wY7WlEM5F2SAWTMM/bdteGKAu7thxtPXNIT/bb+Ce
+         PRKKmb5G1B4XYpVGMhly1kXltiPg9d5Unh5YJAHbqWZ25pp97EgFmt2SBJyMoFnwL9TY
+         2Z2Q==
+X-Gm-Message-State: AOAM53092mgE4DTANxIjWLU05hIoZl7fc1Xe6Sn7uQyFs9+mYU/ic/0M
+        sNFqnycU3lvNygE1W5lpmTUvbc8BD62VmddJOqA=
+X-Google-Smtp-Source: ABdhPJx3H7Q7/haYuNT6KsqJc7+aVqi2qaAKhZ/jyoP4KWhJYrllhDu11AA7rHaFz6tJ3aBBOB1B2vhVFwxHJf0xZK8=
+X-Received: by 2002:a05:6638:168c:: with SMTP id f12mr36462448jat.16.1600605519510;
+ Sun, 20 Sep 2020 05:38:39 -0700 (PDT)
 MIME-Version: 1.0
-Content-Transfer-Encoding: 7BIT
-Content-Type:   text/plain; charset=US-ASCII
-X-ClientProxiedBy: MAIL.baikal.int (192.168.51.25) To mail (192.168.51.25)
+References: <CAJiuCceF340FiLvyeXNZtvqftQMAmk=MtFDLT_9696ix+eH1Yw@mail.gmail.com>
+ <20200729143927.47f5tbuaob4ph3lp@gilmour.lan> <20200729151548.GB5612@sirena.org.uk>
+ <CAJiuCcdf=TNLPTUPzHP9NzPHqdxG06TRDkQfONY+ScK0DV_v5w@mail.gmail.com>
+ <20200903205851.gdnpthserywsxrbs@gilmour.lan> <80b5a4e3-c8bc-9521-4ff1-12bb6424516f@sholland.org>
+ <20200910143314.qku7po6htiiq5lzf@gilmour.lan> <57f8bdeb-14dc-583e-ffa8-43d7a9f1bb24@sholland.org>
+ <20200917132128.e6z4gwoluipbzigm@gilmour.lan> <CAJiuCcdWQRVMeTLvxibZ37CF9BMiC_L2bWBDiin2Uz0CWq2FuQ@mail.gmail.com>
+ <20200917140611.5qpsz24yfii5kzcn@gilmour.lan>
+In-Reply-To: <20200917140611.5qpsz24yfii5kzcn@gilmour.lan>
+From:   =?UTF-8?B?Q2zDqW1lbnQgUMOpcm9u?= <peron.clem@gmail.com>
+Date:   Sun, 20 Sep 2020 14:38:28 +0200
+Message-ID: <CAJiuCcfnXH44sBu6659Misvfxrrj2ZDmLmU5sABMwdrBBYd1Lg@mail.gmail.com>
+Subject: Re: [PATCH v3 3/7] ASoC: sun4i-i2s: Add support for H6 I2S
+To:     Maxime Ripard <maxime@cerno.tech>
+Cc:     Samuel Holland <samuel@sholland.org>,
+        Mark Brown <broonie@kernel.org>,
+        Liam Girdwood <lgirdwood@gmail.com>,
+        Rob Herring <robh+dt@kernel.org>, Chen-Yu Tsai <wens@csie.org>,
+        Jaroslav Kysela <perex@perex.cz>,
+        Takashi Iwai <tiwai@suse.com>,
+        Linux-ALSA <alsa-devel@alsa-project.org>,
+        devicetree <devicetree@vger.kernel.org>,
+        linux-arm-kernel <linux-arm-kernel@lists.infradead.org>,
+        linux-kernel <linux-kernel@vger.kernel.org>,
+        Jernej Skrabec <jernej.skrabec@siol.net>,
+        Marcus Cooper <codekipper@gmail.com>
+Content-Type: text/plain; charset="UTF-8"
+Content-Transfer-Encoding: quoted-printable
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-Baikal-T1 is equipped with three DW APB SSI-based MMIO SPI controllers.
-Two of them are pretty much normal: with IRQ, DMA, FIFOs of 64 words
-depth, 4x CSs, but the third one as being a part of the Baikal-T1 System
-Boot Controller has got a very limited resources: no IRQ, no DMA, only a
-single native chip-select and Tx/Rx FIFO with just 8 words depth
-available. In order to provide a transparent initial boot code execution
-the Boot SPI controller is also utilized by an vendor-specific IP-block,
-which exposes an SPI flash direct mapping interface. Since both direct
-mapping and SPI controller normal utilization are mutual exclusive only
-one of these interfaces can be used to access an external SPI slave
-device. That's why a dedicated mux is embedded into the System Boot
-Controller. All of that is taken into account in the Baikal-T1-specific DW
-APB SSI glue driver implemented by means of the DW SPI core module.
+Hi Maxime,
 
-Co-developed-by: Ramil Zaripov <Ramil.Zaripov@baikalelectronics.ru>
-Signed-off-by: Ramil Zaripov <Ramil.Zaripov@baikalelectronics.ru>
-Signed-off-by: Serge Semin <Sergey.Semin@baikalelectronics.ru>
----
- drivers/spi/Kconfig      |  28 ++++
- drivers/spi/Makefile     |   1 +
- drivers/spi/spi-dw-bt1.c | 339 +++++++++++++++++++++++++++++++++++++++
- 3 files changed, 368 insertions(+)
- create mode 100644 drivers/spi/spi-dw-bt1.c
+On Thu, 17 Sep 2020 at 16:06, Maxime Ripard <maxime@cerno.tech> wrote:
+>
+> Hi Clement,
+>
+> On Thu, Sep 17, 2020 at 03:55:45PM +0200, Cl=C3=A9ment P=C3=A9ron wrote:
+> > Hi Maxime and Samuel,
+> >
+> > On Thu, 17 Sep 2020 at 15:21, Maxime Ripard <maxime@cerno.tech> wrote:
+> > >
+> > > Hi,
+> > >
+> > > On Sat, Sep 12, 2020 at 03:29:55PM -0500, Samuel Holland wrote:
+> > > > On 9/10/20 9:33 AM, Maxime Ripard wrote:
+> > > > > On Thu, Sep 03, 2020 at 09:54:39PM -0500, Samuel Holland wrote:
+> > > > >> On 9/3/20 3:58 PM, Maxime Ripard wrote:
+> > > > >>> On Thu, Sep 03, 2020 at 10:02:31PM +0200, Cl=C3=A9ment P=C3=A9r=
+on wrote:
+> > > > >>>> Hi Maxime,
+> > > > >>>>
+> > > > >>>> On Wed, 29 Jul 2020 at 17:16, Mark Brown <broonie@kernel.org> =
+wrote:
+> > > > >>>>>
+> > > > >>>>> On Wed, Jul 29, 2020 at 04:39:27PM +0200, Maxime Ripard wrote=
+:
+> > > > >>>>>
+> > > > >>>>>> It really looks like the polarity of LRCK is fine though. Th=
+e first word
+> > > > >>>>>> is sent with LRCK low, and then high, so we have channel 0 a=
+nd then
+> > > > >>>>>> channel 1 which seems to be the proper ordering?
+> > > > >>
+> > > > >> Which image file is this in reference to?
+> > > > >>
+> > > > >>>>> Yes, that's normal.
+> > > > >>>>
+> > > > >>>> Thank you very much for this test.
+> > > > >>>>
+> > > > >>>> So I will revert the following commit:
+> > > > >>>>
+> > > > >>>> ASoC: sun4i-i2s: Fix the LRCK polarity
+> > > > >>>>
+> > > > >>>> https://github.com/clementperon/linux/commit/dd657eae8164f7e4b=
+afe8b875031a7c6c50646a9
+> > > > >>>
+> > > > >>> Like I said, the current code is working as expected with regar=
+d to the
+> > > > >>> LRCK polarity. The issue is that the samples are delayed and st=
+art to be
+> > > > >>> transmitted on the wrong phase of the signal.
+> > > > >>
+> > > > >> Since an I2S LRCK frame is radially symmetric, "wrong phase" and=
+ "inverted
+> > > > >> polarity" look the same. The only way to definitively distinguis=
+h them is by
+> > > > >> looking at the sample data.
+> > > > >>
+> > > > >> In "i2s-h6.png", the samples are all zeroes, so you're assuming =
+that the first
+> > > > >> sample transmitted (that is, when the bit clock starts transitio=
+ning) was a
+> > > > >> "left" sample.
+> > > > >>
+> > > > >> However, in "h6-i2s-start-data.png", there are pairs of samples =
+we can look at.
+> > > > >> I'm still assuming that similar samples are a left/right pair, b=
+ut that's
+> > > > >> probably a safe assumption. Here we see the first sample in each=
+ pair is
+> > > > >> transmitted with LRCK *high*, and the second sample in the pair =
+is transmitted
+> > > > >> with LRCK *low*. This is the opposite of your claim above.
+> > > > >>
+> > > > >> An ideal test would put left/right markers and frame numbers in =
+the data
+> > > > >> channel. The Python script below can generate such a file. Then =
+you would know
+> > > > >> how much startup delay there is, which channel the "first sample=
+" came from, and
+> > > > >> how each channel maps to the LRCK level.
+> > > > >>
+> > > > >> It would also be helpful to test DSP_A mode, where the LRCK sign=
+al is
+> > > > >> asymmetric and an inversion would be obvious.
+> > > > >
+> > > > > I had no idea that there was a wave module in Python, that's a gr=
+eat
+> > > > > suggestion, thanks!
+> > > > >
+> > > > > You'll find attached the screenshots for both the I2S and DSP_A f=
+ormats.
+> > > > > I zoomed out a bit to be able to have the first valid samples, bu=
+t it
+> > > > > should be readable.
+> > > > >
+> > > > > The code I used is there:
+> > > > > https://github.com/mripard/linux/tree/sunxi/h6-i2s-test
+> > > > >
+> > > > > It's basically the v3, plus the DT bits.
+> > > > >
+> > > > > As you can see, in the i2s case, LRCK starts low and then goes up=
+, with
+> > > > > the first channel (0x2*** samples) transmitted first, so everythi=
+ng
+> > > > > looks right here.
+> > > > >
+> > > > > On the DSP_A screenshot, LRCK will be low with small bursts high,=
+ and
+> > > > > once again with the first channel being transmitted first, so it =
+looks
+> > > > > right to me too.
+> > > >
+> > > > Indeed, for H6 i2s0 with LRCK inversion in software, everything loo=
+ks correct on
+> > > > the wire.
+> > > >
+> > > > It's still concerning to me that the BSP has no evidence of this in=
+version,
+> > > > either for i2s0 or i2s1[1]. And the inversion seems not to be requi=
+red for HDMI
+> > > > audio on mainline either (but there could be an inversion on the HD=
+MI side or on
+> > > > the interconnect).
+> > >
+> > > One can only guess here, but it's also quite easy to fix it at the ca=
+rd
+> > > level (or maybe there's a similar inversion in the codecs, or whateve=
+r).
+> >
+> > Thanks for the test and the explanation.
+> >
+> > Quite disturbing that there is no evidence of the LRCK inversion in
+> > kernel vendor indeed...
+> > Could it be an issue with the mainline code?
+>
+> I'm not sure what you mean here, this was tested with mainline?
 
-diff --git a/drivers/spi/Kconfig b/drivers/spi/Kconfig
-index 1f70bb1e7fa9..415d57b2057f 100644
---- a/drivers/spi/Kconfig
-+++ b/drivers/spi/Kconfig
-@@ -252,6 +252,34 @@ config SPI_DW_MMIO
- 	tristate "Memory-mapped io interface driver for DW SPI core"
- 	depends on HAS_IOMEM
- 
-+config SPI_DW_BT1
-+	tristate "Baikal-T1 SPI driver for DW SPI core"
-+	depends on MIPS_BAIKAL_T1 || COMPILE_TEST
-+	help
-+	  Baikal-T1 SoC is equipped with three DW APB SSI-based MMIO SPI
-+	  controllers. Two of them are pretty much normal: with IRQ, DMA,
-+	  FIFOs of 64 words depth, 4x CSs, but the third one as being a
-+	  part of the Baikal-T1 System Boot Controller has got a very
-+	  limited resources: no IRQ, no DMA, only a single native
-+	  chip-select and Tx/Rx FIFO with just 8 words depth available.
-+	  The later one is normally connected to an external SPI-nor flash
-+	  of 128Mb (in general can be of bigger size).
-+
-+config SPI_DW_BT1_DIRMAP
-+	bool "Directly mapped Baikal-T1 Boot SPI flash support"
-+	depends on SPI_DW_BT1
-+	select MULTIPLEXER
-+	select MUX_MMIO
-+	help
-+	  Directly mapped SPI flash memory is an interface specific to the
-+	  Baikal-T1 System Boot Controller. It is a 16MB MMIO region, which
-+	  can be used to access a peripheral memory device just by
-+	  reading/writing data from/to it. Note that the system APB bus
-+	  will stall during each IO from/to the dirmap region until the
-+	  operation is finished. So try not to use it concurrently with
-+	  time-critical tasks (like the SPI memory operations implemented
-+	  in this driver).
-+
- endif
- 
- config SPI_DLN2
-diff --git a/drivers/spi/Makefile b/drivers/spi/Makefile
-index cf955ea803cd..21dc75842aca 100644
---- a/drivers/spi/Makefile
-+++ b/drivers/spi/Makefile
-@@ -39,6 +39,7 @@ obj-$(CONFIG_SPI_DLN2)			+= spi-dln2.o
- obj-$(CONFIG_SPI_DESIGNWARE)		+= spi-dw.o
- spi-dw-y				:= spi-dw-core.o
- spi-dw-$(CONFIG_SPI_DW_DMA)		+= spi-dw-dma.o
-+obj-$(CONFIG_SPI_DW_BT1)		+= spi-dw-bt1.o
- obj-$(CONFIG_SPI_DW_MMIO)		+= spi-dw-mmio.o
- obj-$(CONFIG_SPI_DW_PCI)		+= spi-dw-pci.o
- obj-$(CONFIG_SPI_EFM32)			+= spi-efm32.o
-diff --git a/drivers/spi/spi-dw-bt1.c b/drivers/spi/spi-dw-bt1.c
-new file mode 100644
-index 000000000000..f382dfad7842
---- /dev/null
-+++ b/drivers/spi/spi-dw-bt1.c
-@@ -0,0 +1,339 @@
-+// SPDX-License-Identifier: GPL-2.0-only
-+//
-+// Copyright (C) 2020 BAIKAL ELECTRONICS, JSC
-+//
-+// Authors:
-+//   Ramil Zaripov <Ramil.Zaripov@baikalelectronics.ru>
-+//   Serge Semin <Sergey.Semin@baikalelectronics.ru>
-+//
-+// Baikal-T1 DW APB SPI and System Boot SPI driver
-+//
-+
-+#include <linux/clk.h>
-+#include <linux/cpumask.h>
-+#include <linux/err.h>
-+#include <linux/interrupt.h>
-+#include <linux/module.h>
-+#include <linux/mux/consumer.h>
-+#include <linux/of.h>
-+#include <linux/of_platform.h>
-+#include <linux/platform_device.h>
-+#include <linux/pm_runtime.h>
-+#include <linux/property.h>
-+#include <linux/slab.h>
-+#include <linux/spi/spi-mem.h>
-+#include <linux/spi/spi.h>
-+
-+#include "spi-dw.h"
-+
-+#define BT1_BOOT_DIRMAP		0
-+#define BT1_BOOT_REGS		1
-+
-+struct dw_spi_bt1 {
-+	struct dw_spi		dws;
-+	struct clk		*clk;
-+	struct mux_control	*mux;
-+
-+#ifdef CONFIG_SPI_DW_BT1_DIRMAP
-+	void __iomem		*map;
-+	resource_size_t		map_len;
-+#endif
-+};
-+#define to_dw_spi_bt1(_ctlr) \
-+	container_of(spi_controller_get_devdata(_ctlr), struct dw_spi_bt1, dws)
-+
-+typedef int (*dw_spi_bt1_init_cb)(struct platform_device *pdev,
-+				    struct dw_spi_bt1 *dwsbt1);
-+
-+#ifdef CONFIG_SPI_DW_BT1_DIRMAP
-+
-+static int dw_spi_bt1_dirmap_create(struct spi_mem_dirmap_desc *desc)
-+{
-+	struct dw_spi_bt1 *dwsbt1 = to_dw_spi_bt1(desc->mem->spi->controller);
-+
-+	if (!dwsbt1->map ||
-+	    !dwsbt1->dws.mem_ops.supports_op(desc->mem, &desc->info.op_tmpl))
-+		return -EOPNOTSUPP;
-+
-+	/*
-+	 * Make sure the requested region doesn't go out of the physically
-+	 * mapped flash memory bounds and the operation is read-only.
-+	 */
-+	if (desc->info.offset + desc->info.length > dwsbt1->map_len ||
-+	    desc->info.op_tmpl.data.dir != SPI_MEM_DATA_IN)
-+		return -EOPNOTSUPP;
-+
-+	return 0;
-+}
-+
-+/*
-+ * Directly mapped SPI memory region is only accessible in the dword chunks.
-+ * That's why we have to create a dedicated read-method to copy data from there
-+ * to the passed buffer.
-+ */
-+static void dw_spi_bt1_dirmap_copy_from_map(void *to, void __iomem *from, size_t len)
-+{
-+	size_t shift, chunk;
-+	u32 data;
-+
-+	/*
-+	 * We split the copying up into the next three stages: unaligned head,
-+	 * aligned body, unaligned tail.
-+	 */
-+	shift = (size_t)from & 0x3;
-+	if (shift) {
-+		chunk = min_t(size_t, 4 - shift, len);
-+		data = readl_relaxed(from - shift);
-+		memcpy(to, &data + shift, chunk);
-+		from += chunk;
-+		to += chunk;
-+		len -= chunk;
-+	}
-+
-+	while (len >= 4) {
-+		data = readl_relaxed(from);
-+		memcpy(to, &data, 4);
-+		from += 4;
-+		to += 4;
-+		len -= 4;
-+	}
-+
-+	if (len) {
-+		data = readl_relaxed(from);
-+		memcpy(to, &data, len);
-+	}
-+}
-+
-+static ssize_t dw_spi_bt1_dirmap_read(struct spi_mem_dirmap_desc *desc,
-+				      u64 offs, size_t len, void *buf)
-+{
-+	struct dw_spi_bt1 *dwsbt1 = to_dw_spi_bt1(desc->mem->spi->controller);
-+	struct dw_spi *dws = &dwsbt1->dws;
-+	struct spi_mem *mem = desc->mem;
-+	struct dw_spi_cfg cfg;
-+	int ret;
-+
-+	/*
-+	 * Make sure the requested operation length is valid. Truncate the
-+	 * length if it's greater than the length of the MMIO region.
-+	 */
-+	if (offs >= dwsbt1->map_len || !len)
-+		return 0;
-+
-+	len = min_t(size_t, len, dwsbt1->map_len - offs);
-+
-+	/* Collect the controller configuration required by the operation */
-+	cfg.tmode = SPI_TMOD_EPROMREAD;
-+	cfg.dfs = 8;
-+	cfg.ndf = 4;
-+	cfg.freq = mem->spi->max_speed_hz;
-+
-+	/* Make sure the corresponding CS is de-asserted on transmission */
-+	dw_spi_set_cs(mem->spi, false);
-+
-+	spi_enable_chip(dws, 0);
-+
-+	dw_spi_update_config(dws, mem->spi, &cfg);
-+
-+	spi_umask_intr(dws, SPI_INT_RXFI);
-+
-+	spi_enable_chip(dws, 1);
-+
-+	/*
-+	 * Enable the transparent mode of the System Boot Controller.
-+	 * The SPI core IO should have been locked before calling this method
-+	 * so noone would be touching the controller' registers during the
-+	 * dirmap operation.
-+	 */
-+	ret = mux_control_select(dwsbt1->mux, BT1_BOOT_DIRMAP);
-+	if (ret)
-+		return ret;
-+
-+	dw_spi_bt1_dirmap_copy_from_map(buf, dwsbt1->map + offs, len);
-+
-+	mux_control_deselect(dwsbt1->mux);
-+
-+	dw_spi_set_cs(mem->spi, true);
-+
-+	ret = dw_spi_check_status(dws, true);
-+
-+	return ret ?: len;
-+}
-+
-+#endif /* CONFIG_SPI_DW_BT1_DIRMAP */
-+
-+static int dw_spi_bt1_std_init(struct platform_device *pdev,
-+			       struct dw_spi_bt1 *dwsbt1)
-+{
-+	struct dw_spi *dws = &dwsbt1->dws;
-+
-+	dws->irq = platform_get_irq(pdev, 0);
-+	if (dws->irq < 0)
-+		return dws->irq;
-+
-+	dws->num_cs = 4;
-+
-+	/*
-+	 * Baikal-T1 Normal SPI Controllers don't always keep up with full SPI
-+	 * bus speed especially when it comes to the concurrent access to the
-+	 * APB bus resources. Thus we have no choice but to set a constraint on
-+	 * the SPI bus frequency for the memory operations which require to
-+	 * read/write data as fast as possible.
-+	 */
-+	dws->max_mem_freq = 20000000U;
-+
-+	dw_spi_dma_setup_generic(dws);
-+
-+	return 0;
-+}
-+
-+static int dw_spi_bt1_sys_init(struct platform_device *pdev,
-+			       struct dw_spi_bt1 *dwsbt1)
-+{
-+	struct resource *mem __maybe_unused;
-+	struct dw_spi *dws = &dwsbt1->dws;
-+
-+	/*
-+	 * Baikal-T1 System Boot Controller is equipped with a mux, which
-+	 * switches between the directly mapped SPI flash access mode and
-+	 * IO access to the DW APB SSI registers. Note the mux controller
-+	 * must be setup to preserve the registers being accessible by default
-+	 * (on idle-state).
-+	 */
-+	dwsbt1->mux = devm_mux_control_get(&pdev->dev, NULL);
-+	if (IS_ERR(dwsbt1->mux))
-+		return PTR_ERR(dwsbt1->mux);
-+
-+	/*
-+	 * Directly mapped SPI flash memory is a 16MB MMIO region, which can be
-+	 * used to access a peripheral memory device just by reading/writing
-+	 * data from/to it. Note the system APB bus will stall during each IO
-+	 * from/to the dirmap region until the operation is finished. So don't
-+	 * use it concurrently with time-critical tasks (like the SPI memory
-+	 * operations implemented in the DW APB SSI driver).
-+	 */
-+#ifdef CONFIG_SPI_DW_BT1_DIRMAP
-+	mem = platform_get_resource(pdev, IORESOURCE_MEM, 1);
-+	if (mem) {
-+		dwsbt1->map = devm_ioremap_resource(&pdev->dev, mem);
-+		if (!IS_ERR(dwsbt1->map)) {
-+			dwsbt1->map_len = (mem->end - mem->start + 1);
-+			dws->mem_ops.dirmap_create = dw_spi_bt1_dirmap_create;
-+			dws->mem_ops.dirmap_read = dw_spi_bt1_dirmap_read;
-+		} else {
-+			dwsbt1->map = NULL;
-+		}
-+	}
-+#endif /* CONFIG_SPI_DW_BT1_DIRMAP */
-+
-+	/*
-+	 * There is no IRQ, no DMA and just one CS available on the System Boot
-+	 * SPI controller.
-+	 */
-+	dws->irq = IRQ_NOTCONNECTED;
-+	dws->num_cs = 1;
-+
-+	/*
-+	 * Baikal-T1 System Boot SPI Controller doesn't keep up with the full
-+	 * SPI bus speed due to relatively slow APB bus and races for it'
-+	 * resources from different CPUs. The situation is worsen by a small
-+	 * FIFOs depth (just 8 words). It works better in a single CPU mode
-+	 * though, but still tends to be not fast enough at low CPU
-+	 * frequencies.
-+	 */
-+	if (num_possible_cpus() > 1)
-+		dws->max_mem_freq = 10000000U;
-+	else
-+		dws->max_mem_freq = 20000000U;
-+
-+	return 0;
-+}
-+
-+static int dw_spi_bt1_probe(struct platform_device *pdev)
-+{
-+	dw_spi_bt1_init_cb init_func;
-+	struct dw_spi_bt1 *dwsbt1;
-+	struct resource *mem;
-+	struct dw_spi *dws;
-+	int ret;
-+
-+	dwsbt1 = devm_kzalloc(&pdev->dev, sizeof(struct dw_spi_bt1), GFP_KERNEL);
-+	if (!dwsbt1)
-+		return -ENOMEM;
-+
-+	dws = &dwsbt1->dws;
-+
-+	dws->regs = devm_platform_get_and_ioremap_resource(pdev, 0, &mem);
-+	if (IS_ERR(dws->regs))
-+		return PTR_ERR(dws->regs);
-+
-+	dws->paddr = mem->start;
-+
-+	dwsbt1->clk = devm_clk_get(&pdev->dev, NULL);
-+	if (IS_ERR(dwsbt1->clk))
-+		return PTR_ERR(dwsbt1->clk);
-+
-+	ret = clk_prepare_enable(dwsbt1->clk);
-+	if (ret)
-+		return ret;
-+
-+	dws->bus_num = pdev->id;
-+	dws->reg_io_width = 4;
-+	dws->max_freq = clk_get_rate(dwsbt1->clk);
-+	if (!dws->max_freq)
-+		goto err_disable_clk;
-+
-+	init_func = device_get_match_data(&pdev->dev);
-+	ret = init_func(pdev, dwsbt1);
-+	if (ret)
-+		goto err_disable_clk;
-+
-+	pm_runtime_enable(&pdev->dev);
-+
-+	ret = dw_spi_add_host(&pdev->dev, dws);
-+	if (ret)
-+		goto err_disable_clk;
-+
-+	platform_set_drvdata(pdev, dwsbt1);
-+
-+	return 0;
-+
-+err_disable_clk:
-+	clk_disable_unprepare(dwsbt1->clk);
-+
-+	return ret;
-+}
-+
-+static int dw_spi_bt1_remove(struct platform_device *pdev)
-+{
-+	struct dw_spi_bt1 *dwsbt1 = platform_get_drvdata(pdev);
-+
-+	dw_spi_remove_host(&dwsbt1->dws);
-+
-+	pm_runtime_disable(&pdev->dev);
-+
-+	clk_disable_unprepare(dwsbt1->clk);
-+
-+	return 0;
-+}
-+
-+static const struct of_device_id dw_spi_bt1_of_match[] = {
-+	{ .compatible = "baikal,bt1-ssi", .data = dw_spi_bt1_std_init},
-+	{ .compatible = "baikal,bt1-sys-ssi", .data = dw_spi_bt1_sys_init},
-+	{ }
-+};
-+MODULE_DEVICE_TABLE(of, dw_spi_bt1_of_match);
-+
-+static struct platform_driver dw_spi_bt1_driver = {
-+	.probe	= dw_spi_bt1_probe,
-+	.remove	= dw_spi_bt1_remove,
-+	.driver	= {
-+		.name		= "bt1-sys-ssi",
-+		.of_match_table	= dw_spi_bt1_of_match,
-+	},
-+};
-+module_platform_driver(dw_spi_bt1_driver);
-+
-+MODULE_AUTHOR("Serge Semin <Sergey.Semin@baikalelectronics.ru>");
-+MODULE_DESCRIPTION("Baikal-T1 System Boot SPI Controller driver");
-+MODULE_LICENSE("GPL v2");
--- 
-2.27.0
+Sorry i was not clear, I meant either there is an issue in the vendor
+kernel that doesn't set properly the LRCK or maybe we did something or
+forgot to do it that set this inversion.
 
+But I just checked a device-tree used with a kernel vendor and indeed
+codecs are inverted but not hdmi so the vendor kernel has an issue
+here...
+
+E.g this is what is used for Tanix TX6
+
+daudio@0x05091000 {
+    compatible =3D "allwinner,sunxi-tdmhdmi";
+    reg =3D <0x00 0x5091000 0x00 0x74>;
+    clocks =3D <0x04 0x4d>;
+    status =3D "okay";
+    phandle =3D <0x63>;
+    device_type =3D "audiohdmi";
+};
+
+daudio@0x05092000 {
+    compatible =3D "allwinner,sunxi-daudio";
+    reg =3D <0x00 0x5092000 0x00 0x74>;
+    clocks =3D <0x04 0x4e>;
+    pinctrl-names =3D "default\0sleep";
+    pinctrl-0 =3D <0x4f>;
+    pinctrl-1 =3D <0x50>;
+    pcm_lrck_period =3D <0x40>;
+    slot_width_select =3D <0x20>;
+    daudio_master =3D <0x04>;
+    audio_format =3D <0x04>;
+    signal_inversion =3D <0x03>;
+    tdm_config =3D <0x01>;
+    frametype =3D <0x00>;
+    tdm_num =3D <0x02>;
+    mclk_div =3D <0x01>;
+    status =3D "okay";
+    phandle =3D <0x65>;
+    device_type =3D "daudio2";
+};
+
+daudio@0x0508f000 {
+    compatible =3D "allwinner,sunxi-daudio";
+    reg =3D <0x00 0x508f000 0x00 0x74>;
+    clocks =3D <0x04 0x51>;
+    pinctrl-names =3D "default\0sleep";
+    pinctrl-0 =3D <0x52>;
+    pinctrl-1 =3D <0x53>;
+    pcm_lrck_period =3D <0x20>;
+    slot_width_select =3D <0x20>;
+    daudio_master =3D <0x04>;
+    audio_format =3D <0x01>;
+    signal_inversion =3D <0x01>;
+    tdm_config =3D <0x01>;
+    frametype =3D <0x00>;
+    tdm_num =3D <0x03>;
+    mclk_div =3D <0x01>;
+    status =3D "okay";
+    phandle =3D <0x67>;
+    device_type =3D "daudio3";
+};
+
+Clement
+
+
+>
+> Maxime
