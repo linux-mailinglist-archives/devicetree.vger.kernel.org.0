@@ -2,119 +2,216 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from vger.kernel.org (vger.kernel.org [23.128.96.18])
-	by mail.lfdr.de (Postfix) with ESMTP id EDDDC2716DA
-	for <lists+devicetree@lfdr.de>; Sun, 20 Sep 2020 20:10:02 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTP id 6D025271735
+	for <lists+devicetree@lfdr.de>; Sun, 20 Sep 2020 20:45:50 +0200 (CEST)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S1726655AbgITSJ5 (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Sun, 20 Sep 2020 14:09:57 -0400
-Received: from lindbergh.monkeyblade.net ([23.128.96.19]:51842 "EHLO
-        lindbergh.monkeyblade.net" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S1726651AbgITSJ5 (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Sun, 20 Sep 2020 14:09:57 -0400
-Received: from mail-wr1-x441.google.com (mail-wr1-x441.google.com [IPv6:2a00:1450:4864:20::441])
-        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 0E9BFC0613CE
-        for <devicetree@vger.kernel.org>; Sun, 20 Sep 2020 11:09:57 -0700 (PDT)
-Received: by mail-wr1-x441.google.com with SMTP id e16so10474502wrm.2
-        for <devicetree@vger.kernel.org>; Sun, 20 Sep 2020 11:09:56 -0700 (PDT)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=konsulko.com; s=google;
-        h=from:to:cc:subject:date:message-id:in-reply-to:references
-         :mime-version:content-transfer-encoding;
-        bh=RhsFwh0Xf746HqZw1ov1Te1cJJL//OI9FdvirfvR/J0=;
-        b=P3T1VNit7YRch2zqqUzWKRcDaR/gZAOkDwhecbf+wXZKwnUMWof4h1azv6BxV/Lb6j
-         +x0F0a2UOEyKl3Ml5SQmv49L9JzpqArWijmpfw2Q7o8f6P9tkayzcYYRBiw/5mocZ3DG
-         s/n7oJTatXlyNPymhPqCojjmANy/EKQyCu3W0=
-X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=1e100.net; s=20161025;
-        h=x-gm-message-state:from:to:cc:subject:date:message-id:in-reply-to
-         :references:mime-version:content-transfer-encoding;
-        bh=RhsFwh0Xf746HqZw1ov1Te1cJJL//OI9FdvirfvR/J0=;
-        b=hOl9bth8jufi6O/kGk8lkxdyFw/SXYLmya+GTsY9lp9hrCCStnwSCYCrleGNb2mdVU
-         +D3qiRfiLgDJi8xr+ARHzgIsV83z1n3ovjv1HKLWbli/iT4sKQyxp27HE1CtMZachsaX
-         mNmyj8TfSSETj30mxqPTKnqYH8GlEE9nHJj+ZwYqK1t5eaQISUw7/qfmPtkY7t0hLkxq
-         TzQKUtQ+6DvPL50gOhf+wZ9mZlazNqvI/RlCFht6a0iVeRWKJLTY4nF7YMb7lz+iHbFl
-         imBXzAxpaZXG1cULu0OnwsyG+8+XOEhRUl3O3baQCEevvbjiUt4fLjmdV36L3Tfq2CwI
-         Wilg==
-X-Gm-Message-State: AOAM531tY6Y7Q4upZPr51qgRIeD6Ov0Hs3w9ckRBZ7TH9vz6VHPZyt64
-        c+uj2fJYxX4L7RQSpLZq+yXerw==
-X-Google-Smtp-Source: ABdhPJxzGkGUwoRRauQ6T3Dmh06fz+pp8J+JQyUtB9N2x/mwpA4ZxxWZiRexuMZFTB0Izq4qkCj3Sg==
-X-Received: by 2002:a5d:69c9:: with SMTP id s9mr48266043wrw.348.1600625395596;
-        Sun, 20 Sep 2020 11:09:55 -0700 (PDT)
-Received: from ar2.home.b5net.uk ([213.48.11.149])
-        by smtp.gmail.com with ESMTPSA id h186sm15823702wmf.24.2020.09.20.11.09.54
-        (version=TLS1_3 cipher=TLS_AES_256_GCM_SHA384 bits=256/256);
-        Sun, 20 Sep 2020 11:09:55 -0700 (PDT)
-From:   Paul Barker <pbarker@konsulko.com>
-To:     Kamil Debski <kamil@wypas.org>,
-        Bartlomiej Zolnierkiewicz <b.zolnierkie@samsung.com>,
-        Jean Delvare <jdelvare@suse.com>,
-        Guenter Roeck <linux@roeck-us.net>,
-        Rob Herring <robh+dt@kernel.org>
-Cc:     Paul Barker <pbarker@konsulko.com>, linux-hwmon@vger.kernel.org,
-        devicetree@vger.kernel.org
-Subject: [PATCH 1/1] dt-bindings: hwmon: pwm-fan: Support multiple fan tachometer inputs
-Date:   Sun, 20 Sep 2020 19:09:40 +0100
-Message-Id: <20200920180943.352526-2-pbarker@konsulko.com>
-X-Mailer: git-send-email 2.28.0
-In-Reply-To: <20200920180943.352526-1-pbarker@konsulko.com>
-References: <20200920180943.352526-1-pbarker@konsulko.com>
+        id S1726244AbgITSpt (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Sun, 20 Sep 2020 14:45:49 -0400
+Received: from new4-smtp.messagingengine.com ([66.111.4.230]:36767 "EHLO
+        new4-smtp.messagingengine.com" rhost-flags-OK-OK-OK-OK)
+        by vger.kernel.org with ESMTP id S1726055AbgITSpt (ORCPT
+        <rfc822;devicetree@vger.kernel.org>);
+        Sun, 20 Sep 2020 14:45:49 -0400
+Received: from compute3.internal (compute3.nyi.internal [10.202.2.43])
+        by mailnew.nyi.internal (Postfix) with ESMTP id 734665800A9;
+        Sun, 20 Sep 2020 14:39:18 -0400 (EDT)
+Received: from mailfrontend1 ([10.202.2.162])
+  by compute3.internal (MEProxy); Sun, 20 Sep 2020 14:39:18 -0400
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=sholland.org; h=
+        subject:to:cc:references:from:message-id:date:mime-version
+        :in-reply-to:content-type:content-transfer-encoding; s=fm3; bh=q
+        9LjqQuD0m3VNCG1Acv1s+EmnUPB8l6B4L2HRjljxOk=; b=puY2r3WyE0AASRWz1
+        7Z8O4T944qKgLSqFYshvCFEcZMOt9yVQ74nR0wnuc+bij63vaaxknNskJplHezWR
+        XlDDeH3M6S+6LFxnNvzdsrZgSYj9lbXFyjZGbpSLBaoFRIQXiHJ+d0bFYtj5EDoL
+        eUf90xRO5u9I554o2jlILBOmGTZ1v2HpSqHEjlGH2KMyOOPJEVWcgnNgyQY6uUub
+        G5Lfbd4hKrBJ1npCYhvthfanZcq/8Z6LuCj7o3J1/qcvgacByNsuHfnv9PvCH1+w
+        u80jMKlbnYAJLyPICVCCyvphok7NJQb3EpYoO1qA4n+TM5V4GV/cScK9x1OmFTep
+        hgIKQ==
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=
+        messagingengine.com; h=cc:content-transfer-encoding:content-type
+        :date:from:in-reply-to:message-id:mime-version:references
+        :subject:to:x-me-proxy:x-me-proxy:x-me-sender:x-me-sender
+        :x-sasl-enc; s=fm3; bh=q9LjqQuD0m3VNCG1Acv1s+EmnUPB8l6B4L2HRjljx
+        Ok=; b=Wcl1lesvyzOoS0zLnn8esyo55xDwPg20NoWI5R4QXylmACuXc9FqLAQIu
+        1FVauA2BvZVDQjA4Vb4k+TzP6KR/agSCp/EjDkqopOalACTTLKwXBIv24bK+n+BE
+        zR7H/hqBIx3X3YZPqL0AB32moNYz72SutL1uauXKgSQ5HMVM7P1/PygGMIV/3CpJ
+        EW1VPN4tlk+hy1GF8yQWHp/HQ2Ut5HQEA1gg7akmSb8BkA/cIEIY+NU9rbowPmcb
+        2yplKIg+DOUDKbzakZhi9OVLCOXS+GL9ohCCYm3Y0NPktp2xN2D9wAGmtiIhHliO
+        s18AXWwykRC1ElRtKlTJdK3m012Kg==
+X-ME-Sender: <xms:1KFnX5xlvtfb9t0EZ3nWFPbecXCytMzgRK-s4fW9m57b6lsa7gGp6Q>
+    <xme:1KFnX5SHIScDEEBj1VGrmVHLHSyKB-7Z4vnRYyZcl2CT-dzmZY1jdzBBv1yfr1uYO
+    cK_R2U0JyUCrPfK7Q>
+X-ME-Proxy-Cause: gggruggvucftvghtrhhoucdtuddrgedujedruddtgdduvdeiucetufdoteggodetrfdotf
+    fvucfrrhhofhhilhgvmecuhfgrshhtofgrihhlpdfqfgfvpdfurfetoffkrfgpnffqhgen
+    uceurghilhhouhhtmecufedttdenucesvcftvggtihhpihgvnhhtshculddquddttddmne
+    cujfgurhepuffvfhfhkffffgggjggtgfesthekredttdefjeenucfhrhhomhepufgrmhhu
+    vghlucfjohhllhgrnhguuceoshgrmhhuvghlsehshhholhhlrghnugdrohhrgheqnecugg
+    ftrfgrthhtvghrnhepgfelkeduveejtdejhfeiledvhfeggeeiieeklefhfeefffffffeg
+    udetteelieejnecukfhppeejtddrudefhedrudegkedrudehudenucevlhhushhtvghruf
+    hiiigvpedtnecurfgrrhgrmhepmhgrihhlfhhrohhmpehsrghmuhgvlhesshhhohhllhgr
+    nhgurdhorhhg
+X-ME-Proxy: <xmx:1KFnXzUK5hQhVCg1flQtNGOikpDVSMzoHtnodlskrZYcmJ2YXdDWzA>
+    <xmx:1KFnX7hi3TZbwX9H5dRVEtBAYoTMctT5ST3q60rJ2KFJzyxGqnHyXQ>
+    <xmx:1KFnX7Ac2BBwOytnFIfWWOuhDEldc82MqN5fu8DQD78FmUvhH5JqzQ>
+    <xmx:1qFnX_7YQ6N9NBehLf8FBnXKKViUqGaz-UqS-80l2uahwWoZ9ZC6wA>
+Received: from [192.168.50.169] (70-135-148-151.lightspeed.stlsmo.sbcglobal.net [70.135.148.151])
+        by mail.messagingengine.com (Postfix) with ESMTPA id 04BA4328005D;
+        Sun, 20 Sep 2020 14:39:15 -0400 (EDT)
+Subject: Re: [PATCH v3 01/19] ASoC: sun4i-i2s: Add support for H6 I2S
+To:     =?UTF-8?B?Q2zDqW1lbnQgUMOpcm9u?= <peron.clem@gmail.com>,
+        Maxime Ripard <mripard@kernel.org>,
+        Chen-Yu Tsai <wens@csie.org>, Rob Herring <robh+dt@kernel.org>,
+        Mark Brown <broonie@kernel.org>,
+        Liam Girdwood <lgirdwood@gmail.com>
+Cc:     Jaroslav Kysela <perex@perex.cz>, Takashi Iwai <tiwai@suse.com>,
+        Marcus Cooper <codekipper@gmail.com>,
+        Jernej Skrabec <jernej.skrabec@siol.net>,
+        alsa-devel@alsa-project.org, devicetree@vger.kernel.org,
+        linux-arm-kernel@lists.infradead.org, linux-kernel@vger.kernel.org,
+        linux-sunxi@googlegroups.com
+References: <20200920180758.592217-1-peron.clem@gmail.com>
+ <20200920180758.592217-2-peron.clem@gmail.com>
+From:   Samuel Holland <samuel@sholland.org>
+Message-ID: <e0eb7e94-e736-4ec0-b838-884a4857bb97@sholland.org>
+Date:   Sun, 20 Sep 2020 13:39:15 -0500
+User-Agent: Mozilla/5.0 (X11; Linux x86_64; rv:68.0) Gecko/20100101
+ Thunderbird/68.6.0
 MIME-Version: 1.0
+In-Reply-To: <20200920180758.592217-2-peron.clem@gmail.com>
+Content-Type: text/plain; charset=utf-8
+Content-Language: en-US
 Content-Transfer-Encoding: 8bit
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-Document and give an example of how to define multiple fan tachometer
-inputs for the pwm-fan driver.
+On 9/20/20 1:07 PM, Clément Péron wrote:
+> From: Jernej Skrabec <jernej.skrabec@siol.net>
+> 
+> H6 I2S is very similar to that in H3, except it supports up to 16
+> channels.
+> 
+> Signed-off-by: Jernej Skrabec <jernej.skrabec@siol.net>
+> Signed-off-by: Marcus Cooper <codekipper@gmail.com>
+> Signed-off-by: Clément Péron <peron.clem@gmail.com>
+> ---
+>  sound/soc/sunxi/sun4i-i2s.c | 218 ++++++++++++++++++++++++++++++++++++
+>  1 file changed, 218 insertions(+)
+> 
+> diff --git a/sound/soc/sunxi/sun4i-i2s.c b/sound/soc/sunxi/sun4i-i2s.c
+> index f23ff29e7c1d..348057464bed 100644
+> --- a/sound/soc/sunxi/sun4i-i2s.c
+> +++ b/sound/soc/sunxi/sun4i-i2s.c
+...
+> @@ -699,6 +770,102 @@ static int sun8i_i2s_set_soc_fmt(const struct sun4i_i2s *i2s,
+>  	return 0;
+>  }
+>  
+> +static int sun50i_h6_i2s_set_soc_fmt(const struct sun4i_i2s *i2s,
+> +				     unsigned int fmt)
+> +{
+> +	u32 mode, val;
+> +	u8 offset;
+> +
+> +	/* DAI clock polarity */
+> +	switch (fmt & SND_SOC_DAIFMT_INV_MASK) {
+> +	case SND_SOC_DAIFMT_IB_IF:
+> +		/* Invert both clocks */
+> +		val = SUN8I_I2S_FMT0_BCLK_POLARITY_INVERTED |
+> +		      SUN8I_I2S_FMT0_LRCLK_POLARITY_INVERTED;
+> +		break;
+> +	case SND_SOC_DAIFMT_IB_NF:
+> +		/* Invert bit clock */
+> +		val = SUN8I_I2S_FMT0_BCLK_POLARITY_INVERTED;
+> +		break;
+> +	case SND_SOC_DAIFMT_NB_IF:
+> +		/* Invert frame clock */
+> +		val = SUN8I_I2S_FMT0_LRCLK_POLARITY_INVERTED;
+> +		break;
+> +	case SND_SOC_DAIFMT_NB_NF:
+> +		val = 0;
+> +		break;
+> +	default:
+> +		return -EINVAL;
+> +	}
 
-Signed-off-by: Paul Barker <pbarker@konsulko.com>
----
- .../devicetree/bindings/hwmon/pwm-fan.txt     | 28 +++++++++++++------
- 1 file changed, 19 insertions(+), 9 deletions(-)
+Maxime's testing that showed LRCK inversion was necessary was done on the H6. So
+in addition to dropping the patch that removed the LRCK inversion for other
+sun8i variants, you need to re-add it to this patch for the H6 variant.
 
-diff --git a/Documentation/devicetree/bindings/hwmon/pwm-fan.txt b/Documentation/devicetree/bindings/hwmon/pwm-fan.txt
-index 41b76762953a..4509e688623a 100644
---- a/Documentation/devicetree/bindings/hwmon/pwm-fan.txt
-+++ b/Documentation/devicetree/bindings/hwmon/pwm-fan.txt
-@@ -8,15 +8,16 @@ Required properties:
- 
- Optional properties:
- - fan-supply		: phandle to the regulator that provides power to the fan
--- interrupts		: This contains a single interrupt specifier which
--			  describes the tachometer output of the fan as an
--			  interrupt source. The output signal must generate a
--			  defined number of interrupts per fan revolution, which
--			  require that it must be self resetting edge interrupts.
--			  See interrupt-controller/interrupts.txt for the format.
--- pulses-per-revolution : define the tachometer pulses per fan revolution as
--			  an integer (default is 2 interrupts per revolution).
--			  The value must be greater than zero.
-+- interrupts		: This contains an interrupt specifier for each fan
-+			  tachometer output connected to an interrupt source.
-+			  The output signal must generate a defined number of
-+			  interrupts per fan revolution, which require that
-+			  it must be self resetting edge interrupts. See
-+			  interrupt-controller/interrupts.txt for the format.
-+- pulses-per-revolution : define the number of pulses per fan revolution for
-+			  each tachometer input as an integer (default is 2
-+			  interrupts per revolution). The value must be
-+			  greater than zero.
- 
- Example:
- 	fan0: pwm-fan {
-@@ -55,3 +56,12 @@ Example 2:
- 		interrupts = <1 IRQ_TYPE_EDGE_FALLING>;
- 		pulses-per-revolution = <2>;
- 	};
-+
-+Example 3:
-+	fan0: pwm-fan {
-+		compatible = "pwm-fan";
-+		pwms = <&pwm1 0 25000 0>;
-+		interrupts-extended = <&gpio1 1 IRQ_TYPE_EDGE_FALLING>,
-+			<&gpio2 5 IRQ_TYPE_EDGE_FALLING>;
-+		pulses-per-revolution = <2>, <1>;
-+	};
--- 
-2.28.0
+Cheers,
+Samuel
 
+> +
+> +	regmap_update_bits(i2s->regmap, SUN4I_I2S_FMT0_REG,
+> +			   SUN8I_I2S_FMT0_LRCLK_POLARITY_MASK |
+> +			   SUN8I_I2S_FMT0_BCLK_POLARITY_MASK,
+> +			   val);
+> +
+> +	/* DAI Mode */
+> +	switch (fmt & SND_SOC_DAIFMT_FORMAT_MASK) {
+> +	case SND_SOC_DAIFMT_DSP_A:
+> +		mode = SUN8I_I2S_CTRL_MODE_PCM;
+> +		offset = 1;
+> +		break;
+> +
+> +	case SND_SOC_DAIFMT_DSP_B:
+> +		mode = SUN8I_I2S_CTRL_MODE_PCM;
+> +		offset = 0;
+> +		break;
+> +
+> +	case SND_SOC_DAIFMT_I2S:
+> +		mode = SUN8I_I2S_CTRL_MODE_LEFT;
+> +		offset = 1;
+> +		break;
+> +
+> +	case SND_SOC_DAIFMT_LEFT_J:
+> +		mode = SUN8I_I2S_CTRL_MODE_LEFT;
+> +		offset = 0;
+> +		break;
+> +
+> +	case SND_SOC_DAIFMT_RIGHT_J:
+> +		mode = SUN8I_I2S_CTRL_MODE_RIGHT;
+> +		offset = 0;
+> +		break;
+> +
+> +	default:
+> +		return -EINVAL;
+> +	}
+> +
+> +	regmap_update_bits(i2s->regmap, SUN4I_I2S_CTRL_REG,
+> +			   SUN8I_I2S_CTRL_MODE_MASK, mode);
+> +	regmap_update_bits(i2s->regmap, SUN8I_I2S_TX_CHAN_SEL_REG,
+> +			   SUN50I_H6_I2S_TX_CHAN_SEL_OFFSET_MASK,
+> +			   SUN50I_H6_I2S_TX_CHAN_SEL_OFFSET(offset));
+> +	regmap_update_bits(i2s->regmap, SUN50I_H6_I2S_RX_CHAN_SEL_REG,
+> +			   SUN50I_H6_I2S_TX_CHAN_SEL_OFFSET_MASK,
+> +			   SUN50I_H6_I2S_TX_CHAN_SEL_OFFSET(offset));
+> +
+> +	/* DAI clock master masks */
+> +	switch (fmt & SND_SOC_DAIFMT_MASTER_MASK) {
+> +	case SND_SOC_DAIFMT_CBS_CFS:
+> +		/* BCLK and LRCLK master */
+> +		val = SUN8I_I2S_CTRL_BCLK_OUT |	SUN8I_I2S_CTRL_LRCK_OUT;
+> +		break;
+> +
+> +	case SND_SOC_DAIFMT_CBM_CFM:
+> +		/* BCLK and LRCLK slave */
+> +		val = 0;
+> +		break;
+> +
+> +	default:
+> +		return -EINVAL;
+> +	}
+> +
+> +	regmap_update_bits(i2s->regmap, SUN4I_I2S_CTRL_REG,
+> +			   SUN8I_I2S_CTRL_BCLK_OUT | SUN8I_I2S_CTRL_LRCK_OUT,
+> +			   val);
+> +
+> +	return 0;
+> +}
+> +
+>  static int sun4i_i2s_set_fmt(struct snd_soc_dai *dai, unsigned int fmt)
+>  {
+>  	struct sun4i_i2s *i2s = snd_soc_dai_get_drvdata(dai);
+...
