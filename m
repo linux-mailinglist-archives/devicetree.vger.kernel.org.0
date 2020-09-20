@@ -2,95 +2,83 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from vger.kernel.org (vger.kernel.org [23.128.96.18])
-	by mail.lfdr.de (Postfix) with ESMTP id BD1872716BF
-	for <lists+devicetree@lfdr.de>; Sun, 20 Sep 2020 20:09:04 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTP id 08CB02716D8
+	for <lists+devicetree@lfdr.de>; Sun, 20 Sep 2020 20:10:02 +0200 (CEST)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S1726540AbgITSIo (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Sun, 20 Sep 2020 14:08:44 -0400
-Received: from lindbergh.monkeyblade.net ([23.128.96.19]:51650 "EHLO
+        id S1726652AbgITSJ4 (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Sun, 20 Sep 2020 14:09:56 -0400
+Received: from lindbergh.monkeyblade.net ([23.128.96.19]:51834 "EHLO
         lindbergh.monkeyblade.net" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S1726533AbgITSIn (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Sun, 20 Sep 2020 14:08:43 -0400
-Received: from mail-wm1-x343.google.com (mail-wm1-x343.google.com [IPv6:2a00:1450:4864:20::343])
-        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id C44A3C0613D5;
-        Sun, 20 Sep 2020 11:08:36 -0700 (PDT)
-Received: by mail-wm1-x343.google.com with SMTP id l9so10328572wme.3;
-        Sun, 20 Sep 2020 11:08:36 -0700 (PDT)
+        with ESMTP id S1726333AbgITSJ4 (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Sun, 20 Sep 2020 14:09:56 -0400
+Received: from mail-wr1-x441.google.com (mail-wr1-x441.google.com [IPv6:2a00:1450:4864:20::441])
+        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id C766AC061755
+        for <devicetree@vger.kernel.org>; Sun, 20 Sep 2020 11:09:55 -0700 (PDT)
+Received: by mail-wr1-x441.google.com with SMTP id t10so10465572wrv.1
+        for <devicetree@vger.kernel.org>; Sun, 20 Sep 2020 11:09:55 -0700 (PDT)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=gmail.com; s=20161025;
-        h=from:to:cc:subject:date:message-id:in-reply-to:references
-         :mime-version:content-transfer-encoding;
-        bh=KmIaDgGE58XyP65chgC3iPI5GCq1dVupIq3PDHXzLnk=;
-        b=Kvwn4sNJQYuWLBfag/klu96kR4p1T1dbYI/SHohvz+RB/nWXh9sO5BS8n+cIC19Qd6
-         D5aU4ByOv/tmN00RXPYe3xL5gNikDawJSQ3kTlWIoKqosNhNByOFam6pLtNNxmUM1lJP
-         LEk4sQhd+EzOS6Ck8T8/TmBlMj9gRs8J69Hl2/EGOcnrkhwNhUAoH5rrOaYNUq+N+kzp
-         f6/DrY56c11ylNeTRgB4gGfD4BEWjZmEK5HBt3chyxza1W1a06oxtEIAXYKsevZAdPuC
-         W0aM4hkEDiRR3IxFvj40oV9aE6U2/Mri03ff4zm7ZqNjYN1WPcY8+WxZnHv5u8FnKNYq
-         XlNA==
+        d=konsulko.com; s=google;
+        h=from:to:cc:subject:date:message-id:mime-version
+         :content-transfer-encoding;
+        bh=eWLNSIgbcx08j8Jnp6K7XcChlcRyHaGlF+YupaR6pks=;
+        b=rP32QMdkJu96V7EwnmvD5+r/cuSjk16Hx2SXMn7ELQxeo/2I9cw3zBbSe+uWAk0+AI
+         Dhw0nXbeMriQFuO6LcW3vU+T+KPDX4M9Fvi9ZyLSDyv92JHe4sfeFt4O3sbdZ0OBs8Xm
+         6C/e3gVo/yD+HjhJu9OADafQhD9Ub177k3+vc=
 X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
         d=1e100.net; s=20161025;
-        h=x-gm-message-state:from:to:cc:subject:date:message-id:in-reply-to
-         :references:mime-version:content-transfer-encoding;
-        bh=KmIaDgGE58XyP65chgC3iPI5GCq1dVupIq3PDHXzLnk=;
-        b=Yidjep6HOY4b47gqM7GNaidIFUAsB8pROd3YrGFRRm9veGqIT9FrPoMe8HdRnD8bvn
-         mGzu8n48JaOJ4PqbXHfM17O1uLEkw2D8HlUq0aWtT+jDau4GFpw1xxw0TJtWvxKT2ox9
-         Dc6h/1EUYwjCIz9jCP4QaCmW0W4UVZ/ka1Rj63G7ZIO80UY7O8Vdj+UvrimcUM/N7ke+
-         puXCztccXyE8a/U8dIdPojWbOvEI9smSfNLfcYuzFpwh5jrRAsOHT1nnyR6Nzds/oeR9
-         T975HfzPPYUqjhu60hUrxkpxKr7ELJV4oTZArtr7tcgQdXX+st8IRuBinRde6stRIuQp
-         +Dgg==
-X-Gm-Message-State: AOAM5302UE39Wk4PWl7FUSH52V9Jxqq4ppxZJsgGYWI7vJNA2xFUnJWZ
-        HbO+VJXsk7kTKnpaT3Fp4t8=
-X-Google-Smtp-Source: ABdhPJwAe2vy7tX/cnWUUnWL7dwVD8OT/VXAinHq8vTpV8XOOkgDupS5Raec4D0ogrKe86Bfena9FA==
-X-Received: by 2002:a1c:740c:: with SMTP id p12mr26174993wmc.176.1600625315363;
-        Sun, 20 Sep 2020 11:08:35 -0700 (PDT)
-Received: from clement-Latitude-7490.numericable.fr (213-245-241-245.rev.numericable.fr. [213.245.241.245])
-        by smtp.gmail.com with ESMTPSA id 18sm15142782wmj.28.2020.09.20.11.08.34
+        h=x-gm-message-state:from:to:cc:subject:date:message-id:mime-version
+         :content-transfer-encoding;
+        bh=eWLNSIgbcx08j8Jnp6K7XcChlcRyHaGlF+YupaR6pks=;
+        b=I5dgtDGELiBBgIcXfnN+kCEV/C5z0eSeD/PcoMY/11ikRLvVCJ/+0dmPEm0+OKaz/g
+         pYQIXLQtaM9wfVKaDyFk9YhVlt+hsWiQkcrilz4d6JLCzXkCDgjkUPl0UAxNjfz20mmH
+         VZM6bQ3HrwncYh+JXR/LLMzuhg6I3ZaZQBmZUa/Qv5pZWtmTelLLf52vAiC4U2Q4iprR
+         X09wgOyb2chMD/mweQMUJlZPvAtTRDS1EB//Le+MXCSJNLjfvTU5x/ySew3UTeHmcnZ2
+         fYi4+6lOoeDzo1zXXKVzAbnBQ+SXREPLWg25uSksi2Ucpp341dXCaYP2lU4yW3++VdOh
+         VBCA==
+X-Gm-Message-State: AOAM531iMiemBVExpBOK6YIUi4WhPRgV98p7R3MgNGXsOeu5mHwXoyag
+        yT0GDgnkFHCyscHvoakIjJiGtw==
+X-Google-Smtp-Source: ABdhPJxW7tYWFoaDM9xx7fQwBb/TJ933hlG7T8WqStYv4fD6R/wbIkdG8V6LzcI+dhe4bk31oM/OVg==
+X-Received: by 2002:a5d:680b:: with SMTP id w11mr51651104wru.73.1600625394539;
+        Sun, 20 Sep 2020 11:09:54 -0700 (PDT)
+Received: from ar2.home.b5net.uk ([213.48.11.149])
+        by smtp.gmail.com with ESMTPSA id h186sm15823702wmf.24.2020.09.20.11.09.53
         (version=TLS1_3 cipher=TLS_AES_256_GCM_SHA384 bits=256/256);
-        Sun, 20 Sep 2020 11:08:34 -0700 (PDT)
-From:   =?UTF-8?q?Cl=C3=A9ment=20P=C3=A9ron?= <peron.clem@gmail.com>
-To:     Maxime Ripard <mripard@kernel.org>, Chen-Yu Tsai <wens@csie.org>,
-        Rob Herring <robh+dt@kernel.org>,
-        Mark Brown <broonie@kernel.org>,
-        Liam Girdwood <lgirdwood@gmail.com>
-Cc:     Jaroslav Kysela <perex@perex.cz>, Takashi Iwai <tiwai@suse.com>,
-        Marcus Cooper <codekipper@gmail.com>,
-        Jernej Skrabec <jernej.skrabec@siol.net>,
-        alsa-devel@alsa-project.org, devicetree@vger.kernel.org,
-        linux-arm-kernel@lists.infradead.org, linux-kernel@vger.kernel.org,
-        linux-sunxi@googlegroups.com,
-        =?UTF-8?q?Cl=C3=A9ment=20P=C3=A9ron?= <peron.clem@gmail.com>
-Subject: [PATCH v3 19/19] arm64: defconfig: Enable Allwinner i2s driver
-Date:   Sun, 20 Sep 2020 20:07:58 +0200
-Message-Id: <20200920180758.592217-20-peron.clem@gmail.com>
-X-Mailer: git-send-email 2.25.1
-In-Reply-To: <20200920180758.592217-1-peron.clem@gmail.com>
-References: <20200920180758.592217-1-peron.clem@gmail.com>
+        Sun, 20 Sep 2020 11:09:53 -0700 (PDT)
+From:   Paul Barker <pbarker@konsulko.com>
+To:     Kamil Debski <kamil@wypas.org>,
+        Bartlomiej Zolnierkiewicz <b.zolnierkie@samsung.com>,
+        Jean Delvare <jdelvare@suse.com>,
+        Guenter Roeck <linux@roeck-us.net>,
+        Rob Herring <robh+dt@kernel.org>
+Cc:     Paul Barker <pbarker@konsulko.com>, linux-hwmon@vger.kernel.org,
+        devicetree@vger.kernel.org
+Subject: [PATCH 0/1] Document multiple fan tach support in pwm-fan driver
+Date:   Sun, 20 Sep 2020 19:09:39 +0100
+Message-Id: <20200920180943.352526-1-pbarker@konsulko.com>
+X-Mailer: git-send-email 2.28.0
 MIME-Version: 1.0
-Content-Type: text/plain; charset=UTF-8
 Content-Transfer-Encoding: 8bit
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-Enable Allwinner I2S driver for arm64 defconfig.
+This patch updates the device tree bindings to match the changes I'm
+about to send for the pwm-fan driver. Those changes will extend the
+pwm-fan driver to support multiple fan tachometer inputs.
 
-Signed-off-by: Clément Péron <peron.clem@gmail.com>
----
- arch/arm64/configs/defconfig | 1 +
- 1 file changed, 1 insertion(+)
+These changes can also be pulled from:
 
-diff --git a/arch/arm64/configs/defconfig b/arch/arm64/configs/defconfig
-index 63003ec116ee..9a3c3bbe60e4 100644
---- a/arch/arm64/configs/defconfig
-+++ b/arch/arm64/configs/defconfig
-@@ -696,6 +696,7 @@ CONFIG_SND_SOC_ROCKCHIP_RT5645=m
- CONFIG_SND_SOC_RK3399_GRU_SOUND=m
- CONFIG_SND_SOC_SAMSUNG=y
- CONFIG_SND_SOC_RCAR=m
-+CONFIG_SND_SUN4I_I2S=m
- CONFIG_SND_SUN4I_SPDIF=m
- CONFIG_SND_SOC_TEGRA=m
- CONFIG_SND_SOC_TEGRA210_AHUB=m
+  https://gitlab.com/pbarker.dev/staging/linux.git
+  tag: for-dt-next/pwm-fan_2020-09-20
+
+Paul Barker (1):
+  dt-bindings: hwmon: pwm-fan: Support multiple fan tachometer inputs
+
+ .../devicetree/bindings/hwmon/pwm-fan.txt     | 28 +++++++++++++------
+ 1 file changed, 19 insertions(+), 9 deletions(-)
+
+
+base-commit: 73f76a41c4ed7def5dc2ec7c33c7e9f94e601a20
 -- 
-2.25.1
+2.28.0
 
