@@ -2,51 +2,51 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from vger.kernel.org (vger.kernel.org [23.128.96.18])
-	by mail.lfdr.de (Postfix) with ESMTP id 48D912716C6
-	for <lists+devicetree@lfdr.de>; Sun, 20 Sep 2020 20:09:23 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTP id EF0A62716AF
+	for <lists+devicetree@lfdr.de>; Sun, 20 Sep 2020 20:08:22 +0200 (CEST)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S1726448AbgITSIY (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Sun, 20 Sep 2020 14:08:24 -0400
-Received: from lindbergh.monkeyblade.net ([23.128.96.19]:51530 "EHLO
+        id S1726055AbgITSIW (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Sun, 20 Sep 2020 14:08:22 -0400
+Received: from lindbergh.monkeyblade.net ([23.128.96.19]:51538 "EHLO
         lindbergh.monkeyblade.net" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S1726326AbgITSIJ (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Sun, 20 Sep 2020 14:08:09 -0400
-Received: from mail-wm1-x342.google.com (mail-wm1-x342.google.com [IPv6:2a00:1450:4864:20::342])
-        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 74859C061755;
-        Sun, 20 Sep 2020 11:08:09 -0700 (PDT)
-Received: by mail-wm1-x342.google.com with SMTP id x23so9952743wmi.3;
-        Sun, 20 Sep 2020 11:08:09 -0700 (PDT)
+        with ESMTP id S1726043AbgITSIM (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Sun, 20 Sep 2020 14:08:12 -0400
+Received: from mail-wr1-x443.google.com (mail-wr1-x443.google.com [IPv6:2a00:1450:4864:20::443])
+        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 91E3EC0613CE;
+        Sun, 20 Sep 2020 11:08:11 -0700 (PDT)
+Received: by mail-wr1-x443.google.com with SMTP id s12so10436015wrw.11;
+        Sun, 20 Sep 2020 11:08:11 -0700 (PDT)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
         d=gmail.com; s=20161025;
         h=from:to:cc:subject:date:message-id:in-reply-to:references
          :mime-version:content-transfer-encoding;
-        bh=vEHV1mvtoxOc6RfnQ/K6KV7HvIkD3k6AspYIp0zU0iE=;
-        b=rbQmGy8/gZvujBAO0xznJrDT3RD8mpaq1L7GDarWMKT+SA6E+qlkgjxrN08GBuWFUo
-         mCeect7gS/bp+5hf/jkLksCo3BANULXkLwbQJg7fvo+8dX1v8TXVrQEbaBgmnoIMU8st
-         WWPBTTcg2g2suUDjJPTqfHSDEAmhxsBkaA6G7sPLll+w94Nx9S0rlvM1OWe54w9+XTTF
-         mr4aj/TGjUDZPQQOkcsHlgQxsI/7TLsZD3sEfjbHBtdWQNikggNzUYtHUrqIwiQvmPlt
-         TLbpJeqJG/vFKHx9Aq6EmawQghzVv+xoOJ7GFdHOHVAv/OUxGtNFmhbf0fZHwEszfWQN
-         3YQg==
+        bh=ZsMT0CrEUbDwl+d5khTOYaGtUlOWn7Yi+9GLp9dBrZs=;
+        b=gS8kVQ8uhQvfH7SKx1asvVvVov1DKce4OuW0QEaOqhw6J1WXHn0U5FxWsDae7Bw1Rm
+         t9bI9P1cH5vMOqGsFeVcQKMSe2h3Rc2Xn5cbd+fxZbOGz2veWh+8sKoNmrZivORDA0EX
+         VQw/d/HIm0XCVzukAtZ40uIzl0elrm49zR/FgoNZiRQVXeUOIMz+pJdKS8AUM9N/G78O
+         8lq1DujM2y/diJ4/A9kn8jcAZBHgjCOIN7fgcf8i4ZGWzFNuw+rbUht2szHalEt9gFll
+         RFMZLHnRzH08v8elBLlE3lM8NCinETdLqmBrrepiPQkVt6o1TdWOrung3EyAlgEVMT0r
+         MZFQ==
 X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
         d=1e100.net; s=20161025;
         h=x-gm-message-state:from:to:cc:subject:date:message-id:in-reply-to
          :references:mime-version:content-transfer-encoding;
-        bh=vEHV1mvtoxOc6RfnQ/K6KV7HvIkD3k6AspYIp0zU0iE=;
-        b=Dg+occ+YhE//hR3ZCmzoht9Atr+um8txWxBQmOOWj5osZeFibVHKJpFaznC3H1Pje+
-         R9s4McctH+FefwbJlp4A8BtKfcxTFEIir+DBd2h22HUo0znj8jl9qMkDeWVCKjuidIxG
-         XdZxSRR3xd9/xLVuK8rbDBXsky2JIyexERyeLx00mWmG7r/MdIyzA+0bgg7p37kLABdq
-         Ma2mCPXJeC886D5oy1m8+/ldPvNWFPFl6akmnrViJWzBaLPSfaE20cavRrjB8b63aYaN
-         q0b0BkugubTfFQw16ir4z6s9Cmczn+ql9U8V4J6BxRfPXxKaQFJzfOVXrDJbR15wk8fY
-         x6Hw==
-X-Gm-Message-State: AOAM533eiVCyxNc7BgTvTzK9/v4MfyodC/RAnNtXwh/lJiyDo+5Leykc
-        VOjyGTL2ojoKBJvFOi72Jzs=
-X-Google-Smtp-Source: ABdhPJynjCIkH84YYEMQOzwHd2jsYfTmhmUVjTKO1BgzcBTrvHNWezNxxN/Zu7AJ7CS11i7flg0eKQ==
-X-Received: by 2002:a05:600c:ce:: with SMTP id u14mr27167924wmm.137.1600625288017;
-        Sun, 20 Sep 2020 11:08:08 -0700 (PDT)
+        bh=ZsMT0CrEUbDwl+d5khTOYaGtUlOWn7Yi+9GLp9dBrZs=;
+        b=eCrrr3sNpOGHKCB2gH1qkU1hGzvuGRp0tg1///11pVJedddZkNWAJUHs47rxbagYwm
+         X9aE5h/VOFdEb2iD4jR1VN3sOV7wHNWr1W/u38ql/8utTJ/0G7nRSseynlt55h1v/5KQ
+         70t9b+QGleYwR9BYHFdPo89ek19RqPM/cNJ4iefq9cX0HpXLfaWiQlfxssXmrbTu/lgT
+         +QS3hRySE4o0oT70AwpN+DKPst2a8xPKXH+skZgovxlSd/1GMWH1zkOzEFggiepn9/Ig
+         iaGyupzZyp/K994XAYwFyKk8xGPDmk87TX9uQkF+ew7b+Ayt349VN0FLVexfAUjowR7D
+         uwNw==
+X-Gm-Message-State: AOAM530N2bfwJ/wvmOxUMEvNf4PXbyQaDXvE9+fGyEQVs9/aq6DJp6QF
+        1EGLCjp6jtbk9rKKI0XurFU=
+X-Google-Smtp-Source: ABdhPJzKk1yEj8zjqx4Yx+PhKjt6jPujVYrSLTKzaVhqwL347LKjg2H4cV17fsfnsJb2yostmFYSzQ==
+X-Received: by 2002:adf:f084:: with SMTP id n4mr24893043wro.26.1600625290130;
+        Sun, 20 Sep 2020 11:08:10 -0700 (PDT)
 Received: from clement-Latitude-7490.numericable.fr (213-245-241-245.rev.numericable.fr. [213.245.241.245])
-        by smtp.gmail.com with ESMTPSA id 18sm15142782wmj.28.2020.09.20.11.08.05
+        by smtp.gmail.com with ESMTPSA id 18sm15142782wmj.28.2020.09.20.11.08.08
         (version=TLS1_3 cipher=TLS_AES_256_GCM_SHA384 bits=256/256);
-        Sun, 20 Sep 2020 11:08:07 -0700 (PDT)
+        Sun, 20 Sep 2020 11:08:09 -0700 (PDT)
 From:   =?UTF-8?q?Cl=C3=A9ment=20P=C3=A9ron?= <peron.clem@gmail.com>
 To:     Maxime Ripard <mripard@kernel.org>, Chen-Yu Tsai <wens@csie.org>,
         Rob Herring <robh+dt@kernel.org>,
@@ -59,10 +59,10 @@ Cc:     Jaroslav Kysela <perex@perex.cz>, Takashi Iwai <tiwai@suse.com>,
         linux-arm-kernel@lists.infradead.org, linux-kernel@vger.kernel.org,
         linux-sunxi@googlegroups.com,
         =?UTF-8?q?Cl=C3=A9ment=20P=C3=A9ron?= <peron.clem@gmail.com>,
-        Samuel Holland <samuel@sholland.org>
-Subject: [PATCH v3 02/19] ASoC: sun4i-i2s: Change set_chan_cfg params
-Date:   Sun, 20 Sep 2020 20:07:41 +0200
-Message-Id: <20200920180758.592217-3-peron.clem@gmail.com>
+        Rob Herring <robh@kernel.org>
+Subject: [PATCH v3 03/19] dt-bindings: ASoC: sun4i-i2s: Add H6 compatible
+Date:   Sun, 20 Sep 2020 20:07:42 +0200
+Message-Id: <20200920180758.592217-4-peron.clem@gmail.com>
 X-Mailer: git-send-email 2.25.1
 In-Reply-To: <20200920180758.592217-1-peron.clem@gmail.com>
 References: <20200920180758.592217-1-peron.clem@gmail.com>
@@ -73,121 +73,40 @@ Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-As slots and slot_width can be overwritter in case set_tdm() is
-called. Avoid to have this logic in set_chan_cfg().
+From: Jernej Skrabec <jernej.skrabec@siol.net>
 
-Instead pass the required values as params to set_chan_cfg().
+H6 I2S is very similar to H3, except that it supports up to 16 channels
+and thus few registers have fields on different position.
 
-This also fix a bug when i2s->slot_width is set for TDM but not
-properly used in set_chan_cfg().
-
-Suggested-by: Samuel Holland <samuel@sholland.org>
+Signed-off-by: Jernej Skrabec <jernej.skrabec@siol.net>
+Signed-off-by: Marcus Cooper <codekipper@gmail.com>
 Signed-off-by: Clément Péron <peron.clem@gmail.com>
+Acked-by: Maxime Ripard <mripard@kernel.org>
+Acked-by: Rob Herring <robh@kernel.org>
 ---
- sound/soc/sunxi/sun4i-i2s.c | 35 +++++++++++++----------------------
- 1 file changed, 13 insertions(+), 22 deletions(-)
+ .../devicetree/bindings/sound/allwinner,sun4i-a10-i2s.yaml      | 2 ++
+ 1 file changed, 2 insertions(+)
 
-diff --git a/sound/soc/sunxi/sun4i-i2s.c b/sound/soc/sunxi/sun4i-i2s.c
-index 348057464bed..246d4a45edae 100644
---- a/sound/soc/sunxi/sun4i-i2s.c
-+++ b/sound/soc/sunxi/sun4i-i2s.c
-@@ -177,8 +177,8 @@ struct sun4i_i2s_quirks {
- 	unsigned long (*get_bclk_parent_rate)(const struct sun4i_i2s *);
- 	s8	(*get_sr)(const struct sun4i_i2s *, int);
- 	s8	(*get_wss)(const struct sun4i_i2s *, int);
--	int	(*set_chan_cfg)(const struct sun4i_i2s *,
--				const struct snd_pcm_hw_params *);
-+	int	(*set_chan_cfg)(const struct sun4i_i2s *, unsigned int,
-+	                        unsigned int, unsigned int);
- 	int	(*set_fmt)(const struct sun4i_i2s *, unsigned int);
- };
+diff --git a/Documentation/devicetree/bindings/sound/allwinner,sun4i-a10-i2s.yaml b/Documentation/devicetree/bindings/sound/allwinner,sun4i-a10-i2s.yaml
+index 112ae00d63c1..606ad2d884a8 100644
+--- a/Documentation/devicetree/bindings/sound/allwinner,sun4i-a10-i2s.yaml
++++ b/Documentation/devicetree/bindings/sound/allwinner,sun4i-a10-i2s.yaml
+@@ -24,6 +24,7 @@ properties:
+       - items:
+           - const: allwinner,sun50i-a64-i2s
+           - const: allwinner,sun8i-h3-i2s
++      - const: allwinner,sun50i-h6-i2s
  
-@@ -414,10 +414,9 @@ static s8 sun8i_i2s_get_sr_wss(const struct sun4i_i2s *i2s, int width)
- }
+   reg:
+     maxItems: 1
+@@ -59,6 +60,7 @@ allOf:
+               - allwinner,sun8i-a83t-i2s
+               - allwinner,sun8i-h3-i2s
+               - allwinner,sun50i-a64-codec-i2s
++              - allwinner,sun50i-h6-i2s
  
- static int sun4i_i2s_set_chan_cfg(const struct sun4i_i2s *i2s,
--				  const struct snd_pcm_hw_params *params)
-+				  unsigned int channels, unsigned int slots,
-+				  unsigned int slot_width)
- {
--	unsigned int channels = params_channels(params);
--
- 	/* Map the channels for playback and capture */
- 	regmap_write(i2s->regmap, SUN4I_I2S_TX_CHAN_MAP_REG, 0x76543210);
- 	regmap_write(i2s->regmap, SUN4I_I2S_RX_CHAN_MAP_REG, 0x00003210);
-@@ -434,15 +433,11 @@ static int sun4i_i2s_set_chan_cfg(const struct sun4i_i2s *i2s,
- }
- 
- static int sun8i_i2s_set_chan_cfg(const struct sun4i_i2s *i2s,
--				  const struct snd_pcm_hw_params *params)
-+				  unsigned int channels, unsigned int slots,
-+				  unsigned int slot_width)
- {
--	unsigned int channels = params_channels(params);
--	unsigned int slots = channels;
- 	unsigned int lrck_period;
- 
--	if (i2s->slots)
--		slots = i2s->slots;
--
- 	/* Map the channels for playback and capture */
- 	regmap_write(i2s->regmap, SUN8I_I2S_TX_CHAN_MAP_REG, 0x76543210);
- 	regmap_write(i2s->regmap, SUN8I_I2S_RX_CHAN_MAP_REG, 0x76543210);
-@@ -467,11 +462,11 @@ static int sun8i_i2s_set_chan_cfg(const struct sun4i_i2s *i2s,
- 	case SND_SOC_DAIFMT_DSP_B:
- 	case SND_SOC_DAIFMT_LEFT_J:
- 	case SND_SOC_DAIFMT_RIGHT_J:
--		lrck_period = params_physical_width(params) * slots;
-+		lrck_period = slot_width * slots;
- 		break;
- 
- 	case SND_SOC_DAIFMT_I2S:
--		lrck_period = params_physical_width(params);
-+		lrck_period = slot_width;
- 		break;
- 
- 	default:
-@@ -490,15 +485,11 @@ static int sun8i_i2s_set_chan_cfg(const struct sun4i_i2s *i2s,
- }
- 
- static int sun50i_h6_i2s_set_chan_cfg(const struct sun4i_i2s *i2s,
--				      const struct snd_pcm_hw_params *params)
-+				      unsigned int channels, unsigned int slots,
-+				      unsigned int slot_width)
- {
--	unsigned int channels = params_channels(params);
--	unsigned int slots = channels;
- 	unsigned int lrck_period;
- 
--	if (i2s->slots)
--		slots = i2s->slots;
--
- 	/* Map the channels for playback and capture */
- 	regmap_write(i2s->regmap, SUN50I_H6_I2S_TX_CHAN_MAP1_REG, 0x76543210);
- 	regmap_write(i2s->regmap, SUN50I_H6_I2S_RX_CHAN_MAP1_REG, 0x76543210);
-@@ -523,11 +514,11 @@ static int sun50i_h6_i2s_set_chan_cfg(const struct sun4i_i2s *i2s,
- 	case SND_SOC_DAIFMT_DSP_B:
- 	case SND_SOC_DAIFMT_LEFT_J:
- 	case SND_SOC_DAIFMT_RIGHT_J:
--		lrck_period = params_physical_width(params) * slots;
-+		lrck_period = slot_width * slots;
- 		break;
- 
- 	case SND_SOC_DAIFMT_I2S:
--		lrck_period = params_physical_width(params);
-+		lrck_period = slot_width;
- 		break;
- 
- 	default:
-@@ -563,7 +554,7 @@ static int sun4i_i2s_hw_params(struct snd_pcm_substream *substream,
- 	if (i2s->slot_width)
- 		slot_width = i2s->slot_width;
- 
--	ret = i2s->variant->set_chan_cfg(i2s, params);
-+	ret = i2s->variant->set_chan_cfg(i2s, channels, slots, slot_width);
- 	if (ret < 0) {
- 		dev_err(dai->dev, "Invalid channel configuration\n");
- 		return ret;
+     then:
+       required:
 -- 
 2.25.1
 
