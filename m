@@ -2,145 +2,216 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from vger.kernel.org (vger.kernel.org [23.128.96.18])
-	by mail.lfdr.de (Postfix) with ESMTP id 8EBAC271739
-	for <lists+devicetree@lfdr.de>; Sun, 20 Sep 2020 20:52:16 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTP id 65B3B271799
+	for <lists+devicetree@lfdr.de>; Sun, 20 Sep 2020 21:38:32 +0200 (CEST)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S1726126AbgITSwP (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Sun, 20 Sep 2020 14:52:15 -0400
-Received: from new4-smtp.messagingengine.com ([66.111.4.230]:57449 "EHLO
-        new4-smtp.messagingengine.com" rhost-flags-OK-OK-OK-OK)
-        by vger.kernel.org with ESMTP id S1726109AbgITSwP (ORCPT
-        <rfc822;devicetree@vger.kernel.org>);
-        Sun, 20 Sep 2020 14:52:15 -0400
-Received: from compute3.internal (compute3.nyi.internal [10.202.2.43])
-        by mailnew.nyi.internal (Postfix) with ESMTP id 2F68C5800A3;
-        Sun, 20 Sep 2020 14:52:14 -0400 (EDT)
-Received: from mailfrontend1 ([10.202.2.162])
-  by compute3.internal (MEProxy); Sun, 20 Sep 2020 14:52:14 -0400
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=sholland.org; h=
-        subject:to:cc:references:from:message-id:date:mime-version
-        :in-reply-to:content-type:content-transfer-encoding; s=fm3; bh=U
-        aKCWb+alngLYqUciWW42BXBdBSdxoHktDXuWpsVbrI=; b=oFC6W7pv/B3eHmUKR
-        5P4lPrdAPq4Je35suAc4Jnc9Y2mx/f6alNQMyaLHujFUmtjAblXP8YV3sB4JgOaj
-        1q/URKWa54gXKwZ+/qa6myvdQuwdPT4XX2QjfDa/MEbOzNmMph1xbHpcBftlqmmu
-        le8crrD+s5xT9ff+Ts9ghK+W5mZvai7etQMyvaOuHlaRsthzlOsp9htLJy1PzWRD
-        9MoTVVTd9nlXjl/qu7K6zEiVIJYXpY97A1uKCFcCuxQzyluAwqlJqtARhADODX4m
-        PevuLPGAdXAJyeAz9/ND4/uM5bPN2Jca/tw5hqd5Dsu5Jzgx/zANMe5Tg/Lrxk8k
-        lGE8g==
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=
-        messagingengine.com; h=cc:content-transfer-encoding:content-type
-        :date:from:in-reply-to:message-id:mime-version:references
-        :subject:to:x-me-proxy:x-me-proxy:x-me-sender:x-me-sender
-        :x-sasl-enc; s=fm3; bh=UaKCWb+alngLYqUciWW42BXBdBSdxoHktDXuWpsVb
-        rI=; b=VReChI7L+/asa/We8ef+cHzapzCWscrW00o9/Tfxe2AJkNafuoRlHDFSE
-        7v+Vt1cfM3xe8ypmDp9uu84JbASRu0Z3noC77ROi5XTYvw7SG6z1ARLg59WhAnEb
-        06ZmZGW9JIdH0l/mjewLKaidA4o7YBtYCwZLHXxAmOVGijvIJa+NlKT+ds3I8Du4
-        CeA8dQ2wj6NPc4EQ3WLqZiMLPZM2aERJ5zWgPtRe0kZKKexocea8CENl+QdgoWc4
-        Ek2qvqXRJY8GohzinSi9Q1Ulwfn9YAYA8kJagh8aI03yBTA3dnbOYX8W9tfiNjye
-        gm/Gnii7e0RJTF6HExOZamm+WnZRA==
-X-ME-Sender: <xms:3KRnX-urMvU9Q17WZsg0I44fQd7RIohRuDcYbdqPfEOkN_HSvw7QKA>
-    <xme:3KRnXzdxonus58aXIzgMhbuV6GwFTaCm7tmXVnE_a9_XrlPdLFCOn6uZvGCy4SDKd
-    LppPbNlmkbgjJVnRA>
-X-ME-Proxy-Cause: gggruggvucftvghtrhhoucdtuddrgedujedruddtgddufedtucetufdoteggodetrfdotf
-    fvucfrrhhofhhilhgvmecuhfgrshhtofgrihhlpdfqfgfvpdfurfetoffkrfgpnffqhgen
-    uceurghilhhouhhtmecufedttdenucesvcftvggtihhpihgvnhhtshculddquddttddmne
-    cujfgurhepuffvfhfhkffffgggjggtgfesthekredttdefjeenucfhrhhomhepufgrmhhu
-    vghlucfjohhllhgrnhguuceoshgrmhhuvghlsehshhholhhlrghnugdrohhrgheqnecugg
-    ftrfgrthhtvghrnhepuddvleffkeejhfduieelheejteehleefieeikefgteeugefhtdev
-    keefvefgheeinecuffhomhgrihhnpehgihhthhhusgdrtghomhenucfkphepjedtrddufe
-    ehrddugeekrdduhedunecuvehluhhsthgvrhfuihiivgeptdenucfrrghrrghmpehmrghi
-    lhhfrhhomhepshgrmhhuvghlsehshhholhhlrghnugdrohhrgh
-X-ME-Proxy: <xmx:3KRnX5z29Z1ju_ZDS9Yav0YREkL2MbH_JK_QZbayg1l6Jm2d8ZYvIw>
-    <xmx:3KRnX5OU_SGLZL2fXculMRXlA0MoH1mOV6ohI9_0vZy6CHbNSI9Kpw>
-    <xmx:3KRnX-8YPPoC05bhO1FvnIhRo9PVg-ScC41SsnoO6PzLS6pJ21RX4g>
-    <xmx:3qRnX5VoP_9B6N7A2NI8mlo0RSDz8KMC6osnEwfyAMBz4uPqugmjRg>
-Received: from [192.168.50.169] (70-135-148-151.lightspeed.stlsmo.sbcglobal.net [70.135.148.151])
-        by mail.messagingengine.com (Postfix) with ESMTPA id 1E85B3280065;
-        Sun, 20 Sep 2020 14:52:12 -0400 (EDT)
-Subject: Re: [PATCH v3 06/19] ASoC: sun4i-i2s: Fix sun8i volatile regs
-To:     =?UTF-8?B?Q2zDqW1lbnQgUMOpcm9u?= <peron.clem@gmail.com>,
-        Maxime Ripard <mripard@kernel.org>,
-        Chen-Yu Tsai <wens@csie.org>, Rob Herring <robh+dt@kernel.org>,
+        id S1726148AbgITTia (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Sun, 20 Sep 2020 15:38:30 -0400
+Received: from lindbergh.monkeyblade.net ([23.128.96.19]:37078 "EHLO
+        lindbergh.monkeyblade.net" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
+        with ESMTP id S1726109AbgITTia (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Sun, 20 Sep 2020 15:38:30 -0400
+Received: from mail-il1-x143.google.com (mail-il1-x143.google.com [IPv6:2607:f8b0:4864:20::143])
+        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id D1CF2C061755;
+        Sun, 20 Sep 2020 12:38:29 -0700 (PDT)
+Received: by mail-il1-x143.google.com with SMTP id q5so5150702ilj.1;
+        Sun, 20 Sep 2020 12:38:29 -0700 (PDT)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+        d=gmail.com; s=20161025;
+        h=mime-version:references:in-reply-to:from:date:message-id:subject:to
+         :cc:content-transfer-encoding;
+        bh=7dHmlm15L5muln7P5gMny8ZyKU2l3Q2uBGbFxPZzDB4=;
+        b=lVFox2j6QnZDD7C2ONG3APLQz8HzTN8Hms0gWrPbxfh9V8jGk+2KfupLvFzMkmLgww
+         5pNoYdtWj4b9mGW4CqbJ1AM4DLYW7tZq3uQC4UNkjlkkKQcyyxkKF2c+Fi7iiibmGA5B
+         ZjW5oAmZAETlVmVsVFZD0dhxwayVpqI6+ut8Tt8QgVVU8emPjhznNwJ8r3lAcZaDyD0v
+         lSPr/01CzAVuZUuoURjsqerBb47YOZ1n3Eup2RZfgvkRf9JJ0C7yucug2VYBaQjUTASX
+         2pyUNxI8MJu33r5Bdd8JMlvgzIq7S0j7voIYWOftqXT6ztwTLaK+u6iJrwzBlvZ9pj8G
+         pW4Q==
+X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+        d=1e100.net; s=20161025;
+        h=x-gm-message-state:mime-version:references:in-reply-to:from:date
+         :message-id:subject:to:cc:content-transfer-encoding;
+        bh=7dHmlm15L5muln7P5gMny8ZyKU2l3Q2uBGbFxPZzDB4=;
+        b=LaR7ptATNa3ddYYehwgT0daZekhx1eOcU5joLvEHhd3y8x3URONIpytuH2jVrSWw5t
+         fiUhTSquRg508+cLl0SDYrf17cxKKFsif38IlcA+lEaYaR4V9D4DcnhHsI3m3Rpyd5tX
+         yY3nQWhm9cYeerS/xOt18yVf/zsJx6MMGJfnDLXn68q3GVHGagP/cXQZSyI2TDa0gEDo
+         t/O6/zBnLrk+we6XEw1a0024OBXVq9tlWcmMQ/8+8d4QyulE4+TkUPtBqAQqtpqIUq5D
+         HCNzUqpcydVKWr/Ie8vdZGhz8UAZlSOgE09xBQ0jwGKxvUiZH75M1DYVhyPMTiV/VEwc
+         bUdg==
+X-Gm-Message-State: AOAM530hM+EVnDs/lShRNq3tsKSGIs1vNz52lDdYkyt2xUmptaHKZ04R
+        rOkYoNJb1vBXgObPTphnOpff/O/zNChg3Bxirjgvl/+LGHRJRg==
+X-Google-Smtp-Source: ABdhPJxqQ4WQOR6w77n6t0YKh1ksHhXAMWdDCFuTkiQ8DZOfS9rz6gqURn759P7yp/tqGDFGiQjAeZg4Tk80F04zEbI=
+X-Received: by 2002:a92:a1c8:: with SMTP id b69mr19779859ill.293.1600630708670;
+ Sun, 20 Sep 2020 12:38:28 -0700 (PDT)
+MIME-Version: 1.0
+References: <20200920180758.592217-1-peron.clem@gmail.com> <20200920180758.592217-2-peron.clem@gmail.com>
+ <e0eb7e94-e736-4ec0-b838-884a4857bb97@sholland.org>
+In-Reply-To: <e0eb7e94-e736-4ec0-b838-884a4857bb97@sholland.org>
+From:   =?UTF-8?B?Q2zDqW1lbnQgUMOpcm9u?= <peron.clem@gmail.com>
+Date:   Sun, 20 Sep 2020 21:38:17 +0200
+Message-ID: <CAJiuCcenXE_BZpk7smwaddsgqwq7LmhCQuH9T1pG2twM4Uu+mA@mail.gmail.com>
+Subject: Re: [PATCH v3 01/19] ASoC: sun4i-i2s: Add support for H6 I2S
+To:     Samuel Holland <samuel@sholland.org>
+Cc:     Maxime Ripard <mripard@kernel.org>, Chen-Yu Tsai <wens@csie.org>,
+        Rob Herring <robh+dt@kernel.org>,
         Mark Brown <broonie@kernel.org>,
-        Liam Girdwood <lgirdwood@gmail.com>
-Cc:     Jaroslav Kysela <perex@perex.cz>, Takashi Iwai <tiwai@suse.com>,
+        Liam Girdwood <lgirdwood@gmail.com>,
+        Jaroslav Kysela <perex@perex.cz>,
+        Takashi Iwai <tiwai@suse.com>,
         Marcus Cooper <codekipper@gmail.com>,
         Jernej Skrabec <jernej.skrabec@siol.net>,
-        alsa-devel@alsa-project.org, devicetree@vger.kernel.org,
-        linux-arm-kernel@lists.infradead.org, linux-kernel@vger.kernel.org,
-        linux-sunxi@googlegroups.com
-References: <20200920180758.592217-1-peron.clem@gmail.com>
- <20200920180758.592217-7-peron.clem@gmail.com>
-From:   Samuel Holland <samuel@sholland.org>
-Message-ID: <497a7062-4acf-d928-c2ee-ec595ed6799b@sholland.org>
-Date:   Sun, 20 Sep 2020 13:52:11 -0500
-User-Agent: Mozilla/5.0 (X11; Linux x86_64; rv:68.0) Gecko/20100101
- Thunderbird/68.6.0
-MIME-Version: 1.0
-In-Reply-To: <20200920180758.592217-7-peron.clem@gmail.com>
-Content-Type: text/plain; charset=utf-8
-Content-Language: en-US
-Content-Transfer-Encoding: 8bit
+        Linux-ALSA <alsa-devel@alsa-project.org>,
+        devicetree <devicetree@vger.kernel.org>,
+        linux-arm-kernel <linux-arm-kernel@lists.infradead.org>,
+        linux-kernel <linux-kernel@vger.kernel.org>,
+        linux-sunxi <linux-sunxi@googlegroups.com>
+Content-Type: text/plain; charset="UTF-8"
+Content-Transfer-Encoding: quoted-printable
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-On 9/20/20 1:07 PM, Clément Péron wrote:
-> The FIFO TX reg is volatile and sun8i i2s register
-> mapping is different from sun4i.
-> 
-> Even if in this case it's doesn't create an issue,
-> Avoid setting some regs that are undefined in sun8i.
-> 
-> Signed-off-by: Clément Péron <peron.clem@gmail.com>
-> Acked-by: Maxime Ripard <mripard@kernel.org>
-> ---
->  sound/soc/sunxi/sun4i-i2s.c | 15 +++++++++++----
->  1 file changed, 11 insertions(+), 4 deletions(-)
-> 
-> diff --git a/sound/soc/sunxi/sun4i-i2s.c b/sound/soc/sunxi/sun4i-i2s.c
-> index ce4913f0ffe4..a35be0e2baf5 100644
-> --- a/sound/soc/sunxi/sun4i-i2s.c
-> +++ b/sound/soc/sunxi/sun4i-i2s.c
-> @@ -1126,12 +1126,19 @@ static bool sun8i_i2s_rd_reg(struct device *dev, unsigned int reg)
->  
->  static bool sun8i_i2s_volatile_reg(struct device *dev, unsigned int reg)
->  {
-> -	if (reg == SUN8I_I2S_INT_STA_REG)
-> +	switch (reg) {
-> +	case SUN4I_I2S_FIFO_CTRL_REG:
+Hi Samuel,
 
-Please check if this breaks audio recording with runtime PM enabled. I noticed
-this with an older revision of the series that also changed
-sun4i_i2s_volatile_reg. Marking SUN4I_I2S_FIFO_CTRL_REG as volatile broke
-setting of SUN4I_I2S_FIFO_CTRL_TX_MODE/RX_MODE, because the set_fmt() callback
-is not run with a runtime PM reference held, and volatile registers are not
-written by regcache_sync() during sun4i_i2s_runtime_resume().
+On Sun, 20 Sep 2020 at 20:39, Samuel Holland <samuel@sholland.org> wrote:
+>
+> On 9/20/20 1:07 PM, Cl=C3=A9ment P=C3=A9ron wrote:
+> > From: Jernej Skrabec <jernej.skrabec@siol.net>
+> >
+> > H6 I2S is very similar to that in H3, except it supports up to 16
+> > channels.
+> >
+> > Signed-off-by: Jernej Skrabec <jernej.skrabec@siol.net>
+> > Signed-off-by: Marcus Cooper <codekipper@gmail.com>
+> > Signed-off-by: Cl=C3=A9ment P=C3=A9ron <peron.clem@gmail.com>
+> > ---
+> >  sound/soc/sunxi/sun4i-i2s.c | 218 ++++++++++++++++++++++++++++++++++++
+> >  1 file changed, 218 insertions(+)
+> >
+> > diff --git a/sound/soc/sunxi/sun4i-i2s.c b/sound/soc/sunxi/sun4i-i2s.c
+> > index f23ff29e7c1d..348057464bed 100644
+> > --- a/sound/soc/sunxi/sun4i-i2s.c
+> > +++ b/sound/soc/sunxi/sun4i-i2s.c
+> ...
+> > @@ -699,6 +770,102 @@ static int sun8i_i2s_set_soc_fmt(const struct sun=
+4i_i2s *i2s,
+> >       return 0;
+> >  }
+> >
+> > +static int sun50i_h6_i2s_set_soc_fmt(const struct sun4i_i2s *i2s,
+> > +                                  unsigned int fmt)
+> > +{
+> > +     u32 mode, val;
+> > +     u8 offset;
+> > +
+> > +     /* DAI clock polarity */
+> > +     switch (fmt & SND_SOC_DAIFMT_INV_MASK) {
+> > +     case SND_SOC_DAIFMT_IB_IF:
+> > +             /* Invert both clocks */
+> > +             val =3D SUN8I_I2S_FMT0_BCLK_POLARITY_INVERTED |
+> > +                   SUN8I_I2S_FMT0_LRCLK_POLARITY_INVERTED;
+> > +             break;
+> > +     case SND_SOC_DAIFMT_IB_NF:
+> > +             /* Invert bit clock */
+> > +             val =3D SUN8I_I2S_FMT0_BCLK_POLARITY_INVERTED;
+> > +             break;
+> > +     case SND_SOC_DAIFMT_NB_IF:
+> > +             /* Invert frame clock */
+> > +             val =3D SUN8I_I2S_FMT0_LRCLK_POLARITY_INVERTED;
+> > +             break;
+> > +     case SND_SOC_DAIFMT_NB_NF:
+> > +             val =3D 0;
+> > +             break;
+> > +     default:
+> > +             return -EINVAL;
+> > +     }
+>
+> Maxime's testing that showed LRCK inversion was necessary was done on the=
+ H6. So
+> in addition to dropping the patch that removed the LRCK inversion for oth=
+er
+> sun8i variants, you need to re-add it to this patch for the H6 variant.
 
-As a workaround, I moved the TX_MODE/RX_MODE initialization to hw_params(), but
-I am not sure it is the right thing to do:
+Thanks, you're right!
+Clement
 
-https://github.com/smaeul/linux/commit/5e40ac610986.patch
-
-Cheers,
-Samuel
-
-> +	case SUN4I_I2S_FIFO_RX_REG:
-> +	case SUN4I_I2S_FIFO_STA_REG:
-> +	case SUN4I_I2S_RX_CNT_REG:
-> +	case SUN4I_I2S_TX_CNT_REG:
-> +	case SUN8I_I2S_FIFO_TX_REG:
-> +	case SUN8I_I2S_INT_STA_REG:
->  		return true;
-> -	if (reg == SUN8I_I2S_FIFO_TX_REG)
-> -		return false;
->  
-> -	return sun4i_i2s_volatile_reg(dev, reg);
-> +	default:
-> +		return false;
-> +	}
->  }
->  
->  static const struct reg_default sun4i_i2s_reg_defaults[] = {
-> 
-
+>
+> Cheers,
+> Samuel
+>
+> > +
+> > +     regmap_update_bits(i2s->regmap, SUN4I_I2S_FMT0_REG,
+> > +                        SUN8I_I2S_FMT0_LRCLK_POLARITY_MASK |
+> > +                        SUN8I_I2S_FMT0_BCLK_POLARITY_MASK,
+> > +                        val);
+> > +
+> > +     /* DAI Mode */
+> > +     switch (fmt & SND_SOC_DAIFMT_FORMAT_MASK) {
+> > +     case SND_SOC_DAIFMT_DSP_A:
+> > +             mode =3D SUN8I_I2S_CTRL_MODE_PCM;
+> > +             offset =3D 1;
+> > +             break;
+> > +
+> > +     case SND_SOC_DAIFMT_DSP_B:
+> > +             mode =3D SUN8I_I2S_CTRL_MODE_PCM;
+> > +             offset =3D 0;
+> > +             break;
+> > +
+> > +     case SND_SOC_DAIFMT_I2S:
+> > +             mode =3D SUN8I_I2S_CTRL_MODE_LEFT;
+> > +             offset =3D 1;
+> > +             break;
+> > +
+> > +     case SND_SOC_DAIFMT_LEFT_J:
+> > +             mode =3D SUN8I_I2S_CTRL_MODE_LEFT;
+> > +             offset =3D 0;
+> > +             break;
+> > +
+> > +     case SND_SOC_DAIFMT_RIGHT_J:
+> > +             mode =3D SUN8I_I2S_CTRL_MODE_RIGHT;
+> > +             offset =3D 0;
+> > +             break;
+> > +
+> > +     default:
+> > +             return -EINVAL;
+> > +     }
+> > +
+> > +     regmap_update_bits(i2s->regmap, SUN4I_I2S_CTRL_REG,
+> > +                        SUN8I_I2S_CTRL_MODE_MASK, mode);
+> > +     regmap_update_bits(i2s->regmap, SUN8I_I2S_TX_CHAN_SEL_REG,
+> > +                        SUN50I_H6_I2S_TX_CHAN_SEL_OFFSET_MASK,
+> > +                        SUN50I_H6_I2S_TX_CHAN_SEL_OFFSET(offset));
+> > +     regmap_update_bits(i2s->regmap, SUN50I_H6_I2S_RX_CHAN_SEL_REG,
+> > +                        SUN50I_H6_I2S_TX_CHAN_SEL_OFFSET_MASK,
+> > +                        SUN50I_H6_I2S_TX_CHAN_SEL_OFFSET(offset));
+> > +
+> > +     /* DAI clock master masks */
+> > +     switch (fmt & SND_SOC_DAIFMT_MASTER_MASK) {
+> > +     case SND_SOC_DAIFMT_CBS_CFS:
+> > +             /* BCLK and LRCLK master */
+> > +             val =3D SUN8I_I2S_CTRL_BCLK_OUT | SUN8I_I2S_CTRL_LRCK_OUT=
+;
+> > +             break;
+> > +
+> > +     case SND_SOC_DAIFMT_CBM_CFM:
+> > +             /* BCLK and LRCLK slave */
+> > +             val =3D 0;
+> > +             break;
+> > +
+> > +     default:
+> > +             return -EINVAL;
+> > +     }
+> > +
+> > +     regmap_update_bits(i2s->regmap, SUN4I_I2S_CTRL_REG,
+> > +                        SUN8I_I2S_CTRL_BCLK_OUT | SUN8I_I2S_CTRL_LRCK_=
+OUT,
+> > +                        val);
+> > +
+> > +     return 0;
+> > +}
+> > +
+> >  static int sun4i_i2s_set_fmt(struct snd_soc_dai *dai, unsigned int fmt=
+)
+> >  {
+> >       struct sun4i_i2s *i2s =3D snd_soc_dai_get_drvdata(dai);
+> ...
