@@ -2,122 +2,91 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from vger.kernel.org (vger.kernel.org [23.128.96.18])
-	by mail.lfdr.de (Postfix) with ESMTP id D26A4271131
-	for <lists+devicetree@lfdr.de>; Sun, 20 Sep 2020 00:31:17 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTP id 829EF27118D
+	for <lists+devicetree@lfdr.de>; Sun, 20 Sep 2020 02:19:06 +0200 (CEST)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S1726855AbgISWbL (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Sat, 19 Sep 2020 18:31:11 -0400
-Received: from lindbergh.monkeyblade.net ([23.128.96.19]:41870 "EHLO
+        id S1726707AbgITATE (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Sat, 19 Sep 2020 20:19:04 -0400
+Received: from lindbergh.monkeyblade.net ([23.128.96.19]:58310 "EHLO
         lindbergh.monkeyblade.net" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S1726626AbgISWbJ (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Sat, 19 Sep 2020 18:31:09 -0400
-Received: from mail-qk1-x736.google.com (mail-qk1-x736.google.com [IPv6:2607:f8b0:4864:20::736])
-        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 91F99C0613CE;
-        Sat, 19 Sep 2020 15:31:09 -0700 (PDT)
-Received: by mail-qk1-x736.google.com with SMTP id w16so10866678qkj.7;
-        Sat, 19 Sep 2020 15:31:09 -0700 (PDT)
+        with ESMTP id S1726788AbgITATE (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Sat, 19 Sep 2020 20:19:04 -0400
+Received: from mail-ej1-x629.google.com (mail-ej1-x629.google.com [IPv6:2a00:1450:4864:20::629])
+        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 2B2D9C0613CE;
+        Sat, 19 Sep 2020 17:19:03 -0700 (PDT)
+Received: by mail-ej1-x629.google.com with SMTP id j11so13015641ejk.0;
+        Sat, 19 Sep 2020 17:19:03 -0700 (PDT)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
         d=gmail.com; s=20161025;
-        h=from:to:cc:subject:date:message-id:in-reply-to:references
-         :mime-version:content-transfer-encoding;
-        bh=FuUvgB8iMkHgcxvxhIPaKesqPeUDTnfXOpNMPbDpmVY=;
-        b=Kq1HpGi/RYvFJutzgEITb+4XKoQsYcQaiw+JEkrWbrHSNHzflhnewbfX+OA/ayuomc
-         x3AwuO3t6ZN/vhnJYTiArWB+c8Pu0QJUMS+brIYBidpJNVGEz9z7sTUTkkkivAKtsgGU
-         RGezSP7qEpItLVMgIEcxuxHKBWu3MIDWlAM9tqgm57ObEzYKGqa9JVYmkTrGUo2mfwzS
-         ZxY6ejgJBoT5TwyAYgFIDcg+QaX4gXcG4FmbOK2w1IA4Ubx7QgTojiH/B/H1cDuKif55
-         Y92TBtPpPRCIIrht7fIqeMgQx1pNYJw+mSfl6uw8QaKuMUI0/0a+UTtuhH46eDnZwOVW
-         01Tw==
+        h=from:to:cc:subject:date:message-id:mime-version
+         :content-transfer-encoding;
+        bh=5yaT5gZZGJLhXLmT2L9V2Hy/ARWeh+FAUBV0QnUx2j0=;
+        b=OKh2MwB7YAnunkLwi9mBwWSPlaCMF2V4O40fHFkSKo0sUpoEoGINQ3wJXUMz7HrHZn
+         MqbfAV8Qmo3UMJyhdoJf8Dpgmb4ExMaPHDfE2z6U34vlVIz/FrvOxeltI5sNJqD8wAe/
+         3jW7JZ6TX0eZSTcWgiTFST0mqiHGaBd+9RNhFIAq6VCUPeQtUrrN6WByeZeTzNuvLKKe
+         jGI4WMSiltp/NV4QpFIkrTCKWr5umucs50HSpKa1shqznnYPVGN1l7wdNgVVEJZD9aT6
+         neIyXUNaLrB048snOOWnskYXA0vHMMOGD/R6pkPP+lts67U97bC/h2ThNDoyZJiZFA/F
+         uQSQ==
 X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
         d=1e100.net; s=20161025;
-        h=x-gm-message-state:from:to:cc:subject:date:message-id:in-reply-to
-         :references:mime-version:content-transfer-encoding;
-        bh=FuUvgB8iMkHgcxvxhIPaKesqPeUDTnfXOpNMPbDpmVY=;
-        b=N8UnoZd9YzYjClP8pLLdHKWvuoc3+AFc/gzIyte9Il49DmctXxyBeinGMZL4JIvZEN
-         /gPOn/2G1IiF8AKts4D2ziujnPlRUyMTiLllIpwGSUxCGYfqeLkz3mhR4s4ij3ooHwIs
-         LxvpGSnaMVHAugsbfPX8lpSZVRwdjC/hHw9nsXVTZ8HWR/kVaYOOjqP8HUQTxe8ToLpt
-         JaGSnRZvAC+fMeuw878P69FqZp3ytuLhAemcqL09ZYIpZQgKNPs6q+7gTdOTxHkg4+1T
-         +58Rjf3X5pxXNK98U7N7fVHuX/1cG5dmPBlPqeOuyLXDlqPNCFtk+eV0/wf5rjUSBmKx
-         hi2g==
-X-Gm-Message-State: AOAM532BsGVgEY6dgBM/wau8KqcYYcba3IVTZYW0sYxuq9yxxetZ0zYG
-        5layRWw557DyAa0oBNo+13c=
-X-Google-Smtp-Source: ABdhPJwMQqLUYfruyEYwvtNhOG0DwZqLC/uJ2hsFUBlKE0cn+xgwFxVAVeYLm/LOL9qALxmfXyYNrA==
-X-Received: by 2002:a37:76c2:: with SMTP id r185mr38929715qkc.122.1600554668713;
-        Sat, 19 Sep 2020 15:31:08 -0700 (PDT)
-Received: from Ansuel-XPS.localdomain (93-39-149-95.ip76.fastwebnet.it. [93.39.149.95])
-        by smtp.googlemail.com with ESMTPSA id f24sm2581139qkk.136.2020.09.19.15.31.05
+        h=x-gm-message-state:from:to:cc:subject:date:message-id:mime-version
+         :content-transfer-encoding;
+        bh=5yaT5gZZGJLhXLmT2L9V2Hy/ARWeh+FAUBV0QnUx2j0=;
+        b=iqFj6tgdglhGs6WVrBayYiBo8HNrbjU5t7lq8m27znT8X5VPamaTlDpJJqbJTQrRfH
+         +V3CX1FPrsUoBCnc2jtcXssb3OBgiLqPYJb5NQGCup2YnJP+Wcq81myidXB1gLZIlCdB
+         p+oRz9InFgQMZsr7a26XQUP6d6HxpraloqUqwAfHlMAiUDJbhQjZhBfINOxoj3+urKvw
+         ZI2RP7acytprU/+1VCOjQmMO587TbUq/rxKGCoEMSqkdI7426VqbcJmX0tD3JHeynw+o
+         pz+gfa6gs8dMHekLXeiX47bmWExa1FIHt8VT8Tkv4v7n6i0Fx/CkrwPixMkGX6cbRrY9
+         Tvlg==
+X-Gm-Message-State: AOAM533GyDlzIPtMGriBcigeQorNSM/Pe/5zbL5I0h4bR94yY/e93F+A
+        nDuimhkqu04aTQnvhTSPoHs=
+X-Google-Smtp-Source: ABdhPJzJrK3cKu/ge/dvWRohSexRPJbhGwDuFT805kDgJfQVKW04vd0cTvmAyqeJqlfMt493XlFP1w==
+X-Received: by 2002:a17:906:e88:: with SMTP id p8mr45339836ejf.134.1600561142056;
+        Sat, 19 Sep 2020 17:19:02 -0700 (PDT)
+Received: from debian64.daheim (p4fd09180.dip0.t-ipconnect.de. [79.208.145.128])
+        by smtp.gmail.com with ESMTPSA id i3sm5570067edn.55.2020.09.19.17.19.01
         (version=TLS1_3 cipher=TLS_AES_256_GCM_SHA384 bits=256/256);
-        Sat, 19 Sep 2020 15:31:08 -0700 (PDT)
-From:   Ansuel Smith <ansuelsmth@gmail.com>
-To:     Miquel Raynal <miquel.raynal@bootlin.com>
-Cc:     Ansuel Smith <ansuelsmth@gmail.com>,
-        Richard Weinberger <richard@nod.at>,
-        Vignesh Raghavendra <vigneshr@ti.com>,
-        Rob Herring <robh+dt@kernel.org>,
-        "David S. Miller" <davem@davemloft.net>,
-        Jakub Kicinski <kuba@kernel.org>, Andrew Lunn <andrew@lunn.ch>,
-        Heiner Kallweit <hkallweit1@gmail.com>,
-        Russell King <linux@armlinux.org.uk>,
-        Frank Rowand <frowand.list@gmail.com>,
-        Boris Brezillon <bbrezillon@kernel.org>,
-        linux-mtd@lists.infradead.org, devicetree@vger.kernel.org,
-        linux-kernel@vger.kernel.org, netdev@vger.kernel.org
-Subject: [PATCH v2 4/4] dt-bindings: net: Document use of mac-address-increment
-Date:   Sun, 20 Sep 2020 00:30:23 +0200
-Message-Id: <20200919223026.20803-5-ansuelsmth@gmail.com>
-X-Mailer: git-send-email 2.27.0
-In-Reply-To: <20200919223026.20803-1-ansuelsmth@gmail.com>
-References: <20200919223026.20803-1-ansuelsmth@gmail.com>
+        Sat, 19 Sep 2020 17:19:01 -0700 (PDT)
+Received: from chuck by debian64.daheim with local (Exim 4.94)
+        (envelope-from <chunkeey@gmail.com>)
+        id 1kJn49-000s3p-Dv; Sun, 20 Sep 2020 02:18:53 +0200
+From:   Christian Lamparter <chunkeey@gmail.com>
+To:     linuxppc-dev@lists.ozlabs.org, devicetree@vger.kernel.org,
+        linux-usb@vger.kernel.org
+Cc:     Rob Herring <robh+dt@kernel.org>,
+        Greg Kroah-Hartman <gregkh@linuxfoundation.org>,
+        Minas Harutyunyan <hminas@synopsys.com>
+Subject: [PATCH v1 1/2] dt-bindings: usb: dwc2: add support for APM82181 SoCs USB OTG HS and FS
+Date:   Sun, 20 Sep 2020 02:18:49 +0200
+Message-Id: <a43868b06566f5d959d8cfc4e763bede2885931a.1600560884.git.chunkeey@gmail.com>
+X-Mailer: git-send-email 2.28.0
 MIME-Version: 1.0
 Content-Transfer-Encoding: 8bit
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-Two new bindings are now supported by the of_net driver to increase (or
-decrease) a mac-address. This can be very useful in case where the
-system extract the mac-address for the device from a dedicated partition
-and have a generic mac-address that needs to be incremented based on the
-device number.
-- mac-address-increment-byte is used to tell what byte must be
-  incremented (if not set the last byte is increased)
-- mac-address-increment is used to tell how much to increment of the
-  extracted mac-address decided byte.
+adds the specific compatible string for the DWC2 IP found in the APM82181
+SoCs. The APM82181's USB-OTG seems like it was taken from its direct
+predecessor: the PPC460EX (canyonlands).
 
-Signed-off-by: Ansuel Smith <ansuelsmth@gmail.com>
+Signed-off-by: Christian Lamparter <chunkeey@gmail.com>
 ---
- .../bindings/net/ethernet-controller.yaml     | 19 +++++++++++++++++++
- 1 file changed, 19 insertions(+)
+ Documentation/devicetree/bindings/usb/dwc2.yaml | 1 +
+ 1 file changed, 1 insertion(+)
 
-diff --git a/Documentation/devicetree/bindings/net/ethernet-controller.yaml b/Documentation/devicetree/bindings/net/ethernet-controller.yaml
-index fa2baca8c726..43f2f21faf41 100644
---- a/Documentation/devicetree/bindings/net/ethernet-controller.yaml
-+++ b/Documentation/devicetree/bindings/net/ethernet-controller.yaml
-@@ -32,6 +32,25 @@ properties:
-       - minItems: 6
-         maxItems: 6
- 
-+  mac-address-increment:
-+    description:
-+      The MAC address can optionally be increased (or decreased using
-+      negative values) from the original value readed (from a nvmem cell
-+      for example). This can be used if the mac is readed from a dedicated
-+      partition and must be increased based on the number of device
-+      present in the system.
-+    minimum: -255
-+    maximum: 255
-+
-+  mac-address-increment-byte:
-+    description:
-+      If 'mac-address-increment' is defined, this will tell what byte of
-+      the mac-address will be increased. If 'mac-address-increment' is
-+      not defined, this option will do nothing.
-+    default: 5
-+    minimum: 0
-+    maximum: 5
-+
-   max-frame-size:
-     $ref: /schemas/types.yaml#definitions/uint32
-     description:
+diff --git a/Documentation/devicetree/bindings/usb/dwc2.yaml b/Documentation/devicetree/bindings/usb/dwc2.yaml
+index ffa157a0fce7..34ddb5c877a1 100644
+--- a/Documentation/devicetree/bindings/usb/dwc2.yaml
++++ b/Documentation/devicetree/bindings/usb/dwc2.yaml
+@@ -39,6 +39,7 @@ properties:
+               - amlogic,meson-g12a-usb
+           - const: snps,dwc2
+       - const: amcc,dwc-otg
++      - const: apm,apm82181-dwc-otg
+       - const: snps,dwc2
+       - const: st,stm32f4x9-fsotg
+       - const: st,stm32f4x9-hsotg
 -- 
-2.27.0
+2.28.0
 
