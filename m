@@ -2,462 +2,146 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from vger.kernel.org (vger.kernel.org [23.128.96.18])
-	by mail.lfdr.de (Postfix) with ESMTP id 8CB07271576
-	for <lists+devicetree@lfdr.de>; Sun, 20 Sep 2020 17:53:10 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTP id AD85B2716A9
+	for <lists+devicetree@lfdr.de>; Sun, 20 Sep 2020 20:08:16 +0200 (CEST)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S1726326AbgITPxJ (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Sun, 20 Sep 2020 11:53:09 -0400
-Received: from mars.blocktrron.ovh ([51.254.112.43]:58324 "EHLO
-        mail.blocktrron.ovh" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S1726267AbgITPxJ (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Sun, 20 Sep 2020 11:53:09 -0400
-X-Greylist: delayed 441 seconds by postgrey-1.27 at vger.kernel.org; Sun, 20 Sep 2020 11:53:07 EDT
-Received: from localhost.localdomain (p200300e53f3f5e006864d0f74357ffb3.dip0.t-ipconnect.de [IPv6:2003:e5:3f3f:5e00:6864:d0f7:4357:ffb3])
-        (using TLSv1.2 with cipher ECDHE-RSA-AES128-GCM-SHA256 (128/128 bits))
-        (No client certificate requested)
-        by mail.blocktrron.ovh (Postfix) with ESMTPSA id 3FEF52EC4B;
-        Sun, 20 Sep 2020 17:45:42 +0200 (CEST)
-From:   David Bauer <mail@david-bauer.net>
-To:     robh+dt@kernel.org, heiko@sntech.de, andy.yan@rock-chips.com,
-        jagan@amarulasolutions.com, jbx6244@gmail.com,
-        robin.murphy@arm.com, kever.yang@rock-chips.com,
-        m.reichl@fivetechno.de, devicetree@vger.kernel.org,
-        linux-arm-kernel@lists.infradead.org,
-        linux-rockchip@lists.infradead.org
-Subject: [PATCH v3 2/2] rockchip: rk3328: Add support for FriendlyARM NanoPi R2S
-Date:   Sun, 20 Sep 2020 17:45:28 +0200
-Message-Id: <20200920154528.88185-2-mail@david-bauer.net>
-X-Mailer: git-send-email 2.28.0
-In-Reply-To: <20200920154528.88185-1-mail@david-bauer.net>
-References: <20200920154528.88185-1-mail@david-bauer.net>
+        id S1726342AbgITSII (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Sun, 20 Sep 2020 14:08:08 -0400
+Received: from lindbergh.monkeyblade.net ([23.128.96.19]:51516 "EHLO
+        lindbergh.monkeyblade.net" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
+        with ESMTP id S1726043AbgITSIG (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Sun, 20 Sep 2020 14:08:06 -0400
+Received: from mail-wm1-x343.google.com (mail-wm1-x343.google.com [IPv6:2a00:1450:4864:20::343])
+        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 6CBB8C061755;
+        Sun, 20 Sep 2020 11:08:04 -0700 (PDT)
+Received: by mail-wm1-x343.google.com with SMTP id a9so10343489wmm.2;
+        Sun, 20 Sep 2020 11:08:04 -0700 (PDT)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+        d=gmail.com; s=20161025;
+        h=from:to:cc:subject:date:message-id:mime-version
+         :content-transfer-encoding;
+        bh=3bjJ23k58orvOoas5tPG6uY/RuwdywojuGiQ1D/w8N0=;
+        b=qBIfsDYD5/JKsxWIPdRjK+qZ4lFrYBChdA/RnSygqlpfXhw1HjW3puFGenp7FXcDtK
+         8JcR32/g9bg8SdZj3ZjbAX3V8338NAH3rcfo7mF3H1MfSfrzpWvUrz7zX0Cb6iXL/7Fp
+         0K2KEe0fDMVB89aKvKeR6BCUgzcezJl7hLrdJf/vqMqHs9x4BV0R4zPYxhc2PV+Hg+JX
+         wjwWfmKFLir+pZfWdhU55q3kDXFdJr6x8mfovrVQnracYiYAvNTOlpaiAfGG2uZ8JWbd
+         6S1ZNmEpOTG4Mj6aeCcNbqIwnDfgvk0bt5qIcQw2w6ygc8spMDo3xRseGKcIbrbTzP0B
+         IjGQ==
+X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+        d=1e100.net; s=20161025;
+        h=x-gm-message-state:from:to:cc:subject:date:message-id:mime-version
+         :content-transfer-encoding;
+        bh=3bjJ23k58orvOoas5tPG6uY/RuwdywojuGiQ1D/w8N0=;
+        b=SvYv1n7gpTZuQg8sPZxJeUKZKMWBrwvrpQkNcaixqFnLP8cVlO6e+OfOnqmKjDzIqm
+         khM8qIb7iNTatZMRQubJnEeco9SWVKSKUJOnyPN0LpXXF/GbSYyoi/izf/rUbPXTopbS
+         JjcuuMHQ/qx/1rSWodlMXgzeQ/x7sK1NCmM1/FxIz9vkoybS/lrPu0CfrWa5rXE87ruS
+         0lYZQEXM24wZwd8S0HlBQ2R1xoToZ6nmcnRzVNubRC+R1ftFEKMLTQ5lYgEkpdJGhPmV
+         D5/BYc5Tjwd6M8MHUwmT3MLH5LlOUQh3HL+9TYs0lj+lXHtaF8zz42MBJyanDxSkX55h
+         7Acw==
+X-Gm-Message-State: AOAM532tixM7ff/agng6bnyGTvJGr9GW+d7EGvuzULGcOg0MzZFAqGQX
+        7h2QiTqh8BZxAzDPtyrt+ZE=
+X-Google-Smtp-Source: ABdhPJzzyhYdkmF45p4diU+SwyS9+3TA9fZDgii7v35zNcFgW8gzz9KChmum8XF2qfU/Qw090t4zXw==
+X-Received: by 2002:a1c:7714:: with SMTP id t20mr25828487wmi.186.1600625282949;
+        Sun, 20 Sep 2020 11:08:02 -0700 (PDT)
+Received: from clement-Latitude-7490.numericable.fr (213-245-241-245.rev.numericable.fr. [213.245.241.245])
+        by smtp.gmail.com with ESMTPSA id 18sm15142782wmj.28.2020.09.20.11.08.00
+        (version=TLS1_3 cipher=TLS_AES_256_GCM_SHA384 bits=256/256);
+        Sun, 20 Sep 2020 11:08:01 -0700 (PDT)
+From:   =?UTF-8?q?Cl=C3=A9ment=20P=C3=A9ron?= <peron.clem@gmail.com>
+To:     Maxime Ripard <mripard@kernel.org>, Chen-Yu Tsai <wens@csie.org>,
+        Rob Herring <robh+dt@kernel.org>,
+        Mark Brown <broonie@kernel.org>,
+        Liam Girdwood <lgirdwood@gmail.com>
+Cc:     Jaroslav Kysela <perex@perex.cz>, Takashi Iwai <tiwai@suse.com>,
+        Marcus Cooper <codekipper@gmail.com>,
+        Jernej Skrabec <jernej.skrabec@siol.net>,
+        alsa-devel@alsa-project.org, devicetree@vger.kernel.org,
+        linux-arm-kernel@lists.infradead.org, linux-kernel@vger.kernel.org,
+        linux-sunxi@googlegroups.com,
+        =?UTF-8?q?Cl=C3=A9ment=20P=C3=A9ron?= <peron.clem@gmail.com>
+Subject: [PATCH v3 00/19] Add Allwinner H3/H5/H6/A64 HDMI audio
+Date:   Sun, 20 Sep 2020 20:07:39 +0200
+Message-Id: <20200920180758.592217-1-peron.clem@gmail.com>
+X-Mailer: git-send-email 2.25.1
 MIME-Version: 1.0
+Content-Type: text/plain; charset=UTF-8
 Content-Transfer-Encoding: 8bit
-X-Spam: Yes
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-This adds support for the NanoPi R2S from FriendlyARM.
+Hi,
 
-Rockchip RK3328 SoC
-1GB DDR4 RAM
-Gigabit Ethernet (WAN)
-Gigabit Ethernet (USB3) (LAN)
-USB 2.0 Host Port
-MicroSD slot
-Reset button
-WAN - LAN - SYS LED
+New test done by Maxime using TDM show that's LRCK is indeed inverted
+so I drop the patch reverted in v2.
 
-Signed-off-by: David Bauer <mail@david-bauer.net>
----
-Changes in v3:
- - Rename gmac-clock node
- - Various sorting fixes
- - Rename label for reset button
- - Fix LED pinctrl bracketing
- - Fix ethernet-phy node name
- - add dr_mode property to OTG node
+And HDMI requires an inverted LRCK so let's readd the frame-inversion
+in the device-tree.
 
-Changes in v2:
- - Change model name to FriendlyElec
- - Enable SD UHS modes
- - Add startup delay to SDIO regulator to improve
-   issues reported with some cards
- - Fix PMIC interrupt pin
- - Add pinctrl node for ethernet-PHY
- - Fix various formatting issues
+I have also added a patch to change set_chan_cfg.
 
- arch/arm64/boot/dts/rockchip/Makefile         |   1 +
- .../boot/dts/rockchip/rk3328-nanopi-r2s.dts   | 368 ++++++++++++++++++
- 2 files changed, 369 insertions(+)
- create mode 100644 arch/arm64/boot/dts/rockchip/rk3328-nanopi-r2s.dts
+Please note that I can't test TDM and only have a Allwinner H6.
+So test and comment on other Allwinner chips are welcome!
 
-diff --git a/arch/arm64/boot/dts/rockchip/Makefile b/arch/arm64/boot/dts/rockchip/Makefile
-index b87b1f773083..20055c51e150 100644
---- a/arch/arm64/boot/dts/rockchip/Makefile
-+++ b/arch/arm64/boot/dts/rockchip/Makefile
-@@ -5,6 +5,7 @@ dtb-$(CONFIG_ARCH_ROCKCHIP) += rk3308-roc-cc.dtb
- dtb-$(CONFIG_ARCH_ROCKCHIP) += rk3326-odroid-go2.dtb
- dtb-$(CONFIG_ARCH_ROCKCHIP) += rk3328-a1.dtb
- dtb-$(CONFIG_ARCH_ROCKCHIP) += rk3328-evb.dtb
-+dtb-$(CONFIG_ARCH_ROCKCHIP) += rk3328-nanopi-r2s.dtb
- dtb-$(CONFIG_ARCH_ROCKCHIP) += rk3328-rock64.dtb
- dtb-$(CONFIG_ARCH_ROCKCHIP) += rk3328-roc-cc.dtb
- dtb-$(CONFIG_ARCH_ROCKCHIP) += rk3368-evb-act8846.dtb
-diff --git a/arch/arm64/boot/dts/rockchip/rk3328-nanopi-r2s.dts b/arch/arm64/boot/dts/rockchip/rk3328-nanopi-r2s.dts
-new file mode 100644
-index 000000000000..b9daf89e950a
---- /dev/null
-+++ b/arch/arm64/boot/dts/rockchip/rk3328-nanopi-r2s.dts
-@@ -0,0 +1,368 @@
-+// SPDX-License-Identifier: (GPL-2.0+ OR MIT)
-+/*
-+ * Copyright (c) 2020 David Bauer <mail@david-bauer.net>
-+ */
-+
-+/dts-v1/;
-+
-+#include <dt-bindings/input/input.h>
-+#include <dt-bindings/gpio/gpio.h>
-+#include "rk3328.dtsi"
-+
-+/ {
-+	model = "FriendlyElec NanoPi R2S";
-+	compatible = "friendlyarm,nanopi-r2s", "rockchip,rk3328";
-+
-+	chosen {
-+		stdout-path = "serial2:1500000n8";
-+	};
-+
-+	gmac_clk: gmac-clock {
-+		compatible = "fixed-clock";
-+		clock-frequency = <125000000>;
-+		clock-output-names = "gmac_clk";
-+		#clock-cells = <0>;
-+	};
-+
-+	keys {
-+		compatible = "gpio-keys";
-+		pinctrl-0 = <&reset_button_pin>;
-+		pinctrl-names = "default";
-+
-+		reset {
-+			label = "reset";
-+			gpios = <&gpio0 RK_PA0 GPIO_ACTIVE_LOW>;
-+			linux,code = <KEY_RESTART>;
-+			debounce-interval = <50>;
-+		};
-+	};
-+
-+	leds {
-+		compatible = "gpio-leds";
-+		pinctrl-0 = <&lan_led_pin>,  <&sys_led_pin>, <&wan_led_pin>;
-+		pinctrl-names = "default";
-+
-+		lan_led: led-0 {
-+			gpios = <&gpio2 RK_PB7 GPIO_ACTIVE_HIGH>;
-+			label = "nanopi-r2s:green:lan";
-+		};
-+
-+		sys_led: led-1 {
-+			gpios = <&gpio0 RK_PA2 GPIO_ACTIVE_HIGH>;
-+			label = "nanopi-r2s:red:sys";
-+		};
-+
-+		wan_led: led-2 {
-+			gpios = <&gpio2 RK_PC2 GPIO_ACTIVE_HIGH>;
-+			label = "nanopi-r2s:green:wan";
-+		};
-+	};
-+
-+	vcc_io_sdio: sdmmcio-regulator {
-+		compatible = "regulator-gpio";
-+		enable-active-high;
-+		gpios = <&gpio1 RK_PD4 GPIO_ACTIVE_HIGH>;
-+		pinctrl-0 = <&sdio_vcc_pin>;
-+		pinctrl-names = "default";
-+		regulator-name = "vcc_io_sdio";
-+		regulator-always-on;
-+		regulator-min-microvolt = <1800000>;
-+		regulator-max-microvolt = <3300000>;
-+		regulator-settling-time-us = <5000>;
-+		regulator-type = "voltage";
-+		startup-delay-us = <2000>;
-+		states = <1800000 0x1
-+			  3300000 0x0>;
-+		vin-supply = <&vcc_io_33>;
-+	};
-+
-+	vcc_sd: sdmmc-regulator {
-+		compatible = "regulator-fixed";
-+		gpio = <&gpio0 RK_PD6 GPIO_ACTIVE_LOW>;
-+		pinctrl-0 = <&sdmmc0m1_gpio>;
-+		pinctrl-names = "default";
-+		regulator-name = "vcc_sd";
-+		regulator-boot-on;
-+		regulator-min-microvolt = <3300000>;
-+		regulator-max-microvolt = <3300000>;
-+		vin-supply = <&vcc_io_33>;
-+	};
-+
-+	vdd_5v: vdd-5v {
-+		compatible = "regulator-fixed";
-+		regulator-name = "vdd_5v";
-+		regulator-always-on;
-+		regulator-boot-on;
-+		regulator-min-microvolt = <5000000>;
-+		regulator-max-microvolt = <5000000>;
-+	};
-+};
-+
-+&cpu0 {
-+	cpu-supply = <&vdd_arm>;
-+};
-+
-+&cpu1 {
-+	cpu-supply = <&vdd_arm>;
-+};
-+
-+&cpu2 {
-+	cpu-supply = <&vdd_arm>;
-+};
-+
-+&cpu3 {
-+	cpu-supply = <&vdd_arm>;
-+};
-+
-+&gmac2io {
-+	assigned-clocks = <&cru SCLK_MAC2IO>, <&cru SCLK_MAC2IO_EXT>;
-+	assigned-clock-parents = <&gmac_clk>, <&gmac_clk>;
-+	clock_in_out = "input";
-+	phy-handle = <&rtl8211e>;
-+	phy-mode = "rgmii";
-+	phy-supply = <&vcc_io_33>;
-+	pinctrl-0 = <&rgmiim1_pins>;
-+	pinctrl-names = "default";
-+	rx_delay = <0x18>;
-+	snps,aal;
-+	tx_delay = <0x24>;
-+	status = "okay";
-+
-+	mdio {
-+		compatible = "snps,dwmac-mdio";
-+		#address-cells = <1>;
-+		#size-cells = <0>;
-+
-+		rtl8211e: ethernet-phy@1 {
-+			reg = <1>;
-+			pinctrl-0 = <&eth_phy_reset_pin>;
-+			pinctrl-names = "default";
-+			reset-assert-us = <10000>;
-+			reset-deassert-us = <50000>;
-+			reset-gpios = <&gpio1 RK_PC2 GPIO_ACTIVE_LOW>;
-+		};
-+	};
-+};
-+
-+&i2c1 {
-+	status = "okay";
-+
-+	rk805: pmic@18 {
-+		compatible = "rockchip,rk805";
-+		reg = <0x18>;
-+		interrupt-parent = <&gpio1>;
-+		interrupts = <24 IRQ_TYPE_LEVEL_LOW>;
-+		#clock-cells = <1>;
-+		clock-output-names = "xin32k", "rk805-clkout2";
-+		gpio-controller;
-+		#gpio-cells = <2>;
-+		pinctrl-0 = <&pmic_int_l>;
-+		pinctrl-names = "default";
-+		rockchip,system-power-controller;
-+		wakeup-source;
-+
-+		vcc1-supply = <&vdd_5v>;
-+		vcc2-supply = <&vdd_5v>;
-+		vcc3-supply = <&vdd_5v>;
-+		vcc4-supply = <&vdd_5v>;
-+		vcc5-supply = <&vcc_io_33>;
-+		vcc6-supply = <&vdd_5v>;
-+
-+		regulators {
-+			vdd_log: DCDC_REG1 {
-+				regulator-name = "vdd_log";
-+				regulator-always-on;
-+				regulator-boot-on;
-+				regulator-min-microvolt = <712500>;
-+				regulator-max-microvolt = <1450000>;
-+				regulator-ramp-delay = <12500>;
-+
-+				regulator-state-mem {
-+					regulator-on-in-suspend;
-+					regulator-suspend-microvolt = <1000000>;
-+				};
-+			};
-+
-+			vdd_arm: DCDC_REG2 {
-+				regulator-name = "vdd_arm";
-+				regulator-always-on;
-+				regulator-boot-on;
-+				regulator-min-microvolt = <712500>;
-+				regulator-max-microvolt = <1450000>;
-+				regulator-ramp-delay = <12500>;
-+
-+				regulator-state-mem {
-+					regulator-on-in-suspend;
-+					regulator-suspend-microvolt = <950000>;
-+				};
-+			};
-+
-+			vcc_ddr: DCDC_REG3 {
-+				regulator-name = "vcc_ddr";
-+				regulator-always-on;
-+				regulator-boot-on;
-+
-+				regulator-state-mem {
-+					regulator-on-in-suspend;
-+				};
-+			};
-+
-+			vcc_io_33: DCDC_REG4 {
-+				regulator-name = "vcc_io_33";
-+				regulator-always-on;
-+				regulator-boot-on;
-+				regulator-min-microvolt = <3300000>;
-+				regulator-max-microvolt = <3300000>;
-+
-+				regulator-state-mem {
-+					regulator-on-in-suspend;
-+					regulator-suspend-microvolt = <3300000>;
-+				};
-+			};
-+
-+			vcc_18: LDO_REG1 {
-+				regulator-name = "vcc_18";
-+				regulator-always-on;
-+				regulator-boot-on;
-+				regulator-min-microvolt = <1800000>;
-+				regulator-max-microvolt = <1800000>;
-+
-+				regulator-state-mem {
-+					regulator-on-in-suspend;
-+					regulator-suspend-microvolt = <1800000>;
-+				};
-+			};
-+
-+			vcc18_emmc: LDO_REG2 {
-+				regulator-name = "vcc18_emmc";
-+				regulator-always-on;
-+				regulator-boot-on;
-+				regulator-min-microvolt = <1800000>;
-+				regulator-max-microvolt = <1800000>;
-+
-+				regulator-state-mem {
-+					regulator-on-in-suspend;
-+					regulator-suspend-microvolt = <1800000>;
-+				};
-+			};
-+
-+			vdd_10: LDO_REG3 {
-+				regulator-name = "vdd_10";
-+				regulator-always-on;
-+				regulator-boot-on;
-+				regulator-min-microvolt = <1000000>;
-+				regulator-max-microvolt = <1000000>;
-+
-+				regulator-state-mem {
-+					regulator-on-in-suspend;
-+					regulator-suspend-microvolt = <1000000>;
-+				};
-+			};
-+		};
-+	};
-+};
-+
-+&io_domains {
-+	pmuio-supply = <&vcc_io_33>;
-+	vccio1-supply = <&vcc_io_33>;
-+	vccio2-supply = <&vcc18_emmc>;
-+	vccio3-supply = <&vcc_io_sdio>;
-+	vccio4-supply = <&vcc_18>;
-+	vccio5-supply = <&vcc_io_33>;
-+	vccio6-supply = <&vcc_io_33>;
-+	status = "okay";
-+};
-+
-+&pinctrl {
-+	button {
-+		reset_button_pin: reset-button-pin {
-+			rockchip,pins = <0 RK_PA0 RK_FUNC_GPIO &pcfg_pull_none>;
-+		};
-+	};
-+
-+	ethernet-phy {
-+		eth_phy_reset_pin: eth-phy-reset-pin {
-+			rockchip,pins = <1 RK_PC2 RK_FUNC_GPIO &pcfg_pull_down>;
-+		};
-+	};
-+
-+	leds {
-+		lan_led_pin: lan-led-pin {
-+			rockchip,pins = <2 RK_PB7 RK_FUNC_GPIO &pcfg_pull_none>;
-+		};
-+
-+		sys_led_pin: sys-led-pin {
-+			rockchip,pins = <0 RK_PA2 RK_FUNC_GPIO &pcfg_pull_none>;
-+		};
-+
-+		wan_led_pin: wan-led-pin {
-+			rockchip,pins = <2 RK_PC2 RK_FUNC_GPIO &pcfg_pull_none>;
-+		};
-+	};
-+
-+	pmic {
-+		pmic_int_l: pmic-int-l {
-+			rockchip,pins = <1 RK_PD0 RK_FUNC_GPIO &pcfg_pull_up>;
-+		};
-+	};
-+
-+	sd {
-+		sdio_vcc_pin: sdio-vcc-pin {
-+			rockchip,pins = <1 RK_PD4 RK_FUNC_GPIO &pcfg_pull_up>;
-+		};
-+	};
-+};
-+
-+&pwm2 {
-+	status = "okay";
-+};
-+
-+&sdmmc {
-+	bus-width = <4>;
-+	cap-sd-highspeed;
-+	disable-wp;
-+	pinctrl-0 = <&sdmmc0_clk>, <&sdmmc0_cmd>, <&sdmmc0_dectn>, <&sdmmc0_bus4>;
-+	pinctrl-names = "default";
-+	sd-uhs-sdr12;
-+	sd-uhs-sdr25;
-+	sd-uhs-sdr50;
-+	sd-uhs-sdr104;
-+	vmmc-supply = <&vcc_sd>;
-+	vqmmc-supply = <&vcc_io_sdio>;
-+	status = "okay";
-+};
-+
-+&tsadc {
-+	rockchip,hw-tshut-mode = <0>;
-+	rockchip,hw-tshut-polarity = <0>;
-+	status = "okay";
-+};
-+
-+&u2phy {
-+	status = "okay";
-+};
-+
-+&u2phy_host {
-+	status = "okay";
-+};
-+
-+&u2phy_otg {
-+	status = "okay";
-+};
-+
-+&uart2 {
-+	status = "okay";
-+};
-+
-+&usb20_otg {
-+	status = "okay";
-+	dr_mode = "host";
-+};
-+
-+&usb_host0_ehci {
-+	status = "okay";
-+};
-+
-+&usb_host0_ohci {
-+	status = "okay";
-+};
+Regards,
+Clement
+
+Change since v2:
+- rebase on next-20200918
+- drop revert LRCK polarity patch
+- readd simple-audio-card,frame-inversion in dts
+- Add patch for changing set_chan_cfg params
+
+Change since v1:
+- rebase on next-20200828
+- add revert LRCK polarity
+- remove all simple-audio-card,frame-inversion in dts
+- add Ondrej patches for Orange Pi board
+- Add arm64 defconfig patch
+
+Clément Péron (4):
+  ASoC: sun4i-i2s: Change set_chan_cfg params
+  ASoC: sun4i-i2s: Fix sun8i volatile regs
+  arm64: dts: allwinner: h6: Enable HDMI sound for Beelink GS1
+  arm64: defconfig: Enable Allwinner i2s driver
+
+Jernej Skrabec (3):
+  ASoC: sun4i-i2s: Add support for H6 I2S
+  dt-bindings: ASoC: sun4i-i2s: Add H6 compatible
+  arm64: dts: allwinner: h6: Add HDMI audio node
+
+Marcus Cooper (9):
+  ASoC: sun4i-i2s: Set sign extend sample
+  ASoc: sun4i-i2s: Add 20 and 24 bit support
+  arm: dts: sunxi: h3/h5: Add DAI node for HDMI
+  arm: dts: sunxi: h3/h5: Add HDMI audio
+  arm64: dts: allwinner: a64: Add DAI node for HDMI
+  arm64: dts: allwinner: a64: Add HDMI audio
+  arm: sun8i: h3: Add HDMI audio to Orange Pi 2
+  arm: sun8i: h3: Add HDMI audio to Beelink X2
+  arm64: dts: allwinner: a64: Add HDMI audio to Pine64
+
+Ondrej Jirman (3):
+  arm64: dts: allwinner: Enable HDMI audio on Orange Pi PC 2
+  ARM: dts: sun8i-h3: Enable HDMI audio on Orange Pi PC/One
+  arm64: dts: sun50i-h6-orangepi-3: Enable HDMI audio
+
+ .../sound/allwinner,sun4i-a10-i2s.yaml        |   2 +
+ arch/arm/boot/dts/sun8i-h3-beelink-x2.dts     |   8 +
+ arch/arm/boot/dts/sun8i-h3-orangepi-2.dts     |   8 +
+ arch/arm/boot/dts/sun8i-h3-orangepi-one.dts   |   8 +
+ arch/arm/boot/dts/sun8i-h3-orangepi-pc.dts    |   8 +
+ arch/arm/boot/dts/sunxi-h3-h5.dtsi            |  33 +++
+ .../boot/dts/allwinner/sun50i-a64-pine64.dts  |   8 +
+ arch/arm64/boot/dts/allwinner/sun50i-a64.dtsi |  34 +++
+ .../dts/allwinner/sun50i-h5-orangepi-pc2.dts  |   8 +
+ .../dts/allwinner/sun50i-h6-beelink-gs1.dts   |   8 +
+ .../dts/allwinner/sun50i-h6-orangepi-3.dts    |   8 +
+ arch/arm64/boot/dts/allwinner/sun50i-h6.dtsi  |  33 +++
+ arch/arm64/configs/defconfig                  |   1 +
+ sound/soc/sunxi/sun4i-i2s.c                   | 280 ++++++++++++++++--
+ 14 files changed, 427 insertions(+), 20 deletions(-)
+
 -- 
-2.28.0
+2.25.1
 
