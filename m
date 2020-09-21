@@ -2,55 +2,55 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from vger.kernel.org (vger.kernel.org [23.128.96.18])
-	by mail.lfdr.de (Postfix) with ESMTP id 9027827337B
-	for <lists+devicetree@lfdr.de>; Mon, 21 Sep 2020 22:06:48 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTP id 01F8D273380
+	for <lists+devicetree@lfdr.de>; Mon, 21 Sep 2020 22:07:15 +0200 (CEST)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S1726442AbgIUUGr (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Mon, 21 Sep 2020 16:06:47 -0400
-Received: from lindbergh.monkeyblade.net ([23.128.96.19]:37210 "EHLO
+        id S1726437AbgIUUHL (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Mon, 21 Sep 2020 16:07:11 -0400
+Received: from lindbergh.monkeyblade.net ([23.128.96.19]:37274 "EHLO
         lindbergh.monkeyblade.net" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S1726357AbgIUUGr (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Mon, 21 Sep 2020 16:06:47 -0400
-Received: from mail-pj1-x1042.google.com (mail-pj1-x1042.google.com [IPv6:2607:f8b0:4864:20::1042])
-        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id CB3E6C0613CF
-        for <devicetree@vger.kernel.org>; Mon, 21 Sep 2020 13:06:46 -0700 (PDT)
-Received: by mail-pj1-x1042.google.com with SMTP id md22so372266pjb.0
-        for <devicetree@vger.kernel.org>; Mon, 21 Sep 2020 13:06:46 -0700 (PDT)
+        with ESMTP id S1726441AbgIUUHL (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Mon, 21 Sep 2020 16:07:11 -0400
+Received: from mail-pg1-x542.google.com (mail-pg1-x542.google.com [IPv6:2607:f8b0:4864:20::542])
+        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id C0098C061755
+        for <devicetree@vger.kernel.org>; Mon, 21 Sep 2020 13:07:10 -0700 (PDT)
+Received: by mail-pg1-x542.google.com with SMTP id 7so9962072pgm.11
+        for <devicetree@vger.kernel.org>; Mon, 21 Sep 2020 13:07:10 -0700 (PDT)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
         d=chromium.org; s=google;
         h=mime-version:content-transfer-encoding:in-reply-to:references
          :subject:from:cc:to:date:message-id:user-agent;
-        bh=fk5l1rYUzO0ybCk4A3F2BkR5LYYdanHtPPjxTG5/0d8=;
-        b=WIzdwvasP8t0HrRCu8yc5TdvxQsreyyCYZRlnBUf0JdNhMQd66S71nrJul5hUFJsBG
-         wAscXjDFJvFvh1SVZH1YIMbQ27q4js2I1XSKfwijeCUnDA9wVfrMMQowe1roe7p0rD2S
-         Zj3jaj6qHJumXJG5OXLZ1hHBCJUnUUeQC/wg8=
+        bh=AlaOoj5U8m2P/REWaLVWAETneQOfeX+pZHRa7JtDSF4=;
+        b=f0yBwq9ua+qdjOCG6vn+3kaP22P1cY5PInD+ibNgbd/aHNTT7S8qHE7eFOY3ydNi//
+         /5w79PRdWCAUVjzEB8erGf/nZRM9PcmqT0x2A/pWuwLezPY1tKewYpqzUWRDAebqtG/s
+         U6q0XLN6zkS4oXW3Lw6v/KHVPkP3BS9vZ/mp8=
 X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
         d=1e100.net; s=20161025;
         h=x-gm-message-state:mime-version:content-transfer-encoding
          :in-reply-to:references:subject:from:cc:to:date:message-id
          :user-agent;
-        bh=fk5l1rYUzO0ybCk4A3F2BkR5LYYdanHtPPjxTG5/0d8=;
-        b=kV4YPOTQIsILhI6al1mX/zLrl9z/To9Gw9gsTBzKjvYFym8/hgmSTvgotUMzq5cVZu
-         S5lUN8n09uhVdraYScNzHVkOb3I7OcYKMPCgCacZej3jER8zWe5dVITd7J9VJp/Rfgri
-         taniQK0kukfa+N/Gkwcr6mS4grFuYemxBA270Ad/DVz1SG6FKWP0XdRMcoi3GK/RwRGL
-         PwLPeDfpiVKqVezc+ilVtkAso0mYlLPlpWkzCW3sjq21WEwAzs28Q+rRkd4n892OhQ/O
-         TP5xd6iiwoSmkwmmHvRgSp0THzzap361kT2sjdk1EmicIrcpV17VPYJ/8pg3/cglYyCH
-         0z0w==
-X-Gm-Message-State: AOAM532HSyVjcL38AQ8CFKCnu+pxHGlMiZHPNouz4y7KUbY7zZ8qrJsA
-        +NWW+tQCUUKTo/wq+KydgJxULw==
-X-Google-Smtp-Source: ABdhPJx0cY5Ezo0eFWBoMpO9bhA7K4lcgpnb2b1Kia26kNO3yYGxayjvac+a5aGTNLXOCrBxMpH2mg==
-X-Received: by 2002:a17:90b:4a04:: with SMTP id kk4mr864857pjb.84.1600718806123;
-        Mon, 21 Sep 2020 13:06:46 -0700 (PDT)
+        bh=AlaOoj5U8m2P/REWaLVWAETneQOfeX+pZHRa7JtDSF4=;
+        b=s58bJbSgLrC3YsyVytK56hilmwGANzFn4Uhtu3JqBfqORuOHy8UbsqCfC3cw4cX/Q1
+         p05fZeqnsNWhKWIoCdentLhDbmF7o7fPmk7WaFDtcpDb1vMWz6Cxyi/SLyhG5v8mmRQi
+         RRfOJfDpqK6gxhWkcQutMC+UJ6xvO7OHcP5OB2g0FjLFKMmPSXVH364ufWqarIrVRigH
+         jooIz0MQILYJBi65M4lRyZulJVbh1SmsE2DWUwcLciN7TFsbITjWZ0PaDOCwrB2Ox3GI
+         /xs+wuVojrOyW8eAXC8eLiarYQWTvMY1yJ+trX2u8HXgHnln+RUoCbEHKkmnWeEjuEKg
+         b03A==
+X-Gm-Message-State: AOAM5335DMAOMkU7wa5+D7+uTMfyvWVeO4TtV5i6tS6XmIBvraAiMr8X
+        rtp/9WNj6JZQP1cYQo4aGVwD3w==
+X-Google-Smtp-Source: ABdhPJxddrWMwrfYN0JMc7XwtqcK/4YMKiP3KYQmU9PGpgN7qWprcAbkvUC+EF7+rsNBDcVst4acZA==
+X-Received: by 2002:a63:eb58:: with SMTP id b24mr972895pgk.178.1600718830284;
+        Mon, 21 Sep 2020 13:07:10 -0700 (PDT)
 Received: from chromium.org ([2620:15c:202:1:3e52:82ff:fe6c:83ab])
-        by smtp.gmail.com with ESMTPSA id x62sm3794171pfx.20.2020.09.21.13.06.44
+        by smtp.gmail.com with ESMTPSA id f18sm13938548pfe.153.2020.09.21.13.07.09
         (version=TLS1_3 cipher=TLS_AES_256_GCM_SHA384 bits=256/256);
-        Mon, 21 Sep 2020 13:06:45 -0700 (PDT)
+        Mon, 21 Sep 2020 13:07:09 -0700 (PDT)
 Content-Type: text/plain; charset="utf-8"
 MIME-Version: 1.0
 Content-Transfer-Encoding: quoted-printable
-In-Reply-To: <20200918174511.v2.1.I997a428f58ef9d48b37a27a028360f34e66c00ec@changeid>
-References: <20200918174511.v2.1.I997a428f58ef9d48b37a27a028360f34e66c00ec@changeid>
-Subject: Re: [PATCH v2 1/2] arm64: dts: qcom: sc7180: Provide pinconf for SPI to use GPIO for CS
+In-Reply-To: <20200918174512.v2.2.I3c57d8b6d83d5bdad73a413eea1e249a98d11973@changeid>
+References: <20200918174511.v2.1.I997a428f58ef9d48b37a27a028360f34e66c00ec@changeid> <20200918174512.v2.2.I3c57d8b6d83d5bdad73a413eea1e249a98d11973@changeid>
+Subject: Re: [PATCH v2 2/2] arm64: dts: qcom: Switch sc7180-trogdor to control SPI CS via GPIO
 From:   Stephen Boyd <swboyd@chromium.org>
 Cc:     linux-arm-msm@vger.kernel.org, akashast@codeaurora.org,
         Douglas Anderson <dianders@chromium.org>,
@@ -59,98 +59,21 @@ Cc:     linux-arm-msm@vger.kernel.org, akashast@codeaurora.org,
 To:     Andy Gross <agross@kernel.org>,
         Bjorn Andersson <bjorn.andersson@linaro.org>,
         Douglas Anderson <dianders@chromium.org>
-Date:   Mon, 21 Sep 2020 13:06:43 -0700
-Message-ID: <160071880378.4188128.9400472825927726259@swboyd.mtv.corp.google.com>
+Date:   Mon, 21 Sep 2020 13:07:08 -0700
+Message-ID: <160071882844.4188128.5172158545089744293@swboyd.mtv.corp.google.com>
 User-Agent: alot/0.9.1
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-Quoting Douglas Anderson (2020-09-18 17:45:27)
-> When the chip select line is controlled by the QUP, changing CS is a
-> time consuming operation.  We have to send a command over to the geni
-> and wait for it to Ack us every time we want to change (both making it
-> high and low).  To send this command we have to make a choice in
-> software when we want to control the chip select, we have to either:
-> A) Wait for the Ack via interrupt which slows down all SPI transfers
->    (and incurrs extra processing associated with interrupts).
-> B) Sit in a loop and poll, waiting for the Ack.
->=20
-> Neither A) nor B) is a great option.
->=20
-> We can avoid all of this by realizing that, at least on some boards,
-> there is no advantage of considering this line to be a geni line.
-> While it's true that geni _can_ control the line, it's also true that
-> the line can be a GPIO and there is no downside of viewing it that
-> way.  Setting a GPIO is a simple MMIO operation.
->=20
-> This patch provides definitions so a board can easily select the GPIO
-> mode.
->=20
-> NOTE: apparently, it's possible to run the geni in "GSI" mode.  In GSI
-> the SPI port is allowed to be controlled by more than one user (like
-> firmware and Linux) and also the port can operate sequences of
-> operations in one go.  In GSI mode it _would_ be invalid to look at
-> the chip select as a GPIO because that would prevent other users from
-> using it.  In theory GSI mode would also avoid some overhead by
-> allowing us to sequence the chip select better.  However, I'll argue
-> GSI is not relevant for all boards (and certainly not any boards
-> supported by mainline today).  Why?
-> - Apparently to run a SPI chip in GSI mode you need to initialize it
->   (in the bootloader) with a different firmware and then it will
->   always run in GSI mode.  Since there is no support for GSI mode in
->   the current Linux driver, it must be that existing boards don't have
->   firmware that's doing that.  Note that the kernel device tree
->   describes hardware but also firmware, so it is legitimate to make
->   the assumption that we don't have GSI firmware in a given dts file.
-> - Some boards with sc7180 have SPI connected to the Chrome OS EC or
->   security chip (Cr50).  The protocols for talking to cros_ec and cr50
->   are extremely complex.  Both drivers in Linux fully lock the bus
->   across several distinct SPI transfers.  While I am not an expert on
->   GSI mode it feels highly unlikely to me that we'd ever be able to
->   enable GSI mode for these devices.
->=20
-> From a testing perspective, running "flashrom -p ec -r /tmp/foo.bin"
-> in a loop after this patch shows almost no reduction in time, but the
-> number of interrupts per command goes from 32357 down to 30611 (about
-> a 5% reduction).
+Quoting Douglas Anderson (2020-09-18 17:45:28)
+> As talked about in the patch ("arm64: dts: qcom: sc7180: Provide
+> pinconf for SPI to use GPIO for CS"), on some boards it makes much
+> more sense (and is much more efficient) to think of the SPI Chip
+> Select as a GPIO.  Trogdor is one such board where the SPI parts don't
+> run in GSI mode and we do a lot of SPI traffic.
 >=20
 > Signed-off-by: Douglas Anderson <dianders@chromium.org>
 > ---
 
 Reviewed-by: Stephen Boyd <swboyd@chromium.org>
-
->=20
-> Changes in v2:
-> - Now just add the pinctrl; let a board use it.
->=20
->  arch/arm64/boot/dts/qcom/sc7180.dtsi | 96 ++++++++++++++++++++++++++++
->  1 file changed, 96 insertions(+)
->=20
-> diff --git a/arch/arm64/boot/dts/qcom/sc7180.dtsi b/arch/arm64/boot/dts/q=
-com/sc7180.dtsi
-> index 6678f1e8e395..0534122b9a3c 100644
-> --- a/arch/arm64/boot/dts/qcom/sc7180.dtsi
-> +++ b/arch/arm64/boot/dts/qcom/sc7180.dtsi
-> @@ -1595,6 +1595,18 @@ pinmux {
->                                 };
->                         };
-> =20
-> +                       qup_spi0_cs_gpio: qup-spi0-cs-gpio {
-> +                               pinmux {
-> +                                       pins =3D "gpio34", "gpio35",
-> +                                              "gpio36";
-> +                                       function =3D "qup00";
-> +                               };
-> +                               pinmux-cs {
-
-Style nit: Add a newline between nodes?
-
-> +                                       pins =3D "gpio37";
-> +                                       function =3D "gpio";
-> +                               };
-> +                       };
-> +
->                         qup_spi1_default: qup-spi1-default {
->                                 pinmux {
->                                         pins =3D "gpio0", "gpio1",
