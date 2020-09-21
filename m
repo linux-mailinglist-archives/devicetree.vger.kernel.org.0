@@ -2,86 +2,122 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from vger.kernel.org (vger.kernel.org [23.128.96.18])
-	by mail.lfdr.de (Postfix) with ESMTP id 55CAD271F18
-	for <lists+devicetree@lfdr.de>; Mon, 21 Sep 2020 11:42:51 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTP id 8BD0C271F2A
+	for <lists+devicetree@lfdr.de>; Mon, 21 Sep 2020 11:46:06 +0200 (CEST)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S1726477AbgIUJmt (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Mon, 21 Sep 2020 05:42:49 -0400
-Received: from mail.kernel.org ([198.145.29.99]:60522 "EHLO mail.kernel.org"
-        rhost-flags-OK-OK-OK-OK) by vger.kernel.org with ESMTP
-        id S1726413AbgIUJmp (ORCPT <rfc822;devicetree@vger.kernel.org>);
-        Mon, 21 Sep 2020 05:42:45 -0400
-Received: from localhost (p5486cf2a.dip0.t-ipconnect.de [84.134.207.42])
-        (using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
-        (No client certificate requested)
-        by mail.kernel.org (Postfix) with ESMTPSA id 48BBA2193E;
-        Mon, 21 Sep 2020 09:42:44 +0000 (UTC)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=kernel.org;
-        s=default; t=1600681365;
-        bh=bSPpM6v2oN0kCS5RhMq8MpHzKLfiO04u52Zf2F2Y+JY=;
-        h=Date:From:To:Cc:Subject:References:In-Reply-To:From;
-        b=IJHKbO1LM2l9G5UC5q1wKV5LXHp2nOI28VOazyCsX6gQfn2RgPNfOpIFV15NBOMdy
-         YklM+e4Bqd2BbgFBhDgccimNNE83V/PDnsmk7s6E2Rb3fyrF883DhMiZnQJxT/wBdG
-         YVp+YXRat8Z7al/il/rVzmFo3WSmz/ShWmCtxg4c=
-Date:   Mon, 21 Sep 2020 11:42:41 +0200
-From:   Wolfram Sang <wsa@kernel.org>
-To:     Rob Herring <robh@kernel.org>
-Cc:     Paul Cercueil <paul@crapouillou.net>, od@zcrc.me,
-        Linux I2C <linux-i2c@vger.kernel.org>,
-        devicetree@vger.kernel.org,
-        "linux-kernel@vger.kernel.org" <linux-kernel@vger.kernel.org>
-Subject: Re: [PATCH 3/3] i2c: jz4780: Remove of_match_ptr()
-Message-ID: <20200921094241.GK1840@ninjato>
-References: <20200904131152.17390-1-paul@crapouillou.net>
- <20200904131152.17390-3-paul@crapouillou.net>
- <20200914221230.GA349829@bogus>
- <CS2PGQ.I4UMQBYTB15I2@crapouillou.net>
- <CAL_JsqLUSZFf_3zgFrapc7vJETG9+XDTZPtD_yEBvi4GO3xPSA@mail.gmail.com>
- <EGJPGQ.QVHGTYQDQR872@crapouillou.net>
- <CAL_Jsq+O7YD+WuABOMvWT-uyuDvt6L9wQmeFunR-z4RpXLFo2A@mail.gmail.com>
+        id S1726413AbgIUJqF (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Mon, 21 Sep 2020 05:46:05 -0400
+Received: from lindbergh.monkeyblade.net ([23.128.96.19]:53688 "EHLO
+        lindbergh.monkeyblade.net" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
+        with ESMTP id S1726355AbgIUJqE (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Mon, 21 Sep 2020 05:46:04 -0400
+Received: from mail-wr1-x442.google.com (mail-wr1-x442.google.com [IPv6:2a00:1450:4864:20::442])
+        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 81584C061755;
+        Mon, 21 Sep 2020 02:46:04 -0700 (PDT)
+Received: by mail-wr1-x442.google.com with SMTP id o5so11988048wrn.13;
+        Mon, 21 Sep 2020 02:46:04 -0700 (PDT)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+        d=gmail.com; s=20161025;
+        h=subject:to:references:from:message-id:date:user-agent:mime-version
+         :in-reply-to:content-language:content-transfer-encoding;
+        bh=10MZ+wZvlSGpLMLJeIkgsqILP3ii9lT0DDHtw+L14VY=;
+        b=eiCBPrtDbQz9fZpSRMUVbN6HVT+LTVz2w9MZX2zQfNgGbnCdcsn5WeyL8Qcx5+1g8T
+         9f872qU2PLofzXy9DUTawLWrew/J7qTtkZTiRDYSaXvhieK4GNA58JQuLyrVGsoZfrN3
+         yARyCoQqcCMVcFeWbC7kCcoWTdc7VsnaJYVp57FQSbfWTL5qUgWpqetSd7kJsmpq3Tl1
+         O/dQqLtq1BJZu6cjPVEFpNbG0wN7JiEh/rq+O3muezrENYoo4tjwNy84IQgCoWkCY3mA
+         3nIGirFmE95me64ZAnC4fcEnl9s6YyR2ypK6aQPvSH8C1tLyRsTKX6KU2vjoW94K3Hwb
+         N/Ng==
+X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+        d=1e100.net; s=20161025;
+        h=x-gm-message-state:subject:to:references:from:message-id:date
+         :user-agent:mime-version:in-reply-to:content-language
+         :content-transfer-encoding;
+        bh=10MZ+wZvlSGpLMLJeIkgsqILP3ii9lT0DDHtw+L14VY=;
+        b=ft4moxNc3nqhZaXFZU27B7f3cMPuMJARZofoTuAu648/T3genp9reTBBvAKEKjyB7P
+         IvSQluX8IKysGs/7r5IsYGN83LKNWivopJ+Ce1oBucuBbupbpFxJa7Xvui2S5UnADqpd
+         pmak/OBbtkZWvVTgsInV59I6ssAq8oWcxJMwOGyuFwzMEm2Hr42Z7BXdYz90DlBE4YKw
+         uR1agkpDv+nW6mrTf5vBF/1Bzu1IXwUKQ9YtedJNk4c9bHNiyXBs787KIYS6Y67BII8g
+         0FxSvFE8LMVwut8U53oJjeU7PujczGCwHxKgwgsFFfl2nv80vAuj0l9/p9iaCQXABFuS
+         p7qw==
+X-Gm-Message-State: AOAM533bltQgJY823R29XIwJ50BHPinw+DjtLXhwivPh9q7B8j0a/yur
+        ftdy5pzGvQa2tfkgZWCp77bhMdS5sxLpzQ==
+X-Google-Smtp-Source: ABdhPJznDhgMre1h2yMv5CA2MkQwbd2x1oCcy4YKpIiOFgYsBiNKv6yfhzZXlH8PLSlsOD0bvbtTBA==
+X-Received: by 2002:a5d:4c88:: with SMTP id z8mr51052257wrs.218.1600681562851;
+        Mon, 21 Sep 2020 02:46:02 -0700 (PDT)
+Received: from ziggy.stardust ([213.195.113.201])
+        by smtp.gmail.com with ESMTPSA id t202sm19475945wmt.14.2020.09.21.02.46.01
+        (version=TLS1_3 cipher=TLS_AES_128_GCM_SHA256 bits=128/128);
+        Mon, 21 Sep 2020 02:46:02 -0700 (PDT)
+Subject: Re: [PATCH v2 03/15] arm64: dts: mediatek: fix tca6416 reset GPIOs in
+ pumpkin
+To:     Krzysztof Kozlowski <krzk@kernel.org>,
+        Linus Walleij <linus.walleij@linaro.org>,
+        Bartosz Golaszewski <bgolaszewski@baylibre.com>,
+        Rob Herring <robh+dt@kernel.org>,
+        =?UTF-8?Q?Beno=c3=aet_Cousson?= <bcousson@baylibre.com>,
+        Tony Lindgren <tony@atomide.com>,
+        Russell King <linux@armlinux.org.uk>,
+        Jason Cooper <jason@lakedaemon.net>,
+        Andrew Lunn <andrew@lunn.ch>,
+        Gregory Clement <gregory.clement@bootlin.com>,
+        Sebastian Hesselbarth <sebastian.hesselbarth@gmail.com>,
+        Joel Stanley <joel@jms.id.au>,
+        Andrew Jeffery <andrew@aj.id.au>,
+        Shawn Guo <shawnguo@kernel.org>,
+        Sascha Hauer <s.hauer@pengutronix.de>,
+        Pengutronix Kernel Team <kernel@pengutronix.de>,
+        NXP Linux Team <linux-imx@nxp.com>,
+        Geert Uytterhoeven <geert+renesas@glider.be>,
+        Magnus Damm <magnus.damm@gmail.com>,
+        Tero Kristo <t-kristo@ti.com>, Nishanth Menon <nm@ti.com>,
+        Michal Simek <michal.simek@xilinx.com>,
+        Guenter Roeck <linux@roeck-us.net>, devicetree@vger.kernel.org,
+        linux-kernel@vger.kernel.org, linux-omap@vger.kernel.org,
+        linux-arm-kernel@lists.infradead.org,
+        linux-aspeed@lists.ozlabs.org, linux-mediatek@lists.infradead.org,
+        linux-renesas-soc@vger.kernel.org
+References: <20200910175733.11046-1-krzk@kernel.org>
+ <20200910175733.11046-4-krzk@kernel.org>
+From:   Matthias Brugger <matthias.bgg@gmail.com>
+Message-ID: <911e34dc-3516-d15d-89d6-1e234e9309f6@gmail.com>
+Date:   Mon, 21 Sep 2020 11:46:00 +0200
+User-Agent: Mozilla/5.0 (X11; Linux x86_64; rv:68.0) Gecko/20100101
+ Thunderbird/68.12.0
 MIME-Version: 1.0
-Content-Type: multipart/signed; micalg=pgp-sha512;
-        protocol="application/pgp-signature"; boundary="VJJoKLVEFXdmHQwR"
-Content-Disposition: inline
-In-Reply-To: <CAL_Jsq+O7YD+WuABOMvWT-uyuDvt6L9wQmeFunR-z4RpXLFo2A@mail.gmail.com>
-User-Agent: Mutt/1.10.1 (2018-07-13)
+In-Reply-To: <20200910175733.11046-4-krzk@kernel.org>
+Content-Type: text/plain; charset=utf-8; format=flowed
+Content-Language: en-US
+Content-Transfer-Encoding: 7bit
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
 
---VJJoKLVEFXdmHQwR
-Content-Type: text/plain; charset=us-ascii
-Content-Disposition: inline
 
+On 10/09/2020 19:57, Krzysztof Kozlowski wrote:
+> Correct the property for reset GPIOs of tca6416 GPIO expander.
+> 
+> Signed-off-by: Krzysztof Kozlowski <krzk@kernel.org>
 
-> Indeed, because jz4780_i2c_of_matches isn't within a CONFIG_OF ifdef
-> as is sometimes done and is when you need of_match_ptr(). IMO, the
-> commit msg should have something like "The driver is only used with
-> CONFIG_OF enabled, so of_match_ptr() is not necessary.
-> jz4780_i2c_of_matches is always defined."
+Applied to v5.9-next/dts64
 
-I think the commit message says that good enough.
+Thanks!
 
-
---VJJoKLVEFXdmHQwR
-Content-Type: application/pgp-signature; name="signature.asc"
-
------BEGIN PGP SIGNATURE-----
-
-iQIzBAABCgAdFiEEOZGx6rniZ1Gk92RdFA3kzBSgKbYFAl9odZEACgkQFA3kzBSg
-KbY3nA/+I7oBIIp7rxs13IUmzsF9rFSmIEr2J6LSEr5m0yaCyHAzeVUifeQk2xmQ
-NOuORcACFMQOdikgL0IVYZSPKFdyirDOF5y+dm0BZq7IwwTp1d7Ig8fGuGiseQR3
-tle02JPxk7+toyN//CKJ/QIR8AWbRVEeOQKSgu3BqpUnJW2vno5Kfukzr/f2kxXa
-QqICZDsMjjTZdG1vwMj8OiqQLfonxpMKUKt46Q61ShwyrhrnnIEF77d2PBnXvr9r
-sV6HVhzHK2NBa/z2vgyZrQFYagoCrVV+xvjfKEXggOPm5e0Hg+MYo5srIWRq+OcL
-tgiLcq03ikq7+c33NMNbmXQzG7TECvIwNjMECmTKElK0OyfCq+60Ds7c1fPOJZMr
-yhVnDVXbJDx0khAHK76bBQaxpVx4vvsHkYkwFQL5rr+NRDvHfGmOv2HCkcE8uW+v
-c7BpbpYBM7KYlk1bPH07U8ORbvehMRst/gOwvtLtv0k7SRRPNasyft+Ec7hpwxya
-RdKDbB3V+Iu8Ro7c18mUiJ5N0Pr49TVWSA42tTqUhRK63RasC/d9IOsB6sUyIc+C
-4FUP0rQHoCPyF0UXTd56y7+Kdrth4oM+8ZF9W0NEqIVSFEGEGRBwd6hNGZfPiIKD
-AoiOkdJu4oOlAeV2PfNMSia3AulKmhy7S1/0eeM+8Xe7M1qvdcY=
-=8xKt
------END PGP SIGNATURE-----
-
---VJJoKLVEFXdmHQwR--
+> ---
+>   arch/arm64/boot/dts/mediatek/pumpkin-common.dtsi | 2 +-
+>   1 file changed, 1 insertion(+), 1 deletion(-)
+> 
+> diff --git a/arch/arm64/boot/dts/mediatek/pumpkin-common.dtsi b/arch/arm64/boot/dts/mediatek/pumpkin-common.dtsi
+> index dfceffe6950a..29d8cf6df46b 100644
+> --- a/arch/arm64/boot/dts/mediatek/pumpkin-common.dtsi
+> +++ b/arch/arm64/boot/dts/mediatek/pumpkin-common.dtsi
+> @@ -56,7 +56,7 @@
+>   	tca6416: gpio@20 {
+>   		compatible = "ti,tca6416";
+>   		reg = <0x20>;
+> -		rst-gpio = <&pio 65 GPIO_ACTIVE_HIGH>;
+> +		reset-gpios = <&pio 65 GPIO_ACTIVE_HIGH>;
+>   		pinctrl-names = "default";
+>   		pinctrl-0 = <&tca6416_pins>;
+>   
+> 
