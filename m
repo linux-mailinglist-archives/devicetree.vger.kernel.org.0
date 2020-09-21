@@ -2,111 +2,157 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from vger.kernel.org (vger.kernel.org [23.128.96.18])
-	by mail.lfdr.de (Postfix) with ESMTP id 546F6271FBC
-	for <lists+devicetree@lfdr.de>; Mon, 21 Sep 2020 12:10:50 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTP id 464D92720E4
+	for <lists+devicetree@lfdr.de>; Mon, 21 Sep 2020 12:27:38 +0200 (CEST)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S1726483AbgIUKKt (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Mon, 21 Sep 2020 06:10:49 -0400
-Received: from lindbergh.monkeyblade.net ([23.128.96.19]:57488 "EHLO
+        id S1726358AbgIUK1h (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Mon, 21 Sep 2020 06:27:37 -0400
+Received: from lindbergh.monkeyblade.net ([23.128.96.19]:60218 "EHLO
         lindbergh.monkeyblade.net" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S1726326AbgIUKKt (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Mon, 21 Sep 2020 06:10:49 -0400
-Received: from mail-wm1-x341.google.com (mail-wm1-x341.google.com [IPv6:2a00:1450:4864:20::341])
-        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id C4814C061755;
-        Mon, 21 Sep 2020 03:10:48 -0700 (PDT)
-Received: by mail-wm1-x341.google.com with SMTP id d4so11532546wmd.5;
-        Mon, 21 Sep 2020 03:10:48 -0700 (PDT)
+        with ESMTP id S1726353AbgIUK1g (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Mon, 21 Sep 2020 06:27:36 -0400
+Received: from mail-wm1-x344.google.com (mail-wm1-x344.google.com [IPv6:2a00:1450:4864:20::344])
+        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 80BCFC061755;
+        Mon, 21 Sep 2020 03:27:36 -0700 (PDT)
+Received: by mail-wm1-x344.google.com with SMTP id a9so12064112wmm.2;
+        Mon, 21 Sep 2020 03:27:36 -0700 (PDT)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
         d=gmail.com; s=20161025;
-        h=subject:to:cc:references:from:message-id:date:user-agent
-         :mime-version:in-reply-to:content-language:content-transfer-encoding;
-        bh=hF5Xe4zuKeuDnftfLSzTw6Ue5+aphrBIG5w4rc4SzI0=;
-        b=KUDrcCnEC87hUXdHNGKHpmSN4RGpG4lGfUYnkcSIU+/DMB5UNxDLHnLgPXAfsdn1H5
-         6ltC8XD5HE3eMaTQyPwLEVwHXFeWldTFjtofSfWrvr4Wht6pOyAoOcYj6KVtyv5oG+bZ
-         ebKkDc5tiva0tFYGiDFVNK5Hbr7KZvacHLithwz7jB8hgg/qLUBx56eS5VQZI8CAAG2b
-         GrvN7R3zK0BhGTG1Dyy7e1b6dET+ZXKs+rb3B348qkowBv2KlJR7u5yhfHcLNLtc+49/
-         rpfCdwOJHKF8oLy5+FuQwQxL5NzVH3z5c6zD4X3ftvmQrzS4HeEsUXBqutxFkW+Du2Qr
-         iecQ==
+        h=from:to:cc:subject:date:message-id:mime-version
+         :content-transfer-encoding;
+        bh=x2WLEdeeGcltAWo8WKHO00MVpZ/wRFMHljgIRKBGWy4=;
+        b=Iz+Z733TJ1+3EQ02j3WYFm6pns0QaBjrQebc820NfBFhOCixG28nAEyxfY87Z2y+VY
+         VHkmUoAEt3oGiaGtiPPKwRVEjQJuWRg/S3TcfRXAFkR7yFeZbSNzPHhS5g65WFK7dDXs
+         bQPtHUg1KJo3xt3jkyWiIDMEcBO5RyHNQA3EOEpEwviaUDqJ3cqDHcOHzbESinW4JV2b
+         BZUYom/D+V4v1i7yBtCWIOhcEURWhgcVkOwtDIVOzIuPSd9yPhIplpYPxBMTkgdVDsuB
+         2wzvcQ34rm2vtfsfaZytDRTgyBjJ3QhmlVXtmi5CCL5/xOv7Wo49+qfQupsJavqEDGG2
+         RENA==
 X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
         d=1e100.net; s=20161025;
-        h=x-gm-message-state:subject:to:cc:references:from:message-id:date
-         :user-agent:mime-version:in-reply-to:content-language
+        h=x-gm-message-state:from:to:cc:subject:date:message-id:mime-version
          :content-transfer-encoding;
-        bh=hF5Xe4zuKeuDnftfLSzTw6Ue5+aphrBIG5w4rc4SzI0=;
-        b=pANrfQOlb5r+6kH4Jza7fSSGcNOd+EoP4WNxTKh1yZqTdQ2Nfl0sf3Wg19TRkFnPZn
-         KDAsUDuAkRqcI0Qxi9VauClPsuX+TKpzkVQLfo2HAnLije1/szQ6F/rBeQ7jNVpdaSlZ
-         hAGSZKp6NjSVZ48vwd8SQtNggKVGO8q3mvtV+/c5sweRspC5wfk/9nxl7h8cTc7a/xcu
-         poUeHrDhH78fIjg+PcQQ47SJCzBkvQs++gOz/aHf6p+lP62/BQ21t0N83SXG0X5C0vwx
-         iX8mUbb5MujBqTzAiFzcj4tsEwG5hmgT2Y+6YXw9btpofCftqyYIT7Ed+dm1LKho/1Ln
-         Us8w==
-X-Gm-Message-State: AOAM53194NzQwc4KrORWUQC4fLBdVrn3RDkYlHQ6nB10UdDTXunfJ1Qp
-        vDTN+uVb57/gjjymeryTvMe211lLbAurrA==
-X-Google-Smtp-Source: ABdhPJy7EAdglywRorZS0QXaRmHGvnMqSYV56C3XdsnhvA/r8oTtCwgePUVMY+s1rH1ltxcbV1Oecg==
-X-Received: by 2002:a1c:e108:: with SMTP id y8mr29357116wmg.179.1600683047430;
-        Mon, 21 Sep 2020 03:10:47 -0700 (PDT)
-Received: from ziggy.stardust ([213.195.113.201])
-        by smtp.gmail.com with ESMTPSA id y5sm19753599wrh.6.2020.09.21.03.10.45
-        (version=TLS1_3 cipher=TLS_AES_128_GCM_SHA256 bits=128/128);
-        Mon, 21 Sep 2020 03:10:46 -0700 (PDT)
-Subject: Re: [PATCH net-next v5 0/6] net-next: dsa: mt7530: add support for
- MT7531
-To:     David Miller <davem@davemloft.net>, landen.chao@mediatek.com
-Cc:     andrew@lunn.ch, vivien.didelot@gmail.com, f.fainelli@gmail.com,
-        kuba@kernel.org, robh+dt@kernel.org, sean.wang@mediatek.com,
-        p.zabel@pengutronix.de, linux@armlinux.org.uk,
-        netdev@vger.kernel.org, devicetree@vger.kernel.org,
-        linux-arm-kernel@lists.infradead.org,
-        linux-mediatek@lists.infradead.org, linux-kernel@vger.kernel.org,
-        frank-w@public-files.de, opensource@vdorst.com, dqfext@gmail.com
-References: <cover.1599829696.git.landen.chao@mediatek.com>
- <20200914.163228.1898649357949030454.davem@davemloft.net>
-From:   Matthias Brugger <matthias.bgg@gmail.com>
-Message-ID: <c485e60e-21af-ffd3-856c-dbfd497cf6f0@gmail.com>
-Date:   Mon, 21 Sep 2020 12:10:45 +0200
-User-Agent: Mozilla/5.0 (X11; Linux x86_64; rv:68.0) Gecko/20100101
- Thunderbird/68.12.0
+        bh=x2WLEdeeGcltAWo8WKHO00MVpZ/wRFMHljgIRKBGWy4=;
+        b=mFwklvAKmHsS7mDkPLi1tOlLzNY2EWtVMw/ArSLbVo39OyyRP5L8qfQHxQzI6gS4jn
+         Ato0NhwnlGcl/oRnN4hZHk2mobDx5NCCoC0V9fugraJi+BPFoZmxz1N0ghmF7QAzfUrZ
+         j/JhcUSlz9H9LbN01HvCa9dx7PrOdOOO8Qo/nEzYoQu/tMfs76wr4e5mawrBNBU9L+cp
+         Qrst832REb0yUj6jlZKZScSQwZOFIzlCwBQNIO+OgpjNtNH/Z7dUeLGP86ivkuiQlk1O
+         1Um3MOBwmQwy0TpTg1YjB5vFoOwOtXa/jjX+dP7wNWthfKL+9ZUu38bbH/vgHzwCJzR9
+         fBaw==
+X-Gm-Message-State: AOAM531z3BihJzMz3sQUqvNyvxZT+vwsE4+XMqwMkuBg4Q+hbhn8ANug
+        xglIJzqvE8dHChtsRRdcr3f1UxkpOrfSpTKc
+X-Google-Smtp-Source: ABdhPJw0iTYMGy5cZtIp9s0Ds4et/1goix1pDoK1k9qkOojOrT/4rfrt/9Uh470FTX8QZVSXHHZH8A==
+X-Received: by 2002:a7b:c0ca:: with SMTP id s10mr29366124wmh.103.1600684054964;
+        Mon, 21 Sep 2020 03:27:34 -0700 (PDT)
+Received: from localhost.localdomain (lputeaux-656-1-11-33.w82-127.abo.wanadoo.fr. [82.127.142.33])
+        by smtp.gmail.com with ESMTPSA id h2sm20713774wrp.69.2020.09.21.03.27.34
+        (version=TLS1_3 cipher=TLS_AES_256_GCM_SHA384 bits=256/256);
+        Mon, 21 Sep 2020 03:27:34 -0700 (PDT)
+From:   =?UTF-8?q?Cl=C3=A9ment=20P=C3=A9ron?= <peron.clem@gmail.com>
+To:     Maxime Ripard <mripard@kernel.org>, Chen-Yu Tsai <wens@csie.org>,
+        Rob Herring <robh+dt@kernel.org>,
+        Mark Brown <broonie@kernel.org>,
+        Liam Girdwood <lgirdwood@gmail.com>
+Cc:     Jaroslav Kysela <perex@perex.cz>, Takashi Iwai <tiwai@suse.com>,
+        Marcus Cooper <codekipper@gmail.com>,
+        Jernej Skrabec <jernej.skrabec@siol.net>,
+        alsa-devel@alsa-project.org, devicetree@vger.kernel.org,
+        linux-arm-kernel@lists.infradead.org, linux-kernel@vger.kernel.org,
+        linux-sunxi@googlegroups.com,
+        =?UTF-8?q?Cl=C3=A9ment=20P=C3=A9ron?= <peron.clem@gmail.com>
+Subject: [PATCH v4 00/22] Add Allwinner H3/H5/H6/A64 HDMI audio
+Date:   Mon, 21 Sep 2020 12:27:09 +0200
+Message-Id: <20200921102731.747736-1-peron.clem@gmail.com>
+X-Mailer: git-send-email 2.25.1
 MIME-Version: 1.0
-In-Reply-To: <20200914.163228.1898649357949030454.davem@davemloft.net>
-Content-Type: text/plain; charset=utf-8; format=flowed
-Content-Language: en-US
-Content-Transfer-Encoding: 7bit
+Content-Type: text/plain; charset=UTF-8
+Content-Transfer-Encoding: 8bit
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
+Hi,
 
+New test done by Maxime using TDM show that's LRCK is indeed inverted
+so I drop the patch reverted in v2.
 
-On 15/09/2020 01:32, David Miller wrote:
-> From: Landen Chao <landen.chao@mediatek.com>
-> Date: Fri, 11 Sep 2020 21:48:50 +0800
-> 
->> This patch series adds support for MT7531.
->>
->> MT7531 is the next generation of MT7530 which could be found on Mediatek
->> router platforms such as MT7622 or MT7629.
->>
->> It is also a 7-ports switch with 5 giga embedded phys, 2 cpu ports, and
->> the same MAC logic of MT7530. Cpu port 6 only supports SGMII interface.
->> Cpu port 5 supports either RGMII or SGMII in different HW SKU, but cannot
->> be muxed to PHY of port 0/4 like mt7530. Due to support for SGMII
->> interface, pll, and pad setting are different from MT7530.
->>
->> MT7531 SGMII interface can be configured in following mode:
->> - 'SGMII AN mode' with in-band negotiation capability
->>      which is compatible with PHY_INTERFACE_MODE_SGMII.
->> - 'SGMII force mode' without in-band negotiation
->>      which is compatible with 10B/8B encoding of
->>      PHY_INTERFACE_MODE_1000BASEX with fixed full-duplex and fixed pause.
->> - 2.5 times faster clocked 'SGMII force mode' without in-band negotiation
->>      which is compatible with 10B/8B encoding of
->>      PHY_INTERFACE_MODE_2500BASEX with fixed full-duplex and fixed pause.
->   ...
-> 
-> Series applied, thank you.
-> 
+And HDMI requires an inverted LRCK so let's readd the frame-inversion
+in the device-tree.
 
-Regarding the DTS patches: Please coordinate with me the next time. I want to 
-prevent merge conflicts if both mine and your tree add patches to the files.
+I have also added a patch to change set_chan_cfg.
 
-Thanks,
-Matthias
+Please note that I can't test TDM and only have a Allwinner H6.
+So test and comment on other Allwinner chips are welcome!
+
+Regards,
+Clement
+
+Change since v3:
+- add Samuel Holland patch to reconfigure FIFO_TX_REG when suspend is enabled
+- readd inversion to H6 LRCK sun50i_h6_i2s_set_soc_fmt()
+- Fix get_wss() for sun4i
+- Add a commit to fix checkpatch warning
+
+Change since v2:
+- rebase on next-20200918
+- drop revert LRCK polarity patch
+- readd simple-audio-card,frame-inversion in dts
+- Add patch for changing set_chan_cfg params
+
+Change since v1:
+- rebase on next-20200828
+- add revert LRCK polarity
+- remove all simple-audio-card,frame-inversion in dts
+- add Ondrej patches for Orange Pi board
+- Add arm64 defconfig patch
+
+Clément Péron (6):
+  ASoC: sun4i-i2s: Change set_chan_cfg() params
+  ASoC: sun4i-i2s: Change get_sr() and get_wss() to be more explicit
+  ASoC: sun4i-i2s: Fix sun8i volatile regs
+  arm64: dts: allwinner: h6: Enable HDMI sound for Beelink GS1
+  arm64: defconfig: Enable Allwinner i2s driver
+  ASoC: sun4i-i2s: fix coding-style for callback definition
+
+Jernej Skrabec (3):
+  ASoC: sun4i-i2s: Add support for H6 I2S
+  dt-bindings: ASoC: sun4i-i2s: Add H6 compatible
+  arm64: dts: allwinner: h6: Add HDMI audio node
+
+Marcus Cooper (9):
+  ASoC: sun4i-i2s: Set sign extend sample
+  ASoc: sun4i-i2s: Add 20 and 24 bit support
+  arm: dts: sunxi: h3/h5: Add DAI node for HDMI
+  arm: dts: sunxi: h3/h5: Add HDMI audio
+  arm64: dts: allwinner: a64: Add DAI node for HDMI
+  arm64: dts: allwinner: a64: Add HDMI audio
+  arm: sun8i: h3: Add HDMI audio to Orange Pi 2
+  arm: sun8i: h3: Add HDMI audio to Beelink X2
+  arm64: dts: allwinner: a64: Add HDMI audio to Pine64
+
+Ondrej Jirman (3):
+  arm64: dts: allwinner: Enable HDMI audio on Orange Pi PC 2
+  ARM: dts: sun8i-h3: Enable HDMI audio on Orange Pi PC/One
+  arm64: dts: sun50i-h6-orangepi-3: Enable HDMI audio
+
+Samuel Holland (1):
+  ASoC: sun4i-i2s: Fix setting of FIFO modes
+
+ .../sound/allwinner,sun4i-a10-i2s.yaml        |   2 +
+ arch/arm/boot/dts/sun8i-h3-beelink-x2.dts     |   8 +
+ arch/arm/boot/dts/sun8i-h3-orangepi-2.dts     |   8 +
+ arch/arm/boot/dts/sun8i-h3-orangepi-one.dts   |   8 +
+ arch/arm/boot/dts/sun8i-h3-orangepi-pc.dts    |   8 +
+ arch/arm/boot/dts/sunxi-h3-h5.dtsi            |  33 ++
+ .../boot/dts/allwinner/sun50i-a64-pine64.dts  |   8 +
+ arch/arm64/boot/dts/allwinner/sun50i-a64.dtsi |  34 ++
+ .../dts/allwinner/sun50i-h5-orangepi-pc2.dts  |   8 +
+ .../dts/allwinner/sun50i-h6-beelink-gs1.dts   |   8 +
+ .../dts/allwinner/sun50i-h6-orangepi-3.dts    |   8 +
+ arch/arm64/boot/dts/allwinner/sun50i-h6.dtsi  |  33 ++
+ arch/arm64/configs/defconfig                  |   1 +
+ sound/soc/sunxi/sun4i-i2s.c                   | 374 +++++++++++++++---
+ 14 files changed, 487 insertions(+), 54 deletions(-)
+
+-- 
+2.25.1
+
