@@ -2,149 +2,153 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from vger.kernel.org (vger.kernel.org [23.128.96.18])
-	by mail.lfdr.de (Postfix) with ESMTP id 3C8DD272938
-	for <lists+devicetree@lfdr.de>; Mon, 21 Sep 2020 16:56:58 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTP id 144AC2729AB
+	for <lists+devicetree@lfdr.de>; Mon, 21 Sep 2020 17:13:33 +0200 (CEST)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S1726592AbgIUO45 (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Mon, 21 Sep 2020 10:56:57 -0400
-Received: from lindbergh.monkeyblade.net ([23.128.96.19]:45736 "EHLO
-        lindbergh.monkeyblade.net" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S1726430AbgIUO45 (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Mon, 21 Sep 2020 10:56:57 -0400
-X-Greylist: delayed 516 seconds by postgrey-1.37 at lindbergh.monkeyblade.net; Mon, 21 Sep 2020 07:56:56 PDT
-Received: from smtp1.goneo.de (smtp1.goneo.de [IPv6:2001:1640:5::8:30])
-        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 6121BC061755
-        for <devicetree@vger.kernel.org>; Mon, 21 Sep 2020 07:56:56 -0700 (PDT)
-Received: from localhost (localhost [127.0.0.1])
-        by smtp1.goneo.de (Postfix) with ESMTP id 2559223F015;
-        Mon, 21 Sep 2020 16:48:19 +0200 (CEST)
-X-Virus-Scanned: by goneo
-X-Spam-Flag: NO
-X-Spam-Score: -2.993
-X-Spam-Level: 
-X-Spam-Status: No, score=-2.993 tagged_above=-999 tests=[ALL_TRUSTED=-1,
-        AWL=-0.093, BAYES_00=-1.9] autolearn=ham
-Received: from smtp1.goneo.de ([127.0.0.1])
-        by localhost (smtp1.goneo.de [127.0.0.1]) (amavisd-new, port 10024)
-        with ESMTP id m3ZF75OxiVet; Mon, 21 Sep 2020 16:48:17 +0200 (CEST)
-Received: from lem-wkst-02.lemonage.de. (hq.lemonage.de [87.138.178.34])
-        by smtp1.goneo.de (Postfix) with ESMTPA id 3B14823EFE2;
-        Mon, 21 Sep 2020 16:48:16 +0200 (CEST)
-From:   poeschel@lemonage.de
-To:     Rob Herring <robh+dt@kernel.org>,
-        Lars Poeschel <poeschel@lemonage.de>,
-        Sam Ravnborg <sam@ravnborg.org>, Arnd Bergmann <arnd@arndb.de>,
-        Linus Walleij <linus.walleij@linaro.org>,
-        Mark Brown <broonie@kernel.org>,
-        Lubomir Rintel <lkundrak@v3.sk>,
-        Daniel Palmer <daniel@0x0f.com>,
-        Geert Uytterhoeven <geert+renesas@glider.be>,
-        allen <allen.chen@ite.com.tw>,
-        Kuninori Morimoto <kuninori.morimoto.gx@renesas.com>,
-        devicetree@vger.kernel.org (open list:OPEN FIRMWARE AND FLATTENED
-        DEVICE TREE BINDINGS), linux-kernel@vger.kernel.org (open list)
-Subject: [PATCH v2 32/32] auxdisplay: lcd2s DT binding doc
-Date:   Mon, 21 Sep 2020 16:46:44 +0200
-Message-Id: <20200921144645.2061313-33-poeschel@lemonage.de>
-X-Mailer: git-send-email 2.28.0
-In-Reply-To: <20200921144645.2061313-1-poeschel@lemonage.de>
-References: <20191016082430.5955-1-poeschel@lemonage.de>
- <20200921144645.2061313-1-poeschel@lemonage.de>
+        id S1726501AbgIUPNc (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Mon, 21 Sep 2020 11:13:32 -0400
+Received: from mga05.intel.com ([192.55.52.43]:50719 "EHLO mga05.intel.com"
+        rhost-flags-OK-OK-OK-OK) by vger.kernel.org with ESMTP
+        id S1726413AbgIUPNc (ORCPT <rfc822;devicetree@vger.kernel.org>);
+        Mon, 21 Sep 2020 11:13:32 -0400
+IronPort-SDR: g9rUCueUgy7STz7p2BuVjiNPkYlSahn6Y+5PotgS2qKpj30MvauUMj7yR/6lkvtCDUy89YFdRq
+ sqwr/pmzO+8A==
+X-IronPort-AV: E=McAfee;i="6000,8403,9751"; a="245236770"
+X-IronPort-AV: E=Sophos;i="5.77,286,1596524400"; 
+   d="scan'208";a="245236770"
+X-Amp-Result: SKIPPED(no attachment in message)
+X-Amp-File-Uploaded: False
+Received: from fmsmga003.fm.intel.com ([10.253.24.29])
+  by fmsmga105.fm.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384; 21 Sep 2020 08:13:29 -0700
+IronPort-SDR: evHvP/WUYitjOm2oxlHWZO9ukc8IkQ1fE6TM22CEVZcIVVcUxjr1i4LXOFpfQ4xzqzU21jv6W2
+ xbgI46sYyhfg==
+X-ExtLoop1: 1
+X-IronPort-AV: E=Sophos;i="5.77,286,1596524400"; 
+   d="scan'208";a="346587140"
+Received: from linux.intel.com ([10.54.29.200])
+  by FMSMGA003.fm.intel.com with ESMTP; 21 Sep 2020 08:13:27 -0700
+Received: from [10.215.245.98] (mreddy3x-MOBL.gar.corp.intel.com [10.215.245.98])
+        by linux.intel.com (Postfix) with ESMTP id 26DF358058B;
+        Mon, 21 Sep 2020 08:13:23 -0700 (PDT)
+Subject: Re: [PATCH v6 2/2] Add Intel LGM soc DMA support.
+To:     Andy Shevchenko <andriy.shevchenko@intel.com>
+Cc:     dmaengine@vger.kernel.org, vkoul@kernel.org,
+        devicetree@vger.kernel.org, robh+dt@kernel.org,
+        linux-kernel@vger.kernel.org, chuanhua.lei@linux.intel.com,
+        cheol.yong.kim@intel.com, qi-ming.wu@intel.com,
+        malliamireddy009@gmail.com, peter.ujfalusi@ti.com
+References: <cover.1599605765.git.mallikarjunax.reddy@linux.intel.com>
+ <748370a51af0ab768e542f1537d1aa3aeefebe8a.1599605765.git.mallikarjunax.reddy@linux.intel.com>
+ <20200909111424.GQ1891694@smile.fi.intel.com>
+ <36a42016-3260-3933-bbf9-9203c4124115@linux.intel.com>
+ <20200918122029.GX3956970@smile.fi.intel.com>
+From:   "Reddy, MallikarjunaX" <mallikarjunax.reddy@linux.intel.com>
+Message-ID: <bc6499da-1179-25c1-a624-bf2566354ead@linux.intel.com>
+Date:   Mon, 21 Sep 2020 23:13:22 +0800
+User-Agent: Mozilla/5.0 (Windows NT 10.0; WOW64; rv:68.0) Gecko/20100101
+ Thunderbird/68.12.0
 MIME-Version: 1.0
+In-Reply-To: <20200918122029.GX3956970@smile.fi.intel.com>
+Content-Type: text/plain; charset=utf-8; format=flowed
 Content-Transfer-Encoding: 8bit
+Content-Language: en-US
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-From: Lars Poeschel <poeschel@lemonage.de>
+Hi Andy,
+Thanks for your comments. My comments are in line.
 
-Add a binding doc for the modtronix lcd2s auxdisplay driver. It also
-adds modtronix to the list of known vendor-prefixes.
+On 9/18/2020 8:20 PM, Andy Shevchenko wrote:
+> On Fri, Sep 18, 2020 at 11:42:54AM +0800, Reddy, MallikarjunaX wrote:
+>> On 9/9/2020 7:14 PM, Andy Shevchenko wrote:
+>>> On Wed, Sep 09, 2020 at 07:07:34AM +0800, Amireddy Mallikarjuna reddy wrote:
+> ...
+>
+>>>> +	help
+>>>> +	  Enable support for intel Lightning Mountain SOC DMA controllers.
+>>>> +	  These controllers provide DMA capabilities for a variety of on-chip
+>>>> +	  devices such as SSC, HSNAND and GSWIP.
+>>> And how module will be called?
+>>   are you expecting to include 'default y' ?
+> I'm expecting to see something like "if you choose M the module will be called
+> bla-foo-bar." Look at the existing examples in the kernel.
+ok, i will change bool to tristate.
+>
+> ...
+>
+>>>> +ldma_update_bits(struct ldma_dev *d, u32 mask, u32 val, u32 ofs)
+>>>> +{
+>>>> +	u32 old_val, new_val;
+>>>> +
+>>>> +	old_val = readl(d->base +  ofs);
+>>>> +	new_val = (old_val & ~mask) | (val & mask);
+>>> With bitfield.h you will have this as u32_replace_bits().
+>> -  new_val = (old_val & ~mask) | (val & mask);
+>> + new_val = old_val;
+>> + u32_replace_bits(new_val, val, mask);
+>>
+>> I think in this function we cant use this because of compilation issues
+>> thrown by bitfield.h . Expecting 2nd and 3rd arguments as constant numbers
+>> not as type variables.
+>>
+>> ex:
+>> 	u32_replace_bits(val, 0, IPA_REG_ENDP_ROUTER_HASH_MSK_ALL);
+> How comes these are constants? In the above you have a function which does
+> r-m-w approach to the register. It should be something like
+>
+> 	old = read();
+> 	new = u32_replace_bits(old, ...);
+> 	write(new);
+>
+>> ./include/linux/bitfield.h:131:3: error: call to '__field_overflow' declared
+>> with attribute error: value doesn't fit into mask
+>>     __field_overflow();     \
+>>     ^~~~~~~~~~~~~~~~~~
+>>
+>> ./include/linux/bitfield.h:119:3: error: call to '__bad_mask' declared with
+>> attribute error: bad bitfield mask
+>>     __bad_mask();
+>>     ^~~~~~~~~~~~
+> So, even with constants u32_replace_bits() must work. Maybe you didn't get how?
 
-Signed-off-by: Lars Poeschel <poeschel@lemonage.de>
---
-Changes in v2:
-- Adopted yaml based file format
----
- .../bindings/auxdisplay/modtronix,lcd2s.yaml  | 55 +++++++++++++++++++
- .../devicetree/bindings/vendor-prefixes.yaml  |  2 +
- 2 files changed, 57 insertions(+)
- create mode 100644 Documentation/devicetree/bindings/auxdisplay/modtronix,lcd2s.yaml
+Thanks Andy, now i know how u32_replace_bits() is working.
 
-diff --git a/Documentation/devicetree/bindings/auxdisplay/modtronix,lcd2s.yaml b/Documentation/devicetree/bindings/auxdisplay/modtronix,lcd2s.yaml
-new file mode 100644
-index 000000000000..9a70e28d2e61
---- /dev/null
-+++ b/Documentation/devicetree/bindings/auxdisplay/modtronix,lcd2s.yaml
-@@ -0,0 +1,55 @@
-+# SPDX-License-Identifier: (GPL-2.0-only OR BSD-2-Clause)
-+%YAML 1.2
-+---
-+$id: http://devicetree.org/schemas/auxdisplay/modtronix,lcd2s.yaml#
-+$schema: http://devicetree.org/meta-schemas/core.yaml#
-+
-+title: Modtronix engineering LCD2S Character LCD Display
-+
-+description:
-+  The LCD2S is a Character LCD Display manufactured by Modtronix Engineering.
-+  The display supports a serial I2C and SPI interface. The driver currently
-+  only supports the I2C interface.
-+
-+properties:
-+  compatible:
-+    const: modtronix,lcd2s
-+
-+  reg:
-+    maxItems: 1
-+    description:
-+      I2C bus address of the display.
-+
-+  display-height-chars:
-+    description: Height of the display, in character cells.
-+    $ref: /schemas/types.yaml#/definitions/uint32
-+    minimum: 1
-+    maximum: 4
-+
-+  display-width-chars:
-+    description: Width of the display, in character cells.
-+    $ref: /schemas/types.yaml#/definitions/uint32
-+    minimum: 16
-+    maximum: 20
-+
-+required:
-+  - compatible
-+  - reg
-+  - display-height-chars
-+  - display-width-chars
-+
-+additionalProperties: false
-+
-+examples:
-+  - |
-+    i2c {
-+      #address-cells = <1>;
-+      #size-cells = <0>;
-+
-+      lcd2s: auxdisplay@28 {
-+        compatible = "modtronix,lcd2s";
-+        reg = <0x28>;
-+        display-height-chars = <4>;
-+        display-width-chars = <20>;
-+      };
-+};
-diff --git a/Documentation/devicetree/bindings/vendor-prefixes.yaml b/Documentation/devicetree/bindings/vendor-prefixes.yaml
-index 63996ab03521..a9dd168db6ce 100644
---- a/Documentation/devicetree/bindings/vendor-prefixes.yaml
-+++ b/Documentation/devicetree/bindings/vendor-prefixes.yaml
-@@ -667,6 +667,8 @@ patternProperties:
-     description: MiraMEMS Sensing Technology Co., Ltd.
-   "^mitsubishi,.*":
-     description: Mitsubishi Electric Corporation
-+  "^modtronix,.*":
-+    description: Modtronix Engineering
-   "^mosaixtech,.*":
-     description: Mosaix Technologies, Inc.
-   "^motorola,.*":
--- 
-2.28.0
+The mask is not the continuous bits in some cases. Due to the mask bits 
+are not continuous u32_replace_bits() can't be used here.
+Ex:
+         u32 mask = DMA_CPOLL_EN | DMA_CPOLL_CNT;
 
+Comes to __field_overflow error, update bits in the 'val' are aligned 
+with mask bits. Because of the this reason in u32_replace_bits() 'val'  
+exceeds the 'mask' in some cases which is causing __field_overflow error.
+
+>>>> +	if (new_val != old_val)
+>>>> +		writel(new_val, d->base + ofs);
+>>>> +}
+> ...
+>
+>>>> +	/* High 4 bits */
+>>> Why only 4?
+>> this is higher 4 bits of 36 bit addressing..
+> Make it clear in the comment.
+ok.
+>
+> ...
+>
+>>>> +device_initcall(intel_ldma_init);
+>>> Each _initcall() in general should be explained.
+>> ok. is it fine?
+>>
+>> /* Perform this driver as device_initcall to make sure initialization
+>> happens
+>>   * before its dma clients of some are platform specific. make sure to
+>> provice
+>>   * registered dma channels and dma capabilities to client before their
+>>   * initialization.
+>>   */
+> /*
+>   * Just follow proper multi-line comment style.
+>   * And use dma -> DMA.
+>   */
+Ok.
