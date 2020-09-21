@@ -2,215 +2,107 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from vger.kernel.org (vger.kernel.org [23.128.96.18])
-	by mail.lfdr.de (Postfix) with ESMTP id 6CFF82735EB
-	for <lists+devicetree@lfdr.de>; Tue, 22 Sep 2020 00:42:55 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTP id 62659273612
+	for <lists+devicetree@lfdr.de>; Tue, 22 Sep 2020 00:57:20 +0200 (CEST)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S1728379AbgIUWmy (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Mon, 21 Sep 2020 18:42:54 -0400
-Received: from mail-eopbgr80082.outbound.protection.outlook.com ([40.107.8.82]:33763
-        "EHLO EUR04-VI1-obe.outbound.protection.outlook.com"
-        rhost-flags-OK-OK-OK-FAIL) by vger.kernel.org with ESMTP
-        id S1727693AbgIUWmy (ORCPT <rfc822;devicetree@vger.kernel.org>);
-        Mon, 21 Sep 2020 18:42:54 -0400
-ARC-Seal: i=1; a=rsa-sha256; s=arcselector9901; d=microsoft.com; cv=none;
- b=Uu5lVLJTNaFWA/hEu+MC8l8Io20WfZLWwyTv8Fs+oBH0wbpsy3lBOP9dNhNzRYU8rOU2X/9GgBxobCh3+tqupChznfQ/25ZSpL2th07u277Hl+CroSuCrHmBiLgk3XOFzbuPxWg297xA7K2qHCkdF+s/tCJnHAnE9D1beHEoYUZs7BCiI8BDKgfTtXhgXx4yBuJD9vcEv9fiiGKbPzA9rA8T/kjTtYaLNEblT7mKXj0JRMjYkCsmeyGcQ76aJg4afJYmx7avBlcJaGYIsh3qBkirb1rMo6Hoe+xM1K1mXW7zGgTbcMF5PdAzwhmU4BJ264j31UNYTDNTZwkMfQrxew==
-ARC-Message-Signature: i=1; a=rsa-sha256; c=relaxed/relaxed; d=microsoft.com;
- s=arcselector9901;
- h=From:Date:Subject:Message-ID:Content-Type:MIME-Version:X-MS-Exchange-SenderADCheck;
- bh=FyD4JMsuWfSSLHU6zIx2/oO/W+cWYSxK0osz5cnYqFs=;
- b=UixpYx0cwU9uTXzngsQLapWinlrmvJ6b26bKvKZSLJlydyYrdrf+h0icv/lUudaF0pvq4S5ZtqrWT++7va41m4jx25Nkg4bdgyJW+4mvJwn+gHuuLRPxP4FyAWhQsmbfgGByO1cPzTy+MdVH6fI3Mp0/0RxmPkMe+1ZAhaHd8Goil2UyQPmIGzpFj20pWJxWLZGb41aOItAJ5yTU8T/UOkegcz1nbhR7O26jICtow2VdGSzOgB5g1ayfMXiT0XBlRwslAsRINoc2S2cJ0Y053Dj7CG5FFP4YvfbtOxpVdixBsKABA65N2KbnNUnTQZs/eFlYIDl0qiGTuDeIibSSow==
-ARC-Authentication-Results: i=1; mx.microsoft.com 1; spf=pass
- smtp.mailfrom=nxp.com; dmarc=pass action=none header.from=nxp.com; dkim=pass
- header.d=nxp.com; arc=none
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=nxp.com; s=selector2;
- h=From:Date:Subject:Message-ID:Content-Type:MIME-Version:X-MS-Exchange-SenderADCheck;
- bh=FyD4JMsuWfSSLHU6zIx2/oO/W+cWYSxK0osz5cnYqFs=;
- b=KmB4k0zXnv9+ov+aOL3paBDpr7e9BhqgGsFOladvgBpa61RASxIVamKPPwA7ZuV0ej+bKgBILqtQlVyhS9eJ5+wd0sHnFzWtOENKGj9gpcx+ZS19c8YnPWa+wPepr0/jgHNKGNBIZbFgy6XevrHZNRqkx8+w9neTBRt/7qPXDws=
-Received: from AM0PR04MB6676.eurprd04.prod.outlook.com (2603:10a6:208:177::33)
- by AM0PR04MB4770.eurprd04.prod.outlook.com (2603:10a6:208:cd::26) with
- Microsoft SMTP Server (version=TLS1_2,
- cipher=TLS_ECDHE_RSA_WITH_AES_256_GCM_SHA384) id 15.20.3391.19; Mon, 21 Sep
- 2020 22:42:49 +0000
-Received: from AM0PR04MB6676.eurprd04.prod.outlook.com
- ([fe80::b0c6:15b9:582:e7f3]) by AM0PR04MB6676.eurprd04.prod.outlook.com
- ([fe80::b0c6:15b9:582:e7f3%5]) with mapi id 15.20.3391.026; Mon, 21 Sep 2020
- 22:42:49 +0000
-From:   Leo Li <leoyang.li@nxp.com>
-To:     Ran Wang <ran.wang_1@nxp.com>, Rob Herring <robh+dt@kernel.org>,
-        Shawn Guo <shawnguo@kernel.org>
-CC:     "linuxppc-dev@lists.ozlabs.org" <linuxppc-dev@lists.ozlabs.org>,
-        "linux-arm-kernel@lists.infradead.org" 
-        <linux-arm-kernel@lists.infradead.org>,
-        "devicetree@vger.kernel.org" <devicetree@vger.kernel.org>,
-        "linux-kernel@vger.kernel.org" <linux-kernel@vger.kernel.org>,
-        Biwen Li <biwen.li@nxp.com>, Ran Wang <ran.wang_1@nxp.com>
-Subject: RE: [PATCH 2/5] soc: fsl: handle RCPM errata A-008646 on SoC LS1021A
-Thread-Topic: [PATCH 2/5] soc: fsl: handle RCPM errata A-008646 on SoC LS1021A
-Thread-Index: AQHWjAMhiFVIvWSvtEq/tN3zoOUi36lztzMQ
-Date:   Mon, 21 Sep 2020 22:42:49 +0000
-Message-ID: <AM0PR04MB66769C7080A32C95AD438ADF8F3A0@AM0PR04MB6676.eurprd04.prod.outlook.com>
-References: <20200916081831.24747-1-ran.wang_1@nxp.com>
- <20200916081831.24747-2-ran.wang_1@nxp.com>
-In-Reply-To: <20200916081831.24747-2-ran.wang_1@nxp.com>
-Accept-Language: en-US
-Content-Language: en-US
-X-MS-Has-Attach: 
-X-MS-TNEF-Correlator: 
-authentication-results: nxp.com; dkim=none (message not signed)
- header.d=none;nxp.com; dmarc=none action=none header.from=nxp.com;
-x-originating-ip: [136.49.234.194]
-x-ms-publictraffictype: Email
-x-ms-office365-filtering-ht: Tenant
-x-ms-office365-filtering-correlation-id: 3754c19c-dd24-4b57-c709-08d85e7fab16
-x-ms-traffictypediagnostic: AM0PR04MB4770:
-x-ms-exchange-transport-forked: True
-x-microsoft-antispam-prvs: <AM0PR04MB4770D4936A82EA337750701A8F3A0@AM0PR04MB4770.eurprd04.prod.outlook.com>
-x-ms-oob-tlc-oobclassifiers: OLM:4303;
-x-ms-exchange-senderadcheck: 1
-x-microsoft-antispam: BCL:0;
-x-microsoft-antispam-message-info: wDrljWDtnUvCFnRjJ4p2h2puOsd5wK16Mq0Klmd2pGMqLb+jL+lsCukJPwc7vBrlZT5hFLh96CrHfXPNo/TOuJM/ZL3lLtkGAzlipYTA2MBvNPK2RwznmTsDIAZNnUlgiieYKDNp6+vb+AuaRncpUG75yW4b1Nr77TpBfU6uL1O2dVB8KqJdejWSDmlRs/5jPp+nvt19Jpj6LrhA8dx63jGfq3BkKtpbK3jKfrN9U2bK1l+tU/g1m8sA+bJpyDNEFa8R/5ysl7cLuMinW/aD/3COtN1zgmcIGZpza5oInYzK/tCWisbbxI1rSDdnfX23JB/J77FUIs/EOjRWUOf6/Q==
-x-forefront-antispam-report: CIP:255.255.255.255;CTRY:;LANG:en;SCL:1;SRV:;IPV:NLI;SFV:NSPM;H:AM0PR04MB6676.eurprd04.prod.outlook.com;PTR:;CAT:NONE;SFS:(4636009)(346002)(396003)(39860400002)(136003)(366004)(376002)(8676002)(71200400001)(2906002)(54906003)(8936002)(4326008)(110136005)(316002)(83380400001)(6506007)(53546011)(5660300002)(9686003)(7696005)(33656002)(66476007)(66556008)(64756008)(66446008)(52536014)(76116006)(55016002)(186003)(26005)(478600001)(66946007)(86362001);DIR:OUT;SFP:1101;
-x-ms-exchange-antispam-messagedata: bFUbE+o0zHeDJuqFpSbKfxEkzHeF0tsM//zSASq4NzMlWUiVy9RYNYA7igfCSv+twfQhiml3ataJ/6kxeDCJ0yqBBpMpCpcncCX86WeNqtIT7KEKR6pg9fLNMX1N9eHtVDflOuVx+6UUSRIoZwz+Xl2vHeO2qzANHQAuBxV2vbKVeoVXsWvVT2qE5SyymENQ6lpjhgPNz6ECNXnv6WUVXT8Hyw7Kw69cNQAvHu3dalt4Cxq0f/BKl/ko6/Cdt1JyuZKwYxB4iKLWsVVCV0/gXPuij+m7NDRo8u7raOfWs1K+rq+TId3GuPnsXB7zeN1/Qv8zDMe/fer2NNEnVLxph5hSySKqMxvfJGvJkT6ue/DpqzBkYqUloHXpDqqQ2mUmk3tqdJ4GoZ0WwDqHcdmsBtMQofsXBHA4tG/hch06CGKKqs28CViClKqada203Fi0HG7gWvJIs9uGqSCHPK6WSGhYfL/nD4d/rX5zBKfv4gyZ/HKSZQ63RAwuJqpnflRRXSmmscqMADi8WaE0Fbn6MN1qiDsoBEfd+mzMmWNgjXaL3Kw8JYM/pTGmvJ1lTFpgMWS2kAJmwlUkVoKGLk/JBJga7g5AlZ20x0xnxV/w4wtopCFG1KvroS6OocY6+9UgHC4qN1E9QjAlvrI3hefNYg==
-Content-Type: text/plain; charset="us-ascii"
-Content-Transfer-Encoding: quoted-printable
+        id S1728720AbgIUW5O (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Mon, 21 Sep 2020 18:57:14 -0400
+Received: from lindbergh.monkeyblade.net ([23.128.96.19]:35210 "EHLO
+        lindbergh.monkeyblade.net" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
+        with ESMTP id S1728717AbgIUW5N (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Mon, 21 Sep 2020 18:57:13 -0400
+Received: from mail-ej1-x641.google.com (mail-ej1-x641.google.com [IPv6:2a00:1450:4864:20::641])
+        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id B7BFEC0613CF
+        for <devicetree@vger.kernel.org>; Mon, 21 Sep 2020 15:57:12 -0700 (PDT)
+Received: by mail-ej1-x641.google.com with SMTP id gr14so20155444ejb.1
+        for <devicetree@vger.kernel.org>; Mon, 21 Sep 2020 15:57:12 -0700 (PDT)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+        d=beagleboard-org.20150623.gappssmtp.com; s=20150623;
+        h=from:to:cc:subject:date:message-id:mime-version
+         :content-transfer-encoding;
+        bh=9jSUUFraOan7yfkNBxJ0PXo4gn5Fu1DsGDMc9ndN1tQ=;
+        b=cHEUC3C9K11LQLTPxZnfAmjIogqYmFr8vJH60PhAVwa4FQGTM3NkA2zDBi4+nNnh+V
+         wW4EDqRSW0BTCg85zhKjVc1ZaSXVLJZeQ7elYRILPEzEsgg9tIJVqi+OcU3GKPFkblAv
+         4Z7eEP0jbOhhbVo2KeozKp7OVo5cqz/K/2/udw5PaQStDEOKziVyLbYcGC35fo4+Yreg
+         GQjwaGp11FnVmhyn6674qIt5PVo5iXl4fz+MZV8sDcCiMCkQEDmE6DNoFhUBd4qZgG+V
+         vUjx0zynTSJ+SmJkkojfu1gOqjtzRcZUZ3Fz/3kNtAkjFc1O7vqC+JwIN+3RUYr0k2hH
+         NMuA==
+X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+        d=1e100.net; s=20161025;
+        h=x-gm-message-state:from:to:cc:subject:date:message-id:mime-version
+         :content-transfer-encoding;
+        bh=9jSUUFraOan7yfkNBxJ0PXo4gn5Fu1DsGDMc9ndN1tQ=;
+        b=k0XnPBX7uy6b7mTydFRsiRwilbSijtEZYzzk61wrkokpkhIbdoTMwBGlp4AV8xHOV6
+         663rePVQPerKbhK02uMXEAEzyBKiEXGEWhV+d5BgfrLN/L6XIUuskZC3x9qIl/brB23/
+         lEqfGthPrxwFqBZ71uuW0vp6xTROoNlNJIp0FtzR75p7WoMKM5WGtEXluH91x+rnyqnp
+         BFu2ok1bKmirRIYTZJqSBdF4hXPjeAthtuS5/c4PflG8+4JjMN2suk0QqtrtFLQREo9T
+         zJLWMrZsHeVxst4WT9tFAZRW/gw4ZWwMl8gbTZ6p5EVON2HzOE2v1sPJEBF5RGheKlQy
+         dpcg==
+X-Gm-Message-State: AOAM531/d/6bhD9NPUelEkq1WTPpgeJ/EwcaO9sId3l9yWr6UoZT9lsY
+        S/NbIVUibkdh6iMDArrw7MOb5Q==
+X-Google-Smtp-Source: ABdhPJzP2r2Zay0wb4c78o7KqOUFyqGJ05rId6WnI920VXQBmoylUgFeYGIw9gYCqi7ifH7VMnYtpg==
+X-Received: by 2002:a17:906:6a54:: with SMTP id n20mr1840834ejs.401.1600729031313;
+        Mon, 21 Sep 2020 15:57:11 -0700 (PDT)
+Received: from localhost.localdomain ([2001:16b8:5c50:7f01:652a:68b1:4040:26de])
+        by smtp.gmail.com with ESMTPSA id e15sm9401321eds.5.2020.09.21.15.57.09
+        (version=TLS1_3 cipher=TLS_AES_256_GCM_SHA384 bits=256/256);
+        Mon, 21 Sep 2020 15:57:10 -0700 (PDT)
+From:   Drew Fustini <drew@beagleboard.org>
+To:     Tony Lindgren <tony@atomide.com>, Rob Herring <robh+dt@kernel.org>,
+        Linus Walleij <linus.walleij@linaro.org>,
+        Jason Kridner <jkridner@beagleboard.org>,
+        Robert Nelson <robertcnelson@gmail.com>,
+        Trent Piepho <tpiepho@gmail.com>,
+        Christina Quast <cquast@hanoverdisplays.com>,
+        linux-omap@vger.kernel.org, linux-kernel@vger.kernel.org,
+        devicetree@vger.kernel.org, linux-gpio@vger.kernel.org
+Cc:     Drew Fustini <drew@beagleboard.org>
+Subject: [PATCH] ARM: dts: am33xx: modify AM33XX_IOPAD for #pinctrl-cells = 2
+Date:   Tue, 22 Sep 2020 00:50:55 +0200
+Message-Id: <20200921225053.4126745-1-drew@beagleboard.org>
+X-Mailer: git-send-email 2.25.1
 MIME-Version: 1.0
-X-OriginatorOrg: nxp.com
-X-MS-Exchange-CrossTenant-AuthAs: Internal
-X-MS-Exchange-CrossTenant-AuthSource: AM0PR04MB6676.eurprd04.prod.outlook.com
-X-MS-Exchange-CrossTenant-Network-Message-Id: 3754c19c-dd24-4b57-c709-08d85e7fab16
-X-MS-Exchange-CrossTenant-originalarrivaltime: 21 Sep 2020 22:42:49.5720
- (UTC)
-X-MS-Exchange-CrossTenant-fromentityheader: Hosted
-X-MS-Exchange-CrossTenant-id: 686ea1d3-bc2b-4c6f-a92c-d99c5c301635
-X-MS-Exchange-CrossTenant-mailboxtype: HOSTED
-X-MS-Exchange-CrossTenant-userprincipalname: dJAyWtWNzmYvCDZrKr49LMOi0Rhh3qEOPrgjKGAApyb08TY2JfDtM5L5TUm7PGl3Xth5uOisDjMO76ejVMJkmg==
-X-MS-Exchange-Transport-CrossTenantHeadersStamped: AM0PR04MB4770
+Content-Transfer-Encoding: 8bit
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
+Modify the AM33XX_IOPAD macro so that it works now that #pinctrl-cells =
+<2>. The third parameter is just a zero and the pinctrl-single driver
+will just OR this with the second parameter so it has no actual effect.
 
+There are no longer any dts files using this macro (following my patch
+to am335x-guardian.dts), but this will keep dts files not in mainline
+from breaking.
 
-> -----Original Message-----
-> From: Ran Wang <ran.wang_1@nxp.com>
-> Sent: Wednesday, September 16, 2020 3:18 AM
-> To: Leo Li <leoyang.li@nxp.com>; Rob Herring <robh+dt@kernel.org>;
-> Shawn Guo <shawnguo@kernel.org>
-> Cc: linuxppc-dev@lists.ozlabs.org; linux-arm-kernel@lists.infradead.org;
-> devicetree@vger.kernel.org; linux-kernel@vger.kernel.org; Biwen Li
-> <biwen.li@nxp.com>; Ran Wang <ran.wang_1@nxp.com>
-> Subject: [PATCH 2/5] soc: fsl: handle RCPM errata A-008646 on SoC LS1021A
->=20
-> From: Biwen Li <biwen.li@nxp.com>
->=20
-> Description:
-> 	- Reading configuration register RCPM_IPPDEXPCR1
-> 	  always return zero
->=20
-> Workaround:
-> 	- Save register RCPM_IPPDEXPCR1's value to
-> 	  register SCFG_SPARECR8.(uboot's psci also
-> 	  need reading value from the register SCFG_SPARECR8
-> 	  to set register RCPM_IPPDEXPCR1)
->=20
-> Impact:
-> 	- FlexTimer module will cannot wakeup system in
-Will not..
-Also it will be better to merge this with the issue description part above =
-to prevent confusion.
+Fixes: 27c90e5e48d0 ("ARM: dts: am33xx-l4: change #pinctrl-cells from 1 to 2")
+Suggested-by: Tony Lindgren <tony@atomide.com>
+Reported-by: Trent Piepho <tpiepho@gmail.com>
+Link: https://lore.kernel.org/linux-devicetree/20200921064707.GN7101@atomide.com/
+Signed-off-by: Drew Fustini <drew@beagleboard.org>
+---
+NOTE:
+checkpatch complains "Macros with complex values should be enclosed in 
+parentheses" but all the other marcos in that section have the same
+format so it seems appropriate to ignore checkpatch and maintain the
+style.
 
-> 	  deep sleep on SoC LS1021A
->=20
-> Signed-off-by: Biwen Li <biwen.li@nxp.com>
-> Signed-off-by: Ran Wang <ran.wang_1@nxp.com>
-> ---
->  drivers/soc/fsl/rcpm.c | 42
-> +++++++++++++++++++++++++++++++++++++++++-
->  1 file changed, 41 insertions(+), 1 deletion(-)
->=20
-> diff --git a/drivers/soc/fsl/rcpm.c b/drivers/soc/fsl/rcpm.c
-> index a093dbe..e6354f5 100644
-> --- a/drivers/soc/fsl/rcpm.c
-> +++ b/drivers/soc/fsl/rcpm.c
-> @@ -2,7 +2,7 @@
->  //
->  // rcpm.c - Freescale QorIQ RCPM driver
->  //
-> -// Copyright 2019 NXP
-> +// Copyright 2019-2020 NXP
->  //
->  // Author: Ran Wang <ran.wang_1@nxp.com>
->=20
-> @@ -13,6 +13,9 @@
->  #include <linux/slab.h>
->  #include <linux/suspend.h>
->  #include <linux/kernel.h>
-> +#include <linux/acpi.h>
-> +#include <linux/mfd/syscon.h>
-> +#include <linux/regmap.h>
->=20
->  #define RCPM_WAKEUP_CELL_MAX_SIZE	7
->=20
-> @@ -37,6 +40,9 @@ static int rcpm_pm_prepare(struct device *dev)
->  	struct device_node	*np =3D dev->of_node;
->  	u32 value[RCPM_WAKEUP_CELL_MAX_SIZE + 1];
->  	u32 setting[RCPM_WAKEUP_CELL_MAX_SIZE] =3D {0};
-> +	struct regmap *scfg_addr_regmap =3D NULL;
-> +	u32 reg_offset[2];
-> +	u32 reg_value =3D 0;
->=20
->  	rcpm =3D dev_get_drvdata(dev);
->  	if (!rcpm)
-> @@ -90,6 +96,40 @@ static int rcpm_pm_prepare(struct device *dev)
->  			tmp |=3D ioread32be(address);
->  			iowrite32be(tmp, address);
->  		}
-> +		/*
-> +		 * Workaround of errata A-008646 on SoC LS1021A:
-> +		 * There is a bug of register ippdexpcr1.
-> +		 * Reading configuration register RCPM_IPPDEXPCR1
-> +		 * always return zero. So save ippdexpcr1's value
-> +		 * to register SCFG_SPARECR8.And the value of
-> +		 * ippdexpcr1 will be read from SCFG_SPARECR8.
-> +		 */
-> +		if (device_property_present(dev, "fsl,ippdexpcr1-alt-addr"))
-> {
-> +			if (dev_of_node(dev)) {
-> +				scfg_addr_regmap =3D
-> syscon_regmap_lookup_by_phandle(np,
-> +
-> 	   "fsl,ippdexpcr1-alt-addr");
-> +			} else if (is_acpi_node(dev->fwnode)) {
-> +				continue;
-> +			}
-> +
-> +			if (scfg_addr_regmap && (i =3D=3D 1)) {
-> +				if (device_property_read_u32_array(dev,
-> +				    "fsl,ippdexpcr1-alt-addr",
-> +				    reg_offset,
-> +				    2)) {
+ include/dt-bindings/pinctrl/omap.h | 2 +-
+ 1 file changed, 1 insertion(+), 1 deletion(-)
 
-It is not necessary to read out the whole fsl,ippdexpcr1-alt-addr property =
-if we only need the offset.  Also you can change to use the syscon_regmap_l=
-ookup_by_phandle_args() API above to simplify the code.
-
-> +					scfg_addr_regmap =3D NULL;
-> +					continue;
-> +				}
-> +				/* Read value from register SCFG_SPARECR8
-> */
-> +				regmap_read(scfg_addr_regmap,
-> +					    reg_offset[1],
-> +					    &reg_value);
-> +				/* Write value to register SCFG_SPARECR8 */
-> +				regmap_write(scfg_addr_regmap,
-> +					     reg_offset[1],
-> +					     tmp | reg_value);
-> +			}
-> +		}
->  	}
->=20
->  	return 0;
-> --
-> 2.7.4
+diff --git a/include/dt-bindings/pinctrl/omap.h b/include/dt-bindings/pinctrl/omap.h
+index 2d2a8c737822..f48245ff87e5 100644
+--- a/include/dt-bindings/pinctrl/omap.h
++++ b/include/dt-bindings/pinctrl/omap.h
+@@ -64,7 +64,7 @@
+ #define OMAP3_WKUP_IOPAD(pa, val)	OMAP_IOPAD_OFFSET((pa), 0x2a00) (val)
+ #define DM814X_IOPAD(pa, val)		OMAP_IOPAD_OFFSET((pa), 0x0800) (val)
+ #define DM816X_IOPAD(pa, val)		OMAP_IOPAD_OFFSET((pa), 0x0800) (val)
+-#define AM33XX_IOPAD(pa, val)		OMAP_IOPAD_OFFSET((pa), 0x0800) (val)
++#define AM33XX_IOPAD(pa, val)		OMAP_IOPAD_OFFSET((pa), 0x0800) (val) (0)
+ #define AM33XX_PADCONF(pa, conf, mux)	OMAP_IOPAD_OFFSET((pa), 0x0800) (conf) (mux)
+ 
+ /*
+-- 
+2.25.1
 
