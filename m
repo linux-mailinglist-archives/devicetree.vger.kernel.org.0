@@ -2,92 +2,149 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from vger.kernel.org (vger.kernel.org [23.128.96.18])
-	by mail.lfdr.de (Postfix) with ESMTP id 53916272864
-	for <lists+devicetree@lfdr.de>; Mon, 21 Sep 2020 16:43:58 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTP id 3C8DD272938
+	for <lists+devicetree@lfdr.de>; Mon, 21 Sep 2020 16:56:58 +0200 (CEST)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S1728195AbgIUOm4 (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Mon, 21 Sep 2020 10:42:56 -0400
-Received: from mail.kernel.org ([198.145.29.99]:49800 "EHLO mail.kernel.org"
-        rhost-flags-OK-OK-OK-OK) by vger.kernel.org with ESMTP
-        id S1727845AbgIUOk5 (ORCPT <rfc822;devicetree@vger.kernel.org>);
-        Mon, 21 Sep 2020 10:40:57 -0400
-Received: from sasha-vm.mshome.net (c-73-47-72-35.hsd1.nh.comcast.net [73.47.72.35])
-        (using TLSv1.2 with cipher ECDHE-RSA-AES128-GCM-SHA256 (128/128 bits))
-        (No client certificate requested)
-        by mail.kernel.org (Postfix) with ESMTPSA id CDA5423787;
-        Mon, 21 Sep 2020 14:40:52 +0000 (UTC)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=kernel.org;
-        s=default; t=1600699253;
-        bh=FmF/pbUJKzdSITSRYqcFNxLSTZy8+HviO1AYZWdz6Y4=;
-        h=From:To:Cc:Subject:Date:In-Reply-To:References:From;
-        b=Np9xI6HEtyAPHhyAQjaKte+AqInv4ee4nuCQ3q8acZYja8DHC9y8a8nPq2SjmB4yn
-         0n3H1bYpLkbtzTZr9GGx2tvN33SI/ccW8ykXZiQyHWm28rk8IoVPql5IgG4/AjTzyW
-         HP+4XcIm9ToBfSbRfkltX0AWXDnL5rNVF+ac5YRM=
-From:   Sasha Levin <sashal@kernel.org>
-To:     linux-kernel@vger.kernel.org, stable@vger.kernel.org
-Cc:     Damien Le Moal <damien.lemoal@wdc.com>,
-        Palmer Dabbelt <palmerdabbelt@google.com>,
-        Sasha Levin <sashal@kernel.org>, devicetree@vger.kernel.org,
-        linux-riscv@lists.infradead.org
-Subject: [PATCH AUTOSEL 5.8 20/20] riscv: Fix Kendryte K210 device tree
-Date:   Mon, 21 Sep 2020 10:40:27 -0400
-Message-Id: <20200921144027.2135390-20-sashal@kernel.org>
-X-Mailer: git-send-email 2.25.1
-In-Reply-To: <20200921144027.2135390-1-sashal@kernel.org>
-References: <20200921144027.2135390-1-sashal@kernel.org>
+        id S1726592AbgIUO45 (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Mon, 21 Sep 2020 10:56:57 -0400
+Received: from lindbergh.monkeyblade.net ([23.128.96.19]:45736 "EHLO
+        lindbergh.monkeyblade.net" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
+        with ESMTP id S1726430AbgIUO45 (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Mon, 21 Sep 2020 10:56:57 -0400
+X-Greylist: delayed 516 seconds by postgrey-1.37 at lindbergh.monkeyblade.net; Mon, 21 Sep 2020 07:56:56 PDT
+Received: from smtp1.goneo.de (smtp1.goneo.de [IPv6:2001:1640:5::8:30])
+        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 6121BC061755
+        for <devicetree@vger.kernel.org>; Mon, 21 Sep 2020 07:56:56 -0700 (PDT)
+Received: from localhost (localhost [127.0.0.1])
+        by smtp1.goneo.de (Postfix) with ESMTP id 2559223F015;
+        Mon, 21 Sep 2020 16:48:19 +0200 (CEST)
+X-Virus-Scanned: by goneo
+X-Spam-Flag: NO
+X-Spam-Score: -2.993
+X-Spam-Level: 
+X-Spam-Status: No, score=-2.993 tagged_above=-999 tests=[ALL_TRUSTED=-1,
+        AWL=-0.093, BAYES_00=-1.9] autolearn=ham
+Received: from smtp1.goneo.de ([127.0.0.1])
+        by localhost (smtp1.goneo.de [127.0.0.1]) (amavisd-new, port 10024)
+        with ESMTP id m3ZF75OxiVet; Mon, 21 Sep 2020 16:48:17 +0200 (CEST)
+Received: from lem-wkst-02.lemonage.de. (hq.lemonage.de [87.138.178.34])
+        by smtp1.goneo.de (Postfix) with ESMTPA id 3B14823EFE2;
+        Mon, 21 Sep 2020 16:48:16 +0200 (CEST)
+From:   poeschel@lemonage.de
+To:     Rob Herring <robh+dt@kernel.org>,
+        Lars Poeschel <poeschel@lemonage.de>,
+        Sam Ravnborg <sam@ravnborg.org>, Arnd Bergmann <arnd@arndb.de>,
+        Linus Walleij <linus.walleij@linaro.org>,
+        Mark Brown <broonie@kernel.org>,
+        Lubomir Rintel <lkundrak@v3.sk>,
+        Daniel Palmer <daniel@0x0f.com>,
+        Geert Uytterhoeven <geert+renesas@glider.be>,
+        allen <allen.chen@ite.com.tw>,
+        Kuninori Morimoto <kuninori.morimoto.gx@renesas.com>,
+        devicetree@vger.kernel.org (open list:OPEN FIRMWARE AND FLATTENED
+        DEVICE TREE BINDINGS), linux-kernel@vger.kernel.org (open list)
+Subject: [PATCH v2 32/32] auxdisplay: lcd2s DT binding doc
+Date:   Mon, 21 Sep 2020 16:46:44 +0200
+Message-Id: <20200921144645.2061313-33-poeschel@lemonage.de>
+X-Mailer: git-send-email 2.28.0
+In-Reply-To: <20200921144645.2061313-1-poeschel@lemonage.de>
+References: <20191016082430.5955-1-poeschel@lemonage.de>
+ <20200921144645.2061313-1-poeschel@lemonage.de>
 MIME-Version: 1.0
-X-stable: review
-X-Patchwork-Hint: Ignore
 Content-Transfer-Encoding: 8bit
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-From: Damien Le Moal <damien.lemoal@wdc.com>
+From: Lars Poeschel <poeschel@lemonage.de>
 
-[ Upstream commit f025d9d9934b84cd03b7796072d10686029c408e ]
+Add a binding doc for the modtronix lcd2s auxdisplay driver. It also
+adds modtronix to the list of known vendor-prefixes.
 
-The Kendryte K210 SoC CLINT is compatible with Sifive clint v0
-(sifive,clint0). Fix the Kendryte K210 device tree clint entry to be
-inline with the sifive timer definition documented in
-Documentation/devicetree/bindings/timer/sifive,clint.yaml.
-The device tree clint entry is renamed similarly to u-boot device tree
-definition to improve compatibility with u-boot defined device tree.
-To ensure correct initialization, the interrup-cells attribute is added
-and the interrupt-extended attribute definition fixed.
-
-This fixes boot failures with Kendryte K210 SoC boards.
-
-Note that the clock referenced is kept as K210_CLK_ACLK, which does not
-necessarilly match the clint MTIME increment rate. This however does not
-seem to cause any problem for now.
-
-Signed-off-by: Damien Le Moal <damien.lemoal@wdc.com>
-Signed-off-by: Palmer Dabbelt <palmerdabbelt@google.com>
-Signed-off-by: Sasha Levin <sashal@kernel.org>
+Signed-off-by: Lars Poeschel <poeschel@lemonage.de>
+--
+Changes in v2:
+- Adopted yaml based file format
 ---
- arch/riscv/boot/dts/kendryte/k210.dtsi | 6 ++++--
- 1 file changed, 4 insertions(+), 2 deletions(-)
+ .../bindings/auxdisplay/modtronix,lcd2s.yaml  | 55 +++++++++++++++++++
+ .../devicetree/bindings/vendor-prefixes.yaml  |  2 +
+ 2 files changed, 57 insertions(+)
+ create mode 100644 Documentation/devicetree/bindings/auxdisplay/modtronix,lcd2s.yaml
 
-diff --git a/arch/riscv/boot/dts/kendryte/k210.dtsi b/arch/riscv/boot/dts/kendryte/k210.dtsi
-index c1df56ccb8d55..d2d0ff6456325 100644
---- a/arch/riscv/boot/dts/kendryte/k210.dtsi
-+++ b/arch/riscv/boot/dts/kendryte/k210.dtsi
-@@ -95,10 +95,12 @@ sysctl: sysctl@50440000 {
- 			#clock-cells = <1>;
- 		};
- 
--		clint0: interrupt-controller@2000000 {
-+		clint0: clint@2000000 {
-+			#interrupt-cells = <1>;
- 			compatible = "riscv,clint0";
- 			reg = <0x2000000 0xC000>;
--			interrupts-extended = <&cpu0_intc 3>,  <&cpu1_intc 3>;
-+			interrupts-extended =  <&cpu0_intc 3 &cpu0_intc 7
-+						&cpu1_intc 3 &cpu1_intc 7>;
- 			clocks = <&sysctl K210_CLK_ACLK>;
- 		};
- 
+diff --git a/Documentation/devicetree/bindings/auxdisplay/modtronix,lcd2s.yaml b/Documentation/devicetree/bindings/auxdisplay/modtronix,lcd2s.yaml
+new file mode 100644
+index 000000000000..9a70e28d2e61
+--- /dev/null
++++ b/Documentation/devicetree/bindings/auxdisplay/modtronix,lcd2s.yaml
+@@ -0,0 +1,55 @@
++# SPDX-License-Identifier: (GPL-2.0-only OR BSD-2-Clause)
++%YAML 1.2
++---
++$id: http://devicetree.org/schemas/auxdisplay/modtronix,lcd2s.yaml#
++$schema: http://devicetree.org/meta-schemas/core.yaml#
++
++title: Modtronix engineering LCD2S Character LCD Display
++
++description:
++  The LCD2S is a Character LCD Display manufactured by Modtronix Engineering.
++  The display supports a serial I2C and SPI interface. The driver currently
++  only supports the I2C interface.
++
++properties:
++  compatible:
++    const: modtronix,lcd2s
++
++  reg:
++    maxItems: 1
++    description:
++      I2C bus address of the display.
++
++  display-height-chars:
++    description: Height of the display, in character cells.
++    $ref: /schemas/types.yaml#/definitions/uint32
++    minimum: 1
++    maximum: 4
++
++  display-width-chars:
++    description: Width of the display, in character cells.
++    $ref: /schemas/types.yaml#/definitions/uint32
++    minimum: 16
++    maximum: 20
++
++required:
++  - compatible
++  - reg
++  - display-height-chars
++  - display-width-chars
++
++additionalProperties: false
++
++examples:
++  - |
++    i2c {
++      #address-cells = <1>;
++      #size-cells = <0>;
++
++      lcd2s: auxdisplay@28 {
++        compatible = "modtronix,lcd2s";
++        reg = <0x28>;
++        display-height-chars = <4>;
++        display-width-chars = <20>;
++      };
++};
+diff --git a/Documentation/devicetree/bindings/vendor-prefixes.yaml b/Documentation/devicetree/bindings/vendor-prefixes.yaml
+index 63996ab03521..a9dd168db6ce 100644
+--- a/Documentation/devicetree/bindings/vendor-prefixes.yaml
++++ b/Documentation/devicetree/bindings/vendor-prefixes.yaml
+@@ -667,6 +667,8 @@ patternProperties:
+     description: MiraMEMS Sensing Technology Co., Ltd.
+   "^mitsubishi,.*":
+     description: Mitsubishi Electric Corporation
++  "^modtronix,.*":
++    description: Modtronix Engineering
+   "^mosaixtech,.*":
+     description: Mosaix Technologies, Inc.
+   "^motorola,.*":
 -- 
-2.25.1
+2.28.0
 
