@@ -2,83 +2,119 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from vger.kernel.org (vger.kernel.org [23.128.96.18])
-	by mail.lfdr.de (Postfix) with ESMTP id B6C5C2731F9
-	for <lists+devicetree@lfdr.de>; Mon, 21 Sep 2020 20:30:40 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTP id 107B9273210
+	for <lists+devicetree@lfdr.de>; Mon, 21 Sep 2020 20:39:42 +0200 (CEST)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S1727412AbgIUSaS (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Mon, 21 Sep 2020 14:30:18 -0400
-Received: from mail.kernel.org ([198.145.29.99]:35168 "EHLO mail.kernel.org"
-        rhost-flags-OK-OK-OK-OK) by vger.kernel.org with ESMTP
-        id S1726456AbgIUSaS (ORCPT <rfc822;devicetree@vger.kernel.org>);
-        Mon, 21 Sep 2020 14:30:18 -0400
-Received: from localhost (fw-tnat.cambridge.arm.com [217.140.96.140])
-        (using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
-        (No client certificate requested)
-        by mail.kernel.org (Postfix) with ESMTPSA id 6067C20758;
-        Mon, 21 Sep 2020 18:30:17 +0000 (UTC)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=kernel.org;
-        s=default; t=1600713017;
-        bh=RIG1o2W+S0fOozltrMezM0wKniQZjIj8tj49IFeycQc=;
-        h=Date:From:To:Cc:Subject:References:In-Reply-To:From;
-        b=ZjWSgetkuu30PE+jVlTKOITp/D4bMu9VafoSjGjApUWBn2ecvVK2LCbjtTrwBSs9i
-         N96XP+fPh1z0gqX4hot0BvUoGmaGl3l3OzQgclsVmYQAZfSNupk6M4v2WNba8tuvm4
-         oTSGr3na8bgWrU7OVNMSdljPAw5bjrnzr21MhPDI=
-Date:   Mon, 21 Sep 2020 19:29:24 +0100
-From:   Mark Brown <broonie@kernel.org>
-To:     =?iso-8859-1?Q?Cl=E9ment_P=E9ron?= <peron.clem@gmail.com>
-Cc:     Maxime Ripard <mripard@kernel.org>, Chen-Yu Tsai <wens@csie.org>,
-        Rob Herring <robh+dt@kernel.org>,
+        id S1727412AbgIUSjP convert rfc822-to-8bit (ORCPT
+        <rfc822;lists+devicetree@lfdr.de>); Mon, 21 Sep 2020 14:39:15 -0400
+Received: from mailoutvs12.siol.net ([185.57.226.203]:57412 "EHLO
+        mail.siol.net" rhost-flags-OK-OK-OK-FAIL) by vger.kernel.org
+        with ESMTP id S1726456AbgIUSjP (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Mon, 21 Sep 2020 14:39:15 -0400
+X-Greylist: delayed 415 seconds by postgrey-1.27 at vger.kernel.org; Mon, 21 Sep 2020 14:39:14 EDT
+Received: from localhost (localhost [127.0.0.1])
+        by mail.siol.net (Zimbra) with ESMTP id 3AD4E5274C3;
+        Mon, 21 Sep 2020 20:32:17 +0200 (CEST)
+X-Virus-Scanned: amavisd-new at psrvmta12.zcs-production.pri
+Received: from mail.siol.net ([127.0.0.1])
+        by localhost (psrvmta12.zcs-production.pri [127.0.0.1]) (amavisd-new, port 10032)
+        with ESMTP id XJOz8y8z8RPg; Mon, 21 Sep 2020 20:32:16 +0200 (CEST)
+Received: from mail.siol.net (localhost [127.0.0.1])
+        by mail.siol.net (Zimbra) with ESMTPS id D10215274C4;
+        Mon, 21 Sep 2020 20:32:16 +0200 (CEST)
+Received: from kista.localnet (cpe1-5-97.cable.triera.net [213.161.5.97])
+        (Authenticated sender: jernej.skrabec@siol.net)
+        by mail.siol.net (Zimbra) with ESMTPA id F3DBC5274C3;
+        Mon, 21 Sep 2020 20:32:15 +0200 (CEST)
+From:   Jernej =?utf-8?B?xaBrcmFiZWM=?= <jernej.skrabec@siol.net>
+To:     Maxime Ripard <maxime@cerno.tech>,
+        =?ISO-8859-1?Q?Cl=E9ment_P=E9ron?= <peron.clem@gmail.com>
+Cc:     Chen-Yu Tsai <wens@csie.org>, Rob Herring <robh+dt@kernel.org>,
+        Mark Brown <broonie@kernel.org>,
         Liam Girdwood <lgirdwood@gmail.com>,
         Jaroslav Kysela <perex@perex.cz>,
         Takashi Iwai <tiwai@suse.com>,
         Marcus Cooper <codekipper@gmail.com>,
-        Jernej Skrabec <jernej.skrabec@siol.net>,
-        alsa-devel@alsa-project.org, devicetree@vger.kernel.org,
-        linux-arm-kernel@lists.infradead.org, linux-kernel@vger.kernel.org,
-        linux-sunxi@googlegroups.com
-Subject: Re: [PATCH v4 09/22] arm64: dts: allwinner: h6: Add HDMI audio node
-Message-ID: <20200921182924.GG4792@sirena.org.uk>
-References: <20200921102731.747736-1-peron.clem@gmail.com>
- <20200921102731.747736-10-peron.clem@gmail.com>
+        Linux-ALSA <alsa-devel@alsa-project.org>,
+        devicetree <devicetree@vger.kernel.org>,
+        linux-arm-kernel <linux-arm-kernel@lists.infradead.org>,
+        linux-kernel <linux-kernel@vger.kernel.org>,
+        linux-sunxi <linux-sunxi@googlegroups.com>
+Subject: Re: Re: [PATCH v4 09/22] arm64: dts: allwinner: h6: Add HDMI audio node
+Date:   Mon, 21 Sep 2020 20:37:09 +0200
+Message-ID: <59286578.E0qSRroNqr@kista>
+In-Reply-To: <CAJiuCcfz9A_Vmzq=s3LK2kGB_1tZPkC9Ux+Brdocp9py0fovAg@mail.gmail.com>
+References: <20200921102731.747736-1-peron.clem@gmail.com> <20200921135925.q7mde2cnt5jtzkb5@gilmour.lan> <CAJiuCcfz9A_Vmzq=s3LK2kGB_1tZPkC9Ux+Brdocp9py0fovAg@mail.gmail.com>
 MIME-Version: 1.0
-Content-Type: multipart/signed; micalg=pgp-sha512;
-        protocol="application/pgp-signature"; boundary="pE2VAHO2njSJCslu"
-Content-Disposition: inline
-In-Reply-To: <20200921102731.747736-10-peron.clem@gmail.com>
-X-Cookie: Love thy neighbor, tune thy piano.
-User-Agent: Mutt/1.10.1 (2018-07-13)
+Content-Transfer-Encoding: 8BIT
+Content-Type: text/plain; charset="iso-8859-1"
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
+Dne ponedeljek, 21. september 2020 ob 19:23:49 CEST je Clément Péron 
+napisal(a):
+> Hi Maxime,
+> 
+> On Mon, 21 Sep 2020 at 15:59, Maxime Ripard <maxime@cerno.tech> wrote:
+> >
+> > On Mon, Sep 21, 2020 at 12:27:18PM +0200, Clément Péron wrote:
+> > > From: Jernej Skrabec <jernej.skrabec@siol.net>
+> > >
+> > > Add a simple-soundcard to link audio between HDMI and I2S.
+> > >
+> > > Signed-off-by: Jernej Skrabec <jernej.skrabec@siol.net>
+> > > Signed-off-by: Marcus Cooper <codekipper@gmail.com>
+> > > Signed-off-by: Clément Péron <peron.clem@gmail.com>
+> > > ---
+> > >  arch/arm64/boot/dts/allwinner/sun50i-h6.dtsi | 33 ++++++++++++++++++++
+> > >  1 file changed, 33 insertions(+)
+> > >
+> > > diff --git a/arch/arm64/boot/dts/allwinner/sun50i-h6.dtsi b/arch/arm64/
+boot/dts/allwinner/sun50i-h6.dtsi
+> > > index 28c77d6872f6..a8853ee7885a 100644
+> > > --- a/arch/arm64/boot/dts/allwinner/sun50i-h6.dtsi
+> > > +++ b/arch/arm64/boot/dts/allwinner/sun50i-h6.dtsi
+> > > @@ -67,6 +67,25 @@ de: display-engine {
+> > >               status = "disabled";
+> > >       };
+> > >
+> > > +     hdmi_sound: hdmi-sound {
+> > > +             compatible = "simple-audio-card";
+> > > +             simple-audio-card,format = "i2s";
+> > > +             simple-audio-card,name = "sun50i-h6-hdmi";
+> > > +             simple-audio-card,mclk-fs = <128>;
+> > > +             simple-audio-card,frame-inversion;
+> > > +             status = "disabled";
+> > > +
+> > > +             simple-audio-card,codec {
+> > > +                     sound-dai = <&hdmi>;
+> > > +             };
+> > > +
+> > > +             simple-audio-card,cpu {
+> > > +                     sound-dai = <&i2s1>;
+> > > +                     dai-tdm-slot-num = <2>;
+> > > +                     dai-tdm-slot-width = <32>;
+> >
+> > It looks weird to have both some TDM setup here, and yet the format in
+> > i2s?
+> 
+> Yes, I agree I will check if it's really needed.
 
---pE2VAHO2njSJCslu
-Content-Type: text/plain; charset=iso-8859-1
-Content-Disposition: inline
-Content-Transfer-Encoding: quoted-printable
+I think this was explained before. Anyway, this is needed to force width to 
+32, no matter actual sample width. That's a requirement of HDMI codec. I 
+believe Marcus Cooper have another codec which also needs fixed width.
 
-On Mon, Sep 21, 2020 at 12:27:18PM +0200, Cl=E9ment P=E9ron wrote:
-> From: Jernej Skrabec <jernej.skrabec@siol.net>
->=20
-> Add a simple-soundcard to link audio between HDMI and I2S.
+There is no similar property for I2S, so TDM one is used here.
 
-It makes life a lot easier if you batch all the DTS changes together
-rather than randomly mixing them in with code changes, it both makes
-it clearer what's going on and makes things easier to handle.
+Best regards,
+Jernej
 
---pE2VAHO2njSJCslu
-Content-Type: application/pgp-signature; name="signature.asc"
+> 
+> Clement
+> 
+> >
+> > Maxime
+> 
 
------BEGIN PGP SIGNATURE-----
 
-iQEzBAABCgAdFiEEreZoqmdXGLWf4p/qJNaLcl1Uh9AFAl9o8QQACgkQJNaLcl1U
-h9B3ogf9EEYaugeaZHYesvCMIRKvpSknwNalCvYT60A0SQGx2KNLn7X2PGd95CPY
-KC6cgEQ89lTdbrGiAkaE9SXZp1kM6lhQs5Lg/3F/zvf8m9zMtOBTfumTFwN6v050
-S8+sufsVctKcu4ztR0tLDIss5iVlklDm5EwmAHxfzk6tb3K8oZBhV0SsZldoDmFU
-T1zMh8OeJshpm34jx1kat93A0xKmXJdtc2ER6wvn/dSftwd0+34YBACD2G0iC4jx
-ttK0Q4Iq2mois+J7HrJWpEm7jo/dmKxuXvpKGlhr7YDS8LTK4teq3Re/tWJ/6i8H
-E2/MBNAuorphpOUuKd1kYaHbsa7z0g==
-=iKNi
------END PGP SIGNATURE-----
-
---pE2VAHO2njSJCslu--
