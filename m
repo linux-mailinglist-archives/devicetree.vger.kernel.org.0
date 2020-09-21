@@ -2,80 +2,101 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from vger.kernel.org (vger.kernel.org [23.128.96.18])
-	by mail.lfdr.de (Postfix) with ESMTP id 2D167271F3B
-	for <lists+devicetree@lfdr.de>; Mon, 21 Sep 2020 11:47:51 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTP id C4C97271F7F
+	for <lists+devicetree@lfdr.de>; Mon, 21 Sep 2020 11:59:18 +0200 (CEST)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S1726435AbgIUJrp (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Mon, 21 Sep 2020 05:47:45 -0400
-Received: from mail.kernel.org ([198.145.29.99]:33756 "EHLO mail.kernel.org"
-        rhost-flags-OK-OK-OK-OK) by vger.kernel.org with ESMTP
-        id S1726334AbgIUJrp (ORCPT <rfc822;devicetree@vger.kernel.org>);
-        Mon, 21 Sep 2020 05:47:45 -0400
-Received: from localhost (p5486cf2a.dip0.t-ipconnect.de [84.134.207.42])
-        (using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
-        (No client certificate requested)
-        by mail.kernel.org (Postfix) with ESMTPSA id 1E1E52193E;
-        Mon, 21 Sep 2020 09:47:43 +0000 (UTC)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=kernel.org;
-        s=default; t=1600681664;
-        bh=LcXKBX1wP04dCEC8OyZKFVCw6H/G2yo5Sn1JBV1yC+M=;
-        h=Date:From:To:Cc:Subject:References:In-Reply-To:From;
-        b=ueW+MtNOP7Crg00KaYYY5U871SWksGQ07GPClpbQ5iCT3vjZkZoNT+hip0yWBHorw
-         GUyqW+UJiyZWF27ERWbAzCP+RIbxorEhUPBDrDLlWQqGDoYIvcxHLqniDIcA8kQlrH
-         YyKfSDbTsLtcceOKrEFhC2GXTIx6kGsnWizRT0Ww=
-Date:   Mon, 21 Sep 2020 11:47:42 +0200
-From:   Wolfram Sang <wsa@kernel.org>
-To:     Paul Cercueil <paul@crapouillou.net>
-Cc:     Rob Herring <robh+dt@kernel.org>, od@zcrc.me,
-        linux-i2c@vger.kernel.org, devicetree@vger.kernel.org,
-        linux-kernel@vger.kernel.org
-Subject: Re: [PATCH 3/3] i2c: jz4780: Remove of_match_ptr()
-Message-ID: <20200921094741.GN1840@ninjato>
-References: <20200904131152.17390-1-paul@crapouillou.net>
- <20200904131152.17390-3-paul@crapouillou.net>
+        id S1726471AbgIUJ7R (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Mon, 21 Sep 2020 05:59:17 -0400
+Received: from lindbergh.monkeyblade.net ([23.128.96.19]:55712 "EHLO
+        lindbergh.monkeyblade.net" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
+        with ESMTP id S1726326AbgIUJ7Q (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Mon, 21 Sep 2020 05:59:16 -0400
+Received: from mail-ej1-x644.google.com (mail-ej1-x644.google.com [IPv6:2a00:1450:4864:20::644])
+        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 55224C061755
+        for <devicetree@vger.kernel.org>; Mon, 21 Sep 2020 02:59:16 -0700 (PDT)
+Received: by mail-ej1-x644.google.com with SMTP id i26so16777046ejb.12
+        for <devicetree@vger.kernel.org>; Mon, 21 Sep 2020 02:59:16 -0700 (PDT)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+        d=beagleboard-org.20150623.gappssmtp.com; s=20150623;
+        h=date:from:to:cc:subject:message-id:references:mime-version
+         :content-disposition:in-reply-to;
+        bh=sl8uGkOUAXH9GoQjx9V+JkGylxwKYdt19btYfKxLbmw=;
+        b=mnoq6BMhUMKYHNjZLAhOQC5sz2iGfzQxNEvmCunoDgFntNgGc7N1PxAKKBdqnAaFyk
+         cfdOwPpq8pXxnJh/d+BGplVMxlXtQg5cRRr4R97rHYN0w/g7M8k9q/ndCWF5bsntgw5r
+         cgI2vgLNKHnGWQyBjNFkIKZXcFEra3O0awGEIvA/sTpxFWQrKzanm1JwQmDw/u74vRA8
+         ZNINbJTxS8atLiTnmFpxj+eI6lBUPe7TYseFLMNN8le+1ENVRig0jmgvojBIZUqt4Z1Z
+         ZmUyg/k2STu11/eNalBHkwiXgkeAJQJPdw4hufpBjKXNU5REWPdFkIBhF0LJPoen+M7V
+         VqXg==
+X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+        d=1e100.net; s=20161025;
+        h=x-gm-message-state:date:from:to:cc:subject:message-id:references
+         :mime-version:content-disposition:in-reply-to;
+        bh=sl8uGkOUAXH9GoQjx9V+JkGylxwKYdt19btYfKxLbmw=;
+        b=CyGup/N/pxZXyhpODCNwJRk2fbaoCr6fs3r3BVfmc1HfO4NxFDGArI982ia68vv6+L
+         OuvnLUp2CYaQwsioHa8dU2PhoCPYhK54MfRWdkOXWHb5F7lWv7VhKpf/dghT50oArOQM
+         0n7huQV/a9DwAwT+T5aZRc2Z6OOky4zfD3+lmitNSIs2M252VuivQB9tRGjfu/s/qxpS
+         HLPFAkbu2Pv+TptV22OAuad012xTKWCQu20DO13Jv/N4sq2xarSSs+yWZ4PEbpzXj/iP
+         6N7feieOcbKAR/8jg5vsTVc6Nmb8Q9mE4YBtbUph5VCXTL17z2z4qafCA7y0JiHXyiL3
+         j2yw==
+X-Gm-Message-State: AOAM53291qqZVia/n9HXDt+mz+3voH3Olj9M4te2bDDwgKT9IfYilN3f
+        Wi6xyY4Ei+w0c/+f0ThqRsu7vg==
+X-Google-Smtp-Source: ABdhPJwV2XZWvXBk31Ggd3Mw92swsNCTa+hfyEth2y1cYI1jCOhFVLvWbHjmNeuzBB83LG6KVU/cDw==
+X-Received: by 2002:a17:906:2e14:: with SMTP id n20mr50204929eji.214.1600682355019;
+        Mon, 21 Sep 2020 02:59:15 -0700 (PDT)
+Received: from x1 ([2001:16b8:5c50:7f01:652a:68b1:4040:26de])
+        by smtp.gmail.com with ESMTPSA id i26sm8303203edq.47.2020.09.21.02.59.13
+        (version=TLS1_3 cipher=TLS_AES_256_GCM_SHA384 bits=256/256);
+        Mon, 21 Sep 2020 02:59:14 -0700 (PDT)
+Date:   Mon, 21 Sep 2020 11:59:12 +0200
+From:   Drew Fustini <drew@beagleboard.org>
+To:     Tony Lindgren <tony@atomide.com>
+Cc:     Rob Herring <robh+dt@kernel.org>,
+        Linus Walleij <linus.walleij@linaro.org>,
+        Jason Kridner <jkridner@beagleboard.org>,
+        Robert Nelson <robertcnelson@gmail.com>,
+        Trent Piepho <tpiepho@gmail.com>,
+        Christina Quast <cquast@hanoverdisplays.com>,
+        linux-omap@vger.kernel.org, linux-kernel@vger.kernel.org,
+        devicetree@vger.kernel.org, linux-gpio@vger.kernel.org
+Subject: Re: [PATCH] ARM: dts: am335x: guardian: switch to AM33XX_PADCONF
+Message-ID: <20200921095912.GA3752675@x1>
+References: <20200919195159.3126193-1-drew@beagleboard.org>
+ <20200921064707.GN7101@atomide.com>
 MIME-Version: 1.0
-Content-Type: multipart/signed; micalg=pgp-sha512;
-        protocol="application/pgp-signature"; boundary="p1Od3smaOkJqivj4"
+Content-Type: text/plain; charset=us-ascii
 Content-Disposition: inline
-In-Reply-To: <20200904131152.17390-3-paul@crapouillou.net>
-User-Agent: Mutt/1.10.1 (2018-07-13)
+In-Reply-To: <20200921064707.GN7101@atomide.com>
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
+On Mon, Sep 21, 2020 at 09:47:07AM +0300, Tony Lindgren wrote:
+> * Drew Fustini <drew@beagleboard.org> [200919 19:53]:
+> > Change the pin defintions from AM33XX_IOPAD to AM33XX_PADCONF macro so
+> > that it correctly handles changes to #pinctrl-cells.
+> 
+> Thanks for fixing this. I wonder if we should now also change the define
+> for the old AM33XX_IOPAD macro?
+> 
+> Or just remove it completely and mention that we've changed nr-pinctrl-cells
+> to use 3 now?
+> 
+> Otherwise the unknown number of out-of-tree boards will be hitting this
+> too.
+> 
 
---p1Od3smaOkJqivj4
-Content-Type: text/plain; charset=us-ascii
-Content-Disposition: inline
-Content-Transfer-Encoding: quoted-printable
+Christina Quast commented in f1ff9be7652b ("ARM: dts: am33xx: Added 
+AM33XX_PADCONF macro") that AM33XX_IOPAD() was left in place to avoid
+breaking boards not in mainline.
 
-On Fri, Sep 04, 2020 at 03:11:52PM +0200, Paul Cercueil wrote:
-> CONFIG_OF is selected by CONFIG_MACH_INGENIC, therefore we don't need to
-> handle the case where Device Tree is not supported.
->=20
-> Signed-off-by: Paul Cercueil <paul@crapouillou.net>
+If we follow that logic, then I think that fixing AM33XX_IOPAD() for
+#pinctrl-cells = <2> would be the correct solution.
 
-Applied to for-next, thanks!
+Would this be acceptable?
+
+#define AM33XX_IOPAD(pa, val)          OMAP_IOPAD_OFFSET((pa), 0x0800) (val) (0)
 
 
---p1Od3smaOkJqivj4
-Content-Type: application/pgp-signature; name="signature.asc"
+thanks,
+drew
 
------BEGIN PGP SIGNATURE-----
-
-iQIzBAABCgAdFiEEOZGx6rniZ1Gk92RdFA3kzBSgKbYFAl9odr0ACgkQFA3kzBSg
-KbYJZA//QnuGBJc6iFsU8NJi2BJffyArvPlK6nzELvYMqTPUyRTN3tlD1Zpt22HD
-S1kugxYMswtlO1yeB3My22j05ma2qZomoaIQfkiuNp2WIWZGwRPnVyZDIOp5E+Cj
-V5MQ6bnO/mrzYsEW/slZww9CfNZCAS/vxn78AkJzBs2khq71wc4J3sHEOMVjuqO3
-sm8NO2iKPg1glMVtS87iR3f0Ro4QqEqZpC5ukuINYojy11GxAvNXlzZ66H6NIXdH
-eRKVJ4SvnMB1GcTmAZLRcCG7JDUy90KutBCC2+NR/JFO/xK4GNHiVjeSCjD52zIR
-cBoQnP019Cazl+ov2Hl7cSi//dXoGU504f9KgCJTHRd5PS1fTvAYgn6QhoJaDKZX
-EiOQfuq3SFf93f5VVmttxqQwRZwpYzaOTTeXp2h6JUuaL53BRho1ginP5pI5xn6f
-0/pBprkz72WTkK+6DQguz264VvBcC8sUf7UA2hp8jsNeofg9IJbTO/L7LXGvy+7y
-nQmjV+YUafJQGOvhvy4RCe42ixFWq86OorzUMsBIADb9E0+SYcHikZvvChVBGZbM
-o7BERCw08v5Kyh/lV38uhAk5qbm0nAEbCPnleE8WndAkF2xRHoJdBWL2lq7yxjXb
-hCi//VlzeO4uSyvdc87lxx1SmGr1voGRekUbpDdWbYQCMBsNqCA=
-=C4Zn
------END PGP SIGNATURE-----
-
---p1Od3smaOkJqivj4--
