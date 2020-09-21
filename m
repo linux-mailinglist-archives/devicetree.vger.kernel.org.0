@@ -2,101 +2,246 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from vger.kernel.org (vger.kernel.org [23.128.96.18])
-	by mail.lfdr.de (Postfix) with ESMTP id 8B7122723E2
-	for <lists+devicetree@lfdr.de>; Mon, 21 Sep 2020 14:29:24 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTP id E5CE62723EE
+	for <lists+devicetree@lfdr.de>; Mon, 21 Sep 2020 14:32:59 +0200 (CEST)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S1726395AbgIUM3Y (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Mon, 21 Sep 2020 08:29:24 -0400
-Received: from wnew4-smtp.messagingengine.com ([64.147.123.18]:56759 "EHLO
-        wnew4-smtp.messagingengine.com" rhost-flags-OK-OK-OK-OK)
-        by vger.kernel.org with ESMTP id S1726375AbgIUM3X (ORCPT
-        <rfc822;devicetree@vger.kernel.org>);
-        Mon, 21 Sep 2020 08:29:23 -0400
-Received: from compute4.internal (compute4.nyi.internal [10.202.2.44])
-        by mailnew.west.internal (Postfix) with ESMTP id 46BABB57;
-        Mon, 21 Sep 2020 08:29:21 -0400 (EDT)
-Received: from mailfrontend1 ([10.202.2.162])
-  by compute4.internal (MEProxy); Mon, 21 Sep 2020 08:29:22 -0400
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=cerno.tech; h=
-        date:from:to:cc:subject:message-id:references:mime-version
-        :content-type:content-transfer-encoding:in-reply-to; s=fm3; bh=R
-        HKQR7CbzI0F6ZRKVieWVWj1G/b0kU9KL/lrLU/cXIE=; b=BmH4loHf/twmMvruG
-        h+1fAO/CvxSkfl44OnYhWxEx9nAlNqB9xc0MBQipOjf3YpW9p4Y2UxFv5u1jwwEk
-        7itf8mgtLdyHUTNFAlgVz11YQvxeLAMdIXXbcBdiSvpXLoJ4iL8W4GXRL2AX9l4C
-        w4d/8tRbIVhEJUimi7VoZszz/9dNSk/KQ/rw/7NHU0LJq6ICr2MalqxmZHNtvdCO
-        GoS/5WX4ZxAXn3mj+IOgBmejzXi9Iydb/8cyfzXDvqVbHQeTJmGoEOEXwWPEAOmp
-        MTQ3yIHAKIweDxETUuvLopmQ+JEaX7JiLaADyZS4QitYgrwa7a+/18eOkmQ8RUDM
-        +Dfpw==
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=
-        messagingengine.com; h=cc:content-transfer-encoding:content-type
-        :date:from:in-reply-to:message-id:mime-version:references
-        :subject:to:x-me-proxy:x-me-proxy:x-me-sender:x-me-sender
-        :x-sasl-enc; s=fm3; bh=RHKQR7CbzI0F6ZRKVieWVWj1G/b0kU9KL/lrLU/cX
-        IE=; b=uCP6FvdbREPriWo7tBN7COrxikiM1temZ9SQ7f1vnlWJXXvpTgR8/9WKF
-        kGwplJwffLMMZMU3LkW4bYkyd6g7UFI9QfVFjeAJjXI/SRHxXt3Cet9h5D8+gfnF
-        OukGuVCqfRLO46NtvgMf/Rt2q6Vl4DxvzUFlQLq5CfjVCkYbMLCPv961KFo4RiMh
-        ARu2F1aqKZfZaXxMvQx8XhOmZKqk7TSCFEzY102TvWsSUKDor6w+NO2M5GZABkbO
-        XXF1vINgJBGIMsRMFOd4simfgjl+K3nqKrJoyEfVUe4Ozfw/CbYRhN/yJyHBan4s
-        PFJzTtoMmqieBbOhGHyPo+R6I9ysg==
-X-ME-Sender: <xms:n5xoX2Urj45I8RuFot4ZW1GTKO1jGOAaFRwEfOPzw3-hYRLhznqFMQ>
-    <xme:n5xoXylUBDPDNvKOWfMGfVZeTqjyqmZDH_cMYtsDFq1fOKmJc7UloqI4F4-VuT8lU
-    l0xdfK5E8_JQdgkrU8>
-X-ME-Proxy-Cause: gggruggvucftvghtrhhoucdtuddrgedujedruddvgdehgecutefuodetggdotefrodftvf
-    curfhrohhfihhlvgemucfhrghsthforghilhdpqfgfvfdpuffrtefokffrpgfnqfghnecu
-    uegrihhlohhuthemuceftddtnecusecvtfgvtghiphhivghnthhsucdlqddutddtmdenuc
-    fjughrpeffhffvuffkfhggtggugfgjsehtqhertddttddunecuhfhrohhmpeforgigihhm
-    vgcutfhiphgrrhguuceomhgrgihimhgvsegtvghrnhhordhtvggthheqnecuggftrfgrth
-    htvghrnhepheelvdfhkeelgfevleekleduvefftefhudekvdffhffhgeefuefgheegfeej
-    vedtnecukfhppeeltddrkeelrdeikedrjeeinecuvehluhhsthgvrhfuihiivgeptdenuc
-    frrghrrghmpehmrghilhhfrhhomhepmhgrgihimhgvsegtvghrnhhordhtvggthh
-X-ME-Proxy: <xmx:n5xoX6YDobf3ogp7c8SHV-Yk_rRA2uc1uDT86C0UPE5mNFI5wgY1cA>
-    <xmx:n5xoX9UdwW79t8SEbNgS2451IJpJPK2zkH1UejK3VnnXZ18zE4yFDg>
-    <xmx:n5xoXwnWphsACygt4earwWgNmDEcjJ9UZiDhs4nrWeCxNQGLQO3IGQ>
-    <xmx:oJxoX786_gnFaDjZ6XBX4Ymq0ztTe-t6QLlEfLX6vTz5qNRVAAO84E4SLM4>
-Received: from localhost (lfbn-tou-1-1502-76.w90-89.abo.wanadoo.fr [90.89.68.76])
-        by mail.messagingengine.com (Postfix) with ESMTPA id 7F091328005A;
-        Mon, 21 Sep 2020 08:29:19 -0400 (EDT)
-Date:   Mon, 21 Sep 2020 14:29:18 +0200
-From:   Maxime Ripard <maxime@cerno.tech>
-To:     =?utf-8?B?Q2zDqW1lbnQgUMOpcm9u?= <peron.clem@gmail.com>
-Cc:     Chen-Yu Tsai <wens@csie.org>, Rob Herring <robh+dt@kernel.org>,
-        Mark Brown <broonie@kernel.org>,
-        Liam Girdwood <lgirdwood@gmail.com>,
-        Jaroslav Kysela <perex@perex.cz>,
-        Takashi Iwai <tiwai@suse.com>,
-        Marcus Cooper <codekipper@gmail.com>,
-        Jernej Skrabec <jernej.skrabec@siol.net>,
-        alsa-devel@alsa-project.org, devicetree@vger.kernel.org,
-        linux-arm-kernel@lists.infradead.org, linux-kernel@vger.kernel.org,
-        linux-sunxi@googlegroups.com, Samuel Holland <samuel@sholland.org>
-Subject: Re: [PATCH v4 02/22] ASoC: sun4i-i2s: Change set_chan_cfg() params
-Message-ID: <20200921122918.kzzu623wui277nwr@gilmour.lan>
-References: <20200921102731.747736-1-peron.clem@gmail.com>
- <20200921102731.747736-3-peron.clem@gmail.com>
+        id S1726436AbgIUMc6 (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Mon, 21 Sep 2020 08:32:58 -0400
+Received: from crapouillou.net ([89.234.176.41]:41228 "EHLO crapouillou.net"
+        rhost-flags-OK-OK-OK-OK) by vger.kernel.org with ESMTP
+        id S1726341AbgIUMc6 (ORCPT <rfc822;devicetree@vger.kernel.org>);
+        Mon, 21 Sep 2020 08:32:58 -0400
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=crapouillou.net;
+        s=mail; t=1600691574; h=from:from:sender:reply-to:subject:subject:date:date:
+         message-id:message-id:to:to:cc:cc:mime-version:mime-version:
+         content-type:content-type:
+         content-transfer-encoding:content-transfer-encoding:
+         in-reply-to:in-reply-to:references:references;
+        bh=tVS4ej/3zLZ3sk2zDSTgF5J1k9yrLkihVwDA0T36HJ8=;
+        b=EJgPDLmQYQ55aeVw/XzHq90ypXv8fyF8RuG87VqQ/hav1J1JJbQGX6MT9oe9I8vQGtLUy9
+        kVwXS8PFjRErOBIgKCcg2OgAFE3ntYBegiHb2NDrvlkVGiblEiOX3yg9AXCfpIKX9PXQ25
+        eBNNvk/5ptOb05ypmWczJtE/75Lpu+A=
+Date:   Mon, 21 Sep 2020 14:32:41 +0200
+From:   Paul Cercueil <paul@crapouillou.net>
+Subject: Re: [PATCH 1/1] MIPS: Ingenic: Add CPU nodes for Ingenic SoCs.
+To:     =?UTF-8?b?5ZGo55Cw5p2w?= <zhouyanjie@wanyeetech.com>
+Cc:     robh+dt@kernel.org, tsbogend@alpha.franken.de,
+        linux-kernel@vger.kernel.org, linux-mips@vger.kernel.org,
+        devicetree@vger.kernel.org, dongsheng.qiu@ingenic.com,
+        aric.pzqi@ingenic.com, rick.tyliu@ingenic.com,
+        yanfei.li@ingenic.com, sernia.zhou@foxmail.com,
+        zhenwenjin@gmail.com
+Message-Id: <HID0HQ.YOE31HIO6RXQ2@crapouillou.net>
+In-Reply-To: <20200919113859.88566-2-zhouyanjie@wanyeetech.com>
+References: <20200919113859.88566-1-zhouyanjie@wanyeetech.com>
+        <20200919113859.88566-2-zhouyanjie@wanyeetech.com>
 MIME-Version: 1.0
-Content-Type: text/plain; charset=iso-8859-1
-Content-Disposition: inline
+Content-Type: text/plain; charset=UTF-8; format=flowed
 Content-Transfer-Encoding: quoted-printable
-In-Reply-To: <20200921102731.747736-3-peron.clem@gmail.com>
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-On Mon, Sep 21, 2020 at 12:27:11PM +0200, Cl=E9ment P=E9ron wrote:
-> As slots and slot_width can be overwritter in case set_tdm() is
-> called. Avoid to have this logic in set_chan_cfg().
+
+
+Le sam. 19 sept. 2020 =C3=A0 19:38, =E5=91=A8=E7=90=B0=E6=9D=B0 (Zhou Yanji=
+e)=20
+<zhouyanjie@wanyeetech.com> a =C3=A9crit :
+> Add 'cpus' node to the jz4725b.dtsi, jz4740.dtsi, jz4770.dtsi,
+> jz4780.dtsi, x1000.dtsi, and x1830.dtsi files.
 >=20
-> Instead pass the required values as params to set_chan_cfg().
+> Tested-by: H. Nikolaus Schaller <hns@goldelico.com>
+> Tested-by: Paul Boddie <paul@boddie.org.uk>
+> Signed-off-by: =E5=91=A8=E7=90=B0=E6=9D=B0 (Zhou Yanjie) <zhouyanjie@wany=
+eetech.com>
 
-It's not really clear here what the issue is, and how passing the slots
-and slot_width as arguments addresses it
+Reviewed-by: Paul Cercueil <paul@crapouillou.net>
 
-> This also fix a bug when i2s->slot_width is set for TDM but not
-> properly used in set_chan_cfg().
+Cheers,
+-Paul
 
-Which bug?
+> ---
+>  arch/mips/boot/dts/ingenic/jz4725b.dtsi | 14 ++++++++++++++
+>  arch/mips/boot/dts/ingenic/jz4740.dtsi  | 14 ++++++++++++++
+>  arch/mips/boot/dts/ingenic/jz4770.dtsi  | 15 ++++++++++++++-
+>  arch/mips/boot/dts/ingenic/jz4780.dtsi  | 23 +++++++++++++++++++++++
+>  arch/mips/boot/dts/ingenic/x1000.dtsi   | 14 ++++++++++++++
+>  arch/mips/boot/dts/ingenic/x1830.dtsi   | 14 ++++++++++++++
+>  6 files changed, 93 insertions(+), 1 deletion(-)
+>=20
+> diff --git a/arch/mips/boot/dts/ingenic/jz4725b.dtsi=20
+> b/arch/mips/boot/dts/ingenic/jz4725b.dtsi
+> index a8fca560878d..a1f0b71c9223 100644
+> --- a/arch/mips/boot/dts/ingenic/jz4725b.dtsi
+> +++ b/arch/mips/boot/dts/ingenic/jz4725b.dtsi
+> @@ -7,6 +7,20 @@
+>  	#size-cells =3D <1>;
+>  	compatible =3D "ingenic,jz4725b";
+>=20
+> +	cpus {
+> +		#address-cells =3D <1>;
+> +		#size-cells =3D <0>;
+> +
+> +		cpu0: cpu@0 {
+> +			device_type =3D "cpu";
+> +			compatible =3D "ingenic,xburst-mxu1.0";
+> +			reg =3D <0>;
+> +
+> +			clocks =3D <&cgu JZ4725B_CLK_CCLK>;
+> +			clock-names =3D "cpu";
+> +		};
+> +	};
+> +
+>  	cpuintc: interrupt-controller {
+>  		#address-cells =3D <0>;
+>  		#interrupt-cells =3D <1>;
+> diff --git a/arch/mips/boot/dts/ingenic/jz4740.dtsi=20
+> b/arch/mips/boot/dts/ingenic/jz4740.dtsi
+> index 1520585c235c..eee523678ce5 100644
+> --- a/arch/mips/boot/dts/ingenic/jz4740.dtsi
+> +++ b/arch/mips/boot/dts/ingenic/jz4740.dtsi
+> @@ -7,6 +7,20 @@
+>  	#size-cells =3D <1>;
+>  	compatible =3D "ingenic,jz4740";
+>=20
+> +	cpus {
+> +		#address-cells =3D <1>;
+> +		#size-cells =3D <0>;
+> +
+> +		cpu0: cpu@0 {
+> +			device_type =3D "cpu";
+> +			compatible =3D "ingenic,xburst-mxu1.0";
+> +			reg =3D <0>;
+> +
+> +			clocks =3D <&cgu JZ4740_CLK_CCLK>;
+> +			clock-names =3D "cpu";
+> +		};
+> +	};
+> +
+>  	cpuintc: interrupt-controller {
+>  		#address-cells =3D <0>;
+>  		#interrupt-cells =3D <1>;
+> diff --git a/arch/mips/boot/dts/ingenic/jz4770.dtsi=20
+> b/arch/mips/boot/dts/ingenic/jz4770.dtsi
+> index fa11ac950499..018721a9eea9 100644
+> --- a/arch/mips/boot/dts/ingenic/jz4770.dtsi
+> +++ b/arch/mips/boot/dts/ingenic/jz4770.dtsi
+> @@ -1,5 +1,4 @@
+>  // SPDX-License-Identifier: GPL-2.0
+> -
+>  #include <dt-bindings/clock/jz4770-cgu.h>
+>  #include <dt-bindings/clock/ingenic,tcu.h>
+>=20
+> @@ -8,6 +7,20 @@
+>  	#size-cells =3D <1>;
+>  	compatible =3D "ingenic,jz4770";
+>=20
+> +	cpus {
+> +		#address-cells =3D <1>;
+> +		#size-cells =3D <0>;
+> +
+> +		cpu0: cpu@0 {
+> +			device_type =3D "cpu";
+> +			compatible =3D "ingenic,xburst-fpu1.0-mxu1.1";
+> +			reg =3D <0>;
+> +
+> +			clocks =3D <&cgu JZ4770_CLK_CCLK>;
+> +			clock-names =3D "cpu";
+> +		};
+> +	};
+> +
+>  	cpuintc: interrupt-controller {
+>  		#address-cells =3D <0>;
+>  		#interrupt-cells =3D <1>;
+> diff --git a/arch/mips/boot/dts/ingenic/jz4780.dtsi=20
+> b/arch/mips/boot/dts/ingenic/jz4780.dtsi
+> index b7f409a7cf5d..dfb5a7e1bb21 100644
+> --- a/arch/mips/boot/dts/ingenic/jz4780.dtsi
+> +++ b/arch/mips/boot/dts/ingenic/jz4780.dtsi
+> @@ -8,6 +8,29 @@
+>  	#size-cells =3D <1>;
+>  	compatible =3D "ingenic,jz4780";
+>=20
+> +	cpus {
+> +		#address-cells =3D <1>;
+> +		#size-cells =3D <0>;
+> +
+> +		cpu0: cpu@0 {
+> +			device_type =3D "cpu";
+> +			compatible =3D "ingenic,xburst-fpu1.0-mxu1.1";
+> +			reg =3D <0>;
+> +
+> +			clocks =3D <&cgu JZ4780_CLK_CPU>;
+> +			clock-names =3D "cpu";
+> +		};
+> +
+> +		cpu1: cpu@1 {
+> +			device_type =3D "cpu";
+> +			compatible =3D "ingenic,xburst-fpu1.0-mxu1.1";
+> +			reg =3D <1>;
+> +
+> +			clocks =3D <&cgu JZ4780_CLK_CORE1>;
+> +			clock-names =3D "cpu";
+> +		};
+> +	};
+> +
+>  	cpuintc: interrupt-controller {
+>  		#address-cells =3D <0>;
+>  		#interrupt-cells =3D <1>;
+> diff --git a/arch/mips/boot/dts/ingenic/x1000.dtsi=20
+> b/arch/mips/boot/dts/ingenic/x1000.dtsi
+> index 9de9e7c2d523..1f1f896dd1f7 100644
+> --- a/arch/mips/boot/dts/ingenic/x1000.dtsi
+> +++ b/arch/mips/boot/dts/ingenic/x1000.dtsi
+> @@ -8,6 +8,20 @@
+>  	#size-cells =3D <1>;
+>  	compatible =3D "ingenic,x1000", "ingenic,x1000e";
+>=20
+> +	cpus {
+> +		#address-cells =3D <1>;
+> +		#size-cells =3D <0>;
+> +
+> +		cpu0: cpu@0 {
+> +			device_type =3D "cpu";
+> +			compatible =3D "ingenic,xburst-fpu1.0-mxu1.1";
+> +			reg =3D <0>;
+> +
+> +			clocks =3D <&cgu X1000_CLK_CPU>;
+> +			clock-names =3D "cpu";
+> +		};
+> +	};
+> +
+>  	cpuintc: interrupt-controller {
+>  		#address-cells =3D <0>;
+>  		#interrupt-cells =3D <1>;
+> diff --git a/arch/mips/boot/dts/ingenic/x1830.dtsi=20
+> b/arch/mips/boot/dts/ingenic/x1830.dtsi
+> index eb1214481a33..b05dac3ae308 100644
+> --- a/arch/mips/boot/dts/ingenic/x1830.dtsi
+> +++ b/arch/mips/boot/dts/ingenic/x1830.dtsi
+> @@ -8,6 +8,20 @@
+>  	#size-cells =3D <1>;
+>  	compatible =3D "ingenic,x1830";
+>=20
+> +	cpus {
+> +		#address-cells =3D <1>;
+> +		#size-cells =3D <0>;
+> +
+> +		cpu0: cpu@0 {
+> +			device_type =3D "cpu";
+> +			compatible =3D "ingenic,xburst-fpu2.0-mxu2.0";
+> +			reg =3D <0>;
+> +
+> +			clocks =3D <&cgu X1830_CLK_CPU>;
+> +			clock-names =3D "cpu";
+> +		};
+> +	};
+> +
+>  	cpuintc: interrupt-controller {
+>  		#address-cells =3D <0>;
+>  		#interrupt-cells =3D <1>;
+> --
+> 2.11.0
+>=20
 
-Also, Fixes tag?
 
-Thanks!
-Maxime
