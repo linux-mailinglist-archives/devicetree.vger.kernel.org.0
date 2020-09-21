@@ -2,54 +2,88 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from vger.kernel.org (vger.kernel.org [23.128.96.18])
-	by mail.lfdr.de (Postfix) with ESMTP id B920A273538
-	for <lists+devicetree@lfdr.de>; Mon, 21 Sep 2020 23:53:21 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTP id 256112734EC
+	for <lists+devicetree@lfdr.de>; Mon, 21 Sep 2020 23:31:07 +0200 (CEST)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S1727474AbgIUVxV (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Mon, 21 Sep 2020 17:53:21 -0400
-Received: from elvis.franken.de ([193.175.24.41]:49928 "EHLO elvis.franken.de"
+        id S1726497AbgIUVbG (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Mon, 21 Sep 2020 17:31:06 -0400
+Received: from mail.kernel.org ([198.145.29.99]:53816 "EHLO mail.kernel.org"
         rhost-flags-OK-OK-OK-OK) by vger.kernel.org with ESMTP
-        id S1728395AbgIUVxV (ORCPT <rfc822;devicetree@vger.kernel.org>);
-        Mon, 21 Sep 2020 17:53:21 -0400
-Received: from uucp (helo=alpha)
-        by elvis.franken.de with local-bsmtp (Exim 3.36 #1)
-        id 1kKSuS-0001Rx-04; Mon, 21 Sep 2020 22:59:40 +0200
-Received: by alpha.franken.de (Postfix, from userid 1000)
-        id 4EDCEC0FE4; Mon, 21 Sep 2020 22:25:31 +0200 (CEST)
-Date:   Mon, 21 Sep 2020 22:25:31 +0200
-From:   Thomas Bogendoerfer <tsbogend@alpha.franken.de>
-To:     Tiezhu Yang <yangtiezhu@loongson.cn>
-Cc:     Rob Herring <robh+dt@kernel.org>, Huacai Chen <chenhc@lemote.com>,
-        Jiaxun Yang <jiaxun.yang@flygoat.com>,
-        linux-mips@vger.kernel.org, devicetree@vger.kernel.org,
-        linux-kernel@vger.kernel.org, Xuefeng Li <lixuefeng@loongson.cn>
-Subject: Re: [PATCH] MIPS: Loongson64: Add UART node for LS7A PCH
-Message-ID: <20200921202531.GD29322@alpha.franken.de>
-References: <1600346341-5158-1-git-send-email-yangtiezhu@loongson.cn>
+        id S1726395AbgIUVbG (ORCPT <rfc822;devicetree@vger.kernel.org>);
+        Mon, 21 Sep 2020 17:31:06 -0400
+Received: from willie-the-truck (236.31.169.217.in-addr.arpa [217.169.31.236])
+        (using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
+        (No client certificate requested)
+        by mail.kernel.org (Postfix) with ESMTPSA id 66E982388B;
+        Mon, 21 Sep 2020 21:31:00 +0000 (UTC)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=kernel.org;
+        s=default; t=1600723865;
+        bh=XfNnjrt9QUAoybG18+WUe4rxxAdluuzVFI5lzEiBxMY=;
+        h=Date:From:To:Cc:Subject:References:In-Reply-To:From;
+        b=g7OaHGI7UCEkxkz8oHSGlOAlKnfBaBNbp0xu78Il4jeEba9yg4pjzT4wycXR4a2z/
+         +Uu3Cm2gP9AgOLKDcEKEtDcZ3/N7KZjsVqkAvxjc6TlVrMsfdBmmUYCNEtqUDPyVEQ
+         vL3MH+TSR2i8Mf+pUrLdU1SWb2Ni77RjmpAidDHQ=
+Date:   Mon, 21 Sep 2020 22:30:57 +0100
+From:   Will Deacon <will@kernel.org>
+To:     Rob Clark <robdclark@gmail.com>
+Cc:     iommu@lists.linux-foundation.org, dri-devel@lists.freedesktop.org,
+        Robin Murphy <robin.murphy@arm.com>,
+        Joerg Roedel <joro@8bytes.org>, linux-arm-msm@vger.kernel.org,
+        freedreno@lists.freedesktop.org,
+        Bjorn Andersson <bjorn.andersson@linaro.org>,
+        Sibi Sankar <sibis@codeaurora.org>,
+        Vivek Gautam <vivek.gautam@codeaurora.org>,
+        Stephen Boyd <swboyd@chromium.org>,
+        Akhil P Oommen <akhilpo@codeaurora.org>,
+        Rob Clark <robdclark@chromium.org>,
+        AngeloGioacchino Del Regno <kholk11@gmail.com>,
+        Ben Dooks <ben.dooks@codethink.co.uk>,
+        Brian Masney <masneyb@onstation.org>,
+        "open list:OPEN FIRMWARE AND FLATTENED DEVICE TREE BINDINGS" 
+        <devicetree@vger.kernel.org>,
+        Douglas Anderson <dianders@chromium.org>,
+        Emil Velikov <emil.velikov@collabora.com>,
+        Eric Anholt <eric@anholt.net>,
+        Greg Kroah-Hartman <gregkh@linuxfoundation.org>,
+        Hanna Hawa <hannah@marvell.com>,
+        Joerg Roedel <jroedel@suse.de>,
+        Jonathan Marek <jonathan@marek.ca>,
+        Jordan Crouse <jcrouse@codeaurora.org>,
+        Krishna Reddy <vdumpa@nvidia.com>,
+        "moderated list:ARM SMMU DRIVERS" 
+        <linux-arm-kernel@lists.infradead.org>,
+        open list <linux-kernel@vger.kernel.org>,
+        Sai Prakash Ranjan <saiprakash.ranjan@codeaurora.org>,
+        Sharat Masetty <smasetty@codeaurora.org>,
+        Shawn Guo <shawn.guo@linaro.org>,
+        Thierry Reding <thierry.reding@gmail.com>,
+        Thierry Reding <treding@nvidia.com>,
+        Thomas Zimmermann <tzimmermann@suse.de>,
+        Wambui Karuga <wambui.karugax@gmail.com>
+Subject: Re: [PATCH v17 00/20] iommu/arm-smmu + drm/msm: per-process GPU
+ pgtables
+Message-ID: <20200921213054.GA4270@willie-the-truck>
+References: <20200905200454.240929-1-robdclark@gmail.com>
 MIME-Version: 1.0
 Content-Type: text/plain; charset=us-ascii
 Content-Disposition: inline
-In-Reply-To: <1600346341-5158-1-git-send-email-yangtiezhu@loongson.cn>
-User-Agent: Mutt/1.5.23 (2014-03-12)
+In-Reply-To: <20200905200454.240929-1-robdclark@gmail.com>
+User-Agent: Mutt/1.10.1 (2018-07-13)
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-On Thu, Sep 17, 2020 at 08:39:01PM +0800, Tiezhu Yang wrote:
-> When I update the latest kernel on the Loongson platform used with
-> LS7A bridge chip, the serial console has no output, this is because
-> the machine uses LS7A UART0 instead of CPU UART0, add UART node for
-> LS7A PCH to enhance the compatibility.
+On Sat, Sep 05, 2020 at 01:04:06PM -0700, Rob Clark wrote:
+> From: Rob Clark <robdclark@chromium.org>
 > 
-> Signed-off-by: Tiezhu Yang <yangtiezhu@loongson.cn>
-> ---
->  arch/mips/boot/dts/loongson/ls7a-pch.dtsi | 39 +++++++++++++++++++++++++++++++
->  1 file changed, 39 insertions(+)
+> NOTE: I have re-ordered the series, and propose that we could merge this
+>       series in the following order:
+> 
+>        1) 01-11 - merge via drm / msm-next
+>        2) 12-15 - merge via iommu, no dependency on msm-next pull req
 
-applied to mips-next.
+Thanks, I've queued 12-15 in the smmu tree.
 
-Thomas.
+https://git.kernel.org/pub/scm/linux/kernel/git/will/linux.git/log/?h=for-joerg/arm-smmu/updates
 
--- 
-Crap can work. Given enough thrust pigs will fly, but it's not necessarily a
-good idea.                                                [ RFC1925, 2.3 ]
+Will
