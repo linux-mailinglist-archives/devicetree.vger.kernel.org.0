@@ -2,44 +2,43 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from vger.kernel.org (vger.kernel.org [23.128.96.18])
-	by mail.lfdr.de (Postfix) with ESMTP id CB37C272FA8
-	for <lists+devicetree@lfdr.de>; Mon, 21 Sep 2020 18:59:15 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTP id C6A4D272FAA
+	for <lists+devicetree@lfdr.de>; Mon, 21 Sep 2020 18:59:16 +0200 (CEST)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S1728497AbgIUQ66 (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Mon, 21 Sep 2020 12:58:58 -0400
-Received: from mail.kernel.org ([198.145.29.99]:39472 "EHLO mail.kernel.org"
+        id S1729403AbgIUQ7D (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Mon, 21 Sep 2020 12:59:03 -0400
+Received: from mail.kernel.org ([198.145.29.99]:39636 "EHLO mail.kernel.org"
         rhost-flags-OK-OK-OK-OK) by vger.kernel.org with ESMTP
-        id S1726611AbgIUQ6v (ORCPT <rfc822;devicetree@vger.kernel.org>);
-        Mon, 21 Sep 2020 12:58:51 -0400
+        id S1728985AbgIUQ64 (ORCPT <rfc822;devicetree@vger.kernel.org>);
+        Mon, 21 Sep 2020 12:58:56 -0400
 Received: from localhost (fw-tnat.cambridge.arm.com [217.140.96.140])
         (using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
         (No client certificate requested)
-        by mail.kernel.org (Postfix) with ESMTPSA id 48A662223E;
-        Mon, 21 Sep 2020 16:58:50 +0000 (UTC)
+        by mail.kernel.org (Postfix) with ESMTPSA id 4BB8420C09;
+        Mon, 21 Sep 2020 16:58:55 +0000 (UTC)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=kernel.org;
-        s=default; t=1600707530;
-        bh=jBvTMb6BSyyzBMg1bmcGhFcyq8Z54iV6+nKI7nSpAMA=;
+        s=default; t=1600707535;
+        bh=+knWzm3xj2gskwUc9VYhgeLl1eQQ+hq8DGmvHZBEvB0=;
         h=Date:From:To:Cc:In-Reply-To:References:Subject:From;
-        b=yg3oJvW5Lr1N1++gn6kiiQCbI2x01EE1M4MTbSGe+uk9MqyENcSjxgNUiXMobQE9h
-         OzW1kNiO34HzLBVgYO7LCBAH9nZDt6nc8h0wE01TCQE7q1zuQftM6qDn6I+Rq8chFg
-         bx+6jFuf4Q2JVd9l8JQlzkTKGsvDWzufQ59vtmNY=
-Date:   Mon, 21 Sep 2020 17:57:58 +0100
+        b=DR67VkjkH2w8LYQ91CjXT9tVvpO+pyX9G1WD4sFJ/5T2McpNoiwky20+SpLMX6Gsj
+         Kv9I3eDtc0/QRK+Yr3NmiTW0pNy+HPzOECEQpPlfsmMfLolofmbWAK2ozffESGYl6Q
+         oZWmtT2AwIrkUBmmIRWXCYr0XaJn6QQXLC6y6f6w=
+Date:   Mon, 21 Sep 2020 17:58:03 +0100
 From:   Mark Brown <broonie@kernel.org>
-To:     lgirdwood@gmail.com, dmurphy@ti.com,
+To:     devicetree@vger.kernel.org, lgirdwood@gmail.com, dmurphy@ti.com,
         Camel Guo <camel.guo@axis.com>, tiwai@suse.com,
         robh+dt@kernel.org
-Cc:     linux-kernel@vger.kernel.org, devicetree@vger.kernel.org,
-        alsa-devel@alsa-project.org, kernel@axis.com,
-        Camel Guo <camelg@axis.com>
-In-Reply-To: <20200918114025.18205-1-camel.guo@axis.com>
-References: <20200918114025.18205-1-camel.guo@axis.com>
-Subject: Re: [PATCH v5 1/2] dt-bindings: tlv320adcx140: Add GPIO config and drive config
-Message-Id: <160070745846.56122.3144589484342330182.b4-ty@kernel.org>
+Cc:     kernel@axis.com, linux-kernel@vger.kernel.org,
+        Camel Guo <camelg@axis.com>, alsa-devel@alsa-project.org
+In-Reply-To: <20200916075949.28479-1-camel.guo@axis.com>
+References: <20200916075949.28479-1-camel.guo@axis.com>
+Subject: Re: [PATCH v3 1/2] dt-bindings: tlv320adcx140: Add GPIO config and drive config
+Message-Id: <160070745846.56122.15642862327141755501.b4-ty@kernel.org>
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-On Fri, 18 Sep 2020 13:40:24 +0200, Camel Guo wrote:
+On Wed, 16 Sep 2020 09:59:48 +0200, Camel Guo wrote:
 > Add properties for configuring the General Purpose Input Output (GPIO).
 > There are 2 settings for GPIO, configuration and the output drive type.
 
