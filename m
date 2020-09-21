@@ -2,93 +2,120 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from vger.kernel.org (vger.kernel.org [23.128.96.18])
-	by mail.lfdr.de (Postfix) with ESMTP id CF3302723F1
-	for <lists+devicetree@lfdr.de>; Mon, 21 Sep 2020 14:33:32 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTP id 51B2F27243B
+	for <lists+devicetree@lfdr.de>; Mon, 21 Sep 2020 14:53:49 +0200 (CEST)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S1726643AbgIUMdb (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Mon, 21 Sep 2020 08:33:31 -0400
-Received: from lelv0142.ext.ti.com ([198.47.23.249]:32978 "EHLO
-        lelv0142.ext.ti.com" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S1726460AbgIUMdb (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Mon, 21 Sep 2020 08:33:31 -0400
-Received: from lelv0265.itg.ti.com ([10.180.67.224])
-        by lelv0142.ext.ti.com (8.15.2/8.15.2) with ESMTP id 08LCXIis105635;
-        Mon, 21 Sep 2020 07:33:18 -0500
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=ti.com;
-        s=ti-com-17Q1; t=1600691598;
-        bh=Me6JaYxCAj8494EMq4SiU9PetCAowoMjw0t1jk/5Eyo=;
-        h=From:To:CC:Subject:Date:In-Reply-To:References;
-        b=gulmEJv6PG4M5G68jE/eZlTSqbuDuLCxYnndlHlPhED803yuZioiDvgXkJajCRjjz
-         z9gCeGzJq0eHfvwxxDZeUkjaiYV34G9gMtYnfotuQXo8nhmwYudtQiin+f7SU8QhUK
-         +IaTk34IHs648dDlEZQOb11tXgLX9E6+Lty9DzZU=
-Received: from DLEE108.ent.ti.com (dlee108.ent.ti.com [157.170.170.38])
-        by lelv0265.itg.ti.com (8.15.2/8.15.2) with ESMTPS id 08LCXIDA074728
-        (version=TLSv1.2 cipher=AES256-GCM-SHA384 bits=256 verify=FAIL);
-        Mon, 21 Sep 2020 07:33:18 -0500
-Received: from DLEE100.ent.ti.com (157.170.170.30) by DLEE108.ent.ti.com
- (157.170.170.38) with Microsoft SMTP Server (version=TLS1_2,
- cipher=TLS_ECDHE_RSA_WITH_AES_128_CBC_SHA256_P256) id 15.1.1979.3; Mon, 21
- Sep 2020 07:33:08 -0500
-Received: from lelv0327.itg.ti.com (10.180.67.183) by DLEE100.ent.ti.com
- (157.170.170.30) with Microsoft SMTP Server (version=TLS1_2,
- cipher=TLS_ECDHE_RSA_WITH_AES_128_CBC_SHA256_P256) id 15.1.1979.3 via
- Frontend Transport; Mon, 21 Sep 2020 07:33:08 -0500
-Received: from localhost (ileax41-snat.itg.ti.com [10.172.224.153])
-        by lelv0327.itg.ti.com (8.15.2/8.15.2) with ESMTP id 08LCX8N6107043;
-        Mon, 21 Sep 2020 07:33:08 -0500
-From:   Nishanth Menon <nm@ti.com>
-To:     <peda@axentia.se>, Roger Quadros <rogerq@ti.com>
-CC:     Nishanth Menon <nm@ti.com>, <t-kristo@ti.com>, <nsekhar@ti.com>,
-        <linux-arm-kernel@lists.infradead.org>,
-        <linux-kernel@vger.kernel.org>, <devicetree@vger.kernel.org>,
-        <robh+dt@kernel.org>, <kishon@ti.com>
-Subject: Re: [PATCH v2] arm64: dts: ti: k3-j721e: Rename mux header and update macro names
-Date:   Mon, 21 Sep 2020 07:33:07 -0500
-Message-ID: <160069143453.25898.17991361187968273734.b4-ty@ti.com>
-X-Mailer: git-send-email 2.28.0
-In-Reply-To: <20200918165930.2031-1-rogerq@ti.com>
-References: <20200918165930.2031-1-rogerq@ti.com>
+        id S1726532AbgIUMxs (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Mon, 21 Sep 2020 08:53:48 -0400
+Received: from vm1.sequanux.org ([188.165.36.56]:48371 "EHLO vm1.sequanux.org"
+        rhost-flags-OK-OK-OK-OK) by vger.kernel.org with ESMTP
+        id S1726395AbgIUMxr (ORCPT <rfc822;devicetree@vger.kernel.org>);
+        Mon, 21 Sep 2020 08:53:47 -0400
+Received: from localhost (localhost.localdomain [127.0.0.1])
+        by vm1.sequanux.org (Postfix) with ESMTP id 03AB21085E1;
+        Mon, 21 Sep 2020 14:53:46 +0200 (CEST)
+X-Virus-Scanned: Debian amavisd-new at vm1.sequanux.org
+Received: from vm1.sequanux.org ([127.0.0.1])
+        by localhost (vm1.sequanux.org [127.0.0.1]) (amavisd-new, port 10024)
+        with ESMTP id U7ldmjyxRVTX; Mon, 21 Sep 2020 14:53:43 +0200 (CEST)
+Received: from localhost (softwrestling.org [188.165.144.248])
+        by vm1.sequanux.org (Postfix) with ESMTPSA id D50811080EF;
+        Mon, 21 Sep 2020 14:53:43 +0200 (CEST)
+Date:   Mon, 21 Sep 2020 14:53:43 +0200
+From:   Simon Guinot <simon.guinot@sequanux.org>
+To:     Marek Behun <marek.behun@nic.cz>
+Cc:     linux-leds@vger.kernel.org, Pavel Machek <pavel@ucw.cz>,
+        Dan Murphy <dmurphy@ti.com>,
+        =?utf-8?Q?Ond=C5=99ej?= Jirman <megous@megous.com>,
+        linux-kernel@vger.kernel.org, Rob Herring <robh+dt@kernel.org>,
+        devicetree@vger.kernel.org, Simon Guinot <sguinot@lacie.com>,
+        Vincent Donnefort <vdonnefort@gmail.com>,
+        Thomas Petazzoni <thomas.petazzoni@free-electrons.com>,
+        Linus Walleij <linus.walleij@linaro.org>
+Subject: Re: [PATCH leds v1 10/10] leds: ns2: refactor and use struct
+ led_init_data
+Message-ID: <20200921125343.GA4828@kw.sim.vm.gnt>
+References: <20200916231650.11484-1-marek.behun@nic.cz>
+ <20200916231650.11484-11-marek.behun@nic.cz>
+ <20200918130206.GE29951@kw.sim.vm.gnt>
+ <20200918191405.516b51ff@nic.cz>
 MIME-Version: 1.0
-Content-Transfer-Encoding: 8bit
-Content-Type: text/plain
-X-EXCLAIMER-MD-CONFIG: e1e8a2fd-e40a-4ac6-ac9b-f7e9cc9ee180
+Content-Type: multipart/signed; micalg=pgp-sha512;
+        protocol="application/pgp-signature"; boundary="KsGdsel6WgEHnImy"
+Content-Disposition: inline
+In-Reply-To: <20200918191405.516b51ff@nic.cz>
+User-Agent: Mutt/1.6.0 (2016-04-01)
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-On Fri, 18 Sep 2020 19:59:30 +0300, Roger Quadros wrote:
-> We intend to use one header file for SERDES MUX for all
-> TI SoCs so rename the header file.
-> 
-> The exsting macros are too generic. Prefix them with SoC name.
-> 
-> While at that, add the missing configurations for completeness.
 
-Hi Roger Quadros,
+--KsGdsel6WgEHnImy
+Content-Type: text/plain; charset=utf-8
+Content-Disposition: inline
+Content-Transfer-Encoding: quoted-printable
 
-I have applied the following to branch for-5.9-dts on [1].
-Thank you!
+On Fri, Sep 18, 2020 at 07:14:05PM +0200, Marek Behun wrote:
+> On Fri, 18 Sep 2020 15:02:06 +0200
+> Simon Guinot <simon.guinot@sequanux.org> wrote:
+>=20
+> > On Thu, Sep 17, 2020 at 01:16:50AM +0200, Marek Beh=C3=BAn wrote:
+> >=20
+> > Hi Marek,
+> >=20
+> > > By using struct led_init_data when registering we do not need to parse
+> > > `label` DT property nor `linux,default-trigger` property.
+> > >=20
+> > > Also, move forward from platform data to device tree only:
+> > > since commit c7896490dd1a ("leds: ns2: Absorb platform data") the
+> > > platform data structure is absorbed into the driver, because nothing
+> > > else in the source tree used it. Since nobody complained and all usag=
+e =20
+> >=20
+> > Well, I probably should have...
+> >=20
+> > I am using this driver on the Seagate Superbee NAS devices. This devices
+> > are based on a x86 SoC. Since I have been unable to get from the ODM the
+> > LED information written in the ACPI tables, then platform data are used
+> > to pass the LED description to the driver.
+> >=20
+> > The support of this boards is not available mainline yet but it is still
+> > on my todo list. So that's why I am complaining right now :) If it is
+> > not too much trouble I'd like to keep platform data support in this
+> > driver.
+> >=20
+> > Thanks in advance.
+> >=20
+> > Simon
+> >=20
+>=20
+> Simon, what if we refactored the driver to use fwnode API instead of OF
+> API? Then if it is impossible for you to write DTS for that device,
+> instead of platform data you could implement your device via swnode
+> fwnodes. :)
 
-[1/1] arm64: dts: ti: k3-j721e: Rename mux header and update macro names
-      commit: c65176fd49f45bd5a5ffaa1790109745d1fa462c
+Yes. That would be perfect.
 
-I have also applied ti-k3-dt-fixes-for-v5.9 tag which I will be sending
-for 5.9 in the next few mins.
+Simon
 
-You may get further e-mails resulting from automated or manual testing
-and review of the tree, please engage with people reporting problems and
-send followup patches addressing any issues that are reported if needed.
+--KsGdsel6WgEHnImy
+Content-Type: application/pgp-signature; name="signature.asc"
 
-If any updates are required or you are submitting further changes they
-should be sent as incremental updates against current git, existing
-patches will not be replaced.
+-----BEGIN PGP SIGNATURE-----
 
-Please add any relevant lists and maintainers to the CCs when replying
-to this mail.
+iQIzBAEBCgAdFiEEXW8DgovlR3VS5hA0zyg/RDPmszoFAl9oolcACgkQzyg/RDPm
+szrExxAAjNpMeco55YZIg8vi5pc3s8jKk0RzlVCx0U8kugJzjUN0Uh+WVGgelNpY
+5b+z1qe9m893rke8AueMJZMPraHrL585c2JWatYHeGfyoEXG+e4Uwba9XfRF1xj/
+vdAc/OZJSAF1ZMiJIZ6sQ385dr06MP7KEFCHwy1HVquohMVEjAHfXfG9WMamaQLX
+XRb43iuJP3WBiR3LVJ19q/bAoArcyF+My4WB3vbuv3MnV0fOWSmglX6Hbl078w2K
+qnBwB3u1+A0oXVGCndKUeHxFTscJBLPoKPdMmE0TI8QQOaey4rSmyAivBuCeANby
+Z3LpPNX8b2kffxD/zVTQrzxnHMTpnZeKt46zlanYAK46ks0/d8yZEbIgYlC6oVI2
+tFwH8bzieitdHYXoJ+d0V5Ac9G6NPODmKw5gh0F4PXr5R2x77M8k4mYFiXwgpR+q
+YEziR+Fi3iYiKNFGqQ2cZRNmJ+QhhOb1OH8lpH53etIVHs6Hy+FSuZoNJf2rLRDh
+BW4wIqOaHd91sf931DXJhKKrKsECH89/OLcr52OT3zL8ieOC5mgLiXaMRjL76YbC
+r8gKajpIZS+zdF7ecUVXFRtegyTj1xhZY53YT+3nZqSvpb7w7MP9JaInC1kaDg0A
+sXyq+GFw6grikNHJFmqlRPT25g28aLFFDHny9+Grb5goEktLKTc=
+=/jex
+-----END PGP SIGNATURE-----
 
-[1] git://git.kernel.org/pub/scm/linux/kernel/git/nmenon/linux.git
--- 
-Regards,
-Nishanth Menon
-Key (0xDDB5849D1736249D) / Fingerprint: F8A2 8693 54EB 8232 17A3  1A34 DDB5 849D 1736 249D
-
+--KsGdsel6WgEHnImy--
