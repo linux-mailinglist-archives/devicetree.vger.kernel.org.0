@@ -2,125 +2,153 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from vger.kernel.org (vger.kernel.org [23.128.96.18])
-	by mail.lfdr.de (Postfix) with ESMTP id CA7A127266A
-	for <lists+devicetree@lfdr.de>; Mon, 21 Sep 2020 15:59:31 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTP id 0C78D272693
+	for <lists+devicetree@lfdr.de>; Mon, 21 Sep 2020 16:03:33 +0200 (CEST)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S1727054AbgIUN7a (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Mon, 21 Sep 2020 09:59:30 -0400
-Received: from wnew3-smtp.messagingengine.com ([64.147.123.17]:34279 "EHLO
-        wnew3-smtp.messagingengine.com" rhost-flags-OK-OK-OK-OK)
-        by vger.kernel.org with ESMTP id S1726496AbgIUN7a (ORCPT
-        <rfc822;devicetree@vger.kernel.org>);
-        Mon, 21 Sep 2020 09:59:30 -0400
-Received: from compute4.internal (compute4.nyi.internal [10.202.2.44])
-        by mailnew.west.internal (Postfix) with ESMTP id 9E2AF4E4;
-        Mon, 21 Sep 2020 09:59:28 -0400 (EDT)
-Received: from mailfrontend2 ([10.202.2.163])
-  by compute4.internal (MEProxy); Mon, 21 Sep 2020 09:59:29 -0400
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=cerno.tech; h=
-        date:from:to:cc:subject:message-id:references:mime-version
-        :content-type:content-transfer-encoding:in-reply-to; s=fm3; bh=c
-        3fNgNGFdjr4v/UDr2lGz3PU9DDItsmFEZI0JCY2YTc=; b=qXXYhwH/GTxVEum3l
-        nWjqfA/4M8vVjuJp9aWR0peh/PDyt2l5umtY96hRwVfGZk9V7s0lwMkNSOIFr2RI
-        p23MNnUkbm7mxf/7f3MAtUxNuTFI/wBcoVrLzffjDID0JIOkPXZVgKrWs3YGucoN
-        tydo40DiUehnf4+Pm3pTCp7ONK1dF6xQDJPOasdrUB/K77BhlihDCcdDqbC5M+u7
-        H/yMqEhAzXbgz3++S7mv85WYJ8p4E8tG8XWm+5JkZYRsYvxIlRVZ7r4TgPcvKgnj
-        lbl9wOPktju6jc6Z/dSbYmgYb7Y11xcH4x/GbmKNJ1vAuK4C9VIlqq62cZiaIuJ/
-        //bCA==
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=
-        messagingengine.com; h=cc:content-transfer-encoding:content-type
-        :date:from:in-reply-to:message-id:mime-version:references
-        :subject:to:x-me-proxy:x-me-proxy:x-me-sender:x-me-sender
-        :x-sasl-enc; s=fm3; bh=c3fNgNGFdjr4v/UDr2lGz3PU9DDItsmFEZI0JCY2Y
-        Tc=; b=ti2L2NgXfjI3JLZ38emVWOBmAT9vIL7KEr9CEyixc0TVFJgVdxPzLXO1T
-        hSftB5jxVMhxUFD/gtY1sV/O4AvEVd9hBH3/GNpP4DLmn9ZyZZcRNHokdyi4rxUo
-        YZeLFPO+GwoND+F4Z6fHAQ6o8AORMdnGp1hNG4AldGpUDMEVwI3zvKyiVRc/jkT5
-        RRvSsRX6YxQNvz7q3SMhfcN84gHmLWvFq8GRqVeKoUCR2dhlDeMMT7wrJ7md6zkd
-        v0pSvm0i3b4FO/onne6AlfcY2o+eIBU0ArjnuidYrsa1tU6PM5G3N+xDTfsUjPkO
-        k5EJgH/yuTZtgDDVs738BNABIiAAA==
-X-ME-Sender: <xms:v7FoX5z4tMayKshtbNMi1-Arz-vd1fkDXzb6gVzFMWHjmGRE7q7q_A>
-    <xme:v7FoX5QeMPKoUZraeztdGE6z9OaobTLvR0G86JDrUCJMUvoX2ZAlcIWLVHZXafjo9
-    u1PNih81xbeGHw4VYg>
-X-ME-Proxy-Cause: gggruggvucftvghtrhhoucdtuddrgedujedruddvgdejfecutefuodetggdotefrodftvf
-    curfhrohhfihhlvgemucfhrghsthforghilhdpqfgfvfdpuffrtefokffrpgfnqfghnecu
-    uegrihhlohhuthemuceftddtnecusecvtfgvtghiphhivghnthhsucdlqddutddtmdenuc
-    fjughrpeffhffvuffkfhggtggugfgjsehtqhertddttddunecuhfhrohhmpeforgigihhm
-    vgcutfhiphgrrhguuceomhgrgihimhgvsegtvghrnhhordhtvggthheqnecuggftrfgrth
-    htvghrnhepheelvdfhkeelgfevleekleduvefftefhudekvdffhffhgeefuefgheegfeej
-    vedtnecukfhppeeltddrkeelrdeikedrjeeinecuvehluhhsthgvrhfuihiivgeptdenuc
-    frrghrrghmpehmrghilhhfrhhomhepmhgrgihimhgvsegtvghrnhhordhtvggthh
-X-ME-Proxy: <xmx:v7FoXzVVxtlL5-uki4uBoTXR8Oa9kZ_9eqpAf0rpeyuXWPE7Z-EDrQ>
-    <xmx:v7FoX7hRv7E1OLH8fJvBcCrAh48kpC0DJbtvrjA9qmyF0Q6nw0dKKA>
-    <xmx:v7FoX7DfxLODG9mfzJvboddmCrCzwT6E2GY9OBY08bY6jQnVXaR-iw>
-    <xmx:wLFoX4Ih48dtHtsGWI2BV0cS8vnMURQnbnblNjz0sezZ_eDvCXBwOpHgxM0>
-Received: from localhost (lfbn-tou-1-1502-76.w90-89.abo.wanadoo.fr [90.89.68.76])
-        by mail.messagingengine.com (Postfix) with ESMTPA id CA1903064684;
-        Mon, 21 Sep 2020 09:59:26 -0400 (EDT)
-Date:   Mon, 21 Sep 2020 15:59:25 +0200
-From:   Maxime Ripard <maxime@cerno.tech>
-To:     =?utf-8?B?Q2zDqW1lbnQgUMOpcm9u?= <peron.clem@gmail.com>
-Cc:     Chen-Yu Tsai <wens@csie.org>, Rob Herring <robh+dt@kernel.org>,
-        Mark Brown <broonie@kernel.org>,
-        Liam Girdwood <lgirdwood@gmail.com>,
-        Jaroslav Kysela <perex@perex.cz>,
-        Takashi Iwai <tiwai@suse.com>,
-        Marcus Cooper <codekipper@gmail.com>,
-        Jernej Skrabec <jernej.skrabec@siol.net>,
-        alsa-devel@alsa-project.org, devicetree@vger.kernel.org,
-        linux-arm-kernel@lists.infradead.org, linux-kernel@vger.kernel.org,
-        linux-sunxi@googlegroups.com
-Subject: Re: [PATCH v4 09/22] arm64: dts: allwinner: h6: Add HDMI audio node
-Message-ID: <20200921135925.q7mde2cnt5jtzkb5@gilmour.lan>
-References: <20200921102731.747736-1-peron.clem@gmail.com>
- <20200921102731.747736-10-peron.clem@gmail.com>
+        id S1726830AbgIUOD0 (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Mon, 21 Sep 2020 10:03:26 -0400
+Received: from vm1.sequanux.org ([188.165.36.56]:48968 "EHLO vm1.sequanux.org"
+        rhost-flags-OK-OK-OK-OK) by vger.kernel.org with ESMTP
+        id S1726496AbgIUOD0 (ORCPT <rfc822;devicetree@vger.kernel.org>);
+        Mon, 21 Sep 2020 10:03:26 -0400
+Received: from localhost (localhost.localdomain [127.0.0.1])
+        by vm1.sequanux.org (Postfix) with ESMTP id 5D0B01085E1;
+        Mon, 21 Sep 2020 16:03:24 +0200 (CEST)
+X-Virus-Scanned: Debian amavisd-new at vm1.sequanux.org
+Received: from vm1.sequanux.org ([127.0.0.1])
+        by localhost (vm1.sequanux.org [127.0.0.1]) (amavisd-new, port 10024)
+        with ESMTP id wm2QrDNdFfMb; Mon, 21 Sep 2020 16:03:22 +0200 (CEST)
+Received: from localhost (softwrestling.org [188.165.144.248])
+        by vm1.sequanux.org (Postfix) with ESMTPSA id 556781080EF;
+        Mon, 21 Sep 2020 16:03:22 +0200 (CEST)
+Date:   Mon, 21 Sep 2020 16:03:22 +0200
+From:   Simon Guinot <simon.guinot@sequanux.org>
+To:     Marek Behun <marek.behun@nic.cz>
+Cc:     linux-leds@vger.kernel.org, Pavel Machek <pavel@ucw.cz>,
+        Dan Murphy <dmurphy@ti.com>,
+        =?utf-8?Q?Ond=C5=99ej?= Jirman <megous@megous.com>,
+        linux-kernel@vger.kernel.org, Rob Herring <robh+dt@kernel.org>,
+        devicetree@vger.kernel.org, Simon Guinot <sguinot@lacie.com>,
+        Vincent Donnefort <vdonnefort@gmail.com>,
+        Thomas Petazzoni <thomas.petazzoni@free-electrons.com>,
+        Linus Walleij <linus.walleij@linaro.org>
+Subject: Re: [PATCH leds v1 10/10] leds: ns2: refactor and use struct
+ led_init_data
+Message-ID: <20200921140322.GB4828@kw.sim.vm.gnt>
+References: <20200916231650.11484-1-marek.behun@nic.cz>
+ <20200916231650.11484-11-marek.behun@nic.cz>
+ <20200918130206.GE29951@kw.sim.vm.gnt>
+ <20200918191405.516b51ff@nic.cz>
+ <20200921125343.GA4828@kw.sim.vm.gnt>
+ <20200921150208.6a296bc7@nic.cz>
 MIME-Version: 1.0
-Content-Type: text/plain; charset=iso-8859-1
+Content-Type: multipart/signed; micalg=pgp-sha512;
+        protocol="application/pgp-signature"; boundary="ftEhullJWpWg/VHq"
 Content-Disposition: inline
-Content-Transfer-Encoding: quoted-printable
-In-Reply-To: <20200921102731.747736-10-peron.clem@gmail.com>
+In-Reply-To: <20200921150208.6a296bc7@nic.cz>
+User-Agent: Mutt/1.6.0 (2016-04-01)
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-On Mon, Sep 21, 2020 at 12:27:18PM +0200, Cl=E9ment P=E9ron wrote:
-> From: Jernej Skrabec <jernej.skrabec@siol.net>
->=20
-> Add a simple-soundcard to link audio between HDMI and I2S.
->=20
-> Signed-off-by: Jernej Skrabec <jernej.skrabec@siol.net>
-> Signed-off-by: Marcus Cooper <codekipper@gmail.com>
-> Signed-off-by: Cl=E9ment P=E9ron <peron.clem@gmail.com>
-> ---
->  arch/arm64/boot/dts/allwinner/sun50i-h6.dtsi | 33 ++++++++++++++++++++
->  1 file changed, 33 insertions(+)
->=20
-> diff --git a/arch/arm64/boot/dts/allwinner/sun50i-h6.dtsi b/arch/arm64/bo=
-ot/dts/allwinner/sun50i-h6.dtsi
-> index 28c77d6872f6..a8853ee7885a 100644
-> --- a/arch/arm64/boot/dts/allwinner/sun50i-h6.dtsi
-> +++ b/arch/arm64/boot/dts/allwinner/sun50i-h6.dtsi
-> @@ -67,6 +67,25 @@ de: display-engine {
->  		status =3D "disabled";
->  	};
-> =20
-> +	hdmi_sound: hdmi-sound {
-> +		compatible =3D "simple-audio-card";
-> +		simple-audio-card,format =3D "i2s";
-> +		simple-audio-card,name =3D "sun50i-h6-hdmi";
-> +		simple-audio-card,mclk-fs =3D <128>;
-> +		simple-audio-card,frame-inversion;
-> +		status =3D "disabled";
-> +
-> +		simple-audio-card,codec {
-> +			sound-dai =3D <&hdmi>;
-> +		};
-> +
-> +		simple-audio-card,cpu {
-> +			sound-dai =3D <&i2s1>;
-> +			dai-tdm-slot-num =3D <2>;
-> +			dai-tdm-slot-width =3D <32>;
 
-It looks weird to have both some TDM setup here, and yet the format in
-i2s?
+--ftEhullJWpWg/VHq
+Content-Type: text/plain; charset=utf-8
+Content-Disposition: inline
+Content-Transfer-Encoding: quoted-printable
 
-Maxime
+On Mon, Sep 21, 2020 at 03:02:08PM +0200, Marek Behun wrote:
+> On Mon, 21 Sep 2020 14:53:43 +0200
+> Simon Guinot <simon.guinot@sequanux.org> wrote:
+>=20
+> > On Fri, Sep 18, 2020 at 07:14:05PM +0200, Marek Behun wrote:
+> > > On Fri, 18 Sep 2020 15:02:06 +0200
+> > > Simon Guinot <simon.guinot@sequanux.org> wrote:
+> > >  =20
+> > > > On Thu, Sep 17, 2020 at 01:16:50AM +0200, Marek Beh=C3=BAn wrote:
+> > > >=20
+> > > > Hi Marek,
+> > > >  =20
+> > > > > By using struct led_init_data when registering we do not need to =
+parse
+> > > > > `label` DT property nor `linux,default-trigger` property.
+> > > > >=20
+> > > > > Also, move forward from platform data to device tree only:
+> > > > > since commit c7896490dd1a ("leds: ns2: Absorb platform data") the
+> > > > > platform data structure is absorbed into the driver, because noth=
+ing
+> > > > > else in the source tree used it. Since nobody complained and all =
+usage   =20
+> > > >=20
+> > > > Well, I probably should have...
+> > > >=20
+> > > > I am using this driver on the Seagate Superbee NAS devices. This de=
+vices
+> > > > are based on a x86 SoC. Since I have been unable to get from the OD=
+M the
+> > > > LED information written in the ACPI tables, then platform data are =
+used
+> > > > to pass the LED description to the driver.
+> > > >=20
+> > > > The support of this boards is not available mainline yet but it is =
+still
+> > > > on my todo list. So that's why I am complaining right now :) If it =
+is
+> > > > not too much trouble I'd like to keep platform data support in this
+> > > > driver.
+> > > >=20
+> > > > Thanks in advance.
+> > > >=20
+> > > > Simon
+> > > >  =20
+> > >=20
+> > > Simon, what if we refactored the driver to use fwnode API instead of =
+OF
+> > > API? Then if it is impossible for you to write DTS for that device,
+> > > instead of platform data you could implement your device via swnode
+> > > fwnodes. :) =20
+> >=20
+> > Yes. That would be perfect.
+> >=20
+> > Simon
+>=20
+> BTW if you have access to device schematics I could try to write DTS,
+> with schematics and the current board source file it should not be that
+> hard. But I can't test it, since I don't have the board.
+
+Don't worry, I'll do the writing and the testing of the fwnode in the
+x86 board files. This boards are not mainlined yet. So it is my problem.
+
+And actually if you don't have the time I can do the writing of the
+fwnode support in the driver as well. And you can just let the driver
+with the OF support. That's fine.
+
+But if you are willing to add fwnode support to the driver yourself,
+then you are more than welcome to do it. On my side, I can help with
+the testing. I can check that the ARM boards ant their DTB are still
+supported by the driver. And I can also check the support of the x86
+boards with the addition of the fwnode properties.
+
+Simon
+
+--ftEhullJWpWg/VHq
+Content-Type: application/pgp-signature; name="signature.asc"
+
+-----BEGIN PGP SIGNATURE-----
+
+iQIzBAEBCgAdFiEEXW8DgovlR3VS5hA0zyg/RDPmszoFAl9osqkACgkQzyg/RDPm
+szqsPRAA02ZvnEqDbSk0IS/Qv1gVvuZ25GxX9cnLf1L9L5vCiR+Hc8VkCo2nUgqA
+9loWpEPNJMO9zRlOkquBucv4UHZszje+es04pYIF0iCxJ+y6N5of4LhT/+akEp/2
+ASaDJPphgi+EpMmpZ3aFjeEFQpKx3iUzoCNqs9Vq1ExCIUs4n9qBX43Vv640EJC8
+37E4TmnrA57ewARmt22ppPlhspwaiMFsr7gAav54w5KC4w4/ibcBcJtuqepJbn6q
+ENz7vhP8ixTZDjEjN9aKFWIXMKEqJv3x11lUazhMr99tdeX+frQWcuRMnRAMKqht
+/IG+HbyJqTaCSBsxj4LFznBBjuy3ra9sC5E5QaJrExx42btFG/EYXrg1GVKB3nHF
+kiQC2v/paaEvAs1H9xinfBDKjHJ6rFOYoQkva3aAVSAB9cuGs/yr/eODeOjjSVYb
+johlpxk+TcPb207mfkv1lIZ9C7yEi9qcqoKsyJVI6JRMYZV4KgvAnmhL8DSePpy6
+naJcj+UfJUe8rsHCN82TJLRaPwYwKOf/QkEbD9qRN6MZuahRVPfCMjB9iKDBLO7v
+RqPC7UpUBzXrgat2ejZZcFim6tXPgRBlLo3sqBJAt7cCD8fU+KyLyEJov5fKI85K
+Gxo/qV5X8kVGXJZxe76xc8wr/B1votHKcaG6nhyXhE8iVxV4KaQ=
+=wNem
+-----END PGP SIGNATURE-----
+
+--ftEhullJWpWg/VHq--
