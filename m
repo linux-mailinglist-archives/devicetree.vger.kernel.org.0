@@ -2,46 +2,46 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from vger.kernel.org (vger.kernel.org [23.128.96.18])
-	by mail.lfdr.de (Postfix) with ESMTP id E16C6272659
-	for <lists+devicetree@lfdr.de>; Mon, 21 Sep 2020 15:55:37 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTP id CA7A127266A
+	for <lists+devicetree@lfdr.de>; Mon, 21 Sep 2020 15:59:31 +0200 (CEST)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S1726882AbgIUNzh (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Mon, 21 Sep 2020 09:55:37 -0400
-Received: from wnew3-smtp.messagingengine.com ([64.147.123.17]:38605 "EHLO
+        id S1727054AbgIUN7a (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Mon, 21 Sep 2020 09:59:30 -0400
+Received: from wnew3-smtp.messagingengine.com ([64.147.123.17]:34279 "EHLO
         wnew3-smtp.messagingengine.com" rhost-flags-OK-OK-OK-OK)
-        by vger.kernel.org with ESMTP id S1726471AbgIUNzg (ORCPT
+        by vger.kernel.org with ESMTP id S1726496AbgIUN7a (ORCPT
         <rfc822;devicetree@vger.kernel.org>);
-        Mon, 21 Sep 2020 09:55:36 -0400
+        Mon, 21 Sep 2020 09:59:30 -0400
 Received: from compute4.internal (compute4.nyi.internal [10.202.2.44])
-        by mailnew.west.internal (Postfix) with ESMTP id 9C1084C5;
-        Mon, 21 Sep 2020 09:55:34 -0400 (EDT)
-Received: from mailfrontend1 ([10.202.2.162])
-  by compute4.internal (MEProxy); Mon, 21 Sep 2020 09:55:35 -0400
+        by mailnew.west.internal (Postfix) with ESMTP id 9E2AF4E4;
+        Mon, 21 Sep 2020 09:59:28 -0400 (EDT)
+Received: from mailfrontend2 ([10.202.2.163])
+  by compute4.internal (MEProxy); Mon, 21 Sep 2020 09:59:29 -0400
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=cerno.tech; h=
         date:from:to:cc:subject:message-id:references:mime-version
-        :content-type:content-transfer-encoding:in-reply-to; s=fm3; bh=B
-        EGNDlvDfXkKXK5REIu5N8vOOMx+km52gjr4Z6s/5Fc=; b=N7m/AzG31Z90u6VzB
-        XltErv+k3kNYcTZA1pbzj7WqgwGO5npF0+Nf3Ze7RXVb7HbY4bqLfuAolX0spSv8
-        GvtJU7TYsJbvAdNmaZRMR3HJWP9pOwwz/MqttmeqKj5U3uMqL6LH9P698EBQkESu
-        Q88pIIMbuRAYQAkVxSBkRBLGkyKx+SLYL7Y6nKHuZ0EKlPvdFlg37lWARpYBpVEe
-        zXTgp13eKYctWmwKy3rTC0AO+d8XbmGtyqnbQpLZEh655pWZ+PEWYuoUoJCGSks6
-        xreSY581Vnq7A1mxQY3KyWzmGiPGfdRYyubyv6bw9nmYsPre5XyRh5gnngsVfCFu
-        UyH2g==
+        :content-type:content-transfer-encoding:in-reply-to; s=fm3; bh=c
+        3fNgNGFdjr4v/UDr2lGz3PU9DDItsmFEZI0JCY2YTc=; b=qXXYhwH/GTxVEum3l
+        nWjqfA/4M8vVjuJp9aWR0peh/PDyt2l5umtY96hRwVfGZk9V7s0lwMkNSOIFr2RI
+        p23MNnUkbm7mxf/7f3MAtUxNuTFI/wBcoVrLzffjDID0JIOkPXZVgKrWs3YGucoN
+        tydo40DiUehnf4+Pm3pTCp7ONK1dF6xQDJPOasdrUB/K77BhlihDCcdDqbC5M+u7
+        H/yMqEhAzXbgz3++S7mv85WYJ8p4E8tG8XWm+5JkZYRsYvxIlRVZ7r4TgPcvKgnj
+        lbl9wOPktju6jc6Z/dSbYmgYb7Y11xcH4x/GbmKNJ1vAuK4C9VIlqq62cZiaIuJ/
+        //bCA==
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=
         messagingengine.com; h=cc:content-transfer-encoding:content-type
         :date:from:in-reply-to:message-id:mime-version:references
         :subject:to:x-me-proxy:x-me-proxy:x-me-sender:x-me-sender
-        :x-sasl-enc; s=fm3; bh=BEGNDlvDfXkKXK5REIu5N8vOOMx+km52gjr4Z6s/5
-        Fc=; b=l2O8I0q/0iVpb13FY009yJZ1NNM7+PUv0mbTq9OaovWCTTcE4vHwvkcri
-        0I0r01zr2yHE23odRqOQ1LRIiBa87eJywH/u4nQ2TuKUhNV9gy/i79i7Pb+7q3VL
-        vihJ228lQLKkiB5fca1WsMiXo6kh6FjN6duF+p/JkIFP3BIyePe3qDD6BqpGB2lB
-        fZ3FgnTEsfTAsy8UC/a7ZsGhS6SZX4C7hB5vGcD1N3xfXcsXw+waz7WYO6HJo+5/
-        HaM9RVgHSUMI8Z8msh69w2bIFBdvi7wZBs/Nb3eJUuOJS0EAzbKfJjqDRWkNo8er
-        ZQAaNLNQ4hDnibgAfn05rXRxoMDzQ==
-X-ME-Sender: <xms:1bBoX4UeAeB8GgmIgR26hwOZabfy_NJElOfIIAC2slnkpDQAd1Dixw>
-    <xme:1bBoX8mYdyJBmyaB8GgUcrbA5UBTb3yhIGwDENbjgbp_4IpV5G_6zAtA7CPNaaK01
-    Fy9nQn3LPyXxzZrlNM>
-X-ME-Proxy-Cause: gggruggvucftvghtrhhoucdtuddrgedujedruddvgdejvdcutefuodetggdotefrodftvf
+        :x-sasl-enc; s=fm3; bh=c3fNgNGFdjr4v/UDr2lGz3PU9DDItsmFEZI0JCY2Y
+        Tc=; b=ti2L2NgXfjI3JLZ38emVWOBmAT9vIL7KEr9CEyixc0TVFJgVdxPzLXO1T
+        hSftB5jxVMhxUFD/gtY1sV/O4AvEVd9hBH3/GNpP4DLmn9ZyZZcRNHokdyi4rxUo
+        YZeLFPO+GwoND+F4Z6fHAQ6o8AORMdnGp1hNG4AldGpUDMEVwI3zvKyiVRc/jkT5
+        RRvSsRX6YxQNvz7q3SMhfcN84gHmLWvFq8GRqVeKoUCR2dhlDeMMT7wrJ7md6zkd
+        v0pSvm0i3b4FO/onne6AlfcY2o+eIBU0ArjnuidYrsa1tU6PM5G3N+xDTfsUjPkO
+        k5EJgH/yuTZtgDDVs738BNABIiAAA==
+X-ME-Sender: <xms:v7FoX5z4tMayKshtbNMi1-Arz-vd1fkDXzb6gVzFMWHjmGRE7q7q_A>
+    <xme:v7FoX5QeMPKoUZraeztdGE6z9OaobTLvR0G86JDrUCJMUvoX2ZAlcIWLVHZXafjo9
+    u1PNih81xbeGHw4VYg>
+X-ME-Proxy-Cause: gggruggvucftvghtrhhoucdtuddrgedujedruddvgdejfecutefuodetggdotefrodftvf
     curfhrohhfihhlvgemucfhrghsthforghilhdpqfgfvfdpuffrtefokffrpgfnqfghnecu
     uegrihhlohhuthemuceftddtnecusecvtfgvtghiphhivghnthhsucdlqddutddtmdenuc
     fjughrpeffhffvuffkfhggtggugfgjsehtqhertddttddunecuhfhrohhmpeforgigihhm
@@ -49,14 +49,14 @@ X-ME-Proxy-Cause: gggruggvucftvghtrhhoucdtuddrgedujedruddvgdejvdcutefuodetggdote
     htvghrnhepheelvdfhkeelgfevleekleduvefftefhudekvdffhffhgeefuefgheegfeej
     vedtnecukfhppeeltddrkeelrdeikedrjeeinecuvehluhhsthgvrhfuihiivgeptdenuc
     frrghrrghmpehmrghilhhfrhhomhepmhgrgihimhgvsegtvghrnhhordhtvggthh
-X-ME-Proxy: <xmx:1bBoX8b73D5mSBvFXsb05BlZ_y0_EOpTMiFiS-F72hKhpgwZ2_ZuAQ>
-    <xmx:1bBoX3WDtmFPsXZpiBhmsoFpac29hEXjEgBWJfAhl9cxNN_3nJDmcA>
-    <xmx:1bBoXynb8HajnEpTY5Jzdue1RUc0UqaJuKN3R7L9rGFHqL7JPfByIA>
-    <xmx:1rBoX0cVHxrTpDdRh5Hf5Yyw8i26bDfgcGccMg_k5Civ5uEfV6rkmVuAqRI>
+X-ME-Proxy: <xmx:v7FoXzVVxtlL5-uki4uBoTXR8Oa9kZ_9eqpAf0rpeyuXWPE7Z-EDrQ>
+    <xmx:v7FoX7hRv7E1OLH8fJvBcCrAh48kpC0DJbtvrjA9qmyF0Q6nw0dKKA>
+    <xmx:v7FoX7DfxLODG9mfzJvboddmCrCzwT6E2GY9OBY08bY6jQnVXaR-iw>
+    <xmx:wLFoX4Ih48dtHtsGWI2BV0cS8vnMURQnbnblNjz0sezZ_eDvCXBwOpHgxM0>
 Received: from localhost (lfbn-tou-1-1502-76.w90-89.abo.wanadoo.fr [90.89.68.76])
-        by mail.messagingengine.com (Postfix) with ESMTPA id 0EBB63280060;
-        Mon, 21 Sep 2020 09:55:32 -0400 (EDT)
-Date:   Mon, 21 Sep 2020 15:55:30 +0200
+        by mail.messagingengine.com (Postfix) with ESMTPA id CA1903064684;
+        Mon, 21 Sep 2020 09:59:26 -0400 (EDT)
+Date:   Mon, 21 Sep 2020 15:59:25 +0200
 From:   Maxime Ripard <maxime@cerno.tech>
 To:     =?utf-8?B?Q2zDqW1lbnQgUMOpcm9u?= <peron.clem@gmail.com>
 Cc:     Chen-Yu Tsai <wens@csie.org>, Rob Herring <robh+dt@kernel.org>,
@@ -69,75 +69,58 @@ Cc:     Chen-Yu Tsai <wens@csie.org>, Rob Herring <robh+dt@kernel.org>,
         alsa-devel@alsa-project.org, devicetree@vger.kernel.org,
         linux-arm-kernel@lists.infradead.org, linux-kernel@vger.kernel.org,
         linux-sunxi@googlegroups.com
-Subject: Re: [PATCH v4 03/22] ASoC: sun4i-i2s: Change get_sr() and get_wss()
- to be more explicit
-Message-ID: <20200921135530.q36i4l5m4p7u7zyy@gilmour.lan>
+Subject: Re: [PATCH v4 09/22] arm64: dts: allwinner: h6: Add HDMI audio node
+Message-ID: <20200921135925.q7mde2cnt5jtzkb5@gilmour.lan>
 References: <20200921102731.747736-1-peron.clem@gmail.com>
- <20200921102731.747736-4-peron.clem@gmail.com>
+ <20200921102731.747736-10-peron.clem@gmail.com>
 MIME-Version: 1.0
 Content-Type: text/plain; charset=iso-8859-1
 Content-Disposition: inline
 Content-Transfer-Encoding: quoted-printable
-In-Reply-To: <20200921102731.747736-4-peron.clem@gmail.com>
+In-Reply-To: <20200921102731.747736-10-peron.clem@gmail.com>
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-On Mon, Sep 21, 2020 at 12:27:12PM +0200, Cl=E9ment P=E9ron wrote:
-> We are actually using a complex formula to just return a bunch of
-> simple values. Also this formula is wrong for sun4i.
-
-Just like the previous patch, this could use a bit more explanation,
-like why it's a good thing, or how it's wrong on sun4i
-
-> Replace this with a simpler switch case.
+On Mon, Sep 21, 2020 at 12:27:18PM +0200, Cl=E9ment P=E9ron wrote:
+> From: Jernej Skrabec <jernej.skrabec@siol.net>
 >=20
-> Also drop the i2s params not used.
+> Add a simple-soundcard to link audio between HDMI and I2S.
 >=20
+> Signed-off-by: Jernej Skrabec <jernej.skrabec@siol.net>
+> Signed-off-by: Marcus Cooper <codekipper@gmail.com>
 > Signed-off-by: Cl=E9ment P=E9ron <peron.clem@gmail.com>
 > ---
->  sound/soc/sunxi/sun4i-i2s.c | 69 +++++++++++++++++++++++--------------
->  1 file changed, 44 insertions(+), 25 deletions(-)
+>  arch/arm64/boot/dts/allwinner/sun50i-h6.dtsi | 33 ++++++++++++++++++++
+>  1 file changed, 33 insertions(+)
 >=20
-> diff --git a/sound/soc/sunxi/sun4i-i2s.c b/sound/soc/sunxi/sun4i-i2s.c
-> index 0633b9fba3d7..11bbcbe24d6b 100644
-> --- a/sound/soc/sunxi/sun4i-i2s.c
-> +++ b/sound/soc/sunxi/sun4i-i2s.c
-> @@ -175,8 +175,8 @@ struct sun4i_i2s_quirks {
->  	unsigned int			num_mclk_dividers;
+> diff --git a/arch/arm64/boot/dts/allwinner/sun50i-h6.dtsi b/arch/arm64/bo=
+ot/dts/allwinner/sun50i-h6.dtsi
+> index 28c77d6872f6..a8853ee7885a 100644
+> --- a/arch/arm64/boot/dts/allwinner/sun50i-h6.dtsi
+> +++ b/arch/arm64/boot/dts/allwinner/sun50i-h6.dtsi
+> @@ -67,6 +67,25 @@ de: display-engine {
+>  		status =3D "disabled";
+>  	};
 > =20
->  	unsigned long (*get_bclk_parent_rate)(const struct sun4i_i2s *);
-> -	s8	(*get_sr)(const struct sun4i_i2s *, int);
-> -	s8	(*get_wss)(const struct sun4i_i2s *, int);
-> +	int	(*get_sr)(unsigned int width);
-> +	int	(*get_wss)(unsigned int width);
->  	int	(*set_chan_cfg)(const struct sun4i_i2s *i2s,
->  				unsigned int channels,	unsigned int slots,
->  				unsigned int slot_width);
-> @@ -381,37 +381,56 @@ static int sun4i_i2s_set_clk_rate(struct snd_soc_da=
-i *dai,
->  	return 0;
->  }
-> =20
-> -static s8 sun4i_i2s_get_sr(const struct sun4i_i2s *i2s, int width)
-> +static int sun4i_i2s_get_sr(unsigned int width)
->  {
-> -	if (width < 16 || width > 24)
-> -		return -EINVAL;
-> -
-> -	if (width % 4)
-> -		return -EINVAL;
-> +	switch (width) {
-> +	case 16:
-> +		return 0x0;
-> +	case 20:
-> +		return 0x1;
-> +	case 24:
-> +		return 0x2;
-> +	}
+> +	hdmi_sound: hdmi-sound {
+> +		compatible =3D "simple-audio-card";
+> +		simple-audio-card,format =3D "i2s";
+> +		simple-audio-card,name =3D "sun50i-h6-hdmi";
+> +		simple-audio-card,mclk-fs =3D <128>;
+> +		simple-audio-card,frame-inversion;
+> +		status =3D "disabled";
+> +
+> +		simple-audio-card,codec {
+> +			sound-dai =3D <&hdmi>;
+> +		};
+> +
+> +		simple-audio-card,cpu {
+> +			sound-dai =3D <&i2s1>;
+> +			dai-tdm-slot-num =3D <2>;
+> +			dai-tdm-slot-width =3D <32>;
 
-Why do we need an hex number here?
-
-Also, why is the return type change needed?
+It looks weird to have both some TDM setup here, and yet the format in
+i2s?
 
 Maxime
