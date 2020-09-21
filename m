@@ -2,147 +2,291 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from vger.kernel.org (vger.kernel.org [23.128.96.18])
-	by mail.lfdr.de (Postfix) with ESMTP id E80CA271E52
-	for <lists+devicetree@lfdr.de>; Mon, 21 Sep 2020 10:47:21 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTP id D9924271E76
+	for <lists+devicetree@lfdr.de>; Mon, 21 Sep 2020 11:00:57 +0200 (CEST)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S1726387AbgIUIrU (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Mon, 21 Sep 2020 04:47:20 -0400
-Received: from mo-csw1116.securemx.jp ([210.130.202.158]:54902 "EHLO
+        id S1726384AbgIUJA4 (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Mon, 21 Sep 2020 05:00:56 -0400
+Received: from mo-csw1115.securemx.jp ([210.130.202.157]:35584 "EHLO
         mo-csw.securemx.jp" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S1726236AbgIUIrU (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Mon, 21 Sep 2020 04:47:20 -0400
-Received: by mo-csw.securemx.jp (mx-mo-csw1116) id 08L8koid019827; Mon, 21 Sep 2020 17:46:50 +0900
-X-Iguazu-Qid: 2wHHUwt3Pz0wvvh0gy
-X-Iguazu-QSIG: v=2; s=0; t=1600678010; q=2wHHUwt3Pz0wvvh0gy; m=0zEXxIcWnOF+gblniTiYWVlNOKvXel4cIO/JZFORh8Y=
-Received: from imx12.toshiba.co.jp (imx12.toshiba.co.jp [61.202.160.132])
-        by relay.securemx.jp (mx-mr1113) id 08L8kmMm014124;
-        Mon, 21 Sep 2020 17:46:48 +0900
-Received: from enc02.toshiba.co.jp ([61.202.160.51])
-        by imx12.toshiba.co.jp  with ESMTP id 08L8km8I017516;
-        Mon, 21 Sep 2020 17:46:48 +0900 (JST)
-Received: from hop101.toshiba.co.jp ([133.199.85.107])
-        by enc02.toshiba.co.jp  with ESMTP id 08L8klTe009188;
-        Mon, 21 Sep 2020 17:46:48 +0900
-Date:   Mon, 21 Sep 2020 17:46:46 +0900
-From:   Nobuhiro Iwamatsu <nobuhiro1.iwamatsu@toshiba.co.jp>
-To:     Punit Agrawal <punit1.agrawal@toshiba.co.jp>
+        with ESMTP id S1726353AbgIUJA4 (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Mon, 21 Sep 2020 05:00:56 -0400
+Received: by mo-csw.securemx.jp (mx-mo-csw1115) id 08L90USn009536; Mon, 21 Sep 2020 18:00:30 +0900
+X-Iguazu-Qid: 2wHHEK9NfkUKAHtx44
+X-Iguazu-QSIG: v=2; s=0; t=1600678830; q=2wHHEK9NfkUKAHtx44; m=/aRDSea6gL/5kjdolUNuLm5tcmA6C7EaYEcGnZOHVd0=
+Received: from imx2.toshiba.co.jp (imx2.toshiba.co.jp [106.186.93.51])
+        by relay.securemx.jp (mx-mr1111) id 08L90SZO008189;
+        Mon, 21 Sep 2020 18:00:28 +0900
+Received: from enc01.toshiba.co.jp ([106.186.93.100])
+        by imx2.toshiba.co.jp  with ESMTP id 08L90Rom010685;
+        Mon, 21 Sep 2020 18:00:27 +0900 (JST)
+Received: from hop001.toshiba.co.jp ([133.199.164.63])
+        by enc01.toshiba.co.jp  with ESMTP id 08L90RAk014296;
+        Mon, 21 Sep 2020 18:00:27 +0900
+From:   Punit Agrawal <punit1.agrawal@toshiba.co.jp>
+To:     Nobuhiro Iwamatsu <nobuhiro1.iwamatsu@toshiba.co.jp>
 Cc:     Rob Herring <robh+dt@kernel.org>,
-        Wim Van Sebroeck <wim@linux-watchdog.org>,
-        Guenter Roeck <linux@roeck-us.net>, devicetree@vger.kernel.org,
-        linux-watchdog@vger.kernel.org, yuji2.ishikawa@toshiba.co.jp,
+        Thierry Reding <thierry.reding@gmail.com>,
+        Uwe =?utf-8?Q?Kleine-K=C3=B6nig?= 
+        <u.kleine-koenig@pengutronix.de>, Lee Jones <lee.jones@linaro.org>,
+        linux-pwm@vger.kernel.org,
+        Nobuhiro Iwamatsu <iwamatsu@nigauri.org>,
+        devicetree@vger.kernel.org, yuji2.ishikawa@toshiba.co.jp,
         linux-arm-kernel@lists.infradead.org
-Subject: Re: [PATCH v3 2/2] watchdog: Add Toshiba Visconti watchdog driver
+Subject: Re: [PATCH 2/2] pwm: visconti: Add Toshiba Visconti SoC PWM support
+References: <20200917223140.227542-1-nobuhiro1.iwamatsu@toshiba.co.jp>
+        <20200917223140.227542-3-nobuhiro1.iwamatsu@toshiba.co.jp>
+Date:   Mon, 21 Sep 2020 18:00:26 +0900
+In-Reply-To: <20200917223140.227542-3-nobuhiro1.iwamatsu@toshiba.co.jp>
+        (Nobuhiro Iwamatsu's message of "Fri, 18 Sep 2020 07:31:40 +0900")
 X-TSB-HOP: ON
-Message-ID: <20200921084646.w4cps33nnxnqxefx@toshiba.co.jp>
-References: <20200920051807.288034-1-nobuhiro1.iwamatsu@toshiba.co.jp>
- <20200920051807.288034-3-nobuhiro1.iwamatsu@toshiba.co.jp>
- <87d02flhfr.fsf@kokedama.swc.toshiba.co.jp>
+Message-ID: <87zh5jjyhh.fsf@kokedama.swc.toshiba.co.jp>
+User-Agent: Gnus/5.13 (Gnus v5.13) Emacs/26.3 (gnu/linux)
 MIME-Version: 1.0
-Content-Type: text/plain; charset=us-ascii
-Content-Disposition: inline
-In-Reply-To: <87d02flhfr.fsf@kokedama.swc.toshiba.co.jp>
+Content-Type: text/plain
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-Hi,
+Nobuhiro Iwamatsu <nobuhiro1.iwamatsu@toshiba.co.jp> writes:
 
-Thanks for your review.
+> From: Nobuhiro Iwamatsu <iwamatsu@nigauri.org>
+>
+> Add a driver for the PWM controller on Toshiba Visconti ARM SoC.
+>
+> Signed-off-by: Nobuhiro Iwamatsu <nobuhiro1.iwamatsu@toshiba.co.jp>
+> ---
+>  drivers/pwm/Kconfig        |   9 +++
+>  drivers/pwm/Makefile       |   1 +
+>  drivers/pwm/pwm-visconti.c | 141 +++++++++++++++++++++++++++++++++++++
+>  3 files changed, 151 insertions(+)
+>  create mode 100644 drivers/pwm/pwm-visconti.c
+>
+> diff --git a/drivers/pwm/Kconfig b/drivers/pwm/Kconfig
+> index cb8d739067d2..f99d48f74c76 100644
+> --- a/drivers/pwm/Kconfig
+> +++ b/drivers/pwm/Kconfig
+> @@ -533,6 +533,15 @@ config PWM_TIEHRPWM
+>  	  To compile this driver as a module, choose M here: the module
+>  	  will be called pwm-tiehrpwm.
+>  
+> +config PWM_VISCONTI
+> +	tristate "Toshiba Visconti PWM support"
+> +	depends on ARCH_VISCONTI || COMPILE_TEST
+> +	help
+> +	  PWM Subsystem driver support for Toshiba Visconti SoCs.
+> +
+> +	  To compile this driver as a module, choose M here: the module
+> +	  will be called pwm-visconti.
+> +
 
-On Mon, Sep 21, 2020 at 04:25:44PM +0900, Punit Agrawal wrote:
-> Iwamatsu-san,
-> 
-> Nobuhiro Iwamatsu <nobuhiro1.iwamatsu@toshiba.co.jp> writes:
-> 
-> > Add the watchdog driver for Toshiba Visconti series.
-> >
-> > Signed-off-by: Nobuhiro Iwamatsu <nobuhiro1.iwamatsu@toshiba.co.jp>
-> > ---
-> >  drivers/watchdog/Kconfig        |   8 ++
-> >  drivers/watchdog/Makefile       |   1 +
-> >  drivers/watchdog/visconti_wdt.c | 191 ++++++++++++++++++++++++++++++++
-> >  3 files changed, 200 insertions(+)
-> >  create mode 100644 drivers/watchdog/visconti_wdt.c
-> >
-> 
-> [...]
-> 
-> > diff --git a/drivers/watchdog/visconti_wdt.c b/drivers/watchdog/visconti_wdt.c
-> > new file mode 100644
-> > index 000000000000..4a67b9fe9220
-> > --- /dev/null
-> > +++ b/drivers/watchdog/visconti_wdt.c
-> > @@ -0,0 +1,191 @@
-> > +// SPDX-License-Identifier: GPL-2.0
-> > +/*
-> > + * Copyright (c) 2020 TOSHIBA CORPORATION
-> > + * Copyright (c) 2020 Toshiba Electronic Devices & Storage Corporation
-> > + * Copyright (c) 2020 Nobuhiro Iwamatsu <nobuhiro1.iwamatsu@toshiba.co.jp>
-> > + */
-> > +
-> > +#include <linux/clk.h>
-> > +#include <linux/interrupt.h>
-> 
-> interrupt.h doesn't seem to be used. It can be dropped.
-> 
+The entries in the file seem to be alphabetically sorted. Can you please
+move this to the appropriate location.
 
-Right. I will remove this.
+>  config PWM_TWL
+>  	tristate "TWL4030/6030 PWM support"
+>  	depends on TWL4030_CORE
+> diff --git a/drivers/pwm/Makefile b/drivers/pwm/Makefile
+> index a59c710e98c7..ef6dc1af7c17 100644
+> --- a/drivers/pwm/Makefile
+> +++ b/drivers/pwm/Makefile
+> @@ -51,6 +51,7 @@ obj-$(CONFIG_PWM_SUN4I)		+= pwm-sun4i.o
+>  obj-$(CONFIG_PWM_TEGRA)		+= pwm-tegra.o
+>  obj-$(CONFIG_PWM_TIECAP)	+= pwm-tiecap.o
+>  obj-$(CONFIG_PWM_TIEHRPWM)	+= pwm-tiehrpwm.o
+> +obj-$(CONFIG_PWM_VISCONTI)	+= pwm-visconti.o
+
+Same comment as above.
+
+>  obj-$(CONFIG_PWM_TWL)		+= pwm-twl.o
+>  obj-$(CONFIG_PWM_TWL_LED)	+= pwm-twl-led.o
+>  obj-$(CONFIG_PWM_VT8500)	+= pwm-vt8500.o
+> diff --git a/drivers/pwm/pwm-visconti.c b/drivers/pwm/pwm-visconti.c
+> new file mode 100644
+> index 000000000000..601450111166
+> --- /dev/null
+> +++ b/drivers/pwm/pwm-visconti.c
+> @@ -0,0 +1,141 @@
+> +// SPDX-License-Identifier: GPL-2.0
+> +/*
+> + * Toshiba Visconti pulse-width-modulation controller driver
+> + *
+> + * Copyright (c) 2020 TOSHIBA CORPORATION
+> + * Copyright (c) 2020 Toshiba Electronic Devices & Storage Corporation
+> + * Copyright (c) 2020 Nobuhiro Iwamatsu <nobuhiro1.iwamatsu@toshiba.co.jp>
+> + *
+> + */
+> +
+> +#include <linux/err.h>
+> +#include <linux/io.h>
+> +#include <linux/module.h>
+> +#include <linux/of_device.h>
+> +#include <linux/pwm.h>
+> +#include <linux/platform_device.h>
+> +
+> +#define PWMC0_PWMACT BIT(5)
+> +
+> +#define REG_PCSR(ch) (0x400 + 4 * (ch))
+> +#define REG_PDUT(ch) (0x420 + 4 * (ch))
+> +#define REG_PWM0(ch) (0x440 + 4 * (ch))
+> +
+> +struct visconti_pwm_chip {
+> +	struct pwm_chip chip;
+> +	struct device *dev;
+
+"dev" can be dropped from the structure if ..
+
+> +	void __iomem *base;
+> +};
+> +
+> +#define to_visconti_chip(chip) \
+> +	container_of(chip, struct visconti_pwm_chip, chip)
+> +
+> +static int visconti_pwm_apply(struct pwm_chip *chip, struct pwm_device *pwm,
+> +			  const struct pwm_state *state)
+> +{
+> +	struct visconti_pwm_chip *priv = to_visconti_chip(chip);
+> +	u32 period, duty, pwmc0;
+> +
+> +	dev_dbg(priv->dev, "%s: ch = %d en = %d p = 0x%llx d = 0x%llx\n", __func__,
+> +		pwm->hwpwm, state->enabled, state->period, state->duty_cycle);
+
+... the usage here is replaced by "chip->dev" instead of "priv->dev".
+
+> +	if (state->enabled) {
+> +		period = state->period / 1000;
+> +		duty = state->duty_cycle / 1000;
+
+Does it make sense to replace the constant 1000 here with the macro -
+NSEC_PER_USEC?
+
+Also, period and duty_cycle are defined as u64 in the pwm_state
+structure. Is there any chance for the values to be truncated due to
+them being u32 in the driver?
+
+> +		if (period < 0x10000)
+> +			pwmc0 = 0;
+> +		else if (period < 0x20000)
+> +			pwmc0 = 1;
+> +		else if (period < 0x40000)
+> +			pwmc0 = 2;
+> +		else if (period < 0x80000)
+> +			pwmc0 = 3;
+> +		else
+> +			return -EINVAL;
+> +
+> +		if (pwmc0) {
+> +			period /= BIT(pwmc0);
+> +			duty /= BIT(pwmc0);
+
+It would be better to replace division with right-shift operator.
+
+period >>= pwmc0;
+duty >>= pwmc0;
+
+> +		}
+> +
+> +		if (state->polarity == PWM_POLARITY_INVERSED)
+> +			pwmc0 |= PWMC0_PWMACT;
+> +
+> +		writel(pwmc0, priv->base + REG_PWM0(pwm->hwpwm));
+> +		writel(duty, priv->base + REG_PDUT(pwm->hwpwm));
+> +		writel(period, priv->base + REG_PCSR(pwm->hwpwm));
+> +	} else {
+> +		writel(0, priv->base + REG_PCSR(pwm->hwpwm));
+> +	}
+
+One suggestion - the else condition can be handled first to reduce
+indentation for the state->enabled condition,
 
 
-> > +#include <linux/io.h>
-> > +#include <linux/kernel.h>
-> > +#include <linux/module.h>
-> > +#include <linux/of.h>
-> > +#include <linux/platform_device.h>
-> > +#include <linux/watchdog.h>
-> > +
-> > +#define WDT_CNT			0x00
-> > +#define WDT_MIN			0x04
-> > +#define WDT_MAX			0x08
-> > +#define WDT_CTL			0x0c
-> > +#define WDT_CMD			0x10
-> > +#define WDT_CMD_CLEAR		0x4352
-> > +#define WDT_CMD_START_STOP	0x5354
-> > +#define WDT_DIV			0x30
-> > +
-> > +#define VISCONTI_WDT_FREQ	2000000 /* 2MHz */
-> > +#define WDT_DEFAULT_TIMEOUT	10U /* in seconds */
-> > +
-> > +static bool nowayout = WATCHDOG_NOWAYOUT;
-> > +module_param(nowayout, bool, 0);
-> > +MODULE_PARM_DESC(
-> > +	nowayout,
-> > +	"Watchdog cannot be stopped once started (default=" __MODULE_STRING(WATCHDOG_NOWAYOUT)")");
+        if (!state->enabled) {
+           ...
+           return 0;
+        }
 
 
-<snip>
+        <handle state enabled case>
 
+But so far the driver is simple enough so I'll leave it upto you which
+way you prefer.
 
-> > +module_platform_driver(visconti_wdt_driver);
-> > +
-> > +MODULE_DESCRIPTION("TOSHIBA Visconti Watchdog Driver");
-> > +MODULE_AUTHOR("TOSHIBA ELECTRONIC DEVICES & STORAGE CORPORATION");
-> 
-> The MODULE_AUTHOR() macro is usually used to represent the driver
-> authors. Not sure about using it for the organization name which is
-> already included in the copyright notice. Please drop it or replace it
-> with the author name / email.
+> +
+> +	return 0;
+> +}
+> +
+> +static const struct pwm_ops visconti_pwm_ops = {
+> +	.apply = visconti_pwm_apply,
+> +	.owner = THIS_MODULE,
+> +};
+> +
+> +static int visconti_pwm_probe(struct platform_device *pdev)
+> +{
+> +	struct device *dev = &pdev->dev;
+> +	struct visconti_pwm_chip *priv;
+> +	int ret;
+> +
+> +	priv = devm_kzalloc(dev, sizeof(*priv), GFP_KERNEL);
+> +	if (!priv)
+> +		return -ENOMEM;
+> +
+> +	priv->dev = &pdev->dev;
+> +
+> +	priv->base = devm_platform_ioremap_resource(pdev, 0);
+> +	if (IS_ERR(priv->base)) {
+> +		dev_err(dev, "unable to map I/O space\n");
+> +		return PTR_ERR(priv->base);
+> +	}
+> +
+> +	platform_set_drvdata(pdev, priv);
+> +
+> +	priv->chip.dev = dev;
+> +	priv->chip.ops = &visconti_pwm_ops;
+> +	priv->chip.base = -1;
+> +	priv->chip.npwm = 4;
+> +
+> +	ret = pwmchip_add(&priv->chip);
+> +	if (ret < 0) {
+> +		dev_err(dev, "Cannot register visconti PWM: %d\n", ret);
+> +		return ret;
+> +	}
+> +
+> +	dev_info(&pdev->dev, "visconti PWM registered\n");
+> +
+> +	return 0;
+> +}
+> +
+> +static int visconti_pwm_remove(struct platform_device *pdev)
+> +{
+> +	struct visconti_pwm_chip *priv = platform_get_drvdata(pdev);
+> +
+> +	return pwmchip_remove(&priv->chip);
+> +}
+> +
+> +static const struct of_device_id visconti_pwm_of_match[] = {
+> +	{ .compatible = "toshiba,pwm-visconti", },
+> +	{ }
+> +};
+> +
+> +MODULE_DEVICE_TABLE(of, visconti_pwm_of_match);
+> +
+> +static struct platform_driver visconti_pwm_driver = {
+> +	.driver = {
+> +		.name = "pwm-visconti",
+> +		.of_match_table = visconti_pwm_of_match,
+> +	},
+> +	.probe = visconti_pwm_probe,
+> +	.remove = visconti_pwm_remove,
+> +};
+> +
+> +module_platform_driver(visconti_pwm_driver);
+> +
+> +MODULE_LICENSE("GPL v2");
+> +MODULE_AUTHOR("Toshiba");
 
-Well, it's unnecessary for MODULE_AUTHOR.
-I will drop this.
+Please use the author name / email here.
 
-> 
-> > +MODULE_AUTHOR("Nobuhiro Iwamatsu <nobuhiro1.iwamatsu@toshiba.co.jp");
-> > +MODULE_LICENSE("GPL v2");
-> 
-> Reviewed-by: Punit Agrawal <punit1.agrawal@toshiba.co.jp>
-> 
+> +MODULE_ALIAS("platform:visconti-pwm");
 
-Thanks!
-
-> Thanks,
-> Punit
-> 
-
-Best regards,
-  Nobuhiro
+Thanks,
+Punit
