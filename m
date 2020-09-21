@@ -2,249 +2,391 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from vger.kernel.org (vger.kernel.org [23.128.96.18])
-	by mail.lfdr.de (Postfix) with ESMTP id 3A8DB271DE0
-	for <lists+devicetree@lfdr.de>; Mon, 21 Sep 2020 10:25:28 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTP id 5CE81271E09
+	for <lists+devicetree@lfdr.de>; Mon, 21 Sep 2020 10:34:56 +0200 (CEST)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S1726508AbgIUIZX (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Mon, 21 Sep 2020 04:25:23 -0400
-Received: from mail-eopbgr80059.outbound.protection.outlook.com ([40.107.8.59]:53379
-        "EHLO EUR04-VI1-obe.outbound.protection.outlook.com"
-        rhost-flags-OK-OK-OK-FAIL) by vger.kernel.org with ESMTP
-        id S1726416AbgIUIZX (ORCPT <rfc822;devicetree@vger.kernel.org>);
-        Mon, 21 Sep 2020 04:25:23 -0400
-ARC-Seal: i=1; a=rsa-sha256; s=arcselector9901; d=microsoft.com; cv=none;
- b=jM3UPGchfu04kEpzndK7Hhpey12xTdk+lUco+nld24EP3ucrUJvh3Cd9qhzPx6At56Y4PsXU/gFL5T3U5Rv8RLH8MGaCDu4Rh0Y39gxXW8i/dDV4kbSvNQkiL2GMs1uEBn85TPBU5Una5j8fg78yKukOYcivhuS5LSTaJ1IlzsJ1dBA9MXIor6aDCtjLODMo4ERDyR5wY/bHv8LJsHzc+gkqroqpKeUscN2+f2qATyrs/hogWPxVCivc7XjO74D4jFWtI4DMN9Na1URLnfFITRk51xb8Y/iGoCg2VW/BZWdT6nqco/3FoVY5Cr2+8pBXSDfk6jt095E1/EfaMjOs4A==
-ARC-Message-Signature: i=1; a=rsa-sha256; c=relaxed/relaxed; d=microsoft.com;
- s=arcselector9901;
- h=From:Date:Subject:Message-ID:Content-Type:MIME-Version:X-MS-Exchange-SenderADCheck;
- bh=9YLCSH+fx+UuIDsHytbS1FIG25qFesTYvscAgzZOHNI=;
- b=By7YyXdu9Ei4wPxEcBUt6A9NUNYeEp99Ouxs+M/4Pkl1BIjmmQ90/ZofiV5L6XWTOA3WGPjKn0Ie7DBIdxLkcRVKsqkFzWP8ClpvtybI2rIDU44Q7om+6QAb7oSM1moXnjJWejYuuZb3d/BTbgLE1YqSiI3KQdNoGZH0uTeZV3Y7cTitH3i8Ws+E8FHZlE03pFttK3sc+mjMooiiG+ofEQD3yv8Bo/VeSnuhdapwpoZInad0BnR2hHDdGmz8Dp8GqiAbGj2RMKCw3zlwxmUFXuZVbDBPm7Kgrh7AlzQVKM1zTX7hgQXbfoXiaE4hOJmioDCGqEt6Xj3gozKunhjnWA==
-ARC-Authentication-Results: i=1; mx.microsoft.com 1; spf=pass
- smtp.mailfrom=nxp.com; dmarc=pass action=none header.from=nxp.com; dkim=pass
- header.d=nxp.com; arc=none
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=nxp.com; s=selector2;
- h=From:Date:Subject:Message-ID:Content-Type:MIME-Version:X-MS-Exchange-SenderADCheck;
- bh=9YLCSH+fx+UuIDsHytbS1FIG25qFesTYvscAgzZOHNI=;
- b=aDVfxA4qMDigFqX9HwjGu5sOs9mAKplyTES8LhgpDYPY9Vb0dsffelCNkItFxDOS5ZfrjqrIL+9Aua8bGG2jxo7Fwbuglpvoq5wO3isPfKbKBMxlNSPJwHyiFJY7LKDCWfRRClpZfnlC6CfWxePm5BkIWnd2+XKKxUw7f6HQfgM=
-Received: from VE1PR04MB6638.eurprd04.prod.outlook.com (2603:10a6:803:119::15)
- by VI1PR04MB6944.eurprd04.prod.outlook.com (2603:10a6:803:133::14) with
- Microsoft SMTP Server (version=TLS1_2,
- cipher=TLS_ECDHE_RSA_WITH_AES_256_GCM_SHA384) id 15.20.3391.14; Mon, 21 Sep
- 2020 08:25:18 +0000
-Received: from VE1PR04MB6638.eurprd04.prod.outlook.com
- ([fe80::ad7f:d95a:5413:a950]) by VE1PR04MB6638.eurprd04.prod.outlook.com
- ([fe80::ad7f:d95a:5413:a950%3]) with mapi id 15.20.3391.017; Mon, 21 Sep 2020
- 08:25:18 +0000
-From:   Robin Gong <yibin.gong@nxp.com>
-To:     Marco Felsch <m.felsch@pengutronix.de>
-CC:     "mark.rutland@arm.com" <mark.rutland@arm.com>,
-        "broonie@kernel.org" <broonie@kernel.org>,
-        "robh+dt@kernel.org" <robh+dt@kernel.org>,
-        "catalin.marinas@arm.com" <catalin.marinas@arm.com>,
-        "vkoul@kernel.org" <vkoul@kernel.org>,
-        "will.deacon@arm.com" <will.deacon@arm.com>,
-        "shawnguo@kernel.org" <shawnguo@kernel.org>,
-        "festevam@gmail.com" <festevam@gmail.com>,
-        "s.hauer@pengutronix.de" <s.hauer@pengutronix.de>,
-        "martin.fuzzey@flowbird.group" <martin.fuzzey@flowbird.group>,
-        "u.kleine-koenig@pengutronix.de" <u.kleine-koenig@pengutronix.de>,
-        "dan.j.williams@intel.com" <dan.j.williams@intel.com>,
-        "matthias.schiffer@ew.tq-group.com" 
-        <matthias.schiffer@ew.tq-group.com>,
-        "frieder.schrempf@kontron.de" <frieder.schrempf@kontron.de>,
-        "r.schwebel@pengutronix.de" <r.schwebel@pengutronix.de>,
-        "Benjamin.Bara@skidata.com" <Benjamin.Bara@skidata.com>,
-        "Richard.Leitner@skidata.com" <Richard.Leitner@skidata.com>,
-        "devicetree@vger.kernel.org" <devicetree@vger.kernel.org>,
-        "linux-kernel@vger.kernel.org" <linux-kernel@vger.kernel.org>,
-        "linux-spi@vger.kernel.org" <linux-spi@vger.kernel.org>,
-        dl-linux-imx <linux-imx@nxp.com>,
-        "kernel@pengutronix.de" <kernel@pengutronix.de>,
-        "dmaengine@vger.kernel.org" <dmaengine@vger.kernel.org>,
-        "linux-arm-kernel@lists.infradead.org" 
-        <linux-arm-kernel@lists.infradead.org>
-Subject: RE: [PATCH v13 00/12] add ecspi ERR009165 for i.mx6/7 soc family
-Thread-Topic: [PATCH v13 00/12] add ecspi ERR009165 for i.mx6/7 soc family
-Thread-Index: AQHWf2tkimfqSdG8kEGKEyob2MpDZaljtaAAgA8dHUA=
-Date:   Mon, 21 Sep 2020 08:25:16 +0000
-Message-ID: <VE1PR04MB66387B8FEBBC937CE0A1AC24893A0@VE1PR04MB6638.eurprd04.prod.outlook.com>
-References: <1598889805-30399-1-git-send-email-yibin.gong@nxp.com>
- <20200911164018.6treqdmywzjhqe3a@pengutronix.de>
-In-Reply-To: <20200911164018.6treqdmywzjhqe3a@pengutronix.de>
-Accept-Language: en-US
-Content-Language: en-US
-X-MS-Has-Attach: 
-X-MS-TNEF-Correlator: 
-authentication-results: pengutronix.de; dkim=none (message not signed)
- header.d=none;pengutronix.de; dmarc=none action=none header.from=nxp.com;
-x-originating-ip: [119.31.174.67]
-x-ms-publictraffictype: Email
-x-ms-office365-filtering-ht: Tenant
-x-ms-office365-filtering-correlation-id: cba8acb2-8acd-45f3-82fb-08d85e07df91
-x-ms-traffictypediagnostic: VI1PR04MB6944:
-x-ld-processed: 686ea1d3-bc2b-4c6f-a92c-d99c5c301635,ExtAddr
-x-ms-exchange-transport-forked: True
-x-microsoft-antispam-prvs: <VI1PR04MB6944D249F8827639BD2E9DAB893A0@VI1PR04MB6944.eurprd04.prod.outlook.com>
-x-ms-oob-tlc-oobclassifiers: OLM:1360;
-x-ms-exchange-senderadcheck: 1
-x-microsoft-antispam: BCL:0;
-x-microsoft-antispam-message-info: pRYfi+3WPpK1DK0C+AJgtvPvVOuISMvNZnBLGZYDL+TEqTcWIZl28d6+RD9yV4t+L3MficmjoevTrdEbx8wA91YZXIdAN2goukjawQyepnwRzc25ESl1ZVlkI18Fuum/WCWRiPCNGxqYgQK72JYUKkAaiufYdz7nyGX4S341wzDKCbZhKcx+BJDFwEyxFq46Qb2Loo9+AH/JLtv/scVF9wt1lQyord2X2FLhwn4YIEk0pCTzDbTwIEf3WyRZkBQTB9vCI3qEv9d9CJCzcp4gxt+PhhBRWNmch40Kexq1aWVovAEmNpem3loWOjyyFEMK0V84X3I9F3vU3wKpAcIEG5Z0p0Wc1CBuoE4/vkIOYH4=
-x-forefront-antispam-report: CIP:255.255.255.255;CTRY:;LANG:en;SCL:1;SRV:;IPV:NLI;SFV:NSPM;H:VE1PR04MB6638.eurprd04.prod.outlook.com;PTR:;CAT:NONE;SFS:(4636009)(39860400002)(366004)(136003)(346002)(396003)(376002)(7416002)(8676002)(54906003)(478600001)(7696005)(966005)(316002)(66476007)(66556008)(64756008)(86362001)(2906002)(76116006)(6916009)(53546011)(66446008)(6506007)(45080400002)(66946007)(55016002)(71200400001)(52536014)(9686003)(33656002)(26005)(5660300002)(8936002)(186003)(4326008)(83380400001);DIR:OUT;SFP:1101;
-x-ms-exchange-antispam-messagedata: pxVLiZiyHfouNUcYj7+a1Q4iulOnyCTIKGgxGtpw8/x5DmzDD5ojZ9xxwv0/07TXmHQ8M8Q5XYUC8wkNlIRdV7yvij5nw/YYJt9aYIGnidM3JY/3s0rg8bIHDcJzlnVC1Dh33CQLXpJbiJCewQ4R2mAm2Ra4RGCEnzoGnA+5P3wKodBaU8Ab2jAMCBSOnzv/LceHsdhXmbn//kijBz+JxhmCeC77SIX7yy5HXdM/Qb7yiyH+G4sipuxUf4qBbVGPaxc9jeJcy1F10gu3N1ew0hAqkJx6Jq3YALL00WdJ5x7qp/fV2hTFwccOSxuq4K6Pt7x5tzfzxlKDujl4wk3TbOeg/Yr5/qytkHj46ZBsSRZADBzrml6aVKrstuYqL9TK+Rq6qlxImyD2dBiv3spC87yyXs7glq0oR5uJx3de0WgbtUU2z5gC0DLiarRwvnbsYBecK15jgp/02H9Eq2QEvVL9pv+esV1Xb+tMYYf1dntT8Kj9UWssmBRMpAINOdK+khZNB4bhKTtJGXsRa53TtmZQNhBlpQJcgmrU+WOnLdhWPr3xxstabPEFuyyqNvmou5Yc4kCIFooq0Pg+ueKoaRaOZ3EYd2HEEqzsl+HjaTBY+D4IyHtX+ZFSxI2EavtpAwuH+OgjTwVHr5aefUKO9g==
-Content-Type: text/plain; charset="us-ascii"
-Content-Transfer-Encoding: quoted-printable
+        id S1726387AbgIUIez (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Mon, 21 Sep 2020 04:34:55 -0400
+Received: from lindbergh.monkeyblade.net ([23.128.96.19]:42788 "EHLO
+        lindbergh.monkeyblade.net" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
+        with ESMTP id S1726326AbgIUIez (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Mon, 21 Sep 2020 04:34:55 -0400
+Received: from metis.ext.pengutronix.de (metis.ext.pengutronix.de [IPv6:2001:67c:670:201:290:27ff:fe1d:cc33])
+        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 07340C061755
+        for <devicetree@vger.kernel.org>; Mon, 21 Sep 2020 01:34:55 -0700 (PDT)
+Received: from pty.hi.pengutronix.de ([2001:67c:670:100:1d::c5])
+        by metis.ext.pengutronix.de with esmtps (TLS1.2:ECDHE_RSA_AES_256_GCM_SHA384:256)
+        (Exim 4.92)
+        (envelope-from <ukl@pengutronix.de>)
+        id 1kKHHf-0002GP-71; Mon, 21 Sep 2020 10:34:51 +0200
+Received: from ukl by pty.hi.pengutronix.de with local (Exim 4.89)
+        (envelope-from <ukl@pengutronix.de>)
+        id 1kKHHd-0007sz-Kh; Mon, 21 Sep 2020 10:34:49 +0200
+Date:   Mon, 21 Sep 2020 10:34:49 +0200
+From:   Uwe =?utf-8?Q?Kleine-K=C3=B6nig?= <u.kleine-koenig@pengutronix.de>
+To:     vijayakannan.ayyathurai@intel.com
+Cc:     thierry.reding@gmail.com, robh+dt@kernel.org,
+        linux-pwm@vger.kernel.org, devicetree@vger.kernel.org,
+        wan.ahmad.zainie.wan.mohamad@intel.com,
+        andriy.shevchenko@linux.intel.com, mgross@linux.intel.com,
+        lakshmi.bai.raja.subramanian@intel.com, kernel@pengutronix.de
+Subject: Re: [PATCH v7 1/2] pwm: Add PWM driver for Intel Keem Bay
+Message-ID: <20200921083449.mq4dxbavo5d4tozh@pengutronix.de>
+References: <20200909162719.7585-1-vijayakannan.ayyathurai@intel.com>
+ <20200909162719.7585-2-vijayakannan.ayyathurai@intel.com>
 MIME-Version: 1.0
-X-OriginatorOrg: nxp.com
-X-MS-Exchange-CrossTenant-AuthAs: Internal
-X-MS-Exchange-CrossTenant-AuthSource: VE1PR04MB6638.eurprd04.prod.outlook.com
-X-MS-Exchange-CrossTenant-Network-Message-Id: cba8acb2-8acd-45f3-82fb-08d85e07df91
-X-MS-Exchange-CrossTenant-originalarrivaltime: 21 Sep 2020 08:25:16.5621
- (UTC)
-X-MS-Exchange-CrossTenant-fromentityheader: Hosted
-X-MS-Exchange-CrossTenant-id: 686ea1d3-bc2b-4c6f-a92c-d99c5c301635
-X-MS-Exchange-CrossTenant-mailboxtype: HOSTED
-X-MS-Exchange-CrossTenant-userprincipalname: yrooecPYo5u8wfdUnZ9g/kH4VAByXTj1mqqwA/yyWEEjmO2xxTweKcnQxfTeG25goXhUz+HEvKDQiwF6GZ4vWQ==
-X-MS-Exchange-Transport-CrossTenantHeadersStamped: VI1PR04MB6944
+Content-Type: multipart/signed; micalg=pgp-sha512;
+        protocol="application/pgp-signature"; boundary="2o2qvymb54yazq6b"
+Content-Disposition: inline
+In-Reply-To: <20200909162719.7585-2-vijayakannan.ayyathurai@intel.com>
+X-SA-Exim-Connect-IP: 2001:67c:670:100:1d::c5
+X-SA-Exim-Mail-From: ukl@pengutronix.de
+X-SA-Exim-Scanned: No (on metis.ext.pengutronix.de); SAEximRunCond expanded to false
+X-PTX-Original-Recipient: devicetree@vger.kernel.org
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-On 2020/09/12 0:40 Marco Felsch <m.felsch@pengutronix.de> wrote:
-> Hi Robin,
->=20
-> I took your patches and did a few test on the mainline available
-> fsl,imx6q-sabrelite. I used a vanilla linux version v5.9-rc1 for all my t=
-ests except
-> the needed SPI-NOR patches [1]. Following are my results:
-Marco, thanks for your test :)
 
->=20
-> Testcase 1: "Using ROM-FW"
-> =3D=3D=3D
-> [OK] Playing Audio (SSI)
-> [OK] TX/RX bytes on a different UART (not the serial used for
->      interaction)
-> [OK] Writing to the SPI-NOR
-> [OK] Doing all at the same time (once for TX and once for RX on UART)
->=20
-> Notes:
-> - Your Patches adding a maybe noise message "sdma firmware not ready".
->   Maybe we should consider about that if it should be a warning or a info=
-.
-That means the script you're using is ram script which may not be loaded as=
- your
-case. That should be a warning I think, to avoid too much noise I have refi=
-ne it
-to dev_warn_once.
+--2o2qvymb54yazq6b
+Content-Type: text/plain; charset=iso-8859-1
+Content-Disposition: inline
+Content-Transfer-Encoding: quoted-printable
 
+On Thu, Sep 10, 2020 at 12:27:18AM +0800, vijayakannan.ayyathurai@intel.com=
+ wrote:
+> From: Vijayakannan Ayyathurai <vijayakannan.ayyathurai@intel.com>
 >=20
-> - For spi-nor I did run this test:
->   dd if=3D/dev/urandom of=3D/var/tmp/test1M bs=3D1M count=3D1 && \
->   flashcp -v /var/tmp/test1M /dev/mtd2
+> The Intel Keem Bay SoC requires PWM support.
+> Add the pwm-keembay driver to enable this.
 >=20
->   and checked /proc/interrupts:
->   25:    2107169          0          0          0       GPC  31
-> Level	2008000.spi
+> Signed-off-by: Lai, Poey Seng <poey.seng.lai@intel.com>
+> Signed-off-by: Vineetha G. Jaya Kumaran <vineetha.g.jaya.kumaran@intel.co=
+m>
+> Signed-off-by: Vijayakannan Ayyathurai <vijayakannan.ayyathurai@intel.com>
+> Co-developed-by: Vineetha G. Jaya Kumaran <vineetha.g.jaya.kumaran@intel.=
+com>
+> Reviewed-by: Andy Shevchenko <andriy.shevchenko@linux.intel.com>
+> ---
+>  drivers/pwm/Kconfig       |   9 ++
+>  drivers/pwm/Makefile      |   1 +
+>  drivers/pwm/pwm-keembay.c | 232 ++++++++++++++++++++++++++++++++++++++
+>  3 files changed, 242 insertions(+)
+>  create mode 100644 drivers/pwm/pwm-keembay.c
 >=20
-> Testcase 2: "Using new FW from linux-firmware"
-> =3D=3D=3D
-> [OK] Playing Audio (SSI)
-> [OK] TX/RX bytes on a different UART (not the serial used for
->      interaction)
-> [OK] Writing to the SPI-NOR
-> [OK] Doing all at the same time (once for TX and once for RX on UART)
->=20
-> Notes:
-> - For spi-nor I did run this test:
->   dd if=3D/dev/urandom of=3D/var/tmp/test1M bs=3D1M count=3D1 && \
->   flashcp -v /var/tmp/test1M /dev/mtd2
->=20
->   and checked /proc/interrupts:
->   25:    2107993          0          0          0       GPC  31
-> Level	2008000.spi
->=20
->   I saw no SDMA interrupts during this testcase instead I saw only spi
->   controller interrupts.
-That's not expected. But I have tried just now and show that SDMA interrupt
-caught by spi as belows. Are you sure sdma firmware loaded indeed?
-
-./spidev_test -D /dev/spidev0.0 -s 1200000 -b 8 -S 512 -I 1 -l 8 -S 512 -I
-spi mode: 0x24
-bits per word: 8
-max speed: 1200000 Hz (1200 kHz)
-total: tx 0.5KB, rx 0.5KB
-root@imx6qpdlsolox:~# cat /proc/interrupts | grep dma
- 58:          2          0       GPC   2 Level     sdma=20
-
-
->=20
-> - According linux-firmware you did a version bump from 3.5 to 4.5 but my
->   dmesg shows:
->   imx-sdma 20ec000.sdma: loaded firmware 3.5
-3.x is used for i.mx6 family while 4.x is used for i.mx7/8 since there are =
-some
-change on ROM which depended by RAM script. Not means version bump
-between 3.5/4.5. 3.5 is correct on i.mx6q.=20
-
->=20
-> SPI Benchmark:
-> =3D=3D=3D
-> flash_erase /dev/mtd2 0 0 && \
-> 	dd if=3D/dev/urandom of=3D/dev/mtd2 bs=3D1M count=3D1
->=20
-> - without firmware (ROM-FW)
->   1048576 bytes (1.0 MB, 1.0 MiB) copied, 51.9713 s, 20.2 kB/s
->=20
-> - with firmware
->   1048576 bytes (1.0 MB, 1.0 MiB) copied, 59.4174 s, 17.6 kB/s
->=20
-> Conclusion:
-> =3D=3D=3D
-> It seems that we don't have any performance boost with your patchset inst=
-ead
-> we are increasing the complexity and the interrupts...
-Yes, that's expected. What ERR009165 fix is data correct on spi bus though
-that bring performance drop in dma mode, because the workaround just let
-sdma do similar thing as cpu (PIO), while cpu running faster than sdma. If =
-you
-care much spi performance, PIO is better way. If care cpu loading, dma way
-is better.=20
-
->=20
-> Pls let me know if I did something wrong during testing or if my test set=
-up was
-> wrong. Note: the /dev/mtd2 isn't mainlined yet but if you use barebox you=
- only
-> have to add:
-> 8<---------------------------------------------------------------------
-> diff --git a/arch/arm/dts/imx6qdl-sabrelite.dtsi
-> b/arch/arm/dts/imx6qdl-sabrelite.dtsi
-> index ec3d364bde..256dd90a0f 100644
-> --- a/arch/arm/dts/imx6qdl-sabrelite.dtsi
-> +++ b/arch/arm/dts/imx6qdl-sabrelite.dtsi
-> @@ -38,6 +38,11 @@
->  		label =3D "barebox-environment";
->  		reg =3D <0xe0000 0x20000>;
->  	};
+> diff --git a/drivers/pwm/Kconfig b/drivers/pwm/Kconfig
+> index 7dbcf6973d33..4f1fdbc2e5e3 100644
+> --- a/drivers/pwm/Kconfig
+> +++ b/drivers/pwm/Kconfig
+> @@ -254,6 +254,15 @@ config PWM_JZ4740
+>  	  To compile this driver as a module, choose M here: the module
+>  	  will be called pwm-jz4740.
+> =20
+> +config PWM_KEEMBAY
+> +	tristate "Intel Keem Bay PWM driver"
+> +	depends on ARM64 || COMPILE_TEST
+> +	help
+> +	  The platform driver for Intel Keem Bay PWM controller.
 > +
-> +	parition@100000 {
-> +		label =3D "user-partition";
-> +		reg =3D <0x100000 0x100000>;
-> +	};
->  };
->=20
->  &ocotp {
-> 8<---------------------------------------------------------------------
-> to the barebox device tree.
->=20
-> [1]
-> https://eur01.safelinks.protection.outlook.com/?url=3Dhttp%3A%2F%2Flists.=
-infra
-> dead.org%2Fpipermail%2Flinux-mtd%2F2020-September%2F082099.html&am
-> p;data=3D02%7C01%7Cyibin.gong%40nxp.com%7C324d4b5c2f2344883a3108d85
-> 67166f9%7C686ea1d3bc2b4c6fa92cd99c5c301635%7C0%7C1%7C63735439234
-> 6471210&amp;sdata=3Dru8fKz6wpDhzYeaHIT28T0OybHlCFHJ41N1lJYuqKgE%3D&
-> amp;reserved=3D0
->=20
-> Regards,
->   Marco
+> +	  To compile this driver as a module, choose M here: the module
+> +	  will be called pwm-keembay.
+
+I wonder about the dependency. If this is an external chip it should be
+possible to be used on platforms other than ARM64. If this is only part
+of a certain SoC: Isn't there a more specific symbol than ARM64 to
+depend on?
+
+> +
+>  config PWM_LP3943
+>  	tristate "TI/National Semiconductor LP3943 PWM support"
+>  	depends on MFD_LP3943
+> diff --git a/drivers/pwm/Makefile b/drivers/pwm/Makefile
+> index 2c2ba0a03557..a1051122eb07 100644
+> --- a/drivers/pwm/Makefile
+> +++ b/drivers/pwm/Makefile
+> @@ -22,6 +22,7 @@ obj-$(CONFIG_PWM_IMX27)		+=3D pwm-imx27.o
+>  obj-$(CONFIG_PWM_IMX_TPM)	+=3D pwm-imx-tpm.o
+>  obj-$(CONFIG_PWM_IQS620A)	+=3D pwm-iqs620a.o
+>  obj-$(CONFIG_PWM_JZ4740)	+=3D pwm-jz4740.o
+> +obj-$(CONFIG_PWM_KEEMBAY)	+=3D pwm-keembay.o
+>  obj-$(CONFIG_PWM_LP3943)	+=3D pwm-lp3943.o
+>  obj-$(CONFIG_PWM_LPC18XX_SCT)	+=3D pwm-lpc18xx-sct.o
+>  obj-$(CONFIG_PWM_LPC32XX)	+=3D pwm-lpc32xx.o
+> diff --git a/drivers/pwm/pwm-keembay.c b/drivers/pwm/pwm-keembay.c
+> new file mode 100644
+> index 000000000000..6f41b1c0ae9a
+> --- /dev/null
+> +++ b/drivers/pwm/pwm-keembay.c
+> @@ -0,0 +1,232 @@
+> +// SPDX-License-Identifier: GPL-2.0
+> +/*
+> + * Intel Keem Bay PWM driver
+> + *
+> + * Copyright (C) 2020 Intel Corporation
+> + * Authors: Lai Poey Seng <poey.seng.lai@intel.com>
+> + *          Vineetha G. Jaya Kumaran <vineetha.g.jaya.kumaran@intel.com>
+> + *
+> + * Limitations:
+> + * - Upon disabling a channel, the currently running
+> + *   period will not be completed. However, upon
+> + *   reconfiguration of the duty cycle/period, the
+> + *   currently running period will be completed first.
+> + */
+> +
+> +#include <linux/bitfield.h>
+> +#include <linux/clk.h>
+> +#include <linux/io.h>
+> +#include <linux/mod_devicetable.h>
+> +#include <linux/module.h>
+> +#include <linux/platform_device.h>
+> +#include <linux/pwm.h>
+> +#include <linux/regmap.h>
+> +
+> +#define KMB_TOTAL_PWM_CHANNELS		6
+> +#define KMB_PWM_COUNT_MAX		0xffff
+> +#define KMB_PWM_EN_BIT			BIT(31)
+> +
+> +/* Mask */
+> +#define KMB_PWM_HIGH_MASK		GENMASK(31, 16)
+> +#define KMB_PWM_LOW_MASK		GENMASK(15, 0)
+> +#define KMB_PWM_LEADIN_MASK		GENMASK(30, 0)
+> +
+> +/* PWM Register offset */
+> +#define KMB_PWM_LEADIN_OFFSET(ch)	(0x00 + 4 * (ch))
+> +#define KMB_PWM_HIGHLOW_OFFSET(ch)	(0x20 + 4 * (ch))
+> +
+> +struct keembay_pwm {
+> +	struct pwm_chip chip;
+> +	struct device *dev;
+> +	struct clk *clk;
+> +	void __iomem *base;
+> +};
+> +
+> +static inline struct keembay_pwm *to_keembay_pwm_dev(struct pwm_chip *ch=
+ip)
+> +{
+> +	return container_of(chip, struct keembay_pwm, chip);
+> +}
+> +
+> +static inline void keembay_pwm_update_bits(struct keembay_pwm *priv, u32=
+ mask,
+> +					   u32 val, u32 offset)
+> +{
+> +	u32 buff =3D readl(priv->base + offset);
+> +
+> +	buff =3D u32_replace_bits(buff, val, mask);
+> +	writel(buff, priv->base + offset);
+> +}
+> +
+> +static void keembay_pwm_enable(struct keembay_pwm *priv, int ch)
+> +{
+> +	keembay_pwm_update_bits(priv, KMB_PWM_EN_BIT, 1,
+> +				KMB_PWM_LEADIN_OFFSET(ch));
+> +}
+> +
+> +static void keembay_pwm_disable(struct keembay_pwm *priv, int ch)
+> +{
+> +	keembay_pwm_update_bits(priv, KMB_PWM_EN_BIT, 0,
+> +				KMB_PWM_LEADIN_OFFSET(ch));
+> +}
+> +
+> +static void keembay_pwm_get_state(struct pwm_chip *chip, struct pwm_devi=
+ce *pwm,
+> +				  struct pwm_state *state)
+> +{
+> +	struct keembay_pwm *priv =3D to_keembay_pwm_dev(chip);
+> +	unsigned long long pwm_h_count, pwm_l_count;
+> +	unsigned long clk_rate;
+> +	u32 buff;
+> +
+> +	clk_rate =3D clk_get_rate(priv->clk);
+> +
+> +	/* Read channel enabled status */
+> +	buff =3D readl(priv->base + KMB_PWM_LEADIN_OFFSET(pwm->hwpwm));
+> +	if (buff & KMB_PWM_EN_BIT)
+> +		state->enabled =3D true;
+> +	else
+> +		state->enabled =3D false;
+> +
+> +	/* Read period and duty cycle */
+> +	buff =3D readl(priv->base + KMB_PWM_HIGHLOW_OFFSET(pwm->hwpwm));
+> +	pwm_l_count =3D FIELD_GET(KMB_PWM_LOW_MASK, buff) * NSEC_PER_SEC;
+> +	pwm_h_count =3D FIELD_GET(KMB_PWM_HIGH_MASK, buff) * NSEC_PER_SEC;
+> +	state->duty_cycle =3D DIV_ROUND_UP_ULL(pwm_h_count, clk_rate);
+> +	state->period =3D DIV_ROUND_UP_ULL(pwm_h_count + pwm_l_count, clk_rate);
+> +}
+> +
+> +static int keembay_pwm_apply(struct pwm_chip *chip, struct pwm_device *p=
+wm,
+> +			     const struct pwm_state *state)
+> +{
+> +	struct keembay_pwm *priv =3D to_keembay_pwm_dev(chip);
+> +	struct pwm_state current_state;
+> +	u16 pwm_h_count, pwm_l_count;
+> +	unsigned long long div;
+> +	unsigned long clk_rate;
+> +	u32 pwm_count =3D 0;
+> +
+> +	if (state->polarity !=3D PWM_POLARITY_NORMAL)
+> +		return -ENOSYS;
+> +
+> +	keembay_pwm_update_bits(priv, KMB_PWM_LEADIN_MASK, 0,
+> +				KMB_PWM_LEADIN_OFFSET(pwm->hwpwm));
+> +
+> +	keembay_pwm_get_state(chip, pwm, &current_state);
+> +
+> +	if (!state->enabled) {
+> +		if (current_state.enabled)
+> +			keembay_pwm_disable(priv, pwm->hwpwm);
+> +		return 0;
+> +	}
+> +
+> +	/*
+> +	 * The upper 16 bits of the KMB_PWM_HIGHLOW_OFFSET register contain
+> +	 * the high time of the waveform, while the last 16 bits contain
+> +	 * the low time of the waveform, in terms of clock cycles.
+> +	 *
+> +	 * high time =3D clock rate * duty cycle
+> +	 * low time =3D  clock rate * (period - duty cycle)
+> +	 *
+> +	 * e.g. For period 50us, duty cycle 30us, and clock rate 500MHz:
+> +	 * high time =3D 500MHz * 30us =3D 0x3A98
+> +	 * low time =3D 500MHz * 20us =3D 0x2710
+> +	 * Value written to KMB_PWM_HIGHLOW_OFFSET =3D 0x3A982710
+> +	 */
+> +
+> +	clk_rate =3D clk_get_rate(priv->clk);
+> +
+> +	/* Configure waveform high time */
+> +	div =3D clk_rate * state->duty_cycle;
+> +	div =3D DIV_ROUND_CLOSEST_ULL(div, NSEC_PER_SEC);
+
+Please round down here.
+
+> +	if (div > KMB_PWM_COUNT_MAX)
+> +		return -ERANGE;
+> +
+> +	pwm_h_count =3D div;
+> +
+> +	/* Configure waveform low time */
+> +	div =3D clk_rate * (state->period - state->duty_cycle);
+> +	div =3D DIV_ROUND_CLOSEST_ULL(div, NSEC_PER_SEC);
+> +	if (div > KMB_PWM_COUNT_MAX)
+> +		return -ERANGE;
+> +
+> +	pwm_l_count =3D div;
+
+This isn't right, too.
+
+I think the right formula is:
+
+	div =3D (clk_rate * state->period) / NSEC_PER_SEC - pwm_h_count
+
+Consider:
+
+  clk_rate =3D 333334 [Hz]
+
+  state.duty_cycle =3D 1000500 [ns]
+  state.period =3D 2001000 [ns]
+
+With your calculation (and rounding down in the divisions calculation)
+this results in=20
+
+pwm_h_count =3D 333
+pwm_l_count =3D 333
+
+and so a period length of 666 clock ticks (1997996 ns) while it should be
+667 clock ticks (2000995 ns).
+
+> +
+> +	pwm_count =3D FIELD_PREP(KMB_PWM_HIGH_MASK, pwm_h_count) |
+> +		    FIELD_PREP(KMB_PWM_LOW_MASK, pwm_l_count);
+> +
+> +	writel(pwm_count, priv->base + KMB_PWM_HIGHLOW_OFFSET(pwm->hwpwm));
+> +
+> +	if (state->enabled && !current_state.enabled)
+> +		keembay_pwm_enable(priv, pwm->hwpwm);
+> +
+> +	return 0;
+> +}
+> +
+> +static const struct pwm_ops keembay_pwm_ops =3D {
+> +	.owner =3D THIS_MODULE,
+> +	.apply =3D keembay_pwm_apply,
+> +	.get_state =3D keembay_pwm_get_state,
+> +};
+> +
+> +static int keembay_pwm_probe(struct platform_device *pdev)
+> +{
+> +	struct device *dev =3D &pdev->dev;
+> +	struct keembay_pwm *priv;
+> +	int ret;
+> +
+> +	priv =3D devm_kzalloc(dev, sizeof(*priv), GFP_KERNEL);
+> +	if (!priv)
+> +		return -ENOMEM;
+> +
+> +	priv->clk =3D devm_clk_get(&pdev->dev, NULL);
+> +	if (IS_ERR(priv->clk))
+> +		return dev_err_probe(dev, PTR_ERR(priv->clk), "Failed to get clock\n");
+> +
+> +	ret =3D clk_prepare_enable(priv->clk);
+> +	if (ret)
+> +		return ret;
+> +
+> +	priv->base =3D devm_platform_ioremap_resource(pdev, 0);
+> +	if (IS_ERR(priv->base))
+> +		return PTR_ERR(priv->base);
+> +
+> +	priv->chip.base =3D -1;
+> +	priv->chip.dev =3D dev;
+> +	priv->chip.ops =3D &keembay_pwm_ops;
+> +	priv->chip.npwm =3D KMB_TOTAL_PWM_CHANNELS;
+> +
+> +	ret =3D pwmchip_add(&priv->chip);
+> +	if (ret) {
+> +		dev_err(dev, "Failed to add PWM chip: %pe\n", ERR_PTR(ret));
+> +		return ret;
+> +	}
+> +
+> +	platform_set_drvdata(pdev, priv);
+> +
+> +	return 0;
+
+clk_disable_unprepare is missing in the two last error paths.
+
+> +}
+> +
+> +static int keembay_pwm_remove(struct platform_device *pdev)
+> +{
+> +	struct keembay_pwm *priv =3D platform_get_drvdata(pdev);
+> +
+> +	return pwmchip_remove(&priv->chip);
+
+clk_disable_unprepare is missing here, too.
+
+> +}
+
+Best regards
+Uwe
+
+--=20
+Pengutronix e.K.                           | Uwe Kleine-K=F6nig            |
+Industrial Linux Solutions                 | https://www.pengutronix.de/ |
+
+--2o2qvymb54yazq6b
+Content-Type: application/pgp-signature; name="signature.asc"
+
+-----BEGIN PGP SIGNATURE-----
+
+iQEzBAABCgAdFiEEfnIqFpAYrP8+dKQLwfwUeK3K7AkFAl9oZaYACgkQwfwUeK3K
+7Am4Ywf/UmInXshjV+uKRE5HGx4USSGv26/mbX8lD9XNDMG3P/IAXP31ygJlcunU
+nL+KRd/ghUWCq1O1BAB676m+ZhTkho8Wsp8djPEwV0ZADZomxHAgcs0+tYsgr3ZT
+l6jiBXIykbpI2MuQw16nQczLlMvsw5JS56Piysgrld2TLEQ478QHpJtvTpneEMl+
+g5+lgTPM7tJkdm5ky/4hgSxRSSBCc64K75Affr4s7w4kYC3kDXn3K0iq8x7u+zuT
+g/5p6IAbTlzGrU/r0/bJBHNkh+GGbCIDzrbmucrWS6mrAMaBwyf7rV8/TarYVu9b
+O7Z9GNUR2/gHd55TJ9GDQnYl4N3XUQ==
+=yiv6
+-----END PGP SIGNATURE-----
+
+--2o2qvymb54yazq6b--
