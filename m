@@ -2,83 +2,91 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from vger.kernel.org (vger.kernel.org [23.128.96.18])
-	by mail.lfdr.de (Postfix) with ESMTP id 61F3B2722AB
-	for <lists+devicetree@lfdr.de>; Mon, 21 Sep 2020 13:36:43 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTP id 957092722FA
+	for <lists+devicetree@lfdr.de>; Mon, 21 Sep 2020 13:48:47 +0200 (CEST)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S1726803AbgIULgm (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Mon, 21 Sep 2020 07:36:42 -0400
-Received: from mx0a-00128a01.pphosted.com ([148.163.135.77]:58116 "EHLO
-        mx0a-00128a01.pphosted.com" rhost-flags-OK-OK-OK-OK)
-        by vger.kernel.org with ESMTP id S1726460AbgIULgk (ORCPT
-        <rfc822;devicetree@vger.kernel.org>);
-        Mon, 21 Sep 2020 07:36:40 -0400
-Received: from pps.filterd (m0167088.ppops.net [127.0.0.1])
-        by mx0a-00128a01.pphosted.com (8.16.0.42/8.16.0.42) with SMTP id 08LAKGvV003240;
-        Mon, 21 Sep 2020 06:29:01 -0400
-Received: from nwd2mta3.analog.com ([137.71.173.56])
-        by mx0a-00128a01.pphosted.com with ESMTP id 33nbu660yj-1
-        (version=TLSv1.2 cipher=ECDHE-RSA-AES256-GCM-SHA384 bits=256 verify=NOT);
-        Mon, 21 Sep 2020 06:29:01 -0400
-Received: from SCSQMBX10.ad.analog.com (scsqmbx10.ad.analog.com [10.77.17.5])
-        by nwd2mta3.analog.com (8.14.7/8.14.7) with ESMTP id 08LASxUN011737
-        (version=TLSv1/SSLv3 cipher=ECDHE-RSA-AES128-GCM-SHA256 bits=128 verify=FAIL);
-        Mon, 21 Sep 2020 06:29:00 -0400
-Received: from SCSQMBX11.ad.analog.com (10.77.17.10) by
- SCSQMBX10.ad.analog.com (10.77.17.5) with Microsoft SMTP Server
- (version=TLS1_2, cipher=TLS_ECDHE_RSA_WITH_AES_128_GCM_SHA256) id
- 15.1.1779.2; Mon, 21 Sep 2020 03:29:01 -0700
-Received: from zeus.spd.analog.com (10.66.68.11) by SCSQMBX11.ad.analog.com
- (10.77.17.10) with Microsoft SMTP Server id 15.1.1779.2 via Frontend
- Transport; Mon, 21 Sep 2020 03:29:01 -0700
-Received: from saturn.ad.analog.com ([10.48.65.111])
-        by zeus.spd.analog.com (8.15.1/8.15.1) with ESMTP id 08LASrIW019182;
-        Mon, 21 Sep 2020 06:28:56 -0400
-From:   Alexandru Ardelean <alexandru.ardelean@analog.com>
-To:     <linux-iio@vger.kernel.org>, <devicetree@vger.kernel.org>,
-        <linux-kernel@vger.kernel.org>
-CC:     <robh+dt@kernel.org>,
-        Alexandru Ardelean <alexandru.ardelean@analog.com>
-Subject: [PATCH 2/2] dt-bindings: iio: ad9467: add entry for for AD9434 ADC
-Date:   Mon, 21 Sep 2020 13:28:50 +0300
-Message-ID: <20200921102850.192224-2-alexandru.ardelean@analog.com>
-X-Mailer: git-send-email 2.25.1
-In-Reply-To: <20200921102850.192224-1-alexandru.ardelean@analog.com>
-References: <20200921102850.192224-1-alexandru.ardelean@analog.com>
+        id S1726522AbgIULsr (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Mon, 21 Sep 2020 07:48:47 -0400
+Received: from mailgw02.mediatek.com ([210.61.82.184]:39015 "EHLO
+        mailgw02.mediatek.com" rhost-flags-OK-FAIL-OK-FAIL) by vger.kernel.org
+        with ESMTP id S1726444AbgIULsq (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Mon, 21 Sep 2020 07:48:46 -0400
+X-UUID: 238137fea42444918c2952e68b66505d-20200921
+DKIM-Signature: v=1; a=rsa-sha256; q=dns/txt; c=relaxed/relaxed; d=mediatek.com; s=dk;
+        h=Content-Transfer-Encoding:Content-Type:MIME-Version:Message-ID:Date:Subject:CC:To:From; bh=JgfN+uAckCRaEuIqR1tqCtgEvsazIbO9KtNfTtCzZFw=;
+        b=XR5N3ch7e/BiXfNwZ7xjRWBF0fmBSoOWyGmigZpClKxEO/ZxB/9v0IwX7akniWUwYtNrvHSQq5adHit3Hmaik6PGnH2/9ru9IdNuux2In+mZzDdWI/PRu1ISrlwTo+dTSWGf5ql6Bs33uhPIUmkkR0mID8CP0+Xw4yTt9KXVhSI=;
+X-UUID: 238137fea42444918c2952e68b66505d-20200921
+Received: from mtkcas11.mediatek.inc [(172.21.101.40)] by mailgw02.mediatek.com
+        (envelope-from <hsin-hsiung.wang@mediatek.com>)
+        (Cellopoint E-mail Firewall v4.1.14 Build 0819 with TLSv1.2 ECDHE-RSA-AES256-SHA384 256/256)
+        with ESMTP id 728983720; Mon, 21 Sep 2020 19:48:40 +0800
+Received: from mtkcas08.mediatek.inc (172.21.101.126) by
+ mtkmbs05n2.mediatek.inc (172.21.101.140) with Microsoft SMTP Server (TLS) id
+ 15.0.1497.2; Mon, 21 Sep 2020 19:48:37 +0800
+Received: from mtksdaap41.mediatek.inc (172.21.77.4) by mtkcas08.mediatek.inc
+ (172.21.101.73) with Microsoft SMTP Server id 15.0.1497.2 via Frontend
+ Transport; Mon, 21 Sep 2020 19:48:38 +0800
+From:   Hsin-Hsiung Wang <hsin-hsiung.wang@mediatek.com>
+To:     Lee Jones <lee.jones@linaro.org>, Rob Herring <robh+dt@kernel.org>,
+        Matthias Brugger <matthias.bgg@gmail.com>,
+        Liam Girdwood <lgirdwood@gmail.com>,
+        Mark Brown <broonie@kernel.org>
+CC:     Hsin-Hsiung Wang <hsin-hsiung.wang@mediatek.com>,
+        <devicetree@vger.kernel.org>,
+        <linux-arm-kernel@lists.infradead.org>,
+        <linux-mediatek@lists.infradead.org>,
+        <linux-kernel@vger.kernel.org>, <srv_heupstream@mediatek.com>
+Subject: [PATCH v2 0/8] Add Support for MediaTek PMIC MT6359
+Date:   Mon, 21 Sep 2020 19:48:07 +0800
+Message-ID: <1600688895-9238-1-git-send-email-hsin-hsiung.wang@mediatek.com>
+X-Mailer: git-send-email 2.6.4
 MIME-Version: 1.0
-Content-Transfer-Encoding: 7BIT
-Content-Type:   text/plain; charset=US-ASCII
-X-ADIRoutedOnPrem: True
-X-Proofpoint-Virus-Version: vendor=fsecure engine=2.50.10434:6.0.235,18.0.687
- definitions=2020-09-21_02:2020-09-21,2020-09-20 signatures=0
-X-Proofpoint-Spam-Details: rule=outbound_notspam policy=outbound score=0 adultscore=0 mlxscore=0
- suspectscore=0 priorityscore=1501 spamscore=0 lowpriorityscore=0
- bulkscore=0 malwarescore=0 impostorscore=0 phishscore=0 clxscore=1015
- mlxlogscore=999 classifier=spam adjust=0 reason=mlx scancount=1
- engine=8.12.0-2006250000 definitions=main-2009210075
+Content-Type: text/plain
+X-MTK:  N
+Content-Transfer-Encoding: base64
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-Add entry for the AD9434 high-speed ADC which is supported by the 'ad9467'
-driver.
-
-Signed-off-by: Alexandru Ardelean <alexandru.ardelean@analog.com>
----
- Documentation/devicetree/bindings/iio/adc/adi,ad9467.yaml | 1 +
- 1 file changed, 1 insertion(+)
-
-diff --git a/Documentation/devicetree/bindings/iio/adc/adi,ad9467.yaml b/Documentation/devicetree/bindings/iio/adc/adi,ad9467.yaml
-index c4f57fa6aad1..0e8da8ee6975 100644
---- a/Documentation/devicetree/bindings/iio/adc/adi,ad9467.yaml
-+++ b/Documentation/devicetree/bindings/iio/adc/adi,ad9467.yaml
-@@ -19,6 +19,7 @@ description: |
- properties:
-   compatible:
-     enum:
-+      - adi,ad9434
-       - adi,ad9467
- 
-   reg:
--- 
-2.25.1
+VGhpcyBwYXRjaHNldCBpbmNsdWRlcyByZWZhY3RvcmluZyBpbnRlcnJ1cHQgYW5kIGFkZGluZyBz
+dXBwb3J0IHRvIE1UNjM1OSBQTUlDLg0KTVQ2MzU5IGlzIHRoZSBwcmltYXJ5IFBNSUMgZm9yIE1U
+Njc3OSBhbmQgcHJvYmFibHkgb3RoZXIgU09Dcy4NClRoZSBzZXJpZXNbMV0gc2VudCBieSBXZW4g
+d2lsbCBjb250aW51ZSB0byB1cHN0cmVhbSBpbiB0aGlzIHBhdGNoc2V0IGFmdGVyd2FyZHMuDQoN
+ClsxXSBodHRwczovL3BhdGNod29yay5rZXJuZWwub3JnL3Byb2plY3QvbGludXgtbWVkaWF0ZWsv
+bGlzdC8/c2VyaWVzPTMwNjU3OQ0KDQpjaGFuZ2VzIHNpbmNlIHYxOg0KLSByZXBsYWNlIHN0cnVj
+dCByZWd1bGF0b3JfbGluZWFyX3JhbmdlIHdpdGggc3RydWN0IGxpbmVhcl9yYW5nZSBmb3IgcmVn
+dWxhdG9yIGRyaXZlcnMuDQoNCkhzaW4tSHNpdW5nIFdhbmcgKDUpOg0KICBtZmQ6IG10NjM1ODog
+cmVmaW5lIGludGVycnVwdCBjb2RlDQogIGR0LWJpbmRpbmdzOiBtZmQ6IEFkZCBjb21wYXRpYmxl
+IGZvciB0aGUgTWVkaWFUZWsgTVQ2MzU5IFBNSUMNCiAgbWZkOiBBZGQgc3VwcG9ydCBmb3IgdGhl
+IE1lZGlhVGVrIE1UNjM1OSBQTUlDDQogIHJlZ3VsYXRvcjogbXQ2MzU5OiBTZXQgdGhlIGVuYWJs
+ZSB0aW1lIGZvciBMRE9zDQogIHJlZ3VsYXRvcjogbXQ2MzU5OiBBZGQgc3VwcG9ydCBmb3IgTVQ2
+MzU5UCByZWd1bGF0b3INCg0KV2VuIFN1ICgzKToNCiAgZHQtYmluZGluZ3M6IHJlZ3VsYXRvcjog
+QWRkIGRvY3VtZW50IGZvciBNVDYzNTkgcmVndWxhdG9yDQogIHJlZ3VsYXRvcjogbXQ2MzU5OiBB
+ZGQgc3VwcG9ydCBmb3IgTVQ2MzU5IHJlZ3VsYXRvcg0KICBhcm02NDogZHRzOiBtdDYzNTk6IGFk
+ZCBQTUlDIE1UNjM1OSByZWxhdGVkIG5vZGVzDQoNCiBEb2N1bWVudGF0aW9uL2RldmljZXRyZWUv
+YmluZGluZ3MvbWZkL210NjM5Ny50eHQgICB8ICAgIDggKy0NCiAuLi4vYmluZGluZ3MvcmVndWxh
+dG9yL210NjM1OS1yZWd1bGF0b3IudHh0ICAgICAgICB8ICAgNTggKw0KIGFyY2gvYXJtNjQvYm9v
+dC9kdHMvbWVkaWF0ZWsvbXQ2MzU5LmR0c2kgICAgICAgICAgIHwgIDI5NiArKysrKw0KIGRyaXZl
+cnMvbWZkL210NjM1OC1pcnEuYyAgICAgICAgICAgICAgICAgICAgICAgICAgIHwgICA4OSArLQ0K
+IGRyaXZlcnMvbWZkL210NjM5Ny1jb3JlLmMgICAgICAgICAgICAgICAgICAgICAgICAgIHwgICAy
+MyArDQogZHJpdmVycy9yZWd1bGF0b3IvS2NvbmZpZyAgICAgICAgICAgICAgICAgICAgICAgICAg
+fCAgICA5ICsNCiBkcml2ZXJzL3JlZ3VsYXRvci9NYWtlZmlsZSAgICAgICAgICAgICAgICAgICAg
+ICAgICB8ICAgIDEgKw0KIGRyaXZlcnMvcmVndWxhdG9yL210NjM1OS1yZWd1bGF0b3IuYyAgICAg
+ICAgICAgICAgIHwgMTEzNiArKysrKysrKysrKysrKysrKysrKw0KIGluY2x1ZGUvbGludXgvbWZk
+L210NjM1OC9jb3JlLmggICAgICAgICAgICAgICAgICAgIHwgICAgOCArLQ0KIGluY2x1ZGUvbGlu
+dXgvbWZkL210NjM1OS9jb3JlLmggICAgICAgICAgICAgICAgICAgIHwgIDEzMyArKysNCiBpbmNs
+dWRlL2xpbnV4L21mZC9tdDYzNTkvcmVnaXN0ZXJzLmggICAgICAgICAgICAgICB8ICA1MjkgKysr
+KysrKysrDQogaW5jbHVkZS9saW51eC9tZmQvbXQ2MzU5cC9yZWdpc3RlcnMuaCAgICAgICAgICAg
+ICAgfCAgMjQ2ICsrKysrDQogaW5jbHVkZS9saW51eC9tZmQvbXQ2Mzk3L2NvcmUuaCAgICAgICAg
+ICAgICAgICAgICAgfCAgICAxICsNCiBpbmNsdWRlL2xpbnV4L3JlZ3VsYXRvci9tdDYzNTktcmVn
+dWxhdG9yLmggICAgICAgICB8ICAgNTkgKw0KIDE0IGZpbGVzIGNoYW5nZWQsIDI1NjMgaW5zZXJ0
+aW9ucygrKSwgMzMgZGVsZXRpb25zKC0pDQogY3JlYXRlIG1vZGUgMTAwNjQ0IERvY3VtZW50YXRp
+b24vZGV2aWNldHJlZS9iaW5kaW5ncy9yZWd1bGF0b3IvbXQ2MzU5LXJlZ3VsYXRvci50eHQNCiBj
+cmVhdGUgbW9kZSAxMDA2NDQgYXJjaC9hcm02NC9ib290L2R0cy9tZWRpYXRlay9tdDYzNTkuZHRz
+aQ0KIGNyZWF0ZSBtb2RlIDEwMDY0NCBkcml2ZXJzL3JlZ3VsYXRvci9tdDYzNTktcmVndWxhdG9y
+LmMNCiBjcmVhdGUgbW9kZSAxMDA2NDQgaW5jbHVkZS9saW51eC9tZmQvbXQ2MzU5L2NvcmUuaA0K
+IGNyZWF0ZSBtb2RlIDEwMDY0NCBpbmNsdWRlL2xpbnV4L21mZC9tdDYzNTkvcmVnaXN0ZXJzLmgN
+CiBjcmVhdGUgbW9kZSAxMDA2NDQgaW5jbHVkZS9saW51eC9tZmQvbXQ2MzU5cC9yZWdpc3RlcnMu
+aA0KIGNyZWF0ZSBtb2RlIDEwMDY0NCBpbmNsdWRlL2xpbnV4L3JlZ3VsYXRvci9tdDYzNTktcmVn
+dWxhdG9yLmgNCg0KLS0gDQoyLjYuNA0K
 
