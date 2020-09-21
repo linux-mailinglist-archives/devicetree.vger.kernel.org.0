@@ -2,81 +2,90 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from vger.kernel.org (vger.kernel.org [23.128.96.18])
-	by mail.lfdr.de (Postfix) with ESMTP id F0A35273172
-	for <lists+devicetree@lfdr.de>; Mon, 21 Sep 2020 20:06:17 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTP id 7423F2731DA
+	for <lists+devicetree@lfdr.de>; Mon, 21 Sep 2020 20:24:21 +0200 (CEST)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S1726696AbgIUSGO (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Mon, 21 Sep 2020 14:06:14 -0400
-Received: from mail.kernel.org ([198.145.29.99]:55974 "EHLO mail.kernel.org"
+        id S1727707AbgIUSYC (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Mon, 21 Sep 2020 14:24:02 -0400
+Received: from mail.kernel.org ([198.145.29.99]:33492 "EHLO mail.kernel.org"
         rhost-flags-OK-OK-OK-OK) by vger.kernel.org with ESMTP
-        id S1726436AbgIUSGO (ORCPT <rfc822;devicetree@vger.kernel.org>);
-        Mon, 21 Sep 2020 14:06:14 -0400
-Received: from archlinux (cpc149474-cmbg20-2-0-cust94.5-4.cable.virginm.net [82.4.196.95])
+        id S1726456AbgIUSYC (ORCPT <rfc822;devicetree@vger.kernel.org>);
+        Mon, 21 Sep 2020 14:24:02 -0400
+Received: from localhost (fw-tnat.cambridge.arm.com [217.140.96.140])
         (using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
         (No client certificate requested)
-        by mail.kernel.org (Postfix) with ESMTPSA id 491E5206FB;
-        Mon, 21 Sep 2020 18:06:12 +0000 (UTC)
+        by mail.kernel.org (Postfix) with ESMTPSA id 335C7221E2;
+        Mon, 21 Sep 2020 18:24:01 +0000 (UTC)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=kernel.org;
-        s=default; t=1600711573;
-        bh=rHoWzRKW+POsO0WNbLWHZo+8S+cikA0E8G/DaBPUXc4=;
-        h=Date:From:To:Cc:Subject:In-Reply-To:References:From;
-        b=geVr7+dx+athusSJXMiQoBGWaqZm+AGDKlkjtcQcKS2uRwaV4mNmy1aNWY+Jx4OeG
-         H/UbPFozNOxLFEqF/zNVKQjFZLvg/mT3tfrWui9QDa1dSCloc7Ni1LRlKa4xcaOkJu
-         2XCucuBntp1kgT5V7Vu9vCMHgO1yfW6CbYhTAugU=
-Date:   Mon, 21 Sep 2020 19:06:07 +0100
-From:   Jonathan Cameron <jic23@kernel.org>
-To:     Krzysztof Kozlowski <krzk@kernel.org>
-Cc:     Hartmut Knaack <knaack.h@gmx.de>,
-        Lars-Peter Clausen <lars@metafoo.de>,
-        Peter Meerwald-Stadler <pmeerw@pmeerw.net>,
-        Rob Herring <robh+dt@kernel.org>, linux-iio@vger.kernel.org,
-        devicetree@vger.kernel.org, linux-kernel@vger.kernel.org
-Subject: Re: [PATCH] dt-bindings: iio: vishay,vcnl4000: add interrupts
- property
-Message-ID: <20200921190607.5f98f133@archlinux>
-In-Reply-To: <20200920203845.17758-1-krzk@kernel.org>
-References: <20200920203845.17758-1-krzk@kernel.org>
-X-Mailer: Claws Mail 3.17.6 (GTK+ 2.24.32; x86_64-pc-linux-gnu)
+        s=default; t=1600712641;
+        bh=HRXFmeB3Lq27fSD0zpaFp06z6HUYGQPD8Q8dBigA6pA=;
+        h=Date:From:To:Cc:Subject:References:In-Reply-To:From;
+        b=T4TO6CHKbtKu5i7B82i29p/gKoiV+l9c/Vx2/HUXPVLSZ1wKslkTz1fA5IYcqcoT4
+         6VWPl9VznYH0dJRo47t05G8m3um496pt0b2/FU8ysvRJ98u7jpVOEgHuPjENtNbejD
+         Kak8qL99y7GvRCK9zAjE+Cdkiqbsy1Zw0RXF1xPw=
+Date:   Mon, 21 Sep 2020 19:23:09 +0100
+From:   Mark Brown <broonie@kernel.org>
+To:     =?iso-8859-1?Q?Cl=E9ment_P=E9ron?= <peron.clem@gmail.com>
+Cc:     Maxime Ripard <maxime@cerno.tech>, Chen-Yu Tsai <wens@csie.org>,
+        Rob Herring <robh+dt@kernel.org>,
+        Liam Girdwood <lgirdwood@gmail.com>,
+        Jaroslav Kysela <perex@perex.cz>,
+        Takashi Iwai <tiwai@suse.com>,
+        Marcus Cooper <codekipper@gmail.com>,
+        Jernej Skrabec <jernej.skrabec@siol.net>,
+        Linux-ALSA <alsa-devel@alsa-project.org>,
+        devicetree <devicetree@vger.kernel.org>,
+        linux-arm-kernel <linux-arm-kernel@lists.infradead.org>,
+        linux-kernel <linux-kernel@vger.kernel.org>,
+        linux-sunxi <linux-sunxi@googlegroups.com>,
+        Samuel Holland <samuel@sholland.org>
+Subject: Re: [PATCH v4 02/22] ASoC: sun4i-i2s: Change set_chan_cfg() params
+Message-ID: <20200921182309.GF4792@sirena.org.uk>
+References: <20200921102731.747736-1-peron.clem@gmail.com>
+ <20200921102731.747736-3-peron.clem@gmail.com>
+ <20200921122918.kzzu623wui277nwr@gilmour.lan>
+ <CAJiuCce0thGcH19vMtDX0X8-9S32Y7kC2bnWo_6-SHozF8uDAA@mail.gmail.com>
 MIME-Version: 1.0
-Content-Type: text/plain; charset=US-ASCII
-Content-Transfer-Encoding: 7bit
+Content-Type: multipart/signed; micalg=pgp-sha512;
+        protocol="application/pgp-signature"; boundary="JcvBIhDvR6w3jUPA"
+Content-Disposition: inline
+In-Reply-To: <CAJiuCce0thGcH19vMtDX0X8-9S32Y7kC2bnWo_6-SHozF8uDAA@mail.gmail.com>
+X-Cookie: Love thy neighbor, tune thy piano.
+User-Agent: Mutt/1.10.1 (2018-07-13)
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-On Sun, 20 Sep 2020 22:38:45 +0200
-Krzysztof Kozlowski <krzk@kernel.org> wrote:
 
-> The dtschema should list all properties, including the common ones like
-> interrupts.  This fixes dtbs_check warnings like:
-> 
->   arch/arm64/boot/dts/freescale/imx8mq-librem5-r3.dt.yaml:
->     prox@60: 'interrupt-parent', 'interrupts' do not match any of the regexes: 'pinctrl-[0-9]+'
-> 
-> Signed-off-by: Krzysztof Kozlowski <krzk@kernel.org>
-Trivial enough that I'll just sneak this one in before I do a pull request.
+--JcvBIhDvR6w3jUPA
+Content-Type: text/plain; charset=iso-8859-1
+Content-Disposition: inline
+Content-Transfer-Encoding: quoted-printable
 
-thanks,
+On Mon, Sep 21, 2020 at 07:15:13PM +0200, Cl=E9ment P=E9ron wrote:
+> On Mon, 21 Sep 2020 at 14:29, Maxime Ripard <maxime@cerno.tech> wrote:
 
-Jonathan
+> > Also, Fixes tag?
 
-> ---
->  .../devicetree/bindings/iio/light/vishay,vcnl4000.yaml        | 4 ++++
->  1 file changed, 4 insertions(+)
-> 
-> diff --git a/Documentation/devicetree/bindings/iio/light/vishay,vcnl4000.yaml b/Documentation/devicetree/bindings/iio/light/vishay,vcnl4000.yaml
-> index 58887a4f9c15..4d1a225e8868 100644
-> --- a/Documentation/devicetree/bindings/iio/light/vishay,vcnl4000.yaml
-> +++ b/Documentation/devicetree/bindings/iio/light/vishay,vcnl4000.yaml
-> @@ -24,6 +24,10 @@ properties:
->        - vishay,vcnl4020
->        - vishay,vcnl4040
->        - vishay,vcnl4200
-> +
-> +  interrupts:
-> +    maxItems: 1
-> +
->    reg:
->      maxItems: 1
->  
+> I think this only happens when 20/24bit is enabled so the issue has been
+> introduced in this series.
 
+For a situation like that a note in the changelog about "in preparation
+for adding X support which will make this matter" helps.
+
+--JcvBIhDvR6w3jUPA
+Content-Type: application/pgp-signature; name="signature.asc"
+
+-----BEGIN PGP SIGNATURE-----
+
+iQEzBAABCgAdFiEEreZoqmdXGLWf4p/qJNaLcl1Uh9AFAl9o74wACgkQJNaLcl1U
+h9BEkgf+Kdv4mdGPqpwCfZgrxhHr8llfJlEj472gWX8L58vMy5mvAKDByP19BQW2
+V9tAlfOFNQ9RwwneG7mDjx/gdJOLB8SbnlcY1CJIZYT8HVZqMpNf9yxgK0cN3BBG
+T1mFy3hejhnJ9E1l2SCmZiU5rRutUrdUfpThzmtblmz0+Osu1ZJnW3wox9B5ntS7
+pe4wDkLATwov+b3q/67r4MMejRlAar97VFvkn49bAEK5nSnlKtMDVX2bhaMNU5cL
+8bvQMBxlRDsvtEoytUlggCP39t3bIomY6mjc9h9AteG+YVvvb8E99pf6iOaCiXBY
+QerGSJWszRFXfhWVKucqXFZif17wFw==
+=qBM3
+-----END PGP SIGNATURE-----
+
+--JcvBIhDvR6w3jUPA--
