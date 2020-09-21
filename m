@@ -2,137 +2,108 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from vger.kernel.org (vger.kernel.org [23.128.96.18])
-	by mail.lfdr.de (Postfix) with ESMTP id AA532271FC5
-	for <lists+devicetree@lfdr.de>; Mon, 21 Sep 2020 12:13:54 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTP id 9FBFC271FA1
+	for <lists+devicetree@lfdr.de>; Mon, 21 Sep 2020 12:04:46 +0200 (CEST)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S1726384AbgIUKNx (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Mon, 21 Sep 2020 06:13:53 -0400
-Received: from mx0a-001ae601.pphosted.com ([67.231.149.25]:64054 "EHLO
-        mx0b-001ae601.pphosted.com" rhost-flags-OK-OK-OK-FAIL)
-        by vger.kernel.org with ESMTP id S1726326AbgIUKNx (ORCPT
-        <rfc822;devicetree@vger.kernel.org>);
-        Mon, 21 Sep 2020 06:13:53 -0400
-X-Greylist: delayed 1093 seconds by postgrey-1.27 at vger.kernel.org; Mon, 21 Sep 2020 06:13:53 EDT
-Received: from pps.filterd (m0077473.ppops.net [127.0.0.1])
-        by mx0a-001ae601.pphosted.com (8.16.0.43/8.16.0.43) with SMTP id 08L9pWWt008800;
-        Mon, 21 Sep 2020 04:55:21 -0500
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=cirrus.com; h=date : from : to : cc
- : subject : message-id : references : mime-version : content-type :
- in-reply-to; s=PODMain02222019;
- bh=WW55bEkB7c/YZlSmO/EfsOHzstbkfstuef6OZNz+13c=;
- b=RAPzGpwEZK3EtSkcJz7IYXubWw2d6vb6Z6COv6mOaxlza+Ftd/N2PHUA2t3OLLhg9MRd
- dxTDwjvSV/TID0foNaLZz3+H9VO8ks5/8xrChPwooO9+ksEz/70TxbI5uYBWyRrU36sq
- Ze9KCk7CYEZkWRqrzvTMiTRivlzUuGb1JvFVsYtmpwUKuG7SzkKExtro+H7XbmuipSmU
- k8r1CiI8Zlx7e8Tsj9mAdmuSctFUgls3OecRoKIuIwYX5KuT41ylOE4qZuquJ4PIdGs4
- yHgXUdbVhSQT27Y9wzfFVRDnPRPEFVTRMBnMxBB4w0623C05G4+qIMNcp5ckp8uAITlz zA== 
-Received: from ediex01.ad.cirrus.com ([87.246.76.36])
-        by mx0a-001ae601.pphosted.com with ESMTP id 33nfd221ju-1
-        (version=TLSv1.2 cipher=ECDHE-RSA-AES128-GCM-SHA256 bits=128 verify=NOT);
-        Mon, 21 Sep 2020 04:55:21 -0500
-Received: from EDIEX01.ad.cirrus.com (198.61.84.80) by EDIEX01.ad.cirrus.com
- (198.61.84.80) with Microsoft SMTP Server (version=TLS1_2,
- cipher=TLS_ECDHE_RSA_WITH_AES_128_GCM_SHA256) id 15.1.1913.5; Mon, 21 Sep
- 2020 10:55:19 +0100
-Received: from ediswmail.ad.cirrus.com (198.61.86.93) by EDIEX01.ad.cirrus.com
- (198.61.84.80) with Microsoft SMTP Server id 15.1.1913.5 via Frontend
- Transport; Mon, 21 Sep 2020 10:55:19 +0100
-Received: from ediswmail.ad.cirrus.com (ediswmail.ad.cirrus.com [198.61.86.93])
-        by ediswmail.ad.cirrus.com (Postfix) with ESMTP id E4D5A2C3;
-        Mon, 21 Sep 2020 09:55:18 +0000 (UTC)
-Date:   Mon, 21 Sep 2020 09:55:18 +0000
-From:   Charles Keepax <ckeepax@opensource.cirrus.com>
-To:     Krzysztof Kozlowski <krzk@kernel.org>
-CC:     Linus Walleij <linus.walleij@linaro.org>,
-        Bartosz Golaszewski <bgolaszewski@baylibre.com>,
-        Rob Herring <robh+dt@kernel.org>, Ray Jui <rjui@broadcom.com>,
-        Scott Branden <sbranden@broadcom.com>,
-        <bcm-kernel-feedback-list@broadcom.com>,
-        Shawn Guo <shawnguo@kernel.org>,
-        Sascha Hauer <s.hauer@pengutronix.de>,
-        Pengutronix Kernel Team <kernel@pengutronix.de>,
-        Fabio Estevam <festevam@gmail.com>,
-        NXP Linux Team <linux-imx@nxp.com>,
-        Manivannan Sadhasivam <manivannan.sadhasivam@linaro.org>,
-        Andy Gross <agross@kernel.org>,
-        Bjorn Andersson <bjorn.andersson@linaro.org>,
-        Palmer Dabbelt <palmer@dabbelt.com>,
-        Paul Walmsley <paul.walmsley@sifive.com>,
-        Hoan Tran <hoan@os.amperecomputing.com>,
-        Serge Semin <fancer.lancer@gmail.com>,
-        Masahiro Yamada <yamada.masahiro@socionext.com>,
-        Jacopo Mondi <jacopo+renesas@jmondi.org>,
-        Kieran Bingham <kieran.bingham+renesas@ideasonboard.com>,
-        Laurent Pinchart <laurent.pinchart+renesas@ideasonboard.com>,
-        Niklas =?iso-8859-1?Q?S=F6derlund?= 
-        <niklas.soderlund+renesas@ragnatech.se>,
-        Mauro Carvalho Chehab <mchehab@kernel.org>,
-        Richard Fitzgerald <rf@opensource.cirrus.com>,
-        Lee Jones <lee.jones@linaro.org>,
-        Maxime Coquelin <mcoquelin.stm32@gmail.com>,
-        Alexandre Torgue <alexandre.torgue@st.com>,
-        Andreas =?iso-8859-1?Q?F=E4rber?= <afaerber@suse.de>,
-        Maxime Ripard <mripard@kernel.org>,
-        Chen-Yu Tsai <wens@csie.org>,
-        Matthias Brugger <matthias.bgg@gmail.com>,
-        Geert Uytterhoeven <geert+renesas@glider.be>,
-        Liam Girdwood <lgirdwood@gmail.com>,
-        Mark Brown <broonie@kernel.org>,
-        Chris Packham <chris.packham@alliedtelesis.co.nz>,
-        Anson Huang <Anson.Huang@nxp.com>,
-        Sungbo Eo <mans0n@gorani.run>, Stefan Agner <stefan@agner.ch>,
-        Srinivas Kandagatla <srinivas.kandagatla@linaro.org>,
-        Magnus Damm <magnus.damm@gmail.com>,
-        Yash Shah <yash.shah@sifive.com>,
-        Paul Kocialkowski <paul.kocialkowski@bootlin.com>,
-        - <patches@opensource.cirrus.com>,
-        Matti Vaittinen <matti.vaittinen@fi.rohmeurope.com>,
-        Amelie Delaunay <amelie.delaunay@st.com>,
-        Cristian Ciocaltea <cristian.ciocaltea@gmail.com>,
-        Paul Cercueil <paul@crapouillou.net>,
-        Andy Teng <andy.teng@mediatek.com>,
-        Sean Wang <sean.wang@mediatek.com>,
-        Sricharan R <sricharan@codeaurora.org>,
-        Chris Brandt <chris.brandt@renesas.com>,
-        Jaroslav Kysela <perex@perex.cz>,
-        Takashi Iwai <tiwai@suse.com>, <linux-gpio@vger.kernel.org>,
-        <devicetree@vger.kernel.org>,
-        <linux-arm-kernel@lists.infradead.org>,
-        <linux-kernel@vger.kernel.org>, <linux-unisoc@lists.infradead.org>,
-        <linux-arm-msm@vger.kernel.org>, <linux-riscv@lists.infradead.org>,
-        <linux-media@vger.kernel.org>, <alsa-devel@alsa-project.org>,
-        <linux-stm32@st-md-mailman.stormreply.com>,
-        <linux-mediatek@lists.infradead.org>,
-        <linux-renesas-soc@vger.kernel.org>
-Subject: Re: [PATCH v2 09/13] dt-bindings: pinctrl: include common schema in
- GPIO controllers
-Message-ID: <20200921095518.GQ10899@ediswmail.ad.cirrus.com>
-References: <20200917165301.23100-1-krzk@kernel.org>
- <20200917165301.23100-10-krzk@kernel.org>
+        id S1726428AbgIUKEp (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Mon, 21 Sep 2020 06:04:45 -0400
+Received: from lindbergh.monkeyblade.net ([23.128.96.19]:56558 "EHLO
+        lindbergh.monkeyblade.net" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
+        with ESMTP id S1726384AbgIUKEp (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Mon, 21 Sep 2020 06:04:45 -0400
+Received: from mail-wr1-x444.google.com (mail-wr1-x444.google.com [IPv6:2a00:1450:4864:20::444])
+        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 199E7C061755;
+        Mon, 21 Sep 2020 03:04:45 -0700 (PDT)
+Received: by mail-wr1-x444.google.com with SMTP id j2so12073308wrx.7;
+        Mon, 21 Sep 2020 03:04:45 -0700 (PDT)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+        d=gmail.com; s=20161025;
+        h=subject:to:cc:references:from:message-id:date:user-agent
+         :mime-version:in-reply-to:content-language:content-transfer-encoding;
+        bh=UkuH/WWP5BM2+/HjFiAZ6z/l7IuHecE85iZQkNm/w4E=;
+        b=feXCk+RYG8aagpwCWUKrBf5bu0pOD+rXTbio6MrX74CO7k3r/KWMqCta7XbsOmjON5
+         wOm/xLi4/wTOU51UQ6AvYik5TSds1ylXsBOCy7ha6l4Bt4M6SiAO9BKGeIWkevRFI7kQ
+         mgIEYC8kwG1RB6D4kiE10tx871uAGkH1V6MTDIIeWX2rl7pLUW1bgnl+NlbOYfzLDUas
+         B5Cy3gQ50wXh2qOnksL3gJL/Ujdeo2hyO7Lv1xNLi5HBH8VvVjo3Q3X7IqD8+H0K0/R0
+         qJITPaGA+d3JXjETXHKW4wK/vPoO930uvrtyyDKK5wbLbB8G27IEYFtI9GQpcpWDxfm4
+         eibw==
+X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+        d=1e100.net; s=20161025;
+        h=x-gm-message-state:subject:to:cc:references:from:message-id:date
+         :user-agent:mime-version:in-reply-to:content-language
+         :content-transfer-encoding;
+        bh=UkuH/WWP5BM2+/HjFiAZ6z/l7IuHecE85iZQkNm/w4E=;
+        b=KjRHm1f7Nkv2NMnU/SaDoI0b5CEKP5pPcn6qQmYkoSgMxEv46lkWJwUCuFBatOZUu+
+         rDvelzU3fL25G73dU/tn3uljhmKJKRiKHrnCWxmcXm13mOsaXJb3ixaf4A9gLNt83sSJ
+         ZfLbW7aDn77baUhokK6BU6hJXZswfC6gGh7sxHjaKCD5+rFQ8Ep0nKSCHZs/jFM9qqNj
+         F/OU5+dt5nuD2sLA7h2WCzeAMyN7VwlmRkPSx4kCKj+fF9FFretSFYb3a1lOYBdkwzLU
+         CJvM72WSS950P0ndrIOFx3IoNf6G1krqJhqVI7jwWLjLhl1ocBloCOCzbaI5dfRbGhDG
+         JLRA==
+X-Gm-Message-State: AOAM5301ACVCfxII/YHKNkF8/OWzwxXIMhPYVvBCUi3LOrRJ6SC/6WKV
+        2EoZfFJsN3NindAubxO/QdOO0rCBz0waOQ==
+X-Google-Smtp-Source: ABdhPJxpykmsqM5GSWO6ureL2EshNJp7ZQNhv3665VbXJ7PZglq45TWDJTqLgbCKs4hA13A2IaFJ6w==
+X-Received: by 2002:adf:ea0f:: with SMTP id q15mr36632145wrm.371.1600682683621;
+        Mon, 21 Sep 2020 03:04:43 -0700 (PDT)
+Received: from ziggy.stardust ([213.195.113.201])
+        by smtp.gmail.com with ESMTPSA id n3sm2582093wmn.28.2020.09.21.03.04.42
+        (version=TLS1_3 cipher=TLS_AES_128_GCM_SHA256 bits=128/128);
+        Mon, 21 Sep 2020 03:04:42 -0700 (PDT)
+Subject: Re: [PATCH] arm: dts: mt7623: add missing pause for switchport
+To:     Frank Wunderlich <linux@fw-web.de>,
+        linux-mediatek@lists.infradead.org
+Cc:     Frank Wunderlich <frank-w@public-files.de>,
+        Rob Herring <robh+dt@kernel.org>,
+        Landen Chao <landen.chao@mediatek.com>,
+        Qingfang DENG <dqfext@gmail.com>,
+        =?UTF-8?Q?Ren=c3=a9_van_Dorst?= <opensource@vdorst.com>,
+        Sean Wang <sean.wang@mediatek.com>, devicetree@vger.kernel.org,
+        linux-arm-kernel@lists.infradead.org, linux-kernel@vger.kernel.org,
+        stable@vger.kernel.org
+References: <20200907070517.51715-1-linux@fw-web.de>
+From:   Matthias Brugger <matthias.bgg@gmail.com>
+Message-ID: <ae04ff83-f9f5-ecb0-1221-854d21fc9cfd@gmail.com>
+Date:   Mon, 21 Sep 2020 12:04:41 +0200
+User-Agent: Mozilla/5.0 (X11; Linux x86_64; rv:68.0) Gecko/20100101
+ Thunderbird/68.12.0
 MIME-Version: 1.0
-Content-Type: text/plain; charset="us-ascii"
-Content-Disposition: inline
-In-Reply-To: <20200917165301.23100-10-krzk@kernel.org>
-User-Agent: Mutt/1.5.21 (2010-09-15)
-X-Proofpoint-Spam-Details: rule=notspam policy=default score=0 spamscore=0 bulkscore=0
- priorityscore=1501 impostorscore=0 phishscore=0 suspectscore=0
- mlxlogscore=807 adultscore=0 clxscore=1015 malwarescore=0 mlxscore=0
- lowpriorityscore=0 classifier=spam adjust=0 reason=mlx scancount=1
- engine=8.12.0-2006250000 definitions=main-2009210071
+In-Reply-To: <20200907070517.51715-1-linux@fw-web.de>
+Content-Type: text/plain; charset=utf-8; format=flowed
+Content-Language: en-US
+Content-Transfer-Encoding: 7bit
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-On Thu, Sep 17, 2020 at 06:52:57PM +0200, Krzysztof Kozlowski wrote:
-> Include the common GPIO schema in GPIO controllers to be sure all common
-> properties are properly validated.
+
+
+On 07/09/2020 09:05, Frank Wunderlich wrote:
+> From: Frank Wunderlich <frank-w@public-files.de>
 > 
-> Signed-off-by: Krzysztof Kozlowski <krzk@kernel.org>
+> port6 of mt7530 switch (= cpu port 0) on bananapi-r2 misses pause option
+> which causes rx drops on running iperf.
 > 
+> Cc: stable@vger.kernel.org
+> Fixes: f4ff257cd160 ("arm: dts: mt7623: add support for Bananapi R2 (BPI-R2) board")
+> Signed-off-by: Frank Wunderlich <frank-w@public-files.de>
+
+Applied to v5.9-next/dts32
+
+Thanks!
+
 > ---
-
-For the Cirrus bits:
-
-Acked-by: Charles Keepax <ckeepax@opensource.cirrus.com>
-
-Thanks,
-Charles
+>   arch/arm/boot/dts/mt7623n-bananapi-bpi-r2.dts | 1 +
+>   1 file changed, 1 insertion(+)
+> 
+> diff --git a/arch/arm/boot/dts/mt7623n-bananapi-bpi-r2.dts b/arch/arm/boot/dts/mt7623n-bananapi-bpi-r2.dts
+> index 2b760f90f38c..5375c6699843 100644
+> --- a/arch/arm/boot/dts/mt7623n-bananapi-bpi-r2.dts
+> +++ b/arch/arm/boot/dts/mt7623n-bananapi-bpi-r2.dts
+> @@ -192,6 +192,7 @@ port@6 {
+>   					fixed-link {
+>   						speed = <1000>;
+>   						full-duplex;
+> +						pause;
+>   					};
+>   				};
+>   			};
+> 
