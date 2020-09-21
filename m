@@ -2,189 +2,101 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from vger.kernel.org (vger.kernel.org [23.128.96.18])
-	by mail.lfdr.de (Postfix) with ESMTP id 21CE4272345
-	for <lists+devicetree@lfdr.de>; Mon, 21 Sep 2020 14:02:41 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTP id 8B7122723E2
+	for <lists+devicetree@lfdr.de>; Mon, 21 Sep 2020 14:29:24 +0200 (CEST)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S1726419AbgIUMCk (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Mon, 21 Sep 2020 08:02:40 -0400
-Received: from mail-ed1-f68.google.com ([209.85.208.68]:41654 "EHLO
-        mail-ed1-f68.google.com" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S1726413AbgIUMCk (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Mon, 21 Sep 2020 08:02:40 -0400
-Received: by mail-ed1-f68.google.com with SMTP id ay8so12465614edb.8;
-        Mon, 21 Sep 2020 05:02:38 -0700 (PDT)
-X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=1e100.net; s=20161025;
-        h=x-gm-message-state:date:from:to:cc:subject:message-id:references
-         :mime-version:content-disposition:in-reply-to:user-agent;
-        bh=ooMeOqFsTMGGMTe6eBLr2JMOUkuXwIh/FFAOaUcM2v0=;
-        b=k5jlfVQLt8OsxXqlfL9ltdQ4o7rAz+QrGvHWYb9Fqbocc3POYufWgVdz4rrVFMln1q
-         y+2j/jqSN8IbiMi96sHjdYhtJNu9GS+HU5FV5p8hHnThAyi9KXaINFCICnLdy4Rnv8KP
-         09b29gt21bURtg+P6N0tHwvqmquEhpA1IJblnAB4QjpaUpV4g/ImQ1kML2wFHW2wfwYZ
-         1elHm5AVxZXw9rt5ITKj292XGfLlo4yfFL3AmisPp6asCMG0eOJmOSx1fW2zcvhfwpNg
-         lbiby1jiuxb6tIxZuBV5pOJN3/YQj/HnGd03Bpef0xnxZQeByR89mDtHEL9IoiUcbBK7
-         SXXg==
-X-Gm-Message-State: AOAM530+JN1veaIdurvkWWLWjDZTq/3ccvi0rDN8G+ZYCmR1/f2tOkig
-        +1zTJxuGwFD4V3HVJqedYFY=
-X-Google-Smtp-Source: ABdhPJxt7v8AvSUBkvJ6qkwYaOh3b7yjN1eWTtOk3ANPGVwOskaBIoo2jvk2Zg9Tvz2Dpnkz6P6KoA==
-X-Received: by 2002:aa7:d4d2:: with SMTP id t18mr50829445edr.55.1600689757765;
-        Mon, 21 Sep 2020 05:02:37 -0700 (PDT)
-Received: from kozik-lap ([194.230.155.191])
-        by smtp.googlemail.com with ESMTPSA id c8sm8771235ejp.30.2020.09.21.05.02.36
-        (version=TLS1_2 cipher=ECDHE-ECDSA-CHACHA20-POLY1305 bits=256/256);
-        Mon, 21 Sep 2020 05:02:36 -0700 (PDT)
-Date:   Mon, 21 Sep 2020 14:02:34 +0200
-From:   Krzysztof Kozlowski <krzk@kernel.org>
-To:     Sakari Ailus <sakari.ailus@linux.intel.com>
-Cc:     Mauro Carvalho Chehab <mchehab@kernel.org>,
-        Rob Herring <robh+dt@kernel.org>,
-        Shawn Guo <shawnguo@kernel.org>,
-        Sascha Hauer <s.hauer@pengutronix.de>,
-        Pengutronix Kernel Team <kernel@pengutronix.de>,
-        Fabio Estevam <festevam@gmail.com>,
-        NXP Linux Team <linux-imx@nxp.com>,
-        linux-media@vger.kernel.org, devicetree@vger.kernel.org,
-        linux-arm-kernel@lists.infradead.org, linux-kernel@vger.kernel.org
-Subject: Re: [PATCH v2 3/3] media: imx258: Get clock from device properties
- and enable it via runtime PM
-Message-ID: <20200921120234.GB1233@kozik-lap>
-References: <1599031090-21608-1-git-send-email-krzk@kernel.org>
- <1599031090-21608-3-git-send-email-krzk@kernel.org>
- <20200902073935.GD32646@paasikivi.fi.intel.com>
+        id S1726395AbgIUM3Y (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Mon, 21 Sep 2020 08:29:24 -0400
+Received: from wnew4-smtp.messagingengine.com ([64.147.123.18]:56759 "EHLO
+        wnew4-smtp.messagingengine.com" rhost-flags-OK-OK-OK-OK)
+        by vger.kernel.org with ESMTP id S1726375AbgIUM3X (ORCPT
+        <rfc822;devicetree@vger.kernel.org>);
+        Mon, 21 Sep 2020 08:29:23 -0400
+Received: from compute4.internal (compute4.nyi.internal [10.202.2.44])
+        by mailnew.west.internal (Postfix) with ESMTP id 46BABB57;
+        Mon, 21 Sep 2020 08:29:21 -0400 (EDT)
+Received: from mailfrontend1 ([10.202.2.162])
+  by compute4.internal (MEProxy); Mon, 21 Sep 2020 08:29:22 -0400
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=cerno.tech; h=
+        date:from:to:cc:subject:message-id:references:mime-version
+        :content-type:content-transfer-encoding:in-reply-to; s=fm3; bh=R
+        HKQR7CbzI0F6ZRKVieWVWj1G/b0kU9KL/lrLU/cXIE=; b=BmH4loHf/twmMvruG
+        h+1fAO/CvxSkfl44OnYhWxEx9nAlNqB9xc0MBQipOjf3YpW9p4Y2UxFv5u1jwwEk
+        7itf8mgtLdyHUTNFAlgVz11YQvxeLAMdIXXbcBdiSvpXLoJ4iL8W4GXRL2AX9l4C
+        w4d/8tRbIVhEJUimi7VoZszz/9dNSk/KQ/rw/7NHU0LJq6ICr2MalqxmZHNtvdCO
+        GoS/5WX4ZxAXn3mj+IOgBmejzXi9Iydb/8cyfzXDvqVbHQeTJmGoEOEXwWPEAOmp
+        MTQ3yIHAKIweDxETUuvLopmQ+JEaX7JiLaADyZS4QitYgrwa7a+/18eOkmQ8RUDM
+        +Dfpw==
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=
+        messagingengine.com; h=cc:content-transfer-encoding:content-type
+        :date:from:in-reply-to:message-id:mime-version:references
+        :subject:to:x-me-proxy:x-me-proxy:x-me-sender:x-me-sender
+        :x-sasl-enc; s=fm3; bh=RHKQR7CbzI0F6ZRKVieWVWj1G/b0kU9KL/lrLU/cX
+        IE=; b=uCP6FvdbREPriWo7tBN7COrxikiM1temZ9SQ7f1vnlWJXXvpTgR8/9WKF
+        kGwplJwffLMMZMU3LkW4bYkyd6g7UFI9QfVFjeAJjXI/SRHxXt3Cet9h5D8+gfnF
+        OukGuVCqfRLO46NtvgMf/Rt2q6Vl4DxvzUFlQLq5CfjVCkYbMLCPv961KFo4RiMh
+        ARu2F1aqKZfZaXxMvQx8XhOmZKqk7TSCFEzY102TvWsSUKDor6w+NO2M5GZABkbO
+        XXF1vINgJBGIMsRMFOd4simfgjl+K3nqKrJoyEfVUe4Ozfw/CbYRhN/yJyHBan4s
+        PFJzTtoMmqieBbOhGHyPo+R6I9ysg==
+X-ME-Sender: <xms:n5xoX2Urj45I8RuFot4ZW1GTKO1jGOAaFRwEfOPzw3-hYRLhznqFMQ>
+    <xme:n5xoXylUBDPDNvKOWfMGfVZeTqjyqmZDH_cMYtsDFq1fOKmJc7UloqI4F4-VuT8lU
+    l0xdfK5E8_JQdgkrU8>
+X-ME-Proxy-Cause: gggruggvucftvghtrhhoucdtuddrgedujedruddvgdehgecutefuodetggdotefrodftvf
+    curfhrohhfihhlvgemucfhrghsthforghilhdpqfgfvfdpuffrtefokffrpgfnqfghnecu
+    uegrihhlohhuthemuceftddtnecusecvtfgvtghiphhivghnthhsucdlqddutddtmdenuc
+    fjughrpeffhffvuffkfhggtggugfgjsehtqhertddttddunecuhfhrohhmpeforgigihhm
+    vgcutfhiphgrrhguuceomhgrgihimhgvsegtvghrnhhordhtvggthheqnecuggftrfgrth
+    htvghrnhepheelvdfhkeelgfevleekleduvefftefhudekvdffhffhgeefuefgheegfeej
+    vedtnecukfhppeeltddrkeelrdeikedrjeeinecuvehluhhsthgvrhfuihiivgeptdenuc
+    frrghrrghmpehmrghilhhfrhhomhepmhgrgihimhgvsegtvghrnhhordhtvggthh
+X-ME-Proxy: <xmx:n5xoX6YDobf3ogp7c8SHV-Yk_rRA2uc1uDT86C0UPE5mNFI5wgY1cA>
+    <xmx:n5xoX9UdwW79t8SEbNgS2451IJpJPK2zkH1UejK3VnnXZ18zE4yFDg>
+    <xmx:n5xoXwnWphsACygt4earwWgNmDEcjJ9UZiDhs4nrWeCxNQGLQO3IGQ>
+    <xmx:oJxoX786_gnFaDjZ6XBX4Ymq0ztTe-t6QLlEfLX6vTz5qNRVAAO84E4SLM4>
+Received: from localhost (lfbn-tou-1-1502-76.w90-89.abo.wanadoo.fr [90.89.68.76])
+        by mail.messagingengine.com (Postfix) with ESMTPA id 7F091328005A;
+        Mon, 21 Sep 2020 08:29:19 -0400 (EDT)
+Date:   Mon, 21 Sep 2020 14:29:18 +0200
+From:   Maxime Ripard <maxime@cerno.tech>
+To:     =?utf-8?B?Q2zDqW1lbnQgUMOpcm9u?= <peron.clem@gmail.com>
+Cc:     Chen-Yu Tsai <wens@csie.org>, Rob Herring <robh+dt@kernel.org>,
+        Mark Brown <broonie@kernel.org>,
+        Liam Girdwood <lgirdwood@gmail.com>,
+        Jaroslav Kysela <perex@perex.cz>,
+        Takashi Iwai <tiwai@suse.com>,
+        Marcus Cooper <codekipper@gmail.com>,
+        Jernej Skrabec <jernej.skrabec@siol.net>,
+        alsa-devel@alsa-project.org, devicetree@vger.kernel.org,
+        linux-arm-kernel@lists.infradead.org, linux-kernel@vger.kernel.org,
+        linux-sunxi@googlegroups.com, Samuel Holland <samuel@sholland.org>
+Subject: Re: [PATCH v4 02/22] ASoC: sun4i-i2s: Change set_chan_cfg() params
+Message-ID: <20200921122918.kzzu623wui277nwr@gilmour.lan>
+References: <20200921102731.747736-1-peron.clem@gmail.com>
+ <20200921102731.747736-3-peron.clem@gmail.com>
 MIME-Version: 1.0
-Content-Type: text/plain; charset=utf-8
+Content-Type: text/plain; charset=iso-8859-1
 Content-Disposition: inline
-In-Reply-To: <20200902073935.GD32646@paasikivi.fi.intel.com>
-User-Agent: Mutt/1.9.4 (2018-02-28)
+Content-Transfer-Encoding: quoted-printable
+In-Reply-To: <20200921102731.747736-3-peron.clem@gmail.com>
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-On Wed, Sep 02, 2020 at 10:39:35AM +0300, Sakari Ailus wrote:
-> Hi Krzysztof,
-> 
-> Thanks for the update.
-> 
-> On Wed, Sep 02, 2020 at 09:18:10AM +0200, Krzysztof Kozlowski wrote:
-> > The IMX258 sensor driver checked in device properties for a
-> > clock-frequency property which actually does not mean that the clock is
-> > really running such frequency or is it even enabled.
-> > 
-> > Get the provided clock and check it frequency.  If none is provided,
-> > fall back to old property.
-> > 
-> > Enable the clock when accessing the IMX258 registers and when streaming
-> > starts with runtime PM.
-> > 
-> > Signed-off-by: Krzysztof Kozlowski <krzk@kernel.org>
-> > 
-> > ---
-> > 
-> > Changes since v1:
-> > 1. Use runtime PM for clock toggling
-> > ---
-> >  drivers/media/i2c/imx258.c | 68 ++++++++++++++++++++++++++++++++++++++++------
-> >  1 file changed, 59 insertions(+), 9 deletions(-)
-> > 
-> > diff --git a/drivers/media/i2c/imx258.c b/drivers/media/i2c/imx258.c
-> > index c20bac9b00ec..ee38dafb8450 100644
-> > --- a/drivers/media/i2c/imx258.c
-> > +++ b/drivers/media/i2c/imx258.c
-> > @@ -2,6 +2,7 @@
-> >  // Copyright (C) 2018 Intel Corporation
-> >  
-> >  #include <linux/acpi.h>
-> > +#include <linux/clk.h>
-> >  #include <linux/delay.h>
-> >  #include <linux/i2c.h>
-> >  #include <linux/module.h>
-> > @@ -68,6 +69,9 @@
-> >  #define REG_CONFIG_MIRROR_FLIP		0x03
-> >  #define REG_CONFIG_FLIP_TEST_PATTERN	0x02
-> >  
-> > +/* Input clock frequency in Hz */
-> > +#define IMX258_INPUT_CLOCK_FREQ		19200000
-> > +
-> >  struct imx258_reg {
-> >  	u16 address;
-> >  	u8 val;
-> > @@ -610,6 +614,8 @@ struct imx258 {
-> >  
-> >  	/* Streaming on/off */
-> >  	bool streaming;
-> > +
-> > +	struct clk *clk;
-> >  };
-> >  
-> >  static inline struct imx258 *to_imx258(struct v4l2_subdev *_sd)
-> > @@ -972,6 +978,27 @@ static int imx258_stop_streaming(struct imx258 *imx258)
-> >  	return 0;
-> >  }
-> >  
-> > +static int imx258_power_on(struct device *dev)
-> > +{
-> > +	struct imx258 *imx258 = dev_get_drvdata(dev);
-> > +	int ret;
-> > +
-> > +	ret = clk_prepare_enable(imx258->clk);
-> > +	if (ret)
-> > +		dev_err(dev, "failed to enable clock\n");
-> > +
-> > +	return ret;
-> > +}
-> > +
-> > +static int imx258_power_off(struct device *dev)
-> > +{
-> > +	struct imx258 *imx258 = dev_get_drvdata(dev);
-> > +
-> > +	clk_disable_unprepare(imx258->clk);
-> > +
-> > +	return 0;
-> > +}
-> > +
-> >  static int imx258_set_stream(struct v4l2_subdev *sd, int enable)
-> >  {
-> >  	struct imx258 *imx258 = to_imx258(sd);
-> > @@ -1201,9 +1228,27 @@ static int imx258_probe(struct i2c_client *client)
-> >  	int ret;
-> >  	u32 val = 0;
-> >  
-> > -	device_property_read_u32(&client->dev, "clock-frequency", &val);
-> > -	if (val != 19200000)
-> > -		return -EINVAL;
-> > +	imx258 = devm_kzalloc(&client->dev, sizeof(*imx258), GFP_KERNEL);
-> > +	if (!imx258)
-> > +		return -ENOMEM;
-> > +
-> > +	dev_set_drvdata(&client->dev, imx258);
-> 
-> This you cannot do --- it'll be overwritten by v4l2_i2c_subdev_init().
+On Mon, Sep 21, 2020 at 12:27:11PM +0200, Cl=E9ment P=E9ron wrote:
+> As slots and slot_width can be overwritter in case set_tdm() is
+> called. Avoid to have this logic in set_chan_cfg().
+>=20
+> Instead pass the required values as params to set_chan_cfg().
 
-Right, thanks.
+It's not really clear here what the issue is, and how passing the slots
+and slot_width as arguments addresses it
 
-> 
-> > +
-> > +	imx258->clk = devm_clk_get_optional(&client->dev, NULL);
-> > +	if (!imx258->clk) {
-> 
-> You can move declaration of val here (I think).
+> This also fix a bug when i2s->slot_width is set for TDM but not
+> properly used in set_chan_cfg().
 
-No, the val is used later in further device_property_read* calls.
+Which bug?
 
-> 
-> > +		dev_info(&client->dev, "no clock provided, using clock-frequency property\n");
-> 
-> As this is showing up on all ACPI based systems, I guess dev_dbg() would be
-> more appropriate.
+Also, Fixes tag?
 
-Sure, I'll make it debug.
-
-> 
-> Please also wrap lines over 80 if they reasonably can be.
-
-OK
-
-Thanks for the review.
-
-Best regards,
-Krzysztof
+Thanks!
+Maxime
