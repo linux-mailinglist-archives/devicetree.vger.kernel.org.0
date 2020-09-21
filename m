@@ -2,153 +2,260 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from vger.kernel.org (vger.kernel.org [23.128.96.18])
-	by mail.lfdr.de (Postfix) with ESMTP id D956F271A93
-	for <lists+devicetree@lfdr.de>; Mon, 21 Sep 2020 08:00:57 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTP id CEEFA271AAE
+	for <lists+devicetree@lfdr.de>; Mon, 21 Sep 2020 08:10:32 +0200 (CEST)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S1726267AbgIUGA5 (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Mon, 21 Sep 2020 02:00:57 -0400
-Received: from mail-eopbgr140077.outbound.protection.outlook.com ([40.107.14.77]:54853
-        "EHLO EUR01-VE1-obe.outbound.protection.outlook.com"
-        rhost-flags-OK-OK-OK-FAIL) by vger.kernel.org with ESMTP
-        id S1726149AbgIUGA5 (ORCPT <rfc822;devicetree@vger.kernel.org>);
-        Mon, 21 Sep 2020 02:00:57 -0400
-ARC-Seal: i=1; a=rsa-sha256; s=arcselector9901; d=microsoft.com; cv=none;
- b=dT+h2Ur5PDWDQcD8RUbCO9c16ssXbQjOF0kngRMrpFmQ2uALe5ScqkJw4tA94YlzQzjTSOMb1/NImupIfWBsRmjO2MBYYiEjT0al9DCE/v2p6XYeYHmVGlNTQosW0wZruY1cj4ZEPR9Ojwqc7g/m1mMDv+edJv6zwlYOACyHzq4AG6meVLD7jkKrNxFvH74+vswIXu6Uq8iUrEf6j4+N5yPwtJbtIY8iN3fgeOuXMOvqvAKROD70wSFCQKlb77mZ9fHQH5ToFYOkjVia1A/iY/wG0UQMJ6F0nuVyjarlRKhrrS9/MPHsYTHrRnmHjVyxt+EgOVRbifEWHNZBVkFriw==
-ARC-Message-Signature: i=1; a=rsa-sha256; c=relaxed/relaxed; d=microsoft.com;
- s=arcselector9901;
- h=From:Date:Subject:Message-ID:Content-Type:MIME-Version:X-MS-Exchange-SenderADCheck;
- bh=wai/hiQfNBWthWrWGzPkwt0GWhgcgNnW30H+Zdy2jEM=;
- b=lkx9mPJqkMPYpSqioBIpady9qGS5mBvCYErV1czq5JYTkx6hIkmwV7cdjXS8QeRS0uFvtfv3psv4uw6/2OG5gKAPIX6PWHSFsAMk2IZIL8R2xDgJxK0dHYBPeZQkkDygUGa7FGZosEqpCZrXevlAslQz83a2WdfDLHKgUq1xpyALysQ1ASa4AGtJX2JRjdAR9NWmWyoNk7AHUhCFztuILOrSSUkOwGPLmAxAX4VGZAOPvT+tBdXTHBQzlFJP9gnOUlYLbcy7ZmqoRwTGuuB9aciNH1t3dnyGqhgCCwu/2v0xAZ545sE8HP3Nci8/DFNz0X08VCJaw+spIOKyoSMDHQ==
-ARC-Authentication-Results: i=1; mx.microsoft.com 1; spf=pass
- smtp.mailfrom=nxp.com; dmarc=pass action=none header.from=nxp.com; dkim=pass
- header.d=nxp.com; arc=none
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=nxp.com; s=selector2;
- h=From:Date:Subject:Message-ID:Content-Type:MIME-Version:X-MS-Exchange-SenderADCheck;
- bh=wai/hiQfNBWthWrWGzPkwt0GWhgcgNnW30H+Zdy2jEM=;
- b=FzNDiG++gVxDTlc8jJdWe3jKUclMmMT9Tybhgt64horYBbZ8JlU6DFo4O6BFef+TxfsGl3H1ngqDXgKsjakXgx3l65iJXngtRSyo7S1oPgk7x+MV16tmX9GLDGEQJrSwHsR014cW6pDVPPYYCkAdXX2EY5+grwx8rvhSRLegECU=
-Received: from AM7PR04MB6885.eurprd04.prod.outlook.com (2603:10a6:20b:10d::24)
- by AM6PR04MB5895.eurprd04.prod.outlook.com (2603:10a6:20b:b0::24) with
- Microsoft SMTP Server (version=TLS1_2,
- cipher=TLS_ECDHE_RSA_WITH_AES_256_GCM_SHA384) id 15.20.3391.22; Mon, 21 Sep
- 2020 06:00:53 +0000
-Received: from AM7PR04MB6885.eurprd04.prod.outlook.com
- ([fe80::f431:1df6:f18b:ad99]) by AM7PR04MB6885.eurprd04.prod.outlook.com
- ([fe80::f431:1df6:f18b:ad99%7]) with mapi id 15.20.3391.026; Mon, 21 Sep 2020
- 06:00:53 +0000
-From:   Meenakshi Aggarwal <meenakshi.aggarwal@nxp.com>
-To:     Shawn Guo <shawnguo@kernel.org>
-CC:     "robh+dt@kernel.org" <robh+dt@kernel.org>,
-        Varun Sethi <V.Sethi@nxp.com>, Leo Li <leoyang.li@nxp.com>,
-        "linux-arm-kernel@lists.infradead.org" 
-        <linux-arm-kernel@lists.infradead.org>,
-        "devicetree@vger.kernel.org" <devicetree@vger.kernel.org>,
-        "linux-kernel@vger.kernel.org" <linux-kernel@vger.kernel.org>,
-        Ioana Ciornei <ioana.ciornei@nxp.com>,
-        Kuldeep Singh <kuldeep.singh@nxp.com>
-Subject: RE: [PATCH 2/2] arm64: dts: lx2160a: add device tree for lx2162aqds
- board
-Thread-Topic: [PATCH 2/2] arm64: dts: lx2160a: add device tree for lx2162aqds
- board
-Thread-Index: AQHWgTuoJIcsrSh3jEy4wdu9ducPKqlZsQ4AgAY8A2CABORpAIAN438w
-Date:   Mon, 21 Sep 2020 06:00:53 +0000
-Message-ID: <AM7PR04MB6885EF94F69D741496AD9C838E3A0@AM7PR04MB6885.eurprd04.prod.outlook.com>
-References: <1599059610-7570-1-git-send-email-meenakshi.aggarwal@nxp.com>
- <1599059610-7570-2-git-send-email-meenakshi.aggarwal@nxp.com>
- <20200905075419.GN9261@dragon>
- <AM7PR04MB688571606382A8992C71E8E38E260@AM7PR04MB6885.eurprd04.prod.outlook.com>
- <20200912094913.GB25109@dragon>
-In-Reply-To: <20200912094913.GB25109@dragon>
-Accept-Language: en-GB, en-US
-Content-Language: en-US
-X-MS-Has-Attach: 
-X-MS-TNEF-Correlator: 
-authentication-results: kernel.org; dkim=none (message not signed)
- header.d=none;kernel.org; dmarc=none action=none header.from=nxp.com;
-x-originating-ip: [103.92.43.176]
-x-ms-publictraffictype: Email
-x-ms-office365-filtering-ht: Tenant
-x-ms-office365-filtering-correlation-id: cbb10f7f-c99d-4126-c2c5-08d85df3b308
-x-ms-traffictypediagnostic: AM6PR04MB5895:
-x-ms-exchange-transport-forked: True
-x-microsoft-antispam-prvs: <AM6PR04MB589557D59C951D6B3A5F8ED08E3A0@AM6PR04MB5895.eurprd04.prod.outlook.com>
-x-ms-oob-tlc-oobclassifiers: OLM:7691;
-x-ms-exchange-senderadcheck: 1
-x-microsoft-antispam: BCL:0;
-x-microsoft-antispam-message-info: 0hUysTo0vf1p5SDoGV2UJ871bAjXYwf2Jb9fv9FCqcnnf/GuRLDgJrOb+85iKTmJcHtzvvKzwP4412EIEFbu/4IQILkKiMvtUlh0MBC6qrBxPl2kXl6pQN6rrTDHeD19i5Het8ELRoPcRYcH9XDxzWogTDEa2nVNJCi0hdfYrZ5nkgPJb7EpinCBWBwB9E6OlbDHIHML3ETfoCeO7sXIRc5g1L/F78alSe8ocX3kvQjEPMU+8jWAGkU7/EgdNaCLbZoij7hHBGCrh4BomOQIEOHTOphWBUG4y8lY3pcNpN4P8YYV91TNWAyGNdZpETd/IcAFpNbRXXxT0QySS7gTGtWuiFdwLP03Gj8BLm0D4he9FgH6uyKPja2OfcdsFg6E
-x-forefront-antispam-report: CIP:255.255.255.255;CTRY:;LANG:en;SCL:1;SRV:;IPV:NLI;SFV:NSPM;H:AM7PR04MB6885.eurprd04.prod.outlook.com;PTR:;CAT:NONE;SFS:(4636009)(396003)(376002)(346002)(366004)(39860400002)(136003)(4326008)(7696005)(26005)(71200400001)(316002)(54906003)(186003)(478600001)(2906002)(66946007)(66476007)(44832011)(6916009)(9686003)(52536014)(8676002)(55016002)(83380400001)(66556008)(66446008)(64756008)(8936002)(86362001)(53546011)(6506007)(5660300002)(33656002)(76116006);DIR:OUT;SFP:1101;
-x-ms-exchange-antispam-messagedata: Fyiyxf4j9TdD7dSPd9vEwuZBYcfknEuSGdq8BevRRuVMKcYxbMUKQO4BAzfVBujfFqhiL78R9Z0fl1Qs+XSfr3xWLjpfNtrBWAGhckcO4E2L9NeDe/BDXHIxKmSoWsfV/VKYiF3k09hwicLNNUHycNeB1TWJyt+GP29Z7HDnHzGEieseuL2VuvMaVyZnOQF/iA4kTWb8XZwWz1PbjQaD3ipHzM0BLN6rPVz/ZMLr/EuUAE8rrMqX7IuFmyym2tnfEXKNhAEqrjFh8NeyLZkzWBFXOvrT2irx+eJzzyaT4AbCTx3wjA4QIYh8SX6KaOsoI4mbjZdNgJen8ZcxA+IZDSjHrA96UvAHm330GH3qqAVovxRbuuxZkYck1jjn6eBpI/LQ4A9LfvgXAJdTDV9DIUlO31N9TKhPUT3xZHBalApWU4GcIKrEBCCiTa340kolOXM6frq7kP2xZZlEfL7O5p1s5TkTVeRyI99Jkrm9Pe1u/AojKDUDcLQOdSTJncpY6DiT8DoeUrveolngNkvqsbZqW1tQ8wtiBLmnZwYSGDOsOmAtaddliJoM4V58hmRb8T8OwrYIuZTLiUqRAKWNkd05csPtt9bQRmvbtCGESHdT44hlbfx9ausHjiFXaV7/1iGqazmR5Vl1Einnr34rQQ==
-Content-Type: text/plain; charset="us-ascii"
-Content-Transfer-Encoding: quoted-printable
+        id S1726338AbgIUGKb (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Mon, 21 Sep 2020 02:10:31 -0400
+Received: from lindbergh.monkeyblade.net ([23.128.96.19]:48720 "EHLO
+        lindbergh.monkeyblade.net" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
+        with ESMTP id S1726324AbgIUGKb (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Mon, 21 Sep 2020 02:10:31 -0400
+Received: from mail-vk1-xa44.google.com (mail-vk1-xa44.google.com [IPv6:2607:f8b0:4864:20::a44])
+        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 5BBBBC0613CE
+        for <devicetree@vger.kernel.org>; Sun, 20 Sep 2020 23:10:31 -0700 (PDT)
+Received: by mail-vk1-xa44.google.com with SMTP id c25so3070065vkm.1
+        for <devicetree@vger.kernel.org>; Sun, 20 Sep 2020 23:10:31 -0700 (PDT)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+        d=chromium.org; s=google;
+        h=mime-version:references:in-reply-to:from:date:message-id:subject:to
+         :cc;
+        bh=hi2rPF/VTt+7YBV2OIek85mNirM/1FNuwC783UZ79gY=;
+        b=QaZvdjqmE01vsDCJpv/L3PIhQD9pFvCOGUpf8KQBf3AdasjOy8neTN7t/wRbvEYv1E
+         O1FVTx4IAh2rEkqCtye+7TzvIRzyjesUj2gTs4+Ewbb5W8ANnrCwLRpt5GYWxlXO4ElQ
+         JwwGdQdUvIdzbc2Tp2ibQkb6BgEX3QMwJUSt0=
+X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+        d=1e100.net; s=20161025;
+        h=x-gm-message-state:mime-version:references:in-reply-to:from:date
+         :message-id:subject:to:cc;
+        bh=hi2rPF/VTt+7YBV2OIek85mNirM/1FNuwC783UZ79gY=;
+        b=gjYhmhdLE+ZcStE4zcfxPgBkIwbkd9gXJX1OVQJEJkkZNHVLkjXFbB8FNRHAhWxn9c
+         hJaejv/pG/kjXaK2YBKLuSQGCKH2Kh9eIOHcs/szr0uzxxIPVi2K3wse67UDlENmGSEi
+         yercMHEqlFRW3eCE9uZIk2973ZnxTnxm+MSBi/6RSXILIpR598ElH3uUfY0BsroqW7Av
+         xhZqcOBjKQW3YLhWOaC5bZVQ+qWUa8eQ+IKmwQG8e9+SA+1vP4hDX/6q+i9POLV1w2au
+         utv01eZbCmnxbApjxx4wXb3m+oyIAhIY3igJ05DfFgKlWBnz/azgOeii/UkxkG+m/+hf
+         xhDQ==
+X-Gm-Message-State: AOAM533zCGo++aNciyQl4IZP/4P/n3L8SR47dabc5bqW+MbxdNO96W3L
+        qvAIr6Jgu3EZFBavVX+0MAL4QmRwdGb2JHUwlFhqtg==
+X-Google-Smtp-Source: ABdhPJwS1vT6jl1+U7TJLvBVogQi38c1rNUQm4Kcmwy0nzE27iFQkCgHBkdfG6By1N4TLFUCpb7VEZDUgpxahYlWQZM=
+X-Received: by 2002:a1f:1c17:: with SMTP id c23mr17961911vkc.0.1600668630316;
+ Sun, 20 Sep 2020 23:10:30 -0700 (PDT)
 MIME-Version: 1.0
-X-OriginatorOrg: nxp.com
-X-MS-Exchange-CrossTenant-AuthAs: Internal
-X-MS-Exchange-CrossTenant-AuthSource: AM7PR04MB6885.eurprd04.prod.outlook.com
-X-MS-Exchange-CrossTenant-Network-Message-Id: cbb10f7f-c99d-4126-c2c5-08d85df3b308
-X-MS-Exchange-CrossTenant-originalarrivaltime: 21 Sep 2020 06:00:53.4330
- (UTC)
-X-MS-Exchange-CrossTenant-fromentityheader: Hosted
-X-MS-Exchange-CrossTenant-id: 686ea1d3-bc2b-4c6f-a92c-d99c5c301635
-X-MS-Exchange-CrossTenant-mailboxtype: HOSTED
-X-MS-Exchange-CrossTenant-userprincipalname: fkvU30LMPW2vDvOvRB7Akk608av7euiJQpnrcDdpfrHRI14+FmG9ahJDs2rWb0u5GKXxz72KwxTXU9jtELpOi6MGdK6ma9nioRiFz35zVZc=
-X-MS-Exchange-Transport-CrossTenantHeadersStamped: AM6PR04MB5895
+References: <20200918083124.3921207-1-ikjn@chromium.org> <20200918162834.v2.2.I3de2918f09b817cc2ae6d324f1ece62779ecc7cf@changeid>
+ <CAJsYDV+Um3aEsgW-829BsZSaiVCp3O2LkrTmgCthhFv4fuEnLg@mail.gmail.com>
+In-Reply-To: <CAJsYDV+Um3aEsgW-829BsZSaiVCp3O2LkrTmgCthhFv4fuEnLg@mail.gmail.com>
+From:   Ikjoon Jang <ikjn@chromium.org>
+Date:   Mon, 21 Sep 2020 14:10:19 +0800
+Message-ID: <CAATdQgB5UAFbxW6J2no7=Jyn2ddaHXceAxedGaaAxa++gGNDkg@mail.gmail.com>
+Subject: Re: [PATCH v2 2/5] spi: spi-mtk-nor: fix mishandled logics in
+ checking SPI memory operation
+To:     Chuanhong Guo <gch981213@gmail.com>
+Cc:     Rob Herring <robh+dt@kernel.org>, Mark Brown <broonie@kernel.org>,
+        "open list:OPEN FIRMWARE AND FLATTENED DEVICE TREE BINDINGS" 
+        <devicetree@vger.kernel.org>, linux-spi@vger.kernel.org,
+        linux-mtd@lists.infradead.org,
+        Matthias Brugger <matthias.bgg@gmail.com>,
+        "moderated list:ARM/Mediatek SoC support" 
+        <linux-arm-kernel@lists.infradead.org>,
+        open list <linux-kernel@vger.kernel.org>,
+        "moderated list:ARM/Mediatek SoC support" 
+        <linux-mediatek@lists.infradead.org>
+Content-Type: text/plain; charset="UTF-8"
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-
-
-> -----Original Message-----
-> From: Shawn Guo <shawnguo@kernel.org>
-> Sent: Saturday, September 12, 2020 3:19 PM
-> To: Meenakshi Aggarwal <meenakshi.aggarwal@nxp.com>
-> Cc: robh+dt@kernel.org; Varun Sethi <V.Sethi@nxp.com>; Leo Li
-> <leoyang.li@nxp.com>; linux-arm-kernel@lists.infradead.org;
-> devicetree@vger.kernel.org; linux-kernel@vger.kernel.org; Ioana Ciornei
-> <ioana.ciornei@nxp.com>; Kuldeep Singh <kuldeep.singh@nxp.com>
-> Subject: Re: [PATCH 2/2] arm64: dts: lx2160a: add device tree for lx2162a=
-qds
-> board
->=20
-> On Wed, Sep 09, 2020 at 07:10:12AM +0000, Meenakshi Aggarwal wrote:
-> > > > +	sb_3v3: regulator-sb3v3 {
-> > > > +		compatible =3D "regulator-fixed";
-> > > > +		regulator-name =3D "MC34717-3.3VSB";
-> > > > +		regulator-min-microvolt =3D <3300000>;
-> > > > +		regulator-max-microvolt =3D <3300000>;
-> > > > +		regulator-boot-on;
-> > > > +		regulator-always-on;
-> > >
-> > > I do not see any point to have regulator-boot-on or
-> > > regulator-always-on for a regulator that doesn't have on/off control.
-> > [Meenakshi Aggarwal] Properties are added to specify that platform
-> > firmware's out of reset configuration enabled the regulator and regulat=
-or
-> should never be disabled or change its operative status.
->=20
-> What I was wondering if how this regulator is enabled by firmware, by som=
-e
-> GPIO control?  In that case, 'gpio' property should be there to describe =
-the GPIO
-> control.
->=20
-[Meenakshi Aggarwal] Its not controlled by GPIO. Its gets power on with boa=
-rd.
+On Fri, Sep 18, 2020 at 9:09 PM Chuanhong Guo <gch981213@gmail.com> wrote:
+>
+> Hi!
+>
+> On Fri, Sep 18, 2020 at 4:34 PM Ikjoon Jang <ikjn@chromium.org> wrote:
 > >
-> > Can you help in understanding why these optional properties cannot be
-> > used together
->=20
-> It's totally fine to use these properties together.  But if the regulator=
- doesn't
-> have on/off control, neither of them makes sense.
-[Meenakshi Aggarwal] As per documentation, we should keep " regulator-alway=
-s-on " as per description, we
-Can remove " regulator-boot-on" property from dts.
+> > Fix a simple bug which can limits its transfer size,
+> > and add a simple helper function for code cleanups.
+> >
+> > Fixes: a59b2c7c56bf ("spi: spi-mtk-nor: support standard spi properties")
+> > Signed-off-by: Ikjoon Jang <ikjn@chromium.org>
+> >
+> > ---
+> >
+> > (no changes since v1)
+> >
+> >  drivers/spi/spi-mtk-nor.c | 62 ++++++++++++++++++++++++---------------
+> >  1 file changed, 38 insertions(+), 24 deletions(-)
+> >
+> > diff --git a/drivers/spi/spi-mtk-nor.c b/drivers/spi/spi-mtk-nor.c
+> > index 6e6ca2b8e6c8..54b2c0fde95b 100644
+> > --- a/drivers/spi/spi-mtk-nor.c
+> > +++ b/drivers/spi/spi-mtk-nor.c
+> > @@ -167,52 +167,63 @@ static bool mtk_nor_match_read(const struct spi_mem_op *op)
+> >         return false;
+> >  }
+> >
+> > -static int mtk_nor_adjust_op_size(struct spi_mem *mem, struct spi_mem_op *op)
+> > +static bool need_bounce(void *cpu_addr, unsigned long len)
+> >  {
+> > -       size_t len;
+> > +       return !!(((uintptr_t)cpu_addr) & MTK_NOR_DMA_ALIGN_MASK);
+> > +}
+>
+> parameter 'len' isn't used in this function.
 
-regulator-always-on:
-    description: boolean, regulator should never be disabled               =
-                  =20
- =20
-=20
-.
->=20
-> Shawn
+ACK.
+
+>
+> >
+> > +static int mtk_nor_adjust_op_size(struct spi_mem *mem, struct spi_mem_op *op)
+> > +{
+> >         if (!op->data.nbytes)
+> >                 return 0;
+> >
+> >         if ((op->addr.nbytes == 3) || (op->addr.nbytes == 4)) {
+> > -               if ((op->data.dir == SPI_MEM_DATA_IN) &&
+> > -                   mtk_nor_match_read(op)) {
+>
+> I think replacing a if/else if with a two-case switch is more
+> of a personal code preference rather than code cleanup.
+> I'd prefer only adding need_bounce to replace alignment
+> check using a separated commit and leave other stuff
+> untouched because:
+> 1. This "cleanup" made unintended logic changes (see below)
+> 2. The "cleanup" itself actually becomes the major part of
+>     this patch, while the actual fix mentioned in commit
+>     message is the minor part.
+> 3. A fix commit should contain the fix itself. It shouldn't
+>     mix with these code changes.
+
+Got it, v3 will only include the fix itself.
+
+>
+> > +               switch (op->data.dir) {
+> > +               case SPI_MEM_DATA_IN:
+> > +                       if (!mtk_nor_match_read(op))
+> > +                               return -EINVAL;
+>
+> You are changing the code logic here.
+> mtk_nor_match_read checks if the operation can be executed
+> using controller PIO/DMA reading. Even if it's not supported,
+> we can still use PRG mode to execute the operation.
+> One example of such an operation is SPI NOR SFDP reading.
+> Your change breaks that which then breaks 1_2_2 and 1_4_4
+> reading capability because spi-nor driver parses these op formats
+> from SFDP table.
+
+As you already noticed it, this is a bug from the last patch I made
+and v2 isn't fixing this problem. This should be restored & fixed in v3.
+And will not include other changes in a same patch.
+
+>
+> > +                       /* check if it's DMAable */
+> >                         if ((op->addr.val & MTK_NOR_DMA_ALIGN_MASK) ||
+> > -                           (op->data.nbytes < MTK_NOR_DMA_ALIGN))
+> > +                           (op->data.nbytes < MTK_NOR_DMA_ALIGN)) {
+> >                                 op->data.nbytes = 1;
+> > -                       else if (!((ulong)(op->data.buf.in) &
+> > -                                  MTK_NOR_DMA_ALIGN_MASK))
+> > +                       } else {
+> > +                               if (need_bounce(op->data.buf.in, op->data.nbytes) &&
+> > +                                   (op->data.nbytes > MTK_NOR_BOUNCE_BUF_SIZE))
+> > +                                       op->data.nbytes = MTK_NOR_BOUNCE_BUF_SIZE;
+> >                                 op->data.nbytes &= ~MTK_NOR_DMA_ALIGN_MASK;
+> > -                       else if (op->data.nbytes > MTK_NOR_BOUNCE_BUF_SIZE)
+> > -                               op->data.nbytes = MTK_NOR_BOUNCE_BUF_SIZE;
+>
+> data length alignment is intentionally done only for DMA reading
+> without the bounce buffer.
+> My intention here:
+> If we use the bounce buffer, we can read more data than needed to.
+> Say we want 25 bytes of data, reading 32 bytes using DMA and
+> bounce buffer should be faster than reading 16 bytes with DMA
+> and another 9 bytes with PIO, because for every single byte of PIO
+> reading, adjust_op_size and exec_op is called once, we
+> program controller with new cmd/address, and controller need
+> to send extra cmd/address to flash.
+> I noticed that you removed this part of logic from DMA reading
+> execution in 3/5 as well. Please revert the logic change here
+> add in DMA reading function (see later comment in 3/5).
+
+In v2, I wasn't sure whether this behavior is sane (read more than requested)
+Now I think this is okay, I've missed the fact that flash address is
+also aligned together.
+I'll just keep the previous logics with padding in v3.
+
+Thanks!
+
+>
+> > -                       return 0;
+> > -               } else if (op->data.dir == SPI_MEM_DATA_OUT) {
+> > +                       }
+> > +                       break;
+> > +               case SPI_MEM_DATA_OUT:
+> >                         if (op->data.nbytes >= MTK_NOR_PP_SIZE)
+> >                                 op->data.nbytes = MTK_NOR_PP_SIZE;
+> >                         else
+> >                                 op->data.nbytes = 1;
+> > -                       return 0;
+> > +                       break;
+> > +               default:
+> > +                       break;
+> >                 }
+> > +       } else {
+> > +               u8 len = op->cmd.nbytes + op->addr.nbytes + op->dummy.nbytes;
+> > +
+> > +               if (len > MTK_NOR_PRG_MAX_SIZE)
+> > +                       return -EINVAL;
+> > +               if (op->data.nbytes && !(MTK_NOR_PRG_MAX_SIZE - len))
+> > +                       return -EINVAL;
+> > +               if (op->data.nbytes > (MTK_NOR_PRG_MAX_SIZE - len))
+> > +                       op->data.nbytes = MTK_NOR_PRG_MAX_SIZE - len;
+> >         }
+> >
+> > -       len = MTK_NOR_PRG_MAX_SIZE - op->cmd.nbytes - op->addr.nbytes -
+> > -             op->dummy.nbytes;
+> > -       if (op->data.nbytes > len)
+> > -               op->data.nbytes = len;
+> > -
+> >         return 0;
+> >  }
+> >
+> >  static bool mtk_nor_supports_op(struct spi_mem *mem,
+> >                                 const struct spi_mem_op *op)
+> >  {
+> > -       size_t len;
+> > -
+> >         if (op->cmd.buswidth != 1)
+> >                 return false;
+> >
+> >         if ((op->addr.nbytes == 3) || (op->addr.nbytes == 4)) {
+> > -               switch(op->data.dir) {
+> > +               switch (op->data.dir) {
+> >                 case SPI_MEM_DATA_IN:
+> >                         if (!mtk_nor_match_read(op))
+> >                                 return false;
+> > @@ -226,11 +237,14 @@ static bool mtk_nor_supports_op(struct spi_mem *mem,
+> >                 default:
+> >                         break;
+> >                 }
+> > +       } else {
+> > +               u8 len = op->cmd.nbytes + op->addr.nbytes + op->dummy.nbytes;
+> > +
+> > +               if (len > MTK_NOR_PRG_MAX_SIZE)
+> > +                       return false;
+> > +               if (op->data.nbytes && !(MTK_NOR_PRG_MAX_SIZE - len))
+> > +                       return false;
+> >         }
+> > -       len = op->cmd.nbytes + op->addr.nbytes + op->dummy.nbytes;
+> > -       if ((len > MTK_NOR_PRG_MAX_SIZE) ||
+> > -           ((op->data.nbytes) && (len == MTK_NOR_PRG_MAX_SIZE)))
+> > -               return false;
+> >
+> >         return spi_mem_default_supports_op(mem, op);
+> >  }
+> > --
+> > 2.28.0.681.g6f77f65b4e-goog
+> >
+>
+>
+> --
+> Regards,
+> Chuanhong Guo
