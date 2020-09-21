@@ -2,68 +2,108 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from vger.kernel.org (vger.kernel.org [23.128.96.18])
-	by mail.lfdr.de (Postfix) with ESMTP id 32D9A271971
-	for <lists+devicetree@lfdr.de>; Mon, 21 Sep 2020 04:47:11 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTP id DCCC52719C5
+	for <lists+devicetree@lfdr.de>; Mon, 21 Sep 2020 06:14:37 +0200 (CEST)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S1726405AbgIUCrD (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Sun, 20 Sep 2020 22:47:03 -0400
-Received: from mga09.intel.com ([134.134.136.24]:53124 "EHLO mga09.intel.com"
-        rhost-flags-OK-OK-OK-OK) by vger.kernel.org with ESMTP
-        id S1726104AbgIUCrC (ORCPT <rfc822;devicetree@vger.kernel.org>);
-        Sun, 20 Sep 2020 22:47:02 -0400
-IronPort-SDR: 4PlKAVprG6g6sO/q7C1ynuVwbwIbi3ICk2gNWdHpnX5YNexaT5HAvO/adtOII0emivvBhgLVKI
- lDOC9rhCShpA==
-X-IronPort-AV: E=McAfee;i="6000,8403,9750"; a="161218640"
-X-IronPort-AV: E=Sophos;i="5.77,285,1596524400"; 
-   d="scan'208";a="161218640"
-X-Amp-Result: SKIPPED(no attachment in message)
-X-Amp-File-Uploaded: False
-Received: from orsmga002.jf.intel.com ([10.7.209.21])
-  by orsmga102.jf.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384; 20 Sep 2020 19:47:02 -0700
-IronPort-SDR: oyMhHU9LxZweZyZrXHaeYjrRbkmOkpYCk6OgNECm0TpWDuR7oIAXWmzUNSb0nDVdIQFCFnjKOC
- xliQRDilwcig==
-X-ExtLoop1: 1
-X-IronPort-AV: E=Sophos;i="5.77,285,1596524400"; 
-   d="scan'208";a="321538190"
-Received: from wwanmoha-ilbpg2.png.intel.com ([10.88.227.42])
-  by orsmga002.jf.intel.com with ESMTP; 20 Sep 2020 19:46:59 -0700
-From:   Wan Ahmad Zainie <wan.ahmad.zainie.wan.mohamad@intel.com>
-To:     kishon@ti.com, vkoul@kernel.org, robh+dt@kernel.org,
-        balbi@kernel.org, gregkh@linuxfoundation.org
-Cc:     linux-kernel@vger.kernel.org, devicetree@vger.kernel.org,
-        linux-usb@vger.kernel.org, andriy.shevchenko@linux.intel.com,
-        mgross@linux.intel.com, lakshmi.bai.raja.subramanian@intel.com,
-        wan.ahmad.zainie.wan.mohamad@intel.com
-Subject: [PATCH 4/4] usb: dwc3: of-simple: Add compatible string for Intel Keem Bay platform
-Date:   Mon, 21 Sep 2020 10:44:59 +0800
-Message-Id: <20200921024459.20899-5-wan.ahmad.zainie.wan.mohamad@intel.com>
-X-Mailer: git-send-email 2.17.1
-In-Reply-To: <20200921024459.20899-1-wan.ahmad.zainie.wan.mohamad@intel.com>
-References: <20200921024459.20899-1-wan.ahmad.zainie.wan.mohamad@intel.com>
+        id S1726210AbgIUEOg (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Mon, 21 Sep 2020 00:14:36 -0400
+Received: from lindbergh.monkeyblade.net ([23.128.96.19]:59250 "EHLO
+        lindbergh.monkeyblade.net" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
+        with ESMTP id S1726011AbgIUEOg (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Mon, 21 Sep 2020 00:14:36 -0400
+Received: from mail-pf1-x442.google.com (mail-pf1-x442.google.com [IPv6:2607:f8b0:4864:20::442])
+        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id A8227C061755
+        for <devicetree@vger.kernel.org>; Sun, 20 Sep 2020 21:14:36 -0700 (PDT)
+Received: by mail-pf1-x442.google.com with SMTP id o20so8144055pfp.11
+        for <devicetree@vger.kernel.org>; Sun, 20 Sep 2020 21:14:36 -0700 (PDT)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+        d=chromium.org; s=google;
+        h=from:to:cc:subject:date:message-id:mime-version
+         :content-transfer-encoding;
+        bh=v7829AfRT6LvbLjz9XeDro4FUjlC8JvfoISGdbWocU0=;
+        b=Ax8vlAeB60K7VxwqjgTm+4y+YjZoqTXAE/+iKq0Gl6phrxj06l4z/57g70tDMdKRnt
+         P6f8T6MarPu6KuZv6/zdMpnalFdkdizCNkyMPmLLnYT6jLPMZnFtTsG9+Rsfez/TE70I
+         xa/ooqfmxB0pDSrrcWDkVI8TmbOoiYZAg5l74=
+X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+        d=1e100.net; s=20161025;
+        h=x-gm-message-state:from:to:cc:subject:date:message-id:mime-version
+         :content-transfer-encoding;
+        bh=v7829AfRT6LvbLjz9XeDro4FUjlC8JvfoISGdbWocU0=;
+        b=qzJmSmrKAiFuZE2uAyiAn7KJmjl4mqe3ZR3Ck8DjdiHqgUbVMYCaGqiwmMsoRP6b/8
+         09lk8a9Sl4dtUgrdEZ+p7dgh6WSl4QmwbZ9N3whIBm1jwd+15JrKKGiphTgQ5GkNNlbe
+         LskHdqC1SAPVrRenG7CXUmAo6KdcXZO2zH1KCQnOf5xGVD4hxELLLxB7Thwca0fHvhXS
+         VImWbv8BBA2gsjhldN9gdWv4BxVTbagmZSufulAv7GyW34RG0VXkzbCyIey9jYJhCpvy
+         WYa8pVjrYOJ4COp3bEJoO9b4nQMSCWgSvVuiQZMziMRwzt9IHb500Tr7o0XDdZriKosz
+         +pfQ==
+X-Gm-Message-State: AOAM531bGET3l1LO5oVRblY46VZo8bHavIMuAATaPwTmJLlWuVXg5THj
+        w85uS0L6FUmnKjoKlARrxyq4Cg==
+X-Google-Smtp-Source: ABdhPJxF2RiligLadfSfXIzQiHaHina12UJBS42E0zRZ9Ka91X39OXKvsPKp2DU/FWZ/lS6FAXuDog==
+X-Received: by 2002:a63:6782:: with SMTP id b124mr37636930pgc.308.1600661676013;
+        Sun, 20 Sep 2020 21:14:36 -0700 (PDT)
+Received: from drinkcat2.tpe.corp.google.com ([2401:fa00:1:b:7220:84ff:fe09:41dc])
+        by smtp.gmail.com with ESMTPSA id m13sm10439167pfk.103.2020.09.20.21.14.33
+        (version=TLS1_3 cipher=TLS_AES_256_GCM_SHA384 bits=256/256);
+        Sun, 20 Sep 2020 21:14:35 -0700 (PDT)
+From:   Nicolas Boichat <drinkcat@chromium.org>
+To:     Matthias Brugger <matthias.bgg@gmail.com>
+Cc:     Nicolas Boichat <drinkcat@chromium.org>,
+        Feng Tang <feng.tang@intel.com>,
+        John Stultz <john.stultz@linaro.org>,
+        Rob Herring <robh+dt@kernel.org>,
+        Stephen Boyd <sboyd@kernel.org>,
+        Thomas Gleixner <tglx@linutronix.de>,
+        devicetree@vger.kernel.org, linux-arm-kernel@lists.infradead.org,
+        linux-kernel@vger.kernel.org, linux-mediatek@lists.infradead.org
+Subject: [RFC PATCH] arm64: dts: mt8183: Add arm,no-tick-in-suspend
+Date:   Mon, 21 Sep 2020 12:14:24 +0800
+Message-Id: <20200921121420.RFC.1.I30d6887e950575eb1fd92ee56ab5d50ff64c97f3@changeid>
+X-Mailer: git-send-email 2.28.0.681.g6f77f65b4e-goog
+MIME-Version: 1.0
+Content-Transfer-Encoding: 8bit
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-Add compatible string to use this generic glue layer to support
-Intel Keem Bay platform's dwc3 controller.
+The armv8-timer on MT8183 (kukui family) actually ticks in suspend,
+but its precision is so low (measured 400+ ppm -- 35 seconds/day)
+that it's actually better to use a fallback option (RTC).
 
-Signed-off-by: Wan Ahmad Zainie <wan.ahmad.zainie.wan.mohamad@intel.com>
+Signed-off-by: Nicolas Boichat <drinkcat@chromium.org>
 ---
- drivers/usb/dwc3/dwc3-of-simple.c | 1 +
+We asked MTK if there is anything that can be done to make the
+archtimer more precise in suspend, but that does not seem to
+be possible.
+
+Ideally we'd like a arm,tick-in-suspend-but-use-something-else-if-possible
+property, but the rating in [1] cannot be used, as the RTC
+fallback is handled separately [2].
+
+I don't know if this kind of issues happened in the past, one
+possible compromise is to add the option to kukui board only,
+since we _know_ there is an RTC there (which, technically, may
+not be the case on every single MT8183 platform).
+
+A more complete solution would involved quite a bit of
+refactoring in the timekeeping/rtc framework.
+
+[1] https://elixir.bootlin.com/linux/v5.8/source/kernel/time/clocksource.c#L486
+[2] https://elixir.bootlin.com/linux/v5.8/source/kernel/time/timekeeping.c#L1693
+
+ arch/arm64/boot/dts/mediatek/mt8183.dtsi | 1 +
  1 file changed, 1 insertion(+)
 
-diff --git a/drivers/usb/dwc3/dwc3-of-simple.c b/drivers/usb/dwc3/dwc3-of-simple.c
-index 2816e4a9813a..e62ecd22b3ed 100644
---- a/drivers/usb/dwc3/dwc3-of-simple.c
-+++ b/drivers/usb/dwc3/dwc3-of-simple.c
-@@ -177,6 +177,7 @@ static const struct of_device_id of_dwc3_simple_match[] = {
- 	{ .compatible = "sprd,sc9860-dwc3" },
- 	{ .compatible = "allwinner,sun50i-h6-dwc3" },
- 	{ .compatible = "hisilicon,hi3670-dwc3" },
-+	{ .compatible = "intel,keembay-dwc3" },
- 	{ /* Sentinel */ }
- };
- MODULE_DEVICE_TABLE(of, of_dwc3_simple_match);
+diff --git a/arch/arm64/boot/dts/mediatek/mt8183.dtsi b/arch/arm64/boot/dts/mediatek/mt8183.dtsi
+index f9b60e3d085c..ebcb2309017d 100644
+--- a/arch/arm64/boot/dts/mediatek/mt8183.dtsi
++++ b/arch/arm64/boot/dts/mediatek/mt8183.dtsi
+@@ -219,6 +219,7 @@ timer {
+ 			     <GIC_PPI 14 IRQ_TYPE_LEVEL_LOW 0>,
+ 			     <GIC_PPI 11 IRQ_TYPE_LEVEL_LOW 0>,
+ 			     <GIC_PPI 10 IRQ_TYPE_LEVEL_LOW 0>;
++		arm,no-tick-in-suspend;
+ 	};
+ 
+ 	soc {
 -- 
-2.17.1
+2.28.0.681.g6f77f65b4e-goog
 
