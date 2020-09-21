@@ -2,72 +2,79 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from vger.kernel.org (vger.kernel.org [23.128.96.18])
-	by mail.lfdr.de (Postfix) with ESMTP id C6A4D272FAA
-	for <lists+devicetree@lfdr.de>; Mon, 21 Sep 2020 18:59:16 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTP id A470D273053
+	for <lists+devicetree@lfdr.de>; Mon, 21 Sep 2020 19:04:32 +0200 (CEST)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S1729403AbgIUQ7D (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Mon, 21 Sep 2020 12:59:03 -0400
-Received: from mail.kernel.org ([198.145.29.99]:39636 "EHLO mail.kernel.org"
+        id S1728293AbgIUREV (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Mon, 21 Sep 2020 13:04:21 -0400
+Received: from honk.sigxcpu.org ([24.134.29.49]:39684 "EHLO honk.sigxcpu.org"
         rhost-flags-OK-OK-OK-OK) by vger.kernel.org with ESMTP
-        id S1728985AbgIUQ64 (ORCPT <rfc822;devicetree@vger.kernel.org>);
-        Mon, 21 Sep 2020 12:58:56 -0400
-Received: from localhost (fw-tnat.cambridge.arm.com [217.140.96.140])
-        (using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
-        (No client certificate requested)
-        by mail.kernel.org (Postfix) with ESMTPSA id 4BB8420C09;
-        Mon, 21 Sep 2020 16:58:55 +0000 (UTC)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=kernel.org;
-        s=default; t=1600707535;
-        bh=+knWzm3xj2gskwUc9VYhgeLl1eQQ+hq8DGmvHZBEvB0=;
-        h=Date:From:To:Cc:In-Reply-To:References:Subject:From;
-        b=DR67VkjkH2w8LYQ91CjXT9tVvpO+pyX9G1WD4sFJ/5T2McpNoiwky20+SpLMX6Gsj
-         Kv9I3eDtc0/QRK+Yr3NmiTW0pNy+HPzOECEQpPlfsmMfLolofmbWAK2ozffESGYl6Q
-         oZWmtT2AwIrkUBmmIRWXCYr0XaJn6QQXLC6y6f6w=
-Date:   Mon, 21 Sep 2020 17:58:03 +0100
-From:   Mark Brown <broonie@kernel.org>
-To:     devicetree@vger.kernel.org, lgirdwood@gmail.com, dmurphy@ti.com,
-        Camel Guo <camel.guo@axis.com>, tiwai@suse.com,
-        robh+dt@kernel.org
-Cc:     kernel@axis.com, linux-kernel@vger.kernel.org,
-        Camel Guo <camelg@axis.com>, alsa-devel@alsa-project.org
-In-Reply-To: <20200916075949.28479-1-camel.guo@axis.com>
-References: <20200916075949.28479-1-camel.guo@axis.com>
-Subject: Re: [PATCH v3 1/2] dt-bindings: tlv320adcx140: Add GPIO config and drive config
-Message-Id: <160070745846.56122.15642862327141755501.b4-ty@kernel.org>
+        id S1730109AbgIUREU (ORCPT <rfc822;devicetree@vger.kernel.org>);
+        Mon, 21 Sep 2020 13:04:20 -0400
+Received: from localhost (localhost [127.0.0.1])
+        by honk.sigxcpu.org (Postfix) with ESMTP id F3B25FB06;
+        Mon, 21 Sep 2020 18:55:54 +0200 (CEST)
+X-Virus-Scanned: Debian amavisd-new at honk.sigxcpu.org
+Received: from honk.sigxcpu.org ([127.0.0.1])
+        by localhost (honk.sigxcpu.org [127.0.0.1]) (amavisd-new, port 10024)
+        with ESMTP id PwhMdxTLLlij; Mon, 21 Sep 2020 18:55:53 +0200 (CEST)
+Received: by bogon.sigxcpu.org (Postfix, from userid 1000)
+        id EFE46457CC; Mon, 21 Sep 2020 18:55:52 +0200 (CEST)
+From:   =?UTF-8?q?Guido=20G=C3=BCnther?= <agx@sigxcpu.org>
+To:     Thierry Reding <thierry.reding@gmail.com>,
+        Sam Ravnborg <sam@ravnborg.org>,
+        David Airlie <airlied@linux.ie>,
+        Daniel Vetter <daniel@ffwll.ch>,
+        Rob Herring <robh+dt@kernel.org>,
+        dri-devel@lists.freedesktop.org, devicetree@vger.kernel.org,
+        linux-kernel@vger.kernel.org
+Subject: [RFC PATCH v1 0/3] drm/panel: mantix panel reset fixes
+Date:   Mon, 21 Sep 2020 18:55:49 +0200
+Message-Id: <cover.1600707235.git.agx@sigxcpu.org>
+X-Mailer: git-send-email 2.26.2
+MIME-Version: 1.0
+Content-Type: text/plain; charset=UTF-8
+Content-Transfer-Encoding: 8bit
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-On Wed, 16 Sep 2020 09:59:48 +0200, Camel Guo wrote:
-> Add properties for configuring the General Purpose Input Output (GPIO).
-> There are 2 settings for GPIO, configuration and the output drive type.
 
-Applied to
+Posting as RFC since I'm not sure how to handle the bindings, please see below.
 
-   https://git.kernel.org/pub/scm/linux/kernel/git/broonie/sound.git for-next
+The first patch in this series fixes dereferencing a NULL mode in the error
+path. The second one extends the resets to not only reset RESX but also TP_RSTN
+since otherwise the display will stay completely blank. I didn't spot that
+before initial submission since the reset line was bound to the touch
+controller and although that failed to probe it came far enough to deassert the
+reset line (at an arbitrary point in time during boot) and hence we got a
+picture. Since touch and panel are on the same IC they're not completely
+independent and i might have to turn the whole thing into an MFD at some point
+but this series gets the panel to a reliably working state on boot and on fb
+blank/unblank.
 
-Thanks!
+Since the reset-gpios are active low we can deassert in prepare and assert in
+unprepare simplifying the code making sure lines are kept low when the
+panel is off.
 
-[1/2] dt-bindings: tlv320adcx140: Add GPIO config and drive config
-      commit: 15b3d324c8980022071710b5096b705eb6b74fca
-[2/2] ASoC: tlv320adcx140: Add support for configuring GPIO pin
-      commit: d5214321498a43558d9ffcce4153775c2c296bad
+As for the bindings it seems I can't override the maxItems of reset-gpios since
+that is already set in bindings/display/panel/panel-common.yaml to maxItems:
+1`.  Is there a way to do that instead of side stepping the issue and using
+a different name or using enable-gpios for one of them or forcing everyone else
+to set `maxItems: 1`?
 
-All being well this means that it will be integrated into the linux-next
-tree (usually sometime in the next 24 hours) and sent to Linus during
-the next merge window (or sooner if it is a bug fix), however if
-problems are discovered then the patch may be dropped or reverted.
+The binding were not part of a stable kernel so I hope it's okay to not worry
+about backward compatibility.
 
-You may get further e-mails resulting from automated or manual testing
-and review of the tree, please engage with people reporting problems and
-send followup patches addressing any issues that are reported if needed.
+Guido Günther (3):
+  drm/panel: mantix: Don't dereference NULL mode
+  drm/panel: mantix: Fix panel reset
+  dt-binding: display: Require two rests on mantix panel
 
-If any updates are required or you are submitting further changes they
-should be sent as incremental updates against current git, existing
-patches will not be replaced.
+ .../display/panel/mantix,mlaf057we51-x.yaml   |  7 +++-
+ .../gpu/drm/panel/panel-mantix-mlaf057we51.c  | 39 ++++++++++++-------
+ 2 files changed, 30 insertions(+), 16 deletions(-)
 
-Please add any relevant lists and maintainers to the CCs when replying
-to this mail.
+-- 
+2.26.2
 
-Thanks,
-Mark
