@@ -2,149 +2,155 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from vger.kernel.org (vger.kernel.org [23.128.96.18])
-	by mail.lfdr.de (Postfix) with ESMTP id 898CE273347
-	for <lists+devicetree@lfdr.de>; Mon, 21 Sep 2020 21:56:37 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTP id 9027827337B
+	for <lists+devicetree@lfdr.de>; Mon, 21 Sep 2020 22:06:48 +0200 (CEST)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S1728324AbgIUT42 (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Mon, 21 Sep 2020 15:56:28 -0400
-Received: from lindbergh.monkeyblade.net ([23.128.96.19]:35600 "EHLO
+        id S1726442AbgIUUGr (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Mon, 21 Sep 2020 16:06:47 -0400
+Received: from lindbergh.monkeyblade.net ([23.128.96.19]:37210 "EHLO
         lindbergh.monkeyblade.net" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S1728358AbgIUT4Z (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Mon, 21 Sep 2020 15:56:25 -0400
-Received: from mail-pf1-x449.google.com (mail-pf1-x449.google.com [IPv6:2607:f8b0:4864:20::449])
-        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 34D0AC0613CF
-        for <devicetree@vger.kernel.org>; Mon, 21 Sep 2020 12:56:25 -0700 (PDT)
-Received: by mail-pf1-x449.google.com with SMTP id h15so9511281pfr.3
-        for <devicetree@vger.kernel.org>; Mon, 21 Sep 2020 12:56:25 -0700 (PDT)
+        with ESMTP id S1726357AbgIUUGr (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Mon, 21 Sep 2020 16:06:47 -0400
+Received: from mail-pj1-x1042.google.com (mail-pj1-x1042.google.com [IPv6:2607:f8b0:4864:20::1042])
+        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id CB3E6C0613CF
+        for <devicetree@vger.kernel.org>; Mon, 21 Sep 2020 13:06:46 -0700 (PDT)
+Received: by mail-pj1-x1042.google.com with SMTP id md22so372266pjb.0
+        for <devicetree@vger.kernel.org>; Mon, 21 Sep 2020 13:06:46 -0700 (PDT)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=google.com; s=20161025;
-        h=sender:date:in-reply-to:message-id:mime-version:references:subject
-         :from:to:cc;
-        bh=AWunavfjR2h7DGqJnJiiTrYCviYOJo4UjdEoDLbILJA=;
-        b=t+GNICctCeMjWN/pUlO1D6VvqfujACAsEcklfpybyR5nZwW6Sdy0QnYyrhBPaIC5t6
-         H14TSCQ9hvaKthS+0J7iv7W3S124LYUJjIn8tSybY1iBuhwhcstsGAGXxx+MKSl2D5rV
-         x1qT8rzCzrzUfHdbRpVEMzO2Qsz4WKJ9sZmwktYdUXjte3x4jHDV1Q0DmCa6LCZP+WRU
-         R7RJapDAJZCi5xkL+gOGg/vHjK0TzMA/4Ts41bi+x6kJuPbS8cgPiaZYtFuBwKSTQME5
-         AJaWthUeIzVlaBTWgTi0277fp+iOysN3yPiFmUvkI2KLp+ByLyegHYOBacsvUPov1VNU
-         vNXg==
+        d=chromium.org; s=google;
+        h=mime-version:content-transfer-encoding:in-reply-to:references
+         :subject:from:cc:to:date:message-id:user-agent;
+        bh=fk5l1rYUzO0ybCk4A3F2BkR5LYYdanHtPPjxTG5/0d8=;
+        b=WIzdwvasP8t0HrRCu8yc5TdvxQsreyyCYZRlnBUf0JdNhMQd66S71nrJul5hUFJsBG
+         wAscXjDFJvFvh1SVZH1YIMbQ27q4js2I1XSKfwijeCUnDA9wVfrMMQowe1roe7p0rD2S
+         Zj3jaj6qHJumXJG5OXLZ1hHBCJUnUUeQC/wg8=
 X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
         d=1e100.net; s=20161025;
-        h=x-gm-message-state:sender:date:in-reply-to:message-id:mime-version
-         :references:subject:from:to:cc;
-        bh=AWunavfjR2h7DGqJnJiiTrYCviYOJo4UjdEoDLbILJA=;
-        b=QZYuk5FmYDQ7YqxXfok7cXxjibv6FnsQTmfXaCpU5I8q0q+ChzUU56D2qJddvgmxkg
-         fdWOwpx5JBxv9HywPCoCQd9zR/63mNnPgvCuKg/xk9QKMZtK9ACgVemJ5jgVVOft2FUC
-         SyZuPcYXe1dIvuZjkEh7dz4yapNN6EBz30In+AKUE6H9aisnxoKIl58MrOaoTLtJzuzk
-         7hbUQanWvOXcT/4nepkjjxLNPcjEN8x8x0KTAkRW2PxArh4/hjnk9zisgebXnHBni8WG
-         bac6PHw+rd/qq+ZokBIZ0zlADKtxkLnkn/Nv07YcsP4L/vv4bYtQSHbH0Q9r6DFvRPUr
-         QBMg==
-X-Gm-Message-State: AOAM531xYJ1HJYFTMwmytHe1CdKJsPxakslqsVomF9VHXMpMCtADx1DG
-        mC/a63DtsJmB3hl85wOMYlAWJVZS8iE=
-X-Google-Smtp-Source: ABdhPJw68r3Flh7t8b0dWbxHTV0lK3ldYw/oSD30QlZuU6Hf9NnbdqD72KDkJsC1TlfmPRXRzX3WdKSiQew=
-Sender: "badhri via sendgmr" <badhri@badhri.mtv.corp.google.com>
-X-Received: from badhri.mtv.corp.google.com ([2620:15c:211:1:f292:1cff:fee0:66cf])
- (user=badhri job=sendgmr) by 2002:a17:902:d68c:b029:d2:23a6:f6d7 with SMTP id
- v12-20020a170902d68cb02900d223a6f6d7mr1462202ply.45.1600718184724; Mon, 21
- Sep 2020 12:56:24 -0700 (PDT)
-Date:   Mon, 21 Sep 2020 12:55:55 -0700
-In-Reply-To: <20200921195555.1050731-1-badhri@google.com>
-Message-Id: <20200921195555.1050731-11-badhri@google.com>
-Mime-Version: 1.0
-References: <20200921195555.1050731-1-badhri@google.com>
-X-Mailer: git-send-email 2.28.0.681.g6f77f65b4e-goog
-Subject: [PATCH v8 11/11] usb: typec: tcpci_maxim: Implemnent set_auto_vbus_discharge_threshold
-From:   Badhri Jagan Sridharan <badhri@google.com>
-To:     Guenter Roeck <linux@roeck-us.net>,
-        Heikki Krogerus <heikki.krogerus@linux.intel.com>,
-        Greg Kroah-Hartman <gregkh@linuxfoundation.org>,
-        Rob Herring <robh+dt@kernel.org>,
-        Lee Jones <lee.jones@linaro.org>,
-        Mark Brown <broonie@kernel.org>,
-        Maxime Ripard <mripard@kernel.org>,
-        Alexandre Belloni <alexandre.belloni@bootlin.com>,
-        Thierry Reding <treding@nvidia.com>,
-        Prashant Malani <pmalani@chromium.org>,
-        Badhri Jagan Sridharan <badhri@google.com>
-Cc:     devicetree@vger.kernel.org, linux-kernel@vger.kernel.org,
-        linux-usb@vger.kernel.org
-Content-Type: text/plain; charset="UTF-8"
+        h=x-gm-message-state:mime-version:content-transfer-encoding
+         :in-reply-to:references:subject:from:cc:to:date:message-id
+         :user-agent;
+        bh=fk5l1rYUzO0ybCk4A3F2BkR5LYYdanHtPPjxTG5/0d8=;
+        b=kV4YPOTQIsILhI6al1mX/zLrl9z/To9Gw9gsTBzKjvYFym8/hgmSTvgotUMzq5cVZu
+         S5lUN8n09uhVdraYScNzHVkOb3I7OcYKMPCgCacZej3jER8zWe5dVITd7J9VJp/Rfgri
+         taniQK0kukfa+N/Gkwcr6mS4grFuYemxBA270Ad/DVz1SG6FKWP0XdRMcoi3GK/RwRGL
+         PwLPeDfpiVKqVezc+ilVtkAso0mYlLPlpWkzCW3sjq21WEwAzs28Q+rRkd4n892OhQ/O
+         TP5xd6iiwoSmkwmmHvRgSp0THzzap361kT2sjdk1EmicIrcpV17VPYJ/8pg3/cglYyCH
+         0z0w==
+X-Gm-Message-State: AOAM532HSyVjcL38AQ8CFKCnu+pxHGlMiZHPNouz4y7KUbY7zZ8qrJsA
+        +NWW+tQCUUKTo/wq+KydgJxULw==
+X-Google-Smtp-Source: ABdhPJx0cY5Ezo0eFWBoMpO9bhA7K4lcgpnb2b1Kia26kNO3yYGxayjvac+a5aGTNLXOCrBxMpH2mg==
+X-Received: by 2002:a17:90b:4a04:: with SMTP id kk4mr864857pjb.84.1600718806123;
+        Mon, 21 Sep 2020 13:06:46 -0700 (PDT)
+Received: from chromium.org ([2620:15c:202:1:3e52:82ff:fe6c:83ab])
+        by smtp.gmail.com with ESMTPSA id x62sm3794171pfx.20.2020.09.21.13.06.44
+        (version=TLS1_3 cipher=TLS_AES_256_GCM_SHA384 bits=256/256);
+        Mon, 21 Sep 2020 13:06:45 -0700 (PDT)
+Content-Type: text/plain; charset="utf-8"
+MIME-Version: 1.0
+Content-Transfer-Encoding: quoted-printable
+In-Reply-To: <20200918174511.v2.1.I997a428f58ef9d48b37a27a028360f34e66c00ec@changeid>
+References: <20200918174511.v2.1.I997a428f58ef9d48b37a27a028360f34e66c00ec@changeid>
+Subject: Re: [PATCH v2 1/2] arm64: dts: qcom: sc7180: Provide pinconf for SPI to use GPIO for CS
+From:   Stephen Boyd <swboyd@chromium.org>
+Cc:     linux-arm-msm@vger.kernel.org, akashast@codeaurora.org,
+        Douglas Anderson <dianders@chromium.org>,
+        Rob Herring <robh+dt@kernel.org>, devicetree@vger.kernel.org,
+        linux-kernel@vger.kernel.org
+To:     Andy Gross <agross@kernel.org>,
+        Bjorn Andersson <bjorn.andersson@linaro.org>,
+        Douglas Anderson <dianders@chromium.org>
+Date:   Mon, 21 Sep 2020 13:06:43 -0700
+Message-ID: <160071880378.4188128.9400472825927726259@swboyd.mtv.corp.google.com>
+User-Agent: alot/0.9.1
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-Programs VBUS_SINK_DISCONNECT_THRESHOLD based on the power_role,
-voltage requested as sink, mode of operation.
+Quoting Douglas Anderson (2020-09-18 17:45:27)
+> When the chip select line is controlled by the QUP, changing CS is a
+> time consuming operation.  We have to send a command over to the geni
+> and wait for it to Ack us every time we want to change (both making it
+> high and low).  To send this command we have to make a choice in
+> software when we want to control the chip select, we have to either:
+> A) Wait for the Ack via interrupt which slows down all SPI transfers
+>    (and incurrs extra processing associated with interrupts).
+> B) Sit in a loop and poll, waiting for the Ack.
+>=20
+> Neither A) nor B) is a great option.
+>=20
+> We can avoid all of this by realizing that, at least on some boards,
+> there is no advantage of considering this line to be a geni line.
+> While it's true that geni _can_ control the line, it's also true that
+> the line can be a GPIO and there is no downside of viewing it that
+> way.  Setting a GPIO is a simple MMIO operation.
+>=20
+> This patch provides definitions so a board can easily select the GPIO
+> mode.
+>=20
+> NOTE: apparently, it's possible to run the geni in "GSI" mode.  In GSI
+> the SPI port is allowed to be controlled by more than one user (like
+> firmware and Linux) and also the port can operate sequences of
+> operations in one go.  In GSI mode it _would_ be invalid to look at
+> the chip select as a GPIO because that would prevent other users from
+> using it.  In theory GSI mode would also avoid some overhead by
+> allowing us to sequence the chip select better.  However, I'll argue
+> GSI is not relevant for all boards (and certainly not any boards
+> supported by mainline today).  Why?
+> - Apparently to run a SPI chip in GSI mode you need to initialize it
+>   (in the bootloader) with a different firmware and then it will
+>   always run in GSI mode.  Since there is no support for GSI mode in
+>   the current Linux driver, it must be that existing boards don't have
+>   firmware that's doing that.  Note that the kernel device tree
+>   describes hardware but also firmware, so it is legitimate to make
+>   the assumption that we don't have GSI firmware in a given dts file.
+> - Some boards with sc7180 have SPI connected to the Chrome OS EC or
+>   security chip (Cr50).  The protocols for talking to cros_ec and cr50
+>   are extremely complex.  Both drivers in Linux fully lock the bus
+>   across several distinct SPI transfers.  While I am not an expert on
+>   GSI mode it feels highly unlikely to me that we'd ever be able to
+>   enable GSI mode for these devices.
+>=20
+> From a testing perspective, running "flashrom -p ec -r /tmp/foo.bin"
+> in a loop after this patch shows almost no reduction in time, but the
+> number of interrupts per command goes from 32357 down to 30611 (about
+> a 5% reduction).
+>=20
+> Signed-off-by: Douglas Anderson <dianders@chromium.org>
+> ---
 
-The programmed threshold is based on vSinkDisconnect and
-vSinkDisconnectPD values.
+Reviewed-by: Stephen Boyd <swboyd@chromium.org>
 
-Signed-off-by: Badhri Jagan Sridharan <badhri@google.com>
----
-Changes since v1:
-- Changing patch version to v6 to fix version number confusion.
+>=20
+> Changes in v2:
+> - Now just add the pinctrl; let a board use it.
+>=20
+>  arch/arm64/boot/dts/qcom/sc7180.dtsi | 96 ++++++++++++++++++++++++++++
+>  1 file changed, 96 insertions(+)
+>=20
+> diff --git a/arch/arm64/boot/dts/qcom/sc7180.dtsi b/arch/arm64/boot/dts/q=
+com/sc7180.dtsi
+> index 6678f1e8e395..0534122b9a3c 100644
+> --- a/arch/arm64/boot/dts/qcom/sc7180.dtsi
+> +++ b/arch/arm64/boot/dts/qcom/sc7180.dtsi
+> @@ -1595,6 +1595,18 @@ pinmux {
+>                                 };
+>                         };
+> =20
+> +                       qup_spi0_cs_gpio: qup-spi0-cs-gpio {
+> +                               pinmux {
+> +                                       pins =3D "gpio34", "gpio35",
+> +                                              "gpio36";
+> +                                       function =3D "qup00";
+> +                               };
+> +                               pinmux-cs {
 
-Changes since v6:
-- Rebase on usb-next.
+Style nit: Add a newline between nodes?
 
-Changes since v7:
-- Heikki's suggestion:
-Moved the actual write of TCPC_VBUS_SINK_DISCONNECT_THRES
-register to tcpci code.
----
- drivers/usb/typec/tcpm/tcpci_maxim.c | 33 ++++++++++++++++++++++++++++
- 1 file changed, 33 insertions(+)
-
-diff --git a/drivers/usb/typec/tcpm/tcpci_maxim.c b/drivers/usb/typec/tcpm/tcpci_maxim.c
-index 723d7dd38f75..329138622cc9 100644
---- a/drivers/usb/typec/tcpm/tcpci_maxim.c
-+++ b/drivers/usb/typec/tcpm/tcpci_maxim.c
-@@ -137,6 +137,37 @@ static void max_tcpci_init_regs(struct max_tcpci_chip *chip)
- 		return;
- }
- 
-+u32 max_tcpci_get_auto_vbus_discharge_threshold(struct tcpci *tcpci, struct tcpci_data *data,
-+						enum typec_role port_role,
-+						enum typec_pwr_opmode mode, bool pps_active,
-+						u32 requested_vbus_voltage_mv)
-+{
-+	struct max_tcpci_chip *chip = tdata_to_max_tcpci(data);
-+	u32 threshold = 0;
-+	u8 pwr_ctrl;
-+
-+	if (port_role == TYPEC_SINK) {
-+		max_tcpci_read8(chip, TCPC_POWER_CTRL, &pwr_ctrl);
-+		if (pwr_ctrl & TCPC_FAST_ROLE_SWAP_EN) {
-+			/* To prevent disconnect when the source is fast role swap is capable. */
-+			threshold = 3500;
-+		} else if (mode == TYPEC_PWR_MODE_PD) {
-+			if (pps_active)
-+				threshold = (95 * requested_vbus_voltage_mv / 100) - 850;
-+			else
-+				threshold = (95 * requested_vbus_voltage_mv / 100) - 1250;
-+		} else {
-+			/* 3.5V for non-pd sink */
-+			threshold = 3500;
-+		}
-+	} else {
-+		/* 4V for source */
-+		threshold = 4000;
-+	}
-+
-+	return threshold;
-+}
-+
- static void process_rx(struct max_tcpci_chip *chip, u16 status)
- {
- 	struct pd_message msg;
-@@ -441,6 +472,8 @@ static int max_tcpci_probe(struct i2c_client *client, const struct i2c_device_id
- 	chip->data.start_drp_toggling = max_tcpci_start_toggling;
- 	chip->data.TX_BUF_BYTE_x_hidden = true;
- 	chip->data.init = tcpci_init;
-+	chip->data.get_auto_vbus_discharge_threshold = max_tcpci_get_auto_vbus_discharge_threshold;
-+	chip->data.auto_discharge_disconnect = true;
- 
- 	max_tcpci_init_regs(chip);
- 	chip->tcpci = tcpci_register_port(chip->dev, &chip->data);
--- 
-2.28.0.681.g6f77f65b4e-goog
-
+> +                                       pins =3D "gpio37";
+> +                                       function =3D "gpio";
+> +                               };
+> +                       };
+> +
+>                         qup_spi1_default: qup-spi1-default {
+>                                 pinmux {
+>                                         pins =3D "gpio0", "gpio1",
