@@ -2,214 +2,249 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from vger.kernel.org (vger.kernel.org [23.128.96.18])
-	by mail.lfdr.de (Postfix) with ESMTP id 89085271D88
-	for <lists+devicetree@lfdr.de>; Mon, 21 Sep 2020 10:10:07 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTP id 3A8DB271DE0
+	for <lists+devicetree@lfdr.de>; Mon, 21 Sep 2020 10:25:28 +0200 (CEST)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S1726435AbgIUIKF (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Mon, 21 Sep 2020 04:10:05 -0400
-Received: from mail-bn8nam11on2060.outbound.protection.outlook.com ([40.107.236.60]:5024
-        "EHLO NAM11-BN8-obe.outbound.protection.outlook.com"
+        id S1726508AbgIUIZX (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Mon, 21 Sep 2020 04:25:23 -0400
+Received: from mail-eopbgr80059.outbound.protection.outlook.com ([40.107.8.59]:53379
+        "EHLO EUR04-VI1-obe.outbound.protection.outlook.com"
         rhost-flags-OK-OK-OK-FAIL) by vger.kernel.org with ESMTP
-        id S1726326AbgIUIKE (ORCPT <rfc822;devicetree@vger.kernel.org>);
-        Mon, 21 Sep 2020 04:10:04 -0400
+        id S1726416AbgIUIZX (ORCPT <rfc822;devicetree@vger.kernel.org>);
+        Mon, 21 Sep 2020 04:25:23 -0400
 ARC-Seal: i=1; a=rsa-sha256; s=arcselector9901; d=microsoft.com; cv=none;
- b=lkeEbCXKLALMs1OBUxc/FwZNtO/eZM0uhCk6v+fC77AGsZWzMMMaozwSpB0Tr5TsksP4ljqnB0RMxRCuZHsNPdpfsHu8QBPTxUgiLcNxRNAWR8YpKJ1nI2NAwviltaXSK+jCSoFeaKKfkXscgO150n93pebTsWm+stYY1p25Da9L3Kfu0w0I+wnnI/8cDFsQqwEFmwi872mowghCqh3RLfoCtumn+/9AEnyOnKk+7LGjjULvNAFmzN9LkF0Ed84XVJflvqUXBsmNP6N1W1nuG39WJLEESQn+qHiT947gTJuIP17l0VNsbLai0mjX3ys8XJ5UFYtkMfCzF05KI9Ahaw==
+ b=jM3UPGchfu04kEpzndK7Hhpey12xTdk+lUco+nld24EP3ucrUJvh3Cd9qhzPx6At56Y4PsXU/gFL5T3U5Rv8RLH8MGaCDu4Rh0Y39gxXW8i/dDV4kbSvNQkiL2GMs1uEBn85TPBU5Una5j8fg78yKukOYcivhuS5LSTaJ1IlzsJ1dBA9MXIor6aDCtjLODMo4ERDyR5wY/bHv8LJsHzc+gkqroqpKeUscN2+f2qATyrs/hogWPxVCivc7XjO74D4jFWtI4DMN9Na1URLnfFITRk51xb8Y/iGoCg2VW/BZWdT6nqco/3FoVY5Cr2+8pBXSDfk6jt095E1/EfaMjOs4A==
 ARC-Message-Signature: i=1; a=rsa-sha256; c=relaxed/relaxed; d=microsoft.com;
  s=arcselector9901;
  h=From:Date:Subject:Message-ID:Content-Type:MIME-Version:X-MS-Exchange-SenderADCheck;
- bh=lrQOwRhHzpDid4jIAp0r++77+xFhRBZsyyn94PTA72o=;
- b=obb6xOpc7sILZ/5S15w1dhRF5iL/GpXUWrQf9/GKJUvwiu96rXORDjCRQEwW2dCQyocltrLXtLe7SRgkxD24E6h3JywmCCt7T++r1CkUSxKIFVnJqYatMy2tM/n2Z3M4s9ut1tOfXmFaNk+lseXZAjvM/tAF33uLv4W5jUJKO89/aGh5iUBxQtUm4Z9EyTrj2LtKiFLfA5yBbfmBw2XUYJT5d7yvM9/8AAQEf/xhq/N04sOp3ETP0ZHq1yEdTqtSTHBXVihacLX44z2Vp5lFPHhCFNOboA9yVFIjqdtHxdA/qCrf/vm27/iWVXWOLqX+Dz7dMW+8QOfNHwrOrtQLFw==
-ARC-Authentication-Results: i=1; mx.microsoft.com 1; spf=pass (sender ip is
- 149.199.60.83) smtp.rcpttodomain=vger.kernel.org smtp.mailfrom=xilinx.com;
- dmarc=bestguesspass action=none header.from=xilinx.com; dkim=none (message
- not signed); arc=none
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
- d=xilinx.onmicrosoft.com; s=selector2-xilinx-onmicrosoft-com;
+ bh=9YLCSH+fx+UuIDsHytbS1FIG25qFesTYvscAgzZOHNI=;
+ b=By7YyXdu9Ei4wPxEcBUt6A9NUNYeEp99Ouxs+M/4Pkl1BIjmmQ90/ZofiV5L6XWTOA3WGPjKn0Ie7DBIdxLkcRVKsqkFzWP8ClpvtybI2rIDU44Q7om+6QAb7oSM1moXnjJWejYuuZb3d/BTbgLE1YqSiI3KQdNoGZH0uTeZV3Y7cTitH3i8Ws+E8FHZlE03pFttK3sc+mjMooiiG+ofEQD3yv8Bo/VeSnuhdapwpoZInad0BnR2hHDdGmz8Dp8GqiAbGj2RMKCw3zlwxmUFXuZVbDBPm7Kgrh7AlzQVKM1zTX7hgQXbfoXiaE4hOJmioDCGqEt6Xj3gozKunhjnWA==
+ARC-Authentication-Results: i=1; mx.microsoft.com 1; spf=pass
+ smtp.mailfrom=nxp.com; dmarc=pass action=none header.from=nxp.com; dkim=pass
+ header.d=nxp.com; arc=none
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=nxp.com; s=selector2;
  h=From:Date:Subject:Message-ID:Content-Type:MIME-Version:X-MS-Exchange-SenderADCheck;
- bh=lrQOwRhHzpDid4jIAp0r++77+xFhRBZsyyn94PTA72o=;
- b=sAKiw2ThNKaL4wW9hyno97NEOVs8lBVWKdsls0tMvaNOAOJzL5WWOeWPRpdVsCVLk2HZqLsVhoKOW62CBak6tXAKiXrTTtyfcQjHthVXqMqGnduxoLzCY0iwwLqbSsaKc1oPusFGhEyuhyN7aGjarhYcG85sxkNae54Flj+i8KU=
-Received: from SN4PR0501CA0122.namprd05.prod.outlook.com
- (2603:10b6:803:42::39) by BL0PR02MB5506.namprd02.prod.outlook.com
- (2603:10b6:208:83::33) with Microsoft SMTP Server (version=TLS1_2,
- cipher=TLS_ECDHE_RSA_WITH_AES_256_GCM_SHA384) id 15.20.3391.19; Mon, 21 Sep
- 2020 08:10:00 +0000
-Received: from SN1NAM02FT014.eop-nam02.prod.protection.outlook.com
- (2603:10b6:803:42:cafe::a1) by SN4PR0501CA0122.outlook.office365.com
- (2603:10b6:803:42::39) with Microsoft SMTP Server (version=TLS1_2,
- cipher=TLS_ECDHE_RSA_WITH_AES_256_GCM_SHA384) id 15.20.3412.16 via Frontend
- Transport; Mon, 21 Sep 2020 08:10:00 +0000
-X-MS-Exchange-Authentication-Results: spf=pass (sender IP is 149.199.60.83)
- smtp.mailfrom=xilinx.com; vger.kernel.org; dkim=none (message not signed)
- header.d=none;vger.kernel.org; dmarc=bestguesspass action=none
- header.from=xilinx.com;
-Received-SPF: Pass (protection.outlook.com: domain of xilinx.com designates
- 149.199.60.83 as permitted sender) receiver=protection.outlook.com;
- client-ip=149.199.60.83; helo=xsj-pvapsmtpgw01;
-Received: from xsj-pvapsmtpgw01 (149.199.60.83) by
- SN1NAM02FT014.mail.protection.outlook.com (10.152.72.106) with Microsoft SMTP
- Server id 15.20.3391.15 via Frontend Transport; Mon, 21 Sep 2020 08:10:00
- +0000
-Received: from [149.199.38.66] (port=43639 helo=smtp.xilinx.com)
-        by xsj-pvapsmtpgw01 with esmtp (Exim 4.90)
-        (envelope-from <michal.simek@xilinx.com>)
-        id 1kKGtP-0005JQ-K8; Mon, 21 Sep 2020 01:09:47 -0700
-Received: from [127.0.0.1] (helo=localhost)
-        by smtp.xilinx.com with smtp (Exim 4.63)
-        (envelope-from <michal.simek@xilinx.com>)
-        id 1kKGtc-0005VE-EH; Mon, 21 Sep 2020 01:10:00 -0700
-Received: from [172.30.17.109]
-        by xsj-pvapsmtp01 with esmtp (Exim 4.63)
-        (envelope-from <michals@xilinx.com>)
-        id 1kKGtZ-0005TN-UA; Mon, 21 Sep 2020 01:09:58 -0700
-Subject: Re: [PATCH v2] arm64: dts: zynqmp-zcu100-revC: correct interrupt
- flags
-To:     Krzysztof Kozlowski <krzk@kernel.org>,
-        Rob Herring <robh+dt@kernel.org>,
-        Michal Simek <michal.simek@xilinx.com>,
-        Rajan Vaja <rajan.vaja@xilinx.com>,
-        Anurag Kumar Vulisha <anurag.kumar.vulisha@xilinx.com>,
-        devicetree@vger.kernel.org, linux-arm-kernel@lists.infradead.org,
-        linux-kernel@vger.kernel.org
-References: <20200917185052.5084-1-krzk@kernel.org>
-From:   Michal Simek <michal.simek@xilinx.com>
-Autocrypt: addr=michals@xilinx.com; keydata=
- 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
- 0Z1MQlmNcq2bhOMzTxuXX2NDzUZs4aqEyZQ=
-Message-ID: <8a9aabc4-d030-5750-2c63-8747b758cae5@xilinx.com>
-Date:   Mon, 21 Sep 2020 10:09:55 +0200
-User-Agent: Mozilla/5.0 (X11; Linux x86_64; rv:68.0) Gecko/20100101
- Thunderbird/68.12.0
-MIME-Version: 1.0
-In-Reply-To: <20200917185052.5084-1-krzk@kernel.org>
-Content-Type: text/plain; charset=utf-8
+ bh=9YLCSH+fx+UuIDsHytbS1FIG25qFesTYvscAgzZOHNI=;
+ b=aDVfxA4qMDigFqX9HwjGu5sOs9mAKplyTES8LhgpDYPY9Vb0dsffelCNkItFxDOS5ZfrjqrIL+9Aua8bGG2jxo7Fwbuglpvoq5wO3isPfKbKBMxlNSPJwHyiFJY7LKDCWfRRClpZfnlC6CfWxePm5BkIWnd2+XKKxUw7f6HQfgM=
+Received: from VE1PR04MB6638.eurprd04.prod.outlook.com (2603:10a6:803:119::15)
+ by VI1PR04MB6944.eurprd04.prod.outlook.com (2603:10a6:803:133::14) with
+ Microsoft SMTP Server (version=TLS1_2,
+ cipher=TLS_ECDHE_RSA_WITH_AES_256_GCM_SHA384) id 15.20.3391.14; Mon, 21 Sep
+ 2020 08:25:18 +0000
+Received: from VE1PR04MB6638.eurprd04.prod.outlook.com
+ ([fe80::ad7f:d95a:5413:a950]) by VE1PR04MB6638.eurprd04.prod.outlook.com
+ ([fe80::ad7f:d95a:5413:a950%3]) with mapi id 15.20.3391.017; Mon, 21 Sep 2020
+ 08:25:18 +0000
+From:   Robin Gong <yibin.gong@nxp.com>
+To:     Marco Felsch <m.felsch@pengutronix.de>
+CC:     "mark.rutland@arm.com" <mark.rutland@arm.com>,
+        "broonie@kernel.org" <broonie@kernel.org>,
+        "robh+dt@kernel.org" <robh+dt@kernel.org>,
+        "catalin.marinas@arm.com" <catalin.marinas@arm.com>,
+        "vkoul@kernel.org" <vkoul@kernel.org>,
+        "will.deacon@arm.com" <will.deacon@arm.com>,
+        "shawnguo@kernel.org" <shawnguo@kernel.org>,
+        "festevam@gmail.com" <festevam@gmail.com>,
+        "s.hauer@pengutronix.de" <s.hauer@pengutronix.de>,
+        "martin.fuzzey@flowbird.group" <martin.fuzzey@flowbird.group>,
+        "u.kleine-koenig@pengutronix.de" <u.kleine-koenig@pengutronix.de>,
+        "dan.j.williams@intel.com" <dan.j.williams@intel.com>,
+        "matthias.schiffer@ew.tq-group.com" 
+        <matthias.schiffer@ew.tq-group.com>,
+        "frieder.schrempf@kontron.de" <frieder.schrempf@kontron.de>,
+        "r.schwebel@pengutronix.de" <r.schwebel@pengutronix.de>,
+        "Benjamin.Bara@skidata.com" <Benjamin.Bara@skidata.com>,
+        "Richard.Leitner@skidata.com" <Richard.Leitner@skidata.com>,
+        "devicetree@vger.kernel.org" <devicetree@vger.kernel.org>,
+        "linux-kernel@vger.kernel.org" <linux-kernel@vger.kernel.org>,
+        "linux-spi@vger.kernel.org" <linux-spi@vger.kernel.org>,
+        dl-linux-imx <linux-imx@nxp.com>,
+        "kernel@pengutronix.de" <kernel@pengutronix.de>,
+        "dmaengine@vger.kernel.org" <dmaengine@vger.kernel.org>,
+        "linux-arm-kernel@lists.infradead.org" 
+        <linux-arm-kernel@lists.infradead.org>
+Subject: RE: [PATCH v13 00/12] add ecspi ERR009165 for i.mx6/7 soc family
+Thread-Topic: [PATCH v13 00/12] add ecspi ERR009165 for i.mx6/7 soc family
+Thread-Index: AQHWf2tkimfqSdG8kEGKEyob2MpDZaljtaAAgA8dHUA=
+Date:   Mon, 21 Sep 2020 08:25:16 +0000
+Message-ID: <VE1PR04MB66387B8FEBBC937CE0A1AC24893A0@VE1PR04MB6638.eurprd04.prod.outlook.com>
+References: <1598889805-30399-1-git-send-email-yibin.gong@nxp.com>
+ <20200911164018.6treqdmywzjhqe3a@pengutronix.de>
+In-Reply-To: <20200911164018.6treqdmywzjhqe3a@pengutronix.de>
+Accept-Language: en-US
 Content-Language: en-US
-Content-Transfer-Encoding: 7bit
-X-TM-AS-Product-Ver: IMSS-7.1.0.1224-8.2.0.1013-23620.005
-X-TM-AS-User-Approved-Sender: Yes;Yes
-X-EOPAttributedMessage: 0
-X-MS-Office365-Filtering-HT: Tenant
-X-MS-PublicTrafficType: Email
-X-MS-Office365-Filtering-Correlation-Id: bd52e776-55d2-4398-2a23-08d85e05bcc0
-X-MS-TrafficTypeDiagnostic: BL0PR02MB5506:
-X-Microsoft-Antispam-PRVS: <BL0PR02MB5506FB21E7B7A71B65C29585C63A0@BL0PR02MB5506.namprd02.prod.outlook.com>
-X-Auto-Response-Suppress: DR, RN, NRN, OOF, AutoReply
-X-MS-Oob-TLC-OOBClassifiers: OLM:8273;
-X-MS-Exchange-SenderADCheck: 1
-X-Microsoft-Antispam: BCL:0;
-X-Microsoft-Antispam-Message-Info: bKSpibbHY7MOTVeZe9NBJxFpX6uAtS3gPP/tef70483qDnTwilpLvfkkBirIB161nM90dePjjpFh3CsVFuJXgAqelCh2TUXUloAS9A9NE1xFSVvlcyQjvfTYdHsIJhzx7HlfycwvELtn9QTW9/O1va5+wf5M68IxeNgaAlJeQq8CJfFFu7yyfrwDVX3MzGx8/k3QBsqya7Wjf9XSxUKdqnF3yx3yj3BpJImUljN9boQZe2Ri5XCgTcPYsELAXNlespCQI4cwt5Z2ig0da9x0DbZ/NSNBp2yv4mcwtHehvXbrZqQj/x0684Ntbn9M0ocmU09IouoPwLs3YPS8c9AWV8cdgi/X0NHJR3Dh1/RvA19ej+vtSg88hRkqB3ukVxdFtJTqP+AY85xLs6SOX2LyflHTLnWTfUqguKJbx9LvXqr7aYo53f6nW7RyOIDxLc4jZj7NEpPKtc74ilZrBgRztlq7ScN2hgjBS1EO6uKXjthkhU/G8B0Cm/9mCxwZpXuw7gy17HgJLmX+OVtpF/Txug==
-X-Forefront-Antispam-Report: CIP:149.199.60.83;CTRY:US;LANG:en;SCL:1;SRV:;IPV:NLI;SFV:NSPM;H:xsj-pvapsmtpgw01;PTR:unknown-60-83.xilinx.com;CAT:NONE;SFS:(39850400004)(396003)(346002)(376002)(136003)(46966005)(8676002)(478600001)(2616005)(336012)(426003)(6666004)(70586007)(44832011)(70206006)(31696002)(36756003)(2906002)(8936002)(26005)(110136005)(81166007)(316002)(82740400003)(82310400003)(356005)(47076004)(186003)(31686004)(5660300002)(966005)(83380400001)(9786002)(21314003)(43740500002);DIR:OUT;SFP:1101;
-X-OriginatorOrg: xilinx.com
-X-MS-Exchange-CrossTenant-OriginalArrivalTime: 21 Sep 2020 08:10:00.7412
+X-MS-Has-Attach: 
+X-MS-TNEF-Correlator: 
+authentication-results: pengutronix.de; dkim=none (message not signed)
+ header.d=none;pengutronix.de; dmarc=none action=none header.from=nxp.com;
+x-originating-ip: [119.31.174.67]
+x-ms-publictraffictype: Email
+x-ms-office365-filtering-ht: Tenant
+x-ms-office365-filtering-correlation-id: cba8acb2-8acd-45f3-82fb-08d85e07df91
+x-ms-traffictypediagnostic: VI1PR04MB6944:
+x-ld-processed: 686ea1d3-bc2b-4c6f-a92c-d99c5c301635,ExtAddr
+x-ms-exchange-transport-forked: True
+x-microsoft-antispam-prvs: <VI1PR04MB6944D249F8827639BD2E9DAB893A0@VI1PR04MB6944.eurprd04.prod.outlook.com>
+x-ms-oob-tlc-oobclassifiers: OLM:1360;
+x-ms-exchange-senderadcheck: 1
+x-microsoft-antispam: BCL:0;
+x-microsoft-antispam-message-info: pRYfi+3WPpK1DK0C+AJgtvPvVOuISMvNZnBLGZYDL+TEqTcWIZl28d6+RD9yV4t+L3MficmjoevTrdEbx8wA91YZXIdAN2goukjawQyepnwRzc25ESl1ZVlkI18Fuum/WCWRiPCNGxqYgQK72JYUKkAaiufYdz7nyGX4S341wzDKCbZhKcx+BJDFwEyxFq46Qb2Loo9+AH/JLtv/scVF9wt1lQyord2X2FLhwn4YIEk0pCTzDbTwIEf3WyRZkBQTB9vCI3qEv9d9CJCzcp4gxt+PhhBRWNmch40Kexq1aWVovAEmNpem3loWOjyyFEMK0V84X3I9F3vU3wKpAcIEG5Z0p0Wc1CBuoE4/vkIOYH4=
+x-forefront-antispam-report: CIP:255.255.255.255;CTRY:;LANG:en;SCL:1;SRV:;IPV:NLI;SFV:NSPM;H:VE1PR04MB6638.eurprd04.prod.outlook.com;PTR:;CAT:NONE;SFS:(4636009)(39860400002)(366004)(136003)(346002)(396003)(376002)(7416002)(8676002)(54906003)(478600001)(7696005)(966005)(316002)(66476007)(66556008)(64756008)(86362001)(2906002)(76116006)(6916009)(53546011)(66446008)(6506007)(45080400002)(66946007)(55016002)(71200400001)(52536014)(9686003)(33656002)(26005)(5660300002)(8936002)(186003)(4326008)(83380400001);DIR:OUT;SFP:1101;
+x-ms-exchange-antispam-messagedata: pxVLiZiyHfouNUcYj7+a1Q4iulOnyCTIKGgxGtpw8/x5DmzDD5ojZ9xxwv0/07TXmHQ8M8Q5XYUC8wkNlIRdV7yvij5nw/YYJt9aYIGnidM3JY/3s0rg8bIHDcJzlnVC1Dh33CQLXpJbiJCewQ4R2mAm2Ra4RGCEnzoGnA+5P3wKodBaU8Ab2jAMCBSOnzv/LceHsdhXmbn//kijBz+JxhmCeC77SIX7yy5HXdM/Qb7yiyH+G4sipuxUf4qBbVGPaxc9jeJcy1F10gu3N1ew0hAqkJx6Jq3YALL00WdJ5x7qp/fV2hTFwccOSxuq4K6Pt7x5tzfzxlKDujl4wk3TbOeg/Yr5/qytkHj46ZBsSRZADBzrml6aVKrstuYqL9TK+Rq6qlxImyD2dBiv3spC87yyXs7glq0oR5uJx3de0WgbtUU2z5gC0DLiarRwvnbsYBecK15jgp/02H9Eq2QEvVL9pv+esV1Xb+tMYYf1dntT8Kj9UWssmBRMpAINOdK+khZNB4bhKTtJGXsRa53TtmZQNhBlpQJcgmrU+WOnLdhWPr3xxstabPEFuyyqNvmou5Yc4kCIFooq0Pg+ueKoaRaOZ3EYd2HEEqzsl+HjaTBY+D4IyHtX+ZFSxI2EavtpAwuH+OgjTwVHr5aefUKO9g==
+Content-Type: text/plain; charset="us-ascii"
+Content-Transfer-Encoding: quoted-printable
+MIME-Version: 1.0
+X-OriginatorOrg: nxp.com
+X-MS-Exchange-CrossTenant-AuthAs: Internal
+X-MS-Exchange-CrossTenant-AuthSource: VE1PR04MB6638.eurprd04.prod.outlook.com
+X-MS-Exchange-CrossTenant-Network-Message-Id: cba8acb2-8acd-45f3-82fb-08d85e07df91
+X-MS-Exchange-CrossTenant-originalarrivaltime: 21 Sep 2020 08:25:16.5621
  (UTC)
-X-MS-Exchange-CrossTenant-Network-Message-Id: bd52e776-55d2-4398-2a23-08d85e05bcc0
-X-MS-Exchange-CrossTenant-Id: 657af505-d5df-48d0-8300-c31994686c5c
-X-MS-Exchange-CrossTenant-OriginalAttributedTenantConnectingIp: TenantId=657af505-d5df-48d0-8300-c31994686c5c;Ip=[149.199.60.83];Helo=[xsj-pvapsmtpgw01]
-X-MS-Exchange-CrossTenant-AuthSource: SN1NAM02FT014.eop-nam02.prod.protection.outlook.com
-X-MS-Exchange-CrossTenant-AuthAs: Anonymous
-X-MS-Exchange-CrossTenant-FromEntityHeader: HybridOnPrem
-X-MS-Exchange-Transport-CrossTenantHeadersStamped: BL0PR02MB5506
+X-MS-Exchange-CrossTenant-fromentityheader: Hosted
+X-MS-Exchange-CrossTenant-id: 686ea1d3-bc2b-4c6f-a92c-d99c5c301635
+X-MS-Exchange-CrossTenant-mailboxtype: HOSTED
+X-MS-Exchange-CrossTenant-userprincipalname: yrooecPYo5u8wfdUnZ9g/kH4VAByXTj1mqqwA/yyWEEjmO2xxTweKcnQxfTeG25goXhUz+HEvKDQiwF6GZ4vWQ==
+X-MS-Exchange-Transport-CrossTenantHeadersStamped: VI1PR04MB6944
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
+On 2020/09/12 0:40 Marco Felsch <m.felsch@pengutronix.de> wrote:
+> Hi Robin,
+>=20
+> I took your patches and did a few test on the mainline available
+> fsl,imx6q-sabrelite. I used a vanilla linux version v5.9-rc1 for all my t=
+ests except
+> the needed SPI-NOR patches [1]. Following are my results:
+Marco, thanks for your test :)
+
+>=20
+> Testcase 1: "Using ROM-FW"
+> =3D=3D=3D
+> [OK] Playing Audio (SSI)
+> [OK] TX/RX bytes on a different UART (not the serial used for
+>      interaction)
+> [OK] Writing to the SPI-NOR
+> [OK] Doing all at the same time (once for TX and once for RX on UART)
+>=20
+> Notes:
+> - Your Patches adding a maybe noise message "sdma firmware not ready".
+>   Maybe we should consider about that if it should be a warning or a info=
+.
+That means the script you're using is ram script which may not be loaded as=
+ your
+case. That should be a warning I think, to avoid too much noise I have refi=
+ne it
+to dev_warn_once.
+
+>=20
+> - For spi-nor I did run this test:
+>   dd if=3D/dev/urandom of=3D/var/tmp/test1M bs=3D1M count=3D1 && \
+>   flashcp -v /var/tmp/test1M /dev/mtd2
+>=20
+>   and checked /proc/interrupts:
+>   25:    2107169          0          0          0       GPC  31
+> Level	2008000.spi
+>=20
+> Testcase 2: "Using new FW from linux-firmware"
+> =3D=3D=3D
+> [OK] Playing Audio (SSI)
+> [OK] TX/RX bytes on a different UART (not the serial used for
+>      interaction)
+> [OK] Writing to the SPI-NOR
+> [OK] Doing all at the same time (once for TX and once for RX on UART)
+>=20
+> Notes:
+> - For spi-nor I did run this test:
+>   dd if=3D/dev/urandom of=3D/var/tmp/test1M bs=3D1M count=3D1 && \
+>   flashcp -v /var/tmp/test1M /dev/mtd2
+>=20
+>   and checked /proc/interrupts:
+>   25:    2107993          0          0          0       GPC  31
+> Level	2008000.spi
+>=20
+>   I saw no SDMA interrupts during this testcase instead I saw only spi
+>   controller interrupts.
+That's not expected. But I have tried just now and show that SDMA interrupt
+caught by spi as belows. Are you sure sdma firmware loaded indeed?
+
+./spidev_test -D /dev/spidev0.0 -s 1200000 -b 8 -S 512 -I 1 -l 8 -S 512 -I
+spi mode: 0x24
+bits per word: 8
+max speed: 1200000 Hz (1200 kHz)
+total: tx 0.5KB, rx 0.5KB
+root@imx6qpdlsolox:~# cat /proc/interrupts | grep dma
+ 58:          2          0       GPC   2 Level     sdma=20
 
 
-On 17. 09. 20 20:50, Krzysztof Kozlowski wrote:
-> GPIO_ACTIVE_x flags are not correct in the context of interrupt flags.
-> These are simple defines so they could be used in DTS but they will not
-> have the same meaning:
-> 1. GPIO_ACTIVE_HIGH = 0 = IRQ_TYPE_NONE
-> 2. GPIO_ACTIVE_LOW  = 1 = IRQ_TYPE_EDGE_RISING
-> 
-> Correct the interrupt flags, assuming the author of the code wanted same
-> logical behavior behind the name "ACTIVE_xxx", this is:
->   ACTIVE_LOW => IRQ_TYPE_LEVEL_LOW
-> 
-> Signed-off-by: Krzysztof Kozlowski <krzk@kernel.org>
-> 
-> ---
-> 
-> Not tested on HW.
-> 
-> Changes since v1:
-> 1. Correct title
-> ---
->  arch/arm64/boot/dts/xilinx/zynqmp-zcu100-revC.dts | 2 +-
->  1 file changed, 1 insertion(+), 1 deletion(-)
-> 
-> diff --git a/arch/arm64/boot/dts/xilinx/zynqmp-zcu100-revC.dts b/arch/arm64/boot/dts/xilinx/zynqmp-zcu100-revC.dts
-> index d60110ad8367..c9460693f4e9 100644
-> --- a/arch/arm64/boot/dts/xilinx/zynqmp-zcu100-revC.dts
-> +++ b/arch/arm64/boot/dts/xilinx/zynqmp-zcu100-revC.dts
-> @@ -186,7 +186,7 @@
->  				compatible = "ti,tps65086";
->  				reg = <0x5e>;
->  				interrupt-parent = <&gpio>;
-> -				interrupts = <77 GPIO_ACTIVE_LOW>;
-> +				interrupts = <77 IRQ_TYPE_LEVEL_LOW>;
->  				#gpio-cells = <2>;
->  				gpio-controller;
->  			};
-> 
+>=20
+> - According linux-firmware you did a version bump from 3.5 to 4.5 but my
+>   dmesg shows:
+>   imx-sdma 20ec000.sdma: loaded firmware 3.5
+3.x is used for i.mx6 family while 4.x is used for i.mx7/8 since there are =
+some
+change on ROM which depended by RAM script. Not means version bump
+between 3.5/4.5. 3.5 is correct on i.mx6q.=20
 
-Applied to https://github.com/Xilinx/linux-xlnx/tree/zynqmp/dt.
-M
+>=20
+> SPI Benchmark:
+> =3D=3D=3D
+> flash_erase /dev/mtd2 0 0 && \
+> 	dd if=3D/dev/urandom of=3D/dev/mtd2 bs=3D1M count=3D1
+>=20
+> - without firmware (ROM-FW)
+>   1048576 bytes (1.0 MB, 1.0 MiB) copied, 51.9713 s, 20.2 kB/s
+>=20
+> - with firmware
+>   1048576 bytes (1.0 MB, 1.0 MiB) copied, 59.4174 s, 17.6 kB/s
+>=20
+> Conclusion:
+> =3D=3D=3D
+> It seems that we don't have any performance boost with your patchset inst=
+ead
+> we are increasing the complexity and the interrupts...
+Yes, that's expected. What ERR009165 fix is data correct on spi bus though
+that bring performance drop in dma mode, because the workaround just let
+sdma do similar thing as cpu (PIO), while cpu running faster than sdma. If =
+you
+care much spi performance, PIO is better way. If care cpu loading, dma way
+is better.=20
+
+>=20
+> Pls let me know if I did something wrong during testing or if my test set=
+up was
+> wrong. Note: the /dev/mtd2 isn't mainlined yet but if you use barebox you=
+ only
+> have to add:
+> 8<---------------------------------------------------------------------
+> diff --git a/arch/arm/dts/imx6qdl-sabrelite.dtsi
+> b/arch/arm/dts/imx6qdl-sabrelite.dtsi
+> index ec3d364bde..256dd90a0f 100644
+> --- a/arch/arm/dts/imx6qdl-sabrelite.dtsi
+> +++ b/arch/arm/dts/imx6qdl-sabrelite.dtsi
+> @@ -38,6 +38,11 @@
+>  		label =3D "barebox-environment";
+>  		reg =3D <0xe0000 0x20000>;
+>  	};
+> +
+> +	parition@100000 {
+> +		label =3D "user-partition";
+> +		reg =3D <0x100000 0x100000>;
+> +	};
+>  };
+>=20
+>  &ocotp {
+> 8<---------------------------------------------------------------------
+> to the barebox device tree.
+>=20
+> [1]
+> https://eur01.safelinks.protection.outlook.com/?url=3Dhttp%3A%2F%2Flists.=
+infra
+> dead.org%2Fpipermail%2Flinux-mtd%2F2020-September%2F082099.html&am
+> p;data=3D02%7C01%7Cyibin.gong%40nxp.com%7C324d4b5c2f2344883a3108d85
+> 67166f9%7C686ea1d3bc2b4c6fa92cd99c5c301635%7C0%7C1%7C63735439234
+> 6471210&amp;sdata=3Dru8fKz6wpDhzYeaHIT28T0OybHlCFHJ41N1lJYuqKgE%3D&
+> amp;reserved=3D0
+>=20
+> Regards,
+>   Marco
