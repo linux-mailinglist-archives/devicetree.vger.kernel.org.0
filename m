@@ -2,75 +2,81 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from vger.kernel.org (vger.kernel.org [23.128.96.18])
-	by mail.lfdr.de (Postfix) with ESMTP id CCBA327311E
-	for <lists+devicetree@lfdr.de>; Mon, 21 Sep 2020 19:49:42 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTP id F0A35273172
+	for <lists+devicetree@lfdr.de>; Mon, 21 Sep 2020 20:06:17 +0200 (CEST)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S1728259AbgIURsc (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Mon, 21 Sep 2020 13:48:32 -0400
-Received: from mail.kernel.org ([198.145.29.99]:38548 "EHLO mail.kernel.org"
+        id S1726696AbgIUSGO (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Mon, 21 Sep 2020 14:06:14 -0400
+Received: from mail.kernel.org ([198.145.29.99]:55974 "EHLO mail.kernel.org"
         rhost-flags-OK-OK-OK-OK) by vger.kernel.org with ESMTP
-        id S1726537AbgIURsa (ORCPT <rfc822;devicetree@vger.kernel.org>);
-        Mon, 21 Sep 2020 13:48:30 -0400
-Received: from localhost.localdomain (unknown [194.230.155.191])
-        (using TLSv1.2 with cipher ECDHE-RSA-AES128-GCM-SHA256 (128/128 bits))
+        id S1726436AbgIUSGO (ORCPT <rfc822;devicetree@vger.kernel.org>);
+        Mon, 21 Sep 2020 14:06:14 -0400
+Received: from archlinux (cpc149474-cmbg20-2-0-cust94.5-4.cable.virginm.net [82.4.196.95])
+        (using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
         (No client certificate requested)
-        by mail.kernel.org (Postfix) with ESMTPSA id 7828B216C4;
-        Mon, 21 Sep 2020 17:48:27 +0000 (UTC)
+        by mail.kernel.org (Postfix) with ESMTPSA id 491E5206FB;
+        Mon, 21 Sep 2020 18:06:12 +0000 (UTC)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=kernel.org;
-        s=default; t=1600710510;
-        bh=5HbWkTPMjTEjcRZk0/muHA9531uVnOzMMAxeJwJifjo=;
-        h=From:To:Cc:Subject:Date:From;
-        b=DNcxGJEyXWr5Mm8SeWt4U95UvNq1O3+tIgBWdAbYwXdKu3rXJLeFlGnhuo1PtgyH9
-         oGpP3vUT82cjnzA7Lxm4AR6cvFngN1lqsjxQ7Y6HUcld3PSM+4QCMikAEylTLB8HPA
-         rquwcWXzyNCNlIO1YRxpdgbCLP6BNLdfYwtIraV8=
-From:   Krzysztof Kozlowski <krzk@kernel.org>
-To:     Rob Herring <robh+dt@kernel.org>, Kukjin Kim <kgene@kernel.org>,
-        Krzysztof Kozlowski <krzk@kernel.org>,
-        devicetree@vger.kernel.org, linux-arm-kernel@lists.infradead.org,
-        linux-samsung-soc@vger.kernel.org, linux-kernel@vger.kernel.org
-Cc:     Marek Szyprowski <m.szyprowski@samsung.com>
-Subject: [PATCH] ARM: dts: exynos: revert "add input clock to CMU in Exynos4412 Odroid"
-Date:   Mon, 21 Sep 2020 19:48:18 +0200
-Message-Id: <20200921174818.15525-1-krzk@kernel.org>
-X-Mailer: git-send-email 2.17.1
+        s=default; t=1600711573;
+        bh=rHoWzRKW+POsO0WNbLWHZo+8S+cikA0E8G/DaBPUXc4=;
+        h=Date:From:To:Cc:Subject:In-Reply-To:References:From;
+        b=geVr7+dx+athusSJXMiQoBGWaqZm+AGDKlkjtcQcKS2uRwaV4mNmy1aNWY+Jx4OeG
+         H/UbPFozNOxLFEqF/zNVKQjFZLvg/mT3tfrWui9QDa1dSCloc7Ni1LRlKa4xcaOkJu
+         2XCucuBntp1kgT5V7Vu9vCMHgO1yfW6CbYhTAugU=
+Date:   Mon, 21 Sep 2020 19:06:07 +0100
+From:   Jonathan Cameron <jic23@kernel.org>
+To:     Krzysztof Kozlowski <krzk@kernel.org>
+Cc:     Hartmut Knaack <knaack.h@gmx.de>,
+        Lars-Peter Clausen <lars@metafoo.de>,
+        Peter Meerwald-Stadler <pmeerw@pmeerw.net>,
+        Rob Herring <robh+dt@kernel.org>, linux-iio@vger.kernel.org,
+        devicetree@vger.kernel.org, linux-kernel@vger.kernel.org
+Subject: Re: [PATCH] dt-bindings: iio: vishay,vcnl4000: add interrupts
+ property
+Message-ID: <20200921190607.5f98f133@archlinux>
+In-Reply-To: <20200920203845.17758-1-krzk@kernel.org>
+References: <20200920203845.17758-1-krzk@kernel.org>
+X-Mailer: Claws Mail 3.17.6 (GTK+ 2.24.32; x86_64-pc-linux-gnu)
+MIME-Version: 1.0
+Content-Type: text/plain; charset=US-ASCII
+Content-Transfer-Encoding: 7bit
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-This reverts commit eaf2d2f6895d676dda6c95a652b58594f2887720.
+On Sun, 20 Sep 2020 22:38:45 +0200
+Krzysztof Kozlowski <krzk@kernel.org> wrote:
 
-The commit eaf2d2f6895d ("ARM: dts: exynos: add input clock to CMU in
-Exynos4412 Odroid") breaks probing of usb3503 USB hub on Odroid U3.
+> The dtschema should list all properties, including the common ones like
+> interrupts.  This fixes dtbs_check warnings like:
+> 
+>   arch/arm64/boot/dts/freescale/imx8mq-librem5-r3.dt.yaml:
+>     prox@60: 'interrupt-parent', 'interrupts' do not match any of the regexes: 'pinctrl-[0-9]+'
+> 
+> Signed-off-by: Krzysztof Kozlowski <krzk@kernel.org>
+Trivial enough that I'll just sneak this one in before I do a pull request.
 
-It changes the order of clock drivers probe: the clkout (Exynos PMU)
-driver is probed before the main clk-exynos4 driver.  The clkout driver
-on Exynos4412 depends on clk-exynos4 but it does not support deferred
-probe, therefore this dependency and changed probe order causes probe
-failure.
+thanks,
 
-The usb3503 USB hub on Odroid U3 on the other hand requires clkout
-clock.  This can be seen in logs:
+Jonathan
 
-    [    5.007442] usb3503 0-0008: unable to request refclk (-517)
-
-Reported-by: Marek Szyprowski <m.szyprowski@samsung.com>
-Signed-off-by: Krzysztof Kozlowski <krzk@kernel.org>
----
- arch/arm/boot/dts/exynos4412-odroid-common.dtsi | 1 -
- 1 file changed, 1 deletion(-)
-
-diff --git a/arch/arm/boot/dts/exynos4412-odroid-common.dtsi b/arch/arm/boot/dts/exynos4412-odroid-common.dtsi
-index ab291cec650a..2983e91bc7dd 100644
---- a/arch/arm/boot/dts/exynos4412-odroid-common.dtsi
-+++ b/arch/arm/boot/dts/exynos4412-odroid-common.dtsi
-@@ -122,7 +122,6 @@
- };
- 
- &clock {
--	clocks = <&clock CLK_XUSBXTI>;
- 	assigned-clocks = <&clock CLK_FOUT_EPLL>;
- 	assigned-clock-rates = <45158401>;
- };
--- 
-2.17.1
+> ---
+>  .../devicetree/bindings/iio/light/vishay,vcnl4000.yaml        | 4 ++++
+>  1 file changed, 4 insertions(+)
+> 
+> diff --git a/Documentation/devicetree/bindings/iio/light/vishay,vcnl4000.yaml b/Documentation/devicetree/bindings/iio/light/vishay,vcnl4000.yaml
+> index 58887a4f9c15..4d1a225e8868 100644
+> --- a/Documentation/devicetree/bindings/iio/light/vishay,vcnl4000.yaml
+> +++ b/Documentation/devicetree/bindings/iio/light/vishay,vcnl4000.yaml
+> @@ -24,6 +24,10 @@ properties:
+>        - vishay,vcnl4020
+>        - vishay,vcnl4040
+>        - vishay,vcnl4200
+> +
+> +  interrupts:
+> +    maxItems: 1
+> +
+>    reg:
+>      maxItems: 1
+>  
 
