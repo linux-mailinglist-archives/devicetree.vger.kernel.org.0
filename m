@@ -2,101 +2,133 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from vger.kernel.org (vger.kernel.org [23.128.96.18])
-	by mail.lfdr.de (Postfix) with ESMTP id 274BD271BD2
-	for <lists+devicetree@lfdr.de>; Mon, 21 Sep 2020 09:30:54 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTP id DFA79271C3E
+	for <lists+devicetree@lfdr.de>; Mon, 21 Sep 2020 09:46:51 +0200 (CEST)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S1726424AbgIUHaw (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Mon, 21 Sep 2020 03:30:52 -0400
-Received: from mail-oi1-f195.google.com ([209.85.167.195]:32977 "EHLO
-        mail-oi1-f195.google.com" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S1726211AbgIUHaw (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Mon, 21 Sep 2020 03:30:52 -0400
-Received: by mail-oi1-f195.google.com with SMTP id m7so15933045oie.0;
-        Mon, 21 Sep 2020 00:30:51 -0700 (PDT)
+        id S1726343AbgIUHqs (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Mon, 21 Sep 2020 03:46:48 -0400
+Received: from lindbergh.monkeyblade.net ([23.128.96.19]:35238 "EHLO
+        lindbergh.monkeyblade.net" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
+        with ESMTP id S1726347AbgIUHqo (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Mon, 21 Sep 2020 03:46:44 -0400
+Received: from mail-pf1-x441.google.com (mail-pf1-x441.google.com [IPv6:2607:f8b0:4864:20::441])
+        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id C2CB3C061755
+        for <devicetree@vger.kernel.org>; Mon, 21 Sep 2020 00:46:43 -0700 (PDT)
+Received: by mail-pf1-x441.google.com with SMTP id l126so8549942pfd.5
+        for <devicetree@vger.kernel.org>; Mon, 21 Sep 2020 00:46:43 -0700 (PDT)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+        d=benyossef-com.20150623.gappssmtp.com; s=20150623;
+        h=mime-version:references:in-reply-to:from:date:message-id:subject:to
+         :cc:content-transfer-encoding;
+        bh=KEQZ+0+MjbwK1ElZms1Qgb4W3im9WPY9mb97cPZoGK0=;
+        b=uQbRytZokTI9uAROSbK3E3kPhHy0k8+bTpZNDdwFsDvSZV9ClRnTaGzPeJl+3iL46B
+         B/W1PYvR4awrXTO9WDeUI88a4/UFNeFxMrmqMDYXOB+ZSF/dCv2jPWqMZnfgtYmwsgVA
+         tiYAfKvnau0HbFLtG4zTFIPFGIDhMDYYxIVkDn9TFoYUJAlUrA+ThMqO47z/LPDN8XwY
+         l/iueAjhsKKKTrKAnXkxA1Yd+11IsSnnNywcrSMMUQzhvsXpBteBJVvuSax7CrXyep0j
+         enckp5UJM3mwjWfsZyMJo1NBUXfDvdBDoGt4/OwUT0OGM6UtAQcnMTDN5habb2LtNXdZ
+         LbgA==
 X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
         d=1e100.net; s=20161025;
         h=x-gm-message-state:mime-version:references:in-reply-to:from:date
-         :message-id:subject:to:cc;
-        bh=bvT46MVLA1wc77+QBaxqpfVEdVrcHoplawt2ilNveyU=;
-        b=A2oe3ANEBZxhfC77GDz2mQA+UsPCo3vJh70NhyUlSkvk1ByTJ/pHVoKHI6l9LFqeSE
-         226GU2D0N/qw35k5o1NqLLe7nPo0sq5c+ytPwcYjhEyeVP9BWihv119ayxiSwhyvAYwV
-         vPuAt2NcDMNRKGdtCmSaFCcRThQTvFv+wCTBQXYF6tzoEHkqvfUt2uaK+1615I307EAw
-         bxHRMwTCJnSZZDmIKQiCTIVJvJnhOR1V3/LY8eADQI5uIf0Pg9gra6gDCuaj27xjgyKY
-         BvbYqvs10TA7qM28MboExUslHZ6L30JV1xRJy9M4zBEDc2jgOv08uRk5qIayN9TH+mNN
-         ca0w==
-X-Gm-Message-State: AOAM531jLjrhEk5N8kaJ9hzZG5qVEVtLmy83vu6FFqD0397B2wstTAz4
-        yozaNZ0efL+frQiXhidk1hdj/0vkSA46Rp0E2QM=
-X-Google-Smtp-Source: ABdhPJz9xmN9krNVkmFntK1fJCP4SVdiOQdSlUn0glZjdNUu0BDHNFHEgQW2lXttV0KKLloQqhm28dH1yGE42S/hfkE=
-X-Received: by 2002:aca:4441:: with SMTP id r62mr15852660oia.153.1600673451338;
- Mon, 21 Sep 2020 00:30:51 -0700 (PDT)
+         :message-id:subject:to:cc:content-transfer-encoding;
+        bh=KEQZ+0+MjbwK1ElZms1Qgb4W3im9WPY9mb97cPZoGK0=;
+        b=bIN+Mb7GuQSbmSD2nlKepcMK3YbefMH+jiSCpEcbd90FrH21mGwq0iyS2qXo/+H1Ay
+         GLyxDQqq8LcWhLTa7CH2Wp9kMbmpfmkxJMbgzDuQ1clLDoXbbSTs8ARiTxXVXpqRTkJw
+         Y4L6R9JT9mZl8qdeNfThFBJgLUmRW4ZCspyrM/UX2UEw0ddAB5PBYO0tc85Wp18zVczf
+         wnUXNJSJ+hfsPEW1RHpbjWpQ5JoKpKRlhg7wmbT8i5cwsEj0roWEqSfynVvD7yUxBTtP
+         arjLewE0G6aN8KSyB8UA3ysPl3RLYFhRpjrVmKKGvnlFZwsssSiEFl1gXyafqJcIgQ7q
+         +0kA==
+X-Gm-Message-State: AOAM532hwQzOjfrecTSzblYE7g2/+6i+NtcgZn3ALsmRYKFwktpBWlXt
+        8CVI3nu3I0K/2BkEQRmGgsiB7vdk/6TGq0U8bzxtXw==
+X-Google-Smtp-Source: ABdhPJyQpA8ZjwSRlnLg26q0TprnPeXcNQVwncIaeBqK+eZsI4FvBtCOdSwD5EFWTY+UqkN7XkuLHtDjs+xndIYZS4M=
+X-Received: by 2002:a17:902:758b:b029:d2:29fc:c841 with SMTP id
+ j11-20020a170902758bb02900d229fcc841mr2054484pll.39.1600674403207; Mon, 21
+ Sep 2020 00:46:43 -0700 (PDT)
 MIME-Version: 1.0
-References: <1594919915-5225-1-git-send-email-prabhakar.mahadev-lad.rj@bp.renesas.com>
- <1594919915-5225-8-git-send-email-prabhakar.mahadev-lad.rj@bp.renesas.com>
- <CA+V-a8vJ2n3KEL8P+XmVob2zjoWaX+s4a6c1TV_WoPFkwdkZmA@mail.gmail.com> <20200920140824.GA2915460@kroah.com>
-In-Reply-To: <20200920140824.GA2915460@kroah.com>
-From:   Geert Uytterhoeven <geert@linux-m68k.org>
-Date:   Mon, 21 Sep 2020 09:30:39 +0200
-Message-ID: <CAMuHMdUyXMfZcVKkqaZHJ8tJf-3Kotqg+S2NHMZT0VFO0ZJJww@mail.gmail.com>
-Subject: Re: [PATCH 07/20] dt-bindings: usb: renesas,usb3-peri: Document
- r8a774e1 support
-To:     Greg Kroah-Hartman <gregkh@linuxfoundation.org>
-Cc:     "Lad, Prabhakar" <prabhakar.csengg@gmail.com>,
-        Lad Prabhakar <prabhakar.mahadev-lad.rj@bp.renesas.com>,
-        Jens Axboe <axboe@kernel.dk>, Rob Herring <robh+dt@kernel.org>,
-        Vinod Koul <vkoul@kernel.org>,
-        Mauro Carvalho Chehab <mchehab@kernel.org>,
-        Marek Vasut <marek.vasut+renesas@gmail.com>,
-        Yoshihiro Shimoda <yoshihiro.shimoda.uh@renesas.com>,
-        Mark Brown <broonie@kernel.org>,
-        Niklas <niklas.soderlund@ragnatech.se>,
-        Bjorn Helgaas <bhelgaas@google.com>,
-        Kishon Vijay Abraham I <kishon@ti.com>,
-        Liam Girdwood <lgirdwood@gmail.com>,
-        Magnus Damm <magnus.damm@gmail.com>,
+References: <20200916071950.1493-3-gilad@benyossef.com> <202009162154.fxQ0Z6wT%lkp@intel.com>
+ <CAOtvUMdv9QNVdaU7N6wJVq27Asyrckuu9bf15fO=+oZUh5iKOg@mail.gmail.com> <CAKwvOdmW+n_g4C_pXnF+8wh2q0gZZyXAfaYR9cVNm3p1QeJ-xA@mail.gmail.com>
+In-Reply-To: <CAKwvOdmW+n_g4C_pXnF+8wh2q0gZZyXAfaYR9cVNm3p1QeJ-xA@mail.gmail.com>
+From:   Gilad Ben-Yossef <gilad@benyossef.com>
+Date:   Mon, 21 Sep 2020 10:46:32 +0300
+Message-ID: <CAOtvUMe1zj+sGhZfvjYD=PciWDby9uKvH70i01FrfVVR6cC_Tg@mail.gmail.com>
+Subject: Re: [PATCH 2/2] crypto: ccree - add custom cache params from DT file
+To:     Nick Desaulniers <ndesaulniers@google.com>
+Cc:     kernel test robot <lkp@intel.com>,
+        Herbert Xu <herbert@gondor.apana.org.au>,
+        "David S. Miller" <davem@davemloft.net>,
+        Rob Herring <robh+dt@kernel.org>, kbuild-all@lists.01.org,
+        clang-built-linux <clang-built-linux@googlegroups.com>,
+        Network Development <netdev@vger.kernel.org>,
+        Ofir Drang <ofir.drang@arm.com>,
+        Linux Crypto Mailing List <linux-crypto@vger.kernel.org>,
         "open list:OPEN FIRMWARE AND FLATTENED DEVICE TREE BINDINGS" 
-        <devicetree@vger.kernel.org>, linux-ide@vger.kernel.org,
-        dmaengine <dmaengine@vger.kernel.org>,
-        Linux I2C <linux-i2c@vger.kernel.org>,
-        LKML <linux-kernel@vger.kernel.org>,
-        linux-media <linux-media@vger.kernel.org>,
-        linux-pci <linux-pci@vger.kernel.org>,
-        alsa-devel <alsa-devel@alsa-project.org>,
-        Linux-Renesas <linux-renesas-soc@vger.kernel.org>,
-        USB list <linux-usb@vger.kernel.org>
+        <devicetree@vger.kernel.org>,
+        Linux kernel mailing list <linux-kernel@vger.kernel.org>,
+        Sami Tolvanen <samitolvanen@google.com>,
+        Alex Elder <elder@linaro.org>, Jakub Kicinski <kuba@kernel.org>
 Content-Type: text/plain; charset="UTF-8"
+Content-Transfer-Encoding: quoted-printable
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-Hi Greg,
+Hi,
 
-On Sun, Sep 20, 2020 at 4:08 PM Greg Kroah-Hartman
-<gregkh@linuxfoundation.org> wrote:
-> On Sat, Sep 19, 2020 at 11:50:07AM +0100, Lad, Prabhakar wrote:
-> > On Thu, Jul 16, 2020 at 6:19 PM Lad Prabhakar
-> > <prabhakar.mahadev-lad.rj@bp.renesas.com> wrote:
-> > >
-> > > Document RZ/G2H (R8A774E1) SoC bindings.
-> > >
-> > > Signed-off-by: Lad Prabhakar <prabhakar.mahadev-lad.rj@bp.renesas.com>
-> > > Reviewed-by: Marian-Cristian Rotariu <marian-cristian.rotariu.rb@bp.renesas.com>
-> > > ---
-> > >  Documentation/devicetree/bindings/usb/renesas,usb3-peri.yaml | 1 +
-> > >  1 file changed, 1 insertion(+)
-> > >
-> > Could you please pick this patch.
+On Fri, Sep 18, 2020 at 10:39 PM Nick Desaulniers
+<ndesaulniers@google.com> wrote:
 >
-> Don't DT patches have to be acked by a DT maintainer first?
+> On Thu, Sep 17, 2020 at 12:20 AM Gilad Ben-Yossef <gilad@benyossef.com> w=
+rote:
+> >
+...
+> >
+> > I am unable to understand this warning. It looks like it is
+> > complaining about a FIELD_GET sanity check that is always false, which
+> > makes sense since we're using a constant.
+> >
+> > Anyone can enlighten me if I've missed something?
+>
+> Looked at some of this code recently.  I think it may have an issue
+> for masks where sizeof(mask) < sizeof(unsigned long long).
+>
+> In your code, via 0day bot:
+>
+>    107          u32 cache_params, ace_const, val, mask;
+> ...
+> > 120          cache_params |=3D FIELD_PREP(mask, val);
+>
+> then in include/linux/bitfield.h, we have:
+>
+>  92 #define FIELD_PREP(_mask, _val)           \
+>  93   ({                \
+>  94     __BF_FIELD_CHECK(_mask, 0ULL, _val, "FIELD_PREP: ");  \
+>
+>  44 #define __BF_FIELD_CHECK(_mask, _reg, _val, _pfx)     \
+> ...
+>  52     BUILD_BUG_ON_MSG((_mask) > (typeof(_reg))~0ull,   \
+>  53          _pfx "type of reg too small for mask"); \
+>
+> so the 0ULL in FIELD_PREP is important.  In __BF_FIELD_CHECK, the
+> typeof(_reg) is unsigned long long (because 0ULL was passed).  So we
+> have a comparison between a u32 and a u64; indeed any u32 can never be
+> greater than a u64 that we know has the value of ULLONG_MAX.
+>
+> I did send a series splitting these up, I wonder if they'd help here:
+> https://lore.kernel.org/lkml/20200708230402.1644819-3-ndesaulniers@google=
+.com/
+> --
 
-https://lore.kernel.org/r/20200721033508.GA3504365@bogus
+Thanks!
 
-Gr{oetje,eeting}s,
+This indeed explains this. It seems there is nothing for me to do
+about it in the driver code though, as it seems the issue is in the
+macro and you have already posted a fix for it.
 
-                        Geert
+Thanks again,
+Gilad
 
--- 
-Geert Uytterhoeven -- There's lots of Linux beyond ia32 -- geert@linux-m68k.org
+--=20
+Gilad Ben-Yossef
+Chief Coffee Drinker
 
-In personal conversations with technical people, I call myself a hacker. But
-when I'm talking to journalists I just say "programmer" or something like that.
-                                -- Linus Torvalds
+values of =CE=B2 will give rise to dom!
