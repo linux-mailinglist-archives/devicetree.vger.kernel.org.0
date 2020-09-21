@@ -2,112 +2,92 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from vger.kernel.org (vger.kernel.org [23.128.96.18])
-	by mail.lfdr.de (Postfix) with ESMTP id 841892727E8
-	for <lists+devicetree@lfdr.de>; Mon, 21 Sep 2020 16:40:17 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTP id 53916272864
+	for <lists+devicetree@lfdr.de>; Mon, 21 Sep 2020 16:43:58 +0200 (CEST)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S1727337AbgIUOkM (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Mon, 21 Sep 2020 10:40:12 -0400
-Received: from lelv0143.ext.ti.com ([198.47.23.248]:44444 "EHLO
-        lelv0143.ext.ti.com" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S1726341AbgIUOkL (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Mon, 21 Sep 2020 10:40:11 -0400
-Received: from lelv0266.itg.ti.com ([10.180.67.225])
-        by lelv0143.ext.ti.com (8.15.2/8.15.2) with ESMTP id 08LEe3NE069530;
-        Mon, 21 Sep 2020 09:40:03 -0500
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=ti.com;
-        s=ti-com-17Q1; t=1600699203;
-        bh=LdKPelY2NAsy6mMNLZb94KT1HddwEqc/Y6pgqYqB+ds=;
-        h=From:To:CC:Subject:Date:In-Reply-To:References;
-        b=DqcH0yd/gh2N1ckw3257kH+aJDPYg/5v6+NAcWzZU64GHCblbKte0ODPDx1+ukmDx
-         joToqFxlcp6DqN/cH6sXWjfaYJ8HR8zU9oUfqjxMEQGBMhPPrnYij4tGI+y+On8eza
-         mvpTV2RR7dvncYhR0pEHrhn4FNHypBg1gQJ3QoI4=
-Received: from DLEE112.ent.ti.com (dlee112.ent.ti.com [157.170.170.23])
-        by lelv0266.itg.ti.com (8.15.2/8.15.2) with ESMTPS id 08LEe36T093488
-        (version=TLSv1.2 cipher=AES256-GCM-SHA384 bits=256 verify=FAIL);
-        Mon, 21 Sep 2020 09:40:03 -0500
-Received: from DLEE103.ent.ti.com (157.170.170.33) by DLEE112.ent.ti.com
- (157.170.170.23) with Microsoft SMTP Server (version=TLS1_2,
- cipher=TLS_ECDHE_RSA_WITH_AES_128_CBC_SHA256_P256) id 15.1.1979.3; Mon, 21
- Sep 2020 09:40:02 -0500
-Received: from fllv0040.itg.ti.com (10.64.41.20) by DLEE103.ent.ti.com
- (157.170.170.33) with Microsoft SMTP Server (version=TLS1_2,
- cipher=TLS_ECDHE_RSA_WITH_AES_128_CBC_SHA256_P256) id 15.1.1979.3 via
- Frontend Transport; Mon, 21 Sep 2020 09:40:02 -0500
-Received: from lta0400828a.ti.com (ileax41-snat.itg.ti.com [10.172.224.153])
-        by fllv0040.itg.ti.com (8.15.2/8.15.2) with ESMTP id 08LEdivr065452;
-        Mon, 21 Sep 2020 09:40:00 -0500
-From:   Roger Quadros <rogerq@ti.com>
-To:     <peda@axentia.se>, <nm@ti.com>
-CC:     <t-kristo@ti.com>, <nsekhar@ti.com>, <kishon@ti.com>,
-        <robh+dt@kernel.org>, <devicetree@vger.kernel.org>,
-        <linux-arm-kernel@lists.infradead.org>,
-        <linux-kernel@vger.kernel.org>, Roger Quadros <rogerq@ti.com>
-Subject: [PATCH v4 6/6] arm64: dts: ti: k3-j7200-common-proc-board: Add USB support
-Date:   Mon, 21 Sep 2020 17:39:41 +0300
-Message-ID: <20200921143941.13905-7-rogerq@ti.com>
-X-Mailer: git-send-email 2.17.1
-In-Reply-To: <20200921143941.13905-1-rogerq@ti.com>
-References: <20200921143941.13905-1-rogerq@ti.com>
+        id S1728195AbgIUOm4 (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Mon, 21 Sep 2020 10:42:56 -0400
+Received: from mail.kernel.org ([198.145.29.99]:49800 "EHLO mail.kernel.org"
+        rhost-flags-OK-OK-OK-OK) by vger.kernel.org with ESMTP
+        id S1727845AbgIUOk5 (ORCPT <rfc822;devicetree@vger.kernel.org>);
+        Mon, 21 Sep 2020 10:40:57 -0400
+Received: from sasha-vm.mshome.net (c-73-47-72-35.hsd1.nh.comcast.net [73.47.72.35])
+        (using TLSv1.2 with cipher ECDHE-RSA-AES128-GCM-SHA256 (128/128 bits))
+        (No client certificate requested)
+        by mail.kernel.org (Postfix) with ESMTPSA id CDA5423787;
+        Mon, 21 Sep 2020 14:40:52 +0000 (UTC)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=kernel.org;
+        s=default; t=1600699253;
+        bh=FmF/pbUJKzdSITSRYqcFNxLSTZy8+HviO1AYZWdz6Y4=;
+        h=From:To:Cc:Subject:Date:In-Reply-To:References:From;
+        b=Np9xI6HEtyAPHhyAQjaKte+AqInv4ee4nuCQ3q8acZYja8DHC9y8a8nPq2SjmB4yn
+         0n3H1bYpLkbtzTZr9GGx2tvN33SI/ccW8ykXZiQyHWm28rk8IoVPql5IgG4/AjTzyW
+         HP+4XcIm9ToBfSbRfkltX0AWXDnL5rNVF+ac5YRM=
+From:   Sasha Levin <sashal@kernel.org>
+To:     linux-kernel@vger.kernel.org, stable@vger.kernel.org
+Cc:     Damien Le Moal <damien.lemoal@wdc.com>,
+        Palmer Dabbelt <palmerdabbelt@google.com>,
+        Sasha Levin <sashal@kernel.org>, devicetree@vger.kernel.org,
+        linux-riscv@lists.infradead.org
+Subject: [PATCH AUTOSEL 5.8 20/20] riscv: Fix Kendryte K210 device tree
+Date:   Mon, 21 Sep 2020 10:40:27 -0400
+Message-Id: <20200921144027.2135390-20-sashal@kernel.org>
+X-Mailer: git-send-email 2.25.1
+In-Reply-To: <20200921144027.2135390-1-sashal@kernel.org>
+References: <20200921144027.2135390-1-sashal@kernel.org>
 MIME-Version: 1.0
-Content-Type: text/plain
-X-EXCLAIMER-MD-CONFIG: e1e8a2fd-e40a-4ac6-ac9b-f7e9cc9ee180
+X-stable: review
+X-Patchwork-Hint: Ignore
+Content-Transfer-Encoding: 8bit
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-The board uses lane 3 of SERDES for USB. Set the mux
-accordingly.
+From: Damien Le Moal <damien.lemoal@wdc.com>
 
-The USB controller and EVM supports super-speed for USB0
-on the Type-C port. However, the SERDES has a limitation
-that upto 2 protocols can be used at a time. The SERDES is
-wired for PCIe, QSGMII and USB super-speed. It has been
-chosen to use PCI2 and QSGMII as default. So restrict
-USB0 to high-speed mode.
+[ Upstream commit f025d9d9934b84cd03b7796072d10686029c408e ]
 
-Signed-off-by: Roger Quadros <rogerq@ti.com>
+The Kendryte K210 SoC CLINT is compatible with Sifive clint v0
+(sifive,clint0). Fix the Kendryte K210 device tree clint entry to be
+inline with the sifive timer definition documented in
+Documentation/devicetree/bindings/timer/sifive,clint.yaml.
+The device tree clint entry is renamed similarly to u-boot device tree
+definition to improve compatibility with u-boot defined device tree.
+To ensure correct initialization, the interrup-cells attribute is added
+and the interrupt-extended attribute definition fixed.
+
+This fixes boot failures with Kendryte K210 SoC boards.
+
+Note that the clock referenced is kept as K210_CLK_ACLK, which does not
+necessarilly match the clint MTIME increment rate. This however does not
+seem to cause any problem for now.
+
+Signed-off-by: Damien Le Moal <damien.lemoal@wdc.com>
+Signed-off-by: Palmer Dabbelt <palmerdabbelt@google.com>
+Signed-off-by: Sasha Levin <sashal@kernel.org>
 ---
- .../dts/ti/k3-j7200-common-proc-board.dts     | 22 +++++++++++++++++++
- 1 file changed, 22 insertions(+)
+ arch/riscv/boot/dts/kendryte/k210.dtsi | 6 ++++--
+ 1 file changed, 4 insertions(+), 2 deletions(-)
 
-diff --git a/arch/arm64/boot/dts/ti/k3-j7200-common-proc-board.dts b/arch/arm64/boot/dts/ti/k3-j7200-common-proc-board.dts
-index 6ab9d5d33a72..5c945f4ffec1 100644
---- a/arch/arm64/boot/dts/ti/k3-j7200-common-proc-board.dts
-+++ b/arch/arm64/boot/dts/ti/k3-j7200-common-proc-board.dts
-@@ -42,6 +42,12 @@
- 			J721E_IOPAD(0xe4, PIN_INPUT, 8) /* (V1) TIMER_IO0.MMC1_SDCD */
- 		>;
- 	};
-+
-+	main_usbss0_pins_default: main-usbss0-pins-default {
-+		pinctrl-single,pins = <
-+			J721E_IOPAD(0x120, PIN_OUTPUT, 0) /* (T4) USB0_DRVVBUS */
-+		>;
-+	};
- };
+diff --git a/arch/riscv/boot/dts/kendryte/k210.dtsi b/arch/riscv/boot/dts/kendryte/k210.dtsi
+index c1df56ccb8d55..d2d0ff6456325 100644
+--- a/arch/riscv/boot/dts/kendryte/k210.dtsi
++++ b/arch/riscv/boot/dts/kendryte/k210.dtsi
+@@ -95,10 +95,12 @@ sysctl: sysctl@50440000 {
+ 			#clock-cells = <1>;
+ 		};
  
- &wkup_uart0 {
-@@ -145,3 +151,19 @@
- 	idle-states = <J7200_SERDES0_LANE0_PCIE1_LANE0>, <J7200_SERDES0_LANE1_PCIE1_LANE1>,
- 		      <J7200_SERDES0_LANE2_QSGMII_LANE1>, <J7200_SERDES0_LANE3_IP4_UNUSED>;
- };
-+
-+&usb_serdes_mux {
-+	idle-states = <1>; /* USB0 to SERDES lane 3 */
-+};
-+
-+&usbss0 {
-+	pinctrl-names = "default";
-+	pinctrl-0 = <&main_usbss0_pins_default>;
-+	ti,vbus-divider;
-+	ti,usb2-only;
-+};
-+
-+&usb0 {
-+	dr_mode = "otg";
-+	maximum-speed = "high-speed";
-+};
+-		clint0: interrupt-controller@2000000 {
++		clint0: clint@2000000 {
++			#interrupt-cells = <1>;
+ 			compatible = "riscv,clint0";
+ 			reg = <0x2000000 0xC000>;
+-			interrupts-extended = <&cpu0_intc 3>,  <&cpu1_intc 3>;
++			interrupts-extended =  <&cpu0_intc 3 &cpu0_intc 7
++						&cpu1_intc 3 &cpu1_intc 7>;
+ 			clocks = <&sysctl K210_CLK_ACLK>;
+ 		};
+ 
 -- 
-Texas Instruments Finland Oy, Porkkalankatu 22, 00180 Helsinki.
-Y-tunnus/Business ID: 0615521-4. Kotipaikka/Domicile: Helsinki
+2.25.1
 
