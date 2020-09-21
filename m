@@ -2,285 +2,414 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from vger.kernel.org (vger.kernel.org [23.128.96.18])
-	by mail.lfdr.de (Postfix) with ESMTP id E8E55271EAA
-	for <lists+devicetree@lfdr.de>; Mon, 21 Sep 2020 11:13:12 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTP id CAAD3271EE9
+	for <lists+devicetree@lfdr.de>; Mon, 21 Sep 2020 11:30:02 +0200 (CEST)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S1726507AbgIUJNL (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Mon, 21 Sep 2020 05:13:11 -0400
-Received: from mo-csw1116.securemx.jp ([210.130.202.158]:57998 "EHLO
-        mo-csw.securemx.jp" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S1726387AbgIUJNL (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Mon, 21 Sep 2020 05:13:11 -0400
-Received: by mo-csw.securemx.jp (mx-mo-csw1116) id 08L9Cfoe019280; Mon, 21 Sep 2020 18:12:41 +0900
-X-Iguazu-Qid: 2wHHEK9NfkVDMdWr7A
-X-Iguazu-QSIG: v=2; s=0; t=1600679561; q=2wHHEK9NfkVDMdWr7A; m=RDHA0LC6gA059CtFxbPS8+cC0xMXtNWSHJpmagVGVw4=
-Received: from imx12.toshiba.co.jp (imx12.toshiba.co.jp [61.202.160.132])
-        by relay.securemx.jp (mx-mr1112) id 08L9CdOF033222;
-        Mon, 21 Sep 2020 18:12:39 +0900
-Received: from enc02.toshiba.co.jp ([61.202.160.51])
-        by imx12.toshiba.co.jp  with ESMTP id 08L9CdMw022068;
-        Mon, 21 Sep 2020 18:12:39 +0900 (JST)
-Received: from hop101.toshiba.co.jp ([133.199.85.107])
-        by enc02.toshiba.co.jp  with ESMTP id 08L9Cdfh016940;
-        Mon, 21 Sep 2020 18:12:39 +0900
-From:   Nobuhiro Iwamatsu <nobuhiro1.iwamatsu@toshiba.co.jp>
-To:     Rob Herring <robh+dt@kernel.org>,
-        Wim Van Sebroeck <wim@linux-watchdog.org>,
-        Guenter Roeck <linux@roeck-us.net>
-Cc:     punit1.agrawal@toshiba.co.jp, yuji2.ishikawa@toshiba.co.jp,
-        devicetree@vger.kernel.org, linux-arm-kernel@lists.infradead.org,
-        linux-watchdog@vger.kernel.org,
-        Nobuhiro Iwamatsu <nobuhiro1.iwamatsu@toshiba.co.jp>
-Subject: [PATCH v4 2/2] watchdog: Add Toshiba Visconti watchdog driver
-Date:   Mon, 21 Sep 2020 18:12:35 +0900
-X-TSB-HOP: ON
-Message-Id: <20200921091235.299774-3-nobuhiro1.iwamatsu@toshiba.co.jp>
-X-Mailer: git-send-email 2.27.0
-In-Reply-To: <20200921091235.299774-1-nobuhiro1.iwamatsu@toshiba.co.jp>
-References: <20200921091235.299774-1-nobuhiro1.iwamatsu@toshiba.co.jp>
+        id S1726413AbgIUJaB (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Mon, 21 Sep 2020 05:30:01 -0400
+Received: from lindbergh.monkeyblade.net ([23.128.96.19]:51230 "EHLO
+        lindbergh.monkeyblade.net" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
+        with ESMTP id S1726347AbgIUJaB (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Mon, 21 Sep 2020 05:30:01 -0400
+Received: from bhuna.collabora.co.uk (bhuna.collabora.co.uk [IPv6:2a00:1098:0:82:1000:25:2eeb:e3e3])
+        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 4CB63C061755;
+        Mon, 21 Sep 2020 02:30:01 -0700 (PDT)
+Received: from [127.0.0.1] (localhost [127.0.0.1])
+        (Authenticated sender: eballetbo)
+        with ESMTPSA id 70B7129812F
+From:   Enric Balletbo i Serra <enric.balletbo@collabora.com>
+To:     linux-kernel@vger.kernel.org
+Cc:     dianders@chromium.org, heiko@sntech.de,
+        Collabora Kernel ML <kernel@collabora.com>,
+        Caesar Wang <wxt@rock-chips.com>,
+        Rob Herring <robh+dt@kernel.org>, devicetree@vger.kernel.org,
+        linux-arm-kernel@lists.infradead.org,
+        linux-rockchip@lists.infradead.org
+Subject: [PATCH v3] dt-bindings: power: rockchip: Convert to json-schema
+Date:   Mon, 21 Sep 2020 11:29:51 +0200
+Message-Id: <20200921092951.945382-1-enric.balletbo@collabora.com>
+X-Mailer: git-send-email 2.28.0
 MIME-Version: 1.0
 Content-Transfer-Encoding: 8bit
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-Add the watchdog driver for Toshiba Visconti series.
+Convert the soc/rockchip/power_domain.txt binding document to json-schema
+and move to the power bindings directory.
 
-Signed-off-by: Nobuhiro Iwamatsu <nobuhiro1.iwamatsu@toshiba.co.jp>
-Reviewed-by: Punit Agrawal <punit1.agrawal@toshiba.co.jp>
+Signed-off-by: Enric Balletbo i Serra <enric.balletbo@collabora.com>
 ---
- drivers/watchdog/Kconfig        |   8 ++
- drivers/watchdog/Makefile       |   1 +
- drivers/watchdog/visconti_wdt.c | 189 ++++++++++++++++++++++++++++++++
- 3 files changed, 198 insertions(+)
- create mode 100644 drivers/watchdog/visconti_wdt.c
 
-diff --git a/drivers/watchdog/Kconfig b/drivers/watchdog/Kconfig
-index ab7aad5a1e69..0cb078ce5e9d 100644
---- a/drivers/watchdog/Kconfig
-+++ b/drivers/watchdog/Kconfig
-@@ -1004,6 +1004,14 @@ config PM8916_WATCHDOG
- 	  Say Y here to include support watchdog timer embedded into the
- 	  pm8916 module.
- 
-+config VISCONTI_WATCHDOG
-+	tristate "Toshiba Visconti series watchdog support"
-+	depends on ARCH_VISCONTI || COMPILE_TEST
-+	select WATCHDOG_CORE
-+	help
-+	  Say Y here to include support for the watchdog timer in Toshiba
-+	  Visconti SoCs.
-+
- # X86 (i386 + ia64 + x86_64) Architecture
- 
- config ACQUIRE_WDT
-diff --git a/drivers/watchdog/Makefile b/drivers/watchdog/Makefile
-index 97bed1d3d97c..a7747e76fd29 100644
---- a/drivers/watchdog/Makefile
-+++ b/drivers/watchdog/Makefile
-@@ -95,6 +95,7 @@ obj-$(CONFIG_RTD119X_WATCHDOG) += rtd119x_wdt.o
- obj-$(CONFIG_SPRD_WATCHDOG) += sprd_wdt.o
- obj-$(CONFIG_PM8916_WATCHDOG) += pm8916_wdt.o
- obj-$(CONFIG_ARM_SMC_WATCHDOG) += arm_smc_wdt.o
-+obj-$(CONFIG_VISCONTI_WATCHDOG) += visconti_wdt.o
- 
- # X86 (i386 + ia64 + x86_64) Architecture
- obj-$(CONFIG_ACQUIRE_WDT) += acquirewdt.o
-diff --git a/drivers/watchdog/visconti_wdt.c b/drivers/watchdog/visconti_wdt.c
+Changes in v3:
+- Fixed tab errors found by bot
+
+Changes in v2:
+- Fixed a warning that says that 'syscon' should not be used alone.
+- Use patternProperties to define a new level for power-domains.
+- Add const values for power-domain-cells, address-cells, etc.
+
+ .../power/rockchip,power-controller.yaml      | 207 ++++++++++++++++++
+ .../bindings/soc/rockchip/power_domain.txt    | 136 ------------
+ 2 files changed, 207 insertions(+), 136 deletions(-)
+ create mode 100644 Documentation/devicetree/bindings/power/rockchip,power-controller.yaml
+ delete mode 100644 Documentation/devicetree/bindings/soc/rockchip/power_domain.txt
+
+diff --git a/Documentation/devicetree/bindings/power/rockchip,power-controller.yaml b/Documentation/devicetree/bindings/power/rockchip,power-controller.yaml
 new file mode 100644
-index 000000000000..9448eaaa51b6
+index 000000000000..b23ea37e2a08
 --- /dev/null
-+++ b/drivers/watchdog/visconti_wdt.c
-@@ -0,0 +1,189 @@
-+// SPDX-License-Identifier: GPL-2.0
-+/*
-+ * Copyright (c) 2020 TOSHIBA CORPORATION
-+ * Copyright (c) 2020 Toshiba Electronic Devices & Storage Corporation
-+ * Copyright (c) 2020 Nobuhiro Iwamatsu <nobuhiro1.iwamatsu@toshiba.co.jp>
-+ */
++++ b/Documentation/devicetree/bindings/power/rockchip,power-controller.yaml
+@@ -0,0 +1,207 @@
++# SPDX-License-Identifier: (GPL-2.0-only OR BSD-2-Clause)
++%YAML 1.2
++---
++$id: http://devicetree.org/schemas/power/rockchip,power-controller.yaml#
++$schema: http://devicetree.org/meta-schemas/core.yaml#
 +
-+#include <linux/clk.h>
-+#include <linux/io.h>
-+#include <linux/kernel.h>
-+#include <linux/module.h>
-+#include <linux/of.h>
-+#include <linux/platform_device.h>
-+#include <linux/watchdog.h>
++title: Rockchip Power Domains
 +
-+#define WDT_CNT			0x00
-+#define WDT_MIN			0x04
-+#define WDT_MAX			0x08
-+#define WDT_CTL			0x0c
-+#define WDT_CMD			0x10
-+#define WDT_CMD_CLEAR		0x4352
-+#define WDT_CMD_START_STOP	0x5354
-+#define WDT_DIV			0x30
++maintainers:
++  - Caesar Wang <wxt@rock-chips.com>
++  - Heiko Stuebner <heiko@sntech.de>
 +
-+#define VISCONTI_WDT_FREQ	2000000 /* 2MHz */
-+#define WDT_DEFAULT_TIMEOUT	10U /* in seconds */
++description: |
++  Rockchip processors include support for multiple power domains which can be
++  powered up/down by software based on different application scenes to save power.
 +
-+static bool nowayout = WATCHDOG_NOWAYOUT;
-+module_param(nowayout, bool, 0);
-+MODULE_PARM_DESC(
-+	nowayout,
-+	"Watchdog cannot be stopped once started (default=" __MODULE_STRING(WATCHDOG_NOWAYOUT)")");
++  Power domains contained within power-controller node are generic power domain
++  providers documented in Documentation/devicetree/bindings/power/power-domain.yaml.
 +
-+struct visconti_wdt_priv {
-+	struct watchdog_device wdev;
-+	void __iomem *base;
-+	u32 div;
-+};
++  IP cores belonging to a power domain should contain a 'power-domains'
++  property that is a phandle for the power domain node representing the domain.
 +
-+static int visconti_wdt_start(struct watchdog_device *wdev)
-+{
-+	struct visconti_wdt_priv *priv = watchdog_get_drvdata(wdev);
-+	u32 timeout = wdev->timeout * VISCONTI_WDT_FREQ;
++properties:
++  $nodename:
++    const: power-controller
 +
-+	writel(priv->div, priv->base + WDT_DIV);
-+	writel(0, priv->base + WDT_MIN);
-+	writel(timeout, priv->base + WDT_MAX);
-+	writel(0, priv->base + WDT_CTL);
-+	writel(WDT_CMD_START_STOP, priv->base + WDT_CMD);
++  compatible:
++    enum:
++      - rockchip,px30-power-controller
++      - rockchip,rk3036-power-controller
++      - rockchip,rk3066-power-controller
++      - rockchip,rk3128-power-controller
++      - rockchip,rk3188-power-controller
++      - rockchip,rk3228-power-controller
++      - rockchip,rk3288-power-controller
++      - rockchip,rk3328-power-controller
++      - rockchip,rk3366-power-controller
++      - rockchip,rk3368-power-controller
++      - rockchip,rk3399-power-controller
 +
-+	return 0;
-+}
++  '#power-domain-cells':
++    const: 1
 +
-+static int visconti_wdt_stop(struct watchdog_device *wdev)
-+{
-+	struct visconti_wdt_priv *priv = watchdog_get_drvdata(wdev);
++  '#address-cells':
++    const: 1
 +
-+	writel(1, priv->base + WDT_CTL);
-+	writel(WDT_CMD_START_STOP, priv->base + WDT_CMD);
++  '#size-cells':
++    const: 0
 +
-+	return 0;
-+}
++patternProperties:
++  "^power-domain@[0-9]+$":
++    type: object
++    description: |
++      Represents the power domains within the power controller node as documented
++      in Documentation/devicetree/bindings/power/power-domain.yaml.
 +
-+static int visconti_wdt_ping(struct watchdog_device *wdd)
-+{
-+	struct visconti_wdt_priv *priv = watchdog_get_drvdata(wdd);
++    properties:
 +
-+	writel(WDT_CMD_CLEAR, priv->base + WDT_CMD);
++      '#power-domain-cells':
++        description:
++            Must be 0 for nodes representing a single PM domain and 1 for nodes
++            providing multiple PM domains.
 +
-+	return 0;
-+}
++      '#address-cells':
++        const: 1
 +
-+static unsigned int visconti_wdt_get_timeleft(struct watchdog_device *wdev)
-+{
-+	struct visconti_wdt_priv *priv = watchdog_get_drvdata(wdev);
-+	u32 timeout = wdev->timeout * VISCONTI_WDT_FREQ;
-+	u32 cnt = readl(priv->base + WDT_CNT);
++      '#size-cells':
++        const: 0
 +
-+	if (timeout <= cnt)
-+		return 0;
-+	timeout -= cnt;
++      reg:
++        description: |
++          Power domain index. Valid values are defined in:
++          "include/dt-bindings/power/px30-power.h" - for PX30 type power domain.
++          "include/dt-bindings/power/rk3036-power.h" - for RK3036 type power domain.
++          "include/dt-bindings/power/rk3066-power.h" - for RK3066 type power domain.
++          "include/dt-bindings/power/rk3128-power.h" - for RK3128 type power domain.
++          "include/dt-bindings/power/rk3188-power.h" - for RK3188 type power domain.
++          "include/dt-bindings/power/rk3228-power.h" - for RK3228 type power domain.
++          "include/dt-bindings/power/rk3288-power.h" - for RK3288 type power domain.
++          "include/dt-bindings/power/rk3328-power.h" - for RK3328 type power domain.
++          "include/dt-bindings/power/rk3366-power.h" - for RK3366 type power domain.
++          "include/dt-bindings/power/rk3368-power.h" - for RK3368 type power domain.
++          "include/dt-bindings/power/rk3399-power.h" - for RK3399 type power domain.
++        maxItems: 1
 +
-+	return timeout / VISCONTI_WDT_FREQ;
-+}
++      clocks:
++        description: |
++          A number of phandles to clocks that need to be enabled while power domain
++          switches state.
 +
-+static int visconti_wdt_set_timeout(struct watchdog_device *wdev, unsigned int timeout)
-+{
-+	u32 val;
-+	struct visconti_wdt_priv *priv = watchdog_get_drvdata(wdev);
++      pm_qos:
++        description: |
++          A number of phandles to qos blocks which need to be saved and restored
++          while power domain switches state.
 +
-+	wdev->timeout = timeout;
-+	val = wdev->timeout * VISCONTI_WDT_FREQ;
++    required:
++      - reg
 +
-+	/* Clear counter before setting timeout because WDT expires */
-+	writel(WDT_CMD_CLEAR, priv->base + WDT_CMD);
-+	writel(val, priv->base + WDT_MAX);
++required:
++  - compatible
++  - '#power-domain-cells'
 +
-+	return 0;
-+}
++additionalProperties: false
 +
-+static const struct watchdog_info visconti_wdt_info = {
-+	.options = WDIOF_SETTIMEOUT | WDIOF_MAGICCLOSE | WDIOF_KEEPALIVEPING,
-+	.identity = "Visconti Watchdog",
-+};
++examples:
++  - |
++    #include <dt-bindings/clock/rk3399-cru.h>
++    #include <dt-bindings/power/rk3399-power.h>
 +
-+static const struct watchdog_ops visconti_wdt_ops = {
-+	.owner		= THIS_MODULE,
-+	.start		= visconti_wdt_start,
-+	.stop		= visconti_wdt_stop,
-+	.ping		= visconti_wdt_ping,
-+	.get_timeleft	= visconti_wdt_get_timeleft,
-+	.set_timeout	= visconti_wdt_set_timeout,
-+};
++    soc {
++        #address-cells = <2>;
++        #size-cells = <2>;
 +
-+static int visconti_wdt_probe(struct platform_device *pdev)
-+{
-+	struct watchdog_device *wdev;
-+	struct visconti_wdt_priv *priv;
-+	struct device *dev = &pdev->dev;
-+	struct clk *clk;
-+	int ret;
-+	unsigned long clk_freq;
++        qos_hdcp: qos@ffa90000 {
++            compatible = "rockchip,rk3399-qos","syscon";
++            reg = <0x0 0xffa90000 0x0 0x20>;
++        };
 +
-+	priv = devm_kzalloc(dev, sizeof(*priv), GFP_KERNEL);
-+	if (!priv)
-+		return -ENOMEM;
++        qos_iep: qos@ffa98000 {
++            compatible = "rk3399-qos","syscon";
++            reg = <0x0 0xffa98000 0x0 0x20>;
++        };
 +
-+	priv->base = devm_platform_ioremap_resource(pdev, 0);
-+	if (IS_ERR(priv->base))
-+		return PTR_ERR(priv->base);
++        qos_rga_r: qos@ffab0000 {
++            compatible = "rk3399-qos","syscon";
++            reg = <0x0 0xffab0000 0x0 0x20>;
++        };
 +
-+	clk = devm_clk_get(dev, NULL);
-+	if (IS_ERR(clk))
-+		return dev_err_probe(dev, PTR_ERR(clk), "Could not get clock\n");
++        qos_rga_w: qos@ffab0080 {
++            compatible = "rk3399-qos","syscon";
++            reg = <0x0 0xffab0080 0x0 0x20>;
++        };
 +
-+	ret = clk_prepare_enable(clk);
-+	if (ret) {
-+		dev_err(dev, "Could not enable clock\n");
-+		return ret;
-+	}
++        qos_video_m0: qos@ffab8000 {
++            compatible = "rk3399-qos","syscon";
++            reg = <0x0 0xffab8000 0x0 0x20>;
++        };
 +
-+	clk_freq = clk_get_rate(clk);
-+	if (!clk_freq) {
-+		clk_disable_unprepare(clk);
-+		dev_err(dev, "Could not get clock rate\n");
-+		return -EINVAL;
-+	}
++        qos_video_m1_r: qos@ffac0000 {
++            compatible = "rk3399-qos","syscon";
++            reg = <0x0 0xffac0000 0x0 0x20>;
++        };
 +
-+	priv->div = clk_freq / VISCONTI_WDT_FREQ;
++        qos_video_m1_w: qos@ffac0080 {
++            compatible = "rk3399-qos","syscon";
++            reg = <0x0 0xffac0080 0x0 0x20>;
++        };
 +
-+	/* Initialize struct watchdog_device. */
-+	wdev = &priv->wdev;
-+	wdev->info = &visconti_wdt_info;
-+	wdev->ops = &visconti_wdt_ops;
-+	wdev->parent = dev;
-+	wdev->min_timeout = 1;
-+	wdev->max_timeout = 0xffffffff / VISCONTI_WDT_FREQ;
-+	wdev->timeout = min(wdev->max_timeout, WDT_DEFAULT_TIMEOUT);
++        power-management@ff310000 {
++            compatible = "rockchip,rk3399-pmu", "syscon", "simple-mfd";
++            reg = <0x0 0xff310000 0x0 0x1000>;
 +
-+	watchdog_set_drvdata(wdev, priv);
-+	watchdog_set_nowayout(wdev, nowayout);
-+	watchdog_stop_on_unregister(wdev);
++            power-controller {
++                compatible = "rockchip,rk3399-power-controller";
++                #power-domain-cells = <1>;
++                #address-cells = <1>;
++                #size-cells = <0>;
 +
-+	/* This overrides the default timeout only if DT configuration was found */
-+	ret = watchdog_init_timeout(wdev, 0, dev);
-+	if (ret)
-+		dev_warn(dev, "Specified timeout value invalid, using default\n");
++                /* These power domains are grouped by VD_CENTER */
++                power-domain@RK3399_PD_IEP {
++                    reg = <RK3399_PD_IEP>;
++                    clocks = <&cru ACLK_IEP>,
++                             <&cru HCLK_IEP>;
++                    pm_qos = <&qos_iep>;
++                    #power-domain-cells = <0>;
++                };
++                power-domain@RK3399_PD_RGA {
++                    reg = <RK3399_PD_RGA>;
++                    clocks = <&cru ACLK_RGA>,
++                             <&cru HCLK_RGA>;
++                    pm_qos = <&qos_rga_r>,
++                             <&qos_rga_w>;
++                    #power-domain-cells = <0>;
++                };
++                power-domain@RK3399_PD_VCODEC {
++                    reg = <RK3399_PD_VCODEC>;
++                    clocks = <&cru ACLK_VCODEC>,
++                             <&cru HCLK_VCODEC>;
++                    pm_qos = <&qos_video_m0>;
++                    #power-domain-cells = <0>;
++                };
++                power-domain@RK3399_PD_VDU {
++                    reg = <RK3399_PD_VDU>;
++                    clocks = <&cru ACLK_VDU>,
++                             <&cru HCLK_VDU>;
++                    pm_qos = <&qos_video_m1_r>,
++                             <&qos_video_m1_w>;
++                    #power-domain-cells = <0>;
++                };
++                power-domain@RK3399_PD_VIO {
++                    reg = <RK3399_PD_VIO>;
++                    #power-domain-cells = <1>;
++                    #address-cells = <1>;
++                    #size-cells = <0>;
 +
-+	return devm_watchdog_register_device(dev, wdev);
-+}
-+
-+static const struct of_device_id visconti_wdt_of_match[] = {
-+	{ .compatible = "toshiba,visconti-wdt", },
-+	{}
-+};
-+MODULE_DEVICE_TABLE(of, visconti_wdt_of_match);
-+
-+static struct platform_driver visconti_wdt_driver = {
-+	.driver = {
-+			.name = "visconti_wdt",
-+			.of_match_table = visconti_wdt_of_match,
-+		},
-+	.probe = visconti_wdt_probe,
-+};
-+module_platform_driver(visconti_wdt_driver);
-+
-+MODULE_DESCRIPTION("TOSHIBA Visconti Watchdog Driver");
-+MODULE_AUTHOR("Nobuhiro Iwamatsu <nobuhiro1.iwamatsu@toshiba.co.jp");
-+MODULE_LICENSE("GPL v2");
++                    power-domain@RK3399_PD_HDCP {
++                        reg = <RK3399_PD_HDCP>;
++                        clocks = <&cru ACLK_HDCP>,
++                                 <&cru HCLK_HDCP>,
++                                 <&cru PCLK_HDCP>;
++                        pm_qos = <&qos_hdcp>;
++                        #power-domain-cells = <0>;
++                    };
++                };
++            };
++        };
++    };
+diff --git a/Documentation/devicetree/bindings/soc/rockchip/power_domain.txt b/Documentation/devicetree/bindings/soc/rockchip/power_domain.txt
+deleted file mode 100644
+index 8304eceb62e4..000000000000
+--- a/Documentation/devicetree/bindings/soc/rockchip/power_domain.txt
++++ /dev/null
+@@ -1,136 +0,0 @@
+-* Rockchip Power Domains
+-
+-Rockchip processors include support for multiple power domains which can be
+-powered up/down by software based on different application scenes to save power.
+-
+-Required properties for power domain controller:
+-- compatible: Should be one of the following.
+-	"rockchip,px30-power-controller" - for PX30 SoCs.
+-	"rockchip,rk3036-power-controller" - for RK3036 SoCs.
+-	"rockchip,rk3066-power-controller" - for RK3066 SoCs.
+-	"rockchip,rk3128-power-controller" - for RK3128 SoCs.
+-	"rockchip,rk3188-power-controller" - for RK3188 SoCs.
+-	"rockchip,rk3228-power-controller" - for RK3228 SoCs.
+-	"rockchip,rk3288-power-controller" - for RK3288 SoCs.
+-	"rockchip,rk3328-power-controller" - for RK3328 SoCs.
+-	"rockchip,rk3366-power-controller" - for RK3366 SoCs.
+-	"rockchip,rk3368-power-controller" - for RK3368 SoCs.
+-	"rockchip,rk3399-power-controller" - for RK3399 SoCs.
+-- #power-domain-cells: Number of cells in a power-domain specifier.
+-	Should be 1 for multiple PM domains.
+-- #address-cells: Should be 1.
+-- #size-cells: Should be 0.
+-
+-Required properties for power domain sub nodes:
+-- reg: index of the power domain, should use macros in:
+-	"include/dt-bindings/power/px30-power.h" - for PX30 type power domain.
+-	"include/dt-bindings/power/rk3036-power.h" - for RK3036 type power domain.
+-	"include/dt-bindings/power/rk3066-power.h" - for RK3066 type power domain.
+-	"include/dt-bindings/power/rk3128-power.h" - for RK3128 type power domain.
+-	"include/dt-bindings/power/rk3188-power.h" - for RK3188 type power domain.
+-	"include/dt-bindings/power/rk3228-power.h" - for RK3228 type power domain.
+-	"include/dt-bindings/power/rk3288-power.h" - for RK3288 type power domain.
+-	"include/dt-bindings/power/rk3328-power.h" - for RK3328 type power domain.
+-	"include/dt-bindings/power/rk3366-power.h" - for RK3366 type power domain.
+-	"include/dt-bindings/power/rk3368-power.h" - for RK3368 type power domain.
+-	"include/dt-bindings/power/rk3399-power.h" - for RK3399 type power domain.
+-- clocks (optional): phandles to clocks which need to be enabled while power domain
+-	switches state.
+-- pm_qos (optional): phandles to qos blocks which need to be saved and restored
+-	while power domain switches state.
+-
+-Qos Example:
+-
+-	qos_gpu: qos_gpu@ffaf0000 {
+-		compatible ="syscon";
+-		reg = <0x0 0xffaf0000 0x0 0x20>;
+-	};
+-
+-Example:
+-
+-	power: power-controller {
+-		compatible = "rockchip,rk3288-power-controller";
+-		#power-domain-cells = <1>;
+-		#address-cells = <1>;
+-		#size-cells = <0>;
+-
+-		pd_gpu {
+-			reg = <RK3288_PD_GPU>;
+-			clocks = <&cru ACLK_GPU>;
+-			pm_qos = <&qos_gpu>;
+-		};
+-	};
+-
+-	 power: power-controller {
+-                compatible = "rockchip,rk3368-power-controller";
+-                #power-domain-cells = <1>;
+-                #address-cells = <1>;
+-                #size-cells = <0>;
+-
+-                pd_gpu_1 {
+-                        reg = <RK3368_PD_GPU_1>;
+-                        clocks = <&cru ACLK_GPU_CFG>;
+-                };
+-        };
+-
+-Example 2:
+-		power: power-controller {
+-			compatible = "rockchip,rk3399-power-controller";
+-			#power-domain-cells = <1>;
+-			#address-cells = <1>;
+-			#size-cells = <0>;
+-
+-			pd_vio {
+-				#address-cells = <1>;
+-				#size-cells = <0>;
+-				reg = <RK3399_PD_VIO>;
+-
+-				pd_vo {
+-					#address-cells = <1>;
+-					#size-cells = <0>;
+-					reg = <RK3399_PD_VO>;
+-
+-					pd_vopb {
+-						reg = <RK3399_PD_VOPB>;
+-					};
+-
+-					pd_vopl {
+-						reg = <RK3399_PD_VOPL>;
+-					};
+-				};
+-			};
+-		};
+-
+-Node of a device using power domains must have a power-domains property,
+-containing a phandle to the power device node and an index specifying which
+-power domain to use.
+-The index should use macros in:
+-	"include/dt-bindings/power/px30-power.h" - for px30 type power domain.
+-	"include/dt-bindings/power/rk3036-power.h" - for rk3036 type power domain.
+-	"include/dt-bindings/power/rk3128-power.h" - for rk3128 type power domain.
+-	"include/dt-bindings/power/rk3128-power.h" - for rk3228 type power domain.
+-	"include/dt-bindings/power/rk3288-power.h" - for rk3288 type power domain.
+-	"include/dt-bindings/power/rk3328-power.h" - for rk3328 type power domain.
+-	"include/dt-bindings/power/rk3366-power.h" - for rk3366 type power domain.
+-	"include/dt-bindings/power/rk3368-power.h" - for rk3368 type power domain.
+-	"include/dt-bindings/power/rk3399-power.h" - for rk3399 type power domain.
+-
+-Example of the node using power domain:
+-
+-	node {
+-		/* ... */
+-		power-domains = <&power RK3288_PD_GPU>;
+-		/* ... */
+-	};
+-
+-	node {
+-                /* ... */
+-                power-domains = <&power RK3368_PD_GPU_1>;
+-                /* ... */
+-        };
+-
+-	node {
+-		/* ... */
+-		power-domains = <&power RK3399_PD_VOPB>;
+-		/* ... */
+-	};
 -- 
-2.27.0
+2.28.0
 
