@@ -2,107 +2,136 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from vger.kernel.org (vger.kernel.org [23.128.96.18])
-	by mail.lfdr.de (Postfix) with ESMTP id 62659273612
-	for <lists+devicetree@lfdr.de>; Tue, 22 Sep 2020 00:57:20 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTP id 0D0FB27361C
+	for <lists+devicetree@lfdr.de>; Tue, 22 Sep 2020 00:59:05 +0200 (CEST)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S1728720AbgIUW5O (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Mon, 21 Sep 2020 18:57:14 -0400
-Received: from lindbergh.monkeyblade.net ([23.128.96.19]:35210 "EHLO
-        lindbergh.monkeyblade.net" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S1728717AbgIUW5N (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Mon, 21 Sep 2020 18:57:13 -0400
-Received: from mail-ej1-x641.google.com (mail-ej1-x641.google.com [IPv6:2a00:1450:4864:20::641])
-        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id B7BFEC0613CF
-        for <devicetree@vger.kernel.org>; Mon, 21 Sep 2020 15:57:12 -0700 (PDT)
-Received: by mail-ej1-x641.google.com with SMTP id gr14so20155444ejb.1
-        for <devicetree@vger.kernel.org>; Mon, 21 Sep 2020 15:57:12 -0700 (PDT)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=beagleboard-org.20150623.gappssmtp.com; s=20150623;
-        h=from:to:cc:subject:date:message-id:mime-version
-         :content-transfer-encoding;
-        bh=9jSUUFraOan7yfkNBxJ0PXo4gn5Fu1DsGDMc9ndN1tQ=;
-        b=cHEUC3C9K11LQLTPxZnfAmjIogqYmFr8vJH60PhAVwa4FQGTM3NkA2zDBi4+nNnh+V
-         wW4EDqRSW0BTCg85zhKjVc1ZaSXVLJZeQ7elYRILPEzEsgg9tIJVqi+OcU3GKPFkblAv
-         4Z7eEP0jbOhhbVo2KeozKp7OVo5cqz/K/2/udw5PaQStDEOKziVyLbYcGC35fo4+Yreg
-         GQjwaGp11FnVmhyn6674qIt5PVo5iXl4fz+MZV8sDcCiMCkQEDmE6DNoFhUBd4qZgG+V
-         vUjx0zynTSJ+SmJkkojfu1gOqjtzRcZUZ3Fz/3kNtAkjFc1O7vqC+JwIN+3RUYr0k2hH
-         NMuA==
-X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=1e100.net; s=20161025;
-        h=x-gm-message-state:from:to:cc:subject:date:message-id:mime-version
-         :content-transfer-encoding;
-        bh=9jSUUFraOan7yfkNBxJ0PXo4gn5Fu1DsGDMc9ndN1tQ=;
-        b=k0XnPBX7uy6b7mTydFRsiRwilbSijtEZYzzk61wrkokpkhIbdoTMwBGlp4AV8xHOV6
-         663rePVQPerKbhK02uMXEAEzyBKiEXGEWhV+d5BgfrLN/L6XIUuskZC3x9qIl/brB23/
-         lEqfGthPrxwFqBZ71uuW0vp6xTROoNlNJIp0FtzR75p7WoMKM5WGtEXluH91x+rnyqnp
-         BFu2ok1bKmirRIYTZJqSBdF4hXPjeAthtuS5/c4PflG8+4JjMN2suk0QqtrtFLQREo9T
-         zJLWMrZsHeVxst4WT9tFAZRW/gw4ZWwMl8gbTZ6p5EVON2HzOE2v1sPJEBF5RGheKlQy
-         dpcg==
-X-Gm-Message-State: AOAM531/d/6bhD9NPUelEkq1WTPpgeJ/EwcaO9sId3l9yWr6UoZT9lsY
-        S/NbIVUibkdh6iMDArrw7MOb5Q==
-X-Google-Smtp-Source: ABdhPJzP2r2Zay0wb4c78o7KqOUFyqGJ05rId6WnI920VXQBmoylUgFeYGIw9gYCqi7ifH7VMnYtpg==
-X-Received: by 2002:a17:906:6a54:: with SMTP id n20mr1840834ejs.401.1600729031313;
-        Mon, 21 Sep 2020 15:57:11 -0700 (PDT)
-Received: from localhost.localdomain ([2001:16b8:5c50:7f01:652a:68b1:4040:26de])
-        by smtp.gmail.com with ESMTPSA id e15sm9401321eds.5.2020.09.21.15.57.09
-        (version=TLS1_3 cipher=TLS_AES_256_GCM_SHA384 bits=256/256);
-        Mon, 21 Sep 2020 15:57:10 -0700 (PDT)
-From:   Drew Fustini <drew@beagleboard.org>
-To:     Tony Lindgren <tony@atomide.com>, Rob Herring <robh+dt@kernel.org>,
-        Linus Walleij <linus.walleij@linaro.org>,
-        Jason Kridner <jkridner@beagleboard.org>,
-        Robert Nelson <robertcnelson@gmail.com>,
-        Trent Piepho <tpiepho@gmail.com>,
-        Christina Quast <cquast@hanoverdisplays.com>,
-        linux-omap@vger.kernel.org, linux-kernel@vger.kernel.org,
-        devicetree@vger.kernel.org, linux-gpio@vger.kernel.org
-Cc:     Drew Fustini <drew@beagleboard.org>
-Subject: [PATCH] ARM: dts: am33xx: modify AM33XX_IOPAD for #pinctrl-cells = 2
-Date:   Tue, 22 Sep 2020 00:50:55 +0200
-Message-Id: <20200921225053.4126745-1-drew@beagleboard.org>
-X-Mailer: git-send-email 2.25.1
+        id S1728770AbgIUW6w (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Mon, 21 Sep 2020 18:58:52 -0400
+Received: from mail-am6eur05on2052.outbound.protection.outlook.com ([40.107.22.52]:8161
+        "EHLO EUR05-AM6-obe.outbound.protection.outlook.com"
+        rhost-flags-OK-OK-OK-FAIL) by vger.kernel.org with ESMTP
+        id S1728591AbgIUW6r (ORCPT <rfc822;devicetree@vger.kernel.org>);
+        Mon, 21 Sep 2020 18:58:47 -0400
+ARC-Seal: i=1; a=rsa-sha256; s=arcselector9901; d=microsoft.com; cv=none;
+ b=KxEURG5ZHdV8zOk55w2clAmAycb7BBc+4Kh1sFFA23G0ZzFBxWBEGPZkVNXoqVLyWCRlh9Zm9ip7iFr/PtEndmxVGBvntmiRmXKV7uRaafTI6JJ+7jU+IBkuxS18EVlREKiLp9zlDgIgOnDdWxb4nbPuJdtm90YjyOs/4wYuadyWEOE5jLqPNlh9ymN9cvp5xer5ZsA3YQmKstguzGcsh5IHQZdZqo8JJayST8N17r8g1gB+BGcwmQrsI9C3tWAYPkGIS3XXVYjATgXpLr/b81jfJsWQuxejltbsJqMv5EhmSk0N1AoamXOGsUfHpfHb8UV8rH9uDm0YNjqznu0kFQ==
+ARC-Message-Signature: i=1; a=rsa-sha256; c=relaxed/relaxed; d=microsoft.com;
+ s=arcselector9901;
+ h=From:Date:Subject:Message-ID:Content-Type:MIME-Version:X-MS-Exchange-SenderADCheck;
+ bh=wh1DsXP3apdyJJXEjSw8UFrpNPFjiwTvJQkKtxsjMGo=;
+ b=TGjJCwBOqDdJjuKRV1Ug3l2MFQ5YWiWri3fjE4S+ypAX1zhNVfB5G1Rb7jXVxoRGkR2pWA+d2xqNCNkHaN2GctuD4qXXPtzPM41guCD6+fiv3udQSfVg9+woiDWhqxmKGFILX6fyxLnXh8mnDuSTVAL/7RKJEkGFJIAn/4nU8/b4wjWHjdzzTtkXJdpils1iwnaz3AfSw5DnbJOIl1+eSMcQ//flyKmxkE/5QJSq3KqQMzIz5PVW/qNC3FrR+nz45ZbBo5BGTG3x69V7iKcuWv11hxhfADlJHTvH1jF5ksfXAIJLTrkI6xL9c8gFYnJU2T+mc+snPB9KOCZGMwc/HA==
+ARC-Authentication-Results: i=1; mx.microsoft.com 1; spf=pass
+ smtp.mailfrom=nxp.com; dmarc=pass action=none header.from=nxp.com; dkim=pass
+ header.d=nxp.com; arc=none
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=nxp.com; s=selector2;
+ h=From:Date:Subject:Message-ID:Content-Type:MIME-Version:X-MS-Exchange-SenderADCheck;
+ bh=wh1DsXP3apdyJJXEjSw8UFrpNPFjiwTvJQkKtxsjMGo=;
+ b=kClv+VW0ZWxmUavWueMx69EJ03zS6MaxxP7OazvQNABTpkLiMJa+BqGZSOMH343WdtOV+Bw/oNxThrW8x9dd0UPnwUrXYCKn1864hBtG/ji4wm3cjpykCxLvHaMWSzXqI4Oc+jWmSJh5eh/VXoKywRuIpKvSZKngNi3E9KnyVqY=
+Received: from VE1PR04MB6687.eurprd04.prod.outlook.com (2603:10a6:803:121::30)
+ by VE1PR04MB7390.eurprd04.prod.outlook.com (2603:10a6:800:1aa::8) with
+ Microsoft SMTP Server (version=TLS1_2,
+ cipher=TLS_ECDHE_RSA_WITH_AES_256_GCM_SHA384) id 15.20.3391.15; Mon, 21 Sep
+ 2020 22:58:44 +0000
+Received: from VE1PR04MB6687.eurprd04.prod.outlook.com
+ ([fe80::8db9:c62f:dac5:ee3d]) by VE1PR04MB6687.eurprd04.prod.outlook.com
+ ([fe80::8db9:c62f:dac5:ee3d%3]) with mapi id 15.20.3391.026; Mon, 21 Sep 2020
+ 22:58:44 +0000
+From:   Leo Li <leoyang.li@nxp.com>
+To:     Ran Wang <ran.wang_1@nxp.com>, Rob Herring <robh+dt@kernel.org>,
+        Shawn Guo <shawnguo@kernel.org>
+CC:     "linuxppc-dev@lists.ozlabs.org" <linuxppc-dev@lists.ozlabs.org>,
+        "linux-arm-kernel@lists.infradead.org" 
+        <linux-arm-kernel@lists.infradead.org>,
+        "devicetree@vger.kernel.org" <devicetree@vger.kernel.org>,
+        "linux-kernel@vger.kernel.org" <linux-kernel@vger.kernel.org>,
+        Biwen Li <biwen.li@nxp.com>, Ran Wang <ran.wang_1@nxp.com>
+Subject: RE: [PATCH 3/5] arm: dts: ls1021a: fix that FlexTimer cannot wakeup
+ system in deep sleep
+Thread-Topic: [PATCH 3/5] arm: dts: ls1021a: fix that FlexTimer cannot wakeup
+ system in deep sleep
+Thread-Index: AQHWjAMhswxDT3/1E0edsFIyVPl04alzvQYw
+Date:   Mon, 21 Sep 2020 22:58:44 +0000
+Message-ID: <VE1PR04MB6687F86E5F609DC77E050CEA8F3A0@VE1PR04MB6687.eurprd04.prod.outlook.com>
+References: <20200916081831.24747-1-ran.wang_1@nxp.com>
+ <20200916081831.24747-3-ran.wang_1@nxp.com>
+In-Reply-To: <20200916081831.24747-3-ran.wang_1@nxp.com>
+Accept-Language: en-US
+Content-Language: en-US
+X-MS-Has-Attach: 
+X-MS-TNEF-Correlator: 
+authentication-results: nxp.com; dkim=none (message not signed)
+ header.d=none;nxp.com; dmarc=none action=none header.from=nxp.com;
+x-originating-ip: [136.49.234.194]
+x-ms-publictraffictype: Email
+x-ms-office365-filtering-ht: Tenant
+x-ms-office365-filtering-correlation-id: 97b09f14-c63b-4b34-4fa6-08d85e81e45d
+x-ms-traffictypediagnostic: VE1PR04MB7390:
+x-ms-exchange-transport-forked: True
+x-microsoft-antispam-prvs: <VE1PR04MB7390D4AFF913AA010D08252E8F3A0@VE1PR04MB7390.eurprd04.prod.outlook.com>
+x-ms-oob-tlc-oobclassifiers: OLM:1728;
+x-ms-exchange-senderadcheck: 1
+x-microsoft-antispam: BCL:0;
+x-microsoft-antispam-message-info: ueCwD9lzAG9m8IuqKYH9drIu9UPLrmUKUcRHD2122MoHrll0RjzOUmu84hJsEHp++TIfDMhAO1yci9iGF/nOHZsVHI2wFvqMOkvNdYh9Da01fJXDyKK2SFEhjN3kujJjIwxmfTN7ln9PkVU0ZDZSzgldJQmdRX/hbNa5TWFWJp3/J1OX97lkvdczeSp5sP9LScOR8JwMeYVU0qVXW/7sooUWoxjqf2B7EoAxyHvazUYgdUA3jd4SRaaDSyDHFRE8KpVEHMTRjUFx+J2kkn30sbakIS+RViPflxzLMxiRU03gtB8g+659/JXg5pKBWSGL+4C5PkxtusqXkDlS6vQi4fMtwF6HeVwDXTcPCuzG9J4Xja4Vx+hSt1oVnyXg4BwZ
+x-forefront-antispam-report: CIP:255.255.255.255;CTRY:;LANG:en;SCL:1;SRV:;IPV:NLI;SFV:NSPM;H:VE1PR04MB6687.eurprd04.prod.outlook.com;PTR:;CAT:NONE;SFS:(4636009)(396003)(366004)(376002)(346002)(39860400002)(136003)(64756008)(66556008)(66476007)(66946007)(66446008)(71200400001)(478600001)(76116006)(86362001)(52536014)(8676002)(2906002)(54906003)(6506007)(8936002)(316002)(26005)(110136005)(186003)(7696005)(53546011)(33656002)(9686003)(4326008)(5660300002)(55016002)(83380400001);DIR:OUT;SFP:1101;
+x-ms-exchange-antispam-messagedata: Y982GyhMYcLEz8gAhrymH/I90F94rCbcLAN1ZRHg/J4oXXmBq6OYr0E5Ldp/Lpiu61XX4wPqChd9v8nCfGhZYhOL1XLEZNXpSLBNM+7ejI8HZfYb7M4z4RQNLafx4XYFqCJaPIEE5zFGpCy5l5tWCKhOkOvVjRKO2By1uj62EuYP5nYduXVwopQUbW/U2eK3IXDagCs59ayQ8cb2Fo/7vI1J3Z24PfY8lVEqLBZDAA1RkJDEwwV1hTKGJzLvDFakyjk8N4a7bKNc692BXLqIbsBDTEEB+hv1Em97QbCXE15tDiQ2fDqqRd37beO8IsnI8RPcMtFerMq+uM/7HU2YAWWakvsV8UJRkItBRl86V4wlq2HKNXK2NGzun0xWLN8qev0hBDCyBgql5voUQKEiH24ziTXeeqyQADYOvocRygpS0uucb9FtWriBVWka2igbVMu/ycyH6RIU2anIQsyp2NeIOiNoxKtp7DdD7OxJxs8FpiSj/xhsKY1+dYW1fLDBh9/zGDU6nxPEhBSO49WLskyISfS9+DLzdMhUwfth3m7KH02VdGA6vo5nZiEBoZ/K4NP8nHj3ohWKgjD9VDFCFNB7mt9HwlXKRbwwuO7ZCq/AcaNz6l6s2pHUkGgDUQmNhT77m/OQ2fUYZl5K3+uoTw==
+Content-Type: text/plain; charset="us-ascii"
+Content-Transfer-Encoding: quoted-printable
 MIME-Version: 1.0
-Content-Transfer-Encoding: 8bit
+X-OriginatorOrg: nxp.com
+X-MS-Exchange-CrossTenant-AuthAs: Internal
+X-MS-Exchange-CrossTenant-AuthSource: VE1PR04MB6687.eurprd04.prod.outlook.com
+X-MS-Exchange-CrossTenant-Network-Message-Id: 97b09f14-c63b-4b34-4fa6-08d85e81e45d
+X-MS-Exchange-CrossTenant-originalarrivaltime: 21 Sep 2020 22:58:44.6118
+ (UTC)
+X-MS-Exchange-CrossTenant-fromentityheader: Hosted
+X-MS-Exchange-CrossTenant-id: 686ea1d3-bc2b-4c6f-a92c-d99c5c301635
+X-MS-Exchange-CrossTenant-mailboxtype: HOSTED
+X-MS-Exchange-CrossTenant-userprincipalname: l9IpCjZMgb+1ThYtOyz3KdjYiJcuK3gFiOcRR7ecX2SWR5ZHORMPiBcEBqfqEWjIIL7JJLFpT0RJs4+WiJmNYg==
+X-MS-Exchange-Transport-CrossTenantHeadersStamped: VE1PR04MB7390
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-Modify the AM33XX_IOPAD macro so that it works now that #pinctrl-cells =
-<2>. The third parameter is just a zero and the pinctrl-single driver
-will just OR this with the second parameter so it has no actual effect.
 
-There are no longer any dts files using this macro (following my patch
-to am335x-guardian.dts), but this will keep dts files not in mainline
-from breaking.
 
-Fixes: 27c90e5e48d0 ("ARM: dts: am33xx-l4: change #pinctrl-cells from 1 to 2")
-Suggested-by: Tony Lindgren <tony@atomide.com>
-Reported-by: Trent Piepho <tpiepho@gmail.com>
-Link: https://lore.kernel.org/linux-devicetree/20200921064707.GN7101@atomide.com/
-Signed-off-by: Drew Fustini <drew@beagleboard.org>
----
-NOTE:
-checkpatch complains "Macros with complex values should be enclosed in 
-parentheses" but all the other marcos in that section have the same
-format so it seems appropriate to ignore checkpatch and maintain the
-style.
+> -----Original Message-----
+> From: Ran Wang <ran.wang_1@nxp.com>
+> Sent: Wednesday, September 16, 2020 3:18 AM
+> To: Leo Li <leoyang.li@nxp.com>; Rob Herring <robh+dt@kernel.org>;
+> Shawn Guo <shawnguo@kernel.org>
+> Cc: linuxppc-dev@lists.ozlabs.org; linux-arm-kernel@lists.infradead.org;
+> devicetree@vger.kernel.org; linux-kernel@vger.kernel.org; Biwen Li
+> <biwen.li@nxp.com>; Ran Wang <ran.wang_1@nxp.com>
+> Subject: [PATCH 3/5] arm: dts: ls1021a: fix that FlexTimer cannot wakeup
+> system in deep sleep
 
- include/dt-bindings/pinctrl/omap.h | 2 +-
- 1 file changed, 1 insertion(+), 1 deletion(-)
+A better description should be enabling the A-008646 workaround to be consi=
+stent with other patches.
 
-diff --git a/include/dt-bindings/pinctrl/omap.h b/include/dt-bindings/pinctrl/omap.h
-index 2d2a8c737822..f48245ff87e5 100644
---- a/include/dt-bindings/pinctrl/omap.h
-+++ b/include/dt-bindings/pinctrl/omap.h
-@@ -64,7 +64,7 @@
- #define OMAP3_WKUP_IOPAD(pa, val)	OMAP_IOPAD_OFFSET((pa), 0x2a00) (val)
- #define DM814X_IOPAD(pa, val)		OMAP_IOPAD_OFFSET((pa), 0x0800) (val)
- #define DM816X_IOPAD(pa, val)		OMAP_IOPAD_OFFSET((pa), 0x0800) (val)
--#define AM33XX_IOPAD(pa, val)		OMAP_IOPAD_OFFSET((pa), 0x0800) (val)
-+#define AM33XX_IOPAD(pa, val)		OMAP_IOPAD_OFFSET((pa), 0x0800) (val) (0)
- #define AM33XX_PADCONF(pa, conf, mux)	OMAP_IOPAD_OFFSET((pa), 0x0800) (conf) (mux)
- 
- /*
--- 
-2.25.1
+>=20
+> From: Biwen Li <biwen.li@nxp.com>
+>=20
+> The patch fixes a bug that FlexTimer cannot wakeup system in deep sleep.
+>=20
+> Signed-off-by: Biwen Li <biwen.li@nxp.com>
+> Signed-off-by: Ran Wang <ran.wang_1@nxp.com>
+> ---
+>  arch/arm/boot/dts/ls1021a.dtsi | 1 +
+>  1 file changed, 1 insertion(+)
+>=20
+> diff --git a/arch/arm/boot/dts/ls1021a.dtsi b/arch/arm/boot/dts/ls1021a.d=
+tsi
+> index 827373e..089fe86 100644
+> --- a/arch/arm/boot/dts/ls1021a.dtsi
+> +++ b/arch/arm/boot/dts/ls1021a.dtsi
+> @@ -1007,6 +1007,7 @@
+>  			compatible =3D "fsl,ls1021a-rcpm", "fsl,qoriq-rcpm-
+> 2.1+";
+>  			reg =3D <0x0 0x1ee2140 0x0 0x8>;
+>  			#fsl,rcpm-wakeup-cells =3D <2>;
+> +			fsl,ippdexpcr1-alt-addr =3D <&scfg 0x51c>;
+>  		};
+>=20
+>  		ftm_alarm0: timer0@29d0000 {
+> --
+> 2.7.4
 
