@@ -2,117 +2,101 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from vger.kernel.org (vger.kernel.org [23.128.96.18])
-	by mail.lfdr.de (Postfix) with ESMTP id E9048271A5A
-	for <lists+devicetree@lfdr.de>; Mon, 21 Sep 2020 07:23:23 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTP id D7EC7271A9F
+	for <lists+devicetree@lfdr.de>; Mon, 21 Sep 2020 08:04:14 +0200 (CEST)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S1726328AbgIUFXW convert rfc822-to-8bit (ORCPT
-        <rfc822;lists+devicetree@lfdr.de>); Mon, 21 Sep 2020 01:23:22 -0400
-Received: from lindbergh.monkeyblade.net ([23.128.96.19]:41500 "EHLO
-        lindbergh.monkeyblade.net" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S1726324AbgIUFXW (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Mon, 21 Sep 2020 01:23:22 -0400
-Received: from metis.ext.pengutronix.de (metis.ext.pengutronix.de [IPv6:2001:67c:670:201:290:27ff:fe1d:cc33])
-        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 6E178C0613CE
-        for <devicetree@vger.kernel.org>; Sun, 20 Sep 2020 22:23:22 -0700 (PDT)
-Received: from pty.hi.pengutronix.de ([2001:67c:670:100:1d::c5])
-        by metis.ext.pengutronix.de with esmtps (TLS1.2:ECDHE_RSA_AES_256_GCM_SHA384:256)
-        (Exim 4.92)
-        (envelope-from <ore@pengutronix.de>)
-        id 1kKEIF-0006Fc-OC; Mon, 21 Sep 2020 07:23:15 +0200
-Received: from ore by pty.hi.pengutronix.de with local (Exim 4.89)
-        (envelope-from <ore@pengutronix.de>)
-        id 1kKEID-0007B6-7n; Mon, 21 Sep 2020 07:23:13 +0200
-Date:   Mon, 21 Sep 2020 07:23:13 +0200
-From:   Oleksij Rempel <o.rempel@pengutronix.de>
-To:     Shawn Guo <shawnguo@kernel.org>
-Cc:     Marco Felsch <m.felsch@pengutronix.de>,
-        Mark Rutland <mark.rutland@arm.com>,
-        Rob Herring <robh+dt@kernel.org>,
-        Sascha Hauer <s.hauer@pengutronix.de>,
-        devicetree@vger.kernel.org, linux-kernel@vger.kernel.org,
-        NXP Linux Team <linux-imx@nxp.com>,
-        Pengutronix Kernel Team <kernel@pengutronix.de>,
-        David Jander <david@protonic.nl>,
-        Fabio Estevam <festevam@gmail.com>,
-        linux-arm-kernel@lists.infradead.org
-Subject: Re: [PATCH v2 3/3] ARM: dts: add Plymovent M2M board
-Message-ID: <20200921052313.3f6b2djdrxugjicu@pengutronix.de>
-References: <20200911050941.15013-1-o.rempel@pengutronix.de>
- <20200911050941.15013-4-o.rempel@pengutronix.de>
- <20200911060312.amj2ly7b3aiiwvhv@pengutronix.de>
- <20200913044944.GN25109@dragon>
-MIME-Version: 1.0
-Content-Type: text/plain; charset=utf-8
-Content-Disposition: inline
-Content-Transfer-Encoding: 8BIT
-In-Reply-To: <20200913044944.GN25109@dragon>
-X-Sent-From: Pengutronix Hildesheim
-X-URL:  http://www.pengutronix.de/
-X-IRC:  #ptxdist @freenode
-X-Accept-Language: de,en
-X-Accept-Content-Type: text/plain
-X-Uptime: 07:16:47 up 310 days, 20:35, 303 users,  load average: 0.08, 0.06,
- 0.01
-User-Agent: NeoMutt/20170113 (1.7.2)
-X-SA-Exim-Connect-IP: 2001:67c:670:100:1d::c5
-X-SA-Exim-Mail-From: ore@pengutronix.de
-X-SA-Exim-Scanned: No (on metis.ext.pengutronix.de); SAEximRunCond expanded to false
-X-PTX-Original-Recipient: devicetree@vger.kernel.org
+        id S1726343AbgIUGD7 (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Mon, 21 Sep 2020 02:03:59 -0400
+Received: from inva021.nxp.com ([92.121.34.21]:38266 "EHLO inva021.nxp.com"
+        rhost-flags-OK-OK-OK-OK) by vger.kernel.org with ESMTP
+        id S1726011AbgIUGD7 (ORCPT <rfc822;devicetree@vger.kernel.org>);
+        Mon, 21 Sep 2020 02:03:59 -0400
+X-Greylist: delayed 435 seconds by postgrey-1.27 at vger.kernel.org; Mon, 21 Sep 2020 02:03:58 EDT
+Received: from inva021.nxp.com (localhost [127.0.0.1])
+        by inva021.eu-rdc02.nxp.com (Postfix) with ESMTP id 37DE9200621;
+        Mon, 21 Sep 2020 07:56:43 +0200 (CEST)
+Received: from invc005.ap-rdc01.nxp.com (invc005.ap-rdc01.nxp.com [165.114.16.14])
+        by inva021.eu-rdc02.nxp.com (Postfix) with ESMTP id D16B5200A5A;
+        Mon, 21 Sep 2020 07:56:39 +0200 (CEST)
+Received: from localhost.localdomain (mega.ap.freescale.net [10.192.208.232])
+        by invc005.ap-rdc01.nxp.com (Postfix) with ESMTP id 5619840309;
+        Mon, 21 Sep 2020 07:56:35 +0200 (CEST)
+From:   Qiang Zhao <qiang.zhao@nxp.com>
+To:     a.zummo@towertech.it, alexandre.belloni@bootlin.com,
+        robh+dt@kernel.org
+Cc:     linux-rtc@vger.kernel.org, devicetree@vger.kernel.org,
+        linux-kernel@vger.kernel.org, linux-watchdog@vger.kernel.org,
+        Zhao Qiang <qiang.zhao@nxp.com>
+Subject: [Patch v2 1/3] dt-bindings: rtc: pcf2127: Add bindings for nxp,pcf2127
+Date:   Mon, 21 Sep 2020 13:48:19 +0800
+Message-Id: <20200921054821.26071-1-qiang.zhao@nxp.com>
+X-Mailer: git-send-email 2.17.1
+X-Virus-Scanned: ClamAV using ClamSMTP
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-On Sun, Sep 13, 2020 at 12:49:45PM +0800, Shawn Guo wrote:
-> On Fri, Sep 11, 2020 at 08:03:12AM +0200, Marco Felsch wrote:
-> > On 20-09-11 07:09, Oleksij Rempel wrote:
-> > > Plymovent M2M is a control interface produced for the Plymovent filter
-> > > systems.
-> > > 
-> > > Signed-off-by: David Jander <david@protonic.nl>
-> > > Signed-off-by: Oleksij Rempel <o.rempel@pengutronix.de>
-> > > ---
-> > >  arch/arm/boot/dts/Makefile          |   1 +
-> > >  arch/arm/boot/dts/imx6dl-plym2m.dts | 394 ++++++++++++++++++++++++++++
-> > >  2 files changed, 395 insertions(+)
-> > >  create mode 100644 arch/arm/boot/dts/imx6dl-plym2m.dts
-> > > 
-> > > diff --git a/arch/arm/boot/dts/Makefile b/arch/arm/boot/dts/Makefile
-> > > index 4572db3fa5ae..3c3811fd8613 100644
-> > > --- a/arch/arm/boot/dts/Makefile
-> > > +++ b/arch/arm/boot/dts/Makefile
-> > > @@ -455,6 +455,7 @@ dtb-$(CONFIG_SOC_IMX6Q) += \
-> > >  	imx6dl-pico-hobbit.dtb \
-> > >  	imx6dl-pico-nymph.dtb \
-> > >  	imx6dl-pico-pi.dtb \
-> > > +	imx6dl-plym2m.dtb \
-> > >  	imx6dl-prtrvt.dtb \
-> > >  	imx6dl-prtvt7.dtb \
-> > >  	imx6dl-rex-basic.dtb \
-> > > diff --git a/arch/arm/boot/dts/imx6dl-plym2m.dts b/arch/arm/boot/dts/imx6dl-plym2m.dts
-> > > new file mode 100644
-> > > index 000000000000..4f96e05aa03f
-> > > --- /dev/null
-> > > +++ b/arch/arm/boot/dts/imx6dl-plym2m.dts
-> > > @@ -0,0 +1,394 @@
-> > > +// SPDX-License-Identifier: GPL-2.0-or-later OR MIT
-> > > +// SPDX-FileCopyrightText: 2014 Protonic Holland
-> > > +// SPDX-FileCopyrightText: 2020 Oleksij Rempel <kernel@pengutronix.de>, Pengutronix
-> > 		^
-> > @shawn: I saw a few patches adding these tags. Are they used in the near
-> > future?
-> 
-> I'm not sure.  I haven't seen this in Documentation/process/license-rules.rst,
-> nor the discussion around this.
+From: Zhao Qiang <qiang.zhao@nxp.com>
 
-Hi Shawn,
+Add bindings for nxp,pcf2127
 
-is it a  no go? Should I send a patch with old style copyright text?
+Signed-off-by: Zhao Qiang <qiang.zhao@nxp.com>
+---
+Changes for v2:
+ - modify the format to yaml
+ - add compitable "nxp,pca2129"
 
+ .../devicetree/bindings/rtc/nxp,pcf2127.yaml       | 41 ++++++++++++++++++++++
+ 1 file changed, 41 insertions(+)
+ create mode 100644 Documentation/devicetree/bindings/rtc/nxp,pcf2127.yaml
 
-Regards,
-Oleksij
+diff --git a/Documentation/devicetree/bindings/rtc/nxp,pcf2127.yaml b/Documentation/devicetree/bindings/rtc/nxp,pcf2127.yaml
+new file mode 100644
+index 0000000..226a0b2
+--- /dev/null
++++ b/Documentation/devicetree/bindings/rtc/nxp,pcf2127.yaml
+@@ -0,0 +1,41 @@
++# SPDX-License-Identifier: GPL-2.0
++%YAML 1.2
++---
++$id: http://devicetree.org/schemas/rtc/nxp,pcf2127.yaml#
++$schema: http://devicetree.org/meta-schemas/core.yaml#
++
++title: PCF RTCs
++
++maintainers:
++  - Qiang Zhao <qiang.zhao@nxp.com>
++
++allOf:
++  - $ref: "rtc.yaml#"
++
++properties:
++  compatible:
++    enum:
++      - nxp,pcf2127
++      - nxp,pcf2129
++      - nxp,pca2129
++
++  reg:
++    maxItems: 1
++
++  interrupts:
++    maxItems: 1
++
++  no-watchdog:
++    $ref: /schemas/types.yaml#/definitions/flag
++    description:
++      With this property, the device will not registered as a watchdog device.
++
++  start-year: true
++
++required:
++  - compatible
++  - reg
++
++additionalProperties: false
++
++...
 -- 
-Pengutronix e.K.                           |                             |
-Steuerwalder Str. 21                       | http://www.pengutronix.de/  |
-31137 Hildesheim, Germany                  | Phone: +49-5121-206917-0    |
-Amtsgericht Hildesheim, HRA 2686           | Fax:   +49-5121-206917-5555 |
+2.7.4
+
