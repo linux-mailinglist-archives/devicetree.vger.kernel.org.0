@@ -2,121 +2,84 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from vger.kernel.org (vger.kernel.org [23.128.96.18])
-	by mail.lfdr.de (Postfix) with ESMTP id B265827217F
-	for <lists+devicetree@lfdr.de>; Mon, 21 Sep 2020 12:53:25 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTP id BC7EF27214F
+	for <lists+devicetree@lfdr.de>; Mon, 21 Sep 2020 12:38:04 +0200 (CEST)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S1726333AbgIUKxX (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Mon, 21 Sep 2020 06:53:23 -0400
-Received: from www381.your-server.de ([78.46.137.84]:48056 "EHLO
-        www381.your-server.de" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S1726353AbgIUKxV (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Mon, 21 Sep 2020 06:53:21 -0400
-X-Greylist: delayed 1605 seconds by postgrey-1.27 at vger.kernel.org; Mon, 21 Sep 2020 06:53:20 EDT
-DKIM-Signature: v=1; a=rsa-sha256; q=dns/txt; c=relaxed/relaxed; d=metafoo.de;
-         s=default2002; h=Content-Transfer-Encoding:Content-Type:MIME-Version:Date:
-        Message-ID:Subject:From:To:Sender:Reply-To:Cc:Content-ID:Content-Description:
-        Resent-Date:Resent-From:Resent-Sender:Resent-To:Resent-Cc:Resent-Message-ID:
-        In-Reply-To:References; bh=eY5LxhM6IJXQOEyzRVkGoUrgdQjhHHpcbF1poDzsPBM=; b=RA
-        WEgFaiQszqIaRDOHbVrTmToqeRnfTk7KGnA+91nLzMZ7+YFtiH/+iqGDtW6pFVy0kC5bg5RfapKLw
-        xnQEMh1iqOxbbzJD6ILo11/nyBnNWmucCgbvqkWseWesFvG/x04INBMOave5HvTKA5UN0A/8KNmOo
-        8/RmU/vmZe6yreq+qJJ2zw0HC5aiZt/rWOv02AEc60E6N2FhiGm0TszktsgJ/6z30CnLmn/YcjdA4
-        SB1BE+EW3FQFbHQzsLCGt7BPwzjLcsGKW7QVxTH5zvrI/Q40iWiGTeM32JVHntt8AFPWVzOB17W+n
-        M3JqmR8nkxldPF4ck64gfjnr28TT74FQ==;
-Received: from sslproxy05.your-server.de ([78.46.172.2])
-        by www381.your-server.de with esmtpsa (TLSv1.3:TLS_AES_256_GCM_SHA384:256)
-        (Exim 4.92.3)
-        (envelope-from <lars@metafoo.de>)
-        id 1kKJ1j-00018S-Nx; Mon, 21 Sep 2020 12:26:32 +0200
-Received: from [2001:a61:259b:1201:9e5c:8eff:fe01:8578]
-        by sslproxy05.your-server.de with esmtpsa (TLSv1.3:TLS_AES_256_GCM_SHA384:256)
-        (Exim 4.92)
-        (envelope-from <lars@metafoo.de>)
-        id 1kKJ1j-0005fe-GC; Mon, 21 Sep 2020 12:26:31 +0200
-To:     Rob Herring <robh+dt@kernel.org>,
-        Jonathan Cameron <jic23@kernel.org>,
-        "linux-iio@vger.kernel.org" <linux-iio@vger.kernel.org>,
-        "devicetree@vger.kernel.org" <devicetree@vger.kernel.org>
-From:   Lars-Peter Clausen <lars@metafoo.de>
-Subject: yaml schema and sub-nodes with vendor prefixes
-Message-ID: <b665f17d-0029-b51b-ac09-597f7b26d77b@metafoo.de>
-Date:   Mon, 21 Sep 2020 12:26:31 +0200
-User-Agent: Mozilla/5.0 (X11; Linux x86_64; rv:68.0) Gecko/20100101
- Thunderbird/68.12.0
+        id S1726518AbgIUKiE (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Mon, 21 Sep 2020 06:38:04 -0400
+Received: from mga09.intel.com ([134.134.136.24]:19050 "EHLO mga09.intel.com"
+        rhost-flags-OK-OK-OK-OK) by vger.kernel.org with ESMTP
+        id S1726445AbgIUKiD (ORCPT <rfc822;devicetree@vger.kernel.org>);
+        Mon, 21 Sep 2020 06:38:03 -0400
+IronPort-SDR: w58FHKHQC/nDxp8RHI1jI08BAl5SkatJBsthvaevqkq+dwj4peLKyk3aYkWh7YKYHntU1T/eAA
+ 6ZnbXRf8Wkjg==
+X-IronPort-AV: E=McAfee;i="6000,8403,9750"; a="161275198"
+X-IronPort-AV: E=Sophos;i="5.77,286,1596524400"; 
+   d="scan'208";a="161275198"
+X-Amp-Result: SKIPPED(no attachment in message)
+X-Amp-File-Uploaded: False
+Received: from orsmga008.jf.intel.com ([10.7.209.65])
+  by orsmga102.jf.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384; 21 Sep 2020 03:38:02 -0700
+IronPort-SDR: VRyQ4+EwVz9MYEg7d273qAC/eR7nhRYAfXu9CdC7DpSEX798ksxaCbYiDTdBa3z3zrUUEZZv8E
+ jtncxHR2ebQw==
+X-ExtLoop1: 1
+X-IronPort-AV: E=Sophos;i="5.77,286,1596524400"; 
+   d="scan'208";a="337822045"
+Received: from smile.fi.intel.com (HELO smile) ([10.237.68.40])
+  by orsmga008.jf.intel.com with ESMTP; 21 Sep 2020 03:37:59 -0700
+Received: from andy by smile with local (Exim 4.94)
+        (envelope-from <andriy.shevchenko@linux.intel.com>)
+        id 1kKJCm-000iJf-1H; Mon, 21 Sep 2020 13:37:56 +0300
+Date:   Mon, 21 Sep 2020 13:37:56 +0300
+From:   Andy Shevchenko <andriy.shevchenko@linux.intel.com>
+To:     Uwe =?iso-8859-1?Q?Kleine-K=F6nig?= 
+        <u.kleine-koenig@pengutronix.de>
+Cc:     vijayakannan.ayyathurai@intel.com, thierry.reding@gmail.com,
+        robh+dt@kernel.org, linux-pwm@vger.kernel.org,
+        devicetree@vger.kernel.org, wan.ahmad.zainie.wan.mohamad@intel.com,
+        mgross@linux.intel.com, lakshmi.bai.raja.subramanian@intel.com
+Subject: Re: [PATCH v7 2/2] dt-bindings: pwm: keembay: Add bindings for Intel
+ Keem Bay PWM
+Message-ID: <20200921103756.GP3956970@smile.fi.intel.com>
+References: <20200909162719.7585-1-vijayakannan.ayyathurai@intel.com>
+ <20200909162719.7585-3-vijayakannan.ayyathurai@intel.com>
+ <20200921084401.gtesjzentxrly47c@pengutronix.de>
 MIME-Version: 1.0
-Content-Type: text/plain; charset=utf-8; format=flowed
+Content-Type: text/plain; charset=iso-8859-1
+Content-Disposition: inline
 Content-Transfer-Encoding: 8bit
-Content-Language: en-US
-X-Authenticated-Sender: lars@metafoo.de
-X-Virus-Scanned: Clear (ClamAV 0.102.4/25933/Sun Sep 20 15:50:34 2020)
+In-Reply-To: <20200921084401.gtesjzentxrly47c@pengutronix.de>
+Organization: Intel Finland Oy - BIC 0357606-4 - Westendinkatu 7, 02160 Espoo
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-Hi,
+On Mon, Sep 21, 2020 at 10:44:01AM +0200, Uwe Kleine-K�nig wrote:
+> On Thu, Sep 10, 2020 at 12:27:19AM +0800, vijayakannan.ayyathurai@intel.com wrote:
+> > From: Vijayakannan Ayyathurai <vijayakannan.ayyathurai@intel.com>
+> > 
+> > Add PWM Device Tree bindings documentation for the Intel Keem Bay SoC.
+> > 
+> > Signed-off-by: Vineetha G. Jaya Kumaran <vineetha.g.jaya.kumaran@intel.com>
+> > Signed-off-by: Vijayakannan Ayyathurai <vijayakannan.ayyathurai@intel.com>
+> > Reviewed-by: Rob Herring <robh@kernel.org>
+> > Acked-by: Uwe Kleine-K�nig <u.kleine-koenig@pengutronix.de>
+> 
+> nitpick: Your S-o-b should always be last. This way it becomes clear who
+> added the other tags.
 
-I'm trying to convert Xilinx XADC devicetree bindings[1] description to 
-yaml format. And I'm running into issue with describing a sub-node with 
-a vendor prefix.
+I think it should reflect chronological order. If SoB has been given before
+e.g. Ack then SoB should be followed by Ack and not other way around.
 
-A typical devicetree entry for the XADC looks like
+But it's my interpretation of the chapter 12. Actually it doesn't say anything
+about placement (ordering) of Ack.
 
-     xadc@43200000 {
-         compatible = "xlnx,axi-xadc-1.00.a";
+So, formally the above follows the letter of law.
 
-         xlnx,channels {
-             #address-cells = <1>;
-             #size-cells = <0>;
-             channel@0 {
-                 reg = <0>;
-                 xlnx,bipolar;
-             };
-         };
-     };
+What did you have in mind when commenting that? Perhaps I missed documentation.
 
-So there is the 'xlnx,channels' sub-node which contains a set of other 
-nodes which represent the individual channels.
+-- 
+With Best Regards,
+Andy Shevchenko
 
-The way I'm trying to describe it in the yaml file is like
-
-  xlnx,channels:
-     description: Node containing all the channel nodes
-     type: object
-     properties:
-       '#address-cells':
-          const: 1
-       '#size-cells':
-          const: 0
-
-     patternProperties:
-       "^channel@([0-9]|1[0-6])$":
-         type: object
-         properties:
-           reg:
-             description: ...
-           xlnx,bipolar:
-             description: If set the channel is used in bipolar mode.
-             type: boolean
-         required:
-           - reg
-         additionalProperties: false
-
-     required:
-       - '#address-cells'
-       - '#size-cells'
-     additionalProperties: false
-
-This now fails validation, presumably because there is no match in 
-meta-schemas/vendor-props.yaml. If I drop the vendor prefix from the 
-property name validation passes. I can also make validation pass by 
-adding an arbitrary $ref property, but there is no 'node' type in 
-types.yaml.
-
-What's the best way to describe a node with a vendor prefix?
-
-Thanks,
-
-- Lars
-
-[1] 
-https://git.kernel.org/pub/scm/linux/kernel/git/torvalds/linux.git/tree/Documentation/devicetree/bindings/iio/adc/xilinx-xadc.txt
 
