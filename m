@@ -2,179 +2,117 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from vger.kernel.org (vger.kernel.org [23.128.96.18])
-	by mail.lfdr.de (Postfix) with ESMTP id 8E3D6273B5F
-	for <lists+devicetree@lfdr.de>; Tue, 22 Sep 2020 09:04:08 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTP id 79BA6273B7E
+	for <lists+devicetree@lfdr.de>; Tue, 22 Sep 2020 09:13:20 +0200 (CEST)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S1729595AbgIVHEI (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Tue, 22 Sep 2020 03:04:08 -0400
-Received: from lindbergh.monkeyblade.net ([23.128.96.19]:53428 "EHLO
-        lindbergh.monkeyblade.net" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S1729577AbgIVHEH (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Tue, 22 Sep 2020 03:04:07 -0400
-Received: from mail-pg1-x541.google.com (mail-pg1-x541.google.com [IPv6:2607:f8b0:4864:20::541])
-        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id BA509C0613CF
-        for <devicetree@vger.kernel.org>; Tue, 22 Sep 2020 00:04:07 -0700 (PDT)
-Received: by mail-pg1-x541.google.com with SMTP id u24so364355pgi.1
-        for <devicetree@vger.kernel.org>; Tue, 22 Sep 2020 00:04:07 -0700 (PDT)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=linaro.org; s=google;
-        h=date:from:to:cc:subject:message-id:references:mime-version
-         :content-disposition:in-reply-to:user-agent;
-        bh=YRpi9KwHALoKXKQSBhCBZZ06f6McWrPvpfammLbLT8k=;
-        b=Vx4xa5YTBKUlMeIHTr3nUG0IcbX8yqVOQaPcvn8RIxMp1hyTKR1u8hm9kMvSOuyZ6V
-         DzfQZgoxbcFyDF3t52mS/eLs+E7S6qThce7Gt2yc+mYETqAaoVpegKaRf8sUN7zAy6gV
-         hwLSNv5idj6wgSIZB1yIOYoC91lK9gKAxKqG3Pdw90vTlj//h1YT60+ebH1AwyATN9sC
-         k4pPnWXPMS5TmSwP0OGVZ7h378rUfe7aWSwaGaTCOtVTRckVv6UZYNQZ23tddKXNyb0G
-         NTv8/F8v/rrZBu7fsUfPZUTTJn+8Au3MJyfuGnvALnIZHIRh/bG4W7k6WTemfdMFMArG
-         kDqg==
-X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=1e100.net; s=20161025;
-        h=x-gm-message-state:date:from:to:cc:subject:message-id:references
-         :mime-version:content-disposition:in-reply-to:user-agent;
-        bh=YRpi9KwHALoKXKQSBhCBZZ06f6McWrPvpfammLbLT8k=;
-        b=R9b9y4STWjOhZGasaHIR+18Qq1jVBITzWHGJouVfKyLxGtqrRfErkXz9r0HFm489Z8
-         4/ifsjRlAWdzsZyDcIxouYuQiPUBkWAGlMERRJk3UsP1mA76s40hxFSFtqoKiLdKSkNk
-         g0di7KMhRuvwMubAx7Cx461tjDUJiQQ4Rh+QCC7CE3YnQC+25HzvAAVj0FNVAJKc0Dgq
-         xaVDbgMnXyVL/xJ11iBzdK2/uWfD2GJBUev0IheplCIJHsG9UGicaAA4npNkI1bzYMu3
-         9BqQfR+b++Nv/dsMa9UMOYR9Bkf5vXaHEzTffBnJSvFe/yUXJytXVijjL9sfJc5t6rlj
-         LctQ==
-X-Gm-Message-State: AOAM532MBbbUezEo5v+a7O+8SQxaG0i6RIBFAJQNt1uuSv6wRO9/BUL6
-        HhATxi6rsa1ApDqka5VAGoRD
-X-Google-Smtp-Source: ABdhPJz6WA77oaxPRuROoCyX6vVBITEzYe90bgErw1k8pwMtDD7+wfNZ93rVhhxEneNx8PRzQwC5CQ==
-X-Received: by 2002:a17:902:8e83:b029:d2:41d3:94e9 with SMTP id bg3-20020a1709028e83b02900d241d394e9mr1172015plb.75.1600758247230;
-        Tue, 22 Sep 2020 00:04:07 -0700 (PDT)
-Received: from Mani-XPS-13-9360 ([2409:4072:6e1c:c062:1004:2ccf:6900:b97])
-        by smtp.gmail.com with ESMTPSA id e2sm1412821pjm.27.2020.09.22.00.04.01
-        (version=TLS1_2 cipher=ECDHE-ECDSA-CHACHA20-POLY1305 bits=256/256);
-        Tue, 22 Sep 2020 00:04:06 -0700 (PDT)
-Date:   Tue, 22 Sep 2020 12:33:59 +0530
-From:   Manivannan Sadhasivam <manivannan.sadhasivam@linaro.org>
-To:     Amit Singh Tomar <amittomer25@gmail.com>
-Cc:     andre.przywara@arm.com, afaerber@suse.de, robh+dt@kernel.org,
-        cristian.ciocaltea@gmail.com, linux-kernel@vger.kernel.org,
-        linux-arm-kernel@lists.infradead.org,
-        linux-actions@lists.infradead.org, devicetree@vger.kernel.org
-Subject: Re: [PATCH v7 10/10] arm64: dts: actions: Add uSD support for
- Cubieboard7
-Message-ID: <20200922070359.GI29035@Mani-XPS-13-9360>
-References: <1595180527-11320-1-git-send-email-amittomer25@gmail.com>
- <1595180527-11320-11-git-send-email-amittomer25@gmail.com>
+        id S1729608AbgIVHNU (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Tue, 22 Sep 2020 03:13:20 -0400
+Received: from mailgw01.mediatek.com ([210.61.82.183]:57489 "EHLO
+        mailgw01.mediatek.com" rhost-flags-OK-FAIL-OK-FAIL) by vger.kernel.org
+        with ESMTP id S1728526AbgIVHNQ (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Tue, 22 Sep 2020 03:13:16 -0400
+X-UUID: d2c6de1f2a0642c3b4370b26606d871f-20200922
+DKIM-Signature: v=1; a=rsa-sha256; q=dns/txt; c=relaxed/relaxed; d=mediatek.com; s=dk;
+        h=Content-Transfer-Encoding:MIME-Version:Content-Type:References:In-Reply-To:Date:CC:To:From:Subject:Message-ID; bh=y5qtueSnd0gmXTgqaU7WrKuS0UH/8TSj72WVkDhtRI4=;
+        b=Dje6q1TmGkdE+S1arwuuvpcomXsB5uJj8NcGXs2/mInVgeXb75PlMTWmsiZ8cJGluR69zw9poVr5DCKqO4svW14kAkWnZ2GYU3rYkFxxY0/KmImbzKDbVBJ0+sFdAt774HLVTNoI3iHWfKzozNd9EblHrHR9S9cvaQyGydoWc/E=;
+X-UUID: d2c6de1f2a0642c3b4370b26606d871f-20200922
+Received: from mtkexhb01.mediatek.inc [(172.21.101.102)] by mailgw01.mediatek.com
+        (envelope-from <neal.liu@mediatek.com>)
+        (Cellopoint E-mail Firewall v4.1.14 Build 0819 with TLSv1.2 ECDHE-RSA-AES256-SHA384 256/256)
+        with ESMTP id 618911528; Tue, 22 Sep 2020 15:13:11 +0800
+Received: from MTKCAS06.mediatek.inc (172.21.101.30) by
+ mtkmbs01n2.mediatek.inc (172.21.101.79) with Microsoft SMTP Server (TLS) id
+ 15.0.1497.2; Tue, 22 Sep 2020 15:13:08 +0800
+Received: from [172.21.77.33] (172.21.77.33) by MTKCAS06.mediatek.inc
+ (172.21.101.73) with Microsoft SMTP Server id 15.0.1497.2 via Frontend
+ Transport; Tue, 22 Sep 2020 15:13:08 +0800
+Message-ID: <1600758789.19001.4.camel@mtkswgap22>
+Subject: Re: [PATCH v7] Add MediaTek MT6779 devapc driver
+From:   Neal Liu <neal.liu@mediatek.com>
+To:     Matthias Brugger <matthias.bgg@gmail.com>,
+        Rob Herring <robh+dt@kernel.org>
+CC:     Neal Liu <neal.liu@mediatek.com>,
+        Chun-Kuang Hu <chunkuang.hu@kernel.org>,
+        "devicetree@vger.kernel.org" <devicetree@vger.kernel.org>,
+        "linux-arm-kernel@lists.infradead.org" 
+        <linux-arm-kernel@lists.infradead.org>,
+        "linux-mediatek@lists.infradead.org" 
+        <linux-mediatek@lists.infradead.org>,
+        lkml <linux-kernel@vger.kernel.org>,
+        wsd_upstream <wsd_upstream@mediatek.com>
+Date:   Tue, 22 Sep 2020 15:13:09 +0800
+In-Reply-To: <1600246737.14155.3.camel@mtkswgap22>
+References: <1598497593-15781-1-git-send-email-neal.liu@mediatek.com>
+         <1599028813.32069.1.camel@mtkswgap22> <1599640627.6370.3.camel@mtkswgap22>
+         <1600246737.14155.3.camel@mtkswgap22>
+Content-Type: text/plain; charset="UTF-8"
+X-Mailer: Evolution 3.2.3-0ubuntu6 
 MIME-Version: 1.0
-Content-Type: text/plain; charset=us-ascii
-Content-Disposition: inline
-In-Reply-To: <1595180527-11320-11-git-send-email-amittomer25@gmail.com>
-User-Agent: Mutt/1.9.4 (2018-02-28)
+X-TM-SNTS-SMTP: D9A970872699FB66BF596432F982953E3F524122165F704DE10755B81CEC28102000:8
+X-MTK:  N
+Content-Transfer-Encoding: base64
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-On Sun, Jul 19, 2020 at 11:12:07PM +0530, Amit Singh Tomar wrote:
-> This commit adds uSD support for Cubieboard7 board based on Actions Semi
-> S700 SoC. SD0 is connected to uSD slot. Since there is no PMIC support
-> added yet, fixed regulator has been used as a regulator node.
-> 
-> Signed-off-by: Amit Singh Tomar <amittomer25@gmail.com>
+SGkgTWF0dGhpYXMsDQoNCldlIG5lZWQgdGhpcyBkcml2ZXIgc3VwcG9ydGVkIG9uIG1haW4tbGlu
+ZS4NCkNvdWxkIHlvdSBzYXZlIHlvdXIgdGltZSBmb3IgdXMgdG8gcmV2aWV3IGl0Pw0KVGhhbmtz
+DQoNCi1OZWFsDQoNCk9uIFdlZCwgMjAyMC0wOS0xNiBhdCAxNjo1OCArMDgwMCwgTmVhbCBMaXUg
+d3JvdGU6DQo+IEhpIFJvYiwgTWF0dGhpYXMsIENodW4tS3VhbmcsDQo+IA0KPiBTb3JyeSBmb3Ig
+cHVzaGluZyB5b3Ugc28gaGFyZC4NCj4gTWF5IEkga25vdyBpcyB0aGlzIHBhdGNoIHNldCBpcyBj
+b21mb3J0YWJsZSB0byBhcHBseSBvbiBsYXRlc3Qga2VybmVsPw0KPiBUaGFua3MNCj4gDQo+IC1O
+ZWFsDQo+IA0KPiBPbiBXZWQsIDIwMjAtMDktMDkgYXQgMTY6MzcgKzA4MDAsIE5lYWwgTGl1IHdy
+b3RlOg0KPiA+IEhpIFJvYiwgTWF0dGhpYXMsIENodW4tS3VhbmcsDQo+ID4gDQo+ID4gUGxlYXNl
+IGtpbmRseSBsZXQgbWUga25vdyB5b3VyIGNvbW1lbnRzIGFib3V0IHRoaXMgcGF0Y2ggc2V0Lg0K
+PiA+IFRoYW5rcw0KPiA+IA0KPiA+IC1OZWFsDQo+ID4gDQo+ID4gT24gV2VkLCAyMDIwLTA5LTAy
+IGF0IDE0OjQwICswODAwLCBOZWFsIExpdSB3cm90ZToNCj4gPiA+IEhpIFJvYiwgTWF0dGhpYXMs
+IENodW4tS3VhbmcsDQo+ID4gPiANCj4gPiA+IEdlbnRsZSBwaW5nIGZvciB0aGlzIHBhdGNoIHNl
+dC4NCj4gPiA+IFRoYW5rcw0KPiA+ID4gDQo+ID4gPiAtTmVhbA0KPiA+ID4gDQo+ID4gPiBPbiBU
+aHUsIDIwMjAtMDgtMjcgYXQgMTE6MDYgKzA4MDAsIE5lYWwgTGl1IHdyb3RlOg0KPiA+ID4gPiBU
+aGVzZSBwYXRjaCBzZXJpZXMgaW50cm9kdWNlIGEgTWVkaWFUZWsgTVQ2Nzc5IGRldmFwYyBkcml2
+ZXIuDQo+ID4gPiA+IA0KPiA+ID4gPiBNZWRpYVRlayBidXMgZmFicmljIHByb3ZpZGVzIFRydXN0
+Wm9uZSBzZWN1cml0eSBzdXBwb3J0IGFuZCBkYXRhIHByb3RlY3Rpb24gdG8gcHJldmVudCBzbGF2
+ZXMgZnJvbSBiZWluZyBhY2Nlc3NlZCBieSB1bmV4cGVjdGVkIG1hc3RlcnMuDQo+ID4gPiA+IFRo
+ZSBzZWN1cml0eSB2aW9sYXRpb24gaXMgbG9nZ2VkIGFuZCBzZW50IHRvIHRoZSBwcm9jZXNzb3Ig
+Zm9yIGZ1cnRoZXIgYW5hbHlzaXMgb3IgY291bnRlcm1lYXN1cmVzLg0KPiA+ID4gPiANCj4gPiA+
+ID4gQW55IG9jY3VycmVuY2Ugb2Ygc2VjdXJpdHkgdmlvbGF0aW9uIHdvdWxkIHJhaXNlIGFuIGlu
+dGVycnVwdCwgYW5kIGl0IHdpbGwgYmUgaGFuZGxlZCBieSBtdGstZGV2YXBjIGRyaXZlci4NCj4g
+PiA+ID4gVGhlIHZpb2xhdGlvbiBpbmZvcm1hdGlvbiBpcyBwcmludGVkIGluIG9yZGVyIHRvIGZp
+bmQgdGhlIG11cmRlcmVyLg0KPiA+ID4gPiANCj4gPiA+ID4gY2hhbmdlcyBzaW5jZSB2NjoNCj4g
+PiA+ID4gLSByZW1vdmUgdW5uZWNlc3NhcnkgbWFzay91bm1hc2sgbW9kdWxlIGlycSBkdXJpbmcg
+SVNSLg0KPiA+ID4gPiANCj4gPiA+ID4gY2hhbmdlcyBzaW5jZSB2NToNCj4gPiA+ID4gLSByZW1v
+dmUgcmVkdW5kYW50IHdyaXRlIHJlZyBvcGVyYXRpb24uDQo+ID4gPiA+IC0gdXNlIHN0YXRpYyB2
+YXJpYWJsZSBvZiB2aW9fZGJncyBpbnN0ZWFkLg0KPiA+ID4gPiAtIGFkZCBzdG9wX2RldmFwYygp
+IGlmIGRyaXZlciBpcyByZW1vdmVkLg0KPiA+ID4gPiANCj4gPiA+ID4gY2hhbmdlcyBzaW5jZSB2
+NDoNCj4gPiA+ID4gLSByZWZhY3RvciBkYXRhIHN0cnVjdHVyZS4NCj4gPiA+ID4gLSBtZXJnZSB0
+d28gc2ltcGxlIGZ1bmN0aW9ucyBpbnRvIG9uZS4NCj4gPiA+ID4gLSByZWZhY3RvciByZWdpc3Rl
+ciBzZXR0aW5nIHRvIHByZXZlbnQgdG9vIG1hbnkgZnVuY3Rpb24gY2FsbCBvdmVyaGVhZC4NCj4g
+PiA+ID4gDQo+ID4gPiA+IGNoYW5nZXMgc2luY2UgdjM6DQo+ID4gPiA+IC0gcmV2aXNlIHZpb2xh
+dGlvbiBoYW5kbGluZyBmbG93IHRvIG1ha2UgaXQgbW9yZSBlYXNpbHkgdG8gdW5kZXJzdGFuZA0K
+PiA+ID4gPiAgIGhhcmR3YXJlIGJlaGF2aW9yLg0KPiA+ID4gPiAtIGFkZCBtb3JlIGNvbW1lbnRz
+IHRvIHVuZGVyc3RhbmQgaG93IGhhcmR3YXJlIHdvcmtzLg0KPiA+ID4gPiANCj4gPiA+ID4gY2hh
+bmdlcyBzaW5jZSB2MjoNCj4gPiA+ID4gLSBwYXNzIHBsYXRmb3JtIGluZm8gdGhyb3VnaCBEVCBk
+YXRhLg0KPiA+ID4gPiAtIHJlbW92ZSB1bm5lY2Vzc2FyeSBmdW5jdGlvbi4NCj4gPiA+ID4gLSBy
+ZW1vdmUgc2xhdmVfdHlwZSBiZWNhdXNlIGl0IGFsd2F5cyBlcXVhbHMgdG8gMSBpbiBjdXJyZW50
+IHN1cHBvcnQgU29DLg0KPiA+ID4gPiAtIHVzZSB2aW9faWR4X251bSBpbnN0cmVhZCBvZiBsaXN0
+IGFsbCBkZXZpY2VzJyBpbmRleC4NCj4gPiA+ID4gLSBhZGQgbW9yZSBjb21tZW50cyB0byBkZXNj
+cmliZSBoYXJkd2FyZSBiZWhhdmlvci4NCj4gPiA+ID4gDQo+ID4gPiA+IGNoYW5nZXMgc2luY2Ug
+djE6DQo+ID4gPiA+IC0gbW92ZSBTb0Mgc3BlY2lmaWMgcGFydCB0byBEVCBkYXRhLg0KPiA+ID4g
+PiAtIHJlbW92ZSB1bm5lY2Vzc2FyeSBib3VuZGFyeSBjaGVjay4NCj4gPiA+ID4gLSByZW1vdmUg
+dW5uZWNlc3NhcnkgZGF0YSB0eXBlIGRlY2xhcmF0aW9uLg0KPiA+ID4gPiAtIHVzZSByZWFkX3Bv
+bGxfdGltZW91dCgpIGluc3RyZWFkIG9mIGZvciBsb29wIHBvbGxpbmcuDQo+ID4gPiA+IC0gcmV2
+aXNlIGNvZGluZyBzdHlsZSBlbGVnYW50bHkuDQo+ID4gPiA+IA0KPiA+ID4gPiANCj4gPiA+ID4g
+KioqIEJMVVJCIEhFUkUgKioqDQo+ID4gPiA+IA0KPiA+ID4gPiBOZWFsIExpdSAoMik6DQo+ID4g
+PiA+ICAgZHQtYmluZGluZ3M6IGRldmFwYzogYWRkIGJpbmRpbmdzIGZvciBtdGstZGV2YXBjDQo+
+ID4gPiA+ICAgc29jOiBtZWRpYXRlazogYWRkIG10Njc3OSBkZXZhcGMgZHJpdmVyDQo+ID4gPiA+
+IA0KPiA+ID4gPiAgLi4uL2JpbmRpbmdzL3NvYy9tZWRpYXRlay9kZXZhcGMueWFtbCAgICAgICAg
+IHwgIDU4ICsrKysNCj4gPiA+ID4gIGRyaXZlcnMvc29jL21lZGlhdGVrL0tjb25maWcgICAgICAg
+ICAgICAgICAgICB8ICAgOSArDQo+ID4gPiA+ICBkcml2ZXJzL3NvYy9tZWRpYXRlay9NYWtlZmls
+ZSAgICAgICAgICAgICAgICAgfCAgIDEgKw0KPiA+ID4gPiAgZHJpdmVycy9zb2MvbWVkaWF0ZWsv
+bXRrLWRldmFwYy5jICAgICAgICAgICAgIHwgMzA1ICsrKysrKysrKysrKysrKysrKw0KPiA+ID4g
+PiAgNCBmaWxlcyBjaGFuZ2VkLCAzNzMgaW5zZXJ0aW9ucygrKQ0KPiA+ID4gPiAgY3JlYXRlIG1v
+ZGUgMTAwNjQ0IERvY3VtZW50YXRpb24vZGV2aWNldHJlZS9iaW5kaW5ncy9zb2MvbWVkaWF0ZWsv
+ZGV2YXBjLnlhbWwNCj4gPiA+ID4gIGNyZWF0ZSBtb2RlIDEwMDY0NCBkcml2ZXJzL3NvYy9tZWRp
+YXRlay9tdGstZGV2YXBjLmMNCj4gPiA+ID4gDQo+ID4gPiANCj4gPiA+IA0KPiA+IA0KPiA+IA0K
+PiANCj4gDQoNCg==
 
-Not applying this one! Please post it in next revision.
-
-Thanks,
-Mani
-
-> ---
-> Changes since v6:
-> 	* Brought back the uSD fixed regulator.
-> Changes since v5:
->         * Removed the Fixed regulators as these are
->           not needed.
-> Changes since v4:
->         * No change.
-> Changes since v3:
->         * No change.
-> Changes since v2:
->         * No change.
-> Changes since v1:
->         * No change.
-> Changes since RFC:
->         * No change.
-> ---
->  arch/arm64/boot/dts/actions/s700-cubieboard7.dts | 33 ++++++++++++++++++++++++
->  arch/arm64/boot/dts/actions/s700.dtsi            |  1 +
->  2 files changed, 34 insertions(+)
-> 
-> diff --git a/arch/arm64/boot/dts/actions/s700-cubieboard7.dts b/arch/arm64/boot/dts/actions/s700-cubieboard7.dts
-> index 63e375cd9eb4..f81d63261ba2 100644
-> --- a/arch/arm64/boot/dts/actions/s700-cubieboard7.dts
-> +++ b/arch/arm64/boot/dts/actions/s700-cubieboard7.dts
-> @@ -13,6 +13,7 @@
->  
->  	aliases {
->  		serial3 = &uart3;
-> +		mmc0 = &mmc0;
->  	};
->  
->  	chosen {
-> @@ -28,6 +29,15 @@
->  		device_type = "memory";
->  		reg = <0x1 0xe0000000 0x0 0x0>;
->  	};
-> +
-> +	/* Fixed regulator used in the absence of PMIC */
-> +	sd_vcc: sd-vcc {
-> +		compatible = "regulator-fixed";
-> +		regulator-name = "fixed-3.1V";
-> +		regulator-min-microvolt = <3100000>;
-> +		regulator-max-microvolt = <3100000>;
-> +		regulator-always-on;
-> +	};
->  };
->  
->  &i2c0 {
-> @@ -81,6 +91,14 @@
->  			bias-pull-up;
->  		};
->  	};
-> +
-> +	mmc0_default: mmc0_default {
-> +		pinmux {
-> +			groups = "sd0_d0_mfp", "sd0_d1_mfp", "sd0_d2_d3_mfp",
-> +				 "sd0_cmd_mfp", "sd0_clk_mfp";
-> +			function = "sd0";
-> +		};
-> +	};
->  };
->  
->  &timer {
-> @@ -90,3 +108,18 @@
->  &uart3 {
->  	status = "okay";
->  };
-> +
-> +/* uSD */
-> +&mmc0 {
-> +	status = "okay";
-> +	pinctrl-names = "default";
-> +	pinctrl-0 = <&mmc0_default>;
-> +	cd-gpios = <&pinctrl 120 GPIO_ACTIVE_LOW>;
-> +	no-sdio;
-> +	no-mmc;
-> +	no-1-8-v;
-> +	bus-width = <4>;
-> +	vmmc-supply = <&sd_vcc>;
-> +	vqmmc-supply = <&sd_vcc>;
-> +};
-> +
-> diff --git a/arch/arm64/boot/dts/actions/s700.dtsi b/arch/arm64/boot/dts/actions/s700.dtsi
-> index 9ed88aafc2da..ba498cf9217d 100644
-> --- a/arch/arm64/boot/dts/actions/s700.dtsi
-> +++ b/arch/arm64/boot/dts/actions/s700.dtsi
-> @@ -4,6 +4,7 @@
->   */
->  
->  #include <dt-bindings/clock/actions,s700-cmu.h>
-> +#include <dt-bindings/gpio/gpio.h>
->  #include <dt-bindings/interrupt-controller/arm-gic.h>
->  #include <dt-bindings/power/owl-s700-powergate.h>
->  #include <dt-bindings/reset/actions,s700-reset.h>
-> -- 
-> 2.7.4
-> 
