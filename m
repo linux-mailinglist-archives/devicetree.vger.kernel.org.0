@@ -2,827 +2,240 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from vger.kernel.org (vger.kernel.org [23.128.96.18])
-	by mail.lfdr.de (Postfix) with ESMTP id C0615274273
-	for <lists+devicetree@lfdr.de>; Tue, 22 Sep 2020 14:51:35 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTP id 1DDB42742DC
+	for <lists+devicetree@lfdr.de>; Tue, 22 Sep 2020 15:22:45 +0200 (CEST)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S1726678AbgIVMvb (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Tue, 22 Sep 2020 08:51:31 -0400
-Received: from lindbergh.monkeyblade.net ([23.128.96.19]:50906 "EHLO
-        lindbergh.monkeyblade.net" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S1726586AbgIVMva (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Tue, 22 Sep 2020 08:51:30 -0400
-Received: from mail-pg1-x52a.google.com (mail-pg1-x52a.google.com [IPv6:2607:f8b0:4864:20::52a])
-        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 864C0C061755;
-        Tue, 22 Sep 2020 05:51:30 -0700 (PDT)
-Received: by mail-pg1-x52a.google.com with SMTP id o25so6920561pgm.0;
-        Tue, 22 Sep 2020 05:51:30 -0700 (PDT)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=gmail.com; s=20161025;
-        h=from:to:cc:subject:date:message-id:in-reply-to:references;
-        bh=e7vi8qgEoV6AQr/B94AvWYM4imoj4jG2gpjhKaQKEWQ=;
-        b=avoNtLK6fPC7ZXiJMybxRxK6KhX0PGR9YJVoR/TlobSgGfWm/vcT9X3lLVksv4izKe
-         v0tgjkVicrZ8KVkbUMrbWo6YdaWVWehsNypU+G3v0asSMS0NuGu9l6lIlGZty+BmiK+W
-         53zJf//ogBTE0OyRrV7bBixvzrlOUh+NxCjH98bvleOw8n6AuOnpd7oa5BXdBdWsm60E
-         WaCIuw7p6e7SKKv4zx0GHYq0VqM0p03Ft3RjWEFy6mGNh1xTjm5ETb4j6mGK8ZAZjts9
-         04TvrQEHvri9enM+4dK7rh607msnhp52N/PfP/KBaFE4bVP1xYMcRfwc+7o+NUoQ/eSi
-         ap2g==
-X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=1e100.net; s=20161025;
-        h=x-gm-message-state:from:to:cc:subject:date:message-id:in-reply-to
-         :references;
-        bh=e7vi8qgEoV6AQr/B94AvWYM4imoj4jG2gpjhKaQKEWQ=;
-        b=LiUkxjpgDkGN/iLo11wTSRsAg9PcOO1hTQ2pkjGlqlVhgy2YkKvAiiyJc6lHV3GF8b
-         FCjbRFfvDDwcJGIk4vZ1rkW2ehk3cE5OCJNEkUKJNvp2+2h20wIdmNMKpSWuQuGGJ28i
-         mUEjyEhdm6urLr8ugQN+EXuI+qXTx9tO17J150A23mMNWEeR63MidqRhVV3wp1YRwcoP
-         jrNIu7pTC+QBbUgfKxC44BT+V64E4tERlLXd859ODyHB0GXDKXdfRihTOKOFbpy4SQ+w
-         BwhLGCuVv1sy6jGzLj5G8o3pzbymf8u6/MfoKN8sGrgKtUe2h2B0HnKhP/JFjZeCP6TU
-         +oXg==
-X-Gm-Message-State: AOAM531+xTtsnYhDh1DW+j8V+JUIwhDmyy0711bFZHQVLV4A/QGfd5UA
-        NrK80/szb4RgpL6qnxxn1kk=
-X-Google-Smtp-Source: ABdhPJzzBNNxA1TCmxV3BLSD++x2/xVKeC+A0ZXV1ZKOmn6+CHRnHhwb7cAmO9fEfvbL/XlD48tD1g==
-X-Received: by 2002:aa7:85d4:0:b029:142:440b:fcd7 with SMTP id z20-20020aa785d40000b0290142440bfcd7mr3950302pfn.36.1600779089836;
-        Tue, 22 Sep 2020 05:51:29 -0700 (PDT)
-Received: from localhost.localdomain ([2402:7500:489:56d9:501b:f524:c013:2733])
-        by smtp.gmail.com with ESMTPSA id b18sm14995695pfr.4.2020.09.22.05.51.24
-        (version=TLS1_2 cipher=ECDHE-ECDSA-AES128-GCM-SHA256 bits=128/128);
-        Tue, 22 Sep 2020 05:51:29 -0700 (PDT)
-From:   Gene Chen <gene.chen.richtek@gmail.com>
-To:     jacek.anaszewski@gmail.com, pavel@ucw.cz, robh+dt@kernel.org,
-        matthias.bgg@gmail.com
-Cc:     dmurphy@ti.com, linux-leds@vger.kernel.org,
-        devicetree@vger.kernel.org, linux-arm-kernel@lists.infradead.org,
-        linux-mediatek@lists.infradead.org, linux-kernel@vger.kernel.org,
-        gene_chen@richtek.com, Wilma.Wu@mediatek.com,
-        shufan_lee@richtek.com, cy_huang@richtek.com,
-        benjamin.chao@mediatek.com
-Subject: [PATCH v4 2/2] leds: mt6360: Add LED driver for MT6360
-Date:   Wed, 23 Sep 2020 20:50:52 +0800
-Message-Id: <1600865452-19649-3-git-send-email-gene.chen.richtek@gmail.com>
-X-Mailer: git-send-email 2.7.4
-In-Reply-To: <1600865452-19649-1-git-send-email-gene.chen.richtek@gmail.com>
-References: <1600865452-19649-1-git-send-email-gene.chen.richtek@gmail.com>
+        id S1726617AbgIVNWo (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Tue, 22 Sep 2020 09:22:44 -0400
+Received: from mx0b-0014ca01.pphosted.com ([208.86.201.193]:50998 "EHLO
+        mx0a-0014ca01.pphosted.com" rhost-flags-OK-OK-OK-FAIL)
+        by vger.kernel.org with ESMTP id S1726470AbgIVNWo (ORCPT
+        <rfc822;devicetree@vger.kernel.org>);
+        Tue, 22 Sep 2020 09:22:44 -0400
+X-Greylist: delayed 934 seconds by postgrey-1.27 at vger.kernel.org; Tue, 22 Sep 2020 09:22:42 EDT
+Received: from pps.filterd (m0042333.ppops.net [127.0.0.1])
+        by mx0b-0014ca01.pphosted.com (8.16.0.42/8.16.0.42) with SMTP id 08MD5VMl016185;
+        Tue, 22 Sep 2020 06:06:30 -0700
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=cadence.com; h=from : to : cc :
+ subject : date : message-id : references : in-reply-to : content-type :
+ content-transfer-encoding : mime-version; s=proofpoint;
+ bh=1xyfUfl3Kygx8SoPoc0odW/GqcGUKS3DJknLSxmhHJQ=;
+ b=HF58O6QYXte7TldUY+TmWZzd2ak1yact/nkq9gnfwqraNGeWMfNeDIRi/ruZJov37M3K
+ FMdn1zOh3gNLng/CEE1EDymhoNvHYYdpsffVIdGAqD8rzkC0W877+E0fbIwWvvkemBr8
+ nuF9Asdo9Ru3dYsXClm9I6ugzQ4jzMF0Q7HkdZIqilDdTaA4LwMrFn3rQ/Y0wFDyyXM+
+ bBOd9aUsv/donH1x6miauVYi1cYZAgjpd2oYHT/LmRG/5N+lojalyi+2JwDxddfeD0n1
+ BC9dq3UwOvG57Rhwy3LQbzBDd9vJB/UMTdBBjeOLcB8PZfyUBv4W5ACxM7/eUOBOPu+1 lg== 
+Received: from nam12-bn8-obe.outbound.protection.outlook.com (mail-bn8nam12lp2175.outbound.protection.outlook.com [104.47.55.175])
+        by mx0b-0014ca01.pphosted.com with ESMTP id 33ndjwt0q2-1
+        (version=TLSv1.2 cipher=ECDHE-RSA-AES256-GCM-SHA384 bits=256 verify=NOT);
+        Tue, 22 Sep 2020 06:06:29 -0700
+ARC-Seal: i=1; a=rsa-sha256; s=arcselector9901; d=microsoft.com; cv=none;
+ b=eBD3FtPFFyL0AozNenXq+REh4xqJR5Cl+B0a0IbQqUIjt+/Q/lgjBZ+Tg7WG4KVE+OVYSM+6w/77KFqWLOigo0xzEKkAxmDCg5pfPH5cAnELGXw8hnvicAU05493zt8HUfhNNBqTZ6cB29rTvUtC1GM2iaxbHzsWslDqnJFqDNnvMvxDehVRnkidR8+hrlaFtF24ZgTYCEHov9lxi7iFJKGrqwiDwU1XctDmbr6hTkeZadA8CWWd/BuMX7Q/iv0imOtzee/LC5YEKfR754tj7N5wqRMe+x7sV4SLt3HbTs+tPg/6caPJGs7G/Tc41y/5/u1AgBiLYdXvLg2vk7dELw==
+ARC-Message-Signature: i=1; a=rsa-sha256; c=relaxed/relaxed; d=microsoft.com;
+ s=arcselector9901;
+ h=From:Date:Subject:Message-ID:Content-Type:MIME-Version:X-MS-Exchange-SenderADCheck;
+ bh=1xyfUfl3Kygx8SoPoc0odW/GqcGUKS3DJknLSxmhHJQ=;
+ b=GRjDMulxHESJrpjv+Rx2ih3VUatFYT9qXHrbspt+mn5z9qKHIpwnDsAXFN11vATfsszba4SRcSoEp5rjO8Fu/FHdtdAtz1+1/Wqh+6WdWrXRBBfn5URdB4kvoF7HLUI0swezfgV6oDKs1cdqWTK1idoYPL8piB4mc4v5oS2klYFmceLqzmz4DgSh5gaFQgDv6R7yTZrMRvCpHUN8dM/AH6IFXM2PZFAFha873q02Cx+Y6XVSZeHj336dHIUOJPCP0qE29KETrxWNqmfvcg5EKn3PHiMQpxHz+9wpvYwYgp52NHVrtxUzUiRnZwkBEtLm8cw159xoy0ylDrf/oixxEg==
+ARC-Authentication-Results: i=1; mx.microsoft.com 1; spf=pass
+ smtp.mailfrom=cadence.com; dmarc=pass action=none header.from=cadence.com;
+ dkim=pass header.d=cadence.com; arc=none
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=cadence.com;
+ s=selector2;
+ h=From:Date:Subject:Message-ID:Content-Type:MIME-Version:X-MS-Exchange-SenderADCheck;
+ bh=1xyfUfl3Kygx8SoPoc0odW/GqcGUKS3DJknLSxmhHJQ=;
+ b=ZILidAdbGAji0mHz4jZqKwV/mK3SqqopE2gU9oZhCWHq99+UJMrxB78KtVF6e4euaxi8UcozTGb1ad4EgyQhDBlz3Po8uON/O3MZIpwAlmmyOYAGwJf5rlXEIZPICWXRHYD/a28x3T0vgR6u9oYy8lRd7PK5RsdEIKfnim9Ukio=
+Received: from DM6PR07MB5529.namprd07.prod.outlook.com (2603:10b6:5:7a::30) by
+ DM5PR07MB4037.namprd07.prod.outlook.com (2603:10b6:4:b2::38) with Microsoft
+ SMTP Server (version=TLS1_2, cipher=TLS_ECDHE_RSA_WITH_AES_256_GCM_SHA384) id
+ 15.20.3391.15; Tue, 22 Sep 2020 13:06:26 +0000
+Received: from DM6PR07MB5529.namprd07.prod.outlook.com
+ ([fe80::2087:7f2b:5dc6:a960]) by DM6PR07MB5529.namprd07.prod.outlook.com
+ ([fe80::2087:7f2b:5dc6:a960%6]) with mapi id 15.20.3391.011; Tue, 22 Sep 2020
+ 13:06:26 +0000
+From:   Pawel Laszczak <pawell@cadence.com>
+To:     "gregkh@linuxfoundation.org" <gregkh@linuxfoundation.org>,
+        Peter Chen <peter.chen@nxp.com>
+CC:     Felipe Balbi <balbi@kernel.org>,
+        "robh+dt@kernel.org" <robh+dt@kernel.org>,
+        "linux-usb@vger.kernel.org" <linux-usb@vger.kernel.org>,
+        "linux-kernel@vger.kernel.org" <linux-kernel@vger.kernel.org>,
+        "devicetree@vger.kernel.org" <devicetree@vger.kernel.org>,
+        "dan.carpenter@oracle.com" <dan.carpenter@oracle.com>,
+        "ben.dooks@codethink.co.uk" <ben.dooks@codethink.co.uk>,
+        "colin.king@canonical.com" <colin.king@canonical.com>,
+        "rogerq@ti.com" <rogerq@ti.com>,
+        "weiyongjun1@huawei.com" <weiyongjun1@huawei.com>,
+        Jayshri Dajiram Pawar <jpawar@cadence.com>,
+        Rahul Kumar <kurahul@cadence.com>,
+        Sanket Parmar <sparmar@cadence.com>
+Subject: RE: [PATCH RFC 0/5] Introduced new Cadence USBSSP DRD Driver.
+Thread-Topic: [PATCH RFC 0/5] Introduced new Cadence USBSSP DRD Driver.
+Thread-Index: AQHWS3YSDa4tJNrkMUOR89XcmNbpYKjqdbIAgAABeQCABIBZgIAADfQAgIYgtQA=
+Date:   Tue, 22 Sep 2020 13:06:26 +0000
+Message-ID: <DM6PR07MB5529B75D3CF135D540749C1DDD3B0@DM6PR07MB5529.namprd07.prod.outlook.com>
+References: <20200626045450.10205-1-pawell@cadence.com>
+ <878sga5nfr.fsf@kernel.org>
+ <BL0PR07MB5522A8796EE7BFB5062A8E76DD930@BL0PR07MB5522.namprd07.prod.outlook.com>
+ <20200629034213.GB30684@b29397-desktop> <20200629043146.GA323164@kroah.com>
+In-Reply-To: <20200629043146.GA323164@kroah.com>
+Accept-Language: en-US
+Content-Language: en-US
+X-MS-Has-Attach: 
+X-MS-TNEF-Correlator: 
+x-dg-ref: PG1ldGE+PGF0IG5tPSJib2R5LnR4dCIgcD0iYzpcdXNlcnNccGF3ZWxsXGFwcGRhdGFccm9hbWluZ1wwOWQ4NDliNi0zMmQzLTRhNDAtODVlZS02Yjg0YmEyOWUzNWJcbXNnc1xtc2ctNjk0MmRjZjQtZmNkNC0xMWVhLTg3NmEtMWM0ZDcwMWRmYmE0XGFtZS10ZXN0XDY5NDJkY2Y1LWZjZDQtMTFlYS04NzZhLTFjNGQ3MDFkZmJhNGJvZHkudHh0IiBzej0iNDU1MyIgdD0iMTMyNDUyNTM1ODI4MTM5MDMxIiBoPSJvU2YyRFBZVkJmdjZJam96WTA0dExpeWRtU1E9IiBpZD0iIiBibD0iMCIgYm89IjEiLz48L21ldGE+
+x-dg-rorf: true
+authentication-results: linuxfoundation.org; dkim=none (message not signed)
+ header.d=none;linuxfoundation.org; dmarc=none action=none
+ header.from=cadence.com;
+x-originating-ip: [185.217.253.59]
+x-ms-publictraffictype: Email
+x-ms-office365-filtering-correlation-id: f6016882-7a46-44a2-56fa-08d85ef85048
+x-ms-traffictypediagnostic: DM5PR07MB4037:
+x-ms-exchange-transport-forked: True
+x-microsoft-antispam-prvs: <DM5PR07MB4037BE73B9A210B1D9C50D35DD3B0@DM5PR07MB4037.namprd07.prod.outlook.com>
+x-ms-oob-tlc-oobclassifiers: OLM:9508;
+x-ms-exchange-senderadcheck: 1
+x-microsoft-antispam: BCL:0;
+x-microsoft-antispam-message-info: +rCw0BfkDCbgHCbRMdAcERPrAT/SAH6tH7DeYzPA/OweulrkvmvJqIuYe4KOGYb3S2l1yOdmDxp+Cf1EVsclaZOq4BOpbIFcLlIGoIFT4by6OysfkOEtbjZdQLuwXewogIa2th7FM3L1VOs//iQH9mlvdz+UNitQZww/GbVjoQe4qXuE/E/FaA0jwaVYLjVbpaCZfuYPxj4axUPkWompbk/CCUAGS7RKTExWi4Wu5tHBTJ35XlW/3zXzG6t9Wm/MOFQIIdoPP0tv2OPd9r0P/RW+NZeK5PUZsXUv1hGpliZL7TPlqedQKr7wOs8TDT9VOy2mMzxEtWcLBB8uJW1LHvAt2sLI/QPvWJDdLKtKild32Qd/bxPZVa7iRVt60MvY9FuAvjSWYBBqGZbfd12r90xVN0RXIulhDZ5O2pHPUSs=
+x-forefront-antispam-report: CIP:255.255.255.255;CTRY:;LANG:en;SCL:1;SRV:;IPV:NLI;SFV:NSPM;H:DM6PR07MB5529.namprd07.prod.outlook.com;PTR:;CAT:NONE;SFS:(4636009)(346002)(366004)(376002)(396003)(136003)(39860400002)(36092001)(5660300002)(71200400001)(86362001)(478600001)(107886003)(26005)(33656002)(6506007)(186003)(316002)(7696005)(8676002)(53546011)(54906003)(8936002)(55016002)(9686003)(4326008)(7416002)(2906002)(83380400001)(52536014)(76116006)(110136005)(66476007)(66556008)(64756008)(66446008)(66946007);DIR:OUT;SFP:1101;
+x-ms-exchange-antispam-messagedata: GEK/tUmxRnSBRDyNejgUjP7g6FJRdV1ImRJp8O6NOEQk3XCsblDzgFlnEBfHIuEyioAUo0bmAhHCvHhalJbTgu+HVweZyNfncL3Y6bt+s4jmcA3c8HFui5+JdL1aIkmRYxY8w/lXUqnPJCGcTBAZDyEM11Wb+pHTn468JVPOmd6ZlYtPkWhONJcNrALSLiLIproBkBC0Xysb5swH43y+ClGxsQRvG0QfwFFaytUyLRND8o/e7dN1NWkdAjqdlg168yo+eYJTrwvznDlw0gam3FKwjIMON8UG/hX+/qOwFxijFnW9F4Gh57faaff2sCXe7baqoSpukfsz5SJIOg0jLe3DGJvoWfV8aYySSKnB8aV9uLUGu3TxrxyV0y39qLtMpUkWTN8qzHqlCieJvn1tSvWHrOXINz7c6fTy1A205zg4inQBW59YCWkBvazxAge52gKlx1+fr+TEcrUsmNHah3b+wsNzIS/tfsalmCHIBOMJ3V9mtxIA06RUv9Vo0RVewzUwnVXVgebAG4BgZaq7dom7pteeC5jemFmddGmHb63uX75RDHxxqYV1iwxhtSjtK7wmyGl8GCVqpGt92Ee7SVoPh31Hz+TEzr8i1lFosUA4bfhHf8YTfpnUIdHGb4IRrSdiZkmKVaopjWYsX5P/LA==
+Content-Type: text/plain; charset="us-ascii"
+Content-Transfer-Encoding: quoted-printable
+MIME-Version: 1.0
+X-OriginatorOrg: cadence.com
+X-MS-Exchange-CrossTenant-AuthAs: Internal
+X-MS-Exchange-CrossTenant-AuthSource: DM6PR07MB5529.namprd07.prod.outlook.com
+X-MS-Exchange-CrossTenant-Network-Message-Id: f6016882-7a46-44a2-56fa-08d85ef85048
+X-MS-Exchange-CrossTenant-originalarrivaltime: 22 Sep 2020 13:06:26.1985
+ (UTC)
+X-MS-Exchange-CrossTenant-fromentityheader: Hosted
+X-MS-Exchange-CrossTenant-id: d36035c5-6ce6-4662-a3dc-e762e61ae4c9
+X-MS-Exchange-CrossTenant-mailboxtype: HOSTED
+X-MS-Exchange-CrossTenant-userprincipalname: n3c4dZAai6BVg6sbq/+j7gWeEmBM/pTyeWKWxrElv28fyTp7Ei9A8raqXzqZ32oYXtLreGSPtMgMY8HfWGTUwCRtuegPXwIUUOqSamcRzhc=
+X-MS-Exchange-Transport-CrossTenantHeadersStamped: DM5PR07MB4037
+X-Proofpoint-Virus-Version: vendor=fsecure engine=2.50.10434:6.0.235,18.0.687
+ definitions=2020-09-22_12:2020-09-21,2020-09-22 signatures=0
+X-Proofpoint-Spam-Details: rule=outbound_check_notspam policy=outbound_check score=0 mlxscore=0
+ impostorscore=0 lowpriorityscore=0 suspectscore=0 spamscore=0 phishscore=0
+ bulkscore=0 adultscore=0 mlxlogscore=704 clxscore=1011 priorityscore=1501
+ malwarescore=0 classifier=spam adjust=0 reason=mlx scancount=1
+ engine=8.12.0-2006250000 definitions=main-2009220102
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-From: Gene Chen <gene_chen@richtek.com>
+Hi,
 
-Add MT6360 LED driver include 2-channel Flash LED with torch/strobe mode,
-and 4-channel RGB LED support Register/Flash/Breath Mode
+>
+>On Mon, Jun 29, 2020 at 03:41:49AM +0000, Peter Chen wrote:
+>> On 20-06-26 07:19:56, Pawel Laszczak wrote:
+>> > Hi Felipe,
+>> >
+>> > >
+>> > >Hi,
+>> > >
+>> > >Pawel Laszczak <pawell@cadence.com> writes:
+>> > >> This patch introduce new Cadence USBSS DRD driver to linux kernel.
+>> > >>
+>> > >> The Cadence USBSS DRD Controller is a highly configurable IP Core w=
+hich
+>> > >> can be instantiated as Dual-Role Device (DRD), Peripheral Only and
+>> > >> Host Only (XHCI)configurations.
+>> > >>
+>> > >> The current driver has been validated with FPGA burned. We have sup=
+port
+>> > >> for PCIe bus, which is used on FPGA prototyping.
+>> > >>
+>> > >> The host side of USBSS-DRD controller is compliance with XHCI
+>> > >> specification, so it works with standard XHCI Linux driver.
+>> > >>
+>> > >> The host side of USBSS DRD controller is compliant with XHCI.
+>> > >> The architecture for device side is almost the same as for host sid=
+e,
+>> > >> and most of the XHCI specification can be used to understand how
+>> > >> this controller operates.
+>> > >>
+>> > >> This controller and driver support Full Speed, Hight Speed, Supper =
+Speed
+>> > >> and Supper Speed Plus USB protocol.
+>> > >>
+>> > >> The prefix cdnsp used in driver has chosen by analogy to cdn3 drive=
+r.
+>> > >> The last letter of this acronym means PLUS. The formal name of cont=
+roller
+>> > >> is USBSSP but it's to generic so I've decided to use CDNSP.
+>> > >>
+>> > >> The patch 1: adds DT binding.
+>> > >> The patch 2: adds PCI to platform wrapper used on Cadnece testing
+>> > >>              platform. It is FPGA based on platform.
+>> > >> The patches 3-5: add the main part of driver and has been intention=
+ally
+>> > >>              split into 3 part. In my opinion such division should =
+not
+>> > >>              affect understanding and reviewing the driver, and cau=
+se that
+>> > >>              main patch (4/5) is little smaller. Patch 3 introduces=
+ main
+>> > >>              header file for driver, 4 is the main part that implem=
+ents all
+>> > >>              functionality of driver and 5 introduces tracepoints.
+>> > >
+>> > >I'm more interested in how is this different from CDNS3. Aren't they =
+SW compatible?
+>> >
+>> > In general, the controller can be split into 2 part- DRD part and the =
+rest UDC.
+>> >
+>> > The second part UDC which consist gadget.c, ring.c and mem.c file is c=
+ompletely different.
+>> >
+>> > The DRD part contains drd.c and core.c.
+>> > cdnsp drd.c is similar to cdns3 drd.c but it's little different. CDNSP=
+ has similar, but has different register space.
+>> > Some register was moved, some was removed and some was added.
+>> >
+>> > core.c is very similar and eventually could be common for both drivers=
+.  I thought about this but
+>> > I wanted to avoid interfering with cdns3 driver at this point CDNSP is=
+ still under testing and
+>> > CDNS3 is used by some products on the market.
+>>
+>> Pawel, I suggest adding CDNSP at driver/staging first since it is still
+>> under testing. When you are thinking the driver (as well as hardware) ar=
+e
+>> mature, you could try to add gadget part (eg, gadget-v2) and make
+>> necessary changes for core.c.
+>
+>I only take code for drivers/staging/ that for some reason is not
+>meeting the normal coding style/rules/whatever.  For stuff that is an
+>obvious duplicate of existing code like this, and needs to be
+>rearchitected.  It is much more work to try to convert code once it is
+>in the tree than to just do it out of the tree on your own and resubmit
+>it, as you don't have to follow the in-kernel rules of "one patch does
+>one thing" that you would if it was in staging.
+>
+>So don't think that staging is the right place for this, just spend a
+>few weeks to get it right and then resubmit it.
+>
 
-Signed-off-by: Gene Chen <gene_chen@richtek.com>
----
- drivers/leds/Kconfig       |  11 +
- drivers/leds/Makefile      |   1 +
- drivers/leds/leds-mt6360.c | 705 +++++++++++++++++++++++++++++++++++++++++++++
- 3 files changed, 717 insertions(+)
- create mode 100644 drivers/leds/leds-mt6360.c
+I had idea to reuse indirect the core.c and drd.c in cdnsp driver. Of cours=
+e, I've made
+the necessary changes to make possible reuse this code.
+My approach was to add this file in Makefile in cdnsp but this concept fail=
+ed.=20
+It even worked until I started testing cdns3 and cdnsp as build in kernel :=
+)
 
-diff --git a/drivers/leds/Kconfig b/drivers/leds/Kconfig
-index 1c181df..5561b08 100644
---- a/drivers/leds/Kconfig
-+++ b/drivers/leds/Kconfig
-@@ -271,6 +271,17 @@ config LEDS_MT6323
- 	  This option enables support for on-chip LED drivers found on
- 	  Mediatek MT6323 PMIC.
- 
-+config LEDS_MT6360
-+	tristate "LED Support for Mediatek MT6360 PMIC"
-+	depends on LEDS_CLASS_FLASH && OF
-+	depends on V4L2_FLASH_LED_CLASS || !V4L2_FLASH_LED_CLASS
-+	depends on MFD_MT6360
-+	help
-+	  This option enables support for dual Flash LED drivers found on
-+	  Mediatek MT6360 PMIC.
-+	  Independent current sources supply for each flash LED support torch
-+	  and strobe mode.
-+
- config LEDS_S3C24XX
- 	tristate "LED Support for Samsung S3C24XX GPIO LEDs"
- 	depends on LEDS_CLASS
-diff --git a/drivers/leds/Makefile b/drivers/leds/Makefile
-index c2c7d7a..5596427 100644
---- a/drivers/leds/Makefile
-+++ b/drivers/leds/Makefile
-@@ -66,6 +66,7 @@ obj-$(CONFIG_LEDS_MIKROTIK_RB532)	+= leds-rb532.o
- obj-$(CONFIG_LEDS_MLXCPLD)		+= leds-mlxcpld.o
- obj-$(CONFIG_LEDS_MLXREG)		+= leds-mlxreg.o
- obj-$(CONFIG_LEDS_MT6323)		+= leds-mt6323.o
-+obj-$(CONFIG_LEDS_MT6360)		+= leds-mt6360.o
- obj-$(CONFIG_LEDS_NET48XX)		+= leds-net48xx.o
- obj-$(CONFIG_LEDS_NETXBIG)		+= leds-netxbig.o
- obj-$(CONFIG_LEDS_NIC78BX)		+= leds-nic78bx.o
-diff --git a/drivers/leds/leds-mt6360.c b/drivers/leds/leds-mt6360.c
-new file mode 100644
-index 0000000..1c3486e
---- /dev/null
-+++ b/drivers/leds/leds-mt6360.c
-@@ -0,0 +1,705 @@
-+// SPDX-License-Identifier: GPL-2.0-only
-+
-+#include <linux/delay.h>
-+#include <linux/init.h>
-+#include <linux/interrupt.h>
-+#include <linux/kernel.h>
-+#include <linux/led-class-flash.h>
-+#include <linux/module.h>
-+#include <linux/platform_device.h>
-+#include <linux/property.h>
-+#include <linux/regmap.h>
-+#include <media/v4l2-flash-led-class.h>
-+
-+enum {
-+	MT6360_LED_ISNK1 = 0,
-+	MT6360_LED_ISNK2,
-+	MT6360_LED_ISNK3,
-+	MT6360_LED_ISNK4,
-+	MT6360_LED_FLASH1,
-+	MT6360_LED_FLASH2,
-+	MT6360_MAX_LEDS
-+};
-+
-+#define MT6360_REG_RGBEN		0x380
-+#define MT6360_REG_ISNK(_led_no)	(0x381 + (_led_no))
-+#define MT6360_ISNK_ENMASK(_led_no)	BIT(7 - (_led_no))
-+#define MT6360_ISNK_MASK		GENMASK(4, 0)
-+#define MT6360_CHRINDSEL_MASK		BIT(3)
-+
-+#define MT6360_REG_FLEDEN		0x37E
-+#define MT6360_REG_STRBTO		0x373
-+#define MT6360_REG_FLEDBASE(_id)	(0x372 + 4 * (_id - MT6360_LED_FLASH1))
-+#define MT6360_REG_FLEDISTRB(_id)	(MT6360_REG_FLEDBASE(_id) + 2)
-+#define MT6360_REG_FLEDITOR(_id)	(MT6360_REG_FLEDBASE(_id) + 3)
-+#define MT6360_REG_CHGSTAT2		0x3E1
-+#define MT6360_REG_FLEDSTAT1		0x3E9
-+#define MT6360_ITORCH_MASK		GENMASK(4, 0)
-+#define MT6360_ISTROBE_MASK		GENMASK(6, 0)
-+#define MT6360_STRBTO_MASK		GENMASK(6, 0)
-+#define MT6360_TORCHEN_MASK		BIT(3)
-+#define MT6360_STROBEN_MASK		BIT(2)
-+#define MT6360_FLCSEN_MASK(_id)		BIT(MT6360_LED_FLASH2 - _id)
-+#define MT6360_FLEDCHGVINOVP_MASK	BIT(3)
-+#define MT6360_FLED1STRBTO_MASK		BIT(11)
-+#define MT6360_FLED2STRBTO_MASK		BIT(10)
-+#define MT6360_FLED1STRB_MASK		BIT(9)
-+#define MT6360_FLED2STRB_MASK		BIT(8)
-+#define MT6360_FLED1SHORT_MASK		BIT(7)
-+#define MT6360_FLED2SHORT_MASK		BIT(6)
-+#define MT6360_FLEDLVF_MASK		BIT(3)
-+
-+#define MT6360_ISNK1_STEPUA		2000
-+#define MT6360_ISNK1_MAXUA		24000
-+#define MT6360_ISNK4_STEPUA		5000
-+#define MT6360_ISNK4_MAXUA		150000
-+
-+#define MT6360_ITORCH_MINUA		25000
-+#define MT6360_ITORCH_STEPUA		12500
-+#define MT6360_ITORCH_MAXUA		400000
-+#define MT6360_ISTRB_MINUA		50000
-+#define MT6360_ISTRB_STEPUA		12500
-+#define MT6360_ISTRB_MAXUA		1500000
-+#define MT6360_STRBTO_MINUS		64000
-+#define MT6360_STRBTO_STEPUS		32000
-+#define MT6360_STRBTO_MAXUS		2432000
-+
-+#define STATE_OFF			0
-+#define STATE_KEEP			1
-+#define STATE_ON			2
-+
-+struct mt6360_led {
-+	union {
-+		struct led_classdev isnk;
-+		struct led_classdev_flash flash;
-+	};
-+	struct v4l2_flash *v4l2_flash;
-+	struct mt6360_priv *priv;
-+	u32 led_no;
-+	u32 default_state;
-+};
-+
-+struct mt6360_priv {
-+	struct device *dev;
-+	struct regmap *regmap;
-+	unsigned int fled_strobe_used;
-+	unsigned int fled_torch_used;
-+	unsigned int leds_active;
-+	unsigned int leds_count;
-+	struct mt6360_led leds[];
-+};
-+
-+static int mt6360_isnk_brightness_set(struct led_classdev *lcdev, enum led_brightness level)
-+{
-+	struct mt6360_led *led = container_of(lcdev, struct mt6360_led, isnk);
-+	struct mt6360_priv *priv = led->priv;
-+	u32 enable_mask = MT6360_ISNK_ENMASK(led->led_no);
-+	u32 val = level ? MT6360_ISNK_ENMASK(led->led_no) : 0;
-+	int ret;
-+
-+	ret = regmap_update_bits(priv->regmap, MT6360_REG_ISNK(led->led_no),
-+				 MT6360_ISNK_MASK, level);
-+	if (ret)
-+		return ret;
-+
-+	return regmap_update_bits(priv->regmap, MT6360_REG_RGBEN, enable_mask, val);
-+}
-+
-+static int mt6360_torch_brightness_set(struct led_classdev *lcdev, enum led_brightness level)
-+{
-+	struct mt6360_led *led = container_of(lcdev, struct mt6360_led, flash.led_cdev);
-+	struct mt6360_priv *priv = led->priv;
-+	u32 enable_mask = MT6360_TORCHEN_MASK | MT6360_FLCSEN_MASK(led->led_no);
-+	u32 val = level ? MT6360_FLCSEN_MASK(led->led_no) : 0;
-+	u32 prev = priv->fled_torch_used, curr;
-+	int ret;
-+
-+	/* Only one set of flash control logic, use the flag to avoid strobe is currently used */
-+	if (priv->fled_strobe_used) {
-+		dev_warn(lcdev->dev, "Please disable strobe first [%d]\n", priv->fled_strobe_used);
-+		return -EBUSY;
-+	}
-+
-+	if (level)
-+		curr = prev | BIT(led->led_no);
-+	else
-+		curr = prev & ~BIT(led->led_no);
-+
-+	if (curr)
-+		val |= MT6360_TORCHEN_MASK;
-+
-+	if (level) {
-+		ret = regmap_update_bits(priv->regmap, MT6360_REG_FLEDITOR(led->led_no),
-+					 MT6360_ITORCH_MASK, level - 1);
-+		if (ret)
-+			return ret;
-+	}
-+
-+	ret = regmap_update_bits(priv->regmap, MT6360_REG_FLEDEN, enable_mask, val);
-+	if (ret)
-+		return ret;
-+
-+	priv->fled_torch_used = curr;
-+
-+	return 0;
-+}
-+
-+static int mt6360_flash_brightness_set(struct led_classdev_flash *fl_cdev, u32 brightness)
-+{
-+	/*
-+	 * Due to the current spike when turning on flash, only let brightness keep by framework
-+	 * This empty function is used to prevent led_classdev_flash register ops check
-+	 */
-+	return 0;
-+}
-+
-+static int _mt6360_flash_brightness_set(struct led_classdev_flash *fl_cdev, u32 brightness)
-+{
-+	struct mt6360_led *led = container_of(fl_cdev, struct mt6360_led, flash);
-+	struct mt6360_priv *priv = led->priv;
-+	struct led_flash_setting *s = &fl_cdev->brightness;
-+	u32 val = (brightness - s->min) / s->step;
-+
-+	return regmap_update_bits(priv->regmap, MT6360_REG_FLEDISTRB(led->led_no),
-+				 MT6360_ISTROBE_MASK, val);
-+}
-+
-+static int mt6360_strobe_set(struct led_classdev_flash *fl_cdev, bool state)
-+{
-+	struct mt6360_led *led = container_of(fl_cdev, struct mt6360_led, flash);
-+	struct mt6360_priv *priv = led->priv;
-+	struct led_classdev *lcdev = &fl_cdev->led_cdev;
-+	struct led_flash_setting *s = &fl_cdev->brightness;
-+	u32 enable_mask = MT6360_STROBEN_MASK | MT6360_FLCSEN_MASK(led->led_no);
-+	u32 val = state ? MT6360_FLCSEN_MASK(led->led_no) : 0;
-+	u32 prev = priv->fled_strobe_used, curr;
-+	int ret;
-+
-+	/* Only one set of flash control logic, use the flag to avoid torch is currently used */
-+	if (priv->fled_torch_used) {
-+		dev_warn(lcdev->dev, "Please disable torch first [0x%x]\n", priv->fled_torch_used);
-+		return -EBUSY;
-+	}
-+
-+	if (state)
-+		curr = prev | BIT(led->led_no);
-+	else
-+		curr = prev & ~BIT(led->led_no);
-+
-+	if (curr)
-+		val |= MT6360_STROBEN_MASK;
-+
-+	ret = regmap_update_bits(priv->regmap, MT6360_REG_FLEDEN, enable_mask, val);
-+	if (ret) {
-+		dev_err(lcdev->dev, "[%d] control current source %d fail\n", led->led_no, state);
-+		return ret;
-+	}
-+
-+	/*
-+	 * If the flash need to be on, config the flash current ramping up to the setting value
-+	 * Else, always recover back to the minimum one
-+	 */
-+	ret = _mt6360_flash_brightness_set(fl_cdev, state ? s->val : s->min);
-+	if (ret)
-+		return ret;
-+
-+	/* For the flash turn on/off, HW rampping up/down time is 5ms/500us, respectively */
-+	if (!prev && curr)
-+		usleep_range(5000, 6000);
-+	else if (prev && !curr)
-+		udelay(500);
-+
-+	priv->fled_strobe_used = curr;
-+	return 0;
-+}
-+
-+static int mt6360_strobe_get(struct led_classdev_flash *fl_cdev, bool *state)
-+{
-+	struct mt6360_led *led = container_of(fl_cdev, struct mt6360_led, flash);
-+	struct mt6360_priv *priv = led->priv;
-+
-+	*state = !!(priv->fled_strobe_used & BIT(led->led_no));
-+	return 0;
-+}
-+
-+static int mt6360_timeout_set(struct led_classdev_flash *fl_cdev, u32 timeout)
-+{
-+	struct mt6360_led *led = container_of(fl_cdev, struct mt6360_led, flash);
-+	struct mt6360_priv *priv = led->priv;
-+	struct led_flash_setting *s = &fl_cdev->timeout;
-+	u32 val = (timeout - s->min) / s->step;
-+
-+	return regmap_update_bits(priv->regmap, MT6360_REG_STRBTO, MT6360_STRBTO_MASK, val);
-+
-+}
-+
-+static int mt6360_fault_get(struct led_classdev_flash *fl_cdev, u32 *fault)
-+{
-+	struct mt6360_led *led = container_of(fl_cdev, struct mt6360_led, flash);
-+	struct mt6360_priv *priv = led->priv;
-+	u16 fled_stat;
-+	unsigned int chg_stat, strobe_timeout_mask, fled_short_mask;
-+	u32 rfault = 0;
-+	int ret;
-+
-+	ret = regmap_read(priv->regmap, MT6360_REG_CHGSTAT2, &chg_stat);
-+	if (ret)
-+		return ret;
-+
-+	ret = regmap_raw_read(priv->regmap, MT6360_REG_FLEDSTAT1, &fled_stat, sizeof(fled_stat));
-+	if (ret)
-+		return ret;
-+
-+	if (led->led_no == MT6360_LED_FLASH1) {
-+		strobe_timeout_mask = MT6360_FLED1STRBTO_MASK;
-+		fled_short_mask = MT6360_FLED1SHORT_MASK;
-+	} else {
-+		strobe_timeout_mask = MT6360_FLED2STRBTO_MASK;
-+		fled_short_mask = MT6360_FLED2SHORT_MASK;
-+	}
-+
-+	if (chg_stat & MT6360_FLEDCHGVINOVP_MASK)
-+		rfault |= LED_FAULT_INPUT_VOLTAGE;
-+
-+	if (fled_stat & strobe_timeout_mask)
-+		rfault |= LED_FAULT_TIMEOUT;
-+
-+	if (fled_stat & fled_short_mask)
-+		rfault |= LED_FAULT_SHORT_CIRCUIT;
-+
-+	if (fled_stat & MT6360_FLEDLVF_MASK)
-+		rfault |= LED_FAULT_UNDER_VOLTAGE;
-+
-+	*fault = rfault;
-+	return 0;
-+}
-+
-+static const struct led_flash_ops mt6360_flash_ops = {
-+	.flash_brightness_set = mt6360_flash_brightness_set,
-+	.strobe_set = mt6360_strobe_set,
-+	.strobe_get = mt6360_strobe_get,
-+	.timeout_set = mt6360_timeout_set,
-+	.fault_get = mt6360_fault_get,
-+};
-+
-+static int mt6360_isnk_init_default_state(struct mt6360_led *led)
-+{
-+	struct mt6360_priv *priv = led->priv;
-+	unsigned int regval;
-+	u32 level;
-+	int ret;
-+
-+	ret = regmap_read(priv->regmap, MT6360_REG_ISNK(led->led_no), &regval);
-+	if (ret)
-+		return ret;
-+	level = regval & MT6360_ISNK_MASK;
-+
-+	ret = regmap_read(priv->regmap, MT6360_REG_RGBEN, &regval);
-+	if (ret)
-+		return ret;
-+
-+	if (!(regval & MT6360_ISNK_ENMASK(led->led_no)))
-+		level = LED_OFF;
-+
-+	switch (led->default_state) {
-+	case STATE_ON:
-+		led->isnk.brightness = led->isnk.max_brightness;
-+		break;
-+	case STATE_KEEP:
-+		led->isnk.brightness = min(level, led->isnk.max_brightness);
-+		break;
-+	default:
-+		led->isnk.brightness = LED_OFF;
-+	}
-+
-+	return mt6360_isnk_brightness_set(&led->isnk, led->isnk.brightness);
-+}
-+
-+static int mt6360_flash_init_default_state(struct mt6360_led *led)
-+{
-+	struct led_classdev_flash *flash = &led->flash;
-+	struct mt6360_priv *priv = led->priv;
-+	u32 enable_mask = MT6360_TORCHEN_MASK | MT6360_FLCSEN_MASK(led->led_no);
-+	u32 level;
-+	unsigned int regval;
-+	int ret;
-+
-+	ret = regmap_read(priv->regmap, MT6360_REG_FLEDITOR(led->led_no), &regval);
-+	if (ret)
-+		return ret;
-+	level = regval & MT6360_ITORCH_MASK;
-+
-+	ret = regmap_read(priv->regmap, MT6360_REG_FLEDEN, &regval);
-+	if (ret)
-+		return ret;
-+
-+	if ((regval & enable_mask) == enable_mask)
-+		level += 1;
-+	else
-+		level = LED_OFF;
-+
-+	switch (led->default_state) {
-+	case STATE_ON:
-+		flash->led_cdev.brightness = flash->led_cdev.max_brightness;
-+		break;
-+	case STATE_KEEP:
-+		flash->led_cdev.brightness = min(level, flash->led_cdev.max_brightness);
-+		break;
-+	default:
-+		flash->led_cdev.brightness = LED_OFF;
-+	}
-+
-+	return mt6360_torch_brightness_set(&flash->led_cdev, flash->led_cdev.brightness);
-+}
-+
-+#if IS_ENABLED(CONFIG_V4L2_FLASH_LED_CLASS)
-+static int mt6360_flash_external_strobe_set(struct v4l2_flash *v4l2_flash, bool enable)
-+{
-+	struct led_classdev_flash *flash = v4l2_flash->fled_cdev;
-+	struct mt6360_led *led = container_of(flash, struct mt6360_led, flash);
-+	struct mt6360_priv *priv = led->priv;
-+	u32 mask = MT6360_FLCSEN_MASK(led->led_no);
-+	u32 val = enable ? mask : 0;
-+	int ret;
-+
-+	ret = regmap_update_bits(priv->regmap, MT6360_REG_FLEDEN, mask, val);
-+	if (ret)
-+		return ret;
-+
-+	if (enable)
-+		priv->fled_strobe_used |= BIT(led->led_no);
-+	else
-+		priv->fled_strobe_used &= ~BIT(led->led_no);
-+
-+	return 0;
-+}
-+
-+static const struct v4l2_flash_ops v4l2_flash_ops = {
-+	.external_strobe_set = mt6360_flash_external_strobe_set,
-+};
-+
-+static void mt6360_init_v4l2_config(struct mt6360_led *led, struct v4l2_flash_config *config)
-+{
-+	struct led_classdev *lcdev;
-+	struct led_flash_setting *s = &config->intensity;
-+
-+	switch (led->led_no) {
-+	case MT6360_LED_ISNK1 ... MT6360_LED_ISNK4:
-+		lcdev = &led->isnk;
-+
-+		if (led->led_no == MT6360_LED_ISNK4)
-+			s->step = MT6360_ISNK4_STEPUA;
-+		else
-+			s->step = MT6360_ISNK1_STEPUA;
-+
-+		s->min = 0;
-+		s->val = lcdev->brightness * s->step;
-+		s->max = lcdev->max_brightness * s->step;
-+		break;
-+	default:
-+		lcdev = &led->flash.led_cdev;
-+
-+		s->min = MT6360_ITORCH_MINUA;
-+		s->step = MT6360_ITORCH_STEPUA;
-+		s->val = s->max = s->min + (lcdev->max_brightness - 1) * s->step;
-+
-+		config->has_external_strobe = 1;
-+	}
-+
-+	snprintf(config->dev_name, sizeof(config->dev_name), "%s", lcdev->name);
-+}
-+#else
-+static const struct v4l2_flash_ops v4l2_flash_ops;
-+
-+static void mt6360_init_v4l2_config(struct mt6360_led *led, struct v4l2_flash_config *config)
-+{
-+}
-+#endif
-+
-+static int mt6360_led_register(struct device *parent, struct mt6360_led *led,
-+				struct led_init_data *init_data)
-+{
-+	struct mt6360_priv *priv = led->priv;
-+	struct v4l2_flash_config v4l2_config = {0};
-+	int ret;
-+
-+	switch (led->led_no) {
-+	case MT6360_LED_ISNK1 ... MT6360_LED_ISNK4:
-+		if (led->led_no == MT6360_LED_ISNK1) {
-+			/* Change isink1 to SW control mode, disconnect it with charger state */
-+			ret = regmap_update_bits(priv->regmap, MT6360_REG_RGBEN,
-+						 MT6360_CHRINDSEL_MASK, MT6360_CHRINDSEL_MASK);
-+			if (ret) {
-+				dev_err(parent, "Failed to config ISNK1 to SW mode\n");
-+				return ret;
-+			}
-+		}
-+
-+		ret = mt6360_isnk_init_default_state(led);
-+		if (ret) {
-+			dev_err(parent, "Failed to init %d isnk state\n", led->led_no);
-+			return ret;
-+		}
-+
-+		ret = devm_led_classdev_register_ext(parent, &led->isnk, init_data);
-+		if (ret) {
-+			dev_err(parent, "Couldn't register isink %d\n", led->led_no);
-+			return ret;
-+		}
-+
-+		mt6360_init_v4l2_config(led, &v4l2_config);
-+		led->v4l2_flash = v4l2_flash_indicator_init(parent, init_data->fwnode, &led->isnk,
-+							    &v4l2_config);
-+		break;
-+	default:
-+		ret = mt6360_flash_init_default_state(led);
-+		if (ret) {
-+			dev_err(parent, "Failed to init %d flash state\n", led->led_no);
-+			return ret;
-+		}
-+
-+		ret = devm_led_classdev_flash_register_ext(parent, &led->flash, init_data);
-+		if (ret) {
-+			dev_err(parent, "Couldn't register flash %d\n", led->led_no);
-+			return ret;
-+		}
-+
-+		mt6360_init_v4l2_config(led, &v4l2_config);
-+		led->v4l2_flash = v4l2_flash_init(parent, init_data->fwnode, &led->flash,
-+						  &v4l2_flash_ops, &v4l2_config);
-+	}
-+
-+	if (IS_ERR(led->v4l2_flash)) {
-+		dev_err(parent, "Failed to register %d v4l2 sd\n", led->led_no);
-+		return PTR_ERR(led->v4l2_flash);
-+	}
-+
-+	return 0;
-+}
-+
-+static u32 clamp_align(u32 val, u32 min, u32 max, u32 step)
-+{
-+	u32 retval;
-+
-+	retval = clamp_val(val, min, max);
-+	if (step > 1)
-+		retval = rounddown(retval - min, step) + min;
-+
-+	return retval;
-+}
-+
-+static int mt6360_init_isnk_properties(struct mt6360_led *led, struct led_init_data *init_data)
-+{
-+	struct led_classdev *isnk = &led->isnk;
-+	struct mt6360_priv *priv = led->priv;
-+	u32 step_uA, max_uA;
-+	u32 val;
-+	int ret;
-+
-+	if (led->led_no == MT6360_LED_ISNK4) {
-+		step_uA = MT6360_ISNK4_STEPUA;
-+		max_uA = MT6360_ISNK4_MAXUA;
-+	} else {
-+		step_uA = MT6360_ISNK1_STEPUA;
-+		max_uA = MT6360_ISNK1_MAXUA;
-+	}
-+
-+	ret = fwnode_property_read_u32(init_data->fwnode, "led-max-microamp", &val);
-+	if (ret) {
-+		dev_warn(priv->dev, "Not specified led-max-microamp, config to the minimum step\n");
-+		val = 1 * step_uA;
-+	} else
-+		val = clamp_align(val, 0, max_uA, step_uA);
-+
-+	isnk->max_brightness = val / step_uA;
-+	isnk->brightness_set_blocking = mt6360_isnk_brightness_set;
-+
-+	fwnode_property_read_string(init_data->fwnode, "linux,default-trigger",
-+				    &isnk->default_trigger);
-+
-+	return 0;
-+}
-+
-+static int mt6360_init_flash_properties(struct mt6360_led *led, struct led_init_data *init_data)
-+{
-+	struct led_classdev_flash *flash = &led->flash;
-+	struct led_classdev *lcdev = &flash->led_cdev;
-+	struct mt6360_priv *priv = led->priv;
-+	struct led_flash_setting *s;
-+	u32 val;
-+	int ret;
-+
-+	ret = fwnode_property_read_u32(init_data->fwnode, "led-max-microamp", &val);
-+	if (ret) {
-+		dev_warn(priv->dev, "Not specified led-max-microamp, config to the minimum\n");
-+		val = MT6360_ITORCH_MINUA;
-+	} else
-+		val = clamp_align(val, MT6360_ITORCH_MINUA, MT6360_ITORCH_MAXUA,
-+				  MT6360_ITORCH_STEPUA);
-+
-+	lcdev->max_brightness = (val - MT6360_ITORCH_MINUA) / MT6360_ITORCH_STEPUA + 1;
-+	lcdev->brightness_set_blocking = mt6360_torch_brightness_set;
-+	lcdev->flags |= LED_DEV_CAP_FLASH;
-+
-+	ret = fwnode_property_read_u32(init_data->fwnode, "flash-max-microamp", &val);
-+	if (ret) {
-+		dev_warn(priv->dev, "Not specified flash-max-microamp, config to the minimum\n");
-+		val = MT6360_ISTRB_MINUA;
-+	} else
-+		val = clamp_align(val, MT6360_ISTRB_MINUA, MT6360_ISTRB_MAXUA, MT6360_ISTRB_STEPUA);
-+
-+	s = &flash->brightness;
-+	s->min = MT6360_ISTRB_MINUA;
-+	s->step = MT6360_ISTRB_STEPUA;
-+	s->val = s->max = val;
-+
-+	/* Always configure as min level when off to prevent flash current spike */
-+	ret = _mt6360_flash_brightness_set(flash, s->min);
-+	if (ret)
-+		return ret;
-+
-+	ret = fwnode_property_read_u32(init_data->fwnode, "flash-max-timeout-us", &val);
-+	if (ret) {
-+		dev_warn(priv->dev, "Not specified flash-max-timeout-us, config to the minimum\n");
-+		val = MT6360_STRBTO_MINUS;
-+	} else
-+		val = clamp_align(val, MT6360_STRBTO_MINUS, MT6360_STRBTO_MAXUS,
-+				  MT6360_STRBTO_STEPUS);
-+
-+	s = &flash->timeout;
-+	s->min = MT6360_STRBTO_MINUS;
-+	s->step = MT6360_STRBTO_STEPUS;
-+	s->val = s->max = val;
-+
-+	flash->ops = &mt6360_flash_ops;
-+
-+	return 0;
-+}
-+
-+static int mt6360_init_common_properties(struct mt6360_led *led, struct led_init_data *init_data)
-+{
-+	const char * const states[] = { "off", "keep", "on" };
-+	const char *str;
-+	int ret;
-+
-+	if (!fwnode_property_read_string(init_data->fwnode, "default-state", &str)) {
-+		ret = match_string(states, ARRAY_SIZE(states), str);
-+		if (ret < 0)
-+			ret = STATE_OFF;
-+
-+		led->default_state = ret;
-+	}
-+
-+	return 0;
-+}
-+
-+static void mt6360_v4l2_flash_release(struct mt6360_priv *priv)
-+{
-+	int i;
-+
-+	for (i = 0; i < priv->leds_count; i++) {
-+		struct mt6360_led *led = priv->leds + i;
-+
-+		if (led->v4l2_flash)
-+			v4l2_flash_release(led->v4l2_flash);
-+
-+	}
-+}
-+
-+static int mt6360_led_probe(struct platform_device *pdev)
-+{
-+	struct mt6360_priv *priv;
-+	struct fwnode_handle *child;
-+	size_t count;
-+	int i = 0, ret;
-+
-+	count = device_get_child_node_count(&pdev->dev);
-+	if (!count || count > MT6360_MAX_LEDS)
-+		return -EINVAL;
-+
-+	priv = devm_kzalloc(&pdev->dev, struct_size(priv, leds, count), GFP_KERNEL);
-+	if (!priv)
-+		return -ENOMEM;
-+
-+	priv->leds_count = count;
-+	priv->dev = &pdev->dev;
-+
-+	priv->regmap = dev_get_regmap(pdev->dev.parent, NULL);
-+	if (!priv->regmap) {
-+		dev_err(&pdev->dev, "Failed to get parent regmap\n");
-+		return -ENODEV;
-+	}
-+
-+	device_for_each_child_node(&pdev->dev, child) {
-+		struct mt6360_led *led = priv->leds + i;
-+		struct led_init_data init_data = { .fwnode = child, };
-+		u32 reg;
-+
-+		ret = fwnode_property_read_u32(child, "reg", &reg);
-+		if (ret)
-+			goto out_flash_release;
-+
-+		if (reg >= MT6360_MAX_LEDS || priv->leds_active & BIT(reg))
-+			return -EINVAL;
-+		priv->leds_active |= BIT(reg);
-+
-+		led->led_no = reg;
-+		led->priv = priv;
-+
-+		ret = mt6360_init_common_properties(led, &init_data);
-+		if (ret)
-+			goto out_flash_release;
-+
-+		switch (reg) {
-+		case MT6360_LED_ISNK1 ... MT6360_LED_ISNK4:
-+			ret = mt6360_init_isnk_properties(led, &init_data);
-+			break;
-+		default:
-+			ret = mt6360_init_flash_properties(led, &init_data);
-+		}
-+
-+		if (ret)
-+			goto out_flash_release;
-+
-+		ret = mt6360_led_register(&pdev->dev, led, &init_data);
-+		if (ret)
-+			goto out_flash_release;
-+
-+		i++;
-+	}
-+
-+	platform_set_drvdata(pdev, priv);
-+	return 0;
-+
-+out_flash_release:
-+	mt6360_v4l2_flash_release(priv);
-+	return ret;
-+}
-+
-+static int mt6360_led_remove(struct platform_device *pdev)
-+{
-+	struct mt6360_priv *priv = platform_get_drvdata(pdev);
-+
-+	mt6360_v4l2_flash_release(priv);
-+	return 0;
-+}
-+
-+static const struct of_device_id __maybe_unused mt6360_led_of_id[] = {
-+	{ .compatible = "mediatek,mt6360-led", },
-+	{}
-+};
-+MODULE_DEVICE_TABLE(of, mt6360_led_of_id);
-+
-+static struct platform_driver mt6360_led_driver = {
-+	.driver = {
-+		.name = "mt6360-led",
-+		.of_match_table = mt6360_led_of_id,
-+	},
-+	.probe = mt6360_led_probe,
-+	.remove = mt6360_led_remove,
-+};
-+module_platform_driver(mt6360_led_driver);
-+
-+MODULE_AUTHOR("Gene Chen <gene_chen@richtek.com>");
-+MODULE_DESCRIPTION("MT6360 LED Driver");
-+MODULE_LICENSE("GPL v2");
--- 
-2.7.4
+With this approach I have issue with " multiple definition of .. "
 
+How should it look like such reusable code ?
+
+After my experience with above concept I think that only way is to move com=
+mon code
+to separate module,  similar as it is in drivers/usb/common directory or li=
+bcomposite.ko module.
+
+Am I right that it's the only correct way ?
+
+Regards,
+Pawel
