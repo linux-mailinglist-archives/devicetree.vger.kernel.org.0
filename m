@@ -2,125 +2,74 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from vger.kernel.org (vger.kernel.org [23.128.96.18])
-	by mail.lfdr.de (Postfix) with ESMTP id 751DF274987
-	for <lists+devicetree@lfdr.de>; Tue, 22 Sep 2020 21:54:14 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTP id 36259274990
+	for <lists+devicetree@lfdr.de>; Tue, 22 Sep 2020 21:54:55 +0200 (CEST)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S1726637AbgIVTyO (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Tue, 22 Sep 2020 15:54:14 -0400
-Received: from mail-io1-f66.google.com ([209.85.166.66]:34031 "EHLO
-        mail-io1-f66.google.com" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S1726617AbgIVTyN (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Tue, 22 Sep 2020 15:54:13 -0400
-Received: by mail-io1-f66.google.com with SMTP id m17so21068251ioo.1;
-        Tue, 22 Sep 2020 12:54:13 -0700 (PDT)
+        id S1726577AbgIVTyy (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Tue, 22 Sep 2020 15:54:54 -0400
+Received: from mail-io1-f67.google.com ([209.85.166.67]:43424 "EHLO
+        mail-io1-f67.google.com" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
+        with ESMTP id S1726550AbgIVTyy (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Tue, 22 Sep 2020 15:54:54 -0400
+Received: by mail-io1-f67.google.com with SMTP id z25so21017052iol.10;
+        Tue, 22 Sep 2020 12:54:53 -0700 (PDT)
 X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
         d=1e100.net; s=20161025;
         h=x-gm-message-state:date:from:to:cc:subject:message-id:references
          :mime-version:content-disposition:in-reply-to;
-        bh=+qF2EAj+xZ27M9bstX87bUprxWqOcd9qGhCKaOFiGNc=;
-        b=K1tsSEABTJtF80U2hngG6anJgaHEvEkXykeeK/sZEWuSP0W0nXzUiBmEtJOr8UgP/C
-         j/O85hmFqosCgS1pmso/HWrTptRFx2Gaz/3OsEcxDxKQDOkS+F0mHCFXJpGHctNEYeQh
-         aeESxILJPH9AaBsDzDJLwuQXoszTBYF4w3r38CuF29r7kaTmGXQpQbJLVpfyAa8TJ7oR
-         GoUhM1/2QNRbobR1rubOZcHve+FBOnShiNX20QX54SSj2XMcv1k2J0C0OrNwmIHTXPXj
-         J359t5JFq3VhzTe18+puqB08LXGNnSVvIZRbnosSRumh0a1x775y3V1YxC2f48KGZiEQ
-         kHpg==
-X-Gm-Message-State: AOAM532cla4nZ38KK449zXJD566XpRiCKRxoPzQ46NIs6EBvgsC9Dh1h
-        wABzDseRGhKrvUMUPSG6aEgg+5NW/Hxc
-X-Google-Smtp-Source: ABdhPJzijmPheoOp8k8M0D8ZYTknwbf0gqU6P2fI0sRjA5TFSpfxcEdmfuQ37IRLZxfB19R2VHB5Zg==
-X-Received: by 2002:a05:6602:2e0e:: with SMTP id o14mr4889500iow.111.1600804452622;
-        Tue, 22 Sep 2020 12:54:12 -0700 (PDT)
+        bh=gxR58nROS/k02YIzwamhGnljAkGAh3W3ICVvXBZGFxs=;
+        b=RR1xvnMEYI9y3GjkG7n4qGfLxnkDK5rcGmMp00Q7HPeV19V2BR0o6pj/sZahjJ8zvJ
+         ocbjilV54bxwODhpKEgmzJa83DU71dIfhRKWj5AM/sAYC31qgMkgankN5P/kto/xupUB
+         K/jXYkpGr6n8hm9pGJjguzVFZQ+eargPEWnntDxrmqaqyVuu29MpDk/zz/XE8XtM9bJx
+         OC9eVnPkMn314TKFS7sC8CrbI7qIDwSG8vcQs5b7Yf8eH9/pqHgLNb/b7fMneX+jPiKh
+         YUUYR4itav6+LTL3lN8OJHlk+q1uqctgPfz5UepuWYVS9bbhdaNWRhRsjiXROez0nCBy
+         sDxw==
+X-Gm-Message-State: AOAM530ZUS852LlupEg7HnpVnQ4cDYOPmLgBh5Yt3L7dg0P91/3wZlf3
+        Awu8SWwagnDkR2H4Cb4iGg==
+X-Google-Smtp-Source: ABdhPJx+OGxNYUzjfCrA6FLmNyvIE+JgqcuR9dAOg756ZUanSumQaSz7A/wh4DxLEkBg7DE9XdEHNQ==
+X-Received: by 2002:a02:c60b:: with SMTP id i11mr5379283jan.82.1600804493258;
+        Tue, 22 Sep 2020 12:54:53 -0700 (PDT)
 Received: from xps15 ([64.188.179.253])
-        by smtp.gmail.com with ESMTPSA id e9sm9498571ilr.20.2020.09.22.12.54.11
+        by smtp.gmail.com with ESMTPSA id n11sm9799517ild.3.2020.09.22.12.54.51
         (version=TLS1_3 cipher=TLS_AES_256_GCM_SHA384 bits=256/256);
-        Tue, 22 Sep 2020 12:54:11 -0700 (PDT)
-Received: (nullmailer pid 3131804 invoked by uid 1000);
-        Tue, 22 Sep 2020 19:54:10 -0000
-Date:   Tue, 22 Sep 2020 13:54:10 -0600
+        Tue, 22 Sep 2020 12:54:52 -0700 (PDT)
+Received: (nullmailer pid 3132969 invoked by uid 1000);
+        Tue, 22 Sep 2020 19:54:51 -0000
+Date:   Tue, 22 Sep 2020 13:54:51 -0600
 From:   Rob Herring <robh@kernel.org>
-To:     Manish Narani <manish.narani@xilinx.com>
-Cc:     gregkh@linuxfoundation.org, michal.simek@xilinx.com,
-        balbi@kernel.org, p.zabel@pengutronix.de,
-        linux-usb@vger.kernel.org, devicetree@vger.kernel.org,
-        linux-arm-kernel@lists.infradead.org, linux-kernel@vger.kernel.org,
-        git@xilinx.com
-Subject: Re: [PATCH v2 1/2] dt-bindings: usb: dwc3-xilinx: Add documentation
- for Versal DWC3 Controller
-Message-ID: <20200922195410.GA3122345@bogus>
-References: <1599678185-119412-1-git-send-email-manish.narani@xilinx.com>
- <1599678185-119412-2-git-send-email-manish.narani@xilinx.com>
+To:     Nobuhiro Iwamatsu <nobuhiro1.iwamatsu@toshiba.co.jp>
+Cc:     linux-gpio@vger.kernel.org, Will Deacon <will@kernel.org>,
+        Arnd Bergmann <arnd@arndb.de>, devicetree@vger.kernel.org,
+        linux-arm-kernel@lists.infradead.org,
+        Rob Herring <robh+dt@kernel.org>,
+        Olof Johansson <olof@lixom.net>, punit1.agrawal@toshiba.co.jp,
+        Catalin Marinas <catalin.marinas@arm.com>,
+        Linus Walleij <linus.walleij@linaro.org>,
+        Sudeep Holla <sudeep.holla@arm.com>,
+        Marc Zyngier <maz@misterjones.org>,
+        yuji2.ishikawa@toshiba.co.jp
+Subject: Re: [PATCH v4 3/8] dt-bindings: arm: toshiba: add Toshiba Visconti
+ ARM SoCs
+Message-ID: <20200922195451.GA3132935@bogus>
+References: <20200909204336.2558-1-nobuhiro1.iwamatsu@toshiba.co.jp>
+ <20200909204336.2558-4-nobuhiro1.iwamatsu@toshiba.co.jp>
 MIME-Version: 1.0
 Content-Type: text/plain; charset=us-ascii
 Content-Disposition: inline
-In-Reply-To: <1599678185-119412-2-git-send-email-manish.narani@xilinx.com>
+In-Reply-To: <20200909204336.2558-4-nobuhiro1.iwamatsu@toshiba.co.jp>
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-On Thu, Sep 10, 2020 at 12:33:04AM +0530, Manish Narani wrote:
-> Add documentation for Versal DWC3 controller. Add required property
-> 'reg' for the same. Also add optional properties for snps,dwc3.
+On Thu, 10 Sep 2020 05:43:31 +0900, Nobuhiro Iwamatsu wrote:
+> Add device tree bindings for the Toshiba Visconti ARM SoCs.
 > 
-> Signed-off-by: Manish Narani <manish.narani@xilinx.com>
+> Signed-off-by: Nobuhiro Iwamatsu <nobuhiro1.iwamatsu@toshiba.co.jp>
+> Reviewed-by: Punit Agrawal <punit1.agrawal@toshiba.co.jp>
 > ---
->  .../devicetree/bindings/usb/dwc3-xilinx.txt   | 20 +++++++++++++++++--
->  1 file changed, 18 insertions(+), 2 deletions(-)
+>  .../devicetree/bindings/arm/toshiba.yaml      | 20 +++++++++++++++++++
+>  1 file changed, 20 insertions(+)
+>  create mode 100644 Documentation/devicetree/bindings/arm/toshiba.yaml
 > 
-> diff --git a/Documentation/devicetree/bindings/usb/dwc3-xilinx.txt b/Documentation/devicetree/bindings/usb/dwc3-xilinx.txt
-> index 4aae5b2cef56..219b5780dbee 100644
-> --- a/Documentation/devicetree/bindings/usb/dwc3-xilinx.txt
-> +++ b/Documentation/devicetree/bindings/usb/dwc3-xilinx.txt
-> @@ -1,7 +1,8 @@
->  Xilinx SuperSpeed DWC3 USB SoC controller
->  
->  Required properties:
-> -- compatible:	Should contain "xlnx,zynqmp-dwc3"
-> +- compatible:	May contain "xlnx,zynqmp-dwc3" or "xlnx,versal-dwc3"
-> +- reg:		Base address and length of the register control block
->  - clocks:	A list of phandles for the clocks listed in clock-names
->  - clock-names:	Should contain the following:
->    "bus_clk"	 Master/Core clock, have to be >= 125 MHz for SS
-> @@ -13,12 +14,24 @@ Required child node:
->  A child node must exist to represent the core DWC3 IP block. The name of
->  the node is not important. The content of the node is defined in dwc3.txt.
->  
-> +Optional properties for snps,dwc3:
-> +- dma-coherent:	Enable this flag if CCI is enabled in design. Adding this
-> +		flag configures Global SoC bus Configuration Register and
-> +		Xilinx USB 3.0 IP - USB coherency register to enable CCI.
-> +- snps,enable-hibernation: Add this flag to enable hibernation support for
-> +		peripheral mode.
 
-This belongs in the DWC3 binding. It also implies that hibernation is 
-not supported by any other DWC3 based platform. Can't this be implied by 
-the compatible string (in the parent)?
-
-> +- interrupt-names: Should contain the following:
-> +  "dwc_usb3"	USB gadget mode interrupts
-> +  "otg"		USB OTG mode interrupts
-> +  "hiber"	USB hibernation interrupts
-> +
->  Example device node:
->  
->  		usb@0 {
->  			#address-cells = <0x2>;
->  			#size-cells = <0x1>;
->  			compatible = "xlnx,zynqmp-dwc3";
-> +			reg = <0x0 0xff9d0000 0x0 0x100>;
->  			clock-names = "bus_clk" "ref_clk";
->  			clocks = <&clk125>, <&clk125>;
->  			ranges;
-> @@ -26,7 +39,10 @@ Example device node:
->  			dwc3@fe200000 {
->  				compatible = "snps,dwc3";
->  				reg = <0x0 0xfe200000 0x40000>;
-> -				interrupts = <0x0 0x41 0x4>;
-> +				interrupt-names = "dwc_usb3", "otg", "hiber";
-> +				interrupts = <0 65 4>, <0 69 4>, <0 75 4>;
->  				dr_mode = "host";
-> +				dma-coherent;
-> +				snps,enable-hibernation;
->  			};
->  		};
-> -- 
-> 2.17.1
-> 
+Reviewed-by: Rob Herring <robh@kernel.org>
