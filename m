@@ -2,168 +2,210 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from vger.kernel.org (vger.kernel.org [23.128.96.18])
-	by mail.lfdr.de (Postfix) with ESMTP id 57779274905
-	for <lists+devicetree@lfdr.de>; Tue, 22 Sep 2020 21:23:53 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTP id 4FBE7274917
+	for <lists+devicetree@lfdr.de>; Tue, 22 Sep 2020 21:27:41 +0200 (CEST)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S1726603AbgIVTXr (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Tue, 22 Sep 2020 15:23:47 -0400
-Received: from mail.kernel.org ([198.145.29.99]:34484 "EHLO mail.kernel.org"
+        id S1726448AbgIVT1f (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Tue, 22 Sep 2020 15:27:35 -0400
+Received: from mail.kernel.org ([198.145.29.99]:38510 "EHLO mail.kernel.org"
         rhost-flags-OK-OK-OK-OK) by vger.kernel.org with ESMTP
-        id S1726448AbgIVTXr (ORCPT <rfc822;devicetree@vger.kernel.org>);
-        Tue, 22 Sep 2020 15:23:47 -0400
-Received: from mail-oi1-f181.google.com (mail-oi1-f181.google.com [209.85.167.181])
+        id S1726756AbgIVT1b (ORCPT <rfc822;devicetree@vger.kernel.org>);
+        Tue, 22 Sep 2020 15:27:31 -0400
+Received: from mail-oi1-f177.google.com (mail-oi1-f177.google.com [209.85.167.177])
         (using TLSv1.2 with cipher ECDHE-RSA-AES128-GCM-SHA256 (128/128 bits))
         (No client certificate requested)
-        by mail.kernel.org (Postfix) with ESMTPSA id 8FD6C2376F;
-        Tue, 22 Sep 2020 19:23:46 +0000 (UTC)
+        by mail.kernel.org (Postfix) with ESMTPSA id C3437238D6;
+        Tue, 22 Sep 2020 19:27:30 +0000 (UTC)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=kernel.org;
-        s=default; t=1600802626;
-        bh=YSVRLX+G8HcHE+AlF7XG+URmaQ0sbbZbrL31jfA43QM=;
+        s=default; t=1600802850;
+        bh=y4Fd+VRM7UpDSLqyMTN3OBbvyJnJFNwNQbYAe8OBzSM=;
         h=References:In-Reply-To:From:Date:Subject:To:Cc:From;
-        b=s3kCE2FF2hDZ7ft/3RSjsfWUCkILuu7w+s9Nxs1V3wwKAVIJxV6tzrD8yuEIWfcLZ
-         Ni2wI/4pwj5nmASalnnXMx2UP1cxGuZNomBqb0V9gNWEOXMitNSOLC4mgXeXqlaL2A
-         9aoo3l6HTGKbSXVtcdM+Fx2X380sNdhkKXXwRyGE=
-Received: by mail-oi1-f181.google.com with SMTP id x69so22245899oia.8;
-        Tue, 22 Sep 2020 12:23:46 -0700 (PDT)
-X-Gm-Message-State: AOAM532HYd6r7ul2/YE5G4FX9Se5qnTyXFNoWgPE2q+vCCbM3LRFCmFo
-        RtQGTxyFnRkw4aeRAOHF6cmEUPsEn1g4w/pO3w==
-X-Google-Smtp-Source: ABdhPJxZbyi+iwWALuyGdgsGTDNoTRH1mBaH07ixS1Yrd7pBExCttVsq4BzpKd3h/dT74o++G7oRjXZcDCwWdevm2R0=
-X-Received: by 2002:aca:fc07:: with SMTP id a7mr3619638oii.106.1600802620879;
- Tue, 22 Sep 2020 12:23:40 -0700 (PDT)
+        b=wJfuNKf9Fxjix5TRnUu3VV/mdftdtMtbbVPUTttslBQnSagSVOMyUItXbc9pSdhtS
+         XevikvDfGdiMxhOGyZNt3Pc57lHVubf0Etd9sspW7oOP4OGgcD5neN/xdtGtB5mBh1
+         vBoVRPA5YmQlUfSYQ5NE0ZaM9ayOUk7g/3X2VvOQ=
+Received: by mail-oi1-f177.google.com with SMTP id c13so22298919oiy.6;
+        Tue, 22 Sep 2020 12:27:30 -0700 (PDT)
+X-Gm-Message-State: AOAM531TtvmDqfGi7GhZmLWPlE9Xcip2/8l28a7OCRymBGanAgdIeh8C
+        /WmSXkr1IYUQHo0fcohq692GT5zJVH7s1gIRfQ==
+X-Google-Smtp-Source: ABdhPJwhJMX8D3+trJZN/+08Gl+SD0tqa/EL4rPKkiuDbtL7YuTlvwm7x2n7VkNZnRT9wiHG5Sriw9wPMJIdmEwApBI=
+X-Received: by 2002:aca:4d58:: with SMTP id a85mr3701800oib.147.1600802850151;
+ Tue, 22 Sep 2020 12:27:30 -0700 (PDT)
 MIME-Version: 1.0
-References: <1599031090-21608-1-git-send-email-krzk@kernel.org>
- <20200914201310.GA154873@bogus> <20200921112635.GA1233@kozik-lap>
-In-Reply-To: <20200921112635.GA1233@kozik-lap>
+References: <1598633743-1023-1-git-send-email-sagar.kadam@sifive.com>
+ <1598633743-1023-2-git-send-email-sagar.kadam@sifive.com> <20200914180000.GA4136408@bogus>
+ <DM6PR13MB3451786E8B73D50D36A89FD097200@DM6PR13MB3451.namprd13.prod.outlook.com>
+In-Reply-To: <DM6PR13MB3451786E8B73D50D36A89FD097200@DM6PR13MB3451.namprd13.prod.outlook.com>
 From:   Rob Herring <robh@kernel.org>
-Date:   Tue, 22 Sep 2020 13:23:29 -0600
-X-Gmail-Original-Message-ID: <CAL_Jsq+gT3WSCAsKTrjZMh+vF4mx-m51rO=Wv+YcNxNhjEoO8A@mail.gmail.com>
-Message-ID: <CAL_Jsq+gT3WSCAsKTrjZMh+vF4mx-m51rO=Wv+YcNxNhjEoO8A@mail.gmail.com>
-Subject: Re: [PATCH v2 1/3] dt-bindings: media: imx258: Add bindings for
- IMX258 sensor
-To:     Krzysztof Kozlowski <krzk@kernel.org>
-Cc:     Sakari Ailus <sakari.ailus@linux.intel.com>,
-        Mauro Carvalho Chehab <mchehab@kernel.org>,
-        Shawn Guo <shawnguo@kernel.org>,
-        Sascha Hauer <s.hauer@pengutronix.de>,
-        Pengutronix Kernel Team <kernel@pengutronix.de>,
-        Fabio Estevam <festevam@gmail.com>,
-        NXP Linux Team <linux-imx@nxp.com>,
-        Linux Media Mailing List <linux-media@vger.kernel.org>,
-        devicetree@vger.kernel.org,
-        linux-arm-kernel <linux-arm-kernel@lists.infradead.org>,
-        "linux-kernel@vger.kernel.org" <linux-kernel@vger.kernel.org>
+Date:   Tue, 22 Sep 2020 13:27:19 -0600
+X-Gmail-Original-Message-ID: <CAL_Jsq+4i-zq1Ro90h6XEbwhyqWKKj+MQ5KW6U-qFSViWh3SNA@mail.gmail.com>
+Message-ID: <CAL_Jsq+4i-zq1Ro90h6XEbwhyqWKKj+MQ5KW6U-qFSViWh3SNA@mail.gmail.com>
+Subject: Re: [RESEND PATCH v2 1/1] dt-bindings: riscv: sifive-l2-cache:
+ convert bindings to json-schema
+To:     Sagar Kadam <sagar.kadam@openfive.com>
+Cc:     "linux-kernel@vger.kernel.org" <linux-kernel@vger.kernel.org>,
+        "linux-riscv@lists.infradead.org" <linux-riscv@lists.infradead.org>,
+        "devicetree@vger.kernel.org" <devicetree@vger.kernel.org>,
+        "Paul Walmsley ( Sifive)" <paul.walmsley@sifive.com>,
+        "palmer@dabbelt.com" <palmer@dabbelt.com>,
+        "aou@eecs.berkeley.edu" <aou@eecs.berkeley.edu>,
+        Yash Shah <yash.shah@openfive.com>
 Content-Type: text/plain; charset="UTF-8"
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-On Mon, Sep 21, 2020 at 5:27 AM Krzysztof Kozlowski <krzk@kernel.org> wrote:
+On Tue, Sep 15, 2020 at 9:17 AM Sagar Kadam <sagar.kadam@openfive.com> wrote:
 >
-> On Mon, Sep 14, 2020 at 02:13:10PM -0600, Rob Herring wrote:
-> > On Wed, Sep 02, 2020 at 09:18:08AM +0200, Krzysztof Kozlowski wrote:
-> > > Add bindings for the IMX258 camera sensor.  The bindings, just like the
-> > > driver, are quite limited, e.g. do not support regulator supplies.
+> Hello Rob,
+>
+> > -----Original Message-----
+> > From: Rob Herring <robh@kernel.org>
+> > Sent: Monday, September 14, 2020 11:30 PM
+> > To: Sagar Kadam <sagar.kadam@openfive.com>
+> > Cc: linux-kernel@vger.kernel.org; linux-riscv@lists.infradead.org;
+> > devicetree@vger.kernel.org; Paul Walmsley ( Sifive)
+> > <paul.walmsley@sifive.com>; palmer@dabbelt.com;
+> > aou@eecs.berkeley.edu; Yash Shah <yash.shah@openfive.com>
+> > Subject: Re: [RESEND PATCH v2 1/1] dt-bindings: riscv: sifive-l2-cache:
+> > convert bindings to json-schema
 > >
-> > Bindings should be complete, not what a driver happens to currently
-> > support.
->
-> I'll add then more complete picture.
->
+> > [External Email] Do not click links or attachments unless you recognize the
+> > sender and know the content is safe
 > >
+> > On Fri, Aug 28, 2020 at 10:25:43PM +0530, Sagar Kadam wrote:
+> > > Convert the device tree bindings for the SiFive's FU540-C000 SoC's L2
+> > Cache
+> > > controller to YAML format.
 > > >
-> > > Signed-off-by: Krzysztof Kozlowski <krzk@kernel.org>
-> > >
+> > > Signed-off-by: Sagar Kadam <sagar.kadam@sifive.com>
 > > > ---
+> > >  .../devicetree/bindings/riscv/sifive-l2-cache.txt  | 51 ------------
+> > >  .../devicetree/bindings/riscv/sifive-l2-cache.yaml | 92
+> > ++++++++++++++++++++++
+> > >  2 files changed, 92 insertions(+), 51 deletions(-)
+> > >  delete mode 100644 Documentation/devicetree/bindings/riscv/sifive-l2-
+> > cache.txt
+> > >  create mode 100644 Documentation/devicetree/bindings/riscv/sifive-l2-
+> > cache.yaml
 > > >
-> > > Changes since v1:
-> > > 1. None
-> > > ---
-> > >  .../devicetree/bindings/media/i2c/imx258.yaml      | 92 ++++++++++++++++++++++
-> > >  MAINTAINERS                                        |  1 +
-> > >  2 files changed, 93 insertions(+)
-> > >  create mode 100644 Documentation/devicetree/bindings/media/i2c/imx258.yaml
-> > >
-> > > diff --git a/Documentation/devicetree/bindings/media/i2c/imx258.yaml b/Documentation/devicetree/bindings/media/i2c/imx258.yaml
+> > > diff --git a/Documentation/devicetree/bindings/riscv/sifive-l2-cache.txt
+> > b/Documentation/devicetree/bindings/riscv/sifive-l2-cache.txt
+> > > deleted file mode 100644
+> > > index 73d8f19..0000000
+> > > --- a/Documentation/devicetree/bindings/riscv/sifive-l2-cache.txt
+> > > +++ /dev/null
+> > > @@ -1,51 +0,0 @@
+> > > -SiFive L2 Cache Controller
+> > > ---------------------------
+> > > -The SiFive Level 2 Cache Controller is used to provide access to fast
+> > copies
+> > > -of memory for masters in a Core Complex. The Level 2 Cache Controller
+> > also
+> > > -acts as directory-based coherency manager.
+> > > -All the properties in ePAPR/DeviceTree specification applies for this
+> > platform
+> > > -
+> > > -Required Properties:
+> > > ---------------------
+> > > -- compatible: Should be "sifive,fu540-c000-ccache" and "cache"
+> > > -
+> > > -- cache-block-size: Specifies the block size in bytes of the cache.
+> > > -  Should be 64
+> > > -
+> > > -- cache-level: Should be set to 2 for a level 2 cache
+> > > -
+> > > -- cache-sets: Specifies the number of associativity sets of the cache.
+> > > -  Should be 1024
+> > > -
+> > > -- cache-size: Specifies the size in bytes of the cache. Should be 2097152
+> > > -
+> > > -- cache-unified: Specifies the cache is a unified cache
+> > > -
+> > > -- interrupts: Must contain 3 entries (DirError, DataError and DataFail
+> > signals)
+> > > -
+> > > -- reg: Physical base address and size of L2 cache controller registers map
+> > > -
+> > > -Optional Properties:
+> > > ---------------------
+> > > -- next-level-cache: phandle to the next level cache if present.
+> > > -
+> > > -- memory-region: reference to the reserved-memory for the L2 Loosely
+> > Integrated
+> > > -  Memory region. The reserved memory node should be defined as per
+> > the bindings
+> > > -  in reserved-memory.txt
+> > > -
+> > > -
+> > > -Example:
+> > > -
+> > > -     cache-controller@2010000 {
+> > > -             compatible = "sifive,fu540-c000-ccache", "cache";
+> > > -             cache-block-size = <64>;
+> > > -             cache-level = <2>;
+> > > -             cache-sets = <1024>;
+> > > -             cache-size = <2097152>;
+> > > -             cache-unified;
+> > > -             interrupt-parent = <&plic0>;
+> > > -             interrupts = <1 2 3>;
+> > > -             reg = <0x0 0x2010000 0x0 0x1000>;
+> > > -             next-level-cache = <&L25 &L40 &L36>;
+> > > -             memory-region = <&l2_lim>;
+> > > -     };
+> > > diff --git a/Documentation/devicetree/bindings/riscv/sifive-l2-cache.yaml
+> > b/Documentation/devicetree/bindings/riscv/sifive-l2-cache.yaml
 > > > new file mode 100644
-> > > index 000000000000..ef789ad31143
+> > > index 0000000..e14c8c6
 > > > --- /dev/null
-> > > +++ b/Documentation/devicetree/bindings/media/i2c/imx258.yaml
+> > > +++ b/Documentation/devicetree/bindings/riscv/sifive-l2-cache.yaml
 > > > @@ -0,0 +1,92 @@
-> > > +# SPDX-License-Identifier: (GPL-2.0-only OR BSD-2-Clause)
+> > > +# SPDX-License-Identifier: (GPL-2.0 OR BSD-2-Clause)
+> > > +# Copyright (C) 2020 SiFive, Inc.
 > > > +%YAML 1.2
 > > > +---
-> > > +$id: http://devicetree.org/schemas/media/i2c/imx258.yaml#
+> > > +$id: http://devicetree.org/schemas/riscv/sifive-l2-cache.yaml#
 > > > +$schema: http://devicetree.org/meta-schemas/core.yaml#
 > > > +
-> > > +title: Sony IMX258 13 Mpixel CMOS Digital Image Sensor
+> > > +title: SiFive L2 Cache Controller
 > > > +
 > > > +maintainers:
-> > > +  - Krzysztof Kozlowski <krzk@kernel.org>
+> > > +  - Sagar Kadam <sagar.kadam@sifive.com>
+> > > +  - Yash Shah <yash.shah@sifive.com>
+> > > +  - Paul Walmsley  <paul.walmsley@sifive.com>
 > > > +
-> > > +description: |-
-> > > +  IMX258 is a diagonal 5.867mm (Type 1/3.06) 13 Mega-pixel CMOS active pixel
-> > > +  type stacked image sensor with a square pixel array of size 4208 x 3120. It
-> > > +  is programmable through I2C interface.  Image data is sent through MIPI
-> > > +  CSI-2.
+> > > +description:
+> > > +  The SiFive Level 2 Cache Controller is used to provide access to fast
+> > copies
+> > > +  of memory for masters in a Core Complex. The Level 2 Cache Controller
+> > also
+> > > +  acts as directory-based coherency manager.
+> > > +  All the properties in ePAPR/DeviceTree specification applies for this
+> > platform.
+> > > +
+> > > +allOf:
+> > > +  - $ref: /schemas/cache-controller.yaml#
 > > > +
 > > > +properties:
 > > > +  compatible:
-> > > +    const: sony,imx258
-> > > +
-> > > +  clocks:
-> > > +    maxItems: 1
-> > > +
-> > > +  clock-frequency:
-> > > +    description: Frequency of input clock if clock is not provided
-> > > +    deprecated: true
+> > > +    items:
+> > > +     - enum:
+> > > +        - sifive,fu540-c000-ccache
+> > > +    description: |
+> > > +      Should have "sifive,<soc>-cache" and "cache".
 > >
-> > Why are we adding something deprecated on a new binding?
->
-> My intention was also to document it but indeed easier to skip it.
->
+> > That's not what the schema describes or the example has (the 'cache'
+> > fallback).
 > >
-> > > +    const: 19200000
-> > > +
-> > > +  reg:
-> > > +    maxItems: 1
-> > > +
-> > > +  # See ../video-interfaces.txt for more details
-> > > +  port:
-> > > +    type: object
-> > > +    properties:
-> > > +      endpoint:
-> > > +        type: object
-> > > +        properties:
-> > > +          data-lanes:
-> > > +            items:
-> > > +              - const: 1
-> > > +              - const: 2
-> > > +              - const: 3
-> > > +              - const: 4
-> >
-> > If this is the only config, why does it need to be in DT?
+> Thanks for your suggestions.
+> I see that if we include the standard 'cache' property here, it injects  error's in other yaml's as reported here [1]
+> In plain txt format of this binding the standard "cache" property is mentioned to be also included along with soc specific compatible string.
 >
-> The sensor is capable of two settings: two lanes (1 and 2) and four
-> lanes described above.  However Linux driver requires the latter (four
-> lanes, 1+2+3+4).
->
-> If I were to describe the bindings for HW, someone would really be
-> confused and try to use two lanes setup, which won't work. Driver won't
-> allow it.
+> Please correct me if I am wrong here:
+> So in order to retain the earlier description as Should have "sifive,<soc>-cache" and "cache",  I excluded "cache" property from example
+> as I assumed it is implied for cacheinfo infrastructure to work properly.
+> I will retain the earlier description (from.txt) which was "sifive,fu540-c000-ccache" and "cache"
 
-If someone has h/w with only 2 lanes connected, then they have to go
-add support to the driver whether we've documented 2 lanes in the
-binding or not.
-
-> I understand that bindings document the HW and describe its interface
-> but do we really want to put "theoretical" bindings which cannot be used
-> in practice with Linux kernel?
->
-> If yes, how to nicely document this that only one setting is currently
-> working?
-
-You don't, at least in the binding. That's a driver issue. Bindings
-are separate. They are stored in the kernel tree for convenience, not
-because they are part of the kernel.
+You will need a custom 'select' schema to only match on
+"sifive,fu540-c000-ccache". There's numerous examples in the tree.
 
 Rob
