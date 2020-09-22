@@ -2,111 +2,91 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from vger.kernel.org (vger.kernel.org [23.128.96.18])
-	by mail.lfdr.de (Postfix) with ESMTP id 2061A273D0B
-	for <lists+devicetree@lfdr.de>; Tue, 22 Sep 2020 10:14:45 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTP id D0244273D54
+	for <lists+devicetree@lfdr.de>; Tue, 22 Sep 2020 10:32:25 +0200 (CEST)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S1726619AbgIVIOo (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Tue, 22 Sep 2020 04:14:44 -0400
-Received: from lindbergh.monkeyblade.net ([23.128.96.19]:36046 "EHLO
-        lindbergh.monkeyblade.net" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S1726605AbgIVIOo (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Tue, 22 Sep 2020 04:14:44 -0400
-Received: from mail-pf1-x442.google.com (mail-pf1-x442.google.com [IPv6:2607:f8b0:4864:20::442])
-        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 472F1C061755
-        for <devicetree@vger.kernel.org>; Tue, 22 Sep 2020 01:14:44 -0700 (PDT)
-Received: by mail-pf1-x442.google.com with SMTP id x123so11721132pfc.7
-        for <devicetree@vger.kernel.org>; Tue, 22 Sep 2020 01:14:44 -0700 (PDT)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=linaro.org; s=google;
-        h=date:from:to:cc:subject:message-id:references:mime-version
-         :content-disposition:content-transfer-encoding:in-reply-to
-         :user-agent;
-        bh=VvRTHWq9atT0M2ZBSCyp6rDibMZAJDzlcA9mNUPSa1Q=;
-        b=UIsiyD65QwMGiOab0ykzjaRHAo1ydlbju+cn5iZoBvahS1pS6vUlqWCapZgjLSeHaN
-         PdB9uj3WYuSdOPKVH1nwPcYDHA4EXJU36mVbBnBAAxrSytNZ/81cgPdZdDLOQc6hjVus
-         rDX5iZP8/rYc5sX7xUIxbJfIx34Zba5RDrwM3V7zvnTH4z1p3CuJf5sklEocne0UScwE
-         Wnug7L2foNRamyKS1UdgsVG8yhMYE2F8yrojPsAOACTpqHxpv9x1VZKO2NjB/H5ocwvI
-         7LHCvg0yy/5qXNjHtwtBhzZIG/WI8WpqRDQwvRxepxofyb/4T/44DOpZwkMEukcDfwal
-         9FKg==
-X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=1e100.net; s=20161025;
-        h=x-gm-message-state:date:from:to:cc:subject:message-id:references
-         :mime-version:content-disposition:content-transfer-encoding
-         :in-reply-to:user-agent;
-        bh=VvRTHWq9atT0M2ZBSCyp6rDibMZAJDzlcA9mNUPSa1Q=;
-        b=k9OZUUhW0x0BCQTB1fTYo0Ww3Vb7MSTRyuE4gauBAVonNkB/e3TjB3VD95c7zu8SG+
-         MbxNoch5bUoLGL/d/9BcvIBabQzxGqSVQaQS6QDXhpqclCwDpdN78DpCyuL1wG9Pa3ZS
-         BQageso4i1KS8dhjbZkkx74yheu2xv3hKyAEag8YEQ8aCJVUjzQEJKVvtsyjp6HPqfWw
-         T/WT+W2Bldvkxo/MsdrsYkvMJXrHOcSTX9ngfANYmFNkW+U9Zhd5BDMID8TKIVtO6dz4
-         2lrspivkSh4fdYoaBr+37OD+Pktr/wx0FT4LXh6w81dS55ZRiXp2b7claFJGZH5d8VAA
-         n3yA==
-X-Gm-Message-State: AOAM531qu7k95+9MuDEijzul2jHgwGkeRMCdKUMTiaGqncVzfqr0nm4l
-        R8W22x3nGhrSTxYv67s6agS2
-X-Google-Smtp-Source: ABdhPJxXMg3Nn0XGG3SBhoXi4mamnDNcOX3VjcS+UMVk72R8qDISYWh3+KAXOZRb+pZ58Ei82a9m6A==
-X-Received: by 2002:a63:d918:: with SMTP id r24mr2597057pgg.158.1600762483807;
-        Tue, 22 Sep 2020 01:14:43 -0700 (PDT)
-Received: from Mani-XPS-13-9360 ([2409:4072:6e1c:c062:1004:2ccf:6900:b97])
-        by smtp.gmail.com with ESMTPSA id m25sm13846459pfa.32.2020.09.22.01.14.36
-        (version=TLS1_2 cipher=ECDHE-ECDSA-CHACHA20-POLY1305 bits=256/256);
-        Tue, 22 Sep 2020 01:14:43 -0700 (PDT)
-Date:   Tue, 22 Sep 2020 13:44:32 +0530
-From:   Manivannan Sadhasivam <manivannan.sadhasivam@linaro.org>
-To:     Matheus Castello <matheus@castello.eng.br>
-Cc:     afaerber@suse.de, mark.rutland@arm.com, robh+dt@kernel.org,
-        edgar.righi@lsitec.org.br, igor.lima@lsitec.org.br,
-        helen.koike@collabora.com, linux-arm-kernel@lists.infradead.org,
-        devicetree@vger.kernel.org, linux-kernel@vger.kernel.org,
-        linux-actions@lists.infradead.org, Rob Herring <robh@kernel.org>
-Subject: Re: [PATCH v7 1/4] dt-bindings: Add vendor prefix for Caninos Loucos
-Message-ID: <20200922081432.GK29035@Mani-XPS-13-9360>
-References: <20200922024302.205062-1-matheus@castello.eng.br>
- <20200922024302.205062-2-matheus@castello.eng.br>
+        id S1726488AbgIVIcZ (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Tue, 22 Sep 2020 04:32:25 -0400
+Received: from mout.kundenserver.de ([212.227.126.134]:58423 "EHLO
+        mout.kundenserver.de" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
+        with ESMTP id S1726799AbgIVIcZ (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Tue, 22 Sep 2020 04:32:25 -0400
+Received: from mail-qk1-f182.google.com ([209.85.222.182]) by
+ mrelayeu.kundenserver.de (mreue010 [212.227.15.129]) with ESMTPSA (Nemesis)
+ id 1MEmMt-1kEGs81ae3-00GF4a; Tue, 22 Sep 2020 10:32:23 +0200
+Received: by mail-qk1-f182.google.com with SMTP id o16so18182762qkj.10;
+        Tue, 22 Sep 2020 01:32:23 -0700 (PDT)
+X-Gm-Message-State: AOAM533M20kxEgvelf/VO+G9X2qrPUXUIqjvXRf6CJ6JVUgscSJ9tmhq
+        JI95lCQxj6CI5nua3kZed4+m5KjIy13WYE8FuIM=
+X-Google-Smtp-Source: ABdhPJxVpm81rzuOpNNfOHDEBf6+tjIbpNILGqrTgab5VBp9jlR3YGmn4XYZi/VkOVydTRkIPBWlkQmdh650kLrWwZs=
+X-Received: by 2002:a05:620a:15a7:: with SMTP id f7mr3478911qkk.3.1600763542109;
+ Tue, 22 Sep 2020 01:32:22 -0700 (PDT)
 MIME-Version: 1.0
-Content-Type: text/plain; charset=iso-8859-1
-Content-Disposition: inline
-Content-Transfer-Encoding: 8bit
-In-Reply-To: <20200922024302.205062-2-matheus@castello.eng.br>
-User-Agent: Mutt/1.9.4 (2018-02-28)
+References: <20200922024302.205062-1-matheus@castello.eng.br>
+ <20200922024302.205062-5-matheus@castello.eng.br> <20200922061454.GA29035@Mani-XPS-13-9360>
+In-Reply-To: <20200922061454.GA29035@Mani-XPS-13-9360>
+From:   Arnd Bergmann <arnd@arndb.de>
+Date:   Tue, 22 Sep 2020 10:32:06 +0200
+X-Gmail-Original-Message-ID: <CAK8P3a0yGN80nJU0kcrvYGsSjpaNpU_nmu-ENwE3GMC_9DNBhg@mail.gmail.com>
+Message-ID: <CAK8P3a0yGN80nJU0kcrvYGsSjpaNpU_nmu-ENwE3GMC_9DNBhg@mail.gmail.com>
+Subject: Re: [PATCH v7 4/4] arm64: dts: Add Caninos Loucos Labrador v3
+To:     Manivannan Sadhasivam <manivannan.sadhasivam@linaro.org>
+Cc:     Matheus Castello <matheus@castello.eng.br>,
+        Olof Johansson <olof@lixom.net>,
+        =?UTF-8?Q?Andreas_F=C3=A4rber?= <afaerber@suse.de>,
+        Mark Rutland <mark.rutland@arm.com>,
+        Rob Herring <robh+dt@kernel.org>, edgar.righi@lsitec.org.br,
+        igor.lima@lsitec.org.br, Helen Koike <helen.koike@collabora.com>,
+        Linux ARM <linux-arm-kernel@lists.infradead.org>,
+        DTML <devicetree@vger.kernel.org>,
+        "linux-kernel@vger.kernel.org" <linux-kernel@vger.kernel.org>,
+        linux-actions@lists.infradead.org,
+        Catalin Marinas <catalin.marinas@arm.com>,
+        Will Deacon <will@kernel.org>
+Content-Type: text/plain; charset="UTF-8"
+X-Provags-ID: V03:K1:+Sqw26Y1nKBMFvEKEpYY9XOxck/gdND6fjiQ4kFxp4wbP7bFlGM
+ kuRZyB+2geuCCT/rxiFsTXGnEmvSM8b4lMu5MrChP5IBHn7kKo75YJmLGxBAixtlM8WAU0d
+ d+v74Xe19vj2tlcGguoZE1cDXdN8LGvOiuDaCm+bTGxnOJQCY0FXBpp9WNaHGOkTVFNR4fx
+ Og1A/15kIKcOAubqYCKAw==
+X-Spam-Flag: NO
+X-UI-Out-Filterresults: notjunk:1;V03:K0:ydvbePANNgc=:1XqGMU9MMzy78mwQnLt3Nt
+ KT0R3TVIy5ON5Z/7/at1FUKmFiQc9cYeJIUx+/GJ4HxfKQAsaKdYcdlotDv0z4AnR7zeV5k5b
+ MNn8boFU7kkciZv4FlhCCznM9nbhtcWUhebBeJbIrDN2/T+n3R3BcJmeS76In9VdgJVBdYS3q
+ 8VdcolAcJ2MK41+fK/YV1EoRXfI7FqC5KqD97joTK0TKd2f6YhZIPZGQzSB2vsTZWqZRr0hP2
+ R8xfPAz/3ouNEyyQHWGgPwnMEZju0UDGS3Qu0rq7A0jxH2mQg52l+duYWFsD/spiXKa5ynXca
+ rwCV91AHuaLl/uwWfhVmLOT3f4HJxKCaziqgBaY3Dmbjnrnh7uoTIU1b6vxHIJXKzohJnGkN6
+ SZdPvGr9gzDii76sssP0+xZeE7D7DyAFDXmn0kXLdKIVJQESR2kDitbjIWsF7JAqJiBNYWfr4
+ 1VXbnaGyegIxdimQAeN/gvRmeJ9ETRvlevJh1Xj3+/BnotCyt9fXHAZ0Yzymcp7XfhPo5j3DY
+ VPsilAKt0dlFbsyCJurey8zzfFLfpRwnf/bTKVeTCkGKlZic2qQ2kg70FyOQGGE5dyVPQbCsa
+ rqfolmPCEM+vHwUSB38IfPUpCkW/9mLxVp8uHM/1sbiniouHoQNglWm6nR1qvmarfEj/tQwOX
+ wSQOL+0fWrVIXaBiN1sXkJ0VAMkKe5pzTqmaJDgsU3/ZuvYugyyv34I6CWn6L+QCqELrDnyKE
+ WEgpzu57xho/Ga7MvtXaXD/h5NqaQ9zHtNrnvF8RvvsJwYnnViC9bwKajWChGL69ANMz2oMqA
+ aehPrTxa7zovaAHX77VYWfx52f7C1u4NY5oIS4W3oNCIfr9HmOY9XlWyHgDWln0d+iCNLUUNo
+ taoWjhXPafxCeeNh8KU+j4nbfh5BnAHWYUUahkAw3ggp2bCqkqlM9FLTKxAn0NZTIcJQhZzrm
+ LG33hMlblv+GotRHshi074FPe+hnLbbdWykAsB8qMla1I/V1+BFWX
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-On Mon, Sep 21, 2020 at 11:42:59PM -0300, Matheus Castello wrote:
-> The Caninos Loucos Program develops Single Board Computers with an open
-> structure. The Program wants to form a community of developers to use
-> IoT technologies and disseminate the learning of embedded systems in
-> Brazil.
-> 
-> It is an initiative of the Technological Integrated Systems Laboratory
-> (LSI-TEC) with the support of Polytechnic School of the University of
-> São Paulo (Poli-USP) and Jon "Maddog" Hall.
-> 
-> Signed-off-by: Matheus Castello <matheus@castello.eng.br>
-> Acked-by: Rob Herring <robh@kernel.org>
-> Reviewed-by: Andreas Färber <afaerber@suse.de>
+On Tue, Sep 22, 2020 at 8:15 AM Manivannan Sadhasivam
+<manivannan.sadhasivam@linaro.org> wrote:
+> On Mon, Sep 21, 2020 at 11:43:02PM -0300, Matheus Castello wrote:
+> > +     /* Labrador v3 firmware does not support PSCI */
+>
+> Oops. This is unfortunate... I'm not sure if this is even acceptable for
+> ARM64 machines.
+>
+> Let me add Olof and Arnd...
 
-Applied for v5.10!
+Adding Catalin and Will for additional input as well, this is more their
+area than ours.
 
-Thanks,
-Mani
+I don't think we have formalized this as a policy, but we clearly don't
+want new boards to use the spin table hack. As there are other
+boards using psci on the same chip, I don't think this is a
+hardware bug.
 
-> ---
->  Documentation/devicetree/bindings/vendor-prefixes.yaml | 2 ++
->  1 file changed, 2 insertions(+)
-> 
-> diff --git a/Documentation/devicetree/bindings/vendor-prefixes.yaml b/Documentation/devicetree/bindings/vendor-prefixes.yaml
-> index 63996ab03521..aac0dc3caf3b 100644
-> --- a/Documentation/devicetree/bindings/vendor-prefixes.yaml
-> +++ b/Documentation/devicetree/bindings/vendor-prefixes.yaml
-> @@ -179,6 +179,8 @@ patternProperties:
->      description: CALAO Systems SAS
->    "^calxeda,.*":
->      description: Calxeda
-> +  "^caninos,.*":
-> +    description: Caninos Loucos Program
->    "^capella,.*":
->      description: Capella Microsystems, Inc
->    "^cascoda,.*":
-> --
-> 2.28.0
-> 
+Matheus: can you explain what keeps you from fixing the
+bootloader instead?
+
+      Arnd
