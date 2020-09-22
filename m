@@ -2,163 +2,241 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from vger.kernel.org (vger.kernel.org [23.128.96.18])
-	by mail.lfdr.de (Postfix) with ESMTP id 137952741C0
-	for <lists+devicetree@lfdr.de>; Tue, 22 Sep 2020 14:05:54 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTP id 18FF52741CF
+	for <lists+devicetree@lfdr.de>; Tue, 22 Sep 2020 14:09:22 +0200 (CEST)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S1726533AbgIVMFx convert rfc822-to-8bit (ORCPT
-        <rfc822;lists+devicetree@lfdr.de>); Tue, 22 Sep 2020 08:05:53 -0400
-Received: from lindbergh.monkeyblade.net ([23.128.96.19]:43902 "EHLO
+        id S1726621AbgIVMJU (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Tue, 22 Sep 2020 08:09:20 -0400
+Received: from lindbergh.monkeyblade.net ([23.128.96.19]:44428 "EHLO
         lindbergh.monkeyblade.net" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S1726518AbgIVMFw (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Tue, 22 Sep 2020 08:05:52 -0400
+        with ESMTP id S1726531AbgIVMJS (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Tue, 22 Sep 2020 08:09:18 -0400
 Received: from metis.ext.pengutronix.de (metis.ext.pengutronix.de [IPv6:2001:67c:670:201:290:27ff:fe1d:cc33])
-        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id CC631C061755
-        for <devicetree@vger.kernel.org>; Tue, 22 Sep 2020 05:05:52 -0700 (PDT)
-Received: from lupine.hi.pengutronix.de ([2001:67c:670:100:3ad5:47ff:feaf:1a17] helo=lupine)
+        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 0BFDEC061755
+        for <devicetree@vger.kernel.org>; Tue, 22 Sep 2020 05:09:18 -0700 (PDT)
+Received: from dude02.hi.pengutronix.de ([2001:67c:670:100:1d::28])
         by metis.ext.pengutronix.de with esmtps (TLS1.3:ECDHE_RSA_AES_256_GCM_SHA384:256)
         (Exim 4.92)
-        (envelope-from <p.zabel@pengutronix.de>)
-        id 1kKh3N-0006tH-G1; Tue, 22 Sep 2020 14:05:49 +0200
-Received: from pza by lupine with local (Exim 4.92)
-        (envelope-from <p.zabel@pengutronix.de>)
-        id 1kKh3M-0008Fc-IZ; Tue, 22 Sep 2020 14:05:48 +0200
-Message-ID: <cf79a03117f4886dd91a624fd0081222ae87fea0.camel@pengutronix.de>
-Subject: Re: [PATCH V2 2/2] ata: ahci: ceva: Update the driver to support
- xilinx GT phy
-From:   Philipp Zabel <p.zabel@pengutronix.de>
-To:     Piyush Mehta <piyush.mehta@xilinx.com>, axboe@kernel.dk,
-        robh+dt@kernel.org
-Cc:     linux-ide@vger.kernel.org, devicetree@vger.kernel.org,
-        linux-kernel@vger.kernel.org, git@xilinx.com, sgoud@xilinx.com,
-        michal.simek@xilinx.com
-Date:   Tue, 22 Sep 2020 14:05:48 +0200
-In-Reply-To: <1600769713-944-3-git-send-email-piyush.mehta@xilinx.com>
-References: <1600769713-944-1-git-send-email-piyush.mehta@xilinx.com>
-         <1600769713-944-3-git-send-email-piyush.mehta@xilinx.com>
-Content-Type: text/plain; charset="UTF-8"
-Content-Transfer-Encoding: 8BIT
-User-Agent: Evolution 3.30.5-1.1 
+        (envelope-from <pza@pengutronix.de>)
+        id 1kKh6P-0007EV-MR; Tue, 22 Sep 2020 14:08:57 +0200
+Received: from pza by dude02.hi.pengutronix.de with local (Exim 4.92)
+        (envelope-from <pza@pengutronix.de>)
+        id 1kKh6M-0003wj-DL; Tue, 22 Sep 2020 14:08:54 +0200
+Date:   Tue, 22 Sep 2020 14:08:54 +0200
+From:   Philipp Zabel <pza@pengutronix.de>
+To:     "Viorel Suman (OSS)" <viorel.suman@oss.nxp.com>
+Cc:     Liam Girdwood <lgirdwood@gmail.com>,
+        Mark Brown <broonie@kernel.org>,
+        Rob Herring <robh+dt@kernel.org>,
+        Jaroslav Kysela <perex@perex.cz>,
+        Takashi Iwai <tiwai@suse.com>, Timur Tabi <timur@kernel.org>,
+        Nicolin Chen <nicoleotsuka@gmail.com>,
+        Xiubo Li <Xiubo.Lee@gmail.com>,
+        Fabio Estevam <festevam@gmail.com>,
+        Shengjiu Wang <shengjiu.wang@gmail.com>,
+        Viorel Suman <viorel.suman@nxp.com>,
+        Matthias Schiffer <matthias.schiffer@ew.tq-group.com>,
+        Cosmin-Gabriel Samoila <cosmin.samoila@nxp.com>,
+        alsa-devel@alsa-project.org, devicetree@vger.kernel.org,
+        linux-kernel@vger.kernel.org, linuxppc-dev@lists.ozlabs.org,
+        NXP Linux Team <linux-imx@nxp.com>,
+        Viorel Suman <viorel.suman@gmail.com>
+Subject: Re: [PATCH v2 1/2] ASoC: fsl_xcvr: Add XCVR ASoC CPU DAI driver
+Message-ID: <20200922120854.GA15104@pengutronix.de>
+References: <1600715292-28529-1-git-send-email-viorel.suman@oss.nxp.com>
+ <1600715292-28529-2-git-send-email-viorel.suman@oss.nxp.com>
 MIME-Version: 1.0
-X-SA-Exim-Connect-IP: 2001:67c:670:100:3ad5:47ff:feaf:1a17
-X-SA-Exim-Mail-From: p.zabel@pengutronix.de
+Content-Type: text/plain; charset=us-ascii
+Content-Disposition: inline
+In-Reply-To: <1600715292-28529-2-git-send-email-viorel.suman@oss.nxp.com>
+X-Sent-From: Pengutronix Hildesheim
+X-URL:  http://www.pengutronix.de/
+X-IRC:  #ptxdist @freenode
+X-Accept-Language: de,en
+X-Accept-Content-Type: text/plain
+X-Uptime: 14:07:31 up 213 days, 23:24, 242 users,  load average: 0.15, 0.91,
+ 2.62
+User-Agent: Mutt/1.10.1 (2018-07-13)
+X-SA-Exim-Connect-IP: 2001:67c:670:100:1d::28
+X-SA-Exim-Mail-From: pza@pengutronix.de
 X-SA-Exim-Scanned: No (on metis.ext.pengutronix.de); SAEximRunCond expanded to false
 X-PTX-Original-Recipient: devicetree@vger.kernel.org
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-On Tue, 2020-09-22 at 15:45 +0530, Piyush Mehta wrote:
-> SATA controller used in Xilinx ZynqMP platform uses xilinx GT phy
-> which has 4 GT lanes and can used by 4 peripherals at a time.
-> SATA controller uses 1 GT phy lane among the 4 GT lanes. To configure
-> the GT lane for SATA controller, the below sequence is expected.
+On Mon, Sep 21, 2020 at 10:08:11PM +0300, Viorel Suman (OSS) wrote:
+> From: Viorel Suman <viorel.suman@nxp.com>
 > 
-> 1. Assert the SATA controller reset.
-> 2. Configure the xilinx GT phy lane for SATA controller (phy_init).
-> 3. De-assert the SATA controller reset.
-> 4. Wait for PLL of the GT lane used by SATA to be locked (phy_power_on).
+> XCVR (Audio Transceiver) is a on-chip functional module found
+> on i.MX8MP. It support HDMI2.1 eARC, HDMI1.4 ARC and SPDIF.
 > 
-> The ahci_platform_enable_resources() by default does the phy_init()
-> and phy_power_on() but the default sequence doesn't work with Xilinx
-> platforms. Because of this reason, updated the driver to support the
-> new sequence.
-> 
-> Added is_rst_ctrl flag, for backward compatibility with the older
-> sequence. If the reset controller is not available, then the SATA
-> controller will configure with the older sequences.
-> 
-> Signed-off-by: Piyush Mehta <piyush.mehta@xilinx.com>
+> Signed-off-by: Viorel Suman <viorel.suman@nxp.com>
 > ---
->  drivers/ata/ahci_ceva.c | 39 +++++++++++++++++++++++++++++++++++++--
->  1 file changed, 37 insertions(+), 2 deletions(-)
+>  sound/soc/fsl/Kconfig    |   10 +
+>  sound/soc/fsl/Makefile   |    2 +
+>  sound/soc/fsl/fsl_xcvr.c | 1343 ++++++++++++++++++++++++++++++++++++++++++++++
+>  sound/soc/fsl/fsl_xcvr.h |  266 +++++++++
+>  4 files changed, 1621 insertions(+)
+>  create mode 100644 sound/soc/fsl/fsl_xcvr.c
+>  create mode 100644 sound/soc/fsl/fsl_xcvr.h
 > 
-> diff --git a/drivers/ata/ahci_ceva.c b/drivers/ata/ahci_ceva.c
-> index b10fd4c..c704906 100644
-> --- a/drivers/ata/ahci_ceva.c
-> +++ b/drivers/ata/ahci_ceva.c
-> @@ -12,6 +12,7 @@
->  #include <linux/module.h>
->  #include <linux/of_device.h>
->  #include <linux/platform_device.h>
-> +#include <linux/reset.h>
->  #include "ahci.h"
+> diff --git a/sound/soc/fsl/Kconfig b/sound/soc/fsl/Kconfig
+> index 3f76ff7..d04b64d 100644
+> --- a/sound/soc/fsl/Kconfig
+> +++ b/sound/soc/fsl/Kconfig
+> @@ -95,6 +95,16 @@ config SND_SOC_FSL_EASRC
+>  	  destination sample rate. It is a new design module compare with the
+>  	  old ASRC.
 >  
->  /* Vendor Specific Register Offsets */
-> @@ -87,6 +88,7 @@ struct ceva_ahci_priv {
->  	u32 axicc;
->  	bool is_cci_enabled;
->  	int flags;
-> +	struct reset_control *rst;
->  };
+> +config SND_SOC_FSL_XCVR
+> +	tristate "NXP Audio Transceiver (XCVR) module support"
+> +	select REGMAP_MMIO
+> +	select SND_SOC_IMX_PCM_DMA if SND_IMX_SOC != n
+> +	select SND_SOC_GENERIC_DMAENGINE_PCM
+> +	help
+> +	  Say Y if you want to add Audio Transceiver (XCVR) support for NXP
+> +	  iMX CPUs. XCVR is a digital module that supports HDMI2.1 eARC,
+> +	  HDMI1.4 ARC and SPDIF.
+> +
+>  config SND_SOC_FSL_UTILS
+>  	tristate
 >  
->  static unsigned int ceva_ahci_read_id(struct ata_device *dev,
-> @@ -194,7 +196,7 @@ static int ceva_ahci_probe(struct platform_device *pdev)
->  	struct ahci_host_priv *hpriv;
->  	struct ceva_ahci_priv *cevapriv;
->  	enum dev_dma_attr attr;
-> -	int rc;
-> +	int rc, i, is_rst_ctrl = 1;
+> diff --git a/sound/soc/fsl/Makefile b/sound/soc/fsl/Makefile
+> index b835eeb..1d2231f 100644
+> --- a/sound/soc/fsl/Makefile
+> +++ b/sound/soc/fsl/Makefile
+> @@ -25,6 +25,7 @@ snd-soc-fsl-utils-objs := fsl_utils.o
+>  snd-soc-fsl-dma-objs := fsl_dma.o
+>  snd-soc-fsl-mqs-objs := fsl_mqs.o
+>  snd-soc-fsl-easrc-objs := fsl_easrc.o
+> +snd-soc-fsl-xcvr-objs := fsl_xcvr.o
 >  
->  	cevapriv = devm_kzalloc(dev, sizeof(*cevapriv), GFP_KERNEL);
->  	if (!cevapriv)
-> @@ -202,14 +204,47 @@ static int ceva_ahci_probe(struct platform_device *pdev)
+>  obj-$(CONFIG_SND_SOC_FSL_AUDMIX) += snd-soc-fsl-audmix.o
+>  obj-$(CONFIG_SND_SOC_FSL_ASOC_CARD) += snd-soc-fsl-asoc-card.o
+> @@ -38,6 +39,7 @@ obj-$(CONFIG_SND_SOC_FSL_UTILS) += snd-soc-fsl-utils.o
+>  obj-$(CONFIG_SND_SOC_FSL_MQS) += snd-soc-fsl-mqs.o
+>  obj-$(CONFIG_SND_SOC_FSL_EASRC) += snd-soc-fsl-easrc.o
+>  obj-$(CONFIG_SND_SOC_POWERPC_DMA) += snd-soc-fsl-dma.o
+> +obj-$(CONFIG_SND_SOC_FSL_XCVR) += snd-soc-fsl-xcvr.o
 >  
->  	cevapriv->ahci_pdev = pdev;
->  
-> +	cevapriv->rst = devm_reset_control_get(&pdev->dev, NULL);
-
-Please use devm_reset_control_get_optional_exclusive()
-
-> +	if (IS_ERR(cevapriv->rst)) {
-> +		if (PTR_ERR(cevapriv->rst) != -EPROBE_DEFER)
-> +			dev_err(&pdev->dev, "failed to get reset: %ld\n",
-> +				PTR_ERR(cevapriv->rst));
-> +		is_rst_ctrl = 0;
-
-is_rst_ctrl will not be required then.
-
+>  # MPC5200 Platform Support
+>  obj-$(CONFIG_SND_MPC52xx_DMA) += mpc5200_dma.o
+> diff --git a/sound/soc/fsl/fsl_xcvr.c b/sound/soc/fsl/fsl_xcvr.c
+> new file mode 100644
+> index 00000000..7391bca
+> --- /dev/null
+> +++ b/sound/soc/fsl/fsl_xcvr.c
+> @@ -0,0 +1,1343 @@
+[...]
+> +static int fsl_xcvr_probe(struct platform_device *pdev)
+> +{
+> +	struct device *dev = &pdev->dev;
+> +	struct device_node *np = dev->of_node;
+> +	const struct of_device_id *of_id;
+> +	struct fsl_xcvr *xcvr;
+> +	struct resource *ram_res, *regs_res, *rx_res, *tx_res;
+> +	void __iomem *regs;
+> +	int ret, irq;
+> +
+> +	of_id = of_match_device(fsl_xcvr_dt_ids, dev);
+> +	if (!of_id)
+> +		return -EINVAL;
+> +
+> +	xcvr = devm_kzalloc(dev, sizeof(*xcvr), GFP_KERNEL);
+> +	if (!xcvr)
+> +		return -ENOMEM;
+> +
+> +	xcvr->pdev = pdev;
+> +	xcvr->ipg_clk = devm_clk_get(dev, "ipg");
+> +	if (IS_ERR(xcvr->ipg_clk)) {
+> +		dev_err(dev, "failed to get ipg clock\n");
+> +		return PTR_ERR(xcvr->ipg_clk);
 > +	}
 > +
->  	hpriv = ahci_platform_get_resources(pdev, 0);
->  	if (IS_ERR(hpriv))
->  		return PTR_ERR(hpriv);
-> +	if (is_rst_ctrl)
-> +		rc = ahci_platform_enable_clks(hpriv);
-> +	else
-> +		rc = ahci_platform_enable_resources(hpriv);
->  
-> -	rc = ahci_platform_enable_resources(hpriv);
->  	if (rc)
->  		return rc;
->  
-> +	if (is_rst_ctrl) {
-
-This can just be "if (cevapriv->rst)"
-
-> +		/* Assert the controller reset */
-> +		reset_control_assert(cevapriv->rst);
-> +
-> +		for (i = 0; i < hpriv->nports; i++) {
-> +			rc = phy_init(hpriv->phys[i]);
-> +			if (rc)
-> +				return rc;
-> +		}
-> +
-> +		/* De-assert the controller reset */
-> +		reset_control_deassert(cevapriv->rst);
-> +
-> +		for (i = 0; i < hpriv->nports; i++) {
-> +			rc = phy_power_on(hpriv->phys[i]);
-> +			if (rc) {
-> +				phy_exit(hpriv->phys[i]);
-> +				return rc;
-> +			}
-> +		}
+> +	xcvr->phy_clk = devm_clk_get(dev, "phy");
+> +	if (IS_ERR(xcvr->phy_clk)) {
+> +		dev_err(dev, "failed to get phy clock\n");
+> +		return PTR_ERR(xcvr->phy_clk);
 > +	}
 > +
->  	if (of_property_read_bool(np, "ceva,broken-gen2"))
->  		cevapriv->flags = CEVA_FLAG_BROKEN_GEN2;
->  
+> +	xcvr->spba_clk = devm_clk_get(dev, "spba");
+> +	if (IS_ERR(xcvr->spba_clk)) {
+> +		dev_err(dev, "failed to get spba clock\n");
+> +		return PTR_ERR(xcvr->spba_clk);
+> +	}
+> +
+> +	xcvr->pll_ipg_clk = devm_clk_get(dev, "pll_ipg");
+> +	if (IS_ERR(xcvr->pll_ipg_clk)) {
+> +		dev_err(dev, "failed to get pll_ipg clock\n");
+> +		return PTR_ERR(xcvr->pll_ipg_clk);
+> +	}
+> +
+> +	ram_res = platform_get_resource_byname(pdev, IORESOURCE_MEM, "ram");
+> +	xcvr->ram_addr = devm_ioremap_resource(dev, ram_res);
+> +	if (IS_ERR(xcvr->ram_addr))
+> +		return PTR_ERR(xcvr->ram_addr);
+> +
+> +	regs_res = platform_get_resource_byname(pdev, IORESOURCE_MEM, "regs");
+> +	regs = devm_ioremap_resource(dev, regs_res);
+> +	if (IS_ERR(regs))
+> +		return PTR_ERR(regs);
+> +
+> +	xcvr->regmap = devm_regmap_init_mmio_clk(dev, NULL, regs,
+> +						 &fsl_xcvr_regmap_cfg);
+> +	if (IS_ERR(xcvr->regmap)) {
+> +		dev_err(dev, "failed to init XCVR regmap: %ld\n",
+> +			PTR_ERR(xcvr->regmap));
+> +		return PTR_ERR(xcvr->regmap);
+> +	}
+> +
+> +	xcvr->reset = of_reset_control_get(np, NULL);
+
+Please use devm_reset_control_get_exclusive().
+
+[...]
+> +static __maybe_unused int fsl_xcvr_runtime_resume(struct device *dev)
+> +{
+> +	struct fsl_xcvr *xcvr = dev_get_drvdata(dev);
+> +	int ret;
+> +
+> +	ret = clk_prepare_enable(xcvr->ipg_clk);
+> +	if (ret) {
+> +		dev_err(dev, "failed to start IPG clock.\n");
+> +		return ret;
+> +	}
+> +
+> +	ret = clk_prepare_enable(xcvr->pll_ipg_clk);
+> +	if (ret) {
+> +		dev_err(dev, "failed to start PLL IPG clock.\n");
+> +		goto stop_ipg_clk;
+> +	}
+> +
+> +	ret = clk_prepare_enable(xcvr->phy_clk);
+> +	if (ret) {
+> +		dev_err(dev, "failed to start PHY clock: %d\n", ret);
+> +		goto stop_pll_ipg_clk;
+> +	}
+> +
+> +	ret = clk_prepare_enable(xcvr->spba_clk);
+> +	if (ret) {
+> +		dev_err(dev, "failed to start SPBA clock.\n");
+> +		goto stop_phy_clk;
+> +	}
+> +
+> +	regcache_cache_only(xcvr->regmap, false);
+> +	regcache_mark_dirty(xcvr->regmap);
+> +	ret = regcache_sync(xcvr->regmap);
+> +
+> +	if (ret) {
+> +		dev_err(dev, "failed to sync regcache.\n");
+> +		goto stop_spba_clk;
+> +	}
+> +
+> +	reset_control_assert(xcvr->reset);
+> +	reset_control_deassert(xcvr->reset);
+
+No delay required between the two?
 
 regards
 Philipp
