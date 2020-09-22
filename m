@@ -2,143 +2,176 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from vger.kernel.org (vger.kernel.org [23.128.96.18])
-	by mail.lfdr.de (Postfix) with ESMTP id CD3CF273ED7
-	for <lists+devicetree@lfdr.de>; Tue, 22 Sep 2020 11:49:46 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTP id 0A5FF273F2A
+	for <lists+devicetree@lfdr.de>; Tue, 22 Sep 2020 12:04:29 +0200 (CEST)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S1726489AbgIVJtp (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Tue, 22 Sep 2020 05:49:45 -0400
-Received: from lindbergh.monkeyblade.net ([23.128.96.19]:51086 "EHLO
-        lindbergh.monkeyblade.net" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S1726419AbgIVJtp (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Tue, 22 Sep 2020 05:49:45 -0400
-Received: from mail-lf1-x143.google.com (mail-lf1-x143.google.com [IPv6:2a00:1450:4864:20::143])
-        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 46D17C061755
-        for <devicetree@vger.kernel.org>; Tue, 22 Sep 2020 02:49:45 -0700 (PDT)
-Received: by mail-lf1-x143.google.com with SMTP id y17so17316584lfa.8
-        for <devicetree@vger.kernel.org>; Tue, 22 Sep 2020 02:49:45 -0700 (PDT)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=chromium.org; s=google;
-        h=mime-version:references:in-reply-to:from:date:message-id:subject:to
-         :cc;
-        bh=1/GzZlsKjhO1xxrHGT1Pj5iI6bnlIrvYMKuCo5qePOY=;
-        b=kslZWqSJM+PosmlJDdIfAsIleycfhPV8R8da0n6UAoIJjhKVm/d/jIjzyh8gWKmP8y
-         fnZHKcZ38/iKV4/Kz4Ky8Ek4UM1QmsZGnyAXDu3MQlLHnt58WgMQFh5cHIFkflD8CvF4
-         6gMpBBdPMPzqXu5Uu1CZC18g4o+YwLKa8QoTI=
-X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=1e100.net; s=20161025;
-        h=x-gm-message-state:mime-version:references:in-reply-to:from:date
-         :message-id:subject:to:cc;
-        bh=1/GzZlsKjhO1xxrHGT1Pj5iI6bnlIrvYMKuCo5qePOY=;
-        b=RGmYqAI+WXUk2igtur217kQinCnolahmzl2bx4kqL34aysJwCS2geu1gGLUBzGm7j7
-         2dWpnoHonK2K0m3QCEI63EykSOB9tcdbnKCbyEJR06kMy9fX8fHxBsGHguuSCwYpKxye
-         stywFf/Bu5lDktS6OrS/DrMk8InNnMI1X+ztOcw07zSTPnQX7NSWxekGz1gDgU/SKc6N
-         Te2E31Ia3NwYpPx/2d+SDBGFNtmU9KTozKKGpzzV2CrPEQLbom1BnDuuOXayoZztwQ72
-         z6z4yNwYYI8MC96Hlz0ZpkdkoMrvK4vDdf2Kj5RXQtM9oSWlSbyWzr8Sir8IPWupJ1QI
-         Yzyg==
-X-Gm-Message-State: AOAM531xTToR4ikrkXn/D72XV5VBmj+YcUZM8AL79jDCNEMCggOSVnj9
-        2j8NdDmTHcqd36h4oaI13DFscUKQJtyvNyaHHCGXjw==
-X-Google-Smtp-Source: ABdhPJzCzXxBPcWaZu5L2QbUTB1OBB6ypvI7XJpXbSukl1N9svuHQlbnL4rX0pdqqFfETgs6kWui561zwFleCfAC/9o=
-X-Received: by 2002:a19:df53:: with SMTP id q19mr1280959lfj.119.1600768183682;
- Tue, 22 Sep 2020 02:49:43 -0700 (PDT)
+        id S1726487AbgIVKE2 (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Tue, 22 Sep 2020 06:04:28 -0400
+Received: from mail-eopbgr80093.outbound.protection.outlook.com ([40.107.8.93]:59342
+        "EHLO EUR04-VI1-obe.outbound.protection.outlook.com"
+        rhost-flags-OK-OK-OK-FAIL) by vger.kernel.org with ESMTP
+        id S1726341AbgIVKE1 (ORCPT <rfc822;devicetree@vger.kernel.org>);
+        Tue, 22 Sep 2020 06:04:27 -0400
+ARC-Seal: i=1; a=rsa-sha256; s=arcselector9901; d=microsoft.com; cv=none;
+ b=FbYnGbdHS0AKIQppSQy73EGA29QwWE45BGKi33NMsPmhcquzfJmvXg3RfDWzsoZtER4+3vbAGCy/EWP3FkgNKcJaYp2w6xXkkVbuXkJwim6GD5y2kXaVQMko3jWqZG3eD1M/oC8nzZTG7cDd5pLCszNtIP2tisenmPO+X+3jGDJEKOXEqeItNlKq/4mHpUtrUzbNdzdHF8E52XUXCIPngl/McYH7/3Munub0gar7t7fw20Zz0B/UXoiPvF3+MM3s9gJW90GYxIsADoH5Jd5hlM4xGyqgjZ2KBCShfp8gD48T3PhEwdTC4VwTM9alBSoFpBLA9s0ydE/6hiV3ji38Lg==
+ARC-Message-Signature: i=1; a=rsa-sha256; c=relaxed/relaxed; d=microsoft.com;
+ s=arcselector9901;
+ h=From:Date:Subject:Message-ID:Content-Type:MIME-Version:X-MS-Exchange-SenderADCheck;
+ bh=pJmrjXHhhW+HkbePa7ww4lHaSspZvpUpzgfDAZvY33U=;
+ b=Q61jqxSx8KjDXKeWZwmhW/SQYz9Ewhm9Dd3whurQcJuKD1n35R7UweWCAYsGMUb9xI8inWLvvdmM4vWcplwDKrQ18zMzSgZhijO6iWp+RC1HYSjop1GKvPwKoDYjoaH31jslRMaTJRjHc67DWqnsSkieqrcKnj1a3t49OeUZWnZ/jEbamU/hBNDMRVA/pnvURwh/YVzPU2Ck3jT3oY8t7hQpLAqC6+Z4cHgwtJKw6qe6G+Qjfcjbg5XL764HANgYWV7LsgpRPVInRrgZLRKXLdWQo6PXJbyOgr6RkZCrxo3F+ZDYSaQC6lJcRlUH9hcXxwir/oW9qGSJStPFLXzb/w==
+ARC-Authentication-Results: i=1; mx.microsoft.com 1; spf=pass
+ smtp.mailfrom=plvision.eu; dmarc=pass action=none header.from=plvision.eu;
+ dkim=pass header.d=plvision.eu; arc=none
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=plvision.eu;
+ s=selector2;
+ h=From:Date:Subject:Message-ID:Content-Type:MIME-Version:X-MS-Exchange-SenderADCheck;
+ bh=pJmrjXHhhW+HkbePa7ww4lHaSspZvpUpzgfDAZvY33U=;
+ b=AIYNa/MNyOBsssKSITcFpX606kq1Qm0q2ktdg7JtpTMeHdmycwiyefKRaWcDtdJxlXOOlliG95qBi8tpUKG7sEc6v3IAwJrMHDT+oowONS8dzCmWUXA6HkuoYTeOP13YbFTH8fc3rV1Oz6CyVxJzaBE1+dpI9CHSWBRlhgC7w9U=
+Authentication-Results: linaro.org; dkim=none (message not signed)
+ header.d=none;linaro.org; dmarc=none action=none header.from=plvision.eu;
+Received: from HE1P190MB0539.EURP190.PROD.OUTLOOK.COM (2603:10a6:7:56::28) by
+ HE1P190MB0330.EURP190.PROD.OUTLOOK.COM (2603:10a6:7:61::15) with Microsoft
+ SMTP Server (version=TLS1_2, cipher=TLS_ECDHE_RSA_WITH_AES_256_GCM_SHA384) id
+ 15.20.3391.14; Tue, 22 Sep 2020 10:04:23 +0000
+Received: from HE1P190MB0539.EURP190.PROD.OUTLOOK.COM
+ ([fe80::c1ab:71de:6bc2:89fe]) by HE1P190MB0539.EURP190.PROD.OUTLOOK.COM
+ ([fe80::c1ab:71de:6bc2:89fe%6]) with mapi id 15.20.3391.019; Tue, 22 Sep 2020
+ 10:04:23 +0000
+Date:   Tue, 22 Sep 2020 13:04:17 +0300
+From:   Vadym Kochan <vadym.kochan@plvision.eu>
+To:     Srinivas Kandagatla <srinivas.kandagatla@linaro.org>
+Cc:     Rob Herring <robh+dt@kernel.org>, linux-kernel@vger.kernel.org,
+        devicetree@vger.kernel.org
+Subject: Re: [PATCH 0/3] nvmem: add ONIE NVMEM cells provider
+Message-ID: <20200922100417.GA22590@plvision.eu>
+References: <20200915124116.7196-1-vadym.kochan@plvision.eu>
+ <20200921235641.GI31031@plvision.eu>
+ <f7f47794-2641-514a-8905-3f4c800f199d@linaro.org>
+Content-Type: text/plain; charset=us-ascii
+Content-Disposition: inline
+In-Reply-To: <f7f47794-2641-514a-8905-3f4c800f199d@linaro.org>
+User-Agent: Mutt/1.9.4 (2018-02-28)
+X-ClientProxiedBy: AM7PR03CA0003.eurprd03.prod.outlook.com
+ (2603:10a6:20b:130::13) To HE1P190MB0539.EURP190.PROD.OUTLOOK.COM
+ (2603:10a6:7:56::28)
 MIME-Version: 1.0
-References: <1600686235-27979-1-git-send-email-hsin-hsiung.wang@mediatek.com> <1600686235-27979-5-git-send-email-hsin-hsiung.wang@mediatek.com>
-In-Reply-To: <1600686235-27979-5-git-send-email-hsin-hsiung.wang@mediatek.com>
-From:   Fei Shao <fshao@chromium.org>
-Date:   Tue, 22 Sep 2020 17:49:32 +0800
-Message-ID: <CAJ66y9HCTEYcuGpd_C4bZdD3PDOytUW00-PK6u9F6=v67CCXAg@mail.gmail.com>
-Subject: Re: [PATCH v3 4/4] soc: mediatek: pwrap: add pwrap driver for
- MT6873/8192 SoCs
-To:     Hsin-Hsiung Wang <hsin-hsiung.wang@mediatek.com>
-Cc:     Rob Herring <robh+dt@kernel.org>,
-        Matthias Brugger <matthias.bgg@gmail.com>,
-        Argus Lin <argus.lin@mediatek.com>, drinkcat@chromium.org,
-        devicetree@vger.kernel.org, srv_heupstream@mediatek.com,
-        linux-kernel@vger.kernel.org, linux-mediatek@lists.infradead.org,
-        linux-arm-kernel@lists.infradead.org
-Content-Type: text/plain; charset="UTF-8"
+X-MS-Exchange-MessageSentRepresentingType: 1
+Received: from plvision.eu (217.20.186.93) by AM7PR03CA0003.eurprd03.prod.outlook.com (2603:10a6:20b:130::13) with Microsoft SMTP Server (version=TLS1_2, cipher=TLS_ECDHE_RSA_WITH_AES_256_GCM_SHA384) id 15.20.3391.11 via Frontend Transport; Tue, 22 Sep 2020 10:04:22 +0000
+X-Originating-IP: [217.20.186.93]
+X-MS-PublicTrafficType: Email
+X-MS-Office365-Filtering-Correlation-Id: 03107ca1-ec8f-4054-720c-08d85edee191
+X-MS-TrafficTypeDiagnostic: HE1P190MB0330:
+X-MS-Exchange-Transport-Forked: True
+X-Microsoft-Antispam-PRVS: <HE1P190MB0330F0C824BE2CA8A8382724953B0@HE1P190MB0330.EURP190.PROD.OUTLOOK.COM>
+X-MS-Oob-TLC-OOBClassifiers: OLM:10000;
+X-MS-Exchange-SenderADCheck: 1
+X-Microsoft-Antispam: BCL:0;
+X-Microsoft-Antispam-Message-Info: pDragZo8HI9NQn1plQtJMzQ8J5IHFAOzr7I5CymCZqOZWRo3F0BCpUNvqCL0Lar3V4NfNO6nfME2J4dbVVFX9QYjTpbIu7XYrX1pdryn0AI/H26z3X6IVl+yqQ9eB3+puAmRqTbDRn7jvDu7s6XXEwhh5DAajYgwyVs5s/WSqck6V9Uod9/c8lGZYWOsbe1qTrxsWlcQ9pj9yBU3FFFrbmI13JMUOOq0G1+kDHxRGPqJo/9/35xp4yt+kH/fU4N2N9PeEOsVU4RgXYYLJcNCiYX4k/ayUdzNP9Zle6uPp+1w0AefdxbdjuXGjvSn2q6E
+X-Forefront-Antispam-Report: CIP:255.255.255.255;CTRY:;LANG:en;SCL:1;SRV:;IPV:NLI;SFV:NSPM;H:HE1P190MB0539.EURP190.PROD.OUTLOOK.COM;PTR:;CAT:NONE;SFS:(39830400003)(366004)(396003)(346002)(376002)(136003)(478600001)(66946007)(52116002)(2906002)(8676002)(86362001)(5660300002)(2616005)(956004)(36756003)(4326008)(1076003)(66476007)(66556008)(6666004)(44832011)(55016002)(316002)(8936002)(8886007)(6916009)(7696005)(53546011)(26005)(186003)(16526019)(33656002)(83380400001);DIR:OUT;SFP:1102;
+X-MS-Exchange-AntiSpam-MessageData: sSPeVgXqV0P6L2mZZ2u2M0vkK2xWNMZAMsZ9grcWJGKcVinDRZnI7jTu6nYxJhYU4DAG5Zbdt/T39blNPKkLwn0FnC57Ho6B1egT+Kgy2FubYFUXTb9D/dPE3h9t3obMvhvZr9lVa55bP1hh/V1n0JvyMPwwzZ8tulf0NumQGvt2H3mj8K8h9/GtY3F8mCMT9kHEc8KCrFkiqJob3/LyN+QHqUJ7jlTDam7gWTruzQNNvJ1K3goBmLihCa05eH1b29aGmi1xNgwxuH+/zOlIsFrzePenmU4F6BSEn3kwoJyCgDKXQZyLDMlhfVt3Swhxbmk2VMkXrfbihmN9XdpRfd6AtRhTOi5luA/s4WjbGlQGx9D7zd2+pld0+z6Hu4IzmvtQU7AdJ1hqtqhxIkfvlqwl8vHiYSaop7SWR4X0oZi8Q4CUP+regJCqpVLTDi5TgzJ/Ge2ZSEyfWp2RLbQt09kEV7kqIsV0l0yVew7YbBcQjlwfpyfkXfetoEHgwwvZafakaYBd9LT6FWstdj/rrhH1cu7gUyXL792PTViI3balTDhv8kTo0b/zfWfVa/knn2KHNXMkfGSZ6j8pGajVGxT6EQH7kyxXUajJ2qSd1tpPp2BzFq6fKfo5Wj1bJauOxY98nCAy/YHVmvpY0w9Nng==
+X-OriginatorOrg: plvision.eu
+X-MS-Exchange-CrossTenant-Network-Message-Id: 03107ca1-ec8f-4054-720c-08d85edee191
+X-MS-Exchange-CrossTenant-AuthSource: HE1P190MB0539.EURP190.PROD.OUTLOOK.COM
+X-MS-Exchange-CrossTenant-AuthAs: Internal
+X-MS-Exchange-CrossTenant-OriginalArrivalTime: 22 Sep 2020 10:04:23.4220
+ (UTC)
+X-MS-Exchange-CrossTenant-FromEntityHeader: Hosted
+X-MS-Exchange-CrossTenant-Id: 03707b74-30f3-46b6-a0e0-ff0a7438c9c4
+X-MS-Exchange-CrossTenant-MailboxType: HOSTED
+X-MS-Exchange-CrossTenant-UserPrincipalName: nQ/q+KbOfFc8CgXnjVSYxKzXOLmBOpjlP0NKNVMbh4YEhSioNpSwqhMO3t0s/EeCzIax2XTvrlhdlSMT9JAn4C4j4EmGdfPIiIFoM2N4gzo=
+X-MS-Exchange-Transport-CrossTenantHeadersStamped: HE1P190MB0330
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-On Mon, Sep 21, 2020 at 11:03 AM Hsin-Hsiung Wang
-<hsin-hsiung.wang@mediatek.com> wrote:
->
-> MT6873/8192 are highly integrated SoCs and use PMIC_MT6359 for
-> power management. This patch adds pwrap master driver to
-> access PMIC_MT6359.
->
-> Signed-off-by: Hsin-Hsiung Wang <hsin-hsiung.wang@mediatek.com>
-> ---
->  drivers/soc/mediatek/mtk-pmic-wrap.c | 29 +++++++++++++++++++++++++++++
->  1 file changed, 29 insertions(+)
->
-> diff --git a/drivers/soc/mediatek/mtk-pmic-wrap.c b/drivers/soc/mediatek/mtk-pmic-wrap.c
-> index 149bf02..c73e92b 100644
-> --- a/drivers/soc/mediatek/mtk-pmic-wrap.c
-> +++ b/drivers/soc/mediatek/mtk-pmic-wrap.c
-> @@ -632,6 +632,17 @@ static int mt6797_regs[] = {
->         [PWRAP_DCM_DBC_PRD] =           0x1D4,
->  };
->
-> +static int mt6873_regs[] = {
-> +       [PWRAP_INIT_DONE2] =            0x0,
-> +       [PWRAP_TIMER_EN] =              0x3E0,
-> +       [PWRAP_INT_EN] =                0x448,
-> +       [PWRAP_WACS2_CMD] =             0xC80,
-> +       [PWRAP_SWINF_2_WDATA_31_0] =    0xC84,
-> +       [PWRAP_SWINF_2_RDATA_31_0] =    0xC94,
-> +       [PWRAP_WACS2_VLDCLR] =          0xCA4,
-> +       [PWRAP_WACS2_RDATA] =           0xCA8,
-> +};
-> +
->  static int mt7622_regs[] = {
->         [PWRAP_MUX_SEL] =               0x0,
->         [PWRAP_WRAP_EN] =               0x4,
-> @@ -1050,6 +1061,7 @@ enum pwrap_type {
->         PWRAP_MT6765,
->         PWRAP_MT6779,
->         PWRAP_MT6797,
-> +       PWRAP_MT6873,
->         PWRAP_MT7622,
->         PWRAP_MT8135,
->         PWRAP_MT8173,
-> @@ -1512,6 +1524,7 @@ static int pwrap_init_cipher(struct pmic_wrapper *wrp)
->         case PWRAP_MT7622:
->                 pwrap_writel(wrp, 0, PWRAP_CIPHER_EN);
->                 break;
-> +       case PWRAP_MT6873:
->         case PWRAP_MT8183:
->                 break;
->         }
-> @@ -1948,6 +1961,19 @@ static const struct pmic_wrapper_type pwrap_mt6797 = {
->         .init_soc_specific = NULL,
->  };
->
-> +static struct pmic_wrapper_type pwrap_mt6873 = {
-static const struct.
+Hi Srinivas,
 
-> +       .regs = mt6873_regs,
-> +       .type = PWRAP_MT6873,
-> +       .arb_en_all = 0x777f,
-> +       .int_en_all = BIT(4) | BIT(5),
-> +       .int1_en_all = 0,
-> +       .spi_w = PWRAP_MAN_CMD_SPI_WRITE,
-> +       .wdt_src = PWRAP_WDT_SRC_MASK_ALL,
-> +       .caps = PWRAP_CAP_ARB,
-> +       .init_reg_clock = pwrap_common_init_reg_clock,
-> +       .init_soc_specific = NULL,
-> +};
-> +
->  static const struct pmic_wrapper_type pwrap_mt7622 = {
->         .regs = mt7622_regs,
->         .type = PWRAP_MT7622,
-> @@ -2026,6 +2052,9 @@ static const struct of_device_id of_pwrap_match_tbl[] = {
->                 .compatible = "mediatek,mt6797-pwrap",
->                 .data = &pwrap_mt6797,
->         }, {
-> +               .compatible = "mediatek,mt6873-pwrap",
-> +               .data = &pwrap_mt6873,
-> +       }, {
->                 .compatible = "mediatek,mt7622-pwrap",
->                 .data = &pwrap_mt7622,
->         }, {
+On Tue, Sep 22, 2020 at 10:48:23AM +0100, Srinivas Kandagatla wrote:
+> 
+> 
+> On 22/09/2020 00:56, Vadym Kochan wrote:
+> > Hi Srinivas,
+> > 
+> > On Tue, Sep 15, 2020 at 03:41:13PM +0300, Vadym Kochan wrote:
+> > > This series adds cells parser for the ONIE TLV attributes which are
+> > > stored on NVMEM device. It adds possibility to read the mac address (and
+> > > other info) by other drivers.
+> > > 
+> > > Because ONIE stores info in TLV format it should be parsed first and
+> > > then register the cells. Current NVMEM API allows to register cell
+> > > table with known cell's offset which is not guaranteed in case of TLV.
+> > > 
+> > > To make it properly handled the NVMEM parser object is introduced. The
+> > > parser needs to be registered before target NVMEM device is registered.
+> > > During the registration of NVMEM device the parser is called to parse
+> > > the device's cells and reister the cell table.
+> > > 
+> > > Vadym Kochan (3):
+> > >    nvmem: core: introduce cells parser
+> > >    nvmem: add ONIE nvmem cells parser
+> > >    dt-bindings: nvmem: add description for ONIE cells parser
+> > > 
+> > >   .../bindings/nvmem/onie,nvmem-cells.txt       |  11 +
+> > >   drivers/nvmem/Kconfig                         |   9 +
+> > >   drivers/nvmem/Makefile                        |   3 +
+> > >   drivers/nvmem/core.c                          |  80 ++++
+> > >   drivers/nvmem/onie-cells.c                    | 370 ++++++++++++++++++
+> > >   include/linux/nvmem-provider.h                |  30 ++
+> > >   6 files changed, 503 insertions(+)
+> > >   create mode 100644 Documentation/devicetree/bindings/nvmem/onie,nvmem-cells.txt
+> > >   create mode 100644 drivers/nvmem/onie-cells.c
+> > > 
+> > > -- 
+> > > 2.17.1
+> > > 
+> 
+> Hi Vdaym,
+> 
+> Am totally confused with this patchset, There is no versioning in any of
+> your patches, you always send it with PATCH, please add version so that I
+> know which one should I review!
+> 
+> This makes my mailbox totally confused with all the patches with same
+> subject prefix!
+> 
+> Please note that maintenance is not my full time job, so please be patient
+> and I can try shift gears as an when possible!
+
+Thank you!
+
+> 
+> > 
+> > I sent a newer version than this one which actually registers nvmem provider
+> > and does not require changes in the core.c
+> This is a NO-NO as onie is not a real provider here, at24 is the actual
+> nvmem provider in your case.
+> 
+> Why do you keep changing the total approach here! what is the reasoning to
+> do so!
+
+Well, I though that maybe anyway it also better to show the code, and
+try different approaches.
+
+> As I said in my last review we were okay with this parser approach!
+> 
+> I don't mind having changes in core as long as it done properly!
+> 
+> 
+> thanks,
+> srini
+
+I am really sorry for this! I was really conceptually confused about how
+to make it right by design. I will use "parser" word in next series
+subject update with a versioning (v2) so you can identify that this is
+related to parser approach with which you are conceptually fine.
+
+Again sorry for this!
+
+> 
+> 
+> 
+> 
+> > 
+> > Thanks,
+> > Vadym Kochan
+> > 
