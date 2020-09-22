@@ -2,165 +2,295 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from vger.kernel.org (vger.kernel.org [23.128.96.18])
-	by mail.lfdr.de (Postfix) with ESMTP id C4B06273787
-	for <lists+devicetree@lfdr.de>; Tue, 22 Sep 2020 02:36:10 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTP id 912EC2737A1
+	for <lists+devicetree@lfdr.de>; Tue, 22 Sep 2020 02:42:02 +0200 (CEST)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S1728925AbgIVAgK (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Mon, 21 Sep 2020 20:36:10 -0400
-Received: from lindbergh.monkeyblade.net ([23.128.96.19]:50408 "EHLO
+        id S1729381AbgIVAmB (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Mon, 21 Sep 2020 20:42:01 -0400
+Received: from lindbergh.monkeyblade.net ([23.128.96.19]:51350 "EHLO
         lindbergh.monkeyblade.net" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S1726702AbgIVAgJ (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Mon, 21 Sep 2020 20:36:09 -0400
-Received: from mail-oi1-x244.google.com (mail-oi1-x244.google.com [IPv6:2607:f8b0:4864:20::244])
-        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id BE619C061755
-        for <devicetree@vger.kernel.org>; Mon, 21 Sep 2020 17:36:09 -0700 (PDT)
-Received: by mail-oi1-x244.google.com with SMTP id a3so19149081oib.4
-        for <devicetree@vger.kernel.org>; Mon, 21 Sep 2020 17:36:09 -0700 (PDT)
+        with ESMTP id S1729137AbgIVAmB (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Mon, 21 Sep 2020 20:42:01 -0400
+Received: from mail-pf1-x444.google.com (mail-pf1-x444.google.com [IPv6:2607:f8b0:4864:20::444])
+        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 54561C061755
+        for <devicetree@vger.kernel.org>; Mon, 21 Sep 2020 17:42:01 -0700 (PDT)
+Received: by mail-pf1-x444.google.com with SMTP id w7so10858919pfi.4
+        for <devicetree@vger.kernel.org>; Mon, 21 Sep 2020 17:42:01 -0700 (PDT)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=linaro.org; s=google;
+        d=chromium.org; s=google;
         h=date:from:to:cc:subject:message-id:references:mime-version
          :content-disposition:in-reply-to;
-        bh=c7d1ZHf6hruUfheuX8IrRgfyoHv969LCspu96Gk4jWw=;
-        b=bGE5yCUmr0pws3QG29/8q+aHDyYYYNNc0WDpPBYqLlP5eBQN1C81DRyriyDz/PUBWq
-         0PnLvXuaWQDvYbTUusp0Wxy4hbGxL6J4wKE4e2YlpBm+/Bffb4HO+iMM/kv3XKNio3fh
-         ZJQWkRorKSfkk8+XHv99H3Cksd1nfRbmJB+Vwydug6Hupt5I5/uCbT7536vK+JmObKCu
-         6vsrYuSlIuw1O89pqRLnuO0P0uf8MPedPN7+9GbmEFyvWPnZJJ35ZIYzRkiYcfiUHOGU
-         OkUyTmZpRkVRvasaxIL6Wa+/h8sWYuNOtCrADUKRu/tEPIzsSP1GSs1/0+v2TrcghqL1
-         e4XA==
+        bh=CaGeSvPYLRYBm98UO6Jry86VMBCqcS8gmrX0rLLRuOo=;
+        b=UVWVU0fbt3UEKUYJ92XpmWL02+0ZZG+3A1SSfXv4mzj9EmM+5wPT0JugLs1A1pTkgs
+         GvwFgkaLyI7j3I22oeHMuDDE7hUnqOrHHOkP8Msf3V+Ax6fnak1f0BqDfabxgg9kmDXb
+         fEd7tC05asleoEk921rx4kEVfKq3LyTKxAUdg=
 X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
         d=1e100.net; s=20161025;
         h=x-gm-message-state:date:from:to:cc:subject:message-id:references
          :mime-version:content-disposition:in-reply-to;
-        bh=c7d1ZHf6hruUfheuX8IrRgfyoHv969LCspu96Gk4jWw=;
-        b=MdhiXEIto0H3h/HEK2ddPPDKEIYnUcu6DwMP7VSJIzTIjJTlGDH8Jvron94pUUaPUB
-         qjwbSVD4qEKuNbPF659xnldLZ/imty2SSZPn/a/oTQ2I/RzJueuA1Mm51P8t5PCkOtPY
-         +ynsV62gz8m5Lslb/aMYQBsqURc5gD4mMBHQTwFfaLuWVY9QNNPa6PSZmVEcrWh2VsxL
-         ajbDq4WW3/bsapBH5dALJ1DPefaiK1mpPNxL/+J3GLLXNRXSz4DanRO9F4CORd6PGzjr
-         UWoVcYOBwXFeowrHkHN4ln0Vjbw+OzjmrOcyurfUqVA4GIz+44ZYMaMWH4FhqqstfSTj
-         lrcQ==
-X-Gm-Message-State: AOAM5303mzBSbUbBmUtM0uRLKDCJ4aF8t5aJUE3FVJCmMV1zgTpNFgXt
-        Z25uuJ7Jn/l6RxvaNZ+lpRpBLw==
-X-Google-Smtp-Source: ABdhPJzRh/kSLe9FlVRP8uOIfw614cbOwwASFz3QQg3rNYhkKb5K0FpVQgh+cY1XdsQU3gFoNRbJRQ==
-X-Received: by 2002:a54:411a:: with SMTP id l26mr1109432oic.12.1600734968942;
-        Mon, 21 Sep 2020 17:36:08 -0700 (PDT)
-Received: from yoga (99-135-181-32.lightspeed.austtx.sbcglobal.net. [99.135.181.32])
-        by smtp.gmail.com with ESMTPSA id 187sm7181376oie.42.2020.09.21.17.36.07
-        (version=TLS1_3 cipher=TLS_AES_256_GCM_SHA384 bits=256/256);
-        Mon, 21 Sep 2020 17:36:08 -0700 (PDT)
-Date:   Mon, 21 Sep 2020 19:36:06 -0500
-From:   Bjorn Andersson <bjorn.andersson@linaro.org>
-To:     nguyenb@codeaurora.org
-Cc:     Rob Herring <robh@kernel.org>, Can Guo <cang@codeaurora.org>,
-        Asutosh Das <asutoshd@codeaurora.org>,
-        "Martin K. Petersen" <martin.petersen@oracle.com>,
-        SCSI <linux-scsi@vger.kernel.org>,
-        linux-arm-msm <linux-arm-msm@vger.kernel.org>,
-        Avri Altman <Avri.Altman@wdc.com>,
-        Vinod Koul <vkoul@kernel.org>,
-        "open list:OPEN FIRMWARE AND FLATTENED DEVICE TREE BINDINGS" 
-        <devicetree@vger.kernel.org>,
-        open list <linux-kernel@vger.kernel.org>
-Subject: Re: [PATCH v1 1/2] scsi: dt-bindings: ufs: Add vcc-voltage-level for
- UFS
-Message-ID: <20200922003606.GA40811@yoga>
-References: <cover.1598939393.git.nguyenb@codeaurora.org>
- <0a9d395dc38433501f9652a9236856d0ac840b77.1598939393.git.nguyenb@codeaurora.org>
- <20200914183505.GA357@bogus>
- <d332e61cea4fef237507f1404efa724a@codeaurora.org>
- <CAL_Jsq+YV-GjAhVVHtgNz6xFR=bEgSwWKY+QGixRQJ5Ov75pag@mail.gmail.com>
- <e489cee219d48e9f5e48dc30518f445b@codeaurora.org>
+        bh=CaGeSvPYLRYBm98UO6Jry86VMBCqcS8gmrX0rLLRuOo=;
+        b=YHfzqYAwxqaYJcLV965PvV6BPDoVepNxnvNyrvOeI/eOWWZ8bTWEWWswobWH4HXawp
+         VoMFp+FYpj9ShA2sk68vcUviXChDKrb/wfJUldfeFPhc/UjrBGkh9J3Yiys8IlnepMdj
+         JIKXTe+l7SVstzEvGqgejHVaRR1tz6a3fTTQ4shY0nSvetU/bVboLb2elwi+YYYY1OjR
+         hVhHNBppVCRP4t6kQ5dT2wMhbT+jhb6CyK3GexrmgAIZ2oUSPZbRFzTJcvwy0lBQDd8a
+         PsSrjgOjSmyv2IQyrlHRsKmgMT3QYyocaWzXdsziloXfDlgR6tPrlfR64ofVLue88eH/
+         h1Vg==
+X-Gm-Message-State: AOAM533Y2I2cMfSVVujVs2johQ3a7Y6C7L/5QoRtQbxk4F0gWY97S6YU
+        JpcEH1jNwkdm21gsuOxYusILcA==
+X-Google-Smtp-Source: ABdhPJzrP7IAhyFSlSdePZhYT6llTUXfmudyC5btRBnQE8UwmQ3o815KAwRkrvJlha1c1bQQjUFnZw==
+X-Received: by 2002:a63:3645:: with SMTP id d66mr1639938pga.167.1600735320822;
+        Mon, 21 Sep 2020 17:42:00 -0700 (PDT)
+Received: from localhost ([2620:15c:202:1:f693:9fff:fef4:e70a])
+        by smtp.gmail.com with ESMTPSA id e123sm13488203pfh.167.2020.09.21.17.41.59
+        (version=TLS1_3 cipher=TLS_AES_128_GCM_SHA256 bits=128/128);
+        Mon, 21 Sep 2020 17:42:00 -0700 (PDT)
+Date:   Mon, 21 Sep 2020 17:41:58 -0700
+From:   Matthias Kaehlcke <mka@chromium.org>
+To:     Alan Stern <stern@rowland.harvard.edu>
+Cc:     Greg Kroah-Hartman <gregkh@linuxfoundation.org>,
+        Rob Herring <robh+dt@kernel.org>,
+        Frank Rowand <frowand.list@gmail.com>,
+        linux-kernel@vger.kernel.org,
+        Douglas Anderson <dianders@chromium.org>,
+        linux-usb@vger.kernel.org, Bastien Nocera <hadess@hadess.net>,
+        Krzysztof Kozlowski <krzk@kernel.org>,
+        devicetree@vger.kernel.org,
+        Ravi Chandra Sadineni <ravisadineni@chromium.org>,
+        Peter Chen <peter.chen@nxp.com>,
+        Stephen Boyd <swboyd@chromium.org>,
+        "Alexander A. Klimov" <grandmaster@al2klimov.de>,
+        Masahiro Yamada <masahiroy@kernel.org>
+Subject: Re: [PATCH v2 2/2] USB: misc: Add onboard_usb_hub driver
+Message-ID: <20200922004158.GC21107@google.com>
+References: <20200917114600.v2.1.I248292623d3d0f6a4f0c5bc58478ca3c0062b49a@changeid>
+ <20200917114600.v2.2.I7c9a1f1d6ced41dd8310e8a03da666a32364e790@changeid>
+ <20200917195416.GA1099735@rowland.harvard.edu>
 MIME-Version: 1.0
-Content-Type: text/plain; charset=us-ascii
+Content-Type: text/plain; charset=utf-8
 Content-Disposition: inline
-In-Reply-To: <e489cee219d48e9f5e48dc30518f445b@codeaurora.org>
+In-Reply-To: <20200917195416.GA1099735@rowland.harvard.edu>
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-On Mon 21 Sep 19:22 CDT 2020, nguyenb@codeaurora.org wrote:
+Hi Alan,
 
-> On 2020-09-18 12:01, Rob Herring wrote:
-> > On Tue, Sep 15, 2020 at 2:10 AM <nguyenb@codeaurora.org> wrote:
-> > > 
-> > > On 2020-09-14 11:35, Rob Herring wrote:
-> > > > On Mon, Aug 31, 2020 at 11:00:47PM -0700, Bao D. Nguyen wrote:
-> > > >> UFS's specifications supports a range of Vcc operating
-> > > >> voltage levels. Add documentation for the UFS's Vcc voltage
-> > > >> levels setting.
-> > > >>
-> > > >> Signed-off-by: Can Guo <cang@codeaurora.org>
-> > > >> Signed-off-by: Asutosh Das <asutoshd@codeaurora.org>
-> > > >> Signed-off-by: Bao D. Nguyen <nguyenb@codeaurora.org>
-> > > >> ---
-> > > >>  Documentation/devicetree/bindings/ufs/ufshcd-pltfrm.txt | 2 ++
-> > > >>  1 file changed, 2 insertions(+)
-> > > >>
-> > > >> diff --git a/Documentation/devicetree/bindings/ufs/ufshcd-pltfrm.txt
-> > > >> b/Documentation/devicetree/bindings/ufs/ufshcd-pltfrm.txt
-> > > >> index 415ccdd..7257b32 100644
-> > > >> --- a/Documentation/devicetree/bindings/ufs/ufshcd-pltfrm.txt
-> > > >> +++ b/Documentation/devicetree/bindings/ufs/ufshcd-pltfrm.txt
-> > > >> @@ -23,6 +23,8 @@ Optional properties:
-> > > >>                            with "phys" attribute, provides phandle to
-> > > >> UFS PHY node
-> > > >>  - vdd-hba-supply        : phandle to UFS host controller supply
-> > > >> regulator node
-> > > >>  - vcc-supply            : phandle to VCC supply regulator node
-> > > >> +- vcc-voltage-level     : specifies voltage levels for VCC supply.
-> > > >> +                          Should be specified in pairs (min, max),
-> > > >> units uV.
-> > > >
-> > > > The expectation is the regulator pointed to by 'vcc-supply' has the
-> > > > voltage constraints. Those constraints are supposed to be the board
-> > > > constraints, not the regulator operating design constraints. If that
-> > > > doesn't work for your case, then it should be addressed in a common way
-> > > > for the regulator binding.
-> > > The UFS regulator has a min_uV and max_uV limits. Currently, the min
-> > > and
-> > > max are hardcoded
-> > > to UFS2.1 Spec allowed values of 2.7V and 3.6V respectively.
-> > > With this change, I am trying to fix a couple issues:
-> > > 1. The 2.7V min value only applies to UFS2.1 devices. with UFS3.0+
-> > > devices, the VCC min should be 2.4V.
-> > > Hardcoding the min_uV to 2.7V does not work for UFS3.0+ devices.
+thanks for taking time to review!
+
+On Thu, Sep 17, 2020 at 03:54:16PM -0400, Alan Stern wrote:
+> On Thu, Sep 17, 2020 at 11:46:22AM -0700, Matthias Kaehlcke wrote:
+> > The main issue this driver addresses is that a USB hub needs to be
+> > powered before it can be discovered. For onboard hubs this is often
+> > solved by supplying the hub with an 'always-on' regulator, which is
+> > kind of a hack. Some onboard hubs may require further initialization
+> > steps, like changing the state of a GPIO or enabling a clock, which
+> > requires further hacks. This driver creates a platform device
+> > representing the hub which performs the necessary initialization.
+> > Currently it only supports switching on a single regulator, support
+> > for multiple regulators or other actions can be added as needed.
+> > Different initialization sequences can be supported based on the
+> > compatible string.
 > > 
-> > Don't you know the device version attached and can adjust the voltage
-> > based on that? Or you have to set the voltage first?
-> Yes it is one of the solutions. Once detect the UFS device is version 3.0+,
-> you can lower
-> the voltage to 2.5V from the hardcoded value used by the driver. However, to
-> change the
-> Vcc voltage, the host needs to follow a sequence to ensure safe operations
-> after Vcc change
-> (device has to be in sleep mode, Vcc needs to go down to 0 then up to 2.5V.)
-> Also same sequence is repeated for every host initialization which is
-> inconvenient.
+> > Besides performing the initialization the driver can be configured
+> > to power the hub off during system suspend. This can help to extend
+> > battery life on battery powered devices which have no requirements
+> > to keep the hub powered during suspend. The driver can also be
+> > configured to leave the hub powered when a wakeup capable USB device
+> > is connected when suspending, and power it off otherwise.
+> > 
+> > Technically the driver consists of two drivers, the platform driver
+> > described above and a very thin USB driver that subclasses the
+> > generic driver. The purpose of this driver is to provide the platform
+> > driver with the USB devices corresponding to the hub(s) (a hub
+> > controller may provide multiple 'logical' hubs, e.g. one to support
+> > USB 2.0 and another for USB 3.x).
+> > 
+> > Co-developed-by: Ravi Chandra Sadineni <ravisadineni@chromium.org>
+> > Signed-off-by: Ravi Chandra Sadineni <ravisadineni@chromium.org>
+> > Signed-off-by: Matthias Kaehlcke <mka@chromium.org>
 > 
-
-It sounds like you're suggesting that we detect the UFS device using
-some voltage, then depending on version we might lower it to 2.5V.
-
-I'm afraid I don't see any of this either documented or implemented in
-these patches.
-
-What is this initial detection voltage and how to you configure it?
-
-Regards,
-Bjorn
-
-> > 
-> > > 2. Allow users to select a different Vcc voltage within the allowed
-> > > range.
-> > > Using the min value, the UFS device is operating at marginal Vcc
-> > > voltage.
-> > > In addition the PMIC and the board designs may add some variables
-> > > especially at extreme
-> > > temperatures. We observe stability issues when using the min Vcc
-> > > voltage.
-> > 
-> > Again, we have standard regulator properties for this already that you
-> > can tune per board.
-> Thank you for the suggestion.
+> > +config USB_ONBOARD_HUB
+> > +	tristate "Onboard USB hub support"
+> > +	depends on OF
+> > +	help
+> > +	  Say Y here if you want to support onboard USB hubs. The driver
+> > +	  powers supported hubs on and may perform other initialization
+> > +	  steps.
 > 
-> > 
-> > Rob
+> I have a nagging feeling that this description may be too vague for a
+> lot of people to understand.  Does everybody know what an "onboard"
+> USB hub is?
+> 
+> Consider for example that Intel's current EHCI host controllers all
+> come with a USB hub built into the chipset.  That built-in hub
+> certainly could be considered "onboard", but it doesn't need this
+> driver.
+> 
+> Maybe also give some examples of devices that require this driver, to
+> help make the idea clear to readers.
+
+Ok, I'll try to come up with a better description.
+
+> > +static int __maybe_unused onboard_hub_suspend(struct device *dev)
+> > +{
+> > +	struct onboard_hub *hub = dev_get_drvdata(dev);
+> > +	struct udev_node *node;
+> > +	int rc = 0;
+> > +
+> > +	hub->has_wakeup_capable_descendants = false;
+> > +
+> > +	if (!hub->power_off_in_suspend)
+> > +		return 0;
+> > +
+> > +	mutex_lock(&hub->lock);
+> > +
+> > +	list_for_each_entry(node, &hub->udev_list, list) {
+> > +		if (!device_may_wakeup(node->udev->bus->controller))
+> > +			break;
+> 
+> You're assuming that node->udev->bus->controller is going to be the
+> same for the nodes on the list, right?
+
+Yes, that is the assumption, although you have a point that this isn't
+necessarily the case. It's probably true in the vast majority of cases,
+but a hub could be wired up to multiple controllers. I'll change the
+loop to set the flag without breaking, it's a micro-optimization
+anyway.
+
+> > +
+> > +		if (usb_wakeup_enabled_descendants(node->udev)) {
+> > +			hub->has_wakeup_capable_descendants = true;
+> > +			break;
+> > +		}
+> > +	}
+> > +
+> > +	mutex_unlock(&hub->lock);
+> > +
+> > +	if (!hub->has_wakeup_capable_descendants)
+> > +		rc = onboard_hub_power_off(hub);
+> > +
+> > +	return rc;
+> > +}
+> > +
+> > +static int __maybe_unused onboard_hub_resume(struct device *dev)
+> > +{
+> > +	struct onboard_hub *hub = dev_get_drvdata(dev);
+> > +	int rc = 0;
+> > +
+> > +	if (hub->power_off_in_suspend && !hub->has_wakeup_capable_descendants)
+> 
+> Instead of this cumbersome two-condition test, how about simply
+> having a hub->is_powered_on flag?  Then
+> hub->has_wakeup_capable_descendants wouldn't be needed.
+
+Ok, less cumbersome code is always good :)
+
+> > +		rc = onboard_hub_power_on(hub);
+> > +
+> > +	return rc;
+> > +}
+> 
+> > +static int onboard_hub_remove_usbdev(struct onboard_hub *hub, struct usb_device *udev)
+> > +{
+> > +	struct udev_node *node;
+> > +
+> > +	mutex_lock(&hub->lock);
+> > +
+> > +	list_for_each_entry(node, &hub->udev_list, list) {
+> > +		if (node->udev == udev) {
+> > +			list_del(&node->list);
+> > +			devm_kfree(hub->dev, node);
+> 
+> Why have an explicit kfree here but not anywhere else?  And if you do
+> have an explicit kfree, why use devm_kzalloc rather than plain kzalloc?
+
+The motivation of the explicit kfree was to avoid hogging memory if the
+USB device disappears and reappears repeatedly. However this doesn't seem
+to be a very common scenario so maybe we can ignore it.
+
+> > +			break;
+> > +		}
+> > +	}
+> > +
+> > +	mutex_unlock(&hub->lock);
+> > +
+> > +	if (node == NULL)
+> > +		return -EINVAL;
+> 
+> This test is wrong.  Look at the definition of list_for_each_entry;
+> node will never be NULL.  Probably the best approach is to use a local
+> "ret" variable.
+
+Ack, thanks for catching!
+
+> > +
+> > +	return 0;
+> > +}
+> 
+> > +static int onboard_hub_remove(struct platform_device *pdev)
+> > +{
+> > +	struct onboard_hub *hub = dev_get_drvdata(&pdev->dev);
+> > +
+> > +	sysfs_remove_file(&pdev->dev.kobj, &dev_attr_power_off_in_suspend.attr);
+> > +
+> > +	return onboard_hub_power_off(hub);
+> > +}
+> 
+> Shouldn't this routine unbind the onboard_hub_usbdev driver from all
+> the associated devices?  Otherwise you end up with more-or-less
+> dangling references to hub (I say more-or-less because with the devm
+> allocations, the structures will hang around as zombies for a while).
+
+True, the dangling references aren't a good idea. Initially I thought
+that the USB devices holding a reference of the hub device would prevent
+this, but apparently that was wishful thinking. IIUC unbinding would be
+done through device_driver_detach().
+
+> Relying on the onboard_hub_power_off call to do this for you isn't a
+> great idea, because the effect won't happen immediately.
+> 
+> > +static int onboard_hub_usbdev_probe(struct usb_device *udev)
+> > +{
+> > +	struct device *dev = &udev->dev;
+> > +	struct onboard_hub *hub;
+> > +
+> > +	/* ignore supported hubs without device tree node */
+> > +	if (!dev->of_node)
+> > +		return -ENODEV;
+> > +
+> > +	hub = _find_onboard_hub(dev);
+> > +	if (IS_ERR(hub))
+> > +		return PTR_ERR(dev);
+> > +
+> > +	dev_set_drvdata(dev, hub);
+> > +
+> > +	onboard_hub_add_usbdev(hub, udev);
+> 
+> Ignoring the return code?  Then why does that routine return int rather
+> than void?
+
+Ok, will abort if the function returns an error.
+
+> > +
+> > +	return 0;
+> > +}
+> > +
+> > +static void onboard_hub_usbdev_disconnect(struct usb_device *udev)
+> > +{
+> > +	struct onboard_hub *hub = dev_get_drvdata(&udev->dev);
+> > +
+> > +	onboard_hub_remove_usbdev(hub, udev);
+> 
+> Ditto.
+
+In this case it's probably better to change the return type to void, since
+there is not really an alternative course of action.
+
+> > +
+> > +	put_device(hub->dev);
+> 
+> Is there a matching get_device somewhere (like in _find_onboard_hub)?
+> If so, I didn't see it.  And I don't see any reason for it.
+
+Yes, implicitly, of_find_device_by_node() "takes a reference to the
+embedded struct device which needs to be dropped after use."
