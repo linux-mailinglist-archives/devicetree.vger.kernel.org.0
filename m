@@ -2,241 +2,102 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from vger.kernel.org (vger.kernel.org [23.128.96.18])
-	by mail.lfdr.de (Postfix) with ESMTP id 18FF52741CF
-	for <lists+devicetree@lfdr.de>; Tue, 22 Sep 2020 14:09:22 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTP id BA72327427C
+	for <lists+devicetree@lfdr.de>; Tue, 22 Sep 2020 14:53:27 +0200 (CEST)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S1726621AbgIVMJU (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Tue, 22 Sep 2020 08:09:20 -0400
-Received: from lindbergh.monkeyblade.net ([23.128.96.19]:44428 "EHLO
-        lindbergh.monkeyblade.net" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S1726531AbgIVMJS (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Tue, 22 Sep 2020 08:09:18 -0400
-Received: from metis.ext.pengutronix.de (metis.ext.pengutronix.de [IPv6:2001:67c:670:201:290:27ff:fe1d:cc33])
-        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 0BFDEC061755
-        for <devicetree@vger.kernel.org>; Tue, 22 Sep 2020 05:09:18 -0700 (PDT)
-Received: from dude02.hi.pengutronix.de ([2001:67c:670:100:1d::28])
-        by metis.ext.pengutronix.de with esmtps (TLS1.3:ECDHE_RSA_AES_256_GCM_SHA384:256)
-        (Exim 4.92)
-        (envelope-from <pza@pengutronix.de>)
-        id 1kKh6P-0007EV-MR; Tue, 22 Sep 2020 14:08:57 +0200
-Received: from pza by dude02.hi.pengutronix.de with local (Exim 4.92)
-        (envelope-from <pza@pengutronix.de>)
-        id 1kKh6M-0003wj-DL; Tue, 22 Sep 2020 14:08:54 +0200
-Date:   Tue, 22 Sep 2020 14:08:54 +0200
-From:   Philipp Zabel <pza@pengutronix.de>
-To:     "Viorel Suman (OSS)" <viorel.suman@oss.nxp.com>
-Cc:     Liam Girdwood <lgirdwood@gmail.com>,
-        Mark Brown <broonie@kernel.org>,
-        Rob Herring <robh+dt@kernel.org>,
-        Jaroslav Kysela <perex@perex.cz>,
-        Takashi Iwai <tiwai@suse.com>, Timur Tabi <timur@kernel.org>,
-        Nicolin Chen <nicoleotsuka@gmail.com>,
-        Xiubo Li <Xiubo.Lee@gmail.com>,
-        Fabio Estevam <festevam@gmail.com>,
-        Shengjiu Wang <shengjiu.wang@gmail.com>,
-        Viorel Suman <viorel.suman@nxp.com>,
-        Matthias Schiffer <matthias.schiffer@ew.tq-group.com>,
-        Cosmin-Gabriel Samoila <cosmin.samoila@nxp.com>,
+        id S1726606AbgIVMx0 (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Tue, 22 Sep 2020 08:53:26 -0400
+Received: from m42-4.mailgun.net ([69.72.42.4]:51858 "EHLO m42-4.mailgun.net"
+        rhost-flags-OK-OK-OK-OK) by vger.kernel.org with ESMTP
+        id S1726576AbgIVMxX (ORCPT <rfc822;devicetree@vger.kernel.org>);
+        Tue, 22 Sep 2020 08:53:23 -0400
+DKIM-Signature: a=rsa-sha256; v=1; c=relaxed/relaxed; d=mg.codeaurora.org; q=dns/txt;
+ s=smtp; t=1600779202; h=Content-Transfer-Encoding: Content-Type:
+ In-Reply-To: MIME-Version: Date: Message-ID: From: References: Cc: To:
+ Subject: Sender; bh=hbKrx2SwcynLY6Cgk+5NmFAHVfb6P5BLBtwJdA9I6rQ=; b=p+TzyT830VzHF7UU35oHzZSRPynYV9Jjg4zMuFeaolZ1HB0pbYApghmGSld2QmbswHagS5HF
+ KNMLZNB6GhFjMuDp0uNW3eF/4mx+lPSCVGxqpBnO2EK/LwXeuC7wKkR0hPja/HL1lwRgyGHQ
+ zCWKqXROKoroMeWuewq+gXvSWN4=
+X-Mailgun-Sending-Ip: 69.72.42.4
+X-Mailgun-Sid: WyI1YmJiNiIsICJkZXZpY2V0cmVlQHZnZXIua2VybmVsLm9yZyIsICJiZTllNGEiXQ==
+Received: from smtp.codeaurora.org
+ (ec2-35-166-182-171.us-west-2.compute.amazonaws.com [35.166.182.171]) by
+ smtp-out-n01.prod.us-east-1.postgun.com with SMTP id
+ 5f69f3b7d9a2f87c84633267 (version=TLS1.2,
+ cipher=TLS_ECDHE_RSA_WITH_AES_128_GCM_SHA256); Tue, 22 Sep 2020 12:53:11
+ GMT
+Sender: rohitkr=codeaurora.org@mg.codeaurora.org
+Received: by smtp.codeaurora.org (Postfix, from userid 1001)
+        id 3FA62C43387; Tue, 22 Sep 2020 12:53:10 +0000 (UTC)
+X-Spam-Checker-Version: SpamAssassin 3.4.0 (2014-02-07) on
+        aws-us-west-2-caf-mail-1.web.codeaurora.org
+X-Spam-Level: 
+X-Spam-Status: No, score=-2.9 required=2.0 tests=ALL_TRUSTED,BAYES_00,
+        NICE_REPLY_A,SPF_FAIL,URIBL_BLOCKED autolearn=no autolearn_force=no
+        version=3.4.0
+Received: from [192.168.0.129] (unknown [183.83.141.209])
+        (using TLSv1.2 with cipher ECDHE-RSA-AES128-GCM-SHA256 (128/128 bits))
+        (No client certificate requested)
+        (Authenticated sender: rohitkr)
+        by smtp.codeaurora.org (Postfix) with ESMTPSA id 553B1C433C8;
+        Tue, 22 Sep 2020 12:53:04 +0000 (UTC)
+DMARC-Filter: OpenDMARC Filter v1.3.2 smtp.codeaurora.org 553B1C433C8
+Authentication-Results: aws-us-west-2-caf-mail-1.web.codeaurora.org; dmarc=none (p=none dis=none) header.from=codeaurora.org
+Authentication-Results: aws-us-west-2-caf-mail-1.web.codeaurora.org; spf=fail smtp.mailfrom=rohitkr@codeaurora.org
+Subject: Re: [PATCH v6 3/5] Asoc:qcom:lpass-cpu:Update dts property read API
+To:     Mark Brown <broonie@kernel.org>,
+        Srinivas Kandagatla <srinivas.kandagatla@linaro.org>
+Cc:     Srinivasa Rao Mandadapu <srivasam@codeaurora.org>,
+        agross@kernel.org, bjorn.andersson@linaro.org, lgirdwood@gmail.com,
+        robh+dt@kernel.org, plai@codeaurora.org, bgoswami@codeaurora.org,
+        perex@perex.cz, tiwai@suse.com, linux-arm-msm@vger.kernel.org,
         alsa-devel@alsa-project.org, devicetree@vger.kernel.org,
-        linux-kernel@vger.kernel.org, linuxppc-dev@lists.ozlabs.org,
-        NXP Linux Team <linux-imx@nxp.com>,
-        Viorel Suman <viorel.suman@gmail.com>
-Subject: Re: [PATCH v2 1/2] ASoC: fsl_xcvr: Add XCVR ASoC CPU DAI driver
-Message-ID: <20200922120854.GA15104@pengutronix.de>
-References: <1600715292-28529-1-git-send-email-viorel.suman@oss.nxp.com>
- <1600715292-28529-2-git-send-email-viorel.suman@oss.nxp.com>
+        linux-kernel@vger.kernel.org,
+        V Sujith Kumar Reddy <vsujithk@codeaurora.org>
+References: <1600409084-29093-1-git-send-email-srivasam@codeaurora.org>
+ <1600409084-29093-4-git-send-email-srivasam@codeaurora.org>
+ <040290a8-26a3-ab9c-04dc-beb23ee827e8@linaro.org>
+ <20200922110825.GN4792@sirena.org.uk>
+ <3866ce69-b7d0-5eb5-e0aa-874d150cd47a@linaro.org>
+ <20200922114319.GR4792@sirena.org.uk>
+From:   Rohit Kumar <rohitkr@codeaurora.org>
+Message-ID: <7f682cf9-0f2a-0227-d5d8-8bedf1f06b00@codeaurora.org>
+Date:   Tue, 22 Sep 2020 18:23:01 +0530
+User-Agent: Mozilla/5.0 (Windows NT 10.0; WOW64; rv:68.0) Gecko/20100101
+ Thunderbird/68.12.0
 MIME-Version: 1.0
-Content-Type: text/plain; charset=us-ascii
-Content-Disposition: inline
-In-Reply-To: <1600715292-28529-2-git-send-email-viorel.suman@oss.nxp.com>
-X-Sent-From: Pengutronix Hildesheim
-X-URL:  http://www.pengutronix.de/
-X-IRC:  #ptxdist @freenode
-X-Accept-Language: de,en
-X-Accept-Content-Type: text/plain
-X-Uptime: 14:07:31 up 213 days, 23:24, 242 users,  load average: 0.15, 0.91,
- 2.62
-User-Agent: Mutt/1.10.1 (2018-07-13)
-X-SA-Exim-Connect-IP: 2001:67c:670:100:1d::28
-X-SA-Exim-Mail-From: pza@pengutronix.de
-X-SA-Exim-Scanned: No (on metis.ext.pengutronix.de); SAEximRunCond expanded to false
-X-PTX-Original-Recipient: devicetree@vger.kernel.org
+In-Reply-To: <20200922114319.GR4792@sirena.org.uk>
+Content-Type: text/plain; charset=windows-1252; format=flowed
+Content-Transfer-Encoding: 8bit
+Content-Language: en-US
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-On Mon, Sep 21, 2020 at 10:08:11PM +0300, Viorel Suman (OSS) wrote:
-> From: Viorel Suman <viorel.suman@nxp.com>
-> 
-> XCVR (Audio Transceiver) is a on-chip functional module found
-> on i.MX8MP. It support HDMI2.1 eARC, HDMI1.4 ARC and SPDIF.
-> 
-> Signed-off-by: Viorel Suman <viorel.suman@nxp.com>
-> ---
->  sound/soc/fsl/Kconfig    |   10 +
->  sound/soc/fsl/Makefile   |    2 +
->  sound/soc/fsl/fsl_xcvr.c | 1343 ++++++++++++++++++++++++++++++++++++++++++++++
->  sound/soc/fsl/fsl_xcvr.h |  266 +++++++++
->  4 files changed, 1621 insertions(+)
->  create mode 100644 sound/soc/fsl/fsl_xcvr.c
->  create mode 100644 sound/soc/fsl/fsl_xcvr.h
-> 
-> diff --git a/sound/soc/fsl/Kconfig b/sound/soc/fsl/Kconfig
-> index 3f76ff7..d04b64d 100644
-> --- a/sound/soc/fsl/Kconfig
-> +++ b/sound/soc/fsl/Kconfig
-> @@ -95,6 +95,16 @@ config SND_SOC_FSL_EASRC
->  	  destination sample rate. It is a new design module compare with the
->  	  old ASRC.
->  
-> +config SND_SOC_FSL_XCVR
-> +	tristate "NXP Audio Transceiver (XCVR) module support"
-> +	select REGMAP_MMIO
-> +	select SND_SOC_IMX_PCM_DMA if SND_IMX_SOC != n
-> +	select SND_SOC_GENERIC_DMAENGINE_PCM
-> +	help
-> +	  Say Y if you want to add Audio Transceiver (XCVR) support for NXP
-> +	  iMX CPUs. XCVR is a digital module that supports HDMI2.1 eARC,
-> +	  HDMI1.4 ARC and SPDIF.
-> +
->  config SND_SOC_FSL_UTILS
->  	tristate
->  
-> diff --git a/sound/soc/fsl/Makefile b/sound/soc/fsl/Makefile
-> index b835eeb..1d2231f 100644
-> --- a/sound/soc/fsl/Makefile
-> +++ b/sound/soc/fsl/Makefile
-> @@ -25,6 +25,7 @@ snd-soc-fsl-utils-objs := fsl_utils.o
->  snd-soc-fsl-dma-objs := fsl_dma.o
->  snd-soc-fsl-mqs-objs := fsl_mqs.o
->  snd-soc-fsl-easrc-objs := fsl_easrc.o
-> +snd-soc-fsl-xcvr-objs := fsl_xcvr.o
->  
->  obj-$(CONFIG_SND_SOC_FSL_AUDMIX) += snd-soc-fsl-audmix.o
->  obj-$(CONFIG_SND_SOC_FSL_ASOC_CARD) += snd-soc-fsl-asoc-card.o
-> @@ -38,6 +39,7 @@ obj-$(CONFIG_SND_SOC_FSL_UTILS) += snd-soc-fsl-utils.o
->  obj-$(CONFIG_SND_SOC_FSL_MQS) += snd-soc-fsl-mqs.o
->  obj-$(CONFIG_SND_SOC_FSL_EASRC) += snd-soc-fsl-easrc.o
->  obj-$(CONFIG_SND_SOC_POWERPC_DMA) += snd-soc-fsl-dma.o
-> +obj-$(CONFIG_SND_SOC_FSL_XCVR) += snd-soc-fsl-xcvr.o
->  
->  # MPC5200 Platform Support
->  obj-$(CONFIG_SND_MPC52xx_DMA) += mpc5200_dma.o
-> diff --git a/sound/soc/fsl/fsl_xcvr.c b/sound/soc/fsl/fsl_xcvr.c
-> new file mode 100644
-> index 00000000..7391bca
-> --- /dev/null
-> +++ b/sound/soc/fsl/fsl_xcvr.c
-> @@ -0,0 +1,1343 @@
-[...]
-> +static int fsl_xcvr_probe(struct platform_device *pdev)
-> +{
-> +	struct device *dev = &pdev->dev;
-> +	struct device_node *np = dev->of_node;
-> +	const struct of_device_id *of_id;
-> +	struct fsl_xcvr *xcvr;
-> +	struct resource *ram_res, *regs_res, *rx_res, *tx_res;
-> +	void __iomem *regs;
-> +	int ret, irq;
-> +
-> +	of_id = of_match_device(fsl_xcvr_dt_ids, dev);
-> +	if (!of_id)
-> +		return -EINVAL;
-> +
-> +	xcvr = devm_kzalloc(dev, sizeof(*xcvr), GFP_KERNEL);
-> +	if (!xcvr)
-> +		return -ENOMEM;
-> +
-> +	xcvr->pdev = pdev;
-> +	xcvr->ipg_clk = devm_clk_get(dev, "ipg");
-> +	if (IS_ERR(xcvr->ipg_clk)) {
-> +		dev_err(dev, "failed to get ipg clock\n");
-> +		return PTR_ERR(xcvr->ipg_clk);
-> +	}
-> +
-> +	xcvr->phy_clk = devm_clk_get(dev, "phy");
-> +	if (IS_ERR(xcvr->phy_clk)) {
-> +		dev_err(dev, "failed to get phy clock\n");
-> +		return PTR_ERR(xcvr->phy_clk);
-> +	}
-> +
-> +	xcvr->spba_clk = devm_clk_get(dev, "spba");
-> +	if (IS_ERR(xcvr->spba_clk)) {
-> +		dev_err(dev, "failed to get spba clock\n");
-> +		return PTR_ERR(xcvr->spba_clk);
-> +	}
-> +
-> +	xcvr->pll_ipg_clk = devm_clk_get(dev, "pll_ipg");
-> +	if (IS_ERR(xcvr->pll_ipg_clk)) {
-> +		dev_err(dev, "failed to get pll_ipg clock\n");
-> +		return PTR_ERR(xcvr->pll_ipg_clk);
-> +	}
-> +
-> +	ram_res = platform_get_resource_byname(pdev, IORESOURCE_MEM, "ram");
-> +	xcvr->ram_addr = devm_ioremap_resource(dev, ram_res);
-> +	if (IS_ERR(xcvr->ram_addr))
-> +		return PTR_ERR(xcvr->ram_addr);
-> +
-> +	regs_res = platform_get_resource_byname(pdev, IORESOURCE_MEM, "regs");
-> +	regs = devm_ioremap_resource(dev, regs_res);
-> +	if (IS_ERR(regs))
-> +		return PTR_ERR(regs);
-> +
-> +	xcvr->regmap = devm_regmap_init_mmio_clk(dev, NULL, regs,
-> +						 &fsl_xcvr_regmap_cfg);
-> +	if (IS_ERR(xcvr->regmap)) {
-> +		dev_err(dev, "failed to init XCVR regmap: %ld\n",
-> +			PTR_ERR(xcvr->regmap));
-> +		return PTR_ERR(xcvr->regmap);
-> +	}
-> +
-> +	xcvr->reset = of_reset_control_get(np, NULL);
 
-Please use devm_reset_control_get_exclusive().
+On 9/22/2020 5:13 PM, Mark Brown wrote:
+> On Tue, Sep 22, 2020 at 12:22:38PM +0100, Srinivas Kandagatla wrote:
+>> On 22/09/2020 12:08, Mark Brown wrote:
+>> I agree with you on this and I see the point, but Rob had a very different
+>> opinion about the reg-names bindings to start with.
+>> This topic been discussed in the past with Rob in many instances ex: https://lore.kernel.org/linux-devicetree/CAL_Jsq+MMunmVWqeW9v2RyzsMKP+=kMzeTHNMG4JDHM7Fy0HBg@mail.gmail.com/
+>> According to him, reg-names seems to be highly discouraged as it came along
+>> for the OMAP folks and was related to the hwmods stuff.
+> That's very much specific to reg, it's not true of the use of names in
+> general - Rob mentions cases like interrupts for example.
 
-[...]
-> +static __maybe_unused int fsl_xcvr_runtime_resume(struct device *dev)
-> +{
-> +	struct fsl_xcvr *xcvr = dev_get_drvdata(dev);
-> +	int ret;
-> +
-> +	ret = clk_prepare_enable(xcvr->ipg_clk);
-> +	if (ret) {
-> +		dev_err(dev, "failed to start IPG clock.\n");
-> +		return ret;
-> +	}
-> +
-> +	ret = clk_prepare_enable(xcvr->pll_ipg_clk);
-> +	if (ret) {
-> +		dev_err(dev, "failed to start PLL IPG clock.\n");
-> +		goto stop_ipg_clk;
-> +	}
-> +
-> +	ret = clk_prepare_enable(xcvr->phy_clk);
-> +	if (ret) {
-> +		dev_err(dev, "failed to start PHY clock: %d\n", ret);
-> +		goto stop_pll_ipg_clk;
-> +	}
-> +
-> +	ret = clk_prepare_enable(xcvr->spba_clk);
-> +	if (ret) {
-> +		dev_err(dev, "failed to start SPBA clock.\n");
-> +		goto stop_phy_clk;
-> +	}
-> +
-> +	regcache_cache_only(xcvr->regmap, false);
-> +	regcache_mark_dirty(xcvr->regmap);
-> +	ret = regcache_sync(xcvr->regmap);
-> +
-> +	if (ret) {
-> +		dev_err(dev, "failed to sync regcache.\n");
-> +		goto stop_spba_clk;
-> +	}
-> +
-> +	reset_control_assert(xcvr->reset);
-> +	reset_control_deassert(xcvr->reset);
+I see that patch to support hdmi adds another reg-name along with 
+"lpass-lpaif".
 
-No delay required between the two?
+So, platform_get_resource_byname() is better option.
 
-regards
-Philipp
++       res = platform_get_resource_byname(pdev, IORESOURCE_MEM, 
+"lpass-hdmiif");
+
+Thanks,
+
+Rohit
+
+-- 
+Qualcomm INDIA, on behalf of Qualcomm Innovation Center, Inc.is a member
+of the Code Aurora Forum, hosted by the Linux Foundation.
+
