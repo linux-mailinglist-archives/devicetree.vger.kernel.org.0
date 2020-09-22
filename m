@@ -2,102 +2,127 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from vger.kernel.org (vger.kernel.org [23.128.96.18])
-	by mail.lfdr.de (Postfix) with ESMTP id 2AD5F2739DF
-	for <lists+devicetree@lfdr.de>; Tue, 22 Sep 2020 06:31:46 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTP id 6F0562739EC
+	for <lists+devicetree@lfdr.de>; Tue, 22 Sep 2020 06:46:15 +0200 (CEST)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S1726886AbgIVEbp (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Tue, 22 Sep 2020 00:31:45 -0400
-Received: from lindbergh.monkeyblade.net ([23.128.96.19]:58268 "EHLO
-        lindbergh.monkeyblade.net" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S1726492AbgIVEbp (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Tue, 22 Sep 2020 00:31:45 -0400
-Received: from mail-wm1-x341.google.com (mail-wm1-x341.google.com [IPv6:2a00:1450:4864:20::341])
-        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 0446BC061755;
-        Mon, 21 Sep 2020 21:31:44 -0700 (PDT)
-Received: by mail-wm1-x341.google.com with SMTP id b79so1876850wmb.4;
-        Mon, 21 Sep 2020 21:31:44 -0700 (PDT)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=gmail.com; s=20161025;
-        h=from:to:cc:subject:date:message-id:in-reply-to:references
-         :mime-version:content-transfer-encoding;
-        bh=dBMKv7Deo23fcUft/+4uee+gTmxJlYqKyjhLhZ254Pw=;
-        b=GmwMiF1Zf2+D5MYRba2R6yoL9aCwzI3F2CsAWvP3HcNdxmcSFKTZbuagWvYmwth/Ao
-         BJb5UXHtIT3PO5CQYq50qv0Kx9XmO9/WW8Dqb6Mk4pDrz7wtN/b/ZPWLcxgxzy67vXNM
-         orcBmTBxbq1xLUQ1xxgAIBgDkQoIoVa/Ee3CjyXN4KiGq6fcVzbMgmj/Q1MxjzayEaNS
-         m/xIUVsnrMW6tf6WRkNZXbbmMqUYUpyxXwxogy4rrJFKyRzyNHANoD4gq6ZQEwaPd6wy
-         wxKr1X3E/n0M8oNlZ1u4jde8HaqvhxtZPxyE705O4/UdAMzROa7hWtjMQYSeqCF2QOWU
-         3QBQ==
-X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=1e100.net; s=20161025;
-        h=x-gm-message-state:from:to:cc:subject:date:message-id:in-reply-to
-         :references:mime-version:content-transfer-encoding;
-        bh=dBMKv7Deo23fcUft/+4uee+gTmxJlYqKyjhLhZ254Pw=;
-        b=ovME3uYCrQC/vFPCvFo1t1IumsRfk6b3D653preBAv2WNs5IaXbGrpdWnZZIwzyXuw
-         /62/0wjcBY1ouskDh5GQ4N7vj3z1Ze1IvSAjC+YMHgxIqyi3W9ex7F1seXSsMJUCBuKP
-         lm/I19VGvQeDMOmjfeBWXjZorJQy/mrGfIk34j+RRkKyyMnhDUqxr+UxWXw8KbYq1FYI
-         ONGvCtBJaGc+5DKh3dWSNjK4xTaas1DvDvydXdlwUdYLeAvOPecY92TZuCJ6LhK/iwWC
-         odsYCbQS34NFLFsS5CgapNQEjnsq5HYoQ0hJFzIVtP3neWRMCLxMut8YegQtDUD93xFa
-         PfuA==
-X-Gm-Message-State: AOAM533/1dLCl5XKxlyuLNKnLgDrFbca1D3lo/806FOZQWVlUCP41GyL
-        0fgzNvleGTqcpXkoNFo1PRY=
-X-Google-Smtp-Source: ABdhPJzV7ZUnMfimwcWMnYTdwhHgykJjvi8jtzf2pqAX5rKfT4DmD0vjgbz/diT+oYQPeD938jOFIg==
-X-Received: by 2002:a05:600c:258:: with SMTP id 24mr2522749wmj.66.1600749103531;
-        Mon, 21 Sep 2020 21:31:43 -0700 (PDT)
-Received: from mamamia.internal (a89-183-78-237.net-htp.de. [89.183.78.237])
-        by smtp.gmail.com with ESMTPSA id z127sm2585159wmc.2.2020.09.21.21.31.42
-        (version=TLS1_3 cipher=TLS_AES_256_GCM_SHA384 bits=256/256);
-        Mon, 21 Sep 2020 21:31:42 -0700 (PDT)
-From:   Andre Heider <a.heider@gmail.com>
-To:     Jason Cooper <jason@lakedaemon.net>, Andrew Lunn <andrew@lunn.ch>,
-        Gregory Clement <gregory.clement@bootlin.com>,
-        Sebastian Hesselbarth <sebastian.hesselbarth@gmail.com>,
-        Rob Herring <robh+dt@kernel.org>,
-        Tomasz Maciej Nowak <tmn505@gmail.com>,
-        =?UTF-8?q?Pali=20Roh=C3=A1r?= <pali@kernel.org>
-Cc:     linux-arm-kernel@lists.infradead.org, devicetree@vger.kernel.org,
+        id S1727724AbgIVEqO (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Tue, 22 Sep 2020 00:46:14 -0400
+Received: from z5.mailgun.us ([104.130.96.5]:60902 "EHLO z5.mailgun.us"
+        rhost-flags-OK-OK-OK-OK) by vger.kernel.org with ESMTP
+        id S1728516AbgIVEqO (ORCPT <rfc822;devicetree@vger.kernel.org>);
+        Tue, 22 Sep 2020 00:46:14 -0400
+X-Greylist: delayed 301 seconds by postgrey-1.27 at vger.kernel.org; Tue, 22 Sep 2020 00:46:13 EDT
+DKIM-Signature: a=rsa-sha256; v=1; c=relaxed/relaxed; d=mg.codeaurora.org; q=dns/txt;
+ s=smtp; t=1600749973; h=Content-Transfer-Encoding: Content-Type:
+ In-Reply-To: MIME-Version: Date: Message-ID: From: References: Cc: To:
+ Subject: Sender; bh=bUKlnnp/+YrMJ97S9eeXpqFjRMf7jnKLhBdWon25zlI=; b=o4kxAwwhlux1KoqsheYb9Wu1STXUEOG03u8uKUIWKi+5Uo2VD6LfHaaeHtBPVJluu9J5VKg3
+ AaEc/YfVbcbXkF4J/kSXATGPMxVytV2cc9kjxSa28aiMtmj7CS51cibMs/QOhnXrSSKoOORB
+ 57KLGSP2VDipQvVhdTCGiswB7GI=
+X-Mailgun-Sending-Ip: 104.130.96.5
+X-Mailgun-Sid: WyI1YmJiNiIsICJkZXZpY2V0cmVlQHZnZXIua2VybmVsLm9yZyIsICJiZTllNGEiXQ==
+Received: from smtp.codeaurora.org
+ (ec2-35-166-182-171.us-west-2.compute.amazonaws.com [35.166.182.171]) by
+ smtp-out-n06.prod.us-east-1.postgun.com with SMTP id
+ 5f69806828e87a878b125f70 (version=TLS1.2,
+ cipher=TLS_ECDHE_RSA_WITH_AES_128_GCM_SHA256); Tue, 22 Sep 2020 04:41:12
+ GMT
+Sender: akashast=codeaurora.org@mg.codeaurora.org
+Received: by smtp.codeaurora.org (Postfix, from userid 1001)
+        id 98AAEC433FE; Tue, 22 Sep 2020 04:41:11 +0000 (UTC)
+X-Spam-Checker-Version: SpamAssassin 3.4.0 (2014-02-07) on
+        aws-us-west-2-caf-mail-1.web.codeaurora.org
+X-Spam-Level: 
+X-Spam-Status: No, score=-2.9 required=2.0 tests=ALL_TRUSTED,BAYES_00,
+        NICE_REPLY_A,SPF_FAIL,URIBL_BLOCKED autolearn=no autolearn_force=no
+        version=3.4.0
+Received: from [192.168.1.101] (unknown [47.8.232.49])
+        (using TLSv1.2 with cipher ECDHE-RSA-AES128-GCM-SHA256 (128/128 bits))
+        (No client certificate requested)
+        (Authenticated sender: akashast)
+        by smtp.codeaurora.org (Postfix) with ESMTPSA id 113ACC433C8;
+        Tue, 22 Sep 2020 04:41:05 +0000 (UTC)
+DMARC-Filter: OpenDMARC Filter v1.3.2 smtp.codeaurora.org 113ACC433C8
+Authentication-Results: aws-us-west-2-caf-mail-1.web.codeaurora.org; dmarc=none (p=none dis=none) header.from=codeaurora.org
+Authentication-Results: aws-us-west-2-caf-mail-1.web.codeaurora.org; spf=fail smtp.mailfrom=akashast@codeaurora.org
+Subject: Re: [PATCH v3 1/2] arm64: dts: qcom: sc7180: Provide pinconf for SPI
+ to use GPIO for CS
+To:     Douglas Anderson <dianders@chromium.org>,
+        Andy Gross <agross@kernel.org>,
+        Bjorn Andersson <bjorn.andersson@linaro.org>
+Cc:     linux-arm-msm@vger.kernel.org, swboyd@chromium.org,
+        Rob Herring <robh+dt@kernel.org>, devicetree@vger.kernel.org,
         linux-kernel@vger.kernel.org
-Subject: [PATCH v3] arm64: dts: marvell: espressobin: Get rid of duplicate serial aliases
-Date:   Tue, 22 Sep 2020 06:31:41 +0200
-Message-Id: <20200922043141.1138665-1-a.heider@gmail.com>
-X-Mailer: git-send-email 2.28.0
-In-Reply-To: <20200921164830.499548-1-a.heider@gmail.com>
-References: <20200921164830.499548-1-a.heider@gmail.com>
+References: <20200921142655.v3.1.I997a428f58ef9d48b37a27a028360f34e66c00ec@changeid>
+From:   Akash Asthana <akashast@codeaurora.org>
+Message-ID: <bebf3d2d-0e40-ee63-70be-eb6fb6bf9a68@codeaurora.org>
+Date:   Tue, 22 Sep 2020 10:10:48 +0530
+User-Agent: Mozilla/5.0 (Windows NT 10.0; WOW64; rv:68.0) Gecko/20100101
+ Thunderbird/68.12.0
 MIME-Version: 1.0
-Content-Type: text/plain; charset=UTF-8
-Content-Transfer-Encoding: 8bit
+In-Reply-To: <20200921142655.v3.1.I997a428f58ef9d48b37a27a028360f34e66c00ec@changeid>
+Content-Type: text/plain; charset=utf-8; format=flowed
+Content-Transfer-Encoding: 7bit
+Content-Language: en-US
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-The included armada-37xx.dtsi already defines these two aliases.
 
-Signed-off-by: Andre Heider <a.heider@gmail.com>
-Reviewed-by: Pali Rohár <pali@kernel.org>
----
-v3: really fix filename, sorry for the spam... too early, not enough coffee
-v2: fix filename in commit message
+On 9/22/2020 2:57 AM, Douglas Anderson wrote:
+> When the chip select line is controlled by the QUP, changing CS is a
+> time consuming operation.  We have to send a command over to the geni
+> and wait for it to Ack us every time we want to change (both making it
+> high and low).  To send this command we have to make a choice in
+> software when we want to control the chip select, we have to either:
+> A) Wait for the Ack via interrupt which slows down all SPI transfers
+>     (and incurrs extra processing associated with interrupts).
+> B) Sit in a loop and poll, waiting for the Ack.
+>
+> Neither A) nor B) is a great option.
+>
+> We can avoid all of this by realizing that, at least on some boards,
+> there is no advantage of considering this line to be a geni line.
+> While it's true that geni _can_ control the line, it's also true that
+> the line can be a GPIO and there is no downside of viewing it that
+> way.  Setting a GPIO is a simple MMIO operation.
+>
+> This patch provides definitions so a board can easily select the GPIO
+> mode.
+>
+> NOTE: apparently, it's possible to run the geni in "GSI" mode.  In GSI
+> the SPI port is allowed to be controlled by more than one user (like
+> firmware and Linux) and also the port can operate sequences of
+> operations in one go.  In GSI mode it _would_ be invalid to look at
+> the chip select as a GPIO because that would prevent other users from
+> using it.  In theory GSI mode would also avoid some overhead by
+> allowing us to sequence the chip select better.  However, I'll argue
+> GSI is not relevant for all boards (and certainly not any boards
+> supported by mainline today).  Why?
+> - Apparently to run a SPI chip in GSI mode you need to initialize it
+>    (in the bootloader) with a different firmware and then it will
+>    always run in GSI mode.  Since there is no support for GSI mode in
+>    the current Linux driver, it must be that existing boards don't have
+>    firmware that's doing that.  Note that the kernel device tree
+>    describes hardware but also firmware, so it is legitimate to make
+>    the assumption that we don't have GSI firmware in a given dts file.
+> - Some boards with sc7180 have SPI connected to the Chrome OS EC or
+>    security chip (Cr50).  The protocols for talking to cros_ec and cr50
+>    are extremely complex.  Both drivers in Linux fully lock the bus
+>    across several distinct SPI transfers.  While I am not an expert on
+>    GSI mode it feels highly unlikely to me that we'd ever be able to
+>    enable GSI mode for these devices.
+>
+>  From a testing perspective, running "flashrom -p ec -r /tmp/foo.bin"
+> in a loop after this patch shows almost no reduction in time, but the
+> number of interrupts per command goes from 32357 down to 30611 (about
+> a 5% reduction).
+>
+> Signed-off-by: Douglas Anderson <dianders@chromium.org>
+> Reviewed-by: Stephen Boyd <swboyd@chromium.org>
+> ---
+>
+> Reviewed-by: Akash Asthana <akashast@codeaurora.org>
 
-This goes on top of Pali's patch:
-"arm64: dts: marvell: espressobin: Add ethernet switch aliases"
-
-The resulting .dtb files are the same.
-
- arch/arm64/boot/dts/marvell/armada-3720-espressobin.dtsi | 2 --
- 1 file changed, 2 deletions(-)
-
-diff --git a/arch/arm64/boot/dts/marvell/armada-3720-espressobin.dtsi b/arch/arm64/boot/dts/marvell/armada-3720-espressobin.dtsi
-index 0775c16e0ec8..3169a820558f 100644
---- a/arch/arm64/boot/dts/marvell/armada-3720-espressobin.dtsi
-+++ b/arch/arm64/boot/dts/marvell/armada-3720-espressobin.dtsi
-@@ -17,8 +17,6 @@ aliases {
- 		ethernet1 = &switch0port1;
- 		ethernet2 = &switch0port2;
- 		ethernet3 = &switch0port3;
--		serial0 = &uart0;
--		serial1 = &uart1;
- 	};
- 
- 	chosen {
 -- 
-2.28.0
+The Qualcomm Innovation Center, Inc. is a member of the Code Aurora Forum,\na Linux Foundation Collaborative Project
 
