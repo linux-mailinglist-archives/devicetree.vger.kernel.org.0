@@ -2,50 +2,53 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from vger.kernel.org (vger.kernel.org [23.128.96.18])
-	by mail.lfdr.de (Postfix) with ESMTP id AC770273A6D
-	for <lists+devicetree@lfdr.de>; Tue, 22 Sep 2020 07:56:10 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTP id 7532F273A88
+	for <lists+devicetree@lfdr.de>; Tue, 22 Sep 2020 08:11:53 +0200 (CEST)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S1728834AbgIVF4J (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Tue, 22 Sep 2020 01:56:09 -0400
-Received: from mail.kernel.org ([198.145.29.99]:54300 "EHLO mail.kernel.org"
+        id S1729067AbgIVGLw (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Tue, 22 Sep 2020 02:11:52 -0400
+Received: from mail.kernel.org ([198.145.29.99]:59952 "EHLO mail.kernel.org"
         rhost-flags-OK-OK-OK-OK) by vger.kernel.org with ESMTP
-        id S1726488AbgIVF4J (ORCPT <rfc822;devicetree@vger.kernel.org>);
-        Tue, 22 Sep 2020 01:56:09 -0400
+        id S1726339AbgIVGLw (ORCPT <rfc822;devicetree@vger.kernel.org>);
+        Tue, 22 Sep 2020 02:11:52 -0400
 Received: from dragon (80.251.214.228.16clouds.com [80.251.214.228])
         (using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
         (No client certificate requested)
-        by mail.kernel.org (Postfix) with ESMTPSA id 73C9023A84;
-        Tue, 22 Sep 2020 05:56:08 +0000 (UTC)
+        by mail.kernel.org (Postfix) with ESMTPSA id 899A823A34;
+        Tue, 22 Sep 2020 06:11:50 +0000 (UTC)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=kernel.org;
-        s=default; t=1600754169;
-        bh=IU8Osrx9ikXPTeNH2LlFGn9w+0hVNcQw4CIvV52PRYA=;
+        s=default; t=1600755111;
+        bh=TpAaFBgFgvV02LuTs4DtNCWgrwul118bnShENMzhLCE=;
         h=Date:From:To:Cc:Subject:References:In-Reply-To:From;
-        b=WnAtiod+1yb5H61zzfDrxz+My9CAJd2+MPyiUaL8peQF2Cm7FM3R0XsXIr/V/XxKS
-         h+BVu9tSsYz6eDlf+dkrzKZqK2wjfdMYTpM2ePlpf84UI8RgFH63pTIoXNcpTNZmIT
-         +2SG5WH3BGodZctz/jTi17e9wtCTTy5L4G2YtQaE=
-Date:   Tue, 22 Sep 2020 13:56:05 +0800
+        b=sdCbo+4OOL7FCRMovIgagLIqqXsNct43KY4i+6zF6KgRPcODJ49b1KNwm1SbZcyUv
+         roam35oTwLrj+rW9BPqbhuWmke26pZX0WVs6fUsnaR72cgtCD0RQHdEyr9SwOumq8L
+         oj/Qnpt7JeQiyE9T/0ZiMvt0YUt8QuUcHqVJvX4E=
+Date:   Tue, 22 Sep 2020 14:11:47 +0800
 From:   Shawn Guo <shawnguo@kernel.org>
-To:     Qiang Zhao <qiang.zhao@nxp.com>
-Cc:     robh+dt@kernel.org, linux-kernel@vger.kernel.org,
-        devicetree@vger.kernel.org
-Subject: Re: [Patch v2] arm64: dts: layerscape: correct watchdog clocks for
- LS1088A
-Message-ID: <20200922055604.GZ25109@dragon>
-References: <20200922033146.27118-1-qiang.zhao@nxp.com>
+To:     Stefan Riedmueller <s.riedmueller@phytec.de>
+Cc:     Rob Herring <robh@kernel.org>, devicetree@vger.kernel.org,
+        Sascha Hauer <s.hauer@pengutronix.de>,
+        NXP Linux Team <linux-imx@nxp.com>,
+        Fabio Estevam <festevam@gmail.com>,
+        linux-arm-kernel@lists.infradead.org
+Subject: Re: [PATCH v3 1/2] dt-bindings: arm: fsl: Add PHYTEC i.MX6 UL/ULL
+ devicetree bindings
+Message-ID: <20200922061146.GB25109@dragon>
+References: <20200917083003.96352-1-s.riedmueller@phytec.de>
 MIME-Version: 1.0
 Content-Type: text/plain; charset=us-ascii
 Content-Disposition: inline
-In-Reply-To: <20200922033146.27118-1-qiang.zhao@nxp.com>
+In-Reply-To: <20200917083003.96352-1-s.riedmueller@phytec.de>
 User-Agent: Mutt/1.9.4 (2018-02-28)
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-On Tue, Sep 22, 2020 at 11:31:46AM +0800, Qiang Zhao wrote:
-> From: Zhao Qiang <qiang.zhao@nxp.com>
+On Thu, Sep 17, 2020 at 10:30:02AM +0200, Stefan Riedmueller wrote:
+> Add devicetree bindings for i.MX6 UL/ULL based phyCORE-i.MX6 UL/ULL and
+> phyBOARD-Segin.
 > 
-> On LS1088A, watchdog clk are divided by 16, correct it in dts.
-> 
-> Signed-off-by: Zhao Qiang <qiang.zhao@nxp.com>
+> Signed-off-by: Stefan Riedmueller <s.riedmueller@phytec.de>
+> Reviewed-by: Rob Herring <robh@kernel.org>
 
-Applied, thanks.
+Applied both, thanks.
