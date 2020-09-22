@@ -2,112 +2,85 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from vger.kernel.org (vger.kernel.org [23.128.96.18])
-	by mail.lfdr.de (Postfix) with ESMTP id E2A59273DF1
-	for <lists+devicetree@lfdr.de>; Tue, 22 Sep 2020 11:02:25 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTP id 73D2E273E5D
+	for <lists+devicetree@lfdr.de>; Tue, 22 Sep 2020 11:17:35 +0200 (CEST)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S1726515AbgIVJCZ (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Tue, 22 Sep 2020 05:02:25 -0400
-Received: from mga04.intel.com ([192.55.52.120]:45008 "EHLO mga04.intel.com"
-        rhost-flags-OK-OK-OK-OK) by vger.kernel.org with ESMTP
-        id S1726353AbgIVJCZ (ORCPT <rfc822;devicetree@vger.kernel.org>);
-        Tue, 22 Sep 2020 05:02:25 -0400
-IronPort-SDR: Wamf29qVPkYleXNnl4XaFab399XvPmyCi/3t8ZRYxW+73MHaZrIn3fQwN63ksCbqyfO2mUUuX7
- x/3GBFmdPTyQ==
-X-IronPort-AV: E=McAfee;i="6000,8403,9751"; a="157942549"
-X-IronPort-AV: E=Sophos;i="5.77,290,1596524400"; 
-   d="scan'208";a="157942549"
-X-Amp-Result: SKIPPED(no attachment in message)
-X-Amp-File-Uploaded: False
-Received: from orsmga008.jf.intel.com ([10.7.209.65])
-  by fmsmga104.fm.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384; 22 Sep 2020 02:02:22 -0700
-IronPort-SDR: 2gm+p/XVaWVaaOhS8rv3wFSOvN9JPllVyXs/usfZ9AIONfyEYtIKGC942E4ybSN9TDcTa5TRem
- ema00WzZJ5PA==
-X-ExtLoop1: 1
-X-IronPort-AV: E=Sophos;i="5.77,290,1596524400"; 
-   d="scan'208";a="338220868"
-Received: from smile.fi.intel.com (HELO smile) ([10.237.68.40])
-  by orsmga008.jf.intel.com with ESMTP; 22 Sep 2020 02:02:19 -0700
-Received: from andy by smile with local (Exim 4.94)
-        (envelope-from <andriy.shevchenko@linux.intel.com>)
-        id 1kKe5Q-00135O-11; Tue, 22 Sep 2020 11:55:44 +0300
-Date:   Tue, 22 Sep 2020 11:55:44 +0300
-From:   Andy Shevchenko <andriy.shevchenko@linux.intel.com>
-To:     Uwe =?iso-8859-1?Q?Kleine-K=F6nig?= 
-        <u.kleine-koenig@pengutronix.de>
-Cc:     vijayakannan.ayyathurai@intel.com, thierry.reding@gmail.com,
-        robh+dt@kernel.org, linux-pwm@vger.kernel.org,
-        devicetree@vger.kernel.org, wan.ahmad.zainie.wan.mohamad@intel.com,
-        mgross@linux.intel.com, lakshmi.bai.raja.subramanian@intel.com
-Subject: Re: [PATCH v7 2/2] dt-bindings: pwm: keembay: Add bindings for Intel
- Keem Bay PWM
-Message-ID: <20200922085544.GI3956970@smile.fi.intel.com>
-References: <20200909162719.7585-1-vijayakannan.ayyathurai@intel.com>
- <20200909162719.7585-3-vijayakannan.ayyathurai@intel.com>
- <20200921084401.gtesjzentxrly47c@pengutronix.de>
- <20200921103756.GP3956970@smile.fi.intel.com>
- <20200922063403.5sm6fk7qopggoitc@pengutronix.de>
+        id S1726533AbgIVJR0 (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Tue, 22 Sep 2020 05:17:26 -0400
+Received: from aserp2120.oracle.com ([141.146.126.78]:44304 "EHLO
+        aserp2120.oracle.com" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
+        with ESMTP id S1726424AbgIVJR0 (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Tue, 22 Sep 2020 05:17:26 -0400
+Received: from pps.filterd (aserp2120.oracle.com [127.0.0.1])
+        by aserp2120.oracle.com (8.16.0.42/8.16.0.42) with SMTP id 08M9F9Bv058619;
+        Tue, 22 Sep 2020 09:17:21 GMT
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=oracle.com; h=date : from : to : cc
+ : subject : message-id : references : mime-version : content-type :
+ in-reply-to; s=corp-2020-01-29;
+ bh=0LlcmxUgv23UmLo9kyhfbOkV0pFyrGTGgW1VdjwNSd4=;
+ b=dTQbnJI6UN0bN/BwmreesITbFiCsz3PgN3opYy6YmGmla1B8XM02BDPYf6pyJyxpjhoy
+ Ie9XX0T44dfmJKiK/B7ANDTYMOEqWl5UAxNGs4qTqK6CkPnIz669nzPdP257xkTBzp9o
+ a2sNw0KRPP7g5BkBrXw3rh5RD63Y013y0hEO2ayOLffOQZmkV6OFEFEpexkr66J8bYmL
+ EO+joaP1Vck0URLRVJtJVbm/7ZSzmf69/CTXRJM3jHa72dh+Lg3fi2Pndh9LYn4/ZeDr
+ XnJ5JRdx15xoop8ugb6aye6BxQ4wMJEZ7P00Jgh/usHBYmS5VOF9Ev7qLR6ffkI03wDI 0g== 
+Received: from aserp3020.oracle.com (aserp3020.oracle.com [141.146.126.70])
+        by aserp2120.oracle.com with ESMTP id 33q5rga2ny-1
+        (version=TLSv1.2 cipher=ECDHE-RSA-AES256-GCM-SHA384 bits=256 verify=FAIL);
+        Tue, 22 Sep 2020 09:17:21 +0000
+Received: from pps.filterd (aserp3020.oracle.com [127.0.0.1])
+        by aserp3020.oracle.com (8.16.0.42/8.16.0.42) with SMTP id 08M9FqbA139159;
+        Tue, 22 Sep 2020 09:17:21 GMT
+Received: from userv0121.oracle.com (userv0121.oracle.com [156.151.31.72])
+        by aserp3020.oracle.com with ESMTP id 33nuw3bvpx-1
+        (version=TLSv1.2 cipher=ECDHE-RSA-AES256-GCM-SHA384 bits=256 verify=OK);
+        Tue, 22 Sep 2020 09:17:20 +0000
+Received: from abhmp0016.oracle.com (abhmp0016.oracle.com [141.146.116.22])
+        by userv0121.oracle.com (8.14.4/8.13.8) with ESMTP id 08M9HH2C009085;
+        Tue, 22 Sep 2020 09:17:18 GMT
+Received: from kadam (/41.57.98.10)
+        by default (Oracle Beehive Gateway v4.0)
+        with ESMTP ; Tue, 22 Sep 2020 02:17:17 -0700
+Date:   Tue, 22 Sep 2020 12:17:09 +0300
+From:   Dan Carpenter <dan.carpenter@oracle.com>
+To:     Shubhrajyoti Datta <shubhrajyoti.datta@xilinx.com>
+Cc:     linux-clk@vger.kernel.org, devel@driverdev.osuosl.org,
+        devicetree@vger.kernel.org, sboyd@kernel.org,
+        gregkh@linuxfoundation.org, mturquette@baylibre.com,
+        linux-kernel@vger.kernel.org, robh+dt@kernel.org
+Subject: Re: [PATCH v6 5/8] clk: clock-wizard: Add support for fractional
+ support
+Message-ID: <20200922091709.GD4282@kadam>
+References: <1598621996-31040-1-git-send-email-shubhrajyoti.datta@xilinx.com>
+ <1598621996-31040-6-git-send-email-shubhrajyoti.datta@xilinx.com>
 MIME-Version: 1.0
-Content-Type: text/plain; charset=iso-8859-1
+Content-Type: text/plain; charset=us-ascii
 Content-Disposition: inline
-Content-Transfer-Encoding: 8bit
-In-Reply-To: <20200922063403.5sm6fk7qopggoitc@pengutronix.de>
-Organization: Intel Finland Oy - BIC 0357606-4 - Westendinkatu 7, 02160 Espoo
+In-Reply-To: <1598621996-31040-6-git-send-email-shubhrajyoti.datta@xilinx.com>
+User-Agent: Mutt/1.9.4 (2018-02-28)
+X-Proofpoint-Virus-Version: vendor=nai engine=6000 definitions=9751 signatures=668679
+X-Proofpoint-Spam-Details: rule=notspam policy=default score=0 spamscore=0 phishscore=0 malwarescore=0
+ mlxscore=0 suspectscore=0 adultscore=0 mlxlogscore=999 bulkscore=0
+ classifier=spam adjust=0 reason=mlx scancount=1 engine=8.12.0-2006250000
+ definitions=main-2009220078
+X-Proofpoint-Virus-Version: vendor=nai engine=6000 definitions=9751 signatures=668679
+X-Proofpoint-Spam-Details: rule=notspam policy=default score=0 spamscore=0 impostorscore=0
+ clxscore=1011 suspectscore=0 phishscore=0 malwarescore=0
+ priorityscore=1501 mlxlogscore=999 adultscore=0 bulkscore=0 mlxscore=0
+ lowpriorityscore=0 classifier=spam adjust=0 reason=mlx scancount=1
+ engine=8.12.0-2006250000 definitions=main-2009220078
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-On Tue, Sep 22, 2020 at 08:34:03AM +0200, Uwe Kleine-König wrote:
-> On Mon, Sep 21, 2020 at 01:37:56PM +0300, Andy Shevchenko wrote:
-> > On Mon, Sep 21, 2020 at 10:44:01AM +0200, Uwe Kleine-König wrote:
-> > > On Thu, Sep 10, 2020 at 12:27:19AM +0800, vijayakannan.ayyathurai@intel.com wrote:
-> > > > From: Vijayakannan Ayyathurai <vijayakannan.ayyathurai@intel.com>
-> > > > 
-> > > > Add PWM Device Tree bindings documentation for the Intel Keem Bay SoC.
-> > > > 
-> > > > Signed-off-by: Vineetha G. Jaya Kumaran <vineetha.g.jaya.kumaran@intel.com>
-> > > > Signed-off-by: Vijayakannan Ayyathurai <vijayakannan.ayyathurai@intel.com>
-> > > > Reviewed-by: Rob Herring <robh@kernel.org>
-> > > > Acked-by: Uwe Kleine-König <u.kleine-koenig@pengutronix.de>
-> > > 
-> > > nitpick: Your S-o-b should always be last. This way it becomes clear who
-> > > added the other tags.
-> > 
-> > I think it should reflect chronological order. If SoB has been given before
-> > e.g. Ack then SoB should be followed by Ack and not other way around.
-> 
-> This is how I interpret the rules even though I admit it is not
-> formalized explicitly. The idea is just what I wrote, when the patch
-> ends up in git with:
-> 
-> 	Signed-off-by: Vineetha G. Jaya Kumaran <vineetha.g.jaya.kumaran@intel.com>
-> 	Signed-off-by: Vijayakannan Ayyathurai <vijayakannan.ayyathurai@intel.com>
-> 	Reviewed-by: Rob Herring <robh@kernel.org>
-> 	Acked-by: Uwe Kleine-König <u.kleine-koenig@pengutronix.de>
-> 	Signed-off-by: Peter Maintainer <p.maintainer@tralala>
-> 
-> I'd expect that is was Peter M. who added Rob's and my tag, while when
-> it is
-> 
-> 	Signed-off-by: Vineetha G. Jaya Kumaran <vineetha.g.jaya.kumaran@intel.com>
-> 	Reviewed-by: Rob Herring <robh@kernel.org>
-> 	Acked-by: Uwe Kleine-König <u.kleine-koenig@pengutronix.de>
-> 	Signed-off-by: Vijayakannan Ayyathurai <vijayakannan.ayyathurai@intel.com>
-> 	Signed-off-by: Peter Maintainer <p.maintainer@tralala>
-> 
-> it was Vijayakannan who added them.
-> 
-> IMHO this makes sense as Vijayakannan modified the commit log and then
-> it is usual to add the signature at the end. In my eyes this is more
-> sensible than the date order, but it seems this is subjective.
-> 
-> I'm aware that most people don't care; and I don't care enough to argue
-> this case any further.
+On Fri, Aug 28, 2020 at 07:09:53PM +0530, Shubhrajyoti Datta wrote:
+> +
+> +	/* Check status register */
+> +	err= readl_poll_timeout(divider->base + WZRD_DR_STATUS_REG_OFFSET, value,
+> +				value & WZRD_DR_LOCK_BIT_MASK,
+> +				WZRD_USEC_POLL, WZRD_TIMEOUT_POLL);
 
-This makes sense. Consider that we are on the same page.
-Thanks!
+Checkpatch will catch the missing space in "err= readl_".
 
--- 
-With Best Regards,
-Andy Shevchenko
-
+regards,
+dan carpenter
 
