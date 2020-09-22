@@ -2,117 +2,296 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from vger.kernel.org (vger.kernel.org [23.128.96.18])
-	by mail.lfdr.de (Postfix) with ESMTP id 79BA6273B7E
-	for <lists+devicetree@lfdr.de>; Tue, 22 Sep 2020 09:13:20 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTP id D9BB9273B84
+	for <lists+devicetree@lfdr.de>; Tue, 22 Sep 2020 09:14:26 +0200 (CEST)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S1729608AbgIVHNU (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Tue, 22 Sep 2020 03:13:20 -0400
-Received: from mailgw01.mediatek.com ([210.61.82.183]:57489 "EHLO
-        mailgw01.mediatek.com" rhost-flags-OK-FAIL-OK-FAIL) by vger.kernel.org
-        with ESMTP id S1728526AbgIVHNQ (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Tue, 22 Sep 2020 03:13:16 -0400
-X-UUID: d2c6de1f2a0642c3b4370b26606d871f-20200922
-DKIM-Signature: v=1; a=rsa-sha256; q=dns/txt; c=relaxed/relaxed; d=mediatek.com; s=dk;
-        h=Content-Transfer-Encoding:MIME-Version:Content-Type:References:In-Reply-To:Date:CC:To:From:Subject:Message-ID; bh=y5qtueSnd0gmXTgqaU7WrKuS0UH/8TSj72WVkDhtRI4=;
-        b=Dje6q1TmGkdE+S1arwuuvpcomXsB5uJj8NcGXs2/mInVgeXb75PlMTWmsiZ8cJGluR69zw9poVr5DCKqO4svW14kAkWnZ2GYU3rYkFxxY0/KmImbzKDbVBJ0+sFdAt774HLVTNoI3iHWfKzozNd9EblHrHR9S9cvaQyGydoWc/E=;
-X-UUID: d2c6de1f2a0642c3b4370b26606d871f-20200922
-Received: from mtkexhb01.mediatek.inc [(172.21.101.102)] by mailgw01.mediatek.com
-        (envelope-from <neal.liu@mediatek.com>)
-        (Cellopoint E-mail Firewall v4.1.14 Build 0819 with TLSv1.2 ECDHE-RSA-AES256-SHA384 256/256)
-        with ESMTP id 618911528; Tue, 22 Sep 2020 15:13:11 +0800
-Received: from MTKCAS06.mediatek.inc (172.21.101.30) by
- mtkmbs01n2.mediatek.inc (172.21.101.79) with Microsoft SMTP Server (TLS) id
- 15.0.1497.2; Tue, 22 Sep 2020 15:13:08 +0800
-Received: from [172.21.77.33] (172.21.77.33) by MTKCAS06.mediatek.inc
- (172.21.101.73) with Microsoft SMTP Server id 15.0.1497.2 via Frontend
- Transport; Tue, 22 Sep 2020 15:13:08 +0800
-Message-ID: <1600758789.19001.4.camel@mtkswgap22>
-Subject: Re: [PATCH v7] Add MediaTek MT6779 devapc driver
-From:   Neal Liu <neal.liu@mediatek.com>
-To:     Matthias Brugger <matthias.bgg@gmail.com>,
-        Rob Herring <robh+dt@kernel.org>
-CC:     Neal Liu <neal.liu@mediatek.com>,
-        Chun-Kuang Hu <chunkuang.hu@kernel.org>,
-        "devicetree@vger.kernel.org" <devicetree@vger.kernel.org>,
-        "linux-arm-kernel@lists.infradead.org" 
-        <linux-arm-kernel@lists.infradead.org>,
-        "linux-mediatek@lists.infradead.org" 
-        <linux-mediatek@lists.infradead.org>,
-        lkml <linux-kernel@vger.kernel.org>,
-        wsd_upstream <wsd_upstream@mediatek.com>
-Date:   Tue, 22 Sep 2020 15:13:09 +0800
-In-Reply-To: <1600246737.14155.3.camel@mtkswgap22>
-References: <1598497593-15781-1-git-send-email-neal.liu@mediatek.com>
-         <1599028813.32069.1.camel@mtkswgap22> <1599640627.6370.3.camel@mtkswgap22>
-         <1600246737.14155.3.camel@mtkswgap22>
-Content-Type: text/plain; charset="UTF-8"
-X-Mailer: Evolution 3.2.3-0ubuntu6 
+        id S1729464AbgIVHO0 (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Tue, 22 Sep 2020 03:14:26 -0400
+Received: from lindbergh.monkeyblade.net ([23.128.96.19]:54994 "EHLO
+        lindbergh.monkeyblade.net" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
+        with ESMTP id S1728526AbgIVHO0 (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Tue, 22 Sep 2020 03:14:26 -0400
+Received: from metis.ext.pengutronix.de (metis.ext.pengutronix.de [IPv6:2001:67c:670:201:290:27ff:fe1d:cc33])
+        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id DF590C061755
+        for <devicetree@vger.kernel.org>; Tue, 22 Sep 2020 00:14:25 -0700 (PDT)
+Received: from pty.hi.pengutronix.de ([2001:67c:670:100:1d::c5])
+        by metis.ext.pengutronix.de with esmtps (TLS1.2:ECDHE_RSA_AES_256_GCM_SHA384:256)
+        (Exim 4.92)
+        (envelope-from <ukl@pengutronix.de>)
+        id 1kKcVB-0001w2-Qe; Tue, 22 Sep 2020 09:14:13 +0200
+Received: from ukl by pty.hi.pengutronix.de with local (Exim 4.89)
+        (envelope-from <ukl@pengutronix.de>)
+        id 1kKcV7-0005eb-8l; Tue, 22 Sep 2020 09:14:09 +0200
+Date:   Tue, 22 Sep 2020 09:14:09 +0200
+From:   Uwe =?utf-8?Q?Kleine-K=C3=B6nig?= <u.kleine-koenig@pengutronix.de>
+To:     Nobuhiro Iwamatsu <nobuhiro1.iwamatsu@toshiba.co.jp>
+Cc:     Rob Herring <robh+dt@kernel.org>,
+        Thierry Reding <thierry.reding@gmail.com>,
+        Lee Jones <lee.jones@linaro.org>, punit1.agrawal@toshiba.co.jp,
+        yuji2.ishikawa@toshiba.co.jp, devicetree@vger.kernel.org,
+        linux-arm-kernel@lists.infradead.org, linux-pwm@vger.kernel.org,
+        Nobuhiro Iwamatsu <iwamatsu@nigauri.org>
+Subject: Re: [PATCH 2/2] pwm: visconti: Add Toshiba Visconti SoC PWM support
+Message-ID: <20200922071409.lkmnhs73fu472va6@pengutronix.de>
+References: <20200917223140.227542-1-nobuhiro1.iwamatsu@toshiba.co.jp>
+ <20200917223140.227542-3-nobuhiro1.iwamatsu@toshiba.co.jp>
 MIME-Version: 1.0
-X-TM-SNTS-SMTP: D9A970872699FB66BF596432F982953E3F524122165F704DE10755B81CEC28102000:8
-X-MTK:  N
-Content-Transfer-Encoding: base64
+Content-Type: multipart/signed; micalg=pgp-sha512;
+        protocol="application/pgp-signature"; boundary="iquqfa67vjcgsgmr"
+Content-Disposition: inline
+In-Reply-To: <20200917223140.227542-3-nobuhiro1.iwamatsu@toshiba.co.jp>
+X-SA-Exim-Connect-IP: 2001:67c:670:100:1d::c5
+X-SA-Exim-Mail-From: ukl@pengutronix.de
+X-SA-Exim-Scanned: No (on metis.ext.pengutronix.de); SAEximRunCond expanded to false
+X-PTX-Original-Recipient: devicetree@vger.kernel.org
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-SGkgTWF0dGhpYXMsDQoNCldlIG5lZWQgdGhpcyBkcml2ZXIgc3VwcG9ydGVkIG9uIG1haW4tbGlu
-ZS4NCkNvdWxkIHlvdSBzYXZlIHlvdXIgdGltZSBmb3IgdXMgdG8gcmV2aWV3IGl0Pw0KVGhhbmtz
-DQoNCi1OZWFsDQoNCk9uIFdlZCwgMjAyMC0wOS0xNiBhdCAxNjo1OCArMDgwMCwgTmVhbCBMaXUg
-d3JvdGU6DQo+IEhpIFJvYiwgTWF0dGhpYXMsIENodW4tS3VhbmcsDQo+IA0KPiBTb3JyeSBmb3Ig
-cHVzaGluZyB5b3Ugc28gaGFyZC4NCj4gTWF5IEkga25vdyBpcyB0aGlzIHBhdGNoIHNldCBpcyBj
-b21mb3J0YWJsZSB0byBhcHBseSBvbiBsYXRlc3Qga2VybmVsPw0KPiBUaGFua3MNCj4gDQo+IC1O
-ZWFsDQo+IA0KPiBPbiBXZWQsIDIwMjAtMDktMDkgYXQgMTY6MzcgKzA4MDAsIE5lYWwgTGl1IHdy
-b3RlOg0KPiA+IEhpIFJvYiwgTWF0dGhpYXMsIENodW4tS3VhbmcsDQo+ID4gDQo+ID4gUGxlYXNl
-IGtpbmRseSBsZXQgbWUga25vdyB5b3VyIGNvbW1lbnRzIGFib3V0IHRoaXMgcGF0Y2ggc2V0Lg0K
-PiA+IFRoYW5rcw0KPiA+IA0KPiA+IC1OZWFsDQo+ID4gDQo+ID4gT24gV2VkLCAyMDIwLTA5LTAy
-IGF0IDE0OjQwICswODAwLCBOZWFsIExpdSB3cm90ZToNCj4gPiA+IEhpIFJvYiwgTWF0dGhpYXMs
-IENodW4tS3VhbmcsDQo+ID4gPiANCj4gPiA+IEdlbnRsZSBwaW5nIGZvciB0aGlzIHBhdGNoIHNl
-dC4NCj4gPiA+IFRoYW5rcw0KPiA+ID4gDQo+ID4gPiAtTmVhbA0KPiA+ID4gDQo+ID4gPiBPbiBU
-aHUsIDIwMjAtMDgtMjcgYXQgMTE6MDYgKzA4MDAsIE5lYWwgTGl1IHdyb3RlOg0KPiA+ID4gPiBU
-aGVzZSBwYXRjaCBzZXJpZXMgaW50cm9kdWNlIGEgTWVkaWFUZWsgTVQ2Nzc5IGRldmFwYyBkcml2
-ZXIuDQo+ID4gPiA+IA0KPiA+ID4gPiBNZWRpYVRlayBidXMgZmFicmljIHByb3ZpZGVzIFRydXN0
-Wm9uZSBzZWN1cml0eSBzdXBwb3J0IGFuZCBkYXRhIHByb3RlY3Rpb24gdG8gcHJldmVudCBzbGF2
-ZXMgZnJvbSBiZWluZyBhY2Nlc3NlZCBieSB1bmV4cGVjdGVkIG1hc3RlcnMuDQo+ID4gPiA+IFRo
-ZSBzZWN1cml0eSB2aW9sYXRpb24gaXMgbG9nZ2VkIGFuZCBzZW50IHRvIHRoZSBwcm9jZXNzb3Ig
-Zm9yIGZ1cnRoZXIgYW5hbHlzaXMgb3IgY291bnRlcm1lYXN1cmVzLg0KPiA+ID4gPiANCj4gPiA+
-ID4gQW55IG9jY3VycmVuY2Ugb2Ygc2VjdXJpdHkgdmlvbGF0aW9uIHdvdWxkIHJhaXNlIGFuIGlu
-dGVycnVwdCwgYW5kIGl0IHdpbGwgYmUgaGFuZGxlZCBieSBtdGstZGV2YXBjIGRyaXZlci4NCj4g
-PiA+ID4gVGhlIHZpb2xhdGlvbiBpbmZvcm1hdGlvbiBpcyBwcmludGVkIGluIG9yZGVyIHRvIGZp
-bmQgdGhlIG11cmRlcmVyLg0KPiA+ID4gPiANCj4gPiA+ID4gY2hhbmdlcyBzaW5jZSB2NjoNCj4g
-PiA+ID4gLSByZW1vdmUgdW5uZWNlc3NhcnkgbWFzay91bm1hc2sgbW9kdWxlIGlycSBkdXJpbmcg
-SVNSLg0KPiA+ID4gPiANCj4gPiA+ID4gY2hhbmdlcyBzaW5jZSB2NToNCj4gPiA+ID4gLSByZW1v
-dmUgcmVkdW5kYW50IHdyaXRlIHJlZyBvcGVyYXRpb24uDQo+ID4gPiA+IC0gdXNlIHN0YXRpYyB2
-YXJpYWJsZSBvZiB2aW9fZGJncyBpbnN0ZWFkLg0KPiA+ID4gPiAtIGFkZCBzdG9wX2RldmFwYygp
-IGlmIGRyaXZlciBpcyByZW1vdmVkLg0KPiA+ID4gPiANCj4gPiA+ID4gY2hhbmdlcyBzaW5jZSB2
-NDoNCj4gPiA+ID4gLSByZWZhY3RvciBkYXRhIHN0cnVjdHVyZS4NCj4gPiA+ID4gLSBtZXJnZSB0
-d28gc2ltcGxlIGZ1bmN0aW9ucyBpbnRvIG9uZS4NCj4gPiA+ID4gLSByZWZhY3RvciByZWdpc3Rl
-ciBzZXR0aW5nIHRvIHByZXZlbnQgdG9vIG1hbnkgZnVuY3Rpb24gY2FsbCBvdmVyaGVhZC4NCj4g
-PiA+ID4gDQo+ID4gPiA+IGNoYW5nZXMgc2luY2UgdjM6DQo+ID4gPiA+IC0gcmV2aXNlIHZpb2xh
-dGlvbiBoYW5kbGluZyBmbG93IHRvIG1ha2UgaXQgbW9yZSBlYXNpbHkgdG8gdW5kZXJzdGFuZA0K
-PiA+ID4gPiAgIGhhcmR3YXJlIGJlaGF2aW9yLg0KPiA+ID4gPiAtIGFkZCBtb3JlIGNvbW1lbnRz
-IHRvIHVuZGVyc3RhbmQgaG93IGhhcmR3YXJlIHdvcmtzLg0KPiA+ID4gPiANCj4gPiA+ID4gY2hh
-bmdlcyBzaW5jZSB2MjoNCj4gPiA+ID4gLSBwYXNzIHBsYXRmb3JtIGluZm8gdGhyb3VnaCBEVCBk
-YXRhLg0KPiA+ID4gPiAtIHJlbW92ZSB1bm5lY2Vzc2FyeSBmdW5jdGlvbi4NCj4gPiA+ID4gLSBy
-ZW1vdmUgc2xhdmVfdHlwZSBiZWNhdXNlIGl0IGFsd2F5cyBlcXVhbHMgdG8gMSBpbiBjdXJyZW50
-IHN1cHBvcnQgU29DLg0KPiA+ID4gPiAtIHVzZSB2aW9faWR4X251bSBpbnN0cmVhZCBvZiBsaXN0
-IGFsbCBkZXZpY2VzJyBpbmRleC4NCj4gPiA+ID4gLSBhZGQgbW9yZSBjb21tZW50cyB0byBkZXNj
-cmliZSBoYXJkd2FyZSBiZWhhdmlvci4NCj4gPiA+ID4gDQo+ID4gPiA+IGNoYW5nZXMgc2luY2Ug
-djE6DQo+ID4gPiA+IC0gbW92ZSBTb0Mgc3BlY2lmaWMgcGFydCB0byBEVCBkYXRhLg0KPiA+ID4g
-PiAtIHJlbW92ZSB1bm5lY2Vzc2FyeSBib3VuZGFyeSBjaGVjay4NCj4gPiA+ID4gLSByZW1vdmUg
-dW5uZWNlc3NhcnkgZGF0YSB0eXBlIGRlY2xhcmF0aW9uLg0KPiA+ID4gPiAtIHVzZSByZWFkX3Bv
-bGxfdGltZW91dCgpIGluc3RyZWFkIG9mIGZvciBsb29wIHBvbGxpbmcuDQo+ID4gPiA+IC0gcmV2
-aXNlIGNvZGluZyBzdHlsZSBlbGVnYW50bHkuDQo+ID4gPiA+IA0KPiA+ID4gPiANCj4gPiA+ID4g
-KioqIEJMVVJCIEhFUkUgKioqDQo+ID4gPiA+IA0KPiA+ID4gPiBOZWFsIExpdSAoMik6DQo+ID4g
-PiA+ICAgZHQtYmluZGluZ3M6IGRldmFwYzogYWRkIGJpbmRpbmdzIGZvciBtdGstZGV2YXBjDQo+
-ID4gPiA+ICAgc29jOiBtZWRpYXRlazogYWRkIG10Njc3OSBkZXZhcGMgZHJpdmVyDQo+ID4gPiA+
-IA0KPiA+ID4gPiAgLi4uL2JpbmRpbmdzL3NvYy9tZWRpYXRlay9kZXZhcGMueWFtbCAgICAgICAg
-IHwgIDU4ICsrKysNCj4gPiA+ID4gIGRyaXZlcnMvc29jL21lZGlhdGVrL0tjb25maWcgICAgICAg
-ICAgICAgICAgICB8ICAgOSArDQo+ID4gPiA+ICBkcml2ZXJzL3NvYy9tZWRpYXRlay9NYWtlZmls
-ZSAgICAgICAgICAgICAgICAgfCAgIDEgKw0KPiA+ID4gPiAgZHJpdmVycy9zb2MvbWVkaWF0ZWsv
-bXRrLWRldmFwYy5jICAgICAgICAgICAgIHwgMzA1ICsrKysrKysrKysrKysrKysrKw0KPiA+ID4g
-PiAgNCBmaWxlcyBjaGFuZ2VkLCAzNzMgaW5zZXJ0aW9ucygrKQ0KPiA+ID4gPiAgY3JlYXRlIG1v
-ZGUgMTAwNjQ0IERvY3VtZW50YXRpb24vZGV2aWNldHJlZS9iaW5kaW5ncy9zb2MvbWVkaWF0ZWsv
-ZGV2YXBjLnlhbWwNCj4gPiA+ID4gIGNyZWF0ZSBtb2RlIDEwMDY0NCBkcml2ZXJzL3NvYy9tZWRp
-YXRlay9tdGstZGV2YXBjLmMNCj4gPiA+ID4gDQo+ID4gPiANCj4gPiA+IA0KPiA+IA0KPiA+IA0K
-PiANCj4gDQoNCg==
 
+--iquqfa67vjcgsgmr
+Content-Type: text/plain; charset=iso-8859-1
+Content-Disposition: inline
+Content-Transfer-Encoding: quoted-printable
+
+Hello,
+
+On Fri, Sep 18, 2020 at 07:31:40AM +0900, Nobuhiro Iwamatsu wrote:
+> diff --git a/drivers/pwm/pwm-visconti.c b/drivers/pwm/pwm-visconti.c
+> new file mode 100644
+> index 000000000000..601450111166
+> --- /dev/null
+> +++ b/drivers/pwm/pwm-visconti.c
+> @@ -0,0 +1,141 @@
+> +// SPDX-License-Identifier: GPL-2.0
+
+The SPDX guys deprecated "GPL-2.0" as identifier and recommend
+"GPL-2.0-only" instead. As in the kernel both are allowed I prefer the
+latter.
+
+> +/*
+> + * Toshiba Visconti pulse-width-modulation controller driver
+> + *
+> + * Copyright (c) 2020 TOSHIBA CORPORATION
+> + * Copyright (c) 2020 Toshiba Electronic Devices & Storage Corporation
+> + * Copyright (c) 2020 Nobuhiro Iwamatsu <nobuhiro1.iwamatsu@toshiba.co.j=
+p>
+> + *
+> + */
+
+If there is a publically available manual, please add a link here.
+
+> +#include <linux/err.h>
+> +#include <linux/io.h>
+> +#include <linux/module.h>
+> +#include <linux/of_device.h>
+> +#include <linux/pwm.h>
+> +#include <linux/platform_device.h>
+> +
+> +#define PWMC0_PWMACT BIT(5)
+> +
+> +#define REG_PCSR(ch) (0x400 + 4 * (ch))
+> +#define REG_PDUT(ch) (0x420 + 4 * (ch))
+> +#define REG_PWM0(ch) (0x440 + 4 * (ch))
+
+Please us a prefix for the register defines. Also it would be great if
+it would be obvious from the naming to which register the PWMACT bit
+belongs.
+
+> +struct visconti_pwm_chip {
+> +	struct pwm_chip chip;
+> +	struct device *dev;
+> +	void __iomem *base;
+> +};
+> +
+> +#define to_visconti_chip(chip) \
+> +	container_of(chip, struct visconti_pwm_chip, chip)
+> +
+> +static int visconti_pwm_apply(struct pwm_chip *chip, struct pwm_device *=
+pwm,
+> +			  const struct pwm_state *state)
+> +{
+> +	struct visconti_pwm_chip *priv =3D to_visconti_chip(chip);
+> +	u32 period, duty, pwmc0;
+> +
+> +	dev_dbg(priv->dev, "%s: ch =3D %d en =3D %d p =3D 0x%llx d =3D 0x%llx\n=
+", __func__,
+> +		pwm->hwpwm, state->enabled, state->period, state->duty_cycle);
+> +	if (state->enabled) {
+> +		period =3D state->period / 1000;
+> +		duty =3D state->duty_cycle / 1000;
+> +		if (period < 0x10000)
+> +			pwmc0 =3D 0;
+> +		else if (period < 0x20000)
+> +			pwmc0 =3D 1;
+> +		else if (period < 0x40000)
+> +			pwmc0 =3D 2;
+> +		else if (period < 0x80000)
+> +			pwmc0 =3D 3;
+> +		else
+> +			return -EINVAL;
+> +
+> +		if (pwmc0) {
+> +			period /=3D BIT(pwmc0);
+> +			duty /=3D BIT(pwmc0);
+> +		}
+
+You can drop the if and just make this:
+
+	period <<=3D pwmc0;
+	duty <<=3D pwmc0;
+
+as this is a noop if pwmc0 is zero.
+
+> +		if (state->polarity =3D=3D PWM_POLARITY_INVERSED)
+> +			pwmc0 |=3D PWMC0_PWMACT;
+> +
+> +		writel(pwmc0, priv->base + REG_PWM0(pwm->hwpwm));
+> +		writel(duty, priv->base + REG_PDUT(pwm->hwpwm));
+> +		writel(period, priv->base + REG_PCSR(pwm->hwpwm));
+
+Some comments about the function of the hardware would be good.
+Something like (I assume the optimal hardware here, please adapt to
+reality):
+
+	pwmc is a 2-bit divider for the input clock running at 1 MHz.
+	When the settings of the PWM are modified, the new values are
+	shadowed in hardware until the period register (PCSR) is written
+	and the currently running period is completed. This way the
+	hardware switches atomically from the old setting to the new.
+	Also disabling the hardware completes the currently running
+	period and then the output drives the inactive state.
+
+(I'm sure however this is wrong because you don't consider
+state->polarity in the !state-enabled case.)
+
+If your hardware doesn't behave as indicated please add a Limitations
+paragraph at the beginning of the driver as is done for several other
+drivers already describing the shortcomings.
+
+> +	} else {
+> +		writel(0, priv->base + REG_PCSR(pwm->hwpwm));
+> +	}
+> +
+> +	return 0;
+> +}
+> +
+> +static const struct pwm_ops visconti_pwm_ops =3D {
+> +	.apply =3D visconti_pwm_apply,
+
+Please implement .get_state(). (And test it using PWM_DEBUG.)
+
+> +	.owner =3D THIS_MODULE,
+> +};
+> +
+> +static int visconti_pwm_probe(struct platform_device *pdev)
+> +{
+> +	struct device *dev =3D &pdev->dev;
+> +	struct visconti_pwm_chip *priv;
+> +	int ret;
+> +
+> +	priv =3D devm_kzalloc(dev, sizeof(*priv), GFP_KERNEL);
+> +	if (!priv)
+> +		return -ENOMEM;
+> +
+> +	priv->dev =3D &pdev->dev;
+
+You can better use
+
+	priv->dev =3D dev;
+
+here. (But I agree to the previous review that it makes little sense to
+keep this member in struct visconti_pwm_chip.)
+
+> +	priv->base =3D devm_platform_ioremap_resource(pdev, 0);
+> +	if (IS_ERR(priv->base)) {
+> +		dev_err(dev, "unable to map I/O space\n");
+
+devm_platform_ioremap_resource already emits an error message on failure,
+so no need to add another.
+
+> +		return PTR_ERR(priv->base);
+> +	}
+> +
+> +	platform_set_drvdata(pdev, priv);
+> +
+> +	priv->chip.dev =3D dev;
+> +	priv->chip.ops =3D &visconti_pwm_ops;
+> +	priv->chip.base =3D -1;
+> +	priv->chip.npwm =3D 4;
+> +
+> +	ret =3D pwmchip_add(&priv->chip);
+> +	if (ret < 0) {
+> +		dev_err(dev, "Cannot register visconti PWM: %d\n", ret);
+
+Please use dev_err_probe here or %pe for the error code.
+
+> +		return ret;
+> +	}
+> +
+> +	dev_info(&pdev->dev, "visconti PWM registered\n");
+
+Please degrade this to dev_dbg.
+
+> +	return 0;
+> +}
+> +
+> +static int visconti_pwm_remove(struct platform_device *pdev)
+> +{
+> +	struct visconti_pwm_chip *priv =3D platform_get_drvdata(pdev);
+> +
+> +	return pwmchip_remove(&priv->chip);
+> +}
+> +
+> +static const struct of_device_id visconti_pwm_of_match[] =3D {
+> +	{ .compatible =3D "toshiba,pwm-visconti", },
+> +	{ }
+> +};
+> +
+> +MODULE_DEVICE_TABLE(of, visconti_pwm_of_match);
+
+Please drop the empty line before MODULE_DEVICE_TABLE.
+
+> +static struct platform_driver visconti_pwm_driver =3D {
+> +	.driver =3D {
+> +		.name =3D "pwm-visconti",
+> +		.of_match_table =3D visconti_pwm_of_match,
+> +	},
+> +	.probe =3D visconti_pwm_probe,
+> +	.remove =3D visconti_pwm_remove,
+> +};
+> +
+> +module_platform_driver(visconti_pwm_driver);
+
+The empty line before module_platform_driver is also unusual.
+
+> +MODULE_LICENSE("GPL v2");
+> +MODULE_AUTHOR("Toshiba");
+> +MODULE_ALIAS("platform:visconti-pwm");
+
+This is wrong; as the driver name is pwm-visconti this should be
+MODULE_ALIAS("platform:pwm-visconti");
+
+Best regards
+Uwe
+
+--=20
+Pengutronix e.K.                           | Uwe Kleine-K=F6nig            |
+Industrial Linux Solutions                 | https://www.pengutronix.de/ |
+
+--iquqfa67vjcgsgmr
+Content-Type: application/pgp-signature; name="signature.asc"
+
+-----BEGIN PGP SIGNATURE-----
+
+iQEzBAABCgAdFiEEfnIqFpAYrP8+dKQLwfwUeK3K7AkFAl9ppD4ACgkQwfwUeK3K
+7AnbxQf8Cvo29NR9D+o6AI0DZe9T5COF9a/0TZlwNqTHXz7TKf3wRaBl2izcsYRI
+Roz1yxDAV1BhAuK56oi+oY7vtaMqxgNm5N3fIEZA7q/9rMoJ3qK81UF6AO7Kbgyw
+1XVvx6/ji9hhdvYfGFx+QCEXrLELfETVA0chqrU9uB0w/R+RNtEvEqy7U8Y3iKMf
+kiETqpbcb5V2C6j3nKIKZMT6oju5DIRmPVM26oMLF1ZL6TqLYr1odS1ktIJrxByP
+W2EgWLkUPtSSlPpPdsKmAFs+/5EvR01oUrPXN9foCe20zCGNmcUA2Z897MVHcjkR
+8gqFwGtpsKAvpU2nw59YOJGgBtBs9g==
+=xUoW
+-----END PGP SIGNATURE-----
+
+--iquqfa67vjcgsgmr--
