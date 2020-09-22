@@ -2,77 +2,142 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from vger.kernel.org (vger.kernel.org [23.128.96.18])
-	by mail.lfdr.de (Postfix) with ESMTP id A4DF4273ECD
-	for <lists+devicetree@lfdr.de>; Tue, 22 Sep 2020 11:48:08 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTP id 523E4273ED2
+	for <lists+devicetree@lfdr.de>; Tue, 22 Sep 2020 11:48:31 +0200 (CEST)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S1726513AbgIVJr7 (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Tue, 22 Sep 2020 05:47:59 -0400
-Received: from mail.kernel.org ([198.145.29.99]:43836 "EHLO mail.kernel.org"
-        rhost-flags-OK-OK-OK-OK) by vger.kernel.org with ESMTP
-        id S1726341AbgIVJr7 (ORCPT <rfc822;devicetree@vger.kernel.org>);
-        Tue, 22 Sep 2020 05:47:59 -0400
-Received: from localhost (fw-tnat.cambridge.arm.com [217.140.96.140])
-        (using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
-        (No client certificate requested)
-        by mail.kernel.org (Postfix) with ESMTPSA id 27E9A2145D;
-        Tue, 22 Sep 2020 09:47:57 +0000 (UTC)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=kernel.org;
-        s=default; t=1600768078;
-        bh=QSNZZdWghjMdTCu5w4Ake1FY6e6LLkyXLp5ObVBEQDM=;
-        h=Date:From:To:Cc:Subject:References:In-Reply-To:From;
-        b=c2/VE8EFEaKNzuNRiQoUIiO+pq4+y5hjTRf0wkTJ3CI8QM3xY+TOyDls7xX9Fe0Lr
-         lhMNs58CxPhIZDXUIobz6R3AGR4+wm977XWyH/BC6YUI3Thh3A+YO+I0XBMbfIzo+i
-         9x9/o/03oSyN1zS8u6RFxrfzgr9B+2OZeydLGx+I=
-Date:   Tue, 22 Sep 2020 10:47:05 +0100
-From:   Mark Brown <broonie@kernel.org>
-To:     Dan Murphy <dmurphy@ti.com>
-Cc:     lgirdwood@gmail.com, tiwai@suse.com, robh+dt@kernel.org,
-        devicetree@vger.kernel.org, alsa-devel@alsa-project.org,
-        linux-kernel@vger.kernel.org
-Subject: Re: [PATCH 6/9] ASoC: tas2770: Convert bit mask to GENMASK in header
-Message-ID: <20200922094705.GM4792@sirena.org.uk>
-References: <20200918190548.12598-1-dmurphy@ti.com>
- <20200918190548.12598-6-dmurphy@ti.com>
- <20200921190437.GJ4792@sirena.org.uk>
- <bea218c8-c71d-2ce8-da92-14af73ac4da5@ti.com>
- <2ca0647d-1ebf-1290-0f75-61bb97324165@ti.com>
+        id S1726341AbgIVJs3 (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Tue, 22 Sep 2020 05:48:29 -0400
+Received: from lindbergh.monkeyblade.net ([23.128.96.19]:50880 "EHLO
+        lindbergh.monkeyblade.net" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
+        with ESMTP id S1726606AbgIVJs0 (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Tue, 22 Sep 2020 05:48:26 -0400
+Received: from mail-wr1-x442.google.com (mail-wr1-x442.google.com [IPv6:2a00:1450:4864:20::442])
+        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 56C60C0613D0
+        for <devicetree@vger.kernel.org>; Tue, 22 Sep 2020 02:48:26 -0700 (PDT)
+Received: by mail-wr1-x442.google.com with SMTP id c18so16315464wrm.9
+        for <devicetree@vger.kernel.org>; Tue, 22 Sep 2020 02:48:26 -0700 (PDT)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+        d=linaro.org; s=google;
+        h=subject:to:references:from:message-id:date:user-agent:mime-version
+         :in-reply-to:content-language:content-transfer-encoding;
+        bh=pIqBqr25RTew7nCCSy59m+1K+uSBvvx4TjwvpiWNlNM=;
+        b=mCHXNAC578mbIrSvVDZAtSj66PHCgNxNthSZVhHioeeGhwCeeEAgYU3zvw7Nus+jy4
+         XkQLO5ldB+3ZCqEtkGVYPfahzIxrQHAF13Sb3EqL8TAU7fHiv5MR5VDba5L1sMulASuX
+         2X/itDb+tIJd2MUatMnzCm/qiJl7DfFOYNThiR/ytT0ZupZ6R/l0mr4XwSodTvsye7ZW
+         9ZnVGDFkrBJqYe7xUqBOCQD2QOwWOu9d6UNQPYTrpDPq7DE6CdLfjKqt5FKsxe53Atq+
+         lfzEsO6PWzcU9JxdMbzUMqKTs9QPnUZxjI7ao4pDtAI7hn58onFChONX0YvPfFuLDYIe
+         qFsA==
+X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+        d=1e100.net; s=20161025;
+        h=x-gm-message-state:subject:to:references:from:message-id:date
+         :user-agent:mime-version:in-reply-to:content-language
+         :content-transfer-encoding;
+        bh=pIqBqr25RTew7nCCSy59m+1K+uSBvvx4TjwvpiWNlNM=;
+        b=fYuMKcXzuXMJYTY5M/ikIVY6Q9rsFeewhUXDhZsUvbCMCKcY3IfqNsYV+P5H1wQ8dD
+         120jJAWjRjTQQtEFNUYmsJIYpK2Tn/vbUUHH7VVVpRSq/UbXG04yddfjVoGFZV3eNoFV
+         haPznPB0XG8YBNiyZlx32grLfKIBhdI3omR4gyOxbzIcUu9DqfYTFVDNazdU6HWLBbNo
+         rxlRQDj+1twwdyqEuh3KqUzOf9yrEdpDPiuJh9jdEfNO30qUNQmVcl036wyip7f5kRLh
+         hh8i2ar9rOzv7pt/QdeQ8Kj3QnX3FjfIC7G6f2rl+iJxJDuQusqRRaepj+cwZdWNyuPw
+         VnkA==
+X-Gm-Message-State: AOAM530KiCBvuDcUuggX/ZKj2H+Pr7LdN1sMKuCSWQLlyPmONVdLiKsG
+        gsRlNbHKyNHMXgtKTm3QvIjwZHCySQP5ow==
+X-Google-Smtp-Source: ABdhPJy/uYI1z/NjmcbXrIO5SvnwhctmERw7OJ5m4MyWHV/2hTVUxTI2trfCUVJSrn1JFsOtGhCMlg==
+X-Received: by 2002:a5d:470f:: with SMTP id y15mr4296842wrq.420.1600768104666;
+        Tue, 22 Sep 2020 02:48:24 -0700 (PDT)
+Received: from [192.168.86.34] (cpc86377-aztw32-2-0-cust226.18-1.cable.virginm.net. [92.233.226.227])
+        by smtp.googlemail.com with ESMTPSA id o16sm23650673wrp.52.2020.09.22.02.48.23
+        (version=TLS1_2 cipher=ECDHE-ECDSA-AES128-GCM-SHA256 bits=128/128);
+        Tue, 22 Sep 2020 02:48:24 -0700 (PDT)
+Subject: Re: [PATCH 0/3] nvmem: add ONIE NVMEM cells provider
+To:     Vadym Kochan <vadym.kochan@plvision.eu>,
+        Rob Herring <robh+dt@kernel.org>, linux-kernel@vger.kernel.org,
+        devicetree@vger.kernel.org
+References: <20200915124116.7196-1-vadym.kochan@plvision.eu>
+ <20200921235641.GI31031@plvision.eu>
+From:   Srinivas Kandagatla <srinivas.kandagatla@linaro.org>
+Message-ID: <f7f47794-2641-514a-8905-3f4c800f199d@linaro.org>
+Date:   Tue, 22 Sep 2020 10:48:23 +0100
+User-Agent: Mozilla/5.0 (X11; Linux x86_64; rv:60.0) Gecko/20100101
+ Thunderbird/60.8.0
 MIME-Version: 1.0
-Content-Type: multipart/signed; micalg=pgp-sha512;
-        protocol="application/pgp-signature"; boundary="75WsOQSofUOhcSOp"
-Content-Disposition: inline
-In-Reply-To: <2ca0647d-1ebf-1290-0f75-61bb97324165@ti.com>
-X-Cookie: Love thy neighbor, tune thy piano.
-User-Agent: Mutt/1.10.1 (2018-07-13)
+In-Reply-To: <20200921235641.GI31031@plvision.eu>
+Content-Type: text/plain; charset=utf-8; format=flowed
+Content-Language: en-US
+Content-Transfer-Encoding: 7bit
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
 
---75WsOQSofUOhcSOp
-Content-Type: text/plain; charset=us-ascii
-Content-Disposition: inline
 
-On Mon, Sep 21, 2020 at 02:19:36PM -0500, Dan Murphy wrote:
+On 22/09/2020 00:56, Vadym Kochan wrote:
+> Hi Srinivas,
+> 
+> On Tue, Sep 15, 2020 at 03:41:13PM +0300, Vadym Kochan wrote:
+>> This series adds cells parser for the ONIE TLV attributes which are
+>> stored on NVMEM device. It adds possibility to read the mac address (and
+>> other info) by other drivers.
+>>
+>> Because ONIE stores info in TLV format it should be parsed first and
+>> then register the cells. Current NVMEM API allows to register cell
+>> table with known cell's offset which is not guaranteed in case of TLV.
+>>
+>> To make it properly handled the NVMEM parser object is introduced. The
+>> parser needs to be registered before target NVMEM device is registered.
+>> During the registration of NVMEM device the parser is called to parse
+>> the device's cells and reister the cell table.
+>>
+>> Vadym Kochan (3):
+>>    nvmem: core: introduce cells parser
+>>    nvmem: add ONIE nvmem cells parser
+>>    dt-bindings: nvmem: add description for ONIE cells parser
+>>
+>>   .../bindings/nvmem/onie,nvmem-cells.txt       |  11 +
+>>   drivers/nvmem/Kconfig                         |   9 +
+>>   drivers/nvmem/Makefile                        |   3 +
+>>   drivers/nvmem/core.c                          |  80 ++++
+>>   drivers/nvmem/onie-cells.c                    | 370 ++++++++++++++++++
+>>   include/linux/nvmem-provider.h                |  30 ++
+>>   6 files changed, 503 insertions(+)
+>>   create mode 100644 Documentation/devicetree/bindings/nvmem/onie,nvmem-cells.txt
+>>   create mode 100644 drivers/nvmem/onie-cells.c
+>>
+>> -- 
+>> 2.17.1
+>>
 
-> Forgot to ask are you going to take 1-5? If so I can rebase on top of
-> for-5.10 and re-submit.
+Hi Vdaym,
 
-I think managed to apply everything with manual picking things, there
-weren't any actual dependencies.
+Am totally confused with this patchset, There is no versioning in any of 
+your patches, you always send it with PATCH, please add version so that 
+I know which one should I review!
 
---75WsOQSofUOhcSOp
-Content-Type: application/pgp-signature; name="signature.asc"
+This makes my mailbox totally confused with all the patches with same 
+subject prefix!
 
------BEGIN PGP SIGNATURE-----
+Please note that maintenance is not my full time job, so please be 
+patient and I can try shift gears as an when possible!
 
-iQEzBAABCgAdFiEEreZoqmdXGLWf4p/qJNaLcl1Uh9AFAl9pyBgACgkQJNaLcl1U
-h9DsiwgAgInlwOJ7/tF5NZd+FEFgPUEhP9z0vVk2EZCK7PNy1OQDyroVCdpjBuxb
-8vl5D3Tv2AEwwWhjhCch/jCMnlSoju5t/Uf/eGbPHP5nHs91s+6jEP08jDHSS+jB
-VJGfyNNc0R8Gzl8Ld8EVgBgC75nhWLe6tWo0aIMTU7JHG31dzM+ZQgVG1EJ+qwm8
-XSZOBBoP7Hp3+DhrL7EoXi33GuO3pZjiSChTB8CVzTPjXRisXld/DgZEzuXTUSxP
-VC5DkZPgWkIJzHHp3o1mfkH6tZWPq7pMC7dP2cpXtNE2l0hKf/wXNna76puApVxL
-9DbZLAgOdYWUPEfY/4UF87Z7mvIpXw==
-=g78R
------END PGP SIGNATURE-----
+> 
+> I sent a newer version than this one which actually registers nvmem provider
+> and does not require changes in the core.c
+This is a NO-NO as onie is not a real provider here, at24 is the actual 
+nvmem provider in your case.
 
---75WsOQSofUOhcSOp--
+Why do you keep changing the total approach here! what is the reasoning 
+to do so!
+As I said in my last review we were okay with this parser approach!
+
+I don't mind having changes in core as long as it done properly!
+
+
+thanks,
+srini
+
+
+
+
+> 
+> Thanks,
+> Vadym Kochan
+> 
