@@ -2,85 +2,86 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from vger.kernel.org (vger.kernel.org [23.128.96.18])
-	by mail.lfdr.de (Postfix) with ESMTP id 73D2E273E5D
-	for <lists+devicetree@lfdr.de>; Tue, 22 Sep 2020 11:17:35 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTP id 212C7273E75
+	for <lists+devicetree@lfdr.de>; Tue, 22 Sep 2020 11:23:52 +0200 (CEST)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S1726533AbgIVJR0 (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Tue, 22 Sep 2020 05:17:26 -0400
-Received: from aserp2120.oracle.com ([141.146.126.78]:44304 "EHLO
-        aserp2120.oracle.com" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S1726424AbgIVJR0 (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Tue, 22 Sep 2020 05:17:26 -0400
-Received: from pps.filterd (aserp2120.oracle.com [127.0.0.1])
-        by aserp2120.oracle.com (8.16.0.42/8.16.0.42) with SMTP id 08M9F9Bv058619;
-        Tue, 22 Sep 2020 09:17:21 GMT
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=oracle.com; h=date : from : to : cc
- : subject : message-id : references : mime-version : content-type :
- in-reply-to; s=corp-2020-01-29;
- bh=0LlcmxUgv23UmLo9kyhfbOkV0pFyrGTGgW1VdjwNSd4=;
- b=dTQbnJI6UN0bN/BwmreesITbFiCsz3PgN3opYy6YmGmla1B8XM02BDPYf6pyJyxpjhoy
- Ie9XX0T44dfmJKiK/B7ANDTYMOEqWl5UAxNGs4qTqK6CkPnIz669nzPdP257xkTBzp9o
- a2sNw0KRPP7g5BkBrXw3rh5RD63Y013y0hEO2ayOLffOQZmkV6OFEFEpexkr66J8bYmL
- EO+joaP1Vck0URLRVJtJVbm/7ZSzmf69/CTXRJM3jHa72dh+Lg3fi2Pndh9LYn4/ZeDr
- XnJ5JRdx15xoop8ugb6aye6BxQ4wMJEZ7P00Jgh/usHBYmS5VOF9Ev7qLR6ffkI03wDI 0g== 
-Received: from aserp3020.oracle.com (aserp3020.oracle.com [141.146.126.70])
-        by aserp2120.oracle.com with ESMTP id 33q5rga2ny-1
-        (version=TLSv1.2 cipher=ECDHE-RSA-AES256-GCM-SHA384 bits=256 verify=FAIL);
-        Tue, 22 Sep 2020 09:17:21 +0000
-Received: from pps.filterd (aserp3020.oracle.com [127.0.0.1])
-        by aserp3020.oracle.com (8.16.0.42/8.16.0.42) with SMTP id 08M9FqbA139159;
-        Tue, 22 Sep 2020 09:17:21 GMT
-Received: from userv0121.oracle.com (userv0121.oracle.com [156.151.31.72])
-        by aserp3020.oracle.com with ESMTP id 33nuw3bvpx-1
-        (version=TLSv1.2 cipher=ECDHE-RSA-AES256-GCM-SHA384 bits=256 verify=OK);
-        Tue, 22 Sep 2020 09:17:20 +0000
-Received: from abhmp0016.oracle.com (abhmp0016.oracle.com [141.146.116.22])
-        by userv0121.oracle.com (8.14.4/8.13.8) with ESMTP id 08M9HH2C009085;
-        Tue, 22 Sep 2020 09:17:18 GMT
-Received: from kadam (/41.57.98.10)
-        by default (Oracle Beehive Gateway v4.0)
-        with ESMTP ; Tue, 22 Sep 2020 02:17:17 -0700
-Date:   Tue, 22 Sep 2020 12:17:09 +0300
-From:   Dan Carpenter <dan.carpenter@oracle.com>
-To:     Shubhrajyoti Datta <shubhrajyoti.datta@xilinx.com>
-Cc:     linux-clk@vger.kernel.org, devel@driverdev.osuosl.org,
-        devicetree@vger.kernel.org, sboyd@kernel.org,
-        gregkh@linuxfoundation.org, mturquette@baylibre.com,
-        linux-kernel@vger.kernel.org, robh+dt@kernel.org
-Subject: Re: [PATCH v6 5/8] clk: clock-wizard: Add support for fractional
- support
-Message-ID: <20200922091709.GD4282@kadam>
-References: <1598621996-31040-1-git-send-email-shubhrajyoti.datta@xilinx.com>
- <1598621996-31040-6-git-send-email-shubhrajyoti.datta@xilinx.com>
+        id S1726522AbgIVJXv (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Tue, 22 Sep 2020 05:23:51 -0400
+Received: from mickerik.phytec.de ([195.145.39.210]:46208 "EHLO
+        mickerik.phytec.de" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
+        with ESMTP id S1726526AbgIVJXv (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Tue, 22 Sep 2020 05:23:51 -0400
+DKIM-Signature: v=1; a=rsa-sha256; d=phytec.de; s=a1; c=relaxed/simple;
+        q=dns/txt; i=@phytec.de; t=1600766629; x=1603358629;
+        h=From:Sender:Reply-To:Subject:Date:Message-Id:To:Cc:MIME-Version:Content-Type:
+        Content-Transfer-Encoding:Content-ID:Content-Description:Resent-Date:Resent-From:
+        Resent-Sender:Resent-To:Resent-Cc:Resent-Message-ID:In-Reply-To:References:List-Id:
+        List-Help:List-Unsubscribe:List-Subscribe:List-Post:List-Owner:List-Archive;
+        bh=Aq4vcr3xESEkrMVeRR0KW6dCG/T8nzviwz6tGgtY1nY=;
+        b=fq2Ee8N/Dx1tMmVBQQg1b1pSoI6JrQf1bXVlKvNoNuoVWlZDHB/7XyM5ONNqSybX
+        +nMrIr1sZHFzno/GVLiTB4FIrA8/02HCcaHvEbvTcmk67yciKhz1/Afp3pdiGTye
+        VxKp08qmEApUtDUqrggQ5SppQjmJZJCRvgQxPXsteAk=;
+X-AuditID: c39127d2-253ff70000001c25-a0-5f69c2a5941d
+Received: from idefix.phytec.de (Unknown_Domain [172.16.0.10])
+        by mickerik.phytec.de (PHYTEC Mail Gateway) with SMTP id DF.D6.07205.5A2C96F5; Tue, 22 Sep 2020 11:23:49 +0200 (CEST)
+Received: from lws-riedmueller.phytec.de ([172.16.23.108])
+          by idefix.phytec.de (IBM Domino Release 9.0.1FP7)
+          with ESMTP id 2020092211234895-473849 ;
+          Tue, 22 Sep 2020 11:23:48 +0200 
+From:   Stefan Riedmueller <s.riedmueller@phytec.de>
+To:     Shawn Guo <shawnguo@kernel.org>
+Cc:     Rob Herring <robh@kernel.org>, devicetree@vger.kernel.org,
+        linux-arm-kernel@lists.infradead.org,
+        Sascha Hauer <s.hauer@pengutronix.de>,
+        Fabio Estevam <festevam@gmail.com>,
+        Stefan Riedmueller <s.riedmueller@phytec.de>
+Subject: [PATCH 1/6] ARM: dts: imx6ul: segin: Fix stmpe touchscreen subnode name
+Date:   Tue, 22 Sep 2020 11:23:08 +0200
+Message-Id: <20200922092313.151293-1-s.riedmueller@phytec.de>
+X-Mailer: git-send-email 2.25.1
 MIME-Version: 1.0
-Content-Type: text/plain; charset=us-ascii
-Content-Disposition: inline
-In-Reply-To: <1598621996-31040-6-git-send-email-shubhrajyoti.datta@xilinx.com>
-User-Agent: Mutt/1.9.4 (2018-02-28)
-X-Proofpoint-Virus-Version: vendor=nai engine=6000 definitions=9751 signatures=668679
-X-Proofpoint-Spam-Details: rule=notspam policy=default score=0 spamscore=0 phishscore=0 malwarescore=0
- mlxscore=0 suspectscore=0 adultscore=0 mlxlogscore=999 bulkscore=0
- classifier=spam adjust=0 reason=mlx scancount=1 engine=8.12.0-2006250000
- definitions=main-2009220078
-X-Proofpoint-Virus-Version: vendor=nai engine=6000 definitions=9751 signatures=668679
-X-Proofpoint-Spam-Details: rule=notspam policy=default score=0 spamscore=0 impostorscore=0
- clxscore=1011 suspectscore=0 phishscore=0 malwarescore=0
- priorityscore=1501 mlxlogscore=999 adultscore=0 bulkscore=0 mlxscore=0
- lowpriorityscore=0 classifier=spam adjust=0 reason=mlx scancount=1
- engine=8.12.0-2006250000 definitions=main-2009220078
+X-MIMETrack: Itemize by SMTP Server on Idefix/Phytec(Release 9.0.1FP7|August  17, 2016) at
+ 22.09.2020 11:23:49,
+        Serialize by Router on Idefix/Phytec(Release 9.0.1FP7|August  17, 2016) at
+ 22.09.2020 11:23:49
+X-TNEFEvaluated: 1
+Content-Transfer-Encoding: quoted-printable
+X-Brightmail-Tracker: H4sIAAAAAAAAA+NgFlrALMWRmVeSWpSXmKPExsWyRoCBS3fpocx4gyvdghbzj5xjtXh41d9i
+        0+NrrBb/9+xgt/i7fROLxYst4g5sHjtn3WX32LSqk81j85J6j/6/Bh6fN8kFsEZx2aSk5mSW
+        pRbp2yVwZWx52sZa0MlWsWX/E6YGxn7WLkZODgkBE4k/83+wdDFycQgJbGOU+LN6FTOEc41R
+        Ylb7BmaQKjYBI4kF0xqZQGwRAWWJUxv72EGKmAXuMEqsXX6LDSQhLBAg8fbsUrCxLAKqEhN2
+        PQdr4BWwldiwuI8ZYp28xMxL39kh4oISJ2c+AVstIXAFaNCU++wQRUISpxefBWtgFtCWWLbw
+        NfMERr5ZSHpmIUktYGRaxSiUm5mcnVqUma1XkFFZkpqsl5K6iREYiocnql/awdg3x+MQIxMH
+        4yFGCQ5mJRFeNaP0eCHelMTKqtSi/Pii0pzU4kOM0hwsSuK8G3hLwoQE0hNLUrNTUwtSi2Cy
+        TBycUg2MYbbcT5fIZrBpKi13y50ddnPC1mfvD3u8FMgTcgkvutoWyBup17ko7F8Lw0Q++d+/
+        rC/47W/6tOLOA7c8HhfriiuLfmXMmlh367hdrJZA+vo9cmFtrfe7dLYs8pkvJT2R+ZtGPZeD
+        xR65eLfd1k//u9muPf10zxWFz6fPtIV+y6yuzj/55FmHEktxRqKhFnNRcSIA2UJVBjMCAAA=
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-On Fri, Aug 28, 2020 at 07:09:53PM +0530, Shubhrajyoti Datta wrote:
-> +
-> +	/* Check status register */
-> +	err= readl_poll_timeout(divider->base + WZRD_DR_STATUS_REG_OFFSET, value,
-> +				value & WZRD_DR_LOCK_BIT_MASK,
-> +				WZRD_USEC_POLL, WZRD_TIMEOUT_POLL);
+The touchscreen subnode name needs to be stmpe=5Ftouchscreen as mentioned
+in the dt-bindings.
 
-Checkpatch will catch the missing space in "err= readl_".
+Signed-off-by: Stefan Riedmueller <s.riedmueller@phytec.de>
+---
+ arch/arm/boot/dts/imx6ul-phytec-segin.dtsi | 2 +-
+ 1 file changed, 1 insertion(+), 1 deletion(-)
 
-regards,
-dan carpenter
+diff --git a/arch/arm/boot/dts/imx6ul-phytec-segin.dtsi b/arch/arm/boot/dts=
+/imx6ul-phytec-segin.dtsi
+index f1412df89173..2a3801e349b6 100644
+--- a/arch/arm/boot/dts/imx6ul-phytec-segin.dtsi
++++ b/arch/arm/boot/dts/imx6ul-phytec-segin.dtsi
+@@ -139,7 +139,7 @@ stmpe: touchscreen@44 {
+ 		pinctrl-0 =3D <&pinctrl=5Fstmpe>;
+ 		status =3D "disabled";
+=20
+-		touchscreen {
++		stmpe=5Ftouchscreen {
+ 			compatible =3D "st,stmpe-ts";
+ 			st,sample-time =3D <4>;
+ 			st,mod-12b =3D <1>;
+--=20
+2.25.1
 
