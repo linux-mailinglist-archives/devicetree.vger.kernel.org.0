@@ -2,87 +2,191 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from vger.kernel.org (vger.kernel.org [23.128.96.18])
-	by mail.lfdr.de (Postfix) with ESMTP id 95C59273E7B
-	for <lists+devicetree@lfdr.de>; Tue, 22 Sep 2020 11:24:22 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTP id 3B2DA273EDC
+	for <lists+devicetree@lfdr.de>; Tue, 22 Sep 2020 11:50:13 +0200 (CEST)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S1726565AbgIVJYW (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Tue, 22 Sep 2020 05:24:22 -0400
-Received: from mickerik.phytec.de ([195.145.39.210]:46222 "EHLO
-        mickerik.phytec.de" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S1726461AbgIVJYW (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Tue, 22 Sep 2020 05:24:22 -0400
-DKIM-Signature: v=1; a=rsa-sha256; d=phytec.de; s=a1; c=relaxed/simple;
-        q=dns/txt; i=@phytec.de; t=1600766660; x=1603358660;
-        h=From:Sender:Reply-To:Subject:Date:Message-Id:To:Cc:MIME-Version:Content-Type:
-        Content-Transfer-Encoding:Content-ID:Content-Description:Resent-Date:Resent-From:
-        Resent-Sender:Resent-To:Resent-Cc:Resent-Message-ID:In-Reply-To:References:List-Id:
-        List-Help:List-Unsubscribe:List-Subscribe:List-Post:List-Owner:List-Archive;
-        bh=8eyabsoA5jbWCxpDg5VUqeLw3S/6FPT1hhj7CQmsBFQ=;
-        b=kAmYbYNtKn0AHQ34FTp5OPb7Nk/EcgtHvRpB95akysfrbruvYCse6eJH64hVB18s
-        HOPQ8EUcoyaEb03jArcSj8Oex8d33TjKI/HWTfGiWYFOAjJvZCR3hz2FJnv+HhML
-        J6y91pQyQT+AoCHFXSq8rKviXtYLAwXS45m7XuGT77s=;
-X-AuditID: c39127d2-253ff70000001c25-a8-5f69c2c40264
-Received: from idefix.phytec.de (Unknown_Domain [172.16.0.10])
-        by mickerik.phytec.de (PHYTEC Mail Gateway) with SMTP id 52.E6.07205.4C2C96F5; Tue, 22 Sep 2020 11:24:20 +0200 (CEST)
-Received: from lws-riedmueller.phytec.de ([172.16.23.108])
-          by idefix.phytec.de (IBM Domino Release 9.0.1FP7)
-          with ESMTP id 2020092211242039-473856 ;
-          Tue, 22 Sep 2020 11:24:20 +0200 
-From:   Stefan Riedmueller <s.riedmueller@phytec.de>
-To:     Shawn Guo <shawnguo@kernel.org>
-Cc:     Rob Herring <robh@kernel.org>, devicetree@vger.kernel.org,
-        linux-arm-kernel@lists.infradead.org,
-        Sascha Hauer <s.hauer@pengutronix.de>,
-        Fabio Estevam <festevam@gmail.com>,
-        Stefan Riedmueller <s.riedmueller@phytec.de>
-Subject: [PATCH 6/6] ARM: dts: imx6ul: segin: peb-av-02: Mark stmpe touch as wakeup-source
-Date:   Tue, 22 Sep 2020 11:23:13 +0200
-Message-Id: <20200922092313.151293-6-s.riedmueller@phytec.de>
-X-Mailer: git-send-email 2.25.1
-In-Reply-To: <20200922092313.151293-1-s.riedmueller@phytec.de>
-References: <20200922092313.151293-1-s.riedmueller@phytec.de>
+        id S1726422AbgIVJuM (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Tue, 22 Sep 2020 05:50:12 -0400
+Received: from gofer.mess.org ([88.97.38.141]:59549 "EHLO gofer.mess.org"
+        rhost-flags-OK-OK-OK-OK) by vger.kernel.org with ESMTP
+        id S1726341AbgIVJuM (ORCPT <rfc822;devicetree@vger.kernel.org>);
+        Tue, 22 Sep 2020 05:50:12 -0400
+X-Greylist: delayed 493 seconds by postgrey-1.27 at vger.kernel.org; Tue, 22 Sep 2020 05:50:11 EDT
+Received: by gofer.mess.org (Postfix, from userid 1000)
+        id A0C4B11A001; Tue, 22 Sep 2020 10:41:57 +0100 (BST)
+Date:   Tue, 22 Sep 2020 10:41:57 +0100
+From:   Sean Young <sean@mess.org>
+To:     Joakim Zhang <qiangqing.zhang@nxp.com>
+Cc:     mchehab@kernel.org, robh+dt@kernel.org,
+        linux-media@vger.kernel.org, devicetree@vger.kernel.org,
+        linux-kernel@vger.kernel.org, linux-imx@nxp.com
+Subject: Re: [PATCH V2 2/2] media: rc: gpio-ir-recv: add QoS support for
+ cpuidle system
+Message-ID: <20200922094157.GA14307@gofer.mess.org>
+References: <20200918181717.24056-1-qiangqing.zhang@nxp.com>
+ <20200918181717.24056-3-qiangqing.zhang@nxp.com>
 MIME-Version: 1.0
-X-MIMETrack: Itemize by SMTP Server on Idefix/Phytec(Release 9.0.1FP7|August  17, 2016) at
- 22.09.2020 11:24:20,
-        Serialize by Router on Idefix/Phytec(Release 9.0.1FP7|August  17, 2016) at
- 22.09.2020 11:24:20
-X-TNEFEvaluated: 1
-Content-Transfer-Encoding: quoted-printable
-X-Brightmail-Tracker: H4sIAAAAAAAAA+NgFtrBLMWRmVeSWpSXmKPExsWyRoCBS/fIocx4g38PNSzmHznHavHwqr/F
-        psfXWC3+79nBbvF3+yYWixdbxB3YPHbOusvusWlVJ5vH5iX1Hv1/DTw+b5ILYI3isklJzcks
-        Sy3St0vgyvh1p4W1oIWtYuGX08wNjLNYuxg5OSQETCSenP7C3MXIxSEksI1RYuvLDUwQzjVG
-        iS9Nm9hAqtgEjCQWTGtkArFFBJQlTm3sYwcpYha4wyixdvktsCJhgSiJJ5desYPYLAKqEq3L
-        joLFeQVsJT7vbWaEWCcvMfPSd7AaTgE7iWXnJ4LFhYBq1l6ZAlUvKHFy5hMWkAUSAlcYJZ4d
-        /sUE0SwkcXrxWWYQm1lAW2LZwtfMExgFZiHpmYUktYCRaRWjUG5mcnZqUWa2XkFGZUlqsl5K
-        6iZGYOgenqh+aQdj3xyPQ4xMHIyHGCU4mJVEeNWM0uOFeFMSK6tSi/Lji0pzUosPMUpzsCiJ
-        827gLQkTEkhPLEnNTk0tSC2CyTJxcEo1MOq/4EuREeP/eqLEukU5KjJ3r+bHZ4uPZLyQv/l5
-        hsCi/PsWm7aIn9c3nX7q1v6zKr4Sy9pmV1x4yz7h29I3nYaOn7L4biY/Vm5LuHPp7LeZW7TZ
-        H91RPepxutO/yGOJ+vcbnttYL7JXJ9qJ/S1qXfTqalwZV+7xnK+3eSJSZsdZF/0K4F0kf0+J
-        pTgj0VCLuag4EQDUbvr1SwIAAA==
+Content-Type: text/plain; charset=us-ascii
+Content-Disposition: inline
+In-Reply-To: <20200918181717.24056-3-qiangqing.zhang@nxp.com>
+User-Agent: Mutt/1.10.1 (2018-07-13)
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-Mark the STMPE resistive touch controller as a wakeup-source.
+Hi Joakim,
 
-Signed-off-by: Stefan Riedmueller <s.riedmueller@phytec.de>
----
- arch/arm/boot/dts/imx6ul-phytec-segin-peb-av-02.dtsi | 1 +
- 1 file changed, 1 insertion(+)
+Thanks for your updated patch.
 
-diff --git a/arch/arm/boot/dts/imx6ul-phytec-segin-peb-av-02.dtsi b/arch/ar=
-m/boot/dts/imx6ul-phytec-segin-peb-av-02.dtsi
-index 86898546627c..610b778c753a 100644
---- a/arch/arm/boot/dts/imx6ul-phytec-segin-peb-av-02.dtsi
-+++ b/arch/arm/boot/dts/imx6ul-phytec-segin-peb-av-02.dtsi
-@@ -70,6 +70,7 @@ stmpe: touchscreen@44 {
- 		pinctrl-0 =3D <&pinctrl=5Fstmpe>;
- 		interrupts =3D <3 IRQ=5FTYPE=5FLEVEL=5FLOW>;
- 		interrupt-parent =3D <&gpio5>;
-+		wakeup-source;
- 		status =3D "disabled";
-=20
- 		stmpe=5Ftouchscreen {
---=20
-2.25.1
+On Sat, Sep 19, 2020 at 02:17:17AM +0800, Joakim Zhang wrote:
+> GPIO IR receive is much rely on interrupt response, uneven interrupt
+> latency will lead to incorrect timing, so the decoder fails to decode
+> it. The issue is particularly acute on some systems which support
+> cpuidle, not all, dynamically disable and enable cpuidle can solve this
+> problem to a great extent.
+> 
+> However, there is a downside to this approach, the measurement of header
+> on the first frame may incorrect. Test on i.MX8M serials, when enable
+> cpuidle, interrupt latency could be about 500us.
+> 
+> With this patch:
+> 1. has no side effect on non-cpuidle system.
+> 2. latency is still much longer for the first gpio interrupt on cpuidle
+> system, so the first frame may not be decoded. Generally, RC would transmit
+> multiple frames at once press, we can sacrifice the first frame.
+> 3. add "linux,autosuspend-period" property in device tree if you also
+> suffer this cpuidle issue.
+> 
+> Signed-off-by: Joakim Zhang <qiangqing.zhang@nxp.com>
+> ---
+> ChangeLogs:
+> V1->V2:
+> 	* set autosuspend delay time via device tree.
+> ---
+>  drivers/media/rc/gpio-ir-recv.c | 50 +++++++++++++++++++++++++++++++++
+>  1 file changed, 50 insertions(+)
+> 
+> diff --git a/drivers/media/rc/gpio-ir-recv.c b/drivers/media/rc/gpio-ir-recv.c
+> index a20413008c3c..63cf8290eb19 100644
+> --- a/drivers/media/rc/gpio-ir-recv.c
+> +++ b/drivers/media/rc/gpio-ir-recv.c
+> @@ -11,6 +11,8 @@
+>  #include <linux/of.h>
+>  #include <linux/of_gpio.h>
+>  #include <linux/platform_device.h>
+> +#include <linux/pm_runtime.h>
+> +#include <linux/pm_qos.h>
+>  #include <linux/irq.h>
+>  #include <media/rc-core.h>
+>  
+> @@ -20,17 +22,35 @@ struct gpio_rc_dev {
+>  	struct rc_dev *rcdev;
+>  	struct gpio_desc *gpiod;
+>  	int irq;
+> +	struct device *dev;
+> +	struct pm_qos_request qos;
+>  };
+>  
+>  static irqreturn_t gpio_ir_recv_irq(int irq, void *dev_id)
+>  {
+>  	int val;
+>  	struct gpio_rc_dev *gpio_dev = dev_id;
+> +	struct device *dev = gpio_dev->dev;
+> +
+> +	/*
+> +	 * For some cpuidle systems, not all:
+> +	 * Respond to interrupt taking more latency when cpu in idle.
+> +	 * Invoke asynchronous pm runtime get from interrupt context,
+> +	 * this may introduce a millisecond delay to call resume callback,
+> +	 * where to disable cpuilde.
+> +	 *
+> +	 * Two issues lead to fail to decode first frame, one is latency to
+> +	 * respond to interrupt, another is delay introduced by async api.
+> +	 */
+> +	pm_runtime_get(dev);
+>  
+>  	val = gpiod_get_value(gpio_dev->gpiod);
+>  	if (val >= 0)
+>  		ir_raw_event_store_edge(gpio_dev->rcdev, val == 1);
+>  
+> +	pm_runtime_mark_last_busy(dev);
+> +	pm_runtime_put_autosuspend(dev);
+> +
 
+I've dusted off my rpi and tried to see if it fails with cpuidle enabled.
+As far as I can see, it always works fine. So, my only concern is that
+there is a bunch of pm busy work done here for devices that do not need it,
+including spinlocks, ktime. etc.
+
+You could rename the dev field of gpio_rc_dev to pmdev and only do this
+work if pm_dev != NULL. Or some other mechanism of doing this work
+conditionally.
+
+Having said that I'm not entirely sure this will make much of a difference.
+
+>  	return IRQ_HANDLED;
+>  }
+>  
+> @@ -40,6 +60,7 @@ static int gpio_ir_recv_probe(struct platform_device *pdev)
+>  	struct device_node *np = dev->of_node;
+>  	struct gpio_rc_dev *gpio_dev;
+>  	struct rc_dev *rcdev;
+> +	u32 period = 0;
+>  	int rc;
+>  
+>  	if (!np)
+> @@ -83,6 +104,7 @@ static int gpio_ir_recv_probe(struct platform_device *pdev)
+>  		rcdev->map_name = RC_MAP_EMPTY;
+>  
+>  	gpio_dev->rcdev = rcdev;
+> +	gpio_dev->dev = dev;
+>  
+>  	rc = devm_rc_register_device(dev, rcdev);
+>  	if (rc < 0) {
+> @@ -90,6 +112,14 @@ static int gpio_ir_recv_probe(struct platform_device *pdev)
+>  		return rc;
+>  	}
+>  
+> +	of_property_read_u32(np, "linux,autosuspend-period", &period);
+> +	if (period) {
+> +		pm_runtime_set_autosuspend_delay(dev, period);
+> +		pm_runtime_use_autosuspend(dev);
+> +		pm_runtime_set_suspended(dev);
+> +		pm_runtime_enable(dev);
+> +	}
+> +
+>  	platform_set_drvdata(pdev, gpio_dev);
+>  
+>  	return devm_request_irq(dev, gpio_dev->irq, gpio_ir_recv_irq,
+> @@ -122,9 +152,29 @@ static int gpio_ir_recv_resume(struct device *dev)
+>  	return 0;
+>  }
+>  
+> +static int gpio_ir_recv_runtime_suspend(struct device *dev)
+> +{
+> +	struct gpio_rc_dev *gpio_dev = dev_get_drvdata(dev);
+> +
+> +	cpu_latency_qos_remove_request(&gpio_dev->qos);
+> +
+> +	return 0;
+> +}
+> +
+> +static int gpio_ir_recv_runtime_resume(struct device *dev)
+> +{
+> +	struct gpio_rc_dev *gpio_dev = dev_get_drvdata(dev);
+> +
+> +	cpu_latency_qos_add_request(&gpio_dev->qos, 0);
+> +
+> +	return 0;
+> +}
+> +
+>  static const struct dev_pm_ops gpio_ir_recv_pm_ops = {
+>  	.suspend        = gpio_ir_recv_suspend,
+>  	.resume         = gpio_ir_recv_resume,
+> +	.runtime_suspend = gpio_ir_recv_runtime_suspend,
+> +	.runtime_resume  = gpio_ir_recv_runtime_resume,
+>  };
+>  #endif
+>  
+> -- 
+> 2.17.1
