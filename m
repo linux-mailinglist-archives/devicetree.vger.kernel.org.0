@@ -2,286 +2,182 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from vger.kernel.org (vger.kernel.org [23.128.96.18])
-	by mail.lfdr.de (Postfix) with ESMTP id 883DE27469A
-	for <lists+devicetree@lfdr.de>; Tue, 22 Sep 2020 18:26:43 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTP id 40CE92746E8
+	for <lists+devicetree@lfdr.de>; Tue, 22 Sep 2020 18:45:34 +0200 (CEST)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S1726566AbgIVQ0n (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Tue, 22 Sep 2020 12:26:43 -0400
-Received: from mail-eopbgr760084.outbound.protection.outlook.com ([40.107.76.84]:4871
-        "EHLO NAM02-CY1-obe.outbound.protection.outlook.com"
+        id S1726631AbgIVQpd (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Tue, 22 Sep 2020 12:45:33 -0400
+Received: from mail-eopbgr140088.outbound.protection.outlook.com ([40.107.14.88]:45216
+        "EHLO EUR01-VE1-obe.outbound.protection.outlook.com"
         rhost-flags-OK-OK-OK-FAIL) by vger.kernel.org with ESMTP
-        id S1726526AbgIVQ0m (ORCPT <rfc822;devicetree@vger.kernel.org>);
-        Tue, 22 Sep 2020 12:26:42 -0400
+        id S1726526AbgIVQpc (ORCPT <rfc822;devicetree@vger.kernel.org>);
+        Tue, 22 Sep 2020 12:45:32 -0400
 ARC-Seal: i=1; a=rsa-sha256; s=arcselector9901; d=microsoft.com; cv=none;
- b=RpD9G7Y0tyhJ3z3wmViirY63HmLAAiHqwCAZ/z+tu+fpdbGaOo6aO5FigwC49qW+zvbGPebVQZGVTTPZl92Jr+lH3Dhn3sumj/Sgci82m6k08LREG4v9Tj11v+7Yeo0L96P+NHl+IuaUSMgwtvwIpHNMdHduGiCtlNb7BHEOPzJ3YPwbZPW7jJtrwOihUqIV20f/jvHCtcHwRFavRpzJH27FktLSGmeHB6xUtVKjfEjEmqwZZGvkFLw0lBkwqz7PTRk+5qOn5RkD+h5mp1ur489dql6UPzOwZ4h5ZEqdzZ5CdE3QCor7p971rH/mJjQHs1xGXWO6Nfvu+r27bUMdGw==
+ b=fEDDviSCf5vcpDiao1MptCUJVGRsM5RQYuUTRlGMOmN9dsjBMUjBsZRTRKORx15/2455QRjf0H99HQC9JLtR7vpei73HXlMhwX7X2b3iqoFYsamfwGutaRzBnlK6LqTa+YmVquceN1mW/VBip8OJPXXWqcPDqtUm6FZpUIElx5Soy5QkMXGZ3cto7+ChoELWK1NFLRvmvyXSuTaXrc8/0RBfdu1sU8ljUv9EX6BXHiufb02KG78OB3fWPv9xYplHiOeTg2HGfERE7Z4Pu7L9tmZhfiHjG8nYFOI+iMLcBnkKKR2uvcfGRw48oEwi7AHFUeLIUciIf0MxswQpV1ddvA==
 ARC-Message-Signature: i=1; a=rsa-sha256; c=relaxed/relaxed; d=microsoft.com;
  s=arcselector9901;
  h=From:Date:Subject:Message-ID:Content-Type:MIME-Version:X-MS-Exchange-SenderADCheck;
- bh=JaLLL6vWVzpXuO/YauJAYNbzOfqa7e1t4rkEL6LrmCc=;
- b=PYadQI2vPiz7XfXRmVJvCJJXIi35/c0NX945xNilgw711etYSD2a4tb6aRGGAaYg5E8ZZWKuycvFugdoP6hVRgww9PiR2CWUH9g12qaeFFeu2ndbxkMh5uf6FE11kt5+iJAT0qekJuhw38x1h7vc3XCXJhaHJyIaFpxXDz6CqLqcAutph0QJPYtMz7xejpdLKRwPywDEOGEBsmiIN+It6l35bNW5CZ6lISsWzyIjn2h6mBk38+/tb2myXtdSNzPYWXzpEQvezLMYwOawvRZiqGzqOqgbMbtsbv61nLtl0Xxb9u7yDgaSUV1c1IWcbM2TLiO0IKxHNT1Mnj9r+IZ/ug==
+ bh=5k/Ce4fawZvBefn4z/9bQqmox5DD07y95dDe3feHoCk=;
+ b=bc64gZMn3CvMoaKEvEk5lEMx0eJIL2WdDUvCJeIKhw8NtQZqDF6rEygy21O4+Iues1iMoYZSJib7iqqtOkJkRPqXnmSQKx+CtSs6fVL8FAH2ZUBXnJJ5vbpYVzdmQeqW2J+aRSjyCjvH49yQ84rz7cUhAcsrSzIb9R/bVxLMvD3ZQOXiG8/++EGTg6ujhpoIABFXoaFYxU7lF3VYA2ufh248EXHDwc9kdPWu13xF0bBFLpr9wIViuI394nd0UYEqzbtj4Do0mZLBRMelHaoPpnltDquJiZVZZZ661wDuIB4RERbXNIRmCzlyB70nAvc9pKzfYMltdVY/lATEFYUGHA==
 ARC-Authentication-Results: i=1; mx.microsoft.com 1; spf=pass
- smtp.mailfrom=xilinx.com; dmarc=pass action=none header.from=xilinx.com;
- dkim=pass header.d=xilinx.com; arc=none
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
- d=xilinx.onmicrosoft.com; s=selector2-xilinx-onmicrosoft-com;
+ smtp.mailfrom=nxp.com; dmarc=pass action=none header.from=nxp.com; dkim=pass
+ header.d=nxp.com; arc=none
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=nxp.com; s=selector2;
  h=From:Date:Subject:Message-ID:Content-Type:MIME-Version:X-MS-Exchange-SenderADCheck;
- bh=JaLLL6vWVzpXuO/YauJAYNbzOfqa7e1t4rkEL6LrmCc=;
- b=kedWL/zXQWuaZVqs6O2j0ak4SlQvAS5OoNeS1T3U0HeozvUho3MM6xhBl67kzmzrwXXYAR6PWegHHKAci2Em798sJJ0DQRYLou3sw2dNEAV/mYqA3AQWlADqnHQLB5ls3mAZr88nOxhN6EFl7Q6ix4HD1RKDCZ7rRZaY+T9ejWc=
-Received: from BYAPR02MB4407.namprd02.prod.outlook.com (2603:10b6:a03:55::31)
- by BYAPR02MB5832.namprd02.prod.outlook.com (2603:10b6:a03:123::30) with
+ bh=5k/Ce4fawZvBefn4z/9bQqmox5DD07y95dDe3feHoCk=;
+ b=cjJW3Rhx4BgjV6S+pHyLrpI9JcbzIf/I3Z09SV1a4u9hesJ87DvnGMgT4SRe0qJAeLR/HEJfcRwQmqh+iU+FhBZi/TSkHBDn+lCMaAIRjVTbwzw947tgxFa9F9tzNl0r5qJHVMPRDn5WJSAOJwVQrenfuk+n11A4tE/iSh8H35E=
+Received: from VE1PR04MB6528.eurprd04.prod.outlook.com (2603:10a6:803:127::18)
+ by VI1PR04MB6912.eurprd04.prod.outlook.com (2603:10a6:803:134::12) with
  Microsoft SMTP Server (version=TLS1_2,
- cipher=TLS_ECDHE_RSA_WITH_AES_256_GCM_SHA384) id 15.20.3391.11; Tue, 22 Sep
- 2020 16:26:38 +0000
-Received: from BYAPR02MB4407.namprd02.prod.outlook.com
- ([fe80::b0f6:b3a:6543:26f5]) by BYAPR02MB4407.namprd02.prod.outlook.com
- ([fe80::b0f6:b3a:6543:26f5%5]) with mapi id 15.20.3391.026; Tue, 22 Sep 2020
- 16:26:38 +0000
-From:   Ben Levinsky <BLEVINSK@xilinx.com>
-To:     Michael Auchter <michael.auchter@ni.com>
-CC:     "sunnyliangjy@gmail.com" <sunnyliangjy@gmail.com>,
-        "punit1.agrawal@toshiba.co.jp" <punit1.agrawal@toshiba.co.jp>,
-        Stefano Stabellini <stefanos@xilinx.com>,
-        Michal Simek <michals@xilinx.com>,
+ cipher=TLS_ECDHE_RSA_WITH_AES_256_GCM_SHA384) id 15.20.3391.14; Tue, 22 Sep
+ 2020 16:45:28 +0000
+Received: from VE1PR04MB6528.eurprd04.prod.outlook.com
+ ([fe80::acd3:d354:3f34:3af7]) by VE1PR04MB6528.eurprd04.prod.outlook.com
+ ([fe80::acd3:d354:3f34:3af7%4]) with mapi id 15.20.3391.025; Tue, 22 Sep 2020
+ 16:45:28 +0000
+From:   Jun Li <jun.li@nxp.com>
+To:     Krzysztof Kozlowski <krzk@kernel.org>
+CC:     "robh+dt@kernel.org" <robh+dt@kernel.org>,
+        "shawnguo@kernel.org" <shawnguo@kernel.org>,
+        "balbi@kernel.org" <balbi@kernel.org>,
+        "mathias.nyman@intel.com" <mathias.nyman@intel.com>,
+        "gregkh@linuxfoundation.org" <gregkh@linuxfoundation.org>,
+        "s.hauer@pengutronix.de" <s.hauer@pengutronix.de>,
+        "kernel@pengutronix.de" <kernel@pengutronix.de>,
+        "festevam@gmail.com" <festevam@gmail.com>,
+        dl-linux-imx <linux-imx@nxp.com>,
+        Anson Huang <anson.huang@nxp.com>,
+        Aisheng Dong <aisheng.dong@nxp.com>,
+        Peng Fan <peng.fan@nxp.com>, Andy Duan <fugang.duan@nxp.com>,
+        Joakim Zhang <qiangqing.zhang@nxp.com>,
+        Horia Geanta <horia.geanta@nxp.com>,
+        "linux-usb@vger.kernel.org" <linux-usb@vger.kernel.org>,
         "devicetree@vger.kernel.org" <devicetree@vger.kernel.org>,
-        "mathieu.poirier@linaro.org" <mathieu.poirier@linaro.org>,
-        "Ed T. Mooring" <emooring@xilinx.com>,
-        "linux-remoteproc@vger.kernel.org" <linux-remoteproc@vger.kernel.org>,
-        "linux-kernel@vger.kernel.org" <linux-kernel@vger.kernel.org>,
-        "robh+dt@kernel.org" <robh+dt@kernel.org>,
         "linux-arm-kernel@lists.infradead.org" 
-        <linux-arm-kernel@lists.infradead.org>,
-        Jiaying Liang <jliang@xilinx.com>,
-        Michal Simek <michals@xilinx.com>,
-        "Ed T. Mooring" <emooring@xilinx.com>, Jason Wu <j.wu@xilinx.com>
-Subject: RE: [PATCH v15 5/5] remoteproc: Add initial zynqmp R5 remoteproc
- driver
-Thread-Topic: [PATCH v15 5/5] remoteproc: Add initial zynqmp R5 remoteproc
- driver
-Thread-Index: AQHWkDJngWvzltWQj0Sewo+kA395+KlzqBYAgAEgZiA=
-Date:   Tue, 22 Sep 2020 16:26:38 +0000
-Message-ID: <BYAPR02MB440714F437CB532171B9667EB53B0@BYAPR02MB4407.namprd02.prod.outlook.com>
-References: <20200921161406.11929-1-ben.levinsky@xilinx.com>
- <20200921161406.11929-6-ben.levinsky@xilinx.com>
- <20200921221206.GA296714@xaphan>
-In-Reply-To: <20200921221206.GA296714@xaphan>
-Accept-Language: en-US
+        <linux-arm-kernel@lists.infradead.org>
+Subject: RE: [PATCH v3 3/6] dt-bindings: usb: dwc3-imx8mp: add imx8mp dwc3
+ glue bindings
+Thread-Topic: [PATCH v3 3/6] dt-bindings: usb: dwc3-imx8mp: add imx8mp dwc3
+ glue bindings
+Thread-Index: AQHWkM68nvZd4rCY+0GwyWqImRmfDKl0uNoAgAAkU9A=
+Date:   Tue, 22 Sep 2020 16:45:27 +0000
+Message-ID: <VE1PR04MB6528C9AF51263B92EA687BEB893B0@VE1PR04MB6528.eurprd04.prod.outlook.com>
+References: <1600771612-30727-1-git-send-email-jun.li@nxp.com>
+ <1600771612-30727-4-git-send-email-jun.li@nxp.com>
+ <CAJKOXPfocQZY-5Xmn5q=oetmS1doe0zXsQH=uXx0+CxGaESgUg@mail.gmail.com>
+In-Reply-To: <CAJKOXPfocQZY-5Xmn5q=oetmS1doe0zXsQH=uXx0+CxGaESgUg@mail.gmail.com>
+Accept-Language: zh-CN, en-US
 Content-Language: en-US
 X-MS-Has-Attach: 
-X-Auto-Response-Suppress: DR, RN, NRN, OOF, AutoReply
 X-MS-TNEF-Correlator: 
-authentication-results: ni.com; dkim=none (message not signed)
- header.d=none;ni.com; dmarc=none action=none header.from=xilinx.com;
-x-originating-ip: [149.199.62.133]
+authentication-results: kernel.org; dkim=none (message not signed)
+ header.d=none;kernel.org; dmarc=none action=none header.from=nxp.com;
+x-originating-ip: [119.31.174.71]
 x-ms-publictraffictype: Email
 x-ms-office365-filtering-ht: Tenant
-x-ms-office365-filtering-correlation-id: c28f67be-f652-4f5b-86d8-08d85f144810
-x-ms-traffictypediagnostic: BYAPR02MB5832:
+x-ms-office365-filtering-correlation-id: d3b8efc6-d5ff-4160-9227-08d85f16e941
+x-ms-traffictypediagnostic: VI1PR04MB6912:
 x-ms-exchange-transport-forked: True
-x-microsoft-antispam-prvs: <BYAPR02MB5832779E84AF681AC43062C1B53B0@BYAPR02MB5832.namprd02.prod.outlook.com>
-x-ms-oob-tlc-oobclassifiers: OLM:2331;
+x-microsoft-antispam-prvs: <VI1PR04MB6912E72080A0831772F5EF02893B0@VI1PR04MB6912.eurprd04.prod.outlook.com>
+x-ms-oob-tlc-oobclassifiers: OLM:8882;
 x-ms-exchange-senderadcheck: 1
 x-microsoft-antispam: BCL:0;
-x-microsoft-antispam-message-info: JyeguAXj5qP1Dx8xq1lq8Aiww7POFz5eOloFhteHj6+Vkm8+KkTzf4v46xVFR/aImT5x8QkOAdUifXmLhaAyqW9YGjPdkTsge/efr6OAGaGMv5NpMNFGQ2cNJpMuMZRkHV/Y3GOFLHZs/tSrbVCY6tQ7CDed8kTzZqdm8DWpM7mUWvy9KCQO7T/i3RId5pDNt8lDvMg8IPLS2tTRDcFVDHwxFxXT317pdKo16vo1eE/TuS1vQ7siT5qI4xEZr74+zCOOlcqsepWmf/x6GrOH7kDrszlLTHZ4jfaeKragqYeGjj0Tkqj+cPpi6Esz4cNYBnLi6l5y0AKAfTMISHsQiTAniH3QVz+4cdonSjFe6ciHtt1TPXFi63AtSVo40Dmkh3LIVsGOgQWA4+YXFTkV0yUCpdvcxzzCIeH8Z0aa8X1IyGWTgD1c4ueb9njtZnXK1aqtTZeb6kmYdyBjevf4Zw==
-x-forefront-antispam-report: CIP:255.255.255.255;CTRY:;LANG:en;SCL:1;SRV:;IPV:NLI;SFV:NSPM;H:BYAPR02MB4407.namprd02.prod.outlook.com;PTR:;CAT:NONE;SFS:(396003)(346002)(136003)(376002)(39850400004)(366004)(66946007)(83380400001)(966005)(6916009)(54906003)(2906002)(9686003)(316002)(33656002)(52536014)(55016002)(66476007)(71200400001)(5660300002)(7696005)(76116006)(478600001)(8936002)(66446008)(64756008)(66556008)(4326008)(6506007)(53546011)(8676002)(186003)(107886003)(86362001)(26005);DIR:OUT;SFP:1101;
-x-ms-exchange-antispam-messagedata: X/TG42aijFpSLdNkVOVB/tf3MAMhHlQtOrAt1zGSzHWS92QQcaJsZN0OTe5c0UuZBiG/QxFMR7IhGP0OqgElmCIet296sERnxowk0t0PkELwAWYeJkPaqjm+leZFaUq9DKq4kryFoHcEgXc1dAjYofwAOHAwOCOaiQRW9rV7LskPdCi0iT36iNzBf6PwoLwJEcZToD2TQgVAqXMJjUBHJc3j3051ByQIBHKkRYUhOiJXiYdysUkWZpPdeoG48qBWss4FB4FZ72XADs1zphyB7FDZM1/lD7sQfhV0SiQ/MB+abi+0WfMqFpwG9IKzDQL0enSiKZEsijMSxPSs4pQySbpv63gbh2YFI+KK1SPl/9hesD8d0D9SHmynHp6IjQCqGrNT4qqN7IeFZPGdqkmudXr9UIFGIzF8XR1M5k+KDCHCQS5nPYvLHoX5NPFIoczSQG2xgQEnIh1CLoGQPFKJqnGOinOW9VbUA6nG601X77o4qS7NXgS2nN+1wlsx8q83MHsO+XMLfaELkU09bIbFTU8hureXDb66cY6jOG1nGna2yUeNVtUJj45MnPDO3Fw/61wzK2QoSIZUdrBJtECRPFudC9rpYHVHVhfUEDxU8vwYfoQYxXrQ8cQrx0xM2lF0tBhBlyLsP4Cpf9wuuUGEag==
-Content-Type: text/plain; charset="us-ascii"
-Content-Transfer-Encoding: quoted-printable
+x-microsoft-antispam-message-info: 5SiRtEega4xENeyMxvbmQHaPMPnE5xkUUK726lUdgNODOFSMnkxGACzS+402ryCcuaZz7ZJ+RAgbEaQei9gvM/GcTsb6D1DyUYRZhXmkLGEjmc3N6sBsrJGk4WYZDL6+3BKqAIYuUaI/xkoGXP22oVaiG2hEdWe7U5XyEXwY6fykLjkoyDI2LHUk6VjNAVyEccCR2E1sgDNKxwnxEDJBnPbkjPnFNDhfXxFNpud24pas3aKYfnthvCJID+sZ99WDSYgf445gw9ND8bHws5ieRBPcRpzKxpN3k54rsrb0jfgKz9ntKjfuj9hrsYuER4E3HBOecxj/0DEakzZT7C8XldH1O8do3ziZc1UBO+iR/1b1/Yahzbo+t06vJ46ABuJuVuLi3e/tOt15U6dwxIJD0HxMW6H7LY/R5tCcdWqzbnT0lI4W4KO2+AYBvCAsrS16X0LnRcnZpydQsMAGpfusZQ==
+x-forefront-antispam-report: CIP:255.255.255.255;CTRY:;LANG:en;SCL:1;SRV:;IPV:NLI;SFV:NSPM;H:VE1PR04MB6528.eurprd04.prod.outlook.com;PTR:;CAT:NONE;SFS:(4636009)(346002)(136003)(366004)(376002)(39860400002)(396003)(8936002)(66476007)(66556008)(64756008)(66446008)(5660300002)(8676002)(45080400002)(66946007)(7696005)(83380400001)(76116006)(33656002)(2906002)(478600001)(6916009)(52536014)(316002)(4326008)(9686003)(186003)(53546011)(55016002)(71200400001)(6506007)(54906003)(44832011)(86362001)(83080400001)(26005)(7416002)(32563001);DIR:OUT;SFP:1101;
+x-ms-exchange-antispam-messagedata: RW+bKcCYv3Mr+0qYGF+W0pIYqPucOThp9NOoEzJaCDjnp+x4avJ9hPQhMoM0FIfmbmDi2KJ2GcpBcUMtsuNNejlS8nua7zqVui6BoorGNs16DCvTZlI56d0MHMOz8V3YLIilVkQeiNlHKhjjvrexlzJwe0HqMknhTUzq9aaY9zOKXvPRpLwEz0EaC24gmjhvdOhut37uW6e9ouy7baOzAMn2vM+8FAEWR+y7CzF8xt42SR2dpGIDdiTZG01wAm8xLXb/UtZ9YjlYX7GtdfZAL/lnaocICmNEYPqZxeauUVcZE1r7/w3C1POUQC2wPoUwUlQvQ+t36BOUvQkDHCE4zL6EC0V9vTe2oxMgBdH1XD0cBlVvoW7MBsvsJrDkDiZj8gLklVuw28DNndFVXGEJyIrytu69oEF+tpepn2pZl0VSaiBAaGyrgRmT1UD+MA5da+n9FAXe1b29avatU4w8qI0dI559tU5/Ef7/PBbH4EmqQHMFO+vwsJVA6V7yAvcaOjRNLhT4vQnOB/xg+LveGQ7JO2wfp4YVZO2i8NOw0Gay0ZahS+8HEGqFwV490NFzQjysDHNBJZvFNnwEHj5WnQoQ5eun7yfSSNrbQ3bZHl6YoMP+Hw0MOlEzChHHQpXqHL9Ws8eNHbCtpc4eB+hWdQ==
+Content-Type: text/plain; charset="utf-8"
+Content-Transfer-Encoding: base64
 MIME-Version: 1.0
-X-OriginatorOrg: xilinx.com
+X-OriginatorOrg: nxp.com
 X-MS-Exchange-CrossTenant-AuthAs: Internal
-X-MS-Exchange-CrossTenant-AuthSource: BYAPR02MB4407.namprd02.prod.outlook.com
-X-MS-Exchange-CrossTenant-Network-Message-Id: c28f67be-f652-4f5b-86d8-08d85f144810
-X-MS-Exchange-CrossTenant-originalarrivaltime: 22 Sep 2020 16:26:38.3973
+X-MS-Exchange-CrossTenant-AuthSource: VE1PR04MB6528.eurprd04.prod.outlook.com
+X-MS-Exchange-CrossTenant-Network-Message-Id: d3b8efc6-d5ff-4160-9227-08d85f16e941
+X-MS-Exchange-CrossTenant-originalarrivaltime: 22 Sep 2020 16:45:27.7944
  (UTC)
 X-MS-Exchange-CrossTenant-fromentityheader: Hosted
-X-MS-Exchange-CrossTenant-id: 657af505-d5df-48d0-8300-c31994686c5c
+X-MS-Exchange-CrossTenant-id: 686ea1d3-bc2b-4c6f-a92c-d99c5c301635
 X-MS-Exchange-CrossTenant-mailboxtype: HOSTED
-X-MS-Exchange-CrossTenant-userprincipalname: j8nPMoA5eHEOwBqWw69MYb3oQ+RBaTA7V2O93klQb9xPfaYYSfXt1ND3BHhjEUoxsE7lRaIj7XF2deAJEkvhMA==
-X-MS-Exchange-Transport-CrossTenantHeadersStamped: BYAPR02MB5832
+X-MS-Exchange-CrossTenant-userprincipalname: q2ROiRp6FwRu+CTkRhw5nYE48pvuemNLzkFFH2oXJarLXMTHgQaK4grwA8CRV+Jw
+X-MS-Exchange-Transport-CrossTenantHeadersStamped: VI1PR04MB6912
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-Hi Michael,
-
-> -----Original Message-----
-> From: Michael Auchter <michael.auchter@ni.com>
-> Sent: Monday, September 21, 2020 3:12 PM
-> To: Ben Levinsky <BLEVINSK@xilinx.com>
-> Cc: sunnyliangjy@gmail.com; punit1.agrawal@toshiba.co.jp; Stefano Stabell=
-ini
-> <stefanos@xilinx.com>; Michal Simek <michals@xilinx.com>;
-> devicetree@vger.kernel.org; mathieu.poirier@linaro.org; Ed T. Mooring
-> <emooring@xilinx.com>; linux-remoteproc@vger.kernel.org; linux-
-> kernel@vger.kernel.org; robh+dt@kernel.org; linux-arm-
-> kernel@lists.infradead.org; Jiaying Liang <jliang@xilinx.com>; Michal Sim=
-ek
-> <michals@xilinx.com>; Ed T. Mooring <emooring@xilinx.com>; Jason Wu
-> <j.wu@xilinx.com>
-> Subject: Re: [PATCH v15 5/5] remoteproc: Add initial zynqmp R5 remoteproc
-> driver
->=20
-> Hey Ben,
->=20
-> Thanks for sending out the new series, this patchset is functional for
-> booting both R5 0 and R5 1 in split mode.
->=20
-> A few comments below, still working my way through the rest of the code
-> though now that this works.
->=20
-> On Mon, Sep 21, 2020 at 09:14:06AM -0700, Ben Levinsky wrote:
-> <...>
-> > +static int zynqmp_r5_remoteproc_probe(struct platform_device *pdev)
-> > +{
-> > +	int ret, i =3D 0;
-> > +	struct device *dev =3D &pdev->dev;
-> > +	struct device_node *nc;
-> > +
-> > +	rpu_mode =3D  of_get_property(dev->of_node, "lockstep-mode", NULL)
-> ?
-> > +		    PM_RPU_MODE_LOCKSTEP : PM_RPU_MODE_SPLIT;
->=20
-> Extra whitespace, and of_property_read_bool would read a bit nicer here
-> (does the same thing in the end, though).
->=20
-> Since rpu_mode is only used here and in r5_set_mode, I think it'd be
-> better to plumb it through zynqmp_r5_probe instead of making it global
-> in this file.
->=20
-[Ben Levinsky] will do
-> > +
-> > +	dev_dbg(dev, "RPU configuration: %s\n",
-> > +		rpu_mode =3D=3D PM_RPU_MODE_LOCKSTEP ? "lockstep" :
-> "split");
-> > +
-> > +	for_each_available_child_of_node(dev->of_node, nc) {
-> > +		/*
-> > +		 * if 2 RPUs provided but one is lockstep, then we have an
-> > +		 * invalid configuration.
-> > +		 */
-> > +		if (i > 0 && rpu_mode =3D=3D PM_RPU_MODE_LOCKSTEP)
-> > +			return -EINVAL;
-> > +
-> > +		/* only call zynqmp_r5_probe if proper # of rpu's */
-> > +		ret =3D (i < MAX_RPROCS) ? zynqmp_r5_probe(&rpus[i], pdev,
-> nc) :
-> > +					 -EINVAL;
-> > +		dev_dbg(dev, "%s to probe rpu %pOF\n",
-> > +			ret ? "Failed" : "Able",
-> > +			nc);
->=20
-> It'd be cleaner to check the child node count before the loop:
->=20
-> 	rpu_nodes =3D of_get_available_child_count(nc)
-> 	if ((rpu_mode =3D=3D PM_RPU_MODE_LOCKSTEP && rpu_nodes !=3D 1) ||
-> rpu_nodes > 2)
-> 		return -EINVAL;
->=20
-[Ben Levinsky] will do
-> > +
-> > +		if (ret)
-> > +			return ret;
-> > +
-> > +		i++;
-> > +	}
-> > +
-> > +	return 0;
-> > +}
-> > +
-> > +static int zynqmp_r5_remoteproc_remove(struct platform_device *pdev)
-> > +{
-> > +	int i;
-> > +
-> > +	for (i =3D 0; i < MAX_RPROCS; i++) {
-> > +		struct zynqmp_r5_pdata *pdata =3D &rpus[i];
-> > +		struct rproc *rproc;
-> > +
-> > +		/* only do clean up for pdata with active rpu */
-> > +		if (pdata->pnode_id =3D=3D 0)
-> > +			continue;
->=20
-> This seems like a bit of a hack, resulting from the use of a static
-> array for holding the zynqmp_r5_pdata for each rpu.
->=20
-> Consider allocating zynqmp_r5_pdata in zynqmp_r5_probe, and adding each
-> instance to a linked-list at file scope.
-> 	- memory is only allocated RPUs actually in use
-> 	- no need for this pnode_id =3D=3D 0 hack
-> 	- MAX_RPROCS can be eliminated, just traverse that list in
-> 	  remove
-> 	- No reuse of the pdata across probe/removes, so all of the e.g.
-> 	  condtionals below ("if (rproc)") and NULL assignments can be
-> 	  eliminated.
->=20
-[Ben Levinsky] so parts of this I can do..=20
-- can make the rpus a static list of ptr's which I think is equivalent
-To what you are describing
-- can eliminate the pnode_id =3D=3D 0 hack
-
-For the rproc_del, rproc_free fn calls, these should stay. Just as other up=
-stream remoteproc drivers do, this is being done similarly.
-
-For mbox handling, I am mimic'ing upstream ST and TI drivers https://github=
-.com/torvalds/linux/blob/v5.9-rc3/drivers/remoteproc/stm32_rproc.c=20
-they similarly check if the mbox channel is not NULL, and if so call mbox_f=
-ree_channel. This is similar for Xilinx remoteproc R5 use case as the mbox =
- can be unused in 1 remoteproc node. Also, similar to TI and ST driver, htt=
-ps://github.com/torvalds/linux/blob/v5.9-rc3/drivers/remoteproc/stm32_rproc=
-.c#L321 , I am setting the mbox to NULL at remove=20
-> > +
-> > +		rproc =3D pdata->rproc;
-> > +		if (rproc) {
-> > +			rproc_del(rproc);
-> > +			rproc_free(rproc);
-> > +			pdata->rproc =3D NULL;
-> > +		}
-> > +		if (pdata->tx_chan) {
-> > +			mbox_free_channel(pdata->tx_chan);
-> > +			pdata->tx_chan =3D NULL;
-> > +		}
-> > +		if (pdata->rx_chan) {
-> > +			mbox_free_channel(pdata->rx_chan);
-> > +			pdata->rx_chan =3D NULL;
-> > +		}
-> > +		if (&(&pdata->dev)->dma_pools)
-> > +			device_unregister(&pdata->dev);
->=20
-> The condition here looks very wrong to me, as it will always be true.
-> What is this trying to achieve?
->=20
-This was originally because of the static rpu declaration. By instead using=
- ptr's this can be removed as the zynqmp_r5_pdata ptr will be NULL so I can=
- check that instead. So will remove this.
-
-Thank you for the review
-Ben
-> > +	}
-> > +
-> > +	return 0;
-> > +}
-> > +
-> > +/* Match table for OF platform binding */
-> > +static const struct of_device_id zynqmp_r5_remoteproc_match[] =3D {
-> > +	{ .compatible =3D "xlnx,zynqmp-r5-remoteproc-1.0", },
-> > +	{ /* end of list */ },
-> > +};
-> > +MODULE_DEVICE_TABLE(of, zynqmp_r5_remoteproc_match);
-> > +
-> > +static struct platform_driver zynqmp_r5_remoteproc_driver =3D {
-> > +	.probe =3D zynqmp_r5_remoteproc_probe,
-> > +	.remove =3D zynqmp_r5_remoteproc_remove,
-> > +	.driver =3D {
-> > +		.name =3D "zynqmp_r5_remoteproc",
-> > +		.of_match_table =3D zynqmp_r5_remoteproc_match,
-> > +	},
-> > +};
-> > +module_platform_driver(zynqmp_r5_remoteproc_driver);
-> > +
-> > +MODULE_AUTHOR("Ben Levinsky <ben.levinsky@xilinx.com>");
-> > +MODULE_LICENSE("GPL v2");
-> > --
-> > 2.17.1
-> >
->=20
-> Thanks,
->  Michael
+DQoNCj4gLS0tLS1PcmlnaW5hbCBNZXNzYWdlLS0tLS0NCj4gRnJvbTogS3J6eXN6dG9mIEtvemxv
+d3NraSA8a3J6a0BrZXJuZWwub3JnPg0KPiBTZW50OiBUdWVzZGF5LCBTZXB0ZW1iZXIgMjIsIDIw
+MjAgMTA6MzMgUE0NCj4gVG86IEp1biBMaSA8anVuLmxpQG54cC5jb20+DQo+IENjOiByb2JoK2R0
+QGtlcm5lbC5vcmc7IHNoYXduZ3VvQGtlcm5lbC5vcmc7IGJhbGJpQGtlcm5lbC5vcmc7DQo+IG1h
+dGhpYXMubnltYW5AaW50ZWwuY29tOyBncmVna2hAbGludXhmb3VuZGF0aW9uLm9yZzsNCj4gcy5o
+YXVlckBwZW5ndXRyb25peC5kZTsga2VybmVsQHBlbmd1dHJvbml4LmRlOyBmZXN0ZXZhbUBnbWFp
+bC5jb207DQo+IGRsLWxpbnV4LWlteCA8bGludXgtaW14QG54cC5jb20+OyBBbnNvbiBIdWFuZyA8
+YW5zb24uaHVhbmdAbnhwLmNvbT47DQo+IEFpc2hlbmcgRG9uZyA8YWlzaGVuZy5kb25nQG54cC5j
+b20+OyBQZW5nIEZhbiA8cGVuZy5mYW5AbnhwLmNvbT47IEFuZHkgRHVhbg0KPiA8ZnVnYW5nLmR1
+YW5AbnhwLmNvbT47IEpvYWtpbSBaaGFuZyA8cWlhbmdxaW5nLnpoYW5nQG54cC5jb20+OyBIb3Jp
+YQ0KPiBHZWFudGEgPGhvcmlhLmdlYW50YUBueHAuY29tPjsgbGludXgtdXNiQHZnZXIua2VybmVs
+Lm9yZzsNCj4gZGV2aWNldHJlZUB2Z2VyLmtlcm5lbC5vcmc7IGxpbnV4LWFybS1rZXJuZWxAbGlz
+dHMuaW5mcmFkZWFkLm9yZw0KPiBTdWJqZWN0OiBSZTogW1BBVENIIHYzIDMvNl0gZHQtYmluZGlu
+Z3M6IHVzYjogZHdjMy1pbXg4bXA6IGFkZCBpbXg4bXAgZHdjMw0KPiBnbHVlIGJpbmRpbmdzDQo+
+IA0KPiBPbiBUdWUsIDIyIFNlcCAyMDIwIGF0IDEyOjU2LCBMaSBKdW4gPGp1bi5saUBueHAuY29t
+PiB3cm90ZToNCj4gPg0KPiA+IE5YUCBpbXg4bXAgaW50ZWdyYXRlcyAyIGR3YzMgMy4zMGIgSVAg
+YW5kIGFkZCBzb21lIHdha2V1cCBsb2dpYyB0bw0KPiA+IHN1cHBvcnQgbG93IHBvd2VyIG1vZGUs
+IHRoZSBnbHVlIGxheWVyIGlzIGZvciB0aGlzIHdha2V1cA0KPiA+IGZ1bmN0aW9uYWxpdHksIHdo
+aWNoIGhhcyBhIHNlcGFyYXRlZCBpbnRlcnJ1cHQsIGNhbiBzdXBwb3J0IHdha2V1cA0KPiA+IGZy
+b20gVTMgYW5kIGNvbm5lY3QgZXZlbnRzIGZvciBob3N0LCBhbmQgdmJ1cyB3YWtldXAgZm9yIGRl
+dmljZS4NCj4gPg0KPiA+IFNpZ25lZC1vZmYtYnk6IExpIEp1biA8anVuLmxpQG54cC5jb20+DQo+
+ID4gLS0tDQo+ID4gIC4uLi9kZXZpY2V0cmVlL2JpbmRpbmdzL3VzYi9mc2wsaW14OG1wLWR3YzMu
+eWFtbCAgIHwgOTkNCj4gKysrKysrKysrKysrKysrKysrKysrKw0KPiA+ICAxIGZpbGUgY2hhbmdl
+ZCwgOTkgaW5zZXJ0aW9ucygrKQ0KPiA+DQo+ID4gZGlmZiAtLWdpdA0KPiA+IGEvRG9jdW1lbnRh
+dGlvbi9kZXZpY2V0cmVlL2JpbmRpbmdzL3VzYi9mc2wsaW14OG1wLWR3YzMueWFtbA0KPiA+IGIv
+RG9jdW1lbnRhdGlvbi9kZXZpY2V0cmVlL2JpbmRpbmdzL3VzYi9mc2wsaW14OG1wLWR3YzMueWFt
+bA0KPiA+IG5ldyBmaWxlIG1vZGUgMTAwNjQ0DQo+ID4gaW5kZXggMDAwMDAwMC4uYTVkNTU2Ng0K
+PiA+IC0tLSAvZGV2L251bGwNCj4gPiArKysgYi9Eb2N1bWVudGF0aW9uL2RldmljZXRyZWUvYmlu
+ZGluZ3MvdXNiL2ZzbCxpbXg4bXAtZHdjMy55YW1sDQo+ID4gQEAgLTAsMCArMSw5OSBAQA0KPiA+
+ICsjIFNQRFgtTGljZW5zZS1JZGVudGlmaWVyOiAoR1BMLTIuMC1vbmx5IE9SIEJTRC0yLUNsYXVz
+ZSkgIyBDb3B5cmlnaHQNCj4gPiArKGMpIDIwMjAgTlhQICVZQU1MIDEuMg0KPiA+ICstLS0NCj4g
+PiArJGlkOg0KPiA+DQo+ICtodHRwczovL2V1cjAxLnNhZmVsaW5rcy5wcm90ZWN0aW9uLm91dGxv
+b2suY29tLz91cmw9aHR0cCUzQSUyRiUyRmRldmkNCj4gPg0KPiArY2V0cmVlLm9yZyUyRnNjaGVt
+YXMlMkZ1c2IlMkZmc2wlMkNpbXg4bXAtZHdjMy55YW1sJTIzJmFtcDtkYXRhPTAyJTdDDQo+ID4N
+Cj4gKzAxJTdDanVuLmxpJTQwbnhwLmNvbSU3Q2VhZWRlYjY0ZWMxNTQ3MjE4M2QxMDhkODVmMDQ2
+ODQxJTdDNjg2ZWExZDNiYw0KPiA+DQo+ICsyYjRjNmZhOTJjZDk5YzVjMzAxNjM1JTdDMCU3QzAl
+N0M2MzczNjM4MTk4MTk2Njc5MzYmYW1wO3NkYXRhPUl2RlE4bDANCj4gPiArN1ZYVU1iRzhyaXlJ
+VFNUWmIxUDUwb0lYcyUyQmtBViUyRmVYOG50ayUzRCZhbXA7cmVzZXJ2ZWQ9MA0KPiA+ICskc2No
+ZW1hOg0KPiA+DQo+ICtodHRwczovL2V1cjAxLnNhZmVsaW5rcy5wcm90ZWN0aW9uLm91dGxvb2su
+Y29tLz91cmw9aHR0cCUzQSUyRiUyRmRldmkNCj4gPg0KPiArY2V0cmVlLm9yZyUyRm1ldGEtc2No
+ZW1hcyUyRmNvcmUueWFtbCUyMyZhbXA7ZGF0YT0wMiU3QzAxJTdDanVuLmxpJTQwDQo+ID4NCj4g
+K254cC5jb20lN0NlYWVkZWI2NGVjMTU0NzIxODNkMTA4ZDg1ZjA0Njg0MSU3QzY4NmVhMWQzYmMy
+YjRjNmZhOTJjZDk5Yw0KPiA+DQo+ICs1YzMwMTYzNSU3QzAlN0MwJTdDNjM3MzYzODE5ODE5Njc3
+OTM0JmFtcDtzZGF0YT1IMyUyQmN3Z2lMS0J5bkh2NE4lMkYNCj4gPiArZG9nQmkzU3dhaXpWSG1x
+aWVKWFZyRXJ2MEklM0QmYW1wO3Jlc2VydmVkPTANCj4gPiArDQo+ID4gK3RpdGxlOiBOWFAgaU1Y
+OE1QIFNvYyBVU0IgQ29udHJvbGxlcg0KPiA+ICsNCj4gPiArbWFpbnRhaW5lcnM6DQo+ID4gKyAg
+LSBMaSBKdW4gPGp1bi5saUBueHAuY29tPg0KPiA+ICsNCj4gPiArcHJvcGVydGllczoNCj4gPiAr
+ICBjb21wYXRpYmxlOg0KPiA+ICsgICAgaXRlbXM6DQo+IA0KPiBJdGVtcyBhcmUgbm90IG5lY2Vz
+c2FyeQ0KPiANCj4gDQo+ID4gKyAgICAtIGNvbnN0OiBmc2wsaW14OG1wLWR3YzMNCj4gPiArDQo+
+ID4gKyAgcmVnOg0KPiA+ICsgICAgbWF4SXRlbXM6IDENCj4gPiArICAgIGRlc2NyaXB0aW9uOiBB
+ZGRyZXNzIGFuZCBsZW5ndGggb2YgdGhlIHJlZ2lzdGVyIHNldCBmb3IgdGhlIHdyYXBwZXINCj4g
+b2YNCj4gPiArICAgICAgZHdjMyBjb3JlIG9uIHRoZSBTT0MuDQo+ID4gKw0KPiA+ICsgICIjYWRk
+cmVzcy1jZWxscyI6DQo+ID4gKyAgICBlbnVtOiBbIDEsIDIgXQ0KPiA+ICsNCj4gPiArICAiI3Np
+emUtY2VsbHMiOg0KPiA+ICsgICAgZW51bTogWyAxLCAyIF0NCj4gPiArDQo+ID4gKyAgcmFuZ2Vz
+OiB0cnVlDQo+ID4gKw0KPiA+ICsgIGludGVycnVwdHM6DQo+ID4gKyAgICBtYXhJdGVtczogMQ0K
+PiA+ICsgICAgZGVzY3JpcHRpb246IFRoZSBpbnRlcnJ1cHQgdGhhdCBpcyBhc3NlcnRlZCB3aGVu
+IGEgd2FrZXVwIGV2ZW50IGlzDQo+ID4gKyAgICAgIHJlY2VpdmVkLg0KPiA+ICsNCj4gPiArICBj
+bG9ja3M6DQo+ID4gKyAgICBkZXNjcmlwdGlvbjoNCj4gPiArICAgICAgQSBsaXN0IG9mIHBoYW5k
+bGUgYW5kIGNsb2NrLXNwZWNpZmllciBwYWlycyBmb3IgdGhlIGNsb2Nrcw0KPiA+ICsgICAgICBs
+aXN0ZWQgaW4gY2xvY2stbmFtZXMuDQo+ID4gKyAgICBpdGVtczoNCj4gPiArICAgICAgLSBkZXNj
+cmlwdGlvbjogc3lzdGVtIGhzaW8gcm9vdCBjbG9jay4NCj4gPiArICAgICAgLSBkZXNjcmlwdGlv
+bjogc3VzcGVuZCBjbG9jaywgdXNlZCBmb3IgdXNiIHdha2V1cCBsb2dpYy4NCj4gPiArDQo+ID4g
+KyAgY2xvY2stbmFtZXM6DQo+ID4gKyAgICBpdGVtczoNCj4gPiArICAgICAgLSBjb25zdDogaHNp
+bw0KPiA+ICsgICAgICAtIGNvbnN0OiBzdXNwZW5kDQo+ID4gKw0KPiA+ICsjIFJlcXVpcmVkIGNo
+aWxkIG5vZGU6DQo+ID4gKw0KPiA+ICtwYXR0ZXJuUHJvcGVydGllczoNCj4gPiArICAiXmR3YzNA
+WzAtOWEtZl0rJCI6DQo+ID4gKyAgICB0eXBlOiBvYmplY3QNCj4gPiArICAgIGRlc2NyaXB0aW9u
+Og0KPiA+ICsgICAgICBBIGNoaWxkIG5vZGUgbXVzdCBleGlzdCB0byByZXByZXNlbnQgdGhlIGNv
+cmUgRFdDMyBJUCBibG9jaw0KPiA+ICsgICAgICBUaGUgY29udGVudCBvZiB0aGUgbm9kZSBpcyBk
+ZWZpbmVkIGluIGR3YzMudHh0Lg0KPiA+ICsNCj4gPiArcmVxdWlyZWQ6DQo+ID4gKyAgLSBjb21w
+YXRpYmxlDQo+ID4gKyAgLSByZWcNCj4gPiArICAtICIjYWRkcmVzcy1jZWxscyINCj4gPiArICAt
+ICIjc2l6ZS1jZWxscyINCj4gPiArICAtIHJhbmdlcw0KPiA+ICsgIC0gY2xvY2tzDQo+ID4gKyAg
+LSBjbG9jay1uYW1lcw0KPiA+ICsgIC0gaW50ZXJydXB0cw0KPiA+ICsNCj4gPiArYWRkaXRpb25h
+bFByb3BlcnRpZXM6IGZhbHNlDQo+IA0KPiBEbyB5b3UgYWN0dWFsbHkgdmFsaWRhdGUgeW91ciBE
+VFMgY2hhbmdlcyB3aXRoIHRoaXMgc2NoZW1hPyBUaGV5IGRvIG5vdCBsb29rDQo+IGxpa2UgcGFz
+c2luZyB0aGUgdmFsaWRhdGlvbi4uLg0KDQpJIGRpZCBydW4gZHRfYmluZGluZ19jaGVjaywgbWF5
+YmUgSSBtaXNzZWQgc29tZSBlcnJvcnMgYXMgdGhlcmUgYXJlIGFsd2F5cyBzb21lIG90aGVyDQpm
+YWlsdXJlcywgSSB3aWxsIHJlLXJ1biB0byBkb3VibGUgY2hlY2suDQoNCkxpIEp1bg0KPiANCj4g
+QmVzdCByZWdhcmRzLA0KPiBLcnp5c3p0b2YNCg==
