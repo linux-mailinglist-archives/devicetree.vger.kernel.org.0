@@ -2,175 +2,77 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from vger.kernel.org (vger.kernel.org [23.128.96.18])
-	by mail.lfdr.de (Postfix) with ESMTP id AA255274934
-	for <lists+devicetree@lfdr.de>; Tue, 22 Sep 2020 21:32:21 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTP id EBF23274953
+	for <lists+devicetree@lfdr.de>; Tue, 22 Sep 2020 21:41:02 +0200 (CEST)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S1726583AbgIVTcQ (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Tue, 22 Sep 2020 15:32:16 -0400
-Received: from mail-il1-f194.google.com ([209.85.166.194]:43662 "EHLO
-        mail-il1-f194.google.com" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S1726448AbgIVTcQ (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Tue, 22 Sep 2020 15:32:16 -0400
-Received: by mail-il1-f194.google.com with SMTP id a19so18461996ilq.10;
-        Tue, 22 Sep 2020 12:32:14 -0700 (PDT)
-X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=1e100.net; s=20161025;
-        h=x-gm-message-state:date:from:to:cc:subject:message-id:references
-         :mime-version:content-disposition:in-reply-to;
-        bh=+GmmJsG51MCJgMfktGzDABJKpTpLU9Kyx03gh5D3ALI=;
-        b=oqJriJqRPot5+aQ42hF+K5oSoZBM94PD7S+3JfsWact+r4DKKz2uFNpvW07lycOBvQ
-         V1xqwRxc1VnacyqEoRWO5wVTyO/aTPS0rpQLSQS/6e5dwcAKJAHbvmBB/rDcZ28eOO/P
-         XtAsL2wJ+N/aV9mrHDlORp2rQedIBd5QrrE/O5AmcSGE/8LAamyNZdEJswdUPzk1u7hq
-         Wb5U26cOokZrO8GMM6V5n1xl88kYGSbnxzXESm8bo9SKYSJhA8YPa7yK7bzkN+6HqmB3
-         0Cwz27aXbr8h9HbqJPZYtw8lWnAupesqo+fPuhqDgSERE7vIXiYV9w0iHBIXcFTNX3v6
-         kIYA==
-X-Gm-Message-State: AOAM530DNo93Xw0NYfc21tSKCZ2+iBb7DVquiPW5B51R9Vn99ny7g4Jl
-        +Xy0xtvehLX0lZHg2o5YCLQipl0a202j
-X-Google-Smtp-Source: ABdhPJxMNLsl+j4NN8/h89sesKoG6S3FoQiIcvIwGF50BlH5Sr85Lvf1RlMhGpEOUrDIo9xfYaxjIg==
-X-Received: by 2002:a92:aa01:: with SMTP id j1mr6007995ili.301.1600803134401;
-        Tue, 22 Sep 2020 12:32:14 -0700 (PDT)
-Received: from xps15 ([64.188.179.253])
-        by smtp.gmail.com with ESMTPSA id b3sm7427280iow.28.2020.09.22.12.32.12
-        (version=TLS1_3 cipher=TLS_AES_256_GCM_SHA384 bits=256/256);
-        Tue, 22 Sep 2020 12:32:13 -0700 (PDT)
-Received: (nullmailer pid 3094515 invoked by uid 1000);
-        Tue, 22 Sep 2020 19:32:11 -0000
-Date:   Tue, 22 Sep 2020 13:32:11 -0600
-From:   Rob Herring <robh@kernel.org>
-To:     Manivannan Sadhasivam <manivannan.sadhasivam@linaro.org>
-Cc:     wg@grandegger.com, mkl@pengutronix.de, linux-can@vger.kernel.org,
-        devicetree@vger.kernel.org, linux-kernel@vger.kernel.org,
-        dev.kurt@vandijck-laurijssen.be, o.rempel@pengutronix.de
-Subject: Re: [PATCH 2/6] dt-bindings: can: mcp25xxfd: document device tree
- bindings
-Message-ID: <20200922193211.GA3089743@bogus>
-References: <20200910133806.25077-1-manivannan.sadhasivam@linaro.org>
- <20200910133806.25077-3-manivannan.sadhasivam@linaro.org>
+        id S1726615AbgIVTlC (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Tue, 22 Sep 2020 15:41:02 -0400
+Received: from vsmx011.vodafonemail.xion.oxcs.net ([153.92.174.89]:20260 "EHLO
+        vsmx011.vodafonemail.xion.oxcs.net" rhost-flags-OK-OK-OK-OK)
+        by vger.kernel.org with ESMTP id S1726550AbgIVTlC (ORCPT
+        <rfc822;devicetree@vger.kernel.org>);
+        Tue, 22 Sep 2020 15:41:02 -0400
+X-Greylist: delayed 416 seconds by postgrey-1.27 at vger.kernel.org; Tue, 22 Sep 2020 15:41:01 EDT
+Received: from vsmx003.vodafonemail.xion.oxcs.net (unknown [192.168.75.197])
+        by mta-5-out.mta.xion.oxcs.net (Postfix) with ESMTP id 20CC459D486;
+        Tue, 22 Sep 2020 19:34:05 +0000 (UTC)
+Received: from app-43.app.xion.oxcs.net (app-43.app.xion.oxcs.net [10.10.1.43])
+        by mta-7-out.mta.xion.oxcs.net (Postfix) with ESMTPA id AB9895399F0;
+        Tue, 22 Sep 2020 19:33:54 +0000 (UTC)
+Date:   Tue, 22 Sep 2020 21:33:54 +0200 (CEST)
+From:   Markus Moll <moll.markus@arcor.de>
+To:     Pavel Machek <pavel@ucw.cz>, Dan Murphy <dmurphy@ti.com>,
+        Rob Herring <robh+dt@kernel.org>
+Cc:     linux-leds@vger.kernel.org, devicetree@vger.kernel.org
+Message-ID: <1570334746.101942.1600803234657@mail.vodafone.de>
+Subject: [PATCH v1 2/2] dt: bindings: pca9532: add description of pwm and
+ psc settings
 MIME-Version: 1.0
-Content-Type: text/plain; charset=us-ascii
-Content-Disposition: inline
-In-Reply-To: <20200910133806.25077-3-manivannan.sadhasivam@linaro.org>
+Content-Type: text/plain; charset=UTF-8
+Content-Transfer-Encoding: 7bit
+X-Priority: 3
+Importance: Medium
+X-Mailer: Open-Xchange Mailer v7.8.4-Rev73
+X-Originating-Client: open-xchange-appsuite
+X-VADE-STATUS: LEGIT
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-On Thu, Sep 10, 2020 at 07:08:02PM +0530, Manivannan Sadhasivam wrote:
-> From: Oleksij Rempel <o.rempel@pengutronix.de>
-> 
-> This patch adds the device-tree binding documentation for the Microchip
-> MCP25xxFD SPI CAN controller family.
-> 
-> Signed-off-by: Oleksij Rempel <o.rempel@pengutronix.de>
-> Signed-off-by: Marc Kleine-Budde <mkl@pengutronix.de>
-> Signed-off-by: Manivannan Sadhasivam <manivannan.sadhasivam@linaro.org>
-> ---
->  .../bindings/net/can/microchip,mcp25xxfd.yaml | 79 +++++++++++++++++++
->  1 file changed, 79 insertions(+)
->  create mode 100644 Documentation/devicetree/bindings/net/can/microchip,mcp25xxfd.yaml
-> 
-> diff --git a/Documentation/devicetree/bindings/net/can/microchip,mcp25xxfd.yaml b/Documentation/devicetree/bindings/net/can/microchip,mcp25xxfd.yaml
-> new file mode 100644
-> index 000000000000..aa2cad14d6d7
-> --- /dev/null
-> +++ b/Documentation/devicetree/bindings/net/can/microchip,mcp25xxfd.yaml
-> @@ -0,0 +1,79 @@
-> +# SPDX-License-Identifier: (GPL-2.0-only OR BSD-2-Clause)
-> +%YAML 1.2
-> +---
-> +$id: http://devicetree.org/schemas/net/can/microchip,mcp25xxfd.yaml#
-> +$schema: http://devicetree.org/meta-schemas/core.yaml#
-> +
-> +title:
-> +  Microchip MCP2517FD and MCP2518FD stand-alone CAN controller device tree
-> +  bindings
-> +
-> +maintainers:
-> +  - Marc Kleine-Budde <mkl@pengutronix.de>
-> +
-> +properties:
-> +  compatible:
-> +    oneOf:
-> +      - const: microchip,mcp2517fd
-> +        description: for MCP2517FD
-> +      - const: microchip,mcp2518fd
-> +        description: for MCP2518FD
-> +      - const: microchip,mcp25xxfd
-> +        description: to autodetect chip variant
-> +
-> +  reg:
-> +    maxItems: 1
-> +
-> +  interrupts-extended:
+These properties allow users to configure the PCA9532 blink rates.
 
-Use 'interrupts'. (interrupts-extended will automagically be supported 
-by the tools)
+Signed-off-by: Markus Moll <mmoll@de.pepperl-fuchs.com>
+---
+ .../devicetree/bindings/leds/leds-pca9532.txt          | 10 ++++++++++
+ 1 file changed, 10 insertions(+)
 
-> +    maxItems: 1
-> +
-> +  clocks:
-> +    maxItems: 1
-> +
-> +  vdd-supply:
-> +    description: Regulator that powers the CAN controller.
-> +    maxItems: 1
-
--supply is always a single item. Drop.
-
-> +
-> +  xceiver-supply:
-> +    description: Regulator that powers the CAN transceiver.
-> +    maxItems: 1
-
-ditto
-
-> +
-> +  microchip,rx-int-gpios:
-> +    description:
-> +      GPIO phandle of GPIO connected to to INT1 pin of the MCP25XXFD, which
-> +      signals a pending RX interrupt.
-> +    maxItems: 1
-> +
-> +  spi-max-frequency:
-> +    description:
-> +      Must be half or less of "clocks" frequency.
-> +    maximum: 20000000
-> +
-> +required:
-> +  - compatible
-> +  - reg
-> +  - interrupts-extended
-
-interrupts
-
-> +  - clocks
-
-Add:
-
-additionalProperties: false
-
-> +
-> +examples:
-> +  - |
-> +    #include <dt-bindings/gpio/gpio.h>
-> +    #include <dt-bindings/interrupt-controller/irq.h>
-> +
-> +    spi0 {
-> +        #address-cells = <1>;
-> +        #size-cells = <0>;
-> +
-> +        can@0 {
-> +            compatible = "microchip,mcp25xxfd";
-> +            reg = <0>;
-> +            clocks = <&can0_osc>;
-> +            pinctrl-names = "default";
-> +            pinctrl-0 = <&can0_pins>;
-> +            spi-max-frequency = <20000000>;
-> +            interrupts-extended = <&gpio 13 IRQ_TYPE_LEVEL_LOW>;
-> +            microchip,rx-int-gpios = <&gpio 27 GPIO_ACTIVE_LOW>;
-> +            vdd-supply = <&reg5v0>;
-> +            xceiver-supply = <&reg5v0>;
-> +        };
-> +    };
-> -- 
-> 2.17.1
-> 
+diff --git a/Documentation/devicetree/bindings/leds/leds-pca9532.txt b/Documentation/devicetree/bindings/leds/leds-pca9532.txt
+index f769c52e364..3aa05eca9df 100644
+--- a/Documentation/devicetree/bindings/leds/leds-pca9532.txt
++++ b/Documentation/devicetree/bindings/leds/leds-pca9532.txt
+@@ -11,6 +11,14 @@ Required properties:
+ 		"nxp,pca9533"
+ 	- reg -  I2C slave address
+ 
++Optional properties:
++	- nxp,pwm: array of two 8-bit values specifying the blink duty cycle
++	  fractions of each pwm (default <0 0>)
++	  The duty cycle is pwm/256.
++	- nxp,psc: array of two 8-bit values specifying the blink period of
++	  each pwm (default <0 0>)
++	  The period is (psc+1)/152 seconds.
++
+ Each led is represented as a sub-node of the nxp,pca9530.
+ 
+ Optional sub-node properties:
+@@ -26,6 +34,8 @@ Example:
+   leds: pca9530@60 {
+     compatible = "nxp,pca9530";
+     reg = <0x60>;
++    nxp,pwm = /bits/ 8 <128 128>; // 50% duty cycle
++    nxp,psc = /bits/ 8 <151 37>; // 1Hz and 4Hz, respectively
+ 
+     red-power {
+       label = "pca:red:power";
+-- 
+2.25.1
