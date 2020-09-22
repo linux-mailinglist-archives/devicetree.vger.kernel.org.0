@@ -2,91 +2,92 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from vger.kernel.org (vger.kernel.org [23.128.96.18])
-	by mail.lfdr.de (Postfix) with ESMTP id D0244273D54
-	for <lists+devicetree@lfdr.de>; Tue, 22 Sep 2020 10:32:25 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTP id 3ACDC273D62
+	for <lists+devicetree@lfdr.de>; Tue, 22 Sep 2020 10:38:51 +0200 (CEST)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S1726488AbgIVIcZ (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Tue, 22 Sep 2020 04:32:25 -0400
-Received: from mout.kundenserver.de ([212.227.126.134]:58423 "EHLO
-        mout.kundenserver.de" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S1726799AbgIVIcZ (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Tue, 22 Sep 2020 04:32:25 -0400
-Received: from mail-qk1-f182.google.com ([209.85.222.182]) by
- mrelayeu.kundenserver.de (mreue010 [212.227.15.129]) with ESMTPSA (Nemesis)
- id 1MEmMt-1kEGs81ae3-00GF4a; Tue, 22 Sep 2020 10:32:23 +0200
-Received: by mail-qk1-f182.google.com with SMTP id o16so18182762qkj.10;
-        Tue, 22 Sep 2020 01:32:23 -0700 (PDT)
-X-Gm-Message-State: AOAM533M20kxEgvelf/VO+G9X2qrPUXUIqjvXRf6CJ6JVUgscSJ9tmhq
-        JI95lCQxj6CI5nua3kZed4+m5KjIy13WYE8FuIM=
-X-Google-Smtp-Source: ABdhPJxVpm81rzuOpNNfOHDEBf6+tjIbpNILGqrTgab5VBp9jlR3YGmn4XYZi/VkOVydTRkIPBWlkQmdh650kLrWwZs=
-X-Received: by 2002:a05:620a:15a7:: with SMTP id f7mr3478911qkk.3.1600763542109;
- Tue, 22 Sep 2020 01:32:22 -0700 (PDT)
+        id S1726424AbgIVIiu (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Tue, 22 Sep 2020 04:38:50 -0400
+Received: from mail.kernel.org ([198.145.29.99]:39278 "EHLO mail.kernel.org"
+        rhost-flags-OK-OK-OK-OK) by vger.kernel.org with ESMTP
+        id S1726343AbgIVIiu (ORCPT <rfc822;devicetree@vger.kernel.org>);
+        Tue, 22 Sep 2020 04:38:50 -0400
+Received: from localhost (83-86-74-64.cable.dynamic.v4.ziggo.nl [83.86.74.64])
+        (using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
+        (No client certificate requested)
+        by mail.kernel.org (Postfix) with ESMTPSA id 2F3DA23A1E;
+        Tue, 22 Sep 2020 08:38:48 +0000 (UTC)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=kernel.org;
+        s=default; t=1600763929;
+        bh=Mm0cw1XMHiTcGFvYZ5YAxmxvfxAfdbEoZVA80me39JE=;
+        h=Date:From:To:Cc:Subject:References:In-Reply-To:From;
+        b=lJGS3A93Lgq85UkTDgJdes21K55ht2plPLTIViCrhCUCIC3GbnIc5h/FFIvwdAN7y
+         GZhrRI/BtSs3f5OiCBv4YSrBUeSmOmarfFBLok5wtLaSTM8T+VppMPRyZogheOejZ9
+         PC9RJDxQ+/0Q63ijmDGf4+v/jSPWVgbPUXU+FO1g=
+Date:   Tue, 22 Sep 2020 10:39:09 +0200
+From:   Greg Kroah-Hartman <gregkh@linuxfoundation.org>
+To:     Geert Uytterhoeven <geert@linux-m68k.org>
+Cc:     "Lad, Prabhakar" <prabhakar.csengg@gmail.com>,
+        Lad Prabhakar <prabhakar.mahadev-lad.rj@bp.renesas.com>,
+        Jens Axboe <axboe@kernel.dk>, Rob Herring <robh+dt@kernel.org>,
+        Vinod Koul <vkoul@kernel.org>,
+        Mauro Carvalho Chehab <mchehab@kernel.org>,
+        Marek Vasut <marek.vasut+renesas@gmail.com>,
+        Yoshihiro Shimoda <yoshihiro.shimoda.uh@renesas.com>,
+        Mark Brown <broonie@kernel.org>,
+        Niklas <niklas.soderlund@ragnatech.se>,
+        Bjorn Helgaas <bhelgaas@google.com>,
+        Kishon Vijay Abraham I <kishon@ti.com>,
+        Liam Girdwood <lgirdwood@gmail.com>,
+        Magnus Damm <magnus.damm@gmail.com>,
+        "open list:OPEN FIRMWARE AND FLATTENED DEVICE TREE BINDINGS" 
+        <devicetree@vger.kernel.org>, linux-ide@vger.kernel.org,
+        dmaengine <dmaengine@vger.kernel.org>,
+        Linux I2C <linux-i2c@vger.kernel.org>,
+        LKML <linux-kernel@vger.kernel.org>,
+        linux-media <linux-media@vger.kernel.org>,
+        linux-pci <linux-pci@vger.kernel.org>,
+        alsa-devel <alsa-devel@alsa-project.org>,
+        Linux-Renesas <linux-renesas-soc@vger.kernel.org>,
+        USB list <linux-usb@vger.kernel.org>
+Subject: Re: [PATCH 07/20] dt-bindings: usb: renesas,usb3-peri: Document
+ r8a774e1 support
+Message-ID: <20200922083909.GA2092905@kroah.com>
+References: <1594919915-5225-1-git-send-email-prabhakar.mahadev-lad.rj@bp.renesas.com>
+ <1594919915-5225-8-git-send-email-prabhakar.mahadev-lad.rj@bp.renesas.com>
+ <CA+V-a8vJ2n3KEL8P+XmVob2zjoWaX+s4a6c1TV_WoPFkwdkZmA@mail.gmail.com>
+ <20200920140824.GA2915460@kroah.com>
+ <CAMuHMdUyXMfZcVKkqaZHJ8tJf-3Kotqg+S2NHMZT0VFO0ZJJww@mail.gmail.com>
 MIME-Version: 1.0
-References: <20200922024302.205062-1-matheus@castello.eng.br>
- <20200922024302.205062-5-matheus@castello.eng.br> <20200922061454.GA29035@Mani-XPS-13-9360>
-In-Reply-To: <20200922061454.GA29035@Mani-XPS-13-9360>
-From:   Arnd Bergmann <arnd@arndb.de>
-Date:   Tue, 22 Sep 2020 10:32:06 +0200
-X-Gmail-Original-Message-ID: <CAK8P3a0yGN80nJU0kcrvYGsSjpaNpU_nmu-ENwE3GMC_9DNBhg@mail.gmail.com>
-Message-ID: <CAK8P3a0yGN80nJU0kcrvYGsSjpaNpU_nmu-ENwE3GMC_9DNBhg@mail.gmail.com>
-Subject: Re: [PATCH v7 4/4] arm64: dts: Add Caninos Loucos Labrador v3
-To:     Manivannan Sadhasivam <manivannan.sadhasivam@linaro.org>
-Cc:     Matheus Castello <matheus@castello.eng.br>,
-        Olof Johansson <olof@lixom.net>,
-        =?UTF-8?Q?Andreas_F=C3=A4rber?= <afaerber@suse.de>,
-        Mark Rutland <mark.rutland@arm.com>,
-        Rob Herring <robh+dt@kernel.org>, edgar.righi@lsitec.org.br,
-        igor.lima@lsitec.org.br, Helen Koike <helen.koike@collabora.com>,
-        Linux ARM <linux-arm-kernel@lists.infradead.org>,
-        DTML <devicetree@vger.kernel.org>,
-        "linux-kernel@vger.kernel.org" <linux-kernel@vger.kernel.org>,
-        linux-actions@lists.infradead.org,
-        Catalin Marinas <catalin.marinas@arm.com>,
-        Will Deacon <will@kernel.org>
-Content-Type: text/plain; charset="UTF-8"
-X-Provags-ID: V03:K1:+Sqw26Y1nKBMFvEKEpYY9XOxck/gdND6fjiQ4kFxp4wbP7bFlGM
- kuRZyB+2geuCCT/rxiFsTXGnEmvSM8b4lMu5MrChP5IBHn7kKo75YJmLGxBAixtlM8WAU0d
- d+v74Xe19vj2tlcGguoZE1cDXdN8LGvOiuDaCm+bTGxnOJQCY0FXBpp9WNaHGOkTVFNR4fx
- Og1A/15kIKcOAubqYCKAw==
-X-Spam-Flag: NO
-X-UI-Out-Filterresults: notjunk:1;V03:K0:ydvbePANNgc=:1XqGMU9MMzy78mwQnLt3Nt
- KT0R3TVIy5ON5Z/7/at1FUKmFiQc9cYeJIUx+/GJ4HxfKQAsaKdYcdlotDv0z4AnR7zeV5k5b
- MNn8boFU7kkciZv4FlhCCznM9nbhtcWUhebBeJbIrDN2/T+n3R3BcJmeS76In9VdgJVBdYS3q
- 8VdcolAcJ2MK41+fK/YV1EoRXfI7FqC5KqD97joTK0TKd2f6YhZIPZGQzSB2vsTZWqZRr0hP2
- R8xfPAz/3ouNEyyQHWGgPwnMEZju0UDGS3Qu0rq7A0jxH2mQg52l+duYWFsD/spiXKa5ynXca
- rwCV91AHuaLl/uwWfhVmLOT3f4HJxKCaziqgBaY3Dmbjnrnh7uoTIU1b6vxHIJXKzohJnGkN6
- SZdPvGr9gzDii76sssP0+xZeE7D7DyAFDXmn0kXLdKIVJQESR2kDitbjIWsF7JAqJiBNYWfr4
- 1VXbnaGyegIxdimQAeN/gvRmeJ9ETRvlevJh1Xj3+/BnotCyt9fXHAZ0Yzymcp7XfhPo5j3DY
- VPsilAKt0dlFbsyCJurey8zzfFLfpRwnf/bTKVeTCkGKlZic2qQ2kg70FyOQGGE5dyVPQbCsa
- rqfolmPCEM+vHwUSB38IfPUpCkW/9mLxVp8uHM/1sbiniouHoQNglWm6nR1qvmarfEj/tQwOX
- wSQOL+0fWrVIXaBiN1sXkJ0VAMkKe5pzTqmaJDgsU3/ZuvYugyyv34I6CWn6L+QCqELrDnyKE
- WEgpzu57xho/Ga7MvtXaXD/h5NqaQ9zHtNrnvF8RvvsJwYnnViC9bwKajWChGL69ANMz2oMqA
- aehPrTxa7zovaAHX77VYWfx52f7C1u4NY5oIS4W3oNCIfr9HmOY9XlWyHgDWln0d+iCNLUUNo
- taoWjhXPafxCeeNh8KU+j4nbfh5BnAHWYUUahkAw3ggp2bCqkqlM9FLTKxAn0NZTIcJQhZzrm
- LG33hMlblv+GotRHshi074FPe+hnLbbdWykAsB8qMla1I/V1+BFWX
+Content-Type: text/plain; charset=us-ascii
+Content-Disposition: inline
+In-Reply-To: <CAMuHMdUyXMfZcVKkqaZHJ8tJf-3Kotqg+S2NHMZT0VFO0ZJJww@mail.gmail.com>
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-On Tue, Sep 22, 2020 at 8:15 AM Manivannan Sadhasivam
-<manivannan.sadhasivam@linaro.org> wrote:
-> On Mon, Sep 21, 2020 at 11:43:02PM -0300, Matheus Castello wrote:
-> > +     /* Labrador v3 firmware does not support PSCI */
->
-> Oops. This is unfortunate... I'm not sure if this is even acceptable for
-> ARM64 machines.
->
-> Let me add Olof and Arnd...
+On Mon, Sep 21, 2020 at 09:30:39AM +0200, Geert Uytterhoeven wrote:
+> Hi Greg,
+> 
+> On Sun, Sep 20, 2020 at 4:08 PM Greg Kroah-Hartman
+> <gregkh@linuxfoundation.org> wrote:
+> > On Sat, Sep 19, 2020 at 11:50:07AM +0100, Lad, Prabhakar wrote:
+> > > On Thu, Jul 16, 2020 at 6:19 PM Lad Prabhakar
+> > > <prabhakar.mahadev-lad.rj@bp.renesas.com> wrote:
+> > > >
+> > > > Document RZ/G2H (R8A774E1) SoC bindings.
+> > > >
+> > > > Signed-off-by: Lad Prabhakar <prabhakar.mahadev-lad.rj@bp.renesas.com>
+> > > > Reviewed-by: Marian-Cristian Rotariu <marian-cristian.rotariu.rb@bp.renesas.com>
+> > > > ---
+> > > >  Documentation/devicetree/bindings/usb/renesas,usb3-peri.yaml | 1 +
+> > > >  1 file changed, 1 insertion(+)
+> > > >
+> > > Could you please pick this patch.
+> >
+> > Don't DT patches have to be acked by a DT maintainer first?
+> 
+> https://lore.kernel.org/r/20200721033508.GA3504365@bogus
 
-Adding Catalin and Will for additional input as well, this is more their
-area than ours.
+Ah, missed that, sorry.  This, and patch 11/20, now queued up.
 
-I don't think we have formalized this as a policy, but we clearly don't
-want new boards to use the spin table hack. As there are other
-boards using psci on the same chip, I don't think this is a
-hardware bug.
-
-Matheus: can you explain what keeps you from fixing the
-bootloader instead?
-
-      Arnd
+greg k-h
