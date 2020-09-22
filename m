@@ -2,138 +2,312 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from vger.kernel.org (vger.kernel.org [23.128.96.18])
-	by mail.lfdr.de (Postfix) with ESMTP id 2E09327400D
-	for <lists+devicetree@lfdr.de>; Tue, 22 Sep 2020 12:54:57 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTP id D2D4C273FFE
+	for <lists+devicetree@lfdr.de>; Tue, 22 Sep 2020 12:54:26 +0200 (CEST)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S1726509AbgIVKyq (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Tue, 22 Sep 2020 06:54:46 -0400
-Received: from mail-eopbgr60083.outbound.protection.outlook.com ([40.107.6.83]:13403
-        "EHLO EUR04-DB3-obe.outbound.protection.outlook.com"
-        rhost-flags-OK-OK-OK-FAIL) by vger.kernel.org with ESMTP
-        id S1726503AbgIVKyq (ORCPT <rfc822;devicetree@vger.kernel.org>);
-        Tue, 22 Sep 2020 06:54:46 -0400
-ARC-Seal: i=1; a=rsa-sha256; s=arcselector9901; d=microsoft.com; cv=none;
- b=gguIRyhRBOSdIJev04KoWLR0GZ3lh9b08HL7vK56gCTvFdYRCMk3fjxHkw8o8AG5A7LupXDNaj/6tYZ9juOhz2/1hkxN231H4vkrfBAUi1dB4MiHxce2igj7FSHyUc7MRls9442huS0Bghj0ImRNUBC1hvrO0e+Zk2e8szGDXPr/LywEWq6+9NVBNiTagpmXsFTaW+GMW5e5oD8gZ2fRJ+OzhDM3UAJ98o/WRQRYUq9fHFe1vcWfc7yqvR2KnU106OKj8HJrR0nEdwCjHKLWegrq9FGgIUmgjSVuFqZt6A8U/WIfEUKZXvWONwRX0hWNTTxk2xqeG7Ksp2kfKYWJ8w==
-ARC-Message-Signature: i=1; a=rsa-sha256; c=relaxed/relaxed; d=microsoft.com;
- s=arcselector9901;
- h=From:Date:Subject:Message-ID:Content-Type:MIME-Version:X-MS-Exchange-SenderADCheck;
- bh=QI4zXmZg7Uo6OKFNqSKKwim+JAGdaV75yasTPS+Lg1k=;
- b=Y8UfO+ubTv3auiYUh7PN0IWtC3nyBFWjIhQIaxGUOTShzyCx3ZnmYj/aFHYgk9JvnRNV/OoSttJ6WgDo5vhi3pYe001F8H6EJ093mHzZskM8DAXEwh8m1wCXqvvUSan0kQvdFiwbjgW4dnUfg5nxLc1KArW13DnhR86sy2qSsDABlMdEOR+C+orW0/BBY/AbXLvyB+40WvaMxyz0QEL+PdhWnr9Z/VHo+TyC5QT9y0nmffVdJYMtPplduORMPfeXSCQlKLsBQUejP9GyYiYt2cgkKlCnAw2xk7sP6HCZeosFkdlZF8cf6tsN57NMCRApqZlebUM3ngkw/DLvD/Datg==
-ARC-Authentication-Results: i=1; mx.microsoft.com 1; spf=pass
- smtp.mailfrom=nxp.com; dmarc=pass action=none header.from=nxp.com; dkim=pass
- header.d=nxp.com; arc=none
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=nxp.com; s=selector2;
- h=From:Date:Subject:Message-ID:Content-Type:MIME-Version:X-MS-Exchange-SenderADCheck;
- bh=QI4zXmZg7Uo6OKFNqSKKwim+JAGdaV75yasTPS+Lg1k=;
- b=GbWx4TUAxj1+GbhTNGoshjEk6N78WOboVIYbPSUpngcyigyAf6ykTKA6TY0PPvXwSRKkWhQG+UerMbo5DdM9lGyMbyvrj7f+LNA7USqaHn+F14+D8JTHxaW1tu+ilE6UMjZ3HF/dHiVjIMrII8oab05DusJL6n0SQMMRH+nKro8=
-Authentication-Results: kernel.org; dkim=none (message not signed)
- header.d=none;kernel.org; dmarc=none action=none header.from=nxp.com;
-Received: from VE1PR04MB6528.eurprd04.prod.outlook.com (2603:10a6:803:127::18)
- by VI1PR04MB4255.eurprd04.prod.outlook.com (2603:10a6:803:3f::13) with
- Microsoft SMTP Server (version=TLS1_2,
- cipher=TLS_ECDHE_RSA_WITH_AES_256_GCM_SHA384) id 15.20.3412.20; Tue, 22 Sep
- 2020 10:54:43 +0000
-Received: from VE1PR04MB6528.eurprd04.prod.outlook.com
- ([fe80::acd3:d354:3f34:3af7]) by VE1PR04MB6528.eurprd04.prod.outlook.com
- ([fe80::acd3:d354:3f34:3af7%4]) with mapi id 15.20.3391.025; Tue, 22 Sep 2020
- 10:54:43 +0000
-From:   Li Jun <jun.li@nxp.com>
-To:     robh+dt@kernel.org, shawnguo@kernel.org, balbi@kernel.org,
-        mathias.nyman@intel.com
-Cc:     gregkh@linuxfoundation.org, s.hauer@pengutronix.de,
-        kernel@pengutronix.de, festevam@gmail.com, linux-imx@nxp.com,
-        Anson.Huang@nxp.com, jun.li@nxp.com, aisheng.dong@nxp.com,
-        peng.fan@nxp.com, fugang.duan@nxp.com, qiangqing.zhang@nxp.com,
-        horia.geanta@nxp.com, linux-usb@vger.kernel.org,
-        devicetree@vger.kernel.org, linux-arm-kernel@lists.infradead.org
-Subject: [PATCH v3 6/6] arm64: dts: imx8mp-evk: enable usb1 as host mode
-Date:   Tue, 22 Sep 2020 18:46:52 +0800
-Message-Id: <1600771612-30727-7-git-send-email-jun.li@nxp.com>
-X-Mailer: git-send-email 2.7.4
-In-Reply-To: <1600771612-30727-1-git-send-email-jun.li@nxp.com>
-References: <1600771612-30727-1-git-send-email-jun.li@nxp.com>
-Content-Type: text/plain
-X-ClientProxiedBy: SG2PR0401CA0017.apcprd04.prod.outlook.com
- (2603:1096:3:1::27) To VE1PR04MB6528.eurprd04.prod.outlook.com
- (2603:10a6:803:127::18)
+        id S1726454AbgIVKyT (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Tue, 22 Sep 2020 06:54:19 -0400
+Received: from mslow2.mail.gandi.net ([217.70.178.242]:36708 "EHLO
+        mslow2.mail.gandi.net" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
+        with ESMTP id S1726513AbgIVKyT (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Tue, 22 Sep 2020 06:54:19 -0400
+Received: from relay4-d.mail.gandi.net (unknown [217.70.183.196])
+        by mslow2.mail.gandi.net (Postfix) with ESMTP id D7CA83A1297;
+        Tue, 22 Sep 2020 10:54:14 +0000 (UTC)
+X-Originating-IP: 93.34.118.233
+Received: from uno.localdomain (93-34-118-233.ip49.fastwebnet.it [93.34.118.233])
+        (Authenticated sender: jacopo@jmondi.org)
+        by relay4-d.mail.gandi.net (Postfix) with ESMTPSA id B86C1E0004;
+        Tue, 22 Sep 2020 10:53:49 +0000 (UTC)
+Date:   Tue, 22 Sep 2020 12:57:42 +0200
+From:   Jacopo Mondi <jacopo@jmondi.org>
+To:     Thierry Reding <thierry.reding@gmail.com>
+Cc:     Sowjanya Komatineni <skomatineni@nvidia.com>, jonathanh@nvidia.com,
+        sakari.ailus@iki.fi, hverkuil@xs4all.nl, jacopo+renesas@jmondi.org,
+        luca@lucaceresoli.net, leonl@leopardimaging.com,
+        robh+dt@kernel.org, lgirdwood@gmail.com, broonie@kernel.org,
+        linux-media@vger.kernel.org, devicetree@vger.kernel.org,
+        linux-kernel@vger.kernel.org
+Subject: Re: [PATCH v6 3/3] media: i2c: imx274: Add IMX274 power on and off
+ sequence
+Message-ID: <20200922105742.jsaf7mypwvx3u6bh@uno.localdomain>
+References: <1600724379-7324-1-git-send-email-skomatineni@nvidia.com>
+ <1600724379-7324-4-git-send-email-skomatineni@nvidia.com>
+ <20200922075501.GB3994831@ulmo>
 MIME-Version: 1.0
-X-MS-Exchange-MessageSentRepresentingType: 1
-Received: from 10.192.242.69 (119.31.174.66) by SG2PR0401CA0017.apcprd04.prod.outlook.com (2603:1096:3:1::27) with Microsoft SMTP Server (version=TLS1_2, cipher=TLS_ECDHE_RSA_WITH_AES_128_CBC_SHA256) id 15.20.3391.13 via Frontend Transport; Tue, 22 Sep 2020 10:54:37 +0000
-X-Mailer: git-send-email 2.7.4
-X-Originating-IP: [119.31.174.66]
-X-MS-PublicTrafficType: Email
-X-MS-Office365-Filtering-HT: Tenant
-X-MS-Office365-Filtering-Correlation-Id: 2aa671d3-b5eb-4675-850b-08d85ee5e91d
-X-MS-TrafficTypeDiagnostic: VI1PR04MB4255:
-X-MS-Exchange-Transport-Forked: True
-X-Microsoft-Antispam-PRVS: <VI1PR04MB4255C4A659CECF63F52126D7893B0@VI1PR04MB4255.eurprd04.prod.outlook.com>
-X-MS-Oob-TLC-OOBClassifiers: OLM:200;
-X-MS-Exchange-SenderADCheck: 1
-X-Microsoft-Antispam: BCL:0;
-X-Microsoft-Antispam-Message-Info: uU2YNOUQPqiefbfO4xehExoMuZK63KDg4wA2yhy7YpTG1ibNtkbsvTk+1Tdi0ffC5cjvMtJdbIpcq6kNcJQUcol4OCV9ZSFPE84clLa+qokROm2fuB4nqb2kZc1HzsJFMpQ0ErlfC3vSVCbcol8wdt8r3+enRraoHmR00QSrW1Fq2RBi1YuRMEgEhmTzpDchnAvrMKKdifEKNTCjQRsQwvj6dyC9TQ/+GAq2o6TG3ODNa9yTIuMoreH+xjoouNdcAWy0R/BozfQ6GPVQxkFArcaT34wInaI3uIrEtMR7oDy1mmQoA+oqul3aaLWLqN1nBNc4bHIJOK79plSAi597WLxS6W+KH1uqo4P4a5TVfTtWDmJoqDJ+lHhaPpnGhUadODQOp9ZL7cnirjw5WjtjBCjCIeCENuzCbDW+yq/WR8x9ajs5jsu7tY6Kb0/vZK1/
-X-Forefront-Antispam-Report: CIP:255.255.255.255;CTRY:;LANG:en;SCL:1;SRV:;IPV:NLI;SFV:NSPM;H:VE1PR04MB6528.eurprd04.prod.outlook.com;PTR:;CAT:NONE;SFS:(4636009)(396003)(366004)(39860400002)(136003)(346002)(376002)(316002)(16526019)(86362001)(956004)(2616005)(478600001)(8936002)(26005)(52116002)(83380400001)(5660300002)(8676002)(6666004)(186003)(66476007)(66556008)(16576012)(4744005)(4326008)(66946007)(2906002)(6486002)(36756003)(7416002)(32563001)(414714003)(473944003);DIR:OUT;SFP:1101;
-X-MS-Exchange-AntiSpam-MessageData: XmOID35glFMBc9mxecg7C5uma0tHRPyxSp32mhzW5gDWxkFOrM1sP4C9hZ1HQngMBMYYrtgktQjydXIz5qdliLocffSih9q+5Zpf/G6aLqlU6bO3DT+Bi+d56xK1MwApF+tCVM3S4ypNn96aMr+YytgH5LEjtsysgorsFJoqenS5ARaSDQeHm6B715fS+fUOltuG+vJC2j77cxknA+O/CqRHN1Cm9RVIK5sSsjAdbe/IppOPmVTsHthUAGxgTqC7UJcBIHDo+gUD0IT8NPIRhA+hDrkopHdrsq/x2yWqhoF5oGWi9S3/RSyRvlxNlYBEFDJUBbmSv1bNo6iTvzZAr3xPgy2co/WGqPk/lrEDgyC4HLeTIIXDKeXlPyrK+NSt/c6yArzF1MFsyCW+askdyGJh9PpiKKxv2+Y6K+gs45rqUvYaLifuMu+MCtzkHcQHnLXgIg4Vw8yKxtNnIzrRcCV1f89dJhqaaztLjYaQ0QnBIi8ZaQINrhK2v/Gl8ZWIJjyrtUi2RURlOpYmaMdzWbllDdgurbJHjDS3jumwUFPRT0Irfo7q0YY5z9GQBcbK7dQ3LTzEVa4smAvvKJauSpndUMRx9lXBM52HRBbQSraIk9gWkUsaAggmZ6RoIXJ+U9RwUghivEoLOvIlTtHfVw==
-X-OriginatorOrg: nxp.com
-X-MS-Exchange-CrossTenant-Network-Message-Id: 2aa671d3-b5eb-4675-850b-08d85ee5e91d
-X-MS-Exchange-CrossTenant-AuthSource: VE1PR04MB6528.eurprd04.prod.outlook.com
-X-MS-Exchange-CrossTenant-AuthAs: Internal
-X-MS-Exchange-CrossTenant-OriginalArrivalTime: 22 Sep 2020 10:54:42.8230
- (UTC)
-X-MS-Exchange-CrossTenant-FromEntityHeader: Hosted
-X-MS-Exchange-CrossTenant-Id: 686ea1d3-bc2b-4c6f-a92c-d99c5c301635
-X-MS-Exchange-CrossTenant-MailboxType: HOSTED
-X-MS-Exchange-CrossTenant-UserPrincipalName: hrtQeoQZsuVe2a09rrhwEo0cEn+5HxtT7d2dj2N/Zwv9w7T8FO0KPpi5C2YDbvog
-X-MS-Exchange-Transport-CrossTenantHeadersStamped: VI1PR04MB4255
+Content-Type: multipart/signed; micalg=pgp-sha256;
+        protocol="application/pgp-signature"; boundary="3vvwpxcd5qgs27cq"
+Content-Disposition: inline
+In-Reply-To: <20200922075501.GB3994831@ulmo>
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-Enable usb host port with type-A connector on imx8mp-evk board.
 
-Signed-off-by: Li Jun <jun.li@nxp.com>
----
- arch/arm64/boot/dts/freescale/imx8mp-evk.dts | 21 +++++++++++++++++++++
- 1 file changed, 21 insertions(+)
+--3vvwpxcd5qgs27cq
+Content-Type: text/plain; charset=utf-8
+Content-Disposition: inline
 
-diff --git a/arch/arm64/boot/dts/freescale/imx8mp-evk.dts b/arch/arm64/boot/dts/freescale/imx8mp-evk.dts
-index 432c1a7..0cb3b16 100644
---- a/arch/arm64/boot/dts/freescale/imx8mp-evk.dts
-+++ b/arch/arm64/boot/dts/freescale/imx8mp-evk.dts
-@@ -176,6 +176,21 @@
- 	};
- };
- 
-+&usb3_phy1 {
-+	status = "okay";
-+};
-+
-+&usb3_1 {
-+	status = "okay";
-+};
-+
-+&usb_dwc3_1 {
-+	pinctrl-names = "default";
-+	pinctrl-0 = <&pinctrl_usb1_vbus>;
-+	dr_mode = "host";
-+	status = "okay";
-+};
-+
- &usdhc2 {
- 	assigned-clocks = <&clk IMX8MP_CLK_USDHC2>;
- 	assigned-clock-rates = <400000000>;
-@@ -276,6 +291,12 @@
- 		>;
- 	};
- 
-+	pinctrl_usb1_vbus: usb1grp {
-+		fsl,pins = <
-+			MX8MP_IOMUXC_GPIO1_IO14__HSIOMIX_usb2_OTG_PWR	0x19
-+		>;
-+	};
-+
- 	pinctrl_usdhc2: usdhc2grp {
- 		fsl,pins = <
- 			MX8MP_IOMUXC_SD2_CLK__USDHC2_CLK	0x190
--- 
-2.7.4
+Hi Thierry
 
+On Tue, Sep 22, 2020 at 09:55:01AM +0200, Thierry Reding wrote:
+> On Mon, Sep 21, 2020 at 02:39:39PM -0700, Sowjanya Komatineni wrote:
+> > IMX274 has analog 2.8V supply, digital core 1.8V supply, and vddl digital
+> > io 1.2V supply which are optional based on camera module design.
+> >
+> > IMX274 also need external 24Mhz clock and is optional based on
+> > camera module design.
+> >
+> > This patch adds support for IMX274 power on and off to enable and
+> > disable these supplies and external clock.
+> >
+> > Reviewed-by: Luca Ceresoli <luca@lucaceresoli.net>
+> > Signed-off-by: Sowjanya Komatineni <skomatineni@nvidia.com>
+> > ---
+> >  drivers/media/i2c/imx274.c | 184 +++++++++++++++++++++++++++++++++------------
+> >  1 file changed, 134 insertions(+), 50 deletions(-)
+> >
+> > diff --git a/drivers/media/i2c/imx274.c b/drivers/media/i2c/imx274.c
+> > index 5e515f0..b3057a5 100644
+> > --- a/drivers/media/i2c/imx274.c
+> > +++ b/drivers/media/i2c/imx274.c
+> > @@ -18,7 +18,9 @@
+> >  #include <linux/kernel.h>
+> >  #include <linux/module.h>
+> >  #include <linux/of_gpio.h>
+> > +#include <linux/pm_runtime.h>
+> >  #include <linux/regmap.h>
+> > +#include <linux/regulator/consumer.h>
+> >  #include <linux/slab.h>
+> >  #include <linux/v4l2-mediabus.h>
+> >  #include <linux/videodev2.h>
+> > @@ -131,6 +133,15 @@
+> >  #define IMX274_TABLE_WAIT_MS			0
+> >  #define IMX274_TABLE_END			1
+> >
+> > +/* regulator supplies */
+> > +static const char * const imx274_supply_names[] = {
+> > +	"vddl",  /* IF (1.2V) supply */
+> > +	"vdig",  /* Digital Core (1.8V) supply */
+> > +	"vana",  /* Analog (2.8V) supply */
+>
+> According to the device tree bindings these should be uppercase. Did I
+> miss a patch that updates the bindings?
+
+Yes! Sorry, there's been some chrun around these bindings
+https://patchwork.linuxtv.org/project/linux-media/patch/20200917144416.GN834@valkosipuli.retiisi.org.uk/
+
+It should get in for 5.9 as a late fix
+
+>
+> I think the preference is for supply names to be lowercase and given
+> that there are no users of this binding yet we could update it without
+> breaking any existing device trees.
+>
+> > +};
+> > +
+> > +#define IMX274_NUM_SUPPLIES ARRAY_SIZE(imx274_supply_names)
+> > +
+> >  /*
+> >   * imx274 I2C operation related structure
+> >   */
+> > @@ -501,6 +512,8 @@ struct imx274_ctrls {
+> >   * @frame_rate: V4L2 frame rate structure
+> >   * @regmap: Pointer to regmap structure
+> >   * @reset_gpio: Pointer to reset gpio
+> > + * @supplies: List of analog and digital supply regulators
+> > + * @inck: Pointer to sensor input clock
+> >   * @lock: Mutex structure
+> >   * @mode: Parameters for the selected readout mode
+> >   */
+> > @@ -514,6 +527,8 @@ struct stimx274 {
+> >  	struct v4l2_fract frame_interval;
+> >  	struct regmap *regmap;
+> >  	struct gpio_desc *reset_gpio;
+> > +	struct regulator_bulk_data supplies[IMX274_NUM_SUPPLIES];
+> > +	struct clk *inck;
+> >  	struct mutex lock; /* mutex lock for operations */
+> >  	const struct imx274_mode *mode;
+> >  };
+> > @@ -726,6 +741,12 @@ static int imx274_start_stream(struct stimx274 *priv)
+> >  {
+> >  	int err = 0;
+> >
+> > +	err = __v4l2_ctrl_handler_setup(&priv->ctrls.handler);
+> > +	if (err) {
+> > +		dev_err(&priv->client->dev, "Error %d setup controls\n", err);
+> > +		return err;
+> > +	}
+> > +
+> >  	/*
+> >  	 * Refer to "Standby Cancel Sequence when using CSI-2" in
+> >  	 * imx274 datasheet, it should wait 10ms or more here.
+> > @@ -767,6 +788,66 @@ static void imx274_reset(struct stimx274 *priv, int rst)
+> >  	usleep_range(IMX274_RESET_DELAY1, IMX274_RESET_DELAY2);
+> >  }
+> >
+> > +static int imx274_power_on(struct device *dev)
+> > +{
+> > +	struct i2c_client *client = to_i2c_client(dev);
+> > +	struct v4l2_subdev *sd = i2c_get_clientdata(client);
+> > +	struct stimx274 *imx274 = to_imx274(sd);
+> > +	int ret;
+> > +
+> > +	/* keep sensor in reset before power on */
+> > +	imx274_reset(imx274, 0);
+> > +
+> > +	ret = clk_prepare_enable(imx274->inck);
+> > +	if (ret) {
+> > +		dev_err(&imx274->client->dev,
+> > +			"Failed to enable input clock: %d\n", ret);
+> > +		return ret;
+> > +	}
+> > +
+> > +	ret = regulator_bulk_enable(IMX274_NUM_SUPPLIES, imx274->supplies);
+> > +	if (ret) {
+> > +		dev_err(&imx274->client->dev,
+> > +			"Failed to enable regulators: %d\n", ret);
+> > +		goto fail_reg;
+> > +	}
+> > +
+> > +	udelay(2);
+>
+> This looks like some sort of extra delay to make sure all the supply
+> voltages have settled. Should this perhaps be encoded as part of the
+> regulator ramp-up times? Or is this really an IC-specific delay that
+> is needed for some internal timing?
+>
+> > +	imx274_reset(imx274, 1);
+> > +
+> > +	return 0;
+> > +
+> > +fail_reg:
+> > +	clk_disable_unprepare(imx274->inck);
+> > +	return ret;
+> > +}
+> > +
+> > +static int imx274_power_off(struct device *dev)
+> > +{
+> > +	struct i2c_client *client = to_i2c_client(dev);
+> > +	struct v4l2_subdev *sd = i2c_get_clientdata(client);
+> > +	struct stimx274 *imx274 = to_imx274(sd);
+> > +
+> > +	imx274_reset(imx274, 0);
+> > +
+> > +	regulator_bulk_disable(IMX274_NUM_SUPPLIES, imx274->supplies);
+> > +
+> > +	clk_disable_unprepare(imx274->inck);
+> > +
+> > +	return 0;
+> > +}
+> > +
+> > +static int imx274_regulators_get(struct device *dev, struct stimx274 *imx274)
+> > +{
+> > +	unsigned int i;
+> > +
+> > +	for (i = 0; i < IMX274_NUM_SUPPLIES; i++)
+> > +		imx274->supplies[i].supply = imx274_supply_names[i];
+> > +
+> > +	return devm_regulator_bulk_get(dev, IMX274_NUM_SUPPLIES,
+> > +					imx274->supplies);
+> > +}
+> > +
+> >  /**
+> >   * imx274_s_ctrl - This is used to set the imx274 V4L2 controls
+> >   * @ctrl: V4L2 control to be set
+> > @@ -781,6 +862,9 @@ static int imx274_s_ctrl(struct v4l2_ctrl *ctrl)
+> >  	struct stimx274 *imx274 = to_imx274(sd);
+> >  	int ret = -EINVAL;
+> >
+> > +	if (!pm_runtime_get_if_in_use(&imx274->client->dev))
+> > +		return 0;
+>
+> I'm not sure I understand this, and sorry if this has been discussed
+> earlier. Aren't there any other mechanisms in place to ensure that a
+> control can only be configured when in use? If so, then is this even
+> necessary?
+>
+> If not, silently ignoring at this point seems like it could cause subtle
+> failures by ignoring some control settings and applying others if the
+> timing is right.
+>
+> > +
+> >  	dev_dbg(&imx274->client->dev,
+> >  		"%s : s_ctrl: %s, value: %d\n", __func__,
+> >  		ctrl->name, ctrl->val);
+> > @@ -811,6 +895,8 @@ static int imx274_s_ctrl(struct v4l2_ctrl *ctrl)
+> >  		break;
+> >  	}
+> >
+> > +	pm_runtime_put(&imx274->client->dev);
+> > +
+> >  	return ret;
+> >  }
+> >
+> > @@ -1269,10 +1355,8 @@ static int imx274_s_frame_interval(struct v4l2_subdev *sd,
+> >   *
+> >   * Return: 0 on success, errors otherwise
+> >   */
+> > -static int imx274_load_default(struct stimx274 *priv)
+> > +static void imx274_load_default(struct stimx274 *priv)
+> >  {
+> > -	int ret;
+> > -
+> >  	/* load default control values */
+> >  	priv->frame_interval.numerator = 1;
+> >  	priv->frame_interval.denominator = IMX274_DEF_FRAME_RATE;
+> > @@ -1280,29 +1364,6 @@ static int imx274_load_default(struct stimx274 *priv)
+> >  	priv->ctrls.gain->val = IMX274_DEF_GAIN;
+> >  	priv->ctrls.vflip->val = 0;
+> >  	priv->ctrls.test_pattern->val = TEST_PATTERN_DISABLED;
+> > -
+> > -	/* update frame rate */
+> > -	ret = imx274_set_frame_interval(priv,
+> > -					priv->frame_interval);
+> > -	if (ret)
+> > -		return ret;
+> > -
+> > -	/* update exposure time */
+> > -	ret = v4l2_ctrl_s_ctrl(priv->ctrls.exposure, priv->ctrls.exposure->val);
+> > -	if (ret)
+> > -		return ret;
+> > -
+> > -	/* update gain */
+> > -	ret = v4l2_ctrl_s_ctrl(priv->ctrls.gain, priv->ctrls.gain->val);
+> > -	if (ret)
+> > -		return ret;
+> > -
+> > -	/* update vflip */
+> > -	ret = v4l2_ctrl_s_ctrl(priv->ctrls.vflip, priv->ctrls.vflip->val);
+> > -	if (ret)
+> > -		return ret;
+>
+> This is not moved to somewhere else, so I assume the equivalent will
+> happen somewhere higher up in the stack? Might be worth mentioning in
+> the commit message why this can be dropped.
+>
+> Thierry
+
+
+
+--3vvwpxcd5qgs27cq
+Content-Type: application/pgp-signature; name="signature.asc"
+
+-----BEGIN PGP SIGNATURE-----
+
+iQIzBAABCAAdFiEEtcQ9SICaIIqPWDjAcjQGjxahVjwFAl9p2KYACgkQcjQGjxah
+VjxuKA/7BtUBwbUr1r7qMCqjhos0yPrOlR6WuVcozG0soKjjVFHXJjkuLSiM52JF
+KfrZD6l3cU1QvQK0SslzRy5Q0grpasnrERNSve5jBg2lU9zwh50BIFDrxPbW+teE
+yxeyweNjvScwrCLa0/dPQPpakq+LrdC1MrnEkZobIG7InxPsBv6TRtluZeLcnW4T
+49VYzUEcr1NGBpLmmNtdofAtm1SL0s0HqpZCZhCXBNct1DG+zW2EkFzTAQ7dIpky
+suIfAw2t5oArfjCAJFbafIQcRmnn1FgyyNancbi4CXuGv4DcGczrvjDqZTMINL4M
+7/zKU3/TyT2dxMXZrA0e0dJVS7Bjc8vRJE49UNJ3HnNwoYPk20wKTNbG4JxbTP6y
+hXdiTClqXaQQj51d520LTP+RLtpK34NPCS6lRcVuzHMNll65R3QoNHiFced9ugoz
+OxPUHEtJCB6ilR4WYpWU0anyzR5MIPZFTaHFxpFbrsiK5LvQp6uEpzYBQkTVk/Go
+qBu3nr2nSzEz4jUYuL0UNRY4sDrvazv/JFEKCmXIs+T3q6S+fGhvqGSdR5oKOepT
+QcJ4N+s3QtINAJtZxxu54txMLsKlnBI6gutUCibwM6NqZlubzp94gAreAqljqmZk
+n9WnlfKZCmpSz3RKyjj1C55QCNDW1ThHyCV65Ah4oiCZq/AIOGM=
+=K5vx
+-----END PGP SIGNATURE-----
+
+--3vvwpxcd5qgs27cq--
