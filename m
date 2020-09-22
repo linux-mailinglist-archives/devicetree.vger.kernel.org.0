@@ -2,138 +2,121 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from vger.kernel.org (vger.kernel.org [23.128.96.18])
-	by mail.lfdr.de (Postfix) with ESMTP id A4F35274B80
-	for <lists+devicetree@lfdr.de>; Tue, 22 Sep 2020 23:49:33 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTP id 53BFB274BE6
+	for <lists+devicetree@lfdr.de>; Wed, 23 Sep 2020 00:14:59 +0200 (CEST)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S1726676AbgIVVtT (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Tue, 22 Sep 2020 17:49:19 -0400
-Received: from lindbergh.monkeyblade.net ([23.128.96.19]:48932 "EHLO
-        lindbergh.monkeyblade.net" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S1726563AbgIVVtS (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Tue, 22 Sep 2020 17:49:18 -0400
-Received: from mail-lj1-x244.google.com (mail-lj1-x244.google.com [IPv6:2a00:1450:4864:20::244])
-        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id C230EC0613D1
-        for <devicetree@vger.kernel.org>; Tue, 22 Sep 2020 14:49:16 -0700 (PDT)
-Received: by mail-lj1-x244.google.com with SMTP id v23so15451244ljd.1
-        for <devicetree@vger.kernel.org>; Tue, 22 Sep 2020 14:49:16 -0700 (PDT)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=linaro.org; s=google;
-        h=subject:to:cc:references:from:message-id:date:user-agent
-         :mime-version:in-reply-to:content-language:content-transfer-encoding;
-        bh=YyT3Cqj49TWLOGm0xlbDdLx8xJJ2VmHIBnxNCQNfr+8=;
-        b=ijq884l+tRHc9b5yBCIKcy0PdJF9gVxr67m+oS3g/jGEcajKNEV+yzDDuII6GBXNA2
-         kdmrCv0CNxj4TwKLPpuE9QxdokL09sjjdjxsLfRMvhTRLfkMTcYYuq0QdpLHPT+0tm/B
-         AI0vaXE5w7flwhZc+x5QTFyrPzzrBNhgmfCTdKI/asZTclqF/e1EtDJQ3GvMNCTxpjeI
-         aBIclP8F1DROshY06R/q7EmeHDclZkhTf0t2dYsrxMW6gPdtbA5am/V5BmWVj6W0D/VW
-         3wa7SpX0jOzn7Zx3nea0GzfsrHnvZgdjjdzKvbm/Fq0pGEtXuANpkFRd1BuNiYq4lCoj
-         Hgbw==
-X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=1e100.net; s=20161025;
-        h=x-gm-message-state:subject:to:cc:references:from:message-id:date
-         :user-agent:mime-version:in-reply-to:content-language
-         :content-transfer-encoding;
-        bh=YyT3Cqj49TWLOGm0xlbDdLx8xJJ2VmHIBnxNCQNfr+8=;
-        b=TTwo70I8Lzl7iU6wPm+PcMotj3Fh/ce+p6GfuYLUKcEliigGlZ3ZoSsZQXh+qUM7NV
-         EqwUv0HVJ7YdnCoDkWVOKyiS2yteTiPbpDy0XTtYCfP+tU0c6/8zYz8kr2HGtavy6Dcn
-         Hx4BTwRbWiCqGLPKnadZGP+1NXcdaC6TW+lJTqZL0Hl1Dn0WrRObRQ86XGGmNP9Sv1/G
-         OBer5hUcIyRmsyJgFqXGccqEmJ5Zn0PDxGe46+/IKMy2QEQdK1UiTnsrq4CMIZJGG7cu
-         doi/hv9P1psxSISU493G9izRj6Mkz6i7z4x0Fv6a2rxWwuD/MNSre4rNeW1ZqlYqsR+z
-         mLSw==
-X-Gm-Message-State: AOAM533G2HGCtExGbo/sVqxuW3k1Dwe+8pvKAjJ35k7vjV7r4hftikJj
-        T/rAgsmNkh82mAuEnzjOz44vvw==
-X-Google-Smtp-Source: ABdhPJx8yNE+u6mtpmZmCr8b6V1cSsLYwrxMiPnor/XnMrQIT/t+7IrzJ2/xbJK1Rufl7QO60iXY5Q==
-X-Received: by 2002:a2e:86d3:: with SMTP id n19mr2304219ljj.368.1600811354955;
-        Tue, 22 Sep 2020 14:49:14 -0700 (PDT)
-Received: from [192.168.1.211] ([188.162.64.186])
-        by smtp.gmail.com with ESMTPSA id w30sm664526lfn.102.2020.09.22.14.49.13
-        (version=TLS1_3 cipher=TLS_AES_128_GCM_SHA256 bits=128/128);
-        Tue, 22 Sep 2020 14:49:14 -0700 (PDT)
-Subject: Re: [PATCH 3/4] clk: qcom: Add support to LPASS AUDIO_CC Glitch Free
- Mux clocks
-To:     Srinivas Kandagatla <srinivas.kandagatla@linaro.org>,
-        sboyd@kernel.org, linux-clk@vger.kernel.org,
-        devicetree@vger.kernel.org
-Cc:     bjorn.andersson@linaro.org, mturquette@baylibre.com,
-        robh+dt@kernel.org, linux-arm-msm@vger.kernel.org,
-        linux-kernel@vger.kernel.org
-References: <20200917132850.7730-1-srinivas.kandagatla@linaro.org>
- <20200917132850.7730-4-srinivas.kandagatla@linaro.org>
-From:   Dmitry Baryshkov <dmitry.baryshkov@linaro.org>
-Message-ID: <fd524c82-592c-fa41-f9bb-8693b68e4caf@linaro.org>
-Date:   Wed, 23 Sep 2020 00:49:12 +0300
-User-Agent: Mozilla/5.0 (X11; Linux x86_64; rv:78.0) Gecko/20100101
- Thunderbird/78.2.2
+        id S1726576AbgIVWO5 (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Tue, 22 Sep 2020 18:14:57 -0400
+Received: from fllv0016.ext.ti.com ([198.47.19.142]:37842 "EHLO
+        fllv0016.ext.ti.com" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
+        with ESMTP id S1726179AbgIVWO5 (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Tue, 22 Sep 2020 18:14:57 -0400
+Received: from lelv0266.itg.ti.com ([10.180.67.225])
+        by fllv0016.ext.ti.com (8.15.2/8.15.2) with ESMTP id 08MKQAhe042415;
+        Tue, 22 Sep 2020 15:26:10 -0500
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=ti.com;
+        s=ti-com-17Q1; t=1600806371;
+        bh=kIqH1V5ealEVC5EO+6vAJW+B9sEXlZ5Fpg3hzaZaIWU=;
+        h=Subject:To:CC:References:From:Date:In-Reply-To;
+        b=ikwtlh5/gSnu+ZQbloMTppJU2t6nrvxg1KhvJ1e0nSfoNQqfhIu/Hr110QSiZBe6t
+         eYMkEIryEsfQoq5vl28jW+KI3qqAa249dMB1RhkHO3IL5ups+XxTSy0EZHAtuFXJ98
+         NoUGWSPHHCovssPbAAvIXARf03NRXzPssZiTx/rk=
+Received: from DFLE100.ent.ti.com (dfle100.ent.ti.com [10.64.6.21])
+        by lelv0266.itg.ti.com (8.15.2/8.15.2) with ESMTPS id 08MKQAvA008719
+        (version=TLSv1.2 cipher=AES256-GCM-SHA384 bits=256 verify=FAIL);
+        Tue, 22 Sep 2020 15:26:10 -0500
+Received: from DFLE105.ent.ti.com (10.64.6.26) by DFLE100.ent.ti.com
+ (10.64.6.21) with Microsoft SMTP Server (version=TLS1_2,
+ cipher=TLS_ECDHE_RSA_WITH_AES_128_CBC_SHA256_P256) id 15.1.1979.3; Tue, 22
+ Sep 2020 15:26:10 -0500
+Received: from lelv0327.itg.ti.com (10.180.67.183) by DFLE105.ent.ti.com
+ (10.64.6.26) with Microsoft SMTP Server (version=TLS1_2,
+ cipher=TLS_ECDHE_RSA_WITH_AES_128_CBC_SHA256_P256) id 15.1.1979.3 via
+ Frontend Transport; Tue, 22 Sep 2020 15:26:10 -0500
+Received: from [10.250.36.109] (ileax41-snat.itg.ti.com [10.172.224.153])
+        by lelv0327.itg.ti.com (8.15.2/8.15.2) with ESMTP id 08MKQAJV061179;
+        Tue, 22 Sep 2020 15:26:10 -0500
+Subject: Re: [PATCH v4 0/4] TI K3 R5F remoteproc support
+To:     Rob Herring <robh@kernel.org>
+CC:     Bjorn Andersson <bjorn.andersson@linaro.org>,
+        Mathieu Poirier <mathieu.poirier@linaro.org>,
+        Lokesh Vutla <lokeshvutla@ti.com>,
+        <linux-remoteproc@vger.kernel.org>, <devicetree@vger.kernel.org>,
+        <linux-arm-kernel@lists.infradead.org>,
+        <linux-kernel@vger.kernel.org>
+References: <20200908174556.21277-1-s-anna@ti.com>
+ <20200922194753.GA3105316@bogus>
+From:   Suman Anna <s-anna@ti.com>
+Message-ID: <f5c8b7f1-1ac6-2134-89da-d1b91d4643bf@ti.com>
+Date:   Tue, 22 Sep 2020 15:26:05 -0500
+User-Agent: Mozilla/5.0 (X11; Linux x86_64; rv:68.0) Gecko/20100101
+ Thunderbird/68.10.0
 MIME-Version: 1.0
-In-Reply-To: <20200917132850.7730-4-srinivas.kandagatla@linaro.org>
-Content-Type: text/plain; charset=utf-8; format=flowed
+In-Reply-To: <20200922194753.GA3105316@bogus>
+Content-Type: text/plain; charset="utf-8"
 Content-Language: en-US
 Content-Transfer-Encoding: 7bit
+X-EXCLAIMER-MD-CONFIG: e1e8a2fd-e40a-4ac6-ac9b-f7e9cc9ee180
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-On 17/09/2020 16:28, Srinivas Kandagatla wrote:
-> GFM Muxes in AUDIO_CC control clocks to LPASS WSA and RX Codec Macros.
-> This patch adds support to these muxes.
+Hi Rob,
+
+On 9/22/20 2:47 PM, Rob Herring wrote:
+> On Tue, Sep 08, 2020 at 12:45:52PM -0500, Suman Anna wrote:
+>> Hi All,
+>>
+>> The following is v4 of the TI K3 R5F remoteproc driver series supporting all
+>> the R5F processor clusters/subsystems on TI AM65x and J721E SoCs. Please
+>> see the v1 cover-letter [1] for the features supported on these R5F processors.
+>>
+>> This series is a rebased version on top of the latest v5.9-rc baseline and
+>> includes very minor fixes w.r.t v3. The previous K3 DSP dependencies are now
+>> available in mainline kernel. Please see the individual patches for the delta
+>> differences (Only patches 1 and 2 updated).
+>>
+>> Bjorn,
+>> This series is only waiting on bindings ack and the conclusion on the bindings
+>> discussion from v2 [4] on which I haven't seen any forward progress on this 
+>> despite all the clarifications. I do not expect any changes even w.r.t System DT,
+>> and we can't really have a common binding between TI and Xilinx R5Fs. 
+>
+
+First of all, thank you for reviewing this and your response.
+
+> Why not? I'm pretty sure lockstep or not is a thing for both and TCMs 
+> seem to be a common thing.
+
+The cluster mode is a common theme, and if you have a preference for a common
+property-name, both I and Ben can use that. The values though might vary between
+different vendor SoCs.
+
+I have given out all the differences and reasons on a v2 thread, the SoC and
+clock and reset integration aspects make it look very different.
+Please see the discussion here,
+https://patchwork.kernel.org/comment/23560321/
+
+There was only one open comment/question I had regarding Core identification
+w.r.t my binding. Do you prefer a node-name index difference or a separate
+core-id/cpu-id property identifying which is Core0 and Core1.
+
 > 
-> Signed-off-by: Srinivas Kandagatla <srinivas.kandagatla@linaro.org>
-> ---
->   drivers/clk/qcom/Kconfig            |   7 +
->   drivers/clk/qcom/Makefile           |   1 +
->   drivers/clk/qcom/lpass-gfm-sm8250.c | 235 ++++++++++++++++++++++++++++
->   3 files changed, 243 insertions(+)
->   create mode 100644 drivers/clk/qcom/lpass-gfm-sm8250.c
+> And I don't really think System DT will not impact it. Though it's not 
+> well enough defined to say either way IMO.
+
+Yeah agreed. But the current architecture in System DT does allow you to add
+plugins to generate the proper compliant dts node.
+
+In anycase, I doubt TI will ever be using it in general, because we do not have
+a concept of DT on our firmwares. I have given all these inputs again on v2, but
+haven't seen any responses on it. So, I do appreciate your feedback.
+
 > 
-> diff --git a/drivers/clk/qcom/Kconfig b/drivers/clk/qcom/Kconfig
-> index 2eda63b7c46c..4e46fd339e62 100644
-> --- a/drivers/clk/qcom/Kconfig
-> +++ b/drivers/clk/qcom/Kconfig
-> @@ -494,4 +494,11 @@ config KRAITCC
->   	  Support for the Krait CPU clocks on Qualcomm devices.
->   	  Say Y if you want to support CPU frequency scaling.
->   
-> +config CLK_GFM_LPASS_SM8250
-> +	tristate "GFM LPASS Clocks"
+> But if Bjorn wants to take this, fine. I'm not acking it though nor 
+> worrying about it for any compatibility with system DT.
 
-Since this driver can be built as module, few things are missing (see 
-below).
+Any specific reasons? For the most part, I am using all standard properties.
 
-> +	depends on SND_SOC_QDSP6_COMMON
-> +	help
-> +	  Support for the GFM Glitch Free Mux LPASS clock. Say Y
-> +	  if you want to support GFM Clocks on LPASS for SM8250 SoC.
-> +
-
-[skipped]
-
-> +
-> +static const struct of_device_id lpass_gfm_clk_match_table[] = {
-> +	{
-> +		.compatible = "qcom,sm8250-lpass-audiocc",
-> +		.data = &audiocc_data,
-> +	},
-> +	{ }
-> +};
-
-MODULE_DEVICE_TABLE(of, lpass_gfm_clk_match_table);
-
-> +
-> +static struct platform_driver lpass_gfm_clk_driver = {
-> +	.probe		= lpass_gfm_clk_driver_probe,
-> +	.driver		= {
-> +		.name	= "lpass-gfm-clk",
-> +		.of_match_table = lpass_gfm_clk_match_table,
-> +	},
-> +};
-> +builtin_platform_driver(lpass_gfm_clk_driver);
-
-
-Wouldn't you like to use module_platform_driver() here, like other LPASS 
-CC drivers do?
-
-Also MODULE_LICENSE is missing.
-
-
--- 
-With best wishes
-Dmitry
+regards
+Suman
