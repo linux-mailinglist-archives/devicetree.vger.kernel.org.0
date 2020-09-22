@@ -2,77 +2,69 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from vger.kernel.org (vger.kernel.org [23.128.96.18])
-	by mail.lfdr.de (Postfix) with ESMTP id EBF23274953
-	for <lists+devicetree@lfdr.de>; Tue, 22 Sep 2020 21:41:02 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTP id D88D027493E
+	for <lists+devicetree@lfdr.de>; Tue, 22 Sep 2020 21:35:38 +0200 (CEST)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S1726615AbgIVTlC (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Tue, 22 Sep 2020 15:41:02 -0400
-Received: from vsmx011.vodafonemail.xion.oxcs.net ([153.92.174.89]:20260 "EHLO
-        vsmx011.vodafonemail.xion.oxcs.net" rhost-flags-OK-OK-OK-OK)
-        by vger.kernel.org with ESMTP id S1726550AbgIVTlC (ORCPT
-        <rfc822;devicetree@vger.kernel.org>);
-        Tue, 22 Sep 2020 15:41:02 -0400
-X-Greylist: delayed 416 seconds by postgrey-1.27 at vger.kernel.org; Tue, 22 Sep 2020 15:41:01 EDT
-Received: from vsmx003.vodafonemail.xion.oxcs.net (unknown [192.168.75.197])
-        by mta-5-out.mta.xion.oxcs.net (Postfix) with ESMTP id 20CC459D486;
-        Tue, 22 Sep 2020 19:34:05 +0000 (UTC)
-Received: from app-43.app.xion.oxcs.net (app-43.app.xion.oxcs.net [10.10.1.43])
-        by mta-7-out.mta.xion.oxcs.net (Postfix) with ESMTPA id AB9895399F0;
-        Tue, 22 Sep 2020 19:33:54 +0000 (UTC)
-Date:   Tue, 22 Sep 2020 21:33:54 +0200 (CEST)
-From:   Markus Moll <moll.markus@arcor.de>
-To:     Pavel Machek <pavel@ucw.cz>, Dan Murphy <dmurphy@ti.com>,
-        Rob Herring <robh+dt@kernel.org>
-Cc:     linux-leds@vger.kernel.org, devicetree@vger.kernel.org
-Message-ID: <1570334746.101942.1600803234657@mail.vodafone.de>
-Subject: [PATCH v1 2/2] dt: bindings: pca9532: add description of pwm and
- psc settings
+        id S1726576AbgIVTfh (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Tue, 22 Sep 2020 15:35:37 -0400
+Received: from mail-il1-f194.google.com ([209.85.166.194]:40697 "EHLO
+        mail-il1-f194.google.com" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
+        with ESMTP id S1726550AbgIVTfh (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Tue, 22 Sep 2020 15:35:37 -0400
+Received: by mail-il1-f194.google.com with SMTP id x18so16032392ila.7;
+        Tue, 22 Sep 2020 12:35:37 -0700 (PDT)
+X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+        d=1e100.net; s=20161025;
+        h=x-gm-message-state:date:from:to:cc:subject:message-id:references
+         :mime-version:content-disposition:in-reply-to;
+        bh=jPBD0XmzIV/W0iZGo3u7QE8dbhQcu1GYPOKQ4Uj0YkA=;
+        b=H7TS5gyhTzI1GRYtp1iMLia9n75dX+G8dpIYYqhZRl7cW2YEY+8sH4JK3/RPD2bkav
+         ELkTtB3G+piZCRN7PfsmW7O0lPMLBpmKc/RUEvrrCOLjZsZ//ixWlXPiR/NGYF/KqFBL
+         QmXjmY3eA5+l0dQP09k6sw2c9alMMmqhrw8KwS79FTNAyxdK8tOiDP/OKokwYsL6uCom
+         kaUu+V3fjirnUWLLVM8qHiE5wnLEbBfKoL+BVkmlla5tnFXZNqTrrfZ4evI2d2LxXrAF
+         aPcea0jUytZWWquhwQvgG8Kz8Nmno/GdZleTQRCpEHMd4rBk4OPjsfAz+sWiUixbycYg
+         xUVQ==
+X-Gm-Message-State: AOAM5336MCvwGwtIAYJ/EV2iHnAntUg4CsbtU52hONETtdYVPAPzumP/
+        s7Ud+zC8TS3hSdadt+EUZw==
+X-Google-Smtp-Source: ABdhPJzNqdROL+jdJ3dVRE9aodQED8gpbXyKrtUeG8JK3C/kXVBgCpAfcjl4U3P55eEquDFbPiY9lw==
+X-Received: by 2002:a92:d34f:: with SMTP id a15mr5920759ilh.226.1600803337012;
+        Tue, 22 Sep 2020 12:35:37 -0700 (PDT)
+Received: from xps15 ([64.188.179.253])
+        by smtp.gmail.com with ESMTPSA id q2sm6502219ils.81.2020.09.22.12.35.35
+        (version=TLS1_3 cipher=TLS_AES_256_GCM_SHA384 bits=256/256);
+        Tue, 22 Sep 2020 12:35:36 -0700 (PDT)
+Received: (nullmailer pid 3100940 invoked by uid 1000);
+        Tue, 22 Sep 2020 19:35:34 -0000
+Date:   Tue, 22 Sep 2020 13:35:34 -0600
+From:   Rob Herring <robh@kernel.org>
+To:     Neil Armstrong <narmstrong@baylibre.com>
+Cc:     repk@triplefau.lt, linux-kernel@vger.kernel.org,
+        linux-arm-kernel@lists.infradead.org,
+        linux-amlogic@lists.infradead.org, kishon@ti.com,
+        devicetree@vger.kernel.org
+Subject: Re: [PATCH v2 2/3] dt-bindings: phy: amlogic,
+ meson-axg-mipi-pcie-analog: remove phy cell parameter
+Message-ID: <20200922193534.GA3100774@bogus>
+References: <20200915130339.11079-1-narmstrong@baylibre.com>
+ <20200915130339.11079-3-narmstrong@baylibre.com>
 MIME-Version: 1.0
-Content-Type: text/plain; charset=UTF-8
-Content-Transfer-Encoding: 7bit
-X-Priority: 3
-Importance: Medium
-X-Mailer: Open-Xchange Mailer v7.8.4-Rev73
-X-Originating-Client: open-xchange-appsuite
-X-VADE-STATUS: LEGIT
+Content-Type: text/plain; charset=us-ascii
+Content-Disposition: inline
+In-Reply-To: <20200915130339.11079-3-narmstrong@baylibre.com>
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-These properties allow users to configure the PCA9532 blink rates.
+On Tue, 15 Sep 2020 15:03:38 +0200, Neil Armstrong wrote:
+> The Amlogic AXG MIPI + PCIe Analog PHY provides function for both PCIe and
+> MIPI DSI at the same time, and is not exclusive.
+> 
+> Thus remove the invalid phy cell parameter.
+> 
+> Signed-off-by: Neil Armstrong <narmstrong@baylibre.com>
+> ---
+>  .../bindings/phy/amlogic,meson-axg-mipi-pcie-analog.yaml      | 4 ++--
+>  1 file changed, 2 insertions(+), 2 deletions(-)
+> 
 
-Signed-off-by: Markus Moll <mmoll@de.pepperl-fuchs.com>
----
- .../devicetree/bindings/leds/leds-pca9532.txt          | 10 ++++++++++
- 1 file changed, 10 insertions(+)
-
-diff --git a/Documentation/devicetree/bindings/leds/leds-pca9532.txt b/Documentation/devicetree/bindings/leds/leds-pca9532.txt
-index f769c52e364..3aa05eca9df 100644
---- a/Documentation/devicetree/bindings/leds/leds-pca9532.txt
-+++ b/Documentation/devicetree/bindings/leds/leds-pca9532.txt
-@@ -11,6 +11,14 @@ Required properties:
- 		"nxp,pca9533"
- 	- reg -  I2C slave address
- 
-+Optional properties:
-+	- nxp,pwm: array of two 8-bit values specifying the blink duty cycle
-+	  fractions of each pwm (default <0 0>)
-+	  The duty cycle is pwm/256.
-+	- nxp,psc: array of two 8-bit values specifying the blink period of
-+	  each pwm (default <0 0>)
-+	  The period is (psc+1)/152 seconds.
-+
- Each led is represented as a sub-node of the nxp,pca9530.
- 
- Optional sub-node properties:
-@@ -26,6 +34,8 @@ Example:
-   leds: pca9530@60 {
-     compatible = "nxp,pca9530";
-     reg = <0x60>;
-+    nxp,pwm = /bits/ 8 <128 128>; // 50% duty cycle
-+    nxp,psc = /bits/ 8 <151 37>; // 1Hz and 4Hz, respectively
- 
-     red-power {
-       label = "pca:red:power";
--- 
-2.25.1
+Acked-by: Rob Herring <robh@kernel.org>
