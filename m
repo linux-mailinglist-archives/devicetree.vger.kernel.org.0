@@ -2,102 +2,65 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from vger.kernel.org (vger.kernel.org [23.128.96.18])
-	by mail.lfdr.de (Postfix) with ESMTP id 2B0BB274619
-	for <lists+devicetree@lfdr.de>; Tue, 22 Sep 2020 18:04:59 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTP id 9E62C274627
+	for <lists+devicetree@lfdr.de>; Tue, 22 Sep 2020 18:06:25 +0200 (CEST)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S1726686AbgIVQE5 (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Tue, 22 Sep 2020 12:04:57 -0400
-Received: from mail-il1-f194.google.com ([209.85.166.194]:40830 "EHLO
-        mail-il1-f194.google.com" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S1726680AbgIVQEz (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Tue, 22 Sep 2020 12:04:55 -0400
-Received: by mail-il1-f194.google.com with SMTP id x18so15368528ila.7;
-        Tue, 22 Sep 2020 09:04:54 -0700 (PDT)
-X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=1e100.net; s=20161025;
-        h=x-gm-message-state:date:from:to:cc:subject:message-id:references
-         :mime-version:content-disposition:in-reply-to;
-        bh=CKfLdUexUfPdpjwTDlKQ3XKMxqzDUbFupt+mG72mDMc=;
-        b=dgE6Jil8q7+/PT/svwXC26D+wNn+A/+9mS0h06YlkYNsTqiymvjYpWJClrI1GOKhRf
-         7AQWjcn6XtThXI6jqCC6fZkQBWT9pl4lySvRFJM4e6RX7kLle3YgP39C1s3nPiDf+k5H
-         KFYYAGfxkjZ8D3NsZRpHsmGt4kKMMMcMBPyyniZri9/F1vvequfIyi6DWhJNRgkQoXoy
-         AOJv4WLexqGizs0V5VA41QVpzZxF67z8kZqF2SQInVsaf2iHO3KqOTJ7bM8JBqq4SZ6i
-         JBga48TeAv+pPxDrV7V5ghZq3I8El6CZCO4mGpW4Wqo1NtN4vlxhl6pEO/0oVuY90AJt
-         FXRA==
-X-Gm-Message-State: AOAM533dLkdy2ETBrma5hgraIqP96uhl/q95J4GjTbGGsLw8OsnfUD4N
-        XEXh9Oban2XgCdZQIj3m9A==
-X-Google-Smtp-Source: ABdhPJyGE4qpjft/53rjEnM1nes6ybplFwv2lRkqN4ajfiISqxLZHyh9XWi1DNlUUSO+vOKKTAg4Fw==
-X-Received: by 2002:a92:730b:: with SMTP id o11mr4773209ilc.91.1600790694176;
-        Tue, 22 Sep 2020 09:04:54 -0700 (PDT)
-Received: from xps15 ([64.188.179.253])
-        by smtp.gmail.com with ESMTPSA id k2sm7557712ioj.2.2020.09.22.09.04.52
-        (version=TLS1_3 cipher=TLS_AES_256_GCM_SHA384 bits=256/256);
-        Tue, 22 Sep 2020 09:04:53 -0700 (PDT)
-Received: (nullmailer pid 2769164 invoked by uid 1000);
-        Tue, 22 Sep 2020 16:04:52 -0000
-Date:   Tue, 22 Sep 2020 10:04:52 -0600
-From:   Rob Herring <robh@kernel.org>
-To:     Chunfeng Yun <chunfeng.yun@mediatek.com>
-Cc:     linux-kernel@vger.kernel.org,
-        Philipp Zabel <p.zabel@pengutronix.de>,
-        linux-arm-kernel@lists.infradead.org,
-        Stanley Chu <stanley.chu@mediatek.com>,
-        David Airlie <airlied@linux.ie>,
-        Matthias Brugger <matthias.bgg@gmail.com>,
-        CK Hu <ck.hu@mediatek.com>, linux-mediatek@lists.infradead.org,
-        Kishon Vijay Abraham I <kishon@ti.com>,
-        Daniel Vetter <daniel@ffwll.ch>, Vinod Koul <vkoul@kernel.org>,
-        dri-devel@lists.freedesktop.org,
-        Chun-Kuang Hu <chunkuang.hu@kernel.org>,
-        devicetree@vger.kernel.org, Rob Herring <robh+dt@kernel.org>
-Subject: Re: [PATCH 2/4] dt-bindings: phy: convert phy-mtk-tphy.txt to YAML
- schema
-Message-ID: <20200922160452.GA2768616@bogus>
-References: <5af7c097d1c71a180d8ed1f1a44055859b42f1a0.1600760719.git.chunfeng.yun@mediatek.com>
- <33b4c569db10d983c7a9485a8bd6ec4efc0a1242.1600760719.git.chunfeng.yun@mediatek.com>
+        id S1726756AbgIVQGT (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Tue, 22 Sep 2020 12:06:19 -0400
+Received: from fllv0016.ext.ti.com ([198.47.19.142]:57300 "EHLO
+        fllv0016.ext.ti.com" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
+        with ESMTP id S1726567AbgIVQGT (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Tue, 22 Sep 2020 12:06:19 -0400
+Received: from fllv0034.itg.ti.com ([10.64.40.246])
+        by fllv0016.ext.ti.com (8.15.2/8.15.2) with ESMTP id 08MG6Hhp008709;
+        Tue, 22 Sep 2020 11:06:17 -0500
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=ti.com;
+        s=ti-com-17Q1; t=1600790777;
+        bh=qOqYAeqS4BzRHTWSyUFnOQnw+Px2O+bmnnmcnnYt9IM=;
+        h=Subject:To:CC:References:From:Date:In-Reply-To;
+        b=KXcFpyCrGGSufriJfqiv6ATmBAxuidi3j6fH98jQlKIZA6EXOR022Z+d7rYyeO+C6
+         9g6gS/UEcPwq1mtafRm82H/yRnC3QZ1SnAo3sLq+BxvDwFGcJc8cU851EwPX0LMTGz
+         TIOmycCQt7S4yjr8GLfNa1NTkoT6M0c8jeFYdlL4=
+Received: from DFLE115.ent.ti.com (dfle115.ent.ti.com [10.64.6.36])
+        by fllv0034.itg.ti.com (8.15.2/8.15.2) with ESMTPS id 08MG6Hf5089351
+        (version=TLSv1.2 cipher=AES256-GCM-SHA384 bits=256 verify=FAIL);
+        Tue, 22 Sep 2020 11:06:17 -0500
+Received: from DFLE108.ent.ti.com (10.64.6.29) by DFLE115.ent.ti.com
+ (10.64.6.36) with Microsoft SMTP Server (version=TLS1_2,
+ cipher=TLS_ECDHE_RSA_WITH_AES_128_CBC_SHA256_P256) id 15.1.1979.3; Tue, 22
+ Sep 2020 11:06:16 -0500
+Received: from lelv0326.itg.ti.com (10.180.67.84) by DFLE108.ent.ti.com
+ (10.64.6.29) with Microsoft SMTP Server (version=TLS1_2,
+ cipher=TLS_ECDHE_RSA_WITH_AES_128_CBC_SHA256_P256) id 15.1.1979.3 via
+ Frontend Transport; Tue, 22 Sep 2020 11:06:17 -0500
+Received: from [10.250.71.177] (ileax41-snat.itg.ti.com [10.172.224.153])
+        by lelv0326.itg.ti.com (8.15.2/8.15.2) with ESMTP id 08MG6GJA070402;
+        Tue, 22 Sep 2020 11:06:16 -0500
+Subject: Re: [PATCH v2 2/2] power: supply: bq25790: Introduce the BQ25790
+ charger driver
+To:     <sre@kernel.org>, <robh@kernel.org>
+CC:     <devicetree@vger.kernel.org>, <r-rivera-matos@ti.com>,
+        <linux-pm@vger.kernel.org>, <linux-kernel@vger.kernel.org>
+References: <20200817151629.11019-1-dmurphy@ti.com>
+ <20200817151629.11019-2-dmurphy@ti.com>
+From:   Dan Murphy <dmurphy@ti.com>
+Message-ID: <64928603-9b3e-cc69-c630-b13d96c37a8d@ti.com>
+Date:   Tue, 22 Sep 2020 11:06:16 -0500
+User-Agent: Mozilla/5.0 (X11; Linux x86_64; rv:68.0) Gecko/20100101
+ Thunderbird/68.10.0
 MIME-Version: 1.0
-Content-Type: text/plain; charset=us-ascii
-Content-Disposition: inline
-In-Reply-To: <33b4c569db10d983c7a9485a8bd6ec4efc0a1242.1600760719.git.chunfeng.yun@mediatek.com>
+In-Reply-To: <20200817151629.11019-2-dmurphy@ti.com>
+Content-Type: text/plain; charset="utf-8"; format=flowed
+Content-Transfer-Encoding: 7bit
+Content-Language: en-US
+X-EXCLAIMER-MD-CONFIG: e1e8a2fd-e40a-4ac6-ac9b-f7e9cc9ee180
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-On Tue, 22 Sep 2020 15:55:06 +0800, Chunfeng Yun wrote:
-> Convert phy-mtk-tphy.txt to YAML schema mediatek,tphy.yaml
-> 
-> Signed-off-by: Chunfeng Yun <chunfeng.yun@mediatek.com>
-> ---
->  .../bindings/phy/mediatek,tphy.yaml           | 260 ++++++++++++++++++
->  .../devicetree/bindings/phy/phy-mtk-tphy.txt  | 162 -----------
->  2 files changed, 260 insertions(+), 162 deletions(-)
->  create mode 100644 Documentation/devicetree/bindings/phy/mediatek,tphy.yaml
->  delete mode 100644 Documentation/devicetree/bindings/phy/phy-mtk-tphy.txt
-> 
+Hello
 
-
-My bot found errors running 'make dt_binding_check' on your patch:
-
-/builds/robherring/linux-dt-review/Documentation/devicetree/bindings/phy/mediatek,tphy.example.dt.yaml: t-phy@11290000: usb-phy@11290800:clocks: [[4294967295, 15]] is too short
-	From schema: /builds/robherring/linux-dt-review/Documentation/devicetree/bindings/phy/mediatek,tphy.yaml
-/builds/robherring/linux-dt-review/Documentation/devicetree/bindings/phy/mediatek,tphy.example.dt.yaml: t-phy@11290000: usb-phy@11290800:clock-names: ['ref'] is too short
-	From schema: /builds/robherring/linux-dt-review/Documentation/devicetree/bindings/phy/mediatek,tphy.yaml
-/builds/robherring/linux-dt-review/Documentation/devicetree/bindings/phy/mediatek,tphy.example.dt.yaml: t-phy@11290000: usb-phy@11290900:clocks: [[4294967295]] is too short
-	From schema: /builds/robherring/linux-dt-review/Documentation/devicetree/bindings/phy/mediatek,tphy.yaml
-/builds/robherring/linux-dt-review/Documentation/devicetree/bindings/phy/mediatek,tphy.example.dt.yaml: t-phy@11290000: usb-phy@11290900:clock-names: ['ref'] is too short
-	From schema: /builds/robherring/linux-dt-review/Documentation/devicetree/bindings/phy/mediatek,tphy.yaml
-/builds/robherring/linux-dt-review/Documentation/devicetree/bindings/phy/mediatek,tphy.example.dt.yaml: t-phy@11290000: usb-phy@11291000:clocks: [[4294967295, 15]] is too short
-	From schema: /builds/robherring/linux-dt-review/Documentation/devicetree/bindings/phy/mediatek,tphy.yaml
-/builds/robherring/linux-dt-review/Documentation/devicetree/bindings/phy/mediatek,tphy.example.dt.yaml: t-phy@11290000: usb-phy@11291000:clock-names: ['ref'] is too short
-	From schema: /builds/robherring/linux-dt-review/Documentation/devicetree/bindings/phy/mediatek,tphy.yaml
-
-
-See https://patchwork.ozlabs.org/patch/1368817
-
-If you already ran 'make dt_binding_check' and didn't see the above
-error(s), then make sure dt-schema is up to date:
-
-pip3 install git+https://github.com/devicetree-org/dt-schema.git@master --upgrade
-
-Please check and re-submit.
-
+On 8/17/20 10:16 AM, Dan Murphy wrote:
+> BQ25790 is a highly integrated switch-mode buck-boost charger
+> for 1-4 cell Li-ion battery and Li-polymer battery.
+Gentle bump
