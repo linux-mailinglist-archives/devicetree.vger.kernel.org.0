@@ -2,1065 +2,286 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from vger.kernel.org (vger.kernel.org [23.128.96.18])
-	by mail.lfdr.de (Postfix) with ESMTP id DD4C227469B
+	by mail.lfdr.de (Postfix) with ESMTP id 883DE27469A
 	for <lists+devicetree@lfdr.de>; Tue, 22 Sep 2020 18:26:43 +0200 (CEST)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S1726573AbgIVQ0m (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        id S1726566AbgIVQ0n (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Tue, 22 Sep 2020 12:26:43 -0400
+Received: from mail-eopbgr760084.outbound.protection.outlook.com ([40.107.76.84]:4871
+        "EHLO NAM02-CY1-obe.outbound.protection.outlook.com"
+        rhost-flags-OK-OK-OK-FAIL) by vger.kernel.org with ESMTP
+        id S1726526AbgIVQ0m (ORCPT <rfc822;devicetree@vger.kernel.org>);
         Tue, 22 Sep 2020 12:26:42 -0400
-Received: from lindbergh.monkeyblade.net ([23.128.96.19]:55882 "EHLO
-        lindbergh.monkeyblade.net" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S1726566AbgIVQ0m (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Tue, 22 Sep 2020 12:26:42 -0400
-Received: from mail-ot1-x341.google.com (mail-ot1-x341.google.com [IPv6:2607:f8b0:4864:20::341])
-        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id DE619C061755;
-        Tue, 22 Sep 2020 09:26:41 -0700 (PDT)
-Received: by mail-ot1-x341.google.com with SMTP id m12so16220915otr.0;
-        Tue, 22 Sep 2020 09:26:41 -0700 (PDT)
+ARC-Seal: i=1; a=rsa-sha256; s=arcselector9901; d=microsoft.com; cv=none;
+ b=RpD9G7Y0tyhJ3z3wmViirY63HmLAAiHqwCAZ/z+tu+fpdbGaOo6aO5FigwC49qW+zvbGPebVQZGVTTPZl92Jr+lH3Dhn3sumj/Sgci82m6k08LREG4v9Tj11v+7Yeo0L96P+NHl+IuaUSMgwtvwIpHNMdHduGiCtlNb7BHEOPzJ3YPwbZPW7jJtrwOihUqIV20f/jvHCtcHwRFavRpzJH27FktLSGmeHB6xUtVKjfEjEmqwZZGvkFLw0lBkwqz7PTRk+5qOn5RkD+h5mp1ur489dql6UPzOwZ4h5ZEqdzZ5CdE3QCor7p971rH/mJjQHs1xGXWO6Nfvu+r27bUMdGw==
+ARC-Message-Signature: i=1; a=rsa-sha256; c=relaxed/relaxed; d=microsoft.com;
+ s=arcselector9901;
+ h=From:Date:Subject:Message-ID:Content-Type:MIME-Version:X-MS-Exchange-SenderADCheck;
+ bh=JaLLL6vWVzpXuO/YauJAYNbzOfqa7e1t4rkEL6LrmCc=;
+ b=PYadQI2vPiz7XfXRmVJvCJJXIi35/c0NX945xNilgw711etYSD2a4tb6aRGGAaYg5E8ZZWKuycvFugdoP6hVRgww9PiR2CWUH9g12qaeFFeu2ndbxkMh5uf6FE11kt5+iJAT0qekJuhw38x1h7vc3XCXJhaHJyIaFpxXDz6CqLqcAutph0QJPYtMz7xejpdLKRwPywDEOGEBsmiIN+It6l35bNW5CZ6lISsWzyIjn2h6mBk38+/tb2myXtdSNzPYWXzpEQvezLMYwOawvRZiqGzqOqgbMbtsbv61nLtl0Xxb9u7yDgaSUV1c1IWcbM2TLiO0IKxHNT1Mnj9r+IZ/ug==
+ARC-Authentication-Results: i=1; mx.microsoft.com 1; spf=pass
+ smtp.mailfrom=xilinx.com; dmarc=pass action=none header.from=xilinx.com;
+ dkim=pass header.d=xilinx.com; arc=none
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=gmail.com; s=20161025;
-        h=sender:subject:to:cc:references:from:autocrypt:message-id:date
-         :user-agent:mime-version:in-reply-to:content-language
-         :content-transfer-encoding;
-        bh=maq75rce0R7Vy+cmPSHPb6e9tlqzatxh5ttaJGmZ6L8=;
-        b=Kj4tJ8xnNR2ApFziyjWjavYk7eedb+525Yl0WAsBuiPz+cUJy4rE6V27ne2LawIkUk
-         TtF0Lae864me8/wpgAeGL+yvw1+ZN0gfXeQfLXOBDY4JPASZLLUDuPGesj4CWglTb8Rz
-         q/9KS4Gf2vZFTvgRpMeQjt53/0HRdmVbtUzFB28oEyDQq5XNp6nnEdgwJWG7sz/DPWqg
-         p38KqfIezmfEzrZi7tQomnR+JKfnCjpgTKEEJoYFiZN1daSU1u4YguuCkOTPPmM12HB4
-         1nGTZJ9mOyU+YUKCtEppod8vhSnMVGMFsE5Kny9DrIOnJIE4svGVasLzBCxjucuhSKDO
-         QisQ==
-X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=1e100.net; s=20161025;
-        h=x-gm-message-state:sender:subject:to:cc:references:from:autocrypt
-         :message-id:date:user-agent:mime-version:in-reply-to
-         :content-language:content-transfer-encoding;
-        bh=maq75rce0R7Vy+cmPSHPb6e9tlqzatxh5ttaJGmZ6L8=;
-        b=bKbkPycN/e3dp/0qkPkkdc7LvLaLZ5580qFzDeIAn9i2ROFOd/NnoL7Ei7Igv93mLu
-         mzOgW+W5zEcCD1jlf0yA7ANTANPK8WoYhByY8fKliTExGLwM0BYoZJR8NlW7tRXyrEm1
-         5RkbKSOUdTYxj2Gbkr8yXVBz4rJ6qhna52hV0/JA1iGqD38uh/zoYz4IOMRxf+Oz7qqd
-         GFOjjnnYOl6fpE9y1h//GV0VdQ9Nhex009BCZkfKepossCbdueYgIf+5PMzLP8jGiBgj
-         FS3dn8MStd0ua8cHvPXrftdqFiNAWC9JC4mOpTRRbeXM+goyXT8ytvR7it017W/Vp8gr
-         8iZQ==
-X-Gm-Message-State: AOAM531Fb/Od1sODh7/pcdooKCJOOxLkY1efma9OM7HZP2dbtI9qB4k1
-        bxwj/r0L6eQ2zQ5ycQSTYwb1BWUZ3A0=
-X-Google-Smtp-Source: ABdhPJzG0idoS0cipK6Ha87F1HlHCorK3CXEdQQUJH6Go33QTRvq5yfWqh0LWQNsOJWgABDbKUGyaQ==
-X-Received: by 2002:a9d:73d4:: with SMTP id m20mr3132348otk.227.1600791999693;
-        Tue, 22 Sep 2020 09:26:39 -0700 (PDT)
-Received: from server.roeck-us.net ([2600:1700:e321:62f0:329c:23ff:fee3:9d7c])
-        by smtp.gmail.com with ESMTPSA id s5sm6941788otr.42.2020.09.22.09.26.38
-        (version=TLS1_3 cipher=TLS_AES_128_GCM_SHA256 bits=128/128);
-        Tue, 22 Sep 2020 09:26:39 -0700 (PDT)
-Sender: Guenter Roeck <groeck7@gmail.com>
-Subject: Re: [PATCH hwmon-next 1/3] hwmon: (pmbus) Add support for MPS
- Multi-phase mp2975 controller
-To:     Vadim Pasternak <vadimp@nvidia.com>, robh+dt@kernel.org
-Cc:     linux-hwmon@vger.kernel.org, devicetree@vger.kernel.org
-References: <20200922153518.5765-1-vadimp@nvidia.com>
- <20200922153518.5765-2-vadimp@nvidia.com>
-From:   Guenter Roeck <linux@roeck-us.net>
-Autocrypt: addr=linux@roeck-us.net; keydata=
- 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
- mDW4+i+XlNFUPUYMrIKi9joBhu18ssf5i5Q=
-Message-ID: <b55bd4a8-5730-4662-af1d-47a232784573@roeck-us.net>
-Date:   Tue, 22 Sep 2020 09:26:37 -0700
-User-Agent: Mozilla/5.0 (X11; Linux x86_64; rv:68.0) Gecko/20100101
- Thunderbird/68.10.0
-MIME-Version: 1.0
-In-Reply-To: <20200922153518.5765-2-vadimp@nvidia.com>
-Content-Type: text/plain; charset=utf-8
+ d=xilinx.onmicrosoft.com; s=selector2-xilinx-onmicrosoft-com;
+ h=From:Date:Subject:Message-ID:Content-Type:MIME-Version:X-MS-Exchange-SenderADCheck;
+ bh=JaLLL6vWVzpXuO/YauJAYNbzOfqa7e1t4rkEL6LrmCc=;
+ b=kedWL/zXQWuaZVqs6O2j0ak4SlQvAS5OoNeS1T3U0HeozvUho3MM6xhBl67kzmzrwXXYAR6PWegHHKAci2Em798sJJ0DQRYLou3sw2dNEAV/mYqA3AQWlADqnHQLB5ls3mAZr88nOxhN6EFl7Q6ix4HD1RKDCZ7rRZaY+T9ejWc=
+Received: from BYAPR02MB4407.namprd02.prod.outlook.com (2603:10b6:a03:55::31)
+ by BYAPR02MB5832.namprd02.prod.outlook.com (2603:10b6:a03:123::30) with
+ Microsoft SMTP Server (version=TLS1_2,
+ cipher=TLS_ECDHE_RSA_WITH_AES_256_GCM_SHA384) id 15.20.3391.11; Tue, 22 Sep
+ 2020 16:26:38 +0000
+Received: from BYAPR02MB4407.namprd02.prod.outlook.com
+ ([fe80::b0f6:b3a:6543:26f5]) by BYAPR02MB4407.namprd02.prod.outlook.com
+ ([fe80::b0f6:b3a:6543:26f5%5]) with mapi id 15.20.3391.026; Tue, 22 Sep 2020
+ 16:26:38 +0000
+From:   Ben Levinsky <BLEVINSK@xilinx.com>
+To:     Michael Auchter <michael.auchter@ni.com>
+CC:     "sunnyliangjy@gmail.com" <sunnyliangjy@gmail.com>,
+        "punit1.agrawal@toshiba.co.jp" <punit1.agrawal@toshiba.co.jp>,
+        Stefano Stabellini <stefanos@xilinx.com>,
+        Michal Simek <michals@xilinx.com>,
+        "devicetree@vger.kernel.org" <devicetree@vger.kernel.org>,
+        "mathieu.poirier@linaro.org" <mathieu.poirier@linaro.org>,
+        "Ed T. Mooring" <emooring@xilinx.com>,
+        "linux-remoteproc@vger.kernel.org" <linux-remoteproc@vger.kernel.org>,
+        "linux-kernel@vger.kernel.org" <linux-kernel@vger.kernel.org>,
+        "robh+dt@kernel.org" <robh+dt@kernel.org>,
+        "linux-arm-kernel@lists.infradead.org" 
+        <linux-arm-kernel@lists.infradead.org>,
+        Jiaying Liang <jliang@xilinx.com>,
+        Michal Simek <michals@xilinx.com>,
+        "Ed T. Mooring" <emooring@xilinx.com>, Jason Wu <j.wu@xilinx.com>
+Subject: RE: [PATCH v15 5/5] remoteproc: Add initial zynqmp R5 remoteproc
+ driver
+Thread-Topic: [PATCH v15 5/5] remoteproc: Add initial zynqmp R5 remoteproc
+ driver
+Thread-Index: AQHWkDJngWvzltWQj0Sewo+kA395+KlzqBYAgAEgZiA=
+Date:   Tue, 22 Sep 2020 16:26:38 +0000
+Message-ID: <BYAPR02MB440714F437CB532171B9667EB53B0@BYAPR02MB4407.namprd02.prod.outlook.com>
+References: <20200921161406.11929-1-ben.levinsky@xilinx.com>
+ <20200921161406.11929-6-ben.levinsky@xilinx.com>
+ <20200921221206.GA296714@xaphan>
+In-Reply-To: <20200921221206.GA296714@xaphan>
+Accept-Language: en-US
 Content-Language: en-US
-Content-Transfer-Encoding: 8bit
+X-MS-Has-Attach: 
+X-Auto-Response-Suppress: DR, RN, NRN, OOF, AutoReply
+X-MS-TNEF-Correlator: 
+authentication-results: ni.com; dkim=none (message not signed)
+ header.d=none;ni.com; dmarc=none action=none header.from=xilinx.com;
+x-originating-ip: [149.199.62.133]
+x-ms-publictraffictype: Email
+x-ms-office365-filtering-ht: Tenant
+x-ms-office365-filtering-correlation-id: c28f67be-f652-4f5b-86d8-08d85f144810
+x-ms-traffictypediagnostic: BYAPR02MB5832:
+x-ms-exchange-transport-forked: True
+x-microsoft-antispam-prvs: <BYAPR02MB5832779E84AF681AC43062C1B53B0@BYAPR02MB5832.namprd02.prod.outlook.com>
+x-ms-oob-tlc-oobclassifiers: OLM:2331;
+x-ms-exchange-senderadcheck: 1
+x-microsoft-antispam: BCL:0;
+x-microsoft-antispam-message-info: JyeguAXj5qP1Dx8xq1lq8Aiww7POFz5eOloFhteHj6+Vkm8+KkTzf4v46xVFR/aImT5x8QkOAdUifXmLhaAyqW9YGjPdkTsge/efr6OAGaGMv5NpMNFGQ2cNJpMuMZRkHV/Y3GOFLHZs/tSrbVCY6tQ7CDed8kTzZqdm8DWpM7mUWvy9KCQO7T/i3RId5pDNt8lDvMg8IPLS2tTRDcFVDHwxFxXT317pdKo16vo1eE/TuS1vQ7siT5qI4xEZr74+zCOOlcqsepWmf/x6GrOH7kDrszlLTHZ4jfaeKragqYeGjj0Tkqj+cPpi6Esz4cNYBnLi6l5y0AKAfTMISHsQiTAniH3QVz+4cdonSjFe6ciHtt1TPXFi63AtSVo40Dmkh3LIVsGOgQWA4+YXFTkV0yUCpdvcxzzCIeH8Z0aa8X1IyGWTgD1c4ueb9njtZnXK1aqtTZeb6kmYdyBjevf4Zw==
+x-forefront-antispam-report: CIP:255.255.255.255;CTRY:;LANG:en;SCL:1;SRV:;IPV:NLI;SFV:NSPM;H:BYAPR02MB4407.namprd02.prod.outlook.com;PTR:;CAT:NONE;SFS:(396003)(346002)(136003)(376002)(39850400004)(366004)(66946007)(83380400001)(966005)(6916009)(54906003)(2906002)(9686003)(316002)(33656002)(52536014)(55016002)(66476007)(71200400001)(5660300002)(7696005)(76116006)(478600001)(8936002)(66446008)(64756008)(66556008)(4326008)(6506007)(53546011)(8676002)(186003)(107886003)(86362001)(26005);DIR:OUT;SFP:1101;
+x-ms-exchange-antispam-messagedata: X/TG42aijFpSLdNkVOVB/tf3MAMhHlQtOrAt1zGSzHWS92QQcaJsZN0OTe5c0UuZBiG/QxFMR7IhGP0OqgElmCIet296sERnxowk0t0PkELwAWYeJkPaqjm+leZFaUq9DKq4kryFoHcEgXc1dAjYofwAOHAwOCOaiQRW9rV7LskPdCi0iT36iNzBf6PwoLwJEcZToD2TQgVAqXMJjUBHJc3j3051ByQIBHKkRYUhOiJXiYdysUkWZpPdeoG48qBWss4FB4FZ72XADs1zphyB7FDZM1/lD7sQfhV0SiQ/MB+abi+0WfMqFpwG9IKzDQL0enSiKZEsijMSxPSs4pQySbpv63gbh2YFI+KK1SPl/9hesD8d0D9SHmynHp6IjQCqGrNT4qqN7IeFZPGdqkmudXr9UIFGIzF8XR1M5k+KDCHCQS5nPYvLHoX5NPFIoczSQG2xgQEnIh1CLoGQPFKJqnGOinOW9VbUA6nG601X77o4qS7NXgS2nN+1wlsx8q83MHsO+XMLfaELkU09bIbFTU8hureXDb66cY6jOG1nGna2yUeNVtUJj45MnPDO3Fw/61wzK2QoSIZUdrBJtECRPFudC9rpYHVHVhfUEDxU8vwYfoQYxXrQ8cQrx0xM2lF0tBhBlyLsP4Cpf9wuuUGEag==
+Content-Type: text/plain; charset="us-ascii"
+Content-Transfer-Encoding: quoted-printable
+MIME-Version: 1.0
+X-OriginatorOrg: xilinx.com
+X-MS-Exchange-CrossTenant-AuthAs: Internal
+X-MS-Exchange-CrossTenant-AuthSource: BYAPR02MB4407.namprd02.prod.outlook.com
+X-MS-Exchange-CrossTenant-Network-Message-Id: c28f67be-f652-4f5b-86d8-08d85f144810
+X-MS-Exchange-CrossTenant-originalarrivaltime: 22 Sep 2020 16:26:38.3973
+ (UTC)
+X-MS-Exchange-CrossTenant-fromentityheader: Hosted
+X-MS-Exchange-CrossTenant-id: 657af505-d5df-48d0-8300-c31994686c5c
+X-MS-Exchange-CrossTenant-mailboxtype: HOSTED
+X-MS-Exchange-CrossTenant-userprincipalname: j8nPMoA5eHEOwBqWw69MYb3oQ+RBaTA7V2O93klQb9xPfaYYSfXt1ND3BHhjEUoxsE7lRaIj7XF2deAJEkvhMA==
+X-MS-Exchange-Transport-CrossTenantHeadersStamped: BYAPR02MB5832
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-On 9/22/20 8:35 AM, Vadim Pasternak wrote:
-> Add support for mp295 device from Monolithic Power Systems, Inc. (MPS)
-> vendor. This is a dual-loop, digital, multi-phase controller.
-> This device:
-> - Supports two power rail.
-> - Provides 8 pulse-width modulations (PWMs), and can be configured up
->   to 8-phase operation for rail 1 and up to 4-phase operation for rail
->   2.
-> - Supports two pages 0 and 1 for telemetry and also pages 2 and 3 for
->   configuration.
-> - Can configured VOUT readout in direct or VID format and allows
->   setting of different formats on rails 1 and 2. For VID the following
->   protocols are available: VR13 mode with 5-mV DAC; VR13 mode with
->   10-mV DAC, IMVP9 mode with 5-mV DAC.
-> 
-> Signed-off-by: Vadim Pasternak <vadimp@nvidia.com>
-> ---
->  drivers/hwmon/pmbus/Kconfig  |   9 +
->  drivers/hwmon/pmbus/Makefile |   1 +
->  drivers/hwmon/pmbus/mp2975.c | 825 +++++++++++++++++++++++++++++++++++++++++++
+Hi Michael,
 
-Documentation/hwmon/mp2975 is missing.
+> -----Original Message-----
+> From: Michael Auchter <michael.auchter@ni.com>
+> Sent: Monday, September 21, 2020 3:12 PM
+> To: Ben Levinsky <BLEVINSK@xilinx.com>
+> Cc: sunnyliangjy@gmail.com; punit1.agrawal@toshiba.co.jp; Stefano Stabell=
+ini
+> <stefanos@xilinx.com>; Michal Simek <michals@xilinx.com>;
+> devicetree@vger.kernel.org; mathieu.poirier@linaro.org; Ed T. Mooring
+> <emooring@xilinx.com>; linux-remoteproc@vger.kernel.org; linux-
+> kernel@vger.kernel.org; robh+dt@kernel.org; linux-arm-
+> kernel@lists.infradead.org; Jiaying Liang <jliang@xilinx.com>; Michal Sim=
+ek
+> <michals@xilinx.com>; Ed T. Mooring <emooring@xilinx.com>; Jason Wu
+> <j.wu@xilinx.com>
+> Subject: Re: [PATCH v15 5/5] remoteproc: Add initial zynqmp R5 remoteproc
+> driver
+>=20
+> Hey Ben,
+>=20
+> Thanks for sending out the new series, this patchset is functional for
+> booting both R5 0 and R5 1 in split mode.
+>=20
+> A few comments below, still working my way through the rest of the code
+> though now that this works.
+>=20
+> On Mon, Sep 21, 2020 at 09:14:06AM -0700, Ben Levinsky wrote:
+> <...>
+> > +static int zynqmp_r5_remoteproc_probe(struct platform_device *pdev)
+> > +{
+> > +	int ret, i =3D 0;
+> > +	struct device *dev =3D &pdev->dev;
+> > +	struct device_node *nc;
+> > +
+> > +	rpu_mode =3D  of_get_property(dev->of_node, "lockstep-mode", NULL)
+> ?
+> > +		    PM_RPU_MODE_LOCKSTEP : PM_RPU_MODE_SPLIT;
+>=20
+> Extra whitespace, and of_property_read_bool would read a bit nicer here
+> (does the same thing in the end, though).
+>=20
+> Since rpu_mode is only used here and in r5_set_mode, I think it'd be
+> better to plumb it through zynqmp_r5_probe instead of making it global
+> in this file.
+>=20
+[Ben Levinsky] will do
+> > +
+> > +	dev_dbg(dev, "RPU configuration: %s\n",
+> > +		rpu_mode =3D=3D PM_RPU_MODE_LOCKSTEP ? "lockstep" :
+> "split");
+> > +
+> > +	for_each_available_child_of_node(dev->of_node, nc) {
+> > +		/*
+> > +		 * if 2 RPUs provided but one is lockstep, then we have an
+> > +		 * invalid configuration.
+> > +		 */
+> > +		if (i > 0 && rpu_mode =3D=3D PM_RPU_MODE_LOCKSTEP)
+> > +			return -EINVAL;
+> > +
+> > +		/* only call zynqmp_r5_probe if proper # of rpu's */
+> > +		ret =3D (i < MAX_RPROCS) ? zynqmp_r5_probe(&rpus[i], pdev,
+> nc) :
+> > +					 -EINVAL;
+> > +		dev_dbg(dev, "%s to probe rpu %pOF\n",
+> > +			ret ? "Failed" : "Able",
+> > +			nc);
+>=20
+> It'd be cleaner to check the child node count before the loop:
+>=20
+> 	rpu_nodes =3D of_get_available_child_count(nc)
+> 	if ((rpu_mode =3D=3D PM_RPU_MODE_LOCKSTEP && rpu_nodes !=3D 1) ||
+> rpu_nodes > 2)
+> 		return -EINVAL;
+>=20
+[Ben Levinsky] will do
+> > +
+> > +		if (ret)
+> > +			return ret;
+> > +
+> > +		i++;
+> > +	}
+> > +
+> > +	return 0;
+> > +}
+> > +
+> > +static int zynqmp_r5_remoteproc_remove(struct platform_device *pdev)
+> > +{
+> > +	int i;
+> > +
+> > +	for (i =3D 0; i < MAX_RPROCS; i++) {
+> > +		struct zynqmp_r5_pdata *pdata =3D &rpus[i];
+> > +		struct rproc *rproc;
+> > +
+> > +		/* only do clean up for pdata with active rpu */
+> > +		if (pdata->pnode_id =3D=3D 0)
+> > +			continue;
+>=20
+> This seems like a bit of a hack, resulting from the use of a static
+> array for holding the zynqmp_r5_pdata for each rpu.
+>=20
+> Consider allocating zynqmp_r5_pdata in zynqmp_r5_probe, and adding each
+> instance to a linked-list at file scope.
+> 	- memory is only allocated RPUs actually in use
+> 	- no need for this pnode_id =3D=3D 0 hack
+> 	- MAX_RPROCS can be eliminated, just traverse that list in
+> 	  remove
+> 	- No reuse of the pdata across probe/removes, so all of the e.g.
+> 	  condtionals below ("if (rproc)") and NULL assignments can be
+> 	  eliminated.
+>=20
+[Ben Levinsky] so parts of this I can do..=20
+- can make the rpus a static list of ptr's which I think is equivalent
+To what you are describing
+- can eliminate the pnode_id =3D=3D 0 hack
 
+For the rproc_del, rproc_free fn calls, these should stay. Just as other up=
+stream remoteproc drivers do, this is being done similarly.
 
->  3 files changed, 835 insertions(+)
->  create mode 100644 drivers/hwmon/pmbus/mp2975.c
-> 
-> diff --git a/drivers/hwmon/pmbus/Kconfig b/drivers/hwmon/pmbus/Kconfig
-> index e35db489b76f..1e6157e85437 100644
-> --- a/drivers/hwmon/pmbus/Kconfig
-> +++ b/drivers/hwmon/pmbus/Kconfig
-> @@ -200,6 +200,15 @@ config SENSORS_MAX8688
->  	  This driver can also be built as a module. If so, the module will
->  	  be called max8688.
->  
-> +config SENSORS_MP2975
-> +	tristate "MPS MP2975"
-> +	help
-> +	  If you say yes here you get hardware monitoring support for MPS
-> +	  MP2975 Dual Loop Digital Multi-Phase Controller.
-> +
-> +	  This driver can also be built as a module. If so, the module will
-> +	  be called mp2975.
-> +
->  config SENSORS_PXE1610
->  	tristate "Infineon PXE1610"
->  	help
-> diff --git a/drivers/hwmon/pmbus/Makefile b/drivers/hwmon/pmbus/Makefile
-> index c4b15db996ad..0e2832e73cfc 100644
-> --- a/drivers/hwmon/pmbus/Makefile
-> +++ b/drivers/hwmon/pmbus/Makefile
-> @@ -23,6 +23,7 @@ obj-$(CONFIG_SENSORS_MAX20751)	+= max20751.o
->  obj-$(CONFIG_SENSORS_MAX31785)	+= max31785.o
->  obj-$(CONFIG_SENSORS_MAX34440)	+= max34440.o
->  obj-$(CONFIG_SENSORS_MAX8688)	+= max8688.o
-> +obj-$(CONFIG_SENSORS_MP2975)	+= mp2975.o
->  obj-$(CONFIG_SENSORS_PXE1610)	+= pxe1610.o
->  obj-$(CONFIG_SENSORS_TPS40422)	+= tps40422.o
->  obj-$(CONFIG_SENSORS_TPS53679)	+= tps53679.o
-> diff --git a/drivers/hwmon/pmbus/mp2975.c b/drivers/hwmon/pmbus/mp2975.c
-> new file mode 100644
-> index 000000000000..7f67fab35e3e
-> --- /dev/null
-> +++ b/drivers/hwmon/pmbus/mp2975.c
-> @@ -0,0 +1,825 @@
-> +// SPDX-License-Identifier: GPL-2.0-or-later
-> +/*
-> + * Hardware monitoring driver for MPS Multi-phase Digital VR Controllers
-> + *
-> + * Copyright (C) 2020 Nvidia Technologies Ltd.
-> + */
-> +
-> +#include <linux/err.h>
-> +#include <linux/i2c.h>
-> +#include <linux/init.h>
-> +#include <linux/kernel.h>
-> +#include <linux/module.h>
-> +#include "pmbus.h"
-> +
-> +/* Vendor specific registers. */
-> +#define MP2975_MFR_APS_HYS_R2		0x0d
-> +#define MP2975_MFR_SLOPE_TRIM3		0x1d
-> +#define MP2975_MFR_VR_MULTI_CONFIG_R1	0x0d
-> +#define MP2975_MFR_VR_MULTI_CONFIG_R2	0x1d
-> +#define MP2975_MFR_APS_DECAY_ADV	0x56
-> +#define MP2975_MFR_DC_LOOP_CTRL		0x59
-> +#define MP2975_MFR_OCP_UCP_PHASE_SET	0x65
-> +#define MP2975_MFR_VR_CONFIG1		0x68
-> +#define MP2975_MFR_READ_CS1_2		0x82
-> +#define MP2975_MFR_READ_CS3_4		0x83
-> +#define MP2975_MFR_READ_CS5_6		0x84
-> +#define MP2975_MFR_READ_CS7_8		0x85
-> +#define MP2975_MFR_READ_CS9_10		0x86
-> +#define MP2975_MFR_READ_CS11_12		0x87
-> +#define MP2975_MFR_READ_IOUT_PK		0x90
-> +#define MP2975_MFR_READ_POUT_PK		0x91
-> +#define MP2975_MFR_READ_VREF_R1		0xa1
-> +#define MP2975_MFR_READ_VREF_R2		0xa3
-> +#define MP2975_MFR_OVP_TH_SET		0xe5
-> +#define MP2975_MFR_UVP_SET		0xe6
-> +
-> +#define MP2975_VOUT_FORMAT		BIT(15)
-> +#define MP2975_VID_STEP_SEL_R1		BIT(4)
-> +#define MP2975_IMVP9_EN_R1		BIT(13)
-> +#define MP2975_VID_STEP_SEL_R2		BIT(3)
-> +#define MP2975_IMVP9_EN_R2		BIT(12)
-> +#define MP2975_PRT_THRES_DIV_OV_EN	BIT(14)
-> +#define MP2975_DRMOS_KCS		GENMASK(13, 12)
-> +#define MP2975_PROT_DEV_OV_OFF		10
-> +#define MP2975_PROT_DEV_OV_ON		5
-> +#define MP2975_SENSE_AMPL		BIT(11)
-> +#define MP2975_SENSE_AMPL_UNIT		1
-> +#define MP2975_SENSE_AMPL_HALF		2
-> +#define MP2975_VIN_UV_LIMIT_UNIT	8
-> +
-> +#define MP2975_PSC_VOLTAGE_OUT	0x40
-> +#define MP2975_MAX_PHASE_RAIL1	8
-> +#define MP2975_MAX_PHASE_RAIL2	4
-> +#define MP2975_PAGE_NUM		2
-> +
-> +#define MP2975_RAIL2_FUNC	(PMBUS_HAVE_VOUT | PMBUS_HAVE_STATUS_VOUT | \
-> +				 PMBUS_HAVE_IOUT | PMBUS_HAVE_STATUS_IOUT | \
-> +				 PMBUS_PHASE_VIRTUAL)
-> +
-> +struct mp2975_data {
-> +	struct pmbus_driver_info info;
-> +	int vout_scale;
-> +	int vid_step[MP2975_PAGE_NUM];
-> +	int vref[MP2975_PAGE_NUM];
-> +	int vref_off[MP2975_PAGE_NUM];
-> +	int vout_max[MP2975_PAGE_NUM];
-> +	int vout_ov_fixed[MP2975_PAGE_NUM];
-> +	int vout_format[MP2975_PAGE_NUM];
-> +	int curr_sense_gain[MP2975_PAGE_NUM];
-> +};
-> +
-> +#define to_mp2975_data(x)  container_of(x, struct mp2975_data, info)
-> +
-> +static int mp2975_read_byte_data(struct i2c_client *client, int page, int reg)
-> +{
-> +	switch (reg) {
-> +	case PMBUS_VOUT_MODE:
-> +		/*
-> +		 * Enforce VOUT direct format, since device allows to set the
-> +		 * different formats for the different rails. Conversion from
-> +		 * VID to direct provided by driver internally, in case it is
-> +		 * necessary.
-> +		 */
-> +		return MP2975_PSC_VOLTAGE_OUT;
+For mbox handling, I am mimic'ing upstream ST and TI drivers https://github=
+.com/torvalds/linux/blob/v5.9-rc3/drivers/remoteproc/stm32_rproc.c=20
+they similarly check if the mbox channel is not NULL, and if so call mbox_f=
+ree_channel. This is similar for Xilinx remoteproc R5 use case as the mbox =
+ can be unused in 1 remoteproc node. Also, similar to TI and ST driver, htt=
+ps://github.com/torvalds/linux/blob/v5.9-rc3/drivers/remoteproc/stm32_rproc=
+.c#L321 , I am setting the mbox to NULL at remove=20
+> > +
+> > +		rproc =3D pdata->rproc;
+> > +		if (rproc) {
+> > +			rproc_del(rproc);
+> > +			rproc_free(rproc);
+> > +			pdata->rproc =3D NULL;
+> > +		}
+> > +		if (pdata->tx_chan) {
+> > +			mbox_free_channel(pdata->tx_chan);
+> > +			pdata->tx_chan =3D NULL;
+> > +		}
+> > +		if (pdata->rx_chan) {
+> > +			mbox_free_channel(pdata->rx_chan);
+> > +			pdata->rx_chan =3D NULL;
+> > +		}
+> > +		if (&(&pdata->dev)->dma_pools)
+> > +			device_unregister(&pdata->dev);
+>=20
+> The condition here looks very wrong to me, as it will always be true.
+> What is this trying to achieve?
+>=20
+This was originally because of the static rpu declaration. By instead using=
+ ptr's this can be removed as the zynqmp_r5_pdata ptr will be NULL so I can=
+ check that instead. So will remove this.
 
-Please use standard defines where qvailable (here: PB_VOUT_MODE_DIRECT).
-
-> +	default:
-> +		return -ENODATA;
-> +	}
-> +}
-> +
-> +static int
-> +mp2975_read_word_helper(struct i2c_client *client, int page, int phase, u8 reg,
-> +			u16 mask)
-> +{
-> +	int ret = pmbus_read_word_data(client, page, phase, reg);
-> +
-> +	return (ret > 0) ? ret & mask : ret;
-> +}
-> +
-> +static int
-> +mp2975_vid2direct(int vrf, int val)
-> +{
-> +	switch (vrf) {
-> +	case vr12:
-> +		if (val >= 0x01)
-> +			return 250 + (val - 1) * 5;
-> +		break;
-> +	case vr13:
-> +		if (val >= 0x01)
-> +			return 500 + (val - 1) * 10;
-> +		break;
-> +	case imvp9:
-> +		if (val >= 0x01)
-> +			return 200 + (val - 1) * 10;
-> +		break;
-> +	default:
-> +		return -EINVAL;
-> +	}
-> +	return 0;
-> +}
-> +
-> +static int
-> +mp2975_read_phase(struct i2c_client *client, struct mp2975_data *data,
-> +		  int page, int phase, u8 reg)
-> +{
-> +	int shift = 0, ph_curr, ret;
-> +	u16 mask;
-> +
-> +	if ((phase + 1) % MP2975_PAGE_NUM) {
-> +		mask = GENMASK(7, 0);
-> +	} else {
-> +		mask = GENMASK(15, 8);
-> +		shift = 8;
-> +	}
-> +
-> +	ret = mp2975_read_word_helper(client, page, phase, reg, mask);
-> +	if (ret < 0)
-> +		return ret;
-> +
-> +	ret >>= shift;
-
-Personally I am not a friend of such complex code.
-
-	ret = pmbus_read_word_data(client, page, phase, reg);
-	if (ret < 0)
-		return ret;
-
-	if (!((phase + 1) % MP2975_PAGE_NUM))
-		ret >>= 8;
-	ret &= 0xff;
-
-would accomplish the same and be much easier to read.
-But I understand this is a bit POV, so I'll let it go.
-
-> +
-> +	/*
-> +	 * Output value is calculated as: (READ_CSx / 80 – 1.23) / (Kcs * Rcs)
-> +	 * where:
-> +	 * - Kcs is the DrMOS current sense gain of power stage, which is
-> +	 *   obtained from the register MP2975_MFR_VR_CONFIG1, bits 13-12 with
-> +	 *   the following selection of DrMOS (data->curr_sense_gain[page]):
-> +	 *   00b - 5µA/A, 01b - 8.5µA/A, 10b - 9.7µA/A, 11b - 10µA/A.
-> +	 * - Rcs is the internal phase current sense resistor which is constant
-> +	 *   value 1kΩ.
-> +	 */
-> +	ph_curr = DIV_ROUND_CLOSEST(ret * 100 - 9840, 100) * 100;
-
-I am at loss here. Why not just the following ?
-	ph_curr = ret * 100 - 9800;
-Or even this ?
-	ph_curr = ret * 100 - 9840;
-
-I mean, what is the point of "9840" if the next thing to do
-is the most complicated way possible to drop the 40 ?
-
-> +
-> +	/*
-> +	 * Current phase sensing, providing by the device is not accurate
-> +	 * for the light load. This because sampling of current occurrence of
-> +	 * bit weight has a big deviation for light load. For handling such
-> +	 * case phase current is represented as the maximum between the value
-> +	 * calculated  above and total rail current divided by number phases.
-> +	 */
-> +	ret = pmbus_read_word_data(client, page, phase, PMBUS_READ_IOUT);
-> +	if (ret < 0)
-> +		return ret;
-> +
-> +	return max_t(int, DIV_ROUND_CLOSEST(ret, data->info.phases[page]),
-> +		     DIV_ROUND_CLOSEST(ph_curr, data->curr_sense_gain[page]));
-> +}
-> +
-> +static int
-> +mp2975_read_phases(struct i2c_client *client, struct mp2975_data *data,
-> +		   int page, int phase)
-> +{
-> +	int ret;
-> +
-> +	if (page) {
-> +		switch (phase) {
-> +		case 0 ... 1:
-> +			ret = mp2975_read_phase(client, data, page, phase,
-> +						MP2975_MFR_READ_CS7_8);
-> +			break;
-> +		case 2 ... 3:
-> +			ret = mp2975_read_phase(client, data, page, phase,
-> +						MP2975_MFR_READ_CS9_10);
-> +			break;
-> +		case 4 ... 5:
-> +			ret = mp2975_read_phase(client, data, page, phase,
-> +						MP2975_MFR_READ_CS11_12);
-> +			break;
-> +		default:
-> +			return -ENODATA;
-> +		}
-> +	} else {
-> +		switch (phase) {
-> +		case 0 ... 1:
-> +			ret = mp2975_read_phase(client, data, page, phase,
-> +						MP2975_MFR_READ_CS1_2);
-> +			break;
-> +		case 2 ... 3:
-> +			ret = mp2975_read_phase(client, data, page, phase,
-> +						MP2975_MFR_READ_CS3_4);
-> +			break;
-> +		case 4 ... 5:
-> +			ret = mp2975_read_phase(client, data, page, phase,
-> +						MP2975_MFR_READ_CS5_6);
-> +			break;
-> +		case 6 ... 7:
-> +			ret = mp2975_read_phase(client, data, page, phase,
-> +						MP2975_MFR_READ_CS7_8);
-> +			break;
-> +		case 8 ... 9:
-> +			ret = mp2975_read_phase(client, data, page, phase,
-> +						MP2975_MFR_READ_CS9_10);
-> +			break;
-> +		case 10 ... 11:
-> +			ret = mp2975_read_phase(client, data, page, phase,
-> +						MP2975_MFR_READ_CS11_12);
-> +			break;
-> +		default:
-> +			return -ENODATA;
-> +		}
-> +	}
-> +	return ret;
-> +}
-> +
-> +static int mp2975_read_word_data(struct i2c_client *client, int page,
-> +				 int phase, int reg)
-> +{
-> +	const struct pmbus_driver_info *info = pmbus_get_driver_info(client);
-> +	struct mp2975_data *data = to_mp2975_data(info);
-> +	int ret;
-> +
-> +	switch (reg) {
-> +	case PMBUS_OT_FAULT_LIMIT:
-> +		ret = mp2975_read_word_helper(client, page, phase, reg,
-> +					      GENMASK(7, 0));
-> +		break;
-> +	case PMBUS_VIN_OV_FAULT_LIMIT:
-> +		ret = mp2975_read_word_helper(client, page, phase, reg,
-> +					      GENMASK(7, 0));
-> +		ret = (ret > 0) ? DIV_ROUND_CLOSEST(ret,
-> +						    MP2975_VIN_UV_LIMIT_UNIT) :
-> +				  ret;
-
-Elsewhere you use
-		if (ret < 0)
-			return ret;
-		ret = DIV_ROUND_CLOSEST(ret, MP2975_VIN_UV_LIMIT_UNIT);
-which I think is much easier to read. Please do that here as well.
-
-> +		break;
-> +	case PMBUS_VOUT_OV_FAULT_LIMIT:
-> +		/*
-> +		 * Register provides two values for over-voltage protection
-> +		 * threshold for fixed (ovp2) and tracking (ovp1) modes. The
-> +		 * minimum of these two values is provided as over-voltage
-> +		 * fault alarm.
-> +		 */
-> +		ret = mp2975_read_word_helper(client, page, phase,
-> +					      MP2975_MFR_OVP_TH_SET,
-> +					      GENMASK(2, 0));
-> +		if (ret < 0)
-> +			return ret;
-> +
-> +		ret = min_t(int, data->vout_max[page] + 50 * (ret + 1),
-> +			    data->vout_ov_fixed[page]);
-> +		break;
-> +	case PMBUS_VOUT_UV_FAULT_LIMIT:
-> +		ret = mp2975_read_word_helper(client, page, phase,
-> +					      MP2975_MFR_UVP_SET,
-> +					      GENMASK(2, 0));
-> +		if (ret < 0)
-> +			return ret;
-> +
-> +		ret = DIV_ROUND_CLOSEST(data->vref[page] * 10 - 50 *
-> +					(ret + 1) * data->vout_scale, 10);
-> +		break;
-> +	case PMBUS_READ_VOUT:
-> +		ret = mp2975_read_word_helper(client, page, phase, reg,
-> +					      GENMASK(11, 0));
-> +		if (ret < 0)
-> +			return ret;
-> +
-> +		/*
-> +		 * READ_VOUT can be provided in VID or direct format. The
-> +		 * format type is specified by bit 15 of the register
-> +		 * MP2975_MFR_DC_LOOP_CTRL. The driver enforces VOUT direct
-> +		 * format, since device allows to set the different formats for
-> +		 * the different rails and also all VOUT limits registers are
-> +		 * provided in a direct format. In case format is VID - convert
-> +		 * to direct.
-> +		 */
-> +		if (data->vout_format[page] == vid)
-> +			ret = mp2975_vid2direct(info->vrm_version[page], ret);
-> +		break;
-> +	case PMBUS_VIRT_READ_POUT_MAX:
-> +		ret = mp2975_read_word_helper(client, page, phase,
-> +					      MP2975_MFR_READ_POUT_PK,
-> +					      GENMASK(12, 0));
-		if (ret < 0)
-			return ret;
-
-same below several times.
-
-> +		ret = DIV_ROUND_CLOSEST(ret, 4);
-> +		break;
-> +	case PMBUS_VIRT_READ_IOUT_MAX:
-> +		ret = mp2975_read_word_helper(client, page, phase,
-> +					      MP2975_MFR_READ_IOUT_PK,
-> +					      GENMASK(12, 0));
-> +		ret = DIV_ROUND_CLOSEST(ret, 4);
-> +		break;
-> +	case PMBUS_READ_IOUT:
-> +		ret = mp2975_read_phases(client, data, page, phase);
-> +		break;
-> +	case PMBUS_UT_WARN_LIMIT:
-> +		fallthrough;
-
-fallthrough; is unnecessary if case statements follow each other.
-
-> +	case PMBUS_UT_FAULT_LIMIT:
-> +		fallthrough;
-> +	case PMBUS_VIN_UV_WARN_LIMIT:
-> +		fallthrough;
-> +	case PMBUS_VIN_UV_FAULT_LIMIT:
-> +		fallthrough;
-> +	case PMBUS_VOUT_UV_WARN_LIMIT:
-> +		fallthrough;
-> +	case PMBUS_VOUT_OV_WARN_LIMIT:
-> +		fallthrough;
-> +	case PMBUS_VIN_OV_WARN_LIMIT:
-> +		fallthrough;
-> +	case PMBUS_IIN_OC_FAULT_LIMIT:
-> +		fallthrough;
-> +	case PMBUS_IOUT_OC_LV_FAULT_LIMIT:
-> +		fallthrough;
-> +	case PMBUS_IIN_OC_WARN_LIMIT:
-> +		fallthrough;
-> +	case PMBUS_IOUT_OC_WARN_LIMIT:
-> +		fallthrough;
-> +	case PMBUS_IOUT_OC_FAULT_LIMIT:
-> +		fallthrough;
-> +	case PMBUS_IOUT_UC_FAULT_LIMIT:
-> +		fallthrough;
-> +	case PMBUS_POUT_OP_FAULT_LIMIT:
-> +		fallthrough;
-> +	case PMBUS_POUT_OP_WARN_LIMIT:
-> +		fallthrough;
-> +	case PMBUS_PIN_OP_WARN_LIMIT:
-> +		return -ENXIO;
-> +	default:
-> +		return -ENODATA;
-> +	}
-> +
-> +	return ret;
-> +}
-> +
-> +static int mp2975_identify_multiphase_rail2(struct i2c_client *client)
-> +{
-> +	int ret;
-> +
-> +	/* Identify multiphase for rail 2 - could be from 0 to 4.
-> +	 * In case phase number is zero – only page zero is supported
-> +	 */
-> +	ret = i2c_smbus_write_byte_data(client, PMBUS_PAGE, 2);
-> +	if (ret < 0)
-> +		return ret;
-> +
-> +	/* Identify multiphase for rail 2 - could be from 0 to 4. */
-> +	ret = i2c_smbus_read_word_data(client, MP2975_MFR_VR_MULTI_CONFIG_R2);
-
-Please handle errors first.
-	if (ret < 0)
-		return ret;
-	...
-
-> +	if (ret >= 0) {
-> +		ret &= GENMASK(2, 0);
-> +		return (ret >= 4) ? 4 : ret;
-> +	}
-> +
-> +	return ret;
-> +}
-> +
-> +static void mp2975_set_phase_rail1(struct pmbus_driver_info *info)
-> +{
-> +	int i;
-> +
-> +	for (i = 0 ; i < info->phases[0]; i++)
-> +		info->pfunc[i] = PMBUS_HAVE_IOUT;
-> +}
-> +
-> +static void mp2975_set_phase_rail2(struct pmbus_driver_info *info)
-> +{
-> +	int max_rail, i;
-> +
-> +	/* Set phases for rail 2 from upper to lower. */
-> +	max_rail = info->phases[1] % (MP2975_MAX_PHASE_RAIL2 - 1);
-> +	for (i = 1; i <= max_rail; i++)
-> +		info->pfunc[MP2975_MAX_PHASE_RAIL1 - i] = PMBUS_HAVE_IOUT;
-> +}
-> +
-> +static int mp2975_set_multiphase_rail2(struct pmbus_driver_info *info)
-> +{
-> +	switch (info->phases[1]) {
-> +	case 1 ... 7:
-> +		mp2975_set_phase_rail2(info);
-> +		return 0;
-> +	default:
-> +		return -EINVAL;
-> +	}
-> +}
-> +
-> +static int
-> +mp2975_identify_multiphase(struct i2c_client *client, struct mp2975_data *data,
-> +			   struct pmbus_driver_info *info)
-> +{
-> +	int ret;
-> +
-> +	ret = i2c_smbus_write_byte_data(client, PMBUS_PAGE, 2);
-> +	if (ret < 0)
-> +		return ret;
-> +
-> +	/* Identify multiphase for rail 1 - could be from 1 to 8. */
-> +	ret = i2c_smbus_read_word_data(client, MP2975_MFR_VR_MULTI_CONFIG_R1);
-> +	if (ret > 0)
-> +		info->phases[0] = ret & GENMASK(3, 0);
-> +	else
-> +		return (ret) ? ret : -EINVAL;
-
-Please handle errors first.
-
-	if (ret < 0)
-		return ret;
-	if (ret == 0)
-		return -EINVAL;
-	...
-
-> +
-> +	/*
-> +	 * The device provides a total of 8 PWM pins, and can be configured
-> +	 * to different phase count applications for rail 1 and rail 2.
-> +	 * Rail 1 can be set to 8 phases, while rail 2 can only be set to 4
-> +	 * phases at most. When rail 1’s phase count is configured as 0, rail
-> +	 * 1 operates with 1-phase DCM. When rail 2 phase count is configured
-> +	 * as 0, rail 2 is disabled.
-> +	 */
-> +	switch (info->phases[0]) {
-> +	case 1 ... 4:
-> +		mp2975_set_phase_rail1(info);
-> +		return mp2975_set_multiphase_rail2(info);
-> +	case 5:
-> +		mp2975_set_phase_rail1(info);
-> +		switch (info->phases[1]) {
-> +		case 1 ... 3:
-> +			return mp2975_set_multiphase_rail2(info);
-> +		default:
-> +			return 0;
-> +		}
-> +	case 6:
-> +		mp2975_set_phase_rail1(info);
-> +		switch (info->phases[1]) {
-> +		case 1 ... 2:
-> +			return mp2975_set_multiphase_rail2(info);
-> +		default:
-> +			return 0;
-> +		}
-> +	case 7:
-> +		mp2975_set_phase_rail1(info);
-> +		switch (info->phases[1]) {
-> +		case 1:
-> +			return mp2975_set_multiphase_rail2(info);
-> +		default:
-> +			return 0;
-> +		}
-> +	case 8:
-> +		mp2975_set_phase_rail1(info);
-> +		return 0;
-> +	default:
-> +		return -EINVAL;
-> +	}
-> +}
-> +
-> +static int
-> +mp2975_identify_vid(struct i2c_client *client, struct mp2975_data *data,
-> +		    struct pmbus_driver_info *info, u32 reg, int page,
-> +		    u32 imvp_bit, u32 vr_bit)
-> +{
-> +	int ret;
-> +
-> +	/* Identify VID mode and step selection. */
-> +	ret = i2c_smbus_read_word_data(client, reg);
-> +	if (ret < 0)
-> +		return ret;
-> +
-> +	if (ret & imvp_bit) {
-> +		info->vrm_version[page] = imvp9;
-> +		data->vid_step[page] = MP2975_PROT_DEV_OV_OFF;
-> +	} else if (ret & vr_bit) {
-> +		info->vrm_version[page] = vr12;
-> +		data->vid_step[page] = MP2975_PROT_DEV_OV_ON;
-> +	} else {
-> +		info->vrm_version[page] = vr13;
-> +		data->vid_step[page] = MP2975_PROT_DEV_OV_OFF;
-> +	}
-> +
-> +	return 0;
-> +}
-> +
-> +static int
-> +mp2975_identify_rails_vid(struct i2c_client *client, struct mp2975_data *data,
-> +			  struct pmbus_driver_info *info)
-> +{
-> +	int ret;
-> +
-> +	ret = i2c_smbus_write_byte_data(client, PMBUS_PAGE, 2);
-> +	if (ret < 0)
-> +		return ret;
-> +
-> +	/* Identify VID mode for rail 1. */
-> +	ret = mp2975_identify_vid(client, data, info,
-> +				  MP2975_MFR_VR_MULTI_CONFIG_R1, 0,
-> +				  MP2975_IMVP9_EN_R1, MP2975_VID_STEP_SEL_R1);
-> +	if (ret < 0)
-> +		return ret;
-> +
-> +	/* Identify VID mode for rail 2, if connected. */
-> +	if (info->phases[1])
-> +		ret = mp2975_identify_vid(client, data, info,
-> +					  MP2975_MFR_VR_MULTI_CONFIG_R2, 1,
-> +					  MP2975_IMVP9_EN_R2,
-> +					  MP2975_VID_STEP_SEL_R2);
-> +	return ret;
-> +}
-> +
-> +static int
-> +mp2975_current_sense_gain_get(struct i2c_client *client,
-> +			      struct mp2975_data *data)
-> +{
-> +	int i, ret;
-> +
-> +	/*
-> +	 * Obtain DrMOS current sense gain of power stage from the register
-> +	 * MP2975_MFR_VR_CONFIG1, bits 13-12. The value is selected as below:
-> +	 * 00b - 5µA/A, 01b - 8.5µA/A, 10b - 9.7µA/A, 11b - 10µA/A. Other
-> +	 * values are invalid.
-> +	 */
-> +	for (i = 0 ; i < data->info.pages; i++) {
-> +		ret = i2c_smbus_write_byte_data(client, PMBUS_PAGE, i);
-> +		if (ret < 0)
-> +			return ret;
-> +		ret = i2c_smbus_read_word_data(client,
-> +					       MP2975_MFR_VR_CONFIG1);
-> +		if (ret < 0)
-> +			return ret;
-> +
-> +		switch ((ret & MP2975_DRMOS_KCS) >> 12) {
-> +		case 0:
-> +			data->curr_sense_gain[i] = 50;
-> +			break;
-> +		case 1:
-> +			data->curr_sense_gain[i] = 85;
-> +			break;
-> +		case 2:
-> +			data->curr_sense_gain[i] = 97;
-> +			break;
-> +		case 3:
-> +			data->curr_sense_gain[i] = 100;
-> +			break;
-> +		default:
-> +			return -EINVAL;
-> +		}
-> +	}
-> +
-> +	return 0;
-> +}
-> +
-> +static int
-> +mp2975_vref_get(struct i2c_client *client, struct mp2975_data *data,
-> +		struct pmbus_driver_info *info)
-> +{
-> +	int ret;
-> +
-> +	ret = i2c_smbus_write_byte_data(client, PMBUS_PAGE, 3);
-> +	if (ret < 0)
-> +		return ret;
-> +
-> +	/* Get voltage reference value for rail 1. */
-> +	ret = i2c_smbus_read_word_data(client, MP2975_MFR_READ_VREF_R1);
-> +	if (ret < 0)
-> +		return ret;
-> +
-> +	data->vref[0] = ret * data->vid_step[0];
-> +
-> +	/* Get voltage reference value for rail 2, if connected. */
-> +	if (data->info.pages == MP2975_PAGE_NUM) {
-> +		ret = i2c_smbus_read_word_data(client, MP2975_MFR_READ_VREF_R2);
-> +		if (ret < 0)
-> +			return ret;
-> +
-> +		data->vref[1] = ret * data->vid_step[1];
-> +	}
-> +	return 0;
-> +}
-> +
-> +static int
-> +mp2975_vref_offset_get(struct i2c_client *client, struct mp2975_data *data,
-> +		       int page)
-> +{
-> +	int ret;
-> +
-> +	ret = i2c_smbus_read_word_data(client, MP2975_MFR_OVP_TH_SET);
-> +	if (ret < 0)
-> +		return ret;
-> +
-> +	switch ((ret & GENMASK(5, 3)) >> 3) {
-> +	case 1:
-> +		data->vref_off[page] = 140;
-> +		break;
-> +	case 2:
-> +		data->vref_off[page] = 220;
-> +		break;
-> +	case 4:
-> +		data->vref_off[page] = 400;
-> +		break;
-> +	default:
-> +		return -EINVAL;
-> +	}
-> +	return 0;
-> +}
-> +
-> +static int
-> +mp2975_vout_max_get(struct i2c_client *client, struct mp2975_data *data,
-> +		    struct pmbus_driver_info *info, int page)
-> +{
-> +	int ret;
-> +
-> +	/* Get maximum reference voltage of VID-DAC in VID format. */
-> +	ret = i2c_smbus_read_word_data(client, PMBUS_VOUT_MAX);
-> +	if (ret < 0)
-> +		return ret;
-> +
-> +	data->vout_max[page] = mp2975_vid2direct(info->vrm_version[page], ret &
-> +						 GENMASK(8, 0));
-> +	return 0;
-> +}
-> +
-> +static int
-> +mp2975_identify_vout_format(struct i2c_client *client,
-> +			    struct mp2975_data *data, int page)
-> +{
-> +	int ret;
-> +
-> +	ret = i2c_smbus_read_word_data(client, MP2975_MFR_DC_LOOP_CTRL);
-> +	if (ret < 0)
-> +		return ret;
-> +
-> +	if (ret & MP2975_VOUT_FORMAT)
-> +		data->vout_format[page] = vid;
-> +	else
-> +		data->vout_format[page] = direct;
-> +	return 0;
-> +}
-> +
-> +static int
-> +mp2975_vout_ov_scale_get(struct i2c_client *client, struct mp2975_data *data,
-> +			 struct pmbus_driver_info *info)
-> +{
-> +	int thres_dev, sense_ampl, ret;
-> +
-> +	ret = i2c_smbus_write_byte_data(client, PMBUS_PAGE, 0);
-> +	if (ret < 0)
-> +		return ret;
-> +
-> +	/*
-> +	 * Get divider for over- and under-voltage protection thresholds
-> +	 * configuration from the Advanced Options of Auto Phase Shedding and
-> +	 * decay register.
-> +	 */
-> +	ret = i2c_smbus_read_word_data(client, MP2975_MFR_APS_DECAY_ADV);
-> +	if (ret >= 0)
-> +		thres_dev = ret & MP2975_PRT_THRES_DIV_OV_EN ?
-> +			    MP2975_PROT_DEV_OV_ON : MP2975_PROT_DEV_OV_OFF;
-> +	else
-> +		return ret;
-> +
-> +	/* Select the gain of remote sense amplifier. */
-> +	ret = i2c_smbus_read_word_data(client, PMBUS_VOUT_SCALE_LOOP);
-> +	if (ret >= 0)
-> +		sense_ampl = ret & MP2975_SENSE_AMPL ? MP2975_SENSE_AMPL_HALF :
-> +			     MP2975_SENSE_AMPL_UNIT;
-> +	else
-> +		return ret;
-> +
-> +	data->vout_scale = sense_ampl * thres_dev;
-> +
-> +	return 0;
-> +}
-> +
-> +static int
-> +mp2975_vout_per_rail_config_get(struct i2c_client *client,
-> +				struct mp2975_data *data,
-> +				struct pmbus_driver_info *info)
-> +{
-> +	int i, ret;
-> +
-> +	for (i = 0; i < data->info.pages; i++) {
-> +		ret = i2c_smbus_write_byte_data(client, PMBUS_PAGE, i);
-> +		if (ret < 0)
-> +			return ret;
-> +
-> +		/* Obtain voltage reference offsets. */
-> +		ret = mp2975_vref_offset_get(client, data, i);
-> +		if (ret < 0)
-> +			goto config_get_fail;
-
-Please no goto to a return statement.
-
-> +
-> +		/* Obtain maximum voltage values. */
-> +		ret = mp2975_vout_max_get(client, data, info, i);
-> +		if (ret < 0)
-> +			goto config_get_fail;
-> +
-> +		/*
-> +		 * Get VOUT format for READ_VOUT command : VID or direct.
-> +		 * Pages on same device can be configured with different
-> +		 * formats.
-> +		 */
-> +		ret = mp2975_identify_vout_format(client, data, i);
-> +		if (ret < 0)
-> +			goto config_get_fail;
-> +
-> +		/*
-> +		 * Set over-voltage fixed value. Thresholds are provided as
-> +		 * fixed value, and tracking value. The minimum of them are
-> +		 * exposed as over-voltage critical threshold.
-> +		 */
-> +		data->vout_ov_fixed[i] = data->vref[i] +
-> +					 DIV_ROUND_CLOSEST(data->vref_off[i] *
-> +							   data->vout_scale,
-> +							   10);
-> +	}
-> +
-> +config_get_fail:
-> +	return ret;
-> +}
-> +
-> +static struct pmbus_driver_info mp2975_info = {
-> +	.pages = 1,
-> +	.format[PSC_VOLTAGE_IN] = linear,
-> +	.format[PSC_VOLTAGE_OUT] = direct,
-> +	.format[PSC_TEMPERATURE] = direct,
-> +	.format[PSC_CURRENT_IN] = linear,
-> +	.format[PSC_CURRENT_OUT] = direct,
-> +	.format[PSC_POWER] = direct,
-> +	.m[PSC_TEMPERATURE] = 1,
-> +	.m[PSC_VOLTAGE_OUT] = 1,
-> +	.R[PSC_VOLTAGE_OUT] = 3,
-> +	.m[PSC_CURRENT_OUT] = 1,
-> +	.m[PSC_POWER] = 1,
-> +	.func[0] = PMBUS_HAVE_VIN | PMBUS_HAVE_VOUT | PMBUS_HAVE_STATUS_VOUT |
-> +		PMBUS_HAVE_IIN | PMBUS_HAVE_IOUT | PMBUS_HAVE_STATUS_IOUT |
-> +		PMBUS_HAVE_TEMP | PMBUS_HAVE_STATUS_TEMP | PMBUS_HAVE_POUT |
-> +		PMBUS_HAVE_PIN | PMBUS_HAVE_STATUS_INPUT | PMBUS_PHASE_VIRTUAL,
-> +	.read_byte_data = mp2975_read_byte_data,
-> +	.read_word_data = mp2975_read_word_data,
-> +};
-> +
-> +static int mp2975_probe(struct i2c_client *client,
-> +			const struct i2c_device_id *id)
-> +{
-> +	struct pmbus_driver_info *info;
-> +	struct mp2975_data *data;
-> +	int ret;
-> +
-> +	data = devm_kzalloc(&client->dev, sizeof(struct mp2975_data),
-> +			    GFP_KERNEL);
-> +	if (!data)
-> +		return -ENOMEM;
-> +
-> +	memcpy(&data->info, &mp2975_info, sizeof(*info));
-> +	info = &data->info;
-> +
-> +	/* Identify multiphase configuration for rail 2. */
-> +	ret = mp2975_identify_multiphase_rail2(client);
-> +	if (ret < 0)
-> +		goto probe_failed;
-> +
-> +	if (ret) {
-> +		/* Two railes are connected. */
-> +		data->info.pages = MP2975_PAGE_NUM;
-> +		data->info.phases[1] = ret;
-> +		data->info.func[1] = MP2975_RAIL2_FUNC;
-> +	}
-> +
-> +	/* Identify multiphase configuration. */
-> +	ret = mp2975_identify_multiphase(client, data, info);
-> +	if (ret)
-> +		goto probe_failed;
-> +
-> +	/* Identify VID setting per rail. */
-> +	ret = mp2975_identify_rails_vid(client, data, info);
-> +	if (ret < 0)
-> +		goto probe_failed;
-> +
-> +	/* Obtain current sense gain of power stage. */
-> +	ret = mp2975_current_sense_gain_get(client, data);
-> +	if (ret)
-> +		goto probe_failed;
-> +
-> +	/* Obtain voltage reference values. */
-> +	ret = mp2975_vref_get(client, data, info);
-> +	if (ret)
-> +		goto probe_failed;
-> +
-> +	/* Obtain vout over-voltage scales. */
-> +	ret = mp2975_vout_ov_scale_get(client, data, info);
-> +	if (ret < 0)
-> +		goto probe_failed;
-> +
-> +	/* Obtain offsets, maximum and format for vout. */
-> +	ret = mp2975_vout_per_rail_config_get(client, data, info);
-> +	if (ret)
-> +		goto probe_failed;
-> +
-> +	return pmbus_do_probe(client, id, info);
-> +
-> +probe_failed:
-> +	return ret;
-> +}
-> +
-> +static const struct i2c_device_id mp2975_id[] = {
-> +	{"mp2975", 0},
-> +	{}
-> +};
-> +
-> +MODULE_DEVICE_TABLE(i2c, mp2975_id);
-> +
-> +static const struct of_device_id __maybe_unused mp2975_of_match[] = {
-> +	{.compatible = "mps,mp2975"},
-> +	{}
-> +};
-> +MODULE_DEVICE_TABLE(of, mp2975_of_match);
-> +
-> +static struct i2c_driver mp2975_driver = {
-> +	.driver = {
-> +		.name = "mp2975",
-> +		.of_match_table = of_match_ptr(mp2975_of_match),
-> +	},
-> +	.probe = mp2975_probe,
-> +	.remove = pmbus_do_remove,
-> +	.id_table = mp2975_id,
-> +};
-> +
-> +module_i2c_driver(mp2975_driver);
-> +
-> +MODULE_AUTHOR("Vadim Pasternak <vadimp@nvidia.com>");
-> +MODULE_DESCRIPTION("PMBus driver for MPS MP2975 device");
-> +MODULE_LICENSE("GPL");
-> 
-
+Thank you for the review
+Ben
+> > +	}
+> > +
+> > +	return 0;
+> > +}
+> > +
+> > +/* Match table for OF platform binding */
+> > +static const struct of_device_id zynqmp_r5_remoteproc_match[] =3D {
+> > +	{ .compatible =3D "xlnx,zynqmp-r5-remoteproc-1.0", },
+> > +	{ /* end of list */ },
+> > +};
+> > +MODULE_DEVICE_TABLE(of, zynqmp_r5_remoteproc_match);
+> > +
+> > +static struct platform_driver zynqmp_r5_remoteproc_driver =3D {
+> > +	.probe =3D zynqmp_r5_remoteproc_probe,
+> > +	.remove =3D zynqmp_r5_remoteproc_remove,
+> > +	.driver =3D {
+> > +		.name =3D "zynqmp_r5_remoteproc",
+> > +		.of_match_table =3D zynqmp_r5_remoteproc_match,
+> > +	},
+> > +};
+> > +module_platform_driver(zynqmp_r5_remoteproc_driver);
+> > +
+> > +MODULE_AUTHOR("Ben Levinsky <ben.levinsky@xilinx.com>");
+> > +MODULE_LICENSE("GPL v2");
+> > --
+> > 2.17.1
+> >
+>=20
+> Thanks,
+>  Michael
