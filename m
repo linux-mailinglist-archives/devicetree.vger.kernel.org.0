@@ -2,93 +2,101 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from vger.kernel.org (vger.kernel.org [23.128.96.18])
-	by mail.lfdr.de (Postfix) with ESMTP id 9302F27458C
-	for <lists+devicetree@lfdr.de>; Tue, 22 Sep 2020 17:40:45 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTP id 55C652745A0
+	for <lists+devicetree@lfdr.de>; Tue, 22 Sep 2020 17:43:02 +0200 (CEST)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S1726674AbgIVPkp (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Tue, 22 Sep 2020 11:40:45 -0400
-Received: from mail-il1-f196.google.com ([209.85.166.196]:40787 "EHLO
-        mail-il1-f196.google.com" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S1726632AbgIVPko (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Tue, 22 Sep 2020 11:40:44 -0400
-Received: by mail-il1-f196.google.com with SMTP id x18so15285067ila.7;
-        Tue, 22 Sep 2020 08:40:44 -0700 (PDT)
+        id S1726646AbgIVPnA (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Tue, 22 Sep 2020 11:43:00 -0400
+Received: from mail-io1-f67.google.com ([209.85.166.67]:35835 "EHLO
+        mail-io1-f67.google.com" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
+        with ESMTP id S1726632AbgIVPnA (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Tue, 22 Sep 2020 11:43:00 -0400
+Received: by mail-io1-f67.google.com with SMTP id r9so20146342ioa.2;
+        Tue, 22 Sep 2020 08:43:00 -0700 (PDT)
 X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
         d=1e100.net; s=20161025;
         h=x-gm-message-state:date:from:to:cc:subject:message-id:references
          :mime-version:content-disposition:in-reply-to;
-        bh=CjP3FaqB3xLlWdr6WInpgaxgqbiPdi3G8u/3sWsh5ow=;
-        b=ZG5bj2zJF3+AR3v6Ma8+SFCljc8+kVL+K/DxOUX4tEgVnxaR4jVVQelHGYog0nB7F8
-         SUmxc3s7JZIkPxzxZ4oDre73e9L8FVOke3txjHgAGzXDpiyXaFNiLzAl2aTjFYigpvqy
-         iT7LYMgoLpHoQpbNsi7JhrTeShuK2nRwgOj0EcTNbdtrIdXvxBt67EYogD5d8K2d7gPz
-         YY/O4Aw9DWu51WibKXv11LOVTXdpnxH9Kzg23loXux5zXJIaf2Lr3Enhi5KmCOhaZxNt
-         8JfaF5SEmQHLWGsN/7WJij1PYUavGFHzsF4e0CHempXbi12mdAfKjMlnhr4n9A6fi1hl
-         I9Vg==
-X-Gm-Message-State: AOAM5326HzR3jR1wGVNYm4Id1w+n+QF3xo/4jFsFIaXS2G5E0HGgkA8q
-        30K1Q0nNpdRSBPNbJb3xWg==
-X-Google-Smtp-Source: ABdhPJwQoEwM/M3ijOW1oWfyfZVRyxlGnhJRQmLBrTBNtjoQCGXIHE0IkmbOCWPcPfO5+I2VpOjP9Q==
-X-Received: by 2002:a92:405d:: with SMTP id n90mr4659530ila.58.1600789243916;
-        Tue, 22 Sep 2020 08:40:43 -0700 (PDT)
+        bh=TYaXL7cZi02QTFmVE3KbgOk5ke0TQzCQlpLbVieBcpQ=;
+        b=O09mjFFzJ/fMYEk/Ay59Qln6k3epi1j3TS1r0QFhoVzXUyPWyDnOeQUBi48XZzJ9zS
+         beTsO+68si/SO6a/oNo1wovDkZYtDY4MJJzPeTOdKGLl47DOuf8M1XAGKim51QutKSy/
+         LmwkFwoqRE+yHUsn8Se5W/D0HIrplCMuC5arcgDvNCjElvBfW+Df2Xuf1DJaoJ37r8q1
+         /D4dj7p78Ov0GjzhdIbpx9Ve2av3BEazppVN6njVqtAEBo5n8VNVu51FWjkX7GPpaEJ0
+         7n7siETbmuOwztZnAABs5PAD2ZTUfG8i2nIRuONIHXIDbX8w/soMKjYElOHNFsuCARkD
+         isxQ==
+X-Gm-Message-State: AOAM5310den4Zke+IDkWM/0aTtytTi3hmsdSs0oqcNtZjYtnhqNI183i
+        IU3YTru69u9Wa5OSJBda/w==
+X-Google-Smtp-Source: ABdhPJy+Hq99CXsctsqgNL6jGVICW70cZDShAPM0k7zPu/xyL8LLbocFjQ/SeALO44nL1LPVzKDynA==
+X-Received: by 2002:a02:a498:: with SMTP id d24mr4624545jam.137.1600789379991;
+        Tue, 22 Sep 2020 08:42:59 -0700 (PDT)
 Received: from xps15 ([64.188.179.253])
-        by smtp.gmail.com with ESMTPSA id l6sm1265375ils.6.2020.09.22.08.40.42
+        by smtp.gmail.com with ESMTPSA id k1sm9023999ilq.59.2020.09.22.08.42.58
         (version=TLS1_3 cipher=TLS_AES_256_GCM_SHA384 bits=256/256);
-        Tue, 22 Sep 2020 08:40:42 -0700 (PDT)
-Received: (nullmailer pid 2730811 invoked by uid 1000);
-        Tue, 22 Sep 2020 15:40:41 -0000
-Date:   Tue, 22 Sep 2020 09:40:41 -0600
+        Tue, 22 Sep 2020 08:42:59 -0700 (PDT)
+Received: (nullmailer pid 2734521 invoked by uid 1000);
+        Tue, 22 Sep 2020 15:42:58 -0000
+Date:   Tue, 22 Sep 2020 09:42:58 -0600
 From:   Rob Herring <robh@kernel.org>
-To:     Maxime Chevallier <maxime.chevallier@bootlin.com>
-Cc:     Hans Verkuil <hverkuil-cisco@xs4all.nl>,
-        Laurent Pinchart <laurent.pinchart@ideasonboard.com>,
-        linux-media@vger.kernel.org,
-        Thomas Petazzoni <thomas.petazzoni@bootlin.com>,
-        Mauro Carvalho Chehab <mchehab@kernel.org>,
-        Miquel Raynal <miquel.raynal@bootlin.com>,
+To:     Alexander Dahl <post@lespocky.de>
+Cc:     Marek =?iso-8859-1?Q?Beh=FAn?= <marek.behun@nic.cz>,
         Rob Herring <robh+dt@kernel.org>,
-        Heiko Stuebner <heiko@sntech.de>,
-        Paul Kocialkowski <paul.kocialkowski@bootlin.com>,
-        devicetree@vger.kernel.org, linux-kernel@vger.kernel.org,
-        Mark Rutland <mark.rutland@arm.com>,
-        linux-arm-kernel@lists.infradead.org
-Subject: Re: [PATCH 2/3] media: dt-bindings: media: i2c: Add bindings for
- TW9900
-Message-ID: <20200922154041.GA2730544@bogus>
-References: <20200918142422.1086555-1-maxime.chevallier@bootlin.com>
- <20200918142422.1086555-3-maxime.chevallier@bootlin.com>
+        Alexander Dahl <ada@thorsis.com>, linux-leds@vger.kernel.org,
+        Pavel Machek <pavel@ucw.cz>,
+        Peter Ujfalusi <peter.ujfalusi@ti.com>,
+        devicetree@vger.kernel.org, Dan Murphy <dmurphy@ti.com>,
+        linux-kernel@vger.kernel.org,
+        Jacek Anaszewski <jacek.anaszewski@gmail.com>
+Subject: Re: [PATCH v5 3/3] dt-bindings: leds: Convert pwm to yaml
+Message-ID: <20200922154258.GA2731185@bogus>
+References: <20200919053145.7564-1-post@lespocky.de>
+ <20200919053145.7564-4-post@lespocky.de>
 MIME-Version: 1.0
 Content-Type: text/plain; charset=us-ascii
 Content-Disposition: inline
-In-Reply-To: <20200918142422.1086555-3-maxime.chevallier@bootlin.com>
+In-Reply-To: <20200919053145.7564-4-post@lespocky.de>
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-On Fri, 18 Sep 2020 16:24:21 +0200, Maxime Chevallier wrote:
-> The Techwell TW9900 is a video decoder supporting multiple input
-> standards, such as PAL, NTSC and SECAM, and outputs a BT.656 video
-> signal.
+On Sat, 19 Sep 2020 07:31:45 +0200, Alexander Dahl wrote:
+> The example was adapted slightly to make use of the 'function' and
+> 'color' properties.  License discussed with the original author.
 > 
-> It's designed to be low-power, posesses some features such as a
-> programmable comb-filter, and automatic input standard detection.
-> 
-> Signed-off-by: Maxime Chevallier <maxime.chevallier@bootlin.com>
+> Suggested-by: Jacek Anaszewski <jacek.anaszewski@gmail.com>
+> Signed-off-by: Alexander Dahl <post@lespocky.de>
+> Cc: Peter Ujfalusi <peter.ujfalusi@ti.com>
 > ---
->  .../devicetree/bindings/media/i2c/tw9900.yaml | 59 +++++++++++++++++++
->  1 file changed, 59 insertions(+)
->  create mode 100644 Documentation/devicetree/bindings/media/i2c/tw9900.yaml
+> 
+> Notes:
+>     v4 -> v5:
+>       * updated based on feedback by Rob Herring
+>       * removed Acked-by
+> 
+>     v3 -> v4:
+>       * added Cc to original author of the binding
+> 
+>     v2 -> v3:
+>       * changed license identifier to recommended one
+>       * added Acked-by
+> 
+>     v2:
+>       * added this patch to series (Suggested-by: Jacek Anaszewski)
+> 
+>  .../devicetree/bindings/leds/leds-pwm.txt     | 50 -----------
+>  .../devicetree/bindings/leds/leds-pwm.yaml    | 82 +++++++++++++++++++
+>  2 files changed, 82 insertions(+), 50 deletions(-)
+>  delete mode 100644 Documentation/devicetree/bindings/leds/leds-pwm.txt
+>  create mode 100644 Documentation/devicetree/bindings/leds/leds-pwm.yaml
 > 
 
 
 My bot found errors running 'make dt_binding_check' on your patch:
 
-Error: Documentation/devicetree/bindings/media/i2c/tw9900.example.dts:28.46-47 syntax error
-FATAL ERROR: Unable to parse input tree
-make[1]: *** [scripts/Makefile.lib:342: Documentation/devicetree/bindings/media/i2c/tw9900.example.dt.yaml] Error 1
-make[1]: *** Waiting for unfinished jobs....
-make: *** [Makefile:1366: dt_binding_check] Error 2
+/builds/robherring/linux-dt-review/Documentation/devicetree/bindings/mfd/iqs62x.example.dt.yaml: pwmleds: 'panel' does not match any of the regexes: '^led(-[0-9a-f]+)?$', 'pinctrl-[0-9]+'
+	From schema: /builds/robherring/linux-dt-review/Documentation/devicetree/bindings/leds/leds-pwm.yaml
 
 
-See https://patchwork.ozlabs.org/patch/1367017
+See https://patchwork.ozlabs.org/patch/1367461
 
 If you already ran 'make dt_binding_check' and didn't see the above
 error(s), then make sure dt-schema is up to date:
