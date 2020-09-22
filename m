@@ -2,478 +2,103 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from vger.kernel.org (vger.kernel.org [23.128.96.18])
-	by mail.lfdr.de (Postfix) with ESMTP id C56DD273A10
-	for <lists+devicetree@lfdr.de>; Tue, 22 Sep 2020 07:15:13 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTP id 32E12273A4C
+	for <lists+devicetree@lfdr.de>; Tue, 22 Sep 2020 07:38:59 +0200 (CEST)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S1728901AbgIVFPM (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Tue, 22 Sep 2020 01:15:12 -0400
-Received: from lindbergh.monkeyblade.net ([23.128.96.19]:36662 "EHLO
-        lindbergh.monkeyblade.net" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S1728422AbgIVFPM (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Tue, 22 Sep 2020 01:15:12 -0400
-Received: from metis.ext.pengutronix.de (metis.ext.pengutronix.de [IPv6:2001:67c:670:201:290:27ff:fe1d:cc33])
-        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 0FD82C061755
-        for <devicetree@vger.kernel.org>; Mon, 21 Sep 2020 22:15:12 -0700 (PDT)
-Received: from dude.hi.pengutronix.de ([2001:67c:670:100:1d::7])
-        by metis.ext.pengutronix.de with esmtps (TLS1.3:ECDHE_RSA_AES_256_GCM_SHA384:256)
-        (Exim 4.92)
-        (envelope-from <ore@pengutronix.de>)
-        id 1kKadk-0006mI-JI; Tue, 22 Sep 2020 07:14:56 +0200
-Received: from ore by dude.hi.pengutronix.de with local (Exim 4.92)
-        (envelope-from <ore@pengutronix.de>)
-        id 1kKadk-00083M-4L; Tue, 22 Sep 2020 07:14:56 +0200
-From:   Oleksij Rempel <o.rempel@pengutronix.de>
-To:     Mark Rutland <mark.rutland@arm.com>,
-        Rob Herring <robh+dt@kernel.org>,
-        Sascha Hauer <s.hauer@pengutronix.de>,
-        Shawn Guo <shawnguo@kernel.org>
-Cc:     Oleksij Rempel <o.rempel@pengutronix.de>,
-        David Jander <david@protonic.nl>, devicetree@vger.kernel.org,
-        Fabio Estevam <festevam@gmail.com>,
-        linux-arm-kernel@lists.infradead.org, linux-kernel@vger.kernel.org,
-        NXP Linux Team <linux-imx@nxp.com>,
-        Pengutronix Kernel Team <kernel@pengutronix.de>
-Subject: [PATCH v3 3/3] ARM: dts: add Plymovent M2M board
-Date:   Tue, 22 Sep 2020 07:14:54 +0200
-Message-Id: <20200922051454.30878-4-o.rempel@pengutronix.de>
-X-Mailer: git-send-email 2.28.0
-In-Reply-To: <20200922051454.30878-1-o.rempel@pengutronix.de>
-References: <20200922051454.30878-1-o.rempel@pengutronix.de>
+        id S1728043AbgIVFi6 (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Tue, 22 Sep 2020 01:38:58 -0400
+Received: from mail-eopbgr60074.outbound.protection.outlook.com ([40.107.6.74]:42371
+        "EHLO EUR04-DB3-obe.outbound.protection.outlook.com"
+        rhost-flags-OK-OK-OK-FAIL) by vger.kernel.org with ESMTP
+        id S1726497AbgIVFi5 (ORCPT <rfc822;devicetree@vger.kernel.org>);
+        Tue, 22 Sep 2020 01:38:57 -0400
+ARC-Seal: i=1; a=rsa-sha256; s=arcselector9901; d=microsoft.com; cv=none;
+ b=k8PW3um7KV6lcTiIQQ5r+hSDeXejQj8w9iOup5KhdWyDkZACIoKThFnj/CWhvGNhuJsfCgLoVQh+8xHylsK6/nqsabPlMz1j03XvcbASCk38Ql9L1lai3F6D3S91QptNj+9wyDtIYDBfAY9doDR5DhQANmLmZ9HuXUgKULJmIFBURuQYpJGBIiQ/cpRQSotEOSrrqErDmjTd3TPrtOXCK/LIlyK77d/D+9SNlJKfTbzHIeeXL74wSQgQwr0e4nb6ekHUN3Qg4O+HTmHWOxKIhgjPgWDxNsQt70yNrooEr2i1ovLObhYzcTFx7ZYutIgcSebgjFdO4YY8zHHqnthsWA==
+ARC-Message-Signature: i=1; a=rsa-sha256; c=relaxed/relaxed; d=microsoft.com;
+ s=arcselector9901;
+ h=From:Date:Subject:Message-ID:Content-Type:MIME-Version:X-MS-Exchange-SenderADCheck;
+ bh=YFInAtCOufzpuJT/vXwR9TveZanWjqHTCymEIdW3KMY=;
+ b=bqGYiBeNW9SxM3/Df5gaz2jaLAFWIN9TwDQZjB+NCit5pO0tK53CYcVDsyx2UYS/GIMZXgD5RA0E78Sig3YCLVQKXAQ8NFxUgB3sI2Z2L2LSHQ6J6VCgce92k2ZE6tt5NIMtMQ5tr+yzpxUfEhq+gLBXTEGGwBQODLo5MjRaSEFwNfke5UINnJeBycEzL18V1o3XsgN4UWxS2rq9h5V0M+T+57fEdHnni4aaErph7xpP2mGjD0iwIvGNFk0kDF0QVudvXbQ0FZ0za2YwirANrcDvKSkIPageHPHBhQaDveWq1rlEfjpicu5au1kKd4CGdVrANQSAD6miYX6wzm9ZYQ==
+ARC-Authentication-Results: i=1; mx.microsoft.com 1; spf=pass
+ smtp.mailfrom=nxp.com; dmarc=pass action=none header.from=nxp.com; dkim=pass
+ header.d=nxp.com; arc=none
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=nxp.com; s=selector2;
+ h=From:Date:Subject:Message-ID:Content-Type:MIME-Version:X-MS-Exchange-SenderADCheck;
+ bh=YFInAtCOufzpuJT/vXwR9TveZanWjqHTCymEIdW3KMY=;
+ b=S5EHsnoESXYIMvR0HuRo+LS4h+1i43LOWX3eHRE4euit6npiO6ZNC5ZFF/xnR4R7U/40wqDDoygHykMA+2Vdu3YxwsjTD9JpsNzeCvGnAfPcYKh3Q0VlZofFbBJUOT86mQaAB2d2M5fKCeg4eMad5n3RGPjrEnOviypSX4MbBpg=
+Received: from DB8PR04MB6795.eurprd04.prod.outlook.com (2603:10a6:10:fa::15)
+ by DB6PR04MB3095.eurprd04.prod.outlook.com (2603:10a6:6:11::12) with
+ Microsoft SMTP Server (version=TLS1_2,
+ cipher=TLS_ECDHE_RSA_WITH_AES_256_GCM_SHA384) id 15.20.3391.11; Tue, 22 Sep
+ 2020 05:38:54 +0000
+Received: from DB8PR04MB6795.eurprd04.prod.outlook.com
+ ([fe80::d12e:689a:169:fd68]) by DB8PR04MB6795.eurprd04.prod.outlook.com
+ ([fe80::d12e:689a:169:fd68%8]) with mapi id 15.20.3391.011; Tue, 22 Sep 2020
+ 05:38:54 +0000
+From:   Joakim Zhang <qiangqing.zhang@nxp.com>
+To:     "mchehab@kernel.org" <mchehab@kernel.org>,
+        "robh+dt@kernel.org" <robh+dt@kernel.org>,
+        "sean@mess.org" <sean@mess.org>
+CC:     "linux-media@vger.kernel.org" <linux-media@vger.kernel.org>,
+        "devicetree@vger.kernel.org" <devicetree@vger.kernel.org>,
+        "linux-kernel@vger.kernel.org" <linux-kernel@vger.kernel.org>,
+        dl-linux-imx <linux-imx@nxp.com>
+Subject: RE: [PATCH V2 0/2] add QoS support for cpuidle system
+Thread-Topic: [PATCH V2 0/2] add QoS support for cpuidle system
+Thread-Index: AQHWjaToTSANC+n2mk++k582VkkwTal0Kc0g
+Date:   Tue, 22 Sep 2020 05:38:54 +0000
+Message-ID: <DB8PR04MB6795D6319089ACB955D7F5FFE63B0@DB8PR04MB6795.eurprd04.prod.outlook.com>
+References: <20200918181717.24056-1-qiangqing.zhang@nxp.com>
+In-Reply-To: <20200918181717.24056-1-qiangqing.zhang@nxp.com>
+Accept-Language: en-US
+Content-Language: en-US
+X-MS-Has-Attach: 
+X-MS-TNEF-Correlator: 
+authentication-results: kernel.org; dkim=none (message not signed)
+ header.d=none;kernel.org; dmarc=none action=none header.from=nxp.com;
+x-originating-ip: [119.31.174.71]
+x-ms-publictraffictype: Email
+x-ms-office365-filtering-ht: Tenant
+x-ms-office365-filtering-correlation-id: e0dfc7b4-c41e-4a1c-5b86-08d85eb9cb51
+x-ms-traffictypediagnostic: DB6PR04MB3095:
+x-ms-exchange-transport-forked: True
+x-microsoft-antispam-prvs: <DB6PR04MB30953BED5656FD29AFC360D5E63B0@DB6PR04MB3095.eurprd04.prod.outlook.com>
+x-ms-oob-tlc-oobclassifiers: OLM:2582;
+x-ms-exchange-senderadcheck: 1
+x-microsoft-antispam: BCL:0;
+x-microsoft-antispam-message-info: pCpZmnNoNhRCLiX9UbVux00W2tAsVIh0ZlKJGwErhWV55nYM3MUVsWfDFFhh/n53VOr68sPLegiQCamAJsbZbGrXWgCVNst9Ug7ZrVR6U89yDwsdgH5fms6SfolztL1hNT1U6UZUrIE7dtNBrKipaGDTk7chJPHCVkoIjYRD0iIfstCekV6mBMM4uKKN+aTO6DfLiEw/M3L/EfvdSy9trQhOFtVN+3PMSJ5hh8mvmSflnAM1o3a6JH5m9eMHzAS7/OjxFh30+cN5vru3Wq5oxpLMTF2/4dXAWGSKxTYAR0A4OGiTWuPQtd0hiaVaVJa+m3kbS8v/NobODFaoUpX28DgF88OHxikdBvkkzByOAi48hClXISTUnNFIsKkJsjbT
+x-forefront-antispam-report: CIP:255.255.255.255;CTRY:;LANG:en;SCL:1;SRV:;IPV:NLI;SFV:NSPM;H:DB8PR04MB6795.eurprd04.prod.outlook.com;PTR:;CAT:NONE;SFS:(4636009)(39860400002)(346002)(376002)(366004)(396003)(136003)(8676002)(66446008)(64756008)(76116006)(110136005)(66556008)(54906003)(66946007)(33656002)(71200400001)(55016002)(66476007)(478600001)(9686003)(83380400001)(26005)(186003)(52536014)(4326008)(7696005)(8936002)(53546011)(6506007)(86362001)(4744005)(316002)(2906002)(5660300002);DIR:OUT;SFP:1101;
+x-ms-exchange-antispam-messagedata: VAKf/zIIzBhKY0u+wb/Qt8LaYLi5r1ootT0lEbOP4r+AxFE646exXX4U0RFWQVeadlF/0KS69HH3fwuuTe07i6MO121sdmdzClF/GS+MZuFhuyrq0wqttJtIl120WIAbspl/PmBTgq9r0MA1OLWEPQi3Mo9Lqwdsbwfd+jaR2dwBXwEjL10ipYhqTWRpD2plmEbtpG0CAu5FEc+h4OeeVHbGiXlr7KOKIh9e3B91GkbAbJ7Ud+5/HrKGY4dbYVq+BhBvnZnpU7WUuvwP13htH+Eic3Tu3qJqBWlVXrqNKbH8ZAfKdPqnP1QAEv4Vm+f8JbLaJkO/KlLe6HKyHyu2i7Ne25r7RlV2wBpvsNlV/IThqjj8zSS3h4DLS9UTcSxzkRZmWh7xXYCiiA+u8GoOMB/+yrwcnlnKgqilYVO/f/WjkO0NDURBIEemgIa/PVIUdK/EG0QMzydBFb1DmShc5DcyCNG71ThgrG6E/eHuFxP7E9rvVF1EqPdygHZDKd/VfmyjRDm/guEufmMWj/dQ2GRx7oi3MLc/Of9vLqCQAfZTDBO7CA/884wzWtCs2AhcfXAaFDvQcUj4mGuLd3lrMt5agaFHYF/OvROztCJBlaDuTk8ABaLHFTVWvRE2IyZjLCsA2LksxPyZdNENgqNDug==
+Content-Type: text/plain; charset="gb2312"
+Content-Transfer-Encoding: base64
 MIME-Version: 1.0
-Content-Transfer-Encoding: 8bit
-X-SA-Exim-Connect-IP: 2001:67c:670:100:1d::7
-X-SA-Exim-Mail-From: ore@pengutronix.de
-X-SA-Exim-Scanned: No (on metis.ext.pengutronix.de); SAEximRunCond expanded to false
-X-PTX-Original-Recipient: devicetree@vger.kernel.org
+X-OriginatorOrg: nxp.com
+X-MS-Exchange-CrossTenant-AuthAs: Internal
+X-MS-Exchange-CrossTenant-AuthSource: DB8PR04MB6795.eurprd04.prod.outlook.com
+X-MS-Exchange-CrossTenant-Network-Message-Id: e0dfc7b4-c41e-4a1c-5b86-08d85eb9cb51
+X-MS-Exchange-CrossTenant-originalarrivaltime: 22 Sep 2020 05:38:54.4379
+ (UTC)
+X-MS-Exchange-CrossTenant-fromentityheader: Hosted
+X-MS-Exchange-CrossTenant-id: 686ea1d3-bc2b-4c6f-a92c-d99c5c301635
+X-MS-Exchange-CrossTenant-mailboxtype: HOSTED
+X-MS-Exchange-CrossTenant-userprincipalname: cNGCFtApsjw2W7B2AMO+0OWFFdq7PszKmktfGzwY/U4XwMGqWDDCrNaYeLNxlaHQfDS1h3e6AFpuOmM6AHxL1w==
+X-MS-Exchange-Transport-CrossTenantHeadersStamped: DB6PR04MB3095
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-Plymovent M2M is a control interface produced for the Plymovent filter
-systems.
-
-Signed-off-by: David Jander <david@protonic.nl>
-Signed-off-by: Oleksij Rempel <o.rempel@pengutronix.de>
----
- arch/arm/boot/dts/Makefile          |   1 +
- arch/arm/boot/dts/imx6dl-plym2m.dts | 396 ++++++++++++++++++++++++++++
- 2 files changed, 397 insertions(+)
- create mode 100644 arch/arm/boot/dts/imx6dl-plym2m.dts
-
-diff --git a/arch/arm/boot/dts/Makefile b/arch/arm/boot/dts/Makefile
-index 4572db3fa5ae..3c3811fd8613 100644
---- a/arch/arm/boot/dts/Makefile
-+++ b/arch/arm/boot/dts/Makefile
-@@ -455,6 +455,7 @@ dtb-$(CONFIG_SOC_IMX6Q) += \
- 	imx6dl-pico-hobbit.dtb \
- 	imx6dl-pico-nymph.dtb \
- 	imx6dl-pico-pi.dtb \
-+	imx6dl-plym2m.dtb \
- 	imx6dl-prtrvt.dtb \
- 	imx6dl-prtvt7.dtb \
- 	imx6dl-rex-basic.dtb \
-diff --git a/arch/arm/boot/dts/imx6dl-plym2m.dts b/arch/arm/boot/dts/imx6dl-plym2m.dts
-new file mode 100644
-index 000000000000..42b970c2dd74
---- /dev/null
-+++ b/arch/arm/boot/dts/imx6dl-plym2m.dts
-@@ -0,0 +1,396 @@
-+// SPDX-License-Identifier: GPL-2.0-or-later OR MIT
-+/*
-+ * Copyright (c) 2014 Protonic Holland
-+ * Copyright (c) 2020 Oleksij Rempel <kernel@pengutronix.de>, Pengutronix
-+ */
-+
-+/dts-v1/;
-+#include <dt-bindings/gpio/gpio.h>
-+#include <dt-bindings/leds/common.h>
-+#include "imx6dl.dtsi"
-+
-+/ {
-+	model = "Plymovent M2M board";
-+	compatible = "ply,plym2m", "fsl,imx6dl";
-+
-+	chosen {
-+		stdout-path = &uart4;
-+	};
-+
-+	backlight: backlight {
-+		compatible = "pwm-backlight";
-+		pwms = <&pwm1 0 500000 0>;
-+		brightness-levels = <0 1000>;
-+		num-interpolated-steps = <20>;
-+		default-brightness-level = <19>;
-+		power-supply = <&reg_12v0>;
-+	};
-+
-+	display {
-+		compatible = "fsl,imx-parallel-display";
-+		pinctrl-0 = <&pinctrl_ipu1_disp>;
-+		pinctrl-names = "default";
-+		#address-cells = <1>;
-+		#size-cells = <0>;
-+
-+		port@0 {
-+			reg = <0>;
-+
-+			display_in: endpoint {
-+				remote-endpoint = <&ipu1_di0_disp0>;
-+			};
-+		};
-+
-+		port@1 {
-+			reg = <1>;
-+
-+			display_out: endpoint {
-+				remote-endpoint = <&panel_in>;
-+			};
-+		};
-+	};
-+
-+	leds {
-+		compatible = "gpio-leds";
-+		pinctrl-names = "default";
-+		pinctrl-0 = <&pinctrl_leds>;
-+
-+		led-debug {
-+			function = LED_FUNCTION_STATUS;
-+			gpios = <&gpio1 8 GPIO_ACTIVE_HIGH>;
-+			linux,default-trigger = "heartbeat";
-+		};
-+	};
-+
-+	panel {
-+		compatible = "edt,etm0700g0bdh6";
-+		backlight = <&backlight>;
-+		power-supply = <&reg_3v3>;
-+
-+		port {
-+			panel_in: endpoint {
-+				remote-endpoint = <&display_out>;
-+			};
-+		};
-+	};
-+
-+	clk50m_phy: phy-clock {
-+		compatible = "fixed-clock";
-+		#clock-cells = <0>;
-+		clock-frequency = <50000000>;
-+	};
-+
-+	reg_3v3: regulator-3v3 {
-+		compatible = "regulator-fixed";
-+		regulator-name = "3v3";
-+		regulator-min-microvolt = <3300000>;
-+		regulator-max-microvolt = <3300000>;
-+	};
-+
-+	reg_5v0: regulator-5v0 {
-+		compatible = "regulator-fixed";
-+		regulator-name = "5v0";
-+		regulator-min-microvolt = <5000000>;
-+		regulator-max-microvolt = <5000000>;
-+	};
-+
-+	reg_12v0: regulator-12v0 {
-+		compatible = "regulator-fixed";
-+		regulator-name = "12v0";
-+		regulator-min-microvolt = <12000000>;
-+		regulator-max-microvolt = <12000000>;
-+	};
-+};
-+
-+&can1 {
-+	pinctrl-names = "default";
-+	pinctrl-0 = <&pinctrl_can1>;
-+	xceiver-supply = <&reg_5v0>;
-+	status = "okay";
-+};
-+
-+&ecspi1 {
-+	cs-gpios = <&gpio3 19 GPIO_ACTIVE_LOW>;
-+	pinctrl-names = "default";
-+	pinctrl-0 = <&pinctrl_ecspi1>;
-+	status = "okay";
-+
-+	flash@0 {
-+		compatible = "jedec,spi-nor";
-+		reg = <0>;
-+		spi-max-frequency = <20000000>;
-+	};
-+};
-+
-+&fec {
-+	pinctrl-names = "default";
-+	pinctrl-0 = <&pinctrl_enet>;
-+	phy-mode = "rmii";
-+	clocks = <&clks IMX6QDL_CLK_ENET>,
-+		 <&clks IMX6QDL_CLK_ENET>,
-+		 <&clk50m_phy>;
-+	clock-names = "ipg", "ahb", "ptp";
-+	status = "okay";
-+
-+	mdio {
-+		#address-cells = <1>;
-+		#size-cells = <0>;
-+
-+		/* Microchip KSZ8081RNA PHY */
-+		rgmii_phy: ethernet-phy@0 {
-+			reg = <0>;
-+			interrupts-extended = <&gpio5 23 IRQ_TYPE_LEVEL_LOW>;
-+			reset-gpios = <&gpio5 22 GPIO_ACTIVE_LOW>;
-+			reset-assert-us = <10000>;
-+			reset-deassert-us = <300>;
-+		};
-+	};
-+};
-+
-+&gpio1 {
-+	gpio-line-names =
-+		"CAN1_TERM", "SD1_CD", "", "", "", "", "", "",
-+		"DEBUG_0", "", "", "", "", "", "", "",
-+		"", "", "", "", "", "", "", "",
-+		"", "", "", "", "", "", "", "";
-+};
-+
-+&gpio2 {
-+	gpio-line-names =
-+		"", "", "", "", "", "", "", "",
-+		"", "", "", "", "", "", "", "",
-+		"", "", "", "", "", "", "", "",
-+		"", "", "ECSPI2_SS0", "", "", "", "TSC_BUSY", "";
-+};
-+
-+&gpio3 {
-+	gpio-line-names =
-+		"", "", "", "", "", "", "", "",
-+		"", "", "", "", "", "", "", "",
-+		"", "", "", "ECSPI1_SS1", "TSC_PENIRQ", "", "", "",
-+		"", "", "", "", "", "", "", "";
-+};
-+
-+&gpio4 {
-+	gpio-line-names =
-+		"", "", "", "", "", "", "", "",
-+		"", "", "", "", "CAN1_SR", "", "", "",
-+		"", "", "", "", "", "", "", "",
-+		"", "", "", "", "", "", "", "";
-+};
-+
-+&gpio5 {
-+	gpio-line-names =
-+		"", "", "", "", "", "", "", "",
-+		"", "", "", "", "", "", "", "",
-+		"", "", "", "", "", "", "ETH_RESET", "ETH_INTRP",
-+		"", "", "", "", "", "", "", "";
-+};
-+
-+&i2c1 {
-+	clock-frequency = <100000>;
-+	pinctrl-names = "default";
-+	pinctrl-0 = <&pinctrl_i2c1>;
-+	status = "okay";
-+
-+	/* additional i2c devices are added automatically by the boot loader */
-+};
-+
-+&i2c3 {
-+	clock-frequency = <100000>;
-+	pinctrl-names = "default";
-+	pinctrl-0 = <&pinctrl_i2c3>;
-+	status = "okay";
-+
-+	temperature-sensor@70 {
-+		compatible = "ti,tmp103";
-+		reg = <0x70>;
-+	};
-+};
-+
-+&ipu1_di0_disp0 {
-+	remote-endpoint = <&display_in>;
-+};
-+
-+&pwm1 {
-+	pinctrl-names = "default";
-+	pinctrl-0 = <&pinctrl_pwm1>;
-+	status = "okay";
-+};
-+
-+&uart4 {
-+	pinctrl-names = "default";
-+	pinctrl-0 = <&pinctrl_uart4>;
-+	status = "okay";
-+};
-+
-+&usbphynop1 {
-+	status = "disabled";
-+};
-+
-+&usbphynop2 {
-+	status = "disabled";
-+};
-+
-+&usbotg {
-+	phy_type = "utmi";
-+	dr_mode = "host";
-+	disable-over-current;
-+	status = "okay";
-+};
-+
-+&usdhc1 {
-+	pinctrl-names = "default";
-+	pinctrl-0 = <&pinctrl_usdhc1>;
-+	cd-gpios = <&gpio1 1 GPIO_ACTIVE_LOW>;
-+	no-1-8-v;
-+	disable-wp;
-+	cap-sd-highspeed;
-+	no-mmc;
-+	no-sdio;
-+	status = "okay";
-+};
-+
-+&usdhc3 {
-+	pinctrl-names = "default";
-+	pinctrl-0 = <&pinctrl_usdhc3>;
-+	bus-width = <8>;
-+	no-1-8-v;
-+	non-removable;
-+	no-sd;
-+	no-sdio;
-+	status = "okay";
-+};
-+
-+&iomuxc {
-+	pinctrl_can1: can1grp {
-+		fsl,pins = <
-+			MX6QDL_PAD_KEY_ROW2__FLEXCAN1_RX		0x1b000
-+			MX6QDL_PAD_KEY_COL2__FLEXCAN1_TX		0x3008
-+			/* CAN1_SR */
-+			MX6QDL_PAD_KEY_COL3__GPIO4_IO12			0x13008
-+			/* CAN1_TERM */
-+			MX6QDL_PAD_GPIO_0__GPIO1_IO00			0x1b088
-+		>;
-+	};
-+
-+	pinctrl_ecspi1: ecspi1grp {
-+		fsl,pins = <
-+			MX6QDL_PAD_EIM_D17__ECSPI1_MISO			0x1b000
-+			MX6QDL_PAD_EIM_D18__ECSPI1_MOSI			0x3008
-+			MX6QDL_PAD_EIM_D16__ECSPI1_SCLK			0x3008
-+			/* CS */
-+			MX6QDL_PAD_EIM_D19__GPIO3_IO19			0x3008
-+		>;
-+	};
-+
-+	pinctrl_enet: enetgrp {
-+		fsl,pins = <
-+			/* MX6QDL_ENET_PINGRP4 */
-+			MX6QDL_PAD_ENET_MDC__ENET_MDC			0x1b0b0
-+			MX6QDL_PAD_ENET_MDIO__ENET_MDIO			0x1b0b0
-+			MX6QDL_PAD_ENET_RXD0__ENET_RX_DATA0		0x1b0b0
-+			MX6QDL_PAD_ENET_RXD1__ENET_RX_DATA1		0x1b0b0
-+			MX6QDL_PAD_ENET_RX_ER__ENET_RX_ER		0x1b0b0
-+			MX6QDL_PAD_ENET_TX_EN__ENET_TX_EN		0x1b0b0
-+			MX6QDL_PAD_ENET_TXD0__ENET_TX_DATA0		0x1b0b0
-+			MX6QDL_PAD_ENET_TXD1__ENET_TX_DATA1		0x1b0b0
-+			MX6QDL_PAD_ENET_CRS_DV__ENET_RX_EN		0x1b0b0
-+
-+			MX6QDL_PAD_GPIO_16__ENET_REF_CLK		0x1b0b0
-+			/* Phy reset */
-+			MX6QDL_PAD_CSI0_DAT4__GPIO5_IO22		0x1b0b0
-+			/* nINTRP */
-+			MX6QDL_PAD_CSI0_DAT5__GPIO5_IO23		0x1b0b0
-+		>;
-+	};
-+
-+	pinctrl_i2c1: i2c1grp {
-+		fsl,pins = <
-+			MX6QDL_PAD_CSI0_DAT8__I2C1_SDA			0x4001f8b1
-+			MX6QDL_PAD_CSI0_DAT9__I2C1_SCL			0x4001f8b1
-+		>;
-+	};
-+
-+	pinctrl_i2c3: i2c3grp {
-+		fsl,pins = <
-+			MX6QDL_PAD_GPIO_5__I2C3_SCL			0x4001b8b1
-+			MX6QDL_PAD_GPIO_6__I2C3_SDA			0x4001b8b1
-+		>;
-+	};
-+
-+	pinctrl_ipu1_disp: ipudisp1grp {
-+		fsl,pins = <
-+			/* DSE 0x30 => 25 Ohm, 0x20 => 37 Ohm, 0x10 => 75 Ohm */
-+			MX6QDL_PAD_DI0_DISP_CLK__IPU1_DI0_DISP_CLK	0x30
-+			MX6QDL_PAD_DI0_PIN15__IPU1_DI0_PIN15		0x30
-+			MX6QDL_PAD_DI0_PIN2__IPU1_DI0_PIN02		0x30
-+			MX6QDL_PAD_DI0_PIN3__IPU1_DI0_PIN03		0x30
-+			MX6QDL_PAD_DISP0_DAT0__IPU1_DISP0_DATA00	0x30
-+			MX6QDL_PAD_DISP0_DAT1__IPU1_DISP0_DATA01	0x30
-+			MX6QDL_PAD_DISP0_DAT2__IPU1_DISP0_DATA02	0x30
-+			MX6QDL_PAD_DISP0_DAT3__IPU1_DISP0_DATA03	0x30
-+			MX6QDL_PAD_DISP0_DAT4__IPU1_DISP0_DATA04	0x30
-+			MX6QDL_PAD_DISP0_DAT5__IPU1_DISP0_DATA05	0x30
-+			MX6QDL_PAD_DISP0_DAT6__IPU1_DISP0_DATA06	0x30
-+			MX6QDL_PAD_DISP0_DAT7__IPU1_DISP0_DATA07	0x30
-+			MX6QDL_PAD_DISP0_DAT8__IPU1_DISP0_DATA08	0x30
-+			MX6QDL_PAD_DISP0_DAT9__IPU1_DISP0_DATA09	0x30
-+			MX6QDL_PAD_DISP0_DAT10__IPU1_DISP0_DATA10	0x30
-+			MX6QDL_PAD_DISP0_DAT11__IPU1_DISP0_DATA11	0x30
-+			MX6QDL_PAD_DISP0_DAT12__IPU1_DISP0_DATA12	0x30
-+			MX6QDL_PAD_DISP0_DAT13__IPU1_DISP0_DATA13	0x30
-+			MX6QDL_PAD_DISP0_DAT14__IPU1_DISP0_DATA14	0x30
-+			MX6QDL_PAD_DISP0_DAT15__IPU1_DISP0_DATA15	0x30
-+			MX6QDL_PAD_DISP0_DAT16__IPU1_DISP0_DATA16	0x30
-+			MX6QDL_PAD_DISP0_DAT17__IPU1_DISP0_DATA17	0x30
-+		>;
-+	};
-+
-+	pinctrl_leds: ledsgrp {
-+		fsl,pins = <
-+			MX6QDL_PAD_GPIO_8__GPIO1_IO08			0x1b0b0
-+		>;
-+	};
-+
-+	pinctrl_pwm1: pwm1grp {
-+		fsl,pins = <
-+			MX6QDL_PAD_GPIO_9__PWM1_OUT			0x8
-+		>;
-+	};
-+
-+	pinctrl_uart4: uart4grp {
-+		fsl,pins = <
-+			MX6QDL_PAD_KEY_COL0__UART4_TX_DATA		0x1b0b1
-+			MX6QDL_PAD_KEY_ROW0__UART4_RX_DATA		0x1b0b1
-+		>;
-+	};
-+
-+	pinctrl_usdhc1: usdhc1grp {
-+		fsl,pins = <
-+			MX6QDL_PAD_SD1_CMD__SD1_CMD			0x170f9
-+			MX6QDL_PAD_SD1_CLK__SD1_CLK			0x100f9
-+			MX6QDL_PAD_SD1_DAT0__SD1_DATA0			0x170f9
-+			MX6QDL_PAD_SD1_DAT1__SD1_DATA1			0x170f9
-+			MX6QDL_PAD_SD1_DAT2__SD1_DATA2			0x170f9
-+			MX6QDL_PAD_SD1_DAT3__SD1_DATA3			0x170f9
-+			MX6QDL_PAD_GPIO_1__GPIO1_IO01			0x1b0b0
-+		>;
-+	};
-+
-+	pinctrl_usdhc3: usdhc3grp {
-+		fsl,pins = <
-+			MX6QDL_PAD_SD3_CMD__SD3_CMD			0x17099
-+			MX6QDL_PAD_SD3_CLK__SD3_CLK			0x10099
-+			MX6QDL_PAD_SD3_DAT0__SD3_DATA0			0x17099
-+			MX6QDL_PAD_SD3_DAT1__SD3_DATA1			0x17099
-+			MX6QDL_PAD_SD3_DAT2__SD3_DATA2			0x17099
-+			MX6QDL_PAD_SD3_DAT3__SD3_DATA3			0x17099
-+			MX6QDL_PAD_SD3_DAT4__SD3_DATA4			0x17099
-+			MX6QDL_PAD_SD3_DAT5__SD3_DATA5			0x17099
-+			MX6QDL_PAD_SD3_DAT6__SD3_DATA6			0x17099
-+			MX6QDL_PAD_SD3_DAT7__SD3_DATA7			0x17099
-+			MX6QDL_PAD_SD3_RST__SD3_RESET			0x1b0b1
-+		>;
-+	};
-+};
--- 
-2.28.0
-
+DQpIaSBTZWFuLA0KDQpBbnkgY29tbWVudHM/DQoNCkJlc3QgUmVnYXJkcywNCkpvYWtpbSBaaGFu
+Zw0KDQo+IC0tLS0tT3JpZ2luYWwgTWVzc2FnZS0tLS0tDQo+IEZyb206IEpvYWtpbSBaaGFuZyA8
+cWlhbmdxaW5nLnpoYW5nQG54cC5jb20+DQo+IFNlbnQ6IDIwMjDE6jnUwjE5yNUgMjoxNw0KPiBU
+bzogbWNoZWhhYkBrZXJuZWwub3JnOyByb2JoK2R0QGtlcm5lbC5vcmc7IHNlYW5AbWVzcy5vcmcN
+Cj4gQ2M6IGxpbnV4LW1lZGlhQHZnZXIua2VybmVsLm9yZzsgZGV2aWNldHJlZUB2Z2VyLmtlcm5l
+bC5vcmc7DQo+IGxpbnV4LWtlcm5lbEB2Z2VyLmtlcm5lbC5vcmc7IGRsLWxpbnV4LWlteCA8bGlu
+dXgtaW14QG54cC5jb20+DQo+IFN1YmplY3Q6IFtQQVRDSCBWMiAwLzJdIGFkZCBRb1Mgc3VwcG9y
+dCBmb3IgY3B1aWRsZSBzeXN0ZW0NCj4gDQo+IEFkZCBRb1Mgc3VwcG9ydCBmb3IgY3B1aWRsZSBz
+eXN0ZW0uDQo+IA0KPiBKb2FraW0gWmhhbmcgKDIpOg0KPiAgIGJpbmRpbmdzOiBtZWRpYTogZ3Bp
+by1pci1yZWNlaXZlcjogYWRkIGxpbnV4LGF1dG9zdXNwZW5kLXBlcmlvZA0KPiAgICAgcHJvcGVy
+dHkNCj4gICBtZWRpYTogcmM6IGdwaW8taXItcmVjdjogYWRkIFFvUyBzdXBwb3J0IGZvciBjcHVp
+ZGxlIHN5c3RlbQ0KPiANCj4gIC4uLi9iaW5kaW5ncy9tZWRpYS9ncGlvLWlyLXJlY2VpdmVyLnR4
+dCAgICAgICB8ICAzICsrDQo+ICBkcml2ZXJzL21lZGlhL3JjL2dwaW8taXItcmVjdi5jICAgICAg
+ICAgICAgICAgfCA1MCArKysrKysrKysrKysrKysrKysrDQo+ICAyIGZpbGVzIGNoYW5nZWQsIDUz
+IGluc2VydGlvbnMoKykNCj4gDQo+IC0tDQo+IDIuMTcuMQ0KDQo=
