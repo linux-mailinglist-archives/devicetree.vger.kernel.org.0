@@ -2,85 +2,148 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from vger.kernel.org (vger.kernel.org [23.128.96.18])
-	by mail.lfdr.de (Postfix) with ESMTP id AB56C274722
-	for <lists+devicetree@lfdr.de>; Tue, 22 Sep 2020 19:03:41 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTP id 809AF274785
+	for <lists+devicetree@lfdr.de>; Tue, 22 Sep 2020 19:32:47 +0200 (CEST)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S1726603AbgIVRDg (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Tue, 22 Sep 2020 13:03:36 -0400
-Received: from mslow2.mail.gandi.net ([217.70.178.242]:33680 "EHLO
-        mslow2.mail.gandi.net" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S1726563AbgIVRDd (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Tue, 22 Sep 2020 13:03:33 -0400
-Received: from relay6-d.mail.gandi.net (unknown [217.70.183.198])
-        by mslow2.mail.gandi.net (Postfix) with ESMTP id 4FE413AEE87;
-        Tue, 22 Sep 2020 16:56:09 +0000 (UTC)
-X-Originating-IP: 90.89.95.46
-Received: from pc-2.home (lfbn-tou-1-1532-46.w90-89.abo.wanadoo.fr [90.89.95.46])
-        (Authenticated sender: maxime.chevallier@bootlin.com)
-        by relay6-d.mail.gandi.net (Postfix) with ESMTPSA id 2B492C000C;
-        Tue, 22 Sep 2020 16:55:46 +0000 (UTC)
-From:   Maxime Chevallier <maxime.chevallier@bootlin.com>
-To:     Mauro Carvalho Chehab <mchehab@kernel.org>,
-        Rob Herring <robh+dt@kernel.org>,
-        Robin Murphy <robin.murphy@arm.com>,
-        Mark Rutland <mark.rutland@arm.com>,
-        Heiko Stuebner <heiko@sntech.de>,
-        Hans Verkuil <hverkuil-cisco@xs4all.nl>,
-        Ezequiel Garcia <ezequiel@vanguardiasur.com.ar>
-Cc:     Maxime Chevallier <maxime.chevallier@bootlin.com>,
-        Helen Koike <helen.koike@collabora.com>,
-        Dafna Hirschfeld <dafna.hirschfeld@collabora.com>,
-        linux-media@vger.kernel.org, devicetree@vger.kernel.org,
-        linux-arm-kernel@lists.infradead.org,
-        linux-rockchip@lists.infradead.org, linux-kernel@vger.kernel.org,
-        Thomas Petazzoni <thomas.petazzoni@bootlin.com>,
-        Miquel Raynal <miquel.raynal@bootlin.com>,
-        Paul Kocialkowski <paul.kocialkowski@bootlin.com>
-Subject: [PATCH v3 3/3] arm64: dts: rockchip: Add the camera interface description of the PX30
-Date:   Tue, 22 Sep 2020 18:55:35 +0200
-Message-Id: <20200922165535.1356622-4-maxime.chevallier@bootlin.com>
-X-Mailer: git-send-email 2.25.4
-In-Reply-To: <20200922165535.1356622-1-maxime.chevallier@bootlin.com>
-References: <20200922165535.1356622-1-maxime.chevallier@bootlin.com>
+        id S1726526AbgIVRcp (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Tue, 22 Sep 2020 13:32:45 -0400
+Received: from vm1.sequanux.org ([188.165.36.56]:57557 "EHLO vm1.sequanux.org"
+        rhost-flags-OK-OK-OK-OK) by vger.kernel.org with ESMTP
+        id S1726614AbgIVRco (ORCPT <rfc822;devicetree@vger.kernel.org>);
+        Tue, 22 Sep 2020 13:32:44 -0400
+Received: from localhost (localhost.localdomain [127.0.0.1])
+        by vm1.sequanux.org (Postfix) with ESMTP id 770E5108648;
+        Tue, 22 Sep 2020 19:32:42 +0200 (CEST)
+X-Virus-Scanned: Debian amavisd-new at vm1.sequanux.org
+Received: from vm1.sequanux.org ([127.0.0.1])
+        by localhost (vm1.sequanux.org [127.0.0.1]) (amavisd-new, port 10024)
+        with ESMTP id guV0CHkE3fl8; Tue, 22 Sep 2020 19:32:40 +0200 (CEST)
+Received: from localhost (softwrestling.org [188.165.144.248])
+        by vm1.sequanux.org (Postfix) with ESMTPSA id 4756A108638;
+        Tue, 22 Sep 2020 19:32:40 +0200 (CEST)
+Date:   Tue, 22 Sep 2020 19:32:40 +0200
+From:   Simon Guinot <simon.guinot@sequanux.org>
+To:     Marek =?utf-8?B?QmVow7pu?= <marek.behun@nic.cz>
+Cc:     linux-leds@vger.kernel.org, Pavel Machek <pavel@ucw.cz>,
+        Dan Murphy <dmurphy@ti.com>,
+        =?utf-8?Q?Ond=C5=99ej?= Jirman <megous@megous.com>,
+        linux-kernel@vger.kernel.org, Rob Herring <robh+dt@kernel.org>,
+        devicetree@vger.kernel.org,
+        =?utf-8?B?w4FsdmFybyBGZXJuw6FuZGV6?= Rojas <noltari@gmail.com>,
+        Andrew Lunn <andrew@lunn.ch>,
+        Andrey Utkin <andrey_utkin@fastmail.com>,
+        Baolin Wang <baolin.wang7@gmail.com>,
+        Baolin Wang <baolin.wang@linaro.org>,
+        Bartosz Golaszewski <bgolaszewski@baylibre.com>,
+        Benjamin Herrenschmidt <benh@kernel.crashing.org>,
+        Bjorn Andersson <bjorn.andersson@linaro.org>,
+        Christian Mauderer <oss@c-mauderer.de>,
+        Chunyan Zhang <zhang.lyra@gmail.com>,
+        Daniel Mack <daniel@caiaq.de>,
+        David Rivshin <drivshin@allworx.com>,
+        Grant Feng <von81@163.com>,
+        Haojian Zhuang <haojian.zhuang@marvell.com>,
+        "H . Nikolaus Schaller" <hns@goldelico.com>,
+        Jaedon Shin <jaedon.shin@gmail.com>,
+        John Crispin <john@phrozen.org>,
+        Kevin Cernekee <cernekee@gmail.com>,
+        Lee Jones <lee.jones@linaro.org>,
+        Liam Girdwood <lgirdwood@gmail.com>,
+        Linus Walleij <linus.walleij@linaro.org>,
+        Mark Brown <broonie@kernel.org>,
+        Matthias Brugger <matthias.bgg@gmail.com>,
+        Michael Ellerman <mpe@ellerman.id.au>,
+        Milo Kim <milo.kim@ti.com>, NeilBrown <neilb@suse.de>,
+        Nikita Travkin <nikitos.tr@gmail.com>,
+        Orson Zhai <orsonzhai@gmail.com>,
+        Paul Mackerras <paulus@samba.org>,
+        Philippe Retornaz <philippe.retornaz@epfl.ch>,
+        Riku Voipio <riku.voipio@iki.fi>,
+        Rod Whitby <rod@whitby.id.au>,
+        Ryder Lee <ryder.lee@mediatek.com>,
+        Sakari Ailus <sakari.ailus@linux.intel.com>,
+        Sean Wang <sean.wang@mediatek.com>,
+        Sebastian Reichel <sre@kernel.org>,
+        Simon Guinot <sguinot@lacie.com>,
+        Simon Shields <simon@lineageos.org>,
+        Thierry Reding <thierry.reding@gmail.com>,
+        Thomas Bogendoerfer <tbogendoerfer@suse.de>,
+        Thomas Petazzoni <thomas.petazzoni@free-electrons.com>,
+        Uwe =?utf-8?Q?Kleine-K=C3=B6nig?= 
+        <u.kleine-koenig@pengutronix.de>,
+        Vasant Hegde <hegdevasant@linux.vnet.ibm.com>,
+        Vincent Donnefort <vdonnefort@gmail.com>,
+        Xiaotong Lu <xiaotong.lu@spreadtrum.com>
+Subject: Re: [PATCH leds v2 00/50] Start moving parsing of
+ `linux,default-trigger` to LED core (a cleanup of LED drivers)
+Message-ID: <20200922173240.GG4828@kw.sim.vm.gnt>
+References: <20200917223338.14164-1-marek.behun@nic.cz>
 MIME-Version: 1.0
-Content-Transfer-Encoding: 8bit
+Content-Type: multipart/signed; micalg=pgp-sha512;
+        protocol="application/pgp-signature"; boundary="pyE8wggRBhVBcj8z"
+Content-Disposition: inline
+In-Reply-To: <20200917223338.14164-1-marek.behun@nic.cz>
+User-Agent: Mutt/1.6.0 (2016-04-01)
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-The PX30 has a camera interface, supporting CSI2 and BT656
-modes. Add a DT description for this interface.
 
-Signed-off-by: Maxime Chevallier <maxime.chevallier@bootlin.com>
----
-V3: Renamed the driver
+--pyE8wggRBhVBcj8z
+Content-Type: text/plain; charset=utf-8
+Content-Disposition: inline
+Content-Transfer-Encoding: quoted-printable
 
- arch/arm64/boot/dts/rockchip/px30.dtsi | 12 ++++++++++++
- 1 file changed, 12 insertions(+)
+On Fri, Sep 18, 2020 at 12:32:48AM +0200, Marek Beh=C3=BAn wrote:
+> Hi,
+>=20
+> this series is also available at [1].
+>=20
+> This is v2, you can read cover letter of v1 at [2] (togehter with
+> explanation of why I did this).
 
-diff --git a/arch/arm64/boot/dts/rockchip/px30.dtsi b/arch/arm64/boot/dts/rockchip/px30.dtsi
-index 2695ea8cda14..8c81eb35da86 100644
---- a/arch/arm64/boot/dts/rockchip/px30.dtsi
-+++ b/arch/arm64/boot/dts/rockchip/px30.dtsi
-@@ -1106,6 +1106,18 @@ vopl_mmu: iommu@ff470f00 {
- 		status = "disabled";
- 	};
- 
-+	vip: vip@ff490000 {
-+		compatible = "rockchip,px30-vip";
-+		reg = <0x0 0xff490000 0x0 0x200>;
-+		interrupts = <GIC_SPI 69 IRQ_TYPE_LEVEL_HIGH>;
-+		clocks = <&cru ACLK_CIF>, <&cru HCLK_CIF>, <&cru PCLK_CIF>, <&cru SCLK_CIF_OUT>;
-+		clock-names = "aclk", "hclk", "pclkin";
-+		power-domains = <&power PX30_PD_VI>;
-+		resets = <&cru SRST_CIF_A>, <&cru SRST_CIF_H>, <&cru SRST_CIF_PCLKIN>;
-+		reset-names = "axi", "ahb", "pclkin";
-+		status = "disabled";
-+	};
-+
- 	qos_gmac: qos@ff518000 {
- 		compatible = "syscon";
- 		reg = <0x0 0xff518000 0x0 0x20>;
--- 
-2.25.4
+=2E..
 
+>   leds: ns2: use devres LED registering function
+>   leds: ns2: alloc simple array instead of struct ns2_led_priv
+>   leds: ns2: support OF probing only, forget platdata
+>   leds: ns2: move parsing of one LED into separate function
+>   leds: ns2: use devres API for getting GPIO descriptors
+>   leds: ns2: cosmetic structure rename
+>   leds: ns2: cosmetic variable rename
+>   leds: ns2: cosmetic change
+>   leds: ns2: cosmetic change: use helper variable
+>   leds: ns2: register LED immediately after parsing DT properties
+>   leds: ns2: remove unneeded variable
+>   leds: ns2: cosmetic: use reverse christmas tree
+>   leds: ns2: reorder headers alphabetically
+>   leds: ns2: use struct led_init_data when registering
+
+Hi Marek,
+
+If you agree, I'll wait the fwnode support before reviewing and testing
+this patches.
+
+Simon
+
+--pyE8wggRBhVBcj8z
+Content-Type: application/pgp-signature; name="signature.asc"
+
+-----BEGIN PGP SIGNATURE-----
+
+iQIzBAEBCgAdFiEEXW8DgovlR3VS5hA0zyg/RDPmszoFAl9qNTcACgkQzyg/RDPm
+szrw9Q/+IX/cwi/lHhvzrSlcq8Zbv/kJa44/0dyAmXhWnU8fabW2bYhT1JTwGroN
+XiMPOwC6u3PWi7B17KaqoXm2U3HlESZy7tGQhG2cSjadm99aKlKqPOW+YVrkLgo1
+LwVlVY6on1/neUM367LC8I+XoltPpOUNv0LbaKm2bGEkMhGGJXrjtWTNfEv9BqJt
+X54su5DHrigGVwD3vpv6VVjgx//uk8bhiVhbCE/nHqWOuU9LjWTCRioHa92slCLS
+k3vudoCKXUontO1a0v9iUs6IdSMN5SIUVuK2WQWZRdWa9CbH4n4jr5UUFy58iX81
+TiNae8AzOpoAjQWvMXmY1Fxv0hJ0A6ql6GXtk42mXlsS89RITdr0+kF4eoj2JW7E
+3K+/UOJV+uA/kl+XgjtI3ya68AkQGRjMpYU0NjkMB5ag+VDOyKX1bul8Dt0MPqqK
+f9pD2Ko6i1IbbYejkyjtMqmUWrenkvN82YmVwH0zfvvdN8BP2IiKGWzIjWSo1vzu
+b4oldw/9OZV7eQxQWWHAHhgwiLX77CINueDYSH8dBWGPL4SBsQp87YL3Eo7nKFbP
+7Oh5R94Rjc63EiilhzG4IEmMLF+n9nENu3Zw/UmqygkYDenXX2SiwD68EVFTKG5o
+CtWjDvMLPtUcS3ZLJIhZqHRE57NmNF3qJjef/1pYTuQ1TBurkeA=
+=8FNN
+-----END PGP SIGNATURE-----
+
+--pyE8wggRBhVBcj8z--
