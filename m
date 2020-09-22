@@ -2,89 +2,188 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from vger.kernel.org (vger.kernel.org [23.128.96.18])
-	by mail.lfdr.de (Postfix) with ESMTP id AE175274420
-	for <lists+devicetree@lfdr.de>; Tue, 22 Sep 2020 16:24:33 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTP id 8FDA4274422
+	for <lists+devicetree@lfdr.de>; Tue, 22 Sep 2020 16:24:39 +0200 (CEST)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S1726597AbgIVOY2 (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Tue, 22 Sep 2020 10:24:28 -0400
-Received: from fllv0016.ext.ti.com ([198.47.19.142]:45496 "EHLO
-        fllv0016.ext.ti.com" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S1726593AbgIVOY2 (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Tue, 22 Sep 2020 10:24:28 -0400
-Received: from fllv0035.itg.ti.com ([10.64.41.0])
-        by fllv0016.ext.ti.com (8.15.2/8.15.2) with ESMTP id 08MEOEOP075109;
-        Tue, 22 Sep 2020 09:24:14 -0500
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=ti.com;
-        s=ti-com-17Q1; t=1600784654;
-        bh=10S2ODGxKZj5Pa33vv/awVmNVy3euFxke4kAERw9wUI=;
-        h=From:To:CC:Subject:Date;
-        b=WZYsY/t4z5VBqUiFfShd/9RDdZEUz6VdDkCb/cPaZUyCniqq6n7wYonwVt1UUN11T
-         8xpbKAWNmOXlLf9cjYBGpPruAtNoanPT7rAzOFg1/B4nSwNqq0eAiAL4/o+k7GLtUm
-         rR0TaTF0io2iqCIMLXZZMq6Sgn+KT0lllFQqFzlI=
-Received: from DFLE108.ent.ti.com (dfle108.ent.ti.com [10.64.6.29])
-        by fllv0035.itg.ti.com (8.15.2/8.15.2) with ESMTP id 08MEOEjo068194;
-        Tue, 22 Sep 2020 09:24:14 -0500
-Received: from DFLE106.ent.ti.com (10.64.6.27) by DFLE108.ent.ti.com
- (10.64.6.29) with Microsoft SMTP Server (version=TLS1_2,
- cipher=TLS_ECDHE_RSA_WITH_AES_128_CBC_SHA256_P256) id 15.1.1979.3; Tue, 22
- Sep 2020 09:24:14 -0500
-Received: from lelv0327.itg.ti.com (10.180.67.183) by DFLE106.ent.ti.com
- (10.64.6.27) with Microsoft SMTP Server (version=TLS1_2,
- cipher=TLS_ECDHE_RSA_WITH_AES_128_CBC_SHA256_P256) id 15.1.1979.3 via
- Frontend Transport; Tue, 22 Sep 2020 09:24:14 -0500
-Received: from localhost (ileax41-snat.itg.ti.com [10.172.224.153])
-        by lelv0327.itg.ti.com (8.15.2/8.15.2) with ESMTP id 08MEODBE054756;
-        Tue, 22 Sep 2020 09:24:13 -0500
-From:   Dan Murphy <dmurphy@ti.com>
-To:     <lgirdwood@gmail.com>, <broonie@kernel.org>, <tiwai@suse.com>,
-        <robh+dt@kernel.org>
-CC:     <devicetree@vger.kernel.org>, <alsa-devel@alsa-project.org>,
-        <linux-kernel@vger.kernel.org>, Dan Murphy <dmurphy@ti.com>
-Subject: [PATCH] ASoC: tas2562: Remove duplicate code for I/V sense
-Date:   Tue, 22 Sep 2020 09:24:11 -0500
-Message-ID: <20200922142411.10364-1-dmurphy@ti.com>
-X-Mailer: git-send-email 2.27.0
+        id S1726673AbgIVOYi (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Tue, 22 Sep 2020 10:24:38 -0400
+Received: from mail.kernel.org ([198.145.29.99]:58218 "EHLO mail.kernel.org"
+        rhost-flags-OK-OK-OK-OK) by vger.kernel.org with ESMTP
+        id S1726593AbgIVOYd (ORCPT <rfc822;devicetree@vger.kernel.org>);
+        Tue, 22 Sep 2020 10:24:33 -0400
+Received: from mail-oo1-f44.google.com (mail-oo1-f44.google.com [209.85.161.44])
+        (using TLSv1.2 with cipher ECDHE-RSA-AES128-GCM-SHA256 (128/128 bits))
+        (No client certificate requested)
+        by mail.kernel.org (Postfix) with ESMTPSA id 688C1239D2;
+        Tue, 22 Sep 2020 14:24:32 +0000 (UTC)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=kernel.org;
+        s=default; t=1600784672;
+        bh=fyhGiT07YqgY1sX7H5cYuZEWhzgxX1cJqk4Q9y19gjs=;
+        h=References:In-Reply-To:From:Date:Subject:To:Cc:From;
+        b=O4GhqNTLUyIkVNe1g35MNvHUi2N1TQP2CaB0iKDfqgMBCvw2bTHDR9akkw6s3alVj
+         rte5MyJ4m9s6DATOviv0bJ9O4ed08Zub/j+0K/7dA5f1+zeN7EwZE9Ig+vmW+pWk38
+         mYaaC98M2jlAgvbVJaFDroKt8yB8NkeISVNCFAWw=
+Received: by mail-oo1-f44.google.com with SMTP id h8so4177572ooc.12;
+        Tue, 22 Sep 2020 07:24:32 -0700 (PDT)
+X-Gm-Message-State: AOAM53040d8nvgSe7iqqayS7UFQEAeSD//7IaLaMbJWaBYkCmsTCIslM
+        VHIM0Vi5v5NHJ8Y/uo2lUk6/zzOfOhWLWYs4Uw==
+X-Google-Smtp-Source: ABdhPJzUFEuKoDPplE32fF2OW24xWYgi/9lL9nNZnKQwkQwBHwCVey8YSOKSt3310TZYoa/pm+iYTw1x55KM9sBA3qs=
+X-Received: by 2002:a4a:b30d:: with SMTP id m13mr3077541ooo.50.1600784671655;
+ Tue, 22 Sep 2020 07:24:31 -0700 (PDT)
 MIME-Version: 1.0
-Content-Transfer-Encoding: 8bit
-Content-Type: text/plain
-X-EXCLAIMER-MD-CONFIG: e1e8a2fd-e40a-4ac6-ac9b-f7e9cc9ee180
+References: <20200722155533.252844-1-helen.koike@collabora.com> <20200722155533.252844-6-helen.koike@collabora.com>
+In-Reply-To: <20200722155533.252844-6-helen.koike@collabora.com>
+From:   Rob Herring <robh+dt@kernel.org>
+Date:   Tue, 22 Sep 2020 08:24:20 -0600
+X-Gmail-Original-Message-ID: <CAL_Jsq+qB=yUtHKKujiUWrsq+W-3ggM3B_SuuDzfYEheczn=8g@mail.gmail.com>
+Message-ID: <CAL_Jsq+qB=yUtHKKujiUWrsq+W-3ggM3B_SuuDzfYEheczn=8g@mail.gmail.com>
+Subject: Re: [PATCH v5 5/9] media: staging: rkisp1: remove unecessary clocks
+To:     Helen Koike <helen.koike@collabora.com>
+Cc:     devicetree@vger.kernel.org,
+        Linux Media Mailing List <linux-media@vger.kernel.org>,
+        "open list:ARM/Rockchip SoC..." <linux-rockchip@lists.infradead.org>,
+        "linux-kernel@vger.kernel.org" <linux-kernel@vger.kernel.org>,
+        "open list:STAGING SUBSYSTEM" <devel@driverdev.osuosl.org>,
+        "heiko@sntech.de" <heiko@sntech.de>,
+        Hans Verkuil <hverkuil-cisco@xs4all.nl>,
+        Collabora Kernel ML <kernel@collabora.com>,
+        Dafna Hirschfeld <dafna.hirschfeld@collabora.com>,
+        Ezequiel Garcia <ezequiel@collabora.com>,
+        Mark Rutland <mark.rutland@arm.com>, karthik.poduval@gmail.com,
+        Johan Jonker <jbx6244@gmail.com>,
+        Tomasz Figa <tfiga@chromium.org>,
+        Eddie Cai <eddie.cai.linux@gmail.com>,
+        Shunqian Zheng <zhengsq@rock-chips.com>,
+        Robin Murphy <robin.murphy@arm.com>
+Content-Type: text/plain; charset="UTF-8"
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-Remove duplicate code for programming the I/V sense the call to update
-the register was duplicated in commit 09ed395b05feb ("ASoC: tas2562:
-Add voltage sense slot configuration").
+On Wed, Jul 22, 2020 at 9:56 AM Helen Koike <helen.koike@collabora.com> wrote:
+>
+> aclk_isp_wrap is a child of aclk_isp, and hclk_isp_wrap is a child of
+> hclk_isp, thus we can remove parents from the list.
+>
+> Also, for the isp0, we only need the ISP clock, ACLK and HCLK.
+> In the future we'll need a pixel clock for RK3288 and RK3399, and a JPEG
+> clock for RK3288.
+>
+> So with the goal to cleanup the dt-bindings and remove it from staging,
+> simplify clock names to isp, aclk and hclk.
+>
+> Assigned clocks are meant to refer to the full path in the clock tree,
+> i.e. the leaf in the tree.
+> For instance, in RK3399, the clock responsible for ACLK (ISP AXI CLOCK)
+> is aclk_isp0_wrapper.
+>
+> For reference, this is the isp clock topology on RK3399:
+>
+>  xin24m
+>     pll_npll
+>        npll
+>           clk_isp1
+>           clk_isp0
+>     pll_cpll
+>        cpll
+>           aclk_isp1
+>              aclk_isp1_noc
+>              hclk_isp1
+>                 aclk_isp1_wrapper
+>                 hclk_isp1_noc
+>           aclk_isp0
+>              hclk_isp1_wrapper
+>              aclk_isp0_wrapper
+>              aclk_isp0_noc
+>              hclk_isp0
+>                 hclk_isp0_wrapper
+>                 hclk_isp0_noc
+>  pclkin_isp1_wrapper
+>
+> Signed-off-by: Helen Koike <helen.koike@collabora.com>
+>
+> ---
+> Changes in V5:
+> - Use if/then schema as suggested by Rob Herring on
+> https://patchwork.linuxtv.org/project/linux-media/patch/20200702191322.2639681-6-helen.koike@collabora.com/#119729
+>
+> Changes in V4:
+> - update binding according to suggestion by Robin Murphy
+> on https://patchwork.kernel.org/patch/11475007/
+>
+> Changes in V3:
+> - this is a new patch in the series
+> ---
+>  .../bindings/media/rockchip-isp1.yaml         | 50 ++++++++++++-------
+>  drivers/staging/media/rkisp1/rkisp1-dev.c     |  8 ++-
+>  2 files changed, 36 insertions(+), 22 deletions(-)
+>
+> diff --git a/drivers/staging/media/rkisp1/Documentation/devicetree/bindings/media/rockchip-isp1.yaml b/drivers/staging/media/rkisp1/Documentation/devicetree/bindings/media/rockchip-isp1.yaml
+> index 62a6b9c959498..23c677d15037a 100644
+> --- a/drivers/staging/media/rkisp1/Documentation/devicetree/bindings/media/rockchip-isp1.yaml
+> +++ b/drivers/staging/media/rkisp1/Documentation/devicetree/bindings/media/rockchip-isp1.yaml
+> @@ -24,20 +24,10 @@ properties:
+>      maxItems: 1
+>
+>    clocks:
+> -    items:
+> -      - description: ISP clock
+> -      - description: ISP AXI clock clock
+> -      - description: ISP AXI clock  wrapper clock
+> -      - description: ISP AHB clock clock
+> -      - description: ISP AHB wrapper clock
+> +    minItems: 3
 
-Fixes: 09ed395b05feb ("ASoC: tas2562: Add voltage sense slot configuration")
-Signed-off-by: Dan Murphy <dmurphy@ti.com>
----
- sound/soc/codecs/tas2562.c | 12 ------------
- 1 file changed, 12 deletions(-)
+You need maxItems here too or it will always be 3.
 
-diff --git a/sound/soc/codecs/tas2562.c b/sound/soc/codecs/tas2562.c
-index da820e8d59a1..f1ff204e3ad0 100644
---- a/sound/soc/codecs/tas2562.c
-+++ b/sound/soc/codecs/tas2562.c
-@@ -253,18 +253,6 @@ static int tas2562_set_dai_tdm_slot(struct snd_soc_dai *dai,
- 	if (ret < 0)
- 		return ret;
- 
--	ret = snd_soc_component_update_bits(component, TAS2562_TDM_CFG5,
--					    TAS2562_TDM_CFG5_VSNS_SLOT_MASK,
--					    tas2562->v_sense_slot);
--	if (ret < 0)
--		return ret;
--
--	ret = snd_soc_component_update_bits(component, TAS2562_TDM_CFG6,
--					    TAS2562_TDM_CFG6_ISNS_SLOT_MASK,
--					    tas2562->i_sense_slot);
--	if (ret < 0)
--		return ret;
--
- 	return 0;
- }
- 
--- 
-2.28.0
+>
+>    clock-names:
+> -    items:
+> -      - const: clk_isp
+> -      - const: aclk_isp
+> -      - const: aclk_isp_wrap
+> -      - const: hclk_isp
+> -      - const: hclk_isp_wrap
+> +    minItems: 3
+>
+>    iommus:
+>      maxItems: 1
+> @@ -116,6 +106,34 @@ required:
+>    - power-domains
+>    - ports
+>
+> +if:
+> +  properties:
+> +    compatible:
+> +      contains:
+> +        const: rockchip,rk3399-cif-isp
+> +then:
+> +  properties:
+> +    clocks:
+> +      maxItems: 4
+> +      minItems: 3
 
+For a single compatible you shouldn't really have a variable number of clocks.
+
+> +      items:
+> +        # isp0 and isp1
+> +        - description: ISP clock
+> +        - description: ISP AXI clock
+> +        - description: ISP AHB clock
+> +        # only for isp1
+> +        - description: ISP Pixel clock
+> +    clock-names:
+> +      maxItems: 4
+> +      minItems: 3
+> +      items:
+> +        # isp0 and isp1
+> +        - const: isp
+> +        - const: aclk
+> +        - const: hclk
+> +        # only for isp1
+> +        - const: pclk_isp
+
+Don't you need an 'else' clause. For not rockchip,rk3399-cif-isp,
+there's no definition of what clocks there are.
+
+Rob
