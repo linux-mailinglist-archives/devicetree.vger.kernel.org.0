@@ -2,191 +2,77 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from vger.kernel.org (vger.kernel.org [23.128.96.18])
-	by mail.lfdr.de (Postfix) with ESMTP id 3B2DA273EDC
-	for <lists+devicetree@lfdr.de>; Tue, 22 Sep 2020 11:50:13 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTP id A4DF4273ECD
+	for <lists+devicetree@lfdr.de>; Tue, 22 Sep 2020 11:48:08 +0200 (CEST)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S1726422AbgIVJuM (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Tue, 22 Sep 2020 05:50:12 -0400
-Received: from gofer.mess.org ([88.97.38.141]:59549 "EHLO gofer.mess.org"
+        id S1726513AbgIVJr7 (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Tue, 22 Sep 2020 05:47:59 -0400
+Received: from mail.kernel.org ([198.145.29.99]:43836 "EHLO mail.kernel.org"
         rhost-flags-OK-OK-OK-OK) by vger.kernel.org with ESMTP
-        id S1726341AbgIVJuM (ORCPT <rfc822;devicetree@vger.kernel.org>);
-        Tue, 22 Sep 2020 05:50:12 -0400
-X-Greylist: delayed 493 seconds by postgrey-1.27 at vger.kernel.org; Tue, 22 Sep 2020 05:50:11 EDT
-Received: by gofer.mess.org (Postfix, from userid 1000)
-        id A0C4B11A001; Tue, 22 Sep 2020 10:41:57 +0100 (BST)
-Date:   Tue, 22 Sep 2020 10:41:57 +0100
-From:   Sean Young <sean@mess.org>
-To:     Joakim Zhang <qiangqing.zhang@nxp.com>
-Cc:     mchehab@kernel.org, robh+dt@kernel.org,
-        linux-media@vger.kernel.org, devicetree@vger.kernel.org,
-        linux-kernel@vger.kernel.org, linux-imx@nxp.com
-Subject: Re: [PATCH V2 2/2] media: rc: gpio-ir-recv: add QoS support for
- cpuidle system
-Message-ID: <20200922094157.GA14307@gofer.mess.org>
-References: <20200918181717.24056-1-qiangqing.zhang@nxp.com>
- <20200918181717.24056-3-qiangqing.zhang@nxp.com>
+        id S1726341AbgIVJr7 (ORCPT <rfc822;devicetree@vger.kernel.org>);
+        Tue, 22 Sep 2020 05:47:59 -0400
+Received: from localhost (fw-tnat.cambridge.arm.com [217.140.96.140])
+        (using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
+        (No client certificate requested)
+        by mail.kernel.org (Postfix) with ESMTPSA id 27E9A2145D;
+        Tue, 22 Sep 2020 09:47:57 +0000 (UTC)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=kernel.org;
+        s=default; t=1600768078;
+        bh=QSNZZdWghjMdTCu5w4Ake1FY6e6LLkyXLp5ObVBEQDM=;
+        h=Date:From:To:Cc:Subject:References:In-Reply-To:From;
+        b=c2/VE8EFEaKNzuNRiQoUIiO+pq4+y5hjTRf0wkTJ3CI8QM3xY+TOyDls7xX9Fe0Lr
+         lhMNs58CxPhIZDXUIobz6R3AGR4+wm977XWyH/BC6YUI3Thh3A+YO+I0XBMbfIzo+i
+         9x9/o/03oSyN1zS8u6RFxrfzgr9B+2OZeydLGx+I=
+Date:   Tue, 22 Sep 2020 10:47:05 +0100
+From:   Mark Brown <broonie@kernel.org>
+To:     Dan Murphy <dmurphy@ti.com>
+Cc:     lgirdwood@gmail.com, tiwai@suse.com, robh+dt@kernel.org,
+        devicetree@vger.kernel.org, alsa-devel@alsa-project.org,
+        linux-kernel@vger.kernel.org
+Subject: Re: [PATCH 6/9] ASoC: tas2770: Convert bit mask to GENMASK in header
+Message-ID: <20200922094705.GM4792@sirena.org.uk>
+References: <20200918190548.12598-1-dmurphy@ti.com>
+ <20200918190548.12598-6-dmurphy@ti.com>
+ <20200921190437.GJ4792@sirena.org.uk>
+ <bea218c8-c71d-2ce8-da92-14af73ac4da5@ti.com>
+ <2ca0647d-1ebf-1290-0f75-61bb97324165@ti.com>
 MIME-Version: 1.0
-Content-Type: text/plain; charset=us-ascii
+Content-Type: multipart/signed; micalg=pgp-sha512;
+        protocol="application/pgp-signature"; boundary="75WsOQSofUOhcSOp"
 Content-Disposition: inline
-In-Reply-To: <20200918181717.24056-3-qiangqing.zhang@nxp.com>
+In-Reply-To: <2ca0647d-1ebf-1290-0f75-61bb97324165@ti.com>
+X-Cookie: Love thy neighbor, tune thy piano.
 User-Agent: Mutt/1.10.1 (2018-07-13)
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-Hi Joakim,
 
-Thanks for your updated patch.
+--75WsOQSofUOhcSOp
+Content-Type: text/plain; charset=us-ascii
+Content-Disposition: inline
 
-On Sat, Sep 19, 2020 at 02:17:17AM +0800, Joakim Zhang wrote:
-> GPIO IR receive is much rely on interrupt response, uneven interrupt
-> latency will lead to incorrect timing, so the decoder fails to decode
-> it. The issue is particularly acute on some systems which support
-> cpuidle, not all, dynamically disable and enable cpuidle can solve this
-> problem to a great extent.
-> 
-> However, there is a downside to this approach, the measurement of header
-> on the first frame may incorrect. Test on i.MX8M serials, when enable
-> cpuidle, interrupt latency could be about 500us.
-> 
-> With this patch:
-> 1. has no side effect on non-cpuidle system.
-> 2. latency is still much longer for the first gpio interrupt on cpuidle
-> system, so the first frame may not be decoded. Generally, RC would transmit
-> multiple frames at once press, we can sacrifice the first frame.
-> 3. add "linux,autosuspend-period" property in device tree if you also
-> suffer this cpuidle issue.
-> 
-> Signed-off-by: Joakim Zhang <qiangqing.zhang@nxp.com>
-> ---
-> ChangeLogs:
-> V1->V2:
-> 	* set autosuspend delay time via device tree.
-> ---
->  drivers/media/rc/gpio-ir-recv.c | 50 +++++++++++++++++++++++++++++++++
->  1 file changed, 50 insertions(+)
-> 
-> diff --git a/drivers/media/rc/gpio-ir-recv.c b/drivers/media/rc/gpio-ir-recv.c
-> index a20413008c3c..63cf8290eb19 100644
-> --- a/drivers/media/rc/gpio-ir-recv.c
-> +++ b/drivers/media/rc/gpio-ir-recv.c
-> @@ -11,6 +11,8 @@
->  #include <linux/of.h>
->  #include <linux/of_gpio.h>
->  #include <linux/platform_device.h>
-> +#include <linux/pm_runtime.h>
-> +#include <linux/pm_qos.h>
->  #include <linux/irq.h>
->  #include <media/rc-core.h>
->  
-> @@ -20,17 +22,35 @@ struct gpio_rc_dev {
->  	struct rc_dev *rcdev;
->  	struct gpio_desc *gpiod;
->  	int irq;
-> +	struct device *dev;
-> +	struct pm_qos_request qos;
->  };
->  
->  static irqreturn_t gpio_ir_recv_irq(int irq, void *dev_id)
->  {
->  	int val;
->  	struct gpio_rc_dev *gpio_dev = dev_id;
-> +	struct device *dev = gpio_dev->dev;
-> +
-> +	/*
-> +	 * For some cpuidle systems, not all:
-> +	 * Respond to interrupt taking more latency when cpu in idle.
-> +	 * Invoke asynchronous pm runtime get from interrupt context,
-> +	 * this may introduce a millisecond delay to call resume callback,
-> +	 * where to disable cpuilde.
-> +	 *
-> +	 * Two issues lead to fail to decode first frame, one is latency to
-> +	 * respond to interrupt, another is delay introduced by async api.
-> +	 */
-> +	pm_runtime_get(dev);
->  
->  	val = gpiod_get_value(gpio_dev->gpiod);
->  	if (val >= 0)
->  		ir_raw_event_store_edge(gpio_dev->rcdev, val == 1);
->  
-> +	pm_runtime_mark_last_busy(dev);
-> +	pm_runtime_put_autosuspend(dev);
-> +
+On Mon, Sep 21, 2020 at 02:19:36PM -0500, Dan Murphy wrote:
 
-I've dusted off my rpi and tried to see if it fails with cpuidle enabled.
-As far as I can see, it always works fine. So, my only concern is that
-there is a bunch of pm busy work done here for devices that do not need it,
-including spinlocks, ktime. etc.
+> Forgot to ask are you going to take 1-5? If so I can rebase on top of
+> for-5.10 and re-submit.
 
-You could rename the dev field of gpio_rc_dev to pmdev and only do this
-work if pm_dev != NULL. Or some other mechanism of doing this work
-conditionally.
+I think managed to apply everything with manual picking things, there
+weren't any actual dependencies.
 
-Having said that I'm not entirely sure this will make much of a difference.
+--75WsOQSofUOhcSOp
+Content-Type: application/pgp-signature; name="signature.asc"
 
->  	return IRQ_HANDLED;
->  }
->  
-> @@ -40,6 +60,7 @@ static int gpio_ir_recv_probe(struct platform_device *pdev)
->  	struct device_node *np = dev->of_node;
->  	struct gpio_rc_dev *gpio_dev;
->  	struct rc_dev *rcdev;
-> +	u32 period = 0;
->  	int rc;
->  
->  	if (!np)
-> @@ -83,6 +104,7 @@ static int gpio_ir_recv_probe(struct platform_device *pdev)
->  		rcdev->map_name = RC_MAP_EMPTY;
->  
->  	gpio_dev->rcdev = rcdev;
-> +	gpio_dev->dev = dev;
->  
->  	rc = devm_rc_register_device(dev, rcdev);
->  	if (rc < 0) {
-> @@ -90,6 +112,14 @@ static int gpio_ir_recv_probe(struct platform_device *pdev)
->  		return rc;
->  	}
->  
-> +	of_property_read_u32(np, "linux,autosuspend-period", &period);
-> +	if (period) {
-> +		pm_runtime_set_autosuspend_delay(dev, period);
-> +		pm_runtime_use_autosuspend(dev);
-> +		pm_runtime_set_suspended(dev);
-> +		pm_runtime_enable(dev);
-> +	}
-> +
->  	platform_set_drvdata(pdev, gpio_dev);
->  
->  	return devm_request_irq(dev, gpio_dev->irq, gpio_ir_recv_irq,
-> @@ -122,9 +152,29 @@ static int gpio_ir_recv_resume(struct device *dev)
->  	return 0;
->  }
->  
-> +static int gpio_ir_recv_runtime_suspend(struct device *dev)
-> +{
-> +	struct gpio_rc_dev *gpio_dev = dev_get_drvdata(dev);
-> +
-> +	cpu_latency_qos_remove_request(&gpio_dev->qos);
-> +
-> +	return 0;
-> +}
-> +
-> +static int gpio_ir_recv_runtime_resume(struct device *dev)
-> +{
-> +	struct gpio_rc_dev *gpio_dev = dev_get_drvdata(dev);
-> +
-> +	cpu_latency_qos_add_request(&gpio_dev->qos, 0);
-> +
-> +	return 0;
-> +}
-> +
->  static const struct dev_pm_ops gpio_ir_recv_pm_ops = {
->  	.suspend        = gpio_ir_recv_suspend,
->  	.resume         = gpio_ir_recv_resume,
-> +	.runtime_suspend = gpio_ir_recv_runtime_suspend,
-> +	.runtime_resume  = gpio_ir_recv_runtime_resume,
->  };
->  #endif
->  
-> -- 
-> 2.17.1
+-----BEGIN PGP SIGNATURE-----
+
+iQEzBAABCgAdFiEEreZoqmdXGLWf4p/qJNaLcl1Uh9AFAl9pyBgACgkQJNaLcl1U
+h9DsiwgAgInlwOJ7/tF5NZd+FEFgPUEhP9z0vVk2EZCK7PNy1OQDyroVCdpjBuxb
+8vl5D3Tv2AEwwWhjhCch/jCMnlSoju5t/Uf/eGbPHP5nHs91s+6jEP08jDHSS+jB
+VJGfyNNc0R8Gzl8Ld8EVgBgC75nhWLe6tWo0aIMTU7JHG31dzM+ZQgVG1EJ+qwm8
+XSZOBBoP7Hp3+DhrL7EoXi33GuO3pZjiSChTB8CVzTPjXRisXld/DgZEzuXTUSxP
+VC5DkZPgWkIJzHHp3o1mfkH6tZWPq7pMC7dP2cpXtNE2l0hKf/wXNna76puApVxL
+9DbZLAgOdYWUPEfY/4UF87Z7mvIpXw==
+=g78R
+-----END PGP SIGNATURE-----
+
+--75WsOQSofUOhcSOp--
