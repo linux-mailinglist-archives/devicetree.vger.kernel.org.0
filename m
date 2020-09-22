@@ -2,72 +2,52 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from vger.kernel.org (vger.kernel.org [23.128.96.18])
-	by mail.lfdr.de (Postfix) with ESMTP id A327B274427
-	for <lists+devicetree@lfdr.de>; Tue, 22 Sep 2020 16:24:53 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTP id 860AD274475
+	for <lists+devicetree@lfdr.de>; Tue, 22 Sep 2020 16:39:47 +0200 (CEST)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S1726609AbgIVOYx (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Tue, 22 Sep 2020 10:24:53 -0400
-Received: from mail.kernel.org ([198.145.29.99]:58574 "EHLO mail.kernel.org"
+        id S1726700AbgIVOjq (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Tue, 22 Sep 2020 10:39:46 -0400
+Received: from gloria.sntech.de ([185.11.138.130]:40460 "EHLO gloria.sntech.de"
         rhost-flags-OK-OK-OK-OK) by vger.kernel.org with ESMTP
-        id S1726579AbgIVOYx (ORCPT <rfc822;devicetree@vger.kernel.org>);
-        Tue, 22 Sep 2020 10:24:53 -0400
-Received: from mail-ed1-f43.google.com (mail-ed1-f43.google.com [209.85.208.43])
-        (using TLSv1.2 with cipher ECDHE-RSA-AES128-GCM-SHA256 (128/128 bits))
-        (No client certificate requested)
-        by mail.kernel.org (Postfix) with ESMTPSA id 63F5323A1D;
-        Tue, 22 Sep 2020 14:24:52 +0000 (UTC)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=kernel.org;
-        s=default; t=1600784692;
-        bh=VH0jM+A8P5sFG/bKWMqp/z6QPkFgM7VMiqVFFHF/OLA=;
-        h=References:In-Reply-To:From:Date:Subject:To:Cc:From;
-        b=W4rY78hm5XDVexazBMATM/BiRb0z27jzC/vRN5xE9xgcCJY9MOjEo0XJUMwF5iGiY
-         7DBzTFkmqCan30A0d1IwOSHSB1LFxCa3M1x12h71/E6qHMSvaIWd3/l0QmAC6EKDj2
-         CWtFrXRF8bqvw3GhdxqO16GSz7UePw8Uin+cg7/8=
-Received: by mail-ed1-f43.google.com with SMTP id n13so16296072edo.10;
-        Tue, 22 Sep 2020 07:24:52 -0700 (PDT)
-X-Gm-Message-State: AOAM530iauyFwkjPKZZERAXAO0R3ZGXPY2qWiTn/rv1OqmD9tlG9cwJ/
-        q7BtDNm8U55et5763T3JcCCOzLrEf0ru1eyfNuU=
-X-Google-Smtp-Source: ABdhPJxZ2CrqnrJLb1T6VBVOBSunR4FrEAjor/RNBGpBRboAOMh20/Svsx+Y1Q0FoTRmqeOWKEl8LD1QHAzIXKbyk7U=
-X-Received: by 2002:a05:6402:ca7:: with SMTP id cn7mr4049681edb.143.1600784690888;
- Tue, 22 Sep 2020 07:24:50 -0700 (PDT)
+        id S1726507AbgIVOjq (ORCPT <rfc822;devicetree@vger.kernel.org>);
+        Tue, 22 Sep 2020 10:39:46 -0400
+X-Greylist: delayed 2019 seconds by postgrey-1.27 at vger.kernel.org; Tue, 22 Sep 2020 10:39:45 EDT
+Received: from ip5f5aa64a.dynamic.kabel-deutschland.de ([95.90.166.74] helo=phil.lan)
+        by gloria.sntech.de with esmtpsa (TLS1.3:ECDHE_RSA_AES_256_GCM_SHA384:256)
+        (Exim 4.92)
+        (envelope-from <heiko@sntech.de>)
+        id 1kKivi-0000Ut-Om; Tue, 22 Sep 2020 16:06:02 +0200
+From:   Heiko Stuebner <heiko@sntech.de>
+To:     devicetree@vger.kernel.org, m.reichl@fivetechno.de,
+        David Bauer <mail@david-bauer.net>, kever.yang@rock-chips.com,
+        linux-arm-kernel@lists.infradead.org, robin.murphy@arm.com,
+        jbx6244@gmail.com, robh+dt@kernel.org, andy.yan@rock-chips.com,
+        jagan@amarulasolutions.com, linux-rockchip@lists.infradead.org
+Cc:     Heiko Stuebner <heiko@sntech.de>, Rob Herring <robh@kernel.org>
+Subject: Re: [PATCH v3 1/2] dt-bindings: Add doc for FriendlyARM NanoPi R2S
+Date:   Tue, 22 Sep 2020 16:06:01 +0200
+Message-Id: <160078353166.2390697.16495251990636395272.b4-ty@sntech.de>
+X-Mailer: git-send-email 2.28.0
+In-Reply-To: <20200920154528.88185-1-mail@david-bauer.net>
+References: <20200920154528.88185-1-mail@david-bauer.net>
 MIME-Version: 1.0
-References: <20200920195749.26952-1-krzk@kernel.org> <20200920195749.26952-2-krzk@kernel.org>
- <20200922065154.GH25109@dragon>
-In-Reply-To: <20200922065154.GH25109@dragon>
-From:   Krzysztof Kozlowski <krzk@kernel.org>
-Date:   Tue, 22 Sep 2020 16:24:39 +0200
-X-Gmail-Original-Message-ID: <CAJKOXPemE-mHdp-OAOMi5xQvTcW4k-f1aMcmX10zFLFFTRMv2Q@mail.gmail.com>
-Message-ID: <CAJKOXPemE-mHdp-OAOMi5xQvTcW4k-f1aMcmX10zFLFFTRMv2Q@mail.gmail.com>
-Subject: Re: [PATCH v3 2/3] arm64: dts: imx8mq-librem5: align GPIO hog names
- with dtschema
-To:     Shawn Guo <shawnguo@kernel.org>
-Cc:     Rob Herring <robh+dt@kernel.org>,
-        Sascha Hauer <s.hauer@pengutronix.de>,
-        Pengutronix Kernel Team <kernel@pengutronix.de>,
-        Fabio Estevam <festevam@gmail.com>,
-        NXP Linux Team <linux-imx@nxp.com>,
-        Martin Kepplinger <martink@posteo.de>,
-        "Angus Ainslie (Purism)" <angus@akkea.ca>,
-        devicetree@vger.kernel.org, linux-arm-kernel@lists.infradead.org,
-        "linux-kernel@vger.kernel.org" <linux-kernel@vger.kernel.org>
-Content-Type: text/plain; charset="UTF-8"
+Content-Transfer-Encoding: 8bit
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-On Tue, 22 Sep 2020 at 08:52, Shawn Guo <shawnguo@kernel.org> wrote:
->
-> On Sun, Sep 20, 2020 at 09:57:48PM +0200, Krzysztof Kozlowski wrote:
-> > dtschema expects GPIO hogs to end with 'hog' suffix.
-> >
-> > Signed-off-by: Krzysztof Kozlowski <krzk@kernel.org>
->
-> Ping me after dtschema gets accepted.
+On Sun, 20 Sep 2020 17:45:27 +0200, David Bauer wrote:
+> Add devicetree binding documentation for the FriendlyARM NanoPi R2S.
 
-Hi Shawn,
+Applied, thanks!
 
-Happened just now, in dt-schema repo:
-https://github.com/devicetree-org/dt-schema/pull/47
+[1/2] dt-bindings: Add doc for FriendlyARM NanoPi R2S
+      commit: 8cfcf3279419acbf2d2c471262bfb18d9e175fc9
+[2/2] arm64: dts: rockchip: Add support for FriendlyARM NanoPi R2S
+      commit: f1ec83f880dbeaceb10d33c40c47aa1769b787e8
+
+After adapting to the renamed pinctrl name.
 
 Best regards,
-Krzysztof
+-- 
+Heiko Stuebner <heiko@sntech.de>
