@@ -2,148 +2,94 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from vger.kernel.org (vger.kernel.org [23.128.96.18])
-	by mail.lfdr.de (Postfix) with ESMTP id 809AF274785
-	for <lists+devicetree@lfdr.de>; Tue, 22 Sep 2020 19:32:47 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTP id E096A2747E7
+	for <lists+devicetree@lfdr.de>; Tue, 22 Sep 2020 20:00:31 +0200 (CEST)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S1726526AbgIVRcp (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Tue, 22 Sep 2020 13:32:45 -0400
-Received: from vm1.sequanux.org ([188.165.36.56]:57557 "EHLO vm1.sequanux.org"
-        rhost-flags-OK-OK-OK-OK) by vger.kernel.org with ESMTP
-        id S1726614AbgIVRco (ORCPT <rfc822;devicetree@vger.kernel.org>);
-        Tue, 22 Sep 2020 13:32:44 -0400
-Received: from localhost (localhost.localdomain [127.0.0.1])
-        by vm1.sequanux.org (Postfix) with ESMTP id 770E5108648;
-        Tue, 22 Sep 2020 19:32:42 +0200 (CEST)
-X-Virus-Scanned: Debian amavisd-new at vm1.sequanux.org
-Received: from vm1.sequanux.org ([127.0.0.1])
-        by localhost (vm1.sequanux.org [127.0.0.1]) (amavisd-new, port 10024)
-        with ESMTP id guV0CHkE3fl8; Tue, 22 Sep 2020 19:32:40 +0200 (CEST)
-Received: from localhost (softwrestling.org [188.165.144.248])
-        by vm1.sequanux.org (Postfix) with ESMTPSA id 4756A108638;
-        Tue, 22 Sep 2020 19:32:40 +0200 (CEST)
-Date:   Tue, 22 Sep 2020 19:32:40 +0200
-From:   Simon Guinot <simon.guinot@sequanux.org>
-To:     Marek =?utf-8?B?QmVow7pu?= <marek.behun@nic.cz>
-Cc:     linux-leds@vger.kernel.org, Pavel Machek <pavel@ucw.cz>,
-        Dan Murphy <dmurphy@ti.com>,
-        =?utf-8?Q?Ond=C5=99ej?= Jirman <megous@megous.com>,
-        linux-kernel@vger.kernel.org, Rob Herring <robh+dt@kernel.org>,
-        devicetree@vger.kernel.org,
-        =?utf-8?B?w4FsdmFybyBGZXJuw6FuZGV6?= Rojas <noltari@gmail.com>,
-        Andrew Lunn <andrew@lunn.ch>,
-        Andrey Utkin <andrey_utkin@fastmail.com>,
-        Baolin Wang <baolin.wang7@gmail.com>,
-        Baolin Wang <baolin.wang@linaro.org>,
-        Bartosz Golaszewski <bgolaszewski@baylibre.com>,
-        Benjamin Herrenschmidt <benh@kernel.crashing.org>,
-        Bjorn Andersson <bjorn.andersson@linaro.org>,
-        Christian Mauderer <oss@c-mauderer.de>,
-        Chunyan Zhang <zhang.lyra@gmail.com>,
-        Daniel Mack <daniel@caiaq.de>,
-        David Rivshin <drivshin@allworx.com>,
-        Grant Feng <von81@163.com>,
-        Haojian Zhuang <haojian.zhuang@marvell.com>,
-        "H . Nikolaus Schaller" <hns@goldelico.com>,
-        Jaedon Shin <jaedon.shin@gmail.com>,
-        John Crispin <john@phrozen.org>,
-        Kevin Cernekee <cernekee@gmail.com>,
-        Lee Jones <lee.jones@linaro.org>,
-        Liam Girdwood <lgirdwood@gmail.com>,
-        Linus Walleij <linus.walleij@linaro.org>,
-        Mark Brown <broonie@kernel.org>,
-        Matthias Brugger <matthias.bgg@gmail.com>,
-        Michael Ellerman <mpe@ellerman.id.au>,
-        Milo Kim <milo.kim@ti.com>, NeilBrown <neilb@suse.de>,
-        Nikita Travkin <nikitos.tr@gmail.com>,
-        Orson Zhai <orsonzhai@gmail.com>,
-        Paul Mackerras <paulus@samba.org>,
-        Philippe Retornaz <philippe.retornaz@epfl.ch>,
-        Riku Voipio <riku.voipio@iki.fi>,
-        Rod Whitby <rod@whitby.id.au>,
-        Ryder Lee <ryder.lee@mediatek.com>,
-        Sakari Ailus <sakari.ailus@linux.intel.com>,
-        Sean Wang <sean.wang@mediatek.com>,
-        Sebastian Reichel <sre@kernel.org>,
-        Simon Guinot <sguinot@lacie.com>,
-        Simon Shields <simon@lineageos.org>,
-        Thierry Reding <thierry.reding@gmail.com>,
-        Thomas Bogendoerfer <tbogendoerfer@suse.de>,
-        Thomas Petazzoni <thomas.petazzoni@free-electrons.com>,
-        Uwe =?utf-8?Q?Kleine-K=C3=B6nig?= 
-        <u.kleine-koenig@pengutronix.de>,
-        Vasant Hegde <hegdevasant@linux.vnet.ibm.com>,
-        Vincent Donnefort <vdonnefort@gmail.com>,
-        Xiaotong Lu <xiaotong.lu@spreadtrum.com>
-Subject: Re: [PATCH leds v2 00/50] Start moving parsing of
- `linux,default-trigger` to LED core (a cleanup of LED drivers)
-Message-ID: <20200922173240.GG4828@kw.sim.vm.gnt>
-References: <20200917223338.14164-1-marek.behun@nic.cz>
+        id S1726573AbgIVSAa (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Tue, 22 Sep 2020 14:00:30 -0400
+Received: from lindbergh.monkeyblade.net ([23.128.96.19]:42000 "EHLO
+        lindbergh.monkeyblade.net" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
+        with ESMTP id S1726526AbgIVSAa (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Tue, 22 Sep 2020 14:00:30 -0400
+Received: from mail-lf1-x142.google.com (mail-lf1-x142.google.com [IPv6:2a00:1450:4864:20::142])
+        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 0049EC061755;
+        Tue, 22 Sep 2020 11:00:29 -0700 (PDT)
+Received: by mail-lf1-x142.google.com with SMTP id x69so19029672lff.3;
+        Tue, 22 Sep 2020 11:00:29 -0700 (PDT)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+        d=gmail.com; s=20161025;
+        h=mime-version:references:in-reply-to:from:date:message-id:subject:to
+         :cc;
+        bh=+S+ikiHuz2HpdLIm249+t1T7WSf8kgaFrd1ScxmbIRA=;
+        b=YZIjQQBQaCTguWnuWRudyJEvWdfCGsiGP4kcXSZDxXIXMl9BrgwKsNOQ5vhEwhpd42
+         BB+qD14yjvJXe6MA+qJI9G0nzA/29OhohYyF62O0sXLNGEI+5ylCcPWmvqi7jjKz8o1g
+         +StyCcm1ImuD7xtsED8OhSs8u7y9IPkkJWLVVIe57i80PQggTrkr+f0re42QGFLzVzu+
+         96OHyMnIOWFlppIZrEScA074aNG9eUDIfmOW8J/gY8NPfhjz1T2QaoGZiX/CCEhKuEFo
+         2HklH0TtjbizH/aGzbKig0VzsqzcDJG6xjsRapLfCHkg5kLh1OO94HSRweDsyfwWR95j
+         eIAw==
+X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+        d=1e100.net; s=20161025;
+        h=x-gm-message-state:mime-version:references:in-reply-to:from:date
+         :message-id:subject:to:cc;
+        bh=+S+ikiHuz2HpdLIm249+t1T7WSf8kgaFrd1ScxmbIRA=;
+        b=U8NXQhP67Lh5wn27Y2eSm9vzpjb78P0JBgB+38+agij0OSc2WcgFF9WCjqLle7tK1D
+         1VCf3s5oVq+rEkkG8h/L8sK9KshuubxN/nr0iD/zu3sUOdNMjRnyHuGvHYElU/Bt2XP1
+         +uwMAje4CdRoqF8hNr2GDmwQ4mG+LUioxtLp97Vxx0+fmbdfWDoEqaWkFA74d6k7E9ig
+         El7AaOuMqIo6mxqqT3JAB3UixeQ+ATOjJBzvXLLDAP/QPVyNT0C5UOB2HNOtZjoxcW/X
+         /ZGcYdodxHBGj8Xz5ViCE3BdsGspvE1zebMWx+PJl53xY9pYQUGI77bG5qmE7IaJqC/x
+         jfCQ==
+X-Gm-Message-State: AOAM530vfBaFb+qbBB8LsgmonQpjhBvUcvqjpSCkzW66eWRtso6BS6Xw
+        g/y2bAF8njPj4aYMlyhHLRtrk8I//kWK+Ii7eBQ=
+X-Google-Smtp-Source: ABdhPJxFr6fvcuGTXCkhdw0fxH5jeW4JUrPm1uyVhIRE7All5r8ND3+dP6QkxMaEDP499RMjkx2GkD6vnB//iKZrYaQ=
+X-Received: by 2002:a19:dcb:: with SMTP id 194mr2068732lfn.25.1600797628205;
+ Tue, 22 Sep 2020 11:00:28 -0700 (PDT)
 MIME-Version: 1.0
-Content-Type: multipart/signed; micalg=pgp-sha512;
-        protocol="application/pgp-signature"; boundary="pyE8wggRBhVBcj8z"
-Content-Disposition: inline
-In-Reply-To: <20200917223338.14164-1-marek.behun@nic.cz>
-User-Agent: Mutt/1.6.0 (2016-04-01)
+References: <1600224517-31465-1-git-send-email-peng.fan@nxp.com>
+In-Reply-To: <1600224517-31465-1-git-send-email-peng.fan@nxp.com>
+From:   Fabio Estevam <festevam@gmail.com>
+Date:   Tue, 22 Sep 2020 15:00:16 -0300
+Message-ID: <CAOMZO5BUxEF4s+0XFz8Uoos8d8Wk-rp+K8LyO7az8MKV3kHH5A@mail.gmail.com>
+Subject: Re: [PATCH V2 0/4] imx: support i.MX7ULP HSRUN mode
+To:     Peng Fan <peng.fan@nxp.com>
+Cc:     Shawn Guo <shawnguo@kernel.org>,
+        Sascha Hauer <s.hauer@pengutronix.de>,
+        Abel Vesa <abel.vesa@nxp.com>,
+        Rob Herring <robh+dt@kernel.org>,
+        Sascha Hauer <kernel@pengutronix.de>,
+        NXP Linux Team <linux-imx@nxp.com>,
+        Yongcai Huang <Anson.Huang@nxp.com>,
+        "moderated list:ARM/FREESCALE IMX / MXC ARM ARCHITECTURE" 
+        <linux-arm-kernel@lists.infradead.org>,
+        linux-kernel <linux-kernel@vger.kernel.org>,
+        Dong Aisheng <aisheng.dong@nxp.com>,
+        "open list:OPEN FIRMWARE AND FLATTENED DEVICE TREE BINDINGS" 
+        <devicetree@vger.kernel.org>
+Content-Type: text/plain; charset="UTF-8"
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
+Hi Peng,
 
---pyE8wggRBhVBcj8z
-Content-Type: text/plain; charset=utf-8
-Content-Disposition: inline
-Content-Transfer-Encoding: quoted-printable
+On Tue, Sep 15, 2020 at 11:55 PM <peng.fan@nxp.com> wrote:
+>
+> From: Peng Fan <peng.fan@nxp.com>
+>
+> V2:
+>  Update to use pmc0/pmc1 following hardware naming
+>
+> This patchset is to add HSRUN mode support.
+> Patch 1,2 is to add binding doc and dts node
+> Patch 3 is to support HSRUN mode
+> Patch 4 is to use wait mode when HSRUN working per hardware state machine requirement.
+>
+> Peng Fan (4):
+>   dt-bindings: fsl: add i.MX7ULP PMC
+>   ARM: dts: imx7ulp: add pmc node
+>   ARM: imx: imx7ulp: support HSRUN mode
+>   ARM: imx: cpuidle-imx7ulp: Stop mode disallowed when HSRUN
 
-On Fri, Sep 18, 2020 at 12:32:48AM +0200, Marek Beh=C3=BAn wrote:
-> Hi,
->=20
-> this series is also available at [1].
->=20
-> This is v2, you can read cover letter of v1 at [2] (togehter with
-> explanation of why I did this).
+It seems that a patch adding the 720MHz HSRUN operational point in
+imx7ulp.dtsi is missing.
 
-=2E..
-
->   leds: ns2: use devres LED registering function
->   leds: ns2: alloc simple array instead of struct ns2_led_priv
->   leds: ns2: support OF probing only, forget platdata
->   leds: ns2: move parsing of one LED into separate function
->   leds: ns2: use devres API for getting GPIO descriptors
->   leds: ns2: cosmetic structure rename
->   leds: ns2: cosmetic variable rename
->   leds: ns2: cosmetic change
->   leds: ns2: cosmetic change: use helper variable
->   leds: ns2: register LED immediately after parsing DT properties
->   leds: ns2: remove unneeded variable
->   leds: ns2: cosmetic: use reverse christmas tree
->   leds: ns2: reorder headers alphabetically
->   leds: ns2: use struct led_init_data when registering
-
-Hi Marek,
-
-If you agree, I'll wait the fwnode support before reviewing and testing
-this patches.
-
-Simon
-
---pyE8wggRBhVBcj8z
-Content-Type: application/pgp-signature; name="signature.asc"
-
------BEGIN PGP SIGNATURE-----
-
-iQIzBAEBCgAdFiEEXW8DgovlR3VS5hA0zyg/RDPmszoFAl9qNTcACgkQzyg/RDPm
-szrw9Q/+IX/cwi/lHhvzrSlcq8Zbv/kJa44/0dyAmXhWnU8fabW2bYhT1JTwGroN
-XiMPOwC6u3PWi7B17KaqoXm2U3HlESZy7tGQhG2cSjadm99aKlKqPOW+YVrkLgo1
-LwVlVY6on1/neUM367LC8I+XoltPpOUNv0LbaKm2bGEkMhGGJXrjtWTNfEv9BqJt
-X54su5DHrigGVwD3vpv6VVjgx//uk8bhiVhbCE/nHqWOuU9LjWTCRioHa92slCLS
-k3vudoCKXUontO1a0v9iUs6IdSMN5SIUVuK2WQWZRdWa9CbH4n4jr5UUFy58iX81
-TiNae8AzOpoAjQWvMXmY1Fxv0hJ0A6ql6GXtk42mXlsS89RITdr0+kF4eoj2JW7E
-3K+/UOJV+uA/kl+XgjtI3ya68AkQGRjMpYU0NjkMB5ag+VDOyKX1bul8Dt0MPqqK
-f9pD2Ko6i1IbbYejkyjtMqmUWrenkvN82YmVwH0zfvvdN8BP2IiKGWzIjWSo1vzu
-b4oldw/9OZV7eQxQWWHAHhgwiLX77CINueDYSH8dBWGPL4SBsQp87YL3Eo7nKFbP
-7Oh5R94Rjc63EiilhzG4IEmMLF+n9nENu3Zw/UmqygkYDenXX2SiwD68EVFTKG5o
-CtWjDvMLPtUcS3ZLJIhZqHRE57NmNF3qJjef/1pYTuQ1TBurkeA=
-=8FNN
------END PGP SIGNATURE-----
-
---pyE8wggRBhVBcj8z--
+Thanks
