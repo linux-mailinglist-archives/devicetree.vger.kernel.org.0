@@ -2,69 +2,83 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from vger.kernel.org (vger.kernel.org [23.128.96.18])
-	by mail.lfdr.de (Postfix) with ESMTP id D88D027493E
-	for <lists+devicetree@lfdr.de>; Tue, 22 Sep 2020 21:35:38 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTP id 42BFC274975
+	for <lists+devicetree@lfdr.de>; Tue, 22 Sep 2020 21:48:01 +0200 (CEST)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S1726576AbgIVTfh (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Tue, 22 Sep 2020 15:35:37 -0400
-Received: from mail-il1-f194.google.com ([209.85.166.194]:40697 "EHLO
-        mail-il1-f194.google.com" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S1726550AbgIVTfh (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Tue, 22 Sep 2020 15:35:37 -0400
-Received: by mail-il1-f194.google.com with SMTP id x18so16032392ila.7;
-        Tue, 22 Sep 2020 12:35:37 -0700 (PDT)
+        id S1726637AbgIVTr5 (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Tue, 22 Sep 2020 15:47:57 -0400
+Received: from mail-io1-f66.google.com ([209.85.166.66]:41581 "EHLO
+        mail-io1-f66.google.com" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
+        with ESMTP id S1726448AbgIVTr4 (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Tue, 22 Sep 2020 15:47:56 -0400
+Received: by mail-io1-f66.google.com with SMTP id z13so21016147iom.8;
+        Tue, 22 Sep 2020 12:47:56 -0700 (PDT)
 X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
         d=1e100.net; s=20161025;
         h=x-gm-message-state:date:from:to:cc:subject:message-id:references
          :mime-version:content-disposition:in-reply-to;
-        bh=jPBD0XmzIV/W0iZGo3u7QE8dbhQcu1GYPOKQ4Uj0YkA=;
-        b=H7TS5gyhTzI1GRYtp1iMLia9n75dX+G8dpIYYqhZRl7cW2YEY+8sH4JK3/RPD2bkav
-         ELkTtB3G+piZCRN7PfsmW7O0lPMLBpmKc/RUEvrrCOLjZsZ//ixWlXPiR/NGYF/KqFBL
-         QmXjmY3eA5+l0dQP09k6sw2c9alMMmqhrw8KwS79FTNAyxdK8tOiDP/OKokwYsL6uCom
-         kaUu+V3fjirnUWLLVM8qHiE5wnLEbBfKoL+BVkmlla5tnFXZNqTrrfZ4evI2d2LxXrAF
-         aPcea0jUytZWWquhwQvgG8Kz8Nmno/GdZleTQRCpEHMd4rBk4OPjsfAz+sWiUixbycYg
-         xUVQ==
-X-Gm-Message-State: AOAM5336MCvwGwtIAYJ/EV2iHnAntUg4CsbtU52hONETtdYVPAPzumP/
-        s7Ud+zC8TS3hSdadt+EUZw==
-X-Google-Smtp-Source: ABdhPJzNqdROL+jdJ3dVRE9aodQED8gpbXyKrtUeG8JK3C/kXVBgCpAfcjl4U3P55eEquDFbPiY9lw==
-X-Received: by 2002:a92:d34f:: with SMTP id a15mr5920759ilh.226.1600803337012;
-        Tue, 22 Sep 2020 12:35:37 -0700 (PDT)
+        bh=ri/bVbFH3r5EY2Mz3MO9WVs+h7y66U0Z5iJapj7IiXI=;
+        b=g8xg6UBbbXTYXUgmTtu9o/VA5uX9Ohle6o6ESnvldeFafnPIhO478KH3RnIaPYKSrw
+         JxlA5cYLhD69/gk8CJJP8ZPUbZlAmHIv8vpABJwINa5YwJnG/L+UTRC+wsalDB0giyYq
+         h0J+Y0udVCF+JZOiO2I1I2roNcTcR9w1rpV7rmHONq86pBeswMdn7N5mK9mKBxbVMQlS
+         /V7fI3FDStdJQKXCCLF2jpctGMGYNsGoIDkdDxLMpl21GGrjd2VE1DP/Ug7RKbtdaBcU
+         /QK7mKdVFMnAQNmtNx/9M5dvyihxPxHE6oVuAlLHF2pqakz5puIJ+ERAyQiCakyDaxM7
+         AuiA==
+X-Gm-Message-State: AOAM530s709nbF+X/phETmeaKh0aCR92zlV2Dx+XS0mFIlQSnEBsXq3N
+        BTCtTVHbmkQU6LrNXYNZYg==
+X-Google-Smtp-Source: ABdhPJy3iTl88OD21S0eMhHBXW4ApuZoC8dsFK4Kp7SeKRHofvxUkXXeCMEkfhADIYuzvs2vzNHVgA==
+X-Received: by 2002:a02:b199:: with SMTP id t25mr5313825jah.124.1600804076032;
+        Tue, 22 Sep 2020 12:47:56 -0700 (PDT)
 Received: from xps15 ([64.188.179.253])
-        by smtp.gmail.com with ESMTPSA id q2sm6502219ils.81.2020.09.22.12.35.35
+        by smtp.gmail.com with ESMTPSA id h2sm7832335ioj.5.2020.09.22.12.47.54
         (version=TLS1_3 cipher=TLS_AES_256_GCM_SHA384 bits=256/256);
-        Tue, 22 Sep 2020 12:35:36 -0700 (PDT)
-Received: (nullmailer pid 3100940 invoked by uid 1000);
-        Tue, 22 Sep 2020 19:35:34 -0000
-Date:   Tue, 22 Sep 2020 13:35:34 -0600
+        Tue, 22 Sep 2020 12:47:54 -0700 (PDT)
+Received: (nullmailer pid 3121917 invoked by uid 1000);
+        Tue, 22 Sep 2020 19:47:53 -0000
+Date:   Tue, 22 Sep 2020 13:47:53 -0600
 From:   Rob Herring <robh@kernel.org>
-To:     Neil Armstrong <narmstrong@baylibre.com>
-Cc:     repk@triplefau.lt, linux-kernel@vger.kernel.org,
-        linux-arm-kernel@lists.infradead.org,
-        linux-amlogic@lists.infradead.org, kishon@ti.com,
-        devicetree@vger.kernel.org
-Subject: Re: [PATCH v2 2/3] dt-bindings: phy: amlogic,
- meson-axg-mipi-pcie-analog: remove phy cell parameter
-Message-ID: <20200922193534.GA3100774@bogus>
-References: <20200915130339.11079-1-narmstrong@baylibre.com>
- <20200915130339.11079-3-narmstrong@baylibre.com>
+To:     Suman Anna <s-anna@ti.com>
+Cc:     Bjorn Andersson <bjorn.andersson@linaro.org>,
+        Mathieu Poirier <mathieu.poirier@linaro.org>,
+        Lokesh Vutla <lokeshvutla@ti.com>,
+        linux-remoteproc@vger.kernel.org, devicetree@vger.kernel.org,
+        linux-arm-kernel@lists.infradead.org, linux-kernel@vger.kernel.org
+Subject: Re: [PATCH v4 0/4] TI K3 R5F remoteproc support
+Message-ID: <20200922194753.GA3105316@bogus>
+References: <20200908174556.21277-1-s-anna@ti.com>
 MIME-Version: 1.0
 Content-Type: text/plain; charset=us-ascii
 Content-Disposition: inline
-In-Reply-To: <20200915130339.11079-3-narmstrong@baylibre.com>
+In-Reply-To: <20200908174556.21277-1-s-anna@ti.com>
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-On Tue, 15 Sep 2020 15:03:38 +0200, Neil Armstrong wrote:
-> The Amlogic AXG MIPI + PCIe Analog PHY provides function for both PCIe and
-> MIPI DSI at the same time, and is not exclusive.
+On Tue, Sep 08, 2020 at 12:45:52PM -0500, Suman Anna wrote:
+> Hi All,
 > 
-> Thus remove the invalid phy cell parameter.
+> The following is v4 of the TI K3 R5F remoteproc driver series supporting all
+> the R5F processor clusters/subsystems on TI AM65x and J721E SoCs. Please
+> see the v1 cover-letter [1] for the features supported on these R5F processors.
 > 
-> Signed-off-by: Neil Armstrong <narmstrong@baylibre.com>
-> ---
->  .../bindings/phy/amlogic,meson-axg-mipi-pcie-analog.yaml      | 4 ++--
->  1 file changed, 2 insertions(+), 2 deletions(-)
+> This series is a rebased version on top of the latest v5.9-rc baseline and
+> includes very minor fixes w.r.t v3. The previous K3 DSP dependencies are now
+> available in mainline kernel. Please see the individual patches for the delta
+> differences (Only patches 1 and 2 updated).
 > 
+> Bjorn,
+> This series is only waiting on bindings ack and the conclusion on the bindings
+> discussion from v2 [4] on which I haven't seen any forward progress on this 
+> despite all the clarifications. I do not expect any changes even w.r.t System DT,
+> and we can't really have a common binding between TI and Xilinx R5Fs. 
 
-Acked-by: Rob Herring <robh@kernel.org>
+Why not? I'm pretty sure lockstep or not is a thing for both and TCMs 
+seem to be a common thing.
+
+And I don't really think System DT will not impact it. Though it's not 
+well enough defined to say either way IMO.
+
+But if Bjorn wants to take this, fine. I'm not acking it though nor 
+worrying about it for any compatibility with system DT.
+
+Rob
