@@ -2,121 +2,67 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from vger.kernel.org (vger.kernel.org [23.128.96.18])
-	by mail.lfdr.de (Postfix) with ESMTP id 53BFB274BE6
-	for <lists+devicetree@lfdr.de>; Wed, 23 Sep 2020 00:14:59 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTP id 2AC89274BF9
+	for <lists+devicetree@lfdr.de>; Wed, 23 Sep 2020 00:20:02 +0200 (CEST)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S1726576AbgIVWO5 (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Tue, 22 Sep 2020 18:14:57 -0400
-Received: from fllv0016.ext.ti.com ([198.47.19.142]:37842 "EHLO
-        fllv0016.ext.ti.com" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S1726179AbgIVWO5 (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Tue, 22 Sep 2020 18:14:57 -0400
-Received: from lelv0266.itg.ti.com ([10.180.67.225])
-        by fllv0016.ext.ti.com (8.15.2/8.15.2) with ESMTP id 08MKQAhe042415;
-        Tue, 22 Sep 2020 15:26:10 -0500
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=ti.com;
-        s=ti-com-17Q1; t=1600806371;
-        bh=kIqH1V5ealEVC5EO+6vAJW+B9sEXlZ5Fpg3hzaZaIWU=;
-        h=Subject:To:CC:References:From:Date:In-Reply-To;
-        b=ikwtlh5/gSnu+ZQbloMTppJU2t6nrvxg1KhvJ1e0nSfoNQqfhIu/Hr110QSiZBe6t
-         eYMkEIryEsfQoq5vl28jW+KI3qqAa249dMB1RhkHO3IL5ups+XxTSy0EZHAtuFXJ98
-         NoUGWSPHHCovssPbAAvIXARf03NRXzPssZiTx/rk=
-Received: from DFLE100.ent.ti.com (dfle100.ent.ti.com [10.64.6.21])
-        by lelv0266.itg.ti.com (8.15.2/8.15.2) with ESMTPS id 08MKQAvA008719
-        (version=TLSv1.2 cipher=AES256-GCM-SHA384 bits=256 verify=FAIL);
-        Tue, 22 Sep 2020 15:26:10 -0500
-Received: from DFLE105.ent.ti.com (10.64.6.26) by DFLE100.ent.ti.com
- (10.64.6.21) with Microsoft SMTP Server (version=TLS1_2,
- cipher=TLS_ECDHE_RSA_WITH_AES_128_CBC_SHA256_P256) id 15.1.1979.3; Tue, 22
- Sep 2020 15:26:10 -0500
-Received: from lelv0327.itg.ti.com (10.180.67.183) by DFLE105.ent.ti.com
- (10.64.6.26) with Microsoft SMTP Server (version=TLS1_2,
- cipher=TLS_ECDHE_RSA_WITH_AES_128_CBC_SHA256_P256) id 15.1.1979.3 via
- Frontend Transport; Tue, 22 Sep 2020 15:26:10 -0500
-Received: from [10.250.36.109] (ileax41-snat.itg.ti.com [10.172.224.153])
-        by lelv0327.itg.ti.com (8.15.2/8.15.2) with ESMTP id 08MKQAJV061179;
-        Tue, 22 Sep 2020 15:26:10 -0500
-Subject: Re: [PATCH v4 0/4] TI K3 R5F remoteproc support
-To:     Rob Herring <robh@kernel.org>
-CC:     Bjorn Andersson <bjorn.andersson@linaro.org>,
-        Mathieu Poirier <mathieu.poirier@linaro.org>,
-        Lokesh Vutla <lokeshvutla@ti.com>,
-        <linux-remoteproc@vger.kernel.org>, <devicetree@vger.kernel.org>,
-        <linux-arm-kernel@lists.infradead.org>,
-        <linux-kernel@vger.kernel.org>
-References: <20200908174556.21277-1-s-anna@ti.com>
- <20200922194753.GA3105316@bogus>
-From:   Suman Anna <s-anna@ti.com>
-Message-ID: <f5c8b7f1-1ac6-2134-89da-d1b91d4643bf@ti.com>
-Date:   Tue, 22 Sep 2020 15:26:05 -0500
-User-Agent: Mozilla/5.0 (X11; Linux x86_64; rv:68.0) Gecko/20100101
- Thunderbird/68.10.0
+        id S1726672AbgIVWUB (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Tue, 22 Sep 2020 18:20:01 -0400
+Received: from mail-io1-f68.google.com ([209.85.166.68]:35144 "EHLO
+        mail-io1-f68.google.com" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
+        with ESMTP id S1726550AbgIVWUB (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Tue, 22 Sep 2020 18:20:01 -0400
+Received: by mail-io1-f68.google.com with SMTP id r9so21534288ioa.2;
+        Tue, 22 Sep 2020 15:20:00 -0700 (PDT)
+X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+        d=1e100.net; s=20161025;
+        h=x-gm-message-state:date:from:to:cc:subject:message-id:references
+         :mime-version:content-disposition:in-reply-to;
+        bh=PJgPG9nFqKSPj20PO+Q8aRuzKhCzolUfMEd72+sKZ5Y=;
+        b=h+gdW6YyQ6gkbUOs2rUcic2zgQWU5trRYr0gZcUEa0nMTPTdSFFtDkmxkPX0NCnXkK
+         Rk1d5ey/IH8e+y0rEY4oetUiEwLloTNuct3YqA5JwsWC3Bq9ZEahTQhVTI2/Hd0sOIj0
+         unzbu5kZRnLIWce/mN9gA/4G6qIv1BmtMLfAJ5L5p0E6pvIIaR4wQPOuNAg/bZ6fuJwl
+         wLkgg5ZJ4gqi9Hs3i+HcC7JP2a+Ou8/e+kgc68hghSS4WphxURbZSXyDcwSHNdmyeocQ
+         APh58y0Sp4atvXpGaLNius40/ysG9wWamGuSNtz9/vpfLcykQv8dG+4uJI4yiSmAVLIi
+         G1Kw==
+X-Gm-Message-State: AOAM532zvP0H8iizdxQqVR5g9LJjaoX0VIaIqRalGkHJcG2kaAhMYqTa
+        F7JfX0+B9JH/mzit4d3Jfw==
+X-Google-Smtp-Source: ABdhPJwI8vrDQOMurbkEIJAIiMEuHNothuYJbyAYzDNUdEu7xESwerwBj5XmYNhkRLLhSI+/FWzz6g==
+X-Received: by 2002:a02:1a83:: with SMTP id 125mr6048477jai.48.1600813200316;
+        Tue, 22 Sep 2020 15:20:00 -0700 (PDT)
+Received: from xps15 ([64.188.179.253])
+        by smtp.gmail.com with ESMTPSA id s1sm9701286iln.22.2020.09.22.15.19.59
+        (version=TLS1_3 cipher=TLS_AES_256_GCM_SHA384 bits=256/256);
+        Tue, 22 Sep 2020 15:19:59 -0700 (PDT)
+Received: (nullmailer pid 3360327 invoked by uid 1000);
+        Tue, 22 Sep 2020 22:19:58 -0000
+Date:   Tue, 22 Sep 2020 16:19:58 -0600
+From:   Rob Herring <robh@kernel.org>
+To:     Eddie James <eajames@linux.ibm.com>
+Cc:     mturquette@baylibre.com, linux-clk@vger.kernel.org, joel@jms.id.au,
+        linux-aspeed@lists.ozlabs.org, sboyd@kernel.org,
+        alistair@popple.id.au, andrew@aj.id.au,
+        linux-kernel@vger.kernel.org, linux-fsi@lists.ozlabs.org,
+        jk@ozlabs.org, robh+dt@kernel.org, devicetree@vger.kernel.org
+Subject: Re: [PATCH 3/4] dt-bindings: fsi: Aspeed master: Add bus-frequency
+ property
+Message-ID: <20200922221958.GA3360267@bogus>
+References: <20200910151840.25333-1-eajames@linux.ibm.com>
+ <20200910151840.25333-4-eajames@linux.ibm.com>
 MIME-Version: 1.0
-In-Reply-To: <20200922194753.GA3105316@bogus>
-Content-Type: text/plain; charset="utf-8"
-Content-Language: en-US
-Content-Transfer-Encoding: 7bit
-X-EXCLAIMER-MD-CONFIG: e1e8a2fd-e40a-4ac6-ac9b-f7e9cc9ee180
+Content-Type: text/plain; charset=us-ascii
+Content-Disposition: inline
+In-Reply-To: <20200910151840.25333-4-eajames@linux.ibm.com>
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-Hi Rob,
-
-On 9/22/20 2:47 PM, Rob Herring wrote:
-> On Tue, Sep 08, 2020 at 12:45:52PM -0500, Suman Anna wrote:
->> Hi All,
->>
->> The following is v4 of the TI K3 R5F remoteproc driver series supporting all
->> the R5F processor clusters/subsystems on TI AM65x and J721E SoCs. Please
->> see the v1 cover-letter [1] for the features supported on these R5F processors.
->>
->> This series is a rebased version on top of the latest v5.9-rc baseline and
->> includes very minor fixes w.r.t v3. The previous K3 DSP dependencies are now
->> available in mainline kernel. Please see the individual patches for the delta
->> differences (Only patches 1 and 2 updated).
->>
->> Bjorn,
->> This series is only waiting on bindings ack and the conclusion on the bindings
->> discussion from v2 [4] on which I haven't seen any forward progress on this 
->> despite all the clarifications. I do not expect any changes even w.r.t System DT,
->> and we can't really have a common binding between TI and Xilinx R5Fs. 
->
-
-First of all, thank you for reviewing this and your response.
-
-> Why not? I'm pretty sure lockstep or not is a thing for both and TCMs 
-> seem to be a common thing.
-
-The cluster mode is a common theme, and if you have a preference for a common
-property-name, both I and Ben can use that. The values though might vary between
-different vendor SoCs.
-
-I have given out all the differences and reasons on a v2 thread, the SoC and
-clock and reset integration aspects make it look very different.
-Please see the discussion here,
-https://patchwork.kernel.org/comment/23560321/
-
-There was only one open comment/question I had regarding Core identification
-w.r.t my binding. Do you prefer a node-name index difference or a separate
-core-id/cpu-id property identifying which is Core0 and Core1.
-
+On Thu, 10 Sep 2020 10:18:39 -0500, Eddie James wrote:
+> Document the bus-frequency property.
 > 
-> And I don't really think System DT will not impact it. Though it's not 
-> well enough defined to say either way IMO.
-
-Yeah agreed. But the current architecture in System DT does allow you to add
-plugins to generate the proper compliant dts node.
-
-In anycase, I doubt TI will ever be using it in general, because we do not have
-a concept of DT on our firmwares. I have given all these inputs again on v2, but
-haven't seen any responses on it. So, I do appreciate your feedback.
-
+> Signed-off-by: Eddie James <eajames@linux.ibm.com>
+> ---
+>  Documentation/devicetree/bindings/fsi/fsi-master-aspeed.txt | 1 +
+>  1 file changed, 1 insertion(+)
 > 
-> But if Bjorn wants to take this, fine. I'm not acking it though nor 
-> worrying about it for any compatibility with system DT.
 
-Any specific reasons? For the most part, I am using all standard properties.
-
-regards
-Suman
+Acked-by: Rob Herring <robh@kernel.org>
