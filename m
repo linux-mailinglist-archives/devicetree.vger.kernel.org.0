@@ -2,165 +2,168 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from vger.kernel.org (vger.kernel.org [23.128.96.18])
-	by mail.lfdr.de (Postfix) with ESMTP id 677002748E5
-	for <lists+devicetree@lfdr.de>; Tue, 22 Sep 2020 21:14:56 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTP id 57779274905
+	for <lists+devicetree@lfdr.de>; Tue, 22 Sep 2020 21:23:53 +0200 (CEST)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S1726603AbgIVTOz (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Tue, 22 Sep 2020 15:14:55 -0400
-Received: from mail.kernel.org ([198.145.29.99]:57134 "EHLO mail.kernel.org"
+        id S1726603AbgIVTXr (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Tue, 22 Sep 2020 15:23:47 -0400
+Received: from mail.kernel.org ([198.145.29.99]:34484 "EHLO mail.kernel.org"
         rhost-flags-OK-OK-OK-OK) by vger.kernel.org with ESMTP
-        id S1726573AbgIVTOz (ORCPT <rfc822;devicetree@vger.kernel.org>);
-        Tue, 22 Sep 2020 15:14:55 -0400
-Received: from mail-ot1-f45.google.com (mail-ot1-f45.google.com [209.85.210.45])
+        id S1726448AbgIVTXr (ORCPT <rfc822;devicetree@vger.kernel.org>);
+        Tue, 22 Sep 2020 15:23:47 -0400
+Received: from mail-oi1-f181.google.com (mail-oi1-f181.google.com [209.85.167.181])
         (using TLSv1.2 with cipher ECDHE-RSA-AES128-GCM-SHA256 (128/128 bits))
         (No client certificate requested)
-        by mail.kernel.org (Postfix) with ESMTPSA id 86756238D7
-        for <devicetree@vger.kernel.org>; Tue, 22 Sep 2020 19:14:54 +0000 (UTC)
+        by mail.kernel.org (Postfix) with ESMTPSA id 8FD6C2376F;
+        Tue, 22 Sep 2020 19:23:46 +0000 (UTC)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=kernel.org;
-        s=default; t=1600802094;
-        bh=K+FrKaAh3M2RF05RFR8JYisPOdNOgL1KtkDgvvTgNw4=;
+        s=default; t=1600802626;
+        bh=YSVRLX+G8HcHE+AlF7XG+URmaQ0sbbZbrL31jfA43QM=;
         h=References:In-Reply-To:From:Date:Subject:To:Cc:From;
-        b=WoGpDfo+b71YQehweqKVvRVhUqpOX8wGCIr1D7KBVtECMtntprYcahScgc1FY6zMi
-         67mN/XlmZiVY+yXTfx/NOnHITC5QaSjE6mFKCZqLaOWy2G3yorxWv/wBBwOuLoizNF
-         93xXmtSBtCpMWcOoe67BfbQXFoTh6vL2Nx5q5APc=
-Received: by mail-ot1-f45.google.com with SMTP id g96so16647775otb.12
-        for <devicetree@vger.kernel.org>; Tue, 22 Sep 2020 12:14:54 -0700 (PDT)
-X-Gm-Message-State: AOAM533aTPMcXXbYO8Iid6S8Gw62gCuSxJIGKLJGSLaMO3i2UdtmJQUu
-        iP8TQpos8zrwzLevjF+rfz9QjU9g3Yw7z9AYWw==
-X-Google-Smtp-Source: ABdhPJyVX7r0tEN2yw5zRjAYHq+1PnOgkxXKpqO5O9Azdg5etPRi/tvoNzgrgjii6rc0qrT18YB9L0+LKo50aovAoJg=
-X-Received: by 2002:a9d:6b0d:: with SMTP id g13mr3834273otp.129.1600802093800;
- Tue, 22 Sep 2020 12:14:53 -0700 (PDT)
+        b=s3kCE2FF2hDZ7ft/3RSjsfWUCkILuu7w+s9Nxs1V3wwKAVIJxV6tzrD8yuEIWfcLZ
+         Ni2wI/4pwj5nmASalnnXMx2UP1cxGuZNomBqb0V9gNWEOXMitNSOLC4mgXeXqlaL2A
+         9aoo3l6HTGKbSXVtcdM+Fx2X380sNdhkKXXwRyGE=
+Received: by mail-oi1-f181.google.com with SMTP id x69so22245899oia.8;
+        Tue, 22 Sep 2020 12:23:46 -0700 (PDT)
+X-Gm-Message-State: AOAM532HYd6r7ul2/YE5G4FX9Se5qnTyXFNoWgPE2q+vCCbM3LRFCmFo
+        RtQGTxyFnRkw4aeRAOHF6cmEUPsEn1g4w/pO3w==
+X-Google-Smtp-Source: ABdhPJxZbyi+iwWALuyGdgsGTDNoTRH1mBaH07ixS1Yrd7pBExCttVsq4BzpKd3h/dT74o++G7oRjXZcDCwWdevm2R0=
+X-Received: by 2002:aca:fc07:: with SMTP id a7mr3619638oii.106.1600802620879;
+ Tue, 22 Sep 2020 12:23:40 -0700 (PDT)
 MIME-Version: 1.0
-References: <cover.1599343429.git.chunkeey@gmail.com> <47109d80c7bd481c7747c949e8a3ecd498d9c039.1599343429.git.chunkeey@gmail.com>
- <20200915010543.GB612463@bogus> <7bf866fd-6499-68e4-9825-5c3e2042ef65@gmail.com>
-In-Reply-To: <7bf866fd-6499-68e4-9825-5c3e2042ef65@gmail.com>
+References: <1599031090-21608-1-git-send-email-krzk@kernel.org>
+ <20200914201310.GA154873@bogus> <20200921112635.GA1233@kozik-lap>
+In-Reply-To: <20200921112635.GA1233@kozik-lap>
 From:   Rob Herring <robh@kernel.org>
-Date:   Tue, 22 Sep 2020 13:14:42 -0600
-X-Gmail-Original-Message-ID: <CAL_Jsq+x0jFh-2jVt9pVek6a2=UCv0z0sBJpuh5irxeQG+tbUg@mail.gmail.com>
-Message-ID: <CAL_Jsq+x0jFh-2jVt9pVek6a2=UCv0z0sBJpuh5irxeQG+tbUg@mail.gmail.com>
-Subject: Re: [PATCH v3 2/5] powerpc: apm82181: create shared dtsi for APM bluestone
-To:     Christian Lamparter <chunkeey@gmail.com>
-Cc:     linuxppc-dev <linuxppc-dev@lists.ozlabs.org>,
-        devicetree@vger.kernel.org, Chris Blake <chrisrblake93@gmail.com>,
-        Paul Mackerras <paulus@samba.org>,
-        Benjamin Herrenschmidt <benh@kernel.crashing.org>,
-        Michael Ellerman <mpe@ellerman.id.au>,
-        Arnd Bergmann <arnd@arndb.de>,
-        Andy Shevchenko <andriy.shevchenko@linux.intel.com>
+Date:   Tue, 22 Sep 2020 13:23:29 -0600
+X-Gmail-Original-Message-ID: <CAL_Jsq+gT3WSCAsKTrjZMh+vF4mx-m51rO=Wv+YcNxNhjEoO8A@mail.gmail.com>
+Message-ID: <CAL_Jsq+gT3WSCAsKTrjZMh+vF4mx-m51rO=Wv+YcNxNhjEoO8A@mail.gmail.com>
+Subject: Re: [PATCH v2 1/3] dt-bindings: media: imx258: Add bindings for
+ IMX258 sensor
+To:     Krzysztof Kozlowski <krzk@kernel.org>
+Cc:     Sakari Ailus <sakari.ailus@linux.intel.com>,
+        Mauro Carvalho Chehab <mchehab@kernel.org>,
+        Shawn Guo <shawnguo@kernel.org>,
+        Sascha Hauer <s.hauer@pengutronix.de>,
+        Pengutronix Kernel Team <kernel@pengutronix.de>,
+        Fabio Estevam <festevam@gmail.com>,
+        NXP Linux Team <linux-imx@nxp.com>,
+        Linux Media Mailing List <linux-media@vger.kernel.org>,
+        devicetree@vger.kernel.org,
+        linux-arm-kernel <linux-arm-kernel@lists.infradead.org>,
+        "linux-kernel@vger.kernel.org" <linux-kernel@vger.kernel.org>
 Content-Type: text/plain; charset="UTF-8"
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-On Sat, Sep 19, 2020 at 2:23 PM Christian Lamparter <chunkeey@gmail.com> wrote:
+On Mon, Sep 21, 2020 at 5:27 AM Krzysztof Kozlowski <krzk@kernel.org> wrote:
 >
-> On 2020-09-15 03:05, Rob Herring wrote:
-> > On Sun, Sep 06, 2020 at 12:06:12AM +0200, Christian Lamparter wrote:
-> >> This patch adds an DTSI-File that can be used by various device-tree
-> >> files for APM82181-based devices.
-> >>
-> >> Some of the nodes (like UART, PCIE, SATA) are used by the uboot and
-> >> need to stick with the naming-conventions of the old times'.
-> >> I've added comments whenever this was the case.
-> >>
-> >> Signed-off-by: Chris Blake <chrisrblake93@gmail.com>
-> >> Signed-off-by: Christian Lamparter <chunkeey@gmail.com>
-> >> ---
-> >> rfc v1 -> v2:
-> >>      - removed PKA (this CryptoPU will need driver)
-> >>      - stick with compatibles, nodes, ... from either
-> >>        Bluestone (APM82181) or Canyonlands (PPC460EX).
-> >>      - add labels for NAND and NOR to help with access.
-> >> v2 -> v3:
-> >>      - nodename of pciex@d.... was changed to pcie@d..
-> >>        due to upstream patch.
-> >>      - use simple-bus on the ebc, opb and plb nodes
-> >> ---
-> >>   arch/powerpc/boot/dts/apm82181.dtsi | 466 ++++++++++++++++++++++++++++
-> >>   1 file changed, 466 insertions(+)
-> >>   create mode 100644 arch/powerpc/boot/dts/apm82181.dtsi
-> >>
-> >> diff --git a/arch/powerpc/boot/dts/apm82181.dtsi b/arch/powerpc/boot/dts/apm82181.dtsi
-> >> new file mode 100644
-> >> index 000000000000..60283430978d
-> >> --- /dev/null
-> >> +++ b/arch/powerpc/boot/dts/apm82181.dtsi
-> >> @@ -0,0 +1,466 @@
-> >> +// SPDX-License-Identifier: GPL-2.0-or-later
-> >> +/*
-> >> + * Device Tree template include for various APM82181 boards.
-> >> + *
-> >> + * The SoC is an evolution of the PPC460EX predecessor.
-> >> + * This is why dt-nodes from the canyonlands EBC, OPB, USB,
-> >> + * DMA, SATA, EMAC, ... ended up in here.
-> >> + *
-> >> + * Copyright (c) 2010, Applied Micro Circuits Corporation
-> >> + * Author: Tirumala R Marri <tmarri@apm.com>,
-> >> + *     Christian Lamparter <chunkeey@gmail.com>,
-> >> + *     Chris Blake <chrisrblake93@gmail.com>
-> >> + */
-> >> +
-> >> +#include <dt-bindings/dma/dw-dmac.h>
-> >> +#include <dt-bindings/input/input.h>
-> >> +#include <dt-bindings/interrupt-controller/irq.h>
-> >> +#include <dt-bindings/gpio/gpio.h>
-> >> +
-> >> +/ {
-> >> +    #address-cells = <2>;
-> >> +    #size-cells = <1>;
-> >> +    dcr-parent = <&{/cpus/cpu@0}>;
-> >> +
-> >> +    aliases {
-> >> +            ethernet0 = &EMAC0; /* needed for BSP u-boot */
-> >> +    };
-> >> +
-> >> +    cpus {
-> >> +            #address-cells = <1>;
-> >> +            #size-cells = <0>;
-> >> +
-> >> +            CPU0: cpu@0 {
-> >> +                    device_type = "cpu";
-> >> +                    model = "PowerPC,apm82181";
+> On Mon, Sep 14, 2020 at 02:13:10PM -0600, Rob Herring wrote:
+> > On Wed, Sep 02, 2020 at 09:18:08AM +0200, Krzysztof Kozlowski wrote:
+> > > Add bindings for the IMX258 camera sensor.  The bindings, just like the
+> > > driver, are quite limited, e.g. do not support regulator supplies.
 > >
-> > This doesn't match the existing bluestone dts file.
+> > Bindings should be complete, not what a driver happens to currently
+> > support.
+>
+> I'll add then more complete picture.
+>
 > >
-> > Please separate any restructuring from changes.
+> > >
+> > > Signed-off-by: Krzysztof Kozlowski <krzk@kernel.org>
+> > >
+> > > ---
+> > >
+> > > Changes since v1:
+> > > 1. None
+> > > ---
+> > >  .../devicetree/bindings/media/i2c/imx258.yaml      | 92 ++++++++++++++++++++++
+> > >  MAINTAINERS                                        |  1 +
+> > >  2 files changed, 93 insertions(+)
+> > >  create mode 100644 Documentation/devicetree/bindings/media/i2c/imx258.yaml
+> > >
+> > > diff --git a/Documentation/devicetree/bindings/media/i2c/imx258.yaml b/Documentation/devicetree/bindings/media/i2c/imx258.yaml
+> > > new file mode 100644
+> > > index 000000000000..ef789ad31143
+> > > --- /dev/null
+> > > +++ b/Documentation/devicetree/bindings/media/i2c/imx258.yaml
+> > > @@ -0,0 +1,92 @@
+> > > +# SPDX-License-Identifier: (GPL-2.0-only OR BSD-2-Clause)
+> > > +%YAML 1.2
+> > > +---
+> > > +$id: http://devicetree.org/schemas/media/i2c/imx258.yaml#
+> > > +$schema: http://devicetree.org/meta-schemas/core.yaml#
+> > > +
+> > > +title: Sony IMX258 13 Mpixel CMOS Digital Image Sensor
+> > > +
+> > > +maintainers:
+> > > +  - Krzysztof Kozlowski <krzk@kernel.org>
+> > > +
+> > > +description: |-
+> > > +  IMX258 is a diagonal 5.867mm (Type 1/3.06) 13 Mega-pixel CMOS active pixel
+> > > +  type stacked image sensor with a square pixel array of size 4208 x 3120. It
+> > > +  is programmable through I2C interface.  Image data is sent through MIPI
+> > > +  CSI-2.
+> > > +
+> > > +properties:
+> > > +  compatible:
+> > > +    const: sony,imx258
+> > > +
+> > > +  clocks:
+> > > +    maxItems: 1
+> > > +
+> > > +  clock-frequency:
+> > > +    description: Frequency of input clock if clock is not provided
+> > > +    deprecated: true
+> >
+> > Why are we adding something deprecated on a new binding?
 >
+> My intention was also to document it but indeed easier to skip it.
 >
-> "I see" (I'm including your comment of the dt-binding as well).
+> >
+> > > +    const: 19200000
+> > > +
+> > > +  reg:
+> > > +    maxItems: 1
+> > > +
+> > > +  # See ../video-interfaces.txt for more details
+> > > +  port:
+> > > +    type: object
+> > > +    properties:
+> > > +      endpoint:
+> > > +        type: object
+> > > +        properties:
+> > > +          data-lanes:
+> > > +            items:
+> > > +              - const: 1
+> > > +              - const: 2
+> > > +              - const: 3
+> > > +              - const: 4
+> >
+> > If this is the only config, why does it need to be in DT?
 >
-> I'm getting the vibe that I better should not touch that bluestone.dts.
-
-I don't know about that.
-
-> An honestly, looking at the series and patches that the APM-engineers
-> posted back in the day, I can see why this well is so poisoned... and
-> stuff like SATA/AHBDMA/USB/GPIO/CPM/... was missing.
+> The sensor is capable of two settings: two lanes (1 and 2) and four
+> lanes described above.  However Linux driver requires the latter (four
+> lanes, 1+2+3+4).
 >
-> As for the devices. In the spirit of Arnd Bergmann's post of
-> <https://lkml.org/lkml/2020/3/30/195>
+> If I were to describe the bindings for HW, someone would really be
+> confused and try to use two lanes setup, which won't work. Driver won't
+> allow it.
+
+If someone has h/w with only 2 lanes connected, then they have to go
+add support to the driver whether we've documented 2 lanes in the
+binding or not.
+
+> I understand that bindings document the HW and describe its interface
+> but do we really want to put "theoretical" bindings which cannot be used
+> in practice with Linux kernel?
 >
-> |It would be nice to move over the the bluestone .dts to the apm82181.dtsi file
-> |when that gets added, if only to ensure they use the same description for each
-> |node, but that shouldn't stop the addition of the new file if that is needed for
-> |distros to make use of a popular device.
-> |I see a couple of additional files in openwrt.
->
-> I mean I don't have the bluestone dev board, just the consumer devices.
+> If yes, how to nicely document this that only one setting is currently
+> working?
 
-This stuff is old enough, I'd guess no one cares about a dev board.
-But we should figure that out and document that with any changes.
-
-> Would it be possible to support those? I can start from a "skeleton" apm82181.dtsi
-> This would just include CPU, Memory (SD-RAM+L2C+OCM), UIC (Interrupt-Controller),
-> the PLB+OBP+EBC Busses and UART. Just enough to make a board "boot from ram".
-
-This skeleton would be chunks moved over or duplicated? I don't think
-we want 2 of the same thing.
-
-The order I would go is split into an apm82181.dtsi with 0 changes to
-the built dtb(s). Then make changes/additions you need. As far as
-changes to existing bindings, it's only an ABI if someone notices.
-
+You don't, at least in the binding. That's a driver issue. Bindings
+are separate. They are stored in the kernel tree for convenience, not
+because they are part of the kernel.
 
 Rob
