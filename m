@@ -2,103 +2,54 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from vger.kernel.org (vger.kernel.org [23.128.96.18])
-	by mail.lfdr.de (Postfix) with ESMTP id E228A273B0B
-	for <lists+devicetree@lfdr.de>; Tue, 22 Sep 2020 08:42:47 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTP id 29DD5273B0C
+	for <lists+devicetree@lfdr.de>; Tue, 22 Sep 2020 08:42:48 +0200 (CEST)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S1726593AbgIVGmq (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        id S1726556AbgIVGmq (ORCPT <rfc822;lists+devicetree@lfdr.de>);
         Tue, 22 Sep 2020 02:42:46 -0400
-Received: from lindbergh.monkeyblade.net ([23.128.96.19]:50150 "EHLO
-        lindbergh.monkeyblade.net" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S1726556AbgIVGmq (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Tue, 22 Sep 2020 02:42:46 -0400
-Received: from mail-pg1-x543.google.com (mail-pg1-x543.google.com [IPv6:2607:f8b0:4864:20::543])
-        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 5A0FAC061755
-        for <devicetree@vger.kernel.org>; Mon, 21 Sep 2020 23:42:46 -0700 (PDT)
-Received: by mail-pg1-x543.google.com with SMTP id 7so11123362pgm.11
-        for <devicetree@vger.kernel.org>; Mon, 21 Sep 2020 23:42:46 -0700 (PDT)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=gmail.com; s=20161025;
-        h=sender:from:to:cc:subject:date:message-id:mime-version
-         :content-transfer-encoding;
-        bh=H28rZwyuk612Q+lpk1xxhaA0RWkt3kwFSekiba8ihFE=;
-        b=BNTL7CFbjq85ImK3WIt2do07sGw2Bl4V1i+bW/AEaFDo6tq0uo3qH3TpYKMmNkmYOT
-         syuHyww8EC1HWKU+MlCWUzRI7WFAubp9gGy9uRAHGQhMlzVbeJ2f+HO20dHBPzq1CBQj
-         DPkeypU4fFIzYzEI/MFKqefV4vqcC9p6Nqp1CDITYHb/+yOVOR/ctwlbzZiQmejdaXWN
-         0jUDp5v0yaUSDDOJ5g9i8b8+ISCfINiu/Wr0xuPBx6NT2hhfeIWJmWs5it5/kXA5xzQb
-         kSfDebRrCe3yIyTaWCAsmcceiZjNA2PP+Xp+OuDa7iRCOcV6m8A59mH9gAf581qs4qwr
-         quzw==
-X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=1e100.net; s=20161025;
-        h=x-gm-message-state:sender:from:to:cc:subject:date:message-id
-         :mime-version:content-transfer-encoding;
-        bh=H28rZwyuk612Q+lpk1xxhaA0RWkt3kwFSekiba8ihFE=;
-        b=DY27ahZTtw681sJ3GeD+XJ5j3lyI4Or9HXOvsQgbwEAc+uwF/khKGvojKCBAOUWZJW
-         Z0XjhZW+RNdM8fb3ZUZv2ooG2ntr7j1uctloMWlHvDO77ETqBbHlu9yhbgrtzzE7g0jd
-         Ft0znjBnVyWEXJQvQWzj+w1N+enYgLHd9tOCiFfurF/GsztEJfATYcBPRNgAIIT2LMBm
-         3rb1Dt6f662Zb+3j/I4rwwSUxP/drGNUeUU2yAXsJkIv6+PGhorhQ9/wDyloOW6zxDYL
-         /ZI+tKS5314nvzRFm+fyO2EtCKHrHM94PVX3e1/kk6wkbglyNE7bt/mLenpSdizv/txv
-         usEg==
-X-Gm-Message-State: AOAM532e4CZmV24QCG0b7HdNlFRJJ+niNdYpeV8C8dJwAe6Nrwk3lSPC
-        MpiW/O+fuF0AsVuYqZBOgVNMrwv8yls=
-X-Google-Smtp-Source: ABdhPJyfw8Nl/Q3xJbsqSbwMLaScoWWOd4fXHBRKL688qNWWmA0geWMPpv3buGpT2Wi78aHY6jyFHg==
-X-Received: by 2002:a63:fd08:: with SMTP id d8mr655202pgh.223.1600756965682;
-        Mon, 21 Sep 2020 23:42:45 -0700 (PDT)
-Received: from localhost.localdomain ([45.124.203.18])
-        by smtp.gmail.com with ESMTPSA id t3sm1267350pje.43.2020.09.21.23.42.41
-        (version=TLS1_3 cipher=TLS_AES_256_GCM_SHA384 bits=256/256);
-        Mon, 21 Sep 2020 23:42:44 -0700 (PDT)
-Sender: "joel.stan@gmail.com" <joel.stan@gmail.com>
-From:   Joel Stanley <joel@jms.id.au>
-To:     Andrew Jeffery <andrew@aj.id.au>,
-        James Feist <james.feist@linux.intel.com>
-Cc:     linux-arm-kernel@lists.infradead.org, devicetree@vger.kernel.org,
-        linux-aspeed@lists.ozlabs.org,
-        John Wang <wangzhiqiang.bj@bytedance.com>
-Subject: [PATCH] ARM: dts: aspeed: s2600wf: Fix VGA memory region location
-Date:   Tue, 22 Sep 2020 16:12:34 +0930
-Message-Id: <20200922064234.163799-1-joel@jms.id.au>
-X-Mailer: git-send-email 2.28.0
+Received: from mail.kernel.org ([198.145.29.99]:47556 "EHLO mail.kernel.org"
+        rhost-flags-OK-OK-OK-OK) by vger.kernel.org with ESMTP
+        id S1726480AbgIVGmq (ORCPT <rfc822;devicetree@vger.kernel.org>);
+        Tue, 22 Sep 2020 02:42:46 -0400
+Received: from dragon (80.251.214.228.16clouds.com [80.251.214.228])
+        (using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
+        (No client certificate requested)
+        by mail.kernel.org (Postfix) with ESMTPSA id 4A7F622574;
+        Tue, 22 Sep 2020 06:42:40 +0000 (UTC)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=kernel.org;
+        s=default; t=1600756966;
+        bh=TcwjS0gIeYfzWZ2jhdKwHpOurpIu5QsxB1wZVZCTl64=;
+        h=Date:From:To:Cc:Subject:References:In-Reply-To:From;
+        b=BSCuIO+Sc9eIcJt7nX0HE2t+xttbmPP3iuBTu9pzhLAvXWTLBx1YhSpkU5rTDAeYq
+         x9tHxLQTrCyxv5cDvh+Lafoy9H2BnSBOxroFB1UXSXDVxG2zK8nto+E6Vpl/9wWY8k
+         OvoGG3Ha2Ur0G3SZTQgDtPCrYkVs2H0dIq1EQtMw=
+Date:   Tue, 22 Sep 2020 14:42:35 +0800
+From:   Shawn Guo <shawnguo@kernel.org>
+To:     Krzysztof Kozlowski <krzk@kernel.org>
+Cc:     Rob Herring <robh+dt@kernel.org>,
+        Sascha Hauer <s.hauer@pengutronix.de>,
+        Pengutronix Kernel Team <kernel@pengutronix.de>,
+        Fabio Estevam <festevam@gmail.com>,
+        NXP Linux Team <linux-imx@nxp.com>,
+        devicetree@vger.kernel.org, linux-arm-kernel@lists.infradead.org,
+        linux-kernel@vger.kernel.org
+Subject: Re: [PATCH] arm64: dts: imx8mm-var-som-symphony: Drop wake-up source
+ from RTC
+Message-ID: <20200922064232.GF25109@dragon>
+References: <20200919140647.4373-1-krzk@kernel.org>
 MIME-Version: 1.0
-Content-Transfer-Encoding: 8bit
+Content-Type: text/plain; charset=us-ascii
+Content-Disposition: inline
+In-Reply-To: <20200919140647.4373-1-krzk@kernel.org>
+User-Agent: Mutt/1.9.4 (2018-02-28)
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-The VGA memory region is always from the top of RAM. On this board, that
-is 0x80000000 + 0x20000000 - 0x01000000 = 0x9f000000.
+On Sat, Sep 19, 2020 at 04:06:47PM +0200, Krzysztof Kozlowski wrote:
+> The RTC on Symphony board does not have its interrupt pin connected to
+> the SoC, therefore it is not capable of waking up.
+> 
+> Signed-off-by: Krzysztof Kozlowski <krzk@kernel.org>
 
-This was not an issue in practice as the region is "reserved" by the
-vendor's u-boot reducing the amount of available RAM, and the only user
-is the host VGA device poking at RAM over PCIe. That is, nothing from
-the ARM touches it.
-
-It is worth fixing as developers copy existing device trees when
-building their machines, and the XDMA driver does use the memory region
-from the ARM side.
-
-Fixes: c4043ecac34a ("ARM: dts: aspeed: Add S2600WF BMC Machine")
-Reported-by: John Wang <wangzhiqiang.bj@bytedance.com>
-Signed-off-by: Joel Stanley <joel@jms.id.au>
----
- arch/arm/boot/dts/aspeed-bmc-intel-s2600wf.dts | 4 ++--
- 1 file changed, 2 insertions(+), 2 deletions(-)
-
-diff --git a/arch/arm/boot/dts/aspeed-bmc-intel-s2600wf.dts b/arch/arm/boot/dts/aspeed-bmc-intel-s2600wf.dts
-index 1deb30ec912c..6e9baf3bba53 100644
---- a/arch/arm/boot/dts/aspeed-bmc-intel-s2600wf.dts
-+++ b/arch/arm/boot/dts/aspeed-bmc-intel-s2600wf.dts
-@@ -22,9 +22,9 @@ reserved-memory {
- 		#size-cells = <1>;
- 		ranges;
- 
--		vga_memory: framebuffer@7f000000 {
-+		vga_memory: framebuffer@9f000000 {
- 			no-map;
--			reg = <0x7f000000 0x01000000>;
-+			reg = <0x9f000000 0x01000000>; /* 16M */
- 		};
- 	};
- 
--- 
-2.28.0
-
+Applied, thanks.
