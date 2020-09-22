@@ -2,174 +2,166 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from vger.kernel.org (vger.kernel.org [23.128.96.18])
-	by mail.lfdr.de (Postfix) with ESMTP id DEDE1273948
-	for <lists+devicetree@lfdr.de>; Tue, 22 Sep 2020 05:31:46 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTP id 532E0273945
+	for <lists+devicetree@lfdr.de>; Tue, 22 Sep 2020 05:31:35 +0200 (CEST)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S1728747AbgIVDbq (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Mon, 21 Sep 2020 23:31:46 -0400
-Received: from gateway22.websitewelcome.com ([192.185.47.109]:15867 "EHLO
-        gateway22.websitewelcome.com" rhost-flags-OK-OK-OK-OK)
-        by vger.kernel.org with ESMTP id S1728384AbgIVDbq (ORCPT
-        <rfc822;devicetree@vger.kernel.org>);
-        Mon, 21 Sep 2020 23:31:46 -0400
-X-Greylist: delayed 1499 seconds by postgrey-1.27 at vger.kernel.org; Mon, 21 Sep 2020 23:31:45 EDT
-Received: from cm13.websitewelcome.com (cm13.websitewelcome.com [100.42.49.6])
-        by gateway22.websitewelcome.com (Postfix) with ESMTP id E3C152EC3
-        for <devicetree@vger.kernel.org>; Mon, 21 Sep 2020 21:46:24 -0500 (CDT)
-Received: from br164.hostgator.com.br ([192.185.176.180])
-        by cmsmtp with SMTP
-        id KYK0k3EGgXp2AKYK0k42XO; Mon, 21 Sep 2020 21:46:24 -0500
-X-Authority-Reason: nr=8
-DKIM-Signature: v=1; a=rsa-sha256; q=dns/txt; c=relaxed/relaxed;
-        d=castello.eng.br; s=default; h=Content-Transfer-Encoding:Content-Type:
-        MIME-Version:References:In-Reply-To:Message-Id:Date:Subject:Cc:To:From:Sender
-        :Reply-To:Content-ID:Content-Description:Resent-Date:Resent-From:
-        Resent-Sender:Resent-To:Resent-Cc:Resent-Message-ID:List-Id:List-Help:
-        List-Unsubscribe:List-Subscribe:List-Post:List-Owner:List-Archive;
-        bh=9Y9J//FeBwV9/JkWvBY23E+3tD7zsxvwKo/8wJze+io=; b=ao/rCG591ogC546X8noN3XPHOb
-        lBF1by02XVrFPsZ7G4DQHAbV+s4ZnRXx7RcjBQ54XdOODtHBW8OrOHBNoo+sPkXxGXd7opLNIPj56
-        35Kvanek7aHIj+CDFalOM3BA+jbFOMh6oAdnDH7/s5LBodSBHJ3urfnh+ELr/kriQwOqopOSd+PBf
-        CA5iP/P23zmE3QBFyHAvf04YoTkaCGtPY+wHIMWmQMb3hqN+7W5QqoV7WSNDxi1+3h2/a9cEp/AAy
-        erxYbH/U/njIBMh8/moKfUrnW7tt+/z5njNBy7zEchQnUT1X/q210Cld8SR+hQfcyNg9rxlN80yiM
-        ecNyVszQ==;
-Received: from 179-197-124-241.user.veloxzone.com.br ([179.197.124.241]:43534 helo=localhost.localdomain)
-        by br164.hostgator.com.br with esmtpsa  (TLS1.2) tls TLS_ECDHE_RSA_WITH_AES_128_GCM_SHA256
-        (Exim 4.93)
-        (envelope-from <matheus@castello.eng.br>)
-        id 1kKYK0-000jSR-A0; Mon, 21 Sep 2020 23:46:24 -0300
-From:   Matheus Castello <matheus@castello.eng.br>
-To:     manivannan.sadhasivam@linaro.org, afaerber@suse.de,
-        mark.rutland@arm.com, robh+dt@kernel.org
-Cc:     edgar.righi@lsitec.org.br, igor.lima@lsitec.org.br,
-        helen.koike@collabora.com, linux-arm-kernel@lists.infradead.org,
-        devicetree@vger.kernel.org, linux-kernel@vger.kernel.org,
-        linux-actions@lists.infradead.org,
-        Matheus Castello <matheus@castello.eng.br>
-Subject: [PATCH v7 3/4] ARM: dts: Add Caninos Loucos Labrador v2
-Date:   Mon, 21 Sep 2020 23:43:01 -0300
-Message-Id: <20200922024302.205062-4-matheus@castello.eng.br>
-X-Mailer: git-send-email 2.28.0
-In-Reply-To: <20200922024302.205062-1-matheus@castello.eng.br>
-References: <20200922024302.205062-1-matheus@castello.eng.br>
+        id S1728472AbgIVDbe (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Mon, 21 Sep 2020 23:31:34 -0400
+Received: from mail-eopbgr20082.outbound.protection.outlook.com ([40.107.2.82]:50151
+        "EHLO EUR02-VE1-obe.outbound.protection.outlook.com"
+        rhost-flags-OK-OK-OK-FAIL) by vger.kernel.org with ESMTP
+        id S1728384AbgIVDbd (ORCPT <rfc822;devicetree@vger.kernel.org>);
+        Mon, 21 Sep 2020 23:31:33 -0400
+ARC-Seal: i=1; a=rsa-sha256; s=arcselector9901; d=microsoft.com; cv=none;
+ b=Kwx+3gRieft31bl2bgicmnv2HNRuLEgojwD63aZUq0oqKJ0r+CyGGqIH7fR+hyPEJIk2BTUFeWSPthgI+IZNLhfhZUIBpEVjmjnwpy6lnfxNh4r/5cfai/jYHjcg3KaCz1negVWhs599LtgFHAoDXZsYzif4tPsqbT7JjGdPzcjz22Ce/mCISZ/dm5wLv5g4W1f85qof0HA2xnS/QkK/nRYzH84ZFU+ynVXVItw+XO06IAWE7twRttYG1B7zu05uSSQ9AiiwWC/fdeSCx0SFmpkW04H4S9ky2F/ZGyxXvjLheQo6/+Rj9iGXT9lcFMj+NM1o82Dg+hqs9NIO9XUj8A==
+ARC-Message-Signature: i=1; a=rsa-sha256; c=relaxed/relaxed; d=microsoft.com;
+ s=arcselector9901;
+ h=From:Date:Subject:Message-ID:Content-Type:MIME-Version:X-MS-Exchange-SenderADCheck;
+ bh=GU1k64oEQvch76CeoUFEPwYtawiceG0vqtkUm69rgzQ=;
+ b=G8jU34kbA0h8VdUAYqY9HeP25QrX0G0HP4hRPPHFCurACtUBRap8nBz2aQ79gPw4KaSyFy9THxBj2beW1/Yp8h4BiHgDgFQyTGKxPfsAvGw6DtwJRg0CWHwi9NF5pIccZXRdMOoCiUJ4QwPLZzXK/ftpVgGdoYRmkzPyt6jsgkt4mj5+iEL9xzlU2+QXKSH+S7xTEHtaJ75DsEO85zK6t8R5ylwqOFS87Gj+iC8Ix/Vslfz3fpix1JJXJh4yz6ANIo5pAeS+mAkLlwsqDzrmGyRELK5VkT1+8fr6gi3s+KxtUZN4ZfCOtQZvJTZZdmwm0RUFsM5j8empjHG/KBOlmA==
+ARC-Authentication-Results: i=1; mx.microsoft.com 1; spf=pass
+ smtp.mailfrom=nxp.com; dmarc=pass action=none header.from=nxp.com; dkim=pass
+ header.d=nxp.com; arc=none
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=nxp.com; s=selector2;
+ h=From:Date:Subject:Message-ID:Content-Type:MIME-Version:X-MS-Exchange-SenderADCheck;
+ bh=GU1k64oEQvch76CeoUFEPwYtawiceG0vqtkUm69rgzQ=;
+ b=B/gcyapd35y537e39FB59NXXgkslcUQ2HOsGBqJAlvJD0P9+8oRnVF5sofi8Mp8hkwc/2r+GSjRRtohzwZkvBsaUebCeLuGhrbKE7A9bxikRW9e/ZFCneR7CCG/t8Sq0ZKIysLpcv7vtXf1rj5Qit5bAnHSxIYYAc4MbSK3krRg=
+Received: from DB6PR0401MB2438.eurprd04.prod.outlook.com (2603:10a6:4:33::14)
+ by DB6PR04MB3237.eurprd04.prod.outlook.com (2603:10a6:6:c::33) with Microsoft
+ SMTP Server (version=TLS1_2, cipher=TLS_ECDHE_RSA_WITH_AES_256_GCM_SHA384) id
+ 15.20.3391.17; Tue, 22 Sep 2020 03:31:28 +0000
+Received: from DB6PR0401MB2438.eurprd04.prod.outlook.com
+ ([fe80::c8a:a759:d4ba:181e]) by DB6PR0401MB2438.eurprd04.prod.outlook.com
+ ([fe80::c8a:a759:d4ba:181e%7]) with mapi id 15.20.3391.025; Tue, 22 Sep 2020
+ 03:31:28 +0000
+From:   Biwen Li <biwen.li@nxp.com>
+To:     Leo Li <leoyang.li@nxp.com>, Shawn Guo <shawnguo@kernel.org>,
+        "Biwen Li (OSS)" <biwen.li@oss.nxp.com>
+CC:     "alexandre.belloni@bootlin.com" <alexandre.belloni@bootlin.com>,
+        "robh+dt@kernel.org" <robh+dt@kernel.org>,
+        "mark.rutland@arm.com" <mark.rutland@arm.com>,
+        "devicetree@vger.kernel.org" <devicetree@vger.kernel.org>,
+        "linux-kernel@vger.kernel.org" <linux-kernel@vger.kernel.org>,
+        Jiafei Pan <jiafei.pan@nxp.com>,
+        "linux-rtc@vger.kernel.org" <linux-rtc@vger.kernel.org>
+Subject: RE: [EXT] Re: [PATCH 2/5] arm64: dts: lx2160a-rdb: remove useless
+ property of rtc
+Thread-Topic: [EXT] Re: [PATCH 2/5] arm64: dts: lx2160a-rdb: remove useless
+ property of rtc
+Thread-Index: AQHWizOOGLxVV6x4KkO7cstIkfxRIKl0Ax6AgAAAVACAAAcQAIAAADuw
+Date:   Tue, 22 Sep 2020 03:31:28 +0000
+Message-ID: <DB6PR0401MB243883AEA75F615A0768D03E8F3B0@DB6PR0401MB2438.eurprd04.prod.outlook.com>
+References: <20200915073213.12779-1-biwen.li@oss.nxp.com>
+ <20200915073213.12779-2-biwen.li@oss.nxp.com> <20200922030208.GY25109@dragon>
+ <DB6PR0401MB2438ABB1DFE785F9EAADB69E8F3B0@DB6PR0401MB2438.eurprd04.prod.outlook.com>
+ <VE1PR04MB6687237BD5D137C4B9EC6DBD8F3B0@VE1PR04MB6687.eurprd04.prod.outlook.com>
+In-Reply-To: <VE1PR04MB6687237BD5D137C4B9EC6DBD8F3B0@VE1PR04MB6687.eurprd04.prod.outlook.com>
+Accept-Language: zh-CN, en-US
+Content-Language: en-US
+X-MS-Has-Attach: 
+X-MS-TNEF-Correlator: 
+authentication-results: nxp.com; dkim=none (message not signed)
+ header.d=none;nxp.com; dmarc=none action=none header.from=nxp.com;
+x-originating-ip: [119.31.174.73]
+x-ms-publictraffictype: Email
+x-ms-office365-filtering-ht: Tenant
+x-ms-office365-filtering-correlation-id: 8505f182-78de-4b85-2026-08d85ea7fe17
+x-ms-traffictypediagnostic: DB6PR04MB3237:
+x-ms-exchange-transport-forked: True
+x-microsoft-antispam-prvs: <DB6PR04MB3237D857B43882786C597E988F3B0@DB6PR04MB3237.eurprd04.prod.outlook.com>
+x-ms-oob-tlc-oobclassifiers: OLM:6430;
+x-ms-exchange-senderadcheck: 1
+x-microsoft-antispam: BCL:0;
+x-microsoft-antispam-message-info: FCEldsIuUEB1260hsEib7as+fOhEkA3q24E7ZwTNmDhzZsQa6UXOb4Wv9QAmQ8sLdDDWXAYquqnOBERV9E64PciswENihCi76eIb9rs3an9j8S2YFWVlcPOqP0SGdQzfGrWt1thrc1/Pvz8XdZG9S9cLI5lJUfEB4UdcNpLmf4S0BwuzrUxhBDsHnlStBIZHPbRDzvlnjP8yFICAiMF6mhAXIVT4QRwE9kh89Wn6FLy2XqJhRwbzGaL5Ctirk47JtYA2hoS0b/m2lUtKWV/7Ky91sztqdWOyC/kJTAlEcBMvRxDELRfEszVK5/T+F7F4mSc7wTlXggolIycFUM/+Lw==
+x-forefront-antispam-report: CIP:255.255.255.255;CTRY:;LANG:en;SCL:1;SRV:;IPV:NLI;SFV:NSPM;H:DB6PR0401MB2438.eurprd04.prod.outlook.com;PTR:;CAT:NONE;SFS:(4636009)(39860400002)(366004)(376002)(346002)(396003)(136003)(110136005)(2906002)(4326008)(86362001)(83380400001)(71200400001)(186003)(26005)(7696005)(54906003)(33656002)(6506007)(53546011)(44832011)(8676002)(8936002)(55016002)(76116006)(64756008)(5660300002)(66476007)(66946007)(9686003)(66556008)(66446008)(52536014)(478600001)(316002);DIR:OUT;SFP:1101;
+x-ms-exchange-antispam-messagedata: 9eHXwu2jcvlt6ac5eEO6DiC/dyNdzsBgJMl9nGFQ33D9U8MIef7h+BmJunVVL9EZ7n7rwdY54kqWkdjiISBaLyX/7o5EfKwLTmSRFfmP80fzPXjIAoou+o0ZDWW+7y74TnKR8BpD+IpNjLtt1OI7VuUzPnN5CBEQvw+GmGq6C67sNh5d4zla2IKFZetHR71V1NuAATaiwVzrQnQRZ9AyOiRXhwI2Y31vuG7juXV+x1wOyoWvOW59BrXmM7X726+i6P0YgvqBLan2KGIRIKmfdMmNNmUoxOGZggD7EYrvH3L6oXls15NPacEqLMimIUYhtZZsmgU3jMUiH7xW2PHqHULDDmuhp2WdfKp6IovN9LTdPYWN6Z6SsE1jnqM/I/LVy5hslMaV43jQzvdc5kaFfDOtgoanDK2wjmq2zSxSFqnrSDIQ1mzZh5iclafYLBoruJrub+prS2JmpS4N2mQqO9KtgyYWu/n0nD+VSQ1BiO0cc00FAHV8eI9AD3JAFp8rn6Qf/l/q7bnVq9LXNGeIvvh6O77sFNqrZ6l35d1kE7yNaf7qRSM4XrqK59PJQ0OcPjUGwG0dwDnu1wwN1+v2Tbrnq0b771W5NnnQBRt/xsSETvbjiQXgrStHwduwKuoZopVJId/Vv9NwrrmuU0qyVA==
+Content-Type: text/plain; charset="us-ascii"
+Content-Transfer-Encoding: quoted-printable
 MIME-Version: 1.0
-Content-Type: text/plain; charset=UTF-8
-Content-Transfer-Encoding: 8bit
-X-AntiAbuse: This header was added to track abuse, please include it with any abuse report
-X-AntiAbuse: Primary Hostname - br164.hostgator.com.br
-X-AntiAbuse: Original Domain - vger.kernel.org
-X-AntiAbuse: Originator/Caller UID/GID - [47 12] / [47 12]
-X-AntiAbuse: Sender Address Domain - castello.eng.br
-X-BWhitelist: no
-X-Source-IP: 179.197.124.241
-X-Source-L: No
-X-Exim-ID: 1kKYK0-000jSR-A0
-X-Source: 
-X-Source-Args: 
-X-Source-Dir: 
-X-Source-Sender: 179-197-124-241.user.veloxzone.com.br (localhost.localdomain) [179.197.124.241]:43534
-X-Source-Auth: matheus@castello.eng.br
-X-Email-Count: 45
-X-Source-Cap: Y2FzdGUyNDg7Y2FzdGUyNDg7YnIxNjQuaG9zdGdhdG9yLmNvbS5icg==
-X-Local-Domain: yes
+X-OriginatorOrg: nxp.com
+X-MS-Exchange-CrossTenant-AuthAs: Internal
+X-MS-Exchange-CrossTenant-AuthSource: DB6PR0401MB2438.eurprd04.prod.outlook.com
+X-MS-Exchange-CrossTenant-Network-Message-Id: 8505f182-78de-4b85-2026-08d85ea7fe17
+X-MS-Exchange-CrossTenant-originalarrivaltime: 22 Sep 2020 03:31:28.7513
+ (UTC)
+X-MS-Exchange-CrossTenant-fromentityheader: Hosted
+X-MS-Exchange-CrossTenant-id: 686ea1d3-bc2b-4c6f-a92c-d99c5c301635
+X-MS-Exchange-CrossTenant-mailboxtype: HOSTED
+X-MS-Exchange-CrossTenant-userprincipalname: PD/NxpMqlnJ82PrMcZoYEEf/dM5b4Y1H2dCFwNUaLtqVNQgKUgIL5Gs8JHrvSY2abfhD5sPFZd7TzCwB1kwCpA==
+X-MS-Exchange-Transport-CrossTenantHeadersStamped: DB6PR04MB3237
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-Add Device Trees for Caninos Loucos Labrador CoM Core v2 and base board
-M v1. Based on the work of Andreas Färber on Lemaker Guitar device tree.
+>=20
+>=20
+>=20
+> > -----Original Message-----
+> > From: Biwen Li <biwen.li@nxp.com>
+> > Sent: Monday, September 21, 2020 10:13 PM
+> > To: Shawn Guo <shawnguo@kernel.org>; Biwen Li (OSS)
+> > <biwen.li@oss.nxp.com>
+> > Cc: alexandre.belloni@bootlin.com; Leo Li <leoyang.li@nxp.com>;
+> > robh+dt@kernel.org; mark.rutland@arm.com; devicetree@vger.kernel.org;
+> > linux-kernel@vger.kernel.org; Jiafei Pan <jiafei.pan@nxp.com>; linux-
+> > rtc@vger.kernel.org
+> > Subject: RE: [EXT] Re: [PATCH 2/5] arm64: dts: lx2160a-rdb: remove
+> > useless property of rtc
+> >
+> > >
+> > > Caution: EXT Email
+> > >
+> > > On Tue, Sep 15, 2020 at 03:32:10PM +0800, Biwen Li wrote:
+> > > > From: Biwen Li <biwen.li@nxp.com>
+> > > >
+> > > > Remove useless property interrupts of rtc
+> > > >
+> > > > Signed-off-by: Biwen Li <biwen.li@nxp.com>
+> > > > ---
+> > > >  arch/arm64/boot/dts/freescale/fsl-lx2160a-rdb.dts | 2 --
+> > > >  1 file changed, 2 deletions(-)
+> > > >
+> > > > diff --git a/arch/arm64/boot/dts/freescale/fsl-lx2160a-rdb.dts
+> > > > b/arch/arm64/boot/dts/freescale/fsl-lx2160a-rdb.dts
+> > > > index dce79018d397..e9e982176e07 100644
+> > > > --- a/arch/arm64/boot/dts/freescale/fsl-lx2160a-rdb.dts
+> > > > +++ b/arch/arm64/boot/dts/freescale/fsl-lx2160a-rdb.dts
+> > > > @@ -171,8 +171,6 @@
+> > > >       rtc@51 {
+> > > >               compatible =3D "nxp,pcf2129";
+> > > >               reg =3D <0x51>;
+> > > > -             // IRQ10_B
+> > > > -             interrupts =3D <0 150 0x4>;
+> > >
+> > > If it's a correct description of hardware, I do not see why we would
+> > > need to remove it.
+> > Hi Shawn,
+> >
+> > Don't need use the interrupt, only read time from rtc.
+>=20
+> User probably will choose to use the alarm feature of the RTC and need th=
+e
+> interrupt property.  Is there any issue when the interrupt property is pr=
+esent?
+Generic interrupt controller on layerscape only support  IRQ_TYPE_LEVEL_HIG=
+H and  IRQ_TYPE_EDGE_RISING(except SoC LS1043A, LS1046A),
+Not support IRQ_TYPE_LEVEL_LOW,
+In drivers/rtc/rtc-pcf2127.c
+ret =3D devm_request_threaded_irq(dev, alarm_irq, NULL,
+pcf2127_rtc_irq,
+IRQF_TRIGGER_LOW | IRQF_ONESHOT,
+dev_name(dev), dev);
 
-Signed-off-by: Matheus Castello <matheus@castello.eng.br>
-Reviewed-by: Manivannan Sadhasivam <manivannan.sadhasivam@linaro.org>
-Reviewed-by: Andreas Färber <afaerber@suse.de>
----
- arch/arm/boot/dts/Makefile                    |  1 +
- .../arm/boot/dts/owl-s500-labrador-base-m.dts | 35 +++++++++++++++++++
- arch/arm/boot/dts/owl-s500-labrador-v2.dtsi   | 22 ++++++++++++
- 3 files changed, 58 insertions(+)
- create mode 100644 arch/arm/boot/dts/owl-s500-labrador-base-m.dts
- create mode 100644 arch/arm/boot/dts/owl-s500-labrador-v2.dtsi
-
-diff --git a/arch/arm/boot/dts/Makefile b/arch/arm/boot/dts/Makefile
-index 4572db3fa5ae..5d5e370af290 100644
---- a/arch/arm/boot/dts/Makefile
-+++ b/arch/arm/boot/dts/Makefile
-@@ -868,6 +868,7 @@ dtb-$(CONFIG_ARCH_ORION5X) += \
- dtb-$(CONFIG_ARCH_ACTIONS) += \
- 	owl-s500-cubieboard6.dtb \
- 	owl-s500-guitar-bb-rev-b.dtb \
-+	owl-s500-labrador-base-m.dtb \
- 	owl-s500-sparky.dtb
- dtb-$(CONFIG_ARCH_PRIMA2) += \
- 	prima2-evb.dtb
-diff --git a/arch/arm/boot/dts/owl-s500-labrador-base-m.dts b/arch/arm/boot/dts/owl-s500-labrador-base-m.dts
-new file mode 100644
-index 000000000000..c92f8bdcb331
---- /dev/null
-+++ b/arch/arm/boot/dts/owl-s500-labrador-base-m.dts
-@@ -0,0 +1,35 @@
-+// SPDX-License-Identifier: (GPL-2.0+ OR MIT)
-+/*
-+ * Caninos Labrador Base Board
-+ *
-+ * Copyright (c) 2019-2020 Matheus Castello
-+ */
-+
-+/dts-v1/;
-+
-+#include "owl-s500-labrador-v2.dtsi"
-+
-+/ {
-+	model = "Caninos Labrador Core v2 on Labrador Base-M v1";
-+	compatible = "caninos,labrador-base-m",
-+		     "caninos,labrador-v2", "actions,s500";
-+
-+	aliases {
-+		serial3 = &uart3;
-+	};
-+
-+	chosen {
-+		stdout-path = "serial3:115200n8";
-+	};
-+
-+	uart3_clk: uart3-clk {
-+		compatible = "fixed-clock";
-+		clock-frequency = <921600>;
-+		#clock-cells = <0>;
-+	};
-+};
-+
-+&uart3 {
-+	status = "okay";
-+	clocks = <&uart3_clk>;
-+};
-diff --git a/arch/arm/boot/dts/owl-s500-labrador-v2.dtsi b/arch/arm/boot/dts/owl-s500-labrador-v2.dtsi
-new file mode 100644
-index 000000000000..883ff2f9886d
---- /dev/null
-+++ b/arch/arm/boot/dts/owl-s500-labrador-v2.dtsi
-@@ -0,0 +1,22 @@
-+// SPDX-License-Identifier: (GPL-2.0+ OR MIT)
-+/*
-+ * Caninos Labrador SoM V2
-+ *
-+ * Copyright (c) 2019-2020 Matheus Castello
-+ */
-+
-+#include "owl-s500.dtsi"
-+
-+/ {
-+	model = "Caninos Labrador Core V2.1";
-+	compatible = "caninos,labrador-v2", "actions,s500";
-+
-+	memory@0 {
-+		device_type = "memory";
-+		reg = <0x0 0x80000000>;
-+	};
-+};
-+
-+&timer {
-+	clocks = <&hosc>;
-+};
---
-2.28.0
-
+>=20
+> >
+> > Best Regards,
+> > Biwen Li
+> > >
+> > > Shawn
+> > >
+> > > >       };
+> > > >  };
+> > > >
+> > > > --
+> > > > 2.17.1
+> > > >
