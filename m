@@ -2,79 +2,149 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from vger.kernel.org (vger.kernel.org [23.128.96.18])
-	by mail.lfdr.de (Postfix) with ESMTP id CAFA7273704
-	for <lists+devicetree@lfdr.de>; Tue, 22 Sep 2020 02:06:42 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTP id CBAF427375A
+	for <lists+devicetree@lfdr.de>; Tue, 22 Sep 2020 02:27:23 +0200 (CEST)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S1728960AbgIVAGl (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Mon, 21 Sep 2020 20:06:41 -0400
-Received: from mail.kernel.org ([198.145.29.99]:40218 "EHLO mail.kernel.org"
+        id S1729301AbgIVA1U (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Mon, 21 Sep 2020 20:27:20 -0400
+Received: from m42-4.mailgun.net ([69.72.42.4]:47902 "EHLO m42-4.mailgun.net"
         rhost-flags-OK-OK-OK-OK) by vger.kernel.org with ESMTP
-        id S1726537AbgIVAGl (ORCPT <rfc822;devicetree@vger.kernel.org>);
-        Mon, 21 Sep 2020 20:06:41 -0400
-Received: from localhost (fw-tnat.cambridge.arm.com [217.140.96.140])
-        (using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
+        id S1729289AbgIVA1T (ORCPT <rfc822;devicetree@vger.kernel.org>);
+        Mon, 21 Sep 2020 20:27:19 -0400
+X-Greylist: delayed 300 seconds by postgrey-1.27 at vger.kernel.org; Mon, 21 Sep 2020 20:27:18 EDT
+DKIM-Signature: a=rsa-sha256; v=1; c=relaxed/relaxed; d=mg.codeaurora.org; q=dns/txt;
+ s=smtp; t=1600734438; h=Message-ID: References: In-Reply-To: Subject:
+ Cc: To: From: Date: Content-Transfer-Encoding: Content-Type:
+ MIME-Version: Sender; bh=PdqP4FGb5EZsFTapTz6LcIRbM1yWrsKCeQEzm73+nKU=;
+ b=oyEJP4j7/VPK8OQ9xYqlnkbOVdUZ6M2ItF+9+00nQQkszKelY/6S7Pzm/QSTZqzacOOGTr7A
+ T36ZHcDIr+XvQWLU1DZ69CENRp+pzqWFciumzowJfhuM5X5CdoLwkjQTE7KTD2yOOnyBudiH
+ PXNcnGQQ92BCpmZiLMa3sACeTfo=
+X-Mailgun-Sending-Ip: 69.72.42.4
+X-Mailgun-Sid: WyI1YmJiNiIsICJkZXZpY2V0cmVlQHZnZXIua2VybmVsLm9yZyIsICJiZTllNGEiXQ==
+Received: from smtp.codeaurora.org
+ (ec2-35-166-182-171.us-west-2.compute.amazonaws.com [35.166.182.171]) by
+ smtp-out-n02.prod.us-west-2.postgun.com with SMTP id
+ 5f6943b8ea858627d5fa9247 (version=TLS1.2,
+ cipher=TLS_ECDHE_RSA_WITH_AES_128_GCM_SHA256); Tue, 22 Sep 2020 00:22:16
+ GMT
+Sender: nguyenb=codeaurora.org@mg.codeaurora.org
+Received: by smtp.codeaurora.org (Postfix, from userid 1001)
+        id 6EE8AC433FF; Tue, 22 Sep 2020 00:22:16 +0000 (UTC)
+X-Spam-Checker-Version: SpamAssassin 3.4.0 (2014-02-07) on
+        aws-us-west-2-caf-mail-1.web.codeaurora.org
+X-Spam-Level: 
+X-Spam-Status: No, score=-2.9 required=2.0 tests=ALL_TRUSTED,BAYES_00,
+        URIBL_BLOCKED autolearn=unavailable autolearn_force=no version=3.4.0
+Received: from mail.codeaurora.org (localhost.localdomain [127.0.0.1])
+        (using TLSv1 with cipher ECDHE-RSA-AES256-SHA (256/256 bits))
         (No client certificate requested)
-        by mail.kernel.org (Postfix) with ESMTPSA id A963D21789;
-        Tue, 22 Sep 2020 00:06:40 +0000 (UTC)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=kernel.org;
-        s=default; t=1600733201;
-        bh=eQm4+4KLm1xSwr5sg6h3TpmW1fONFAnc7NAdHhTHU8E=;
-        h=Date:From:To:Cc:In-Reply-To:References:Subject:From;
-        b=L3q3mcJ8t6ySMY6obEzhyeNnflr3IqDDMC13/lO9Ca6AM3Bh2mOHUTf1CO9D9/76I
-         WIlI6Ndb04i4e4MXnaQv+XYHXHuJyztRiudAM3eg413ttsDzzUJFQDvL26m6KbjqWv
-         lSXhS2bpUS4kGJuYYA2lfMbsaL38ha8u3/r4HxTI=
-Date:   Tue, 22 Sep 2020 01:05:48 +0100
-From:   Mark Brown <broonie@kernel.org>
-To:     robh+dt@kernel.org, tiwai@suse.com, lgirdwood@gmail.com,
-        Dan Murphy <dmurphy@ti.com>
-Cc:     alsa-devel@alsa-project.org, devicetree@vger.kernel.org,
-        linux-kernel@vger.kernel.org
-In-Reply-To: <20200918190548.12598-1-dmurphy@ti.com>
-References: <20200918190548.12598-1-dmurphy@ti.com>
-Subject: Re: [PATCH 1/9] ASoC: tas2770: Fix calling reset in probe
-Message-Id: <160073312817.6173.8370528321313703432.b4-ty@kernel.org>
+        (Authenticated sender: nguyenb)
+        by smtp.codeaurora.org (Postfix) with ESMTPSA id 7EF87C433C8;
+        Tue, 22 Sep 2020 00:22:15 +0000 (UTC)
+MIME-Version: 1.0
+Content-Type: text/plain; charset=US-ASCII;
+ format=flowed
+Content-Transfer-Encoding: 7bit
+Date:   Mon, 21 Sep 2020 17:22:15 -0700
+From:   nguyenb@codeaurora.org
+To:     Rob Herring <robh@kernel.org>
+Cc:     Can Guo <cang@codeaurora.org>,
+        Asutosh Das <asutoshd@codeaurora.org>,
+        "Martin K. Petersen" <martin.petersen@oracle.com>,
+        SCSI <linux-scsi@vger.kernel.org>,
+        linux-arm-msm <linux-arm-msm@vger.kernel.org>,
+        Bjorn Andersson <bjorn.andersson@linaro.org>,
+        Avri Altman <Avri.Altman@wdc.com>,
+        Vinod Koul <vkoul@kernel.org>,
+        "open list:OPEN FIRMWARE AND FLATTENED DEVICE TREE BINDINGS" 
+        <devicetree@vger.kernel.org>,
+        open list <linux-kernel@vger.kernel.org>
+Subject: Re: [PATCH v1 1/2] scsi: dt-bindings: ufs: Add vcc-voltage-level for
+ UFS
+In-Reply-To: <CAL_Jsq+YV-GjAhVVHtgNz6xFR=bEgSwWKY+QGixRQJ5Ov75pag@mail.gmail.com>
+References: <cover.1598939393.git.nguyenb@codeaurora.org>
+ <0a9d395dc38433501f9652a9236856d0ac840b77.1598939393.git.nguyenb@codeaurora.org>
+ <20200914183505.GA357@bogus>
+ <d332e61cea4fef237507f1404efa724a@codeaurora.org>
+ <CAL_Jsq+YV-GjAhVVHtgNz6xFR=bEgSwWKY+QGixRQJ5Ov75pag@mail.gmail.com>
+Message-ID: <e489cee219d48e9f5e48dc30518f445b@codeaurora.org>
+X-Sender: nguyenb@codeaurora.org
+User-Agent: Roundcube Webmail/1.3.9
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-On Fri, 18 Sep 2020 14:05:40 -0500, Dan Murphy wrote:
-> tas2770_reset is called during i2c probe. The reset calls the
-> snd_soc_component_write which depends on the tas2770->component being
-> available. The component pointer is not set until codec_probe so move
-> the reset to the codec_probe after the pointer is set.
+On 2020-09-18 12:01, Rob Herring wrote:
+> On Tue, Sep 15, 2020 at 2:10 AM <nguyenb@codeaurora.org> wrote:
+>> 
+>> On 2020-09-14 11:35, Rob Herring wrote:
+>> > On Mon, Aug 31, 2020 at 11:00:47PM -0700, Bao D. Nguyen wrote:
+>> >> UFS's specifications supports a range of Vcc operating
+>> >> voltage levels. Add documentation for the UFS's Vcc voltage
+>> >> levels setting.
+>> >>
+>> >> Signed-off-by: Can Guo <cang@codeaurora.org>
+>> >> Signed-off-by: Asutosh Das <asutoshd@codeaurora.org>
+>> >> Signed-off-by: Bao D. Nguyen <nguyenb@codeaurora.org>
+>> >> ---
+>> >>  Documentation/devicetree/bindings/ufs/ufshcd-pltfrm.txt | 2 ++
+>> >>  1 file changed, 2 insertions(+)
+>> >>
+>> >> diff --git a/Documentation/devicetree/bindings/ufs/ufshcd-pltfrm.txt
+>> >> b/Documentation/devicetree/bindings/ufs/ufshcd-pltfrm.txt
+>> >> index 415ccdd..7257b32 100644
+>> >> --- a/Documentation/devicetree/bindings/ufs/ufshcd-pltfrm.txt
+>> >> +++ b/Documentation/devicetree/bindings/ufs/ufshcd-pltfrm.txt
+>> >> @@ -23,6 +23,8 @@ Optional properties:
+>> >>                            with "phys" attribute, provides phandle to
+>> >> UFS PHY node
+>> >>  - vdd-hba-supply        : phandle to UFS host controller supply
+>> >> regulator node
+>> >>  - vcc-supply            : phandle to VCC supply regulator node
+>> >> +- vcc-voltage-level     : specifies voltage levels for VCC supply.
+>> >> +                          Should be specified in pairs (min, max),
+>> >> units uV.
+>> >
+>> > The expectation is the regulator pointed to by 'vcc-supply' has the
+>> > voltage constraints. Those constraints are supposed to be the board
+>> > constraints, not the regulator operating design constraints. If that
+>> > doesn't work for your case, then it should be addressed in a common way
+>> > for the regulator binding.
+>> The UFS regulator has a min_uV and max_uV limits. Currently, the min 
+>> and
+>> max are hardcoded
+>> to UFS2.1 Spec allowed values of 2.7V and 3.6V respectively.
+>> With this change, I am trying to fix a couple issues:
+>> 1. The 2.7V min value only applies to UFS2.1 devices. with UFS3.0+
+>> devices, the VCC min should be 2.4V.
+>> Hardcoding the min_uV to 2.7V does not work for UFS3.0+ devices.
+> 
+> Don't you know the device version attached and can adjust the voltage
+> based on that? Or you have to set the voltage first?
+Yes it is one of the solutions. Once detect the UFS device is version 
+3.0+, you can lower
+the voltage to 2.5V from the hardcoded value used by the driver. 
+However, to change the
+Vcc voltage, the host needs to follow a sequence to ensure safe 
+operations after Vcc change
+(device has to be in sleep mode, Vcc needs to go down to 0 then up to 
+2.5V.)
+Also same sequence is repeated for every host initialization which is 
+inconvenient.
 
-Applied to
+> 
+>> 2. Allow users to select a different Vcc voltage within the allowed
+>> range.
+>> Using the min value, the UFS device is operating at marginal Vcc
+>> voltage.
+>> In addition the PMIC and the board designs may add some variables
+>> especially at extreme
+>> temperatures. We observe stability issues when using the min Vcc
+>> voltage.
+> 
+> Again, we have standard regulator properties for this already that you
+> can tune per board.
+Thank you for the suggestion.
 
-   https://git.kernel.org/pub/scm/linux/kernel/git/broonie/sound.git for-next
-
-Thanks!
-
-[1/5] dt-bindings: tas2770: Fix I2C addresses for the TAS2770
-      commit: b23d9eb897a1209e4d741fd69e5490f1b5b9e7cf
-[2/5] ASoC: tas2770: Fix unbalanced calls to pm_runtime
-      commit: d3d71c99b541040da198f43da3bbd85d8e9598cb
-[3/5] ASoC: tas2770: Convert bit mask to GENMASK in header
-      commit: ec9377dca2ca77eaf4fbdb09ac803f379b10d731
-[4/5] ASoC: tas2770: Fix the spacing and new lines
-      commit: d3964aff7331cd9695d0c18655e053b08837ff78
-[5/5] ASoC: tas2770: Refactor sample rate function
-      commit: be05ab41c61858cce557a1fe863ed00f38e31e97
-
-All being well this means that it will be integrated into the linux-next
-tree (usually sometime in the next 24 hours) and sent to Linus during
-the next merge window (or sooner if it is a bug fix), however if
-problems are discovered then the patch may be dropped or reverted.
-
-You may get further e-mails resulting from automated or manual testing
-and review of the tree, please engage with people reporting problems and
-send followup patches addressing any issues that are reported if needed.
-
-If any updates are required or you are submitting further changes they
-should be sent as incremental updates against current git, existing
-patches will not be replaced.
-
-Please add any relevant lists and maintainers to the CCs when replying
-to this mail.
-
-Thanks,
-Mark
+> 
+> Rob
