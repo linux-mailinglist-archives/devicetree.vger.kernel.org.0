@@ -2,33 +2,44 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from vger.kernel.org (vger.kernel.org [23.128.96.18])
-	by mail.lfdr.de (Postfix) with ESMTP id 579962741B1
-	for <lists+devicetree@lfdr.de>; Tue, 22 Sep 2020 14:00:17 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTP id 137952741C0
+	for <lists+devicetree@lfdr.de>; Tue, 22 Sep 2020 14:05:54 +0200 (CEST)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S1726550AbgIVMAQ (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Tue, 22 Sep 2020 08:00:16 -0400
-Received: from lindbergh.monkeyblade.net ([23.128.96.19]:43042 "EHLO
+        id S1726533AbgIVMFx convert rfc822-to-8bit (ORCPT
+        <rfc822;lists+devicetree@lfdr.de>); Tue, 22 Sep 2020 08:05:53 -0400
+Received: from lindbergh.monkeyblade.net ([23.128.96.19]:43902 "EHLO
         lindbergh.monkeyblade.net" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S1726522AbgIVMAP (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Tue, 22 Sep 2020 08:00:15 -0400
+        with ESMTP id S1726518AbgIVMFw (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Tue, 22 Sep 2020 08:05:52 -0400
 Received: from metis.ext.pengutronix.de (metis.ext.pengutronix.de [IPv6:2001:67c:670:201:290:27ff:fe1d:cc33])
-        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id B80F5C061755
-        for <devicetree@vger.kernel.org>; Tue, 22 Sep 2020 05:00:15 -0700 (PDT)
-Received: from dude02.hi.pengutronix.de ([2001:67c:670:100:1d::28] helo=dude02.pengutronix.de.)
-        by metis.ext.pengutronix.de with esmtp (Exim 4.92)
+        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id CC631C061755
+        for <devicetree@vger.kernel.org>; Tue, 22 Sep 2020 05:05:52 -0700 (PDT)
+Received: from lupine.hi.pengutronix.de ([2001:67c:670:100:3ad5:47ff:feaf:1a17] helo=lupine)
+        by metis.ext.pengutronix.de with esmtps (TLS1.3:ECDHE_RSA_AES_256_GCM_SHA384:256)
+        (Exim 4.92)
         (envelope-from <p.zabel@pengutronix.de>)
-        id 1kKgxw-00063c-LV; Tue, 22 Sep 2020 14:00:12 +0200
+        id 1kKh3N-0006tH-G1; Tue, 22 Sep 2020 14:05:49 +0200
+Received: from pza by lupine with local (Exim 4.92)
+        (envelope-from <p.zabel@pengutronix.de>)
+        id 1kKh3M-0008Fc-IZ; Tue, 22 Sep 2020 14:05:48 +0200
+Message-ID: <cf79a03117f4886dd91a624fd0081222ae87fea0.camel@pengutronix.de>
+Subject: Re: [PATCH V2 2/2] ata: ahci: ceva: Update the driver to support
+ xilinx GT phy
 From:   Philipp Zabel <p.zabel@pengutronix.de>
-To:     linux-media@vger.kernel.org
-Cc:     Rob Herring <robh+dt@kernel.org>, devicetree@vger.kernel.org,
-        kernel@pengutronix.de
-Subject: [PATCH] media: dt-bindings: convert CODA VPU bindings to yaml
-Date:   Tue, 22 Sep 2020 14:00:07 +0200
-Message-Id: <20200922120007.12766-1-p.zabel@pengutronix.de>
-X-Mailer: git-send-email 2.20.1
+To:     Piyush Mehta <piyush.mehta@xilinx.com>, axboe@kernel.dk,
+        robh+dt@kernel.org
+Cc:     linux-ide@vger.kernel.org, devicetree@vger.kernel.org,
+        linux-kernel@vger.kernel.org, git@xilinx.com, sgoud@xilinx.com,
+        michal.simek@xilinx.com
+Date:   Tue, 22 Sep 2020 14:05:48 +0200
+In-Reply-To: <1600769713-944-3-git-send-email-piyush.mehta@xilinx.com>
+References: <1600769713-944-1-git-send-email-piyush.mehta@xilinx.com>
+         <1600769713-944-3-git-send-email-piyush.mehta@xilinx.com>
+Content-Type: text/plain; charset="UTF-8"
+Content-Transfer-Encoding: 8BIT
+User-Agent: Evolution 3.30.5-1.1 
 MIME-Version: 1.0
-Content-Transfer-Encoding: 8bit
-X-SA-Exim-Connect-IP: 2001:67c:670:100:1d::28
+X-SA-Exim-Connect-IP: 2001:67c:670:100:3ad5:47ff:feaf:1a17
 X-SA-Exim-Mail-From: p.zabel@pengutronix.de
 X-SA-Exim-Scanned: No (on metis.ext.pengutronix.de); SAEximRunCond expanded to false
 X-PTX-Original-Recipient: devicetree@vger.kernel.org
@@ -36,183 +47,118 @@ Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-Convert to YAML, add missing "fsl,imx6dl-vpu", "cnm,coda960"
-compatible, and specify the power-domain property for i.MX6.
+On Tue, 2020-09-22 at 15:45 +0530, Piyush Mehta wrote:
+> SATA controller used in Xilinx ZynqMP platform uses xilinx GT phy
+> which has 4 GT lanes and can used by 4 peripherals at a time.
+> SATA controller uses 1 GT phy lane among the 4 GT lanes. To configure
+> the GT lane for SATA controller, the below sequence is expected.
+> 
+> 1. Assert the SATA controller reset.
+> 2. Configure the xilinx GT phy lane for SATA controller (phy_init).
+> 3. De-assert the SATA controller reset.
+> 4. Wait for PLL of the GT lane used by SATA to be locked (phy_power_on).
+> 
+> The ahci_platform_enable_resources() by default does the phy_init()
+> and phy_power_on() but the default sequence doesn't work with Xilinx
+> platforms. Because of this reason, updated the driver to support the
+> new sequence.
+> 
+> Added is_rst_ctrl flag, for backward compatibility with the older
+> sequence. If the reset controller is not available, then the SATA
+> controller will configure with the older sequences.
+> 
+> Signed-off-by: Piyush Mehta <piyush.mehta@xilinx.com>
+> ---
+>  drivers/ata/ahci_ceva.c | 39 +++++++++++++++++++++++++++++++++++++--
+>  1 file changed, 37 insertions(+), 2 deletions(-)
+> 
+> diff --git a/drivers/ata/ahci_ceva.c b/drivers/ata/ahci_ceva.c
+> index b10fd4c..c704906 100644
+> --- a/drivers/ata/ahci_ceva.c
+> +++ b/drivers/ata/ahci_ceva.c
+> @@ -12,6 +12,7 @@
+>  #include <linux/module.h>
+>  #include <linux/of_device.h>
+>  #include <linux/platform_device.h>
+> +#include <linux/reset.h>
+>  #include "ahci.h"
+>  
+>  /* Vendor Specific Register Offsets */
+> @@ -87,6 +88,7 @@ struct ceva_ahci_priv {
+>  	u32 axicc;
+>  	bool is_cci_enabled;
+>  	int flags;
+> +	struct reset_control *rst;
+>  };
+>  
+>  static unsigned int ceva_ahci_read_id(struct ata_device *dev,
+> @@ -194,7 +196,7 @@ static int ceva_ahci_probe(struct platform_device *pdev)
+>  	struct ahci_host_priv *hpriv;
+>  	struct ceva_ahci_priv *cevapriv;
+>  	enum dev_dma_attr attr;
+> -	int rc;
+> +	int rc, i, is_rst_ctrl = 1;
+>  
+>  	cevapriv = devm_kzalloc(dev, sizeof(*cevapriv), GFP_KERNEL);
+>  	if (!cevapriv)
+> @@ -202,14 +204,47 @@ static int ceva_ahci_probe(struct platform_device *pdev)
+>  
+>  	cevapriv->ahci_pdev = pdev;
+>  
+> +	cevapriv->rst = devm_reset_control_get(&pdev->dev, NULL);
 
-Signed-off-by: Philipp Zabel <p.zabel@pengutronix.de>
----
- .../devicetree/bindings/media/coda.txt        |  31 -----
- .../devicetree/bindings/media/coda.yaml       | 109 ++++++++++++++++++
- MAINTAINERS                                   |   2 +-
- 3 files changed, 110 insertions(+), 32 deletions(-)
- delete mode 100644 Documentation/devicetree/bindings/media/coda.txt
- create mode 100644 Documentation/devicetree/bindings/media/coda.yaml
+Please use devm_reset_control_get_optional_exclusive()
 
-diff --git a/Documentation/devicetree/bindings/media/coda.txt b/Documentation/devicetree/bindings/media/coda.txt
-deleted file mode 100644
-index 90eb74cc1993..000000000000
---- a/Documentation/devicetree/bindings/media/coda.txt
-+++ /dev/null
-@@ -1,31 +0,0 @@
--Chips&Media Coda multi-standard codec IP
--========================================
--
--Coda codec IPs are present in i.MX SoCs in various versions,
--called VPU (Video Processing Unit).
--
--Required properties:
--- compatible : should be "fsl,<chip>-src" for i.MX SoCs:
--  (a) "fsl,imx27-vpu" for CodaDx6 present in i.MX27
--  (b) "fsl,imx51-vpu" for CodaHx4 present in i.MX51
--  (c) "fsl,imx53-vpu" for CODA7541 present in i.MX53
--  (d) "fsl,imx6q-vpu" for CODA960 present in i.MX6q
--- reg: should be register base and length as documented in the
--  SoC reference manual
--- interrupts : Should contain the VPU interrupt. For CODA960,
--  a second interrupt is needed for the MJPEG unit.
--- clocks : Should contain the ahb and per clocks, in the order
--  determined by the clock-names property.
--- clock-names : Should be "ahb", "per"
--- iram : phandle pointing to the SRAM device node
--
--Example:
--
--vpu: vpu@63ff4000 {
--	compatible = "fsl,imx53-vpu";
--	reg = <0x63ff4000 0x1000>;
--	interrupts = <9>;
--	clocks = <&clks 63>, <&clks 63>;
--	clock-names = "ahb", "per";
--	iram = <&ocram>;
--};
-diff --git a/Documentation/devicetree/bindings/media/coda.yaml b/Documentation/devicetree/bindings/media/coda.yaml
-new file mode 100644
-index 000000000000..c32415b46761
---- /dev/null
-+++ b/Documentation/devicetree/bindings/media/coda.yaml
-@@ -0,0 +1,109 @@
-+# SPDX-License-Identifier: (GPL-2.0 OR BSD-2-Clause)
-+%YAML 1.2
-+---
-+$id: http://devicetree.org/schemas/media/coda.yaml#
-+$schema: http://devicetree.org/meta-schemas/core.yaml#
-+
-+title: Chips&Media Coda multi-standard codec IP
-+
-+maintainers:
-+  - Philipp Zabel <p.zabel@pengutronix.de>
-+
-+description: |-
-+  Coda codec IPs are present in i.MX SoCs in various versions,
-+  called VPU (Video Processing Unit).
-+
-+properties:
-+  compatible:
-+    oneOf:
-+      - items:
-+          - const: fsl,imx27-vpu
-+          - const: cnm,codadx6
-+      - items:
-+          - const: fsl,imx51-vpu
-+          - const: cnm,codahx4
-+      - items:
-+          - const: fsl,imx53-vpu
-+          - const: cnm,coda7541
-+      - items:
-+          - enum:
-+              - fsl,imx6dl-vpu
-+              - fsl,imx6q-vpu
-+          - const: cnm,coda960
-+
-+  reg:
-+    maxItems: 1
-+
-+  clocks:
-+    items:
-+      - description: PER clock
-+      - description: AHB interface clock
-+
-+  clock-names:
-+    items:
-+      - const: per
-+      - const: ahb
-+
-+  resets:
-+    maxItems: 1
-+
-+  iram:
-+    $ref: /schemas/types.yaml#/definitions/phandle
-+    description: phandle pointing to the SRAM device node
-+    maxItems: 1
-+
-+required:
-+  - compatible
-+  - reg
-+  - interrupts
-+  - clocks
-+  - clock-names
-+
-+allOf:
-+  - if:
-+      properties:
-+        compatible:
-+          contains:
-+            const: cnm,coda960
-+    then:
-+      properties:
-+        interrupts:
-+          items:
-+            - description: BIT processor interrupt
-+            - description: JPEG unit interrupt
-+
-+        interrupt-names:
-+          items:
-+            - const: bit
-+            - const: jpeg
-+    else:
-+      properties:
-+        interrupts:
-+          items:
-+            - description: BIT processor interrupt
-+
-+  - if:
-+      properties:
-+        compatible:
-+          contains:
-+            enum:
-+              - fsl,imx6dl-vpu
-+              - fsl,imx6q-vpu
-+    then:
-+      properties:
-+        power-domains:
-+          $ref: /schemas/types.yaml#/definitions/phandle
-+          description: phandle pointing to the PU power domain
-+          maxItems: 1
-+
-+examples:
-+  - |
-+    vpu: video-codec@63ff4000 {
-+        compatible = "fsl,imx53-vpu", "cnm,coda7541";
-+        reg = <0x63ff4000 0x1000>;
-+        interrupts = <9>;
-+        clocks = <&clks 63>, <&clks 63>;
-+        clock-names = "ahb", "per";
-+        iram = <&ocram>;
-+    };
-+
-diff --git a/MAINTAINERS b/MAINTAINERS
-index d3126fc2cca2..01be39a3265e 100644
---- a/MAINTAINERS
-+++ b/MAINTAINERS
-@@ -4332,7 +4332,7 @@ CODA V4L2 MEM2MEM DRIVER
- M:	Philipp Zabel <p.zabel@pengutronix.de>
- L:	linux-media@vger.kernel.org
- S:	Maintained
--F:	Documentation/devicetree/bindings/media/coda.txt
-+F:	Documentation/devicetree/bindings/media/coda.yaml
- F:	drivers/media/platform/coda/
- 
- CODE OF CONDUCT
--- 
-2.20.1
+> +	if (IS_ERR(cevapriv->rst)) {
+> +		if (PTR_ERR(cevapriv->rst) != -EPROBE_DEFER)
+> +			dev_err(&pdev->dev, "failed to get reset: %ld\n",
+> +				PTR_ERR(cevapriv->rst));
+> +		is_rst_ctrl = 0;
 
+is_rst_ctrl will not be required then.
+
+> +	}
+> +
+>  	hpriv = ahci_platform_get_resources(pdev, 0);
+>  	if (IS_ERR(hpriv))
+>  		return PTR_ERR(hpriv);
+> +	if (is_rst_ctrl)
+> +		rc = ahci_platform_enable_clks(hpriv);
+> +	else
+> +		rc = ahci_platform_enable_resources(hpriv);
+>  
+> -	rc = ahci_platform_enable_resources(hpriv);
+>  	if (rc)
+>  		return rc;
+>  
+> +	if (is_rst_ctrl) {
+
+This can just be "if (cevapriv->rst)"
+
+> +		/* Assert the controller reset */
+> +		reset_control_assert(cevapriv->rst);
+> +
+> +		for (i = 0; i < hpriv->nports; i++) {
+> +			rc = phy_init(hpriv->phys[i]);
+> +			if (rc)
+> +				return rc;
+> +		}
+> +
+> +		/* De-assert the controller reset */
+> +		reset_control_deassert(cevapriv->rst);
+> +
+> +		for (i = 0; i < hpriv->nports; i++) {
+> +			rc = phy_power_on(hpriv->phys[i]);
+> +			if (rc) {
+> +				phy_exit(hpriv->phys[i]);
+> +				return rc;
+> +			}
+> +		}
+> +	}
+> +
+>  	if (of_property_read_bool(np, "ceva,broken-gen2"))
+>  		cevapriv->flags = CEVA_FLAG_BROKEN_GEN2;
+>  
+
+regards
+Philipp
