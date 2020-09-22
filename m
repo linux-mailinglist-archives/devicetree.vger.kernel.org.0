@@ -2,86 +2,102 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from vger.kernel.org (vger.kernel.org [23.128.96.18])
-	by mail.lfdr.de (Postfix) with ESMTP id 375502742F7
-	for <lists+devicetree@lfdr.de>; Tue, 22 Sep 2020 15:26:47 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTP id 462012743A3
+	for <lists+devicetree@lfdr.de>; Tue, 22 Sep 2020 15:57:48 +0200 (CEST)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S1726643AbgIVN0g (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Tue, 22 Sep 2020 09:26:36 -0400
-Received: from mx0a-00128a01.pphosted.com ([148.163.135.77]:37598 "EHLO
-        mx0a-00128a01.pphosted.com" rhost-flags-OK-OK-OK-OK)
-        by vger.kernel.org with ESMTP id S1726680AbgIVN03 (ORCPT
-        <rfc822;devicetree@vger.kernel.org>);
-        Tue, 22 Sep 2020 09:26:29 -0400
-Received: from pps.filterd (m0167089.ppops.net [127.0.0.1])
-        by mx0a-00128a01.pphosted.com (8.16.0.42/8.16.0.42) with SMTP id 08MDMpOi017434;
-        Tue, 22 Sep 2020 09:26:27 -0400
-Received: from nwd2mta3.analog.com ([137.71.173.56])
-        by mx0a-00128a01.pphosted.com with ESMTP id 33new49vd4-1
-        (version=TLSv1.2 cipher=ECDHE-RSA-AES256-GCM-SHA384 bits=256 verify=NOT);
-        Tue, 22 Sep 2020 09:26:27 -0400
-Received: from ASHBMBX8.ad.analog.com (ASHBMBX8.ad.analog.com [10.64.17.5])
-        by nwd2mta3.analog.com (8.14.7/8.14.7) with ESMTP id 08MDQP6f062841
-        (version=TLSv1/SSLv3 cipher=ECDHE-RSA-AES128-GCM-SHA256 bits=128 verify=FAIL);
-        Tue, 22 Sep 2020 09:26:25 -0400
-Received: from ASHBCASHYB5.ad.analog.com (10.64.17.133) by
- ASHBMBX8.ad.analog.com (10.64.17.5) with Microsoft SMTP Server
- (version=TLS1_2, cipher=TLS_ECDHE_RSA_WITH_AES_128_GCM_SHA256) id
- 15.1.1779.2; Tue, 22 Sep 2020 09:26:26 -0400
-Received: from ASHBMBX8.ad.analog.com (10.64.17.5) by
- ASHBCASHYB5.ad.analog.com (10.64.17.133) with Microsoft SMTP Server
- (version=TLS1_2, cipher=TLS_ECDHE_RSA_WITH_AES_128_GCM_SHA256) id
- 15.1.1779.2; Tue, 22 Sep 2020 09:26:26 -0400
-Received: from zeus.spd.analog.com (10.66.68.11) by ASHBMBX8.ad.analog.com
- (10.64.17.5) with Microsoft SMTP Server id 15.1.1779.2 via Frontend
- Transport; Tue, 22 Sep 2020 09:26:26 -0400
-Received: from localhost.localdomain ([10.48.65.12])
-        by zeus.spd.analog.com (8.15.1/8.15.1) with ESMTP id 08MDQCos015940;
-        Tue, 22 Sep 2020 09:26:22 -0400
-From:   Alexandru Ardelean <alexandru.ardelean@analog.com>
-To:     <linux-iio@vger.kernel.org>, <devicetree@vger.kernel.org>,
-        <linux-kernel@vger.kernel.org>
-CC:     <robh+dt@kernel.org>, <jic23@kernel.org>,
-        Alexandru Ardelean <alexandru.ardelean@analog.com>
-Subject: [PATCH v2 5/5] dt-bindings: iio: ad9467: add entry for for AD9265 ADC
-Date:   Tue, 22 Sep 2020 16:25:59 +0300
-Message-ID: <20200922132559.38456-6-alexandru.ardelean@analog.com>
-X-Mailer: git-send-email 2.17.1
-In-Reply-To: <20200922132559.38456-1-alexandru.ardelean@analog.com>
-References: <20200922132559.38456-1-alexandru.ardelean@analog.com>
+        id S1726710AbgIVN5q (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Tue, 22 Sep 2020 09:57:46 -0400
+Received: from lindbergh.monkeyblade.net ([23.128.96.19]:32826 "EHLO
+        lindbergh.monkeyblade.net" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
+        with ESMTP id S1726825AbgIVN5o (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Tue, 22 Sep 2020 09:57:44 -0400
+Received: from mail-wr1-x443.google.com (mail-wr1-x443.google.com [IPv6:2a00:1450:4864:20::443])
+        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 33FBEC0613CF
+        for <devicetree@vger.kernel.org>; Tue, 22 Sep 2020 06:57:44 -0700 (PDT)
+Received: by mail-wr1-x443.google.com with SMTP id j2so17198520wrx.7
+        for <devicetree@vger.kernel.org>; Tue, 22 Sep 2020 06:57:44 -0700 (PDT)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+        d=linaro.org; s=google;
+        h=subject:to:cc:references:from:message-id:date:user-agent
+         :mime-version:in-reply-to:content-language:content-transfer-encoding;
+        bh=DGZVXpkjzjAC3dg7W3FDDgroJ+KRU7eRW2TjieEPGOs=;
+        b=UT3JyknqdxpX0GVGQvqz0KGFU3G+44tECHiTJakqfTgxQfmfx17OKkiR9ajC1sX3Xp
+         CJU05LOZPCOyqUTWXjt12eYomA14K1WKduDmbnwifPLFF9XhOKtdIvFriDxX++0LtvoH
+         RAYdkKwHwnaO1+1qdGGZvBsTpGkC9ve/8ljnfOll4DsvuNHOfTKfwg2+dYqhevVNxFy8
+         N4IU9aO89d7RpgKoIp1V+7YDO3BvOYxl1MxeR3Gk2v/sQ1Npv5ytDindtqat7oiEj0XC
+         x6E1dlEo8ScoTW37+iY14WChjlKXgt3h+aHwvG4SSYZerJY5INGU78zahzWQOgUoYXHw
+         FBTg==
+X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+        d=1e100.net; s=20161025;
+        h=x-gm-message-state:subject:to:cc:references:from:message-id:date
+         :user-agent:mime-version:in-reply-to:content-language
+         :content-transfer-encoding;
+        bh=DGZVXpkjzjAC3dg7W3FDDgroJ+KRU7eRW2TjieEPGOs=;
+        b=HgUFwFVM4zXzhy6/dcss+VHCLWR+UVXS5yJhLYgeZrpvFYKbSEAqG8wlBqTWtCNa+d
+         tAq7it/vy+bC52CRHo9z0zdtWEcSou21CoOnpfHqSqX90aovwWnjJHqIf9P5lNzm+yzG
+         uG2Wk/1H2/hDx+t7b/3PUJLj20pD5X+DXHp+iX/i88L2D5dJc5v1gAHDy38QfP//Tn6c
+         Imie8Kk9G4FI/qh08J5HBm3r2k4EzisByTMCkYObIJIcgzD+CwE1WtPzlcR7+DuNitow
+         o4s/1Tf2EMCT48wW/jrvYUmxvMUCoxJX44O6N4D01Y37w/sT0zoLaRnnAkOkOpO1lDJV
+         uoCA==
+X-Gm-Message-State: AOAM530U3fPvos5pt2ulVv3ZEcHndNRvRRU+i93M+5IyEduCUpMUy++N
+        yEP0nqrU0iVVgx4MfIrc3iPiPw==
+X-Google-Smtp-Source: ABdhPJxpJEG80evddGcTBWHxSsTnTTMSk1RXYjfsOksHLJyqxlBLEQ6HPFNPDCpHk8sVBsEHqBKKew==
+X-Received: by 2002:adf:e852:: with SMTP id d18mr5881170wrn.40.1600783062860;
+        Tue, 22 Sep 2020 06:57:42 -0700 (PDT)
+Received: from [192.168.86.34] (cpc86377-aztw32-2-0-cust226.18-1.cable.virginm.net. [92.233.226.227])
+        by smtp.googlemail.com with ESMTPSA id z9sm5085802wmg.46.2020.09.22.06.57.41
+        (version=TLS1_2 cipher=ECDHE-ECDSA-AES128-GCM-SHA256 bits=128/128);
+        Tue, 22 Sep 2020 06:57:42 -0700 (PDT)
+Subject: Re: [PATCH v6 3/5] Asoc:qcom:lpass-cpu:Update dts property read API
+To:     Rohit Kumar <rohitkr@codeaurora.org>,
+        Mark Brown <broonie@kernel.org>
+Cc:     Srinivasa Rao Mandadapu <srivasam@codeaurora.org>,
+        agross@kernel.org, bjorn.andersson@linaro.org, lgirdwood@gmail.com,
+        robh+dt@kernel.org, plai@codeaurora.org, bgoswami@codeaurora.org,
+        perex@perex.cz, tiwai@suse.com, linux-arm-msm@vger.kernel.org,
+        alsa-devel@alsa-project.org, devicetree@vger.kernel.org,
+        linux-kernel@vger.kernel.org,
+        V Sujith Kumar Reddy <vsujithk@codeaurora.org>
+References: <1600409084-29093-1-git-send-email-srivasam@codeaurora.org>
+ <1600409084-29093-4-git-send-email-srivasam@codeaurora.org>
+ <040290a8-26a3-ab9c-04dc-beb23ee827e8@linaro.org>
+ <20200922110825.GN4792@sirena.org.uk>
+ <3866ce69-b7d0-5eb5-e0aa-874d150cd47a@linaro.org>
+ <20200922114319.GR4792@sirena.org.uk>
+ <7f682cf9-0f2a-0227-d5d8-8bedf1f06b00@codeaurora.org>
+From:   Srinivas Kandagatla <srinivas.kandagatla@linaro.org>
+Message-ID: <6b80f060-cb96-1cf9-69bd-f56f7934747a@linaro.org>
+Date:   Tue, 22 Sep 2020 14:57:40 +0100
+User-Agent: Mozilla/5.0 (X11; Linux x86_64; rv:60.0) Gecko/20100101
+ Thunderbird/60.8.0
 MIME-Version: 1.0
-Content-Type: text/plain
-X-ADIRoutedOnPrem: True
-X-Proofpoint-Virus-Version: vendor=fsecure engine=2.50.10434:6.0.235,18.0.687
- definitions=2020-09-22_12:2020-09-21,2020-09-22 signatures=0
-X-Proofpoint-Spam-Details: rule=outbound_notspam policy=outbound score=0 bulkscore=0
- lowpriorityscore=0 mlxlogscore=999 spamscore=0 impostorscore=0
- clxscore=1015 priorityscore=1501 mlxscore=0 adultscore=0 phishscore=0
- suspectscore=0 malwarescore=0 classifier=spam adjust=0 reason=mlx
- scancount=1 engine=8.12.0-2006250000 definitions=main-2009220104
+In-Reply-To: <7f682cf9-0f2a-0227-d5d8-8bedf1f06b00@codeaurora.org>
+Content-Type: text/plain; charset=windows-1252; format=flowed
+Content-Language: en-US
+Content-Transfer-Encoding: 8bit
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-Add entry for the AD9265 high-speed ADC which is supported by the 'ad9467'
-driver.
 
-Signed-off-by: Alexandru Ardelean <alexandru.ardelean@analog.com>
----
- Documentation/devicetree/bindings/iio/adc/adi,ad9467.yaml | 1 +
- 1 file changed, 1 insertion(+)
 
-diff --git a/Documentation/devicetree/bindings/iio/adc/adi,ad9467.yaml b/Documentation/devicetree/bindings/iio/adc/adi,ad9467.yaml
-index 0e8da8ee6975..8b8c432c64da 100644
---- a/Documentation/devicetree/bindings/iio/adc/adi,ad9467.yaml
-+++ b/Documentation/devicetree/bindings/iio/adc/adi,ad9467.yaml
-@@ -19,6 +19,7 @@ description: |
- properties:
-   compatible:
-     enum:
-+      - adi,ad9265
-       - adi,ad9434
-       - adi,ad9467
- 
--- 
-2.17.1
+On 22/09/2020 13:53, Rohit Kumar wrote:
+>> That's very much specific to reg, it's not true of the use of names in
+>> general - Rob mentions cases like interrupts for example.
+> 
+Ofcourse using names suffix for clocks and interrupts has been justified!
 
+I don't mind having dependency on reg-names as long as Rob is happy with 
+DT Bindings!
+
+--srini
+
+
+> I see that patch to support hdmi adds another reg-name along with 
+> "lpass-lpaif".
+> 
+> So, platform_get_resource_byname() is better option.
+> 
+> +       res = platform_get_resource_byname(pdev, IORESOURCE_MEM, 
+> "lpass-hdmiif");
+> 
