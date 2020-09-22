@@ -2,53 +2,285 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from vger.kernel.org (vger.kernel.org [23.128.96.18])
-	by mail.lfdr.de (Postfix) with ESMTP id 7532F273A88
-	for <lists+devicetree@lfdr.de>; Tue, 22 Sep 2020 08:11:53 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTP id 053B1273A8D
+	for <lists+devicetree@lfdr.de>; Tue, 22 Sep 2020 08:15:07 +0200 (CEST)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S1729067AbgIVGLw (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Tue, 22 Sep 2020 02:11:52 -0400
-Received: from mail.kernel.org ([198.145.29.99]:59952 "EHLO mail.kernel.org"
-        rhost-flags-OK-OK-OK-OK) by vger.kernel.org with ESMTP
-        id S1726339AbgIVGLw (ORCPT <rfc822;devicetree@vger.kernel.org>);
-        Tue, 22 Sep 2020 02:11:52 -0400
-Received: from dragon (80.251.214.228.16clouds.com [80.251.214.228])
-        (using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
-        (No client certificate requested)
-        by mail.kernel.org (Postfix) with ESMTPSA id 899A823A34;
-        Tue, 22 Sep 2020 06:11:50 +0000 (UTC)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=kernel.org;
-        s=default; t=1600755111;
-        bh=TpAaFBgFgvV02LuTs4DtNCWgrwul118bnShENMzhLCE=;
-        h=Date:From:To:Cc:Subject:References:In-Reply-To:From;
-        b=sdCbo+4OOL7FCRMovIgagLIqqXsNct43KY4i+6zF6KgRPcODJ49b1KNwm1SbZcyUv
-         roam35oTwLrj+rW9BPqbhuWmke26pZX0WVs6fUsnaR72cgtCD0RQHdEyr9SwOumq8L
-         oj/Qnpt7JeQiyE9T/0ZiMvt0YUt8QuUcHqVJvX4E=
-Date:   Tue, 22 Sep 2020 14:11:47 +0800
-From:   Shawn Guo <shawnguo@kernel.org>
-To:     Stefan Riedmueller <s.riedmueller@phytec.de>
-Cc:     Rob Herring <robh@kernel.org>, devicetree@vger.kernel.org,
-        Sascha Hauer <s.hauer@pengutronix.de>,
-        NXP Linux Team <linux-imx@nxp.com>,
-        Fabio Estevam <festevam@gmail.com>,
-        linux-arm-kernel@lists.infradead.org
-Subject: Re: [PATCH v3 1/2] dt-bindings: arm: fsl: Add PHYTEC i.MX6 UL/ULL
- devicetree bindings
-Message-ID: <20200922061146.GB25109@dragon>
-References: <20200917083003.96352-1-s.riedmueller@phytec.de>
+        id S1729161AbgIVGPF (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Tue, 22 Sep 2020 02:15:05 -0400
+Received: from lindbergh.monkeyblade.net ([23.128.96.19]:45870 "EHLO
+        lindbergh.monkeyblade.net" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
+        with ESMTP id S1729094AbgIVGPF (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Tue, 22 Sep 2020 02:15:05 -0400
+Received: from mail-pf1-x444.google.com (mail-pf1-x444.google.com [IPv6:2607:f8b0:4864:20::444])
+        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 07CF9C0613CF
+        for <devicetree@vger.kernel.org>; Mon, 21 Sep 2020 23:15:04 -0700 (PDT)
+Received: by mail-pf1-x444.google.com with SMTP id b124so11455946pfg.13
+        for <devicetree@vger.kernel.org>; Mon, 21 Sep 2020 23:15:04 -0700 (PDT)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+        d=linaro.org; s=google;
+        h=date:from:to:cc:subject:message-id:references:mime-version
+         :content-disposition:content-transfer-encoding:in-reply-to
+         :user-agent;
+        bh=GUI0or54jzs6SWBeOTIhXJI7pPtDOpGteq+qBUK8BXM=;
+        b=dR+Z4ASnMZM/ntfY2CiUiX3vW/jiV+bylVZky7bRX2d8UXPI64aHPjz8sbTX4XtE1z
+         ul/fItqCDEBaHqVw/ti2Spj4E8xf28cRj4AaFvHElxj+TAVqRZUIre+oo6fAmJy/6xGq
+         Poz9QL9fVnM1wEmmJwTwgpl6PMwc3yIOXLJ8H/T0xeLk3YG/a2IxTz5cqFnt4EWwufeP
+         hh9H7UTZl0CCsnpHyxPE8swF1EiFBBVjHmAuAG5iHKqBpXpsQqxINN3jQvg5x+3V7wWk
+         G9E+kqvKdgG5mxQ6VWxOK7tBUhJj1c4I1KAghNiGglJGzyhg1Pv0EJo4NZZx8gOS+2uT
+         jNPA==
+X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+        d=1e100.net; s=20161025;
+        h=x-gm-message-state:date:from:to:cc:subject:message-id:references
+         :mime-version:content-disposition:content-transfer-encoding
+         :in-reply-to:user-agent;
+        bh=GUI0or54jzs6SWBeOTIhXJI7pPtDOpGteq+qBUK8BXM=;
+        b=qhxwaT6il3ouyfpKfOyD9kAo7h9beHwsjwcgrUBdB7Sq5CLkNNwSasU59S5b+RMDUb
+         NXYvaEYQSyzdhOXe4NQxvM3JRS2FzQUh3nS2hPn/pzEyDqr/1pg7Sed0x2n6cKngIegP
+         /bdcoaxwJnrYZhxdPO5Tlo4flqQSEaoUiFmPo68Tis84czxZBBC3ZumQGU6BXmc25bSI
+         dok6055KhIN4VjyIrKbUiJL5T87CsmswmhVY4GR/tY13Hk0AEbKQHHC5NSxNn+ApkDFg
+         qjn3n2gc6DLSCXXm0DsZOoaYT/nU4tV2PHgoiOMq9e2czuy7wmMyxgvp8IKgrCe+K/Da
+         Be2Q==
+X-Gm-Message-State: AOAM532s+gx1Sk1Zh0mbxzM7Q87fUso3XrtFPPVuVotw1SeOMgkB3aYr
+        n6wW260AFxWDlHvYpRDRiRqM
+X-Google-Smtp-Source: ABdhPJxvg+wYdjy6w01oHbUTHSHS/EIXkvVEtjrXQpBo+TWQuI/+LGjhw6GlsI59oWMbmx7JNpTvuw==
+X-Received: by 2002:a63:500e:: with SMTP id e14mr2359458pgb.36.1600755304319;
+        Mon, 21 Sep 2020 23:15:04 -0700 (PDT)
+Received: from Mani-XPS-13-9360 ([2409:4072:6e1c:c062:1004:2ccf:6900:b97])
+        by smtp.gmail.com with ESMTPSA id e62sm13483624pfh.76.2020.09.21.23.14.57
+        (version=TLS1_2 cipher=ECDHE-ECDSA-CHACHA20-POLY1305 bits=256/256);
+        Mon, 21 Sep 2020 23:15:03 -0700 (PDT)
+Date:   Tue, 22 Sep 2020 11:44:54 +0530
+From:   Manivannan Sadhasivam <manivannan.sadhasivam@linaro.org>
+To:     Matheus Castello <matheus@castello.eng.br>, arnd@arndb.de,
+        olof@lixom.net
+Cc:     afaerber@suse.de, mark.rutland@arm.com, robh+dt@kernel.org,
+        edgar.righi@lsitec.org.br, igor.lima@lsitec.org.br,
+        helen.koike@collabora.com, linux-arm-kernel@lists.infradead.org,
+        devicetree@vger.kernel.org, linux-kernel@vger.kernel.org,
+        linux-actions@lists.infradead.org
+Subject: Re: [PATCH v7 4/4] arm64: dts: Add Caninos Loucos Labrador v3
+Message-ID: <20200922061454.GA29035@Mani-XPS-13-9360>
+References: <20200922024302.205062-1-matheus@castello.eng.br>
+ <20200922024302.205062-5-matheus@castello.eng.br>
 MIME-Version: 1.0
-Content-Type: text/plain; charset=us-ascii
+Content-Type: text/plain; charset=iso-8859-1
 Content-Disposition: inline
-In-Reply-To: <20200917083003.96352-1-s.riedmueller@phytec.de>
+Content-Transfer-Encoding: 8bit
+In-Reply-To: <20200922024302.205062-5-matheus@castello.eng.br>
 User-Agent: Mutt/1.9.4 (2018-02-28)
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-On Thu, Sep 17, 2020 at 10:30:02AM +0200, Stefan Riedmueller wrote:
-> Add devicetree bindings for i.MX6 UL/ULL based phyCORE-i.MX6 UL/ULL and
-> phyBOARD-Segin.
-> 
-> Signed-off-by: Stefan Riedmueller <s.riedmueller@phytec.de>
-> Reviewed-by: Rob Herring <robh@kernel.org>
+Hi,
 
-Applied both, thanks.
+On Mon, Sep 21, 2020 at 11:43:02PM -0300, Matheus Castello wrote:
+> Add Device Trees for Caninos Loucos Labrador CoM Core v3 and base board
+> M v2. Based on the work of Andreas Färber on Cubieboard 7 device tree.
+> 
+> Signed-off-by: Matheus Castello <matheus@castello.eng.br>
+> ---
+>  arch/arm64/boot/dts/actions/Makefile          |   2 +
+>  .../dts/actions/s700-labrador-base-m2.dts     |  34 +++++
+>  .../boot/dts/actions/s700-labrador-v3.dtsi    | 122 ++++++++++++++++++
+>  3 files changed, 158 insertions(+)
+>  create mode 100644 arch/arm64/boot/dts/actions/s700-labrador-base-m2.dts
+>  create mode 100644 arch/arm64/boot/dts/actions/s700-labrador-v3.dtsi
+> 
+> diff --git a/arch/arm64/boot/dts/actions/Makefile b/arch/arm64/boot/dts/actions/Makefile
+> index b57fd2372ecd..3765697fa91e 100644
+> --- a/arch/arm64/boot/dts/actions/Makefile
+> +++ b/arch/arm64/boot/dts/actions/Makefile
+> @@ -2,4 +2,6 @@
+> 
+>  dtb-$(CONFIG_ARCH_ACTIONS) += s700-cubieboard7.dtb
+> 
+> +dtb-$(CONFIG_ARCH_ACTIONS) += s700-labrador-base-m2.dtb
+> +
+>  dtb-$(CONFIG_ARCH_ACTIONS) += s900-bubblegum-96.dtb
+> diff --git a/arch/arm64/boot/dts/actions/s700-labrador-base-m2.dts b/arch/arm64/boot/dts/actions/s700-labrador-base-m2.dts
+> new file mode 100644
+> index 000000000000..63bbca46475b
+> --- /dev/null
+> +++ b/arch/arm64/boot/dts/actions/s700-labrador-base-m2.dts
+> @@ -0,0 +1,34 @@
+> +// SPDX-License-Identifier: (GPL-2.0+ OR MIT)
+> +/*
+> + * Copyright (c) 2020 Matheus Castello
+> + */
+> +
+> +/dts-v1/;
+> +
+> +#include "s700-labrador-v3.dtsi"
+> +
+> +/ {
+> +	compatible = "caninos,labrador-base-m2",
+> +		     "caninos,labrador-v3", "actions,s700";
+> +	model = "Caninos Labrador Core v3 on Labrador Base-M v2";
+> +
+> +	aliases {
+> +		serial3 = &uart3;
+> +	};
+> +
+> +	chosen {
+> +		stdout-path = "serial3:115200n8";
+> +	};
+> +};
+> +
+> +&uart3 {
+> +	status = "okay";
+
+No fixed clock?
+
+> +};
+> +
+> +&i2c0 {
+> +	status = "okay";
+> +};
+> +
+> +&i2c1 {
+> +	status = "okay";
+> +};
+> diff --git a/arch/arm64/boot/dts/actions/s700-labrador-v3.dtsi b/arch/arm64/boot/dts/actions/s700-labrador-v3.dtsi
+> new file mode 100644
+> index 000000000000..91addba6382b
+> --- /dev/null
+> +++ b/arch/arm64/boot/dts/actions/s700-labrador-v3.dtsi
+> @@ -0,0 +1,122 @@
+> +// SPDX-License-Identifier: (GPL-2.0+ OR MIT)
+> +/*
+> + * Copyright (c) 2020 Matheus Castello
+> + */
+> +
+> +#include "s700.dtsi"
+> +
+> +/ {
+> +	compatible = "caninos,labrador-v3", "actions,s700";
+> +	model = "Caninos Labrador Core v3.1";
+> +
+> +	memory@0 {
+> +		device_type = "memory";
+> +		reg = <0x0 0x0 0x0 0x80000000>;
+> +	};
+> +
+> +	memory@1,e0000000 {
+> +		device_type = "memory";
+> +		reg = <0x1 0xe0000000 0x0 0x0>;
+> +	};
+> +
+
+What is the size of this memory? The datasheet says only 512MB Max.
+
+> +	/* Labrador v3 firmware does not support PSCI */
+
+Oops. This is unfortunate... I'm not sure if this is even acceptable for
+ARM64 machines.
+
+Let me add Olof and Arnd...
+
+Thanks,
+Mani
+
+> +	cpus {
+> +		#address-cells = <1>;
+> +		#size-cells = <0>;
+> +
+> +		cpu0: cpu@0 {
+> +			device_type = "cpu";
+> +			compatible = "arm,cortex-a53";
+> +			reg = <0x0>;
+> +			enable-method = "spin-table";
+> +			cpu-release-addr = <0 0x1f000020>;
+> +			next-level-cache = <&L2>;
+> +		};
+> +
+> +		cpu1: cpu@1 {
+> +			device_type = "cpu";
+> +			compatible = "arm,cortex-a53";
+> +			reg = <0x1>;
+> +			enable-method = "spin-table";
+> +			cpu-release-addr = <0 0x1f000020>;
+> +			next-level-cache = <&L2>;
+> +		};
+> +
+> +		cpu2: cpu@2 {
+> +			device_type = "cpu";
+> +			compatible = "arm,cortex-a53";
+> +			reg = <0x2>;
+> +			enable-method = "spin-table";
+> +			cpu-release-addr = <0 0x1f000020>;
+> +			next-level-cache = <&L2>;
+> +		};
+> +
+> +		cpu3: cpu@3 {
+> +			device_type = "cpu";
+> +			compatible = "arm,cortex-a53";
+> +			reg = <0x3>;
+> +			enable-method = "spin-table";
+> +			cpu-release-addr = <0 0x1f000020>;
+> +			next-level-cache = <&L2>;
+> +		};
+> +	};
+> +
+> +	L2: l2-cache {
+> +		compatible = "cache";
+> +		cache-level = <2>;
+> +	};
+> +};
+> +
+> +&timer {
+> +	clocks = <&hosc>;
+> +};
+> +
+> +&i2c0 {
+> +	pinctrl-names = "default";
+> +	pinctrl-0 = <&i2c0_default>;
+> +};
+> +
+> +&i2c1 {
+> +	pinctrl-names = "default";
+> +	pinctrl-0 = <&i2c1_default>;
+> +};
+> +
+> +&i2c2 {
+> +	pinctrl-names = "default";
+> +	pinctrl-0 = <&i2c2_default>;
+> +};
+> +
+> +&pinctrl {
+> +	i2c0_default: i2c0_default {
+> +		pinmux {
+> +			groups = "i2c0_mfp";
+> +			function = "i2c0";
+> +		};
+> +		pinconf {
+> +			pins = "i2c0_sclk", "i2c0_sdata";
+> +			bias-pull-up;
+> +		};
+> +	};
+> +
+> +	i2c1_default: i2c1_default {
+> +		pinmux {
+> +			groups = "i2c1_dummy";
+> +			function = "i2c1";
+> +		};
+> +		pinconf {
+> +			pins = "i2c1_sclk", "i2c1_sdata";
+> +			bias-pull-up;
+> +		};
+> +	};
+> +
+> +	i2c2_default: i2c2_default {
+> +		pinmux {
+> +			groups = "i2c2_dummy";
+> +			function = "i2c2";
+> +		};
+> +		pinconf {
+> +			pins = "i2c2_sclk", "i2c2_sdata";
+> +			bias-pull-up;
+> +		};
+> +	};
+> +};
+> --
+> 2.28.0
+> 
