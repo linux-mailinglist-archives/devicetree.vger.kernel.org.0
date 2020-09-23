@@ -2,156 +2,86 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from vger.kernel.org (vger.kernel.org [23.128.96.18])
-	by mail.lfdr.de (Postfix) with ESMTP id F2AAC27568F
-	for <lists+devicetree@lfdr.de>; Wed, 23 Sep 2020 12:43:26 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTP id 66C542756A6
+	for <lists+devicetree@lfdr.de>; Wed, 23 Sep 2020 12:52:48 +0200 (CEST)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S1726548AbgIWKn0 (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Wed, 23 Sep 2020 06:43:26 -0400
-Received: from lindbergh.monkeyblade.net ([23.128.96.19]:55142 "EHLO
-        lindbergh.monkeyblade.net" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S1726130AbgIWKnZ (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Wed, 23 Sep 2020 06:43:25 -0400
-Received: from mail-vs1-xe43.google.com (mail-vs1-xe43.google.com [IPv6:2607:f8b0:4864:20::e43])
-        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id AD4F5C0613CE;
-        Wed, 23 Sep 2020 03:43:25 -0700 (PDT)
-Received: by mail-vs1-xe43.google.com with SMTP id w25so2792743vsk.9;
-        Wed, 23 Sep 2020 03:43:25 -0700 (PDT)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=gmail.com; s=20161025;
-        h=mime-version:references:in-reply-to:from:date:message-id:subject:to
-         :cc:content-transfer-encoding;
-        bh=gEMIbVXla8ei6LvM6PCuNE9og9ukk6dC+Bnjd4IkIyY=;
-        b=vGunRZh6u7CNnttPXSH/AboifZCgmN2QnPWtVk8JCX7cNpRbav50woJ5L+97gI6Q4B
-         BiAUgwTq+TBYRm7y8gsr8TVGbAUlk2Pt6KSOOYZIyyEXlJ4R1JU2JDaLUYPGwSwsAF/B
-         JU0iiIVB6lAQ3FEgH17QiQAhqZi2dHMF4jA4st/b/yDAUcPLlvSG2f/atnO2l0p3flms
-         QUbKz763u+OC9nnridN9YsCj7mXPP51EQ7U7fBxXcBYywIQ7OvT/Mu+t16SdhH4ZBpiq
-         GRnViPRho2jSOB2h9UL28kzZsJM5A7cwXtS3bUzym5k7zwNDGdkL66pTuEcwa/CFDsg0
-         eHig==
-X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=1e100.net; s=20161025;
-        h=x-gm-message-state:mime-version:references:in-reply-to:from:date
-         :message-id:subject:to:cc:content-transfer-encoding;
-        bh=gEMIbVXla8ei6LvM6PCuNE9og9ukk6dC+Bnjd4IkIyY=;
-        b=YEkM5/heiF0Xuz2+ImB81hhobm7EC2sejxghIlAiu2BoESMkYCK8aBf51t3jYpfATb
-         /RQ3yzzwvVA11dhBEi33dnhc6CbrmrNq3JdjlBhivVrzim1QgFJk5p8pPYZ7dMC9HrWT
-         QoGRJw4ody8KmGhPpXFEuc3M9WWuGs7Lac2bkWoroKIE/L6e9rkQB+TeJbtGlivA2O5h
-         vH26VdXuW3UKiHptEK73PCDrBU2iJI8awxDFSEtJ4PSIyDLjTBPGd9Vo6DWnn/jB4pv3
-         PVRNB8xGtasCe5sEpZ3uR3IbO/+W0CAfHb1bdbc3c3m2GzAMCDEp8UhonagwLVEx/J2q
-         bCnQ==
-X-Gm-Message-State: AOAM531MhIFrx57lFT6lhoGpSoTzkE1jf/8qZNnBl0cWGvvMtGGXv+7s
-        mkQuLJgJAkfrX6ejRth87czZWa/OMA+0lonZdjt12qRg2rE=
-X-Google-Smtp-Source: ABdhPJzAkp8jdmqE/qYITYxa7oMpfKc2cFMT24MTk3/33cHIoYMS+6W7in9LvX6twRStWw4I0kK7ucdfUNxH5bjiYjE=
-X-Received: by 2002:a67:8b45:: with SMTP id n66mr6360345vsd.45.1600857804831;
- Wed, 23 Sep 2020 03:43:24 -0700 (PDT)
+        id S1726584AbgIWKwi (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Wed, 23 Sep 2020 06:52:38 -0400
+Received: from fllv0016.ext.ti.com ([198.47.19.142]:48622 "EHLO
+        fllv0016.ext.ti.com" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
+        with ESMTP id S1726526AbgIWKwi (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Wed, 23 Sep 2020 06:52:38 -0400
+Received: from fllv0035.itg.ti.com ([10.64.41.0])
+        by fllv0016.ext.ti.com (8.15.2/8.15.2) with ESMTP id 08NAqDFG128190;
+        Wed, 23 Sep 2020 05:52:13 -0500
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=ti.com;
+        s=ti-com-17Q1; t=1600858333;
+        bh=6koQNnMykB9jtqwNMIqP0z3+LzvInBm/KvxOmL64LhY=;
+        h=From:To:CC:Subject:Date;
+        b=jgw10mqtQUEXVRVM1q4soSzKMgU3iOzDlWKzjStoSbVZEG0grxMEOSLa4rREQl8+T
+         H/8jL+IYQxyubtHZ2WFRGObg6Q8TPZbrFOBy9IaczKQmai8OktlxIQb4mB4Ic8PTUS
+         U/iEi2FGhJ2qneLI2Vk5mfQU0sJokAx/4iHvqWWs=
+Received: from DFLE111.ent.ti.com (dfle111.ent.ti.com [10.64.6.32])
+        by fllv0035.itg.ti.com (8.15.2/8.15.2) with ESMTP id 08NAqDvo086061;
+        Wed, 23 Sep 2020 05:52:13 -0500
+Received: from DFLE103.ent.ti.com (10.64.6.24) by DFLE111.ent.ti.com
+ (10.64.6.32) with Microsoft SMTP Server (version=TLS1_2,
+ cipher=TLS_ECDHE_RSA_WITH_AES_128_CBC_SHA256_P256) id 15.1.1979.3; Wed, 23
+ Sep 2020 05:52:12 -0500
+Received: from lelv0327.itg.ti.com (10.180.67.183) by DFLE103.ent.ti.com
+ (10.64.6.24) with Microsoft SMTP Server (version=TLS1_2,
+ cipher=TLS_ECDHE_RSA_WITH_AES_128_CBC_SHA256_P256) id 15.1.1979.3 via
+ Frontend Transport; Wed, 23 Sep 2020 05:52:12 -0500
+Received: from a0230074-Latitude-E7470.ent.ti.com (ileax41-snat.itg.ti.com [10.172.224.153])
+        by lelv0327.itg.ti.com (8.15.2/8.15.2) with ESMTP id 08NAq7qh059762;
+        Wed, 23 Sep 2020 05:52:08 -0500
+From:   Faiz Abbas <faiz_abbas@ti.com>
+To:     <linux-kernel@vger.kernel.org>, <devicetree@vger.kernel.org>,
+        <linux-mmc@vger.kernel.org>, <linux-arm-kernel@lists.infradead.org>
+CC:     <adrian.hunter@intel.com>, <robh+dt@kernel.org>,
+        <ulf.hansson@linaro.org>, <kishon@ti.com>, <faiz_abbas@ti.com>
+Subject: [PATCH 0/6] Add UHS mode support for TI's AM65x, J721e, J7200 boards
+Date:   Wed, 23 Sep 2020 16:22:00 +0530
+Message-ID: <20200923105206.7988-1-faiz_abbas@ti.com>
+X-Mailer: git-send-email 2.17.1
 MIME-Version: 1.0
-References: <20200921195555.1050731-1-badhri@google.com> <20200921195555.1050731-5-badhri@google.com>
-In-Reply-To: <20200921195555.1050731-5-badhri@google.com>
-From:   Jun Li <lijun.kernel@gmail.com>
-Date:   Wed, 23 Sep 2020 18:43:13 +0800
-Message-ID: <CAKgpwJUqfyZv1+-A4R8R--O-u2R65T+VUxL6PtW4c6kG0FJWfg@mail.gmail.com>
-Subject: Re: [PATCH v8 05/11] dt-bindings: connector: Add property to set
- initial current cap for FRS
-To:     Badhri Jagan Sridharan <badhri@google.com>
-Cc:     Guenter Roeck <linux@roeck-us.net>,
-        Heikki Krogerus <heikki.krogerus@linux.intel.com>,
-        Greg Kroah-Hartman <gregkh@linuxfoundation.org>,
-        Rob Herring <robh+dt@kernel.org>,
-        Lee Jones <lee.jones@linaro.org>,
-        Mark Brown <broonie@kernel.org>,
-        Maxime Ripard <mripard@kernel.org>,
-        Alexandre Belloni <alexandre.belloni@bootlin.com>,
-        Thierry Reding <treding@nvidia.com>,
-        Prashant Malani <pmalani@chromium.org>,
-        "open list:OPEN FIRMWARE AND FLATTENED DEVICE TREE BINDINGS" 
-        <devicetree@vger.kernel.org>, lkml <linux-kernel@vger.kernel.org>,
-        Linux USB List <linux-usb@vger.kernel.org>
-Content-Type: text/plain; charset="UTF-8"
-Content-Transfer-Encoding: quoted-printable
+Content-Type: text/plain
+X-EXCLAIMER-MD-CONFIG: e1e8a2fd-e40a-4ac6-ac9b-f7e9cc9ee180
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-Badhri Jagan Sridharan <badhri@google.com> =E4=BA=8E2020=E5=B9=B49=E6=9C=88=
-22=E6=97=A5=E5=91=A8=E4=BA=8C =E4=B8=8A=E5=8D=883:57=E5=86=99=E9=81=93=EF=
-=BC=9A
->
-> This change adds frs-typec-current which allows setting the initial curre=
-nt
-> capability of the new source when vSafe5V is applied during PD3.0
-> sink Fast Role Swap.
->
-> Signed-off-by: Badhri Jagan Sridharan <badhri@google.com>
-> ---
-> Changes since v1:
-> - Changing patch version to v6 to fix version number confusion.
->
-> Changes since v6:
-> - Removed the redundant usb-connector.txt that I created by mistake.
-> - Moved to yaml.
->
-> Changes since v7:
-> - Rebase
-> ---
->  .../devicetree/bindings/connector/usb-connector.yaml   |  8 ++++++++
->  include/dt-bindings/usb/pd.h                           | 10 ++++++++++
->  2 files changed, 18 insertions(+)
->
-> diff --git a/Documentation/devicetree/bindings/connector/usb-connector.ya=
-ml b/Documentation/devicetree/bindings/connector/usb-connector.yaml
-> index 9bd52e63c935..1ca8e6a337e5 100644
-> --- a/Documentation/devicetree/bindings/connector/usb-connector.yaml
-> +++ b/Documentation/devicetree/bindings/connector/usb-connector.yaml
-> @@ -142,6 +142,14 @@ properties:
->      required:
->        - port@0
->
-> +  frs-typec-current:
-> +    description: Initial current capability of the new source when vSafe=
-5V
-> +      is applied during PD3.0 Fast Role Swap. "Table 6-14 Fixed Supply P=
-DO - Sink"
-> +      of "USB Power Delivery Specification Revision 3.0, Version 1.2" pr=
-ovides the
-> +      different power levels and "6.4.1.3.1.6 Fast Role Swap USB Type-C =
-Current"
-> +      provides a detailed description of the field.
-> +    $ref: /schemas/types.yaml#/definitions/uint32
+The following are driver and documentation patches to enable UHS modes for
+TI's AM65x, J721e, and J7200 boards. Device tree and defconfig patches
+will be sent in a separate series.
 
-If it's a part of sink PDO, I think you don't need a new property for this,=
- just
-define it directly into sink-pdos by adding a new PDO define for PD 3.0,
-something like:
+With the complete set, the following maximum modes will be supported:
 
-sink-pdos =3D <PDO_FIXED_v3(5000, 3000, PDO_FIXED_USB_COMM, FRS_CURRENT_1P5=
-A)>;
+am654x-evm,idk		- SDR104, HS200
+j721e-common-proc-board	- DDR50, HS200
+j7200-common-proc-board	- DDR50, HS200
 
-Li Jun
-> +
->  required:
->    - compatible
->
-> diff --git a/include/dt-bindings/usb/pd.h b/include/dt-bindings/usb/pd.h
-> index 985f2bbd4d24..db1ad4532197 100644
-> --- a/include/dt-bindings/usb/pd.h
-> +++ b/include/dt-bindings/usb/pd.h
-> @@ -35,6 +35,16 @@
->
->  #define VSAFE5V 5000 /* mv units */
->
-> +/*
-> + * Based on "Table 6-14 Fixed Supply PDO - Sink" of "USB Power Delivery =
-Specification Revision 3.0,
-> + * Version 1.2"
-> + * Initial current capability of the new source when vSafe5V is applied.
-> + */
-> +#define FRS_NOT_SUPPORTED      0
-> +#define FRS_DEFAULT_POWER      1
-> +#define FRS_5V_1P5A            2
-> +#define FRS_5V_3A              3
-> +
->  #define PDO_BATT_MAX_VOLT_SHIFT        20      /* 50mV units */
->  #define PDO_BATT_MIN_VOLT_SHIFT        10      /* 50mV units */
->  #define PDO_BATT_MAX_PWR_SHIFT 0       /* 250mW units */
-> --
-> 2.28.0.681.g6f77f65b4e-goog
->
+These patches mainly add support for the software tuning algorithm[1]
+needed for higher speed modes
+
+[1] [1] https://www.ti.com/lit/pdf/spract9
+
+Faiz Abbas (6):
+  dt-bindings: mmc: sdhci-am654: Convert sdhci-am654 controller
+    documentation to json schema
+  dt-bindings: mmc: sdhci-am654: Add documentation for input tap delay
+  mmc: sdhci_am654: Fix hard coded otap delay array size
+  mmc: sdhci_am654: Add support for input tap delay
+  mmc: sdhci_am654: Add support for software tuning
+  mmc: sdhci_am654: Enable tuning for SDR50
+
+ .../devicetree/bindings/mmc/sdhci-am654.txt   |  65 ------
+ .../devicetree/bindings/mmc/sdhci-am654.yaml  | 218 ++++++++++++++++++
+ drivers/mmc/host/sdhci_am654.c                | 179 ++++++++++----
+ 3 files changed, 358 insertions(+), 104 deletions(-)
+ delete mode 100644 Documentation/devicetree/bindings/mmc/sdhci-am654.txt
+ create mode 100644 Documentation/devicetree/bindings/mmc/sdhci-am654.yaml
+
+-- 
+2.17.1
+
