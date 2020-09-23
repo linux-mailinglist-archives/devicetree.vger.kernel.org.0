@@ -2,293 +2,134 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from vger.kernel.org (vger.kernel.org [23.128.96.18])
-	by mail.lfdr.de (Postfix) with ESMTP id 4E78C275403
-	for <lists+devicetree@lfdr.de>; Wed, 23 Sep 2020 11:07:29 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTP id 3CCB6275408
+	for <lists+devicetree@lfdr.de>; Wed, 23 Sep 2020 11:08:48 +0200 (CEST)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S1726244AbgIWJH2 (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Wed, 23 Sep 2020 05:07:28 -0400
-Received: from lindbergh.monkeyblade.net ([23.128.96.19]:40378 "EHLO
+        id S1726406AbgIWJIo (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Wed, 23 Sep 2020 05:08:44 -0400
+Received: from lindbergh.monkeyblade.net ([23.128.96.19]:40574 "EHLO
         lindbergh.monkeyblade.net" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S1726513AbgIWJH1 (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Wed, 23 Sep 2020 05:07:27 -0400
-Received: from mail-lj1-x242.google.com (mail-lj1-x242.google.com [IPv6:2a00:1450:4864:20::242])
-        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 8CD77C0613D2
-        for <devicetree@vger.kernel.org>; Wed, 23 Sep 2020 02:07:27 -0700 (PDT)
-Received: by mail-lj1-x242.google.com with SMTP id y4so16570654ljk.8
-        for <devicetree@vger.kernel.org>; Wed, 23 Sep 2020 02:07:27 -0700 (PDT)
+        with ESMTP id S1726178AbgIWJIn (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Wed, 23 Sep 2020 05:08:43 -0400
+Received: from mail-vs1-xe42.google.com (mail-vs1-xe42.google.com [IPv6:2607:f8b0:4864:20::e42])
+        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 9F877C0613CE;
+        Wed, 23 Sep 2020 02:08:43 -0700 (PDT)
+Received: by mail-vs1-xe42.google.com with SMTP id p24so7061762vsf.8;
+        Wed, 23 Sep 2020 02:08:43 -0700 (PDT)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=linaro.org; s=google;
-        h=subject:to:cc:references:from:message-id:date:user-agent
-         :mime-version:in-reply-to:content-language:content-transfer-encoding;
-        bh=oxfqN+/oFq6f8zrQC/M5ig8ijRiZLXyefj4fwEV8+DY=;
-        b=kAJE3GOD2vJpQ7aXFpD7xZpacWnJ+tWlt4k6eb4f5ao88/RQvx9wqvk/ebR6ZqhTTn
-         5Py6T+kevtOj+S8vA4PTA5eygM0sOHC1/FP9KdZVwlu0Oq3/44qodvghr+43QoHnh8x8
-         5CeWVD2IjSUHbIHbrAQ7kGd2QIrb8U079ygRjFkfN/Ywk/8Jrge8p9BXYzrluAY8UJ2n
-         nvM7Hpy0u4TFvdCA452stR9Ka/o059qUfVnVUvuyJ/7rNkwXW6Yvm09W9hWHlSib5sse
-         6fm/Y3mqsAQ/qtmkhTdlqildrALk8/aejkg8NeldoKzmgWO0UY41ZxhVXRjCrwHJdb12
-         YIRQ==
+        d=gmail.com; s=20161025;
+        h=mime-version:references:in-reply-to:from:date:message-id:subject:to
+         :cc:content-transfer-encoding;
+        bh=oIgYpLtXjizNAj00W4NnTag42BkGA1KmTe8MsxRr30M=;
+        b=JqFe8ZKlxQLmOTS0+S2NOyUOXTu2R+cqTgSfpcbAN5dhCl7xKxMkHZz+n4Qrub3UyH
+         YODXdn7/2HI+9rbSJjJo2Q/okxyP4Uf94hjlSR2vycbS0YR0p1g7io2RTBsMug9OK5wr
+         BEVjNRS2AKFbtmcJQQ9yiDC4nrHcUR/3T0a9N3+vuacIEEZYALaEd+eXkj3RHQIYO6Qm
+         JqdH5RTCu66J3FmpV/uruhihD8RqtXEouevITFix3ONHX9MaXKGTVYil46xQAaq4Vp07
+         D3/oj3RN+lmn8ytb4ix91C1rpkU2k1dGdwG5fq/3q3FjJdzwRQWmBHGNQE5QSRZBFToN
+         GSEA==
 X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
         d=1e100.net; s=20161025;
-        h=x-gm-message-state:subject:to:cc:references:from:message-id:date
-         :user-agent:mime-version:in-reply-to:content-language
-         :content-transfer-encoding;
-        bh=oxfqN+/oFq6f8zrQC/M5ig8ijRiZLXyefj4fwEV8+DY=;
-        b=UnT+OQoTXj8A70SOnwamogAkywAvUFMZVJdkNXnsEVhLx8mESpEdS92xLWrwQKJFI6
-         MQx81K3hSfuyDaYix/pUd3cgpwx0VkNLLETl90pr0UWKGvRDDa2KKnDHxrfW/ryUWO2w
-         yXdWN1Tmw30yFDnrYv7+s/4ZXqGghKOam/OldVcEBbCU0uMIneEE2aCm+QtreZzMT6nP
-         NQOsThsjtF28Q7F+aCDLZZVg+YxFkQ6pmNXK5S1XJ/9DDNZWAYbx/Sx9NH55E5NmYpEM
-         A9/m3NGGg0+9b3Xb1i5lO9CVSwvG8kW6S09BCplaeOIld5iIIm74QYL9tym7ARARyL2G
-         7ytA==
-X-Gm-Message-State: AOAM5312vtTuGFiIzws8ggKqHRj/UHMR+yQBMC4QebqYzBxQz7DiAJlK
-        UL26Rxsm4yse9+IDLQlM4onsCw==
-X-Google-Smtp-Source: ABdhPJyoCA3uPuZCxSHL6yFBRN8e+6DemT9CbJsGA4nrCdkQQLUMdOxpTNjah6CWsGURB+sl+Zwn0g==
-X-Received: by 2002:a2e:8850:: with SMTP id z16mr2761724ljj.184.1600852045836;
-        Wed, 23 Sep 2020 02:07:25 -0700 (PDT)
-Received: from [192.168.1.211] ([188.162.64.186])
-        by smtp.gmail.com with ESMTPSA id o8sm4572927lfa.44.2020.09.23.02.07.23
-        (version=TLS1_3 cipher=TLS_AES_128_GCM_SHA256 bits=128/128);
-        Wed, 23 Sep 2020 02:07:25 -0700 (PDT)
-Subject: Re: [PATCH v5 1/9] dt-bindings: thermal: qcom: add adc-thermal
- monitor bindings
-To:     Rob Herring <robh@kernel.org>
-Cc:     Andy Gross <agross@kernel.org>,
-        Bjorn Andersson <bjorn.andersson@linaro.org>,
-        Zhang Rui <rui.zhang@intel.com>,
-        Daniel Lezcano <daniel.lezcano@linaro.org>,
-        Amit Kucheria <amitk@kernel.org>,
-        Jonathan Cameron <jic23@kernel.org>,
-        Hartmut Knaack <knaack.h@gmx.de>,
-        Lars-Peter Clausen <lars@metafoo.de>,
-        Peter Meerwald-Stadler <pmeerw@pmeerw.net>,
-        linux-arm-msm@vger.kernel.org, linux-pm@vger.kernel.org,
-        devicetree@vger.kernel.org, linux-iio@vger.kernel.org,
-        Manivannan Sadhasivam <manivannan.sadhasivam@linaro.org>,
-        Jonathan Cameron <Jonathan.Cameron@huawei.com>
-References: <20200914154809.192174-1-dmitry.baryshkov@linaro.org>
- <20200914154809.192174-2-dmitry.baryshkov@linaro.org>
- <20200922234025.GA3476652@bogus>
-From:   Dmitry Baryshkov <dmitry.baryshkov@linaro.org>
-Message-ID: <55d3f181-b9e6-4963-9d0c-cefee875058c@linaro.org>
-Date:   Wed, 23 Sep 2020 12:07:22 +0300
-User-Agent: Mozilla/5.0 (X11; Linux x86_64; rv:78.0) Gecko/20100101
- Thunderbird/78.2.2
+        h=x-gm-message-state:mime-version:references:in-reply-to:from:date
+         :message-id:subject:to:cc:content-transfer-encoding;
+        bh=oIgYpLtXjizNAj00W4NnTag42BkGA1KmTe8MsxRr30M=;
+        b=M8WAde8bQou6E4tplazS9nKS5gebq5rHOBtWQB/7ydrbGdpTKSpDTUopF2j+/C00v7
+         eA1DVlH3G51duItAjKLgG1kdv6BZB0mGu09XVqX/8gdVdFqILQ5KoEzJX4SaOhwqpThC
+         kzDFrQJsPIP8t28OJnJlrLF2i3CRbfeRn5HeTS97SPNB/rP0WK8+RhaGbqmrqxasbJXd
+         qHM8PajICm2vt86fwO2hM6quA+zm4JYwQXnT6h5tGhP6OKwiGnsy2BNsp495janmrGJm
+         jQhi289zfCOxJUlSGcwq6yr/eKw549ZCQt3V7ynM4QqPPMZPWl7h7dPinswcV1/tlnTj
+         M/mg==
+X-Gm-Message-State: AOAM532xeN1+B/uH1BZfH6J1OyzbyOh8VMQ6VVnDCzAcGX3cw8DVZbMZ
+        v5WXqoBs9XFy/zNJHO4Dia4IErQai1MFxDcc+J8=
+X-Google-Smtp-Source: ABdhPJzdWKR6MZFwBb8dNIhCZhmrSt4ZxbwxAarG9bN4zsxoqrFZNT+Sb0sCYRIr4k19Dq1V0I6Fk6nqS5h8y+dtk/o=
+X-Received: by 2002:a67:7dcb:: with SMTP id y194mr6368815vsc.26.1600852121235;
+ Wed, 23 Sep 2020 02:08:41 -0700 (PDT)
 MIME-Version: 1.0
-In-Reply-To: <20200922234025.GA3476652@bogus>
-Content-Type: text/plain; charset=utf-8; format=flowed
-Content-Language: en-US
-Content-Transfer-Encoding: 7bit
+References: <20200902075707.9052-1-amelie.delaunay@st.com> <20200902075707.9052-2-amelie.delaunay@st.com>
+In-Reply-To: <20200902075707.9052-2-amelie.delaunay@st.com>
+From:   Jun Li <lijun.kernel@gmail.com>
+Date:   Wed, 23 Sep 2020 17:08:30 +0800
+Message-ID: <CAKgpwJWPWFF_yWC0N_7qPONpWCN8U8tKVJ5Ctr1DGqXd_FyWkA@mail.gmail.com>
+Subject: Re: [RESEND PATCH v2 1/6] dt-bindings: connector: add power-opmode
+ optional property to usb-connector
+To:     Amelie Delaunay <amelie.delaunay@st.com>
+Cc:     Rob Herring <robh+dt@kernel.org>,
+        Greg Kroah-Hartman <gregkh@linuxfoundation.org>,
+        Maxime Coquelin <mcoquelin.stm32@gmail.com>,
+        Alexandre Torgue <alexandre.torgue@st.com>,
+        Russell King <linux@armlinux.org.uk>,
+        Heikki Krogerus <heikki.krogerus@linux.intel.com>,
+        "open list:OPEN FIRMWARE AND FLATTENED DEVICE TREE BINDINGS" 
+        <devicetree@vger.kernel.org>, lkml <linux-kernel@vger.kernel.org>,
+        Linux USB List <linux-usb@vger.kernel.org>,
+        linux-stm32@st-md-mailman.stormreply.com,
+        linux-arm-kernel@lists.infradead.org,
+        Fabrice Gasnier <fabrice.gasnier@st.com>
+Content-Type: text/plain; charset="UTF-8"
+Content-Transfer-Encoding: quoted-printable
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-On 23/09/2020 02:40, Rob Herring wrote:
-> On Mon, Sep 14, 2020 at 06:48:01PM +0300, Dmitry Baryshkov wrote:
->> Add bindings for thermal monitor, part of Qualcomm PMIC5 chips. It is a
->> close counterpart of VADC part of those PMICs.
->>
->> Signed-off-by: Dmitry Baryshkov <dmitry.baryshkov@linaro.org>
->> Reviewed-by: Jonathan Cameron <Jonathan.Cameron@huawei.com>
->> ---
->>   .../bindings/thermal/qcom-spmi-adc-tm5.yaml   | 151 ++++++++++++++++++
->>   1 file changed, 151 insertions(+)
->>   create mode 100644 Documentation/devicetree/bindings/thermal/qcom-spmi-adc-tm5.yaml
->>
->> diff --git a/Documentation/devicetree/bindings/thermal/qcom-spmi-adc-tm5.yaml b/Documentation/devicetree/bindings/thermal/qcom-spmi-adc-tm5.yaml
->> new file mode 100644
->> index 000000000000..432a65839b89
->> --- /dev/null
->> +++ b/Documentation/devicetree/bindings/thermal/qcom-spmi-adc-tm5.yaml
->> @@ -0,0 +1,151 @@
->> +# SPDX-License-Identifier: (GPL-2.0 OR BSD-2-Clause)
->> +%YAML 1.2
->> +---
->> +$id: http://devicetree.org/schemas/thermal/qcom-spmi-adc-tm5.yaml#
->> +$schema: http://devicetree.org/meta-schemas/core.yaml#
->> +
->> +title: Qualcomm's SPMI PMIC ADC Thermal Monitoring
->> +maintainers:
->> +  - Dmitry Baryshkov <dmitry.baryshkov@linaro.org>
->> +
->> +properties:
->> +  compatible:
->> +    const: qcom,spmi-adc-tm5
->> +
->> +  reg:
->> +    maxItems: 1
->> +
->> +  interrupts:
->> +    maxItems: 1
->> +
->> +  "#thermal-sensor-cells":
->> +    const: 1
->> +    description:
->> +      Number of cells required to uniquely identify the thermal sensors. Since
->> +      we have multiple sensors this is set to 1
->> +
->> +  "#address-cells":
->> +    const: 1
->> +
->> +  "#size-cells":
->> +    const: 0
->> +
->> +  qcom,avg-samples:
->> +    $ref: /schemas/types.yaml#/definitions/uint32
->> +    description: Number of samples to be used for measurement.
->> +    enum:
->> +      - 1
->> +      - 2
->> +      - 4
->> +      - 8
->> +      - 16
->> +    default: 1
->> +
->> +  qcom,decimation:
->> +    $ref: /schemas/types.yaml#/definitions/uint32
->> +    description: This parameter is used to decrease ADC sampling rate.
->> +            Quicker measurements can be made by reducing decimation ratio.
->> +    enum:
->> +      - 250
->> +      - 420
->> +      - 840
->> +    default: 840
->> +
->> +patternProperties:
->> +  "^([-a-z0-9]*)@[0-9]+$":
-> 
-> Less than 10 as unit-addresses are hex?
+Amelie Delaunay <amelie.delaunay@st.com> =E4=BA=8E2020=E5=B9=B49=E6=9C=882=
+=E6=97=A5=E5=91=A8=E4=B8=89 =E4=B8=8B=E5=8D=884:01=E5=86=99=E9=81=93=EF=BC=
+=9A
+>
+> Power operation mode may depends on hardware design, so, add the optional
+> property power-opmode for usb-c connector to select the power operation
+> mode capability.
+>
+> Signed-off-by: Amelie Delaunay <amelie.delaunay@st.com>
+> ---
+> Changes in v2:
+> - Add description for possible operation current values
+> ---
+>  .../bindings/connector/usb-connector.yaml     | 20 +++++++++++++++++++
+>  1 file changed, 20 insertions(+)
+>
+> diff --git a/Documentation/devicetree/bindings/connector/usb-connector.ya=
+ml b/Documentation/devicetree/bindings/connector/usb-connector.yaml
+> index 9bd52e63c935..2fd85b9a7e1a 100644
+> --- a/Documentation/devicetree/bindings/connector/usb-connector.yaml
+> +++ b/Documentation/devicetree/bindings/connector/usb-connector.yaml
+> @@ -88,6 +88,26 @@ properties:
+>        - device
+>        - dual
+>
+> +  power-opmode:
+> +    description: Determines the power operation mode that the Type C con=
+nector
+> +      will support and will advertise through CC pins.
+> +      - "default" corresponds to default USB voltage and current defined=
+ by the
+> +        USB 2.0 and USB 3.2 specifications, 5V 500mA for USB 2.0 ports a=
+nd
+> +        5V 900mA or 1500mA for USB 3.2 ports in single-lane or dual-lane
+> +        operation respectively.
+> +      - "1.5A" and "3.0A", 5V 1.5A and 5V 3.0A respectively, as defined =
+in USB
+> +        Type-C Cable and Connector specification, when Power Delivery is=
+ not
+> +        supported.
+> +      - "usb_power_delivery" when Power Delivery is supported, as define=
+d in
+> +        USB Power Delivery specification.
 
-8 channels at max currently. I'll fix to use hex though.
+Why need "usb_power_delivery"? isn't this information can be implied by
+existing properties like if "source-pdos" is present?
 
-> 
->> +    type: object
->> +    description:
->> +      Represent one thermal sensor.
->> +
->> +    properties:
->> +      reg:
->> +        description: Specify the sensor channel.
->> +        maxItems: 1
-> 
-> You need a range of values here.
-
-ok.
-
-> 
->> +
->> +      io-channels:
->> +        description:
->> +          From common IIO binding. Used to pipe PMIC ADC channel to thermal monitor
->> +
->> +      qcom,adc-channel:
->> +        $ref: /schemas/types.yaml#/definitions/uint32
->> +        description: Corresponding ADC channel ID.
-> 
-> Why is this not a cell in io-channels?
-
-
-Do you mean parsing a cell from io-channels rather than specifying it 
-again? Sounds like a good idea.
-
-> 
->> +
->> +      qcom,ratiometric:
->> +        $ref: /schemas/types.yaml#/definitions/flag
->> +        description:
->> +          Channel calibration type.
->> +          If this property is specified VADC will use the VDD reference
->> +          (1.875V) and GND for channel calibration. If property is not found,
->> +          channel will be calibrated with 0V and 1.25V reference channels,
->> +          also known as absolute calibration.
->> +
->> +      qcom,hw-settle-time:
->> +        $ref: /schemas/types.yaml#/definitions/uint32
->> +        description: Time between AMUX getting configured and the ADC starting conversion.
-> 
-> Time values should have a unit suffix. Seems like a commmon ADC
-> property...
-
-Could you please be more specific here? Would you like for me to just 
-specify the unit in the description?
-
-> 
->> +
->> +      qcom,pre-scaling:
->> +        $ref: /schemas/types.yaml#/definitions/uint32-array
->> +        description: Used for scaling the channel input signal before the
->> +          signal is fed to VADC. See qcom,spi-vadc specification for the list
->> +          of possible values.
-> 
-> I'd rather not. Need the values here to validate a DT.
-
-OK
-
-> 
->> +        minItems: 2
->> +        maxItems: 2
->> +
->> +    required:
->> +      - reg
->> +      - qcom,adc-channel
->> +
->> +    additionalProperties:
->> +      false
->> +
->> +required:
->> +  - compatible
->> +  - reg
->> +  - interrupts
->> +  - "#address-cells"
->> +  - "#size-cells"
->> +  - "#thermal-sensor-cells"
->> +
->> +additionalProperties: false
->> +
->> +examples:
->> +  - |
->> +    #include <dt-bindings/iio/qcom,spmi-vadc.h>
->> +    #include <dt-bindings/interrupt-controller/irq.h>
->> +    spmi_bus {
->> +        #address-cells = <1>;
->> +        #size-cells = <0>;
->> +        pm8150b_adc: adc@3100 {
->> +            reg = <0x3100>;
->> +            compatible = "qcom,spmi-adc5";
->> +            #address-cells = <1>;
->> +            #size-cells = <0>;
->> +            #io-channel-cells = <1>;
->> +            io-channel-ranges;
->> +
->> +            /* Other propreties are omitted */
->> +            conn-therm@4f {
->> +                reg = <ADC5_AMUX_THM3_100K_PU>;
->> +                qcom,ratiometric;
->> +                qcom,hw-settle-time = <200>;
->> +            };
->> +        };
->> +
->> +        pm8150b_adc_tm: adc-tm@3500 {
->> +            compatible = "qcom,spmi-adc-tm5";
->> +            reg = <0x3500>;
->> +            interrupts = <0x2 0x35 0x0 IRQ_TYPE_EDGE_RISING>;
->> +            #thermal-sensor-cells = <1>;
->> +            #address-cells = <1>;
->> +            #size-cells = <0>;
->> +
->> +            conn-therm@0 {
->> +                reg = <0>;
->> +                io-channels = <&pm8150b_adc ADC5_AMUX_THM3_100K_PU>;
->> +                qcom,adc-channel = <ADC5_AMUX_THM3_100K_PU>;
->> +                qcom,ratiometric;
->> +                qcom,hw-settle-time = <200>;
->> +            };
->> +        };
->> +    };
->> +...
->> -- 
->> 2.28.0
->>
-
-
--- 
-With best wishes
-Dmitry
+Li Jun
+> +    allOf:
+> +      - $ref: /schemas/types.yaml#definitions/string
+> +    enum:
+> +      - default
+> +      - 1.5A
+> +      - 3.0A
+> +      - usb_power_delivery
+> +
+>    # The following are optional properties for "usb-c-connector" with pow=
+er
+>    # delivery support.
+>    source-pdos:
+> --
+> 2.17.1
+>
