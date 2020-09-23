@@ -2,114 +2,108 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from vger.kernel.org (vger.kernel.org [23.128.96.18])
-	by mail.lfdr.de (Postfix) with ESMTP id 35D0C2759AA
-	for <lists+devicetree@lfdr.de>; Wed, 23 Sep 2020 16:15:36 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTP id ACC712759D8
+	for <lists+devicetree@lfdr.de>; Wed, 23 Sep 2020 16:24:44 +0200 (CEST)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S1726234AbgIWOPf (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Wed, 23 Sep 2020 10:15:35 -0400
-Received: from mail-il1-f193.google.com ([209.85.166.193]:34235 "EHLO
-        mail-il1-f193.google.com" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S1726130AbgIWOPf (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Wed, 23 Sep 2020 10:15:35 -0400
-Received: by mail-il1-f193.google.com with SMTP id q5so14435118ilj.1;
-        Wed, 23 Sep 2020 07:15:34 -0700 (PDT)
-X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=1e100.net; s=20161025;
-        h=x-gm-message-state:date:from:to:cc:subject:message-id:references
-         :mime-version:content-disposition:in-reply-to;
-        bh=z+ybPwbaro6Mbg51vI4gLj1KNI6OKly684zYKEE/3qs=;
-        b=ZOr2Rx0g/C2OhSbvbJ3EiNZIozSOQfKNXCy9S6Gd+XWmBqgW9Lnr9LNjHu6gHi/rhk
-         frC6BhzThElCqOzKONn0/RJRgWJI6hwwRxKYOnEqgn6T3XKVEynnK0xDJHjjp8NmQF5M
-         ufBt/PRDtEWjOSR+LgPVOvcviOWmi4FWpMzDXGbuUMTunlOS+UuuMZ3s9VF4bb6kgx9Z
-         6HRiACN6v99zcR7abmSoOtuJfEyRd3E+ei3pxUqlCbutQjet/tP+nawCfH4KiLxEUfWZ
-         73y6k+BcDAE1K3PfbD44uer3LLrBP0HXtF5pp1ksNC9MNUeQFSXxeP9qxNMkYC2dc2kX
-         K0qA==
-X-Gm-Message-State: AOAM5317oCVIE0rdhKncbj073TI4617EC/1JIRA1CNiz7HPcIZy9SY8A
-        Ns4Ybc6cnISeOVOkW+iyYA==
-X-Google-Smtp-Source: ABdhPJxAgyxH5cxoeGuu0eeWquHZcEMF8ezBv0YY/1s2b73FPQIq9728Vf5uBDuhVlOEP+SClCs7Pw==
-X-Received: by 2002:a92:874a:: with SMTP id d10mr8858913ilm.163.1600870534229;
-        Wed, 23 Sep 2020 07:15:34 -0700 (PDT)
-Received: from xps15 ([64.188.179.253])
-        by smtp.gmail.com with ESMTPSA id c12sm11014101ili.48.2020.09.23.07.15.33
-        (version=TLS1_3 cipher=TLS_AES_256_GCM_SHA384 bits=256/256);
-        Wed, 23 Sep 2020 07:15:33 -0700 (PDT)
-Received: (nullmailer pid 661217 invoked by uid 1000);
-        Wed, 23 Sep 2020 14:15:32 -0000
-Date:   Wed, 23 Sep 2020 08:15:32 -0600
-From:   Rob Herring <robh@kernel.org>
-To:     Vadim Pasternak <vadimp@nvidia.com>
-Cc:     robh+dt@kernel.org, linux-hwmon@vger.kernel.org,
-        linux@roeck-us.net, devicetree@vger.kernel.org
-Subject: Re: [PATCH hwmon-next v2 2/2] dt-bindings: Add MP2975 voltage
- regulator device
-Message-ID: <20200923141532.GA660614@bogus>
-References: <20200922200504.15375-1-vadimp@nvidia.com>
- <20200922200504.15375-3-vadimp@nvidia.com>
+        id S1726621AbgIWOYn (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Wed, 23 Sep 2020 10:24:43 -0400
+Received: from fllv0016.ext.ti.com ([198.47.19.142]:37026 "EHLO
+        fllv0016.ext.ti.com" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
+        with ESMTP id S1726514AbgIWOYn (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Wed, 23 Sep 2020 10:24:43 -0400
+Received: from fllv0035.itg.ti.com ([10.64.41.0])
+        by fllv0016.ext.ti.com (8.15.2/8.15.2) with ESMTP id 08NEOZuB115778;
+        Wed, 23 Sep 2020 09:24:35 -0500
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=ti.com;
+        s=ti-com-17Q1; t=1600871075;
+        bh=NR7f3YvJ/uN9+qYBcFSETqbzEhF0zeieYDdc9DDbwZ0=;
+        h=From:To:CC:Subject:Date:In-Reply-To:References;
+        b=v82pCkxIvVGT5TSBkOaHzR9johQ7emBRXXrB9u/95Ll7eOXdhfoWbAMCBMm9cuUxI
+         ws+hxurz7bfv8mszC2M/xbx99IeSWNPPm2hfuqF8GDo4Fd3bLL+UOmHArJbZoNy552
+         yfkPKgRI7nHUuK/PPIe+CIKIPNB2fJGPfkOLO3cU=
+Received: from DLEE103.ent.ti.com (dlee103.ent.ti.com [157.170.170.33])
+        by fllv0035.itg.ti.com (8.15.2/8.15.2) with ESMTP id 08NEOY1V014192;
+        Wed, 23 Sep 2020 09:24:35 -0500
+Received: from DLEE110.ent.ti.com (157.170.170.21) by DLEE103.ent.ti.com
+ (157.170.170.33) with Microsoft SMTP Server (version=TLS1_2,
+ cipher=TLS_ECDHE_RSA_WITH_AES_128_CBC_SHA256_P256) id 15.1.1979.3; Wed, 23
+ Sep 2020 09:24:31 -0500
+Received: from lelv0327.itg.ti.com (10.180.67.183) by DLEE110.ent.ti.com
+ (157.170.170.21) with Microsoft SMTP Server (version=TLS1_2,
+ cipher=TLS_ECDHE_RSA_WITH_AES_128_CBC_SHA256_P256) id 15.1.1979.3 via
+ Frontend Transport; Wed, 23 Sep 2020 09:24:31 -0500
+Received: from localhost (ileax41-snat.itg.ti.com [10.172.224.153])
+        by lelv0327.itg.ti.com (8.15.2/8.15.2) with ESMTP id 08NEOURw054900;
+        Wed, 23 Sep 2020 09:24:31 -0500
+From:   Nishanth Menon <nm@ti.com>
+To:     Rob Herring <robh+dt@kernel.org>,
+        Lokesh Vutla <lokeshvutla@ti.com>,
+        Tero Kristo <t-kristo@ti.com>
+CC:     Nishanth Menon <nm@ti.com>, Kishon Vijay Abraham I <kishon@ti.com>,
+        Linux ARM Mailing List <linux-arm-kernel@lists.infradead.org>,
+        Sekhar Nori <nsekhar@ti.com>,
+        Device Tree Mailing List <devicetree@vger.kernel.org>,
+        Grygorii Strashko <grygorii.strashko@ti.com>
+Subject: Re: [PATCH v4 0/5] arm64: Initial support for Texas Instrument's J7200 Platform
+Date:   Wed, 23 Sep 2020 09:24:29 -0500
+Message-ID: <160087076010.3924.5778122108206196076.b4-ty@ti.com>
+X-Mailer: git-send-email 2.28.0
+In-Reply-To: <20200914162231.2535-1-lokeshvutla@ti.com>
+References: <20200914162231.2535-1-lokeshvutla@ti.com>
 MIME-Version: 1.0
-Content-Type: text/plain; charset=us-ascii
-Content-Disposition: inline
-In-Reply-To: <20200922200504.15375-3-vadimp@nvidia.com>
+Content-Transfer-Encoding: 8bit
+Content-Type: text/plain
+X-EXCLAIMER-MD-CONFIG: e1e8a2fd-e40a-4ac6-ac9b-f7e9cc9ee180
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-On Tue, 22 Sep 2020 23:05:04 +0300, Vadim Pasternak wrote:
-> Monolithic Power Systems, Inc. (MPS) dual-loop, digital, multi-phase
-> controller.
+On Mon, 14 Sep 2020 21:52:26 +0530, Lokesh Vutla wrote:
+> This series adds initial support for latest new SoC, J7200, from Texas Instruments.
 > 
-> Signed-off-by: Vadim Pasternak <vadimp@nvidia.com>
-> ---
->  Documentation/devicetree/bindings/trivial-devices.yaml | 2 ++
->  1 file changed, 2 insertions(+)
+> The J7200 SoC is a part of the K3 Multicore SoC architecture platform.
+> It is targeted for for automotive gateway, vehicle compute systems,
+> Vehicle-to-Vehicle (V2V) and Vehicle-to-Everything (V2X) applications.
+> The SoC aims to meet the complex processing needs of modern embedded products.
 > 
+> [...]
 
+Hi Lokesh Vutla,
 
-My bot found errors running 'make dt_binding_check' on your patch:
+I have applied the following to branch ti-k3-dts-next on [1].
+Thank you!
 
-Traceback (most recent call last):
-  File "/usr/local/bin/dt-extract-example", line 45, in <module>
-    binding = yaml.load(open(args.yamlfile, encoding='utf-8').read())
-  File "/usr/local/lib/python3.8/dist-packages/ruamel/yaml/main.py", line 343, in load
-    return constructor.get_single_data()
-  File "/usr/local/lib/python3.8/dist-packages/ruamel/yaml/constructor.py", line 111, in get_single_data
-    node = self.composer.get_single_node()
-  File "_ruamel_yaml.pyx", line 706, in _ruamel_yaml.CParser.get_single_node
-  File "_ruamel_yaml.pyx", line 724, in _ruamel_yaml.CParser._compose_document
-  File "_ruamel_yaml.pyx", line 775, in _ruamel_yaml.CParser._compose_node
-  File "_ruamel_yaml.pyx", line 889, in _ruamel_yaml.CParser._compose_mapping_node
-  File "_ruamel_yaml.pyx", line 775, in _ruamel_yaml.CParser._compose_node
-  File "_ruamel_yaml.pyx", line 889, in _ruamel_yaml.CParser._compose_mapping_node
-  File "_ruamel_yaml.pyx", line 775, in _ruamel_yaml.CParser._compose_node
-  File "_ruamel_yaml.pyx", line 889, in _ruamel_yaml.CParser._compose_mapping_node
-  File "_ruamel_yaml.pyx", line 773, in _ruamel_yaml.CParser._compose_node
-  File "_ruamel_yaml.pyx", line 850, in _ruamel_yaml.CParser._compose_sequence_node
-  File "_ruamel_yaml.pyx", line 775, in _ruamel_yaml.CParser._compose_node
-  File "_ruamel_yaml.pyx", line 889, in _ruamel_yaml.CParser._compose_mapping_node
-  File "_ruamel_yaml.pyx", line 773, in _ruamel_yaml.CParser._compose_node
-  File "_ruamel_yaml.pyx", line 852, in _ruamel_yaml.CParser._compose_sequence_node
-  File "_ruamel_yaml.pyx", line 904, in _ruamel_yaml.CParser._parse_next_event
-ruamel.yaml.scanner.ScannerError: while scanning a plain scalar
-  in "<unicode string>", line 82, column 13
-found a tab character that violates indentation
-  in "<unicode string>", line 83, column 1
-make[1]: *** [Documentation/devicetree/bindings/Makefile:18: Documentation/devicetree/bindings/trivial-devices.example.dts] Error 1
-make[1]: *** Deleting file 'Documentation/devicetree/bindings/trivial-devices.example.dts'
-make[1]: *** Waiting for unfinished jobs....
-./Documentation/devicetree/bindings/trivial-devices.yaml:  while scanning a plain scalar
-  in "<unicode string>", line 82, column 13
-found a tab character that violates indentation
-  in "<unicode string>", line 83, column 1
-/builds/robherring/linux-dt-review/Documentation/devicetree/bindings/trivial-devices.yaml: ignoring, error parsing file
-warning: no schema found in file: ./Documentation/devicetree/bindings/trivial-devices.yaml
-make: *** [Makefile:1366: dt_binding_check] Error 2
+[1/5] arm64: dts: ti: Makefile: Use ARCH_K3 for building dtbs
+      commit: 21bb8c83c94923f1f996e1cb57c4744ea1163eed
+[2/5] dt-bindings: arm: ti: Convert K3 board/soc bindings to DT schema
+      commit: 66e06509aa37bcf089ce341ec9c027922f105155
+[3/5] dt-bindings: arm: ti: Add bindings for J7200 SoC
+      commit: 214b0eb35e55d9d726ad02ffec62f087c09864fb
+[4/5] arm64: dts: ti: Add support for J7200 SoC
+      commit: d361ed88455feae5f7e555828b0d8104588cc53d
+[5/5] arm64: dts: ti: Add support for J7200 Common Processor Board
+      commit: 26bd3f312c2ece0e8860c80fc64a112df5a620c6
+	NOTE: I have edited the patch to address the trivial comment
 
+All being well this means that it will be integrated into the linux-next
+tree (usually sometime in the next 24 hours) and sent up the chain during
+the next merge window (or sooner if it is a relevant bug fix), however if
+problems are discovered then the patch may be dropped or reverted.
 
-See https://patchwork.ozlabs.org/patch/1369246
+You may get further e-mails resulting from automated or manual testing
+and review of the tree, please engage with people reporting problems and
+send followup patches addressing any issues that are reported if needed.
 
-If you already ran 'make dt_binding_check' and didn't see the above
-error(s), then make sure dt-schema is up to date:
+If any updates are required or you are submitting further changes they
+should be sent as incremental updates against current git, existing
+patches will not be replaced.
 
-pip3 install git+https://github.com/devicetree-org/dt-schema.git@master --upgrade
+Please add any relevant lists and maintainers to the CCs when replying
+to this mail.
 
-Please check and re-submit.
+[1] git://git.kernel.org/pub/scm/linux/kernel/git/nmenon/linux.git
+-- 
+Regards,
+Nishanth Menon
+Key (0xDDB5849D1736249D) / Fingerprint: F8A2 8693 54EB 8232 17A3  1A34 DDB5 849D 1736 249D
 
