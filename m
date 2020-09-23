@@ -2,70 +2,71 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from vger.kernel.org (vger.kernel.org [23.128.96.18])
-	by mail.lfdr.de (Postfix) with ESMTP id 60CEF275BE7
-	for <lists+devicetree@lfdr.de>; Wed, 23 Sep 2020 17:32:57 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTP id 482BF275BE9
+	for <lists+devicetree@lfdr.de>; Wed, 23 Sep 2020 17:33:09 +0200 (CEST)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S1726727AbgIWPcv (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Wed, 23 Sep 2020 11:32:51 -0400
-Received: from mail-il1-f193.google.com ([209.85.166.193]:38078 "EHLO
-        mail-il1-f193.google.com" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S1726265AbgIWPcv (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Wed, 23 Sep 2020 11:32:51 -0400
-Received: by mail-il1-f193.google.com with SMTP id t18so2445ilp.5;
-        Wed, 23 Sep 2020 08:32:50 -0700 (PDT)
+        id S1726595AbgIWPdI (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Wed, 23 Sep 2020 11:33:08 -0400
+Received: from mail-il1-f194.google.com ([209.85.166.194]:36688 "EHLO
+        mail-il1-f194.google.com" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
+        with ESMTP id S1726265AbgIWPdI (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Wed, 23 Sep 2020 11:33:08 -0400
+Received: by mail-il1-f194.google.com with SMTP id t12so19850ilh.3;
+        Wed, 23 Sep 2020 08:33:07 -0700 (PDT)
 X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
         d=1e100.net; s=20161025;
         h=x-gm-message-state:date:from:to:cc:subject:message-id:references
          :mime-version:content-disposition:in-reply-to;
-        bh=DtoDYlIgkJM6C+Ai6LhWBQbNLvk60GPVee6qi+q1BVA=;
-        b=WKy8TeQmAneDalsPGyG8D0I+sOlPitd7OiCYqdNMheiC1x4MEyXbRLnmaWmiESAhGN
-         o72HVNYCkyRnL+g1j+KoEeGa8zQPPkrRjxY8QVQllYlwxomocPunPbFZlANqhVzQkjwK
-         XfQ6ORjMLlu7tSH00kVNk8C1KHRYYHpD7sbz+4NynqVdJk/wEK3nE2Lo4xe53IIyx+Bw
-         JW+2EcAo+43znMi5ExygBxhkz35rMe4a99n+XTPDMGc4tzMYZnhR9a4VCBMfUY+nov0b
-         FJKzPDeyxw8Xk5jJ86Y52PTm7KvVwEPGWqP0jfDKLivzPOBHqr9S1PsLjGj8ah7f77Mi
-         aFbQ==
-X-Gm-Message-State: AOAM531CxpLYMBsE0Xm9BigRK/Hrod08G/DGCLR672JsdLHKUZsCCguV
-        4zyC359CLo/O/SyiLwLjZ4MkFPYdteMvgTA=
-X-Google-Smtp-Source: ABdhPJzoWPKxdJIWJBysTOwFw0i31FN6iTt9hOPtV7z+rEba3hOi6SYuHEcViMiAy4vfbjm5FYdeEQ==
-X-Received: by 2002:a92:b602:: with SMTP id s2mr266105ili.299.1600875169920;
-        Wed, 23 Sep 2020 08:32:49 -0700 (PDT)
+        bh=w5w8Uvn8McZjjgkjEWVA++4pmoYoDvxFECyptYJKqC0=;
+        b=PlKl991zxVPtbGs6ziDNBBVamf2KZfJSINqcekd3Txcs80qyr4U4sNFBCj3Tno5NMR
+         JWtTTLOm4EuXky/gRlXVXd9xkMOU3YIMP8B14nBqjlaHanXCXw3m49m/ydYEfMYgHQ6r
+         roQxB2sI3fdFZULBNf1qEC7QSlxa17x/WHltq+GgAgdmXfMjmkt7Q42uctfOtnNgbl1N
+         pZZF+sXcvjKQyjGuOVJ7WR5R6DMCn+cI4CY0RDHu9y+fT7uOsmVn2YiiMyUY9TgqH/k1
+         mIMLXS+EAdey9NZmi1IhpZmz37YxpmQcyV74JvWUvCVub2OzS4sRN9kEkA4tgwKKPbGq
+         IyEw==
+X-Gm-Message-State: AOAM5309p4UYStuBRBzgMLC+wHtdCb3BXvEbjG42faVbx5pPZSt3SBSy
+        osSneRHvw3oZMI1HBcLFmQ==
+X-Google-Smtp-Source: ABdhPJxbVblo1SqKfxuo6P8z/VT/DbqU+Fmlgz8qI7+aeXmQ6bBTgFNGVWwbrry3rmmdgnLCi0iZyg==
+X-Received: by 2002:a05:6e02:13ae:: with SMTP id h14mr319531ilo.208.1600875187319;
+        Wed, 23 Sep 2020 08:33:07 -0700 (PDT)
 Received: from xps15 ([64.188.179.253])
-        by smtp.gmail.com with ESMTPSA id l6sm8046160ilo.21.2020.09.23.08.32.48
+        by smtp.gmail.com with ESMTPSA id a23sm79204ioc.54.2020.09.23.08.33.05
         (version=TLS1_3 cipher=TLS_AES_256_GCM_SHA384 bits=256/256);
-        Wed, 23 Sep 2020 08:32:49 -0700 (PDT)
-Received: (nullmailer pid 787283 invoked by uid 1000);
-        Wed, 23 Sep 2020 15:32:48 -0000
-Date:   Wed, 23 Sep 2020 09:32:48 -0600
+        Wed, 23 Sep 2020 08:33:06 -0700 (PDT)
+Received: (nullmailer pid 787842 invoked by uid 1000);
+        Wed, 23 Sep 2020 15:33:05 -0000
+Date:   Wed, 23 Sep 2020 09:33:05 -0600
 From:   Rob Herring <robh@kernel.org>
-To:     Jon Hunter <jonathanh@nvidia.com>
-Cc:     devicetree@vger.kernel.org,
-        Bartosz Golaszewski <bgolaszewski@baylibre.com>,
-        linux-i2c@vger.kernel.org,
-        Thierry Reding <thierry.reding@gmail.com>,
-        linux-kernel@vger.kernel.org, Rob Herring <robh+dt@kernel.org>,
-        linux-tegra@vger.kernel.org
-Subject: Re: [PATCH V2 2/5] dt-bindings: eeprom: at24: Add label property for
- AT24
-Message-ID: <20200923153248.GA787205@bogus>
-References: <20200916094952.458003-1-jonathanh@nvidia.com>
- <20200916094952.458003-3-jonathanh@nvidia.com>
+To:     Stephan Gerhold <stephan@gerhold.net>
+Cc:     Andy Gross <agross@kernel.org>, devicetree@vger.kernel.org,
+        ~postmarketos/upstreaming@lists.sr.ht,
+        Ohad Ben-Cohen <ohad@wizery.com>,
+        Rob Herring <robh+dt@kernel.org>,
+        linux-remoteproc@vger.kernel.org, linux-arm-msm@vger.kernel.org,
+        Bjorn Andersson <bjorn.andersson@linaro.org>,
+        Rajendra Nayak <rnayak@codeaurora.org>
+Subject: Re: [PATCH 02/10] dt-bindings: power: rpmpd: Add MSM8916 RPM power
+ domains
+Message-ID: <20200923153305.GA787788@bogus>
+References: <20200916104135.25085-1-stephan@gerhold.net>
+ <20200916104135.25085-3-stephan@gerhold.net>
 MIME-Version: 1.0
 Content-Type: text/plain; charset=us-ascii
 Content-Disposition: inline
-In-Reply-To: <20200916094952.458003-3-jonathanh@nvidia.com>
+In-Reply-To: <20200916104135.25085-3-stephan@gerhold.net>
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-On Wed, 16 Sep 2020 10:49:49 +0100, Jon Hunter wrote:
-> Add a label property for the AT24 EEPROM to allow a custom name to be
-> used for identifying the EEPROM on a board. This is useful when there
-> is more than one EEPROM present.
+On Wed, 16 Sep 2020 12:41:27 +0200, Stephan Gerhold wrote:
+> MSM8916 has two RPM power domains: VDDCX and VDDMX.
+> Add the device tree bindings to manage them through rpmpd.
 > 
-> Signed-off-by: Jon Hunter <jonathanh@nvidia.com>
+> Signed-off-by: Stephan Gerhold <stephan@gerhold.net>
 > ---
->  Documentation/devicetree/bindings/eeprom/at24.yaml | 3 +++
->  1 file changed, 3 insertions(+)
+>  Documentation/devicetree/bindings/power/qcom,rpmpd.yaml | 1 +
+>  include/dt-bindings/power/qcom-rpmpd.h                  | 7 +++++++
+>  2 files changed, 8 insertions(+)
 > 
 
 Reviewed-by: Rob Herring <robh@kernel.org>
