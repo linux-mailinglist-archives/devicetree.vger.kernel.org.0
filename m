@@ -2,30 +2,30 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from vger.kernel.org (vger.kernel.org [23.128.96.18])
-	by mail.lfdr.de (Postfix) with ESMTP id 2DEB02756B9
-	for <lists+devicetree@lfdr.de>; Wed, 23 Sep 2020 12:58:03 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTP id 1EEC02756C9
+	for <lists+devicetree@lfdr.de>; Wed, 23 Sep 2020 13:02:35 +0200 (CEST)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S1726422AbgIWK6C (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Wed, 23 Sep 2020 06:58:02 -0400
-Received: from gloria.sntech.de ([185.11.138.130]:46292 "EHLO gloria.sntech.de"
+        id S1726444AbgIWLCd (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Wed, 23 Sep 2020 07:02:33 -0400
+Received: from gloria.sntech.de ([185.11.138.130]:46342 "EHLO gloria.sntech.de"
         rhost-flags-OK-OK-OK-OK) by vger.kernel.org with ESMTP
-        id S1726332AbgIWK6C (ORCPT <rfc822;devicetree@vger.kernel.org>);
-        Wed, 23 Sep 2020 06:58:02 -0400
+        id S1726332AbgIWLCa (ORCPT <rfc822;devicetree@vger.kernel.org>);
+        Wed, 23 Sep 2020 07:02:30 -0400
 Received: from [95.90.166.74] (helo=diego.localnet)
         by gloria.sntech.de with esmtpsa (TLS1.3:ECDHE_RSA_AES_256_GCM_SHA384:256)
         (Exim 4.92)
         (envelope-from <heiko@sntech.de>)
-        id 1kL2TF-0006YK-2A; Wed, 23 Sep 2020 12:57:57 +0200
+        id 1kL2Xa-0006ap-7G; Wed, 23 Sep 2020 13:02:26 +0200
 From:   Heiko =?ISO-8859-1?Q?St=FCbner?= <heiko@sntech.de>
 To:     Artem Lapkin <email2tema@gmail.com>
 Cc:     linux-arm-kernel@lists.infradead.org, robh+dt@kernel.org,
         art@khadas.com, jbx6244@gmail.com, devicetree@vger.kernel.org,
         linux-kernel@vger.kernel.org, nick@khadas.com
-Subject: Re: [PATCH 1/2] arm64: dts: rockchip: rk3399-khadas-edge: add missed spiflash node
-Date:   Wed, 23 Sep 2020 12:57:56 +0200
-Message-ID: <8046326.tZ3HhvINgq@diego>
-In-Reply-To: <20200923101225.1513392-2-email2tema@gmail.com>
-References: <20200923101225.1513392-1-email2tema@gmail.com> <20200923101225.1513392-2-email2tema@gmail.com>
+Subject: Re: [PATCH 2/2] arm64: dts: rockchip: rk3399-khadas-edge add missed ir-receiver and ir_rx pinctl nodes
+Date:   Wed, 23 Sep 2020 13:02:25 +0200
+Message-ID: <7887815.vmt15hixIf@diego>
+In-Reply-To: <20200923101225.1513392-3-email2tema@gmail.com>
+References: <20200923101225.1513392-1-email2tema@gmail.com> <20200923101225.1513392-3-email2tema@gmail.com>
 MIME-Version: 1.0
 Content-Transfer-Encoding: 7Bit
 Content-Type: text/plain; charset="us-ascii"
@@ -35,56 +35,68 @@ X-Mailing-List: devicetree@vger.kernel.org
 
 Hi Artem,
 
-please make the subject something like
-"arm64: dts: rockchip: add spiflash node to rk3399-khadas-edge"
-
-Am Mittwoch, 23. September 2020, 12:12:24 CEST schrieb Artem Lapkin:
+Am Mittwoch, 23. September 2020, 12:12:25 CEST schrieb Artem Lapkin:
 > From: Artem Lapkin <art@khadas.com>
 > 
-> The Khadas Edge Boards uses winbond - w25q128 spi flash with 104Mhz
+> add missed ir receivier to Khadas Edge board
+> Khadas Edge uses gpio-ir-receiver on RK_PB6 gpio
 
-Missing "Signed-off-by: ..."
+Missing Signed-off-by
 
 > ---
->  .../boot/dts/rockchip/rk3399-khadas-edge.dtsi      | 14 ++++++++++++++
->  1 file changed, 14 insertions(+)
+>  .../boot/dts/rockchip/rk3399-khadas-edge.dtsi    | 16 ++++++++++++++++
+>  1 file changed, 16 insertions(+)
 > 
 > diff --git a/arch/arm64/boot/dts/rockchip/rk3399-khadas-edge.dtsi b/arch/arm64/boot/dts/rockchip/rk3399-khadas-edge.dtsi
-> index e36837c04dc..42ebbd6fa46 100644
+> index 42ebbd6fa46..389ae43d869 100644
 > --- a/arch/arm64/boot/dts/rockchip/rk3399-khadas-edge.dtsi
 > +++ b/arch/arm64/boot/dts/rockchip/rk3399-khadas-edge.dtsi
-> @@ -805,3 +805,17 @@ &vopl {
->  &vopl_mmu {
+> @@ -109,6 +109,14 @@ vsys_5v0: vsys-5v0 {
+>  		vin-supply = <&vsys>;
+>  	};
+>  
+> +	ir-receiver {
+
+please sort alphabetically.
+
+Also more importantly, is this really part of all Khadas Edge board variants?
+[just making sure ;-) ]
+
+> +		compatible = "gpio-ir-receiver";
+> +		gpios = <&gpio1 RK_PB6 GPIO_ACTIVE_LOW>;
+> +		pinctrl-names = "default";
+> +		pinctrl-0 = <&ir_rx>;
+> +		linux,rc-map-name = "rc-khadas";
+> +	};
+> +
+>  	adc-keys {
+>  		compatible = "adc-keys";
+>  		io-channels = <&saradc 1>;
+> @@ -682,6 +690,14 @@ &sdmmc {
 >  	status = "okay";
 >  };
-> +
-> +
-no double empty lines please
+>  
+> +&pinctrl {
 
-> +&spi1 {
+there is already a "&pinctrl" node in the "rk3399-khadas-edge.dtsi"
+please don't add another one, and make sure things are somewhat
+sorted alphabetically ;-) .
 
-please group the &spi1 alphabetically in the file
+Thanks
+Heiko
 
-> +    max-freq = <104000000>;
-
-not part of any binding, spi-max-frequency below should be enough.
-
-> +    status = "okay";
-> +
-> +    spiflash: flash@0 {
-> +    u-boot,dm-pre-reloc;
-
-u-boot specific, please drop
-
-> +    compatible = "winbond,w25q128fw", "jedec,spi-nor";
-> +    reg = <0>;
-> +    spi-max-frequency = <104000000>;
+> +    ir {
+> +	ir_rx: ir-rx {
+> +	    rockchip,pins = <1 RK_PB6 RK_FUNC_GPIO &pcfg_pull_none>;
+> +	};
 > +    };
 > +};
 > +
+>  &sdhci {
+>  	bus-width = <8>;
+>  	mmc-hs400-1_8v;
 > 
 
 
-Heiko
 
 
