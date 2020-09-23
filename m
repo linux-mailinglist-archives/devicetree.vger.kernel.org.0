@@ -2,246 +2,167 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from vger.kernel.org (vger.kernel.org [23.128.96.18])
-	by mail.lfdr.de (Postfix) with ESMTP id A4C3B275D05
-	for <lists+devicetree@lfdr.de>; Wed, 23 Sep 2020 18:12:36 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTP id 9727F275D28
+	for <lists+devicetree@lfdr.de>; Wed, 23 Sep 2020 18:17:16 +0200 (CEST)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S1726184AbgIWQMg (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Wed, 23 Sep 2020 12:12:36 -0400
-Received: from lindbergh.monkeyblade.net ([23.128.96.19]:49310 "EHLO
-        lindbergh.monkeyblade.net" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S1726130AbgIWQMg (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Wed, 23 Sep 2020 12:12:36 -0400
-Received: from bhuna.collabora.co.uk (bhuna.collabora.co.uk [IPv6:2a00:1098:0:82:1000:25:2eeb:e3e3])
-        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 998F8C0613CE;
-        Wed, 23 Sep 2020 09:12:35 -0700 (PDT)
-Received: from [127.0.0.1] (localhost [127.0.0.1])
-        (Authenticated sender: eballetbo)
-        with ESMTPSA id C160629C96F
-Subject: Re: [PATCH 01/12] dt-bindings: power: Add bindings for the Mediatek
- SCPSYS power domains controller
-To:     Rob Herring <robh@kernel.org>,
-        Matthias Brugger <matthias.bgg@gmail.com>
-Cc:     "linux-kernel@vger.kernel.org" <linux-kernel@vger.kernel.org>,
-        Collabora Kernel ML <kernel@collabora.com>,
-        Fabien Parent <fparent@baylibre.com>,
-        Nicolas Boichat <drinkcat@chromium.org>,
-        Hsin-Yi Wang <hsinyi@chromium.org>,
-        Weiyi Lu <weiyi.lu@mediatek.com>,
-        Matthias Brugger <mbrugger@suse.com>,
-        devicetree@vger.kernel.org,
-        linux-arm-kernel <linux-arm-kernel@lists.infradead.org>,
-        "moderated list:ARM/Mediatek SoC support" 
-        <linux-mediatek@lists.infradead.org>
-References: <20200910172826.3074357-1-enric.balletbo@collabora.com>
- <20200910172826.3074357-2-enric.balletbo@collabora.com>
- <20200911230255.GA2972120@bogus>
- <7a1c89b6-f483-5d57-f154-b80b72964077@gmail.com>
- <CAL_JsqLCOXKCTbjw=8MMhnq0YdhrOb7tY6QpT7d3XTAgUrbg=w@mail.gmail.com>
-From:   Enric Balletbo i Serra <enric.balletbo@collabora.com>
-Message-ID: <434e922d-bec2-66db-7ace-31756a1097a9@collabora.com>
-Date:   Wed, 23 Sep 2020 18:12:27 +0200
-User-Agent: Mozilla/5.0 (X11; Linux x86_64; rv:68.0) Gecko/20100101
- Thunderbird/68.12.0
+        id S1726184AbgIWQRP (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Wed, 23 Sep 2020 12:17:15 -0400
+Received: from mail-io1-f53.google.com ([209.85.166.53]:38869 "EHLO
+        mail-io1-f53.google.com" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
+        with ESMTP id S1726178AbgIWQRP (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Wed, 23 Sep 2020 12:17:15 -0400
+Received: by mail-io1-f53.google.com with SMTP id q4so50119iop.5
+        for <devicetree@vger.kernel.org>; Wed, 23 Sep 2020 09:17:14 -0700 (PDT)
+X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+        d=1e100.net; s=20161025;
+        h=x-gm-message-state:date:from:to:cc:subject:message-id:references
+         :mime-version:content-disposition:in-reply-to;
+        bh=6SQ6n7+tg5duNFb+wRc7wNGDsNgiQxy+sYGpkWZIShY=;
+        b=TXie1U8BdrfMWSP15OPJNfohVKme+AbO7hNd96N3ZEcCBGmhJoywVN+frWUxghyovY
+         uVB/JQWQJ4YWCodABe7RA0rEM753LDQz4g9lcAbBXT3YwGB8krFm9R/Q3snrJEkWEpJj
+         yIZ0/UmrpmvFRP9d0kMuaggAP0wMXK0jFzBDoh9NSqW40EPUBd26sRTCiypzQj6Oe1vH
+         0hvuzk2VbKCsB7aJGEXD4lN3xIXp1Wg2OTfoQMT8pHPcwXdliZ9H4RfPaJ2G6FSHde6v
+         auBo+NoBQirni3TsxdCfQxNA+yBOZ4fG1IexIAcyFIvQTi9KoJ1yQ+3xydg0LeSOUQpM
+         bclg==
+X-Gm-Message-State: AOAM5312Dfxq0pjL/MYAxcGyNMZl3SZbJcg/28QF6dPcoQ9EaPP21SSG
+        7SutytQ5wvGBorKoN8wFug==
+X-Google-Smtp-Source: ABdhPJxpYKAVLagbR20YcNbcHw7nZz6VjjRgsGsDe9UV6plLdrV55DxVoaEKsTiCzT32smc1BAriTg==
+X-Received: by 2002:a02:a1d0:: with SMTP id o16mr113440jah.141.1600877834276;
+        Wed, 23 Sep 2020 09:17:14 -0700 (PDT)
+Received: from xps15 ([64.188.179.253])
+        by smtp.gmail.com with ESMTPSA id v14sm156295iol.17.2020.09.23.09.17.12
+        (version=TLS1_3 cipher=TLS_AES_256_GCM_SHA384 bits=256/256);
+        Wed, 23 Sep 2020 09:17:13 -0700 (PDT)
+Received: (nullmailer pid 857808 invoked by uid 1000);
+        Wed, 23 Sep 2020 16:17:12 -0000
+Date:   Wed, 23 Sep 2020 10:17:12 -0600
+From:   Rob Herring <robh@kernel.org>
+To:     Tomi Valkeinen <tomi.valkeinen@ti.com>
+Cc:     dri-devel@lists.freedesktop.org, devicetree@vger.kernel.org,
+        David Airlie <airlied@linux.ie>,
+        Daniel Vetter <daniel@ffwll.ch>,
+        Laurent Pinchart <laurent.pinchart@ideasonboard.com>,
+        Andrzej Hajda <a.hajda@samsung.com>,
+        Neil Armstrong <narmstrong@baylibre.com>,
+        Swapnil Kashinath Jakhade <sjakhade@cadence.com>
+Subject: Re: [PATCHv2] dt-bindings: dp-connector: add binding for DisplayPort
+ connector
+Message-ID: <20200923161712.GA836725@bogus>
+References: <20200917055210.22868-1-tomi.valkeinen@ti.com>
 MIME-Version: 1.0
-In-Reply-To: <CAL_JsqLCOXKCTbjw=8MMhnq0YdhrOb7tY6QpT7d3XTAgUrbg=w@mail.gmail.com>
-Content-Type: text/plain; charset=utf-8
-Content-Language: en-US
-Content-Transfer-Encoding: 7bit
+Content-Type: text/plain; charset=us-ascii
+Content-Disposition: inline
+In-Reply-To: <20200917055210.22868-1-tomi.valkeinen@ti.com>
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-Hi Rob,
-
-Thank you for your answer. I have some doubts, see below.
-
-
-On 23/9/20 0:36, Rob Herring wrote:
-> On Mon, Sep 14, 2020 at 2:59 AM Matthias Brugger <matthias.bgg@gmail.com> wrote:
->>
->>
->>
->> On 12/09/2020 01:02, Rob Herring wrote:
->>> On Thu, Sep 10, 2020 at 07:28:15PM +0200, Enric Balletbo i Serra wrote:
->>>> The System Control Processor System (SCPSYS) has several power management
->>>> related tasks in the system. Add the bindings to define the power
->>>> domains for the SCPSYS power controller.
->>>>
->>>> Co-developed-by: Matthias Brugger <mbrugger@suse.com>
->>>> Signed-off-by: Matthias Brugger <mbrugger@suse.com>
->>>> Signed-off-by: Enric Balletbo i Serra <enric.balletbo@collabora.com>
->>>> ---
->>>> Dear Rob,
->>>>
->>>> I am awasre that this binding is not ready, but I prefered to send because I'm
->>>> kind of blocked. Compiling this binding triggers the following error:
->>>>
->>>>      mediatek,power-controller.example.dt.yaml: syscon@10006000: mfg_async@7:
->>>>      '#address-cells', '#size-cells', 'mfg_2d@8'
->>>>      do not match any of the regexes: 'pinctrl-[0-9]+'
->>>>
->>>> This happens when a definition of a power-domain (parent) contains
->>>> another power-domain (child), like the example. I am not sure how to
->>>> specify this in the yaml and deal with this, so any clue is welcome.
->>>
->>> You just have to keep nesting schemas all the way down. Define a
->>> grandchild node under the child node and then all of its properties.
->>>
->>>>
->>>> Thanks,
->>>>    Enric
->>>>
->>>>   .../power/mediatek,power-controller.yaml      | 171 ++++++++++++++++++
->>>>   1 file changed, 171 insertions(+)
->>>>   create mode 100644 Documentation/devicetree/bindings/power/mediatek,power-controller.yaml
->>>>
->>>> diff --git a/Documentation/devicetree/bindings/power/mediatek,power-controller.yaml b/Documentation/devicetree/bindings/power/mediatek,power-controller.yaml
->>>> new file mode 100644
->>>> index 000000000000..8be9244ad160
->>>> --- /dev/null
->>>> +++ b/Documentation/devicetree/bindings/power/mediatek,power-controller.yaml
->>>> @@ -0,0 +1,171 @@
->>>> +# SPDX-License-Identifier: (GPL-2.0-only OR BSD-2-Clause)
->>>> +%YAML 1.2
->>>> +---
->>>> +$id: http://devicetree.org/schemas/power/mediatek,power-controller.yaml#
->>>> +$schema: http://devicetree.org/meta-schemas/core.yaml#
->>>> +
->>>> +title: Mediatek Power Domains Controller
->>>> +
->>>> +maintainers:
->>>> +  - Weiyi Lu <weiyi.lu@mediatek.com>
->>>> +  - Matthias Brugger <mbrugger@suse.com>
->>>> +
->>>> +description: |
->>>> +  Mediatek processors include support for multiple power domains which can be
->>>> +  powered up/down by software based on different application scenes to save power.
->>>> +
->>>> +  IP cores belonging to a power domain should contain a 'power-domains'
->>>> +  property that is a phandle for SCPSYS node representing the domain.
->>>> +
->>>> +properties:
->>>> +  $nodename:
->>>> +    pattern: "^syscon@[0-9a-f]+$"
->>>> +
->>>> +  compatible:
->>>> +    items:
->>>> +      - enum:
->>>> +        - mediatek,mt8173-power-controller
->>>> +      - const: syscon
->>>> +
->>>> +  reg:
->>>> +    maxItems: 1
->>>> +
->>>> +patternProperties:
->>>> +  "^.*@[0-9]$":
->>>
->>> Node names should be generic:
->>>
->>> power-domain@
->>>
->>
->> Enric correct me if I'm wrong, if we want to see the power domains in debugfs,
->> they are listed by their name. If all are called power-domain then the listing
->> is pretty much useless.
+On Thu, Sep 17, 2020 at 08:52:10AM +0300, Tomi Valkeinen wrote:
+> Add binding for DisplayPort connector. A few notes:
 > 
-> Sorry, but not a binding problem.
+> * Similar to hdmi-connector, it has hpd-gpios as an optional property,
+>   as the HPD could also be handled by, e.g., the DP bridge.
 > 
-> Maybe if debugfs shows what devices are contained within a power
-> domain then it doesn't matter so much.
+> * dp-pwr-supply, which provides 3.3V on DP_PWR pin, is optional, as it
+>   is not strictly required: standard DP cables do not even have the pin
+>   connected.
 > 
->>>> +    type: object
->>>> +    description: |
->>>> +      Represents the power domains within the power controller node as documented
->>>> +      in Documentation/devicetree/bindings/power/power-domain.yaml.
->>>> +
->>>> +    properties:
->>>> +      reg:
->>>> +        description: |
->>>> +          Power domain index. Valid values are defined in:
->>>> +              "include/dt-bindings/power/mt8173-power.h" - for MT8173 type power domain.
->>>> +        maxItems: 1
->>>> +
->>>> +      '#power-domain-cells':
->>>> +        description:
->>>> +          Documented by the generic PM Domain bindings in
->>>> +          Documentation/devicetree/bindings/power/power-domain.yaml.
->>>
->>> No need to redefine a common property. This should define valid values
->>> for it.
->>>
->>>> +
->>>> +      clocks:
->>>> +        description: |
->>>> +          A number of phandles to clocks that need to be enabled during domain
->>>> +          power-up sequencing.
->>>
->>> No need to redefine 'clocks'. You need to define how many, what each one
->>> is, and the order.
->>>
->>
->> Do you mean we have to define each clock for each power domain of each SoC?
+> * Connector type. Full size and mini connectors are identical except for
+>   the connector size and form, so I believe there is no functional need
+>   for this property. But similar to 'label' property, it might be used
+>   to present information about the connector to the userspace.
 > 
-> Yes.
+> * No eDP. There's really no "eDP connector", as it's always a custom
+>   made connection between the DP and the DP panel. So possibly there is
+>   no need for edp-connector binding, but even if there is, I don't want
+>   to guess what it could look like, and could it be part of the
+>   dp-connector binding.
+
+I don't think that's true. Do an image search for 'edp pinout'. AFAICT, 
+there's 2 lane 30 pin and 4 lane 40 pin. One image says 'Table 5-3 in 
+eDP v1.2'. Of course, I'm sure there's custom ones too. From a binding 
+perspective, we probably don't care about the differences, but just need 
+to be able to describe HPD, backlight power, enable, and pwm, and LCD 
+power.
+
+That said, it's fine to not handle eDP here.
+
 > 
-
-But every power domain can use totally different clocks I.e in the scpsys
-controller for MT8173 we can have:
-
-clocks:
-    items:
-      - description: MMSYS reference clock
-      - description: Video Encoder reference clock
-
-That matches with:
-
-+            power-domain@MT8173_POWER_DOMAIN_VENC {
-+                reg = <MT8173_POWER_DOMAIN_VENC>;
-+                clocks = <&topckgen CLK_TOP_MM_SEL>,
-+                         <&topckgen CLK_TOP_VENC_SEL>;
-+                clock-names = "mm", "venc";
-+                #power-domain-cells = <0>;
-+            };
-
-But then we can have another power-domain (inside) with another clock.
-
-+            power-domain@MT8173_POWER_DOMAIN_MFG_ASYNC {
-+                reg = <MT8173_POWER_DOMAIN_MFG_ASYNC>;
-+                clocks = <&clk26m>;
-+                clock-names = "mfg";
-+            };
-
-Should we add a new item like this then?
-
-      - description: 26MHz reference clock
-
-But clocks will not match with the order for this power-domain (as MMSYS and
-VENC clocks are missing here). AFAIK is not possible to specify different clocks
-for different power-domains that are inside the SCPSYS power controller node.
-
-For other SoCs we can have something more complex like this:
-
-+	power-domain@MT8183_POWER_DOMAIN_CAM {
-+		reg = <MT8183_POWER_DOMAIN_CAM>;
-+		clocks = <&topckgen CLK_TOP_MUX_CAM>,
-+			 <&camsys CLK_CAM_LARB6>,
-+			 <&camsys CLK_CAM_LARB3>,
-+			 <&camsys CLK_CAM_SENINF>,
-+			 <&camsys CLK_CAM_CAMSV0>,
-+			 <&camsys CLK_CAM_CAMSV1>,
-+			 <&camsys CLK_CAM_CAMSV2>,
-+			 <&camsys CLK_CAM_CCU>;
-+		clock-names = "cam", "cam-0", "cam-1",
-+			      "cam-2", "cam-3", "cam-4",
-+			      "cam-5", "cam-6";
-+		mediatek,infracfg = <&infracfg>;
-+		mediatek,smi = <&smi_common>;
-+		#power-domain-cells = <0>;
-+	};
-
-Thanks,
-  Enric
-
-
-> Rob
+> * No DP++. I'm not familiar with DP++, but I think it's all handled by
+>   the DP bridge, and does not need any new properties to the dp-connector.
+> 
+> Signed-off-by: Tomi Valkeinen <tomi.valkeinen@ti.com>
+> ---
+> 
+> Changes in v2: Add connector type.
+> 
+> 
+>  .../display/connector/dp-connector.yaml       | 55 +++++++++++++++++++
+>  1 file changed, 55 insertions(+)
+>  create mode 100644 Documentation/devicetree/bindings/display/connector/dp-connector.yaml
+> 
+> diff --git a/Documentation/devicetree/bindings/display/connector/dp-connector.yaml b/Documentation/devicetree/bindings/display/connector/dp-connector.yaml
+> new file mode 100644
+> index 000000000000..b5fc3e52899e
+> --- /dev/null
+> +++ b/Documentation/devicetree/bindings/display/connector/dp-connector.yaml
+> @@ -0,0 +1,55 @@
+> +# SPDX-License-Identifier: (GPL-2.0-only OR BSD-2-Clause)
+> +%YAML 1.2
+> +---
+> +$id: http://devicetree.org/schemas/display/connector/dp-connector.yaml#
+> +$schema: http://devicetree.org/meta-schemas/core.yaml#
+> +
+> +title: DisplayPort Connector
+> +
+> +maintainers:
+> +  - Tomi Valkeinen <tomi.valkeinen@ti.com>
+> +
+> +properties:
+> +  compatible:
+> +    const: dp-connector
+> +
+> +  label: true
+> +
+> +  type:
+> +    enum:
+> +      - full-size
+> +      - mini
+> +
+> +  hpd-gpios:
+> +    description: A GPIO line connected to HPD
+> +    maxItems: 1
+> +
+> +  dp-pwr-supply:
+> +    description: Power supply for the DP_PWR pin
+> +    maxItems: 1
+> +
+> +  port:
+> +    description: Connection to controller providing DP signals
+> +
+> +required:
+> +  - compatible
+> +  - type
+> +  - port
+> +
+> +additionalProperties: false
+> +
+> +examples:
+> +  - |
+> +    connector {
+> +        compatible = "dp-connector";
+> +        label = "dp0";
+> +        type = "full-size";
+> +
+> +        port {
+> +            dp_connector_in: endpoint {
+> +                remote-endpoint = <&dp_out>;
+> +            };
+> +        };
+> +    };
+> +
+> +...
+> -- 
+> Texas Instruments Finland Oy, Porkkalankatu 22, 00180 Helsinki.
+> Y-tunnus/Business ID: 0615521-4. Kotipaikka/Domicile: Helsinki
 > 
