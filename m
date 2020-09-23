@@ -2,96 +2,89 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from vger.kernel.org (vger.kernel.org [23.128.96.18])
-	by mail.lfdr.de (Postfix) with ESMTP id D02A22756AF
-	for <lists+devicetree@lfdr.de>; Wed, 23 Sep 2020 12:53:02 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTP id 2DEB02756B9
+	for <lists+devicetree@lfdr.de>; Wed, 23 Sep 2020 12:58:03 +0200 (CEST)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S1726721AbgIWKw5 (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Wed, 23 Sep 2020 06:52:57 -0400
-Received: from fllv0016.ext.ti.com ([198.47.19.142]:48708 "EHLO
-        fllv0016.ext.ti.com" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S1726130AbgIWKw5 (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Wed, 23 Sep 2020 06:52:57 -0400
-Received: from lelv0266.itg.ti.com ([10.180.67.225])
-        by fllv0016.ext.ti.com (8.15.2/8.15.2) with ESMTP id 08NAqhnj128471;
-        Wed, 23 Sep 2020 05:52:43 -0500
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=ti.com;
-        s=ti-com-17Q1; t=1600858363;
-        bh=RwvV4fff1/3YbuFQjSkZJTR5Z25J5Mw1lL9+HBJUs00=;
-        h=From:To:CC:Subject:Date:In-Reply-To:References;
-        b=TMvk0e86KN9AH15NYeySRL15tjlImJ8mvy9FoGu2ZrkrsQykhEocZTfXnGsPDaLDw
-         FT0Ua6pcwpzONOY6m08+NaWCb+kv4uWWtwjpET9JkY/e2kMsUsYuBX4hrPANNFGLDP
-         t0FouPqpyiTJ4D0anoNg3DhIA+8nBJvREgYv57ds=
-Received: from DFLE111.ent.ti.com (dfle111.ent.ti.com [10.64.6.32])
-        by lelv0266.itg.ti.com (8.15.2/8.15.2) with ESMTPS id 08NAqhBm006131
-        (version=TLSv1.2 cipher=AES256-GCM-SHA384 bits=256 verify=FAIL);
-        Wed, 23 Sep 2020 05:52:43 -0500
-Received: from DFLE112.ent.ti.com (10.64.6.33) by DFLE111.ent.ti.com
- (10.64.6.32) with Microsoft SMTP Server (version=TLS1_2,
- cipher=TLS_ECDHE_RSA_WITH_AES_128_CBC_SHA256_P256) id 15.1.1979.3; Wed, 23
- Sep 2020 05:52:43 -0500
-Received: from lelv0327.itg.ti.com (10.180.67.183) by DFLE112.ent.ti.com
- (10.64.6.33) with Microsoft SMTP Server (version=TLS1_2,
- cipher=TLS_ECDHE_RSA_WITH_AES_128_CBC_SHA256_P256) id 15.1.1979.3 via
- Frontend Transport; Wed, 23 Sep 2020 05:52:43 -0500
-Received: from a0230074-Latitude-E7470.ent.ti.com (ileax41-snat.itg.ti.com [10.172.224.153])
-        by lelv0327.itg.ti.com (8.15.2/8.15.2) with ESMTP id 08NAq7qn059762;
-        Wed, 23 Sep 2020 05:52:38 -0500
-From:   Faiz Abbas <faiz_abbas@ti.com>
-To:     <linux-kernel@vger.kernel.org>, <devicetree@vger.kernel.org>,
-        <linux-mmc@vger.kernel.org>, <linux-arm-kernel@lists.infradead.org>
-CC:     <adrian.hunter@intel.com>, <robh+dt@kernel.org>,
-        <ulf.hansson@linaro.org>, <kishon@ti.com>, <faiz_abbas@ti.com>
-Subject: [PATCH 6/6] mmc: sdhci_am654: Enable tuning for SDR50
-Date:   Wed, 23 Sep 2020 16:22:06 +0530
-Message-ID: <20200923105206.7988-7-faiz_abbas@ti.com>
-X-Mailer: git-send-email 2.17.1
-In-Reply-To: <20200923105206.7988-1-faiz_abbas@ti.com>
-References: <20200923105206.7988-1-faiz_abbas@ti.com>
+        id S1726422AbgIWK6C (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Wed, 23 Sep 2020 06:58:02 -0400
+Received: from gloria.sntech.de ([185.11.138.130]:46292 "EHLO gloria.sntech.de"
+        rhost-flags-OK-OK-OK-OK) by vger.kernel.org with ESMTP
+        id S1726332AbgIWK6C (ORCPT <rfc822;devicetree@vger.kernel.org>);
+        Wed, 23 Sep 2020 06:58:02 -0400
+Received: from [95.90.166.74] (helo=diego.localnet)
+        by gloria.sntech.de with esmtpsa (TLS1.3:ECDHE_RSA_AES_256_GCM_SHA384:256)
+        (Exim 4.92)
+        (envelope-from <heiko@sntech.de>)
+        id 1kL2TF-0006YK-2A; Wed, 23 Sep 2020 12:57:57 +0200
+From:   Heiko =?ISO-8859-1?Q?St=FCbner?= <heiko@sntech.de>
+To:     Artem Lapkin <email2tema@gmail.com>
+Cc:     linux-arm-kernel@lists.infradead.org, robh+dt@kernel.org,
+        art@khadas.com, jbx6244@gmail.com, devicetree@vger.kernel.org,
+        linux-kernel@vger.kernel.org, nick@khadas.com
+Subject: Re: [PATCH 1/2] arm64: dts: rockchip: rk3399-khadas-edge: add missed spiflash node
+Date:   Wed, 23 Sep 2020 12:57:56 +0200
+Message-ID: <8046326.tZ3HhvINgq@diego>
+In-Reply-To: <20200923101225.1513392-2-email2tema@gmail.com>
+References: <20200923101225.1513392-1-email2tema@gmail.com> <20200923101225.1513392-2-email2tema@gmail.com>
 MIME-Version: 1.0
-Content-Type: text/plain
-X-EXCLAIMER-MD-CONFIG: e1e8a2fd-e40a-4ac6-ac9b-f7e9cc9ee180
+Content-Transfer-Encoding: 7Bit
+Content-Type: text/plain; charset="us-ascii"
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-According to the SW tuning App note[1], tuning is required for all
-UHS speed modes. Tuning for SDR50 is not enabled in Capabilities by
-default so enable it from the CTL_CFG registers.
+Hi Artem,
 
-[1] https://www.ti.com/lit/pdf/spract9
+please make the subject something like
+"arm64: dts: rockchip: add spiflash node to rk3399-khadas-edge"
 
-Signed-off-by: Faiz Abbas <faiz_abbas@ti.com>
----
- drivers/mmc/host/sdhci_am654.c | 6 ++++++
- 1 file changed, 6 insertions(+)
+Am Mittwoch, 23. September 2020, 12:12:24 CEST schrieb Artem Lapkin:
+> From: Artem Lapkin <art@khadas.com>
+> 
+> The Khadas Edge Boards uses winbond - w25q128 spi flash with 104Mhz
 
-diff --git a/drivers/mmc/host/sdhci_am654.c b/drivers/mmc/host/sdhci_am654.c
-index 5af7638ad606..2bce962bf7e4 100644
---- a/drivers/mmc/host/sdhci_am654.c
-+++ b/drivers/mmc/host/sdhci_am654.c
-@@ -19,9 +19,11 @@
- 
- /* CTL_CFG Registers */
- #define CTL_CFG_2		0x14
-+#define CTL_CFG_3		0x18
- 
- #define SLOTTYPE_MASK		GENMASK(31, 30)
- #define SLOTTYPE_EMBEDDED	BIT(30)
-+#define TUNINGFORSDR50_MASK	BIT(13)
- 
- /* PHY Registers */
- #define PHY_CTRL1	0x100
-@@ -646,6 +648,10 @@ static int sdhci_am654_init(struct sdhci_host *host)
- 	regmap_update_bits(sdhci_am654->base, CTL_CFG_2, SLOTTYPE_MASK,
- 			   ctl_cfg_2);
- 
-+	/* Enable tuning for SDR50 */
-+	regmap_update_bits(sdhci_am654->base, CTL_CFG_3, TUNINGFORSDR50_MASK,
-+			   TUNINGFORSDR50_MASK);
-+
- 	ret = sdhci_setup_host(host);
- 	if (ret)
- 		return ret;
--- 
-2.17.1
+Missing "Signed-off-by: ..."
+
+> ---
+>  .../boot/dts/rockchip/rk3399-khadas-edge.dtsi      | 14 ++++++++++++++
+>  1 file changed, 14 insertions(+)
+> 
+> diff --git a/arch/arm64/boot/dts/rockchip/rk3399-khadas-edge.dtsi b/arch/arm64/boot/dts/rockchip/rk3399-khadas-edge.dtsi
+> index e36837c04dc..42ebbd6fa46 100644
+> --- a/arch/arm64/boot/dts/rockchip/rk3399-khadas-edge.dtsi
+> +++ b/arch/arm64/boot/dts/rockchip/rk3399-khadas-edge.dtsi
+> @@ -805,3 +805,17 @@ &vopl {
+>  &vopl_mmu {
+>  	status = "okay";
+>  };
+> +
+> +
+no double empty lines please
+
+> +&spi1 {
+
+please group the &spi1 alphabetically in the file
+
+> +    max-freq = <104000000>;
+
+not part of any binding, spi-max-frequency below should be enough.
+
+> +    status = "okay";
+> +
+> +    spiflash: flash@0 {
+> +    u-boot,dm-pre-reloc;
+
+u-boot specific, please drop
+
+> +    compatible = "winbond,w25q128fw", "jedec,spi-nor";
+> +    reg = <0>;
+> +    spi-max-frequency = <104000000>;
+> +    };
+> +};
+> +
+> 
+
+
+Heiko
+
 
