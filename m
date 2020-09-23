@@ -2,67 +2,73 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from vger.kernel.org (vger.kernel.org [23.128.96.18])
-	by mail.lfdr.de (Postfix) with ESMTP id 31847275188
-	for <lists+devicetree@lfdr.de>; Wed, 23 Sep 2020 08:33:46 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTP id C5DFC27518E
+	for <lists+devicetree@lfdr.de>; Wed, 23 Sep 2020 08:34:26 +0200 (CEST)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S1726738AbgIWGdp (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Wed, 23 Sep 2020 02:33:45 -0400
-Received: from inva020.nxp.com ([92.121.34.13]:48748 "EHLO inva020.nxp.com"
+        id S1726631AbgIWGeV (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Wed, 23 Sep 2020 02:34:21 -0400
+Received: from mail.kernel.org ([198.145.29.99]:44948 "EHLO mail.kernel.org"
         rhost-flags-OK-OK-OK-OK) by vger.kernel.org with ESMTP
-        id S1726179AbgIWGdp (ORCPT <rfc822;devicetree@vger.kernel.org>);
-        Wed, 23 Sep 2020 02:33:45 -0400
-Received: from inva020.nxp.com (localhost [127.0.0.1])
-        by inva020.eu-rdc02.nxp.com (Postfix) with ESMTP id 6A48B1A02B4;
-        Wed, 23 Sep 2020 08:33:43 +0200 (CEST)
-Received: from invc005.ap-rdc01.nxp.com (invc005.ap-rdc01.nxp.com [165.114.16.14])
-        by inva020.eu-rdc02.nxp.com (Postfix) with ESMTP id 13FB41A02C5;
-        Wed, 23 Sep 2020 08:33:40 +0200 (CEST)
-Received: from localhost.localdomain (mega.ap.freescale.net [10.192.208.232])
-        by invc005.ap-rdc01.nxp.com (Postfix) with ESMTP id B3862402E5;
-        Wed, 23 Sep 2020 08:33:32 +0200 (CEST)
-From:   Ran Wang <ran.wang_1@nxp.com>
-To:     Li Yang <leoyang.li@nxp.com>, Rob Herring <robh+dt@kernel.org>,
-        Shawn Guo <shawnguo@kernel.org>
-Cc:     linuxppc-dev@lists.ozlabs.org,
-        linux-arm-kernel@lists.infradead.org, devicetree@vger.kernel.org,
-        linux-kernel@vger.kernel.org, Ran Wang <ran.wang_1@nxp.com>
-Subject: [PATCH v2 5/5] arm: dts: ls1021a: fix rcpm failed to claim resource
-Date:   Wed, 23 Sep 2020 14:25:10 +0800
-Message-Id: <20200923062510.38253-5-ran.wang_1@nxp.com>
-X-Mailer: git-send-email 2.17.1
-In-Reply-To: <20200923062510.38253-1-ran.wang_1@nxp.com>
-References: <20200923062510.38253-1-ran.wang_1@nxp.com>
-X-Virus-Scanned: ClamAV using ClamSMTP
+        id S1726179AbgIWGeV (ORCPT <rfc822;devicetree@vger.kernel.org>);
+        Wed, 23 Sep 2020 02:34:21 -0400
+Received: from localhost.localdomain (unknown [122.171.175.143])
+        (using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
+        (No client certificate requested)
+        by mail.kernel.org (Postfix) with ESMTPSA id 55D7321D43;
+        Wed, 23 Sep 2020 06:34:18 +0000 (UTC)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=kernel.org;
+        s=default; t=1600842861;
+        bh=kre9YirAIHmcHUINQUmzdMjGqHyd2+uFVSP0FrAE+4k=;
+        h=From:To:Cc:Subject:Date:From;
+        b=xy3RWnnVOcZ6oXRBF0ehGw+Bwf4erLcXEM9sv7tK16XtJvOT5YONtrONPXyh51Bd5
+         bff3wxkqx5o6Jk1cN8m+Kfm8dI9bzIcW//bMcVQpOCrdXRJDDV/tylY4vLW0n4dopM
+         f+EiHFY1AHz7ODGi/KkD+ZgnbNI4NyxnQnV58Axw=
+From:   Vinod Koul <vkoul@kernel.org>
+To:     dmaengine@vger.kernel.org
+Cc:     Vinod Koul <vkoul@kernel.org>, Rob Herring <robh+dt@kernel.org>,
+        Bjorn Andersson <bjorn.andersson@linaro.org>,
+        linux-arm-msm@vger.kernel.org, devicetree@vger.kernel.org,
+        linux-kernel@vger.kernel.org,
+        Peter Ujfalusi <peter.ujfalusi@ti.com>
+Subject: [PATCH v3 0/3] dmaengine: Add support for QCOM GSI dma controller
+Date:   Wed, 23 Sep 2020 12:04:07 +0530
+Message-Id: <20200923063410.3431917-1-vkoul@kernel.org>
+X-Mailer: git-send-email 2.26.2
+MIME-Version: 1.0
+Content-Transfer-Encoding: 8bit
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-The range of dcfg reg is wrong, which overlap with other device,
-such as rcpm. This issue causing rcpm driver failed to claim
-reg resource when calling devm_ioremap_resource().
+This series adds support for Qcom GSI dma controller found on Qualcomm SoCs.
+This controller can program the peripheral configuration so we add
+additional parameters in dma_slave_config for configuring the peripherals
+like spi and i2c.
 
-Signed-off-by: Ran Wang <ran.wang_1@nxp.com>
-Acked-by: Li Yang <leoyang.li@nxp.com>
----
-Change in v2:
- - None
+Changes in v3:
+ - Update the i2c tre creation based on testing feedback
 
- arch/arm/boot/dts/ls1021a.dtsi | 2 +-
- 1 file changed, 1 insertion(+), 1 deletion(-)
+Changes in v2:
+ - Update the binding and drop qcom specific properties
+ - Move peripheral configuration as a pointer
+ - Move submit queue for transactions to issue_pending
 
-diff --git a/arch/arm/boot/dts/ls1021a.dtsi b/arch/arm/boot/dts/ls1021a.dtsi
-index e372630f..286c547 100644
---- a/arch/arm/boot/dts/ls1021a.dtsi
-+++ b/arch/arm/boot/dts/ls1021a.dtsi
-@@ -173,7 +173,7 @@
- 
- 		dcfg: dcfg@1ee0000 {
- 			compatible = "fsl,ls1021a-dcfg", "syscon";
--			reg = <0x0 0x1ee0000 0x0 0x10000>;
-+			reg = <0x0 0x1ee0000 0x0 0x1000>;
- 			big-endian;
- 		};
- 
+Vinod Koul (3):
+  dt-bindings: dmaengine: Document qcom,gpi dma binding
+  dmaengine: add peripheral configuration
+  dmaengine: qcom: Add GPI dma driver
+
+ .../devicetree/bindings/dma/qcom,gpi.yaml     |   86 +
+ drivers/dma/qcom/Kconfig                      |   12 +
+ drivers/dma/qcom/Makefile                     |    1 +
+ drivers/dma/qcom/gpi.c                        | 2295 +++++++++++++++++
+ include/dt-bindings/dma/qcom-gpi.h            |   11 +
+ include/linux/dmaengine.h                     |   91 +
+ 6 files changed, 2496 insertions(+)
+ create mode 100644 Documentation/devicetree/bindings/dma/qcom,gpi.yaml
+ create mode 100644 drivers/dma/qcom/gpi.c
+ create mode 100644 include/dt-bindings/dma/qcom-gpi.h
+
 -- 
-2.7.4
+2.26.2
 
