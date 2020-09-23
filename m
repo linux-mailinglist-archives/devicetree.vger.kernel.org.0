@@ -2,167 +2,100 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from vger.kernel.org (vger.kernel.org [23.128.96.18])
-	by mail.lfdr.de (Postfix) with ESMTP id 9727F275D28
-	for <lists+devicetree@lfdr.de>; Wed, 23 Sep 2020 18:17:16 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTP id 6211F275D2F
+	for <lists+devicetree@lfdr.de>; Wed, 23 Sep 2020 18:19:34 +0200 (CEST)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S1726184AbgIWQRP (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Wed, 23 Sep 2020 12:17:15 -0400
-Received: from mail-io1-f53.google.com ([209.85.166.53]:38869 "EHLO
-        mail-io1-f53.google.com" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S1726178AbgIWQRP (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Wed, 23 Sep 2020 12:17:15 -0400
-Received: by mail-io1-f53.google.com with SMTP id q4so50119iop.5
-        for <devicetree@vger.kernel.org>; Wed, 23 Sep 2020 09:17:14 -0700 (PDT)
-X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=1e100.net; s=20161025;
-        h=x-gm-message-state:date:from:to:cc:subject:message-id:references
-         :mime-version:content-disposition:in-reply-to;
-        bh=6SQ6n7+tg5duNFb+wRc7wNGDsNgiQxy+sYGpkWZIShY=;
-        b=TXie1U8BdrfMWSP15OPJNfohVKme+AbO7hNd96N3ZEcCBGmhJoywVN+frWUxghyovY
-         uVB/JQWQJ4YWCodABe7RA0rEM753LDQz4g9lcAbBXT3YwGB8krFm9R/Q3snrJEkWEpJj
-         yIZ0/UmrpmvFRP9d0kMuaggAP0wMXK0jFzBDoh9NSqW40EPUBd26sRTCiypzQj6Oe1vH
-         0hvuzk2VbKCsB7aJGEXD4lN3xIXp1Wg2OTfoQMT8pHPcwXdliZ9H4RfPaJ2G6FSHde6v
-         auBo+NoBQirni3TsxdCfQxNA+yBOZ4fG1IexIAcyFIvQTi9KoJ1yQ+3xydg0LeSOUQpM
-         bclg==
-X-Gm-Message-State: AOAM5312Dfxq0pjL/MYAxcGyNMZl3SZbJcg/28QF6dPcoQ9EaPP21SSG
-        7SutytQ5wvGBorKoN8wFug==
-X-Google-Smtp-Source: ABdhPJxpYKAVLagbR20YcNbcHw7nZz6VjjRgsGsDe9UV6plLdrV55DxVoaEKsTiCzT32smc1BAriTg==
-X-Received: by 2002:a02:a1d0:: with SMTP id o16mr113440jah.141.1600877834276;
-        Wed, 23 Sep 2020 09:17:14 -0700 (PDT)
-Received: from xps15 ([64.188.179.253])
-        by smtp.gmail.com with ESMTPSA id v14sm156295iol.17.2020.09.23.09.17.12
-        (version=TLS1_3 cipher=TLS_AES_256_GCM_SHA384 bits=256/256);
-        Wed, 23 Sep 2020 09:17:13 -0700 (PDT)
-Received: (nullmailer pid 857808 invoked by uid 1000);
-        Wed, 23 Sep 2020 16:17:12 -0000
-Date:   Wed, 23 Sep 2020 10:17:12 -0600
-From:   Rob Herring <robh@kernel.org>
-To:     Tomi Valkeinen <tomi.valkeinen@ti.com>
-Cc:     dri-devel@lists.freedesktop.org, devicetree@vger.kernel.org,
-        David Airlie <airlied@linux.ie>,
-        Daniel Vetter <daniel@ffwll.ch>,
-        Laurent Pinchart <laurent.pinchart@ideasonboard.com>,
-        Andrzej Hajda <a.hajda@samsung.com>,
-        Neil Armstrong <narmstrong@baylibre.com>,
-        Swapnil Kashinath Jakhade <sjakhade@cadence.com>
-Subject: Re: [PATCHv2] dt-bindings: dp-connector: add binding for DisplayPort
- connector
-Message-ID: <20200923161712.GA836725@bogus>
-References: <20200917055210.22868-1-tomi.valkeinen@ti.com>
+        id S1726156AbgIWQTd (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Wed, 23 Sep 2020 12:19:33 -0400
+Received: from mail.kernel.org ([198.145.29.99]:43436 "EHLO mail.kernel.org"
+        rhost-flags-OK-OK-OK-OK) by vger.kernel.org with ESMTP
+        id S1726130AbgIWQTd (ORCPT <rfc822;devicetree@vger.kernel.org>);
+        Wed, 23 Sep 2020 12:19:33 -0400
+Received: from pali.im (pali.im [31.31.79.79])
+        (using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
+        (No client certificate requested)
+        by mail.kernel.org (Postfix) with ESMTPSA id 366F520719;
+        Wed, 23 Sep 2020 16:19:32 +0000 (UTC)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=kernel.org;
+        s=default; t=1600877972;
+        bh=TZLW6wHGCKieqihCO7hlRfnrIi0AXUV6iu39Wm/82bw=;
+        h=Date:From:To:Cc:Subject:References:In-Reply-To:From;
+        b=1AYq7PaX3t9xhMD2CVFqcMTSOMNmJnEIfoXDBvCmRZRWw/estSl1pqpwlK0fWOoBF
+         jvq5qJe4Q/wkYORAGIwUwtJjTjphxnTN2bQktgFCoaPvYEHA31daTk2TXpa5eJR3CI
+         B5MvgyeRDc1b57GzTp+iZ1Ch7V+XdTx7Mq/5+p4I=
+Received: by pali.im (Postfix)
+        id 8192DD0F; Wed, 23 Sep 2020 18:19:29 +0200 (CEST)
+Date:   Wed, 23 Sep 2020 18:19:29 +0200
+From:   Pali =?utf-8?B?Um9ow6Fy?= <pali@kernel.org>
+To:     Gregory Clement <gregory.clement@bootlin.com>
+Cc:     Andrew Lunn <andrew@lunn.ch>, Jason Cooper <jason@lakedaemon.net>,
+        Sebastian Hesselbarth <sebastian.hesselbarth@gmail.com>,
+        Rob Herring <robh+dt@kernel.org>,
+        Tomasz Maciej Nowak <tmn505@gmail.com>,
+        Andre Heider <a.heider@gmail.com>,
+        linux-arm-kernel@lists.infradead.org, devicetree@vger.kernel.org,
+        linux-kernel@vger.kernel.org
+Subject: Re: [PATCH] arm64: dts: marvell: espressobin: Add ethernet switch
+ aliases
+Message-ID: <20200923161929.2qiqvlnxoj45jzjg@pali>
+References: <20200907112718.5994-1-pali@kernel.org>
+ <20200907144228.GV3112546@lunn.ch>
+ <20200907145213.fwlyz4k6scible7x@pali>
+ <20200907154353.GW3112546@lunn.ch>
+ <20200907161316.xd5svvahi5xusdlw@pali>
+ <20200907172345.GB3254313@lunn.ch>
+ <20200908074733.f33pwtreojzobivq@pali>
 MIME-Version: 1.0
-Content-Type: text/plain; charset=us-ascii
+Content-Type: text/plain; charset=utf-8
 Content-Disposition: inline
-In-Reply-To: <20200917055210.22868-1-tomi.valkeinen@ti.com>
+Content-Transfer-Encoding: 8bit
+In-Reply-To: <20200908074733.f33pwtreojzobivq@pali>
+User-Agent: NeoMutt/20180716
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-On Thu, Sep 17, 2020 at 08:52:10AM +0300, Tomi Valkeinen wrote:
-> Add binding for DisplayPort connector. A few notes:
+On Tuesday 08 September 2020 09:47:33 Pali Rohár wrote:
+> On Monday 07 September 2020 19:23:45 Andrew Lunn wrote:
+> > On Mon, Sep 07, 2020 at 06:13:16PM +0200, Pali Rohár wrote:
+> > > On Monday 07 September 2020 17:43:53 Andrew Lunn wrote:
+> > > > > I would not say it is a "new feature". But rather that patch in this
+> > > > > email fixes issue that Linux kernel did not set correct MAC address for
+> > > > > DSA slave ports. I think it is something which could be backported also
+> > > > > to stable releases as "ignoring" vendor/factory MAC address is not
+> > > > > correct behavior.
+> > > > 
+> > > > Hi Pali
+> > > > 
+> > > > The rules for stable are here:
+> > > > 
+> > > > https://www.kernel.org/doc/html/v5.8/process/stable-kernel-rules.html
+> > > > 
+> > > > Do you think it fits?
+> > > > 
+> > > >    Andrew
+> > > 
+> > > Hello Andrew! I think it fits into those rules. As I wrote it fixes real
+> > > bug that Linux kernel does not use correct MAC address for particular
+> > > DSA slaves / ethernet ports.
+> > 
+> > O.K, then:
+> > 
+> > Reviewed-by: Andrew Lunn <andrew@lunn.ch>
+> > 
+> >     Andrew
 > 
-> * Similar to hdmi-connector, it has hpd-gpios as an optional property,
->   as the HPD could also be handled by, e.g., the DP bridge.
-> 
-> * dp-pwr-supply, which provides 3.3V on DP_PWR pin, is optional, as it
->   is not strictly required: standard DP cables do not even have the pin
->   connected.
-> 
-> * Connector type. Full size and mini connectors are identical except for
->   the connector size and form, so I believe there is no functional need
->   for this property. But similar to 'label' property, it might be used
->   to present information about the connector to the userspace.
-> 
-> * No eDP. There's really no "eDP connector", as it's always a custom
->   made connection between the DP and the DP panel. So possibly there is
->   no need for edp-connector binding, but even if there is, I don't want
->   to guess what it could look like, and could it be part of the
->   dp-connector binding.
+> Ok! Andrew, I would like to ask another question, how to correctly
+> define that this patch depends on a2c7023f7075c? I specified it in
+> human-readable part of commit description, but for backporting it would
+> also need some machine-readable format. So patch would not be
+> occasionally backported to older/stable kernel where a2c7023f7075c is
+> not available.
 
-I don't think that's true. Do an image search for 'edp pinout'. AFAICT, 
-there's 2 lane 30 pin and 4 lane 40 pin. One image says 'Table 5-3 in 
-eDP v1.2'. Of course, I'm sure there's custom ones too. From a binding 
-perspective, we probably don't care about the differences, but just need 
-to be able to describe HPD, backlight power, enable, and pwm, and LCD 
-power.
+Based on stable-kernel-rules.html document I think that following line
+should define this dependency in machine readable format:
 
-That said, it's fine to not handle eDP here.
+Cc: <stable@vger.kernel.org> # a2c7023f7075c: dsa: read mac address
 
-> 
-> * No DP++. I'm not familiar with DP++, but I think it's all handled by
->   the DP bridge, and does not need any new properties to the dp-connector.
-> 
-> Signed-off-by: Tomi Valkeinen <tomi.valkeinen@ti.com>
-> ---
-> 
-> Changes in v2: Add connector type.
-> 
-> 
->  .../display/connector/dp-connector.yaml       | 55 +++++++++++++++++++
->  1 file changed, 55 insertions(+)
->  create mode 100644 Documentation/devicetree/bindings/display/connector/dp-connector.yaml
-> 
-> diff --git a/Documentation/devicetree/bindings/display/connector/dp-connector.yaml b/Documentation/devicetree/bindings/display/connector/dp-connector.yaml
-> new file mode 100644
-> index 000000000000..b5fc3e52899e
-> --- /dev/null
-> +++ b/Documentation/devicetree/bindings/display/connector/dp-connector.yaml
-> @@ -0,0 +1,55 @@
-> +# SPDX-License-Identifier: (GPL-2.0-only OR BSD-2-Clause)
-> +%YAML 1.2
-> +---
-> +$id: http://devicetree.org/schemas/display/connector/dp-connector.yaml#
-> +$schema: http://devicetree.org/meta-schemas/core.yaml#
-> +
-> +title: DisplayPort Connector
-> +
-> +maintainers:
-> +  - Tomi Valkeinen <tomi.valkeinen@ti.com>
-> +
-> +properties:
-> +  compatible:
-> +    const: dp-connector
-> +
-> +  label: true
-> +
-> +  type:
-> +    enum:
-> +      - full-size
-> +      - mini
-> +
-> +  hpd-gpios:
-> +    description: A GPIO line connected to HPD
-> +    maxItems: 1
-> +
-> +  dp-pwr-supply:
-> +    description: Power supply for the DP_PWR pin
-> +    maxItems: 1
-> +
-> +  port:
-> +    description: Connection to controller providing DP signals
-> +
-> +required:
-> +  - compatible
-> +  - type
-> +  - port
-> +
-> +additionalProperties: false
-> +
-> +examples:
-> +  - |
-> +    connector {
-> +        compatible = "dp-connector";
-> +        label = "dp0";
-> +        type = "full-size";
-> +
-> +        port {
-> +            dp_connector_in: endpoint {
-> +                remote-endpoint = <&dp_out>;
-> +            };
-> +        };
-> +    };
-> +
-> +...
-> -- 
-> Texas Instruments Finland Oy, Porkkalankatu 22, 00180 Helsinki.
-> Y-tunnus/Business ID: 0615521-4. Kotipaikka/Domicile: Helsinki
-> 
+Gregory, if it is correct, would you add that line into commit sign-off
+area where is existing Fixes: line?
