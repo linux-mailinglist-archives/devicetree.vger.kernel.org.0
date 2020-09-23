@@ -2,176 +2,236 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from vger.kernel.org (vger.kernel.org [23.128.96.18])
-	by mail.lfdr.de (Postfix) with ESMTP id A694F275A73
-	for <lists+devicetree@lfdr.de>; Wed, 23 Sep 2020 16:40:59 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTP id C6FF0275A7F
+	for <lists+devicetree@lfdr.de>; Wed, 23 Sep 2020 16:42:17 +0200 (CEST)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S1726785AbgIWOkq (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Wed, 23 Sep 2020 10:40:46 -0400
-Received: from mslow2.mail.gandi.net ([217.70.178.242]:39268 "EHLO
-        mslow2.mail.gandi.net" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S1726760AbgIWOkm (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Wed, 23 Sep 2020 10:40:42 -0400
-Received: from relay9-d.mail.gandi.net (unknown [217.70.183.199])
-        by mslow2.mail.gandi.net (Postfix) with ESMTP id 0D6AF3B2800;
-        Wed, 23 Sep 2020 14:39:27 +0000 (UTC)
-X-Originating-IP: 90.65.92.90
-Received: from localhost (lfbn-lyo-1-1913-90.w90-65.abo.wanadoo.fr [90.65.92.90])
-        (Authenticated sender: gregory.clement@bootlin.com)
-        by relay9-d.mail.gandi.net (Postfix) with ESMTPSA id DB6D0FF80F;
-        Wed, 23 Sep 2020 14:39:02 +0000 (UTC)
-From:   Gregory CLEMENT <gregory.clement@bootlin.com>
-To:     Krzysztof Kozlowski <krzk@kernel.org>,
-        Linus Walleij <linus.walleij@linaro.org>,
-        Bartosz Golaszewski <bgolaszewski@baylibre.com>,
+        id S1726156AbgIWOmQ (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Wed, 23 Sep 2020 10:42:16 -0400
+Received: from lindbergh.monkeyblade.net ([23.128.96.19]:35340 "EHLO
+        lindbergh.monkeyblade.net" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
+        with ESMTP id S1726540AbgIWOmQ (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Wed, 23 Sep 2020 10:42:16 -0400
+Received: from mail-ot1-x342.google.com (mail-ot1-x342.google.com [IPv6:2607:f8b0:4864:20::342])
+        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 7DB45C0613D1
+        for <devicetree@vger.kernel.org>; Wed, 23 Sep 2020 07:42:16 -0700 (PDT)
+Received: by mail-ot1-x342.google.com with SMTP id y5so19187386otg.5
+        for <devicetree@vger.kernel.org>; Wed, 23 Sep 2020 07:42:16 -0700 (PDT)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+        d=linaro.org; s=google;
+        h=date:from:to:cc:subject:message-id:references:mime-version
+         :content-disposition:in-reply-to;
+        bh=z95oVIBTfkEbl+uyir3w0ZqJF+KtX0tYet5L68ylfls=;
+        b=jN3IOG05bDUzWPEZI2JtQSs5EhccGAKx+0OTFGga22R+/qSCLm7fz055FWzDM/kIBI
+         D1HvGfm2xYgOwHSfLI+4CTZRh35oijmrknboOpEN5P8deS3cA29+/BCGdFdVEVwLIuM1
+         IcnDqt42s88BbbRLeO7ASmMK/Rp4CFcP0goVLfHVzRDSSRu41DW5iVVtVxuPss4ZJsLt
+         v2zmETmt+6xm4vdqUhaFIYQH7CVB2/Y98mw+poM1gHW+u8GPYnThpPW97Sn90TEmErq9
+         v6Q8/AGvwoCcQ1qm4dH0pkrIGrN5coTafx2Al4S3RhzpNTbL4bTsBs1zazVkkp5yW3Ac
+         0Rbw==
+X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+        d=1e100.net; s=20161025;
+        h=x-gm-message-state:date:from:to:cc:subject:message-id:references
+         :mime-version:content-disposition:in-reply-to;
+        bh=z95oVIBTfkEbl+uyir3w0ZqJF+KtX0tYet5L68ylfls=;
+        b=b4yHEJo5p3/fslcThaVLHnoY4v7EdHSC9r0lqkWuue+VC6T6PAD3IcKSE/DN2UfTNl
+         NY90KjdEFf1CQWkihxITZKEpy7GtUG3B8z1Muqpn3Q9lB9DyVT4uftnaobpA4Qawg6ys
+         YgETPd2mpvz/vK9wt+aNIEm0Kimp3HgxokXGK3AW0/ovx7CefnTmafUwo/BDT6jwU3Um
+         iFPm0rnA24oed1xRPAYEt3hNeJynmAmIxWvex+Mb19KDW4s1DtzoRRLbZootfNGCzCEF
+         7DtKht78M/jmWbnUy0Kzhyh8jBxcVL09wbQWZmezMJZnEw9e3HnTZic8HPpSPvlaJ0ZC
+         rVug==
+X-Gm-Message-State: AOAM530dbPH0jVai9dTs/Qu4a41rfCMcNJX7LutQBSDuOtL5MYGuRw1R
+        S2Cu/Te3CLt7KQJ+MO3+NvbahA==
+X-Google-Smtp-Source: ABdhPJw0JPdlhxUtcDmd01TXvVVR8Olrf8Kh/0esOGyHXPL0W46rzAC83xIx+falqXeT8astKcMsHA==
+X-Received: by 2002:a9d:2641:: with SMTP id a59mr6326903otb.217.1600872135602;
+        Wed, 23 Sep 2020 07:42:15 -0700 (PDT)
+Received: from yoga (99-135-181-32.lightspeed.austtx.sbcglobal.net. [99.135.181.32])
+        by smtp.gmail.com with ESMTPSA id p20sm46378oth.48.2020.09.23.07.42.14
+        (version=TLS1_3 cipher=TLS_AES_256_GCM_SHA384 bits=256/256);
+        Wed, 23 Sep 2020 07:42:14 -0700 (PDT)
+Date:   Wed, 23 Sep 2020 09:42:12 -0500
+From:   Bjorn Andersson <bjorn.andersson@linaro.org>
+To:     Dmitry Baryshkov <dmitry.baryshkov@linaro.org>
+Cc:     Stephen Boyd <sboyd@kernel.org>, Andy Gross <agross@kernel.org>,
         Rob Herring <robh+dt@kernel.org>,
-        =?utf-8?Q?Beno=C3=AEt?= Cousson <bcousson@baylibre.com>,
-        Tony Lindgren <tony@atomide.com>,
-        Jason Cooper <jason@lakedaemon.net>,
-        Andrew Lunn <andrew@lunn.ch>,
-        Sebastian Hesselbarth <sebastian.hesselbarth@gmail.com>,
-        Russell King <linux@armlinux.org.uk>,
-        Joel Stanley <joel@jms.id.au>,
-        Andrew Jeffery <andrew@aj.id.au>,
-        Shawn Guo <shawnguo@kernel.org>,
-        Sascha Hauer <s.hauer@pengutronix.de>,
-        Pengutronix Kernel Team <kernel@pengutronix.de>,
-        Fabio Estevam <festevam@gmail.com>,
-        NXP Linux Team <linux-imx@nxp.com>,
-        Matthias Brugger <matthias.bgg@gmail.com>,
-        Geert Uytterhoeven <geert+renesas@glider.be>,
-        Magnus Damm <magnus.damm@gmail.com>,
-        Tero Kristo <t-kristo@ti.com>, Nishanth Menon <nm@ti.com>,
-        Michal Simek <michal.simek@xilinx.com>,
-        linux-gpio@vger.kernel.org, devicetree@vger.kernel.org,
-        linux-kernel@vger.kernel.org, linux-omap@vger.kernel.org,
-        linux-arm-kernel@lists.infradead.org,
-        linux-aspeed@lists.ozlabs.org, linux-mediatek@lists.infradead.org,
-        linux-renesas-soc@vger.kernel.org
-Cc:     Krzysztof Kozlowski <krzk@kernel.org>
-Subject: Re: [PATCH v3 14/15] ARM: dts: armada: align GPIO hog names with dtschema
-In-Reply-To: <20200916155715.21009-15-krzk@kernel.org>
-References: <20200916155715.21009-1-krzk@kernel.org> <20200916155715.21009-15-krzk@kernel.org>
-Date:   Wed, 23 Sep 2020 16:39:02 +0200
-Message-ID: <87a6xgimm1.fsf@BL-laptop>
+        Jonathan Marek <jonathan@marek.ca>,
+        Michael Turquette <mturquette@baylibre.com>,
+        linux-arm-msm@vger.kernel.org,
+        Manivannan Sadhasivam <manivannan.sadhasivam@linaro.org>,
+        devicetree@vger.kernel.org
+Subject: Re: [RFC 2/4] clk: qcom: gdsc: enable external switchable power
+ domain
+Message-ID: <20200923144212.GB40811@yoga>
+References: <20200911130950.578483-1-dmitry.baryshkov@linaro.org>
+ <20200911130950.578483-3-dmitry.baryshkov@linaro.org>
 MIME-Version: 1.0
-Content-Type: text/plain
+Content-Type: text/plain; charset=us-ascii
+Content-Disposition: inline
+In-Reply-To: <20200911130950.578483-3-dmitry.baryshkov@linaro.org>
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-Hi Krzysztof,
+On Fri 11 Sep 08:09 CDT 2020, Dmitry Baryshkov wrote:
 
-> The convention for node names is to use hyphens, not underscores.
-> dtschema for pca95xx expects GPIO hogs to end with 'hog' prefix.
+> Some GDSCs (SM8250's MDSS_GDSC for example) need switchable power domain
+> to be on to be able to access hardware registers. Use dev_pm/opp to
+                           ^
+What you describe here ----+ sounds like the GDSC controller is part of
+the power-domain specified and hence needs to be enabled in order to
+control the GDSC.
 
+But in contrast what the patch implements is a mechanism where the
+GDSC power-domain is a child of some other power-domain. So the commit
+message needs to better reflect what's implemented.
 
-Applied on mvebu/dt
+Then looking at the DT representation I think it says that the
+controller sits in the specified power-domain, rather than the exposed
+power-domain...
 
-Thanks,
-
-Gregory
-
->
-> Signed-off-by: Krzysztof Kozlowski <krzk@kernel.org>
+> enable corresponding power domain.
+> 
+> Signed-off-by: Dmitry Baryshkov <dmitry.baryshkov@linaro.org>
 > ---
->  arch/arm/boot/dts/armada-388-clearfog.dts  |  4 ++--
->  arch/arm/boot/dts/armada-388-clearfog.dtsi | 10 +++++-----
->  arch/arm/boot/dts/armada-388-helios4.dts   |  6 +++---
->  3 files changed, 10 insertions(+), 10 deletions(-)
->
-> diff --git a/arch/arm/boot/dts/armada-388-clearfog.dts b/arch/arm/boot/dts/armada-388-clearfog.dts
-> index 20f8d4667753..4140a5303b48 100644
-> --- a/arch/arm/boot/dts/armada-388-clearfog.dts
-> +++ b/arch/arm/boot/dts/armada-388-clearfog.dts
-> @@ -73,13 +73,13 @@
->  	 * 14-SFP_TX_DISABLE
->  	 * 15-SFP_MOD_DEF0
->  	 */
-> -	pcie2_0_clkreq {
-> +	pcie2-0-clkreq-hog {
->  		gpio-hog;
->  		gpios = <4 GPIO_ACTIVE_LOW>;
->  		input;
->  		line-name = "pcie2.0-clkreq";
->  	};
-> -	pcie2_0_w_disable {
-> +	pcie2-0-w-disable-hog {
->  		gpio-hog;
->  		gpios = <7 GPIO_ACTIVE_LOW>;
->  		output-low;
-> diff --git a/arch/arm/boot/dts/armada-388-clearfog.dtsi b/arch/arm/boot/dts/armada-388-clearfog.dtsi
-> index a0aa1d188f0c..f8a06ae4a3c9 100644
-> --- a/arch/arm/boot/dts/armada-388-clearfog.dtsi
-> +++ b/arch/arm/boot/dts/armada-388-clearfog.dtsi
-> @@ -141,31 +141,31 @@
->  		#gpio-cells = <2>;
->  		reg = <0x20>;
+>  drivers/clk/qcom/gdsc.c | 56 ++++++++++++++++++++++++++++++++++++++---
+>  drivers/clk/qcom/gdsc.h |  5 ++++
+>  2 files changed, 57 insertions(+), 4 deletions(-)
+> 
+> diff --git a/drivers/clk/qcom/gdsc.c b/drivers/clk/qcom/gdsc.c
+> index bfc4ac02f9ea..a522e062a79a 100644
+> --- a/drivers/clk/qcom/gdsc.c
+> +++ b/drivers/clk/qcom/gdsc.c
+> @@ -11,6 +11,7 @@
+>  #include <linux/kernel.h>
+>  #include <linux/ktime.h>
+>  #include <linux/pm_domain.h>
+> +#include <linux/pm_opp.h>
+>  #include <linux/regmap.h>
+>  #include <linux/regulator/consumer.h>
+>  #include <linux/reset-controller.h>
+> @@ -110,13 +111,31 @@ static int gdsc_poll_status(struct gdsc *sc, enum gdsc_status status)
+>  	return -ETIMEDOUT;
+>  }
 >  
-> -		pcie1_0_clkreq {
-> +		pcie1-0-clkreq-hog {
->  			gpio-hog;
->  			gpios = <0 GPIO_ACTIVE_LOW>;
->  			input;
->  			line-name = "pcie1.0-clkreq";
->  		};
-> -		pcie1_0_w_disable {
-> +		pcie1-0-w-disable-hog {
->  			gpio-hog;
->  			gpios = <3 GPIO_ACTIVE_LOW>;
->  			output-low;
->  			line-name = "pcie1.0-w-disable";
->  		};
-> -		usb3_ilimit {
-> +		usb3-ilimit-hog {
->  			gpio-hog;
->  			gpios = <5 GPIO_ACTIVE_LOW>;
->  			input;
->  			line-name = "usb3-current-limit";
->  		};
-> -		usb3_power {
-> +		usb3-power-hog {
->  			gpio-hog;
->  			gpios = <6 GPIO_ACTIVE_HIGH>;
->  			output-high;
->  			line-name = "usb3-power";
->  		};
-> -		m2_devslp {
-> +		m2-devslp-hog {
->  			gpio-hog;
->  			gpios = <11 GPIO_ACTIVE_HIGH>;
->  			output-low;
-> diff --git a/arch/arm/boot/dts/armada-388-helios4.dts b/arch/arm/boot/dts/armada-388-helios4.dts
-> index fb49df2a3bce..b3728de3bd3f 100644
-> --- a/arch/arm/boot/dts/armada-388-helios4.dts
-> +++ b/arch/arm/boot/dts/armada-388-helios4.dts
-> @@ -166,19 +166,19 @@
->  					interrupt-controller;
->  					#interrupt-cells = <2>;
->  
-> -					board_rev_bit_0 {
-> +					board-rev-bit-0-hog {
->  						gpio-hog;
->  						gpios = <0 GPIO_ACTIVE_LOW>;
->  						input;
->  						line-name = "board-rev-0";
->  					};
-> -					board_rev_bit_1 {
-> +					board-rev-bit-1-hog {
->  						gpio-hog;
->  						gpios = <1 GPIO_ACTIVE_LOW>;
->  						input;
->  						line-name = "board-rev-1";
->  					};
-> -					usb3_ilimit {
-> +					usb3-ilimit-hog {
->  						gpio-hog;
->  						gpios = <5 GPIO_ACTIVE_HIGH>;
->  						input;
-> -- 
-> 2.17.1
->
+> +int gdsc_toggle_on(struct gdsc *sc)
 
--- 
-Gregory Clement, Bootlin
-Embedded Linux and Kernel engineering
-http://bootlin.com
+This should be "static" and I think you should include "supply" in the
+name to denote that it doesn't turn on the gdsc, but rather its supply.
+
+> +{
+> +	if (sc->rsupply)
+> +		return regulator_enable(sc->rsupply);
+> +	if (sc->pd_dev)
+> +		return dev_pm_genpd_set_performance_state(sc->pd_dev, sc->pd_opp);
+> +	return 0;
+> +}
+> +
+> +int gdsc_toggle_off(struct gdsc *sc)
+> +{
+> +	if (sc->pd_dev)
+> +		return dev_pm_genpd_set_performance_state(sc->pd_dev, 0);
+> +	if (sc->rsupply)
+> +		return regulator_disable(sc->rsupply);
+> +	return 0;
+> +}
+> +
+>  static int gdsc_toggle_logic(struct gdsc *sc, enum gdsc_status status)
+>  {
+>  	int ret;
+>  	u32 val = (status == GDSC_ON) ? 0 : SW_COLLAPSE_MASK;
+>  
+> -	if (status == GDSC_ON && sc->rsupply) {
+> -		ret = regulator_enable(sc->rsupply);
+> +	if (status == GDSC_ON) {
+> +		ret = gdsc_toggle_on(sc);
+>  		if (ret < 0)
+>  			return ret;
+>  	}
+> @@ -153,8 +172,8 @@ static int gdsc_toggle_logic(struct gdsc *sc, enum gdsc_status status)
+>  	ret = gdsc_poll_status(sc, status);
+>  	WARN(ret, "%s status stuck at 'o%s'", sc->pd.name, status ? "ff" : "n");
+>  
+> -	if (!ret && status == GDSC_OFF && sc->rsupply) {
+> -		ret = regulator_disable(sc->rsupply);
+> +	if (!ret && status == GDSC_OFF) {
+> +		ret = gdsc_toggle_off(sc);
+>  		if (ret < 0)
+>  			return ret;
+>  	}
+> @@ -407,6 +426,27 @@ int gdsc_register(struct gdsc_desc *desc,
+>  			return PTR_ERR(scs[i]->rsupply);
+>  	}
+>  
+> +	for (i = 0; i < num; i++) {
+> +		if (!scs[i] || !scs[i]->domain)
+> +			continue;
+> +
+> +		scs[i]->pd_opp = of_get_required_opp_performance_state(dev->of_node, scs[i]->perf_idx);
+> +		if (scs[i]->pd_opp < 0)
+> +			return scs[i]->pd_opp;
+> +
+> +		scs[i]->pd_dev = dev_pm_domain_attach_by_name(dev, scs[i]->domain);
+> +		if (IS_ERR(scs[i]->pd_dev)) {
+> +			ret = PTR_ERR(scs[i]->pd_dev);
+> +			/* Single domain has been already attached, so reuse dev */
+> +			if (ret == -EEXIST) {
+> +				scs[i]->pd_dev = dev;
+> +			} else {
+> +				scs[i]->pd_dev = NULL;
+> +				goto pm_detach;
+> +			}
+> +		}
+> +	}
+> +
+>  	data->num_domains = num;
+>  	for (i = 0; i < num; i++) {
+>  		if (!scs[i])
+> @@ -428,6 +468,12 @@ int gdsc_register(struct gdsc_desc *desc,
+>  	}
+>  
+>  	return of_genpd_add_provider_onecell(dev->of_node, data);
+> +
+> +pm_detach:
+> +	for (i = 0; i < num; i++)
+> +		if (scs[i]->pd_dev)
+> +			dev_pm_domain_detach(scs[i]->pd_dev, false);
+
+I think that if dev_pm_domain_attach_by_name() returned -EEXIST you
+will attempt to detach the main device's domain here.
+
+> +	return ret;
+>  }
+>  
+>  void gdsc_unregister(struct gdsc_desc *desc)
+> @@ -443,6 +489,8 @@ void gdsc_unregister(struct gdsc_desc *desc)
+>  			continue;
+>  		if (scs[i]->parent)
+>  			pm_genpd_remove_subdomain(scs[i]->parent, &scs[i]->pd);
+> +		if (scs[i]->pd_dev && scs[i]->pd_dev != dev)
+> +			dev_pm_domain_detach(scs[i]->pd_dev, true);
+
+Ditto
+
+Regards,
+Bjorn
+
+>  	}
+>  	of_genpd_del_provider(dev->of_node);
+>  }
+> diff --git a/drivers/clk/qcom/gdsc.h b/drivers/clk/qcom/gdsc.h
+> index bd537438c793..d58575f8f25f 100644
+> --- a/drivers/clk/qcom/gdsc.h
+> +++ b/drivers/clk/qcom/gdsc.h
+> @@ -57,6 +57,11 @@ struct gdsc {
+>  
+>  	const char 			*supply;
+>  	struct regulator		*rsupply;
+> +
+> +	const char			*domain;
+> +	unsigned int			perf_idx;
+> +	struct device			*pd_dev;
+> +	int				pd_opp;
+>  };
+>  
+>  struct gdsc_desc {
+> -- 
+> 2.28.0
+> 
