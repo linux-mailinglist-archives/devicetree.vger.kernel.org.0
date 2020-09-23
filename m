@@ -2,236 +2,188 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from vger.kernel.org (vger.kernel.org [23.128.96.18])
-	by mail.lfdr.de (Postfix) with ESMTP id C6FF0275A7F
-	for <lists+devicetree@lfdr.de>; Wed, 23 Sep 2020 16:42:17 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTP id DA6AB275B09
+	for <lists+devicetree@lfdr.de>; Wed, 23 Sep 2020 17:02:02 +0200 (CEST)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S1726156AbgIWOmQ (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Wed, 23 Sep 2020 10:42:16 -0400
-Received: from lindbergh.monkeyblade.net ([23.128.96.19]:35340 "EHLO
-        lindbergh.monkeyblade.net" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S1726540AbgIWOmQ (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Wed, 23 Sep 2020 10:42:16 -0400
-Received: from mail-ot1-x342.google.com (mail-ot1-x342.google.com [IPv6:2607:f8b0:4864:20::342])
-        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 7DB45C0613D1
-        for <devicetree@vger.kernel.org>; Wed, 23 Sep 2020 07:42:16 -0700 (PDT)
-Received: by mail-ot1-x342.google.com with SMTP id y5so19187386otg.5
-        for <devicetree@vger.kernel.org>; Wed, 23 Sep 2020 07:42:16 -0700 (PDT)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=linaro.org; s=google;
-        h=date:from:to:cc:subject:message-id:references:mime-version
-         :content-disposition:in-reply-to;
-        bh=z95oVIBTfkEbl+uyir3w0ZqJF+KtX0tYet5L68ylfls=;
-        b=jN3IOG05bDUzWPEZI2JtQSs5EhccGAKx+0OTFGga22R+/qSCLm7fz055FWzDM/kIBI
-         D1HvGfm2xYgOwHSfLI+4CTZRh35oijmrknboOpEN5P8deS3cA29+/BCGdFdVEVwLIuM1
-         IcnDqt42s88BbbRLeO7ASmMK/Rp4CFcP0goVLfHVzRDSSRu41DW5iVVtVxuPss4ZJsLt
-         v2zmETmt+6xm4vdqUhaFIYQH7CVB2/Y98mw+poM1gHW+u8GPYnThpPW97Sn90TEmErq9
-         v6Q8/AGvwoCcQ1qm4dH0pkrIGrN5coTafx2Al4S3RhzpNTbL4bTsBs1zazVkkp5yW3Ac
-         0Rbw==
-X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=1e100.net; s=20161025;
-        h=x-gm-message-state:date:from:to:cc:subject:message-id:references
-         :mime-version:content-disposition:in-reply-to;
-        bh=z95oVIBTfkEbl+uyir3w0ZqJF+KtX0tYet5L68ylfls=;
-        b=b4yHEJo5p3/fslcThaVLHnoY4v7EdHSC9r0lqkWuue+VC6T6PAD3IcKSE/DN2UfTNl
-         NY90KjdEFf1CQWkihxITZKEpy7GtUG3B8z1Muqpn3Q9lB9DyVT4uftnaobpA4Qawg6ys
-         YgETPd2mpvz/vK9wt+aNIEm0Kimp3HgxokXGK3AW0/ovx7CefnTmafUwo/BDT6jwU3Um
-         iFPm0rnA24oed1xRPAYEt3hNeJynmAmIxWvex+Mb19KDW4s1DtzoRRLbZootfNGCzCEF
-         7DtKht78M/jmWbnUy0Kzhyh8jBxcVL09wbQWZmezMJZnEw9e3HnTZic8HPpSPvlaJ0ZC
-         rVug==
-X-Gm-Message-State: AOAM530dbPH0jVai9dTs/Qu4a41rfCMcNJX7LutQBSDuOtL5MYGuRw1R
-        S2Cu/Te3CLt7KQJ+MO3+NvbahA==
-X-Google-Smtp-Source: ABdhPJw0JPdlhxUtcDmd01TXvVVR8Olrf8Kh/0esOGyHXPL0W46rzAC83xIx+falqXeT8astKcMsHA==
-X-Received: by 2002:a9d:2641:: with SMTP id a59mr6326903otb.217.1600872135602;
-        Wed, 23 Sep 2020 07:42:15 -0700 (PDT)
-Received: from yoga (99-135-181-32.lightspeed.austtx.sbcglobal.net. [99.135.181.32])
-        by smtp.gmail.com with ESMTPSA id p20sm46378oth.48.2020.09.23.07.42.14
-        (version=TLS1_3 cipher=TLS_AES_256_GCM_SHA384 bits=256/256);
-        Wed, 23 Sep 2020 07:42:14 -0700 (PDT)
-Date:   Wed, 23 Sep 2020 09:42:12 -0500
-From:   Bjorn Andersson <bjorn.andersson@linaro.org>
-To:     Dmitry Baryshkov <dmitry.baryshkov@linaro.org>
-Cc:     Stephen Boyd <sboyd@kernel.org>, Andy Gross <agross@kernel.org>,
+        id S1726567AbgIWPCB convert rfc822-to-8bit (ORCPT
+        <rfc822;lists+devicetree@lfdr.de>); Wed, 23 Sep 2020 11:02:01 -0400
+Received: from relay3-d.mail.gandi.net ([217.70.183.195]:59109 "EHLO
+        relay3-d.mail.gandi.net" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
+        with ESMTP id S1726130AbgIWPCB (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Wed, 23 Sep 2020 11:02:01 -0400
+X-Greylist: delayed 1434 seconds by postgrey-1.27 at vger.kernel.org; Wed, 23 Sep 2020 11:02:00 EDT
+X-Originating-IP: 90.65.92.90
+Received: from localhost (lfbn-lyo-1-1913-90.w90-65.abo.wanadoo.fr [90.65.92.90])
+        (Authenticated sender: gregory.clement@bootlin.com)
+        by relay3-d.mail.gandi.net (Postfix) with ESMTPSA id 7F8CC60023;
+        Wed, 23 Sep 2020 15:01:54 +0000 (UTC)
+From:   Gregory CLEMENT <gregory.clement@bootlin.com>
+To:     Pali =?utf-8?Q?Roh=C3=A1r?= <pali@kernel.org>,
+        Jason Cooper <jason@lakedaemon.net>,
+        Andrew Lunn <andrew@lunn.ch>,
+        Sebastian Hesselbarth <sebastian.hesselbarth@gmail.com>,
         Rob Herring <robh+dt@kernel.org>,
-        Jonathan Marek <jonathan@marek.ca>,
-        Michael Turquette <mturquette@baylibre.com>,
-        linux-arm-msm@vger.kernel.org,
-        Manivannan Sadhasivam <manivannan.sadhasivam@linaro.org>,
-        devicetree@vger.kernel.org
-Subject: Re: [RFC 2/4] clk: qcom: gdsc: enable external switchable power
- domain
-Message-ID: <20200923144212.GB40811@yoga>
-References: <20200911130950.578483-1-dmitry.baryshkov@linaro.org>
- <20200911130950.578483-3-dmitry.baryshkov@linaro.org>
+        Tomasz Maciej Nowak <tmn505@gmail.com>,
+        Andre Heider <a.heider@gmail.com>
+Cc:     linux-arm-kernel@lists.infradead.org, devicetree@vger.kernel.org,
+        linux-kernel@vger.kernel.org
+Subject: Re: [PATCH] arm64: dts: marvell: espressobin: Add ethernet switch aliases
+In-Reply-To: <20200907112718.5994-1-pali@kernel.org>
+References: <20200907112718.5994-1-pali@kernel.org>
+Date:   Wed, 23 Sep 2020 17:01:54 +0200
+Message-ID: <875z84iljx.fsf@BL-laptop>
 MIME-Version: 1.0
-Content-Type: text/plain; charset=us-ascii
-Content-Disposition: inline
-In-Reply-To: <20200911130950.578483-3-dmitry.baryshkov@linaro.org>
+Content-Type: text/plain; charset=utf-8
+Content-Transfer-Encoding: 8BIT
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-On Fri 11 Sep 08:09 CDT 2020, Dmitry Baryshkov wrote:
+Hello Pali,
 
-> Some GDSCs (SM8250's MDSS_GDSC for example) need switchable power domain
-> to be on to be able to access hardware registers. Use dev_pm/opp to
-                           ^
-What you describe here ----+ sounds like the GDSC controller is part of
-the power-domain specified and hence needs to be enabled in order to
-control the GDSC.
+> Espressobin boards have 3 ethernet ports and some of them got assigned more
+> then one MAC address. MAC addresses are stored in U-Boot environment.
+>
+> Since commit a2c7023f7075c ("net: dsa: read mac address from DT for slave
+> device") kernel can use MAC addresses from DT for particular DSA port.
+>
+> Currently Espressobin DTS file contains alias just for ethernet0.
+>
+> This patch defines additional ethernet aliases in Espressobin DTS files, so
+> bootloader can fill correct MAC address for DSA switch ports if more MAC
+> addresses were specified.
+>
+> DT alias ethernet1 is used for wan port, DT aliases ethernet2 and ethernet3
+> are used for lan ports for both Espressobin revisions (V5 and V7).
+>
+> Fixes: 5253cb8c00a6f ("arm64: dts: marvell: espressobin: add ethernet alias")
+> Signed-off-by: Pali Rohár <pali@kernel.org>
 
-But in contrast what the patch implements is a mechanism where the
-GDSC power-domain is a child of some other power-domain. So the commit
-message needs to better reflect what's implemented.
 
-Then looking at the DT representation I think it says that the
-controller sits in the specified power-domain, rather than the exposed
-power-domain...
+Applied on mvebu/fixes
 
-> enable corresponding power domain.
-> 
-> Signed-off-by: Dmitry Baryshkov <dmitry.baryshkov@linaro.org>
+Thanks,
+
+Gregory
+
 > ---
->  drivers/clk/qcom/gdsc.c | 56 ++++++++++++++++++++++++++++++++++++++---
->  drivers/clk/qcom/gdsc.h |  5 ++++
->  2 files changed, 57 insertions(+), 4 deletions(-)
-> 
-> diff --git a/drivers/clk/qcom/gdsc.c b/drivers/clk/qcom/gdsc.c
-> index bfc4ac02f9ea..a522e062a79a 100644
-> --- a/drivers/clk/qcom/gdsc.c
-> +++ b/drivers/clk/qcom/gdsc.c
-> @@ -11,6 +11,7 @@
->  #include <linux/kernel.h>
->  #include <linux/ktime.h>
->  #include <linux/pm_domain.h>
-> +#include <linux/pm_opp.h>
->  #include <linux/regmap.h>
->  #include <linux/regulator/consumer.h>
->  #include <linux/reset-controller.h>
-> @@ -110,13 +111,31 @@ static int gdsc_poll_status(struct gdsc *sc, enum gdsc_status status)
->  	return -ETIMEDOUT;
->  }
->  
-> +int gdsc_toggle_on(struct gdsc *sc)
-
-This should be "static" and I think you should include "supply" in the
-name to denote that it doesn't turn on the gdsc, but rather its supply.
-
-> +{
-> +	if (sc->rsupply)
-> +		return regulator_enable(sc->rsupply);
-> +	if (sc->pd_dev)
-> +		return dev_pm_genpd_set_performance_state(sc->pd_dev, sc->pd_opp);
-> +	return 0;
-> +}
+>  .../dts/marvell/armada-3720-espressobin-v7-emmc.dts  | 10 ++++++++--
+>  .../boot/dts/marvell/armada-3720-espressobin-v7.dts  | 10 ++++++++--
+>  .../boot/dts/marvell/armada-3720-espressobin.dtsi    | 12 ++++++++----
+>  3 files changed, 24 insertions(+), 8 deletions(-)
+>
+> diff --git a/arch/arm64/boot/dts/marvell/armada-3720-espressobin-v7-emmc.dts b/arch/arm64/boot/dts/marvell/armada-3720-espressobin-v7-emmc.dts
+> index 03733fd92732..215d2f702623 100644
+> --- a/arch/arm64/boot/dts/marvell/armada-3720-espressobin-v7-emmc.dts
+> +++ b/arch/arm64/boot/dts/marvell/armada-3720-espressobin-v7-emmc.dts
+> @@ -20,17 +20,23 @@
+>  	compatible = "globalscale,espressobin-v7-emmc", "globalscale,espressobin-v7",
+>  		     "globalscale,espressobin", "marvell,armada3720",
+>  		     "marvell,armada3710";
 > +
-> +int gdsc_toggle_off(struct gdsc *sc)
-> +{
-> +	if (sc->pd_dev)
-> +		return dev_pm_genpd_set_performance_state(sc->pd_dev, 0);
-> +	if (sc->rsupply)
-> +		return regulator_disable(sc->rsupply);
-> +	return 0;
-> +}
-> +
->  static int gdsc_toggle_logic(struct gdsc *sc, enum gdsc_status status)
->  {
->  	int ret;
->  	u32 val = (status == GDSC_ON) ? 0 : SW_COLLAPSE_MASK;
->  
-> -	if (status == GDSC_ON && sc->rsupply) {
-> -		ret = regulator_enable(sc->rsupply);
-> +	if (status == GDSC_ON) {
-> +		ret = gdsc_toggle_on(sc);
->  		if (ret < 0)
->  			return ret;
->  	}
-> @@ -153,8 +172,8 @@ static int gdsc_toggle_logic(struct gdsc *sc, enum gdsc_status status)
->  	ret = gdsc_poll_status(sc, status);
->  	WARN(ret, "%s status stuck at 'o%s'", sc->pd.name, status ? "ff" : "n");
->  
-> -	if (!ret && status == GDSC_OFF && sc->rsupply) {
-> -		ret = regulator_disable(sc->rsupply);
-> +	if (!ret && status == GDSC_OFF) {
-> +		ret = gdsc_toggle_off(sc);
->  		if (ret < 0)
->  			return ret;
->  	}
-> @@ -407,6 +426,27 @@ int gdsc_register(struct gdsc_desc *desc,
->  			return PTR_ERR(scs[i]->rsupply);
->  	}
->  
-> +	for (i = 0; i < num; i++) {
-> +		if (!scs[i] || !scs[i]->domain)
-> +			continue;
-> +
-> +		scs[i]->pd_opp = of_get_required_opp_performance_state(dev->of_node, scs[i]->perf_idx);
-> +		if (scs[i]->pd_opp < 0)
-> +			return scs[i]->pd_opp;
-> +
-> +		scs[i]->pd_dev = dev_pm_domain_attach_by_name(dev, scs[i]->domain);
-> +		if (IS_ERR(scs[i]->pd_dev)) {
-> +			ret = PTR_ERR(scs[i]->pd_dev);
-> +			/* Single domain has been already attached, so reuse dev */
-> +			if (ret == -EEXIST) {
-> +				scs[i]->pd_dev = dev;
-> +			} else {
-> +				scs[i]->pd_dev = NULL;
-> +				goto pm_detach;
-> +			}
-> +		}
-> +	}
-> +
->  	data->num_domains = num;
->  	for (i = 0; i < num; i++) {
->  		if (!scs[i])
-> @@ -428,6 +468,12 @@ int gdsc_register(struct gdsc_desc *desc,
->  	}
->  
->  	return of_genpd_add_provider_onecell(dev->of_node, data);
-> +
-> +pm_detach:
-> +	for (i = 0; i < num; i++)
-> +		if (scs[i]->pd_dev)
-> +			dev_pm_domain_detach(scs[i]->pd_dev, false);
-
-I think that if dev_pm_domain_attach_by_name() returned -EEXIST you
-will attempt to detach the main device's domain here.
-
-> +	return ret;
->  }
->  
->  void gdsc_unregister(struct gdsc_desc *desc)
-> @@ -443,6 +489,8 @@ void gdsc_unregister(struct gdsc_desc *desc)
->  			continue;
->  		if (scs[i]->parent)
->  			pm_genpd_remove_subdomain(scs[i]->parent, &scs[i]->pd);
-> +		if (scs[i]->pd_dev && scs[i]->pd_dev != dev)
-> +			dev_pm_domain_detach(scs[i]->pd_dev, true);
-
-Ditto
-
-Regards,
-Bjorn
-
->  	}
->  	of_genpd_del_provider(dev->of_node);
->  }
-> diff --git a/drivers/clk/qcom/gdsc.h b/drivers/clk/qcom/gdsc.h
-> index bd537438c793..d58575f8f25f 100644
-> --- a/drivers/clk/qcom/gdsc.h
-> +++ b/drivers/clk/qcom/gdsc.h
-> @@ -57,6 +57,11 @@ struct gdsc {
->  
->  	const char 			*supply;
->  	struct regulator		*rsupply;
-> +
-> +	const char			*domain;
-> +	unsigned int			perf_idx;
-> +	struct device			*pd_dev;
-> +	int				pd_opp;
+> +	aliases {
+> +		/* ethernet1 is wan port */
+> +		ethernet1 = &switch0port3;
+> +		ethernet3 = &switch0port1;
+> +	};
 >  };
 >  
->  struct gdsc_desc {
+>  &switch0 {
+>  	ports {
+> -		port@1 {
+> +		switch0port1: port@1 {
+>  			reg = <1>;
+>  			label = "lan1";
+>  			phy-handle = <&switch0phy0>;
+>  		};
+>  
+> -		port@3 {
+> +		switch0port3: port@3 {
+>  			reg = <3>;
+>  			label = "wan";
+>  			phy-handle = <&switch0phy2>;
+> diff --git a/arch/arm64/boot/dts/marvell/armada-3720-espressobin-v7.dts b/arch/arm64/boot/dts/marvell/armada-3720-espressobin-v7.dts
+> index 8570c5f47d7d..b6f4af8ebafb 100644
+> --- a/arch/arm64/boot/dts/marvell/armada-3720-espressobin-v7.dts
+> +++ b/arch/arm64/boot/dts/marvell/armada-3720-espressobin-v7.dts
+> @@ -19,17 +19,23 @@
+>  	model = "Globalscale Marvell ESPRESSOBin Board V7";
+>  	compatible = "globalscale,espressobin-v7", "globalscale,espressobin",
+>  		     "marvell,armada3720", "marvell,armada3710";
+> +
+> +	aliases {
+> +		/* ethernet1 is wan port */
+> +		ethernet1 = &switch0port3;
+> +		ethernet3 = &switch0port1;
+> +	};
+>  };
+>  
+>  &switch0 {
+>  	ports {
+> -		port@1 {
+> +		switch0port1: port@1 {
+>  			reg = <1>;
+>  			label = "lan1";
+>  			phy-handle = <&switch0phy0>;
+>  		};
+>  
+> -		port@3 {
+> +		switch0port3: port@3 {
+>  			reg = <3>;
+>  			label = "wan";
+>  			phy-handle = <&switch0phy2>;
+> diff --git a/arch/arm64/boot/dts/marvell/armada-3720-espressobin.dtsi b/arch/arm64/boot/dts/marvell/armada-3720-espressobin.dtsi
+> index b97218c72727..0775c16e0ec8 100644
+> --- a/arch/arm64/boot/dts/marvell/armada-3720-espressobin.dtsi
+> +++ b/arch/arm64/boot/dts/marvell/armada-3720-espressobin.dtsi
+> @@ -13,6 +13,10 @@
+>  / {
+>  	aliases {
+>  		ethernet0 = &eth0;
+> +		/* for dsa slave device */
+> +		ethernet1 = &switch0port1;
+> +		ethernet2 = &switch0port2;
+> +		ethernet3 = &switch0port3;
+>  		serial0 = &uart0;
+>  		serial1 = &uart1;
+>  	};
+> @@ -120,7 +124,7 @@
+>  			#address-cells = <1>;
+>  			#size-cells = <0>;
+>  
+> -			port@0 {
+> +			switch0port0: port@0 {
+>  				reg = <0>;
+>  				label = "cpu";
+>  				ethernet = <&eth0>;
+> @@ -131,19 +135,19 @@
+>  				};
+>  			};
+>  
+> -			port@1 {
+> +			switch0port1: port@1 {
+>  				reg = <1>;
+>  				label = "wan";
+>  				phy-handle = <&switch0phy0>;
+>  			};
+>  
+> -			port@2 {
+> +			switch0port2: port@2 {
+>  				reg = <2>;
+>  				label = "lan0";
+>  				phy-handle = <&switch0phy1>;
+>  			};
+>  
+> -			port@3 {
+> +			switch0port3: port@3 {
+>  				reg = <3>;
+>  				label = "lan1";
+>  				phy-handle = <&switch0phy2>;
 > -- 
-> 2.28.0
-> 
+> 2.20.1
+>
+
+-- 
+Gregory Clement, Bootlin
+Embedded Linux and Kernel engineering
+http://bootlin.com
