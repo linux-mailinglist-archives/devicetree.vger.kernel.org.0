@@ -2,75 +2,111 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from vger.kernel.org (vger.kernel.org [23.128.96.18])
-	by mail.lfdr.de (Postfix) with ESMTP id 04242275E59
-	for <lists+devicetree@lfdr.de>; Wed, 23 Sep 2020 19:10:24 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTP id 186E9275E6C
+	for <lists+devicetree@lfdr.de>; Wed, 23 Sep 2020 19:15:36 +0200 (CEST)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S1726466AbgIWRKW (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Wed, 23 Sep 2020 13:10:22 -0400
-Received: from lindbergh.monkeyblade.net ([23.128.96.19]:58218 "EHLO
-        lindbergh.monkeyblade.net" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S1726184AbgIWRKW (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Wed, 23 Sep 2020 13:10:22 -0400
-Received: from mail.skyhub.de (mail.skyhub.de [IPv6:2a01:4f8:190:11c2::b:1457])
-        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 755D0C0613CE;
-        Wed, 23 Sep 2020 10:10:22 -0700 (PDT)
-Received: from zn.tnic (p200300ec2f0d1300d32f22708559be5e.dip0.t-ipconnect.de [IPv6:2003:ec:2f0d:1300:d32f:2270:8559:be5e])
-        (using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
-        (No client certificate requested)
-        by mail.skyhub.de (SuperMail on ZX Spectrum 128k) with ESMTPSA id E9AA81EC0354;
-        Wed, 23 Sep 2020 19:10:20 +0200 (CEST)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=alien8.de; s=dkim;
-        t=1600881021;
-        h=from:from:reply-to:subject:subject:date:date:message-id:message-id:
-         to:to:cc:cc:mime-version:mime-version:content-type:content-type:
-         content-transfer-encoding:in-reply-to:in-reply-to:  references:references;
-        bh=6F9YvtxHG+c2cZaGVC+//+2V2p0AzAkNmUeEjK15LHA=;
-        b=XQMQHr5Q8a40hjhYW6qwvs1J2ZBWNLDfOBK11zYoCN1YvZ/7agCRQq+bnb40fVAmhathTw
-        EXtmab8xX6/sSpEfZInNfvARusehabBa/PdUpoKXf913rhjRPbgeidfAcT/3Pwu/mRJqzc
-        blDSfjklSbvjtjgPzdH7VyVaHb6dVJg=
-Date:   Wed, 23 Sep 2020 19:10:13 +0200
-From:   Borislav Petkov <bp@alien8.de>
-To:     Yash Shah <yash.shah@sifive.com>
-Cc:     robh+dt@kernel.org, palmer@dabbelt.com, paul.walmsley@sifive.com,
-        mchehab@kernel.org, tony.luck@intel.com, aou@eecs.berkeley.edu,
-        james.morse@arm.com, rrichter@marvell.com,
-        devicetree@vger.kernel.org, linux-riscv@lists.infradead.org,
-        linux-kernel@vger.kernel.org, linux-edac@vger.kernel.org,
-        sachin.ghadi@sifive.com
-Subject: Re: [PATCH v2 3/3] EDAC/sifive: Add EDAC support for Memory
- Controller in SiFive SoCs
-Message-ID: <20200923171013.GS28545@zn.tnic>
-References: <1599457679-8947-1-git-send-email-yash.shah@sifive.com>
- <1599457679-8947-4-git-send-email-yash.shah@sifive.com>
+        id S1726599AbgIWRPf (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Wed, 23 Sep 2020 13:15:35 -0400
+Received: from fllv0016.ext.ti.com ([198.47.19.142]:47050 "EHLO
+        fllv0016.ext.ti.com" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
+        with ESMTP id S1726596AbgIWRPf (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Wed, 23 Sep 2020 13:15:35 -0400
+Received: from lelv0265.itg.ti.com ([10.180.67.224])
+        by fllv0016.ext.ti.com (8.15.2/8.15.2) with ESMTP id 08NHFKXo087475;
+        Wed, 23 Sep 2020 12:15:20 -0500
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=ti.com;
+        s=ti-com-17Q1; t=1600881320;
+        bh=r8HOyXiGU54STKU6S811Il3oIJwaV6yhgGzfkd2uQ10=;
+        h=Subject:To:CC:References:From:Date:In-Reply-To;
+        b=KwhKedNvEiP8fYI6JZEmDGiZS/WagcavMjkPdA6YxtQD/mwyG+vZcquVV1fHIRYIa
+         9yVGGzRAbokDSoRUgM8OejJhG1o/bqcj5Dflm2nmoFDqyjR2HnK2zoXOmNH7Alz2P/
+         1lzoysO8xely2tzEp/rslecey5B9NOyoRpnziGS0=
+Received: from DFLE104.ent.ti.com (dfle104.ent.ti.com [10.64.6.25])
+        by lelv0265.itg.ti.com (8.15.2/8.15.2) with ESMTPS id 08NHFKLV037525
+        (version=TLSv1.2 cipher=AES256-GCM-SHA384 bits=256 verify=FAIL);
+        Wed, 23 Sep 2020 12:15:20 -0500
+Received: from DFLE112.ent.ti.com (10.64.6.33) by DFLE104.ent.ti.com
+ (10.64.6.25) with Microsoft SMTP Server (version=TLS1_2,
+ cipher=TLS_ECDHE_RSA_WITH_AES_128_CBC_SHA256_P256) id 15.1.1979.3; Wed, 23
+ Sep 2020 12:15:19 -0500
+Received: from lelv0327.itg.ti.com (10.180.67.183) by DFLE112.ent.ti.com
+ (10.64.6.33) with Microsoft SMTP Server (version=TLS1_2,
+ cipher=TLS_ECDHE_RSA_WITH_AES_128_CBC_SHA256_P256) id 15.1.1979.3 via
+ Frontend Transport; Wed, 23 Sep 2020 12:15:19 -0500
+Received: from [192.168.2.10] (ileax41-snat.itg.ti.com [10.172.224.153])
+        by lelv0327.itg.ti.com (8.15.2/8.15.2) with ESMTP id 08NHFHWR115783;
+        Wed, 23 Sep 2020 12:15:17 -0500
+Subject: Re: [PATCHv2] dt-bindings: dp-connector: add binding for DisplayPort
+ connector
+To:     Rob Herring <robh@kernel.org>
+CC:     <dri-devel@lists.freedesktop.org>, <devicetree@vger.kernel.org>,
+        David Airlie <airlied@linux.ie>,
+        Daniel Vetter <daniel@ffwll.ch>,
+        Laurent Pinchart <laurent.pinchart@ideasonboard.com>,
+        Andrzej Hajda <a.hajda@samsung.com>,
+        Neil Armstrong <narmstrong@baylibre.com>,
+        Swapnil Kashinath Jakhade <sjakhade@cadence.com>
+References: <20200917055210.22868-1-tomi.valkeinen@ti.com>
+ <20200923161712.GA836725@bogus>
+From:   Tomi Valkeinen <tomi.valkeinen@ti.com>
+Message-ID: <04d93618-12b1-d8f5-ece5-0f87e644d52e@ti.com>
+Date:   Wed, 23 Sep 2020 20:15:16 +0300
+User-Agent: Mozilla/5.0 (X11; Linux x86_64; rv:68.0) Gecko/20100101
+ Thunderbird/68.10.0
 MIME-Version: 1.0
-Content-Type: text/plain; charset=utf-8
-Content-Disposition: inline
-In-Reply-To: <1599457679-8947-4-git-send-email-yash.shah@sifive.com>
+In-Reply-To: <20200923161712.GA836725@bogus>
+Content-Type: text/plain; charset="utf-8"; format=flowed
+Content-Language: en-US
+Content-Transfer-Encoding: 7bit
+X-EXCLAIMER-MD-CONFIG: e1e8a2fd-e40a-4ac6-ac9b-f7e9cc9ee180
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-On Mon, Sep 07, 2020 at 11:17:59AM +0530, Yash Shah wrote:
-> Add Memory controller EDAC support to the SiFive platform EDAC driver.
-> It registers for ECC notifier events from the memory controller.
+Hi Rob,
+
+On 23/09/2020 19:17, Rob Herring wrote:
+
+>> * No eDP. There's really no "eDP connector", as it's always a custom
+>>    made connection between the DP and the DP panel. So possibly there is
+>>    no need for edp-connector binding, but even if there is, I don't want
+>>    to guess what it could look like, and could it be part of the
+>>    dp-connector binding.
 > 
-> Signed-off-by: Yash Shah <yash.shah@sifive.com>
-> Reviewed-by: Palmer Dabbelt <palmerdabbelt@google.com>
-> Acked-by: Palmer Dabbelt <palmerdabbelt@google.com>
+> I don't think that's true. Do an image search for 'edp pinout'. AFAICT,
+> there's 2 lane 30 pin and 4 lane 40 pin. One image says 'Table 5-3 in
+> eDP v1.2'. Of course, I'm sure there's custom ones too. From a binding
+> perspective, we probably don't care about the differences, but just need
+> to be able to describe HPD, backlight power, enable, and pwm, and LCD
+> power.
 
-Reviewed-by is usually enough and stronger than Acked-by. See sections
+That's true. The eDP spec lists 4 different standard pinouts (how 
+strictly those are followed, I have no idea). But it does not define a 
+connector or a cable. And afaik eDP is defined to be not user-detachable.
 
-12) When to use Acked-by:, Cc:, and Co-developed-by:
-13) Using Reported-by:, Tested-by:, Reviewed-by:, Suggested-by: and Fixes:
+I think from the binding perspective the connectors present in the dts 
+files are user-visible connectors, meant for plugging in and out. The 
+connector node is the "end of the chain".
 
-in Documentation/process/submitting-patches.rst.
+And non user-detachable ones (like MIPI DPI) do not have a connector in 
+the dts, but just the video source and the panel linked together, and 
+the panel is the end of the chain.
 
-With that addressed:
+My thinking was that eDP is similar to MIPI DPI, and that we always 
+define the eDP panel in the dts too. But I guess that might not be the 
+case, as eDP does have all the bells and whistles to fully detect the 
+panel. Although can it do all the probing needed for backlight and 
+touch... And even then, should we have a generic-epd-panel present in 
+the dts, or just a connector...
 
-Acked-by: Borislav Petkov <bp@suse.de>
+I don't know. So as I said, I'd rather leave eDP out for now (and you 
+agreed, so no disagreement =).
 
--- 
-Regards/Gruss,
-    Boris.
+I think we can later extend this binding, or if eDP just doesn't seem to 
+fit into this, we can create a fully separate binding for eDP.
 
-https://people.kernel.org/tglx/notes-about-netiquette
+  Tomi
+
+--
+Texas Instruments Finland Oy, Porkkalankatu 22, 00180 Helsinki.
+Y-tunnus/Business ID: 0615521-4. Kotipaikka/Domicile: Helsinki
