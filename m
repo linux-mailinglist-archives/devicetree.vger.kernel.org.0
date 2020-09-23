@@ -2,83 +2,101 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from vger.kernel.org (vger.kernel.org [23.128.96.18])
-	by mail.lfdr.de (Postfix) with ESMTP id B8ADC275C14
-	for <lists+devicetree@lfdr.de>; Wed, 23 Sep 2020 17:39:13 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTP id 6AE4D275C28
+	for <lists+devicetree@lfdr.de>; Wed, 23 Sep 2020 17:40:37 +0200 (CEST)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S1726413AbgIWPjN (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Wed, 23 Sep 2020 11:39:13 -0400
-Received: from mx07-00178001.pphosted.com ([185.132.182.106]:60015 "EHLO
-        mx07-00178001.pphosted.com" rhost-flags-OK-OK-OK-OK)
-        by vger.kernel.org with ESMTP id S1726184AbgIWPjN (ORCPT
-        <rfc822;devicetree@vger.kernel.org>);
-        Wed, 23 Sep 2020 11:39:13 -0400
-Received: from pps.filterd (m0046668.ppops.net [127.0.0.1])
-        by mx07-00178001.pphosted.com (8.16.0.42/8.16.0.42) with SMTP id 08NFQnIP031488;
-        Wed, 23 Sep 2020 17:38:57 +0200
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=st.com; h=subject : to : cc :
- references : from : message-id : date : mime-version : in-reply-to :
- content-type : content-transfer-encoding; s=STMicroelectronics;
- bh=7HKGO3zCoMWYyI4iU86SgeX3rOp+UHEyIpuERuB++hA=;
- b=dED3XeJEjoJeKty4oJ6s8NhE4KSiyCWqeaBrR1zv8V4ZRqpD47qB83Q86MXO5hl12dyo
- kMp65B1FELamVIQjQ+cW7RUiuGKOc6LAtnQwLHEibW59z2834LI1fszFYMQYNQFMZv9j
- WLm966WRrAYl+8UJype/WdEyTk1o2QWWsihY+FSOIqgQKikmB5HE7VthrPwdolBcoMTA
- RG0tj0qSOZWpwJgANzBdMbacVWsbezMXuq9MTDw1gb/sk2FUxzkgzwgZJtCcYsiTn4yj
- el+4ANrSmIf/O0bsGiSfpeOBIRFIeqDGwVBx/8W3haJrodXRDmZTxBJCPp9QFdjnwBzA 9A== 
-Received: from beta.dmz-eu.st.com (beta.dmz-eu.st.com [164.129.1.35])
-        by mx07-00178001.pphosted.com with ESMTP id 33n7eyx2gt-1
-        (version=TLSv1.2 cipher=ECDHE-RSA-AES256-GCM-SHA384 bits=256 verify=NOT);
-        Wed, 23 Sep 2020 17:38:57 +0200
-Received: from euls16034.sgp.st.com (euls16034.sgp.st.com [10.75.44.20])
-        by beta.dmz-eu.st.com (STMicroelectronics) with ESMTP id 42531100039;
-        Wed, 23 Sep 2020 17:38:57 +0200 (CEST)
-Received: from Webmail-eu.st.com (sfhdag3node2.st.com [10.75.127.8])
-        by euls16034.sgp.st.com (STMicroelectronics) with ESMTP id 326CE2BE221;
-        Wed, 23 Sep 2020 17:38:57 +0200 (CEST)
-Received: from lmecxl0912.lme.st.com (10.75.127.50) by SFHDAG3NODE2.st.com
- (10.75.127.8) with Microsoft SMTP Server (TLS) id 15.0.1473.3; Wed, 23 Sep
- 2020 17:38:56 +0200
-Subject: Re: [PATCH 0/2] add FMC2 EBI controller support
-To:     Christophe Kerello <christophe.kerello@st.com>,
-        <robh+dt@kernel.org>, <linux@armlinux.org.uk>
-CC:     <linux-stm32@st-md-mailman.stormreply.com>,
-        <linux-kernel@vger.kernel.org>, <devicetree@vger.kernel.org>,
-        <linux-arm-kernel@lists.infradead.org>
-References: <1599225643-5558-1-git-send-email-christophe.kerello@st.com>
-From:   Alexandre Torgue <alexandre.torgue@st.com>
-Message-ID: <f2aa40b2-6868-9f8d-ed9d-1283b230c367@st.com>
-Date:   Wed, 23 Sep 2020 17:38:54 +0200
-User-Agent: Mozilla/5.0 (X11; Linux x86_64; rv:68.0) Gecko/20100101
- Thunderbird/68.10.0
+        id S1726413AbgIWPkg (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Wed, 23 Sep 2020 11:40:36 -0400
+Received: from lindbergh.monkeyblade.net ([23.128.96.19]:44334 "EHLO
+        lindbergh.monkeyblade.net" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
+        with ESMTP id S1726184AbgIWPkg (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Wed, 23 Sep 2020 11:40:36 -0400
+Received: from mail-wr1-x443.google.com (mail-wr1-x443.google.com [IPv6:2a00:1450:4864:20::443])
+        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 08502C0613CE;
+        Wed, 23 Sep 2020 08:40:36 -0700 (PDT)
+Received: by mail-wr1-x443.google.com with SMTP id t10so570739wrv.1;
+        Wed, 23 Sep 2020 08:40:35 -0700 (PDT)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+        d=gmail.com; s=20161025;
+        h=from:to:cc:subject:date:message-id:mime-version
+         :content-transfer-encoding;
+        bh=rdNOZjxmYZxY4grrZxCVN6KJEz1EtluGEmYNEZcTomY=;
+        b=ACM2YoaV28iao016ZPZqyMNhH8sFRSFoXu8tqP1vn2JpZRzf7Gh58nzQ8AdzT2a9M4
+         p8qm3lXOAhgR4fxWeW11e8qdSB1PoOtBHzDX5n+f8MZt4QTYlsnuxUADeGk+CQIoD+ez
+         kFx1TDOWdYBq4wx8W3rID5Rp4Epk2LZSldeDSwEVUdfonB0rz4iL0Sf5k0+igT/EtXBR
+         vmJoxEeoo9IoFcqVErdsUB8ShzS50xSrlNsLuRzFy2MgRR8+/mO/jtxWr88+oXye0f2T
+         szKPi/DuYQNjH7jPjCrecyQkE0DKbg7zHxyPJg5dRA3VfcTa5lqrcpWlUA5uwyijaMf+
+         Uidg==
+X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+        d=1e100.net; s=20161025;
+        h=x-gm-message-state:from:to:cc:subject:date:message-id:mime-version
+         :content-transfer-encoding;
+        bh=rdNOZjxmYZxY4grrZxCVN6KJEz1EtluGEmYNEZcTomY=;
+        b=Co1IEkOHme836nEOFTwwQd25LfqfaAiV7cP6i8YwNS9JmG/uT6Vyyc2Jn7YPb7TDMD
+         mDT0K+RtTFk6tq8tv9TwmBIm/P35VkLnIlHBYwtRJ4ioq0TsKiMo8ocodZzNXoMr83RM
+         dOf1JlMQdsIFb6uLdQ6O/9WR1YtEs0392H+kiGG0YmsTof8xM/dmkVfBzIuaU1vpysWO
+         1ZVNHDyCo9kon5JldshkMK/MXkIde//+VgmAloF89gSsemuHCSCj/6w3kph1Lcg6RejG
+         OGcQvA46GTlqsQdsXO1iAPmFGmZuxU62kufHrEysMqHTZfFRr+0HUH+S/MxSdpiu5Zj2
+         VYAA==
+X-Gm-Message-State: AOAM53193jMNnobGD67Q9T/jJXUNs2HIipp3KjTaqRQZiaaYuu44vqPt
+        FU6MUPv6pTSmZzHh0/4I/qmVN2eSXoBPjg==
+X-Google-Smtp-Source: ABdhPJwxr8n19OjjBxhQM01RXeYxIjDZt23i0Lb42cMeHGuMzXHUcNwIMRbp+6GsqdSHG+nbSp3gvw==
+X-Received: by 2002:adf:9e06:: with SMTP id u6mr284224wre.208.1600875634451;
+        Wed, 23 Sep 2020 08:40:34 -0700 (PDT)
+Received: from xps13.lan (3e6b1cc1.rev.stofanet.dk. [62.107.28.193])
+        by smtp.googlemail.com with ESMTPSA id t203sm160066wmg.43.2020.09.23.08.40.33
+        (version=TLS1_3 cipher=TLS_AES_256_GCM_SHA384 bits=256/256);
+        Wed, 23 Sep 2020 08:40:33 -0700 (PDT)
+From:   Bruno Thomsen <bruno.thomsen@gmail.com>
+To:     linux-kernel@vger.kernel.org, linux-arm-kernel@lists.infradead.org,
+        devicetree@vger.kernel.org
+Cc:     Shawn Guo <shawnguo@kernel.org>,
+        Pengutronix Kernel Team <kernel@pengutronix.de>,
+        Fabio Estevam <festevam@gmail.com>,
+        NXP Linux Team <linux-imx@nxp.com>, bth@kamstrup.com,
+        Bruno Thomsen <bruno.thomsen@gmail.com>,
+        Rob Herring <robh@kernel.org>
+Subject: [PATCH v3 1/2] dt-bindings: fsl: add kamstrup flex concentrator to schema
+Date:   Wed, 23 Sep 2020 17:40:23 +0200
+Message-Id: <20200923154024.11417-1-bruno.thomsen@gmail.com>
+X-Mailer: git-send-email 2.26.2
 MIME-Version: 1.0
-In-Reply-To: <1599225643-5558-1-git-send-email-christophe.kerello@st.com>
-Content-Type: text/plain; charset="utf-8"; format=flowed
-Content-Language: en-US
-Content-Transfer-Encoding: 7bit
-X-Originating-IP: [10.75.127.50]
-X-ClientProxiedBy: SFHDAG1NODE2.st.com (10.75.127.2) To SFHDAG3NODE2.st.com
- (10.75.127.8)
-X-Proofpoint-Virus-Version: vendor=fsecure engine=2.50.10434:6.0.235,18.0.687
- definitions=2020-09-23_10:2020-09-23,2020-09-23 signatures=0
+Content-Transfer-Encoding: 8bit
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-Hi Christophe,
+Add Kamstrup OMNIA Flex Concentrator compatibles to the schema
+so we can make use of them for the validation.
 
-On 9/4/20 3:20 PM, Christophe Kerello wrote:
-> This patchset enables FMC2 EBI support on STM32MP1 SOCs.
-> 
-> Christophe Kerello (2):
->    ARM: multi_v7_defconfig: add FMC2 EBI controller support
->    ARM: dts: stm32: add FMC2 EBI support for stm32mp157c
-> 
->   arch/arm/boot/dts/stm32mp151.dtsi     | 43 +++++++++++++++++++++++------------
->   arch/arm/boot/dts/stm32mp157c-ev1.dts | 16 +++++++------
->   arch/arm/configs/multi_v7_defconfig   |  1 +
->   3 files changed, 39 insertions(+), 21 deletions(-)
-> 
+Signed-off-by: Bruno Thomsen <bruno.thomsen@gmail.com>
+Acked-by: Rob Herring <robh@kernel.org>
+---
+No changes since version 2.
 
-Series applied on stm32-next.
+Changes since version 1:
+- Patch prefix renamed to "dt-bindings: fsl:"
+- Added acked-by from Rob Herring.
+- Fixed typo in commit message.
 
-Regards
-Alex
+ Documentation/devicetree/bindings/arm/fsl.yaml | 2 ++
+ 1 file changed, 2 insertions(+)
+
+diff --git a/Documentation/devicetree/bindings/arm/fsl.yaml b/Documentation/devicetree/bindings/arm/fsl.yaml
+index 6da9d734cdb7..8e9be78f3d68 100644
+--- a/Documentation/devicetree/bindings/arm/fsl.yaml
++++ b/Documentation/devicetree/bindings/arm/fsl.yaml
+@@ -304,6 +304,8 @@ properties:
+           - enum:
+               - fsl,imx7d-sdb             # i.MX7 SabreSD Board
+               - fsl,imx7d-sdb-reva        # i.MX7 SabreSD Rev-A Board
++              - kam,imx7d-flex-concentrator       # Kamstrup OMNIA Flex Concentrator
++              - kam,imx7d-flex-concentrator-mfg   # Kamstrup OMNIA Flex Concentrator in manufacturing mode
+               - novtech,imx7d-meerkat96   # i.MX7 Meerkat96 Board
+               - technexion,imx7d-pico-dwarf   # TechNexion i.MX7D Pico-Dwarf
+               - technexion,imx7d-pico-hobbit  # TechNexion i.MX7D Pico-Hobbit
+
+base-commit: 805c6d3c19210c90c109107d189744e960eae025
+-- 
+2.26.2
+
