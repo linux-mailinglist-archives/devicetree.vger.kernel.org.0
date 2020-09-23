@@ -2,128 +2,78 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from vger.kernel.org (vger.kernel.org [23.128.96.18])
-	by mail.lfdr.de (Postfix) with ESMTP id 7FD72275B0F
-	for <lists+devicetree@lfdr.de>; Wed, 23 Sep 2020 17:02:35 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTP id 420AA275B17
+	for <lists+devicetree@lfdr.de>; Wed, 23 Sep 2020 17:03:47 +0200 (CEST)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S1726701AbgIWPCe (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Wed, 23 Sep 2020 11:02:34 -0400
-Received: from relay7-d.mail.gandi.net ([217.70.183.200]:45577 "EHLO
-        relay7-d.mail.gandi.net" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S1726693AbgIWPCe (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Wed, 23 Sep 2020 11:02:34 -0400
-X-Originating-IP: 90.65.92.90
-Received: from localhost (lfbn-lyo-1-1913-90.w90-65.abo.wanadoo.fr [90.65.92.90])
-        (Authenticated sender: gregory.clement@bootlin.com)
-        by relay7-d.mail.gandi.net (Postfix) with ESMTPSA id B8E362000E;
-        Wed, 23 Sep 2020 15:02:31 +0000 (UTC)
-From:   Gregory CLEMENT <gregory.clement@bootlin.com>
-To:     Andre Heider <a.heider@gmail.com>,
-        Jason Cooper <jason@lakedaemon.net>,
-        Andrew Lunn <andrew@lunn.ch>,
-        Sebastian Hesselbarth <sebastian.hesselbarth@gmail.com>,
+        id S1726184AbgIWPDq (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Wed, 23 Sep 2020 11:03:46 -0400
+Received: from mail.kernel.org ([198.145.29.99]:51452 "EHLO mail.kernel.org"
+        rhost-flags-OK-OK-OK-OK) by vger.kernel.org with ESMTP
+        id S1726130AbgIWPDq (ORCPT <rfc822;devicetree@vger.kernel.org>);
+        Wed, 23 Sep 2020 11:03:46 -0400
+Received: from localhost.localdomain (unknown [194.230.155.191])
+        (using TLSv1.2 with cipher ECDHE-RSA-AES128-GCM-SHA256 (128/128 bits))
+        (No client certificate requested)
+        by mail.kernel.org (Postfix) with ESMTPSA id F26CE21D43;
+        Wed, 23 Sep 2020 15:03:43 +0000 (UTC)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=kernel.org;
+        s=default; t=1600873426;
+        bh=NmjyRuAxvtdWAj04lYTLQfo1b8Qh6W6kEE1f2h0HW+k=;
+        h=From:To:Cc:Subject:Date:From;
+        b=eorfEbY1xMRYpOIrEhpf6cBRc22zXxRyBHEClwTY8XLQC+zY6aCC0+BgqNDZsDcdS
+         FLoJAuBSZDWEk/oU9rPdscqvuSeHiyI+skQVA3W4AFGza8+g9hZ8xhm+DvebqJjW6U
+         iu3e3Tp7ztDo6LMyeKqpXGtuG84gipqaLKhiEdg4=
+From:   Krzysztof Kozlowski <krzk@kernel.org>
+To:     David Airlie <airlied@linux.ie>, Daniel Vetter <daniel@ffwll.ch>,
         Rob Herring <robh+dt@kernel.org>,
-        Tomasz Maciej Nowak <tmn505@gmail.com>,
-        Pali =?utf-8?Q?Roh=C3=A1r?= <pali@kernel.org>
-Cc:     linux-arm-kernel@lists.infradead.org, devicetree@vger.kernel.org,
+        Inki Dae <inki.dae@samsung.com>,
+        dri-devel@lists.freedesktop.org, devicetree@vger.kernel.org,
         linux-kernel@vger.kernel.org
-Subject: Re: [PATCH] arm64: dts: marvell: espressobin: Simplify v7 ethernet port labeling
-In-Reply-To: <20200908073050.535919-1-a.heider@gmail.com>
-References: <20200908073050.535919-1-a.heider@gmail.com>
-Date:   Wed, 23 Sep 2020 17:02:31 +0200
-Message-ID: <873638iliw.fsf@BL-laptop>
-MIME-Version: 1.0
-Content-Type: text/plain
+Cc:     Krzysztof Kozlowski <krzk@kernel.org>
+Subject: [PATCH v3] dt-bindings: gpu: samsung-rotator: Add missing properties
+Date:   Wed, 23 Sep 2020 17:03:39 +0200
+Message-Id: <20200923150339.12497-1-krzk@kernel.org>
+X-Mailer: git-send-email 2.17.1
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-Hi Andre,
+Add common properties appearing in DTSes (iommus, power-domains) to fix
+dtbs_check warnings like:
 
-> Now that the switch ports have a label in the .dtsi, simplify the whole
-> "switch0" block for the v7 dts files.
->
-> Signed-off-by: Andre Heider <a.heider@gmail.com>
+  arch/arm/boot/dts/exynos4210-i9100.dt.yaml: rotator@12810000:
+    'iommus', 'power-domains' do not match any of the regexes: 'pinctrl-[0-9]+'
 
-Applied on mvebu/dt64
+Signed-off-by: Krzysztof Kozlowski <krzk@kernel.org>
 
-Thanks,
+---
 
-Gregory
+Changes since v2:
+1. Add maxItems to power domains and iommus
 
-> ---
->
-> This goes on top of Pali's patch:
-> "arm64: dts: marvell: espressobin: Add ethernet switch aliases"
->
-> The resulting .dtb files are the same.
->
->  .../armada-3720-espressobin-v7-emmc.dts        | 18 +++++-------------
->  .../dts/marvell/armada-3720-espressobin-v7.dts | 18 +++++-------------
->  2 files changed, 10 insertions(+), 26 deletions(-)
->
-> diff --git a/arch/arm64/boot/dts/marvell/armada-3720-espressobin-v7-emmc.dts b/arch/arm64/boot/dts/marvell/armada-3720-espressobin-v7-emmc.dts
-> index 215d2f702623..61d49d6a2a2a 100644
-> --- a/arch/arm64/boot/dts/marvell/armada-3720-espressobin-v7-emmc.dts
-> +++ b/arch/arm64/boot/dts/marvell/armada-3720-espressobin-v7-emmc.dts
-> @@ -28,20 +28,12 @@ aliases {
->  	};
->  };
->  
-> -&switch0 {
-> -	ports {
-> -		switch0port1: port@1 {
-> -			reg = <1>;
-> -			label = "lan1";
-> -			phy-handle = <&switch0phy0>;
-> -		};
-> +&switch0port1 {
-> +	label = "lan1";
-> +};
->  
-> -		switch0port3: port@3 {
-> -			reg = <3>;
-> -			label = "wan";
-> -			phy-handle = <&switch0phy2>;
-> -		};
-> -	};
-> +&switch0port3 {
-> +	label = "wan";
->  };
->  
->  /* U11 */
-> diff --git a/arch/arm64/boot/dts/marvell/armada-3720-espressobin-v7.dts b/arch/arm64/boot/dts/marvell/armada-3720-espressobin-v7.dts
-> index b6f4af8ebafb..44dbe9a21cc7 100644
-> --- a/arch/arm64/boot/dts/marvell/armada-3720-espressobin-v7.dts
-> +++ b/arch/arm64/boot/dts/marvell/armada-3720-espressobin-v7.dts
-> @@ -27,18 +27,10 @@ aliases {
->  	};
->  };
->  
-> -&switch0 {
-> -	ports {
-> -		switch0port1: port@1 {
-> -			reg = <1>;
-> -			label = "lan1";
-> -			phy-handle = <&switch0phy0>;
-> -		};
-> +&switch0port1 {
-> +	label = "lan1";
-> +};
->  
-> -		switch0port3: port@3 {
-> -			reg = <3>;
-> -			label = "wan";
-> -			phy-handle = <&switch0phy2>;
-> -		};
-> -	};
-> +&switch0port3 {
-> +	label = "wan";
->  };
-> -- 
-> 2.28.0
->
+Changes since v1:
+1. Add properties instead of using unevaluated
+---
+ Documentation/devicetree/bindings/gpu/samsung-rotator.yaml | 6 ++++++
+ 1 file changed, 6 insertions(+)
 
+diff --git a/Documentation/devicetree/bindings/gpu/samsung-rotator.yaml b/Documentation/devicetree/bindings/gpu/samsung-rotator.yaml
+index 665c6e3b31d3..62486f55177d 100644
+--- a/Documentation/devicetree/bindings/gpu/samsung-rotator.yaml
++++ b/Documentation/devicetree/bindings/gpu/samsung-rotator.yaml
+@@ -22,6 +22,12 @@ properties:
+   interrupts:
+     maxItems: 1
+ 
++  iommus:
++    maxItems: 1
++
++  power-domains:
++    maxItems: 1
++
+   clocks:
+     maxItems: 1
+ 
 -- 
-Gregory Clement, Bootlin
-Embedded Linux and Kernel engineering
-http://bootlin.com
+2.17.1
+
