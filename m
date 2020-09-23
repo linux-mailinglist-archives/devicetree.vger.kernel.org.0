@@ -2,103 +2,93 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from vger.kernel.org (vger.kernel.org [23.128.96.18])
-	by mail.lfdr.de (Postfix) with ESMTP id E4BEB275245
-	for <lists+devicetree@lfdr.de>; Wed, 23 Sep 2020 09:25:06 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTP id 111C4275259
+	for <lists+devicetree@lfdr.de>; Wed, 23 Sep 2020 09:37:26 +0200 (CEST)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S1726640AbgIWHZG (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Wed, 23 Sep 2020 03:25:06 -0400
-Received: from lindbergh.monkeyblade.net ([23.128.96.19]:52832 "EHLO
-        lindbergh.monkeyblade.net" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S1726557AbgIWHZF (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Wed, 23 Sep 2020 03:25:05 -0400
-Received: from mail-wm1-x341.google.com (mail-wm1-x341.google.com [IPv6:2a00:1450:4864:20::341])
-        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 71A40C061755;
-        Wed, 23 Sep 2020 00:25:05 -0700 (PDT)
-Received: by mail-wm1-x341.google.com with SMTP id a9so5927793wmm.2;
-        Wed, 23 Sep 2020 00:25:05 -0700 (PDT)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=gmail.com; s=20161025;
-        h=date:from:to:cc:subject:message-id:references:mime-version
-         :content-disposition:in-reply-to;
-        bh=63bE4w/V+85rYMI6Z+GuGmdQ20QRZeJUTe66Kkw6BBg=;
-        b=lT/sPrDZKA100GJ4e8naAN7q0DddHWKJK7fkVQHKzZCwhbLcP+8KQogNTik8DMJhJe
-         1hWxT6GwYUKRmFif0MhrajQzR2S7UDhyXr4VxmxQXJF8EuBN+2wmPRPX6wLwWsiAyx8z
-         fART+ppKnUOIxBHplH5F1J9i5g7wyQl8E5uAd7z4nahixb7aJJsFOMGIRRuTJIGlTg+e
-         RucIM7agw+pN6N2gVmjBst5tLkEljRdZih5yjQr1DhalbbQ1ruVvOvdS1/gyg52IzgNs
-         b/KqBvWTfCuK0jc3QfSqcT/8z29wYoh3xA3xB6h1t7IsvRzZeK1xZYVjbyj66gD6mauO
-         kTKA==
-X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=1e100.net; s=20161025;
-        h=x-gm-message-state:date:from:to:cc:subject:message-id:references
-         :mime-version:content-disposition:in-reply-to;
-        bh=63bE4w/V+85rYMI6Z+GuGmdQ20QRZeJUTe66Kkw6BBg=;
-        b=PfRO8PGGfmCGLmsLlVlRXHe57r0h9HGSB9moBL+XKdHWyh0xg/v0KYlDrE8e1iredK
-         JFWxm/lSHveAFELFWOC1n0yXg7xyVBEGt1o02nCHnWvVYCEjeJ56jBPduRlJw3pkotNP
-         Qi/SLELKCsyrloEJ7lZeBCSRju7WlfkFpcejAqsWq5wC0pv7s5KXKgj5zD7lLc9voB1Z
-         QvYgCbUI6OFi7eUblSrH9xDJFX76aqcFCGHe2ViCWfIyXzGouZYt1z1Yjz2TDKfINa+R
-         OdtFCJB0TqHk68pSJtWZsWVqU66VA9olrxh4DmLNplP/mbDax/Da3yn+m5VtEtmObRNx
-         Zj/A==
-X-Gm-Message-State: AOAM532SUSJZOS30Iq3PxEI3t/N58jiHQ3IMFHEwU5TaIFuS4JW3htf6
-        qp9xlhDMwJExD4oNqSo1cUI=
-X-Google-Smtp-Source: ABdhPJzm9uAd6IV6nXmsv18oqTyueTrQD+GQ6AEGUTF0vrwASDMXrCrEhOcXy8YC7rhSePx+2EhuXw==
-X-Received: by 2002:a05:600c:2257:: with SMTP id a23mr5147626wmm.102.1600845904146;
-        Wed, 23 Sep 2020 00:25:04 -0700 (PDT)
-Received: from BV030612LT (oi48z9.static.otenet.gr. [79.129.51.141])
-        by smtp.gmail.com with ESMTPSA id j10sm30422790wrn.2.2020.09.23.00.24.54
-        (version=TLS1_3 cipher=TLS_AES_256_GCM_SHA384 bits=256/256);
-        Wed, 23 Sep 2020 00:25:03 -0700 (PDT)
-Date:   Wed, 23 Sep 2020 10:24:49 +0300
-From:   Cristian Ciocaltea <cristian.ciocaltea@gmail.com>
-To:     Rob Herring <robh@kernel.org>
-Cc:     Thomas Gleixner <tglx@linutronix.de>, linux-kernel@vger.kernel.org,
-        Rob Herring <robh+dt@kernel.org>,
-        Manivannan Sadhasivam <manivannan.sadhasivam@linaro.org>,
-        devicetree@vger.kernel.org,
-        Andreas =?iso-8859-1?Q?F=E4rber?= <afaerber@suse.de>,
-        linux-actions@lists.infradead.org, Marc Zyngier <maz@kernel.org>,
-        Jason Cooper <jason@lakedaemon.net>,
-        linux-arm-kernel@lists.infradead.org, parthiban@linumiz.com,
-        Saravanan Sekar <sravanhome@gmail.com>
-Subject: Re: [PATCH v7 1/3] dt-bindings: interrupt-controller: Add Actions
- SIRQ controller binding
-Message-ID: <20200923072449.GA31426@BV030612LT>
-References: <cover.1600114378.git.cristian.ciocaltea@gmail.com>
- <c2046b747574ea56c1cf05c05b402c7f01d5e4fc.1600114378.git.cristian.ciocaltea@gmail.com>
- <20200922234207.GA3490335@bogus>
+        id S1726652AbgIWHhU (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Wed, 23 Sep 2020 03:37:20 -0400
+Received: from muru.com ([72.249.23.125]:45204 "EHLO muru.com"
+        rhost-flags-OK-OK-OK-OK) by vger.kernel.org with ESMTP
+        id S1726550AbgIWHhT (ORCPT <rfc822;devicetree@vger.kernel.org>);
+        Wed, 23 Sep 2020 03:37:19 -0400
+Received: from atomide.com (localhost [127.0.0.1])
+        by muru.com (Postfix) with ESMTPS id E7B0B80A0;
+        Wed, 23 Sep 2020 07:37:19 +0000 (UTC)
+Date:   Wed, 23 Sep 2020 10:38:13 +0300
+From:   Tony Lindgren <tony@atomide.com>
+To:     Drew Fustini <drew@beagleboard.org>
+Cc:     Rob Herring <robh+dt@kernel.org>,
+        Linus Walleij <linus.walleij@linaro.org>,
+        Jason Kridner <jkridner@beagleboard.org>,
+        Robert Nelson <robertcnelson@gmail.com>,
+        Trent Piepho <tpiepho@gmail.com>,
+        Christina Quast <cquast@hanoverdisplays.com>,
+        linux-omap@vger.kernel.org, linux-kernel@vger.kernel.org,
+        devicetree@vger.kernel.org, linux-gpio@vger.kernel.org
+Subject: Re: [PATCH v2] ARM: dts: document pinctrl-single,pins when
+ #pinctrl-cells = 2
+Message-ID: <20200923073813.GV7101@atomide.com>
+References: <20200919200836.3218536-1-drew@beagleboard.org>
 MIME-Version: 1.0
 Content-Type: text/plain; charset=us-ascii
 Content-Disposition: inline
-In-Reply-To: <20200922234207.GA3490335@bogus>
+In-Reply-To: <20200919200836.3218536-1-drew@beagleboard.org>
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-On Tue, Sep 22, 2020 at 05:42:07PM -0600, Rob Herring wrote:
-> On Mon, 14 Sep 2020 23:27:17 +0300, Cristian Ciocaltea wrote:
-> > Actions Semi Owl SoCs SIRQ interrupt controller is found in S500, S700
-> > and S900 SoCs and provides support for handling up to 3 external
-> > interrupt lines.
-> > 
-> > Signed-off-by: Cristian Ciocaltea <cristian.ciocaltea@gmail.com>
-> > ---
-> > Changes in v7:
-> >  - None
-> > 
-> > Changes in v6:
-> >  - Got rid of the 'actions,owl-sirq' compatible, per Robs's feedback
-> >  - Replaced 'actions,ext-interrupts' with 'interrupts', as agreed with
-> >    Rob and Marc
-> > 
-> > Changes in v5:
-> >  - Updated controller description statements both in the commit message
-> >    and the binding doc
-> > 
-> >  .../actions,owl-sirq.yaml                     | 65 +++++++++++++++++++
-> >  1 file changed, 65 insertions(+)
-> >  create mode 100644 Documentation/devicetree/bindings/interrupt-controller/actions,owl-sirq.yaml
-> > 
+* Drew Fustini <drew@beagleboard.org> [200919 23:10]:
+> Document the values in pinctrl-single,pins when #pinctrl-cells = <2>
 > 
-> Reviewed-by: Rob Herring <robh@kernel.org>
+> Fixes: 27c90e5e48d0 ("ARM: dts: am33xx-l4: change #pinctrl-cells from 1 to 2")
+> Reported-by: Trent Piepho <tpiepho@gmail.com>
+> Link: https://lore.kernel.org/linux-omap/3139716.CMS8C0sQ7x@zen.local/
+> Signed-off-by: Drew Fustini <drew@beagleboard.org>
+> ---
+> v2 change:
+> - rephrase to make it clear that the pin conf value and pin mux value
+>   are OR'd together with #pinctrl-cells = <2>
 
-Thanks,
-Cristi
+Acked-by: Tony Lindgren <tony@atomide.com>
+
+>  .../bindings/pinctrl/pinctrl-single.txt       | 21 ++++++++++++-------
+>  1 file changed, 14 insertions(+), 7 deletions(-)
+> 
+> diff --git a/Documentation/devicetree/bindings/pinctrl/pinctrl-single.txt b/Documentation/devicetree/bindings/pinctrl/pinctrl-single.txt
+> index e705acd3612c..f903eb4471f8 100644
+> --- a/Documentation/devicetree/bindings/pinctrl/pinctrl-single.txt
+> +++ b/Documentation/devicetree/bindings/pinctrl/pinctrl-single.txt
+> @@ -94,16 +94,23 @@ pinctrl-single,bit-per-mux is set), and uses the common pinctrl bindings as
+>  specified in the pinctrl-bindings.txt document in this directory.
+>  
+>  The pin configuration nodes for pinctrl-single are specified as pinctrl
+> -register offset and value pairs using pinctrl-single,pins. Only the bits
+> -specified in pinctrl-single,function-mask are updated. For example, setting
+> -a pin for a device could be done with:
+> +register offset and values using pinctrl-single,pins. Only the bits specified
+> +in pinctrl-single,function-mask are updated.
+> +
+> +When #pinctrl-cells = 1, then setting a pin for a device could be done with:
+>  
+>  	pinctrl-single,pins = <0xdc 0x118>;
+>  
+> -Where 0xdc is the offset from the pinctrl register base address for the
+> -device pinctrl register, and 0x118 contains the desired value of the
+> -pinctrl register. See the device example and static board pins example
+> -below for more information.
+> +Where 0xdc is the offset from the pinctrl register base address for the device
+> +pinctrl register, and 0x118 contains the desired value of the pinctrl register.
+> +
+> +When #pinctrl-cells = 2, then setting a pin for a device could be done with:
+> +
+> +	pinctrl-single,pins = <0xdc 0x30 0x07>;
+> +
+> +Where 0x30 is the pin configuration value and 0x07 is the pin mux mode value.
+> +These two values are OR'd together to produce the value stored at offset 0xdc.
+> +See the device example and static board pins example below for more information.
+>  
+>  In case when one register changes more than one pin's mux the
+>  pinctrl-single,bits need to be used which takes three parameters:
+> -- 
+> 2.25.1
+> 
