@@ -2,58 +2,94 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from vger.kernel.org (vger.kernel.org [23.128.96.18])
-	by mail.lfdr.de (Postfix) with ESMTP id 70B872762B4
-	for <lists+devicetree@lfdr.de>; Wed, 23 Sep 2020 23:02:24 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTP id DE1492762BF
+	for <lists+devicetree@lfdr.de>; Wed, 23 Sep 2020 23:04:09 +0200 (CEST)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S1726689AbgIWVCX (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Wed, 23 Sep 2020 17:02:23 -0400
-Received: from mail-il-dmz.mellanox.com ([193.47.165.129]:49991 "EHLO
-        mellanox.co.il" rhost-flags-OK-OK-OK-FAIL) by vger.kernel.org
-        with ESMTP id S1726600AbgIWVCX (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Wed, 23 Sep 2020 17:02:23 -0400
-Received: from Internal Mail-Server by MTLPINE1 (envelope-from vadimp@nvidia.com)
-        with SMTP; 24 Sep 2020 00:02:19 +0300
-Received: from r-build-lowlevel.mtr.labs.mlnx. (r-build-lowlevel.mtr.labs.mlnx [10.209.0.190])
-        by labmailer.mlnx (8.13.8/8.13.8) with ESMTP id 08NL2HuX021540;
-        Thu, 24 Sep 2020 00:02:19 +0300
-From:   Vadim Pasternak <vadimp@nvidia.com>
-To:     linux@roeck-us.net, robh+dt@kernel.org
-Cc:     linux-hwmon@vger.kernel.org, devicetree@vger.kernel.org,
-        Vadim Pasternak <vadimp@nvidia.com>
-Subject: [PATCH hwmon-next v3 2/2] dt-bindings: Add MP2975 voltage regulator device
-Date:   Thu, 24 Sep 2020 00:02:13 +0300
-Message-Id: <20200923210213.15462-3-vadimp@nvidia.com>
-X-Mailer: git-send-email 2.11.0
-In-Reply-To: <20200923210213.15462-1-vadimp@nvidia.com>
-References: <20200923210213.15462-1-vadimp@nvidia.com>
+        id S1726600AbgIWVEF (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Wed, 23 Sep 2020 17:04:05 -0400
+Received: from lindbergh.monkeyblade.net ([23.128.96.19]:38002 "EHLO
+        lindbergh.monkeyblade.net" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
+        with ESMTP id S1726515AbgIWVEE (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Wed, 23 Sep 2020 17:04:04 -0400
+Received: from mail-qt1-x831.google.com (mail-qt1-x831.google.com [IPv6:2607:f8b0:4864:20::831])
+        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id BE33EC0613CE;
+        Wed, 23 Sep 2020 14:04:04 -0700 (PDT)
+Received: by mail-qt1-x831.google.com with SMTP id n10so1175705qtv.3;
+        Wed, 23 Sep 2020 14:04:04 -0700 (PDT)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+        d=gmail.com; s=20161025;
+        h=from:to:cc:subject:date:message-id:mime-version
+         :content-transfer-encoding;
+        bh=0b3Ah5jR3V8S45p6WTAE0m50plZGQTU7otZXtYapwwU=;
+        b=prQOurGkY8ekNZq9Cg40Nvf6/kH2j+rC0ilMYS3++/Hb3tloc1SoHCUv3U+mY6r2OE
+         7iAlGSbINz9XLfuDx5qxHfCtCofLb/qw9fr8IA2ZgzmQTiOIeaXHZU+W/Yzwg2ZTAJlF
+         0f5YAf0gVdy8t2HdVEta5ZzZsoJvv9DZavugeCD0HioKFlt+/3+2lt3veJda08bRxvo3
+         XYT9hScbWWKmFVCFy/SmEFp3yG+b6q2FsN3PPTKCUEpBndXCQdP5e1JWoFTuex+H5Y9j
+         iEuu5yX+PMPYKM02VMmfNZXMBAFoo7EZndeLVRCYi1d98fkMmBfpFkBW8dZO80KJRhrr
+         vRqw==
+X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+        d=1e100.net; s=20161025;
+        h=x-gm-message-state:from:to:cc:subject:date:message-id:mime-version
+         :content-transfer-encoding;
+        bh=0b3Ah5jR3V8S45p6WTAE0m50plZGQTU7otZXtYapwwU=;
+        b=fTbLCoiNvcC9RjCHfYAB94K/8lD7JMNLvvYBODEdO2NJvXp5VMYeoB97S/EoRKSy5Z
+         ZkUViuFa9nNVObCOrcq9pWIHPZ+Y5hS+BL2Br2TW22PauF1z2VFrip9TbH/8au3cRT9I
+         IQ0c0FEDaxTnMRGorJWoCraQ4HjYc7/q5g0lKdu+bfzwod6xt8ImhdoEcmBOtGf+KUNg
+         Tau1d6s+gNMBF8zPMJI+Hsk1qkvGjw5Be5M8H2EEumgEuku3GXlgkVVqrrEgaUmgjTpM
+         jU+SXNNLX+z5/920zmV5ZKIgNZ1Vo3RQ+EXhODj9UQI43QPNiJZT3/0xsU80Y+oFmszZ
+         Vb2A==
+X-Gm-Message-State: AOAM532iBLIPIh//MCHHqX9KeUR47gLgYF/z8r/tD3ZmgG2YH52+9VuW
+        wwmlczIRETrT8ld5ee2PcQg=
+X-Google-Smtp-Source: ABdhPJz16efVt6evdG++qI1k3Y4iqquztSF+4kOaXZePGjDlzMIl8kQdhfBZf98UMtxJVclkQuADVQ==
+X-Received: by 2002:aed:24c9:: with SMTP id u9mr2108596qtc.292.1600895043768;
+        Wed, 23 Sep 2020 14:04:03 -0700 (PDT)
+Received: from rockpro64.hsd1.md.comcast.net ([2601:153:900:7730::20])
+        by smtp.gmail.com with ESMTPSA id h18sm753419qkl.12.2020.09.23.14.04.02
+        (version=TLS1_3 cipher=TLS_AES_256_GCM_SHA384 bits=256/256);
+        Wed, 23 Sep 2020 14:04:03 -0700 (PDT)
+From:   Peter Geis <pgwipeout@gmail.com>
+To:     Rob Herring <robh+dt@kernel.org>,
+        Thierry Reding <thierry.reding@gmail.com>,
+        Jonathan Hunter <jonathanh@nvidia.com>,
+        Matt Merhar <mattmerhar@protonmail.com>,
+        Dmitry Osipenko <digetx@gmail.com>,
+        Stephen Warren <swarren@wwwdotorg.org>,
+        Bob Ham <rah@settrans.net>,
+        Leonardo Bras <leobras.c@gmail.com>,
+        Michael Brougham <jusplainmike@gmail.com>
+Cc:     linux-tegra@vger.kernel.org, devicetree@vger.kernel.org,
+        linux-kernel@vger.kernel.org, Peter Geis <pgwipeout@gmail.com>
+Subject: [PATCH v2 0/3] Support NVIDIA Tegra-based Ouya game console
+Date:   Wed, 23 Sep 2020 21:03:49 +0000
+Message-Id: <20200923210352.1176386-1-pgwipeout@gmail.com>
+X-Mailer: git-send-email 2.25.1
+MIME-Version: 1.0
+Content-Transfer-Encoding: 8bit
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-Monolithic Power Systems, Inc. (MPS) dual-loop, digital, multi-phase
-controller.
+Good Day,
 
-Signed-off-by: Vadim Pasternak <vadimp@nvidia.com>
----
-v2->v3
- - Fix after 'make dt_binding_check'.
----
- Documentation/devicetree/bindings/trivial-devices.yaml | 2 ++
- 1 file changed, 2 insertions(+)
+This series introduces upstream kernel support for the Ouya game console device. Please review and apply. Thank you in advance.
 
-diff --git a/Documentation/devicetree/bindings/trivial-devices.yaml b/Documentation/devicetree/bindings/trivial-devices.yaml
-index 4ace8039840a..b2e994bc00af 100644
---- a/Documentation/devicetree/bindings/trivial-devices.yaml
-+++ b/Documentation/devicetree/bindings/trivial-devices.yaml
-@@ -80,6 +80,8 @@ properties:
-           - fsl,mpl3115
-             # MPR121: Proximity Capacitive Touch Sensor Controller
-           - fsl,mpr121
-+            # Monolithic Power Systems Inc. multi-phase controller mp2975
-+          - mps,mp2975
-             # G751: Digital Temperature Sensor and Thermal Watchdog with Two-Wire Interface
-           - gmt,g751
-             # Infineon IR38064 Voltage Regulator
+Changelog:
+
+v2: - Update pmic and clock handles per Rob Herring's review.
+    - Add acks from Rob Herring to patch 2 and 3.
+
+Peter Geis (3):
+  ARM: tegra: Add device-tree for Ouya
+  dt-bindings: Add vendor prefix for Ouya Inc.
+  dt-bindings: ARM: tegra: Add Ouya game console
+
+ .../devicetree/bindings/arm/tegra.yaml        |    3 +
+ .../devicetree/bindings/vendor-prefixes.yaml  |    2 +
+ arch/arm/boot/dts/Makefile                    |    3 +-
+ arch/arm/boot/dts/tegra30-ouya.dts            | 4498 +++++++++++++++++
+ 4 files changed, 4505 insertions(+), 1 deletion(-)
+ create mode 100644 arch/arm/boot/dts/tegra30-ouya.dts
+
 -- 
-2.11.0
+2.25.1
 
