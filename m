@@ -2,80 +2,76 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from vger.kernel.org (vger.kernel.org [23.128.96.18])
-	by mail.lfdr.de (Postfix) with ESMTP id B71DC275A12
-	for <lists+devicetree@lfdr.de>; Wed, 23 Sep 2020 16:32:08 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTP id CFF4D275A7A
+	for <lists+devicetree@lfdr.de>; Wed, 23 Sep 2020 16:41:05 +0200 (CEST)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S1726674AbgIWOcH (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Wed, 23 Sep 2020 10:32:07 -0400
-Received: from lindbergh.monkeyblade.net ([23.128.96.19]:33760 "EHLO
-        lindbergh.monkeyblade.net" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S1726130AbgIWOcH (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Wed, 23 Sep 2020 10:32:07 -0400
-Received: from mail-pl1-x644.google.com (mail-pl1-x644.google.com [IPv6:2607:f8b0:4864:20::644])
-        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 284C0C0613CE;
-        Wed, 23 Sep 2020 07:32:07 -0700 (PDT)
-Received: by mail-pl1-x644.google.com with SMTP id f1so6924688plo.13;
-        Wed, 23 Sep 2020 07:32:07 -0700 (PDT)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=gmail.com; s=20161025;
-        h=date:from:to:cc:subject:message-id:references:mime-version
-         :content-disposition:in-reply-to:user-agent;
-        bh=OGwdlXDnTAZD2Zb516ICMPvsFM+7oJAWzX58TFEAviI=;
-        b=hGcdUm8KJY2qyuDh/7NjLkugpqRvn9BlJ4x+za48n2cxs43uMqE6FwgqkB2PFfo/sE
-         bfnPJ99PEM014jz8w454GQt/DdOh4xj98sjsXJyds71Pdhu/pHGS4KRs60vdqPgun4+5
-         MzbYW24A9Ze6SaK+3Ng+aSdNFT2zdyhpM4JgRVXXs/L2uX3M9D9fKTcCFCzsoUJnfOBJ
-         Kqw67kaVZ3KWnWwewwVbm1QcXsRfB6047LJsr0Y1l7UlWto/I3IztHf0Vu/jFK1j0GhZ
-         qMxH0Jq433yrKue3ajx+CfyNowCkU1D2CpMSAu+uVbbZ/Rkibd8QHheJ8eem5rzI5PA6
-         ma8g==
-X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=1e100.net; s=20161025;
-        h=x-gm-message-state:date:from:to:cc:subject:message-id:references
-         :mime-version:content-disposition:in-reply-to:user-agent;
-        bh=OGwdlXDnTAZD2Zb516ICMPvsFM+7oJAWzX58TFEAviI=;
-        b=pHfhB1v/OIzVmlLe/22FfRDECRrCcYyazTFt/G2VhrYYMeooQGHyFPYc0pOZaXIqmg
-         uwdbmux6LQpFq2V0WBpfcFdY3mWwY/CaRBUpHrx2YLYk07PvrTYoKxU135Z3NNWDjqF/
-         9A552hIG099JBoJKxz0OsqehjGpYP7KsQLRWT63pTxi9isHaem1VK3dFlg2W9C1ZonQJ
-         450DQldxEecdyfKz6AlsR8AXESgUpcZnbZIJW38Yxu7N4/5P5O3hh7P9vOesMqg2lt9O
-         FhqO9a0csKcvzW+grdGf9iJTuRDXsPCmrckPHRcedz/6xAgOTQ2F3GNBibGX424C62+l
-         tMzQ==
-X-Gm-Message-State: AOAM533Ut13PJIklGlglTjrVqrs6aJAFaurIiAlcGdHnlAYZelNhnJ9p
-        8edNUPYFnf9xnnnD/OrZvZjjf5pZoUk=
-X-Google-Smtp-Source: ABdhPJzTArcqV/mAFMrTD+Ke6/qZHIHV/RfqDOBzdR/B4sKGVRghDOLeU2gDVVzrk1zqIqJpDXZDyg==
-X-Received: by 2002:a17:90a:1b62:: with SMTP id q89mr8657518pjq.74.1600871526680;
-        Wed, 23 Sep 2020 07:32:06 -0700 (PDT)
-Received: from tkernel.org ([103.209.252.252])
-        by smtp.gmail.com with ESMTPSA id b4sm5272692pjz.22.2020.09.23.07.31.59
-        (version=TLS1_2 cipher=ECDHE-RSA-AES128-GCM-SHA256 bits=128/128);
-        Wed, 23 Sep 2020 07:32:06 -0700 (PDT)
-Date:   Wed, 23 Sep 2020 22:31:52 +0800
-From:   Du Huanpeng <u74147@gmail.com>
-To:     Tiezhu Yang <yangtiezhu@loongson.cn>
-Cc:     WANG Xuerui <git@xen0n.name>, linux-rtc@vger.kernel.org,
-        linux-mips@vger.kernel.org, devicetree@vger.kernel.org,
-        Huacai Chen <chenhc@lemote.com>
-Subject: Re: [PATCH 1/4] rtc: ls2x: Add support for the Loongson-2K/LS7A RTC
-Message-ID: <20200923143149.GA11566@tkernel.org>
-References: <20200923075845.360974-1-git@xen0n.name>
- <20200923075845.360974-2-git@xen0n.name>
- <2a478254-c4de-49dd-d598-c7553f4672bf@loongson.cn>
+        id S1726762AbgIWOkp (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Wed, 23 Sep 2020 10:40:45 -0400
+Received: from mslow2.mail.gandi.net ([217.70.178.242]:39142 "EHLO
+        mslow2.mail.gandi.net" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
+        with ESMTP id S1726156AbgIWOki (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Wed, 23 Sep 2020 10:40:38 -0400
+Received: from relay7-d.mail.gandi.net (unknown [217.70.183.200])
+        by mslow2.mail.gandi.net (Postfix) with ESMTP id 3CBD23A9FC0;
+        Wed, 23 Sep 2020 14:38:27 +0000 (UTC)
+X-Originating-IP: 90.65.92.90
+Received: from localhost (lfbn-lyo-1-1913-90.w90-65.abo.wanadoo.fr [90.65.92.90])
+        (Authenticated sender: gregory.clement@bootlin.com)
+        by relay7-d.mail.gandi.net (Postfix) with ESMTPSA id CCA362000A;
+        Wed, 23 Sep 2020 14:38:03 +0000 (UTC)
+From:   Gregory CLEMENT <gregory.clement@bootlin.com>
+To:     Chris Packham <chris.packham@alliedtelesis.co.nz>,
+        jason@lakedaemon.net, andrew@lunn.ch,
+        sebastian.hesselbarth@gmail.com, robh+dt@kernel.org,
+        linus.walleij@linaro.org
+Cc:     linux-arm-kernel@lists.infradead.org, devicetree@vger.kernel.org,
+        linux-gpio@vger.kernel.org, linux-kernel@vger.kernel.org,
+        Chris Packham <chris.packham@alliedtelesis.co.nz>
+Subject: Re: [PATCH v2 0/3] 98dx3236 i2c related fixes
+In-Reply-To: <20200907211712.9697-1-chris.packham@alliedtelesis.co.nz>
+References: <20200907211712.9697-1-chris.packham@alliedtelesis.co.nz>
+Date:   Wed, 23 Sep 2020 16:38:03 +0200
+Message-ID: <87ft78imno.fsf@BL-laptop>
 MIME-Version: 1.0
-Content-Type: text/plain; charset=us-ascii
-Content-Disposition: inline
-In-Reply-To: <2a478254-c4de-49dd-d598-c7553f4672bf@loongson.cn>
-User-Agent: Mutt/1.5.24 (2015-08-30)
+Content-Type: text/plain
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
+Hi Chris,
 
-> rtc-ls2x --> rtc-ls2x-ls7a
-> RTC_DRV_LS2X --> RTC_DRV_LS2X_LS7A
-> Loongson LS2X RTC --> Loongson LS2X/LS7A RTC
-> 
-> Maybe the related names include ls7a or LS7A is better to
-> reflect the reality?
+> I noticed these while adding support for i2c recovery for a couple of our
+> boards. They date back to when I initially added support for the 98dx3236. They
+> probably haven't been causing a problem because the HW defaults are correct and
+> unless you attempt to use the specific pinctrl functions there won't be a
+> problem.
+>
+> Change in v2:
+> - Fix grammo in patch 2/3
+> - Add r-by from Andrew
+>
+> Chris Packham (3):
+>   pinctrl: mvebu: Fix i2c sda definition for 98DX3236
+>   ARM: dts: Remove non-existent i2c1 from 98dx3236
+>   ARM: dts: Add i2c0 pinctrl information for 98dx3236
 
-Is there any difference with the rtc IP in loongson 1* SoCs?
+Applied the 2 dts pacthes on mvebu/dt
 
-Regards,
-Du Huanpeng
+Thanks,
+
+Gregory
+
+
+>
+>  arch/arm/boot/dts/armada-xp-98dx3236.dtsi | 12 +++++++-----
+>  drivers/pinctrl/mvebu/pinctrl-armada-xp.c |  2 +-
+>  2 files changed, 8 insertions(+), 6 deletions(-)
+>
+> -- 
+> 2.28.0
+>
+
+-- 
+Gregory Clement, Bootlin
+Embedded Linux and Kernel engineering
+http://bootlin.com
