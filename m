@@ -2,99 +2,174 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from vger.kernel.org (vger.kernel.org [23.128.96.18])
-	by mail.lfdr.de (Postfix) with ESMTP id 573E127584A
-	for <lists+devicetree@lfdr.de>; Wed, 23 Sep 2020 14:53:27 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTP id 3490F275866
+	for <lists+devicetree@lfdr.de>; Wed, 23 Sep 2020 15:10:25 +0200 (CEST)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S1726703AbgIWMxT (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Wed, 23 Sep 2020 08:53:19 -0400
-Received: from lindbergh.monkeyblade.net ([23.128.96.19]:46820 "EHLO
-        lindbergh.monkeyblade.net" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S1726681AbgIWMxQ (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Wed, 23 Sep 2020 08:53:16 -0400
-Received: from metis.ext.pengutronix.de (metis.ext.pengutronix.de [IPv6:2001:67c:670:201:290:27ff:fe1d:cc33])
-        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 4F7BDC0613D2
-        for <devicetree@vger.kernel.org>; Wed, 23 Sep 2020 05:53:15 -0700 (PDT)
-Received: from dude.hi.pengutronix.de ([2001:67c:670:100:1d::7])
-        by metis.ext.pengutronix.de with esmtps (TLS1.3:ECDHE_RSA_AES_256_GCM_SHA384:256)
-        (Exim 4.92)
-        (envelope-from <ore@pengutronix.de>)
-        id 1kL4Gf-0003nL-8o; Wed, 23 Sep 2020 14:53:05 +0200
-Received: from ore by dude.hi.pengutronix.de with local (Exim 4.92)
-        (envelope-from <ore@pengutronix.de>)
-        id 1kL4Gd-0007RW-3w; Wed, 23 Sep 2020 14:53:03 +0200
-From:   Oleksij Rempel <o.rempel@pengutronix.de>
-To:     mkl@pengutronix.de, Wolfgang Grandegger <wg@grandegger.com>,
-        Manivannan Sadhasivam <manivannan.sadhasivam@linaro.org>,
-        "David S. Miller" <davem@davemloft.net>,
-        Jakub Kicinski <kuba@kernel.org>,
-        Rob Herring <robh+dt@kernel.org>
-Cc:     Oleksij Rempel <o.rempel@pengutronix.de>, kernel@pengutronix.de,
-        linux-can@vger.kernel.org, Thomas Kopp <thomas.kopp@microchip.com>,
-        netdev@vger.kernel.org, devicetree@vger.kernel.org,
-        linux-kernel@vger.kernel.org
-Subject: [PATCH v1] dt-binding: can: mcp25xxfd: documentation fixes
-Date:   Wed, 23 Sep 2020 14:53:01 +0200
-Message-Id: <20200923125301.27200-1-o.rempel@pengutronix.de>
-X-Mailer: git-send-email 2.28.0
+        id S1726500AbgIWNKY (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Wed, 23 Sep 2020 09:10:24 -0400
+Received: from mailgw01.mediatek.com ([210.61.82.183]:36015 "EHLO
+        mailgw01.mediatek.com" rhost-flags-OK-FAIL-OK-FAIL) by vger.kernel.org
+        with ESMTP id S1726476AbgIWNKX (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Wed, 23 Sep 2020 09:10:23 -0400
+X-UUID: f067fa033ab9499fa6dc7b81d596463d-20200923
+DKIM-Signature: v=1; a=rsa-sha256; q=dns/txt; c=relaxed/relaxed; d=mediatek.com; s=dk;
+        h=Content-Transfer-Encoding:MIME-Version:Content-Type:References:In-Reply-To:Date:CC:To:From:Subject:Message-ID; bh=mpPxPVgxCZpCrk8Jwn9XJZZGEhRTSxcze8SQEO384I0=;
+        b=RFJVcbwVYK5fhTmZhCRAndY0rmAlBAhQsmPdjoKChuWbrmRNB6qOrAHfL7WQCoFnrreuNg4PFvqWW2d9gNRrnnzwHYGNIFrbWxiE6fJ3A9ndN++gqN8FsRwzb/oXnNeEjAXiqoz8OeDVvuiAqlDpeFnDxpwQqsCSF66pcg6ybqo=;
+X-UUID: f067fa033ab9499fa6dc7b81d596463d-20200923
+Received: from mtkcas06.mediatek.inc [(172.21.101.30)] by mailgw01.mediatek.com
+        (envelope-from <hector.yuan@mediatek.com>)
+        (Cellopoint E-mail Firewall v4.1.14 Build 0819 with TLSv1.2 ECDHE-RSA-AES256-SHA384 256/256)
+        with ESMTP id 346868931; Wed, 23 Sep 2020 21:10:16 +0800
+Received: from mtkcas08.mediatek.inc (172.21.101.126) by
+ mtkmbs01n1.mediatek.inc (172.21.101.68) with Microsoft SMTP Server (TLS) id
+ 15.0.1497.2; Wed, 23 Sep 2020 21:10:13 +0800
+Received: from [172.21.77.33] (172.21.77.33) by mtkcas08.mediatek.inc
+ (172.21.101.73) with Microsoft SMTP Server id 15.0.1497.2 via Frontend
+ Transport; Wed, 23 Sep 2020 21:10:12 +0800
+Message-ID: <1600866614.21446.18.camel@mtkswgap22>
+Subject: Re: [PATCH v7 2/2] dt-bindings: cpufreq: add bindings for MediaTek
+ cpufreq HW
+From:   Hector Yuan <hector.yuan@mediatek.com>
+To:     Rob Herring <robh@kernel.org>
+CC:     <linux-mediatek@lists.infradead.org>,
+        <linux-arm-kernel@lists.infradead.org>, <linux-pm@vger.kernel.org>,
+        <devicetree@vger.kernel.org>,
+        "Rafael J. Wysocki" <rjw@rjwysocki.net>,
+        "Viresh Kumar" <viresh.kumar@linaro.org>,
+        <linux-kernel@vger.kernel.org>, <wsd_upstream@mediatek.com>
+Date:   Wed, 23 Sep 2020 21:10:14 +0800
+In-Reply-To: <20200922202852.GA3134161@bogus>
+References: <1599712262-8819-1-git-send-email-hector.yuan@mediatek.com>
+         <1599712262-8819-3-git-send-email-hector.yuan@mediatek.com>
+         <20200922202852.GA3134161@bogus>
+Content-Type: text/plain; charset="UTF-8"
+X-Mailer: Evolution 3.2.3-0ubuntu6 
 MIME-Version: 1.0
-Content-Transfer-Encoding: 8bit
-X-SA-Exim-Connect-IP: 2001:67c:670:100:1d::7
-X-SA-Exim-Mail-From: ore@pengutronix.de
-X-SA-Exim-Scanned: No (on metis.ext.pengutronix.de); SAEximRunCond expanded to false
-X-PTX-Original-Recipient: devicetree@vger.kernel.org
+X-MTK:  N
+Content-Transfer-Encoding: base64
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-Apply following fixes:
-- Use 'interrupts'. (interrupts-extended will automagically be supported
-  by the tools)
-- *-supply is always a single item. So, drop maxItems=1
-- add "additionalProperties: false" flag to detect unneeded properties.
-
-Signed-off-by: Oleksij Rempel <o.rempel@pengutronix.de>
----
- .../devicetree/bindings/net/can/microchip,mcp25xxfd.yaml  | 8 ++++----
- 1 file changed, 4 insertions(+), 4 deletions(-)
-
-diff --git a/Documentation/devicetree/bindings/net/can/microchip,mcp25xxfd.yaml b/Documentation/devicetree/bindings/net/can/microchip,mcp25xxfd.yaml
-index aa2cad14d6d7..5beb00a614bf 100644
---- a/Documentation/devicetree/bindings/net/can/microchip,mcp25xxfd.yaml
-+++ b/Documentation/devicetree/bindings/net/can/microchip,mcp25xxfd.yaml
-@@ -24,7 +24,7 @@ properties:
-   reg:
-     maxItems: 1
- 
--  interrupts-extended:
-+  interrupts:
-     maxItems: 1
- 
-   clocks:
-@@ -32,11 +32,9 @@ properties:
- 
-   vdd-supply:
-     description: Regulator that powers the CAN controller.
--    maxItems: 1
- 
-   xceiver-supply:
-     description: Regulator that powers the CAN transceiver.
--    maxItems: 1
- 
-   microchip,rx-int-gpios:
-     description:
-@@ -52,9 +50,11 @@ properties:
- required:
-   - compatible
-   - reg
--  - interrupts-extended
-+  - interrupts
-   - clocks
- 
-+additionalProperties: false
-+
- examples:
-   - |
-     #include <dt-bindings/gpio/gpio.h>
--- 
-2.28.0
+T24gVHVlLCAyMDIwLTA5LTIyIGF0IDE0OjI4IC0wNjAwLCBSb2IgSGVycmluZyB3cm90ZToNCj4g
+T24gVGh1LCBTZXAgMTAsIDIwMjAgYXQgMTI6MzE6MDJQTSArMDgwMCwgSGVjdG9yIFl1YW4gd3Jv
+dGU6DQo+ID4gRnJvbTogIkhlY3Rvci5ZdWFuIiA8aGVjdG9yLnl1YW5AbWVkaWF0ZWsuY29tPg0K
+PiA+IA0KPiA+IEFkZCBkZXZpY2V0cmVlIGJpbmRpbmdzIGZvciBNZWRpYVRlayBIVyBkcml2ZXIu
+DQo+ID4gDQo+ID4gU2lnbmVkLW9mZi1ieTogSGVjdG9yLll1YW4gPGhlY3Rvci55dWFuQG1lZGlh
+dGVrLmNvbT4NCj4gPiAtLS0NCj4gPiAgLi4uL2JpbmRpbmdzL2NwdWZyZXEvY3B1ZnJlcS1tZWRp
+YXRlay1ody55YW1sICAgICAgfCAgMTQxICsrKysrKysrKysrKysrKysrKysrDQo+ID4gIDEgZmls
+ZSBjaGFuZ2VkLCAxNDEgaW5zZXJ0aW9ucygrKQ0KPiA+ICBjcmVhdGUgbW9kZSAxMDA2NDQgRG9j
+dW1lbnRhdGlvbi9kZXZpY2V0cmVlL2JpbmRpbmdzL2NwdWZyZXEvY3B1ZnJlcS1tZWRpYXRlay1o
+dy55YW1sDQo+ID4gDQo+ID4gZGlmZiAtLWdpdCBhL0RvY3VtZW50YXRpb24vZGV2aWNldHJlZS9i
+aW5kaW5ncy9jcHVmcmVxL2NwdWZyZXEtbWVkaWF0ZWstaHcueWFtbCBiL0RvY3VtZW50YXRpb24v
+ZGV2aWNldHJlZS9iaW5kaW5ncy9jcHVmcmVxL2NwdWZyZXEtbWVkaWF0ZWstaHcueWFtbA0KPiA+
+IG5ldyBmaWxlIG1vZGUgMTAwNjQ0DQo+ID4gaW5kZXggMDAwMDAwMC4uMTE4YTE2Mw0KPiA+IC0t
+LSAvZGV2L251bGwNCj4gPiArKysgYi9Eb2N1bWVudGF0aW9uL2RldmljZXRyZWUvYmluZGluZ3Mv
+Y3B1ZnJlcS9jcHVmcmVxLW1lZGlhdGVrLWh3LnlhbWwNCj4gPiBAQCAtMCwwICsxLDE0MSBAQA0K
+PiA+ICsjIFNQRFgtTGljZW5zZS1JZGVudGlmaWVyOiAoR1BMLTIuMC1vbmx5IE9SIEJTRC0yLUNs
+YXVzZSkNCj4gPiArJVlBTUwgMS4yDQo+ID4gKy0tLQ0KPiA+ICskaWQ6IGh0dHA6Ly9kZXZpY2V0
+cmVlLm9yZy9zY2hlbWFzL2NwdWZyZXEvY3B1ZnJlcS1tZWRpYXRlay1ody55YW1sIw0KPiA+ICsk
+c2NoZW1hOiBodHRwOi8vZGV2aWNldHJlZS5vcmcvbWV0YS1zY2hlbWFzL2NvcmUueWFtbCMNCj4g
+PiArDQo+ID4gK3RpdGxlOiBNZWRpYVRlaydzIENQVUZSRVEgQmluZGluZ3MNCj4gPiArDQo+ID4g
+K21haW50YWluZXJzOg0KPiA+ICsgIC0gSGVjdG9yIFl1YW4gPGhlY3Rvci55dWFuQG1lZGlhdGVr
+LmNvbT4NCj4gPiArDQo+ID4gK2Rlc2NyaXB0aW9uOg0KPiA+ICsgIENQVUZSRVEgSFcgaXMgYSBo
+YXJkd2FyZSBlbmdpbmUgdXNlZCBieSBNZWRpYVRlaw0KPiA+ICsgIFNvQ3MgdG8gbWFuYWdlIGZy
+ZXF1ZW5jeSBpbiBoYXJkd2FyZS4gSXQgaXMgY2FwYWJsZSBvZiBjb250cm9sbGluZyBmcmVxdWVu
+Y3kNCj4gPiArICBmb3IgbXVsdGlwbGUgY2x1c3RlcnMuDQo+ID4gKw0KPiA+ICtwcm9wZXJ0aWVz
+Og0KPiA+ICsgIGNvbXBhdGlibGU6DQo+ID4gKyAgICBjb25zdDogIm1lZGlhdGVrLGNwdWZyZXEt
+aHciDQo+IA0KPiBOZWVkcyB0byBiZSBTb0Mgc3BlY2lmaWMuIFRoaXMgc3R1ZmYgaXMgbmV2ZXIg
+Y29uc3RhbnQgZnJvbSBvbmUgU29DIHRvIA0KPiB0aGUgbmV4dC4gJ2NwdWZyZXEnIGlzIGEgTGlu
+dXhpc20uIFdoYXQncyB0aGUgYmxvY2sgY2FsbGVkIGluIHRoZSANCj4gZGF0YXNoZWV0PyBVc2Ug
+dGhhdC4NCj4gDQpPSywgd2lsbCB1c2UgbWVkaWF0ZWssc3NwbS1kdmZzLW10Njc3OSBpbnN0ZWFk
+Lg0KPiBEb24ndCBuZWVkIHF1b3RlcyBlaXRoZXIuDQo+IA0KT0ssIHdpbGwgcmVtb3ZlIGl0Lg0K
+PiA+ICsNCj4gPiArICByZWc6DQo+ID4gKyAgICBtaW5JdGVtczogMQ0KPiA+ICsgICAgbWF4SXRl
+bXM6IDINCj4gPiArICAgIGRlc2NyaXB0aW9uOiB8DQo+ID4gKyAgICAgIEFkZHJlc3NlcyBhbmQg
+c2l6ZXMgZm9yIHRoZSBtZW1vcnkgb2YgdGhlIEhXIGJhc2VzIGluIGVhY2ggZnJlcXVlbmN5IGRv
+bWFpbi4NCj4gPiArDQo+ID4gKyAgcmVnLW5hbWVzOg0KPiA+ICsgICAgaXRlbXM6DQo+ID4gKyAg
+ICAgIC0gY29uc3Q6ICJmcmVxLWRvbWFpbjAiDQo+ID4gKyAgICAgIC0gY29uc3Q6ICJmcmVxLWRv
+bWFpbjEiDQo+IA0KPiBLaW5kIG9mIHBvaW50bGVzcyB0byBoYXZlIG5hbWVzIGJhc2VkIG9uIHRo
+ZSBpbmRleC4gRHJvcCAncmVnLW5hbWVzJy4NCj4gDQpPSywgd2lsbCBkcm9wIGl0Lg0KPiA+ICsg
+ICAgZGVzY3JpcHRpb246IHwNCj4gPiArICAgICAgRnJlcXVlbmN5IGRvbWFpbiBuYW1lLiBpLmUu
+DQo+ID4gKyAgICAgICJmcmVxLWRvbWFpbjAiLCAiZnJlcS1kb21haW4xIi4NCj4gPiArDQo+ID4g
+KyAgIiNmcmVxLWRvbWFpbi1jZWxscyI6DQo+ID4gKyAgICBjb25zdDogMQ0KPiA+ICsgICAgZGVz
+Y3JpcHRpb246IHwNCj4gPiArICAgICAgTnVtYmVyIG9mIGNlbGxzIGluIGEgZnJlcWVuY3kgZG9t
+YWluIHNwZWNpZmllci4NCj4gDQo+IFlvdSBkb24ndCBuZWVkIHRoaXMuIEl0J3Mgbm90IGEgY29t
+bW9uIGJpbmRpbmcgdGhhdCdzIGdvaW5nIHRvIHZhcnkuDQo+IA0KT0ssIHdpbGwgcmVtb3ZlIGl0
+Lg0KPiA+ICsNCj4gPiArICBtdGstZnJlcS1kb21haW46DQo+ID4gKyAgICBtYXhJdGVtczogMQ0K
+PiA+ICsgICAgZGVzY3JpcHRpb246IHwNCj4gPiArICAgICAgRGVmaW5lIHRoaXMgY3B1IGJlbG9u
+Z3MgdG8gd2hpY2ggZnJlcXVlbmN5IGRvbWFpbi4gaS5lLg0KPiA+ICsgICAgICBjcHUwLTMgYmVs
+b25nIHRvIGZyZXF1ZW5jeSBkb21haW4wLA0KPiA+ICsgICAgICBjcHU0LTYgYmVsb25nIHRvIGZy
+ZXF1ZW5jeSBkb21haW4xLg0KPiANCj4gVGhpcyBwcm9wZXJ0eSBkb2Vzbid0IGdvIGluIHRoZSAn
+bWVkaWF0ZWssY3B1ZnJlcS1odycgbm9kZS4gWW91IHdvdWxkIA0KPiBuZWVkIGEgc2VwYXJhdGUg
+c2NoZW1hLiBIb3dldmVyLCBJIHRoaW5rIHRoZSBlYXNpZXN0IHRoaW5nIHRvIGRvIGhlcmUgaXMg
+DQo+IHNvbWV0aGluZyBsaWtlIHRoaXM6DQo+IA0KPiBtZWRpYXRlayxmcmVxLWRvbWFpbi0wID0g
+PCZjcHUwPiwgPCZjcHUxPjsNCj4gDQpTb3JyeSwgbWF5IEkga25vdyB0aGUgcmVhc29uIGFuZCB0
+aGUgZGV0YWlscyBhYm91dCBob3cgdG8gc2VwYXJhdGUNCnNjaGVtYT8gVGhhbmsgeW91IHZlcnkg
+bXVjaC4NCg0KVGhlIG51bWJlcnMgb2YgZnJlcXVlbmN5IGRvbWFpbiBtYXkgYmUgdmFyeSBmcm9t
+IGRpZmZlcmVudCBwcm9qZWN0cy4gSWYNCkkgZG8gdGhlIGVhc2llciB3YXksIEkgbWF5IG5lZWQg
+dG8gaW1wbGVtZW50IGV4dHJhIGxvb3AgdG8gY2hlY2sgaG93DQptYW55IGZyZXF1ZW5jeSBkb21h
+aW4uDQo+IE9yIHlvdSBjb3VsZCBqdXN0IHJlLXVzZSB0aGUgT1BQIGJpbmRpbmcgd2l0aCBqdXN0
+IDAgZW50cmllczoNCj4gDQo+IG9wcC10YWJsZS0wIHsNCj4gICBjb21wYXRpYmxlID0gIm1lZGlh
+dGVrLGh3LW9wZXJhdGluZy1wb2ludHMiLCAib3BlcmF0aW5nLXBvaW50cy12MiI7DQo+IH07DQo+
+IG9wcC10YWJsZS0xIHsNCj4gICBjb21wYXRpYmxlID0gIm1lZGlhdGVrLGh3LW9wZXJhdGluZy1w
+b2ludHMiLCAib3BlcmF0aW5nLXBvaW50cy12MiI7DQo+IH07DQo+IA0KSW4gcHJldmlvdXMgcmV2
+aWV3IHN0YWdlLCBhbHJlYWR5IGFiYW5kb24gT1BQIGZyYW1ld29yayBpbiBkcml2ZXIgY29kZS4N
+CldpbGwgY2hlY2sgd2l0aCBWaXJlc2ggdG8gc2VlIGlmIGl0cyBPSyB0byBhZGQgT1BQIGJhY2su
+DQo+ID4gKw0KPiA+ICtyZXF1aXJlZDoNCj4gPiArICAtIGNvbXBhdGlibGUNCj4gPiArICAtIHJl
+Zw0KPiA+ICsgIC0gcmVnLW5hbWVzDQo+ID4gKyAgLSAiI2ZyZXEtZG9tYWluLWNlbGxzIg0KPiA+
+ICsNCj4gPiArZXhhbXBsZXM6DQo+ID4gKyAgLSB8DQo+ID4gKyAgICBjcHVzIHsNCj4gPiArICAg
+ICAgICAgICAgI2FkZHJlc3MtY2VsbHMgPSA8MT47DQo+ID4gKyAgICAgICAgICAgICNzaXplLWNl
+bGxzID0gPDA+Ow0KPiA+ICsNCj4gPiArICAgICAgICAgICAgY3B1MDogY3B1QDAgew0KPiA+ICsg
+ICAgICAgICAgICAgICAgZGV2aWNlX3R5cGUgPSAiY3B1IjsNCj4gPiArICAgICAgICAgICAgICAg
+IGNvbXBhdGlibGUgPSAiYXJtLGNvcnRleC1hNTUiOw0KPiA+ICsgICAgICAgICAgICAgICAgZW5h
+YmxlLW1ldGhvZCA9ICJwc2NpIjsNCj4gPiArICAgICAgICAgICAgICAgIG10ay1mcmVxLWRvbWFp
+biA9IDwmY3B1ZnJlcV9odyAwPjsNCj4gPiArICAgICAgICAgICAgICAgIHJlZyA9IDwweDAwMD47
+DQo+ID4gKyAgICAgICAgICAgIH07DQo+ID4gKw0KPiA+ICsgICAgICAgICAgICBjcHUxOiBjcHVA
+MSB7DQo+IA0KPiBVbml0IGFkZHJlc3MgaXMgd3JvbmcuDQo+IA0KT0ssIHdpbGwgbW9kaWZ5IHRv
+ICJjcHUxIDogY3B1QDEwMCIgaWYgd2Ugc3RpbGwgZGVjaWRlIHRvIHB1dA0KZnJlcV9kb21haW4g
+aW4gQ1BVIG5vZGUuDQo+ID4gKyAgICAgICAgICAgICAgICBkZXZpY2VfdHlwZSA9ICJjcHUiOw0K
+PiA+ICsgICAgICAgICAgICAgICAgY29tcGF0aWJsZSA9ICJhcm0sY29ydGV4LWE1NSI7DQo+ID4g
+KyAgICAgICAgICAgICAgICBlbmFibGUtbWV0aG9kID0gInBzY2kiOw0KPiA+ICsgICAgICAgICAg
+ICAgICAgbXRrLWZyZXEtZG9tYWluID0gPCZjcHVmcmVxX2h3IDA+Ow0KPiA+ICsgICAgICAgICAg
+ICAgICAgcmVnID0gPDB4MTAwPjsNCj4gPiArICAgICAgICAgICAgfTsNCj4gPiArDQo+ID4gKyAg
+ICAgICAgICAgIGNwdTI6IGNwdUAyIHsNCj4gPiArICAgICAgICAgICAgICAgIGRldmljZV90eXBl
+ID0gImNwdSI7DQo+ID4gKyAgICAgICAgICAgICAgICBjb21wYXRpYmxlID0gImFybSxjb3J0ZXgt
+YTU1IjsNCj4gPiArICAgICAgICAgICAgICAgIGVuYWJsZS1tZXRob2QgPSAicHNjaSI7DQo+ID4g
+KyAgICAgICAgICAgICAgICBtdGstZnJlcS1kb21haW4gPSA8JmNwdWZyZXFfaHcgMD47DQo+ID4g
+KyAgICAgICAgICAgICAgICByZWcgPSA8MHgyMDA+Ow0KPiA+ICsgICAgICAgICAgICB9Ow0KPiA+
+ICsNCj4gPiArICAgICAgICAgICAgY3B1MzogY3B1QDMgew0KPiA+ICsgICAgICAgICAgICAgICAg
+ZGV2aWNlX3R5cGUgPSAiY3B1IjsNCj4gPiArICAgICAgICAgICAgICAgIGNvbXBhdGlibGUgPSAi
+YXJtLGNvcnRleC1hNTUiOw0KPiA+ICsgICAgICAgICAgICAgICAgZW5hYmxlLW1ldGhvZCA9ICJw
+c2NpIjsNCj4gPiArICAgICAgICAgICAgICAgIG10ay1mcmVxLWRvbWFpbiA9IDwmY3B1ZnJlcV9o
+dyAwPjsNCj4gPiArICAgICAgICAgICAgICAgIHJlZyA9IDwweDMwMD47DQo+ID4gKyAgICAgICAg
+ICAgIH07DQo+ID4gKw0KPiA+ICsgICAgICAgICAgICBjcHU0OiBjcHVANCB7DQo+ID4gKyAgICAg
+ICAgICAgICAgICBkZXZpY2VfdHlwZSA9ICJjcHUiOw0KPiA+ICsgICAgICAgICAgICAgICAgY29t
+cGF0aWJsZSA9ICJhcm0sY29ydGV4LWE1NSI7DQo+ID4gKyAgICAgICAgICAgICAgICBlbmFibGUt
+bWV0aG9kID0gInBzY2kiOw0KPiA+ICsgICAgICAgICAgICAgICAgbXRrLWZyZXEtZG9tYWluID0g
+PCZjcHVmcmVxX2h3IDE+Ow0KPiA+ICsgICAgICAgICAgICAgICAgcmVnID0gPDB4NDAwPjsNCj4g
+PiArICAgICAgICAgICAgfTsNCj4gPiArDQo+ID4gKyAgICAgICAgICAgIGNwdTU6IGNwdUA1IHsN
+Cj4gPiArICAgICAgICAgICAgICAgIGRldmljZV90eXBlID0gImNwdSI7DQo+ID4gKyAgICAgICAg
+ICAgICAgICBjb21wYXRpYmxlID0gImFybSxjb3J0ZXgtYTU1IjsNCj4gPiArICAgICAgICAgICAg
+ICAgIGVuYWJsZS1tZXRob2QgPSAicHNjaSI7DQo+ID4gKyAgICAgICAgICAgICAgICBtdGstZnJl
+cS1kb21haW4gPSA8JmNwdWZyZXFfaHcgMT47DQo+ID4gKyAgICAgICAgICAgICAgICByZWcgPSA8
+MHg1MDA+Ow0KPiA+ICsgICAgICAgICAgICB9Ow0KPiA+ICsNCj4gPiArICAgICAgICAgICAgY3B1
+NjogY3B1QDYgew0KPiA+ICsgICAgICAgICAgICAgICAgZGV2aWNlX3R5cGUgPSAiY3B1IjsNCj4g
+PiArICAgICAgICAgICAgICAgIGNvbXBhdGlibGUgPSAiYXJtLGNvcnRleC1hNzUiOw0KPiA+ICsg
+ICAgICAgICAgICAgICAgZW5hYmxlLW1ldGhvZCA9ICJwc2NpIjsNCj4gPiArICAgICAgICAgICAg
+ICAgIG10ay1mcmVxLWRvbWFpbiA9IDwmY3B1ZnJlcV9odyAxPjsNCj4gPiArICAgICAgICAgICAg
+ICAgIHJlZyA9IDwweDYwMD47DQo+ID4gKyAgICAgICAgICAgIH07DQo+ID4gKw0KPiA+ICsgICAg
+ICAgICAgICBjcHU3OiBjcHVANyB7DQo+ID4gKyAgICAgICAgICAgICAgICBkZXZpY2VfdHlwZSA9
+ICJjcHUiOw0KPiA+ICsgICAgICAgICAgICAgICAgY29tcGF0aWJsZSA9ICJhcm0sY29ydGV4LWE3
+NSI7DQo+ID4gKyAgICAgICAgICAgICAgICBlbmFibGUtbWV0aG9kID0gInBzY2kiOw0KPiA+ICsg
+ICAgICAgICAgICAgICAgbXRrLWZyZXEtZG9tYWluID0gPCZjcHVmcmVxX2h3IDE+Ow0KPiA+ICsg
+ICAgICAgICAgICAgICAgcmVnID0gPDB4NzAwPjsNCj4gPiArICAgICAgICAgICAgfTsNCj4gPiAr
+ICAgIH07DQo+ID4gKw0KPiA+ICsgICAgLyogLi4uICovDQo+ID4gKw0KPiA+ICsgICAgc29jIHsN
+Cj4gPiArICAgICAgICAjYWRkcmVzcy1jZWxscyA9IDwyPjsNCj4gPiArICAgICAgICAjc2l6ZS1j
+ZWxscyA9IDwyPjsNCj4gPiArDQo+ID4gKyAgICAgICAgY3B1ZnJlcV9odzogY3B1ZnJlcUAxMWJj
+MDAgew0KPiA+ICsgICAgICAgICAgICBjb21wYXRpYmxlID0gIm1lZGlhdGVrLGNwdWZyZXEtaHci
+Ow0KPiA+ICsgICAgICAgICAgICByZWcgPSA8MCAweDExYmMxMCAwIDB4OGM+LA0KPiA+ICsgICAg
+ICAgICAgICAgICA8MCAweDExYmNhMCAwIDB4OGM+Ow0KPiA+ICsgICAgICAgICAgICByZWctbmFt
+ZXMgPSAiZnJlcS1kb21haW4wIiwgImZyZXEtZG9tYWluMSI7DQo+ID4gKyAgICAgICAgICAgICNm
+cmVxLWRvbWFpbi1jZWxscyA9IDwxPjsNCj4gPiArICAgICAgICB9Ow0KPiA+ICsgICAgfTsNCj4g
+PiArDQo+ID4gKw0KPiA+ICsNCj4gPiArDQo+ID4gLS0gDQo+ID4gMS43LjkuNQ0KDQo=
 
