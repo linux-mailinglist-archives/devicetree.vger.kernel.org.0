@@ -2,118 +2,70 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from vger.kernel.org (vger.kernel.org [23.128.96.18])
-	by mail.lfdr.de (Postfix) with ESMTP id 9635C2754AD
-	for <lists+devicetree@lfdr.de>; Wed, 23 Sep 2020 11:44:54 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTP id E5E962754B4
+	for <lists+devicetree@lfdr.de>; Wed, 23 Sep 2020 11:45:49 +0200 (CEST)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S1726242AbgIWJox (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Wed, 23 Sep 2020 05:44:53 -0400
-Received: from relay7-d.mail.gandi.net ([217.70.183.200]:42259 "EHLO
-        relay7-d.mail.gandi.net" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S1726102AbgIWJox (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Wed, 23 Sep 2020 05:44:53 -0400
-X-Greylist: delayed 145630 seconds by postgrey-1.27 at vger.kernel.org; Wed, 23 Sep 2020 05:44:52 EDT
-X-Originating-IP: 90.65.88.165
-Received: from localhost (lfbn-lyo-1-1908-165.w90-65.abo.wanadoo.fr [90.65.88.165])
-        (Authenticated sender: alexandre.belloni@bootlin.com)
-        by relay7-d.mail.gandi.net (Postfix) with ESMTPSA id 35EDA20011;
-        Wed, 23 Sep 2020 09:44:50 +0000 (UTC)
-Date:   Wed, 23 Sep 2020 11:44:49 +0200
-From:   Alexandre Belloni <alexandre.belloni@bootlin.com>
-To:     Qiang Zhao <qiang.zhao@nxp.com>
-Cc:     Wim Van Sebroeck <wim@linux-watchdog.org>,
-        Guenter Roeck <linux@roeck-us.net>,
-        linux-watchdog@vger.kernel.org, a.zummo@towertech.it,
-        robh+dt@kernel.org, linux-rtc@vger.kernel.org,
-        devicetree@vger.kernel.org, linux-kernel@vger.kernel.org,
-        Uwe =?iso-8859-1?Q?Kleine-K=F6nig?= 
-        <u.kleine-koenig@pengutronix.de>
-Subject: Re: [Patch v2 1/3] dt-bindings: rtc: pcf2127: Add bindings for
- nxp,pcf2127
-Message-ID: <20200923094449.GP9675@piout.net>
-References: <20200921054821.26071-1-qiang.zhao@nxp.com>
+        id S1726516AbgIWJpt (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Wed, 23 Sep 2020 05:45:49 -0400
+Received: from lindbergh.monkeyblade.net ([23.128.96.19]:46264 "EHLO
+        lindbergh.monkeyblade.net" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
+        with ESMTP id S1726102AbgIWJps (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Wed, 23 Sep 2020 05:45:48 -0400
+Received: from metis.ext.pengutronix.de (metis.ext.pengutronix.de [IPv6:2001:67c:670:201:290:27ff:fe1d:cc33])
+        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id A2BC9C0613CE
+        for <devicetree@vger.kernel.org>; Wed, 23 Sep 2020 02:45:48 -0700 (PDT)
+Received: from dude.hi.pengutronix.de ([2001:67c:670:100:1d::7])
+        by metis.ext.pengutronix.de with esmtps (TLS1.3:ECDHE_RSA_AES_256_GCM_SHA384:256)
+        (Exim 4.92)
+        (envelope-from <ore@pengutronix.de>)
+        id 1kL1LE-0007j8-Cm; Wed, 23 Sep 2020 11:45:36 +0200
+Received: from ore by dude.hi.pengutronix.de with local (Exim 4.92)
+        (envelope-from <ore@pengutronix.de>)
+        id 1kL1LC-0004ZT-N1; Wed, 23 Sep 2020 11:45:34 +0200
+From:   Oleksij Rempel <o.rempel@pengutronix.de>
+To:     Mark Rutland <mark.rutland@arm.com>,
+        Rob Herring <robh+dt@kernel.org>,
+        Sascha Hauer <s.hauer@pengutronix.de>,
+        Shawn Guo <shawnguo@kernel.org>
+Cc:     Oleksij Rempel <o.rempel@pengutronix.de>,
+        devicetree@vger.kernel.org, Fabio Estevam <festevam@gmail.com>,
+        linux-arm-kernel@lists.infradead.org, linux-kernel@vger.kernel.org,
+        NXP Linux Team <linux-imx@nxp.com>,
+        Pengutronix Kernel Team <kernel@pengutronix.de>,
+        David Jander <david@protonic.nl>
+Subject: [PATCH v1 1/2] dt-bindings: arm: fsl: add Protonic WD3 board
+Date:   Wed, 23 Sep 2020 11:45:32 +0200
+Message-Id: <20200923094533.17100-1-o.rempel@pengutronix.de>
+X-Mailer: git-send-email 2.28.0
 MIME-Version: 1.0
-Content-Type: text/plain; charset=us-ascii
-Content-Disposition: inline
-In-Reply-To: <20200921054821.26071-1-qiang.zhao@nxp.com>
+Content-Transfer-Encoding: 8bit
+X-SA-Exim-Connect-IP: 2001:67c:670:100:1d::7
+X-SA-Exim-Mail-From: ore@pengutronix.de
+X-SA-Exim-Scanned: No (on metis.ext.pengutronix.de); SAEximRunCond expanded to false
+X-PTX-Original-Recipient: devicetree@vger.kernel.org
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-Hi,
+Add Protonic Holland WD3 iMX6qp based board
 
-You forgot to copy the watchdog maintainers, I think such a property
-should be discussed with them.
+Signed-off-by: Oleksij Rempel <o.rempel@pengutronix.de>
+---
+ Documentation/devicetree/bindings/arm/fsl.yaml | 1 +
+ 1 file changed, 1 insertion(+)
 
-Note that I'm still convinced this is not a complete solution, see:
-https://lore.kernel.org/linux-rtc/20200716181816.GF3428@piout.net/
-
-On 21/09/2020 13:48:19+0800, Qiang Zhao wrote:
-> From: Zhao Qiang <qiang.zhao@nxp.com>
-> 
-> Add bindings for nxp,pcf2127
-> 
-> Signed-off-by: Zhao Qiang <qiang.zhao@nxp.com>
-> ---
-> Changes for v2:
->  - modify the format to yaml
->  - add compitable "nxp,pca2129"
-> 
->  .../devicetree/bindings/rtc/nxp,pcf2127.yaml       | 41 ++++++++++++++++++++++
->  1 file changed, 41 insertions(+)
->  create mode 100644 Documentation/devicetree/bindings/rtc/nxp,pcf2127.yaml
-> 
-> diff --git a/Documentation/devicetree/bindings/rtc/nxp,pcf2127.yaml b/Documentation/devicetree/bindings/rtc/nxp,pcf2127.yaml
-> new file mode 100644
-> index 0000000..226a0b2
-> --- /dev/null
-> +++ b/Documentation/devicetree/bindings/rtc/nxp,pcf2127.yaml
-> @@ -0,0 +1,41 @@
-> +# SPDX-License-Identifier: GPL-2.0
-> +%YAML 1.2
-> +---
-> +$id: http://devicetree.org/schemas/rtc/nxp,pcf2127.yaml#
-> +$schema: http://devicetree.org/meta-schemas/core.yaml#
-> +
-> +title: PCF RTCs
-> +
-> +maintainers:
-> +  - Qiang Zhao <qiang.zhao@nxp.com>
-> +
-> +allOf:
-> +  - $ref: "rtc.yaml#"
-> +
-> +properties:
-> +  compatible:
-> +    enum:
-> +      - nxp,pcf2127
-> +      - nxp,pcf2129
-> +      - nxp,pca2129
-> +
-> +  reg:
-> +    maxItems: 1
-> +
-> +  interrupts:
-> +    maxItems: 1
-> +
-> +  no-watchdog:
-> +    $ref: /schemas/types.yaml#/definitions/flag
-> +    description:
-> +      With this property, the device will not registered as a watchdog device.
-> +
-> +  start-year: true
-> +
-> +required:
-> +  - compatible
-> +  - reg
-> +
-> +additionalProperties: false
-> +
-> +...
-> -- 
-> 2.7.4
-> 
-
+diff --git a/Documentation/devicetree/bindings/arm/fsl.yaml b/Documentation/devicetree/bindings/arm/fsl.yaml
+index e94a455eeab9..cf949c460426 100644
+--- a/Documentation/devicetree/bindings/arm/fsl.yaml
++++ b/Documentation/devicetree/bindings/arm/fsl.yaml
+@@ -161,6 +161,7 @@ properties:
+           - enum:
+               - fsl,imx6qp-sabreauto      # i.MX6 Quad Plus SABRE Automotive Board
+               - fsl,imx6qp-sabresd        # i.MX6 Quad Plus SABRE Smart Device Board
++              - prt,prtwd3                # Protonic WD2 board
+           - const: fsl,imx6qp
+ 
+       - description: i.MX6DL based Boards
 -- 
-Alexandre Belloni, Bootlin
-Embedded Linux and Kernel engineering
-https://bootlin.com
+2.28.0
+
