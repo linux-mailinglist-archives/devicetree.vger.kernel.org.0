@@ -2,106 +2,109 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from vger.kernel.org (vger.kernel.org [23.128.96.18])
-	by mail.lfdr.de (Postfix) with ESMTP id 1C48E276293
-	for <lists+devicetree@lfdr.de>; Wed, 23 Sep 2020 22:54:37 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTP id 177432762A6
+	for <lists+devicetree@lfdr.de>; Wed, 23 Sep 2020 22:58:36 +0200 (CEST)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S1726643AbgIWUyg (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Wed, 23 Sep 2020 16:54:36 -0400
-Received: from mail-il1-f195.google.com ([209.85.166.195]:45959 "EHLO
-        mail-il1-f195.google.com" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S1726668AbgIWUyf (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Wed, 23 Sep 2020 16:54:35 -0400
-Received: by mail-il1-f195.google.com with SMTP id h2so921200ilo.12;
-        Wed, 23 Sep 2020 13:54:35 -0700 (PDT)
+        id S1726596AbgIWU63 (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Wed, 23 Sep 2020 16:58:29 -0400
+Received: from mail-io1-f66.google.com ([209.85.166.66]:33846 "EHLO
+        mail-io1-f66.google.com" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
+        with ESMTP id S1726460AbgIWU61 (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Wed, 23 Sep 2020 16:58:27 -0400
+Received: by mail-io1-f66.google.com with SMTP id m17so1042228ioo.1;
+        Wed, 23 Sep 2020 13:58:26 -0700 (PDT)
 X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
         d=1e100.net; s=20161025;
         h=x-gm-message-state:date:from:to:cc:subject:message-id:references
          :mime-version:content-disposition:in-reply-to;
-        bh=d+sz3hgQEAMMDOvG0RAlSgcLLpJYw3j9zk3rcGcy++0=;
-        b=cBYtCVl3rM9hLYsPAP1vvHrPFqq0IMMjEtefLSqa9RR/vXAQGz23cVeHtvqZxGfaj0
-         UgVXjXL2ephRIKVc28emvbVO9/YGo+NbdkWgHZybuGyQYFoxBRcds0SWdKnnTOheOHqP
-         G/XWBfocCyeG6caDML2yk+diFEussh+vThXn+S+10k+U8ZHM+BlFpzevBsj7+YqzC5CQ
-         4tfwnBZlmmCYNZgjRgbCMVHdMFTDibzTaWb+Gx0NT5L3Asru1XaKBz3WWfUCrf4NwotR
-         0YGTBWj51AQX5Mv6peg4BS6vkeUWew88A59IwA3ljvb3gZdidyNKU3MnFkB88Lzbvv0M
-         1Wjw==
-X-Gm-Message-State: AOAM5323OGdOAjdbEuO8cXtkA81wbWvMD2mpqa8XIsO0AbiUw7O3IsdC
-        ZreUT3//49JFSxZhu2kkIA==
-X-Google-Smtp-Source: ABdhPJwhB3U+7nGpX1fOCxLfZQPy0Ana+7kdT7ZxdZzgBNG61Fg1tLqg9BV4if/p+1kRC6H1Is5gRQ==
-X-Received: by 2002:a05:6e02:f48:: with SMTP id y8mr1415364ilj.103.1600894474882;
-        Wed, 23 Sep 2020 13:54:34 -0700 (PDT)
+        bh=DBI7yAxzhMeYdJxsj8BjmnEz5KxHDzBoWiYPr4XLc0w=;
+        b=ABz2SOJH7/U8SbtaA7wiD4ncqTsIWpfDI+LkHLY2mAonVWTQPgtIe9UjVmR5rvlGuh
+         hOyTfJB3QgJZCJQfKQhId7wvUw/2oz/UIdBn2kmmRgczITzIkbVG92Ydd06JlCEwV0HH
+         p5TIl4q0Ha17gJ3+9oVIUrbWK2AGFn2l4tSEVkHQJwSFp1bPW/5xWLITqD7c8RPBhU3K
+         oXqY5VAe1vpggtGZ4sv4tPmHeLpRVQB6l2KN3t/AS1DMa0TOU0PrESqBgnXqim8FY8Pi
+         pX3H0nU9TX7wsudEX445JI23r+bHgkafXituGBbdjU0Nx157bAzFCRP0l36x5u53R+V6
+         ahAQ==
+X-Gm-Message-State: AOAM530pXv+/eP3iiPNy9hl902cHh3LbpkpR5F0rXY6NSdigh6PxqKWt
+        jdX0T/kMeoBDocj0ZXynIA==
+X-Google-Smtp-Source: ABdhPJy0JbRbialOqZQgmgY+YuO73Raga2r31TBjNVrQd2QbuB7XuHqV35G5uICkoCqoeC4Y+1hpww==
+X-Received: by 2002:a02:a816:: with SMTP id f22mr1079416jaj.118.1600894706126;
+        Wed, 23 Sep 2020 13:58:26 -0700 (PDT)
 Received: from xps15 ([64.188.179.253])
-        by smtp.gmail.com with ESMTPSA id x1sm386462ilo.50.2020.09.23.13.54.33
+        by smtp.gmail.com with ESMTPSA id v89sm435886ili.26.2020.09.23.13.58.25
         (version=TLS1_3 cipher=TLS_AES_256_GCM_SHA384 bits=256/256);
-        Wed, 23 Sep 2020 13:54:34 -0700 (PDT)
-Received: (nullmailer pid 1290212 invoked by uid 1000);
-        Wed, 23 Sep 2020 20:54:33 -0000
-Date:   Wed, 23 Sep 2020 14:54:33 -0600
+        Wed, 23 Sep 2020 13:58:25 -0700 (PDT)
+Received: (nullmailer pid 1296317 invoked by uid 1000);
+        Wed, 23 Sep 2020 20:58:24 -0000
+Date:   Wed, 23 Sep 2020 14:58:24 -0600
 From:   Rob Herring <robh@kernel.org>
-To:     Peter Hilber <peter.hilber@opensynergy.com>
-Cc:     linux-arm-kernel@lists.infradead.org, devicetree@vger.kernel.org,
-        virtualization@lists.linux-foundation.org,
-        virtio-dev@lists.oasis-open.org, linux-kernel@vger.kernel.org,
-        sudeep.holla@arm.com, souvik.chakravarty@arm.com,
-        alex.bennee@linaro.org, jean-philippe@linaro.org,
-        igor.skalkin@opensynergy.com, mikhail.golubev@opensynergy.com,
-        anton.yakovlev@opensynergy.com,
-        "Michael S. Tsirkin" <mst@redhat.com>,
-        Jason Wang <jasowang@redhat.com>
-Subject: Re: [RFC PATCH 6/7] dt-bindings: arm: Add virtio transport for SCMI
-Message-ID: <20200923205433.GB1285024@bogus>
-References: <20200918162311.254564-1-peter.hilber@opensynergy.com>
- <20200918165558.257086-1-peter.hilber@opensynergy.com>
+To:     Ansuel Smith <ansuelsmth@gmail.com>
+Cc:     Kalle Valo <kvalo@codeaurora.org>,
+        "David S. Miller" <davem@davemloft.net>,
+        Jakub Kicinski <kuba@kernel.org>,
+        linux-wireless@vger.kernel.org, netdev@vger.kernel.org,
+        devicetree@vger.kernel.org, linux-kernel@vger.kernel.org,
+        ath10k@lists.infradead.org
+Subject: Re: [PATCH v2 2/2] dt: bindings: ath10k: Document
+ qcom,ath10k-pre-calibration-data-mtd
+Message-ID: <20200923205824.GA1290651@bogus>
+References: <20200918181104.98-1-ansuelsmth@gmail.com>
+ <20200918181104.98-2-ansuelsmth@gmail.com>
 MIME-Version: 1.0
 Content-Type: text/plain; charset=us-ascii
 Content-Disposition: inline
-In-Reply-To: <20200918165558.257086-1-peter.hilber@opensynergy.com>
+In-Reply-To: <20200918181104.98-2-ansuelsmth@gmail.com>
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-On Fri, Sep 18, 2020 at 06:55:58PM +0200, Peter Hilber wrote:
-> From: Igor Skalkin <igor.skalkin@opensynergy.com>
+On Fri, Sep 18, 2020 at 08:11:03PM +0200, Ansuel Smith wrote:
+> Document use of qcom,ath10k-pre-calibration-data-mtd bindings used to
+> define from where the driver will load the pre-cal data in the defined
+> mtd partition.
 > 
-> Document the properties for arm,scmi-virtio compatible nodes. The
-> backing virtio SCMI device is described in patch [1].
-> 
-> [1] https://lists.oasis-open.org/archives/virtio-comment/202005/msg00096.html
-> 
-> Co-developed-by: Peter Hilber <peter.hilber@opensynergy.com>
-> Signed-off-by: Peter Hilber <peter.hilber@opensynergy.com>
-> Signed-off-by: Igor Skalkin <igor.skalkin@opensynergy.com>
+> Signed-off-by: Ansuel Smith <ansuelsmth@gmail.com>
 > ---
->  .../devicetree/bindings/arm/arm,scmi.txt      | 38 ++++++++++++++++++-
->  1 file changed, 36 insertions(+), 2 deletions(-)
+>  .../devicetree/bindings/net/wireless/qcom,ath10k.txt | 12 +++++++++---
+>  1 file changed, 9 insertions(+), 3 deletions(-)
 > 
-> diff --git a/Documentation/devicetree/bindings/arm/arm,scmi.txt b/Documentation/devicetree/bindings/arm/arm,scmi.txt
-> index 55deb68230eb..844ff3c40a49 100644
-> --- a/Documentation/devicetree/bindings/arm/arm,scmi.txt
-> +++ b/Documentation/devicetree/bindings/arm/arm,scmi.txt
-> @@ -13,6 +13,9 @@ the device tree.
->  Required properties:
+> diff --git a/Documentation/devicetree/bindings/net/wireless/qcom,ath10k.txt b/Documentation/devicetree/bindings/net/wireless/qcom,ath10k.txt
+> index b61c2d5a0..568364243 100644
+> --- a/Documentation/devicetree/bindings/net/wireless/qcom,ath10k.txt
+> +++ b/Documentation/devicetree/bindings/net/wireless/qcom,ath10k.txt
+> @@ -15,9 +15,9 @@ and also uses most of the properties defined in this doc (except
+>  "qcom,ath10k-calibration-data"). It uses "qcom,ath10k-pre-calibration-data"
+>  to carry pre calibration data.
 >  
->  The scmi node with the following properties shall be under the /firmware/ node.
-> +Some properties are specific to a transport type.
-> +
-> +shmem-based transports (mailbox, smc/hvc):
+> -In general, entry "qcom,ath10k-pre-calibration-data" and
+> -"qcom,ath10k-calibration-data" conflict with each other and only one
+> -can be provided per device.
+> +In general, entry "qcom,ath10k-pre-calibration-data",
+> +"qcom,ath10k-calibration-data-mtd" and "qcom,ath10k-calibration-data" conflict with
+> +each other and only one can be provided per device.
 >  
->  - compatible : shall be "arm,scmi" or "arm,scmi-smc" for smc/hvc transports
->  - mboxes: List of phandle and mailbox channel specifiers. It should contain
-> @@ -21,6 +24,17 @@ The scmi node with the following properties shall be under the /firmware/ node.
->  	  supported.
->  - shmem : List of phandle pointing to the shared memory(SHM) area as per
->  	  generic mailbox client binding.
-> +
-> +Virtio transport:
-> +
-> +- compatible : shall be "arm,scmi-virtio".
-> +- virtio_transport : phandle of the virtio device. This device must support one
-> +                     virtqueue for transmitting commands ("tx", cmdq), and,
-> +		     optionally, one more virtqueue for receiving notifications
-> +		     and delayed responses ("rx", eventq).
+>  SNOC based devices (i.e. wcn3990) uses compatible string "qcom,wcn3990-wifi".
+>  
+> @@ -63,6 +63,12 @@ Optional properties:
+>  				 hw versions.
+>  - qcom,ath10k-pre-calibration-data : pre calibration data as an array,
+>  				     the length can vary between hw versions.
+> +- qcom,ath10k-pre-calibration-data-mtd :
 
-Isn't what the virtio device provides discoverable? We don't have virtio 
-protocols in DT for anything else. Why is SCMI special?
+mtd is a Linuxism.
 
-Rob
+> +	Usage: optional
+> +	Value type: <phandle offset size>
+> +	Definition: pre calibration data read from mtd partition. Take 3 value, the
+> +		    mtd to read data from, the offset in the mtd partition and the
+
+The phandle is the mtd or partition?
+
+Maybe you should be using nvmem binding here.
+
+> +		    size of data to read.
+>  - <supply-name>-supply: handle to the regulator device tree node
+>  			   optional "supply-name" are "vdd-0.8-cx-mx",
+>  			   "vdd-1.8-xo", "vdd-1.3-rfa", "vdd-3.3-ch0",
+> -- 
+> 2.27.0
+> 
