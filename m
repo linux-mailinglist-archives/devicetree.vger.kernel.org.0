@@ -2,101 +2,123 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from vger.kernel.org (vger.kernel.org [23.128.96.18])
-	by mail.lfdr.de (Postfix) with ESMTP id 1EEC02756C9
-	for <lists+devicetree@lfdr.de>; Wed, 23 Sep 2020 13:02:35 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTP id 86780275703
+	for <lists+devicetree@lfdr.de>; Wed, 23 Sep 2020 13:18:39 +0200 (CEST)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S1726444AbgIWLCd (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Wed, 23 Sep 2020 07:02:33 -0400
-Received: from gloria.sntech.de ([185.11.138.130]:46342 "EHLO gloria.sntech.de"
-        rhost-flags-OK-OK-OK-OK) by vger.kernel.org with ESMTP
-        id S1726332AbgIWLCa (ORCPT <rfc822;devicetree@vger.kernel.org>);
-        Wed, 23 Sep 2020 07:02:30 -0400
-Received: from [95.90.166.74] (helo=diego.localnet)
-        by gloria.sntech.de with esmtpsa (TLS1.3:ECDHE_RSA_AES_256_GCM_SHA384:256)
-        (Exim 4.92)
-        (envelope-from <heiko@sntech.de>)
-        id 1kL2Xa-0006ap-7G; Wed, 23 Sep 2020 13:02:26 +0200
-From:   Heiko =?ISO-8859-1?Q?St=FCbner?= <heiko@sntech.de>
-To:     Artem Lapkin <email2tema@gmail.com>
-Cc:     linux-arm-kernel@lists.infradead.org, robh+dt@kernel.org,
-        art@khadas.com, jbx6244@gmail.com, devicetree@vger.kernel.org,
-        linux-kernel@vger.kernel.org, nick@khadas.com
-Subject: Re: [PATCH 2/2] arm64: dts: rockchip: rk3399-khadas-edge add missed ir-receiver and ir_rx pinctl nodes
-Date:   Wed, 23 Sep 2020 13:02:25 +0200
-Message-ID: <7887815.vmt15hixIf@diego>
-In-Reply-To: <20200923101225.1513392-3-email2tema@gmail.com>
-References: <20200923101225.1513392-1-email2tema@gmail.com> <20200923101225.1513392-3-email2tema@gmail.com>
-MIME-Version: 1.0
-Content-Transfer-Encoding: 7Bit
-Content-Type: text/plain; charset="us-ascii"
+        id S1726466AbgIWLSi (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Wed, 23 Sep 2020 07:18:38 -0400
+Received: from lindbergh.monkeyblade.net ([23.128.96.19]:60498 "EHLO
+        lindbergh.monkeyblade.net" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
+        with ESMTP id S1726332AbgIWLSi (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Wed, 23 Sep 2020 07:18:38 -0400
+Received: from mail-pg1-x542.google.com (mail-pg1-x542.google.com [IPv6:2607:f8b0:4864:20::542])
+        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 54FE4C0613CE;
+        Wed, 23 Sep 2020 04:18:38 -0700 (PDT)
+Received: by mail-pg1-x542.google.com with SMTP id f2so14192056pgd.3;
+        Wed, 23 Sep 2020 04:18:38 -0700 (PDT)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+        d=gmail.com; s=20161025;
+        h=from:to:cc:subject:date:message-id;
+        bh=7WNGKPx7P80fSH8HCUI8e1FELBKekz/aYKgxcKHN5ds=;
+        b=fLswLrk+e7QN82DV+NF1kTEJSNPNUN/srUAt5gMWtLZMkHrb4UbLKgx4r3IkHbPpN/
+         1iMmRXtqrj7Xefvf6Pjk14wawK4M9if8nUOG8IRRS2C0eLm4nE2b2EmegCRq/1MsZClp
+         p/KmYzVy0a+ZIgo7dY4U7vS5ezZsutdJybqqamuB+AXbYyvo9+1CjtOJ2BDKM8kTdAJf
+         MtTH6FzgEBz2bFoqrDCeDSixXloPviCZlgTug14Fq88EeQA5QW3BfMdtnD7NBPUKhjDA
+         iklYpeP23Dbz37yYpHefzBIMzDhOnwd8tAmdb5Ez4b9kNuEtvkL3Lwuy+4iMKiQsIQnA
+         ySgw==
+X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+        d=1e100.net; s=20161025;
+        h=x-gm-message-state:from:to:cc:subject:date:message-id;
+        bh=7WNGKPx7P80fSH8HCUI8e1FELBKekz/aYKgxcKHN5ds=;
+        b=tgf9ywQOI5wMxyVErvw1+mv8iY6UyNGAzYzqNKbIF1Zou0dbmwUc5bn3M38AHSMLbb
+         cwMUeP2d3PX9xCbL2BxUQ1LxZRXwUxIaksuXsGW4385SIPs50EE0bzHBhFPpTpuFZPQE
+         Vni6cq8eooKY81VZEGThI669vcQepE8N8Yq4i77xLYm7b80oKMToUgPajyUMyTkHDPi5
+         F4JL3djt+v3WkZLyYu97p5gc4QPPlK0VNmYysbH2g4j+BFf0efrECz1+oalh5KHjBmub
+         Kwe7bOx5q/W/MtlXeiSmqXoFvgCACarYaAsmEKQorVHo90o+5c7+ACTeSvJYM57+MDy0
+         8UVw==
+X-Gm-Message-State: AOAM532Jo+c+R9sGR04+pr+GOroFX8RS3S0IGd7krjpOJr7N6dGZUwB1
+        2jArJzHaY3LPS/FbUTBRrto=
+X-Google-Smtp-Source: ABdhPJwJ3sGbKfNfOeDqNYze2sgU8ZtcXt+CyLHpXNk8j1WSvxzSE/U9SkUgM3Bo2HbUrGN6JQ7EsQ==
+X-Received: by 2002:a63:547:: with SMTP id 68mr4498525pgf.177.1600859917914;
+        Wed, 23 Sep 2020 04:18:37 -0700 (PDT)
+Received: from localhost.localdomain ([117.19.194.39])
+        by smtp.gmail.com with ESMTPSA id 25sm17549693pfj.35.2020.09.23.04.18.34
+        (version=TLS1_2 cipher=ECDHE-ECDSA-AES128-GCM-SHA256 bits=128/128);
+        Wed, 23 Sep 2020 04:18:37 -0700 (PDT)
+From:   Gene Chen <gene.chen.richtek@gmail.com>
+To:     sre@kernel.org, matthias.bgg@gmail.com, robh+dt@kernel.org
+Cc:     linux-pm@vger.kernel.org, devicetree@vger.kernel.org,
+        linux-arm-kernel@lists.infradead.org,
+        linux-mediatek@lists.infradead.org, linux-kernel@vger.kernel.org,
+        Gene Chen <gene_chen@richtek.com>
+Subject: [PATCH 1/2] dt-bindings: power: Add bindings document for Charger support on MT6360 PMIC
+Date:   Wed, 23 Sep 2020 19:18:29 +0800
+Message-Id: <1600859910-15855-1-git-send-email-gene.chen.richtek@gmail.com>
+X-Mailer: git-send-email 2.7.4
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-Hi Artem,
+From: Gene Chen <gene_chen@richtek.com>
 
-Am Mittwoch, 23. September 2020, 12:12:25 CEST schrieb Artem Lapkin:
-> From: Artem Lapkin <art@khadas.com>
-> 
-> add missed ir receivier to Khadas Edge board
-> Khadas Edge uses gpio-ir-receiver on RK_PB6 gpio
+Add bindings document for Charger support on MT6360 PMIC
 
-Missing Signed-off-by
+Signed-off-by: Gene Chen <gene_chen@richtek.com>
+---
+ .../bindings/power/supply/mt6360_charger.yaml      | 44 ++++++++++++++++++++++
+ 1 file changed, 44 insertions(+)
+ create mode 100644 Documentation/devicetree/bindings/power/supply/mt6360_charger.yaml
 
-> ---
->  .../boot/dts/rockchip/rk3399-khadas-edge.dtsi    | 16 ++++++++++++++++
->  1 file changed, 16 insertions(+)
-> 
-> diff --git a/arch/arm64/boot/dts/rockchip/rk3399-khadas-edge.dtsi b/arch/arm64/boot/dts/rockchip/rk3399-khadas-edge.dtsi
-> index 42ebbd6fa46..389ae43d869 100644
-> --- a/arch/arm64/boot/dts/rockchip/rk3399-khadas-edge.dtsi
-> +++ b/arch/arm64/boot/dts/rockchip/rk3399-khadas-edge.dtsi
-> @@ -109,6 +109,14 @@ vsys_5v0: vsys-5v0 {
->  		vin-supply = <&vsys>;
->  	};
->  
-> +	ir-receiver {
-
-please sort alphabetically.
-
-Also more importantly, is this really part of all Khadas Edge board variants?
-[just making sure ;-) ]
-
-> +		compatible = "gpio-ir-receiver";
-> +		gpios = <&gpio1 RK_PB6 GPIO_ACTIVE_LOW>;
-> +		pinctrl-names = "default";
-> +		pinctrl-0 = <&ir_rx>;
-> +		linux,rc-map-name = "rc-khadas";
-> +	};
-> +
->  	adc-keys {
->  		compatible = "adc-keys";
->  		io-channels = <&saradc 1>;
-> @@ -682,6 +690,14 @@ &sdmmc {
->  	status = "okay";
->  };
->  
-> +&pinctrl {
-
-there is already a "&pinctrl" node in the "rk3399-khadas-edge.dtsi"
-please don't add another one, and make sure things are somewhat
-sorted alphabetically ;-) .
-
-Thanks
-Heiko
-
-> +    ir {
-> +	ir_rx: ir-rx {
-> +	    rockchip,pins = <1 RK_PB6 RK_FUNC_GPIO &pcfg_pull_none>;
-> +	};
-> +    };
-> +};
-> +
->  &sdhci {
->  	bus-width = <8>;
->  	mmc-hs400-1_8v;
-> 
-
-
-
+diff --git a/Documentation/devicetree/bindings/power/supply/mt6360_charger.yaml b/Documentation/devicetree/bindings/power/supply/mt6360_charger.yaml
+new file mode 100644
+index 0000000..711fc19
+--- /dev/null
++++ b/Documentation/devicetree/bindings/power/supply/mt6360_charger.yaml
+@@ -0,0 +1,44 @@
++# SPDX-License-Identifier: (GPL-2.0-only OR BSD-2-Clause)
++%YAML 1.2
++---
++$id: http://devicetree.org/schemas/power/supply/mt6360_charger.yaml#
++$schema: http://devicetree.org/meta-schemas/core.yaml#
++
++title: Battery charger driver for MT6360 PMIC from MediaTek Integrated.
++
++maintainers:
++  - Gene Chen <gene_chen@richtek.com>
++
++description: |
++  This module is part of the MT6360 MFD device.
++  Provides Battery Charger, Boost for OTG devices and BC1.2 detection.
++
++properties:
++  compatible:
++    const: mediatek,mt6360-chg
++
++  vinovp:
++    description:
++      Maximum CHGIN regulation voltage.
++
++  usb-otg-vbus:
++      $ref: /schemas/regulator/regulator.yaml#
++
++required:
++  - compatible
++
++additionalProperties: false
++
++examples:
++  - |
++    mt6360_chg: chg {
++      compatible = "mediatek,mt6360-chg";
++      vinovp = <14500000>;
++      otg_vbus: usb-otg-vbus {
++        regulator-compatible = "usb-otg-vbus";
++        regulator-name = "usb-otg-vbus";
++        regulator-min-microvolt = <4425000>;
++        regulator-max-microvolt = <5825000>;
++      };
++    };
++...
+-- 
+2.7.4
 
