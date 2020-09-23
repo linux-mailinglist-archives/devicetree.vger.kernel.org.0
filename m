@@ -2,147 +2,93 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from vger.kernel.org (vger.kernel.org [23.128.96.18])
-	by mail.lfdr.de (Postfix) with ESMTP id C49362758A6
-	for <lists+devicetree@lfdr.de>; Wed, 23 Sep 2020 15:26:42 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTP id 48ACD2758B5
+	for <lists+devicetree@lfdr.de>; Wed, 23 Sep 2020 15:29:40 +0200 (CEST)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S1726671AbgIWN0l (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Wed, 23 Sep 2020 09:26:41 -0400
-Received: from fllv0016.ext.ti.com ([198.47.19.142]:42400 "EHLO
-        fllv0016.ext.ti.com" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S1726130AbgIWN0k (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Wed, 23 Sep 2020 09:26:40 -0400
-Received: from fllv0035.itg.ti.com ([10.64.41.0])
-        by fllv0016.ext.ti.com (8.15.2/8.15.2) with ESMTP id 08NDQX2q079582;
-        Wed, 23 Sep 2020 08:26:33 -0500
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=ti.com;
-        s=ti-com-17Q1; t=1600867593;
-        bh=wgvDwMPsP55ywAoaHV74OL6ILlRcs/yPg/x9ic3T9kw=;
-        h=From:To:CC:Subject:Date:In-Reply-To:References;
-        b=xzGDQbEYZUyurQ8EFkXvdh/l9AbtaaJLtIWWXY112oMt2CRrOFzI4W5DaxHtVsgiL
-         zy1dSBr3ubR2vdZPmu4F1k9JRU9pGa3U8VmHwyRP442XxylXSSgwBkjEoTtX+ePmpl
-         mmT34hb194UNtBJ3AWTmh5QNhKSGUAogTFBl5mZQ=
-Received: from DFLE114.ent.ti.com (dfle114.ent.ti.com [10.64.6.35])
-        by fllv0035.itg.ti.com (8.15.2/8.15.2) with ESMTP id 08NDQWSM054060;
-        Wed, 23 Sep 2020 08:26:32 -0500
-Received: from DFLE112.ent.ti.com (10.64.6.33) by DFLE114.ent.ti.com
- (10.64.6.35) with Microsoft SMTP Server (version=TLS1_2,
- cipher=TLS_ECDHE_RSA_WITH_AES_128_CBC_SHA256_P256) id 15.1.1979.3; Wed, 23
- Sep 2020 08:26:32 -0500
-Received: from lelv0326.itg.ti.com (10.180.67.84) by DFLE112.ent.ti.com
- (10.64.6.33) with Microsoft SMTP Server (version=TLS1_2,
- cipher=TLS_ECDHE_RSA_WITH_AES_128_CBC_SHA256_P256) id 15.1.1979.3 via
- Frontend Transport; Wed, 23 Sep 2020 08:26:32 -0500
-Received: from localhost (ileax41-snat.itg.ti.com [10.172.224.153])
-        by lelv0326.itg.ti.com (8.15.2/8.15.2) with ESMTP id 08NDQW7u007810;
-        Wed, 23 Sep 2020 08:26:32 -0500
-From:   Dan Murphy <dmurphy@ti.com>
-To:     <lgirdwood@gmail.com>, <broonie@kernel.org>, <tiwai@suse.com>,
-        <robh+dt@kernel.org>
-CC:     <devicetree@vger.kernel.org>, <alsa-devel@alsa-project.org>,
-        <linux-kernel@vger.kernel.org>, Dan Murphy <dmurphy@ti.com>
-Subject: [PATCH 6/6] ASoC: tas2770: Remove unused variables
-Date:   Wed, 23 Sep 2020 08:26:00 -0500
-Message-ID: <20200923132600.10652-6-dmurphy@ti.com>
-X-Mailer: git-send-email 2.27.0
-In-Reply-To: <20200923132600.10652-1-dmurphy@ti.com>
-References: <20200923132600.10652-1-dmurphy@ti.com>
+        id S1726565AbgIWN3i (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Wed, 23 Sep 2020 09:29:38 -0400
+Received: from mail-oi1-f196.google.com ([209.85.167.196]:40615 "EHLO
+        mail-oi1-f196.google.com" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
+        with ESMTP id S1726130AbgIWN3i (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Wed, 23 Sep 2020 09:29:38 -0400
+Received: by mail-oi1-f196.google.com with SMTP id t76so25005527oif.7;
+        Wed, 23 Sep 2020 06:29:37 -0700 (PDT)
+X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+        d=1e100.net; s=20161025;
+        h=x-gm-message-state:mime-version:references:in-reply-to:from:date
+         :message-id:subject:to:cc;
+        bh=1rMoEuPGDAy971L25OQzzcUwzDymkiOVA4jg4tTeTHI=;
+        b=Lea3InaDNDnXi04N6avkexks0kmaBfLs9johDZqyWZ+UwMdepz6gMikrBF7c7fc4jn
+         bFJj/urKShgXHQFuuVr8uzbVvG+nJ0png9li+AkqfeDkfc9GxonahGMA1Q7VXYJzRapO
+         El+FXFd2mxboXOp3toWcZX0jIX8x6TOgl06b5Ng0yqy5zX6uIYdErBEIcK0EGtvl3uqC
+         g5D9EwOu6qVCnO9YXyIB4Zb4MpwrNQd5uWqUqwkz/ToYuG8sI868SJjpw/fmCLl1MxC3
+         oBsdIOyv7WFQdcPmmfkIaoxNMCiWzXHhvctQ72+7UeH8C82f6QfF3abD0sJMlP/jbcti
+         40zA==
+X-Gm-Message-State: AOAM531EonW/bBhdS3K8QzcM2FgX9QnAsEZX/DTkeUgSbwJF8OIrACQR
+        +bj4/39YTjof4SVk83b+90DBFobJNF5OXmpCxv3T6c1c
+X-Google-Smtp-Source: ABdhPJziefyJq4JP9IubrLkGlZIwmizPmfyZzixhXhqNpkNSciMNfsNrp++kEzyejdd8neZ6NVOcBk24rZGIIwTUkDs=
+X-Received: by 2002:aca:3bc3:: with SMTP id i186mr5442092oia.148.1600867777289;
+ Wed, 23 Sep 2020 06:29:37 -0700 (PDT)
 MIME-Version: 1.0
-Content-Transfer-Encoding: 8bit
-Content-Type: text/plain
-X-EXCLAIMER-MD-CONFIG: e1e8a2fd-e40a-4ac6-ac9b-f7e9cc9ee180
+References: <20200825104455.18000-1-prabhakar.mahadev-lad.rj@bp.renesas.com>
+ <20200825104455.18000-3-prabhakar.mahadev-lad.rj@bp.renesas.com>
+ <CAMuHMdWmvcA8x-t=FgNOuMnAtw6j3OAgo8irmD5e2wrB+LfhHg@mail.gmail.com> <20200923121452.GD1848911@ulmo>
+In-Reply-To: <20200923121452.GD1848911@ulmo>
+From:   Geert Uytterhoeven <geert@linux-m68k.org>
+Date:   Wed, 23 Sep 2020 15:29:25 +0200
+Message-ID: <CAMuHMdX=G0n4MWNUM46OcUzeKUc=i1Sv4J8tnU0=_Nkt=Pf6xA@mail.gmail.com>
+Subject: Re: [PATCH 2/2] arm64: dts: renesas: r8a774e1: Add PWM device nodes
+To:     Thierry Reding <thierry.reding@gmail.com>
+Cc:     Lad Prabhakar <prabhakar.mahadev-lad.rj@bp.renesas.com>,
+        =?UTF-8?Q?Uwe_Kleine=2DK=C3=B6nig?= 
+        <u.kleine-koenig@pengutronix.de>, Lee Jones <lee.jones@linaro.org>,
+        Rob Herring <robh+dt@kernel.org>,
+        Magnus Damm <magnus.damm@gmail.com>,
+        Yoshihiro Shimoda <yoshihiro.shimoda.uh@renesas.com>,
+        Linux PWM List <linux-pwm@vger.kernel.org>,
+        "open list:OPEN FIRMWARE AND FLATTENED DEVICE TREE BINDINGS" 
+        <devicetree@vger.kernel.org>,
+        Linux Kernel Mailing List <linux-kernel@vger.kernel.org>,
+        Linux-Renesas <linux-renesas-soc@vger.kernel.org>,
+        Prabhakar <prabhakar.csengg@gmail.com>
+Content-Type: text/plain; charset="UTF-8"
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-Remove unused variables in the private struct and the code as these
-variables are initially set and then there is no additional code
-utilizing these variables.
+Hi Thierry,
 
-Signed-off-by: Dan Murphy <dmurphy@ti.com>
----
- sound/soc/codecs/tas2770.c | 11 -----------
- sound/soc/codecs/tas2770.h |  8 ++------
- 2 files changed, 2 insertions(+), 17 deletions(-)
+On Wed, Sep 23, 2020 at 2:14 PM Thierry Reding <thierry.reding@gmail.com> wrote:
+> On Tue, Aug 25, 2020 at 03:32:08PM +0200, Geert Uytterhoeven wrote:
+> > On Tue, Aug 25, 2020 at 12:45 PM Lad Prabhakar
+> > <prabhakar.mahadev-lad.rj@bp.renesas.com> wrote:
+> > > From: Marian-Cristian Rotariu <marian-cristian.rotariu.rb@bp.renesas.com>
+> > >
+> > > This patch adds PWM[0123456] device nodes to the RZ/G2H (a.k.a R8A774E1)
+> > > device tree.
+> > >
+> > > Signed-off-by: Marian-Cristian Rotariu <marian-cristian.rotariu.rb@bp.renesas.com>
+> > > Signed-off-by: Lad Prabhakar <prabhakar.mahadev-lad.rj@bp.renesas.com>
+> >
+> > Reviewed-by: Geert Uytterhoeven <geert+renesas@glider.be>
+> > i.e. will queue in renesas-devel for v5.10.
+>
+> Hi Geert,
+>
+> did you also pick up patch 1/2 in this series?
 
-diff --git a/sound/soc/codecs/tas2770.c b/sound/soc/codecs/tas2770.c
-index c7a6f7e8200c..a91a0a31e74d 100644
---- a/sound/soc/codecs/tas2770.c
-+++ b/sound/soc/codecs/tas2770.c
-@@ -249,8 +249,6 @@ static int tas2770_set_bitwidth(struct tas2770_priv *tas2770, int bitwidth)
- 	if (ret < 0)
- 		return ret;
- 
--	tas2770->channel_size = bitwidth;
--
- 	ret = snd_soc_component_update_bits(component, TAS2770_TDM_CFG_REG5,
- 					    TAS2770_TDM_CFG_REG5_VSNS_MASK |
- 					    TAS2770_TDM_CFG_REG5_50_MASK,
-@@ -312,7 +310,6 @@ static int tas2770_set_samplerate(struct tas2770_priv *tas2770, int samplerate)
- 	if (ret < 0)
- 		return ret;
- 
--	tas2770->sampling_rate = samplerate;
- 	return 0;
- }
- 
-@@ -400,8 +397,6 @@ static int tas2770_set_dai_tdm_slot(struct snd_soc_dai *dai,
- 				int slots, int slot_width)
- {
- 	struct snd_soc_component *component = dai->component;
--	struct tas2770_priv *tas2770 =
--			snd_soc_component_get_drvdata(component);
- 	int left_slot, right_slot;
- 	int ret;
- 
-@@ -466,7 +461,6 @@ static int tas2770_set_dai_tdm_slot(struct snd_soc_dai *dai,
- 	if (ret < 0)
- 		return ret;
- 
--	tas2770->slot_width = slot_width;
- 	return 0;
- }
- 
-@@ -688,8 +682,6 @@ static int tas2770_i2c_probe(struct i2c_client *client,
- 	i2c_set_clientdata(client, tas2770);
- 	dev_set_drvdata(&client->dev, tas2770);
- 
--	tas2770->power_state = TAS2770_POWER_SHUTDOWN;
--
- 	tas2770->regmap = devm_regmap_init_i2c(client, &tas2770_i2c_regmap);
- 	if (IS_ERR(tas2770->regmap)) {
- 		result = PTR_ERR(tas2770->regmap);
-@@ -716,9 +708,6 @@ static int tas2770_i2c_probe(struct i2c_client *client,
- 		}
- 	}
- 
--	tas2770->channel_size = 0;
--	tas2770->slot_width = 0;
--
- 	result = tas2770_register_codec(tas2770);
- 	if (result)
- 		dev_err(tas2770->dev, "Register codec failed.\n");
-diff --git a/sound/soc/codecs/tas2770.h b/sound/soc/codecs/tas2770.h
-index 856a7c5cff5a..d156666bcc55 100644
---- a/sound/soc/codecs/tas2770.h
-+++ b/sound/soc/codecs/tas2770.h
-@@ -128,15 +128,11 @@
- #define ERROR_CLASSD_PWR    BIT(5)
- 
- struct tas2770_priv {
--	struct device *dev;
--	struct regmap *regmap;
- 	struct snd_soc_component *component;
--	int power_state;
- 	struct gpio_desc *reset_gpio;
- 	struct gpio_desc *sdz_gpio;
--	int sampling_rate;
--	int channel_size;
--	int slot_width;
-+	struct regmap *regmap;
-+	struct device *dev;
- 	int v_sense_slot;
- 	int i_sense_slot;
- };
+No, I typically don't take DT binding updates for non-core devices.
+Can you please pick it up?
+
+Thanks!
+
+Gr{oetje,eeting}s,
+
+                        Geert
+
 -- 
-2.28.0
+Geert Uytterhoeven -- There's lots of Linux beyond ia32 -- geert@linux-m68k.org
 
+In personal conversations with technical people, I call myself a hacker. But
+when I'm talking to journalists I just say "programmer" or something like that.
+                                -- Linus Torvalds
