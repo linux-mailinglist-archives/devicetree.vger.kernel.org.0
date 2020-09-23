@@ -2,77 +2,83 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from vger.kernel.org (vger.kernel.org [23.128.96.18])
-	by mail.lfdr.de (Postfix) with ESMTP id 61D3F2760B0
-	for <lists+devicetree@lfdr.de>; Wed, 23 Sep 2020 21:01:20 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTP id 66BF5276188
+	for <lists+devicetree@lfdr.de>; Wed, 23 Sep 2020 22:00:48 +0200 (CEST)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S1726620AbgIWTBT (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Wed, 23 Sep 2020 15:01:19 -0400
-Received: from mail.kernel.org ([198.145.29.99]:44082 "EHLO mail.kernel.org"
+        id S1726419AbgIWUAr (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Wed, 23 Sep 2020 16:00:47 -0400
+Received: from mail.kernel.org ([198.145.29.99]:46474 "EHLO mail.kernel.org"
         rhost-flags-OK-OK-OK-OK) by vger.kernel.org with ESMTP
-        id S1726419AbgIWTBT (ORCPT <rfc822;devicetree@vger.kernel.org>);
-        Wed, 23 Sep 2020 15:01:19 -0400
-Received: from localhost (fw-tnat.cambridge.arm.com [217.140.96.140])
-        (using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
+        id S1726381AbgIWUAr (ORCPT <rfc822;devicetree@vger.kernel.org>);
+        Wed, 23 Sep 2020 16:00:47 -0400
+Received: from mail-oo1-f54.google.com (mail-oo1-f54.google.com [209.85.161.54])
+        (using TLSv1.2 with cipher ECDHE-RSA-AES128-GCM-SHA256 (128/128 bits))
         (No client certificate requested)
-        by mail.kernel.org (Postfix) with ESMTPSA id 429412145D;
-        Wed, 23 Sep 2020 19:01:18 +0000 (UTC)
+        by mail.kernel.org (Postfix) with ESMTPSA id F2EC920B1F
+        for <devicetree@vger.kernel.org>; Wed, 23 Sep 2020 20:00:46 +0000 (UTC)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=kernel.org;
-        s=default; t=1600887678;
-        bh=yiMx68etmYNKZYyK+lwpe3PrqKGSkAKVStfJBVS2MFs=;
-        h=Date:From:To:Cc:In-Reply-To:References:Subject:From;
-        b=yuL8j1rCswv7AO+0agMWAX+7z9Ua2xmPjLswafaSDkiNSzcmjN63c0gAXuD0s+Uoe
-         iIJT2GmKxAy4APHXuSaSCK5KdR4B4L+FvrTMukAE3qvZ7Wr/9nTS3cFul1oSS+eklF
-         sQLsyPzulSpH94s9r+Y4nKi6aTFBtxGkHs7O40eE=
-Date:   Wed, 23 Sep 2020 20:00:24 +0100
-From:   Mark Brown <broonie@kernel.org>
-To:     tiwai@suse.com, lgirdwood@gmail.com, Dan Murphy <dmurphy@ti.com>,
-        robh+dt@kernel.org
-Cc:     devicetree@vger.kernel.org, linux-kernel@vger.kernel.org,
-        alsa-devel@alsa-project.org
-In-Reply-To: <20200923132600.10652-1-dmurphy@ti.com>
-References: <20200923132600.10652-1-dmurphy@ti.com>
-Subject: Re: [PATCH 1/6] dt-bindings: tas2770: Add shutdown gpio property
-Message-Id: <160088761879.35939.9930139156490378021.b4-ty@kernel.org>
+        s=default; t=1600891247;
+        bh=Gyf3GRHsx03XD50x8wGHYRJEPtnKV5W+HBAO5kv+8Xg=;
+        h=References:In-Reply-To:From:Date:Subject:To:Cc:From;
+        b=vNGDGr5XPyWyCpHPS7gQg69ywfpZ1T/fwXDA5/4zv7GEe8NnsdAK+VYGgH2N8YshC
+         MJcJ6E8ce1DTvnQynGAyZ9ycsJbUfQciyBG+U6am2QFDdNAWamBwYT7t7ZBeogjoUJ
+         35TeaR1EjU8PSpUq+voB1K+XbdwdBJ31Ni0rUC+s=
+Received: by mail-oo1-f54.google.com with SMTP id g26so180022ooa.9
+        for <devicetree@vger.kernel.org>; Wed, 23 Sep 2020 13:00:46 -0700 (PDT)
+X-Gm-Message-State: AOAM5329VaA8S47KCkLZ4XGy959wjsEJ9a9OCy2jU2hATGQOtcuR6nJ0
+        19gtHsRKcDx7RVBS/OxwK2+ssS0bQa9L86L1ng==
+X-Google-Smtp-Source: ABdhPJz9SgWJjDDrhxnQb5EvlE3t6H/djP9QM1c2osVQ51hJ9LPr6sCjPqg6G9Vkl3ibruZbiRxBqN/D6ltEDzJ/r38=
+X-Received: by 2002:a4a:d38c:: with SMTP id i12mr919233oos.81.1600891246185;
+ Wed, 23 Sep 2020 13:00:46 -0700 (PDT)
+MIME-Version: 1.0
+References: <20200917055210.22868-1-tomi.valkeinen@ti.com> <20200923161712.GA836725@bogus>
+ <04d93618-12b1-d8f5-ece5-0f87e644d52e@ti.com>
+In-Reply-To: <04d93618-12b1-d8f5-ece5-0f87e644d52e@ti.com>
+From:   Rob Herring <robh@kernel.org>
+Date:   Wed, 23 Sep 2020 14:00:34 -0600
+X-Gmail-Original-Message-ID: <CAL_Jsq+q4JVs=e2kueCATXLw00FWL=nx_eqCTj5ANHkESD8uTg@mail.gmail.com>
+Message-ID: <CAL_Jsq+q4JVs=e2kueCATXLw00FWL=nx_eqCTj5ANHkESD8uTg@mail.gmail.com>
+Subject: Re: [PATCHv2] dt-bindings: dp-connector: add binding for DisplayPort connector
+To:     Tomi Valkeinen <tomi.valkeinen@ti.com>
+Cc:     dri-devel <dri-devel@lists.freedesktop.org>,
+        devicetree@vger.kernel.org, David Airlie <airlied@linux.ie>,
+        Daniel Vetter <daniel@ffwll.ch>,
+        Laurent Pinchart <laurent.pinchart@ideasonboard.com>,
+        Andrzej Hajda <a.hajda@samsung.com>,
+        Neil Armstrong <narmstrong@baylibre.com>,
+        Swapnil Kashinath Jakhade <sjakhade@cadence.com>
+Content-Type: text/plain; charset="UTF-8"
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-On Wed, 23 Sep 2020 08:25:55 -0500, Dan Murphy wrote:
-> Add the shutdown-gpios property to the yaml to define the GPIO that can
-> be used to place the device in shutdown mode or wake the device up.
+On Wed, Sep 23, 2020 at 11:15 AM Tomi Valkeinen <tomi.valkeinen@ti.com> wrote:
+>
+> Hi Rob,
+>
+> On 23/09/2020 19:17, Rob Herring wrote:
+>
+> >> * No eDP. There's really no "eDP connector", as it's always a custom
+> >>    made connection between the DP and the DP panel. So possibly there is
+> >>    no need for edp-connector binding, but even if there is, I don't want
+> >>    to guess what it could look like, and could it be part of the
+> >>    dp-connector binding.
+> >
+> > I don't think that's true. Do an image search for 'edp pinout'. AFAICT,
+> > there's 2 lane 30 pin and 4 lane 40 pin. One image says 'Table 5-3 in
+> > eDP v1.2'. Of course, I'm sure there's custom ones too. From a binding
+> > perspective, we probably don't care about the differences, but just need
+> > to be able to describe HPD, backlight power, enable, and pwm, and LCD
+> > power.
+>
+> That's true. The eDP spec lists 4 different standard pinouts (how
+> strictly those are followed, I have no idea). But it does not define a
+> connector or a cable. And afaik eDP is defined to be not user-detachable.
 
-Applied to
+Yes, but HPD is still used (or sometimes broken). We could just put
+that all in panel nodes, but IIRC the last time this came up the issue
+was handling devices with different panels stuffed by the
+manufacturer. An eDP connector binding would be one way to handle that
+as it is somewhat standardized while panel connections aren't at all.
 
-   https://git.kernel.org/pub/scm/linux/kernel/git/broonie/sound.git for-next
-
-Thanks!
-
-[1/5] dt-bindings: tas2770: Add shutdown gpio property
-      commit: 29d7b36ce98eb1bfba2c5c9b2ea0d58ff778a2d4
-[2/5] ASoC: tas2770: Add shutdown capability via a GPIO
-      commit: 5d0b9dfe0de26b8c4242145cbf7de3a5a2e98293
-[3/5] ASoC: tas2770: Set regcache when shutting down and waking device
-      commit: c0a30e2e07e35f219666788c8549156eb8d74105
-[4/5] ASoC: tas2770: Remove ti,asi-format code
-      commit: dd7d9052064b4bda94a89dbc1618927319602366
-[5/5] ASoC: tas2770: Remove unused variables
-      commit: 3121420cf9b4db7f2bafcdc0e562f60779bf365d
-
-All being well this means that it will be integrated into the linux-next
-tree (usually sometime in the next 24 hours) and sent to Linus during
-the next merge window (or sooner if it is a bug fix), however if
-problems are discovered then the patch may be dropped or reverted.
-
-You may get further e-mails resulting from automated or manual testing
-and review of the tree, please engage with people reporting problems and
-send followup patches addressing any issues that are reported if needed.
-
-If any updates are required or you are submitting further changes they
-should be sent as incremental updates against current git, existing
-patches will not be replaced.
-
-Please add any relevant lists and maintainers to the CCs when replying
-to this mail.
-
-Thanks,
-Mark
+Rob
