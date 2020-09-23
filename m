@@ -2,118 +2,67 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from vger.kernel.org (vger.kernel.org [23.128.96.18])
-	by mail.lfdr.de (Postfix) with ESMTP id 240E0275278
-	for <lists+devicetree@lfdr.de>; Wed, 23 Sep 2020 09:51:02 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTP id 93EB62752E7
+	for <lists+devicetree@lfdr.de>; Wed, 23 Sep 2020 10:07:03 +0200 (CEST)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S1726130AbgIWHvB (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Wed, 23 Sep 2020 03:51:01 -0400
-Received: from lindbergh.monkeyblade.net ([23.128.96.19]:56800 "EHLO
-        lindbergh.monkeyblade.net" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S1726151AbgIWHvA (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Wed, 23 Sep 2020 03:51:00 -0400
-Received: from metis.ext.pengutronix.de (metis.ext.pengutronix.de [IPv6:2001:67c:670:201:290:27ff:fe1d:cc33])
-        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id BA7CCC0613D1
-        for <devicetree@vger.kernel.org>; Wed, 23 Sep 2020 00:51:00 -0700 (PDT)
-Received: from ptx.hi.pengutronix.de ([2001:67c:670:100:1d::c0])
-        by metis.ext.pengutronix.de with esmtps (TLS1.3:ECDHE_RSA_AES_256_GCM_SHA384:256)
-        (Exim 4.92)
-        (envelope-from <sha@pengutronix.de>)
-        id 1kKzY2-0001VP-LH; Wed, 23 Sep 2020 09:50:42 +0200
-Received: from sha by ptx.hi.pengutronix.de with local (Exim 4.92)
-        (envelope-from <sha@pengutronix.de>)
-        id 1kKzY0-00068p-6f; Wed, 23 Sep 2020 09:50:40 +0200
-Date:   Wed, 23 Sep 2020 09:50:40 +0200
-From:   Sascha Hauer <s.hauer@pengutronix.de>
-To:     Li Jun <jun.li@nxp.com>
-Cc:     robh+dt@kernel.org, shawnguo@kernel.org, balbi@kernel.org,
-        mathias.nyman@intel.com, gregkh@linuxfoundation.org,
-        kernel@pengutronix.de, festevam@gmail.com, linux-imx@nxp.com,
-        Anson.Huang@nxp.com, aisheng.dong@nxp.com, peng.fan@nxp.com,
-        fugang.duan@nxp.com, qiangqing.zhang@nxp.com, horia.geanta@nxp.com,
-        linux-usb@vger.kernel.org, devicetree@vger.kernel.org,
-        linux-arm-kernel@lists.infradead.org
-Subject: Re: [PATCH v3 5/6] arm64: dtsi: imx8mp: add usb nodes
-Message-ID: <20200923075040.GD25328@pengutronix.de>
-References: <1600771612-30727-1-git-send-email-jun.li@nxp.com>
- <1600771612-30727-6-git-send-email-jun.li@nxp.com>
+        id S1726475AbgIWIGx (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Wed, 23 Sep 2020 04:06:53 -0400
+Received: from [115.28.160.31] ([115.28.160.31]:55524 "EHLO
+        mailbox.box.xen0n.name" rhost-flags-FAIL-FAIL-OK-OK)
+        by vger.kernel.org with ESMTP id S1726291AbgIWIGx (ORCPT
+        <rfc822;devicetree@vger.kernel.org>);
+        Wed, 23 Sep 2020 04:06:53 -0400
+Received: from ld50.lan (unknown [101.224.80.228])
+        (using TLSv1.3 with cipher TLS_AES_256_GCM_SHA384 (256/256 bits))
+        (No client certificate requested)
+        by mailbox.box.xen0n.name (Postfix) with ESMTPSA id 08CC660100;
+        Wed, 23 Sep 2020 15:59:33 +0800 (CST)
+DKIM-Signature: v=1; a=rsa-sha256; c=simple/simple; d=xen0n.name; s=mail;
+        t=1600847973; bh=RdT/3QOG4Br9OgJLFVu9nGJQehN8zMNkVAYZ9cEb2xg=;
+        h=From:To:Cc:Subject:Date:From;
+        b=gM2oT93cKTV5EFiY9DCYSYfRA/vzPssIaScwJ//frSh91UVYedZzyvp6Y2t/UQv+x
+         fA1nv7bPiP827YA2AUdUjd2jZSn6JExF6ouSCa0g72ZURPnvBqA3jFErtiLp4SoFqG
+         9r1EKYA6RUHlb5ZEVFx5fqktr8mftanikRbmbXL8=
+From:   WANG Xuerui <git@xen0n.name>
+To:     linux-rtc@vger.kernel.org
+Cc:     WANG Xuerui <git@xen0n.name>, linux-mips@vger.kernel.org,
+        devicetree@vger.kernel.org
+Subject: [PATCH 0/4] rtc: ls2x: Add support for the Loongson-2K/LS7A RTC
+Date:   Wed, 23 Sep 2020 15:58:41 +0800
+Message-Id: <20200923075845.360974-1-git@xen0n.name>
+X-Mailer: git-send-email 2.28.0
 MIME-Version: 1.0
-Content-Type: text/plain; charset=us-ascii
-Content-Disposition: inline
-In-Reply-To: <1600771612-30727-6-git-send-email-jun.li@nxp.com>
-X-Sent-From: Pengutronix Hildesheim
-X-URL:  http://www.pengutronix.de/
-X-IRC:  #ptxdist @freenode
-X-Accept-Language: de,en
-X-Accept-Content-Type: text/plain
-X-Uptime: 09:44:39 up 216 days, 15:15, 146 users,  load average: 0.01, 0.10,
- 0.14
-User-Agent: Mutt/1.10.1 (2018-07-13)
-X-SA-Exim-Connect-IP: 2001:67c:670:100:1d::c0
-X-SA-Exim-Mail-From: sha@pengutronix.de
-X-SA-Exim-Scanned: No (on metis.ext.pengutronix.de); SAEximRunCond expanded to false
-X-PTX-Original-Recipient: devicetree@vger.kernel.org
+Content-Transfer-Encoding: 8bit
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-On Tue, Sep 22, 2020 at 06:46:51PM +0800, Li Jun wrote:
-> imx8mp integrates 2 identical dwc3 based USB3 controllers and
-> Synopsys phys, each instance has additional wakeup logic to
-> support low power mode, so the glue layer need a node with dwc3
-> core sub node.
-> 
-> Signed-off-by: Li Jun <jun.li@nxp.com>
-> ---
->  arch/arm64/boot/dts/freescale/imx8mp.dtsi | 88 +++++++++++++++++++++++++++++++
->  1 file changed, 88 insertions(+)
-> 
-> diff --git a/arch/arm64/boot/dts/freescale/imx8mp.dtsi b/arch/arm64/boot/dts/freescale/imx8mp.dtsi
-> index 9de2aa1..1b7ed4c 100644
-> --- a/arch/arm64/boot/dts/freescale/imx8mp.dtsi
-> +++ b/arch/arm64/boot/dts/freescale/imx8mp.dtsi
-> +		usb3_1: usb@32f10108 {
-> +			compatible = "fsl,imx8mp-dwc3";
-> +			reg = <0x32f10108 0x8>;
-> +			clocks = <&clk IMX8MP_CLK_HSIO_ROOT>,
-> +				 <&clk IMX8MP_CLK_USB_ROOT>;
-> +			clock-names = "hsio", "suspend";
-> +			assigned-clocks = <&clk IMX8MP_CLK_HSIO_AXI_SRC>;
+This patch series adds support for the RTC module found on various
+Loongson systems with the Loongson-2K SoC or the LS7A bridge chip.
+The driver is rewritten from an out-of-tree version to meet mainline
+standards. I write kernel code as a hobby, though, so there might still
+be overlooked issues. Any suggestions are welcome.
 
-In Linux-5.9-rc6 this clock doesn't exist anymore. Should be
-IMX8MP_CLK_HSIO_AXI
+Note when applying this series: the 3rd patch depends on
+commit 262623961478836b from the mips-next tree, so the series should
+preferably go in via mips-next. Otherwise the patch will conflict in the
+merge window anyway.
 
-> +			assigned-clock-parents = <&clk IMX8MP_SYS_PLL2_500M>;
-> +			assigned-clock-rates = <500000000>;
-> +			interrupts = <GIC_SPI 149 IRQ_TYPE_LEVEL_HIGH>;
-> +			#address-cells = <1>;
-> +			#size-cells = <1>;
-> +			ranges;
-> +			status = "disabled";
-> +
-> +			usb_dwc3_1: dwc3@38200000 {
-> +				compatible = "snps,dwc3";
-> +				reg = <0x38200000 0x10000>;
-> +				clocks = <&clk IMX8MP_CLK_HSIO_AXI>,
-> +					 <&clk IMX8MP_CLK_USB_CORE_REF>,
-> +					 <&clk IMX8MP_CLK_USB_ROOT>;
-> +				clock-names = "bus_early", "ref", "suspend";
-> +				assigned-clocks = <&clk IMX8MP_CLK_HSIO_AXI>;
-> +				assigned-clock-parents = <&clk IMX8MP_SYS_PLL2_500M>;
-> +				assigned-clock-rates = <500000000>;
-> +				interrupts = <GIC_SPI 41 IRQ_TYPE_LEVEL_HIGH>;
-> +				phys = <&usb3_phy1>, <&usb3_phy1>;
-> +				phy-names = "usb2-phy", "usb3-phy";
-> +				snps,dis-u2-freeclk-exists-quirk;
-> +				xhci-64bit-support-disable;
-> +				status = "disabled";
+WANG Xuerui (4):
+  rtc: ls2x: Add support for the Loongson-2K/LS7A RTC
+  dt-bindings: rtc: Add bindings for LS2X RTC
+  MIPS: Loongson64: DTS: Add RTC support to LS7A
+  MIPS: Loongson: Enable LS2X RTC in loongson3_defconfig
 
-Does it make sense for a board to enable the parent node and leave this
-one disabled? If not you can drop this status = "disabled" here.
-
-Sascha
+ .../devicetree/bindings/rtc/trivial-rtc.yaml  |   2 +
+ arch/mips/boot/dts/loongson/ls7a-pch.dtsi     |   5 +
+ arch/mips/configs/loongson3_defconfig         |   1 +
+ drivers/rtc/Kconfig                           |  11 +
+ drivers/rtc/Makefile                          |   1 +
+ drivers/rtc/rtc-ls2x.c                        | 225 ++++++++++++++++++
+ 6 files changed, 245 insertions(+)
+ create mode 100644 drivers/rtc/rtc-ls2x.c
 
 -- 
-Pengutronix e.K.                           |                             |
-Steuerwalder Str. 21                       | http://www.pengutronix.de/  |
-31137 Hildesheim, Germany                  | Phone: +49-5121-206917-0    |
-Amtsgericht Hildesheim, HRA 2686           | Fax:   +49-5121-206917-5555 |
+2.28.0
+
