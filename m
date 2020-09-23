@@ -2,83 +2,80 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from vger.kernel.org (vger.kernel.org [23.128.96.18])
-	by mail.lfdr.de (Postfix) with ESMTP id 66BF5276188
-	for <lists+devicetree@lfdr.de>; Wed, 23 Sep 2020 22:00:48 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTP id 6C282276196
+	for <lists+devicetree@lfdr.de>; Wed, 23 Sep 2020 22:02:34 +0200 (CEST)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S1726419AbgIWUAr (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Wed, 23 Sep 2020 16:00:47 -0400
-Received: from mail.kernel.org ([198.145.29.99]:46474 "EHLO mail.kernel.org"
+        id S1726419AbgIWUCd (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Wed, 23 Sep 2020 16:02:33 -0400
+Received: from mail.kernel.org ([198.145.29.99]:47670 "EHLO mail.kernel.org"
         rhost-flags-OK-OK-OK-OK) by vger.kernel.org with ESMTP
-        id S1726381AbgIWUAr (ORCPT <rfc822;devicetree@vger.kernel.org>);
-        Wed, 23 Sep 2020 16:00:47 -0400
-Received: from mail-oo1-f54.google.com (mail-oo1-f54.google.com [209.85.161.54])
+        id S1726381AbgIWUCd (ORCPT <rfc822;devicetree@vger.kernel.org>);
+        Wed, 23 Sep 2020 16:02:33 -0400
+Received: from mail-oo1-f48.google.com (mail-oo1-f48.google.com [209.85.161.48])
         (using TLSv1.2 with cipher ECDHE-RSA-AES128-GCM-SHA256 (128/128 bits))
         (No client certificate requested)
-        by mail.kernel.org (Postfix) with ESMTPSA id F2EC920B1F
-        for <devicetree@vger.kernel.org>; Wed, 23 Sep 2020 20:00:46 +0000 (UTC)
+        by mail.kernel.org (Postfix) with ESMTPSA id 293B82376F;
+        Wed, 23 Sep 2020 20:02:32 +0000 (UTC)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=kernel.org;
-        s=default; t=1600891247;
-        bh=Gyf3GRHsx03XD50x8wGHYRJEPtnKV5W+HBAO5kv+8Xg=;
+        s=default; t=1600891352;
+        bh=Hfj5AJiotfbwQi0kMDqrpWXz9xdg2XtkK2YtPtockBI=;
         h=References:In-Reply-To:From:Date:Subject:To:Cc:From;
-        b=vNGDGr5XPyWyCpHPS7gQg69ywfpZ1T/fwXDA5/4zv7GEe8NnsdAK+VYGgH2N8YshC
-         MJcJ6E8ce1DTvnQynGAyZ9ycsJbUfQciyBG+U6am2QFDdNAWamBwYT7t7ZBeogjoUJ
-         35TeaR1EjU8PSpUq+voB1K+XbdwdBJ31Ni0rUC+s=
-Received: by mail-oo1-f54.google.com with SMTP id g26so180022ooa.9
-        for <devicetree@vger.kernel.org>; Wed, 23 Sep 2020 13:00:46 -0700 (PDT)
-X-Gm-Message-State: AOAM5329VaA8S47KCkLZ4XGy959wjsEJ9a9OCy2jU2hATGQOtcuR6nJ0
-        19gtHsRKcDx7RVBS/OxwK2+ssS0bQa9L86L1ng==
-X-Google-Smtp-Source: ABdhPJz9SgWJjDDrhxnQb5EvlE3t6H/djP9QM1c2osVQ51hJ9LPr6sCjPqg6G9Vkl3ibruZbiRxBqN/D6ltEDzJ/r38=
-X-Received: by 2002:a4a:d38c:: with SMTP id i12mr919233oos.81.1600891246185;
- Wed, 23 Sep 2020 13:00:46 -0700 (PDT)
+        b=CPA4TVx3vS+R9PSYZ9Rg/4PQOffM91B88SzaKWnMX5Z+YAxruNqYhgk+vsf5tEdIC
+         6oKkIgfvpUbMfE5L1ns80Y2fRE+EAtRw5wvzRI9iUC2TWxyIheG92n7xazGiXS6bCP
+         PipsE8pts773ENz+lGaKyitmINzT6D+W4CCPiRdw=
+Received: by mail-oo1-f48.google.com with SMTP id r10so187118oor.5;
+        Wed, 23 Sep 2020 13:02:32 -0700 (PDT)
+X-Gm-Message-State: AOAM5310UVJH9e4vAj0t8WiTdpCV+yGpq51ci+68ebSQLWBX7dGdFFl7
+        Tr8OfWtfkVMM+zcJNLBMCbG2HRCac77oUnaYKA==
+X-Google-Smtp-Source: ABdhPJyo8orKX4m2ejKI3lDZOCiQVidclBviAUSxjSDNv9CpOD2NSnth0Z9GiZENKPHCTtwCRcB3aPJwDChQhgeOYXs=
+X-Received: by 2002:a4a:d306:: with SMTP id g6mr948766oos.25.1600891351344;
+ Wed, 23 Sep 2020 13:02:31 -0700 (PDT)
 MIME-Version: 1.0
-References: <20200917055210.22868-1-tomi.valkeinen@ti.com> <20200923161712.GA836725@bogus>
- <04d93618-12b1-d8f5-ece5-0f87e644d52e@ti.com>
-In-Reply-To: <04d93618-12b1-d8f5-ece5-0f87e644d52e@ti.com>
+References: <20200916104135.25085-1-stephan@gerhold.net> <20200916104135.25085-6-stephan@gerhold.net>
+ <20200923153548.GA789614@bogus> <20200923155018.GA87584@gerhold.net>
+In-Reply-To: <20200923155018.GA87584@gerhold.net>
 From:   Rob Herring <robh@kernel.org>
-Date:   Wed, 23 Sep 2020 14:00:34 -0600
-X-Gmail-Original-Message-ID: <CAL_Jsq+q4JVs=e2kueCATXLw00FWL=nx_eqCTj5ANHkESD8uTg@mail.gmail.com>
-Message-ID: <CAL_Jsq+q4JVs=e2kueCATXLw00FWL=nx_eqCTj5ANHkESD8uTg@mail.gmail.com>
-Subject: Re: [PATCHv2] dt-bindings: dp-connector: add binding for DisplayPort connector
-To:     Tomi Valkeinen <tomi.valkeinen@ti.com>
-Cc:     dri-devel <dri-devel@lists.freedesktop.org>,
-        devicetree@vger.kernel.org, David Airlie <airlied@linux.ie>,
-        Daniel Vetter <daniel@ffwll.ch>,
-        Laurent Pinchart <laurent.pinchart@ideasonboard.com>,
-        Andrzej Hajda <a.hajda@samsung.com>,
-        Neil Armstrong <narmstrong@baylibre.com>,
-        Swapnil Kashinath Jakhade <sjakhade@cadence.com>
+Date:   Wed, 23 Sep 2020 14:02:19 -0600
+X-Gmail-Original-Message-ID: <CAL_Jsq+Z=g7GfuRqwpPAwKDWXrOnCEe4M_UjaeNPfUMSmKpBZQ@mail.gmail.com>
+Message-ID: <CAL_Jsq+Z=g7GfuRqwpPAwKDWXrOnCEe4M_UjaeNPfUMSmKpBZQ@mail.gmail.com>
+Subject: Re: [PATCH 05/10] dt-bindings: remoteproc: qcom,q6v5: Deprecate
+ regulators for PDs
+To:     Stephan Gerhold <stephan@gerhold.net>
+Cc:     Bjorn Andersson <bjorn.andersson@linaro.org>,
+        Andy Gross <agross@kernel.org>,
+        Ohad Ben-Cohen <ohad@wizery.com>,
+        Rajendra Nayak <rnayak@codeaurora.org>,
+        linux-arm-msm <linux-arm-msm@vger.kernel.org>,
+        devicetree@vger.kernel.org,
+        "open list:REMOTE PROCESSOR (REMOTEPROC) SUBSYSTEM" 
+        <linux-remoteproc@vger.kernel.org>,
+        ~postmarketos/upstreaming@lists.sr.ht
 Content-Type: text/plain; charset="UTF-8"
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-On Wed, Sep 23, 2020 at 11:15 AM Tomi Valkeinen <tomi.valkeinen@ti.com> wrote:
+On Wed, Sep 23, 2020 at 9:51 AM Stephan Gerhold <stephan@gerhold.net> wrote:
 >
-> Hi Rob,
->
-> On 23/09/2020 19:17, Rob Herring wrote:
->
-> >> * No eDP. There's really no "eDP connector", as it's always a custom
-> >>    made connection between the DP and the DP panel. So possibly there is
-> >>    no need for edp-connector binding, but even if there is, I don't want
-> >>    to guess what it could look like, and could it be part of the
-> >>    dp-connector binding.
+> On Wed, Sep 23, 2020 at 09:35:48AM -0600, Rob Herring wrote:
+> > On Wed, Sep 16, 2020 at 12:41:30PM +0200, Stephan Gerhold wrote:
+> > > Newer platforms vote for necessary power domains through the power
+> > > domain subsystem. For historical reasons older platforms like MSM8916
+> > > or MSM8974 still control these as regulators.
 > >
-> > I don't think that's true. Do an image search for 'edp pinout'. AFAICT,
-> > there's 2 lane 30 pin and 4 lane 40 pin. One image says 'Table 5-3 in
-> > eDP v1.2'. Of course, I'm sure there's custom ones too. From a binding
-> > perspective, we probably don't care about the differences, but just need
-> > to be able to describe HPD, backlight power, enable, and pwm, and LCD
-> > power.
+> > Do you plan to change these platforms? If not then I wouldn't really
+> > call this deprecated.
+> >
 >
-> That's true. The eDP spec lists 4 different standard pinouts (how
-> strictly those are followed, I have no idea). But it does not define a
-> connector or a cable. And afaik eDP is defined to be not user-detachable.
+> Yes, MSM8916 is changed as part of this patch series.
+>
+> It should also be done for MSM8974, but because I don't have any test
+> devices with it I'm not able to do it myself.
+>
+> Actually the old binding likely works only because of other side effects
+> (other drivers voting for the same resources), so I personally I would
+> definitely call it deprecated.
 
-Yes, but HPD is still used (or sometimes broken). We could just put
-that all in panel nodes, but IIRC the last time this came up the issue
-was handling devices with different panels stuffed by the
-manufacturer. An eDP connector binding would be one way to handle that
-as it is somewhat standardized while panel connections aren't at all.
+Okay.
 
-Rob
+Reviewed-by: Rob Herring <robh@kernel.org>
