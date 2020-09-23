@@ -2,74 +2,50 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from vger.kernel.org (vger.kernel.org [23.128.96.18])
-	by mail.lfdr.de (Postfix) with ESMTP id 12A062762AC
-	for <lists+devicetree@lfdr.de>; Wed, 23 Sep 2020 23:01:04 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTP id DDA512762B5
+	for <lists+devicetree@lfdr.de>; Wed, 23 Sep 2020 23:02:24 +0200 (CEST)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S1726460AbgIWVBC (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Wed, 23 Sep 2020 17:01:02 -0400
-Received: from mail-io1-f66.google.com ([209.85.166.66]:34890 "EHLO
-        mail-io1-f66.google.com" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S1726381AbgIWVBC (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Wed, 23 Sep 2020 17:01:02 -0400
-Received: by mail-io1-f66.google.com with SMTP id r9so1042797ioa.2;
-        Wed, 23 Sep 2020 14:01:01 -0700 (PDT)
-X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=1e100.net; s=20161025;
-        h=x-gm-message-state:date:from:to:cc:subject:message-id:references
-         :mime-version:content-disposition:in-reply-to;
-        bh=Mg90ElUtiZesMw1UUe+/w2NeHYCEFaTIe1YGqzCbx7Y=;
-        b=Hdj1Q6sfh8aWKZTroFaIm8EDCqc1FvIo7wyqMmgg7rKEYUaby7j+JsjoEjmzEOHUvh
-         q/R43lmCN8TGg4lpS0uWcYGt8Wj1sqRUIE08wNSCjdwwbkdzmQccCzoT3jucGEb+Lyev
-         No25QHXa4pgHjLokdmOpAK/x1HiIUYG0vaobQRJo41+tNYbdbdmnX2TydHs6rJPeytTR
-         iqDwV15MwCiv6i8nKiIHLDZBUYaRXlpmX7GMvuefu8Kg26+ajyQhePV47oZbkW2/ifHY
-         exa0SguT5ef/UgI/+xJBPnN3CBlp4g7d9hZJLqU4l3vLxrXvFEbzHnc4exNrnjdrybT/
-         pp6A==
-X-Gm-Message-State: AOAM531klaSAzYq85x9SeQZ8JVPsRnWFXXfVpCpwbOdqzXXlz6/KbfJM
-        F6kCm0dZo1su7OuUiDrUMQ==
-X-Google-Smtp-Source: ABdhPJy2JsWYXI/YLqkuIPMOoF3F5q8pl7grjT3yFAYPqRbXSDesdobyBdbksEcQnTaMM5Ct55J6HA==
-X-Received: by 2002:a02:91c5:: with SMTP id s5mr1022369jag.133.1600894861563;
-        Wed, 23 Sep 2020 14:01:01 -0700 (PDT)
-Received: from xps15 ([64.188.179.253])
-        by smtp.gmail.com with ESMTPSA id y8sm392518iln.17.2020.09.23.14.01.00
-        (version=TLS1_3 cipher=TLS_AES_256_GCM_SHA384 bits=256/256);
-        Wed, 23 Sep 2020 14:01:00 -0700 (PDT)
-Received: (nullmailer pid 1300598 invoked by uid 1000);
-        Wed, 23 Sep 2020 21:00:59 -0000
-Date:   Wed, 23 Sep 2020 15:00:59 -0600
-From:   Rob Herring <robh@kernel.org>
-To:     Zhen Lei <thunder.leizhen@huawei.com>
-Cc:     linux-arm-kernel <linux-arm-kernel@lists.infradead.org>,
-        Thomas Gleixner <tglx@linutronix.de>,
-        Andrew Morton <akpm@linux-foundation.org>,
-        linux-kernel <linux-kernel@vger.kernel.org>,
-        Catalin Marinas <catalin.marinas@arm.com>,
-        Kefeng Wang <wangkefeng.wang@huawei.com>,
-        Haojian Zhuang <haojian.zhuang@linaro.org>,
-        devicetree <devicetree@vger.kernel.org>,
-        Daniel Lezcano <daniel.lezcano@linaro.org>,
-        Russell King <rmk+kernel@armlinux.org.uk>,
-        Libin <huawei.libin@huawei.com>
-Subject: Re: [PATCH 1/1] dt-bindings: sp804: add support for Hisilicon sp804
- timer
-Message-ID: <20200923210059.GA1300521@bogus>
-References: <20200919124412.4135-1-thunder.leizhen@huawei.com>
- <20200919124412.4135-2-thunder.leizhen@huawei.com>
-MIME-Version: 1.0
-Content-Type: text/plain; charset=us-ascii
-Content-Disposition: inline
-In-Reply-To: <20200919124412.4135-2-thunder.leizhen@huawei.com>
+        id S1726699AbgIWVCX (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Wed, 23 Sep 2020 17:02:23 -0400
+Received: from mail-il-dmz.mellanox.com ([193.47.165.129]:49987 "EHLO
+        mellanox.co.il" rhost-flags-OK-OK-OK-FAIL) by vger.kernel.org
+        with ESMTP id S1726691AbgIWVCX (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Wed, 23 Sep 2020 17:02:23 -0400
+Received: from Internal Mail-Server by MTLPINE1 (envelope-from vadimp@nvidia.com)
+        with SMTP; 24 Sep 2020 00:02:17 +0300
+Received: from r-build-lowlevel.mtr.labs.mlnx. (r-build-lowlevel.mtr.labs.mlnx [10.209.0.190])
+        by labmailer.mlnx (8.13.8/8.13.8) with ESMTP id 08NL2HuV021540;
+        Thu, 24 Sep 2020 00:02:17 +0300
+From:   Vadim Pasternak <vadimp@nvidia.com>
+To:     linux@roeck-us.net, robh+dt@kernel.org
+Cc:     linux-hwmon@vger.kernel.org, devicetree@vger.kernel.org,
+        Vadim Pasternak <vadimp@nvidia.com>
+Subject: [PATCH hwmon-next v3 0/2] hwmon: (pmbus) Add support for MPS mp2975 controller
+Date:   Thu, 24 Sep 2020 00:02:11 +0300
+Message-Id: <20200923210213.15462-1-vadimp@nvidia.com>
+X-Mailer: git-send-email 2.11.0
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-On Sat, 19 Sep 2020 20:44:12 +0800, Zhen Lei wrote:
-> Some Hisilicon SoCs, such as Hi1212, use the Hisilicon extended sp804
-> timer.
-> 
-> Signed-off-by: Zhen Lei <thunder.leizhen@huawei.com>
-> ---
->  Documentation/devicetree/bindings/timer/arm,sp804.yaml | 11 +++++++++--
->  1 file changed, 9 insertions(+), 2 deletions(-)
-> 
+The patchset includes:
+Patch #1 - introduction of the driver for mp2975 device,
+	   documentation for mp2975 device driver.
+Patch #2 - extending of binding documentation for trivial devices.
 
-Applied, thanks!
+Vadim Pasternak (2):
+  hwmon: (pmbus) Add support for MPS Multi-phase mp2975 controller
+  dt-bindings: Add MP2975 voltage regulator device
+
+ .../devicetree/bindings/trivial-devices.yaml       |   2 +
+ Documentation/hwmon/mp2975.rst                     | 116 +++
+ drivers/hwmon/pmbus/Kconfig                        |   9 +
+ drivers/hwmon/pmbus/Makefile                       |   1 +
+ drivers/hwmon/pmbus/mp2975.c                       | 812 +++++++++++++++++++++
+ 5 files changed, 940 insertions(+)
+ create mode 100644 Documentation/hwmon/mp2975.rst
+ create mode 100644 drivers/hwmon/pmbus/mp2975.c
+
+-- 
+2.11.0
+
