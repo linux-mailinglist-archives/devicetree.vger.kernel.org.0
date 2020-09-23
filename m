@@ -2,219 +2,227 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from vger.kernel.org (vger.kernel.org [23.128.96.18])
-	by mail.lfdr.de (Postfix) with ESMTP id 277BE275B8D
-	for <lists+devicetree@lfdr.de>; Wed, 23 Sep 2020 17:22:04 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTP id 9737C275BB9
+	for <lists+devicetree@lfdr.de>; Wed, 23 Sep 2020 17:24:50 +0200 (CEST)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S1726799AbgIWPWD (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Wed, 23 Sep 2020 11:22:03 -0400
-Received: from mail.kernel.org ([198.145.29.99]:41472 "EHLO mail.kernel.org"
-        rhost-flags-OK-OK-OK-OK) by vger.kernel.org with ESMTP
-        id S1726156AbgIWPWC (ORCPT <rfc822;devicetree@vger.kernel.org>);
-        Wed, 23 Sep 2020 11:22:02 -0400
-Received: from localhost.localdomain (unknown [194.230.155.191])
-        (using TLSv1.2 with cipher ECDHE-RSA-AES128-GCM-SHA256 (128/128 bits))
-        (No client certificate requested)
-        by mail.kernel.org (Postfix) with ESMTPSA id 4AE3021D7D;
-        Wed, 23 Sep 2020 15:21:56 +0000 (UTC)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=kernel.org;
-        s=default; t=1600874522;
-        bh=tH7mX2uiDbk528V//LDqIJ+cbqxHanIdBiyIEHFK1RI=;
-        h=From:To:Subject:Date:In-Reply-To:References:From;
-        b=puPPJBBj9n7wgb77YhUNAoCQeBAPQvpu54QNBSNwZcR5EznlCkROqhTYqS+OQGXGK
-         1LFrXTI7Ljbp9xVEvnsNfR+1T+VeutZUM303oqGE2ZLapjX32jF8oY3Zw9iM37Ewza
-         DPCo1Q8+2Cr7CGidaKauX3/qOAo6II5bJH4pQ0R8=
-From:   Krzysztof Kozlowski <krzk@kernel.org>
-To:     Sakari Ailus <sakari.ailus@linux.intel.com>,
-        Mauro Carvalho Chehab <mchehab@kernel.org>,
-        Rob Herring <robh+dt@kernel.org>,
-        Shawn Guo <shawnguo@kernel.org>,
-        Sascha Hauer <s.hauer@pengutronix.de>,
-        Pengutronix Kernel Team <kernel@pengutronix.de>,
-        Fabio Estevam <festevam@gmail.com>,
-        NXP Linux Team <linux-imx@nxp.com>,
-        Krzysztof Kozlowski <krzk@kernel.org>,
-        linux-media@vger.kernel.org, devicetree@vger.kernel.org,
-        linux-arm-kernel@lists.infradead.org, linux-kernel@vger.kernel.org
-Subject: [PATCH v4 4/4] media: i2c: imx258: get clock from device properties and enable it via runtime PM
-Date:   Wed, 23 Sep 2020 17:21:29 +0200
-Message-Id: <20200923152129.21736-4-krzk@kernel.org>
-X-Mailer: git-send-email 2.17.1
-In-Reply-To: <20200923152129.21736-1-krzk@kernel.org>
-References: <20200923152129.21736-1-krzk@kernel.org>
+        id S1726844AbgIWPYh (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Wed, 23 Sep 2020 11:24:37 -0400
+Received: from lhrrgout.huawei.com ([185.176.76.210]:2915 "EHLO huawei.com"
+        rhost-flags-OK-OK-OK-FAIL) by vger.kernel.org with ESMTP
+        id S1726703AbgIWPYh (ORCPT <rfc822;devicetree@vger.kernel.org>);
+        Wed, 23 Sep 2020 11:24:37 -0400
+Received: from lhreml710-chm.china.huawei.com (unknown [172.18.7.106])
+        by Forcepoint Email with ESMTP id 204A9E9A6D34B297EF64;
+        Wed, 23 Sep 2020 16:24:35 +0100 (IST)
+Received: from localhost (10.52.124.240) by lhreml710-chm.china.huawei.com
+ (10.201.108.61) with Microsoft SMTP Server (version=TLS1_2,
+ cipher=TLS_ECDHE_RSA_WITH_AES_128_GCM_SHA256) id 15.1.1913.5; Wed, 23 Sep
+ 2020 16:24:34 +0100
+Date:   Wed, 23 Sep 2020 16:22:54 +0100
+From:   Jonathan Cameron <Jonathan.Cameron@Huawei.com>
+To:     Rob Herring <robh@kernel.org>
+CC:     Dmitry Baryshkov <dmitry.baryshkov@linaro.org>,
+        Andy Gross <agross@kernel.org>,
+        Bjorn Andersson <bjorn.andersson@linaro.org>,
+        "Zhang Rui" <rui.zhang@intel.com>,
+        Daniel Lezcano <daniel.lezcano@linaro.org>,
+        "Amit Kucheria" <amitk@kernel.org>,
+        Jonathan Cameron <jic23@kernel.org>,
+        "Hartmut Knaack" <knaack.h@gmx.de>,
+        Lars-Peter Clausen <lars@metafoo.de>,
+        "Peter Meerwald-Stadler" <pmeerw@pmeerw.net>,
+        linux-arm-msm <linux-arm-msm@vger.kernel.org>,
+        "open list:THERMAL" <linux-pm@vger.kernel.org>,
+        <devicetree@vger.kernel.org>,
+        "open list:IIO SUBSYSTEM AND DRIVERS" <linux-iio@vger.kernel.org>,
+        Manivannan Sadhasivam <manivannan.sadhasivam@linaro.org>
+Subject: Re: [PATCH v5 1/9] dt-bindings: thermal: qcom: add adc-thermal
+ monitor bindings
+Message-ID: <20200923162254.00003ebb@Huawei.com>
+In-Reply-To: <CAL_JsqK+Obxpy+Zd-3g8BN2h++S413=8V_ff1A2j91Cqc6RnDQ@mail.gmail.com>
+References: <20200914154809.192174-1-dmitry.baryshkov@linaro.org>
+        <20200914154809.192174-2-dmitry.baryshkov@linaro.org>
+        <20200922234025.GA3476652@bogus>
+        <55d3f181-b9e6-4963-9d0c-cefee875058c@linaro.org>
+        <CAL_JsqK+Obxpy+Zd-3g8BN2h++S413=8V_ff1A2j91Cqc6RnDQ@mail.gmail.com>
+Organization: Huawei Technologies Research and Development (UK) Ltd.
+X-Mailer: Claws Mail 3.17.4 (GTK+ 2.24.32; i686-w64-mingw32)
+MIME-Version: 1.0
+Content-Type: text/plain; charset="US-ASCII"
+Content-Transfer-Encoding: 7bit
+X-Originating-IP: [10.52.124.240]
+X-ClientProxiedBy: lhreml751-chm.china.huawei.com (10.201.108.201) To
+ lhreml710-chm.china.huawei.com (10.201.108.61)
+X-CFilter-Loop: Reflected
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-The IMX258 sensor driver checked in device properties for a
-clock-frequency property which actually does not mean that the clock is
-really running such frequency or is it even enabled.
+On Wed, 23 Sep 2020 08:00:29 -0600
+Rob Herring <robh@kernel.org> wrote:
 
-Get the provided clock and check it frequency.  If none is provided,
-fall back to old property.
+> On Wed, Sep 23, 2020 at 3:07 AM Dmitry Baryshkov
+> <dmitry.baryshkov@linaro.org> wrote:
+> >
+> > On 23/09/2020 02:40, Rob Herring wrote:  
+> > > On Mon, Sep 14, 2020 at 06:48:01PM +0300, Dmitry Baryshkov wrote:  
+> > >> Add bindings for thermal monitor, part of Qualcomm PMIC5 chips. It is a
+> > >> close counterpart of VADC part of those PMICs.
+> > >>
+> > >> Signed-off-by: Dmitry Baryshkov <dmitry.baryshkov@linaro.org>
+> > >> Reviewed-by: Jonathan Cameron <Jonathan.Cameron@huawei.com>
+> > >> ---
+> > >>   .../bindings/thermal/qcom-spmi-adc-tm5.yaml   | 151 ++++++++++++++++++
+> > >>   1 file changed, 151 insertions(+)
+> > >>   create mode 100644 Documentation/devicetree/bindings/thermal/qcom-spmi-adc-tm5.yaml
+> > >>
+> > >> diff --git a/Documentation/devicetree/bindings/thermal/qcom-spmi-adc-tm5.yaml b/Documentation/devicetree/bindings/thermal/qcom-spmi-adc-tm5.yaml
+> > >> new file mode 100644
+> > >> index 000000000000..432a65839b89
+> > >> --- /dev/null
+> > >> +++ b/Documentation/devicetree/bindings/thermal/qcom-spmi-adc-tm5.yaml
+> > >> @@ -0,0 +1,151 @@
+> > >> +# SPDX-License-Identifier: (GPL-2.0 OR BSD-2-Clause)
+> > >> +%YAML 1.2
+> > >> +---
+> > >> +$id: http://devicetree.org/schemas/thermal/qcom-spmi-adc-tm5.yaml#
+> > >> +$schema: http://devicetree.org/meta-schemas/core.yaml#
+> > >> +
+> > >> +title: Qualcomm's SPMI PMIC ADC Thermal Monitoring
+> > >> +maintainers:
+> > >> +  - Dmitry Baryshkov <dmitry.baryshkov@linaro.org>
+> > >> +
+> > >> +properties:
+> > >> +  compatible:
+> > >> +    const: qcom,spmi-adc-tm5
+> > >> +
+> > >> +  reg:
+> > >> +    maxItems: 1
+> > >> +
+> > >> +  interrupts:
+> > >> +    maxItems: 1
+> > >> +
+> > >> +  "#thermal-sensor-cells":
+> > >> +    const: 1
+> > >> +    description:
+> > >> +      Number of cells required to uniquely identify the thermal sensors. Since
+> > >> +      we have multiple sensors this is set to 1
+> > >> +
+> > >> +  "#address-cells":
+> > >> +    const: 1
+> > >> +
+> > >> +  "#size-cells":
+> > >> +    const: 0
+> > >> +
+> > >> +  qcom,avg-samples:
+> > >> +    $ref: /schemas/types.yaml#/definitions/uint32
+> > >> +    description: Number of samples to be used for measurement.
+> > >> +    enum:
+> > >> +      - 1
+> > >> +      - 2
+> > >> +      - 4
+> > >> +      - 8
+> > >> +      - 16
+> > >> +    default: 1
+> > >> +
+> > >> +  qcom,decimation:
+> > >> +    $ref: /schemas/types.yaml#/definitions/uint32
+> > >> +    description: This parameter is used to decrease ADC sampling rate.
+> > >> +            Quicker measurements can be made by reducing decimation ratio.
+> > >> +    enum:
+> > >> +      - 250
+> > >> +      - 420
+> > >> +      - 840
+> > >> +    default: 840
+> > >> +
+> > >> +patternProperties:
+> > >> +  "^([-a-z0-9]*)@[0-9]+$":  
+> > >
+> > > Less than 10 as unit-addresses are hex?  
+> >
+> > 8 channels at max currently. I'll fix to use hex though.  
+> 
+> Then it should be @[0-7]$
+> 
+> > >> +    type: object
+> > >> +    description:
+> > >> +      Represent one thermal sensor.
+> > >> +
+> > >> +    properties:
+> > >> +      reg:
+> > >> +        description: Specify the sensor channel.
+> > >> +        maxItems: 1  
+> > >
+> > > You need a range of values here.  
+> >
+> > ok.
+> >  
+> > >  
+> > >> +
+> > >> +      io-channels:
+> > >> +        description:
+> > >> +          From common IIO binding. Used to pipe PMIC ADC channel to thermal monitor
+> > >> +
+> > >> +      qcom,adc-channel:
+> > >> +        $ref: /schemas/types.yaml#/definitions/uint32
+> > >> +        description: Corresponding ADC channel ID.  
+> > >
+> > > Why is this not a cell in io-channels?  
+> >
+> >
+> > Do you mean parsing a cell from io-channels rather than specifying it
+> > again? Sounds like a good idea.  
+> 
+> Yes.
+> 
+> > >> +      qcom,ratiometric:
+> > >> +        $ref: /schemas/types.yaml#/definitions/flag
+> > >> +        description:
+> > >> +          Channel calibration type.
+> > >> +          If this property is specified VADC will use the VDD reference
+> > >> +          (1.875V) and GND for channel calibration. If property is not found,
+> > >> +          channel will be calibrated with 0V and 1.25V reference channels,
+> > >> +          also known as absolute calibration.
+> > >> +
+> > >> +      qcom,hw-settle-time:
+> > >> +        $ref: /schemas/types.yaml#/definitions/uint32
+> > >> +        description: Time between AMUX getting configured and the ADC starting conversion.  
+> > >
+> > > Time values should have a unit suffix. Seems like a commmon ADC
+> > > property...  
+> >
+> > Could you please be more specific here? Would you like for me to just
+> > specify the unit in the description?  
+> 
+> More a question for Jonathan I guess as to whether this should be
+> common or not. Maybe we have something already. Settle or acquisition
+> time is a common thing for ADCs, right?
 
-Enable the clock when accessing the IMX258 registers and when streaming
-starts with runtime PM.
+It's not common in my experience, but not unheard of.
+Only cases currently supporting controlling it explicitly in the
+kernel that I can spot, are currently all qcom parts
+(I'd guess they are all using the same IP underneath)
 
-Signed-off-by: Krzysztof Kozlowski <krzk@kernel.org>
+I think it is usually it's a case of building your analog
+circuitry to match the spec of your ADC / MUX rather than
+relaxing that spec by adding a delay.
 
----
+It's a property with obvious enough meaning though that I
+wouldn't have a problem with it being a generic property even
+it is one that doesn't actually get used much.
 
-Changes since v3:
-1. None
+> 
+> Properties with units need a suffix as defined in
+> .../bindings/property-units.txt.
 
-Changes since v2:
-1. Do not try to set drvdata, wrap lines.
-2. Use dev_dbg.
+We have a bunch of legacy bindings that don't have units but
+all new ones certainly should!
 
-Changes since v1:
-1. Use runtime PM for clock toggling
----
- drivers/media/i2c/imx258.c | 71 +++++++++++++++++++++++++++++++++-----
- 1 file changed, 62 insertions(+), 9 deletions(-)
+Thanks,
 
-diff --git a/drivers/media/i2c/imx258.c b/drivers/media/i2c/imx258.c
-index ae183b0dbba9..7bedbfe5c4d6 100644
---- a/drivers/media/i2c/imx258.c
-+++ b/drivers/media/i2c/imx258.c
-@@ -2,6 +2,7 @@
- // Copyright (C) 2018 Intel Corporation
- 
- #include <linux/acpi.h>
-+#include <linux/clk.h>
- #include <linux/delay.h>
- #include <linux/i2c.h>
- #include <linux/module.h>
-@@ -68,6 +69,9 @@
- #define REG_CONFIG_MIRROR_FLIP		0x03
- #define REG_CONFIG_FLIP_TEST_PATTERN	0x02
- 
-+/* Input clock frequency in Hz */
-+#define IMX258_INPUT_CLOCK_FREQ		19200000
-+
- struct imx258_reg {
- 	u16 address;
- 	u8 val;
-@@ -610,6 +614,8 @@ struct imx258 {
- 
- 	/* Streaming on/off */
- 	bool streaming;
-+
-+	struct clk *clk;
- };
- 
- static inline struct imx258 *to_imx258(struct v4l2_subdev *_sd)
-@@ -972,6 +978,29 @@ static int imx258_stop_streaming(struct imx258 *imx258)
- 	return 0;
- }
- 
-+static int imx258_power_on(struct device *dev)
-+{
-+	struct v4l2_subdev *sd = dev_get_drvdata(dev);
-+	struct imx258 *imx258 = to_imx258(sd);
-+	int ret;
-+
-+	ret = clk_prepare_enable(imx258->clk);
-+	if (ret)
-+		dev_err(dev, "failed to enable clock\n");
-+
-+	return ret;
-+}
-+
-+static int imx258_power_off(struct device *dev)
-+{
-+	struct v4l2_subdev *sd = dev_get_drvdata(dev);
-+	struct imx258 *imx258 = to_imx258(sd);
-+
-+	clk_disable_unprepare(imx258->clk);
-+
-+	return 0;
-+}
-+
- static int imx258_set_stream(struct v4l2_subdev *sd, int enable)
- {
- 	struct imx258 *imx258 = to_imx258(sd);
-@@ -1199,9 +1228,28 @@ static int imx258_probe(struct i2c_client *client)
- 	int ret;
- 	u32 val = 0;
- 
--	device_property_read_u32(&client->dev, "clock-frequency", &val);
--	if (val != 19200000)
--		return -EINVAL;
-+	imx258 = devm_kzalloc(&client->dev, sizeof(*imx258), GFP_KERNEL);
-+	if (!imx258)
-+		return -ENOMEM;
-+
-+	imx258->clk = devm_clk_get_optional(&client->dev, NULL);
-+	if (!imx258->clk) {
-+		dev_dbg(&client->dev,
-+			"no clock provided, using clock-frequency property\n");
-+
-+		device_property_read_u32(&client->dev, "clock-frequency", &val);
-+		if (val != IMX258_INPUT_CLOCK_FREQ)
-+			return -EINVAL;
-+	} else if (IS_ERR(imx258->clk)) {
-+		return dev_err_probe(&client->dev, PTR_ERR(imx258->clk),
-+				     "error getting clock\n");
-+	} else {
-+		if (clk_get_rate(imx258->clk) != IMX258_INPUT_CLOCK_FREQ) {
-+			dev_err(&client->dev,
-+				"input clock frequency not supported\n");
-+			return -EINVAL;
-+		}
-+	}
- 
- 	/*
- 	 * Check that the device is mounted upside down. The driver only
-@@ -1211,24 +1259,25 @@ static int imx258_probe(struct i2c_client *client)
- 	if (ret || val != 180)
- 		return -EINVAL;
- 
--	imx258 = devm_kzalloc(&client->dev, sizeof(*imx258), GFP_KERNEL);
--	if (!imx258)
--		return -ENOMEM;
--
- 	/* Initialize subdev */
- 	v4l2_i2c_subdev_init(&imx258->sd, client, &imx258_subdev_ops);
- 
-+	/* Will be powered off via pm_runtime_idle */
-+	ret = imx258_power_on(&client->dev);
-+	if (ret)
-+		return ret;
-+
- 	/* Check module identity */
- 	ret = imx258_identify_module(imx258);
- 	if (ret)
--		return ret;
-+		goto error_identify;
- 
- 	/* Set default mode to max resolution */
- 	imx258->cur_mode = &supported_modes[0];
- 
- 	ret = imx258_init_controls(imx258);
- 	if (ret)
--		return ret;
-+		goto error_identify;
- 
- 	/* Initialize subdev */
- 	imx258->sd.internal_ops = &imx258_internal_ops;
-@@ -1258,6 +1307,9 @@ static int imx258_probe(struct i2c_client *client)
- error_handler_free:
- 	imx258_free_controls(imx258);
- 
-+error_identify:
-+	imx258_power_off(&client->dev);
-+
- 	return ret;
- }
- 
-@@ -1278,6 +1330,7 @@ static int imx258_remove(struct i2c_client *client)
- 
- static const struct dev_pm_ops imx258_pm_ops = {
- 	SET_SYSTEM_SLEEP_PM_OPS(imx258_suspend, imx258_resume)
-+	SET_RUNTIME_PM_OPS(imx258_power_off, imx258_power_on, NULL)
- };
- 
- #ifdef CONFIG_ACPI
--- 
-2.17.1
+Jonathan
+
+> 
+> Rob
+
 
