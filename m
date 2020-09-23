@@ -2,179 +2,69 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from vger.kernel.org (vger.kernel.org [23.128.96.18])
-	by mail.lfdr.de (Postfix) with ESMTP id BB363274E42
-	for <lists+devicetree@lfdr.de>; Wed, 23 Sep 2020 03:15:04 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTP id 1BEBD274E4C
+	for <lists+devicetree@lfdr.de>; Wed, 23 Sep 2020 03:27:22 +0200 (CEST)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S1726643AbgIWBO6 (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Tue, 22 Sep 2020 21:14:58 -0400
-Received: from fllv0016.ext.ti.com ([198.47.19.142]:39534 "EHLO
-        fllv0016.ext.ti.com" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S1726548AbgIWBO5 (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Tue, 22 Sep 2020 21:14:57 -0400
-Received: from lelv0266.itg.ti.com ([10.180.67.225])
-        by fllv0016.ext.ti.com (8.15.2/8.15.2) with ESMTP id 08N1EtHk066667;
-        Tue, 22 Sep 2020 20:14:55 -0500
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=ti.com;
-        s=ti-com-17Q1; t=1600823695;
-        bh=wcSWEBmH5x1ltGxwEa7htad4Yz2JjO8aFqarvE2rOQI=;
-        h=Subject:To:CC:References:From:Date:In-Reply-To;
-        b=yXUvEOfn/ErtQDmh8GU1GtIqjt4Aq9e+sOV/Qxhg29ng5LnZsTuopTOcbp2vSbPuL
-         6S4tOq916GMltAHD8BWkYBl/aIOq3iUEwT4vUq3x7uI1TL/8E0qzZPK1D6YOpTIJVh
-         BgV9OqDwyXbeyv9/PziAecUvrvSmESRaOwEeKi4g=
-Received: from DFLE108.ent.ti.com (dfle108.ent.ti.com [10.64.6.29])
-        by lelv0266.itg.ti.com (8.15.2/8.15.2) with ESMTPS id 08N1Etoi040566
-        (version=TLSv1.2 cipher=AES256-GCM-SHA384 bits=256 verify=FAIL);
-        Tue, 22 Sep 2020 20:14:55 -0500
-Received: from DFLE103.ent.ti.com (10.64.6.24) by DFLE108.ent.ti.com
- (10.64.6.29) with Microsoft SMTP Server (version=TLS1_2,
- cipher=TLS_ECDHE_RSA_WITH_AES_128_CBC_SHA256_P256) id 15.1.1979.3; Tue, 22
- Sep 2020 20:14:55 -0500
-Received: from fllv0039.itg.ti.com (10.64.41.19) by DFLE103.ent.ti.com
- (10.64.6.24) with Microsoft SMTP Server (version=TLS1_2,
- cipher=TLS_ECDHE_RSA_WITH_AES_128_CBC_SHA256_P256) id 15.1.1979.3 via
- Frontend Transport; Tue, 22 Sep 2020 20:14:54 -0500
-Received: from [10.250.32.225] (ileax41-snat.itg.ti.com [10.172.224.153])
-        by fllv0039.itg.ti.com (8.15.2/8.15.2) with ESMTP id 08N1Esp0034162;
-        Tue, 22 Sep 2020 20:14:54 -0500
-Subject: Re: [EXTERNAL] Re: [PATCH v3 1/2] dt-bindings: power: Add the bq256xx
- dt bindings
-To:     Dan Murphy <dmurphy@ti.com>, Rob Herring <robh@kernel.org>
-CC:     <sre@kernel.org>, <linux-pm@vger.kernel.org>,
-        <devicetree@vger.kernel.org>, <linux-kernel@vger.kernel.org>
-References: <20200910164534.16987-1-r-rivera-matos@ti.com>
- <20200910164534.16987-2-r-rivera-matos@ti.com>
- <20200922222203.GA3360459@bogus>
- <db285d10-2c9a-22bc-1853-cf6e24486d27@ti.com>
- <4d53d479-94b1-8c34-c4f4-a50e12f08a2b@ti.com>
-From:   Ricardo Rivera-Matos <r-rivera-matos@ti.com>
-Message-ID: <86462574-2f6e-070e-9a79-fed39d120288@ti.com>
-Date:   Tue, 22 Sep 2020 20:14:54 -0500
-User-Agent: Mozilla/5.0 (X11; Linux x86_64; rv:68.0) Gecko/20100101
- Thunderbird/68.10.0
+        id S1726782AbgIWB1U (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Tue, 22 Sep 2020 21:27:20 -0400
+Received: from mail-il1-f195.google.com ([209.85.166.195]:37761 "EHLO
+        mail-il1-f195.google.com" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
+        with ESMTP id S1726643AbgIWB1U (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Tue, 22 Sep 2020 21:27:20 -0400
+Received: by mail-il1-f195.google.com with SMTP id q4so19237692ils.4;
+        Tue, 22 Sep 2020 18:27:20 -0700 (PDT)
+X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+        d=1e100.net; s=20161025;
+        h=x-gm-message-state:date:from:to:cc:subject:message-id:references
+         :mime-version:content-disposition:in-reply-to;
+        bh=NPckTQcuIFYMeBOA91naq/GGelM7Z19S14ixJiZ/8TY=;
+        b=lO2G4NrMkaYLXio3HcWtPN1mu3AZ9cJtCEQqHKt6blWtssktDE6oV9F0q0yreXw/9p
+         K6XaTjlh0HJKLXXlj8nx3TK3yNQxfGUYNGNSIIWnVXm/QekrSvSsn8Omst+qCSlN8dxC
+         hpKh7oRquCyfTolIuSi2qrECwLSo122P/qZxRhnw/nI0sqCakn2+wqdPNoq3Ipfzi88I
+         E5raJ25C/n4swGRP/5PrkUjqu48EcLWY8FyMfJYvm2XSEJdqxwUp1zcpec0DYrv/MF23
+         QRvDBW9lknXqxwhXmxWM8ROGOfZL2pg7TdZD20Pzkrf3soBBVDsTE0SpefDLC1A8oLMm
+         eadw==
+X-Gm-Message-State: AOAM5324sn1PnkMlIAUHWghmwWRTXJOm2UuPfoVCkMmjD1f/gEelcIbE
+        7/qtLt0iMuSj5bBrXeIG/Q==
+X-Google-Smtp-Source: ABdhPJzrFdS7oSqGtPLnlMILyspkxTHdvQlrAmwgNw4WL6uPhNtMJoHypAPFg/YfDbgfp9sx8qMG8Q==
+X-Received: by 2002:a92:8e03:: with SMTP id c3mr6980178ild.16.1600824439652;
+        Tue, 22 Sep 2020 18:27:19 -0700 (PDT)
+Received: from xps15 ([64.188.179.253])
+        by smtp.gmail.com with ESMTPSA id s1sm9952963iln.22.2020.09.22.18.27.18
+        (version=TLS1_3 cipher=TLS_AES_256_GCM_SHA384 bits=256/256);
+        Tue, 22 Sep 2020 18:27:18 -0700 (PDT)
+Received: (nullmailer pid 3654307 invoked by uid 1000);
+        Wed, 23 Sep 2020 01:27:17 -0000
+Date:   Tue, 22 Sep 2020 19:27:17 -0600
+From:   Rob Herring <robh@kernel.org>
+To:     Roger Quadros <rogerq@ti.com>
+Cc:     kurahul@cadence.com, linux-kernel@vger.kernel.org,
+        devicetree@vger.kernel.org, nsekhar@ti.com, vigneshr@ti.com,
+        balbi@kernel.org, pawell@cadence.com, linux-usb@vger.kernel.org,
+        robh+dt@kernel.org
+Subject: Re: [PATCH v3 1/3] dt-bindings: usb: Convert cdns-usb3.txt to YAML
+ schema
+Message-ID: <20200923012717.GA3654245@bogus>
+References: <20200915114543.2599-1-rogerq@ti.com>
+ <20200915114543.2599-2-rogerq@ti.com>
 MIME-Version: 1.0
-In-Reply-To: <4d53d479-94b1-8c34-c4f4-a50e12f08a2b@ti.com>
-Content-Type: text/plain; charset="utf-8"; format=flowed
-Content-Transfer-Encoding: 8bit
-Content-Language: en-US
-X-EXCLAIMER-MD-CONFIG: e1e8a2fd-e40a-4ac6-ac9b-f7e9cc9ee180
+Content-Type: text/plain; charset=us-ascii
+Content-Disposition: inline
+In-Reply-To: <20200915114543.2599-2-rogerq@ti.com>
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-Dan
+On Tue, 15 Sep 2020 14:45:41 +0300, Roger Quadros wrote:
+> Converts cdns-usb3.txt to YAML schema cdns,usb3.yaml
+> 
+> Signed-off-by: Roger Quadros <rogerq@ti.com>
+> ---
+>  .../devicetree/bindings/usb/cdns,usb3.yaml    | 92 +++++++++++++++++++
+>  .../devicetree/bindings/usb/cdns-usb3.txt     | 45 ---------
+>  2 files changed, 92 insertions(+), 45 deletions(-)
+>  create mode 100644 Documentation/devicetree/bindings/usb/cdns,usb3.yaml
+>  delete mode 100644 Documentation/devicetree/bindings/usb/cdns-usb3.txt
+> 
 
-On 9/22/20 8:05 PM, Dan Murphy wrote:
-> RIcardo
->
-> On 9/22/20 5:56 PM, Ricardo Rivera-Matos wrote:
->> Rob
->>
->> On 9/22/20 5:22 PM, Rob Herring wrote:
->>> On Thu, Sep 10, 2020 at 11:45:33AM -0500, Ricardo Rivera-Matos wrote:
->>>> Add the bindings for the bq256xx series of battery charging ICs.
->>>>
->>>> Datasheets:
->>>> - https://www.ti.com/lit/ds/symlink/bq25600.pdf
->>>> - https://www.ti.com/lit/ds/symlink/bq25601.pdf
->>>> - https://www.ti.com/lit/ds/symlink/bq25600d.pdf
->>>> - https://www.ti.com/lit/ds/symlink/bq25601d.pdf
->>>> - https://www.ti.com/lit/ds/symlink/bq25611d.pdf
->>>> - https://www.ti.com/lit/ds/symlink/bq25618.pdf
->>>> - https://www.ti.com/lit/ds/symlink/bq25619.pdf
->>>>
->>>> Signed-off-by: Ricardo Rivera-Matos <r-rivera-matos@ti.com>
->>>> ---
->>>>   .../bindings/power/supply/bq256xx.yaml        | 97 
->>>> +++++++++++++++++++
->>>>   1 file changed, 97 insertions(+)
->>>>   create mode 100644 
->>>> Documentation/devicetree/bindings/power/supply/bq256xx.yaml
->>>>
->>>> diff --git 
->>>> a/Documentation/devicetree/bindings/power/supply/bq256xx.yaml 
->>>> b/Documentation/devicetree/bindings/power/supply/bq256xx.yaml
->>>> new file mode 100644
->>>> index 000000000000..8cc2242f7df0
->>>> --- /dev/null
->>>> +++ b/Documentation/devicetree/bindings/power/supply/bq256xx.yaml
->>>> @@ -0,0 +1,97 @@
->>>> +# SPDX-License-Identifier: (GPL-2.0-only or BSD-2-Clause)
->>>> +# Copyright (C) 2020 Texas Instruments Incorporated
->>>> +%YAML 1.2
->>>> +---
->>>> +$id: "http://devicetree.org/schemas/power/supply/bq256xx.yaml#"
->>>> +$schema: "http://devicetree.org/meta-schemas/core.yaml#"
->>>> +
->>>> +title: TI bq256xx Switch Mode Buck Charger
->>>> +
->>>> +maintainers:
->>>> +  - Ricardo Rivera-Matos <r-rivera-matos@ti.com>
->>>> +
->>>> +description: |
->>>> +  The bq256xx devices are a family of highly-integrated battery 
->>>> charge
->>>> +  management and system power management ICs for single cell 
->>>> Li-ion and Li-
->>>> +  polymer batteries.
->>>> +
->>>> +  Datasheets:
->>>> +    - https://www.ti.com/lit/ds/symlink/bq25600.pdf
->>>> +    - https://www.ti.com/lit/ds/symlink/bq25601.pdf
->>>> +    - https://www.ti.com/lit/ds/symlink/bq25600d.pdf
->>>> +    - https://www.ti.com/lit/ds/symlink/bq25601d.pdf
->>>> +    - https://www.ti.com/lit/ds/symlink/bq25611d.pdf
->>>> +    - https://www.ti.com/lit/ds/symlink/bq25618.pdf
->>>> +    - https://www.ti.com/lit/ds/symlink/bq25619.pdf
->>>> +
->>>> +properties:
->>>> +  compatible:
->>>> +    enum:
->>>> +      - ti,bq25600
->>>> +      - ti,bq25601
->>>> +      - ti,bq25600d
->>>> +      - ti,bq25601d
->>>> +      - ti,bq25611d
->>>> +      - ti,bq25618
->>>> +      - ti,bq25619
->>>> +
->>>> +  reg:
->>>> +    maxItems: 1
->>>> +
->>>> +  ti,watchdog-timer:
->>>> +    $ref: /schemas/types.yaml#/definitions/uint32
->>>> +    description: |
->>>> +      Watchdog timer in ms. 0 (default) disables the watchdog
->>>> +    minimum: 0
->>>> +    maximum: 160000
->>>> +    enum: [ 0, 40000, 80000, 160000]
->>>> +
->>>> +  input-voltage-limit-microvolt:
->>>> +    description: |
->>>> +       Minimum input voltage limit in µV with a 100000 µV step
->>>> +    minimum: 3900000
->>>> +    maximum: 5400000
->>>> +
->>>> +  input-current-limit-microamp:
->>>> +    description: |
->>>> +       Maximum input current limit in µA with a 100000 µA step
->>>> +    minimum: 100000
->>>> +    maximum: 3200000
->>>> +
->>>> +required:
->>>> +  - compatible
->>>> +  - reg
->>>> +  - monitored-battery
->>> additionalProperties: false
->>>
->>> And then fix what breaks in the example.
->> ACK. I will document the monitored-battery and interrupts properties 
->> and fix the example. Is ti,watchdog-timer okay as it is currently 
->> documented?
->
-> For TI consistency please use ti,watchdog-timeout-ms
-ACK, thanks.
->
-> Dan
->
-> Ricardo
-
+Reviewed-by: Rob Herring <robh@kernel.org>
