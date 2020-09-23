@@ -2,109 +2,89 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from vger.kernel.org (vger.kernel.org [23.128.96.18])
-	by mail.lfdr.de (Postfix) with ESMTP id 177432762A6
-	for <lists+devicetree@lfdr.de>; Wed, 23 Sep 2020 22:58:36 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTP id 33FF02762A9
+	for <lists+devicetree@lfdr.de>; Wed, 23 Sep 2020 22:59:08 +0200 (CEST)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S1726596AbgIWU63 (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Wed, 23 Sep 2020 16:58:29 -0400
-Received: from mail-io1-f66.google.com ([209.85.166.66]:33846 "EHLO
-        mail-io1-f66.google.com" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S1726460AbgIWU61 (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Wed, 23 Sep 2020 16:58:27 -0400
-Received: by mail-io1-f66.google.com with SMTP id m17so1042228ioo.1;
-        Wed, 23 Sep 2020 13:58:26 -0700 (PDT)
+        id S1726515AbgIWU7H (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Wed, 23 Sep 2020 16:59:07 -0400
+Received: from mail-io1-f67.google.com ([209.85.166.67]:36995 "EHLO
+        mail-io1-f67.google.com" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
+        with ESMTP id S1726466AbgIWU7H (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Wed, 23 Sep 2020 16:59:07 -0400
+Received: by mail-io1-f67.google.com with SMTP id y13so1015627iow.4;
+        Wed, 23 Sep 2020 13:59:06 -0700 (PDT)
 X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
         d=1e100.net; s=20161025;
         h=x-gm-message-state:date:from:to:cc:subject:message-id:references
          :mime-version:content-disposition:in-reply-to;
-        bh=DBI7yAxzhMeYdJxsj8BjmnEz5KxHDzBoWiYPr4XLc0w=;
-        b=ABz2SOJH7/U8SbtaA7wiD4ncqTsIWpfDI+LkHLY2mAonVWTQPgtIe9UjVmR5rvlGuh
-         hOyTfJB3QgJZCJQfKQhId7wvUw/2oz/UIdBn2kmmRgczITzIkbVG92Ydd06JlCEwV0HH
-         p5TIl4q0Ha17gJ3+9oVIUrbWK2AGFn2l4tSEVkHQJwSFp1bPW/5xWLITqD7c8RPBhU3K
-         oXqY5VAe1vpggtGZ4sv4tPmHeLpRVQB6l2KN3t/AS1DMa0TOU0PrESqBgnXqim8FY8Pi
-         pX3H0nU9TX7wsudEX445JI23r+bHgkafXituGBbdjU0Nx157bAzFCRP0l36x5u53R+V6
-         ahAQ==
-X-Gm-Message-State: AOAM530pXv+/eP3iiPNy9hl902cHh3LbpkpR5F0rXY6NSdigh6PxqKWt
-        jdX0T/kMeoBDocj0ZXynIA==
-X-Google-Smtp-Source: ABdhPJy0JbRbialOqZQgmgY+YuO73Raga2r31TBjNVrQd2QbuB7XuHqV35G5uICkoCqoeC4Y+1hpww==
-X-Received: by 2002:a02:a816:: with SMTP id f22mr1079416jaj.118.1600894706126;
-        Wed, 23 Sep 2020 13:58:26 -0700 (PDT)
+        bh=jx+DRH+laqTempA43xvLH4y04r2W2rrlx1UKuCP5ZWA=;
+        b=NhaMRhwCnpIwzwf7AjMbMWmVvym00ryx2YKwr8PFaOPr7gPV6AFGGTjWxLBTw3A4qY
+         TTTQTWf/Ck/0LpJFVxNolukut/bUmGI30R+GFa9hNkZLhWMTPw80yzUvnJ5hEat3jQrP
+         3OcTue+rs0kOLjIKcOIfP7Lu+SclsEYOj1oN5lr2Uup8gIfG1IUgEyM9iF+ApHJ74Yhi
+         MnhRD+Dt74AweMlXjYMsrRrZYC9YyDjAh6jx4b/yrs0lAts/U8DhwXfusakqehCbHgcf
+         C5eNa3yTwlfYTctZzVYa+MdtsXpELeUtjzHUW4749oL5WUJ3+f1HC11DiOXz1T4Y8HjA
+         kBwA==
+X-Gm-Message-State: AOAM5318R9E573UlnkBnmeLh9uMerHnShylFut0f3QUyq59cjsxIpp9n
+        9SPU9njHdp7kzRm0SmH8xKG4GdBFqX3O6Kg=
+X-Google-Smtp-Source: ABdhPJy0F4abhRQCPomOOYg2omQnHDmkDY0ev6cKjNKFxR4ckfnEsz1vTO2s2e8OIr3C8/mBzjqaQA==
+X-Received: by 2002:a02:c8c8:: with SMTP id q8mr1068933jao.46.1600894746473;
+        Wed, 23 Sep 2020 13:59:06 -0700 (PDT)
 Received: from xps15 ([64.188.179.253])
-        by smtp.gmail.com with ESMTPSA id v89sm435886ili.26.2020.09.23.13.58.25
+        by smtp.gmail.com with ESMTPSA id t22sm447429ili.9.2020.09.23.13.59.05
         (version=TLS1_3 cipher=TLS_AES_256_GCM_SHA384 bits=256/256);
-        Wed, 23 Sep 2020 13:58:25 -0700 (PDT)
-Received: (nullmailer pid 1296317 invoked by uid 1000);
-        Wed, 23 Sep 2020 20:58:24 -0000
-Date:   Wed, 23 Sep 2020 14:58:24 -0600
+        Wed, 23 Sep 2020 13:59:05 -0700 (PDT)
+Received: (nullmailer pid 1297453 invoked by uid 1000);
+        Wed, 23 Sep 2020 20:59:05 -0000
+Date:   Wed, 23 Sep 2020 14:59:05 -0600
 From:   Rob Herring <robh@kernel.org>
-To:     Ansuel Smith <ansuelsmth@gmail.com>
-Cc:     Kalle Valo <kvalo@codeaurora.org>,
-        "David S. Miller" <davem@davemloft.net>,
-        Jakub Kicinski <kuba@kernel.org>,
-        linux-wireless@vger.kernel.org, netdev@vger.kernel.org,
-        devicetree@vger.kernel.org, linux-kernel@vger.kernel.org,
-        ath10k@lists.infradead.org
-Subject: Re: [PATCH v2 2/2] dt: bindings: ath10k: Document
- qcom,ath10k-pre-calibration-data-mtd
-Message-ID: <20200923205824.GA1290651@bogus>
-References: <20200918181104.98-1-ansuelsmth@gmail.com>
- <20200918181104.98-2-ansuelsmth@gmail.com>
+To:     Zhen Lei <thunder.leizhen@huawei.com>
+Cc:     Wei Xu <xuwei5@hisilicon.com>,
+        devicetree <devicetree@vger.kernel.org>,
+        linux-arm-kernel <linux-arm-kernel@lists.infradead.org>,
+        linux-kernel <linux-kernel@vger.kernel.org>,
+        Libin <huawei.libin@huawei.com>,
+        Kefeng Wang <wangkefeng.wang@huawei.com>
+Subject: Re: [PATCH v2 1/4] dt-bindings: arm: hisilicon: add binding for
+ SD5203 SoC
+Message-ID: <20200923205905.GA1296543@bogus>
+References: <20200919064555.3616-1-thunder.leizhen@huawei.com>
+ <20200919064555.3616-2-thunder.leizhen@huawei.com>
 MIME-Version: 1.0
 Content-Type: text/plain; charset=us-ascii
 Content-Disposition: inline
-In-Reply-To: <20200918181104.98-2-ansuelsmth@gmail.com>
+In-Reply-To: <20200919064555.3616-2-thunder.leizhen@huawei.com>
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-On Fri, Sep 18, 2020 at 08:11:03PM +0200, Ansuel Smith wrote:
-> Document use of qcom,ath10k-pre-calibration-data-mtd bindings used to
-> define from where the driver will load the pre-cal data in the defined
-> mtd partition.
+On Sat, Sep 19, 2020 at 02:45:52PM +0800, Zhen Lei wrote:
+> Add devicetree binding for Hisilicon SD5203 SoC.
 > 
-> Signed-off-by: Ansuel Smith <ansuelsmth@gmail.com>
+> Signed-off-by: Zhen Lei <thunder.leizhen@huawei.com>
 > ---
->  .../devicetree/bindings/net/wireless/qcom,ath10k.txt | 12 +++++++++---
->  1 file changed, 9 insertions(+), 3 deletions(-)
+>  Documentation/devicetree/bindings/arm/hisilicon/hisilicon.txt | 5 +++++
+>  1 file changed, 5 insertions(+)
+
+Please convert this to DT schema format first.
+
 > 
-> diff --git a/Documentation/devicetree/bindings/net/wireless/qcom,ath10k.txt b/Documentation/devicetree/bindings/net/wireless/qcom,ath10k.txt
-> index b61c2d5a0..568364243 100644
-> --- a/Documentation/devicetree/bindings/net/wireless/qcom,ath10k.txt
-> +++ b/Documentation/devicetree/bindings/net/wireless/qcom,ath10k.txt
-> @@ -15,9 +15,9 @@ and also uses most of the properties defined in this doc (except
->  "qcom,ath10k-calibration-data"). It uses "qcom,ath10k-pre-calibration-data"
->  to carry pre calibration data.
+> diff --git a/Documentation/devicetree/bindings/arm/hisilicon/hisilicon.txt b/Documentation/devicetree/bindings/arm/hisilicon/hisilicon.txt
+> index a97f643e7d1c760..5d80070bfb13fc0 100644
+> --- a/Documentation/devicetree/bindings/arm/hisilicon/hisilicon.txt
+> +++ b/Documentation/devicetree/bindings/arm/hisilicon/hisilicon.txt
+> @@ -56,6 +56,11 @@ HiP07 D05 Board
+>  Required root node properties:
+>  	- compatible = "hisilicon,hip07-d05";
 >  
-> -In general, entry "qcom,ath10k-pre-calibration-data" and
-> -"qcom,ath10k-calibration-data" conflict with each other and only one
-> -can be provided per device.
-> +In general, entry "qcom,ath10k-pre-calibration-data",
-> +"qcom,ath10k-calibration-data-mtd" and "qcom,ath10k-calibration-data" conflict with
-> +each other and only one can be provided per device.
+> +SD5203 SoC
+> +Required root node properties:
+> +	- compatible = "hisilicon,sd5203";
+> +
+> +
+>  Hisilicon system controller
 >  
->  SNOC based devices (i.e. wcn3990) uses compatible string "qcom,wcn3990-wifi".
->  
-> @@ -63,6 +63,12 @@ Optional properties:
->  				 hw versions.
->  - qcom,ath10k-pre-calibration-data : pre calibration data as an array,
->  				     the length can vary between hw versions.
-> +- qcom,ath10k-pre-calibration-data-mtd :
-
-mtd is a Linuxism.
-
-> +	Usage: optional
-> +	Value type: <phandle offset size>
-> +	Definition: pre calibration data read from mtd partition. Take 3 value, the
-> +		    mtd to read data from, the offset in the mtd partition and the
-
-The phandle is the mtd or partition?
-
-Maybe you should be using nvmem binding here.
-
-> +		    size of data to read.
->  - <supply-name>-supply: handle to the regulator device tree node
->  			   optional "supply-name" are "vdd-0.8-cx-mx",
->  			   "vdd-1.8-xo", "vdd-1.3-rfa", "vdd-3.3-ch0",
+>  Required properties:
 > -- 
-> 2.27.0
+> 1.8.3
+> 
 > 
