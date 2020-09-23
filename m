@@ -2,93 +2,118 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from vger.kernel.org (vger.kernel.org [23.128.96.18])
-	by mail.lfdr.de (Postfix) with ESMTP id 111C4275259
-	for <lists+devicetree@lfdr.de>; Wed, 23 Sep 2020 09:37:26 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTP id 240E0275278
+	for <lists+devicetree@lfdr.de>; Wed, 23 Sep 2020 09:51:02 +0200 (CEST)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S1726652AbgIWHhU (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Wed, 23 Sep 2020 03:37:20 -0400
-Received: from muru.com ([72.249.23.125]:45204 "EHLO muru.com"
-        rhost-flags-OK-OK-OK-OK) by vger.kernel.org with ESMTP
-        id S1726550AbgIWHhT (ORCPT <rfc822;devicetree@vger.kernel.org>);
-        Wed, 23 Sep 2020 03:37:19 -0400
-Received: from atomide.com (localhost [127.0.0.1])
-        by muru.com (Postfix) with ESMTPS id E7B0B80A0;
-        Wed, 23 Sep 2020 07:37:19 +0000 (UTC)
-Date:   Wed, 23 Sep 2020 10:38:13 +0300
-From:   Tony Lindgren <tony@atomide.com>
-To:     Drew Fustini <drew@beagleboard.org>
-Cc:     Rob Herring <robh+dt@kernel.org>,
-        Linus Walleij <linus.walleij@linaro.org>,
-        Jason Kridner <jkridner@beagleboard.org>,
-        Robert Nelson <robertcnelson@gmail.com>,
-        Trent Piepho <tpiepho@gmail.com>,
-        Christina Quast <cquast@hanoverdisplays.com>,
-        linux-omap@vger.kernel.org, linux-kernel@vger.kernel.org,
-        devicetree@vger.kernel.org, linux-gpio@vger.kernel.org
-Subject: Re: [PATCH v2] ARM: dts: document pinctrl-single,pins when
- #pinctrl-cells = 2
-Message-ID: <20200923073813.GV7101@atomide.com>
-References: <20200919200836.3218536-1-drew@beagleboard.org>
+        id S1726130AbgIWHvB (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Wed, 23 Sep 2020 03:51:01 -0400
+Received: from lindbergh.monkeyblade.net ([23.128.96.19]:56800 "EHLO
+        lindbergh.monkeyblade.net" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
+        with ESMTP id S1726151AbgIWHvA (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Wed, 23 Sep 2020 03:51:00 -0400
+Received: from metis.ext.pengutronix.de (metis.ext.pengutronix.de [IPv6:2001:67c:670:201:290:27ff:fe1d:cc33])
+        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id BA7CCC0613D1
+        for <devicetree@vger.kernel.org>; Wed, 23 Sep 2020 00:51:00 -0700 (PDT)
+Received: from ptx.hi.pengutronix.de ([2001:67c:670:100:1d::c0])
+        by metis.ext.pengutronix.de with esmtps (TLS1.3:ECDHE_RSA_AES_256_GCM_SHA384:256)
+        (Exim 4.92)
+        (envelope-from <sha@pengutronix.de>)
+        id 1kKzY2-0001VP-LH; Wed, 23 Sep 2020 09:50:42 +0200
+Received: from sha by ptx.hi.pengutronix.de with local (Exim 4.92)
+        (envelope-from <sha@pengutronix.de>)
+        id 1kKzY0-00068p-6f; Wed, 23 Sep 2020 09:50:40 +0200
+Date:   Wed, 23 Sep 2020 09:50:40 +0200
+From:   Sascha Hauer <s.hauer@pengutronix.de>
+To:     Li Jun <jun.li@nxp.com>
+Cc:     robh+dt@kernel.org, shawnguo@kernel.org, balbi@kernel.org,
+        mathias.nyman@intel.com, gregkh@linuxfoundation.org,
+        kernel@pengutronix.de, festevam@gmail.com, linux-imx@nxp.com,
+        Anson.Huang@nxp.com, aisheng.dong@nxp.com, peng.fan@nxp.com,
+        fugang.duan@nxp.com, qiangqing.zhang@nxp.com, horia.geanta@nxp.com,
+        linux-usb@vger.kernel.org, devicetree@vger.kernel.org,
+        linux-arm-kernel@lists.infradead.org
+Subject: Re: [PATCH v3 5/6] arm64: dtsi: imx8mp: add usb nodes
+Message-ID: <20200923075040.GD25328@pengutronix.de>
+References: <1600771612-30727-1-git-send-email-jun.li@nxp.com>
+ <1600771612-30727-6-git-send-email-jun.li@nxp.com>
 MIME-Version: 1.0
 Content-Type: text/plain; charset=us-ascii
 Content-Disposition: inline
-In-Reply-To: <20200919200836.3218536-1-drew@beagleboard.org>
+In-Reply-To: <1600771612-30727-6-git-send-email-jun.li@nxp.com>
+X-Sent-From: Pengutronix Hildesheim
+X-URL:  http://www.pengutronix.de/
+X-IRC:  #ptxdist @freenode
+X-Accept-Language: de,en
+X-Accept-Content-Type: text/plain
+X-Uptime: 09:44:39 up 216 days, 15:15, 146 users,  load average: 0.01, 0.10,
+ 0.14
+User-Agent: Mutt/1.10.1 (2018-07-13)
+X-SA-Exim-Connect-IP: 2001:67c:670:100:1d::c0
+X-SA-Exim-Mail-From: sha@pengutronix.de
+X-SA-Exim-Scanned: No (on metis.ext.pengutronix.de); SAEximRunCond expanded to false
+X-PTX-Original-Recipient: devicetree@vger.kernel.org
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-* Drew Fustini <drew@beagleboard.org> [200919 23:10]:
-> Document the values in pinctrl-single,pins when #pinctrl-cells = <2>
+On Tue, Sep 22, 2020 at 06:46:51PM +0800, Li Jun wrote:
+> imx8mp integrates 2 identical dwc3 based USB3 controllers and
+> Synopsys phys, each instance has additional wakeup logic to
+> support low power mode, so the glue layer need a node with dwc3
+> core sub node.
 > 
-> Fixes: 27c90e5e48d0 ("ARM: dts: am33xx-l4: change #pinctrl-cells from 1 to 2")
-> Reported-by: Trent Piepho <tpiepho@gmail.com>
-> Link: https://lore.kernel.org/linux-omap/3139716.CMS8C0sQ7x@zen.local/
-> Signed-off-by: Drew Fustini <drew@beagleboard.org>
+> Signed-off-by: Li Jun <jun.li@nxp.com>
 > ---
-> v2 change:
-> - rephrase to make it clear that the pin conf value and pin mux value
->   are OR'd together with #pinctrl-cells = <2>
-
-Acked-by: Tony Lindgren <tony@atomide.com>
-
->  .../bindings/pinctrl/pinctrl-single.txt       | 21 ++++++++++++-------
->  1 file changed, 14 insertions(+), 7 deletions(-)
+>  arch/arm64/boot/dts/freescale/imx8mp.dtsi | 88 +++++++++++++++++++++++++++++++
+>  1 file changed, 88 insertions(+)
 > 
-> diff --git a/Documentation/devicetree/bindings/pinctrl/pinctrl-single.txt b/Documentation/devicetree/bindings/pinctrl/pinctrl-single.txt
-> index e705acd3612c..f903eb4471f8 100644
-> --- a/Documentation/devicetree/bindings/pinctrl/pinctrl-single.txt
-> +++ b/Documentation/devicetree/bindings/pinctrl/pinctrl-single.txt
-> @@ -94,16 +94,23 @@ pinctrl-single,bit-per-mux is set), and uses the common pinctrl bindings as
->  specified in the pinctrl-bindings.txt document in this directory.
->  
->  The pin configuration nodes for pinctrl-single are specified as pinctrl
-> -register offset and value pairs using pinctrl-single,pins. Only the bits
-> -specified in pinctrl-single,function-mask are updated. For example, setting
-> -a pin for a device could be done with:
-> +register offset and values using pinctrl-single,pins. Only the bits specified
-> +in pinctrl-single,function-mask are updated.
+> diff --git a/arch/arm64/boot/dts/freescale/imx8mp.dtsi b/arch/arm64/boot/dts/freescale/imx8mp.dtsi
+> index 9de2aa1..1b7ed4c 100644
+> --- a/arch/arm64/boot/dts/freescale/imx8mp.dtsi
+> +++ b/arch/arm64/boot/dts/freescale/imx8mp.dtsi
+> +		usb3_1: usb@32f10108 {
+> +			compatible = "fsl,imx8mp-dwc3";
+> +			reg = <0x32f10108 0x8>;
+> +			clocks = <&clk IMX8MP_CLK_HSIO_ROOT>,
+> +				 <&clk IMX8MP_CLK_USB_ROOT>;
+> +			clock-names = "hsio", "suspend";
+> +			assigned-clocks = <&clk IMX8MP_CLK_HSIO_AXI_SRC>;
+
+In Linux-5.9-rc6 this clock doesn't exist anymore. Should be
+IMX8MP_CLK_HSIO_AXI
+
+> +			assigned-clock-parents = <&clk IMX8MP_SYS_PLL2_500M>;
+> +			assigned-clock-rates = <500000000>;
+> +			interrupts = <GIC_SPI 149 IRQ_TYPE_LEVEL_HIGH>;
+> +			#address-cells = <1>;
+> +			#size-cells = <1>;
+> +			ranges;
+> +			status = "disabled";
 > +
-> +When #pinctrl-cells = 1, then setting a pin for a device could be done with:
->  
->  	pinctrl-single,pins = <0xdc 0x118>;
->  
-> -Where 0xdc is the offset from the pinctrl register base address for the
-> -device pinctrl register, and 0x118 contains the desired value of the
-> -pinctrl register. See the device example and static board pins example
-> -below for more information.
-> +Where 0xdc is the offset from the pinctrl register base address for the device
-> +pinctrl register, and 0x118 contains the desired value of the pinctrl register.
-> +
-> +When #pinctrl-cells = 2, then setting a pin for a device could be done with:
-> +
-> +	pinctrl-single,pins = <0xdc 0x30 0x07>;
-> +
-> +Where 0x30 is the pin configuration value and 0x07 is the pin mux mode value.
-> +These two values are OR'd together to produce the value stored at offset 0xdc.
-> +See the device example and static board pins example below for more information.
->  
->  In case when one register changes more than one pin's mux the
->  pinctrl-single,bits need to be used which takes three parameters:
-> -- 
-> 2.25.1
-> 
+> +			usb_dwc3_1: dwc3@38200000 {
+> +				compatible = "snps,dwc3";
+> +				reg = <0x38200000 0x10000>;
+> +				clocks = <&clk IMX8MP_CLK_HSIO_AXI>,
+> +					 <&clk IMX8MP_CLK_USB_CORE_REF>,
+> +					 <&clk IMX8MP_CLK_USB_ROOT>;
+> +				clock-names = "bus_early", "ref", "suspend";
+> +				assigned-clocks = <&clk IMX8MP_CLK_HSIO_AXI>;
+> +				assigned-clock-parents = <&clk IMX8MP_SYS_PLL2_500M>;
+> +				assigned-clock-rates = <500000000>;
+> +				interrupts = <GIC_SPI 41 IRQ_TYPE_LEVEL_HIGH>;
+> +				phys = <&usb3_phy1>, <&usb3_phy1>;
+> +				phy-names = "usb2-phy", "usb3-phy";
+> +				snps,dis-u2-freeclk-exists-quirk;
+> +				xhci-64bit-support-disable;
+> +				status = "disabled";
+
+Does it make sense for a board to enable the parent node and leave this
+one disabled? If not you can drop this status = "disabled" here.
+
+Sascha
+
+-- 
+Pengutronix e.K.                           |                             |
+Steuerwalder Str. 21                       | http://www.pengutronix.de/  |
+31137 Hildesheim, Germany                  | Phone: +49-5121-206917-0    |
+Amtsgericht Hildesheim, HRA 2686           | Fax:   +49-5121-206917-5555 |
