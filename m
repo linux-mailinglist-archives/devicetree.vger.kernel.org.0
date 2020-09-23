@@ -2,103 +2,113 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from vger.kernel.org (vger.kernel.org [23.128.96.18])
-	by mail.lfdr.de (Postfix) with ESMTP id 6A3532763C6
-	for <lists+devicetree@lfdr.de>; Thu, 24 Sep 2020 00:25:49 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTP id CFE7627645A
+	for <lists+devicetree@lfdr.de>; Thu, 24 Sep 2020 01:11:20 +0200 (CEST)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S1726662AbgIWWZs (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Wed, 23 Sep 2020 18:25:48 -0400
-Received: from lindbergh.monkeyblade.net ([23.128.96.19]:50560 "EHLO
+        id S1726720AbgIWXLT (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Wed, 23 Sep 2020 19:11:19 -0400
+Received: from lindbergh.monkeyblade.net ([23.128.96.19]:57526 "EHLO
         lindbergh.monkeyblade.net" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S1726381AbgIWWZs (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Wed, 23 Sep 2020 18:25:48 -0400
-Received: from mail-pg1-x544.google.com (mail-pg1-x544.google.com [IPv6:2607:f8b0:4864:20::544])
-        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 36F42C0613D1
-        for <devicetree@vger.kernel.org>; Wed, 23 Sep 2020 15:25:48 -0700 (PDT)
-Received: by mail-pg1-x544.google.com with SMTP id p16so585346pgi.9
-        for <devicetree@vger.kernel.org>; Wed, 23 Sep 2020 15:25:48 -0700 (PDT)
+        with ESMTP id S1726537AbgIWXLT (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Wed, 23 Sep 2020 19:11:19 -0400
+Received: from mail-pl1-x641.google.com (mail-pl1-x641.google.com [IPv6:2607:f8b0:4864:20::641])
+        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 4D6B6C0613CE
+        for <devicetree@vger.kernel.org>; Wed, 23 Sep 2020 16:11:19 -0700 (PDT)
+Received: by mail-pl1-x641.google.com with SMTP id u4so564047plr.4
+        for <devicetree@vger.kernel.org>; Wed, 23 Sep 2020 16:11:19 -0700 (PDT)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=chromium.org; s=google;
+        d=linaro.org; s=google;
         h=date:from:to:cc:subject:message-id:references:mime-version
          :content-disposition:in-reply-to;
-        bh=Xg7mlsflqOZjaUBEnBA79UQEVkg0iaM4XozGdbwIH2I=;
-        b=JWGSMPriiXoOPSN59UxJawZOsymif1IRnpFmcUeFVLrk+16iLXZo23rz7sV0MTgLjc
-         AkhhMecLtxb4XWCibtF10nTqcbQ1PQqt2tOioWG6HfxhavA+JNejFotwMCa7tMO/A96V
-         J4cgU4LAGTDhGiusLrU0xSKksix+A0oZbEevA=
+        bh=2C2k3bgm/wJgHGoPq3RjqjO7qGsk8WgF9RAs+eFblaY=;
+        b=LiswQhMejoVglYkrxG9w0XpsBon11s3vESoHybcFToEdc5v2+NWsS8qqK5KwzJ/AsD
+         d17on9QRv/S/TyDlJsRNEOvGZ6UpT+LdvtburVCLnEgzWB0oIEd8fi5ehdVx0RJRsupQ
+         xmspR5jK/Y+6o6D0HKN7vH4QrmrUnFp3kw2e76h+331JCqdxZzZc6VgTIcVCPZZfj717
+         ncaxK3US42BrvAlPy6qWLMc6FPyIfkadKdRoo0kO3u/BM2o+FFxNkVHEkvslRD9xT7A7
+         OUTzgcYRNF5zXEihYdZntXS33ZP0+5CMSsynjHG0JtYipj1yIDWes8af7HqwLJy2eokG
+         vnnA==
 X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
         d=1e100.net; s=20161025;
         h=x-gm-message-state:date:from:to:cc:subject:message-id:references
          :mime-version:content-disposition:in-reply-to;
-        bh=Xg7mlsflqOZjaUBEnBA79UQEVkg0iaM4XozGdbwIH2I=;
-        b=lfE0ouPxeIa44WakmkYJKWi4cRXldy0YnPI+Wo+nSIac6C5f4VhHMNZbKgkSZq6pYY
-         pOWuWasNgieXK4/n5MaAoULOQSuxSuQQAsv9keRT344eac1qzhJ8o64YKa7ZLCeVb8EO
-         Slt7m89x0IUQ/VmgFq0PX/5+ycj5tQiFYQhX3nhZGfnHsI+7KmZaU0xNB+dfCk9ZDoOr
-         yyY6IuRKcg63lWMZhygui7J/JjbfB4lpBUp0E97YoHIUrZPhl1wi2ow/fFjJUP7BdXo2
-         sCgUmGfc+IVH/+JpDzN0uA0oZA5MpSIIfoA34CAHAFnEZBbjeudpWStchp20Te5B5+iI
-         OZQA==
-X-Gm-Message-State: AOAM530okeof4CWNndKXunwiw6pXSpV/DiCzpHxSK6FDjB6O7bIHiXQJ
-        v6avvoCERZvuz32B4Am8M+mXeA==
-X-Google-Smtp-Source: ABdhPJxP5OrfctcuRCfs6dIC6macZBnv6XWCLbPOIVye/T+0apkyTU21z8xiaysegw+hW5e6aSN1qg==
-X-Received: by 2002:a63:160b:: with SMTP id w11mr1522159pgl.110.1600899947689;
-        Wed, 23 Sep 2020 15:25:47 -0700 (PDT)
-Received: from localhost ([2620:15c:202:1:f693:9fff:fef4:e70a])
-        by smtp.gmail.com with ESMTPSA id ca6sm402786pjb.53.2020.09.23.15.25.46
-        (version=TLS1_3 cipher=TLS_AES_128_GCM_SHA256 bits=128/128);
-        Wed, 23 Sep 2020 15:25:47 -0700 (PDT)
-Date:   Wed, 23 Sep 2020 15:25:45 -0700
-From:   Matthias Kaehlcke <mka@chromium.org>
-To:     Greg Kroah-Hartman <gregkh@linuxfoundation.org>
-Cc:     Rob Herring <robh+dt@kernel.org>,
-        Frank Rowand <frowand.list@gmail.com>,
-        linux-kernel@vger.kernel.org,
-        Douglas Anderson <dianders@chromium.org>,
-        Alan Stern <stern@rowland.harvard.edu>,
-        linux-usb@vger.kernel.org, Bastien Nocera <hadess@hadess.net>,
-        Krzysztof Kozlowski <krzk@kernel.org>,
-        devicetree@vger.kernel.org,
-        Ravi Chandra Sadineni <ravisadineni@chromium.org>,
-        Peter Chen <peter.chen@nxp.com>,
-        Stephen Boyd <swboyd@chromium.org>,
-        "Alexander A. Klimov" <grandmaster@al2klimov.de>,
-        Masahiro Yamada <masahiroy@kernel.org>
-Subject: Re: [PATCH v2 2/2] USB: misc: Add onboard_usb_hub driver
-Message-ID: <20200923222545.GB2105328@google.com>
-References: <20200917114600.v2.1.I248292623d3d0f6a4f0c5bc58478ca3c0062b49a@changeid>
- <20200917114600.v2.2.I7c9a1f1d6ced41dd8310e8a03da666a32364e790@changeid>
- <20200920141720.GD2915460@kroah.com>
- <20200922011837.GE21107@google.com>
+        bh=2C2k3bgm/wJgHGoPq3RjqjO7qGsk8WgF9RAs+eFblaY=;
+        b=PKbj2u+ChCBXCRLA2onS8NMyA+SOuvfdpZv3edpg2K5q14LCD3Wp5DJxvtXJEynBTU
+         6A4VdtINdAbuEe4fQ3cX4000Dji71knzeMRxjb9S1/lFzG6IH6BeSdQjJ3gLaMfwu9cp
+         SLx8SA6LOXLGy6+UWIqSAlfqeBwctCMs1kbJ95NESkYzTnd6HDYyErs+wKt9Itz8TLTw
+         wLg5TmTOUv4bmRblORr1M0WyN7dWUDpHv5fRQ5Sb1dMmWSb9qQY6WIOepGnxgqNiOngL
+         ixdxkKN8Gx5Q2qyWOX7/ALdgkSe8AdO4q3e4CoyBMnY3Tba8Od0PyrgHM6bBBwEWVuFm
+         w09g==
+X-Gm-Message-State: AOAM531yEnKSaXdtAVQnbdqM97lZJZrF6edqipiBCCvfmxbmmr8EuROu
+        aoTCW2zcdMnz+NuFVxb1XNGQZQ==
+X-Google-Smtp-Source: ABdhPJxqk2zGhDGZJVw4sdmPM+ciEWAW24BXvgeiu5oFPiHXm3UbUZEWegPSBDlvL8N/12l5EIu9eg==
+X-Received: by 2002:a17:902:7fca:b029:d2:439c:3e97 with SMTP id t10-20020a1709027fcab02900d2439c3e97mr1917445plb.22.1600902678777;
+        Wed, 23 Sep 2020 16:11:18 -0700 (PDT)
+Received: from xps15 (S0106002369de4dac.cg.shawcable.net. [68.147.8.254])
+        by smtp.gmail.com with ESMTPSA id j19sm668468pfe.108.2020.09.23.16.11.17
+        (version=TLS1_3 cipher=TLS_AES_256_GCM_SHA384 bits=256/256);
+        Wed, 23 Sep 2020 16:11:18 -0700 (PDT)
+Date:   Wed, 23 Sep 2020 17:11:16 -0600
+From:   Mathieu Poirier <mathieu.poirier@linaro.org>
+To:     Alexandre Bailon <abailon@baylibre.com>
+Cc:     ohad@wizery.com, bjorn.andersson@linaro.org, robh+dt@kernel.org,
+        matthias.bgg@gmail.com, linux-remoteproc@vger.kernel.org,
+        devicetree@vger.kernel.org, linux-arm-kernel@lists.infradead.org,
+        linux-mediatek@lists.infradead.org, linux-kernel@vger.kernel.org,
+        stephane.leprovost@mediatek.com, gpain@baylibre.com
+Subject: Re: [PATCH v2 0/4] Add support of mt8183 APU
+Message-ID: <20200923231116.GA1154153@xps15>
+References: <20200910130148.8734-1-abailon@baylibre.com>
 MIME-Version: 1.0
-Content-Type: text/plain; charset=utf-8
+Content-Type: text/plain; charset=us-ascii
 Content-Disposition: inline
-In-Reply-To: <20200922011837.GE21107@google.com>
+In-Reply-To: <20200910130148.8734-1-abailon@baylibre.com>
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-On Mon, Sep 21, 2020 at 06:18:37PM -0700, Matthias Kaehlcke wrote:
-> On Sun, Sep 20, 2020 at 04:17:20PM +0200, Greg Kroah-Hartman wrote:
-> > On Thu, Sep 17, 2020 at 11:46:22AM -0700, Matthias Kaehlcke wrote:
-> > >
-> > > ...
-> > >
-> > > +static int __init onboard_hub_init(void)
-> > > +{
-> > > +	int rc;
-> > > +
-> > > +	rc = platform_driver_register(&onboard_hub_driver);
-> > > +	if (rc)
-> > > +		return rc;
-> > > +
-> > > +	return usb_register_device_driver(&onboard_hub_usbdev_driver, THIS_MODULE);
-> > 
-> > No unwinding of the platform driver register if this fails?
-> 
-> Right, will add unwinding.
-> 
-> > And THIS_MODULE should not be needed, did we get the api wrong here?
-> 
-> It seems you suggest to use usb_register() instead, SGTM
+Hi Alexander,
 
-Actually usb_register() is for registering a struct usb_driver, however
-this is a struct usb_device_driver, there doesn't seem to be a
-registration function/macro that doesn't require THIS_MODULE. Please
-provide a pointer if I'm wrong.
+Things have been quite busy over the last 3 weeks, preventing me from
+giving your work the attention it deserves.  It is on my radar and will get to
+it in the next two weeks.
+
+Thanks,
+Mathieu
+ 
+On Thu, Sep 10, 2020 at 03:01:44PM +0200, Alexandre Bailon wrote:
+> Some Mediatek's SoC have an Accelerated Processing Unit.
+> This adds support of the one available in the mt8183
+> (aswell some derivative SoC).
+> 
+> This series depends on two other series:
+> - Mediatek MT8183 scpsys support  
+> - arm64: dts: Add m4u and smi-larbs nodes for mt8183
+> 
+> Changes in v2:
+> - Drop the workarounds needed to load bad firmwares
+> - There are many name for the APU (most common one is VPU).
+>   Rename many functions and dts nodes to be more consistent.
+> - Use the bulk clock API, and enable / disable clock at a better place
+> - add few comments explaining how to start the APU
+> - update the way to use pinctl for JTAG
+> - fix some minors issues
+> - fix device tree bindings
+> 
+> Alexandre Bailon (4):
+>   dt bindings: remoteproc: Add bindings for MT8183 APU
+>   remoteproc: Add a remoteproc driver for the MT8183's APU
+>   remoteproc: mtk_vpu_rproc: Add support of JTAG
+>   ARM64: mt8183: Add support of APU to mt8183
+> 
+>  .../bindings/remoteproc/mtk,apu.yaml          | 107 +++++
+>  arch/arm64/boot/dts/mediatek/mt8183.dtsi      |  39 ++
+>  drivers/remoteproc/Kconfig                    |  19 +
+>  drivers/remoteproc/Makefile                   |   1 +
+>  drivers/remoteproc/mtk_apu.c                  | 437 ++++++++++++++++++
+>  5 files changed, 603 insertions(+)
+>  create mode 100644 Documentation/devicetree/bindings/remoteproc/mtk,apu.yaml
+>  create mode 100644 drivers/remoteproc/mtk_apu.c
+> 
+> -- 
+> 2.26.2
+> 
