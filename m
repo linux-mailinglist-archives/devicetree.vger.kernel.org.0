@@ -2,122 +2,83 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from vger.kernel.org (vger.kernel.org [23.128.96.18])
-	by mail.lfdr.de (Postfix) with ESMTP id A5B73275BF9
-	for <lists+devicetree@lfdr.de>; Wed, 23 Sep 2020 17:35:52 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTP id 08207275C12
+	for <lists+devicetree@lfdr.de>; Wed, 23 Sep 2020 17:38:59 +0200 (CEST)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S1726184AbgIWPfv (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Wed, 23 Sep 2020 11:35:51 -0400
-Received: from mail-io1-f67.google.com ([209.85.166.67]:39224 "EHLO
-        mail-io1-f67.google.com" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S1726156AbgIWPfv (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Wed, 23 Sep 2020 11:35:51 -0400
-Received: by mail-io1-f67.google.com with SMTP id v8so17436836iom.6;
-        Wed, 23 Sep 2020 08:35:50 -0700 (PDT)
+        id S1726681AbgIWPix (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Wed, 23 Sep 2020 11:38:53 -0400
+Received: from mail-io1-f66.google.com ([209.85.166.66]:33829 "EHLO
+        mail-io1-f66.google.com" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
+        with ESMTP id S1726184AbgIWPix (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Wed, 23 Sep 2020 11:38:53 -0400
+Received: by mail-io1-f66.google.com with SMTP id m17so24245341ioo.1;
+        Wed, 23 Sep 2020 08:38:52 -0700 (PDT)
 X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
         d=1e100.net; s=20161025;
         h=x-gm-message-state:date:from:to:cc:subject:message-id:references
          :mime-version:content-disposition:in-reply-to;
-        bh=SFNrQMIkZSGzSXfxSnz2HMSRbPyQR0/tk0QCtxV27LQ=;
-        b=huw7CxTzba4vieE2rddHa3ilfnuZscE/WHBAiSlZ8rzQUse6D/cJ+lgV9NKeIj5+KH
-         8irfGfkC55U3drYXNiWc7MQNfwHkvXsZTvzAr0Vk+UzF52Gp1TYCaqja9cV6JltEF447
-         2FZHJL/iHcs11vIb/6g0/JvRMsy5BBmH43FRQ6mu11Yzksj4T9oS42yYAwgmD7c+A3Vb
-         07bpukjdWZkJKf2qG4SlvyAPJtSFyDk5LtjbDnDl2yBjy6XSSr8yhTi7acLwx9ibUOyM
-         EA2HNwdAR87cEffLsf4Zbl4xCWVAyNSkEZvA29obdao14oZSRSkPnr/ICshO1IewDjW7
-         mZfg==
-X-Gm-Message-State: AOAM533TKZJ6J4vVaPpcl59KCKxo+cwaF/YFvrIu64v+M8rAP+WOUCY5
-        pocjk874admrfSGmpThpCA==
-X-Google-Smtp-Source: ABdhPJz4NDi2DPM7aMlx9HsGKp74UHvyZ9evLNEx9Eielqsipyamdybieeul0nPsIEzZpC1EMaYyDg==
-X-Received: by 2002:a05:6638:220c:: with SMTP id l12mr8608241jas.139.1600875350509;
-        Wed, 23 Sep 2020 08:35:50 -0700 (PDT)
+        bh=ysCpx9pUUcz0KZte0FR3aV5ITFXG37+Rp3i9KP/L4TI=;
+        b=ufpX9ZJOd6N8tq1O92vjGkFMhcR4gypPqnAxkDzYpAlrBNfyhqVxdw5oAzlOeTt+Yg
+         oMtVSsbMFAQKAndby2iDOyAYSFyzdHSW8gLtLhgV90Nbv4pYzoC5wetS+xCEG5+XoWij
+         LqyD4HVPJ9H5xxTkp/u4EgBUrFLDBMch8VG2q9kq3QmqsDzKzI5zUbN0rJ86ENnb28yd
+         9A/nbglr9r7uMBNde6s53fTtxnQlqs79ouSJtmtVZYq5MLaigFwh3WRGZShCTPitvZBu
+         2e6yLbmUv3FpdS+K5gXWxcDLvoD7oh4fhsEKxvwmIQ7tzQyVkk4SnT0jrmCp1GT/VplW
+         IGrg==
+X-Gm-Message-State: AOAM532QlHOuseWpe3L2oqOZxVjvcW0IPp1qtdAtMAQ+LD2bfDcFlu5J
+        xwzhoWoVrAJ+qMT+m/Ic9Q==
+X-Google-Smtp-Source: ABdhPJznu/p3EAh6RkBatd0VNA7uYjMa7oLDfzGLVSOz2TUSk3ngY0iNOOAK8ct6BiSO5LB6Fy/w1Q==
+X-Received: by 2002:a05:6602:21cd:: with SMTP id c13mr120017ioc.54.1600875532135;
+        Wed, 23 Sep 2020 08:38:52 -0700 (PDT)
 Received: from xps15 ([64.188.179.253])
-        by smtp.gmail.com with ESMTPSA id q2sm8042280ils.81.2020.09.23.08.35.49
+        by smtp.gmail.com with ESMTPSA id 64sm5258ilv.0.2020.09.23.08.38.50
         (version=TLS1_3 cipher=TLS_AES_256_GCM_SHA384 bits=256/256);
-        Wed, 23 Sep 2020 08:35:49 -0700 (PDT)
-Received: (nullmailer pid 792167 invoked by uid 1000);
-        Wed, 23 Sep 2020 15:35:48 -0000
-Date:   Wed, 23 Sep 2020 09:35:48 -0600
+        Wed, 23 Sep 2020 08:38:51 -0700 (PDT)
+Received: (nullmailer pid 797169 invoked by uid 1000);
+        Wed, 23 Sep 2020 15:38:50 -0000
+Date:   Wed, 23 Sep 2020 09:38:50 -0600
 From:   Rob Herring <robh@kernel.org>
-To:     Stephan Gerhold <stephan@gerhold.net>
-Cc:     Bjorn Andersson <bjorn.andersson@linaro.org>,
-        Andy Gross <agross@kernel.org>,
-        Ohad Ben-Cohen <ohad@wizery.com>,
-        Rajendra Nayak <rnayak@codeaurora.org>,
-        linux-arm-msm@vger.kernel.org, devicetree@vger.kernel.org,
-        linux-remoteproc@vger.kernel.org,
-        ~postmarketos/upstreaming@lists.sr.ht
-Subject: Re: [PATCH 05/10] dt-bindings: remoteproc: qcom,q6v5: Deprecate
- regulators for PDs
-Message-ID: <20200923153548.GA789614@bogus>
-References: <20200916104135.25085-1-stephan@gerhold.net>
- <20200916104135.25085-6-stephan@gerhold.net>
+To:     Fabrizio Castro <fabrizio.castro.jz@renesas.com>
+Cc:     linux-renesas-soc@vger.kernel.org,
+        Rob Herring <robh+dt@kernel.org>,
+        Laurent Pinchart <laurent.pinchart@ideasonboard.com>,
+        Prabhakar Mahadev Lad <prabhakar.mahadev-lad.rj@bp.renesas.com>,
+        linux-kernel@vger.kernel.org,
+        Chris Paterson <Chris.Paterson2@renesas.com>,
+        Mauro Carvalho Chehab <mchehab@kernel.org>,
+        Biju Das <biju.das.jz@bp.renesas.com>,
+        devicetree@vger.kernel.org,
+        Ramesh Shanmugasundaram <rashanmu@gmail.com>,
+        Geert Uytterhoeven <geert+renesas@glider.be>,
+        linux-media@vger.kernel.org
+Subject: Re: [PATCH v2 3/3] media: dt-bindings: media: renesas,drif: Add
+ r8a77990 support
+Message-ID: <20200923153850.GA797140@bogus>
+References: <20200916105949.24858-1-fabrizio.castro.jz@renesas.com>
+ <20200916105949.24858-4-fabrizio.castro.jz@renesas.com>
 MIME-Version: 1.0
 Content-Type: text/plain; charset=us-ascii
 Content-Disposition: inline
-In-Reply-To: <20200916104135.25085-6-stephan@gerhold.net>
+In-Reply-To: <20200916105949.24858-4-fabrizio.castro.jz@renesas.com>
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-On Wed, Sep 16, 2020 at 12:41:30PM +0200, Stephan Gerhold wrote:
-> Newer platforms vote for necessary power domains through the power
-> domain subsystem. For historical reasons older platforms like MSM8916
-> or MSM8974 still control these as regulators.
-
-Do you plan to change these platforms? If not then I wouldn't really 
-call this deprecated.
-
+On Wed, 16 Sep 2020 11:59:49 +0100, Fabrizio Castro wrote:
+> The r8a77990 (a.k.a. R-Car E3) device tree schema is
+> compatible with R-Car H3 and M3-W schema.
 > 
-> Managing them as power domains is preferred since that allows us
-> to vote for corners instead of raw voltages. Document that those
-> should be specified as power domains and deprecate using them
-> through the regulator interface.
+> Document r8a77990 support within renesas,drif.yaml.
 > 
-> Signed-off-by: Stephan Gerhold <stephan@gerhold.net>
+> Signed-off-by: Fabrizio Castro <fabrizio.castro.jz@renesas.com>
+> Reviewed-by: Geert Uytterhoeven <geert+renesas@glider.be>
+> Reviewed-by: Lad Prabhakar <prabhakar.mahadev-lad.rj@bp.renesas.com>
+> Reviewed-by: Laurent Pinchart <laurent.pinchart@ideasonboard.com>
 > ---
->  .../devicetree/bindings/remoteproc/qcom,q6v5.txt     | 12 ++++++------
->  1 file changed, 6 insertions(+), 6 deletions(-)
+> v1->v2:
+> * No change
 > 
-> diff --git a/Documentation/devicetree/bindings/remoteproc/qcom,q6v5.txt b/Documentation/devicetree/bindings/remoteproc/qcom,q6v5.txt
-> index 1f9a62e13ebe..7ccd5534b0ae 100644
-> --- a/Documentation/devicetree/bindings/remoteproc/qcom,q6v5.txt
-> +++ b/Documentation/devicetree/bindings/remoteproc/qcom,q6v5.txt
-> @@ -113,8 +113,8 @@ should be referenced as follows:
->  For the compatible strings below the following supplies are required:
->    "qcom,q6v5-pil"
->    "qcom,msm8916-mss-pil",
-> -- cx-supply:
-> -- mx-supply:
-> +- cx-supply: (deprecated, use power domain instead)
-> +- mx-supply: (deprecated, use power domain instead)
->  - pll-supply:
->  	Usage: required
->  	Value type: <phandle>
-> @@ -123,9 +123,9 @@ For the compatible strings below the following supplies are required:
->  
->  For the compatible string below the following supplies are required:
->    "qcom,msm8974-mss-pil"
-> -- cx-supply:
-> +- cx-supply: (deprecated, use power domain instead)
->  - mss-supply:
-> -- mx-supply:
-> +- mx-supply: (deprecated, use power domain instead)
->  - pll-supply:
->  	Usage: required
->  	Value type: <phandle>
-> @@ -149,11 +149,11 @@ For the compatible string below the following supplies are required:
->  	Usage: required
->  	Value type: <stringlist>
->  	Definition: The power-domains needed depend on the compatible string:
-> -	qcom,q6v5-pil:
->  	qcom,ipq8074-wcss-pil:
-> +		    no power-domain names required
-> +	qcom,q6v5-pil:
->  	qcom,msm8916-mss-pil:
->  	qcom,msm8974-mss-pil:
-> -		    no power-domain names required
->  	qcom,msm8996-mss-pil:
->  	qcom,msm8998-mss-pil:
->  		    must be "cx", "mx"
-> -- 
-> 2.28.0
+>  Documentation/devicetree/bindings/media/renesas,drif.yaml | 1 +
+>  1 file changed, 1 insertion(+)
 > 
+
+Acked-by: Rob Herring <robh@kernel.org>
