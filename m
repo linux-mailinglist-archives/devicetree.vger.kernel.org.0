@@ -2,182 +2,94 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from vger.kernel.org (vger.kernel.org [23.128.96.18])
-	by mail.lfdr.de (Postfix) with ESMTP id 83942275A77
-	for <lists+devicetree@lfdr.de>; Wed, 23 Sep 2020 16:41:01 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTP id AB9B7275A71
+	for <lists+devicetree@lfdr.de>; Wed, 23 Sep 2020 16:40:58 +0200 (CEST)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S1726775AbgIWOkp (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Wed, 23 Sep 2020 10:40:45 -0400
-Received: from mslow2.mail.gandi.net ([217.70.178.242]:39224 "EHLO
+        id S1726794AbgIWOkq (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Wed, 23 Sep 2020 10:40:46 -0400
+Received: from mslow2.mail.gandi.net ([217.70.178.242]:39248 "EHLO
         mslow2.mail.gandi.net" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S1726757AbgIWOkk (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Wed, 23 Sep 2020 10:40:40 -0400
+        with ESMTP id S1726668AbgIWOkl (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Wed, 23 Sep 2020 10:40:41 -0400
 Received: from relay9-d.mail.gandi.net (unknown [217.70.183.199])
-        by mslow2.mail.gandi.net (Postfix) with ESMTP id 742443B27D6
-        for <devicetree@vger.kernel.org>; Wed, 23 Sep 2020 14:39:07 +0000 (UTC)
+        by mslow2.mail.gandi.net (Postfix) with ESMTP id 6E04C3B25DB;
+        Wed, 23 Sep 2020 14:39:19 +0000 (UTC)
 X-Originating-IP: 90.65.92.90
 Received: from localhost (lfbn-lyo-1-1913-90.w90-65.abo.wanadoo.fr [90.65.92.90])
         (Authenticated sender: gregory.clement@bootlin.com)
-        by relay9-d.mail.gandi.net (Postfix) with ESMTPSA id 8D95EFF807;
-        Wed, 23 Sep 2020 14:38:43 +0000 (UTC)
+        by relay9-d.mail.gandi.net (Postfix) with ESMTPSA id 024DBFF80C;
+        Wed, 23 Sep 2020 14:38:52 +0000 (UTC)
 From:   Gregory CLEMENT <gregory.clement@bootlin.com>
-To:     Adrian Schmutzler <freifunk@adrianschmutzler.de>,
+To:     Krzysztof Kozlowski <krzk@kernel.org>,
+        Linus Walleij <linus.walleij@linaro.org>,
+        Bartosz Golaszewski <bgolaszewski@baylibre.com>,
+        Rob Herring <robh+dt@kernel.org>,
+        =?utf-8?Q?Beno=C3=AEt?= Cousson <bcousson@baylibre.com>,
+        Tony Lindgren <tony@atomide.com>,
         Jason Cooper <jason@lakedaemon.net>,
         Andrew Lunn <andrew@lunn.ch>,
         Sebastian Hesselbarth <sebastian.hesselbarth@gmail.com>,
-        Rob Herring <robh+dt@kernel.org>,
-        linux-arm-kernel@lists.infradead.org, devicetree@vger.kernel.org
-Subject: Re: [PATCH] ARM: dts: kirkwood: replace status value "ok" by "okay"
-In-Reply-To: <20200830193543.50530-1-freifunk@adrianschmutzler.de>
-References: <20200830193543.50530-1-freifunk@adrianschmutzler.de>
-Date:   Wed, 23 Sep 2020 16:38:43 +0200
-Message-ID: <87d02cimmk.fsf@BL-laptop>
+        Russell King <linux@armlinux.org.uk>,
+        Joel Stanley <joel@jms.id.au>,
+        Andrew Jeffery <andrew@aj.id.au>,
+        Shawn Guo <shawnguo@kernel.org>,
+        Sascha Hauer <s.hauer@pengutronix.de>,
+        Pengutronix Kernel Team <kernel@pengutronix.de>,
+        Fabio Estevam <festevam@gmail.com>,
+        NXP Linux Team <linux-imx@nxp.com>,
+        Matthias Brugger <matthias.bgg@gmail.com>,
+        Geert Uytterhoeven <geert+renesas@glider.be>,
+        Magnus Damm <magnus.damm@gmail.com>,
+        Tero Kristo <t-kristo@ti.com>, Nishanth Menon <nm@ti.com>,
+        Michal Simek <michal.simek@xilinx.com>,
+        linux-gpio@vger.kernel.org, devicetree@vger.kernel.org,
+        linux-kernel@vger.kernel.org, linux-omap@vger.kernel.org,
+        linux-arm-kernel@lists.infradead.org,
+        linux-aspeed@lists.ozlabs.org, linux-mediatek@lists.infradead.org,
+        linux-renesas-soc@vger.kernel.org
+Cc:     Krzysztof Kozlowski <krzk@kernel.org>
+Subject: Re: [PATCH v3 13/15] ARM: dts: dove: fix PCA95xx GPIO expander properties on A510
+In-Reply-To: <20200916155715.21009-14-krzk@kernel.org>
+References: <20200916155715.21009-1-krzk@kernel.org> <20200916155715.21009-14-krzk@kernel.org>
+Date:   Wed, 23 Sep 2020 16:38:52 +0200
+Message-ID: <87blhwimmb.fsf@BL-laptop>
 MIME-Version: 1.0
 Content-Type: text/plain
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-Hello Adrian,
+Hi Krzysztof,
 
-> While the DT parser recognizes "ok" as a valid value for the
-> "status" property, it is actually mentioned nowhere. Use the
-> proper value "okay" instead, as done in the majority of files
-> already.
->
+> The PCA95xx GPIO expander requires GPIO controller properties to operate
+> properly.
 
 Applied on mvebu/dt
 
 Thanks,
 
 Gregory
-
-> Signed-off-by: Adrian Schmutzler <freifunk@adrianschmutzler.de>
-> ---
->  arch/arm/boot/dts/kirkwood-dockstar.dts             | 2 +-
->  arch/arm/boot/dts/kirkwood-dreamplug.dts            | 2 +-
->  arch/arm/boot/dts/kirkwood-goflexnet.dts            | 2 +-
->  arch/arm/boot/dts/kirkwood-guruplug-server-plus.dts | 2 +-
->  arch/arm/boot/dts/kirkwood-iconnect.dts             | 2 +-
->  arch/arm/boot/dts/kirkwood-iomega_ix2_200.dts       | 2 +-
->  arch/arm/boot/dts/kirkwood-nsa3x0-common.dtsi       | 2 +-
->  arch/arm/boot/dts/kirkwood.dtsi                     | 4 ++--
->  8 files changed, 9 insertions(+), 9 deletions(-)
 >
-> diff --git a/arch/arm/boot/dts/kirkwood-dockstar.dts b/arch/arm/boot/dts/kirkwood-dockstar.dts
-> index 6a3f1bf6d9f1..264938dfa4d9 100644
-> --- a/arch/arm/boot/dts/kirkwood-dockstar.dts
-> +++ b/arch/arm/boot/dts/kirkwood-dockstar.dts
-> @@ -34,7 +34,7 @@
->  			};
->  		};
->  		serial@12000 {
-> -			status = "ok";
-> +			status = "okay";
->  		};
+> Signed-off-by: Krzysztof Kozlowski <krzk@kernel.org>
+> Reviewed-by: Linus Walleij <linus.walleij@linaro.org>
+> ---
+>  arch/arm/boot/dts/dove-sbc-a510.dts | 1 +
+>  1 file changed, 1 insertion(+)
+>
+> diff --git a/arch/arm/boot/dts/dove-sbc-a510.dts b/arch/arm/boot/dts/dove-sbc-a510.dts
+> index 2bb85a9b7614..df021f9b0117 100644
+> --- a/arch/arm/boot/dts/dove-sbc-a510.dts
+> +++ b/arch/arm/boot/dts/dove-sbc-a510.dts
+> @@ -143,6 +143,7 @@
+>  	gpio_ext: gpio@20 {
+>  		compatible = "nxp,pca9555";
+>  		reg = <0x20>;
+> +		gpio-controller;
+>  		#gpio-cells = <2>;
 >  	};
->  	gpio-leds {
-> diff --git a/arch/arm/boot/dts/kirkwood-dreamplug.dts b/arch/arm/boot/dts/kirkwood-dreamplug.dts
-> index 7f326e267494..328516351e84 100644
-> --- a/arch/arm/boot/dts/kirkwood-dreamplug.dts
-> +++ b/arch/arm/boot/dts/kirkwood-dreamplug.dts
-> @@ -34,7 +34,7 @@
->  			};
->  		};
->  		serial@12000 {
-> -			status = "ok";
-> +			status = "okay";
->  		};
->  
->  		spi@10600 {
-> diff --git a/arch/arm/boot/dts/kirkwood-goflexnet.dts b/arch/arm/boot/dts/kirkwood-goflexnet.dts
-> index 02d87e0a1061..d4cb3cd3e2a2 100644
-> --- a/arch/arm/boot/dts/kirkwood-goflexnet.dts
-> +++ b/arch/arm/boot/dts/kirkwood-goflexnet.dts
-> @@ -66,7 +66,7 @@
->  			};
->  		};
->  		serial@12000 {
-> -			status = "ok";
-> +			status = "okay";
->  		};
->  
->  		sata@80000 {
-> diff --git a/arch/arm/boot/dts/kirkwood-guruplug-server-plus.dts b/arch/arm/boot/dts/kirkwood-guruplug-server-plus.dts
-> index ff1260ee3fe8..dfb41393941d 100644
-> --- a/arch/arm/boot/dts/kirkwood-guruplug-server-plus.dts
-> +++ b/arch/arm/boot/dts/kirkwood-guruplug-server-plus.dts
-> @@ -38,7 +38,7 @@
->  			};
->  		};
->  		serial@12000 {
-> -			status = "ok";
-> +			status = "okay";
->  		};
->  
->  		sata@80000 {
-> diff --git a/arch/arm/boot/dts/kirkwood-iconnect.dts b/arch/arm/boot/dts/kirkwood-iconnect.dts
-> index 4a512d80912c..95af7aa1fdcb 100644
-> --- a/arch/arm/boot/dts/kirkwood-iconnect.dts
-> +++ b/arch/arm/boot/dts/kirkwood-iconnect.dts
-> @@ -72,7 +72,7 @@
->  			};
->  		};
->  		serial@12000 {
-> -			status = "ok";
-> +			status = "okay";
->  		};
->  	};
->  
-> diff --git a/arch/arm/boot/dts/kirkwood-iomega_ix2_200.dts b/arch/arm/boot/dts/kirkwood-iomega_ix2_200.dts
-> index 62272d58664f..2338f495d517 100644
-> --- a/arch/arm/boot/dts/kirkwood-iomega_ix2_200.dts
-> +++ b/arch/arm/boot/dts/kirkwood-iomega_ix2_200.dts
-> @@ -112,7 +112,7 @@
->  		};
->  
->  		serial@12000 {
-> -			status = "ok";
-> +			status = "okay";
->  		};
->  
->  		sata@80000 {
-> diff --git a/arch/arm/boot/dts/kirkwood-nsa3x0-common.dtsi b/arch/arm/boot/dts/kirkwood-nsa3x0-common.dtsi
-> index 2c4037b07282..8f73197f251a 100644
-> --- a/arch/arm/boot/dts/kirkwood-nsa3x0-common.dtsi
-> +++ b/arch/arm/boot/dts/kirkwood-nsa3x0-common.dtsi
-> @@ -45,7 +45,7 @@
->  		};
->  
->  		serial@12000 {
-> -			status = "ok";
-> +			status = "okay";
->  		};
->  
->  		sata@80000 {
-> diff --git a/arch/arm/boot/dts/kirkwood.dtsi b/arch/arm/boot/dts/kirkwood.dtsi
-> index 6c8d94beae78..fca31a5d5ac7 100644
-> --- a/arch/arm/boot/dts/kirkwood.dtsi
-> +++ b/arch/arm/boot/dts/kirkwood.dtsi
-> @@ -369,7 +369,7 @@
->  			clocks = <&gate_clk 14>;
->  			clock-names = "sata";
->  			#phy-cells = <0>;
-> -			status = "ok";
-> +			status = "okay";
->  		};
->  
->  		sata_phy1: sata-phy@84000 {
-> @@ -378,7 +378,7 @@
->  			clocks = <&gate_clk 15>;
->  			clock-names = "sata";
->  			#phy-cells = <0>;
-> -			status = "ok";
-> +			status = "okay";
->  		};
->  
->  		audio0: audio-controller@a0000 {
+>  };
 > -- 
-> 2.20.1
+> 2.17.1
 >
 
 -- 
