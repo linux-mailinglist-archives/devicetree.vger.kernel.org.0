@@ -2,151 +2,82 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from vger.kernel.org (vger.kernel.org [23.128.96.18])
-	by mail.lfdr.de (Postfix) with ESMTP id 1D170275CD7
-	for <lists+devicetree@lfdr.de>; Wed, 23 Sep 2020 18:08:28 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTP id 6CDAB275CFC
+	for <lists+devicetree@lfdr.de>; Wed, 23 Sep 2020 18:11:16 +0200 (CEST)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S1726825AbgIWQIW (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Wed, 23 Sep 2020 12:08:22 -0400
-Received: from lindbergh.monkeyblade.net ([23.128.96.19]:48616 "EHLO
-        lindbergh.monkeyblade.net" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S1726806AbgIWQIR (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Wed, 23 Sep 2020 12:08:17 -0400
-Received: from mail-qk1-x743.google.com (mail-qk1-x743.google.com [IPv6:2607:f8b0:4864:20::743])
-        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 597C7C0613D1
-        for <devicetree@vger.kernel.org>; Wed, 23 Sep 2020 09:08:17 -0700 (PDT)
-Received: by mail-qk1-x743.google.com with SMTP id n133so152485qkn.11
-        for <devicetree@vger.kernel.org>; Wed, 23 Sep 2020 09:08:17 -0700 (PDT)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=marek-ca.20150623.gappssmtp.com; s=20150623;
-        h=from:to:cc:subject:date:message-id:in-reply-to:references
-         :mime-version:content-transfer-encoding;
-        bh=PBSiG7ruCWqF/AnvxWCWflqPnOSBDvyOBd/TuCScP+8=;
-        b=dWs3AgfCfQi0b7NxAbznlPRYQAXy+ceSERbZTtoEMa61kW+6k894zsUGPmydYB7WXD
-         b7V2r7m/uvD7lPD9xgCgsYzhEgiGI+TUEFQaBmchmtk6pZh21hd+9bahyniGhCydmi1q
-         g2JRYUBtLq+G83nHerCYqT3nfP194le9oMeeESFQJCmPI+/F88EAwlvrLu3iU9wS+f4I
-         WDCiZyOwS2vWt/tuOJRd8vCj76pX449gssi8bKLl91TuAhpyo5hXtgLKeJxodtvCJo+v
-         1IGVq+LNEW952+t0KRkvrag+oaMWWK9NdHzRyFOUhF2ljJGZNePatAwepxRLciMUKXau
-         kE9Q==
-X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=1e100.net; s=20161025;
-        h=x-gm-message-state:from:to:cc:subject:date:message-id:in-reply-to
-         :references:mime-version:content-transfer-encoding;
-        bh=PBSiG7ruCWqF/AnvxWCWflqPnOSBDvyOBd/TuCScP+8=;
-        b=r7to7MaolFssSaz/hqFhci01xFfbocmAJcCWWi0KezuVi5J6fBhoB79iJFvrFhPoWW
-         7+4puVkoBxd1md0HbSGT0h0KAWaCXA/TnsF46G1nq89ZH01rA54y4pakh6bg8vlham3n
-         0TKxataMKrbaKCCJLzPopl/M2RxXNhGXWLrE2UkEMcUq9anj7oDE1FDa3uUwaZEwh/v6
-         a4/tlbAwWJ+tIB3i/+V2ofq97VlBKVlFQmP6U08gv+ytV08kmzRg0UL9Z0GD9TAb2dlB
-         22hodesmeuo+OLd9EnZMLWy1jww2LyS6CbGZ8HVs5OJEAtP43ZWXZEddqNEeoNxBfomg
-         7zVA==
-X-Gm-Message-State: AOAM532GvBKNlinRN+fK6zTka16MIO37j2roUJ1oQ8VoSMwtGM0VLou7
-        2KcbgaUU6xG8jzntxTSw+zVx2Q==
-X-Google-Smtp-Source: ABdhPJwc7fOelnpsSkhRbpYXa7Kfw+oxo/+DFy5ail7EiuQ4mmzuagEJ7RPFYChPwovYv34QVz1VWg==
-X-Received: by 2002:ae9:de85:: with SMTP id s127mr555980qkf.59.1600877296552;
-        Wed, 23 Sep 2020 09:08:16 -0700 (PDT)
-Received: from localhost.localdomain ([147.253.86.153])
-        by smtp.gmail.com with ESMTPSA id 145sm279159qkf.18.2020.09.23.09.08.15
-        (version=TLS1_3 cipher=TLS_AES_256_GCM_SHA384 bits=256/256);
-        Wed, 23 Sep 2020 09:08:16 -0700 (PDT)
-From:   Jonathan Marek <jonathan@marek.ca>
-To:     linux-arm-msm@vger.kernel.org
-Cc:     Rob Herring <robh@kernel.org>, Andy Gross <agross@kernel.org>,
-        Bjorn Andersson <bjorn.andersson@linaro.org>,
-        Michael Turquette <mturquette@baylibre.com>,
-        Stephen Boyd <sboyd@kernel.org>,
-        Rob Herring <robh+dt@kernel.org>,
-        Taniya Das <tdas@codeaurora.org>,
-        linux-clk@vger.kernel.org (open list:COMMON CLK FRAMEWORK),
-        devicetree@vger.kernel.org (open list:OPEN FIRMWARE AND FLATTENED
-        DEVICE TREE BINDINGS), linux-kernel@vger.kernel.org (open list)
-Subject: [PATCH v3 3/5] dt-bindings: clock: add SM8250 QCOM video clock bindings
-Date:   Wed, 23 Sep 2020 12:06:29 -0400
-Message-Id: <20200923160635.28370-4-jonathan@marek.ca>
-X-Mailer: git-send-email 2.26.1
-In-Reply-To: <20200923160635.28370-1-jonathan@marek.ca>
-References: <20200923160635.28370-1-jonathan@marek.ca>
+        id S1726516AbgIWQLP (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Wed, 23 Sep 2020 12:11:15 -0400
+Received: from fllv0016.ext.ti.com ([198.47.19.142]:51590 "EHLO
+        fllv0016.ext.ti.com" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
+        with ESMTP id S1726360AbgIWQLP (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Wed, 23 Sep 2020 12:11:15 -0400
+Received: from fllv0034.itg.ti.com ([10.64.40.246])
+        by fllv0016.ext.ti.com (8.15.2/8.15.2) with ESMTP id 08NGB6qP051092;
+        Wed, 23 Sep 2020 11:11:06 -0500
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=ti.com;
+        s=ti-com-17Q1; t=1600877466;
+        bh=GonlYZbi6nuWCM6HFFiNjrh40RYQxuq7I3I6tTMPXms=;
+        h=Subject:To:CC:References:From:Date:In-Reply-To;
+        b=Eoh6ys5dXwvuJvbIN04O27uh7DZWwPb2H8oPjiRhmreX2i+4ABzWABg7rt3z/OGOR
+         JJgEp2xIRmRXs53+AfleyyaJBhI3koLG2P1kKdC5VtBJMKwZC0j4wYOwjg9vbYHS99
+         oEJgWPPioiUTIAIjCky8EZ+2r5wsmkfv/UFEHiww=
+Received: from DLEE102.ent.ti.com (dlee102.ent.ti.com [157.170.170.32])
+        by fllv0034.itg.ti.com (8.15.2/8.15.2) with ESMTPS id 08NGB6rE040430
+        (version=TLSv1.2 cipher=AES256-GCM-SHA384 bits=256 verify=FAIL);
+        Wed, 23 Sep 2020 11:11:06 -0500
+Received: from DLEE111.ent.ti.com (157.170.170.22) by DLEE102.ent.ti.com
+ (157.170.170.32) with Microsoft SMTP Server (version=TLS1_2,
+ cipher=TLS_ECDHE_RSA_WITH_AES_128_CBC_SHA256_P256) id 15.1.1979.3; Wed, 23
+ Sep 2020 11:11:06 -0500
+Received: from lelv0326.itg.ti.com (10.180.67.84) by DLEE111.ent.ti.com
+ (157.170.170.22) with Microsoft SMTP Server (version=TLS1_2,
+ cipher=TLS_ECDHE_RSA_WITH_AES_128_CBC_SHA256_P256) id 15.1.1979.3 via
+ Frontend Transport; Wed, 23 Sep 2020 11:11:06 -0500
+Received: from [10.250.36.88] (ileax41-snat.itg.ti.com [10.172.224.153])
+        by lelv0326.itg.ti.com (8.15.2/8.15.2) with ESMTP id 08NGB5ix061623;
+        Wed, 23 Sep 2020 11:11:05 -0500
+Subject: Re: [PATCH 4/6] dt-bindings: tas2770: Remove ti,asi-format property
+To:     Mark Brown <broonie@kernel.org>
+CC:     <lgirdwood@gmail.com>, <tiwai@suse.com>, <robh+dt@kernel.org>,
+        <devicetree@vger.kernel.org>, <alsa-devel@alsa-project.org>,
+        <linux-kernel@vger.kernel.org>
+References: <20200923132600.10652-1-dmurphy@ti.com>
+ <20200923132600.10652-4-dmurphy@ti.com> <20200923155145.GD5707@sirena.org.uk>
+From:   Dan Murphy <dmurphy@ti.com>
+Message-ID: <39d966c4-2f56-c004-4e7c-24a99b07cc72@ti.com>
+Date:   Wed, 23 Sep 2020 11:11:05 -0500
+User-Agent: Mozilla/5.0 (X11; Linux x86_64; rv:68.0) Gecko/20100101
+ Thunderbird/68.10.0
 MIME-Version: 1.0
-Content-Transfer-Encoding: 8bit
+In-Reply-To: <20200923155145.GD5707@sirena.org.uk>
+Content-Type: text/plain; charset="windows-1252"; format=flowed
+Content-Transfer-Encoding: 7bit
+Content-Language: en-US
+X-EXCLAIMER-MD-CONFIG: e1e8a2fd-e40a-4ac6-ac9b-f7e9cc9ee180
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-Add device tree bindings for video clock controller for SM8250 SoCs.
+Mark
 
-Signed-off-by: Jonathan Marek <jonathan@marek.ca>
-Reviewed-by: Rob Herring <robh@kernel.org>
----
- .../bindings/clock/qcom,videocc.yaml          |  4 ++-
- .../dt-bindings/clock/qcom,videocc-sm8250.h   | 34 +++++++++++++++++++
- 2 files changed, 37 insertions(+), 1 deletion(-)
- create mode 100644 include/dt-bindings/clock/qcom,videocc-sm8250.h
+On 9/23/20 10:51 AM, Mark Brown wrote:
+> On Wed, Sep 23, 2020 at 08:25:58AM -0500, Dan Murphy wrote:
+>> Remove the property ti,asi-format as the driver only reads this property
+>> and performs no action against it.
+> We should probably leave the property as documented and move it to
+> deprecated rather than delete the documentation entirely.
 
-diff --git a/Documentation/devicetree/bindings/clock/qcom,videocc.yaml b/Documentation/devicetree/bindings/clock/qcom,videocc.yaml
-index bb1c1a841b68..567202942b88 100644
---- a/Documentation/devicetree/bindings/clock/qcom,videocc.yaml
-+++ b/Documentation/devicetree/bindings/clock/qcom,videocc.yaml
-@@ -11,12 +11,13 @@ maintainers:
- 
- description: |
-   Qualcomm video clock control module which supports the clocks, resets and
--  power domains on SDM845/SC7180/SM8150.
-+  power domains on SDM845/SC7180/SM8150/SM8250.
- 
-   See also:
-     dt-bindings/clock/qcom,videocc-sc7180.h
-     dt-bindings/clock/qcom,videocc-sdm845.h
-     dt-bindings/clock/qcom,videocc-sm8150.h
-+    dt-bindings/clock/qcom,videocc-sm8250.h
- 
- properties:
-   compatible:
-@@ -24,6 +25,7 @@ properties:
-       - qcom,sc7180-videocc
-       - qcom,sdm845-videocc
-       - qcom,sm8150-videocc
-+      - qcom,sm8250-videocc
- 
-   clocks:
-     items:
-diff --git a/include/dt-bindings/clock/qcom,videocc-sm8250.h b/include/dt-bindings/clock/qcom,videocc-sm8250.h
-new file mode 100644
-index 000000000000..2b2b3867af25
---- /dev/null
-+++ b/include/dt-bindings/clock/qcom,videocc-sm8250.h
-@@ -0,0 +1,34 @@
-+/* SPDX-License-Identifier: GPL-2.0-only */
-+/*
-+ * Copyright (c) 2018-2020, The Linux Foundation. All rights reserved.
-+ */
-+
-+#ifndef _DT_BINDINGS_CLK_QCOM_VIDEO_CC_SM8250_H
-+#define _DT_BINDINGS_CLK_QCOM_VIDEO_CC_SM8250_H
-+
-+/* VIDEO_CC clocks */
-+#define VIDEO_CC_MVS0_CLK_SRC		0
-+#define VIDEO_CC_MVS0C_CLK		1
-+#define VIDEO_CC_MVS0C_DIV2_DIV_CLK_SRC	2
-+#define VIDEO_CC_MVS1_CLK_SRC		3
-+#define VIDEO_CC_MVS1_DIV2_CLK		4
-+#define VIDEO_CC_MVS1C_CLK		5
-+#define VIDEO_CC_MVS1C_DIV2_DIV_CLK_SRC	6
-+#define VIDEO_CC_PLL0			7
-+#define VIDEO_CC_PLL1			8
-+
-+/* VIDEO_CC resets */
-+#define VIDEO_CC_CVP_INTERFACE_BCR	0
-+#define VIDEO_CC_CVP_MVS0_BCR		1
-+#define VIDEO_CC_MVS0C_CLK_ARES		2
-+#define VIDEO_CC_CVP_MVS0C_BCR		3
-+#define VIDEO_CC_CVP_MVS1_BCR		4
-+#define VIDEO_CC_MVS1C_CLK_ARES		5
-+#define VIDEO_CC_CVP_MVS1C_BCR		6
-+
-+#define MVS0C_GDSC			0
-+#define MVS1C_GDSC			1
-+#define MVS0_GDSC			2
-+#define MVS1_GDSC			3
-+
-+#endif
--- 
-2.26.1
+I mulled this over to just deprecate the property and I know removing 
+these ABIs are not highly accepted.
+
+But the support code for it was incomplete and if a user had it 
+populated in the DT and we removed the support then there will be no 
+functional change.
+
+This property was supposed to set the RX edge SBCLK detection but this 
+is done based on the dai format.
+
+So removing the property will have no affect on the users.
+
+Dan
 
