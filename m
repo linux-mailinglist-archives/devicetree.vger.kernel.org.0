@@ -2,127 +2,71 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from vger.kernel.org (vger.kernel.org [23.128.96.18])
-	by mail.lfdr.de (Postfix) with ESMTP id 04F2F2757C1
-	for <lists+devicetree@lfdr.de>; Wed, 23 Sep 2020 14:15:01 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTP id DB71A275833
+	for <lists+devicetree@lfdr.de>; Wed, 23 Sep 2020 14:48:00 +0200 (CEST)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S1726552AbgIWMO5 (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Wed, 23 Sep 2020 08:14:57 -0400
-Received: from lindbergh.monkeyblade.net ([23.128.96.19]:40976 "EHLO
-        lindbergh.monkeyblade.net" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S1726476AbgIWMO4 (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Wed, 23 Sep 2020 08:14:56 -0400
-Received: from mail-wr1-x442.google.com (mail-wr1-x442.google.com [IPv6:2a00:1450:4864:20::442])
-        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 97CA8C0613CE;
-        Wed, 23 Sep 2020 05:14:56 -0700 (PDT)
-Received: by mail-wr1-x442.google.com with SMTP id z4so20786333wrr.4;
-        Wed, 23 Sep 2020 05:14:56 -0700 (PDT)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=gmail.com; s=20161025;
-        h=date:from:to:cc:subject:message-id:references:mime-version
-         :content-disposition:in-reply-to:user-agent;
-        bh=xH/OJNOXpFoUO1DQr8ioFXfkNwPG54GEfbB6/p814zo=;
-        b=otqa5hJX0+4DxOPqsg9wxGESc/L6ngEhkS0LRhx6I1WnfWdYhsqVCslQllHDzfz9U+
-         +Bd3MQ91qJNGYe84xuMHs/AyVyL4hd3Rmk9nAkCnZQleltS4h6cUh4sphaVysSKFjW6O
-         q6tC6NFwBU3EmjjkciQQWTgMc2MxlW53WhnREF0rZrDxOFYoJ+MPDoGSSJAeH9ruTFYG
-         mgIeHOPenFuBMOiFsATGN8JOjBfcpRSyhfP1L0oKKY16SUPNBGN4haYVctgrG0Ub0DQR
-         dxl3aki29Yd/bIDh5iTRsKgyABAPMjiQX+rXYs3PhAiqEX4bYuoaNvfShnyQE5oQkMBO
-         KZHg==
-X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=1e100.net; s=20161025;
-        h=x-gm-message-state:date:from:to:cc:subject:message-id:references
-         :mime-version:content-disposition:in-reply-to:user-agent;
-        bh=xH/OJNOXpFoUO1DQr8ioFXfkNwPG54GEfbB6/p814zo=;
-        b=NZSwc3ZOYK0FI2JBjOMenLMWiwiqkg4CY1mExttF95dnvq8HWSHdtJ5QRh8wzvbZnq
-         HB2DzRnd5h+Oa+qh0MSwL5GUil6hz45bcrItVBRk/vFoJlnENE7gflDn1lVOqeVN52ox
-         28Hxm2JOXCDhQSkzzOMi4Xwtfwsu3035esAIIOYtPuS77d6N3F1x/W1/oVz9D+MwzVXy
-         0tL16gHhHmd38+MdQaFQlqzQv/CqcN3q46Y1zlpK9yBQl5scMm7NLdhOiRWSF2UhgWJ7
-         9327zEQDQ6hLDoJtO3GlbkAp5lIgoQQNuWBM7nKj9nG1VWzsqmoGH1OEwq6O3Z9+RW3c
-         rVQA==
-X-Gm-Message-State: AOAM531P7N9VtZMlvsBcNf+N8UcCksIxff/k8V4536UALmcwC1bb1/oT
-        PJdOQ2+gFutrxsX5vL/Ajkw=
-X-Google-Smtp-Source: ABdhPJwtgDgmZEfiq2/zyLvu9i2tC//svTGYQeAz6M/bWhTQFEXGXQwyDV9fSLyOs/qWz11uSy3uPg==
-X-Received: by 2002:a5d:414b:: with SMTP id c11mr484211wrq.181.1600863295328;
-        Wed, 23 Sep 2020 05:14:55 -0700 (PDT)
-Received: from localhost ([217.111.27.204])
-        by smtp.gmail.com with ESMTPSA id t202sm8584077wmt.14.2020.09.23.05.14.53
-        (version=TLS1_3 cipher=TLS_AES_256_GCM_SHA384 bits=256/256);
-        Wed, 23 Sep 2020 05:14:53 -0700 (PDT)
-Date:   Wed, 23 Sep 2020 14:14:52 +0200
-From:   Thierry Reding <thierry.reding@gmail.com>
-To:     Geert Uytterhoeven <geert@linux-m68k.org>
-Cc:     Lad Prabhakar <prabhakar.mahadev-lad.rj@bp.renesas.com>,
-        Uwe =?utf-8?Q?Kleine-K=C3=B6nig?= 
-        <u.kleine-koenig@pengutronix.de>, Lee Jones <lee.jones@linaro.org>,
-        Rob Herring <robh+dt@kernel.org>,
-        Magnus Damm <magnus.damm@gmail.com>,
-        Yoshihiro Shimoda <yoshihiro.shimoda.uh@renesas.com>,
-        Linux PWM List <linux-pwm@vger.kernel.org>,
-        "open list:OPEN FIRMWARE AND FLATTENED DEVICE TREE BINDINGS" 
-        <devicetree@vger.kernel.org>,
-        Linux Kernel Mailing List <linux-kernel@vger.kernel.org>,
-        Linux-Renesas <linux-renesas-soc@vger.kernel.org>,
-        Prabhakar <prabhakar.csengg@gmail.com>
-Subject: Re: [PATCH 2/2] arm64: dts: renesas: r8a774e1: Add PWM device nodes
-Message-ID: <20200923121452.GD1848911@ulmo>
-References: <20200825104455.18000-1-prabhakar.mahadev-lad.rj@bp.renesas.com>
- <20200825104455.18000-3-prabhakar.mahadev-lad.rj@bp.renesas.com>
- <CAMuHMdWmvcA8x-t=FgNOuMnAtw6j3OAgo8irmD5e2wrB+LfhHg@mail.gmail.com>
+        id S1726587AbgIWMsA (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Wed, 23 Sep 2020 08:48:00 -0400
+Received: from hermes.cta.br ([161.24.235.5]:47070 "EHLO hermes.cta.br"
+        rhost-flags-OK-OK-OK-OK) by vger.kernel.org with ESMTP
+        id S1726557AbgIWMsA (ORCPT <rfc822;devicetree@vger.kernel.org>);
+        Wed, 23 Sep 2020 08:48:00 -0400
+Received: from localhost (localhost [127.0.0.1])
+        by hermes.cta.br (Postfix) with ESMTP id 8C75E1703B17;
+        Wed, 23 Sep 2020 04:40:51 -0300 (-03)
+Received: from hermes.cta.br ([127.0.0.1])
+        by localhost (hermes.cta.br [127.0.0.1]) (amavisd-new, port 10032)
+        with ESMTP id mlnqZ74YtUaH; Wed, 23 Sep 2020 04:40:50 -0300 (-03)
+Received: from localhost (localhost [127.0.0.1])
+        by hermes.cta.br (Postfix) with ESMTP id AFA551707274;
+        Wed, 23 Sep 2020 03:01:15 -0300 (-03)
+DKIM-Filter: OpenDKIM Filter v2.10.3 hermes.cta.br AFA551707274
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=cta.br;
+        s=50824260-A46F-11E8-B5E3-16F5207DEC71; t=1600840877;
+        bh=PEgy+RpcsckcVXxslQn6d+tc//P81+6V7lvSU9dRFp0=;
+        h=MIME-Version:To:From:Date:Message-Id;
+        b=R2FU2Y1Q0UX+JaZ5f+uc014Bbj47cBLbz1RY7okYmBJhfTRORZZM/m3UPDVJ+bo2S
+         IyUijyRlBNMKW0jklpqiestj9hO0KImc5Jwdjc+0bJ8fzx8AffUQkqwmRg69/GcbXt
+         be5aaDODoKihPe2GSiLLs1Z/XDDFjlR69lj04b4iLZHgY9hafNEBTTdHZ00DjZaInr
+         RubxlrrXBUvGEb93A9BHGLzyAB5gLa+GhftuAz40yRF3xm64Vdl61BfPERlsK6i/0W
+         y5oOM1aNfvElsANiBSd3maUv+/JvcdeVCLtmQu001up2VN/YS72+e4znA2O/XUYC0w
+         cOUjQfbNxkw8g==
+X-Virus-Scanned: amavisd-new at cta.br
+Received: from hermes.cta.br ([127.0.0.1])
+        by localhost (hermes.cta.br [127.0.0.1]) (amavisd-new, port 10026)
+        with ESMTP id mxXXK24MZamA; Wed, 23 Sep 2020 03:01:15 -0300 (-03)
+Received: from [10.120.212.214] (unknown [105.12.3.179])
+        by hermes.cta.br (Postfix) with ESMTPSA id 6910B15A5D2C;
+        Wed, 23 Sep 2020 01:50:05 -0300 (-03)
+Content-Type: text/plain; charset="iso-8859-1"
 MIME-Version: 1.0
-Content-Type: multipart/signed; micalg=pgp-sha256;
-        protocol="application/pgp-signature"; boundary="fOHHtNG4YXGJ0yqR"
-Content-Disposition: inline
-In-Reply-To: <CAMuHMdWmvcA8x-t=FgNOuMnAtw6j3OAgo8irmD5e2wrB+LfhHg@mail.gmail.com>
-User-Agent: Mutt/1.14.7 (2020-08-29)
+Content-Transfer-Encoding: quoted-printable
+Content-Description: Mail message body
+Subject: spende von 2,000,000 euro
+To:     Recipients <scco@cta.br>
+From:   ''Tayeb souami'' <scco@cta.br>
+Date:   Wed, 23 Sep 2020 06:52:20 +0200
+Reply-To: Tayebsouam.spende@gmail.com
+Message-Id: <20200923045006.6910B15A5D2C@hermes.cta.br>
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
+Hallo mein lieber Freund
+                                  Mein Name ist Tayeb Souami aus New Jersey=
+ in Amerika und ich habe den America Lottery Jackpot von 315 Millionen Euro=
+ gewonnen. Ich habe mich entschlossen, die Summe von 2.000.000 Euro an f=FC=
+nf gl=FCckliche Personen zu spenden, und Sie wurden als einer der Beg=FCnst=
+igten ausgew=E4hlt. Bitte klicken Sie auf diesen Link, um mehr =FCber meine=
+n Gewinn zu erfahren.
 
---fOHHtNG4YXGJ0yqR
-Content-Type: text/plain; charset=us-ascii
-Content-Disposition: inline
-Content-Transfer-Encoding: quoted-printable
 
-On Tue, Aug 25, 2020 at 03:32:08PM +0200, Geert Uytterhoeven wrote:
-> On Tue, Aug 25, 2020 at 12:45 PM Lad Prabhakar
-> <prabhakar.mahadev-lad.rj@bp.renesas.com> wrote:
-> > From: Marian-Cristian Rotariu <marian-cristian.rotariu.rb@bp.renesas.co=
-m>
-> >
-> > This patch adds PWM[0123456] device nodes to the RZ/G2H (a.k.a R8A774E1)
-> > device tree.
-> >
-> > Signed-off-by: Marian-Cristian Rotariu <marian-cristian.rotariu.rb@bp.r=
-enesas.com>
-> > Signed-off-by: Lad Prabhakar <prabhakar.mahadev-lad.rj@bp.renesas.com>
->=20
-> Reviewed-by: Geert Uytterhoeven <geert+renesas@glider.be>
-> i.e. will queue in renesas-devel for v5.10.
+UHR MICH HIER: https://www.youtube.com/watch?v=3DZ6ui8ZDQ6Ks
 
-Hi Geert,
+Bitte kontaktieren Sie mich =FCber diese E-Mail: Tayebsouam.spende@gmail.com
 
-did you also pick up patch 1/2 in this series?
 
-Thierry
+Ich hoffe, Sie und Ihre Familie gl=FCcklich zu machen.
 
---fOHHtNG4YXGJ0yqR
-Content-Type: application/pgp-signature; name="signature.asc"
-
------BEGIN PGP SIGNATURE-----
-
-iQIzBAABCAAdFiEEiOrDCAFJzPfAjcif3SOs138+s6EFAl9rPDwACgkQ3SOs138+
-s6GEEA/+OS2RvDAz9EakePA6Chnz0XpAeBSsxGTqHTrAx87FYKl4cj5AOOOYba49
-l207hajjcTqMnWEsNYxQpVkRaASzdBlq3Hy7zLV1HC/yvgsUCusUZfwwvlH5dQzN
-kW0+Ak2iUcwOfqW5Zieu6mCmOna6RjgMEuL4EQM1nmlfgokgSNjKLQwiQORtD8ki
-DV/3IdB8VuuMMvtiv5YsWHefLVoP5DuifHHSN873knbb8dqH4cWGdqNhWPA9SzAJ
-KR9gkxXNJbPWoEZhQO8uyoYImFytsQNsTF5WWSSXPKA3R5/F+UN7QU7uHn2JOHKx
-WdB+1nQ7n/o2yXWX9A8a5gtvCkVcyKM27n9Rtm/vME2hzosyyIxZ/cDcl0pk0jaG
-cKHyZnI555O/2TCkHDO++CrPPs1+y3b9+pHfVy8mftKDIr5JbA7OT7PGH9/9Q2QO
-Zu3qpPaLD+TzgCY+47h7b6hV21MBg6iD2WwI6T/WKUYxzK2i+L7Hz55IpqJsLDUu
-al278xEIgVjecuYhMzcw0bzlP2ZTPk1jvXdLn3w5ygx7D7IfOHsAMQKN2KckPbVk
-AEeCtmjWCtrq750tpyZs52CXwYlmODLg5kfiRe7EDJn+j3o9ZOHllAfztmKYjXIG
-kG0s2XdEYkLsQJE1V4qyk6HM356vwIT7MdWfCvyBnvEMv4ZtLXg=
-=JMkN
------END PGP SIGNATURE-----
-
---fOHHtNG4YXGJ0yqR--
+Gr=FC=DFe
+Herr Tayeb Souami
