@@ -2,81 +2,187 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from vger.kernel.org (vger.kernel.org [23.128.96.18])
-	by mail.lfdr.de (Postfix) with ESMTP id 5918F275B2E
-	for <lists+devicetree@lfdr.de>; Wed, 23 Sep 2020 17:10:06 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTP id 1D249275B83
+	for <lists+devicetree@lfdr.de>; Wed, 23 Sep 2020 17:21:46 +0200 (CEST)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S1726504AbgIWPKF (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Wed, 23 Sep 2020 11:10:05 -0400
-Received: from relay1-d.mail.gandi.net ([217.70.183.193]:61709 "EHLO
-        relay1-d.mail.gandi.net" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S1726156AbgIWPKF (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Wed, 23 Sep 2020 11:10:05 -0400
-X-Originating-IP: 90.65.92.90
-Received: from localhost (lfbn-lyo-1-1913-90.w90-65.abo.wanadoo.fr [90.65.92.90])
-        (Authenticated sender: gregory.clement@bootlin.com)
-        by relay1-d.mail.gandi.net (Postfix) with ESMTPSA id C5B9E24000F;
-        Wed, 23 Sep 2020 15:10:01 +0000 (UTC)
-From:   Gregory CLEMENT <gregory.clement@bootlin.com>
-To:     Andre Heider <a.heider@gmail.com>,
-        Jason Cooper <jason@lakedaemon.net>,
-        Andrew Lunn <andrew@lunn.ch>,
-        Sebastian Hesselbarth <sebastian.hesselbarth@gmail.com>,
+        id S1726265AbgIWPVo (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Wed, 23 Sep 2020 11:21:44 -0400
+Received: from mail.kernel.org ([198.145.29.99]:40700 "EHLO mail.kernel.org"
+        rhost-flags-OK-OK-OK-OK) by vger.kernel.org with ESMTP
+        id S1726156AbgIWPVo (ORCPT <rfc822;devicetree@vger.kernel.org>);
+        Wed, 23 Sep 2020 11:21:44 -0400
+Received: from localhost.localdomain (unknown [194.230.155.191])
+        (using TLSv1.2 with cipher ECDHE-RSA-AES128-GCM-SHA256 (128/128 bits))
+        (No client certificate requested)
+        by mail.kernel.org (Postfix) with ESMTPSA id 39ABB21D7D;
+        Wed, 23 Sep 2020 15:21:36 +0000 (UTC)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=kernel.org;
+        s=default; t=1600874503;
+        bh=wvbsKJYoqgNub9wPTqt3MqH7+f/uGfjF05Ctdg6ef8Q=;
+        h=From:To:Subject:Date:From;
+        b=1qswdop5ZbIH3YNuChOfZZPkymeF2rhoCevYoVbzSwnacV5eZZSDwGTp0Bmq8Ys+g
+         NSdjT6dz22C6D3flVrn/cuUk69cn2N7zJyM8WhgRqS9JLgv87RbFH/Uno56gwWDec4
+         ub3na5zpBE8uRfZuRQOqqczKsRmW38g5C7ylkPBI=
+From:   Krzysztof Kozlowski <krzk@kernel.org>
+To:     Sakari Ailus <sakari.ailus@linux.intel.com>,
+        Mauro Carvalho Chehab <mchehab@kernel.org>,
         Rob Herring <robh+dt@kernel.org>,
-        Tomasz Maciej Nowak <tmn505@gmail.com>,
-        Pali =?utf-8?Q?Roh=C3=A1r?= <pali@kernel.org>
-Cc:     linux-arm-kernel@lists.infradead.org, devicetree@vger.kernel.org,
-        linux-kernel@vger.kernel.org
-Subject: Re: [PATCH] arm64: dts: marvell: espressobin: Get rid of duplicate serial aliases
-In-Reply-To: <20200921164830.499548-1-a.heider@gmail.com>
-References: <20200921164830.499548-1-a.heider@gmail.com>
-Date:   Wed, 23 Sep 2020 17:10:01 +0200
-Message-ID: <87y2l0h6ly.fsf@BL-laptop>
-MIME-Version: 1.0
-Content-Type: text/plain
+        Shawn Guo <shawnguo@kernel.org>,
+        Sascha Hauer <s.hauer@pengutronix.de>,
+        Pengutronix Kernel Team <kernel@pengutronix.de>,
+        Fabio Estevam <festevam@gmail.com>,
+        NXP Linux Team <linux-imx@nxp.com>,
+        Krzysztof Kozlowski <krzk@kernel.org>,
+        linux-media@vger.kernel.org, devicetree@vger.kernel.org,
+        linux-arm-kernel@lists.infradead.org, linux-kernel@vger.kernel.org
+Subject: [PATCH v4 1/4] dt-bindings: media: imx258: add bindings for IMX258 sensor
+Date:   Wed, 23 Sep 2020 17:21:26 +0200
+Message-Id: <20200923152129.21736-1-krzk@kernel.org>
+X-Mailer: git-send-email 2.17.1
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-Hi Andre,
+Add bindings for the IMX258 camera sensor.  The bindings, just like the
+driver, are quite limited, e.g. do not support regulator supplies.
 
-> The included armada-372x.dtsi already defines these two aliases.
->
-> Signed-off-by: Andre Heider <a.heider@gmail.com>
+Signed-off-by: Krzysztof Kozlowski <krzk@kernel.org>
 
-Applied on mvebu/dt
+---
 
-Thanks,
+Changes since v3:
+1. Document also two lane setup.
 
-Gregory
+Changes since v2:
+1. Remove clock-frequency, add reset GPIOs, add supplies.
+2. Use additionalProperties.
 
-> ---
->
-> This goes on top of Pali's patch:
-> "arm64: dts: marvell: espressobin: Add ethernet switch aliases"
->
-> The resulting .dtb files are the same.
->
->  arch/arm64/boot/dts/marvell/armada-3720-espressobin.dtsi | 2 --
->  1 file changed, 2 deletions(-)
->
-> diff --git a/arch/arm64/boot/dts/marvell/armada-3720-espressobin.dtsi b/arch/arm64/boot/dts/marvell/armada-3720-espressobin.dtsi
-> index 0775c16e0ec8..3169a820558f 100644
-> --- a/arch/arm64/boot/dts/marvell/armada-3720-espressobin.dtsi
-> +++ b/arch/arm64/boot/dts/marvell/armada-3720-espressobin.dtsi
-> @@ -17,8 +17,6 @@ aliases {
->  		ethernet1 = &switch0port1;
->  		ethernet2 = &switch0port2;
->  		ethernet3 = &switch0port3;
-> -		serial0 = &uart0;
-> -		serial1 = &uart1;
->  	};
->  
->  	chosen {
-> -- 
-> 2.28.0
->
+Changes since v1:
+1. None
+---
+ .../devicetree/bindings/media/i2c/imx258.yaml | 100 ++++++++++++++++++
+ MAINTAINERS                                   |   1 +
+ 2 files changed, 101 insertions(+)
+ create mode 100644 Documentation/devicetree/bindings/media/i2c/imx258.yaml
 
+diff --git a/Documentation/devicetree/bindings/media/i2c/imx258.yaml b/Documentation/devicetree/bindings/media/i2c/imx258.yaml
+new file mode 100644
+index 000000000000..520e75c7b451
+--- /dev/null
++++ b/Documentation/devicetree/bindings/media/i2c/imx258.yaml
+@@ -0,0 +1,100 @@
++# SPDX-License-Identifier: (GPL-2.0-only OR BSD-2-Clause)
++%YAML 1.2
++---
++$id: http://devicetree.org/schemas/media/i2c/imx258.yaml#
++$schema: http://devicetree.org/meta-schemas/core.yaml#
++
++title: Sony IMX258 13 Mpixel CMOS Digital Image Sensor
++
++maintainers:
++  - Krzysztof Kozlowski <krzk@kernel.org>
++
++description: |-
++  IMX258 is a diagonal 5.867mm (Type 1/3.06) 13 Mega-pixel CMOS active pixel
++  type stacked image sensor with a square pixel array of size 4208 x 3120. It
++  is programmable through I2C interface.  Image data is sent through MIPI
++  CSI-2.
++
++properties:
++  compatible:
++    const: sony,imx258
++
++  clocks:
++    description:
++      Clock frequency from 6 to 27 MHz.
++    maxItems: 1
++
++  reg:
++    maxItems: 1
++
++  reset-gpios:
++    description: |-
++      Reference to the GPIO connected to the XCLR pin, if any.
++
++  vana-supply:
++    description:
++      Analog voltage (VANA) supply, 2.7 V
++
++  vdig-supply:
++    description:
++      Digital I/O voltage (VDIG) supply, 1.2 V
++
++  vif-supply:
++    description:
++      Interface voltage (VIF) supply, 1.8 V
++
++  # See ../video-interfaces.txt for more details
++  port:
++    type: object
++    properties:
++      endpoint:
++        type: object
++        properties:
++          data-lanes:
++            oneOf:
++              - items:
++                  - const: 1
++                  - const: 2
++                  - const: 3
++                  - const: 4
++              - items:
++                  - const: 1
++                  - const: 2
++
++          link-frequencies:
++            allOf:
++              - $ref: /schemas/types.yaml#/definitions/uint64-array
++            description:
++              Allowed data bus frequencies.
++
++        required:
++          - data-lanes
++          - link-frequencies
++
++required:
++  - compatible
++  - reg
++  - port
++
++additionalProperties: false
++
++examples:
++  - |
++    i2c0 {
++        #address-cells = <1>;
++        #size-cells = <0>;
++
++        sensor@6c {
++            compatible = "sony,imx258";
++            reg = <0x6c>;
++            clocks = <&imx258_clk>;
++
++            port {
++                endpoint {
++                    remote-endpoint = <&csi1_ep>;
++                    data-lanes = <1 2 3 4>;
++                    link-frequencies = /bits/ 64 <320000000>;
++                };
++            };
++        };
++    };
+diff --git a/MAINTAINERS b/MAINTAINERS
+index 5b9621ca2b31..68f30a283a2c 100644
+--- a/MAINTAINERS
++++ b/MAINTAINERS
+@@ -16262,6 +16262,7 @@ M:	Sakari Ailus <sakari.ailus@linux.intel.com>
+ L:	linux-media@vger.kernel.org
+ S:	Maintained
+ T:	git git://linuxtv.org/media_tree.git
++F:	Documentation/devicetree/bindings/media/i2c/imx258.yaml
+ F:	drivers/media/i2c/imx258.c
+ 
+ SONY IMX274 SENSOR DRIVER
 -- 
-Gregory Clement, Bootlin
-Embedded Linux and Kernel engineering
-http://bootlin.com
+2.17.1
+
