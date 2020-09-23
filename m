@@ -2,157 +2,84 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from vger.kernel.org (vger.kernel.org [23.128.96.18])
-	by mail.lfdr.de (Postfix) with ESMTP id 64A9F2762CC
-	for <lists+devicetree@lfdr.de>; Wed, 23 Sep 2020 23:04:26 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTP id 7AFCC2762D0
+	for <lists+devicetree@lfdr.de>; Wed, 23 Sep 2020 23:04:39 +0200 (CEST)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S1726798AbgIWVEZ (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Wed, 23 Sep 2020 17:04:25 -0400
-Received: from lindbergh.monkeyblade.net ([23.128.96.19]:38062 "EHLO
-        lindbergh.monkeyblade.net" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S1726515AbgIWVEZ (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Wed, 23 Sep 2020 17:04:25 -0400
-Received: from mail-wm1-x344.google.com (mail-wm1-x344.google.com [IPv6:2a00:1450:4864:20::344])
-        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 49F5EC0613CE;
-        Wed, 23 Sep 2020 14:04:25 -0700 (PDT)
-Received: by mail-wm1-x344.google.com with SMTP id b79so1437136wmb.4;
-        Wed, 23 Sep 2020 14:04:25 -0700 (PDT)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=gmail.com; s=20161025;
-        h=from:to:cc:references:in-reply-to:subject:date:message-id
-         :mime-version:content-transfer-encoding:content-language
-         :thread-index;
-        bh=Cwsd6her1f525yiWhkcoGWgzKup5DnYJEVjSpYNiosQ=;
-        b=I22w5349tDL/91cg3dlPigSanrcqoe3ZFWDo5dJ8hEheB4GawRg09zou8o/NwpfG3F
-         eWMFwYbZEoCGTffezgkfmngro0y9jfqMvSHg73a7Spb3DssefsXQORUNr1lTPRW0Ysrg
-         q37KVNtYbwlVet1sJBBV7GWs6PgjTnXEnP8pzMggpDDYwFUnj7RLAo8lDTImGgG9Bd9q
-         xwJCg0gzsZLAlOLzQCI35eFJChlNFnkwGJKVwzwFzOJwn1XUgr6MctBJniQj/zvlE1Ym
-         pi2jzPnyCAPhJsVnBwSlPeitDBADceLs8Mo/kn73wsxb1JteavBU6uSEbDhvCQjCLCIN
-         /P4A==
+        id S1726680AbgIWVEi (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Wed, 23 Sep 2020 17:04:38 -0400
+Received: from mail-io1-f65.google.com ([209.85.166.65]:43978 "EHLO
+        mail-io1-f65.google.com" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
+        with ESMTP id S1726515AbgIWVEi (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Wed, 23 Sep 2020 17:04:38 -0400
+Received: by mail-io1-f65.google.com with SMTP id z25so971312iol.10
+        for <devicetree@vger.kernel.org>; Wed, 23 Sep 2020 14:04:37 -0700 (PDT)
 X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
         d=1e100.net; s=20161025;
-        h=x-gm-message-state:from:to:cc:references:in-reply-to:subject:date
-         :message-id:mime-version:content-transfer-encoding:content-language
-         :thread-index;
-        bh=Cwsd6her1f525yiWhkcoGWgzKup5DnYJEVjSpYNiosQ=;
-        b=r/i5lXXoKPErHfTkkuK/UTBqVp4Z35KLvFxAugymrbDxW1AAzbBTC5QV28Uch1Kxjb
-         wOOZ2UoieI+8whW7MdIyuDs5AfKzXIbEd3Glh3xzLD/gUIiZp076ClFMk1TdZwrBMWu+
-         sw8FOPh6TIEgR0g/nMkDDG8TESnHkruLMMalVA/irr3PnuF5q53Mm9Z1Jt0D3ZebJZS4
-         ZIMvVzVQVMHCDoeWG2nOlLPBwxdHxnnHir6pBZT8FV0pH7ZeAs256PGYf2Q2TIz1vf4Q
-         v9schOA/64nszrQf4fC9GD1gJCZIFWzpzbelrd3MFUJZpDIHJt33iS+j/OtQ8NhPw4ic
-         aJdg==
-X-Gm-Message-State: AOAM532Cq4nVghVC5mPvNYhe/4ab5rGqtua5e5RzWZ15lhsnNhreOGs7
-        Q7ciFdz1ocq1bmv/v1NjLqk=
-X-Google-Smtp-Source: ABdhPJynn45TaPmkXDi+yvz8LZCHR31hOdHMKqCvqYWpmPNtjSgxWbcuWxWnrcBjzrZC8KwmPTBOhA==
-X-Received: by 2002:a1c:9a57:: with SMTP id c84mr1377989wme.136.1600895063600;
-        Wed, 23 Sep 2020 14:04:23 -0700 (PDT)
-Received: from AnsuelXPS (93-39-149-95.ip76.fastwebnet.it. [93.39.149.95])
-        by smtp.gmail.com with ESMTPSA id d23sm930906wmb.6.2020.09.23.14.04.21
-        (version=TLS1_2 cipher=ECDHE-ECDSA-AES128-GCM-SHA256 bits=128/128);
-        Wed, 23 Sep 2020 14:04:22 -0700 (PDT)
-From:   <ansuelsmth@gmail.com>
-To:     "'Rob Herring'" <robh@kernel.org>
-Cc:     "'Kalle Valo'" <kvalo@codeaurora.org>,
-        "'David S. Miller'" <davem@davemloft.net>,
-        "'Jakub Kicinski'" <kuba@kernel.org>,
-        <linux-wireless@vger.kernel.org>, <netdev@vger.kernel.org>,
-        <devicetree@vger.kernel.org>, <linux-kernel@vger.kernel.org>,
-        <ath10k@lists.infradead.org>
-References: <20200918181104.98-1-ansuelsmth@gmail.com> <20200918181104.98-2-ansuelsmth@gmail.com> <20200923205824.GA1290651@bogus>
-In-Reply-To: <20200923205824.GA1290651@bogus>
-Subject: RE: [PATCH v2 2/2] dt: bindings: ath10k: Document qcom,ath10k-pre-calibration-data-mtd
-Date:   Wed, 23 Sep 2020 23:04:20 +0200
-Message-ID: <019801d691ed$1bc26650$534732f0$@gmail.com>
+        h=x-gm-message-state:date:from:to:cc:subject:message-id:references
+         :mime-version:content-disposition:in-reply-to;
+        bh=wjtv+H/WIIv1m9opsewyJW5IfCL2k4JpFOBomPj7tkU=;
+        b=kTaEPE0mmuwXuyFwnquL+OXh8udSwR8WvsEuvqQK2h5+gRuJ56bdbyvaoIjvO64CWo
+         sBNWfq/T6qEJHiBIzT2X+biY/hlX//6s0OGW2fb0+SLaub+WqsHNnIJUD2lTJMkKvk59
+         eM/C/wpu7/zn0GisuC27FAmOaZzx9APkHV430C7TGf99CNbQ5DrU5csUCjWWPsQ7thc9
+         3MckUdZ61o5581hWRZIkTS2n8a6I93cynZrSqacB010rsMTR9WcF6wG0J1xiO4LSsv7J
+         Fv4Td9I7mLefeKrtyav934srBTR9TKYukTg8Hv4cecgazPY/TYD+YuQ0mNc8aWUraKOK
+         /K1Q==
+X-Gm-Message-State: AOAM532fROBRSsnJhMIeZuVqmAH8gB45x4pkUe7yukUtnKWUJ8/gnLbw
+        nSpNZ1eRsfw7aPNb4avWB/mAktresS7TtHs=
+X-Google-Smtp-Source: ABdhPJx1Iuol3XgbzkvwVcpRLSyxpuBUF3KM8odUe399tOKhg1iSdSIzm3TdNdUuP6FJPNWX71MEnQ==
+X-Received: by 2002:a5d:8e12:: with SMTP id e18mr974309iod.99.1600895077239;
+        Wed, 23 Sep 2020 14:04:37 -0700 (PDT)
+Received: from xps15 ([64.188.179.253])
+        by smtp.gmail.com with ESMTPSA id f4sm405188ils.51.2020.09.23.14.04.36
+        (version=TLS1_3 cipher=TLS_AES_256_GCM_SHA384 bits=256/256);
+        Wed, 23 Sep 2020 14:04:36 -0700 (PDT)
+Received: (nullmailer pid 1306334 invoked by uid 1000);
+        Wed, 23 Sep 2020 21:04:35 -0000
+Date:   Wed, 23 Sep 2020 15:04:35 -0600
+From:   Rob Herring <robh@kernel.org>
+To:     Adrian Schmutzler <mail@adrianschmutzler.de>
+Cc:     'Pavel Machek' <pavel@ucw.cz>, 'Dan Murphy' <dmurphy@ti.com>,
+        'Linus Walleij' <linus.walleij@linaro.org>,
+        devicetree@vger.kernel.org
+Subject: Re: [PATCH v2 1/2] dt-bindings: leds: add LED_FUNCTION for
+ wlan2g/wlan5g
+Message-ID: <20200923210435.GA1300785@bogus>
+References: <20200919172733.57217-1-freifunk@adrianschmutzler.de>
+ <00b701d68ece$2b237700$816a6500$@adrianschmutzler.de>
 MIME-Version: 1.0
-Content-Type: text/plain;
-        charset="us-ascii"
-Content-Transfer-Encoding: 7bit
-X-Mailer: Microsoft Outlook 16.0
-Content-Language: it
-Thread-Index: AQMJH5wF5tFRrUdsk5f5BXXZ8/xBtQJaPmHMAl7msnGm69B+EA==
+Content-Type: text/plain; charset=us-ascii
+Content-Disposition: inline
+In-Reply-To: <00b701d68ece$2b237700$816a6500$@adrianschmutzler.de>
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
+On Sat, Sep 19, 2020 at 11:45:18PM +0200, Adrian Schmutzler wrote:
+> > -----Original Message-----
+> > From: Adrian Schmutzler [mailto:freifunk@adrianschmutzler.de]
+> > Sent: Samstag, 19. September 2020 19:28
+> > To: Rob Herring <robh+dt@kernel.org>; Pavel Machek <pavel@ucw.cz>; Dan
+> > Murphy <dmurphy@ti.com>; Linus Walleij <linus.walleij@linaro.org>;
+> > devicetree@vger.kernel.org; Adrian Schmutzler
+> > <freifunk@adrianschmutzler.de>
+> > Subject: [PATCH v2 1/2] dt-bindings: leds: add LED_FUNCTION for
+> > wlan2g/wlan5g
+> > 
+> > Many consumer "routers" have dedicated LEDs for specific WiFi bands, e.g.
+> > one for 2.4 GHz and one for 5 GHz. These LEDs specifically indicate the state
+> > of the relevant band, so the latter should be included in the function name.
+> > LED_FUNCTION_WLAN will remain for general cases or when the LED is used
+> > for more than one band.
+> > 
+> > This essentially is equivalent to how we use LED_FUNCTION_LAN and
+> > LED_FUNCTION_WAN instead of just having LED_FUNCTION_ETHERNET.
+> 
+> I only just became aware of the linux-leds@vger.kernel.org mailing list, and resubmitted there.
 
+It should both there and the DT list.
 
-> -----Original Message-----
-> From: Rob Herring <robh@kernel.org>
-> Sent: Wednesday, September 23, 2020 10:58 PM
-> To: Ansuel Smith <ansuelsmth@gmail.com>
-> Cc: Kalle Valo <kvalo@codeaurora.org>; David S. Miller
-> <davem@davemloft.net>; Jakub Kicinski <kuba@kernel.org>; linux-
-> wireless@vger.kernel.org; netdev@vger.kernel.org;
-> devicetree@vger.kernel.org; linux-kernel@vger.kernel.org;
-> ath10k@lists.infradead.org
-> Subject: Re: [PATCH v2 2/2] dt: bindings: ath10k: Document qcom,ath10k-
-> pre-calibration-data-mtd
-> 
-> On Fri, Sep 18, 2020 at 08:11:03PM +0200, Ansuel Smith wrote:
-> > Document use of qcom,ath10k-pre-calibration-data-mtd bindings used to
-> > define from where the driver will load the pre-cal data in the defined
-> > mtd partition.
-> >
-> > Signed-off-by: Ansuel Smith <ansuelsmth@gmail.com>
-> > ---
-> >  .../devicetree/bindings/net/wireless/qcom,ath10k.txt | 12 +++++++++---
-> >  1 file changed, 9 insertions(+), 3 deletions(-)
-> >
-> > diff --git
-> a/Documentation/devicetree/bindings/net/wireless/qcom,ath10k.txt
-> b/Documentation/devicetree/bindings/net/wireless/qcom,ath10k.txt
-> > index b61c2d5a0..568364243 100644
-> > --- a/Documentation/devicetree/bindings/net/wireless/qcom,ath10k.txt
-> > +++ b/Documentation/devicetree/bindings/net/wireless/qcom,ath10k.txt
-> > @@ -15,9 +15,9 @@ and also uses most of the properties defined in this
-> doc (except
-> >  "qcom,ath10k-calibration-data"). It uses "qcom,ath10k-pre-calibration-
-> data"
-> >  to carry pre calibration data.
-> >
-> > -In general, entry "qcom,ath10k-pre-calibration-data" and
-> > -"qcom,ath10k-calibration-data" conflict with each other and only one
-> > -can be provided per device.
-> > +In general, entry "qcom,ath10k-pre-calibration-data",
-> > +"qcom,ath10k-calibration-data-mtd" and "qcom,ath10k-calibration-
-> data" conflict with
-> > +each other and only one can be provided per device.
-> >
-> >  SNOC based devices (i.e. wcn3990) uses compatible string
-> "qcom,wcn3990-wifi".
-> >
-> > @@ -63,6 +63,12 @@ Optional properties:
-> >  				 hw versions.
-> >  - qcom,ath10k-pre-calibration-data : pre calibration data as an array,
-> >  				     the length can vary between hw
-versions.
-> > +- qcom,ath10k-pre-calibration-data-mtd :
-> 
-> mtd is a Linuxism.
-> 
-> > +	Usage: optional
-> > +	Value type: <phandle offset size>
-> > +	Definition: pre calibration data read from mtd partition. Take 3
-> value, the
-> > +		    mtd to read data from, the offset in the mtd partition
-and
-> the
-> 
-> The phandle is the mtd or partition?
-> 
-> Maybe you should be using nvmem binding here.
-> 
+> Sorry for the noise. Maybe get_maintainers.sh should be updated for this file.
 
-The phandle is to the mtd.
-You are right about nvmem... Problem is that nvmem for mtd is still not
-supported. I already sent a patch to fix this in the mtd mailing list but
-I'm waiting for review...
-If that will be accepted, I can convert this patch to use nvmem api.
+Patches welcome.
 
-> > +		    size of data to read.
-> >  - <supply-name>-supply: handle to the regulator device tree node
-> >  			   optional "supply-name" are "vdd-0.8-cx-mx",
-> >  			   "vdd-1.8-xo", "vdd-1.3-rfa", "vdd-3.3-ch0",
-> > --
-> > 2.27.0
-> >
-
+Rob
