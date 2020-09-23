@@ -2,77 +2,73 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from vger.kernel.org (vger.kernel.org [23.128.96.18])
-	by mail.lfdr.de (Postfix) with ESMTP id 7201E275C96
-	for <lists+devicetree@lfdr.de>; Wed, 23 Sep 2020 17:57:24 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTP id 84850275C64
+	for <lists+devicetree@lfdr.de>; Wed, 23 Sep 2020 17:52:41 +0200 (CEST)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S1726689AbgIWP5X (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Wed, 23 Sep 2020 11:57:23 -0400
-Received: from mo4-p01-ob.smtp.rzone.de ([85.215.255.53]:27661 "EHLO
-        mo4-p01-ob.smtp.rzone.de" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S1726130AbgIWP5X (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Wed, 23 Sep 2020 11:57:23 -0400
-X-Greylist: delayed 352 seconds by postgrey-1.27 at vger.kernel.org; Wed, 23 Sep 2020 11:57:22 EDT
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; t=1600876641;
-        s=strato-dkim-0002; d=gerhold.net;
-        h=In-Reply-To:References:Message-ID:Subject:Cc:To:From:Date:
-        X-RZG-CLASS-ID:X-RZG-AUTH:From:Subject:Sender;
-        bh=JSXbNGYquAx8XAlxMl9lVOp0vPPS65owIz27C5evBy8=;
-        b=WTvSiY3iw+GMT8+Vn7p0WBSWEpjSFlmDn85bWmrfnTjoXTrdM606JHC5DMJZnVA38B
-        v+ug4bO0rdtKPqrrebzZgONL3l9uFBkpElO0QRFSjzBX3sqANx75OJMGVziXvO4K4ush
-        /jJJYH1m4aSaE+brIIfdnhvojtI/oFZVF/GwrgT/9iocQ/+SwYw96t9aJEs/DCWQpB5d
-        N2ulzF2fSDmBFb9QnhEWbLNk1znnzQ+UuaVCLfhdlhvk3GHE+oe9zqRMl+GzkIjONEy8
-        geeM/jfezJMkAuD/t8qoPxYEhWAeCtvItLU3cd/y7m5DyINPzcuPEAGpY41mHLeOBwjA
-        KBtg==
-X-RZG-AUTH: ":P3gBZUipdd93FF5ZZvYFPugejmSTVR2nRPhVOQ/OcYgojyw4j34+u26zEodhPgRDZ8j9IcjDBg=="
-X-RZG-CLASS-ID: mo00
-Received: from gerhold.net
-        by smtp.strato.de (RZmta 46.10.7 DYNA|AUTH)
-        with ESMTPSA id g0b6c1w8NFpRcfQ
-        (using TLSv1.3 with cipher TLS_AES_256_GCM_SHA384 (256 bits))
-        (Client did not present a certificate);
-        Wed, 23 Sep 2020 17:51:27 +0200 (CEST)
-Date:   Wed, 23 Sep 2020 17:51:15 +0200
-From:   Stephan Gerhold <stephan@gerhold.net>
-To:     Rob Herring <robh@kernel.org>
-Cc:     Bjorn Andersson <bjorn.andersson@linaro.org>,
-        Andy Gross <agross@kernel.org>,
-        Ohad Ben-Cohen <ohad@wizery.com>,
-        Rajendra Nayak <rnayak@codeaurora.org>,
-        linux-arm-msm@vger.kernel.org, devicetree@vger.kernel.org,
-        linux-remoteproc@vger.kernel.org,
-        ~postmarketos/upstreaming@lists.sr.ht
-Subject: Re: [PATCH 05/10] dt-bindings: remoteproc: qcom,q6v5: Deprecate
- regulators for PDs
-Message-ID: <20200923155018.GA87584@gerhold.net>
-References: <20200916104135.25085-1-stephan@gerhold.net>
- <20200916104135.25085-6-stephan@gerhold.net>
- <20200923153548.GA789614@bogus>
+        id S1726156AbgIWPwl (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Wed, 23 Sep 2020 11:52:41 -0400
+Received: from mail.kernel.org ([198.145.29.99]:54852 "EHLO mail.kernel.org"
+        rhost-flags-OK-OK-OK-OK) by vger.kernel.org with ESMTP
+        id S1726130AbgIWPwk (ORCPT <rfc822;devicetree@vger.kernel.org>);
+        Wed, 23 Sep 2020 11:52:40 -0400
+Received: from localhost (fw-tnat.cambridge.arm.com [217.140.96.140])
+        (using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
+        (No client certificate requested)
+        by mail.kernel.org (Postfix) with ESMTPSA id CBFB72223E;
+        Wed, 23 Sep 2020 15:52:39 +0000 (UTC)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=kernel.org;
+        s=default; t=1600876360;
+        bh=+7ByMTj8FlYNE7VGGp3fA9NtzySfAdboCzVSLNd4GmI=;
+        h=Date:From:To:Cc:Subject:References:In-Reply-To:From;
+        b=hWNzjseYuvFRQCZYPyJzSd5BrxZeefHQtk2bRrIaBkF09s7rOdeTIUvx2Zci1zM3w
+         H0aNR9PD2KAv0Ujsfx9yd9PBWlyijB9sWO9Hx+PtlzV3xiz23bYaADIG5Sv9zDGsw1
+         h5fSatR9p04g0qrFIeCSXgfkuyo7871FdFkGsGzg=
+Date:   Wed, 23 Sep 2020 16:51:45 +0100
+From:   Mark Brown <broonie@kernel.org>
+To:     Dan Murphy <dmurphy@ti.com>
+Cc:     lgirdwood@gmail.com, tiwai@suse.com, robh+dt@kernel.org,
+        devicetree@vger.kernel.org, alsa-devel@alsa-project.org,
+        linux-kernel@vger.kernel.org
+Subject: Re: [PATCH 4/6] dt-bindings: tas2770: Remove ti,asi-format property
+Message-ID: <20200923155145.GD5707@sirena.org.uk>
+References: <20200923132600.10652-1-dmurphy@ti.com>
+ <20200923132600.10652-4-dmurphy@ti.com>
 MIME-Version: 1.0
-Content-Type: text/plain; charset=us-ascii
+Content-Type: multipart/signed; micalg=pgp-sha512;
+        protocol="application/pgp-signature"; boundary="M38YqGLZlgb6RLPS"
 Content-Disposition: inline
-In-Reply-To: <20200923153548.GA789614@bogus>
+In-Reply-To: <20200923132600.10652-4-dmurphy@ti.com>
+X-Cookie: This report is filled with omissions.
+User-Agent: Mutt/1.10.1 (2018-07-13)
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-On Wed, Sep 23, 2020 at 09:35:48AM -0600, Rob Herring wrote:
-> On Wed, Sep 16, 2020 at 12:41:30PM +0200, Stephan Gerhold wrote:
-> > Newer platforms vote for necessary power domains through the power
-> > domain subsystem. For historical reasons older platforms like MSM8916
-> > or MSM8974 still control these as regulators.
-> 
-> Do you plan to change these platforms? If not then I wouldn't really 
-> call this deprecated.
-> 
 
-Yes, MSM8916 is changed as part of this patch series.
+--M38YqGLZlgb6RLPS
+Content-Type: text/plain; charset=us-ascii
+Content-Disposition: inline
 
-It should also be done for MSM8974, but because I don't have any test
-devices with it I'm not able to do it myself.
+On Wed, Sep 23, 2020 at 08:25:58AM -0500, Dan Murphy wrote:
+> Remove the property ti,asi-format as the driver only reads this property
+> and performs no action against it.
 
-Actually the old binding likely works only because of other side effects
-(other drivers voting for the same resources), so I personally I would
-definitely call it deprecated.
+We should probably leave the property as documented and move it to
+deprecated rather than delete the documentation entirely.
 
-Thanks!
-Stephan
+--M38YqGLZlgb6RLPS
+Content-Type: application/pgp-signature; name="signature.asc"
+
+-----BEGIN PGP SIGNATURE-----
+
+iQEzBAABCgAdFiEEreZoqmdXGLWf4p/qJNaLcl1Uh9AFAl9rbxAACgkQJNaLcl1U
+h9DWogf+N7wq2sJT/UoUOg+Xwc+9JTtl34Hw1R9U48+KUz4ZZEGy22qXTrfQaJAC
+5SPFzfGTdNHshXfQOh/HzomFSGyvN4tIMIrakmNyih494n5luYcduK7t9P+za/T/
+fVbXObc9K9JPZbr+FqcQ7Q6grJHttMweCeU5ur4A31fEbe+1u4gTYnMTyVyAWMpd
+giwjBF4WbJqhFdqQH/eTcG7oF/qC8UC1ku79ijTuzF/xnKOcbWiFWEMlldpfck0j
+3y2+NPeUeBWhKquhkilspHS33Lpj08sRz/GlT0vSmTSC6ZdvFzfWTzyEJ/B0et5s
+wgicD0fcnoWInmkimjomae/sHXZKpA==
+=nmCG
+-----END PGP SIGNATURE-----
+
+--M38YqGLZlgb6RLPS--
