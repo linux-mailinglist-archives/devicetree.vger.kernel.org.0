@@ -2,91 +2,107 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from vger.kernel.org (vger.kernel.org [23.128.96.18])
-	by mail.lfdr.de (Postfix) with ESMTP id 46088275CB4
-	for <lists+devicetree@lfdr.de>; Wed, 23 Sep 2020 18:03:36 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTP id EDB3B275CD2
+	for <lists+devicetree@lfdr.de>; Wed, 23 Sep 2020 18:08:14 +0200 (CEST)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S1726764AbgIWQDc (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Wed, 23 Sep 2020 12:03:32 -0400
-Received: from mail-il1-f194.google.com ([209.85.166.194]:41526 "EHLO
-        mail-il1-f194.google.com" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S1726761AbgIWQDb (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Wed, 23 Sep 2020 12:03:31 -0400
-Received: by mail-il1-f194.google.com with SMTP id f82so87460ilh.8;
-        Wed, 23 Sep 2020 09:03:30 -0700 (PDT)
+        id S1726647AbgIWQIL (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Wed, 23 Sep 2020 12:08:11 -0400
+Received: from lindbergh.monkeyblade.net ([23.128.96.19]:48576 "EHLO
+        lindbergh.monkeyblade.net" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
+        with ESMTP id S1726621AbgIWQIK (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Wed, 23 Sep 2020 12:08:10 -0400
+Received: from mail-qt1-x829.google.com (mail-qt1-x829.google.com [IPv6:2607:f8b0:4864:20::829])
+        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id B07A2C0613D2
+        for <devicetree@vger.kernel.org>; Wed, 23 Sep 2020 09:08:10 -0700 (PDT)
+Received: by mail-qt1-x829.google.com with SMTP id r8so267528qtp.13
+        for <devicetree@vger.kernel.org>; Wed, 23 Sep 2020 09:08:10 -0700 (PDT)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+        d=marek-ca.20150623.gappssmtp.com; s=20150623;
+        h=from:to:cc:subject:date:message-id:mime-version
+         :content-transfer-encoding;
+        bh=yZ0348TRdT0YDawBjd2XHLLSCdDgvLqffmteVGAitSI=;
+        b=aIJ0RV1V0Qdht93vOvnqU2PJ50cedQv7cJb8rKhWLXA4wcYQXRslrOIt28jKFbJ/xN
+         kX0/yVK2qgL5Bq6dwl951khapRvjBcwvGZk08yxWyhQnLWnh7IEWo41LGBqvhDByK/VS
+         CoNu9HPN/i92SXBf92VzAA6XDSNjxlojdjWXMB9BvVa9v6X6TQZSrhtwHgbOq6wflYmp
+         NGNRiqOGQCrPRP0ttVNqulGfJR7eIWa2r5qc9sfjf6E9u6b5WK0oxdwSl1I8zbdTsN+D
+         5HWVp/Od+6RJSF/taYVqaKmTRBGzSxArWAshE/xJFTjx6ZpF2p7UkdJc2QVK/+t8XG0C
+         wVXg==
 X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
         d=1e100.net; s=20161025;
-        h=x-gm-message-state:date:from:to:cc:subject:message-id:references
-         :mime-version:content-disposition:in-reply-to;
-        bh=f7oNf2n/2S4LdD+hJ5wvJbkdup7gyW0tYobtVU4/lCo=;
-        b=LJxua3tbHd2IGS7253Qjbw6lZg6qeXG1jQn/HsZinU323Ehay5oRodKmTGClYHstgl
-         lEuIXhDet/nt4yQjx4fd4QGoElccOnJ7DXI2w/IJwXrAwDkrhNuMZGY9OKIMuqxtKjS2
-         rc9eX4STQkTYRceH4zTR+Yr1ddzNu6pnIadQcTCGbLma1vmXR2dRIZzxkLjCOEVaOGgo
-         LdXkd9UpBQXCZg5nxS/0u3ybqrNAeMZ9oxTFhkY7F8jlxuKLaNMj17LT1D23xb0hdFGI
-         DSwwohR52Ubp0XEJwAYplruwZc8C9srqRg+TWk0xk1P0Th7wzpqM9wYfQtvFT0ktx8iq
-         BUyA==
-X-Gm-Message-State: AOAM532hLT+wTZhwgfso4u4dmfww7avgJ4aCSQr5aPmByL+cCzNuRZVK
-        gLLsa/EvjrYcHJCqiiogVw==
-X-Google-Smtp-Source: ABdhPJx8Jk2Cu+4knjIJI93h2RDm8Bp12YNWlPvaSS83rCXADkAPJBrKwucmpTFhKApUGVNahPjd0A==
-X-Received: by 2002:a92:bb57:: with SMTP id w84mr421072ili.41.1600877010279;
-        Wed, 23 Sep 2020 09:03:30 -0700 (PDT)
-Received: from xps15 ([64.188.179.253])
-        by smtp.gmail.com with ESMTPSA id v24sm129353ioh.21.2020.09.23.09.03.28
+        h=x-gm-message-state:from:to:cc:subject:date:message-id:mime-version
+         :content-transfer-encoding;
+        bh=yZ0348TRdT0YDawBjd2XHLLSCdDgvLqffmteVGAitSI=;
+        b=hg++a6J6Olp9+XRKA9Z+DpwuxFPmnBLVKANpNxWncSTlWjhHzKi3C2hdlyiJju3IE+
+         lFuMuBdtPfRySB9PDZN/yuoDKhiK5XKC/e+0A8C5gbYkT9sVwy5ygZZCzv6BmPuPtQxj
+         lfUZBM/Pa3UgvfzuabnX2kCQ6+fFIYMffuqtNkf6vM+ykSQC8mZvoikUJrndVnbGirhs
+         CA2Rc4Jw67u4HI6sjM/6u91Rd80xYdb97LFV1COryAGPwXZBMIGCdlUba3+/WnhFKvnX
+         +u+4B/+vNQubV7+Mnx21M54aH4L1dgROy1SQMZ+me1djM01b61eBNekoRZji/RuWOUeV
+         UWcw==
+X-Gm-Message-State: AOAM533JjsyDSkZujVQ9+cIfQqUFsUVd3Mm0emUQneXh7H6YuV00h8+G
+        mXHS1WT0AtjZA5x3vpYWvVy5kg==
+X-Google-Smtp-Source: ABdhPJwO7U5dnPsjdpjIkDfxJhOvi1XUFsYN6liGAdba1B9V5lCo1Vm3z6V0c3G7WfHcO8ayQnLxNA==
+X-Received: by 2002:ac8:3630:: with SMTP id m45mr772297qtb.358.1600877289561;
+        Wed, 23 Sep 2020 09:08:09 -0700 (PDT)
+Received: from localhost.localdomain ([147.253.86.153])
+        by smtp.gmail.com with ESMTPSA id 145sm279159qkf.18.2020.09.23.09.08.08
         (version=TLS1_3 cipher=TLS_AES_256_GCM_SHA384 bits=256/256);
-        Wed, 23 Sep 2020 09:03:29 -0700 (PDT)
-Received: (nullmailer pid 836373 invoked by uid 1000);
-        Wed, 23 Sep 2020 16:03:28 -0000
-Date:   Wed, 23 Sep 2020 10:03:28 -0600
-From:   Rob Herring <robh@kernel.org>
-To:     Thara Gopinath <thara.gopinath@linaro.org>
-Cc:     rui.zhang@intel.com, daniel.lezcano@linaro.org, agross@kernel.org,
-        bjorn.andersson@linaro.org, linux-pm@vger.kernel.org,
-        devicetree@vger.kernel.org, linux-kernel@vger.kernel.org,
-        linux-arm-msm@vger.kernel.org, lukasz.luba@arm.com,
-        amitk@kernel.org
-Subject: Re: [PATCH RFC 1/8] dt-bindings: thermal: Introduce monitor-falling
- parameter to thermal trip point binding
-Message-ID: <20200923160328.GA833754@bogus>
-References: <20200917032226.820371-1-thara.gopinath@linaro.org>
- <20200917032226.820371-2-thara.gopinath@linaro.org>
+        Wed, 23 Sep 2020 09:08:08 -0700 (PDT)
+From:   Jonathan Marek <jonathan@marek.ca>
+To:     linux-arm-msm@vger.kernel.org
+Cc:     Andy Gross <agross@kernel.org>,
+        Bjorn Andersson <bjorn.andersson@linaro.org>,
+        devicetree@vger.kernel.org (open list:OPEN FIRMWARE AND FLATTENED
+        DEVICE TREE BINDINGS),
+        linux-clk@vger.kernel.org (open list:COMMON CLK FRAMEWORK),
+        linux-kernel@vger.kernel.org (open list),
+        Michael Turquette <mturquette@baylibre.com>,
+        Rob Herring <robh+dt@kernel.org>,
+        Stephen Boyd <sboyd@kernel.org>,
+        Taniya Das <tdas@codeaurora.org>
+Subject: [PATCH v3 0/5] SM8150 and SM8250 videocc drivers
+Date:   Wed, 23 Sep 2020 12:06:26 -0400
+Message-Id: <20200923160635.28370-1-jonathan@marek.ca>
+X-Mailer: git-send-email 2.26.1
 MIME-Version: 1.0
-Content-Type: text/plain; charset=us-ascii
-Content-Disposition: inline
-In-Reply-To: <20200917032226.820371-2-thara.gopinath@linaro.org>
+Content-Transfer-Encoding: 8bit
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-On Wed, Sep 16, 2020 at 11:22:19PM -0400, Thara Gopinath wrote:
-> Introduce a new binding parameter to thermal trip point description
-> to indicate whether the temperature level specified by the trip point
-> is monitored for a rise or fall in temperature.
-> 
-> Signed-off-by: Thara Gopinath <thara.gopinath@linaro.org>
-> ---
->  .../devicetree/bindings/thermal/thermal-zones.yaml         | 7 +++++++
->  1 file changed, 7 insertions(+)
-> 
-> diff --git a/Documentation/devicetree/bindings/thermal/thermal-zones.yaml b/Documentation/devicetree/bindings/thermal/thermal-zones.yaml
-> index 3ec9cc87ec50..cc1332ad6c16 100644
-> --- a/Documentation/devicetree/bindings/thermal/thermal-zones.yaml
-> +++ b/Documentation/devicetree/bindings/thermal/thermal-zones.yaml
-> @@ -161,6 +161,13 @@ patternProperties:
->                    The active trip type can be used to control other HW to
->                    help in cooling e.g. fans can be sped up or slowed down
->  
-> +              monitor-falling:
-> +                description: |
-> +                  boolean, If true, the trip point is being monitored for
-> +                  falling temperature. If false/absent/default, the trip
-> +                  point is being monitored for rising temperature.
-> +                type: boolean
+Add videocc drivers for SM8150/SM8250 required to boot and use venus.
 
-What if you wanted to monitor for both?
+v2:
+ - fixed dt_binding_check/checkpatch warnings in SM8250 bindings
+ - added 19.2Mhz in SM8250 freq tbls for consistency with other videocc
 
-> +
->              required:
->                - temperature
->                - hysteresis
-> -- 
-> 2.25.1
-> 
+v3:
+ - sorted sc7180 to come before sdm845 in combined yaml
+ - deleted some SM8250 clocks (hardware controlled and always on)
+
+Jonathan Marek (5):
+  dt-bindings: clock: combine qcom,sdm845-videocc and
+    qcom,sc7180-videocc
+  dt-bindings: clock: add SM8150 QCOM video clock bindings
+  dt-bindings: clock: add SM8250 QCOM video clock bindings
+  clk: qcom: add video clock controller driver for SM8150
+  clk: qcom: add video clock controller driver for SM8250
+
+ .../bindings/clock/qcom,sc7180-videocc.yaml   |  65 ---
+ ...,sdm845-videocc.yaml => qcom,videocc.yaml} |  18 +-
+ drivers/clk/qcom/Kconfig                      |  18 +
+ drivers/clk/qcom/Makefile                     |   2 +
+ drivers/clk/qcom/videocc-sm8150.c             | 276 +++++++++++++
+ drivers/clk/qcom/videocc-sm8250.c             | 369 ++++++++++++++++++
+ .../dt-bindings/clock/qcom,videocc-sm8150.h   |  25 ++
+ .../dt-bindings/clock/qcom,videocc-sm8250.h   |  34 ++
+ 8 files changed, 737 insertions(+), 70 deletions(-)
+ delete mode 100644 Documentation/devicetree/bindings/clock/qcom,sc7180-videocc.yaml
+ rename Documentation/devicetree/bindings/clock/{qcom,sdm845-videocc.yaml => qcom,videocc.yaml} (68%)
+ create mode 100644 drivers/clk/qcom/videocc-sm8150.c
+ create mode 100644 drivers/clk/qcom/videocc-sm8250.c
+ create mode 100644 include/dt-bindings/clock/qcom,videocc-sm8150.h
+ create mode 100644 include/dt-bindings/clock/qcom,videocc-sm8250.h
+
+-- 
+2.26.1
+
