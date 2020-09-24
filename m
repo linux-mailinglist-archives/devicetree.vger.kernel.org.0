@@ -2,135 +2,77 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from vger.kernel.org (vger.kernel.org [23.128.96.18])
-	by mail.lfdr.de (Postfix) with ESMTP id E75FB2773C2
-	for <lists+devicetree@lfdr.de>; Thu, 24 Sep 2020 16:17:33 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTP id D6EF62773E3
+	for <lists+devicetree@lfdr.de>; Thu, 24 Sep 2020 16:27:05 +0200 (CEST)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S1728064AbgIXORO (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Thu, 24 Sep 2020 10:17:14 -0400
-Received: from lindbergh.monkeyblade.net ([23.128.96.19]:56056 "EHLO
-        lindbergh.monkeyblade.net" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S1728193AbgIXORJ (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Thu, 24 Sep 2020 10:17:09 -0400
-Received: from metis.ext.pengutronix.de (metis.ext.pengutronix.de [IPv6:2001:67c:670:201:290:27ff:fe1d:cc33])
-        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id DEF00C0613CE
-        for <devicetree@vger.kernel.org>; Thu, 24 Sep 2020 07:17:08 -0700 (PDT)
-Received: from pty.hi.pengutronix.de ([2001:67c:670:100:1d::c5])
-        by metis.ext.pengutronix.de with esmtps (TLS1.2:ECDHE_RSA_AES_256_GCM_SHA384:256)
-        (Exim 4.92)
-        (envelope-from <ukl@pengutronix.de>)
-        id 1kLS3Q-0004vB-CR; Thu, 24 Sep 2020 16:17:00 +0200
-Received: from ukl by pty.hi.pengutronix.de with local (Exim 4.89)
-        (envelope-from <ukl@pengutronix.de>)
-        id 1kLS3P-0002us-8b; Thu, 24 Sep 2020 16:16:59 +0200
-Date:   Thu, 24 Sep 2020 16:16:59 +0200
-From:   Uwe =?utf-8?Q?Kleine-K=C3=B6nig?= <u.kleine-koenig@pengutronix.de>
-To:     Andy Shevchenko <andriy.shevchenko@intel.com>
-Cc:     Rahul Tanwar <rahul.tanwar@linux.intel.com>,
-        linux-pwm@vger.kernel.org, lee.jones@linaro.org,
-        thierry.reding@gmail.com, p.zabel@pengutronix.de,
-        robh+dt@kernel.org, linux-kernel@vger.kernel.org,
-        devicetree@vger.kernel.org, songjun.Wu@intel.com,
-        cheol.yong.kim@intel.com, qi-ming.wu@intel.com,
-        rahul.tanwar.linux@gmail.com, rtanwar@maxlinear.com
-Subject: Re: [PATCH v13 2/2] Add PWM fan controller driver for LGM SoC
-Message-ID: <20200924141659.4wov7w2l2bllpre4@pengutronix.de>
-References: <cover.1600158087.git.rahul.tanwar@linux.intel.com>
- <befa655d8beb326fc8aa405a25a8b3e62b7e6a4a.1600158087.git.rahul.tanwar@linux.intel.com>
- <20200924065534.e2anwghhtysv63e7@pengutronix.de>
- <20200924132334.GT3956970@smile.fi.intel.com>
+        id S1728134AbgIXO1E (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Thu, 24 Sep 2020 10:27:04 -0400
+Received: from fllv0016.ext.ti.com ([198.47.19.142]:49596 "EHLO
+        fllv0016.ext.ti.com" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
+        with ESMTP id S1728064AbgIXO1E (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Thu, 24 Sep 2020 10:27:04 -0400
+Received: from lelv0266.itg.ti.com ([10.180.67.225])
+        by fllv0016.ext.ti.com (8.15.2/8.15.2) with ESMTP id 08OEQoJW019153;
+        Thu, 24 Sep 2020 09:26:50 -0500
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=ti.com;
+        s=ti-com-17Q1; t=1600957610;
+        bh=S0oklTWVRLtvAe47nGWVNe8PvFK3wOI3GW207rmLdlw=;
+        h=From:To:CC:Subject:Date;
+        b=i81BquZJ/hAFJAhyt/QSfoLFJIKHd0ynVGMTCMNkUyE3JPqNeMXgQQ7KkEJKfk6YW
+         2b/b4zyeEKJaLvzJb+8wBprVtbB+UZzgHIrkRUaWWz5O3rVZ0V8GthrE6ozF3hAbdC
+         ktPNtRT7jevDHoD0LbwimT2PBI48HNNZeB7IdFH8=
+Received: from DFLE110.ent.ti.com (dfle110.ent.ti.com [10.64.6.31])
+        by lelv0266.itg.ti.com (8.15.2/8.15.2) with ESMTPS id 08OEQnnL005185
+        (version=TLSv1.2 cipher=AES256-GCM-SHA384 bits=256 verify=FAIL);
+        Thu, 24 Sep 2020 09:26:49 -0500
+Received: from DFLE110.ent.ti.com (10.64.6.31) by DFLE110.ent.ti.com
+ (10.64.6.31) with Microsoft SMTP Server (version=TLS1_2,
+ cipher=TLS_ECDHE_RSA_WITH_AES_128_CBC_SHA256_P256) id 15.1.1979.3; Thu, 24
+ Sep 2020 09:26:49 -0500
+Received: from fllv0040.itg.ti.com (10.64.41.20) by DFLE110.ent.ti.com
+ (10.64.6.31) with Microsoft SMTP Server (version=TLS1_2,
+ cipher=TLS_ECDHE_RSA_WITH_AES_128_CBC_SHA256_P256) id 15.1.1979.3 via
+ Frontend Transport; Thu, 24 Sep 2020 09:26:49 -0500
+Received: from localhost (ileax41-snat.itg.ti.com [10.172.224.153])
+        by fllv0040.itg.ti.com (8.15.2/8.15.2) with ESMTP id 08OEQn4Q034659;
+        Thu, 24 Sep 2020 09:26:49 -0500
+From:   Dan Murphy <dmurphy@ti.com>
+To:     <lgirdwood@gmail.com>, <broonie@kernel.org>, <tiwai@suse.com>,
+        <robh+dt@kernel.org>
+CC:     <devicetree@vger.kernel.org>, <alsa-devel@alsa-project.org>,
+        <linux-kernel@vger.kernel.org>, Dan Murphy <dmurphy@ti.com>
+Subject: [PATCH] dt-bindings: tas2770: Mark ti,asi-format to deprecated
+Date:   Thu, 24 Sep 2020 09:26:41 -0500
+Message-ID: <20200924142641.12355-1-dmurphy@ti.com>
+X-Mailer: git-send-email 2.27.0
 MIME-Version: 1.0
-Content-Type: multipart/signed; micalg=pgp-sha512;
-        protocol="application/pgp-signature"; boundary="mb7bv4ys4jbc3fg3"
-Content-Disposition: inline
-In-Reply-To: <20200924132334.GT3956970@smile.fi.intel.com>
-X-SA-Exim-Connect-IP: 2001:67c:670:100:1d::c5
-X-SA-Exim-Mail-From: ukl@pengutronix.de
-X-SA-Exim-Scanned: No (on metis.ext.pengutronix.de); SAEximRunCond expanded to false
-X-PTX-Original-Recipient: devicetree@vger.kernel.org
+Content-Transfer-Encoding: 8bit
+Content-Type: text/plain
+X-EXCLAIMER-MD-CONFIG: e1e8a2fd-e40a-4ac6-ac9b-f7e9cc9ee180
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
+Mark the property ti,asi-format to deprecated as it is no longer
+supported.
 
---mb7bv4ys4jbc3fg3
-Content-Type: text/plain; charset=iso-8859-1
-Content-Disposition: inline
-Content-Transfer-Encoding: quoted-printable
+Signed-off-by: Dan Murphy <dmurphy@ti.com>
+---
+ Documentation/devicetree/bindings/sound/tas2770.yaml | 1 +
+ 1 file changed, 1 insertion(+)
 
-On Thu, Sep 24, 2020 at 04:23:34PM +0300, Andy Shevchenko wrote:
-> On Thu, Sep 24, 2020 at 08:55:34AM +0200, Uwe Kleine-K=F6nig wrote:
-> > On Tue, Sep 15, 2020 at 04:23:37PM +0800, Rahul Tanwar wrote:
->=20
-> ...
->=20
-> > > +	ret =3D lgm_clk_enable(dev, pc);
-> > > +	if (ret) {
-> > > +		dev_err(dev, "failed to enable clock\n");
-> >=20
-> > You used dev_err_probe four times for six error paths. I wonder why you
-> > didn't use it here (and below for a failing pwmchip_add()).
->=20
-> dev_err_probe() makes sense when we might experience deferred probe. In n=
-either
-> of mentioned function this can be the case.
->=20
-> > > +		return ret;
-> > > +	}
->=20
-> ...
->=20
-> > > +	ret =3D lgm_reset_control_deassert(dev, pc);
-> > > +	if (ret)
-> > > +		return dev_err_probe(dev, ret, "cannot deassert reset control\n");
-> >=20
-> > After lgm_reset_control_deassert is called pc->rst is unused. So there
-> > is no need to have this member in struct lgm_pwm_chip. The same applies
-> > to ->clk. (You have to pass rst (or clk) to devm_add_action_or_reset for
-> > that to work. Looks like a nice idea anyhow.)
->=20
-> True. And above dev_err_probe() is not needed.
+diff --git a/Documentation/devicetree/bindings/sound/tas2770.yaml b/Documentation/devicetree/bindings/sound/tas2770.yaml
+index 9fdf614add55..07e7f9951d2e 100644
+--- a/Documentation/devicetree/bindings/sound/tas2770.yaml
++++ b/Documentation/devicetree/bindings/sound/tas2770.yaml
+@@ -44,6 +44,7 @@ properties:
+     description: TDM TX voltage sense time slot.
+ 
+   ti,asi-format:
++    deprecated: true
+     $ref: /schemas/types.yaml#/definitions/uint32
+     description: Sets TDM RX capture edge.
+     enum:
+-- 
+2.28.0
 
-You argue that dev_err_probe() gives no benefit as
-lgm_reset_control_deassert won't return -EPROBE_DEFER, right?
-
-Still I consider it a useful function because
-
- a) I (as an author or as a reviewer) don't need to think if the
-    failing function might return -EPROBE_DEFER now or in the future.
-    dev_err_probe does the right thing even for functions that don't
-    return -EPROBE_DEFER.
-
- b) With dev_err_probe() I can accomplish things in a single line that
-    need two lines when open coding it.
-
- c) dev_err_probe() emits the symbolic error name without having to
-    resort to %pe + ERR_PTR.
-
- d) Using dev_err_probe() for all error paths gives a consistency that I
-    like with a maintainer's hat on.
-
-So I still want to request using dev_err_probe() in all error paths.
-
-Best regards
-Uwe
-
---=20
-Pengutronix e.K.                           | Uwe Kleine-K=F6nig            |
-Industrial Linux Solutions                 | https://www.pengutronix.de/ |
-
---mb7bv4ys4jbc3fg3
-Content-Type: application/pgp-signature; name="signature.asc"
-
------BEGIN PGP SIGNATURE-----
-
-iQEzBAABCgAdFiEEfnIqFpAYrP8+dKQLwfwUeK3K7AkFAl9sqlgACgkQwfwUeK3K
-7AkrswgAgys4+V3gT2KS+en571E0eZ2IJRK+pU1FnbGgCi4mTfhzKCPkQqV5Aiik
-exkINzwVonHyvDfS6r1mFSJAOQNBu7Fwi0grOw16ztYP9YB3GolG6hPDRRt+frEq
-va8ssmYie4r6ycJaTkyvCk7hYZhu/My2IVntc4YNwUPMxIMNkYtScCQNu+FHYe04
-MVd4TmSmeWk5LYzQ/xYoSPZAUfYXEGKN6nBMM5MeGrQpaB2hddRsnSy8aE1sJ7ZS
-jGMvIGLCBYtW3whGQoGzp/4O3a2zBdbMVj8VzINCf4Mj4/w5sGvdQ18kBCGs8kqQ
-GjJqfyxrbHAGJoO1K7MYp+9qnAQYtA==
-=D4Q0
------END PGP SIGNATURE-----
-
---mb7bv4ys4jbc3fg3--
