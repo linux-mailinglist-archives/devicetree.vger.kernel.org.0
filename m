@@ -2,79 +2,93 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from vger.kernel.org (vger.kernel.org [23.128.96.18])
-	by mail.lfdr.de (Postfix) with ESMTP id 5A30127721C
-	for <lists+devicetree@lfdr.de>; Thu, 24 Sep 2020 15:26:15 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTP id E2BF827729B
+	for <lists+devicetree@lfdr.de>; Thu, 24 Sep 2020 15:39:02 +0200 (CEST)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S1727992AbgIXN0I (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Thu, 24 Sep 2020 09:26:08 -0400
-Received: from lindbergh.monkeyblade.net ([23.128.96.19]:48118 "EHLO
-        lindbergh.monkeyblade.net" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S1727926AbgIXN0I (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Thu, 24 Sep 2020 09:26:08 -0400
-Received: from mail-ej1-x642.google.com (mail-ej1-x642.google.com [IPv6:2a00:1450:4864:20::642])
-        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id E5555C0613D5
-        for <devicetree@vger.kernel.org>; Thu, 24 Sep 2020 06:26:07 -0700 (PDT)
-Received: by mail-ej1-x642.google.com with SMTP id u21so4507018eja.2
-        for <devicetree@vger.kernel.org>; Thu, 24 Sep 2020 06:26:07 -0700 (PDT)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=baylibre-com.20150623.gappssmtp.com; s=20150623;
-        h=mime-version:references:in-reply-to:from:date:message-id:subject:to
-         :cc;
-        bh=XexnDGcXtnYzxSDXXL3LsxUhuAmen63As9oxJV/uz9Q=;
-        b=kgTjvI+notSvcV1G6DlP/YbBRTYIoc9l+xpy2LnM2CAUVSj4ezg/9x6dqOZ6wnrq94
-         9MtdtxN11ZInl93BO1eYXIug84nACv74HI0Bou42h/R6ly+hJgJucBtFwoi55wT0shSk
-         LFDbcbXi7f8wKGj9oWgR9a4BMZ8us74xQRmaL0jhunAT0o6ZPyKIS1cQ5obDH5ZVDNK1
-         i/HHctQ+fqdd3KkbVaoKIPbGFGuQf7QfUZZX4jKh5f3qRC4qyq1s4k53xIqvXVLpHDQn
-         oRsIhLPdVxLK/zWXUj1yCexDQd9E2st1Mz0TEywAu4kFD7takgrMpk5THLnYgtq/3ckb
-         3sAA==
-X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=1e100.net; s=20161025;
-        h=x-gm-message-state:mime-version:references:in-reply-to:from:date
-         :message-id:subject:to:cc;
-        bh=XexnDGcXtnYzxSDXXL3LsxUhuAmen63As9oxJV/uz9Q=;
-        b=NANQuMQ1B15kIaXib4R2SnvRxpCxAXv1DHRRQfrTvHkAa8LkByKlRF+tGeB8YJETpe
-         2KdIYH+riuLfmJIT2uc49bbKMhYm6jqg3HNCJPBjvQ1KyK4/GsSFf+tbkQjnY6W/tJ2z
-         Y25qoDFZeYTjxj/tq+AXh9Wye+t9zzEsgsxe3Gy5rOIgfW2MLSKMckC9WKOu3WQk8Ymq
-         ap7hE0yiM+G3iZZcHelevkTsHrc19ADWNY4YdW9T1l5t8UymcCzPGk/mdEh7rYslHPpS
-         rWTSKLvTV/msNv0wu8YxhdiqoCmcV55YviYJHli/VIf2RcMSfBOXzMABOicou+ibWtPn
-         31kQ==
-X-Gm-Message-State: AOAM5310aM/PEFhFhVA+hsBSKj4dsfHcdmulqIeTOW0HBzL2bb3TqPzM
-        JLef/9iCQSMUmUPxtryBeXj9XVwtUEChJGl8lj3JVw==
-X-Google-Smtp-Source: ABdhPJzL25q1kuPvZnzXILD9yCjuVJJoFdPmKYvOCzgBP1DPA6gPD4TIEnBP9L8hXZW3TjX9vVurhdi3YXx/TqF6yN8=
-X-Received: by 2002:a17:906:f11:: with SMTP id z17mr1101533eji.88.1600953966583;
- Thu, 24 Sep 2020 06:26:06 -0700 (PDT)
+        id S1728055AbgIXNjC (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Thu, 24 Sep 2020 09:39:02 -0400
+Received: from mga04.intel.com ([192.55.52.120]:17190 "EHLO mga04.intel.com"
+        rhost-flags-OK-OK-OK-OK) by vger.kernel.org with ESMTP
+        id S1727888AbgIXNjB (ORCPT <rfc822;devicetree@vger.kernel.org>);
+        Thu, 24 Sep 2020 09:39:01 -0400
+IronPort-SDR: hUQp4x/SJplnpc8Mi6XCZU/c0UXYRueMezf0dHQ42xp1f9d6l1l2c4DtcwRIgXGPILmWLrG5J6
+ zJ0mc8gJsxgw==
+X-IronPort-AV: E=McAfee;i="6000,8403,9753"; a="158582189"
+X-IronPort-AV: E=Sophos;i="5.77,297,1596524400"; 
+   d="scan'208";a="158582189"
+X-Amp-Result: SKIPPED(no attachment in message)
+X-Amp-File-Uploaded: False
+Received: from orsmga008.jf.intel.com ([10.7.209.65])
+  by fmsmga104.fm.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384; 24 Sep 2020 06:38:58 -0700
+IronPort-SDR: jWOEcGzq6troy1NP13CLTFfaqvuZUeJBoVkPvBeW4r3vbRUuadDgQPeiLaL7c3iQMg08GSayWH
+ UKC1wj2Ts6RA==
+X-ExtLoop1: 1
+X-IronPort-AV: E=Sophos;i="5.77,297,1596524400"; 
+   d="scan'208";a="339049158"
+Received: from smile.fi.intel.com (HELO smile) ([10.237.68.40])
+  by orsmga008.jf.intel.com with ESMTP; 24 Sep 2020 06:38:54 -0700
+Received: from andy by smile with local (Exim 4.94)
+        (envelope-from <andriy.shevchenko@intel.com>)
+        id 1kLRDi-001fqv-2C; Thu, 24 Sep 2020 16:23:34 +0300
+Date:   Thu, 24 Sep 2020 16:23:34 +0300
+From:   Andy Shevchenko <andriy.shevchenko@intel.com>
+To:     Uwe =?iso-8859-1?Q?Kleine-K=F6nig?= 
+        <u.kleine-koenig@pengutronix.de>
+Cc:     Rahul Tanwar <rahul.tanwar@linux.intel.com>,
+        linux-pwm@vger.kernel.org, lee.jones@linaro.org,
+        thierry.reding@gmail.com, p.zabel@pengutronix.de,
+        robh+dt@kernel.org, linux-kernel@vger.kernel.org,
+        devicetree@vger.kernel.org, songjun.Wu@intel.com,
+        cheol.yong.kim@intel.com, qi-ming.wu@intel.com,
+        rahul.tanwar.linux@gmail.com, rtanwar@maxlinear.com
+Subject: Re: [PATCH v13 2/2] Add PWM fan controller driver for LGM SoC
+Message-ID: <20200924132334.GT3956970@smile.fi.intel.com>
+References: <cover.1600158087.git.rahul.tanwar@linux.intel.com>
+ <befa655d8beb326fc8aa405a25a8b3e62b7e6a4a.1600158087.git.rahul.tanwar@linux.intel.com>
+ <20200924065534.e2anwghhtysv63e7@pengutronix.de>
 MIME-Version: 1.0
-References: <20200916094952.458003-1-jonathanh@nvidia.com> <20200916094952.458003-4-jonathanh@nvidia.com>
-In-Reply-To: <20200916094952.458003-4-jonathanh@nvidia.com>
-From:   Bartosz Golaszewski <bgolaszewski@baylibre.com>
-Date:   Thu, 24 Sep 2020 15:25:55 +0200
-Message-ID: <CAMpxmJVFtx4kZOvP5UkYL1U_1UJn_FGabBZdE7cdMDxQAPoSwA@mail.gmail.com>
-Subject: Re: [PATCH V2 3/5] misc: eeprom: at24: Support custom device names
- for AT24 EEPROMs
-To:     Jon Hunter <jonathanh@nvidia.com>
-Cc:     Rob Herring <robh+dt@kernel.org>,
-        Thierry Reding <thierry.reding@gmail.com>,
-        linux-i2c <linux-i2c@vger.kernel.org>,
-        linux-devicetree <devicetree@vger.kernel.org>,
-        LKML <linux-kernel@vger.kernel.org>, linux-tegra@vger.kernel.org
-Content-Type: text/plain; charset="UTF-8"
+Content-Type: text/plain; charset=iso-8859-1
+Content-Disposition: inline
+Content-Transfer-Encoding: 8bit
+In-Reply-To: <20200924065534.e2anwghhtysv63e7@pengutronix.de>
+Organization: Intel Finland Oy - BIC 0357606-4 - Westendinkatu 7, 02160 Espoo
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-On Wed, Sep 16, 2020 at 11:50 AM Jon Hunter <jonathanh@nvidia.com> wrote:
->
-> By using the label property, a more descriptive name can be populated
-> for AT24 EEPROMs NVMEM device. Update the AT24 driver to check to see
-> if the label property is present and if so, use this as the name for
-> NVMEM device. Please note that when the 'label' property is present for
-> the AT24 EEPROM, we do not want the NVMEM driver to append the 'devid'
-> to the name and so the nvmem_config.id is initialised to
-> NVMEM_DEVID_NONE.
->
-> Signed-off-by: Jon Hunter <jonathanh@nvidia.com>
-> ---
+On Thu, Sep 24, 2020 at 08:55:34AM +0200, Uwe Kleine-König wrote:
+> On Tue, Sep 15, 2020 at 04:23:37PM +0800, Rahul Tanwar wrote:
 
-Queued for v5.10, thanks!
+...
 
-Bartosz
+> > +	ret = lgm_clk_enable(dev, pc);
+> > +	if (ret) {
+> > +		dev_err(dev, "failed to enable clock\n");
+> 
+> You used dev_err_probe four times for six error paths. I wonder why you
+> didn't use it here (and below for a failing pwmchip_add()).
+
+dev_err_probe() makes sense when we might experience deferred probe. In neither
+of mentioned function this can be the case.
+
+> > +		return ret;
+> > +	}
+
+...
+
+> > +	ret = lgm_reset_control_deassert(dev, pc);
+> > +	if (ret)
+> > +		return dev_err_probe(dev, ret, "cannot deassert reset control\n");
+> 
+> After lgm_reset_control_deassert is called pc->rst is unused. So there
+> is no need to have this member in struct lgm_pwm_chip. The same applies
+> to ->clk. (You have to pass rst (or clk) to devm_add_action_or_reset for
+> that to work. Looks like a nice idea anyhow.)
+
+True. And above dev_err_probe() is not needed.
+
+-- 
+With Best Regards,
+Andy Shevchenko
+
+
