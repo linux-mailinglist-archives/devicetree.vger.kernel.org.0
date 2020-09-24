@@ -2,162 +2,144 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from vger.kernel.org (vger.kernel.org [23.128.96.18])
-	by mail.lfdr.de (Postfix) with ESMTP id A4006276DED
-	for <lists+devicetree@lfdr.de>; Thu, 24 Sep 2020 11:53:14 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTP id 4D3B1276E38
+	for <lists+devicetree@lfdr.de>; Thu, 24 Sep 2020 12:08:55 +0200 (CEST)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S1727408AbgIXJxI (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Thu, 24 Sep 2020 05:53:08 -0400
-Received: from foss.arm.com ([217.140.110.172]:40446 "EHLO foss.arm.com"
-        rhost-flags-OK-OK-OK-OK) by vger.kernel.org with ESMTP
-        id S1726380AbgIXJxI (ORCPT <rfc822;devicetree@vger.kernel.org>);
-        Thu, 24 Sep 2020 05:53:08 -0400
-Received: from usa-sjc-imap-foss1.foss.arm.com (unknown [10.121.207.14])
-        by usa-sjc-mx-foss1.foss.arm.com (Postfix) with ESMTP id DED27113E;
-        Thu, 24 Sep 2020 02:53:07 -0700 (PDT)
-Received: from ubuntu.arm.com (unknown [10.57.15.115])
-        by usa-sjc-imap-foss1.foss.arm.com (Postfix) with ESMTPA id E876C3F73B;
-        Thu, 24 Sep 2020 02:53:05 -0700 (PDT)
-From:   Nicola Mazzucato <nicola.mazzucato@arm.com>
-To:     linux-kernel@vger.kernel.org, linux-arm-kernel@lists.infradead.org,
-        devicetree@vger.kernel.org, linux-pm@vger.kernel.org,
-        sudeep.holla@arm.com, rjw@rjwysocki.net, vireshk@kernel.org,
-        robh+dt@kernel.org, daniel.lezcano@linaro.org
-Cc:     morten.rasmussen@arm.com, chris.redpath@arm.com,
-        nicola.mazzucato@arm.com
-Subject: [PATCH v2 2/2] [RFC] CPUFreq: Add support for cpu-perf-dependencies
-Date:   Thu, 24 Sep 2020 10:53:47 +0100
-Message-Id: <20200924095347.32148-3-nicola.mazzucato@arm.com>
-X-Mailer: git-send-email 2.27.0
-In-Reply-To: <20200924095347.32148-1-nicola.mazzucato@arm.com>
-References: <20200924095347.32148-1-nicola.mazzucato@arm.com>
+        id S1726818AbgIXKIy (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Thu, 24 Sep 2020 06:08:54 -0400
+Received: from lindbergh.monkeyblade.net ([23.128.96.19]:45746 "EHLO
+        lindbergh.monkeyblade.net" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
+        with ESMTP id S1726645AbgIXKIy (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Thu, 24 Sep 2020 06:08:54 -0400
+Received: from mail-ej1-x643.google.com (mail-ej1-x643.google.com [IPv6:2a00:1450:4864:20::643])
+        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id E4BBDC0613CE
+        for <devicetree@vger.kernel.org>; Thu, 24 Sep 2020 03:08:53 -0700 (PDT)
+Received: by mail-ej1-x643.google.com with SMTP id e23so3700060eja.3
+        for <devicetree@vger.kernel.org>; Thu, 24 Sep 2020 03:08:53 -0700 (PDT)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+        d=linaro.org; s=google;
+        h=mime-version:references:in-reply-to:from:date:message-id:subject:to
+         :cc;
+        bh=4Q/+ty8YH/7NC+1r/Q91xVAqEVNqsmZiYUT5XFfJbQs=;
+        b=Zu8WYvJOls7Q3Fig3eJ0obXiUA4sepajGBI1MfS/tQysKqSQF9j1ANoJ2TXbCXlW+w
+         hE8eyTVtwx5QcXnj+6V7hopYH53BkNlPKVE+q9DhDM0d3Lhk+Zv2dM5N51QpxUzxNPBB
+         /qw0oNhzLvB50dzfi5h/mTfRzPy5X41IdaXsoWlVML8LZc85XeYQGG0kMsJM3qVJEKkF
+         tf/Fl05NuSxRn2OEdnnjc55Hm1xSxXktdbky2ruFaFHZ+JaPbYdceyCTYYnQFvZsfdcH
+         Bu134OnCRei7Soz9IZaix7pnYjRvvSu37Ojtn7mjZKzD/OS0Goamuu61T9ekZ7EBeMMV
+         TiXA==
+X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+        d=1e100.net; s=20161025;
+        h=x-gm-message-state:mime-version:references:in-reply-to:from:date
+         :message-id:subject:to:cc;
+        bh=4Q/+ty8YH/7NC+1r/Q91xVAqEVNqsmZiYUT5XFfJbQs=;
+        b=k8L9Qc4I7oHnU5wFD699RgQYzp+BupPa8UFXilYJGYnbx08UC5YqXyUKSd7SArzG3U
+         npeCxtrlxXFkvx4e+yXFvfNID23dySS32V/YkejIA1vTEeFGWLncKKF7z6mySTelgYG2
+         6Ib0P+nQBZnmHmk/s/aBTIJL4b4f8IM1LZBteNQqZ/BOaCJSGGPwIn13uUvnrV0/FM5o
+         li9SKJhlfGuQx4Fm4hfeb3lBq4Z7Ew14xVUPICv/oaptbwBgyMLfafvMMutOIbAirRfO
+         FD4nu59wLSwOyRWEts82nRP8p7nnmukt4zIz5qVnCJND2ey/WntPquWkHhO/oMJaPRdc
+         lO/w==
+X-Gm-Message-State: AOAM532e8VIXnVBJK7GhVryXFY1woV5vxo+Pb2bsZzFsbtzupg42onFY
+        XEixCVqa/ZXthZMwWAtjMeLGZcrjqiMGVuKmDNA1rw==
+X-Google-Smtp-Source: ABdhPJwg8H6W0jtI8Nv0SsAaB2g5hijEHEmrvpNirWvkgIcXzahSN2l3t0nwJAI10Ib0A0IcGvR8QXY0cogJW35JcY8=
+X-Received: by 2002:a17:906:35d5:: with SMTP id p21mr207888ejb.194.1600942132576;
+ Thu, 24 Sep 2020 03:08:52 -0700 (PDT)
 MIME-Version: 1.0
-Content-Transfer-Encoding: 8bit
+References: <20200911084119.1080694-1-suzuki.poulose@arm.com>
+ <20200911084119.1080694-20-suzuki.poulose@arm.com> <CAJ9a7ViGcasXU2e8HV2RzzobQ7YBHE=YQSqQkCqcb7OyDk_aKA@mail.gmail.com>
+ <f9614d47-4abc-ea14-9d51-068cbb5e9265@arm.com>
+In-Reply-To: <f9614d47-4abc-ea14-9d51-068cbb5e9265@arm.com>
+From:   Mike Leach <mike.leach@linaro.org>
+Date:   Thu, 24 Sep 2020 11:08:41 +0100
+Message-ID: <CAJ9a7VgJeO95EGRgE-otPfN3odJmnYT=_cwQOVAUkKQ4RyJ1HQ@mail.gmail.com>
+Subject: Re: [PATCH 19/19] dts: bindings: coresight: ETMv4.4 system register
+ access only units
+To:     Suzuki K Poulose <suzuki.poulose@arm.com>
+Cc:     linux-arm-kernel <linux-arm-kernel@lists.infradead.org>,
+        Coresight ML <coresight@lists.linaro.org>,
+        Mathieu Poirier <mathieu.poirier@linaro.org>,
+        Leo Yan <leo.yan@linaro.org>, anshuman.khandual@arm.com,
+        devicetree@vger.kernel.org, Rob Herring <robh@kernel.org>
+Content-Type: text/plain; charset="UTF-8"
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-I am seeking some feedback/comments on the following approach.
+Hi suzuki,
 
-Intro:
-Info of performance depency for cpus will be beneficial for systems
-where f/w description of the CPU performance control domain is different
-from the clock domain, e.g. per-CPU control with multiple CPUs sharing
-clock, and kernel OSPM s/w components need to take CPU performance
-dependency into account.
-Essentially these s/w components will have to be provided with
-this information from dt and this RFC is presenting a possible way
-to do so.
+On Thu, 24 Sep 2020 at 10:43, Suzuki K Poulose <suzuki.poulose@arm.com> wrote:
+>
+> On 09/18/2020 04:35 PM, Mike Leach wrote:
+> > On Fri, 11 Sep 2020 at 09:41, Suzuki K Poulose <suzuki.poulose@arm.com> wrote:
+> >>
+> >> Document the bindings for ETMv4.4 and later with only system register
+> >> access.
+> >>
+> >> Cc: devicetree@vger.kernel.org
+> >> Cc: Mathieu Poirier <mathieu.poirier@linaro.org>
+> >> Cc: Mike Leach <mike.leach@linaro.org>
+> >> Reviewed-by: Rob Herring <robh@kernel.org>
+> >> Signed-off-by: Suzuki K Poulose <suzuki.poulose@arm.com>
+> >> ---
+> >>   Documentation/devicetree/bindings/arm/coresight.txt | 6 +++++-
+> >>   1 file changed, 5 insertions(+), 1 deletion(-)
+> >>
+> >> diff --git a/Documentation/devicetree/bindings/arm/coresight.txt b/Documentation/devicetree/bindings/arm/coresight.txt
+> >> index d711676b4a51..cfe47bdda728 100644
+> >> --- a/Documentation/devicetree/bindings/arm/coresight.txt
+> >> +++ b/Documentation/devicetree/bindings/arm/coresight.txt
+> >> @@ -34,9 +34,13 @@ its hardware characteristcs.
+> >>                                          Program Flow Trace Macrocell:
+> >>                          "arm,coresight-etm3x", "arm,primecell";
+> >>
+> >> -               - Embedded Trace Macrocell (version 4.x):
+> >> +               - Embedded Trace Macrocell (version 4.x), with memory mapped access.
+> >>                          "arm,coresight-etm4x", "arm,primecell";
+> >>
+> >> +               - Embedded Trace Macrocell (version 4.4 and later) with system
+> >> +                 register access only.
+> >> +                       "arm,coresight-etm-v4.4";
+> >
+> > Any version of ETM can implement register access - including those pre
+> > ETM 4.4. Perhaps the new name should simply reflect sys reg access
+> > rather than a version.
+> >
+>
+> You're right. I got it confused with the v8.4 SelfHosted Extensions, which
+> mandates the sysreg access and makes the mem I/O obsolete. How about :
+>
+>         "arm,coresight-etm4x-sysreg" ?
+>
+>
+Seems reasonable.
+Perhaps ensure that the accompanying comment mentions that this is
+aarch64 access (to cover the unlikely event that some outlier
+implementation does come along with v8 aarch32 + ETMv4 + sysreg
+access!)
 
-Little details about implementation are given, as this RFC aims to
-present the overall approach.
+> > Given that the two compatibility strings should be mutually exclusive
+> > for a given device, should the bindings doc (or at least the etm4x
+> > component part) be re-written into the .yaml format so that this can
+> > be enforced?
+>
+> I will take a look, haven't played with the yaml.
+>
 
-Proposal:
-The cpufreq framework currently assumes that a policy covers a group of
-CPUs that are controlled together. The energy model and thermal
-frameworks assume that the policy cpumask describes performance
-dependency relation. This assumption is no longer generally valid, so we
-need a way to represent both control and performance relation in cpufreq.
+I used it to describe the CTI bindings as these were brand new.
+Reasonably straight forwards - there are plenty of examples and the
+checking tools are pretty good.
 
-The proposal is to have one cpufreq_policy instance per control domain,
-and have a new cpumask 'dependent_cpus' to the policy to represent the
-CPU performance dependencies.
+Regards
 
-The main reason for a new cpumaks is that although 'related_cpus'
-could be (or could have been) used for such purpose, its meaning has
-changed over time. Initially it was designed specifically for this
-purpose[1], but eventually it has changed to online + offline cpus when
-sw coordination in use [2,3].
+Mike
 
-There is also a 'shared_type' field in cpufreq_policy which provides
-info about coordination type (NONE, SW_ANY, SW_ALL, HW). Currently it's in
-use only for ACPI but I assume it can be used to indicate the coordination
-type even out of ACPI itself. Currently there is no use of TYPE_HW.
 
-Provided that the cpufreq driver will populate dependent_cpus and
-set shared_type, the s/w components that rely on such description (we
-focus on energy-model and cpufreq_cooling for now) will always be provided
-with the correct information, when picking the new cpumask.
+> Thanks for the review !
+>
+> Suzuki
 
-Proposed changes (at high level)(4):
 
-1) cpufreq: Add new dependent_cpus cpumaks in cpufreq_policy
 
-   * New cpumask addition
-   <snippet>
-struct cpufreq_policy {
-        cpumask_var_t           related_cpus; /* Online + Offline CPUs */
-        cpumask_var_t           real_cpus; /* Related and present */
-
-+       /*
-+        * CPUs with hardware clk/perf dependencies
-+        *
-+        * For sw components that rely on h/w info of clk dependencies when hw
-+        * coordinates. This cpumask should always reflect the hw dependencies.
-+        */
-+       cpumask_var_t           dependent_cpus;                 /* all clk-dependent cpus */
-+
-        unsigned int            shared_type; /* ACPI: ANY or ALL affected CPUs
-   </snippet>
-
-   * Fallback mechanism for dependent_cpus. With this, s/w components can
-     always pick dependent_cpus regardless the coordination type.
-   <snippet>
-static int cpufreq_online(unsigned int cpu)
-
-                /* related_cpus should at least include policy->cpus. */
-                cpumask_copy(policy->related_cpus, policy->cpus);
-+
-+               /* dependent_cpus should differ only when hw coordination is in place */
-+               if (policy->shared_type != CPUFREQ_SHARED_TYPE_HW)
-+                       cpumask_copy(policy->dependent_cpus, policy->cpus);
-        }
-   </snippet>
-
-   * Add sysfs attribute for dependent_cpus
-
-2) drivers/thermal/cpufreq_cooling: Replace related_cpus with dependent_cpus
-
-3) drivers/firmware/arm_scmi/perf.c: Parse dt for `cpu-performance-dependencies`
-
-   * Parse dt for `cpu-performance-dependencies` optional node
-
-   * Store internally performance dependencies
-
-   * Add api to get depedent_cpus if required
-
-4) drivers/cpufreq/scmi-cpufreq: Register EM device with the proper cpumask
-
-   * Check for performance dependencies and get dependent_cpus
-
-   * Set policy->shared_type accordingly
-
-   * Provide to EM the correct performance dependencies information
-   <snippet>
-static int scmi_cpufreq_init(struct cpufreq_policy *policy)
-        policy->fast_switch_possible =
-                handle->perf_ops->fast_switch_possible(handle, cpu_dev);
-
--       em_dev_register_perf_domain(cpu_dev, nr_opp, &em_cb, policy->cpus);
-+       /*
-+        * EM needs accurate information about clk boundaries, thus provide the
-+        * correct cpumask.
-+        */
-+       if (handle->perf_ops->has_perf_deps(handle))
-+               em_dev_register_perf_domain(cpu_dev, nr_opp, &em_cb,
-+                                       policy->dependent_cpus);
-+       else
-+               em_dev_register_perf_domain(cpu_dev, nr_opp, &em_cb,
-+                                           policy->cpus);
-   </snippet>
-
-Any other suggestions are welcome.
-
-Thanks
-Nicola
-
-[1] 'commit e8628dd06d66 ("[CPUFREQ] expose cpufreq coordination requirements regardless of coordination mechanism")'
-[2] 'commit 951fc5f45836 ("cpufreq: Update Documentation for cpus and related_cpus")'
-[3] 'commit f4fd3797848a ("acpi-cpufreq: Add new sysfs attribute freqdomain_cpus")'
 -- 
-2.27.0
-
+Mike Leach
+Principal Engineer, ARM Ltd.
+Manchester Design Centre. UK
