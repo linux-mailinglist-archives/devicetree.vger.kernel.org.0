@@ -2,109 +2,153 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from vger.kernel.org (vger.kernel.org [23.128.96.18])
-	by mail.lfdr.de (Postfix) with ESMTP id 98638276591
-	for <lists+devicetree@lfdr.de>; Thu, 24 Sep 2020 03:04:20 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTP id 96F1C2765B1
+	for <lists+devicetree@lfdr.de>; Thu, 24 Sep 2020 03:10:21 +0200 (CEST)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S1726811AbgIXBET (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Wed, 23 Sep 2020 21:04:19 -0400
-Received: from fllv0016.ext.ti.com ([198.47.19.142]:36936 "EHLO
-        fllv0016.ext.ti.com" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S1726562AbgIXBET (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Wed, 23 Sep 2020 21:04:19 -0400
-Received: from fllv0034.itg.ti.com ([10.64.40.246])
-        by fllv0016.ext.ti.com (8.15.2/8.15.2) with ESMTP id 08O146VY080308;
-        Wed, 23 Sep 2020 20:04:06 -0500
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=ti.com;
-        s=ti-com-17Q1; t=1600909446;
-        bh=AlKR8NqqXQKTOzZexkuHK5je8N3ww1hgscFybpkzGIc=;
-        h=Subject:To:CC:References:From:Date:In-Reply-To;
-        b=B3vha1Rv5fOkpC0pXL6wfZdVZvoyB6hR0Bj8wmwZxU9iSgKZKi5/Zn6SuLCCBgled
-         oWOzj47byhhB3sWUL67L89VFJRnfaK8k0mu4UVQYLuHae9TvJ56FZO2phlOyuRAkKG
-         XJSN9DOYotd2Sgh0aN7t0fDi83WJf1mOo8WujWus=
-Received: from DLEE114.ent.ti.com (dlee114.ent.ti.com [157.170.170.25])
-        by fllv0034.itg.ti.com (8.15.2/8.15.2) with ESMTPS id 08O146nF041161
-        (version=TLSv1.2 cipher=AES256-GCM-SHA384 bits=256 verify=FAIL);
-        Wed, 23 Sep 2020 20:04:06 -0500
-Received: from DLEE107.ent.ti.com (157.170.170.37) by DLEE114.ent.ti.com
- (157.170.170.25) with Microsoft SMTP Server (version=TLS1_2,
- cipher=TLS_ECDHE_RSA_WITH_AES_128_CBC_SHA256_P256) id 15.1.1979.3; Wed, 23
- Sep 2020 20:04:06 -0500
-Received: from lelv0327.itg.ti.com (10.180.67.183) by DLEE107.ent.ti.com
- (157.170.170.37) with Microsoft SMTP Server (version=TLS1_2,
- cipher=TLS_ECDHE_RSA_WITH_AES_128_CBC_SHA256_P256) id 15.1.1979.3 via
- Frontend Transport; Wed, 23 Sep 2020 20:04:06 -0500
-Received: from [10.250.69.208] (ileax41-snat.itg.ti.com [10.172.224.153])
-        by lelv0327.itg.ti.com (8.15.2/8.15.2) with ESMTP id 08O145aC032458;
-        Wed, 23 Sep 2020 20:04:05 -0500
-Subject: Re: [PATCH v4 0/4] arm64: dts: ti: k3-j7200: add dma and mcu cpsw
-To:     Grygorii Strashko <grygorii.strashko@ti.com>,
-        Tero Kristo <t-kristo@ti.com>,
-        Rob Herring <robh+dt@kernel.org>, Nishanth Menon <nm@ti.com>
-CC:     Peter Ujfalusi <peter.ujfalusi@ti.com>,
-        Sekhar Nori <nsekhar@ti.com>, <linux-kernel@vger.kernel.org>,
-        <devicetree@vger.kernel.org>,
-        <linux-arm-kernel@lists.infradead.org>,
-        Vignesh Raghavendra <vigneshr@ti.com>,
-        Kishon Vijay Abraham I <kishon@ti.com>
-References: <20200923220938.30788-1-grygorii.strashko@ti.com>
-From:   Suman Anna <s-anna@ti.com>
-Message-ID: <0231303c-ba6d-0d61-fdf7-42d5aec62458@ti.com>
-Date:   Wed, 23 Sep 2020 20:04:05 -0500
-User-Agent: Mozilla/5.0 (X11; Linux x86_64; rv:68.0) Gecko/20100101
- Thunderbird/68.10.0
+        id S1726687AbgIXBKT (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Wed, 23 Sep 2020 21:10:19 -0400
+Received: from lindbergh.monkeyblade.net ([23.128.96.19]:47604 "EHLO
+        lindbergh.monkeyblade.net" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
+        with ESMTP id S1726466AbgIXBKT (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Wed, 23 Sep 2020 21:10:19 -0400
+Received: from mail-pf1-x441.google.com (mail-pf1-x441.google.com [IPv6:2607:f8b0:4864:20::441])
+        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id E9395C0613CE
+        for <devicetree@vger.kernel.org>; Wed, 23 Sep 2020 18:10:18 -0700 (PDT)
+Received: by mail-pf1-x441.google.com with SMTP id z18so833349pfg.0
+        for <devicetree@vger.kernel.org>; Wed, 23 Sep 2020 18:10:18 -0700 (PDT)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+        d=chromium.org; s=google;
+        h=from:to:cc:subject:date:message-id:mime-version
+         :content-transfer-encoding;
+        bh=rfxM7/I+KfynMolnQ/7xYwDSvDrAFMXPNgmT9bF/6pc=;
+        b=BzV1h/oiYBaReYrl2BNiTM1mdBn+EvWoeKawFQOP5VHQtBqrSheGrMhEN+zAFSa/5k
+         XiQihU9HJUaXEtM9FYZc7G/skJiwWYlW1T7GRRJ8JHzQT7/7wC4I6gPV6oCWNlX3pcfm
+         bXSJq9CGKtF2C9mxyh/JYUGnitKRvdykjMYf0=
+X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+        d=1e100.net; s=20161025;
+        h=x-gm-message-state:from:to:cc:subject:date:message-id:mime-version
+         :content-transfer-encoding;
+        bh=rfxM7/I+KfynMolnQ/7xYwDSvDrAFMXPNgmT9bF/6pc=;
+        b=sz2Y5a/xAL1/FPGhC1QmclE9tTdX5YkFCykRY1/cZT6CcPzVvjXP+V5EVMS+Qckwkj
+         1VCIhxTZ5k4BfxgNev3Amkp15DX5VCn5mnyk8Tzy1zqXRdS62RT8yACMG7keOSn5ZuvY
+         y7LhLeBL54Q8Yx4pbkx+AZMdBPAcl1ZcULQRl4PH4fN10d1uBIup5dYHTzKY12J2kYra
+         OW0so5yHN4qsFDya+b0Dr0PG5yheMw0LHcuT9ekFor7P7BfIUQAyehMl6Xf5ofnwak6n
+         X+rsikSj1jga/fF9UQXBHJgzDnzGGqIUR+vYO9zFm5M/Q3aqMqv+KtioBh+S732vFckq
+         JEQQ==
+X-Gm-Message-State: AOAM532EuSryCJQapo6nvpVIzeZFxp1ZxlEDK00t+qBiLpcHiiUDw0Zr
+        HsgtllVSO82nT2f+Wt7xLX/W1g==
+X-Google-Smtp-Source: ABdhPJzPtYjeba5CrOvU5m9qU3CaJVwHEuBdgPcw5qhfUMWoc1MRtoCedROx/cRLP8albttSP2c0sQ==
+X-Received: by 2002:a65:4984:: with SMTP id r4mr1877304pgs.261.1600909817418;
+        Wed, 23 Sep 2020 18:10:17 -0700 (PDT)
+Received: from localhost ([2620:15c:202:1:f693:9fff:fef4:e70a])
+        by smtp.gmail.com with ESMTPSA id z129sm875711pgb.84.2020.09.23.18.10.16
+        (version=TLS1_3 cipher=TLS_AES_128_GCM_SHA256 bits=128/128);
+        Wed, 23 Sep 2020 18:10:16 -0700 (PDT)
+From:   Matthias Kaehlcke <mka@chromium.org>
+To:     Greg Kroah-Hartman <gregkh@linuxfoundation.org>,
+        Rob Herring <robh+dt@kernel.org>,
+        Frank Rowand <frowand.list@gmail.com>
+Cc:     linux-usb@vger.kernel.org,
+        Douglas Anderson <dianders@chromium.org>,
+        Bastien Nocera <hadess@hadess.net>,
+        Ravi Chandra Sadineni <ravisadineni@chromium.org>,
+        Peter Chen <peter.chen@nxp.com>,
+        Krzysztof Kozlowski <krzk@kernel.org>,
+        Alan Stern <stern@rowland.harvard.edu>,
+        devicetree@vger.kernel.org, Stephen Boyd <swboyd@chromium.org>,
+        linux-kernel@vger.kernel.org, Matthias Kaehlcke <mka@chromium.org>
+Subject: [PATCH v3 1/2] dt-bindings: usb: Add binding for discrete onboard USB hubs
+Date:   Wed, 23 Sep 2020 18:10:11 -0700
+Message-Id: <20200923180952.v3.1.I248292623d3d0f6a4f0c5bc58478ca3c0062b49a@changeid>
+X-Mailer: git-send-email 2.28.0.709.gb0816b6eb0-goog
 MIME-Version: 1.0
-In-Reply-To: <20200923220938.30788-1-grygorii.strashko@ti.com>
-Content-Type: text/plain; charset="utf-8"
-Content-Language: en-US
-Content-Transfer-Encoding: 7bit
-X-EXCLAIMER-MD-CONFIG: e1e8a2fd-e40a-4ac6-ac9b-f7e9cc9ee180
+Content-Transfer-Encoding: 8bit
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-On 9/23/20 5:09 PM, Grygorii Strashko wrote:
-> Hi All,
-> 
-> This series adds DT nodes for TI J7200 SoC
-> - Ringacc and UDMA nodes for Main and MCU NAVSS, which are compatible
->   with J721E Soc, to enable DMA support
-> - MCU CPSW2g DT nodes to enable networking and board data
-> 
-> Changes in v4:
->  - fixed comments from Suman Anna <s-anna@ti.com>
-> 
-> Changes in v3:
->  - rebase
->  - updated dependencies
->  - added tested-by
-> 
-> Changes in v2:
->  - fixed DT build warnings (Nishanth Menon)
-> 
-> v3: https://lore.kernel.org/patchwork/cover/1308044/
-> v2: https://lore.kernel.org/patchwork/cover/1302290/
-> v1: https://lore.kernel.org/patchwork/cover/1301067/
-> 
-> Grygorii Strashko (3):
->   arm64: dts: ti: k3-j7200-main: add main navss cpts node
->   arm64: dts: ti: k3-j7200-mcu: add mcu cpsw nuss node
->   arm64: dts: ti: k3-j7200-common-proc-board: add mcu cpsw nuss pinmux
->     and phy defs
-> 
-> Peter Ujfalusi (1):
->   arm64: dts: ti: k3-j7200: add DMA support
+Discrete onboard USB hubs (an example for such a hub is the Realtek
+RTS5411) need to be powered and may require initialization of other
+resources (like GPIOs or clocks) to work properly. This adds a device
+tree binding for these hubs.
 
-Thank you for fixing my comments. For the series,
+Signed-off-by: Matthias Kaehlcke <mka@chromium.org>
+---
 
-Reviewed-by: Suman Anna <s-anna@ti.com>
+Changes in v3:
+- updated commit message
+- removed recursive reference to $self
+- adjusted 'compatible' definition to support multiple entries
+- changed USB controller phandle to be a node
 
-regards
-Suman
+Changes in v2:
+- removed 'wakeup-source' and 'power-off-in-suspend' properties
+- consistently use spaces for indentation in example
 
-> 
->  .../dts/ti/k3-j7200-common-proc-board.dts     |  45 +++++++
->  arch/arm64/boot/dts/ti/k3-j7200-main.dtsi     |  48 +++++++
->  .../boot/dts/ti/k3-j7200-mcu-wakeup.dtsi      | 118 ++++++++++++++++++
->  3 files changed, 211 insertions(+)
-> 
+ .../bindings/usb/onboard_usb_hub.yaml         | 54 +++++++++++++++++++
+ 1 file changed, 54 insertions(+)
+ create mode 100644 Documentation/devicetree/bindings/usb/onboard_usb_hub.yaml
+
+diff --git a/Documentation/devicetree/bindings/usb/onboard_usb_hub.yaml b/Documentation/devicetree/bindings/usb/onboard_usb_hub.yaml
+new file mode 100644
+index 000000000000..c9783da3e75c
+--- /dev/null
++++ b/Documentation/devicetree/bindings/usb/onboard_usb_hub.yaml
+@@ -0,0 +1,54 @@
++# SPDX-License-Identifier: GPL-2.0-only or BSD-2-Clause
++%YAML 1.2
++---
++$id: http://devicetree.org/schemas/usb/onboard_usb_hub.yaml#
++$schema: http://devicetree.org/meta-schemas/core.yaml#
++
++title: Binding for onboard USB hubs
++
++maintainers:
++  - Matthias Kaehlcke <mka@chromium.org>
++
++properties:
++  compatible:
++    items:
++      - enum:
++        - realtek,rts5411
++      - const: onboard-usb-hub
++
++  vdd-supply:
++    description:
++      phandle to the regulator that provides power to the hub.
++
++required:
++  - compatible
++  - vdd-supply
++
++examples:
++  - |
++    usb_hub: usb-hub {
++        compatible = "realtek,rts5411", "onboard-usb-hub";
++        vdd-supply = <&pp3300_hub>;
++    };
++
++    usb_controller {
++        dr_mode = "host";
++        #address-cells = <1>;
++        #size-cells = <0>;
++
++        /* 2.0 hub on port 1 */
++        hub@1 {
++            compatible = "usbbda,5411";
++            reg = <1>;
++            hub = <&usb_hub>;
++        };
++
++        /* 3.0 hub on port 2 */
++        hub@2 {
++            compatible = "usbbda,411";
++            reg = <2>;
++            hub = <&usb_hub>;
++        };
++    };
++
++...
+-- 
+2.28.0.709.gb0816b6eb0-goog
 
