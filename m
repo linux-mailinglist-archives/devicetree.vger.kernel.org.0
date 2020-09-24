@@ -2,116 +2,76 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from vger.kernel.org (vger.kernel.org [23.128.96.18])
-	by mail.lfdr.de (Postfix) with ESMTP id 852E1276EA5
-	for <lists+devicetree@lfdr.de>; Thu, 24 Sep 2020 12:24:35 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTP id 4A005276F11
+	for <lists+devicetree@lfdr.de>; Thu, 24 Sep 2020 12:53:07 +0200 (CEST)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S1727420AbgIXKYd (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Thu, 24 Sep 2020 06:24:33 -0400
-Received: from mail-ot1-f67.google.com ([209.85.210.67]:39960 "EHLO
-        mail-ot1-f67.google.com" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S1727089AbgIXKYc (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Thu, 24 Sep 2020 06:24:32 -0400
-Received: by mail-ot1-f67.google.com with SMTP id c2so607866otp.7;
-        Thu, 24 Sep 2020 03:24:32 -0700 (PDT)
-X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=1e100.net; s=20161025;
-        h=x-gm-message-state:mime-version:references:in-reply-to:from:date
-         :message-id:subject:to:cc;
-        bh=j6aF1e/PgsLm/et9d4vYdIAT9mmYwtgzzxEyzyGUgsg=;
-        b=EavTM1rbVvBVeuTIb+urvHEq+FqKfi2slcKR+BXpB4PzyNCoU+wTDTLgWtFyrkNA5m
-         Lksyvvlyfw0MLEvGHvIYNRygH5n7s/quHUYkDgkdlJrDyQRluXVSc4TgqKqatnPhkFbq
-         OOYV3HhHpsPdQaFU8VB4UlwHtVan0N42QmYEo0TVCbJmTSMlwcgGgUtuSF9IU8XrwYFV
-         DPNtZBjnKhXSLsbYrn6ICieuDcJx9clAIy05bA1R/PK16Mx5RPAfWpSWYzUU3h4DgT35
-         pnaxN+dSx47729QwckVWQx9Lkd8Cdm1pUbJu/hQpZlJ8AhTUQRwkcq4EPmo5A4OypgC0
-         xs/Q==
-X-Gm-Message-State: AOAM5327zG5+zZYcJGP6yRe+Y506FKSkDkW3rwvbaX6GzhjYO2j1UkAa
-        PJPeoSZEcFvs/EAxnEV2KvniSh2S169N78mQpJM=
-X-Google-Smtp-Source: ABdhPJw57fD7/OM8uEp/PKMXBvSOxUQF1vAdLsacJx8iHl0r1mvXOTDOQ61/SmWSu3pLxi4bIXmCtc9V/rFPAGU1ZF4=
-X-Received: by 2002:a9d:3b76:: with SMTP id z109mr2655049otb.250.1600943071845;
- Thu, 24 Sep 2020 03:24:31 -0700 (PDT)
+        id S1726738AbgIXKxG (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Thu, 24 Sep 2020 06:53:06 -0400
+Received: from lindbergh.monkeyblade.net ([23.128.96.19]:52568 "EHLO
+        lindbergh.monkeyblade.net" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
+        with ESMTP id S1726729AbgIXKxG (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Thu, 24 Sep 2020 06:53:06 -0400
+Received: from metis.ext.pengutronix.de (metis.ext.pengutronix.de [IPv6:2001:67c:670:201:290:27ff:fe1d:cc33])
+        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 6B1D1C0613CE
+        for <devicetree@vger.kernel.org>; Thu, 24 Sep 2020 03:53:06 -0700 (PDT)
+Received: from pty.hi.pengutronix.de ([2001:67c:670:100:1d::c5])
+        by metis.ext.pengutronix.de with esmtps (TLS1.2:ECDHE_RSA_AES_256_GCM_SHA384:256)
+        (Exim 4.92)
+        (envelope-from <ukl@pengutronix.de>)
+        id 1kLOs0-00062Q-SC; Thu, 24 Sep 2020 12:53:00 +0200
+Received: from ukl by pty.hi.pengutronix.de with local (Exim 4.89)
+        (envelope-from <ukl@pengutronix.de>)
+        id 1kLOry-0005Cb-PO; Thu, 24 Sep 2020 12:52:58 +0200
+From:   =?UTF-8?q?Uwe=20Kleine-K=C3=B6nig?= 
+        <u.kleine-koenig@pengutronix.de>
+To:     Alexandre Belloni <alexandre.belloni@bootlin.com>,
+        Qiang Zhao <qiang.zhao@nxp.com>,
+        Bruno Thomsen <bruno.thomsen@gmail.com>
+Cc:     linux-rtc@vger.kernel.org, a.zummo@towertech.it,
+        linux-watchdog@vger.kernel.org, devicetree@vger.kernel.org,
+        linux-kernel@vger.kernel.org, robh+dt@kernel.org,
+        kernel@pengutronix.de, Wim Van Sebroeck <wim@linux-watchdog.org>,
+        Guenter Roeck <linux@roeck-us.net>
+Subject: [PATCH 0/2] rtc: pcf2127: only use watchdog when explicitly available
+Date:   Thu, 24 Sep 2020 12:52:54 +0200
+Message-Id: <20200924105256.18162-1-u.kleine-koenig@pengutronix.de>
+X-Mailer: git-send-email 2.28.0
+In-Reply-To: <20200924074715.GT9675@piout.net>
+References: <20200924074715.GT9675@piout.net>
 MIME-Version: 1.0
-References: <20200924080535.3641-1-biju.das.jz@bp.renesas.com>
- <CAMuHMdV5m3LH9QyX=Gau5UsDz3AZvqNOgCJiHb6Je+7qS0Ltvw@mail.gmail.com> <TYBPR01MB530919C0B122741BF8D25A8B86390@TYBPR01MB5309.jpnprd01.prod.outlook.com>
-In-Reply-To: <TYBPR01MB530919C0B122741BF8D25A8B86390@TYBPR01MB5309.jpnprd01.prod.outlook.com>
-From:   Geert Uytterhoeven <geert@linux-m68k.org>
-Date:   Thu, 24 Sep 2020 12:24:20 +0200
-Message-ID: <CAMuHMdVtmd8P=di-VSLMOE0zgL7vZw1N=znqhX3C0oPJ9GiwuA@mail.gmail.com>
-Subject: Re: [PATCH] ARM: dts: iwg20d-q7-common: Fix touch controller probe failure
-To:     Biju Das <biju.das.jz@bp.renesas.com>
-Cc:     Rob Herring <robh+dt@kernel.org>,
-        Magnus Damm <magnus.damm@gmail.com>,
-        Linux-Renesas <linux-renesas-soc@vger.kernel.org>,
-        "open list:OPEN FIRMWARE AND FLATTENED DEVICE TREE BINDINGS" 
-        <devicetree@vger.kernel.org>,
-        Chris Paterson <Chris.Paterson2@renesas.com>,
-        Biju Das <biju.das@bp.renesas.com>,
-        Prabhakar Mahadev Lad <prabhakar.mahadev-lad.rj@bp.renesas.com>
-Content-Type: text/plain; charset="UTF-8"
+Content-Type: text/plain; charset=UTF-8
+Content-Transfer-Encoding: 8bit
+X-SA-Exim-Connect-IP: 2001:67c:670:100:1d::c5
+X-SA-Exim-Mail-From: ukl@pengutronix.de
+X-SA-Exim-Scanned: No (on metis.ext.pengutronix.de); SAEximRunCond expanded to false
+X-PTX-Original-Recipient: devicetree@vger.kernel.org
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-Hi Biju,
+Hello,
 
-On Thu, Sep 24, 2020 at 11:40 AM Biju Das <biju.das.jz@bp.renesas.com> wrote:
-> > Subject: Re: [PATCH] ARM: dts: iwg20d-q7-common: Fix touch controller
-> > probe failure
-> > On Thu, Sep 24, 2020 at 10:05 AM Biju Das <biju.das.jz@bp.renesas.com>
-> > wrote:
-> > > As per the iWave RZ/G1M schematic, the signal LVDS_PPEN controls
-> > > supply voltage for touch panel, LVDS receiver and RGB LCD panel. Add
-> > > regulator for these device nodes and remove powerdown-gpios property
-> > > from lvds-receiver node as it results in touch controller driver probe failure.
-> > >
-> > > Signed-off-by: Biju Das <biju.das.jz@bp.renesas.com>
-> > > Reviewed-by: Laurent Pinchart <laurent.pinchart@ideasonboard.com>
-> > > ---
-> > > v4->v5 : Restored Laurent's Rb tag, since it is minor change, renaming
-> > > v4->vcc-supply to power-supply
-> > >
-> > > v3->v4 : Incorporated Laurent's review
-> > > v3->comments(https://patchwork.kernel.org/patch/11707887/)
-> > >          Added Laurent's Reviewed-by tag
-> > > v2->v3 : Added the missing part from the patch. removal of powerdown-
-> > gpios property.
-> > > v1->v2 : Add regulator in touch panel, LVDS receiver and RGB LCD panel
-> > > v1->device nodes
-> > >            (Ref: https://patchwork.kernel.org/patch/11707559/)
-> > > v1 : https://patchwork.kernel.org/patch/11705819/
-> >
-> > Thanks for the update!
-> >
-> > As the prerequisites are now in next, I can queue this in renesas-devel for
-> > v5.11 after v5.10-rc1 has been released.
-> > Or do you think this should be fast-tracked as a fix for v5.10 or v5.9?
->
-> I think it should be fast tracked, since it is a regression. Also we need to fast track  the dependency patches as well.
+now that there are two people stumbling over the pcf2127 driver
+providing a non-functional watchdog device, here comes an RFC patch to
+address this.
 
-OK.
+Note this is only compile tested and dt-documentation is still missing.
+Still send this series because the cleanup is nice independent of this
+discussion and to have something to argue about.
 
-> Fixes: 6f89dd9e9325 ("ARM: dts: iwg20d-q7-common: Add LCD support")
-> [1] https://git.kernel.org/pub/scm/linux/kernel/git/next/linux-next.git/commit/?h=next-20200923&id=946a61ab2d758cc645f6e63f1a5e2731690c3943
-> [2] https://git.kernel.org/pub/scm/linux/kernel/git/next/linux-next.git/commit/?h=next-20200923&id=2cd9df2be75766452fef87c37ec37d91f4cbaf6b
+Does someone can offer a better name than "has-watchdog", is there a
+scheme that could be used already that I'm not aware of?
 
-Does anything bad (e.g. another regression) happen if this patch is
-applied, but the 2 patches above are not?
-If not, I will queue this as a fix for v5.9.
+Best regards
+Uwe
 
-> > I.e. is this an actual regression, or just something that never worked before?
-> > Note that v1 had a Fixes tag, which was lost in subsequent versions.
->
-> I missed to add fixes tag in subsequent versions.
-> Fixes: 6f89dd9e9325 ("ARM: dts: iwg20d-q7-common: Add LCD support")
+Uwe Kleine-König (2):
+  rtc: pcf2127: move watchdog initialisation to a separate function
+  [RFC] rtc: pcf2127: only use watchdog when explicitly available
 
-No worries, I can add that while applying.
-
-Gr{oetje,eeting}s,
-
-                        Geert
+ drivers/rtc/rtc-pcf2127.c | 57 ++++++++++++++++++++++-----------------
+ 1 file changed, 32 insertions(+), 25 deletions(-)
 
 -- 
-Geert Uytterhoeven -- There's lots of Linux beyond ia32 -- geert@linux-m68k.org
+2.28.0
 
-In personal conversations with technical people, I call myself a hacker. But
-when I'm talking to journalists I just say "programmer" or something like that.
-                                -- Linus Torvalds
