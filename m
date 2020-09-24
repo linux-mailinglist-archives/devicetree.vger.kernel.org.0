@@ -2,121 +2,146 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from vger.kernel.org (vger.kernel.org [23.128.96.18])
-	by mail.lfdr.de (Postfix) with ESMTP id C226E276A72
-	for <lists+devicetree@lfdr.de>; Thu, 24 Sep 2020 09:16:50 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTP id 5066B276A90
+	for <lists+devicetree@lfdr.de>; Thu, 24 Sep 2020 09:19:36 +0200 (CEST)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S1727164AbgIXHQu (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Thu, 24 Sep 2020 03:16:50 -0400
-Received: from mail.kernel.org ([198.145.29.99]:39170 "EHLO mail.kernel.org"
-        rhost-flags-OK-OK-OK-OK) by vger.kernel.org with ESMTP
-        id S1727093AbgIXHQu (ORCPT <rfc822;devicetree@vger.kernel.org>);
-        Thu, 24 Sep 2020 03:16:50 -0400
-Received: from saruman (91-155-214-58.elisa-laajakaista.fi [91.155.214.58])
-        (using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
-        (No client certificate requested)
-        by mail.kernel.org (Postfix) with ESMTPSA id BC72A20936;
-        Thu, 24 Sep 2020 07:16:46 +0000 (UTC)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=kernel.org;
-        s=default; t=1600931809;
-        bh=oFLY62TJgHh8pZ8uAIN/iFnnuE+w2IUAcEdP3wJ0qP0=;
-        h=From:To:Cc:Subject:In-Reply-To:References:Date:From;
-        b=V7HkS4k7c/lJjO1VAeIyqVG8+nofirtVlkifPRFCCJqKcYsqfm1ccPWbUE5RW67Xe
-         RMB4OM8jx/oGLmqfpojNnArVIKG6y/fMdECxi31AZFhk/1rUJCfQeNiroyQL6Qb2LS
-         Nr3VzxuaV7wb5XA45/btaED4JWJgS3HF8dRjqgnQ=
-From:   Felipe Balbi <balbi@kernel.org>
-To:     Rob Herring <robh@kernel.org>,
-        Manish Narani <manish.narani@xilinx.com>
-Cc:     gregkh@linuxfoundation.org, michal.simek@xilinx.com,
-        p.zabel@pengutronix.de, linux-usb@vger.kernel.org,
-        devicetree@vger.kernel.org, linux-arm-kernel@lists.infradead.org,
-        linux-kernel@vger.kernel.org, git@xilinx.com
-Subject: Re: [PATCH v2 1/2] dt-bindings: usb: dwc3-xilinx: Add documentation
- for Versal DWC3 Controller
-In-Reply-To: <20200922195410.GA3122345@bogus>
-References: <1599678185-119412-1-git-send-email-manish.narani@xilinx.com>
- <1599678185-119412-2-git-send-email-manish.narani@xilinx.com>
- <20200922195410.GA3122345@bogus>
-Date:   Thu, 24 Sep 2020 10:16:41 +0300
-Message-ID: <87wo0jejae.fsf@kernel.org>
+        id S1727084AbgIXHTf (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Thu, 24 Sep 2020 03:19:35 -0400
+Received: from szxga06-in.huawei.com ([45.249.212.32]:45504 "EHLO huawei.com"
+        rhost-flags-OK-OK-OK-FAIL) by vger.kernel.org with ESMTP
+        id S1726902AbgIXHTf (ORCPT <rfc822;devicetree@vger.kernel.org>);
+        Thu, 24 Sep 2020 03:19:35 -0400
+Received: from DGGEMS414-HUB.china.huawei.com (unknown [172.30.72.60])
+        by Forcepoint Email with ESMTP id B8A3414C03520B5C6204;
+        Thu, 24 Sep 2020 15:19:32 +0800 (CST)
+Received: from thunder-town.china.huawei.com (10.174.177.253) by
+ DGGEMS414-HUB.china.huawei.com (10.3.19.214) with Microsoft SMTP Server id
+ 14.3.487.0; Thu, 24 Sep 2020 15:19:25 +0800
+From:   Zhen Lei <thunder.leizhen@huawei.com>
+To:     Thomas Gleixner <tglx@linutronix.de>,
+        Jason Cooper <jason@lakedaemon.net>,
+        Marc Zyngier <maz@kernel.org>,
+        Rob Herring <robh+dt@kernel.org>,
+        "Alexey Brodkin" <abrodkin@synopsys.com>,
+        Vineet Gupta <vgupta@synopsys.com>,
+        devicetree <devicetree@vger.kernel.org>,
+        linux-snps-arc <linux-snps-arc@lists.infradead.org>,
+        linux-kernel <linux-kernel@vger.kernel.org>
+CC:     Zhen Lei <thunder.leizhen@huawei.com>,
+        Sebastian Hesselbarth <sebastian.hesselbarth@gmail.com>,
+        Haoyu Lv <lvhaoyu@huawei.com>, Libin <huawei.libin@huawei.com>,
+        Kefeng Wang <wangkefeng.wang@huawei.com>
+Subject: [PATCH v6 0/6] irqchip: dw-apb-ictl: support hierarchy irq domain
+Date:   Thu, 24 Sep 2020 15:17:48 +0800
+Message-ID: <20200924071754.4509-1-thunder.leizhen@huawei.com>
+X-Mailer: git-send-email 2.26.0.windows.1
 MIME-Version: 1.0
-Content-Type: multipart/signed; boundary="=-=-=";
-        micalg=pgp-sha256; protocol="application/pgp-signature"
+Content-Transfer-Encoding: 7BIT
+Content-Type:   text/plain; charset=US-ASCII
+X-Originating-IP: [10.174.177.253]
+X-CFilter-Loop: Reflected
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
---=-=-=
-Content-Type: text/plain
-Content-Transfer-Encoding: quoted-printable
+v5 --> v6:
+1. add Reviewed-by: Rob Herring <robh@kernel.org> for Patch 4.
+2. Some modifications are made to Patch 5:
+   1) add " |" for each "description:" property if its content exceeds one line,
+      to tell the yaml keep the "newline" character.
+   2) add "..." to mark the end of the yaml file.
+   3) Change the name list of maintainers to the author of "snps,dw-apb-ictl.txt"
+	 maintainers:
+	-  - Marc Zyngier <marc.zyngier@arm.com>
+	+  - Sebastian Hesselbarth <sebastian.hesselbarth@gmail.com>
+   4) add "maxItems: 1" for property "reg".
+   5) for property "interrupts":
+	 interrupts:
+	-    minItems: 1
+	-    maxItems: 65
+	+    maxItems: 1
+   6) move below descriptions under the top level property "description:"
+	description: |
+	  Synopsys DesignWare provides interrupt controller IP for APB known as
+	  dw_apb_ictl. The IP is used as secondary interrupt controller in some SoCs
+	  with APB bus, e.g. Marvell Armada 1500. It can also be used as primary
+	  interrupt controller in some SoCs, e.g. Hisilicon SD5203.
 
-Rob Herring <robh@kernel.org> writes:
+	+  The interrupt sources map to the corresponding bits in the interrupt
+	+  registers, i.e.
+	+  - 0 maps to bit 0 of low interrupts,
+	+  - 1 maps to bit 1 of low interrupts,
+	+  - 32 maps to bit 0 of high interrupts,
+	+  - 33 maps to bit 1 of high interrupts,
+	+  - (optional) fast interrupts start at 64.
+	+
 
-> On Thu, Sep 10, 2020 at 12:33:04AM +0530, Manish Narani wrote:
->> Add documentation for Versal DWC3 controller. Add required property
->> 'reg' for the same. Also add optional properties for snps,dwc3.
->>=20
->> Signed-off-by: Manish Narani <manish.narani@xilinx.com>
->> ---
->>  .../devicetree/bindings/usb/dwc3-xilinx.txt   | 20 +++++++++++++++++--
->>  1 file changed, 18 insertions(+), 2 deletions(-)
->>=20
->> diff --git a/Documentation/devicetree/bindings/usb/dwc3-xilinx.txt b/Doc=
-umentation/devicetree/bindings/usb/dwc3-xilinx.txt
->> index 4aae5b2cef56..219b5780dbee 100644
->> --- a/Documentation/devicetree/bindings/usb/dwc3-xilinx.txt
->> +++ b/Documentation/devicetree/bindings/usb/dwc3-xilinx.txt
->> @@ -1,7 +1,8 @@
->>  Xilinx SuperSpeed DWC3 USB SoC controller
->>=20=20
->>  Required properties:
->> -- compatible:	Should contain "xlnx,zynqmp-dwc3"
->> +- compatible:	May contain "xlnx,zynqmp-dwc3" or "xlnx,versal-dwc3"
->> +- reg:		Base address and length of the register control block
->>  - clocks:	A list of phandles for the clocks listed in clock-names
->>  - clock-names:	Should contain the following:
->>    "bus_clk"	 Master/Core clock, have to be >=3D 125 MHz for SS
->> @@ -13,12 +14,24 @@ Required child node:
->>  A child node must exist to represent the core DWC3 IP block. The name of
->>  the node is not important. The content of the node is defined in dwc3.t=
-xt.
->>=20=20
->> +Optional properties for snps,dwc3:
->> +- dma-coherent:	Enable this flag if CCI is enabled in design. Adding th=
-is
->> +		flag configures Global SoC bus Configuration Register and
->> +		Xilinx USB 3.0 IP - USB coherency register to enable CCI.
->> +- snps,enable-hibernation: Add this flag to enable hibernation support =
-for
->> +		peripheral mode.
->
-> This belongs in the DWC3 binding. It also implies that hibernation is=20
-> not supported by any other DWC3 based platform. Can't this be implied by=
-=20
-> the compatible string (in the parent)?
+   For more details of 2-6), please refer https://lkml.org/lkml/2020/9/24/13
 
-hibernation support is detectable in runtime, and we've been using that.
+v4 --> v5:
+1. Add WARN_ON(1) in set_handle_irq() if !GENERIC_IRQ_MULTI_HANDLER
+2. Convert "snps,dw-apb-ictl.txt" to "snps,dw-apb-ictl.yaml"
+3. Fix the errors detected by "snps,dw-apb-ictl.yaml" on arch/arc
 
-=2D-=20
-balbi
+v3 --> v4:
+1. remove "gc->chip_types[0].chip.irq_eoi = irq_gc_noop;", the "chip.irq_eoi" hook
+   is not needed by handle_level_irq(). Thanks for Marc Zyngier's review.
+2. Add a new patch: define an empty function set_handle_irq() if !GENERIC_IRQ_MULTI_HANDLER
+   to avoid compilation error on arch/arc system.
 
---=-=-=
-Content-Type: application/pgp-signature; name="signature.asc"
+v2 --> v3:
+1. change (1 << hwirq) to BIT(hwirq).
+2. change __exception_irq_entry to __irq_entry, so we can "#include <linux/interrupt.h>"
+   instead of "#include <asm/exception.h>". Ohterwise, an compilation error will be
+   reported on arch/csky.
+   drivers/irqchip/irq-dw-apb-ictl.c:20:10: fatal error: asm/exception.h: No such file or directory
+3. use "if (!parent || (np == parent))" to determine whether it is primary interrupt controller.
+4. make the primary interrupt controller case also use function handle_level_irq(), I used 
+   handle_fasteoi_irq() as flow_handler before.
+5. Other minor changes are not detailed.
 
------BEGIN PGP SIGNATURE-----
+v1 --> v2:
+According to Marc Zyngier's suggestion, discard adding an independent SD5203-VIC
+driver, but make the dw-apb-ictl irqchip driver to support hierarchy irq domain.
+It was originally available only for secondary interrupt controller, now it can
+also be used as primary interrupt controller. The related dt-bindings is updated
+appropriately.
 
-iQJFBAEBCAAvFiEElLzh7wn96CXwjh2IzL64meEamQYFAl9sR9kRHGJhbGJpQGtl
-cm5lbC5vcmcACgkQzL64meEamQYAig/+OhB2zQwnRA05Qkau2CCR0WR5Qjjg/a1P
-3vsdNjgxOK55PaZfoIkAtlRXNGmtf9fwlSe37VbLT3FPMV3gs8C7w1Atk8KZhJr9
-MuWIxyQV4hsbzB3+zmEn0xNCkTQK0m3h9S2oIVfsLgudon2iX6JYkpWxQrql7to+
-yvgUx3fbd/eKqRwvRNHSnT6ZC1fSqsz+xUcbYX4/j9xSTM86D67En2sWzmeuAK+y
-BdFvYzsrY/btPQAViC2lcfI6m+he0VoGl3b6lAhU8IOVT9b9/iUtsTt7ZRKDkuFO
-woAZxK4E8H4tiayEdvxWqSJr123zdVmvEZr4PUWSYJM0kAgY84fTeTi/xazjba4q
-i/wQ/EXtUx8Km0vfrtf5SK+d/PuW38QeTeusd7Sq14f0zmJYB3HWsMpb5it3W4A5
-qkED951fHjipBE5S2KuhDyf5wY/fvxXE3NUH0pCIl9kQlzNyF2KkrEQVOC306JLc
-MrZXuba9SjMeVgc5IwIpLZNUTFkmeSsgtd3Yywhg3egZoSD4VXIzBhg4X4Sn27UK
-IGL1DF2XYdYJwgL+UuQKHtd2Wbu+6hxHc2cJhm1j8P5tXls0xeXz5zr7g40NzmYA
-cMw8D5DLY51aLhPfyuweVejQULqEaghkayGoHRoh/v3Vx+3jX2DMnEn8YVEdLtIa
-V384q0NUImE=
-=/nk5
------END PGP SIGNATURE-----
---=-=-=--
+Add "Suggested-by: Marc Zyngier <maz@kernel.org>".
+Add "Tested-by: Haoyu Lv <lvhaoyu@huawei.com>".
+
+
+v1:
+The interrupt controller of SD5203 SoC is VIC(vector interrupt controller), it's
+based on Synopsys DesignWare APB interrupt controller (dw_apb_ictl) IP, but it
+can not directly use dw_apb_ictl driver. The main reason is that VIC is used as
+primary interrupt controller and dw_apb_ictl driver worked for secondary
+interrupt controller. So add a new driver: "hisilicon,sd5203-vic".
+
+Zhen Lei (6):
+  genirq: define an empty function set_handle_irq() if
+    !GENERIC_IRQ_MULTI_HANDLER
+  irqchip: dw-apb-ictl: prepare for support hierarchy irq domain
+  irqchip: dw-apb-ictl: support hierarchy irq domain
+  dt-bindings: dw-apb-ictl: support hierarchy irq domain
+  dt-bindings: dw-apb-ictl: convert to json-schema
+  ARC: [dts] fix the errors detected by dtbs_check
+
+ .../interrupt-controller/snps,dw-apb-ictl.txt      | 31 --------
+ .../interrupt-controller/snps,dw-apb-ictl.yaml     | 74 +++++++++++++++++++
+ arch/arc/boot/dts/axc001.dtsi                      |  2 +-
+ arch/arc/boot/dts/axc003.dtsi                      |  2 +-
+ arch/arc/boot/dts/axc003_idu.dtsi                  |  2 +-
+ arch/arc/boot/dts/vdk_axc003.dtsi                  |  2 +-
+ arch/arc/boot/dts/vdk_axc003_idu.dtsi              |  2 +-
+ drivers/irqchip/Kconfig                            |  2 +-
+ drivers/irqchip/irq-dw-apb-ictl.c                  | 83 ++++++++++++++++++----
+ include/linux/irq.h                                |  6 ++
+ 10 files changed, 157 insertions(+), 49 deletions(-)
+ delete mode 100644 Documentation/devicetree/bindings/interrupt-controller/snps,dw-apb-ictl.txt
+ create mode 100644 Documentation/devicetree/bindings/interrupt-controller/snps,dw-apb-ictl.yaml
+
+-- 
+1.8.3
+
+
