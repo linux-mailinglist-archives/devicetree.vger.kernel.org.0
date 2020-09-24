@@ -2,125 +2,248 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from vger.kernel.org (vger.kernel.org [23.128.96.18])
-	by mail.lfdr.de (Postfix) with ESMTP id 0FB6B2766D2
-	for <lists+devicetree@lfdr.de>; Thu, 24 Sep 2020 05:20:40 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTP id D23FD27673E
+	for <lists+devicetree@lfdr.de>; Thu, 24 Sep 2020 05:28:15 +0200 (CEST)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S1726426AbgIXDUi (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Wed, 23 Sep 2020 23:20:38 -0400
-Received: from mail-eopbgr10046.outbound.protection.outlook.com ([40.107.1.46]:6798
-        "EHLO EUR02-HE1-obe.outbound.protection.outlook.com"
+        id S1726883AbgIXD07 (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Wed, 23 Sep 2020 23:26:59 -0400
+Received: from szxga07-in.huawei.com ([45.249.212.35]:42438 "EHLO huawei.com"
         rhost-flags-OK-OK-OK-FAIL) by vger.kernel.org with ESMTP
-        id S1726196AbgIXDUi (ORCPT <rfc822;devicetree@vger.kernel.org>);
-        Wed, 23 Sep 2020 23:20:38 -0400
-ARC-Seal: i=1; a=rsa-sha256; s=arcselector9901; d=microsoft.com; cv=none;
- b=YUUt6kLJ57nO0go7Xjp+N4txOR0cV/Q0vb72blYsqIsvkJMiiQwBsfpduzFjT4mMtVKgFsGt2+eieNZ7KL4kI/Vv3VVrvh1xwBXUlz2xYyDn/u3P3dVHQNgYZFStvEeNDXcFxgXl6up24LPzt33XqQVwSwCTVjS35dpgNl7CrFNmBOIuDXrwx8BXgx3ZAJJgyXzwzrElZ2/5nBplRQmgdxqBi4gppY3HBogtVS4qGP0gw11f3seBidU4LgMV+Os+WrYJP23vXZXHXpk9NiFNp8WXA/8XJNmKSwW3DhI9g4F89HSe0pHmrSC2tsQ7+K3mOy/STAkinkuLeTZA81nPug==
-ARC-Message-Signature: i=1; a=rsa-sha256; c=relaxed/relaxed; d=microsoft.com;
- s=arcselector9901;
- h=From:Date:Subject:Message-ID:Content-Type:MIME-Version:X-MS-Exchange-SenderADCheck;
- bh=54e4JOsol3MbdHnbpxgyiZPuK6xKJ20pc2oveBYA68w=;
- b=eUWgAWRbyjRjDVbQmavKmEmQIG9Jyw09NXVaEqJl2VnF5h9iz4zGyrk2SqrUhMF9AOQwb8yG+5Pk8c+3k8Ub80/m7eJW0N8sydn80PPobnaVnVZciulNwyBi25qSiZ6F51ktL/KaHP9rJEp6Esr9UbteTwbERYxTyFbRhbfVfSlu0DQAjjtzUDoVmvuIc/ZMUxa/u699hlE3LqNKP+auMQEy9lhpr8S4iVzqe4jE6hgcx/3LwuegcRD2h5UFFTlkhx3bjklrwmxdGsGwWa6srZxZ0xEw1M74Sf5A4CWBmAHPvx6phfiGXdhwC4uFoJjPt7lQyh6FVt7JGP1cP4Zayw==
-ARC-Authentication-Results: i=1; mx.microsoft.com 1; spf=pass
- smtp.mailfrom=nxp.com; dmarc=pass action=none header.from=nxp.com; dkim=pass
- header.d=nxp.com; arc=none
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=nxp.com; s=selector2;
- h=From:Date:Subject:Message-ID:Content-Type:MIME-Version:X-MS-Exchange-SenderADCheck;
- bh=54e4JOsol3MbdHnbpxgyiZPuK6xKJ20pc2oveBYA68w=;
- b=VV7wD0VzyagM3vkU7q1MvwUcBVWOaFPooX265h7t3vZOQZWshMtXPURht6YfrUE+P9OZ3JEo890dWz1Ad5YaZmx8yaptVpGBBjjjRtcoZEI8BEofwgtdjC7UHAyzdplN+QvX6CqhHgaBO4KOMtRRqb1KN38o3K1urMeC+hAodbQ=
-Received: from DB8PR04MB6763.eurprd04.prod.outlook.com (2603:10a6:10:10b::28)
- by DB8PR04MB7147.eurprd04.prod.outlook.com (2603:10a6:10:126::12) with
- Microsoft SMTP Server (version=TLS1_2,
- cipher=TLS_ECDHE_RSA_WITH_AES_256_GCM_SHA384) id 15.20.3412.20; Thu, 24 Sep
- 2020 03:20:33 +0000
-Received: from DB8PR04MB6763.eurprd04.prod.outlook.com
- ([fe80::7926:bb74:b8fa:4447]) by DB8PR04MB6763.eurprd04.prod.outlook.com
- ([fe80::7926:bb74:b8fa:4447%4]) with mapi id 15.20.3391.027; Thu, 24 Sep 2020
- 03:20:33 +0000
-From:   Qiang Zhao <qiang.zhao@nxp.com>
-To:     Alexandre Belloni <alexandre.belloni@bootlin.com>
-CC:     Wim Van Sebroeck <wim@linux-watchdog.org>,
-        Guenter Roeck <linux@roeck-us.net>,
-        "linux-watchdog@vger.kernel.org" <linux-watchdog@vger.kernel.org>,
-        "a.zummo@towertech.it" <a.zummo@towertech.it>,
-        "robh+dt@kernel.org" <robh+dt@kernel.org>,
-        "linux-rtc@vger.kernel.org" <linux-rtc@vger.kernel.org>,
-        "devicetree@vger.kernel.org" <devicetree@vger.kernel.org>,
-        "linux-kernel@vger.kernel.org" <linux-kernel@vger.kernel.org>,
-        =?utf-8?B?VXdlIEtsZWluZS1Lw7ZuaWc=?= 
-        <u.kleine-koenig@pengutronix.de>
-Subject: RE: [Patch v2 1/3] dt-bindings: rtc: pcf2127: Add bindings for
- nxp,pcf2127
-Thread-Topic: [Patch v2 1/3] dt-bindings: rtc: pcf2127: Add bindings for
- nxp,pcf2127
-Thread-Index: AQHWj9v8ujWDbe4KQkWWGAO9y9OzgKl1/KOAgAEbugA=
-Date:   Thu, 24 Sep 2020 03:20:33 +0000
-Message-ID: <DB8PR04MB67635518BE38EEF5292C8D0991390@DB8PR04MB6763.eurprd04.prod.outlook.com>
-References: <20200921054821.26071-1-qiang.zhao@nxp.com>
- <20200923094449.GP9675@piout.net>
-In-Reply-To: <20200923094449.GP9675@piout.net>
-Accept-Language: en-US
-Content-Language: en-US
-X-MS-Has-Attach: 
-X-MS-TNEF-Correlator: 
-authentication-results: bootlin.com; dkim=none (message not signed)
- header.d=none;bootlin.com; dmarc=none action=none header.from=nxp.com;
-x-originating-ip: [119.31.174.73]
-x-ms-publictraffictype: Email
-x-ms-office365-filtering-ht: Tenant
-x-ms-office365-filtering-correlation-id: fc8b5ab3-e763-412d-0c7e-08d86038cc39
-x-ms-traffictypediagnostic: DB8PR04MB7147:
-x-microsoft-antispam-prvs: <DB8PR04MB7147EF25E0B1877E2FA1C27791390@DB8PR04MB7147.eurprd04.prod.outlook.com>
-x-ms-oob-tlc-oobclassifiers: OLM:7691;
-x-ms-exchange-senderadcheck: 1
-x-microsoft-antispam: BCL:0;
-x-microsoft-antispam-message-info: +cOu9e7bCqXw0hdYVp1rMV5lo+0EEoC0PU6wzCo5dVYV+T4qGYpWQQSQ2a0te6UkRIRUh6mmAkLXWtLTyydE7jP8NCqJaGK/3Tib6nEv411BetCJsuk05fojoobflhL3WZ94TZrf3WgVBIJ9czaIaA/y0zJKb84fd0vsAcfFTiBs/dS5dwxD3Td4ZWoUcfSZ/saXCZ3KEfW0xewwsRVsNTMfLbSqOrkn8dkz4GyC0dNMVmTCQytFMZwb5y9yYf+26JugiMWyiwFMCT9j4Kg5RPjdNjzrlOaWAw+Dxwg/rwYfxLyBSScMM2W9/5nlrLvxC5thiMtU8xlEfgIGcZihaLep6lRVUzp+GDug365XTCMVXHmUvWnz2Cf9YmbcKsPHCPxwITOj6qU/A0kMYtxRYZBdC1AgNRrXxspedGfcM/A=
-x-forefront-antispam-report: CIP:255.255.255.255;CTRY:;LANG:en;SCL:1;SRV:;IPV:NLI;SFV:NSPM;H:DB8PR04MB6763.eurprd04.prod.outlook.com;PTR:;CAT:NONE;SFS:(4636009)(136003)(376002)(346002)(39860400002)(366004)(396003)(66556008)(64756008)(76116006)(186003)(4326008)(66446008)(66946007)(966005)(7416002)(2906002)(66476007)(5660300002)(8936002)(26005)(83380400001)(478600001)(7696005)(316002)(66574015)(9686003)(53546011)(8676002)(45080400002)(71200400001)(44832011)(6506007)(33656002)(6916009)(52536014)(55016002)(54906003)(86362001)(142933001);DIR:OUT;SFP:1101;
-x-ms-exchange-antispam-messagedata: NRkpwlCmnBvdF9Xr5nKHh0RUoQOBn6UtIOePAkJ7UqP5K9Ne+nrwmeNSduATex/kKnYZ5Dyo7TAHjQKvmaRLvtZbuYay8yS4UgHd69fDIdM+44+46YxKIPnER773Yx7aMAd7RzPmNlJPldy0EzrZx5T39fOooTJZNQJppOwTAr6eT+pLjYGIzq3cUzv0LmMu3yS98Frs77IUOyV7CNDGFxmhg5NeJJTMfQc5j9x3rPEsUG9DxfrJMsK/PyROFDaMYBpRbfKyvX593Yzj25k29r8pHQ+Zysf2F+LKKQAB5nv5tkKIBz2LKseoAmFCj8R6aHhEek3WImgvphCcs/yXKNFdHkDgCoCUP93er5vbBwy/Gi2P/uOrAw1epqJI2PAnQpr9ZWTRVKqb2ZBM4O+I3qod9FSf5iOvdWLGVoJf13gwkqIyjWwdgKaJETIFlMXtPedlxC7Eekf+MYMXUbh3IOQcDjPWkX1jIN0bzBAohE4U8JRc+mNaqnalLoVDoEzaQSbJsM1TdFEEyfyF1B508t8QHZ7mTe1v3z+Fdnh/faUuDnFswYdRDIDLoDJ27DI8cGrpKmkRAecEtNPOP52zQmFBUa9E2U9B0sERb+B6Jckwcm12iujSl1n/N26GhyOqJOTDuIYnRtNW7nfB+SQJGQ==
-x-ms-exchange-transport-forked: True
-Content-Type: text/plain; charset="utf-8"
-Content-Transfer-Encoding: base64
+        id S1727146AbgIXD06 (ORCPT <rfc822;devicetree@vger.kernel.org>);
+        Wed, 23 Sep 2020 23:26:58 -0400
+Received: from DGGEMS402-HUB.china.huawei.com (unknown [172.30.72.58])
+        by Forcepoint Email with ESMTP id BAD5DE1925281BB33692;
+        Thu, 24 Sep 2020 11:26:55 +0800 (CST)
+Received: from [127.0.0.1] (10.174.177.253) by DGGEMS402-HUB.china.huawei.com
+ (10.3.19.202) with Microsoft SMTP Server id 14.3.487.0; Thu, 24 Sep 2020
+ 11:26:45 +0800
+Subject: Re: [PATCH v5 5/6] dt-bindings: dw-apb-ictl: convert to json-schema
+To:     Rob Herring <robh@kernel.org>
+CC:     Thomas Gleixner <tglx@linutronix.de>,
+        Jason Cooper <jason@lakedaemon.net>,
+        Marc Zyngier <maz@kernel.org>,
+        Alexey Brodkin <abrodkin@synopsys.com>,
+        "Vineet Gupta" <vgupta@synopsys.com>,
+        devicetree <devicetree@vger.kernel.org>,
+        linux-snps-arc <linux-snps-arc@lists.infradead.org>,
+        linux-kernel <linux-kernel@vger.kernel.org>,
+        Sebastian Hesselbarth <sebastian.hesselbarth@gmail.com>,
+        Haoyu Lv <lvhaoyu@huawei.com>, Libin <huawei.libin@huawei.com>,
+        Kefeng Wang <wangkefeng.wang@huawei.com>
+References: <20200918112202.3418-1-thunder.leizhen@huawei.com>
+ <20200918112202.3418-6-thunder.leizhen@huawei.com>
+ <20200923204911.GA1271664@bogus>
+From:   "Leizhen (ThunderTown)" <thunder.leizhen@huawei.com>
+Message-ID: <c5ba167c-2c66-66ec-9d0c-fe6a5755166f@huawei.com>
+Date:   Thu, 24 Sep 2020 11:26:44 +0800
+User-Agent: Mozilla/5.0 (Windows NT 10.0; WOW64; rv:60.0) Gecko/20100101
+ Thunderbird/60.7.0
 MIME-Version: 1.0
-X-OriginatorOrg: nxp.com
-X-MS-Exchange-CrossTenant-AuthAs: Internal
-X-MS-Exchange-CrossTenant-AuthSource: DB8PR04MB6763.eurprd04.prod.outlook.com
-X-MS-Exchange-CrossTenant-Network-Message-Id: fc8b5ab3-e763-412d-0c7e-08d86038cc39
-X-MS-Exchange-CrossTenant-originalarrivaltime: 24 Sep 2020 03:20:33.2801
- (UTC)
-X-MS-Exchange-CrossTenant-fromentityheader: Hosted
-X-MS-Exchange-CrossTenant-id: 686ea1d3-bc2b-4c6f-a92c-d99c5c301635
-X-MS-Exchange-CrossTenant-mailboxtype: HOSTED
-X-MS-Exchange-CrossTenant-userprincipalname: ccmimeo8PcTs7exPSMEStSf6XPSZJDkiXsi9om3rd1KKqNmwBwnr4kC/y+kgb+6wVuWN56qt/1C5I27wWrONZg==
-X-MS-Exchange-Transport-CrossTenantHeadersStamped: DB8PR04MB7147
+In-Reply-To: <20200923204911.GA1271664@bogus>
+Content-Type: text/plain; charset="utf-8"
+Content-Language: en-US
+Content-Transfer-Encoding: 7bit
+X-Originating-IP: [10.174.177.253]
+X-CFilter-Loop: Reflected
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-T24gMjEvMDkvMjAyMCAxMzo0ODoxOSswODAwLCBRaWFuZyBaaGFvIHdyb3RlOg0KDQo+IC0tLS0t
-T3JpZ2luYWwgTWVzc2FnZS0tLS0tDQo+IEZyb206IEFsZXhhbmRyZSBCZWxsb25pIDxhbGV4YW5k
-cmUuYmVsbG9uaUBib290bGluLmNvbT4NCj4gU2VudDogMjAyMOW5tDnmnIgyM+aXpSAxNzo0NQ0K
-PiBUbzogUWlhbmcgWmhhbyA8cWlhbmcuemhhb0BueHAuY29tPg0KPiBDYzogV2ltIFZhbiBTZWJy
-b2VjayA8d2ltQGxpbnV4LXdhdGNoZG9nLm9yZz47IEd1ZW50ZXIgUm9lY2sNCj4gPGxpbnV4QHJv
-ZWNrLXVzLm5ldD47IGxpbnV4LXdhdGNoZG9nQHZnZXIua2VybmVsLm9yZzsNCj4gYS56dW1tb0B0
-b3dlcnRlY2guaXQ7IHJvYmgrZHRAa2VybmVsLm9yZzsgbGludXgtcnRjQHZnZXIua2VybmVsLm9y
-ZzsNCj4gZGV2aWNldHJlZUB2Z2VyLmtlcm5lbC5vcmc7IGxpbnV4LWtlcm5lbEB2Z2VyLmtlcm5l
-bC5vcmc7IFV3ZSBLbGVpbmUtS8O2bmlnDQo+IDx1LmtsZWluZS1rb2VuaWdAcGVuZ3V0cm9uaXgu
-ZGU+DQo+IFN1YmplY3Q6IFJlOiBbUGF0Y2ggdjIgMS8zXSBkdC1iaW5kaW5nczogcnRjOiBwY2Yy
-MTI3OiBBZGQgYmluZGluZ3MgZm9yDQo+IG54cCxwY2YyMTI3DQo+IA0KPiBIaSwNCj4gDQo+IFlv
-dSBmb3Jnb3QgdG8gY29weSB0aGUgd2F0Y2hkb2cgbWFpbnRhaW5lcnMsIEkgdGhpbmsgc3VjaCBh
-IHByb3BlcnR5IHNob3VsZCBiZQ0KPiBkaXNjdXNzZWQgd2l0aCB0aGVtLg0KPiANCj4gTm90ZSB0
-aGF0IEknbSBzdGlsbCBjb252aW5jZWQgdGhpcyBpcyBub3QgYSBjb21wbGV0ZSBzb2x1dGlvbiwg
-c2VlOg0KPiBodHRwczovL2V1cjAxLnNhZmVsaW5rcy5wcm90ZWN0aW9uLm91dGxvb2suY29tLz91
-cmw9aHR0cHMlM0ElMkYlMkZsb3JlLmtlcm4NCj4gZWwub3JnJTJGbGludXgtcnRjJTJGMjAyMDA3
-MTYxODE4MTYuR0YzNDI4JTQwcGlvdXQubmV0JTJGJmFtcDtkYXRhPQ0KPiAwMiU3QzAxJTdDcWlh
-bmcuemhhbyU0MG54cC5jb20lN0NiNzFmNzlhMDQ0YjA0OTNkNmQ0ZjA4ZDg1ZmE1NTFjDQo+IGIl
-N0M2ODZlYTFkM2JjMmI0YzZmYTkyY2Q5OWM1YzMwMTYzNSU3QzAlN0MxJTdDNjM3MzY0NTEwOTMx
-MTc0DQo+IDM1NSZhbXA7c2RhdGE9JTJCT3hyekI4Ukl1eE05TGV0NXNsaGZDVm1NbTZQTU5vRVJE
-ZUhDOSUyRmR4bmcNCj4gJTNEJmFtcDtyZXNlcnZlZD0wDQo+IA0KDQpZZXMsIHlvdSBhcmUgcmln
-aHQsIFRoZXJlIGlzIG5vdCBhIGZ1bmRhbWVudGFsIHNvbHV0aW9uLg0KSG93ZXZlciBpdCBzb21l
-d2hhdCBhdm9pZCB0aGlzIHNpdHVhdGlvbiBhdCBsZWFzdC4NCg0KQW5kIGlmIHdpdGhvdXQgdGhp
-cyBpc3N1ZSwgDQppcyBpdCBjb3JyZWN0IHRvIHJlZ2lzdGVyIGEgcnRjIGRldmljZSBhcyB3YXRj
-aGRvZyBubyBtYXR0ZXIgaXQgaXMgdXNlZCBhcyB3YXRjaGRvZyBvbiB0aGUgYm9hcmQ/IA0KRXZl
-cnkgdGltZSBMaW51eCBhcmUgYm9vdGVkIHVwLCB3YXRjaGRvZyBkZXZpY2Ugc2hvdWxkIGJlIGNv
-bmZpZ3VyZWQgdG8gdGhlIHJpZ2h0IG9uZSBtYW51YWxseS4NClNvIHRoZSBwYXRjaCBhcmUgdXNl
-ZnVsLCBldmVuIHRob3VnaCBpdCBpcyBub3QgZm9yIHRoZSBpc3N1ZS4NCg0KV2hhdCBzaG91bGQg
-d2UgZG8gdG8gcmVhbGx5IHJlc29sdmUgdGhpcyBpc3N1ZT8NCg0KQmVzdCBSZWdhcmRzDQpRaWFu
-ZyBaaGFvDQo=
+
+
+On 2020/9/24 4:49, Rob Herring wrote:
+> On Fri, Sep 18, 2020 at 07:22:01PM +0800, Zhen Lei wrote:
+>> Convert the Synopsys DesignWare APB interrupt controller (dw_apb_ictl)
+>> binding to DT schema format using json-schema.
+>>
+>> Signed-off-by: Zhen Lei <thunder.leizhen@huawei.com>
+>> ---
+>>  .../interrupt-controller/snps,dw-apb-ictl.txt      | 43 -------------
+>>  .../interrupt-controller/snps,dw-apb-ictl.yaml     | 75 ++++++++++++++++++++++
+>>  2 files changed, 75 insertions(+), 43 deletions(-)
+>>  delete mode 100644 Documentation/devicetree/bindings/interrupt-controller/snps,dw-apb-ictl.txt
+>>  create mode 100644 Documentation/devicetree/bindings/interrupt-controller/snps,dw-apb-ictl.yaml
+>>
+>> diff --git a/Documentation/devicetree/bindings/interrupt-controller/snps,dw-apb-ictl.txt b/Documentation/devicetree/bindings/interrupt-controller/snps,dw-apb-ictl.txt
+>> deleted file mode 100644
+>> index 2db59df9408f4c6..000000000000000
+>> --- a/Documentation/devicetree/bindings/interrupt-controller/snps,dw-apb-ictl.txt
+>> +++ /dev/null
+>> @@ -1,43 +0,0 @@
+>> -Synopsys DesignWare APB interrupt controller (dw_apb_ictl)
+>> -
+>> -Synopsys DesignWare provides interrupt controller IP for APB known as
+>> -dw_apb_ictl. The IP is used as secondary interrupt controller in some SoCs with
+>> -APB bus, e.g. Marvell Armada 1500. It can also be used as primary interrupt
+>> -controller in some SoCs, e.g. Hisilicon SD5203.
+>> -
+>> -Required properties:
+>> -- compatible: shall be "snps,dw-apb-ictl"
+>> -- reg: physical base address of the controller and length of memory mapped
+>> -  region starting with ENABLE_LOW register
+>> -- interrupt-controller: identifies the node as an interrupt controller
+>> -- #interrupt-cells: number of cells to encode an interrupt-specifier, shall be 1
+>> -
+>> -Additional required property when it's used as secondary interrupt controller:
+>> -- interrupts: interrupt reference to primary interrupt controller
+>> -
+>> -The interrupt sources map to the corresponding bits in the interrupt
+>> -registers, i.e.
+>> -- 0 maps to bit 0 of low interrupts,
+>> -- 1 maps to bit 1 of low interrupts,
+>> -- 32 maps to bit 0 of high interrupts,
+>> -- 33 maps to bit 1 of high interrupts,
+>> -- (optional) fast interrupts start at 64.
+>> -
+>> -Example:
+>> -	/* dw_apb_ictl is used as secondary interrupt controller */
+>> -	aic: interrupt-controller@3000 {
+>> -		compatible = "snps,dw-apb-ictl";
+>> -		reg = <0x3000 0xc00>;
+>> -		interrupt-controller;
+>> -		#interrupt-cells = <1>;
+>> -		interrupt-parent = <&gic>;
+>> -		interrupts = <GIC_SPI 3 IRQ_TYPE_LEVEL_HIGH>;
+>> -	};
+>> -
+>> -	/* dw_apb_ictl is used as primary interrupt controller */
+>> -	vic: interrupt-controller@10130000 {
+>> -		compatible = "snps,dw-apb-ictl";
+>> -		reg = <0x10130000 0x1000>;
+>> -		interrupt-controller;
+>> -		#interrupt-cells = <1>;
+>> -	};
+>> diff --git a/Documentation/devicetree/bindings/interrupt-controller/snps,dw-apb-ictl.yaml b/Documentation/devicetree/bindings/interrupt-controller/snps,dw-apb-ictl.yaml
+>> new file mode 100644
+>> index 000000000000000..70c12979c843bf0
+>> --- /dev/null
+>> +++ b/Documentation/devicetree/bindings/interrupt-controller/snps,dw-apb-ictl.yaml
+>> @@ -0,0 +1,75 @@
+>> +# SPDX-License-Identifier: (GPL-2.0-only OR BSD-2-Clause)
+>> +%YAML 1.2
+>> +---
+>> +$id: http://devicetree.org/schemas/interrupt-controller/snps,dw-apb-ictl.yaml#
+>> +$schema: http://devicetree.org/meta-schemas/core.yaml#
+>> +
+>> +title: Synopsys DesignWare APB interrupt controller (dw_apb_ictl)
+>> +
+>> +maintainers:
+>> +  - Marc Zyngier <marc.zyngier@arm.com>
+> 
+> Usually this would be an owner for this IP block, not the subsystem 
+> maintainer.
+
+OK, I will change it to the author of the file "snps,dw-apb-ictl.txt".
+
+
+> 
+>> +
+>> +description:
+>> +  Synopsys DesignWare provides interrupt controller IP for APB known as
+>> +  dw_apb_ictl. The IP is used as secondary interrupt controller in some SoCs
+>> +  with APB bus, e.g. Marvell Armada 1500. It can also be used as primary
+>> +  interrupt controller in some SoCs, e.g. Hisilicon SD5203.
+>> +
+>> +allOf:
+>> +  - $ref: /schemas/interrupt-controller.yaml#
+> 
+> You can drop this, it's already applied based on node name.
+But if we drop this, the "snps,dw-apb-ictl.yaml" can not require that the node name
+must match '^interrupt-controller(@[0-9a-f,]+)*$'. The problem of Patch 6/6 was
+discovered by this.
+
+> 
+>> +
+>> +properties:
+>> +  compatible:
+>> +    const: snps,dw-apb-ictl
+>> +
+>> +  interrupt-controller: true
+>> +
+>> +  reg:
+>> +    description:
+>> +      Physical base address of the controller and length of memory mapped
+>> +      region starting with ENABLE_LOW register.
+> 
+> Need to define how many reg regions (maxItems: 1).
+
+OK, I will add it.
+
+> 
+>> +
+>> +  interrupts:
+>> +    description:
+>> +      Interrupt reference to primary interrupt controller.
+>> +
+>> +      The interrupt sources map to the corresponding bits in the interrupt
+>> +      registers, i.e.
+>> +      - 0 maps to bit 0 of low interrupts,
+>> +      - 1 maps to bit 1 of low interrupts,
+>> +      - 32 maps to bit 0 of high interrupts,
+>> +      - 33 maps to bit 1 of high interrupts,
+>> +      - (optional) fast interrupts start at 64.
+>> +    minItems: 1
+>> +    maxItems: 65
+> 
+> 65 connections to the primary interrupt controller? I think this is for 
+> the child interrupts? If so, move to #interrupt-cells description 
+> instead.
+Oh, yes. The property "interrupts" here describes which interrupts are used in the
+primary interrupt controller. We don't known how many will be connected but at least one.
+I will remove "maxItems: 65", it's my mistake.
+
+Property "#interrupt-cells" describes how many cells of one "interrupts" item. So I will
+move these descriptions under the top property "properties:"
+
+> 
+>> +
+>> +  "#interrupt-cells":
+>> +    description:
+>> +      Number of cells to encode an interrupt-specifier.
+> 
+> Drop. No need to redefine common properties.
+
+This is useful. See below, I add "const: 1" to require that the value of
+"#interrupt-cells" can only be one.
+
+#interrupt-cells = <1>;
+
+I followed the description in "snps,dw-apb-ictl.txt".
+-- #interrupt-cells: number of cells to encode an interrupt-specifier, shall be 1
+
+> 
+>> +    const: 1
+>> +
+>> +required:
+>> +  - compatible
+>> +  - reg
+>> +  - interrupt-controller
+>> +  - '#interrupt-cells'
+>> +
+>> +examples:
+>> +  - |
+>> +    /* dw_apb_ictl is used as secondary interrupt controller */
+>> +    aic: interrupt-controller@3000 {
+>> +        compatible = "snps,dw-apb-ictl";
+>> +        reg = <0x3000 0xc00>;
+>> +        interrupt-controller;
+>> +        #interrupt-cells = <1>;
+>> +        interrupt-parent = <&gic>;
+>> +        interrupts = <0 3 4>;
+>> +    };
+>> +
+>> +    /* dw_apb_ictl is used as primary interrupt controller */
+>> +    vic: interrupt-controller@10130000 {
+>> +        compatible = "snps,dw-apb-ictl";
+>> +        reg = <0x10130000 0x1000>;
+>> +        interrupt-controller;
+>> +        #interrupt-cells = <1>;
+>> +    };
+>> -- 
+>> 1.8.3
+>>
+>>
+> 
+> .
+> 
+
