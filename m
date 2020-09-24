@@ -2,69 +2,147 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from vger.kernel.org (vger.kernel.org [23.128.96.18])
-	by mail.lfdr.de (Postfix) with ESMTP id C0138276B4C
-	for <lists+devicetree@lfdr.de>; Thu, 24 Sep 2020 10:00:00 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTP id 5109B276B5A
+	for <lists+devicetree@lfdr.de>; Thu, 24 Sep 2020 10:03:03 +0200 (CEST)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S1727175AbgIXH77 (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Thu, 24 Sep 2020 03:59:59 -0400
-Received: from relay6-d.mail.gandi.net ([217.70.183.198]:36419 "EHLO
-        relay6-d.mail.gandi.net" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S1727151AbgIXH77 (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Thu, 24 Sep 2020 03:59:59 -0400
-X-Originating-IP: 90.65.88.165
-Received: from localhost (lfbn-lyo-1-1908-165.w90-65.abo.wanadoo.fr [90.65.88.165])
-        (Authenticated sender: alexandre.belloni@bootlin.com)
-        by relay6-d.mail.gandi.net (Postfix) with ESMTPSA id 2AF8EC0002;
-        Thu, 24 Sep 2020 07:59:56 +0000 (UTC)
-From:   Alexandre Belloni <alexandre.belloni@bootlin.com>
-To:     Bastian Krause <bst@pengutronix.de>, linux-rtc@vger.kernel.org
-Cc:     Alexandre Belloni <alexandre.belloni@bootlin.com>,
-        Marek Vasut <marex@denx.de>,
-        Arnaud Ebalard <arno@natisbad.org>,
-        Alessandro Zummo <a.zummo@towertech.it>,
-        devicetree@vger.kernel.org, Rob Herring <robh+dt@kernel.org>,
-        kernel@pengutronix.de
-Subject: Re: [PATCH v2 0/8] rtc: expand charge support, implement rx8130 charging
-Date:   Thu, 24 Sep 2020 09:59:56 +0200
-Message-Id: <160093416442.1678374.12122275731329184121.b4-ty@bootlin.com>
-X-Mailer: git-send-email 2.26.2
-In-Reply-To: <20200917183246.19446-1-bst@pengutronix.de>
-References: <20200917183246.19446-1-bst@pengutronix.de>
+        id S1727195AbgIXIC6 (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Thu, 24 Sep 2020 04:02:58 -0400
+Received: from mx08-00178001.pphosted.com ([91.207.212.93]:35518 "EHLO
+        mx07-00178001.pphosted.com" rhost-flags-OK-OK-OK-FAIL)
+        by vger.kernel.org with ESMTP id S1727013AbgIXIC6 (ORCPT
+        <rfc822;devicetree@vger.kernel.org>);
+        Thu, 24 Sep 2020 04:02:58 -0400
+Received: from pps.filterd (m0046661.ppops.net [127.0.0.1])
+        by mx07-00178001.pphosted.com (8.16.0.42/8.16.0.42) with SMTP id 08O81uVe022453;
+        Thu, 24 Sep 2020 10:02:45 +0200
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=st.com; h=subject : to : cc :
+ references : from : message-id : date : mime-version : in-reply-to :
+ content-type : content-transfer-encoding; s=STMicroelectronics;
+ bh=bCUBFmWtTPnQyN/Hu8xkI73KOtRV/y37x8FA0MEEGc0=;
+ b=llMOrdYoJzW79whZF/bf6pCncPh2n5rzm25bAt0PRELvjaNQqfoSaECwKw9Fjl0jc8jl
+ aviNvJI1M3n9uGOLp0vdSWEa0uhOlYyfJLWDo36N6D5GG0+CIeJ/LrHEekDZEHAw+MEP
+ 5xsMxLaEgDifVPQL3zvw1Llrs1riSu1QNQn4xFJNL/ckd8BdT2pE1MB0K0WcDJB/AdBI
+ gZr6Mr4Wzk+dHWDFL7gt2hI8kQpkgXdXeTyswpJu0GeAJbEyI3UcAasCQkGWj6GJpRDV
+ IK5zojwBI5DDHERAQbf4NKyEXE1Dsq77qmHoIkVW2EVrXaf8tF3DKk+cWp6QSjdAS7ol tw== 
+Received: from beta.dmz-eu.st.com (beta.dmz-eu.st.com [164.129.1.35])
+        by mx07-00178001.pphosted.com with ESMTP id 33n8vf43f4-1
+        (version=TLSv1.2 cipher=ECDHE-RSA-AES256-GCM-SHA384 bits=256 verify=NOT);
+        Thu, 24 Sep 2020 10:02:45 +0200
+Received: from euls16034.sgp.st.com (euls16034.sgp.st.com [10.75.44.20])
+        by beta.dmz-eu.st.com (STMicroelectronics) with ESMTP id 0BFD510002A;
+        Thu, 24 Sep 2020 10:02:45 +0200 (CEST)
+Received: from Webmail-eu.st.com (sfhdag3node1.st.com [10.75.127.7])
+        by euls16034.sgp.st.com (STMicroelectronics) with ESMTP id DFE8A21FEB1;
+        Thu, 24 Sep 2020 10:02:44 +0200 (CEST)
+Received: from lmecxl0889.tpe.st.com (10.75.127.48) by SFHDAG3NODE1.st.com
+ (10.75.127.7) with Microsoft SMTP Server (TLS) id 15.0.1473.3; Thu, 24 Sep
+ 2020 10:02:43 +0200
+Subject: Re: [Linux-stm32] [PATCH 3/3] ARM: dts: stm32: update stm32mp151 for
+ remote proc synchronisation support
+To:     Ahmad Fatoum <a.fatoum@pengutronix.de>,
+        Rob Herring <robh@kernel.org>,
+        Alexandre TORGUE <alexandre.torgue@st.com>
+CC:     Ohad Ben-Cohen <ohad@wizery.com>,
+        "devicetree@vger.kernel.org" <devicetree@vger.kernel.org>,
+        Mathieu Poirier <mathieu.poirier@linaro.org>,
+        "linux-remoteproc@vger.kernel.org" <linux-remoteproc@vger.kernel.org>,
+        "linux-kernel@vger.kernel.org" <linux-kernel@vger.kernel.org>,
+        Fabien DESSENNE <fabien.dessenne@st.com>,
+        Bjorn Andersson <bjorn.andersson@linaro.org>,
+        "linux-stm32@st-md-mailman.stormreply.com" 
+        <linux-stm32@st-md-mailman.stormreply.com>,
+        "linux-arm-kernel@lists.infradead.org" 
+        <linux-arm-kernel@lists.infradead.org>
+References: <20200827072101.26588-1-arnaud.pouliquen@st.com>
+ <20200827072101.26588-4-arnaud.pouliquen@st.com>
+ <be888a4b-b931-521b-42c7-fd4e60afd945@pengutronix.de>
+From:   Arnaud POULIQUEN <arnaud.pouliquen@st.com>
+Message-ID: <c8fbe2df-a648-913a-d9f9-19e2202f1687@st.com>
+Date:   Thu, 24 Sep 2020 10:02:42 +0200
+User-Agent: Mozilla/5.0 (X11; Linux x86_64; rv:68.0) Gecko/20100101
+ Thunderbird/68.10.0
 MIME-Version: 1.0
-Content-Transfer-Encoding: 8bit
+In-Reply-To: <be888a4b-b931-521b-42c7-fd4e60afd945@pengutronix.de>
+Content-Type: text/plain; charset="utf-8"
+Content-Language: en-US
+Content-Transfer-Encoding: 7bit
+X-Originating-IP: [10.75.127.48]
+X-ClientProxiedBy: SFHDAG6NODE3.st.com (10.75.127.18) To SFHDAG3NODE1.st.com
+ (10.75.127.7)
+X-Proofpoint-Virus-Version: vendor=fsecure engine=2.50.10434:6.0.235,18.0.687
+ definitions=2020-09-24_05:2020-09-24,2020-09-24 signatures=0
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-On Thu, 17 Sep 2020 20:32:38 +0200, Bastian Krause wrote:
-> In order to preserve previous RTC charging behavior while allowing to
-> add new charging configurations this series adds the dt property
-> aux-voltage-chargeable as a uint enum. It supersedes the
-> trickle-diode-disable flag.
+Hi Ahmad,
+
+On 9/24/20 7:45 AM, Ahmad Fatoum wrote:
+> Hello Arnaud,
 > 
-> Then the ds1307 driver's charging infrastructure is generalized:
+> On 8/27/20 9:21 AM, Arnaud Pouliquen wrote:
+>> Two backup registers are used to store the Cortex-M4 state and the resource
+>> table address.
+>> Declare the tamp node and add associated properties in m4_rproc node
+>> to allow Linux to attach to a firmware loaded by the first boot stages.
+>>
+>> Associated driver implementation is available in commit 9276536f455b3
+>> ("remoteproc: stm32: Parse syscon that will manage M4 synchronisation").
+>>
+>> Signed-off-by: Arnaud Pouliquen <arnaud.pouliquen@st.com>
+>> ---
+>>  arch/arm/boot/dts/stm32mp151.dtsi | 7 +++++++
+>>  1 file changed, 7 insertions(+)
+>>
+>> diff --git a/arch/arm/boot/dts/stm32mp151.dtsi b/arch/arm/boot/dts/stm32mp151.dtsi
+>> index bfe29023fbd5..842ecffae73a 100644
+>> --- a/arch/arm/boot/dts/stm32mp151.dtsi
+>> +++ b/arch/arm/boot/dts/stm32mp151.dtsi
+>> @@ -1541,6 +1541,11 @@
+>>  			status = "disabled";
+>>  		};
+>>  
+>> +		tamp: tamp@5c00a000 {
+>> +			compatible = "st,stm32-tamp", "syscon";
+>> +			reg = <0x5c00a000 0x400>;
+>> +		};
+>> +
 > 
-> [...]
+> Just saw this now. I have a pending patch adding this node as well:
+> https://lore.kernel.org/patchwork/patch/1306971/
+> 
+> For my use case, I need a "simple-mfd" compatible to allow child
+> nodes to be probed.
+> 
+> Could you CC me when you send out your v2, so I can rebase?
+> (Or if you don't mind, just add the "simple-mfd" into the compatible
+> list yourself :-)
 
-Applied, thanks!
+I prefer that you propose the "simple-mfd" compatibility. I do not master the
+consequence of adding it...
+I will add you in cc of my v2 , but as your patch could trig some discussions
+I would suggest to send in advance a patchset including this patch and your patch
+on top of, just add a reference to this series in the cover letter and explain
+potential impact (or non impact) on the legacy.
 
-[1/8] dt-bindings: rtc: let aux-voltage-chargeable supersede trickle-diode-disable
-      commit: 965fe1ceea05de735f63d1c1f90f0310fc830a8d
-[2/8] dt-bindings: rtc: ds1307: let aux-voltage-chargeable supersede trickle-diode-disable
-      commit: c53cee48670cc623a42e49319a261798d8608b0e
-[3/8] dt-bindings: rtc: ds1307: add rx8130 aux-voltage-chargeable support
-      commit: 40d58c9742286ef95ef8dc5885d4043224490c82
-[4/8] rtc: ds1307: apply DS13XX_TRICKLE_CHARGER_MAGIC only conditionally
-      commit: 462eb736db3db76899022e4e4db788a7b6efbe09
-[5/8] rtc: ds1307: introduce requires_trickle_resistor per chip
-      commit: 1b5b6af788ae59ee73e3f3230dbfa4f0e31d8d18
-[6/8] rtc: ds1307: store previous charge default per chip
-      commit: 95a74cbb21a2431dd2fd8918fa26113629b6e13e
-[7/8] rtc: ds1307: consider aux-voltage-chargeable
-      commit: 0874734e09af5cc05439dbe2c8ff704f14d679f5
-[8/8] rtc: ds1307: enable rx8130's backup battery, make it chargeable optionally
-      commit: 0026f1604c9ba1ae8108d4977da0366c283552bc
-
-Best regards,
--- 
-Alexandre Belloni <alexandre.belloni@bootlin.com>
+Regards,
+Arnaud
+ 
+> 
+> Cheers
+> Ahmad
+> 
+>>  		/*
+>>  		 * Break node order to solve dependency probe issue between
+>>  		 * pinctrl and exti.
+>> @@ -1717,6 +1722,8 @@
+>>  			st,syscfg-holdboot = <&rcc 0x10C 0x1>;
+>>  			st,syscfg-tz = <&rcc 0x000 0x1>;
+>>  			st,syscfg-pdds = <&pwr_mcu 0x0 0x1>;
+>> +			st,syscfg-rsc-tbl = <&tamp 0x144 0xFFFFFFFF>;
+>> +			st,syscfg-m4-state = <&tamp 0x148 0xFFFFFFFF>;
+>>  			status = "disabled";
+>>  		};
+>>  	};
+>>
+> 
