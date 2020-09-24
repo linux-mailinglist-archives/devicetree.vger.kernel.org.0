@@ -2,120 +2,122 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from vger.kernel.org (vger.kernel.org [23.128.96.18])
-	by mail.lfdr.de (Postfix) with ESMTP id C322D277186
-	for <lists+devicetree@lfdr.de>; Thu, 24 Sep 2020 14:50:30 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTP id E67282771CC
+	for <lists+devicetree@lfdr.de>; Thu, 24 Sep 2020 15:07:42 +0200 (CEST)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S1727902AbgIXMuE (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Thu, 24 Sep 2020 08:50:04 -0400
-Received: from lindbergh.monkeyblade.net ([23.128.96.19]:42512 "EHLO
-        lindbergh.monkeyblade.net" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S1727887AbgIXMuC (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Thu, 24 Sep 2020 08:50:02 -0400
-Received: from mail-vk1-xa43.google.com (mail-vk1-xa43.google.com [IPv6:2607:f8b0:4864:20::a43])
-        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 29616C0613D3
-        for <devicetree@vger.kernel.org>; Thu, 24 Sep 2020 05:50:02 -0700 (PDT)
-Received: by mail-vk1-xa43.google.com with SMTP id q124so860380vkb.8
-        for <devicetree@vger.kernel.org>; Thu, 24 Sep 2020 05:50:01 -0700 (PDT)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=linaro.org; s=google;
-        h=mime-version:references:in-reply-to:from:date:message-id:subject:to
-         :cc;
-        bh=KaaVSqIcUUBv4jvMI8tMeec1SHmQSUxYkPa73n8pOFs=;
-        b=LYpjW38Lm7yYMUQARmzvP4jZII2YOPICEWNqxpkg/j/+CiIyRuZbhZc44cfVyIMpG0
-         QknnZM1f28fIp21NKvF72ieUOW/cKIUxkzUZMeBjoUdHc0eYdAS13YmTZzLeLiJ7SSDI
-         NFoPIkMUOUjltzmHnW62ey04HZkaVL1xAI3Yt+EorwTnfWGkIHvOD0VN2+i4Y+np2TyE
-         g4glGPmSU7vPxqvwVjQnMyTU4yNOHJMP3F52kAhg2++QyunlrnZ9l5JcL1y/wu5oYoAh
-         aQLyBUU2ZKNYfGmd0MxMTQ33qKSur5pc26h3GH1Obwr57cgzeDcJ48rUejH8X8CjFYRh
-         qnAw==
-X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=1e100.net; s=20161025;
-        h=x-gm-message-state:mime-version:references:in-reply-to:from:date
-         :message-id:subject:to:cc;
-        bh=KaaVSqIcUUBv4jvMI8tMeec1SHmQSUxYkPa73n8pOFs=;
-        b=S4dmyfjgK9Ey7ru4XJXjeHJ9qGUUdgOoFHTVFngQzMy1wd+m57aJ3lDQZ74iCWy6us
-         hFmmVKf7ROf1rgGQjLSAVuRMM6J1kp+tDaH+mBi0K2eGTfSJ+gTDC/0xYAopOay5QsZS
-         mV7DamlYvPYYfToYIBB1YiE4QuQT5QBhlFAgQNbNCZ9dggml/Q1ruiPeuwoSujadWzmU
-         9hESMDuBJBxPF+A+VB7Cj10j03RRAWUnnF2+JdSXorB/XxoHgDVNHC5aQB0Mf5A5d9fE
-         FPB6aZ7xvgobjT1JLh3xBGazDS/ZJuLBKpd++rIOph+8IOERgLDtKYsxsL/0kLUfqLZU
-         7OTA==
-X-Gm-Message-State: AOAM531OkKT3Lihyde4n1+ay2rwYGAtNdIZGWSWpFRDbaalOQs79Yhgy
-        4saOyZU/xg6uFDum0yV/G23dnbZw6zttPvdXbQOo3A==
-X-Google-Smtp-Source: ABdhPJy1LDyctw9RvbkrcO1XdBDR5rhMeMLQfTrM0BkDMB80+y0l94D8B42YO9htgFE4ZBZaFx7srVi76jbfPMyiNok=
-X-Received: by 2002:a1f:964c:: with SMTP id y73mr3613270vkd.8.1600951801042;
- Thu, 24 Sep 2020 05:50:01 -0700 (PDT)
+        id S1727798AbgIXNHl (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Thu, 24 Sep 2020 09:07:41 -0400
+Received: from foss.arm.com ([217.140.110.172]:45824 "EHLO foss.arm.com"
+        rhost-flags-OK-OK-OK-OK) by vger.kernel.org with ESMTP
+        id S1727704AbgIXNHl (ORCPT <rfc822;devicetree@vger.kernel.org>);
+        Thu, 24 Sep 2020 09:07:41 -0400
+Received: from usa-sjc-imap-foss1.foss.arm.com (unknown [10.121.207.14])
+        by usa-sjc-mx-foss1.foss.arm.com (Postfix) with ESMTP id 3F31212FC;
+        Thu, 24 Sep 2020 06:07:41 -0700 (PDT)
+Received: from e121166-lin.cambridge.arm.com (e121166-lin.cambridge.arm.com [10.1.196.255])
+        by usa-sjc-imap-foss1.foss.arm.com (Postfix) with ESMTPSA id 0E4223F718;
+        Thu, 24 Sep 2020 06:07:38 -0700 (PDT)
+Date:   Thu, 24 Sep 2020 14:07:34 +0100
+From:   Lorenzo Pieralisi <lorenzo.pieralisi@arm.com>
+To:     Zhiqiang Hou <Zhiqiang.Hou@nxp.com>
+Cc:     linux-pci@vger.kernel.org, devicetree@vger.kernel.org,
+        linux-kernel@vger.kernel.org, linux-arm-kernel@lists.infradead.org,
+        robh+dt@kernel.org, bhelgaas@google.com, shawnguo@kernel.org,
+        kishon@ti.com, leoyang.li@nxp.com, gustavo.pimentel@synopsys.com,
+        arnd@arndb.de, gregkh@linuxfoundation.org, andrew.murray@arm.com,
+        minghuan.Lian@nxp.com, mingkai.hu@nxp.com, roy.zang@nxp.com,
+        Xiaowei Bao <xiaowei.bao@nxp.com>
+Subject: Re: [PATCHv8 10/12] arm64: dts: layerscape: Add PCIe EP node for
+ ls1088a
+Message-ID: <20200924130734.GA17981@e121166-lin.cambridge.arm.com>
+References: <20200918080024.13639-1-Zhiqiang.Hou@nxp.com>
+ <20200918080024.13639-11-Zhiqiang.Hou@nxp.com>
 MIME-Version: 1.0
-References: <1595180527-11320-9-git-send-email-amittomer25@gmail.com> <1599801849-6071-1-git-send-email-amittomer25@gmail.com>
-In-Reply-To: <1599801849-6071-1-git-send-email-amittomer25@gmail.com>
-From:   Ulf Hansson <ulf.hansson@linaro.org>
-Date:   Thu, 24 Sep 2020 14:49:23 +0200
-Message-ID: <CAPDyKFoCRJrABJ=Ciki4E7Rr0eaE9wCRne3G8AtEdG8o-AmsBA@mail.gmail.com>
-Subject: Re: [PATCH v7 08/10] dt-bindings: mmc: owl: add compatible string actions,s700-mmc
-To:     Amit Singh Tomar <amittomer25@gmail.com>
-Cc:     Andre Przywara <andre.przywara@arm.com>,
-        =?UTF-8?Q?Andreas_F=C3=A4rber?= <afaerber@suse.de>,
-        Manivannan Sadhasivam <manivannan.sadhasivam@linaro.org>,
-        Rob Herring <robh+dt@kernel.org>,
-        "linux-mmc@vger.kernel.org" <linux-mmc@vger.kernel.org>,
-        cristian.ciocaltea@gmail.com,
-        Linux Kernel Mailing List <linux-kernel@vger.kernel.org>,
-        Linux ARM <linux-arm-kernel@lists.infradead.org>,
-        linux-actions@lists.infradead.org,
-        DTML <devicetree@vger.kernel.org>
-Content-Type: text/plain; charset="UTF-8"
+Content-Type: text/plain; charset=us-ascii
+Content-Disposition: inline
+In-Reply-To: <20200918080024.13639-11-Zhiqiang.Hou@nxp.com>
+User-Agent: Mutt/1.9.4 (2018-02-28)
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-On Fri, 11 Sep 2020 at 07:24, Amit Singh Tomar <amittomer25@gmail.com> wrote:
->
-> The commit adds a new SoC specific compatible string "actions,s700-mmc"
-> in combination with more generic string "actions,owl-mmc".
->
-> Placement order of these strings should abide by the principle of
-> "from most specific to most general".
->
-> Reviewed-by: Manivannan Sadhasivam <manivannan.sadhasivam@linaro.org>
-> Reviewed-by: Rob Herring <robh@kernel.org>
-> Signed-off-by: Amit Singh Tomar <amittomer25@gmail.com>
-
-Applied for next, thanks!
-
-Kind regards
-Uffe
-
-
+On Fri, Sep 18, 2020 at 04:00:22PM +0800, Zhiqiang Hou wrote:
+> From: Xiaowei Bao <xiaowei.bao@nxp.com>
+> 
+> Add PCIe EP node for ls1088a to support EP mode.
+> 
+> Signed-off-by: Xiaowei Bao <xiaowei.bao@nxp.com>
+> Signed-off-by: Hou Zhiqiang <Zhiqiang.Hou@nxp.com>
+> Reviewed-by: Andrew Murray <andrew.murray@arm.com>
 > ---
-> Changes since v6:
->         * No change.
-> Changes since v5:
->         * Added Mani's Reviewed-by: tag.
-> Changes since v4:
->         * No change.
-> Changes since v3:
->         * No change.
-> Changes since v2:
->         * Added Rob's Reviewed-by tag
-> ---
->  Documentation/devicetree/bindings/mmc/owl-mmc.yaml | 6 +++++-
->  1 file changed, 5 insertions(+), 1 deletion(-)
->
-> diff --git a/Documentation/devicetree/bindings/mmc/owl-mmc.yaml b/Documentation/devicetree/bindings/mmc/owl-mmc.yaml
-> index 1380501fb8f0..5eab25ccf7ae 100644
-> --- a/Documentation/devicetree/bindings/mmc/owl-mmc.yaml
-> +++ b/Documentation/devicetree/bindings/mmc/owl-mmc.yaml
-> @@ -14,7 +14,11 @@ maintainers:
->
->  properties:
->    compatible:
-> -    const: actions,owl-mmc
-> +    oneOf:
-> +      - const: actions,owl-mmc
-> +      - items:
-> +          - const: actions,s700-mmc
-> +          - const: actions,owl-mmc
->
->    reg:
->      maxItems: 1
-> --
-> 2.7.4
->
+> V8:
+>  - s/pcie_ep/pcie-ep.
+> 
+>  .../arm64/boot/dts/freescale/fsl-ls1088a.dtsi | 31 +++++++++++++++++++
+>  1 file changed, 31 insertions(+)
+
+Dropped this patch. dts files updates should be sent via arm-soc along
+with platform support.
+
+Thanks,
+Lorenzo
+
+> diff --git a/arch/arm64/boot/dts/freescale/fsl-ls1088a.dtsi b/arch/arm64/boot/dts/freescale/fsl-ls1088a.dtsi
+> index 169f4742ae3b..f21dd143ab6d 100644
+> --- a/arch/arm64/boot/dts/freescale/fsl-ls1088a.dtsi
+> +++ b/arch/arm64/boot/dts/freescale/fsl-ls1088a.dtsi
+> @@ -499,6 +499,17 @@
+>  			status = "disabled";
+>  		};
+>  
+> +		pcie-ep@3400000 {
+> +			compatible = "fsl,ls1088a-pcie-ep","fsl,ls-pcie-ep";
+> +			reg = <0x00 0x03400000 0x0 0x00100000
+> +			       0x20 0x00000000 0x8 0x00000000>;
+> +			reg-names = "regs", "addr_space";
+> +			num-ib-windows = <24>;
+> +			num-ob-windows = <128>;
+> +			max-functions = /bits/ 8 <2>;
+> +			status = "disabled";
+> +		};
+> +
+>  		pcie@3500000 {
+>  			compatible = "fsl,ls1088a-pcie";
+>  			reg = <0x00 0x03500000 0x0 0x00100000   /* controller registers */
+> @@ -525,6 +536,16 @@
+>  			status = "disabled";
+>  		};
+>  
+> +		pcie-ep@3500000 {
+> +			compatible = "fsl,ls1088a-pcie-ep","fsl,ls-pcie-ep";
+> +			reg = <0x00 0x03500000 0x0 0x00100000
+> +			       0x28 0x00000000 0x8 0x00000000>;
+> +			reg-names = "regs", "addr_space";
+> +			num-ib-windows = <6>;
+> +			num-ob-windows = <8>;
+> +			status = "disabled";
+> +		};
+> +
+>  		pcie@3600000 {
+>  			compatible = "fsl,ls1088a-pcie";
+>  			reg = <0x00 0x03600000 0x0 0x00100000   /* controller registers */
+> @@ -551,6 +572,16 @@
+>  			status = "disabled";
+>  		};
+>  
+> +		pcie-ep@3600000 {
+> +			compatible = "fsl,ls1088a-pcie-ep","fsl,ls-pcie-ep";
+> +			reg = <0x00 0x03600000 0x0 0x00100000
+> +			       0x30 0x00000000 0x8 0x00000000>;
+> +			reg-names = "regs", "addr_space";
+> +			num-ib-windows = <6>;
+> +			num-ob-windows = <8>;
+> +			status = "disabled";
+> +		};
+> +
+>  		smmu: iommu@5000000 {
+>  			compatible = "arm,mmu-500";
+>  			reg = <0 0x5000000 0 0x800000>;
+> -- 
+> 2.17.1
+> 
