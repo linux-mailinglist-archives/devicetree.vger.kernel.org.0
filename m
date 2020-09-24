@@ -2,110 +2,66 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from vger.kernel.org (vger.kernel.org [23.128.96.18])
-	by mail.lfdr.de (Postfix) with ESMTP id 9BC41276DDE
-	for <lists+devicetree@lfdr.de>; Thu, 24 Sep 2020 11:51:49 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTP id 3C9AA276DE4
+	for <lists+devicetree@lfdr.de>; Thu, 24 Sep 2020 11:52:51 +0200 (CEST)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S1726949AbgIXJvn (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Thu, 24 Sep 2020 05:51:43 -0400
-Received: from fllv0016.ext.ti.com ([198.47.19.142]:40438 "EHLO
-        fllv0016.ext.ti.com" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S1726380AbgIXJvm (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Thu, 24 Sep 2020 05:51:42 -0400
-Received: from fllv0034.itg.ti.com ([10.64.40.246])
-        by fllv0016.ext.ti.com (8.15.2/8.15.2) with ESMTP id 08O9pcbj001598;
-        Thu, 24 Sep 2020 04:51:38 -0500
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=ti.com;
-        s=ti-com-17Q1; t=1600941098;
-        bh=ABf1wJk9pN6HyOKvz8iubl9Rlb0wrsJB4GHUiChsgdk=;
-        h=Subject:To:CC:References:From:Date:In-Reply-To;
-        b=oCbtcEYTdXSxUbWbDAJab5mozeA4FTR6HYpDRQslKLwWqiboj9AIZwvPfi7rBUQVj
-         wBw8Xp3ORPi7eIOrc4lV/IPQ3KRKNddBaKbMmCPpCwczMcgfJ2gSEqCooj+t9RDSPK
-         xZLm5Bk4nVdHbowKUErforyLkd7g2wKcVwN/gkF4=
-Received: from DLEE114.ent.ti.com (dlee114.ent.ti.com [157.170.170.25])
-        by fllv0034.itg.ti.com (8.15.2/8.15.2) with ESMTPS id 08O9pcJa076302
-        (version=TLSv1.2 cipher=AES256-GCM-SHA384 bits=256 verify=FAIL);
-        Thu, 24 Sep 2020 04:51:38 -0500
-Received: from DLEE111.ent.ti.com (157.170.170.22) by DLEE114.ent.ti.com
- (157.170.170.25) with Microsoft SMTP Server (version=TLS1_2,
- cipher=TLS_ECDHE_RSA_WITH_AES_128_CBC_SHA256_P256) id 15.1.1979.3; Thu, 24
- Sep 2020 04:51:38 -0500
-Received: from lelv0327.itg.ti.com (10.180.67.183) by DLEE111.ent.ti.com
- (157.170.170.22) with Microsoft SMTP Server (version=TLS1_2,
- cipher=TLS_ECDHE_RSA_WITH_AES_128_CBC_SHA256_P256) id 15.1.1979.3 via
- Frontend Transport; Thu, 24 Sep 2020 04:51:38 -0500
-Received: from [192.168.2.14] (ileax41-snat.itg.ti.com [10.172.224.153])
-        by lelv0327.itg.ti.com (8.15.2/8.15.2) with ESMTP id 08O9pZUP085506;
-        Thu, 24 Sep 2020 04:51:36 -0500
-Subject: Re: [PATCH v3 2/3] dt-bindings: usb: cdns,usb3: Add
- cdns,phyrst-a-enable property
-To:     Sergei Shtylyov <sergei.shtylyov@gmail.com>, <balbi@kernel.org>
-CC:     <pawell@cadence.com>, <kurahul@cadence.com>, <nsekhar@ti.com>,
-        <vigneshr@ti.com>, <robh+dt@kernel.org>,
-        <linux-usb@vger.kernel.org>, <linux-kernel@vger.kernel.org>,
-        <devicetree@vger.kernel.org>
-References: <20200915114543.2599-1-rogerq@ti.com>
- <20200915114543.2599-3-rogerq@ti.com>
- <1b45d695-0874-69c7-8398-5d14033f0788@gmail.com>
-From:   Roger Quadros <rogerq@ti.com>
-Message-ID: <20b1126a-d328-ab79-2624-7ddece6b56b0@ti.com>
-Date:   Thu, 24 Sep 2020 12:51:35 +0300
-User-Agent: Mozilla/5.0 (X11; Linux x86_64; rv:68.0) Gecko/20100101
- Thunderbird/68.10.0
+        id S1726614AbgIXJwu (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Thu, 24 Sep 2020 05:52:50 -0400
+Received: from foss.arm.com ([217.140.110.172]:40392 "EHLO foss.arm.com"
+        rhost-flags-OK-OK-OK-OK) by vger.kernel.org with ESMTP
+        id S1726380AbgIXJwt (ORCPT <rfc822;devicetree@vger.kernel.org>);
+        Thu, 24 Sep 2020 05:52:49 -0400
+Received: from usa-sjc-imap-foss1.foss.arm.com (unknown [10.121.207.14])
+        by usa-sjc-mx-foss1.foss.arm.com (Postfix) with ESMTP id 1CB2D113E;
+        Thu, 24 Sep 2020 02:52:49 -0700 (PDT)
+Received: from ubuntu.arm.com (unknown [10.57.15.115])
+        by usa-sjc-imap-foss1.foss.arm.com (Postfix) with ESMTPA id 201213F73B;
+        Thu, 24 Sep 2020 02:52:46 -0700 (PDT)
+From:   Nicola Mazzucato <nicola.mazzucato@arm.com>
+To:     linux-kernel@vger.kernel.org, linux-arm-kernel@lists.infradead.org,
+        devicetree@vger.kernel.org, linux-pm@vger.kernel.org,
+        sudeep.holla@arm.com, rjw@rjwysocki.net, vireshk@kernel.org,
+        robh+dt@kernel.org, daniel.lezcano@linaro.org
+Cc:     morten.rasmussen@arm.com, chris.redpath@arm.com,
+        nicola.mazzucato@arm.com
+Subject: [PATCH v2 0/2] CPUFreq: Add support for cpu performance dependencies
+Date:   Thu, 24 Sep 2020 10:53:45 +0100
+Message-Id: <20200924095347.32148-1-nicola.mazzucato@arm.com>
+X-Mailer: git-send-email 2.27.0
 MIME-Version: 1.0
-In-Reply-To: <1b45d695-0874-69c7-8398-5d14033f0788@gmail.com>
-Content-Type: text/plain; charset="utf-8"; format=flowed
-Content-Language: en-US
-Content-Transfer-Encoding: 7bit
-X-EXCLAIMER-MD-CONFIG: e1e8a2fd-e40a-4ac6-ac9b-f7e9cc9ee180
+Content-Transfer-Encoding: 8bit
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-Hi Sergei,
+Hi Rob, Rafael, Viresh, Daniel and Sudeep,
 
-On 15/09/2020 19:15, Sergei Shtylyov wrote:
-> Hello!
-> 
-> On 9/15/20 2:45 PM, Roger Quadros wrote:
-> 
->> Controller version 0x0002450D has USB2 PHY RX sensitivity issues
->> that needs to be worked around by enabling phyrst-a-enable bit
->> in PHYRST_CFG register.
->>
->> There is no way to know controller version before device controller
->> is started and the workaround needs to be applied for both host and
->> device modes, so we add this DT property.
->>
->> Signed-off-by: Roger Quadros <rogerq@ti.com>
->> Acked-by: Rob Herring <robh@kernel.org>
->> ---
->>   Documentation/devicetree/bindings/usb/cdns,usb3.yaml | 4 ++++
->>   1 file changed, 4 insertions(+)
->>
->> diff --git a/Documentation/devicetree/bindings/usb/cdns,usb3.yaml b/Documentation/devicetree/bindings/usb/cdns,usb3.yaml
->> index 9b14c8443d39..ac20b98e9910 100644
->> --- a/Documentation/devicetree/bindings/usb/cdns,usb3.yaml
->> +++ b/Documentation/devicetree/bindings/usb/cdns,usb3.yaml
->> @@ -61,6 +61,10 @@ properties:
->>         buffers expressed in KB
->>       $ref: /schemas/types.yaml#/definitions/uint32
->>   
->> +  cdns,phyrst-a-enable:
->> +    description: Enable resetting of PHY if Rx fail is detected
-> 
->     Failure?
+I am proposing the addition of performance dependencies in cpufreq core
+and one if its drivers (the implementation/approach is RFC).
+This is to support systems where exposed cpu performance controls are more
+fine-grained that the platform's ability to scale cpus independently.
 
-Actually the IP manual says "Reset PHY if Rx fail is detected".
+In this V2 posting of the proposed dt-binding to support this, I have
+included an outline of how this information can be stored and passed onto
+relevant OSPM frameworks.
 
-So let's leave it like that.
-> 
-> [...]
-> 
-> MBR, Sergei
-> 
+Please see each patch for detailed information.
 
-cheers,
--roger
+[v2]
+  * Fix errors when running make dt_binding_check
+  * Improve commit message description for the dt-binding
+  * Add RFC for implementation in cpufreq-core and one of its
+    drivers.
+
+Nicola Mazzucato (2):
+  dt-bindings: arm: Add devicetree binding for
+    cpu-performance-dependencies
+  [RFC] CPUFreq: Add support for cpu-perf-dependencies
+
+ .../bindings/arm/cpu-perf-dependencies.yaml   | 48 +++++++++++++++++++
+ 1 file changed, 48 insertions(+)
+ create mode 100644 Documentation/devicetree/bindings/arm/cpu-perf-dependencies.yaml
+
 -- 
-Texas Instruments Finland Oy, Porkkalankatu 22, 00180 Helsinki.
-Y-tunnus/Business ID: 0615521-4. Kotipaikka/Domicile: Helsinki
+2.27.0
+
