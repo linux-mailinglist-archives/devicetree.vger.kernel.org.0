@@ -2,119 +2,103 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from vger.kernel.org (vger.kernel.org [23.128.96.18])
-	by mail.lfdr.de (Postfix) with ESMTP id C54422771E3
-	for <lists+devicetree@lfdr.de>; Thu, 24 Sep 2020 15:11:42 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTP id 3DA0C2771FB
+	for <lists+devicetree@lfdr.de>; Thu, 24 Sep 2020 15:14:43 +0200 (CEST)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S1727849AbgIXNLl (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Thu, 24 Sep 2020 09:11:41 -0400
-Received: from lindbergh.monkeyblade.net ([23.128.96.19]:45872 "EHLO
+        id S1727908AbgIXNOh (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Thu, 24 Sep 2020 09:14:37 -0400
+Received: from lindbergh.monkeyblade.net ([23.128.96.19]:46338 "EHLO
         lindbergh.monkeyblade.net" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S1727723AbgIXNLl (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Thu, 24 Sep 2020 09:11:41 -0400
-Received: from mail-ej1-x641.google.com (mail-ej1-x641.google.com [IPv6:2a00:1450:4864:20::641])
-        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id AC596C0613D3
-        for <devicetree@vger.kernel.org>; Thu, 24 Sep 2020 06:11:40 -0700 (PDT)
-Received: by mail-ej1-x641.google.com with SMTP id p9so4406225ejf.6
-        for <devicetree@vger.kernel.org>; Thu, 24 Sep 2020 06:11:40 -0700 (PDT)
+        with ESMTP id S1727860AbgIXNOg (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Thu, 24 Sep 2020 09:14:36 -0400
+Received: from mail-ej1-x642.google.com (mail-ej1-x642.google.com [IPv6:2a00:1450:4864:20::642])
+        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 646C9C0613D4
+        for <devicetree@vger.kernel.org>; Thu, 24 Sep 2020 06:14:36 -0700 (PDT)
+Received: by mail-ej1-x642.google.com with SMTP id z23so4351927ejr.13
+        for <devicetree@vger.kernel.org>; Thu, 24 Sep 2020 06:14:36 -0700 (PDT)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
         d=baylibre-com.20150623.gappssmtp.com; s=20150623;
         h=mime-version:references:in-reply-to:from:date:message-id:subject:to
          :cc;
-        bh=d6KirD9EXogJ4rZJQXX3ptf6I4wM6ASOXJms4dQX+94=;
-        b=ZhMBPNQcf28Yt2lHYT+OHZAdIx3yiMf2LJsxNli5PUxfad4XzRToF8iyR6VnLOgo1m
-         P3O1k02I+SFChVRMSGQ53HKWAvpK6LOFefJfwali9DWLK5PN6U5PQRF6jD5fX1w6UsAk
-         NRJ53ni8+867wAplO3jaC5YqCwrNLUnahfR3hPVozbk1WiDlGeVB2T9dKJIU7dtYyjyO
-         2t1UHvaE2SIisqosVsLv94bCRiE/vWc9OIHATdrh1Rs4ePyApnYUvYcErzamiWi1Dhjl
-         8TsGeI9oRCj8S5jjhnnWK8at+BvxVpfgmK0iiibm09l5nA3oI+0zwxAE8Z+ptVtFsN37
-         KI0g==
+        bh=UU72OT9OFCD0Y/H1L5O+aGgSW5bbzFg3S9odsIbwqqM=;
+        b=1OQz49BpCenPTtKOldIlFvRPP+uwzrrdtxJGswtEnPWchuvG1wP6tQWLvvBSlY2A/q
+         NCsIbbgcsXJ4CnB7z8u95zEfYLqKp61lh7ibLJeT2XLrZts4Ep3wutzKrgcqXjeqcQs6
+         Iu9GEdeycNbVMHsJHPPUW3pldSZpyeOexHrpqaXT6FHt4JgHoWW4uSeZbMf9yMN343LJ
+         gnC+twR1R8aKMWvV49x7Cf5H1w3hI6Ald4c/EIATYQjO+YLCUMQRcxr+UC6uU9mPWVsy
+         xdg2qnElSCykWcbN0Y8TCR2+rXiIR1987qYVXC9aDiKBdeyk8YhytP4U7XMjVRgEre8p
+         vLQA==
 X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
         d=1e100.net; s=20161025;
         h=x-gm-message-state:mime-version:references:in-reply-to:from:date
          :message-id:subject:to:cc;
-        bh=d6KirD9EXogJ4rZJQXX3ptf6I4wM6ASOXJms4dQX+94=;
-        b=jxR1E+A3VncuLkg2uy886SXdSut1p7twij4KMt4YCGKBp1XgzDqf63nW2DBHIZzCQR
-         +PDH2uj4/qMeng1/T5OB1nklBCm4Y5Vj+2TUgvCMQYvlD+whu8qMtZIOu+vnEMqXqrky
-         7cAChYG0/cuAmCA38LHiNxV6c0/E648OdYwuLGozFbOlsXwv6WMXO8qIrltzcOTOsQ7H
-         kItQQCL0AzGXnU2nPXnIMy4sT8Q9JYkH5NyCqsLvaEAWV9FiU6CTGzg33VUdjvvMwCBF
-         EBKFiAlboG/f74cIORefkl4JOtAGWU1NKzXQF2VZ9Gpp++4cSn8X+TVp0HHwnxXFIQP5
-         7SRw==
-X-Gm-Message-State: AOAM533OvN8Fjf9kpZ2YQeLbHByHggHAKmfhKnSQgZZiCPLKAg+h0oRF
-        VIorOuVFQWMwpp9y1oLwhCCqFVDhGxTqsCyif4/OVg==
-X-Google-Smtp-Source: ABdhPJw3akn1PeO9dv8nYxrkCw9k5Pgola2iVlAs1aCOPnrNGPrIV2RxkbWRC8roXNvYBwMPJ3CHgcTZUlBPthPycRY=
-X-Received: by 2002:a17:906:a198:: with SMTP id s24mr970854ejy.154.1600953099274;
- Thu, 24 Sep 2020 06:11:39 -0700 (PDT)
+        bh=UU72OT9OFCD0Y/H1L5O+aGgSW5bbzFg3S9odsIbwqqM=;
+        b=mEtCcPgMNb14aeU39A1IwvJWesFtV0jKbjjD/6TdfwfdSTSS2EjiWiHW7aQ4dE5CuL
+         mfbFHfAioUQW1iCZcdmA9RFgeq9NnzFm+SRbBP6WolbR9gLJJMw29vQJo8Xt5JXeztAY
+         Tesuc8KC571+WuZnE71AohRW35GIHafbhNqeLiT1u46zFbprl34TfcL25jXrrIhXw4+a
+         TloeDH3oAhF2Svf7la1yAodVs7krGwwrL/elf8duhZjCCFvrDAxH+ULQbmmTUIEfkqnd
+         zQe1ihBSTSfXq4alLBBAst/2h9Ki31MG8+fnEu6ElW4oNRDyOT685BYgTkVr65kyM0M6
+         SQJw==
+X-Gm-Message-State: AOAM530qBSoqBN9i9WIse4deneF4FRc/2uPyIDSaCeFjSGTRVynkpdcl
+        M5y1JiG9i4ig3GTzcXkDogtgImp1Ap6HcIZL7yPY9g==
+X-Google-Smtp-Source: ABdhPJwUeknclBKofdrwxIvLcDNe8UHbmiYtxvbDvluJx+iGumhwROyvfKEW+m068hhZ+G49PWsc7kedy8OeYFj02dM=
+X-Received: by 2002:a17:907:20d9:: with SMTP id qq25mr946839ejb.382.1600953275023;
+ Thu, 24 Sep 2020 06:14:35 -0700 (PDT)
 MIME-Version: 1.0
-References: <20200911015105.48581-1-jk@codeconstruct.com.au>
- <CACPK8XdCkw7ix2J9WyOXDcwsMThXwQ62=E6cDLX+-9WJMsqrnA@mail.gmail.com>
- <CACPK8XeQWNTyS53M9PLwkud9RnGNp3j87X8_UXtg4ZHJrQqQSQ@mail.gmail.com>
- <CAMpxmJW+PMV1+q66ywEAiZhrOu+kiSPXQCK0mTGLLwW-yfisSg@mail.gmail.com> <CACPK8Xcqu3UN3o=9pZ269O6pxLOra98jYxZqVL7sfjkUZ4Wang@mail.gmail.com>
-In-Reply-To: <CACPK8Xcqu3UN3o=9pZ269O6pxLOra98jYxZqVL7sfjkUZ4Wang@mail.gmail.com>
+References: <20200916094952.458003-1-jonathanh@nvidia.com> <20200916094952.458003-2-jonathanh@nvidia.com>
+In-Reply-To: <20200916094952.458003-2-jonathanh@nvidia.com>
 From:   Bartosz Golaszewski <bgolaszewski@baylibre.com>
-Date:   Thu, 24 Sep 2020 15:11:28 +0200
-Message-ID: <CAMpxmJX7yg0Y2ibEdQaDb5MseT4Kr1-uG+RLxxKO_YF1BMkqEw@mail.gmail.com>
-Subject: Re: [PATCH v2 1/2] gpio/aspeed-sgpio: enable access to all 80 input &
- output sgpios
-To:     Joel Stanley <joel@jms.id.au>
-Cc:     Jeremy Kerr <jk@codeconstruct.com.au>,
-        Linus Walleij <linus.walleij@linaro.org>,
-        "open list:GPIO SUBSYSTEM" <linux-gpio@vger.kernel.org>,
-        linux-aspeed <linux-aspeed@lists.ozlabs.org>,
-        devicetree <devicetree@vger.kernel.org>,
-        Andrew Jeffery <andrew@aj.id.au>
+Date:   Thu, 24 Sep 2020 15:14:24 +0200
+Message-ID: <CAMpxmJVqEHBZRTxwK1Dviz2MH=MUpNbUdtkVLjn0E2BM_HiCbQ@mail.gmail.com>
+Subject: Re: [PATCH V2 1/5] misc: eeprom: at24: Initialise AT24 NVMEM ID field
+To:     Jon Hunter <jonathanh@nvidia.com>
+Cc:     Rob Herring <robh+dt@kernel.org>,
+        Thierry Reding <thierry.reding@gmail.com>,
+        linux-i2c <linux-i2c@vger.kernel.org>,
+        linux-devicetree <devicetree@vger.kernel.org>,
+        LKML <linux-kernel@vger.kernel.org>, linux-tegra@vger.kernel.org
 Content-Type: text/plain; charset="UTF-8"
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-On Wed, Sep 16, 2020 at 2:59 PM Joel Stanley <joel@jms.id.au> wrote:
+On Wed, Sep 16, 2020 at 11:50 AM Jon Hunter <jonathanh@nvidia.com> wrote:
 >
-> On Wed, 16 Sep 2020 at 11:09, Bartosz Golaszewski
-> <bgolaszewski@baylibre.com> wrote:
-> >
-> > On Wed, Sep 16, 2020 at 6:51 AM Joel Stanley <joel@jms.id.au> wrote:
-> > >
-> > > Hi GPIO maintainers,
-> > >
-> > > On Fri, 11 Sep 2020 at 02:20, Joel Stanley <joel@jms.id.au> wrote:
-> > > >
-> > > > On Fri, 11 Sep 2020 at 02:11, Jeremy Kerr <jk@codeconstruct.com.au> wrote:
-> > > > >
-> > > > > Currently, the aspeed-sgpio driver exposes up to 80 GPIO lines,
-> > > > > corresponding to the 80 status bits available in hardware. Each of these
-> > > > > lines can be configured as either an input or an output.
-> > > > >
-> > > > > However, each of these GPIOs is actually an input *and* an output; we
-> > > > > actually have 80 inputs plus 80 outputs.
-> > > > >
-> > > > > This change expands the maximum number of GPIOs to 160; the lower half
-> > > > > of this range are the input-only GPIOs, the upper half are the outputs.
-> > > > > We fix the GPIO directions to correspond to this mapping.
-> > > > >
-> > > > > This also fixes a bug when setting GPIOs - we were reading from the
-> > > > > input register, making it impossible to set more than one output GPIO.
-> > > > >
-> > > > > Signed-off-by: Jeremy Kerr <jk@codeconstruct.com.au>
-> > > > > Fixes: 7db47faae79b ("gpio: aspeed: Add SGPIO driver")
-> > > >
-> > > > Reviewed-by: Joel Stanley <joel@jms.id.au>
-> > >
-> > > This series is good to go in for 5.10:
-> > >
-> >
-> > Hi Joel,
-> >
-> > I don't have this in my inbox. Did you copy me on this series?
+> The AT24 EEPROM driver does not initialise the 'id' field of the
+> nvmem_config structure and because the entire structure is not
+> initialised, it ends up with a random value. This causes the NVMEM
+> driver to append the device 'devid' value to name of the NVMEM
+> device. Ideally for I2C devices such as the AT24 that already have a
+> unique name, we would not bother to append the 'devid'. However, given
+> that this has always been done for AT24 devices, we cannot remove the
+> 'devid' as this will change the name of the userspace sysfs node for
+> the NVMEM device. Nonetheless we should ensure that the 'id' field of
+> the nvmem_config structure is initialised so that there is no chance of
+> a random value causes problems in the future. Therefore, set the NVMEM
+> config.id to NVMEM_DEVID_AUTO for AT24 EEPROMs so that the 'devid' is
+> always appended.
 >
-> I did not; I am not the author of the patches as you can see.
+> Signed-off-by: Jon Hunter <jonathanh@nvidia.com>
+> ---
+>  drivers/misc/eeprom/at24.c | 1 +
+>  1 file changed, 1 insertion(+)
 >
-> I notice that Jeremy sent them to the linux-gpio list, but you were
-> not copied. Are you able to grab them from lore, or do you need him to
-> resend them?
+> diff --git a/drivers/misc/eeprom/at24.c b/drivers/misc/eeprom/at24.c
+> index e9df1ca251df..f76624b5c033 100644
+> --- a/drivers/misc/eeprom/at24.c
+> +++ b/drivers/misc/eeprom/at24.c
+> @@ -715,6 +715,7 @@ static int at24_probe(struct i2c_client *client)
 >
-> Cheers,
+>         nvmem_config.name = dev_name(dev);
+>         nvmem_config.dev = dev;
+> +       nvmem_config.id = NVMEM_DEVID_AUTO;
+>         nvmem_config.read_only = !writable;
+>         nvmem_config.root_only = !(flags & AT24_FLAG_IRUGO);
+>         nvmem_config.owner = THIS_MODULE;
+> --
+> 2.25.1
 >
-> Joel
 
-Now queued, thanks.
+Ha! I only now noticed I already have a patch for this in my tree from
+Vadym Kochan for this cycle. I'll drop this one.
 
 Bartosz
