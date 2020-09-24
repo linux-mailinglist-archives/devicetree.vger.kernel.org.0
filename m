@@ -2,352 +2,623 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from vger.kernel.org (vger.kernel.org [23.128.96.18])
-	by mail.lfdr.de (Postfix) with ESMTP id 602B7277454
-	for <lists+devicetree@lfdr.de>; Thu, 24 Sep 2020 16:53:13 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTP id BE0192774C5
+	for <lists+devicetree@lfdr.de>; Thu, 24 Sep 2020 17:05:01 +0200 (CEST)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S1728203AbgIXOxM (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Thu, 24 Sep 2020 10:53:12 -0400
-Received: from mail-am6eur05on2082.outbound.protection.outlook.com ([40.107.22.82]:47393
-        "EHLO EUR05-AM6-obe.outbound.protection.outlook.com"
-        rhost-flags-OK-OK-OK-FAIL) by vger.kernel.org with ESMTP
-        id S1727859AbgIXOxM (ORCPT <rfc822;devicetree@vger.kernel.org>);
-        Thu, 24 Sep 2020 10:53:12 -0400
-ARC-Seal: i=1; a=rsa-sha256; s=arcselector9901; d=microsoft.com; cv=none;
- b=du23vmPLZEWwWM/bavK+D/vG9dP8kn0nCuT5fbwm7u5ZfFCRtrjK63TqGm7zfzhwqNXoRwZb5y3zp0ySeUkOKN6kyWK6oOJNyuOyphSQGT8IIkBjQQg4GleJ21yr6Uo9JJcSyMbpXSGCkWGGLCQsE2V1/6e1XPHddA+UL/XH5XJ9qDoG8FBiIvFB8fpaU17IN4E5ZbHtFkWrghcoGH04RSoDZtKZRGHWeRICxX13thAeHbnUfjgKrBFJ+tuquULKAw4q9wrQdV956dNAHBepliq+yMxZHLZs4tdTJrYx4mY8Lyxkk/yJNaV4spPhVLEIcSqDv8xHAmQx3tah2F/JAw==
-ARC-Message-Signature: i=1; a=rsa-sha256; c=relaxed/relaxed; d=microsoft.com;
- s=arcselector9901;
- h=From:Date:Subject:Message-ID:Content-Type:MIME-Version:X-MS-Exchange-SenderADCheck;
- bh=X0YyrsgP4oQZIs88auseYcUCg0Pn4DYVfuFyJEqn4iA=;
- b=ao6u98WGbOrumzD7CtxgBwimUjZ+4e9OsuM0etTAD1kgADx1n3AUxoAgmCfNDElD0guoGbvNrDKaCGfddAboXO5aLjspoF7fMcBCV7HkGLbU6g71Ke4l/z8ERZj2ytvh74LyhyFb0QMRLisyF/Op7l0e+P3E264Xgrd7H1zR+b2gevx3zhL4S9n5+wIQ+StQ8J8ivi9D9utNxK0TUk+GR37V6RzUpY1o4TOzOwATT9w+CFNqOzWy3lHCw4OKWITbvmbq+L8dq8l7estOm+3RS7Vhrdyyg9/cEjT/VPLy5s/U1cfDQnAqNwj5JaCdOLpCI8SRPbMHec5LAKQgL1uJbQ==
-ARC-Authentication-Results: i=1; mx.microsoft.com 1; spf=pass
- smtp.mailfrom=nxp.com; dmarc=pass action=none header.from=nxp.com; dkim=pass
- header.d=nxp.com; arc=none
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=nxp.com; s=selector2;
- h=From:Date:Subject:Message-ID:Content-Type:MIME-Version:X-MS-Exchange-SenderADCheck;
- bh=X0YyrsgP4oQZIs88auseYcUCg0Pn4DYVfuFyJEqn4iA=;
- b=elLj2Sqor+JoRkeEastJnW0YdHI2lSI9k1nz5u7JOQwhD9/7BhBwqvnKEbxSkxmw4pBIFiPJw9Hi2BV5cl5vEcCvmQIMuiLCPee6zudx4Mg6wjt3AgFyjoJ7zLWwW4CjUmNBnupMhTWYsTlC74vdRUqySmFKksWVcSr21NXpWu0=
-Received: from HE1PR0402MB3371.eurprd04.prod.outlook.com (2603:10a6:7:85::27)
- by HE1PR0402MB2890.eurprd04.prod.outlook.com (2603:10a6:3:da::7) with
- Microsoft SMTP Server (version=TLS1_2,
- cipher=TLS_ECDHE_RSA_WITH_AES_256_GCM_SHA384) id 15.20.3412.22; Thu, 24 Sep
- 2020 14:53:05 +0000
-Received: from HE1PR0402MB3371.eurprd04.prod.outlook.com
- ([fe80::c872:d354:7cf7:deb9]) by HE1PR0402MB3371.eurprd04.prod.outlook.com
- ([fe80::c872:d354:7cf7:deb9%3]) with mapi id 15.20.3412.022; Thu, 24 Sep 2020
- 14:53:05 +0000
-From:   "Z.q. Hou" <zhiqiang.hou@nxp.com>
-To:     Bjorn Helgaas <helgaas@kernel.org>,
-        Xiaowei Bao <xiaowei.bao@nxp.com>
-CC:     "M.h. Lian" <minghuan.lian@nxp.com>,
-        Mingkai Hu <mingkai.hu@nxp.com>,
-        "bhelgaas@google.com" <bhelgaas@google.com>,
-        "robh+dt@kernel.org" <robh+dt@kernel.org>,
-        "shawnguo@kernel.org" <shawnguo@kernel.org>,
-        Leo Li <leoyang.li@nxp.com>, "kishon@ti.com" <kishon@ti.com>,
-        "lorenzo.pieralisi@arm.com" <lorenzo.pieralisi@arm.com>,
-        Roy Zang <roy.zang@nxp.com>,
-        "amurray@thegoodpenguin.co.uk" <amurray@thegoodpenguin.co.uk>,
-        "jingoohan1@gmail.com" <jingoohan1@gmail.com>,
-        "gustavo.pimentel@synopsys.com" <gustavo.pimentel@synopsys.com>,
-        "andrew.murray@arm.com" <andrew.murray@arm.com>,
-        "linux-pci@vger.kernel.org" <linux-pci@vger.kernel.org>,
-        "devicetree@vger.kernel.org" <devicetree@vger.kernel.org>,
-        "linux-kernel@vger.kernel.org" <linux-kernel@vger.kernel.org>,
-        "linux-arm-kernel@lists.infradead.org" 
-        <linux-arm-kernel@lists.infradead.org>,
-        "linuxppc-dev@lists.ozlabs.org" <linuxppc-dev@lists.ozlabs.org>
-Subject: RE: [PATCH v6 04/11] PCI: designware-ep: Modify MSI and MSIX CAP way
- of finding
-Thread-Topic: [PATCH v6 04/11] PCI: designware-ep: Modify MSI and MSIX CAP way
- of finding
-Thread-Index: AQHV+bLnyx1TV6zoxEWeumtDvFoh26l32V6AgAE1rFA=
-Date:   Thu, 24 Sep 2020 14:53:05 +0000
-Message-ID: <HE1PR0402MB3371720320099B4D4C2E2B4A84390@HE1PR0402MB3371.eurprd04.prod.outlook.com>
-References: <20200314033038.24844-5-xiaowei.bao@nxp.com>
- <20200923201613.GA2291357@bjorn-Precision-5520>
-In-Reply-To: <20200923201613.GA2291357@bjorn-Precision-5520>
-Accept-Language: zh-CN, en-US
-Content-Language: en-US
-X-MS-Has-Attach: 
-X-MS-TNEF-Correlator: 
-authentication-results: kernel.org; dkim=none (message not signed)
- header.d=none;kernel.org; dmarc=none action=none header.from=nxp.com;
-x-originating-ip: [119.31.174.73]
-x-ms-publictraffictype: Email
-x-ms-office365-filtering-ht: Tenant
-x-ms-office365-filtering-correlation-id: 8ab2eaf5-5c4b-4daa-48e7-08d860998b6f
-x-ms-traffictypediagnostic: HE1PR0402MB2890:
-x-ms-exchange-transport-forked: True
-x-microsoft-antispam-prvs: <HE1PR0402MB2890355CD32A990D977F03A184390@HE1PR0402MB2890.eurprd04.prod.outlook.com>
-x-ms-oob-tlc-oobclassifiers: OLM:169;
-x-ms-exchange-senderadcheck: 1
-x-microsoft-antispam: BCL:0;
-x-microsoft-antispam-message-info: q6tNNths3kHeiujlTM0oVNs3sZcg1HWxto2oIjy/JTUAXPIydUk1S02HphoiCm+dpxSutp7Cg/IY5kymFCZPdmm+HHQvqmrtA0mu4EWQRnJz9mk5ajz7R3pAAX0DFCgl2k6VeT6xDooMmPYBhmNkAJWNKsY5XH2O+00LmCGando/Y7JrzdhcOZ+vpfNI3BEf5aFudRrmQUBkvUQuuruesgyZBrSRK8tINzOhuqxZTxhokLe4kUaam6GDERzrBL1Ez7MFzMTyXLTo1MKazzfodNhXWhSZitSEXzQ+wqvZlzMaVJkpNcLg49KXU2nlI70FBk+pcGpBvsRgSznmyvA2hA==
-x-forefront-antispam-report: CIP:255.255.255.255;CTRY:;LANG:en;SCL:1;SRV:;IPV:NLI;SFV:NSPM;H:HE1PR0402MB3371.eurprd04.prod.outlook.com;PTR:;CAT:NONE;SFS:(4636009)(39860400002)(136003)(346002)(376002)(366004)(396003)(64756008)(66446008)(54906003)(110136005)(2906002)(478600001)(316002)(26005)(186003)(6506007)(7696005)(55016002)(4326008)(9686003)(8936002)(8676002)(7416002)(53546011)(66476007)(83380400001)(30864003)(86362001)(5660300002)(66556008)(52536014)(66946007)(6636002)(71200400001)(76116006)(33656002);DIR:OUT;SFP:1101;
-x-ms-exchange-antispam-messagedata: rCNjXSKUeAnoecylZXXnPvFp28rfDTbp4JTssAr+FukG7OXgLXYVX9lWLs3Q75VAzDMSZpBkGkvDtXJPF9NZOAisJhUu/WPbtlX+Lwr6Q85PNm3B73Tz8teU4CmwVDASWulltuUOHvtkH/wIF86BuRPVUACDJlRtvmcNu/D/qy+2CzjW2A9dDFkJCWo7OpW+onK+Sj87zDLNoPyUaNQI+fJv+uFjJriENFoFw6HPbHBriwWWQSsPsMNrw9T0enP02+UcDoBncDpMwz0EQxlruSexBycL7jV578meCKiiAtfOhVIjCFqSVT9PTUatTV67r+lWuJQxM5Rc0uJoo+6d4NHnfXbTkQDIHvKRVxy3/Np41dcyxh9kMbcEyvQIAPvze8/C6RrGd+LvyAie5RHtcTgzeQO8rN4CFAiABlUwSkPHDrFVFxCGQqnQXKgxaRrSe+qO8FjKhV/Bp+0RCqG3l+r2AgGXGgklwhX1f7OzjqI3p6KeJmMfI6yBTVuK7K7IEFk/AHYUB9/OnPu5YN2zxzDX9dkIz7zmr6jIVvbte9YXfQwPSH9evzJjxxFcNgw3ditK0YXblk/SAEjViCePY8LZauJAGL4B3FIvPfQOSM8UUYPcZMJzLlSLT8abR97gDg23KzdF3ne+wvkwDMMklQ==
-Content-Type: text/plain; charset="gb2312"
-Content-Transfer-Encoding: base64
-MIME-Version: 1.0
-X-OriginatorOrg: nxp.com
-X-MS-Exchange-CrossTenant-AuthAs: Internal
-X-MS-Exchange-CrossTenant-AuthSource: HE1PR0402MB3371.eurprd04.prod.outlook.com
-X-MS-Exchange-CrossTenant-Network-Message-Id: 8ab2eaf5-5c4b-4daa-48e7-08d860998b6f
-X-MS-Exchange-CrossTenant-originalarrivaltime: 24 Sep 2020 14:53:05.6015
- (UTC)
-X-MS-Exchange-CrossTenant-fromentityheader: Hosted
-X-MS-Exchange-CrossTenant-id: 686ea1d3-bc2b-4c6f-a92c-d99c5c301635
-X-MS-Exchange-CrossTenant-mailboxtype: HOSTED
-X-MS-Exchange-CrossTenant-userprincipalname: /irrDoUYL3ym4unh0J0KRVMBD0BhuKM4RZD6H1BxqQLHSlOkF+swxQYZ9nrahiLZCfXCxpEgd+JSI4Idgztr7Q==
-X-MS-Exchange-Transport-CrossTenantHeadersStamped: HE1PR0402MB2890
+        id S1728331AbgIXPFB (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Thu, 24 Sep 2020 11:05:01 -0400
+Received: from lindbergh.monkeyblade.net ([23.128.96.19]:35198 "EHLO
+        lindbergh.monkeyblade.net" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
+        with ESMTP id S1728192AbgIXPFB (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Thu, 24 Sep 2020 11:05:01 -0400
+Received: from mail-pj1-x1035.google.com (mail-pj1-x1035.google.com [IPv6:2607:f8b0:4864:20::1035])
+        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id D0C46C0613CE;
+        Thu, 24 Sep 2020 08:05:00 -0700 (PDT)
+Received: by mail-pj1-x1035.google.com with SMTP id a9so1853222pjg.1;
+        Thu, 24 Sep 2020 08:05:00 -0700 (PDT)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+        d=gmail.com; s=20161025;
+        h=from:to:cc:subject:date:message-id;
+        bh=Ek3reysG96ZJh15Vyft2zsEiGI7CE4Kkx9w8THzaS6s=;
+        b=jTNDioecUP7vIMvteHC816cTG1kjGdR4u6l+DYUk+rXWUopx7iyPATG9Mak+exCRnd
+         JXHpyIkG8VSkzhH91Zr6p36ajQNio//9wr9siQrWrVeMmfMWQKYGZooWnQV9jB0xXCYL
+         G+xZPb2huKElhjwB8GqJwaTlVcNGPyj69Jn5oFUOnVvsWl5fKTNauoMvRvxd/P2azwXb
+         n5lo6Z0LSQKQcS2qDn+8PGNMBJa/FdtNr5jxeOl0njgK2KfHTGraPDGMCZtXhBfXlN4X
+         Wj9Pft+CYsh73574CeJvfgjPLTpOKj1GuwUaUPC08M7MoE7OGtqvOfz0w1mDZLpeJWZP
+         ZtyA==
+X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+        d=1e100.net; s=20161025;
+        h=x-gm-message-state:from:to:cc:subject:date:message-id;
+        bh=Ek3reysG96ZJh15Vyft2zsEiGI7CE4Kkx9w8THzaS6s=;
+        b=tMwmXNVcRzUid1/E0thTNc2r/3gLybDBasZE2FiIWzpXsUEPmtOXNldXqPdMuuphue
+         xQB4IVPkLW21PgJfP3WCQRCO+M/KdoAPb7bujqZg7+BHK2q5ftGZS/6v4AtNVfExOwIY
+         RmoXVrPtF01xgsFMwDnI47XmoQ7S+KSlyNfzqCKC/t8lbk8HhESGjtoOh5kmH8JPdHYZ
+         7aD2C8d4QaUu4liqPkmkBkDon8uFnTAlrNlzGyD3E4CGQ2PF6kH/0g1eroMt4Adbvk2p
+         uHoOjtVry1OZdh5ejYPud7pNeg/CdeXsQMj9WYKBo34VWRTOo8KGpqmlwMvJKXhA/asF
+         B8ow==
+X-Gm-Message-State: AOAM532nRkv2/b/DcZsocY70ZzzAGHmQKPTZPxO3xRyxHtb2fVeTYN4d
+        tXf668nurRLE8o5VfbdPfdk=
+X-Google-Smtp-Source: ABdhPJwW0JbOtXDrlyeYwDOiiOat4dtQCmgFIp5jlW48nw1VHRMJMZ7lXVhiNRLNLkm/2SGb9aL4Ug==
+X-Received: by 2002:a17:90b:fc4:: with SMTP id gd4mr4423133pjb.129.1600959900067;
+        Thu, 24 Sep 2020 08:05:00 -0700 (PDT)
+Received: from localhost.localdomain ([123.110.152.116])
+        by smtp.gmail.com with ESMTPSA id w203sm3747251pff.0.2020.09.24.08.04.56
+        (version=TLS1_2 cipher=ECDHE-ECDSA-AES128-GCM-SHA256 bits=128/128);
+        Thu, 24 Sep 2020 08:04:58 -0700 (PDT)
+From:   cy_huang <u0084500@gmail.com>
+To:     lgirdwood@gmail.com, broonie@kernel.org, robh+dt@kernel.org
+Cc:     linux-kernel@vger.kernel.org, cy_huang@richtek.com,
+        devicetree@vger.kernel.org
+Subject: [PATCH v1 1/2] regulator: rtmv20: Adds support for Richtek RTMV20 load switch regulator
+Date:   Thu, 24 Sep 2020 23:04:50 +0800
+Message-Id: <1600959891-16606-1-git-send-email-u0084500@gmail.com>
+X-Mailer: git-send-email 2.7.4
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-SGkgQmpvcm4sDQoNClRoYW5rcyBhIGxvdCBmb3IgeW91ciBjb21tZW50cyENCg0KPiAtLS0tLU9y
-aWdpbmFsIE1lc3NhZ2UtLS0tLQ0KPiBGcm9tOiBCam9ybiBIZWxnYWFzIDxoZWxnYWFzQGtlcm5l
-bC5vcmc+DQo+IFNlbnQ6IDIwMjDE6jnUwjI0yNUgNDoxNg0KPiBUbzogWGlhb3dlaSBCYW8gPHhp
-YW93ZWkuYmFvQG54cC5jb20+DQo+IENjOiBaLnEuIEhvdSA8emhpcWlhbmcuaG91QG54cC5jb20+
-OyBNLmguIExpYW4NCj4gPG1pbmdodWFuLmxpYW5AbnhwLmNvbT47IE1pbmdrYWkgSHUgPG1pbmdr
-YWkuaHVAbnhwLmNvbT47DQo+IGJoZWxnYWFzQGdvb2dsZS5jb207IHJvYmgrZHRAa2VybmVsLm9y
-Zzsgc2hhd25ndW9Aa2VybmVsLm9yZzsgTGVvIExpDQo+IDxsZW95YW5nLmxpQG54cC5jb20+OyBr
-aXNob25AdGkuY29tOyBsb3JlbnpvLnBpZXJhbGlzaUBhcm0uY29tOyBSb3kNCj4gWmFuZyA8cm95
-LnphbmdAbnhwLmNvbT47IGFtdXJyYXlAdGhlZ29vZHBlbmd1aW4uY28udWs7DQo+IGppbmdvb2hh
-bjFAZ21haWwuY29tOyBndXN0YXZvLnBpbWVudGVsQHN5bm9wc3lzLmNvbTsNCj4gYW5kcmV3Lm11
-cnJheUBhcm0uY29tOyBsaW51eC1wY2lAdmdlci5rZXJuZWwub3JnOw0KPiBkZXZpY2V0cmVlQHZn
-ZXIua2VybmVsLm9yZzsgbGludXgta2VybmVsQHZnZXIua2VybmVsLm9yZzsNCj4gbGludXgtYXJt
-LWtlcm5lbEBsaXN0cy5pbmZyYWRlYWQub3JnOyBsaW51eHBwYy1kZXZAbGlzdHMub3psYWJzLm9y
-Zw0KPiBTdWJqZWN0OiBSZTogW1BBVENIIHY2IDA0LzExXSBQQ0k6IGRlc2lnbndhcmUtZXA6IE1v
-ZGlmeSBNU0kgYW5kIE1TSVgNCj4gQ0FQIHdheSBvZiBmaW5kaW5nDQo+IA0KPiBzL01TSVgvTVNJ
-LVgvIChzdWJqZWN0IGFuZCBiZWxvdykNCj4gDQo+IE9uIFNhdCwgTWFyIDE0LCAyMDIwIGF0IDEx
-OjMwOjMxQU0gKzA4MDAsIFhpYW93ZWkgQmFvIHdyb3RlOg0KPiA+IEVhY2ggUEYgb2YgRVAgZGV2
-aWNlIHNob3VsZCBoYXZlIGl0J3Mgb3duIE1TSSBvciBNU0lYIGNhcGFiaXRpbHkNCj4gPiBzdHJ1
-Y3QsIHNvIGNyZWF0ZSBhIGR3X3BjaWVfZXBfZnVuYyBzdHJ1Y3QgYW5kIHJlbW92ZSB0aGUgbXNp
-X2NhcCBhbmQNCj4gPiBtc2l4X2NhcCB0byB0aGlzIHN0cnVjdCBmcm9tIGR3X3BjaWVfZXAsIGFu
-ZCBtYW5hZ2UgdGhlIFBGcyB3aXRoIGENCj4gPiBsaXN0Lg0KPiANCj4gcy9jYXBhYml0aWx5L2Nh
-cGFiaWxpdHkvDQo+IA0KPiBJIGtub3cgTG9yZW56byBoYXMgYWxyZWFkeSBhcHBsaWVkIHRoaXMs
-IGJ1dCBmb3IgdGhlIGZ1dHVyZSwgb3IgaW4gY2FzZSB0aGVyZQ0KPiBhcmUgb3RoZXIgcmVhc29u
-cyB0byB1cGRhdGUgdGhpcyBwYXRjaC4NCj4gDQo+IFRoZXJlIGFyZSBhIGJ1bmNoIG9mIHVubmVj
-ZXNzYXJ5IGluaXRpYWxpemF0aW9ucyBiZWxvdyBmb3IgZnV0dXJlIGNsZWFudXAuDQoNClllcywg
-YW5kIHRoZXJlIGFyZSBtYW55IGNhbGxpbmcgb2YgZHdfcGNpZV9lcF9mdW5jX3NlbGVjdCgpIHRv
-IGdldCBmdW5jX29mZnNldCwgSSBwbGFuIHRvIHN1Ym1pdCBhIHNlcGFyYXRlIHBhdGNoIHRvIGNs
-ZWFuIHVwLg0KDQpUaGFua3MsDQpaaGlxaWFuZw0KDQo+IA0KPiA+IFNpZ25lZC1vZmYtYnk6IFhp
-YW93ZWkgQmFvIDx4aWFvd2VpLmJhb0BueHAuY29tPg0KPiA+IC0tLQ0KPiA+IHYzOg0KPiA+ICAt
-IFRoaXMgaXMgYSBuZXcgcGF0Y2gsIHRvIGZpeCB0aGUgaXNzdWUgb2YgTVNJIGFuZCBNU0lYIENB
-UCB3YXkgb2YNCj4gPiAgICBmaW5kaW5nLg0KPiA+IHY0Og0KPiA+ICAtIENvcnJlY3Qgc29tZSB3
-b3JkIG9mIGNvbW1pdCBtZXNzYWdlLg0KPiA+IHY1Og0KPiA+ICAtIE5vIGNoYW5nZS4NCj4gPiB2
-NjoNCj4gPiAgLSBGaXggdXAgdGhlIGNvbXBpbGUgZXJyb3IuDQo+ID4NCj4gPiAgZHJpdmVycy9w
-Y2kvY29udHJvbGxlci9kd2MvcGNpZS1kZXNpZ253YXJlLWVwLmMgfCAxMzUNCj4gKysrKysrKysr
-KysrKysrKysrKysrLS0tDQo+ID4gIGRyaXZlcnMvcGNpL2NvbnRyb2xsZXIvZHdjL3BjaWUtZGVz
-aWdud2FyZS5oICAgIHwgIDE4ICsrKy0NCj4gPiAgMiBmaWxlcyBjaGFuZ2VkLCAxMzQgaW5zZXJ0
-aW9ucygrKSwgMTkgZGVsZXRpb25zKC0pDQo+ID4NCj4gPiBkaWZmIC0tZ2l0IGEvZHJpdmVycy9w
-Y2kvY29udHJvbGxlci9kd2MvcGNpZS1kZXNpZ253YXJlLWVwLmMNCj4gPiBiL2RyaXZlcnMvcGNp
-L2NvbnRyb2xsZXIvZHdjL3BjaWUtZGVzaWdud2FyZS1lcC5jDQo+ID4gaW5kZXggOTMzYmI4OS4u
-ZmI5MTVmMiAxMDA2NDQNCj4gPiAtLS0gYS9kcml2ZXJzL3BjaS9jb250cm9sbGVyL2R3Yy9wY2ll
-LWRlc2lnbndhcmUtZXAuYw0KPiA+ICsrKyBiL2RyaXZlcnMvcGNpL2NvbnRyb2xsZXIvZHdjL3Bj
-aWUtZGVzaWdud2FyZS1lcC5jDQo+ID4gQEAgLTE5LDYgKzE5LDE5IEBAIHZvaWQgZHdfcGNpZV9l
-cF9saW5rdXAoc3RydWN0IGR3X3BjaWVfZXAgKmVwKQ0KPiA+ICAJcGNpX2VwY19saW5rdXAoZXBj
-KTsNCj4gPiAgfQ0KPiA+DQo+ID4gK3N0cnVjdCBkd19wY2llX2VwX2Z1bmMgKg0KPiA+ICtkd19w
-Y2llX2VwX2dldF9mdW5jX2Zyb21fZXAoc3RydWN0IGR3X3BjaWVfZXAgKmVwLCB1OCBmdW5jX25v
-KSB7DQo+ID4gKwlzdHJ1Y3QgZHdfcGNpZV9lcF9mdW5jICplcF9mdW5jOw0KPiA+ICsNCj4gPiAr
-CWxpc3RfZm9yX2VhY2hfZW50cnkoZXBfZnVuYywgJmVwLT5mdW5jX2xpc3QsIGxpc3QpIHsNCj4g
-PiArCQlpZiAoZXBfZnVuYy0+ZnVuY19ubyA9PSBmdW5jX25vKQ0KPiA+ICsJCQlyZXR1cm4gZXBf
-ZnVuYzsNCj4gPiArCX0NCj4gPiArDQo+ID4gKwlyZXR1cm4gTlVMTDsNCj4gPiArfQ0KPiA+ICsN
-Cj4gPiAgc3RhdGljIHVuc2lnbmVkIGludCBkd19wY2llX2VwX2Z1bmNfc2VsZWN0KHN0cnVjdCBk
-d19wY2llX2VwICplcCwgdTgNCj4gPiBmdW5jX25vKSAgew0KPiA+ICAJdW5zaWduZWQgaW50IGZ1
-bmNfb2Zmc2V0ID0gMDsNCj4gPiBAQCAtNTksNiArNzIsNDcgQEAgdm9pZCBkd19wY2llX2VwX3Jl
-c2V0X2JhcihzdHJ1Y3QgZHdfcGNpZSAqcGNpLA0KPiBlbnVtIHBjaV9iYXJubyBiYXIpDQo+ID4g
-IAkJX19kd19wY2llX2VwX3Jlc2V0X2JhcihwY2ksIGZ1bmNfbm8sIGJhciwgMCk7ICB9DQo+ID4N
-Cj4gPiArc3RhdGljIHU4IF9fZHdfcGNpZV9lcF9maW5kX25leHRfY2FwKHN0cnVjdCBkd19wY2ll
-X2VwICplcCwgdTgNCj4gZnVuY19ubywNCj4gPiArCQl1OCBjYXBfcHRyLCB1OCBjYXApDQo+ID4g
-K3sNCj4gPiArCXN0cnVjdCBkd19wY2llICpwY2kgPSB0b19kd19wY2llX2Zyb21fZXAoZXApOw0K
-PiA+ICsJdW5zaWduZWQgaW50IGZ1bmNfb2Zmc2V0ID0gMDsNCj4gDQo+IFVubmVjZXNzYXJ5IGlu
-aXRpYWxpemF0aW9uLg0KPiANCj4gPiArCXU4IGNhcF9pZCwgbmV4dF9jYXBfcHRyOw0KPiA+ICsJ
-dTE2IHJlZzsNCj4gPiArDQo+ID4gKwlpZiAoIWNhcF9wdHIpDQo+ID4gKwkJcmV0dXJuIDA7DQo+
-ID4gKw0KPiA+ICsJZnVuY19vZmZzZXQgPSBkd19wY2llX2VwX2Z1bmNfc2VsZWN0KGVwLCBmdW5j
-X25vKTsNCj4gPiArDQo+ID4gKwlyZWcgPSBkd19wY2llX3JlYWR3X2RiaShwY2ksIGZ1bmNfb2Zm
-c2V0ICsgY2FwX3B0cik7DQo+ID4gKwljYXBfaWQgPSAocmVnICYgMHgwMGZmKTsNCj4gPiArDQo+
-ID4gKwlpZiAoY2FwX2lkID4gUENJX0NBUF9JRF9NQVgpDQo+ID4gKwkJcmV0dXJuIDA7DQo+ID4g
-Kw0KPiA+ICsJaWYgKGNhcF9pZCA9PSBjYXApDQo+ID4gKwkJcmV0dXJuIGNhcF9wdHI7DQo+ID4g
-Kw0KPiA+ICsJbmV4dF9jYXBfcHRyID0gKHJlZyAmIDB4ZmYwMCkgPj4gODsNCj4gPiArCXJldHVy
-biBfX2R3X3BjaWVfZXBfZmluZF9uZXh0X2NhcChlcCwgZnVuY19ubywgbmV4dF9jYXBfcHRyLCBj
-YXApOyB9DQo+ID4gKw0KPiA+ICtzdGF0aWMgdTggZHdfcGNpZV9lcF9maW5kX2NhcGFiaWxpdHko
-c3RydWN0IGR3X3BjaWVfZXAgKmVwLCB1OA0KPiA+ICtmdW5jX25vLCB1OCBjYXApIHsNCj4gPiAr
-CXN0cnVjdCBkd19wY2llICpwY2kgPSB0b19kd19wY2llX2Zyb21fZXAoZXApOw0KPiA+ICsJdW5z
-aWduZWQgaW50IGZ1bmNfb2Zmc2V0ID0gMDsNCj4gDQo+IFVubmVjZXNzYXJ5IGluaXRpYWxpemF0
-aW9uLg0KPiANCj4gPiArCXU4IG5leHRfY2FwX3B0cjsNCj4gPiArCXUxNiByZWc7DQo+ID4gKw0K
-PiA+ICsJZnVuY19vZmZzZXQgPSBkd19wY2llX2VwX2Z1bmNfc2VsZWN0KGVwLCBmdW5jX25vKTsN
-Cj4gPiArDQo+ID4gKwlyZWcgPSBkd19wY2llX3JlYWR3X2RiaShwY2ksIGZ1bmNfb2Zmc2V0ICsg
-UENJX0NBUEFCSUxJVFlfTElTVCk7DQo+ID4gKwluZXh0X2NhcF9wdHIgPSAocmVnICYgMHgwMGZm
-KTsNCj4gPiArDQo+ID4gKwlyZXR1cm4gX19kd19wY2llX2VwX2ZpbmRfbmV4dF9jYXAoZXAsIGZ1
-bmNfbm8sIG5leHRfY2FwX3B0ciwgY2FwKTsgfQ0KPiA+ICsNCj4gPiAgc3RhdGljIGludCBkd19w
-Y2llX2VwX3dyaXRlX2hlYWRlcihzdHJ1Y3QgcGNpX2VwYyAqZXBjLCB1OCBmdW5jX25vLA0KPiA+
-ICAJCQkJICAgc3RydWN0IHBjaV9lcGZfaGVhZGVyICpoZHIpDQo+ID4gIHsNCj4gPiBAQCAtMjQ2
-LDEzICszMDAsMTggQEAgc3RhdGljIGludCBkd19wY2llX2VwX2dldF9tc2koc3RydWN0IHBjaV9l
-cGMNCj4gKmVwYywgdTggZnVuY19ubykNCj4gPiAgCXN0cnVjdCBkd19wY2llICpwY2kgPSB0b19k
-d19wY2llX2Zyb21fZXAoZXApOw0KPiA+ICAJdTMyIHZhbCwgcmVnOw0KPiA+ICAJdW5zaWduZWQg
-aW50IGZ1bmNfb2Zmc2V0ID0gMDsNCj4gDQo+IFVubmVjZXNzYXJ5IGluaXRpYWxpemF0aW9uIChu
-b3QgZnJvbSB5b3VyIHBhdGNoKS4NCj4gDQo+ID4gKwlzdHJ1Y3QgZHdfcGNpZV9lcF9mdW5jICpl
-cF9mdW5jOw0KPiA+DQo+ID4gLQlpZiAoIWVwLT5tc2lfY2FwKQ0KPiA+ICsJZXBfZnVuYyA9IGR3
-X3BjaWVfZXBfZ2V0X2Z1bmNfZnJvbV9lcChlcCwgZnVuY19ubyk7DQo+ID4gKwlpZiAoIWVwX2Z1
-bmMpDQo+ID4gKwkJcmV0dXJuIC1FSU5WQUw7DQo+ID4gKw0KPiA+ICsJaWYgKCFlcF9mdW5jLT5t
-c2lfY2FwKQ0KPiA+ICAJCXJldHVybiAtRUlOVkFMOw0KPiA+DQo+ID4gIAlmdW5jX29mZnNldCA9
-IGR3X3BjaWVfZXBfZnVuY19zZWxlY3QoZXAsIGZ1bmNfbm8pOw0KPiA+DQo+ID4gLQlyZWcgPSBl
-cC0+bXNpX2NhcCArIGZ1bmNfb2Zmc2V0ICsgUENJX01TSV9GTEFHUzsNCj4gPiArCXJlZyA9IGVw
-X2Z1bmMtPm1zaV9jYXAgKyBmdW5jX29mZnNldCArIFBDSV9NU0lfRkxBR1M7DQo+ID4gIAl2YWwg
-PSBkd19wY2llX3JlYWR3X2RiaShwY2ksIHJlZyk7DQo+ID4gIAlpZiAoISh2YWwgJiBQQ0lfTVNJ
-X0ZMQUdTX0VOQUJMRSkpDQo+ID4gIAkJcmV0dXJuIC1FSU5WQUw7DQo+ID4gQEAgLTI2OCwxMyAr
-MzI3LDE4IEBAIHN0YXRpYyBpbnQgZHdfcGNpZV9lcF9zZXRfbXNpKHN0cnVjdCBwY2lfZXBjDQo+
-ICplcGMsIHU4IGZ1bmNfbm8sIHU4IGludGVycnVwdHMpDQo+ID4gIAlzdHJ1Y3QgZHdfcGNpZSAq
-cGNpID0gdG9fZHdfcGNpZV9mcm9tX2VwKGVwKTsNCj4gPiAgCXUzMiB2YWwsIHJlZzsNCj4gPiAg
-CXVuc2lnbmVkIGludCBmdW5jX29mZnNldCA9IDA7DQo+IA0KPiBVbm5lY2Vzc2FyeSBpbml0aWFs
-aXphdGlvbiAobm90IGZyb20geW91ciBwYXRjaCkuDQo+IA0KPiA+ICsJc3RydWN0IGR3X3BjaWVf
-ZXBfZnVuYyAqZXBfZnVuYzsNCj4gPiArDQo+ID4gKwllcF9mdW5jID0gZHdfcGNpZV9lcF9nZXRf
-ZnVuY19mcm9tX2VwKGVwLCBmdW5jX25vKTsNCj4gPiArCWlmICghZXBfZnVuYykNCj4gPiArCQly
-ZXR1cm4gLUVJTlZBTDsNCj4gPg0KPiA+IC0JaWYgKCFlcC0+bXNpX2NhcCkNCj4gPiArCWlmICgh
-ZXBfZnVuYy0+bXNpX2NhcCkNCj4gPiAgCQlyZXR1cm4gLUVJTlZBTDsNCj4gPg0KPiA+ICAJZnVu
-Y19vZmZzZXQgPSBkd19wY2llX2VwX2Z1bmNfc2VsZWN0KGVwLCBmdW5jX25vKTsNCj4gPg0KPiA+
-IC0JcmVnID0gZXAtPm1zaV9jYXAgKyBmdW5jX29mZnNldCArIFBDSV9NU0lfRkxBR1M7DQo+ID4g
-KwlyZWcgPSBlcF9mdW5jLT5tc2lfY2FwICsgZnVuY19vZmZzZXQgKyBQQ0lfTVNJX0ZMQUdTOw0K
-PiA+ICAJdmFsID0gZHdfcGNpZV9yZWFkd19kYmkocGNpLCByZWcpOw0KPiA+ICAJdmFsICY9IH5Q
-Q0lfTVNJX0ZMQUdTX1FNQVNLOw0KPiA+ICAJdmFsIHw9IChpbnRlcnJ1cHRzIDw8IDEpICYgUENJ
-X01TSV9GTEFHU19RTUFTSzsgQEAgLTI5MSwxMyArMzU1LDE4DQo+ID4gQEAgc3RhdGljIGludCBk
-d19wY2llX2VwX2dldF9tc2l4KHN0cnVjdCBwY2lfZXBjICplcGMsIHU4IGZ1bmNfbm8pDQo+ID4g
-IAlzdHJ1Y3QgZHdfcGNpZSAqcGNpID0gdG9fZHdfcGNpZV9mcm9tX2VwKGVwKTsNCj4gPiAgCXUz
-MiB2YWwsIHJlZzsNCj4gPiAgCXVuc2lnbmVkIGludCBmdW5jX29mZnNldCA9IDA7DQo+IA0KPiBV
-bm5lY2Vzc2FyeSBpbml0aWFsaXphdGlvbiAobm90IGZyb20geW91ciBwYXRjaCkuDQo+IA0KPiA+
-ICsJc3RydWN0IGR3X3BjaWVfZXBfZnVuYyAqZXBfZnVuYzsNCj4gPiArDQo+ID4gKwllcF9mdW5j
-ID0gZHdfcGNpZV9lcF9nZXRfZnVuY19mcm9tX2VwKGVwLCBmdW5jX25vKTsNCj4gPiArCWlmICgh
-ZXBfZnVuYykNCj4gPiArCQlyZXR1cm4gLUVJTlZBTDsNCj4gPg0KPiA+IC0JaWYgKCFlcC0+bXNp
-eF9jYXApDQo+ID4gKwlpZiAoIWVwX2Z1bmMtPm1zaXhfY2FwKQ0KPiA+ICAJCXJldHVybiAtRUlO
-VkFMOw0KPiA+DQo+ID4gIAlmdW5jX29mZnNldCA9IGR3X3BjaWVfZXBfZnVuY19zZWxlY3QoZXAs
-IGZ1bmNfbm8pOw0KPiA+DQo+ID4gLQlyZWcgPSBlcC0+bXNpeF9jYXAgKyBmdW5jX29mZnNldCAr
-IFBDSV9NU0lYX0ZMQUdTOw0KPiA+ICsJcmVnID0gZXBfZnVuYy0+bXNpeF9jYXAgKyBmdW5jX29m
-ZnNldCArIFBDSV9NU0lYX0ZMQUdTOw0KPiA+ICAJdmFsID0gZHdfcGNpZV9yZWFkd19kYmkocGNp
-LCByZWcpOw0KPiA+ICAJaWYgKCEodmFsICYgUENJX01TSVhfRkxBR1NfRU5BQkxFKSkNCj4gPiAg
-CQlyZXR1cm4gLUVJTlZBTDsNCj4gPiBAQCAtMzEzLDEzICszODIsMTggQEAgc3RhdGljIGludCBk
-d19wY2llX2VwX3NldF9tc2l4KHN0cnVjdCBwY2lfZXBjDQo+ICplcGMsIHU4IGZ1bmNfbm8sIHUx
-NiBpbnRlcnJ1cHRzKQ0KPiA+ICAJc3RydWN0IGR3X3BjaWUgKnBjaSA9IHRvX2R3X3BjaWVfZnJv
-bV9lcChlcCk7DQo+ID4gIAl1MzIgdmFsLCByZWc7DQo+ID4gIAl1bnNpZ25lZCBpbnQgZnVuY19v
-ZmZzZXQgPSAwOw0KPiANCj4gVW5uZWNlc3NhcnkgaW5pdGlhbGl6YXRpb24gKG5vdCBmcm9tIHlv
-dXIgcGF0Y2gpLg0KPiANCj4gPiArCXN0cnVjdCBkd19wY2llX2VwX2Z1bmMgKmVwX2Z1bmM7DQo+
-ID4NCj4gPiAtCWlmICghZXAtPm1zaXhfY2FwKQ0KPiA+ICsJZXBfZnVuYyA9IGR3X3BjaWVfZXBf
-Z2V0X2Z1bmNfZnJvbV9lcChlcCwgZnVuY19ubyk7DQo+ID4gKwlpZiAoIWVwX2Z1bmMpDQo+ID4g
-KwkJcmV0dXJuIC1FSU5WQUw7DQo+ID4gKw0KPiA+ICsJaWYgKCFlcF9mdW5jLT5tc2l4X2NhcCkN
-Cj4gPiAgCQlyZXR1cm4gLUVJTlZBTDsNCj4gPg0KPiA+ICAJZnVuY19vZmZzZXQgPSBkd19wY2ll
-X2VwX2Z1bmNfc2VsZWN0KGVwLCBmdW5jX25vKTsNCj4gPg0KPiA+IC0JcmVnID0gZXAtPm1zaXhf
-Y2FwICsgZnVuY19vZmZzZXQgKyBQQ0lfTVNJWF9GTEFHUzsNCj4gPiArCXJlZyA9IGVwX2Z1bmMt
-Pm1zaXhfY2FwICsgZnVuY19vZmZzZXQgKyBQQ0lfTVNJWF9GTEFHUzsNCj4gPiAgCXZhbCA9IGR3
-X3BjaWVfcmVhZHdfZGJpKHBjaSwgcmVnKTsNCj4gPiAgCXZhbCAmPSB+UENJX01TSVhfRkxBR1Nf
-UVNJWkU7DQo+ID4gIAl2YWwgfD0gaW50ZXJydXB0czsNCj4gPiBAQCAtNDA0LDYgKzQ3OCw3IEBA
-IGludCBkd19wY2llX2VwX3JhaXNlX21zaV9pcnEoc3RydWN0IGR3X3BjaWVfZXANCj4gKmVwLCB1
-OCBmdW5jX25vLA0KPiA+ICAJCQkgICAgIHU4IGludGVycnVwdF9udW0pDQo+ID4gIHsNCj4gPiAg
-CXN0cnVjdCBkd19wY2llICpwY2kgPSB0b19kd19wY2llX2Zyb21fZXAoZXApOw0KPiA+ICsJc3Ry
-dWN0IGR3X3BjaWVfZXBfZnVuYyAqZXBfZnVuYzsNCj4gPiAgCXN0cnVjdCBwY2lfZXBjICplcGMg
-PSBlcC0+ZXBjOw0KPiA+ICAJdW5zaWduZWQgaW50IGFsaWduZWRfb2Zmc2V0Ow0KPiA+ICAJdW5z
-aWduZWQgaW50IGZ1bmNfb2Zmc2V0ID0gMDsNCj4gDQo+IFVubmVjZXNzYXJ5IGluaXRpYWxpemF0
-aW9uIChub3QgZnJvbSB5b3VyIHBhdGNoKS4NCj4gDQo+ID4gQEAgLTQxMywyNSArNDg4LDI5IEBA
-IGludCBkd19wY2llX2VwX3JhaXNlX21zaV9pcnEoc3RydWN0DQo+IGR3X3BjaWVfZXAgKmVwLCB1
-OCBmdW5jX25vLA0KPiA+ICAJYm9vbCBoYXNfdXBwZXI7DQo+ID4gIAlpbnQgcmV0Ow0KPiA+DQo+
-ID4gLQlpZiAoIWVwLT5tc2lfY2FwKQ0KPiA+ICsJZXBfZnVuYyA9IGR3X3BjaWVfZXBfZ2V0X2Z1
-bmNfZnJvbV9lcChlcCwgZnVuY19ubyk7DQo+ID4gKwlpZiAoIWVwX2Z1bmMpDQo+ID4gKwkJcmV0
-dXJuIC1FSU5WQUw7DQo+ID4gKw0KPiA+ICsJaWYgKCFlcF9mdW5jLT5tc2lfY2FwKQ0KPiA+ICAJ
-CXJldHVybiAtRUlOVkFMOw0KPiA+DQo+ID4gIAlmdW5jX29mZnNldCA9IGR3X3BjaWVfZXBfZnVu
-Y19zZWxlY3QoZXAsIGZ1bmNfbm8pOw0KPiA+DQo+ID4gIAkvKiBSYWlzZSBNU0kgcGVyIHRoZSBQ
-Q0kgTG9jYWwgQnVzIFNwZWNpZmljYXRpb24gUmV2aXNpb24gMy4wLCA2LjguMS4gKi8NCj4gPiAt
-CXJlZyA9IGVwLT5tc2lfY2FwICsgZnVuY19vZmZzZXQgKyBQQ0lfTVNJX0ZMQUdTOw0KPiA+ICsJ
-cmVnID0gZXBfZnVuYy0+bXNpX2NhcCArIGZ1bmNfb2Zmc2V0ICsgUENJX01TSV9GTEFHUzsNCj4g
-PiAgCW1zZ19jdHJsID0gZHdfcGNpZV9yZWFkd19kYmkocGNpLCByZWcpOw0KPiA+ICAJaGFzX3Vw
-cGVyID0gISEobXNnX2N0cmwgJiBQQ0lfTVNJX0ZMQUdTXzY0QklUKTsNCj4gPiAtCXJlZyA9IGVw
-LT5tc2lfY2FwICsgZnVuY19vZmZzZXQgKyBQQ0lfTVNJX0FERFJFU1NfTE87DQo+ID4gKwlyZWcg
-PSBlcF9mdW5jLT5tc2lfY2FwICsgZnVuY19vZmZzZXQgKyBQQ0lfTVNJX0FERFJFU1NfTE87DQo+
-ID4gIAltc2dfYWRkcl9sb3dlciA9IGR3X3BjaWVfcmVhZGxfZGJpKHBjaSwgcmVnKTsNCj4gPiAg
-CWlmIChoYXNfdXBwZXIpIHsNCj4gPiAtCQlyZWcgPSBlcC0+bXNpX2NhcCArIGZ1bmNfb2Zmc2V0
-ICsgUENJX01TSV9BRERSRVNTX0hJOw0KPiA+ICsJCXJlZyA9IGVwX2Z1bmMtPm1zaV9jYXAgKyBm
-dW5jX29mZnNldCArIFBDSV9NU0lfQUREUkVTU19ISTsNCj4gPiAgCQltc2dfYWRkcl91cHBlciA9
-IGR3X3BjaWVfcmVhZGxfZGJpKHBjaSwgcmVnKTsNCj4gPiAtCQlyZWcgPSBlcC0+bXNpX2NhcCAr
-IGZ1bmNfb2Zmc2V0ICsgUENJX01TSV9EQVRBXzY0Ow0KPiA+ICsJCXJlZyA9IGVwX2Z1bmMtPm1z
-aV9jYXAgKyBmdW5jX29mZnNldCArIFBDSV9NU0lfREFUQV82NDsNCj4gPiAgCQltc2dfZGF0YSA9
-IGR3X3BjaWVfcmVhZHdfZGJpKHBjaSwgcmVnKTsNCj4gPiAgCX0gZWxzZSB7DQo+ID4gIAkJbXNn
-X2FkZHJfdXBwZXIgPSAwOw0KPiA+IC0JCXJlZyA9IGVwLT5tc2lfY2FwICsgZnVuY19vZmZzZXQg
-KyBQQ0lfTVNJX0RBVEFfMzI7DQo+ID4gKwkJcmVnID0gZXBfZnVuYy0+bXNpX2NhcCArIGZ1bmNf
-b2Zmc2V0ICsgUENJX01TSV9EQVRBXzMyOw0KPiA+ICAJCW1zZ19kYXRhID0gZHdfcGNpZV9yZWFk
-d19kYmkocGNpLCByZWcpOw0KPiA+ICAJfQ0KPiA+ICAJYWxpZ25lZF9vZmZzZXQgPSBtc2dfYWRk
-cl9sb3dlciAmIChlcGMtPm1lbS0+cGFnZV9zaXplIC0gMSk7IEBADQo+ID4gLTQ2Nyw2ICs1NDYs
-NyBAQCBpbnQgZHdfcGNpZV9lcF9yYWlzZV9tc2l4X2lycShzdHJ1Y3QgZHdfcGNpZV9lcCAqZXAs
-DQo+IHU4IGZ1bmNfbm8sDQo+ID4gIAkJCSAgICAgIHUxNiBpbnRlcnJ1cHRfbnVtKQ0KPiA+ICB7
-DQo+ID4gIAlzdHJ1Y3QgZHdfcGNpZSAqcGNpID0gdG9fZHdfcGNpZV9mcm9tX2VwKGVwKTsNCj4g
-PiArCXN0cnVjdCBkd19wY2llX2VwX2Z1bmMgKmVwX2Z1bmM7DQo+ID4gIAlzdHJ1Y3QgcGNpX2Vw
-YyAqZXBjID0gZXAtPmVwYzsNCj4gPiAgCXUxNiB0Ymxfb2Zmc2V0LCBiaXI7DQo+ID4gIAl1bnNp
-Z25lZCBpbnQgZnVuY19vZmZzZXQgPSAwOw0KPiANCj4gVW5uZWNlc3NhcnkgaW5pdGlhbGl6YXRp
-b24gKG5vdCBmcm9tIHlvdXIgcGF0Y2gpLg0KPiANCj4gPiBAQCAtNDc3LDkgKzU1NywxNiBAQCBp
-bnQgZHdfcGNpZV9lcF9yYWlzZV9tc2l4X2lycShzdHJ1Y3QNCj4gZHdfcGNpZV9lcCAqZXAsIHU4
-IGZ1bmNfbm8sDQo+ID4gIAl2b2lkIF9faW9tZW0gKm1zaXhfdGJsOw0KPiA+ICAJaW50IHJldDsN
-Cj4gPg0KPiA+ICsJZXBfZnVuYyA9IGR3X3BjaWVfZXBfZ2V0X2Z1bmNfZnJvbV9lcChlcCwgZnVu
-Y19ubyk7DQo+ID4gKwlpZiAoIWVwX2Z1bmMpDQo+ID4gKwkJcmV0dXJuIC1FSU5WQUw7DQo+ID4g
-Kw0KPiA+ICsJaWYgKCFlcF9mdW5jLT5tc2l4X2NhcCkNCj4gPiArCQlyZXR1cm4gLUVJTlZBTDsN
-Cj4gPiArDQo+ID4gIAlmdW5jX29mZnNldCA9IGR3X3BjaWVfZXBfZnVuY19zZWxlY3QoZXAsIGZ1
-bmNfbm8pOw0KPiA+DQo+ID4gLQlyZWcgPSBlcC0+bXNpeF9jYXAgKyBmdW5jX29mZnNldCArIFBD
-SV9NU0lYX1RBQkxFOw0KPiA+ICsJcmVnID0gZXBfZnVuYy0+bXNpeF9jYXAgKyBmdW5jX29mZnNl
-dCArIFBDSV9NU0lYX1RBQkxFOw0KPiA+ICAJdGJsX29mZnNldCA9IGR3X3BjaWVfcmVhZGxfZGJp
-KHBjaSwgcmVnKTsNCj4gPiAgCWJpciA9ICh0Ymxfb2Zmc2V0ICYgUENJX01TSVhfVEFCTEVfQklS
-KTsNCj4gPiAgCXRibF9vZmZzZXQgJj0gUENJX01TSVhfVEFCTEVfT0ZGU0VUOyBAQCAtNTU4LDYg
-KzY0NSw3IEBAIGludA0KPiA+IGR3X3BjaWVfZXBfaW5pdChzdHJ1Y3QgZHdfcGNpZV9lcCAqZXAp
-DQo+ID4gIAlpbnQgaTsNCj4gPiAgCWludCByZXQ7DQo+ID4gIAl1MzIgcmVnOw0KPiA+ICsJdTgg
-ZnVuY19ubzsNCj4gPiAgCXZvaWQgKmFkZHI7DQo+ID4gIAl1OCBoZHJfdHlwZTsNCj4gPiAgCXVu
-c2lnbmVkIGludCBuYmFyczsNCj4gPiBAQCAtNTY2LDYgKzY1NCw5IEBAIGludCBkd19wY2llX2Vw
-X2luaXQoc3RydWN0IGR3X3BjaWVfZXAgKmVwKQ0KPiA+ICAJc3RydWN0IGR3X3BjaWUgKnBjaSA9
-IHRvX2R3X3BjaWVfZnJvbV9lcChlcCk7DQo+ID4gIAlzdHJ1Y3QgZGV2aWNlICpkZXYgPSBwY2kt
-PmRldjsNCj4gPiAgCXN0cnVjdCBkZXZpY2Vfbm9kZSAqbnAgPSBkZXYtPm9mX25vZGU7DQo+ID4g
-KwlzdHJ1Y3QgZHdfcGNpZV9lcF9mdW5jICplcF9mdW5jOw0KPiA+ICsNCj4gPiArCUlOSVRfTElT
-VF9IRUFEKCZlcC0+ZnVuY19saXN0KTsNCj4gPg0KPiA+ICAJaWYgKCFwY2ktPmRiaV9iYXNlIHx8
-ICFwY2ktPmRiaV9iYXNlMikgew0KPiA+ICAJCWRldl9lcnIoZGV2LCAiZGJpX2Jhc2UvZGJpX2Jh
-c2UyIGlzIG5vdCBwb3B1bGF0ZWRcbiIpOyBAQCAtNjMyLDkNCj4gPiArNzIzLDE5IEBAIGludCBk
-d19wY2llX2VwX2luaXQoc3RydWN0IGR3X3BjaWVfZXAgKmVwKQ0KPiA+ICAJaWYgKHJldCA8IDAp
-DQo+ID4gIAkJZXBjLT5tYXhfZnVuY3Rpb25zID0gMTsNCj4gPg0KPiA+IC0JZXAtPm1zaV9jYXAg
-PSBkd19wY2llX2ZpbmRfY2FwYWJpbGl0eShwY2ksIFBDSV9DQVBfSURfTVNJKTsNCj4gPiArCWZv
-ciAoZnVuY19ubyA9IDA7IGZ1bmNfbm8gPCBlcGMtPm1heF9mdW5jdGlvbnM7IGZ1bmNfbm8rKykg
-ew0KPiA+ICsJCWVwX2Z1bmMgPSBkZXZtX2t6YWxsb2MoZGV2LCBzaXplb2YoKmVwX2Z1bmMpLCBH
-RlBfS0VSTkVMKTsNCj4gPiArCQlpZiAoIWVwX2Z1bmMpDQo+ID4gKwkJCXJldHVybiAtRU5PTUVN
-Ow0KPiA+DQo+ID4gLQllcC0+bXNpeF9jYXAgPSBkd19wY2llX2ZpbmRfY2FwYWJpbGl0eShwY2ks
-IFBDSV9DQVBfSURfTVNJWCk7DQo+ID4gKwkJZXBfZnVuYy0+ZnVuY19ubyA9IGZ1bmNfbm87DQo+
-ID4gKwkJZXBfZnVuYy0+bXNpX2NhcCA9IGR3X3BjaWVfZXBfZmluZF9jYXBhYmlsaXR5KGVwLCBm
-dW5jX25vLA0KPiA+ICsJCQkJCQkJICAgICAgUENJX0NBUF9JRF9NU0kpOw0KPiA+ICsJCWVwX2Z1
-bmMtPm1zaXhfY2FwID0gZHdfcGNpZV9lcF9maW5kX2NhcGFiaWxpdHkoZXAsIGZ1bmNfbm8sDQo+
-ID4gKwkJCQkJCQkgICAgICAgUENJX0NBUF9JRF9NU0lYKTsNCj4gPiArDQo+ID4gKwkJbGlzdF9h
-ZGRfdGFpbCgmZXBfZnVuYy0+bGlzdCwgJmVwLT5mdW5jX2xpc3QpOw0KPiA+ICsJfQ0KPiA+DQo+
-ID4gIAlpZiAoZXAtPm9wcy0+ZXBfaW5pdCkNCj4gPiAgCQllcC0+b3BzLT5lcF9pbml0KGVwKTsN
-Cj4gPiBkaWZmIC0tZ2l0IGEvZHJpdmVycy9wY2kvY29udHJvbGxlci9kd2MvcGNpZS1kZXNpZ253
-YXJlLmgNCj4gPiBiL2RyaXZlcnMvcGNpL2NvbnRyb2xsZXIvZHdjL3BjaWUtZGVzaWdud2FyZS5o
-DQo+ID4gaW5kZXggY2IzMmFmYS4uZGQ5YjdiNCAxMDA2NDQNCj4gPiAtLS0gYS9kcml2ZXJzL3Bj
-aS9jb250cm9sbGVyL2R3Yy9wY2llLWRlc2lnbndhcmUuaA0KPiA+ICsrKyBiL2RyaXZlcnMvcGNp
-L2NvbnRyb2xsZXIvZHdjL3BjaWUtZGVzaWdud2FyZS5oDQo+ID4gQEAgLTIzMCw4ICsyMzAsMTYg
-QEAgc3RydWN0IGR3X3BjaWVfZXBfb3BzIHsNCj4gPiAgCXVuc2lnbmVkIGludCAoKmZ1bmNfY29u
-Zl9zZWxlY3QpKHN0cnVjdCBkd19wY2llX2VwICplcCwgdTggZnVuY19ubyk7DQo+ID4gfTsNCj4g
-Pg0KPiA+ICtzdHJ1Y3QgZHdfcGNpZV9lcF9mdW5jIHsNCj4gPiArCXN0cnVjdCBsaXN0X2hlYWQJ
-bGlzdDsNCj4gPiArCXU4CQkJZnVuY19ubzsNCj4gPiArCXU4CQkJbXNpX2NhcDsJLyogTVNJIGNh
-cGFiaWxpdHkgb2Zmc2V0ICovDQo+ID4gKwl1OAkJCW1zaXhfY2FwOwkvKiBNU0ktWCBjYXBhYmls
-aXR5IG9mZnNldCAqLw0KPiA+ICt9Ow0KPiA+ICsNCj4gPiAgc3RydWN0IGR3X3BjaWVfZXAgew0K
-PiA+ICAJc3RydWN0IHBjaV9lcGMJCSplcGM7DQo+ID4gKwlzdHJ1Y3QgbGlzdF9oZWFkCWZ1bmNf
-bGlzdDsNCj4gPiAgCWNvbnN0IHN0cnVjdCBkd19wY2llX2VwX29wcyAqb3BzOw0KPiA+ICAJcGh5
-c19hZGRyX3QJCXBoeXNfYmFzZTsNCj4gPiAgCXNpemVfdAkJCWFkZHJfc2l6ZTsNCj4gPiBAQCAt
-MjQ0LDggKzI1Miw2IEBAIHN0cnVjdCBkd19wY2llX2VwIHsNCj4gPiAgCXUzMgkJCW51bV9vYl93
-aW5kb3dzOw0KPiA+ICAJdm9pZCBfX2lvbWVtCQkqbXNpX21lbTsNCj4gPiAgCXBoeXNfYWRkcl90
-CQltc2lfbWVtX3BoeXM7DQo+ID4gLQl1OAkJCW1zaV9jYXA7CS8qIE1TSSBjYXBhYmlsaXR5IG9m
-ZnNldCAqLw0KPiA+IC0JdTgJCQltc2l4X2NhcDsJLyogTVNJLVggY2FwYWJpbGl0eSBvZmZzZXQg
-Ki8NCj4gPiAgfTsNCj4gPg0KPiA+ICBzdHJ1Y3QgZHdfcGNpZV9vcHMgew0KPiA+IEBAIC00Mzcs
-NiArNDQzLDggQEAgaW50IGR3X3BjaWVfZXBfcmFpc2VfbXNpeF9pcnEoc3RydWN0IGR3X3BjaWVf
-ZXANCj4gPiAqZXAsIHU4IGZ1bmNfbm8sICBpbnQgZHdfcGNpZV9lcF9yYWlzZV9tc2l4X2lycV9k
-b29yYmVsbChzdHJ1Y3QNCj4gZHdfcGNpZV9lcCAqZXAsIHU4IGZ1bmNfbm8sDQo+ID4gIAkJCQkg
-ICAgICAgdTE2IGludGVycnVwdF9udW0pOw0KPiA+ICB2b2lkIGR3X3BjaWVfZXBfcmVzZXRfYmFy
-KHN0cnVjdCBkd19wY2llICpwY2ksIGVudW0gcGNpX2Jhcm5vIGJhcik7DQo+ID4gK3N0cnVjdCBk
-d19wY2llX2VwX2Z1bmMgKg0KPiA+ICtkd19wY2llX2VwX2dldF9mdW5jX2Zyb21fZXAoc3RydWN0
-IGR3X3BjaWVfZXAgKmVwLCB1OCBmdW5jX25vKTsNCj4gPiAgI2Vsc2UNCj4gPiAgc3RhdGljIGlu
-bGluZSB2b2lkIGR3X3BjaWVfZXBfbGlua3VwKHN0cnVjdCBkd19wY2llX2VwICplcCkgIHsgQEAN
-Cj4gPiAtNDc4LDUgKzQ4NiwxMSBAQCBzdGF0aWMgaW5saW5lIGludA0KPiA+IGR3X3BjaWVfZXBf
-cmFpc2VfbXNpeF9pcnFfZG9vcmJlbGwoc3RydWN0IGR3X3BjaWVfZXAgKmVwLCAgc3RhdGljDQo+
-ID4gaW5saW5lIHZvaWQgZHdfcGNpZV9lcF9yZXNldF9iYXIoc3RydWN0IGR3X3BjaWUgKnBjaSwg
-ZW51bSBwY2lfYmFybm8NCj4gPiBiYXIpICB7ICB9DQo+ID4gKw0KPiA+ICtzdGF0aWMgaW5saW5l
-IHN0cnVjdCBkd19wY2llX2VwX2Z1bmMgKg0KPiA+ICtkd19wY2llX2VwX2dldF9mdW5jX2Zyb21f
-ZXAoc3RydWN0IGR3X3BjaWVfZXAgKmVwLCB1OCBmdW5jX25vKSB7DQo+ID4gKwlyZXR1cm4gTlVM
-TDsNCj4gPiArfQ0KPiA+ICAjZW5kaWYNCj4gPiAgI2VuZGlmIC8qIF9QQ0lFX0RFU0lHTldBUkVf
-SCAqLw0KPiA+IC0tDQo+ID4gMi45LjUNCj4gPg0K
+From: ChiYuan Huang <cy_huang@richtek.com>
+
+Add support for Richtek RTMV20 load switch regulator.
+
+Signed-off-by: ChiYuan Huang <cy_huang@richtek.com>
+---
+ drivers/regulator/Kconfig            |   9 +
+ drivers/regulator/Makefile           |   1 +
+ drivers/regulator/rtmv20-regulator.c | 512 +++++++++++++++++++++++++++++++++++
+ 3 files changed, 522 insertions(+)
+ create mode 100644 drivers/regulator/rtmv20-regulator.c
+
+diff --git a/drivers/regulator/Kconfig b/drivers/regulator/Kconfig
+index de17ef7..400ad4c 100644
+--- a/drivers/regulator/Kconfig
++++ b/drivers/regulator/Kconfig
+@@ -902,6 +902,15 @@ config REGULATOR_RT5033
+ 	  RT5033 PMIC. The device supports multiple regulators like
+ 	  current source, LDO and Buck.
+ 
++config REGULATOR_RTMV20
++	tristate "RTMV20 Laser Diode Regulator"
++	depends on I2C
++	select REGMAP_I2C
++	help
++	  This driver adds support for the load switch current regulator on
++	  the Richtek RTMV20. It can support the load current up to 6A and
++	  integrate strobe/vsync/fsin signal to synchronize the IR camera.
++
+ config REGULATOR_S2MPA01
+ 	tristate "Samsung S2MPA01 voltage regulator"
+ 	depends on MFD_SEC_CORE
+diff --git a/drivers/regulator/Makefile b/drivers/regulator/Makefile
+index d8d3ecf..89a1cb0 100644
+--- a/drivers/regulator/Makefile
++++ b/drivers/regulator/Makefile
+@@ -112,6 +112,7 @@ obj-$(CONFIG_REGULATOR_RK808)   += rk808-regulator.o
+ obj-$(CONFIG_REGULATOR_RN5T618) += rn5t618-regulator.o
+ obj-$(CONFIG_REGULATOR_ROHM)	+= rohm-regulator.o
+ obj-$(CONFIG_REGULATOR_RT5033)	+= rt5033-regulator.o
++obj-$(CONFIG_REGULATOR_RTMV20)	+= rtmv20-regulator.o
+ obj-$(CONFIG_REGULATOR_S2MPA01) += s2mpa01.o
+ obj-$(CONFIG_REGULATOR_S2MPS11) += s2mps11.o
+ obj-$(CONFIG_REGULATOR_S5M8767) += s5m8767.o
+diff --git a/drivers/regulator/rtmv20-regulator.c b/drivers/regulator/rtmv20-regulator.c
+new file mode 100644
+index 00000000..8fa083c
+--- /dev/null
++++ b/drivers/regulator/rtmv20-regulator.c
+@@ -0,0 +1,512 @@
++// SPDX-License-Identifier: GPL-2.0+
++
++#include <linux/delay.h>
++#include <linux/gpio/consumer.h>
++#include <linux/i2c.h>
++#include <linux/interrupt.h>
++#include <linux/kernel.h>
++#include <linux/module.h>
++#include <linux/property.h>
++#include <linux/regmap.h>
++#include <linux/regulator/driver.h>
++
++#define RTMV20_REG_DEVINFO	0x00
++#define RTMV20_REG_PULSEDELAY	0x01
++#define RTMV20_REG_PULSEWIDTH	0x03
++#define RTMV20_REG_LDCTRL1	0x05
++#define RTMV20_REG_ESPULSEWIDTH	0x06
++#define RTMV20_REG_ESLDCTRL1	0x08
++#define RTMV20_REG_LBP		0x0A
++#define RTMV20_REG_LDCTRL2	0x0B
++#define RTMV20_REG_FSIN1CTRL1	0x0D
++#define RTMV20_REG_FSIN1CTRL3	0x0F
++#define RTMV20_REG_FSIN2CTRL1	0x10
++#define RTMV20_REG_FSIN2CTRL3	0x12
++#define RTMV20_REG_ENCTRL	0x13
++#define RTMV20_REG_STRBVSYNDLYL 0x29
++#define RTMV20_REG_LDIRQ	0x30
++#define RTMV20_REG_LDSTAT	0x40
++#define RTMV20_REG_LDMASK	0x50
++
++#define RTMV20_VID_MASK		GENMASK(7, 4)
++#define RICHTEK_VID		0x80
++#define RTMV20_LDCURR_MASK	GENMASK(7, 0)
++#define RTMV20_DELAY_MASK	GENMASK(9, 0)
++#define RTMV20_WIDTH_MASK	GENMASK(13, 0)
++#define RTMV20_WIDTH2_MASK	GENMASK(7, 0)
++#define RTMV20_LBPLVL_MASK	GENMASK(3, 0)
++#define RTMV20_LBPEN_MASK	BIT(7)
++#define RTMV20_STROBEPOL_MASK	BIT(1)
++#define RTMV20_VSYNPOL_MASK	BIT(1)
++#define RTMV20_FSINEN_MASK	BIT(7)
++#define RTMV20_ESEN_MASK	BIT(6)
++#define RTMV20_FSINOUT_MASK	BIT(2)
++#define LDENABLE_MASK		(BIT(3) | BIT(0))
++
++#define OTPEVT_MASK		BIT(4)
++#define SHORTEVT_MASK		BIT(3)
++#define OPENEVT_MASK		BIT(2)
++#define LBPEVT_MASK		BIT(1)
++#define OCPEVT_MASK		BIT(0)
++#define FAILEVT_MASK		(SHORTEVT_MASK | OPENEVT_MASK | LBPEVT_MASK)
++
++#define RTMV20_1BYTE_ACCES	1
++#define RTMV20_2BYTE_ACCES	2
++
++#define RTMV20_LSW_MINUA	0
++#define RTMV20_LSW_MAXUA	6000000
++#define RTMV20_LSW_STEPUA	30000
++
++#define RTMV20_LSW_DEFAULTUA	3000000
++
++#define RTMV20_I2CRDY_TIMEUS	200
++#define RTMV20_CSRDY_TIMEUS	2000
++
++/* All uint in microsecond or microamp */
++struct init_properties {
++	u16 ld_pulse_delay;
++	u16 ld_pulse_width;
++	u16 fsin1_delay;
++	u8 fsin1_width;
++	u16 fsin2_delay;
++	u8 fsin2_width;
++	u16 es_pulse_width;
++	u8 es_ld_current;
++	u8 lbp_level;
++	u8 lbp_enable;
++	u8 strobe_polarity;
++	u8 vsync_polarity;
++	u8 fsin_enable;
++	u8 fsin_output;
++	u8 es_enable;
++};
++
++struct rtmv20_priv {
++	struct device *dev;
++	struct regmap *regmap;
++	struct gpio_desc *enable_gpio;
++	struct regulator_dev *rdev;
++	struct init_properties properties;
++	bool is_chip_enabled;
++	unsigned int curr_selector;
++};
++
++#define PROP_REG_DECL(_name, reg, mask) \
++{ offsetof(struct init_properties, _name), sizeof_field(struct init_properties, _name), reg, mask }
++
++static int rtmv20_apply_properties(struct rtmv20_priv *priv)
++{
++	const struct {
++		int offset;
++		int len;
++		unsigned int reg;
++		unsigned int mask;
++	} props[] = {
++		PROP_REG_DECL(ld_pulse_delay, RTMV20_REG_PULSEDELAY, RTMV20_DELAY_MASK),
++		PROP_REG_DECL(ld_pulse_width, RTMV20_REG_PULSEWIDTH, RTMV20_WIDTH_MASK),
++		PROP_REG_DECL(fsin1_delay, RTMV20_REG_FSIN1CTRL1, RTMV20_DELAY_MASK),
++		PROP_REG_DECL(fsin1_width, RTMV20_REG_FSIN1CTRL3, RTMV20_WIDTH2_MASK),
++		PROP_REG_DECL(fsin2_delay, RTMV20_REG_FSIN2CTRL1, RTMV20_DELAY_MASK),
++		PROP_REG_DECL(fsin2_width, RTMV20_REG_FSIN2CTRL3, RTMV20_WIDTH2_MASK),
++		PROP_REG_DECL(es_pulse_width, RTMV20_REG_ESPULSEWIDTH, RTMV20_WIDTH_MASK),
++		PROP_REG_DECL(es_ld_current, RTMV20_REG_ESLDCTRL1, RTMV20_LDCURR_MASK),
++		PROP_REG_DECL(lbp_level, RTMV20_REG_LBP, RTMV20_LBPLVL_MASK),
++		PROP_REG_DECL(lbp_enable, RTMV20_REG_LBP, RTMV20_LBPEN_MASK),
++		PROP_REG_DECL(strobe_polarity, RTMV20_REG_LDCTRL2, RTMV20_STROBEPOL_MASK),
++		PROP_REG_DECL(vsync_polarity, RTMV20_REG_LDCTRL2, RTMV20_VSYNPOL_MASK),
++		PROP_REG_DECL(fsin_enable, RTMV20_REG_ENCTRL, RTMV20_FSINEN_MASK),
++		PROP_REG_DECL(fsin_output, RTMV20_REG_ENCTRL, RTMV20_FSINOUT_MASK),
++		PROP_REG_DECL(es_enable, RTMV20_REG_ENCTRL, RTMV20_ESEN_MASK),
++	};
++	void *start = &priv->properties;
++	int i;
++
++	for (i = 0; i < ARRAY_SIZE(props); i++) {
++		u16 tmp = 0;
++		u16 *u16p = start + props[i].offset;
++		u8 *u8p = start + props[i].offset;
++		int shift = ffs(props[i].mask) - 1, ret;
++
++		switch (props[i].len) {
++		case RTMV20_2BYTE_ACCES:
++			ret = regmap_raw_read(priv->regmap, props[i].reg, &tmp, props[i].len);
++			if (ret)
++				return ret;
++
++			tmp = be16_to_cpu(tmp);
++			tmp &= ~props[i].mask;
++			tmp |= (*u16p << shift);
++			tmp = cpu_to_be16(tmp);
++
++			ret = regmap_raw_write(priv->regmap, props[i].reg, &tmp, props[i].len);
++			break;
++		case RTMV20_1BYTE_ACCES:
++			ret = regmap_update_bits(priv->regmap, props[i].reg, props[i].mask,
++						 *u8p << shift);
++			break;
++		default:
++			return -EINVAL;
++		}
++
++		if (ret)
++			return ret;
++	}
++
++	return 0;
++}
++
++static int rtmv20_lsw_set_current_limit(struct regulator_dev *rdev, int min_uA, int max_uA)
++{
++	struct rtmv20_priv *priv = rdev_get_drvdata(rdev);
++	int sel = -1;
++
++	if (min_uA > max_uA)
++		return -EINVAL;
++
++	if (max_uA < RTMV20_LSW_MINUA)
++		max_uA = RTMV20_LSW_MINUA;
++
++	if (max_uA > RTMV20_LSW_MAXUA)
++		max_uA = RTMV20_LSW_MAXUA;
++
++	sel = (max_uA - RTMV20_LSW_MINUA) / RTMV20_LSW_STEPUA;
++	sel <<= ffs(rdev->desc->csel_mask) - 1;
++
++	priv->curr_selector = sel;
++
++	/* If chip is not enabled, only kept the value, instead */
++	if (!priv->is_chip_enabled)
++		return 0;
++
++	return regmap_update_bits(priv->regmap, rdev->desc->csel_reg, rdev->desc->csel_mask, sel);
++}
++
++static int rtmv20_lsw_get_current_limit(struct regulator_dev *rdev)
++{
++	struct rtmv20_priv *priv = rdev_get_drvdata(rdev);
++	unsigned int val;
++	int ret;
++
++	/* If chip is not enabled, just use the stored selector to calculate the load current */
++	if (!priv->is_chip_enabled) {
++		val = priv->curr_selector;
++		goto bypass_read;
++	}
++
++	ret = regmap_read(priv->regmap, rdev->desc->csel_reg, &val);
++	if (ret)
++		return ret;
++
++	val &= rdev->desc->csel_mask;
++	val >>= ffs(rdev->desc->csel_mask) - 1;
++
++bypass_read:
++	return (RTMV20_LSW_STEPUA * val) + RTMV20_LSW_MINUA;
++}
++
++static int rtmv20_lsw_enable(struct regulator_dev *rdev)
++{
++	struct rtmv20_priv *priv = rdev_get_drvdata(rdev);
++	int ret;
++
++	gpiod_set_value(priv->enable_gpio, 1);
++	/* Wait for I2C can be accessed */
++	usleep_range(RTMV20_I2CRDY_TIMEUS, RTMV20_I2CRDY_TIMEUS + 100);
++
++	/* If enable gpio from low to high, the whole registers will be reset, applied here */
++	ret = rtmv20_apply_properties(priv);
++	if (ret)
++		dev_err(&rdev->dev, "Failed to apply properties\n");
++
++	/* Apply the selector after chip already enabled */
++	ret = regmap_update_bits(priv->regmap, rdev->desc->csel_reg, rdev->desc->csel_mask,
++				 priv->curr_selector);
++	if (ret)
++		dev_err(&rdev->dev, "Failed to config current selector\n");
++
++	ret = regmap_write(priv->regmap, RTMV20_REG_LDMASK, 0);
++	if (ret)
++		dev_err(&rdev->dev, "Failed to unmask all events\n");
++
++	priv->is_chip_enabled = true;
++	return regulator_enable_regmap(rdev);
++}
++
++static int rtmv20_lsw_disable(struct regulator_dev *rdev)
++{
++	struct rtmv20_priv *priv = rdev_get_drvdata(rdev);
++	int ret;
++
++	ret = regulator_disable_regmap(rdev);
++	if (ret)
++		return ret;
++
++	priv->is_chip_enabled = false;
++	gpiod_set_value(priv->enable_gpio, 0);
++
++	return 0;
++}
++
++static int rtmv20_lsw_is_enabled(struct regulator_dev *rdev)
++{
++	struct rtmv20_priv *priv = rdev_get_drvdata(rdev);
++	unsigned int val;
++	int ret;
++
++	/* If chip is not enabled, directly return */
++	if (!priv->is_chip_enabled)
++		return 0;
++
++	ret = regmap_read(priv->regmap, rdev->desc->enable_reg, &val);
++	if (ret)
++		return ret;
++
++	return ((val & rdev->desc->enable_mask) == rdev->desc->enable_mask) ? 1 : 0;
++}
++
++static const struct regulator_ops rtmv20_regulator_ops = {
++	.set_current_limit = rtmv20_lsw_set_current_limit,
++	.get_current_limit = rtmv20_lsw_get_current_limit,
++	.enable = rtmv20_lsw_enable,
++	.disable = rtmv20_lsw_disable,
++	.is_enabled = rtmv20_lsw_is_enabled,
++};
++
++static const struct regulator_desc rtmv20_lsw_desc = {
++	.name = "rtmv20,lsw",
++	.of_match = of_match_ptr("lsw"),
++	.type = REGULATOR_CURRENT,
++	.owner = THIS_MODULE,
++	.ops = &rtmv20_regulator_ops,
++	.csel_reg = RTMV20_REG_LDCTRL1,
++	.csel_mask = RTMV20_LDCURR_MASK,
++	.enable_reg = RTMV20_REG_ENCTRL,
++	.enable_mask = LDENABLE_MASK,
++	.enable_time = RTMV20_CSRDY_TIMEUS,
++};
++
++static irqreturn_t rtmv20_irq_handler(int irq, void *data)
++{
++	struct rtmv20_priv *priv = data;
++	unsigned int val;
++	int ret;
++
++	ret = regmap_read(priv->regmap, RTMV20_REG_LDIRQ, &val);
++	if (ret) {
++		dev_err(priv->dev, "Failed to get irq flags\n");
++		return IRQ_NONE;
++	}
++
++	if (val & OTPEVT_MASK)
++		regulator_notifier_call_chain(priv->rdev, REGULATOR_EVENT_OVER_TEMP, NULL);
++
++	if (val & OCPEVT_MASK)
++		regulator_notifier_call_chain(priv->rdev, REGULATOR_EVENT_OVER_CURRENT, NULL);
++
++	if (val & FAILEVT_MASK)
++		regulator_notifier_call_chain(priv->rdev, REGULATOR_EVENT_FAIL, NULL);
++
++	return IRQ_HANDLED;
++}
++
++#define PROP_DEFAULT_DECL(_name, _default, _min, _max, _step) \
++{ #_name, offsetof(struct init_properties, _name), sizeof_field(struct init_properties, _name), \
++	_default, _min, _max, _step }
++
++static int rtmv20_properties_init(struct device *dev, struct init_properties *properties)
++{
++	const struct {
++		const char *name;
++		int offset;
++		int len;
++		u32 def;
++		u32 min;
++		u32 max;
++		u32 step;
++	} props[] = {
++		PROP_DEFAULT_DECL(ld_pulse_delay, 0, 0, 100000, 100),
++		PROP_DEFAULT_DECL(ld_pulse_width, 1200, 0, 10000, 1),
++		PROP_DEFAULT_DECL(fsin1_delay, 23000, 0, 100000, 100),
++		PROP_DEFAULT_DECL(fsin1_width, 160, 40, 10000, 40),
++		PROP_DEFAULT_DECL(fsin2_delay, 23000, 0, 100000, 100),
++		PROP_DEFAULT_DECL(fsin2_width, 160, 40, 10000, 40),
++		PROP_DEFAULT_DECL(es_pulse_width, 1200, 0, 10000, 1),
++		PROP_DEFAULT_DECL(es_ld_current, 3000000, 0, 6000000, 30000),
++		PROP_DEFAULT_DECL(lbp_level, 2700000, 2400000, 3700000, 100000),
++		PROP_DEFAULT_DECL(lbp_enable, 0, 0, 1, 1),
++		PROP_DEFAULT_DECL(strobe_polarity, 1, 0, 1, 1),
++		PROP_DEFAULT_DECL(vsync_polarity, 1, 0, 1, 1),
++		PROP_DEFAULT_DECL(fsin_enable, 0, 0, 1, 1),
++		PROP_DEFAULT_DECL(fsin_output, 0, 0, 1, 1),
++		PROP_DEFAULT_DECL(es_enable, 0, 0, 1, 1),
++	};
++	void *start = properties;
++	int i;
++
++	for (i = 0; i < ARRAY_SIZE(props); i++) {
++		u32 temp;
++		u16 *pu16val = start + props[i].offset;
++		u8 *pu8val = start + props[i].offset;
++		int ret;
++
++		ret = device_property_read_u32(dev, props[i].name, &temp);
++		if (ret)
++			temp = props[i].def;
++
++		if (temp < props[i].min)
++			temp = props[i].min;
++		if (temp > props[i].max)
++			temp = props[i].max;
++
++		switch (props[i].len) {
++		case RTMV20_2BYTE_ACCES:
++			*pu16val = (temp - props[i].min) / props[i].step;
++			break;
++		case RTMV20_1BYTE_ACCES:
++			*pu8val = (temp - props[i].min) / props[i].step;
++			break;
++		default:
++			return -EINVAL;
++		}
++	}
++
++	return 0;
++}
++
++static int rtmv20_check_chip_exist(struct rtmv20_priv *priv)
++{
++	unsigned int val;
++	int ret;
++
++	ret = regmap_read(priv->regmap, RTMV20_REG_DEVINFO, &val);
++	if (ret)
++		return ret;
++
++	if ((val & RTMV20_VID_MASK) != RICHTEK_VID)
++		return -ENODEV;
++
++	return 0;
++}
++
++static bool rtmv20_is_accessible_reg(struct device *dev, unsigned int reg)
++{
++	switch (reg) {
++	case RTMV20_REG_DEVINFO ... RTMV20_REG_STRBVSYNDLYL:
++	case RTMV20_REG_LDIRQ:
++	case RTMV20_REG_LDSTAT:
++	case RTMV20_REG_LDMASK:
++		return true;
++	}
++	return false;
++}
++
++static const struct regmap_config rtmv20_regmap_config = {
++	.reg_bits = 8,
++	.val_bits = 8,
++	.max_register = RTMV20_REG_LDMASK,
++	.writeable_reg = rtmv20_is_accessible_reg,
++	.readable_reg = rtmv20_is_accessible_reg,
++};
++
++static int rtmv20_probe(struct i2c_client *i2c)
++{
++	struct rtmv20_priv *priv;
++	struct regulator_config config = {};
++	int ret;
++
++	priv = devm_kzalloc(&i2c->dev, sizeof(*priv), GFP_KERNEL);
++	if (!priv)
++		return -ENOMEM;
++
++	priv->dev = &i2c->dev;
++	/* Config IC default selector */
++	priv->curr_selector = (RTMV20_LSW_DEFAULTUA - RTMV20_LSW_MINUA) / RTMV20_LSW_STEPUA;
++
++	priv->regmap = devm_regmap_init_i2c(i2c, &rtmv20_regmap_config);
++	if (IS_ERR(priv->regmap)) {
++		dev_err(&i2c->dev, "Failed to allocate register map\n");
++		return PTR_ERR(priv->regmap);
++	}
++
++	priv->enable_gpio = devm_gpiod_get(&i2c->dev, "enable", GPIOD_OUT_HIGH);
++	if (IS_ERR(priv->enable_gpio)) {
++		dev_err(&i2c->dev, "Failed to get enable gpio\n");
++		return PTR_ERR(priv->enable_gpio);
++	}
++
++	/* Wait for I2C can be accessed */
++	usleep_range(RTMV20_I2CRDY_TIMEUS, RTMV20_I2CRDY_TIMEUS + 100);
++
++	ret = rtmv20_check_chip_exist(priv);
++	if (ret) {
++		dev_err(&i2c->dev, "Chip vendor info is not matched\n");
++		return ret;
++	}
++
++	/* After chip check, keep in shutdown mode for low quiescent current */
++	gpiod_set_value(priv->enable_gpio, 0);
++
++	ret = rtmv20_properties_init(&i2c->dev, &priv->properties);
++	if (ret) {
++		dev_err(&i2c->dev, "Failed to init properties\n");
++		return ret;
++	}
++
++	config.dev = &i2c->dev;
++	config.regmap = priv->regmap;
++	config.driver_data = priv;
++	priv->rdev = devm_regulator_register(&i2c->dev, &rtmv20_lsw_desc, &config);
++	if (IS_ERR(priv->rdev)) {
++		dev_err(&i2c->dev, "Failed to register regulator\n");
++		return PTR_ERR(priv->rdev);
++	}
++
++	return devm_request_threaded_irq(&i2c->dev, i2c->irq, NULL, rtmv20_irq_handler,
++					 IRQF_ONESHOT, dev_name(&i2c->dev), priv);
++}
++
++static int __maybe_unused rtmv20_suspend(struct device *dev)
++{
++	struct i2c_client *i2c = to_i2c_client(dev);
++
++	/* When system suspend, disable irq to prevent interrupt trigger during I2C bus suspend */
++	disable_irq(i2c->irq);
++	if (device_may_wakeup(dev))
++		enable_irq_wake(i2c->irq);
++
++	return 0;
++}
++
++static int __maybe_unused rtmv20_resume(struct device *dev)
++{
++	struct i2c_client *i2c = to_i2c_client(dev);
++
++	/* Enable irq here after I2C bus already resume */
++	enable_irq(i2c->irq);
++	if (device_may_wakeup(dev))
++		disable_irq_wake(i2c->irq);
++
++	return 0;
++}
++
++static SIMPLE_DEV_PM_OPS(rtmv20_pm, rtmv20_suspend, rtmv20_resume);
++
++static const struct of_device_id __maybe_unused rtmv20_of_id[] = {
++	{ .compatible = "richtek,rtmv20", },
++	{}
++};
++MODULE_DEVICE_TABLE(of, rtmv20_of_id);
++
++static struct i2c_driver rtmv20_driver = {
++	.driver = {
++		.name = "rtmv20",
++		.of_match_table = of_match_ptr(rtmv20_of_id),
++		.pm = &rtmv20_pm,
++	},
++	.probe_new = rtmv20_probe,
++};
++module_i2c_driver(rtmv20_driver);
++
++MODULE_AUTHOR("ChiYuan Huang <cy_huang@richtek.com>");
++MODULE_DESCRIPTION("Richtek RTMV20 Regulator Driver");
++MODULE_LICENSE("GPL v2");
+-- 
+2.7.4
+
