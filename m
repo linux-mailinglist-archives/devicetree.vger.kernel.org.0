@@ -2,51 +2,51 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from vger.kernel.org (vger.kernel.org [23.128.96.18])
-	by mail.lfdr.de (Postfix) with ESMTP id 4EE62277046
-	for <lists+devicetree@lfdr.de>; Thu, 24 Sep 2020 13:50:28 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTP id BDE9F277076
+	for <lists+devicetree@lfdr.de>; Thu, 24 Sep 2020 13:58:24 +0200 (CEST)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S1727388AbgIXLu1 (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Thu, 24 Sep 2020 07:50:27 -0400
-Received: from fllv0016.ext.ti.com ([198.47.19.142]:48908 "EHLO
+        id S1727468AbgIXL6X (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Thu, 24 Sep 2020 07:58:23 -0400
+Received: from fllv0016.ext.ti.com ([198.47.19.142]:50490 "EHLO
         fllv0016.ext.ti.com" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S1726406AbgIXLu1 (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Thu, 24 Sep 2020 07:50:27 -0400
-Received: from lelv0266.itg.ti.com ([10.180.67.225])
-        by fllv0016.ext.ti.com (8.15.2/8.15.2) with ESMTP id 08OBoOCF060034;
-        Thu, 24 Sep 2020 06:50:24 -0500
+        with ESMTP id S1727437AbgIXL6X (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Thu, 24 Sep 2020 07:58:23 -0400
+Received: from lelv0265.itg.ti.com ([10.180.67.224])
+        by fllv0016.ext.ti.com (8.15.2/8.15.2) with ESMTP id 08OBwJBA063493;
+        Thu, 24 Sep 2020 06:58:19 -0500
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=ti.com;
-        s=ti-com-17Q1; t=1600948224;
-        bh=jcNWHhGPu1Ikd/YQGWpK265untLOjRLtIljXEJdpu8w=;
+        s=ti-com-17Q1; t=1600948699;
+        bh=Kx975IonNS5fdPzc1CvdbkZGQbbLSeWnCwzcvYSifOo=;
         h=Subject:To:CC:References:From:Date:In-Reply-To;
-        b=qcZrDN/pmwKnykbhy8qTR27HoHNJcCFkzEIyINvPdJUiMExFt8QJKSrzlVCBr4orM
-         Wn5LZZEYmYjIDixzyo5/FXhbp9wW1mDSTLceHnBgOeL/XRWQaTqx1oGWi4N8mnlX0H
-         c104AcrNfInHojDK1WqjOnZ2GXDaGOxNiviMMPA0=
-Received: from DFLE102.ent.ti.com (dfle102.ent.ti.com [10.64.6.23])
-        by lelv0266.itg.ti.com (8.15.2/8.15.2) with ESMTPS id 08OBoOkL026592
+        b=cu7lCmqN1zvQtRJpCtyBoCWMzNDmcIIRDpvl3nJv2Hv0YrZkmLha2figDgEE0iyoo
+         jvaVBlGNnLnpvvxGPXT2Z4fJr8fU8P6abLa4zRd50xM8S7eeSDISu88sp3VEqHHeBC
+         AwbRaUBukOSD+SbXhEtObxmYOSrRu6Lza5ORtPnQ=
+Received: from DLEE102.ent.ti.com (dlee102.ent.ti.com [157.170.170.32])
+        by lelv0265.itg.ti.com (8.15.2/8.15.2) with ESMTPS id 08OBwJTB027044
         (version=TLSv1.2 cipher=AES256-GCM-SHA384 bits=256 verify=FAIL);
-        Thu, 24 Sep 2020 06:50:24 -0500
-Received: from DFLE105.ent.ti.com (10.64.6.26) by DFLE102.ent.ti.com
- (10.64.6.23) with Microsoft SMTP Server (version=TLS1_2,
+        Thu, 24 Sep 2020 06:58:19 -0500
+Received: from DLEE104.ent.ti.com (157.170.170.34) by DLEE102.ent.ti.com
+ (157.170.170.32) with Microsoft SMTP Server (version=TLS1_2,
  cipher=TLS_ECDHE_RSA_WITH_AES_128_CBC_SHA256_P256) id 15.1.1979.3; Thu, 24
- Sep 2020 06:50:24 -0500
-Received: from lelv0326.itg.ti.com (10.180.67.84) by DFLE105.ent.ti.com
- (10.64.6.26) with Microsoft SMTP Server (version=TLS1_2,
+ Sep 2020 06:58:18 -0500
+Received: from lelv0326.itg.ti.com (10.180.67.84) by DLEE104.ent.ti.com
+ (157.170.170.34) with Microsoft SMTP Server (version=TLS1_2,
  cipher=TLS_ECDHE_RSA_WITH_AES_128_CBC_SHA256_P256) id 15.1.1979.3 via
- Frontend Transport; Thu, 24 Sep 2020 06:50:24 -0500
-Received: from [10.24.69.198] (ileax41-snat.itg.ti.com [10.172.224.153])
-        by lelv0326.itg.ti.com (8.15.2/8.15.2) with ESMTP id 08OBoLSr075688;
-        Thu, 24 Sep 2020 06:50:22 -0500
+ Frontend Transport; Thu, 24 Sep 2020 06:58:18 -0500
+Received: from [10.250.235.166] (ileax41-snat.itg.ti.com [10.172.224.153])
+        by lelv0326.itg.ti.com (8.15.2/8.15.2) with ESMTP id 08OBwFsk088303;
+        Thu, 24 Sep 2020 06:58:16 -0500
 Subject: Re: [PATCH v2 0/2] Add support for MMC/SD on j7200-evm
 To:     Faiz Abbas <faiz_abbas@ti.com>, <linux-kernel@vger.kernel.org>,
         <devicetree@vger.kernel.org>,
         <linux-arm-kernel@lists.infradead.org>
-CC:     <robh+dt@kernel.org>, <nm@ti.com>, <t-kristo@ti.com>
+CC:     <nm@ti.com>, <t-kristo@ti.com>, <robh+dt@kernel.org>
 References: <20200924112644.11076-1-faiz_abbas@ti.com>
-From:   Sekhar Nori <nsekhar@ti.com>
-Message-ID: <6a5fa65a-6b42-87e1-71f0-5fa41dab5348@ti.com>
-Date:   Thu, 24 Sep 2020 17:20:20 +0530
-User-Agent: Mozilla/5.0 (X11; Linux x86_64; rv:60.0) Gecko/20100101
- Thunderbird/60.9.0
+From:   Vignesh Raghavendra <vigneshr@ti.com>
+Message-ID: <f4444de5-cde4-9f08-d8d7-1ecdbf071258@ti.com>
+Date:   Thu, 24 Sep 2020 17:28:15 +0530
+User-Agent: Mozilla/5.0 (X11; Linux x86_64; rv:68.0) Gecko/20100101
+ Thunderbird/68.10.0
 MIME-Version: 1.0
 In-Reply-To: <20200924112644.11076-1-faiz_abbas@ti.com>
 Content-Type: text/plain; charset="utf-8"
@@ -57,17 +57,43 @@ Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-On 24/09/20 4:56 PM, Faiz Abbas wrote:
+
+
+On 9/24/20 4:56 PM, Faiz Abbas wrote:
 > The following patches add dt support for MMC/SD on TI's j7200-evm.
 > 
 > Currently, eMMC support upto HS200 speed and SD card supports upto high
 > speed speed mode.
+> 
+> v2:
+> Fixed node names to use mmc@* format
+> Fixed reg address format to align with others in the file
+> 
+> Faiz Abbas (2):
+>   arm64: dts: ti: k3-j7200-main: Add support for MMC/SD controller nodes
+>   arm64: dts: ti: k3-j7200-common-proc-board: Add support for eMMC and
+>     SD card
+> 
+>  .../dts/ti/k3-j7200-common-proc-board.dts     | 28 ++++++++++++++
+>  arch/arm64/boot/dts/ti/k3-j7200-main.dtsi     | 37 +++++++++++++++++++
+>  2 files changed, 65 insertions(+)
+> 
+For the series:
 
-To be sure, the TRM calls for SD card speed up to DDR50. And I believe
-there is work going on to go higher too. That needs voltage switching
-though and can come in as follow-on patches. This is good first step.
+Tested-by: Vignesh Raghavendra <vigneshr@ti.com>
 
-Reviewed-by: Sekhar Nori <nsekhar@ti.com>
 
-Thanks,
-Sekhar
+[    1.678263] mmc0: Command Queue Engine enabled
+[    1.682727] mmc0: new HS200 MMC card at address 0001
+[    1.688193] mmcblk0: mmc0:0001 S0J56X 14.8 GiB
+[    1.692971] mmcblk0boot0: mmc0:0001 S0J56X partition 1 31.5 MiB
+[    1.699138] mmcblk0boot1: mmc0:0001 S0J56X partition 2 31.5 MiB
+[    1.705268] mmcblk0rpmb: mmc0:0001 S0J56X partition 3 4.00 MiB, ch
+ardev (240:0)
+[    1.789527] mmc1: new high speed SDHC card at address aaaa
+[    1.795621] mmcblk1: mmc1:aaaa SC16G 14.8 GiB
+[    1.810074]  mmcblk1: p1 p2
+
+
+SD hot plug works fine too..
+Full log: https://pastebin.ubuntu.com/p/5hcCQDjhtW/
