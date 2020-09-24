@@ -2,263 +2,167 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from vger.kernel.org (vger.kernel.org [23.128.96.18])
-	by mail.lfdr.de (Postfix) with ESMTP id 173152774C7
-	for <lists+devicetree@lfdr.de>; Thu, 24 Sep 2020 17:05:08 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTP id 2F7BC277542
+	for <lists+devicetree@lfdr.de>; Thu, 24 Sep 2020 17:28:11 +0200 (CEST)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S1728367AbgIXPFG (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Thu, 24 Sep 2020 11:05:06 -0400
-Received: from lindbergh.monkeyblade.net ([23.128.96.19]:35208 "EHLO
-        lindbergh.monkeyblade.net" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S1728192AbgIXPFD (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Thu, 24 Sep 2020 11:05:03 -0400
-Received: from mail-pf1-x432.google.com (mail-pf1-x432.google.com [IPv6:2607:f8b0:4864:20::432])
-        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 79D4CC0613CE;
-        Thu, 24 Sep 2020 08:05:03 -0700 (PDT)
-Received: by mail-pf1-x432.google.com with SMTP id z19so2063655pfn.8;
-        Thu, 24 Sep 2020 08:05:03 -0700 (PDT)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=gmail.com; s=20161025;
-        h=from:to:cc:subject:date:message-id:in-reply-to:references;
-        bh=m+rwhbMbOkhwHZS7MVNwyAdTQvHyVvU7pAv4TyqFRkM=;
-        b=VfKwWQ+G2wENqfpRBAFvNmiGxL8iAKh8GUN2EuSmaqo7Fqpt31GmfpzxGmtM5Bgp69
-         3A1wN/NyRTcjl+WGs2jFQmq19aWw2xkNQwYjrglGfXmRjbR8Hmev6TcIfjpjITJ5VQ7j
-         cItorCVKI5KS6Ta4KZwrtsSjofHFLtynwz3E7Z7kqA0yRrUKQExAHvWQaYBio38GFFG4
-         nrOgUO4XS7dGxDJH5Y2H885gVPHF+NJ+rw1i6hRU7MisfPKjZC9Mye8C7t1JLj4FSucx
-         rF9W/F7rP0G9rXd4p7HxJUE3gQEelJIobqH5+g2aVh4C0K9uRheBzbpgAPwTQrt1756J
-         Tbbg==
-X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=1e100.net; s=20161025;
-        h=x-gm-message-state:from:to:cc:subject:date:message-id:in-reply-to
-         :references;
-        bh=m+rwhbMbOkhwHZS7MVNwyAdTQvHyVvU7pAv4TyqFRkM=;
-        b=f0bW6YEz7nKKgmby6pTxcuWs39BnB/A+RQOizQ77GxDz9iTlBra3Qqb/YoH/uZgFFU
-         n76rq82Zb8vxTvovUjOsCAlGHycLKIbK+uCcdpfjh16KGA7JqU6NJqR8tHylpOFFnE+A
-         91hd5dL5sup3u2XrZKfA47eGpD28GmkjXDCsd73QuG3FeMrdDAiJTjNa2qJu6cMsfSRq
-         WQqCeXnIk/a7RJ6Me878YxLNuBWL9GMorOX85cp371m53FggYajZNIy9xQcQP8Hcnjcb
-         a77vV6RTCSxBRXp0O6xq3ziXwq930wOw3aF1oOdew1dAhiRJPUXiIaVrjjRkHMwYRCZw
-         wpUg==
-X-Gm-Message-State: AOAM532coMxoAWnsC+VAzf4k3qESWVnpiBlV4l+3Ned/QjgO1TCIQlG1
-        B9Q09XppL5+xuF0qBAsUAhI=
-X-Google-Smtp-Source: ABdhPJzsmLyvOLFsXw6ci+HQWTLqWr663gRWppVZQhKbJplhLkXnxaJ7KkE+K09YpBdKPLecyIWU8A==
-X-Received: by 2002:a65:624e:: with SMTP id q14mr41911pgv.307.1600959902862;
-        Thu, 24 Sep 2020 08:05:02 -0700 (PDT)
-Received: from localhost.localdomain ([123.110.152.116])
-        by smtp.gmail.com with ESMTPSA id w203sm3747251pff.0.2020.09.24.08.05.00
-        (version=TLS1_2 cipher=ECDHE-ECDSA-AES128-GCM-SHA256 bits=128/128);
-        Thu, 24 Sep 2020 08:05:02 -0700 (PDT)
-From:   cy_huang <u0084500@gmail.com>
-To:     lgirdwood@gmail.com, broonie@kernel.org, robh+dt@kernel.org
-Cc:     linux-kernel@vger.kernel.org, cy_huang@richtek.com,
-        devicetree@vger.kernel.org
-Subject: [PATCH v1 2/2] regulator: rtmv20: Add DT-binding document for Richtek RTMV20
-Date:   Thu, 24 Sep 2020 23:04:51 +0800
-Message-Id: <1600959891-16606-2-git-send-email-u0084500@gmail.com>
-X-Mailer: git-send-email 2.7.4
-In-Reply-To: <1600959891-16606-1-git-send-email-u0084500@gmail.com>
-References: <1600959891-16606-1-git-send-email-u0084500@gmail.com>
+        id S1728385AbgIXP2H (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Thu, 24 Sep 2020 11:28:07 -0400
+Received: from netrider.rowland.org ([192.131.102.5]:53625 "HELO
+        netrider.rowland.org" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
+        with SMTP id S1728384AbgIXP2A (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Thu, 24 Sep 2020 11:28:00 -0400
+Received: (qmail 1340421 invoked by uid 1000); 24 Sep 2020 11:27:58 -0400
+Date:   Thu, 24 Sep 2020 11:27:58 -0400
+From:   Alan Stern <stern@rowland.harvard.edu>
+To:     Matthias Kaehlcke <mka@chromium.org>
+Cc:     Greg Kroah-Hartman <gregkh@linuxfoundation.org>,
+        Rob Herring <robh+dt@kernel.org>,
+        Frank Rowand <frowand.list@gmail.com>,
+        linux-usb@vger.kernel.org,
+        Douglas Anderson <dianders@chromium.org>,
+        Bastien Nocera <hadess@hadess.net>,
+        Ravi Chandra Sadineni <ravisadineni@chromium.org>,
+        Peter Chen <peter.chen@nxp.com>,
+        Krzysztof Kozlowski <krzk@kernel.org>,
+        devicetree@vger.kernel.org, Stephen Boyd <swboyd@chromium.org>,
+        linux-kernel@vger.kernel.org,
+        "Alexander A. Klimov" <grandmaster@al2klimov.de>,
+        Masahiro Yamada <masahiroy@kernel.org>
+Subject: Re: [PATCH v3 2/2] USB: misc: Add onboard_usb_hub driver
+Message-ID: <20200924152758.GA1337044@rowland.harvard.edu>
+References: <20200923180952.v3.1.I248292623d3d0f6a4f0c5bc58478ca3c0062b49a@changeid>
+ <20200923180952.v3.2.I7c9a1f1d6ced41dd8310e8a03da666a32364e790@changeid>
+MIME-Version: 1.0
+Content-Type: text/plain; charset=us-ascii
+Content-Disposition: inline
+In-Reply-To: <20200923180952.v3.2.I7c9a1f1d6ced41dd8310e8a03da666a32364e790@changeid>
+User-Agent: Mutt/1.10.1 (2018-07-13)
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-From: ChiYuan Huang <cy_huang@richtek.com>
+On Wed, Sep 23, 2020 at 06:10:12PM -0700, Matthias Kaehlcke wrote:
+> The main issue this driver addresses is that a USB hub needs to be
+> powered before it can be discovered. For discrete onboard hubs (an
+> example for such a hub is the Realtek RTS5411) this is often solved
+> by supplying the hub with an 'always-on' regulator, which is kind
+> of a hack. Some onboard hubs may require further initialization
+> steps, like changing the state of a GPIO or enabling a clock, which
+> requires even more hacks. This driver creates a platform device
+> representing the hub which performs the necessary initialization.
+> Currently it only supports switching on a single regulator, support
+> for multiple regulators or other actions can be added as needed.
+> Different initialization sequences can be supported based on the
+> compatible string.
+> 
+> Besides performing the initialization the driver can be configured
+> to power the hub off during system suspend. This can help to extend
+> battery life on battery powered devices which have no requirements
+> to keep the hub powered during suspend. The driver can also be
+> configured to leave the hub powered when a wakeup capable USB device
+> is connected when suspending, and power it off otherwise.
+> 
+> Technically the driver consists of two drivers, the platform driver
+> described above and a very thin USB driver that subclasses the
+> generic driver. The purpose of this driver is to provide the platform
+> driver with the USB devices corresponding to the hub(s) (a hub
+> controller may provide multiple 'logical' hubs, e.g. one to support
+> USB 2.0 and another for USB 3.x).
+> 
+> Co-developed-by: Ravi Chandra Sadineni <ravisadineni@chromium.org>
+> Signed-off-by: Ravi Chandra Sadineni <ravisadineni@chromium.org>
+> Signed-off-by: Matthias Kaehlcke <mka@chromium.org>
+> ---
 
-Add DT-binding document for Richtek RTMV20
+> --- a/drivers/usb/misc/Kconfig
+> +++ b/drivers/usb/misc/Kconfig
+> @@ -275,3 +275,19 @@ config USB_CHAOSKEY
+>  
+>  	  To compile this driver as a module, choose M here: the
+>  	  module will be called chaoskey.
+> +
+> +config USB_ONBOARD_HUB
+> +	tristate "Onboard USB hub support"
+> +	depends on OF || COMPILE_TEST
+> +	help
+> +	  Say Y here if you want to support discrete onboard USB hubs that
+> +	  don't require an additional control bus for initialization (an
 
-Signed-off-by: ChiYuan Huang <cy_huang@richtek.com>
----
- .../regulator/richtek,rtmv20-regulator.yaml        | 183 +++++++++++++++++++++
- 1 file changed, 183 insertions(+)
- create mode 100644 Documentation/devicetree/bindings/regulator/richtek,rtmv20-regulator.yaml
+... but does require nontrivial form of initialization, such as
+enabling a power regulator.
 
-diff --git a/Documentation/devicetree/bindings/regulator/richtek,rtmv20-regulator.yaml b/Documentation/devicetree/bindings/regulator/richtek,rtmv20-regulator.yaml
-new file mode 100644
-index 00000000..0e906af
---- /dev/null
-+++ b/Documentation/devicetree/bindings/regulator/richtek,rtmv20-regulator.yaml
-@@ -0,0 +1,183 @@
-+# SPDX-License-Identifier: GPL-2.0
-+%YAML 1.2
-+---
-+$id: http://devicetree.org/schemas/regulator/richtek,rtmv20-regulator.yaml#
-+$schema: http://devicetree.org/meta-schemas/core.yaml#
-+
-+title: Richtek RTMV20 laser diode regulator
-+
-+maintainers:
-+  - ChiYuan Huang <cy_huang@richtek.com>
-+
-+description: |
-+  Richtek RTMV20 is a load switch current regulator that can supply up to 6A.
-+  It is used to drive laser diode. There're two signals for chip controls
-+  (Enable/Fail), Enable pin to turn chip on, and Fail pin as fault indication.
-+  There're still four pins for camera control, two inputs (strobe and vsync),
-+  the others for outputs (fsin1 and fsin2). Strobe input to start the current
-+  supply, vsync input from IR camera, and fsin1/fsin2 output for the optional.
-+
-+properties:
-+  compatible:
-+    const: richtek,rtmv20
-+
-+  reg:
-+    maxItems: 1
-+
-+  wakeup-source: true
-+
-+  interrupts-extend:
-+    maxItems: 1
-+
-+  enable-gpio:
-+    description: A connection of the 'enable' gpio line.
-+    maxItems: 1
-+
-+  ld_pulse_delay:
-+    description: |
-+      load current pulse delay in microsecond after strobe pin pulse high.
-+    $ref: "/schemas/types.yaml#/definitions/uint32"
-+    minimum: 0
-+    maximum: 100000
-+    default: 0
-+
-+  ld_pulse_width:
-+    description: |
-+      Load current pulse width in microsecond after strobe pin pulse high.
-+    $ref: "/schemas/types.yaml#/definitions/uint32"
-+    minimum: 0
-+    maximum: 10000
-+    default: 1200
-+
-+  fsin1_delay:
-+    description: |
-+      Fsin1 pulse high delay in microsecond after vsync signal pulse high.
-+    $ref: "/schemas/types.yaml#/definitions/uint32"
-+    minimum: 0
-+    maximum: 100000
-+    default: 23000
-+
-+  fsin1_width:
-+    description: |
-+      Fsin1 pulse high width in microsecond after vsync signal pulse high.
-+    $ref: "/schemas/types.yaml#/definitions/uint32"
-+    minimum: 40
-+    maximum: 10000
-+    default: 160
-+
-+  fsin2_delay:
-+    description: |
-+      Fsin2 pulse high delay in microsecond after vsync signal pulse high.
-+    $ref: "/schemas/types.yaml#/definitions/uint32"
-+    minimum: 0
-+    maximum: 100000
-+    default: 23000
-+
-+  fsin2_width:
-+    description: |
-+      Fsin2 pulse high width in microsecond after vsync signal pulse high.
-+    $ref: "/schemas/types.yaml#/definitions/uint32"
-+    minimum: 40
-+    maximum: 10000
-+    default: 160
-+
-+  es_pulse_width:
-+    description: Eye safety function pulse width limit in microsecond.
-+    $ref: "/schemas/types.yaml#/definitions/uint32"
-+    minimum: 0
-+    maximum: 10000
-+    default: 1200
-+
-+  es_ld_current:
-+    description: Eye safety function load current limit in microamp.
-+    $ref: "/schemas/types.yaml#/definitions/uint32"
-+    minimum: 0
-+    maximum: 6000000
-+    default: 3000000
-+
-+  lbp_level:
-+    description: Low battery protection level in microvolt.
-+    $ref: "/schemas/types.yaml#/definitions/uint32"
-+    minimum: 2400000
-+    maximum: 3700000
-+    default: 2700000
-+
-+  lbp_enable:
-+    description: Low battery protection function enable control.
-+    $ref: "/schemas/types.yaml#/definitions/uint32"
-+    minimum: 0
-+    maximum: 1
-+    default: 0
-+
-+  strobe_polarity:
-+    description: Strobe pin active polarity control.
-+    $ref: "/schemas/types.yaml#/definitions/uint32"
-+    minimum: 0
-+    maximum: 1
-+    default: 1
-+
-+  vsync_polarity:
-+    description: Vsync pin active polarity control.
-+    $ref: "/schemas/types.yaml#/definitions/uint32"
-+    minimum: 0
-+    maximum: 1
-+    default: 1
-+
-+  fsin_enable:
-+    description: Fsin function enable control.
-+    $ref: "/schemas/types.yaml#/definitions/uint32"
-+    minimum: 0
-+    maximum: 1
-+    default: 0
-+
-+  fsin_output:
-+    description: Fsin function output control.
-+    $ref: "/schemas/types.yaml#/definitions/uint32"
-+    minimum: 0
-+    maximum: 1
-+    default: 0
-+
-+  es_enable:
-+    description: Eye safety function enable control.
-+    $ref: "/schemas/types.yaml#/definitions/uint32"
-+    minimum: 0
-+    maximum: 1
-+    default: 0
-+
-+patternProperties:
-+  "lsw":
-+    type: object
-+    $ref: "regulator.yaml#"
-+
-+required:
-+  - compatible
-+  - reg
-+  - wakeup-source
-+  - interrupts-extend
-+  - enable-gpio
-+  - lsw
-+
-+additionalProperties: false
-+
-+examples:
-+  - |
-+    #include <dt-bindings/interrupt-controller/irq.h>
-+    i2c {
-+      #address-cells = <1>;
-+      #size-cells = <0>;
-+
-+      rtmv20@34 {
-+        compatible = "richtek,rtmv20";
-+        reg = <0x34>;
-+        wakeup-source;
-+        interrupts-extend = <&gpio26 2 IRQ_TYPE_LEVEL_LOW>;
-+        enable-gpio = <&gpio26 3 0>;
-+
-+        lsw {
-+                regulator-name = "rtmv20,lsw";
-+                regulator-min-microamp = <0>;
-+                regulator-max-microamp = <6000000>;
-+        };
-+      };
-+    };
-+...
--- 
-2.7.4
 
+> +static void onboard_hub_remove_usbdev(struct onboard_hub *hub, struct usb_device *udev)
+> +{
+> +	struct udev_node *node;
+> +
+> +	smp_rmb();
+> +	if (hub->going_away) {
+> +		/*
+> +		 * We are most likely being called as a result of unbinding a USB device from
+> +		 * onboard_hub_remove(). This function also holds the lock and iterates over
+> +		 * 'udev_list'. Skip deleting the node in this case to avoid a self deadlock,
+> +		 * keeping the node in the list isn't a problem, since the device is about to go
+> +		 * away.
+> +		 */
+> +		return;
+> +	}
+
+This part has a suspicious look.  For one thing, there's no comment
+explaining the purpose of the smp_rmb().  For another, that barrier
+doesn't seem to pair with any other memory barrier in the driver.
+
+I get that you want to avoid self-deadlock here.  But there must be a
+better way.  See below.
+
+> +static int onboard_hub_remove(struct platform_device *pdev)
+> +{
+> +	struct onboard_hub *hub = dev_get_drvdata(&pdev->dev);
+> +	struct udev_node *node;
+> +
+> +	hub->going_away = true;
+> +
+> +	mutex_lock(&hub->lock);
+> +
+> +	/* unbind the USB devices to avoid dangling references to this device */
+> +	list_for_each_entry(node, &hub->udev_list, list)
+> +		device_release_driver(&node->udev->dev);
+> +
+> +	mutex_unlock(&hub->lock);
+
+Alternative approach:
+
+	/* unbind the USB devices to avoid dangling references to this device */
+	mutex_lock(&hub->lock);
+	while (!list_empty(&hub->udev_list)) {
+		node = list_first_entry(&hub->udev_list, struct udev_node, list);
+		udev = node->udev;
+
+		/*
+		 * Unbinding the driver will call onboard_hub_remove_usbdev(),
+		 * which acquires hub->lock.  We must release the lock first.
+		 */
+		usb_get_device(udev);
+		mutex_unlock(&hub->lock);
+		device_release_driver(&udev->dev);
+		usb_put_device(udev);
+		mutex_lock(&hub->lock);
+	}
+	mutex_unlock(&hub->lock);
+
+> +static int onboard_hub_usbdev_probe(struct usb_device *udev)
+> +{
+> +	struct device *dev = &udev->dev;
+> +	struct onboard_hub *hub;
+> +
+> +	/* ignore supported hubs without device tree node */
+> +	if (!dev->of_node)
+> +		return -ENODEV;
+> +
+> +	hub = _find_onboard_hub(dev);
+> +	if (IS_ERR(hub))
+> +		return PTR_ERR(dev);
+
+hub, not dev.
+
+Alan Stern
