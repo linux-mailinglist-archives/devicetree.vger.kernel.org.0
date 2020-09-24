@@ -2,150 +2,101 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from vger.kernel.org (vger.kernel.org [23.128.96.18])
-	by mail.lfdr.de (Postfix) with ESMTP id 305CB276FE7
-	for <lists+devicetree@lfdr.de>; Thu, 24 Sep 2020 13:27:32 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTP id 3CF45276FF8
+	for <lists+devicetree@lfdr.de>; Thu, 24 Sep 2020 13:31:10 +0200 (CEST)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S1726850AbgIXL1b (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Thu, 24 Sep 2020 07:27:31 -0400
-Received: from lindbergh.monkeyblade.net ([23.128.96.19]:57896 "EHLO
+        id S1726731AbgIXLbG (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Thu, 24 Sep 2020 07:31:06 -0400
+Received: from lindbergh.monkeyblade.net ([23.128.96.19]:58448 "EHLO
         lindbergh.monkeyblade.net" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S1726731AbgIXL1a (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Thu, 24 Sep 2020 07:27:30 -0400
-Received: from mail-wm1-x344.google.com (mail-wm1-x344.google.com [IPv6:2a00:1450:4864:20::344])
-        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 6E4A0C0613CE;
-        Thu, 24 Sep 2020 04:27:30 -0700 (PDT)
-Received: by mail-wm1-x344.google.com with SMTP id w2so3160226wmi.1;
-        Thu, 24 Sep 2020 04:27:30 -0700 (PDT)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=gmail.com; s=20161025;
-        h=date:from:to:cc:subject:message-id:references:mime-version
-         :content-disposition:in-reply-to:user-agent;
-        bh=tLMDNFt9TJF/ZryOzL1ilHgxO48Y454udYyrZfWfvtQ=;
-        b=KE9bXRFAViekuZoQZduiZKVxdWJdrkIl2nLqMZo98FdrI2wiDLcGMDaJ4mPks0qBOl
-         MMZGVnsc5FWJkREASoSaaYGas7QORH0Y4IMjXqUJZ9qMnmY/dYGtJ11e5xbrcCG4a2lC
-         QO5ulEPD55sfnzYwi5M1/ChtdiZdWlVdLsDcr/QsyTrcT+5OqWPdVymYV/39Vd9iGXxT
-         B7UHReiElDB66vlbn0XCRg8J3wws7U9E2uoIcpk3rx4YRx4IxirinXjeePIeawmAw6GD
-         g+MN3djt+ctElTBdm2Oidz9ASuhLPBgM1AmCdSw/x1oa78MFUnbONXDQIjAsY/LNeN6z
-         ypog==
-X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=1e100.net; s=20161025;
-        h=x-gm-message-state:date:from:to:cc:subject:message-id:references
-         :mime-version:content-disposition:in-reply-to:user-agent;
-        bh=tLMDNFt9TJF/ZryOzL1ilHgxO48Y454udYyrZfWfvtQ=;
-        b=bIaMIS6io8ziZwExpDR+7kv0Icho1QAHJfUZnh+ZmAEAsd+BC2fjMKySQugTDfpbFR
-         V3UTiyNqxVz8NNSNmf303pSnbGHEnbX4DEqkAlxrHKmp61MwnN5ZttpcaBiHOPjwX2yR
-         weNL53En/aze2HxPKTJoH5D0WD+BH8SG0NpHjpWzBtTLzGbhVvOCjLvW2F/qvZHDB/6v
-         6Orvllwl6dcJKcikYaYHjSgpy8kCWBQ/evqsW+q2lo7dgPVDfKn63wz8ScH/7V5fG598
-         rIRdFEK63gFWOLxw6x8cBqzqqATOpRBOFbUM1ZbsZBt3Zl1X5ScgMH9nZUFp908OzfmY
-         5c7w==
-X-Gm-Message-State: AOAM530z4rJNi+IJTaw/H/c3bfXHeZxacbbwbE8N3qouRk+KS1lAGscd
-        dsN+ToxIoJ07tejkjxvTcug=
-X-Google-Smtp-Source: ABdhPJzzr875MyIIlAKjUsDN40VPniPu1+Ti6Bzsj+dgGRxzdCtL/zGiHjqFXhZtmTarjQZLVFj8Hw==
-X-Received: by 2002:a1c:dd45:: with SMTP id u66mr4311728wmg.117.1600946849132;
-        Thu, 24 Sep 2020 04:27:29 -0700 (PDT)
-Received: from localhost ([217.111.27.204])
-        by smtp.gmail.com with ESMTPSA id t124sm3381875wmg.31.2020.09.24.04.27.27
-        (version=TLS1_3 cipher=TLS_AES_256_GCM_SHA384 bits=256/256);
-        Thu, 24 Sep 2020 04:27:27 -0700 (PDT)
-Date:   Thu, 24 Sep 2020 13:27:25 +0200
-From:   Thierry Reding <thierry.reding@gmail.com>
-To:     Rob Herring <robh@kernel.org>
-Cc:     Joerg Roedel <joro@8bytes.org>,
-        Frank Rowand <frowand.list@gmail.com>,
-        Will Deacon <will@kernel.org>,
-        Robin Murphy <robin.murphy@arm.com>,
-        iommu@lists.linux-foundation.org, devicetree@vger.kernel.org,
-        linux-kernel@vger.kernel.org
-Subject: Re: [PATCH v2 1/4] dt-bindings: reserved-memory: Document "active"
- property
-Message-ID: <20200924112725.GA2486709@ulmo>
-References: <20200904130000.691933-1-thierry.reding@gmail.com>
- <20200914220829.GA330122@bogus>
- <20200915123648.GA3496938@ulmo>
+        with ESMTP id S1726617AbgIXLbG (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Thu, 24 Sep 2020 07:31:06 -0400
+Received: from ssl.serverraum.org (ssl.serverraum.org [IPv6:2a01:4f8:151:8464::1:2])
+        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 2787AC0613CE;
+        Thu, 24 Sep 2020 04:31:06 -0700 (PDT)
+Received: from ssl.serverraum.org (web.serverraum.org [172.16.0.2])
+        (using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
+        (No client certificate requested)
+        by ssl.serverraum.org (Postfix) with ESMTPSA id 7280122F9C;
+        Thu, 24 Sep 2020 13:31:00 +0200 (CEST)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=walle.cc; s=mail2016061301;
+        t=1600947062;
+        h=from:from:reply-to:subject:subject:date:date:message-id:message-id:
+         to:to:cc:cc:mime-version:mime-version:content-type:content-type:
+         content-transfer-encoding:content-transfer-encoding:
+         in-reply-to:in-reply-to:references:references;
+        bh=Y9uiVuDlDurWMBLr4DK3ZvbWHNzJ3UuorXgrA6S7yTo=;
+        b=ALBCS4kz/N/WYzAl+Gfzrx0IfLLa5cL3I2vF7nmngeS2eABzmOVm2TNFLrmsXdP0i1RPlR
+        c61YLjyGNaPRgzTAECQKGS61p6D0xx+HQZlik8zLenvVbTXVMTPHkIRaBC/TSj3NgRj5BA
+        V0/NwlJ7kG9i21VqnWXopznrvkLRmto=
 MIME-Version: 1.0
-Content-Type: multipart/signed; micalg=pgp-sha256;
-        protocol="application/pgp-signature"; boundary="9jxsPFA5p3P2qPhR"
-Content-Disposition: inline
-In-Reply-To: <20200915123648.GA3496938@ulmo>
-User-Agent: Mutt/1.14.7 (2020-08-29)
+Content-Type: text/plain; charset=US-ASCII;
+ format=flowed
+Content-Transfer-Encoding: 7bit
+Date:   Thu, 24 Sep 2020 13:31:00 +0200
+From:   Michael Walle <michael@walle.cc>
+To:     Leo Li <leoyang.li@nxp.com>
+Cc:     linux-arm-kernel@lists.infradead.org, devicetree@vger.kernel.org,
+        linux-kernel@vger.kernel.org, linux-can@vger.kernel.org,
+        Shawn Guo <shawnguo@kernel.org>,
+        Rob Herring <robh+dt@kernel.org>,
+        Marc Kleine-Budde <mkl@pengutronix.de>,
+        Joakim Zhang <qiangqing.zhang@nxp.com>
+Subject: Re: [PATCH 1/2] arm64: dts: ls1028a: add missing CAN nodes
+In-Reply-To: <VE1PR04MB6687AC23E100D138FEDB012A8F390@VE1PR04MB6687.eurprd04.prod.outlook.com>
+References: <20200923095711.11355-1-michael@walle.cc>
+ <20200923095711.11355-2-michael@walle.cc>
+ <VE1PR04MB6687AC23E100D138FEDB012A8F390@VE1PR04MB6687.eurprd04.prod.outlook.com>
+User-Agent: Roundcube Webmail/1.4.8
+Message-ID: <e9347e4c2e070ee9e8aa7a8007d89f02@walle.cc>
+X-Sender: michael@walle.cc
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
+Am 2020-09-24 02:35, schrieb Leo Li:
+>> -----Original Message-----
+>> From: Michael Walle <michael@walle.cc>
+>> Sent: Wednesday, September 23, 2020 4:57 AM
+>> To: linux-arm-kernel@lists.infradead.org; devicetree@vger.kernel.org; 
+>> linux-
+>> kernel@vger.kernel.org; linux-can@vger.kernel.org
+>> Cc: Shawn Guo <shawnguo@kernel.org>; Leo Li <leoyang.li@nxp.com>; Rob
+>> Herring <robh+dt@kernel.org>; Marc Kleine-Budde <mkl@pengutronix.de>;
+>> Joakim Zhang <qiangqing.zhang@nxp.com>; Michael Walle
+>> <michael@walle.cc>
+>> Subject: [PATCH 1/2] arm64: dts: ls1028a: add missing CAN nodes
+>> 
+>> The LS1028A has two FlexCAN controller. These are compatible with the 
+>> ones
+>> from the LX2160A. Add the nodes.
+>> 
+>> The first controller was tested on the Kontron sl28 board.
+>> 
+>> Signed-off-by: Michael Walle <michael@walle.cc>
+>> ---
+>>  arch/arm64/boot/dts/freescale/fsl-ls1028a.dtsi | 18 
+>> ++++++++++++++++++
+>>  1 file changed, 18 insertions(+)
+>> 
+>> diff --git a/arch/arm64/boot/dts/freescale/fsl-ls1028a.dtsi
+>> b/arch/arm64/boot/dts/freescale/fsl-ls1028a.dtsi
+>> index 0efeb8fa773e..807ee921ec12 100644
+>> --- a/arch/arm64/boot/dts/freescale/fsl-ls1028a.dtsi
+>> +++ b/arch/arm64/boot/dts/freescale/fsl-ls1028a.dtsi
+>> @@ -386,6 +386,24 @@
+>>  			status = "disabled";
+>>  		};
+>> 
+>> +		can0: can@2180000 {
+>> +			compatible = "fsl,ls1028ar1-flexcan", "fsl,lx2160ar1-
+>> flexcan";
+> 
+> The explicit compatible strings cannot be found in the binding, but
+> matched by the "fsl,<processor>-flexcan" pattern in the binding.  Is
+> this considered to be acceptable now?
 
---9jxsPFA5p3P2qPhR
-Content-Type: text/plain; charset=us-ascii
-Content-Disposition: inline
-Content-Transfer-Encoding: quoted-printable
+What is the consequence if it is not acceptable? replacing the pattern
+with individual compatible strings?
 
-On Tue, Sep 15, 2020 at 02:36:48PM +0200, Thierry Reding wrote:
-> On Mon, Sep 14, 2020 at 04:08:29PM -0600, Rob Herring wrote:
-> > On Fri, Sep 04, 2020 at 02:59:57PM +0200, Thierry Reding wrote:
-> > > From: Thierry Reding <treding@nvidia.com>
-> > >=20
-> > > Reserved memory regions can be marked as "active" if hardware is
-> > > expected to access the regions during boot and before the operating
-> > > system can take control. One example where this is useful is for the
-> > > operating system to infer whether the region needs to be identity-
-> > > mapped through an IOMMU.
-> >=20
-> > I like simple solutions, but this hardly seems adequate to solve the=20
-> > problem of passing IOMMU setup from bootloader/firmware to the OS. Like=
-=20
-> > what is the IOVA that's supposed to be used if identity mapping is not=
-=20
-> > used?
->=20
-> The assumption here is that if the region is not active there is no need
-> for the IOVA to be specified because the kernel will allocate memory and
-> assign any IOVA of its choosing.
->=20
-> Also, note that this is not meant as a way of passing IOMMU setup from
-> the bootloader or firmware to the OS. The purpose of this is to specify
-> that some region of memory is actively being accessed during boot. The
-> particular case that I'm looking at is where the bootloader set up a
-> splash screen and keeps it on during boot. The bootloader has not set up
-> an IOMMU mapping and the identity mapping serves as a way of keeping the
-> accesses by the display hardware working during the transitional period
-> after the IOMMU translations have been enabled by the kernel but before
-> the kernel display driver has had a chance to set up its own IOMMU
-> mappings.
->=20
-> > If you know enough about the regions to assume identity mapping, then=
-=20
-> > can't you know if active or not?
->=20
-> We could alternatively add some property that describes the region as
-> requiring an identity mapping. But note that we can't make any
-> assumptions here about the usage of these regions because the IOMMU
-> driver simply has no way of knowing what they are being used for.
->=20
-> Some additional information is required in device tree for the IOMMU
-> driver to be able to make that decision.
-
-Rob, can you provide any hints on exactly how you want to move this
-forward? I don't know in what direction you'd like to proceed.
-
-Thierry
-
---9jxsPFA5p3P2qPhR
-Content-Type: application/pgp-signature; name="signature.asc"
-
------BEGIN PGP SIGNATURE-----
-
-iQIzBAABCAAdFiEEiOrDCAFJzPfAjcif3SOs138+s6EFAl9sgpsACgkQ3SOs138+
-s6HU/BAAsp4ztlRhFpoZxRRVHt3XKaVuNsn3yxThPMn67Xbk9U6QwWaY+ssNTMuZ
-7oM3m4GgdUJ7vl1eoDNg7levtLHtMnhdXeEFSvBqkmPcxoPxSpll3mlMZk00uOX9
-ZKx9+fMOIhZj3vlnfAquU9uhOMAOivIEDZhLYQ8ic2Yr8kA2utHOpTNI61XOOVRh
-SphmnAYnJOkhvHehAIDc8M1qZH0ZQYUeJONEBRNK/wihFbiHeLnYY0FE0b5vxQpj
-rKzDGsGcd0tZc+s6PmT1v2OQru3rA6MWl6FGKwI0UzUouZG+dLQybLWBeY4mNCP/
-L6QjVVZa8oeQ5M+JIcEiIDbRrB4X/2M7is/539AwJ2IhBoIRZpr5LCbeVK/b//O7
-m0Tw1kV4ibrXzVLD0YKB0Ls4KF1gztmLrZcfUy5/qqP0TdzZWfwxmbW/M0PTSRG8
-oPK5W0TViRW9rn1B3RibGFUKdCXdassKFZWYWO5/FCEP4ijOrhsVbLHrMrkwBzBU
-YsAaqJDWCbl+xmHwT/2E/wWtCpjsuGmbscAfJ6lhKwQJcTfPsnIV0G9luXZxMoYu
-nFuWN2RBDnARwPqr6jubxe8evniLQSCE7PUZ2VdJYOlMt+3DEzrpx2JVdd/UysTa
-tP5K57t2OyxVjIEgcdBrxAYL0Uf/tgNMGk5LqNd8ZYyr7EHdFgM=
-=xZhX
------END PGP SIGNATURE-----
-
---9jxsPFA5p3P2qPhR--
+-michael
