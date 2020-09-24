@@ -2,88 +2,104 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from vger.kernel.org (vger.kernel.org [23.128.96.18])
-	by mail.lfdr.de (Postfix) with ESMTP id 087CF276F42
-	for <lists+devicetree@lfdr.de>; Thu, 24 Sep 2020 13:05:02 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTP id 57239276F9A
+	for <lists+devicetree@lfdr.de>; Thu, 24 Sep 2020 13:13:44 +0200 (CEST)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S1726516AbgIXLFB (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Thu, 24 Sep 2020 07:05:01 -0400
-Received: from fllv0016.ext.ti.com ([198.47.19.142]:35442 "EHLO
+        id S1727440AbgIXLNh (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Thu, 24 Sep 2020 07:13:37 -0400
+Received: from fllv0016.ext.ti.com ([198.47.19.142]:38382 "EHLO
         fllv0016.ext.ti.com" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S1726303AbgIXLFB (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Thu, 24 Sep 2020 07:05:01 -0400
-Received: from lelv0265.itg.ti.com ([10.180.67.224])
-        by fllv0016.ext.ti.com (8.15.2/8.15.2) with ESMTP id 08OB4rEq038002;
-        Thu, 24 Sep 2020 06:04:53 -0500
+        with ESMTP id S1727429AbgIXLNe (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Thu, 24 Sep 2020 07:13:34 -0400
+Received: from fllv0034.itg.ti.com ([10.64.40.246])
+        by fllv0016.ext.ti.com (8.15.2/8.15.2) with ESMTP id 08OBDQll042546;
+        Thu, 24 Sep 2020 06:13:26 -0500
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=ti.com;
-        s=ti-com-17Q1; t=1600945493;
-        bh=wFNALUU6tb3M4+yGl6TrhXcK85iwrsucm5gvVxqM7cs=;
-        h=Subject:To:CC:References:From:Date:In-Reply-To;
-        b=sQxNgIAqMzx/dm+Viw4iPHoMfWZWTNNygBPmdbJpfp8MCDrsE1llespgh6zsmTRXJ
-         91UxqL2onWMuxC8OGf0e3QHGi4lXfTkbBj//ndrxBMNnLy/1AOjPXFGnyBVLlJLCye
-         LrUTDxy9EeZUyzzqu4N3b47wZ2MKWGTb73KlX+9Y=
-Received: from DLEE105.ent.ti.com (dlee105.ent.ti.com [157.170.170.35])
-        by lelv0265.itg.ti.com (8.15.2/8.15.2) with ESMTPS id 08OB4rrg083125
+        s=ti-com-17Q1; t=1600946006;
+        bh=XwfLjYFp2jwsCzESQtCyoGzKTJsrtkUeoml8Fo9Z80U=;
+        h=From:To:CC:Subject:Date:In-Reply-To:References;
+        b=HDkJb0eFeRceVTGJ6pz34mJP6FwixIVd8nbq4/YxQ2b0tyNonVtOA9VOu8LxPwD9p
+         3GBPHByjmUkRMrhwFaiL6WTp+9jc3SgFX6vZaZAIQlwRKV8XIYvIb6jPWgwxYnmIXi
+         /h5B0I8D91Ln0K5jtFK3R5fA/pvJkeamboeXoSRk=
+Received: from DLEE103.ent.ti.com (dlee103.ent.ti.com [157.170.170.33])
+        by fllv0034.itg.ti.com (8.15.2/8.15.2) with ESMTPS id 08OBDQlc067873
         (version=TLSv1.2 cipher=AES256-GCM-SHA384 bits=256 verify=FAIL);
-        Thu, 24 Sep 2020 06:04:53 -0500
-Received: from DLEE115.ent.ti.com (157.170.170.26) by DLEE105.ent.ti.com
- (157.170.170.35) with Microsoft SMTP Server (version=TLS1_2,
+        Thu, 24 Sep 2020 06:13:26 -0500
+Received: from DLEE101.ent.ti.com (157.170.170.31) by DLEE103.ent.ti.com
+ (157.170.170.33) with Microsoft SMTP Server (version=TLS1_2,
  cipher=TLS_ECDHE_RSA_WITH_AES_128_CBC_SHA256_P256) id 15.1.1979.3; Thu, 24
- Sep 2020 06:04:53 -0500
-Received: from lelv0327.itg.ti.com (10.180.67.183) by DLEE115.ent.ti.com
- (157.170.170.26) with Microsoft SMTP Server (version=TLS1_2,
+ Sep 2020 06:13:25 -0500
+Received: from lelv0327.itg.ti.com (10.180.67.183) by DLEE101.ent.ti.com
+ (157.170.170.31) with Microsoft SMTP Server (version=TLS1_2,
  cipher=TLS_ECDHE_RSA_WITH_AES_128_CBC_SHA256_P256) id 15.1.1979.3 via
- Frontend Transport; Thu, 24 Sep 2020 06:04:53 -0500
-Received: from [10.250.235.166] (ileax41-snat.itg.ti.com [10.172.224.153])
-        by lelv0327.itg.ti.com (8.15.2/8.15.2) with ESMTP id 08OB4nEh082512;
-        Thu, 24 Sep 2020 06:04:50 -0500
-Subject: Re: [PATCH v4 0/6] arm64: dts: ti: Add USB support for J7200 EVM
-To:     Roger Quadros <rogerq@ti.com>, <peda@axentia.se>, <nm@ti.com>
-CC:     <devicetree@vger.kernel.org>, <nsekhar@ti.com>,
-        <linux-kernel@vger.kernel.org>, <kishon@ti.com>, <t-kristo@ti.com>,
-        <robh+dt@kernel.org>, <linux-arm-kernel@lists.infradead.org>
-References: <20200921143941.13905-1-rogerq@ti.com>
-From:   Vignesh Raghavendra <vigneshr@ti.com>
-Message-ID: <ce4f5b9e-f30f-cb47-5d26-08375ccfd484@ti.com>
-Date:   Thu, 24 Sep 2020 16:34:49 +0530
-User-Agent: Mozilla/5.0 (X11; Linux x86_64; rv:68.0) Gecko/20100101
- Thunderbird/68.10.0
+ Frontend Transport; Thu, 24 Sep 2020 06:13:25 -0500
+Received: from localhost (ileax41-snat.itg.ti.com [10.172.224.153])
+        by lelv0327.itg.ti.com (8.15.2/8.15.2) with ESMTP id 08OBDPo3097129;
+        Thu, 24 Sep 2020 06:13:25 -0500
+From:   Nishanth Menon <nm@ti.com>
+To:     Tero Kristo <t-kristo@ti.com>,
+        Vignesh Raghavendra <vigneshr@ti.com>
+CC:     Nishanth Menon <nm@ti.com>, <linux-kernel@vger.kernel.org>,
+        <devicetree@vger.kernel.org>,
+        <linux-arm-kernel@lists.infradead.org>,
+        Rob Herring <robh+dt@kernel.org>
+Subject: Re: [PATCH v2 0/2] arm64: dts: ti: k3-j7200: Add HyperFlash related nodes
+Date:   Thu, 24 Sep 2020 06:13:23 -0500
+Message-ID: <160094581404.6691.15021925542082151621.b4-ty@ti.com>
+X-Mailer: git-send-email 2.28.0
+In-Reply-To: <20200923163150.16973-1-vigneshr@ti.com>
+References: <20200923163150.16973-1-vigneshr@ti.com>
 MIME-Version: 1.0
-In-Reply-To: <20200921143941.13905-1-rogerq@ti.com>
-Content-Type: text/plain; charset="utf-8"
-Content-Language: en-US
-Content-Transfer-Encoding: 7bit
+Content-Transfer-Encoding: 8bit
+Content-Type: text/plain
 X-EXCLAIMER-MD-CONFIG: e1e8a2fd-e40a-4ac6-ac9b-f7e9cc9ee180
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-
-
-On 9/21/20 8:09 PM, Roger Quadros wrote:
-> Hi Tero/Nishanth,
+On Wed, 23 Sep 2020 22:01:48 +0530, Vignesh Raghavendra wrote:
+> This series adds HyperBus and HyperFlash nodes for TI's J7200 SoC
 > 
-> This series adds USB2.0 support for the J7200 EVM.
-
-[...]
-
-
-> Kishon Vijay Abraham I (1):
->   arm64: dts: ti: k3-j7200-common-proc-board: Configure the SERDES lane
->     function
+> v2:
+> Rebase on latest ti-k3-next + I2C series
+> Align reg address format with this file's convention
 > 
-> Roger Quadros (5):
->   dt-bindings: ti-serdes-mux: Add defines for J7200 SoC
->   arm64: dts: ti: k3-j7200-main: Add SERDES lane control mux
->   arm64: dts: ti: k3-j7200-main.dtsi: Add USB to SERDES lane MUX
->   arm64: dts: ti: k3-j7200-main: Add USB controller
->   arm64: dts: ti: k3-j7200-common-proc-board: Add USB support
+> Vignesh Raghavendra (2):
+>   arm64: dts: ti: k3-j7200-mcu-wakeup: Add HyperBus node
+>   arm64: dts: ti: k3-j7200-som-p0: Add HyperFlash node
 > 
->  .../dts/ti/k3-j7200-common-proc-board.dts     | 28 ++++++++++
->  arch/arm64/boot/dts/ti/k3-j7200-main.dtsi     | 51 +++++++++++++++++++
->  include/dt-bindings/mux/ti-serdes.h           | 22 ++++++++
->  3 files changed, 101 insertions(+)
-> 
+> [...]
 
-For the series:
+Hi Vignesh Raghavendra,
 
-Reviewed-by: Vignesh Raghavendra <vigneshr@ti.com>
+I have applied the following to branch ti-k3-dts-next on [1].
+Thank you!
+
+[1/2] arm64: dts: ti: k3-j7200-mcu-wakeup: Add HyperBus node
+      commit: b905466d930a17393f3b67514568b14cbd629b34
+[2/2] arm64: dts: ti: k3-j7200-som-p0: Add HyperFlash node
+      commit: 78af3696f4b92b1038805e480f21ba2f51353276
+
+
+All being well this means that it will be integrated into the linux-next
+tree (usually sometime in the next 24 hours) and sent up the chain during
+the next merge window (or sooner if it is a relevant bug fix), however if
+problems are discovered then the patch may be dropped or reverted.
+
+You may get further e-mails resulting from automated or manual testing
+and review of the tree, please engage with people reporting problems and
+send followup patches addressing any issues that are reported if needed.
+
+If any updates are required or you are submitting further changes they
+should be sent as incremental updates against current git, existing
+patches will not be replaced.
+
+Please add any relevant lists and maintainers to the CCs when replying
+to this mail.
+
+[1] git://git.kernel.org/pub/scm/linux/kernel/git/nmenon/linux.git
+-- 
+Regards,
+Nishanth Menon
+Key (0xDDB5849D1736249D) / Fingerprint: F8A2 8693 54EB 8232 17A3  1A34 DDB5 849D 1736 249D
+
