@@ -2,107 +2,106 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from vger.kernel.org (vger.kernel.org [23.128.96.18])
-	by mail.lfdr.de (Postfix) with ESMTP id EE4C7276B45
-	for <lists+devicetree@lfdr.de>; Thu, 24 Sep 2020 09:56:38 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTP id E24A1276B48
+	for <lists+devicetree@lfdr.de>; Thu, 24 Sep 2020 09:57:22 +0200 (CEST)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S1727184AbgIXH4i (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Thu, 24 Sep 2020 03:56:38 -0400
-Received: from fllv0016.ext.ti.com ([198.47.19.142]:50220 "EHLO
-        fllv0016.ext.ti.com" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S1727175AbgIXH4i (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Thu, 24 Sep 2020 03:56:38 -0400
-Received: from lelv0265.itg.ti.com ([10.180.67.224])
-        by fllv0016.ext.ti.com (8.15.2/8.15.2) with ESMTP id 08O7uQtO060735;
-        Thu, 24 Sep 2020 02:56:26 -0500
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=ti.com;
-        s=ti-com-17Q1; t=1600934186;
-        bh=/yATLCN5q6Cjvshai8qlwwUrwig4jXc4w8GkdezmhCg=;
-        h=Subject:To:CC:References:From:Date:In-Reply-To;
-        b=p30UiPF1WFfDhMdFlN3EPSHIycLtNsHeKQc5M05Y+X/C9w2gnUVjljTYfflS/iwC6
-         9ECOvzH7U5+daM3TGNcXWd5yqCnwDc67IJLA6rND/gXBKWKnHaE8+dWQFHUonaTfW0
-         7NF8r8KD3imAnLaAzuwIldrS5IOCVsgjwLSaiLG4=
-Received: from DLEE112.ent.ti.com (dlee112.ent.ti.com [157.170.170.23])
-        by lelv0265.itg.ti.com (8.15.2/8.15.2) with ESMTPS id 08O7uPhn055233
-        (version=TLSv1.2 cipher=AES256-GCM-SHA384 bits=256 verify=FAIL);
-        Thu, 24 Sep 2020 02:56:26 -0500
-Received: from DLEE108.ent.ti.com (157.170.170.38) by DLEE112.ent.ti.com
- (157.170.170.23) with Microsoft SMTP Server (version=TLS1_2,
- cipher=TLS_ECDHE_RSA_WITH_AES_128_CBC_SHA256_P256) id 15.1.1979.3; Thu, 24
- Sep 2020 02:56:25 -0500
-Received: from lelv0326.itg.ti.com (10.180.67.84) by DLEE108.ent.ti.com
- (157.170.170.38) with Microsoft SMTP Server (version=TLS1_2,
- cipher=TLS_ECDHE_RSA_WITH_AES_128_CBC_SHA256_P256) id 15.1.1979.3 via
- Frontend Transport; Thu, 24 Sep 2020 02:56:25 -0500
-Received: from [192.168.2.6] (ileax41-snat.itg.ti.com [10.172.224.153])
-        by lelv0326.itg.ti.com (8.15.2/8.15.2) with ESMTP id 08O7uMjO048814;
-        Thu, 24 Sep 2020 02:56:23 -0500
-Subject: Re: [PATCHv2] dt-bindings: dp-connector: add binding for DisplayPort
- connector
-To:     Rob Herring <robh@kernel.org>
-CC:     dri-devel <dri-devel@lists.freedesktop.org>,
-        <devicetree@vger.kernel.org>, David Airlie <airlied@linux.ie>,
-        Daniel Vetter <daniel@ffwll.ch>,
-        Laurent Pinchart <laurent.pinchart@ideasonboard.com>,
-        Andrzej Hajda <a.hajda@samsung.com>,
-        Neil Armstrong <narmstrong@baylibre.com>,
-        Swapnil Kashinath Jakhade <sjakhade@cadence.com>
-References: <20200917055210.22868-1-tomi.valkeinen@ti.com>
- <20200923161712.GA836725@bogus> <04d93618-12b1-d8f5-ece5-0f87e644d52e@ti.com>
- <CAL_Jsq+q4JVs=e2kueCATXLw00FWL=nx_eqCTj5ANHkESD8uTg@mail.gmail.com>
-From:   Tomi Valkeinen <tomi.valkeinen@ti.com>
-Message-ID: <6bb017e8-7681-46c1-9152-a3c55add394d@ti.com>
-Date:   Thu, 24 Sep 2020 10:56:22 +0300
-User-Agent: Mozilla/5.0 (X11; Linux x86_64; rv:68.0) Gecko/20100101
- Thunderbird/68.10.0
-MIME-Version: 1.0
-In-Reply-To: <CAL_Jsq+q4JVs=e2kueCATXLw00FWL=nx_eqCTj5ANHkESD8uTg@mail.gmail.com>
+        id S1727196AbgIXH5Q (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Thu, 24 Sep 2020 03:57:16 -0400
+Received: from lindbergh.monkeyblade.net ([23.128.96.19]:53636 "EHLO
+        lindbergh.monkeyblade.net" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
+        with ESMTP id S1727164AbgIXH5Q (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Thu, 24 Sep 2020 03:57:16 -0400
+Received: from mail-pj1-x1035.google.com (mail-pj1-x1035.google.com [IPv6:2607:f8b0:4864:20::1035])
+        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 588F2C0613D3
+        for <devicetree@vger.kernel.org>; Thu, 24 Sep 2020 00:57:16 -0700 (PDT)
+Received: by mail-pj1-x1035.google.com with SMTP id mn7so1176977pjb.5
+        for <devicetree@vger.kernel.org>; Thu, 24 Sep 2020 00:57:16 -0700 (PDT)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+        d=chromium.org; s=google;
+        h=mime-version:content-transfer-encoding:in-reply-to:references
+         :subject:from:cc:to:date:message-id:user-agent;
+        bh=nIx2g9hE/0bXNM/pwrWkRdm4URrOvOfMohT8HMjo9Ao=;
+        b=aTSU7n5fMU41yviqESs2c9mMPf+IYx8QwuWCdmdhLxJz0Jh7jgGhtT9KnY6hRtSnKx
+         1W4tIig0G0+UQUeoFk336wE8ZPR5Xl/ucbuyBnPKA6SjCe26xJRJ+kaPRtjpTOvI85L1
+         16HJ5NyO5LBSiWXQFYz1YCXlgYWz3dVEO3dss=
+X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+        d=1e100.net; s=20161025;
+        h=x-gm-message-state:mime-version:content-transfer-encoding
+         :in-reply-to:references:subject:from:cc:to:date:message-id
+         :user-agent;
+        bh=nIx2g9hE/0bXNM/pwrWkRdm4URrOvOfMohT8HMjo9Ao=;
+        b=cm09yTQV1JaxAwB7iP84Id4fkgXZsBhEVm6V4khMGnLRf/k9AwQ4Lnf3wM+wWcw/p3
+         5tQpt/fyx1ULtKglq71CY66oXDGmZOFZsrO/tuYU6MbvNSrtp1v8zKkAYgBg88bcdO/a
+         UihIQx1euz+1oBiuNhByq2hgqGfHj4pmkQQj+2LuP0UIzM/cCMIaI1HkrB0XaBU372Mb
+         MHxDrJPwPK6oOIuM+FK9GzQ3rGlsvlRZNuqD4vyY9JhYIT0NE1LvIvcU1zbvtJ+yb6hC
+         K62xK9cFCqrMBDtghEmsAmEirmUSsQ9wVQpLuBaJI7AWDQfyAsksLmr/zZBihb6OxItj
+         LN/Q==
+X-Gm-Message-State: AOAM533N42UKFFOcXbGf13J+k/CwGyH+Chcd2v369WFjM5p7ezo5Qni2
+        qcMFFulALpq5KMH5INHpxlM66Q==
+X-Google-Smtp-Source: ABdhPJxEM4eeBUcECdk2ALrU71tfv2XbEcD9NoBcPVvA8okwUHKyVVkEBPPPodWG+BJiiN8IUazBEg==
+X-Received: by 2002:a17:90a:8a04:: with SMTP id w4mr2894263pjn.72.1600934235780;
+        Thu, 24 Sep 2020 00:57:15 -0700 (PDT)
+Received: from chromium.org ([2620:15c:202:1:3e52:82ff:fe6c:83ab])
+        by smtp.gmail.com with ESMTPSA id bx22sm1583848pjb.23.2020.09.24.00.57.15
+        (version=TLS1_3 cipher=TLS_AES_256_GCM_SHA384 bits=256/256);
+        Thu, 24 Sep 2020 00:57:15 -0700 (PDT)
 Content-Type: text/plain; charset="utf-8"
-Content-Language: en-US
-Content-Transfer-Encoding: 7bit
-X-EXCLAIMER-MD-CONFIG: e1e8a2fd-e40a-4ac6-ac9b-f7e9cc9ee180
+MIME-Version: 1.0
+Content-Transfer-Encoding: quoted-printable
+In-Reply-To: <160090354388.310579.2465697259775252128@swboyd.mtv.corp.google.com>
+References: <20200903221828.3657250-1-swboyd@chromium.org> <20200906150247.3aaef3a3@archlinux> <159963232334.454335.9794130058200265122@swboyd.mtv.corp.google.com> <20200909121550.00005ede@Huawei.com> <160090354388.310579.2465697259775252128@swboyd.mtv.corp.google.com>
+Subject: Re: [PATCH] dt-bindings: iio: sx9310: Add various settings as DT properties
+From:   Stephen Boyd <swboyd@chromium.org>
+Cc:     Jonathan Cameron <jic23@kernel.org>, linux-kernel@vger.kernel.org,
+        linux-iio@vger.kernel.org, Daniel Campello <campello@chromium.org>,
+        Lars-Peter Clausen <lars@metafoo.de>,
+        Peter Meerwald-Stadler <pmeerw@pmeerw.net>,
+        Rob Herring <robh+dt@kernel.org>, devicetree@vger.kernel.org,
+        Douglas Anderson <dianders@chromium.org>,
+        Gwendal Grignou <gwendal@chromium.org>,
+        Evan Green <evgreen@chromium.org>
+To:     Jonathan Cameron <Jonathan.Cameron@Huawei.com>
+Date:   Thu, 24 Sep 2020 00:57:13 -0700
+Message-ID: <160093423392.310579.10143738916599003618@swboyd.mtv.corp.google.com>
+User-Agent: alot/0.9.1
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-On 23/09/2020 23:00, Rob Herring wrote:
-> On Wed, Sep 23, 2020 at 11:15 AM Tomi Valkeinen <tomi.valkeinen@ti.com> wrote:
->>
->> Hi Rob,
->>
->> On 23/09/2020 19:17, Rob Herring wrote:
->>
->>>> * No eDP. There's really no "eDP connector", as it's always a custom
->>>>    made connection between the DP and the DP panel. So possibly there is
->>>>    no need for edp-connector binding, but even if there is, I don't want
->>>>    to guess what it could look like, and could it be part of the
->>>>    dp-connector binding.
->>>
->>> I don't think that's true. Do an image search for 'edp pinout'. AFAICT,
->>> there's 2 lane 30 pin and 4 lane 40 pin. One image says 'Table 5-3 in
->>> eDP v1.2'. Of course, I'm sure there's custom ones too. From a binding
->>> perspective, we probably don't care about the differences, but just need
->>> to be able to describe HPD, backlight power, enable, and pwm, and LCD
->>> power.
->>
->> That's true. The eDP spec lists 4 different standard pinouts (how
->> strictly those are followed, I have no idea). But it does not define a
->> connector or a cable. And afaik eDP is defined to be not user-detachable.
-> 
-> Yes, but HPD is still used (or sometimes broken). We could just put
-> that all in panel nodes, but IIRC the last time this came up the issue
-> was handling devices with different panels stuffed by the
-> manufacturer. An eDP connector binding would be one way to handle that
-> as it is somewhat standardized while panel connections aren't at all.
+Quoting Stephen Boyd (2020-09-23 16:25:43)
+> > > > > +
+> > > > > +  semtech,close-debounce-samples:
+> > > > > +    allOf:
+> > > > > +      - $ref: /schemas/types.yaml#definitions/uint32
+> > > > > +      - enum: [0, 2, 4, 8]
+> > > > > +    default: 0
+> > > > > +    description:
+> > > > > +      The number of close samples debounced for proximity/body t=
+hresholds. =20
+> > > >=20
+> > > > This feels like something that has more to do with the object motio=
+n than
+> > > > the sensor setup, so perhaps should be controlled from userspace?  =
 
-HPD in DisplayPort, and especially in eDP, is not strictly speaking "cable inserted or removed", but
-rather signaling that the monitor/panel is ready (e.g. after powering it up), or there has been a
-link issue, or there has been a major change in settings, or signaling DP interrupt, etc. And HPD
-(and EDID and some other things) are optional with eDP.
+> > >=20
+> > > Sure. Is there an IIO sample property? Or I should make a custom
+> > > knob for this?
+> >=20
+> > It's kind of close to in_proximity0_thresh_period and that may be how t=
+hey
+> > have implemented it.
+> >=20
+> > That control specifies a number of samples for which a condition should=
+ be true
+> > before it is reported.
+>=20
+> Sounds good. I can do that. It looks like the driver reports close/far
+> via an event and these debounce values are the same for me so I can
+> write both fields (close and far) with the same thresh_period value from
+> userspace. If they need to be different between the two then this can be
+> reevaluated?
+>=20
 
-I don't think those rule out an edp-connector, but just things to consider.
-
- Tomi
-
--- 
-Texas Instruments Finland Oy, Porkkalankatu 22, 00180 Helsinki.
-Y-tunnus/Business ID: 0615521-4. Kotipaikka/Domicile: Helsinki
+Or I can assign thresh_period to falling and rising corresponding to
+close/far debounce. Seems that the direction is the same, but that can
+be split apart and each direction gets a different sysfs file?
