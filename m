@@ -2,215 +2,135 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from vger.kernel.org (vger.kernel.org [23.128.96.18])
-	by mail.lfdr.de (Postfix) with ESMTP id EF969277382
-	for <lists+devicetree@lfdr.de>; Thu, 24 Sep 2020 16:01:49 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTP id E75FB2773C2
+	for <lists+devicetree@lfdr.de>; Thu, 24 Sep 2020 16:17:33 +0200 (CEST)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S1727974AbgIXOBg (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Thu, 24 Sep 2020 10:01:36 -0400
-Received: from lindbergh.monkeyblade.net ([23.128.96.19]:53668 "EHLO
+        id S1728064AbgIXORO (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Thu, 24 Sep 2020 10:17:14 -0400
+Received: from lindbergh.monkeyblade.net ([23.128.96.19]:56056 "EHLO
         lindbergh.monkeyblade.net" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S1727952AbgIXOBg (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Thu, 24 Sep 2020 10:01:36 -0400
-Received: from mail-wr1-x442.google.com (mail-wr1-x442.google.com [IPv6:2a00:1450:4864:20::442])
-        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 89178C0613CE;
-        Thu, 24 Sep 2020 07:01:35 -0700 (PDT)
-Received: by mail-wr1-x442.google.com with SMTP id z1so3972888wrt.3;
-        Thu, 24 Sep 2020 07:01:35 -0700 (PDT)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=gmail.com; s=20161025;
-        h=date:from:to:cc:subject:message-id:references:mime-version
-         :content-disposition:in-reply-to:user-agent;
-        bh=PvtAp/gMbJp+plte2qkDTSFrKB4IybETEeiyFrm6dyE=;
-        b=ui9d2C/njxa6HWTxaM30N36rzyTPPb87ZS5luf/VP8xxRj+4u8k/Xax6QyCNXSMZGd
-         3KRT3tX0sYEJhOgqFrKQYqIOOSZDSf8Jf5F+eahDyO6svjlcUntWQ2JacrIVNmevrSb3
-         BD5Qm2FoHGx0JZmhZY5XUzBFi1wu1GCOlf4OAglU9HrssNhtzh4EB0JoIjWVsdINJBgQ
-         CxGcjw+qpfkrrkieP2VRJ1XCGZYmyDmk6ncV730AhG14O65D0878jndbweAofltNc4cx
-         f+bnYgnZJeHqNv9OLa8kjhsxxNn9ae5eJ9iMei0iJJM0a8vuR0HJ2GUCp5+RFnOkF+9c
-         k5zA==
-X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=1e100.net; s=20161025;
-        h=x-gm-message-state:date:from:to:cc:subject:message-id:references
-         :mime-version:content-disposition:in-reply-to:user-agent;
-        bh=PvtAp/gMbJp+plte2qkDTSFrKB4IybETEeiyFrm6dyE=;
-        b=UC53gQOhggKFB0KPHwyqXgnka9dcEWFjgNi2Txh19gamGin77KItCV+TVbWtXgjubU
-         FRumvLrvqc2Y+/PY9UOi+MF7MwkaDxrpJhS3st8cVG1nnFfbYZxVo3BbQ5S4YloGYdG5
-         /ngf0z72HHkSRhm6PDLreUOhPtJrFO2PbizaDuxjR+Tw9dakBM68v58zl0aU11/kftoG
-         9R1c/tk9WbFC4/2xzfwylXL1WbukNVi/dwNE6rIW9cKTTkQWNFc9BloT352CP6PepObG
-         bcLseJNMCeWD1JOhH79l3vBLG3tdgH3wCdowxDm0I2E53VSESTedlMcFWwb1ftwT+NIe
-         hEqQ==
-X-Gm-Message-State: AOAM531iaOZ8i/UKZsCnk8q1lPP27isiyEPaeAyYzSlEFK9Ve6jP4oGF
-        e50vwzg6YkJ/e15Ea3FTSZ8=
-X-Google-Smtp-Source: ABdhPJxm41+NTdudwRk4qkWIOnJAoPI3MsHtF10Qpwy/AtTYga7ouFrdRG5QKjcga76IY1nE/d6jJQ==
-X-Received: by 2002:adf:e802:: with SMTP id o2mr5187100wrm.309.1600956094093;
-        Thu, 24 Sep 2020 07:01:34 -0700 (PDT)
-Received: from localhost ([217.111.27.204])
-        by smtp.gmail.com with ESMTPSA id t17sm3718241wrx.82.2020.09.24.07.01.32
-        (version=TLS1_3 cipher=TLS_AES_256_GCM_SHA384 bits=256/256);
-        Thu, 24 Sep 2020 07:01:32 -0700 (PDT)
-Date:   Thu, 24 Sep 2020 16:01:30 +0200
-From:   Thierry Reding <thierry.reding@gmail.com>
-To:     Dmitry Osipenko <digetx@gmail.com>
-Cc:     Joerg Roedel <joro@8bytes.org>, Rob Herring <robh+dt@kernel.org>,
-        Frank Rowand <frowand.list@gmail.com>,
-        Will Deacon <will@kernel.org>,
-        Robin Murphy <robin.murphy@arm.com>,
-        iommu@lists.linux-foundation.org, devicetree@vger.kernel.org,
-        linux-kernel@vger.kernel.org,
-        "linux-tegra@vger.kernel.org" <linux-tegra@vger.kernel.org>
-Subject: Re: [PATCH v2 1/4] dt-bindings: reserved-memory: Document "active"
- property
-Message-ID: <20200924140130.GA2527337@ulmo>
-References: <20200904130000.691933-1-thierry.reding@gmail.com>
- <d3d69cb4-b0f9-40b0-b526-52fdc1a4b876@gmail.com>
+        with ESMTP id S1728193AbgIXORJ (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Thu, 24 Sep 2020 10:17:09 -0400
+Received: from metis.ext.pengutronix.de (metis.ext.pengutronix.de [IPv6:2001:67c:670:201:290:27ff:fe1d:cc33])
+        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id DEF00C0613CE
+        for <devicetree@vger.kernel.org>; Thu, 24 Sep 2020 07:17:08 -0700 (PDT)
+Received: from pty.hi.pengutronix.de ([2001:67c:670:100:1d::c5])
+        by metis.ext.pengutronix.de with esmtps (TLS1.2:ECDHE_RSA_AES_256_GCM_SHA384:256)
+        (Exim 4.92)
+        (envelope-from <ukl@pengutronix.de>)
+        id 1kLS3Q-0004vB-CR; Thu, 24 Sep 2020 16:17:00 +0200
+Received: from ukl by pty.hi.pengutronix.de with local (Exim 4.89)
+        (envelope-from <ukl@pengutronix.de>)
+        id 1kLS3P-0002us-8b; Thu, 24 Sep 2020 16:16:59 +0200
+Date:   Thu, 24 Sep 2020 16:16:59 +0200
+From:   Uwe =?utf-8?Q?Kleine-K=C3=B6nig?= <u.kleine-koenig@pengutronix.de>
+To:     Andy Shevchenko <andriy.shevchenko@intel.com>
+Cc:     Rahul Tanwar <rahul.tanwar@linux.intel.com>,
+        linux-pwm@vger.kernel.org, lee.jones@linaro.org,
+        thierry.reding@gmail.com, p.zabel@pengutronix.de,
+        robh+dt@kernel.org, linux-kernel@vger.kernel.org,
+        devicetree@vger.kernel.org, songjun.Wu@intel.com,
+        cheol.yong.kim@intel.com, qi-ming.wu@intel.com,
+        rahul.tanwar.linux@gmail.com, rtanwar@maxlinear.com
+Subject: Re: [PATCH v13 2/2] Add PWM fan controller driver for LGM SoC
+Message-ID: <20200924141659.4wov7w2l2bllpre4@pengutronix.de>
+References: <cover.1600158087.git.rahul.tanwar@linux.intel.com>
+ <befa655d8beb326fc8aa405a25a8b3e62b7e6a4a.1600158087.git.rahul.tanwar@linux.intel.com>
+ <20200924065534.e2anwghhtysv63e7@pengutronix.de>
+ <20200924132334.GT3956970@smile.fi.intel.com>
 MIME-Version: 1.0
-Content-Type: multipart/signed; micalg=pgp-sha256;
-        protocol="application/pgp-signature"; boundary="xHFwDpU9dbj6ez1V"
+Content-Type: multipart/signed; micalg=pgp-sha512;
+        protocol="application/pgp-signature"; boundary="mb7bv4ys4jbc3fg3"
 Content-Disposition: inline
-In-Reply-To: <d3d69cb4-b0f9-40b0-b526-52fdc1a4b876@gmail.com>
-User-Agent: Mutt/1.14.7 (2020-08-29)
+In-Reply-To: <20200924132334.GT3956970@smile.fi.intel.com>
+X-SA-Exim-Connect-IP: 2001:67c:670:100:1d::c5
+X-SA-Exim-Mail-From: ukl@pengutronix.de
+X-SA-Exim-Scanned: No (on metis.ext.pengutronix.de); SAEximRunCond expanded to false
+X-PTX-Original-Recipient: devicetree@vger.kernel.org
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
 
---xHFwDpU9dbj6ez1V
-Content-Type: text/plain; charset=utf-8
+--mb7bv4ys4jbc3fg3
+Content-Type: text/plain; charset=iso-8859-1
 Content-Disposition: inline
 Content-Transfer-Encoding: quoted-printable
 
-On Thu, Sep 24, 2020 at 04:23:59PM +0300, Dmitry Osipenko wrote:
-> 04.09.2020 15:59, Thierry Reding =D0=BF=D0=B8=D1=88=D0=B5=D1=82:
-> > From: Thierry Reding <treding@nvidia.com>
-> >=20
-> > Reserved memory regions can be marked as "active" if hardware is
-> > expected to access the regions during boot and before the operating
-> > system can take control. One example where this is useful is for the
-> > operating system to infer whether the region needs to be identity-
-> > mapped through an IOMMU.
-> >=20
-> > Signed-off-by: Thierry Reding <treding@nvidia.com>
-> > ---
-> >  .../bindings/reserved-memory/reserved-memory.txt           | 7 +++++++
-> >  1 file changed, 7 insertions(+)
-> >=20
-> > diff --git a/Documentation/devicetree/bindings/reserved-memory/reserved=
--memory.txt b/Documentation/devicetree/bindings/reserved-memory/reserved-me=
-mory.txt
-> > index 4dd20de6977f..163d2927e4fc 100644
-> > --- a/Documentation/devicetree/bindings/reserved-memory/reserved-memory=
-=2Etxt
-> > +++ b/Documentation/devicetree/bindings/reserved-memory/reserved-memory=
-=2Etxt
-> > @@ -63,6 +63,13 @@ reusable (optional) - empty property
-> >        able to reclaim it back. Typically that means that the operating
-> >        system can use that region to store volatile or cached data that
-> >        can be otherwise regenerated or migrated elsewhere.
-> > +active (optional) - empty property
-> > +    - If this property is set for a reserved memory region, it indicat=
-es
-> > +      that some piece of hardware may be actively accessing this regio=
-n.
-> > +      Should the operating system want to enable IOMMU protection for a
-> > +      device, all active memory regions must have been identity-mapped
-> > +      in order to ensure that non-quiescent hardware during boot can
-> > +      continue to access the memory.
-> > =20
-> >  Linux implementation note:
-> >  - If a "linux,cma-default" property is present, then Linux will use the
-> >=20
+On Thu, Sep 24, 2020 at 04:23:34PM +0300, Andy Shevchenko wrote:
+> On Thu, Sep 24, 2020 at 08:55:34AM +0200, Uwe Kleine-K=F6nig wrote:
+> > On Tue, Sep 15, 2020 at 04:23:37PM +0800, Rahul Tanwar wrote:
 >=20
-> Hi,
+> ...
 >=20
-> Could you please explain what devices need this quirk? I see that you're
-> targeting Tegra SMMU driver, which means that it should be some pre-T186
-> device.
+> > > +	ret =3D lgm_clk_enable(dev, pc);
+> > > +	if (ret) {
+> > > +		dev_err(dev, "failed to enable clock\n");
+> >=20
+> > You used dev_err_probe four times for six error paths. I wonder why you
+> > didn't use it here (and below for a failing pwmchip_add()).
+>=20
+> dev_err_probe() makes sense when we might experience deferred probe. In n=
+either
+> of mentioned function this can be the case.
+>=20
+> > > +		return ret;
+> > > +	}
+>=20
+> ...
+>=20
+> > > +	ret =3D lgm_reset_control_deassert(dev, pc);
+> > > +	if (ret)
+> > > +		return dev_err_probe(dev, ret, "cannot deassert reset control\n");
+> >=20
+> > After lgm_reset_control_deassert is called pc->rst is unused. So there
+> > is no need to have this member in struct lgm_pwm_chip. The same applies
+> > to ->clk. (You have to pass rst (or clk) to devm_add_action_or_reset for
+> > that to work. Looks like a nice idea anyhow.)
+>=20
+> True. And above dev_err_probe() is not needed.
 
-Primarily I'm looking at Tegra210 and later, because on earlier devices
-the bootloader doesn't consistently initialize display. I know that it
-does on some devices, but not all of them. This same code should also
-work on Tegra186 and later (with an ARM SMMU) although the situation is
-slightly more complicated there because IOMMU translations will fault by
-default long before these identity mappings can be established.
+You argue that dev_err_probe() gives no benefit as
+lgm_reset_control_deassert won't return -EPROBE_DEFER, right?
 
-> Is this reservation needed for some device that has display
-> hardwired to a very specific IOMMU domain at the boot time?
+Still I consider it a useful function because
 
-No, this is only used to convey information about the active framebuffer
-to the kernel. In practice the DMA/IOMMU code will use this information
-to establish a 1:1 mapping on whatever IOMMU domain that was picked for
-display.
+ a) I (as an author or as a reviewer) don't need to think if the
+    failing function might return -EPROBE_DEFER now or in the future.
+    dev_err_probe does the right thing even for functions that don't
+    return -EPROBE_DEFER.
 
-> If you're targeting devices that don't have IOMMU enabled by default at
-> the boot time, then this approach won't work for the existing devices
-> which won't ever get an updated bootloader.
+ b) With dev_err_probe() I can accomplish things in a single line that
+    need two lines when open coding it.
 
-If the devices don't use an IOMMU, then there should be no problem. The
-extra reserved-memory nodes would still be necessary to ensure that the
-kernel doesn't reuse the framebuffer memory for the slab allocator, but
-if no IOMMU is used, then the display controller accessing the memory
-isn't going to cause problems other than perhaps scanning out data that
-is no longer a framebuffer.
+ c) dev_err_probe() emits the symbolic error name without having to
+    resort to %pe + ERR_PTR.
 
-There should also be no problem for devices with an old bootloader
-because this code is triggered by the presence of a reserved-memory node
-referenced via the memory-region property. Devices with an old
-bootloader should continue to work as they did before. Although I
-suppose they would start faulting once we enable DMA/IOMMU integration
-for Tegra SMMU if they have a bootloader that does initialize display to
-actively scan out during boot.
+ d) Using dev_err_probe() for all error paths gives a consistency that I
+    like with a maintainer's hat on.
 
-> I think Robin Murphy already suggested that we should simply create
-> a dummy "identity" IOMMU domain by default for the DRM/VDE devices and
-> then replace it with an explicitly created domain within the drivers.
+So I still want to request using dev_err_probe() in all error paths.
 
-I don't recall reading about that suggestion. So does this mean that for
-certain devices we'd want to basically passthrough by default and then
-at some point during boot take over with a properly managed IOMMU
-domain?
+Best regards
+Uwe
 
-The primary goal here is to move towards using the DMA API rather than
-the IOMMU API directly, so we don't really have the option of replacing
-with an explicitly created domain. Unless we have code in the DMA/IOMMU
-code that does this somehow.
+--=20
+Pengutronix e.K.                           | Uwe Kleine-K=F6nig            |
+Industrial Linux Solutions                 | https://www.pengutronix.de/ |
 
-But I'm not sure what would be a good way to mark certain devices as
-needing an identity domain by default. Do we still use the reserved-
-memory node for that? That would still require some sort of flag to
-specify which reserved-memory regions would need this identity mapping
-because, as was pointed out in earlier review, some devices may have
-reserved-memory regions that are not meant to be identity mapped.
-
-> Secondly, all NVIDIA bootloaders are passing tegra_fbmem=3D... via
-> kernel's cmdline with the physical location of the framebuffer in
-> memory. Maybe we could support this option?
-
-I'm not a big fan of that command-line option, but I also realize that
-for older bootloaders that's probably the only option we have. I don't
-suppose all of the devices support U-Boot? Because ideally we'd just
-translate from tegra_fbmem=3D... to reserved-memory region there so that
-we don't have to carry backwards-compatibility code for these purely
-downstream bootloaders.
-
-Thierry
-
---xHFwDpU9dbj6ez1V
+--mb7bv4ys4jbc3fg3
 Content-Type: application/pgp-signature; name="signature.asc"
 
 -----BEGIN PGP SIGNATURE-----
 
-iQIzBAABCAAdFiEEiOrDCAFJzPfAjcif3SOs138+s6EFAl9sprcACgkQ3SOs138+
-s6E83RAAtbksMdpb/WjOX1mRTZMCHphwlHM8hmGCQYBF2sbzAaN17Uc0el1TiW+j
-02ZpaFR4lc6CeDiGIw2bA9jAMmQrmxZHnjsrT4lrJ3X8lANGTBX87R2wzL87SzN+
-Kdv1lMj4asVVXT8lrpTJGaho55dY3LV1ZjCKNLBsG8ABi6qzR/wxhts+X3brAfpA
-mTy6eOrc+kDqqF8PW3THGSv64SF2a/kf/IOFxeS+8cIasWSad614lKh20WTQbHBE
-x+VEY/ZjHc0tGY3fWUu7vieFSQLSDuEcPzBr21ZfUj/vCA20XIjP0xwmCdq/2YxV
-UWT+YIvABIdZWoeoqsuDtMp1wBpA1OBICDbeDGb2as7lxZEgIxCfSNFlSv4ZraeB
-W2+2CfbAdOX+unFJr4O5TZGnj25VQHCB9/Jy0Fzmj8KQUrR+g/71+urrUrJN4xzm
-MetJLcnCwa7zeBAMTGA5QK1BjdB0Z1q7NT3BSEbSs6H0gecK3kFXJe/Z+qFX3zEC
-Hx4kggwk6zgGQmXDS9EeCiaPqwABdRC5rWEu77piikvDgaMgcAgTinSX7N/85h3w
-CxSKjUVUZsu/n1mSug+tT5m5SrosffBieLeSWflDgz4bbp5c90v8Ky2TuBJ684tS
-22IYNc/yhqXbcMQrOPwnTDv1MQsK10ZO+eI1wrqQKMHjJGoFpFY=
-=y4qb
+iQEzBAABCgAdFiEEfnIqFpAYrP8+dKQLwfwUeK3K7AkFAl9sqlgACgkQwfwUeK3K
+7AkrswgAgys4+V3gT2KS+en571E0eZ2IJRK+pU1FnbGgCi4mTfhzKCPkQqV5Aiik
+exkINzwVonHyvDfS6r1mFSJAOQNBu7Fwi0grOw16ztYP9YB3GolG6hPDRRt+frEq
+va8ssmYie4r6ycJaTkyvCk7hYZhu/My2IVntc4YNwUPMxIMNkYtScCQNu+FHYe04
+MVd4TmSmeWk5LYzQ/xYoSPZAUfYXEGKN6nBMM5MeGrQpaB2hddRsnSy8aE1sJ7ZS
+jGMvIGLCBYtW3whGQoGzp/4O3a2zBdbMVj8VzINCf4Mj4/w5sGvdQ18kBCGs8kqQ
+GjJqfyxrbHAGJoO1K7MYp+9qnAQYtA==
+=D4Q0
 -----END PGP SIGNATURE-----
 
---xHFwDpU9dbj6ez1V--
+--mb7bv4ys4jbc3fg3--
