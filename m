@@ -2,92 +2,72 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from vger.kernel.org (vger.kernel.org [23.128.96.18])
-	by mail.lfdr.de (Postfix) with ESMTP id 57023277005
-	for <lists+devicetree@lfdr.de>; Thu, 24 Sep 2020 13:34:53 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTP id 4EE62277046
+	for <lists+devicetree@lfdr.de>; Thu, 24 Sep 2020 13:50:28 +0200 (CEST)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S1726701AbgIXLew (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Thu, 24 Sep 2020 07:34:52 -0400
-Received: from mail.kernel.org ([198.145.29.99]:56940 "EHLO mail.kernel.org"
-        rhost-flags-OK-OK-OK-OK) by vger.kernel.org with ESMTP
-        id S1726617AbgIXLew (ORCPT <rfc822;devicetree@vger.kernel.org>);
-        Thu, 24 Sep 2020 07:34:52 -0400
-Received: from localhost (fw-tnat.cambridge.arm.com [217.140.96.140])
-        (using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
-        (No client certificate requested)
-        by mail.kernel.org (Postfix) with ESMTPSA id 4DE6E2220D;
-        Thu, 24 Sep 2020 11:34:51 +0000 (UTC)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=kernel.org;
-        s=default; t=1600947291;
-        bh=zpGCrVK8tz1aZrON992tX07fTfb1T/oz6LsOj41Eb9c=;
-        h=Date:From:To:Cc:Subject:References:In-Reply-To:From;
-        b=jtcDbfmy3QrqbK8tvcbhP0NsjYHl7W1Eaj9KnesXah2QJMh37kDDG45s7HTElChnQ
-         QZENgO6x1gjPu6qR6Z7h40oI4c7zrQkR3QpVrs6ywSGDSlQaQBhVWBUg+na5oNWdC0
-         QoqpcEE7J6a4m44fNnl7pG7LGW48WGgBIHFiXgf4=
-Date:   Thu, 24 Sep 2020 12:33:56 +0100
-From:   Mark Brown <broonie@kernel.org>
-To:     Florian Fainelli <f.fainelli@gmail.com>
-Cc:     Rob Herring <robh+dt@kernel.org>,
-        Kamal Dasu <kdasu.kdev@gmail.com>,
-        Ray Jui <ray.jui@broadcom.com>, linux-kernel@vger.kernel.org,
-        linux-spi@vger.kernel.org, bcm-kernel-feedback-list@broadcom.com,
-        devicetree@vger.kernel.org
-Subject: Re: [PATCH 1/4] dt-bindings: spi: Add compatible string for brcmstb
- SoCs
-Message-ID: <20200924113356.GC4754@sirena.org.uk>
-References: <20200910152539.45584-1-ray.jui@broadcom.com>
- <160009511834.5702.10954218363830361529.b4-ty@kernel.org>
- <a1e13626-e87a-8114-74ae-560902ab9551@gmail.com>
+        id S1727388AbgIXLu1 (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Thu, 24 Sep 2020 07:50:27 -0400
+Received: from fllv0016.ext.ti.com ([198.47.19.142]:48908 "EHLO
+        fllv0016.ext.ti.com" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
+        with ESMTP id S1726406AbgIXLu1 (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Thu, 24 Sep 2020 07:50:27 -0400
+Received: from lelv0266.itg.ti.com ([10.180.67.225])
+        by fllv0016.ext.ti.com (8.15.2/8.15.2) with ESMTP id 08OBoOCF060034;
+        Thu, 24 Sep 2020 06:50:24 -0500
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=ti.com;
+        s=ti-com-17Q1; t=1600948224;
+        bh=jcNWHhGPu1Ikd/YQGWpK265untLOjRLtIljXEJdpu8w=;
+        h=Subject:To:CC:References:From:Date:In-Reply-To;
+        b=qcZrDN/pmwKnykbhy8qTR27HoHNJcCFkzEIyINvPdJUiMExFt8QJKSrzlVCBr4orM
+         Wn5LZZEYmYjIDixzyo5/FXhbp9wW1mDSTLceHnBgOeL/XRWQaTqx1oGWi4N8mnlX0H
+         c104AcrNfInHojDK1WqjOnZ2GXDaGOxNiviMMPA0=
+Received: from DFLE102.ent.ti.com (dfle102.ent.ti.com [10.64.6.23])
+        by lelv0266.itg.ti.com (8.15.2/8.15.2) with ESMTPS id 08OBoOkL026592
+        (version=TLSv1.2 cipher=AES256-GCM-SHA384 bits=256 verify=FAIL);
+        Thu, 24 Sep 2020 06:50:24 -0500
+Received: from DFLE105.ent.ti.com (10.64.6.26) by DFLE102.ent.ti.com
+ (10.64.6.23) with Microsoft SMTP Server (version=TLS1_2,
+ cipher=TLS_ECDHE_RSA_WITH_AES_128_CBC_SHA256_P256) id 15.1.1979.3; Thu, 24
+ Sep 2020 06:50:24 -0500
+Received: from lelv0326.itg.ti.com (10.180.67.84) by DFLE105.ent.ti.com
+ (10.64.6.26) with Microsoft SMTP Server (version=TLS1_2,
+ cipher=TLS_ECDHE_RSA_WITH_AES_128_CBC_SHA256_P256) id 15.1.1979.3 via
+ Frontend Transport; Thu, 24 Sep 2020 06:50:24 -0500
+Received: from [10.24.69.198] (ileax41-snat.itg.ti.com [10.172.224.153])
+        by lelv0326.itg.ti.com (8.15.2/8.15.2) with ESMTP id 08OBoLSr075688;
+        Thu, 24 Sep 2020 06:50:22 -0500
+Subject: Re: [PATCH v2 0/2] Add support for MMC/SD on j7200-evm
+To:     Faiz Abbas <faiz_abbas@ti.com>, <linux-kernel@vger.kernel.org>,
+        <devicetree@vger.kernel.org>,
+        <linux-arm-kernel@lists.infradead.org>
+CC:     <robh+dt@kernel.org>, <nm@ti.com>, <t-kristo@ti.com>
+References: <20200924112644.11076-1-faiz_abbas@ti.com>
+From:   Sekhar Nori <nsekhar@ti.com>
+Message-ID: <6a5fa65a-6b42-87e1-71f0-5fa41dab5348@ti.com>
+Date:   Thu, 24 Sep 2020 17:20:20 +0530
+User-Agent: Mozilla/5.0 (X11; Linux x86_64; rv:60.0) Gecko/20100101
+ Thunderbird/60.9.0
 MIME-Version: 1.0
-Content-Type: multipart/signed; micalg=pgp-sha512;
-        protocol="application/pgp-signature"; boundary="TYecfFk8j8mZq+dy"
-Content-Disposition: inline
-In-Reply-To: <a1e13626-e87a-8114-74ae-560902ab9551@gmail.com>
-X-Cookie: Programmers do it bit by bit.
-User-Agent: Mutt/1.10.1 (2018-07-13)
+In-Reply-To: <20200924112644.11076-1-faiz_abbas@ti.com>
+Content-Type: text/plain; charset="utf-8"
+Content-Language: en-US
+Content-Transfer-Encoding: 7bit
+X-EXCLAIMER-MD-CONFIG: e1e8a2fd-e40a-4ac6-ac9b-f7e9cc9ee180
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
+On 24/09/20 4:56 PM, Faiz Abbas wrote:
+> The following patches add dt support for MMC/SD on TI's j7200-evm.
+> 
+> Currently, eMMC support upto HS200 speed and SD card supports upto high
+> speed speed mode.
 
---TYecfFk8j8mZq+dy
-Content-Type: text/plain; charset=us-ascii
-Content-Disposition: inline
+To be sure, the TRM calls for SD card speed up to DDR50. And I believe
+there is work going on to go higher too. That needs voltage switching
+though and can come in as follow-on patches. This is good first step.
 
-On Wed, Sep 23, 2020 at 01:38:55PM -0700, Florian Fainelli wrote:
-> On 9/14/20 7:52 AM, Mark Brown wrote:
+Reviewed-by: Sekhar Nori <nsekhar@ti.com>
 
-> > [1/4] spi: Add compatible string for brcmstb SoCs
-> >       commit: d9f0cf9f1176d36d3824459d5b061f4719fcbb8a
-> > [2/4] spi: bcm-qspi: Add compatible string for BRCMSTB 7445 SoCs
-> >       commit: e0eeb76b818ad93718f9640b0bdad909b453a3b8
-> > [3/4] spi: bcm-qspi: Fix probe regression on iProc platforms
-> >       commit: 9a852d44b26f8e60e2ae13df563824c0f8489135
-> > [4/4] spi: bcm-qspi: Clean up 7425, 7429, and 7435 settings
-> >       commit: 3cf5d198785a6b454e6a97246795b0043aff9ac1
-
-> Mark, can you also submit "spi: bcm-qspi: Fix probe regression on iProc
-> platforms" towards Linus because this is a bug fix that is currently
-> affecting the 5.9 kernel.
-
-*sigh*, OK.  Please don't send fixes in the middle of serieses, send
-them at the start of the series before any cleanups or new features.
-This ensures that they don't have any dependencies on other patches in
-the series and means that they can easily be sent as fixes without
-getting tangled up with the development work.
-
---TYecfFk8j8mZq+dy
-Content-Type: application/pgp-signature; name="signature.asc"
-
------BEGIN PGP SIGNATURE-----
-
-iQEzBAABCgAdFiEEreZoqmdXGLWf4p/qJNaLcl1Uh9AFAl9shCQACgkQJNaLcl1U
-h9B4Twf+NFkJy7KuNAOffATLKqqcClJiumK7L7QA6oQzn5MyuQ85EZ2YlPh8spJF
-vNw1WzK+a0CQxCTi7s4jwEUZIR8G0Q1CqLAFxGk/F0bI3vHH7TpbGRvMpZ0/ixj+
-fSTroeoBmtizi21WE7qOFqqmnMM89icDbtpuszMf/uXqqsfyb38GdZPa28s97m3K
-wT91kmromhOILWvxFr+KZZBfm7auA9zCfS7D19thW4L7XZ8t//hFECZSgZ9/J9lR
-BbjNPwusRL/r+b3dfIdAr4J2CSPEUolBX8s664HR/y8P9BmM4TEiMYHIuywmWYPA
-CzDVA8Gdka3aB8Yb8apP6hMCG9EnHg==
-=JdlS
------END PGP SIGNATURE-----
-
---TYecfFk8j8mZq+dy--
+Thanks,
+Sekhar
