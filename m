@@ -2,98 +2,70 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from vger.kernel.org (vger.kernel.org [23.128.96.18])
-	by mail.lfdr.de (Postfix) with ESMTP id BDE9F277076
-	for <lists+devicetree@lfdr.de>; Thu, 24 Sep 2020 13:58:24 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTP id DE19627708B
+	for <lists+devicetree@lfdr.de>; Thu, 24 Sep 2020 14:01:33 +0200 (CEST)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S1727468AbgIXL6X (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Thu, 24 Sep 2020 07:58:23 -0400
-Received: from fllv0016.ext.ti.com ([198.47.19.142]:50490 "EHLO
-        fllv0016.ext.ti.com" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S1727437AbgIXL6X (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Thu, 24 Sep 2020 07:58:23 -0400
-Received: from lelv0265.itg.ti.com ([10.180.67.224])
-        by fllv0016.ext.ti.com (8.15.2/8.15.2) with ESMTP id 08OBwJBA063493;
-        Thu, 24 Sep 2020 06:58:19 -0500
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=ti.com;
-        s=ti-com-17Q1; t=1600948699;
-        bh=Kx975IonNS5fdPzc1CvdbkZGQbbLSeWnCwzcvYSifOo=;
-        h=Subject:To:CC:References:From:Date:In-Reply-To;
-        b=cu7lCmqN1zvQtRJpCtyBoCWMzNDmcIIRDpvl3nJv2Hv0YrZkmLha2figDgEE0iyoo
-         jvaVBlGNnLnpvvxGPXT2Z4fJr8fU8P6abLa4zRd50xM8S7eeSDISu88sp3VEqHHeBC
-         AwbRaUBukOSD+SbXhEtObxmYOSrRu6Lza5ORtPnQ=
-Received: from DLEE102.ent.ti.com (dlee102.ent.ti.com [157.170.170.32])
-        by lelv0265.itg.ti.com (8.15.2/8.15.2) with ESMTPS id 08OBwJTB027044
-        (version=TLSv1.2 cipher=AES256-GCM-SHA384 bits=256 verify=FAIL);
-        Thu, 24 Sep 2020 06:58:19 -0500
-Received: from DLEE104.ent.ti.com (157.170.170.34) by DLEE102.ent.ti.com
- (157.170.170.32) with Microsoft SMTP Server (version=TLS1_2,
- cipher=TLS_ECDHE_RSA_WITH_AES_128_CBC_SHA256_P256) id 15.1.1979.3; Thu, 24
- Sep 2020 06:58:18 -0500
-Received: from lelv0326.itg.ti.com (10.180.67.84) by DLEE104.ent.ti.com
- (157.170.170.34) with Microsoft SMTP Server (version=TLS1_2,
- cipher=TLS_ECDHE_RSA_WITH_AES_128_CBC_SHA256_P256) id 15.1.1979.3 via
- Frontend Transport; Thu, 24 Sep 2020 06:58:18 -0500
-Received: from [10.250.235.166] (ileax41-snat.itg.ti.com [10.172.224.153])
-        by lelv0326.itg.ti.com (8.15.2/8.15.2) with ESMTP id 08OBwFsk088303;
-        Thu, 24 Sep 2020 06:58:16 -0500
-Subject: Re: [PATCH v2 0/2] Add support for MMC/SD on j7200-evm
-To:     Faiz Abbas <faiz_abbas@ti.com>, <linux-kernel@vger.kernel.org>,
-        <devicetree@vger.kernel.org>,
-        <linux-arm-kernel@lists.infradead.org>
-CC:     <nm@ti.com>, <t-kristo@ti.com>, <robh+dt@kernel.org>
-References: <20200924112644.11076-1-faiz_abbas@ti.com>
-From:   Vignesh Raghavendra <vigneshr@ti.com>
-Message-ID: <f4444de5-cde4-9f08-d8d7-1ecdbf071258@ti.com>
-Date:   Thu, 24 Sep 2020 17:28:15 +0530
-User-Agent: Mozilla/5.0 (X11; Linux x86_64; rv:68.0) Gecko/20100101
- Thunderbird/68.10.0
-MIME-Version: 1.0
-In-Reply-To: <20200924112644.11076-1-faiz_abbas@ti.com>
-Content-Type: text/plain; charset="utf-8"
-Content-Language: en-US
-Content-Transfer-Encoding: 7bit
-X-EXCLAIMER-MD-CONFIG: e1e8a2fd-e40a-4ac6-ac9b-f7e9cc9ee180
+        id S1727667AbgIXMBc (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Thu, 24 Sep 2020 08:01:32 -0400
+Received: from mail.kernel.org ([198.145.29.99]:39598 "EHLO mail.kernel.org"
+        rhost-flags-OK-OK-OK-OK) by vger.kernel.org with ESMTP
+        id S1727634AbgIXMB3 (ORCPT <rfc822;devicetree@vger.kernel.org>);
+        Thu, 24 Sep 2020 08:01:29 -0400
+Received: from localhost (fw-tnat.cambridge.arm.com [217.140.96.140])
+        (using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
+        (No client certificate requested)
+        by mail.kernel.org (Postfix) with ESMTPSA id 89C542344C;
+        Thu, 24 Sep 2020 12:01:28 +0000 (UTC)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=kernel.org;
+        s=default; t=1600948889;
+        bh=Gbv2myf3mm/YelzUd5RFwsmoYebMix9wSgM9SCsvMZ0=;
+        h=Date:From:To:Cc:In-Reply-To:References:Subject:From;
+        b=p/AGj8P41FOeOSee1kJ6P+5EvMNOP4CHcur8Z2oIVg7Z0AaDtls7e/ExE2rpe3IMX
+         6ein54SpZ6cfmX8Tgw4pKJoIQGWDC9hMqRlHG1eSnlXkP+l3tnpIdlVlFx9bvG3oyH
+         6xXlqDwP7D7O2QjosHQFFjHvzFUPPyrPyZu+Quo8=
+Date:   Thu, 24 Sep 2020 13:00:34 +0100
+From:   Mark Brown <broonie@kernel.org>
+To:     Rob Herring <robh+dt@kernel.org>,
+        Kamal Dasu <kdasu.kdev@gmail.com>,
+        Ray Jui <ray.jui@broadcom.com>,
+        Florian Fainelli <f.fainelli@gmail.com>
+Cc:     linux-kernel@vger.kernel.org, devicetree@vger.kernel.org,
+        linux-spi@vger.kernel.org, bcm-kernel-feedback-list@broadcom.com
+In-Reply-To: <20200910152539.45584-1-ray.jui@broadcom.com>
+References: <20200910152539.45584-1-ray.jui@broadcom.com>
+Subject: Re: [PATCH 1/4] dt-bindings: spi: Add compatible string for brcmstb SoCs
+Message-Id: <160094881929.50579.14070314073431135713.b4-ty@kernel.org>
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
+On Thu, 10 Sep 2020 08:25:36 -0700, Ray Jui wrote:
+> Add compatible string for brcmstb 7445 SoCs.
 
+Applied to
 
-On 9/24/20 4:56 PM, Faiz Abbas wrote:
-> The following patches add dt support for MMC/SD on TI's j7200-evm.
-> 
-> Currently, eMMC support upto HS200 speed and SD card supports upto high
-> speed speed mode.
-> 
-> v2:
-> Fixed node names to use mmc@* format
-> Fixed reg address format to align with others in the file
-> 
-> Faiz Abbas (2):
->   arm64: dts: ti: k3-j7200-main: Add support for MMC/SD controller nodes
->   arm64: dts: ti: k3-j7200-common-proc-board: Add support for eMMC and
->     SD card
-> 
->  .../dts/ti/k3-j7200-common-proc-board.dts     | 28 ++++++++++++++
->  arch/arm64/boot/dts/ti/k3-j7200-main.dtsi     | 37 +++++++++++++++++++
->  2 files changed, 65 insertions(+)
-> 
-For the series:
+   https://git.kernel.org/pub/scm/linux/kernel/git/broonie/spi.git for-next
 
-Tested-by: Vignesh Raghavendra <vigneshr@ti.com>
+Thanks!
 
+[1/1] spi: bcm-qspi: Fix probe regression on iProc platforms
+      commit: 00fb259c618ea1198fc51b53a6167aa0d78672a9
 
-[    1.678263] mmc0: Command Queue Engine enabled
-[    1.682727] mmc0: new HS200 MMC card at address 0001
-[    1.688193] mmcblk0: mmc0:0001 S0J56X 14.8 GiB
-[    1.692971] mmcblk0boot0: mmc0:0001 S0J56X partition 1 31.5 MiB
-[    1.699138] mmcblk0boot1: mmc0:0001 S0J56X partition 2 31.5 MiB
-[    1.705268] mmcblk0rpmb: mmc0:0001 S0J56X partition 3 4.00 MiB, ch
-ardev (240:0)
-[    1.789527] mmc1: new high speed SDHC card at address aaaa
-[    1.795621] mmcblk1: mmc1:aaaa SC16G 14.8 GiB
-[    1.810074]  mmcblk1: p1 p2
+All being well this means that it will be integrated into the linux-next
+tree (usually sometime in the next 24 hours) and sent to Linus during
+the next merge window (or sooner if it is a bug fix), however if
+problems are discovered then the patch may be dropped or reverted.
 
+You may get further e-mails resulting from automated or manual testing
+and review of the tree, please engage with people reporting problems and
+send followup patches addressing any issues that are reported if needed.
 
-SD hot plug works fine too..
-Full log: https://pastebin.ubuntu.com/p/5hcCQDjhtW/
+If any updates are required or you are submitting further changes they
+should be sent as incremental updates against current git, existing
+patches will not be replaced.
+
+Please add any relevant lists and maintainers to the CCs when replying
+to this mail.
+
+Thanks,
+Mark
