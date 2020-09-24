@@ -2,106 +2,69 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from vger.kernel.org (vger.kernel.org [23.128.96.18])
-	by mail.lfdr.de (Postfix) with ESMTP id E24A1276B48
-	for <lists+devicetree@lfdr.de>; Thu, 24 Sep 2020 09:57:22 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTP id C0138276B4C
+	for <lists+devicetree@lfdr.de>; Thu, 24 Sep 2020 10:00:00 +0200 (CEST)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S1727196AbgIXH5Q (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Thu, 24 Sep 2020 03:57:16 -0400
-Received: from lindbergh.monkeyblade.net ([23.128.96.19]:53636 "EHLO
-        lindbergh.monkeyblade.net" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S1727164AbgIXH5Q (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Thu, 24 Sep 2020 03:57:16 -0400
-Received: from mail-pj1-x1035.google.com (mail-pj1-x1035.google.com [IPv6:2607:f8b0:4864:20::1035])
-        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 588F2C0613D3
-        for <devicetree@vger.kernel.org>; Thu, 24 Sep 2020 00:57:16 -0700 (PDT)
-Received: by mail-pj1-x1035.google.com with SMTP id mn7so1176977pjb.5
-        for <devicetree@vger.kernel.org>; Thu, 24 Sep 2020 00:57:16 -0700 (PDT)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=chromium.org; s=google;
-        h=mime-version:content-transfer-encoding:in-reply-to:references
-         :subject:from:cc:to:date:message-id:user-agent;
-        bh=nIx2g9hE/0bXNM/pwrWkRdm4URrOvOfMohT8HMjo9Ao=;
-        b=aTSU7n5fMU41yviqESs2c9mMPf+IYx8QwuWCdmdhLxJz0Jh7jgGhtT9KnY6hRtSnKx
-         1W4tIig0G0+UQUeoFk336wE8ZPR5Xl/ucbuyBnPKA6SjCe26xJRJ+kaPRtjpTOvI85L1
-         16HJ5NyO5LBSiWXQFYz1YCXlgYWz3dVEO3dss=
-X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=1e100.net; s=20161025;
-        h=x-gm-message-state:mime-version:content-transfer-encoding
-         :in-reply-to:references:subject:from:cc:to:date:message-id
-         :user-agent;
-        bh=nIx2g9hE/0bXNM/pwrWkRdm4URrOvOfMohT8HMjo9Ao=;
-        b=cm09yTQV1JaxAwB7iP84Id4fkgXZsBhEVm6V4khMGnLRf/k9AwQ4Lnf3wM+wWcw/p3
-         5tQpt/fyx1ULtKglq71CY66oXDGmZOFZsrO/tuYU6MbvNSrtp1v8zKkAYgBg88bcdO/a
-         UihIQx1euz+1oBiuNhByq2hgqGfHj4pmkQQj+2LuP0UIzM/cCMIaI1HkrB0XaBU372Mb
-         MHxDrJPwPK6oOIuM+FK9GzQ3rGlsvlRZNuqD4vyY9JhYIT0NE1LvIvcU1zbvtJ+yb6hC
-         K62xK9cFCqrMBDtghEmsAmEirmUSsQ9wVQpLuBaJI7AWDQfyAsksLmr/zZBihb6OxItj
-         LN/Q==
-X-Gm-Message-State: AOAM533N42UKFFOcXbGf13J+k/CwGyH+Chcd2v369WFjM5p7ezo5Qni2
-        qcMFFulALpq5KMH5INHpxlM66Q==
-X-Google-Smtp-Source: ABdhPJxEM4eeBUcECdk2ALrU71tfv2XbEcD9NoBcPVvA8okwUHKyVVkEBPPPodWG+BJiiN8IUazBEg==
-X-Received: by 2002:a17:90a:8a04:: with SMTP id w4mr2894263pjn.72.1600934235780;
-        Thu, 24 Sep 2020 00:57:15 -0700 (PDT)
-Received: from chromium.org ([2620:15c:202:1:3e52:82ff:fe6c:83ab])
-        by smtp.gmail.com with ESMTPSA id bx22sm1583848pjb.23.2020.09.24.00.57.15
-        (version=TLS1_3 cipher=TLS_AES_256_GCM_SHA384 bits=256/256);
-        Thu, 24 Sep 2020 00:57:15 -0700 (PDT)
-Content-Type: text/plain; charset="utf-8"
+        id S1727175AbgIXH77 (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Thu, 24 Sep 2020 03:59:59 -0400
+Received: from relay6-d.mail.gandi.net ([217.70.183.198]:36419 "EHLO
+        relay6-d.mail.gandi.net" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
+        with ESMTP id S1727151AbgIXH77 (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Thu, 24 Sep 2020 03:59:59 -0400
+X-Originating-IP: 90.65.88.165
+Received: from localhost (lfbn-lyo-1-1908-165.w90-65.abo.wanadoo.fr [90.65.88.165])
+        (Authenticated sender: alexandre.belloni@bootlin.com)
+        by relay6-d.mail.gandi.net (Postfix) with ESMTPSA id 2AF8EC0002;
+        Thu, 24 Sep 2020 07:59:56 +0000 (UTC)
+From:   Alexandre Belloni <alexandre.belloni@bootlin.com>
+To:     Bastian Krause <bst@pengutronix.de>, linux-rtc@vger.kernel.org
+Cc:     Alexandre Belloni <alexandre.belloni@bootlin.com>,
+        Marek Vasut <marex@denx.de>,
+        Arnaud Ebalard <arno@natisbad.org>,
+        Alessandro Zummo <a.zummo@towertech.it>,
+        devicetree@vger.kernel.org, Rob Herring <robh+dt@kernel.org>,
+        kernel@pengutronix.de
+Subject: Re: [PATCH v2 0/8] rtc: expand charge support, implement rx8130 charging
+Date:   Thu, 24 Sep 2020 09:59:56 +0200
+Message-Id: <160093416442.1678374.12122275731329184121.b4-ty@bootlin.com>
+X-Mailer: git-send-email 2.26.2
+In-Reply-To: <20200917183246.19446-1-bst@pengutronix.de>
+References: <20200917183246.19446-1-bst@pengutronix.de>
 MIME-Version: 1.0
-Content-Transfer-Encoding: quoted-printable
-In-Reply-To: <160090354388.310579.2465697259775252128@swboyd.mtv.corp.google.com>
-References: <20200903221828.3657250-1-swboyd@chromium.org> <20200906150247.3aaef3a3@archlinux> <159963232334.454335.9794130058200265122@swboyd.mtv.corp.google.com> <20200909121550.00005ede@Huawei.com> <160090354388.310579.2465697259775252128@swboyd.mtv.corp.google.com>
-Subject: Re: [PATCH] dt-bindings: iio: sx9310: Add various settings as DT properties
-From:   Stephen Boyd <swboyd@chromium.org>
-Cc:     Jonathan Cameron <jic23@kernel.org>, linux-kernel@vger.kernel.org,
-        linux-iio@vger.kernel.org, Daniel Campello <campello@chromium.org>,
-        Lars-Peter Clausen <lars@metafoo.de>,
-        Peter Meerwald-Stadler <pmeerw@pmeerw.net>,
-        Rob Herring <robh+dt@kernel.org>, devicetree@vger.kernel.org,
-        Douglas Anderson <dianders@chromium.org>,
-        Gwendal Grignou <gwendal@chromium.org>,
-        Evan Green <evgreen@chromium.org>
-To:     Jonathan Cameron <Jonathan.Cameron@Huawei.com>
-Date:   Thu, 24 Sep 2020 00:57:13 -0700
-Message-ID: <160093423392.310579.10143738916599003618@swboyd.mtv.corp.google.com>
-User-Agent: alot/0.9.1
+Content-Transfer-Encoding: 8bit
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-Quoting Stephen Boyd (2020-09-23 16:25:43)
-> > > > > +
-> > > > > +  semtech,close-debounce-samples:
-> > > > > +    allOf:
-> > > > > +      - $ref: /schemas/types.yaml#definitions/uint32
-> > > > > +      - enum: [0, 2, 4, 8]
-> > > > > +    default: 0
-> > > > > +    description:
-> > > > > +      The number of close samples debounced for proximity/body t=
-hresholds. =20
-> > > >=20
-> > > > This feels like something that has more to do with the object motio=
-n than
-> > > > the sensor setup, so perhaps should be controlled from userspace?  =
+On Thu, 17 Sep 2020 20:32:38 +0200, Bastian Krause wrote:
+> In order to preserve previous RTC charging behavior while allowing to
+> add new charging configurations this series adds the dt property
+> aux-voltage-chargeable as a uint enum. It supersedes the
+> trickle-diode-disable flag.
+> 
+> Then the ds1307 driver's charging infrastructure is generalized:
+> 
+> [...]
 
-> > >=20
-> > > Sure. Is there an IIO sample property? Or I should make a custom
-> > > knob for this?
-> >=20
-> > It's kind of close to in_proximity0_thresh_period and that may be how t=
-hey
-> > have implemented it.
-> >=20
-> > That control specifies a number of samples for which a condition should=
- be true
-> > before it is reported.
->=20
-> Sounds good. I can do that. It looks like the driver reports close/far
-> via an event and these debounce values are the same for me so I can
-> write both fields (close and far) with the same thresh_period value from
-> userspace. If they need to be different between the two then this can be
-> reevaluated?
->=20
+Applied, thanks!
 
-Or I can assign thresh_period to falling and rising corresponding to
-close/far debounce. Seems that the direction is the same, but that can
-be split apart and each direction gets a different sysfs file?
+[1/8] dt-bindings: rtc: let aux-voltage-chargeable supersede trickle-diode-disable
+      commit: 965fe1ceea05de735f63d1c1f90f0310fc830a8d
+[2/8] dt-bindings: rtc: ds1307: let aux-voltage-chargeable supersede trickle-diode-disable
+      commit: c53cee48670cc623a42e49319a261798d8608b0e
+[3/8] dt-bindings: rtc: ds1307: add rx8130 aux-voltage-chargeable support
+      commit: 40d58c9742286ef95ef8dc5885d4043224490c82
+[4/8] rtc: ds1307: apply DS13XX_TRICKLE_CHARGER_MAGIC only conditionally
+      commit: 462eb736db3db76899022e4e4db788a7b6efbe09
+[5/8] rtc: ds1307: introduce requires_trickle_resistor per chip
+      commit: 1b5b6af788ae59ee73e3f3230dbfa4f0e31d8d18
+[6/8] rtc: ds1307: store previous charge default per chip
+      commit: 95a74cbb21a2431dd2fd8918fa26113629b6e13e
+[7/8] rtc: ds1307: consider aux-voltage-chargeable
+      commit: 0874734e09af5cc05439dbe2c8ff704f14d679f5
+[8/8] rtc: ds1307: enable rx8130's backup battery, make it chargeable optionally
+      commit: 0026f1604c9ba1ae8108d4977da0366c283552bc
+
+Best regards,
+-- 
+Alexandre Belloni <alexandre.belloni@bootlin.com>
