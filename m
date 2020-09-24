@@ -2,107 +2,95 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from vger.kernel.org (vger.kernel.org [23.128.96.18])
-	by mail.lfdr.de (Postfix) with ESMTP id B40A4276B66
-	for <lists+devicetree@lfdr.de>; Thu, 24 Sep 2020 10:05:46 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTP id B4A2A276B91
+	for <lists+devicetree@lfdr.de>; Thu, 24 Sep 2020 10:15:37 +0200 (CEST)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S1727258AbgIXIFp (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Thu, 24 Sep 2020 04:05:45 -0400
-Received: from relmlor1.renesas.com ([210.160.252.171]:63049 "EHLO
-        relmlie5.idc.renesas.com" rhost-flags-OK-OK-OK-FAIL)
-        by vger.kernel.org with ESMTP id S1727013AbgIXIFo (ORCPT
-        <rfc822;devicetree@vger.kernel.org>);
-        Thu, 24 Sep 2020 04:05:44 -0400
-X-IronPort-AV: E=Sophos;i="5.77,296,1596466800"; 
-   d="scan'208";a="58035686"
-Received: from unknown (HELO relmlir6.idc.renesas.com) ([10.200.68.152])
-  by relmlie5.idc.renesas.com with ESMTP; 24 Sep 2020 17:05:40 +0900
-Received: from localhost.localdomain (unknown [172.29.53.102])
-        by relmlir6.idc.renesas.com (Postfix) with ESMTP id C80874205335;
-        Thu, 24 Sep 2020 17:05:38 +0900 (JST)
-From:   Biju Das <biju.das.jz@bp.renesas.com>
-To:     Rob Herring <robh+dt@kernel.org>
-Cc:     Biju Das <biju.das.jz@bp.renesas.com>,
-        Geert Uytterhoeven <geert+renesas@glider.be>,
-        Magnus Damm <magnus.damm@gmail.com>,
-        linux-renesas-soc@vger.kernel.org, devicetree@vger.kernel.org,
-        Chris Paterson <Chris.Paterson2@renesas.com>,
-        Biju Das <biju.das@bp.renesas.com>,
-        Prabhakar Mahadev Lad <prabhakar.mahadev-lad.rj@bp.renesas.com>
-Subject: [PATCH] ARM: dts: iwg20d-q7-common: Fix touch controller probe failure
-Date:   Thu, 24 Sep 2020 09:05:35 +0100
-Message-Id: <20200924080535.3641-1-biju.das.jz@bp.renesas.com>
-X-Mailer: git-send-email 2.17.1
+        id S1727219AbgIXIPg convert rfc822-to-8bit (ORCPT
+        <rfc822;lists+devicetree@lfdr.de>); Thu, 24 Sep 2020 04:15:36 -0400
+Received: from relay2-d.mail.gandi.net ([217.70.183.194]:64079 "EHLO
+        relay2-d.mail.gandi.net" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
+        with ESMTP id S1727180AbgIXIPg (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Thu, 24 Sep 2020 04:15:36 -0400
+X-Originating-IP: 90.65.92.90
+Received: from localhost (lfbn-lyo-1-1913-90.w90-65.abo.wanadoo.fr [90.65.92.90])
+        (Authenticated sender: gregory.clement@bootlin.com)
+        by relay2-d.mail.gandi.net (Postfix) with ESMTPSA id BE4C840009;
+        Thu, 24 Sep 2020 08:15:33 +0000 (UTC)
+From:   Gregory CLEMENT <gregory.clement@bootlin.com>
+To:     Pali =?utf-8?Q?Roh=C3=A1r?= <pali@kernel.org>
+Cc:     Andrew Lunn <andrew@lunn.ch>, Jason Cooper <jason@lakedaemon.net>,
+        Sebastian Hesselbarth <sebastian.hesselbarth@gmail.com>,
+        Rob Herring <robh+dt@kernel.org>,
+        Tomasz Maciej Nowak <tmn505@gmail.com>,
+        Andre Heider <a.heider@gmail.com>,
+        linux-arm-kernel@lists.infradead.org, devicetree@vger.kernel.org,
+        linux-kernel@vger.kernel.org
+Subject: Re: [PATCH] arm64: dts: marvell: espressobin: Add ethernet switch aliases
+In-Reply-To: <20200923161929.2qiqvlnxoj45jzjg@pali>
+References: <20200907112718.5994-1-pali@kernel.org> <20200907144228.GV3112546@lunn.ch> <20200907145213.fwlyz4k6scible7x@pali> <20200907154353.GW3112546@lunn.ch> <20200907161316.xd5svvahi5xusdlw@pali> <20200907172345.GB3254313@lunn.ch> <20200908074733.f33pwtreojzobivq@pali> <20200923161929.2qiqvlnxoj45jzjg@pali>
+Date:   Thu, 24 Sep 2020 10:15:33 +0200
+Message-ID: <87sgb7h9p6.fsf@BL-laptop>
+MIME-Version: 1.0
+Content-Type: text/plain; charset=utf-8
+Content-Transfer-Encoding: 8BIT
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-As per the iWave RZ/G1M schematic, the signal LVDS_PPEN controls supply
-voltage for touch panel, LVDS receiver and RGB LCD panel. Add regulator
-for these device nodes and remove powerdown-gpios property from
-lvds-receiver node as it results in touch controller driver probe failure.
+Hi Pali,
 
-Signed-off-by: Biju Das <biju.das.jz@bp.renesas.com>
-Reviewed-by: Laurent Pinchart <laurent.pinchart@ideasonboard.com>
----
-v4->v5 : Restored Laurent's Rb tag, since it is minor change, renaming vcc-supply to power-supply
+> On Tuesday 08 September 2020 09:47:33 Pali Rohár wrote:
+>> On Monday 07 September 2020 19:23:45 Andrew Lunn wrote:
+>> > On Mon, Sep 07, 2020 at 06:13:16PM +0200, Pali Rohár wrote:
+>> > > On Monday 07 September 2020 17:43:53 Andrew Lunn wrote:
+>> > > > > I would not say it is a "new feature". But rather that patch in this
+>> > > > > email fixes issue that Linux kernel did not set correct MAC address for
+>> > > > > DSA slave ports. I think it is something which could be backported also
+>> > > > > to stable releases as "ignoring" vendor/factory MAC address is not
+>> > > > > correct behavior.
+>> > > > 
+>> > > > Hi Pali
+>> > > > 
+>> > > > The rules for stable are here:
+>> > > > 
+>> > > > https://www.kernel.org/doc/html/v5.8/process/stable-kernel-rules.html
+>> > > > 
+>> > > > Do you think it fits?
+>> > > > 
+>> > > >    Andrew
+>> > > 
+>> > > Hello Andrew! I think it fits into those rules. As I wrote it fixes real
+>> > > bug that Linux kernel does not use correct MAC address for particular
+>> > > DSA slaves / ethernet ports.
+>> > 
+>> > O.K, then:
+>> > 
+>> > Reviewed-by: Andrew Lunn <andrew@lunn.ch>
+>> > 
+>> >     Andrew
+>> 
+>> Ok! Andrew, I would like to ask another question, how to correctly
+>> define that this patch depends on a2c7023f7075c? I specified it in
+>> human-readable part of commit description, but for backporting it would
+>> also need some machine-readable format. So patch would not be
+>> occasionally backported to older/stable kernel where a2c7023f7075c is
+>> not available.
+>
+> Based on stable-kernel-rules.html document I think that following line
+> should define this dependency in machine readable format:
+>
+> Cc: <stable@vger.kernel.org> # a2c7023f7075c: dsa: read mac address
+>
+> Gregory, if it is correct, would you add that line into commit sign-off
+> area where is existing Fixes: line?
 
-v3->v4 : Incorporated Laurent's review comments(https://patchwork.kernel.org/patch/11707887/)
-         Added Laurent's Reviewed-by tag
-v2->v3 : Added the missing part from the patch. removal of powerdown-gpios property.
-v1->v2 : Add regulator in touch panel, LVDS receiver and RGB LCD panel device nodes
-           (Ref: https://patchwork.kernel.org/patch/11707559/)
-v1 : https://patchwork.kernel.org/patch/11705819/
----
- arch/arm/boot/dts/iwg20d-q7-common.dtsi | 15 ++++++++++++++-
- 1 file changed, 14 insertions(+), 1 deletion(-)
+I amended the commit log with this change.
 
-diff --git a/arch/arm/boot/dts/iwg20d-q7-common.dtsi b/arch/arm/boot/dts/iwg20d-q7-common.dtsi
-index ebbe1518ef8a..63cafd220dba 100644
---- a/arch/arm/boot/dts/iwg20d-q7-common.dtsi
-+++ b/arch/arm/boot/dts/iwg20d-q7-common.dtsi
-@@ -57,7 +57,7 @@
- 
- 	lvds-receiver {
- 		compatible = "ti,ds90cf384a", "lvds-decoder";
--		powerdown-gpios = <&gpio7 25 GPIO_ACTIVE_LOW>;
-+		power-supply = <&vcc_3v3_tft1>;
- 
- 		ports {
- 			#address-cells = <1>;
-@@ -81,6 +81,7 @@
- 	panel {
- 		compatible = "edt,etm0700g0dh6";
- 		backlight = <&lcd_backlight>;
-+		power-supply = <&vcc_3v3_tft1>;
- 
- 		port {
- 			panel_in: endpoint {
-@@ -113,6 +114,17 @@
- 		};
- 	};
- 
-+	vcc_3v3_tft1: regulator-panel {
-+		compatible = "regulator-fixed";
-+
-+		regulator-name = "vcc-3v3-tft1";
-+		regulator-min-microvolt = <3300000>;
-+		regulator-max-microvolt = <3300000>;
-+		enable-active-high;
-+		startup-delay-us = <500>;
-+		gpio = <&gpio7 25 GPIO_ACTIVE_HIGH>;
-+	};
-+
- 	vcc_sdhi1: regulator-vcc-sdhi1 {
- 		compatible = "regulator-fixed";
- 
-@@ -207,6 +219,7 @@
- 		reg = <0x38>;
- 		interrupt-parent = <&gpio2>;
- 		interrupts = <12 IRQ_TYPE_EDGE_FALLING>;
-+		vcc-supply = <&vcc_3v3_tft1>;
- 	};
- };
- 
+Thanks,
+
+Gregory
+
 -- 
-2.17.1
-
+Gregory Clement, Bootlin
+Embedded Linux and Kernel engineering
+http://bootlin.com
