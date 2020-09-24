@@ -2,118 +2,299 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from vger.kernel.org (vger.kernel.org [23.128.96.18])
-	by mail.lfdr.de (Postfix) with ESMTP id 86224277A7E
-	for <lists+devicetree@lfdr.de>; Thu, 24 Sep 2020 22:34:08 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTP id 8EFB6277A93
+	for <lists+devicetree@lfdr.de>; Thu, 24 Sep 2020 22:40:49 +0200 (CEST)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S1726119AbgIXUeH (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Thu, 24 Sep 2020 16:34:07 -0400
-Received: from lindbergh.monkeyblade.net ([23.128.96.19]:57796 "EHLO
+        id S1726637AbgIXUks (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Thu, 24 Sep 2020 16:40:48 -0400
+Received: from lindbergh.monkeyblade.net ([23.128.96.19]:58820 "EHLO
         lindbergh.monkeyblade.net" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S1725208AbgIXUeH (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Thu, 24 Sep 2020 16:34:07 -0400
-Received: from mail-ot1-x343.google.com (mail-ot1-x343.google.com [IPv6:2607:f8b0:4864:20::343])
-        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 17E51C0613CE;
-        Thu, 24 Sep 2020 13:34:07 -0700 (PDT)
-Received: by mail-ot1-x343.google.com with SMTP id m13so175259otl.9;
-        Thu, 24 Sep 2020 13:34:07 -0700 (PDT)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=gmail.com; s=20161025;
-        h=subject:to:cc:references:from:message-id:date:user-agent
-         :mime-version:in-reply-to:content-language:content-transfer-encoding;
-        bh=ehQMQDpfRuKgE9q3WkgCEw7GDoAOhOo3QuUUp/OPUqQ=;
-        b=l312+u+7ga5J92oQ6XTu4UEadfft1HHNg8cWkHDfv1zdbNqUNoPaYJJf+u5myxV0ze
-         NhB7GnffmjU6GM2/5X55WeGIODktQ6O6FmCo8F3UTN9IJtVE7NxD00no52Ng12M75Km0
-         FIBHT+scEFtSSBIWf7qVEGVJxI1Ju9ltKeAFPQWvM8gXvlFoMsfvWIHpApaBsbGYIVru
-         VYmj73BdUKflBMum1ph00dBuR5+gBntRrg6/ZG9gxNNBZU3Q5chIwW8YCtkTe6cuktJ2
-         NEKqJ/me49prJuHwT6dMRKXGIRaG6jeuskOiW4JfyuFNjGPah4xM8pxuyFke4Z5S+OF1
-         Jtcg==
-X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=1e100.net; s=20161025;
-        h=x-gm-message-state:subject:to:cc:references:from:message-id:date
-         :user-agent:mime-version:in-reply-to:content-language
-         :content-transfer-encoding;
-        bh=ehQMQDpfRuKgE9q3WkgCEw7GDoAOhOo3QuUUp/OPUqQ=;
-        b=pTJ0qiU9aZ7A4OqDoMLMzhNQSZj7V2mwzaq/i762KzLr84QoC9YdxZJZbA0Cy4aQye
-         aQmL3mGREb7ICrgttHbjdhcOlXKHDS90W+sNjFFYs1Sf+W/4q5Jhy1syeufgTp4qD6O/
-         ZlYhDVA/LDvb8F05zWAxs0nyKbluZmpKBajI/73ME44aqB5uk4LLEtzsgAO8ILta0dGA
-         9m5SdsObZBMy0ns2A7Bt7gIQ25d4K19smYt97pP1L/vss1JwbgBO1XU4WZ6fVed852pu
-         HbPtKC+pd6L6BdGqqJE79sf6SmoS/EWAWy2ei6UOXQByg83CY1Vo0YwAijpOTDAf1nYV
-         wL9w==
-X-Gm-Message-State: AOAM531j3+sXczMzsHDf5dDuUcD8pKdnI2WDyQQLRhjiCd4QBFNLaqF0
-        /4IVW2d0ohV3GHTwmWHWWtDhWoPGSlAg/w==
-X-Google-Smtp-Source: ABdhPJx2d9TJEBv6QBxIXw1aHF4k4DJ3YCNStZz1ImZ4Pxd88NKzog6I53M3G4zKwxUTDfWnZqDSVg==
-X-Received: by 2002:a9d:75d1:: with SMTP id c17mr636430otl.59.1600979646227;
-        Thu, 24 Sep 2020 13:34:06 -0700 (PDT)
-Received: from nuclearis2-1.gtech (c-98-195-139-126.hsd1.tx.comcast.net. [98.195.139.126])
-        by smtp.gmail.com with ESMTPSA id y84sm103879oia.10.2020.09.24.13.34.05
-        (version=TLS1_3 cipher=TLS_AES_128_GCM_SHA256 bits=128/128);
-        Thu, 24 Sep 2020 13:34:05 -0700 (PDT)
-Subject: Re: [PATCH 1/2] drm/bridge: sii902x: Enable I/O and core VCC supplies
- if present
-To:     Fabio Estevam <festevam@gmail.com>
-Cc:     DRI mailing list <dri-devel@lists.freedesktop.org>,
-        "open list:OPEN FIRMWARE AND FLATTENED DEVICE TREE BINDINGS" 
-        <devicetree@vger.kernel.org>, David Airlie <airlied@linux.ie>,
-        Daniel Vetter <daniel@ffwll.ch>,
+        with ESMTP id S1726281AbgIXUkr (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Thu, 24 Sep 2020 16:40:47 -0400
+Received: from mail.andi.de1.cc (mail.andi.de1.cc [IPv6:2a01:238:4321:8900:456f:ecd6:43e:202c])
+        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 1132BC0613CE;
+        Thu, 24 Sep 2020 13:40:47 -0700 (PDT)
+DKIM-Signature: v=1; a=rsa-sha256; q=dns/txt; c=relaxed/relaxed;
+        d=kemnade.info; s=20180802; h=Content-Transfer-Encoding:Content-Type:
+        MIME-Version:References:In-Reply-To:Message-ID:Subject:Cc:To:From:Date:Sender
+        :Reply-To:Content-ID:Content-Description:Resent-Date:Resent-From:
+        Resent-Sender:Resent-To:Resent-Cc:Resent-Message-ID:List-Id:List-Help:
+        List-Unsubscribe:List-Subscribe:List-Post:List-Owner:List-Archive;
+        bh=YdMmIrFjy96JjZkrcSCWZWLABUbKOvDG/JNltuFZSaU=; b=BRtvxQYh1Y3OMCq4Kf1YBUAwZg
+        AdlcG1QdMUxg3ALlmkBMcq8Fes7GkNqPgbSkFwUY2V54/jeKT8Q05AcH4bBOHmAQc9aouuKfzC72q
+        aG24wLj1cSKhR4DYSdYTwVw163dOCYVYxDNsXX+DF1G7KUlaVk8ZmNzLEDmGihP+/OUg=;
+Received: from p200300ccff10b0001a3da2fffebfd33a.dip0.t-ipconnect.de ([2003:cc:ff10:b000:1a3d:a2ff:febf:d33a] helo=aktux)
+        by mail.andi.de1.cc with esmtpsa (TLS1.2:ECDHE_RSA_AES_256_GCM_SHA384:256)
+        (Exim 4.89)
+        (envelope-from <andreas@kemnade.info>)
+        id 1kLY2G-0001pe-BJ; Thu, 24 Sep 2020 22:40:12 +0200
+Date:   Thu, 24 Sep 2020 22:40:11 +0200
+From:   Andreas Kemnade <andreas@kemnade.info>
+To:     Jonathan =?UTF-8?B?TmV1c2Now6RmZXI=?= <j.neuschaefer@gmx.net>
+Cc:     linux-kernel@vger.kernel.org, Lee Jones <lee.jones@linaro.org>,
         Rob Herring <robh+dt@kernel.org>,
-        Andrzej Hajda <a.hajda@samsung.com>,
-        Neil Armstrong <narmstrong@baylibre.com>,
-        Laurent Pinchart <Laurent.pinchart@ideasonboard.com>,
-        Jonas Karlman <jonas@kwiboo.se>,
-        Jernej Skrabec <jernej.skrabec@siol.net>,
+        Thierry Reding <thierry.reding@gmail.com>,
+        Uwe =?UTF-8?B?S2xlaW5lLUvDtm5pZw==?= 
+        <u.kleine-koenig@pengutronix.de>,
+        Alessandro Zummo <a.zummo@towertech.it>,
+        Alexandre Belloni <alexandre.belloni@bootlin.com>,
+        Shawn Guo <shawnguo@kernel.org>,
+        Sascha Hauer <s.hauer@pengutronix.de>,
+        Pengutronix Kernel Team <kernel@pengutronix.de>,
+        Fabio Estevam <festevam@gmail.com>,
+        NXP Linux Team <linux-imx@nxp.com>,
+        Sam Ravnborg <sam@ravnborg.org>,
+        Linus Walleij <linus.walleij@linaro.org>,
+        Heiko Stuebner <heiko.stuebner@theobroma-systems.com>,
+        Stephan Gerhold <stephan@gerhold.net>,
+        Lubomir Rintel <lkundrak@v3.sk>,
+        Mark Brown <broonie@kernel.org>, allen <allen.chen@ite.com.tw>,
         Mauro Carvalho Chehab <mchehab+huawei@kernel.org>,
-        Mark Brown <broonie@kernel.org>,
-        Thomas Bogendoerfer <tsbogend@alpha.franken.de>,
-        linux-kernel <linux-kernel@vger.kernel.org>
-References: <20200924200507.1175888-1-mr.nuke.me@gmail.com>
- <CAOMZO5B4S3JCVQAi-y=vKaQv3AF6eXronTkmG_DZs_ALtEHtgA@mail.gmail.com>
-From:   "Alex G." <mr.nuke.me@gmail.com>
-Message-ID: <4ea79371-8036-1e26-e1ba-1bb98d1e5410@gmail.com>
-Date:   Thu, 24 Sep 2020 15:34:04 -0500
-User-Agent: Mozilla/5.0 (X11; Linux x86_64; rv:68.0) Gecko/20100101
- Thunderbird/68.10.0
+        "David S. Miller" <davem@davemloft.net>,
+        devicetree@vger.kernel.org, linux-pwm@vger.kernel.org,
+        linux-rtc@vger.kernel.org, linux-arm-kernel@lists.infradead.org,
+        Heiko Stuebner <heiko@sntech.de>,
+        Josua Mayer <josua.mayer@jm0.eu>,
+        Arnd Bergmann <arnd@arndb.de>, Daniel Palmer <daniel@0x0f.com>,
+        Andy Shevchenko <andy.shevchenko@gmail.com>
+Subject: Re: [PATCH v3 5/7] rtc: New driver for RTC in Netronix embedded
+ controller
+Message-ID: <20200924224011.074d7a19@aktux>
+In-Reply-To: <20200924192455.2484005-6-j.neuschaefer@gmx.net>
+References: <20200924192455.2484005-1-j.neuschaefer@gmx.net>
+        <20200924192455.2484005-6-j.neuschaefer@gmx.net>
+X-Mailer: Claws Mail 3.17.3 (GTK+ 2.24.32; x86_64-pc-linux-gnu)
 MIME-Version: 1.0
-In-Reply-To: <CAOMZO5B4S3JCVQAi-y=vKaQv3AF6eXronTkmG_DZs_ALtEHtgA@mail.gmail.com>
-Content-Type: text/plain; charset=utf-8; format=flowed
-Content-Language: en-US
-Content-Transfer-Encoding: 7bit
+Content-Type: text/plain; charset=UTF-8
+Content-Transfer-Encoding: quoted-printable
+X-Spam-Score: -1.0 (-)
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-On 9/24/20 3:22 PM, Fabio Estevam wrote:
-Hi Fabio,
+On Thu, 24 Sep 2020 21:24:53 +0200
+Jonathan Neusch=C3=A4fer <j.neuschaefer@gmx.net> wrote:
 
-> On Thu, Sep 24, 2020 at 5:16 PM Alexandru Gagniuc <mr.nuke.me@gmail.com> wrote:
-> 
->> +       ret = regulator_enable(sii902x->cvcc12);
->> +       if (ret < 0) {
->> +               dev_err(dev, "Failed to enable cvcc12 supply: %d\n", ret);
->> +               regulator_disable(sii902x->iovcc);
->> +               return PTR_ERR(sii902x->cvcc12);
-> 
-> return ret;
+> With this driver, mainline Linux can keep its time and date in sync with
+> the vendor kernel.
+>=20
+> Advanced functionality like alarm and automatic power-on is not yet
+> supported.
+>=20
+> Signed-off-by: Jonathan Neusch=C3=A4fer <j.neuschaefer@gmx.net>
+> ---
+>=20
+> v3:
+> - Add email address to copyright line
+> - Remove OF compatible string and don't include linux/of_device.h
+> - Don't use a comma after sentinels
+> - Avoid ret |=3D ... pattern
+> - Move 8-bit register conversion to ntxec.h
+> - Relicense as GPLv2 or later
+>=20
+> v2:
+> - https://lore.kernel.org/lkml/20200905133230.1014581-7-j.neuschaefer@gmx=
+.net/
+> - Rework top-of-file comment [Lee Jones]
+> - Sort the #include lines [Alexandre Belloni]
+> - don't align =3D signs in struct initializers [Uwe Kleine-K=C3=B6nig]
+> - Switch to regmap
+> - Fix register number used to read minutes and seconds
+> - Prefix registers with NTXEC_REG_
+> - Add help text to the Kconfig option
+> - Use devm_rtc_allocate_device and rtc_register_device, set ->range_min a=
+nd ->range_max
+> ---
+>  drivers/rtc/Kconfig     |   8 +++
+>  drivers/rtc/Makefile    |   1 +
+>  drivers/rtc/rtc-ntxec.c | 132 ++++++++++++++++++++++++++++++++++++++++
+>  3 files changed, 141 insertions(+)
+>  create mode 100644 drivers/rtc/rtc-ntxec.c
+>=20
+> diff --git a/drivers/rtc/Kconfig b/drivers/rtc/Kconfig
+> index 48c536acd777f..ae8f3dc36c9a3 100644
+> --- a/drivers/rtc/Kconfig
+> +++ b/drivers/rtc/Kconfig
+> @@ -1301,6 +1301,14 @@ config RTC_DRV_CROS_EC
+>  	  This driver can also be built as a module. If so, the module
+>  	  will be called rtc-cros-ec.
+>=20
+> +config RTC_DRV_NTXEC
+> +	tristate "Netronix embedded controller RTC driver"
+> +	depends on MFD_NTXEC
+> +	help
+> +	  Say yes here if you want to support the RTC functionality of the
+> +	  embedded controller found in certain e-book readers designed by the
+> +	  ODM Netronix.
+> +
+>  comment "on-CPU RTC drivers"
+>=20
+>  config RTC_DRV_ASM9260
+> diff --git a/drivers/rtc/Makefile b/drivers/rtc/Makefile
+> index 880e08a409c3d..733479db18896 100644
+> --- a/drivers/rtc/Makefile
+> +++ b/drivers/rtc/Makefile
+> @@ -111,6 +111,7 @@ obj-$(CONFIG_RTC_DRV_MT7622)	+=3D rtc-mt7622.o
+>  obj-$(CONFIG_RTC_DRV_MV)	+=3D rtc-mv.o
+>  obj-$(CONFIG_RTC_DRV_MXC)	+=3D rtc-mxc.o
+>  obj-$(CONFIG_RTC_DRV_MXC_V2)	+=3D rtc-mxc_v2.o
+> +obj-$(CONFIG_RTC_DRV_NTXEC)	+=3D rtc-ntxec.o
+>  obj-$(CONFIG_RTC_DRV_OMAP)	+=3D rtc-omap.o
+>  obj-$(CONFIG_RTC_DRV_OPAL)	+=3D rtc-opal.o
+>  obj-$(CONFIG_RTC_DRV_PALMAS)	+=3D rtc-palmas.o
+> diff --git a/drivers/rtc/rtc-ntxec.c b/drivers/rtc/rtc-ntxec.c
+> new file mode 100644
+> index 0000000000000..af23c7cc76544
+> --- /dev/null
+> +++ b/drivers/rtc/rtc-ntxec.c
+> @@ -0,0 +1,132 @@
+> +// SPDX-License-Identifier: GPL-2.0-or-later
+> +/*
+> + * The Netronix embedded controller is a microcontroller found in some
+> + * e-book readers designed by the ODM Netronix, Inc. It contains RTC,
+> + * battery monitoring, system power management, and PWM functionality.
+> + *
+> + * This driver implements access to the RTC time and date.
+> + *
+> + * Copyright 2020 Jonathan Neusch=C3=A4fer <j.neuschaefer@gmx.net>
+> + */
+> +
+> +#include <linux/mfd/ntxec.h>
+> +#include <linux/module.h>
+> +#include <linux/platform_device.h>
+> +#include <linux/regmap.h>
+> +#include <linux/rtc.h>
+> +#include <linux/types.h>
+> +
+> +struct ntxec_rtc {
+> +	struct device *dev;
+> +	struct ntxec *ec;
+> +};
+> +
+> +#define NTXEC_REG_WRITE_YEAR	0x10
+> +#define NTXEC_REG_WRITE_MONTH	0x11
+> +#define NTXEC_REG_WRITE_DAY	0x12
+> +#define NTXEC_REG_WRITE_HOUR	0x13
+> +#define NTXEC_REG_WRITE_MINUTE	0x14
+> +#define NTXEC_REG_WRITE_SECOND	0x15
+> +
+> +#define NTXEC_REG_READ_YM	0x20
+> +#define NTXEC_REG_READ_DH	0x21
+> +#define NTXEC_REG_READ_MS	0x23
+> +
+> +static int ntxec_read_time(struct device *dev, struct rtc_time *tm)
+> +{
+> +	struct ntxec_rtc *rtc =3D dev_get_drvdata(dev);
+> +	unsigned int value;
+> +	int res;
+> +
+> +	res =3D regmap_read(rtc->ec->regmap, NTXEC_REG_READ_YM, &value);
+> +	if (res < 0)
+> +		return res;
+> +
+> +	tm->tm_year =3D (value >> 8) + 100;
+> +	tm->tm_mon =3D (value & 0xff) - 1;
+> +
+> +	res =3D regmap_read(rtc->ec->regmap, NTXEC_REG_READ_DH, &value);
+> +	if (res < 0)
+> +		return res;
+> +
+> +	tm->tm_mday =3D value >> 8;
+> +	tm->tm_hour =3D value & 0xff;
+> +
+> +	res =3D regmap_read(rtc->ec->regmap, NTXEC_REG_READ_MS, &value);
+> +	if (res < 0)
+> +		return res;
+> +
+> +	tm->tm_min =3D value >> 8;
+> +	tm->tm_sec =3D value & 0xff;
+> +
+> +	return 0;
+> +}
+> +
+> +static int ntxec_set_time(struct device *dev, struct rtc_time *tm)
+> +{
+> +	struct ntxec_rtc *rtc =3D dev_get_drvdata(dev);
+> +	int res =3D 0;
+> +
+> +	res =3D regmap_write(rtc->ec->regmap, NTXEC_REG_WRITE_YEAR, ntxec_reg8(=
+tm->tm_year - 100));
+> +	if (res)
+> +		return res;
+> +
+> +	res =3D regmap_write(rtc->ec->regmap, NTXEC_REG_WRITE_MONTH, ntxec_reg8=
+(tm->tm_mon + 1));
+> +	if (res)
+> +		return res;
+> +
+> +	res =3D regmap_write(rtc->ec->regmap, NTXEC_REG_WRITE_DAY, ntxec_reg8(t=
+m->tm_mday));
+> +	if (res)
+> +		return res;
+> +
+> +	res =3D regmap_write(rtc->ec->regmap, NTXEC_REG_WRITE_HOUR, ntxec_reg8(=
+tm->tm_hour));
+> +	if (res)
+> +		return res;
+> +
+> +	res =3D regmap_write(rtc->ec->regmap, NTXEC_REG_WRITE_MINUTE, ntxec_reg=
+8(tm->tm_min));
+> +	if (res)
+> +		return res;
+> +
+> +	return regmap_write(rtc->ec->regmap, NTXEC_REG_WRITE_SECOND, ntxec_reg8=
+(tm->tm_sec));
+> +}
+> +
+> +static const struct rtc_class_ops ntxec_rtc_ops =3D {
+> +	.read_time =3D ntxec_read_time,
+> +	.set_time =3D ntxec_set_time,
+> +};
+> +
+> +static int ntxec_rtc_probe(struct platform_device *pdev)
+> +{
+> +	struct rtc_device *dev;
+> +	struct ntxec_rtc *rtc;
+> +
+> +	rtc =3D devm_kzalloc(&pdev->dev, sizeof(*rtc), GFP_KERNEL);
+> +	if (!rtc)
+> +		return -ENOMEM;
+> +
+> +	rtc->dev =3D &pdev->dev;
+> +	rtc->ec =3D dev_get_drvdata(pdev->dev.parent);
+> +	platform_set_drvdata(pdev, rtc);
+> +
+> +	dev =3D devm_rtc_allocate_device(&pdev->dev);
+> +	if (IS_ERR(dev))
+> +		return PTR_ERR(dev);
+> +
+> +	dev->ops =3D &ntxec_rtc_ops;
+> +	dev->range_min =3D RTC_TIMESTAMP_BEGIN_2000;
+> +	dev->range_max =3D 9025257599LL; /* 2255-12-31 23:59:59 */
+> +
+> +	return rtc_register_device(dev);
+> +}
+> +
+> +static struct platform_driver ntxec_rtc_driver =3D {
+> +	.driver =3D {
+> +		.name =3D "ntxec-rtc",
+> +	},
+> +	.probe =3D ntxec_rtc_probe,
+> +};
+> +module_platform_driver(ntxec_rtc_driver);
+> +
+I think module autoloading will not work without
 
-Thank you for catching that. I will fix it in v2.
+MODULE_ALIAS("platform:ntxec-rtc");
 
->>
->>          ret = regmap_write(sii902x->regmap, SII902X_REG_TPI_RQB, 0x0);
->> @@ -1012,11 +1052,11 @@ static int sii902x_probe(struct i2c_client *client,
->>          regmap_read(sii902x->regmap, SII902X_INT_STATUS, &status);
->>          regmap_write(sii902x->regmap, SII902X_INT_STATUS, status);
->>
->> -       if (client->irq > 0) {
->> +       if (sii902x->i2c->irq > 0) {
-> 
-> Unrelated change.
-[snip]
->   Unrelated change.
-[snip]
-> Unrelated change.
-[snip]
-> Unrelated change.
+Same for the pwm device.
+> +MODULE_AUTHOR("Jonathan Neusch=C3=A4fer <j.neuschaefer@gmx.net>");
+> +MODULE_DESCRIPTION("RTC driver for Netronix EC");
+> +MODULE_LICENSE("GPL");
+> --
+> 2.28.0
+>=20
+>=20
 
-The i2c initialization is moved into a separate function. Hence 'client' 
-is no longer available. Instead, it can be accessed via 'sii902x->i2c'.
-
-Alex
+Regards,
+Andreas
