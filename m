@@ -2,98 +2,79 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from vger.kernel.org (vger.kernel.org [23.128.96.18])
-	by mail.lfdr.de (Postfix) with ESMTP id 80230276AEA
-	for <lists+devicetree@lfdr.de>; Thu, 24 Sep 2020 09:37:48 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTP id EC25D276AF2
+	for <lists+devicetree@lfdr.de>; Thu, 24 Sep 2020 09:38:41 +0200 (CEST)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S1727118AbgIXHhi (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Thu, 24 Sep 2020 03:37:38 -0400
-Received: from lindbergh.monkeyblade.net ([23.128.96.19]:50578 "EHLO
-        lindbergh.monkeyblade.net" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S1727112AbgIXHhd (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Thu, 24 Sep 2020 03:37:33 -0400
-Received: from mail-ot1-x342.google.com (mail-ot1-x342.google.com [IPv6:2607:f8b0:4864:20::342])
-        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 28646C0613CE;
-        Thu, 24 Sep 2020 00:37:33 -0700 (PDT)
-Received: by mail-ot1-x342.google.com with SMTP id q21so2267125ota.8;
-        Thu, 24 Sep 2020 00:37:33 -0700 (PDT)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=gmail.com; s=20161025;
-        h=mime-version:references:in-reply-to:from:date:message-id:subject:to
-         :cc;
-        bh=0LgeB6IhoKHpPJRdUqtdxcrEPshsH9ulrWgRlYFPb5s=;
-        b=R7cwN5O2MUBBBCDXSxHG6WFubm52sa9P3VadV2G153g1zfGBi3uKFXyWIRNbXpCEnP
-         Hz2zBx/zoz9KLqIqINRB/7z8FctR9R+BV8im590D/mGuhr2C5+gzK61wgqqjh8NqYKyC
-         APK2zr3I9fjunBwjZINK2+ua3dLsih3Z90wCpI/xVYTnp6mb9qKhwUcVdidUumHdMRHS
-         s8JVFlCvl4hyoekpnt1TeYxIk0cXEn8yKNkdPrOv8eP1lHVaTJhE/YXIMYJAiKt67/tH
-         AoRB7a/4+ZoQmPpUOW8MVFixrhEPmPxCZp+5VbzFOzIHMM+iTObkL5Cs6oi3B8PCVHjo
-         1FFA==
-X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=1e100.net; s=20161025;
-        h=x-gm-message-state:mime-version:references:in-reply-to:from:date
-         :message-id:subject:to:cc;
-        bh=0LgeB6IhoKHpPJRdUqtdxcrEPshsH9ulrWgRlYFPb5s=;
-        b=QAAcuxWWn9AB+YMTiPUclKe+2MlbjpCyEbIjYPtKlc0pov9rvlpdhxSPo6GgxKv/i7
-         Cd2/BxhvUJ582ZbVBkj/DX8neA+KuGqf4cmV1TuUJgbk1NZEPutNy1MPMNtuX3pnJuB7
-         vfRHRlLw0RrCMAkrcu3XLZAUjl7PiM8LmozkC0XTu43xd5ThVam42dBuTl+5MgA3AlP7
-         5FxubPLtaLNUjMEubXX5TcG7RV9rCD/7qWM0QWjVjrojcUkrx2jVRbyYvMRbMJGhR5p7
-         ecQ+zHOXOTIynzKK1A0gT+vutTDAZqKs/jaapcViJpjhX55Y7B2BeC6AxIgF2Brh2eJz
-         uyTQ==
-X-Gm-Message-State: AOAM530AIjntUfBQLwyiI2WRF+53bgI6Cu1RDp7IYcX3fyQPbhe5VWoL
-        SRXj/Bq1mIeoVJzeOUCwbzRaTN3/z7Nxm4ivERI=
-X-Google-Smtp-Source: ABdhPJytolHnKin5qHWsuzdw4wR3D0CV3ghZN/gVL/TGyQAMpHz0QdXRWHeayrfvfXIarb+cu6NLd6rpTZ0LUp8Pvto=
-X-Received: by 2002:a9d:7095:: with SMTP id l21mr2326757otj.224.1600933052470;
- Thu, 24 Sep 2020 00:37:32 -0700 (PDT)
+        id S1727211AbgIXHik (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Thu, 24 Sep 2020 03:38:40 -0400
+Received: from mga05.intel.com ([192.55.52.43]:41811 "EHLO mga05.intel.com"
+        rhost-flags-OK-OK-OK-OK) by vger.kernel.org with ESMTP
+        id S1727109AbgIXHij (ORCPT <rfc822;devicetree@vger.kernel.org>);
+        Thu, 24 Sep 2020 03:38:39 -0400
+IronPort-SDR: gOQiatmwbKtM0oa9tPWqxtWNPDOq5Dr0GHSB5a7VhVYmrFvofTLSJDrrATAx/RCp5ykOZ0ZIJy
+ wY0gJFY2fGbg==
+X-IronPort-AV: E=McAfee;i="6000,8403,9753"; a="245927744"
+X-IronPort-AV: E=Sophos;i="5.77,296,1596524400"; 
+   d="scan'208";a="245927744"
+X-Amp-Result: SKIPPED(no attachment in message)
+X-Amp-File-Uploaded: False
+Received: from fmsmga008.fm.intel.com ([10.253.24.58])
+  by fmsmga105.fm.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384; 24 Sep 2020 00:38:39 -0700
+IronPort-SDR: 1TKGJUP/ASGmynwQDHdulR8SYi0WFPZ4yh1V/8MPJ2vEEVpjuXxUvRHgpkjsjEIDicryobyTRs
+ tSBh4Ldr8Zjw==
+X-ExtLoop1: 1
+X-IronPort-AV: E=Sophos;i="5.77,296,1596524400"; 
+   d="scan'208";a="291949973"
+Received: from linux.intel.com ([10.54.29.200])
+  by fmsmga008.fm.intel.com with ESMTP; 24 Sep 2020 00:38:38 -0700
+Received: from [10.214.160.191] (rtanwar-MOBL.gar.corp.intel.com [10.214.160.191])
+        by linux.intel.com (Postfix) with ESMTP id 59B9858043C;
+        Thu, 24 Sep 2020 00:38:35 -0700 (PDT)
+Subject: Re: [PATCH v13 2/2] Add PWM fan controller driver for LGM SoC
+To:     Thierry Reding <thierry.reding@gmail.com>,
+        =?UTF-8?Q?Uwe_Kleine-K=c3=b6nig?= <u.kleine-koenig@pengutronix.de>
+Cc:     linux-pwm@vger.kernel.org, lee.jones@linaro.org,
+        p.zabel@pengutronix.de, robh+dt@kernel.org,
+        linux-kernel@vger.kernel.org, devicetree@vger.kernel.org,
+        andriy.shevchenko@intel.com, songjun.Wu@intel.com,
+        cheol.yong.kim@intel.com, qi-ming.wu@intel.com,
+        rahul.tanwar.linux@gmail.com, rtanwar@maxlinear.com
+References: <cover.1600158087.git.rahul.tanwar@linux.intel.com>
+ <befa655d8beb326fc8aa405a25a8b3e62b7e6a4a.1600158087.git.rahul.tanwar@linux.intel.com>
+ <20200924065534.e2anwghhtysv63e7@pengutronix.de>
+ <20200924071256.GA2480300@ulmo>
+From:   "Tanwar, Rahul" <rahul.tanwar@linux.intel.com>
+Message-ID: <110b5c82-e34c-8b0c-d85b-6bb861879fff@linux.intel.com>
+Date:   Thu, 24 Sep 2020 15:38:34 +0800
+User-Agent: Mozilla/5.0 (Windows NT 10.0; WOW64; rv:68.0) Gecko/20100101
+ Thunderbird/68.12.0
 MIME-Version: 1.0
-References: <20200922132559.38456-1-alexandru.ardelean@analog.com>
- <20200922132559.38456-4-alexandru.ardelean@analog.com> <20200923213912.05dda5ef@archlinux>
-In-Reply-To: <20200923213912.05dda5ef@archlinux>
-From:   Alexandru Ardelean <ardeleanalex@gmail.com>
-Date:   Thu, 24 Sep 2020 10:37:20 +0300
-Message-ID: <CA+U=DsoMGHtGRcBrj-w_sQveKQEWjkfupBSr9QHjTtxbvEQa0w@mail.gmail.com>
-Subject: Re: [PATCH v2 3/5] dt-bindings: iio: ad9467: add entry for for AD9434 ADC
-To:     Jonathan Cameron <jic23@kernel.org>
-Cc:     Alexandru Ardelean <alexandru.ardelean@analog.com>,
-        linux-iio <linux-iio@vger.kernel.org>,
-        devicetree@vger.kernel.org, LKML <linux-kernel@vger.kernel.org>,
-        Rob Herring <robh+dt@kernel.org>
-Content-Type: text/plain; charset="UTF-8"
+In-Reply-To: <20200924071256.GA2480300@ulmo>
+Content-Type: text/plain; charset=utf-8
+Content-Transfer-Encoding: 8bit
+Content-Language: en-US
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-On Wed, Sep 23, 2020 at 11:42 PM Jonathan Cameron <jic23@kernel.org> wrote:
->
-> On Tue, 22 Sep 2020 16:25:57 +0300
-> Alexandru Ardelean <alexandru.ardelean@analog.com> wrote:
->
-> > Add entry for the AD9434 high-speed ADC which is supported by the 'ad9467'
-> > driver.
-> >
-> > Signed-off-by: Alexandru Ardelean <alexandru.ardelean@analog.com>
->
-> Probably want to tweak a few other bits of the binding.
-> It has some specific statements about the ad9467 as this is only
-> second device to be added.  Need to change to those to "ad9467 and similar"
-> or something like that + add description for this part.
 
-Yep, that was sloppy on my part.
-Will update.
 
+On 24/9/2020 3:12 pm, Thierry Reding wrote:
+> On Thu, Sep 24, 2020 at 08:55:34AM +0200, Uwe Kleine-König wrote:
+>> Hello,
+>>
+>> (hhm Thierry already announced to have taken this patch, so my review is
+>> late.)
+> There's also a build warning in linux-next caused by this patch, so I'm
+> going to back it out.
 >
-> > ---
-> >  Documentation/devicetree/bindings/iio/adc/adi,ad9467.yaml | 1 +
-> >  1 file changed, 1 insertion(+)
-> >
-> > diff --git a/Documentation/devicetree/bindings/iio/adc/adi,ad9467.yaml b/Documentation/devicetree/bindings/iio/adc/adi,ad9467.yaml
-> > index c4f57fa6aad1..0e8da8ee6975 100644
-> > --- a/Documentation/devicetree/bindings/iio/adc/adi,ad9467.yaml
-> > +++ b/Documentation/devicetree/bindings/iio/adc/adi,ad9467.yaml
-> > @@ -19,6 +19,7 @@ description: |
-> >  properties:
-> >    compatible:
-> >      enum:
-> > +      - adi,ad9434
-> >        - adi,ad9467
-> >
-> >    reg:
->
+> Rahul, please address Uwe's comments and make sure to fix the build
+> warning as well.
+
+Well noted, will do.
+
+Regards,
+Rahul
+
+> Thierry
+
