@@ -2,81 +2,108 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from vger.kernel.org (vger.kernel.org [23.128.96.18])
-	by mail.lfdr.de (Postfix) with ESMTP id 2F63D276F13
-	for <lists+devicetree@lfdr.de>; Thu, 24 Sep 2020 12:53:08 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTP id 01F0C276F28
+	for <lists+devicetree@lfdr.de>; Thu, 24 Sep 2020 12:59:02 +0200 (CEST)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S1726729AbgIXKxH (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Thu, 24 Sep 2020 06:53:07 -0400
-Received: from lindbergh.monkeyblade.net ([23.128.96.19]:52574 "EHLO
-        lindbergh.monkeyblade.net" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S1726753AbgIXKxG (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Thu, 24 Sep 2020 06:53:06 -0400
-Received: from metis.ext.pengutronix.de (metis.ext.pengutronix.de [IPv6:2001:67c:670:201:290:27ff:fe1d:cc33])
-        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 92DB8C0613D3
-        for <devicetree@vger.kernel.org>; Thu, 24 Sep 2020 03:53:06 -0700 (PDT)
-Received: from pty.hi.pengutronix.de ([2001:67c:670:100:1d::c5])
-        by metis.ext.pengutronix.de with esmtps (TLS1.2:ECDHE_RSA_AES_256_GCM_SHA384:256)
-        (Exim 4.92)
-        (envelope-from <ukl@pengutronix.de>)
-        id 1kLOs0-00062S-SC; Thu, 24 Sep 2020 12:53:00 +0200
-Received: from ukl by pty.hi.pengutronix.de with local (Exim 4.89)
-        (envelope-from <ukl@pengutronix.de>)
-        id 1kLOrz-0005Ch-6e; Thu, 24 Sep 2020 12:52:59 +0200
-From:   =?UTF-8?q?Uwe=20Kleine-K=C3=B6nig?= 
-        <u.kleine-koenig@pengutronix.de>
-To:     Alexandre Belloni <alexandre.belloni@bootlin.com>,
-        Qiang Zhao <qiang.zhao@nxp.com>,
-        Bruno Thomsen <bruno.thomsen@gmail.com>
-Cc:     linux-rtc@vger.kernel.org, a.zummo@towertech.it,
-        linux-watchdog@vger.kernel.org, devicetree@vger.kernel.org,
-        linux-kernel@vger.kernel.org, robh+dt@kernel.org,
-        kernel@pengutronix.de, Wim Van Sebroeck <wim@linux-watchdog.org>,
-        Guenter Roeck <linux@roeck-us.net>
-Subject: [PATCH 2/2] [RFC] rtc: pcf2127: only use watchdog when explicitly available
-Date:   Thu, 24 Sep 2020 12:52:56 +0200
-Message-Id: <20200924105256.18162-3-u.kleine-koenig@pengutronix.de>
+        id S1726595AbgIXK7B (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Thu, 24 Sep 2020 06:59:01 -0400
+Received: from fllv0016.ext.ti.com ([198.47.19.142]:60952 "EHLO
+        fllv0016.ext.ti.com" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
+        with ESMTP id S1726303AbgIXK7A (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Thu, 24 Sep 2020 06:59:00 -0400
+Received: from fllv0035.itg.ti.com ([10.64.41.0])
+        by fllv0016.ext.ti.com (8.15.2/8.15.2) with ESMTP id 08OAwu84034140;
+        Thu, 24 Sep 2020 05:58:56 -0500
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=ti.com;
+        s=ti-com-17Q1; t=1600945136;
+        bh=ZYaooliMG5ZmHlYisRjqi0EDHcM1XEQAdnWOAQuO3M4=;
+        h=From:To:CC:Subject:Date:In-Reply-To:References;
+        b=mRugwMPlP0+cvrZgkvbTs5q2gSRqtYXknoQnORgX2KPDn9/60cDbRtjShnEQDV98K
+         iDZJvd9HMispfh7KuZMLXKjdo2/p3m1FdkECxJvDoymHkshmYnUAClEM5FfZudnuaZ
+         zAGRxUZPxz0wwW8Z4dHqK+hN2XMReWjUSYv0JweY=
+Received: from DLEE107.ent.ti.com (dlee107.ent.ti.com [157.170.170.37])
+        by fllv0035.itg.ti.com (8.15.2/8.15.2) with ESMTP id 08OAwuJn025745;
+        Thu, 24 Sep 2020 05:58:56 -0500
+Received: from DLEE115.ent.ti.com (157.170.170.26) by DLEE107.ent.ti.com
+ (157.170.170.37) with Microsoft SMTP Server (version=TLS1_2,
+ cipher=TLS_ECDHE_RSA_WITH_AES_128_CBC_SHA256_P256) id 15.1.1979.3; Thu, 24
+ Sep 2020 05:58:56 -0500
+Received: from fllv0039.itg.ti.com (10.64.41.19) by DLEE115.ent.ti.com
+ (157.170.170.26) with Microsoft SMTP Server (version=TLS1_2,
+ cipher=TLS_ECDHE_RSA_WITH_AES_128_CBC_SHA256_P256) id 15.1.1979.3 via
+ Frontend Transport; Thu, 24 Sep 2020 05:58:56 -0500
+Received: from localhost (ileax41-snat.itg.ti.com [10.172.224.153])
+        by fllv0039.itg.ti.com (8.15.2/8.15.2) with ESMTP id 08OAwu8e044564;
+        Thu, 24 Sep 2020 05:58:56 -0500
+From:   Nishanth Menon <nm@ti.com>
+To:     Tero Kristo <t-kristo@ti.com>,
+        Grygorii Strashko <grygorii.strashko@ti.com>,
+        Rob Herring <robh+dt@kernel.org>
+CC:     Nishanth Menon <nm@ti.com>, Vignesh Raghavendra <vigneshr@ti.com>,
+        <linux-kernel@vger.kernel.org>,
+        Peter Ujfalusi <peter.ujfalusi@ti.com>,
+        <linux-arm-kernel@lists.infradead.org>,
+        Kishon Vijay Abraham I <kishon@ti.com>,
+        <devicetree@vger.kernel.org>, Sekhar Nori <nsekhar@ti.com>
+Subject: Re: [PATCH v4 0/4] arm64: dts: ti: k3-j7200: add dma and mcu cpsw
+Date:   Thu, 24 Sep 2020 05:58:55 -0500
+Message-ID: <160094485503.28349.15928892177922171688.b4-ty@ti.com>
 X-Mailer: git-send-email 2.28.0
-In-Reply-To: <20200924105256.18162-1-u.kleine-koenig@pengutronix.de>
-References: <20200924074715.GT9675@piout.net>
- <20200924105256.18162-1-u.kleine-koenig@pengutronix.de>
+In-Reply-To: <20200923220938.30788-1-grygorii.strashko@ti.com>
+References: <20200923220938.30788-1-grygorii.strashko@ti.com>
 MIME-Version: 1.0
-Content-Type: text/plain; charset=UTF-8
 Content-Transfer-Encoding: 8bit
-X-SA-Exim-Connect-IP: 2001:67c:670:100:1d::c5
-X-SA-Exim-Mail-From: ukl@pengutronix.de
-X-SA-Exim-Scanned: No (on metis.ext.pengutronix.de); SAEximRunCond expanded to false
-X-PTX-Original-Recipient: devicetree@vger.kernel.org
+Content-Type: text/plain
+X-EXCLAIMER-MD-CONFIG: e1e8a2fd-e40a-4ac6-ac9b-f7e9cc9ee180
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-Most boards using the pcf2127 chip (in my bubble) don't make use of the
-watchdog functionality and the respective output is not connected. The
-effect on such a board is that there is a watchdog device provided that
-doesn't work.
+On Thu, 24 Sep 2020 01:09:34 +0300, Grygorii Strashko wrote:
+> This series adds DT nodes for TI J7200 SoC
+> - Ringacc and UDMA nodes for Main and MCU NAVSS, which are compatible
+>   with J721E Soc, to enable DMA support
+> - MCU CPSW2g DT nodes to enable networking and board data
+> 
+> Changes in v4:
+>  - fixed comments from Suman Anna <s-anna@ti.com>
+> 
+> [...]
 
-So only register the watchdog if the device tree has a "has-watchdog"
-property.
+Hi Grygorii Strashko,
 
-Signed-off-by: Uwe Kleine-König <u.kleine-koenig@pengutronix.de>
----
- drivers/rtc/rtc-pcf2127.c | 3 ++-
- 1 file changed, 2 insertions(+), 1 deletion(-)
+I have applied the following to branch ti-k3-dts-next on [1].
+Thank you!
 
-diff --git a/drivers/rtc/rtc-pcf2127.c b/drivers/rtc/rtc-pcf2127.c
-index 5b1f1949b5e5..8bd89d641578 100644
---- a/drivers/rtc/rtc-pcf2127.c
-+++ b/drivers/rtc/rtc-pcf2127.c
-@@ -340,7 +340,8 @@ static int pcf2127_watchdog_init(struct device *dev, struct pcf2127 *pcf2127)
- 	u32 wdd_timeout;
- 	int ret;
- 
--	if (!IS_ENABLED(CONFIG_WATCHDOG))
-+	if (!IS_ENABLED(CONFIG_WATCHDOG) ||
-+	    !device_property_read_bool(dev, "has-watchdog"))
- 		return 0;
- 
- 	pcf2127->wdd.parent = dev;
+[1/4] arm64: dts: ti: k3-j7200: add DMA support
+      commit: fd409bfe0e44ea36ed6be77c331a001e50a9bc12
+[2/4] arm64: dts: ti: k3-j7200-main: add main navss cpts node
+      commit: 3273476c3b1c7ef61ec971ed866b9fb6660c82fe
+[3/4] arm64: dts: ti: k3-j7200-mcu: add mcu cpsw nuss node
+      commit: e86fc00bb04b1d3d387ae6bf4d176bfa9859ea66
+[4/4] arm64: dts: ti: k3-j7200-common-proc-board: add mcu cpsw nuss pinmux and phy defs
+      commit: c67487a68e13ee450cbc45b622b8ee9a75f1812a
+
+
+All being well this means that it will be integrated into the linux-next
+tree (usually sometime in the next 24 hours) and sent up the chain during
+the next merge window (or sooner if it is a relevant bug fix), however if
+problems are discovered then the patch may be dropped or reverted.
+
+You may get further e-mails resulting from automated or manual testing
+and review of the tree, please engage with people reporting problems and
+send followup patches addressing any issues that are reported if needed.
+
+If any updates are required or you are submitting further changes they
+should be sent as incremental updates against current git, existing
+patches will not be replaced.
+
+Please add any relevant lists and maintainers to the CCs when replying
+to this mail.
+
+[1] git://git.kernel.org/pub/scm/linux/kernel/git/nmenon/linux.git
 -- 
-2.28.0
+Regards,
+Nishanth Menon
+Key (0xDDB5849D1736249D) / Fingerprint: F8A2 8693 54EB 8232 17A3  1A34 DDB5 849D 1736 249D
 
