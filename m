@@ -2,171 +2,91 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from vger.kernel.org (vger.kernel.org [23.128.96.18])
-	by mail.lfdr.de (Postfix) with ESMTP id 1115A276C4E
-	for <lists+devicetree@lfdr.de>; Thu, 24 Sep 2020 10:48:57 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTP id 13DA3276C6F
+	for <lists+devicetree@lfdr.de>; Thu, 24 Sep 2020 10:52:49 +0200 (CEST)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S1727274AbgIXIsz (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Thu, 24 Sep 2020 04:48:55 -0400
-Received: from mga09.intel.com ([134.134.136.24]:55811 "EHLO mga09.intel.com"
-        rhost-flags-OK-OK-OK-OK) by vger.kernel.org with ESMTP
-        id S1726710AbgIXIsz (ORCPT <rfc822;devicetree@vger.kernel.org>);
-        Thu, 24 Sep 2020 04:48:55 -0400
-IronPort-SDR: 6o+mOtAf8+B4S+dj9O/KzqPWDrpRsUT3uppIeTcfKSMByGo+H4VJC3e/JQMrNLMggyCsr8KQ9x
- f4gRvf8Hjzfg==
-X-IronPort-AV: E=McAfee;i="6000,8403,9753"; a="162049882"
-X-IronPort-AV: E=Sophos;i="5.77,296,1596524400"; 
-   d="scan'208";a="162049882"
-X-Amp-Result: SKIPPED(no attachment in message)
-X-Amp-File-Uploaded: False
-Received: from fmsmga008.fm.intel.com ([10.253.24.58])
-  by orsmga102.jf.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384; 24 Sep 2020 01:48:54 -0700
-IronPort-SDR: MCNCzghyUlxZznh5lzzkEFFO82hGpdc27QO1MhFlLcS/c0wTg3vGf3p28dBfSdK7uizmSTiMRN
- VX/hK0JNiTCA==
-X-ExtLoop1: 1
-X-IronPort-AV: E=Sophos;i="5.77,296,1596524400"; 
-   d="scan'208";a="291963611"
-Received: from sgsxdev004.isng.intel.com (HELO localhost) ([10.226.88.13])
-  by fmsmga008.fm.intel.com with ESMTP; 24 Sep 2020 01:48:50 -0700
-From:   "Ramuthevar,Vadivel MuruganX" 
-        <vadivel.muruganx.ramuthevar@linux.intel.com>
-To:     miquel.raynal@bootlin.com, linux-kernel@vger.kernel.org
-Cc:     linux-mtd@lists.infradead.org, richard@nod.at, vigneshr@ti.com,
-        boris.brezillon@collabora.com, christophe.kerello@st.com,
-        piotrs@cadence.com, robert.jarzmik@free.fr,
-        brendanhiggins@google.com, devicetree@vger.kernel.org,
-        tglx@linutronix.de, hauke.mehrtens@intel.com, robh+dt@kernel.org,
-        linux-mips@vger.kernel.org, arnd@arndb.de,
-        andriy.shevchenko@intel.com, cheol.yong.kim@intel.com,
-        qi-ming.wu@intel.com,
-        Ramuthevar Vadivel Murugan 
-        <vadivel.muruganx.ramuthevar@linux.intel.com>
-Subject: [PATCH v14 1/2] dt-bindings: mtd: Add Nand Flash Controller support for Intel LGM SoC
-Date:   Thu, 24 Sep 2020 16:48:41 +0800
-Message-Id: <20200924084842.41741-2-vadivel.muruganx.ramuthevar@linux.intel.com>
-X-Mailer: git-send-email 2.11.0
-In-Reply-To: <20200924084842.41741-1-vadivel.muruganx.ramuthevar@linux.intel.com>
-References: <20200924084842.41741-1-vadivel.muruganx.ramuthevar@linux.intel.com>
+        id S1727287AbgIXIwh (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Thu, 24 Sep 2020 04:52:37 -0400
+Received: from mail-ot1-f66.google.com ([209.85.210.66]:46754 "EHLO
+        mail-ot1-f66.google.com" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
+        with ESMTP id S1726943AbgIXIwh (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Thu, 24 Sep 2020 04:52:37 -0400
+Received: by mail-ot1-f66.google.com with SMTP id 95so2394439ota.13;
+        Thu, 24 Sep 2020 01:52:37 -0700 (PDT)
+X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+        d=1e100.net; s=20161025;
+        h=x-gm-message-state:mime-version:references:in-reply-to:from:date
+         :message-id:subject:to:cc;
+        bh=CzZp4L4gULRfeROfeqkWa4ky2SyBZZojQlp8JyiVvXw=;
+        b=AK8AoPZY3a4v7yI2nyXEmXFACDWKgYXDitOXdWe86xtT3Bpao+GEycxDAgzheHUgXs
+         ZeZymbJI5LXrxt+fXlo8TUnWy4xkoGAK8Id9mh/Y3+3qfNhSuVfsCgNRVDcBkMouyHPo
+         0Afqyc1BQlPiQtA0Lv4wfNJ0wMkPioHROG51utKRtNQIp7coi4ugw8WR3MKOkFHax9uc
+         fTxkfyvf6mesdOg3ORnr70Y0s+xBI34V3CrovfSuQqSIkk0bGqmkw6zzLSOaaPmvd1jw
+         ifHWkzUzEfC123/IPJEXns/FI4nmqjqazuktZ5XHcUxr4dVWQ2NuOOhVL6y7Xvlak59E
+         OMKA==
+X-Gm-Message-State: AOAM531hXo71lU2sT71BW7AzRMgOAQN1wipaxtIJPhbYsjRUCqZyScSo
+        Iq2fPRDlqyxOKQ/oI+JEhVuOLSvZ7b95N0+jtlI=
+X-Google-Smtp-Source: ABdhPJyKiqfghi6tkPbYi6Xu/6Avs18q+hfIn2yS449T0DfzNqXqixq/VlHrUje6887LmYuGwohGhsIlsYlor+RHDYQ=
+X-Received: by 2002:a9d:5a92:: with SMTP id w18mr2331895oth.145.1600937556444;
+ Thu, 24 Sep 2020 01:52:36 -0700 (PDT)
+MIME-Version: 1.0
+References: <20200924080535.3641-1-biju.das.jz@bp.renesas.com>
+In-Reply-To: <20200924080535.3641-1-biju.das.jz@bp.renesas.com>
+From:   Geert Uytterhoeven <geert@linux-m68k.org>
+Date:   Thu, 24 Sep 2020 10:52:25 +0200
+Message-ID: <CAMuHMdV5m3LH9QyX=Gau5UsDz3AZvqNOgCJiHb6Je+7qS0Ltvw@mail.gmail.com>
+Subject: Re: [PATCH] ARM: dts: iwg20d-q7-common: Fix touch controller probe failure
+To:     Biju Das <biju.das.jz@bp.renesas.com>
+Cc:     Rob Herring <robh+dt@kernel.org>,
+        Magnus Damm <magnus.damm@gmail.com>,
+        Linux-Renesas <linux-renesas-soc@vger.kernel.org>,
+        "open list:OPEN FIRMWARE AND FLATTENED DEVICE TREE BINDINGS" 
+        <devicetree@vger.kernel.org>,
+        Chris Paterson <Chris.Paterson2@renesas.com>,
+        Biju Das <biju.das@bp.renesas.com>,
+        Prabhakar Mahadev Lad <prabhakar.mahadev-lad.rj@bp.renesas.com>
+Content-Type: text/plain; charset="UTF-8"
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-From: Ramuthevar Vadivel Murugan <vadivel.muruganx.ramuthevar@linux.intel.com>
+Hi Biju,
 
-Add YAML file for dt-bindings to support NAND Flash Controller
-on Intel's Lightning Mountain SoC.
+On Thu, Sep 24, 2020 at 10:05 AM Biju Das <biju.das.jz@bp.renesas.com> wrote:
+> As per the iWave RZ/G1M schematic, the signal LVDS_PPEN controls supply
+> voltage for touch panel, LVDS receiver and RGB LCD panel. Add regulator
+> for these device nodes and remove powerdown-gpios property from
+> lvds-receiver node as it results in touch controller driver probe failure.
+>
+> Signed-off-by: Biju Das <biju.das.jz@bp.renesas.com>
+> Reviewed-by: Laurent Pinchart <laurent.pinchart@ideasonboard.com>
+> ---
+> v4->v5 : Restored Laurent's Rb tag, since it is minor change, renaming vcc-supply to power-supply
+>
+> v3->v4 : Incorporated Laurent's review comments(https://patchwork.kernel.org/patch/11707887/)
+>          Added Laurent's Reviewed-by tag
+> v2->v3 : Added the missing part from the patch. removal of powerdown-gpios property.
+> v1->v2 : Add regulator in touch panel, LVDS receiver and RGB LCD panel device nodes
+>            (Ref: https://patchwork.kernel.org/patch/11707559/)
+> v1 : https://patchwork.kernel.org/patch/11705819/
 
-Signed-off-by: Ramuthevar Vadivel Murugan <vadivel.muruganx.ramuthevar@linux.intel.com>
-Reviewed-by: Rob Herring <robh@kernel.org>
----
- .../devicetree/bindings/mtd/intel,lgm-nand.yaml    | 99 ++++++++++++++++++++++
- 1 file changed, 99 insertions(+)
- create mode 100644 Documentation/devicetree/bindings/mtd/intel,lgm-nand.yaml
+Thanks for the update!
 
-diff --git a/Documentation/devicetree/bindings/mtd/intel,lgm-nand.yaml b/Documentation/devicetree/bindings/mtd/intel,lgm-nand.yaml
-new file mode 100644
-index 000000000000..313daec4d783
---- /dev/null
-+++ b/Documentation/devicetree/bindings/mtd/intel,lgm-nand.yaml
-@@ -0,0 +1,99 @@
-+# SPDX-License-Identifier: (GPL-2.0 OR BSD-2-Clause)
-+%YAML 1.2
-+---
-+$id: http://devicetree.org/schemas/mtd/intel,lgm-nand.yaml#
-+$schema: http://devicetree.org/meta-schemas/core.yaml#
-+
-+title: Intel LGM SoC NAND Controller Device Tree Bindings
-+
-+allOf:
-+  - $ref: "nand-controller.yaml"
-+
-+maintainers:
-+  - Ramuthevar Vadivel Murugan <vadivel.muruganx.ramuthevar@linux.intel.com>
-+
-+properties:
-+  compatible:
-+    const: intel,lgm-nand
-+
-+  reg:
-+    maxItems: 6
-+
-+  reg-names:
-+    items:
-+       - const: ebunand
-+       - const: hsnand
-+       - const: nand_cs0
-+       - const: nand_cs1
-+       - const: addr_sel0
-+       - const: addr_sel1
-+
-+  clocks:
-+    maxItems: 1
-+
-+  dmas:
-+    maxItems: 2
-+
-+  dma-names:
-+    items:
-+      - const: tx
-+      - const: rx
-+
-+  "#address-cells":
-+    const: 1
-+
-+  "#size-cells":
-+    const: 0
-+
-+patternProperties:
-+  "^nand@[a-f0-9]+$":
-+    type: object
-+    properties:
-+      reg:
-+        minimum: 0
-+        maximum: 7
-+
-+      nand-ecc-mode: true
-+
-+      nand-ecc-algo:
-+        const: hw
-+
-+    additionalProperties: false
-+
-+required:
-+  - compatible
-+  - reg
-+  - reg-names
-+  - clocks
-+  - dmas
-+  - dma-names
-+  - "#address-cells"
-+  - "#size-cells"
-+
-+additionalProperties: false
-+
-+examples:
-+  - |
-+    nand-controller@e0f00000 {
-+      compatible = "intel,lgm-nand";
-+      reg = <0xe0f00000 0x100>,
-+            <0xe1000000 0x300>,
-+            <0xe1400000 0x8000>,
-+            <0xe1c00000 0x1000>,
-+            <0x17400000 0x4>,
-+            <0x17c00000 0x4>;
-+      reg-names = "ebunand", "hsnand", "nand_cs0", "nand_cs1",
-+        "addr_sel0", "addr_sel1";
-+      clocks = <&cgu0 125>;
-+      dmas = <&dma0 8>, <&dma0 9>;
-+      dma-names = "tx", "rx";
-+      #address-cells = <1>;
-+      #size-cells = <0>;
-+
-+      nand@0 {
-+        reg = <0>;
-+        nand-ecc-mode = "hw";
-+      };
-+    };
-+
-+...
--- 
-2.11.0
+As the prerequisites are now in next, I can queue this in renesas-devel
+for v5.11 after v5.10-rc1 has been released.
+Or do you think this should be fast-tracked as a fix for v5.10 or v5.9?
+I.e. is this an actual regression, or just something that never worked
+before?
+Note that v1 had a Fixes tag, which was lost in subsequent versions.
 
+Gr{oetje,eeting}s,
+
+                        Geert
+
+
+--
+Geert Uytterhoeven -- There's lots of Linux beyond ia32 -- geert@linux-m68k.org
+
+In personal conversations with technical people, I call myself a hacker. But
+when I'm talking to journalists I just say "programmer" or something like that.
+                                -- Linus Torvalds
