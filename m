@@ -2,106 +2,93 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from vger.kernel.org (vger.kernel.org [23.128.96.18])
-	by mail.lfdr.de (Postfix) with ESMTP id 9BAAC2768EB
-	for <lists+devicetree@lfdr.de>; Thu, 24 Sep 2020 08:31:17 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTP id 47F4F276904
+	for <lists+devicetree@lfdr.de>; Thu, 24 Sep 2020 08:36:27 +0200 (CEST)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S1726865AbgIXGbQ (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Thu, 24 Sep 2020 02:31:16 -0400
-Received: from lindbergh.monkeyblade.net ([23.128.96.19]:40270 "EHLO
-        lindbergh.monkeyblade.net" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S1726119AbgIXGbQ (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Thu, 24 Sep 2020 02:31:16 -0400
-Received: from mail-ed1-x542.google.com (mail-ed1-x542.google.com [IPv6:2a00:1450:4864:20::542])
-        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 2A563C0613CE;
-        Wed, 23 Sep 2020 23:31:16 -0700 (PDT)
-Received: by mail-ed1-x542.google.com with SMTP id t16so2192999edw.7;
-        Wed, 23 Sep 2020 23:31:16 -0700 (PDT)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=gmail.com; s=20161025;
-        h=mime-version:references:in-reply-to:from:date:message-id:subject:to
-         :cc;
-        bh=QTmPmjYa+syi4ESVUT2wwxmt6hYQRm3uAcrXir/7zYk=;
-        b=qwfhLIUiIHVrSAP6BJectQna1rSJx0tgqRY9dNtOQ3Gi57V1GtKVs/pr3siZAEbh1U
-         ay7tAX5GE2ZzYGN0/OSMiDZTe12SFl6m23MaWxNB9NW2kz2usTKFMxL0ZhRxCxGJ6ZMC
-         aZTw8t1Z5WGWLaCmbVReLfLx2tO/iQWJ2Smxk1608WhQOAN/WiUMJ2kg2WkyVwbWEs92
-         clMxJ1KT3BLjMYF0xEQWXhJIqNk8BXZ8ngxuXt1DDMhB/YvAE3hpu012XKr+81Qh7L24
-         LhzMXdphrD4rmt9K2CdaSFAT+93BeIShtylit8uUnqXSST6jWN8Aan1X63GcjnedhYHs
-         2HbQ==
-X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=1e100.net; s=20161025;
-        h=x-gm-message-state:mime-version:references:in-reply-to:from:date
-         :message-id:subject:to:cc;
-        bh=QTmPmjYa+syi4ESVUT2wwxmt6hYQRm3uAcrXir/7zYk=;
-        b=lapxVjFAF4KBNBunZTvggCoah/uVQa9ZNslHWrXnevyFoNzUqzMB8G2rRcSwwnGFBh
-         LTmtHm8aRQNVbVcnhryJ7qlko6oN5X7wwUcDHPqGhr0+h1UhQwCnh06nWGDgWRUeXvv+
-         oC0VFofOO5JskNTu3yY2fBOrZBSYq2KPehmj4q3pQ5cn+Ps15hBWzxK+t1LJIo7NWFkN
-         nlgnRQ9mG+EirERu78WKRGPU8NN7xM/h9HBJtJQ03nMpr0plAoJy0+RM87WhhssDcRZb
-         jtijbUdX3HB6zMGJD/LjnbI9cAZpCEqMHTW5OMpd6zZF2O7OYQEwVt6lWxYU+uvmEOtF
-         vQyw==
-X-Gm-Message-State: AOAM530SPMeHAxqbcqyUAAUEnnrMAyAjShAT04zCsNDT0EJMyb1+331a
-        Kv0XOsKAx/AllX1wVAxnVXdqZzECQFPk1q7GssI=
-X-Google-Smtp-Source: ABdhPJyUzmiyhcA9o4DsIrOpx+Q3dDdZNr0DSGE+0GuRP7GB8R7TMGkotLUXvMOUipRhFLz8Kx176y/0O5Amc3+uTCI=
-X-Received: by 2002:a50:84e8:: with SMTP id 95mr2918850edq.99.1600929074865;
- Wed, 23 Sep 2020 23:31:14 -0700 (PDT)
-MIME-Version: 1.0
-References: <20200914104352.2165818-1-drew@beagleboard.org>
- <CA+7tXii8rwBexgAHeqYsvBywhWLmk-Hf5_VWUU5bQkBREeFcSA@mail.gmail.com>
- <20200917092004.GA2468349@x1> <CA+7tXihwHbcuxZ10jGZrQkET9+Dbs31SfsYDt_6XB+-JM99gqA@mail.gmail.com>
- <20200917103942.GA2477958@x1> <20200923065755.GR7101@atomide.com>
- <CA+7tXigeNhQQVuAu0toZrvBKvMYkDU-8EWTpJR29HLTAMgoOBA@mail.gmail.com>
- <20200924054324.GB9471@atomide.com> <CA+7tXigg+h3v61AVMaYRKa_ZwznehOUPEESMqXKsNDNCrFph3w@mail.gmail.com>
- <20200924060645.GD9471@atomide.com>
-In-Reply-To: <20200924060645.GD9471@atomide.com>
-From:   Trent Piepho <tpiepho@gmail.com>
-Date:   Wed, 23 Sep 2020 23:31:04 -0700
-Message-ID: <CA+7tXijkS8UMFk4t=DuKjZZNnThbRarPQvxwxjg-uJFTKJRsXA@mail.gmail.com>
-Subject: Re: [PATCH] ARM: dts: document pinctrl-single,pins when
- #pinctrl-cells = 2
-To:     Tony Lindgren <tony@atomide.com>
-Cc:     Drew Fustini <drew@beagleboard.org>,
-        Rob Herring <robh+dt@kernel.org>,
-        Linus Walleij <linus.walleij@linaro.org>,
-        Jason Kridner <jkridner@beagleboard.org>,
-        Robert Nelson <robertcnelson@gmail.com>,
-        linux-omap@vger.kernel.org, linux-kernel@vger.kernel.org,
+        id S1726949AbgIXGg0 (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Thu, 24 Sep 2020 02:36:26 -0400
+Received: from mail.kernel.org ([198.145.29.99]:48156 "EHLO mail.kernel.org"
+        rhost-flags-OK-OK-OK-OK) by vger.kernel.org with ESMTP
+        id S1726846AbgIXGg0 (ORCPT <rfc822;devicetree@vger.kernel.org>);
+        Thu, 24 Sep 2020 02:36:26 -0400
+Received: from localhost (unknown [84.241.198.81])
+        (using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
+        (No client certificate requested)
+        by mail.kernel.org (Postfix) with ESMTPSA id 75E792311A;
+        Thu, 24 Sep 2020 06:36:24 +0000 (UTC)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=kernel.org;
+        s=default; t=1600929385;
+        bh=k/MfKAr0I4G8TJNbm1gV8eI6DluYKtODXwraB9Gmu9w=;
+        h=Date:From:To:Cc:Subject:References:In-Reply-To:From;
+        b=RqDQn+PucuvysvMgPEHFI5GTxoWvKOMTOz19Zk5TzG40nqUB3KlTT0mzRPEXLKV46
+         bwaJzWy8ZvB+iSqfpcjXjj/EJzcLWxIY3gYrn+9e7RYR8EWd9pwFaS+qpLuXFLihKM
+         eEhqIhPkCGFqdJymm8De0UYbEnXy9xZplotKzuCo=
+Date:   Thu, 24 Sep 2020 08:36:21 +0200
+From:   Greg Kroah-Hartman <gregkh@linuxfoundation.org>
+To:     Matthias Kaehlcke <mka@chromium.org>
+Cc:     Rob Herring <robh+dt@kernel.org>,
+        Frank Rowand <frowand.list@gmail.com>,
+        linux-kernel@vger.kernel.org,
+        Douglas Anderson <dianders@chromium.org>,
+        Alan Stern <stern@rowland.harvard.edu>,
+        linux-usb@vger.kernel.org, Bastien Nocera <hadess@hadess.net>,
+        Krzysztof Kozlowski <krzk@kernel.org>,
         devicetree@vger.kernel.org,
-        linux-gpio <linux-gpio@vger.kernel.org>,
-        Christina Quast <cquast@hanoverdisplays.com>
-Content-Type: text/plain; charset="UTF-8"
+        Ravi Chandra Sadineni <ravisadineni@chromium.org>,
+        Peter Chen <peter.chen@nxp.com>,
+        Stephen Boyd <swboyd@chromium.org>,
+        "Alexander A. Klimov" <grandmaster@al2klimov.de>,
+        Masahiro Yamada <masahiroy@kernel.org>
+Subject: Re: [PATCH v2 2/2] USB: misc: Add onboard_usb_hub driver
+Message-ID: <20200924063621.GA593410@kroah.com>
+References: <20200917114600.v2.1.I248292623d3d0f6a4f0c5bc58478ca3c0062b49a@changeid>
+ <20200917114600.v2.2.I7c9a1f1d6ced41dd8310e8a03da666a32364e790@changeid>
+ <20200920141720.GD2915460@kroah.com>
+ <20200922011837.GE21107@google.com>
+ <20200923222545.GB2105328@google.com>
+MIME-Version: 1.0
+Content-Type: text/plain; charset=us-ascii
+Content-Disposition: inline
+In-Reply-To: <20200923222545.GB2105328@google.com>
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-On Wed, Sep 23, 2020 at 11:06 PM Tony Lindgren <tony@atomide.com> wrote:
->
-> * Trent Piepho <tpiepho@gmail.com> [200924 05:49]:
-> > On Wed, Sep 23, 2020 at 10:43 PM Tony Lindgren <tony@atomide.com> wrote:
-> > >
-> > > * Trent Piepho <tpiepho@gmail.com> [200924 01:34]:
-> > > > On Tue, Sep 22, 2020 at 11:57 PM Tony Lindgren <tony@atomide.com> wrote:
-> > > > >
-> > > > > Also FYI, folks have also complained for a long time that the pinctrl-single
-> > > > > binding mixes mux and conf values while they should be handled separately.
-> > > > >
+On Wed, Sep 23, 2020 at 03:25:45PM -0700, Matthias Kaehlcke wrote:
+> On Mon, Sep 21, 2020 at 06:18:37PM -0700, Matthias Kaehlcke wrote:
+> > On Sun, Sep 20, 2020 at 04:17:20PM +0200, Greg Kroah-Hartman wrote:
+> > > On Thu, Sep 17, 2020 at 11:46:22AM -0700, Matthias Kaehlcke wrote:
 > > > >
-> > > > Instead of combining two fields when the dts is generated they are now
-> > > > combined when the pinctrl-single driver reads the dts.  Other than
-> > > > this detail, the result is the same.  The board dts source is the
-> > > > same.  The value programmed into the pinctrl register is the same.
-> > > > There is no mechanism currently that can alter that value in any way.
+> > > > ...
 > > > >
-> > > > What does combining them later allow that is not possible now?
-> > >
-> > > It now allows further driver changes to manage conf and mux separately :)
-> >
-> > The pinctrl-single driver?  How will that work with boards that are
-> > not am335x and don't use conf and mux fields in the same manner as
-> > am335x?
->
-> For those cases we still have #pinctrl-cells = <1>.
+> > > > +static int __init onboard_hub_init(void)
+> > > > +{
+> > > > +	int rc;
+> > > > +
+> > > > +	rc = platform_driver_register(&onboard_hub_driver);
+> > > > +	if (rc)
+> > > > +		return rc;
+> > > > +
+> > > > +	return usb_register_device_driver(&onboard_hub_usbdev_driver, THIS_MODULE);
+> > > 
+> > > No unwinding of the platform driver register if this fails?
+> > 
+> > Right, will add unwinding.
+> > 
+> > > And THIS_MODULE should not be needed, did we get the api wrong here?
+> > 
+> > It seems you suggest to use usb_register() instead, SGTM
+> 
+> Actually usb_register() is for registering a struct usb_driver, however
+> this is a struct usb_device_driver, there doesn't seem to be a
+> registration function/macro that doesn't require THIS_MODULE. Please
+> provide a pointer if I'm wrong.
 
-If pincntrl-single is going to be am335x specific, then shouldn't it
-be a different compatible string?
+You are correct, I was just making a meta-comment that we got this api
+wrong when adding it to the kernel and need to fix it up so that you do
+not have to manually pass in the module owner.  i.e. make it much like
+usb_register() does.
 
-Are the driver changes something that can be not be done with the
-pinconf-single properties?  They all include a mask.
+thanks,
+
+greg k-h
