@@ -2,85 +2,116 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from vger.kernel.org (vger.kernel.org [23.128.96.18])
-	by mail.lfdr.de (Postfix) with ESMTP id 82EB1276E3E
-	for <lists+devicetree@lfdr.de>; Thu, 24 Sep 2020 12:09:33 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTP id 852E1276EA5
+	for <lists+devicetree@lfdr.de>; Thu, 24 Sep 2020 12:24:35 +0200 (CEST)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S1726949AbgIXKJ3 (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Thu, 24 Sep 2020 06:09:29 -0400
-Received: from hostingweb31-40.netsons.net ([89.40.174.40]:39229 "EHLO
-        hostingweb31-40.netsons.net" rhost-flags-OK-OK-OK-OK)
-        by vger.kernel.org with ESMTP id S1726597AbgIXKJ3 (ORCPT
-        <rfc822;devicetree@vger.kernel.org>);
-        Thu, 24 Sep 2020 06:09:29 -0400
-Received: from [77.244.183.192] (port=62008 helo=[192.168.178.24])
-        by hostingweb31.netsons.net with esmtpsa  (TLS1.2) tls TLS_ECDHE_RSA_WITH_AES_128_GCM_SHA256
-        (Exim 4.93)
-        (envelope-from <luca@lucaceresoli.net>)
-        id 1kLOBp-000GrA-Jp; Thu, 24 Sep 2020 12:09:25 +0200
-Subject: Re: [PATCH v6 2/3] media: i2c: imx274: Remove stop stream i2c writes
- during remove
-To:     Sakari Ailus <sakari.ailus@iki.fi>
-Cc:     Sowjanya Komatineni <skomatineni@nvidia.com>,
-        thierry.reding@gmail.com, jonathanh@nvidia.com, hverkuil@xs4all.nl,
-        jacopo+renesas@jmondi.org, leonl@leopardimaging.com,
-        robh+dt@kernel.org, lgirdwood@gmail.com, broonie@kernel.org,
-        linux-media@vger.kernel.org, devicetree@vger.kernel.org,
-        linux-kernel@vger.kernel.org
-References: <1600724379-7324-1-git-send-email-skomatineni@nvidia.com>
- <1600724379-7324-3-git-send-email-skomatineni@nvidia.com>
- <d6be54a7-76b8-4206-0d76-6f93ec545e72@lucaceresoli.net>
- <20200922084746.GA8644@valkosipuli.retiisi.org.uk>
-From:   Luca Ceresoli <luca@lucaceresoli.net>
-Message-ID: <b243afda-b00f-4c0e-2eea-cc5d03cbebe7@lucaceresoli.net>
-Date:   Thu, 24 Sep 2020 12:09:22 +0200
-User-Agent: Mozilla/5.0 (X11; Linux x86_64; rv:68.0) Gecko/20100101
- Thunderbird/68.10.0
+        id S1727420AbgIXKYd (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Thu, 24 Sep 2020 06:24:33 -0400
+Received: from mail-ot1-f67.google.com ([209.85.210.67]:39960 "EHLO
+        mail-ot1-f67.google.com" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
+        with ESMTP id S1727089AbgIXKYc (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Thu, 24 Sep 2020 06:24:32 -0400
+Received: by mail-ot1-f67.google.com with SMTP id c2so607866otp.7;
+        Thu, 24 Sep 2020 03:24:32 -0700 (PDT)
+X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+        d=1e100.net; s=20161025;
+        h=x-gm-message-state:mime-version:references:in-reply-to:from:date
+         :message-id:subject:to:cc;
+        bh=j6aF1e/PgsLm/et9d4vYdIAT9mmYwtgzzxEyzyGUgsg=;
+        b=EavTM1rbVvBVeuTIb+urvHEq+FqKfi2slcKR+BXpB4PzyNCoU+wTDTLgWtFyrkNA5m
+         Lksyvvlyfw0MLEvGHvIYNRygH5n7s/quHUYkDgkdlJrDyQRluXVSc4TgqKqatnPhkFbq
+         OOYV3HhHpsPdQaFU8VB4UlwHtVan0N42QmYEo0TVCbJmTSMlwcgGgUtuSF9IU8XrwYFV
+         DPNtZBjnKhXSLsbYrn6ICieuDcJx9clAIy05bA1R/PK16Mx5RPAfWpSWYzUU3h4DgT35
+         pnaxN+dSx47729QwckVWQx9Lkd8Cdm1pUbJu/hQpZlJ8AhTUQRwkcq4EPmo5A4OypgC0
+         xs/Q==
+X-Gm-Message-State: AOAM5327zG5+zZYcJGP6yRe+Y506FKSkDkW3rwvbaX6GzhjYO2j1UkAa
+        PJPeoSZEcFvs/EAxnEV2KvniSh2S169N78mQpJM=
+X-Google-Smtp-Source: ABdhPJw57fD7/OM8uEp/PKMXBvSOxUQF1vAdLsacJx8iHl0r1mvXOTDOQ61/SmWSu3pLxi4bIXmCtc9V/rFPAGU1ZF4=
+X-Received: by 2002:a9d:3b76:: with SMTP id z109mr2655049otb.250.1600943071845;
+ Thu, 24 Sep 2020 03:24:31 -0700 (PDT)
 MIME-Version: 1.0
-In-Reply-To: <20200922084746.GA8644@valkosipuli.retiisi.org.uk>
-Content-Type: text/plain; charset=utf-8
-Content-Language: en-US
-Content-Transfer-Encoding: 7bit
-X-AntiAbuse: This header was added to track abuse, please include it with any abuse report
-X-AntiAbuse: Primary Hostname - hostingweb31.netsons.net
-X-AntiAbuse: Original Domain - vger.kernel.org
-X-AntiAbuse: Originator/Caller UID/GID - [47 12] / [47 12]
-X-AntiAbuse: Sender Address Domain - lucaceresoli.net
-X-Get-Message-Sender-Via: hostingweb31.netsons.net: authenticated_id: luca@lucaceresoli.net
-X-Authenticated-Sender: hostingweb31.netsons.net: luca@lucaceresoli.net
-X-Source: 
-X-Source-Args: 
-X-Source-Dir: 
+References: <20200924080535.3641-1-biju.das.jz@bp.renesas.com>
+ <CAMuHMdV5m3LH9QyX=Gau5UsDz3AZvqNOgCJiHb6Je+7qS0Ltvw@mail.gmail.com> <TYBPR01MB530919C0B122741BF8D25A8B86390@TYBPR01MB5309.jpnprd01.prod.outlook.com>
+In-Reply-To: <TYBPR01MB530919C0B122741BF8D25A8B86390@TYBPR01MB5309.jpnprd01.prod.outlook.com>
+From:   Geert Uytterhoeven <geert@linux-m68k.org>
+Date:   Thu, 24 Sep 2020 12:24:20 +0200
+Message-ID: <CAMuHMdVtmd8P=di-VSLMOE0zgL7vZw1N=znqhX3C0oPJ9GiwuA@mail.gmail.com>
+Subject: Re: [PATCH] ARM: dts: iwg20d-q7-common: Fix touch controller probe failure
+To:     Biju Das <biju.das.jz@bp.renesas.com>
+Cc:     Rob Herring <robh+dt@kernel.org>,
+        Magnus Damm <magnus.damm@gmail.com>,
+        Linux-Renesas <linux-renesas-soc@vger.kernel.org>,
+        "open list:OPEN FIRMWARE AND FLATTENED DEVICE TREE BINDINGS" 
+        <devicetree@vger.kernel.org>,
+        Chris Paterson <Chris.Paterson2@renesas.com>,
+        Biju Das <biju.das@bp.renesas.com>,
+        Prabhakar Mahadev Lad <prabhakar.mahadev-lad.rj@bp.renesas.com>
+Content-Type: text/plain; charset="UTF-8"
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-On 22/09/20 10:47, Sakari Ailus wrote:
-> Hi Luca,
-> 
-> On Tue, Sep 22, 2020 at 10:09:33AM +0200, Luca Ceresoli wrote:
->> Hi,
->>
->> On 21/09/20 23:39, Sowjanya Komatineni wrote:
->>> Sensor should already be in standby during remove and there is no
->>> need to configure sensor registers for stream stop.
->>
->> I beg your pardon for the newbie question: does the V4L2 framework
->> guarantee that the stream is stopped (.s_stream(..., 0)) before removing
->> the driver?
-> 
-> It doesn't. That's however one of the lesser concerns, and I don't think
-> it'd help if drivers tried to prepare for that.
+Hi Biju,
 
-Thanks for the clarification.
+On Thu, Sep 24, 2020 at 11:40 AM Biju Das <biju.das.jz@bp.renesas.com> wrote:
+> > Subject: Re: [PATCH] ARM: dts: iwg20d-q7-common: Fix touch controller
+> > probe failure
+> > On Thu, Sep 24, 2020 at 10:05 AM Biju Das <biju.das.jz@bp.renesas.com>
+> > wrote:
+> > > As per the iWave RZ/G1M schematic, the signal LVDS_PPEN controls
+> > > supply voltage for touch panel, LVDS receiver and RGB LCD panel. Add
+> > > regulator for these device nodes and remove powerdown-gpios property
+> > > from lvds-receiver node as it results in touch controller driver probe failure.
+> > >
+> > > Signed-off-by: Biju Das <biju.das.jz@bp.renesas.com>
+> > > Reviewed-by: Laurent Pinchart <laurent.pinchart@ideasonboard.com>
+> > > ---
+> > > v4->v5 : Restored Laurent's Rb tag, since it is minor change, renaming
+> > > v4->vcc-supply to power-supply
+> > >
+> > > v3->v4 : Incorporated Laurent's review
+> > > v3->comments(https://patchwork.kernel.org/patch/11707887/)
+> > >          Added Laurent's Reviewed-by tag
+> > > v2->v3 : Added the missing part from the patch. removal of powerdown-
+> > gpios property.
+> > > v1->v2 : Add regulator in touch panel, LVDS receiver and RGB LCD panel
+> > > v1->device nodes
+> > >            (Ref: https://patchwork.kernel.org/patch/11707559/)
+> > > v1 : https://patchwork.kernel.org/patch/11705819/
+> >
+> > Thanks for the update!
+> >
+> > As the prerequisites are now in next, I can queue this in renesas-devel for
+> > v5.11 after v5.10-rc1 has been released.
+> > Or do you think this should be fast-tracked as a fix for v5.10 or v5.9?
+>
+> I think it should be fast tracked, since it is a regression. Also we need to fast track  the dependency patches as well.
 
-I've been working with hardware where the sensor is always powered. In
-this case, and with this patch applied, the sensor would keep producing
-frames after driver removal. This looks wrong, unless I'm overlooking
-something.
+OK.
 
-BTW at first sight it looks like the framework should take care of
-stopping the stream before removal, not the individual drivers, but
-maybe there are good reasons this is not done?
+> Fixes: 6f89dd9e9325 ("ARM: dts: iwg20d-q7-common: Add LCD support")
+> [1] https://git.kernel.org/pub/scm/linux/kernel/git/next/linux-next.git/commit/?h=next-20200923&id=946a61ab2d758cc645f6e63f1a5e2731690c3943
+> [2] https://git.kernel.org/pub/scm/linux/kernel/git/next/linux-next.git/commit/?h=next-20200923&id=2cd9df2be75766452fef87c37ec37d91f4cbaf6b
+
+Does anything bad (e.g. another regression) happen if this patch is
+applied, but the 2 patches above are not?
+If not, I will queue this as a fix for v5.9.
+
+> > I.e. is this an actual regression, or just something that never worked before?
+> > Note that v1 had a Fixes tag, which was lost in subsequent versions.
+>
+> I missed to add fixes tag in subsequent versions.
+> Fixes: 6f89dd9e9325 ("ARM: dts: iwg20d-q7-common: Add LCD support")
+
+No worries, I can add that while applying.
+
+Gr{oetje,eeting}s,
+
+                        Geert
 
 -- 
-Luca
+Geert Uytterhoeven -- There's lots of Linux beyond ia32 -- geert@linux-m68k.org
+
+In personal conversations with technical people, I call myself a hacker. But
+when I'm talking to journalists I just say "programmer" or something like that.
+                                -- Linus Torvalds
