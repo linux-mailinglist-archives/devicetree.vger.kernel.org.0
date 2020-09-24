@@ -2,26 +2,26 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from vger.kernel.org (vger.kernel.org [23.128.96.18])
-	by mail.lfdr.de (Postfix) with ESMTP id 89DF527680B
+	by mail.lfdr.de (Postfix) with ESMTP id 120EA27680A
 	for <lists+devicetree@lfdr.de>; Thu, 24 Sep 2020 06:57:31 +0200 (CEST)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S1726723AbgIXE5U (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Thu, 24 Sep 2020 00:57:20 -0400
-Received: from lindbergh.monkeyblade.net ([23.128.96.19]:54176 "EHLO
+        id S1726828AbgIXE5Y (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Thu, 24 Sep 2020 00:57:24 -0400
+Received: from lindbergh.monkeyblade.net ([23.128.96.19]:54188 "EHLO
         lindbergh.monkeyblade.net" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S1726684AbgIXE5T (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Thu, 24 Sep 2020 00:57:19 -0400
+        with ESMTP id S1726691AbgIXE5V (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Thu, 24 Sep 2020 00:57:21 -0400
 Received: from metis.ext.pengutronix.de (metis.ext.pengutronix.de [IPv6:2001:67c:670:201:290:27ff:fe1d:cc33])
-        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 92230C0613D3
-        for <devicetree@vger.kernel.org>; Wed, 23 Sep 2020 21:57:19 -0700 (PDT)
+        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 54D02C0613CE
+        for <devicetree@vger.kernel.org>; Wed, 23 Sep 2020 21:57:21 -0700 (PDT)
 Received: from dude.hi.pengutronix.de ([2001:67c:670:100:1d::7])
         by metis.ext.pengutronix.de with esmtps (TLS1.3:ECDHE_RSA_AES_256_GCM_SHA384:256)
         (Exim 4.92)
         (envelope-from <ore@pengutronix.de>)
-        id 1kLJJd-0000c3-7H; Thu, 24 Sep 2020 06:57:09 +0200
+        id 1kLJJd-0000c4-7D; Thu, 24 Sep 2020 06:57:09 +0200
 Received: from ore by dude.hi.pengutronix.de with local (Exim 4.92)
         (envelope-from <ore@pengutronix.de>)
-        id 1kLJJb-00067r-HY; Thu, 24 Sep 2020 06:57:07 +0200
+        id 1kLJJc-000680-I4; Thu, 24 Sep 2020 06:57:08 +0200
 From:   Oleksij Rempel <o.rempel@pengutronix.de>
 To:     Mark Rutland <mark.rutland@arm.com>,
         Rob Herring <robh+dt@kernel.org>,
@@ -33,10 +33,12 @@ Cc:     Oleksij Rempel <o.rempel@pengutronix.de>,
         NXP Linux Team <linux-imx@nxp.com>,
         Pengutronix Kernel Team <kernel@pengutronix.de>,
         David Jander <david@protonic.nl>
-Subject: [PATCH v2 0/2] mainline Protonic WD3 board 
-Date:   Thu, 24 Sep 2020 06:57:04 +0200
-Message-Id: <20200924045706.23496-1-o.rempel@pengutronix.de>
+Subject: [PATCH v2 1/2] dt-bindings: arm: fsl: add Protonic WD3 board
+Date:   Thu, 24 Sep 2020 06:57:05 +0200
+Message-Id: <20200924045706.23496-2-o.rempel@pengutronix.de>
 X-Mailer: git-send-email 2.28.0
+In-Reply-To: <20200924045706.23496-1-o.rempel@pengutronix.de>
+References: <20200924045706.23496-1-o.rempel@pengutronix.de>
 MIME-Version: 1.0
 Content-Transfer-Encoding: 8bit
 X-SA-Exim-Connect-IP: 2001:67c:670:100:1d::7
@@ -47,19 +49,25 @@ Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-changes v2:
-- fix comment: WD2 -> WD3
+Add Protonic Holland WD3 iMX6qp based board
 
-Oleksij Rempel (2):
-  dt-bindings: arm: fsl: add Protonic WD3 board
-  ARM: dts: add Protonic WD3 board
+Signed-off-by: Oleksij Rempel <o.rempel@pengutronix.de>
+---
+ Documentation/devicetree/bindings/arm/fsl.yaml | 1 +
+ 1 file changed, 1 insertion(+)
 
- .../devicetree/bindings/arm/fsl.yaml          |   1 +
- arch/arm/boot/dts/Makefile                    |   1 +
- arch/arm/boot/dts/imx6qp-prtwd3.dts           | 553 ++++++++++++++++++
- 3 files changed, 555 insertions(+)
- create mode 100644 arch/arm/boot/dts/imx6qp-prtwd3.dts
-
+diff --git a/Documentation/devicetree/bindings/arm/fsl.yaml b/Documentation/devicetree/bindings/arm/fsl.yaml
+index e94a455eeab9..57dcd061d4c9 100644
+--- a/Documentation/devicetree/bindings/arm/fsl.yaml
++++ b/Documentation/devicetree/bindings/arm/fsl.yaml
+@@ -161,6 +161,7 @@ properties:
+           - enum:
+               - fsl,imx6qp-sabreauto      # i.MX6 Quad Plus SABRE Automotive Board
+               - fsl,imx6qp-sabresd        # i.MX6 Quad Plus SABRE Smart Device Board
++              - prt,prtwd3                # Protonic WD3 board
+           - const: fsl,imx6qp
+ 
+       - description: i.MX6DL based Boards
 -- 
 2.28.0
 
