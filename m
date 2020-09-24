@@ -2,122 +2,119 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from vger.kernel.org (vger.kernel.org [23.128.96.18])
-	by mail.lfdr.de (Postfix) with ESMTP id E67282771CC
-	for <lists+devicetree@lfdr.de>; Thu, 24 Sep 2020 15:07:42 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTP id C54422771E3
+	for <lists+devicetree@lfdr.de>; Thu, 24 Sep 2020 15:11:42 +0200 (CEST)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S1727798AbgIXNHl (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Thu, 24 Sep 2020 09:07:41 -0400
-Received: from foss.arm.com ([217.140.110.172]:45824 "EHLO foss.arm.com"
-        rhost-flags-OK-OK-OK-OK) by vger.kernel.org with ESMTP
-        id S1727704AbgIXNHl (ORCPT <rfc822;devicetree@vger.kernel.org>);
-        Thu, 24 Sep 2020 09:07:41 -0400
-Received: from usa-sjc-imap-foss1.foss.arm.com (unknown [10.121.207.14])
-        by usa-sjc-mx-foss1.foss.arm.com (Postfix) with ESMTP id 3F31212FC;
-        Thu, 24 Sep 2020 06:07:41 -0700 (PDT)
-Received: from e121166-lin.cambridge.arm.com (e121166-lin.cambridge.arm.com [10.1.196.255])
-        by usa-sjc-imap-foss1.foss.arm.com (Postfix) with ESMTPSA id 0E4223F718;
-        Thu, 24 Sep 2020 06:07:38 -0700 (PDT)
-Date:   Thu, 24 Sep 2020 14:07:34 +0100
-From:   Lorenzo Pieralisi <lorenzo.pieralisi@arm.com>
-To:     Zhiqiang Hou <Zhiqiang.Hou@nxp.com>
-Cc:     linux-pci@vger.kernel.org, devicetree@vger.kernel.org,
-        linux-kernel@vger.kernel.org, linux-arm-kernel@lists.infradead.org,
-        robh+dt@kernel.org, bhelgaas@google.com, shawnguo@kernel.org,
-        kishon@ti.com, leoyang.li@nxp.com, gustavo.pimentel@synopsys.com,
-        arnd@arndb.de, gregkh@linuxfoundation.org, andrew.murray@arm.com,
-        minghuan.Lian@nxp.com, mingkai.hu@nxp.com, roy.zang@nxp.com,
-        Xiaowei Bao <xiaowei.bao@nxp.com>
-Subject: Re: [PATCHv8 10/12] arm64: dts: layerscape: Add PCIe EP node for
- ls1088a
-Message-ID: <20200924130734.GA17981@e121166-lin.cambridge.arm.com>
-References: <20200918080024.13639-1-Zhiqiang.Hou@nxp.com>
- <20200918080024.13639-11-Zhiqiang.Hou@nxp.com>
+        id S1727849AbgIXNLl (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Thu, 24 Sep 2020 09:11:41 -0400
+Received: from lindbergh.monkeyblade.net ([23.128.96.19]:45872 "EHLO
+        lindbergh.monkeyblade.net" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
+        with ESMTP id S1727723AbgIXNLl (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Thu, 24 Sep 2020 09:11:41 -0400
+Received: from mail-ej1-x641.google.com (mail-ej1-x641.google.com [IPv6:2a00:1450:4864:20::641])
+        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id AC596C0613D3
+        for <devicetree@vger.kernel.org>; Thu, 24 Sep 2020 06:11:40 -0700 (PDT)
+Received: by mail-ej1-x641.google.com with SMTP id p9so4406225ejf.6
+        for <devicetree@vger.kernel.org>; Thu, 24 Sep 2020 06:11:40 -0700 (PDT)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+        d=baylibre-com.20150623.gappssmtp.com; s=20150623;
+        h=mime-version:references:in-reply-to:from:date:message-id:subject:to
+         :cc;
+        bh=d6KirD9EXogJ4rZJQXX3ptf6I4wM6ASOXJms4dQX+94=;
+        b=ZhMBPNQcf28Yt2lHYT+OHZAdIx3yiMf2LJsxNli5PUxfad4XzRToF8iyR6VnLOgo1m
+         P3O1k02I+SFChVRMSGQ53HKWAvpK6LOFefJfwali9DWLK5PN6U5PQRF6jD5fX1w6UsAk
+         NRJ53ni8+867wAplO3jaC5YqCwrNLUnahfR3hPVozbk1WiDlGeVB2T9dKJIU7dtYyjyO
+         2t1UHvaE2SIisqosVsLv94bCRiE/vWc9OIHATdrh1Rs4ePyApnYUvYcErzamiWi1Dhjl
+         8TsGeI9oRCj8S5jjhnnWK8at+BvxVpfgmK0iiibm09l5nA3oI+0zwxAE8Z+ptVtFsN37
+         KI0g==
+X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+        d=1e100.net; s=20161025;
+        h=x-gm-message-state:mime-version:references:in-reply-to:from:date
+         :message-id:subject:to:cc;
+        bh=d6KirD9EXogJ4rZJQXX3ptf6I4wM6ASOXJms4dQX+94=;
+        b=jxR1E+A3VncuLkg2uy886SXdSut1p7twij4KMt4YCGKBp1XgzDqf63nW2DBHIZzCQR
+         +PDH2uj4/qMeng1/T5OB1nklBCm4Y5Vj+2TUgvCMQYvlD+whu8qMtZIOu+vnEMqXqrky
+         7cAChYG0/cuAmCA38LHiNxV6c0/E648OdYwuLGozFbOlsXwv6WMXO8qIrltzcOTOsQ7H
+         kItQQCL0AzGXnU2nPXnIMy4sT8Q9JYkH5NyCqsLvaEAWV9FiU6CTGzg33VUdjvvMwCBF
+         EBKFiAlboG/f74cIORefkl4JOtAGWU1NKzXQF2VZ9Gpp++4cSn8X+TVp0HHwnxXFIQP5
+         7SRw==
+X-Gm-Message-State: AOAM533OvN8Fjf9kpZ2YQeLbHByHggHAKmfhKnSQgZZiCPLKAg+h0oRF
+        VIorOuVFQWMwpp9y1oLwhCCqFVDhGxTqsCyif4/OVg==
+X-Google-Smtp-Source: ABdhPJw3akn1PeO9dv8nYxrkCw9k5Pgola2iVlAs1aCOPnrNGPrIV2RxkbWRC8roXNvYBwMPJ3CHgcTZUlBPthPycRY=
+X-Received: by 2002:a17:906:a198:: with SMTP id s24mr970854ejy.154.1600953099274;
+ Thu, 24 Sep 2020 06:11:39 -0700 (PDT)
 MIME-Version: 1.0
-Content-Type: text/plain; charset=us-ascii
-Content-Disposition: inline
-In-Reply-To: <20200918080024.13639-11-Zhiqiang.Hou@nxp.com>
-User-Agent: Mutt/1.9.4 (2018-02-28)
+References: <20200911015105.48581-1-jk@codeconstruct.com.au>
+ <CACPK8XdCkw7ix2J9WyOXDcwsMThXwQ62=E6cDLX+-9WJMsqrnA@mail.gmail.com>
+ <CACPK8XeQWNTyS53M9PLwkud9RnGNp3j87X8_UXtg4ZHJrQqQSQ@mail.gmail.com>
+ <CAMpxmJW+PMV1+q66ywEAiZhrOu+kiSPXQCK0mTGLLwW-yfisSg@mail.gmail.com> <CACPK8Xcqu3UN3o=9pZ269O6pxLOra98jYxZqVL7sfjkUZ4Wang@mail.gmail.com>
+In-Reply-To: <CACPK8Xcqu3UN3o=9pZ269O6pxLOra98jYxZqVL7sfjkUZ4Wang@mail.gmail.com>
+From:   Bartosz Golaszewski <bgolaszewski@baylibre.com>
+Date:   Thu, 24 Sep 2020 15:11:28 +0200
+Message-ID: <CAMpxmJX7yg0Y2ibEdQaDb5MseT4Kr1-uG+RLxxKO_YF1BMkqEw@mail.gmail.com>
+Subject: Re: [PATCH v2 1/2] gpio/aspeed-sgpio: enable access to all 80 input &
+ output sgpios
+To:     Joel Stanley <joel@jms.id.au>
+Cc:     Jeremy Kerr <jk@codeconstruct.com.au>,
+        Linus Walleij <linus.walleij@linaro.org>,
+        "open list:GPIO SUBSYSTEM" <linux-gpio@vger.kernel.org>,
+        linux-aspeed <linux-aspeed@lists.ozlabs.org>,
+        devicetree <devicetree@vger.kernel.org>,
+        Andrew Jeffery <andrew@aj.id.au>
+Content-Type: text/plain; charset="UTF-8"
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-On Fri, Sep 18, 2020 at 04:00:22PM +0800, Zhiqiang Hou wrote:
-> From: Xiaowei Bao <xiaowei.bao@nxp.com>
-> 
-> Add PCIe EP node for ls1088a to support EP mode.
-> 
-> Signed-off-by: Xiaowei Bao <xiaowei.bao@nxp.com>
-> Signed-off-by: Hou Zhiqiang <Zhiqiang.Hou@nxp.com>
-> Reviewed-by: Andrew Murray <andrew.murray@arm.com>
-> ---
-> V8:
->  - s/pcie_ep/pcie-ep.
-> 
->  .../arm64/boot/dts/freescale/fsl-ls1088a.dtsi | 31 +++++++++++++++++++
->  1 file changed, 31 insertions(+)
+On Wed, Sep 16, 2020 at 2:59 PM Joel Stanley <joel@jms.id.au> wrote:
+>
+> On Wed, 16 Sep 2020 at 11:09, Bartosz Golaszewski
+> <bgolaszewski@baylibre.com> wrote:
+> >
+> > On Wed, Sep 16, 2020 at 6:51 AM Joel Stanley <joel@jms.id.au> wrote:
+> > >
+> > > Hi GPIO maintainers,
+> > >
+> > > On Fri, 11 Sep 2020 at 02:20, Joel Stanley <joel@jms.id.au> wrote:
+> > > >
+> > > > On Fri, 11 Sep 2020 at 02:11, Jeremy Kerr <jk@codeconstruct.com.au> wrote:
+> > > > >
+> > > > > Currently, the aspeed-sgpio driver exposes up to 80 GPIO lines,
+> > > > > corresponding to the 80 status bits available in hardware. Each of these
+> > > > > lines can be configured as either an input or an output.
+> > > > >
+> > > > > However, each of these GPIOs is actually an input *and* an output; we
+> > > > > actually have 80 inputs plus 80 outputs.
+> > > > >
+> > > > > This change expands the maximum number of GPIOs to 160; the lower half
+> > > > > of this range are the input-only GPIOs, the upper half are the outputs.
+> > > > > We fix the GPIO directions to correspond to this mapping.
+> > > > >
+> > > > > This also fixes a bug when setting GPIOs - we were reading from the
+> > > > > input register, making it impossible to set more than one output GPIO.
+> > > > >
+> > > > > Signed-off-by: Jeremy Kerr <jk@codeconstruct.com.au>
+> > > > > Fixes: 7db47faae79b ("gpio: aspeed: Add SGPIO driver")
+> > > >
+> > > > Reviewed-by: Joel Stanley <joel@jms.id.au>
+> > >
+> > > This series is good to go in for 5.10:
+> > >
+> >
+> > Hi Joel,
+> >
+> > I don't have this in my inbox. Did you copy me on this series?
+>
+> I did not; I am not the author of the patches as you can see.
+>
+> I notice that Jeremy sent them to the linux-gpio list, but you were
+> not copied. Are you able to grab them from lore, or do you need him to
+> resend them?
+>
+> Cheers,
+>
+> Joel
 
-Dropped this patch. dts files updates should be sent via arm-soc along
-with platform support.
+Now queued, thanks.
 
-Thanks,
-Lorenzo
-
-> diff --git a/arch/arm64/boot/dts/freescale/fsl-ls1088a.dtsi b/arch/arm64/boot/dts/freescale/fsl-ls1088a.dtsi
-> index 169f4742ae3b..f21dd143ab6d 100644
-> --- a/arch/arm64/boot/dts/freescale/fsl-ls1088a.dtsi
-> +++ b/arch/arm64/boot/dts/freescale/fsl-ls1088a.dtsi
-> @@ -499,6 +499,17 @@
->  			status = "disabled";
->  		};
->  
-> +		pcie-ep@3400000 {
-> +			compatible = "fsl,ls1088a-pcie-ep","fsl,ls-pcie-ep";
-> +			reg = <0x00 0x03400000 0x0 0x00100000
-> +			       0x20 0x00000000 0x8 0x00000000>;
-> +			reg-names = "regs", "addr_space";
-> +			num-ib-windows = <24>;
-> +			num-ob-windows = <128>;
-> +			max-functions = /bits/ 8 <2>;
-> +			status = "disabled";
-> +		};
-> +
->  		pcie@3500000 {
->  			compatible = "fsl,ls1088a-pcie";
->  			reg = <0x00 0x03500000 0x0 0x00100000   /* controller registers */
-> @@ -525,6 +536,16 @@
->  			status = "disabled";
->  		};
->  
-> +		pcie-ep@3500000 {
-> +			compatible = "fsl,ls1088a-pcie-ep","fsl,ls-pcie-ep";
-> +			reg = <0x00 0x03500000 0x0 0x00100000
-> +			       0x28 0x00000000 0x8 0x00000000>;
-> +			reg-names = "regs", "addr_space";
-> +			num-ib-windows = <6>;
-> +			num-ob-windows = <8>;
-> +			status = "disabled";
-> +		};
-> +
->  		pcie@3600000 {
->  			compatible = "fsl,ls1088a-pcie";
->  			reg = <0x00 0x03600000 0x0 0x00100000   /* controller registers */
-> @@ -551,6 +572,16 @@
->  			status = "disabled";
->  		};
->  
-> +		pcie-ep@3600000 {
-> +			compatible = "fsl,ls1088a-pcie-ep","fsl,ls-pcie-ep";
-> +			reg = <0x00 0x03600000 0x0 0x00100000
-> +			       0x30 0x00000000 0x8 0x00000000>;
-> +			reg-names = "regs", "addr_space";
-> +			num-ib-windows = <6>;
-> +			num-ob-windows = <8>;
-> +			status = "disabled";
-> +		};
-> +
->  		smmu: iommu@5000000 {
->  			compatible = "arm,mmu-500";
->  			reg = <0 0x5000000 0 0x800000>;
-> -- 
-> 2.17.1
-> 
+Bartosz
