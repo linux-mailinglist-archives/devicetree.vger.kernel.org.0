@@ -2,105 +2,63 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from vger.kernel.org (vger.kernel.org [23.128.96.18])
-	by mail.lfdr.de (Postfix) with ESMTP id 7EE6B277E34
-	for <lists+devicetree@lfdr.de>; Fri, 25 Sep 2020 04:51:32 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTP id 02B3A277E68
+	for <lists+devicetree@lfdr.de>; Fri, 25 Sep 2020 05:10:18 +0200 (CEST)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S1726669AbgIYCvb (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Thu, 24 Sep 2020 22:51:31 -0400
-Received: from smtprelay-out1.synopsys.com ([149.117.73.133]:51130 "EHLO
-        smtprelay-out1.synopsys.com" rhost-flags-OK-OK-OK-OK)
-        by vger.kernel.org with ESMTP id S1726448AbgIYCvb (ORCPT
-        <rfc822;devicetree@vger.kernel.org>);
-        Thu, 24 Sep 2020 22:51:31 -0400
-X-Greylist: delayed 550 seconds by postgrey-1.27 at vger.kernel.org; Thu, 24 Sep 2020 22:51:31 EDT
-Received: from mailhost.synopsys.com (sv1-mailhost1.synopsys.com [10.205.2.131])
-        (using TLSv1.3 with cipher TLS_AES_256_GCM_SHA384 (256/256 bits))
-        (No client certificate requested)
-        by smtprelay-out1.synopsys.com (Postfix) with ESMTPS id 6F8FB408D3;
-        Fri, 25 Sep 2020 02:42:21 +0000 (UTC)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=synopsys.com; s=mail;
-        t=1601001741; bh=9j9IOKYQ+2iz0WIvVdK47pVCx84Ln+dxrwyZJRqySVo=;
-        h=Date:In-Reply-To:References:From:Subject:To:Cc:From;
-        b=kANvUlerY5g2/SX2sECo+zhu2+JGOmKmHHNLux27ibSD3jLi/5qM+JGPnZDzuscXJ
-         1sO6HFnpwddPHPTbnHhXblPwn9MVeKm5vjpqDYHruOwTDzyBv34sKZjDQxMBl+BiRo
-         cyCdPH3SmY7vAGBUTvKKOy83+77Qq2PPDop5EzZ/tfyIQC1DaOg/avhORkARkOOSrj
-         jlf3V5nARDi07dX4LlaHX9btAa/X1nJiAborY+0K2n6s8gumLdi2nPkqeQfpTV10VA
-         JdoMGh7B7l8+y+M9x3OXP36+DMki/kWwFQ7mLQw7VvbUFw5HHgmB6UENxd4675o0DT
-         NxJhJ2+YrTQ3Q==
-Received: from te-lab16 (nanobot.internal.synopsys.com [10.10.186.99])
-        (using TLSv1.2 with cipher ECDHE-RSA-AES128-GCM-SHA256 (128/128 bits))
-        (No client certificate requested)
-        by mailhost.synopsys.com (Postfix) with ESMTPSA id 576E7A01F1;
-        Fri, 25 Sep 2020 02:42:20 +0000 (UTC)
-Received: by te-lab16 (sSMTP sendmail emulation); Thu, 24 Sep 2020 19:42:20 -0700
-Date:   Thu, 24 Sep 2020 19:42:20 -0700
-Message-Id: <675520b99f9648e8d4f08dd389b1d93c580ffabd.1601001199.git.Thinh.Nguyen@synopsys.com>
-In-Reply-To: <cover.1601001199.git.Thinh.Nguyen@synopsys.com>
-References: <cover.1601001199.git.Thinh.Nguyen@synopsys.com>
-X-SNPS-Relay: synopsys.com
-From:   Thinh Nguyen <Thinh.Nguyen@synopsys.com>
-Subject: [PATCH v5 06/12] usb: devicetree: Include USB SSP Gen X x Y
-To:     Felipe Balbi <balbi@kernel.org>,
-        Greg Kroah-Hartman <gregkh@linuxfoundation.org>,
-        Thinh.Nguyen@synopsys.com, linux-usb@vger.kernel.org,
-        devicetree@vger.kernel.org, Rob Herring <robh+dt@kernel.org>
-Cc:     John Youn <John.Youn@synopsys.com>
+        id S1726764AbgIYDKR (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Thu, 24 Sep 2020 23:10:17 -0400
+Received: from lindbergh.monkeyblade.net ([23.128.96.19]:33772 "EHLO
+        lindbergh.monkeyblade.net" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
+        with ESMTP id S1726738AbgIYDKQ (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Thu, 24 Sep 2020 23:10:16 -0400
+Received: from shards.monkeyblade.net (shards.monkeyblade.net [IPv6:2620:137:e000::1:9])
+        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id D12DCC0613CE;
+        Thu, 24 Sep 2020 20:10:16 -0700 (PDT)
+Received: from localhost (unknown [IPv6:2601:601:9f00:477::3d5])
+        (using TLSv1 with cipher AES256-SHA (256/256 bits))
+        (Client did not present a certificate)
+        (Authenticated sender: davem-davemloft)
+        by shards.monkeyblade.net (Postfix) with ESMTPSA id 7C77F135F8F2B;
+        Thu, 24 Sep 2020 19:53:28 -0700 (PDT)
+Date:   Thu, 24 Sep 2020 20:10:14 -0700 (PDT)
+Message-Id: <20200924.201014.1985667809546779432.davem@davemloft.net>
+To:     helmut.grohne@intenta.de
+Cc:     nicolas.ferre@microchip.com, alexandre.belloni@bootlin.com,
+        ludovic.desroches@microchip.com, woojung.huh@microchip.com,
+        UNGLinuxDriver@microchip.com, andrew@lunn.ch,
+        vivien.didelot@gmail.com, f.fainelli@gmail.com, kuba@kernel.org,
+        robh+dt@kernel.org, devicetree@vger.kernel.org,
+        netdev@vger.kernel.org
+Subject: Re: [PATCH] net: dsa: microchip: really look for phy-mode in port
+ nodes
+From:   David Miller <davem@davemloft.net>
+In-Reply-To: <20200924083746.GA9410@laureti-dev>
+References: <20200910.123257.1333858679864684014.davem@davemloft.net>
+        <20200924083746.GA9410@laureti-dev>
+X-Mailer: Mew version 6.8 on Emacs 27.1
+Mime-Version: 1.0
+Content-Type: Text/Plain; charset=us-ascii
+Content-Transfer-Encoding: 7bit
+X-Greylist: Sender succeeded SMTP AUTH, not delayed by milter-greylist-4.5.12 (shards.monkeyblade.net [2620:137:e000::1:9]); Thu, 24 Sep 2020 19:53:29 -0700 (PDT)
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-According to the USB 3.2 spec, a super-speed-plus device can operate at
-gen2x2, gen2x1, or gen1x2. If the USB controller device supports
-multiple lanes at different transfer rates, the user can specify the HW
-capability via these new speed strings:
+From: Helmut Grohne <helmut.grohne@intenta.de>
+Date: Thu, 24 Sep 2020 10:37:47 +0200
 
-"super-speed-plus-gen2x2"
-"super-speed-plus-gen2x1"
-"super-speed-plus-gen1x2"
+> The previous implementation failed to account for the "ports" node. The
+> actual port nodes are not child nodes of the switch node, but a "ports"
+> node sits in between.
+> 
+> Fixes: edecfa98f602 ("net: dsa: microchip: look for phy-mode in port nodes")
+> Signed-off-by: Helmut Grohne <helmut.grohne@intenta.de>
 
-If the argument is simply "super-speed-plus", USB controllers should
-default to their maximum transfer rate and number of lanes.
+Applied and queued up for -stable.
 
-Reviewed-by: Rob Herring <robh@kernel.org>
-Signed-off-by: Thinh Nguyen <Thinh.Nguyen@synopsys.com>
----
-Changes in v5:
-- Add Reviewed-by: Rob Herring <robh@kernel.org>
-- Rebase on Felipe's testing/next branch
-- Changed Signed-off-by email to match From: email header
-Changes in v4:
-- None
-Changes in v3:
-- Use "maximum-speed" to include both the num-lane and transfer rate for SSP
-- Remove "num-lanes" and "lane-speed-mantissa-gbps" properties
-Changes in v2:
-- Make "num-lanes" and "lane-speed-mantissa-gbps" common USB properties
+> I am very sorry that I need to send a fixup. It turned out that my
+> testing methodology was flawed. When I reintegrated Linus' master
+> branch, I noticed that it didn't work.
 
- Documentation/devicetree/bindings/usb/generic.txt | 11 +++++++----
- 1 file changed, 7 insertions(+), 4 deletions(-)
-
-diff --git a/Documentation/devicetree/bindings/usb/generic.txt b/Documentation/devicetree/bindings/usb/generic.txt
-index ba472e7aefc9..8541b9571f2f 100644
---- a/Documentation/devicetree/bindings/usb/generic.txt
-+++ b/Documentation/devicetree/bindings/usb/generic.txt
-@@ -3,10 +3,13 @@ Generic USB Properties
- Optional properties:
-  - maximum-speed: tells USB controllers we want to work up to a certain
- 			speed. Valid arguments are "super-speed-plus",
--			"super-speed", "high-speed", "full-speed" and
--			"low-speed". In case this isn't passed via DT, USB
--			controllers should default to their maximum HW
--			capability.
-+			"super-speed-plus-gen2x2", "super-speed-plus-gen2x1",
-+			"super-speed-plus-gen1x2", "super-speed", "high-speed",
-+			"full-speed" and "low-speed". In case this isn't passed
-+			via DT, USB controllers should default to their maximum
-+			HW capability. Similarly, if the argument is
-+			"super-speed-plus", USB controllers should default to
-+			their maximum transfer rate and number of lanes.
-  - dr_mode: tells Dual-Role USB controllers that we want to work on a
- 			particular mode. Valid arguments are "host",
- 			"peripheral" and "otg". In case this attribute isn't
--- 
-2.28.0
-
+You should be testing against the 'net' GIT tree, not Linus's master
+branch.
