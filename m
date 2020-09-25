@@ -2,182 +2,128 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from vger.kernel.org (vger.kernel.org [23.128.96.18])
-	by mail.lfdr.de (Postfix) with ESMTP id 8D18D27841A
-	for <lists+devicetree@lfdr.de>; Fri, 25 Sep 2020 11:34:39 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTP id C13A0278425
+	for <lists+devicetree@lfdr.de>; Fri, 25 Sep 2020 11:36:41 +0200 (CEST)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S1727428AbgIYJei (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Fri, 25 Sep 2020 05:34:38 -0400
-Received: from lindbergh.monkeyblade.net ([23.128.96.19]:36496 "EHLO
+        id S1727948AbgIYJgU (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Fri, 25 Sep 2020 05:36:20 -0400
+Received: from lindbergh.monkeyblade.net ([23.128.96.19]:36770 "EHLO
         lindbergh.monkeyblade.net" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S1727426AbgIYJei (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Fri, 25 Sep 2020 05:34:38 -0400
-Received: from metis.ext.pengutronix.de (metis.ext.pengutronix.de [IPv6:2001:67c:670:201:290:27ff:fe1d:cc33])
-        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 38272C0613CE
-        for <devicetree@vger.kernel.org>; Fri, 25 Sep 2020 02:34:38 -0700 (PDT)
-Received: from gallifrey.ext.pengutronix.de ([2001:67c:670:201:5054:ff:fe8d:eefb] helo=bjornoya.blackshift.org)
-        by metis.ext.pengutronix.de with esmtps (TLS1.3:ECDHE_RSA_AES_256_GCM_SHA384:256)
-        (Exim 4.92)
-        (envelope-from <mkl@pengutronix.de>)
-        id 1kLk7b-0000gX-Lg; Fri, 25 Sep 2020 11:34:31 +0200
-Received: from [IPv6:2a03:f580:87bc:d400:bb52:8761:ee49:c953] (unknown [IPv6:2a03:f580:87bc:d400:bb52:8761:ee49:c953])
-        (using TLSv1.3 with cipher TLS_AES_256_GCM_SHA384 (256/256 bits)
-         key-exchange ECDHE (P-384) server-signature RSA-PSS (4096 bits)
-         client-signature RSA-PSS (4096 bits))
-        (Client CN "mkl@blackshift.org", Issuer "StartCom Class 1 Client CA" (not verified))
-        (Authenticated sender: mkl@blackshift.org)
-        by smtp.blackshift.org (Postfix) with ESMTPSA id 348C256A369;
-        Fri, 25 Sep 2020 09:34:30 +0000 (UTC)
-Subject: Re: [PATCH 1/2] arm64: dts: ls1028a: add missing CAN nodes
-To:     Michael Walle <michael@walle.cc>, Leo Li <leoyang.li@nxp.com>
-Cc:     linux-arm-kernel@lists.infradead.org, devicetree@vger.kernel.org,
-        linux-kernel@vger.kernel.org, linux-can@vger.kernel.org,
-        Shawn Guo <shawnguo@kernel.org>,
-        Rob Herring <robh+dt@kernel.org>,
-        Joakim Zhang <qiangqing.zhang@nxp.com>,
-        Oleksij Rempel <o.rempel@pengutronix.de>
-References: <20200923095711.11355-1-michael@walle.cc>
- <20200923095711.11355-2-michael@walle.cc>
- <VE1PR04MB6687AC23E100D138FEDB012A8F390@VE1PR04MB6687.eurprd04.prod.outlook.com>
- <e9347e4c2e070ee9e8aa7a8007d89f02@walle.cc>
- <VE1PR04MB6687CF32DBCC76B4DFBA070A8F390@VE1PR04MB6687.eurprd04.prod.outlook.com>
- <cd04c75c5d92371eca86d269cb17bcb3@walle.cc>
-From:   Marc Kleine-Budde <mkl@pengutronix.de>
-Autocrypt: addr=mkl@pengutronix.de; prefer-encrypt=mutual; keydata=
- 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
-Message-ID: <790ce102-7542-b65e-0945-a04faf6e4b89@pengutronix.de>
-Date:   Fri, 25 Sep 2020 11:34:26 +0200
-User-Agent: Mozilla/5.0 (X11; Linux x86_64; rv:68.0) Gecko/20100101
- Thunderbird/68.12.0
+        with ESMTP id S1727846AbgIYJgU (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Fri, 25 Sep 2020 05:36:20 -0400
+Received: from mail-vs1-xe42.google.com (mail-vs1-xe42.google.com [IPv6:2607:f8b0:4864:20::e42])
+        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id DC4C3C0613D3
+        for <devicetree@vger.kernel.org>; Fri, 25 Sep 2020 02:36:19 -0700 (PDT)
+Received: by mail-vs1-xe42.google.com with SMTP id p24so1014535vsf.8
+        for <devicetree@vger.kernel.org>; Fri, 25 Sep 2020 02:36:19 -0700 (PDT)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+        d=chromium.org; s=google;
+        h=mime-version:references:in-reply-to:from:date:message-id:subject:to
+         :cc;
+        bh=CopwlfwvxR6TDA4NEpPReJrXwzQ2YdaVXCfZyj+KeI8=;
+        b=gQDqhM1EBxhhdAdupXGC+mi8HP42zIBAb+/5WouwU0pwYgc43PjnSIDyqhNXoJBgwE
+         nA9S7PMscej5cgQCrvf55Dp29QyMHvwUDUtmdsjDRjaEHcRFBhd7dmLwMWl9mvoH7sp/
+         4lRasNIvYZAFCtIP9ZaogcqOJXzEYU/4iYpzI=
+X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+        d=1e100.net; s=20161025;
+        h=x-gm-message-state:mime-version:references:in-reply-to:from:date
+         :message-id:subject:to:cc;
+        bh=CopwlfwvxR6TDA4NEpPReJrXwzQ2YdaVXCfZyj+KeI8=;
+        b=egie5hfvtDqZ8ElX7svbkVZWVBPwXhRrQhk5S5Ij4paVPn8+zVox7hRerccGjRViZL
+         GK8vnD6U703kf924VU7QeKK5EsRXMU4sJdFqTag0Dr/7z09SPK+OsNCQGcjH817O6P2J
+         nSvfR9DZoCGFpVi89f1QBGZzYkgNbOdn+xKxHOgT81r+24KLmEvbR3LN57tjs1H2ulZp
+         qhQe2zV6Pi8TmWlsKf/8sj0Sllckc6qWl+7+1jRMFaymg8lGKry9lVQedTAB1GHtE2js
+         yEHA/B0/cvCygNQ8o5SUt3YIrxqeZnObBO5uFgGnu2z1ADVC08xSwl6l/yUTAnswKg/G
+         4OxQ==
+X-Gm-Message-State: AOAM530TxvbUUYLNo+yAT7rY6mADOd789c44lXLT1T4F+fj9S6B8gEgW
+        8B6/zMUMhwhZwQ/b4fy1g1+dvUwhWxwmL+Fl6vQLEg==
+X-Google-Smtp-Source: ABdhPJxdJedhGCUBzFfJjDuMt5UWKrHFjl71MnBQbIp5LNRnu+DHrChmvGin2RNOLR4c+TakRNBVwDRVvnRZRQt2lqc=
+X-Received: by 2002:a67:b917:: with SMTP id q23mr2061999vsn.37.1601026578879;
+ Fri, 25 Sep 2020 02:36:18 -0700 (PDT)
 MIME-Version: 1.0
-In-Reply-To: <cd04c75c5d92371eca86d269cb17bcb3@walle.cc>
-Content-Type: multipart/signed; micalg=pgp-sha512;
- protocol="application/pgp-signature";
- boundary="Vso2bsiwF03I2VMccksJJl8mHVNqsckVZ"
-X-SA-Exim-Connect-IP: 2001:67c:670:201:5054:ff:fe8d:eefb
-X-SA-Exim-Mail-From: mkl@pengutronix.de
-X-SA-Exim-Scanned: No (on metis.ext.pengutronix.de); SAEximRunCond expanded to false
-X-PTX-Original-Recipient: devicetree@vger.kernel.org
+References: <20200925065418.1077472-1-ikjn@chromium.org> <20200925145255.v3.2.I48d59ef5398f3633c6ebbab093da6b4b06495780@changeid>
+In-Reply-To: <20200925145255.v3.2.I48d59ef5398f3633c6ebbab093da6b4b06495780@changeid>
+From:   Ikjoon Jang <ikjn@chromium.org>
+Date:   Fri, 25 Sep 2020 17:36:08 +0800
+Message-ID: <CAATdQgB4Z2msO_RuOuVMLaXYrR7WnGsSQbjOWMTFWT7PCjH+PA@mail.gmail.com>
+Subject: Re: [PATCH v3 2/6] spi: spi-mtk-nor: fix mishandled logics in
+ checking SPI memory operation
+To:     Rob Herring <robh+dt@kernel.org>, Mark Brown <broonie@kernel.org>,
+        "open list:OPEN FIRMWARE AND FLATTENED DEVICE TREE BINDINGS" 
+        <devicetree@vger.kernel.org>, linux-spi@vger.kernel.org,
+        linux-mtd@lists.infradead.org
+Cc:     Matthias Brugger <matthias.bgg@gmail.com>,
+        "moderated list:ARM/Mediatek SoC support" 
+        <linux-arm-kernel@lists.infradead.org>,
+        open list <linux-kernel@vger.kernel.org>,
+        "moderated list:ARM/Mediatek SoC support" 
+        <linux-mediatek@lists.infradead.org>
+Content-Type: text/plain; charset="UTF-8"
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-This is an OpenPGP/MIME signed message (RFC 4880 and 3156)
---Vso2bsiwF03I2VMccksJJl8mHVNqsckVZ
-Content-Type: multipart/mixed; boundary="h9EVbyu9eVCGkuNapgPNHY0q89dB8ZzoH";
- protected-headers="v1"
-From: Marc Kleine-Budde <mkl@pengutronix.de>
-To: Michael Walle <michael@walle.cc>, Leo Li <leoyang.li@nxp.com>
-Cc: linux-arm-kernel@lists.infradead.org, devicetree@vger.kernel.org,
- linux-kernel@vger.kernel.org, linux-can@vger.kernel.org,
- Shawn Guo <shawnguo@kernel.org>, Rob Herring <robh+dt@kernel.org>,
- Joakim Zhang <qiangqing.zhang@nxp.com>,
- Oleksij Rempel <o.rempel@pengutronix.de>
-Message-ID: <790ce102-7542-b65e-0945-a04faf6e4b89@pengutronix.de>
-Subject: Re: [PATCH 1/2] arm64: dts: ls1028a: add missing CAN nodes
-References: <20200923095711.11355-1-michael@walle.cc>
- <20200923095711.11355-2-michael@walle.cc>
- <VE1PR04MB6687AC23E100D138FEDB012A8F390@VE1PR04MB6687.eurprd04.prod.outlook.com>
- <e9347e4c2e070ee9e8aa7a8007d89f02@walle.cc>
- <VE1PR04MB6687CF32DBCC76B4DFBA070A8F390@VE1PR04MB6687.eurprd04.prod.outlook.com>
- <cd04c75c5d92371eca86d269cb17bcb3@walle.cc>
-In-Reply-To: <cd04c75c5d92371eca86d269cb17bcb3@walle.cc>
+On Fri, Sep 25, 2020 at 2:54 PM Ikjoon Jang <ikjn@chromium.org> wrote:
+>
+> Fix a bug which limits its protocol availability in supports_op().
+>
+> Fixes: a59b2c7c56bf ("spi: spi-mtk-nor: support standard spi properties")
+> Signed-off-by: Ikjoon Jang <ikjn@chromium.org>
+> ---
 
---h9EVbyu9eVCGkuNapgPNHY0q89dB8ZzoH
-Content-Type: text/plain; charset=utf-8
-Content-Language: de-DE
-Content-Transfer-Encoding: quoted-printable
+This is also duplicated work of https://patchwork.kernel.org/patch/11797723/,
+I'm going to drop this patch in v4.
 
-On 9/25/20 11:31 AM, Michael Walle wrote:
-> Marc, I'd convert this to yaml format,
-
-Oleksij (CC'ed) is working already on this.
-
-> may I put your name as the maintainer in the binding?
-
-Marc
-
---=20
-Pengutronix e.K.                 | Marc Kleine-Budde           |
-Embedded Linux                   | https://www.pengutronix.de  |
-Vertretung West/Dortmund         | Phone: +49-231-2826-924     |
-Amtsgericht Hildesheim, HRA 2686 | Fax:   +49-5121-206917-5555 |
-
-
---h9EVbyu9eVCGkuNapgPNHY0q89dB8ZzoH--
-
---Vso2bsiwF03I2VMccksJJl8mHVNqsckVZ
-Content-Type: application/pgp-signature; name="signature.asc"
-Content-Description: OpenPGP digital signature
-Content-Disposition: attachment; filename="signature.asc"
-
------BEGIN PGP SIGNATURE-----
-
-iQEzBAEBCgAdFiEEK3kIWJt9yTYMP3ehqclaivrt76kFAl9tuaIACgkQqclaivrt
-76lexQf/YD2d/wkEXxvLSkrJtEnHGKg81c6SreDG7nQBhPSbhZlMJ+3hpvvGGxK3
-1fY7VmT9KGPmSHAR5gPbIvIXL86TB3DBu2OGKqIlHyLR0fss/IJRhviCEWy8Jwcu
-6Mhb/bCU8RcR1R13/TO3hCbKPXarQAkW9FwX/nEyMehuWYynXDLCM8UckwZa0Zik
-zbMzX0psOmrbjgXHBygMRFiTEKgFxgLmKdeloFPr3arf8Az3KO4Q9DBR+w+AnQ8E
-G/hkvpErfGHAa2h+m8FioeoEPoOKZLNNvwp0ZWJZ27rks53BEVlXGDosL+/fyN93
-Bk0e3jnyso1CTwpDbeju5UhmCVhCug==
-=lrs1
------END PGP SIGNATURE-----
-
---Vso2bsiwF03I2VMccksJJl8mHVNqsckVZ--
+>
+> (no changes since v1)
+>
+>  drivers/spi/spi-mtk-nor.c | 26 +++++++++++---------------
+>  1 file changed, 11 insertions(+), 15 deletions(-)
+>
+> diff --git a/drivers/spi/spi-mtk-nor.c b/drivers/spi/spi-mtk-nor.c
+> index 6e6ca2b8e6c8..0f7d4ec68730 100644
+> --- a/drivers/spi/spi-mtk-nor.c
+> +++ b/drivers/spi/spi-mtk-nor.c
+> @@ -211,28 +211,24 @@ static bool mtk_nor_supports_op(struct spi_mem *mem,
+>         if (op->cmd.buswidth != 1)
+>                 return false;
+>
+> +       if (!spi_mem_default_supports_op(mem, op))
+> +               return false;
+> +
+>         if ((op->addr.nbytes == 3) || (op->addr.nbytes == 4)) {
+> -               switch(op->data.dir) {
+> -               case SPI_MEM_DATA_IN:
+> -                       if (!mtk_nor_match_read(op))
+> -                               return false;
+> -                       break;
+> -               case SPI_MEM_DATA_OUT:
+> -                       if ((op->addr.buswidth != 1) ||
+> -                           (op->dummy.nbytes != 0) ||
+> -                           (op->data.buswidth != 1))
+> -                               return false;
+> -                       break;
+> -               default:
+> -                       break;
+> -               }
+> +               if ((op->data.dir == SPI_MEM_DATA_IN) && mtk_nor_match_read(op))
+> +                       return true;
+> +               else if (op->data.dir == SPI_MEM_DATA_OUT)
+> +                       return (op->addr.buswidth == 1) &&
+> +                              (op->dummy.nbytes == 0) &&
+> +                              (op->data.buswidth == 1);
+>         }
+> +
+>         len = op->cmd.nbytes + op->addr.nbytes + op->dummy.nbytes;
+>         if ((len > MTK_NOR_PRG_MAX_SIZE) ||
+>             ((op->data.nbytes) && (len == MTK_NOR_PRG_MAX_SIZE)))
+>                 return false;
+>
+> -       return spi_mem_default_supports_op(mem, op);
+> +       return true;
+>  }
+>
+>  static void mtk_nor_setup_bus(struct mtk_nor *sp, const struct spi_mem_op *op)
+> --
+> 2.28.0.681.g6f77f65b4e-goog
+>
