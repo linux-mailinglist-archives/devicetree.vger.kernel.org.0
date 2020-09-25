@@ -2,161 +2,293 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from vger.kernel.org (vger.kernel.org [23.128.96.18])
-	by mail.lfdr.de (Postfix) with ESMTP id 2E8D72781E3
-	for <lists+devicetree@lfdr.de>; Fri, 25 Sep 2020 09:44:39 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTP id C24092781ED
+	for <lists+devicetree@lfdr.de>; Fri, 25 Sep 2020 09:47:45 +0200 (CEST)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S1727249AbgIYHoh (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Fri, 25 Sep 2020 03:44:37 -0400
-Received: from lindbergh.monkeyblade.net ([23.128.96.19]:47686 "EHLO
+        id S1727323AbgIYHro (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Fri, 25 Sep 2020 03:47:44 -0400
+Received: from lindbergh.monkeyblade.net ([23.128.96.19]:48174 "EHLO
         lindbergh.monkeyblade.net" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S1727183AbgIYHog (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Fri, 25 Sep 2020 03:44:36 -0400
-Received: from mail-wr1-x443.google.com (mail-wr1-x443.google.com [IPv6:2a00:1450:4864:20::443])
-        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 39B63C0613D3
-        for <devicetree@vger.kernel.org>; Fri, 25 Sep 2020 00:44:36 -0700 (PDT)
-Received: by mail-wr1-x443.google.com with SMTP id z1so2476792wrt.3
-        for <devicetree@vger.kernel.org>; Fri, 25 Sep 2020 00:44:36 -0700 (PDT)
+        with ESMTP id S1727256AbgIYHro (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Fri, 25 Sep 2020 03:47:44 -0400
+Received: from mail-il1-x143.google.com (mail-il1-x143.google.com [IPv6:2607:f8b0:4864:20::143])
+        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id EF15CC0613CE;
+        Fri, 25 Sep 2020 00:47:43 -0700 (PDT)
+Received: by mail-il1-x143.google.com with SMTP id y9so1504957ilq.2;
+        Fri, 25 Sep 2020 00:47:43 -0700 (PDT)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=baylibre-com.20150623.gappssmtp.com; s=20150623;
-        h=subject:to:cc:references:from:autocrypt:organization:message-id
-         :date:user-agent:mime-version:in-reply-to:content-language
-         :content-transfer-encoding;
-        bh=im96TIL9C+k95zzwEvhBlq40VuO2T9igkzJ1/Rl1pDc=;
-        b=vNiQc0HFgCjV+BaoS3nk4rHdq2gSipLNzro2j3L8yzJ4G6O+EspYep0wQh5oUqTzFk
-         vQuqzmZyBKG0a4hA6IRwd0gRLX20k4mcWPe61vnbeAPvo/9gnXw2HhmV6uwarMaPSCqt
-         gC+N2d57vMHdehcuSh8yGEfuDPKvVTPxLKN+atXVs9DUiyEUtlicJV7BmsbSpXGJ0gH0
-         dE0rX481dFEpFg7rPXbRNq23h1Qhsl1nKVkHqZwtC/dqgDemVpQEd9VKpitgr1TZotfw
-         hljNLgMEjv4alSJC22Ae2nCEJ4DrBnaQ1FdwdEIDeL4VhvyGwsHghT3IIOqdooKL0jJL
-         NTCA==
+        d=gmail.com; s=20161025;
+        h=mime-version:references:in-reply-to:from:date:message-id:subject:to
+         :cc;
+        bh=Pw6656Z22S9nYHWwkiLg4SRLNcb2nFCcbc2U+u2zenM=;
+        b=MMYmBOUOFsGO+PUbWtxwr/dFGe4EfE2obPvTc2+It29nDUnNZzPiDvVJk/xeXxxKPu
+         Rz+7lo9dQL6yldsZ9EurIcWDVOipxtEoURayZxD8XL2/zCzuoYcEjLOhzHlFwDJyUDJU
+         V6veUAY3pk+9lQaJ0xBQ/lcXynD+IRlJlcuZmzymiROnGQcZKN5db0uRH2io8iGMFopG
+         nWXp1uvIQif/PzIz+qRP/La9NtUhv6L+yvo7H5q9dN+C1w/8+fEwFyO70y6tWoGvpIrz
+         wTfryd9QeTJmRgMGW7dffwHysPbSo+5E9xGhTgSFRr23XPxXG6kQJz9CG4DWzj5wYT9t
+         UVGg==
 X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
         d=1e100.net; s=20161025;
-        h=x-gm-message-state:subject:to:cc:references:from:autocrypt
-         :organization:message-id:date:user-agent:mime-version:in-reply-to
-         :content-language:content-transfer-encoding;
-        bh=im96TIL9C+k95zzwEvhBlq40VuO2T9igkzJ1/Rl1pDc=;
-        b=jZx2hvE+orxxG5czOA1Zo4A0D5KpPTKRXzF2PQXzPsczt3o+7ASPhaX3UhUcda5ooM
-         X5Kx1yduM8cYGUOUeLnOtAY0UQ0PDmY9D480z5gG+o28BhdQSy+IIR4FS5ru9WO01pMN
-         iQVulzM4UFh8bxGZUvN/j7vvEJIeu9GNbjPugjdyEh11F1x13sUgwTrdW6DJSxvYnkl+
-         oMdgZ7dbTS/DGghaTDT5oQe+l7XUdGFSLNZ9XepGIrIkCqwHCRF0MmD+FvAuC3dagN+c
-         HjG6NL9kEWK+pqwpuBtJu0FzVasbg1Sn3i9gl89YCAk5oXrdOVIT1kZiB+QzkSwwNI7H
-         a+eA==
-X-Gm-Message-State: AOAM532aUgct80cZfPCwd/0MAzwqHpCcUv73+qnk5Q+gfw/T7+n0N201
-        VD3HuAu63EAAzCtW/CDUA0jJqw==
-X-Google-Smtp-Source: ABdhPJy5lPRLpI/FqRBQkmGGyRIGqZmpmxsK+kybvhTZi87l6KV72lpVte2Wv7u06Vf9MaIGQvZ0yw==
-X-Received: by 2002:adf:9405:: with SMTP id 5mr2918720wrq.51.1601019874636;
-        Fri, 25 Sep 2020 00:44:34 -0700 (PDT)
-Received: from ?IPv6:2a01:e35:2ec0:82b0:28ac:1772:9398:891a? ([2a01:e35:2ec0:82b0:28ac:1772:9398:891a])
-        by smtp.gmail.com with ESMTPSA id p11sm1796785wma.11.2020.09.25.00.44.33
-        (version=TLS1_3 cipher=TLS_AES_128_GCM_SHA256 bits=128/128);
-        Fri, 25 Sep 2020 00:44:33 -0700 (PDT)
-Subject: Re: [PATCH 6/8] arm64: dts: meson: disable vrtc for VIM3L boards
- meson-khadas-vim3
-To:     Artem Lapkin <email2tema@gmail.com>
-Cc:     khilman@baylibre.com, robh+dt@kernel.org, jbrunet@baylibre.com,
-        martin.blumenstingl@googlemail.com, devicetree@vger.kernel.org,
-        linux-arm-kernel@lists.infradead.org,
-        linux-amlogic@lists.infradead.org, linux-kernel@vger.kernel.org,
-        art@khadas.com, nick@khadas.com, gouwa@khadas.com
-References: <20200925033017.1790973-1-art@khadas.com>
- <20200925033017.1790973-7-art@khadas.com>
-From:   Neil Armstrong <narmstrong@baylibre.com>
-Autocrypt: addr=narmstrong@baylibre.com; prefer-encrypt=mutual; keydata=
- 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
- BSwxi7g3Mu7u5kUByanqHyA=
-Organization: Baylibre
-Message-ID: <0b81b4e6-57e7-3191-b7e5-3ec5e69b20ac@baylibre.com>
-Date:   Fri, 25 Sep 2020 09:44:32 +0200
-User-Agent: Mozilla/5.0 (X11; Linux x86_64; rv:68.0) Gecko/20100101
- Thunderbird/68.10.0
+        h=x-gm-message-state:mime-version:references:in-reply-to:from:date
+         :message-id:subject:to:cc;
+        bh=Pw6656Z22S9nYHWwkiLg4SRLNcb2nFCcbc2U+u2zenM=;
+        b=OooGBYEY4KX72JfdfM/Uc+FlxsY8rk+0nNEQWMi/DACiCLM3gVh9MB7Gnq621P0BQU
+         sdFhmACnzHYjLqgLh1SgrnJZZKYNI9yY5vOAdUsqSbJYoWHJFLjgUzZonc3O4YR4lR6i
+         5mYopzA/5MEL0kgKlrktvi3NigHDpGCYnsMBkEsQsQJ3L1f+pg3ZInRlHXsnMhrATIjR
+         /wXmc58ewMgLHvb72utxx24e/IewqR/fCPyo+DtQ0BGD5KTwRR8zOp3YVnpnYfjTSn/Z
+         IjAWO+BytgqIXIBezGmQbUQJbkBDmMvs7AMiV4Sq+p+kqtTkgng1nNwkBKNPH5usS69w
+         gfaw==
+X-Gm-Message-State: AOAM531nLeOVeV4s0DnVvysHMGLZ8dnwMq8y7IWacTcbUs8Hxrl6emNf
+        d06TOIXqwlv9yDGoYL0HfwEuU4FrziJMd7EisfM=
+X-Google-Smtp-Source: ABdhPJwVot1rzBOoqbUEKv4CYI45KAcUd02DV308BynBqILl6dHmpS6B7qX5IljDjk9UHtVMMCt/cNWJfDwZBDLFrH4=
+X-Received: by 2002:a92:d07:: with SMTP id 7mr2152934iln.243.1601020063295;
+ Fri, 25 Sep 2020 00:47:43 -0700 (PDT)
 MIME-Version: 1.0
-In-Reply-To: <20200925033017.1790973-7-art@khadas.com>
-Content-Type: text/plain; charset=utf-8
-Content-Language: en-US
-Content-Transfer-Encoding: 8bit
+References: <20200925065418.1077472-1-ikjn@chromium.org> <20200925145255.v3.3.I7a3fc5678a81654574e8852d920db94bcc4d3eb8@changeid>
+In-Reply-To: <20200925145255.v3.3.I7a3fc5678a81654574e8852d920db94bcc4d3eb8@changeid>
+From:   Chuanhong Guo <gch981213@gmail.com>
+Date:   Fri, 25 Sep 2020 15:47:32 +0800
+Message-ID: <CAJsYDV+CEQ2PEOcdP1vadOBOHgW39XNNjPET04uWQktnPHZcFA@mail.gmail.com>
+Subject: Re: [PATCH v3 3/6] spi: spi-mtk-nor: support 7 bytes transfer of
+ generic spi
+To:     Ikjoon Jang <ikjn@chromium.org>
+Cc:     Rob Herring <robh+dt@kernel.org>, Mark Brown <broonie@kernel.org>,
+        "open list:OPEN FIRMWARE AND FLATTENED DEVICE TREE BINDINGS" 
+        <devicetree@vger.kernel.org>, linux-spi@vger.kernel.org,
+        linux-mtd@lists.infradead.org,
+        Matthias Brugger <matthias.bgg@gmail.com>,
+        "moderated list:ARM/Mediatek SoC support" 
+        <linux-arm-kernel@lists.infradead.org>,
+        open list <linux-kernel@vger.kernel.org>,
+        "moderated list:ARM/Mediatek SoC support" 
+        <linux-mediatek@lists.infradead.org>
+Content-Type: text/plain; charset="UTF-8"
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-Hi,
+Hi!
 
-On 25/09/2020 05:30, Artem Lapkin wrote:
-> vrtc not used for meson-khadas-vim3
-> 
-> Signed-off-by: Artem Lapkin <art@khadas.com>
+On Fri, Sep 25, 2020 at 2:55 PM Ikjoon Jang <ikjn@chromium.org> wrote:
+>
+> When mtk-nor fallbacks to generic spi transfers, it can actually
+> transfer up to 7 bytes.
+
+generic transfer_one_message should support full-duplex transfers,
+not transfers with special format requirements. (e.g. here the last
+byte is rx only.) These transfers with format requirements should
+be implemented with spi-mem interface instead.
+
+>
+> This patch fixes adjust_op_size() and supports_op() to explicitly
+> check 7 bytes range and also fixes possible under/overflow conditions
+> in register offsets calculation.
+>
+> Signed-off-by: Ikjoon Jang <ikjn@chromium.org>
+
+I was notified by Bayi about your discussion and sent some
+patches yesterday for the same purpose. Whoops...
+As transfer_one_message isn't the proper place to implement
+this, maybe we could work on my version instead?
+
 > ---
->  arch/arm64/boot/dts/amlogic/meson-khadas-vim3.dtsi | 4 ++++
->  1 file changed, 4 insertions(+)
-> 
-> diff --git a/arch/arm64/boot/dts/amlogic/meson-khadas-vim3.dtsi b/arch/arm64/boot/dts/amlogic/meson-khadas-vim3.dtsi
-> index 3111bf35c0f..81bb88a76d5 100644
-> --- a/arch/arm64/boot/dts/amlogic/meson-khadas-vim3.dtsi
-> +++ b/arch/arm64/boot/dts/amlogic/meson-khadas-vim3.dtsi
-> @@ -284,6 +284,10 @@ &pwm_ef {
->          pinctrl-names = "default";
->  };
->  
-> +&vrtc {
-> +	status = "disabled";
-> +};
+>
+> (no changes since v1)
+
+This should be "new patch" not "no changes" :P
+
+
+>
+>  drivers/spi/spi-mtk-nor.c | 102 ++++++++++++++++++++++++++++----------
+>  1 file changed, 76 insertions(+), 26 deletions(-)
+>
+> diff --git a/drivers/spi/spi-mtk-nor.c b/drivers/spi/spi-mtk-nor.c
+> index 0f7d4ec68730..e7719d249095 100644
+> --- a/drivers/spi/spi-mtk-nor.c
+> +++ b/drivers/spi/spi-mtk-nor.c
+> @@ -79,7 +79,11 @@
+>  #define MTK_NOR_REG_DMA_DADR           0x720
+>  #define MTK_NOR_REG_DMA_END_DADR       0x724
+>
+> +/* maximum bytes of TX in PRG mode */
+>  #define MTK_NOR_PRG_MAX_SIZE           6
+> +/* maximum bytes of TX + RX is 7, last 1 byte is always being sent as zero */
+> +#define MTK_NOR_PRG_MAX_CYCLES         7
 > +
->  &saradc {
->  	status = "okay";
->  	vref-supply = <&vddao_1v8>;
-> 
+>  // Reading DMA src/dst addresses have to be 16-byte aligned
+>  #define MTK_NOR_DMA_ALIGN              16
+>  #define MTK_NOR_DMA_ALIGN_MASK         (MTK_NOR_DMA_ALIGN - 1)
+> @@ -167,6 +171,24 @@ static bool mtk_nor_match_read(const struct spi_mem_op *op)
+>         return false;
+>  }
+>
+> +static bool mtk_nor_check_prg(const struct spi_mem_op *op)
+> +{
+> +       size_t len = op->cmd.nbytes + op->addr.nbytes + op->dummy.nbytes;
+> +
+> +       if (len > MTK_NOR_PRG_MAX_SIZE)
+> +               return false;
+> +
+> +       if (!op->data.nbytes)
+> +               return true;
+> +
+> +       if (op->data.dir == SPI_MEM_DATA_OUT)
+> +               return ((len + op->data.nbytes) <= MTK_NOR_PRG_MAX_SIZE);
+> +       else if (op->data.dir == SPI_MEM_DATA_IN)
+> +               return ((len + op->data.nbytes) <= MTK_NOR_PRG_MAX_CYCLES);
+> +       else
+> +               return true;
+> +}
+> +
+>  static int mtk_nor_adjust_op_size(struct spi_mem *mem, struct spi_mem_op *op)
+>  {
+>         size_t len;
+> @@ -195,10 +217,22 @@ static int mtk_nor_adjust_op_size(struct spi_mem *mem, struct spi_mem_op *op)
+>                 }
+>         }
+>
+> -       len = MTK_NOR_PRG_MAX_SIZE - op->cmd.nbytes - op->addr.nbytes -
+> -             op->dummy.nbytes;
+> -       if (op->data.nbytes > len)
+> -               op->data.nbytes = len;
+> +       if (mtk_nor_check_prg(op))
+> +               return 0;
+> +
+> +       len = op->cmd.nbytes + op->addr.nbytes + op->dummy.nbytes;
+> +
+> +       if (op->data.dir == SPI_MEM_DATA_OUT) {
+> +               if (len == MTK_NOR_PRG_MAX_SIZE)
+> +                       return -EINVAL;
+> +               op->data.nbytes = min_t(unsigned int, op->data.nbytes,
+> +                                       MTK_NOR_PRG_MAX_SIZE - len);
+> +       } else  {
+> +               if (len == MTK_NOR_PRG_MAX_CYCLES)
+> +                       return -EINVAL;
+> +               op->data.nbytes = min_t(unsigned int, op->data.nbytes,
+> +                                       MTK_NOR_PRG_MAX_CYCLES - len);
+> +       }
+>
+>         return 0;
+>  }
+> @@ -206,8 +240,6 @@ static int mtk_nor_adjust_op_size(struct spi_mem *mem, struct spi_mem_op *op)
+>  static bool mtk_nor_supports_op(struct spi_mem *mem,
+>                                 const struct spi_mem_op *op)
+>  {
+> -       size_t len;
+> -
+>         if (op->cmd.buswidth != 1)
+>                 return false;
+>
+> @@ -223,12 +255,11 @@ static bool mtk_nor_supports_op(struct spi_mem *mem,
+>                                (op->data.buswidth == 1);
+>         }
+>
+> -       len = op->cmd.nbytes + op->addr.nbytes + op->dummy.nbytes;
+> -       if ((len > MTK_NOR_PRG_MAX_SIZE) ||
+> -           ((op->data.nbytes) && (len == MTK_NOR_PRG_MAX_SIZE)))
+> +       /* fallback to generic spi xfer */
+> +       if (op->cmd.buswidth > 1 || op->addr.buswidth > 1 || op->data.buswidth > 1)
+>                 return false;
 
-The VRTC is one of the default suspend wake-up sources, so why would you disable it ?
+Rejecting an op in supports_op doesn't tell it to fall back to generic
+spi transfer.
+It instead tells caller to abort this transfer completely.
+A fallback only happens when exec_op returns -ENOTSUPP.
+This comment is incorrect. I'd put this buswidth checking in mtk_nor_check_prg
+instead because mtk_nor_check_prg is checking whether an op is supported
+by prg mode, thus it should reject ops with buswidth > 1.
 
-If it collides with the real RTC, add aliases to move the vrtc in rtc1 and set the real RTC as rtc0.
+>
+> -       return true;
+> +       return mtk_nor_check_prg(op);
+>  }
+>
+>  static void mtk_nor_setup_bus(struct mtk_nor *sp, const struct spi_mem_op *op)
+> @@ -459,22 +490,36 @@ static int mtk_nor_transfer_one_message(struct spi_controller *master,
+>         int stat = 0;
+>         int reg_offset = MTK_NOR_REG_PRGDATA_MAX;
+>         void __iomem *reg;
+> -       const u8 *txbuf;
+> -       u8 *rxbuf;
+> -       int i;
+> +       int i, tx_len = 0, rx_len = 0;
+>
+>         list_for_each_entry(t, &m->transfers, transfer_list) {
+> -               txbuf = t->tx_buf;
+> -               for (i = 0; i < t->len; i++, reg_offset--) {
+> +               const u8 *txbuf = t->tx_buf;
+> +
+> +               if (!txbuf) {
+> +                       rx_len += t->len;
+> +                       continue;
+> +               }
+> +
+> +               if (rx_len) {
+> +                       stat = -EPROTO;
+> +                       goto msg_done;
+> +               }
 
- »       aliases·{
-+»       »       rtc0·=·&rtc0;
-+»       »       rtc1·=·&vrtc;
- »       };
+NACK. you are unnecessarily rejecting possible transfers.
 
-Neil
+> +
+> +               for (i = 0; i < t->len && reg_offset >= 0; i++, reg_offset--) {
+>                         reg = sp->base + MTK_NOR_REG_PRGDATA(reg_offset);
+> -                       if (txbuf)
+> -                               writeb(txbuf[i], reg);
+> -                       else
+> -                               writeb(0, reg);
+> +                       writeb(txbuf[i], reg);
+> +                       tx_len++;
+
+According to SPI standard, during a rx transfer, tx should be kept low.
+These PROGDATA registers doesn't clear itself so it'll keep sending
+data from last transfer, which violates this rule. That's
+why the original code writes 0 to PRGDATA for rx bytes.
+
+>                 }
+> -               trx_len += t->len;
+>         }
+>
+> +       while (reg_offset >= 0) {
+> +               writeb(0, sp->base + MTK_NOR_REG_PRGDATA(reg_offset));
+> +               reg_offset--;
+> +       }
+> +
+> +       rx_len = min_t(unsigned long, MTK_NOR_PRG_MAX_CYCLES - tx_len, rx_len);
+> +       trx_len = tx_len + rx_len;
+> +
+>         writel(trx_len * BITS_PER_BYTE, sp->base + MTK_NOR_REG_PRG_CNT);
+>
+>         stat = mtk_nor_cmd_exec(sp, MTK_NOR_CMD_PROGRAM,
+> @@ -482,13 +527,18 @@ static int mtk_nor_transfer_one_message(struct spi_controller *master,
+>         if (stat < 0)
+>                 goto msg_done;
+>
+> -       reg_offset = trx_len - 1;
+> -       list_for_each_entry(t, &m->transfers, transfer_list) {
+> -               rxbuf = t->rx_buf;
+> -               for (i = 0; i < t->len; i++, reg_offset--) {
+> -                       reg = sp->base + MTK_NOR_REG_SHIFT(reg_offset);
+> -                       if (rxbuf)
+> +       if (rx_len > 0) {
+> +               reg_offset = rx_len - 1;
+> +               list_for_each_entry(t, &m->transfers, transfer_list) {
+> +                       u8 *rxbuf = t->rx_buf;
+> +
+> +                       if (!rxbuf)
+> +                               continue;
+> +
+> +                       for (i = 0; i < t->len && reg_offset >= 0; i++, reg_offset--) {
+> +                               reg = sp->base + MTK_NOR_REG_SHIFT(reg_offset);
+>                                 rxbuf[i] = readb(reg);
+> +                       }
+
+I think this is replacing original code with some equivalent ones, which
+seems unnecessary.
+
+>                 }
+>         }
+>
+-- 
+Regards,
+Chuanhong Guo
