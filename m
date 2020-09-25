@@ -2,101 +2,79 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from vger.kernel.org (vger.kernel.org [23.128.96.18])
-	by mail.lfdr.de (Postfix) with ESMTP id 0DC98278D48
-	for <lists+devicetree@lfdr.de>; Fri, 25 Sep 2020 17:55:29 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTP id 03086278D76
+	for <lists+devicetree@lfdr.de>; Fri, 25 Sep 2020 18:00:46 +0200 (CEST)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S1729429AbgIYPz2 (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Fri, 25 Sep 2020 11:55:28 -0400
-Received: from mail.kernel.org ([198.145.29.99]:40030 "EHLO mail.kernel.org"
+        id S1728654AbgIYQAo (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Fri, 25 Sep 2020 12:00:44 -0400
+Received: from mail.kernel.org ([198.145.29.99]:43354 "EHLO mail.kernel.org"
         rhost-flags-OK-OK-OK-OK) by vger.kernel.org with ESMTP
-        id S1729426AbgIYPz1 (ORCPT <rfc822;devicetree@vger.kernel.org>);
-        Fri, 25 Sep 2020 11:55:27 -0400
+        id S1727290AbgIYQAo (ORCPT <rfc822;devicetree@vger.kernel.org>);
+        Fri, 25 Sep 2020 12:00:44 -0400
 Received: from disco-boy.misterjones.org (disco-boy.misterjones.org [51.254.78.96])
         (using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
         (No client certificate requested)
-        by mail.kernel.org (Postfix) with ESMTPSA id 276D221741;
-        Fri, 25 Sep 2020 15:55:27 +0000 (UTC)
+        by mail.kernel.org (Postfix) with ESMTPSA id E28A1206C3;
+        Fri, 25 Sep 2020 16:00:43 +0000 (UTC)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=kernel.org;
-        s=default; t=1601049327;
-        bh=ZOaMTpjmL0zyawSe6TesNRPIJMd8LiPQDHGoQQoPA9k=;
+        s=default; t=1601049644;
+        bh=uIIL87tIwIEZnbvbUPdy6jgRjJkBVa8uUyrpu8sztP4=;
         h=From:To:Cc:Subject:Date:In-Reply-To:References:From;
-        b=DpbfOezwca7Q+jKjYXy+IngxuRfB2l0oJhJKOipIgoZOtqTejdpCrvavFmfJwutm2
-         KZTJj6kpqa3YmO4PvwT0wae57xcvfMuiYRCU99FvmQ4sAE7KEPtpaQVL/LL6IFru5D
-         qWCpCdhGHRc9kV9UmRc1vfxy+hkfWPGWXV5Ta7co=
+        b=TjDKge61VcKOvHscuEQ4m1vFY2wPoVRcFT/Sk64qOrqhXDhirKryV5KRdIQGCr+Ku
+         qB89ollP5LwT0AE8xtJzQ3wzRhg1bt6A9KQJflujjODLtlsG/6NkRfMdE4DHMcPuFZ
+         1HcATuCN3n9CFYGTbeYW4ojNdphiIaB6sUpKgzIk=
 Received: from [185.69.144.225] (helo=localhost.localdomain)
         by disco-boy.misterjones.org with esmtpsa (TLS1.3:ECDHE_RSA_AES_256_GCM_SHA384:256)
         (Exim 4.92)
         (envelope-from <maz@kernel.org>)
-        id 1kLq4D-00EuVG-7e; Fri, 25 Sep 2020 16:55:25 +0100
+        id 1kLq9K-00EuaQ-1k; Fri, 25 Sep 2020 17:00:42 +0100
 From:   Marc Zyngier <maz@kernel.org>
-To:     Vineet Gupta <vgupta@synopsys.com>,
-        Zhen Lei <thunder.leizhen@huawei.com>,
-        Rob Herring <robh+dt@kernel.org>,
-        Alexey Brodkin <abrodkin@synopsys.com>,
-        linux-snps-arc <linux-snps-arc@lists.infradead.org>,
-        devicetree <devicetree@vger.kernel.org>,
-        linux-kernel <linux-kernel@vger.kernel.org>,
+To:     Rob Herring <robh+dt@kernel.org>,
+        =?UTF-8?q?Andreas=20F=C3=A4rber?= <afaerber@suse.de>,
+        Cristian Ciocaltea <cristian.ciocaltea@gmail.com>,
         Jason Cooper <jason@lakedaemon.net>,
+        Manivannan Sadhasivam <manivannan.sadhasivam@linaro.org>,
         Thomas Gleixner <tglx@linutronix.de>
-Cc:     Kefeng Wang <wangkefeng.wang@huawei.com>,
-        Haoyu Lv <lvhaoyu@huawei.com>,
-        Sebastian Hesselbarth <sebastian.hesselbarth@gmail.com>,
-        Libin <huawei.libin@huawei.com>
-Subject: Re: [PATCH v6 0/6] irqchip: dw-apb-ictl: support hierarchy irq domain
-Date:   Fri, 25 Sep 2020 16:54:50 +0100
-Message-Id: <160104911402.38543.3098076840902954515.b4-ty@kernel.org>
+Cc:     linux-actions@lists.infradead.org,
+        linux-arm-kernel@lists.infradead.org, linux-kernel@vger.kernel.org,
+        devicetree@vger.kernel.org, parthiban@linumiz.com,
+        Saravanan Sekar <sravanhome@gmail.com>
+Subject: Re: [PATCH v7 0/3] Add Actions Semi Owl family sirq support
+Date:   Fri, 25 Sep 2020 17:00:03 +0100
+Message-Id: <160104958260.38985.7668757349696744886.b4-ty@kernel.org>
 X-Mailer: git-send-email 2.28.0
-In-Reply-To: <20200924071754.4509-1-thunder.leizhen@huawei.com>
-References: <20200924071754.4509-1-thunder.leizhen@huawei.com>
+In-Reply-To: <cover.1600114378.git.cristian.ciocaltea@gmail.com>
+References: <cover.1600114378.git.cristian.ciocaltea@gmail.com>
 MIME-Version: 1.0
 Content-Transfer-Encoding: 8bit
 X-SA-Exim-Connect-IP: 185.69.144.225
-X-SA-Exim-Rcpt-To: vgupta@synopsys.com, thunder.leizhen@huawei.com, robh+dt@kernel.org, abrodkin@synopsys.com, linux-snps-arc@lists.infradead.org, devicetree@vger.kernel.org, linux-kernel@vger.kernel.org, jason@lakedaemon.net, tglx@linutronix.de, wangkefeng.wang@huawei.com, lvhaoyu@huawei.com, sebastian.hesselbarth@gmail.com, huawei.libin@huawei.com
+X-SA-Exim-Rcpt-To: robh+dt@kernel.org, afaerber@suse.de, cristian.ciocaltea@gmail.com, jason@lakedaemon.net, manivannan.sadhasivam@linaro.org, tglx@linutronix.de, linux-actions@lists.infradead.org, linux-arm-kernel@lists.infradead.org, linux-kernel@vger.kernel.org, devicetree@vger.kernel.org, parthiban@linumiz.com, sravanhome@gmail.com
 X-SA-Exim-Mail-From: maz@kernel.org
 X-SA-Exim-Scanned: No (on disco-boy.misterjones.org); SAEximRunCond expanded to false
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-On Thu, 24 Sep 2020 15:17:48 +0800, Zhen Lei wrote:
-> v5 --> v6:
-> 1. add Reviewed-by: Rob Herring <robh@kernel.org> for Patch 4.
-> 2. Some modifications are made to Patch 5:
->    1) add " |" for each "description:" property if its content exceeds one line,
->       to tell the yaml keep the "newline" character.
->    2) add "..." to mark the end of the yaml file.
->    3) Change the name list of maintainers to the author of "snps,dw-apb-ictl.txt"
-> 	 maintainers:
-> 	-  - Marc Zyngier <marc.zyngier@arm.com>
-> 	+  - Sebastian Hesselbarth <sebastian.hesselbarth@gmail.com>
->    4) add "maxItems: 1" for property "reg".
->    5) for property "interrupts":
-> 	 interrupts:
-> 	-    minItems: 1
-> 	-    maxItems: 65
-> 	+    maxItems: 1
->    6) move below descriptions under the top level property "description:"
-> 	description: |
-> 	  Synopsys DesignWare provides interrupt controller IP for APB known as
-> 	  dw_apb_ictl. The IP is used as secondary interrupt controller in some SoCs
-> 	  with APB bus, e.g. Marvell Armada 1500. It can also be used as primary
-> 	  interrupt controller in some SoCs, e.g. Hisilicon SD5203.
+On Mon, 14 Sep 2020 23:27:16 +0300, Cristian Ciocaltea wrote:
+> This patch series adds support for the external interrupt controller
+> (SIRQ) found in the Actions Semi Owl family of SoC's (S500, S700 and
+> S900). The controller handles up to 3 external interrupt lines through
+> dedicated SIRQ pins.
+> 
+> This is a rework of the patch series submitted some time ago by
+> Parthiban Nallathambi:
+> https://lore.kernel.org/lkml/20181126100356.2840578-1-pn@denx.de/
 > 
 > [...]
 
 Applied to irq/irqchip-next, thanks!
 
-[1/6] genirq: Add stub for set_handle_irq() when !GENERIC_IRQ_MULTI_HANDLER
-      commit: ea0c80d1764449acf2f70fdb25aec33800cd0348
-[2/6] irqchip/dw-apb-ictl: Refactor priot to introducing hierarchical irq domains
-      commit: d59f7d159891466361808522b63cf3548ea3ecb0
-[3/6] irqchip/dw-apb-ictl: Add primary interrupt controller support
-      commit: 54a38440b84f8933b555c23273deca6a396f6708
-[4/6] dt-bindings: dw-apb-ictl: Update binding to describe use as primary interrupt controller
-      commit: 8156b80fd4885d0ca9748e736441cc37f4eb476a
-
-I have dropped patch 5 as it doesn't have Rob's Ack yet (and is not that
-critical) as well as patch 6 which is better routed via the ARC tree.
+[1/3] dt-bindings: interrupt-controller: Add Actions SIRQ controller binding
+      commit: b2bd271c3961f35dd127c99c8f576d9fcc2cb0c4
+[2/3] irqchip: Add Actions Semi Owl SIRQ controller
+      commit: 27e9e554b01fea686929598556cb7f73a70fb964
+[3/3] MAINTAINERS: Add entries for Actions Semi Owl SIRQ controller
+      commit: aa524294ffb621cb51dbc0a0ccdb2929c0ca2bc1
 
 Cheers,
 
