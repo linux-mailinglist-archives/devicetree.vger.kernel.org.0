@@ -2,74 +2,82 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from vger.kernel.org (vger.kernel.org [23.128.96.18])
-	by mail.lfdr.de (Postfix) with ESMTP id E6078279267
-	for <lists+devicetree@lfdr.de>; Fri, 25 Sep 2020 22:42:46 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTP id 5216F279378
+	for <lists+devicetree@lfdr.de>; Fri, 25 Sep 2020 23:26:23 +0200 (CEST)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S1728306AbgIYUmm (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Fri, 25 Sep 2020 16:42:42 -0400
-Received: from mail.kernel.org ([198.145.29.99]:50560 "EHLO mail.kernel.org"
+        id S1726689AbgIYV0U (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Fri, 25 Sep 2020 17:26:20 -0400
+Received: from mail.kernel.org ([198.145.29.99]:35846 "EHLO mail.kernel.org"
         rhost-flags-OK-OK-OK-OK) by vger.kernel.org with ESMTP
-        id S1726119AbgIYUml (ORCPT <rfc822;devicetree@vger.kernel.org>);
-        Fri, 25 Sep 2020 16:42:41 -0400
-Received: from localhost (fw-tnat.cambridge.arm.com [217.140.96.140])
-        (using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
+        id S1726587AbgIYV0U (ORCPT <rfc822;devicetree@vger.kernel.org>);
+        Fri, 25 Sep 2020 17:26:20 -0400
+Received: from localhost.localdomain (unknown [194.230.155.132])
+        (using TLSv1.2 with cipher ECDHE-RSA-AES128-GCM-SHA256 (128/128 bits))
         (No client certificate requested)
-        by mail.kernel.org (Postfix) with ESMTPSA id 0484720838;
-        Fri, 25 Sep 2020 20:42:40 +0000 (UTC)
+        by mail.kernel.org (Postfix) with ESMTPSA id 2164321741;
+        Fri, 25 Sep 2020 21:26:14 +0000 (UTC)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=kernel.org;
-        s=default; t=1601066561;
-        bh=cLGCGu0fXOBAhLAOL+Vx73SUpPBBubCY99whgp9Yt8I=;
-        h=Date:From:To:Cc:In-Reply-To:References:Subject:From;
-        b=cG6tfkw8+C5FbHzdHYHvGWf4Fo7TnI/OTRixxNF84vXWT/Ckzorapdlp82RIjpVX/
-         TvvlmpqCjG6goIBUzFF8/vqjgiK7i81XLHNNReq1qg86lOCiWvDpgKLWgCLK2eGp7t
-         4INvxD+3aZed8nHelL1Zgmi+E9F5Q5QGvzU/WYJI=
-Date:   Fri, 25 Sep 2020 21:41:46 +0100
-From:   Mark Brown <broonie@kernel.org>
-To:     robh+dt@kernel.org, srinivas.kandagatla@linaro.org,
-        lgirdwood@gmail.com, tiwai@suse.com, agross@kernel.org,
-        linux-kernel@vger.kernel.org, plai@codeaurora.org,
-        bgoswami@codeaurora.org, bjorn.andersson@linaro.org,
-        perex@perex.cz, Srinivasa Rao Mandadapu <srivasam@codeaurora.org>,
-        linux-arm-msm@vger.kernel.org, rohitkr@codeaurora.org,
-        alsa-devel@alsa-project.org, devicetree@vger.kernel.org
-Cc:     vsujithk <vsujithk@codeaurora.org>
-In-Reply-To: <1600448073-6709-1-git-send-email-srivasam@codeaurora.org>
-References: <1600448073-6709-1-git-send-email-srivasam@codeaurora.org>
-Subject: Re: [PATCH] Asoc: qcom: lpass-cpu: Enable MI2S BCLK and LRCLK together
-Message-Id: <160106647646.2866.13772789972277251884.b4-ty@kernel.org>
+        s=default; t=1601069179;
+        bh=N9JaW+8SGbvwdQLMGjpUpaTkyxkJEPp68PVp3/IQptU=;
+        h=From:To:Cc:Subject:Date:From;
+        b=cABLsbryWFwTywQxxkCDGE/Abyt7GQeZpCzuuhiTBU3ZJvUh0TViIaMbHcdZ75GzE
+         QViKgvnBL6yLExJ1j64OTwCPR0tsSJYayDRspg+d6rsClU8d2Rf+S5gfQkWDEg/dmh
+         g4TXtjM38v2e/Q+nyZXNQtvXdX0bnfvFMF2oDF5A=
+From:   Krzysztof Kozlowski <krzk@kernel.org>
+To:     Thierry Reding <thierry.reding@gmail.com>,
+        =?UTF-8?q?Uwe=20Kleine-K=C3=B6nig?= 
+        <u.kleine-koenig@pengutronix.de>, Lee Jones <lee.jones@linaro.org>,
+        Rob Herring <robh+dt@kernel.org>,
+        Shawn Guo <shawnguo@kernel.org>,
+        Sascha Hauer <s.hauer@pengutronix.de>,
+        Pengutronix Kernel Team <kernel@pengutronix.de>,
+        Fabio Estevam <festevam@gmail.com>,
+        NXP Linux Team <linux-imx@nxp.com>,
+        Philipp Zabel <p.zabel@pengutronix.de>,
+        linux-pwm@vger.kernel.org, devicetree@vger.kernel.org,
+        linux-arm-kernel@lists.infradead.org, linux-kernel@vger.kernel.org
+Cc:     Krzysztof Kozlowski <krzk@kernel.org>
+Subject: [PATCH] dt-bindings: pwm: imx: document i.MX compatibles
+Date:   Fri, 25 Sep 2020 23:26:09 +0200
+Message-Id: <20200925212609.23093-1-krzk@kernel.org>
+X-Mailer: git-send-email 2.17.1
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-On Fri, 18 Sep 2020 22:24:33 +0530, Srinivasa Rao Mandadapu wrote:
-> Update lpass-cpu.c to enable I2S BCLK and LRCLK together.
-> Remove BCLK enable in lpass_cpu_daiops_startup and
-> add in lpass_cpu_daiops_trigger API.
+Document all ARMv5, ARMv6 and ARMv7 i.MX compatibles to fix dtbs_check
+warnings like:
 
-Applied to
+  arch/arm/boot/dts/imx6dl-colibri-eval-v3.dt.yaml: pwm@2080000: compatible:0:
+    'fsl,imx6q-pwm' is not one of ['fsl,imx8mm-pwm', 'fsl,imx8mn-pwm', 'fsl,imx8mp-pwm', 'fsl,imx8mq-pwm']
 
-   https://git.kernel.org/pub/scm/linux/kernel/git/broonie/sound.git for-next
+Signed-off-by: Krzysztof Kozlowski <krzk@kernel.org>
+---
+ Documentation/devicetree/bindings/pwm/imx-pwm.yaml | 11 +++++++++++
+ 1 file changed, 11 insertions(+)
 
-Thanks!
+diff --git a/Documentation/devicetree/bindings/pwm/imx-pwm.yaml b/Documentation/devicetree/bindings/pwm/imx-pwm.yaml
+index 473863eb67e5..379d693889f6 100644
+--- a/Documentation/devicetree/bindings/pwm/imx-pwm.yaml
++++ b/Documentation/devicetree/bindings/pwm/imx-pwm.yaml
+@@ -25,6 +25,17 @@ properties:
+           - fsl,imx27-pwm
+       - items:
+           - enum:
++              - fsl,imx25-pwm
++              - fsl,imx31-pwm
++              - fsl,imx50-pwm
++              - fsl,imx51-pwm
++              - fsl,imx53-pwm
++              - fsl,imx6q-pwm
++              - fsl,imx6sl-pwm
++              - fsl,imx6sll-pwm
++              - fsl,imx6sx-pwm
++              - fsl,imx6ul-pwm
++              - fsl,imx7d-pwm
+               - fsl,imx8mm-pwm
+               - fsl,imx8mn-pwm
+               - fsl,imx8mp-pwm
+-- 
+2.17.1
 
-[1/1] ASoC: qcom: lpass-cpu: Enable MI2S BCLK and LRCLK together
-      commit: 7e6799d8f87d7ab7ae55a229654d161b5bfae874
-
-All being well this means that it will be integrated into the linux-next
-tree (usually sometime in the next 24 hours) and sent to Linus during
-the next merge window (or sooner if it is a bug fix), however if
-problems are discovered then the patch may be dropped or reverted.
-
-You may get further e-mails resulting from automated or manual testing
-and review of the tree, please engage with people reporting problems and
-send followup patches addressing any issues that are reported if needed.
-
-If any updates are required or you are submitting further changes they
-should be sent as incremental updates against current git, existing
-patches will not be replaced.
-
-Please add any relevant lists and maintainers to the CCs when replying
-to this mail.
-
-Thanks,
-Mark
