@@ -2,110 +2,106 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from vger.kernel.org (vger.kernel.org [23.128.96.18])
-	by mail.lfdr.de (Postfix) with ESMTP id 612BF278D1D
-	for <lists+devicetree@lfdr.de>; Fri, 25 Sep 2020 17:48:25 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTP id 0DC98278D48
+	for <lists+devicetree@lfdr.de>; Fri, 25 Sep 2020 17:55:29 +0200 (CEST)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S1729372AbgIYPsM (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Fri, 25 Sep 2020 11:48:12 -0400
-Received: from mail-wr1-f68.google.com ([209.85.221.68]:42534 "EHLO
-        mail-wr1-f68.google.com" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S1728333AbgIYPsM (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Fri, 25 Sep 2020 11:48:12 -0400
-Received: by mail-wr1-f68.google.com with SMTP id c18so4087588wrm.9;
-        Fri, 25 Sep 2020 08:48:10 -0700 (PDT)
-X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=1e100.net; s=20161025;
-        h=x-gm-message-state:date:from:to:cc:subject:message-id:references
-         :mime-version:content-disposition:in-reply-to:user-agent;
-        bh=7Qh5+ZRjYoXTfTyMdsphNx4+wbs2iln0Dg7bJktrLac=;
-        b=TVeaCTXCpTsuVU0OtUUElmJo/fpDul1xq0BoKSat8xsthvyVRg3tvKSo9BDvXekHGs
-         nVMqvWqW2vDFwcKum10rq+V2w4RGf0Cbu4GkgPDlQ70SCIrY75oW3A8tvEVZ72/uj+BR
-         4EbsAekEwNtwoAc1kWoEQOvx8Y6MK0luteQWvJdUqrb31OnLBXKf4kSf6ewiSu4+Ht9/
-         WRh3LafUlWtpbwAaotcanO4mWtDq5aA5KJbY/3zBTbP98+v8CpwfiTqnpkwdUuH9XqNZ
-         IYgvZ5oXua9CSn4kvt2ZeDcdMZ9AORrztspYXytjv/MZiKPE6Q6dhPOQRLB/HCw3fCTb
-         QYOA==
-X-Gm-Message-State: AOAM530jZ7cH+UMdZuiOzssXlOROiVnnPDzz/OVL+TIcaLz6izOfYlGs
-        F+7Qk5sFmybwRzI9dgKATms=
-X-Google-Smtp-Source: ABdhPJw0NxnpCAb54EdTsCUv1oA2JhAAx01jYuFmqouNOz5V/9GWfo7kcmF2Z8f+IMYVxGIHsAi2tA==
-X-Received: by 2002:adf:f082:: with SMTP id n2mr5158088wro.35.1601048889557;
-        Fri, 25 Sep 2020 08:48:09 -0700 (PDT)
-Received: from kozik-lap ([194.230.155.132])
-        by smtp.googlemail.com with ESMTPSA id k8sm3477035wma.16.2020.09.25.08.48.06
-        (version=TLS1_2 cipher=ECDHE-ECDSA-CHACHA20-POLY1305 bits=256/256);
-        Fri, 25 Sep 2020 08:48:08 -0700 (PDT)
-Date:   Fri, 25 Sep 2020 17:48:04 +0200
-From:   Krzysztof Kozlowski <krzk@kernel.org>
-To:     Linus Walleij <linus.walleij@linaro.org>
-Cc:     Bartosz Golaszewski <bgolaszewski@baylibre.com>,
+        id S1729429AbgIYPz2 (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Fri, 25 Sep 2020 11:55:28 -0400
+Received: from mail.kernel.org ([198.145.29.99]:40030 "EHLO mail.kernel.org"
+        rhost-flags-OK-OK-OK-OK) by vger.kernel.org with ESMTP
+        id S1729426AbgIYPz1 (ORCPT <rfc822;devicetree@vger.kernel.org>);
+        Fri, 25 Sep 2020 11:55:27 -0400
+Received: from disco-boy.misterjones.org (disco-boy.misterjones.org [51.254.78.96])
+        (using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
+        (No client certificate requested)
+        by mail.kernel.org (Postfix) with ESMTPSA id 276D221741;
+        Fri, 25 Sep 2020 15:55:27 +0000 (UTC)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=kernel.org;
+        s=default; t=1601049327;
+        bh=ZOaMTpjmL0zyawSe6TesNRPIJMd8LiPQDHGoQQoPA9k=;
+        h=From:To:Cc:Subject:Date:In-Reply-To:References:From;
+        b=DpbfOezwca7Q+jKjYXy+IngxuRfB2l0oJhJKOipIgoZOtqTejdpCrvavFmfJwutm2
+         KZTJj6kpqa3YmO4PvwT0wae57xcvfMuiYRCU99FvmQ4sAE7KEPtpaQVL/LL6IFru5D
+         qWCpCdhGHRc9kV9UmRc1vfxy+hkfWPGWXV5Ta7co=
+Received: from [185.69.144.225] (helo=localhost.localdomain)
+        by disco-boy.misterjones.org with esmtpsa (TLS1.3:ECDHE_RSA_AES_256_GCM_SHA384:256)
+        (Exim 4.92)
+        (envelope-from <maz@kernel.org>)
+        id 1kLq4D-00EuVG-7e; Fri, 25 Sep 2020 16:55:25 +0100
+From:   Marc Zyngier <maz@kernel.org>
+To:     Vineet Gupta <vgupta@synopsys.com>,
+        Zhen Lei <thunder.leizhen@huawei.com>,
         Rob Herring <robh+dt@kernel.org>,
-        =?utf-8?Q?Beno=C3=AEt?= Cousson <bcousson@baylibre.com>,
-        Tony Lindgren <tony@atomide.com>,
+        Alexey Brodkin <abrodkin@synopsys.com>,
+        linux-snps-arc <linux-snps-arc@lists.infradead.org>,
+        devicetree <devicetree@vger.kernel.org>,
+        linux-kernel <linux-kernel@vger.kernel.org>,
         Jason Cooper <jason@lakedaemon.net>,
-        Andrew Lunn <andrew@lunn.ch>,
-        Gregory Clement <gregory.clement@bootlin.com>,
+        Thomas Gleixner <tglx@linutronix.de>
+Cc:     Kefeng Wang <wangkefeng.wang@huawei.com>,
+        Haoyu Lv <lvhaoyu@huawei.com>,
         Sebastian Hesselbarth <sebastian.hesselbarth@gmail.com>,
-        Russell King <linux@armlinux.org.uk>,
-        Joel Stanley <joel@jms.id.au>,
-        Andrew Jeffery <andrew@aj.id.au>,
-        Shawn Guo <shawnguo@kernel.org>,
-        Sascha Hauer <s.hauer@pengutronix.de>,
-        Pengutronix Kernel Team <kernel@pengutronix.de>,
-        Fabio Estevam <festevam@gmail.com>,
-        NXP Linux Team <linux-imx@nxp.com>,
-        Matthias Brugger <matthias.bgg@gmail.com>,
-        Geert Uytterhoeven <geert+renesas@glider.be>,
-        Magnus Damm <magnus.damm@gmail.com>,
-        Tero Kristo <t-kristo@ti.com>, Nishanth Menon <nm@ti.com>,
-        Michal Simek <michal.simek@xilinx.com>,
-        linux-gpio@vger.kernel.org, devicetree@vger.kernel.org,
-        linux-kernel@vger.kernel.org, linux-omap@vger.kernel.org,
-        linux-arm-kernel@lists.infradead.org,
-        linux-aspeed@lists.ozlabs.org, linux-mediatek@lists.infradead.org,
-        linux-renesas-soc@vger.kernel.org
-Subject: Re: [PATCH v3 01/15] dt-bindings: gpio: convert bindings for NXP
- PCA953x family to dtschema
-Message-ID: <20200925154804.GB16392@kozik-lap>
-References: <20200916155715.21009-1-krzk@kernel.org>
- <20200916155715.21009-2-krzk@kernel.org>
+        Libin <huawei.libin@huawei.com>
+Subject: Re: [PATCH v6 0/6] irqchip: dw-apb-ictl: support hierarchy irq domain
+Date:   Fri, 25 Sep 2020 16:54:50 +0100
+Message-Id: <160104911402.38543.3098076840902954515.b4-ty@kernel.org>
+X-Mailer: git-send-email 2.28.0
+In-Reply-To: <20200924071754.4509-1-thunder.leizhen@huawei.com>
+References: <20200924071754.4509-1-thunder.leizhen@huawei.com>
 MIME-Version: 1.0
-Content-Type: text/plain; charset=utf-8
-Content-Disposition: inline
-In-Reply-To: <20200916155715.21009-2-krzk@kernel.org>
-User-Agent: Mutt/1.9.4 (2018-02-28)
+Content-Transfer-Encoding: 8bit
+X-SA-Exim-Connect-IP: 185.69.144.225
+X-SA-Exim-Rcpt-To: vgupta@synopsys.com, thunder.leizhen@huawei.com, robh+dt@kernel.org, abrodkin@synopsys.com, linux-snps-arc@lists.infradead.org, devicetree@vger.kernel.org, linux-kernel@vger.kernel.org, jason@lakedaemon.net, tglx@linutronix.de, wangkefeng.wang@huawei.com, lvhaoyu@huawei.com, sebastian.hesselbarth@gmail.com, huawei.libin@huawei.com
+X-SA-Exim-Mail-From: maz@kernel.org
+X-SA-Exim-Scanned: No (on disco-boy.misterjones.org); SAEximRunCond expanded to false
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-On Wed, Sep 16, 2020 at 05:57:01PM +0200, Krzysztof Kozlowski wrote:
-> Convert the NXP PCA953x family of GPIO expanders bindings to device tree
-> schema.
+On Thu, 24 Sep 2020 15:17:48 +0800, Zhen Lei wrote:
+> v5 --> v6:
+> 1. add Reviewed-by: Rob Herring <robh@kernel.org> for Patch 4.
+> 2. Some modifications are made to Patch 5:
+>    1) add " |" for each "description:" property if its content exceeds one line,
+>       to tell the yaml keep the "newline" character.
+>    2) add "..." to mark the end of the yaml file.
+>    3) Change the name list of maintainers to the author of "snps,dw-apb-ictl.txt"
+> 	 maintainers:
+> 	-  - Marc Zyngier <marc.zyngier@arm.com>
+> 	+  - Sebastian Hesselbarth <sebastian.hesselbarth@gmail.com>
+>    4) add "maxItems: 1" for property "reg".
+>    5) for property "interrupts":
+> 	 interrupts:
+> 	-    minItems: 1
+> 	-    maxItems: 65
+> 	+    maxItems: 1
+>    6) move below descriptions under the top level property "description:"
+> 	description: |
+> 	  Synopsys DesignWare provides interrupt controller IP for APB known as
+> 	  dw_apb_ictl. The IP is used as secondary interrupt controller in some SoCs
+> 	  with APB bus, e.g. Marvell Armada 1500. It can also be used as primary
+> 	  interrupt controller in some SoCs, e.g. Hisilicon SD5203.
 > 
-> Signed-off-by: Krzysztof Kozlowski <krzk@kernel.org>
-> Reviewed-by: Rob Herring <robh@kernel.org>
-> 
-> ---
-> 
-> Changes since v2:
-> 1. Add Rob's review tag
-> 
-> Changes since v1:
-> 1. Use additionalProperties.
-> 2. Add wakeup-source.
-> 3. Add hogs.
-> 4. Extend example with hogs.
-> ---
->  .../devicetree/bindings/gpio/gpio-pca953x.txt |  90 ----------
->  .../bindings/gpio/gpio-pca95xx.yaml           | 166 ++++++++++++++++++
->  .../devicetree/bindings/trivial-devices.yaml  |   4 -
->  3 files changed, 166 insertions(+), 94 deletions(-)
->  delete mode 100644 Documentation/devicetree/bindings/gpio/gpio-pca953x.txt
->  create mode 100644 Documentation/devicetree/bindings/gpio/gpio-pca95xx.yaml
+> [...]
 
-Hi Linus,
+Applied to irq/irqchip-next, thanks!
 
-The first two patches (bindings) have Rob's ack/review. Could you pick
-them via GPIO tree?
+[1/6] genirq: Add stub for set_handle_irq() when !GENERIC_IRQ_MULTI_HANDLER
+      commit: ea0c80d1764449acf2f70fdb25aec33800cd0348
+[2/6] irqchip/dw-apb-ictl: Refactor priot to introducing hierarchical irq domains
+      commit: d59f7d159891466361808522b63cf3548ea3ecb0
+[3/6] irqchip/dw-apb-ictl: Add primary interrupt controller support
+      commit: 54a38440b84f8933b555c23273deca6a396f6708
+[4/6] dt-bindings: dw-apb-ictl: Update binding to describe use as primary interrupt controller
+      commit: 8156b80fd4885d0ca9748e736441cc37f4eb476a
 
-Best regards,
-Krzysztof
+I have dropped patch 5 as it doesn't have Rob's Ack yet (and is not that
+critical) as well as patch 6 which is better routed via the ARC tree.
+
+Cheers,
+
+	M.
+-- 
+Without deviation from the norm, progress is not possible.
+
 
