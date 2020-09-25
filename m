@@ -2,171 +2,149 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from vger.kernel.org (vger.kernel.org [23.128.96.18])
-	by mail.lfdr.de (Postfix) with ESMTP id 7CDE0279054
-	for <lists+devicetree@lfdr.de>; Fri, 25 Sep 2020 20:29:56 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTP id 366722790DF
+	for <lists+devicetree@lfdr.de>; Fri, 25 Sep 2020 20:39:42 +0200 (CEST)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S1729691AbgIYS3v (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Fri, 25 Sep 2020 14:29:51 -0400
-Received: from lindbergh.monkeyblade.net ([23.128.96.19]:34728 "EHLO
+        id S1729745AbgIYSjg (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Fri, 25 Sep 2020 14:39:36 -0400
+Received: from lindbergh.monkeyblade.net ([23.128.96.19]:36438 "EHLO
         lindbergh.monkeyblade.net" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S1729614AbgIYS3u (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Fri, 25 Sep 2020 14:29:50 -0400
-Received: from mail-pg1-x542.google.com (mail-pg1-x542.google.com [IPv6:2607:f8b0:4864:20::542])
-        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 835AFC0613D5
-        for <devicetree@vger.kernel.org>; Fri, 25 Sep 2020 11:29:50 -0700 (PDT)
-Received: by mail-pg1-x542.google.com with SMTP id l71so3303361pge.4
-        for <devicetree@vger.kernel.org>; Fri, 25 Sep 2020 11:29:50 -0700 (PDT)
+        with ESMTP id S1727201AbgIYSjg (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Fri, 25 Sep 2020 14:39:36 -0400
+Received: from mail-qv1-xf41.google.com (mail-qv1-xf41.google.com [IPv6:2607:f8b0:4864:20::f41])
+        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id DF600C0613CE;
+        Fri, 25 Sep 2020 11:39:35 -0700 (PDT)
+Received: by mail-qv1-xf41.google.com with SMTP id p15so1896235qvk.5;
+        Fri, 25 Sep 2020 11:39:35 -0700 (PDT)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=linaro.org; s=google;
-        h=from:to:cc:subject:date:message-id:author;
-        bh=Rhv9HZEtrEL141zSMGw1g065/LfSYNOus3HpsgDc4Os=;
-        b=HVUBpvOg+s0a1z2RzoKEIEFlCJWP5rVxDKxRmwxMKnABEXn383FnVD5FLFSLg4M3yY
-         DiJztuPhznDB7e0NReBuNguMYtpthbjZWDgz321egNY6GGLm0jEyz48oTlgao0R0tQDO
-         21XRe3aF8XrGRVp5TH1ENC7Cl346shsAgl/ySE4HlZOISGRz8JWlooVQQBcsRwJzbILi
-         HH7HWhjb1BTRHpFtmSJZ/YBhEQiPHWyV8FSc2DBvNXW5lXG8sMVhBHmAzw1WZAHXK/a2
-         Y0ezbxZxbV5PzAIcLN12G8u+Lc+veBcqtiAJR9ZuPeIyRnnZ1wy7vecPxyT7XU7hkI/p
-         WbFg==
+        d=gmail.com; s=20161025;
+        h=from:to:cc:references:in-reply-to:subject:date:message-id
+         :mime-version:content-transfer-encoding:content-language
+         :thread-index;
+        bh=dUf435LeWetQI7T/0I6jtCo+Jj+pjMiRIhsGBhL9+Ks=;
+        b=Syf7hE4/NbuBopE4fj6R7YVeAw1e4pC/XFomn9rGC5Ic4Bh3BmIc7Zc/UekYCw1o93
+         Dm+HkmALXxcv5YP8ZaMqGfeKvNBhSiCn+iUtJj0Ep3jYIKs76Hcmxo3+3fgpxhs4nBrn
+         bv0dMWeZmnnCRhJqZAql9w2z4SXxuLEx+hh7WxFxoiIUOVj7TImZIVO3viYDiBSlq479
+         2hlCSo59GqQs/gdzdRyHR+EztEPckFxKLOC4rbC9ddTLL0HdLGewAi4SB3B04SNcfBAQ
+         s3/e2ZATvE1MSNVzS+kmjMoyXqpVY8+IE7Je5CeREbCohS232UOb2uNaGbIyKQzLeYzq
+         k/nw==
 X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
         d=1e100.net; s=20161025;
-        h=x-gm-message-state:from:to:cc:subject:date:message-id:author;
-        bh=Rhv9HZEtrEL141zSMGw1g065/LfSYNOus3HpsgDc4Os=;
-        b=J10tnkMDKR8MpvBGrL6D261zXLSfNfernRwvhpzsAZyPIz0cZXpb16bNzWlDG7s/L2
-         wH0Grn1v3Als3cuXaCkxcAVa/riXEhO2ncnnebnxRoAfIkaivZ12pEqKJrjf3bpG7TfG
-         E0gx/FolNnKQa0O+bZlb60VvSJbfk64kPEdLU7TwCXGvonxs4U58KUMXMmUHMdpUdIXT
-         /N/laaF9VpJ3uSz80XYdgUy1Zw22Ap6qcYMrNRPS5enqI+p1bIFKzLgvhktNl7V8N7dA
-         sICygtSWqbhpEUiYJ+AxxnwHOeDoF5QSGVLaZblld7tNM/BkcJWlgIe6egqTRywktTif
-         A6gw==
-X-Gm-Message-State: AOAM530WQEIcBxcvK4wJF4MYgEuLOIdMbruRDd/Vad7S9ZgWpZ80zDtt
-        KswAJY9DtpreBOsJzljnh5chYQ==
-X-Google-Smtp-Source: ABdhPJyT6RQYB9DC4di8a/7z5wXawdsq8FSxpEdIKmdSgymgn9ER5Udfvz37BcVVx/UkrRoJ02vI2g==
-X-Received: by 2002:a17:902:c404:b029:d2:564a:e41d with SMTP id k4-20020a170902c404b02900d2564ae41dmr681548plk.23.1601058589772;
-        Fri, 25 Sep 2020 11:29:49 -0700 (PDT)
-Received: from localhost.localdomain ([2405:201:6803:60dd:c56a:3b96:e0d6:72b4])
-        by smtp.gmail.com with ESMTPSA id f4sm2806762pgk.19.2020.09.25.11.29.44
+        h=x-gm-message-state:from:to:cc:references:in-reply-to:subject:date
+         :message-id:mime-version:content-transfer-encoding:content-language
+         :thread-index;
+        bh=dUf435LeWetQI7T/0I6jtCo+Jj+pjMiRIhsGBhL9+Ks=;
+        b=lqYvbUEAshwrZOqw9cf1dsKIzCk0smgu7KJo1wBF3umDN4rAuNJxnWfrkRUIpq3kwN
+         WQASy6rWfm6tOgBEdgpt2bpBkhE6eA7TBuOPrJE0jSNcZTAxVK9JnFIQN8mU8wzaloew
+         5rsXU2Vw/BPdW18hnAVL+gGaJiSz46CKf/yYbB8ZjDhKs7bMeGuOjPeck6yEPKn0NMaj
+         uByI0+hUnXLWuW7YGufh1g2apBs37XkWcPaNtbsnpPv2tDwPnho/rZ5nB4JBQGI6VXNQ
+         mc59Gv/ev7kY7zgMryj3YBXzzGYbPBufCaYO2j0JhnsPGdmhKnzRfMJR9EQt95u3kZR+
+         pemg==
+X-Gm-Message-State: AOAM531j8glFrCjUZ89mqB4XXfAi7Ywci1Ez+83RVVJXHOFeuTpxcbt0
+        fWUSBkf6YS9fLZlsIa325Eo=
+X-Google-Smtp-Source: ABdhPJxDhaiOVjVfIGD8RWeyXsIunrWwPzE9wLn+BAfnkudkko5iSAi6Y/tH4RMK/XBVIPZAxiNCkA==
+X-Received: by 2002:a0c:b251:: with SMTP id k17mr799820qve.53.1601059174715;
+        Fri, 25 Sep 2020 11:39:34 -0700 (PDT)
+Received: from AnsuelXPS (93-39-149-95.ip76.fastwebnet.it. [93.39.149.95])
+        by smtp.gmail.com with ESMTPSA id g19sm2208622qka.84.2020.09.25.11.39.31
         (version=TLS1_2 cipher=ECDHE-ECDSA-AES128-GCM-SHA256 bits=128/128);
-        Fri, 25 Sep 2020 11:29:48 -0700 (PDT)
-From:   Amit Pundir <amit.pundir@linaro.org>
-To:     Kalle Valo <kvalo@codeaurora.org>,
-        David S Miller <davem@davemloft.net>,
-        Jakub Kicinski <kuba@kernel.org>,
-        Rob Herring <robh+dt@kernel.org>,
-        Bjorn Andersson <bjorn.andersson@linaro.org>,
-        Jeffrey Hugo <jeffrey.l.hugo@gmail.com>
-Cc:     John Stultz <john.stultz@linaro.org>,
-        Sumit Semwal <sumit.semwal@linaro.org>,
-        Konrad Dybcio <konradybcio@gmail.com>,
-        ath10k@lists.infradead.org, devicetree@vger.kernel.org,
-        linux-wireless@vger.kernel.org, netdev@vger.kernel.org,
-        lkml <linux-kernel@vger.kernel.org>
-Subject: [PATCH] ath10k: Introduce a devicetree quirk to skip host cap QMI requests
-Date:   Fri, 25 Sep 2020 23:59:41 +0530
-Message-Id: <1601058581-19461-1-git-send-email-amit.pundir@linaro.org>
-X-Mailer: git-send-email 2.7.4
-Author: Amit Pundir <amit.pundir@linaro.org>
+        Fri, 25 Sep 2020 11:39:33 -0700 (PDT)
+From:   <ansuelsmth@gmail.com>
+To:     "'Rob Herring'" <robh+dt@kernel.org>
+Cc:     "'Miquel Raynal'" <miquel.raynal@bootlin.com>,
+        "'Richard Weinberger'" <richard@nod.at>,
+        "'Vignesh Raghavendra'" <vigneshr@ti.com>,
+        "'David S. Miller'" <davem@davemloft.net>,
+        "'Jakub Kicinski'" <kuba@kernel.org>,
+        "'Andrew Lunn'" <andrew@lunn.ch>,
+        "'Heiner Kallweit'" <hkallweit1@gmail.com>,
+        "'Russell King'" <linux@armlinux.org.uk>,
+        "'Frank Rowand'" <frowand.list@gmail.com>,
+        "'Boris Brezillon'" <bbrezillon@kernel.org>,
+        "'MTD Maling List'" <linux-mtd@lists.infradead.org>,
+        <devicetree@vger.kernel.org>, <linux-kernel@vger.kernel.org>,
+        "'netdev'" <netdev@vger.kernel.org>
+References: <20200920095724.8251-1-ansuelsmth@gmail.com> <20200920095724.8251-4-ansuelsmth@gmail.com> <CAL_JsqKhyeh2=pJcpBKkh+s3FM__DY+VoYSYJLRUErrujTLn9A@mail.gmail.com>
+In-Reply-To: <CAL_JsqKhyeh2=pJcpBKkh+s3FM__DY+VoYSYJLRUErrujTLn9A@mail.gmail.com>
+Subject: RE: [PATCH v3 3/4] of_net: add mac-address-increment support
+Date:   Fri, 25 Sep 2020 20:39:30 +0200
+Message-ID: <00f801d6936b$36551e20$a2ff5a60$@gmail.com>
+MIME-Version: 1.0
+Content-Type: text/plain;
+        charset="utf-8"
+Content-Transfer-Encoding: quoted-printable
+X-Mailer: Microsoft Outlook 16.0
+Content-Language: it
+Thread-Index: AQKM5RC4rgXeqQ5LopEy1q5Nkk2f7gIPbdkoAY21rs6n8B/RMA==
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-There are firmware versions which do not support host capability
-QMI request. We suspect either the host cap is not implemented or
-there may be firmware specific issues, but apparently there seem
-to be a generation of firmware that has this particular behavior.
 
-For example, firmware build on Xiaomi Poco F1 (sdm845) phone:
-"QC_IMAGE_VERSION_STRING=WLAN.HL.2.0.c3-00257-QCAHLSWMTPLZ-1"
 
-If we do not skip the host cap QMI request on Poco F1, then we
-get a QMI_ERR_MALFORMED_MSG_V01 error message in the
-ath10k_qmi_host_cap_send_sync(). But this error message is not
-fatal to the firmware nor to the ath10k driver and we can still
-bring up the WiFi services successfully if we just ignore it.
+> -----Original Message-----
+> From: Rob Herring <robh+dt@kernel.org>
+> Sent: Friday, September 25, 2020 8:24 PM
+> To: Ansuel Smith <ansuelsmth@gmail.com>
+> Cc: Miquel Raynal <miquel.raynal@bootlin.com>; Richard Weinberger
+> <richard@nod.at>; Vignesh Raghavendra <vigneshr@ti.com>; David S.
+> Miller <davem@davemloft.net>; Jakub Kicinski <kuba@kernel.org>;
+> Andrew Lunn <andrew@lunn.ch>; Heiner Kallweit
+> <hkallweit1@gmail.com>; Russell King <linux@armlinux.org.uk>; Frank
+> Rowand <frowand.list@gmail.com>; Boris Brezillon
+> <bbrezillon@kernel.org>; MTD Maling List =
+<linux-mtd@lists.infradead.org>;
+> devicetree@vger.kernel.org; linux-kernel@vger.kernel.org; netdev
+> <netdev@vger.kernel.org>
+> Subject: Re: [PATCH v3 3/4] of_net: add mac-address-increment support
+>=20
+> On Sun, Sep 20, 2020 at 3:57 AM Ansuel Smith <ansuelsmth@gmail.com>
+> wrote:
+> >
+> > Lots of embedded devices use the mac-address of other interface
+> > extracted from nvmem cells and increments it by one or two. Add two
+> > bindings to integrate this and directly use the right mac-address =
+for
+> > the interface. Some example are some routers that use the gmac
+> > mac-address stored in the art partition and increments it by one for =
+the
+> > wifi. mac-address-increment-byte bindings is used to tell what byte =
+of
+> > the mac-address has to be increased (if not defined the last byte is
+> > increased) and mac-address-increment tells how much the byte decided
+> > early has to be increased.
+>=20
+> I'm inclined to say if there's a platform specific way to transform
+> MAC addresses, then there should be platform specific code to do that
+> which then stuffs the DT using standard properties. Otherwise, we have
+> a never ending stream of 'generic' properties to try to handle
+> different platforms' cases.
+>=20
+> Rob
 
-Hence introducing this DeviceTree quirk to skip host capability
-QMI request for the firmware versions which do not support this
-feature.
+I agree about the 'never ending stream'... But I think the increment =
+feature
+is not that platform specific. I will quote some number by another patch
+that tried to implement the same feature in a different way, [1]
 
-Suggested-by: Bjorn Andersson <bjorn.andersson@linaro.org>
-Signed-off-by: Amit Pundir <amit.pundir@linaro.org>
----
- .../devicetree/bindings/net/wireless/qcom,ath10k.txt        |  5 +++++
- drivers/net/wireless/ath/ath10k/qmi.c                       | 13 ++++++++++---
- drivers/net/wireless/ath/ath10k/snoc.c                      |  3 +++
- drivers/net/wireless/ath/ath10k/snoc.h                      |  1 +
- 4 files changed, 19 insertions(+), 3 deletions(-)
+* mtd-mac-address                used 497 times in 357 device tree files
+* mtd-mac-address-increment      used  74 times in  58 device tree files
+* mtd-mac-address-increment-byte used   1 time  in   1 device tree file
 
-diff --git a/Documentation/devicetree/bindings/net/wireless/qcom,ath10k.txt b/Documentation/devicetree/bindings/net/wireless/qcom,ath10k.txt
-index 65ee68efd574..135c7ecd4487 100644
---- a/Documentation/devicetree/bindings/net/wireless/qcom,ath10k.txt
-+++ b/Documentation/devicetree/bindings/net/wireless/qcom,ath10k.txt
-@@ -86,6 +86,11 @@ Optional properties:
- 	Value type: <empty>
- 	Definition: Quirk specifying that the firmware expects the 8bit version
- 		    of the host capability QMI request
-+- qcom,snoc-host-cap-skip-quirk:
-+	Usage: Optional
-+	Value type: <empty>
-+	Definition: Quirk specifying that the firmware wants to skip the host
-+		    capability QMI request
- - qcom,xo-cal-data: xo cal offset to be configured in xo trim register.
- 
- - qcom,msa-fixed-perm: Boolean context flag to disable SCM call for statically
-diff --git a/drivers/net/wireless/ath/ath10k/qmi.c b/drivers/net/wireless/ath/ath10k/qmi.c
-index 5468a41e928e..5adff7695e18 100644
---- a/drivers/net/wireless/ath/ath10k/qmi.c
-+++ b/drivers/net/wireless/ath/ath10k/qmi.c
-@@ -770,6 +770,7 @@ ath10k_qmi_ind_register_send_sync_msg(struct ath10k_qmi *qmi)
- static void ath10k_qmi_event_server_arrive(struct ath10k_qmi *qmi)
- {
- 	struct ath10k *ar = qmi->ar;
-+	struct ath10k_snoc *ar_snoc = ath10k_snoc_priv(ar);
- 	int ret;
- 
- 	ret = ath10k_qmi_ind_register_send_sync_msg(qmi);
-@@ -781,9 +782,15 @@ static void ath10k_qmi_event_server_arrive(struct ath10k_qmi *qmi)
- 		return;
- 	}
- 
--	ret = ath10k_qmi_host_cap_send_sync(qmi);
--	if (ret)
--		return;
-+	/*
-+	 * Skip the host capability request for the firmware versions which
-+	 * do not support this feature.
-+	 */
-+	if (!test_bit(ATH10K_SNOC_FLAG_SKIP_HOST_CAP_QUIRK, &ar_snoc->flags)) {
-+		ret = ath10k_qmi_host_cap_send_sync(qmi);
-+		if (ret)
-+			return;
-+	}
- 
- 	ret = ath10k_qmi_msa_mem_info_send_sync_msg(qmi);
- 	if (ret)
-diff --git a/drivers/net/wireless/ath/ath10k/snoc.c b/drivers/net/wireless/ath/ath10k/snoc.c
-index 354d49b1cd45..4efbf1339c80 100644
---- a/drivers/net/wireless/ath/ath10k/snoc.c
-+++ b/drivers/net/wireless/ath/ath10k/snoc.c
-@@ -1281,6 +1281,9 @@ static void ath10k_snoc_quirks_init(struct ath10k *ar)
- 
- 	if (of_property_read_bool(dev->of_node, "qcom,snoc-host-cap-8bit-quirk"))
- 		set_bit(ATH10K_SNOC_FLAG_8BIT_HOST_CAP_QUIRK, &ar_snoc->flags);
-+
-+	if (of_property_read_bool(dev->of_node, "qcom,snoc-host-cap-skip-quirk"))
-+		set_bit(ATH10K_SNOC_FLAG_SKIP_HOST_CAP_QUIRK, &ar_snoc->flags);
- }
- 
- int ath10k_snoc_fw_indication(struct ath10k *ar, u64 type)
-diff --git a/drivers/net/wireless/ath/ath10k/snoc.h b/drivers/net/wireless/ath/ath10k/snoc.h
-index a3dd06f6ac62..2a0045f0af7e 100644
---- a/drivers/net/wireless/ath/ath10k/snoc.h
-+++ b/drivers/net/wireless/ath/ath10k/snoc.h
-@@ -47,6 +47,7 @@ enum ath10k_snoc_flags {
- 	ATH10K_SNOC_FLAG_UNREGISTERING,
- 	ATH10K_SNOC_FLAG_RECOVERY,
- 	ATH10K_SNOC_FLAG_8BIT_HOST_CAP_QUIRK,
-+	ATH10K_SNOC_FLAG_SKIP_HOST_CAP_QUIRK,
- };
- 
- struct clk_bulk_data;
--- 
-2.7.4
+The mtd-mac-address is what this patchset is trying to fix with the =
+nvmem
+support. The increment is much more than 74 times since it doesn't count
+SoC that have wifi integrated (it's common practice for SoC with =
+integrated
+wifi to take the switch mac and use it to set the wifi mac)
+Actually what is really specific is the increment-byte that can be =
+dropped
+if we really want to.
+I still think the increment feature would be very useful to add full =
+support
+for mac-address extracted from nvmem cell.
+
+[1] =
+https://patchwork.ozlabs.org/project/netdev/patch/1555445100-30936-1-git-=
+send-email-ynezz@true.cz/
 
