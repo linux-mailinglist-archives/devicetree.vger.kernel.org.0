@@ -2,169 +2,101 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from vger.kernel.org (vger.kernel.org [23.128.96.18])
-	by mail.lfdr.de (Postfix) with ESMTP id 203AB278337
-	for <lists+devicetree@lfdr.de>; Fri, 25 Sep 2020 10:51:01 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTP id 47DBF278360
+	for <lists+devicetree@lfdr.de>; Fri, 25 Sep 2020 10:58:05 +0200 (CEST)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S1727470AbgIYIvA (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Fri, 25 Sep 2020 04:51:00 -0400
-Received: from mail.kernel.org ([198.145.29.99]:42616 "EHLO mail.kernel.org"
-        rhost-flags-OK-OK-OK-OK) by vger.kernel.org with ESMTP
-        id S1727135AbgIYIvA (ORCPT <rfc822;devicetree@vger.kernel.org>);
-        Fri, 25 Sep 2020 04:51:00 -0400
-Received: from pali.im (pali.im [31.31.79.79])
-        (using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
-        (No client certificate requested)
-        by mail.kernel.org (Postfix) with ESMTPSA id 21AC220936;
-        Fri, 25 Sep 2020 08:50:59 +0000 (UTC)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=kernel.org;
-        s=default; t=1601023859;
-        bh=y5kjay8vQdDPybj7NrldtsrQKjzfRaOerm51iShfC54=;
-        h=From:To:Cc:Subject:Date:From;
-        b=KI8HITXXYi83ALtugdBIBFQ08LMHfi3mO+0FS2TQO6CxTfmF9XVnELjLTkM7f0vnH
-         3dYtd2TiE7YSeY5ubwpI2Uz147kVOtlDFVYbM3CqBTIDExulR/QV1LD/dm7Mp+XrH4
-         GnjsHb7LVY0VWkt3ZLUSZejkvZZAbAu/0zpPj3Zw=
-Received: by pali.im (Postfix)
-        id B22B7E94; Fri, 25 Sep 2020 10:50:56 +0200 (CEST)
-From:   =?UTF-8?q?Pali=20Roh=C3=A1r?= <pali@kernel.org>
-To:     Gregory Clement <gregory.clement@bootlin.com>,
-        Jason Cooper <jason@lakedaemon.net>,
-        Andrew Lunn <andrew@lunn.ch>,
-        Sebastian Hesselbarth <sebastian.hesselbarth@gmail.com>,
-        Rob Herring <robh+dt@kernel.org>,
-        Andre Heider <a.heider@gmail.com>
-Cc:     devicetree@vger.kernel.org, linux-kernel@vger.kernel.org
-Subject: [PATCH] arm64: dts: marvell: espressobin: De-duplicate eMMC definitions
-Date:   Fri, 25 Sep 2020 10:50:43 +0200
-Message-Id: <20200925085043.16389-1-pali@kernel.org>
-X-Mailer: git-send-email 2.20.1
+        id S1727183AbgIYI6E (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Fri, 25 Sep 2020 04:58:04 -0400
+Received: from lindbergh.monkeyblade.net ([23.128.96.19]:59044 "EHLO
+        lindbergh.monkeyblade.net" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
+        with ESMTP id S1726990AbgIYI6E (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Fri, 25 Sep 2020 04:58:04 -0400
+Received: from mail-ej1-x642.google.com (mail-ej1-x642.google.com [IPv6:2a00:1450:4864:20::642])
+        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 29BFBC0613CE
+        for <devicetree@vger.kernel.org>; Fri, 25 Sep 2020 01:58:04 -0700 (PDT)
+Received: by mail-ej1-x642.google.com with SMTP id e23so2621668eja.3
+        for <devicetree@vger.kernel.org>; Fri, 25 Sep 2020 01:58:04 -0700 (PDT)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+        d=baylibre-com.20150623.gappssmtp.com; s=20150623;
+        h=references:user-agent:from:to:cc:subject:in-reply-to:date
+         :message-id:mime-version;
+        bh=eJsaR2S9c0RCFooPTqi2lQWjWsZMnHQ41gMbagMVzj0=;
+        b=v8Y6GM9jKWXqAqyb8w0DpE3RFacTvtkMdVeac5CRaQtMbsw+wR0etpMczPxG5gBtu9
+         RHXxUsXmlRG4uxuJCXthVTPqu1f1YqrWBogZOHjkPTDeWKKSObQAx7RT/D5zRz4+nOIj
+         fRN9ixM4MpZml9LA9kZ0ERsJuRULY++2lfEI9Z7Ung1lZgZ6dUh6cKfScxWMNeKeF083
+         4kl3t2JbvH0mWzmCL6unvpJ1ptbA4NPXc3OnU6dGDD9ATUoQ8KmEyQ0yWcIHvIoWpKhv
+         r+f1IXAgcgGGFH7dM4b9/4l5Y6cS3VDIoZ3jumAF+qjjbmRDz2LntqkChCKW7+vrvnRU
+         y9Yw==
+X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+        d=1e100.net; s=20161025;
+        h=x-gm-message-state:references:user-agent:from:to:cc:subject
+         :in-reply-to:date:message-id:mime-version;
+        bh=eJsaR2S9c0RCFooPTqi2lQWjWsZMnHQ41gMbagMVzj0=;
+        b=JNfhCiOzwYUrh1KAlWZRcsnDqvuiLzPVUVMZ4qlXtBeOT4Cwgpab7qUA3KH629NETl
+         VNvVAv145c90yALVGbyqh8j3GmDwpwhMMGHlOdgh8dWReimHnViS7nvW6s5+CuFeo/Rb
+         0xghDQ8fA7YdM8oX2l7x71NHlqB4fzGBNYgCsd0e3lyPeWSz7Pz43ZIbwXEVNMZnsxBX
+         Ee/XG+8NDyOt7wFdxD1d5okrYp/4T9xY5z7W8toUKfvHRnMMwqL+nuNvccwDn2F2M4Mr
+         7lLlaOlQVjT6ZeQW2IolPH8eBXcrBQ22mhVxkN1HDcwJhf2E26AqdKrf/ghOIihPxuv6
+         Jhxw==
+X-Gm-Message-State: AOAM533uE9aQupsqfvyvGJBqaVCY9VMPUD0H8+4IsjpSD7v88NE13T/H
+        0dAKJckekEHE8VmrLlzKHN447w==
+X-Google-Smtp-Source: ABdhPJz0C9RFuiseiwDk9qPjhkaxw7fXHw7IIbLa0ThW1vPCU2JlQrYGn/aJNpj2EFBaYnhOocYgvg==
+X-Received: by 2002:a17:906:3ca2:: with SMTP id b2mr1736707ejh.460.1601024282799;
+        Fri, 25 Sep 2020 01:58:02 -0700 (PDT)
+Received: from localhost (cag06-3-82-243-161-21.fbx.proxad.net. [82.243.161.21])
+        by smtp.gmail.com with ESMTPSA id cf7sm1330341edb.78.2020.09.25.01.58.01
+        (version=TLS1_3 cipher=TLS_AES_256_GCM_SHA384 bits=256/256);
+        Fri, 25 Sep 2020 01:58:01 -0700 (PDT)
+References: <20200925033017.1790973-1-art@khadas.com> <20200925033017.1790973-9-art@khadas.com>
+User-agent: mu4e 1.3.3; emacs 26.3
+From:   Jerome Brunet <jbrunet@baylibre.com>
+To:     Artem Lapkin <email2tema@gmail.com>, narmstrong@baylibre.com
+Cc:     khilman@baylibre.com, robh+dt@kernel.org,
+        martin.blumenstingl@googlemail.com, devicetree@vger.kernel.org,
+        linux-arm-kernel@lists.infradead.org,
+        linux-amlogic@lists.infradead.org, linux-kernel@vger.kernel.org,
+        art@khadas.com, nick@khadas.com, gouwa@khadas.com
+Subject: Re: [PATCH 8/8] arm64: dts: meson: enable RTC for VIM2 meson-gxm-khadas-vim2
+In-reply-to: <20200925033017.1790973-9-art@khadas.com>
+Date:   Fri, 25 Sep 2020 10:58:00 +0200
+Message-ID: <1j1riq9qsn.fsf@starbuckisacylon.baylibre.com>
 MIME-Version: 1.0
-Content-Type: text/plain; charset=UTF-8
-Content-Transfer-Encoding: 8bit
+Content-Type: text/plain
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-eMMC definitions in files armada-3720-espressobin-emmc.dts and
-armada-3720-espressobin-v7-emmc.dts is same. So move it into common
-armada-3720-espressobin.dtsi file with status "disabled".
 
-This change simplifies eMMC variants of DTS files for Espressobin.
+On Fri 25 Sep 2020 at 05:30, Artem Lapkin <email2tema@gmail.com> wrote:
 
-Signed-off-by: Pali Rohár <pali@kernel.org>
----
-Compiled DTB files armada-3720-espressobin-emmc.dtb and
-armada-3720-espressobin-v7-emmc.dtb are identical as without applying
-this patch.
+> enable RTC for VIM2 meson-gxm-khadas-vim2
+>
+> Signed-off-by: Artem Lapkin <art@khadas.com>
+> ---
+>  arch/arm64/boot/dts/amlogic/meson-gxm-khadas-vim2.dts | 2 +-
+>  1 file changed, 1 insertion(+), 1 deletion(-)
+>
+> diff --git a/arch/arm64/boot/dts/amlogic/meson-gxm-khadas-vim2.dts b/arch/arm64/boot/dts/amlogic/meson-gxm-khadas-vim2.dts
+> index 70343da2811..76b7e34a9a3 100644
+> --- a/arch/arm64/boot/dts/amlogic/meson-gxm-khadas-vim2.dts
+> +++ b/arch/arm64/boot/dts/amlogic/meson-gxm-khadas-vim2.dts
+> @@ -229,7 +229,7 @@ &i2c_B {
+>  
+>  	rtc: rtc@51 {
+>  		/* has to be enabled manually when a battery is connected: */
 
-Files armada-3720-espressobin.dtb and armada-3720-espressobin-v7.dtb
-are slightly different compared to version without this patch.
+If going for this change, this comment should have been removed
 
-Main change is that numering in all "phandle" nodes is shifted and
-"sdhci0" node contains more attributes, but node is disabled.
+> -		status = "disabled";
+> +		status = "okay";
 
+Unless the VIMs are provided with a battery by default, I believe this
+should be kept disabled and only enabled by the bootloader if necessary.
 
-Andre, could you test this change on Espressobin (without eMMC) if
-everything is OK and there is no issue?
+If you think differently, feel free to resubmit with a complete commit
+description and some details as to how this would be an improvement.
 
----
- .../marvell/armada-3720-espressobin-emmc.dts  | 18 --------------
- .../armada-3720-espressobin-v7-emmc.dts       | 18 --------------
- .../dts/marvell/armada-3720-espressobin.dtsi  | 24 +++++++++++++++++++
- 3 files changed, 24 insertions(+), 36 deletions(-)
-
-diff --git a/arch/arm64/boot/dts/marvell/armada-3720-espressobin-emmc.dts b/arch/arm64/boot/dts/marvell/armada-3720-espressobin-emmc.dts
-index ec72a11ed80f..5c4d8f379704 100644
---- a/arch/arm64/boot/dts/marvell/armada-3720-espressobin-emmc.dts
-+++ b/arch/arm64/boot/dts/marvell/armada-3720-espressobin-emmc.dts
-@@ -21,24 +21,6 @@
- 		     "marvell,armada3720", "marvell,armada3710";
- };
- 
--/* U11 */
- &sdhci0 {
--	non-removable;
--	bus-width = <8>;
--	mmc-ddr-1_8v;
--	mmc-hs400-1_8v;
--	marvell,xenon-emmc;
--	marvell,xenon-tun-count = <9>;
--	marvell,pad-type = "fixed-1-8v";
--
--	pinctrl-names = "default";
--	pinctrl-0 = <&mmc_pins>;
- 	status = "okay";
--
--	#address-cells = <1>;
--	#size-cells = <0>;
--	mmccard: mmccard@0 {
--		compatible = "mmc-card";
--		reg = <0>;
--	};
- };
-diff --git a/arch/arm64/boot/dts/marvell/armada-3720-espressobin-v7-emmc.dts b/arch/arm64/boot/dts/marvell/armada-3720-espressobin-v7-emmc.dts
-index 6062a7df7342..4775a7eda481 100644
---- a/arch/arm64/boot/dts/marvell/armada-3720-espressobin-v7-emmc.dts
-+++ b/arch/arm64/boot/dts/marvell/armada-3720-espressobin-v7-emmc.dts
-@@ -36,24 +36,6 @@
- 	label = "wan";
- };
- 
--/* U11 */
- &sdhci0 {
--	non-removable;
--	bus-width = <8>;
--	mmc-ddr-1_8v;
--	mmc-hs400-1_8v;
--	marvell,xenon-emmc;
--	marvell,xenon-tun-count = <9>;
--	marvell,pad-type = "fixed-1-8v";
--
--	pinctrl-names = "default";
--	pinctrl-0 = <&mmc_pins>;
- 	status = "okay";
--
--	#address-cells = <1>;
--	#size-cells = <0>;
--	mmccard: mmccard@0 {
--		compatible = "mmc-card";
--		reg = <0>;
--	};
- };
-diff --git a/arch/arm64/boot/dts/marvell/armada-3720-espressobin.dtsi b/arch/arm64/boot/dts/marvell/armada-3720-espressobin.dtsi
-index 3169a820558f..8a1c678bea5f 100644
---- a/arch/arm64/boot/dts/marvell/armada-3720-espressobin.dtsi
-+++ b/arch/arm64/boot/dts/marvell/armada-3720-espressobin.dtsi
-@@ -58,6 +58,30 @@
- 	phy-names = "sata-phy";
- };
- 
-+/* U11 */
-+&sdhci0 {
-+	/* Main DTS file for Espressobin is without eMMC */
-+	status = "disabled";
-+
-+	non-removable;
-+	bus-width = <8>;
-+	mmc-ddr-1_8v;
-+	mmc-hs400-1_8v;
-+	marvell,xenon-emmc;
-+	marvell,xenon-tun-count = <9>;
-+	marvell,pad-type = "fixed-1-8v";
-+
-+	pinctrl-names = "default";
-+	pinctrl-0 = <&mmc_pins>;
-+
-+	#address-cells = <1>;
-+	#size-cells = <0>;
-+	mmccard: mmccard@0 {
-+		compatible = "mmc-card";
-+		reg = <0>;
-+	};
-+};
-+
- /* J1 */
- &sdhci1 {
- 	wp-inverted;
--- 
-2.20.1
+>  		compatible = "haoyu,hym8563";
+>  		reg = <0x51>;
+>  		#clock-cells = <0>;
 
