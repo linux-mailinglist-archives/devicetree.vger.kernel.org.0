@@ -2,234 +2,181 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from vger.kernel.org (vger.kernel.org [23.128.96.18])
-	by mail.lfdr.de (Postfix) with ESMTP id 673322781C1
-	for <lists+devicetree@lfdr.de>; Fri, 25 Sep 2020 09:37:30 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTP id EB9DE2781C7
+	for <lists+devicetree@lfdr.de>; Fri, 25 Sep 2020 09:39:25 +0200 (CEST)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S1727151AbgIYHh3 (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Fri, 25 Sep 2020 03:37:29 -0400
-Received: from mail-dm6nam08on2079.outbound.protection.outlook.com ([40.107.102.79]:63200
-        "EHLO NAM04-DM6-obe.outbound.protection.outlook.com"
-        rhost-flags-OK-OK-OK-FAIL) by vger.kernel.org with ESMTP
-        id S1727044AbgIYHh3 (ORCPT <rfc822;devicetree@vger.kernel.org>);
-        Fri, 25 Sep 2020 03:37:29 -0400
-ARC-Seal: i=1; a=rsa-sha256; s=arcselector9901; d=microsoft.com; cv=none;
- b=D0ifLqVrQoMK1AXeEpso4B3FLhXWQtTz7Z1/WXbHGWMyPfMpGeXUe/adD2yVimxoJAXM9pjNEPamHlbEF4WBhK5kyy+/vm0tBuvH9iuWN+AKOnIgaykE5qAN76TGnAgIFMSVUcofx7Tw7P9ofEHy/2BHMfBWSmgB7agLnyla0XflNpdncy0HcyJUDf1p1EXKPutEikCt/p0oobXa+WtAiSkHnTiQhO+rs+5jHW8TTgVWZLUDBaiUrTHyall/b9fMfJUbTBc8jdKHt3BPzI5LGy4sIL5JW7OSqKD/aCIzOJdSE7paVKBXvxdF2mnEmLIb69+e6umEE39177HLS6xUjw==
-ARC-Message-Signature: i=1; a=rsa-sha256; c=relaxed/relaxed; d=microsoft.com;
- s=arcselector9901;
- h=From:Date:Subject:Message-ID:Content-Type:MIME-Version:X-MS-Exchange-SenderADCheck;
- bh=UrlLWRJapt+hoDD+INRaLn1inRUzTkaQnswxmSbeQ0Q=;
- b=Sx+Nd7eNHChyThnDNE7v4YQgykyplJ0ag7dskG84V1Qo911yzP7ByO/jw6rPOid5NBj3D0Lv4WPAKzebtmWo9XTmc87am8Au9rU7AYa8jh0Lmq2FAQBmxVs5RcmX74cHsfBHHSqWer7AYQWyKxtC883cJsVlKVAGOrjH6PunBWV3vBp3k6Uo4fvYUivKRZjtXKwNZ6SNK+sneXEnJE8DwtwJY7o1E54zA9W4cBMWjGCp7ZtqlSf0+YV2viQ4NNSF9WBEQjGO1ZPBCrhWHWi3TtZzp8afXNe3kJjjLHVcDdUW0PhQ73HnE48giWyS3lUXrVQU3EEpjdiEy0jETK5gbg==
-ARC-Authentication-Results: i=1; mx.microsoft.com 1; spf=pass
- smtp.mailfrom=xilinx.com; dmarc=pass action=none header.from=xilinx.com;
- dkim=pass header.d=xilinx.com; arc=none
+        id S1727286AbgIYHjZ (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Fri, 25 Sep 2020 03:39:25 -0400
+Received: from lindbergh.monkeyblade.net ([23.128.96.19]:46880 "EHLO
+        lindbergh.monkeyblade.net" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
+        with ESMTP id S1727132AbgIYHjZ (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Fri, 25 Sep 2020 03:39:25 -0400
+Received: from mail-wr1-x443.google.com (mail-wr1-x443.google.com [IPv6:2a00:1450:4864:20::443])
+        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id B24EDC0613CE
+        for <devicetree@vger.kernel.org>; Fri, 25 Sep 2020 00:39:24 -0700 (PDT)
+Received: by mail-wr1-x443.google.com with SMTP id z1so2460917wrt.3
+        for <devicetree@vger.kernel.org>; Fri, 25 Sep 2020 00:39:24 -0700 (PDT)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
- d=xilinx.onmicrosoft.com; s=selector2-xilinx-onmicrosoft-com;
- h=From:Date:Subject:Message-ID:Content-Type:MIME-Version:X-MS-Exchange-SenderADCheck;
- bh=UrlLWRJapt+hoDD+INRaLn1inRUzTkaQnswxmSbeQ0Q=;
- b=DzBgbYmR9EnNKmGlFo9NMY4U+OwwFqW0t6djcuLm9P7g/mS9mDymVRvqYCWeTgVhX2qEmKnbryLNnqWZuM6UrvH5a2A0QvAue0yHPV8GRYnNCbyc03WSLZy0bAPBsHAVbCOhq0yAlMTYB5QNABPT0/rMuYLmDSbw5gBtdcX+ZGs=
-Received: from BYAPR02MB5896.namprd02.prod.outlook.com (2603:10b6:a03:122::10)
- by BYAPR02MB5781.namprd02.prod.outlook.com (2603:10b6:a03:121::25) with
- Microsoft SMTP Server (version=TLS1_2,
- cipher=TLS_ECDHE_RSA_WITH_AES_256_GCM_SHA384) id 15.20.3412.20; Fri, 25 Sep
- 2020 07:37:23 +0000
-Received: from BYAPR02MB5896.namprd02.prod.outlook.com
- ([fe80::84b5:71be:1584:f314]) by BYAPR02MB5896.namprd02.prod.outlook.com
- ([fe80::84b5:71be:1584:f314%7]) with mapi id 15.20.3391.024; Fri, 25 Sep 2020
- 07:37:23 +0000
-From:   Manish Narani <MNARANI@xilinx.com>
-To:     Felipe Balbi <balbi@kernel.org>, Rob Herring <robh@kernel.org>
-CC:     "gregkh@linuxfoundation.org" <gregkh@linuxfoundation.org>,
-        Michal Simek <michals@xilinx.com>,
-        "p.zabel@pengutronix.de" <p.zabel@pengutronix.de>,
-        "linux-usb@vger.kernel.org" <linux-usb@vger.kernel.org>,
-        "devicetree@vger.kernel.org" <devicetree@vger.kernel.org>,
-        "linux-arm-kernel@lists.infradead.org" 
-        <linux-arm-kernel@lists.infradead.org>,
-        "linux-kernel@vger.kernel.org" <linux-kernel@vger.kernel.org>,
-        git <git@xilinx.com>
-Subject: RE: [PATCH v2 1/2] dt-bindings: usb: dwc3-xilinx: Add documentation
- for Versal DWC3 Controller
-Thread-Topic: [PATCH v2 1/2] dt-bindings: usb: dwc3-xilinx: Add documentation
- for Versal DWC3 Controller
-Thread-Index: AQHWhty7FzdXEfNw1kSmR8l21jgZnKl1JowAgAJRB4CAAXjVwIAAGC+AgAAB1dA=
-Date:   Fri, 25 Sep 2020 07:37:23 +0000
-Message-ID: <BYAPR02MB58965128B42C13113227A0E3C1360@BYAPR02MB5896.namprd02.prod.outlook.com>
-References: <1599678185-119412-1-git-send-email-manish.narani@xilinx.com>
- <1599678185-119412-2-git-send-email-manish.narani@xilinx.com>
- <20200922195410.GA3122345@bogus> <87wo0jejae.fsf@kernel.org>
- <BYAPR02MB5896E374297AF46A63CDAD30C1360@BYAPR02MB5896.namprd02.prod.outlook.com>
- <87h7rmcou8.fsf@kernel.org>
-In-Reply-To: <87h7rmcou8.fsf@kernel.org>
-Accept-Language: en-IN, en-US
-Content-Language: en-US
-X-MS-Has-Attach: 
-X-Auto-Response-Suppress: DR, RN, NRN, OOF, AutoReply
-X-MS-TNEF-Correlator: 
-authentication-results: kernel.org; dkim=none (message not signed)
- header.d=none;kernel.org; dmarc=none action=none header.from=xilinx.com;
-x-ms-exchange-messagesentrepresentingtype: 1
-x-originating-ip: [183.83.139.37]
-x-ms-publictraffictype: Email
-x-ms-office365-filtering-ht: Tenant
-x-ms-office365-filtering-correlation-id: bab7de08-56d1-4413-59dd-08d86125d7e4
-x-ms-traffictypediagnostic: BYAPR02MB5781:
-x-ld-processed: 657af505-d5df-48d0-8300-c31994686c5c,ExtAddr
-x-ms-exchange-transport-forked: True
-x-microsoft-antispam-prvs: <BYAPR02MB57811CDD4B53E54FB87B4BDCC1360@BYAPR02MB5781.namprd02.prod.outlook.com>
-x-ms-oob-tlc-oobclassifiers: OLM:8882;
-x-ms-exchange-senderadcheck: 1
-x-microsoft-antispam: BCL:0;
-x-microsoft-antispam-message-info: N4pemEyQYE30sYivXoaF8x8rUr+cPVYZ6D2byP3Dgc7RlBus+5uP9JpNpbSQKSMAUu4JERJ5sTuLVyunOmM8aAK0lRN8zH6yvSk0S5KTkh9ogZUFFOya8rw6ESkqaYLQ0jjQHO5oQe2hY5wX3yxm6xdN/KoA4xcuuPu5pPPGDKbBtCrwD1Rb9wmuK/1FVIUTqCd3lPYJLqRWyZQAfdaF7CZpBQ+NDdZ9cZmbsjZ9u9ZqpH4CMjMeO+Yqz8gdOHglrjDJXpJ5m1z+dxBrsT2B0z3O9bUf1hwRZOEGDVnAuQKYO/4qnqpKvRZ6TcsDFNq17B8EbBgwATkMRVmIX5Xyag==
-x-forefront-antispam-report: CIP:255.255.255.255;CTRY:;LANG:en;SCL:1;SRV:;IPV:NLI;SFV:NSPM;H:BYAPR02MB5896.namprd02.prod.outlook.com;PTR:;CAT:NONE;SFS:(346002)(376002)(39860400002)(366004)(136003)(396003)(71200400001)(6506007)(110136005)(316002)(5660300002)(66946007)(4326008)(66446008)(52536014)(33656002)(44832011)(8936002)(107886003)(55016002)(66556008)(8676002)(2906002)(7416002)(66476007)(64756008)(186003)(7696005)(76116006)(9686003)(54906003)(83380400001)(26005)(53546011)(478600001);DIR:OUT;SFP:1101;
-x-ms-exchange-antispam-messagedata: C+IRdNw4OwTSdQ4bn40VavBIP0uXl9j5n0dtEX95iz7LjUSKqjBOZoqH9dxMMa0Q3Cigu3NweZvVNaccCE1i5pDq/lNJ6w19di8littzrXgRknN0Vj5dXQNbifxYfzIxMEPELimIsLbnFm7i+7xDFR3mCyMqxHUNEHIPdTeVy6t0Y+CdoGwDgIGTA2DDgOHd23sr6ay/Mdg/PGZB0ly9xj8h68CX+RLSqi5mlDlqquA7Q69VT1JnpV5Z2VlQOs8ZP2T2ZeLlATJoqf6YrFGNPiSPhD8SoI6Jcbl+W5Cyg6zC2Ut2LFNaWKTLYYLu79YLsE/CgJcmMoUG+hejHTRa+/UjlVJpK75mwhIYZxocCNwsZeLsRwJrRQX2DLF5BfTgRUOLUig1D0ZvjSt+UEz+lc/45KFDdXim11umTcaoKA0mGtPUMbCUK5lzPSHjxhXwvjHjCGYhEY1ucQ36kxGIpzybUpkNdEDoDQTbJpfyeWCm/q75uSE7nDstAKfXLlZvrGsy874WRRQIpvZCqu+xdtCMFQelseL9CLk5HW6VO9D8xF8w5jHWk7P3+rOQerpGw1NZsr32Q+P6141Y9hbHoNP611tZ0yjgxq9fNvipddMwAkgJMpmCEJhIv9ebMLIkcz+NlMiBFbY/4DmJYkNGiA==
-Content-Type: text/plain; charset="us-ascii"
-Content-Transfer-Encoding: quoted-printable
+        d=baylibre-com.20150623.gappssmtp.com; s=20150623;
+        h=subject:to:cc:references:from:autocrypt:organization:message-id
+         :date:user-agent:mime-version:in-reply-to:content-language
+         :content-transfer-encoding;
+        bh=YQr95Np1uzy0DGbQpIK9dPDSJg4vtBHqeTzHdKdJizM=;
+        b=qASRip7d/lMzgt6xJbw5o1Cwke2eYquvHpgeA8VP9iyLFZj8TvAzKCES5YJlGEMbBK
+         GCF28FCaNv1oy1pfzwY/CSokrvXeWw/RQgmm/yfhRG8OF8yUhWMc1aSLYoScpVwNT08J
+         j/cMrITlpsf6UwmV+UtRneEjt+7FxY2kqQUkCDAmG5y8rHVzZXUFE3H93mpvXG8briQd
+         SfFg1cODxsBhxAp+is0g5LAv0tpvSymNOfcMyMfqeBmj2MeyXtEK7l9CLtvygjgMnxHf
+         pp66bpGkfk6zFGQ2jfu53VcXK51KxWShQdkekAjk5RvL7JqS1s5tfmxVJPqptyeBOMpy
+         llXQ==
+X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+        d=1e100.net; s=20161025;
+        h=x-gm-message-state:subject:to:cc:references:from:autocrypt
+         :organization:message-id:date:user-agent:mime-version:in-reply-to
+         :content-language:content-transfer-encoding;
+        bh=YQr95Np1uzy0DGbQpIK9dPDSJg4vtBHqeTzHdKdJizM=;
+        b=XY/ayHSi+Xf0zETdmzcmvAbmngh2atlKc2PSS52+zzDzDaShAXdOqp1pMhLtn4gmfo
+         hogYhnd33r9c/CjajhX9lyt29D9X4VH0rlb4OSv/Q8pTgg9PbfEZGM4oBVxFI/n5BBod
+         KMz3qokZZsaxF4cLyqHFnhC1nJsmYA/AJOqB0ZpBx76XnuQkuWPgPJR9H8dajHcFlgBj
+         Ryjdquz4Eus49rT7Fedx2WGa39lwU4CrwYRJSZ7t+cMiZo7A9tb8yUZMFJUHI8xI1e2H
+         NkqZ+OfQmHywyWqXEySFfon0DaB/GGNmsM7H+1iTmtyclZK/dzOio2B+ag73h0FZNyhU
+         b8lA==
+X-Gm-Message-State: AOAM531rRMz/yAdud/JN2QxQXW9jjmg6Tp/wKGhHwHFdBChW64BKuA5K
+        RBCZFac125aB3+bnRH0EuzUBdw==
+X-Google-Smtp-Source: ABdhPJzqvvbNeKT6MV2UmoitDPjX6y8AjBZXjnmDQGzD1rEGTZEGck5ICP2lHhAjlqqhaDU6Z0LJyw==
+X-Received: by 2002:adf:f190:: with SMTP id h16mr3011195wro.202.1601019563268;
+        Fri, 25 Sep 2020 00:39:23 -0700 (PDT)
+Received: from ?IPv6:2a01:e35:2ec0:82b0:28ac:1772:9398:891a? ([2a01:e35:2ec0:82b0:28ac:1772:9398:891a])
+        by smtp.gmail.com with ESMTPSA id u2sm2064209wre.7.2020.09.25.00.39.21
+        (version=TLS1_3 cipher=TLS_AES_128_GCM_SHA256 bits=128/128);
+        Fri, 25 Sep 2020 00:39:22 -0700 (PDT)
+Subject: Re: [PATCH 3/8] arm64: dts: meson: update leds node on Khadas
+ VIM3/VIM3L board meson-khadas-vim3
+To:     Artem Lapkin <email2tema@gmail.com>
+Cc:     khilman@baylibre.com, robh+dt@kernel.org, jbrunet@baylibre.com,
+        martin.blumenstingl@googlemail.com, devicetree@vger.kernel.org,
+        linux-arm-kernel@lists.infradead.org,
+        linux-amlogic@lists.infradead.org, linux-kernel@vger.kernel.org,
+        art@khadas.com, nick@khadas.com, gouwa@khadas.com
+References: <20200925033017.1790973-1-art@khadas.com>
+ <20200925033017.1790973-4-art@khadas.com>
+From:   Neil Armstrong <narmstrong@baylibre.com>
+Autocrypt: addr=narmstrong@baylibre.com; prefer-encrypt=mutual; keydata=
+ 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
+ BSwxi7g3Mu7u5kUByanqHyA=
+Organization: Baylibre
+Message-ID: <0467e912-b19e-5389-388b-99b6316d24d8@baylibre.com>
+Date:   Fri, 25 Sep 2020 09:39:21 +0200
+User-Agent: Mozilla/5.0 (X11; Linux x86_64; rv:68.0) Gecko/20100101
+ Thunderbird/68.10.0
 MIME-Version: 1.0
-X-OriginatorOrg: xilinx.com
-X-MS-Exchange-CrossTenant-AuthAs: Internal
-X-MS-Exchange-CrossTenant-AuthSource: BYAPR02MB5896.namprd02.prod.outlook.com
-X-MS-Exchange-CrossTenant-Network-Message-Id: bab7de08-56d1-4413-59dd-08d86125d7e4
-X-MS-Exchange-CrossTenant-originalarrivaltime: 25 Sep 2020 07:37:23.5166
- (UTC)
-X-MS-Exchange-CrossTenant-fromentityheader: Hosted
-X-MS-Exchange-CrossTenant-id: 657af505-d5df-48d0-8300-c31994686c5c
-X-MS-Exchange-CrossTenant-mailboxtype: HOSTED
-X-MS-Exchange-CrossTenant-userprincipalname: +VxrYTTzby9iO7MJQU4e3Hf4Ac6En/J53sFSLE7yV2uMB6y1qzapHUt62HP1ZGBkwGkr3I1588QVgqo9p9CxuQ==
-X-MS-Exchange-Transport-CrossTenantHeadersStamped: BYAPR02MB5781
+In-Reply-To: <20200925033017.1790973-4-art@khadas.com>
+Content-Type: text/plain; charset=utf-8
+Content-Language: en-US
+Content-Transfer-Encoding: 7bit
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-Hi Felipe,
+Hi,
 
-> -----Original Message-----
-> From: Felipe Balbi <balbi@kernel.org>
-> Sent: Friday, September 25, 2020 12:42 PM
-> To: Manish Narani <MNARANI@xilinx.com>; Rob Herring <robh@kernel.org>
-> Cc: gregkh@linuxfoundation.org; Michal Simek <michals@xilinx.com>;
-> p.zabel@pengutronix.de; linux-usb@vger.kernel.org;
-> devicetree@vger.kernel.org; linux-arm-kernel@lists.infradead.org; linux-
-> kernel@vger.kernel.org; git <git@xilinx.com>
-> Subject: RE: [PATCH v2 1/2] dt-bindings: usb: dwc3-xilinx: Add
-> documentation for Versal DWC3 Controller
->=20
->=20
-> Hi,
->=20
-> Manish Narani <MNARANI@xilinx.com> writes:
-> > Hi Rob/Felipe,
-> >
-> > Thanks for the review.
-> >
-> >> -----Original Message-----
-> >> From: Felipe Balbi <balbi@kernel.org>
-> >> Sent: Thursday, September 24, 2020 12:47 PM
-> >> To: Rob Herring <robh@kernel.org>; Manish Narani
-> <MNARANI@xilinx.com>
-> >> Cc: gregkh@linuxfoundation.org; Michal Simek <michals@xilinx.com>;
-> >> p.zabel@pengutronix.de; linux-usb@vger.kernel.org;
-> >> devicetree@vger.kernel.org; linux-arm-kernel@lists.infradead.org; linu=
-x-
-> >> kernel@vger.kernel.org; git <git@xilinx.com>
-> >> Subject: Re: [PATCH v2 1/2] dt-bindings: usb: dwc3-xilinx: Add
-> >> documentation for Versal DWC3 Controller
-> >>
-> >> Rob Herring <robh@kernel.org> writes:
-> >>
-> >> > On Thu, Sep 10, 2020 at 12:33:04AM +0530, Manish Narani wrote:
-> >> >> Add documentation for Versal DWC3 controller. Add required property
-> >> >> 'reg' for the same. Also add optional properties for snps,dwc3.
-> >> >>
-> >> >> Signed-off-by: Manish Narani <manish.narani@xilinx.com>
-> >> >> ---
-> >> >>  .../devicetree/bindings/usb/dwc3-xilinx.txt   | 20 +++++++++++++++=
-++-
-> -
-> >> >>  1 file changed, 18 insertions(+), 2 deletions(-)
-> >> >>
-> >> >> diff --git a/Documentation/devicetree/bindings/usb/dwc3-xilinx.txt
-> >> b/Documentation/devicetree/bindings/usb/dwc3-xilinx.txt
-> >> >> index 4aae5b2cef56..219b5780dbee 100644
-> >> >> --- a/Documentation/devicetree/bindings/usb/dwc3-xilinx.txt
-> >> >> +++ b/Documentation/devicetree/bindings/usb/dwc3-xilinx.txt
-> >> >> @@ -1,7 +1,8 @@
-> >> >>  Xilinx SuperSpeed DWC3 USB SoC controller
-> >> >>
-> >> >>  Required properties:
-> >> >> -- compatible:	Should contain "xlnx,zynqmp-dwc3"
-> >> >> +- compatible:	May contain "xlnx,zynqmp-dwc3" or "xlnx,versal-
-> >> dwc3"
-> >> >> +- reg:		Base address and length of the register control block
-> >> >>  - clocks:	A list of phandles for the clocks listed in clock-names
-> >> >>  - clock-names:	Should contain the following:
-> >> >>    "bus_clk"	 Master/Core clock, have to be >=3D 125 MHz for SS
-> >> >> @@ -13,12 +14,24 @@ Required child node:
-> >> >>  A child node must exist to represent the core DWC3 IP block. The
-> name of
-> >> >>  the node is not important. The content of the node is defined in
-> dwc3.txt.
-> >> >>
-> >> >> +Optional properties for snps,dwc3:
-> >> >> +- dma-coherent:	Enable this flag if CCI is enabled in design. Addi=
-ng this
-> >> >> +		flag configures Global SoC bus Configuration Register and
-> >> >> +		Xilinx USB 3.0 IP - USB coherency register to enable CCI.
-> >> >> +- snps,enable-hibernation: Add this flag to enable hibernation sup=
-port
-> >> for
-> >> >> +		peripheral mode.
-> >> >
-> >> > This belongs in the DWC3 binding. It also implies that hibernation i=
-s
-> >> > not supported by any other DWC3 based platform. Can't this be implie=
-d
-> by
-> >> > the compatible string (in the parent)?
-> >
-> > Rob, We can move this to dwc3 bindings. If Felipe is okay with below
-> response.
-> >
-> >>
-> >> hibernation support is detectable in runtime, and we've been using tha=
-t.
-> >
-> > Felipe, Yes, this flag is to control the enable/disable hibernation.
-> > I did not see has_hibernation flag being set anywhere in the driver.
-> > Can we control the hibernation enable/disable through DT entry? See
-> below:
-> > -----
-> > diff --git a/drivers/usb/dwc3/core.c b/drivers/usb/dwc3/core.c
-> > index 2eb34c8b4065..1baf44d8d566 100644
-> > --- a/drivers/usb/dwc3/core.c
-> > +++ b/drivers/usb/dwc3/core.c
-> > @@ -769,8 +769,15 @@ static void dwc3_core_setup_global_control(struct
-> dwc3 *dwc)
-> >                         reg &=3D ~DWC3_GCTL_DSBLCLKGTNG;
-> >                 break;
-> >         case DWC3_GHWPARAMS1_EN_PWROPT_HIB:
-> > -               /* enable hibernation here */
-> > -               dwc->nr_scratch =3D
-> DWC3_GHWPARAMS4_HIBER_SCRATCHBUFS(hwparams4);
-> > +               if (!device_property_read_bool(dwc->dev,
-> > +                                              "snps,enable-hibernation=
-")) {
-> > +                       dev_dbg(dwc->dev, "Hibernation not enabled\n");
-> > +               } else {
-> > +                       /* enable hibernation here */
-> > +                       dwc->nr_scratch =3D
-> > +
-> DWC3_GHWPARAMS4_HIBER_SCRATCHBUFS(hwparams4);
-> > +                       dwc->has_hibernation =3D 1;
-> > +               }
->=20
-> I left it off because I didn't have HW to validate. Don't add a new
-> binding for this. Set has_hibernation to true and make sure it
-> works. Then send me a patch that sets has_hibernation to true whenever
-> DWC3_GHWPARAMS1_EN_PWROPT_HIB is valid.
+On 25/09/2020 05:30, Artem Lapkin wrote:
+> add aliases names led_white and led_red for white and red leds
 
-OK Felipe. I will remove this property from binding. We have validated
-Device-mode hibernation on Xilinx ZynqMP and Versal platform. I am
-planning to send a separate patch series for hibernation after this.
+Sorry, can you explain why you need these ? They should not be used by the led framework.
 
-Thanks,
-Manish
+> 
+> Signed-off-by: Artem Lapkin <art@khadas.com>
+> ---
+>  arch/arm64/boot/dts/amlogic/meson-khadas-vim3.dtsi | 6 ++++--
+>  1 file changed, 4 insertions(+), 2 deletions(-)
+> 
+> diff --git a/arch/arm64/boot/dts/amlogic/meson-khadas-vim3.dtsi b/arch/arm64/boot/dts/amlogic/meson-khadas-vim3.dtsi
+> index 73783692e30..7e137399257 100644
+> --- a/arch/arm64/boot/dts/amlogic/meson-khadas-vim3.dtsi
+> +++ b/arch/arm64/boot/dts/amlogic/meson-khadas-vim3.dtsi
+> @@ -12,6 +12,8 @@ / {
+>  	aliases {
+>  		serial0 = &uart_AO;
+>  		ethernet0 = &ethmac;
+> +		led_red = &led_red;
+> +		led_white = &led_white;
+
+These aliases are not standard aliases.
+
+>  	};
+>  
+>  	chosen {
+> @@ -39,13 +41,13 @@ button-function {
+>  	leds {
+>  		compatible = "gpio-leds";
+>  
+> -		led-white {
+> +		led_white: led-white {
+>  			label = "vim3:white:sys";
+>  			gpios = <&gpio_ao GPIOAO_4 GPIO_ACTIVE_HIGH>;
+>  			linux,default-trigger = "heartbeat";
+>  		};
+>  
+> -		led-red {
+> +		led_red: led-red {
+>  			label = "vim3:red";
+>  			gpios = <&gpio_expander 5 GPIO_ACTIVE_HIGH>;
+>  		};
+> 
+
+Instead you should convert these to the new function/color attributes are described in:
+Documentation/devicetree/bindings/leds/common.yaml
+
+{
+	function = LED_FUNCTION_STATUS;
+	color = <LED_COLOR_ID_WHITE>;
+}
+
+Neil
+
