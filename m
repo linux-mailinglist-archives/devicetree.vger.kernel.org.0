@@ -2,100 +2,80 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from vger.kernel.org (vger.kernel.org [23.128.96.18])
-	by mail.lfdr.de (Postfix) with ESMTP id A714A278366
-	for <lists+devicetree@lfdr.de>; Fri, 25 Sep 2020 10:59:28 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTP id 756B0278306
+	for <lists+devicetree@lfdr.de>; Fri, 25 Sep 2020 10:43:13 +0200 (CEST)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S1727648AbgIYI72 (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Fri, 25 Sep 2020 04:59:28 -0400
-Received: from mga17.intel.com ([192.55.52.151]:24563 "EHLO mga17.intel.com"
+        id S1727110AbgIYInM (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Fri, 25 Sep 2020 04:43:12 -0400
+Received: from mail.kernel.org ([198.145.29.99]:40864 "EHLO mail.kernel.org"
         rhost-flags-OK-OK-OK-OK) by vger.kernel.org with ESMTP
-        id S1727044AbgIYI72 (ORCPT <rfc822;devicetree@vger.kernel.org>);
-        Fri, 25 Sep 2020 04:59:28 -0400
-IronPort-SDR: T+NPBjClqOVJKeJI8IfG3rf38lPNB8rUzg2/j12wvVcgZtuFGvU/+81s5/jlYMgBs6QfX1Rugk
- RHnYXDi4B21A==
-X-IronPort-AV: E=McAfee;i="6000,8403,9754"; a="141503838"
-X-IronPort-AV: E=Sophos;i="5.77,301,1596524400"; 
-   d="scan'208";a="141503838"
-X-Amp-Result: SKIPPED(no attachment in message)
-X-Amp-File-Uploaded: False
-Received: from orsmga008.jf.intel.com ([10.7.209.65])
-  by fmsmga107.fm.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384; 25 Sep 2020 01:59:27 -0700
-IronPort-SDR: eJGqry7RCkHfSNAQd5teD3D9rGoqQNy00gZxxnehLb1Fmq5cnE1dUIoJVd5FKYFeuF2/D9aBo8
- qiqPRtfGG8aw==
-X-ExtLoop1: 1
-X-IronPort-AV: E=Sophos;i="5.77,301,1596524400"; 
-   d="scan'208";a="339420109"
-Received: from smile.fi.intel.com (HELO smile) ([10.237.68.40])
-  by orsmga008.jf.intel.com with ESMTP; 25 Sep 2020 01:59:24 -0700
-Received: from andy by smile with local (Exim 4.94)
-        (envelope-from <andriy.shevchenko@intel.com>)
-        id 1kLjGY-001sH3-2H; Fri, 25 Sep 2020 11:39:42 +0300
-Date:   Fri, 25 Sep 2020 11:39:42 +0300
-From:   Andy Shevchenko <andriy.shevchenko@intel.com>
-To:     Uwe =?iso-8859-1?Q?Kleine-K=F6nig?= 
-        <u.kleine-koenig@pengutronix.de>
-Cc:     Rahul Tanwar <rahul.tanwar@linux.intel.com>,
-        linux-pwm@vger.kernel.org, lee.jones@linaro.org,
-        thierry.reding@gmail.com, p.zabel@pengutronix.de,
-        robh+dt@kernel.org, linux-kernel@vger.kernel.org,
-        devicetree@vger.kernel.org, songjun.Wu@intel.com,
-        cheol.yong.kim@intel.com, qi-ming.wu@intel.com,
-        rahul.tanwar.linux@gmail.com, rtanwar@maxlinear.com
-Subject: Re: [PATCH v13 2/2] Add PWM fan controller driver for LGM SoC
-Message-ID: <20200925083942.GW3956970@smile.fi.intel.com>
-References: <cover.1600158087.git.rahul.tanwar@linux.intel.com>
- <befa655d8beb326fc8aa405a25a8b3e62b7e6a4a.1600158087.git.rahul.tanwar@linux.intel.com>
- <20200924065534.e2anwghhtysv63e7@pengutronix.de>
- <20200924132334.GT3956970@smile.fi.intel.com>
- <20200924141659.4wov7w2l2bllpre4@pengutronix.de>
+        id S1727044AbgIYInM (ORCPT <rfc822;devicetree@vger.kernel.org>);
+        Fri, 25 Sep 2020 04:43:12 -0400
+Received: from pali.im (pali.im [31.31.79.79])
+        (using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
+        (No client certificate requested)
+        by mail.kernel.org (Postfix) with ESMTPSA id 0542E2086A;
+        Fri, 25 Sep 2020 08:43:12 +0000 (UTC)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=kernel.org;
+        s=default; t=1601023392;
+        bh=aC3eStXjP1gG6VDOsZLRLl3ZQH0RNpWydh+LkmbCjEE=;
+        h=From:To:Cc:Subject:Date:From;
+        b=ZCpD658bV/kN+mu/eWNzDQ43ObztpCZUmJrNQEc3IoHsEm0KQcPWRZQwtoEDX5APn
+         /WphcpLXmG1QKhcrfOaEQcNuMSWS/4Q5u9kZaxVIyIG2LGzISpqa5bqX47F7T+tbBE
+         ec23ULMPyIFLzEAoFwzER7fassBDzgXJ+9InlUkw=
+Received: by pali.im (Postfix)
+        id 690D8E94; Fri, 25 Sep 2020 10:43:09 +0200 (CEST)
+From:   =?UTF-8?q?Pali=20Roh=C3=A1r?= <pali@kernel.org>
+To:     Gregory Clement <gregory.clement@bootlin.com>,
+        Jason Cooper <jason@lakedaemon.net>,
+        Andrew Lunn <andrew@lunn.ch>,
+        Sebastian Hesselbarth <sebastian.hesselbarth@gmail.com>,
+        Rob Herring <robh+dt@kernel.org>,
+        Andre Heider <a.heider@gmail.com>
+Cc:     devicetree@vger.kernel.org, linux-kernel@vger.kernel.org
+Subject: [PATCH] arm64: dts: marvell: espressobin: Update link to V7 schematic
+Date:   Fri, 25 Sep 2020 10:43:06 +0200
+Message-Id: <20200925084306.16309-1-pali@kernel.org>
+X-Mailer: git-send-email 2.20.1
 MIME-Version: 1.0
-Content-Type: text/plain; charset=iso-8859-1
-Content-Disposition: inline
+Content-Type: text/plain; charset=UTF-8
 Content-Transfer-Encoding: 8bit
-In-Reply-To: <20200924141659.4wov7w2l2bllpre4@pengutronix.de>
-Organization: Intel Finland Oy - BIC 0357606-4 - Westendinkatu 7, 02160 Espoo
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-On Thu, Sep 24, 2020 at 04:16:59PM +0200, Uwe Kleine-König wrote:
-> On Thu, Sep 24, 2020 at 04:23:34PM +0300, Andy Shevchenko wrote:
-> > On Thu, Sep 24, 2020 at 08:55:34AM +0200, Uwe Kleine-König wrote:
+Signed-off-by: Pali RohÃ¡r <pali@kernel.org>
+---
+ arch/arm64/boot/dts/marvell/armada-3720-espressobin-v7-emmc.dts | 2 +-
+ arch/arm64/boot/dts/marvell/armada-3720-espressobin-v7.dts      | 2 +-
+ 2 files changed, 2 insertions(+), 2 deletions(-)
 
-...
-
-> > True. And above dev_err_probe() is not needed.
-> 
-> You argue that dev_err_probe() gives no benefit as
-> lgm_reset_control_deassert won't return -EPROBE_DEFER, right?
-> 
-> Still I consider it a useful function because
-> 
->  a) I (as an author or as a reviewer) don't need to think if the
->     failing function might return -EPROBE_DEFER now or in the future.
->     dev_err_probe does the right thing even for functions that don't
->     return -EPROBE_DEFER.
-> 
->  b) With dev_err_probe() I can accomplish things in a single line that
->     need two lines when open coding it.
-> 
->  c) dev_err_probe() emits the symbolic error name without having to
->     resort to %pe + ERR_PTR.
-> 
->  d) Using dev_err_probe() for all error paths gives a consistency that I
->     like with a maintainer's hat on.
-> 
-> So I still want to request using dev_err_probe() in all error paths.
-
-As a maintainer it is your choice. I really would like to see more consensus
-among maintainers, some are insisting of what I said, some, like you, on the
-opposite, some hate that API and some simply don't care.
-
-And on top of that I saw already use of API without taking returned value into
-account.
-
+diff --git a/arch/arm64/boot/dts/marvell/armada-3720-espressobin-v7-emmc.dts b/arch/arm64/boot/dts/marvell/armada-3720-espressobin-v7-emmc.dts
+index 61d49d6a2a2a..6062a7df7342 100644
+--- a/arch/arm64/boot/dts/marvell/armada-3720-espressobin-v7-emmc.dts
++++ b/arch/arm64/boot/dts/marvell/armada-3720-espressobin-v7-emmc.dts
+@@ -8,7 +8,7 @@
+  *
+  */
+ /*
+- * Schematic available at http://wiki.espressobin.net/tiki-download_file.php?fileId=200
++ * Schematic available at http://espressobin.net/wp-content/uploads/2020/05/ESPRESSObin_V7-0_Schematic.pdf
+  */
+ 
+ /dts-v1/;
+diff --git a/arch/arm64/boot/dts/marvell/armada-3720-espressobin-v7.dts b/arch/arm64/boot/dts/marvell/armada-3720-espressobin-v7.dts
+index 44dbe9a21cc7..c47a93978386 100644
+--- a/arch/arm64/boot/dts/marvell/armada-3720-espressobin-v7.dts
++++ b/arch/arm64/boot/dts/marvell/armada-3720-espressobin-v7.dts
+@@ -8,7 +8,7 @@
+  *
+  */
+ /*
+- * Schematic available at http://wiki.espressobin.net/tiki-download_file.php?fileId=200
++ * Schematic available at http://espressobin.net/wp-content/uploads/2020/05/ESPRESSObin_V7-0_Schematic.pdf
+  */
+ 
+ /dts-v1/;
 -- 
-With Best Regards,
-Andy Shevchenko
-
+2.20.1
 
