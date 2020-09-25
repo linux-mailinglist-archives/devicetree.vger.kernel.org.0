@@ -2,104 +2,92 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from vger.kernel.org (vger.kernel.org [23.128.96.18])
-	by mail.lfdr.de (Postfix) with ESMTP id EDC442783D4
-	for <lists+devicetree@lfdr.de>; Fri, 25 Sep 2020 11:20:13 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTP id 3914C2783A3
+	for <lists+devicetree@lfdr.de>; Fri, 25 Sep 2020 11:11:23 +0200 (CEST)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S1727495AbgIYJUM (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Fri, 25 Sep 2020 05:20:12 -0400
-Received: from mx.socionext.com ([202.248.49.38]:2721 "EHLO mx.socionext.com"
-        rhost-flags-OK-OK-OK-OK) by vger.kernel.org with ESMTP
-        id S1727044AbgIYJUM (ORCPT <rfc822;devicetree@vger.kernel.org>);
-        Fri, 25 Sep 2020 05:20:12 -0400
-X-Greylist: delayed 588 seconds by postgrey-1.27 at vger.kernel.org; Fri, 25 Sep 2020 05:20:11 EDT
-Received: from unknown (HELO iyokan-ex.css.socionext.com) ([172.31.9.54])
-  by mx.socionext.com with ESMTP; 25 Sep 2020 18:10:23 +0900
-Received: from mail.mfilter.local (m-filter-1 [10.213.24.61])
-        by iyokan-ex.css.socionext.com (Postfix) with ESMTP id 3E3E860060;
-        Fri, 25 Sep 2020 18:10:23 +0900 (JST)
-Received: from 172.31.9.51 (172.31.9.51) by m-FILTER with ESMTP; Fri, 25 Sep 2020 18:10:23 +0900
-Received: from yuzu.css.socionext.com (yuzu [172.31.8.45])
-        by kinkan.css.socionext.com (Postfix) with ESMTP id B546F1A0508;
-        Fri, 25 Sep 2020 18:10:22 +0900 (JST)
-Received: from [10.212.5.245] (unknown [10.212.5.245])
-        by yuzu.css.socionext.com (Postfix) with ESMTP id 25612120447;
-        Fri, 25 Sep 2020 18:10:22 +0900 (JST)
-Subject: Re: [PATCH 2/3] PCI: dwc: Add common iATU register support
-To:     Rob Herring <robh@kernel.org>
-Cc:     Bjorn Helgaas <bhelgaas@google.com>,
-        Lorenzo Pieralisi <lorenzo.pieralisi@arm.com>,
-        Jingoo Han <jingoohan1@gmail.com>,
-        Gustavo Pimentel <gustavo.pimentel@synopsys.com>,
-        Murali Karicheri <m-karicheri2@ti.com>,
-        linux-pci@vger.kernel.org, linux-kernel@vger.kernel.org,
-        linux-arm-kernel@lists.infradead.org, devicetree@vger.kernel.org
-References: <1599814203-14441-1-git-send-email-hayashi.kunihiko@socionext.com>
- <1599814203-14441-3-git-send-email-hayashi.kunihiko@socionext.com>
- <20200923155700.GA820801@bogus>
-From:   Kunihiko Hayashi <hayashi.kunihiko@socionext.com>
-Message-ID: <aef56eed-3966-cb1b-75f3-4b5dffc710c8@socionext.com>
-Date:   Fri, 25 Sep 2020 18:10:21 +0900
-User-Agent: Mozilla/5.0 (Windows NT 10.0; WOW64; rv:68.0) Gecko/20100101
- Thunderbird/68.12.0
+        id S1727817AbgIYJLW (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Fri, 25 Sep 2020 05:11:22 -0400
+Received: from lindbergh.monkeyblade.net ([23.128.96.19]:32866 "EHLO
+        lindbergh.monkeyblade.net" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
+        with ESMTP id S1727470AbgIYJLW (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Fri, 25 Sep 2020 05:11:22 -0400
+Received: from mail-vk1-xa43.google.com (mail-vk1-xa43.google.com [IPv6:2607:f8b0:4864:20::a43])
+        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id C7B85C0613D3
+        for <devicetree@vger.kernel.org>; Fri, 25 Sep 2020 02:11:21 -0700 (PDT)
+Received: by mail-vk1-xa43.google.com with SMTP id k78so469099vka.10
+        for <devicetree@vger.kernel.org>; Fri, 25 Sep 2020 02:11:21 -0700 (PDT)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+        d=chromium.org; s=google;
+        h=mime-version:references:in-reply-to:from:date:message-id:subject:to
+         :cc;
+        bh=aWJwSkHcQYbNKOEWZ1TVdIJh2rPz2r71PSLyhlvFLUY=;
+        b=YT92ZyhcCSVct41NNQJ5H+v81DH6N1/Fnpgnd2suwGKDa9o/WkzKzVBD0cv5tjXW6b
+         gbauj156FnyzRcly7lGjMDF7C0FMl0mpSP3FK8ozUizc2poL7h3CF7JkfkaP7r/3cYJJ
+         2/2HcNxFG/PN129V+7xqesUxl9evRU8A24jS4=
+X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+        d=1e100.net; s=20161025;
+        h=x-gm-message-state:mime-version:references:in-reply-to:from:date
+         :message-id:subject:to:cc;
+        bh=aWJwSkHcQYbNKOEWZ1TVdIJh2rPz2r71PSLyhlvFLUY=;
+        b=XEYwCsqud7Wjp1tiS79KfurBczPRUNA+iKrdcHCCzBSUyc2hr4euw9Ockxf6Kjpwin
+         A9CdUfm5m21q7I4zQ2OmBpqm2k0UJdiEdDFpxsRhAz7CaHXgt5XRBp4QZRSa0WFlBPSC
+         6m5N4Ehb0Q7vw3hN7+0mU4zmeMJLvp1BgnKnC4lyqjCCJfS3ZzUtG2bJm6Z1LP9JlFzA
+         hHgNUMURdTbRUoV7AVG+yA2JIMMW3ywT03lAK4UinxcAwt8Cd9M1cjksL4hTOaqYEtut
+         DxRpbZgDwN+D3Kf5gM2Fnk0wE5uOnDjL7oG/E1UlfFJBtAIvqXukxOKQCEap2WhRrUKx
+         WZyA==
+X-Gm-Message-State: AOAM532SDiiknrfWGTNRgpUjlZtXzmasLi7zkAmJ/J2dCRceHX5plUNI
+        THfkS90kY43QKNj+J/qKhTNj9JSaaCw40neogcrt5Q==
+X-Google-Smtp-Source: ABdhPJxuiIE50tiO0iM0XKiceVHkTJpArQPlcp7pIYzNrV16sQaJzDwMqt8DYhjynnNrl2S33JiyhZ3ih3qhCGU0LVU=
+X-Received: by 2002:a1f:434b:: with SMTP id q72mr1948481vka.5.1601025081001;
+ Fri, 25 Sep 2020 02:11:21 -0700 (PDT)
 MIME-Version: 1.0
-In-Reply-To: <20200923155700.GA820801@bogus>
-Content-Type: text/plain; charset=utf-8; format=flowed
-Content-Language: en-US
-Content-Transfer-Encoding: 7bit
+References: <20200925065418.1077472-1-ikjn@chromium.org> <20200925145255.v3.5.Id1cb208392928afc7ceed4de06924243c7858cd0@changeid>
+ <CAJsYDV+EifAeMKEGwi0oH6A5EvPN8tMZQ+oqY5JGe=+kqzjMLw@mail.gmail.com>
+In-Reply-To: <CAJsYDV+EifAeMKEGwi0oH6A5EvPN8tMZQ+oqY5JGe=+kqzjMLw@mail.gmail.com>
+From:   Ikjoon Jang <ikjn@chromium.org>
+Date:   Fri, 25 Sep 2020 17:11:10 +0800
+Message-ID: <CAATdQgC7GQ5fhkFBg7y6fpzdbFAiv+3ONdnk+jLytumB7a9pXQ@mail.gmail.com>
+Subject: Re: [PATCH v3 5/6] spi: spi-mtk-nor: support 36bit dma addressing
+To:     Chuanhong Guo <gch981213@gmail.com>
+Cc:     Rob Herring <robh+dt@kernel.org>, Mark Brown <broonie@kernel.org>,
+        "open list:OPEN FIRMWARE AND FLATTENED DEVICE TREE BINDINGS" 
+        <devicetree@vger.kernel.org>, linux-spi@vger.kernel.org,
+        linux-mtd@lists.infradead.org,
+        Matthias Brugger <matthias.bgg@gmail.com>,
+        "moderated list:ARM/Mediatek SoC support" 
+        <linux-arm-kernel@lists.infradead.org>,
+        open list <linux-kernel@vger.kernel.org>,
+        "moderated list:ARM/Mediatek SoC support" 
+        <linux-mediatek@lists.infradead.org>
+Content-Type: text/plain; charset="UTF-8"
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-Hi Rob,
+On Fri, Sep 25, 2020 at 4:27 PM Chuanhong Guo <gch981213@gmail.com> wrote:
+>
 
-On 2020/09/24 0:57, Rob Herring wrote:
-> On Fri, Sep 11, 2020 at 05:50:02PM +0900, Kunihiko Hayashi wrote:
->> This gets iATU register area from reg property that has reg-names "atu".
->> In Synopsys DWC version 4.80 or later, since iATU register area is
->> separated from core register area, this area is necessary to get from
->> DT independently.
->>
->> Cc: Murali Karicheri <m-karicheri2@ti.com>
->> Cc: Jingoo Han <jingoohan1@gmail.com>
->> Cc: Gustavo Pimentel <gustavo.pimentel@synopsys.com>
->> Suggested-by: Rob Herring <robh@kernel.org>
->> Signed-off-by: Kunihiko Hayashi <hayashi.kunihiko@socionext.com>
->> ---
->>   drivers/pci/controller/dwc/pcie-designware.c | 8 +++++++-
->>   1 file changed, 7 insertions(+), 1 deletion(-)
->>
->> diff --git a/drivers/pci/controller/dwc/pcie-designware.c b/drivers/pci/controller/dwc/pcie-designware.c
->> index 4d105ef..4a360bc 100644
->> --- a/drivers/pci/controller/dwc/pcie-designware.c
->> +++ b/drivers/pci/controller/dwc/pcie-designware.c
->> @@ -10,6 +10,7 @@
->>   
->>   #include <linux/delay.h>
->>   #include <linux/of.h>
->> +#include <linux/of_platform.h>
->>   #include <linux/types.h>
->>   
->>   #include "../../pci.h"
->> @@ -526,11 +527,16 @@ void dw_pcie_setup(struct dw_pcie *pci)
->>   	u32 val;
->>   	struct device *dev = pci->dev;
->>   	struct device_node *np = dev->of_node;
->> +	struct platform_device *pdev;
->>   
->>   	if (pci->version >= 0x480A || (!pci->version &&
->>   				       dw_pcie_iatu_unroll_enabled(pci))) {
->>   		pci->iatu_unroll_enabled = true;
->> -		if (!pci->atu_base)
->> +		pdev = of_find_device_by_node(np);
-> 
-> Use to_platform_device(dev) instead. Put that at the beginning as I'm
-> going to move 'dbi' in here too.
+[snip]
 
-Okay, I'll rewrite it with to_platform_device(dev).
-Should I refer somewhere to rebase to your change?
+> > +       if (sp->high_dma) {
+> > +               writel(dma_addr >> 32, sp->base + MTK_NOR_REG_DMA_DADR_HB);
+> > +               writel((dma_addr + length) >> 32, sp->base + MTK_NOR_REG_DMA_END_DADR_HB);
+> > +       }
+>
+> I remembered kbuild test robot reported a warning on this on 32-bit platforms
+> in your v1. [0]
+> I don't know what's the fix for this though :(
+>
+> [0] https://marc.info/?l=linux-spi&m=159982425706940&w=2
 
-Thank you,
+yeah, I'm not sure how to handle this properly,
 
----
-Best Regards
-Kunihiko Hayashi
+"warning: shift count >= width of type",
+(sp->high_dma) is always false on 32bit arm kernel.
+I think adding size check on here is unnecessary, should I fix for this warning?
+
+> --
+> Regards,
+> Chuanhong Guo
+
+Sorry for resending, Chuanhong.
