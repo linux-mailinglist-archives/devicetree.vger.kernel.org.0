@@ -2,136 +2,68 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from vger.kernel.org (vger.kernel.org [23.128.96.18])
-	by mail.lfdr.de (Postfix) with ESMTP id 611B727929F
-	for <lists+devicetree@lfdr.de>; Fri, 25 Sep 2020 22:48:36 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTP id 65EA227925E
+	for <lists+devicetree@lfdr.de>; Fri, 25 Sep 2020 22:42:35 +0200 (CEST)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S1728693AbgIYUsf (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Fri, 25 Sep 2020 16:48:35 -0400
-Received: from lindbergh.monkeyblade.net ([23.128.96.19]:56320 "EHLO
-        lindbergh.monkeyblade.net" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S1727961AbgIYUsf (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Fri, 25 Sep 2020 16:48:35 -0400
-Received: from mxa1.seznam.cz (mxa1.seznam.cz [IPv6:2a02:598:a::78:90])
-        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id ED309C0613A8;
-        Fri, 25 Sep 2020 12:29:01 -0700 (PDT)
-Received: from email.seznam.cz
-        by email-smtpc5a.ko.seznam.cz (email-smtpc5a.ko.seznam.cz [10.53.10.135])
-        id 2433966a7f3dc203259a5a34;
-        Fri, 25 Sep 2020 21:28:56 +0200 (CEST)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=seznam.cz; s=beta;
-        t=1601062136; bh=l93/D6Gdiay39pYtBCQRrfnfEuM4nPGLzsoyq5BS9Yg=;
-        h=Received:From:To:Cc:Subject:Date:Message-Id:X-Mailer:In-Reply-To:
-         References:MIME-Version:Content-Transfer-Encoding;
-        b=O9ebucLD48hc+lPhGLcEwLyA/YoOS3weE1cKPULYEVkidoU7EbLEQIz51L2U1LLSr
-         4oGYNJYK1WnofKV2ogyNZKt7pfeEfEXbPDBkB9CJQMMKtGiSrij3llCnPtkKNlxzhB
-         iILOFCbIFHNLiE1Cx8dpH/shFKOALg4avZGT4aN4=
-Received: from localhost.localdomain (ip-228-128.dynamic.ccinternet.cz [212.69.128.228])
-        by email-relay7.ko.seznam.cz (Seznam SMTPD 1.3.120) with ESMTP;
-        Fri, 25 Sep 2020 21:24:38 +0200 (CEST)  
-From:   michael.srba@seznam.cz
-To:     Dmitry Torokhov <dmitry.torokhov@gmail.com>
-Cc:     Rob Herring <robh+dt@kernel.org>,
-        Henrik Rydberg <rydberg@bitmath.org>,
-        Sam Ravnborg <sam@ravnborg.org>,
-        Linus Walleij <linus.walleij@linaro.org>,
-        Stephan Gerhold <stephan@gerhold.net>,
-        Paul Burton <paulburton@kernel.org>,
-        Heiko Stuebner <heiko.stuebner@theobroma-systems.com>,
-        Lubomir Rintel <lkundrak@v3.sk>,
-        Kamlesh Gurudasani <kamlesh.gurudasani@gmail.com>,
-        Mark Brown <broonie@kernel.org>,
-        Krzysztof Kozlowski <krzk@kernel.org>,
-        linux-input@vger.kernel.org, devicetree@vger.kernel.org,
-        ~postmarketos/upstreaming@lists.sr.ht,
-        Michael Srba <Michael.Srba@seznam.cz>,
-        Rob Herring <robh@kernel.org>
-Subject: [PATCH v4 2/2] dt-bindings: input/touchscreen: add bindings for zinitix
-Date:   Fri, 25 Sep 2020 21:22:04 +0200
-Message-Id: <20200925192204.12631-2-michael.srba@seznam.cz>
-X-Mailer: git-send-email 2.28.0
-In-Reply-To: <20200925192204.12631-1-michael.srba@seznam.cz>
-References: <20200925192204.12631-1-michael.srba@seznam.cz>
-MIME-Version: 1.0
-Content-Transfer-Encoding: 8bit
+        id S1727495AbgIYUmW (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Fri, 25 Sep 2020 16:42:22 -0400
+Received: from mail.kernel.org ([198.145.29.99]:50172 "EHLO mail.kernel.org"
+        rhost-flags-OK-OK-OK-OK) by vger.kernel.org with ESMTP
+        id S1726119AbgIYUmV (ORCPT <rfc822;devicetree@vger.kernel.org>);
+        Fri, 25 Sep 2020 16:42:21 -0400
+Received: from localhost (fw-tnat.cambridge.arm.com [217.140.96.140])
+        (using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
+        (No client certificate requested)
+        by mail.kernel.org (Postfix) with ESMTPSA id E8FC02086A;
+        Fri, 25 Sep 2020 20:42:20 +0000 (UTC)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=kernel.org;
+        s=default; t=1601066541;
+        bh=HonZv4hNRo+3wBNx9Gmw1MHWUnZgz2J0kg7+tpl7x6U=;
+        h=Date:From:To:Cc:In-Reply-To:References:Subject:From;
+        b=UKbEk/8rJ74U5rMYLVMWNTSrXYqlhZJucwj0Rl8k1vQ80+sTQcQsRb9A/G7G2Bra6
+         Jy78NrSKv/cxswUeV5t28NOeYdZM9WX5AZjvtQm59h7KCnk7r+ibkQZUMJq1j5Yte5
+         Yy33ex/GgewHTuOsCdEQ/Aw6hMI0uolqRp+duG7U=
+Date:   Fri, 25 Sep 2020 21:41:26 +0100
+From:   Mark Brown <broonie@kernel.org>
+To:     robh+dt@kernel.org, Richard Fitzgerald <rf@opensource.cirrus.com>
+Cc:     Charles Keepax <ckeepax@opensource.cirrus.com>,
+        linux-kernel@vger.kernel.org, patches@opensource.cirrus.com,
+        alsa-devel@alsa-project.org, devicetree@vger.kernel.org
+In-Reply-To: <20200925105908.20640-1-rf@opensource.cirrus.com>
+References: <20200925105908.20640-1-rf@opensource.cirrus.com>
+Subject: Re: [PATCH 1/3] ASoC: cs4234: Add dtschema binding document
+Message-Id: <160106647647.2866.786430937655896288.b4-ty@kernel.org>
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-From: Michael Srba <Michael.Srba@seznam.cz>
+On Fri, 25 Sep 2020 11:59:06 +0100, Richard Fitzgerald wrote:
+> Document the bindings for the CS4234 ASoC codec driver.
 
-This patch adds dts bindings for the zinitix bt541 touchscreen.
+Applied to
 
-Signed-off-by: Michael Srba <Michael.Srba@seznam.cz>
-Reviewed-by: Rob Herring <robh@kernel.org>
----
- changes in v2: none
- changes in v3: document zinitix,mode property
- changes in v4: none
+   https://git.kernel.org/pub/scm/linux/kernel/git/broonie/sound.git for-next
 
+Thanks!
 
- .../bindings/input/touchscreen/zinitix.txt    | 40 +++++++++++++++++++
- .../devicetree/bindings/vendor-prefixes.yaml  |  2 +
- 2 files changed, 42 insertions(+)
- create mode 100644 Documentation/devicetree/bindings/input/touchscreen/zinitix.txt
+[1/1] MAINTAINERS: Update Cirrus Logic Codecs maintainers
+      commit: 6bf28e8a05fda0547658fd51d0acc83dcac6c703
 
-diff --git a/Documentation/devicetree/bindings/input/touchscreen/zinitix.txt b/Documentation/devicetree/bindings/input/touchscreen/zinitix.txt
-new file mode 100644
-index 000000000000..446efb9f5f55
---- /dev/null
-+++ b/Documentation/devicetree/bindings/input/touchscreen/zinitix.txt
-@@ -0,0 +1,40 @@
-+Device tree bindings for Zinitx BT541 touchscreen controller
-+
-+Required properties:
-+
-+ - compatible		: Should be "zinitix,bt541"
-+ - reg			: I2C address of the chip. Should be 0x20
-+ - interrupts		: Interrupt to which the chip is connected
-+
-+Optional properties:
-+
-+ - vdd-supply		: Analog power supply regulator on VCCA pin
-+ - vddo-supply		: Digital power supply regulator on VDD pin
-+ - zinitix,mode		: Mode of reporting touch points. Some modes may not work
-+			  with a particular ts firmware for unknown reasons. Available
-+			  modes are 1 and 2. Mode 2 is the default and preferred.
-+
-+The touchscreen-* properties are documented in touchscreen.txt in this
-+directory.
-+
-+Example:
-+
-+	i2c@00000000 {
-+		/* ... */
-+
-+		bt541@20 {
-+			compatible = "zinitix,bt541";
-+			reg = <0x20>;
-+			interrupt-parent = <&msmgpio>;
-+			interrupts = <13 IRQ_TYPE_EDGE_FALLING>;
-+			pinctrl-names = "default";
-+			pinctrl-0 = <&tsp_default>;
-+			vdd-supply = <&reg_vdd_tsp>;
-+			vddo-supply = <&pm8916_l6>;
-+			touchscreen-size-x = <540>;
-+			touchscreen-size-y = <960>;
-+			zinitix,mode = <2>;
-+		};
-+
-+		/* ... */
-+	};
-diff --git a/Documentation/devicetree/bindings/vendor-prefixes.yaml b/Documentation/devicetree/bindings/vendor-prefixes.yaml
-index 967e78c5ec0a..1b0b5e23267d 100644
---- a/Documentation/devicetree/bindings/vendor-prefixes.yaml
-+++ b/Documentation/devicetree/bindings/vendor-prefixes.yaml
-@@ -1066,6 +1066,8 @@ patternProperties:
-     description: Shenzhen Zidoo Technology Co., Ltd.
-   "^zii,.*":
-     description: Zodiac Inflight Innovations
-+  "^zinitix,.*":
-+    description: Zinitix Co., Ltd
-   "^zte,.*":
-     description: ZTE Corp.
-   "^zyxel,.*":
--- 
-2.24.0
+All being well this means that it will be integrated into the linux-next
+tree (usually sometime in the next 24 hours) and sent to Linus during
+the next merge window (or sooner if it is a bug fix), however if
+problems are discovered then the patch may be dropped or reverted.
+
+You may get further e-mails resulting from automated or manual testing
+and review of the tree, please engage with people reporting problems and
+send followup patches addressing any issues that are reported if needed.
+
+If any updates are required or you are submitting further changes they
+should be sent as incremental updates against current git, existing
+patches will not be replaced.
+
+Please add any relevant lists and maintainers to the CCs when replying
+to this mail.
+
+Thanks,
+Mark
