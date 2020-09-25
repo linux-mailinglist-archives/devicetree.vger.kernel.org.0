@@ -2,99 +2,143 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from vger.kernel.org (vger.kernel.org [23.128.96.18])
-	by mail.lfdr.de (Postfix) with ESMTP id EEEF2278693
-	for <lists+devicetree@lfdr.de>; Fri, 25 Sep 2020 14:02:41 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTP id 56C072786A1
+	for <lists+devicetree@lfdr.de>; Fri, 25 Sep 2020 14:05:03 +0200 (CEST)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S1727521AbgIYMCk (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Fri, 25 Sep 2020 08:02:40 -0400
-Received: from fllv0016.ext.ti.com ([198.47.19.142]:58448 "EHLO
-        fllv0016.ext.ti.com" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S1727248AbgIYMCk (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Fri, 25 Sep 2020 08:02:40 -0400
-Received: from fllv0035.itg.ti.com ([10.64.41.0])
-        by fllv0016.ext.ti.com (8.15.2/8.15.2) with ESMTP id 08PC1sEh091014;
-        Fri, 25 Sep 2020 07:01:54 -0500
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=ti.com;
-        s=ti-com-17Q1; t=1601035314;
-        bh=hRluHT8MEUBdje+dfLWcezPxtUriv4zuwVUpPSAXAbM=;
-        h=Date:From:To:CC:Subject:References:In-Reply-To;
-        b=WVZUjNsSj7DdGsHdtFkiR6WobLdIx8XVugawvpE65QTk9vwsAt/Qz4j3zskHR1QEc
-         NCGmjRc/t6AZZD8KX4ahsaG96Llcrq7w57Kx9tMx8Cl1IhCBZZJVi7cZUB394uAFl4
-         NQDbIRGGPr0tGdpwU7iXQ456lMatKte55cMYBvlo=
-Received: from DLEE105.ent.ti.com (dlee105.ent.ti.com [157.170.170.35])
-        by fllv0035.itg.ti.com (8.15.2/8.15.2) with ESMTP id 08PC1sZM055785;
-        Fri, 25 Sep 2020 07:01:54 -0500
-Received: from DLEE114.ent.ti.com (157.170.170.25) by DLEE105.ent.ti.com
- (157.170.170.35) with Microsoft SMTP Server (version=TLS1_2,
- cipher=TLS_ECDHE_RSA_WITH_AES_128_CBC_SHA256_P256) id 15.1.1979.3; Fri, 25
- Sep 2020 07:01:54 -0500
-Received: from lelv0327.itg.ti.com (10.180.67.183) by DLEE114.ent.ti.com
- (157.170.170.25) with Microsoft SMTP Server (version=TLS1_2,
- cipher=TLS_ECDHE_RSA_WITH_AES_128_CBC_SHA256_P256) id 15.1.1979.3 via
- Frontend Transport; Fri, 25 Sep 2020 07:01:54 -0500
-Received: from localhost (ileax41-snat.itg.ti.com [10.172.224.153])
-        by lelv0327.itg.ti.com (8.15.2/8.15.2) with ESMTP id 08PC1sMi029536;
-        Fri, 25 Sep 2020 07:01:54 -0500
-Date:   Fri, 25 Sep 2020 07:01:54 -0500
-From:   Nishanth Menon <nm@ti.com>
-To:     Krzysztof Kozlowski <krzk@kernel.org>
-CC:     Linus Walleij <linus.walleij@linaro.org>,
-        Bartosz Golaszewski <bgolaszewski@baylibre.com>,
-        Rob Herring <robh+dt@kernel.org>,
-        =?iso-8859-1?Q?Beno=EEt?= Cousson <bcousson@baylibre.com>,
-        Tony Lindgren <tony@atomide.com>,
-        Jason Cooper <jason@lakedaemon.net>,
-        Andrew Lunn <andrew@lunn.ch>,
-        Gregory Clement <gregory.clement@bootlin.com>,
-        Sebastian Hesselbarth <sebastian.hesselbarth@gmail.com>,
-        Russell King <linux@armlinux.org.uk>,
-        Joel Stanley <joel@jms.id.au>,
-        Andrew Jeffery <andrew@aj.id.au>,
-        Shawn Guo <shawnguo@kernel.org>,
-        Sascha Hauer <s.hauer@pengutronix.de>,
-        Pengutronix Kernel Team <kernel@pengutronix.de>,
-        Fabio Estevam <festevam@gmail.com>,
-        NXP Linux Team <linux-imx@nxp.com>,
-        Matthias Brugger <matthias.bgg@gmail.com>,
-        Geert Uytterhoeven <geert+renesas@glider.be>,
-        Magnus Damm <magnus.damm@gmail.com>,
-        Tero Kristo <t-kristo@ti.com>,
-        Michal Simek <michal.simek@xilinx.com>,
-        <linux-gpio@vger.kernel.org>, <devicetree@vger.kernel.org>,
-        <linux-kernel@vger.kernel.org>, <linux-omap@vger.kernel.org>,
-        <linux-arm-kernel@lists.infradead.org>,
-        <linux-aspeed@lists.ozlabs.org>,
-        <linux-mediatek@lists.infradead.org>,
-        <linux-renesas-soc@vger.kernel.org>
-Subject: Re: [PATCH v3 06/15] arm64: dts: ti: align GPIO hog names with
- dtschema
-Message-ID: <20200925120154.utjxncf4qs2usuo4@akan>
-References: <20200916155715.21009-1-krzk@kernel.org>
- <20200916155715.21009-7-krzk@kernel.org>
+        id S1728179AbgIYMFB (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Fri, 25 Sep 2020 08:05:01 -0400
+Received: from mail.kernel.org ([198.145.29.99]:58238 "EHLO mail.kernel.org"
+        rhost-flags-OK-OK-OK-OK) by vger.kernel.org with ESMTP
+        id S1726368AbgIYMFB (ORCPT <rfc822;devicetree@vger.kernel.org>);
+        Fri, 25 Sep 2020 08:05:01 -0400
+Received: from archlinux (cpc149474-cmbg20-2-0-cust94.5-4.cable.virginm.net [82.4.196.95])
+        (using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
+        (No client certificate requested)
+        by mail.kernel.org (Postfix) with ESMTPSA id BC4E02083B;
+        Fri, 25 Sep 2020 12:04:59 +0000 (UTC)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=kernel.org;
+        s=default; t=1601035500;
+        bh=5JS6f9gRAAFsBtkj5okSCjVwQ+33QurOv5HcuSk3oa0=;
+        h=Date:From:To:Cc:Subject:In-Reply-To:References:From;
+        b=x0mQAP4H/JYPasau3b9BrJLY3B2fRKMDM2+hIRJUGpkRXcRWVpANO7/Op0Z3u9UNm
+         /+TYPgNDx1oQks29s3U5i+kxH5PnkLCxY9dNS0u51i05plRxo0Ye2bgG4G7G2eC3ZV
+         70GdQxtXYthixt9j9vfgC65llODcHdMPRxFolJmo=
+Date:   Fri, 25 Sep 2020 13:04:56 +0100
+From:   Jonathan Cameron <jic23@kernel.org>
+To:     Cristian Pop <cristian.pop@analog.com>
+Cc:     <linux-iio@vger.kernel.org>, <linux-kernel@vger.kernel.org>,
+        Rob Herring <robh+dt@kernel.org>, devicetree@vger.kernel.org
+Subject: Re: [PATCH v6 4/4] dt-bindings:iio:adc:adi,ad7768-1: Add
+ documentation for channel label
+Message-ID: <20200925130456.1203ba5d@archlinux>
+In-Reply-To: <20200921133020.62978-4-cristian.pop@analog.com>
+References: <20200921133020.62978-1-cristian.pop@analog.com>
+        <20200921133020.62978-4-cristian.pop@analog.com>
+X-Mailer: Claws Mail 3.17.6 (GTK+ 2.24.32; x86_64-pc-linux-gnu)
 MIME-Version: 1.0
-Content-Type: text/plain; charset="us-ascii"
-Content-Disposition: inline
-In-Reply-To: <20200916155715.21009-7-krzk@kernel.org>
-User-Agent: NeoMutt/20171215
-X-EXCLAIMER-MD-CONFIG: e1e8a2fd-e40a-4ac6-ac9b-f7e9cc9ee180
+Content-Type: text/plain; charset=US-ASCII
+Content-Transfer-Encoding: 7bit
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-On 17:57-20200916, Krzysztof Kozlowski wrote:
-> The convention for node names is to use hyphens, not underscores.
-> dtschema for pca95xx expects GPIO hogs to end with 'hog' prefix.
+On Mon, 21 Sep 2020 16:30:20 +0300
+Cristian Pop <cristian.pop@analog.com> wrote:
+
+Hi Cristian,
+
+> Optional attribute for better identification of the channels.
+Dt-bindings need to be sent to the dt-binding maintainer and
+list.
++CC.
+
+I'll definitely be looking for a review from Rob on this one as we are defining
+a new generic binding.
+
+@Rob, the only new bit in here is the label for an individual channel.
+The rest has been defined for a while to allow us to control channel
+specific aspects of an ADC.
+
+We should also look to add it to the top level docs.
+
+In this case, probably
+Documentation/device-tree/bindings/iio/adc/adc.txt
+
+Currently only ADCs have a channel description to add this to.
+We can look at making this more generic if it turns out to make sense
+for other types of IIO device.
+
+Thanks,
+
+Jonathan
+
+
 > 
-> Signed-off-by: Krzysztof Kozlowski <krzk@kernel.org>
+> Signed-off-by: Cristian Pop <cristian.pop@analog.com>
 > ---
->  arch/arm64/boot/dts/ti/k3-j721e-common-proc-board.dts | 4 ++--
->  1 file changed, 2 insertions(+), 2 deletions(-)
+>  .../bindings/iio/adc/adi,ad7768-1.yaml        | 31 +++++++++++++++++++
+>  1 file changed, 31 insertions(+)
 > 
+> diff --git a/Documentation/devicetree/bindings/iio/adc/adi,ad7768-1.yaml b/Documentation/devicetree/bindings/iio/adc/adi,ad7768-1.yaml
+> index d3733ad8785a..0c75ce73ffe9 100644
+> --- a/Documentation/devicetree/bindings/iio/adc/adi,ad7768-1.yaml
+> +++ b/Documentation/devicetree/bindings/iio/adc/adi,ad7768-1.yaml
+> @@ -29,6 +29,12 @@ properties:
+>    interrupts:
+>      maxItems: 1
+>  
+> +  '#address-cells':
+> +    const: 1
+> +
+> +  '#size-cells':
+> +    const: 0
+> +
+>    vref-supply:
+>      description:
+>        ADC reference voltage supply
+> @@ -61,6 +67,23 @@ required:
+>    - spi-cpha
+>    - adi,sync-in-gpios
+>  
+> +patternProperties:
+> +  "^channel@([0-9]|1[0-5])$":
+> +    type: object
+> +    description: |
+> +      Represents the external channels which are connected to the device.
+> +
+> +    properties:
+> +      reg:
+> +        description: |
+> +          The channel number.
+> +
+> +      label:
+> +        description: |
+> +          Unique name to identify which channel this is.
+> +    required:
+> +      - rega
+rega?  Also, one I learnt the other day.  Need to have
 
-Applied to ti-k3-dts-next with minor update to $subject (added
-'k3-j721e-common-proc-board:')
+       additionalProperties: false
 
--- 
-Regards,
-Nishanth Menon
-Key (0xDDB5849D1736249D) / Fingerprint: F8A2 8693 54EB 8232 17A3  1A34 DDB5 849D 1736 249D
+for child nodes as well as the base node.
+
+> +
+>  additionalProperties: false
+>  
+>  examples:
+> @@ -84,6 +107,14 @@ examples:
+>              reset-gpios = <&gpio 27 GPIO_ACTIVE_LOW>;
+>              clocks = <&ad7768_mclk>;
+>              clock-names = "mclk";
+> +
+> +            #address-cells = <1>;
+> +            #size-cells = <0>;
+> +
+> +            channel@0 {
+> +                reg = <0>;
+> +                label = "channel_0";
+> +            };
+>          };
+>      };
+>  ...
+
