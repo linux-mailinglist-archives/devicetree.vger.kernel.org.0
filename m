@@ -2,181 +2,85 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from vger.kernel.org (vger.kernel.org [23.128.96.18])
-	by mail.lfdr.de (Postfix) with ESMTP id B9C42278526
-	for <lists+devicetree@lfdr.de>; Fri, 25 Sep 2020 12:31:49 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTP id 58BE5278593
+	for <lists+devicetree@lfdr.de>; Fri, 25 Sep 2020 13:14:36 +0200 (CEST)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S1728167AbgIYKbo (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Fri, 25 Sep 2020 06:31:44 -0400
-Received: from lindbergh.monkeyblade.net ([23.128.96.19]:45322 "EHLO
+        id S1727388AbgIYLOf (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Fri, 25 Sep 2020 07:14:35 -0400
+Received: from lindbergh.monkeyblade.net ([23.128.96.19]:51888 "EHLO
         lindbergh.monkeyblade.net" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S1728102AbgIYKbk (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Fri, 25 Sep 2020 06:31:40 -0400
-Received: from mail-wm1-x342.google.com (mail-wm1-x342.google.com [IPv6:2a00:1450:4864:20::342])
-        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 9B05BC0613D3
-        for <devicetree@vger.kernel.org>; Fri, 25 Sep 2020 03:31:40 -0700 (PDT)
-Received: by mail-wm1-x342.google.com with SMTP id v12so2713716wmh.3
-        for <devicetree@vger.kernel.org>; Fri, 25 Sep 2020 03:31:40 -0700 (PDT)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=linaro.org; s=google;
-        h=from:to:cc:subject:date:message-id:in-reply-to:references
-         :mime-version:content-transfer-encoding;
-        bh=GSNf91BNoP+VEJBm3varO7K3q1jYUmCrDeGvzncP4RA=;
-        b=QacEp1OaZsy3mDOo+7h0uVB2aukX9mC0D3Zj7Bb+cE58joZM/wxHBbkjHDuLhJfeEr
-         mqNncXMX/bDcerwQkg5Mag7L6n56ei6w+C57kwYWPCl/rZG8AG6AZCgEko8VAslvG7Or
-         PC3L3uOrKeQCeXvyUg60qCheQy3eb3b2WInGIyVgypcnW73TJ1El+XOD7tZXDJ0NLMJE
-         WKVgXx7xkt/giLgTDLVPw8YNl1dfnZcIEhyUWm84J6bkHp/jq8u5fC97YACJc8USBUOl
-         jCpZQdegv6nSKMKwbnQRtzm7H6G+kRda2XdftN5lUENPQk/C1s/0M+hruwkZDBLtpP9/
-         I/jQ==
-X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=1e100.net; s=20161025;
-        h=x-gm-message-state:from:to:cc:subject:date:message-id:in-reply-to
-         :references:mime-version:content-transfer-encoding;
-        bh=GSNf91BNoP+VEJBm3varO7K3q1jYUmCrDeGvzncP4RA=;
-        b=VQkftUYMiICbDKYXFT2SihCBMg+STG/4JwI1V8rG4qnoeGfqD3jZ2NEZuFAh5VA7tT
-         5YNj6046m/Eh8fZVDupU8ebfKuqcI0lk+w1daKcyqNv7rcyKt5MGYJIGJQ/5+nmY7qeF
-         6UQZVm+5RF/ekR0IPfwh3TLRu6Ai2KvC4KR3wk7JNUtJpejkmDwXPreMw1VBqbjvjZb6
-         iGrrl+hu3qADqaeJzchrlx5rao/r9LHD5W0qAdyQkKlzCHVwh/sRtcx1LgQCBr25+FY7
-         lt/Q7LWj+SN5DZ2sPWbUr7iG1/Y2139LtOpC4ktDBDQ/XK2iTWnmJXsWm+VW7ukKdMbm
-         tExg==
-X-Gm-Message-State: AOAM531zHpAAVMfEaABRhUUHKeYEnQixsR/f+lISAez6iNwZgfuL5SJr
-        ZA5i/6FttUsXTvxMa8cOETqGQmLkKm0eLQ==
-X-Google-Smtp-Source: ABdhPJz/GbRRFBqPk2DEY7OZXpKv5qvcB8Fhp/LMNbQbXFjHr6HeA+Vgjc2KSL6Iu2ua/FyY1oPIUw==
-X-Received: by 2002:a1c:8187:: with SMTP id c129mr2521448wmd.82.1601029898317;
-        Fri, 25 Sep 2020 03:31:38 -0700 (PDT)
-Received: from srini-hackbox.lan (cpc86377-aztw32-2-0-cust226.18-1.cable.virginm.net. [92.233.226.227])
-        by smtp.gmail.com with ESMTPSA id 11sm2354907wmi.14.2020.09.25.03.31.36
-        (version=TLS1_3 cipher=TLS_AES_256_GCM_SHA384 bits=256/256);
-        Fri, 25 Sep 2020 03:31:37 -0700 (PDT)
-From:   Srinivas Kandagatla <srinivas.kandagatla@linaro.org>
-To:     sboyd@kernel.org, linux-clk@vger.kernel.org,
-        devicetree@vger.kernel.org
-Cc:     bjorn.andersson@linaro.org, mturquette@baylibre.com,
-        robh+dt@kernel.org, linux-arm-msm@vger.kernel.org,
-        linux-kernel@vger.kernel.org,
-        Srinivas Kandagatla <srinivas.kandagatla@linaro.org>
-Subject: [PATCH v2 4/4] clk: qcom: Add support to LPASS AON_CC Glitch Free Mux clocks
-Date:   Fri, 25 Sep 2020 11:31:15 +0100
-Message-Id: <20200925103115.15191-5-srinivas.kandagatla@linaro.org>
-X-Mailer: git-send-email 2.21.0
-In-Reply-To: <20200925103115.15191-1-srinivas.kandagatla@linaro.org>
-References: <20200925103115.15191-1-srinivas.kandagatla@linaro.org>
-MIME-Version: 1.0
-Content-Transfer-Encoding: 8bit
+        with ESMTP id S1727201AbgIYLOf (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Fri, 25 Sep 2020 07:14:35 -0400
+Received: from laurent.telenet-ops.be (laurent.telenet-ops.be [IPv6:2a02:1800:110:4::f00:19])
+        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id A5993C0613CE
+        for <devicetree@vger.kernel.org>; Fri, 25 Sep 2020 04:14:34 -0700 (PDT)
+Received: from ramsan ([84.195.186.194])
+        by laurent.telenet-ops.be with bizsmtp
+        id YBEX230064C55Sk01BEXL8; Fri, 25 Sep 2020 13:14:32 +0200
+Received: from rox.of.borg ([192.168.97.57])
+        by ramsan with esmtp (Exim 4.90_1)
+        (envelope-from <geert@linux-m68k.org>)
+        id 1kLlgN-0001NM-6o; Fri, 25 Sep 2020 13:14:31 +0200
+Received: from geert by rox.of.borg with local (Exim 4.90_1)
+        (envelope-from <geert@linux-m68k.org>)
+        id 1kLlgN-0000pT-4R; Fri, 25 Sep 2020 13:14:31 +0200
+From:   Geert Uytterhoeven <geert+renesas@glider.be>
+To:     Rob Herring <robh+dt@kernel.org>
+Cc:     Krzysztof Kozlowski <krzk@kernel.org>, devicetree@vger.kernel.org,
+        Geert Uytterhoeven <geert+renesas@glider.be>
+Subject: [PATCH] dt-bindings: example: Grammar improvements
+Date:   Fri, 25 Sep 2020 13:14:29 +0200
+Message-Id: <20200925111429.3146-1-geert+renesas@glider.be>
+X-Mailer: git-send-email 2.17.1
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-LPASS Always ON Clock controller has one GFM mux to control VA
-and TX clocks to codec macro on LPASS.
-This patch adds support to this mux.
+Improve grammar in recently added sentences:
+  - Drop superfluous "be" in front of "have",
+  - Add missing articles.
 
-Signed-off-by: Srinivas Kandagatla <srinivas.kandagatla@linaro.org>
+Fixes: 73f76a41c4ed7def ("dt-bindings: example: Extend based on practice")
+Signed-off-by: Geert Uytterhoeven <geert+renesas@glider.be>
 ---
- drivers/clk/qcom/lpass-gfm-sm8250.c | 63 +++++++++++++++++++++++++++++
- 1 file changed, 63 insertions(+)
+Feel free to fold into the original commit.
 
-diff --git a/drivers/clk/qcom/lpass-gfm-sm8250.c b/drivers/clk/qcom/lpass-gfm-sm8250.c
-index c79854e1494d..61a89347885e 100644
---- a/drivers/clk/qcom/lpass-gfm-sm8250.c
-+++ b/drivers/clk/qcom/lpass-gfm-sm8250.c
-@@ -19,6 +19,7 @@
- #include <linux/platform_device.h>
- #include <linux/of_device.h>
- #include <dt-bindings/clock/qcom,sm8250-lpass-audiocc.h>
-+#include <dt-bindings/clock/qcom,sm8250-lpass-aoncc.h>
+ Documentation/devicetree/bindings/example-schema.yaml | 8 ++++----
+ 1 file changed, 4 insertions(+), 4 deletions(-)
+
+diff --git a/Documentation/devicetree/bindings/example-schema.yaml b/Documentation/devicetree/bindings/example-schema.yaml
+index 4552f2b988d09267..a97f39109f8d0414 100644
+--- a/Documentation/devicetree/bindings/example-schema.yaml
++++ b/Documentation/devicetree/bindings/example-schema.yaml
+@@ -81,7 +81,7 @@ properties:
+     maxItems: 1
+     description: bus clock. A description is only needed for a single item if
+       there's something unique to add.
+-      The items should be have a fixed order, so pattern matching names are
++      The items should have a fixed order, so pattern matching names are
+       discouraged.
  
- struct lpass_gfm {
- 	struct device *dev;
-@@ -66,6 +67,46 @@ static const struct clk_ops clk_gfm_ops = {
- 	.determine_rate = __clk_mux_determine_rate,
- };
+   clock-names:
+@@ -99,7 +99,7 @@ properties:
+       A variable number of interrupts warrants a description of what conditions
+       affect the number of interrupts. Otherwise, descriptions on standard
+       properties are not necessary.
+-      The items should be have a fixed order, so pattern matching names are
++      The items should have a fixed order, so pattern matching names are
+       discouraged.
  
-+static struct clk_gfm lpass_gfm_va_mclk = {
-+	.mux_reg = 0x20000,
-+	.mux_mask = BIT(0),
-+	.hw.init = &(struct clk_init_data) {
-+		.name = "VA_MCLK",
-+		.ops = &clk_gfm_ops,
-+		.flags = CLK_SET_RATE_PARENT | CLK_OPS_PARENT_ENABLE,
-+		.num_parents = 2,
-+		.parent_data = (const struct clk_parent_data[]){
-+			{
-+				.index = 0,
-+				.name = "LPASS_CLK_ID_TX_CORE_MCLK",
-+			}, {
-+				.index = 1,
-+				.name = "LPASS_CLK_ID_VA_CORE_MCLK",
-+			},
-+		},
-+	},
-+};
-+
-+static struct clk_gfm lpass_gfm_tx_npl = {
-+	.mux_reg = 0x20000,
-+	.mux_mask = BIT(0),
-+	.hw.init = &(struct clk_init_data) {
-+		.name = "TX_NPL",
-+		.ops = &clk_gfm_ops,
-+		.flags = CLK_SET_RATE_PARENT | CLK_OPS_PARENT_ENABLE,
-+		.parent_data = (const struct clk_parent_data[]){
-+			{
-+				.index = 0,
-+				.name = "LPASS_CLK_ID_TX_CORE_NPL_MCLK",
-+			}, {
-+				.index = 1,
-+				.name = "LPASS_CLK_ID_VA_CORE_2X_MCLK",
-+			},
-+		},
-+		.num_parents = 2,
-+	},
-+};
-+
- static struct clk_gfm lpass_gfm_wsa_mclk = {
- 	.mux_reg = 0x220d8,
- 	.mux_mask = BIT(0),
-@@ -146,6 +187,19 @@ static struct clk_gfm lpass_gfm_rx_npl = {
- 	},
- };
+   interrupt-names:
+@@ -226,8 +226,8 @@ allOf:
+ # This can't be used in cases where another schema is referenced
+ # (i.e. allOf: [{$ref: ...}]).
+ # If and only if another schema is referenced and arbitrary children nodes can
+-# appear, "unevaluatedProperties: false" could be used.  Typical example is I2C
+-# controller where no name pattern matching for children can be added.
++# appear, "unevaluatedProperties: false" could be used.  A typical example is
++# an I2C controller where no name pattern matching for children can be added.
+ additionalProperties: false
  
-+static struct clk_gfm *aoncc_gfm_clks[] = {
-+	[LPASS_CDC_VA_MCLK]		= &lpass_gfm_va_mclk,
-+	[LPASS_CDC_TX_NPL]		= &lpass_gfm_tx_npl,
-+};
-+
-+static struct clk_hw_onecell_data aoncc_hw_onecell_data = {
-+	.hws = {
-+		[LPASS_CDC_VA_MCLK]	= &lpass_gfm_va_mclk.hw,
-+		[LPASS_CDC_TX_NPL]	= &lpass_gfm_tx_npl.hw,
-+	},
-+	.num = ARRAY_SIZE(aoncc_gfm_clks),
-+};
-+
- static struct clk_gfm *audiocc_gfm_clks[] = {
- 	[LPASS_CDC_WSA_NPL]		= &lpass_gfm_wsa_npl,
- 	[LPASS_CDC_WSA_MCLK]		= &lpass_gfm_wsa_mclk,
-@@ -173,6 +227,11 @@ static struct lpass_gfm_data audiocc_data = {
- 	.gfm_clks = audiocc_gfm_clks,
- };
- 
-+static struct lpass_gfm_data aoncc_data = {
-+	.onecell_data = &aoncc_hw_onecell_data,
-+	.gfm_clks = aoncc_gfm_clks,
-+};
-+
- static int lpass_gfm_clk_driver_probe(struct platform_device *pdev)
- {
- 	const struct lpass_gfm_data *data;
-@@ -236,6 +295,10 @@ static int lpass_gfm_clk_driver_probe(struct platform_device *pdev)
- }
- 
- static const struct of_device_id lpass_gfm_clk_match_table[] = {
-+	{
-+		.compatible = "qcom,sm8250-lpass-aoncc",
-+		.data = &aoncc_data,
-+	},
- 	{
- 		.compatible = "qcom,sm8250-lpass-audiocc",
- 		.data = &audiocc_data,
+ examples:
 -- 
-2.21.0
+2.17.1
 
