@@ -2,110 +2,108 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from vger.kernel.org (vger.kernel.org [23.128.96.18])
-	by mail.lfdr.de (Postfix) with ESMTP id B03292784AF
-	for <lists+devicetree@lfdr.de>; Fri, 25 Sep 2020 12:06:07 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTP id 3ECA0278529
+	for <lists+devicetree@lfdr.de>; Fri, 25 Sep 2020 12:31:51 +0200 (CEST)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S1727324AbgIYKGG (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Fri, 25 Sep 2020 06:06:06 -0400
-Received: from mailgw02.mediatek.com ([210.61.82.184]:51863 "EHLO
-        mailgw02.mediatek.com" rhost-flags-OK-FAIL-OK-FAIL) by vger.kernel.org
-        with ESMTP id S1727044AbgIYKGG (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Fri, 25 Sep 2020 06:06:06 -0400
-X-UUID: 357d642f6173461d9e22a29083a61259-20200925
-DKIM-Signature: v=1; a=rsa-sha256; q=dns/txt; c=relaxed/relaxed; d=mediatek.com; s=dk;
-        h=Content-Transfer-Encoding:MIME-Version:Content-Type:References:In-Reply-To:Date:CC:To:From:Subject:Message-ID; bh=Bph4b89m0n2SvzrQ5y28tD7qLIYsd+I1XIgm6YWOMxg=;
-        b=uYdoEsn+gAceZhj9nTI+EJ9/uYegZSglG4cVZiwuPbc+vzLAhzefsG+snIJX4/mz7GY7tZune8HIxGV2S+aSg3XcZx86Ze2sDv4O3dGeY+MZE1g0bP450dNZWEVYRJyUMACVEsgNabpbq307nmEeOTyn5jPRIer+vxJV9M5jhUU=;
-X-UUID: 357d642f6173461d9e22a29083a61259-20200925
-Received: from mtkcas08.mediatek.inc [(172.21.101.126)] by mailgw02.mediatek.com
-        (envelope-from <weiyi.lu@mediatek.com>)
-        (Cellopoint E-mail Firewall v4.1.14 Build 0819 with TLSv1.2 ECDHE-RSA-AES256-SHA384 256/256)
-        with ESMTP id 689825253; Fri, 25 Sep 2020 18:06:03 +0800
-Received: from MTKCAS06.mediatek.inc (172.21.101.30) by mtkexhb01.mediatek.inc
- (172.21.101.102) with Microsoft SMTP Server (TLS) id 15.0.1497.2; Fri, 25 Sep
- 2020 18:06:01 +0800
-Received: from [172.21.77.4] (172.21.77.4) by MTKCAS06.mediatek.inc
- (172.21.101.73) with Microsoft SMTP Server id 15.0.1497.2 via Frontend
- Transport; Fri, 25 Sep 2020 18:06:00 +0800
-Message-ID: <1601028361.1346.38.camel@mtksdaap41>
-Subject: Re: [PATCH 00/12] soc: mediatek: pm-domains: Add new driver for
- SCPSYS power domains controller
-From:   Weiyi Lu <weiyi.lu@mediatek.com>
-To:     Enric Balletbo i Serra <enric.balletbo@collabora.com>
-CC:     <linux-kernel@vger.kernel.org>,
-        Collabora Kernel ML <kernel@collabora.com>,
-        <fparent@baylibre.com>, <matthias.bgg@gmail.com>,
-        <drinkcat@chromium.org>, <hsinyi@chromium.org>,
-        Rob Herring <robh+dt@kernel.org>, <devicetree@vger.kernel.org>,
-        <linux-arm-kernel@lists.infradead.org>,
-        <linux-mediatek@lists.infradead.org>
-Date:   Fri, 25 Sep 2020 18:06:01 +0800
-In-Reply-To: <20200910172826.3074357-1-enric.balletbo@collabora.com>
-References: <20200910172826.3074357-1-enric.balletbo@collabora.com>
-Content-Type: text/plain; charset="UTF-8"
-X-Mailer: Evolution 3.10.4-0ubuntu2 
+        id S1728093AbgIYKbi (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Fri, 25 Sep 2020 06:31:38 -0400
+Received: from lindbergh.monkeyblade.net ([23.128.96.19]:45276 "EHLO
+        lindbergh.monkeyblade.net" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
+        with ESMTP id S1727044AbgIYKbe (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Fri, 25 Sep 2020 06:31:34 -0400
+Received: from mail-wm1-x32a.google.com (mail-wm1-x32a.google.com [IPv6:2a00:1450:4864:20::32a])
+        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 59DF8C0613CE
+        for <devicetree@vger.kernel.org>; Fri, 25 Sep 2020 03:31:34 -0700 (PDT)
+Received: by mail-wm1-x32a.google.com with SMTP id b79so2708234wmb.4
+        for <devicetree@vger.kernel.org>; Fri, 25 Sep 2020 03:31:34 -0700 (PDT)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+        d=linaro.org; s=google;
+        h=from:to:cc:subject:date:message-id:mime-version
+         :content-transfer-encoding;
+        bh=VxPsmY6xMrudobvS3a5IPxrVhQsTl32KRChwCgeKp24=;
+        b=EhBxqM0gxfw+4TaYEZteTYA8hQZkx1kzQfS27bZUIV1ITXvTmaaW+VG0j1STKZLN+6
+         PjBtJf1Ej9wsqcJydZkd9nGbEKUlhHBlQOV1YLXzAjEJPmlBRs3cEv+kp7ru8e0kZshM
+         RZTMYsOhIjdyQQogx3yyzqaDBqAKNBSYeMrmYq9Grm4n6KfaWkypU37EbpsLas3z1Ug0
+         LsJOvd9IZcO2dDVgSSVaf/a6NnaxZdx6N7NVRMwcxKh0ZuK9M24vN2rJ+CgpErv2VOKS
+         9UR15xCx2hRn6AQokIUBOQFiLFsKscDA0ywGJ3BKd39I3IrWhEpxtp3vWRvPTNFP3bEL
+         RP1Q==
+X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+        d=1e100.net; s=20161025;
+        h=x-gm-message-state:from:to:cc:subject:date:message-id:mime-version
+         :content-transfer-encoding;
+        bh=VxPsmY6xMrudobvS3a5IPxrVhQsTl32KRChwCgeKp24=;
+        b=Eetz2x/mFLwnrdkHefLgO5svmC3PUN58tnuLMrgwSefB7F8yf/lWfbSL7Ty7NeOXzW
+         hustB2FR2FpyIRHMQ5jh9MIccPtVq2y44SurK8HAEaSzCel1o/UIRTmHGWQrUEFyxAUX
+         yPetUEhkJeholiIf/0+9rmgYJsjjjfeakTd7Kt6MdGXUlyupURoXLp2k3hiEc801E7/W
+         9WT1cz+6L6CWgTsV2zjHfNZ48NoNdaE7kS7lqib9GMrRl6YPQ0T/5zHbLiqIo6OsRu/v
+         3AAvkN08vKDjwnjxRnJP4oCyBGMpT01ZUsQ1e39hcuwmVaLaowEz8sPOxq/4iaNXRb/M
+         X1ug==
+X-Gm-Message-State: AOAM533Sa684jCtZq2A1jK3M6JRgUPxF6k2JB9pan0bTzs4D/Z8e5ciW
+        5+wxGNL7AT2LC1iqqmLsbu8NrQ==
+X-Google-Smtp-Source: ABdhPJzBUn4IPDFlv9ZZH1Oyc5QFu+X0TgWUPsMiHto2i7T7FhUmEeqMXp6Ak6s+6Y6+V8ZTxUDD8g==
+X-Received: by 2002:a1c:e389:: with SMTP id a131mr2436342wmh.181.1601029892908;
+        Fri, 25 Sep 2020 03:31:32 -0700 (PDT)
+Received: from srini-hackbox.lan (cpc86377-aztw32-2-0-cust226.18-1.cable.virginm.net. [92.233.226.227])
+        by smtp.gmail.com with ESMTPSA id 11sm2354907wmi.14.2020.09.25.03.31.31
+        (version=TLS1_3 cipher=TLS_AES_256_GCM_SHA384 bits=256/256);
+        Fri, 25 Sep 2020 03:31:32 -0700 (PDT)
+From:   Srinivas Kandagatla <srinivas.kandagatla@linaro.org>
+To:     sboyd@kernel.org, linux-clk@vger.kernel.org,
+        devicetree@vger.kernel.org
+Cc:     bjorn.andersson@linaro.org, mturquette@baylibre.com,
+        robh+dt@kernel.org, linux-arm-msm@vger.kernel.org,
+        linux-kernel@vger.kernel.org,
+        Srinivas Kandagatla <srinivas.kandagatla@linaro.org>
+Subject: [PATCH v2 0/4] clk: qcom : add sm8250 LPASS GFM drivers
+Date:   Fri, 25 Sep 2020 11:31:11 +0100
+Message-Id: <20200925103115.15191-1-srinivas.kandagatla@linaro.org>
+X-Mailer: git-send-email 2.21.0
 MIME-Version: 1.0
-X-MTK:  N
-Content-Transfer-Encoding: base64
+Content-Transfer-Encoding: 8bit
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-T24gVGh1LCAyMDIwLTA5LTEwIGF0IDE5OjI4ICswMjAwLCBFbnJpYyBCYWxsZXRibyBpIFNlcnJh
-IHdyb3RlOg0KPiBEZWFyIGFsbCwNCj4gDQo+IFRoaXMgaXMgYSBuZXcgZHJpdmVyIHdpdGggdGhl
-IGFpbSB0byBkZXByZWNhdGUgdGhlIG10ay1zY3BzeXMgZHJpdmVyLg0KPiBUaGUgcHJvYmxlbSB3
-aXRoIHRoYXQgZHJpdmVyIGlzIHRoYXQsIGluIG9yZGVyIHRvIHN1cHBvcnQgbW9yZSBNZWRpYXRl
-aw0KPiBTb0NzIHlvdSBuZWVkIHRvIGFkZCBzb21lIGxvZ2ljIHRvIGhhbmRsZSBwcm9wZXJseSB0
-aGUgcG93ZXItdXANCj4gc2VxdWVuY2Ugb2YgbmV3ZXIgTWVkaWF0ZWsgU29DcywgZG9lc24ndCBo
-YW5kbGUgcGFyZW50LWNoaWxkIHBvd2VyDQo+IGRvbWFpbnMgYW5kIG5lZWQgdG8gaGFyZGNvZGUg
-YWxsIHRoZSBjbG9ja3MgaW4gdGhlIGRyaXZlciBpdHNlbGYuIFRoZQ0KPiByZXN1bHQgaXMgdGhh
-dCB0aGUgZHJpdmVyIGlzIGdldHRpbmcgYmlnZ2VyIGFuZCBiaWdnZXIgZXZlcnkgdGltZSBhDQo+
-IG5ldyBTb0MgbmVlZHMgdG8gYmUgc3VwcG9ydGVkLg0KPiANCg0KSGkgRW5yaWMgYW5kIE1hdHRo
-aWFzLA0KDQpGaXJzdCBvZiBhbGwsIHRoYW5rIHlvdSBmb3IgdGhlIHBhdGNoLiBCdXQgSSdtIHdv
-cnJpZWQgdGhlIHByb2JsZW0geW91DQptZW50aW9uZWQgd29uJ3QgYmUgc29sdmVkIGV2ZW4gaWYg
-d2Ugd29yayBvbiB0aGlzIG5ldyBkcml2ZXIgaW4gdGhlDQpmdXR1cmUuIE15IHdvcmsgb24gdGhl
-IE1UODE4MyBzY3BzeXMobm93IHYxNykgaXMgdG8gaW1wbGVtZW50IHRoZSBuZXcNCmhhcmR3YXJl
-IGxvZ2ljLiBIZXJlLCBJIGFsc28gc2VlIHJlbGF0ZWQgcGF0Y2hlcywgd2hpY2ggbWVhbnMgdGhh
-dCB0aGVzZQ0KbmV3IGxvZ2ljcyBhcmUgbmVjZXNzYXJ5LiBXaHkgY2FuJ3Qgd2Ugd29yayBvbiB0
-aGUgb3JpZ2luYWwgZHJpdmVyPw0KTWVhbndoaWxlLCBJIHRob3VnaHQgbWF5YmUgd2Ugc2hvdWxk
-IHNlcGFyYXRlIHRoZSBkcml2ZXIgaW50byBnZW5lcmFsDQpjb250cm9sIGFuZCBwbGF0Zm9ybSBk
-YXRhIGZvciBlYWNoIFNvQywgb3RoZXJ3aXNlIGl0J2xsIGtlZXAgZ2V0dGluZw0KYmlnZ2VyIGFu
-ZCBiaWdnZXIgaWYgaXQgbmVlZCB0byBiZSBzdXBwb3J0IG5ldyBTb0MuDQoNCkFuZCBjb25zaWRl
-ciBEVkZTUkMNCihkeW5hbWljIHZvbHRhZ2UgYW5kIGZyZXF1ZW5jeSBzY2FsaW5nIHJlc291cmNl
-IGNvbGxlY3RvciksIHNob3VsZCB3ZQ0Ka2VlcCB0aGUgb3JpZ2luYWwgZHJpdmVyIG5hbWUgInNj
-cHN5cyIgaW5zdGVhZCBvZiAicG0tZG9tYWlucyIgYmVjYXVzZQ0KaXQgbWF5IHByb3ZpZGUgbW9y
-ZSBmdW5jdGlvbnMgdGhhbiBwb3dlciBkb21haW5zPw0KDQo+IEFsbCB0aGlzIGluZm9ybWF0aW9u
-IGNhbiBiZSBnZXR0ZWQgZnJvbSBhIHByb3Blcmx5IGRlZmluZWQgYmluZGluZywgc28NCj4gY2Fu
-IGJlIGNsZWFuZXIgYW5kIHNtYWxsZXIsIGhlbmNlLCB3ZSBpbXBsZW1lbnRlZCBhIG5ldyBkcml2
-ZXIuIEZvcg0KPiBub3csIG9ubHkgTVQ4MTczIGFuZCBNVDgxODMgaXMgc3VwcG9ydGVkIGJ1dCBz
-aG91bGQgYmUgZmFpcmx5IGVhc3kgdG8NCj4gYWRkIHN1cHBvcnQgZm9yIG5ldyBTb0NzLg0KPiAN
-Cj4gQmVzdCByZWdhcmRzLA0KPiAgIEVucmljDQo+IA0KPiBFbnJpYyBCYWxsZXRibyBpIFNlcnJh
-ICg0KToNCj4gICBkdC1iaW5kaW5nczogcG93ZXI6IEFkZCBiaW5kaW5ncyBmb3IgdGhlIE1lZGlh
-dGVrIFNDUFNZUyBwb3dlciBkb21haW5zDQo+ICAgICBjb250cm9sbGVyDQo+ICAgc29jOiBtZWRp
-YXRlazogQWRkIE1lZGlhVGVrIFNDUFNZUyBwb3dlciBkb21haW5zDQo+ICAgYXJtNjQ6IGR0czog
-bWVkaWF0ZWs6IEFkZCBtdDgxNzMgcG93ZXIgZG9tYWluIGNvbnRyb2xsZXINCj4gICBkdC1iaW5k
-aW5nczogcG93ZXI6IEFkZCBNVDgxODMgcG93ZXIgZG9tYWlucw0KPiANCj4gTWF0dGhpYXMgQnJ1
-Z2dlciAoOCk6DQo+ICAgc29jOiBtZWRpYXRlazogcG0tZG9tYWluczogQWRkIGJ1cyBwcm90ZWN0
-aW9uIHByb3RvY29sDQo+ICAgc29jOiBtZWRpYXRlazogcG1fZG9tYWluczogTWFrZSBidXMgcHJv
-dGVjdGlvbiBnZW5lcmljDQo+ICAgc29jOiBtZWRpYXRlazogcG0tZG9tYWluczogQWRkIFNNSSBi
-bG9jayBhcyBidXMgcHJvdGVjdGlvbiBibG9jaw0KPiAgIHNvYzogbWVkaWF0ZWs6IHBtLWRvbWFp
-bnM6IEFkZCBleHRyYSBzcmFtIGNvbnRyb2wNCj4gICBzb2M6IG1lZGlhdGVrOiBwbS1kb21haW5z
-OiBBZGQgc3Vic3lzdGVtIGNsb2Nrcw0KPiAgIHNvYzogbWVkaWF0ZWs6IHBtLWRvbWFpbnM6IEFs
-bG93IGJ1cyBwcm90ZWN0aW9uIHRvIGlnbm9yZSBjbGVhciBhY2sNCj4gICBzb2M6IG1lZGlhdGVr
-OiBwbS1kb21haW5zOiBBZGQgc3VwcG9ydCBmb3IgbXQ4MTgzDQo+ICAgYXJtNjQ6IGR0czogbWVk
-aWF0ZWs6IEFkZCBtdDgxODMgcG93ZXIgZG9tYWlucyBjb250cm9sbGVyDQo+IA0KPiAgLi4uL3Bv
-d2VyL21lZGlhdGVrLHBvd2VyLWNvbnRyb2xsZXIueWFtbCAgICAgIHwgMTczICsrKysNCj4gIGFy
-Y2gvYXJtNjQvYm9vdC9kdHMvbWVkaWF0ZWsvbXQ4MTczLmR0c2kgICAgICB8ICA3OCArLQ0KPiAg
-YXJjaC9hcm02NC9ib290L2R0cy9tZWRpYXRlay9tdDgxODMuZHRzaSAgICAgIHwgMTYwICsrKw0K
-PiAgZHJpdmVycy9zb2MvbWVkaWF0ZWsvS2NvbmZpZyAgICAgICAgICAgICAgICAgIHwgIDEzICsN
-Cj4gIGRyaXZlcnMvc29jL21lZGlhdGVrL01ha2VmaWxlICAgICAgICAgICAgICAgICB8ICAgMSAr
-DQo+ICBkcml2ZXJzL3NvYy9tZWRpYXRlay9tdGstaW5mcmFjZmcuYyAgICAgICAgICAgfCAgIDUg
-LQ0KPiAgZHJpdmVycy9zb2MvbWVkaWF0ZWsvbXRrLXBtLWRvbWFpbnMuYyAgICAgICAgIHwgOTUy
-ICsrKysrKysrKysrKysrKysrKw0KPiAgaW5jbHVkZS9kdC1iaW5kaW5ncy9wb3dlci9tdDgxODMt
-cG93ZXIuaCAgICAgIHwgIDI2ICsNCj4gIGluY2x1ZGUvbGludXgvc29jL21lZGlhdGVrL2luZnJh
-Y2ZnLmggICAgICAgICB8ICAzOSArDQo+ICA5IGZpbGVzIGNoYW5nZWQsIDE0MzMgaW5zZXJ0aW9u
-cygrKSwgMTQgZGVsZXRpb25zKC0pDQo+ICBjcmVhdGUgbW9kZSAxMDA2NDQgRG9jdW1lbnRhdGlv
-bi9kZXZpY2V0cmVlL2JpbmRpbmdzL3Bvd2VyL21lZGlhdGVrLHBvd2VyLWNvbnRyb2xsZXIueWFt
-bA0KPiAgY3JlYXRlIG1vZGUgMTAwNjQ0IGRyaXZlcnMvc29jL21lZGlhdGVrL210ay1wbS1kb21h
-aW5zLmMNCj4gIGNyZWF0ZSBtb2RlIDEwMDY0NCBpbmNsdWRlL2R0LWJpbmRpbmdzL3Bvd2VyL210
-ODE4My1wb3dlci5oDQo+IA0KDQo=
+This patchset adds support for GFM Muxes found in LPASS
+(Low Power Audio SubSystem) IP in Audio Clock Controller
+and Always ON clock controller.
+
+Clocks derived from these muxes are consumed by LPASS Digital Codec.
+Currently the driver for Audio and Always ON clock controller only
+supports GFM Muxes, however it should be easy to add more clock
+support when required
+
+Changes since v1:
+ -removed unnecessary Kconfig dependencies
+ - cleaned up header includes.
+ - moved to using pm_clk
+ - Moved to right place in Makefile
+ - moved to use module_platform_driver instead of builtin_platform_driver
+ - add null check for of_device_get_match_data 
+
+verified dt_binding_check to pass on linux next https://paste.ubuntu.com/p/6nVzjRwvsW/
+
+
+Srinivas Kandagatla (4):
+  dt-bindings: clock: Add support for LPASS Audio Clock Controller
+  dt-bindings: clock: Add support for LPASS Always ON Controller
+  clk: qcom: Add support to LPASS AUDIO_CC Glitch Free Mux clocks
+  clk: qcom: Add support to LPASS AON_CC Glitch Free Mux clocks
+
+ .../bindings/clock/qcom,aoncc-sm8250.yaml     |  58 ++++
+ .../bindings/clock/qcom,audiocc-sm8250.yaml   |  58 ++++
+ drivers/clk/qcom/Kconfig                      |   6 +
+ drivers/clk/qcom/Makefile                     |   1 +
+ drivers/clk/qcom/lpass-gfm-sm8250.c           | 323 ++++++++++++++++++
+ .../clock/qcom,sm8250-lpass-aoncc.h           |  11 +
+ .../clock/qcom,sm8250-lpass-audiocc.h         |  13 +
+ 7 files changed, 470 insertions(+)
+ create mode 100644 Documentation/devicetree/bindings/clock/qcom,aoncc-sm8250.yaml
+ create mode 100644 Documentation/devicetree/bindings/clock/qcom,audiocc-sm8250.yaml
+ create mode 100644 drivers/clk/qcom/lpass-gfm-sm8250.c
+ create mode 100644 include/dt-bindings/clock/qcom,sm8250-lpass-aoncc.h
+ create mode 100644 include/dt-bindings/clock/qcom,sm8250-lpass-audiocc.h
+
+-- 
+2.21.0
 
