@@ -2,51 +2,51 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from vger.kernel.org (vger.kernel.org [23.128.96.18])
-	by mail.lfdr.de (Postfix) with ESMTP id 982B427852C
-	for <lists+devicetree@lfdr.de>; Fri, 25 Sep 2020 12:31:52 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTP id AB9DE278531
+	for <lists+devicetree@lfdr.de>; Fri, 25 Sep 2020 12:31:59 +0200 (CEST)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S1728185AbgIYKbt (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Fri, 25 Sep 2020 06:31:49 -0400
-Received: from lindbergh.monkeyblade.net ([23.128.96.19]:45302 "EHLO
+        id S1728186AbgIYKbv (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Fri, 25 Sep 2020 06:31:51 -0400
+Received: from lindbergh.monkeyblade.net ([23.128.96.19]:45306 "EHLO
         lindbergh.monkeyblade.net" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S1728043AbgIYKbi (ORCPT
+        with ESMTP id S1728069AbgIYKbi (ORCPT
         <rfc822;devicetree@vger.kernel.org>); Fri, 25 Sep 2020 06:31:38 -0400
 Received: from mail-wm1-x341.google.com (mail-wm1-x341.google.com [IPv6:2a00:1450:4864:20::341])
-        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 97015C0613D9
-        for <devicetree@vger.kernel.org>; Fri, 25 Sep 2020 03:31:35 -0700 (PDT)
-Received: by mail-wm1-x341.google.com with SMTP id e2so2726605wme.1
-        for <devicetree@vger.kernel.org>; Fri, 25 Sep 2020 03:31:35 -0700 (PDT)
+        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id BA817C0613DC
+        for <devicetree@vger.kernel.org>; Fri, 25 Sep 2020 03:31:36 -0700 (PDT)
+Received: by mail-wm1-x341.google.com with SMTP id k18so2702982wmj.5
+        for <devicetree@vger.kernel.org>; Fri, 25 Sep 2020 03:31:36 -0700 (PDT)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
         d=linaro.org; s=google;
         h=from:to:cc:subject:date:message-id:in-reply-to:references
          :mime-version:content-transfer-encoding;
-        bh=hLnWR4evaA6k5JcpTnqiMDGjsxjllMiiAGlGQ8F3HZE=;
-        b=I2FfxD4giNKc0qMqwWrLHvtQKw37BxU5gISpC6gnZY7NLfu4SlKU5yF4Qtam+Lcr48
-         uYJW4vMa07Vuazslzb/HremwAi2v1M6YutCmSyB1pXWCI3fpEOLLoXnvyPSJNKM2Trus
-         h/rm1oCsWV4JGz1Cg8hZe4NFqX1zlSyaAPb/2lmK/U6Y/1Fzc6myqdzKH14bZv0xeHaI
-         8kzT99e1DqxWtPKO3vPXdfHNY/Sbl/zV2fg9rnXwbMh001GuMnYzCmOSRCU5EjEpghVc
-         5f4G1j7cR8x8xSQo1/ED1E96U6JiOAsGOZrzONO5LV3SuF7r9A9SaOEGdnO4HZBjHQjW
-         QX9w==
+        bh=kTQ3e0/LCgzSJvFHZrL2OGlp6ZdNfQa4Pg2C/+kTcwM=;
+        b=ccC+FV4be/e/5Po5TekeLpAkwVM1euxvcfPbP70FAx2wCSw6ESROzfia0AZE2cTk2R
+         APJkVFeyBykdc5ipLi5DPjb+octeugFkbWC5lvSKp7IzLewRFy3YCIur0LqydsI9qzF9
+         OGvReI8/v9E4H+oOHlrWFYpKPz3cDODe2x2mxPQQMilXsfvJxoBAk51dwyBJEpC5BiFB
+         z1lPvG3fW7tKuwba3Katol8XFuAcMFQakuS1lI4jBkHBEX2XXm+rBxSpvlfqIcSADyXN
+         BNmsyJT2hS1zi7o9KtC0Z1N759CNs604ILUehTsffiqWHzBtUCfSijakzdlxc5mp6XCG
+         J6kQ==
 X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
         d=1e100.net; s=20161025;
         h=x-gm-message-state:from:to:cc:subject:date:message-id:in-reply-to
          :references:mime-version:content-transfer-encoding;
-        bh=hLnWR4evaA6k5JcpTnqiMDGjsxjllMiiAGlGQ8F3HZE=;
-        b=G4HAJqdwWjmIo0CIp3MPhO26uLaqO5Cb3kzGDvyx+3of0dUq7gEAu/LeOd18+9/tdK
-         gqBbXkajNtM6BIVCA7jb3zdwDV95gPYpkGpAu+tKuNcVto3PzI4akYtIGjb7+Pdjm4wR
-         DodcfGhzdvhVOpNOAhMLjG0lcxsw62Oe1PLbkOL9+ZEfNmSdlpjOuDuYzRGsDB2IsG0s
-         XLzNna89NSWFr1nenSyC65XyvAaJlYRd6tIx++RQa11ly23qNT2kT93hLCiIx+/Rbut/
-         6HwMudsvWYAIOdMFhSEQYOIVCFQ5vUpiHyolRAM+08i0jJ0sX2ougMewwEIVOOoMvcyL
-         YR+A==
-X-Gm-Message-State: AOAM5328CbyJcRwu37b/pt27W0c3NpS1R2Gqmoq/KptilXwP6SpQwMEN
-        +xRR54ik/KxU7+l3cwvMwOcj8Q==
-X-Google-Smtp-Source: ABdhPJzfFCC6wQ6ihxNmQsKq/TD+EyO73JadzRRP7DQcdOkvu2fB+x+zWuxXgAd06dIcGLLJXTbVzg==
-X-Received: by 2002:a1c:6555:: with SMTP id z82mr2363754wmb.101.1601029894115;
-        Fri, 25 Sep 2020 03:31:34 -0700 (PDT)
+        bh=kTQ3e0/LCgzSJvFHZrL2OGlp6ZdNfQa4Pg2C/+kTcwM=;
+        b=Yk2I9MrIU8sH5XlaK5RHHBjMpGJ3YLLzGRaB7XgFgJEnAZ+mbo/mc2JFWkiy3ZQWi7
+         b8J9D+vv7kBHjxxtQiU93yP3KUHnRl3Gps4HQg0PcwWaj7mpSSksHcIk9HInUI45ERVt
+         F9OI4qgrRm59zTdvM9Q+WVddn4RCy4eFPVVoR11+98qOA8VNKhRaPc5Q8FlU50EOmxrZ
+         spavPvAXcTadMaXpc6FA6kHsGVr8rJ1iCQu5w53l/j3TxKb3P8yx26Wlxj4x/XMgtgWQ
+         eHYGr1KTFvqWKqi1GpzlWePfpuASUoXcC1Sg0/ppArxsMhCmnhJ2Kz7y0FT2PfuWw4eu
+         SMWg==
+X-Gm-Message-State: AOAM532Rmea/zTqE2+YsvByB94s0A+LD3k2P07TLlZsReXPhLFDEDlC4
+        js0iDQ9EBIIl/D1gGJthabcU4w==
+X-Google-Smtp-Source: ABdhPJxErtQikbHjqQn6fHN+5dV5Wp8EDhlBXkKec0vOuPfEwXGFI7L0lw9wl7gmVe26iB/5RJ5plA==
+X-Received: by 2002:a1c:6487:: with SMTP id y129mr2496832wmb.90.1601029895413;
+        Fri, 25 Sep 2020 03:31:35 -0700 (PDT)
 Received: from srini-hackbox.lan (cpc86377-aztw32-2-0-cust226.18-1.cable.virginm.net. [92.233.226.227])
-        by smtp.gmail.com with ESMTPSA id 11sm2354907wmi.14.2020.09.25.03.31.32
+        by smtp.gmail.com with ESMTPSA id 11sm2354907wmi.14.2020.09.25.03.31.34
         (version=TLS1_3 cipher=TLS_AES_256_GCM_SHA384 bits=256/256);
-        Fri, 25 Sep 2020 03:31:33 -0700 (PDT)
+        Fri, 25 Sep 2020 03:31:34 -0700 (PDT)
 From:   Srinivas Kandagatla <srinivas.kandagatla@linaro.org>
 To:     sboyd@kernel.org, linux-clk@vger.kernel.org,
         devicetree@vger.kernel.org
@@ -54,9 +54,9 @@ Cc:     bjorn.andersson@linaro.org, mturquette@baylibre.com,
         robh+dt@kernel.org, linux-arm-msm@vger.kernel.org,
         linux-kernel@vger.kernel.org,
         Srinivas Kandagatla <srinivas.kandagatla@linaro.org>
-Subject: [PATCH v2 1/4] dt-bindings: clock: Add support for LPASS Audio Clock Controller
-Date:   Fri, 25 Sep 2020 11:31:12 +0100
-Message-Id: <20200925103115.15191-2-srinivas.kandagatla@linaro.org>
+Subject: [PATCH v2 2/4] dt-bindings: clock: Add support for LPASS Always ON Controller
+Date:   Fri, 25 Sep 2020 11:31:13 +0100
+Message-Id: <20200925103115.15191-3-srinivas.kandagatla@linaro.org>
 X-Mailer: git-send-email 2.21.0
 In-Reply-To: <20200925103115.15191-1-srinivas.kandagatla@linaro.org>
 References: <20200925103115.15191-1-srinivas.kandagatla@linaro.org>
@@ -66,30 +66,30 @@ Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-Audio Clock controller is a block inside LPASS which controls
-2 Glitch free muxes to LPASS codec Macros.
+Always ON Clock controller is a block inside LPASS which controls
+1 Glitch free muxes to LPASS codec Macros.
 
 Signed-off-by: Srinivas Kandagatla <srinivas.kandagatla@linaro.org>
 ---
- .../bindings/clock/qcom,audiocc-sm8250.yaml   | 58 +++++++++++++++++++
- .../clock/qcom,sm8250-lpass-audiocc.h         | 13 +++++
- 2 files changed, 71 insertions(+)
- create mode 100644 Documentation/devicetree/bindings/clock/qcom,audiocc-sm8250.yaml
- create mode 100644 include/dt-bindings/clock/qcom,sm8250-lpass-audiocc.h
+ .../bindings/clock/qcom,aoncc-sm8250.yaml     | 58 +++++++++++++++++++
+ .../clock/qcom,sm8250-lpass-aoncc.h           | 11 ++++
+ 2 files changed, 69 insertions(+)
+ create mode 100644 Documentation/devicetree/bindings/clock/qcom,aoncc-sm8250.yaml
+ create mode 100644 include/dt-bindings/clock/qcom,sm8250-lpass-aoncc.h
 
-diff --git a/Documentation/devicetree/bindings/clock/qcom,audiocc-sm8250.yaml b/Documentation/devicetree/bindings/clock/qcom,audiocc-sm8250.yaml
+diff --git a/Documentation/devicetree/bindings/clock/qcom,aoncc-sm8250.yaml b/Documentation/devicetree/bindings/clock/qcom,aoncc-sm8250.yaml
 new file mode 100644
-index 000000000000..915d76206ad0
+index 000000000000..c40a74b5d672
 --- /dev/null
-+++ b/Documentation/devicetree/bindings/clock/qcom,audiocc-sm8250.yaml
++++ b/Documentation/devicetree/bindings/clock/qcom,aoncc-sm8250.yaml
 @@ -0,0 +1,58 @@
 +# SPDX-License-Identifier: (GPL-2.0-only OR BSD-2-Clause)
 +%YAML 1.2
 +---
-+$id: http://devicetree.org/schemas/clock/qcom,audiocc-sm8250.yaml#
++$id: http://devicetree.org/schemas/clock/qcom,aoncc-sm8250.yaml#
 +$schema: http://devicetree.org/meta-schemas/core.yaml#
 +
-+title: Clock bindings for LPASS Audio Clock Controller on SM8250 SoCs
++title: Clock bindings for LPASS Always ON Clock Controller on SM8250 SoCs
 +
 +maintainers:
 +  - Srinivas Kandagatla <srinivas.kandagatla@linaro.org>
@@ -97,12 +97,12 @@ index 000000000000..915d76206ad0
 +description: |
 +  The clock consumer should specify the desired clock by having the clock
 +  ID in its "clocks" phandle cell.
-+  See include/dt-bindings/clock/qcom,sm8250-lpass-audiocc.h for the full list
++  See include/dt-bindings/clock/qcom,sm8250-lpass-aoncc.h for the full list
 +  of Audio Clock controller clock IDs.
 +
 +properties:
 +  compatible:
-+    const: qcom,sm8250-lpass-audiocc
++    const: qcom,sm8250-lpass-aon
 +
 +  reg:
 +    maxItems: 1
@@ -131,35 +131,33 @@ index 000000000000..915d76206ad0
 +
 +examples:
 +  - |
-+    #include <dt-bindings/clock/qcom,sm8250-lpass-audiocc.h>
++    #include <dt-bindings/clock/qcom,sm8250-lpass-aoncc.h>
 +    #include <dt-bindings/sound/qcom,q6afe.h>
-+    clock-controller@3300000 {
++    clock-controller@3800000 {
 +      #clock-cells = <1>;
-+      compatible = "qcom,sm8250-lpass-audiocc";
-+      reg = <0x03300000 0x30000>;
++      compatible = "qcom,sm8250-lpass-aon";
++      reg = <0x03380000 0x40000>;
 +      clocks = <&q6afecc LPASS_HW_MACRO_VOTE LPASS_CLK_ATTRIBUTE_COUPLE_NO>,
 +               <&q6afecc LPASS_CLK_ID_TX_CORE_MCLK LPASS_CLK_ATTRIBUTE_COUPLE_NO>;
 +      clock-names = "core", "bus";
 +    };
-diff --git a/include/dt-bindings/clock/qcom,sm8250-lpass-audiocc.h b/include/dt-bindings/clock/qcom,sm8250-lpass-audiocc.h
+diff --git a/include/dt-bindings/clock/qcom,sm8250-lpass-aoncc.h b/include/dt-bindings/clock/qcom,sm8250-lpass-aoncc.h
 new file mode 100644
-index 000000000000..a1aa6cb5d840
+index 000000000000..f5a1cfac8612
 --- /dev/null
-+++ b/include/dt-bindings/clock/qcom,sm8250-lpass-audiocc.h
-@@ -0,0 +1,13 @@
++++ b/include/dt-bindings/clock/qcom,sm8250-lpass-aoncc.h
+@@ -0,0 +1,11 @@
 +/* SPDX-License-Identifier: GPL-2.0 */
 +
-+#ifndef _DT_BINDINGS_CLK_LPASS_AUDIOCC_SM8250_H
-+#define _DT_BINDINGS_CLK_LPASS_AUDIOCC_SM8250_H
++#ifndef _DT_BINDINGS_CLK_LPASS_AONCC_SM8250_H
++#define _DT_BINDINGS_CLK_LPASS_AONCC_SM8250_H
 +
-+/* From AudioCC */
-+#define LPASS_CDC_WSA_NPL				0
-+#define LPASS_CDC_WSA_MCLK				1
-+#define LPASS_CDC_RX_MCLK				2
-+#define LPASS_CDC_RX_NPL				3
-+#define LPASS_CDC_RX_MCLK_MCLK2				4
++/* from AOCC */
++#define LPASS_CDC_VA_MCLK				0
++#define LPASS_CDC_TX_NPL				1
++#define LPASS_CDC_TX_MCLK				2
 +
-+#endif /* _DT_BINDINGS_CLK_LPASS_AUDIOCC_SM8250_H */
++#endif /* _DT_BINDINGS_CLK_LPASS_AONCC_SM8250_H */
 -- 
 2.21.0
 
