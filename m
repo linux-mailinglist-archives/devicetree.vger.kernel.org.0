@@ -2,123 +2,190 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from vger.kernel.org (vger.kernel.org [23.128.96.18])
-	by mail.lfdr.de (Postfix) with ESMTP id EC8BE277CB6
-	for <lists+devicetree@lfdr.de>; Fri, 25 Sep 2020 02:12:59 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTP id 80450277DE3
+	for <lists+devicetree@lfdr.de>; Fri, 25 Sep 2020 04:27:33 +0200 (CEST)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S1726631AbgIYAM6 (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Thu, 24 Sep 2020 20:12:58 -0400
-Received: from lindbergh.monkeyblade.net ([23.128.96.19]:34880 "EHLO
-        lindbergh.monkeyblade.net" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S1726448AbgIYAM6 (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Thu, 24 Sep 2020 20:12:58 -0400
-Received: from mail-lf1-x134.google.com (mail-lf1-x134.google.com [IPv6:2a00:1450:4864:20::134])
-        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id ED982C0613CE;
-        Thu, 24 Sep 2020 17:12:57 -0700 (PDT)
-Received: by mail-lf1-x134.google.com with SMTP id y11so807291lfl.5;
-        Thu, 24 Sep 2020 17:12:57 -0700 (PDT)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=gmail.com; s=20161025;
-        h=subject:to:cc:references:from:message-id:date:user-agent
-         :mime-version:in-reply-to:content-language:content-transfer-encoding;
-        bh=PBjgiLAVSoJgxT17zOaTxqyfbhjh2QfCjso7UAkKS6w=;
-        b=PyClMLHUz5XkszhIsBYpSCSD24UXHk2Fq0eHt1+0sSz9aqQow4/Ts3mvjms4vmM2xB
-         AqP8sBz90ZxlkvxshCBCQK1fSx0keyumDt1aAF7iee74Cf6rlfgGTkIsd3M+SEX7B7kJ
-         Z9oONbbvZhUzm7jm4S8HjZu3XS73NkSWVDjuEjvQ/YmlZkgshMPc8ZEFBGA2VBIFa8tA
-         Io2P0LdsTPi9Gj6srGxntRGPKUmNlOeJE9mXSiLg1QT2FSX1eH4acvMl9WEjLQZkoqxv
-         Bedbb8JVRjJyvtoYlOuzpW9cZy2xPrw5F3pUc02rNGkQhUwK1n46LahTqbNmWnwVccZn
-         IBPw==
-X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=1e100.net; s=20161025;
-        h=x-gm-message-state:subject:to:cc:references:from:message-id:date
-         :user-agent:mime-version:in-reply-to:content-language
-         :content-transfer-encoding;
-        bh=PBjgiLAVSoJgxT17zOaTxqyfbhjh2QfCjso7UAkKS6w=;
-        b=AlLM3+3swmm/u9wrDrjE/pTYrZ6cyu7pSXlkPKwapC2sZ/eKdQs6p52EMWl66RkT3b
-         4HF5l6cpylcdT9O0Ms+CtB+IUAcR2233NruZoioge3a/9MgxZ8o32dhBsrCT4hTrcqm5
-         rTFKhrPegMrcuO7AnLGVgJf1NOkAmCFszHVfNAV3XY/W1BiYRSFtDr8l9Tnfh5SgeAGw
-         HUHuSEAqK0dEaLynDhiCxxiVpiq3gclC6vtpepsyZHnKMY558G4KNpkdInCO7zMl7JZF
-         6X9QtBgmVFVuQE3cSgcjsu+jy8YFxhlWWOlHYR00Qgs7BffCAJJv9nyy9oOmMhkBNifR
-         +Ccg==
-X-Gm-Message-State: AOAM532DoZHvv3/85KawfI7nCMfayG3qlQdP+oRcdOLqQRPlC6zAhiAY
-        4ahBdWtJT06GRQa3jheSmWDMZ8sJ18M=
-X-Google-Smtp-Source: ABdhPJyNVc10NeKfqnrZD5h8TUnpb/DgCHWGN04GvZ7x8/q1fz7C79zcLT2VBhL01kgjAlOMHKbcbQ==
-X-Received: by 2002:ac2:495a:: with SMTP id o26mr462064lfi.94.1600992774207;
-        Thu, 24 Sep 2020 17:12:54 -0700 (PDT)
-Received: from [192.168.2.145] (109-252-170-211.dynamic.spd-mgts.ru. [109.252.170.211])
-        by smtp.googlemail.com with ESMTPSA id y21sm727120lff.155.2020.09.24.17.12.52
-        (version=TLS1_3 cipher=TLS_AES_128_GCM_SHA256 bits=128/128);
-        Thu, 24 Sep 2020 17:12:53 -0700 (PDT)
-Subject: Re: [PATCH v2 1/3] ARM: tegra: Add device-tree for Ouya
-To:     Peter Geis <pgwipeout@gmail.com>, Rob Herring <robh+dt@kernel.org>,
-        Thierry Reding <thierry.reding@gmail.com>,
-        Jonathan Hunter <jonathanh@nvidia.com>,
-        Matt Merhar <mattmerhar@protonmail.com>,
-        Stephen Warren <swarren@wwwdotorg.org>,
-        Bob Ham <rah@settrans.net>,
-        Leonardo Bras <leobras.c@gmail.com>,
-        Michael Brougham <jusplainmike@gmail.com>
-Cc:     linux-tegra@vger.kernel.org, devicetree@vger.kernel.org,
-        linux-kernel@vger.kernel.org
-References: <20200923210352.1176386-1-pgwipeout@gmail.com>
- <20200923210352.1176386-2-pgwipeout@gmail.com>
-From:   Dmitry Osipenko <digetx@gmail.com>
-Message-ID: <df2d6a8d-8a6c-464b-8f35-a7994ea01534@gmail.com>
-Date:   Fri, 25 Sep 2020 03:12:52 +0300
-User-Agent: Mozilla/5.0 (X11; Linux x86_64; rv:68.0) Gecko/20100101
- Thunderbird/68.10.0
+        id S1726676AbgIYC1c (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Thu, 24 Sep 2020 22:27:32 -0400
+Received: from mailgw01.mediatek.com ([210.61.82.183]:36368 "EHLO
+        mailgw01.mediatek.com" rhost-flags-OK-FAIL-OK-FAIL) by vger.kernel.org
+        with ESMTP id S1726448AbgIYC1c (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Thu, 24 Sep 2020 22:27:32 -0400
+X-UUID: 3c1b5f47868341fa9e70476ec802b05c-20200925
+DKIM-Signature: v=1; a=rsa-sha256; q=dns/txt; c=relaxed/relaxed; d=mediatek.com; s=dk;
+        h=Content-Transfer-Encoding:MIME-Version:Content-Type:References:In-Reply-To:Date:CC:To:From:Subject:Message-ID; bh=Iv1tvfi+u04B6gU1PFtOoygfgDqK3g06fdXBF4E1i9Q=;
+        b=Vwh2o1A44IRaZ8N2FxaFxVl4RwoAjCZXAnH0zbase8B4RLPrv5gWVQIIYk7fHmbNjAGZbxtiLGIVmT6G9udAh6j/RGVhhSb3jP3JPa2QgJq14K3C20PoAKYUjO36XJUVRJ364UwLJRclU++Yh81fT4hE/Wa6NKwgza5gbjTPWVU=;
+X-UUID: 3c1b5f47868341fa9e70476ec802b05c-20200925
+Received: from mtkcas10.mediatek.inc [(172.21.101.39)] by mailgw01.mediatek.com
+        (envelope-from <hector.yuan@mediatek.com>)
+        (Cellopoint E-mail Firewall v4.1.14 Build 0819 with TLSv1.2 ECDHE-RSA-AES256-SHA384 256/256)
+        with ESMTP id 741702275; Fri, 25 Sep 2020 10:27:28 +0800
+Received: from mtkcas08.mediatek.inc (172.21.101.126) by
+ mtkmbs01n1.mediatek.inc (172.21.101.68) with Microsoft SMTP Server (TLS) id
+ 15.0.1497.2; Fri, 25 Sep 2020 10:27:23 +0800
+Received: from [172.21.77.33] (172.21.77.33) by mtkcas08.mediatek.inc
+ (172.21.101.73) with Microsoft SMTP Server id 15.0.1497.2 via Frontend
+ Transport; Fri, 25 Sep 2020 10:27:27 +0800
+Message-ID: <1601000847.21446.34.camel@mtkswgap22>
+Subject: Re: [PATCH v7 2/2] dt-bindings: cpufreq: add bindings for MediaTek
+ cpufreq HW
+From:   Hector Yuan <hector.yuan@mediatek.com>
+To:     Rob Herring <robh@kernel.org>,
+        Viresh Kumar <viresh.kumar@linaro.org>
+CC:     <linux-mediatek@lists.infradead.org>,
+        <linux-arm-kernel@lists.infradead.org>, <linux-pm@vger.kernel.org>,
+        <devicetree@vger.kernel.org>,
+        "Rafael J. Wysocki" <rjw@rjwysocki.net>,
+        Viresh Kumar <viresh.kumar@linaro.org>,
+        <linux-kernel@vger.kernel.org>, <wsd_upstream@mediatek.com>
+Date:   Fri, 25 Sep 2020 10:27:27 +0800
+In-Reply-To: <1600866614.21446.18.camel@mtkswgap22>
+References: <1599712262-8819-1-git-send-email-hector.yuan@mediatek.com>
+         <1599712262-8819-3-git-send-email-hector.yuan@mediatek.com>
+         <20200922202852.GA3134161@bogus> <1600866614.21446.18.camel@mtkswgap22>
+Content-Type: text/plain; charset="UTF-8"
+X-Mailer: Evolution 3.2.3-0ubuntu6 
 MIME-Version: 1.0
-In-Reply-To: <20200923210352.1176386-2-pgwipeout@gmail.com>
-Content-Type: text/plain; charset=utf-8
-Content-Language: en-US
-Content-Transfer-Encoding: 7bit
+X-MTK:  N
+Content-Transfer-Encoding: base64
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-...
-> +/ {
-> +	model = "Ouya Game Console";
-> +	compatible = "ouya,ouya", "nvidia,tegra30";
-> +
-> +	aliases {
-> +		rtc0 = &pmic;
-> +		rtc1 = "/rtc@7000e000";
-> +		serial0 = &uartd; /* Debug Port */
-> +		serial1 = &uartc; /* Bluetooth */
-> +		mmc0 = &sdmmc4; /* eMMC */
-> +		mmc1 = &sdmmc3; /* WiFi */
+SGksIFZpcmVzaCAmIFJvYiBTaXI6DQoNCkkgd2lsbCBjaGFuZ2UgZnJlcXVlbmN5IGRvbWFpbiB0
+byBiZWxvdyBhbmQgZGVmaW5lIGl0IGluIGNwdWZyZXFfaHcNCnNjaGVtYSByYXRoZXIgdGhhbiBj
+cHUgbm9kZS4NCg0KbWVkaWF0ZWssZnJlcS1kb21haW4tMCA9IDwmY3B1MD4sIDwmY3B1MT47DQoN
+CklzIGl0IE9LIHRvIHlvdT8NCk9yIHlvdSB0aGluayBPUFAgZGVmaW5lIGlzIGEgYmV0dGVyIHNv
+bHV0aW9uPw0KDQpvcHAtdGFibGUtMCB7DQogICAgY29tcGF0aWJsZSA9ICJtZWRpYXRlayxody1v
+cGVyYXRpbmctcG9pbnRzIiwgIm9wZXJhdGluZy1wb2ludHMtdjIiOw0KfTsNCg0KVGhhbmsgeW91
+IGZvciB0aGUgb3BpbmlvbnMuDQoNCg0KDQpPbiBXZWQsIDIwMjAtMDktMjMgYXQgMjE6MTAgKzA4
+MDAsIEhlY3RvciBZdWFuIHdyb3RlOg0KPiBPbiBUdWUsIDIwMjAtMDktMjIgYXQgMTQ6MjggLTA2
+MDAsIFJvYiBIZXJyaW5nIHdyb3RlOg0KPiA+IE9uIFRodSwgU2VwIDEwLCAyMDIwIGF0IDEyOjMx
+OjAyUE0gKzA4MDAsIEhlY3RvciBZdWFuIHdyb3RlOg0KPiA+ID4gRnJvbTogIkhlY3Rvci5ZdWFu
+IiA8aGVjdG9yLnl1YW5AbWVkaWF0ZWsuY29tPg0KPiA+ID4gDQo+ID4gPiBBZGQgZGV2aWNldHJl
+ZSBiaW5kaW5ncyBmb3IgTWVkaWFUZWsgSFcgZHJpdmVyLg0KPiA+ID4gDQo+ID4gPiBTaWduZWQt
+b2ZmLWJ5OiBIZWN0b3IuWXVhbiA8aGVjdG9yLnl1YW5AbWVkaWF0ZWsuY29tPg0KPiA+ID4gLS0t
+DQo+ID4gPiAgLi4uL2JpbmRpbmdzL2NwdWZyZXEvY3B1ZnJlcS1tZWRpYXRlay1ody55YW1sICAg
+ICAgfCAgMTQxICsrKysrKysrKysrKysrKysrKysrDQo+ID4gPiAgMSBmaWxlIGNoYW5nZWQsIDE0
+MSBpbnNlcnRpb25zKCspDQo+ID4gPiAgY3JlYXRlIG1vZGUgMTAwNjQ0IERvY3VtZW50YXRpb24v
+ZGV2aWNldHJlZS9iaW5kaW5ncy9jcHVmcmVxL2NwdWZyZXEtbWVkaWF0ZWstaHcueWFtbA0KPiA+
+ID4gDQo+ID4gPiBkaWZmIC0tZ2l0IGEvRG9jdW1lbnRhdGlvbi9kZXZpY2V0cmVlL2JpbmRpbmdz
+L2NwdWZyZXEvY3B1ZnJlcS1tZWRpYXRlay1ody55YW1sIGIvRG9jdW1lbnRhdGlvbi9kZXZpY2V0
+cmVlL2JpbmRpbmdzL2NwdWZyZXEvY3B1ZnJlcS1tZWRpYXRlay1ody55YW1sDQo+ID4gPiBuZXcg
+ZmlsZSBtb2RlIDEwMDY0NA0KPiA+ID4gaW5kZXggMDAwMDAwMC4uMTE4YTE2Mw0KPiA+ID4gLS0t
+IC9kZXYvbnVsbA0KPiA+ID4gKysrIGIvRG9jdW1lbnRhdGlvbi9kZXZpY2V0cmVlL2JpbmRpbmdz
+L2NwdWZyZXEvY3B1ZnJlcS1tZWRpYXRlay1ody55YW1sDQo+ID4gPiBAQCAtMCwwICsxLDE0MSBA
+QA0KPiA+ID4gKyMgU1BEWC1MaWNlbnNlLUlkZW50aWZpZXI6IChHUEwtMi4wLW9ubHkgT1IgQlNE
+LTItQ2xhdXNlKQ0KPiA+ID4gKyVZQU1MIDEuMg0KPiA+ID4gKy0tLQ0KPiA+ID4gKyRpZDogaHR0
+cDovL2RldmljZXRyZWUub3JnL3NjaGVtYXMvY3B1ZnJlcS9jcHVmcmVxLW1lZGlhdGVrLWh3Lnlh
+bWwjDQo+ID4gPiArJHNjaGVtYTogaHR0cDovL2RldmljZXRyZWUub3JnL21ldGEtc2NoZW1hcy9j
+b3JlLnlhbWwjDQo+ID4gPiArDQo+ID4gPiArdGl0bGU6IE1lZGlhVGVrJ3MgQ1BVRlJFUSBCaW5k
+aW5ncw0KPiA+ID4gKw0KPiA+ID4gK21haW50YWluZXJzOg0KPiA+ID4gKyAgLSBIZWN0b3IgWXVh
+biA8aGVjdG9yLnl1YW5AbWVkaWF0ZWsuY29tPg0KPiA+ID4gKw0KPiA+ID4gK2Rlc2NyaXB0aW9u
+Og0KPiA+ID4gKyAgQ1BVRlJFUSBIVyBpcyBhIGhhcmR3YXJlIGVuZ2luZSB1c2VkIGJ5IE1lZGlh
+VGVrDQo+ID4gPiArICBTb0NzIHRvIG1hbmFnZSBmcmVxdWVuY3kgaW4gaGFyZHdhcmUuIEl0IGlz
+IGNhcGFibGUgb2YgY29udHJvbGxpbmcgZnJlcXVlbmN5DQo+ID4gPiArICBmb3IgbXVsdGlwbGUg
+Y2x1c3RlcnMuDQo+ID4gPiArDQo+ID4gPiArcHJvcGVydGllczoNCj4gPiA+ICsgIGNvbXBhdGli
+bGU6DQo+ID4gPiArICAgIGNvbnN0OiAibWVkaWF0ZWssY3B1ZnJlcS1odyINCj4gPiANCj4gPiBO
+ZWVkcyB0byBiZSBTb0Mgc3BlY2lmaWMuIFRoaXMgc3R1ZmYgaXMgbmV2ZXIgY29uc3RhbnQgZnJv
+bSBvbmUgU29DIHRvIA0KPiA+IHRoZSBuZXh0LiAnY3B1ZnJlcScgaXMgYSBMaW51eGlzbS4gV2hh
+dCdzIHRoZSBibG9jayBjYWxsZWQgaW4gdGhlIA0KPiA+IGRhdGFzaGVldD8gVXNlIHRoYXQuDQo+
+ID4gDQo+IE9LLCB3aWxsIHVzZSBtZWRpYXRlayxzc3BtLWR2ZnMtbXQ2Nzc5IGluc3RlYWQuDQo+
+ID4gRG9uJ3QgbmVlZCBxdW90ZXMgZWl0aGVyLg0KPiA+IA0KPiBPSywgd2lsbCByZW1vdmUgaXQu
+DQo+ID4gPiArDQo+ID4gPiArICByZWc6DQo+ID4gPiArICAgIG1pbkl0ZW1zOiAxDQo+ID4gPiAr
+ICAgIG1heEl0ZW1zOiAyDQo+ID4gPiArICAgIGRlc2NyaXB0aW9uOiB8DQo+ID4gPiArICAgICAg
+QWRkcmVzc2VzIGFuZCBzaXplcyBmb3IgdGhlIG1lbW9yeSBvZiB0aGUgSFcgYmFzZXMgaW4gZWFj
+aCBmcmVxdWVuY3kgZG9tYWluLg0KPiA+ID4gKw0KPiA+ID4gKyAgcmVnLW5hbWVzOg0KPiA+ID4g
+KyAgICBpdGVtczoNCj4gPiA+ICsgICAgICAtIGNvbnN0OiAiZnJlcS1kb21haW4wIg0KPiA+ID4g
+KyAgICAgIC0gY29uc3Q6ICJmcmVxLWRvbWFpbjEiDQo+ID4gDQo+ID4gS2luZCBvZiBwb2ludGxl
+c3MgdG8gaGF2ZSBuYW1lcyBiYXNlZCBvbiB0aGUgaW5kZXguIERyb3AgJ3JlZy1uYW1lcycuDQo+
+ID4gDQo+IE9LLCB3aWxsIGRyb3AgaXQuDQo+ID4gPiArICAgIGRlc2NyaXB0aW9uOiB8DQo+ID4g
+PiArICAgICAgRnJlcXVlbmN5IGRvbWFpbiBuYW1lLiBpLmUuDQo+ID4gPiArICAgICAgImZyZXEt
+ZG9tYWluMCIsICJmcmVxLWRvbWFpbjEiLg0KPiA+ID4gKw0KPiA+ID4gKyAgIiNmcmVxLWRvbWFp
+bi1jZWxscyI6DQo+ID4gPiArICAgIGNvbnN0OiAxDQo+ID4gPiArICAgIGRlc2NyaXB0aW9uOiB8
+DQo+ID4gPiArICAgICAgTnVtYmVyIG9mIGNlbGxzIGluIGEgZnJlcWVuY3kgZG9tYWluIHNwZWNp
+Zmllci4NCj4gPiANCj4gPiBZb3UgZG9uJ3QgbmVlZCB0aGlzLiBJdCdzIG5vdCBhIGNvbW1vbiBi
+aW5kaW5nIHRoYXQncyBnb2luZyB0byB2YXJ5Lg0KPiA+IA0KPiBPSywgd2lsbCByZW1vdmUgaXQu
+DQo+ID4gPiArDQo+ID4gPiArICBtdGstZnJlcS1kb21haW46DQo+ID4gPiArICAgIG1heEl0ZW1z
+OiAxDQo+ID4gPiArICAgIGRlc2NyaXB0aW9uOiB8DQo+ID4gPiArICAgICAgRGVmaW5lIHRoaXMg
+Y3B1IGJlbG9uZ3MgdG8gd2hpY2ggZnJlcXVlbmN5IGRvbWFpbi4gaS5lLg0KPiA+ID4gKyAgICAg
+IGNwdTAtMyBiZWxvbmcgdG8gZnJlcXVlbmN5IGRvbWFpbjAsDQo+ID4gPiArICAgICAgY3B1NC02
+IGJlbG9uZyB0byBmcmVxdWVuY3kgZG9tYWluMS4NCj4gPiANCj4gPiBUaGlzIHByb3BlcnR5IGRv
+ZXNuJ3QgZ28gaW4gdGhlICdtZWRpYXRlayxjcHVmcmVxLWh3JyBub2RlLiBZb3Ugd291bGQgDQo+
+ID4gbmVlZCBhIHNlcGFyYXRlIHNjaGVtYS4gSG93ZXZlciwgSSB0aGluayB0aGUgZWFzaWVzdCB0
+aGluZyB0byBkbyBoZXJlIGlzIA0KPiA+IHNvbWV0aGluZyBsaWtlIHRoaXM6DQo+ID4gDQo+ID4g
+bWVkaWF0ZWssZnJlcS1kb21haW4tMCA9IDwmY3B1MD4sIDwmY3B1MT47DQo+ID4gDQo+IFNvcnJ5
+LCBtYXkgSSBrbm93IHRoZSByZWFzb24gYW5kIHRoZSBkZXRhaWxzIGFib3V0IGhvdyB0byBzZXBh
+cmF0ZQ0KPiBzY2hlbWE/IFRoYW5rIHlvdSB2ZXJ5IG11Y2guDQo+IA0KPiBUaGUgbnVtYmVycyBv
+ZiBmcmVxdWVuY3kgZG9tYWluIG1heSBiZSB2YXJ5IGZyb20gZGlmZmVyZW50IHByb2plY3RzLiBJ
+Zg0KPiBJIGRvIHRoZSBlYXNpZXIgd2F5LCBJIG1heSBuZWVkIHRvIGltcGxlbWVudCBleHRyYSBs
+b29wIHRvIGNoZWNrIGhvdw0KPiBtYW55IGZyZXF1ZW5jeSBkb21haW4uDQo+ID4gT3IgeW91IGNv
+dWxkIGp1c3QgcmUtdXNlIHRoZSBPUFAgYmluZGluZyB3aXRoIGp1c3QgMCBlbnRyaWVzOg0KPiA+
+IA0KPiA+IG9wcC10YWJsZS0wIHsNCj4gPiAgIGNvbXBhdGlibGUgPSAibWVkaWF0ZWssaHctb3Bl
+cmF0aW5nLXBvaW50cyIsICJvcGVyYXRpbmctcG9pbnRzLXYyIjsNCj4gPiB9Ow0KPiA+IG9wcC10
+YWJsZS0xIHsNCj4gPiAgIGNvbXBhdGlibGUgPSAibWVkaWF0ZWssaHctb3BlcmF0aW5nLXBvaW50
+cyIsICJvcGVyYXRpbmctcG9pbnRzLXYyIjsNCj4gPiB9Ow0KPiA+IA0KPiBJbiBwcmV2aW91cyBy
+ZXZpZXcgc3RhZ2UsIGFscmVhZHkgYWJhbmRvbiBPUFAgZnJhbWV3b3JrIGluIGRyaXZlciBjb2Rl
+Lg0KPiBXaWxsIGNoZWNrIHdpdGggVmlyZXNoIHRvIHNlZSBpZiBpdHMgT0sgdG8gYWRkIE9QUCBi
+YWNrLg0KPiA+ID4gKw0KPiA+ID4gK3JlcXVpcmVkOg0KPiA+ID4gKyAgLSBjb21wYXRpYmxlDQo+
+ID4gPiArICAtIHJlZw0KPiA+ID4gKyAgLSByZWctbmFtZXMNCj4gPiA+ICsgIC0gIiNmcmVxLWRv
+bWFpbi1jZWxscyINCj4gPiA+ICsNCj4gPiA+ICtleGFtcGxlczoNCj4gPiA+ICsgIC0gfA0KPiA+
+ID4gKyAgICBjcHVzIHsNCj4gPiA+ICsgICAgICAgICAgICAjYWRkcmVzcy1jZWxscyA9IDwxPjsN
+Cj4gPiA+ICsgICAgICAgICAgICAjc2l6ZS1jZWxscyA9IDwwPjsNCj4gPiA+ICsNCj4gPiA+ICsg
+ICAgICAgICAgICBjcHUwOiBjcHVAMCB7DQo+ID4gPiArICAgICAgICAgICAgICAgIGRldmljZV90
+eXBlID0gImNwdSI7DQo+ID4gPiArICAgICAgICAgICAgICAgIGNvbXBhdGlibGUgPSAiYXJtLGNv
+cnRleC1hNTUiOw0KPiA+ID4gKyAgICAgICAgICAgICAgICBlbmFibGUtbWV0aG9kID0gInBzY2ki
+Ow0KPiA+ID4gKyAgICAgICAgICAgICAgICBtdGstZnJlcS1kb21haW4gPSA8JmNwdWZyZXFfaHcg
+MD47DQo+ID4gPiArICAgICAgICAgICAgICAgIHJlZyA9IDwweDAwMD47DQo+ID4gPiArICAgICAg
+ICAgICAgfTsNCj4gPiA+ICsNCj4gPiA+ICsgICAgICAgICAgICBjcHUxOiBjcHVAMSB7DQo+ID4g
+DQo+ID4gVW5pdCBhZGRyZXNzIGlzIHdyb25nLg0KPiA+IA0KPiBPSywgd2lsbCBtb2RpZnkgdG8g
+ImNwdTEgOiBjcHVAMTAwIiBpZiB3ZSBzdGlsbCBkZWNpZGUgdG8gcHV0DQo+IGZyZXFfZG9tYWlu
+IGluIENQVSBub2RlLg0KPiA+ID4gKyAgICAgICAgICAgICAgICBkZXZpY2VfdHlwZSA9ICJjcHUi
+Ow0KPiA+ID4gKyAgICAgICAgICAgICAgICBjb21wYXRpYmxlID0gImFybSxjb3J0ZXgtYTU1IjsN
+Cj4gPiA+ICsgICAgICAgICAgICAgICAgZW5hYmxlLW1ldGhvZCA9ICJwc2NpIjsNCj4gPiA+ICsg
+ICAgICAgICAgICAgICAgbXRrLWZyZXEtZG9tYWluID0gPCZjcHVmcmVxX2h3IDA+Ow0KPiA+ID4g
+KyAgICAgICAgICAgICAgICByZWcgPSA8MHgxMDA+Ow0KPiA+ID4gKyAgICAgICAgICAgIH07DQo+
+ID4gPiArDQo+ID4gPiArICAgICAgICAgICAgY3B1MjogY3B1QDIgew0KPiA+ID4gKyAgICAgICAg
+ICAgICAgICBkZXZpY2VfdHlwZSA9ICJjcHUiOw0KPiA+ID4gKyAgICAgICAgICAgICAgICBjb21w
+YXRpYmxlID0gImFybSxjb3J0ZXgtYTU1IjsNCj4gPiA+ICsgICAgICAgICAgICAgICAgZW5hYmxl
+LW1ldGhvZCA9ICJwc2NpIjsNCj4gPiA+ICsgICAgICAgICAgICAgICAgbXRrLWZyZXEtZG9tYWlu
+ID0gPCZjcHVmcmVxX2h3IDA+Ow0KPiA+ID4gKyAgICAgICAgICAgICAgICByZWcgPSA8MHgyMDA+
+Ow0KPiA+ID4gKyAgICAgICAgICAgIH07DQo+ID4gPiArDQo+ID4gPiArICAgICAgICAgICAgY3B1
+MzogY3B1QDMgew0KPiA+ID4gKyAgICAgICAgICAgICAgICBkZXZpY2VfdHlwZSA9ICJjcHUiOw0K
+PiA+ID4gKyAgICAgICAgICAgICAgICBjb21wYXRpYmxlID0gImFybSxjb3J0ZXgtYTU1IjsNCj4g
+PiA+ICsgICAgICAgICAgICAgICAgZW5hYmxlLW1ldGhvZCA9ICJwc2NpIjsNCj4gPiA+ICsgICAg
+ICAgICAgICAgICAgbXRrLWZyZXEtZG9tYWluID0gPCZjcHVmcmVxX2h3IDA+Ow0KPiA+ID4gKyAg
+ICAgICAgICAgICAgICByZWcgPSA8MHgzMDA+Ow0KPiA+ID4gKyAgICAgICAgICAgIH07DQo+ID4g
+PiArDQo+ID4gPiArICAgICAgICAgICAgY3B1NDogY3B1QDQgew0KPiA+ID4gKyAgICAgICAgICAg
+ICAgICBkZXZpY2VfdHlwZSA9ICJjcHUiOw0KPiA+ID4gKyAgICAgICAgICAgICAgICBjb21wYXRp
+YmxlID0gImFybSxjb3J0ZXgtYTU1IjsNCj4gPiA+ICsgICAgICAgICAgICAgICAgZW5hYmxlLW1l
+dGhvZCA9ICJwc2NpIjsNCj4gPiA+ICsgICAgICAgICAgICAgICAgbXRrLWZyZXEtZG9tYWluID0g
+PCZjcHVmcmVxX2h3IDE+Ow0KPiA+ID4gKyAgICAgICAgICAgICAgICByZWcgPSA8MHg0MDA+Ow0K
+PiA+ID4gKyAgICAgICAgICAgIH07DQo+ID4gPiArDQo+ID4gPiArICAgICAgICAgICAgY3B1NTog
+Y3B1QDUgew0KPiA+ID4gKyAgICAgICAgICAgICAgICBkZXZpY2VfdHlwZSA9ICJjcHUiOw0KPiA+
+ID4gKyAgICAgICAgICAgICAgICBjb21wYXRpYmxlID0gImFybSxjb3J0ZXgtYTU1IjsNCj4gPiA+
+ICsgICAgICAgICAgICAgICAgZW5hYmxlLW1ldGhvZCA9ICJwc2NpIjsNCj4gPiA+ICsgICAgICAg
+ICAgICAgICAgbXRrLWZyZXEtZG9tYWluID0gPCZjcHVmcmVxX2h3IDE+Ow0KPiA+ID4gKyAgICAg
+ICAgICAgICAgICByZWcgPSA8MHg1MDA+Ow0KPiA+ID4gKyAgICAgICAgICAgIH07DQo+ID4gPiAr
+DQo+ID4gPiArICAgICAgICAgICAgY3B1NjogY3B1QDYgew0KPiA+ID4gKyAgICAgICAgICAgICAg
+ICBkZXZpY2VfdHlwZSA9ICJjcHUiOw0KPiA+ID4gKyAgICAgICAgICAgICAgICBjb21wYXRpYmxl
+ID0gImFybSxjb3J0ZXgtYTc1IjsNCj4gPiA+ICsgICAgICAgICAgICAgICAgZW5hYmxlLW1ldGhv
+ZCA9ICJwc2NpIjsNCj4gPiA+ICsgICAgICAgICAgICAgICAgbXRrLWZyZXEtZG9tYWluID0gPCZj
+cHVmcmVxX2h3IDE+Ow0KPiA+ID4gKyAgICAgICAgICAgICAgICByZWcgPSA8MHg2MDA+Ow0KPiA+
+ID4gKyAgICAgICAgICAgIH07DQo+ID4gPiArDQo+ID4gPiArICAgICAgICAgICAgY3B1NzogY3B1
+QDcgew0KPiA+ID4gKyAgICAgICAgICAgICAgICBkZXZpY2VfdHlwZSA9ICJjcHUiOw0KPiA+ID4g
+KyAgICAgICAgICAgICAgICBjb21wYXRpYmxlID0gImFybSxjb3J0ZXgtYTc1IjsNCj4gPiA+ICsg
+ICAgICAgICAgICAgICAgZW5hYmxlLW1ldGhvZCA9ICJwc2NpIjsNCj4gPiA+ICsgICAgICAgICAg
+ICAgICAgbXRrLWZyZXEtZG9tYWluID0gPCZjcHVmcmVxX2h3IDE+Ow0KPiA+ID4gKyAgICAgICAg
+ICAgICAgICByZWcgPSA8MHg3MDA+Ow0KPiA+ID4gKyAgICAgICAgICAgIH07DQo+ID4gPiArICAg
+IH07DQo+ID4gPiArDQo+ID4gPiArICAgIC8qIC4uLiAqLw0KPiA+ID4gKw0KPiA+ID4gKyAgICBz
+b2Mgew0KPiA+ID4gKyAgICAgICAgI2FkZHJlc3MtY2VsbHMgPSA8Mj47DQo+ID4gPiArICAgICAg
+ICAjc2l6ZS1jZWxscyA9IDwyPjsNCj4gPiA+ICsNCj4gPiA+ICsgICAgICAgIGNwdWZyZXFfaHc6
+IGNwdWZyZXFAMTFiYzAwIHsNCj4gPiA+ICsgICAgICAgICAgICBjb21wYXRpYmxlID0gIm1lZGlh
+dGVrLGNwdWZyZXEtaHciOw0KPiA+ID4gKyAgICAgICAgICAgIHJlZyA9IDwwIDB4MTFiYzEwIDAg
+MHg4Yz4sDQo+ID4gPiArICAgICAgICAgICAgICAgPDAgMHgxMWJjYTAgMCAweDhjPjsNCj4gPiA+
+ICsgICAgICAgICAgICByZWctbmFtZXMgPSAiZnJlcS1kb21haW4wIiwgImZyZXEtZG9tYWluMSI7
+DQo+ID4gPiArICAgICAgICAgICAgI2ZyZXEtZG9tYWluLWNlbGxzID0gPDE+Ow0KPiA+ID4gKyAg
+ICAgICAgfTsNCj4gPiA+ICsgICAgfTsNCj4gPiA+ICsNCj4gPiA+ICsNCj4gPiA+ICsNCj4gPiA+
+ICsNCj4gPiA+IC0tIA0KPiA+ID4gMS43LjkuNQ0KPiANCg0K
 
-Thierry may want to sort these aliases in alphabet order.
-
-> +	};
-
-...
-> +		pmic: pmic@2d {
-> +			compatible = "ti,tps65911";
-> +			reg = <0x2d>;
-> +
-> +			interrupts = <GIC_SPI 86 IRQ_TYPE_LEVEL_HIGH>;
-> +			#interrupt-cells = <2>;
-> +			interrupt-controller;
-> +
-> +			ti,system-power-controller;
-
-Are the ti,sleep-keep-ck32k and other properties not needed for Ouya
-like they are needed for Nexus 7?
-
-...
-> +	sdmmc3: mmc@78000400 {
-> +		status = "okay";
-> +
-> +		#address-cells = <1>;
-> +		#size-cells = <0>;
-> +
-> +		bus-width = <4>;
-> +		non-removable;
-
-Recently I added assigned-clocks here for Nexus7/A500 DTs in order to
-get true 50MHz for the WiFi SDIO.
-
-> +		mmc-pwrseq = <&wifi_pwrseq>;
-> +		vmmc-supply = <&sdmmc_3v3_reg>;
-> +		vqmmc-supply = <&vdd_1v8>;
