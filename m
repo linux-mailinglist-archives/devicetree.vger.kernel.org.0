@@ -2,103 +2,65 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from vger.kernel.org (vger.kernel.org [23.128.96.18])
-	by mail.lfdr.de (Postfix) with ESMTP id 6638C278228
-	for <lists+devicetree@lfdr.de>; Fri, 25 Sep 2020 10:04:34 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTP id 852FC278247
+	for <lists+devicetree@lfdr.de>; Fri, 25 Sep 2020 10:11:37 +0200 (CEST)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S1727132AbgIYIEd (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Fri, 25 Sep 2020 04:04:33 -0400
-Received: from lindbergh.monkeyblade.net ([23.128.96.19]:50776 "EHLO
-        lindbergh.monkeyblade.net" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S1727067AbgIYIEd (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Fri, 25 Sep 2020 04:04:33 -0400
-Received: from mail-ed1-x542.google.com (mail-ed1-x542.google.com [IPv6:2a00:1450:4864:20::542])
-        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 4E485C0613CE;
-        Fri, 25 Sep 2020 01:04:33 -0700 (PDT)
-Received: by mail-ed1-x542.google.com with SMTP id n22so1573667edt.4;
-        Fri, 25 Sep 2020 01:04:33 -0700 (PDT)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=googlemail.com; s=20161025;
-        h=mime-version:references:in-reply-to:from:date:message-id:subject:to
-         :cc;
-        bh=9nCoifbkeuSkm32g7FfRMjrrGtoOLRMD6Zxww8rwgSY=;
-        b=k4bh6DUjkzSke+B7L/UMoe1ivoznzvxi0ad4wPwtsZGoWWxk3Udc+bdz7nyo6ZmxfS
-         qkPJshm7a2kWgy6KAEhURguLEO4FJflS+R/I1mdeCCmfiU0BhzyucFSgjoSIiknjqS/3
-         5LDc1Qz9DCmxM2zeZzyCXs/M58SfCe0gx94TBzDZfRMHZIqRM3vulgl2BldpdenUS4DZ
-         kpg0EXJManOmZwY0vT1SeOP6Eelac7dtp/TS1xaLt96PfJmjz0QCDPIep9SaoEuM/8kK
-         01FVFLu6nuBWpYrWDrn1QrmQ4azWiIXsyAjZ5Qn35TwO0+DxfgkqlpufcovPi7zAnE2S
-         xJgA==
-X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=1e100.net; s=20161025;
-        h=x-gm-message-state:mime-version:references:in-reply-to:from:date
-         :message-id:subject:to:cc;
-        bh=9nCoifbkeuSkm32g7FfRMjrrGtoOLRMD6Zxww8rwgSY=;
-        b=I8jH8rObMLf/jHiPZz2Palh2ChFKmL7HWibRRy2aVFoJ8jEd6TEUpjrtYVPn2m5+Dz
-         /a2Dyvmr/QvsaCX1DC60mCE4vW/nA0E3nnAagg2Ffwy2VV+yV/DVFyBzTbNmybWrYwwS
-         5T79fWLl4nKSSjvvQls1PBvSwb9uRZaVxbXd91lXN3PhT1eKZkIpR+b81tpZ7giPV7Au
-         A9IT63eIwdlwI+Aqa+Y4F7rbkRkoe6zeEBJQjxpY1xnAwZsbYt1v56Z0IMK1uzteIYRY
-         enre3o7FHVXVWmwKfMKm+waXdZGoOAe1m9T9BUlucJqFJlbe03wHSw+ZF3p4gtA5RvKK
-         jf9A==
-X-Gm-Message-State: AOAM531R6XI4dEZm59YjXvJn+D5RDjLt7FDAunv5LZktVfnEieNNPO0g
-        0Wg5PtOoU2Wg3mv3vFifNYr6qsgImP2PBePRPJI=
-X-Google-Smtp-Source: ABdhPJxeDIGT9fA+GFpnV/N6d8qqejXu7XMaJ3dwMmOkk5HsY/gbxhunvPYF46+CM+RrsH5NNhmumepRvh+9msyzJwg=
-X-Received: by 2002:aa7:d6c6:: with SMTP id x6mr14862edr.338.1601021072020;
- Fri, 25 Sep 2020 01:04:32 -0700 (PDT)
+        id S1727486AbgIYILh (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Fri, 25 Sep 2020 04:11:37 -0400
+Received: from helcar.hmeau.com ([216.24.177.18]:53174 "EHLO fornost.hmeau.com"
+        rhost-flags-OK-OK-OK-OK) by vger.kernel.org with ESMTP
+        id S1727395AbgIYILg (ORCPT <rfc822;devicetree@vger.kernel.org>);
+        Fri, 25 Sep 2020 04:11:36 -0400
+Received: from gwarestrin.arnor.me.apana.org.au ([192.168.0.7])
+        by fornost.hmeau.com with smtp (Exim 4.92 #5 (Debian))
+        id 1kLior-00071V-BS; Fri, 25 Sep 2020 18:11:06 +1000
+Received: by gwarestrin.arnor.me.apana.org.au (sSMTP sendmail emulation); Fri, 25 Sep 2020 18:11:05 +1000
+Date:   Fri, 25 Sep 2020 18:11:05 +1000
+From:   Herbert Xu <herbert@gondor.apana.org.au>
+To:     =?utf-8?B?5ZGo55Cw5p2wIChaaG91IFlhbmppZSk=?= 
+        <zhouyanjie@wanyeetech.com>
+Cc:     arnd@arndb.de, gregkh@linuxfoundation.org, mpm@selenic.com,
+        robh+dt@kernel.org, linux-kernel@vger.kernel.org,
+        linux-crypto@vger.kernel.org, devicetree@vger.kernel.org,
+        hadar.gat@arm.com, geert+renesas@glider.be, krzk@kernel.org,
+        wahrenst@gmx.net, masahiroy@kernel.org, tmaimon77@gmail.com,
+        rdunlap@infradead.org, qianweili@huawei.com,
+        daniel.thompson@linaro.org, xuzaibo@huawei.com,
+        olivier.sobrie@silexinsight.com, dongsheng.qiu@ingenic.com,
+        aric.pzqi@ingenic.com, rick.tyliu@ingenic.com,
+        yanfei.li@ingenic.com, sernia.zhou@foxmail.com,
+        zhenwenjin@gmail.com
+Subject: Re: [PATCH 0/2] Add support for the TRNG in Ingenic X1830.
+Message-ID: <20200925081105.GA6381@gondor.apana.org.au>
+References: <20200913161021.120226-1-zhouyanjie@wanyeetech.com>
 MIME-Version: 1.0
-References: <20200925033017.1790973-1-art@khadas.com> <20200925033017.1790973-6-art@khadas.com>
- <CAFBinCAJ6svwiv9OM6EHz7468D9h+jW_ULiGrorgLetcODsAKQ@mail.gmail.com> <CAKaHn9+CWLJYN1Tt46VxBGNBEbVVJZWeL6ZJSf9w-5DmoxrvgQ@mail.gmail.com>
-In-Reply-To: <CAKaHn9+CWLJYN1Tt46VxBGNBEbVVJZWeL6ZJSf9w-5DmoxrvgQ@mail.gmail.com>
-From:   Martin Blumenstingl <martin.blumenstingl@googlemail.com>
-Date:   Fri, 25 Sep 2020 10:04:21 +0200
-Message-ID: <CAFBinCD0_QgKKcH+Kb2QbMWnx_csoXMEhSFYzmDscdTVB2TUJw@mail.gmail.com>
-Subject: Re: [PATCH 5/8] arm64: dts: meson: remove reset-gpios from ethernet
- node for VIM2 meson-gxm-khadas-vim2
-To:     Art Nikpal <email2tema@gmail.com>
-Cc:     Neil Armstrong <narmstrong@baylibre.com>, khilman@baylibre.com,
-        robh+dt@kernel.org, jbrunet@baylibre.com,
-        devicetree@vger.kernel.org, linux-arm-kernel@lists.infradead.org,
-        linux-amlogic@lists.infradead.org, linux-kernel@vger.kernel.org,
-        art@khadas.com, nick@khadas.com, gouwa@khadas.com
-Content-Type: text/plain; charset="UTF-8"
+Content-Type: text/plain; charset=utf-8
+Content-Disposition: inline
+Content-Transfer-Encoding: 8bit
+In-Reply-To: <20200913161021.120226-1-zhouyanjie@wanyeetech.com>
+User-Agent: Mutt/1.10.1 (2018-07-13)
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-Hello Artem,
+On Mon, Sep 14, 2020 at 12:10:19AM +0800, 周琰杰 (Zhou Yanjie) wrote:
+> 1.Add the TRNG bindings for the X1830 SoC from Ingenic.
+> 2.Add X1830 SoC digital true random number generator driver.
+> 
+> 周琰杰 (Zhou Yanjie) (2):
+>   dt-bindings: RNG: Add Ingenic TRNG bindings.
+>   crypto: Ingenic: Add hardware TRNG for Ingenic X1830.
+> 
+>  .../devicetree/bindings/rng/ingenic,trng.yaml      |  43 ++++++
+>  drivers/char/hw_random/Kconfig                     |  14 ++
+>  drivers/char/hw_random/Makefile                    |   1 +
+>  drivers/char/hw_random/ingenic-trng.c              | 161 +++++++++++++++++++++
+>  4 files changed, 219 insertions(+)
+>  create mode 100644 Documentation/devicetree/bindings/rng/ingenic,trng.yaml
+>  create mode 100644 drivers/char/hw_random/ingenic-trng.c
 
-(adding back the mailing-list recipients)
-
-On Fri, Sep 25, 2020 at 9:50 AM Art Nikpal <email2tema@gmail.com> wrote:
->
-> hello
->
-> > what is the problem that you observe here?
-> > did you investigate further why resetting the PHY changes this?
->
-> just try next commands
-> ifconfig eth0 down && ifconfig eth0 up
-> and ethernet never up again - need full reboot only
-this means that "something" is either set up incorrectly in the Linux
-kernel or that u-boot does some magic (and the same magic is then
-missing in the Linux kernel)
-I'll dig out my Khadas VIM2 to test this. what should I look out for
-(are there any error messages, dhcp not getting an IP address anymore,
-etc.)?
-
-> but if reset-gpios will be remove it works fine already - i have checked it many times
->
-> for example VIM3 same didnt use reset-gpios
-that's interesting - I'm surprised to see this
-I did a quick check and for 15 out of 18 .dts(i) files with RGMII
-phy-mode we use the reset-gpios:
-$ grep -R 'phy-mode = "rgmii' arch/arm64/boot/dts/amlogic/ | wc -l
-18
-$ grep -R 'ethernet-phy@0' -A10 arch/arm64/boot/dts/amlogic/ | grep
-reset-gpios | wc -l
-15
-
-so really I would like to add the reset-gpios to the VIM3 .dtsi as
-well once we figured out what's wrong on the VIM2
-
-
-Best regards,
-Martin
+All applied.  Thanks.
+-- 
+Email: Herbert Xu <herbert@gondor.apana.org.au>
+Home Page: http://gondor.apana.org.au/~herbert/
+PGP Key: http://gondor.apana.org.au/~herbert/pubkey.txt
