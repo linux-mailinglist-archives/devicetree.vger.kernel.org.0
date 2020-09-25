@@ -2,63 +2,91 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from vger.kernel.org (vger.kernel.org [23.128.96.18])
-	by mail.lfdr.de (Postfix) with ESMTP id 02B3A277E68
-	for <lists+devicetree@lfdr.de>; Fri, 25 Sep 2020 05:10:18 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTP id DAF8C277E86
+	for <lists+devicetree@lfdr.de>; Fri, 25 Sep 2020 05:30:47 +0200 (CEST)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S1726764AbgIYDKR (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Thu, 24 Sep 2020 23:10:17 -0400
-Received: from lindbergh.monkeyblade.net ([23.128.96.19]:33772 "EHLO
+        id S1726738AbgIYDar (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Thu, 24 Sep 2020 23:30:47 -0400
+Received: from lindbergh.monkeyblade.net ([23.128.96.19]:36926 "EHLO
         lindbergh.monkeyblade.net" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S1726738AbgIYDKQ (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Thu, 24 Sep 2020 23:10:16 -0400
-Received: from shards.monkeyblade.net (shards.monkeyblade.net [IPv6:2620:137:e000::1:9])
-        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id D12DCC0613CE;
-        Thu, 24 Sep 2020 20:10:16 -0700 (PDT)
-Received: from localhost (unknown [IPv6:2601:601:9f00:477::3d5])
-        (using TLSv1 with cipher AES256-SHA (256/256 bits))
-        (Client did not present a certificate)
-        (Authenticated sender: davem-davemloft)
-        by shards.monkeyblade.net (Postfix) with ESMTPSA id 7C77F135F8F2B;
-        Thu, 24 Sep 2020 19:53:28 -0700 (PDT)
-Date:   Thu, 24 Sep 2020 20:10:14 -0700 (PDT)
-Message-Id: <20200924.201014.1985667809546779432.davem@davemloft.net>
-To:     helmut.grohne@intenta.de
-Cc:     nicolas.ferre@microchip.com, alexandre.belloni@bootlin.com,
-        ludovic.desroches@microchip.com, woojung.huh@microchip.com,
-        UNGLinuxDriver@microchip.com, andrew@lunn.ch,
-        vivien.didelot@gmail.com, f.fainelli@gmail.com, kuba@kernel.org,
-        robh+dt@kernel.org, devicetree@vger.kernel.org,
-        netdev@vger.kernel.org
-Subject: Re: [PATCH] net: dsa: microchip: really look for phy-mode in port
- nodes
-From:   David Miller <davem@davemloft.net>
-In-Reply-To: <20200924083746.GA9410@laureti-dev>
-References: <20200910.123257.1333858679864684014.davem@davemloft.net>
-        <20200924083746.GA9410@laureti-dev>
-X-Mailer: Mew version 6.8 on Emacs 27.1
-Mime-Version: 1.0
-Content-Type: Text/Plain; charset=us-ascii
-Content-Transfer-Encoding: 7bit
-X-Greylist: Sender succeeded SMTP AUTH, not delayed by milter-greylist-4.5.12 (shards.monkeyblade.net [2620:137:e000::1:9]); Thu, 24 Sep 2020 19:53:29 -0700 (PDT)
+        with ESMTP id S1726704AbgIYDar (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Thu, 24 Sep 2020 23:30:47 -0400
+Received: from mail-pj1-x1043.google.com (mail-pj1-x1043.google.com [IPv6:2607:f8b0:4864:20::1043])
+        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id EBA0EC0613CE;
+        Thu, 24 Sep 2020 20:30:46 -0700 (PDT)
+Received: by mail-pj1-x1043.google.com with SMTP id b17so1079727pji.1;
+        Thu, 24 Sep 2020 20:30:46 -0700 (PDT)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+        d=gmail.com; s=20161025;
+        h=from:to:cc:subject:date:message-id:mime-version
+         :content-transfer-encoding;
+        bh=aisBv4MuoAdzRa1YD5k9n2OvoHveOSiNe5rPI2LCylk=;
+        b=EaT5wJjyX/Ce0/9nXMsJp0rwxCSTxdPdB2U1zZBfHUi1lMlkauqKsZgTS6FPZ1kwL+
+         POQ3aNGnfR7wOYyDNm3i568OSqGoDNmxCRUrvfx4FzJG4DBDzuUdu6zGY82Ah/3BVvpQ
+         Y4jyCr7Z4a5iGDV9RfU+WnD+naUhjlJWiGUgm22UXEG+vPBH5ibn70QxZHrzuGjdOaT5
+         wysW5rx6L7N4ryYSNibEIsZC7ESwZBZybFfc+as/GGvbGS+A8XM9ccPoC5UevnzOIPSH
+         wN4U7AdaAjRdmr6/RkDs0GvDppnb2cLLW8W1BFF2/KWcnixxBqafYlLkXQDK0Pvin0fh
+         p6WA==
+X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+        d=1e100.net; s=20161025;
+        h=x-gm-message-state:from:to:cc:subject:date:message-id:mime-version
+         :content-transfer-encoding;
+        bh=aisBv4MuoAdzRa1YD5k9n2OvoHveOSiNe5rPI2LCylk=;
+        b=FR+C20Uxyp5+P9C6HOWvUqCO5FpF6j8ziDEiomndu8R6SZUVcF2MtzXb0dmMSoH2ka
+         wPbjI7EZMxACypAZS1OUWuLzdMWs9EHK8JHV60VEM3IMgYEJg+NuapwXCe9YrW+HAjB1
+         ZTU37rbf5Umst/47z6+W4g2w8Jf52PNo+kgwZNz6IHHDbpi9JpMyebY0Hol/NYldNHuR
+         2zuu/fvynOuKzARQ5oVEtM+377rwyWtxCV8uciQmBV1Dyb6QwYhDAGVRStfRsgyQJ2Vs
+         9XFvX35sEg9bz2Dotm/xDlgy02Fd5jIVgb8zPpBp91S49gHsL6RFYD43O7E3PIIfi2ad
+         kkqQ==
+X-Gm-Message-State: AOAM5309/MdUa2K7wscPYV+Nb6II6XntnAxHMNIxTMBVMXy47G/9eqy8
+        znQvJkBw8iW6qIbGG2a4ioE=
+X-Google-Smtp-Source: ABdhPJzsq2lBfR0WYt1JwMFaDdGzuVNV17XX786+xa+9TS7JCcm6xRPC3A7NqMzy2pso/BBq2OM0QQ==
+X-Received: by 2002:a17:90a:6e45:: with SMTP id s5mr745620pjm.12.1601004646462;
+        Thu, 24 Sep 2020 20:30:46 -0700 (PDT)
+Received: from universe.lan (80.251.221.29.16clouds.com. [80.251.221.29])
+        by smtp.gmail.com with ESMTPSA id o5sm571670pjs.13.2020.09.24.20.30.40
+        (version=TLS1_3 cipher=TLS_AES_256_GCM_SHA384 bits=256/256);
+        Thu, 24 Sep 2020 20:30:45 -0700 (PDT)
+From:   Artem Lapkin <email2tema@gmail.com>
+X-Google-Original-From: Artem Lapkin <art@khadas.com>
+To:     narmstrong@baylibre.com
+Cc:     khilman@baylibre.com, robh+dt@kernel.org, jbrunet@baylibre.com,
+        martin.blumenstingl@googlemail.com, devicetree@vger.kernel.org,
+        linux-arm-kernel@lists.infradead.org,
+        linux-amlogic@lists.infradead.org, linux-kernel@vger.kernel.org,
+        art@khadas.com, nick@khadas.com, gouwa@khadas.com
+Subject: [PATCH 0/8] dts updates and fixes for Khadas VIM1 VIM2 VIM3 VIML boards
+Date:   Fri, 25 Sep 2020 11:30:09 +0800
+Message-Id: <20200925033017.1790973-1-art@khadas.com>
+X-Mailer: git-send-email 2.25.1
+MIME-Version: 1.0
+Content-Transfer-Encoding: 8bit
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-From: Helmut Grohne <helmut.grohne@intenta.de>
-Date: Thu, 24 Sep 2020 10:37:47 +0200
+dts updates and fixes for Khadas VIM1 VIM2 VIM3 VIML boards
 
-> The previous implementation failed to account for the "ports" node. The
-> actual port nodes are not child nodes of the switch node, but a "ports"
-> node sits in between.
-> 
-> Fixes: edecfa98f602 ("net: dsa: microchip: look for phy-mode in port nodes")
-> Signed-off-by: Helmut Grohne <helmut.grohne@intenta.de>
+Artem Lapkin (8):
+  arm64: dts: meson: update spifc node on Khadas VIM2
+    meson-gxm-khadas-vim2
+  arm64: dts: meson: update leds node on Khadas VIM3/VIM3L boards
+    meson-khadas-vim3
+  arm64: dts: meson: update leds node on Khadas VIM3/VIM3L board
+    meson-khadas-vim3
+  arm64: dts: meson: remove fixed memory size for Khadas VIM3/VIM3L
+    meson-khadas-vim3
+  arm64: dts: meson: remove reset-gpios from ethernet node for VIM2
+    meson-gxm-khadas-vim2
+  arm64: dts: meson: disable vrtc for VIM3L boards meson-khadas-vim3
+  arm64: dts: meson: enable RTC for VIM1 meson-gxl-s905x-khadas-vim
+  arm64: dts: meson: enable RTC for VIM2 meson-gxm-khadas-vim2
 
-Applied and queued up for -stable.
+ .../amlogic/meson-gxl-s905x-khadas-vim.dts    |  2 +-
+ .../dts/amlogic/meson-gxm-khadas-vim2.dts     | 10 +++++-----
+ .../boot/dts/amlogic/meson-khadas-vim3.dtsi   | 19 +++++++++++++++----
+ 3 files changed, 21 insertions(+), 10 deletions(-)
 
-> I am very sorry that I need to send a fixup. It turned out that my
-> testing methodology was flawed. When I reintegrated Linus' master
-> branch, I noticed that it didn't work.
+-- 
+2.25.1
 
-You should be testing against the 'net' GIT tree, not Linus's master
-branch.
