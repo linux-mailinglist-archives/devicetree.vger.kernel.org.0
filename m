@@ -2,145 +2,120 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from vger.kernel.org (vger.kernel.org [23.128.96.18])
-	by mail.lfdr.de (Postfix) with ESMTP id 5F0A8278930
-	for <lists+devicetree@lfdr.de>; Fri, 25 Sep 2020 15:16:40 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTP id 69AB5278960
+	for <lists+devicetree@lfdr.de>; Fri, 25 Sep 2020 15:21:51 +0200 (CEST)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S1728695AbgIYNQf (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Fri, 25 Sep 2020 09:16:35 -0400
-Received: from mail-oi1-f195.google.com ([209.85.167.195]:44332 "EHLO
-        mail-oi1-f195.google.com" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S1728814AbgIYNQf (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Fri, 25 Sep 2020 09:16:35 -0400
-Received: by mail-oi1-f195.google.com with SMTP id 185so2704867oie.11;
-        Fri, 25 Sep 2020 06:16:34 -0700 (PDT)
+        id S1728466AbgIYNVW (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Fri, 25 Sep 2020 09:21:22 -0400
+Received: from lindbergh.monkeyblade.net ([23.128.96.19]:43190 "EHLO
+        lindbergh.monkeyblade.net" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
+        with ESMTP id S1728121AbgIYNVW (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Fri, 25 Sep 2020 09:21:22 -0400
+Received: from mail-lf1-x144.google.com (mail-lf1-x144.google.com [IPv6:2a00:1450:4864:20::144])
+        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id B1BFFC0613CE;
+        Fri, 25 Sep 2020 06:21:21 -0700 (PDT)
+Received: by mail-lf1-x144.google.com with SMTP id b12so2760836lfp.9;
+        Fri, 25 Sep 2020 06:21:21 -0700 (PDT)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+        d=gmail.com; s=20161025;
+        h=subject:to:cc:references:from:message-id:date:user-agent
+         :mime-version:in-reply-to:content-language:content-transfer-encoding;
+        bh=HSGaf1eGfw5tIztilXD8fvlle7SWUYGVsu5F+1o/XiE=;
+        b=EEZna10+58DvlojMGo1TeKlWT6WjoHMAhd0OJFLVx2SF/7VD6C6y4Oy8IoTTWuYxK4
+         PiT7gPA+chFaoJSFa5IH4+vwnYVVR9C6Deo4tX9FDZ/Tm/wypL0EEMa8TYHSzZ4ADRZm
+         rZOqEZHofpSf/VfzEY3zkA7acZyOzOSKjx2i4cbpfvp+90cKqEdpPFzqzAJDiYMrE+eG
+         QIwSBFSTHaN7Yb64ESK5zBDs1290HrqX2pFHMzXkszsxh9lL7iCVf4Z7rgIIkS+fnbAp
+         R+7tkOli2jgkEZ/Tp0WBoAuypuzzrH8SaSin1iGBuMtuLuoDC8bjw9Yv55kPRWw5oTkw
+         XHAw==
 X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
         d=1e100.net; s=20161025;
-        h=x-gm-message-state:mime-version:references:in-reply-to:from:date
-         :message-id:subject:to:cc;
-        bh=0B0zGuwlE5IXq5+CRBTpyf20tfnqDJ9kkPftjlq2jcs=;
-        b=EISQ2D5Vq5SoCUH3NrQkvFAOwMcU27X+m5SogcBvwjG8fGv8XRO6bHRPv5t2JNZIvD
-         lXc8uO6DBFrGQ4OhRo4IAUgTuTaIXVC/ptIcAa1C9Pl69lIb8ruLJ7b9Xfz7Oyq/W8MS
-         ol7dtod6GccR9CdMTABRGZKeMayLj9nZcpqAEV5IPiSgHehuxgXFgtJpgVBSpF23lurG
-         Ez6NuPtsmg+vMHqfHv8MQ1V7rx9ZLUOrszHJMxygzQAg/iHo4Uirs4VX1IcWr8C90v6j
-         C8NnLli6MY69z6LatkwcCq4cmQWnlEfYnqsHy/T7SviAIkk+wZTe0T9PYJzUoghCxOXy
-         jpsA==
-X-Gm-Message-State: AOAM532vqdoS5PnlUikgWqAn5RbMeI9Tz4fXO26/YkZF257PWvtooUGa
-        72C3CBLHAmUpZp2jPilM7fH2OLpEUHcUmWw/9Sg=
-X-Google-Smtp-Source: ABdhPJyGPTsmkodXXmXipVIfYg0SJYTSh9mpOHX1TQ8oOk0omx6zJdHRI8eC6aY6pMzpl6nYHQqv6rUWxzTyfmLsMeA=
-X-Received: by 2002:aca:3bc3:: with SMTP id i186mr203649oia.148.1601039794520;
- Fri, 25 Sep 2020 06:16:34 -0700 (PDT)
+        h=x-gm-message-state:subject:to:cc:references:from:message-id:date
+         :user-agent:mime-version:in-reply-to:content-language
+         :content-transfer-encoding;
+        bh=HSGaf1eGfw5tIztilXD8fvlle7SWUYGVsu5F+1o/XiE=;
+        b=QvTvOxX9+fJnGPDhFZ7/k+1fFRncpBSkdfZ9NRbcuViKp8fVEJsijPe3r1vyC8ESKk
+         Z8reBuClK3xg+z63pUYILaPMtPKVS5zQEduuMN1joAMKwBJh8i8eQI/Ybh0Nbgyj66Af
+         H/n+EpQqa0/7UCduDeKf8ppLpPY8Y5/Bi+hcEJeeWbFINsiK+ViZ5kTk4NwIi+rWgXYt
+         Ei0yNFTw5/2PHlUbSxjSGuBsrmF+8lCk/ciw7qgMmjOvvLCD6nWBUI6dOtAed9TVWLpd
+         a5sOw8sjBI1A/O+ro7Oal+ZP1HYzxCvcAbjSlErlDHmuBZ4EsYMUfd4rayTY5AbMt4RZ
+         Aajg==
+X-Gm-Message-State: AOAM530erqoCY780UBHcc08mZQBAhdDiPPeALaDGsJt/Fujs43GW6P6W
+        mxGJmA40R0JUlHIUYRWEcMf3aaq2hlQ=
+X-Google-Smtp-Source: ABdhPJy7rFSI4LluJaDLNquOaxpLE+A82l9X3D9ZLpwTjDfKunUJpoe/hTAG9P68Jq4PI26/OrtgEw==
+X-Received: by 2002:ac2:491e:: with SMTP id n30mr1274466lfi.395.1601040079799;
+        Fri, 25 Sep 2020 06:21:19 -0700 (PDT)
+Received: from [192.168.2.145] (109-252-170-211.dynamic.spd-mgts.ru. [109.252.170.211])
+        by smtp.googlemail.com with ESMTPSA id 82sm2247569lfo.173.2020.09.25.06.21.18
+        (version=TLS1_3 cipher=TLS_AES_128_GCM_SHA256 bits=128/128);
+        Fri, 25 Sep 2020 06:21:19 -0700 (PDT)
+Subject: Re: [PATCH v2 1/4] dt-bindings: reserved-memory: Document "active"
+ property
+To:     Robin Murphy <robin.murphy@arm.com>,
+        Thierry Reding <thierry.reding@gmail.com>
+Cc:     Joerg Roedel <joro@8bytes.org>, Rob Herring <robh+dt@kernel.org>,
+        Frank Rowand <frowand.list@gmail.com>,
+        Will Deacon <will@kernel.org>,
+        iommu@lists.linux-foundation.org, devicetree@vger.kernel.org,
+        linux-kernel@vger.kernel.org,
+        "linux-tegra@vger.kernel.org" <linux-tegra@vger.kernel.org>
+References: <20200904130000.691933-1-thierry.reding@gmail.com>
+ <d3d69cb4-b0f9-40b0-b526-52fdc1a4b876@gmail.com>
+ <20200924140130.GA2527337@ulmo>
+ <ba16b795-34df-8f8c-3376-3d629cc30f8b@gmail.com>
+ <484b9e90-7395-6161-577c-4d3f3716997e@arm.com>
+From:   Dmitry Osipenko <digetx@gmail.com>
+Message-ID: <70712ca4-8971-3af4-d0d0-b73788d6cfa9@gmail.com>
+Date:   Fri, 25 Sep 2020 16:21:17 +0300
+User-Agent: Mozilla/5.0 (X11; Linux x86_64; rv:68.0) Gecko/20100101
+ Thunderbird/68.10.0
 MIME-Version: 1.0
-References: <20200923120817.1667149-0-mholenko@antmicro.com> <20200923120817.1667149-4-mholenko@antmicro.com>
-In-Reply-To: <20200923120817.1667149-4-mholenko@antmicro.com>
-From:   Geert Uytterhoeven <geert@linux-m68k.org>
-Date:   Fri, 25 Sep 2020 15:16:23 +0200
-Message-ID: <CAMuHMdXZ4QA4HX8xZJVnnj5P3USpefNn+8OFGz+Yo9T=UpNM4g@mail.gmail.com>
-Subject: Re: [PATCH v11 4/5] dt-bindings: serial: document LiteUART bindings
-To:     Mateusz Holenko <mholenko@antmicro.com>
-Cc:     Rob Herring <robh+dt@kernel.org>,
-        Mark Rutland <mark.rutland@arm.com>,
-        Greg Kroah-Hartman <gregkh@linuxfoundation.org>,
-        Jiri Slaby <jslaby@suse.com>,
-        "open list:OPEN FIRMWARE AND FLATTENED DEVICE TREE BINDINGS" 
-        <devicetree@vger.kernel.org>,
-        "open list:SERIAL DRIVERS" <linux-serial@vger.kernel.org>,
-        Stafford Horne <shorne@gmail.com>,
-        Karol Gugala <kgugala@antmicro.com>,
-        Mauro Carvalho Chehab <mchehab+samsung@kernel.org>,
-        "David S. Miller" <davem@davemloft.net>,
-        "Paul E. McKenney" <paulmck@linux.ibm.com>,
-        Filip Kokosinski <fkokosinski@antmicro.com>,
-        Pawel Czarnecki <pczarnecki@internships.antmicro.com>,
-        Joel Stanley <joel@jms.id.au>,
-        Jonathan Cameron <Jonathan.Cameron@huawei.com>,
-        Maxime Ripard <mripard@kernel.org>,
-        Shawn Guo <shawnguo@kernel.org>,
-        Heiko Stuebner <heiko@sntech.de>,
-        Sam Ravnborg <sam@ravnborg.org>,
-        Icenowy Zheng <icenowy@aosc.io>,
-        Laurent Pinchart <laurent.pinchart@ideasonboard.com>,
-        Linux Kernel Mailing List <linux-kernel@vger.kernel.org>,
-        "Gabriel L. Somlo" <gsomlo@gmail.com>
-Content-Type: text/plain; charset="UTF-8"
+In-Reply-To: <484b9e90-7395-6161-577c-4d3f3716997e@arm.com>
+Content-Type: text/plain; charset=utf-8
+Content-Language: en-US
+Content-Transfer-Encoding: 8bit
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-Hi Mateusz,
+25.09.2020 15:39, Robin Murphy пишет:
+...
+>> IIRC, in the past Robin Murphy was suggesting to read out hardware state
+>> early during kernel boot in order to find what regions are in use by
+>> hardware.
+> 
+> I doubt I suggested that in general, because I've always firmly believed
+> it to be a terrible idea. I've debugged too many cases where firmware or
+> kexec has inadvertently left DMA running and corrupted kernel memory, so
+> in general we definitely *don't* want to blindly trust random hardware
+> state. Anything I may have said in relation to Qualcomm's fundamentally
+> broken hypervisor/bootloader setup should not be considered outside that
+> specific context ;)
+> 
+> Robin.
+> 
+>> I think it should be easy to do for the display controller since we
+>> could check clock and PD states in order to decide whether DC's IO could
+>> be accessed and then read out the FB pointer and size. I guess it should
+>> take about hundred lines of code.
 
-On Wed, Sep 23, 2020 at 12:10 PM Mateusz Holenko <mholenko@antmicro.com> wrote:
-> From: Filip Kokosinski <fkokosinski@antmicro.com>
->
-> Add documentation for LiteUART devicetree bindings.
->
-> Signed-off-by: Filip Kokosinski <fkokosinski@antmicro.com>
-> Signed-off-by: Mateusz Holenko <mholenko@antmicro.com>
-> Reviewed-by: Rob Herring <robh@kernel.org>
+The active DMA is indeed very dangerous, but it's a bit less dangerous
+in a case of read-only DMA.
 
-Thanks for your patch!
+I got another idea of how we could benefit from the active display
+hardware. Maybe we could do the following:
 
-> --- /dev/null
-> +++ b/Documentation/devicetree/bindings/serial/litex,liteuart.yaml
-> @@ -0,0 +1,38 @@
-> +# SPDX-License-Identifier: GPL-2.0-only OR BSD-2-Clause
-> +
-> +%YAML 1.2
-> +---
-> +$id: http://devicetree.org/schemas/serial/litex,liteuart.yaml#
-> +$schema: http://devicetree.org/meta-schemas/core.yaml#
-> +
-> +title: LiteUART serial controller
-> +
-> +maintainers:
-> +  - Karol Gugala <kgugala@antmicro.com>
-> +  - Mateusz Holenko <mholenko@antmicro.com>
-> +
-> +description: |
-> +  LiteUART serial controller is a part of LiteX FPGA SoC builder. It supports
+1. Check whether display is active
 
-part of the
+2. Allocate CMA that matches the FB size
 
-> +  multiple CPU architectures, currently including e.g. OpenRISC and RISC-V.
-> +
-> +properties:
-> +  compatible:
-> +    const: litex,liteuart
+3. Create identity mapping for the CMA
 
-Have you already decided how to handle future LiteUART variants that add
-new features (e.g. CTS/RTS, DMA)?
+4. Switch display framebuffer to our CMA
 
+5. Create very early simple-framebuffer out of the CMA
 
-> +
-> +  reg:
-> +    maxItems: 1
-> +
-> +  interrupts:
-> +    maxItems: 1
-> +
-> +required:
-> +  - compatible
-> +  - reg
-> +
-> +examples:
-> +  - |
-> +    uart0: serial@e0001800 {
-> +      compatible = "litex,liteuart";
-> +      reg = <0xe0001800 0x100>;
-> +      interrupts = <2>;
-> +    };
-> --
-> 2.25.1
->
+6. Once Tegra DRM driver is loaded, it will kick out the simple-fb, and
+thus, release temporal CMA and identity mapping.
 
-
---
-Gr{oetje,eeting}s,
-
-                        Geert
-
---
-Geert Uytterhoeven -- There's lots of Linux beyond ia32 -- geert@linux-m68k.org
-
-In personal conversations with technical people, I call myself a hacker. But
-when I'm talking to journalists I just say "programmer" or something like that.
-                                -- Linus Torvalds
+This will provide us with a very early framebuffer output and it will
+work on all devices out-of-the-box!
