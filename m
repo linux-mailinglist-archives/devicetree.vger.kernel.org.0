@@ -2,105 +2,92 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from vger.kernel.org (vger.kernel.org [23.128.96.18])
-	by mail.lfdr.de (Postfix) with ESMTP id 96BC3278C3D
-	for <lists+devicetree@lfdr.de>; Fri, 25 Sep 2020 17:13:21 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTP id E6077278D0F
+	for <lists+devicetree@lfdr.de>; Fri, 25 Sep 2020 17:46:45 +0200 (CEST)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S1728966AbgIYPNQ (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Fri, 25 Sep 2020 11:13:16 -0400
-Received: from wout2-smtp.messagingengine.com ([64.147.123.25]:47891 "EHLO
-        wout2-smtp.messagingengine.com" rhost-flags-OK-OK-OK-OK)
-        by vger.kernel.org with ESMTP id S1728806AbgIYPNQ (ORCPT
-        <rfc822;devicetree@vger.kernel.org>);
-        Fri, 25 Sep 2020 11:13:16 -0400
-Received: from compute4.internal (compute4.nyi.internal [10.202.2.44])
-        by mailout.west.internal (Postfix) with ESMTP id 2DBC8419;
-        Fri, 25 Sep 2020 11:13:15 -0400 (EDT)
-Received: from mailfrontend2 ([10.202.2.163])
-  by compute4.internal (MEProxy); Fri, 25 Sep 2020 11:13:15 -0400
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=cerno.tech; h=
-        date:from:to:cc:subject:message-id:references:mime-version
-        :content-type:in-reply-to; s=fm3; bh=Wel/51zD9H4ipns1IHhugzt5jIN
-        W7SH1XQEXE43bnAQ=; b=JBJiba3InAR4HbNUA+z1sX9YvQAqoy77SS9sjGEQ+Rt
-        pzwK6xioTNJc6P13WOfKonQtPtHaZfUkp6Neg+rOUsbUxCnpwlhEqkglWcoGu6BI
-        1LG8mksPcTZm0KIjZ0JWKU8ifkdgfcjTev7EVyjGWJ+oqRqNWM4WLF8SeRyVCYdb
-        qtgTV+CBQBCBh90GkrrPDuNiqP8PmyrrthxiPRDxLHa/QDBRaMUy7AVAO4KY9rlj
-        m5Tf11rKuVc4oLEQSUw9S6DIinQsXyVdcsSyw8K8AOOm+Fne61PTY5ptlQH3qvIP
-        h0ZcvwG6ZvQA+e28JJHutAD5g+tuuhXzkzw4OUnATgQ==
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=
-        messagingengine.com; h=cc:content-type:date:from:in-reply-to
-        :message-id:mime-version:references:subject:to:x-me-proxy
-        :x-me-proxy:x-me-sender:x-me-sender:x-sasl-enc; s=fm3; bh=Wel/51
-        zD9H4ipns1IHhugzt5jINW7SH1XQEXE43bnAQ=; b=jR8dlmjjxkdxWD/MlbVmwt
-        nOsJuTPWvcgmitaEVgVULhDHLNDzvtRJoyh4M1lK3YMZZ25l83Z9iqCB6rlfL7Mr
-        lSFQVo6KTEGYgsuBCTLmsKa62cEeEyQdwGaXXv5N74e4b9kSGlPxdb+gezPd7RIA
-        vZIEE4asfwCVlO55WZUrtnsxUgpIFbV4TIrpy0uS6sgJWlXqVTJoUpUTu9OAMqNl
-        fR10RCNTrnJpWEF20SilqiHN1DHEnndw1OWWH5et1VMBUd84Vqr0uV8LDk0gFz0h
-        7Rv6RnVoGlYXHe5jj0WoOSKuG8vL+UNdD24dbGJNZqRLnuFCbe4icYbKBp1hzzag
-        ==
-X-ME-Sender: <xms:CQluX7GTxdO_2tR6-gvzBPAJ7vz9CBUb-ZWv1JBqR7dhspFyXuedhg>
-    <xme:CQluX4UE85r7Tnptlfo2mTAYIDWVBe1sO-xGXkHI28U6At2wJKJ4j1_dmw1C10Pec
-    ulgzIBeY1LQUlcJKNk>
-X-ME-Proxy-Cause: gggruggvucftvghtrhhoucdtuddrgedujedrvddtgdekgecutefuodetggdotefrodftvf
-    curfhrohhfihhlvgemucfhrghsthforghilhdpqfgfvfdpuffrtefokffrpgfnqfghnecu
-    uegrihhlohhuthemuceftddtnecusecvtfgvtghiphhivghnthhsucdlqddutddtmdenuc
-    fjughrpeffhffvuffkfhggtggujgesghdtreertddtvdenucfhrhhomhepofgrgihimhgv
-    ucftihhprghrugcuoehmrgigihhmvgestggvrhhnohdrthgvtghhqeenucggtffrrghtth
-    gvrhhnpeelkeeghefhuddtleejgfeljeffheffgfeijefhgfeufefhtdevteegheeiheeg
-    udenucfkphepledtrdekledrieekrdejieenucevlhhushhtvghrufhiiigvpedunecurf
-    grrhgrmhepmhgrihhlfhhrohhmpehmrgigihhmvgestggvrhhnohdrthgvtghh
-X-ME-Proxy: <xmx:CQluX9LChMf7scD1--Fb-Xsq33oBnSbXz-6hR_aZbpj56QRuQyNrXg>
-    <xmx:CQluX5ELCzUY2_gvNBU6UG39D_z2kHKAUqGWsqjHnSx8YNqDLsRDrQ>
-    <xmx:CQluXxX3ByaBUHnsJ7kmcHrXdV60eb-SLQl120BoOewvAJPLW4vUsQ>
-    <xmx:CgluX0R5rCftH3xqMtPzb-UBtWAcZvn4nuVfnb4x-skLz45n8fOiGA>
-Received: from localhost (lfbn-tou-1-1502-76.w90-89.abo.wanadoo.fr [90.89.68.76])
-        by mail.messagingengine.com (Postfix) with ESMTPA id AA41C3064680;
-        Fri, 25 Sep 2020 11:13:13 -0400 (EDT)
-Date:   Fri, 25 Sep 2020 17:13:12 +0200
-From:   Maxime Ripard <maxime@cerno.tech>
-To:     Martin Cerveny <m.cerveny@computer.org>
-Cc:     Chen-Yu Tsai <wens@csie.org>, devicetree@vger.kernel.org,
-        linux-arm-kernel@lists.infradead.org, linux-kernel@vger.kernel.org,
-        Rob Herring <robh+dt@kernel.org>
-Subject: Re: [PATCH] ARM: dts: sun8i: v3s: Add simple-framebuffer
-Message-ID: <20200925151312.a6s7zixuxh6pnslu@gilmour.lan>
-References: <20200916175941.8448-1-m.cerveny@computer.org>
+        id S1728818AbgIYPqp (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Fri, 25 Sep 2020 11:46:45 -0400
+Received: from mail-ej1-f66.google.com ([209.85.218.66]:40106 "EHLO
+        mail-ej1-f66.google.com" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
+        with ESMTP id S1726990AbgIYPqo (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Fri, 25 Sep 2020 11:46:44 -0400
+Received: by mail-ej1-f66.google.com with SMTP id p15so3676829ejm.7;
+        Fri, 25 Sep 2020 08:46:43 -0700 (PDT)
+X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+        d=1e100.net; s=20161025;
+        h=x-gm-message-state:date:from:to:cc:subject:message-id:references
+         :mime-version:content-disposition:in-reply-to:user-agent;
+        bh=5FWO6ZL6cZUDkOCGsse8VptniidcThj64+uZr2ggTvM=;
+        b=CO5mUqy8saR6nOw2ww3a/AjE4G4LuHhQupBCeqMff6rOsEHZLddTki9ERJ241TEbZQ
+         MlW2tlkPxvMKUu+R1TyqjSGb4sQsmAlEb8zJm2QJJEIE8XW5WuUC67tGq8mWTFO1sz0M
+         V3srgP0VmHBOUIArCiBzHtPVc9rJPDyUIqBm7ygvbagrD3qC45yPpvNLqoZ6DRItkzU5
+         Z18cH5lQpmMWUCuxfC+b5ZJNhqNFrZ7MlCPrFfbxmjgcXR925O89oxAj0C2wD+RSHHw5
+         mky8weKEAmY45W2tf/6UL3yVmSgsr7L2UyDxwtIRGjWuILuoy1E5tPxQCFxYmxrkWoT/
+         aTdw==
+X-Gm-Message-State: AOAM5313PSAHmLegLb/7vPxh7yi8g7FSRY5KDCOqsjHfVWiyCGiWRXLO
+        v65tGVBSS1tQ8FwKrQEGTXE=
+X-Google-Smtp-Source: ABdhPJzVJnoyAZIYn1mfbYCGitSNhCmMQb7Hs2iCNiB3t4bjUzLQH/owv7Wv7P7vpVwDFubQNqNM0A==
+X-Received: by 2002:a17:906:f9d3:: with SMTP id lj19mr3267773ejb.346.1601048802442;
+        Fri, 25 Sep 2020 08:46:42 -0700 (PDT)
+Received: from kozik-lap ([194.230.155.132])
+        by smtp.googlemail.com with ESMTPSA id jo2sm2065531ejb.101.2020.09.25.08.46.40
+        (version=TLS1_2 cipher=ECDHE-ECDSA-CHACHA20-POLY1305 bits=256/256);
+        Fri, 25 Sep 2020 08:46:41 -0700 (PDT)
+Date:   Fri, 25 Sep 2020 17:46:38 +0200
+From:   Krzysztof Kozlowski <krzk@kernel.org>
+To:     Wolfram Sang <wolfram@the-dreams.de>
+Cc:     Rob Herring <robh+dt@kernel.org>, Shawn Guo <shawnguo@kernel.org>,
+        Sascha Hauer <s.hauer@pengutronix.de>,
+        Pengutronix Kernel Team <kernel@pengutronix.de>,
+        Fabio Estevam <festevam@gmail.com>,
+        NXP Linux Team <linux-imx@nxp.com>,
+        linux-i2c@vger.kernel.org, devicetree@vger.kernel.org,
+        linux-arm-kernel@lists.infradead.org, linux-kernel@vger.kernel.org
+Subject: Re: [PATCH v4 1/4] dt-bindings: i2c: imx-lpi2c: Add properties and
+ use unevaluatedProperties
+Message-ID: <20200925154638.GA16392@kozik-lap>
+References: <20200917191321.28741-1-krzk@kernel.org>
 MIME-Version: 1.0
-Content-Type: multipart/signed; micalg=pgp-sha256;
-        protocol="application/pgp-signature"; boundary="etda3pozoahqmjs6"
+Content-Type: text/plain; charset=utf-8
 Content-Disposition: inline
-In-Reply-To: <20200916175941.8448-1-m.cerveny@computer.org>
+In-Reply-To: <20200917191321.28741-1-krzk@kernel.org>
+User-Agent: Mutt/1.9.4 (2018-02-28)
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
+On Thu, Sep 17, 2020 at 09:13:18PM +0200, Krzysztof Kozlowski wrote:
+> Additional properties actually might appear (e.g. power-domains) so
+> describe all typical properties, reference generic i2c schema and use
+> unevaluatedProperties to fix dtbs_check warnings like:
+> 
+>   arch/arm64/boot/dts/freescale/imx8qxp-ai_ml.dt.yaml: i2c@5a800000:
+>     'assigned-clock-rates', 'assigned-clocks', 'clock-names', 'power-domains' do not match any of the regexes: 'pinctrl-[0-9]+'
+> 
+>   arch/arm64/boot/dts/freescale/imx8qxp-colibri-eval-v3.dt.yaml: i2c@5a800000:
+>     'touchscreen@2c' does not match any of the regexes: 'pinctrl-[0-9]+'
+> 
+> Signed-off-by: Krzysztof Kozlowski <krzk@kernel.org>
+> 
+> ---
+> 
+> Changes since v3:
+> 1. Drop address/size cells
+> 2. Set maxItems to power domains to 1
+> 
+> Changes since v2:
+> 1. Add assigned-clock-parents
+> 
+> Changes since v1:
+> 1. Add more properties and include /schemas/i2c/i2c-controller.yaml#
+> ---
+>  .../devicetree/bindings/i2c/i2c-imx-lpi2c.yaml | 18 ++++++++++++++++--
+>  1 file changed, 16 insertions(+), 2 deletions(-)
 
---etda3pozoahqmjs6
-Content-Type: text/plain; charset=us-ascii
-Content-Disposition: inline
-Content-Transfer-Encoding: quoted-printable
+Hi Wolfram,
 
-Hi,
+The patches have Rob's ack. Could you pick them via I2C tree?
 
-On Wed, Sep 16, 2020 at 07:59:41PM +0200, Martin Cerveny wrote:
-> Add support for "allwinner,simple-framebuffer"
-> with "mixer0-lcd0" pipeline from boot loader (u-boot).
-> It depends on boot loader implementation of DE2/TCON0
-> setup with LCD.
->=20
-> Signed-off-by: Martin Cerveny <m.cerveny@computer.org>
+Best regards,
+Krzysztof
 
-queued for 5.11, thanks!
-Maxime
-
---etda3pozoahqmjs6
-Content-Type: application/pgp-signature; name="signature.asc"
-
------BEGIN PGP SIGNATURE-----
-
-iHUEABYIAB0WIQRcEzekXsqa64kGDp7j7w1vZxhRxQUCX24JCAAKCRDj7w1vZxhR
-xVWRAP42WcMnMXDkUoy4kqVW5psOofYCHVclAA0rOieQA+WaegEAgzJQ7/+8Hg/h
-gmDw7ok8hmvqslff9aqjlR9ODT0j2wE=
-=c6Nw
------END PGP SIGNATURE-----
-
---etda3pozoahqmjs6--
