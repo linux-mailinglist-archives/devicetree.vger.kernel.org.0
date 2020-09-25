@@ -2,88 +2,77 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from vger.kernel.org (vger.kernel.org [23.128.96.18])
-	by mail.lfdr.de (Postfix) with ESMTP id 840F227903A
-	for <lists+devicetree@lfdr.de>; Fri, 25 Sep 2020 20:24:34 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTP id CD64D279038
+	for <lists+devicetree@lfdr.de>; Fri, 25 Sep 2020 20:24:33 +0200 (CEST)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S1726990AbgIYSY3 (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Fri, 25 Sep 2020 14:24:29 -0400
-Received: from 7of9.connected.by.freedominter.net ([185.238.129.13]:57602 "EHLO
-        7of9.schinagl.nl" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S1729593AbgIYSY2 (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Fri, 25 Sep 2020 14:24:28 -0400
-X-Greylist: delayed 567 seconds by postgrey-1.27 at vger.kernel.org; Fri, 25 Sep 2020 14:24:28 EDT
-Received: from [10.2.11.237] (unknown [10.2.11.237])
+        id S1729644AbgIYSYZ (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Fri, 25 Sep 2020 14:24:25 -0400
+Received: from mail.kernel.org ([198.145.29.99]:35174 "EHLO mail.kernel.org"
+        rhost-flags-OK-OK-OK-OK) by vger.kernel.org with ESMTP
+        id S1729593AbgIYSYZ (ORCPT <rfc822;devicetree@vger.kernel.org>);
+        Fri, 25 Sep 2020 14:24:25 -0400
+Received: from mail-ot1-f48.google.com (mail-ot1-f48.google.com [209.85.210.48])
         (using TLSv1.2 with cipher ECDHE-RSA-AES128-GCM-SHA256 (128/128 bits))
         (No client certificate requested)
-        by 7of9.schinagl.nl (Postfix) with ESMTPSA id 4805E1645499;
-        Fri, 25 Sep 2020 20:14:59 +0200 (CEST)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=schinagl.nl; s=7of9;
-        t=1601057699; bh=bwlagJW4WI1C6rLX7ywRq20+AC2AgZ776FTe2qlrIlw=;
-        h=Subject:To:Cc:References:From:Date:In-Reply-To;
-        b=D09n7SQ4IlZeYfDM1p1adAIESZzmdkHgdlkEiSZ9V2/dkDdy6n7K7zT8Xky7cTNkZ
-         FBx+Btpbp4HE7SaRc+z2JXITWNpIP+u+yTa9cJzVXjqJwRVl4UeHBaTkD1jQQbR7k7
-         M1xX+t7Cs/AOWDQMLXPNI+BTBDhytfsdVu9D/snk=
-Subject: Re: [PATCH 2/2] pwm: Add GPIO PWM driver
-To:     Vincent Whitchurch <vincent.whitchurch@axis.com>
-Cc:     "thierry.reding@gmail.com" <thierry.reding@gmail.com>,
-        "u.kleine-koenig@pengutronix.de" <u.kleine-koenig@pengutronix.de>,
-        "lee.jones@linaro.org" <lee.jones@linaro.org>,
-        kernel <kernel@axis.com>,
-        "linux-pwm@vger.kernel.org" <linux-pwm@vger.kernel.org>,
-        "devicetree@vger.kernel.org" <devicetree@vger.kernel.org>,
-        "robh+dt@kernel.org" <robh+dt@kernel.org>
-References: <20200814155513.31936-1-vincent.whitchurch@axis.com>
- <20200814155513.31936-2-vincent.whitchurch@axis.com>
- <703362fe-1454-c16e-180a-76bfc4e3ab3f@schinagl.nl>
- <20200915140208.bzserxn2bgw4xiwk@axis.com>
-From:   Olliver Schinagl <oliver@schinagl.nl>
-Message-ID: <cbb303e9-a352-ec2e-691d-4e073bbee8c0@schinagl.nl>
-Date:   Fri, 25 Sep 2020 20:14:58 +0200
-User-Agent: Mozilla/5.0 (X11; Linux x86_64; rv:68.0) Gecko/20100101
- Thunderbird/68.9.0
+        by mail.kernel.org (Postfix) with ESMTPSA id 73FEC2344C;
+        Fri, 25 Sep 2020 18:24:24 +0000 (UTC)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=kernel.org;
+        s=default; t=1601058264;
+        bh=3+UjR32phag7o0qtGDIn18Bhp3Te2gJhkXo8qfae49I=;
+        h=References:In-Reply-To:From:Date:Subject:To:Cc:From;
+        b=gYZyZw6q1BO+3QxLi6Yhxa52YdvWOGP6Bwynz1IgdeP4AoQ8O9LACjSjJq9kUdPAQ
+         2A9gwH2FC9gAFJD9v+rsBafSLadQqFs4m/Wfn1Ng9uYeWn8xQWdC+TallzF6jFqiCs
+         Engcd77zB1U31bxCR0JWjkmiWHv0KP9rxXqaifVg=
+Received: by mail-ot1-f48.google.com with SMTP id g96so3163099otb.12;
+        Fri, 25 Sep 2020 11:24:24 -0700 (PDT)
+X-Gm-Message-State: AOAM532wevVVVtVHP55vKKTUjCeACz7kwAnMOk4H8MCS/NVQQEjuB6TD
+        NnA+hQfddiZvFZknBAajlSaMBlVRXJZH3+GP+A==
+X-Google-Smtp-Source: ABdhPJzHcLMNb6xVVlodE5OyqgAY19wIaDZiXPKwHOA40n53jDTNUtNA3wjcwjLHWn8v5JC2xFhuQcSVkjaR6rPxT5I=
+X-Received: by 2002:a9d:6b0d:: with SMTP id g13mr1190401otp.129.1601058263764;
+ Fri, 25 Sep 2020 11:24:23 -0700 (PDT)
 MIME-Version: 1.0
-In-Reply-To: <20200915140208.bzserxn2bgw4xiwk@axis.com>
-Content-Type: text/plain; charset=utf-8; format=flowed
-Content-Language: en-US
-Content-Transfer-Encoding: 7bit
+References: <20200920095724.8251-1-ansuelsmth@gmail.com> <20200920095724.8251-4-ansuelsmth@gmail.com>
+In-Reply-To: <20200920095724.8251-4-ansuelsmth@gmail.com>
+From:   Rob Herring <robh+dt@kernel.org>
+Date:   Fri, 25 Sep 2020 12:24:12 -0600
+X-Gmail-Original-Message-ID: <CAL_JsqKhyeh2=pJcpBKkh+s3FM__DY+VoYSYJLRUErrujTLn9A@mail.gmail.com>
+Message-ID: <CAL_JsqKhyeh2=pJcpBKkh+s3FM__DY+VoYSYJLRUErrujTLn9A@mail.gmail.com>
+Subject: Re: [PATCH v3 3/4] of_net: add mac-address-increment support
+To:     Ansuel Smith <ansuelsmth@gmail.com>
+Cc:     Miquel Raynal <miquel.raynal@bootlin.com>,
+        Richard Weinberger <richard@nod.at>,
+        Vignesh Raghavendra <vigneshr@ti.com>,
+        "David S. Miller" <davem@davemloft.net>,
+        Jakub Kicinski <kuba@kernel.org>, Andrew Lunn <andrew@lunn.ch>,
+        Heiner Kallweit <hkallweit1@gmail.com>,
+        Russell King <linux@armlinux.org.uk>,
+        Frank Rowand <frowand.list@gmail.com>,
+        Boris Brezillon <bbrezillon@kernel.org>,
+        MTD Maling List <linux-mtd@lists.infradead.org>,
+        devicetree@vger.kernel.org,
+        "linux-kernel@vger.kernel.org" <linux-kernel@vger.kernel.org>,
+        netdev <netdev@vger.kernel.org>
+Content-Type: text/plain; charset="UTF-8"
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-Hey Vincent,
+On Sun, Sep 20, 2020 at 3:57 AM Ansuel Smith <ansuelsmth@gmail.com> wrote:
+>
+> Lots of embedded devices use the mac-address of other interface
+> extracted from nvmem cells and increments it by one or two. Add two
+> bindings to integrate this and directly use the right mac-address for
+> the interface. Some example are some routers that use the gmac
+> mac-address stored in the art partition and increments it by one for the
+> wifi. mac-address-increment-byte bindings is used to tell what byte of
+> the mac-address has to be increased (if not defined the last byte is
+> increased) and mac-address-increment tells how much the byte decided
+> early has to be increased.
 
-On 15-09-2020 16:02, Vincent Whitchurch wrote:
-> On Thu, Sep 03, 2020 at 11:15:31AM +0200, Olliver Schinagl wrote:
->> On 14-08-2020 17:55, Vincent Whitchurch wrote:
->>> Add a software PWM which toggles a GPIO from a high-resolution timer.
->>>
->>> This will naturally not be as accurate or as efficient as a hardware
->>> PWM, but it is useful in some cases.  I have for example used it for
->>> evaluating LED brightness handling (via leds-pwm) on a board where the
->>> LED was just hooked up to a GPIO, and for a simple verification of the
->>> timer frequency on another platform.
->>>
->>> Since high-resolution timers are used, sleeping gpio chips are not
->>> supported and are rejected in the probe function.
->>>
->>> Signed-off-by: Vincent Whitchurch <vincent.whitchurch@axis.com>
->>> ---
->>> While preparing this driver for posting, I found a pwm-gpio driver posted to
->>> the lists way back in 2015 by Olliver Schinagl:
->>>
->>>    https://lore.kernel.org/linux-pwm/1445895161-2317-8-git-send-email-o.schinagl@ultimaker.com/
->>>
->> Thanks for reminding me there :) As I think I still use this driver, I
->> don't mind migrating to this one (if merged) but how do you suggests to
->> proceed with regards to multiple PWM's, as this is how I am using it
->> currently. E.g. how do we merge them? I'm fine with 'taking the simpler
->> code method' for a start point, but i guess I solved that part
->> (somewhat) in 2015 :p
-> 
-> Since this is just a software construct, the simplest way would just be
-> to create multiple instances in the device tree if you want multiple
-> PWMs, wouldn't it?
-> 
-Not entirely, as they are no longer 'logically grouped'?
+I'm inclined to say if there's a platform specific way to transform
+MAC addresses, then there should be platform specific code to do that
+which then stuffs the DT using standard properties. Otherwise, we have
+a never ending stream of 'generic' properties to try to handle
+different platforms' cases.
 
-Olliver
+Rob
