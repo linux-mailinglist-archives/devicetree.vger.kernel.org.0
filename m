@@ -2,128 +2,123 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from vger.kernel.org (vger.kernel.org [23.128.96.18])
-	by mail.lfdr.de (Postfix) with ESMTP id 32384277B5A
-	for <lists+devicetree@lfdr.de>; Thu, 24 Sep 2020 23:55:04 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTP id EC8BE277CB6
+	for <lists+devicetree@lfdr.de>; Fri, 25 Sep 2020 02:12:59 +0200 (CEST)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S1726703AbgIXVy5 (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Thu, 24 Sep 2020 17:54:57 -0400
-Received: from lindbergh.monkeyblade.net ([23.128.96.19]:41972 "EHLO
+        id S1726631AbgIYAM6 (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Thu, 24 Sep 2020 20:12:58 -0400
+Received: from lindbergh.monkeyblade.net ([23.128.96.19]:34880 "EHLO
         lindbergh.monkeyblade.net" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S1726706AbgIXVy4 (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Thu, 24 Sep 2020 17:54:56 -0400
-Received: from mail-yb1-xb49.google.com (mail-yb1-xb49.google.com [IPv6:2607:f8b0:4864:20::b49])
-        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 99D24C0613D7
-        for <devicetree@vger.kernel.org>; Thu, 24 Sep 2020 14:54:55 -0700 (PDT)
-Received: by mail-yb1-xb49.google.com with SMTP id k3so697739ybp.1
-        for <devicetree@vger.kernel.org>; Thu, 24 Sep 2020 14:54:55 -0700 (PDT)
+        with ESMTP id S1726448AbgIYAM6 (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Thu, 24 Sep 2020 20:12:58 -0400
+Received: from mail-lf1-x134.google.com (mail-lf1-x134.google.com [IPv6:2a00:1450:4864:20::134])
+        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id ED982C0613CE;
+        Thu, 24 Sep 2020 17:12:57 -0700 (PDT)
+Received: by mail-lf1-x134.google.com with SMTP id y11so807291lfl.5;
+        Thu, 24 Sep 2020 17:12:57 -0700 (PDT)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=google.com; s=20161025;
-        h=sender:date:in-reply-to:message-id:mime-version:references:subject
-         :from:to;
-        bh=TuyfSxIkZi+P/JhBNIB6urUJLMN4tVR/8LkLgR5gW14=;
-        b=FWvIVB4nFy3TjF5TUaGKfr+gr0IDuCj3iVXYiz3beykXZPAzbGXNgRRCPQB206Y1KQ
-         WdZtttptVeUthPPTUhjCn1TS4PeYU2tViVkVdp3dP9LaFDi7T6qd8VsmnDZeQZWmODM1
-         9Znb9S+vKoQy59WNTM1nvYuWItx4WnHMy0G52VerG4CajSRNUvoGkGUJIxFRLBawOzAu
-         uDnJ7UAuk0mW8VgMcKRk5EJZTQohl3aUyJtzunt+Y+/gBZhM3kCWCKsblFn0HCOlJulg
-         4JciRiKxwuf1siqUq3/Eu7De/jsoTXRVXgrx3AOhb83Xz/oUmnVtaT+IKXkIavPcAgjD
-         vCfQ==
+        d=gmail.com; s=20161025;
+        h=subject:to:cc:references:from:message-id:date:user-agent
+         :mime-version:in-reply-to:content-language:content-transfer-encoding;
+        bh=PBjgiLAVSoJgxT17zOaTxqyfbhjh2QfCjso7UAkKS6w=;
+        b=PyClMLHUz5XkszhIsBYpSCSD24UXHk2Fq0eHt1+0sSz9aqQow4/Ts3mvjms4vmM2xB
+         AqP8sBz90ZxlkvxshCBCQK1fSx0keyumDt1aAF7iee74Cf6rlfgGTkIsd3M+SEX7B7kJ
+         Z9oONbbvZhUzm7jm4S8HjZu3XS73NkSWVDjuEjvQ/YmlZkgshMPc8ZEFBGA2VBIFa8tA
+         Io2P0LdsTPi9Gj6srGxntRGPKUmNlOeJE9mXSiLg1QT2FSX1eH4acvMl9WEjLQZkoqxv
+         Bedbb8JVRjJyvtoYlOuzpW9cZy2xPrw5F3pUc02rNGkQhUwK1n46LahTqbNmWnwVccZn
+         IBPw==
 X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
         d=1e100.net; s=20161025;
-        h=x-gm-message-state:sender:date:in-reply-to:message-id:mime-version
-         :references:subject:from:to;
-        bh=TuyfSxIkZi+P/JhBNIB6urUJLMN4tVR/8LkLgR5gW14=;
-        b=KsA83LNIq99/ymEG1y/+f4II+S6M0u14msP5KBsLw0cnCku126QRdRhiPSmMqs1dyy
-         wuIdCz0ZPaJDkX4Cr04MD5dQ+WebT4ABaBrvATixjcqTpkvuubBoCbR7mfRoRmmy9X59
-         bFdWgIRnimRRWhqp3LE8oTlB2v4GDYxs37yrUQeObZCLLDSDeNUYPJ8zMziB7d0U7w2Z
-         6MTSaGUrWdOZ9I5pSPwJrg5wsFZ+jZCoSFjTLJFCw3ZzTcRELx3jeg8ITx7VuDds9y+x
-         4lAZ0rajeiRkhjZutrXRUp5tFFtiKD6bsDdGhsaFPS/TaLvsXbQ/wKXNxlryrb58ivks
-         X4/w==
-X-Gm-Message-State: AOAM532SWlydFX0xVX25bYbRnyE8u7l5oFPNjkZoyMeB97l0vF1rPfum
-        r3O7Cdjdp22gaJxXp5XKB21MgNUKlh13dTZb
-X-Google-Smtp-Source: ABdhPJzk4yQgT36MZ0fV0H+HiXWybvORRJARsR02oEoMKu0Ap8ErrcXpHPJ3T5bsC1iNb+dOpAdOjLETvfnRZ1cH
-Sender: "linchuyuan via sendgmr" <linchuyuan@chu-dev.c.googlers.com>
-X-Received: from chu-dev.c.googlers.com ([fda3:e722:ac3:10:24:72f4:c0a8:3cfb])
- (user=linchuyuan job=sendgmr) by 2002:a25:e0d2:: with SMTP id
- x201mr1323962ybg.180.1600984494820; Thu, 24 Sep 2020 14:54:54 -0700 (PDT)
-Date:   Thu, 24 Sep 2020 21:54:44 +0000
-In-Reply-To: <20200924215444.2865885-1-linchuyuan@google.com>
-Message-Id: <20200924215444.2865885-3-linchuyuan@google.com>
-Mime-Version: 1.0
-References: <20200924215444.2865885-1-linchuyuan@google.com>
-X-Mailer: git-send-email 2.28.0.681.g6f77f65b4e-goog
-Subject: [PATCH v3 2/2] hwmon: pmbus: max20730: adjust the vout reading given
- voltage divider
-From:   Chu Lin <linchuyuan@google.com>
-To:     linchuyuan@google.com, jdelvare@suse.com, linux@roeck-us.net,
-        robh+dt@kernel.org, linux-hwmon@vger.kernel.org,
-        devicetree@vger.kernel.org, linux-kernel@vger.kernel.org,
-        qiongwang@google.com, zhongqil@google.com, jasonling@google.com,
-        belgaied@google.com
-Content-Type: text/plain; charset="UTF-8"
+        h=x-gm-message-state:subject:to:cc:references:from:message-id:date
+         :user-agent:mime-version:in-reply-to:content-language
+         :content-transfer-encoding;
+        bh=PBjgiLAVSoJgxT17zOaTxqyfbhjh2QfCjso7UAkKS6w=;
+        b=AlLM3+3swmm/u9wrDrjE/pTYrZ6cyu7pSXlkPKwapC2sZ/eKdQs6p52EMWl66RkT3b
+         4HF5l6cpylcdT9O0Ms+CtB+IUAcR2233NruZoioge3a/9MgxZ8o32dhBsrCT4hTrcqm5
+         rTFKhrPegMrcuO7AnLGVgJf1NOkAmCFszHVfNAV3XY/W1BiYRSFtDr8l9Tnfh5SgeAGw
+         HUHuSEAqK0dEaLynDhiCxxiVpiq3gclC6vtpepsyZHnKMY558G4KNpkdInCO7zMl7JZF
+         6X9QtBgmVFVuQE3cSgcjsu+jy8YFxhlWWOlHYR00Qgs7BffCAJJv9nyy9oOmMhkBNifR
+         +Ccg==
+X-Gm-Message-State: AOAM532DoZHvv3/85KawfI7nCMfayG3qlQdP+oRcdOLqQRPlC6zAhiAY
+        4ahBdWtJT06GRQa3jheSmWDMZ8sJ18M=
+X-Google-Smtp-Source: ABdhPJyNVc10NeKfqnrZD5h8TUnpb/DgCHWGN04GvZ7x8/q1fz7C79zcLT2VBhL01kgjAlOMHKbcbQ==
+X-Received: by 2002:ac2:495a:: with SMTP id o26mr462064lfi.94.1600992774207;
+        Thu, 24 Sep 2020 17:12:54 -0700 (PDT)
+Received: from [192.168.2.145] (109-252-170-211.dynamic.spd-mgts.ru. [109.252.170.211])
+        by smtp.googlemail.com with ESMTPSA id y21sm727120lff.155.2020.09.24.17.12.52
+        (version=TLS1_3 cipher=TLS_AES_128_GCM_SHA256 bits=128/128);
+        Thu, 24 Sep 2020 17:12:53 -0700 (PDT)
+Subject: Re: [PATCH v2 1/3] ARM: tegra: Add device-tree for Ouya
+To:     Peter Geis <pgwipeout@gmail.com>, Rob Herring <robh+dt@kernel.org>,
+        Thierry Reding <thierry.reding@gmail.com>,
+        Jonathan Hunter <jonathanh@nvidia.com>,
+        Matt Merhar <mattmerhar@protonmail.com>,
+        Stephen Warren <swarren@wwwdotorg.org>,
+        Bob Ham <rah@settrans.net>,
+        Leonardo Bras <leobras.c@gmail.com>,
+        Michael Brougham <jusplainmike@gmail.com>
+Cc:     linux-tegra@vger.kernel.org, devicetree@vger.kernel.org,
+        linux-kernel@vger.kernel.org
+References: <20200923210352.1176386-1-pgwipeout@gmail.com>
+ <20200923210352.1176386-2-pgwipeout@gmail.com>
+From:   Dmitry Osipenko <digetx@gmail.com>
+Message-ID: <df2d6a8d-8a6c-464b-8f35-a7994ea01534@gmail.com>
+Date:   Fri, 25 Sep 2020 03:12:52 +0300
+User-Agent: Mozilla/5.0 (X11; Linux x86_64; rv:68.0) Gecko/20100101
+ Thunderbird/68.10.0
+MIME-Version: 1.0
+In-Reply-To: <20200923210352.1176386-2-pgwipeout@gmail.com>
+Content-Type: text/plain; charset=utf-8
+Content-Language: en-US
+Content-Transfer-Encoding: 7bit
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-Problem:
-We use voltage dividers so that the voltage presented at the voltage
-sense pins is confusing. We might need to convert these readings to more
-meaningful readings given the voltage divider.
+...
+> +/ {
+> +	model = "Ouya Game Console";
+> +	compatible = "ouya,ouya", "nvidia,tegra30";
+> +
+> +	aliases {
+> +		rtc0 = &pmic;
+> +		rtc1 = "/rtc@7000e000";
+> +		serial0 = &uartd; /* Debug Port */
+> +		serial1 = &uartc; /* Bluetooth */
+> +		mmc0 = &sdmmc4; /* eMMC */
+> +		mmc1 = &sdmmc3; /* WiFi */
 
-Solution:
-Read the voltage divider resistance from dts and convert the voltage
-reading to a more meaningful reading.
+Thierry may want to sort these aliases in alphabet order.
 
-Testing:
-max20730 with voltage divider
+> +	};
 
-Signed-off-by: Chu Lin <linchuyuan@google.com>
----
- drivers/hwmon/pmbus/max20730.c | 18 ++++++++++++++++++
- 1 file changed, 18 insertions(+)
+...
+> +		pmic: pmic@2d {
+> +			compatible = "ti,tps65911";
+> +			reg = <0x2d>;
+> +
+> +			interrupts = <GIC_SPI 86 IRQ_TYPE_LEVEL_HIGH>;
+> +			#interrupt-cells = <2>;
+> +			interrupt-controller;
+> +
+> +			ti,system-power-controller;
 
-diff --git a/drivers/hwmon/pmbus/max20730.c b/drivers/hwmon/pmbus/max20730.c
-index a151a2b588a5..fbf2f1e6c969 100644
---- a/drivers/hwmon/pmbus/max20730.c
-+++ b/drivers/hwmon/pmbus/max20730.c
-@@ -31,6 +31,7 @@ struct max20730_data {
- 	struct pmbus_driver_info info;
- 	struct mutex lock;	/* Used to protect against parallel writes */
- 	u16 mfr_devset1;
-+	u32 vout_voltage_divider[2];
- };
- 
- #define to_max20730_data(x)  container_of(x, struct max20730_data, info)
-@@ -114,6 +115,14 @@ static int max20730_read_word_data(struct i2c_client *client, int page,
- 		max_c = max_current[data->id][(data->mfr_devset1 >> 5) & 0x3];
- 		ret = val_to_direct(max_c, PSC_CURRENT_OUT, info);
- 		break;
-+	case PMBUS_READ_VOUT:
-+		ret = pmbus_read_word_data(client, page, phase, reg);
-+		if (ret > 0 && data->vout_voltage_divider[0] && data->vout_voltage_divider[1]) {
-+			u64 temp = DIV_ROUND_CLOSEST_ULL((u64)ret * data->vout_voltage_divider[1],
-+							 data->vout_voltage_divider[0]);
-+			ret = clamp_val(temp, 0, 0xffff);
-+		}
-+		break;
- 	default:
- 		ret = -ENODATA;
- 		break;
-@@ -364,6 +373,15 @@ static int max20730_probe(struct i2c_client *client,
- 	data->id = chip_id;
- 	mutex_init(&data->lock);
- 	memcpy(&data->info, &max20730_info[chip_id], sizeof(data->info));
-+	if (of_property_read_u32_array(client->dev.of_node, "vout-voltage-divider",
-+				       data->vout_voltage_divider,
-+				       ARRAY_SIZE(data->vout_voltage_divider)) != 0)
-+		memset(data->vout_voltage_divider, 0, sizeof(data->vout_voltage_divider));
-+	if (data->vout_voltage_divider[1] < data->vout_voltage_divider[0]) {
-+		dev_err(dev,
-+			"The total resistance of voltage divider is less than output resistance\n");
-+		return -ENODEV;
-+	}
- 
- 	ret = i2c_smbus_read_word_data(client, MAX20730_MFR_DEVSET1);
- 	if (ret < 0)
--- 
-2.28.0.681.g6f77f65b4e-goog
+Are the ti,sleep-keep-ck32k and other properties not needed for Ouya
+like they are needed for Nexus 7?
 
+...
+> +	sdmmc3: mmc@78000400 {
+> +		status = "okay";
+> +
+> +		#address-cells = <1>;
+> +		#size-cells = <0>;
+> +
+> +		bus-width = <4>;
+> +		non-removable;
+
+Recently I added assigned-clocks here for Nexus7/A500 DTs in order to
+get true 50MHz for the WiFi SDIO.
+
+> +		mmc-pwrseq = <&wifi_pwrseq>;
+> +		vmmc-supply = <&sdmmc_3v3_reg>;
+> +		vqmmc-supply = <&vdd_1v8>;
