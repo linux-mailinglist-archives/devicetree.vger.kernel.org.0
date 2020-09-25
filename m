@@ -2,48 +2,48 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from vger.kernel.org (vger.kernel.org [23.128.96.18])
-	by mail.lfdr.de (Postfix) with ESMTP id F336A2780F6
-	for <lists+devicetree@lfdr.de>; Fri, 25 Sep 2020 08:54:55 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTP id 513222780F9
+	for <lists+devicetree@lfdr.de>; Fri, 25 Sep 2020 08:54:57 +0200 (CEST)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S1727335AbgIYGyl (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Fri, 25 Sep 2020 02:54:41 -0400
-Received: from lindbergh.monkeyblade.net ([23.128.96.19]:39998 "EHLO
+        id S1727344AbgIYGyo (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Fri, 25 Sep 2020 02:54:44 -0400
+Received: from lindbergh.monkeyblade.net ([23.128.96.19]:40006 "EHLO
         lindbergh.monkeyblade.net" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S1727321AbgIYGyi (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Fri, 25 Sep 2020 02:54:38 -0400
-Received: from mail-pf1-x441.google.com (mail-pf1-x441.google.com [IPv6:2607:f8b0:4864:20::441])
-        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 38023C0613D4
-        for <devicetree@vger.kernel.org>; Thu, 24 Sep 2020 23:54:38 -0700 (PDT)
-Received: by mail-pf1-x441.google.com with SMTP id x22so2229165pfo.12
-        for <devicetree@vger.kernel.org>; Thu, 24 Sep 2020 23:54:38 -0700 (PDT)
+        with ESMTP id S1727308AbgIYGyk (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Fri, 25 Sep 2020 02:54:40 -0400
+Received: from mail-pf1-x443.google.com (mail-pf1-x443.google.com [IPv6:2607:f8b0:4864:20::443])
+        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 8ABB6C0613D4
+        for <devicetree@vger.kernel.org>; Thu, 24 Sep 2020 23:54:40 -0700 (PDT)
+Received: by mail-pf1-x443.google.com with SMTP id o20so2232075pfp.11
+        for <devicetree@vger.kernel.org>; Thu, 24 Sep 2020 23:54:40 -0700 (PDT)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
         d=chromium.org; s=google;
         h=from:to:cc:subject:date:message-id:in-reply-to:references
          :mime-version:content-transfer-encoding;
-        bh=j2durK184bkZhr5uNqjCIpCLzFSfTXNNXV6rELvHa38=;
-        b=AzTp/MsqJD4ypbPw6ynmJElRR13Xpo7J3MBBmUXgaDmcvP6AkCCeSKRtT0qeMrYtEc
-         JYQcK5zauvnG+KD0rL4pXdhqPcYjR6LClOb1bJycXsGPDcyH7E75znEJglTlKqybmyKh
-         1SjkA2gDCatg0n3fbfp5sG0p9oCSCRyrENtRc=
+        bh=Q1sjz1AOP3RHN+D2U3Yr0dC8Mgj3MJeltuBOhjJoHBE=;
+        b=igrI5latvdPt4aE/Cq47rXBxO6po1rbw5Kx731skmFqpAxoNONI26r8BshXxGn08b5
+         7rhWAUjAPpJpJmmlqioxbRerj0BO3MtHFX0r04U6ReyaNPpzPYR3EqTGYCkeWawahwEI
+         y1+Eg2bUCBNsM2idfI5XtUqmHvNJFgM3c4qZA=
 X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
         d=1e100.net; s=20161025;
         h=x-gm-message-state:from:to:cc:subject:date:message-id:in-reply-to
          :references:mime-version:content-transfer-encoding;
-        bh=j2durK184bkZhr5uNqjCIpCLzFSfTXNNXV6rELvHa38=;
-        b=ZRk5kjOPcmAXtdibHgasybso88/lwt2WY4HzFcHO3Uflr9PspC1QXeF55YTeo6c1yn
-         X0YEvd9sIahDwU7cZhRGhqwAik5tRkBowvzUbvZ5oirLLQTYwYbeKWmXYApscSxEXGy8
-         2OqjQoPsL1j3iQcrTKAqEMKhA8X2Zr+5412exOk4J4/MrbZaZlVX9Ur9sQOoG1/HthU/
-         JR8W7jmmKUb4vtYK2RwJ/NzUDYfKyHx5XwMmgYMwOpdKdtUYzi08zkWDSfgNPExYmRS0
-         sz/tSVm3FzIu7ChPlhVcUC3YH9OtLmdMxA+kWml6Xu5AUypwmkXHQLCGpn1iwGw8b6HK
-         W6kQ==
-X-Gm-Message-State: AOAM530WYW0UcVUbg8O4JfD/HTw+TcvrGKHJw9Mr7fPUCE9MF/AirICZ
-        k+vPrTi44ZtzXxiUWjQDCilU5g==
-X-Google-Smtp-Source: ABdhPJwkLQdjAg/a8gdsInNhR893pp8mKtdtxXqsEIrTz/fZNeBtAlaDLQgyb21XG7dJ/qPvt8wzZw==
-X-Received: by 2002:aa7:989a:0:b029:142:2501:34da with SMTP id r26-20020aa7989a0000b0290142250134damr2838533pfl.51.1601016877699;
-        Thu, 24 Sep 2020 23:54:37 -0700 (PDT)
+        bh=Q1sjz1AOP3RHN+D2U3Yr0dC8Mgj3MJeltuBOhjJoHBE=;
+        b=ozE/uhxD8//nXT9VR0pvzwFC8roXjv1cU680pdsol75n1AYYmSb/AFi206lInqgjhq
+         t4Vrqsvdtxy4heVzuBAYu7CDVbStCkpupgkt2ohjbGMuR0Or1uOReUY5LiNsYVwqnjEq
+         5J23zG1llpzm9oHUYU74E39ByJzFbH39P3cpsd/KkWsXe+sUnCcfzGsbtL94aW1a3l0E
+         G9VkTawM1C7Z5XyVo24kDzdMy2DFdFC3WBMBZh+2hcbR4qk82VTz5xoeKFucvlBuNDmv
+         ujHUVvakpQzFb7inioOrCWXPGzNnaLf8wI38zsrBYzgotGGaG4d7hUsT19llF3QJv5fC
+         Q4OA==
+X-Gm-Message-State: AOAM532UtBms0ObDMV+wU7kAM6cILQ7L3x71JZwMNGsC58KArp8Lho4h
+        wmdzb11X0juH9lOHcFPXD+kiBw==
+X-Google-Smtp-Source: ABdhPJwyB6XORjYiFS8uQ2wfeOioKyeLL0KFpbwVKrof6R1wEMQaX91jqXNpsA2X3ljJjbI6sOtfhg==
+X-Received: by 2002:a62:fc06:0:b029:142:2501:397d with SMTP id e6-20020a62fc060000b02901422501397dmr2805467pfh.66.1601016880071;
+        Thu, 24 Sep 2020 23:54:40 -0700 (PDT)
 Received: from ikjn-p920.tpe.corp.google.com ([2401:fa00:1:10:f693:9fff:fef4:a8fc])
-        by smtp.gmail.com with ESMTPSA id x27sm1549612pfp.128.2020.09.24.23.54.35
+        by smtp.gmail.com with ESMTPSA id x27sm1549612pfp.128.2020.09.24.23.54.38
         (version=TLS1_3 cipher=TLS_AES_256_GCM_SHA384 bits=256/256);
-        Thu, 24 Sep 2020 23:54:37 -0700 (PDT)
+        Thu, 24 Sep 2020 23:54:39 -0700 (PDT)
 From:   Ikjoon Jang <ikjn@chromium.org>
 To:     Rob Herring <robh+dt@kernel.org>, Mark Brown <broonie@kernel.org>,
         devicetree@vger.kernel.org, linux-spi@vger.kernel.org,
@@ -52,9 +52,9 @@ Cc:     Ikjoon Jang <ikjn@chromium.org>,
         Matthias Brugger <matthias.bgg@gmail.com>,
         linux-arm-kernel@lists.infradead.org, linux-kernel@vger.kernel.org,
         linux-mediatek@lists.infradead.org
-Subject: [PATCH v3 4/6] spi: spi-mtk-nor: use dma_alloc_coherent() for bounce buffer
-Date:   Fri, 25 Sep 2020 14:54:15 +0800
-Message-Id: <20200925145255.v3.4.I06cb65401ab5ad63ea30c4788d26633928d80f38@changeid>
+Subject: [PATCH v3 5/6] spi: spi-mtk-nor: support 36bit dma addressing
+Date:   Fri, 25 Sep 2020 14:54:16 +0800
+Message-Id: <20200925145255.v3.5.Id1cb208392928afc7ceed4de06924243c7858cd0@changeid>
 X-Mailer: git-send-email 2.28.0.681.g6f77f65b4e-goog
 In-Reply-To: <20200925065418.1077472-1-ikjn@chromium.org>
 References: <20200925065418.1077472-1-ikjn@chromium.org>
@@ -64,209 +64,81 @@ Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-Use dma_alloc_coherent() for bounce buffer instead of kmalloc() to
-make sure the bounce buffer to be allocated within its DMAable range.
+This patch enables 36bit dma address support to spi-mtk-nor.
+Currently this is enabled only for mt8192-nor.
 
 Signed-off-by: Ikjoon Jang <ikjn@chromium.org>
-
 ---
 
 (no changes since v1)
 
- drivers/spi/spi-mtk-nor.c | 93 +++++++++++++++++++++------------------
- 1 file changed, 51 insertions(+), 42 deletions(-)
+ drivers/spi/spi-mtk-nor.c | 18 +++++++++++++++++-
+ 1 file changed, 17 insertions(+), 1 deletion(-)
 
 diff --git a/drivers/spi/spi-mtk-nor.c b/drivers/spi/spi-mtk-nor.c
-index e7719d249095..8dbafee7f431 100644
+index 8dbafee7f431..35205635ed42 100644
 --- a/drivers/spi/spi-mtk-nor.c
 +++ b/drivers/spi/spi-mtk-nor.c
-@@ -100,6 +100,7 @@ struct mtk_nor {
- 	struct device *dev;
- 	void __iomem *base;
- 	u8 *buffer;
-+	dma_addr_t buffer_dma;
- 	struct clk *spi_clk;
- 	struct clk *ctlr_clk;
+@@ -78,6 +78,8 @@
+ #define MTK_NOR_REG_DMA_FADR		0x71c
+ #define MTK_NOR_REG_DMA_DADR		0x720
+ #define MTK_NOR_REG_DMA_END_DADR	0x724
++#define MTK_NOR_REG_DMA_DADR_HB		0x738
++#define MTK_NOR_REG_DMA_END_DADR_HB	0x73c
+ 
+ /* maximum bytes of TX in PRG mode */
+ #define MTK_NOR_PRG_MAX_SIZE		6
+@@ -106,6 +108,7 @@ struct mtk_nor {
  	unsigned int spi_freq;
-@@ -148,6 +149,11 @@ static void mtk_nor_set_addr(struct mtk_nor *sp, const struct spi_mem_op *op)
- 	}
- }
+ 	bool wbuf_en;
+ 	bool has_irq;
++	bool high_dma;
+ 	struct completion op_done;
+ };
  
-+static bool need_bounce(struct mtk_nor *sp, const struct spi_mem_op *op)
-+{
-+	return ((uintptr_t)op->data.buf.in & MTK_NOR_DMA_ALIGN_MASK);
-+}
-+
- static bool mtk_nor_match_read(const struct spi_mem_op *op)
- {
- 	int dummy = 0;
-@@ -191,6 +197,7 @@ static bool mtk_nor_check_prg(const struct spi_mem_op *op)
- 
- static int mtk_nor_adjust_op_size(struct spi_mem *mem, struct spi_mem_op *op)
- {
-+	struct mtk_nor *sp = spi_controller_get_devdata(mem->spi->master);
- 	size_t len;
- 
- 	if (!op->data.nbytes)
-@@ -202,8 +209,7 @@ static int mtk_nor_adjust_op_size(struct spi_mem *mem, struct spi_mem_op *op)
- 			if ((op->addr.val & MTK_NOR_DMA_ALIGN_MASK) ||
- 			    (op->data.nbytes < MTK_NOR_DMA_ALIGN))
- 				op->data.nbytes = 1;
--			else if (!((ulong)(op->data.buf.in) &
--				   MTK_NOR_DMA_ALIGN_MASK))
-+			else if (!need_bounce(sp, op))
- 				op->data.nbytes &= ~MTK_NOR_DMA_ALIGN_MASK;
- 			else if (op->data.nbytes > MTK_NOR_BOUNCE_BUF_SIZE)
- 				op->data.nbytes = MTK_NOR_BOUNCE_BUF_SIZE;
-@@ -288,19 +294,12 @@ static void mtk_nor_setup_bus(struct mtk_nor *sp, const struct spi_mem_op *op)
- 	mtk_nor_rmw(sp, MTK_NOR_REG_BUSCFG, reg, MTK_NOR_BUS_MODE_MASK);
- }
- 
--static int mtk_nor_read_dma(struct mtk_nor *sp, u32 from, unsigned int length,
--			    u8 *buffer)
-+static int mtk_nor_dma_exec(struct mtk_nor *sp, u32 from, unsigned int length,
-+			    dma_addr_t dma_addr)
- {
- 	int ret = 0;
- 	ulong delay;
- 	u32 reg;
--	dma_addr_t dma_addr;
--
--	dma_addr = dma_map_single(sp->dev, buffer, length, DMA_FROM_DEVICE);
--	if (dma_mapping_error(sp->dev, dma_addr)) {
--		dev_err(sp->dev, "failed to map dma buffer.\n");
--		return -EINVAL;
--	}
- 
- 	writel(from, sp->base + MTK_NOR_REG_DMA_FADR);
+@@ -305,6 +308,11 @@ static int mtk_nor_dma_exec(struct mtk_nor *sp, u32 from, unsigned int length,
  	writel(dma_addr, sp->base + MTK_NOR_REG_DMA_DADR);
-@@ -325,30 +324,49 @@ static int mtk_nor_read_dma(struct mtk_nor *sp, u32 from, unsigned int length,
- 					 (delay + 1) * 100);
- 	}
+ 	writel(dma_addr + length, sp->base + MTK_NOR_REG_DMA_END_DADR);
  
--	dma_unmap_single(sp->dev, dma_addr, length, DMA_FROM_DEVICE);
- 	if (ret < 0)
- 		dev_err(sp->dev, "dma read timeout.\n");
++	if (sp->high_dma) {
++		writel(dma_addr >> 32, sp->base + MTK_NOR_REG_DMA_DADR_HB);
++		writel((dma_addr + length) >> 32, sp->base + MTK_NOR_REG_DMA_END_DADR_HB);
++	}
++
+ 	if (sp->has_irq) {
+ 		reinit_completion(&sp->op_done);
+ 		mtk_nor_rmw(sp, MTK_NOR_REG_IRQ_EN, MTK_NOR_IRQ_DMA, 0);
+@@ -635,7 +643,8 @@ static const struct spi_controller_mem_ops mtk_nor_mem_ops = {
+ };
  
- 	return ret;
- }
- 
--static int mtk_nor_read_bounce(struct mtk_nor *sp, u32 from,
--			       unsigned int length, u8 *buffer)
-+static int mtk_nor_read_bounce(struct mtk_nor *sp, const struct spi_mem_op *op)
- {
- 	unsigned int rdlen;
- 	int ret;
- 
--	if (length & MTK_NOR_DMA_ALIGN_MASK)
--		rdlen = (length + MTK_NOR_DMA_ALIGN) & ~MTK_NOR_DMA_ALIGN_MASK;
-+	if (op->data.nbytes & MTK_NOR_DMA_ALIGN_MASK)
-+		rdlen = (op->data.nbytes + MTK_NOR_DMA_ALIGN) & ~MTK_NOR_DMA_ALIGN_MASK;
- 	else
--		rdlen = length;
-+		rdlen = op->data.nbytes;
- 
--	ret = mtk_nor_read_dma(sp, from, rdlen, sp->buffer);
--	if (ret)
--		return ret;
-+	ret = mtk_nor_dma_exec(sp, op->addr.val, rdlen, sp->buffer_dma);
- 
--	memcpy(buffer, sp->buffer, length);
--	return 0;
-+	if (!ret)
-+		memcpy(op->data.buf.in, sp->buffer, op->data.nbytes);
-+
-+	return ret;
-+}
-+
-+static int mtk_nor_read_dma(struct mtk_nor *sp, const struct spi_mem_op *op)
-+{
-+	int ret;
-+	dma_addr_t dma_addr;
-+
-+	if (need_bounce(sp, op))
-+		return mtk_nor_read_bounce(sp, op);
-+
-+	dma_addr = dma_map_single(sp->dev, op->data.buf.in,
-+				  op->data.nbytes, DMA_FROM_DEVICE);
-+
-+	if (dma_mapping_error(sp->dev, dma_addr))
-+		return -EINVAL;
-+
-+	ret = mtk_nor_dma_exec(sp, op->addr.val, op->data.nbytes, dma_addr);
-+
-+	dma_unmap_single(sp->dev, dma_addr, op->data.nbytes, DMA_FROM_DEVICE);
-+
-+	return ret;
- }
- 
- static int mtk_nor_read_pio(struct mtk_nor *sp, const struct spi_mem_op *op)
-@@ -452,15 +470,8 @@ static int mtk_nor_exec_op(struct spi_mem *mem, const struct spi_mem_op *op)
- 		if (op->data.nbytes == 1) {
- 			mtk_nor_set_addr(sp, op);
- 			return mtk_nor_read_pio(sp, op);
--		} else if (((ulong)(op->data.buf.in) &
--			    MTK_NOR_DMA_ALIGN_MASK)) {
--			return mtk_nor_read_bounce(sp, op->addr.val,
--						   op->data.nbytes,
--						   op->data.buf.in);
- 		} else {
--			return mtk_nor_read_dma(sp, op->addr.val,
--						op->data.nbytes,
--						op->data.buf.in);
-+			return mtk_nor_read_dma(sp, op);
- 		}
- 	}
- 
-@@ -634,7 +645,6 @@ static int mtk_nor_probe(struct platform_device *pdev)
- 	struct spi_controller *ctlr;
- 	struct mtk_nor *sp;
+ static const struct of_device_id mtk_nor_match[] = {
+-	{ .compatible = "mediatek,mt8173-nor" },
++	{ .compatible = "mediatek,mt8192-nor", .data = (void *)36 },
++	{ .compatible = "mediatek,mt8173-nor", .data = (void *)32 },
+ 	{ /* sentinel */ }
+ };
+ MODULE_DEVICE_TABLE(of, mtk_nor_match);
+@@ -647,6 +656,7 @@ static int mtk_nor_probe(struct platform_device *pdev)
  	void __iomem *base;
--	u8 *buffer;
  	struct clk *spi_clk, *ctlr_clk;
  	int ret, irq;
++	unsigned long dma_bits;
  
-@@ -650,16 +660,6 @@ static int mtk_nor_probe(struct platform_device *pdev)
+ 	base = devm_platform_ioremap_resource(pdev, 0);
+ 	if (IS_ERR(base))
+@@ -660,6 +670,12 @@ static int mtk_nor_probe(struct platform_device *pdev)
  	if (IS_ERR(ctlr_clk))
  		return PTR_ERR(ctlr_clk);
  
--	buffer = devm_kmalloc(&pdev->dev,
--			      MTK_NOR_BOUNCE_BUF_SIZE + MTK_NOR_DMA_ALIGN,
--			      GFP_KERNEL);
--	if (!buffer)
--		return -ENOMEM;
--
--	if ((ulong)buffer & MTK_NOR_DMA_ALIGN_MASK)
--		buffer = (u8 *)(((ulong)buffer + MTK_NOR_DMA_ALIGN) &
--				~MTK_NOR_DMA_ALIGN_MASK);
--
++	dma_bits = (unsigned long)of_device_get_match_data(&pdev->dev);
++	if (dma_set_mask_and_coherent(&pdev->dev, DMA_BIT_MASK(dma_bits))) {
++		dev_err(&pdev->dev, "failed to set dma mask(%lu)\n", dma_bits);
++		return -EINVAL;
++	}
++
  	ctlr = spi_alloc_master(&pdev->dev, sizeof(*sp));
  	if (!ctlr) {
  		dev_err(&pdev->dev, "failed to allocate spi controller\n");
-@@ -679,13 +679,22 @@ static int mtk_nor_probe(struct platform_device *pdev)
- 
- 	sp = spi_controller_get_devdata(ctlr);
- 	sp->base = base;
--	sp->buffer = buffer;
- 	sp->has_irq = false;
- 	sp->wbuf_en = false;
- 	sp->ctlr = ctlr;
- 	sp->dev = &pdev->dev;
- 	sp->spi_clk = spi_clk;
- 	sp->ctlr_clk = ctlr_clk;
-+	sp->buffer = dmam_alloc_coherent(&pdev->dev,
-+				MTK_NOR_BOUNCE_BUF_SIZE + MTK_NOR_DMA_ALIGN,
-+				&sp->buffer_dma, GFP_KERNEL);
-+	if (!sp->buffer)
-+		return -ENOMEM;
-+
-+	if ((uintptr_t)sp->buffer & MTK_NOR_DMA_ALIGN_MASK) {
-+		dev_err(sp->dev, "misaligned allocation of internal buffer.\n");
-+		return -ENOMEM;
-+	}
- 
- 	irq = platform_get_irq_optional(pdev, 0);
- 	if (irq < 0) {
 -- 
 2.28.0.681.g6f77f65b4e-goog
 
