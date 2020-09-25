@@ -2,101 +2,104 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from vger.kernel.org (vger.kernel.org [23.128.96.18])
-	by mail.lfdr.de (Postfix) with ESMTP id 47DBF278360
-	for <lists+devicetree@lfdr.de>; Fri, 25 Sep 2020 10:58:05 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTP id EDC442783D4
+	for <lists+devicetree@lfdr.de>; Fri, 25 Sep 2020 11:20:13 +0200 (CEST)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S1727183AbgIYI6E (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Fri, 25 Sep 2020 04:58:04 -0400
-Received: from lindbergh.monkeyblade.net ([23.128.96.19]:59044 "EHLO
-        lindbergh.monkeyblade.net" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S1726990AbgIYI6E (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Fri, 25 Sep 2020 04:58:04 -0400
-Received: from mail-ej1-x642.google.com (mail-ej1-x642.google.com [IPv6:2a00:1450:4864:20::642])
-        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 29BFBC0613CE
-        for <devicetree@vger.kernel.org>; Fri, 25 Sep 2020 01:58:04 -0700 (PDT)
-Received: by mail-ej1-x642.google.com with SMTP id e23so2621668eja.3
-        for <devicetree@vger.kernel.org>; Fri, 25 Sep 2020 01:58:04 -0700 (PDT)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=baylibre-com.20150623.gappssmtp.com; s=20150623;
-        h=references:user-agent:from:to:cc:subject:in-reply-to:date
-         :message-id:mime-version;
-        bh=eJsaR2S9c0RCFooPTqi2lQWjWsZMnHQ41gMbagMVzj0=;
-        b=v8Y6GM9jKWXqAqyb8w0DpE3RFacTvtkMdVeac5CRaQtMbsw+wR0etpMczPxG5gBtu9
-         RHXxUsXmlRG4uxuJCXthVTPqu1f1YqrWBogZOHjkPTDeWKKSObQAx7RT/D5zRz4+nOIj
-         fRN9ixM4MpZml9LA9kZ0ERsJuRULY++2lfEI9Z7Ung1lZgZ6dUh6cKfScxWMNeKeF083
-         4kl3t2JbvH0mWzmCL6unvpJ1ptbA4NPXc3OnU6dGDD9ATUoQ8KmEyQ0yWcIHvIoWpKhv
-         r+f1IXAgcgGGFH7dM4b9/4l5Y6cS3VDIoZ3jumAF+qjjbmRDz2LntqkChCKW7+vrvnRU
-         y9Yw==
-X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=1e100.net; s=20161025;
-        h=x-gm-message-state:references:user-agent:from:to:cc:subject
-         :in-reply-to:date:message-id:mime-version;
-        bh=eJsaR2S9c0RCFooPTqi2lQWjWsZMnHQ41gMbagMVzj0=;
-        b=JNfhCiOzwYUrh1KAlWZRcsnDqvuiLzPVUVMZ4qlXtBeOT4Cwgpab7qUA3KH629NETl
-         VNvVAv145c90yALVGbyqh8j3GmDwpwhMMGHlOdgh8dWReimHnViS7nvW6s5+CuFeo/Rb
-         0xghDQ8fA7YdM8oX2l7x71NHlqB4fzGBNYgCsd0e3lyPeWSz7Pz43ZIbwXEVNMZnsxBX
-         Ee/XG+8NDyOt7wFdxD1d5okrYp/4T9xY5z7W8toUKfvHRnMMwqL+nuNvccwDn2F2M4Mr
-         7lLlaOlQVjT6ZeQW2IolPH8eBXcrBQ22mhVxkN1HDcwJhf2E26AqdKrf/ghOIihPxuv6
-         Jhxw==
-X-Gm-Message-State: AOAM533uE9aQupsqfvyvGJBqaVCY9VMPUD0H8+4IsjpSD7v88NE13T/H
-        0dAKJckekEHE8VmrLlzKHN447w==
-X-Google-Smtp-Source: ABdhPJz0C9RFuiseiwDk9qPjhkaxw7fXHw7IIbLa0ThW1vPCU2JlQrYGn/aJNpj2EFBaYnhOocYgvg==
-X-Received: by 2002:a17:906:3ca2:: with SMTP id b2mr1736707ejh.460.1601024282799;
-        Fri, 25 Sep 2020 01:58:02 -0700 (PDT)
-Received: from localhost (cag06-3-82-243-161-21.fbx.proxad.net. [82.243.161.21])
-        by smtp.gmail.com with ESMTPSA id cf7sm1330341edb.78.2020.09.25.01.58.01
-        (version=TLS1_3 cipher=TLS_AES_256_GCM_SHA384 bits=256/256);
-        Fri, 25 Sep 2020 01:58:01 -0700 (PDT)
-References: <20200925033017.1790973-1-art@khadas.com> <20200925033017.1790973-9-art@khadas.com>
-User-agent: mu4e 1.3.3; emacs 26.3
-From:   Jerome Brunet <jbrunet@baylibre.com>
-To:     Artem Lapkin <email2tema@gmail.com>, narmstrong@baylibre.com
-Cc:     khilman@baylibre.com, robh+dt@kernel.org,
-        martin.blumenstingl@googlemail.com, devicetree@vger.kernel.org,
-        linux-arm-kernel@lists.infradead.org,
-        linux-amlogic@lists.infradead.org, linux-kernel@vger.kernel.org,
-        art@khadas.com, nick@khadas.com, gouwa@khadas.com
-Subject: Re: [PATCH 8/8] arm64: dts: meson: enable RTC for VIM2 meson-gxm-khadas-vim2
-In-reply-to: <20200925033017.1790973-9-art@khadas.com>
-Date:   Fri, 25 Sep 2020 10:58:00 +0200
-Message-ID: <1j1riq9qsn.fsf@starbuckisacylon.baylibre.com>
+        id S1727495AbgIYJUM (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Fri, 25 Sep 2020 05:20:12 -0400
+Received: from mx.socionext.com ([202.248.49.38]:2721 "EHLO mx.socionext.com"
+        rhost-flags-OK-OK-OK-OK) by vger.kernel.org with ESMTP
+        id S1727044AbgIYJUM (ORCPT <rfc822;devicetree@vger.kernel.org>);
+        Fri, 25 Sep 2020 05:20:12 -0400
+X-Greylist: delayed 588 seconds by postgrey-1.27 at vger.kernel.org; Fri, 25 Sep 2020 05:20:11 EDT
+Received: from unknown (HELO iyokan-ex.css.socionext.com) ([172.31.9.54])
+  by mx.socionext.com with ESMTP; 25 Sep 2020 18:10:23 +0900
+Received: from mail.mfilter.local (m-filter-1 [10.213.24.61])
+        by iyokan-ex.css.socionext.com (Postfix) with ESMTP id 3E3E860060;
+        Fri, 25 Sep 2020 18:10:23 +0900 (JST)
+Received: from 172.31.9.51 (172.31.9.51) by m-FILTER with ESMTP; Fri, 25 Sep 2020 18:10:23 +0900
+Received: from yuzu.css.socionext.com (yuzu [172.31.8.45])
+        by kinkan.css.socionext.com (Postfix) with ESMTP id B546F1A0508;
+        Fri, 25 Sep 2020 18:10:22 +0900 (JST)
+Received: from [10.212.5.245] (unknown [10.212.5.245])
+        by yuzu.css.socionext.com (Postfix) with ESMTP id 25612120447;
+        Fri, 25 Sep 2020 18:10:22 +0900 (JST)
+Subject: Re: [PATCH 2/3] PCI: dwc: Add common iATU register support
+To:     Rob Herring <robh@kernel.org>
+Cc:     Bjorn Helgaas <bhelgaas@google.com>,
+        Lorenzo Pieralisi <lorenzo.pieralisi@arm.com>,
+        Jingoo Han <jingoohan1@gmail.com>,
+        Gustavo Pimentel <gustavo.pimentel@synopsys.com>,
+        Murali Karicheri <m-karicheri2@ti.com>,
+        linux-pci@vger.kernel.org, linux-kernel@vger.kernel.org,
+        linux-arm-kernel@lists.infradead.org, devicetree@vger.kernel.org
+References: <1599814203-14441-1-git-send-email-hayashi.kunihiko@socionext.com>
+ <1599814203-14441-3-git-send-email-hayashi.kunihiko@socionext.com>
+ <20200923155700.GA820801@bogus>
+From:   Kunihiko Hayashi <hayashi.kunihiko@socionext.com>
+Message-ID: <aef56eed-3966-cb1b-75f3-4b5dffc710c8@socionext.com>
+Date:   Fri, 25 Sep 2020 18:10:21 +0900
+User-Agent: Mozilla/5.0 (Windows NT 10.0; WOW64; rv:68.0) Gecko/20100101
+ Thunderbird/68.12.0
 MIME-Version: 1.0
-Content-Type: text/plain
+In-Reply-To: <20200923155700.GA820801@bogus>
+Content-Type: text/plain; charset=utf-8; format=flowed
+Content-Language: en-US
+Content-Transfer-Encoding: 7bit
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
+Hi Rob,
 
-On Fri 25 Sep 2020 at 05:30, Artem Lapkin <email2tema@gmail.com> wrote:
+On 2020/09/24 0:57, Rob Herring wrote:
+> On Fri, Sep 11, 2020 at 05:50:02PM +0900, Kunihiko Hayashi wrote:
+>> This gets iATU register area from reg property that has reg-names "atu".
+>> In Synopsys DWC version 4.80 or later, since iATU register area is
+>> separated from core register area, this area is necessary to get from
+>> DT independently.
+>>
+>> Cc: Murali Karicheri <m-karicheri2@ti.com>
+>> Cc: Jingoo Han <jingoohan1@gmail.com>
+>> Cc: Gustavo Pimentel <gustavo.pimentel@synopsys.com>
+>> Suggested-by: Rob Herring <robh@kernel.org>
+>> Signed-off-by: Kunihiko Hayashi <hayashi.kunihiko@socionext.com>
+>> ---
+>>   drivers/pci/controller/dwc/pcie-designware.c | 8 +++++++-
+>>   1 file changed, 7 insertions(+), 1 deletion(-)
+>>
+>> diff --git a/drivers/pci/controller/dwc/pcie-designware.c b/drivers/pci/controller/dwc/pcie-designware.c
+>> index 4d105ef..4a360bc 100644
+>> --- a/drivers/pci/controller/dwc/pcie-designware.c
+>> +++ b/drivers/pci/controller/dwc/pcie-designware.c
+>> @@ -10,6 +10,7 @@
+>>   
+>>   #include <linux/delay.h>
+>>   #include <linux/of.h>
+>> +#include <linux/of_platform.h>
+>>   #include <linux/types.h>
+>>   
+>>   #include "../../pci.h"
+>> @@ -526,11 +527,16 @@ void dw_pcie_setup(struct dw_pcie *pci)
+>>   	u32 val;
+>>   	struct device *dev = pci->dev;
+>>   	struct device_node *np = dev->of_node;
+>> +	struct platform_device *pdev;
+>>   
+>>   	if (pci->version >= 0x480A || (!pci->version &&
+>>   				       dw_pcie_iatu_unroll_enabled(pci))) {
+>>   		pci->iatu_unroll_enabled = true;
+>> -		if (!pci->atu_base)
+>> +		pdev = of_find_device_by_node(np);
+> 
+> Use to_platform_device(dev) instead. Put that at the beginning as I'm
+> going to move 'dbi' in here too.
 
-> enable RTC for VIM2 meson-gxm-khadas-vim2
->
-> Signed-off-by: Artem Lapkin <art@khadas.com>
-> ---
->  arch/arm64/boot/dts/amlogic/meson-gxm-khadas-vim2.dts | 2 +-
->  1 file changed, 1 insertion(+), 1 deletion(-)
->
-> diff --git a/arch/arm64/boot/dts/amlogic/meson-gxm-khadas-vim2.dts b/arch/arm64/boot/dts/amlogic/meson-gxm-khadas-vim2.dts
-> index 70343da2811..76b7e34a9a3 100644
-> --- a/arch/arm64/boot/dts/amlogic/meson-gxm-khadas-vim2.dts
-> +++ b/arch/arm64/boot/dts/amlogic/meson-gxm-khadas-vim2.dts
-> @@ -229,7 +229,7 @@ &i2c_B {
->  
->  	rtc: rtc@51 {
->  		/* has to be enabled manually when a battery is connected: */
+Okay, I'll rewrite it with to_platform_device(dev).
+Should I refer somewhere to rebase to your change?
 
-If going for this change, this comment should have been removed
+Thank you,
 
-> -		status = "disabled";
-> +		status = "okay";
-
-Unless the VIMs are provided with a battery by default, I believe this
-should be kept disabled and only enabled by the bootloader if necessary.
-
-If you think differently, feel free to resubmit with a complete commit
-description and some details as to how this would be an improvement.
-
->  		compatible = "haoyu,hym8563";
->  		reg = <0x51>;
->  		#clock-cells = <0>;
-
+---
+Best Regards
+Kunihiko Hayashi
