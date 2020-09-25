@@ -2,55 +2,55 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from vger.kernel.org (vger.kernel.org [23.128.96.18])
-	by mail.lfdr.de (Postfix) with ESMTP id AE9792781D5
-	for <lists+devicetree@lfdr.de>; Fri, 25 Sep 2020 09:41:58 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTP id 2E8D72781E3
+	for <lists+devicetree@lfdr.de>; Fri, 25 Sep 2020 09:44:39 +0200 (CEST)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S1727427AbgIYHl5 (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Fri, 25 Sep 2020 03:41:57 -0400
-Received: from lindbergh.monkeyblade.net ([23.128.96.19]:47272 "EHLO
+        id S1727249AbgIYHoh (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Fri, 25 Sep 2020 03:44:37 -0400
+Received: from lindbergh.monkeyblade.net ([23.128.96.19]:47686 "EHLO
         lindbergh.monkeyblade.net" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S1726990AbgIYHl5 (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Fri, 25 Sep 2020 03:41:57 -0400
-Received: from mail-wr1-x444.google.com (mail-wr1-x444.google.com [IPv6:2a00:1450:4864:20::444])
-        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id B9F9DC0613CE
-        for <devicetree@vger.kernel.org>; Fri, 25 Sep 2020 00:41:56 -0700 (PDT)
-Received: by mail-wr1-x444.google.com with SMTP id m6so2494718wrn.0
-        for <devicetree@vger.kernel.org>; Fri, 25 Sep 2020 00:41:56 -0700 (PDT)
+        with ESMTP id S1727183AbgIYHog (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Fri, 25 Sep 2020 03:44:36 -0400
+Received: from mail-wr1-x443.google.com (mail-wr1-x443.google.com [IPv6:2a00:1450:4864:20::443])
+        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 39B63C0613D3
+        for <devicetree@vger.kernel.org>; Fri, 25 Sep 2020 00:44:36 -0700 (PDT)
+Received: by mail-wr1-x443.google.com with SMTP id z1so2476792wrt.3
+        for <devicetree@vger.kernel.org>; Fri, 25 Sep 2020 00:44:36 -0700 (PDT)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
         d=baylibre-com.20150623.gappssmtp.com; s=20150623;
         h=subject:to:cc:references:from:autocrypt:organization:message-id
          :date:user-agent:mime-version:in-reply-to:content-language
          :content-transfer-encoding;
-        bh=rimPntz8oB3SjlOMpnpdpF3yGIO70tR8q+q8TkfvmQo=;
-        b=qaMCCLymdoRHYeAUTDPbA5BIT2eD0M3/ShvE24ftjMpqyLXrBawGU/F8fv+HaqLtFI
-         F8EKbObzFQZCOmxLsT3lM4NRywiKZbVDeXaE3Yku9J+s2+aH1sOBScbplq7g5AvTSOq0
-         MGMRfzw+naSbZJ3ro2dHmJ5sZiXyeJFxCwk5Ov/Vaq0pL05piBzaVHQ36OqW8xeFDiVl
-         2nCcQeEBYQDCywkbZZ4rEx4S1fSuyT5nE4iAmmNc0LCdRujG8b1iDv+PktzjeHp0+qk5
-         NDje/0hftg4pWhcTBR1zAhixrWW2Fi1n1ioz7zckv1ddt/osuWLuOL9PQZ/Zr6I04HLs
-         7Mxw==
+        bh=im96TIL9C+k95zzwEvhBlq40VuO2T9igkzJ1/Rl1pDc=;
+        b=vNiQc0HFgCjV+BaoS3nk4rHdq2gSipLNzro2j3L8yzJ4G6O+EspYep0wQh5oUqTzFk
+         vQuqzmZyBKG0a4hA6IRwd0gRLX20k4mcWPe61vnbeAPvo/9gnXw2HhmV6uwarMaPSCqt
+         gC+N2d57vMHdehcuSh8yGEfuDPKvVTPxLKN+atXVs9DUiyEUtlicJV7BmsbSpXGJ0gH0
+         dE0rX481dFEpFg7rPXbRNq23h1Qhsl1nKVkHqZwtC/dqgDemVpQEd9VKpitgr1TZotfw
+         hljNLgMEjv4alSJC22Ae2nCEJ4DrBnaQ1FdwdEIDeL4VhvyGwsHghT3IIOqdooKL0jJL
+         NTCA==
 X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
         d=1e100.net; s=20161025;
         h=x-gm-message-state:subject:to:cc:references:from:autocrypt
          :organization:message-id:date:user-agent:mime-version:in-reply-to
          :content-language:content-transfer-encoding;
-        bh=rimPntz8oB3SjlOMpnpdpF3yGIO70tR8q+q8TkfvmQo=;
-        b=CnmGDbk0DbwIGbEd6bIsxM7qm7A3qUkCnrlrO8gYn69e/irpI+aMfA9ABY/pxm7+yH
-         fLAvvRK6uivMcM5x6v6KiXtICjY4k+Ku0VKr5QbP01fk+jKme3FFIDxUms+a0mrtYyoU
-         3bKoDeaY/gFhf78yHHl2HVJ0/xrf5LfAGFbYT9jNn7e6thT9amc+/li4Q2hH0BJiNHg0
-         szO4D5oXO7j7OKHOPAP0ROSvLbu5wjxFAWda7nAdRfx+ZeX3pSj6hfAwqU+bFEnRUe+W
-         CXl+gkQ8Ejb5gV1WOeQvjudgIoseqRhSSlWAkG8IH3pqN3ZYqwr4I9V8fyNKyvzSGxe3
-         BTsA==
-X-Gm-Message-State: AOAM530Pn+HpDdixBUqxKGaZrZItij/O2VJ8FsKcdRhC+/Mgt12aMNZz
-        wTACCPqck64Q1JuSpFqraKW2vw==
-X-Google-Smtp-Source: ABdhPJzmIoGZd4yVbeS6/8R4H4CU5hvvSV2xRjiSsUmiXIJgLVOxaIe42bgqy6iy1UiDk68waUMk5w==
-X-Received: by 2002:a5d:4811:: with SMTP id l17mr3101303wrq.252.1601019715298;
-        Fri, 25 Sep 2020 00:41:55 -0700 (PDT)
+        bh=im96TIL9C+k95zzwEvhBlq40VuO2T9igkzJ1/Rl1pDc=;
+        b=jZx2hvE+orxxG5czOA1Zo4A0D5KpPTKRXzF2PQXzPsczt3o+7ASPhaX3UhUcda5ooM
+         X5Kx1yduM8cYGUOUeLnOtAY0UQ0PDmY9D480z5gG+o28BhdQSy+IIR4FS5ru9WO01pMN
+         iQVulzM4UFh8bxGZUvN/j7vvEJIeu9GNbjPugjdyEh11F1x13sUgwTrdW6DJSxvYnkl+
+         oMdgZ7dbTS/DGghaTDT5oQe+l7XUdGFSLNZ9XepGIrIkCqwHCRF0MmD+FvAuC3dagN+c
+         HjG6NL9kEWK+pqwpuBtJu0FzVasbg1Sn3i9gl89YCAk5oXrdOVIT1kZiB+QzkSwwNI7H
+         a+eA==
+X-Gm-Message-State: AOAM532aUgct80cZfPCwd/0MAzwqHpCcUv73+qnk5Q+gfw/T7+n0N201
+        VD3HuAu63EAAzCtW/CDUA0jJqw==
+X-Google-Smtp-Source: ABdhPJy5lPRLpI/FqRBQkmGGyRIGqZmpmxsK+kybvhTZi87l6KV72lpVte2Wv7u06Vf9MaIGQvZ0yw==
+X-Received: by 2002:adf:9405:: with SMTP id 5mr2918720wrq.51.1601019874636;
+        Fri, 25 Sep 2020 00:44:34 -0700 (PDT)
 Received: from ?IPv6:2a01:e35:2ec0:82b0:28ac:1772:9398:891a? ([2a01:e35:2ec0:82b0:28ac:1772:9398:891a])
-        by smtp.gmail.com with ESMTPSA id c4sm2001009wme.27.2020.09.25.00.41.53
+        by smtp.gmail.com with ESMTPSA id p11sm1796785wma.11.2020.09.25.00.44.33
         (version=TLS1_3 cipher=TLS_AES_128_GCM_SHA256 bits=128/128);
-        Fri, 25 Sep 2020 00:41:54 -0700 (PDT)
-Subject: Re: [PATCH 1/8] arm64: dts: meson: update spifc node on Khadas VIM2
- meson-gxm-khadas-vim2
+        Fri, 25 Sep 2020 00:44:33 -0700 (PDT)
+Subject: Re: [PATCH 6/8] arm64: dts: meson: disable vrtc for VIM3L boards
+ meson-khadas-vim3
 To:     Artem Lapkin <email2tema@gmail.com>
 Cc:     khilman@baylibre.com, robh+dt@kernel.org, jbrunet@baylibre.com,
         martin.blumenstingl@googlemail.com, devicetree@vger.kernel.org,
@@ -58,7 +58,7 @@ Cc:     khilman@baylibre.com, robh+dt@kernel.org, jbrunet@baylibre.com,
         linux-amlogic@lists.infradead.org, linux-kernel@vger.kernel.org,
         art@khadas.com, nick@khadas.com, gouwa@khadas.com
 References: <20200925033017.1790973-1-art@khadas.com>
- <20200925033017.1790973-2-art@khadas.com>
+ <20200925033017.1790973-7-art@khadas.com>
 From:   Neil Armstrong <narmstrong@baylibre.com>
 Autocrypt: addr=narmstrong@baylibre.com; prefer-encrypt=mutual; keydata=
  xsBNBE1ZBs8BCAD78xVLsXPwV/2qQx2FaO/7mhWL0Qodw8UcQJnkrWmgTFRobtTWxuRx8WWP
@@ -110,51 +110,53 @@ Autocrypt: addr=narmstrong@baylibre.com; prefer-encrypt=mutual; keydata=
  zR8QplXA5kogS4kLe/7/JmlDMO8Zgm9vKLHSUeesLOrjdZ59EcjldNNBszRZQgEhwaarfz46
  BSwxi7g3Mu7u5kUByanqHyA=
 Organization: Baylibre
-Message-ID: <f2863d99-84eb-8a47-7d97-9c9cd417ec29@baylibre.com>
-Date:   Fri, 25 Sep 2020 09:41:53 +0200
+Message-ID: <0b81b4e6-57e7-3191-b7e5-3ec5e69b20ac@baylibre.com>
+Date:   Fri, 25 Sep 2020 09:44:32 +0200
 User-Agent: Mozilla/5.0 (X11; Linux x86_64; rv:68.0) Gecko/20100101
  Thunderbird/68.10.0
 MIME-Version: 1.0
-In-Reply-To: <20200925033017.1790973-2-art@khadas.com>
+In-Reply-To: <20200925033017.1790973-7-art@khadas.com>
 Content-Type: text/plain; charset=utf-8
 Content-Language: en-US
-Content-Transfer-Encoding: 7bit
+Content-Transfer-Encoding: 8bit
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
+Hi,
+
 On 25/09/2020 05:30, Artem Lapkin wrote:
-> 1) The VIM2 Boards use w25q128 spi chip only not w25q32 or w25q16
->    it's not really seriously becouse have 'jedec,spi-nor' which
->    have auto chips identifications
-> 
-> 2) max-frequency is 104Mhz
+> vrtc not used for meson-khadas-vim3
 > 
 > Signed-off-by: Artem Lapkin <art@khadas.com>
 > ---
->  arch/arm64/boot/dts/amlogic/meson-gxm-khadas-vim2.dts | 6 +++---
->  1 file changed, 3 insertions(+), 3 deletions(-)
+>  arch/arm64/boot/dts/amlogic/meson-khadas-vim3.dtsi | 4 ++++
+>  1 file changed, 4 insertions(+)
 > 
-> diff --git a/arch/arm64/boot/dts/amlogic/meson-gxm-khadas-vim2.dts b/arch/arm64/boot/dts/amlogic/meson-gxm-khadas-vim2.dts
-> index bff8ec2c1c7..a6baf865aa2 100644
-> --- a/arch/arm64/boot/dts/amlogic/meson-gxm-khadas-vim2.dts
-> +++ b/arch/arm64/boot/dts/amlogic/meson-gxm-khadas-vim2.dts
-> @@ -336,12 +336,12 @@ &spifc {
->  	pinctrl-0 = <&nor_pins>;
->  	pinctrl-names = "default";
->  
-> -	w25q32: spi-flash@0 {
-> +	w25q128: spi-flash@0 {
->  		#address-cells = <1>;
->  		#size-cells = <1>;
-> -		compatible = "winbond,w25q16", "jedec,spi-nor";
-> +		compatible = "winbond,w25q128fw", "jedec,spi-nor";
->  		reg = <0>;
-> -		spi-max-frequency = <3000000>;
-> +		spi-max-frequency = <104000000>;
->  	};
+> diff --git a/arch/arm64/boot/dts/amlogic/meson-khadas-vim3.dtsi b/arch/arm64/boot/dts/amlogic/meson-khadas-vim3.dtsi
+> index 3111bf35c0f..81bb88a76d5 100644
+> --- a/arch/arm64/boot/dts/amlogic/meson-khadas-vim3.dtsi
+> +++ b/arch/arm64/boot/dts/amlogic/meson-khadas-vim3.dtsi
+> @@ -284,6 +284,10 @@ &pwm_ef {
+>          pinctrl-names = "default";
 >  };
 >  
+> +&vrtc {
+> +	status = "disabled";
+> +};
+> +
+>  &saradc {
+>  	status = "okay";
+>  	vref-supply = <&vddao_1v8>;
 > 
 
-Reviewed-by: Neil Armstrong <narmstrong@baylibre.com>
+The VRTC is one of the default suspend wake-up sources, so why would you disable it ?
+
+If it collides with the real RTC, add aliases to move the vrtc in rtc1 and set the real RTC as rtc0.
+
+ »       aliases·{
++»       »       rtc0·=·&rtc0;
++»       »       rtc1·=·&vrtc;
+ »       };
+
+Neil
