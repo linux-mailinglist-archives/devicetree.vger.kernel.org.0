@@ -2,321 +2,356 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from vger.kernel.org (vger.kernel.org [23.128.96.18])
-	by mail.lfdr.de (Postfix) with ESMTP id 2E9F22783E7
-	for <lists+devicetree@lfdr.de>; Fri, 25 Sep 2020 11:25:02 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTP id AFDC8278401
+	for <lists+devicetree@lfdr.de>; Fri, 25 Sep 2020 11:30:05 +0200 (CEST)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S1727796AbgIYJZA (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Fri, 25 Sep 2020 05:25:00 -0400
-Received: from lindbergh.monkeyblade.net ([23.128.96.19]:35006 "EHLO
+        id S1727939AbgIYJaE (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Fri, 25 Sep 2020 05:30:04 -0400
+Received: from lindbergh.monkeyblade.net ([23.128.96.19]:35790 "EHLO
         lindbergh.monkeyblade.net" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S1727668AbgIYJZA (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Fri, 25 Sep 2020 05:25:00 -0400
-Received: from mail-ua1-x941.google.com (mail-ua1-x941.google.com [IPv6:2607:f8b0:4864:20::941])
-        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 4656BC0613D3
-        for <devicetree@vger.kernel.org>; Fri, 25 Sep 2020 02:25:00 -0700 (PDT)
-Received: by mail-ua1-x941.google.com with SMTP id z1so717285uaa.6
-        for <devicetree@vger.kernel.org>; Fri, 25 Sep 2020 02:25:00 -0700 (PDT)
+        with ESMTP id S1727535AbgIYJaE (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Fri, 25 Sep 2020 05:30:04 -0400
+Received: from mail-pf1-x443.google.com (mail-pf1-x443.google.com [IPv6:2607:f8b0:4864:20::443])
+        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 07611C0613CE;
+        Fri, 25 Sep 2020 02:30:04 -0700 (PDT)
+Received: by mail-pf1-x443.google.com with SMTP id k8so2619173pfk.2;
+        Fri, 25 Sep 2020 02:30:04 -0700 (PDT)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=chromium.org; s=google;
+        d=gmail.com; s=20161025;
         h=mime-version:references:in-reply-to:from:date:message-id:subject:to
-         :cc;
-        bh=xwgHnfwJO4p3e2k/8UmICPhqPe1pJTwIO3qj/AAMTOs=;
-        b=NCvFcGrJ4lAMHxPsuRNAM6CQqIi8DN2DhKWzJy934kPHwe8Q25N/LRBK3oE3ruxgdO
-         jMCZ3ABixw8fJ8qWStplc3e7oLYbrPCm7yWKBM1VkbU5poVN6p97MMqg/MyPSLbb72Sj
-         cZ6nhCwkAnlntTsedZEux/9pumM7CSlH2r0Sc=
+         :cc:content-transfer-encoding;
+        bh=njuKnzjM1XbkGHdVLOoKdb5c4Qn0ofNq9S9KwUbkq6w=;
+        b=MXqLK/NjBAfx6dPwfwUBsQkW3e5I1SI1Rg34aYxvpU2In+TP/Tk5T+p4w/NCUXbD9Q
+         fwvBexwllzRw/qjVmJzstwLqpgXatja7mEIU6rx5lnDytAcn0mU3AhlXVBZpYf69lN9F
+         4LbtezU94x33cxITq4VfuWXhihgdGtSPnCRiK/dmQcoVv5ltSN/g1wBd7stCt8q7NLSr
+         4oKjMm3y58m6hjC9yExBq1himVKM4tRIaYiXyOESiY/NGtZOaWJo2lqKV2w8h3rSHhnI
+         fnyzyq7QlBcOfsw3O/0pmYQWQ2MRBpfw/u6Mxxrc6+oDoNVqQq29QWf/J4/nl436Uj2v
+         igaA==
 X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
         d=1e100.net; s=20161025;
         h=x-gm-message-state:mime-version:references:in-reply-to:from:date
-         :message-id:subject:to:cc;
-        bh=xwgHnfwJO4p3e2k/8UmICPhqPe1pJTwIO3qj/AAMTOs=;
-        b=gf5Sy/iMKkVgUysJaSJ2dHb1yooQcRqohIIoQP/pqDiImTZo4agvf9H8LCLsMZTVbu
-         hZaLIKCTBYEN8usgZgbeYhAVWezqr+XAAfLAjFaIC2cVGtD2eY2SHArdkqfwloKPT+hR
-         iNwkRCBPDOTBmTLwYUOYIJmUyReMfe4CpzbP20Qbk35Zvo6/fxpmvdRzFyhWmVWWfFuG
-         6Vf7w99aUfySwNxgPhxUSgxHdrPNWngoX8UWtDHqjjyxG2RlOKTMpiaHqDIbFAgt8g7h
-         r4Njo+tqxIhJrmMfnP/5zGn03i/lGkZQQ3V781f6GSokaiS2m+BVardUAR4vLeSZC5ht
-         5iLw==
-X-Gm-Message-State: AOAM5315Hb0eT39+0YU2ilBfcpVWpszVoFuVBfsIuKw4JLralRJQXCSh
-        +HF8nOdGZZbDOcpflE/5ZChlzusXf6YsgrSj/rQNUg==
-X-Google-Smtp-Source: ABdhPJwEhNuZMKTBbzc2tvQBDUTaHYy/tzrpFK9uL/uoFKikWZI7pmKGmiwxngGtWyRur+oP/X/aWlhGFiVPkyjZpws=
-X-Received: by 2002:ab0:2404:: with SMTP id f4mr1874548uan.108.1601025899341;
- Fri, 25 Sep 2020 02:24:59 -0700 (PDT)
+         :message-id:subject:to:cc:content-transfer-encoding;
+        bh=njuKnzjM1XbkGHdVLOoKdb5c4Qn0ofNq9S9KwUbkq6w=;
+        b=nrLpwmS3nRxol0n8vCyGZA0K/k4LCQ48VzSrqqNAQiGBdHKZPkuGoKoMU1kCUaQRMo
+         3ERRxLpoinDinje8iwvCS5ZHzLPsDebQoaXI/H/2fdvM/ou1H9ahErBfQ8y7JbwXYkBj
+         CI81Qq465io+vLsfMcOETEzuzTIGo7A2Bbxt3a/cRRyHnh+pCD1xLm+ol80PuS6fn3q0
+         U5BdbiNDgYVUKHZUJ8Gt/er4JbaoLqXtGc0l+iBhMBlRqZzQD0cZXZbHklj5nuKba21Q
+         831cNXF2yWfZFuTHkXz3tpsJabN0LPvvQnvb+hToWGgwoAnkm0xGyYmwunhoMrnRAtUt
+         fQVQ==
+X-Gm-Message-State: AOAM532vWtDv7862D5JDkrEpJmwHKpftq6kiETMrfbbTf2QlJUpVml1B
+        kxte5qis7DBLhoJmiew79rxXgjcjEEIkZml3IHg=
+X-Google-Smtp-Source: ABdhPJyFoDjI+Lj09DYic41xsSzC3rmiR3KE3jBfV92lPrpC2h1Ga6l1MDN/00ywFSoBy8sV7nlzIF0rOVQK3VxgTX8=
+X-Received: by 2002:a17:902:c14c:b029:d2:4345:5a9 with SMTP id
+ 12-20020a170902c14cb02900d2434505a9mr3519072plj.0.1601026203296; Fri, 25 Sep
+ 2020 02:30:03 -0700 (PDT)
 MIME-Version: 1.0
-References: <20200925065418.1077472-1-ikjn@chromium.org> <20200925145255.v3.3.I7a3fc5678a81654574e8852d920db94bcc4d3eb8@changeid>
- <CAJsYDV+CEQ2PEOcdP1vadOBOHgW39XNNjPET04uWQktnPHZcFA@mail.gmail.com>
-In-Reply-To: <CAJsYDV+CEQ2PEOcdP1vadOBOHgW39XNNjPET04uWQktnPHZcFA@mail.gmail.com>
-From:   Ikjoon Jang <ikjn@chromium.org>
-Date:   Fri, 25 Sep 2020 17:24:48 +0800
-Message-ID: <CAATdQgAZyi+T5YLsDooTjCJTGD6jvzXuKqUwpdNY=-Eqi1=_YQ@mail.gmail.com>
-Subject: Re: [PATCH v3 3/6] spi: spi-mtk-nor: support 7 bytes transfer of
- generic spi
-To:     Chuanhong Guo <gch981213@gmail.com>
-Cc:     Rob Herring <robh+dt@kernel.org>, Mark Brown <broonie@kernel.org>,
-        "open list:OPEN FIRMWARE AND FLATTENED DEVICE TREE BINDINGS" 
-        <devicetree@vger.kernel.org>, linux-spi@vger.kernel.org,
-        linux-mtd@lists.infradead.org,
-        Matthias Brugger <matthias.bgg@gmail.com>,
-        "moderated list:ARM/Mediatek SoC support" 
-        <linux-arm-kernel@lists.infradead.org>,
-        open list <linux-kernel@vger.kernel.org>,
-        "moderated list:ARM/Mediatek SoC support" 
-        <linux-mediatek@lists.infradead.org>
+References: <20200924192455.2484005-1-j.neuschaefer@gmx.net> <20200924192455.2484005-4-j.neuschaefer@gmx.net>
+In-Reply-To: <20200924192455.2484005-4-j.neuschaefer@gmx.net>
+From:   Andy Shevchenko <andy.shevchenko@gmail.com>
+Date:   Fri, 25 Sep 2020 12:29:45 +0300
+Message-ID: <CAHp75VdUHPsuvDPLnfP9sM2p1FDiCsjkCf1SSM-y02ZsQxSDWQ@mail.gmail.com>
+Subject: Re: [PATCH v3 3/7] mfd: Add base driver for Netronix embedded controller
+To:     =?UTF-8?Q?Jonathan_Neusch=C3=A4fer?= <j.neuschaefer@gmx.net>
+Cc:     Linux Kernel Mailing List <linux-kernel@vger.kernel.org>,
+        Lee Jones <lee.jones@linaro.org>,
+        Rob Herring <robh+dt@kernel.org>,
+        Thierry Reding <thierry.reding@gmail.com>,
+        =?UTF-8?Q?Uwe_Kleine=2DK=C3=B6nig?= 
+        <u.kleine-koenig@pengutronix.de>,
+        Alessandro Zummo <a.zummo@towertech.it>,
+        Alexandre Belloni <alexandre.belloni@bootlin.com>,
+        Shawn Guo <shawnguo@kernel.org>,
+        Sascha Hauer <s.hauer@pengutronix.de>,
+        Pengutronix Kernel Team <kernel@pengutronix.de>,
+        Fabio Estevam <festevam@gmail.com>,
+        NXP Linux Team <linux-imx@nxp.com>,
+        Sam Ravnborg <sam@ravnborg.org>,
+        Linus Walleij <linus.walleij@linaro.org>,
+        Heiko Stuebner <heiko.stuebner@theobroma-systems.com>,
+        Stephan Gerhold <stephan@gerhold.net>,
+        Lubomir Rintel <lkundrak@v3.sk>,
+        Mark Brown <broonie@kernel.org>, allen <allen.chen@ite.com.tw>,
+        Mauro Carvalho Chehab <mchehab+huawei@kernel.org>,
+        "David S. Miller" <davem@davemloft.net>,
+        devicetree <devicetree@vger.kernel.org>,
+        linux-pwm@vger.kernel.org,
+        "open list:REAL TIME CLOCK (RTC) SUBSYSTEM" 
+        <linux-rtc@vger.kernel.org>,
+        linux-arm Mailing List <linux-arm-kernel@lists.infradead.org>,
+        Heiko Stuebner <heiko@sntech.de>,
+        Josua Mayer <josua.mayer@jm0.eu>,
+        Andreas Kemnade <andreas@kemnade.info>,
+        Arnd Bergmann <arnd@arndb.de>, Daniel Palmer <daniel@0x0f.com>
 Content-Type: text/plain; charset="UTF-8"
+Content-Transfer-Encoding: quoted-printable
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-On Fri, Sep 25, 2020 at 3:47 PM Chuanhong Guo <gch981213@gmail.com> wrote:
+On Thu, Sep 24, 2020 at 10:26 PM Jonathan Neusch=C3=A4fer
+<j.neuschaefer@gmx.net> wrote:
 >
-> Hi!
+> The Netronix embedded controller is a microcontroller found in some
+> e-book readers designed by the ODM Netronix, Inc. It contains RTC,
+> battery monitoring, system power management, and PWM functionality.
 >
-> On Fri, Sep 25, 2020 at 2:55 PM Ikjoon Jang <ikjn@chromium.org> wrote:
-> >
-> > When mtk-nor fallbacks to generic spi transfers, it can actually
-> > transfer up to 7 bytes.
+> This driver implements register access and version detection.
 >
-> generic transfer_one_message should support full-duplex transfers,
-> not transfers with special format requirements. (e.g. here the last
-> byte is rx only.) These transfers with format requirements should
-> be implemented with spi-mem interface instead.
+> Third-party hardware documentation is available at:
+>
+>   https://github.com/neuschaefer/linux/wiki/Netronix-MSP430-embedded-cont=
+roller
+>
+> The EC supports interrupts, but the driver doesn't make use of them so
+> far.
 
-yep, that's correct.
+...
 
->
-> >
-> > This patch fixes adjust_op_size() and supports_op() to explicitly
-> > check 7 bytes range and also fixes possible under/overflow conditions
-> > in register offsets calculation.
-> >
-> > Signed-off-by: Ikjoon Jang <ikjn@chromium.org>
->
-> I was notified by Bayi about your discussion and sent some
-> patches yesterday for the same purpose. Whoops...
-> As transfer_one_message isn't the proper place to implement
-> this, maybe we could work on my version instead?
->
+> +#include <asm/unaligned.h>
 
-I didn't noticed that before,
-Sure, please go ahead, I'll follow up with your patch in v4.
+This usually goes after linux/*.h
+(and actually not visible how it's being used, but see below first)
 
-> > ---
-> >
-> > (no changes since v1)
->
-> This should be "new patch" not "no changes" :P
+> +#include <linux/delay.h>
+> +#include <linux/errno.h>
+> +#include <linux/i2c.h>
+> +#include <linux/mfd/core.h>
+> +#include <linux/mfd/ntxec.h>
+> +#include <linux/module.h>
+> +#include <linux/pm.h>
+> +#include <linux/reboot.h>
+> +#include <linux/regmap.h>
+> +#include <linux/types.h>
 
-oops, it seems my script did something wrong.
+...
 
->
->
-> >
-> >  drivers/spi/spi-mtk-nor.c | 102 ++++++++++++++++++++++++++++----------
-> >  1 file changed, 76 insertions(+), 26 deletions(-)
-> >
-> > diff --git a/drivers/spi/spi-mtk-nor.c b/drivers/spi/spi-mtk-nor.c
-> > index 0f7d4ec68730..e7719d249095 100644
-> > --- a/drivers/spi/spi-mtk-nor.c
-> > +++ b/drivers/spi/spi-mtk-nor.c
-> > @@ -79,7 +79,11 @@
-> >  #define MTK_NOR_REG_DMA_DADR           0x720
-> >  #define MTK_NOR_REG_DMA_END_DADR       0x724
-> >
-> > +/* maximum bytes of TX in PRG mode */
-> >  #define MTK_NOR_PRG_MAX_SIZE           6
-> > +/* maximum bytes of TX + RX is 7, last 1 byte is always being sent as zero */
-> > +#define MTK_NOR_PRG_MAX_CYCLES         7
-> > +
-> >  // Reading DMA src/dst addresses have to be 16-byte aligned
-> >  #define MTK_NOR_DMA_ALIGN              16
-> >  #define MTK_NOR_DMA_ALIGN_MASK         (MTK_NOR_DMA_ALIGN - 1)
-> > @@ -167,6 +171,24 @@ static bool mtk_nor_match_read(const struct spi_mem_op *op)
-> >         return false;
-> >  }
-> >
-> > +static bool mtk_nor_check_prg(const struct spi_mem_op *op)
-> > +{
-> > +       size_t len = op->cmd.nbytes + op->addr.nbytes + op->dummy.nbytes;
-> > +
-> > +       if (len > MTK_NOR_PRG_MAX_SIZE)
-> > +               return false;
-> > +
-> > +       if (!op->data.nbytes)
-> > +               return true;
-> > +
-> > +       if (op->data.dir == SPI_MEM_DATA_OUT)
-> > +               return ((len + op->data.nbytes) <= MTK_NOR_PRG_MAX_SIZE);
-> > +       else if (op->data.dir == SPI_MEM_DATA_IN)
-> > +               return ((len + op->data.nbytes) <= MTK_NOR_PRG_MAX_CYCLES);
-> > +       else
-> > +               return true;
-> > +}
-> > +
-> >  static int mtk_nor_adjust_op_size(struct spi_mem *mem, struct spi_mem_op *op)
-> >  {
-> >         size_t len;
-> > @@ -195,10 +217,22 @@ static int mtk_nor_adjust_op_size(struct spi_mem *mem, struct spi_mem_op *op)
-> >                 }
-> >         }
-> >
-> > -       len = MTK_NOR_PRG_MAX_SIZE - op->cmd.nbytes - op->addr.nbytes -
-> > -             op->dummy.nbytes;
-> > -       if (op->data.nbytes > len)
-> > -               op->data.nbytes = len;
-> > +       if (mtk_nor_check_prg(op))
-> > +               return 0;
-> > +
-> > +       len = op->cmd.nbytes + op->addr.nbytes + op->dummy.nbytes;
-> > +
-> > +       if (op->data.dir == SPI_MEM_DATA_OUT) {
-> > +               if (len == MTK_NOR_PRG_MAX_SIZE)
-> > +                       return -EINVAL;
-> > +               op->data.nbytes = min_t(unsigned int, op->data.nbytes,
-> > +                                       MTK_NOR_PRG_MAX_SIZE - len);
-> > +       } else  {
-> > +               if (len == MTK_NOR_PRG_MAX_CYCLES)
-> > +                       return -EINVAL;
-> > +               op->data.nbytes = min_t(unsigned int, op->data.nbytes,
-> > +                                       MTK_NOR_PRG_MAX_CYCLES - len);
-> > +       }
-> >
-> >         return 0;
-> >  }
-> > @@ -206,8 +240,6 @@ static int mtk_nor_adjust_op_size(struct spi_mem *mem, struct spi_mem_op *op)
-> >  static bool mtk_nor_supports_op(struct spi_mem *mem,
-> >                                 const struct spi_mem_op *op)
-> >  {
-> > -       size_t len;
-> > -
-> >         if (op->cmd.buswidth != 1)
-> >                 return false;
-> >
-> > @@ -223,12 +255,11 @@ static bool mtk_nor_supports_op(struct spi_mem *mem,
-> >                                (op->data.buswidth == 1);
-> >         }
-> >
-> > -       len = op->cmd.nbytes + op->addr.nbytes + op->dummy.nbytes;
-> > -       if ((len > MTK_NOR_PRG_MAX_SIZE) ||
-> > -           ((op->data.nbytes) && (len == MTK_NOR_PRG_MAX_SIZE)))
-> > +       /* fallback to generic spi xfer */
-> > +       if (op->cmd.buswidth > 1 || op->addr.buswidth > 1 || op->data.buswidth > 1)
-> >                 return false;
->
-> Rejecting an op in supports_op doesn't tell it to fall back to generic
-> spi transfer.
-> It instead tells caller to abort this transfer completely.
-> A fallback only happens when exec_op returns -ENOTSUPP.
+> +static void ntxec_poweroff(void)
+> +{
+> +       int res;
+> +       u8 buf[] =3D {
+> +               NTXEC_REG_POWEROFF,
 
-yep but I think that case always going PRG mode in exec_op() with the
-same condition?
+> +               (NTXEC_POWEROFF_VALUE >> 8) & 0xff,
+> +               NTXEC_POWEROFF_VALUE & 0xff,
 
-> This comment is incorrect. I'd put this buswidth checking in mtk_nor_check_prg
-> instead because mtk_nor_check_prg is checking whether an op is supported
-> by prg mode, thus it should reject ops with buswidth > 1.
->
-> >
-> > -       return true;
-> > +       return mtk_nor_check_prg(op);
-> >  }
-> >
-> >  static void mtk_nor_setup_bus(struct mtk_nor *sp, const struct spi_mem_op *op)
-> > @@ -459,22 +490,36 @@ static int mtk_nor_transfer_one_message(struct spi_controller *master,
-> >         int stat = 0;
-> >         int reg_offset = MTK_NOR_REG_PRGDATA_MAX;
-> >         void __iomem *reg;
-> > -       const u8 *txbuf;
-> > -       u8 *rxbuf;
-> > -       int i;
-> > +       int i, tx_len = 0, rx_len = 0;
-> >
-> >         list_for_each_entry(t, &m->transfers, transfer_list) {
-> > -               txbuf = t->tx_buf;
-> > -               for (i = 0; i < t->len; i++, reg_offset--) {
-> > +               const u8 *txbuf = t->tx_buf;
-> > +
-> > +               if (!txbuf) {
-> > +                       rx_len += t->len;
-> > +                       continue;
-> > +               }
-> > +
-> > +               if (rx_len) {
-> > +                       stat = -EPROTO;
-> > +                       goto msg_done;
-> > +               }
->
-> NACK. you are unnecessarily rejecting possible transfers.
+'& 0xff' parts are redundant. *u8 implies that. Fix in all cases.
+Also I would rather see something like
 
-yep, ditto
+  buf[0] =3D _POWEROFF;
+  put_unaligned_be16(_VALUE, &buf[1]);
 
->
-> > +
-> > +               for (i = 0; i < t->len && reg_offset >= 0; i++, reg_offset--) {
-> >                         reg = sp->base + MTK_NOR_REG_PRGDATA(reg_offset);
-> > -                       if (txbuf)
-> > -                               writeb(txbuf[i], reg);
-> > -                       else
-> > -                               writeb(0, reg);
-> > +                       writeb(txbuf[i], reg);
-> > +                       tx_len++;
->
-> According to SPI standard, during a rx transfer, tx should be kept low.
-> These PROGDATA registers doesn't clear itself so it'll keep sending
-> data from last transfer, which violates this rule. That's
-> why the original code writes 0 to PRGDATA for rx bytes.
+to explicitly show the endianess of the register values.
 
-following lines with while() will set 0s to the rest of registers.
+> +       };
+> +       struct i2c_msg msgs[] =3D {
+> +               {
+> +                       .addr =3D poweroff_restart_client->addr,
+> +                       .flags =3D 0,
+> +                       .len =3D sizeof(buf),
 
->
-> >                 }
-> > -               trx_len += t->len;
-> >         }
-> >
-> > +       while (reg_offset >= 0) {
-> > +               writeb(0, sp->base + MTK_NOR_REG_PRGDATA(reg_offset));
-> > +               reg_offset--;
-> > +       }
-> > +
-> > +       rx_len = min_t(unsigned long, MTK_NOR_PRG_MAX_CYCLES - tx_len, rx_len);
-> > +       trx_len = tx_len + rx_len;
-> > +
-> >         writel(trx_len * BITS_PER_BYTE, sp->base + MTK_NOR_REG_PRG_CNT);
-> >
-> >         stat = mtk_nor_cmd_exec(sp, MTK_NOR_CMD_PROGRAM,
-> > @@ -482,13 +527,18 @@ static int mtk_nor_transfer_one_message(struct spi_controller *master,
-> >         if (stat < 0)
-> >                 goto msg_done;
-> >
-> > -       reg_offset = trx_len - 1;
-> > -       list_for_each_entry(t, &m->transfers, transfer_list) {
-> > -               rxbuf = t->rx_buf;
-> > -               for (i = 0; i < t->len; i++, reg_offset--) {
-> > -                       reg = sp->base + MTK_NOR_REG_SHIFT(reg_offset);
-> > -                       if (rxbuf)
-> > +       if (rx_len > 0) {
-> > +               reg_offset = rx_len - 1;
-> > +               list_for_each_entry(t, &m->transfers, transfer_list) {
-> > +                       u8 *rxbuf = t->rx_buf;
-> > +
-> > +                       if (!rxbuf)
-> > +                               continue;
-> > +
-> > +                       for (i = 0; i < t->len && reg_offset >= 0; i++, reg_offset--) {
-> > +                               reg = sp->base + MTK_NOR_REG_SHIFT(reg_offset);
-> >                                 rxbuf[i] = readb(reg);
-> > +                       }
->
-> I think this is replacing original code with some equivalent ones, which
-> seems unnecessary.
+> +                       .buf =3D buf
 
-This patch addressed the issue with 1+6 bytes transfer (e.g JEDEC ID)
-can have negative reg_offset.
-And there's skipping the loop if (rx_len < 0)
-anyway I'd like to follow with your new patch. :-)
+It's slightly better to keep trailing commas in cases like this.
 
-Thanks!
+> +               }
+> +       };
+> +
+> +       res =3D i2c_transfer(poweroff_restart_client->adapter, msgs, ARRA=
+Y_SIZE(msgs));
+> +       if (res < 0)
 
->
-> >                 }
-> >         }
-> >
-> --
-> Regards,
-> Chuanhong Guo
+> +               dev_alert(&poweroff_restart_client->dev,
+> +                         "Failed to power off (err =3D %d)\n", res);
+
+alert? This needs to be explained.
+
+> +       /*
+> +        * The time from the register write until the host CPU is powered=
+ off
+> +        * has been observed to be about 2.5 to 3 seconds. Sleep long eno=
+ugh to
+> +        * safely avoid returning from the poweroff handler.
+> +        */
+> +       msleep(5000);
+> +}
+> +
+> +static int ntxec_restart(struct notifier_block *nb,
+> +                        unsigned long action, void *data)
+> +{
+> +       int res;
+> +       /*
+> +        * NOTE: The lower half of the reset value is not sent, because s=
+ending
+> +        * it causes an error
+
+Why? Any root cause? Perhaps you need to send 0xffff ?
+
+> +        */
+> +       u8 buf[] =3D {
+> +               NTXEC_REG_RESET,
+
+> +               (NTXEC_RESET_VALUE >> 8) & 0xff,
+
+Here you may still use put_unaligned_be16() but move the comment to be
+before len hardcoded to sizeof(buf) - 1.
+
+> +       };
+> +       struct i2c_msg msgs[] =3D {
+> +               {
+> +                       .addr =3D poweroff_restart_client->addr,
+> +                       .flags =3D 0,
+> +                       .len =3D sizeof(buf),
+> +                       .buf =3D buf
+> +               }
+> +       };
+> +
+> +       res =3D i2c_transfer(poweroff_restart_client->adapter, msgs, ARRA=
+Y_SIZE(msgs));
+> +       if (res < 0)
+> +               dev_alert(&poweroff_restart_client->dev,
+> +                         "Failed to restart (err =3D %d)\n", res);
+> +
+> +       return NOTIFY_DONE;
+> +}
+
+...
+
+> +static int ntxec_probe(struct i2c_client *client)
+> +{
+> +       struct ntxec *ec;
+> +       unsigned int version;
+> +       int res;
+> +
+> +       ec =3D devm_kmalloc(&client->dev, sizeof(*ec), GFP_KERNEL);
+> +       if (!ec)
+> +               return -ENOMEM;
+> +
+> +       ec->dev =3D &client->dev;
+> +
+> +       ec->regmap =3D devm_regmap_init_i2c(client, &regmap_config);
+> +       if (IS_ERR(ec->regmap)) {
+> +               dev_err(ec->dev, "Failed to set up regmap for device\n");
+> +               return res;
+> +       }
+> +
+> +       /* Determine the firmware version */
+> +       res =3D regmap_read(ec->regmap, NTXEC_REG_VERSION, &version);
+> +       if (res < 0) {
+> +               dev_err(ec->dev, "Failed to read firmware version number\=
+n");
+> +               return res;
+> +       }
+
+> +       dev_info(ec->dev,
+> +                "Netronix embedded controller version %04x detected.\n",
+> +                version);
+
+This info level may confuse users if followed by an error path.
+
+> +       /* Bail out if we encounter an unknown firmware version */
+> +       switch (version) {
+> +       case 0xd726: /* found in Kobo Aura */
+> +               break;
+> +       default:
+> +               return -ENODEV;
+> +       }
+> +
+> +       if (of_device_is_system_power_controller(ec->dev->of_node)) {
+> +               /*
+> +                * Set the 'powerkeep' bit. This is necessary on some boa=
+rds
+> +                * in order to keep the system running.
+> +                */
+> +               res =3D regmap_write(ec->regmap, NTXEC_REG_POWERKEEP,
+> +                                  NTXEC_POWERKEEP_VALUE);
+> +               if (res < 0)
+> +                       return res;
+
+> +               WARN_ON(poweroff_restart_client);
+
+WARN_ON? All these alerts, WARNs, BUGs must be explained. Screaming to
+the user is not good if it wasn't justified.
+
+> +               poweroff_restart_client =3D client;
+> +               if (pm_power_off)
+> +                       dev_err(ec->dev, "pm_power_off already assigned\n=
+");
+> +               else
+> +                       pm_power_off =3D ntxec_poweroff;
+> +
+> +               res =3D register_restart_handler(&ntxec_restart_handler);
+> +               if (res)
+> +                       dev_err(ec->dev,
+> +                               "Failed to register restart handler: %d\n=
+", res);
+> +       }
+> +
+> +       i2c_set_clientdata(client, ec);
+> +
+> +       res =3D devm_mfd_add_devices(ec->dev, PLATFORM_DEVID_NONE, ntxec_=
+subdevices,
+> +                                  ARRAY_SIZE(ntxec_subdevices), NULL, 0,=
+ NULL);
+> +       if (res)
+
+> +               dev_warn(ec->dev, "Failed to add subdevices: %d\n", res);
+
+'warn' is inconsistent with 'return err'. Either do not return an
+error, or mark a message as an error one.
+
+And above with the restart handler has the same issue.
+
+> +       return res;
+> +}
+> +
+> +static int ntxec_remove(struct i2c_client *client)
+> +{
+
+> +       if (client =3D=3D poweroff_restart_client) {
+
+When it's not the case?
+
+> +               poweroff_restart_client =3D NULL;
+> +               pm_power_off =3D NULL;
+> +               unregister_restart_handler(&ntxec_restart_handler);
+> +       }
+> +
+> +       return 0;
+> +}
+
+...
+
+> +#include <linux/types.h>
+> +
+
+Missed
+
+struct device;
+struct regmap;
+
+here.
+
+> +struct ntxec {
+> +       struct device *dev;
+> +       struct regmap *regmap;
+> +};
+
+> +/*
+> + * Some registers, such as the battery status register (0x41), are in
+> + * big-endian, but others only have eight significant bits, which are in=
+ the
+> + * first byte transmitted over I2C (the MSB of the big-endian value).
+> + * This convenience function converts an 8-bit value to 16-bit for use i=
+n the
+> + * second kind of register.
+> + */
+> +static inline u16 ntxec_reg8(u8 value)
+> +{
+> +       return value << 8;
+> +}
+
+I'm wondering why __be16 is not used as returned type.
+
+--=20
+With Best Regards,
+Andy Shevchenko
