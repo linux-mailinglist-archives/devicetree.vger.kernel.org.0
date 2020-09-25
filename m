@@ -2,106 +2,117 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from vger.kernel.org (vger.kernel.org [23.128.96.18])
-	by mail.lfdr.de (Postfix) with ESMTP id 86CA3278A4F
-	for <lists+devicetree@lfdr.de>; Fri, 25 Sep 2020 16:07:11 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTP id 39029278ACB
+	for <lists+devicetree@lfdr.de>; Fri, 25 Sep 2020 16:21:57 +0200 (CEST)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S1728199AbgIYOHK (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Fri, 25 Sep 2020 10:07:10 -0400
-Received: from lindbergh.monkeyblade.net ([23.128.96.19]:50230 "EHLO
-        lindbergh.monkeyblade.net" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S1726990AbgIYOHK (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Fri, 25 Sep 2020 10:07:10 -0400
-Received: from mail-lf1-x141.google.com (mail-lf1-x141.google.com [IPv6:2a00:1450:4864:20::141])
-        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id D7E0FC0613CE;
-        Fri, 25 Sep 2020 07:07:09 -0700 (PDT)
-Received: by mail-lf1-x141.google.com with SMTP id w11so2973433lfn.2;
-        Fri, 25 Sep 2020 07:07:09 -0700 (PDT)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=gmail.com; s=20161025;
-        h=mime-version:references:in-reply-to:from:date:message-id:subject:to
-         :cc:content-transfer-encoding;
-        bh=5Ivfe1lL+hCqZxdP169zdf3ZjScUQpb79ncCuDdSP+I=;
-        b=dZtavOBHs/+I7lh4LsWAHTw6kcue2fHdywqFcPTw4ykA5XvkuFCkGcxaHe//9LhiXT
-         3M05HIHmq9gEJX3HvrcKAwJMsSNUMoq2Yco4Cwt2oXIS4RtS90xn3LsNhutlWjumBwiF
-         1v9eKOmuGY+G8G3CcLUHXNTrmrnPBi0scmejRxMGsXZp/k4H1YqYKbJZC37r4Msfqwi+
-         drCZevwl6gKecAdFqY8m53oQGYbGAYC0BZ6h2or71wa+FXbvikYO2p6TyTRh+oJ9J0yu
-         KrFJddLHNT6NrFdStne32JhxIKQ/mt0FwePcoAm5FWGn12c3k1QnWjKX7VjaXEi9qTAV
-         hc0Q==
-X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=1e100.net; s=20161025;
-        h=x-gm-message-state:mime-version:references:in-reply-to:from:date
-         :message-id:subject:to:cc:content-transfer-encoding;
-        bh=5Ivfe1lL+hCqZxdP169zdf3ZjScUQpb79ncCuDdSP+I=;
-        b=Zs+CTeRH3Nm8xGasU209/TZKDmdfS70pVzmd3EyHXyUUfKHxpIVI2T8VNa8eUW90EF
-         WXjksxNi5uPBCa0evFPgj32n3TbSTnvZTDT+X2fSQDyMVsYTH0B4yLsc/VECGSCwPk8c
-         99XWpLLEY0L67csdlLV7b9oQ6D7SZYJkIUcwXxYT8Ut3cUEPNk4cjkmt9SeCNWnI1rtQ
-         Wih6LSW3llK3AIObQ8eV2O92t2x8ZUCkz22wmzcDOstsn9EgzAfBgGQVj4Xp2e7vOuQP
-         XmvLzhwHN6qWwlrDUgPTWuO1ZiWQhdbfck0UEsweSN0AYuBl6lqt/3KFyzJC4wFnyLwS
-         gLsA==
-X-Gm-Message-State: AOAM531+19rq/JuZrf5235aagK+zMZYsy+85tIdPWiiUgfRpD8eHqvjx
-        p24dmoIO7dN184+40Y+kHUfMhctsqd1vP70TfH8=
-X-Google-Smtp-Source: ABdhPJzYyKWyeip8y9/HtpIhKv0a27VAchsH38PPp8nSXsNl8s1hk1xZ3eGlpU/QR5p9Wr4CC665U0yRkph6AXMkgE4=
-X-Received: by 2002:a05:6512:1051:: with SMTP id c17mr1511593lfb.20.1601042828225;
- Fri, 25 Sep 2020 07:07:08 -0700 (PDT)
+        id S1728783AbgIYOV4 (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Fri, 25 Sep 2020 10:21:56 -0400
+Received: from mail.kernel.org ([198.145.29.99]:51090 "EHLO mail.kernel.org"
+        rhost-flags-OK-OK-OK-OK) by vger.kernel.org with ESMTP
+        id S1728330AbgIYOV4 (ORCPT <rfc822;devicetree@vger.kernel.org>);
+        Fri, 25 Sep 2020 10:21:56 -0400
+Received: from pali.im (pali.im [31.31.79.79])
+        (using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
+        (No client certificate requested)
+        by mail.kernel.org (Postfix) with ESMTPSA id 0B1F4208A9;
+        Fri, 25 Sep 2020 14:21:56 +0000 (UTC)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=kernel.org;
+        s=default; t=1601043716;
+        bh=S03ouvc4Wtwn2XnHrltiJObGWm6huyZQX8jzvKd1Aok=;
+        h=Date:From:To:Cc:Subject:References:In-Reply-To:From;
+        b=Eu/Xch7YM2T/Mun7Cgb6UW6fjul9MEfEY9sEctwa4lA4huUje85m5yjtpXGWufPxR
+         /LzlwIMm5RQ55U8/iutlWpEAy409dqrBldGDGn8s9D/IVjinC+kgHTPJM9Ur3hLqGc
+         cfIYS6UTURCmXv84g0jlnJWr71Z8NUHn7plSg2NE=
+Received: by pali.im (Postfix)
+        id A295468A; Fri, 25 Sep 2020 16:21:53 +0200 (CEST)
+Date:   Fri, 25 Sep 2020 16:21:53 +0200
+From:   Pali =?utf-8?B?Um9ow6Fy?= <pali@kernel.org>
+To:     Gregory CLEMENT <gregory.clement@bootlin.com>
+Cc:     Jason Cooper <jason@lakedaemon.net>, Andrew Lunn <andrew@lunn.ch>,
+        Sebastian Hesselbarth <sebastian.hesselbarth@gmail.com>,
+        Rob Herring <robh+dt@kernel.org>,
+        Andre Heider <a.heider@gmail.com>, devicetree@vger.kernel.org,
+        linux-kernel@vger.kernel.org
+Subject: Re: [PATCH] arm64: dts: marvell: espressobin: Update link to V7
+ schematic
+Message-ID: <20200925142153.el56h5ttxbcdmxcm@pali>
+References: <20200925084306.16309-1-pali@kernel.org>
+ <87wo0iezsr.fsf@BL-laptop>
 MIME-Version: 1.0
-References: <1600959891-16606-1-git-send-email-u0084500@gmail.com>
- <1600959891-16606-2-git-send-email-u0084500@gmail.com> <20200924162332.GH4754@sirena.org.uk>
- <CADiBU39ShyHNT=NiWz2Y81+wLMJjDqD6aZ0mgzVSxp_rzLZSFQ@mail.gmail.com>
-In-Reply-To: <CADiBU39ShyHNT=NiWz2Y81+wLMJjDqD6aZ0mgzVSxp_rzLZSFQ@mail.gmail.com>
-From:   ChiYuan Huang <u0084500@gmail.com>
-Date:   Fri, 25 Sep 2020 22:06:57 +0800
-Message-ID: <CADiBU39yO=HYm9G_ftE=MnMjOW5DQjVS4E=HYkhU6ucOJ7yyqQ@mail.gmail.com>
-Subject: Re: [PATCH v1 2/2] regulator: rtmv20: Add DT-binding document for
- Richtek RTMV20
-To:     Mark Brown <broonie@kernel.org>, lgirdwood@gmail.com,
-        robh+dt@kernel.org
-Cc:     linux-kernel@vger.kernel.org, cy_huang <cy_huang@richtek.com>,
-        devicetree@vger.kernel.org
-Content-Type: text/plain; charset="UTF-8"
-Content-Transfer-Encoding: quoted-printable
+Content-Type: text/plain; charset=utf-8
+Content-Disposition: inline
+Content-Transfer-Encoding: 8bit
+In-Reply-To: <87wo0iezsr.fsf@BL-laptop>
+User-Agent: NeoMutt/20180716
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-Re-add into the mail loop list.
+Hello!
 
-ChiYuan Huang <u0084500@gmail.com> =E6=96=BC 2020=E5=B9=B49=E6=9C=8825=E6=
-=97=A5 =E9=80=B1=E4=BA=94 =E4=B8=8B=E5=8D=8812:09=E5=AF=AB=E9=81=93=EF=BC=
-=9A
->
-> Mark Brown <broonie@kernel.org> =E6=96=BC 2020=E5=B9=B49=E6=9C=8825=E6=97=
-=A5 =E9=80=B1=E4=BA=94 =E4=B8=8A=E5=8D=8812:24=E5=AF=AB=E9=81=93=EF=BC=9A
+On Friday 25 September 2020 15:44:36 Gregory CLEMENT wrote:
+> Hello Pali,
+> 
+> could you add a commit log besides the topic ?
+
+I can add, but I do not know what to write for such simple update.
+
+> Also note that I've just sent the pull requests for 5.10 and I was
+> already a little late for that, so I fear this patch will be for 5.11.
+
+I think it is fine.
+
+> Unless the former url was broken it this case it could be considered as
+> a fixe and could be applied for 5.9. If you think it, you should also
+> add a "Fixes:" tag.
+
+Both URLs are still working. Previous URL just contains older version.
+New URL is available in the main / official web page [1] for technical
+documentation and also is more descriptive.
+
+[1] - http://espressobin.net/tech-spec/
+
+> Thank,
+> 
+> Gregory
+> 
+> > Signed-off-by: Pali Rohár <pali@kernel.org>
+> > ---
+> >  arch/arm64/boot/dts/marvell/armada-3720-espressobin-v7-emmc.dts | 2 +-
+> >  arch/arm64/boot/dts/marvell/armada-3720-espressobin-v7.dts      | 2 +-
+> >  2 files changed, 2 insertions(+), 2 deletions(-)
 > >
-> > On Thu, Sep 24, 2020 at 11:04:51PM +0800, cy_huang wrote:
+> > diff --git a/arch/arm64/boot/dts/marvell/armada-3720-espressobin-v7-emmc.dts b/arch/arm64/boot/dts/marvell/armada-3720-espressobin-v7-emmc.dts
+> > index 61d49d6a2a2a..6062a7df7342 100644
+> > --- a/arch/arm64/boot/dts/marvell/armada-3720-espressobin-v7-emmc.dts
+> > +++ b/arch/arm64/boot/dts/marvell/armada-3720-espressobin-v7-emmc.dts
+> > @@ -8,7 +8,7 @@
+> >   *
+> >   */
+> >  /*
+> > - * Schematic available at http://wiki.espressobin.net/tiki-download_file.php?fileId=200
+> > + * Schematic available at http://espressobin.net/wp-content/uploads/2020/05/ESPRESSObin_V7-0_Schematic.pdf
+> >   */
+> >  
+> >  /dts-v1/;
+> > diff --git a/arch/arm64/boot/dts/marvell/armada-3720-espressobin-v7.dts b/arch/arm64/boot/dts/marvell/armada-3720-espressobin-v7.dts
+> > index 44dbe9a21cc7..c47a93978386 100644
+> > --- a/arch/arm64/boot/dts/marvell/armada-3720-espressobin-v7.dts
+> > +++ b/arch/arm64/boot/dts/marvell/armada-3720-espressobin-v7.dts
+> > @@ -8,7 +8,7 @@
+> >   *
+> >   */
+> >  /*
+> > - * Schematic available at http://wiki.espressobin.net/tiki-download_file.php?fileId=200
+> > + * Schematic available at http://espressobin.net/wp-content/uploads/2020/05/ESPRESSObin_V7-0_Schematic.pdf
+> >   */
+> >  
+> >  /dts-v1/;
+> > -- 
+> > 2.20.1
 > >
-> > > +  enable-gpio:
-> > > +    description: A connection of the 'enable' gpio line.
-> > > +    maxItems: 1
-> >
-> > -gpios.  GPIO properties should always be plural even if there's only
-> > one GPIO.
-> >
-> > > +  ld_pulse_delay:
-> >
-> > Properties should use - not _ and for all the properties specifying
-> > things like times you should have units so...
-> >
-> > > +    description: |
-> > > +      load current pulse delay in microsecond after strobe pin pulse=
- high.
-> > > +    $ref: "/schemas/types.yaml#/definitions/uint32"
-> >
-> > ...add -us here.
-> >
-> Ack
-> > > +  fsin_enable:
-> > > +    description: Fsin function enable control.
-> > > +    $ref: "/schemas/types.yaml#/definitions/uint32"
-> > > +    minimum: 0
-> > > +    maximum: 1
-> > > +    default: 0
-> >
-> > This looks like it should be a boolean property not a number.  The same
-> > is true for most if not all of the other properties with min/max of 0/1=
-.
-> Ok, just change the property as boolean type.
+> 
+> -- 
+> Gregory Clement, Bootlin
+> Embedded Linux and Kernel engineering
+> http://bootlin.com
