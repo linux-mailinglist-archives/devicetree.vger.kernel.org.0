@@ -2,256 +2,186 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from vger.kernel.org (vger.kernel.org [23.128.96.18])
-	by mail.lfdr.de (Postfix) with ESMTP id D8A162780F8
-	for <lists+devicetree@lfdr.de>; Fri, 25 Sep 2020 08:54:56 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTP id 2D3EE27814B
+	for <lists+devicetree@lfdr.de>; Fri, 25 Sep 2020 09:12:10 +0200 (CEST)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S1727337AbgIYGyo (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Fri, 25 Sep 2020 02:54:44 -0400
-Received: from lindbergh.monkeyblade.net ([23.128.96.19]:40018 "EHLO
-        lindbergh.monkeyblade.net" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S1726990AbgIYGyn (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Fri, 25 Sep 2020 02:54:43 -0400
-Received: from mail-pj1-x1041.google.com (mail-pj1-x1041.google.com [IPv6:2607:f8b0:4864:20::1041])
-        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id EA982C0613D7
-        for <devicetree@vger.kernel.org>; Thu, 24 Sep 2020 23:54:42 -0700 (PDT)
-Received: by mail-pj1-x1041.google.com with SMTP id v14so1270012pjd.4
-        for <devicetree@vger.kernel.org>; Thu, 24 Sep 2020 23:54:42 -0700 (PDT)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=chromium.org; s=google;
-        h=from:to:cc:subject:date:message-id:in-reply-to:references
-         :mime-version:content-transfer-encoding;
-        bh=CboFKNwfQHjhb2QqB27UjvOOEHxVAcEUNOkbldAZfwI=;
-        b=XJK4yI89glmJ9fKvhrxq2YtfRKCPxksQhw7CNQzxtdpw9/v6aLqMzkoY4nbJ3cfT6f
-         Tqv15pHhdxxOeWkYM3Pi3uMwqXQg1PsFubX0dT84Cmd9gEA4ALrRmanw545PMVAbU2N1
-         KDJBVkvNdLcWlxvah4DZ5ULinhsFnBMJPBUnk=
-X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=1e100.net; s=20161025;
-        h=x-gm-message-state:from:to:cc:subject:date:message-id:in-reply-to
-         :references:mime-version:content-transfer-encoding;
-        bh=CboFKNwfQHjhb2QqB27UjvOOEHxVAcEUNOkbldAZfwI=;
-        b=SdbYVhUODLfnj1N8Olj8aBZ7OwFXd8sDyqW4t7aFJgO8TkrAgqy5e3r3ogOofT5Ps5
-         De3CPRJyV1iIOK79yNbCiLnfZYxc3As/a7gHEDJwd0nBVedlx3zYrGh/oVFGb8c2cZAx
-         97H306078Eb+OYXG7WQQoEvpnQv767ZRovb1uoz6QKxCLZAA+wActvuKR9P9Fiy8183J
-         2nsSkaTbn0F02n4908Rw2yJ0HgQ/f60moMtsslsLOPipnytBH9xonYB0gr5XcZzmMjeV
-         Wq96KkPEFtqkD1ieCB41Mg/sK/52jWgsPRVQfJwk7YJa/4t25QlamD9LGo+J59Z8SuJi
-         49JQ==
-X-Gm-Message-State: AOAM531PRNDig4IBwr9IDAcOp3/kicJ0kdExPE/sBfpRyGCtahDSJTJJ
-        3/N8zXRHD9TJpQpdW9v1LazBJg==
-X-Google-Smtp-Source: ABdhPJwIBJ1Mku0abGIDFapejo9O2GhaKmy5wuc7DpI6Wy767K/AMgPKvt0opUUPLWIcoXhqf3bg4A==
-X-Received: by 2002:a17:90a:ea0c:: with SMTP id w12mr1329650pjy.65.1601016882432;
-        Thu, 24 Sep 2020 23:54:42 -0700 (PDT)
-Received: from ikjn-p920.tpe.corp.google.com ([2401:fa00:1:10:f693:9fff:fef4:a8fc])
-        by smtp.gmail.com with ESMTPSA id x27sm1549612pfp.128.2020.09.24.23.54.40
-        (version=TLS1_3 cipher=TLS_AES_256_GCM_SHA384 bits=256/256);
-        Thu, 24 Sep 2020 23:54:42 -0700 (PDT)
-From:   Ikjoon Jang <ikjn@chromium.org>
-To:     Rob Herring <robh+dt@kernel.org>, Mark Brown <broonie@kernel.org>,
-        devicetree@vger.kernel.org, linux-spi@vger.kernel.org,
-        linux-mtd@lists.infradead.org
-Cc:     Ikjoon Jang <ikjn@chromium.org>,
-        Matthias Brugger <matthias.bgg@gmail.com>,
-        linux-arm-kernel@lists.infradead.org, linux-kernel@vger.kernel.org,
-        linux-mediatek@lists.infradead.org
-Subject: [PATCH v3 6/6] spi: spi-mtk-nor: Add power management support
-Date:   Fri, 25 Sep 2020 14:54:17 +0800
-Message-Id: <20200925145255.v3.6.I68983b582d949a91866163bab588ff3c2a0d0275@changeid>
-X-Mailer: git-send-email 2.28.0.681.g6f77f65b4e-goog
-In-Reply-To: <20200925065418.1077472-1-ikjn@chromium.org>
-References: <20200925065418.1077472-1-ikjn@chromium.org>
+        id S1727334AbgIYHMJ (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Fri, 25 Sep 2020 03:12:09 -0400
+Received: from mail.kernel.org ([198.145.29.99]:41740 "EHLO mail.kernel.org"
+        rhost-flags-OK-OK-OK-OK) by vger.kernel.org with ESMTP
+        id S1726990AbgIYHMJ (ORCPT <rfc822;devicetree@vger.kernel.org>);
+        Fri, 25 Sep 2020 03:12:09 -0400
+Received: from saruman (91-155-214-58.elisa-laajakaista.fi [91.155.214.58])
+        (using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
+        (No client certificate requested)
+        by mail.kernel.org (Postfix) with ESMTPSA id ACB5420759;
+        Fri, 25 Sep 2020 07:12:05 +0000 (UTC)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=kernel.org;
+        s=default; t=1601017928;
+        bh=Z0ZVvRPpfsaiJcQiqcQFKPgpL3czOfPus0HdKagcgsg=;
+        h=From:To:Cc:Subject:In-Reply-To:References:Date:From;
+        b=cgadSunQUWPmmnfhpWv0mGqcErTSKCCgjkwwbpgQ16/z0DOQgQ9U0s338Qnt5JSzT
+         sDV1wf9ckM8o7ZHPA++463CWn5izWaai34zDwW7ddPeaZzRIrmq6+QiBJ7N9LuKMqn
+         /JlhUQ30kKG8sPoR7P1ncKs6FgS4amYLCJvlEbrM=
+From:   Felipe Balbi <balbi@kernel.org>
+To:     Manish Narani <MNARANI@xilinx.com>, Rob Herring <robh@kernel.org>
+Cc:     "gregkh@linuxfoundation.org" <gregkh@linuxfoundation.org>,
+        Michal Simek <michals@xilinx.com>,
+        "p.zabel@pengutronix.de" <p.zabel@pengutronix.de>,
+        "linux-usb@vger.kernel.org" <linux-usb@vger.kernel.org>,
+        "devicetree@vger.kernel.org" <devicetree@vger.kernel.org>,
+        "linux-arm-kernel@lists.infradead.org" 
+        <linux-arm-kernel@lists.infradead.org>,
+        "linux-kernel@vger.kernel.org" <linux-kernel@vger.kernel.org>,
+        git <git@xilinx.com>
+Subject: RE: [PATCH v2 1/2] dt-bindings: usb: dwc3-xilinx: Add documentation
+ for Versal DWC3 Controller
+In-Reply-To: <BYAPR02MB5896E374297AF46A63CDAD30C1360@BYAPR02MB5896.namprd02.prod.outlook.com>
+References: <1599678185-119412-1-git-send-email-manish.narani@xilinx.com>
+ <1599678185-119412-2-git-send-email-manish.narani@xilinx.com>
+ <20200922195410.GA3122345@bogus> <87wo0jejae.fsf@kernel.org>
+ <BYAPR02MB5896E374297AF46A63CDAD30C1360@BYAPR02MB5896.namprd02.prod.outlook.com>
+Date:   Fri, 25 Sep 2020 10:11:59 +0300
+Message-ID: <87h7rmcou8.fsf@kernel.org>
 MIME-Version: 1.0
-Content-Transfer-Encoding: 8bit
+Content-Type: multipart/signed; boundary="=-=-=";
+        micalg=pgp-sha256; protocol="application/pgp-signature"
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-This patch adds dev_pm_ops to mtk-nor to support suspend/resume,
-auto suspend delay is set to -1 by default.
+--=-=-=
+Content-Type: text/plain
+Content-Transfer-Encoding: quoted-printable
 
-Accessing registers are only permitted after its clock is enabled
-to deal with unknown state of operating clk at probe time,
 
-Signed-off-by: Ikjoon Jang <ikjn@chromium.org>
----
+Hi,
 
-Changes in v3:
-- Fix a bugfix of v2 in checking spi memory operation.
-- split read_dma function into two (normal/bounce)
-- Support 7bytes generic spi xfer
+Manish Narani <MNARANI@xilinx.com> writes:
+> Hi Rob/Felipe,
+>
+> Thanks for the review.
+>
+>> -----Original Message-----
+>> From: Felipe Balbi <balbi@kernel.org>
+>> Sent: Thursday, September 24, 2020 12:47 PM
+>> To: Rob Herring <robh@kernel.org>; Manish Narani <MNARANI@xilinx.com>
+>> Cc: gregkh@linuxfoundation.org; Michal Simek <michals@xilinx.com>;
+>> p.zabel@pengutronix.de; linux-usb@vger.kernel.org;
+>> devicetree@vger.kernel.org; linux-arm-kernel@lists.infradead.org; linux-
+>> kernel@vger.kernel.org; git <git@xilinx.com>
+>> Subject: Re: [PATCH v2 1/2] dt-bindings: usb: dwc3-xilinx: Add
+>> documentation for Versal DWC3 Controller
+>>=20
+>> Rob Herring <robh@kernel.org> writes:
+>>=20
+>> > On Thu, Sep 10, 2020 at 12:33:04AM +0530, Manish Narani wrote:
+>> >> Add documentation for Versal DWC3 controller. Add required property
+>> >> 'reg' for the same. Also add optional properties for snps,dwc3.
+>> >>
+>> >> Signed-off-by: Manish Narani <manish.narani@xilinx.com>
+>> >> ---
+>> >>  .../devicetree/bindings/usb/dwc3-xilinx.txt   | 20 +++++++++++++++++=
+--
+>> >>  1 file changed, 18 insertions(+), 2 deletions(-)
+>> >>
+>> >> diff --git a/Documentation/devicetree/bindings/usb/dwc3-xilinx.txt
+>> b/Documentation/devicetree/bindings/usb/dwc3-xilinx.txt
+>> >> index 4aae5b2cef56..219b5780dbee 100644
+>> >> --- a/Documentation/devicetree/bindings/usb/dwc3-xilinx.txt
+>> >> +++ b/Documentation/devicetree/bindings/usb/dwc3-xilinx.txt
+>> >> @@ -1,7 +1,8 @@
+>> >>  Xilinx SuperSpeed DWC3 USB SoC controller
+>> >>
+>> >>  Required properties:
+>> >> -- compatible:	Should contain "xlnx,zynqmp-dwc3"
+>> >> +- compatible:	May contain "xlnx,zynqmp-dwc3" or "xlnx,versal-
+>> dwc3"
+>> >> +- reg:		Base address and length of the register control block
+>> >>  - clocks:	A list of phandles for the clocks listed in clock-names
+>> >>  - clock-names:	Should contain the following:
+>> >>    "bus_clk"	 Master/Core clock, have to be >=3D 125 MHz for SS
+>> >> @@ -13,12 +14,24 @@ Required child node:
+>> >>  A child node must exist to represent the core DWC3 IP block. The nam=
+e of
+>> >>  the node is not important. The content of the node is defined in dwc=
+3.txt.
+>> >>
+>> >> +Optional properties for snps,dwc3:
+>> >> +- dma-coherent:	Enable this flag if CCI is enabled in design. Adding=
+ this
+>> >> +		flag configures Global SoC bus Configuration Register and
+>> >> +		Xilinx USB 3.0 IP - USB coherency register to enable CCI.
+>> >> +- snps,enable-hibernation: Add this flag to enable hibernation suppo=
+rt
+>> for
+>> >> +		peripheral mode.
+>> >
+>> > This belongs in the DWC3 binding. It also implies that hibernation is
+>> > not supported by any other DWC3 based platform. Can't this be implied =
+by
+>> > the compatible string (in the parent)?
+>
+> Rob, We can move this to dwc3 bindings. If Felipe is okay with below resp=
+onse.
+>
+>>=20
+>> hibernation support is detectable in runtime, and we've been using that.
+>
+> Felipe, Yes, this flag is to control the enable/disable hibernation.
+> I did not see has_hibernation flag being set anywhere in the driver.
+> Can we control the hibernation enable/disable through DT entry? See below:
+> -----
+> diff --git a/drivers/usb/dwc3/core.c b/drivers/usb/dwc3/core.c
+> index 2eb34c8b4065..1baf44d8d566 100644
+> --- a/drivers/usb/dwc3/core.c
+> +++ b/drivers/usb/dwc3/core.c
+> @@ -769,8 +769,15 @@ static void dwc3_core_setup_global_control(struct dw=
+c3 *dwc)
+>                         reg &=3D ~DWC3_GCTL_DSBLCLKGTNG;
+>                 break;
+>         case DWC3_GHWPARAMS1_EN_PWROPT_HIB:
+> -               /* enable hibernation here */
+> -               dwc->nr_scratch =3D DWC3_GHWPARAMS4_HIBER_SCRATCHBUFS(hwp=
+arams4);
+> +               if (!device_property_read_bool(dwc->dev,
+> +                                              "snps,enable-hibernation")=
+) {
+> +                       dev_dbg(dwc->dev, "Hibernation not enabled\n");
+> +               } else {
+> +                       /* enable hibernation here */
+> +                       dwc->nr_scratch =3D
+> +                               DWC3_GHWPARAMS4_HIBER_SCRATCHBUFS(hwparam=
+s4);
+> +                       dwc->has_hibernation =3D 1;
+> +               }
 
-Changes in v2:
-- Add power management support
-- Fix bugs in checking spi memory operation.
-- use dma_alloc_coherent for allocating bounce buffer
-- code cleanups
+I left it off because I didn't have HW to validate. Don't add a new
+binding for this. Set has_hibernation to true and make sure it
+works. Then send me a patch that sets has_hibernation to true whenever
+DWC3_GHWPARAMS1_EN_PWROPT_HIB is valid.
 
- drivers/spi/spi-mtk-nor.c | 98 ++++++++++++++++++++++++++++++---------
- 1 file changed, 76 insertions(+), 22 deletions(-)
+=2D-=20
+balbi
 
-diff --git a/drivers/spi/spi-mtk-nor.c b/drivers/spi/spi-mtk-nor.c
-index 35205635ed42..bde4c846ce65 100644
---- a/drivers/spi/spi-mtk-nor.c
-+++ b/drivers/spi/spi-mtk-nor.c
-@@ -14,6 +14,7 @@
- #include <linux/kernel.h>
- #include <linux/module.h>
- #include <linux/of_device.h>
-+#include <linux/pm_runtime.h>
- #include <linux/spi/spi.h>
- #include <linux/spi/spi-mem.h>
- #include <linux/string.h>
-@@ -592,22 +593,15 @@ static int mtk_nor_enable_clk(struct mtk_nor *sp)
- 	return 0;
- }
- 
--static int mtk_nor_init(struct mtk_nor *sp)
-+static void mtk_nor_init(struct mtk_nor *sp)
- {
--	int ret;
--
--	ret = mtk_nor_enable_clk(sp);
--	if (ret)
--		return ret;
--
--	sp->spi_freq = clk_get_rate(sp->spi_clk);
-+	writel(0, sp->base + MTK_NOR_REG_IRQ_EN);
-+	writel(MTK_NOR_IRQ_MASK, sp->base + MTK_NOR_REG_IRQ_STAT);
- 
- 	writel(MTK_NOR_ENABLE_SF_CMD, sp->base + MTK_NOR_REG_WP);
- 	mtk_nor_rmw(sp, MTK_NOR_REG_CFG2, MTK_NOR_WR_CUSTOM_OP_EN, 0);
- 	mtk_nor_rmw(sp, MTK_NOR_REG_CFG3,
- 		    MTK_NOR_DISABLE_WREN | MTK_NOR_DISABLE_SR_POLL, 0);
--
--	return ret;
- }
- 
- static irqreturn_t mtk_nor_irq_handler(int irq, void *data)
-@@ -690,6 +684,7 @@ static int mtk_nor_probe(struct platform_device *pdev)
- 	ctlr->num_chipselect = 1;
- 	ctlr->setup = mtk_nor_setup;
- 	ctlr->transfer_one_message = mtk_nor_transfer_one_message;
-+	ctlr->auto_runtime_pm = true;
- 
- 	dev_set_drvdata(&pdev->dev, ctlr);
- 
-@@ -712,12 +707,19 @@ static int mtk_nor_probe(struct platform_device *pdev)
- 		return -ENOMEM;
- 	}
- 
-+	ret = mtk_nor_enable_clk(sp);
-+	if (ret < 0)
-+		return ret;
-+
-+	sp->spi_freq = clk_get_rate(sp->spi_clk);
-+
-+	mtk_nor_init(sp);
-+
- 	irq = platform_get_irq_optional(pdev, 0);
-+
- 	if (irq < 0) {
- 		dev_warn(sp->dev, "IRQ not available.");
- 	} else {
--		writel(MTK_NOR_IRQ_MASK, base + MTK_NOR_REG_IRQ_STAT);
--		writel(0, base + MTK_NOR_REG_IRQ_EN);
- 		ret = devm_request_irq(sp->dev, irq, mtk_nor_irq_handler, 0,
- 				       pdev->name, sp);
- 		if (ret < 0) {
-@@ -728,34 +730,86 @@ static int mtk_nor_probe(struct platform_device *pdev)
- 		}
- 	}
- 
--	ret = mtk_nor_init(sp);
--	if (ret < 0) {
--		kfree(ctlr);
--		return ret;
--	}
-+	pm_runtime_set_autosuspend_delay(&pdev->dev, -1);
-+	pm_runtime_use_autosuspend(&pdev->dev);
-+	pm_runtime_set_active(&pdev->dev);
-+	pm_runtime_enable(&pdev->dev);
-+	pm_runtime_get_noresume(&pdev->dev);
-+
-+	ret = devm_spi_register_controller(&pdev->dev, ctlr);
-+	if (ret < 0)
-+		goto err_probe;
-+
-+	pm_runtime_mark_last_busy(&pdev->dev);
-+	pm_runtime_put_autosuspend(&pdev->dev);
- 
- 	dev_info(&pdev->dev, "spi frequency: %d Hz\n", sp->spi_freq);
- 
--	return devm_spi_register_controller(&pdev->dev, ctlr);
-+	return 0;
-+
-+err_probe:
-+	pm_runtime_disable(&pdev->dev);
-+	pm_runtime_set_suspended(&pdev->dev);
-+	pm_runtime_dont_use_autosuspend(&pdev->dev);
-+
-+	mtk_nor_disable_clk(sp);
-+
-+	return ret;
- }
- 
- static int mtk_nor_remove(struct platform_device *pdev)
- {
--	struct spi_controller *ctlr;
--	struct mtk_nor *sp;
-+	struct spi_controller *ctlr = dev_get_drvdata(&pdev->dev);
-+	struct mtk_nor *sp = spi_controller_get_devdata(ctlr);
- 
--	ctlr = dev_get_drvdata(&pdev->dev);
--	sp = spi_controller_get_devdata(ctlr);
-+	pm_runtime_disable(&pdev->dev);
-+	pm_runtime_set_suspended(&pdev->dev);
-+	pm_runtime_dont_use_autosuspend(&pdev->dev);
-+
-+	mtk_nor_disable_clk(sp);
-+
-+	return 0;
-+}
-+
-+static int __maybe_unused mtk_nor_runtime_suspend(struct device *dev)
-+{
-+	struct spi_controller *ctlr = dev_get_drvdata(dev);
-+	struct mtk_nor *sp = spi_controller_get_devdata(ctlr);
- 
- 	mtk_nor_disable_clk(sp);
- 
- 	return 0;
- }
- 
-+static int __maybe_unused mtk_nor_runtime_resume(struct device *dev)
-+{
-+	struct spi_controller *ctlr = dev_get_drvdata(dev);
-+	struct mtk_nor *sp = spi_controller_get_devdata(ctlr);
-+
-+	return mtk_nor_enable_clk(sp);
-+}
-+
-+static int __maybe_unused mtk_nor_suspend(struct device *dev)
-+{
-+	return pm_runtime_force_suspend(dev);
-+}
-+
-+static int __maybe_unused mtk_nor_resume(struct device *dev)
-+{
-+	return pm_runtime_force_resume(dev);
-+}
-+
-+static const struct dev_pm_ops mtk_nor_pm_ops = {
-+	SET_RUNTIME_PM_OPS(mtk_nor_runtime_suspend,
-+			   mtk_nor_runtime_resume, NULL)
-+	SET_SYSTEM_SLEEP_PM_OPS(mtk_nor_suspend, mtk_nor_resume)
-+};
-+
- static struct platform_driver mtk_nor_driver = {
- 	.driver = {
- 		.name = DRIVER_NAME,
- 		.of_match_table = mtk_nor_match,
-+		.pm = &mtk_nor_pm_ops,
- 	},
- 	.probe = mtk_nor_probe,
- 	.remove = mtk_nor_remove,
--- 
-2.28.0.681.g6f77f65b4e-goog
+--=-=-=
+Content-Type: application/pgp-signature; name="signature.asc"
 
+-----BEGIN PGP SIGNATURE-----
+
+iQJFBAEBCAAvFiEElLzh7wn96CXwjh2IzL64meEamQYFAl9tmD8RHGJhbGJpQGtl
+cm5lbC5vcmcACgkQzL64meEamQaeuA//chqZBfFbCdNea4PB44iidfAHUN7gLaIF
+jd7JF0Hpu21Os4CEOyQLe9PJLLbKmEvwaX5L0cxp3mlhHEWB/TBDZweoYjiKUqC5
+ywWFWBqeOzfSegfERqsECnKEvN23c57rkNh2DcGUcwv4dAmtUvp6MtVn2F6lW0i3
+k0qOfuml4CTrbVrle9VkFKkHSBbm+l+x3b6x/n3VmyfdxYpupwLTzjsvVimODGQP
+rQfSdIObIXVW+EEOJBmiVZGsaUZmZ3gfMNaHXEWGJqciRgjKqEURCRT+6RPt0UuQ
+tsBM40736nPsr1bZZjVKEF1RFIXHxxZEQBD2dho58e8/SRYeBLPchOrdK4m0wp2P
+ZVUqhpgoP+KdAGPsSE+Y+tdO9urF0/KFdHZyS0vv+1b53czMqsRdDppNFqgXtj3+
+wkfLCP0kJB6R5uUUHYprlSi/Kxob7r6jh1KFjxr9EwV8SAIjM2Sb4fvdUPGvKfw1
+0FAmla/DWWHwEuLpr/J7mHmjXH7Hq0XfNZTX9c3ESMuPgILNFYdV8xcrXD4T0GCZ
+K7wBx69JBPYD45TyP0/fBSXXM3zATByw8xo9tsT64bFCBLxE2ahmGBNBR1g699rf
+5Dh/PVVxPgZPxQFboiG8yiol0kWBSnlne8Y5LXkxMOCbhge4z+8384YEPpW65haK
+g2F1XB7n7v8=
+=/YVc
+-----END PGP SIGNATURE-----
+--=-=-=--
