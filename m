@@ -2,553 +2,243 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from vger.kernel.org (vger.kernel.org [23.128.96.18])
-	by mail.lfdr.de (Postfix) with ESMTP id 86371278739
-	for <lists+devicetree@lfdr.de>; Fri, 25 Sep 2020 14:29:06 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTP id 77110278761
+	for <lists+devicetree@lfdr.de>; Fri, 25 Sep 2020 14:39:14 +0200 (CEST)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S1728159AbgIYM2s (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Fri, 25 Sep 2020 08:28:48 -0400
-Received: from mail.kernel.org ([198.145.29.99]:42488 "EHLO mail.kernel.org"
+        id S1728431AbgIYMjN (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Fri, 25 Sep 2020 08:39:13 -0400
+Received: from foss.arm.com ([217.140.110.172]:44430 "EHLO foss.arm.com"
         rhost-flags-OK-OK-OK-OK) by vger.kernel.org with ESMTP
-        id S1726368AbgIYM2s (ORCPT <rfc822;devicetree@vger.kernel.org>);
-        Fri, 25 Sep 2020 08:28:48 -0400
-Received: from archlinux (cpc149474-cmbg20-2-0-cust94.5-4.cable.virginm.net [82.4.196.95])
-        (using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
-        (No client certificate requested)
-        by mail.kernel.org (Postfix) with ESMTPSA id 33ED721D7A;
-        Fri, 25 Sep 2020 12:28:44 +0000 (UTC)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=kernel.org;
-        s=default; t=1601036927;
-        bh=oAGOSMRMsQU8yJoQm1DZP2F8qfoZz3uwgR4UJ81S1UI=;
-        h=Date:From:To:Cc:Subject:In-Reply-To:References:From;
-        b=Y1oS3uluNIPh0wJdYOGx7Y2K/UPH/uoFuFKGe9MzXO0oOJ/i2Kx9Ko5cku91pKDbT
-         Zaz5EvHR+ewNrOL9+W9vUGQToQW8taKgUu88IXiEwoblGlD6d2KfLsI4rXa26V2oVH
-         uP2GCoWcyutLPqTVKGay1AyuOdqZkB98Fu7SgK78=
-Date:   Fri, 25 Sep 2020 13:28:40 +0100
-From:   Jonathan Cameron <jic23@kernel.org>
-To:     Gene Chen <gene.chen.richtek@gmail.com>
-Cc:     robh+dt@kernel.org, matthias.bgg@gmail.com, knaack.h@gmx.de,
-        lars@metafoo.de, pmeerw@pmeerw.net, devicetree@vger.kernel.org,
-        linux-iio@vger.kernel.org, linux-arm-kernel@lists.infradead.org,
-        linux-mediatek@lists.infradead.org, linux-kernel@vger.kernel.org,
-        gene_chen@richtek.com, Wilma.Wu@mediatek.com,
-        shufan_lee@richtek.com, cy_huang@richtek.com,
-        benjamin.chao@mediatek.com
-Subject: Re: [PATCH v5 3/3] iio: adc: mt6360: Add ADC driver for MT6360
-Message-ID: <20200925132840.513bf214@archlinux>
-In-Reply-To: <1600687442-23658-4-git-send-email-gene.chen.richtek@gmail.com>
-References: <1600687442-23658-1-git-send-email-gene.chen.richtek@gmail.com>
-        <1600687442-23658-4-git-send-email-gene.chen.richtek@gmail.com>
-X-Mailer: Claws Mail 3.17.6 (GTK+ 2.24.32; x86_64-pc-linux-gnu)
+        id S1726990AbgIYMjM (ORCPT <rfc822;devicetree@vger.kernel.org>);
+        Fri, 25 Sep 2020 08:39:12 -0400
+Received: from usa-sjc-imap-foss1.foss.arm.com (unknown [10.121.207.14])
+        by usa-sjc-mx-foss1.foss.arm.com (Postfix) with ESMTP id D5852101E;
+        Fri, 25 Sep 2020 05:39:10 -0700 (PDT)
+Received: from [10.57.48.76] (unknown [10.57.48.76])
+        by usa-sjc-imap-foss1.foss.arm.com (Postfix) with ESMTPSA id 2457F3F70D;
+        Fri, 25 Sep 2020 05:39:08 -0700 (PDT)
+Subject: Re: [PATCH v2 1/4] dt-bindings: reserved-memory: Document "active"
+ property
+To:     Dmitry Osipenko <digetx@gmail.com>,
+        Thierry Reding <thierry.reding@gmail.com>
+Cc:     Joerg Roedel <joro@8bytes.org>, Rob Herring <robh+dt@kernel.org>,
+        Frank Rowand <frowand.list@gmail.com>,
+        Will Deacon <will@kernel.org>,
+        iommu@lists.linux-foundation.org, devicetree@vger.kernel.org,
+        linux-kernel@vger.kernel.org,
+        "linux-tegra@vger.kernel.org" <linux-tegra@vger.kernel.org>
+References: <20200904130000.691933-1-thierry.reding@gmail.com>
+ <d3d69cb4-b0f9-40b0-b526-52fdc1a4b876@gmail.com>
+ <20200924140130.GA2527337@ulmo>
+ <ba16b795-34df-8f8c-3376-3d629cc30f8b@gmail.com>
+From:   Robin Murphy <robin.murphy@arm.com>
+Message-ID: <484b9e90-7395-6161-577c-4d3f3716997e@arm.com>
+Date:   Fri, 25 Sep 2020 13:39:07 +0100
+User-Agent: Mozilla/5.0 (Windows NT 10.0; rv:78.0) Gecko/20100101
+ Thunderbird/78.2.2
 MIME-Version: 1.0
-Content-Type: text/plain; charset=UTF-8
-Content-Transfer-Encoding: quoted-printable
+In-Reply-To: <ba16b795-34df-8f8c-3376-3d629cc30f8b@gmail.com>
+Content-Type: text/plain; charset=utf-8; format=flowed
+Content-Language: en-GB
+Content-Transfer-Encoding: 8bit
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-On Mon, 21 Sep 2020 19:24:02 +0800
-Gene Chen <gene.chen.richtek@gmail.com> wrote:
+On 2020-09-24 17:23, Dmitry Osipenko wrote:
+> 24.09.2020 17:01, Thierry Reding пишет:
+>> On Thu, Sep 24, 2020 at 04:23:59PM +0300, Dmitry Osipenko wrote:
+>>> 04.09.2020 15:59, Thierry Reding пишет:
+>>>> From: Thierry Reding <treding@nvidia.com>
+>>>>
+>>>> Reserved memory regions can be marked as "active" if hardware is
+>>>> expected to access the regions during boot and before the operating
+>>>> system can take control. One example where this is useful is for the
+>>>> operating system to infer whether the region needs to be identity-
+>>>> mapped through an IOMMU.
+>>>>
+>>>> Signed-off-by: Thierry Reding <treding@nvidia.com>
+>>>> ---
+>>>>   .../bindings/reserved-memory/reserved-memory.txt           | 7 +++++++
+>>>>   1 file changed, 7 insertions(+)
+>>>>
+>>>> diff --git a/Documentation/devicetree/bindings/reserved-memory/reserved-memory.txt b/Documentation/devicetree/bindings/reserved-memory/reserved-memory.txt
+>>>> index 4dd20de6977f..163d2927e4fc 100644
+>>>> --- a/Documentation/devicetree/bindings/reserved-memory/reserved-memory.txt
+>>>> +++ b/Documentation/devicetree/bindings/reserved-memory/reserved-memory.txt
+>>>> @@ -63,6 +63,13 @@ reusable (optional) - empty property
+>>>>         able to reclaim it back. Typically that means that the operating
+>>>>         system can use that region to store volatile or cached data that
+>>>>         can be otherwise regenerated or migrated elsewhere.
+>>>> +active (optional) - empty property
+>>>> +    - If this property is set for a reserved memory region, it indicates
+>>>> +      that some piece of hardware may be actively accessing this region.
+>>>> +      Should the operating system want to enable IOMMU protection for a
+>>>> +      device, all active memory regions must have been identity-mapped
+>>>> +      in order to ensure that non-quiescent hardware during boot can
+>>>> +      continue to access the memory.
+>>>>   
+>>>>   Linux implementation note:
+>>>>   - If a "linux,cma-default" property is present, then Linux will use the
+>>>>
+>>>
+>>> Hi,
+>>>
+>>> Could you please explain what devices need this quirk? I see that you're
+>>> targeting Tegra SMMU driver, which means that it should be some pre-T186
+>>> device.
+>>
+>> Primarily I'm looking at Tegra210 and later, because on earlier devices
+>> the bootloader doesn't consistently initialize display. I know that it
+>> does on some devices, but not all of them.
+> 
+> AFAIK, all tablet devices starting with Tegra20 that have display panel
+> are initializing display at a boot time for showing splash screen. This
+> includes all T20/T30/T114 tablets that are already supported by upstream
+> kernel.
+> 
+>> This same code should also
+>> work on Tegra186 and later (with an ARM SMMU) although the situation is
+>> slightly more complicated there because IOMMU translations will fault by
+>> default long before these identity mappings can be established.
+>>
+>>> Is this reservation needed for some device that has display
+>>> hardwired to a very specific IOMMU domain at the boot time?
+>>
+>> No, this is only used to convey information about the active framebuffer
+>> to the kernel. In practice the DMA/IOMMU code will use this information
+>> to establish a 1:1 mapping on whatever IOMMU domain that was picked for
+>> display.
+>>
+>>> If you're targeting devices that don't have IOMMU enabled by default at
+>>> the boot time, then this approach won't work for the existing devices
+>>> which won't ever get an updated bootloader.
+>>
+>> If the devices don't use an IOMMU, then there should be no problem. The
+>> extra reserved-memory nodes would still be necessary to ensure that the
+>> kernel doesn't reuse the framebuffer memory for the slab allocator, but
+>> if no IOMMU is used, then the display controller accessing the memory
+>> isn't going to cause problems other than perhaps scanning out data that
+>> is no longer a framebuffer.
+>>
+>> There should also be no problem for devices with an old bootloader
+>> because this code is triggered by the presence of a reserved-memory node
+>> referenced via the memory-region property. Devices with an old
+>> bootloader should continue to work as they did before. Although I
+>> suppose they would start faulting once we enable DMA/IOMMU integration
+>> for Tegra SMMU if they have a bootloader that does initialize display to
+>> actively scan out during boot.
+>>
+>>> I think Robin Murphy already suggested that we should simply create
+>>> a dummy "identity" IOMMU domain by default for the DRM/VDE devices and
+>>> then replace it with an explicitly created domain within the drivers.
+>>
+>> I don't recall reading about that suggestion. So does this mean that for
+>> certain devices we'd want to basically passthrough by default and then
+>> at some point during boot take over with a properly managed IOMMU
+>> domain?
+> 
+> Yes, my understanding that this is what Robin suggested here:
+> 
+> https://lore.kernel.org/linux-iommu/cb12808b-7316-19db-7413-b7f852a6f8ae@arm.com/
 
-> From: Gene Chen <gene_chen@richtek.com>
->=20
-> Add MT6360 ADC driver include Charger Current, Voltage, and
-> Temperature.
->=20
-> Signed-off-by: Gene Chen <gene_chen@richtek.com>
+Just to clarify, what I was talking about there is largely orthogonal to 
+the issue here. That was about systems with limited translation 
+resources letting translation be specifically opt-in by IOMMU-aware 
+drivers. It probably *would* happen to obviate the issue of disrupting 
+live DMA at boot time on these particular Tegra platforms, but we still 
+need something like Thierry's solution in general, since IOMMU drivers 
+may have no other way to determine whether devices are active at boot 
+and they have to take care to avoid breaking anything - e.g. SMMUv3 will 
+at a bare minimum need to set up *some* form of valid stream table entry 
+for the relevant device(s) right at the beginning where we first probe 
+and reset the SMMU itself, regardless of what happens with domains and 
+addresses later down the line.
 
-Hi Gene,
+>> The primary goal here is to move towards using the DMA API rather than
+>> the IOMMU API directly, so we don't really have the option of replacing
+>> with an explicitly created domain. Unless we have code in the DMA/IOMMU
+>> code that does this somehow.
+>>
+>> But I'm not sure what would be a good way to mark certain devices as
+>> needing an identity domain by default. Do we still use the reserved-
+>> memory node for that?
+> 
+> The reserved-memory indeed shouldn't be needed for resolving the
+> implicit IOMMU problem since we could mark certain devices within the
+> kernel IOMMU driver.
+> 
+> I haven't got around to trying to implement the implicit IOMMU support
+> yet, but I suppose we could implement the def_domain_type() hook in the
+> SMMU driver and then return IOMMU_DOMAIN_IDENTITY for the Display/VDE
+> devices. Then the Display/VDE drivers will take over the identity domain
+> and replace it with the explicit domain.
 
-A few things inline that need fixing or tidying up.
+FWIW I've already cooked up identity domain support for tegra-gart; I 
+was planning on tackling it for tegra-smmu as well for the next version 
+of my arm default domains series (which will be after the next -rc1 now 
+since I'm just about to take some long-overdue holiday).
 
-Looking good otherwise.
+>> That would still require some sort of flag to
+>> specify which reserved-memory regions would need this identity mapping
+>> because, as was pointed out in earlier review, some devices may have
+>> reserved-memory regions that are not meant to be identity mapped.
+> 
+> Please note that the reserved-memory approach also creates problem for
+> selection of a large CMA region if FB is located somewhere in a middle
+> of DRAM.
+> 
+> I already see that the FB's reserved-memory will break CMA for Nexus 7
+> and Acer A500 because CMA area overlaps with the bootloader's FB :)
+> 
+> Also keep in mind that initrd needs a location too and location usually
+> hardwired in a bootloader. Hence it increases pressure on the CMA selection.
+> 
+>>> Secondly, all NVIDIA bootloaders are passing tegra_fbmem=... via
+>>> kernel's cmdline with the physical location of the framebuffer in
+>>> memory. Maybe we could support this option?
+>>
+>> I'm not a big fan of that command-line option, but I also realize that
+>> for older bootloaders that's probably the only option we have. I don't
+>> suppose all of the devices support U-Boot?
+> 
+> Majority of devices in a wild don't use u-boot and they have a
+> locked-down bootloader. Still it's possible to chain-load u-boot or
+> bypass the "security" and replace the bootloader, but these approaches
+> aren't widely supported because they take a lot of effort to be
+> implemented and maintained.
+> 
+> Even those devices that use proper u-boot usually never updating it and
+> are running some ancient version. You can't ignore all those people :)
+> 
+>> Because ideally we'd just
+>> translate from tegra_fbmem=... to reserved-memory region there so that
+>> we don't have to carry backwards-compatibility code for these purely
+>> downstream bootloaders.
+> 
+> IIRC, in the past Robin Murphy was suggesting to read out hardware state
+> early during kernel boot in order to find what regions are in use by
+> hardware.
 
-Jonathan
-> ---
->  drivers/iio/adc/Kconfig      |  11 ++
->  drivers/iio/adc/Makefile     |   1 +
->  drivers/iio/adc/mt6360-adc.c | 363 +++++++++++++++++++++++++++++++++++++=
-++++++
->  3 files changed, 375 insertions(+)
->  create mode 100644 drivers/iio/adc/mt6360-adc.c
->=20
-> diff --git a/drivers/iio/adc/Kconfig b/drivers/iio/adc/Kconfig
-> index d94dc80..a135ada 100644
-> --- a/drivers/iio/adc/Kconfig
-> +++ b/drivers/iio/adc/Kconfig
-> @@ -703,6 +703,17 @@ config MCP3911
->  	  This driver can also be built as a module. If so, the module will be
->  	  called mcp3911.
-> =20
-> +config MEDIATEK_MT6360_ADC
-> +	tristate "Mediatek MT6360 ADC driver"
-> +	depends on MFD_MT6360
-> +	select IIO_BUFFER
-> +	select IIO_TRIGGERED_BUFFER
-> +	help
-> +	  Say Y here to enable MT6360 ADC support.
-> +	  Integrated for System Monitoring includes
-> +	  is used in smartphones and tablets and supports a 11 channel
-> +	  general purpose ADC.
-> +
->  config MEDIATEK_MT6577_AUXADC
->  	tristate "MediaTek AUXADC driver"
->  	depends on ARCH_MEDIATEK || COMPILE_TEST
-> diff --git a/drivers/iio/adc/Makefile b/drivers/iio/adc/Makefile
-> index 90f94ad..5fca90a 100644
-> --- a/drivers/iio/adc/Makefile
-> +++ b/drivers/iio/adc/Makefile
-> @@ -65,6 +65,7 @@ obj-$(CONFIG_MAX9611) +=3D max9611.o
->  obj-$(CONFIG_MCP320X) +=3D mcp320x.o
->  obj-$(CONFIG_MCP3422) +=3D mcp3422.o
->  obj-$(CONFIG_MCP3911) +=3D mcp3911.o
-> +obj-$(CONFIG_MEDIATEK_MT6360_ADC) +=3D mt6360-adc.o
->  obj-$(CONFIG_MEDIATEK_MT6577_AUXADC) +=3D mt6577_auxadc.o
->  obj-$(CONFIG_MEN_Z188_ADC) +=3D men_z188_adc.o
->  obj-$(CONFIG_MESON_SARADC) +=3D meson_saradc.o
-> diff --git a/drivers/iio/adc/mt6360-adc.c b/drivers/iio/adc/mt6360-adc.c
-> new file mode 100644
-> index 0000000..a1a01e5
-> --- /dev/null
-> +++ b/drivers/iio/adc/mt6360-adc.c
-> @@ -0,0 +1,363 @@
-> +// SPDX-License-Identifier: GPL-2.0
-> +
-> +#include <linux/delay.h>
-> +#include <linux/irq.h>
-> +#include <linux/kernel.h>
-> +#include <linux/ktime.h>
-> +#include <linux/module.h>
-> +#include <linux/mutex.h>
-> +#include <linux/platform_device.h>
-> +#include <linux/regmap.h>
-> +
-> +#include <linux/iio/buffer.h>
-> +#include <linux/iio/iio.h>
-> +#include <linux/iio/trigger_consumer.h>
-> +#include <linux/iio/triggered_buffer.h>
-> +
-> +#define MT6360_REG_PMUCHGCTRL3	0x313
-> +#define MT6360_REG_PMUADCCFG	0x356
-> +#define MT6360_REG_PMUADCIDLET	0x358
-> +#define MT6360_REG_PMUADCRPT1	0x35A
-> +
-> +/* PMUCHGCTRL3 0x313 */
-> +#define MT6360_AICR_MASK	GENMASK(7, 2)
-> +#define MT6360_AICR_SHFT	2
-> +#define MT6360_AICR_400MA	0x6
-> +/* PMUADCCFG 0x356 */
-> +#define MT6360_ADCEN_MASK	0x8000
-> +/* PMUADCRPT1 0x35A */
-> +#define MT6360_PREFERCH_MASK	GENMASK(7, 4)
-> +#define MT6360_PREFERCH_SHFT	4
-> +#define MT6360_RPTCH_MASK	GENMASK(3, 0)
-> +#define MT6360_NO_PREFER	15
-> +
-> +/* Time in ms */
-> +#define ADC_WAIT_TIME_MS	25
-> +
-> +enum {
-> +	MT6360_CHAN_USBID =3D 0,
-> +	MT6360_CHAN_VBUSDIV5,
-> +	MT6360_CHAN_VBUSDIV2,
-> +	MT6360_CHAN_VSYS,
-> +	MT6360_CHAN_VBAT,
-> +	MT6360_CHAN_IBUS,
-> +	MT6360_CHAN_IBAT,
-> +	MT6360_CHAN_CHG_VDDP,
-> +	MT6360_CHAN_TEMP_JC,
-> +	MT6360_CHAN_VREF_TS,
-> +	MT6360_CHAN_TS,
-> +	MT6360_CHAN_MAX
-> +};
-> +
-> +struct mt6360_adc_data {
-> +	struct device *dev;
-> +	struct regmap *regmap;
-> +	/* Due to only one set of ADC control, this lock is used to prevent the=
- race condition */
-> +	struct mutex adc_lock;
-> +	ktime_t last_off_timestamps[MT6360_CHAN_MAX];
-> +};
-> +
-> +static int mt6360_adc_read_channel(struct mt6360_adc_data *mad, int chan=
-nel, int *val)
-> +{
-> +	__be16 adc_enable;
-> +	u8 rpt[3];
-> +	ktime_t start_t, predict_end_t;
-> +	unsigned int pre_wait_time;
-> +	int ret;
-> +
-> +	mutex_lock(&mad->adc_lock);
-> +
-> +	/* Select the preferred ADC channel */
-> +	ret =3D regmap_update_bits(mad->regmap, MT6360_REG_PMUADCRPT1, MT6360_P=
-REFERCH_MASK,
-> +				 channel << MT6360_PREFERCH_SHFT);
-> +	if (ret)
-> +		goto out_adc_lock;
-> +
-> +	adc_enable =3D cpu_to_be16(MT6360_ADCEN_MASK | BIT(channel));
-> +	ret =3D regmap_raw_write(mad->regmap, MT6360_REG_PMUADCCFG, &adc_enable=
-, sizeof(adc_enable));
-> +	if (ret)
-> +		goto out_adc_lock;
-> +
-> +	start_t =3D ktime_get();
-> +	predict_end_t =3D ktime_add_ms(mad->last_off_timestamps[channel], 2 * A=
-DC_WAIT_TIME_MS);
-> +
-> +	if (ktime_after(start_t, predict_end_t))
-> +		pre_wait_time =3D ADC_WAIT_TIME_MS;
-> +	else
-> +		pre_wait_time =3D 3 * ADC_WAIT_TIME_MS;
-> +
-> +	msleep(pre_wait_time);
-> +
-> +	while (true) {
-> +		ret =3D regmap_raw_read(mad->regmap, MT6360_REG_PMUADCRPT1, rpt, sizeo=
-f(rpt));
-> +		if (ret)
-> +			goto out_adc_conv;
-> +
-> +		/*
-> +		 * There are two functions, ZCV and TypeC OTP, running ADC VBAT and TS=
- in
-> +		 * background, and ADC samples are taken on a fixed frequency no matte=
-r read the
-> +		 * previous one or not.
-> +		 * To avoid conflict, We set minimum time threshold after enable ADC a=
-nd
-> +		 * check report channel is the same.
-> +		 * The worst case is run the same ADC twice and background function is=
- also running,
-> +		 * ADC conversion sequence is desire channel before start ADC, backgro=
-und ADC,
-> +		 * desire channel after start ADC.
-> +		 * So the minimum correct data is three times of typical conversion ti=
-me.
-> +		 */
-> +		if ((rpt[0] & MT6360_RPTCH_MASK) =3D=3D channel)
-> +			break;
-> +
-> +		msleep(ADC_WAIT_TIME_MS);
-> +	}
-> +
-> +	/* rpt[1]: ADC_HI_BYTE, rpt[2]: ADC_LOW_BYTE */
-> +	*val =3D rpt[1] << 8 | rpt[2];
-> +	ret =3D IIO_VAL_INT;
-> +
-> +out_adc_conv:
-> +	/* Only keep ADC enable */
-> +	adc_enable =3D cpu_to_be16(MT6360_ADCEN_MASK);
-> +	regmap_raw_write(mad->regmap, MT6360_REG_PMUADCCFG, &adc_enable, sizeof=
-(adc_enable));
-> +	mad->last_off_timestamps[channel] =3D ktime_get();
-> +	/* Config prefer channel to NO_PREFER */
-> +	regmap_update_bits(mad->regmap, MT6360_REG_PMUADCRPT1, MT6360_PREFERCH_=
-MASK,
-> +			   MT6360_NO_PREFER << MT6360_PREFERCH_SHFT);
-> +out_adc_lock:
-> +	mutex_unlock(&mad->adc_lock);
-> +
-> +	return ret;
-> +}
-> +
-> +static int mt6360_adc_read_scale(struct mt6360_adc_data *mad, int channe=
-l, int *val, int *val2)
-> +{
-> +	unsigned int regval;
-> +	int ret;
-> +
-> +	switch (channel) {
-> +	case MT6360_CHAN_USBID:
-> +	case MT6360_CHAN_VSYS:
-> +	case MT6360_CHAN_VBAT:
-> +	case MT6360_CHAN_CHG_VDDP:
-> +	case MT6360_CHAN_VREF_TS:
-> +	case MT6360_CHAN_TS:
-> +		*val =3D 1250;
-> +		return IIO_VAL_INT;
-> +	case MT6360_CHAN_VBUSDIV5:
-> +		*val =3D 6250;
-> +		return IIO_VAL_INT;
-> +	case MT6360_CHAN_VBUSDIV2:
-> +	case MT6360_CHAN_IBUS:
-> +	case MT6360_CHAN_IBAT:
-> +		*val =3D 2500;
-> +
-> +		if (channel =3D=3D MT6360_CHAN_IBUS) {
-> +			/* IBUS will be affected by input current limit for the different Ron=
- */
-> +			/* Check whether the config is <400mA or not */
-> +			ret =3D regmap_read(mad->regmap, MT6360_REG_PMUCHGCTRL3, &regval);
-> +			if (ret)
-> +				return ret;
-> +
-> +			regval =3D (regval & MT6360_AICR_MASK) >> MT6360_AICR_SHFT;
-> +			if (regval < MT6360_AICR_400MA)
-> +				*val =3D 1900;
-> +		}
-> +
-> +		return IIO_VAL_INT;
-> +	case MT6360_CHAN_TEMP_JC:
-> +		*val =3D 105;
-> +		*val2 =3D 100;
-> +		return IIO_VAL_FRACTIONAL;
-> +	}
-> +
-> +	return -EINVAL;
-> +}
-> +
-> +static int mt6360_adc_read_offset(struct mt6360_adc_data *mad, int chann=
-el, int *val)
-> +{
-> +	*val =3D (channel =3D=3D MT6360_CHAN_TEMP_JC) ? -80 : 0;
-> +	return IIO_VAL_INT;
-> +
-> +}
-> +
-> +static int mt6360_adc_read_raw(struct iio_dev *iio_dev, const struct iio=
-_chan_spec *chan,
-> +			       int *val, int *val2, long mask)
-> +{
-> +	struct mt6360_adc_data *mad =3D iio_priv(iio_dev);
-> +
-> +	switch (mask) {
-> +	case IIO_CHAN_INFO_RAW:
-> +		return mt6360_adc_read_channel(mad, chan->channel, val);
-> +	case IIO_CHAN_INFO_SCALE:
-> +		return mt6360_adc_read_scale(mad, chan->channel, val, val2);
-> +	case IIO_CHAN_INFO_OFFSET:
-> +		return mt6360_adc_read_offset(mad, chan->channel, val);
-> +	}
-> +
-> +	return -EINVAL;
-> +}
-> +
-> +static const char *mt6360_channel_labels[MT6360_CHAN_MAX] =3D {
-> +	"usbid", "vbusdiv5", "vbusdiv2", "vsys", "vbat", "ibus", "ibat", "chg_v=
-ddp", "temp_jc",
-> +	"vref_ts", "ts"
-> +};
-> +
-> +static int mt6360_adc_read_label(struct iio_dev *iio_dev, const struct i=
-io_chan_spec *chan,
-> +				 char *label)
-> +{
-> +	return snprintf(label, PAGE_SIZE, "%s\n", mt6360_channel_labels[chan->c=
-hannel]);
-> +}
+I doubt I suggested that in general, because I've always firmly believed 
+it to be a terrible idea. I've debugged too many cases where firmware or 
+kexec has inadvertently left DMA running and corrupted kernel memory, so 
+in general we definitely *don't* want to blindly trust random hardware 
+state. Anything I may have said in relation to Qualcomm's fundamentally 
+broken hypervisor/bootloader setup should not be considered outside that 
+specific context ;)
 
-Very nice.  The patch series adding this callback will hopefully be finaliz=
-ed
-shortly.
+Robin.
 
-> +
-> +static const struct iio_info mt6360_adc_iio_info =3D {
-> +	.read_raw =3D mt6360_adc_read_raw,
-> +	.read_label =3D mt6360_adc_read_label,
-> +};
-> +
-> +#define MT6360_ADC_CHAN(_idx, _type) {				\
-> +	.type =3D _type,						\
-> +	.channel =3D MT6360_CHAN_##_idx,				\
-> +	.scan_index =3D MT6360_CHAN_##_idx,			\
-> +	.datasheet_name =3D #_idx,				\
-> +	.scan_type =3D  {						\
-> +		.sign =3D 'u',					\
-> +		.realbits =3D 16,					\
-> +		.storagebits =3D 16,				\
-> +		.endianness =3D IIO_CPU,				\
-> +	},							\
-> +	.indexed =3D 1,						\
-> +	.info_mask_separate =3D BIT(IIO_CHAN_INFO_RAW) |		\
-> +				BIT(IIO_CHAN_INFO_SCALE) |	\
-> +				BIT(IIO_CHAN_INFO_OFFSET),	\
-> +}
-> +
-> +static const struct iio_chan_spec mt6360_adc_channels[] =3D {
-> +	MT6360_ADC_CHAN(USBID, IIO_VOLTAGE),
-> +	MT6360_ADC_CHAN(VBUSDIV5, IIO_VOLTAGE),
-> +	MT6360_ADC_CHAN(VBUSDIV2, IIO_VOLTAGE),
-> +	MT6360_ADC_CHAN(VSYS, IIO_VOLTAGE),
-> +	MT6360_ADC_CHAN(VBAT, IIO_VOLTAGE),
-> +	MT6360_ADC_CHAN(IBUS, IIO_CURRENT),
-> +	MT6360_ADC_CHAN(IBAT, IIO_CURRENT),
-> +	MT6360_ADC_CHAN(CHG_VDDP, IIO_VOLTAGE),
-> +	MT6360_ADC_CHAN(TEMP_JC, IIO_TEMP),
-> +	MT6360_ADC_CHAN(VREF_TS, IIO_VOLTAGE),
-> +	MT6360_ADC_CHAN(TS, IIO_VOLTAGE),
-> +	IIO_CHAN_SOFT_TIMESTAMP(MT6360_CHAN_MAX),
-> +};
-> +
-> +static irqreturn_t mt6360_adc_trigger_handler(int irq, void *p)
-> +{
-> +	struct iio_poll_func *pf =3D p;
-> +	struct iio_dev *indio_dev =3D pf->indio_dev;
-> +	struct mt6360_adc_data *mad =3D iio_priv(indio_dev);
-> +	struct {
-> +		u16 values[MT6360_CHAN_MAX];
-> +		int64_t timestamp;
-> +	} data __aligned(8) =3D {0};
-
-I don't think that is sufficient to force the gap to be set to 0.
-The c99 spec says in 6.7.8.21
-"If there are fewer initializers in a brace-enclosed list than there are el=
-ements or members
-of an aggregate, or fewer characters in a string literal used to initialize=
- an array of known
-size than there are elements in the array, the remainder of the aggregate s=
-hall be
-initialized implicitly the same as objects that have static storage duratio=
-n."
-
-The static case is covered by 6.7.8.10
-"If an object that has automatic storage duration is not initialized explic=
-itly, its value is
-indeterminate. If an object that has static storage duration is not initial=
-ized explicitly,
-then:
-=E2=80=94 if it has pointer type, it is initialized to a null pointer;
-=E2=80=94 if it has arithmetic type, it is initialized to (positive or unsi=
-gned) zero;
-=E2=80=94 if it is an aggregate, every member is initialized (recursively) =
-according to these rules;
-=E2=80=94 if it isaunion, the first named member is initialized (recursivel=
-y) according to these
-  rules
-"
-Structure is an aggregate,s every member is initialized.  Unfortunately tha=
-t doesn't
-have any impact on gaps.  So it 'might' zero it, but there are no guarantee=
-s.
-
-As such, I think you need to use memset which will just fill the memory wit=
-h zeros
-without caring about the structure.
-Or cheeky route is to add elements to fill the gap and just call them pad[]=
- or similar.
-
-
-> +	int i =3D 0, bit, val, ret;
-> +
-> +
-> +	for_each_set_bit(bit, indio_dev->active_scan_mask, indio_dev->masklengt=
-h) {
-> +		ret =3D mt6360_adc_read_channel(mad, bit, &val);
-> +		if (ret < 0) {
-> +			dev_warn(&indio_dev->dev, "Failed to get channel %d conversion val\n"=
-, bit);
-> +			goto out;
-> +		}
-> +
-> +		data.values[i++] =3D val;
-> +	}
-> +	iio_push_to_buffers_with_timestamp(indio_dev, &data, iio_get_time_ns(in=
-dio_dev));
-> +out:
-> +	iio_trigger_notify_done(indio_dev->trig);
-> +
-> +	return IRQ_HANDLED;
-> +}
-> +
-> +static inline int mt6360_adc_reset(struct mt6360_adc_data *info)
-> +{
-> +	__be16 adc_enable;
-> +	ktime_t all_off_time;
-> +	int i, ret;
-> +
-> +	/* Clear ADC idle wait time to 0 */
-> +	ret =3D regmap_write(info->regmap, MT6360_REG_PMUADCIDLET, 0);
-> +	if (ret)
-> +		return ret;
-> +
-> +	/* Only keep ADC enable, but keep all channels off */
-> +	adc_enable =3D cpu_to_be16(MT6360_ADCEN_MASK);
-> +	ret =3D regmap_raw_write(info->regmap, MT6360_REG_PMUADCCFG, (void *)&a=
-dc_enable,
-Why are we casting to a void *? That shouldn't be necessary. Am I missing s=
-omething?
-
-> +			       sizeof(__be16));
-
-Slight preference for sizeof(adc_enable) as then I don't have to sanity che=
-ckit
-is the right type whilst reviewing.
-
-> +	if (ret)
-> +		return ret;
-> +
-> +	/* Reset all channel off time to the current one */
-> +	all_off_time =3D ktime_get();
-> +	for (i =3D 0; i < MT6360_CHAN_MAX; i++)
-> +		info->last_off_timestamps[i] =3D all_off_time;
-> +
-> +	return 0;
-> +}
-> +
-> +static int mt6360_adc_probe(struct platform_device *pdev)
-> +{
-> +	struct mt6360_adc_data *mad;
-> +	struct regmap *regmap;
-> +	struct iio_dev *indio_dev;
-> +	int ret;
-> +
-> +	regmap =3D dev_get_regmap(pdev->dev.parent, NULL);
-> +	if (!regmap) {
-> +		dev_err(&pdev->dev, "Failed to get parent regmap\n");
-> +		return -ENODEV;
-> +	}
-> +
-> +	indio_dev =3D devm_iio_device_alloc(&pdev->dev, sizeof(*mad));
-> +	if (!indio_dev)
-> +		return -ENOMEM;
-> +
-> +	mad =3D iio_priv(indio_dev);
-> +	mad->dev =3D &pdev->dev;
-> +	mad->regmap =3D regmap;
-> +	mutex_init(&mad->adc_lock);
-> +
-> +	ret =3D mt6360_adc_reset(mad);
-> +	if (ret < 0) {
-> +		dev_err(&pdev->dev, "Failed to reset adc\n");
-> +		return ret;
-> +	}
-> +
-> +	indio_dev->name =3D dev_name(&pdev->dev);
-> +	indio_dev->dev.parent =3D &pdev->dev;
-> +	indio_dev->info =3D &mt6360_adc_iio_info;
-> +	indio_dev->modes =3D INDIO_DIRECT_MODE;
-> +	indio_dev->channels =3D mt6360_adc_channels;
-> +	indio_dev->num_channels =3D ARRAY_SIZE(mt6360_adc_channels);
-> +
-> +	ret =3D devm_iio_triggered_buffer_setup(&pdev->dev, indio_dev, NULL,
-> +					      mt6360_adc_trigger_handler, NULL);
-> +	if (ret) {
-> +		dev_err(&pdev->dev, "Failed to allocate iio trigger buffer\n");
-> +		return ret;
-> +	}
-> +
-> +	return devm_iio_device_register(&pdev->dev, indio_dev);
-> +}
-> +
-> +static const struct of_device_id __maybe_unused mt6360_adc_of_id[] =3D {
-> +	{ .compatible =3D "mediatek,mt6360-adc", },
-> +	{}
-> +};
-> +MODULE_DEVICE_TABLE(of, mt6360_adc_of_id);
-> +
-> +static struct platform_driver mt6360_adc_driver =3D {
-> +	.driver =3D {
-> +		.name =3D "mt6360-adc",
-> +		.of_match_table =3D mt6360_adc_of_id,
-> +	},
-> +	.probe =3D mt6360_adc_probe,
-> +};
-> +module_platform_driver(mt6360_adc_driver);
-> +
-> +MODULE_AUTHOR("Gene Chen <gene_chen@richtek.com>");
-> +MODULE_DESCRIPTION("MT6360 ADC Driver");
-> +MODULE_LICENSE("GPL v2");
-
+> I think it should be easy to do for the display controller since we
+> could check clock and PD states in order to decide whether DC's IO could
+> be accessed and then read out the FB pointer and size. I guess it should
+> take about hundred lines of code.
+> 
+> But the easiest way should be to ignore this trouble for devices that
+> have IOMMU disabled by default and simply allow display to show garbage.
+> Nobody ever complained about this for the past 7+ years :)
+> 
+> Hence implementing the dummy-identity domain support should be enough
+> for solving the problem, at least this should work for pre-T186 devices.
+> 
