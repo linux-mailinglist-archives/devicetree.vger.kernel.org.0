@@ -2,206 +2,60 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from vger.kernel.org (vger.kernel.org [23.128.96.18])
-	by mail.lfdr.de (Postfix) with ESMTP id F01B9279BF2
-	for <lists+devicetree@lfdr.de>; Sat, 26 Sep 2020 20:49:25 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTP id D8E06279C12
+	for <lists+devicetree@lfdr.de>; Sat, 26 Sep 2020 21:15:22 +0200 (CEST)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S1730085AbgIZStZ (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Sat, 26 Sep 2020 14:49:25 -0400
-Received: from asavdk4.altibox.net ([109.247.116.15]:46574 "EHLO
-        asavdk4.altibox.net" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S1726183AbgIZStY (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Sat, 26 Sep 2020 14:49:24 -0400
-Received: from ravnborg.org (unknown [188.228.123.71])
-        (using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
-        (No client certificate requested)
-        by asavdk4.altibox.net (Postfix) with ESMTPS id 0AC068067F;
-        Sat, 26 Sep 2020 20:49:20 +0200 (CEST)
-Date:   Sat, 26 Sep 2020 20:49:19 +0200
-From:   Sam Ravnborg <sam@ravnborg.org>
-To:     Alexandru Gagniuc <mr.nuke.me@gmail.com>
-Cc:     dri-devel@lists.freedesktop.org, devicetree@vger.kernel.org,
-        Jernej Skrabec <jernej.skrabec@siol.net>,
-        Mauro Carvalho Chehab <mchehab+huawei@kernel.org>,
-        Neil Armstrong <narmstrong@baylibre.com>,
-        David Airlie <airlied@linux.ie>,
-        Mark Brown <broonie@kernel.org>,
-        Jonas Karlman <jonas@kwiboo.se>, linux-kernel@vger.kernel.org,
-        Andrzej Hajda <a.hajda@samsung.com>,
-        Rob Herring <robh+dt@kernel.org>,
-        Thomas Bogendoerfer <tsbogend@alpha.franken.de>,
-        Laurent Pinchart <Laurent.pinchart@ideasonboard.com>
-Subject: Re: [PATCH 1/2] drm/bridge: sii902x: Enable I/O and core VCC
- supplies if present
-Message-ID: <20200926184919.GB98875@ravnborg.org>
-References: <20200924200507.1175888-1-mr.nuke.me@gmail.com>
+        id S1730031AbgIZTPV (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Sat, 26 Sep 2020 15:15:21 -0400
+Received: from rere.qmqm.pl ([91.227.64.183]:51312 "EHLO rere.qmqm.pl"
+        rhost-flags-OK-OK-OK-OK) by vger.kernel.org with ESMTP
+        id S1729106AbgIZTPU (ORCPT <rfc822;devicetree@vger.kernel.org>);
+        Sat, 26 Sep 2020 15:15:20 -0400
+Received: from remote.user (localhost [127.0.0.1])
+        by rere.qmqm.pl (Postfix) with ESMTPSA id 4BzJC210pSz18;
+        Sat, 26 Sep 2020 21:05:34 +0200 (CEST)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=rere.qmqm.pl; s=1;
+        t=1601147134; bh=i6GErGfH+UT41Llr031HN9MqOM80pBRiCXb/wqO7iKQ=;
+        h=Date:From:Subject:To:Cc:From;
+        b=VR3M8UdVC8FaxGAgq6IGf3dm6ilJIQwnWMSnpKo9en2np1zKJm654igWbl2Y/bYHX
+         QmBTH8H3feCEGAtG+H+z3HILrqeSfO1UgS7ya915CpoK8iri5YiMXYv+O4JaP2M5sa
+         jKKlsRehr1jxOOFz6/53Yy7OP1Mcte9m3yamq6rLPjRtPSW1ptbjkXeiQ8qENYbmlj
+         7RYVlf9VzVgvkXR0k4W4XMXGHDn82BtRBN1+DCiAdTiZ3zEQi1dlXfYt5o2uZ9EGuO
+         5E7gH4uqwc/04X3cehjnt4knoL6qMaVEZQWcN5z3vcH42nifgsClGI1iX/dgmJOqNK
+         iGZinkS/lKFbw==
+X-Virus-Status: Clean
+X-Virus-Scanned: clamav-milter 0.102.4 at mail
+Date:   Sat, 26 Sep 2020 21:05:31 +0200
+Message-Id: <cover.1601146802.git.mirq-linux@rere.qmqm.pl>
+From:   =?UTF-8?q?Micha=C5=82=20Miros=C5=82aw?= <mirq-linux@rere.qmqm.pl>
+Subject: [PATCH v4 0/2] power: bq25890: IBAT compensation support
 MIME-Version: 1.0
-Content-Type: text/plain; charset=us-ascii
-Content-Disposition: inline
-In-Reply-To: <20200924200507.1175888-1-mr.nuke.me@gmail.com>
-X-CMAE-Score: 0
-X-CMAE-Analysis: v=2.3 cv=A5ZCwZeG c=1 sm=1 tr=0
-        a=S6zTFyMACwkrwXSdXUNehg==:117 a=S6zTFyMACwkrwXSdXUNehg==:17
-        a=kj9zAlcOel0A:10 a=pGLkceISAAAA:8 a=e5mUnYsNAAAA:8
-        a=YsLWCyS0S5thGiuXXI8A:9 a=CjuIK1q_8ugA:10 a=Vxmtnl_E_bksehYqCbjh:22
+Content-Type: text/plain; charset=UTF-8
+Content-Transfer-Encoding: 8bit
+To:     Angus Ainslie <angus@akkea.ca>, Rob Herring <robh+dt@kernel.org>,
+        Sebastian Reichel <sre@kernel.org>,
+        Yauhen Kharuzhy <jekhor@gmail.com>
+Cc:     devicetree@vger.kernel.org, linux-kernel@vger.kernel.org,
+        linux-pm@vger.kernel.org
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-Hi Alexandru
+These two patches add support for IBAT compensation feature of bq2589x
+chargers.
 
-On Thu, Sep 24, 2020 at 03:05:05PM -0500, Alexandru Gagniuc wrote:
-> On the SII9022, the IOVCC and CVCC12 supplies must reach the correct
-> voltage before the reset sequence is initiated. On most boards, this
-> assumption is true at boot-up, so initialization succeeds.
-> 
-> However, when we try to initialize the chip with incorrect supply
-> voltages, it will not respond to I2C requests. sii902x_probe() fails
-> with -ENXIO.
-> 
-> To resolve this, look for the "iovcc" and "cvcc12" regulators, and
-> make sure they are enabled before starting the reset sequence. If
-> these supplies are not available in devicetree, then they will default
-> to dummy-regulator. In that case everything will work like before.
-> 
-> This was observed on a STM32MP157C-DK2 booting in u-boot falcon mode.
-> On this board, the supplies would be set by the second stage
-> bootloader, which does not run in falcon mode.
-> 
-> Signed-off-by: Alexandru Gagniuc <mr.nuke.me@gmail.com>
+---
+v4 fixed property names for the features and dropped other applied or rejected
+   patches
 
-One nitpick here. The binding should be present in the tree before
-you start using it. So this patch should be applied after the binding.
+Michał Mirosław (2):
+  power: bq25890: document IBAT compensation DT properties
+  power: bq25890: support IBAT compensation
 
-One detail below - I think others have already commented on the rest.
+ .../devicetree/bindings/power/supply/bq25890.txt  |  4 ++++
+ drivers/power/supply/bq25890_charger.c            | 15 +++++++++++++--
+ 2 files changed, 17 insertions(+), 2 deletions(-)
 
-	Sam
-> ---
->  drivers/gpu/drm/bridge/sii902x.c | 54 ++++++++++++++++++++++++++++----
->  1 file changed, 48 insertions(+), 6 deletions(-)
-> 
-> diff --git a/drivers/gpu/drm/bridge/sii902x.c b/drivers/gpu/drm/bridge/sii902x.c
-> index 33fd33f953ec..a5558d83e4c5 100644
-> --- a/drivers/gpu/drm/bridge/sii902x.c
-> +++ b/drivers/gpu/drm/bridge/sii902x.c
-> @@ -17,6 +17,7 @@
->  #include <linux/i2c.h>
->  #include <linux/module.h>
->  #include <linux/regmap.h>
-> +#include <linux/regulator/consumer.h>
->  #include <linux/clk.h>
->  
->  #include <drm/drm_atomic_helper.h>
-> @@ -168,6 +169,8 @@ struct sii902x {
->  	struct drm_connector connector;
->  	struct gpio_desc *reset_gpio;
->  	struct i2c_mux_core *i2cmux;
-> +	struct regulator *iovcc;
-> +	struct regulator *cvcc12;
->  	/*
->  	 * Mutex protects audio and video functions from interfering
->  	 * each other, by keeping their i2c command sequences atomic.
-> @@ -954,13 +957,13 @@ static const struct drm_bridge_timings default_sii902x_timings = {
->  		 | DRM_BUS_FLAG_DE_HIGH,
->  };
->  
-> +static int sii902x_init(struct sii902x *sii902x);
-> +
->  static int sii902x_probe(struct i2c_client *client,
->  			 const struct i2c_device_id *id)
->  {
->  	struct device *dev = &client->dev;
-> -	unsigned int status = 0;
->  	struct sii902x *sii902x;
-> -	u8 chipid[4];
->  	int ret;
->  
->  	ret = i2c_check_functionality(client->adapter,
-> @@ -989,6 +992,43 @@ static int sii902x_probe(struct i2c_client *client,
->  
->  	mutex_init(&sii902x->mutex);
->  
-> +	sii902x->iovcc = devm_regulator_get(dev, "iovcc");
-> +	if (IS_ERR(sii902x->iovcc))
-> +		return PTR_ERR(sii902x->iovcc);
-Consider using dev_err_probe() here.
+-- 
+2.20.1
 
-> +
-> +	sii902x->cvcc12 = devm_regulator_get(dev, "cvcc12");
-> +	if (IS_ERR(sii902x->cvcc12))
-> +		return PTR_ERR(sii902x->cvcc12);
-Consider using dev_err_probe() here.
-> +
-> +	ret = regulator_enable(sii902x->iovcc);
-> +	if (ret < 0) {
-> +		dev_err(dev, "Failed to enable iovcc supply: %d\n", ret);
-> +		return ret;
-> +	}
-> +
-> +	ret = regulator_enable(sii902x->cvcc12);
-> +	if (ret < 0) {
-> +		dev_err(dev, "Failed to enable cvcc12 supply: %d\n", ret);
-> +		regulator_disable(sii902x->iovcc);
-> +		return PTR_ERR(sii902x->cvcc12);
-> +	}
-> +
-> +	ret = sii902x_init(sii902x);
-> +	if (ret < 0) {
-> +		regulator_disable(sii902x->cvcc12);
-> +		regulator_disable(sii902x->iovcc);
-> +	}
-> +
-> +	return ret;
-> +}
-> +
-> +static int sii902x_init(struct sii902x *sii902x)
-> +{
-> +	struct device *dev = &sii902x->i2c->dev;
-> +	unsigned int status = 0;
-> +	u8 chipid[4];
-> +	int ret;
-> +
->  	sii902x_reset(sii902x);
->  
->  	ret = regmap_write(sii902x->regmap, SII902X_REG_TPI_RQB, 0x0);
-> @@ -1012,11 +1052,11 @@ static int sii902x_probe(struct i2c_client *client,
->  	regmap_read(sii902x->regmap, SII902X_INT_STATUS, &status);
->  	regmap_write(sii902x->regmap, SII902X_INT_STATUS, status);
->  
-> -	if (client->irq > 0) {
-> +	if (sii902x->i2c->irq > 0) {
->  		regmap_write(sii902x->regmap, SII902X_INT_ENABLE,
->  			     SII902X_HOTPLUG_EVENT);
->  
-> -		ret = devm_request_threaded_irq(dev, client->irq, NULL,
-> +		ret = devm_request_threaded_irq(dev, sii902x->i2c->irq, NULL,
->  						sii902x_interrupt,
->  						IRQF_ONESHOT, dev_name(dev),
->  						sii902x);
-> @@ -1031,9 +1071,9 @@ static int sii902x_probe(struct i2c_client *client,
->  
->  	sii902x_audio_codec_init(sii902x, dev);
->  
-> -	i2c_set_clientdata(client, sii902x);
-> +	i2c_set_clientdata(sii902x->i2c, sii902x);
->  
-> -	sii902x->i2cmux = i2c_mux_alloc(client->adapter, dev,
-> +	sii902x->i2cmux = i2c_mux_alloc(sii902x->i2c->adapter, dev,
->  					1, 0, I2C_MUX_GATE,
->  					sii902x_i2c_bypass_select,
->  					sii902x_i2c_bypass_deselect);
-> @@ -1051,6 +1091,8 @@ static int sii902x_remove(struct i2c_client *client)
->  
->  	i2c_mux_del_adapters(sii902x->i2cmux);
->  	drm_bridge_remove(&sii902x->bridge);
-> +	regulator_disable(sii902x->cvcc12);
-> +	regulator_disable(sii902x->iovcc);
->  
->  	return 0;
->  }
-> -- 
-> 2.25.4
-> 
-> _______________________________________________
-> dri-devel mailing list
-> dri-devel@lists.freedesktop.org
-> https://lists.freedesktop.org/mailman/listinfo/dri-devel
