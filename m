@@ -2,79 +2,97 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from vger.kernel.org (vger.kernel.org [23.128.96.18])
-	by mail.lfdr.de (Postfix) with ESMTP id AB63D279B7A
-	for <lists+devicetree@lfdr.de>; Sat, 26 Sep 2020 19:36:30 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTP id 8194D279BEB
+	for <lists+devicetree@lfdr.de>; Sat, 26 Sep 2020 20:42:21 +0200 (CEST)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S1729418AbgIZRgT (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Sat, 26 Sep 2020 13:36:19 -0400
-Received: from mslow2.mail.gandi.net ([217.70.178.242]:36666 "EHLO
-        mslow2.mail.gandi.net" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S1726244AbgIZRgT (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Sat, 26 Sep 2020 13:36:19 -0400
-Received: from relay11.mail.gandi.net (unknown [217.70.178.231])
-        by mslow2.mail.gandi.net (Postfix) with ESMTP id 6B26B3A2296;
-        Sat, 26 Sep 2020 17:36:17 +0000 (UTC)
-Received: from pc.localdomain (unknown [195.189.32.242])
-        (Authenticated sender: contact@artur-rojek.eu)
-        by relay11.mail.gandi.net (Postfix) with ESMTPSA id C1A97100007;
-        Sat, 26 Sep 2020 17:35:54 +0000 (UTC)
-From:   Artur Rojek <contact@artur-rojek.eu>
-To:     Sebastian Reichel <sre@kernel.org>,
-        Rob Herring <robh+dt@kernel.org>
-Cc:     Paul Cercueil <paul@crapouillou.net>, linux-pm@vger.kernel.org,
-        devicetree@vger.kernel.org, linux-kernel@vger.kernel.org,
-        Artur Rojek <contact@artur-rojek.eu>,
-        Rob Herring <robh@kernel.org>
-Subject: [PATCH v3 2/2] dt-bindings: power: ingenic,battery: add new compatibles
-Date:   Sat, 26 Sep 2020 19:35:29 +0200
-Message-Id: <20200926173529.25238-2-contact@artur-rojek.eu>
-X-Mailer: git-send-email 2.28.0
-In-Reply-To: <20200926173529.25238-1-contact@artur-rojek.eu>
-References: <20200926173529.25238-1-contact@artur-rojek.eu>
+        id S1730132AbgIZSmU (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Sat, 26 Sep 2020 14:42:20 -0400
+Received: from asavdk4.altibox.net ([109.247.116.15]:46024 "EHLO
+        asavdk4.altibox.net" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
+        with ESMTP id S1726309AbgIZSmU (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Sat, 26 Sep 2020 14:42:20 -0400
+Received: from ravnborg.org (unknown [188.228.123.71])
+        (using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
+        (No client certificate requested)
+        by asavdk4.altibox.net (Postfix) with ESMTPS id 36874806AC;
+        Sat, 26 Sep 2020 20:42:15 +0200 (CEST)
+Date:   Sat, 26 Sep 2020 20:42:13 +0200
+From:   Sam Ravnborg <sam@ravnborg.org>
+To:     Alexandru Gagniuc <mr.nuke.me@gmail.com>
+Cc:     dri-devel@lists.freedesktop.org, devicetree@vger.kernel.org,
+        Jernej Skrabec <jernej.skrabec@siol.net>,
+        Thomas Bogendoerfer <tsbogend@alpha.franken.de>,
+        Neil Armstrong <narmstrong@baylibre.com>,
+        David Airlie <airlied@linux.ie>,
+        Mark Brown <broonie@kernel.org>,
+        Jonas Karlman <jonas@kwiboo.se>, linux-kernel@vger.kernel.org,
+        Andrzej Hajda <a.hajda@samsung.com>,
+        Rob Herring <robh+dt@kernel.org>,
+        Mauro Carvalho Chehab <mchehab+huawei@kernel.org>,
+        Laurent Pinchart <Laurent.pinchart@ideasonboard.com>
+Subject: Re: [PATCH 2/2] dt-bindings: display: sii902x: Add supply bindings
+Message-ID: <20200926184213.GA98875@ravnborg.org>
+References: <20200924200507.1175888-1-mr.nuke.me@gmail.com>
+ <20200924200507.1175888-2-mr.nuke.me@gmail.com>
 MIME-Version: 1.0
-Content-Transfer-Encoding: 8bit
+Content-Type: text/plain; charset=us-ascii
+Content-Disposition: inline
+In-Reply-To: <20200924200507.1175888-2-mr.nuke.me@gmail.com>
+X-CMAE-Score: 0
+X-CMAE-Analysis: v=2.3 cv=A5ZCwZeG c=1 sm=1 tr=0
+        a=S6zTFyMACwkrwXSdXUNehg==:117 a=S6zTFyMACwkrwXSdXUNehg==:17
+        a=kj9zAlcOel0A:10 a=pGLkceISAAAA:8 a=e5mUnYsNAAAA:8
+        a=2LU-NbLpax7TFHrha1gA:9 a=CjuIK1q_8ugA:10 a=Vxmtnl_E_bksehYqCbjh:22
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-This binding can support Ingenic JZ4725B and JZ4770 SoCs, as they are
-compatible with Ingenic JZ4740 battery.
+Hi Alexandru
 
-Introduce the following compatible property combinations:
- compatible = "ingenic,jz4725b-battery", "ingenic,jz4740-battery",
- compatible = "ingenic,jz4770-battery", "ingenic,jz4740-battery"
+On Thu, Sep 24, 2020 at 03:05:06PM -0500, Alexandru Gagniuc wrote:
+> The sii902x chip family requires IO and core voltages to reach the
+> correct voltage before chip initialization. Add binding for describing
+> the two supplies.
+> 
+> Signed-off-by: Alexandru Gagniuc <mr.nuke.me@gmail.com>
 
-Signed-off-by: Artur Rojek <contact@artur-rojek.eu>
-Reviewed-by: Rob Herring <robh@kernel.org>
----
+It is not mandatory but encouraged to convert a binding to DT schema
+format before updating it. This is in order to reach a point
+in time where all bindings are in DT Schema format thus
+allowing much better verification of the DT files.
 
-Changes:
-    v2: new patch
-    
-    v3: no change
+	Sam
 
- .../devicetree/bindings/power/supply/ingenic,battery.yaml | 8 +++++++-
- 1 file changed, 7 insertions(+), 1 deletion(-)
-
-diff --git a/Documentation/devicetree/bindings/power/supply/ingenic,battery.yaml b/Documentation/devicetree/bindings/power/supply/ingenic,battery.yaml
-index 658ef92a5b82..683fa79ba2f3 100644
---- a/Documentation/devicetree/bindings/power/supply/ingenic,battery.yaml
-+++ b/Documentation/devicetree/bindings/power/supply/ingenic,battery.yaml
-@@ -12,7 +12,13 @@ maintainers:
- 
- properties:
-   compatible:
--    const: ingenic,jz4740-battery
-+    oneOf:
-+      - const: ingenic,jz4740-battery
-+      - items:
-+        - enum:
-+          - ingenic,jz4725b-battery
-+          - ingenic,jz4770-battery
-+        - const: ingenic,jz4740-battery
- 
-   io-channels:
-     maxItems: 1
--- 
-2.28.0
-
+> ---
+>  Documentation/devicetree/bindings/display/bridge/sii902x.txt | 4 ++++
+>  1 file changed, 4 insertions(+)
+> 
+> diff --git a/Documentation/devicetree/bindings/display/bridge/sii902x.txt b/Documentation/devicetree/bindings/display/bridge/sii902x.txt
+> index 0d1db3f9da84..02c21b584741 100644
+> --- a/Documentation/devicetree/bindings/display/bridge/sii902x.txt
+> +++ b/Documentation/devicetree/bindings/display/bridge/sii902x.txt
+> @@ -8,6 +8,8 @@ Optional properties:
+>  	- interrupts: describe the interrupt line used to inform the host
+>  	  about hotplug events.
+>  	- reset-gpios: OF device-tree gpio specification for RST_N pin.
+> +	- iovcc-supply: I/O Supply Voltage (1.8V or 3.3V)
+> +	- cvcc12-supply: Digital Core Supply Voltage (1.2V)
+>  
+>  	HDMI audio properties:
+>  	- #sound-dai-cells: <0> or <1>. <0> if only i2s or spdif pin
+> @@ -54,6 +56,8 @@ Example:
+>  		compatible = "sil,sii9022";
+>  		reg = <0x39>;
+>  		reset-gpios = <&pioA 1 0>;
+> +		iovcc-supply = <&v3v3_hdmi>;
+> +		cvcc12-supply = <&v1v2_hdmi>;
+>  
+>  		#sound-dai-cells = <0>;
+>  		sil,i2s-data-lanes = < 0 1 2 >;
+> -- 
+> 2.25.4
+> 
+> _______________________________________________
+> dri-devel mailing list
+> dri-devel@lists.freedesktop.org
+> https://lists.freedesktop.org/mailman/listinfo/dri-devel
