@@ -2,133 +2,112 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from vger.kernel.org (vger.kernel.org [23.128.96.18])
-	by mail.lfdr.de (Postfix) with ESMTP id 69961279946
-	for <lists+devicetree@lfdr.de>; Sat, 26 Sep 2020 15:00:15 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTP id 8C98627995D
+	for <lists+devicetree@lfdr.de>; Sat, 26 Sep 2020 15:00:47 +0200 (CEST)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S1728680AbgIZNAJ (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Sat, 26 Sep 2020 09:00:09 -0400
-Received: from lindbergh.monkeyblade.net ([23.128.96.19]:36414 "EHLO
+        id S1729264AbgIZNAO (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Sat, 26 Sep 2020 09:00:14 -0400
+Received: from lindbergh.monkeyblade.net ([23.128.96.19]:36420 "EHLO
         lindbergh.monkeyblade.net" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S1726309AbgIZNAJ (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Sat, 26 Sep 2020 09:00:09 -0400
+        with ESMTP id S1726239AbgIZNAK (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Sat, 26 Sep 2020 09:00:10 -0400
 Received: from mail-wr1-x442.google.com (mail-wr1-x442.google.com [IPv6:2a00:1450:4864:20::442])
-        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 9D09DC0613D4
-        for <devicetree@vger.kernel.org>; Sat, 26 Sep 2020 06:00:08 -0700 (PDT)
-Received: by mail-wr1-x442.google.com with SMTP id s12so6832910wrw.11
-        for <devicetree@vger.kernel.org>; Sat, 26 Sep 2020 06:00:08 -0700 (PDT)
+        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id CF6E8C0613CE;
+        Sat, 26 Sep 2020 06:00:09 -0700 (PDT)
+Received: by mail-wr1-x442.google.com with SMTP id z4so6893360wrr.4;
+        Sat, 26 Sep 2020 06:00:09 -0700 (PDT)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=chromium.org; s=google;
-        h=date:from:to:cc:subject:message-id:references:mime-version
-         :content-disposition:in-reply-to;
-        bh=4qdU5lafYi+hcVoRAvstZheKhqCYZ5Ckd1gUvUE1rzc=;
-        b=a8tHbMaqB+v22Lv/kLM3g3AksGk0fdsVfKBnfPt4UWgrcsqPBoVo4ZT1FsDE/lmAi9
-         3jlQWknciPpbAcVrBeSwTGb1NbaKP3b/uqTYcjGSC7r1XEc85wfqNnuoTZUSOK4mer2b
-         JzaniKOXgUp4A1mHhPumcaGqDJqTgyG77h7l0=
+        d=gmail.com; s=20161025;
+        h=from:to:cc:subject:date:message-id:mime-version
+         :content-transfer-encoding;
+        bh=PAcoT4e7//N0L9a2DDThzgnZpyqBXzsg7G0B+Oty6tc=;
+        b=YEFZLk3cJa28x/a0LzCSWhYC+2UQHeOq5V07AWVziptgbTzNHTFXbNJujyKUitFRQw
+         tMUnEn6ro0Z5D7Vl1PBzFlrs34BSqmhXVpdh1AgXNV4WYlXjXtHE3lDeovrqhMF9J9sx
+         sUn83NtWSG56E4dG41BaWRujxLWSG2vYCpnVzi/axvbCaA8SqGMiZDgL2FZCEQFaRq6t
+         guKkcbrJC0Fryy3ifKpb5TZjW/TaP4Irb3HAhiZXqVXxX8KYdM3ZSVR2qTRBygRW1UcS
+         qMxGwADOtTHsIDZCIB9vkk16glPQmPJSa1iMbQEaXr7faabgHDwHrBqu/gBN61GVFJ1P
+         O9jQ==
 X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
         d=1e100.net; s=20161025;
-        h=x-gm-message-state:date:from:to:cc:subject:message-id:references
-         :mime-version:content-disposition:in-reply-to;
-        bh=4qdU5lafYi+hcVoRAvstZheKhqCYZ5Ckd1gUvUE1rzc=;
-        b=ns2I4Ld6xnX7GtUffOZnkgaPOETpL9JSJ71So55gwp6lTF4IL5xGwwk+RD04S68+gq
-         ssph6hgKdt9mUsyZtNH6KlL1ph4zotBXUe2PFTBqcJaHWiPKYTIei+A4xEalY9x5PkVH
-         H3bJlB3e5GOelRAtfVdw+WBGlkoh1pySME23ZeDouStcTLDnNbZGXanYts1dhyowqpA5
-         +2Pbc3c2qBBQOJbp15hsa5FCFlwZ5Z0c44j4SzmkhoB3yxtgXFcbnbWE7iuEAWpItcsU
-         sT4kXBxXWg5k7hJXVzwUNH2Yu97xqWzQzCs7wALstPnhFvHoPt1OEYJfeJKwEGiidhgR
-         zABQ==
-X-Gm-Message-State: AOAM530AFaA57ZOurpR2oPkTZisW4IhFJ6P7ne1MF7A4QhZmvagHiSA/
-        /e294CBR3d6+9EuQ15cHTtkedg==
-X-Google-Smtp-Source: ABdhPJwnQFrsiZDsceVMa/OZGRYeitM4Z0qYBnUmfRNKn4bmhYo6FC4ZmxJTPdc3V0yS8KdYKve8gg==
-X-Received: by 2002:adf:f802:: with SMTP id s2mr9115823wrp.328.1601125207121;
-        Sat, 26 Sep 2020 06:00:07 -0700 (PDT)
-Received: from chromium.org (216.131.76.34.bc.googleusercontent.com. [34.76.131.216])
-        by smtp.gmail.com with ESMTPSA id e1sm6740101wrp.49.2020.09.26.06.00.06
+        h=x-gm-message-state:from:to:cc:subject:date:message-id:mime-version
+         :content-transfer-encoding;
+        bh=PAcoT4e7//N0L9a2DDThzgnZpyqBXzsg7G0B+Oty6tc=;
+        b=Te1/yuyhUMBY3q64/eCP+6ocPOW0VBuSWJDl7lFrslQflBhfOhz8M6hAPdHmisKXRt
+         B2stc32LOf2xFbAubZ5soHMrn1QQUZMvSiNuOAVYvwqD17Wg1UDzbUXerz31PZg536Z8
+         44RaFcJvtogyHVNUTIOIXzkTfHwGjje3ssymfObGCwzpUuq/8QFYlWr/GsnKA3zH2e+A
+         WPTy2qGXgGBy2tibYRISLB7A6TNGt9dlblL6b7DGAqq/ogMJkR0oxWcokBNg2ERhhzAz
+         bhIz/+gsbBFYfIZwiK/qls0vy1D7wf88s3wa/86PoVrD3mas5CPNAGugMZLnovUAWrzo
+         KmDA==
+X-Gm-Message-State: AOAM5314yHrhM1rhssBNQIo1W2n3E59k8shyR79AfoJxULRQyqZQ6FsC
+        KTECUuRbsyPxY5u1Vz5HEQI=
+X-Google-Smtp-Source: ABdhPJxOT7l7/Elc5zO2CHh/l9y3x4rzuvfL4itTCERHNUCo2rwzkXL7LybRxm2uIWBRmBxy51M64A==
+X-Received: by 2002:a5d:4388:: with SMTP id i8mr9349083wrq.365.1601125208258;
+        Sat, 26 Sep 2020 06:00:08 -0700 (PDT)
+Received: from IcarusMOD.eternityproject.eu ([2.237.20.237])
+        by smtp.gmail.com with ESMTPSA id b11sm6462896wrt.38.2020.09.26.06.00.06
         (version=TLS1_3 cipher=TLS_AES_256_GCM_SHA384 bits=256/256);
-        Sat, 26 Sep 2020 06:00:06 -0700 (PDT)
-Date:   Sat, 26 Sep 2020 13:00:05 +0000
-From:   Tomasz Figa <tfiga@chromium.org>
-To:     Helen Koike <helen.koike@collabora.com>
-Cc:     devicetree@vger.kernel.org, linux-media@vger.kernel.org,
-        linux-rockchip@lists.infradead.org, linux-kernel@vger.kernel.org,
-        devel@driverdev.osuosl.org, robh+dt@kernel.org, heiko@sntech.de,
-        hverkuil-cisco@xs4all.nl, kernel@collabora.com,
-        dafna.hirschfeld@collabora.com, ezequiel@collabora.com,
-        mark.rutland@arm.com, karthik.poduval@gmail.com, jbx6244@gmail.com,
-        eddie.cai.linux@gmail.com, zhengsq@rock-chips.com,
-        robin.murphy@arm.com
-Subject: Re: [PATCH v5 8/9] arm64: dts: rockchip: add isp0 node for rk3399
-Message-ID: <20200926130005.GC3781977@chromium.org>
-References: <20200722155533.252844-1-helen.koike@collabora.com>
- <20200722155533.252844-9-helen.koike@collabora.com>
+        Sat, 26 Sep 2020 06:00:07 -0700 (PDT)
+From:   kholk11@gmail.com
+To:     will@kernel.org
+Cc:     robin.murphy@arm.com, joro@8bytes.org, bjorn.andersson@linaro.org,
+        linux-arm-kernel@lists.infradead.org, devicetree@vger.kernel.org,
+        kholk11@gmail.com, marijns95@gmail.com, konradybcio@gmail.com,
+        martin.botka1@gmail.com, linux-arm-msm@vger.kernel.org,
+        phone-devel@vger.kernel.org, linux-kernel@vger.kernel.org
+Subject: [PATCH 0/8] Implement firmware quirks for Qualcomm ARM-SMMUv2
+Date:   Sat, 26 Sep 2020 14:59:56 +0200
+Message-Id: <20200926130004.13528-1-kholk11@gmail.com>
+X-Mailer: git-send-email 2.28.0
 MIME-Version: 1.0
-Content-Type: text/plain; charset=us-ascii
-Content-Disposition: inline
-In-Reply-To: <20200722155533.252844-9-helen.koike@collabora.com>
+Content-Transfer-Encoding: 8bit
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-Hi Helen,
+From: AngeloGioacchino Del Regno <kholk11@gmail.com>
 
-On Wed, Jul 22, 2020 at 12:55:32PM -0300, Helen Koike wrote:
-> From: Shunqian Zheng <zhengsq@rock-chips.com>
-> 
-> RK3399 has two ISPs, but only isp0 was tested.
-> Add isp0 node in rk3399 dtsi
-> 
-> Verified with:
-> make ARCH=arm64 dtbs_check DT_SCHEMA_FILES=Documentation/devicetree/bindings/media/rockchip-isp1.yaml
-> 
-> Signed-off-by: Shunqian Zheng <zhengsq@rock-chips.com>
-> Signed-off-by: Jacob Chen <jacob2.chen@rock-chips.com>
-> Signed-off-by: Helen Koike <helen.koike@collabora.com>
-> 
-> ---
-> 
-> V4:
-> - update clock names
-> 
-> V3:
-> - clean up clocks
-> 
-> V2:
-> - re-order power-domains property
-> 
-> V1:
-> This patch was originally part of this patchset:
-> 
->     https://patchwork.kernel.org/patch/10267431/
-> 
-> The only difference is:
-> - add phy properties
-> - add ports
-> ---
->  arch/arm64/boot/dts/rockchip/rk3399.dtsi | 25 ++++++++++++++++++++++++
->  1 file changed, 25 insertions(+)
-> 
-> diff --git a/arch/arm64/boot/dts/rockchip/rk3399.dtsi b/arch/arm64/boot/dts/rockchip/rk3399.dtsi
-> index dba9641947a3a..ed8ba75dbbce8 100644
-> --- a/arch/arm64/boot/dts/rockchip/rk3399.dtsi
-> +++ b/arch/arm64/boot/dts/rockchip/rk3399.dtsi
-> @@ -1721,6 +1721,31 @@ vopb_mmu: iommu@ff903f00 {
->  		status = "disabled";
->  	};
->  
-> +	isp0: isp0@ff910000 {
-> +		compatible = "rockchip,rk3399-cif-isp";
-> +		reg = <0x0 0xff910000 0x0 0x4000>;
-> +		interrupts = <GIC_SPI 43 IRQ_TYPE_LEVEL_HIGH 0>;
-> +		clocks = <&cru SCLK_ISP0>,
-> +			 <&cru ACLK_ISP0_WRAPPER>,
-> +			 <&cru HCLK_ISP0_WRAPPER>;
-> +		clock-names = "isp", "aclk", "hclk";
-> +		iommus = <&isp0_mmu>;
-> +		phys = <&mipi_dphy_rx0>;
-> +		phy-names = "dphy";
-> +		power-domains = <&power RK3399_PD_ISP0>;
+In this patch series, I'm implementing some quirks for firmware issues
+happening on various Qualcomm SoCs, including SDM630, SDM636, SDM660,
+their SDA variants and, most probably, other MSM/APQs.
 
-Should this have status = "disabled" too? The mipi_dphy_rx0 node is
-disabled by default too, so in the default configuration the driver
-would always fail to probe.
+In the specific case of the 630/660 family of SoCs, failing to apply
+all of these quirks means complete havoc when enabling the IOMMUs,
+as the firmware that is running on (almost?) all of the commercial
+boards (smartphones) is set to give us a "nice" hypervisor fault,
+resulting in either a system hang or a reboot.
 
-Best regards,
-Tomasz
+The actual implementation of these quirks in downstream kernels is
+done through reading some DT property and varying code paths, while
+here it's done through the implementation details for ARM-SMMU instead.
+
+In short, the quirks that are proposed in this patch series are the
+ones relative to the following downstream properties:
+ - qcom,use-3-lvl-tables (39-bit VA size)
+ - qcom,skip-init        (avoid stream mapping reset for secure CBs)
+ - qcom,no-smr-check     (manually set correct streamid/smr masks)
+
+This patch series has been tested on the following devices:
+ - Sony Xperia XA2 Ultra (SDM630 Nile Discovery)
+ - Sony Xperia 10        (SDM630 Ganges Kirin)
+ - Sony Xperia 10 Plus   (SDM636 Ganges Mermaid)
+
+AngeloGioacchino Del Regno (8):
+  iommu/arm-smmu-qcom: Rename qcom_smmu_impl to qcom_smmu500_impl
+  iommu/arm-smmu-qcom: Add QC SMMUv2 VA Size quirk for SDM660
+  dt-bindings: arm-smmu: add binding for SMMUv2 on Qualcomm SDM660
+  iommu/arm-smmu: Support test_smr_masks implementation detail deviation
+  iommu/arm-smmu-qcom: Add test_smr_masks detail to QCOM SMMUv2
+  iommu/arm-smmu: Move stream mapping reset to separate function
+  iommu/arm-smmu: Support stream_mapping_reset implementation detail
+  iommu/arm-smmu-qcom: Add stream_mapping_reset detail to QCOM SMMUv2
+
+ .../devicetree/bindings/iommu/arm,smmu.yaml   |  1 +
+ drivers/iommu/arm/arm-smmu/arm-smmu-impl.c    |  3 +-
+ drivers/iommu/arm/arm-smmu/arm-smmu-qcom.c    | 59 ++++++++++++++++++-
+ drivers/iommu/arm/arm-smmu/arm-smmu.c         | 28 +++++++--
+ drivers/iommu/arm/arm-smmu/arm-smmu.h         |  2 +
+ 5 files changed, 85 insertions(+), 8 deletions(-)
+
+-- 
+2.28.0
+
