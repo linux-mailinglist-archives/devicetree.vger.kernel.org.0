@@ -2,188 +2,70 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from vger.kernel.org (vger.kernel.org [23.128.96.18])
-	by mail.lfdr.de (Postfix) with ESMTP id 22D77279555
-	for <lists+devicetree@lfdr.de>; Sat, 26 Sep 2020 02:05:23 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTP id EA43C27955E
+	for <lists+devicetree@lfdr.de>; Sat, 26 Sep 2020 02:07:27 +0200 (CEST)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S1729570AbgIZAFO (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Fri, 25 Sep 2020 20:05:14 -0400
-Received: from lindbergh.monkeyblade.net ([23.128.96.19]:58784 "EHLO
-        lindbergh.monkeyblade.net" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S1729516AbgIZAFO (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Fri, 25 Sep 2020 20:05:14 -0400
-Received: from mail-ot1-x344.google.com (mail-ot1-x344.google.com [IPv6:2607:f8b0:4864:20::344])
-        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 5019CC0613D4
-        for <devicetree@vger.kernel.org>; Fri, 25 Sep 2020 17:05:14 -0700 (PDT)
-Received: by mail-ot1-x344.google.com with SMTP id q21so3953833ota.8
-        for <devicetree@vger.kernel.org>; Fri, 25 Sep 2020 17:05:14 -0700 (PDT)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=linaro.org; s=google;
-        h=date:from:to:cc:subject:message-id:references:mime-version
-         :content-disposition:in-reply-to;
-        bh=7/y3L9VN/lSk2/yPUqjWQt/iBis6Y2WvD6aC+aqQ45k=;
-        b=wA/fSUbCe7cC28vTLS/YT0tT76JDS+7fxa3cGEfRScdzizM7/d4lQ3G5tDwq+j6tRr
-         f5NKLkUjfVDSdnhoUZmcx8NdhLxwkjkvQhuABf7iRnPqEGlQH9hynBsQNLi25WLXaCuY
-         /rbGD6cjXl93vWRGQA871YKIp7Bb7P56tOOV7vpfvIxU+WeLVp5CzbsaUZEjn6jUWQLl
-         tBbG/ZZLXGAW2hpmGTBKUgBZwan0THbmz06m+HhLdBHqCthxfN+EEVWknR7xrRuqrfPq
-         5HdvFmKneiLFEdQ2JEkOvXVlGupA3b/GMjrPdu4BrpI6cfDnx5XLs2mZXcCznuC2UVdw
-         Y7ow==
-X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=1e100.net; s=20161025;
-        h=x-gm-message-state:date:from:to:cc:subject:message-id:references
-         :mime-version:content-disposition:in-reply-to;
-        bh=7/y3L9VN/lSk2/yPUqjWQt/iBis6Y2WvD6aC+aqQ45k=;
-        b=gooTt2SS16QfO76z+MwhANZ36POAmkE6mVLH6vbssX1mAycdA7VxoQ1dWJ/ZeSo35z
-         mCfsYWjGvMq5P6B0enGfmK+13tzLChxwU68Befne0KSm0zG+Jro0JcHhbBC+bb/WSi2F
-         n1SNGCMa+JqkQAu6hCnMSQwUPKAAlzEabeIZfHFAKmq5gXa5N7VzYajDRJsUZRjxm9ZS
-         1c9VFhw8p3NW9tic9hbbYnr4jb4M9eJ4xyWdXBmVJnoLjZzFJsoFPrbiPjFz8If17rZS
-         xwnAEmo1Pk03VojkvHg3zrMNeBQ/4msnBpEkiL4dR9AZ+SSIvh4NHpvVGbU0AoRXiaC5
-         MeyA==
-X-Gm-Message-State: AOAM5301dSiksj4iYGkipwJeYEYl/KId4tap2tC7oTnfvViEUnzzKs4f
-        lDks/bPy11YUH7jUdAEjT8+WBQ==
-X-Google-Smtp-Source: ABdhPJyxRPMklUI0IGQBC65+pPVzl0orUnkXc+fxoQ3qhoC120rZYlU136YEqY+6sBrtpVDVgjtRkg==
-X-Received: by 2002:a9d:7d89:: with SMTP id j9mr1926888otn.205.1601078713572;
-        Fri, 25 Sep 2020 17:05:13 -0700 (PDT)
-Received: from builder.lan (99-135-181-32.lightspeed.austtx.sbcglobal.net. [99.135.181.32])
-        by smtp.gmail.com with ESMTPSA id m25sm1030777otl.71.2020.09.25.17.05.12
-        (version=TLS1_3 cipher=TLS_AES_256_GCM_SHA384 bits=256/256);
-        Fri, 25 Sep 2020 17:05:12 -0700 (PDT)
-Date:   Fri, 25 Sep 2020 17:00:39 -0700
-From:   Bjorn Andersson <bjorn.andersson@linaro.org>
-To:     Amit Pundir <amit.pundir@linaro.org>
-Cc:     Kalle Valo <kvalo@codeaurora.org>,
-        David S Miller <davem@davemloft.net>,
-        Jakub Kicinski <kuba@kernel.org>,
+        id S1729448AbgIZAH0 (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Fri, 25 Sep 2020 20:07:26 -0400
+Received: from mail.v3.sk ([167.172.186.51]:38456 "EHLO shell.v3.sk"
+        rhost-flags-OK-OK-OK-FAIL) by vger.kernel.org with ESMTP
+        id S1726119AbgIZAH0 (ORCPT <rfc822;devicetree@vger.kernel.org>);
+        Fri, 25 Sep 2020 20:07:26 -0400
+Received: from localhost (localhost.localdomain [127.0.0.1])
+        by zimbra.v3.sk (Postfix) with ESMTP id 7BD27DFAA7;
+        Sat, 26 Sep 2020 00:05:48 +0000 (UTC)
+Received: from shell.v3.sk ([127.0.0.1])
+        by localhost (zimbra.v3.sk [127.0.0.1]) (amavisd-new, port 10032)
+        with ESMTP id LqQVOdPoNVsV; Sat, 26 Sep 2020 00:05:48 +0000 (UTC)
+Received: from localhost (localhost.localdomain [127.0.0.1])
+        by zimbra.v3.sk (Postfix) with ESMTP id E2033DFA9E;
+        Sat, 26 Sep 2020 00:05:47 +0000 (UTC)
+X-Virus-Scanned: amavisd-new at zimbra.v3.sk
+Received: from shell.v3.sk ([127.0.0.1])
+        by localhost (zimbra.v3.sk [127.0.0.1]) (amavisd-new, port 10026)
+        with ESMTP id BcYztc59Bi2f; Sat, 26 Sep 2020 00:05:47 +0000 (UTC)
+Received: from localhost (unknown [109.183.109.54])
+        by zimbra.v3.sk (Postfix) with ESMTPSA id EB362DFA3C;
+        Sat, 26 Sep 2020 00:05:46 +0000 (UTC)
+From:   Lubomir Rintel <lkundrak@v3.sk>
+To:     Andrzej Hajda <a.hajda@samsung.com>
+Cc:     Daniel Vetter <daniel@ffwll.ch>, David Airlie <airlied@linux.ie>,
         Rob Herring <robh+dt@kernel.org>,
-        Jeffrey Hugo <jeffrey.l.hugo@gmail.com>,
-        John Stultz <john.stultz@linaro.org>,
-        Sumit Semwal <sumit.semwal@linaro.org>,
-        Konrad Dybcio <konradybcio@gmail.com>,
-        ath10k@lists.infradead.org, devicetree@vger.kernel.org,
-        linux-wireless@vger.kernel.org, netdev@vger.kernel.org,
-        lkml <linux-kernel@vger.kernel.org>
-Subject: Re: [PATCH] ath10k: Introduce a devicetree quirk to skip host cap
- QMI requests
-Message-ID: <20200926000039.GA2441@builder.lan>
-References: <1601058581-19461-1-git-send-email-amit.pundir@linaro.org>
+        Neil Armstrong <narmstrong@baylibre.com>,
+        Laurent Pinchart <Laurent.pinchart@ideasonboard.com>,
+        Jonas Karlman <jonas@kwiboo.se>,
+        Jernej Skrabec <jernej.skrabec@siol.net>,
+        dri-devel@lists.freedesktop.org, devicetree@vger.kernel.org,
+        linux-kernel@vger.kernel.org, Rob Herring <robh@kernel.org>
+Subject: [RESEND PATCH v5 0/2] Add a Himax HX8837 display controller driver
+Date:   Sat, 26 Sep 2020 02:07:17 +0200
+Message-Id: <20200926000719.229204-1-lkundrak@v3.sk>
+X-Mailer: git-send-email 2.26.2
 MIME-Version: 1.0
-Content-Type: text/plain; charset=us-ascii
-Content-Disposition: inline
-In-Reply-To: <1601058581-19461-1-git-send-email-amit.pundir@linaro.org>
+Content-Transfer-Encoding: quoted-printable
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-On Fri 25 Sep 11:29 PDT 2020, Amit Pundir wrote:
+Hi,
 
-> There are firmware versions which do not support host capability
-> QMI request. We suspect either the host cap is not implemented or
-> there may be firmware specific issues, but apparently there seem
-> to be a generation of firmware that has this particular behavior.
-> 
-> For example, firmware build on Xiaomi Poco F1 (sdm845) phone:
-> "QC_IMAGE_VERSION_STRING=WLAN.HL.2.0.c3-00257-QCAHLSWMTPLZ-1"
-> 
-> If we do not skip the host cap QMI request on Poco F1, then we
-> get a QMI_ERR_MALFORMED_MSG_V01 error message in the
-> ath10k_qmi_host_cap_send_sync(). But this error message is not
-> fatal to the firmware nor to the ath10k driver and we can still
-> bring up the WiFi services successfully if we just ignore it.
-> 
-> Hence introducing this DeviceTree quirk to skip host capability
-> QMI request for the firmware versions which do not support this
-> feature.
-> 
-> Suggested-by: Bjorn Andersson <bjorn.andersson@linaro.org>
-> Signed-off-by: Amit Pundir <amit.pundir@linaro.org>
-> ---
->  .../devicetree/bindings/net/wireless/qcom,ath10k.txt        |  5 +++++
->  drivers/net/wireless/ath/ath10k/qmi.c                       | 13 ++++++++++---
->  drivers/net/wireless/ath/ath10k/snoc.c                      |  3 +++
->  drivers/net/wireless/ath/ath10k/snoc.h                      |  1 +
->  4 files changed, 19 insertions(+), 3 deletions(-)
-> 
-> diff --git a/Documentation/devicetree/bindings/net/wireless/qcom,ath10k.txt b/Documentation/devicetree/bindings/net/wireless/qcom,ath10k.txt
-> index 65ee68efd574..135c7ecd4487 100644
-> --- a/Documentation/devicetree/bindings/net/wireless/qcom,ath10k.txt
-> +++ b/Documentation/devicetree/bindings/net/wireless/qcom,ath10k.txt
-> @@ -86,6 +86,11 @@ Optional properties:
->  	Value type: <empty>
->  	Definition: Quirk specifying that the firmware expects the 8bit version
->  		    of the host capability QMI request
-> +- qcom,snoc-host-cap-skip-quirk:
-> +	Usage: Optional
-> +	Value type: <empty>
-> +	Definition: Quirk specifying that the firmware wants to skip the host
-> +		    capability QMI request
->  - qcom,xo-cal-data: xo cal offset to be configured in xo trim register.
->  
->  - qcom,msa-fixed-perm: Boolean context flag to disable SCM call for statically
-> diff --git a/drivers/net/wireless/ath/ath10k/qmi.c b/drivers/net/wireless/ath/ath10k/qmi.c
-> index 5468a41e928e..5adff7695e18 100644
-> --- a/drivers/net/wireless/ath/ath10k/qmi.c
-> +++ b/drivers/net/wireless/ath/ath10k/qmi.c
-> @@ -770,6 +770,7 @@ ath10k_qmi_ind_register_send_sync_msg(struct ath10k_qmi *qmi)
->  static void ath10k_qmi_event_server_arrive(struct ath10k_qmi *qmi)
->  {
->  	struct ath10k *ar = qmi->ar;
-> +	struct ath10k_snoc *ar_snoc = ath10k_snoc_priv(ar);
->  	int ret;
->  
->  	ret = ath10k_qmi_ind_register_send_sync_msg(qmi);
-> @@ -781,9 +782,15 @@ static void ath10k_qmi_event_server_arrive(struct ath10k_qmi *qmi)
->  		return;
->  	}
->  
-> -	ret = ath10k_qmi_host_cap_send_sync(qmi);
-> -	if (ret)
-> -		return;
-> +	/*
-> +	 * Skip the host capability request for the firmware versions which
-> +	 * do not support this feature.
-> +	 */
-> +	if (!test_bit(ATH10K_SNOC_FLAG_SKIP_HOST_CAP_QUIRK, &ar_snoc->flags)) {
+please take a look at the patches chained to this messages and consider
+applying them. They add support for the controller that drives the panel
+on the OLPC XO laptops.
 
-Could have made this an early return inside
-ath10k_qmi_host_cap_send_sync(), but this works.
+The only change since the previous version is the Reviewed-by tag in DT
+bindings.
 
-Reviewed-by: Bjorn Andersson <bjorn.andersson@linaro.org>
+Compared to v3 the bindings have been converted to YAML and the driver
+itself has been rewritten without any fancy features such as the
+self-refresh so that the bare minimum works before the rest can be figure=
+d
+out. Detailed change logs are in individual patches.
 
-Regards,
-Bjorn
+Tested on an OLPC XO-1.75 laptop.
 
-> +		ret = ath10k_qmi_host_cap_send_sync(qmi);
-> +		if (ret)
-> +			return;
-> +	}
->  
->  	ret = ath10k_qmi_msa_mem_info_send_sync_msg(qmi);
->  	if (ret)
-> diff --git a/drivers/net/wireless/ath/ath10k/snoc.c b/drivers/net/wireless/ath/ath10k/snoc.c
-> index 354d49b1cd45..4efbf1339c80 100644
-> --- a/drivers/net/wireless/ath/ath10k/snoc.c
-> +++ b/drivers/net/wireless/ath/ath10k/snoc.c
-> @@ -1281,6 +1281,9 @@ static void ath10k_snoc_quirks_init(struct ath10k *ar)
->  
->  	if (of_property_read_bool(dev->of_node, "qcom,snoc-host-cap-8bit-quirk"))
->  		set_bit(ATH10K_SNOC_FLAG_8BIT_HOST_CAP_QUIRK, &ar_snoc->flags);
-> +
-> +	if (of_property_read_bool(dev->of_node, "qcom,snoc-host-cap-skip-quirk"))
-> +		set_bit(ATH10K_SNOC_FLAG_SKIP_HOST_CAP_QUIRK, &ar_snoc->flags);
->  }
->  
->  int ath10k_snoc_fw_indication(struct ath10k *ar, u64 type)
-> diff --git a/drivers/net/wireless/ath/ath10k/snoc.h b/drivers/net/wireless/ath/ath10k/snoc.h
-> index a3dd06f6ac62..2a0045f0af7e 100644
-> --- a/drivers/net/wireless/ath/ath10k/snoc.h
-> +++ b/drivers/net/wireless/ath/ath10k/snoc.h
-> @@ -47,6 +47,7 @@ enum ath10k_snoc_flags {
->  	ATH10K_SNOC_FLAG_UNREGISTERING,
->  	ATH10K_SNOC_FLAG_RECOVERY,
->  	ATH10K_SNOC_FLAG_8BIT_HOST_CAP_QUIRK,
-> +	ATH10K_SNOC_FLAG_SKIP_HOST_CAP_QUIRK,
->  };
->  
->  struct clk_bulk_data;
-> -- 
-> 2.7.4
-> 
+Thank you
+Lubo
+
+
+
