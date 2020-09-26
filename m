@@ -2,128 +2,86 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from vger.kernel.org (vger.kernel.org [23.128.96.18])
-	by mail.lfdr.de (Postfix) with ESMTP id 9648F279C3E
-	for <lists+devicetree@lfdr.de>; Sat, 26 Sep 2020 21:48:40 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTP id 85569279C3D
+	for <lists+devicetree@lfdr.de>; Sat, 26 Sep 2020 21:48:24 +0200 (CEST)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S1726311AbgIZTsk (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Sat, 26 Sep 2020 15:48:40 -0400
-Received: from lindbergh.monkeyblade.net ([23.128.96.19]:42908 "EHLO
-        lindbergh.monkeyblade.net" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S1726487AbgIZTsj (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Sat, 26 Sep 2020 15:48:39 -0400
-Received: from mail-pg1-x543.google.com (mail-pg1-x543.google.com [IPv6:2607:f8b0:4864:20::543])
-        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 9E1D9C0613D3
-        for <devicetree@vger.kernel.org>; Sat, 26 Sep 2020 12:42:44 -0700 (PDT)
-Received: by mail-pg1-x543.google.com with SMTP id 7so5052857pgm.11
-        for <devicetree@vger.kernel.org>; Sat, 26 Sep 2020 12:42:44 -0700 (PDT)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=google.com; s=20161025;
-        h=date:subject:in-reply-to:cc:from:to:message-id:mime-version
-         :content-transfer-encoding;
-        bh=sl+PbqQM6zKU6OzSuHlucAlpdcjvMRLZvonIss7WfIg=;
-        b=AqILSeTxE1hr7FW5OY4qwKVHgIpVSLzOMF7VcIcmZJhFYo93tcWFotkN32LYluLsPa
-         NmgWwMfnDLDZBGJqf9m0o6r9nmP3CV8QKDbtC86YOScFWRwmJ1kR6CLSGAsZJsGIYToi
-         lsaaXBBwTLe1OlfR2RGVsxeMXiOwl/aIuVhncz9XVGKKBoAQjI3YS8rgY1LiQbW5/CcH
-         i3YLDf3vRhmO8Xjhe3wYfj1xnzoU0Sb/Ggax4hPYjOCcYv+Q8wQo1TrF0iZWjLLrhY8O
-         ZzJ/FRZ3J4BBSaQwYm9bQiS8oT5pNYkTsUQ+PGNHGEsUj8ETgRcQ4IShHdI0eTd4t24q
-         LaXQ==
-X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=1e100.net; s=20161025;
-        h=x-gm-message-state:date:subject:in-reply-to:cc:from:to:message-id
-         :mime-version:content-transfer-encoding;
-        bh=sl+PbqQM6zKU6OzSuHlucAlpdcjvMRLZvonIss7WfIg=;
-        b=uLd67UkXIPz559wf5FjlA2MAewKo+PtOLCIbMMWmW3IlFJ7I7zjSq92m6iXEjKwdKq
-         d09D33ZSzcsXA5+8DwN7l3CC5lV9Rlhi5eCqUGm2323ZJoTe2ooGm2aan00NQkFMgpMU
-         sT7ElQHONCY9rICn9mW8Wa8+TvAYSdxonQn+nEorOQxVULc4pmxJ5g6tjI8nCkuq+Nuz
-         iwwB5mUxMuTf8J9NniEcGFa2hBrDrnY31/B/mStsQnsuiKiWS7KsshSQ1UdnDfrbvoJs
-         54scD4aCn0LTGEq2mjt6jUfG1Pfwaw+JsXdAUARGTF1wAeqOU7Z4wSjVVuP6FXgzKq1u
-         vGQw==
-X-Gm-Message-State: AOAM531G7SGmeAwR6VMocTvMKY9WQ40qaNUbwmEKWq5NrEewzEpmluaM
-        jjCrGRdvAP1pvWX6Zlt/0vD5+FdmdXGueTGA
-X-Google-Smtp-Source: ABdhPJwDm088vYVEZecm77Rvz3ZyvKHOxZFUXoAqMcVnAOy+PMCy2Sgdk2td8bswV7Tj/v9tZrkqMw==
-X-Received: by 2002:a63:a546:: with SMTP id r6mr738000pgu.160.1601149363758;
-        Sat, 26 Sep 2020 12:42:43 -0700 (PDT)
-Received: from localhost (76-210-143-223.lightspeed.sntcca.sbcglobal.net. [76.210.143.223])
-        by smtp.gmail.com with ESMTPSA id gj6sm2458790pjb.10.2020.09.26.12.42.41
-        (version=TLS1_3 cipher=TLS_AES_256_GCM_SHA384 bits=256/256);
-        Sat, 26 Sep 2020 12:42:42 -0700 (PDT)
-Date:   Sat, 26 Sep 2020 12:42:42 -0700 (PDT)
-X-Google-Original-Date: Sat, 26 Sep 2020 12:42:40 PDT (-0700)
-Subject:     Re: [PATCH AUTOSEL 5.8 20/20] riscv: Fix Kendryte K210 device tree
-In-Reply-To: <CY4PR04MB3751BE40C3EC0BD2F392E9EEE7380@CY4PR04MB3751.namprd04.prod.outlook.com>
-CC:     sashal@kernel.org, linux-kernel@vger.kernel.org,
-        stable@vger.kernel.org, devicetree@vger.kernel.org,
-        linux-riscv@lists.infradead.org
-From:   Palmer Dabbelt <palmerdabbelt@google.com>
-To:     Damien Le Moal <Damien.LeMoal@wdc.com>
-Message-ID: <mhng-ed52d354-09cf-4708-8b07-5e6559a7b5e8@palmerdabbelt-glaptop1>
-Mime-Version: 1.0 (MHng)
-Content-Type: text/plain; charset=utf-8; format=flowed
-Content-Transfer-Encoding: 8bit
+        id S1726478AbgIZTsX (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Sat, 26 Sep 2020 15:48:23 -0400
+Received: from jabberwock.ucw.cz ([46.255.230.98]:43446 "EHLO
+        jabberwock.ucw.cz" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
+        with ESMTP id S1726311AbgIZTsX (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Sat, 26 Sep 2020 15:48:23 -0400
+Received: by jabberwock.ucw.cz (Postfix, from userid 1017)
+        id 7ABBC1C0C70; Sat, 26 Sep 2020 21:48:20 +0200 (CEST)
+Date:   Sat, 26 Sep 2020 21:48:09 +0200
+From:   Pavel Machek <pavel@ucw.cz>
+To:     Adrian Schmutzler <freifunk@adrianschmutzler.de>
+Cc:     Dan Murphy <dmurphy@ti.com>, Rob Herring <robh+dt@kernel.org>,
+        linux-leds@vger.kernel.org, devicetree@vger.kernel.org
+Subject: Re: [PATCH] MAINTAINERS: add include/dt-bindings/leds/ to linux-leds
+ list
+Message-ID: <20200926194809.GA31836@duo.ucw.cz>
+References: <20200926164745.3779-1-freifunk@adrianschmutzler.de>
+MIME-Version: 1.0
+Content-Type: multipart/signed; micalg=pgp-sha1;
+        protocol="application/pgp-signature"; boundary="u3/rZRmxL6MmkK24"
+Content-Disposition: inline
+In-Reply-To: <20200926164745.3779-1-freifunk@adrianschmutzler.de>
+User-Agent: Mutt/1.10.1 (2018-07-13)
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
->On Tue, 22 Sep 2020 17:27:42 PDT (-0700), Damien Le Moal wrote:
->> On 2020/09/21 23:41, Sasha Levin wrote:
->> From: Damien Le Moal <damien.lemoal@wdc.com>
->> 
->> [ Upstream commit f025d9d9934b84cd03b7796072d10686029c408e ]
->> 
->> The Kendryte K210 SoC CLINT is compatible with Sifive clint v0
->> (sifive,clint0). Fix the Kendryte K210 device tree clint entry to be
->> inline with the sifive timer definition documented in
->> Documentation/devicetree/bindings/timer/sifive,clint.yaml.
->> The device tree clint entry is renamed similarly to u-boot device tree
->> definition to improve compatibility with u-boot defined device tree.
->> To ensure correct initialization, the interrup-cells attribute is added
->> and the interrupt-extended attribute definition fixed.
->> 
->> This fixes boot failures with Kendryte K210 SoC boards.
->> 
->> Note that the clock referenced is kept as K210_CLK_ACLK, which does not
->> necessarilly match the clint MTIME increment rate. This however does not
->> seem to cause any problem for now.
->> 
->> Signed-off-by: Damien Le Moal <damien.lemoal@wdc.com>
->> Signed-off-by: Palmer Dabbelt <palmerdabbelt@google.com>
->> Signed-off-by: Sasha Levin <sashal@kernel.org>
->> ---
->>  arch/riscv/boot/dts/kendryte/k210.dtsi | 6 ++++--
->>  1 file changed, 4 insertions(+), 2 deletions(-)
->> 
->> diff --git a/arch/riscv/boot/dts/kendryte/k210.dtsi b/arch/riscv/boot/dts/kendryte/k210.dtsi
->> index c1df56ccb8d55..d2d0ff6456325 100644
->> --- a/arch/riscv/boot/dts/kendryte/k210.dtsi
->> +++ b/arch/riscv/boot/dts/kendryte/k210.dtsi
->> @@ -95,10 +95,12 @@ sysctl: sysctl@50440000 {
->>  			#clock-cells = <1>;
->>  		};
->>  
->> -		clint0: interrupt-controller@2000000 {
->> +		clint0: clint@2000000 {
->> +			#interrupt-cells = <1>;
->>  			compatible = "riscv,clint0";
->>  			reg = <0x2000000 0xC000>;
->> -			interrupts-extended = <&cpu0_intc 3>,  <&cpu1_intc 3>;
->> +			interrupts-extended =  <&cpu0_intc 3 &cpu0_intc 7
->> +						&cpu1_intc 3 &cpu1_intc 7>;
->>  			clocks = <&sysctl K210_CLK_ACLK>;
->>  		};
->>  
->> 
->
->Sasha,
->
->This is a fix for a problem in 5.9 tree. 5.8 kernel is fine without this patch.
->And I think applying it to 5.8 might actually break things since the proper
->clint driver was added to kernel 5.9 and does not exist in 5.8.
 
-IIUC this won't actually break anything on 5.8, as the reason nobody noticed
-that the old one was broken is because the old CLINT driver just didn't care
-about what's in the device tree.  These interrupt numbers are defined by the
-ISA manual so we jut had them encoded into the arch/riscv first-level interrupt
-controller driver.
+--u3/rZRmxL6MmkK24
+Content-Type: text/plain; charset=us-ascii
+Content-Disposition: inline
+Content-Transfer-Encoding: quoted-printable
 
-That said, it definately doesn't fix anything so it seems safer to just not
-backport it.
+Hi!
+
+> The content of include/dt-bindings/leds/, particularly common.h,
+> is apparantly maintained by the linux-leds list. This is also
+> explicitly stated in the Documentation.
+>=20
+> Signed-off-by: Adrian Schmutzler <freifunk@adrianschmutzler.de>
+> ---
+>  MAINTAINERS | 1 +
+>  1 file changed, 1 insertion(+)
+>=20
+> diff --git a/MAINTAINERS b/MAINTAINERS
+> index 190c7fa2ea01..415f0e089bbe 100644
+> --- a/MAINTAINERS
+> +++ b/MAINTAINERS
+> @@ -9809,6 +9809,7 @@ S:	Maintained
+>  T:	git git://git.kernel.org/pub/scm/linux/kernel/git/pavel/linux-leds.git
+>  F:	Documentation/devicetree/bindings/leds/
+>  F:	drivers/leds/
+> +F:	include/dt-bindings/leds/
+>  F:	include/linux/leds.h
+
+I'd not say this is right. I'm not sure what the docs says, but I
+don't commit dt changes without ack from Rob. With yaml stuff, I'm
+even less confident doing so.
+
+So I'd say Rob maintains this.
+
+Best regards,
+									Pavel
+
+--=20
+(english) http://www.livejournal.com/~pavelmachek
+(cesky, pictures) http://atrey.karlin.mff.cuni.cz/~pavel/picture/horses/blo=
+g.html
+
+--u3/rZRmxL6MmkK24
+Content-Type: application/pgp-signature; name="signature.asc"
+
+-----BEGIN PGP SIGNATURE-----
+
+iF0EABECAB0WIQRPfPO7r0eAhk010v0w5/Bqldv68gUCX2+a+AAKCRAw5/Bqldv6
+8oFPAKCd917mucNICiCfscCWe4NmLBOqEwCgjBRaTlKAMzcVPyq0xqYwE6I4/8I=
+=LOy7
+-----END PGP SIGNATURE-----
+
+--u3/rZRmxL6MmkK24--
