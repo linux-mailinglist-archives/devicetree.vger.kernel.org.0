@@ -2,66 +2,110 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from vger.kernel.org (vger.kernel.org [23.128.96.18])
-	by mail.lfdr.de (Postfix) with ESMTP id 511182799A5
-	for <lists+devicetree@lfdr.de>; Sat, 26 Sep 2020 15:26:09 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTP id CB8DD2799BC
+	for <lists+devicetree@lfdr.de>; Sat, 26 Sep 2020 15:42:09 +0200 (CEST)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S1726316AbgIZN0E (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Sat, 26 Sep 2020 09:26:04 -0400
-Received: from lindbergh.monkeyblade.net ([23.128.96.19]:40492 "EHLO
-        lindbergh.monkeyblade.net" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S1725208AbgIZN0E (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Sat, 26 Sep 2020 09:26:04 -0400
-Received: from mail-ej1-x641.google.com (mail-ej1-x641.google.com [IPv6:2a00:1450:4864:20::641])
-        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 53C56C0613D3;
-        Sat, 26 Sep 2020 06:26:04 -0700 (PDT)
-Received: by mail-ej1-x641.google.com with SMTP id p9so2329144ejf.6;
-        Sat, 26 Sep 2020 06:26:04 -0700 (PDT)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=gmail.com; s=20161025;
-        h=mime-version:references:in-reply-to:from:date:message-id:subject:to
-         :cc;
-        bh=6Pw2334Ivc2sWGxKj6eRmrpO/w0k8YeD1ECz1yaBwKM=;
-        b=iNhrMGwGIWBbDoGZGWoSEJfMWmB5YQHEQuMJPe9lY56AtawV0yVvNaB3VRnfE2TupY
-         KunhOHiRNTh90u/KVKk6ul6iQvZfZ78r63r4H1AzO0DJ48PUJmbYC9nA/jXWl6pT5oyn
-         TE/EHbccwvmS0KlQx5MCU45i7sZOkmbJG/cTiSrRgb/ucw05asr1XbmPLpCbhj7UNzUp
-         LkoW2b9kpP9kONvxLptIeyI3jcxHgjHXEhvXQJne2Q1TRLMxGsCI3IbuapfvBIEEnqA9
-         p8q+zvyqdIROOtn08seCzeDZOOIHLCkeQ5rfcCev5u5S4zcDtDMH7ho67Q9L8C2ZR/pT
-         C9rw==
+        id S1726244AbgIZNmG convert rfc822-to-8bit (ORCPT
+        <rfc822;lists+devicetree@lfdr.de>); Sat, 26 Sep 2020 09:42:06 -0400
+Received: from mail-ej1-f66.google.com ([209.85.218.66]:33065 "EHLO
+        mail-ej1-f66.google.com" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
+        with ESMTP id S1725208AbgIZNmG (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Sat, 26 Sep 2020 09:42:06 -0400
+Received: by mail-ej1-f66.google.com with SMTP id j11so2410399ejk.0;
+        Sat, 26 Sep 2020 06:42:04 -0700 (PDT)
 X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
         d=1e100.net; s=20161025;
-        h=x-gm-message-state:mime-version:references:in-reply-to:from:date
-         :message-id:subject:to:cc;
-        bh=6Pw2334Ivc2sWGxKj6eRmrpO/w0k8YeD1ECz1yaBwKM=;
-        b=J5iJ5GBhcjs4EM+npceBbp5mSyyu9nlAPWM2JgqX4p5Ve/7oYpwLxJ7e6tbOVcuPQm
-         RuLAdj1FOD3YFxmEevF8FAbWxCb84vapY9wDGiurjd/QRviEHEEUH72wAJTnYh4CwxGA
-         UNz/6HHt0lRxmx60kzOq2DsW8vDaxYy0CSDDm6yevU/rfUWsTbrofTvuWodl4oWG40MD
-         1unHHVJXGw4EQ8+3h1OZWqdLDljEwLHp4Zf1OjCP2XFR+zBjaPDo6/S2VoyFelSe//Nj
-         Yhs1ZApGdW5NkC+PC9GUAgXxeMlhUa2AU338A8LiDDiQoWOQJ53BMjemBPE5u+KJW+7y
-         adCQ==
-X-Gm-Message-State: AOAM530ck/ySk0eizlXygcVPrm5c69Zu+EDxDLPZ6CB7TFMlSvmBJMKb
-        4A58tpU7LlilshQCNUhLlPz05O5aAk2c0hVDpavxtpoq95I=
-X-Google-Smtp-Source: ABdhPJzyoXEjclq6NHbSpX2nockj/wBilv0Yiz3hJvuQtIBj1KJwoJ5yPZilY+Q6Eu7fiJY9nqWKnSVxcIZi0mMoxE8=
-X-Received: by 2002:a17:906:6d17:: with SMTP id m23mr2462364ejr.418.1601126763103;
- Sat, 26 Sep 2020 06:26:03 -0700 (PDT)
+        h=x-gm-message-state:date:from:to:cc:subject:message-id:references
+         :mime-version:content-disposition:content-transfer-encoding
+         :in-reply-to:user-agent;
+        bh=zZiC4GFLiCyxWh5u5vGAPSFiD3LqckqVR10/0vflwwg=;
+        b=pmE6FomZalVD8bPNjs20hMVtM9tKotvYkEsVO8i/aIPTM/HjNpSdzyRTs011mLq2W6
+         htrpJzJeqgILNV9M+w/M9teLtUwzka9sx4EkAsae7hXCZs9kuJDnvAjwVzXlrzWj+AKD
+         4Zd5Tj3QGQCCrxrDsztSSUSwHGWkSfdjw+qX+geDCg8pQ2Wj2GDwAutWQSjjXswoSwIc
+         DBGP3toCtf5FkUEptqsiQQ15ZVzYfQIOmc2Yx95/WWK67vQCtYwJ8DVXvJHkP721QvEy
+         ImBCNSYM0xbL4B3vv+uUDXzytm1gBRJ88GL3hDngJxRHhbK4aDcwwU9A8Y4paWiMH8Qi
+         t5OQ==
+X-Gm-Message-State: AOAM532wu1UT7jx+wjSiX1EiEmZ2VLuZHKfFW//TMDvLqIOm0VRkvTFO
+        FZkoLzajkWPIRq2slJk6u/o=
+X-Google-Smtp-Source: ABdhPJz9GR5blkBoMY58veAVwcmSMDo29BUcNV1QcEUQxNVIvkB6gy7KKlrjrtCiqAKvzgYXZdNSLQ==
+X-Received: by 2002:a17:907:2115:: with SMTP id qn21mr7366844ejb.278.1601127723572;
+        Sat, 26 Sep 2020 06:42:03 -0700 (PDT)
+Received: from kozik-lap ([194.230.155.132])
+        by smtp.googlemail.com with ESMTPSA id jo26sm4156240ejb.120.2020.09.26.06.42.01
+        (version=TLS1_2 cipher=ECDHE-ECDSA-CHACHA20-POLY1305 bits=256/256);
+        Sat, 26 Sep 2020 06:42:02 -0700 (PDT)
+Date:   Sat, 26 Sep 2020 15:41:57 +0200
+From:   Krzysztof Kozlowski <krzk@kernel.org>
+To:     Uwe =?utf-8?Q?Kleine-K=C3=B6nig?= <u.kleine-koenig@pengutronix.de>
+Cc:     Thierry Reding <thierry.reding@gmail.com>,
+        Lee Jones <lee.jones@linaro.org>,
+        Rob Herring <robh+dt@kernel.org>,
+        Shawn Guo <shawnguo@kernel.org>,
+        Sascha Hauer <s.hauer@pengutronix.de>,
+        Pengutronix Kernel Team <kernel@pengutronix.de>,
+        Fabio Estevam <festevam@gmail.com>,
+        NXP Linux Team <linux-imx@nxp.com>,
+        Philipp Zabel <p.zabel@pengutronix.de>,
+        linux-pwm@vger.kernel.org, devicetree@vger.kernel.org,
+        linux-arm-kernel@lists.infradead.org, linux-kernel@vger.kernel.org
+Subject: Re: [PATCH] dt-bindings: pwm: imx: document i.MX compatibles
+Message-ID: <20200926134157.GA4730@kozik-lap>
+References: <20200925212609.23093-1-krzk@kernel.org>
+ <20200926132217.xr3rhv7o2o2yc2l7@pengutronix.de>
 MIME-Version: 1.0
-References: <20200926131157.14633-1-kholk11@gmail.com>
-In-Reply-To: <20200926131157.14633-1-kholk11@gmail.com>
-From:   Martin Botka <martin.botka1@gmail.com>
-Date:   Sat, 26 Sep 2020 15:25:52 +0200
-Message-ID: <CADQ2G_ET0DQv54i3SBWGzTSv0yz3EKwWSdq6eZvVF035K3DghQ@mail.gmail.com>
-Subject: Re: [PATCH] phy: qcom-qusb2: Add support for SDM630/660
-To:     kholk11@gmail.com
-Cc:     Andy Gross <agross@kernel.org>,
-        Bjorn Andersson <bjorn.andersson@linaro.org>, kishon@ti.com,
-        Rob Herring <robh+dt@kernel.org>, marijns95@gmail.com,
-        Konrad Dybcio <konradybcio@gmail.com>,
-        devicetree <devicetree@vger.kernel.org>,
-        linux-arm-msm@vger.kernel.org, phone-devel@vger.kernel.org,
-        Linux Kernel Mailing List <linux-kernel@vger.kernel.org>
-Content-Type: text/plain; charset="UTF-8"
+Content-Type: text/plain; charset=utf-8
+Content-Disposition: inline
+Content-Transfer-Encoding: 8BIT
+In-Reply-To: <20200926132217.xr3rhv7o2o2yc2l7@pengutronix.de>
+User-Agent: Mutt/1.9.4 (2018-02-28)
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-Tested on Xperia 10
-Tested-by: Martin Botka <martin.botka1@gmail.com>
+On Sat, Sep 26, 2020 at 03:22:17PM +0200, Uwe Kleine-König wrote:
+> On Fri, Sep 25, 2020 at 11:26:09PM +0200, Krzysztof Kozlowski wrote:
+> > Document all ARMv5, ARMv6 and ARMv7 i.MX compatibles to fix dtbs_check
+> > warnings like:
+> > 
+> >   arch/arm/boot/dts/imx6dl-colibri-eval-v3.dt.yaml: pwm@2080000: compatible:0:
+> >     'fsl,imx6q-pwm' is not one of ['fsl,imx8mm-pwm', 'fsl,imx8mn-pwm', 'fsl,imx8mp-pwm', 'fsl,imx8mq-pwm']
+> > 
+> > Signed-off-by: Krzysztof Kozlowski <krzk@kernel.org>
+> > ---
+> >  Documentation/devicetree/bindings/pwm/imx-pwm.yaml | 11 +++++++++++
+> >  1 file changed, 11 insertions(+)
+> > 
+> > diff --git a/Documentation/devicetree/bindings/pwm/imx-pwm.yaml b/Documentation/devicetree/bindings/pwm/imx-pwm.yaml
+> > index 473863eb67e5..379d693889f6 100644
+> > --- a/Documentation/devicetree/bindings/pwm/imx-pwm.yaml
+> > +++ b/Documentation/devicetree/bindings/pwm/imx-pwm.yaml
+> > @@ -25,6 +25,17 @@ properties:
+> >            - fsl,imx27-pwm
+> >        - items:
+> >            - enum:
+> > +              - fsl,imx25-pwm
+> 
+> The driver actually used fsl,imx27-pwm to bind ...
+
+Yes, most of i.MX drivers use only few compatibles but DTSes and
+bindings use multiple of them.  I was convinced during various talks
+that the specific compatibles (so "fsl,imx6q-pwm, fsl,imx27-pwm") are
+preferred than generic ones (so only "fsl,imx27-pwm"). NXP took it
+to the another level creating compatibles for absolutely every flavor of
+their CPU. And they mainlined it in DTSes...
+
+The PWM is this crazy examples where, as you say, only two compatibles
+are actually used for binding but DTSes uses more.
+
+> 
+> Also since v5.1-rc1~38^2~17 the driver is split into pwm-imx27 and
+> pwm-imx1. So maybe this file should be renamed to fsl,imx27-pwm.yaml?
+> (And we need a volunteer to write fsl,imx1-pwm.yaml.)
+
+I think there is no need, because the binding describes the hardware and
+could be supported by multiple drivers. I actually recently merged few
+bindings (i.MX 8 clocks, NXP PCA953x/max GPIO expanders).
+
+Best regards,
+Krzysztof
+
