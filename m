@@ -2,72 +2,155 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from vger.kernel.org (vger.kernel.org [23.128.96.18])
-	by mail.lfdr.de (Postfix) with ESMTP id 568B3279B57
-	for <lists+devicetree@lfdr.de>; Sat, 26 Sep 2020 19:23:43 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTP id C41F7279B7C
+	for <lists+devicetree@lfdr.de>; Sat, 26 Sep 2020 19:36:30 +0200 (CEST)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S1728017AbgIZRXm (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Sat, 26 Sep 2020 13:23:42 -0400
-Received: from mail.nic.cz ([217.31.204.67]:39434 "EHLO mail.nic.cz"
-        rhost-flags-OK-OK-OK-OK) by vger.kernel.org with ESMTP
-        id S1726239AbgIZRXm (ORCPT <rfc822;devicetree@vger.kernel.org>);
-        Sat, 26 Sep 2020 13:23:42 -0400
-Received: from localhost (unknown [IPv6:2a0e:b107:ae1:0:3e97:eff:fe61:c680])
-        by mail.nic.cz (Postfix) with ESMTPSA id 62508140AA0;
-        Sat, 26 Sep 2020 19:23:39 +0200 (CEST)
-Date:   Sat, 26 Sep 2020 19:23:38 +0200
-From:   Marek Behun <marek.behun@nic.cz>
-To:     Adrian Schmutzler <freifunk@adrianschmutzler.de>
-Cc:     Pavel Machek <pavel@ucw.cz>, Dan Murphy <dmurphy@ti.com>,
-        Rob Herring <robh+dt@kernel.org>, linux-leds@vger.kernel.org,
-        devicetree@vger.kernel.org,
-        Andrew Morton <akpm@linux-foundation.org>
-Subject: Re: [PATCH] MAINTAINERS: add include/dt-bindings/leds/ to
- linux-leds list
-Message-ID: <20200926192338.0b233f26@nic.cz>
-In-Reply-To: <20200926164745.3779-1-freifunk@adrianschmutzler.de>
-References: <20200926164745.3779-1-freifunk@adrianschmutzler.de>
-X-Mailer: Claws Mail 3.17.6 (GTK+ 2.24.32; x86_64-pc-linux-gnu)
+        id S1726309AbgIZRgT (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Sat, 26 Sep 2020 13:36:19 -0400
+Received: from mslow2.mail.gandi.net ([217.70.178.242]:36660 "EHLO
+        mslow2.mail.gandi.net" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
+        with ESMTP id S1726210AbgIZRgS (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Sat, 26 Sep 2020 13:36:18 -0400
+Received: from relay11.mail.gandi.net (unknown [217.70.178.231])
+        by mslow2.mail.gandi.net (Postfix) with ESMTP id 5DB433A0A10;
+        Sat, 26 Sep 2020 17:36:16 +0000 (UTC)
+Received: from pc.localdomain (unknown [195.189.32.242])
+        (Authenticated sender: contact@artur-rojek.eu)
+        by relay11.mail.gandi.net (Postfix) with ESMTPSA id 412A0100002;
+        Sat, 26 Sep 2020 17:35:52 +0000 (UTC)
+From:   Artur Rojek <contact@artur-rojek.eu>
+To:     Sebastian Reichel <sre@kernel.org>,
+        Rob Herring <robh+dt@kernel.org>
+Cc:     Paul Cercueil <paul@crapouillou.net>, linux-pm@vger.kernel.org,
+        devicetree@vger.kernel.org, linux-kernel@vger.kernel.org,
+        Artur Rojek <contact@artur-rojek.eu>
+Subject: [PATCH v3 1/2] dt-bindings: power: Convert ingenic,battery.txt to YAML
+Date:   Sat, 26 Sep 2020 19:35:28 +0200
+Message-Id: <20200926173529.25238-1-contact@artur-rojek.eu>
+X-Mailer: git-send-email 2.28.0
 MIME-Version: 1.0
-Content-Type: text/plain; charset=US-ASCII
-Content-Transfer-Encoding: 7bit
-X-Spam-Status: No, score=-100.0 required=5.9 tests=SHORTCIRCUIT,URIBL_BLOCKED,
-        USER_IN_WELCOMELIST,USER_IN_WHITELIST shortcircuit=ham
-        autolearn=disabled version=3.4.2
-X-Spam-Checker-Version: SpamAssassin 3.4.2 (2018-09-13) on mail.nic.cz
-X-Virus-Scanned: clamav-milter 0.102.2 at mail
-X-Virus-Status: Clean
+Content-Transfer-Encoding: 8bit
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-On Sat, 26 Sep 2020 18:47:45 +0200
-Adrian Schmutzler <freifunk@adrianschmutzler.de> wrote:
+Convert the textual documentation of Device Tree bindings for the
+Ingenic JZ47xx SoCs battery to YAML.
 
-> The content of include/dt-bindings/leds/, particularly common.h,
-> is apparantly maintained by the linux-leds list. This is also
-> explicitly stated in the Documentation.
-> 
-> Signed-off-by: Adrian Schmutzler <freifunk@adrianschmutzler.de>
-> ---
->  MAINTAINERS | 1 +
->  1 file changed, 1 insertion(+)
-> 
-> diff --git a/MAINTAINERS b/MAINTAINERS
-> index 190c7fa2ea01..415f0e089bbe 100644
-> --- a/MAINTAINERS
-> +++ b/MAINTAINERS
-> @@ -9809,6 +9809,7 @@ S:	Maintained
->  T:	git git://git.kernel.org/pub/scm/linux/kernel/git/pavel/linux-leds.git
->  F:	Documentation/devicetree/bindings/leds/
->  F:	drivers/leds/
-> +F:	include/dt-bindings/leds/
->  F:	include/linux/leds.h
->  
->  LEGACY EEPROM DRIVER
+Signed-off-by: Artur Rojek <contact@artur-rojek.eu>
+---
 
-Some subsystem maintainers do not want to touch the MAINTAINERS file
-because of potential conflict. If Pavel refuses to do this, I was told
-that the best way is to send such to Andrew Morton
-<akpm@linux-foundation.org>.
+Changes:
+    v2: move introduction of new compatibles into a separate patch
+    
+    v3: - drop description of `io-channels` property and set its maxItems,
+        - remove redundant quotes in `io-channel-names` property,
+        - drop `items` for `monitored-battery` property
 
-Marek
+ .../bindings/power/supply/ingenic,battery.txt | 31 -----------
+ .../power/supply/ingenic,battery.yaml         | 55 +++++++++++++++++++
+ 2 files changed, 55 insertions(+), 31 deletions(-)
+ delete mode 100644 Documentation/devicetree/bindings/power/supply/ingenic,battery.txt
+ create mode 100644 Documentation/devicetree/bindings/power/supply/ingenic,battery.yaml
+
+diff --git a/Documentation/devicetree/bindings/power/supply/ingenic,battery.txt b/Documentation/devicetree/bindings/power/supply/ingenic,battery.txt
+deleted file mode 100644
+index 66430bf73815..000000000000
+--- a/Documentation/devicetree/bindings/power/supply/ingenic,battery.txt
++++ /dev/null
+@@ -1,31 +0,0 @@
+-* Ingenic JZ47xx battery bindings
+-
+-Required properties:
+-
+-- compatible: Must be "ingenic,jz4740-battery".
+-- io-channels: phandle and IIO specifier pair to the IIO device.
+-  Format described in iio-bindings.txt.
+-- monitored-battery: phandle to a "simple-battery" compatible node.
+-
+-The "monitored-battery" property must be a phandle to a node using the format
+-described in battery.txt, with the following properties being required:
+-
+-- voltage-min-design-microvolt: Drained battery voltage.
+-- voltage-max-design-microvolt: Fully charged battery voltage.
+-
+-Example:
+-
+-#include <dt-bindings/iio/adc/ingenic,adc.h>
+-
+-simple_battery: battery {
+-	compatible = "simple-battery";
+-	voltage-min-design-microvolt = <3600000>;
+-	voltage-max-design-microvolt = <4200000>;
+-};
+-
+-ingenic_battery {
+-	compatible = "ingenic,jz4740-battery";
+-	io-channels = <&adc INGENIC_ADC_BATTERY>;
+-	io-channel-names = "battery";
+-	monitored-battery = <&simple_battery>;
+-};
+diff --git a/Documentation/devicetree/bindings/power/supply/ingenic,battery.yaml b/Documentation/devicetree/bindings/power/supply/ingenic,battery.yaml
+new file mode 100644
+index 000000000000..658ef92a5b82
+--- /dev/null
++++ b/Documentation/devicetree/bindings/power/supply/ingenic,battery.yaml
+@@ -0,0 +1,55 @@
++# SPDX-License-Identifier: (GPL-2.0 OR BSD-2-Clause)
++# Copyright 2019-2020 Artur Rojek
++%YAML 1.2
++---
++$id: "http://devicetree.org/schemas/power/supply/ingenic,battery.yaml#"
++$schema: "http://devicetree.org/meta-schemas/core.yaml#"
++
++title: Ingenic JZ47xx battery bindings
++
++maintainers:
++  - Artur Rojek <contact@artur-rojek.eu>
++
++properties:
++  compatible:
++    const: ingenic,jz4740-battery
++
++  io-channels:
++    maxItems: 1
++
++  io-channel-names:
++    const: battery
++
++  monitored-battery:
++    description: >
++      phandle to a "simple-battery" compatible node.
++
++      This property must be a phandle to a node using the format described
++      in battery.txt, with the following properties being required:
++      - voltage-min-design-microvolt: drained battery voltage,
++      - voltage-max-design-microvolt: fully charged battery voltage.
++
++required:
++  - compatible
++  - io-channels
++  - io-channel-names
++  - monitored-battery
++
++additionalProperties: false
++
++examples:
++  - |
++    #include <dt-bindings/iio/adc/ingenic,adc.h>
++
++    simple_battery: battery {
++            compatible = "simple-battery";
++            voltage-min-design-microvolt = <3600000>;
++            voltage-max-design-microvolt = <4200000>;
++    };
++
++    ingenic-battery {
++            compatible = "ingenic,jz4740-battery";
++            io-channels = <&adc INGENIC_ADC_BATTERY>;
++            io-channel-names = "battery";
++            monitored-battery = <&simple_battery>;
++    };
+-- 
+2.28.0
+
