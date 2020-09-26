@@ -2,185 +2,188 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from vger.kernel.org (vger.kernel.org [23.128.96.18])
-	by mail.lfdr.de (Postfix) with ESMTP id 1AAF427954D
-	for <lists+devicetree@lfdr.de>; Sat, 26 Sep 2020 01:59:21 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTP id 22D77279555
+	for <lists+devicetree@lfdr.de>; Sat, 26 Sep 2020 02:05:23 +0200 (CEST)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S1729691AbgIYX7O (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Fri, 25 Sep 2020 19:59:14 -0400
-Received: from mail.v3.sk ([167.172.186.51]:38142 "EHLO shell.v3.sk"
-        rhost-flags-OK-OK-OK-FAIL) by vger.kernel.org with ESMTP
-        id S1729557AbgIYX7M (ORCPT <rfc822;devicetree@vger.kernel.org>);
-        Fri, 25 Sep 2020 19:59:12 -0400
-Received: from localhost (localhost.localdomain [127.0.0.1])
-        by zimbra.v3.sk (Postfix) with ESMTP id 16A3DDFA70;
-        Fri, 25 Sep 2020 23:57:33 +0000 (UTC)
-Received: from shell.v3.sk ([127.0.0.1])
-        by localhost (zimbra.v3.sk [127.0.0.1]) (amavisd-new, port 10032)
-        with ESMTP id c3PihDaj9pXB; Fri, 25 Sep 2020 23:57:32 +0000 (UTC)
-Received: from localhost (localhost.localdomain [127.0.0.1])
-        by zimbra.v3.sk (Postfix) with ESMTP id 60FD3DFA9E;
-        Fri, 25 Sep 2020 23:57:32 +0000 (UTC)
-X-Virus-Scanned: amavisd-new at zimbra.v3.sk
-Received: from shell.v3.sk ([127.0.0.1])
-        by localhost (zimbra.v3.sk [127.0.0.1]) (amavisd-new, port 10026)
-        with ESMTP id s9AAv6d7JPOp; Fri, 25 Sep 2020 23:57:32 +0000 (UTC)
-Received: from localhost (unknown [109.183.109.54])
-        by zimbra.v3.sk (Postfix) with ESMTPSA id 224DADFA70;
-        Fri, 25 Sep 2020 23:57:32 +0000 (UTC)
-From:   Lubomir Rintel <lkundrak@v3.sk>
-To:     Kishon Vijay Abraham I <kishon@ti.com>,
-        Vinod Koul <vkoul@kernel.org>
-Cc:     Rob Herring <robh+dt@kernel.org>, linux-kernel@vger.kernel.org,
-        devicetree@vger.kernel.org, Lubomir Rintel <lkundrak@v3.sk>
-Subject: [RESEND 2 PATCH v3 3/3] phy: Add USB HSIC PHY driver for Marvell MMP3 SoC
-Date:   Sat, 26 Sep 2020 01:58:29 +0200
-Message-Id: <20200925235828.228626-4-lkundrak@v3.sk>
-X-Mailer: git-send-email 2.26.2
-In-Reply-To: <20200925235828.228626-1-lkundrak@v3.sk>
-References: <20200925235828.228626-1-lkundrak@v3.sk>
+        id S1729570AbgIZAFO (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Fri, 25 Sep 2020 20:05:14 -0400
+Received: from lindbergh.monkeyblade.net ([23.128.96.19]:58784 "EHLO
+        lindbergh.monkeyblade.net" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
+        with ESMTP id S1729516AbgIZAFO (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Fri, 25 Sep 2020 20:05:14 -0400
+Received: from mail-ot1-x344.google.com (mail-ot1-x344.google.com [IPv6:2607:f8b0:4864:20::344])
+        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 5019CC0613D4
+        for <devicetree@vger.kernel.org>; Fri, 25 Sep 2020 17:05:14 -0700 (PDT)
+Received: by mail-ot1-x344.google.com with SMTP id q21so3953833ota.8
+        for <devicetree@vger.kernel.org>; Fri, 25 Sep 2020 17:05:14 -0700 (PDT)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+        d=linaro.org; s=google;
+        h=date:from:to:cc:subject:message-id:references:mime-version
+         :content-disposition:in-reply-to;
+        bh=7/y3L9VN/lSk2/yPUqjWQt/iBis6Y2WvD6aC+aqQ45k=;
+        b=wA/fSUbCe7cC28vTLS/YT0tT76JDS+7fxa3cGEfRScdzizM7/d4lQ3G5tDwq+j6tRr
+         f5NKLkUjfVDSdnhoUZmcx8NdhLxwkjkvQhuABf7iRnPqEGlQH9hynBsQNLi25WLXaCuY
+         /rbGD6cjXl93vWRGQA871YKIp7Bb7P56tOOV7vpfvIxU+WeLVp5CzbsaUZEjn6jUWQLl
+         tBbG/ZZLXGAW2hpmGTBKUgBZwan0THbmz06m+HhLdBHqCthxfN+EEVWknR7xrRuqrfPq
+         5HdvFmKneiLFEdQ2JEkOvXVlGupA3b/GMjrPdu4BrpI6cfDnx5XLs2mZXcCznuC2UVdw
+         Y7ow==
+X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+        d=1e100.net; s=20161025;
+        h=x-gm-message-state:date:from:to:cc:subject:message-id:references
+         :mime-version:content-disposition:in-reply-to;
+        bh=7/y3L9VN/lSk2/yPUqjWQt/iBis6Y2WvD6aC+aqQ45k=;
+        b=gooTt2SS16QfO76z+MwhANZ36POAmkE6mVLH6vbssX1mAycdA7VxoQ1dWJ/ZeSo35z
+         mCfsYWjGvMq5P6B0enGfmK+13tzLChxwU68Befne0KSm0zG+Jro0JcHhbBC+bb/WSi2F
+         n1SNGCMa+JqkQAu6hCnMSQwUPKAAlzEabeIZfHFAKmq5gXa5N7VzYajDRJsUZRjxm9ZS
+         1c9VFhw8p3NW9tic9hbbYnr4jb4M9eJ4xyWdXBmVJnoLjZzFJsoFPrbiPjFz8If17rZS
+         xwnAEmo1Pk03VojkvHg3zrMNeBQ/4msnBpEkiL4dR9AZ+SSIvh4NHpvVGbU0AoRXiaC5
+         MeyA==
+X-Gm-Message-State: AOAM5301dSiksj4iYGkipwJeYEYl/KId4tap2tC7oTnfvViEUnzzKs4f
+        lDks/bPy11YUH7jUdAEjT8+WBQ==
+X-Google-Smtp-Source: ABdhPJyxRPMklUI0IGQBC65+pPVzl0orUnkXc+fxoQ3qhoC120rZYlU136YEqY+6sBrtpVDVgjtRkg==
+X-Received: by 2002:a9d:7d89:: with SMTP id j9mr1926888otn.205.1601078713572;
+        Fri, 25 Sep 2020 17:05:13 -0700 (PDT)
+Received: from builder.lan (99-135-181-32.lightspeed.austtx.sbcglobal.net. [99.135.181.32])
+        by smtp.gmail.com with ESMTPSA id m25sm1030777otl.71.2020.09.25.17.05.12
+        (version=TLS1_3 cipher=TLS_AES_256_GCM_SHA384 bits=256/256);
+        Fri, 25 Sep 2020 17:05:12 -0700 (PDT)
+Date:   Fri, 25 Sep 2020 17:00:39 -0700
+From:   Bjorn Andersson <bjorn.andersson@linaro.org>
+To:     Amit Pundir <amit.pundir@linaro.org>
+Cc:     Kalle Valo <kvalo@codeaurora.org>,
+        David S Miller <davem@davemloft.net>,
+        Jakub Kicinski <kuba@kernel.org>,
+        Rob Herring <robh+dt@kernel.org>,
+        Jeffrey Hugo <jeffrey.l.hugo@gmail.com>,
+        John Stultz <john.stultz@linaro.org>,
+        Sumit Semwal <sumit.semwal@linaro.org>,
+        Konrad Dybcio <konradybcio@gmail.com>,
+        ath10k@lists.infradead.org, devicetree@vger.kernel.org,
+        linux-wireless@vger.kernel.org, netdev@vger.kernel.org,
+        lkml <linux-kernel@vger.kernel.org>
+Subject: Re: [PATCH] ath10k: Introduce a devicetree quirk to skip host cap
+ QMI requests
+Message-ID: <20200926000039.GA2441@builder.lan>
+References: <1601058581-19461-1-git-send-email-amit.pundir@linaro.org>
 MIME-Version: 1.0
-Content-Transfer-Encoding: quoted-printable
+Content-Type: text/plain; charset=us-ascii
+Content-Disposition: inline
+In-Reply-To: <1601058581-19461-1-git-send-email-amit.pundir@linaro.org>
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-Add PHY driver for the HSICs found on Marvell MMP3 SoC. The driver is
-rather straightforward -- the PHY essentially just needs to be enabled.
+On Fri 25 Sep 11:29 PDT 2020, Amit Pundir wrote:
 
-Signed-off-by: Lubomir Rintel <lkundrak@v3.sk>
+> There are firmware versions which do not support host capability
+> QMI request. We suspect either the host cap is not implemented or
+> there may be firmware specific issues, but apparently there seem
+> to be a generation of firmware that has this particular behavior.
+> 
+> For example, firmware build on Xiaomi Poco F1 (sdm845) phone:
+> "QC_IMAGE_VERSION_STRING=WLAN.HL.2.0.c3-00257-QCAHLSWMTPLZ-1"
+> 
+> If we do not skip the host cap QMI request on Poco F1, then we
+> get a QMI_ERR_MALFORMED_MSG_V01 error message in the
+> ath10k_qmi_host_cap_send_sync(). But this error message is not
+> fatal to the firmware nor to the ath10k driver and we can still
+> bring up the WiFi services successfully if we just ignore it.
+> 
+> Hence introducing this DeviceTree quirk to skip host capability
+> QMI request for the firmware versions which do not support this
+> feature.
+> 
+> Suggested-by: Bjorn Andersson <bjorn.andersson@linaro.org>
+> Signed-off-by: Amit Pundir <amit.pundir@linaro.org>
+> ---
+>  .../devicetree/bindings/net/wireless/qcom,ath10k.txt        |  5 +++++
+>  drivers/net/wireless/ath/ath10k/qmi.c                       | 13 ++++++++++---
+>  drivers/net/wireless/ath/ath10k/snoc.c                      |  3 +++
+>  drivers/net/wireless/ath/ath10k/snoc.h                      |  1 +
+>  4 files changed, 19 insertions(+), 3 deletions(-)
+> 
+> diff --git a/Documentation/devicetree/bindings/net/wireless/qcom,ath10k.txt b/Documentation/devicetree/bindings/net/wireless/qcom,ath10k.txt
+> index 65ee68efd574..135c7ecd4487 100644
+> --- a/Documentation/devicetree/bindings/net/wireless/qcom,ath10k.txt
+> +++ b/Documentation/devicetree/bindings/net/wireless/qcom,ath10k.txt
+> @@ -86,6 +86,11 @@ Optional properties:
+>  	Value type: <empty>
+>  	Definition: Quirk specifying that the firmware expects the 8bit version
+>  		    of the host capability QMI request
+> +- qcom,snoc-host-cap-skip-quirk:
+> +	Usage: Optional
+> +	Value type: <empty>
+> +	Definition: Quirk specifying that the firmware wants to skip the host
+> +		    capability QMI request
+>  - qcom,xo-cal-data: xo cal offset to be configured in xo trim register.
+>  
+>  - qcom,msa-fixed-perm: Boolean context flag to disable SCM call for statically
+> diff --git a/drivers/net/wireless/ath/ath10k/qmi.c b/drivers/net/wireless/ath/ath10k/qmi.c
+> index 5468a41e928e..5adff7695e18 100644
+> --- a/drivers/net/wireless/ath/ath10k/qmi.c
+> +++ b/drivers/net/wireless/ath/ath10k/qmi.c
+> @@ -770,6 +770,7 @@ ath10k_qmi_ind_register_send_sync_msg(struct ath10k_qmi *qmi)
+>  static void ath10k_qmi_event_server_arrive(struct ath10k_qmi *qmi)
+>  {
+>  	struct ath10k *ar = qmi->ar;
+> +	struct ath10k_snoc *ar_snoc = ath10k_snoc_priv(ar);
+>  	int ret;
+>  
+>  	ret = ath10k_qmi_ind_register_send_sync_msg(qmi);
+> @@ -781,9 +782,15 @@ static void ath10k_qmi_event_server_arrive(struct ath10k_qmi *qmi)
+>  		return;
+>  	}
+>  
+> -	ret = ath10k_qmi_host_cap_send_sync(qmi);
+> -	if (ret)
+> -		return;
+> +	/*
+> +	 * Skip the host capability request for the firmware versions which
+> +	 * do not support this feature.
+> +	 */
+> +	if (!test_bit(ATH10K_SNOC_FLAG_SKIP_HOST_CAP_QUIRK, &ar_snoc->flags)) {
 
----
-Changes since v1:
-- Explicitely cast drvdata pointer to make sparse happy
+Could have made this an early return inside
+ath10k_qmi_host_cap_send_sync(), but this works.
 
- drivers/phy/marvell/Kconfig         | 12 +++++
- drivers/phy/marvell/Makefile        |  1 +
- drivers/phy/marvell/phy-mmp3-hsic.c | 82 +++++++++++++++++++++++++++++
- 3 files changed, 95 insertions(+)
- create mode 100644 drivers/phy/marvell/phy-mmp3-hsic.c
+Reviewed-by: Bjorn Andersson <bjorn.andersson@linaro.org>
 
-diff --git a/drivers/phy/marvell/Kconfig b/drivers/phy/marvell/Kconfig
-index 8f6273c837ec3..6c96f2bf52665 100644
---- a/drivers/phy/marvell/Kconfig
-+++ b/drivers/phy/marvell/Kconfig
-@@ -116,3 +116,15 @@ config PHY_MMP3_USB
- 	  The PHY driver will be used by Marvell udc/ehci/otg driver.
-=20
- 	  To compile this driver as a module, choose M here.
-+
-+config PHY_MMP3_HSIC
-+	tristate "Marvell MMP3 USB HSIC PHY Driver"
-+	depends on MACH_MMP3_DT || COMPILE_TEST
-+	select GENERIC_PHY
-+	help
-+	  Enable this to support Marvell MMP3 USB HSIC PHY driver for
-+	  Marvell MMP3 SoC. This driver will be used my the Marvell EHCI
-+	  driver to initialize the interface to internal USB HSIC
-+	  components on MMP3-based boards.
-+
-+	  To compile this driver as a module, choose M here.
-diff --git a/drivers/phy/marvell/Makefile b/drivers/phy/marvell/Makefile
-index 5a106b1549f41..7f296ef028292 100644
---- a/drivers/phy/marvell/Makefile
-+++ b/drivers/phy/marvell/Makefile
-@@ -3,6 +3,7 @@ obj-$(CONFIG_ARMADA375_USBCLUSTER_PHY)	+=3D phy-armada375=
--usb2.o
- obj-$(CONFIG_PHY_BERLIN_SATA)		+=3D phy-berlin-sata.o
- obj-$(CONFIG_PHY_BERLIN_USB)		+=3D phy-berlin-usb.o
- obj-$(CONFIG_PHY_MMP3_USB)		+=3D phy-mmp3-usb.o
-+obj-$(CONFIG_PHY_MMP3_HSIC)		+=3D phy-mmp3-hsic.o
- obj-$(CONFIG_PHY_MVEBU_A3700_COMPHY)	+=3D phy-mvebu-a3700-comphy.o
- obj-$(CONFIG_PHY_MVEBU_A3700_UTMI)	+=3D phy-mvebu-a3700-utmi.o
- obj-$(CONFIG_PHY_MVEBU_A38X_COMPHY)	+=3D phy-armada38x-comphy.o
-diff --git a/drivers/phy/marvell/phy-mmp3-hsic.c b/drivers/phy/marvell/ph=
-y-mmp3-hsic.c
-new file mode 100644
-index 0000000000000..47c1e8894939f
---- /dev/null
-+++ b/drivers/phy/marvell/phy-mmp3-hsic.c
-@@ -0,0 +1,82 @@
-+// SPDX-License-Identifier: GPL-2.0+
-+/*
-+ * Copyright (C) 2020 Lubomir Rintel <lkundrak@v3.sk>
-+ */
-+
-+#include <linux/delay.h>
-+#include <linux/io.h>
-+#include <linux/module.h>
-+#include <linux/phy/phy.h>
-+#include <linux/platform_device.h>
-+
-+#define HSIC_CTRL	0x08
-+#define HSIC_ENABLE	BIT(7)
-+#define PLL_BYPASS	BIT(4)
-+
-+static int mmp3_hsic_phy_init(struct phy *phy)
-+{
-+	void __iomem *base =3D (void __iomem *)phy_get_drvdata(phy);
-+	u32 hsic_ctrl;
-+
-+	hsic_ctrl =3D readl_relaxed(base + HSIC_CTRL);
-+	hsic_ctrl |=3D HSIC_ENABLE;
-+	hsic_ctrl |=3D PLL_BYPASS;
-+	writel_relaxed(hsic_ctrl, base + HSIC_CTRL);
-+
-+	return 0;
-+}
-+
-+static const struct phy_ops mmp3_hsic_phy_ops =3D {
-+	.init		=3D mmp3_hsic_phy_init,
-+	.owner		=3D THIS_MODULE,
-+};
-+
-+static const struct of_device_id mmp3_hsic_phy_of_match[] =3D {
-+	{ .compatible =3D "marvell,mmp3-hsic-phy", },
-+	{ },
-+};
-+MODULE_DEVICE_TABLE(of, mmp3_hsic_phy_of_match);
-+
-+static int mmp3_hsic_phy_probe(struct platform_device *pdev)
-+{
-+	struct device *dev =3D &pdev->dev;
-+	struct phy_provider *provider;
-+	struct resource *resource;
-+	void __iomem *base;
-+	struct phy *phy;
-+
-+	resource =3D platform_get_resource(pdev, IORESOURCE_MEM, 0);
-+	base =3D devm_ioremap_resource(dev, resource);
-+	if (IS_ERR(base)) {
-+		dev_err(dev, "failed to remap PHY regs\n");
-+		return PTR_ERR(base);
-+	}
-+
-+	phy =3D devm_phy_create(dev, NULL, &mmp3_hsic_phy_ops);
-+	if (IS_ERR(phy)) {
-+		dev_err(dev, "failed to create PHY\n");
-+		return PTR_ERR(phy);
-+	}
-+
-+	phy_set_drvdata(phy, (void *)base);
-+	provider =3D devm_of_phy_provider_register(dev, of_phy_simple_xlate);
-+	if (IS_ERR(provider)) {
-+		dev_err(dev, "failed to register PHY provider\n");
-+		return PTR_ERR(provider);
-+	}
-+
-+	return 0;
-+}
-+
-+static struct platform_driver mmp3_hsic_phy_driver =3D {
-+	.probe		=3D mmp3_hsic_phy_probe,
-+	.driver		=3D {
-+		.name	=3D "mmp3-hsic-phy",
-+		.of_match_table =3D mmp3_hsic_phy_of_match,
-+	},
-+};
-+module_platform_driver(mmp3_hsic_phy_driver);
-+
-+MODULE_AUTHOR("Lubomir Rintel <lkundrak@v3.sk>");
-+MODULE_DESCRIPTION("Marvell MMP3 USB HSIC PHY Driver");
-+MODULE_LICENSE("GPL");
---=20
-2.26.2
+Regards,
+Bjorn
 
+> +		ret = ath10k_qmi_host_cap_send_sync(qmi);
+> +		if (ret)
+> +			return;
+> +	}
+>  
+>  	ret = ath10k_qmi_msa_mem_info_send_sync_msg(qmi);
+>  	if (ret)
+> diff --git a/drivers/net/wireless/ath/ath10k/snoc.c b/drivers/net/wireless/ath/ath10k/snoc.c
+> index 354d49b1cd45..4efbf1339c80 100644
+> --- a/drivers/net/wireless/ath/ath10k/snoc.c
+> +++ b/drivers/net/wireless/ath/ath10k/snoc.c
+> @@ -1281,6 +1281,9 @@ static void ath10k_snoc_quirks_init(struct ath10k *ar)
+>  
+>  	if (of_property_read_bool(dev->of_node, "qcom,snoc-host-cap-8bit-quirk"))
+>  		set_bit(ATH10K_SNOC_FLAG_8BIT_HOST_CAP_QUIRK, &ar_snoc->flags);
+> +
+> +	if (of_property_read_bool(dev->of_node, "qcom,snoc-host-cap-skip-quirk"))
+> +		set_bit(ATH10K_SNOC_FLAG_SKIP_HOST_CAP_QUIRK, &ar_snoc->flags);
+>  }
+>  
+>  int ath10k_snoc_fw_indication(struct ath10k *ar, u64 type)
+> diff --git a/drivers/net/wireless/ath/ath10k/snoc.h b/drivers/net/wireless/ath/ath10k/snoc.h
+> index a3dd06f6ac62..2a0045f0af7e 100644
+> --- a/drivers/net/wireless/ath/ath10k/snoc.h
+> +++ b/drivers/net/wireless/ath/ath10k/snoc.h
+> @@ -47,6 +47,7 @@ enum ath10k_snoc_flags {
+>  	ATH10K_SNOC_FLAG_UNREGISTERING,
+>  	ATH10K_SNOC_FLAG_RECOVERY,
+>  	ATH10K_SNOC_FLAG_8BIT_HOST_CAP_QUIRK,
+> +	ATH10K_SNOC_FLAG_SKIP_HOST_CAP_QUIRK,
+>  };
+>  
+>  struct clk_bulk_data;
+> -- 
+> 2.7.4
+> 
