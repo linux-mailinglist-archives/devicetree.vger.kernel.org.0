@@ -2,116 +2,73 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from vger.kernel.org (vger.kernel.org [23.128.96.18])
-	by mail.lfdr.de (Postfix) with ESMTP id 347CA279AEF
-	for <lists+devicetree@lfdr.de>; Sat, 26 Sep 2020 18:29:51 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTP id 2A0FA279B0D
+	for <lists+devicetree@lfdr.de>; Sat, 26 Sep 2020 18:54:29 +0200 (CEST)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S1730164AbgIZQ3l (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Sat, 26 Sep 2020 12:29:41 -0400
-Received: from mail.kernel.org ([198.145.29.99]:33822 "EHLO mail.kernel.org"
-        rhost-flags-OK-OK-OK-OK) by vger.kernel.org with ESMTP
-        id S1730060AbgIZQ3T (ORCPT <rfc822;devicetree@vger.kernel.org>);
-        Sat, 26 Sep 2020 12:29:19 -0400
-Received: from localhost.localdomain (unknown [194.230.155.132])
-        (using TLSv1.2 with cipher ECDHE-RSA-AES128-GCM-SHA256 (128/128 bits))
-        (No client certificate requested)
-        by mail.kernel.org (Postfix) with ESMTPSA id CE2CD21D82;
-        Sat, 26 Sep 2020 16:29:13 +0000 (UTC)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=kernel.org;
-        s=default; t=1601137757;
-        bh=IWVFinU2gJ+E1MF07J7h9v2WfL9kkI6gUXonDptfeCk=;
-        h=From:To:Cc:Subject:Date:In-Reply-To:References:From;
-        b=Cdqy+LbP9Z81nyfJCtgjygb/C+6YC3vgvH3ZUwF5ahfp9rwUkzDcS+xrLqBOxzyEb
-         I/9Wpp/LMS20vLxyloynOKalFv6Ca7vYJaRgWGxVr0uL8ZjBPQUJK6Usk0+6md0yW8
-         Gsw6zNN+VEoRBiy3iHu0D12IVAvF5vcn+BUIGGV4=
-From:   Krzysztof Kozlowski <krzk@kernel.org>
-To:     Rob Herring <robh+dt@kernel.org>, Shawn Guo <shawnguo@kernel.org>,
-        Sascha Hauer <s.hauer@pengutronix.de>,
-        Pengutronix Kernel Team <kernel@pengutronix.de>,
-        Fabio Estevam <festevam@gmail.com>,
-        NXP Linux Team <linux-imx@nxp.com>,
-        Krzysztof Kozlowski <krzk@kernel.org>,
-        Stefan Riedmueller <s.riedmueller@phytec.de>,
-        Robert Jones <rjones@gateworks.com>,
-        Li Yang <leoyang.li@nxp.com>, devicetree@vger.kernel.org,
-        linux-kernel@vger.kernel.org, linux-arm-kernel@lists.infradead.org
-Cc:     Heiko Schocher <hs@denx.de>
-Subject: [RFC 14/14] ARM: dts: imx6dl: add compatibles for Aristainetos boards
-Date:   Sat, 26 Sep 2020 18:28:11 +0200
-Message-Id: <20200926162811.5335-14-krzk@kernel.org>
-X-Mailer: git-send-email 2.17.1
-In-Reply-To: <20200926162811.5335-1-krzk@kernel.org>
-References: <20200926162811.5335-1-krzk@kernel.org>
+        id S1729722AbgIZQy0 (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Sat, 26 Sep 2020 12:54:26 -0400
+Received: from mout.kundenserver.de ([212.227.17.24]:49069 "EHLO
+        mout.kundenserver.de" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
+        with ESMTP id S1728504AbgIZQy0 (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Sat, 26 Sep 2020 12:54:26 -0400
+Received: from buildfff.adridolf.com ([188.192.134.246]) by
+ mrelayeu.kundenserver.de (mreue106 [212.227.15.183]) with ESMTPSA (Nemesis)
+ id 1MNccf-1k5un340pX-00P4zU; Sat, 26 Sep 2020 18:49:07 +0200
+From:   Adrian Schmutzler <freifunk@adrianschmutzler.de>
+To:     Pavel Machek <pavel@ucw.cz>, Dan Murphy <dmurphy@ti.com>,
+        Rob Herring <robh+dt@kernel.org>, linux-leds@vger.kernel.org,
+        devicetree@vger.kernel.org,
+        Adrian Schmutzler <freifunk@adrianschmutzler.de>
+Subject: [PATCH] MAINTAINERS: add include/dt-bindings/leds/ to linux-leds list
+Date:   Sat, 26 Sep 2020 18:47:45 +0200
+Message-Id: <20200926164745.3779-1-freifunk@adrianschmutzler.de>
+X-Mailer: git-send-email 2.20.1
+MIME-Version: 1.0
+Content-Transfer-Encoding: 8bit
+X-Provags-ID: V03:K1:G1OHp5d+aHCc37t7T5akyefpAQ8xv2YYJ+3Scqx0PI+qxg83w0E
+ qty3Qef/3ws5hut0Wd5X8xAUb4DKNRUNSJKe5dD3zz610yboFZqlWJlIdVStLcoxdSZbIQj
+ a0NhCG1eiE3Ngr3Q0q8VS/9u/aC+pxYXgWsZV0KDkLBrKORUk8jiOL7dLTh9FMo8r7r9Hr0
+ SREUjU+0k1aryt0Pg5z/g==
+X-Spam-Flag: NO
+X-UI-Out-Filterresults: notjunk:1;V03:K0:bZxGYTepEFI=:qx7TkIGiPMboGmh7BKexjP
+ 8tYhDLDH7kXOFsJajL9irb8McwHJxZG04KQ1vaezZNYh+f/WfzRYwJKi5byJkJxiwnU3rl0VY
+ EuKcir7vjnCVve+VOReddHq8Kvoc8gqPlamE9oR6Xk2nme7CpHnBLwQKcy+/bZxpPmzOQxULx
+ 0yrF61V/m4+U5BmwgrS0ZR/7cRqYBlyB3gPhUWJcg4HUvJhutxNjRE6M6ftHFAIn2b49UbhLI
+ F2aJPlceCeOswDHWoQpB13EDBDPmJNDLuFRZhz3uY4a8You3mpeqo+gPDmp7zIj7fcCfl+vXQ
+ 0PP4PLxUJlhy8NK1j1cg/zynkIK8CH54fKimboEYQWOv66XNTUIBIKeJkLdmt6J26eCoXAyWp
+ dBTDf/DxkyQ3e/eFwL3mb88HP6lXwxmMeGVLzUgfSFoh97Obt9y5ztqyyXFOT6vHOMFkDPdMF
+ k8KzLdwzfRb02e8SXTGXCvMbBvnnf+1Kyle3I5BcUSQq+V/z6GH2jZyMv9oijtFl2zs5U916k
+ pVoJyr+z5g5nlRmaHDFIeoF83GVoJUhKXFmhkS9pxdv1plpSh1h1Xk80drYI0O2TlPX3ubvUv
+ f4pvOeX8F5B0YBRjb7jKKipYe0DbA2xNih90PePJs4uvYf815rZw/6KN0ND0rQur/jG/t5Jxu
+ G3mB3mVhdmOy9DktsC/W3RHpXRyJvyatCsHdy+nWXYsxYaz+2TS/afazV92tdAvvooURXsfas
+ HaoXwe++4YwVJJVOY5PxgwB8DIBaqnDSYHppTgAVtdu3nLxUZMQffX9lDTkSkQm7WnOnLZdxc
+ H8geU+47UuhjVTyZEPJmaK3kE9eELxQ1vCdEX0fX7czQjaBfcMz9+34cHGgvd7ygi5pzQWlkG
+ fEm2SI3NtIzaqjyxRPyw==
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-The Aristainetos and Aristainetos2 boards have only SoC compatible.
+The content of include/dt-bindings/leds/, particularly common.h,
+is apparantly maintained by the linux-leds list. This is also
+explicitly stated in the Documentation.
 
-Cc: Heiko Schocher <hs@denx.de>
-Signed-off-by: Krzysztof Kozlowski <krzk@kernel.org>
-
+Signed-off-by: Adrian Schmutzler <freifunk@adrianschmutzler.de>
 ---
+ MAINTAINERS | 1 +
+ 1 file changed, 1 insertion(+)
 
-Unfortunately I have no clue what is it.
----
- arch/arm/boot/dts/imx6dl-aristainetos2_4.dts | 2 +-
- arch/arm/boot/dts/imx6dl-aristainetos2_7.dts | 2 +-
- arch/arm/boot/dts/imx6dl-aristainetos_4.dts  | 2 +-
- arch/arm/boot/dts/imx6dl-aristainetos_7.dts  | 2 +-
- 4 files changed, 4 insertions(+), 4 deletions(-)
-
-diff --git a/arch/arm/boot/dts/imx6dl-aristainetos2_4.dts b/arch/arm/boot/dts/imx6dl-aristainetos2_4.dts
-index b16603f27dce..241754305f51 100644
---- a/arch/arm/boot/dts/imx6dl-aristainetos2_4.dts
-+++ b/arch/arm/boot/dts/imx6dl-aristainetos2_4.dts
-@@ -46,7 +46,7 @@
+diff --git a/MAINTAINERS b/MAINTAINERS
+index 190c7fa2ea01..415f0e089bbe 100644
+--- a/MAINTAINERS
++++ b/MAINTAINERS
+@@ -9809,6 +9809,7 @@ S:	Maintained
+ T:	git git://git.kernel.org/pub/scm/linux/kernel/git/pavel/linux-leds.git
+ F:	Documentation/devicetree/bindings/leds/
+ F:	drivers/leds/
++F:	include/dt-bindings/leds/
+ F:	include/linux/leds.h
  
- / {
- 	model = "aristainetos2 i.MX6 Dual Lite Board 4";
--	compatible = "fsl,imx6dl";
-+	compatible = "aristainetos,aristainetos2-imx6dl-4", "fsl,imx6dl";
- 
- 	memory@10000000 {
- 		device_type = "memory";
-diff --git a/arch/arm/boot/dts/imx6dl-aristainetos2_7.dts b/arch/arm/boot/dts/imx6dl-aristainetos2_7.dts
-index abb2a1b9ce08..5ff0e55691f6 100644
---- a/arch/arm/boot/dts/imx6dl-aristainetos2_7.dts
-+++ b/arch/arm/boot/dts/imx6dl-aristainetos2_7.dts
-@@ -46,7 +46,7 @@
- 
- / {
- 	model = "aristainetos2 i.MX6 Dual Lite Board 7";
--	compatible = "fsl,imx6dl";
-+	compatible = "aristainetos,aristainetos2-imx6dl-7", "fsl,imx6dl";
- 
- 	memory@10000000 {
- 		device_type = "memory";
-diff --git a/arch/arm/boot/dts/imx6dl-aristainetos_4.dts b/arch/arm/boot/dts/imx6dl-aristainetos_4.dts
-index 5c7e85300695..4a124f65cb10 100644
---- a/arch/arm/boot/dts/imx6dl-aristainetos_4.dts
-+++ b/arch/arm/boot/dts/imx6dl-aristainetos_4.dts
-@@ -10,7 +10,7 @@
- 
- / {
- 	model = "aristainetos i.MX6 Dual Lite Board 4";
--	compatible = "fsl,imx6dl";
-+	compatible = "aristainetos,aristainetos-imx6dl-4", "fsl,imx6dl";
- 
- 	backlight {
- 		compatible = "pwm-backlight";
-diff --git a/arch/arm/boot/dts/imx6dl-aristainetos_7.dts b/arch/arm/boot/dts/imx6dl-aristainetos_7.dts
-index 4d58cb4436d9..6ad10d53562f 100644
---- a/arch/arm/boot/dts/imx6dl-aristainetos_7.dts
-+++ b/arch/arm/boot/dts/imx6dl-aristainetos_7.dts
-@@ -10,7 +10,7 @@
- 
- / {
- 	model = "aristainetos i.MX6 Dual Lite Board 7";
--	compatible = "fsl,imx6dl";
-+	compatible = "aristainetos,aristainetos-imx6dl-7", "fsl,imx6dl";
- 
- 	memory@10000000 {
- 		device_type = "memory";
+ LEGACY EEPROM DRIVER
 -- 
-2.17.1
+2.20.1
 
