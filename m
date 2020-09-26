@@ -2,101 +2,89 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from vger.kernel.org (vger.kernel.org [23.128.96.18])
-	by mail.lfdr.de (Postfix) with ESMTP id E67162799C3
-	for <lists+devicetree@lfdr.de>; Sat, 26 Sep 2020 15:48:07 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTP id E16522799E2
+	for <lists+devicetree@lfdr.de>; Sat, 26 Sep 2020 15:56:17 +0200 (CEST)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S1726309AbgIZNrw (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Sat, 26 Sep 2020 09:47:52 -0400
-Received: from lindbergh.monkeyblade.net ([23.128.96.19]:43842 "EHLO
+        id S1728861AbgIZN4K (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Sat, 26 Sep 2020 09:56:10 -0400
+Received: from lindbergh.monkeyblade.net ([23.128.96.19]:45152 "EHLO
         lindbergh.monkeyblade.net" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S1725208AbgIZNrv (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Sat, 26 Sep 2020 09:47:51 -0400
-Received: from mail-lf1-x144.google.com (mail-lf1-x144.google.com [IPv6:2a00:1450:4864:20::144])
-        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 6C9BDC0613CE;
-        Sat, 26 Sep 2020 06:47:51 -0700 (PDT)
-Received: by mail-lf1-x144.google.com with SMTP id y2so5939260lfy.10;
-        Sat, 26 Sep 2020 06:47:51 -0700 (PDT)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=gmail.com; s=20161025;
-        h=subject:to:cc:references:from:message-id:date:user-agent
-         :mime-version:in-reply-to:content-language:content-transfer-encoding;
-        bh=lNbXhJArblGcxeZheeo2BpWV11J4mxo5UBEIbVkUdsg=;
-        b=oBp6M429G1+h4azfP/C5b2+24+Fz6tHTQYZXp6E9HDH6MhMFGC5F3sszOUygMDlfpY
-         o7y39C4qbqRXeRzLRI4CtYvvsqZNbu0XXOyiAcztl1jFm1Bg8vu5SqNs6FCloMAlF5qc
-         8H8rbYed437z7dNLf6t5C7RQr01TEA0Pvklx4UL2QWLMu0KKsKgL7AGQzMjplst9i/ff
-         xk1hnZJBY5Hx3UfL3BOqYkQmjSAvN/QlHagqwR1HMDxeJt5dN6hjRmVjBTznWStAAH+M
-         F3DY/QCeyFtkVVBtmndIv2Yojumr8pE8mBNZyFtG2Lt46L65OjsijM9YNrFLg3oa6yhR
-         QoRQ==
-X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=1e100.net; s=20161025;
-        h=x-gm-message-state:subject:to:cc:references:from:message-id:date
-         :user-agent:mime-version:in-reply-to:content-language
-         :content-transfer-encoding;
-        bh=lNbXhJArblGcxeZheeo2BpWV11J4mxo5UBEIbVkUdsg=;
-        b=jSerRX00QXOTcqlCmnVjragk1DTJIXrVhdtubd1adQXx8Tntnn6/UGdTqlAXe4iP+0
-         bPmEB2Y9qfA30tI8wiicHu7PlhJZRBmWFzUfSETqEva1ztW5RWYlrAG2hy/56xayU/vq
-         BI3meNueyDKwu4UMvH/IVvpADXBvQMPm6+zeVoZqZtMFl4YulWiH8DHvp1C3Gf659ndl
-         8/GcBxKbhMeTMbD7ImbOPMSL05RCc80ZuqjtihLRDPYNJg4PxPbLwtuWvD/7ahKMMpvb
-         k3Z7EhhdPJXHRmHgH+QDNPJYL2hu4R/xDxkSXO7E//yMlkdeSq9D159tnQnGpVhrkUx6
-         tfZg==
-X-Gm-Message-State: AOAM530XhP06Kr8vj+Ls4cl8NyvTYvXT77kdqyKYzQWAEsLXJQQFUQYB
-        nsoc57B5POXYMgq1qsYpZ987M7EKx6Q=
-X-Google-Smtp-Source: ABdhPJzZAAbv71OtrERAMczlk029GPxqrzyFd4H7DB09Xp64+SklRLmRTHEzBlZkOpogwqAB9GwMtg==
-X-Received: by 2002:ac2:51a8:: with SMTP id f8mr1303670lfk.472.1601128069735;
-        Sat, 26 Sep 2020 06:47:49 -0700 (PDT)
-Received: from [192.168.2.145] (109-252-170-211.dynamic.spd-mgts.ru. [109.252.170.211])
-        by smtp.googlemail.com with ESMTPSA id v17sm1659052lfr.42.2020.09.26.06.47.48
-        (version=TLS1_3 cipher=TLS_AES_128_GCM_SHA256 bits=128/128);
-        Sat, 26 Sep 2020 06:47:48 -0700 (PDT)
-Subject: Re: [PATCH v2 1/3] ARM: tegra: Add device-tree for Ouya
-To:     Peter Geis <pgwipeout@gmail.com>
-Cc:     Rob Herring <robh+dt@kernel.org>,
-        Thierry Reding <thierry.reding@gmail.com>,
-        Jonathan Hunter <jonathanh@nvidia.com>,
-        Matt Merhar <mattmerhar@protonmail.com>,
-        Stephen Warren <swarren@wwwdotorg.org>,
-        Bob Ham <rah@settrans.net>,
-        Leonardo Bras <leobras.c@gmail.com>,
-        Michael Brougham <jusplainmike@gmail.com>,
-        linux-tegra@vger.kernel.org, devicetree@vger.kernel.org,
-        linux-kernel@vger.kernel.org
-References: <20200923210352.1176386-1-pgwipeout@gmail.com>
- <20200923210352.1176386-2-pgwipeout@gmail.com>
- <df2d6a8d-8a6c-464b-8f35-a7994ea01534@gmail.com>
- <CAMdYzYosBUUudsRnf9RQ1HKYq8cS4uXRm-9Mg1=hZy+v_Q_X6g@mail.gmail.com>
-From:   Dmitry Osipenko <digetx@gmail.com>
-Message-ID: <83a5ee67-e30d-db43-a210-345304ed6edd@gmail.com>
-Date:   Sat, 26 Sep 2020 16:47:48 +0300
-User-Agent: Mozilla/5.0 (X11; Linux x86_64; rv:68.0) Gecko/20100101
- Thunderbird/68.10.0
+        with ESMTP id S1729424AbgIZNz6 (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Sat, 26 Sep 2020 09:55:58 -0400
+X-Greylist: delayed 58541 seconds by postgrey-1.37 at lindbergh.monkeyblade.net; Sat, 26 Sep 2020 06:55:55 PDT
+Received: from antares.kleine-koenig.org (antares.kleine-koenig.org [IPv6:2a01:4f8:c0c:3a97::2])
+        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 8E977C0613DC
+        for <devicetree@vger.kernel.org>; Sat, 26 Sep 2020 06:55:55 -0700 (PDT)
+Received: by antares.kleine-koenig.org (Postfix, from userid 1000)
+        id 9BFC7A39DCD; Sat, 26 Sep 2020 15:55:53 +0200 (CEST)
+Date:   Sat, 26 Sep 2020 15:55:53 +0200
+From:   Uwe =?iso-8859-1?Q?Kleine-K=F6nig?= <uwe@kleine-koenig.org>
+To:     Rob Herring <robh+dt@kernel.org>, Heiko Stuebner <heiko@sntech.de>,
+        Aditya Prayoga <aditya@kobol.io>
+Cc:     devicetree@vger.kernel.org, linux-arm-kernel@lists.infradead.org,
+        linux-rockchip@lists.infradead.org
+Subject: Re: [PATCH 2/2] arm64: dts: rockchip: Add basic support for Kobol's
+ Helios64
+Message-ID: <20200926135553.GA17434@taurus.defre.kleine-koenig.org>
+References: <20200925214003.27186-1-uwe@kleine-koenig.org>
+ <20200925214003.27186-2-uwe@kleine-koenig.org>
 MIME-Version: 1.0
-In-Reply-To: <CAMdYzYosBUUudsRnf9RQ1HKYq8cS4uXRm-9Mg1=hZy+v_Q_X6g@mail.gmail.com>
-Content-Type: text/plain; charset=utf-8
-Content-Language: en-US
-Content-Transfer-Encoding: 8bit
+Content-Type: multipart/signed; micalg=pgp-sha512;
+        protocol="application/pgp-signature"; boundary="G4iJoqBmSsgzjUCe"
+Content-Disposition: inline
+In-Reply-To: <20200925214003.27186-2-uwe@kleine-koenig.org>
+User-Agent: Mutt/1.10.1 (2018-07-13)
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-26.09.2020 05:01, Peter Geis пишет:
-...
->>> +             pmic: pmic@2d {
->>> +                     compatible = "ti,tps65911";
->>> +                     reg = <0x2d>;
->>> +
->>> +                     interrupts = <GIC_SPI 86 IRQ_TYPE_LEVEL_HIGH>;
->>> +                     #interrupt-cells = <2>;
->>> +                     interrupt-controller;
->>> +
->>> +                     ti,system-power-controller;
->>
->> Are the ti,sleep-keep-ck32k and other properties not needed for Ouya
->> like they are needed for Nexus 7?
-> 
-> Ouya is wall powered, so ultra low power isn't terribly necessary.
-> Also with LP1 and LP0 not working, it doesn't make much sense to
-> implement this yet.
 
-The keep-ck32 is not about power saving. If PMC is running off PMIC's
-oscillator during LP1 suspend, then this should be one of the reasons
-why LP1 doesn't work for you.
+--G4iJoqBmSsgzjUCe
+Content-Type: text/plain; charset=iso-8859-1
+Content-Disposition: inline
+Content-Transfer-Encoding: quoted-printable
+
+Hello,
+
+On Fri, Sep 25, 2020 at 11:40:03PM +0200, Uwe Kleine-K=F6nig wrote:
+> The hardware is described in detail on Kobol's wiki at
+> https://wiki.kobol.io/helios64/intro/.
+>=20
+> Up to now the following peripherals are working:
+>=20
+>  - UART
+>  - Micro-SD card
+>  - eMMC
+>  - ethernet port 1
+>  - status LED
+>=20
+> Signed-off-by: Uwe Kleine-K=F6nig <uwe@kleine-koenig.org>
+
+One important thing I forgot to mention here is: This devicetree is a
+stripped down version of the helios64 support included in Armbian that
+was written by Aditya Prayoga. The original has a line
+
+	Copyright (c) 2020 Aditya Prayoga (aditya@kobol.io)
+
+where I was unsure if I should drop it or not. @Aditya: Please advise if
+you want this included, then I take care of that for v2.
+
+Best regards
+Uwe
+
+--G4iJoqBmSsgzjUCe
+Content-Type: application/pgp-signature; name="signature.asc"
+
+-----BEGIN PGP SIGNATURE-----
+
+iQEzBAABCgAdFiEEfnIqFpAYrP8+dKQLwfwUeK3K7AkFAl9vSGYACgkQwfwUeK3K
+7Akf5Af7BeH2edt/oxPA8XZZP1X3d1ZpsSexaIpsU8sz46JRE+LMcrhmeiKuIUMy
+VZSCqsrA/FCF2js9ucHtTIUZCxcu1J2gFipBuEgYxqvvfCzWjOYz/YbgjI67iNGH
+gBpeMg6juqEIX7U6UBAUiiyW53ARovcqqE6ofkoGZWVvbFib7nLcklsGeAavbrhZ
+19hVEmYXN61xGs2IpZ1hQwFA8QCWvpAdNqySrIB2r1VMfob20vzKkpaDP3RJp9qQ
+tEI77uduqRJXIGN6WOSG4eoOnlqdF/Vv38uQKFUpxbUaBZjQ6vMNoMmrvwxOG0lC
+qFjQiZ4MvbKFJSCrBS8NiHgNhjLOLw==
+=G0Tn
+-----END PGP SIGNATURE-----
+
+--G4iJoqBmSsgzjUCe--
