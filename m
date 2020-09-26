@@ -2,73 +2,89 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from vger.kernel.org (vger.kernel.org [23.128.96.18])
-	by mail.lfdr.de (Postfix) with ESMTP id 2A0FA279B0D
-	for <lists+devicetree@lfdr.de>; Sat, 26 Sep 2020 18:54:29 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTP id ECDAE279B15
+	for <lists+devicetree@lfdr.de>; Sat, 26 Sep 2020 19:01:43 +0200 (CEST)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S1729722AbgIZQy0 (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Sat, 26 Sep 2020 12:54:26 -0400
-Received: from mout.kundenserver.de ([212.227.17.24]:49069 "EHLO
-        mout.kundenserver.de" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S1728504AbgIZQy0 (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Sat, 26 Sep 2020 12:54:26 -0400
-Received: from buildfff.adridolf.com ([188.192.134.246]) by
- mrelayeu.kundenserver.de (mreue106 [212.227.15.183]) with ESMTPSA (Nemesis)
- id 1MNccf-1k5un340pX-00P4zU; Sat, 26 Sep 2020 18:49:07 +0200
-From:   Adrian Schmutzler <freifunk@adrianschmutzler.de>
-To:     Pavel Machek <pavel@ucw.cz>, Dan Murphy <dmurphy@ti.com>,
-        Rob Herring <robh+dt@kernel.org>, linux-leds@vger.kernel.org,
-        devicetree@vger.kernel.org,
-        Adrian Schmutzler <freifunk@adrianschmutzler.de>
-Subject: [PATCH] MAINTAINERS: add include/dt-bindings/leds/ to linux-leds list
-Date:   Sat, 26 Sep 2020 18:47:45 +0200
-Message-Id: <20200926164745.3779-1-freifunk@adrianschmutzler.de>
-X-Mailer: git-send-email 2.20.1
+        id S1729336AbgIZRBm (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Sat, 26 Sep 2020 13:01:42 -0400
+Received: from lindbergh.monkeyblade.net ([23.128.96.19]:45586 "EHLO
+        lindbergh.monkeyblade.net" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
+        with ESMTP id S1726210AbgIZRBm (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Sat, 26 Sep 2020 13:01:42 -0400
+Received: from mail-ej1-x62c.google.com (mail-ej1-x62c.google.com [IPv6:2a00:1450:4864:20::62c])
+        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 4F89AC0613CE;
+        Sat, 26 Sep 2020 10:01:42 -0700 (PDT)
+Received: by mail-ej1-x62c.google.com with SMTP id e23so2813199eja.3;
+        Sat, 26 Sep 2020 10:01:42 -0700 (PDT)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+        d=gmail.com; s=20161025;
+        h=from:date:to:cc:subject:message-id:user-agent:mime-version;
+        bh=Jt8GccEnjq1iGwDCAIard4XMHgfmZQ7MJ7ku4c4id5Q=;
+        b=oTYsBQ2lajSe8mxBNlatgPAwZgxPzkDW/f1s9lSDbl8Rf/UMktz1W0ygjeB5S4NTM2
+         S2p4j2Dt9tV0BXzu/MQzAlW9+nBKnUV4dz63rrxJUUkZywoLFY2LDmbQwHnKFaMgW0f+
+         LIfX9wBTX0eiMIZgp9syKPU9YZvmuiP88C+xleDm4btd4iFX9qZrUYJ0iC0sY/94jS9A
+         oVtXre2b4bmlLH+i9dlvCTj20hMA6XY+UkWCOm62OS66Lq6Bglx5TD5K0Ji/KplfC2z2
+         xDmI/hgWPa0gfoNAaHGk2jRXi94O9KICYm1pEFe5vTdhNqF/iNVgYjx0fAh7mFQhWvuu
+         MNHQ==
+X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+        d=1e100.net; s=20161025;
+        h=x-gm-message-state:from:date:to:cc:subject:message-id:user-agent
+         :mime-version;
+        bh=Jt8GccEnjq1iGwDCAIard4XMHgfmZQ7MJ7ku4c4id5Q=;
+        b=HAX/yml1K0RZNJ0FHUJBi2+9nqBxkzLPjh9W6GmrGuQz3T0qmfS5Vu4Ytwrua4rI2W
+         SX1WDpFOluG3Gg5x8YT5qQY6dwkUR5lYkbY0LsifeHSvY8jgImyhJ9BOJnqPe0E3wJu9
+         DU8OoveytKDeS3XjX4PkKdrNBWNFAxS4mosE2dVpr44VGTeAIQQLRTkw6JvgAbKzVbV6
+         CI3iBrWTA7Q7Ym7LdfF6TZktl2mM2XC/Dm0eh0mGB/wZIvcbkARpOx/OURdSkaNkSlrG
+         e8L2whoV8FuP+0mHxuF2EI9PPyjRt22r4Fowa9+nl3qaLd04rEj2fEHOv6IExvHlmrZO
+         Qjvg==
+X-Gm-Message-State: AOAM533SOS25nrt7hsNBr9W/p+QWsYN54m/1+18r813kWIjtNgKZC02S
+        cr6JZamMopxhZsnwgyZpljw=
+X-Google-Smtp-Source: ABdhPJyvnq26+Osyszon1/5y4kE4IL1r1Jx8cTPZL0t2ZczE/RIGdAomLjAXX1/ER4U6SAbeZ90GJw==
+X-Received: by 2002:a17:906:249b:: with SMTP id e27mr8031434ejb.105.1601139700052;
+        Sat, 26 Sep 2020 10:01:40 -0700 (PDT)
+Received: from felia ([2001:16b8:2daa:2000:7547:ca13:c101:33d2])
+        by smtp.gmail.com with ESMTPSA id a26sm4383926ejk.66.2020.09.26.10.01.38
+        (version=TLS1_3 cipher=TLS_AES_256_GCM_SHA384 bits=256/256);
+        Sat, 26 Sep 2020 10:01:39 -0700 (PDT)
+From:   Lukas Bulwahn <lukas.bulwahn@gmail.com>
+X-Google-Original-From: Lukas Bulwahn <lukas@gmail.com>
+Date:   Sat, 26 Sep 2020 19:01:32 +0200 (CEST)
+X-X-Sender: lukas@felia
+To:     Srinivas Kandagatla <srinivas.kandagatla@linaro.org>
+cc:     Mark Brown <broonie@kernel.org>, devicetree@vger.kernel.org,
+        alsa-devel@alsa-project.org, linux-kernel@vger.kernel.org,
+        linux-spdx@vger.kernel.org
+Subject: License clarification of sound/soc/qcom/qdsp6/q6afe-clocks.c
+Message-ID: <alpine.DEB.2.21.2009261855280.31589@felia>
+User-Agent: Alpine 2.21 (DEB 202 2017-01-01)
 MIME-Version: 1.0
-Content-Transfer-Encoding: 8bit
-X-Provags-ID: V03:K1:G1OHp5d+aHCc37t7T5akyefpAQ8xv2YYJ+3Scqx0PI+qxg83w0E
- qty3Qef/3ws5hut0Wd5X8xAUb4DKNRUNSJKe5dD3zz610yboFZqlWJlIdVStLcoxdSZbIQj
- a0NhCG1eiE3Ngr3Q0q8VS/9u/aC+pxYXgWsZV0KDkLBrKORUk8jiOL7dLTh9FMo8r7r9Hr0
- SREUjU+0k1aryt0Pg5z/g==
-X-Spam-Flag: NO
-X-UI-Out-Filterresults: notjunk:1;V03:K0:bZxGYTepEFI=:qx7TkIGiPMboGmh7BKexjP
- 8tYhDLDH7kXOFsJajL9irb8McwHJxZG04KQ1vaezZNYh+f/WfzRYwJKi5byJkJxiwnU3rl0VY
- EuKcir7vjnCVve+VOReddHq8Kvoc8gqPlamE9oR6Xk2nme7CpHnBLwQKcy+/bZxpPmzOQxULx
- 0yrF61V/m4+U5BmwgrS0ZR/7cRqYBlyB3gPhUWJcg4HUvJhutxNjRE6M6ftHFAIn2b49UbhLI
- F2aJPlceCeOswDHWoQpB13EDBDPmJNDLuFRZhz3uY4a8You3mpeqo+gPDmp7zIj7fcCfl+vXQ
- 0PP4PLxUJlhy8NK1j1cg/zynkIK8CH54fKimboEYQWOv66XNTUIBIKeJkLdmt6J26eCoXAyWp
- dBTDf/DxkyQ3e/eFwL3mb88HP6lXwxmMeGVLzUgfSFoh97Obt9y5ztqyyXFOT6vHOMFkDPdMF
- k8KzLdwzfRb02e8SXTGXCvMbBvnnf+1Kyle3I5BcUSQq+V/z6GH2jZyMv9oijtFl2zs5U916k
- pVoJyr+z5g5nlRmaHDFIeoF83GVoJUhKXFmhkS9pxdv1plpSh1h1Xk80drYI0O2TlPX3ubvUv
- f4pvOeX8F5B0YBRjb7jKKipYe0DbA2xNih90PePJs4uvYf815rZw/6KN0ND0rQur/jG/t5Jxu
- G3mB3mVhdmOy9DktsC/W3RHpXRyJvyatCsHdy+nWXYsxYaz+2TS/afazV92tdAvvooURXsfas
- HaoXwe++4YwVJJVOY5PxgwB8DIBaqnDSYHppTgAVtdu3nLxUZMQffX9lDTkSkQm7WnOnLZdxc
- H8geU+47UuhjVTyZEPJmaK3kE9eELxQ1vCdEX0fX7czQjaBfcMz9+34cHGgvd7ygi5pzQWlkG
- fEm2SI3NtIzaqjyxRPyw==
+Content-Type: text/plain; charset=US-ASCII
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-The content of include/dt-bindings/leds/, particularly common.h,
-is apparantly maintained by the linux-leds list. This is also
-explicitly stated in the Documentation.
+Dear Srinivas,
 
-Signed-off-by: Adrian Schmutzler <freifunk@adrianschmutzler.de>
----
- MAINTAINERS | 1 +
- 1 file changed, 1 insertion(+)
+with commit 520a1c396d19 ("ASoC: q6afe-clocks: add q6afe clock 
+controller"), you have added the file sound/soc/qcom/qdsp6/q6afe-clocks.c 
+with the SPDX-License-Identifier: GPL-1.0.
 
-diff --git a/MAINTAINERS b/MAINTAINERS
-index 190c7fa2ea01..415f0e089bbe 100644
---- a/MAINTAINERS
-+++ b/MAINTAINERS
-@@ -9809,6 +9809,7 @@ S:	Maintained
- T:	git git://git.kernel.org/pub/scm/linux/kernel/git/pavel/linux-leds.git
- F:	Documentation/devicetree/bindings/leds/
- F:	drivers/leds/
-+F:	include/dt-bindings/leds/
- F:	include/linux/leds.h
- 
- LEGACY EEPROM DRIVER
--- 
-2.20.1
+The use of 'GPL-1.0 only' is strongly not recommended as the Usage-Guide 
+in ./LICENSES/deprecated/GPL-1.0 points out:
 
+  The GNU General Public License (GPL) version 1 should not be used in new
+  code. For existing kernel code the 'or any later version' option is
+  required to be compatible with the general license of the project: GPLv2.
+
+At the end of the file, you further state it licensed with GPL-2.0 with 
+the following line:
+
+MODULE_LICENSE("GPL v2");
+
+So, is this just a typo in the SPDX-License-Identifier or do you really 
+intend to license this file under GPL-1.0 only?
+
+
+Best regards,
+
+Lukas
