@@ -2,108 +2,250 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from vger.kernel.org (vger.kernel.org [23.128.96.18])
-	by mail.lfdr.de (Postfix) with ESMTP id 19DB427A2B0
-	for <lists+devicetree@lfdr.de>; Sun, 27 Sep 2020 21:30:22 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTP id E21E827A3E7
+	for <lists+devicetree@lfdr.de>; Sun, 27 Sep 2020 22:05:01 +0200 (CEST)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S1726458AbgI0T36 (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Sun, 27 Sep 2020 15:29:58 -0400
-Received: from lindbergh.monkeyblade.net ([23.128.96.19]:34340 "EHLO
+        id S1726578AbgI0UFA (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Sun, 27 Sep 2020 16:05:00 -0400
+Received: from lindbergh.monkeyblade.net ([23.128.96.19]:39766 "EHLO
         lindbergh.monkeyblade.net" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S1726325AbgI0T3l (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Sun, 27 Sep 2020 15:29:41 -0400
-Received: from mail-wr1-x444.google.com (mail-wr1-x444.google.com [IPv6:2a00:1450:4864:20::444])
-        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 9872BC0613D5;
-        Sun, 27 Sep 2020 12:29:41 -0700 (PDT)
-Received: by mail-wr1-x444.google.com with SMTP id g4so9538043wrs.5;
-        Sun, 27 Sep 2020 12:29:41 -0700 (PDT)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=gmail.com; s=20161025;
-        h=from:to:cc:subject:date:message-id:in-reply-to:references
-         :mime-version:content-transfer-encoding;
-        bh=hFD9C0g02b1YD9AU5pxjflPT96QGvB/rE3rUqbHSeaU=;
-        b=NdxKLIksYEYWvMIxygmJ/wOgbIokpUYXQ7/7+hNB0bJwQlliFTMJsi+7U8PR+mhGQP
-         iy5VoMPACrRlx1sa6Psyr2JTvGxd7ZB47r4LXI17QtvgX315RzmxdiLz8aL2EnCdzTBb
-         wFbexHzCi9QbrV6d2Kr3RGTsApudPoWR/eAjRYdvIVqGavIYdFe8jdBctGSUCFdBuXoK
-         gMYHF30+idE7QvS/yFF9WogbwiOWCmB8vQVBligf48+Sd0FmFLaXJUa0PfJGnFKh86DW
-         kkVut1zRfkW8VNezqQRGOwq1RS7JF6VjlmhXhHxQZbKgZCo/r5rIBQck1cUSeMELkYWZ
-         fD3Q==
-X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=1e100.net; s=20161025;
-        h=x-gm-message-state:from:to:cc:subject:date:message-id:in-reply-to
-         :references:mime-version:content-transfer-encoding;
-        bh=hFD9C0g02b1YD9AU5pxjflPT96QGvB/rE3rUqbHSeaU=;
-        b=Ofk4arOVU8rs46Gs1ChoMu6ZRlWqrlgpq9f/Xl+qoEfdL3/8rR31UmuARfRCu4DT2l
-         71M70nmiNeiAZkaralhO61W7rU2a9CnMPk1CDv3e4F2yYM1GIdc/9X4SZjlzB8PJoWVO
-         UuL+raj/TJT8U1X7ha0G7F90zVZu7B6STvWofTkK9ziPCD90vhqcao4sETbEB/jtWJcu
-         OQzqhkaB6n6ng78xe6GYtnTobAuvX5XPh9kYEJH5LqzayplnKej5f02mLnBPkWV2fdto
-         q3jnKnzRI6gjCVoaAN0gPfw8QcWwDjXzkmqz7RBGNX1URb4A+shdJACyZQEq8O3t56Ls
-         1nNQ==
-X-Gm-Message-State: AOAM531FFVPvPdetE8fzbyDaf6vboQuBxuR8f0JGt7xBgR6X1NlpWgLG
-        svZhXpRTDOhRdHPKaaNP5JU=
-X-Google-Smtp-Source: ABdhPJwDIz/p54l7LU0V8+Pe13zDL0f4KhqMgsxnx1wJvc48DpYxuBX17S9t8cH1n0Cmz7B5+bFTmQ==
-X-Received: by 2002:a5d:4d49:: with SMTP id a9mr16140367wru.363.1601234980231;
-        Sun, 27 Sep 2020 12:29:40 -0700 (PDT)
-Received: from clement-Latitude-7490.numericable.fr (213-245-241-245.rev.numericable.fr. [213.245.241.245])
-        by smtp.gmail.com with ESMTPSA id n21sm6149609wmi.21.2020.09.27.12.29.39
-        (version=TLS1_3 cipher=TLS_AES_256_GCM_SHA384 bits=256/256);
-        Sun, 27 Sep 2020 12:29:39 -0700 (PDT)
-From:   =?UTF-8?q?Cl=C3=A9ment=20P=C3=A9ron?= <peron.clem@gmail.com>
-To:     Maxime Ripard <mripard@kernel.org>, Chen-Yu Tsai <wens@csie.org>,
+        with ESMTP id S1726485AbgI0UFA (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Sun, 27 Sep 2020 16:05:00 -0400
+Received: from perceval.ideasonboard.com (perceval.ideasonboard.com [IPv6:2001:4b98:dc2:55:216:3eff:fef7:d647])
+        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 10EFBC0613CE;
+        Sun, 27 Sep 2020 13:05:00 -0700 (PDT)
+Received: from pendragon.ideasonboard.com (62-78-145-57.bb.dnainternet.fi [62.78.145.57])
+        by perceval.ideasonboard.com (Postfix) with ESMTPSA id EF1A127B;
+        Sun, 27 Sep 2020 22:04:51 +0200 (CEST)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=ideasonboard.com;
+        s=mail; t=1601237092;
+        bh=KXIz45C/Mat1tgDDrs+edL2gNNihFY9AO9VW/2BFRys=;
+        h=Date:From:To:Cc:Subject:References:In-Reply-To:From;
+        b=wgXrlocB7cOM39Ip04dmoRlg/DWQBQxHJ+k1yuq9YN7OsoLzedY8tA2HGUpcFktLo
+         xWEI83SN8xUYCsVd7TmO65YPJ4qoquzFIdZEIEZJNAynFskS+EJmJKBEIg8xASzTI+
+         y6Ch4UbfaxUr/fQeIKU+wV+qASzpNrs5mXQtZAGM=
+Date:   Sun, 27 Sep 2020 23:04:18 +0300
+From:   Laurent Pinchart <laurent.pinchart@ideasonboard.com>
+To:     "Lad, Prabhakar" <prabhakar.csengg@gmail.com>
+Cc:     Lad Prabhakar <prabhakar.mahadev-lad.rj@bp.renesas.com>,
+        Geert Uytterhoeven <geert+renesas@glider.be>,
+        Magnus Damm <magnus.damm@gmail.com>,
         Rob Herring <robh+dt@kernel.org>,
-        Mark Brown <broonie@kernel.org>,
-        Liam Girdwood <lgirdwood@gmail.com>
-Cc:     Jaroslav Kysela <perex@perex.cz>, Takashi Iwai <tiwai@suse.com>,
-        Marcus Cooper <codekipper@gmail.com>,
-        Jernej Skrabec <jernej.skrabec@siol.net>,
-        alsa-devel@alsa-project.org, devicetree@vger.kernel.org,
-        linux-arm-kernel@lists.infradead.org, linux-kernel@vger.kernel.org,
-        linux-sunxi@googlegroups.com,
-        =?UTF-8?q?Cl=C3=A9ment=20P=C3=A9ron?= <peron.clem@gmail.com>
-Subject: [PATCH v5 20/20] ASoC: sun4i-i2s: fix coding-style for callback definition
-Date:   Sun, 27 Sep 2020 21:29:12 +0200
-Message-Id: <20200927192912.46323-21-peron.clem@gmail.com>
-X-Mailer: git-send-email 2.25.1
-In-Reply-To: <20200927192912.46323-1-peron.clem@gmail.com>
-References: <20200927192912.46323-1-peron.clem@gmail.com>
+        DRI Development <dri-devel@lists.freedesktop.org>,
+        Linux-Renesas <linux-renesas-soc@vger.kernel.org>,
+        "open list:OPEN FIRMWARE AND FLATTENED DEVICE TREE BINDINGS" 
+        <devicetree@vger.kernel.org>, LKML <linux-kernel@vger.kernel.org>
+Subject: Re: [PATCH v2] ARM: dts: r8a7742-iwg21d-q7: Add LCD support
+Message-ID: <20200927200418.GA3986@pendragon.ideasonboard.com>
+References: <20200813140041.5082-1-prabhakar.mahadev-lad.rj@bp.renesas.com>
+ <20200824004816.GS6002@pendragon.ideasonboard.com>
+ <CA+V-a8uq44hKOxbwBXZ_90q6e4JjCEPwOWp4BDY7BJJaP1Cg6g@mail.gmail.com>
 MIME-Version: 1.0
-Content-Type: text/plain; charset=UTF-8
-Content-Transfer-Encoding: 8bit
+Content-Type: text/plain; charset=utf-8
+Content-Disposition: inline
+In-Reply-To: <CA+V-a8uq44hKOxbwBXZ_90q6e4JjCEPwOWp4BDY7BJJaP1Cg6g@mail.gmail.com>
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-Checkpatch script produces warning:
-WARNING: function definition argument 'const struct sun4i_i2s *'
-should also have an identifier name.
+Hi Prabhakar,
 
-Let's fix this by adding identifier name to get_bclk_parent_rate()
-and set_fmt() callback definition.
+On Sun, Sep 27, 2020 at 02:01:50PM +0100, Lad, Prabhakar wrote:
+> On Mon, Aug 24, 2020 at 1:48 AM Laurent Pinchart wrote:
+> > On Thu, Aug 13, 2020 at 03:00:41PM +0100, Lad Prabhakar wrote:
+> > > The iwg21d comes with a 7" capacitive touch screen, therefore
+> > > add support for it.
+> > >
+> > > Signed-off-by: Lad Prabhakar <prabhakar.mahadev-lad.rj@bp.renesas.com>
+> > > Reviewed-by: Marian-Cristian Rotariu <marian-cristian.rotariu.rb@bp.renesas.com>
+> >
+> > Everything seems to match the schematics :-)
+> >
+> > Reviewed-by: Laurent Pinchart <laurent.pinchart@ideasonboard.com>
+> >
+> > > ---
+> > > v1->v2
+> > > * This patch is part of series [1] (rest of the patches have be accepted
+> > >   by Geert [2]).
+> > > * Added regulator for lvds
+> > > * Added reset pin for touchpanel
+> > > * This patch is based on series [3]
+> > >
+> > > [1] https://patchwork.kernel.org/project/linux-renesas-soc/list/
+> > >     ?series=330277
+> > > [2] https://git.kernel.org/pub/scm/linux/kernel/git/geert/
+> > >     renesas-devel.git/log/?h=renesas-arm-dt-for-v5.10
+> > > [3] https://patchwork.kernel.org/project/linux-renesas-soc/list/
+> > >     ?series=330957
+> > > ---
+> > >  arch/arm/boot/dts/r8a7742-iwg21d-q7.dts | 99 +++++++++++++++++++++++++
+> > >  1 file changed, 99 insertions(+)
+>
+> Would you be queueing this patch along with DRM driver patches for v5.10 ?
 
-Signed-off-by: Clément Péron <peron.clem@gmail.com>
----
- sound/soc/sunxi/sun4i-i2s.c | 4 ++--
- 1 file changed, 2 insertions(+), 2 deletions(-)
+No, I expect Geert to do so, DT patches go through his tree. I handle
+the drivers and DT bindings.
 
-diff --git a/sound/soc/sunxi/sun4i-i2s.c b/sound/soc/sunxi/sun4i-i2s.c
-index 9cd6cd1cd284..a6fd9bef30d1 100644
---- a/sound/soc/sunxi/sun4i-i2s.c
-+++ b/sound/soc/sunxi/sun4i-i2s.c
-@@ -180,13 +180,13 @@ struct sun4i_i2s_quirks {
- 	const struct sun4i_i2s_clk_div	*mclk_dividers;
- 	unsigned int			num_mclk_dividers;
- 
--	unsigned long (*get_bclk_parent_rate)(const struct sun4i_i2s *);
-+	unsigned long (*get_bclk_parent_rate)(const struct sun4i_i2s *i2s);
- 	int	(*get_sr)(unsigned int width);
- 	int	(*get_wss)(unsigned int width);
- 	int	(*set_chan_cfg)(const struct sun4i_i2s *i2s,
- 				unsigned int channels,	unsigned int slots,
- 				unsigned int slot_width);
--	int	(*set_fmt)(const struct sun4i_i2s *, unsigned int);
-+	int	(*set_fmt)(const struct sun4i_i2s *i2s, unsigned int fmt);
- };
- 
- struct sun4i_i2s {
+> > > diff --git a/arch/arm/boot/dts/r8a7742-iwg21d-q7.dts b/arch/arm/boot/dts/r8a7742-iwg21d-q7.dts
+> > > index b3461a61a4bf..9bf4fbd9c736 100644
+> > > --- a/arch/arm/boot/dts/r8a7742-iwg21d-q7.dts
+> > > +++ b/arch/arm/boot/dts/r8a7742-iwg21d-q7.dts
+> > > @@ -30,6 +30,7 @@
+> > >
+> > >  /dts-v1/;
+> > >  #include "r8a7742-iwg21m.dtsi"
+> > > +#include <dt-bindings/pwm/pwm.h>
+> > >
+> > >  / {
+> > >       model = "iWave Systems RainboW-G21D-Qseven board based on RZ/G1H";
+> > > @@ -52,6 +53,51 @@
+> > >               clock-frequency = <26000000>;
+> > >       };
+> > >
+> > > +     lcd_backlight: backlight {
+> > > +             compatible = "pwm-backlight";
+> > > +             pwms = <&tpu 2 5000000 0>;
+> > > +             brightness-levels = <0 4 8 16 32 64 128 255>;
+> > > +             pinctrl-0 = <&backlight_pins>;
+> > > +             pinctrl-names = "default";
+> > > +             default-brightness-level = <7>;
+> > > +             enable-gpios = <&gpio3 11 GPIO_ACTIVE_HIGH>;
+> > > +     };
+> > > +
+> > > +     lvds-receiver {
+> > > +             compatible = "ti,ds90cf384a", "lvds-decoder";
+> > > +             vcc-supply = <&vcc_3v3_tft1>;
+> > > +
+> > > +             ports {
+> > > +                     #address-cells = <1>;
+> > > +                     #size-cells = <0>;
+> > > +
+> > > +                     port@0 {
+> > > +                             reg = <0>;
+> > > +                             lvds_receiver_in: endpoint {
+> > > +                                     remote-endpoint = <&lvds0_out>;
+> > > +                             };
+> > > +                     };
+> > > +                     port@1 {
+> > > +                             reg = <1>;
+> > > +                             lvds_receiver_out: endpoint {
+> > > +                                     remote-endpoint = <&panel_in>;
+> > > +                             };
+> > > +                     };
+> > > +             };
+> > > +     };
+> > > +
+> > > +     panel {
+> > > +             compatible = "edt,etm0700g0dh6";
+> > > +             backlight = <&lcd_backlight>;
+> > > +             power-supply = <&vcc_3v3_tft1>;
+> > > +
+> > > +             port {
+> > > +                     panel_in: endpoint {
+> > > +                             remote-endpoint = <&lvds_receiver_out>;
+> > > +                     };
+> > > +             };
+> > > +     };
+> > > +
+> > >       reg_1p5v: 1p5v {
+> > >               compatible = "regulator-fixed";
+> > >               regulator-name = "1P5V";
+> > > @@ -75,6 +121,17 @@
+> > >               };
+> > >       };
+> > >
+> > > +     vcc_3v3_tft1: regulator-panel {
+> > > +             compatible = "regulator-fixed";
+> > > +
+> > > +             regulator-name = "vcc-3v3-tft1";
+> > > +             regulator-min-microvolt = <3300000>;
+> > > +             regulator-max-microvolt = <3300000>;
+> > > +             enable-active-high;
+> > > +             startup-delay-us = <500>;
+> > > +             gpio = <&gpio5 28 GPIO_ACTIVE_HIGH>;
+> > > +     };
+> > > +
+> > >       vcc_sdhi2: regulator-vcc-sdhi2 {
+> > >               compatible = "regulator-fixed";
+> > >
+> > > @@ -129,12 +186,34 @@
+> > >               VDDIO-supply = <&reg_3p3v>;
+> > >               VDDD-supply = <&reg_1p5v>;
+> > >       };
+> > > +
+> > > +     touch: touchpanel@38 {
+> > > +             compatible = "edt,edt-ft5406";
+> > > +             reg = <0x38>;
+> > > +             interrupt-parent = <&gpio0>;
+> > > +             interrupts = <24 IRQ_TYPE_EDGE_FALLING>;
+> > > +             /* GP1_29 is also shared with audio codec reset pin */
+> > > +             reset-gpios = <&gpio1 29 GPIO_ACTIVE_LOW>;
+> > > +             vcc-supply = <&vcc_3v3_tft1>;
+> > > +     };
+> > >  };
+> > >
+> > >  &cmt0 {
+> > >       status = "okay";
+> > >  };
+> > >
+> > > +&du {
+> > > +     status = "okay";
+> > > +};
+> > > +
+> > > +&gpio0 {
+> > > +     touch-interrupt {
+> > > +             gpio-hog;
+> > > +             gpios = <24 GPIO_ACTIVE_LOW>;
+> > > +             input;
+> > > +     };
+> > > +};
+> > > +
+> > >  &hsusb {
+> > >       pinctrl-0 = <&usb0_pins>;
+> > >       pinctrl-names = "default";
+> > > @@ -165,6 +244,11 @@
+> > >               function = "avb";
+> > >       };
+> > >
+> > > +     backlight_pins: backlight {
+> > > +             groups = "tpu0_to2";
+> > > +             function = "tpu0";
+> > > +     };
+> > > +
+> > >       i2c2_pins: i2c2 {
+> > >               groups = "i2c2_b";
+> > >               function = "i2c2";
+> > > @@ -208,6 +292,17 @@
+> > >       };
+> > >  };
+> > >
+> > > +&lvds0 {
+> > > +     status = "okay";
+> > > +     ports {
+> > > +             port@1 {
+> > > +                     lvds0_out: endpoint {
+> > > +                             remote-endpoint = <&lvds_receiver_in>;
+> > > +                     };
+> > > +             };
+> > > +     };
+> > > +};
+> > > +
+> > >  &rcar_sound {
+> > >       pinctrl-0 = <&sound_pins>;
+> > >       pinctrl-names = "default";
+> > > @@ -261,6 +356,10 @@
+> > >       shared-pin;
+> > >  };
+> > >
+> > > +&tpu {
+> > > +     status = "okay";
+> > > +};
+> > > +
+> > >  &usbphy {
+> > >       status = "okay";
+> > >  };
+
 -- 
-2.25.1
+Regards,
 
+Laurent Pinchart
