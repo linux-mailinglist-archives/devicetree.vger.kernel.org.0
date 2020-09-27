@@ -2,267 +2,151 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from vger.kernel.org (vger.kernel.org [23.128.96.18])
-	by mail.lfdr.de (Postfix) with ESMTP id 5DAD527A275
-	for <lists+devicetree@lfdr.de>; Sun, 27 Sep 2020 21:08:40 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTP id 1907327A294
+	for <lists+devicetree@lfdr.de>; Sun, 27 Sep 2020 21:29:20 +0200 (CEST)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S1726466AbgI0TIe (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Sun, 27 Sep 2020 15:08:34 -0400
-Received: from lindbergh.monkeyblade.net ([23.128.96.19]:59294 "EHLO
+        id S1726280AbgI0T3T (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Sun, 27 Sep 2020 15:29:19 -0400
+Received: from lindbergh.monkeyblade.net ([23.128.96.19]:34244 "EHLO
         lindbergh.monkeyblade.net" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S1726458AbgI0TId (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Sun, 27 Sep 2020 15:08:33 -0400
-Received: from mail-qk1-x742.google.com (mail-qk1-x742.google.com [IPv6:2607:f8b0:4864:20::742])
-        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 8B9D2C0613CE
-        for <devicetree@vger.kernel.org>; Sun, 27 Sep 2020 12:08:33 -0700 (PDT)
-Received: by mail-qk1-x742.google.com with SMTP id f142so8123949qke.13
-        for <devicetree@vger.kernel.org>; Sun, 27 Sep 2020 12:08:33 -0700 (PDT)
+        with ESMTP id S1726239AbgI0T3T (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Sun, 27 Sep 2020 15:29:19 -0400
+Received: from mail-wr1-x441.google.com (mail-wr1-x441.google.com [IPv6:2a00:1450:4864:20::441])
+        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id E9659C0613CE;
+        Sun, 27 Sep 2020 12:29:18 -0700 (PDT)
+Received: by mail-wr1-x441.google.com with SMTP id z1so9550838wrt.3;
+        Sun, 27 Sep 2020 12:29:18 -0700 (PDT)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=marek-ca.20150623.gappssmtp.com; s=20150623;
-        h=from:to:cc:subject:date:message-id:in-reply-to:references
-         :mime-version:content-transfer-encoding;
-        bh=fw4RyR5JTxyJpVIL6AoaKPYGwJ+F5+wSIpEpQsEg0QQ=;
-        b=WbamDIGmeY1SGLILbl3KdGUYQWcrfHcc4G+JYAIevLkO99/oLn+g4fq15U5xutdqJi
-         uzWOQ2AKtPgVQVQsH3rck3ai3bsvHQmVNMyeRsPNnE0K/rPWLvpfZmUaThrJH4B9DhaX
-         99MUxqO9ePI7F74gA4NNjkQEUgeNN4gwTRBNrlzuoZfzbUV4YrvgqcCQ+SOUqIrBdYO3
-         Az2YisJvEW9WwyJjMPJu3vdrY357zjhPeK3G3TyWF4v3g5J48xU0at54CsGXqVVK4G/S
-         sHwUdttapRbKOrGyD/9xnvrIa26cNuW7VUMqFiFewbYxSd9ynVzcV89vI60mEp83eHBX
-         jQCA==
+        d=gmail.com; s=20161025;
+        h=from:to:cc:subject:date:message-id:mime-version
+         :content-transfer-encoding;
+        bh=GAAtSAinEwDD4No76XzUrrz89y+X5YI3Fkp3Qs1EF6A=;
+        b=hbvgMZ9dkpTeaVc5x0SjPW7TzrNggvlPmhgOnG5tn1P+we5d6QPlFc+j3/1VysZ9EQ
+         itQVPlgShHauuDhLCa4ba6QnClEIqkUdxuR9P9j0aTPkyR7BCqKbb6GqjL140WPeDQG8
+         JtPAJBxtLNHk+LJTWELGvpHddzfpXVy4gvDa9+WY6GqeC1DIyJVUonyPYE/Hb45jonvl
+         moMG66DTEghDqgNB+Zp+kxWjaJM/tSURPmU00oWqXm3AgwJ+UeVQDjEUuIwPVz5N+EmE
+         JOqq56iTaGn3tEVUMpZuF2s7FXut0HXOuyADmAawW3zIdFmYPJvLVbDrKduLjVwi7xfU
+         v40g==
 X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
         d=1e100.net; s=20161025;
-        h=x-gm-message-state:from:to:cc:subject:date:message-id:in-reply-to
-         :references:mime-version:content-transfer-encoding;
-        bh=fw4RyR5JTxyJpVIL6AoaKPYGwJ+F5+wSIpEpQsEg0QQ=;
-        b=LmxUUIwjyOFjh+zCJ8PMe6649nok3E/sB76+KXls8Ip6x++xIpLDYJq6JHtQawbouo
-         OWkItV6rjGiRU2TS52NW0/MRrivvVa6qRHJvCwfjNzYTnAjmKrU2yZhTUujYH5yQyJ4q
-         lI12ZQYfXPuNbMzDYcf5bEHYslzuFadxlKwTlicT9C1d8xBtDAvc3hEf1bCUeoMd2vIY
-         8m6kz1nW0wrd0ltvYlHahw/oyNxp6E8hzdPyWd4F7YGG/+krXoxQWyDuvc3DQuUJJG1Z
-         PXwy4Uri7SY5v2YWad0xYGL/cvBAzYF/PB3cZAkpI1i70B7m0lqhaMCCzShx7SxVDM8m
-         H68A==
-X-Gm-Message-State: AOAM531j/4a54lT7LL0UAGJgfovEI8LR0O5QuvKorn6rMgTxCBg3zyPi
-        tqbdpsk0x8ClSRnZR3CPbNUyWA==
-X-Google-Smtp-Source: ABdhPJxtLx27vkAOSVFLEuSNpN71mkBuqrVJDvNl2/cd2pwV0TCM0OBZzHOmyUmQMIT3ox3uOK3k9g==
-X-Received: by 2002:a05:620a:6d9:: with SMTP id 25mr9040081qky.269.1601233712765;
-        Sun, 27 Sep 2020 12:08:32 -0700 (PDT)
-Received: from localhost.localdomain ([147.253.86.153])
-        by smtp.gmail.com with ESMTPSA id s25sm7973827qtc.90.2020.09.27.12.08.31
+        h=x-gm-message-state:from:to:cc:subject:date:message-id:mime-version
+         :content-transfer-encoding;
+        bh=GAAtSAinEwDD4No76XzUrrz89y+X5YI3Fkp3Qs1EF6A=;
+        b=n+sQ3wbnjGLy9kgTYaLuja7c2a83Kq8U4+H7wuZ0vqCP1KJJZMCzxRt0c3EwFBnC+Z
+         pkYd4SkWYDUB9GEA3u+f6JQu9WePpMham9UgDVKBX/P9WeIU5UY8pH8mBkOo0Oess2EY
+         v9HYsm7yHuT3M0rXPgSwkUg9WLkNNvR1BMc0MjgAaPYoYA0PJC6Tj9UoOuCQxLsc1xxe
+         9o/pNIrpdzhOD6ieAEjoOENeP/sqwOxP/lexa0emXYZ16y8IB8fq/CTJ6G1KE/GPZH5R
+         LFHYAv/q+eE1a8Zz3Pqy+/Lc5Kfjzzg0M8PhmGmetqtSFYSW8T5u/YqAvAGPre/pWGP5
+         nFpA==
+X-Gm-Message-State: AOAM530FsHf6oBoEGLsnkBW9FKrlik6rPU5PnUboAE7ZSFumblvAWaWU
+        54jLgZMWIzg6JWcByABqy20=
+X-Google-Smtp-Source: ABdhPJy0jlKkB+a7iXNGAIriN8xg5n6aV2MPg6E/rLpY9BkzWV0JjpJGSE0LpFuu38MPFaH6nUPSyQ==
+X-Received: by 2002:a5d:5512:: with SMTP id b18mr12159410wrv.229.1601234957454;
+        Sun, 27 Sep 2020 12:29:17 -0700 (PDT)
+Received: from clement-Latitude-7490.numericable.fr (213-245-241-245.rev.numericable.fr. [213.245.241.245])
+        by smtp.gmail.com with ESMTPSA id n21sm6149609wmi.21.2020.09.27.12.29.16
         (version=TLS1_3 cipher=TLS_AES_256_GCM_SHA384 bits=256/256);
-        Sun, 27 Sep 2020 12:08:32 -0700 (PDT)
-From:   Jonathan Marek <jonathan@marek.ca>
-To:     linux-arm-msm@vger.kernel.org
-Cc:     Dmitry Baryshkov <dmitry.baryshkov@linaro.org>,
-        Andy Gross <agross@kernel.org>,
-        Bjorn Andersson <bjorn.andersson@linaro.org>,
-        Michael Turquette <mturquette@baylibre.com>,
-        Stephen Boyd <sboyd@kernel.org>,
+        Sun, 27 Sep 2020 12:29:16 -0700 (PDT)
+From:   =?UTF-8?q?Cl=C3=A9ment=20P=C3=A9ron?= <peron.clem@gmail.com>
+To:     Maxime Ripard <mripard@kernel.org>, Chen-Yu Tsai <wens@csie.org>,
         Rob Herring <robh+dt@kernel.org>,
-        linux-clk@vger.kernel.org (open list:COMMON CLK FRAMEWORK),
-        devicetree@vger.kernel.org (open list:OPEN FIRMWARE AND FLATTENED
-        DEVICE TREE BINDINGS), linux-kernel@vger.kernel.org (open list)
-Subject: [PATCH v4 1/2] dt-bindings: clock: add QCOM SM8150 and SM8250 display clock bindings
-Date:   Sun, 27 Sep 2020 15:06:50 -0400
-Message-Id: <20200927190653.13876-2-jonathan@marek.ca>
-X-Mailer: git-send-email 2.26.1
-In-Reply-To: <20200927190653.13876-1-jonathan@marek.ca>
-References: <20200927190653.13876-1-jonathan@marek.ca>
+        Mark Brown <broonie@kernel.org>,
+        Liam Girdwood <lgirdwood@gmail.com>
+Cc:     Jaroslav Kysela <perex@perex.cz>, Takashi Iwai <tiwai@suse.com>,
+        Marcus Cooper <codekipper@gmail.com>,
+        Jernej Skrabec <jernej.skrabec@siol.net>,
+        alsa-devel@alsa-project.org, devicetree@vger.kernel.org,
+        linux-arm-kernel@lists.infradead.org, linux-kernel@vger.kernel.org,
+        linux-sunxi@googlegroups.com,
+        =?UTF-8?q?Cl=C3=A9ment=20P=C3=A9ron?= <peron.clem@gmail.com>
+Subject: [PATCH v5 00/20] Add Allwinner H3/H5/H6/A64 HDMI audio
+Date:   Sun, 27 Sep 2020 21:28:52 +0200
+Message-Id: <20200927192912.46323-1-peron.clem@gmail.com>
+X-Mailer: git-send-email 2.25.1
 MIME-Version: 1.0
+Content-Type: text/plain; charset=UTF-8
 Content-Transfer-Encoding: 8bit
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-Add device tree bindings for display clock controller for
-Qualcomm Technology Inc's SM8150 and SM8250 SoCs.
+Hi,
 
-Signed-off-by: Jonathan Marek <jonathan@marek.ca>
-Tested-by: Dmitry Baryshkov <dmitry.baryshkov@linaro.org> (SM8250)
----
- .../bindings/clock/qcom,dispcc-sm8x50.yaml    | 93 +++++++++++++++++++
- .../dt-bindings/clock/qcom,dispcc-sm8150.h    |  1 +
- .../dt-bindings/clock/qcom,dispcc-sm8250.h    | 66 +++++++++++++
- 3 files changed, 160 insertions(+)
- create mode 100644 Documentation/devicetree/bindings/clock/qcom,dispcc-sm8x50.yaml
- create mode 120000 include/dt-bindings/clock/qcom,dispcc-sm8150.h
- create mode 100644 include/dt-bindings/clock/qcom,dispcc-sm8250.h
+This is exactly the same as v4 but with more details in some commit log
+and also device-tree soundcard and DAI node have been merged.
 
-diff --git a/Documentation/devicetree/bindings/clock/qcom,dispcc-sm8x50.yaml b/Documentation/devicetree/bindings/clock/qcom,dispcc-sm8x50.yaml
-new file mode 100644
-index 000000000000..0cdf53f41f84
---- /dev/null
-+++ b/Documentation/devicetree/bindings/clock/qcom,dispcc-sm8x50.yaml
-@@ -0,0 +1,93 @@
-+# SPDX-License-Identifier: (GPL-2.0-only OR BSD-2-Clause)
-+%YAML 1.2
-+---
-+$id: http://devicetree.org/schemas/clock/qcom,dispcc-sm8x50.yaml#
-+$schema: http://devicetree.org/meta-schemas/core.yaml#
-+
-+title: Qualcomm Display Clock & Reset Controller Binding for SM8150/SM8250
-+
-+maintainers:
-+  - Jonathan Marek <jonathan@marek.ca>
-+
-+description: |
-+  Qualcomm display clock control module which supports the clocks, resets and
-+  power domains on SM8150 and SM8250.
-+
-+  See also:
-+    dt-bindings/clock/qcom,dispcc-sm8150.h
-+    dt-bindings/clock/qcom,dispcc-sm8250.h
-+
-+properties:
-+  compatible:
-+    enum:
-+      - qcom,sm8150-dispcc
-+      - qcom,sm8250-dispcc
-+
-+  clocks:
-+    items:
-+      - description: Board XO source
-+      - description: Byte clock from DSI PHY0
-+      - description: Pixel clock from DSI PHY0
-+      - description: Byte clock from DSI PHY1
-+      - description: Pixel clock from DSI PHY1
-+      - description: Link clock from DP PHY
-+      - description: VCO DIV clock from DP PHY
-+
-+  clock-names:
-+    items:
-+      - const: bi_tcxo
-+      - const: dsi0_phy_pll_out_byteclk
-+      - const: dsi0_phy_pll_out_dsiclk
-+      - const: dsi1_phy_pll_out_byteclk
-+      - const: dsi1_phy_pll_out_dsiclk
-+      - const: dp_phy_pll_link_clk
-+      - const: dp_phy_pll_vco_div_clk
-+
-+  '#clock-cells':
-+    const: 1
-+
-+  '#reset-cells':
-+    const: 1
-+
-+  '#power-domain-cells':
-+    const: 1
-+
-+  reg:
-+    maxItems: 1
-+
-+required:
-+  - compatible
-+  - reg
-+  - clocks
-+  - clock-names
-+  - '#clock-cells'
-+  - '#reset-cells'
-+  - '#power-domain-cells'
-+
-+additionalProperties: false
-+
-+examples:
-+  - |
-+    #include <dt-bindings/clock/qcom,rpmh.h>
-+    clock-controller@af00000 {
-+      compatible = "qcom,sm8250-dispcc";
-+      reg = <0x0af00000 0x10000>;
-+      clocks = <&rpmhcc RPMH_CXO_CLK>,
-+               <&dsi0_phy 0>,
-+               <&dsi0_phy 1>,
-+               <&dsi1_phy 0>,
-+               <&dsi1_phy 1>,
-+               <&dp_phy 0>,
-+               <&dp_phy 1>;
-+      clock-names = "bi_tcxo",
-+                    "dsi0_phy_pll_out_byteclk",
-+                    "dsi0_phy_pll_out_dsiclk",
-+                    "dsi1_phy_pll_out_byteclk",
-+                    "dsi1_phy_pll_out_dsiclk",
-+                    "dp_phy_pll_link_clk",
-+                    "dp_phy_pll_vco_div_clk";
-+      #clock-cells = <1>;
-+      #reset-cells = <1>;
-+      #power-domain-cells = <1>;
-+    };
-+...
-diff --git a/include/dt-bindings/clock/qcom,dispcc-sm8150.h b/include/dt-bindings/clock/qcom,dispcc-sm8150.h
-new file mode 120000
-index 000000000000..0312b4544acb
---- /dev/null
-+++ b/include/dt-bindings/clock/qcom,dispcc-sm8150.h
-@@ -0,0 +1 @@
-+qcom,dispcc-sm8250.h
-\ No newline at end of file
-diff --git a/include/dt-bindings/clock/qcom,dispcc-sm8250.h b/include/dt-bindings/clock/qcom,dispcc-sm8250.h
-new file mode 100644
-index 000000000000..fdaca6ad5c85
---- /dev/null
-+++ b/include/dt-bindings/clock/qcom,dispcc-sm8250.h
-@@ -0,0 +1,66 @@
-+/* SPDX-License-Identifier: GPL-2.0 */
-+/*
-+ * Copyright (c) 2018-2020, The Linux Foundation. All rights reserved.
-+ */
-+
-+#ifndef _DT_BINDINGS_CLK_QCOM_DISP_CC_SM8250_H
-+#define _DT_BINDINGS_CLK_QCOM_DISP_CC_SM8250_H
-+
-+/* DISP_CC clock registers */
-+#define DISP_CC_MDSS_AHB_CLK			0
-+#define DISP_CC_MDSS_AHB_CLK_SRC		1
-+#define DISP_CC_MDSS_BYTE0_CLK			2
-+#define DISP_CC_MDSS_BYTE0_CLK_SRC		3
-+#define DISP_CC_MDSS_BYTE0_DIV_CLK_SRC		4
-+#define DISP_CC_MDSS_BYTE0_INTF_CLK		5
-+#define DISP_CC_MDSS_BYTE1_CLK			6
-+#define DISP_CC_MDSS_BYTE1_CLK_SRC		7
-+#define DISP_CC_MDSS_BYTE1_DIV_CLK_SRC		8
-+#define DISP_CC_MDSS_BYTE1_INTF_CLK		9
-+#define DISP_CC_MDSS_DP_AUX1_CLK		10
-+#define DISP_CC_MDSS_DP_AUX1_CLK_SRC		11
-+#define DISP_CC_MDSS_DP_AUX_CLK			12
-+#define DISP_CC_MDSS_DP_AUX_CLK_SRC		13
-+#define DISP_CC_MDSS_DP_LINK1_CLK		14
-+#define DISP_CC_MDSS_DP_LINK1_CLK_SRC		15
-+#define DISP_CC_MDSS_DP_LINK1_DIV_CLK_SRC	16
-+#define DISP_CC_MDSS_DP_LINK1_INTF_CLK		17
-+#define DISP_CC_MDSS_DP_LINK_CLK		18
-+#define DISP_CC_MDSS_DP_LINK_CLK_SRC		19
-+#define DISP_CC_MDSS_DP_LINK_DIV_CLK_SRC	20
-+#define DISP_CC_MDSS_DP_LINK_INTF_CLK		21
-+#define DISP_CC_MDSS_DP_PIXEL1_CLK		22
-+#define DISP_CC_MDSS_DP_PIXEL1_CLK_SRC		23
-+#define DISP_CC_MDSS_DP_PIXEL2_CLK		24
-+#define DISP_CC_MDSS_DP_PIXEL2_CLK_SRC		25
-+#define DISP_CC_MDSS_DP_PIXEL_CLK		26
-+#define DISP_CC_MDSS_DP_PIXEL_CLK_SRC		27
-+#define DISP_CC_MDSS_ESC0_CLK			28
-+#define DISP_CC_MDSS_ESC0_CLK_SRC		29
-+#define DISP_CC_MDSS_ESC1_CLK			30
-+#define DISP_CC_MDSS_ESC1_CLK_SRC		31
-+#define DISP_CC_MDSS_MDP_CLK			32
-+#define DISP_CC_MDSS_MDP_CLK_SRC		33
-+#define DISP_CC_MDSS_MDP_LUT_CLK		34
-+#define DISP_CC_MDSS_NON_GDSC_AHB_CLK		35
-+#define DISP_CC_MDSS_PCLK0_CLK			36
-+#define DISP_CC_MDSS_PCLK0_CLK_SRC		37
-+#define DISP_CC_MDSS_PCLK1_CLK			38
-+#define DISP_CC_MDSS_PCLK1_CLK_SRC		39
-+#define DISP_CC_MDSS_ROT_CLK			40
-+#define DISP_CC_MDSS_ROT_CLK_SRC		41
-+#define DISP_CC_MDSS_RSCC_AHB_CLK		42
-+#define DISP_CC_MDSS_RSCC_VSYNC_CLK		43
-+#define DISP_CC_MDSS_VSYNC_CLK			44
-+#define DISP_CC_MDSS_VSYNC_CLK_SRC		45
-+#define DISP_CC_PLL0				46
-+#define DISP_CC_PLL1				47
-+
-+/* DISP_CC Reset */
-+#define DISP_CC_MDSS_CORE_BCR			0
-+#define DISP_CC_MDSS_RSCC_BCR			1
-+
-+/* DISP_CC GDSCR */
-+#define MDSS_GDSC				0
-+
-+#endif
+Regards,
+Clement
+
+Change since v4;
+- add more comment on get_wss() and set_channel_cfg() patch
+- merge soundcard and DAI HDMI patches
+
+Change since v3:
+- add Samuel Holland patch to reconfigure FIFO_TX_REG when suspend is enabled
+- readd inversion to H6 LRCK sun50i_h6_i2s_set_soc_fmt()
+- Fix get_wss() for sun4i
+- Add a commit to fix checkpatch warning
+
+Change since v2:
+- rebase on next-20200918
+- drop revert LRCK polarity patch
+- readd simple-audio-card,frame-inversion in dts
+- Add patch for changing set_chan_cfg params
+
+Change since v1:
+- rebase on next-20200828
+- add revert LRCK polarity
+- remove all simple-audio-card,frame-inversion in dts
+- add Ondrej patches for Orange Pi board
+- Add arm64 defconfig patch
+
+Clément Péron (6):
+  ASoC: sun4i-i2s: Change set_chan_cfg() params
+  ASoC: sun4i-i2s: Change get_sr() and get_wss() to be more explicit
+  ASoC: sun4i-i2s: Fix sun8i volatile regs
+  arm64: dts: allwinner: h6: Enable HDMI sound for Beelink GS1
+  arm64: defconfig: Enable Allwinner i2s driver
+  ASoC: sun4i-i2s: fix coding-style for callback definition
+
+Jernej Skrabec (3):
+  ASoC: sun4i-i2s: Add support for H6 I2S
+  dt-bindings: ASoC: sun4i-i2s: Add H6 compatible
+  arm64: dts: allwinner: h6: Add DAI node and soundcard for HDMI
+
+Marcus Cooper (7):
+  ASoC: sun4i-i2s: Set sign extend sample
+  ASoc: sun4i-i2s: Add 20 and 24 bit support
+  arm: dts: sunxi: h3/h5: Add DAI node and soundcard for HDMI
+  arm64: dts: allwinner: a64: Add DAI node and soundcard for HDMI
+  arm: sun8i: h3: Add HDMI audio to Orange Pi 2
+  arm: sun8i: h3: Add HDMI audio to Beelink X2
+  arm64: dts: allwinner: a64: Add HDMI audio to Pine64
+
+Ondrej Jirman (3):
+  arm64: dts: allwinner: Enable HDMI audio on Orange Pi PC 2
+  ARM: dts: sun8i-h3: Enable HDMI audio on Orange Pi PC/One
+  arm64: dts: sun50i-h6-orangepi-3: Enable HDMI audio
+
+Samuel Holland (1):
+  ASoC: sun4i-i2s: Fix setting of FIFO modes
+
+ .../sound/allwinner,sun4i-a10-i2s.yaml        |   2 +
+ arch/arm/boot/dts/sun8i-h3-beelink-x2.dts     |   8 +
+ arch/arm/boot/dts/sun8i-h3-orangepi-2.dts     |   8 +
+ arch/arm/boot/dts/sun8i-h3-orangepi-one.dts   |   8 +
+ arch/arm/boot/dts/sun8i-h3-orangepi-pc.dts    |   8 +
+ arch/arm/boot/dts/sunxi-h3-h5.dtsi            |  33 ++
+ .../boot/dts/allwinner/sun50i-a64-pine64.dts  |   8 +
+ arch/arm64/boot/dts/allwinner/sun50i-a64.dtsi |  34 ++
+ .../dts/allwinner/sun50i-h5-orangepi-pc2.dts  |   8 +
+ .../dts/allwinner/sun50i-h6-beelink-gs1.dts   |   8 +
+ .../dts/allwinner/sun50i-h6-orangepi-3.dts    |   8 +
+ arch/arm64/boot/dts/allwinner/sun50i-h6.dtsi  |  33 ++
+ arch/arm64/configs/defconfig                  |   1 +
+ sound/soc/sunxi/sun4i-i2s.c                   | 374 +++++++++++++++---
+ 14 files changed, 487 insertions(+), 54 deletions(-)
+
 -- 
-2.26.1
+2.25.1
 
