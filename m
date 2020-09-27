@@ -2,110 +2,149 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from vger.kernel.org (vger.kernel.org [23.128.96.18])
-	by mail.lfdr.de (Postfix) with ESMTP id 62572279C77
-	for <lists+devicetree@lfdr.de>; Sat, 26 Sep 2020 22:51:21 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTP id 6A4D7279EA9
+	for <lists+devicetree@lfdr.de>; Sun, 27 Sep 2020 08:26:54 +0200 (CEST)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S1727128AbgIZUvR (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Sat, 26 Sep 2020 16:51:17 -0400
-Received: from mail.kernel.org ([198.145.29.99]:36322 "EHLO mail.kernel.org"
-        rhost-flags-OK-OK-OK-OK) by vger.kernel.org with ESMTP
-        id S1726311AbgIZUvR (ORCPT <rfc822;devicetree@vger.kernel.org>);
-        Sat, 26 Sep 2020 16:51:17 -0400
-Received: from localhost (c-73-47-72-35.hsd1.nh.comcast.net [73.47.72.35])
-        (using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
-        (No client certificate requested)
-        by mail.kernel.org (Postfix) with ESMTPSA id E6207207EA;
-        Sat, 26 Sep 2020 20:51:15 +0000 (UTC)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=kernel.org;
-        s=default; t=1601153476;
-        bh=RqI2XkUJnGfTSYFp3HDfs/QKnRhvBG5itC4b0KZfLFE=;
-        h=Date:From:To:Cc:Subject:References:In-Reply-To:From;
-        b=yixz3jPary8hkalk5k87l/xp1SnOuwY3rJU/c7GSsSsNCt+Jp86+pVo0uKZsuQzRF
-         AM9CMvDpow13UdBkne6TjU0AvZlCRiVBaE1XP+VLS8bXHm2rC7GfqODCsxoSe+gV9O
-         +Z+1p73CjAKJ8z7QueCYIaMf0LZa6NWbA2urMtcM=
-Date:   Sat, 26 Sep 2020 16:51:14 -0400
-From:   Sasha Levin <sashal@kernel.org>
-To:     Palmer Dabbelt <palmerdabbelt@google.com>
-Cc:     Damien Le Moal <Damien.LeMoal@wdc.com>,
-        linux-kernel@vger.kernel.org, stable@vger.kernel.org,
-        devicetree@vger.kernel.org, linux-riscv@lists.infradead.org
-Subject: Re: [PATCH AUTOSEL 5.8 20/20] riscv: Fix Kendryte K210 device tree
-Message-ID: <20200926205114.GB2219727@sasha-vm>
-References: <CY4PR04MB3751BE40C3EC0BD2F392E9EEE7380@CY4PR04MB3751.namprd04.prod.outlook.com>
- <mhng-ed52d354-09cf-4708-8b07-5e6559a7b5e8@palmerdabbelt-glaptop1>
+        id S1730215AbgI0G0x (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Sun, 27 Sep 2020 02:26:53 -0400
+Received: from szxga04-in.huawei.com ([45.249.212.190]:14284 "EHLO huawei.com"
+        rhost-flags-OK-OK-OK-FAIL) by vger.kernel.org with ESMTP
+        id S1729125AbgI0G0x (ORCPT <rfc822;devicetree@vger.kernel.org>);
+        Sun, 27 Sep 2020 02:26:53 -0400
+Received: from DGGEMS406-HUB.china.huawei.com (unknown [172.30.72.58])
+        by Forcepoint Email with ESMTP id 8EA86B4CF5A0BF47F0A0;
+        Sun, 27 Sep 2020 14:26:47 +0800 (CST)
+Received: from thunder-town.china.huawei.com (10.174.177.253) by
+ DGGEMS406-HUB.china.huawei.com (10.3.19.206) with Microsoft SMTP Server id
+ 14.3.487.0; Sun, 27 Sep 2020 14:26:41 +0800
+From:   Zhen Lei <thunder.leizhen@huawei.com>
+To:     Wei Xu <xuwei5@hisilicon.com>, Rob Herring <robh+dt@kernel.org>,
+        devicetree <devicetree@vger.kernel.org>,
+        linux-arm-kernel <linux-arm-kernel@lists.infradead.org>,
+        linux-kernel <linux-kernel@vger.kernel.org>
+CC:     Zhen Lei <thunder.leizhen@huawei.com>,
+        Libin <huawei.libin@huawei.com>,
+        Kefeng Wang <wangkefeng.wang@huawei.com>
+Subject: [PATCH v3 00/21] add support for Hisilicon SD5203 SoC
+Date:   Sun, 27 Sep 2020 14:21:08 +0800
+Message-ID: <20200927062129.4573-1-thunder.leizhen@huawei.com>
+X-Mailer: git-send-email 2.26.0.windows.1
 MIME-Version: 1.0
-Content-Type: text/plain; charset=us-ascii; format=flowed
-Content-Disposition: inline
-In-Reply-To: <mhng-ed52d354-09cf-4708-8b07-5e6559a7b5e8@palmerdabbelt-glaptop1>
+Content-Transfer-Encoding: 7BIT
+Content-Type:   text/plain; charset=US-ASCII
+X-Originating-IP: [10.174.177.253]
+X-CFilter-Loop: Reflected
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-On Sat, Sep 26, 2020 at 12:42:42PM -0700, Palmer Dabbelt wrote:
->>On Tue, 22 Sep 2020 17:27:42 PDT (-0700), Damien Le Moal wrote:
->>>On 2020/09/21 23:41, Sasha Levin wrote:
->>>From: Damien Le Moal <damien.lemoal@wdc.com>
->>>
->>>[ Upstream commit f025d9d9934b84cd03b7796072d10686029c408e ]
->>>
->>>The Kendryte K210 SoC CLINT is compatible with Sifive clint v0
->>>(sifive,clint0). Fix the Kendryte K210 device tree clint entry to be
->>>inline with the sifive timer definition documented in
->>>Documentation/devicetree/bindings/timer/sifive,clint.yaml.
->>>The device tree clint entry is renamed similarly to u-boot device tree
->>>definition to improve compatibility with u-boot defined device tree.
->>>To ensure correct initialization, the interrup-cells attribute is added
->>>and the interrupt-extended attribute definition fixed.
->>>
->>>This fixes boot failures with Kendryte K210 SoC boards.
->>>
->>>Note that the clock referenced is kept as K210_CLK_ACLK, which does not
->>>necessarilly match the clint MTIME increment rate. This however does not
->>>seem to cause any problem for now.
->>>
->>>Signed-off-by: Damien Le Moal <damien.lemoal@wdc.com>
->>>Signed-off-by: Palmer Dabbelt <palmerdabbelt@google.com>
->>>Signed-off-by: Sasha Levin <sashal@kernel.org>
->>>---
->>> arch/riscv/boot/dts/kendryte/k210.dtsi | 6 ++++--
->>> 1 file changed, 4 insertions(+), 2 deletions(-)
->>>
->>>diff --git a/arch/riscv/boot/dts/kendryte/k210.dtsi b/arch/riscv/boot/dts/kendryte/k210.dtsi
->>>index c1df56ccb8d55..d2d0ff6456325 100644
->>>--- a/arch/riscv/boot/dts/kendryte/k210.dtsi
->>>+++ b/arch/riscv/boot/dts/kendryte/k210.dtsi
->>>@@ -95,10 +95,12 @@ sysctl: sysctl@50440000 {
->>> 			#clock-cells = <1>;
->>> 		};
->>>-		clint0: interrupt-controller@2000000 {
->>>+		clint0: clint@2000000 {
->>>+			#interrupt-cells = <1>;
->>> 			compatible = "riscv,clint0";
->>> 			reg = <0x2000000 0xC000>;
->>>-			interrupts-extended = <&cpu0_intc 3>,  <&cpu1_intc 3>;
->>>+			interrupts-extended =  <&cpu0_intc 3 &cpu0_intc 7
->>>+						&cpu1_intc 3 &cpu1_intc 7>;
->>> 			clocks = <&sysctl K210_CLK_ACLK>;
->>> 		};
->>>
->>
->>Sasha,
->>
->>This is a fix for a problem in 5.9 tree. 5.8 kernel is fine without this patch.
->>And I think applying it to 5.8 might actually break things since the proper
->>clint driver was added to kernel 5.9 and does not exist in 5.8.
->
->IIUC this won't actually break anything on 5.8, as the reason nobody noticed
->that the old one was broken is because the old CLINT driver just didn't care
->about what's in the device tree.  These interrupt numbers are defined by the
->ISA manual so we jut had them encoded into the arch/riscv first-level interrupt
->controller driver.
->
->That said, it definately doesn't fix anything so it seems safer to just not
->backport it.
+v2 --> v3:
+1. Convert hisilicon.txt to hisilicon.yaml. Because there are many kinds
+   of Hisilicon controllers in it, so split each of them into a separate
+   file first. Then I convert all of them to DT schema format, and also
+   convert the other files in directory "../bindings/arm/hisilicon/".
+2. Add Patch 1: remove a unused compatible name in hip01-ca9x2.dts
+   This error is detected by hisilicon.yaml.
 
-Sure, I'll drop it. Thanks!
+   The merge window of 5.10 is narrow now, so please review Patch 1-7 first.
+
+
+v1 --> v2:
+1. add binding for SD5203 SoC, Patch 1
+2. select DW_APB_ICTL instead of HISILICON_SD5203_VIC in Patch 2.
+   Meanwhile, change the compatible of interrupt-controller to "snps,dw-apb-ictl" in Patch 4.
+3. Fix the errors detected by dtbs_check. For example: add "reg" for cpu node, use lowercase a-f
+   to describe address, add "baudclk" for "snps,dw-apb-uart".
+
+v1:
+Add SD5203 SoC config option and devicetree file, also enable its debug UART.
+
+Kefeng Wang (3):
+  ARM: hisi: add support for SD5203 SoC
+  ARM: debug: add UART early console support for SD5203
+  ARM: dts: add SD5203 dts
+
+Zhen Lei (18):
+  ARM: dts: remove a unused compatible name in hip01-ca9x2.dts
+  dt-bindings: arm: hisilicon: split the dt-bindings of each controller
+    into a separate file
+  dt-bindings: arm: hisilicon: convert Hisilicon board/soc bindings to
+    json-schema
+  dt-bindings: arm: hisilicon: add binding for SD5203 SoC
+  dt-bindings: arm: hisilicon: convert system controller bindings to
+    json-schema
+  dt-bindings: arm: hisilicon: convert hisilicon,peri-subctrl bindings
+    to json-schema
+  dt-bindings: arm: hisilicon: convert hisilicon,pcie-sas-subctrl
+    bindings to json-schema
+  dt-bindings: arm: hisilicon: convert hisilicon,cpuctrl bindings to
+    json-schema
+  dt-bindings: arm: hisilicon: convert hisilicon,pctrl bindings to
+    json-schema
+  dt-bindings: arm: hisilicon: convert hisilicon,hi3798cv200-perictrl
+    bindings to json-schema
+  dt-bindings: arm: hisilicon: convert hisilicon,dsa-subctrl bindings to
+    json-schema
+  dt-bindings: arm: hisilicon: convert hisilicon,hip04-fabric bindings
+    to json-schema
+  dt-bindings: arm: hisilicon: convert hisilicon,hip04-bootwrapper
+    bindings to json-schema
+  dt-bindings: arm: hisilicon: convert hisilicon,hi6220-aoctrl bindings
+    to json-schema
+  dt-bindings: arm: hisilicon: convert hisilicon,hi6220-mediactrl
+    bindings to json-schema
+  dt-bindings: arm: hisilicon: convert hisilicon,hi6220-pmctrl bindings
+    to json-schema
+  dt-bindings: arm: hisilicon: convert hisilicon,hi6220-sramctrl
+    bindings to json-schema
+  dt-bindings: arm: hisilicon: convert LPC controller bindings to
+    json-schema
+
+ .../controller/hi3620/hisilicon,hi6220-aoctrl.yaml |  42 +++
+ .../hi3620/hisilicon,hi6220-mediactrl.yaml         |  42 +++
+ .../controller/hi3620/hisilicon,hi6220-pmctrl.yaml |  42 +++
+ .../hi3620/hisilicon,hi6220-sramctrl.yaml          |  38 +++
+ .../hipxx/hisilicon,hip04-bootwrapper.yaml         |  32 +++
+ .../controller/hipxx/hisilicon,hip04-fabric.yaml   |  26 ++
+ .../hisilicon/controller/hisilicon,cpuctrl.yaml    |  28 ++
+ .../controller/hisilicon,dsa-subctrl.yaml          |  37 +++
+ .../controller/hisilicon,hi3798cv200-perictrl.yaml |  45 +++
+ .../controller/hisilicon,pcie-sas-subctrl.yaml     |  37 +++
+ .../arm/hisilicon/controller/hisilicon,pctrl.yaml  |  34 +++
+ .../controller/hisilicon,peri-subctrl.yaml         |  34 +++
+ .../hisilicon/controller/hisilicon,sysctrl.yaml    | 115 ++++++++
+ .../bindings/arm/hisilicon/hi3519-sysctrl.txt      |  14 -
+ .../arm/hisilicon/hisilicon-low-pin-count.txt      |  33 ---
+ .../arm/hisilicon/hisilicon-low-pin-count.yaml     |  63 ++++
+ .../bindings/arm/hisilicon/hisilicon.txt           | 319 ---------------------
+ .../bindings/arm/hisilicon/hisilicon.yaml          |  81 ++++++
+ arch/arm/Kconfig.debug                             |  11 +-
+ arch/arm/boot/dts/Makefile                         |   2 +
+ arch/arm/boot/dts/hip01-ca9x2.dts                  |   2 +-
+ arch/arm/boot/dts/sd5203.dts                       |  96 +++++++
+ arch/arm/mach-hisi/Kconfig                         |  16 +-
+ 23 files changed, 819 insertions(+), 370 deletions(-)
+ create mode 100644 Documentation/devicetree/bindings/arm/hisilicon/controller/hi3620/hisilicon,hi6220-aoctrl.yaml
+ create mode 100644 Documentation/devicetree/bindings/arm/hisilicon/controller/hi3620/hisilicon,hi6220-mediactrl.yaml
+ create mode 100644 Documentation/devicetree/bindings/arm/hisilicon/controller/hi3620/hisilicon,hi6220-pmctrl.yaml
+ create mode 100644 Documentation/devicetree/bindings/arm/hisilicon/controller/hi3620/hisilicon,hi6220-sramctrl.yaml
+ create mode 100644 Documentation/devicetree/bindings/arm/hisilicon/controller/hipxx/hisilicon,hip04-bootwrapper.yaml
+ create mode 100644 Documentation/devicetree/bindings/arm/hisilicon/controller/hipxx/hisilicon,hip04-fabric.yaml
+ create mode 100644 Documentation/devicetree/bindings/arm/hisilicon/controller/hisilicon,cpuctrl.yaml
+ create mode 100644 Documentation/devicetree/bindings/arm/hisilicon/controller/hisilicon,dsa-subctrl.yaml
+ create mode 100644 Documentation/devicetree/bindings/arm/hisilicon/controller/hisilicon,hi3798cv200-perictrl.yaml
+ create mode 100644 Documentation/devicetree/bindings/arm/hisilicon/controller/hisilicon,pcie-sas-subctrl.yaml
+ create mode 100644 Documentation/devicetree/bindings/arm/hisilicon/controller/hisilicon,pctrl.yaml
+ create mode 100644 Documentation/devicetree/bindings/arm/hisilicon/controller/hisilicon,peri-subctrl.yaml
+ create mode 100644 Documentation/devicetree/bindings/arm/hisilicon/controller/hisilicon,sysctrl.yaml
+ delete mode 100644 Documentation/devicetree/bindings/arm/hisilicon/hi3519-sysctrl.txt
+ delete mode 100644 Documentation/devicetree/bindings/arm/hisilicon/hisilicon-low-pin-count.txt
+ create mode 100644 Documentation/devicetree/bindings/arm/hisilicon/hisilicon-low-pin-count.yaml
+ delete mode 100644 Documentation/devicetree/bindings/arm/hisilicon/hisilicon.txt
+ create mode 100644 Documentation/devicetree/bindings/arm/hisilicon/hisilicon.yaml
+ create mode 100644 arch/arm/boot/dts/sd5203.dts
 
 -- 
-Thanks,
-Sasha
+1.8.3
+
+
