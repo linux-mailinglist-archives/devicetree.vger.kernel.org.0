@@ -2,271 +2,184 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from vger.kernel.org (vger.kernel.org [23.128.96.18])
-	by mail.lfdr.de (Postfix) with ESMTP id 1447F27A122
-	for <lists+devicetree@lfdr.de>; Sun, 27 Sep 2020 15:02:24 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTP id 83B1527A1B5
+	for <lists+devicetree@lfdr.de>; Sun, 27 Sep 2020 17:54:54 +0200 (CEST)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S1726558AbgI0NCS (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Sun, 27 Sep 2020 09:02:18 -0400
-Received: from lindbergh.monkeyblade.net ([23.128.96.19]:59296 "EHLO
+        id S1726265AbgI0Pyv (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Sun, 27 Sep 2020 11:54:51 -0400
+Received: from lindbergh.monkeyblade.net ([23.128.96.19]:57730 "EHLO
         lindbergh.monkeyblade.net" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S1726358AbgI0NCS (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Sun, 27 Sep 2020 09:02:18 -0400
-Received: from mail-yb1-xb43.google.com (mail-yb1-xb43.google.com [IPv6:2607:f8b0:4864:20::b43])
-        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id C629BC0613CE;
-        Sun, 27 Sep 2020 06:02:17 -0700 (PDT)
-Received: by mail-yb1-xb43.google.com with SMTP id s19so5758266ybc.5;
-        Sun, 27 Sep 2020 06:02:17 -0700 (PDT)
+        with ESMTP id S1726149AbgI0Pyv (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Sun, 27 Sep 2020 11:54:51 -0400
+Received: from mail-oo1-xc41.google.com (mail-oo1-xc41.google.com [IPv6:2607:f8b0:4864:20::c41])
+        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 6ED77C0613CE;
+        Sun, 27 Sep 2020 08:54:51 -0700 (PDT)
+Received: by mail-oo1-xc41.google.com with SMTP id o20so1996622ook.1;
+        Sun, 27 Sep 2020 08:54:51 -0700 (PDT)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
         d=gmail.com; s=20161025;
-        h=mime-version:references:in-reply-to:from:date:message-id:subject:to
-         :cc;
-        bh=SAgGtci5pGecpxPxGPjkaSEL4OVE7rwFSl1wZa7p8ZY=;
-        b=ZM4F3xWDK6Hw1/9ibUUgPDIAgYDxVN3QLZsTkuSfAokHTmaggKeC633Lxv3P17nn3a
-         okJzI1AnjcabtKEquUqGeCMD9S+DN93vG6imDFp5bUccfj0dX9VG7I+f9YFIiav3QMBw
-         IQAFr9I1oJU0QAn7mCskfQ++jD5vouovrj/e563oA1YGT3ptndyrVhNtUJ9JGfUnGsuX
-         sNJSiG8tIJ/kZFxOIn7s8fdG/6AH1xdfr6y8k+2a831tTL8dcGfT3UkmK5cdYBA3I5hc
-         70wXMZj9nVM4pZVRb1yef5SV6GGTxp8YpfA+UdC9N5wymUKfCZKrEZ/MnRj39mcWzNVa
-         CCEw==
+        h=sender:subject:to:cc:references:from:autocrypt:message-id:date
+         :user-agent:mime-version:in-reply-to:content-language
+         :content-transfer-encoding;
+        bh=l43udJj6BMkh1bntbdah89/MCcdkDNQy9ZlcMtLP+/8=;
+        b=LCVPlOE3jgZh5tMLZvnmvOL1VK1EwvbJpMSWgWgRUtsUrqOBPOq5ULHPi8jPYs5e9A
+         e0j1WGxwR/5c8zhYfMZ8jZH12IPkTKerU8aUeflquWTtxNDv+u4y9TBDQB4qTG80CUlu
+         H+NBl/UbP1usr+fcnPs4U8O2K2vKdI+q/3oy71TjJYUnganFDLJg+BbbGt5jP/Or6PWF
+         x3naR+jdrJVEiOX1tGsqoRw6lyR2xyZL6MdM2WJRSbYqBTWJ6X3VLQwb6TOtjen03qKT
+         lyDT1xfPWTG4ytMAltAI2tk8I44snwnj0b4AAh2jTeqCpyX8CgHChpvjYLa3M62EbTtJ
+         m38w==
 X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
         d=1e100.net; s=20161025;
-        h=x-gm-message-state:mime-version:references:in-reply-to:from:date
-         :message-id:subject:to:cc;
-        bh=SAgGtci5pGecpxPxGPjkaSEL4OVE7rwFSl1wZa7p8ZY=;
-        b=ak4SpPiufcGs95/8f7mJub+dh/32RLjZlbw0C7izpH7Enw1V8Ct7/ZYrf946FRtz58
-         dPuS3E3O994zeMP/frHXtCUZ70gpUPySJdXOvF7iy1nL7ZyZQ6FnmkpXqAnhKoSv5r6Z
-         253SksR/7QRVGMp8dgBjUhUxSTADDYfQxjwMHLsMueawI0qj+6wzgrVy1yUQgJi5FL6n
-         WkILZ1bkzL9oKuojvxBvbX5iX519sfeCtJSSXVwDqN7t9/Qwtm5wM4JaerWGP0NzJ1oX
-         T6qHV2VFa020PCgk7+7JEBbG6EKILNgYK/3x89Gjs7bJY8/HAYdmi4d7D3dWAqD1n8AW
-         TQvg==
-X-Gm-Message-State: AOAM530loovb2bjSausakrSoFJtn0aeW1JboVZWUve5xHm3UxOpDyS1m
-        WKwTlEva4ezVID6IIwnnijXT3Y1cBorHfSu4rMY=
-X-Google-Smtp-Source: ABdhPJyf2LbuC9m1ScfusKpq0d3iN7yhTosuIes5dzz8UTrb5Umw71LAHs+SEJ7Z0H8q1p3Wj4tzuzLMVTgelpoGODQ=
-X-Received: by 2002:a25:6849:: with SMTP id d70mr9684946ybc.395.1601211736814;
- Sun, 27 Sep 2020 06:02:16 -0700 (PDT)
-MIME-Version: 1.0
-References: <20200813140041.5082-1-prabhakar.mahadev-lad.rj@bp.renesas.com> <20200824004816.GS6002@pendragon.ideasonboard.com>
-In-Reply-To: <20200824004816.GS6002@pendragon.ideasonboard.com>
-From:   "Lad, Prabhakar" <prabhakar.csengg@gmail.com>
-Date:   Sun, 27 Sep 2020 14:01:50 +0100
-Message-ID: <CA+V-a8uq44hKOxbwBXZ_90q6e4JjCEPwOWp4BDY7BJJaP1Cg6g@mail.gmail.com>
-Subject: Re: [PATCH v2] ARM: dts: r8a7742-iwg21d-q7: Add LCD support
-To:     Laurent Pinchart <laurent.pinchart@ideasonboard.com>
-Cc:     Lad Prabhakar <prabhakar.mahadev-lad.rj@bp.renesas.com>,
-        Geert Uytterhoeven <geert+renesas@glider.be>,
-        Magnus Damm <magnus.damm@gmail.com>,
-        Rob Herring <robh+dt@kernel.org>,
-        DRI Development <dri-devel@lists.freedesktop.org>,
-        Linux-Renesas <linux-renesas-soc@vger.kernel.org>,
+        h=x-gm-message-state:sender:subject:to:cc:references:from:autocrypt
+         :message-id:date:user-agent:mime-version:in-reply-to
+         :content-language:content-transfer-encoding;
+        bh=l43udJj6BMkh1bntbdah89/MCcdkDNQy9ZlcMtLP+/8=;
+        b=JAbxhq3yHVM2wrqwKZy5xHCMl9MOoyMMezDSTiVOui8RW7Z8U5CCuaCHMDZvQpqhi4
+         h9iA8B0HcsJO5/IysK9YYdJDBE7CC1EboyIk5NLxXGOILpsdgJHOOXyDHWpAnw2xx8/R
+         ovcv5zRKzpIe/laF0oJb3o33ewpSnwoYLqURpRAFWPoCTe+/kW3Q5zqOVrnkB2dhmuV2
+         +yuxXUnJJKASOCY8cHK8a8O9/PhKZbKjkoNGWO/lRal91DYeo7zm5U9RTKZ/83kuUDJZ
+         jcW9o0IfpYMpSU/TJd3WJrEiT/DzSD4+7y5sz6qzD6CdkF0tLvMbwJ5RyPxEJUlP46r2
+         r9oA==
+X-Gm-Message-State: AOAM530qQoKm+dmY3zB5EE8RWXgx65wGf/MbJSvVopkhcO2DvBP1IiNZ
+        pt8kl5hexdgMyjg29ocPDtU=
+X-Google-Smtp-Source: ABdhPJyB0p0OpuafGvBEWMUW5bpThggEEGNJc4mPPEieavIQRpDnhIo/QGZTQzdjiGd7aLZZqA4rxQ==
+X-Received: by 2002:a4a:da4e:: with SMTP id f14mr6917046oou.40.1601222090829;
+        Sun, 27 Sep 2020 08:54:50 -0700 (PDT)
+Received: from server.roeck-us.net ([2600:1700:e321:62f0:329c:23ff:fee3:9d7c])
+        by smtp.gmail.com with ESMTPSA id e19sm2202879ote.37.2020.09.27.08.54.48
+        (version=TLS1_3 cipher=TLS_AES_128_GCM_SHA256 bits=128/128);
+        Sun, 27 Sep 2020 08:54:49 -0700 (PDT)
+Sender: Guenter Roeck <groeck7@gmail.com>
+Subject: Re: [PATCH 2/2] [RFC] rtc: pcf2127: only use watchdog when explicitly
+ available
+To:     Bruno Thomsen <bruno.thomsen@gmail.com>,
+        =?UTF-8?Q?Uwe_Kleine-K=c3=b6nig?= <u.kleine-koenig@pengutronix.de>
+Cc:     Alexandre Belloni <alexandre.belloni@bootlin.com>,
+        Qiang Zhao <qiang.zhao@nxp.com>, linux-rtc@vger.kernel.org,
+        Alessandro Zummo <a.zummo@towertech.it>,
+        linux-watchdog@vger.kernel.org,
         "open list:OPEN FIRMWARE AND FLATTENED DEVICE TREE BINDINGS" 
-        <devicetree@vger.kernel.org>, LKML <linux-kernel@vger.kernel.org>
-Content-Type: text/plain; charset="UTF-8"
+        <devicetree@vger.kernel.org>,
+        open list <linux-kernel@vger.kernel.org>,
+        Rob Herring <robh+dt@kernel.org>,
+        Sascha Hauer <kernel@pengutronix.de>,
+        Wim Van Sebroeck <wim@linux-watchdog.org>
+References: <20200924074715.GT9675@piout.net>
+ <20200924105256.18162-1-u.kleine-koenig@pengutronix.de>
+ <20200924105256.18162-3-u.kleine-koenig@pengutronix.de>
+ <CAH+2xPAVvMpTgT3W=0AsKy=9jkS8qd6eB65Qebw51YKRQshaGQ@mail.gmail.com>
+From:   Guenter Roeck <linux@roeck-us.net>
+Autocrypt: addr=linux@roeck-us.net; keydata=
+ xsFNBE6H1WcBEACu6jIcw5kZ5dGeJ7E7B2uweQR/4FGxH10/H1O1+ApmcQ9i87XdZQiB9cpN
+ RYHA7RCEK2dh6dDccykQk3bC90xXMPg+O3R+C/SkwcnUak1UZaeK/SwQbq/t0tkMzYDRxfJ7
+ nyFiKxUehbNF3r9qlJgPqONwX5vJy4/GvDHdddSCxV41P/ejsZ8PykxyJs98UWhF54tGRWFl
+ 7i1xvaDB9lN5WTLRKSO7wICuLiSz5WZHXMkyF4d+/O5ll7yz/o/JxK5vO/sduYDIlFTvBZDh
+ gzaEtNf5tQjsjG4io8E0Yq0ViobLkS2RTNZT8ICq/Jmvl0SpbHRvYwa2DhNsK0YjHFQBB0FX
+ IdhdUEzNefcNcYvqigJpdICoP2e4yJSyflHFO4dr0OrdnGLe1Zi/8Xo/2+M1dSSEt196rXaC
+ kwu2KgIgmkRBb3cp2vIBBIIowU8W3qC1+w+RdMUrZxKGWJ3juwcgveJlzMpMZNyM1jobSXZ0
+ VHGMNJ3MwXlrEFPXaYJgibcg6brM6wGfX/LBvc/haWw4yO24lT5eitm4UBdIy9pKkKmHHh7s
+ jfZJkB5fWKVdoCv/omy6UyH6ykLOPFugl+hVL2Prf8xrXuZe1CMS7ID9Lc8FaL1ROIN/W8Vk
+ BIsJMaWOhks//7d92Uf3EArDlDShwR2+D+AMon8NULuLBHiEUQARAQABzTJHdWVudGVyIFJv
+ ZWNrIChMaW51eCBhY2NvdW50KSA8bGludXhAcm9lY2stdXMubmV0PsLBgQQTAQIAKwIbAwYL
+ CQgHAwIGFQgCCQoLBBYCAwECHgECF4ACGQEFAlVcphcFCRmg06EACgkQyx8mb86fmYFg0RAA
+ nzXJzuPkLJaOmSIzPAqqnutACchT/meCOgMEpS5oLf6xn5ySZkl23OxuhpMZTVX+49c9pvBx
+ hpvl5bCWFu5qC1jC2eWRYU+aZZE4sxMaAGeWenQJsiG9lP8wkfCJP3ockNu0ZXXAXwIbY1O1
+ c+l11zQkZw89zNgWgKobKzrDMBFOYtAh0pAInZ9TSn7oA4Ctejouo5wUugmk8MrDtUVXmEA9
+ 7f9fgKYSwl/H7dfKKsS1bDOpyJlqhEAH94BHJdK/b1tzwJCFAXFhMlmlbYEk8kWjcxQgDWMu
+ GAthQzSuAyhqyZwFcOlMCNbAcTSQawSo3B9yM9mHJne5RrAbVz4TWLnEaX8gA5xK3uCNCeyI
+ sqYuzA4OzcMwnnTASvzsGZoYHTFP3DQwf2nzxD6yBGCfwNGIYfS0i8YN8XcBgEcDFMWpOQhT
+ Pu3HeztMnF3HXrc0t7e5rDW9zCh3k2PA6D2NV4fews9KDFhLlTfCVzf0PS1dRVVWM+4jVl6l
+ HRIAgWp+2/f8dx5vPc4Ycp4IsZN0l1h9uT7qm1KTwz+sSl1zOqKD/BpfGNZfLRRxrXthvvY8
+ BltcuZ4+PGFTcRkMytUbMDFMF9Cjd2W9dXD35PEtvj8wnEyzIos8bbgtLrGTv/SYhmPpahJA
+ l8hPhYvmAvpOmusUUyB30StsHIU2LLccUPPOwU0ETofVZwEQALlLbQeBDTDbwQYrj0gbx3bq
+ 7kpKABxN2MqeuqGr02DpS9883d/t7ontxasXoEz2GTioevvRmllJlPQERVxM8gQoNg22twF7
+ pB/zsrIjxkE9heE4wYfN1AyzT+AxgYN6f8hVQ7Nrc9XgZZe+8IkuW/Nf64KzNJXnSH4u6nJM
+ J2+Dt274YoFcXR1nG76Q259mKwzbCukKbd6piL+VsT/qBrLhZe9Ivbjq5WMdkQKnP7gYKCAi
+ pNVJC4enWfivZsYupMd9qn7Uv/oCZDYoBTdMSBUblaLMwlcjnPpOYK5rfHvC4opxl+P/Vzyz
+ 6WC2TLkPtKvYvXmdsI6rnEI4Uucg0Au/Ulg7aqqKhzGPIbVaL+U0Wk82nz6hz+WP2ggTrY1w
+ ZlPlRt8WM9w6WfLf2j+PuGklj37m+KvaOEfLsF1v464dSpy1tQVHhhp8LFTxh/6RWkRIR2uF
+ I4v3Xu/k5D0LhaZHpQ4C+xKsQxpTGuYh2tnRaRL14YMW1dlI3HfeB2gj7Yc8XdHh9vkpPyuT
+ nY/ZsFbnvBtiw7GchKKri2gDhRb2QNNDyBnQn5mRFw7CyuFclAksOdV/sdpQnYlYcRQWOUGY
+ HhQ5eqTRZjm9z+qQe/T0HQpmiPTqQcIaG/edgKVTUjITfA7AJMKLQHgp04Vylb+G6jocnQQX
+ JqvvP09whbqrABEBAAHCwWUEGAECAA8CGwwFAlVcpi8FCRmg08MACgkQyx8mb86fmYHNRQ/+
+ J0OZsBYP4leJvQF8lx9zif+v4ZY/6C9tTcUv/KNAE5leyrD4IKbnV4PnbrVhjq861it/zRQW
+ cFpWQszZyWRwNPWUUz7ejmm9lAwPbr8xWT4qMSA43VKQ7ZCeTQJ4TC8kjqtcbw41SjkjrcTG
+ wF52zFO4bOWyovVAPncvV9eGA/vtnd3xEZXQiSt91kBSqK28yjxAqK/c3G6i7IX2rg6pzgqh
+ hiH3/1qM2M/LSuqAv0Rwrt/k+pZXE+B4Ud42hwmMr0TfhNxG+X7YKvjKC+SjPjqp0CaztQ0H
+ nsDLSLElVROxCd9m8CAUuHplgmR3seYCOrT4jriMFBtKNPtj2EE4DNV4s7k0Zy+6iRQ8G8ng
+ QjsSqYJx8iAR8JRB7Gm2rQOMv8lSRdjva++GT0VLXtHULdlzg8VjDnFZ3lfz5PWEOeIMk7Rj
+ trjv82EZtrhLuLjHRCaG50OOm0hwPSk1J64R8O3HjSLdertmw7eyAYOo4RuWJguYMg5DRnBk
+ WkRwrSuCn7UG+qVWZeKEsFKFOkynOs3pVbcbq1pxbhk3TRWCGRU5JolI4ohy/7JV1TVbjiDI
+ HP/aVnm6NC8of26P40Pg8EdAhajZnHHjA7FrJXsy3cyIGqvg9os4rNkUWmrCfLLsZDHD8FnU
+ mDW4+i+XlNFUPUYMrIKi9joBhu18ssf5i5Q=
+Message-ID: <8f88f2a2-4a6d-021f-4404-f05518b0477d@roeck-us.net>
+Date:   Sun, 27 Sep 2020 08:54:47 -0700
+User-Agent: Mozilla/5.0 (X11; Linux x86_64; rv:68.0) Gecko/20100101
+ Thunderbird/68.10.0
+MIME-Version: 1.0
+In-Reply-To: <CAH+2xPAVvMpTgT3W=0AsKy=9jkS8qd6eB65Qebw51YKRQshaGQ@mail.gmail.com>
+Content-Type: text/plain; charset=utf-8
+Content-Language: en-US
+Content-Transfer-Encoding: 8bit
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-Hi Laurent,
+On 9/27/20 1:09 AM, Bruno Thomsen wrote:
+> Den tor. 24. sep. 2020 kl. 12.53 skrev Uwe Kleine-König
+> <u.kleine-koenig@pengutronix.de>:
+>>
+>> Most boards using the pcf2127 chip (in my bubble) don't make use of the
+>> watchdog functionality and the respective output is not connected. The
+>> effect on such a board is that there is a watchdog device provided that
+>> doesn't work.
+>>
+>> So only register the watchdog if the device tree has a "has-watchdog"
+>> property.
+>>
+>> Signed-off-by: Uwe Kleine-König <u.kleine-koenig@pengutronix.de>
+>> ---
+>>  drivers/rtc/rtc-pcf2127.c | 3 ++-
+>>  1 file changed, 2 insertions(+), 1 deletion(-)
+>>
+>> diff --git a/drivers/rtc/rtc-pcf2127.c b/drivers/rtc/rtc-pcf2127.c
+>> index 5b1f1949b5e5..8bd89d641578 100644
+>> --- a/drivers/rtc/rtc-pcf2127.c
+>> +++ b/drivers/rtc/rtc-pcf2127.c
+>> @@ -340,7 +340,8 @@ static int pcf2127_watchdog_init(struct device *dev, struct pcf2127 *pcf2127)
+>>         u32 wdd_timeout;
+>>         int ret;
+>>
+>> -       if (!IS_ENABLED(CONFIG_WATCHDOG))
+>> +       if (!IS_ENABLED(CONFIG_WATCHDOG) ||
+>> +           !device_property_read_bool(dev, "has-watchdog"))
+>>                 return 0;
+> 
+> I don't think the compiler can remove the function if
+> CONFIG_WATCHDOG is disabled due to the device tree
+> value check. Maybe it can if split into 2 conditions.
+> 
 
-On Mon, Aug 24, 2020 at 1:48 AM Laurent Pinchart
-<laurent.pinchart@ideasonboard.com> wrote:
->
-> Hi Prabhakar,
->
-> Thank you for the patch.
->
-> On Thu, Aug 13, 2020 at 03:00:41PM +0100, Lad Prabhakar wrote:
-> > The iwg21d comes with a 7" capacitive touch screen, therefore
-> > add support for it.
-> >
-> > Signed-off-by: Lad Prabhakar <prabhakar.mahadev-lad.rj@bp.renesas.com>
-> > Reviewed-by: Marian-Cristian Rotariu <marian-cristian.rotariu.rb@bp.renesas.com>
->
-> Everything seems to match the schematics :-)
->
-> Reviewed-by: Laurent Pinchart <laurent.pinchart@ideasonboard.com>
->
-> > ---
-> > v1->v2
-> > * This patch is part of series [1] (rest of the patches have be accepted
-> >   by Geert [2]).
-> > * Added regulator for lvds
-> > * Added reset pin for touchpanel
-> > * This patch is based on series [3]
-> >
-> > [1] https://patchwork.kernel.org/project/linux-renesas-soc/list/
-> >     ?series=330277
-> > [2] https://git.kernel.org/pub/scm/linux/kernel/git/geert/
-> >     renesas-devel.git/log/?h=renesas-arm-dt-for-v5.10
-> > [3] https://patchwork.kernel.org/project/linux-renesas-soc/list/
-> >     ?series=330957
-> > ---
-> >  arch/arm/boot/dts/r8a7742-iwg21d-q7.dts | 99 +++++++++++++++++++++++++
-> >  1 file changed, 99 insertions(+)
-> >
-Would you be queueing this patch along with DRM driver patches for v5.10 ?
+If the first part of the expression is always false, the second
+part should not even be evaluated. Either case, the code now
+hard depends on the compiler optimizing the code away.
+It calls devm_watchdog_register_device() which doesn't exist
+if CONFIG_WATCHDOG is not enabled. I didn't know that this is safe,
+and I would personally not want to rely on it, but we live and
+learn.
 
-Cheers,
-Prabhakar
+Guenter
 
-> > diff --git a/arch/arm/boot/dts/r8a7742-iwg21d-q7.dts b/arch/arm/boot/dts/r8a7742-iwg21d-q7.dts
-> > index b3461a61a4bf..9bf4fbd9c736 100644
-> > --- a/arch/arm/boot/dts/r8a7742-iwg21d-q7.dts
-> > +++ b/arch/arm/boot/dts/r8a7742-iwg21d-q7.dts
-> > @@ -30,6 +30,7 @@
-> >
-> >  /dts-v1/;
-> >  #include "r8a7742-iwg21m.dtsi"
-> > +#include <dt-bindings/pwm/pwm.h>
-> >
-> >  / {
-> >       model = "iWave Systems RainboW-G21D-Qseven board based on RZ/G1H";
-> > @@ -52,6 +53,51 @@
-> >               clock-frequency = <26000000>;
-> >       };
-> >
-> > +     lcd_backlight: backlight {
-> > +             compatible = "pwm-backlight";
-> > +             pwms = <&tpu 2 5000000 0>;
-> > +             brightness-levels = <0 4 8 16 32 64 128 255>;
-> > +             pinctrl-0 = <&backlight_pins>;
-> > +             pinctrl-names = "default";
-> > +             default-brightness-level = <7>;
-> > +             enable-gpios = <&gpio3 11 GPIO_ACTIVE_HIGH>;
-> > +     };
-> > +
-> > +     lvds-receiver {
-> > +             compatible = "ti,ds90cf384a", "lvds-decoder";
-> > +             vcc-supply = <&vcc_3v3_tft1>;
-> > +
-> > +             ports {
-> > +                     #address-cells = <1>;
-> > +                     #size-cells = <0>;
-> > +
-> > +                     port@0 {
-> > +                             reg = <0>;
-> > +                             lvds_receiver_in: endpoint {
-> > +                                     remote-endpoint = <&lvds0_out>;
-> > +                             };
-> > +                     };
-> > +                     port@1 {
-> > +                             reg = <1>;
-> > +                             lvds_receiver_out: endpoint {
-> > +                                     remote-endpoint = <&panel_in>;
-> > +                             };
-> > +                     };
-> > +             };
-> > +     };
-> > +
-> > +     panel {
-> > +             compatible = "edt,etm0700g0dh6";
-> > +             backlight = <&lcd_backlight>;
-> > +             power-supply = <&vcc_3v3_tft1>;
-> > +
-> > +             port {
-> > +                     panel_in: endpoint {
-> > +                             remote-endpoint = <&lvds_receiver_out>;
-> > +                     };
-> > +             };
-> > +     };
-> > +
-> >       reg_1p5v: 1p5v {
-> >               compatible = "regulator-fixed";
-> >               regulator-name = "1P5V";
-> > @@ -75,6 +121,17 @@
-> >               };
-> >       };
-> >
-> > +     vcc_3v3_tft1: regulator-panel {
-> > +             compatible = "regulator-fixed";
-> > +
-> > +             regulator-name = "vcc-3v3-tft1";
-> > +             regulator-min-microvolt = <3300000>;
-> > +             regulator-max-microvolt = <3300000>;
-> > +             enable-active-high;
-> > +             startup-delay-us = <500>;
-> > +             gpio = <&gpio5 28 GPIO_ACTIVE_HIGH>;
-> > +     };
-> > +
-> >       vcc_sdhi2: regulator-vcc-sdhi2 {
-> >               compatible = "regulator-fixed";
-> >
-> > @@ -129,12 +186,34 @@
-> >               VDDIO-supply = <&reg_3p3v>;
-> >               VDDD-supply = <&reg_1p5v>;
-> >       };
-> > +
-> > +     touch: touchpanel@38 {
-> > +             compatible = "edt,edt-ft5406";
-> > +             reg = <0x38>;
-> > +             interrupt-parent = <&gpio0>;
-> > +             interrupts = <24 IRQ_TYPE_EDGE_FALLING>;
-> > +             /* GP1_29 is also shared with audio codec reset pin */
-> > +             reset-gpios = <&gpio1 29 GPIO_ACTIVE_LOW>;
-> > +             vcc-supply = <&vcc_3v3_tft1>;
-> > +     };
-> >  };
-> >
-> >  &cmt0 {
-> >       status = "okay";
-> >  };
-> >
-> > +&du {
-> > +     status = "okay";
-> > +};
-> > +
-> > +&gpio0 {
-> > +     touch-interrupt {
-> > +             gpio-hog;
-> > +             gpios = <24 GPIO_ACTIVE_LOW>;
-> > +             input;
-> > +     };
-> > +};
-> > +
-> >  &hsusb {
-> >       pinctrl-0 = <&usb0_pins>;
-> >       pinctrl-names = "default";
-> > @@ -165,6 +244,11 @@
-> >               function = "avb";
-> >       };
-> >
-> > +     backlight_pins: backlight {
-> > +             groups = "tpu0_to2";
-> > +             function = "tpu0";
-> > +     };
-> > +
-> >       i2c2_pins: i2c2 {
-> >               groups = "i2c2_b";
-> >               function = "i2c2";
-> > @@ -208,6 +292,17 @@
-> >       };
-> >  };
-> >
-> > +&lvds0 {
-> > +     status = "okay";
-> > +     ports {
-> > +             port@1 {
-> > +                     lvds0_out: endpoint {
-> > +                             remote-endpoint = <&lvds_receiver_in>;
-> > +                     };
-> > +             };
-> > +     };
-> > +};
-> > +
-> >  &rcar_sound {
-> >       pinctrl-0 = <&sound_pins>;
-> >       pinctrl-names = "default";
-> > @@ -261,6 +356,10 @@
-> >       shared-pin;
-> >  };
-> >
-> > +&tpu {
-> > +     status = "okay";
-> > +};
-> > +
-> >  &usbphy {
-> >       status = "okay";
-> >  };
->
-> --
-> Regards,
->
-> Laurent Pinchart
+> if (!IS_ENABLED(CONFIG_WATCHDOG))
+>         return 0;
+> if (!device_property_read_bool(dev, "has-watchdog"))
+>         return 0;
+> 
+> /Bruno
+> 
+>>
+>>         pcf2127->wdd.parent = dev;
+>> --
+>> 2.28.0
+>>
+
