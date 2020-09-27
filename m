@@ -2,161 +2,88 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from vger.kernel.org (vger.kernel.org [23.128.96.18])
-	by mail.lfdr.de (Postfix) with ESMTP id 30BE727A1BD
-	for <lists+devicetree@lfdr.de>; Sun, 27 Sep 2020 18:05:35 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTP id 12E6627A1E7
+	for <lists+devicetree@lfdr.de>; Sun, 27 Sep 2020 19:00:01 +0200 (CEST)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S1726327AbgI0QFe (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Sun, 27 Sep 2020 12:05:34 -0400
-Received: from lindbergh.monkeyblade.net ([23.128.96.19]:59356 "EHLO
-        lindbergh.monkeyblade.net" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S1726321AbgI0QFd (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Sun, 27 Sep 2020 12:05:33 -0400
-Received: from mail-wr1-x443.google.com (mail-wr1-x443.google.com [IPv6:2a00:1450:4864:20::443])
-        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 4234BC0613CE;
-        Sun, 27 Sep 2020 09:05:33 -0700 (PDT)
-Received: by mail-wr1-x443.google.com with SMTP id x14so9046864wrl.12;
-        Sun, 27 Sep 2020 09:05:33 -0700 (PDT)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=gmail.com; s=20161025;
-        h=from:to:cc:subject:date:message-id:in-reply-to:references
-         :mime-version:content-transfer-encoding;
-        bh=xE6zcLWmkr9jxOFN4cq8fghmPVso+Cf/losTmFk8zDo=;
-        b=Tc7i9fWZdbrwkVmKJwF/qxON99JjAQSksHY7kSAibWN49QEZYJtUWegn646tWc5vMu
-         sMP4EMc6rJRrSihpITjdBki4qXKkNneS7/VbcURSMylEwBC8LsxRuXABPuGLnQVe0qKz
-         kc0ti50IczlNCsdqC+UTGNN3R3UQqMuO6DU2HsthZO9CXc/AATDLfTKUV9Z0X3bqFYPN
-         QHWt7AsN4iVoQdXbnDBMz30ZwYM/dJ7dmeoX5pMJ5UG1gHH7T/CKOel6bVCW2fLlo+/m
-         JoMHzshqduXCPpYOLq1DzNKID+EOdVa1gzyTMRByNrm7HrIEBKpO2aOy7HVVZ0EZJQDK
-         wcaA==
-X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=1e100.net; s=20161025;
-        h=x-gm-message-state:from:to:cc:subject:date:message-id:in-reply-to
-         :references:mime-version:content-transfer-encoding;
-        bh=xE6zcLWmkr9jxOFN4cq8fghmPVso+Cf/losTmFk8zDo=;
-        b=bE1MR2oYZL2TzO2BhRZ0aH1HSnfbqodzUyRSXIPfLlwxrMiYtha5b1eTOp8Btuf8YD
-         n5NhHyqd88cHAN1pze+eiOeNYZd1J6KepwZj7iegKc98zkUj2/y1hRqyOMUkmBc0omAP
-         SO4r7vY8GEcY63jGj0J4hJ9G7GKnLMnKoySx0Akv7pzS+ik+YHlIs5QZghB/8lwn1a4j
-         aj0e0R+FLHzm45J16UqbnEnIvQBfTlrw8N0kPh+dxmuXgFHspl/izXaNgpBmB6d6J1bX
-         pAnKzb/OH+rQWLG3Sp+zZyEDRpw1U0tPVYMdYOnPXRXKU6jRkr9s/ZAYpTEEEVrxAkHB
-         RyjQ==
-X-Gm-Message-State: AOAM531/oLn7Q8hxUhdycRaoAvi1AGb3v8cRA+G9jofORnIMXHrmAhpP
-        ed2dwMm9QMfte4C0MKzfeu866mpnzOk=
-X-Google-Smtp-Source: ABdhPJygxDgRt74PCdJJij5RogUKPLcuIw0z/StVtyRqJWceiJNu6dkjOhX6wGwn/NjDGESpRq1hNQ==
-X-Received: by 2002:adf:de11:: with SMTP id b17mr14425467wrm.82.1601222731885;
-        Sun, 27 Sep 2020 09:05:31 -0700 (PDT)
-Received: from Ansuel-XPS.localdomain (93-39-149-95.ip76.fastwebnet.it. [93.39.149.95])
-        by smtp.googlemail.com with ESMTPSA id n4sm5677659wmc.48.2020.09.27.09.05.30
-        (version=TLS1_3 cipher=TLS_AES_256_GCM_SHA384 bits=256/256);
-        Sun, 27 Sep 2020 09:05:31 -0700 (PDT)
-From:   Ansuel Smith <ansuelsmth@gmail.com>
-To:     MyungJoo Ham <myungjoo.ham@samsung.com>
-Cc:     Ansuel Smith <ansuelsmth@gmail.com>,
-        Kyungmin Park <kyungmin.park@samsung.com>,
-        Chanwoo Choi <cw00.choi@samsung.com>,
-        Rob Herring <robh+dt@kernel.org>, linux-pm@vger.kernel.org,
-        devicetree@vger.kernel.org, linux-kernel@vger.kernel.org
-Subject: [PATCH 2/2] dt-bindings: devfreq: Document L2 Krait CPU Cache devfreq driver
-Date:   Sun, 27 Sep 2020 18:05:13 +0200
-Message-Id: <20200927160515.6480-2-ansuelsmth@gmail.com>
-X-Mailer: git-send-email 2.27.0
-In-Reply-To: <20200927160515.6480-1-ansuelsmth@gmail.com>
-References: <20200927160515.6480-1-ansuelsmth@gmail.com>
-MIME-Version: 1.0
-Content-Transfer-Encoding: 8bit
+        id S1726328AbgI0Q77 (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Sun, 27 Sep 2020 12:59:59 -0400
+Received: from mail.kernel.org ([198.145.29.99]:39394 "EHLO mail.kernel.org"
+        rhost-flags-OK-OK-OK-OK) by vger.kernel.org with ESMTP
+        id S1726321AbgI0Q77 (ORCPT <rfc822;devicetree@vger.kernel.org>);
+        Sun, 27 Sep 2020 12:59:59 -0400
+Received: from kozik-lap.proceq-device.com (unknown [194.230.155.132])
+        (using TLSv1.2 with cipher ECDHE-RSA-AES128-GCM-SHA256 (128/128 bits))
+        (No client certificate requested)
+        by mail.kernel.org (Postfix) with ESMTPSA id 6059823899;
+        Sun, 27 Sep 2020 16:59:55 +0000 (UTC)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=kernel.org;
+        s=default; t=1601225999;
+        bh=DsQjxeaTzdxtV/FNnzMWtGBAiV2ATQVQpSEoosApHDY=;
+        h=From:To:Cc:Subject:Date:From;
+        b=jWRaHKISj8i/MzZzLzvT9/1wyCUAlxZwzBIf1JXupR8bCUcBqnFUSZ6Ij0r78EdvR
+         5AVKMfIpW40ptp8ffyJwJiYD3vrlnG/PCO6fPoxxymOHX9IiFCQNIQZWVuk7wx3+XP
+         RYZcCPB2dDN2l8sYw5TlngHRYxhKroS73RRIpO28=
+From:   Krzysztof Kozlowski <krzk@kernel.org>
+To:     Rob Herring <robh+dt@kernel.org>, Shawn Guo <shawnguo@kernel.org>,
+        Sascha Hauer <s.hauer@pengutronix.de>,
+        Pengutronix Kernel Team <kernel@pengutronix.de>,
+        Fabio Estevam <festevam@gmail.com>,
+        NXP Linux Team <linux-imx@nxp.com>,
+        Adam Ford <aford173@gmail.com>,
+        Daniel Baluta <daniel.baluta@nxp.com>,
+        Anson Huang <Anson.Huang@nxp.com>,
+        Peter Chen <peter.chen@nxp.com>, devicetree@vger.kernel.org,
+        linux-arm-kernel@lists.infradead.org, linux-kernel@vger.kernel.org
+Cc:     Krzysztof Kozlowski <krzk@kernel.org>
+Subject: [PATCH 1/6] arm64: dts: imx8mm-var-som: fix missing PMIC's interrupt line pull-up
+Date:   Sun, 27 Sep 2020 18:59:42 +0200
+Message-Id: <20200927165947.7317-1-krzk@kernel.org>
+X-Mailer: git-send-email 2.17.1
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-Document dedicated L2 Krait CPU Cache devfreq scaling driver.
+The PMIC's interrupt is level low and should be pulled up.  The PMIC's
+device node had pinctrl-0 property but it lacked pinctrl-names which
+is required to apply the pin configuration.  The actual problem in DTS
+was pointed out by Felix Radensky from Variscite.
 
-Signed-off-by: Ansuel Smith <ansuelsmth@gmail.com>
+Reported-by: Felix Radensky <felix.r@variscite.com>
+Fixes: 5f67317bd967 ("arm64: dts: imx8mm: correct interrupt flags")
+Signed-off-by: Krzysztof Kozlowski <krzk@kernel.org>
 ---
- .../bindings/devfreq/krait-cache-devfreq.yaml | 77 +++++++++++++++++++
- 1 file changed, 77 insertions(+)
- create mode 100644 Documentation/devicetree/bindings/devfreq/krait-cache-devfreq.yaml
+ arch/arm64/boot/dts/freescale/imx8mm-var-som.dtsi | 9 +++------
+ 1 file changed, 3 insertions(+), 6 deletions(-)
 
-diff --git a/Documentation/devicetree/bindings/devfreq/krait-cache-devfreq.yaml b/Documentation/devicetree/bindings/devfreq/krait-cache-devfreq.yaml
-new file mode 100644
-index 000000000000..099ed978e022
---- /dev/null
-+++ b/Documentation/devicetree/bindings/devfreq/krait-cache-devfreq.yaml
-@@ -0,0 +1,77 @@
-+# SPDX-License-Identifier: GPL-2.0-only OR BSD-2-Clause
-+%YAML 1.2
-+---
-+$id: http://devicetree.org/schemas/cpufreq/krait-cache-devfreq.yaml#
-+$schema: http://devicetree.org/meta-schemas/core.yaml#
-+
-+title: DEVFREQ driver for Krait L2 Cpu Cache Frequency Scaling
-+
-+maintainers:
-+  - Ansuel Smith <ansuelsmth@gmail.com>
-+
-+description: |
-+  This Scale the Krait CPU L2 Cache Frequency and optionally voltage
-+  when the Cpu Frequency is changed (using the cpufreq notifier).
-+
-+  Cache is scaled with the max frequency across all core and the cache
-+  frequency will scale based on the configured threshold in the dts.
-+
-+  The cache thresholds can be set to 3+ frequency bin, idle, nominal and
-+  high.
-+
-+properties:
-+  compatible:
-+    const: qcom,krait-cache
-+
-+  clocks:
-+    $ref: "/schemas/types.yaml#/definitions/phandle"
-+    description: Phandle to the L2 CPU clock
-+
-+  clock-names:
-+    const: "l2"
-+
-+  voltage-tolerance:
-+    description: Same voltage tolerance of the Krait CPU
-+
-+  l2-cpufreq:
-+    description: |
-+      Threshold used by the driver to scale the L2 cache.
-+      If the max CPU Frequency is more than the set frequency,
-+      the driver will transition to the next frequency bin.
-+      Value is in kHz
-+    $ref: /schemas/types.yaml#/definitions/uint32-array
-+    minItems: 3
-+    items:
-+      - description: idle
-+      - description: nominal
-+      - description: high
-+
-+  l2-supply:
-+    $ref: "/schemas/types.yaml#/definitions/phandle"
-+    description: Phandle to the L2 regulator supply.
-+
-+  opp-table: true
-+
-+required:
-+  - compatible
-+  - clocks
-+  - clock-names
-+  - voltage-tolerance
-+  - l2-cpufreq
-+
-+examples:
-+  - |
-+    qcom-krait-cache {
-+      compatible = "qcom,krait-cache";
-+      clocks = <&kraitcc 4>;
-+      clock-names = "l2";
-+      l2-cpufreq = <384000 600000 1200000>;
-+      l2-supply = <&smb208_s1a>;
-+
-+      operating-points = <
-+        /* kHz    uV */
-+        384000  1100000
-+        1000000  1100000
-+        1200000  1150000
-+      >;
-+    };
+diff --git a/arch/arm64/boot/dts/freescale/imx8mm-var-som.dtsi b/arch/arm64/boot/dts/freescale/imx8mm-var-som.dtsi
+index 4107fe914d08..49082529764f 100644
+--- a/arch/arm64/boot/dts/freescale/imx8mm-var-som.dtsi
++++ b/arch/arm64/boot/dts/freescale/imx8mm-var-som.dtsi
+@@ -135,13 +135,10 @@
+ 	pmic@4b {
+ 		compatible = "rohm,bd71847";
+ 		reg = <0x4b>;
++		pinctrl-names = "default";
+ 		pinctrl-0 = <&pinctrl_pmic>;
+ 		interrupt-parent = <&gpio2>;
+-		/*
+-		 * The interrupt is not correct. It should be level low,
+-		 * however with internal pull up this causes IRQ storm.
+-		 */
+-		interrupts = <8 IRQ_TYPE_EDGE_RISING>;
++		interrupts = <8 IRQ_TYPE_LEVEL_LOW>;
+ 		rohm,reset-snvs-powered;
+ 
+ 		#clock-cells = <0>;
+@@ -398,7 +395,7 @@
+ 
+ 	pinctrl_pmic: pmicirqgrp {
+ 		fsl,pins = <
+-			MX8MM_IOMUXC_SD1_DATA6_GPIO2_IO8	0x41
++			MX8MM_IOMUXC_SD1_DATA6_GPIO2_IO8	0x141
+ 		>;
+ 	};
+ 
 -- 
-2.27.0
+2.17.1
 
