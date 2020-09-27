@@ -2,205 +2,106 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from vger.kernel.org (vger.kernel.org [23.128.96.18])
-	by mail.lfdr.de (Postfix) with ESMTP id 27B29279EE5
-	for <lists+devicetree@lfdr.de>; Sun, 27 Sep 2020 08:40:46 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTP id 07946279F10
+	for <lists+devicetree@lfdr.de>; Sun, 27 Sep 2020 08:49:28 +0200 (CEST)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S1730330AbgI0Gkp (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Sun, 27 Sep 2020 02:40:45 -0400
-Received: from lindbergh.monkeyblade.net ([23.128.96.19]:57448 "EHLO
-        lindbergh.monkeyblade.net" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S1726382AbgI0Gko (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Sun, 27 Sep 2020 02:40:44 -0400
-Received: from mail-wm1-x343.google.com (mail-wm1-x343.google.com [IPv6:2a00:1450:4864:20::343])
-        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 9FFC8C0613CE;
-        Sat, 26 Sep 2020 23:40:44 -0700 (PDT)
-Received: by mail-wm1-x343.google.com with SMTP id l15so2184742wmh.1;
-        Sat, 26 Sep 2020 23:40:44 -0700 (PDT)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=gmail.com; s=20161025;
-        h=subject:to:cc:references:from:message-id:date:user-agent
-         :mime-version:in-reply-to:content-language:content-transfer-encoding;
-        bh=WJ0ZHS1d57KNEY4Rx6TKOmB7vVLfoBeCqrt2wDIdNtk=;
-        b=m9OoNcRQNZooTEb4teSobF3LcOgbpTj4WOqdwWP27lM4sraesDSZH+/BxJ5gsvkTov
-         VLDGQ+ixNT38/VMZfhzK7SuWh95iIvNlWb1APBVi1+m+2vaDbs9BXiXVTurgoL0j7AlZ
-         vw7h/JsXRqRWmfcv+edaJNy6kWNnzlB9HtxYNBs37TNwiISSGWAyLsZJj473K3QzTuyF
-         VSN52StNylDXRRJxVDT7XMUqlLz5xSnCiYI6vJcBXh6J9wbBPqHFotwir6qfv5CCMlHe
-         RLv0XkwBn/godp+65kLiS29LFq5hM83QwnO5JyRULMtpNXhquENjoqRSj3ZxZf6U0n8z
-         eT3w==
-X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=1e100.net; s=20161025;
-        h=x-gm-message-state:subject:to:cc:references:from:message-id:date
-         :user-agent:mime-version:in-reply-to:content-language
-         :content-transfer-encoding;
-        bh=WJ0ZHS1d57KNEY4Rx6TKOmB7vVLfoBeCqrt2wDIdNtk=;
-        b=FtttwPRdID3VcgdegaeotSxGHxQNKLeUnaSIJ7Ddi8rY2h8x9mfz7mh3+4sWw+z+vj
-         HfYQpntCVkbG2VHMxvCX3jT041T5CKYMdTYdS+6MYxy8XHSd9o41fclQ+1Y0jqBa71xw
-         rBsySTNW2YWODQgUeBcGMQKnmYYL5LMIjke9CVf0Ep8hDQSiQaAcTUIjQSRlCTPLTZWt
-         WlrG+uGK/jAya84i/QgOoBX5LapLqsR9iI89n1kgtt2bbBgYiqX5noNJlyfZAX4s8llL
-         eg9p2pfbWuauDVCXM/2L5oVdUepLOQ48OnB+iysq7M+27O5g+jWiA5ct++BUVWlEicb7
-         dj1w==
-X-Gm-Message-State: AOAM531rW+0HGOrY1ui5JxlZvFImZTt0o9OOrBK0l/T8rPuIOh6HnKMB
-        OFZVT7cxu0+tgUN8Sp8wgrXDS7clW4A0hg==
-X-Google-Smtp-Source: ABdhPJxPu+dWl9yY0rdy3vNrFImQ/VjUrE+tVgYd+lOrHIs/cnPpyg7IVN4raXECRwNUK7xcBoWZGg==
-X-Received: by 2002:a7b:c938:: with SMTP id h24mr5780867wml.142.1601188843088;
-        Sat, 26 Sep 2020 23:40:43 -0700 (PDT)
-Received: from mamamia.internal (a89-183-16-81.net-htp.de. [89.183.16.81])
-        by smtp.gmail.com with ESMTPSA id 70sm4803531wme.15.2020.09.26.23.40.41
-        (version=TLS1_3 cipher=TLS_AES_128_GCM_SHA256 bits=128/128);
-        Sat, 26 Sep 2020 23:40:42 -0700 (PDT)
-Subject: Re: [PATCH] arm64: dts: marvell: espressobin: De-duplicate eMMC
- definitions
-To:     =?UTF-8?Q?Pali_Roh=c3=a1r?= <pali@kernel.org>,
-        Gregory Clement <gregory.clement@bootlin.com>,
+        id S1730330AbgI0Gt0 (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Sun, 27 Sep 2020 02:49:26 -0400
+Received: from szxga05-in.huawei.com ([45.249.212.191]:14240 "EHLO huawei.com"
+        rhost-flags-OK-OK-OK-FAIL) by vger.kernel.org with ESMTP
+        id S1730224AbgI0Gt0 (ORCPT <rfc822;devicetree@vger.kernel.org>);
+        Sun, 27 Sep 2020 02:49:26 -0400
+Received: from DGGEMS401-HUB.china.huawei.com (unknown [172.30.72.58])
+        by Forcepoint Email with ESMTP id 41C6E69F3BB150381954;
+        Sun, 27 Sep 2020 14:49:23 +0800 (CST)
+Received: from [127.0.0.1] (10.174.177.253) by DGGEMS401-HUB.china.huawei.com
+ (10.3.19.201) with Microsoft SMTP Server id 14.3.487.0; Sun, 27 Sep 2020
+ 14:49:14 +0800
+Subject: Re: [PATCH v6 0/6] irqchip: dw-apb-ictl: support hierarchy irq domain
+To:     Marc Zyngier <maz@kernel.org>, Vineet Gupta <vgupta@synopsys.com>,
+        "Rob Herring" <robh+dt@kernel.org>,
+        Alexey Brodkin <abrodkin@synopsys.com>,
+        linux-snps-arc <linux-snps-arc@lists.infradead.org>,
+        devicetree <devicetree@vger.kernel.org>,
+        linux-kernel <linux-kernel@vger.kernel.org>,
         Jason Cooper <jason@lakedaemon.net>,
-        Andrew Lunn <andrew@lunn.ch>,
+        Thomas Gleixner <tglx@linutronix.de>
+CC:     Kefeng Wang <wangkefeng.wang@huawei.com>,
+        Haoyu Lv <lvhaoyu@huawei.com>,
         Sebastian Hesselbarth <sebastian.hesselbarth@gmail.com>,
-        Rob Herring <robh+dt@kernel.org>
-Cc:     devicetree@vger.kernel.org, linux-kernel@vger.kernel.org
-References: <20200925085043.16389-1-pali@kernel.org>
-From:   Andre Heider <a.heider@gmail.com>
-Message-ID: <a02747f7-8c9d-d445-fac3-afefe3a8ff4e@gmail.com>
-Date:   Sun, 27 Sep 2020 08:40:41 +0200
-User-Agent: Mozilla/5.0 (X11; Linux x86_64; rv:78.0) Gecko/20100101
- Thunderbird/78.2.1
+        Libin <huawei.libin@huawei.com>
+References: <20200924071754.4509-1-thunder.leizhen@huawei.com>
+ <160104911402.38543.3098076840902954515.b4-ty@kernel.org>
+From:   "Leizhen (ThunderTown)" <thunder.leizhen@huawei.com>
+Message-ID: <f6436e0d-dbed-5455-134f-e209f2a3b131@huawei.com>
+Date:   Sun, 27 Sep 2020 14:49:13 +0800
+User-Agent: Mozilla/5.0 (Windows NT 10.0; WOW64; rv:60.0) Gecko/20100101
+ Thunderbird/60.7.0
 MIME-Version: 1.0
-In-Reply-To: <20200925085043.16389-1-pali@kernel.org>
-Content-Type: text/plain; charset=utf-8; format=flowed
-Content-Language: de-DE
-Content-Transfer-Encoding: 8bit
+In-Reply-To: <160104911402.38543.3098076840902954515.b4-ty@kernel.org>
+Content-Type: text/plain; charset="utf-8"
+Content-Language: en-US
+Content-Transfer-Encoding: 7bit
+X-Originating-IP: [10.174.177.253]
+X-CFilter-Loop: Reflected
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-On 25/09/2020 10:50, Pali Rohár wrote:
-> eMMC definitions in files armada-3720-espressobin-emmc.dts and
-> armada-3720-espressobin-v7-emmc.dts is same. So move it into common
-> armada-3720-espressobin.dtsi file with status "disabled".
-> 
-> This change simplifies eMMC variants of DTS files for Espressobin.
-> 
-> Signed-off-by: Pali Rohár <pali@kernel.org>
 
-Reviewed-by: Andre Heider <a.heider@gmail.com>
-Tested-by: Andre Heider <a.heider@gmail.com>
 
-> ---
-> Compiled DTB files armada-3720-espressobin-emmc.dtb and
-> armada-3720-espressobin-v7-emmc.dtb are identical as without applying
-> this patch.
+On 2020/9/25 23:54, Marc Zyngier wrote:
+> On Thu, 24 Sep 2020 15:17:48 +0800, Zhen Lei wrote:
+>> v5 --> v6:
+>> 1. add Reviewed-by: Rob Herring <robh@kernel.org> for Patch 4.
+>> 2. Some modifications are made to Patch 5:
+>>    1) add " |" for each "description:" property if its content exceeds one line,
+>>       to tell the yaml keep the "newline" character.
+>>    2) add "..." to mark the end of the yaml file.
+>>    3) Change the name list of maintainers to the author of "snps,dw-apb-ictl.txt"
+>> 	 maintainers:
+>> 	-  - Marc Zyngier <marc.zyngier@arm.com>
+>> 	+  - Sebastian Hesselbarth <sebastian.hesselbarth@gmail.com>
+>>    4) add "maxItems: 1" for property "reg".
+>>    5) for property "interrupts":
+>> 	 interrupts:
+>> 	-    minItems: 1
+>> 	-    maxItems: 65
+>> 	+    maxItems: 1
+>>    6) move below descriptions under the top level property "description:"
+>> 	description: |
+>> 	  Synopsys DesignWare provides interrupt controller IP for APB known as
+>> 	  dw_apb_ictl. The IP is used as secondary interrupt controller in some SoCs
+>> 	  with APB bus, e.g. Marvell Armada 1500. It can also be used as primary
+>> 	  interrupt controller in some SoCs, e.g. Hisilicon SD5203.
+>>
+>> [...]
 > 
-> Files armada-3720-espressobin.dtb and armada-3720-espressobin-v7.dtb
-> are slightly different compared to version without this patch.
-> 
-> Main change is that numering in all "phandle" nodes is shifted and
-> "sdhci0" node contains more attributes, but node is disabled.
-> 
-> 
-> Andre, could you test this change on Espressobin (without eMMC) if
-> everything is OK and there is no issue?
+> Applied to irq/irqchip-next, thanks!
 
-Look good to me, the node appears with status=disabled and everything 
-seems to work as before.
+Thank you very much. You have provided a lot of valuable review of this patch series.
 
 > 
-> ---
->   .../marvell/armada-3720-espressobin-emmc.dts  | 18 --------------
->   .../armada-3720-espressobin-v7-emmc.dts       | 18 --------------
->   .../dts/marvell/armada-3720-espressobin.dtsi  | 24 +++++++++++++++++++
->   3 files changed, 24 insertions(+), 36 deletions(-)
+> [1/6] genirq: Add stub for set_handle_irq() when !GENERIC_IRQ_MULTI_HANDLER
+>       commit: ea0c80d1764449acf2f70fdb25aec33800cd0348
+> [2/6] irqchip/dw-apb-ictl: Refactor priot to introducing hierarchical irq domains
+>       commit: d59f7d159891466361808522b63cf3548ea3ecb0
+> [3/6] irqchip/dw-apb-ictl: Add primary interrupt controller support
+>       commit: 54a38440b84f8933b555c23273deca6a396f6708
+> [4/6] dt-bindings: dw-apb-ictl: Update binding to describe use as primary interrupt controller
+>       commit: 8156b80fd4885d0ca9748e736441cc37f4eb476a
 > 
-> diff --git a/arch/arm64/boot/dts/marvell/armada-3720-espressobin-emmc.dts b/arch/arm64/boot/dts/marvell/armada-3720-espressobin-emmc.dts
-> index ec72a11ed80f..5c4d8f379704 100644
-> --- a/arch/arm64/boot/dts/marvell/armada-3720-espressobin-emmc.dts
-> +++ b/arch/arm64/boot/dts/marvell/armada-3720-espressobin-emmc.dts
-> @@ -21,24 +21,6 @@
->   		     "marvell,armada3720", "marvell,armada3710";
->   };
->   
-> -/* U11 */
->   &sdhci0 {
-> -	non-removable;
-> -	bus-width = <8>;
-> -	mmc-ddr-1_8v;
-> -	mmc-hs400-1_8v;
-> -	marvell,xenon-emmc;
-> -	marvell,xenon-tun-count = <9>;
-> -	marvell,pad-type = "fixed-1-8v";
-> -
-> -	pinctrl-names = "default";
-> -	pinctrl-0 = <&mmc_pins>;
->   	status = "okay";
-> -
-> -	#address-cells = <1>;
-> -	#size-cells = <0>;
-> -	mmccard: mmccard@0 {
-> -		compatible = "mmc-card";
-> -		reg = <0>;
-> -	};
->   };
-> diff --git a/arch/arm64/boot/dts/marvell/armada-3720-espressobin-v7-emmc.dts b/arch/arm64/boot/dts/marvell/armada-3720-espressobin-v7-emmc.dts
-> index 6062a7df7342..4775a7eda481 100644
-> --- a/arch/arm64/boot/dts/marvell/armada-3720-espressobin-v7-emmc.dts
-> +++ b/arch/arm64/boot/dts/marvell/armada-3720-espressobin-v7-emmc.dts
-> @@ -36,24 +36,6 @@
->   	label = "wan";
->   };
->   
-> -/* U11 */
->   &sdhci0 {
-> -	non-removable;
-> -	bus-width = <8>;
-> -	mmc-ddr-1_8v;
-> -	mmc-hs400-1_8v;
-> -	marvell,xenon-emmc;
-> -	marvell,xenon-tun-count = <9>;
-> -	marvell,pad-type = "fixed-1-8v";
-> -
-> -	pinctrl-names = "default";
-> -	pinctrl-0 = <&mmc_pins>;
->   	status = "okay";
-> -
-> -	#address-cells = <1>;
-> -	#size-cells = <0>;
-> -	mmccard: mmccard@0 {
-> -		compatible = "mmc-card";
-> -		reg = <0>;
-> -	};
->   };
-> diff --git a/arch/arm64/boot/dts/marvell/armada-3720-espressobin.dtsi b/arch/arm64/boot/dts/marvell/armada-3720-espressobin.dtsi
-> index 3169a820558f..8a1c678bea5f 100644
-> --- a/arch/arm64/boot/dts/marvell/armada-3720-espressobin.dtsi
-> +++ b/arch/arm64/boot/dts/marvell/armada-3720-espressobin.dtsi
-> @@ -58,6 +58,30 @@
->   	phy-names = "sata-phy";
->   };
->   
-> +/* U11 */
-> +&sdhci0 {
-> +	/* Main DTS file for Espressobin is without eMMC */
-> +	status = "disabled";
-> +
-> +	non-removable;
-> +	bus-width = <8>;
-> +	mmc-ddr-1_8v;
-> +	mmc-hs400-1_8v;
-> +	marvell,xenon-emmc;
-> +	marvell,xenon-tun-count = <9>;
-> +	marvell,pad-type = "fixed-1-8v";
-> +
-> +	pinctrl-names = "default";
-> +	pinctrl-0 = <&mmc_pins>;
-> +
-> +	#address-cells = <1>;
-> +	#size-cells = <0>;
-> +	mmccard: mmccard@0 {
-> +		compatible = "mmc-card";
-> +		reg = <0>;
-> +	};
-> +};
-> +
->   /* J1 */
->   &sdhci1 {
->   	wp-inverted;
+> I have dropped patch 5 as it doesn't have Rob's Ack yet (and is not that
+> critical) as well as patch 6 which is better routed via the ARC tree.
+
+OK. I will continue talking to Rob about patch 5. Rob suggested me to remove below allOf, but I have not
+done it. If the allOf should be removed, the 6/6 will be discarded.
++allOf:
++  - $ref: /schemas/interrupt-controller.yaml#
+
+> 
+> Cheers,
+> 
+> 	M.
 > 
 
