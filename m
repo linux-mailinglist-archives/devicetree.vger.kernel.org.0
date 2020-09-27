@@ -2,102 +2,109 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from vger.kernel.org (vger.kernel.org [23.128.96.18])
-	by mail.lfdr.de (Postfix) with ESMTP id 9FB5627A23D
-	for <lists+devicetree@lfdr.de>; Sun, 27 Sep 2020 20:02:16 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTP id 7610D27A273
+	for <lists+devicetree@lfdr.de>; Sun, 27 Sep 2020 21:08:39 +0200 (CEST)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S1726552AbgI0SCO (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Sun, 27 Sep 2020 14:02:14 -0400
-Received: from mail.kernel.org ([198.145.29.99]:35840 "EHLO mail.kernel.org"
-        rhost-flags-OK-OK-OK-OK) by vger.kernel.org with ESMTP
-        id S1726303AbgI0SCO (ORCPT <rfc822;devicetree@vger.kernel.org>);
-        Sun, 27 Sep 2020 14:02:14 -0400
-Received: from localhost (router.4pisysteme.de [80.79.225.122])
-        (using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
-        (No client certificate requested)
-        by mail.kernel.org (Postfix) with ESMTPSA id E3E4F208FE;
-        Sun, 27 Sep 2020 18:02:12 +0000 (UTC)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=kernel.org;
-        s=default; t=1601229733;
-        bh=P5bAsU836nfwvWb7ckoG24QsuDwc7Fkwne2X9zdW6xA=;
-        h=Date:From:To:Cc:Subject:References:In-Reply-To:From;
-        b=FX5TrtVgft3KuP3ukBB2H2v65JlytF71azR8jUXCV+M6d5trMoVSx/wqW+udC6jIO
-         GugqkCO3a3p6/kQxyphwZ9GmjtSVAzjTnC5RJ2hbiN4Ff2lRnkYSCc//DUZRU67oPb
-         oLI0a7UVza/uvRYKEiFO6mOLccdgyYA8o7jisWIU=
-Date:   Sun, 27 Sep 2020 20:02:11 +0200
-From:   Wolfram Sang <wsa@kernel.org>
-To:     Krzysztof Kozlowski <krzk@kernel.org>
-Cc:     Rob Herring <robh+dt@kernel.org>, Shawn Guo <shawnguo@kernel.org>,
-        Sascha Hauer <s.hauer@pengutronix.de>,
-        Pengutronix Kernel Team <kernel@pengutronix.de>,
-        Fabio Estevam <festevam@gmail.com>,
-        NXP Linux Team <linux-imx@nxp.com>,
-        Wolfram Sang <wolfram@the-dreams.de>,
-        linux-i2c@vger.kernel.org, devicetree@vger.kernel.org,
-        linux-arm-kernel@lists.infradead.org, linux-kernel@vger.kernel.org
-Subject: Re: [PATCH v4 4/4] dt-bindings: i2c: imx: Fix i.MX 7 compatible
- matching
-Message-ID: <20200927180211.GE19475@kunai>
-Mail-Followup-To: Wolfram Sang <wsa@kernel.org>,
-        Krzysztof Kozlowski <krzk@kernel.org>,
-        Rob Herring <robh+dt@kernel.org>, Shawn Guo <shawnguo@kernel.org>,
-        Sascha Hauer <s.hauer@pengutronix.de>,
-        Pengutronix Kernel Team <kernel@pengutronix.de>,
-        Fabio Estevam <festevam@gmail.com>,
-        NXP Linux Team <linux-imx@nxp.com>,
-        Wolfram Sang <wolfram@the-dreams.de>, linux-i2c@vger.kernel.org,
-        devicetree@vger.kernel.org, linux-arm-kernel@lists.infradead.org,
-        linux-kernel@vger.kernel.org
-References: <20200917191321.28741-1-krzk@kernel.org>
- <20200917191321.28741-4-krzk@kernel.org>
+        id S1726477AbgI0TIe (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Sun, 27 Sep 2020 15:08:34 -0400
+Received: from lindbergh.monkeyblade.net ([23.128.96.19]:59284 "EHLO
+        lindbergh.monkeyblade.net" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
+        with ESMTP id S1726280AbgI0TId (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Sun, 27 Sep 2020 15:08:33 -0400
+Received: from mail-qt1-x843.google.com (mail-qt1-x843.google.com [IPv6:2607:f8b0:4864:20::843])
+        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id A33FAC0613D4
+        for <devicetree@vger.kernel.org>; Sun, 27 Sep 2020 12:08:31 -0700 (PDT)
+Received: by mail-qt1-x843.google.com with SMTP id v54so6565651qtj.7
+        for <devicetree@vger.kernel.org>; Sun, 27 Sep 2020 12:08:31 -0700 (PDT)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+        d=marek-ca.20150623.gappssmtp.com; s=20150623;
+        h=from:to:cc:subject:date:message-id:mime-version
+         :content-transfer-encoding;
+        bh=Ox4kkZQ5jmnWvNP9rua6aQzsp4HEmvu06n20ZhRYnc8=;
+        b=LC727mUVU6gUK92EQxAMouDA2cLkCRhMrE4TnGSOnb0eApwvIwVb1zyNV1mrlcNHQD
+         QmoKSuq4OpNmB+/dXOe8P7XRF9RHSKDJG57YAcj2RHWwE8muOKzco8nCYg+MS9g/yEdq
+         DstFwLZV+v0zln1beecwV4Oa+UkSKfDBRnzIjaubYfyN1JqcKVtKPONVt8+q/tVse/44
+         Zjkp3um0qnHh/Sn0yoQZMDWjvmQ6/Z5fOEMasEKwqTNT/5ZkJ9znVW+4+pI/Er8j8PVZ
+         0ia+MFmcpTQ7uOkXbzGKYFLLlswFqF/0NX0snNIl04tI1a0f2JIbHgI75e6xPFFa/4Ep
+         371g==
+X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+        d=1e100.net; s=20161025;
+        h=x-gm-message-state:from:to:cc:subject:date:message-id:mime-version
+         :content-transfer-encoding;
+        bh=Ox4kkZQ5jmnWvNP9rua6aQzsp4HEmvu06n20ZhRYnc8=;
+        b=RGTyC/3jfOEmjyUoycatRoWLbV1bSZVZyuvcB8TZADgFJHdIbX2o6ddq79t28YAKfv
+         AdsOam/rMD9rFB4GRCnfGVjR/VrSsLQeXeDYPvqZvQbduuxUlWdc+hUPQUkRoMfGkTDi
+         fn1N2A/v4nV7E7JAuQUKmtwNW2PkVWqvgJ4MuSu7r9kXw5ls3Qwg7FhPBjtCmxW+uFhn
+         RE8B0yAuu2s4gfmN7OxICwVXRk9DnTDZVTLwZiKSBSTOhU2TS8LkblqAt72TqWy+PIW8
+         lKdmF3dwEudINtp2XvnGOElqb0Vg+sXjMSZdu3b7icJYkyu9zOA2bAmxP3SQMr5gxlwz
+         SKng==
+X-Gm-Message-State: AOAM5313fbKtMs+1wSW5qRCXKoPh1pih9rDP8WOisH1Az8Mahw2GYog0
+        PHSENbcbFZxgQZlf1Y+kuSqWuWD+uxqy8M2F
+X-Google-Smtp-Source: ABdhPJx6RPsaVCQyvhA31t7en3mWGbE8yiKqxY/wvEWoQm3EjKsp/Km0JQzfJdIp/1NGe5t+mHq0nQ==
+X-Received: by 2002:ac8:6d32:: with SMTP id r18mr6780937qtu.246.1601233710672;
+        Sun, 27 Sep 2020 12:08:30 -0700 (PDT)
+Received: from localhost.localdomain ([147.253.86.153])
+        by smtp.gmail.com with ESMTPSA id s25sm7973827qtc.90.2020.09.27.12.08.29
+        (version=TLS1_3 cipher=TLS_AES_256_GCM_SHA384 bits=256/256);
+        Sun, 27 Sep 2020 12:08:29 -0700 (PDT)
+From:   Jonathan Marek <jonathan@marek.ca>
+To:     linux-arm-msm@vger.kernel.org
+Cc:     Andy Gross <agross@kernel.org>,
+        Bjorn Andersson <bjorn.andersson@linaro.org>,
+        devicetree@vger.kernel.org (open list:OPEN FIRMWARE AND FLATTENED
+        DEVICE TREE BINDINGS),
+        linux-clk@vger.kernel.org (open list:COMMON CLK FRAMEWORK),
+        linux-kernel@vger.kernel.org (open list),
+        Michael Turquette <mturquette@baylibre.com>,
+        Rob Herring <robh+dt@kernel.org>,
+        Stephen Boyd <sboyd@kernel.org>
+Subject: [PATCH v4 0/2] SM8150 and SM8250 dispcc drivers
+Date:   Sun, 27 Sep 2020 15:06:49 -0400
+Message-Id: <20200927190653.13876-1-jonathan@marek.ca>
+X-Mailer: git-send-email 2.26.1
 MIME-Version: 1.0
-Content-Type: multipart/signed; micalg=pgp-sha512;
-        protocol="application/pgp-signature"; boundary="ZRyEpB+iJ+qUx0kp"
-Content-Disposition: inline
-In-Reply-To: <20200917191321.28741-4-krzk@kernel.org>
+Content-Transfer-Encoding: 8bit
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
+Add display clock drivers required to get DSI and DP displays working on
+SM8150 and SM8250 SoCs.
 
---ZRyEpB+iJ+qUx0kp
-Content-Type: text/plain; charset=us-ascii
-Content-Disposition: inline
-Content-Transfer-Encoding: quoted-printable
+Derived from downstream drivers. Notable changes compared to downstream:
+ - EDP clks removed (nothing uses these even in downstream it seems)
+ - freq_tbl values for dp_link clk is in Hz and not kHz
 
-On Thu, Sep 17, 2020 at 09:13:21PM +0200, Krzysztof Kozlowski wrote:
-> The i.MX 7 DTSes use two compatibles so update the binding to fix
-> dtbs_check warnings like:
->=20
->   arch/arm/boot/dts/imx7d-cl-som-imx7.dt.yaml: i2c@30a20000:
->     compatible: ['fsl,imx7d-i2c', 'fsl,imx21-i2c'] is not valid under any=
- of the given schemas (Possible causes of the failure):
->=20
->   arch/arm/boot/dts/imx7d-cl-som-imx7.dt.yaml: i2c@30a20000:
->     compatible: ['fsl,imx7d-i2c', 'fsl,imx21-i2c'] is too long
->=20
-> Signed-off-by: Krzysztof Kozlowski <krzk@kernel.org>
+v2:
+ - updated dts example to reflect the change (first patch)
+ - updated config_ctl_hi1_val in sm8250 dispcc to latest downstream
 
-Applied to for-next, thanks!
+v3:
+ - combined dt-binding: "gcc_disp_gpll0_clk_src" is needed by sc7180 too
+ - use the right order in drivers/clk/qcom/Kconfig
 
+v4:
+ - Dropped combining yaml with sdm845/sc7180 dispcc
+ - Combined drivers into one (sm8250 driver + patched pll config for sm8150)
+ - Dropped uses of CLK_GET_RATE_NOCACHE (which was copied from downstream)
+ - Dropped CLK_SET_RATE_PARENT from some DP clocks (upstream phy design)
 
---ZRyEpB+iJ+qUx0kp
-Content-Type: application/pgp-signature; name="signature.asc"
+Jonathan Marek (2):
+  dt-bindings: clock: add QCOM SM8150 and SM8250 display clock bindings
+  clk: qcom: Add display clock controller driver for SM8150 and SM8250
 
------BEGIN PGP SIGNATURE-----
+ .../bindings/clock/qcom,dispcc-sm8x50.yaml    |   93 ++
+ drivers/clk/qcom/Kconfig                      |    9 +
+ drivers/clk/qcom/Makefile                     |    1 +
+ drivers/clk/qcom/dispcc-sm8250.c              | 1107 +++++++++++++++++
+ .../dt-bindings/clock/qcom,dispcc-sm8150.h    |    1 +
+ .../dt-bindings/clock/qcom,dispcc-sm8250.h    |   66 +
+ 6 files changed, 1277 insertions(+)
+ create mode 100644 Documentation/devicetree/bindings/clock/qcom,dispcc-sm8x50.yaml
+ create mode 100644 drivers/clk/qcom/dispcc-sm8250.c
+ create mode 120000 include/dt-bindings/clock/qcom,dispcc-sm8150.h
+ create mode 100644 include/dt-bindings/clock/qcom,dispcc-sm8250.h
 
-iQIzBAABCgAdFiEEOZGx6rniZ1Gk92RdFA3kzBSgKbYFAl9w06MACgkQFA3kzBSg
-KbYHRw//XMfUqUsamDsGsZ/tCrC0gC244igqxp8Uy1JIwbOA09cbuvBV9rbF9Ma2
-Wqu2xgEi7x5ARHy6HD1LUXxMXbvRJIYKxYyq39y1DPPpT9f1m10YLWPGterXf6kU
-RZ/0lXL8XBSUepsAOvTP/nJuj2j2TmhRU4lvkGuTwf4xWOr/ZRcEvJr8FKwe7IQK
-wFSAeMUWUjt5RPdqemyUQcV6DpE9mDvQBvom+dlU3ss5kx0fwAgXjsTuT/vYL334
-6dAcpUGxETlKav7UOwQJqGraoYf9LSrWOfmGV+VxMvNT2kHpX6UwAxad1Yc31T6L
-kSpbXJhg0o1PFQe2kV+0GbWxf/MMTPJv9HmVfsdaG2tv7aKGxe1tjh6KhFdmR95K
-unk/bRl3nl48pbEd8QHB+VueJ8wUqiRLzbTt4JhwTaIL0hIkHM80R/lVY3UJDKVQ
-QGhlCS+orcIKwULMtnsKEKgzhDuxdsCSF/SN537sCAvvN7RUtHln8WD/sJVf9VWE
-9egGEUHUSVJPNnbzFY21si2pgjbmlidQ7ExNl7aEUbO7yrPOhWP85cNmEo98EiTK
-BWe8PItZ454CSSC9H2QCot1lHsIsMBjy7Vw19FCjOyyXbF+o5wFVN06Ka7hXaBQ+
-iXS2ayqgIKbpQpXvAQAEjWzVUaDdMiQpTQZ9gsD9r248DiIFfV8=
-=Ov0R
------END PGP SIGNATURE-----
+-- 
+2.26.1
 
---ZRyEpB+iJ+qUx0kp--
