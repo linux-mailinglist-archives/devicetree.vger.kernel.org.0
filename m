@@ -2,147 +2,77 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from vger.kernel.org (vger.kernel.org [23.128.96.18])
-	by mail.lfdr.de (Postfix) with ESMTP id CD93E279F43
-	for <lists+devicetree@lfdr.de>; Sun, 27 Sep 2020 09:23:45 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTP id 5C59D279F52
+	for <lists+devicetree@lfdr.de>; Sun, 27 Sep 2020 09:48:37 +0200 (CEST)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S1727614AbgI0HXi (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Sun, 27 Sep 2020 03:23:38 -0400
-Received: from mail-vi1eur05on2070.outbound.protection.outlook.com ([40.107.21.70]:5344
-        "EHLO EUR05-VI1-obe.outbound.protection.outlook.com"
-        rhost-flags-OK-OK-OK-FAIL) by vger.kernel.org with ESMTP
-        id S1726840AbgI0HXi (ORCPT <rfc822;devicetree@vger.kernel.org>);
-        Sun, 27 Sep 2020 03:23:38 -0400
-ARC-Seal: i=1; a=rsa-sha256; s=arcselector9901; d=microsoft.com; cv=none;
- b=Ln7bkLkMYINmS9uh3jdP5NftLvhStRRSttISJyKvGefWh55ySWGcCdT72hVqO9LPqA3KYZKibpo6vWuML/1Cx1c3Bb/l+Fpu13n1XfIXv7V52Ps9cgCcqUe1VHocNmhKG7GJ+pBtqYtylt/Of+TFdOsfFj5YHhFAYnqCOWPhfDRTFycnrPwCz8rlIMhKOU7z1ZHthoY6RHxl5F0j0a2sT+VJeKYujpDhS361cNOC7yVRAC/CbIIst5v2V/yi7J54ApE3olE5kDEFSPnT/nteEQ2Cxg291ZDvr0xcFzWpZiVdybvaRoVt5u35tssFQC9G2a/P/5zboSSrMui+wUQUyw==
-ARC-Message-Signature: i=1; a=rsa-sha256; c=relaxed/relaxed; d=microsoft.com;
- s=arcselector9901;
- h=From:Date:Subject:Message-ID:Content-Type:MIME-Version:X-MS-Exchange-SenderADCheck;
- bh=6EQUCnH15G4C7RAUfvGB7fSFaXMuI936jLUpAw7owcg=;
- b=cRbX58Q2opcmllKDzh1zxY9pOc5ltyl++gktYcr3d11TgX2tdxQN5clmUgkOiDZjTunCF2HWRtD0ilpCuy07EUHhP78uhxGDQJAP5pMDugwZIYmHEUkp/FS6r87k/ZgeCehLa6725W56up1kNBhSHYA70CoeN+jhD3Gl56NyvmAFitXST687psdUUGBmXnNf9ih2OhZEcW+OuyWTLGriqlMdF4nhs7Fky13nQ1PO5zy2+UGvdqHeByM+IgiRAcJSk7nSFC8LH+Quk7tsM52izmIPAax8zf5SjpRw/bZ0dON0ekP0T7qwt/DAYwGb8RyQHmDPEShRCnXTCpISNT1jyw==
-ARC-Authentication-Results: i=1; mx.microsoft.com 1; spf=pass
- smtp.mailfrom=nxp.com; dmarc=pass action=none header.from=nxp.com; dkim=pass
- header.d=nxp.com; arc=none
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=nxp.com; s=selector2;
- h=From:Date:Subject:Message-ID:Content-Type:MIME-Version:X-MS-Exchange-SenderADCheck;
- bh=6EQUCnH15G4C7RAUfvGB7fSFaXMuI936jLUpAw7owcg=;
- b=iG8J7s5JKrpAN6sz/V89LWX+Ken3OgrSFcJPc8OuxTt56yKYKb0bA5djW44duqolp8mDoaLfSWjeWl4HFZPfv+kAebFd++qzLS4Os8FcGfgs4y4bAwhURUmICk5gAaXzol0Py/gwa06VbQDu1mJ4Uc4hg3ZtO/q8khyq98tCKQg=
-Received: from AM6PR04MB5413.eurprd04.prod.outlook.com (2603:10a6:20b:96::28)
- by AM6PR04MB5206.eurprd04.prod.outlook.com (2603:10a6:20b:12::28) with
- Microsoft SMTP Server (version=TLS1_2,
- cipher=TLS_ECDHE_RSA_WITH_AES_256_GCM_SHA384) id 15.20.3412.21; Sun, 27 Sep
- 2020 07:23:33 +0000
-Received: from AM6PR04MB5413.eurprd04.prod.outlook.com
- ([fe80::1953:c81a:cca2:60ec]) by AM6PR04MB5413.eurprd04.prod.outlook.com
- ([fe80::1953:c81a:cca2:60ec%7]) with mapi id 15.20.3412.028; Sun, 27 Sep 2020
- 07:23:33 +0000
-From:   Ran Wang <ran.wang_1@nxp.com>
-To:     Rob Herring <robh@kernel.org>
-CC:     Leo Li <leoyang.li@nxp.com>, Shawn Guo <shawnguo@kernel.org>,
-        "linuxppc-dev@lists.ozlabs.org" <linuxppc-dev@lists.ozlabs.org>,
-        "linux-arm-kernel@lists.infradead.org" 
+        id S1726478AbgI0Hsg (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Sun, 27 Sep 2020 03:48:36 -0400
+Received: from mailgw02.mediatek.com ([210.61.82.184]:57794 "EHLO
+        mailgw02.mediatek.com" rhost-flags-OK-FAIL-OK-FAIL) by vger.kernel.org
+        with ESMTP id S1726382AbgI0Hsf (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Sun, 27 Sep 2020 03:48:35 -0400
+X-UUID: 41f7c2f5dcb64a769089f932eb3d2dcc-20200927
+DKIM-Signature: v=1; a=rsa-sha256; q=dns/txt; c=relaxed/relaxed; d=mediatek.com; s=dk;
+        h=Content-Transfer-Encoding:Content-Type:MIME-Version:Message-ID:Date:Subject:CC:To:From; bh=d9lyIqtPvPXiR0F6KUQePPMfpcjXX/jEbkNNHhsMUyo=;
+        b=o4qFlUBL8p6PM/BoSI4Fh75nQ9SKQjn9e07CFDjyzLqE+i40/+JT5ZppBXM9OcnX9nEwgZ0e+/U8ZW+ygxl6GtjXfj80Lz7wXaEDrN9YLZsDFU9+QZltD2MWM6U/CTIL1bE0jud3Iwp5W6ixq2Gf+ZCUjxRLYxZgzetCcMWxQu4=;
+X-UUID: 41f7c2f5dcb64a769089f932eb3d2dcc-20200927
+Received: from mtkcas06.mediatek.inc [(172.21.101.30)] by mailgw02.mediatek.com
+        (envelope-from <jianjun.wang@mediatek.com>)
+        (Cellopoint E-mail Firewall v4.1.14 Build 0819 with TLSv1.2 ECDHE-RSA-AES256-SHA384 256/256)
+        with ESMTP id 219952987; Sun, 27 Sep 2020 15:48:29 +0800
+Received: from MTKCAS06.mediatek.inc (172.21.101.30) by
+ mtkmbs08n2.mediatek.inc (172.21.101.56) with Microsoft SMTP Server (TLS) id
+ 15.0.1497.2; Sun, 27 Sep 2020 15:48:26 +0800
+Received: from localhost.localdomain (10.17.3.153) by MTKCAS06.mediatek.inc
+ (172.21.101.73) with Microsoft SMTP Server id 15.0.1497.2 via Frontend
+ Transport; Sun, 27 Sep 2020 15:48:25 +0800
+From:   Jianjun Wang <jianjun.wang@mediatek.com>
+To:     Bjorn Helgaas <bhelgaas@google.com>,
+        Rob Herring <robh+dt@kernel.org>,
+        Lorenzo Pieralisi <lorenzo.pieralisi@arm.com>,
+        Ryder Lee <ryder.lee@mediatek.com>
+CC:     Philipp Zabel <p.zabel@pengutronix.de>,
+        Matthias Brugger <matthias.bgg@gmail.com>,
+        Mauro Carvalho Chehab <mchehab+huawei@kernel.org>,
+        <davem@davemloft.net>, <linux-pci@vger.kernel.org>,
+        <linux-mediatek@lists.infradead.org>, <devicetree@vger.kernel.org>,
+        <linux-kernel@vger.kernel.org>,
         <linux-arm-kernel@lists.infradead.org>,
-        "devicetree@vger.kernel.org" <devicetree@vger.kernel.org>,
-        "linux-kernel@vger.kernel.org" <linux-kernel@vger.kernel.org>,
-        Biwen Li <biwen.li@nxp.com>
-Subject: RE: [PATCH 1/5] Documentation: dt: binding: fsl: Add
- 'fsl,ippdexpcr1-alt-addr' property
-Thread-Topic: [PATCH 1/5] Documentation: dt: binding: fsl: Add
- 'fsl,ippdexpcr1-alt-addr' property
-Thread-Index: AQHWjAMgWpwpgcZEfEity8vaUHwtLKl1i48AgABEr6CABlVjYA==
-Date:   Sun, 27 Sep 2020 07:23:33 +0000
-Message-ID: <AM6PR04MB5413C58E6BB5FB08DF980564F1340@AM6PR04MB5413.eurprd04.prod.outlook.com>
-References: <20200916081831.24747-1-ran.wang_1@nxp.com>
- <20200923023234.GA3751572@bogus>
- <AM6PR04MB5413BB2F8D044B2312DAEC4FF1380@AM6PR04MB5413.eurprd04.prod.outlook.com>
-In-Reply-To: <AM6PR04MB5413BB2F8D044B2312DAEC4FF1380@AM6PR04MB5413.eurprd04.prod.outlook.com>
-Accept-Language: en-US
-Content-Language: en-US
-X-MS-Has-Attach: 
-X-MS-TNEF-Correlator: 
-authentication-results: kernel.org; dkim=none (message not signed)
- header.d=none;kernel.org; dmarc=none action=none header.from=nxp.com;
-x-originating-ip: [119.31.174.73]
-x-ms-publictraffictype: Email
-x-ms-office365-filtering-ht: Tenant
-x-ms-office365-filtering-correlation-id: 1e2cacb3-af09-404f-b502-08d862b63dde
-x-ms-traffictypediagnostic: AM6PR04MB5206:
-x-ms-exchange-transport-forked: True
-x-microsoft-antispam-prvs: <AM6PR04MB5206A197222B88B2C5A089EBF1340@AM6PR04MB5206.eurprd04.prod.outlook.com>
-x-ms-oob-tlc-oobclassifiers: OLM:2733;
-x-ms-exchange-senderadcheck: 1
-x-microsoft-antispam: BCL:0;
-x-microsoft-antispam-message-info: CNELaXIIw74b5CskT8OWns4k+gYU44HI6hcpGGjidJNMUQo62EP2hTKTugvDY4E/+iH2WEDXhENteLH0svdV8mH+HKRSSgiRm6U/iJ/6xFIDrNyxi+FdXGua2/ogv3i4ioZA78HukeE4NmMzlowtQeQUs1dPmrMfxNTVQoU6UkzJYo1pUttduJh4miiWbR685/IKamoJ0mQfiSHqEiMKfKfR22IOYokoRl5gXW7xlrX8zk5SzlZdipkZcBdPfT4TclETN8pHzQNF23+2Z3BFU6bbwXohY5zhCHTSoRKZFOXhBfM8ed6ab5Vr2fcCGAxBuuGCla7iZPb2WUKQ8rhh/hNzcO0CxHTpC/18WML8YcL29wlsylDku77+gYfc87dz+C2pkVlnjmy+e/RBUHqOtuzCBCDYZq837Cg+d5vbQJw=
-x-forefront-antispam-report: CIP:255.255.255.255;CTRY:;LANG:en;SCL:1;SRV:;IPV:NLI;SFV:NSPM;H:AM6PR04MB5413.eurprd04.prod.outlook.com;PTR:;CAT:NONE;SFS:(4636009)(376002)(136003)(366004)(346002)(396003)(39860400002)(4326008)(52536014)(8936002)(55016002)(8676002)(71200400001)(9686003)(66446008)(64756008)(6916009)(2906002)(76116006)(7696005)(86362001)(26005)(53546011)(6506007)(66946007)(83380400001)(33656002)(478600001)(54906003)(5660300002)(316002)(186003)(66556008)(66476007)(142933001);DIR:OUT;SFP:1101;
-x-ms-exchange-antispam-messagedata: z5QsRKz4uwjVt9uC7KC7Wb0K9TJbwKDQBXY1o665QIXn/DtCMtVWEzNSdqlDC7eGWpL9HG7oJX122hyjp1ZGTjQA/HMPXcqHwqQYjtRlYuEs4RT3sc9vax5wY2DesXNhAIxOsWSxhS3F11G0oNnsZ+b/ipg1OmHOUuxxijTy3YOAbqf7PW0UGxANTFvBrFCBBuQFqqTnxdgvpzWoRzOWScfqZcq3eb0b573Y/95wk/QT0ci8QyRKBAdtrfSP13KYpa8nZagB3l9S5ZV/OS14N+ohc+oqGO1V3j9EOyhJdjl8u+TngJxmb2bKZg+Pbr2NJsJE5mZFRCAT4QQP27s+Gy+LKqN/1O9CjiM10J4T4E7kGIKHblbUISuxFlW0TqVy0rKDAGrD+u4Yfb9GbRH00YqrDwRXP6vgPkbaKmLUnAFWLA79WWzEEtzyIcY1DEaM4565ZHGD/jhTjGHUkCt7H5zrzuMcsIMIv0RDg4e78jCbF3e5FOtwgPFq5C2C2mGv/ugYi/NfcyuVPtSq2hAbdvnognAalwpEtSeiky1HGv1K4Mzk/U4H+XRDr+R2o1kOMPx+KLe5FwwrqEUK0R9BO7rbb1PgXCSLB/qxHwp6yl0BNUvdfhhDo0sbhAppPw1h2f+pDmkakiSlmWWIN61rcg==
-Content-Type: text/plain; charset="us-ascii"
-Content-Transfer-Encoding: quoted-printable
+        Sj Huang <sj.huang@mediatek.com>,
+        Jianjun Wang <jianjun.wang@mediatek.com>,
+        <youlin.pei@mediatek.com>, <chuanjia.liu@mediatek.com>,
+        <qizhong.cheng@mediatek.com>, <sin_jieyang@mediatek.com>
+Subject: [v3,0/3] PCI: mediatek: Add new generation controller support
+Date:   Sun, 27 Sep 2020 15:45:52 +0800
+Message-ID: <20200927074555.4155-1-jianjun.wang@mediatek.com>
+X-Mailer: git-send-email 2.18.0
 MIME-Version: 1.0
-X-OriginatorOrg: nxp.com
-X-MS-Exchange-CrossTenant-AuthAs: Internal
-X-MS-Exchange-CrossTenant-AuthSource: AM6PR04MB5413.eurprd04.prod.outlook.com
-X-MS-Exchange-CrossTenant-Network-Message-Id: 1e2cacb3-af09-404f-b502-08d862b63dde
-X-MS-Exchange-CrossTenant-originalarrivaltime: 27 Sep 2020 07:23:33.3880
- (UTC)
-X-MS-Exchange-CrossTenant-fromentityheader: Hosted
-X-MS-Exchange-CrossTenant-id: 686ea1d3-bc2b-4c6f-a92c-d99c5c301635
-X-MS-Exchange-CrossTenant-mailboxtype: HOSTED
-X-MS-Exchange-CrossTenant-userprincipalname: mTrTw2c8upL7VRqrOVk3fqmHDMLO9TogowTWSLlb3RFAaUDAmQzffbWTtpAcbghzmgkvSdxXWV270fY7QMCm/A==
-X-MS-Exchange-Transport-CrossTenantHeadersStamped: AM6PR04MB5206
+Content-Type: text/plain
+X-TM-SNTS-SMTP: FEC9D6A66C7B483EF0EF7CCF5000DE10A76B54A9207FFC0B54437214FC778F142000:8
+X-MTK:  N
+Content-Transfer-Encoding: base64
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-Hi Rob
-
-Not sure whether you have missed this mail with my query.
-
-Regards,
-Ran
-
-On Wednesday, September 23, 2020 2:44 PM Ran Wang wrote:
->=20
-> Hi Rob,
->=20
-> On Wednesday, September 23, 2020 10:33 AM, Rob Herring wrote:
-> >
-> > On Wed, Sep 16, 2020 at 04:18:27PM +0800, Ran Wang wrote:
-> > > From: Biwen Li <biwen.li@nxp.com>
-> > >
-> > > The 'fsl,ippdexpcr1-alt-addr' property is used to handle an errata
-> > > A-008646 on LS1021A
-> > >
-> > > Signed-off-by: Biwen Li <biwen.li@nxp.com>
-> > > Signed-off-by: Ran Wang <ran.wang_1@nxp.com>
-> > > ---
-> > >  Documentation/devicetree/bindings/soc/fsl/rcpm.txt | 19
-> > > +++++++++++++++++++
-> > >  1 file changed, 19 insertions(+)
-> > >
-> > > diff --git a/Documentation/devicetree/bindings/soc/fsl/rcpm.txt
-> > > b/Documentation/devicetree/bindings/soc/fsl/rcpm.txt
-> > > index 5a33619..1be58a3 100644
-> > > --- a/Documentation/devicetree/bindings/soc/fsl/rcpm.txt
-> > > +++ b/Documentation/devicetree/bindings/soc/fsl/rcpm.txt
-> > > @@ -34,6 +34,11 @@ Chassis Version		Example Chips
-> > >  Optional properties:
-> > >   - little-endian : RCPM register block is Little Endian. Without it =
-RCPM
-> > >     will be Big Endian (default case).
-> > > + - fsl,ippdexpcr1-alt-addr : The property is related to a hardware i=
-ssue
-> > > +   on SoC LS1021A and only needed on SoC LS1021A.
-> > > +   Must include 2 entries:
-> > > +   The first entry must be a link to the SCFG device node.
-> > > +   The 2nd entry must be offset of register IPPDEXPCR1 in SCFG.
-> >
-> > You don't need a DT change for this. You can find SCFG node by its
-> > compatible string and then the offset should be known given this issue =
-is
-> only on 1 SoC.
->=20
-> Did you mean that RCPM driver just to access IPPDEXPCR1 shadowed register
-> in SCFG directly without fetching it's offset info. from DT?
->=20
-> Regards,
-> Ran
+VGhlc2Ugc2VyaWVzIHBhdGNoZXMgYWRkIHBjaWUtbWVkaWF0ZWstZ2VuMy5jIGFuZCBkdC1iaW5k
+aW5ncyBmaWxlIHRvDQpzdXBwb3J0IG5ldyBnZW5lcmF0aW9uIFBDSWUgY29udHJvbGxlci4NCg0K
+Q2hhbmdlcyBpbiB2MzoNCjEuIFJlbW92ZSBzdGFuZGFyZCBwcm9wZXJ0eSBpbiBiaW5kaW5nIGRv
+Y3VtZW50DQoyLiBSZXR1cm4gZXJyb3IgbnVtYmVyIHdoZW4gZ2V0X29wdGlvbmFsKiBBUEkgdGhy
+b3dzIGFuIGVycm9yDQozLiBVc2UgdGhlIGJ1bGsgY2xrIEFQSXMNCg0KQ2hhbmdlcyBpbiB2MjoN
+CjEuIEZpeCB0aGUgdHlwbyBvZiBkdC1iaW5kaW5ncyBwYXRjaA0KMi4gUmVtb3ZlIHRoZSB1bm5l
+Y2Vzc2FyeSBwcm9wZXJ0aWVzIGluIGJpbmRpbmcgZG9jdW1lbnQNCjMuIGRpc3BvcyB0aGUgaXJx
+IG1hcHBpbmdzIG9mIG1zaSB0b3AgZG9tYWluIHdoZW4gaXJxIHRlYXJkb3duDQoNCkppYW5qdW4g
+V2FuZyAoMyk6DQogIGR0LWJpbmRpbmdzOiBQQ0k6IG1lZGlhdGVrOiBBZGQgWUFNTCBzY2hlbWEN
+CiAgUENJOiBtZWRpYXRlazogQWRkIG5ldyBnZW5lcmF0aW9uIGNvbnRyb2xsZXIgc3VwcG9ydA0K
+ICBNQUlOVEFJTkVSUzogdXBkYXRlIGVudHJ5IGZvciBNZWRpYVRlayBQQ0llIGNvbnRyb2xsZXIN
+Cg0KIC4uLi9iaW5kaW5ncy9wY2kvbWVkaWF0ZWstcGNpZS1nZW4zLnlhbWwgICAgICB8ICAxMjYg
+KysNCiBNQUlOVEFJTkVSUyAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgfCAgICAx
+ICsNCiBkcml2ZXJzL3BjaS9jb250cm9sbGVyL0tjb25maWcgICAgICAgICAgICAgICAgfCAgIDE0
+ICsNCiBkcml2ZXJzL3BjaS9jb250cm9sbGVyL01ha2VmaWxlICAgICAgICAgICAgICAgfCAgICAx
+ICsNCiBkcml2ZXJzL3BjaS9jb250cm9sbGVyL3BjaWUtbWVkaWF0ZWstZ2VuMy5jICAgfCAxMDI0
+ICsrKysrKysrKysrKysrKysrDQogNSBmaWxlcyBjaGFuZ2VkLCAxMTY2IGluc2VydGlvbnMoKykN
+CiBjcmVhdGUgbW9kZSAxMDA2NDQgRG9jdW1lbnRhdGlvbi9kZXZpY2V0cmVlL2JpbmRpbmdzL3Bj
+aS9tZWRpYXRlay1wY2llLWdlbjMueWFtbA0KIGNyZWF0ZSBtb2RlIDEwMDY0NCBkcml2ZXJzL3Bj
+aS9jb250cm9sbGVyL3BjaWUtbWVkaWF0ZWstZ2VuMy5jDQoNCi0tIA0KMi4yNS4xDQo=
 
