@@ -2,195 +2,77 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from vger.kernel.org (vger.kernel.org [23.128.96.18])
-	by mail.lfdr.de (Postfix) with ESMTP id 5F30C27A05D
-	for <lists+devicetree@lfdr.de>; Sun, 27 Sep 2020 11:53:38 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTP id 73AB827A0C6
+	for <lists+devicetree@lfdr.de>; Sun, 27 Sep 2020 14:13:09 +0200 (CEST)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S1726210AbgI0Jxe (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Sun, 27 Sep 2020 05:53:34 -0400
-Received: from szxga05-in.huawei.com ([45.249.212.191]:14250 "EHLO huawei.com"
-        rhost-flags-OK-OK-OK-FAIL) by vger.kernel.org with ESMTP
-        id S1726149AbgI0Jxe (ORCPT <rfc822;devicetree@vger.kernel.org>);
-        Sun, 27 Sep 2020 05:53:34 -0400
-Received: from DGGEMS407-HUB.china.huawei.com (unknown [172.30.72.58])
-        by Forcepoint Email with ESMTP id 6CCB1C15570F54E919F4;
-        Sun, 27 Sep 2020 17:53:32 +0800 (CST)
-Received: from [127.0.0.1] (10.174.177.253) by DGGEMS407-HUB.china.huawei.com
- (10.3.19.207) with Microsoft SMTP Server id 14.3.487.0; Sun, 27 Sep 2020
- 17:53:25 +0800
-Subject: Re: [PATCH v6 5/6] dt-bindings: dw-apb-ictl: convert to json-schema
-To:     Thomas Gleixner <tglx@linutronix.de>,
+        id S1726516AbgI0MNG (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Sun, 27 Sep 2020 08:13:06 -0400
+Received: from mail.kernel.org ([198.145.29.99]:60624 "EHLO mail.kernel.org"
+        rhost-flags-OK-OK-OK-OK) by vger.kernel.org with ESMTP
+        id S1726185AbgI0MNF (ORCPT <rfc822;devicetree@vger.kernel.org>);
+        Sun, 27 Sep 2020 08:13:05 -0400
+Received: from localhost (83-86-74-64.cable.dynamic.v4.ziggo.nl [83.86.74.64])
+        (using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
+        (No client certificate requested)
+        by mail.kernel.org (Postfix) with ESMTPSA id 848BD23718;
+        Sun, 27 Sep 2020 12:13:04 +0000 (UTC)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=kernel.org;
+        s=default; t=1601208785;
+        bh=cwM2MQgUW0czb3fR0yjHJGDDSXpDnNHhOU8ZfZwwJ0Q=;
+        h=Date:From:To:Cc:Subject:References:In-Reply-To:From;
+        b=tBPA+YlVAkBjcsDQPbok4wsg8dGHaPw8F5X3jpvi3kDY+RRRhZupH3ntET5AYvWb/
+         xl9klFyxioPJGWlWbU7KTu39H+2LhEheETfetB2xuyuu5JvUbjgrQCVTGoqRjmO8Ax
+         jdmn0p1vGfKKCRtGBM3/4dS0Zrzq5IQl/uZA8NKc=
+Date:   Sun, 27 Sep 2020 14:13:15 +0200
+From:   Greg Kroah-Hartman <gregkh@linuxfoundation.org>
+To:     "Lad, Prabhakar" <prabhakar.csengg@gmail.com>
+Cc:     Geert Uytterhoeven <geert+renesas@glider.be>,
+        Magnus Damm <magnus.damm@gmail.com>,
+        Rob Herring <robh+dt@kernel.org>,
+        Thomas Gleixner <tglx@linutronix.de>,
         Jason Cooper <jason@lakedaemon.net>,
         Marc Zyngier <maz@kernel.org>,
-        Rob Herring <robh+dt@kernel.org>,
-        "Alexey Brodkin" <abrodkin@synopsys.com>,
-        Vineet Gupta <vgupta@synopsys.com>,
-        devicetree <devicetree@vger.kernel.org>,
-        linux-snps-arc <linux-snps-arc@lists.infradead.org>,
-        linux-kernel <linux-kernel@vger.kernel.org>
-CC:     Sebastian Hesselbarth <sebastian.hesselbarth@gmail.com>,
-        Haoyu Lv <lvhaoyu@huawei.com>, Libin <huawei.libin@huawei.com>,
-        Kefeng Wang <wangkefeng.wang@huawei.com>
-References: <20200924071754.4509-1-thunder.leizhen@huawei.com>
- <20200924071754.4509-6-thunder.leizhen@huawei.com>
-From:   "Leizhen (ThunderTown)" <thunder.leizhen@huawei.com>
-Message-ID: <89149f30-3cc0-c0a8-4b73-49914659bfe9@huawei.com>
-Date:   Sun, 27 Sep 2020 17:53:24 +0800
-User-Agent: Mozilla/5.0 (Windows NT 10.0; WOW64; rv:60.0) Gecko/20100101
- Thunderbird/60.7.0
+        Ulf Hansson <ulf.hansson@linaro.org>,
+        Catalin Marinas <catalin.marinas@arm.com>,
+        Will Deacon <will@kernel.org>,
+        Linux-Renesas <linux-renesas-soc@vger.kernel.org>,
+        "open list:OPEN FIRMWARE AND FLATTENED DEVICE TREE BINDINGS" 
+        <devicetree@vger.kernel.org>,
+        Lad Prabhakar <prabhakar.mahadev-lad.rj@bp.renesas.com>,
+        Linux MMC List <linux-mmc@vger.kernel.org>,
+        "open list:SERIAL DRIVERS" <linux-serial@vger.kernel.org>,
+        LAK <linux-arm-kernel@lists.infradead.org>,
+        LKML <linux-kernel@vger.kernel.org>
+Subject: Re: [PATCH 1/8] dt-bindings: serial: renesas,scif: Document r8a774e1
+ bindings
+Message-ID: <20200927121315.GB164938@kroah.com>
+References: <1594230511-24790-1-git-send-email-prabhakar.mahadev-lad.rj@bp.renesas.com>
+ <1594230511-24790-2-git-send-email-prabhakar.mahadev-lad.rj@bp.renesas.com>
+ <CA+V-a8tTSo4bp8bdQnf1KA9z7d+AjxfC5Abk0iuV4L_r20PwPQ@mail.gmail.com>
 MIME-Version: 1.0
-In-Reply-To: <20200924071754.4509-6-thunder.leizhen@huawei.com>
-Content-Type: text/plain; charset="utf-8"
-Content-Language: en-US
-Content-Transfer-Encoding: 7bit
-X-Originating-IP: [10.174.177.253]
-X-CFilter-Loop: Reflected
+Content-Type: text/plain; charset=us-ascii
+Content-Disposition: inline
+In-Reply-To: <CA+V-a8tTSo4bp8bdQnf1KA9z7d+AjxfC5Abk0iuV4L_r20PwPQ@mail.gmail.com>
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-Hi Rob:
-  Do you have time to review this patch again?
+On Sat, Sep 19, 2020 at 11:35:39AM +0100, Lad, Prabhakar wrote:
+> Hi Greg,
+> 
+> On Wed, Jul 8, 2020 at 6:48 PM Lad Prabhakar
+> <prabhakar.mahadev-lad.rj@bp.renesas.com> wrote:
+> >
+> > RZ/G2H (R8A774E1) SoC also has the R-Car gen3 compatible SCIF ports,
+> > so document the SoC specific bindings.
+> >
+> > Signed-off-by: Lad Prabhakar <prabhakar.mahadev-lad.rj@bp.renesas.com>
+> > ---
+> >  Documentation/devicetree/bindings/serial/renesas,scif.yaml | 1 +
+> >  1 file changed, 1 insertion(+)
+> >
+> Could you please pick this patch.
 
-On 2020/9/24 15:17, Zhen Lei wrote:
-> Convert the Synopsys DesignWare APB interrupt controller (dw_apb_ictl)
-> binding to DT schema format using json-schema.
-> 
-> Signed-off-by: Zhen Lei <thunder.leizhen@huawei.com>
-> ---
->  .../interrupt-controller/snps,dw-apb-ictl.txt      | 43 -------------
->  .../interrupt-controller/snps,dw-apb-ictl.yaml     | 74 ++++++++++++++++++++++
->  2 files changed, 74 insertions(+), 43 deletions(-)
->  delete mode 100644 Documentation/devicetree/bindings/interrupt-controller/snps,dw-apb-ictl.txt
->  create mode 100644 Documentation/devicetree/bindings/interrupt-controller/snps,dw-apb-ictl.yaml
-> 
-> diff --git a/Documentation/devicetree/bindings/interrupt-controller/snps,dw-apb-ictl.txt b/Documentation/devicetree/bindings/interrupt-controller/snps,dw-apb-ictl.txt
-> deleted file mode 100644
-> index 2db59df9408f4c6..000000000000000
-> --- a/Documentation/devicetree/bindings/interrupt-controller/snps,dw-apb-ictl.txt
-> +++ /dev/null
-> @@ -1,43 +0,0 @@
-> -Synopsys DesignWare APB interrupt controller (dw_apb_ictl)
-> -
-> -Synopsys DesignWare provides interrupt controller IP for APB known as
-> -dw_apb_ictl. The IP is used as secondary interrupt controller in some SoCs with
-> -APB bus, e.g. Marvell Armada 1500. It can also be used as primary interrupt
-> -controller in some SoCs, e.g. Hisilicon SD5203.
-> -
-> -Required properties:
-> -- compatible: shall be "snps,dw-apb-ictl"
-> -- reg: physical base address of the controller and length of memory mapped
-> -  region starting with ENABLE_LOW register
-> -- interrupt-controller: identifies the node as an interrupt controller
-> -- #interrupt-cells: number of cells to encode an interrupt-specifier, shall be 1
-> -
-> -Additional required property when it's used as secondary interrupt controller:
-> -- interrupts: interrupt reference to primary interrupt controller
-> -
-> -The interrupt sources map to the corresponding bits in the interrupt
-> -registers, i.e.
-> -- 0 maps to bit 0 of low interrupts,
-> -- 1 maps to bit 1 of low interrupts,
-> -- 32 maps to bit 0 of high interrupts,
-> -- 33 maps to bit 1 of high interrupts,
-> -- (optional) fast interrupts start at 64.
-> -
-> -Example:
-> -	/* dw_apb_ictl is used as secondary interrupt controller */
-> -	aic: interrupt-controller@3000 {
-> -		compatible = "snps,dw-apb-ictl";
-> -		reg = <0x3000 0xc00>;
-> -		interrupt-controller;
-> -		#interrupt-cells = <1>;
-> -		interrupt-parent = <&gic>;
-> -		interrupts = <GIC_SPI 3 IRQ_TYPE_LEVEL_HIGH>;
-> -	};
-> -
-> -	/* dw_apb_ictl is used as primary interrupt controller */
-> -	vic: interrupt-controller@10130000 {
-> -		compatible = "snps,dw-apb-ictl";
-> -		reg = <0x10130000 0x1000>;
-> -		interrupt-controller;
-> -		#interrupt-cells = <1>;
-> -	};
-> diff --git a/Documentation/devicetree/bindings/interrupt-controller/snps,dw-apb-ictl.yaml b/Documentation/devicetree/bindings/interrupt-controller/snps,dw-apb-ictl.yaml
-> new file mode 100644
-> index 000000000000000..1b05d36b5f7b943
-> --- /dev/null
-> +++ b/Documentation/devicetree/bindings/interrupt-controller/snps,dw-apb-ictl.yaml
-> @@ -0,0 +1,74 @@
-> +# SPDX-License-Identifier: (GPL-2.0-only OR BSD-2-Clause)
-> +%YAML 1.2
-> +---
-> +$id: http://devicetree.org/schemas/interrupt-controller/snps,dw-apb-ictl.yaml#
-> +$schema: http://devicetree.org/meta-schemas/core.yaml#
-> +
-> +title: Synopsys DesignWare APB interrupt controller (dw_apb_ictl)
-> +
-> +maintainers:
-> +  - Sebastian Hesselbarth <sebastian.hesselbarth@gmail.com>
-> +
-> +description: |
-> +  Synopsys DesignWare provides interrupt controller IP for APB known as
-> +  dw_apb_ictl. The IP is used as secondary interrupt controller in some SoCs
-> +  with APB bus, e.g. Marvell Armada 1500. It can also be used as primary
-> +  interrupt controller in some SoCs, e.g. Hisilicon SD5203.
-> +
-> +  The interrupt sources map to the corresponding bits in the interrupt
-> +  registers, i.e.
-> +  - 0 maps to bit 0 of low interrupts,
-> +  - 1 maps to bit 1 of low interrupts,
-> +  - 32 maps to bit 0 of high interrupts,
-> +  - 33 maps to bit 1 of high interrupts,
-> +  - (optional) fast interrupts start at 64.
-> +
-> +allOf:
-> +  - $ref: /schemas/interrupt-controller.yaml#
-> +
-> +properties:
-> +  compatible:
-> +    const: snps,dw-apb-ictl
-> +
-> +  interrupt-controller: true
-> +
-> +  reg:
-> +    description: |
-> +      Physical base address of the controller and length of memory mapped
-> +      region starting with ENABLE_LOW register.
-> +    maxItems: 1
-> +
-> +  interrupts:
-> +    description: Interrupt reference to primary interrupt controller.
-> +    maxItems: 1
-> +
-> +  "#interrupt-cells":
-> +    description: Number of cells to encode an interrupt-specifier.
-> +    const: 1
-> +
-> +required:
-> +  - compatible
-> +  - reg
-> +  - interrupt-controller
-> +  - '#interrupt-cells'
-> +
-> +examples:
-> +  - |
-> +    /* dw_apb_ictl is used as secondary interrupt controller */
-> +    aic: interrupt-controller@3000 {
-> +        compatible = "snps,dw-apb-ictl";
-> +        reg = <0x3000 0xc00>;
-> +        interrupt-controller;
-> +        #interrupt-cells = <1>;
-> +        interrupt-parent = <&gic>;
-> +        interrupts = <0 3 4>;
-> +    };
-> +
-> +    /* dw_apb_ictl is used as primary interrupt controller */
-> +    vic: interrupt-controller@10130000 {
-> +        compatible = "snps,dw-apb-ictl";
-> +        reg = <0x10130000 0x1000>;
-> +        interrupt-controller;
-> +        #interrupt-cells = <1>;
-> +    };
-> +...
-> 
+Sorry for the delay, I missed that Rob acked it.  Both now queued up.
 
+greg k-h
