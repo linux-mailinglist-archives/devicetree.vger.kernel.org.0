@@ -2,75 +2,77 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from vger.kernel.org (vger.kernel.org [23.128.96.18])
-	by mail.lfdr.de (Postfix) with ESMTP id 75AB7279FDF
-	for <lists+devicetree@lfdr.de>; Sun, 27 Sep 2020 11:11:18 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTP id 9BFD227A00F
+	for <lists+devicetree@lfdr.de>; Sun, 27 Sep 2020 11:21:11 +0200 (CEST)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S1726415AbgI0JLR (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Sun, 27 Sep 2020 05:11:17 -0400
-Received: from elvis.franken.de ([193.175.24.41]:59884 "EHLO elvis.franken.de"
-        rhost-flags-OK-OK-OK-OK) by vger.kernel.org with ESMTP
-        id S1726387AbgI0JLQ (ORCPT <rfc822;devicetree@vger.kernel.org>);
-        Sun, 27 Sep 2020 05:11:16 -0400
-Received: from uucp (helo=alpha)
-        by elvis.franken.de with local-bsmtp (Exim 3.36 #1)
-        id 1kMShv-0001nG-00; Sun, 27 Sep 2020 11:10:59 +0200
-Received: by alpha.franken.de (Postfix, from userid 1000)
-        id CFAAAC1021; Sun, 27 Sep 2020 11:03:40 +0200 (CEST)
-Date:   Sun, 27 Sep 2020 11:03:40 +0200
-From:   Thomas Bogendoerfer <tsbogend@alpha.franken.de>
-To:     =?utf-8?B?5ZGo55Cw5p2wIChaaG91IFlhbmppZSk=?= 
-        <zhouyanjie@wanyeetech.com>
-Cc:     robh+dt@kernel.org, paul@crapouillou.net, paulburton@kernel.org,
-        linux-kernel@vger.kernel.org, linux-mips@vger.kernel.org,
-        devicetree@vger.kernel.org, jiaxun.yang@flygoat.com,
-        Sergey.Semin@baikalelectronics.ru, akpm@linux-foundation.org,
-        rppt@kernel.org, dongsheng.qiu@ingenic.com, aric.pzqi@ingenic.com,
-        rick.tyliu@ingenic.com, yanfei.li@ingenic.com,
-        sernia.zhou@foxmail.com, zhenwenjin@gmail.com
-Subject: Re: [PATCH v3 0/3] Repair Ingenic SoCs L2 cache capacity detection.
-Message-ID: <20200927090340.GA4929@alpha.franken.de>
-References: <20200922012444.44089-1-zhouyanjie@wanyeetech.com>
+        id S1726265AbgI0JVK (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Sun, 27 Sep 2020 05:21:10 -0400
+Received: from lindbergh.monkeyblade.net ([23.128.96.19]:53700 "EHLO
+        lindbergh.monkeyblade.net" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
+        with ESMTP id S1726255AbgI0JVK (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Sun, 27 Sep 2020 05:21:10 -0400
+Received: from mail-lj1-x243.google.com (mail-lj1-x243.google.com [IPv6:2a00:1450:4864:20::243])
+        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id B126CC0613D3
+        for <devicetree@vger.kernel.org>; Sun, 27 Sep 2020 02:21:09 -0700 (PDT)
+Received: by mail-lj1-x243.google.com with SMTP id n25so5893916ljj.4
+        for <devicetree@vger.kernel.org>; Sun, 27 Sep 2020 02:21:09 -0700 (PDT)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+        d=linaro.org; s=google;
+        h=mime-version:references:in-reply-to:from:date:message-id:subject:to
+         :cc;
+        bh=o7lRMwheEwMVDoZh1+98Zj6EI+Y2FXPbKq6Vx/JPPmg=;
+        b=nCAMQcfO1adjOnVSOrDKmFpM0l1QZmc4Gk4gzdgH5NCxKbVN7fIsZnb1++bdbbHuGK
+         0gO+FJihvUKpd+joia7EV4Y/nhDc5SkY1CghBYz8FI1tFntyf4tspPVYKMlDpxEVCOyn
+         ZdjIv/d3/vg6gRQ5hV0yiN1LUo6RkI2F1SbMeOne/ds+3Zifnb6ihpoLZ8kBdeRR28i8
+         Eo1tjpVlBqUimhkh3lEZZWkByJlb368sDd+SsSM6wdS5L1uBCP6zwdCEc5s4jyQLQ5zO
+         TLFYNchXVtFGjAM0Vj9UgX3gB+GBpxeK2xX1wMeAxOGwa7im2wn+T2PMmm9u09HD6Rhe
+         QQ0A==
+X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+        d=1e100.net; s=20161025;
+        h=x-gm-message-state:mime-version:references:in-reply-to:from:date
+         :message-id:subject:to:cc;
+        bh=o7lRMwheEwMVDoZh1+98Zj6EI+Y2FXPbKq6Vx/JPPmg=;
+        b=aXpGP4VHNk82XRRbkGedR522RsY/42uCXErQkixDcemBzG0Stsy9E7g5v27JDJcRSx
+         Y7KCERmuiyLzPc44WsuFNeueET2jNRy9QmYfAMfeAmyZUGrX7+Ofpj+bmRuSVR7ZGV4m
+         wvj8qQaXMgTm5Z1WmvpVTShWdeKlw5QicmwlfX/0LRoeyAmt8vsIdU7D4TlQ4opBW9mt
+         M5gxxwwE04q6RTbCcwAYhcs1Swkj328pyqHmvEq+FioCR8QB6mBuhhPYlgHDTLSyqUa0
+         HInmZQNcjwCSbRAR8Oiw966Ml/OrMbjtX/3Wk/ivc7d+vUaONKEjunPxPBzAi/wE+LyN
+         Vklg==
+X-Gm-Message-State: AOAM531MN6SRuMfw2QOxMIQxA4nJPs6ZXumEmkyYJuEdlB6ixX3U+tVb
+        4jOKAh9hji4sh7CFR48obYTM4bi6f5odD3owySmrQQ==
+X-Google-Smtp-Source: ABdhPJy6MVk1x45l3SzYVBvvCdEvD+7U4T8hhSI5A1uyFMODZMWC5/YlREL/K/c2cdE/Px3GbHJYxQ+SeOMZ3QRW/wI=
+X-Received: by 2002:a2e:a177:: with SMTP id u23mr3403136ljl.104.1601198468123;
+ Sun, 27 Sep 2020 02:21:08 -0700 (PDT)
 MIME-Version: 1.0
-Content-Type: text/plain; charset=utf-8
-Content-Disposition: inline
-Content-Transfer-Encoding: 8bit
-In-Reply-To: <20200922012444.44089-1-zhouyanjie@wanyeetech.com>
-User-Agent: Mutt/1.5.23 (2014-03-12)
+References: <20200907110221.1691168-1-fparent@baylibre.com>
+In-Reply-To: <20200907110221.1691168-1-fparent@baylibre.com>
+From:   Linus Walleij <linus.walleij@linaro.org>
+Date:   Sun, 27 Sep 2020 11:20:57 +0200
+Message-ID: <CACRpkdZ8hqVok8ejVACo7pxMuc8EpKt1Z+hSKnpGq6Waj9-5Pw@mail.gmail.com>
+Subject: Re: [PATCH 1/2] pinctrl: mt65xx: add OF bindings for MT8167
+To:     Fabien Parent <fparent@baylibre.com>
+Cc:     "linux-kernel@vger.kernel.org" <linux-kernel@vger.kernel.org>,
+        Linux ARM <linux-arm-kernel@lists.infradead.org>,
+        "open list:OPEN FIRMWARE AND FLATTENED DEVICE TREE BINDINGS" 
+        <devicetree@vger.kernel.org>,
+        "open list:GPIO SUBSYSTEM" <linux-gpio@vger.kernel.org>,
+        "moderated list:ARM/Mediatek SoC support" 
+        <linux-mediatek@lists.infradead.org>,
+        Matthias Brugger <matthias.bgg@gmail.com>,
+        Rob Herring <robh+dt@kernel.org>,
+        Sean Wang <sean.wang@kernel.org>
+Content-Type: text/plain; charset="UTF-8"
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-On Tue, Sep 22, 2020 at 09:24:41AM +0800, 周琰杰 (Zhou Yanjie) wrote:
-> 1.The X1000E SoC has a 4-way L2 cache with a capacity of 128 KiB.
->   The current code cannot detect its correctly, which will cause the
->   CU1000-Neo board using the X1000E SoC to report that it has found
->   a 5-way 320KiB L2 cache at boot time.
-> 2.The JZ4775 SoC has a 4-way L2 cache with a capacity of 256 KiB.
->   The current code cannot detect its correctly, which will cause the
->   Mensa board using the JZ4775 SoC to report that it has found a 5-way
->   320KiB L2 cache at boot time.
-> 
-> This series of patches is to fix this problem.
-> 
-> v2->v3:
-> Fix the warning that appears when running checkpatch, add relevant
-> compatible string.
-> 
-> 周琰杰 (Zhou Yanjie) (3):
->   dt-bindings: MIPS: Add X2000E based CU2000-Neo.
->   MIPS: Ingenic: Add system type for new Ingenic SoCs.
->   MIPS: Ingenic: Fix bugs when detecting L2 cache of JZ4775 and X1000E.
-> 
->  Documentation/devicetree/bindings/mips/ingenic/devices.yaml |  5 +++++
->  arch/mips/generic/board-ingenic.c                           | 12 ++++++++++++
->  arch/mips/include/asm/bootinfo.h                            |  2 ++
->  arch/mips/mm/sc-mips.c                                      |  2 ++
->  4 files changed, 21 insertions(+)
+On Mon, Sep 7, 2020 at 1:02 PM Fabien Parent <fparent@baylibre.com> wrote:
 
-series applied to mips-next.
+> Add binding documentation of pinctrl-mt65xx for MT8167 SoC.
+>
+> Signed-off-by: Fabien Parent <fparent@baylibre.com>
 
-Thomas.
+Patch applied.
 
--- 
-Crap can work. Given enough thrust pigs will fly, but it's not necessarily a
-good idea.                                                [ RFC1925, 2.3 ]
+Yours,
+Linus Walleij
