@@ -2,79 +2,114 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from vger.kernel.org (vger.kernel.org [23.128.96.18])
-	by mail.lfdr.de (Postfix) with ESMTP id AE94827A72A
-	for <lists+devicetree@lfdr.de>; Mon, 28 Sep 2020 07:58:48 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTP id B192627A744
+	for <lists+devicetree@lfdr.de>; Mon, 28 Sep 2020 08:16:33 +0200 (CEST)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S1726380AbgI1F6o (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Mon, 28 Sep 2020 01:58:44 -0400
-Received: from mail.kernel.org ([198.145.29.99]:58398 "EHLO mail.kernel.org"
+        id S1726421AbgI1GQc (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Mon, 28 Sep 2020 02:16:32 -0400
+Received: from mga07.intel.com ([134.134.136.100]:44581 "EHLO mga07.intel.com"
         rhost-flags-OK-OK-OK-OK) by vger.kernel.org with ESMTP
-        id S1725290AbgI1F6o (ORCPT <rfc822;devicetree@vger.kernel.org>);
-        Mon, 28 Sep 2020 01:58:44 -0400
-Received: from localhost (unknown [122.179.43.1])
-        (using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
-        (No client certificate requested)
-        by mail.kernel.org (Postfix) with ESMTPSA id E5FAA207E8;
-        Mon, 28 Sep 2020 05:58:42 +0000 (UTC)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=kernel.org;
-        s=default; t=1601272723;
-        bh=IgjnKRfiNYyLJ7chUdt8lXcSYhAnrsMC3SPuMP5B9TM=;
-        h=Date:From:To:Cc:Subject:References:In-Reply-To:From;
-        b=KlUuDy3sxT6kNUHW8hBz7v/zD77hRI6flODdL6AwwHWLC5ipshFNlSs/FmoOjhYPd
-         pg6Gy9TDU2DNKF3C2+MIuX2o2jlq7yxaGKSoWxPryuV5coloomGIh4cIlwD8nf03uI
-         nuM3tKnuve9n09BMJvtw3BFJAFZcpa+M2MtQU1ZM=
-Date:   Mon, 28 Sep 2020 11:28:19 +0530
-From:   Vinod Koul <vkoul@kernel.org>
-To:     Stephen Boyd <swboyd@chromium.org>
-Cc:     Kishon Vijay Abraham I <kishon@ti.com>,
-        linux-kernel@vger.kernel.org, linux-arm-msm@vger.kernel.org,
-        Jeykumar Sankaran <jsanka@codeaurora.org>,
-        Chandan Uddaraju <chandanu@codeaurora.org>,
-        Vara Reddy <varar@codeaurora.org>,
-        Tanmay Shah <tanmay@codeaurora.org>,
-        Bjorn Andersson <bjorn.andersson@linaro.org>,
-        Manu Gautam <mgautam@codeaurora.org>,
-        Sandeep Maheswaram <sanm@codeaurora.org>,
-        Douglas Anderson <dianders@chromium.org>,
-        Sean Paul <seanpaul@chromium.org>,
-        Rob Clark <robdclark@chromium.org>,
-        Jonathan Marek <jonathan@marek.ca>,
-        Dmitry Baryshkov <dmitry.baryshkov@linaro.org>,
-        devicetree@vger.kernel.org, Rob Herring <robh+dt@kernel.org>,
-        Stephen Boyd <sboyd@kernel.org>
-Subject: Re: [PATCH v4 00/10] Support qcom USB3+DP combo phy (or type-c phy)
-Message-ID: <20200928055819.GK2968@vkoul-mobl>
-References: <20200916231202.3637932-1-swboyd@chromium.org>
-MIME-Version: 1.0
-Content-Type: text/plain; charset=us-ascii
-Content-Disposition: inline
-In-Reply-To: <20200916231202.3637932-1-swboyd@chromium.org>
+        id S1725294AbgI1GQc (ORCPT <rfc822;devicetree@vger.kernel.org>);
+        Mon, 28 Sep 2020 02:16:32 -0400
+IronPort-SDR: LYyC1g5KUsX779YxSouGp9fE41i2tEIjxD1A+/DDU9XfVcypPwkdBQIjsAB/uqe8DpjS6MjPjn
+ zOgpA1A8DsfA==
+X-IronPort-AV: E=McAfee;i="6000,8403,9757"; a="226095483"
+X-IronPort-AV: E=Sophos;i="5.77,312,1596524400"; 
+   d="scan'208";a="226095483"
+X-Amp-Result: SKIPPED(no attachment in message)
+X-Amp-File-Uploaded: False
+Received: from fmsmga008.fm.intel.com ([10.253.24.58])
+  by orsmga105.jf.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384; 27 Sep 2020 23:16:31 -0700
+IronPort-SDR: Rx20PZFH48rJveXPiKci9Q6J95MGFDH8Gb9lAXtZ+JFtsvGAfBxQp1u7SEx6aLD4tWSS26tVZo
+ +eX/ctamCiig==
+X-ExtLoop1: 1
+X-IronPort-AV: E=Sophos;i="5.77,312,1596524400"; 
+   d="scan'208";a="293779574"
+Received: from sgsxdev001.isng.intel.com (HELO localhost) ([10.226.88.11])
+  by fmsmga008.fm.intel.com with ESMTP; 27 Sep 2020 23:16:27 -0700
+From:   Rahul Tanwar <rahul.tanwar@linux.intel.com>
+To:     u.kleine-koenig@pengutronix.de, linux-pwm@vger.kernel.org,
+        lee.jones@linaro.org
+Cc:     thierry.reding@gmail.com, p.zabel@pengutronix.de,
+        robh+dt@kernel.org, linux-kernel@vger.kernel.org,
+        devicetree@vger.kernel.org, andriy.shevchenko@intel.com,
+        songjun.Wu@intel.com, cheol.yong.kim@intel.com,
+        qi-ming.wu@intel.com, rahul.tanwar.linux@gmail.com,
+        rtanwar@maxlinear.com, Rahul Tanwar <rahul.tanwar@linux.intel.com>
+Subject: [PATCH v14 1/2] Add DT bindings YAML schema for PWM fan controller of LGM SoC
+Date:   Mon, 28 Sep 2020 14:15:57 +0800
+Message-Id: <a5b9fefb58a6fe16964219b0d443bf81c58f5445.1601273429.git.rahul.tanwar@linux.intel.com>
+X-Mailer: git-send-email 2.11.0
+In-Reply-To: <cover.1601273429.git.rahul.tanwar@linux.intel.com>
+References: <cover.1601273429.git.rahul.tanwar@linux.intel.com>
+In-Reply-To: <cover.1601273429.git.rahul.tanwar@linux.intel.com>
+References: <cover.1601273429.git.rahul.tanwar@linux.intel.com>
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-On 16-09-20, 16:11, Stephen Boyd wrote:
-> This patch series is based on v12 of the msm DP driver submission[1]
-> plus a compliance patch[2]. In the v5 patch series review I suggested
-> that the DP PHY and PLL be split out of the drm driver and moved to the
-> qmp phy driver. This patch series does that, but it is still marked as
-> an RFC because there are a couple more things to do, mostly updating the
-> DT binding and getting agreement on how to structure the code.
-> 
-> Eventually I believe the qmp phy driver will need to listen for type-c
-> notifiers or somehow know the type-c pinout being used so this driver
-> can program things slightly differently. Right now, I don't have any way
-> to test it though, so I've left it as future work. For some more
-> details, the DP phy and the USB3 phy share the same physical pins on the
-> SoC and those pins pretty much line up with a type-c pinout modulo some
-> CC pins for cable orientation detection logic that lives on the PMIC. So
-> the DP phy can use all four lanes or it can use two lanes and the USB3
-> phy can use two lanes. In the hardware designs that I have access to it
-> is always two lanes for USB3 and two lanes for DP going through what
-> looks like a type-c pinout so this just hard codes that configuration in
-> the driver.
+Intel's LGM(Lightning Mountain) SoC contains a PWM fan controller
+which is only used to control the fan attached to the system. This
+PWM controller does not have any other consumer other than fan.
+Add DT bindings documentation for this PWM fan controller.
 
-Applied 1 thru 8, thanks
+Signed-off-by: Rahul Tanwar <rahul.tanwar@linux.intel.com>
+Reviewed-by: Rob Herring <robh@kernel.org>
+---
+ .../devicetree/bindings/pwm/intel,lgm-pwm.yaml     | 44 ++++++++++++++++++++++
+ 1 file changed, 44 insertions(+)
+ create mode 100644 Documentation/devicetree/bindings/pwm/intel,lgm-pwm.yaml
 
+diff --git a/Documentation/devicetree/bindings/pwm/intel,lgm-pwm.yaml b/Documentation/devicetree/bindings/pwm/intel,lgm-pwm.yaml
+new file mode 100644
+index 000000000000..11a606536169
+--- /dev/null
++++ b/Documentation/devicetree/bindings/pwm/intel,lgm-pwm.yaml
+@@ -0,0 +1,44 @@
++# SPDX-License-Identifier: (GPL-2.0-only OR BSD-2-Clause)
++%YAML 1.2
++---
++$id: http://devicetree.org/schemas/pwm/intel,lgm-pwm.yaml#
++$schema: http://devicetree.org/meta-schemas/core.yaml#
++
++title: LGM SoC PWM fan controller
++
++maintainers:
++  - Rahul Tanwar <rtanwar@maxlinear.com>
++
++properties:
++  compatible:
++    const: intel,lgm-pwm
++
++  reg:
++    maxItems: 1
++
++  "#pwm-cells":
++    const: 2
++
++  clocks:
++    maxItems: 1
++
++  resets:
++    maxItems: 1
++
++required:
++  - compatible
++  - reg
++  - clocks
++  - resets
++
++additionalProperties: false
++
++examples:
++  - |
++    pwm: pwm@e0d00000 {
++        compatible = "intel,lgm-pwm";
++        reg = <0xe0d00000 0x30>;
++        #pwm-cells = <2>;
++        clocks = <&cgu0 126>;
++        resets = <&rcu0 0x30 21>;
++    };
 -- 
-~Vinod
+2.11.0
+
