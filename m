@@ -2,82 +2,104 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from vger.kernel.org (vger.kernel.org [23.128.96.18])
-	by mail.lfdr.de (Postfix) with ESMTP id F0B9F27A6B5
-	for <lists+devicetree@lfdr.de>; Mon, 28 Sep 2020 07:03:16 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTP id EBED827A6C9
+	for <lists+devicetree@lfdr.de>; Mon, 28 Sep 2020 07:17:24 +0200 (CEST)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S1726380AbgI1FDP convert rfc822-to-8bit (ORCPT
-        <rfc822;lists+devicetree@lfdr.de>); Mon, 28 Sep 2020 01:03:15 -0400
-Received: from mail-lf1-f66.google.com ([209.85.167.66]:40844 "EHLO
-        mail-lf1-f66.google.com" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S1725287AbgI1FDP (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Mon, 28 Sep 2020 01:03:15 -0400
-Received: by mail-lf1-f66.google.com with SMTP id m5so9557313lfp.7;
-        Sun, 27 Sep 2020 22:03:13 -0700 (PDT)
-X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=1e100.net; s=20161025;
-        h=x-gm-message-state:mime-version:references:in-reply-to:from:date
-         :message-id:subject:to:cc:content-transfer-encoding;
-        bh=iH4BCtKHYZco8jOSQGiNPWj56rYDuIQ1wb3Pt3Sr0IY=;
-        b=uDvaSqf8bfnboSEG3hwab3oZ6hCWJthvFPo3L1YL0lERt4UwfVo7BiouO+L/aJZzTS
-         b77KGJ3YQ5B4pmsSgDgl/V3QoJGEjZM/78TAt4W1TyK3pjA21//7wTI/aJ/WI98SmqQW
-         vrZm0pOvzNQBEEmQwhc6DlgB8lePgYbIg0We0Q8FD++4kjEM+SQHu0zW0Xm5Cw+2040g
-         zVdDJ/L8tIeu/n3UTNy9j2JPNDF9ZFqlt8fuI3b8HlOWJghrA0GwVeW/HNhAoL6e/26V
-         UTxboVJzm/BAiBWN6icB1KkPtCAUeOgWIgOfAYRvN5oYWLO5Em8HRfjCJUzu3ympi6Xu
-         jmnw==
-X-Gm-Message-State: AOAM532S/UmNxSnRyMZbMISslbEc+MVQNRIuG1GaZGTqizwCFsMFlvD4
-        F/XkQK0ed/7lqZNghWsBYff9eWcKCRxgew==
-X-Google-Smtp-Source: ABdhPJxnrUe8nnM0nR21ySm4qPGGXou4cRc2sKlYSFVtDH2dltvxZHhKmW3ACizel3bikGqty+kUsw==
-X-Received: by 2002:a19:cc43:: with SMTP id c64mr3282963lfg.123.1601269392924;
-        Sun, 27 Sep 2020 22:03:12 -0700 (PDT)
-Received: from mail-lf1-f46.google.com (mail-lf1-f46.google.com. [209.85.167.46])
-        by smtp.gmail.com with ESMTPSA id n18sm2732733lfe.7.2020.09.27.22.03.12
-        (version=TLS1_3 cipher=TLS_AES_128_GCM_SHA256 bits=128/128);
-        Sun, 27 Sep 2020 22:03:12 -0700 (PDT)
-Received: by mail-lf1-f46.google.com with SMTP id z19so9564224lfr.4;
-        Sun, 27 Sep 2020 22:03:12 -0700 (PDT)
-X-Received: by 2002:ac2:5f63:: with SMTP id c3mr3034221lfc.283.1601269392234;
- Sun, 27 Sep 2020 22:03:12 -0700 (PDT)
-MIME-Version: 1.0
-References: <20200927192912.46323-1-peron.clem@gmail.com> <20200927192912.46323-5-peron.clem@gmail.com>
-In-Reply-To: <20200927192912.46323-5-peron.clem@gmail.com>
-From:   Chen-Yu Tsai <wens@csie.org>
-Date:   Mon, 28 Sep 2020 13:03:00 +0800
-X-Gmail-Original-Message-ID: <CAGb2v65noEYaHa=d4s1E+1+bcUFjtojvjK_DmEAyJkGU_T9cTw@mail.gmail.com>
-Message-ID: <CAGb2v65noEYaHa=d4s1E+1+bcUFjtojvjK_DmEAyJkGU_T9cTw@mail.gmail.com>
-Subject: Re: [linux-sunxi] [PATCH v5 04/20] dt-bindings: ASoC: sun4i-i2s: Add
- H6 compatible
-To:     =?UTF-8?B?Q2zDqW1lbnQgUMOpcm9u?= <peron.clem@gmail.com>
-Cc:     Maxime Ripard <mripard@kernel.org>,
-        Rob Herring <robh+dt@kernel.org>,
-        Mark Brown <broonie@kernel.org>,
-        Liam Girdwood <lgirdwood@gmail.com>,
-        Jaroslav Kysela <perex@perex.cz>,
-        Takashi Iwai <tiwai@suse.com>,
-        Marcus Cooper <codekipper@gmail.com>,
-        Jernej Skrabec <jernej.skrabec@siol.net>,
-        Linux-ALSA <alsa-devel@alsa-project.org>,
-        devicetree <devicetree@vger.kernel.org>,
-        linux-arm-kernel <linux-arm-kernel@lists.infradead.org>,
-        linux-kernel <linux-kernel@vger.kernel.org>,
-        linux-sunxi <linux-sunxi@googlegroups.com>,
-        Rob Herring <robh@kernel.org>
-Content-Type: text/plain; charset="UTF-8"
-Content-Transfer-Encoding: 8BIT
+        id S1726567AbgI1FRM (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Mon, 28 Sep 2020 01:17:12 -0400
+Received: from m42-4.mailgun.net ([69.72.42.4]:49172 "EHLO m42-4.mailgun.net"
+        rhost-flags-OK-OK-OK-OK) by vger.kernel.org with ESMTP
+        id S1726518AbgI1FRK (ORCPT <rfc822;devicetree@vger.kernel.org>);
+        Mon, 28 Sep 2020 01:17:10 -0400
+DKIM-Signature: a=rsa-sha256; v=1; c=relaxed/relaxed; d=mg.codeaurora.org; q=dns/txt;
+ s=smtp; t=1601270230; h=Message-Id: Date: Subject: To: From: Sender;
+ bh=zZ5/K8uHd9ukJvMNytG2zuKfN0yCGEzv9199tzeDX6A=; b=TTzCm3IeQOZrGXNlXpOz+MvHdxxmfxJcL+fbPNCsDKoiUwZZ79NSpWSmZk6pX0vz+/BN7Ay5
+ o3KC+txcNQad4V8cHx+Z2ieRyLAourNOsk5/DEztPjCbhj0ib9Zj/s1/Wy7V0NeaJjx8Ldui
+ 2f3JSb03L6vBKxVoMxBOdF4FGVs=
+X-Mailgun-Sending-Ip: 69.72.42.4
+X-Mailgun-Sid: WyI1YmJiNiIsICJkZXZpY2V0cmVlQHZnZXIua2VybmVsLm9yZyIsICJiZTllNGEiXQ==
+Received: from smtp.codeaurora.org
+ (ec2-35-166-182-171.us-west-2.compute.amazonaws.com [35.166.182.171]) by
+ smtp-out-n02.prod.us-east-1.postgun.com with SMTP id
+ 5f7171b599ecd993e12a575b (version=TLS1.2,
+ cipher=TLS_ECDHE_RSA_WITH_AES_128_GCM_SHA256); Mon, 28 Sep 2020 05:16:37
+ GMT
+Sender: varada=codeaurora.org@mg.codeaurora.org
+Received: by smtp.codeaurora.org (Postfix, from userid 1001)
+        id AF590C433FE; Mon, 28 Sep 2020 05:16:36 +0000 (UTC)
+X-Spam-Checker-Version: SpamAssassin 3.4.0 (2014-02-07) on
+        aws-us-west-2-caf-mail-1.web.codeaurora.org
+X-Spam-Level: 
+X-Spam-Status: No, score=-2.9 required=2.0 tests=ALL_TRUSTED,BAYES_00,SPF_FAIL
+        autolearn=no autolearn_force=no version=3.4.0
+Received: from varda-linux.qualcomm.com (blr-c-bdr-fw-01_GlobalNAT_AllZones-Outside.qualcomm.com [103.229.19.19])
+        (using TLSv1.2 with cipher ECDHE-RSA-AES128-SHA256 (128/128 bits))
+        (No client certificate requested)
+        (Authenticated sender: varada)
+        by smtp.codeaurora.org (Postfix) with ESMTPSA id 57D5EC433CB;
+        Mon, 28 Sep 2020 05:16:31 +0000 (UTC)
+DMARC-Filter: OpenDMARC Filter v1.3.2 smtp.codeaurora.org 57D5EC433CB
+Authentication-Results: aws-us-west-2-caf-mail-1.web.codeaurora.org; dmarc=none (p=none dis=none) header.from=codeaurora.org
+Authentication-Results: aws-us-west-2-caf-mail-1.web.codeaurora.org; spf=fail smtp.mailfrom=varada@codeaurora.org
+From:   Varadarajan Narayanan <varada@codeaurora.org>
+To:     agross@kernel.org, bjorn.andersson@linaro.org, robh+dt@kernel.org,
+        mturquette@baylibre.com, sboyd@kernel.org,
+        linus.walleij@linaro.org, catalin.marinas@arm.com, will@kernel.org,
+        p.zabel@pengutronix.de, varada@codeaurora.org,
+        nsekar@codeaurora.org, linux-arm-msm@vger.kernel.org,
+        devicetree@vger.kernel.org, linux-kernel@vger.kernel.org,
+        linux-clk@vger.kernel.org, linux-gpio@vger.kernel.org,
+        linux-arm-kernel@lists.infradead.org, sricharan@codeaurora.org
+Subject: [PATCH 0/7] Add minimal boot support for IPQ5018
+Date:   Mon, 28 Sep 2020 10:45:33 +0530
+Message-Id: <1601270140-4306-1-git-send-email-varada@codeaurora.org>
+X-Mailer: git-send-email 2.7.4
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-On Mon, Sep 28, 2020 at 3:29 AM Clément Péron <peron.clem@gmail.com> wrote:
->
-> From: Jernej Skrabec <jernej.skrabec@siol.net>
->
-> H6 I2S is very similar to H3, except that it supports up to 16 channels
-> and thus few registers have fields on different position.
->
-> Signed-off-by: Jernej Skrabec <jernej.skrabec@siol.net>
-> Signed-off-by: Marcus Cooper <codekipper@gmail.com>
-> Signed-off-by: Clément Péron <peron.clem@gmail.com>
-> Acked-by: Maxime Ripard <mripard@kernel.org>
-> Acked-by: Rob Herring <robh@kernel.org>
+The IPQ5018 is Qualcomm's 802.11ax SoC for Routers,
+Gateways and Access Points.
 
-Acked-by: Chen-Yu Tsai <wens@csie.org>
+This series adds minimal board boot support for ipq5018-mp03.1-c2 board.
+
+Varadarajan Narayanan (7):
+  clk: qcom: clk-alpha-pll: Add support for Stromer PLLs
+  dt-bindings: arm64: ipq5018: Add binding descriptions for clock and
+    reset
+  clk: qcom: Add Global Clock controller (GCC) driver for IPQ5018
+  dt-bindings: pinctrl: qcom: Add ipq5018 pinctrl bindings
+  pinctrl: qcom: Add IPQ5018 pinctrl driver
+  arm64: dts: Add ipq5018 SoC and MP03 board support
+  arm64: defconfig: Enable IPQ5018 SoC base configs
+
+ Documentation/devicetree/bindings/arm/qcom.yaml    |    7 +
+ .../devicetree/bindings/clock/qcom,gcc.yaml        |    3 +
+ .../bindings/pinctrl/qcom,ipq5018-pinctrl.yaml     |  143 +
+ arch/arm64/boot/dts/qcom/Makefile                  |    1 +
+ arch/arm64/boot/dts/qcom/ipq5018-mp03.1-c2.dts     |   30 +
+ arch/arm64/boot/dts/qcom/ipq5018.dtsi              |  201 +
+ arch/arm64/configs/defconfig                       |    3 +
+ drivers/clk/qcom/Kconfig                           |    8 +
+ drivers/clk/qcom/Makefile                          |    1 +
+ drivers/clk/qcom/clk-alpha-pll.c                   |  156 +-
+ drivers/clk/qcom/clk-alpha-pll.h                   |    5 +
+ drivers/clk/qcom/gcc-ipq5018.c                     | 3833 ++++++++++++++++++++
+ drivers/pinctrl/qcom/Kconfig                       |   10 +
+ drivers/pinctrl/qcom/Makefile                      |    1 +
+ drivers/pinctrl/qcom/pinctrl-ipq5018.c             |  903 +++++
+ include/dt-bindings/clock/qcom,gcc-ipq5018.h       |  183 +
+ include/dt-bindings/reset/qcom,gcc-ipq5018.h       |  119 +
+ include/linux/clk-provider.h                       |    4 +-
+ 18 files changed, 5608 insertions(+), 3 deletions(-)
+ create mode 100644 Documentation/devicetree/bindings/pinctrl/qcom,ipq5018-pinctrl.yaml
+ create mode 100644 arch/arm64/boot/dts/qcom/ipq5018-mp03.1-c2.dts
+ create mode 100644 arch/arm64/boot/dts/qcom/ipq5018.dtsi
+ create mode 100644 drivers/clk/qcom/gcc-ipq5018.c
+ create mode 100644 drivers/pinctrl/qcom/pinctrl-ipq5018.c
+ create mode 100644 include/dt-bindings/clock/qcom,gcc-ipq5018.h
+ create mode 100644 include/dt-bindings/reset/qcom,gcc-ipq5018.h
+
+-- 
+2.7.4
+
