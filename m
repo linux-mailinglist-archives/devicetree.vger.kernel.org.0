@@ -2,90 +2,150 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from vger.kernel.org (vger.kernel.org [23.128.96.18])
-	by mail.lfdr.de (Postfix) with ESMTP id 4452A27AC66
-	for <lists+devicetree@lfdr.de>; Mon, 28 Sep 2020 13:05:14 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTP id 90C1C27AC7F
+	for <lists+devicetree@lfdr.de>; Mon, 28 Sep 2020 13:16:25 +0200 (CEST)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S1726461AbgI1LFN (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Mon, 28 Sep 2020 07:05:13 -0400
-Received: from mail.thorsis.com ([92.198.35.195]:58959 "EHLO mail.thorsis.com"
-        rhost-flags-OK-OK-OK-OK) by vger.kernel.org with ESMTP
-        id S1726564AbgI1LFN (ORCPT <rfc822;devicetree@vger.kernel.org>);
-        Mon, 28 Sep 2020 07:05:13 -0400
-Received: from localhost (localhost [127.0.0.1])
-        by mail.thorsis.com (Postfix) with ESMTP id ECF36356D;
-        Mon, 28 Sep 2020 13:05:11 +0200 (CEST)
-X-Virus-Scanned: Debian amavisd-new at mail.thorsis.com
-Received: from mail.thorsis.com ([127.0.0.1])
-        by localhost (mail.thorsis.com [127.0.0.1]) (amavisd-new, port 10024)
-        with ESMTP id SFeq2_G8OJ3c; Mon, 28 Sep 2020 13:05:11 +0200 (CEST)
-Received: by mail.thorsis.com (Postfix, from userid 109)
-        id C896B36BC; Mon, 28 Sep 2020 13:05:11 +0200 (CEST)
-X-Spam-Level: 
-X-Spam-Status: No, score=-1.9 required=5.0 tests=BAYES_00,NO_RECEIVED,
-        NO_RELAYS autolearn=unavailable autolearn_force=no version=3.4.2
-From:   Alexander Dahl <ada@thorsis.com>
-To:     Pavel Machek <pavel@ucw.cz>
-Cc:     Alexander Dahl <post@lespocky.de>, linux-leds@vger.kernel.org,
-        devicetree@vger.kernel.org,
-        Jacek Anaszewski <jacek.anaszewski@gmail.com>,
-        Dan Murphy <dmurphy@ti.com>, Rob Herring <robh+dt@kernel.org>,
-        linux-kernel@vger.kernel.org,
-        Peter Ujfalusi <peter.ujfalusi@ti.com>,
-        Marek =?ISO-8859-1?Q?Beh=FAn?= <marek.behun@nic.cz>,
-        Denis Osterland-Heim <denis.osterland@diehl.com>
-Subject: Re: [PATCH v5 1/3] leds: pwm: Remove platform_data support
-Date:   Mon, 28 Sep 2020 13:04:59 +0200
-Message-ID: <11962635.BNa8PrgvAO@ada>
-In-Reply-To: <20200919094418.GC12294@duo.ucw.cz>
-References: <20200919053145.7564-1-post@lespocky.de> <20200919053145.7564-2-post@lespocky.de> <20200919094418.GC12294@duo.ucw.cz>
-Content-Transfer-Encoding: 7Bit
-Content-Type: text/plain; charset="us-ascii"
+        id S1726465AbgI1LQY (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Mon, 28 Sep 2020 07:16:24 -0400
+Received: from szxga04-in.huawei.com ([45.249.212.190]:14308 "EHLO huawei.com"
+        rhost-flags-OK-OK-OK-FAIL) by vger.kernel.org with ESMTP
+        id S1726477AbgI1LQY (ORCPT <rfc822;devicetree@vger.kernel.org>);
+        Mon, 28 Sep 2020 07:16:24 -0400
+Received: from DGGEMS405-HUB.china.huawei.com (unknown [172.30.72.58])
+        by Forcepoint Email with ESMTP id 0CE04475641B164B3636;
+        Mon, 28 Sep 2020 19:16:21 +0800 (CST)
+Received: from [127.0.0.1] (10.174.177.253) by DGGEMS405-HUB.china.huawei.com
+ (10.3.19.205) with Microsoft SMTP Server id 14.3.487.0; Mon, 28 Sep 2020
+ 19:16:14 +0800
+Subject: Re: [PATCH v3 10/21] dt-bindings: arm: hisilicon: convert hisilicon,
+ pcie-sas-subctrl bindings to json-schema
+To:     Jonathan Cameron <Jonathan.Cameron@Huawei.com>
+CC:     Wei Xu <xuwei5@hisilicon.com>, Rob Herring <robh+dt@kernel.org>,
+        devicetree <devicetree@vger.kernel.org>,
+        linux-arm-kernel <linux-arm-kernel@lists.infradead.org>,
+        linux-kernel <linux-kernel@vger.kernel.org>,
+        Kefeng Wang <wangkefeng.wang@huawei.com>,
+        Libin <huawei.libin@huawei.com>
+References: <20200927062129.4573-1-thunder.leizhen@huawei.com>
+ <20200927062129.4573-11-thunder.leizhen@huawei.com>
+ <20200928104646.000073ce@Huawei.com>
+From:   "Leizhen (ThunderTown)" <thunder.leizhen@huawei.com>
+Message-ID: <bb03bacc-49b8-5e61-ec7f-ee81eb253d4e@huawei.com>
+Date:   Mon, 28 Sep 2020 19:16:13 +0800
+User-Agent: Mozilla/5.0 (Windows NT 10.0; WOW64; rv:60.0) Gecko/20100101
+ Thunderbird/60.7.0
+MIME-Version: 1.0
+In-Reply-To: <20200928104646.000073ce@Huawei.com>
+Content-Type: text/plain; charset="utf-8"
+Content-Language: en-US
+Content-Transfer-Encoding: 7bit
+X-Originating-IP: [10.174.177.253]
+X-CFilter-Loop: Reflected
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-Hello Pavel,
 
-Am Samstag, 19. September 2020, 11:44:18 CEST schrieb Pavel Machek:
-> > Since commit 141f15c66d94 ("leds: pwm: remove header") that platform
-> > interface is not usable from outside and there seems to be no in tree
-> > user anymore.  All in-tree users of the leds-pwm driver seem to use DT
-> > currently.  Getting rid of the old platform interface will allow the
-> > leds-pwm driver to switch over from 'devm_led_classdev_register()' to
-> > 'devm_led_classdev_register_ext()' later.
-> > 
-> > @@ -61,6 +56,7 @@ static int led_pwm_set(struct led_classdev *led_cdev,
-> > 
-> >  	return pwm_apply_state(led_dat->pwm, &led_dat->pwmstate);
-> >  
-> >  }
-> > 
-> > +__attribute__((nonnull))
-> > 
-> >  static int led_pwm_add(struct device *dev, struct led_pwm_priv *priv,
-> >  
-> >  		       struct led_pwm *led, struct fwnode_handle *fwnode)
-> >  
-> >  {
+
+On 2020/9/28 17:46, Jonathan Cameron wrote:
+> On Sun, 27 Sep 2020 14:21:18 +0800
+> Zhen Lei <thunder.leizhen@huawei.com> wrote:
 > 
-> This normally goes elsewhere -- right? I'd expect:
+>> Convert the Hisilicon HiP05/HiP06 PCIe-SAS subsystem controller binding
+>> to DT schema format using json-schema.
+>>
+>> Signed-off-by: Zhen Lei <thunder.leizhen@huawei.com>
+> 
+> One small thing inline to fix.
+> 
+> Jonathan
+> 
+>> ---
+>>  .../controller/hisilicon,pcie-sas-subctrl.txt      | 15 ---------
+>>  .../controller/hisilicon,pcie-sas-subctrl.yaml     | 37 ++++++++++++++++++++++
+>>  2 files changed, 37 insertions(+), 15 deletions(-)
+>>  delete mode 100644 Documentation/devicetree/bindings/arm/hisilicon/controller/hisilicon,pcie-sas-subctrl.txt
+>>  create mode 100644 Documentation/devicetree/bindings/arm/hisilicon/controller/hisilicon,pcie-sas-subctrl.yaml
+>>
+>> diff --git a/Documentation/devicetree/bindings/arm/hisilicon/controller/hisilicon,pcie-sas-subctrl.txt b/Documentation/devicetree/bindings/arm/hisilicon/controller/hisilicon,pcie-sas-subctrl.txt
+>> deleted file mode 100644
+>> index 43efdaf408f6fe1..000000000000000
+>> --- a/Documentation/devicetree/bindings/arm/hisilicon/controller/hisilicon,pcie-sas-subctrl.txt
+>> +++ /dev/null
+>> @@ -1,15 +0,0 @@
+>> -Hisilicon HiP05/HiP06 PCIe-SAS sub system controller
+>> -
+>> -Required properties:
+>> -- compatible : "hisilicon,pcie-sas-subctrl", "syscon";
+>> -- reg : Register address and size
+>> -
+>> -The PCIe-SAS sub system controller is shared by PCIe and SAS controllers in
+>> -HiP05 or HiP06 Soc to implement some basic configurations.
+>> -
+>> -Example:
+>> -	/* for HiP05 PCIe-SAS sub system */
+>> -	pcie_sas: system_controller@b0000000 {
+>> -		compatible = "hisilicon,pcie-sas-subctrl", "syscon";
+>> -		reg = <0xb0000000 0x10000>;
+>> -	};
+>> \ No newline at end of file
+>> diff --git a/Documentation/devicetree/bindings/arm/hisilicon/controller/hisilicon,pcie-sas-subctrl.yaml b/Documentation/devicetree/bindings/arm/hisilicon/controller/hisilicon,pcie-sas-subctrl.yaml
+>> new file mode 100644
+>> index 000000000000000..8d1341022de587d
+>> --- /dev/null
+>> +++ b/Documentation/devicetree/bindings/arm/hisilicon/controller/hisilicon,pcie-sas-subctrl.yaml
+>> @@ -0,0 +1,37 @@
+>> +# SPDX-License-Identifier: (GPL-2.0-only OR BSD-2-Clause)
+>> +%YAML 1.2
+>> +---
+>> +$id: http://devicetree.org/schemas/arm/hisilicon/controller/hisilicon,pcie-sas-subctrl.yaml#
+>> +$schema: http://devicetree.org/meta-schemas/core.yaml#
+>> +
+>> +title: Hisilicon HiP05/HiP06 PCIe-SAS subsystem controller
+>> +
+>> +maintainers:
+>> +  - Wei Xu <xuwei5@hisilicon.com>
+>> +
+>> +description: |
+>> +  The PCIe-SAS sub system controller is shared by PCIe and SAS controllers in
+>> +  HiP05 or HiP06 Soc to implement some basic configurations.
+>> +
+>> +properties:
+>> +  compatible:
+>> +    items:
+>> +      - const: hisilicon,pcie-sas-subctrl
+>> +      - const: syscon
+>> +
+>> +  reg:
+>> +    description: Register address and size
+>> +    maxItems: 1
+>> +
+>> +required:
+>> +  - compatible
+>> +  - reg
+>> +
+>> +examples:
+>> +  - |
+>> +    /* for HiP05 PCIe-SAS sub system */
+>> +    pcie_sas: system_controller@b0000000 {
+>> +        compatible = "hisilicon,pcie-sas-subctrl", "syscon";
+>> +        reg = <0xb0000000 0x10000>;
+>> +    };
+>> +...
+>> \ No newline at end of file
+> 
+> Trivial, but fix that by adding one.
+
+I think I can directly delete "\ No newline at end of file".
+I looked at some files and all of them did not add blank lines at the end.
+Whether there is a blank line at enf of file or not, the scripts/checkpatch
+does not report any warning.
+
+> 
+> Jonathan
 > 
 > 
->   static int led_pwm_add(struct device *dev, struct led_pwm_priv *priv,
->   		       struct led_pwm *led, struct fwnode_handle *fwnode)
-> 	  __attribute__((nonnull))
-
-I found both variants in kernel code.  I can live with both variants and have 
-no strong preference.
-
-My initial intention to add it was to get a compiler warning in case someone 
-does not pass a fwnode here, e.g. when using that old platform_data approach 
-(which is supposed to be removed with this patch).  You might call it a self 
-check on my own changes.  I can also drop that attribute if you don't want 
-that kind of stuff in linux-leds.
-
-Greets
-Alex
-
-
+> 
+> .
+> 
 
