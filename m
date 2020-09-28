@@ -2,102 +2,71 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from vger.kernel.org (vger.kernel.org [23.128.96.18])
-	by mail.lfdr.de (Postfix) with ESMTP id 7B0F927B4C5
-	for <lists+devicetree@lfdr.de>; Mon, 28 Sep 2020 20:48:01 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTP id 6005627B4DC
+	for <lists+devicetree@lfdr.de>; Mon, 28 Sep 2020 20:58:12 +0200 (CEST)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S1726705AbgI1SsA (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Mon, 28 Sep 2020 14:48:00 -0400
-Received: from netrider.rowland.org ([192.131.102.5]:48115 "HELO
-        netrider.rowland.org" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with SMTP id S1726590AbgI1SsA (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Mon, 28 Sep 2020 14:48:00 -0400
-Received: (qmail 145380 invoked by uid 1000); 28 Sep 2020 14:47:59 -0400
-Date:   Mon, 28 Sep 2020 14:47:59 -0400
-From:   Alan Stern <stern@rowland.harvard.edu>
-To:     Matthias Kaehlcke <mka@chromium.org>
-Cc:     Greg Kroah-Hartman <gregkh@linuxfoundation.org>,
-        Rob Herring <robh+dt@kernel.org>,
-        Frank Rowand <frowand.list@gmail.com>,
-        linux-kernel@vger.kernel.org, linux-usb@vger.kernel.org,
-        Bastien Nocera <hadess@hadess.net>,
-        Stephen Boyd <swboyd@chromium.org>,
-        Douglas Anderson <dianders@chromium.org>,
-        Ravi Chandra Sadineni <ravisadineni@chromium.org>,
-        Krzysztof Kozlowski <krzk@kernel.org>,
-        devicetree@vger.kernel.org, Peter Chen <peter.chen@nxp.com>,
-        "Alexander A. Klimov" <grandmaster@al2klimov.de>,
-        "David S. Miller" <davem@davemloft.net>,
-        Johan Hovold <johan@kernel.org>,
-        Masahiro Yamada <yamada.masahiro@socionext.com>,
-        Mauro Carvalho Chehab <mchehab+huawei@kernel.org>,
-        Rob Herring <robh@kernel.org>
-Subject: Re: [PATCH v4 2/2] USB: misc: Add onboard_usb_hub driver
-Message-ID: <20200928184759.GB142254@rowland.harvard.edu>
-References: <20200928101326.v4.1.I248292623d3d0f6a4f0c5bc58478ca3c0062b49a@changeid>
- <20200928101326.v4.2.I7c9a1f1d6ced41dd8310e8a03da666a32364e790@changeid>
+        id S1726465AbgI1S6L (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Mon, 28 Sep 2020 14:58:11 -0400
+Received: from mail-oo1-f67.google.com ([209.85.161.67]:38226 "EHLO
+        mail-oo1-f67.google.com" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
+        with ESMTP id S1726409AbgI1S6L (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Mon, 28 Sep 2020 14:58:11 -0400
+Received: by mail-oo1-f67.google.com with SMTP id r10so600505oor.5;
+        Mon, 28 Sep 2020 11:58:10 -0700 (PDT)
+X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+        d=1e100.net; s=20161025;
+        h=x-gm-message-state:date:from:to:cc:subject:message-id:references
+         :mime-version:content-disposition:content-transfer-encoding
+         :in-reply-to;
+        bh=VlxqxH24WEJogVbYmNyI0XBntrebIN0nleBQLFM2PBU=;
+        b=cpqAwYxfHRBHlci1Qm58ySpXKISWX9YVUqntu4r5cN9H/4S/3OzDraI4lmzk/7aj7h
+         bWPeVLHQaC00FEab6SwCJ74qs4TWysa35XXdheQqNj2K8zhsxveuFl6dGGZ8sIqBsluv
+         BUJpJ4QmDpSMh4YEvdOnzBtBnwzvHl7/kZsfKpeWyIgckLgZffNv0Beo1muU97xhggFh
+         YOOy8mOuHm+VRmyyxCsXABw4CoAQs4H8mmGVRhZzey50GKaqQZbdczSya6E3kF6Bcvs7
+         OR3OEu9lskOHqWd9d+z8F61dSWIaK+y12sy8Ysffpv8Bf+FXCV9jhoVh7KRSaeKZrFOZ
+         tYVQ==
+X-Gm-Message-State: AOAM5328H8DIB3nvAwXIenQM9fKI4z2boS8z1YLwMHW6s3NggzOKm0gG
+        SIKDPtMQF+RZZ150z1tDyA==
+X-Google-Smtp-Source: ABdhPJyrk1od3/oBE+mU6P1bPqJLVVHHvQBDfq+YHBprH7X/AyOr8Q6Iclpi8G2HTlaMr/5stDL+5g==
+X-Received: by 2002:a4a:e616:: with SMTP id f22mr1870745oot.11.1601319490492;
+        Mon, 28 Sep 2020 11:58:10 -0700 (PDT)
+Received: from xps15 (24-155-109-49.dyn.grandenetworks.net. [24.155.109.49])
+        by smtp.gmail.com with ESMTPSA id b1sm2278068oop.47.2020.09.28.11.58.09
+        (version=TLS1_3 cipher=TLS_AES_256_GCM_SHA384 bits=256/256);
+        Mon, 28 Sep 2020 11:58:09 -0700 (PDT)
+Received: (nullmailer pid 3078228 invoked by uid 1000);
+        Mon, 28 Sep 2020 18:58:09 -0000
+Date:   Mon, 28 Sep 2020 13:58:09 -0500
+From:   Rob Herring <robh@kernel.org>
+To:     =?utf-8?B?TWljaGHFgiBNaXJvc8WCYXc=?= <mirq-linux@rere.qmqm.pl>
+Cc:     Rob Herring <robh+dt@kernel.org>, devicetree@vger.kernel.org,
+        Angus Ainslie <angus@akkea.ca>, linux-pm@vger.kernel.org,
+        Sebastian Reichel <sre@kernel.org>,
+        linux-kernel@vger.kernel.org, Yauhen Kharuzhy <jekhor@gmail.com>
+Subject: Re: [PATCH v4 1/2] power: bq25890: document IBAT compensation DT
+ properties
+Message-ID: <20200928185809.GA3078178@bogus>
+References: <cover.1601146802.git.mirq-linux@rere.qmqm.pl>
+ <edd68202c51088d6f5f539a7d8464fff049ff837.1601146802.git.mirq-linux@rere.qmqm.pl>
 MIME-Version: 1.0
-Content-Type: text/plain; charset=us-ascii
+Content-Type: text/plain; charset=utf-8
 Content-Disposition: inline
-In-Reply-To: <20200928101326.v4.2.I7c9a1f1d6ced41dd8310e8a03da666a32364e790@changeid>
-User-Agent: Mutt/1.10.1 (2018-07-13)
+Content-Transfer-Encoding: 8bit
+In-Reply-To: <edd68202c51088d6f5f539a7d8464fff049ff837.1601146802.git.mirq-linux@rere.qmqm.pl>
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-On Mon, Sep 28, 2020 at 10:13:55AM -0700, Matthias Kaehlcke wrote:
-> The main issue this driver addresses is that a USB hub needs to be
-> powered before it can be discovered. For discrete onboard hubs (an
-> example for such a hub is the Realtek RTS5411) this is often solved
-> by supplying the hub with an 'always-on' regulator, which is kind
-> of a hack. Some onboard hubs may require further initialization
-> steps, like changing the state of a GPIO or enabling a clock, which
-> requires even more hacks. This driver creates a platform device
-> representing the hub which performs the necessary initialization.
-> Currently it only supports switching on a single regulator, support
-> for multiple regulators or other actions can be added as needed.
-> Different initialization sequences can be supported based on the
-> compatible string.
+On Sat, 26 Sep 2020 21:05:34 +0200, Michał Mirosław wrote:
+> Document new properties for IBAT compensation feature.
 > 
-> Besides performing the initialization the driver can be configured
-> to power the hub off during system suspend. This can help to extend
-> battery life on battery powered devices which have no requirements
-> to keep the hub powered during suspend. The driver can also be
-> configured to leave the hub powered when a wakeup capable USB device
-> is connected when suspending, and power it off otherwise.
-> 
-> Technically the driver consists of two drivers, the platform driver
-> described above and a very thin USB driver that subclasses the
-> generic driver. The purpose of this driver is to provide the platform
-> driver with the USB devices corresponding to the hub(s) (a hub
-> controller may provide multiple 'logical' hubs, e.g. one to support
-> USB 2.0 and another for USB 3.x).
-> 
-> Co-developed-by: Ravi Chandra Sadineni <ravisadineni@chromium.org>
-> Signed-off-by: Ravi Chandra Sadineni <ravisadineni@chromium.org>
-> Signed-off-by: Matthias Kaehlcke <mka@chromium.org>
+> Signed-off-by: Michał Mirosław <mirq-linux@rere.qmqm.pl>
 > ---
+> v2: initial version
+> v4: renamed properties applying property-suffix
+> ---
+>  Documentation/devicetree/bindings/power/supply/bq25890.txt | 4 ++++
+>  1 file changed, 4 insertions(+)
+> 
 
-Minor cut & paste error:
-
-> +static int onboard_hub_power_off(struct onboard_hub *hub)
-> +{
-> +	int err;
-> +
-> +	err = regulator_disable(hub->vdd);
-> +	if (err) {
-> +		dev_err(hub->dev, "failed to enable regulator: %d\n", err);
-
-s/enable/disable/
-
-Have you tried manually unbinding and rebinding the two drivers a few 
-times to make sure they will still work?  I'm a little concerned about 
-all the devm_* stuff in here; does that get released when the driver is 
-unbound from the device or when the device is unregistered?  And if the 
-latter, what happens if you have multiple sysfs attribute groups going 
-at the same time?
-
-Apart from those worries and the typo, this looks pretty good to me.
-
-Acked-by: Alan Stern <stern@rowland.harvard.edu>
-
-Alan Stern
+Reviewed-by: Rob Herring <robh@kernel.org>
