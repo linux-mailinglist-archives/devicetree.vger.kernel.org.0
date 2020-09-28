@@ -2,67 +2,107 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from vger.kernel.org (vger.kernel.org [23.128.96.18])
-	by mail.lfdr.de (Postfix) with ESMTP id EBCE727A7FC
-	for <lists+devicetree@lfdr.de>; Mon, 28 Sep 2020 08:59:29 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTP id 5314F27A857
+	for <lists+devicetree@lfdr.de>; Mon, 28 Sep 2020 09:15:08 +0200 (CEST)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S1726540AbgI1G73 (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Mon, 28 Sep 2020 02:59:29 -0400
-Received: from mail-ed1-f66.google.com ([209.85.208.66]:41535 "EHLO
-        mail-ed1-f66.google.com" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S1725290AbgI1G73 (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Mon, 28 Sep 2020 02:59:29 -0400
-Received: by mail-ed1-f66.google.com with SMTP id ay8so98067edb.8;
-        Sun, 27 Sep 2020 23:59:28 -0700 (PDT)
+        id S1726513AbgI1HPE (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Mon, 28 Sep 2020 03:15:04 -0400
+Received: from lindbergh.monkeyblade.net ([23.128.96.19]:57388 "EHLO
+        lindbergh.monkeyblade.net" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
+        with ESMTP id S1726380AbgI1HPE (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Mon, 28 Sep 2020 03:15:04 -0400
+Received: from mail-vs1-xe42.google.com (mail-vs1-xe42.google.com [IPv6:2607:f8b0:4864:20::e42])
+        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id E639FC0613CF
+        for <devicetree@vger.kernel.org>; Mon, 28 Sep 2020 00:15:03 -0700 (PDT)
+Received: by mail-vs1-xe42.google.com with SMTP id a16so130400vsp.12
+        for <devicetree@vger.kernel.org>; Mon, 28 Sep 2020 00:15:03 -0700 (PDT)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+        d=chromium.org; s=google;
+        h=mime-version:references:in-reply-to:from:date:message-id:subject:to
+         :cc;
+        bh=kCXdMKNDB4m8MlwDrPmz+XV4KwYnVdM/qHc8DcVYWww=;
+        b=ARNv/b4yV78actnJ0SE5pQEsF9qbZjb0qiYFZyLvAAi7wtsltM+289weq9fVgYDHZ2
+         pUAdIXSWvcnjVZFJ9LX5QxfoGp+JVEitm4WwFE2AH5XJDk4NUM2XKYMDKqvG36nDGfjM
+         yz7UcuT73+t78gooBxyXTqxo6hFnVWwhhLgQ4=
 X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
         d=1e100.net; s=20161025;
-        h=x-gm-message-state:date:from:to:cc:subject:message-id:references
-         :mime-version:content-disposition:in-reply-to:user-agent;
-        bh=ZPnuWUa+cjabnIx7ZIzBMUW05EELypIQJprVD0ZMD/4=;
-        b=fGOSou/SE48LjdAPrI/dgzwWK9Sski7ie3UX2lRzKmF3HT7bE9zOQyvjgSqtoO15W9
-         ltLeseajfnfDJqJZzvxqb55qlp8hCQfWqS+tOF2Llet4EchHljjp3UPcPMudarQ9WEmQ
-         tK3H6gyqX3WMgAcbFlMxLLzARURbFp/kD7yaBlDwf7Hw9XBNFF3mbRW5xwFm3c2tBBQy
-         7ny+ZPA0vlYOH2XFC7fZ+lJUWbo5YuOGDZHAEGd8dwdVSzNTbHx+UsvcfLVjNzPjbyyr
-         82U/LPl4lIrxI+NMoN/XNavraX09Czm8QOHeDO1q6pFS32nRz+d+RDr0qY+W0doa/AJw
-         JDcw==
-X-Gm-Message-State: AOAM532S/78u8ExeFm5lp+FiVP2pSKShiezDavLnicV+wCmfDsKd+YhO
-        /ovGLL3a91ODyccI+IrhZ1E=
-X-Google-Smtp-Source: ABdhPJxexhXlWADOk8fZK2dRr1B3lFoBDsTxk/K+HW84++SAJntrOjkjzQntNpULX18gXz6ZimDb5g==
-X-Received: by 2002:aa7:dc0e:: with SMTP id b14mr186696edu.17.1601276367572;
-        Sun, 27 Sep 2020 23:59:27 -0700 (PDT)
-Received: from kozik-lap ([194.230.155.132])
-        by smtp.googlemail.com with ESMTPSA id ce14sm169110edb.25.2020.09.27.23.59.25
-        (version=TLS1_2 cipher=ECDHE-ECDSA-CHACHA20-POLY1305 bits=256/256);
-        Sun, 27 Sep 2020 23:59:26 -0700 (PDT)
-Date:   Mon, 28 Sep 2020 08:59:24 +0200
-From:   Krzysztof Kozlowski <krzk@kernel.org>
-To:     Anson Huang <Anson.Huang@nxp.com>
-Cc:     robh+dt@kernel.org, shawnguo@kernel.org, s.hauer@pengutronix.de,
-        kernel@pengutronix.de, festevam@gmail.com, yibin.gong@nxp.com,
-        devicetree@vger.kernel.org, linux-arm-kernel@lists.infradead.org,
-        linux-kernel@vger.kernel.org, Linux-imx@nxp.com
-Subject: Re: [PATCH] arm64: dts: imx8mn-evk: Add cpu-supply to enable cpufreq
-Message-ID: <20200928065924.GA4676@kozik-lap>
-References: <1601259703-28308-1-git-send-email-Anson.Huang@nxp.com>
+        h=x-gm-message-state:mime-version:references:in-reply-to:from:date
+         :message-id:subject:to:cc;
+        bh=kCXdMKNDB4m8MlwDrPmz+XV4KwYnVdM/qHc8DcVYWww=;
+        b=P0Ji1HQA9RtKH8yxnqI3SZHQCMdJG+ZTA7AbSOOMEBFC9Q+y3xeFO2O3+wPHzNJCI4
+         c3LThPC6y9i1kxG9VqwZVBZpZi5rsCjxZdPMjO/tEGukHTn4lGxIHjMRDWz7GmtVK3j7
+         17LUINp4Or4wppTBFHVPedZPhS3PMpzfSl+aHMTP9jOxVIUKJJA2Eb0PBFVH9QwBTK3h
+         dsLj756OMKbXT7mBIGIXgGvQ41hB0GgZ9oMgMa9ZLkjqrgO5WcrkPrNdab7UMlO4FlLc
+         8IY3dR8UyQk4cO4enBSVLVGb2OKspP74pdfalmJWEcdWbjJne+dswGkpnSgHlCKtxRmj
+         f7WA==
+X-Gm-Message-State: AOAM5312B7Mks4TBSu1Tqf27NyHQZzue2hDVUrANm48IxIaQ+SZ4il4Q
+        FCA8t5QVVEOR+rfj4yAHGLN4J29fabJ3atMLrlvbXw==
+X-Google-Smtp-Source: ABdhPJzgpnpkOxCGPLSVYGGd+XgZUifTyoBe8zmUJ1pjig3VfddPP2GwmgKduNv1AMm7rusj7VWmXWs6Kk031JOtkXw=
+X-Received: by 2002:a67:fe07:: with SMTP id l7mr4701508vsr.21.1601277302935;
+ Mon, 28 Sep 2020 00:15:02 -0700 (PDT)
 MIME-Version: 1.0
-Content-Type: text/plain; charset=utf-8
-Content-Disposition: inline
-In-Reply-To: <1601259703-28308-1-git-send-email-Anson.Huang@nxp.com>
-User-Agent: Mutt/1.9.4 (2018-02-28)
+References: <1596705715-15320-1-git-send-email-weiyi.lu@mediatek.com> <1596705715-15320-7-git-send-email-weiyi.lu@mediatek.com>
+In-Reply-To: <1596705715-15320-7-git-send-email-weiyi.lu@mediatek.com>
+From:   Nicolas Boichat <drinkcat@chromium.org>
+Date:   Mon, 28 Sep 2020 15:14:52 +0800
+Message-ID: <CANMq1KByYjeD0D81sPzDxx5SzrPvpGxPgm+xvLWcFsmfUJDWBQ@mail.gmail.com>
+Subject: Re: [PATCH v17 06/12] soc: mediatek: Add support for hierarchical
+ scpsys device node
+To:     Weiyi Lu <weiyi.lu@mediatek.com>
+Cc:     Enric Balletbo Serra <eballetbo@gmail.com>,
+        Matthias Brugger <matthias.bgg@gmail.com>,
+        Rob Herring <robh@kernel.org>,
+        Sascha Hauer <kernel@pengutronix.de>,
+        James Liao <jamesjj.liao@mediatek.com>,
+        Fan Chen <fan.chen@mediatek.com>,
+        linux-arm Mailing List <linux-arm-kernel@lists.infradead.org>,
+        lkml <linux-kernel@vger.kernel.org>,
+        Devicetree List <devicetree@vger.kernel.org>,
+        "moderated list:ARM/Mediatek SoC support" 
+        <linux-mediatek@lists.infradead.org>,
+        srv_heupstream <srv_heupstream@mediatek.com>
+Content-Type: text/plain; charset="UTF-8"
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-On Mon, Sep 28, 2020 at 10:21:43AM +0800, Anson Huang wrote:
-> PMIC driver is ready on i.MX8MN EVK board, assign cpu-supply for
-> each A53 and restore the operating points table to enable cpufreq.
-> 
-> Signed-off-by: Anson Huang <Anson.Huang@nxp.com>
+On Thu, Aug 6, 2020 at 5:22 PM Weiyi Lu <weiyi.lu@mediatek.com> wrote:
+>
+> Try to list all the power domains of under power controller
+> node to show the dependency between each power domain directly
+> instead of filling the dependency in scp_soc_data.
+> And could be more clearly to group subsys clocks into power domain
+> sub node to introduce subsys clocks of bus protection in next patch.
+>
+> Signed-off-by: Weiyi Lu <weiyi.lu@mediatek.com>
 > ---
->  arch/arm64/boot/dts/freescale/imx8mn-evk.dts | 32 ++++++++++++++--------------
->  1 file changed, 16 insertions(+), 16 deletions(-)
-> 
+[snip]
+> +static int traverse_scp(struct platform_device *pdev, struct scp *scp,
+> +                       const struct scp_domain_data *scp_domain_data)
+> +{
+> +       struct device *dev = &pdev->dev;
+> +       struct device_node *np = dev->of_node;
+> +       struct device_node *sub;
+> +       int ret;
+> +
+> +       INIT_LIST_HEAD(&scp->dep_links);
+> +
+> +       for_each_available_child_of_node(np, sub) {
+> +               ret = scpsys_get_domain(pdev, scp, sub, scp_domain_data);
+> +               if (ret) {
+> +                       dev_err(&pdev->dev, "failed to handle node %pOFn: %d\n", sub, ret);
 
-Reviewed-by: Krzysztof Kozlowski <krzk@kernel.org>
+minor comment: this error should not be printed if ret ==
+-EPROBE_DEFER (use the new dev_err_probe?)
 
-Best regards,
-Krzysztof
+> +                       goto err;
+> +               }
+> +       }
+> +
+> +       return 0;
+> +
+> +err:
+> +       of_node_put(sub);
+> +       return ret;
+> +}
+[snip]
