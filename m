@@ -2,100 +2,234 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from vger.kernel.org (vger.kernel.org [23.128.96.18])
-	by mail.lfdr.de (Postfix) with ESMTP id A62F827AD8F
-	for <lists+devicetree@lfdr.de>; Mon, 28 Sep 2020 14:12:33 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTP id BFFC227AD9C
+	for <lists+devicetree@lfdr.de>; Mon, 28 Sep 2020 14:15:03 +0200 (CEST)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S1726500AbgI1MMc (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Mon, 28 Sep 2020 08:12:32 -0400
-Received: from lindbergh.monkeyblade.net ([23.128.96.19]:47130 "EHLO
-        lindbergh.monkeyblade.net" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S1726497AbgI1MMc (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Mon, 28 Sep 2020 08:12:32 -0400
-Received: from mail-wr1-x444.google.com (mail-wr1-x444.google.com [IPv6:2a00:1450:4864:20::444])
-        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 258C0C0613CE
-        for <devicetree@vger.kernel.org>; Mon, 28 Sep 2020 05:12:32 -0700 (PDT)
-Received: by mail-wr1-x444.google.com with SMTP id k10so1051509wru.6
-        for <devicetree@vger.kernel.org>; Mon, 28 Sep 2020 05:12:32 -0700 (PDT)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=linaro.org; s=google;
-        h=date:from:to:cc:subject:message-id:references:mime-version
-         :content-disposition:content-transfer-encoding:in-reply-to;
-        bh=WkJ+JQz22FgKhunkX2Eys8prjPDVkhKGpB1odb9GP8s=;
-        b=V+A2geqfxmkMfY7Ozcf6qFWf8cwaKHC6uC2YbzNkKkg9K7etSOTIyRWxvmZ+4e4tSZ
-         QWoytvAI3ul8dm3Rby2HAddrBVew0ATO1vVz9mpNCe7vl9xAb/6YFufWH8YHoOgknpi5
-         PAv50iu9Y2eswRH8U54IlRstZnIO+T9w2IrGWiFeltxFio9ub/1DFIUROq/tVuQTJLqh
-         k5nzl4Ki9z9zFimkVFnHCFFdi78UrEyH39Ndom3QFPSVT2oRCbl82CmrmUU5nbud1GVo
-         +GLhONWnkRnXpfbIEdG2zcZjZis1cNlqbyslfzyiMk19KoqOvanxXiY3Tp0H88bvSGw8
-         x1AQ==
-X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=1e100.net; s=20161025;
-        h=x-gm-message-state:date:from:to:cc:subject:message-id:references
-         :mime-version:content-disposition:content-transfer-encoding
-         :in-reply-to;
-        bh=WkJ+JQz22FgKhunkX2Eys8prjPDVkhKGpB1odb9GP8s=;
-        b=W78Gh7MhIv1I8Q8YH/7n9Bo3RxEJDJcOauf97YSxvNI1LSR6Kw07Dx+mu39GBFeJct
-         6JdeSP1hWEopLzDXjF/6SnZgKP87qkSuG2N3ZgkF+tJ90dd65aT6VHxYSq7wljwsuI0l
-         Df/Uc5DiONptFndIKCnNvIFU24aDEIojaE1qa3JEY7KvDK+522HrPx7VMOlPd6T7dh05
-         weJ6YN7XvwFTeE+V0B2YYf2kZnacwbDzm9UA9Sz5nviRhnkgW9FWcU5Q2rhsOAlTO5XI
-         1WXz/eTmioWSS/G7YuVUbvDL5ZaD+/fp8rkN4fpflR3BwYb1/yuaW98LIWL2MjEYOlcx
-         e6JQ==
-X-Gm-Message-State: AOAM532YojV51yLlKx6aNFXyJnHh1KE+AVNg5ZG94DwFFMmldMf39AoJ
-        MyX5HAIW1a5MxCetyQvnyQwRun0RCggMqg==
-X-Google-Smtp-Source: ABdhPJxfr1ds5iMTGjgHETAfl1Qew67RRVxQWW5Rmg5m3CN9CftRmIzMQbCdpyVjYzUGWOgofV47Dw==
-X-Received: by 2002:a5d:61c2:: with SMTP id q2mr1490265wrv.25.1601295150767;
-        Mon, 28 Sep 2020 05:12:30 -0700 (PDT)
-Received: from dell ([91.110.221.154])
-        by smtp.gmail.com with ESMTPSA id d19sm871991wmd.0.2020.09.28.05.12.29
-        (version=TLS1_3 cipher=TLS_AES_256_GCM_SHA384 bits=256/256);
-        Mon, 28 Sep 2020 05:12:30 -0700 (PDT)
-Date:   Mon, 28 Sep 2020 13:12:28 +0100
-From:   Lee Jones <lee.jones@linaro.org>
-To:     Luca Ceresoli <luca@lucaceresoli.net>
-Cc:     Keerthy <j-keerthy@ti.com>, Axel Lin <axel.lin@ingics.com>,
-        Rob Herring <robh+dt@kernel.org>, devicetree@vger.kernel.org,
-        linux-kernel@vger.kernel.org
-Subject: Re: [PATCH v5 3/3] mfd: lp87565: add LP87524-Q1 variant
-Message-ID: <20200928121228.GF4637@dell>
-References: <20200902142259.28349-1-luca@lucaceresoli.net>
- <20200902142259.28349-4-luca@lucaceresoli.net>
+        id S1726564AbgI1MPC (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Mon, 28 Sep 2020 08:15:02 -0400
+Received: from szxga04-in.huawei.com ([45.249.212.190]:14310 "EHLO huawei.com"
+        rhost-flags-OK-OK-OK-FAIL) by vger.kernel.org with ESMTP
+        id S1726396AbgI1MPC (ORCPT <rfc822;devicetree@vger.kernel.org>);
+        Mon, 28 Sep 2020 08:15:02 -0400
+Received: from DGGEMS402-HUB.china.huawei.com (unknown [172.30.72.58])
+        by Forcepoint Email with ESMTP id 6BE3ABD90DD0D1F2CE01;
+        Mon, 28 Sep 2020 20:15:00 +0800 (CST)
+Received: from [127.0.0.1] (10.174.177.253) by DGGEMS402-HUB.china.huawei.com
+ (10.3.19.202) with Microsoft SMTP Server id 14.3.487.0; Mon, 28 Sep 2020
+ 20:14:51 +0800
+Subject: Re: [PATCH v3 03/21] dt-bindings: arm: hisilicon: convert Hisilicon
+ board/soc bindings to json-schema
+To:     Wei Xu <xuwei5@hisilicon.com>, Rob Herring <robh+dt@kernel.org>,
+        devicetree <devicetree@vger.kernel.org>,
+        linux-arm-kernel <linux-arm-kernel@lists.infradead.org>,
+        linux-kernel <linux-kernel@vger.kernel.org>
+CC:     Libin <huawei.libin@huawei.com>,
+        Kefeng Wang <wangkefeng.wang@huawei.com>
+References: <20200927062129.4573-1-thunder.leizhen@huawei.com>
+ <20200927062129.4573-4-thunder.leizhen@huawei.com>
+ <5F71D192.8070105@hisilicon.com>
+From:   "Leizhen (ThunderTown)" <thunder.leizhen@huawei.com>
+Message-ID: <4f743027-9495-9ac7-af85-f5e084ae8fca@huawei.com>
+Date:   Mon, 28 Sep 2020 20:14:51 +0800
+User-Agent: Mozilla/5.0 (Windows NT 10.0; WOW64; rv:60.0) Gecko/20100101
+ Thunderbird/60.7.0
 MIME-Version: 1.0
-Content-Type: text/plain; charset=utf-8
-Content-Disposition: inline
-Content-Transfer-Encoding: 8bit
-In-Reply-To: <20200902142259.28349-4-luca@lucaceresoli.net>
+In-Reply-To: <5F71D192.8070105@hisilicon.com>
+Content-Type: text/plain; charset="utf-8"
+Content-Language: en-US
+Content-Transfer-Encoding: 7bit
+X-Originating-IP: [10.174.177.253]
+X-CFilter-Loop: Reflected
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-On Wed, 02 Sep 2020, Luca Ceresoli wrote:
 
-> Add support for the LP87524B/J/P-Q1 Four 4-MHz Buck Converter. This is a
-> variant of the LP87565 having 4 single-phase outputs and up to 10 A of
-> total output current.
-> 
-> Signed-off-by: Luca Ceresoli <luca@lucaceresoli.net>
-> Acked-for-MFD-by: Lee Jones <lee.jones@linaro.org>
-> 
-> ---
-> 
-> Changes in v5: none
-> 
-> Changes in v4: none
-> 
-> Changes in v3: none
-> 
-> Changes in v2:
->  - replace "regulator" -> "mfd" in subject line (Lee Jones)
->  - add Acked-for-MFD-by: from Lee Jones
-> ---
->  drivers/mfd/lp87565.c       | 4 ++++
->  include/linux/mfd/lp87565.h | 1 +
->  2 files changed, 5 insertions(+)
 
-Applied, thanks.
+On 2020/9/28 20:05, Wei Xu wrote:
+> Hi Zhen Lei,
+> 
+> Thanks!
+> 
+> On 2020/9/27 14:21, Zhen Lei wrote:
+>> Convert Hisilicon SoC bindings to DT schema format using json-schema.
+>>
+>> Signed-off-by: Zhen Lei <thunder.leizhen@huawei.com>
+>> ---
+>>  .../bindings/arm/hisilicon/hisilicon.txt           | 57 ----------------
+>>  .../bindings/arm/hisilicon/hisilicon.yaml          | 77 ++++++++++++++++++++++
+>>  2 files changed, 77 insertions(+), 57 deletions(-)
+>>  delete mode 100644 Documentation/devicetree/bindings/arm/hisilicon/hisilicon.txt
+>>  create mode 100644 Documentation/devicetree/bindings/arm/hisilicon/hisilicon.yaml
+>>
+>> diff --git a/Documentation/devicetree/bindings/arm/hisilicon/hisilicon.txt b/Documentation/devicetree/bindings/arm/hisilicon/hisilicon.txt
+>> deleted file mode 100644
+>> index f7e52476f5f2f3c..000000000000000
+>> --- a/Documentation/devicetree/bindings/arm/hisilicon/hisilicon.txt
+>> +++ /dev/null
+>> @@ -1,57 +0,0 @@
+>> -Hisilicon Platforms Device Tree Bindings
+>> -----------------------------------------------------
+>> -Hi3660 SoC
+>> -Required root node properties:
+>> -	- compatible = "hisilicon,hi3660";
+>> -
+>> -HiKey960 Board
+>> -Required root node properties:
+>> -	- compatible = "hisilicon,hi3660-hikey960", "hisilicon,hi3660";
+>> -
+>> -Hi3670 SoC
+>> -Required root node properties:
+>> -	- compatible = "hisilicon,hi3670";
+>> -
+>> -HiKey970 Board
+>> -Required root node properties:
+>> -	- compatible = "hisilicon,hi3670-hikey970", "hisilicon,hi3670";
+>> -
+>> -Hi3798cv200 SoC
+>> -Required root node properties:
+>> -	- compatible = "hisilicon,hi3798cv200";
+>> -
+>> -Hi3798cv200 Poplar Board
+>> -Required root node properties:
+>> -	- compatible = "hisilicon,hi3798cv200-poplar", "hisilicon,hi3798cv200";
+>> -
+>> -Hi4511 Board
+>> -Required root node properties:
+>> -	- compatible = "hisilicon,hi3620-hi4511";
+>> -
+>> -Hi6220 SoC
+>> -Required root node properties:
+>> -	- compatible = "hisilicon,hi6220";
+>> -
+>> -HiKey Board
+>> -Required root node properties:
+>> -	- compatible = "hisilicon,hi6220-hikey", "hisilicon,hi6220";
+>> -
+>> -HiP01 ca9x2 Board
+>> -Required root node properties:
+>> -	- compatible = "hisilicon,hip01-ca9x2";
+>> -
+>> -HiP04 D01 Board
+>> -Required root node properties:
+>> -	- compatible = "hisilicon,hip04-d01";
+>> -
+>> -HiP05 D02 Board
+>> -Required root node properties:
+>> -	- compatible = "hisilicon,hip05-d02";
+>> -
+>> -HiP06 D03 Board
+>> -Required root node properties:
+>> -	- compatible = "hisilicon,hip06-d03";
+>> -
+>> -HiP07 D05 Board
+>> -Required root node properties:
+>> -	- compatible = "hisilicon,hip07-d05";
+>> \ No newline at end of file
+>> diff --git a/Documentation/devicetree/bindings/arm/hisilicon/hisilicon.yaml b/Documentation/devicetree/bindings/arm/hisilicon/hisilicon.yaml
+>> new file mode 100644
+>> index 000000000000000..362decf3b85c6fb
+>> --- /dev/null
+>> +++ b/Documentation/devicetree/bindings/arm/hisilicon/hisilicon.yaml
+>> @@ -0,0 +1,77 @@
+>> +# SPDX-License-Identifier: (GPL-2.0-only OR BSD-2-Clause)
+>> +%YAML 1.2
+>> +---
+>> +$id: http://devicetree.org/schemas/arm/hisilicon/hisilicon.yaml#
+>> +$schema: http://devicetree.org/meta-schemas/core.yaml#
+>> +
+>> +title: Hisilicon Platforms Device Tree Bindings
+>> +
+>> +maintainers:
+>> +  - Wei Xu <xuwei5@hisilicon.com>
+>> +
+>> +properties:
+>> +  $nodename:
+>> +    const: '/'
+>> +
+>> +  compatible:
+>> +    oneOf:
+>> +      - description: Hi3660 SoC
+>> +        items:
+>> +          - const: hisilicon,hi3660
+>> +
+>> +      - description: HiKey960 Board
+>> +        items:
+>> +          - const: hisilicon,hi3660-hikey960
+>> +          - const: hisilicon,hi3660
+> 
+> How about to use the boards with SoC to reduce some duplication like following?
+> 
+>          - description: Boards with the Hisilicon hi3660 SoC
+>            items:
+>              - enum:
+>                  - hisilicon,hi3660-hikey960
+>              - const: hisilicon,hi3660
+> 
+Looks like a good idea. I will do it.
 
--- 
-Lee Jones [李琼斯]
-Senior Technical Lead - Developer Services
-Linaro.org │ Open source software for Arm SoCs
-Follow Linaro: Facebook | Twitter | Blog
+> And in this case, there is no need to remove the "hisilicon,hip01" as the first patch.
+
+OK, I will add "hisilicon,hip01" into yaml, and discard patch 1.
+
+> 
+> Best Regards,
+> Wei
+> 
+>> +
+>> +      - description: Hi3670 SoC
+>> +        items:
+>> +          - const: hisilicon,hi3670
+>> +
+>> +      - description: HiKey970 Board
+>> +        items:
+>> +          - const: hisilicon,hi3670-hikey970
+>> +          - const: hisilicon,hi3670
+>> +
+>> +      - description: Hi3798cv200 SoC
+>> +        items:
+>> +          - const: hisilicon,hi3798cv200
+>> +
+>> +      - description: Hi3798cv200 Poplar Board
+>> +        items:
+>> +          - const: hisilicon,hi3798cv200-poplar
+>> +          - const: hisilicon,hi3798cv200
+>> +
+>> +      - description: Hi4511 Board
+>> +        items:
+>> +          - const: hisilicon,hi3620-hi4511
+>> +
+>> +      - description: Hi6220 SoC
+>> +        items:
+>> +          - const: hisilicon,hi6220
+>> +
+>> +      - description: HiKey Board
+>> +        items:
+>> +          - const: hisilicon,hi6220-hikey
+>> +          - const: hisilicon,hi6220
+>> +
+>> +      - description: HiP01 ca9x2 Board
+>> +        items:
+>> +          - const: hisilicon,hip01-ca9x2
+>> +
+>> +      - description: HiP04 D01 Board
+>> +        items:
+>> +          - const: hisilicon,hip04-d01
+>> +
+>> +      - description: HiP05 D02 Board
+>> +        items:
+>> +          - const: hisilicon,hip05-d02
+>> +
+>> +      - description: HiP06 D03 Board
+>> +        items:
+>> +          - const: hisilicon,hip06-d03
+>> +
+>> +      - description: HiP07 D05 Board
+>> +        items:
+>> +          - const: hisilicon,hip07-d05
+>> +...
+>> 	
+> 
+> .
+> 
+
