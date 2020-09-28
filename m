@@ -2,77 +2,89 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from vger.kernel.org (vger.kernel.org [23.128.96.18])
-	by mail.lfdr.de (Postfix) with ESMTP id BB59427B4EB
-	for <lists+devicetree@lfdr.de>; Mon, 28 Sep 2020 21:01:11 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTP id 10CFE27B4F0
+	for <lists+devicetree@lfdr.de>; Mon, 28 Sep 2020 21:03:53 +0200 (CEST)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S1726558AbgI1TBH (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Mon, 28 Sep 2020 15:01:07 -0400
-Received: from mail-ot1-f65.google.com ([209.85.210.65]:40522 "EHLO
-        mail-ot1-f65.google.com" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S1726228AbgI1TBH (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Mon, 28 Sep 2020 15:01:07 -0400
-Received: by mail-ot1-f65.google.com with SMTP id c2so2013547otp.7;
-        Mon, 28 Sep 2020 12:01:06 -0700 (PDT)
-X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=1e100.net; s=20161025;
-        h=x-gm-message-state:date:from:to:cc:subject:message-id:references
-         :mime-version:content-disposition:in-reply-to;
-        bh=WgnCQKTMXx7N/UN6VH5x1OiQeugabXar2vJySfL7Bm8=;
-        b=ZOqIhQeZSjn/lnZfbm3cKeUSE6UF8LRwNgelz+knQ28rnGvFuBPjrCZR5PODhzdeTr
-         nJjxJBfAL/hRaMwQWRngoI2B71x3yCgIZFeopO1uBNkCtdL0sVQav8YrSD7heV0ku7Tn
-         ZfoMJlAbHmy1zCu/i+m/Hrfvdtwo3Q6rxq5JS2d92XjJr4lfbkShrQc09vTvho419p2T
-         Odio4cxJEUXL5Bu7smYSddxzUlfQLXcRXw2EOe9SZaXe/O2HVm+DzfU3WpKVaTZK1+uo
-         hkhRHSlBmwhXhzXJXijzDchxpJlOzCHwItoY8taBp/es9cCotwfhrrAHX2jDYghch/Vm
-         gMKg==
-X-Gm-Message-State: AOAM530tvPW3h9MICCRN6UYo4kyzUQf4GUfh/vDAKGLJ19EgbeLs41t5
-        lnzJOWChTandSWuFT8iPyg==
-X-Google-Smtp-Source: ABdhPJzZ/EaAcIsv4NBpGeCoeK3Os0/QZX6oIoH1ZPejwWHDSFI2XdZkY8EraHXV2uULn7xgsTxkIQ==
-X-Received: by 2002:a9d:77d3:: with SMTP id w19mr313113otl.44.1601319666093;
-        Mon, 28 Sep 2020 12:01:06 -0700 (PDT)
-Received: from xps15 (24-155-109-49.dyn.grandenetworks.net. [24.155.109.49])
-        by smtp.gmail.com with ESMTPSA id o9sm2269765oop.1.2020.09.28.12.01.05
-        (version=TLS1_3 cipher=TLS_AES_256_GCM_SHA384 bits=256/256);
-        Mon, 28 Sep 2020 12:01:05 -0700 (PDT)
-Received: (nullmailer pid 3082393 invoked by uid 1000);
-        Mon, 28 Sep 2020 19:01:04 -0000
-Date:   Mon, 28 Sep 2020 14:01:04 -0500
-From:   Rob Herring <robh@kernel.org>
-To:     Jonathan Marek <jonathan@marek.ca>
-Cc:     Rob Herring <robh+dt@kernel.org>, Andy Gross <agross@kernel.org>,
-        Dmitry Baryshkov <dmitry.baryshkov@linaro.org>,
-        linux-arm-msm@vger.kernel.org, linux-kernel@vger.kernel.org,
-        devicetree@vger.kernel.org,
-        Bjorn Andersson <bjorn.andersson@linaro.org>,
-        linux-clk@vger.kernel.org,
-        Michael Turquette <mturquette@baylibre.com>,
-        Stephen Boyd <sboyd@kernel.org>
-Subject: Re: [PATCH v4 1/2] dt-bindings: clock: add QCOM SM8150 and SM8250
- display clock bindings
-Message-ID: <20200928190104.GA3082359@bogus>
-References: <20200927190653.13876-1-jonathan@marek.ca>
- <20200927190653.13876-2-jonathan@marek.ca>
+        id S1726310AbgI1TDv (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Mon, 28 Sep 2020 15:03:51 -0400
+Received: from asavdk3.altibox.net ([109.247.116.14]:42150 "EHLO
+        asavdk3.altibox.net" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
+        with ESMTP id S1726328AbgI1TDv (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Mon, 28 Sep 2020 15:03:51 -0400
+Received: from ravnborg.org (unknown [188.228.123.71])
+        (using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
+        (No client certificate requested)
+        by asavdk3.altibox.net (Postfix) with ESMTPS id 62EBC20058;
+        Mon, 28 Sep 2020 21:03:42 +0200 (CEST)
+Date:   Mon, 28 Sep 2020 21:03:41 +0200
+From:   Sam Ravnborg <sam@ravnborg.org>
+To:     "Alex G." <mr.nuke.me@gmail.com>
+Cc:     dri-devel@lists.freedesktop.org, devicetree@vger.kernel.org,
+        Jernej Skrabec <jernej.skrabec@siol.net>,
+        Mauro Carvalho Chehab <mchehab+huawei@kernel.org>,
+        Neil Armstrong <narmstrong@baylibre.com>,
+        David Airlie <airlied@linux.ie>,
+        Mark Brown <broonie@kernel.org>,
+        Jonas Karlman <jonas@kwiboo.se>, linux-kernel@vger.kernel.org,
+        Andrzej Hajda <a.hajda@samsung.com>,
+        Rob Herring <robh+dt@kernel.org>,
+        Thomas Bogendoerfer <tsbogend@alpha.franken.de>,
+        Laurent Pinchart <Laurent.pinchart@ideasonboard.com>
+Subject: Re: [PATCH 1/2] drm/bridge: sii902x: Enable I/O and core VCC
+ supplies if present
+Message-ID: <20200928190341.GA673726@ravnborg.org>
+References: <20200924200507.1175888-1-mr.nuke.me@gmail.com>
+ <20200926184919.GB98875@ravnborg.org>
+ <9c3ce766-743c-705f-7926-21e753c2d02d@gmail.com>
 MIME-Version: 1.0
 Content-Type: text/plain; charset=us-ascii
 Content-Disposition: inline
-In-Reply-To: <20200927190653.13876-2-jonathan@marek.ca>
+In-Reply-To: <9c3ce766-743c-705f-7926-21e753c2d02d@gmail.com>
+X-CMAE-Score: 0
+X-CMAE-Analysis: v=2.3 cv=CaYmGojl c=1 sm=1 tr=0
+        a=S6zTFyMACwkrwXSdXUNehg==:117 a=S6zTFyMACwkrwXSdXUNehg==:17
+        a=kj9zAlcOel0A:10 a=pGLkceISAAAA:8 a=n0pIf5krzdTGiaSpMTQA:9
+        a=CjuIK1q_8ugA:10
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-On Sun, 27 Sep 2020 15:06:50 -0400, Jonathan Marek wrote:
-> Add device tree bindings for display clock controller for
-> Qualcomm Technology Inc's SM8150 and SM8250 SoCs.
-> 
-> Signed-off-by: Jonathan Marek <jonathan@marek.ca>
-> Tested-by: Dmitry Baryshkov <dmitry.baryshkov@linaro.org> (SM8250)
-> ---
->  .../bindings/clock/qcom,dispcc-sm8x50.yaml    | 93 +++++++++++++++++++
->  .../dt-bindings/clock/qcom,dispcc-sm8150.h    |  1 +
->  .../dt-bindings/clock/qcom,dispcc-sm8250.h    | 66 +++++++++++++
->  3 files changed, 160 insertions(+)
->  create mode 100644 Documentation/devicetree/bindings/clock/qcom,dispcc-sm8x50.yaml
->  create mode 120000 include/dt-bindings/clock/qcom,dispcc-sm8150.h
->  create mode 100644 include/dt-bindings/clock/qcom,dispcc-sm8250.h
-> 
+Hi Alex.
 
-Reviewed-by: Rob Herring <robh@kernel.org>
+On Mon, Sep 28, 2020 at 12:35:01PM -0500, Alex G. wrote:
+> On 9/26/20 1:49 PM, Sam Ravnborg wrote:
+> > Hi Alexandru
+> > 
+> > On Thu, Sep 24, 2020 at 03:05:05PM -0500, Alexandru Gagniuc wrote:
+> > > On the SII9022, the IOVCC and CVCC12 supplies must reach the correct
+> > > voltage before the reset sequence is initiated. On most boards, this
+> > > assumption is true at boot-up, so initialization succeeds.
+> > > 
+> > > However, when we try to initialize the chip with incorrect supply
+> > > voltages, it will not respond to I2C requests. sii902x_probe() fails
+> > > with -ENXIO.
+> > > 
+> > > To resolve this, look for the "iovcc" and "cvcc12" regulators, and
+> > > make sure they are enabled before starting the reset sequence. If
+> > > these supplies are not available in devicetree, then they will default
+> > > to dummy-regulator. In that case everything will work like before.
+> > > 
+> > > This was observed on a STM32MP157C-DK2 booting in u-boot falcon mode.
+> > > On this board, the supplies would be set by the second stage
+> > > bootloader, which does not run in falcon mode.
+> > > 
+> > > Signed-off-by: Alexandru Gagniuc <mr.nuke.me@gmail.com>
+> > 
+> > One nitpick here. The binding should be present in the tree before
+> > you start using it. So this patch should be applied after the binding.
+> 
+> It is :)
+>   * arch/arm/boot/dts/stm32mp15xx-dkx.dtsi
+
+This is the device tree. So essentially there is part of the device
+tree that is not yet documented - so in a perfect world all parts of the
+device tree is documented in bindings
+(Documentation/devicetree/bindings/* ) before the device tree is
+committed.
+
+	Sam
