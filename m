@@ -2,91 +2,88 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from vger.kernel.org (vger.kernel.org [23.128.96.18])
-	by mail.lfdr.de (Postfix) with ESMTP id 58C4627B2F5
-	for <lists+devicetree@lfdr.de>; Mon, 28 Sep 2020 19:20:14 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTP id A7CC827B30E
+	for <lists+devicetree@lfdr.de>; Mon, 28 Sep 2020 19:24:43 +0200 (CEST)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S1726393AbgI1RUN (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Mon, 28 Sep 2020 13:20:13 -0400
-Received: from mail-oi1-f193.google.com ([209.85.167.193]:36103 "EHLO
-        mail-oi1-f193.google.com" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S1726325AbgI1RUN (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Mon, 28 Sep 2020 13:20:13 -0400
-Received: by mail-oi1-f193.google.com with SMTP id v20so2181575oiv.3
-        for <devicetree@vger.kernel.org>; Mon, 28 Sep 2020 10:20:12 -0700 (PDT)
+        id S1726424AbgI1RYm (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Mon, 28 Sep 2020 13:24:42 -0400
+Received: from mail-ot1-f68.google.com ([209.85.210.68]:43273 "EHLO
+        mail-ot1-f68.google.com" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
+        with ESMTP id S1726327AbgI1RYm (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Mon, 28 Sep 2020 13:24:42 -0400
+Received: by mail-ot1-f68.google.com with SMTP id n61so1683134ota.10;
+        Mon, 28 Sep 2020 10:24:41 -0700 (PDT)
 X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
         d=1e100.net; s=20161025;
         h=x-gm-message-state:date:from:to:cc:subject:message-id:references
-         :mime-version:content-disposition:content-transfer-encoding
-         :in-reply-to;
-        bh=Bgu9eAda5uCAd7zAJ0nkA1GKRQCBD52+x73vgY7dYds=;
-        b=Twn0Hs33MHtrB9aBtPaimx20k4+q6p7d9TgMbm7kD8x4tQVw4BaCyWNBbHHnVzlihy
-         8VEXnTpyR8LKL0lmYIimhuVEwxamiREenKlWNMhSrE6JsN8UqUnWKrCaxEXspjpjIv8E
-         6UUXFRins5fkEYLJxVaO9SEUhqwMctfC5MptKkBw3lPLqF2ftTKIaHuKzmOleJOK7BqV
-         5Vque2oo8CMfDa5/jQzO2rKLEINVaNZdSJWmegxYRmNqzPg/bT1TsqIzLWpcX6GQFAZA
-         yr8lxdjpRw1a6Mo6L9lmUgc6jpRtnQ5hmT/4L26BtXQHWSSmivmc/k0l5sx+LeXjfmff
-         LBgQ==
-X-Gm-Message-State: AOAM532X6n/iuhPYgpA/HJgNtmF0GzDv7SlfvFOZVn2fcO8NjV0cQ6ZY
-        mK4sesaBzMadRjACypcFDA==
-X-Google-Smtp-Source: ABdhPJyYKkID+64TOwW0GhVQn1GY2FepKidAEtT/FdJ1h0IuHwhSWS3bDtGi/1eXiV8sKiN4Kzxs+w==
-X-Received: by 2002:aca:bec5:: with SMTP id o188mr1537065oif.21.1601313612380;
-        Mon, 28 Sep 2020 10:20:12 -0700 (PDT)
+         :mime-version:content-disposition:in-reply-to;
+        bh=WqjG9DRBwfKFJg0LUafPQi/HKKAdsDR9CK0lOC6pnf0=;
+        b=r/BTR+J8ra7Vpr726c0QGRvAxZRfuvotTGIOJo/9zWIa+m+GEhANzAfadoXN4mihrw
+         HaiGIMH72243JPo1S144sfCyF+zR8f5SFdLg4a0e08XNVABZR0nEV0bovOtM3jDC1LUi
+         0AsgmN3kuho6oUvE53Vgds2MrO/Qnz5ZJaUpEmcJTvFT2ic4AVkUPwPmN7IdYZ0KMddo
+         hPQ19eNj0/cQw3xu3fiZJr3SgxFbWU88IEt1haC2onTLYWwJ+umT4W33i2WylqHzQ8d4
+         C6x2x3Z7W/Drf+K4tJJf6twJnzq2Y0XsB4fxH6DA+1Vbu3jThsylbXPcbChaPdKXN2FP
+         ghSQ==
+X-Gm-Message-State: AOAM533C06Hwq+ts4lcTn5oNtTiSeFLRWE/cSCV2siAMoO/K/SH9dBLw
+        37jUhz2osOhbBB9ouG/JDUX2TZLLphAG
+X-Google-Smtp-Source: ABdhPJwpyGGUwyLDEy5HjiCBfDm68LTLVrB7HzQZJohrmCnq5K9pJPkrruYLZFF6qK6tC2WgHBbS5w==
+X-Received: by 2002:a05:6830:1e89:: with SMTP id n9mr41449otr.274.1601313881244;
+        Mon, 28 Sep 2020 10:24:41 -0700 (PDT)
 Received: from xps15 (24-155-109-49.dyn.grandenetworks.net. [24.155.109.49])
-        by smtp.gmail.com with ESMTPSA id z5sm365012otp.16.2020.09.28.10.20.11
+        by smtp.gmail.com with ESMTPSA id j1sm346408oii.5.2020.09.28.10.24.40
         (version=TLS1_3 cipher=TLS_AES_256_GCM_SHA384 bits=256/256);
-        Mon, 28 Sep 2020 10:20:11 -0700 (PDT)
-Received: (nullmailer pid 2924776 invoked by uid 1000);
-        Mon, 28 Sep 2020 17:20:11 -0000
-Date:   Mon, 28 Sep 2020 12:20:11 -0500
+        Mon, 28 Sep 2020 10:24:40 -0700 (PDT)
+Received: (nullmailer pid 2931079 invoked by uid 1000);
+        Mon, 28 Sep 2020 17:24:39 -0000
+Date:   Mon, 28 Sep 2020 12:24:39 -0500
 From:   Rob Herring <robh@kernel.org>
-To:     Uwe =?iso-8859-1?Q?Kleine-K=F6nig?= 
-        <u.kleine-koenig@pengutronix.de>
-Cc:     Frank Rowand <frowand.list@gmail.com>,
-        Masahiro Yamada <yamada.masahiro@socionext.com>,
-        kernel@pengutronix.de, devicetree@vger.kernel.org
-Subject: Re: [PATCH] scripts/dtc: only append to HOST_EXTRACFLAGS instead of
- overwriting
-Message-ID: <20200928172011.GA2922882@bogus>
-References: <20200917094024.17215-1-u.kleine-koenig@pengutronix.de>
- <20200919143922.22793-1-u.kleine-koenig@pengutronix.de>
+To:     Srinivas Kandagatla <srinivas.kandagatla@linaro.org>
+Cc:     devicetree@vger.kernel.org, linux-arm-msm@vger.kernel.org,
+        sboyd@kernel.org, bjorn.andersson@linaro.org,
+        linux-kernel@vger.kernel.org, robh+dt@kernel.org,
+        mturquette@baylibre.com, linux-clk@vger.kernel.org
+Subject: Re: [PATCH v2 1/4] dt-bindings: clock: Add support for LPASS Audio
+ Clock Controller
+Message-ID: <20200928172439.GA2930708@bogus>
+References: <20200925103115.15191-1-srinivas.kandagatla@linaro.org>
+ <20200925103115.15191-2-srinivas.kandagatla@linaro.org>
 MIME-Version: 1.0
-Content-Type: text/plain; charset=iso-8859-1
+Content-Type: text/plain; charset=us-ascii
 Content-Disposition: inline
-Content-Transfer-Encoding: 8bit
-In-Reply-To: <20200919143922.22793-1-u.kleine-koenig@pengutronix.de>
+In-Reply-To: <20200925103115.15191-2-srinivas.kandagatla@linaro.org>
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-On Sat, Sep 19, 2020 at 04:39:22PM +0200, Uwe Kleine-König wrote:
-> When building with
+On Fri, 25 Sep 2020 11:31:12 +0100, Srinivas Kandagatla wrote:
+> Audio Clock controller is a block inside LPASS which controls
+> 2 Glitch free muxes to LPASS codec Macros.
 > 
-> 	$ HOST_EXTRACFLAGS=-g make
-> 
-> the expectation is that host tools are built with debug informations.
-> This however doesn't happen if the Makefile assigns a new value to the
-> HOST_EXTRACFLAGS instead of appending to it. So use += instead of := for
-> the first assignment.
-> 
-> Fixes: e3fd9b5384f3 ("scripts/dtc: consolidate include path options in Makefile")
-> Signed-off-by: Uwe Kleine-König <u.kleine-koenig@pengutronix.de>
+> Signed-off-by: Srinivas Kandagatla <srinivas.kandagatla@linaro.org>
 > ---
-> Hello,
+>  .../bindings/clock/qcom,audiocc-sm8250.yaml   | 58 +++++++++++++++++++
+>  .../clock/qcom,sm8250-lpass-audiocc.h         | 13 +++++
+>  2 files changed, 71 insertions(+)
+>  create mode 100644 Documentation/devicetree/bindings/clock/qcom,audiocc-sm8250.yaml
+>  create mode 100644 include/dt-bindings/clock/qcom,sm8250-lpass-audiocc.h
 > 
-> this is a resend as I failed to add the devicetree mailing list to Cc
-> for the first mail :-\ Thanks to Rob for reminding me. Those who got
-> this mail twice and want to reply please make sure you reply to the
-> right (i.e. this) mail.
-> 
-> The patch is the same as my earlier patch "scripts/dtc: Don't overwrite
-> HOST_EXTRACFLAGS passed on command line" but here the commit log is not
-> wrong.
-> 
-> Thanks and sorry,
-> Uwe
-> 
->  scripts/dtc/Makefile | 2 +-
->  1 file changed, 1 insertion(+), 1 deletion(-)
 
-Applied, thanks.
 
-Rob
+My bot found errors running 'make dt_binding_check' on your patch:
+
+Error: Documentation/devicetree/bindings/clock/qcom,audiocc-sm8250.example.dts:25.30-31 syntax error
+FATAL ERROR: Unable to parse input tree
+make[1]: *** [scripts/Makefile.lib:342: Documentation/devicetree/bindings/clock/qcom,audiocc-sm8250.example.dt.yaml] Error 1
+make[1]: *** Waiting for unfinished jobs....
+make: *** [Makefile:1366: dt_binding_check] Error 2
+
+
+See https://patchwork.ozlabs.org/patch/1371157
+
+If you already ran 'make dt_binding_check' and didn't see the above
+error(s), then make sure dt-schema is up to date:
+
+pip3 install git+https://github.com/devicetree-org/dt-schema.git@master --upgrade
+
+Please check and re-submit.
+
