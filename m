@@ -2,439 +2,221 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from vger.kernel.org (vger.kernel.org [23.128.96.18])
-	by mail.lfdr.de (Postfix) with ESMTP id 7A97727AD1E
-	for <lists+devicetree@lfdr.de>; Mon, 28 Sep 2020 13:45:10 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTP id ED0EB27AD78
+	for <lists+devicetree@lfdr.de>; Mon, 28 Sep 2020 14:05:48 +0200 (CEST)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S1726610AbgI1LpJ (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Mon, 28 Sep 2020 07:45:09 -0400
-Received: from foss.arm.com ([217.140.110.172]:50044 "EHLO foss.arm.com"
-        rhost-flags-OK-OK-OK-OK) by vger.kernel.org with ESMTP
-        id S1726721AbgI1LpB (ORCPT <rfc822;devicetree@vger.kernel.org>);
-        Mon, 28 Sep 2020 07:45:01 -0400
-Received: from usa-sjc-imap-foss1.foss.arm.com (unknown [10.121.207.14])
-        by usa-sjc-mx-foss1.foss.arm.com (Postfix) with ESMTP id 34B3031B;
-        Mon, 28 Sep 2020 04:45:00 -0700 (PDT)
-Received: from usa.arm.com (e103737-lin.cambridge.arm.com [10.1.197.49])
-        by usa-sjc-imap-foss1.foss.arm.com (Postfix) with ESMTPA id A497E3F6CF;
-        Mon, 28 Sep 2020 04:44:58 -0700 (PDT)
-From:   Sudeep Holla <sudeep.holla@arm.com>
-To:     Jassi Brar <jassisinghbrar@gmail.com>,
-        Jassi Brar <jaswinder.singh@linaro.org>,
-        Viresh Kumar <viresh.kumar@linaro.org>,
-        ALKML <linux-arm-kernel@lists.infradead.org>,
-        DTML <devicetree@vger.kernel.org>,
-        LKML <linux-kernel@vger.kernel.org>
-Cc:     Sudeep Holla <sudeep.holla@arm.com>,
-        Vincent Guittot <vincent.guittot@linaro.org>,
-        Frank Rowand <frowand.list@gmail.com>,
-        Bjorn Andersson <bjorn.andersson@linaro.org>,
-        Rob Herring <robh@kernel.org>, Rob Herring <robh+dt@kernel.org>
-Subject: [PATCH 4/4] mailbox: arm_mhu: Add ARM MHU doorbell driver
-Date:   Mon, 28 Sep 2020 12:44:45 +0100
-Message-Id: <20200928114445.19689-5-sudeep.holla@arm.com>
-X-Mailer: git-send-email 2.17.1
-In-Reply-To: <20200928114445.19689-1-sudeep.holla@arm.com>
-References: <20200928114445.19689-1-sudeep.holla@arm.com>
+        id S1726327AbgI1MFs (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Mon, 28 Sep 2020 08:05:48 -0400
+Received: from szxga07-in.huawei.com ([45.249.212.35]:50624 "EHLO huawei.com"
+        rhost-flags-OK-OK-OK-FAIL) by vger.kernel.org with ESMTP
+        id S1725290AbgI1MFr (ORCPT <rfc822;devicetree@vger.kernel.org>);
+        Mon, 28 Sep 2020 08:05:47 -0400
+Received: from DGGEMS401-HUB.china.huawei.com (unknown [172.30.72.59])
+        by Forcepoint Email with ESMTP id 261F75B7C094076B8000;
+        Mon, 28 Sep 2020 20:05:45 +0800 (CST)
+Received: from [10.57.101.250] (10.57.101.250) by
+ DGGEMS401-HUB.china.huawei.com (10.3.19.201) with Microsoft SMTP Server id
+ 14.3.487.0; Mon, 28 Sep 2020 20:05:38 +0800
+Subject: Re: [PATCH v3 03/21] dt-bindings: arm: hisilicon: convert Hisilicon
+ board/soc bindings to json-schema
+To:     Zhen Lei <thunder.leizhen@huawei.com>,
+        Rob Herring <robh+dt@kernel.org>,
+        devicetree <devicetree@vger.kernel.org>,
+        linux-arm-kernel <linux-arm-kernel@lists.infradead.org>,
+        linux-kernel <linux-kernel@vger.kernel.org>
+References: <20200927062129.4573-1-thunder.leizhen@huawei.com>
+ <20200927062129.4573-4-thunder.leizhen@huawei.com>
+CC:     Libin <huawei.libin@huawei.com>,
+        Kefeng Wang <wangkefeng.wang@huawei.com>
+From:   Wei Xu <xuwei5@hisilicon.com>
+Message-ID: <5F71D192.8070105@hisilicon.com>
+Date:   Mon, 28 Sep 2020 20:05:38 +0800
+User-Agent: Mozilla/5.0 (Windows NT 6.1; WOW64; rv:38.0) Gecko/20100101
+ Thunderbird/38.2.0
+MIME-Version: 1.0
+In-Reply-To: <20200927062129.4573-4-thunder.leizhen@huawei.com>
+Content-Type: text/plain; charset="utf-8"
+Content-Transfer-Encoding: 7bit
+X-Originating-IP: [10.57.101.250]
+X-CFilter-Loop: Reflected
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-The MHU drives the signal using a 32-bit register, with all 32 bits
-logically ORed together. The MHU provides a set of registers to enable
-software to set, clear, and check the status of each of the bits of this
-register independently. The use of 32 bits for each interrupt line
-enables software to provide more information about the source of the
-interrupt. For example, each bit of the register can be associated with
-a type of event that can contribute to raising the interrupt.
+Hi Zhen Lei,
 
-This patch adds a separate the MHU controller driver for doorbel mode
-of operation using the extended DT binding to add support the same.
+Thanks!
 
-Signed-off-by: Sudeep Holla <sudeep.holla@arm.com>
----
- drivers/mailbox/Makefile     |   2 +-
- drivers/mailbox/arm_mhu_db.c | 359 +++++++++++++++++++++++++++++++++++
- 2 files changed, 360 insertions(+), 1 deletion(-)
- create mode 100644 drivers/mailbox/arm_mhu_db.c
+On 2020/9/27 14:21, Zhen Lei wrote:
+> Convert Hisilicon SoC bindings to DT schema format using json-schema.
+> 
+> Signed-off-by: Zhen Lei <thunder.leizhen@huawei.com>
+> ---
+>  .../bindings/arm/hisilicon/hisilicon.txt           | 57 ----------------
+>  .../bindings/arm/hisilicon/hisilicon.yaml          | 77 ++++++++++++++++++++++
+>  2 files changed, 77 insertions(+), 57 deletions(-)
+>  delete mode 100644 Documentation/devicetree/bindings/arm/hisilicon/hisilicon.txt
+>  create mode 100644 Documentation/devicetree/bindings/arm/hisilicon/hisilicon.yaml
+> 
+> diff --git a/Documentation/devicetree/bindings/arm/hisilicon/hisilicon.txt b/Documentation/devicetree/bindings/arm/hisilicon/hisilicon.txt
+> deleted file mode 100644
+> index f7e52476f5f2f3c..000000000000000
+> --- a/Documentation/devicetree/bindings/arm/hisilicon/hisilicon.txt
+> +++ /dev/null
+> @@ -1,57 +0,0 @@
+> -Hisilicon Platforms Device Tree Bindings
+> -----------------------------------------------------
+> -Hi3660 SoC
+> -Required root node properties:
+> -	- compatible = "hisilicon,hi3660";
+> -
+> -HiKey960 Board
+> -Required root node properties:
+> -	- compatible = "hisilicon,hi3660-hikey960", "hisilicon,hi3660";
+> -
+> -Hi3670 SoC
+> -Required root node properties:
+> -	- compatible = "hisilicon,hi3670";
+> -
+> -HiKey970 Board
+> -Required root node properties:
+> -	- compatible = "hisilicon,hi3670-hikey970", "hisilicon,hi3670";
+> -
+> -Hi3798cv200 SoC
+> -Required root node properties:
+> -	- compatible = "hisilicon,hi3798cv200";
+> -
+> -Hi3798cv200 Poplar Board
+> -Required root node properties:
+> -	- compatible = "hisilicon,hi3798cv200-poplar", "hisilicon,hi3798cv200";
+> -
+> -Hi4511 Board
+> -Required root node properties:
+> -	- compatible = "hisilicon,hi3620-hi4511";
+> -
+> -Hi6220 SoC
+> -Required root node properties:
+> -	- compatible = "hisilicon,hi6220";
+> -
+> -HiKey Board
+> -Required root node properties:
+> -	- compatible = "hisilicon,hi6220-hikey", "hisilicon,hi6220";
+> -
+> -HiP01 ca9x2 Board
+> -Required root node properties:
+> -	- compatible = "hisilicon,hip01-ca9x2";
+> -
+> -HiP04 D01 Board
+> -Required root node properties:
+> -	- compatible = "hisilicon,hip04-d01";
+> -
+> -HiP05 D02 Board
+> -Required root node properties:
+> -	- compatible = "hisilicon,hip05-d02";
+> -
+> -HiP06 D03 Board
+> -Required root node properties:
+> -	- compatible = "hisilicon,hip06-d03";
+> -
+> -HiP07 D05 Board
+> -Required root node properties:
+> -	- compatible = "hisilicon,hip07-d05";
+> \ No newline at end of file
+> diff --git a/Documentation/devicetree/bindings/arm/hisilicon/hisilicon.yaml b/Documentation/devicetree/bindings/arm/hisilicon/hisilicon.yaml
+> new file mode 100644
+> index 000000000000000..362decf3b85c6fb
+> --- /dev/null
+> +++ b/Documentation/devicetree/bindings/arm/hisilicon/hisilicon.yaml
+> @@ -0,0 +1,77 @@
+> +# SPDX-License-Identifier: (GPL-2.0-only OR BSD-2-Clause)
+> +%YAML 1.2
+> +---
+> +$id: http://devicetree.org/schemas/arm/hisilicon/hisilicon.yaml#
+> +$schema: http://devicetree.org/meta-schemas/core.yaml#
+> +
+> +title: Hisilicon Platforms Device Tree Bindings
+> +
+> +maintainers:
+> +  - Wei Xu <xuwei5@hisilicon.com>
+> +
+> +properties:
+> +  $nodename:
+> +    const: '/'
+> +
+> +  compatible:
+> +    oneOf:
+> +      - description: Hi3660 SoC
+> +        items:
+> +          - const: hisilicon,hi3660
+> +
+> +      - description: HiKey960 Board
+> +        items:
+> +          - const: hisilicon,hi3660-hikey960
+> +          - const: hisilicon,hi3660
 
-diff --git a/drivers/mailbox/Makefile b/drivers/mailbox/Makefile
-index 60d224b723a1..2e06e02b2e03 100644
---- a/drivers/mailbox/Makefile
-+++ b/drivers/mailbox/Makefile
-@@ -5,7 +5,7 @@ obj-$(CONFIG_MAILBOX)		+= mailbox.o
- 
- obj-$(CONFIG_MAILBOX_TEST)	+= mailbox-test.o
- 
--obj-$(CONFIG_ARM_MHU)	+= arm_mhu.o
-+obj-$(CONFIG_ARM_MHU)	+= arm_mhu.o arm_mhu_db.o
- 
- obj-$(CONFIG_IMX_MBOX)	+= imx-mailbox.o
- 
-diff --git a/drivers/mailbox/arm_mhu_db.c b/drivers/mailbox/arm_mhu_db.c
-new file mode 100644
-index 000000000000..ef5fba4ed54c
---- /dev/null
-+++ b/drivers/mailbox/arm_mhu_db.c
-@@ -0,0 +1,359 @@
-+// SPDX-License-Identifier: GPL-2.0-only
-+/*
-+ * Copyright (C) 2013-2015 Fujitsu Semiconductor Ltd.
-+ * Copyright (C) 2015 Linaro Ltd.
-+ * Based on ARM MHU driver by Jassi Brar <jaswinder.singh@linaro.org>
-+ * Copyright (C) 2020 ARM Ltd.
-+ */
-+
-+#include <linux/amba/bus.h>
-+#include <linux/device.h>
-+#include <linux/err.h>
-+#include <linux/interrupt.h>
-+#include <linux/io.h>
-+#include <linux/kernel.h>
-+#include <linux/mailbox_controller.h>
-+#include <linux/module.h>
-+#include <linux/of.h>
-+#include <linux/of_device.h>
-+
-+#define INTR_STAT_OFS	0x0
-+#define INTR_SET_OFS	0x8
-+#define INTR_CLR_OFS	0x10
-+
-+#define MHU_LP_OFFSET	0x0
-+#define MHU_HP_OFFSET	0x20
-+#define MHU_SEC_OFFSET	0x200
-+#define TX_REG_OFFSET	0x100
-+
-+#define MHU_CHANS	3	/* Secure, Non-Secure High and Low Priority */
-+#define MHU_CHAN_MAX	20	/* Max channels to save on unused RAM */
-+#define MHU_NUM_DOORBELLS	32
-+
-+struct mhu_db_link {
-+	unsigned int irq;
-+	void __iomem *tx_reg;
-+	void __iomem *rx_reg;
-+};
-+
-+struct arm_mhu {
-+	void __iomem *base;
-+	struct mhu_db_link mlink[MHU_CHANS];
-+	struct mbox_controller mbox;
-+	struct device *dev;
-+};
-+
-+/**
-+ * ARM MHU Mailbox allocated channel information
-+ *
-+ * @mhu: Pointer to parent mailbox device
-+ * @pchan: Physical channel within which this doorbell resides in
-+ * @doorbell: doorbell number pertaining to this channel
-+ */
-+struct mhu_db_channel {
-+	struct arm_mhu *mhu;
-+	unsigned int pchan;
-+	unsigned int doorbell;
-+};
-+
-+static inline struct mbox_chan *
-+mhu_db_mbox_to_channel(struct mbox_controller *mbox, unsigned int pchan,
-+		       unsigned int doorbell)
-+{
-+	int i;
-+	struct mhu_db_channel *chan_info;
-+
-+	for (i = 0; i < mbox->num_chans; i++) {
-+		chan_info = mbox->chans[i].con_priv;
-+		if (chan_info && chan_info->pchan == pchan &&
-+		    chan_info->doorbell == doorbell)
-+			return &mbox->chans[i];
-+	}
-+
-+	dev_err(mbox->dev,
-+		"Channel not registered: physical channel: %d doorbell: %d\n",
-+		pchan, doorbell);
-+
-+	return NULL;
-+}
-+
-+static void mhu_db_mbox_clear_irq(struct mbox_chan *chan)
-+{
-+	struct mhu_db_channel *chan_info = chan->con_priv;
-+	void __iomem *base = chan_info->mhu->mlink[chan_info->pchan].rx_reg;
-+
-+	writel_relaxed(BIT(chan_info->doorbell), base + INTR_CLR_OFS);
-+}
-+
-+static unsigned int mhu_db_mbox_irq_to_pchan_num(struct arm_mhu *mhu, int irq)
-+{
-+	unsigned int pchan;
-+
-+	for (pchan = 0; pchan < MHU_CHANS; pchan++)
-+		if (mhu->mlink[pchan].irq == irq)
-+			break;
-+	return pchan;
-+}
-+
-+static struct mbox_chan *
-+mhu_db_mbox_irq_to_channel(struct arm_mhu *mhu, unsigned int pchan)
-+{
-+	unsigned long bits;
-+	unsigned int doorbell;
-+	struct mbox_chan *chan = NULL;
-+	struct mbox_controller *mbox = &mhu->mbox;
-+	void __iomem *base = mhu->mlink[pchan].rx_reg;
-+
-+	bits = readl_relaxed(base + INTR_STAT_OFS);
-+	if (!bits)
-+		/* No IRQs fired in specified physical channel */
-+		return NULL;
-+
-+	/* An IRQ has fired, find the associated channel */
-+	for (doorbell = 0; bits; doorbell++) {
-+		if (!test_and_clear_bit(doorbell, &bits))
-+			continue;
-+
-+		chan = mhu_db_mbox_to_channel(mbox, pchan, doorbell);
-+		if (chan)
-+			break;
-+	}
-+
-+	return chan;
-+}
-+
-+static irqreturn_t mhu_db_mbox_rx_handler(int irq, void *data)
-+{
-+	struct mbox_chan *chan;
-+	struct arm_mhu *mhu = data;
-+	unsigned int pchan = mhu_db_mbox_irq_to_pchan_num(mhu, irq);
-+
-+	while (NULL != (chan = mhu_db_mbox_irq_to_channel(mhu, pchan))) {
-+		mbox_chan_received_data(chan, NULL);
-+		mhu_db_mbox_clear_irq(chan);
-+	}
-+
-+	return IRQ_HANDLED;
-+}
-+
-+static bool mhu_db_last_tx_done(struct mbox_chan *chan)
-+{
-+	struct mhu_db_channel *chan_info = chan->con_priv;
-+	void __iomem *base = chan_info->mhu->mlink[chan_info->pchan].tx_reg;
-+
-+	if (readl_relaxed(base + INTR_STAT_OFS) & BIT(chan_info->doorbell))
-+		return false;
-+
-+	return true;
-+}
-+
-+static int mhu_db_send_data(struct mbox_chan *chan, void *data)
-+{
-+	struct mhu_db_channel *chan_info = chan->con_priv;
-+	void __iomem *base = chan_info->mhu->mlink[chan_info->pchan].tx_reg;
-+
-+	/* Send event to co-processor */
-+	writel_relaxed(BIT(chan_info->doorbell), base + INTR_SET_OFS);
-+
-+	return 0;
-+}
-+
-+static int mhu_db_startup(struct mbox_chan *chan)
-+{
-+	mhu_db_mbox_clear_irq(chan);
-+	return 0;
-+}
-+
-+static void mhu_db_shutdown(struct mbox_chan *chan)
-+{
-+	struct mhu_db_channel *chan_info = chan->con_priv;
-+	struct mbox_controller *mbox = &chan_info->mhu->mbox;
-+	int i;
-+
-+	for (i = 0; i < mbox->num_chans; i++)
-+		if (chan == &mbox->chans[i])
-+			break;
-+
-+	if (mbox->num_chans == i) {
-+		dev_warn(mbox->dev, "Request to free non-existent channel\n");
-+		return;
-+	}
-+
-+	/* Reset channel */
-+	mhu_db_mbox_clear_irq(chan);
-+	chan->con_priv = NULL;
-+}
-+
-+static struct mbox_chan *mhu_db_mbox_xlate(struct mbox_controller *mbox,
-+					   const struct of_phandle_args *spec)
-+{
-+	struct arm_mhu *mhu = dev_get_drvdata(mbox->dev);
-+	struct mhu_db_channel *chan_info;
-+	struct mbox_chan *chan = NULL;
-+	unsigned int pchan = spec->args[0];
-+	unsigned int doorbell = spec->args[1];
-+	int i;
-+
-+	/* Bounds checking */
-+	if (pchan >= MHU_CHANS || doorbell >= MHU_NUM_DOORBELLS) {
-+		dev_err(mbox->dev,
-+			"Invalid channel requested pchan: %d doorbell: %d\n",
-+			pchan, doorbell);
-+		return ERR_PTR(-EINVAL);
-+	}
-+
-+	for (i = 0; i < mbox->num_chans; i++) {
-+		chan_info = mbox->chans[i].con_priv;
-+
-+		/* Is requested channel free? */
-+		if (chan_info &&
-+		    mbox->dev == chan_info->mhu->dev &&
-+		    pchan == chan_info->pchan &&
-+		    doorbell == chan_info->doorbell) {
-+			dev_err(mbox->dev, "Channel in use\n");
-+			return ERR_PTR(-EBUSY);
-+		}
-+
-+		/*
-+		 * Find the first free slot, then continue checking
-+		 * to see if requested channel is in use
-+		 */
-+		if (!chan && !chan_info)
-+			chan = &mbox->chans[i];
-+	}
-+
-+	if (!chan) {
-+		dev_err(mbox->dev, "No free channels left\n");
-+		return ERR_PTR(-EBUSY);
-+	}
-+
-+	chan_info = devm_kzalloc(mbox->dev, sizeof(*chan_info), GFP_KERNEL);
-+	if (!chan_info)
-+		return ERR_PTR(-ENOMEM);
-+
-+	chan_info->mhu = mhu;
-+	chan_info->pchan = pchan;
-+	chan_info->doorbell = doorbell;
-+
-+	chan->con_priv = chan_info;
-+
-+	dev_dbg(mbox->dev, "mbox: created channel phys: %d doorbell: %d\n",
-+		pchan, doorbell);
-+
-+	return chan;
-+}
-+
-+static const struct mbox_chan_ops mhu_db_ops = {
-+	.send_data = mhu_db_send_data,
-+	.startup = mhu_db_startup,
-+	.shutdown = mhu_db_shutdown,
-+	.last_tx_done = mhu_db_last_tx_done,
-+};
-+
-+static int mhu_db_probe(struct amba_device *adev, const struct amba_id *id)
-+{
-+	u32 cell_count;
-+	int i, err, max_chans;
-+	struct arm_mhu *mhu;
-+	struct mbox_chan *chans;
-+	struct device *dev = &adev->dev;
-+	struct device_node *np = dev->of_node;
-+	int mhu_reg[MHU_CHANS] = {
-+		MHU_LP_OFFSET, MHU_HP_OFFSET, MHU_SEC_OFFSET,
-+	};
-+
-+	if (!of_device_is_compatible(np, "arm,mhu-doorbell"))
-+		return -ENODEV;
-+
-+	err = of_property_read_u32(np, "#mbox-cells", &cell_count);
-+	if (err) {
-+		dev_err(dev, "failed to read #mbox-cells in '%pOF'\n", np);
-+		return err;
-+	}
-+
-+	if (cell_count == 2) {
-+		max_chans = MHU_CHAN_MAX;
-+	} else {
-+		dev_err(dev, "incorrect value of #mbox-cells in '%pOF'\n", np);
-+		return -EINVAL;
-+	}
-+
-+	mhu = devm_kzalloc(dev, sizeof(*mhu), GFP_KERNEL);
-+	if (!mhu)
-+		return -ENOMEM;
-+
-+	mhu->base = devm_ioremap_resource(dev, &adev->res);
-+	if (IS_ERR(mhu->base)) {
-+		dev_err(dev, "ioremap failed\n");
-+		return PTR_ERR(mhu->base);
-+	}
-+
-+	chans = devm_kcalloc(dev, max_chans, sizeof(*chans), GFP_KERNEL);
-+	if (!chans)
-+		return -ENOMEM;
-+
-+	mhu->dev = dev;
-+	mhu->mbox.dev = dev;
-+	mhu->mbox.chans = chans;
-+	mhu->mbox.num_chans = max_chans;
-+	mhu->mbox.txdone_irq = false;
-+	mhu->mbox.txdone_poll = true;
-+	mhu->mbox.txpoll_period = 1;
-+
-+	mhu->mbox.of_xlate = mhu_db_mbox_xlate;
-+	amba_set_drvdata(adev, mhu);
-+
-+	mhu->mbox.ops = &mhu_db_ops;
-+
-+	err = devm_mbox_controller_register(dev, &mhu->mbox);
-+	if (err) {
-+		dev_err(dev, "Failed to register mailboxes %d\n", err);
-+		return err;
-+	}
-+
-+	for (i = 0; i < MHU_CHANS; i++) {
-+		int irq = mhu->mlink[i].irq = adev->irq[i];
-+
-+		if (irq <= 0) {
-+			dev_dbg(dev, "No IRQ found for Channel %d\n", i);
-+			continue;
-+		}
-+
-+		mhu->mlink[i].rx_reg = mhu->base + mhu_reg[i];
-+		mhu->mlink[i].tx_reg = mhu->mlink[i].rx_reg + TX_REG_OFFSET;
-+
-+		err = devm_request_threaded_irq(dev, irq, NULL,
-+						mhu_db_mbox_rx_handler,
-+						IRQF_ONESHOT, "mhu_db_link", mhu);
-+		if (err) {
-+			dev_err(dev, "Can't claim IRQ %d\n", irq);
-+			mbox_controller_unregister(&mhu->mbox);
-+			return err;
-+		}
-+	}
-+
-+	dev_info(dev, "ARM MHU Doorbell mailbox registered\n");
-+	return 0;
-+}
-+
-+static struct amba_id mhu_ids[] = {
-+	{
-+		.id	= 0x1bb098,
-+		.mask	= 0xffffff,
-+	},
-+	{ 0, 0 },
-+};
-+MODULE_DEVICE_TABLE(amba, mhu_ids);
-+
-+static struct amba_driver arm_mhu_db_driver = {
-+	.drv = {
-+		.name	= "mhu-doorbell",
-+	},
-+	.id_table	= mhu_ids,
-+	.probe		= mhu_db_probe,
-+};
-+module_amba_driver(arm_mhu_db_driver);
-+
-+MODULE_LICENSE("GPL v2");
-+MODULE_DESCRIPTION("ARM MHU Doorbell Driver");
-+MODULE_AUTHOR("Sudeep Holla <sudeep.holla@arm.com>");
--- 
-2.17.1
+How about to use the boards with SoC to reduce some duplication like following?
 
+         - description: Boards with the Hisilicon hi3660 SoC
+           items:
+             - enum:
+                 - hisilicon,hi3660-hikey960
+             - const: hisilicon,hi3660
+
+And in this case, there is no need to remove the "hisilicon,hip01" as the first patch.
+
+Best Regards,
+Wei
+
+> +
+> +      - description: Hi3670 SoC
+> +        items:
+> +          - const: hisilicon,hi3670
+> +
+> +      - description: HiKey970 Board
+> +        items:
+> +          - const: hisilicon,hi3670-hikey970
+> +          - const: hisilicon,hi3670
+> +
+> +      - description: Hi3798cv200 SoC
+> +        items:
+> +          - const: hisilicon,hi3798cv200
+> +
+> +      - description: Hi3798cv200 Poplar Board
+> +        items:
+> +          - const: hisilicon,hi3798cv200-poplar
+> +          - const: hisilicon,hi3798cv200
+> +
+> +      - description: Hi4511 Board
+> +        items:
+> +          - const: hisilicon,hi3620-hi4511
+> +
+> +      - description: Hi6220 SoC
+> +        items:
+> +          - const: hisilicon,hi6220
+> +
+> +      - description: HiKey Board
+> +        items:
+> +          - const: hisilicon,hi6220-hikey
+> +          - const: hisilicon,hi6220
+> +
+> +      - description: HiP01 ca9x2 Board
+> +        items:
+> +          - const: hisilicon,hip01-ca9x2
+> +
+> +      - description: HiP04 D01 Board
+> +        items:
+> +          - const: hisilicon,hip04-d01
+> +
+> +      - description: HiP05 D02 Board
+> +        items:
+> +          - const: hisilicon,hip05-d02
+> +
+> +      - description: HiP06 D03 Board
+> +        items:
+> +          - const: hisilicon,hip06-d03
+> +
+> +      - description: HiP07 D05 Board
+> +        items:
+> +          - const: hisilicon,hip07-d05
+> +...
+> 	
