@@ -2,143 +2,131 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from vger.kernel.org (vger.kernel.org [23.128.96.18])
-	by mail.lfdr.de (Postfix) with ESMTP id 51E5627A9D0
-	for <lists+devicetree@lfdr.de>; Mon, 28 Sep 2020 10:43:59 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTP id 9170527AA05
+	for <lists+devicetree@lfdr.de>; Mon, 28 Sep 2020 10:55:55 +0200 (CEST)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S1726547AbgI1In6 (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Mon, 28 Sep 2020 04:43:58 -0400
-Received: from lindbergh.monkeyblade.net ([23.128.96.19]:42982 "EHLO
-        lindbergh.monkeyblade.net" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S1726461AbgI1In6 (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Mon, 28 Sep 2020 04:43:58 -0400
-Received: from metis.ext.pengutronix.de (metis.ext.pengutronix.de [IPv6:2001:67c:670:201:290:27ff:fe1d:cc33])
-        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 1E4BAC0613CE
-        for <devicetree@vger.kernel.org>; Mon, 28 Sep 2020 01:43:58 -0700 (PDT)
-Received: from pty.hi.pengutronix.de ([2001:67c:670:100:1d::c5])
-        by metis.ext.pengutronix.de with esmtps (TLS1.2:ECDHE_RSA_AES_256_GCM_SHA384:256)
-        (Exim 4.92)
-        (envelope-from <ukl@pengutronix.de>)
-        id 1kMol7-0001Mn-GS; Mon, 28 Sep 2020 10:43:45 +0200
-Received: from ukl by pty.hi.pengutronix.de with local (Exim 4.89)
-        (envelope-from <ukl@pengutronix.de>)
-        id 1kMol5-0006Ul-T2; Mon, 28 Sep 2020 10:43:43 +0200
-Date:   Mon, 28 Sep 2020 10:43:43 +0200
-From:   Uwe =?utf-8?Q?Kleine-K=C3=B6nig?= <u.kleine-koenig@pengutronix.de>
-To:     Guenter Roeck <linux@roeck-us.net>
-Cc:     Bruno Thomsen <bruno.thomsen@gmail.com>, linux-rtc@vger.kernel.org,
-        Alessandro Zummo <a.zummo@towertech.it>,
-        Alexandre Belloni <alexandre.belloni@bootlin.com>,
-        linux-watchdog@vger.kernel.org,
-        "open list:OPEN FIRMWARE AND FLATTENED DEVICE TREE BINDINGS" 
-        <devicetree@vger.kernel.org>,
-        open list <linux-kernel@vger.kernel.org>,
-        Rob Herring <robh+dt@kernel.org>,
-        Sascha Hauer <kernel@pengutronix.de>,
-        Wim Van Sebroeck <wim@linux-watchdog.org>,
-        Qiang Zhao <qiang.zhao@nxp.com>
-Subject: Re: [PATCH 2/2] [RFC] rtc: pcf2127: only use watchdog when
- explicitly available
-Message-ID: <20200928084343.cl42lxsiionvq7tg@pengutronix.de>
-References: <20200924074715.GT9675@piout.net>
- <20200924105256.18162-1-u.kleine-koenig@pengutronix.de>
- <20200924105256.18162-3-u.kleine-koenig@pengutronix.de>
- <CAH+2xPAVvMpTgT3W=0AsKy=9jkS8qd6eB65Qebw51YKRQshaGQ@mail.gmail.com>
- <8f88f2a2-4a6d-021f-4404-f05518b0477d@roeck-us.net>
+        id S1726500AbgI1Izz (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Mon, 28 Sep 2020 04:55:55 -0400
+Received: from wnew1-smtp.messagingengine.com ([64.147.123.26]:48547 "EHLO
+        wnew1-smtp.messagingengine.com" rhost-flags-OK-OK-OK-OK)
+        by vger.kernel.org with ESMTP id S1726440AbgI1Izy (ORCPT
+        <rfc822;devicetree@vger.kernel.org>);
+        Mon, 28 Sep 2020 04:55:54 -0400
+Received: from compute4.internal (compute4.nyi.internal [10.202.2.44])
+        by mailnew.west.internal (Postfix) with ESMTP id 58758B74;
+        Mon, 28 Sep 2020 04:55:53 -0400 (EDT)
+Received: from mailfrontend1 ([10.202.2.162])
+  by compute4.internal (MEProxy); Mon, 28 Sep 2020 04:55:54 -0400
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=cerno.tech; h=
+        date:from:to:cc:subject:message-id:references:mime-version
+        :content-type:in-reply-to; s=fm3; bh=wUSUu2G3aVIryWaeA7vOSq4b5nt
+        Z2lJ4mb84/YsXOuI=; b=WZM48iBF91gdKnDjQ7uhJ0/RIFRw5RhXsOOeZlZJCKo
+        ysOwTqjBtlBCZj08M9nF22EmaxFAVEoLPCI8HL/0jdPlzcH2YFICniXpCoLiPtqH
+        VpOBH47bt+ui/2YfhU/yW5VfSsau0KQrKRpIe0o0c/LA7MH8NR/XbJViG+pkL2jD
+        B/g/l2T60cdiT268BZyz1XUMfVw55IQig/jerb/vptjxlA1X6M9x6a83g0v0CBK5
+        Bmmq1FDcnqounb0O4rwjBb8ol1ZrgQbcaIJowXG8EgIrm6mkVObuBjZaEx3BtVfa
+        XrLcZKvTOl2wgSLOTL7PgfwIArfBy2SMIZW7HfyAtbQ==
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=
+        messagingengine.com; h=cc:content-type:date:from:in-reply-to
+        :message-id:mime-version:references:subject:to:x-me-proxy
+        :x-me-proxy:x-me-sender:x-me-sender:x-sasl-enc; s=fm3; bh=wUSUu2
+        G3aVIryWaeA7vOSq4b5ntZ2lJ4mb84/YsXOuI=; b=A4aQVk9qURplYZemoSbP0T
+        EUoSZyu6BP+ZXw6FNbxPs0GVkLXlfle+zceapwfhWF20BfQ34PdGbXpWpcwdus8w
+        T8ByrOAMTp9PAVFOq7Dw8hBc+2GLY+/0ycOmDjNEUvrO37DrvgPHjPIMrlXu/3SH
+        5q8/uU/TxEl/IcgFyNTAaaq99scwACFHzeUlUBgrJI8c5BAIL7QKXasqfwACLnP3
+        OKdCTsL3Z0OzDIGDuPBTeNGz7iGRXdtW0uJDyfeK4dvfUEvLgEi//GS+qrpG9FgJ
+        z2gTBIwFOb2DHf8rlSu69xN17a5yR33Xj3A8eP4bkmOVhqRwYRi/uXVd98IT2DcQ
+        ==
+X-ME-Sender: <xms:F6VxX9h8l3bdAdhKV7_ZeWNJSwUX_O1_FpWJwZe1u_C2JnuMPQGRKQ>
+    <xme:F6VxXyBUwEdfOyLmpzIxGe9WCsxP_0R9KFUgHeaQKe4QIaeVg9mSAC_s3igP0_uM7
+    w1WHRnZF_vmQISJkGk>
+X-ME-Proxy-Cause: gggruggvucftvghtrhhoucdtuddrgedujedrvdeigddutdcutefuodetggdotefrodftvf
+    curfhrohhfihhlvgemucfhrghsthforghilhdpqfgfvfdpuffrtefokffrpgfnqfghnecu
+    uegrihhlohhuthemuceftddtnecusecvtfgvtghiphhivghnthhsucdlqddutddtmdenuc
+    fjughrpeffhffvuffkfhggtggujgesghdtreertddtudenucfhrhhomhepofgrgihimhgv
+    ucftihhprghrugcuoehmrgigihhmvgestggvrhhnohdrthgvtghhqeenucggtffrrghtth
+    gvrhhnpeduvdduhfekkeehgffftefflefgffdtheffudffgeevteffheeuiedvvdejvdfg
+    veenucfkphepledtrdekledrieekrdejieenucevlhhushhtvghrufhiiigvpedtnecurf
+    grrhgrmhepmhgrihhlfhhrohhmpehmrgigihhmvgestggvrhhnohdrthgvtghh
+X-ME-Proxy: <xmx:F6VxX9HpWJ2SssBbPsr8cR0GdgkIsAFIl4TChPshZo0Qsl62OBNPrA>
+    <xmx:F6VxXyTAfPBcPd-lFgiNOUKT-Dk05hFMJ2dwQsw_6WiFT0kUbPlw0Q>
+    <xmx:F6VxX6zrMQ_V4GpMBxdfOcUtIBmmlvBxqky092uEANXubuudMIwvkA>
+    <xmx:GKVxX1qlyUa-jOEbIeG-OVdzvi-kstcBwRc9s__r2vQLN4KC_S3NA-TUoVc>
+Received: from localhost (lfbn-tou-1-1502-76.w90-89.abo.wanadoo.fr [90.89.68.76])
+        by mail.messagingengine.com (Postfix) with ESMTPA id 50723328005E;
+        Mon, 28 Sep 2020 04:55:51 -0400 (EDT)
+Date:   Mon, 28 Sep 2020 10:55:49 +0200
+From:   Maxime Ripard <maxime@cerno.tech>
+To:     =?utf-8?B?Q2zDqW1lbnQgUMOpcm9u?= <peron.clem@gmail.com>
+Cc:     Chen-Yu Tsai <wens@csie.org>, Rob Herring <robh+dt@kernel.org>,
+        Mark Brown <broonie@kernel.org>,
+        Liam Girdwood <lgirdwood@gmail.com>,
+        Jaroslav Kysela <perex@perex.cz>,
+        Takashi Iwai <tiwai@suse.com>,
+        Marcus Cooper <codekipper@gmail.com>,
+        Jernej Skrabec <jernej.skrabec@siol.net>,
+        Linux-ALSA <alsa-devel@alsa-project.org>,
+        devicetree <devicetree@vger.kernel.org>,
+        linux-arm-kernel <linux-arm-kernel@lists.infradead.org>,
+        linux-kernel <linux-kernel@vger.kernel.org>,
+        linux-sunxi <linux-sunxi@googlegroups.com>,
+        Samuel Holland <samuel@sholland.org>
+Subject: Re: [PATCH v4 02/22] ASoC: sun4i-i2s: Change set_chan_cfg() params
+Message-ID: <20200928085549.izpgwdtkq5cwa4ut@gilmour.lan>
+References: <20200921102731.747736-1-peron.clem@gmail.com>
+ <20200921102731.747736-3-peron.clem@gmail.com>
+ <20200921122918.kzzu623wui277nwr@gilmour.lan>
+ <CAJiuCce0thGcH19vMtDX0X8-9S32Y7kC2bnWo_6-SHozF8uDAA@mail.gmail.com>
 MIME-Version: 1.0
-Content-Type: multipart/signed; micalg=pgp-sha512;
-        protocol="application/pgp-signature"; boundary="374kthn377ofw35y"
+Content-Type: multipart/signed; micalg=pgp-sha256;
+        protocol="application/pgp-signature"; boundary="z5fpfx6vrqwdiuav"
 Content-Disposition: inline
-In-Reply-To: <8f88f2a2-4a6d-021f-4404-f05518b0477d@roeck-us.net>
-X-SA-Exim-Connect-IP: 2001:67c:670:100:1d::c5
-X-SA-Exim-Mail-From: ukl@pengutronix.de
-X-SA-Exim-Scanned: No (on metis.ext.pengutronix.de); SAEximRunCond expanded to false
-X-PTX-Original-Recipient: devicetree@vger.kernel.org
+In-Reply-To: <CAJiuCce0thGcH19vMtDX0X8-9S32Y7kC2bnWo_6-SHozF8uDAA@mail.gmail.com>
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
 
---374kthn377ofw35y
+--z5fpfx6vrqwdiuav
 Content-Type: text/plain; charset=iso-8859-1
 Content-Disposition: inline
 Content-Transfer-Encoding: quoted-printable
 
-On Sun, Sep 27, 2020 at 08:54:47AM -0700, Guenter Roeck wrote:
-> On 9/27/20 1:09 AM, Bruno Thomsen wrote:
-> > Den tor. 24. sep. 2020 kl. 12.53 skrev Uwe Kleine-K=F6nig
-> > <u.kleine-koenig@pengutronix.de>:
-> >>
-> >> Most boards using the pcf2127 chip (in my bubble) don't make use of the
-> >> watchdog functionality and the respective output is not connected. The
-> >> effect on such a board is that there is a watchdog device provided that
-> >> doesn't work.
-> >>
-> >> So only register the watchdog if the device tree has a "has-watchdog"
-> >> property.
-> >>
-> >> Signed-off-by: Uwe Kleine-K=F6nig <u.kleine-koenig@pengutronix.de>
-> >> ---
-> >>  drivers/rtc/rtc-pcf2127.c | 3 ++-
-> >>  1 file changed, 2 insertions(+), 1 deletion(-)
-> >>
-> >> diff --git a/drivers/rtc/rtc-pcf2127.c b/drivers/rtc/rtc-pcf2127.c
-> >> index 5b1f1949b5e5..8bd89d641578 100644
-> >> --- a/drivers/rtc/rtc-pcf2127.c
-> >> +++ b/drivers/rtc/rtc-pcf2127.c
-> >> @@ -340,7 +340,8 @@ static int pcf2127_watchdog_init(struct device *de=
-v, struct pcf2127 *pcf2127)
-> >>         u32 wdd_timeout;
-> >>         int ret;
-> >>
-> >> -       if (!IS_ENABLED(CONFIG_WATCHDOG))
-> >> +       if (!IS_ENABLED(CONFIG_WATCHDOG) ||
-> >> +           !device_property_read_bool(dev, "has-watchdog"))
-> >>                 return 0;
-> >=20
-> > I don't think the compiler can remove the function if
-> > CONFIG_WATCHDOG is disabled due to the device tree
-> > value check. Maybe it can if split into 2 conditions.
-> >=20
+On Mon, Sep 21, 2020 at 07:15:13PM +0200, Cl=E9ment P=E9ron wrote:
+> Hi Maxime,
 >=20
-> If the first part of the expression is always false, the second
-> part should not even be evaluated.
-
-This is wrong. For || the second expression isn't evaluated if the first
-evaluates to true (and the whole expression becomes true). This is the
-intended behaviour: If CONFIG_WATCHDOG is off, we don't need to check
-for the dt property and just skip the watchdog part.
-
-> Either case, the code now hard depends on the compiler optimizing the
-> code away.
+> On Mon, 21 Sep 2020 at 14:29, Maxime Ripard <maxime@cerno.tech> wrote:
+> >
+> > On Mon, Sep 21, 2020 at 12:27:11PM +0200, Cl=E9ment P=E9ron wrote:
+> > > As slots and slot_width can be overwritter in case set_tdm() is
+> > > called. Avoid to have this logic in set_chan_cfg().
+> > >
+> > > Instead pass the required values as params to set_chan_cfg().
+> >
+> > It's not really clear here what the issue is, and how passing the slots
+> > and slot_width as arguments addresses it
+> >
+> > > This also fix a bug when i2s->slot_width is set for TDM but not
+> > > properly used in set_chan_cfg().
+> >
+> > Which bug?
 >=20
-> It calls devm_watchdog_register_device() which doesn't exist
-> if CONFIG_WATCHDOG is not enabled. I didn't know that this is safe,
-> and I would personally not want to rely on it, but we live and
-> learn.
+> Do you mean my commit log is too short or is it a real question to unders=
+tand ?
 
-AFAICT this is save and used in other places in the kernel, too.  This
-is one of the reasons why you cannot compile the kernel with -O0.
+Both, actually :)
 
-Best regards
-Uwe
+Maxime
 
---=20
-Pengutronix e.K.                           | Uwe Kleine-K=F6nig            |
-Industrial Linux Solutions                 | https://www.pengutronix.de/ |
-
---374kthn377ofw35y
+--z5fpfx6vrqwdiuav
 Content-Type: application/pgp-signature; name="signature.asc"
 
 -----BEGIN PGP SIGNATURE-----
 
-iQEzBAABCgAdFiEEfnIqFpAYrP8+dKQLwfwUeK3K7AkFAl9xoj0ACgkQwfwUeK3K
-7AloGQgAmT9jAsBE55nkCiQIvfTONeRIQHfU/NnP8IE+OO7uaKe+rs00xj0rIerX
-vLQyiWvIbRKkYDNvb/sbsp6OdhBh0o8C7d9wXPe7gzIgdU0VUI6aUfPv+SrpuArL
-75ye2ADjrI7fOAtdEI3FLgQPUvqlEmGBtqNqP2D6ub4KFSvKJr29X2+8QMO4aHpJ
-KZI/3e/3CSmg0C7a3mnPu0ghHUZUBFd7eOuiZbNrlVuaOc2cBMEdwQrtLm/dTZto
-IhWtwplF4GWZaDo84GsEA7MU8v38tN2g3KnEdzlOwqdU+/pqGYv4uNm1vrRq2NMG
-68zaImE+9OUEnlS364NiBvRoV8zeLQ==
-=x1uh
+iHUEABYIAB0WIQRcEzekXsqa64kGDp7j7w1vZxhRxQUCX3GlFQAKCRDj7w1vZxhR
+xYJzAP90E3Ebs8ekSnakjeM+AFop/3Kt5use/kVDKsSr/V2JlwD6A8+jug6YBRDY
+7kZEe3Y1iUyb4oLqEpjNxunahn+yfQA=
+=0O29
 -----END PGP SIGNATURE-----
 
---374kthn377ofw35y--
+--z5fpfx6vrqwdiuav--
