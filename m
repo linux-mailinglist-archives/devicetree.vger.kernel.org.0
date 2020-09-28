@@ -2,114 +2,72 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from vger.kernel.org (vger.kernel.org [23.128.96.18])
-	by mail.lfdr.de (Postfix) with ESMTP id 9BE9227AE4D
-	for <lists+devicetree@lfdr.de>; Mon, 28 Sep 2020 14:54:52 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTP id 861D427AE71
+	for <lists+devicetree@lfdr.de>; Mon, 28 Sep 2020 14:57:08 +0200 (CEST)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S1726565AbgI1Myo (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Mon, 28 Sep 2020 08:54:44 -0400
-Received: from lindbergh.monkeyblade.net ([23.128.96.19]:53672 "EHLO
-        lindbergh.monkeyblade.net" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S1726424AbgI1Myo (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Mon, 28 Sep 2020 08:54:44 -0400
-Received: from mail-wm1-x344.google.com (mail-wm1-x344.google.com [IPv6:2a00:1450:4864:20::344])
-        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 12DBEC061755;
-        Mon, 28 Sep 2020 05:54:44 -0700 (PDT)
-Received: by mail-wm1-x344.google.com with SMTP id d4so983285wmd.5;
-        Mon, 28 Sep 2020 05:54:43 -0700 (PDT)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=gmail.com; s=20161025;
-        h=date:from:to:cc:subject:message-id:references:mime-version
-         :content-disposition:in-reply-to:user-agent;
-        bh=rYxYmSPSlKHJNuyTnVmBf92AIgqLsIDS6+bNfIKzBOI=;
-        b=f/uiZ9J2wDYbxzP4nCnLDSCb/JeCxxtL/tewdvYGpcaY1AhOz0TNDO2ya69nfewfbK
-         4QWnnDa4EIozAwsOnOwzAdX6rewBlqYp5HsdmuP+Yv2MZFix37LxfTnJJYkM/QGlUiwe
-         jeTUiIJV/FJj+n6KNMy6t2xv/BACw9bzhcdtcyz7xHETTHOLX0kNjR31a46lM0pm95uB
-         eca9KBxUHA+y/OJELpA0G+XxzcLzDAVuTSLtHf09UfzHYsXJvfgFIPDUgmmQn3czGVHa
-         mKO2H87kwZyGXdDKxj+pTaxCV9+JXyK1l6gazdQP++Vb6mYqBPUsK9Bi1n5WfXdIFhPi
-         32MQ==
+        id S1726573AbgI1M44 (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Mon, 28 Sep 2020 08:56:56 -0400
+Received: from mail-oo1-f65.google.com ([209.85.161.65]:40542 "EHLO
+        mail-oo1-f65.google.com" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
+        with ESMTP id S1726348AbgI1M44 (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Mon, 28 Sep 2020 08:56:56 -0400
+Received: by mail-oo1-f65.google.com with SMTP id r4so270313ooq.7;
+        Mon, 28 Sep 2020 05:56:55 -0700 (PDT)
 X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
         d=1e100.net; s=20161025;
         h=x-gm-message-state:date:from:to:cc:subject:message-id:references
-         :mime-version:content-disposition:in-reply-to:user-agent;
-        bh=rYxYmSPSlKHJNuyTnVmBf92AIgqLsIDS6+bNfIKzBOI=;
-        b=FmsV1D7OPWSyYFSwkCLIJAC7ncPjKufz7mR5tZYiXZVvnRIXteDvADJirp9PioM8km
-         UqL0KA8aJHThPbFrUpiFkmFALYtM7r4ewaAIvtcCfuao/ptUFfrWei9EaivpKDGBUTp5
-         mWSHDHjqhwxKXGrlgazn+KFzftrYCer3oZK1bbtInlWxvelmXsnsnfQYkbYWegdC4VPF
-         kG7BugMNbHZv5S7zasibRnxFiC+RHrpangsfrNMCErJuBrO3kHn9zC2ZvRHBGBVODRcy
-         xudmmypb6nHWU3Il5J312ypS3z2BUgsfY9SpBj9WEICfKGcy2DaHGnnO371W1X1seHhh
-         S8XA==
-X-Gm-Message-State: AOAM531OzW1iR/C+acfTlb7TLvVZyChkUjSxr65bqJOs4t+86Jo3VaXr
-        K1+QnSipp2ByE+P+bDRM3NoCXzbUkxA=
-X-Google-Smtp-Source: ABdhPJxPfYvwg2Qa2IcRtFo+t1RnFC+hG2dUggvFdJnTsza1RTXfZ4gcrYniucd8YeTTD2HP9vMFcg==
-X-Received: by 2002:a7b:ce89:: with SMTP id q9mr1481722wmj.65.1601297682561;
-        Mon, 28 Sep 2020 05:54:42 -0700 (PDT)
-Received: from localhost ([217.111.27.204])
-        by smtp.gmail.com with ESMTPSA id z8sm1415537wrl.11.2020.09.28.05.54.40
+         :mime-version:content-disposition:in-reply-to;
+        bh=sMLPLFtdKygZNybR4cqmUVRj9twZY87y7rGYBclpkHA=;
+        b=HzlA7gbaX1krDq+D7Kvv4Vjjn3TAf+Bc/u6mGVGVTZ1sp/m3SHS76EI/x4Zx6PZ7lt
+         J9vleaKxLCFGmVzsTklWO8hgJESYZE1KgA6IEOYYEw46w8zkab+bxaUppiVwNxJsP8xl
+         pIMvo6AioJu4jVUh/9KBWpAw1A5vkOYPqO7RMENQRKuuJKyy/vvITEppoM2tKcRlGx7+
+         f/vLm3IUoAZsedIIlEhDi9dVoljPwW0LWZmGQxTA3PtyE6x2s7YXX4TgVyoFg9RLhifX
+         oDsD8Ll5hEBL+2b20gCeJ5KV3Sa0vKLrg39jHzOFuxxugOroOtS6sEj7xN7FvqP/3Ji4
+         rfqg==
+X-Gm-Message-State: AOAM5334Kl3uTKr/QIp2TT8jWvFswi0t+x3oghXgrnSP7WbQOV9KqrYT
+        EIZsvmRI3dnWTqKVIA7tvg==
+X-Google-Smtp-Source: ABdhPJyPbJ54E1pfq2XatL/TA4r2MuH0qFlT5Gyu3YLe5KnIICICh5/PgjEcenRs6saA0dCqcPGQ+A==
+X-Received: by 2002:a4a:5258:: with SMTP id d85mr726841oob.72.1601297808241;
+        Mon, 28 Sep 2020 05:56:48 -0700 (PDT)
+Received: from xps15 (24-155-109-49.dyn.grandenetworks.net. [24.155.109.49])
+        by smtp.gmail.com with ESMTPSA id q81sm167968oia.46.2020.09.28.05.56.46
         (version=TLS1_3 cipher=TLS_AES_256_GCM_SHA384 bits=256/256);
-        Mon, 28 Sep 2020 05:54:41 -0700 (PDT)
-Date:   Mon, 28 Sep 2020 14:54:38 +0200
-From:   Thierry Reding <thierry.reding@gmail.com>
-To:     JC Kuo <jckuo@nvidia.com>
-Cc:     gregkh@linuxfoundation.org, robh@kernel.org, jonathanh@nvidia.com,
-        kishon@ti.com, linux-tegra@vger.kernel.org,
-        linux-usb@vger.kernel.org, linux-kernel@vger.kernel.org,
-        devicetree@vger.kernel.org, nkristam@nvidia.com
-Subject: Re: [PATCH v3 00/15] Tegra XHCI controller ELPG support
-Message-ID: <20200928125438.GC3065790@ulmo>
-References: <20200909081041.3190157-1-jckuo@nvidia.com>
+        Mon, 28 Sep 2020 05:56:46 -0700 (PDT)
+Received: (nullmailer pid 2545734 invoked by uid 1000);
+        Mon, 28 Sep 2020 12:56:45 -0000
+Date:   Mon, 28 Sep 2020 07:56:45 -0500
+From:   Rob Herring <robh@kernel.org>
+To:     Krzysztof Kozlowski <krzk@kernel.org>
+Cc:     Pengutronix Kernel Team <kernel@pengutronix.de>,
+        Rob Herring <robh+dt@kernel.org>,
+        Fabio Estevam <festevam@gmail.com>,
+        Greg Kroah-Hartman <gregkh@linuxfoundation.org>,
+        Shawn Guo <shawnguo@kernel.org>, devicetree@vger.kernel.org,
+        linux-kernel@vger.kernel.org, linux-arm-kernel@lists.infradead.org,
+        NXP Linux Team <linux-imx@nxp.com>,
+        linux-serial@vger.kernel.org, Sascha Hauer <s.hauer@pengutronix.de>
+Subject: Re: [PATCH] dt-bindings: serial: fsl-imx-uart: fix i.MX 53 and 6
+ compatible matching
+Message-ID: <20200928125645.GA2545321@bogus>
+References: <20200925212649.23183-1-krzk@kernel.org>
 MIME-Version: 1.0
-Content-Type: multipart/signed; micalg=pgp-sha256;
-        protocol="application/pgp-signature"; boundary="96YOpH+ONegL0A3E"
+Content-Type: text/plain; charset=us-ascii
 Content-Disposition: inline
-In-Reply-To: <20200909081041.3190157-1-jckuo@nvidia.com>
-User-Agent: Mutt/1.14.7 (2020-08-29)
+In-Reply-To: <20200925212649.23183-1-krzk@kernel.org>
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
+On Fri, 25 Sep 2020 23:26:49 +0200, Krzysztof Kozlowski wrote:
+> The i.MX 53 and i.MX6Q DTS use two compatibles, i.MX 6SL/6SLL/SX three
+> so update the binding to fix dtbs_check warnings like:
+> 
+>   serial@21ec000: compatible: ['fsl,imx6q-uart', 'fsl,imx21-uart'] is not valid under any of the given schemas
+> 
+> Signed-off-by: Krzysztof Kozlowski <krzk@kernel.org>
+> ---
+>  .../devicetree/bindings/serial/fsl-imx-uart.yaml          | 8 ++++++--
+>  1 file changed, 6 insertions(+), 2 deletions(-)
+> 
 
---96YOpH+ONegL0A3E
-Content-Type: text/plain; charset=us-ascii
-Content-Disposition: inline
-Content-Transfer-Encoding: quoted-printable
-
-On Wed, Sep 09, 2020 at 04:10:26PM +0800, JC Kuo wrote:
-> Tegra XHCI controler can be placed in ELPG (Engine Level PowerGated)
-> state for power saving when all of the connected USB devices are in
-> suspended state. This patch series includes clk, phy and pmc changes
-> that are required for properly place controller in ELPG and bring
-> controller out of ELPG.
->=20
-> JC Kuo (15):
->   clk: tegra: Add PLLE HW power sequencer control
->   clk: tegra: Don't enable PLLE HW sequencer at init
-
-Is it safe to apply this second patch before the others have applied?
-Since we now need to explicitly enable the HW sequencer, it won't be
-enabled before the corresponding patch does that. So applying patch 2
-before the others sounds like it would break existing users of the HW
-sequencer.
-
-Thierry
-
---96YOpH+ONegL0A3E
-Content-Type: application/pgp-signature; name="signature.asc"
-
------BEGIN PGP SIGNATURE-----
-
-iQIzBAABCAAdFiEEiOrDCAFJzPfAjcif3SOs138+s6EFAl9x3Q4ACgkQ3SOs138+
-s6G+Ug//R/fLvXqIt1mer+0OLbF1HvLSpph1Uzb1i9yiyzJaXGzgYzOpQByhqtr9
-V4iplc1w03WbTKIxv1Rg+S7MHCz7Y5nPfz/5bceODM49/y48soHgYD1Se/c3d1HP
-3ixAHNP4/uHlILzQdT10pN6xNvCiQOWqxxmCxZ0/WDMV8MvMZbcYcGBkduwa37tp
-RDxbCaL6o7hTuPi8IKAyqbYbMgneofhUmOju+ea3Hu1QGTT+B7wDbPwJ4/Jl4PEr
-iWZGbrdUUX6EQzkNX4U9fQ68Gzx69B6YRj9hv5gbC6l/31G3C1srtUcYJjKfP9gp
-jSCFDo6pTzQl6Itgf2h0OHgVviUtgw8REKrrrCw6I5kn/sWm5tEf2vLbufzlnuSw
-qdaA5BJgpGn+ASodbthVTHdfJCfGFe4Jk8n2O/0bn9NxHDAzBZ+eCGAcsotfQcwd
-o/d3Cdl0JME7bh3IDpU68Ngjqy6XgGivcdrot/lcRrUf9cAH9VNEOZLBvJ+u7GnO
-MH7BUQgOXqei/EZCiak7KwIhfFtpPH7iRlqbQSAu9HCx4sfw6BawmWUlBL4q6Wmm
-7adpmRA+TJOaY0JD5YrwyRgmvV7/TLHIGi/mGqwZWUJpVgIMqmLYA5NJmpo0yz/I
-2CC52aFd5iJnVYJvxmBbYfJpMKDDiyXf+ttnZKCHskVEt+JaI9M=
-=aVne
------END PGP SIGNATURE-----
-
---96YOpH+ONegL0A3E--
+Acked-by: Rob Herring <robh@kernel.org>
