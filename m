@@ -2,126 +2,345 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from vger.kernel.org (vger.kernel.org [23.128.96.18])
-	by mail.lfdr.de (Postfix) with ESMTP id 3AD3F27AEF8
-	for <lists+devicetree@lfdr.de>; Mon, 28 Sep 2020 15:19:10 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTP id 8FB1127AF2C
+	for <lists+devicetree@lfdr.de>; Mon, 28 Sep 2020 15:37:52 +0200 (CEST)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S1726420AbgI1NTF (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Mon, 28 Sep 2020 09:19:05 -0400
-Received: from lindbergh.monkeyblade.net ([23.128.96.19]:57470 "EHLO
+        id S1726380AbgI1Nhw (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Mon, 28 Sep 2020 09:37:52 -0400
+Received: from lindbergh.monkeyblade.net ([23.128.96.19]:60348 "EHLO
         lindbergh.monkeyblade.net" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S1726325AbgI1NTF (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Mon, 28 Sep 2020 09:19:05 -0400
-Received: from mail-wm1-x341.google.com (mail-wm1-x341.google.com [IPv6:2a00:1450:4864:20::341])
-        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 858ADC061755;
-        Mon, 28 Sep 2020 06:19:04 -0700 (PDT)
-Received: by mail-wm1-x341.google.com with SMTP id k18so1115471wmj.5;
-        Mon, 28 Sep 2020 06:19:04 -0700 (PDT)
+        with ESMTP id S1726344AbgI1Nhv (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Mon, 28 Sep 2020 09:37:51 -0400
+Received: from mail-ua1-x942.google.com (mail-ua1-x942.google.com [IPv6:2607:f8b0:4864:20::942])
+        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 70F89C061755
+        for <devicetree@vger.kernel.org>; Mon, 28 Sep 2020 06:37:51 -0700 (PDT)
+Received: by mail-ua1-x942.google.com with SMTP id u48so2204925uau.0
+        for <devicetree@vger.kernel.org>; Mon, 28 Sep 2020 06:37:51 -0700 (PDT)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=gmail.com; s=20161025;
-        h=date:from:to:cc:subject:message-id:references:mime-version
-         :content-disposition:in-reply-to:user-agent;
-        bh=/fPjYpUSpJbkMbYXsGEGtLI/1DxIVKDjwp2KDfXe47U=;
-        b=HJdRZ7E+IHuW7zTD64WNC1hBCdwTCsBxE4qlY7DuwUoY+j3Op4Y7XTwijdErW0E/Pz
-         ZWxg4RMQpTzuA031ClXQPe6dLNk7fMxeNUqZYY8G348QPEg0wmLZvjHnP2B5+zxBf8i8
-         HukElwjXEycszX3pC54B3R3rZ2TKsVA+joMUm8xx93XiTd4skav04DlwQHcO+ptZ9bB4
-         uAM62Yka+Vg40hVhhU1mDFpE5U6bmWk2jx08LWD4lO+zRh+1uk/IW/sFjupnY5jI1nuX
-         wDpHkNS9zWOWIyURopqoMnS43flgIGjjArT9c+zU8Qzct6It1L8tGgVZXnMbSZcTNe2F
-         JDMA==
+        d=linaro.org; s=google;
+        h=mime-version:references:in-reply-to:from:date:message-id:subject:to
+         :cc;
+        bh=nZHygFNG12BXzia+cdFp3TUOwboq01N6tmGz7GV0mjc=;
+        b=HbWOxEIfM8ntAMXUYW1Quv7Si1k1ydd3FSuy3Y/TPuIS7RMc29OkwEJR0tNpYB2sSx
+         xI4p05QJbWtfGREN10T+ITpc4sIOjiXUF2aO1WIEZA6LglCal5RWKkHR88xVID0VrApu
+         aC0PQoVratp4+6Z9EiF69NgWNjWLX11/OgS5XBU/p3RBuOB33feB0rZq3hrUrcGSmUxt
+         ixizvUGDUOZqsfmyrvLitoJ3kYqNS5PM2VddrRI79AUN1tUWGJrNjTlJ4Qs2iKNpDoVe
+         SUg4O209PASlkCgw+EkPKnecVhHYgIowYJJiPAfTpDNjdggNqotwKUpcA8saIOEhvM9i
+         sX5Q==
 X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
         d=1e100.net; s=20161025;
-        h=x-gm-message-state:date:from:to:cc:subject:message-id:references
-         :mime-version:content-disposition:in-reply-to:user-agent;
-        bh=/fPjYpUSpJbkMbYXsGEGtLI/1DxIVKDjwp2KDfXe47U=;
-        b=f46blrcLQWTQYPWMjbdPfBo77k8eiLJsMnLU6fPhN7FxxV8G9xhzDdb81uEKykugO+
-         SUBai8Qu1hhyhqFD7FpK+Yg5pT6CvY4mQHa+WKa8nrKUbVxnTbTnm2V/R+huLPZJW4QR
-         PPg4qkxMBX7jDC+S2rhHmeYSB07ywhJxdDewM7q0oOkLXd1WuDJNCfTkMJcGoZzTJEuB
-         NrvUw3ttBES/xUmwfQ0x7BA8T2wPNvUW3zjatS5FV9nMNZHrtIIzzg3iT1OFP59FTVFO
-         9flFDtrpvJwSgHdGFz7X8i4M689jq/o2gpX8C2OInRCh96i/ht7xc+GglHi0gZW8+2P6
-         4Kug==
-X-Gm-Message-State: AOAM53292bWnwp0C1sH1XW8i04U3QjSaM1802E0qosiQjX4blcczMHyx
-        JAJmI9O+k6htE/MrUT62/yQ=
-X-Google-Smtp-Source: ABdhPJyREY0CoxSrnbqNFVZ1NBWQC3OO0lSgZl79gWDg8d7KgLs6O8BlJsQptCHI+UezQKh9vrtRBw==
-X-Received: by 2002:a1c:7207:: with SMTP id n7mr1599344wmc.134.1601299143213;
-        Mon, 28 Sep 2020 06:19:03 -0700 (PDT)
-Received: from localhost ([217.111.27.204])
-        by smtp.gmail.com with ESMTPSA id v17sm1700776wrc.23.2020.09.28.06.19.01
-        (version=TLS1_3 cipher=TLS_AES_256_GCM_SHA384 bits=256/256);
-        Mon, 28 Sep 2020 06:19:01 -0700 (PDT)
-Date:   Mon, 28 Sep 2020 15:18:59 +0200
-From:   Thierry Reding <thierry.reding@gmail.com>
-To:     JC Kuo <jckuo@nvidia.com>
-Cc:     gregkh@linuxfoundation.org, robh@kernel.org, jonathanh@nvidia.com,
-        kishon@ti.com, linux-tegra@vger.kernel.org,
-        linux-usb@vger.kernel.org, linux-kernel@vger.kernel.org,
-        devicetree@vger.kernel.org, nkristam@nvidia.com
-Subject: Re: [PATCH v3 09/15] arm64: tegra210: XUSB PADCTL add "nvidia,pmc"
- prop
-Message-ID: <20200928131859.GJ3065790@ulmo>
-References: <20200909081041.3190157-1-jckuo@nvidia.com>
- <20200909081041.3190157-10-jckuo@nvidia.com>
+        h=x-gm-message-state:mime-version:references:in-reply-to:from:date
+         :message-id:subject:to:cc;
+        bh=nZHygFNG12BXzia+cdFp3TUOwboq01N6tmGz7GV0mjc=;
+        b=fC1DmjYz968/ynHPQ3zwKeAPzZ6Od8jdu8BeELBWRxoQhvj/LGxc46l5XPvzm9e+qM
+         XO1smunAW7TiN+5CybApzNDHJp4jHtrhAcMgCqo34bEAuRqDu2hhBmyPzglCQXhzuUAu
+         +1ikcAekjqm7NCLjYhhTCma3V0qTMosgrWfp1ZdmoFQqosehdCFzHp9AHUO2mJqObfZu
+         r//NQG6/WMoI28fywjA6WjbW6TGmPIKBIgu47dA3ErDe/Fcpryvgd+AUvhdqfth/g7YG
+         p1ueaKavd+wweliT35alzrkJpbCkeAIS1wNmws5rVeAO8NpzXwEI8jpJ8WK2FETGMyK6
+         xQbA==
+X-Gm-Message-State: AOAM531aA5qR//UoS4G/CZ68qCNiBcoCQM5HSUKBTFRez3fdo0P+dx5S
+        UV7Hl3eINzyIR4xXDNWPswRse00U1bvksm9bcYgFYQ==
+X-Google-Smtp-Source: ABdhPJw2Q4TTIOv2yPatvgHsLzUCYEIV+MWUndyjTwyGBf4wZLgws1Jetpn+GlCZT+z7/nWYZDuxjGXj0aGn+N+nNG4=
+X-Received: by 2002:ab0:2ea1:: with SMTP id y1mr740229uay.104.1601300270460;
+ Mon, 28 Sep 2020 06:37:50 -0700 (PDT)
 MIME-Version: 1.0
-Content-Type: multipart/signed; micalg=pgp-sha256;
-        protocol="application/pgp-signature"; boundary="W13SgbpmD6bhZUTM"
-Content-Disposition: inline
-In-Reply-To: <20200909081041.3190157-10-jckuo@nvidia.com>
-User-Agent: Mutt/1.14.7 (2020-08-29)
+References: <20200928130918.32326-1-wenbin.mei@mediatek.com> <20200928130918.32326-2-wenbin.mei@mediatek.com>
+In-Reply-To: <20200928130918.32326-2-wenbin.mei@mediatek.com>
+From:   Ulf Hansson <ulf.hansson@linaro.org>
+Date:   Mon, 28 Sep 2020 15:37:14 +0200
+Message-ID: <CAPDyKFoQs4Bmd=5vgB6NUr81FnVYPk1k4Z_8pn6KayS5aNQtUA@mail.gmail.com>
+Subject: Re: [PATCH v2 1/4] dt-bindings: mmc: Convert mtk-sd to json-schema
+To:     Wenbin Mei <wenbin.mei@mediatek.com>
+Cc:     Rob Herring <robh+dt@kernel.org>,
+        Chaotian Jing <chaotian.jing@mediatek.com>,
+        Matthias Brugger <matthias.bgg@gmail.com>,
+        "linux-mmc@vger.kernel.org" <linux-mmc@vger.kernel.org>,
+        DTML <devicetree@vger.kernel.org>,
+        Linux ARM <linux-arm-kernel@lists.infradead.org>,
+        "moderated list:ARM/Mediatek SoC support" 
+        <linux-mediatek@lists.infradead.org>,
+        Linux Kernel Mailing List <linux-kernel@vger.kernel.org>,
+        srv_heupstream <srv_heupstream@mediatek.com>
+Content-Type: text/plain; charset="UTF-8"
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
+On Mon, 28 Sep 2020 at 15:12, Wenbin Mei <wenbin.mei@mediatek.com> wrote:
+>
+> Convert the mtk-sd binding to DT schema format using json-schema.
+>
+> Signed-off-by: Wenbin Mei <wenbin.mei@mediatek.com>
+> Reviewed-by: Ulf Hansson <ulf.hansson@linaro.org>
 
---W13SgbpmD6bhZUTM
-Content-Type: text/plain; charset=us-ascii
-Content-Disposition: inline
-Content-Transfer-Encoding: quoted-printable
+Please, don't add reviewed-by tags during an ongoing review, unless
+the reviewer explicitly states that the change looks good. The same
+applies to patch 2 in this series.
 
-On Wed, Sep 09, 2020 at 04:10:35PM +0800, JC Kuo wrote:
-> PMC driver provides USB sleepwalk registers access to XUSB PADCTL
-> driver. This commit adds a "nvidia,pmc" property which points to
-> PMC node to XUSB PADCTL device node.
->=20
-> Signed-off-by: JC Kuo <jckuo@nvidia.com>
+No need to resend this time because of this, but please keep this in
+mind when going forward.
+
+Kind regards
+Uffe
+
 > ---
-> v3:
->    no change
->=20
->  arch/arm64/boot/dts/nvidia/tegra210.dtsi | 1 +
->  1 file changed, 1 insertion(+)
->=20
-> diff --git a/arch/arm64/boot/dts/nvidia/tegra210.dtsi b/arch/arm64/boot/d=
-ts/nvidia/tegra210.dtsi
-> index 829f786af133..67c90a0ea32e 100644
-> --- a/arch/arm64/boot/dts/nvidia/tegra210.dtsi
-> +++ b/arch/arm64/boot/dts/nvidia/tegra210.dtsi
-> @@ -1040,6 +1040,7 @@ padctl: padctl@7009f000 {
->  		reg =3D <0x0 0x7009f000 0x0 0x1000>;
->  		resets =3D <&tegra_car 142>;
->  		reset-names =3D "padctl";
-> +		nvidia,pmc =3D  <&tegra_pmc>;
-
-I hadn't noticed before but it looks like the DT bindings haven't been
-updated with this new property.
-
-Thierry
-
---W13SgbpmD6bhZUTM
-Content-Type: application/pgp-signature; name="signature.asc"
-
------BEGIN PGP SIGNATURE-----
-
-iQIzBAABCAAdFiEEiOrDCAFJzPfAjcif3SOs138+s6EFAl9x4sIACgkQ3SOs138+
-s6HWqg/8DMiLknpahQo13U3TFzvtXjlf/yVXUEReLgWrewX9W9a2ib8WRVvMYlCx
-cHJu0tKxedFdq/kn0mAz/k01k9g/UIpHFHAkUlx6qASr1N5e9PPPRdijhnqMY8wY
-guCIo1aRPIK+IH6U19pUojHz8LTk9pNUADJ/6rFP+Rbp1gwn7wEOvas8McrzgB3B
-dPXYLg38wAWIVMDMMQvnap/JgMlacB08KukY1xZiIuEe2gz10ZZvDw8xQxbcWfWj
-KGUAsW0lqBJ8Jk0KSs0geCrrTQ7fI6tCD07mtzIh4mrE/2Y6llj+R5JLxV+hu7l3
-13qIRTlMWmtvzDEaD+KX04ddS02XMWp7W+Dk/HwvvaLYENhagBOVM394yK2Yqhkn
-L+nTJGrgcGxyX0f2XIQaa1ZeOg0hVIyi2mu7xtsf4j8KpO+gh35W9CdBR7rp0EFi
-D3i40FrPZKvoeGCpe3G80b3ukcfE2ptiozLpgjhWH+RlQgUNFBXjf3UzjAnclOBV
-wAHcceynIKHCs2TWqB+0hm0dNwF7yoe9qWGuopC3JlWldQOfb3hQzxkSZgAtWraG
-alkROifp2RzY7lfgz39QgLIgPu5C1baFsUPNEJCTpoxxJrLOGaBicWGfMGtqDH5B
-+zm8gB0/d1sDrq7jY+ZzQ5AYVhithkqyaDsm1gC6kNjBrpLKND8=
-=cN4A
------END PGP SIGNATURE-----
-
---W13SgbpmD6bhZUTM--
+>  .../devicetree/bindings/mmc/mtk-sd.txt        |  75 --------
+>  .../devicetree/bindings/mmc/mtk-sd.yaml       | 165 ++++++++++++++++++
+>  2 files changed, 165 insertions(+), 75 deletions(-)
+>  delete mode 100644 Documentation/devicetree/bindings/mmc/mtk-sd.txt
+>  create mode 100644 Documentation/devicetree/bindings/mmc/mtk-sd.yaml
+>
+> diff --git a/Documentation/devicetree/bindings/mmc/mtk-sd.txt b/Documentation/devicetree/bindings/mmc/mtk-sd.txt
+> deleted file mode 100644
+> index 26a8f320a156..000000000000
+> --- a/Documentation/devicetree/bindings/mmc/mtk-sd.txt
+> +++ /dev/null
+> @@ -1,75 +0,0 @@
+> -* MTK MMC controller
+> -
+> -The MTK  MSDC can act as a MMC controller
+> -to support MMC, SD, and SDIO types of memory cards.
+> -
+> -This file documents differences between the core properties in mmc.txt
+> -and the properties used by the msdc driver.
+> -
+> -Required properties:
+> -- compatible: value should be either of the following.
+> -       "mediatek,mt8135-mmc": for mmc host ip compatible with mt8135
+> -       "mediatek,mt8173-mmc": for mmc host ip compatible with mt8173
+> -       "mediatek,mt8183-mmc": for mmc host ip compatible with mt8183
+> -       "mediatek,mt8516-mmc": for mmc host ip compatible with mt8516
+> -       "mediatek,mt6779-mmc": for mmc host ip compatible with mt6779
+> -       "mediatek,mt2701-mmc": for mmc host ip compatible with mt2701
+> -       "mediatek,mt2712-mmc": for mmc host ip compatible with mt2712
+> -       "mediatek,mt7622-mmc": for MT7622 SoC
+> -       "mediatek,mt7623-mmc", "mediatek,mt2701-mmc": for MT7623 SoC
+> -       "mediatek,mt7620-mmc", for MT7621 SoC (and others)
+> -
+> -- reg: physical base address of the controller and length
+> -- interrupts: Should contain MSDC interrupt number
+> -- clocks: Should contain phandle for the clock feeding the MMC controller
+> -- clock-names: Should contain the following:
+> -       "source" - source clock (required)
+> -       "hclk" - HCLK which used for host (required)
+> -       "source_cg" - independent source clock gate (required for MT2712)
+> -       "bus_clk" - bus clock used for internal register access (required for MT2712 MSDC0/3)
+> -- pinctrl-names: should be "default", "state_uhs"
+> -- pinctrl-0: should contain default/high speed pin ctrl
+> -- pinctrl-1: should contain uhs mode pin ctrl
+> -- vmmc-supply: power to the Core
+> -- vqmmc-supply: power to the IO
+> -
+> -Optional properties:
+> -- assigned-clocks: PLL of the source clock
+> -- assigned-clock-parents: parent of source clock, used for HS400 mode to get 400Mhz source clock
+> -- hs400-ds-delay: HS400 DS delay setting
+> -- mediatek,hs200-cmd-int-delay: HS200 command internal delay setting.
+> -                               This field has total 32 stages.
+> -                               The value is an integer from 0 to 31.
+> -- mediatek,hs400-cmd-int-delay: HS400 command internal delay setting
+> -                               This field has total 32 stages.
+> -                               The value is an integer from 0 to 31.
+> -- mediatek,hs400-cmd-resp-sel-rising:  HS400 command response sample selection
+> -                                      If present,HS400 command responses are sampled on rising edges.
+> -                                      If not present,HS400 command responses are sampled on falling edges.
+> -- mediatek,latch-ck: Some SoCs do not support enhance_rx, need set correct latch-ck to avoid data crc
+> -                    error caused by stop clock(fifo full)
+> -                    Valid range = [0:0x7]. if not present, default value is 0.
+> -                    applied to compatible "mediatek,mt2701-mmc".
+> -- resets: Phandle and reset specifier pair to softreset line of MSDC IP.
+> -- reset-names: Should be "hrst".
+> -
+> -Examples:
+> -mmc0: mmc@11230000 {
+> -       compatible = "mediatek,mt8173-mmc", "mediatek,mt8135-mmc";
+> -       reg = <0 0x11230000 0 0x108>;
+> -       interrupts = <GIC_SPI 39 IRQ_TYPE_LEVEL_LOW>;
+> -       vmmc-supply = <&mt6397_vemc_3v3_reg>;
+> -       vqmmc-supply = <&mt6397_vio18_reg>;
+> -       clocks = <&pericfg CLK_PERI_MSDC30_0>,
+> -                <&topckgen CLK_TOP_MSDC50_0_H_SEL>;
+> -       clock-names = "source", "hclk";
+> -       pinctrl-names = "default", "state_uhs";
+> -       pinctrl-0 = <&mmc0_pins_default>;
+> -       pinctrl-1 = <&mmc0_pins_uhs>;
+> -       assigned-clocks = <&topckgen CLK_TOP_MSDC50_0_SEL>;
+> -       assigned-clock-parents = <&topckgen CLK_TOP_MSDCPLL_D2>;
+> -       hs400-ds-delay = <0x14015>;
+> -       mediatek,hs200-cmd-int-delay = <26>;
+> -       mediatek,hs400-cmd-int-delay = <14>;
+> -       mediatek,hs400-cmd-resp-sel-rising;
+> -};
+> diff --git a/Documentation/devicetree/bindings/mmc/mtk-sd.yaml b/Documentation/devicetree/bindings/mmc/mtk-sd.yaml
+> new file mode 100644
+> index 000000000000..2d5ab1411cd5
+> --- /dev/null
+> +++ b/Documentation/devicetree/bindings/mmc/mtk-sd.yaml
+> @@ -0,0 +1,165 @@
+> +# MTK-License-Identifier: GPL-2.0
+> +%YAML 1.2
+> +---
+> +$id: http://devicetree.org/schemas/mmc/mtk-sd.yaml#
+> +$schema: http://devicetree.org/meta-schemas/core.yaml#
+> +
+> +title: MTK MSDC Storage Host Controller Binding
+> +
+> +maintainers:
+> +  - Ulf Hansson <ulf.hansson@linaro.org>
+> +
+> +allOf:
+> +  - $ref: mmc-controller.yaml#
+> +
+> +properties:
+> +  compatible:
+> +    oneOf:
+> +      - const: mediatek,mt8135-mmc
+> +      - const: mediatek,mt8173-mmc
+> +      - const: mediatek,mt8183-mmc
+> +      - const: mediatek,mt8516-mmc
+> +      - const: mediatek,mt6779-mmc
+> +      - const: mediatek,mt2701-mmc
+> +      - const: mediatek,mt2712-mmc
+> +      - const: mediatek,mt7622-mmc
+> +      - items:
+> +        - const: mediatek,mt7623-mmc
+> +        - const: mediatek,mt2701-mmc
+> +      - const: mediatek,mt7620-mmc
+> +
+> +  reg:
+> +    description:
+> +      physical base address of the controller and length.
+> +    minItems: 1
+> +    maxItems: 2
+> +
+> +  interrupts:
+> +    description:
+> +      Should contain MSDC interrupt number.
+> +    maxItems: 1
+> +
+> +  clocks:
+> +    description:
+> +      Should contain phandle for the clock feeding the MMC controller.
+> +    minItems: 2
+> +    maxItems: 4
+> +    items:
+> +      - description: source clock (required).
+> +      - description: HCLK which used for host (required).
+> +      - description: independent source clock gate (required for MT2712).
+> +      - description: bus clock used for internal register access (required for MT2712 MSDC0/3).
+> +
+> +  clock-names:
+> +    minItems: 2
+> +    maxItems: 4
+> +    items:
+> +      - const: source
+> +      - const: hclk
+> +      - const: source_cg
+> +      - const: bus_clk
+> +
+> +  pinctrl-names:
+> +    items:
+> +      - const: default
+> +      - const: state_uhs
+> +
+> +  pinctrl-0:
+> +    description:
+> +      should contain default/high speed pin ctrl.
+> +    maxItems: 1
+> +
+> +  pinctrl-1:
+> +    description:
+> +      should contain uhs mode pin ctrl.
+> +    maxItems: 1
+> +
+> +  vmmc-supply:
+> +    description:
+> +      power to the Core.
+> +
+> +  vqmmc-supply:
+> +    description:
+> +      power to the IO.
+> +
+> +  assigned-clocks:
+> +    description:
+> +      PLL of the source clock.
+> +
+> +  assigned-clock-parents:
+> +    description:
+> +      parent of source clock, used for HS400 mode to get 400Mhz source clock.
+> +
+> +  hs400-ds-delay:
+> +    $ref: /schemas/types.yaml#/definitions/uint32
+> +    description:
+> +      HS400 DS delay setting.
+> +
+> +  mediatek,hs200-cmd-int-delay:
+> +    $ref: /schemas/types.yaml#/definitions/uint32
+> +    description:
+> +      HS200 command internal delay setting.
+> +      This field has total 32 stages.
+> +      The value is an integer from 0 to 31.
+> +
+> +  mediatek,hs400-cmd-int-delay:
+> +    $ref: /schemas/types.yaml#/definitions/uint32
+> +    description:
+> +      HS400 command internal delay setting.
+> +      This field has total 32 stages.
+> +      The value is an integer from 0 to 31.
+> +
+> +  mediatek,hs400-cmd-resp-sel-rising:
+> +    $ref: /schemas/types.yaml#/definitions/flag
+> +    description:
+> +      HS400 command response sample selection.
+> +      If present, HS400 command responses are sampled on rising edges.
+> +      If not present, HS400 command responses are sampled on falling edges.
+> +
+> +  mediatek,latch-ck:
+> +    $ref: /schemas/types.yaml#/definitions/uint32
+> +    description:
+> +      Some SoCs do not support enhance_rx, need set correct latch-ck to avoid
+> +      data crc error caused by stop clock(fifo full) Valid range = [0:0x7].
+> +      if not present, default value is 0.
+> +      applied to compatible "mediatek,mt2701-mmc".
+> +
+> +  resets:
+> +    maxItems: 1
+> +
+> +  reset-names:
+> +    const: hrst
+> +
+> +required:
+> +  - compatible
+> +  - reg
+> +  - interrupts
+> +  - clocks
+> +  - clock-names
+> +
+> +examples:
+> +  - |
+> +    #include <dt-bindings/interrupt-controller/irq.h>
+> +    #include <dt-bindings/interrupt-controller/arm-gic.h>
+> +    #include <dt-bindings/clock/mt8173-clk.h>
+> +    mmc0: mmc@11230000 {
+> +        compatible = "mediatek,mt8173-mmc";
+> +        reg = <0x11230000 0x1000>;
+> +        interrupts = <GIC_SPI 39 IRQ_TYPE_LEVEL_LOW>;
+> +        vmmc-supply = <&mt6397_vemc_3v3_reg>;
+> +        vqmmc-supply = <&mt6397_vio18_reg>;
+> +        clocks = <&pericfg CLK_PERI_MSDC30_0>,
+> +                 <&topckgen CLK_TOP_MSDC50_0_H_SEL>;
+> +        clock-names = "source", "hclk";
+> +        pinctrl-names = "default", "state_uhs";
+> +        pinctrl-0 = <&mmc0_pins_default>;
+> +        pinctrl-1 = <&mmc0_pins_uhs>;
+> +        assigned-clocks = <&topckgen CLK_TOP_MSDC50_0_SEL>;
+> +        assigned-clock-parents = <&topckgen CLK_TOP_MSDCPLL_D2>;
+> +        hs400-ds-delay = <0x14015>;
+> +        mediatek,hs200-cmd-int-delay = <26>;
+> +        mediatek,hs400-cmd-int-delay = <14>;
+> +        mediatek,hs400-cmd-resp-sel-rising;
+> +    };
+> +
+> +...
+> --
+> 2.18.0
