@@ -2,77 +2,72 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from vger.kernel.org (vger.kernel.org [23.128.96.18])
-	by mail.lfdr.de (Postfix) with ESMTP id 3801127B528
-	for <lists+devicetree@lfdr.de>; Mon, 28 Sep 2020 21:20:40 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTP id 2DEC327B55C
+	for <lists+devicetree@lfdr.de>; Mon, 28 Sep 2020 21:35:56 +0200 (CEST)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S1726559AbgI1TUj (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Mon, 28 Sep 2020 15:20:39 -0400
-Received: from lindbergh.monkeyblade.net ([23.128.96.19]:56842 "EHLO
-        lindbergh.monkeyblade.net" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S1726380AbgI1TUj (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Mon, 28 Sep 2020 15:20:39 -0400
-Received: from mail-lf1-x142.google.com (mail-lf1-x142.google.com [IPv6:2a00:1450:4864:20::142])
-        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 3ED1CC061755;
-        Mon, 28 Sep 2020 12:20:39 -0700 (PDT)
-Received: by mail-lf1-x142.google.com with SMTP id b12so2616353lfp.9;
-        Mon, 28 Sep 2020 12:20:39 -0700 (PDT)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=gmail.com; s=20161025;
-        h=mime-version:references:in-reply-to:from:date:message-id:subject:to
-         :cc;
-        bh=hWqJVzHlGh0zS1liHTgxa9/k0Wwyb2Aq2Bz1Zqwz320=;
-        b=KhL+yZUxJWkWr8zKGRwtX8fZprWjsAhw4ZAYx2Bzv4QF++o5qU03/6L/gCHcxcZuRh
-         2jBOAHt9fdxw2AbHr2Y2LB2eyyJHTzJxdzywXccvFTrgnlca4WkJ1d8UxBjMQXRQxnx/
-         4CDzqaYhc3zRpoH3KRNvdGbTWL6Wj+O0phuVxdcD15B2ZSItm0E14OneaOj/Prtly4C1
-         iifS9hXjFOWTlKXcmDjGVY/HlFGOwIA14PdyjVcts6r1MqxuIkEjz6bJFYWAOgrqKLNs
-         V8mF9tG/MsRagQYiJXRb3ZdKhLYqNRb78dSNwPoTeoadk45nUmhb6Z78OtL9WwP0d8pE
-         HR/A==
-X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=1e100.net; s=20161025;
-        h=x-gm-message-state:mime-version:references:in-reply-to:from:date
-         :message-id:subject:to:cc;
-        bh=hWqJVzHlGh0zS1liHTgxa9/k0Wwyb2Aq2Bz1Zqwz320=;
-        b=f0adZP7haOht2kkGnYoesgzots+YiiTCRUd+5rY3fP0f0tHzqc+zHopyTaJ0e3ZUO2
-         w0hiYux6vPmlsqHE8wUoGpxYclsPwLncRiokDo0jvxQV5gF/Qa/ppvOuNZrhMnD830iw
-         6SoxrhEtvls4HWYiygvKpWb8Gj6RWmc764zZUKCR3nsS4m/o1MrL2y1vRJaz8rK5jDjF
-         dBfUuUsSY7UaKnwHk1xWGcvlVFJJEQtHy+2rPn0CkMNEaC5KbqzOA8Qo+zBvzl6dOU1k
-         Jquq7lzVZ60gGPeT20ur38hQWvOrkX4PvcJmYWk7PnR5+j7ParVTSoCcRLsO7il+82nB
-         idEw==
-X-Gm-Message-State: AOAM533WOL9NMrWiZll+CDmFsdoy0HMrbp9EWrfTCu1o7jQhA1xFTy2g
-        qq+Ykkxxywhtsdw/tngWDbKAavVNYfjdjD/UY3E=
-X-Google-Smtp-Source: ABdhPJywziMYQBuBPNOM3y1/rTq5UzFdUQP8SrrqwmA+u6qmq1pEaWFc48K4iCRdRfV1i9JbsC84qbWCObXxB+ZFY2g=
-X-Received: by 2002:a19:c355:: with SMTP id t82mr1041111lff.251.1601320837698;
- Mon, 28 Sep 2020 12:20:37 -0700 (PDT)
-MIME-Version: 1.0
-References: <20200928090455.34364-1-ran.wang_1@nxp.com>
-In-Reply-To: <20200928090455.34364-1-ran.wang_1@nxp.com>
-From:   Fabio Estevam <festevam@gmail.com>
-Date:   Mon, 28 Sep 2020 16:20:26 -0300
-Message-ID: <CAOMZO5CrGi-=DCH8tfit2qZN7nJOGkfyN05g6ncu6MmrMT+2wA@mail.gmail.com>
-Subject: Re: [PATCH] arm64: dts: fix endianness of rcpm
-To:     Ran Wang <ran.wang_1@nxp.com>
-Cc:     Shawn Guo <shawnguo@kernel.org>, Li Yang <leoyang.li@nxp.com>,
-        "moderated list:ARM/FREESCALE LAYERSCAPE ARM ARCHITECTURE" 
-        <linux-arm-kernel@lists.infradead.org>,
-        "open list:OPEN FIRMWARE AND FLATTENED DEVICE TREE BINDINGS" 
-        <devicetree@vger.kernel.org>,
-        open list <linux-kernel@vger.kernel.org>,
-        Biwen Li <biwen.li@nxp.com>
-Content-Type: text/plain; charset="UTF-8"
+        id S1726814AbgI1Tfz (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Mon, 28 Sep 2020 15:35:55 -0400
+Received: from mail.kernel.org ([198.145.29.99]:36238 "EHLO mail.kernel.org"
+        rhost-flags-OK-OK-OK-OK) by vger.kernel.org with ESMTP
+        id S1726812AbgI1Tfz (ORCPT <rfc822;devicetree@vger.kernel.org>);
+        Mon, 28 Sep 2020 15:35:55 -0400
+Received: from localhost (fw-tnat.cambridge.arm.com [217.140.96.140])
+        (using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
+        (No client certificate requested)
+        by mail.kernel.org (Postfix) with ESMTPSA id 209352075F;
+        Mon, 28 Sep 2020 19:35:53 +0000 (UTC)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=kernel.org;
+        s=default; t=1601321754;
+        bh=eb4KPVAJh97urPybGYCkAyei3EZUU+NAGt7oeK2z6cE=;
+        h=Date:From:To:Cc:In-Reply-To:References:Subject:From;
+        b=KaT4LjPWz8mQsvw+IpPMoAC/B8kTosTqegEyqb+lYWNy3NJUcWvCyPEGmkQKuazRJ
+         mSHPRgJMsTRZWriVpiiHNavx83yPL7K6UXuYytoyKAEdtdEy9Mt/MwnfRMTiZ1AQpf
+         mJqVRlruuGn7KqWR9Clqia6rYPZ+xXkOHAx/S6ho=
+Date:   Mon, 28 Sep 2020 20:34:57 +0100
+From:   Mark Brown <broonie@kernel.org>
+To:     alsa-devel@alsa-project.org, Fabio Estevam <festevam@gmail.com>,
+        devicetree@vger.kernel.org, Krzysztof Kozlowski <krzk@kernel.org>,
+        linux-kernel@vger.kernel.org, Rob Herring <robh+dt@kernel.org>,
+        Liam Girdwood <lgirdwood@gmail.com>
+In-Reply-To: <20200925212719.23286-1-krzk@kernel.org>
+References: <20200925212719.23286-1-krzk@kernel.org>
+Subject: Re: [PATCH] ASoC: dt-bindings: sgtl5000: Add common clock properties
+Message-Id: <160132168198.55254.15502764557761339058.b4-ty@kernel.org>
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-Hi Ran,
+On Fri, 25 Sep 2020 23:27:19 +0200, Krzysztof Kozlowski wrote:
+> Add common properties appearing in DTSes (assigned-clocks and similar)
+> to fix dtbs_check warnings like:
+> 
+>   arch/arm64/boot/dts/freescale/imx8mq-librem5-devkit.dt.yaml: audio-codec@a:
+>     'assigned-clock-parents', 'assigned-clock-rates', 'assigned-clocks' do not match any of the regexes: 'pinctrl-[0-9]+'
 
-On Mon, Sep 28, 2020 at 6:14 AM Ran Wang <ran.wang_1@nxp.com> wrote:
->
-> From: Biwen Li <biwen.li@nxp.com>
->
-> Add little-endian property of rcpm for ls1028a,ls1088a,ls208xa
->
-> Signed-off-by: Biwen Li <biwen.li@nxp.com>
+Applied to
 
-You missed your Signed-off-by tag.
+   https://git.kernel.org/pub/scm/linux/kernel/git/broonie/sound.git for-next
 
-What about adding a Fixes tag?
+Thanks!
+
+[1/1] ASoC: dt-bindings: sgtl5000: Add common clock properties
+      commit: 3bf7b94293922e436556b5ac06081af2a3775225
+
+All being well this means that it will be integrated into the linux-next
+tree (usually sometime in the next 24 hours) and sent to Linus during
+the next merge window (or sooner if it is a bug fix), however if
+problems are discovered then the patch may be dropped or reverted.
+
+You may get further e-mails resulting from automated or manual testing
+and review of the tree, please engage with people reporting problems and
+send followup patches addressing any issues that are reported if needed.
+
+If any updates are required or you are submitting further changes they
+should be sent as incremental updates against current git, existing
+patches will not be replaced.
+
+Please add any relevant lists and maintainers to the CCs when replying
+to this mail.
+
+Thanks,
+Mark
