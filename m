@@ -2,64 +2,65 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from vger.kernel.org (vger.kernel.org [23.128.96.18])
-	by mail.lfdr.de (Postfix) with ESMTP id 5067B27AFF8
-	for <lists+devicetree@lfdr.de>; Mon, 28 Sep 2020 16:27:58 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTP id 0AD7027B00F
+	for <lists+devicetree@lfdr.de>; Mon, 28 Sep 2020 16:37:39 +0200 (CEST)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S1726325AbgI1O15 (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Mon, 28 Sep 2020 10:27:57 -0400
-Received: from lindbergh.monkeyblade.net ([23.128.96.19]:39822 "EHLO
+        id S1726564AbgI1Ohi (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Mon, 28 Sep 2020 10:37:38 -0400
+Received: from lindbergh.monkeyblade.net ([23.128.96.19]:41316 "EHLO
         lindbergh.monkeyblade.net" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S1726281AbgI1O15 (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Mon, 28 Sep 2020 10:27:57 -0400
-Received: from mail-il1-x144.google.com (mail-il1-x144.google.com [IPv6:2607:f8b0:4864:20::144])
-        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 48166C061755;
-        Mon, 28 Sep 2020 07:27:55 -0700 (PDT)
-Received: by mail-il1-x144.google.com with SMTP id c5so1408470ilk.11;
-        Mon, 28 Sep 2020 07:27:55 -0700 (PDT)
+        with ESMTP id S1726650AbgI1Ohi (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Mon, 28 Sep 2020 10:37:38 -0400
+Received: from mail-io1-xd43.google.com (mail-io1-xd43.google.com [IPv6:2607:f8b0:4864:20::d43])
+        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 1F12AC061755;
+        Mon, 28 Sep 2020 07:37:38 -0700 (PDT)
+Received: by mail-io1-xd43.google.com with SMTP id m17so1365030ioo.1;
+        Mon, 28 Sep 2020 07:37:38 -0700 (PDT)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
         d=gmail.com; s=20161025;
         h=mime-version:references:in-reply-to:from:date:message-id:subject:to
          :cc:content-transfer-encoding;
-        bh=swpXeTWHWCNF6KXrz68zf9yRkpoPYhiTjW+lMQcubDQ=;
-        b=BOKMig27yWnniwJh3B4l/zCp7mHNUCUubmP8fwzAFvtftEdZrq/J5g9GHUBm8+rBuS
-         7amT5mIVNrvgC4h1nJVlIySswEDjj9KrXY7EYQiVaVvuH7TBrJ6dfBuiWOfpA6V2IDOx
-         x9LC2kOWZB0ps5+Cyr6Xg+yjE8OMl6kIbLSj/ATKUBG5HsSlyCEdJfEQK70juLfljq5j
-         1dQF4HWNgPah2G3fS8Xd50ag91nSTfdiRRC+sj1wUizOwipypUqx7Pk3IoeV7D/SwCNf
-         U3/X/j+AwtDaXBvH5eeOcRi5yscC+RRR6tBZQYohGmJfwYktf4JYiFAbARckHIswggK1
-         P8ww==
+        bh=t4AbdMx+cx7XDkAMRw5fwKPY3/PE3Njw9O2Txe+X7KQ=;
+        b=RKnX7n81fRNP7SzOx3e5G8EXU7UK8R6fQQS/GeZPWcPNO0fHznMAlSHnQkm9nvnLrl
+         ksK9e3gFSf/5HE6q+1+k4xGuglAUG8x97sx3OWUWZKZkB0+8VC3y+pz8aziKAxRYj0p2
+         DX3eEtEQPINky7M7wVu08YpNr86aBIJoIw8Qbdg5q6UCveVdStTyLkrqhJb3ZSgzz6Bw
+         mkn7/xxOKikbGxwvlcP82/Eelx8GDoo1TZ+QrTHCpejFZtbB1SX+GfKVDGW3T/i4LHGm
+         3jnwLLdiq78cQmGX4gRiJlxjxXVB9GdoOocjRhBSbK4ZzkMrkOdicqNLaXfmwjr1oKI3
+         FwVQ==
 X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
         d=1e100.net; s=20161025;
         h=x-gm-message-state:mime-version:references:in-reply-to:from:date
          :message-id:subject:to:cc:content-transfer-encoding;
-        bh=swpXeTWHWCNF6KXrz68zf9yRkpoPYhiTjW+lMQcubDQ=;
-        b=XqnHFZ3uvkcqowE7uKd/Z6+T170wtVrpGSdFX4jLiDeMon/384P64F+o26q+WMX3mG
-         zBxSY/8MCXt+OG7IMR39RG1yEolquHzTon4/isKYodh2+tcH9TVYbsmVrRuSFPvfzJrX
-         vNyTE6tTznyN40PEdH+sfZnOB8KCFn5+q+MANj6Dz7vk3LXzlP8EFYTdsyuHbbA7piKy
-         FiqdDm3fs5IYXZ5OJxbFeFhYeeloxUwf4YzqflfW005vS3+wEgjEV+tJawB8mlodJc+C
-         LI4THRlkghdSJ/53RbPaYHfA+zxquNuewqgep5m/rKcPmD5ekIYMWdFRhLu1t/hzNB23
-         f7mw==
-X-Gm-Message-State: AOAM533VwD6duyU0YYOT5B1DEXgxAZbw99VKTjdcs9aWHXlwfwfzCY6i
-        W9n/TIXiPuG8KH8MrTam/dWrrl7UUmDi+q4JC48=
-X-Google-Smtp-Source: ABdhPJzOveX0je2bblXhCXBXIiaCyUUc4S3JAXPSmt4lEfMi8iabOV8HZOiVHqjpmvDzsFtEhoueN56owxsQKZojPH0=
-X-Received: by 2002:a92:d68b:: with SMTP id p11mr1294955iln.59.1601303274202;
- Mon, 28 Sep 2020 07:27:54 -0700 (PDT)
+        bh=t4AbdMx+cx7XDkAMRw5fwKPY3/PE3Njw9O2Txe+X7KQ=;
+        b=AoJnfHEzXFu6dHxHno/oeFtK0DEwlsNIzvtv2pC8HLDKcuP8NXCbmk4vguhf09ree+
+         JOyW4DtMf7V1iu42riqkR90X9HTB406fNPESGiCMMwZBWee481e0JVREV3LPXcfeBoNH
+         BhkBVKnykJF9t/pfT8p4LAIOchvLKDA/vSujwZByWhJODgADmeaUGe64SNi0uUsrETf/
+         mfu9i3v/SHfX2cAxvMahF0+nzJlTznrSmvQF6xFeXpFasc0ZCAyiE96vLSFxcOFPwPze
+         U818rZyQlVjWgq1mwFVYasCpK2KQaIDZFexxKx465MczZBrEu4d5xCzuO0JKGJFxjDgl
+         gjXA==
+X-Gm-Message-State: AOAM533IjHHjUxuaNoc1NVir14GUL6lpSe8Bn3JjjoOz5AaFW6D+a6HX
+        Jz7cH8JvMSh4TXJ+dA7+iXq1CVo/LuzYd9GZJZY=
+X-Google-Smtp-Source: ABdhPJxOHv47DZJ/ZpY0xtNS8oWIQF4j+pHf/JhqayP0YQAVGa58IT3sFvvEifb5VWXPoiyhxnoRD09w6fFBNOXifxA=
+X-Received: by 2002:a6b:908:: with SMTP id t8mr7098983ioi.124.1601303857337;
+ Mon, 28 Sep 2020 07:37:37 -0700 (PDT)
 MIME-Version: 1.0
-References: <20200921102731.747736-1-peron.clem@gmail.com> <20200921135925.q7mde2cnt5jtzkb5@gilmour.lan>
- <CAJiuCcfz9A_Vmzq=s3LK2kGB_1tZPkC9Ux+Brdocp9py0fovAg@mail.gmail.com>
- <59286578.E0qSRroNqr@kista> <20200928084308.eipnvlfqe3c5lfmg@gilmour.lan>
-In-Reply-To: <20200928084308.eipnvlfqe3c5lfmg@gilmour.lan>
+References: <20200927192912.46323-1-peron.clem@gmail.com> <20200927192912.46323-2-peron.clem@gmail.com>
+ <CAGb2v65AhnqD6ec20h9vtd2GjqVsf_yz5+7VSa8giJuFJnd5ag@mail.gmail.com>
+In-Reply-To: <CAGb2v65AhnqD6ec20h9vtd2GjqVsf_yz5+7VSa8giJuFJnd5ag@mail.gmail.com>
 From:   =?UTF-8?B?Q2zDqW1lbnQgUMOpcm9u?= <peron.clem@gmail.com>
-Date:   Mon, 28 Sep 2020 16:27:42 +0200
-Message-ID: <CAJiuCceHXr_5PvG-FW+hRNV7Q33hGrp8kLbO0EgfqqBxF7wbqQ@mail.gmail.com>
-Subject: Re: [PATCH v4 09/22] arm64: dts: allwinner: h6: Add HDMI audio node
-To:     Maxime Ripard <maxime@cerno.tech>
-Cc:     =?UTF-8?Q?Jernej_=C5=A0krabec?= <jernej.skrabec@siol.net>,
-        Chen-Yu Tsai <wens@csie.org>, Rob Herring <robh+dt@kernel.org>,
+Date:   Mon, 28 Sep 2020 16:37:26 +0200
+Message-ID: <CAJiuCcevtzX_+02r54q6tH0+bOF=BM=knnaxN+G3QW035F8gZQ@mail.gmail.com>
+Subject: Re: [linux-sunxi] [PATCH v5 01/20] ASoC: sun4i-i2s: Add support for
+ H6 I2S
+To:     Chen-Yu Tsai <wens@csie.org>
+Cc:     Maxime Ripard <mripard@kernel.org>,
+        Rob Herring <robh+dt@kernel.org>,
         Mark Brown <broonie@kernel.org>,
         Liam Girdwood <lgirdwood@gmail.com>,
         Jaroslav Kysela <perex@perex.cz>,
         Takashi Iwai <tiwai@suse.com>,
         Marcus Cooper <codekipper@gmail.com>,
+        Jernej Skrabec <jernej.skrabec@siol.net>,
         Linux-ALSA <alsa-devel@alsa-project.org>,
         devicetree <devicetree@vger.kernel.org>,
         linux-arm-kernel <linux-arm-kernel@lists.infradead.org>,
@@ -71,87 +72,94 @@ Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-Hi Maxime,
+Hi Chen-Yu,
 
-On Mon, 28 Sep 2020 at 10:43, Maxime Ripard <maxime@cerno.tech> wrote:
+On Mon, 28 Sep 2020 at 06:40, Chen-Yu Tsai <wens@csie.org> wrote:
 >
-> On Mon, Sep 21, 2020 at 08:37:09PM +0200, Jernej =C5=A0krabec wrote:
-> > Dne ponedeljek, 21. september 2020 ob 19:23:49 CEST je Cl=C3=A9ment P=
-=C3=A9ron
-> > napisal(a):
-> > > Hi Maxime,
-> > >
-> > > On Mon, 21 Sep 2020 at 15:59, Maxime Ripard <maxime@cerno.tech> wrote=
-:
-> > > >
-> > > > On Mon, Sep 21, 2020 at 12:27:18PM +0200, Cl=C3=A9ment P=C3=A9ron w=
-rote:
-> > > > > From: Jernej Skrabec <jernej.skrabec@siol.net>
-> > > > >
-> > > > > Add a simple-soundcard to link audio between HDMI and I2S.
-> > > > >
-> > > > > Signed-off-by: Jernej Skrabec <jernej.skrabec@siol.net>
-> > > > > Signed-off-by: Marcus Cooper <codekipper@gmail.com>
-> > > > > Signed-off-by: Cl=C3=A9ment P=C3=A9ron <peron.clem@gmail.com>
-> > > > > ---
-> > > > >  arch/arm64/boot/dts/allwinner/sun50i-h6.dtsi | 33 ++++++++++++++=
-++++++
-> > > > >  1 file changed, 33 insertions(+)
-> > > > >
-> > > > > diff --git a/arch/arm64/boot/dts/allwinner/sun50i-h6.dtsi b/arch/=
-arm64/
-> > boot/dts/allwinner/sun50i-h6.dtsi
-> > > > > index 28c77d6872f6..a8853ee7885a 100644
-> > > > > --- a/arch/arm64/boot/dts/allwinner/sun50i-h6.dtsi
-> > > > > +++ b/arch/arm64/boot/dts/allwinner/sun50i-h6.dtsi
-> > > > > @@ -67,6 +67,25 @@ de: display-engine {
-> > > > >               status =3D "disabled";
-> > > > >       };
-> > > > >
-> > > > > +     hdmi_sound: hdmi-sound {
-> > > > > +             compatible =3D "simple-audio-card";
-> > > > > +             simple-audio-card,format =3D "i2s";
-> > > > > +             simple-audio-card,name =3D "sun50i-h6-hdmi";
-> > > > > +             simple-audio-card,mclk-fs =3D <128>;
-> > > > > +             simple-audio-card,frame-inversion;
-> > > > > +             status =3D "disabled";
-> > > > > +
-> > > > > +             simple-audio-card,codec {
-> > > > > +                     sound-dai =3D <&hdmi>;
-> > > > > +             };
-> > > > > +
-> > > > > +             simple-audio-card,cpu {
-> > > > > +                     sound-dai =3D <&i2s1>;
-> > > > > +                     dai-tdm-slot-num =3D <2>;
-> > > > > +                     dai-tdm-slot-width =3D <32>;
-> > > >
-> > > > It looks weird to have both some TDM setup here, and yet the format=
- in
-> > > > i2s?
-> > >
-> > > Yes, I agree I will check if it's really needed.
+> On Mon, Sep 28, 2020 at 3:29 AM Cl=C3=A9ment P=C3=A9ron <peron.clem@gmail=
+.com> wrote:
 > >
-> > I think this was explained before.
->
-> Possibly, but this should be in a comment or at least the commit log
->
-> > Anyway, this is needed to force width to 32, no matter actual sample
-> > width. That's a requirement of HDMI codec. I believe Marcus Cooper
-> > have another codec which also needs fixed width.
+> > From: Jernej Skrabec <jernej.skrabec@siol.net>
 > >
-> > There is no similar property for I2S, so TDM one is used here.
+> > H6 I2S is very similar to that in H3, except it supports up to 16
+> > channels.
+> >
+> > Signed-off-by: Jernej Skrabec <jernej.skrabec@siol.net>
+> > Signed-off-by: Marcus Cooper <codekipper@gmail.com>
+> > Signed-off-by: Cl=C3=A9ment P=C3=A9ron <peron.clem@gmail.com>
+> > ---
+> >  sound/soc/sunxi/sun4i-i2s.c | 224 ++++++++++++++++++++++++++++++++++++
+> >  1 file changed, 224 insertions(+)
+> >
+> > diff --git a/sound/soc/sunxi/sun4i-i2s.c b/sound/soc/sunxi/sun4i-i2s.c
+> > index f23ff29e7c1d..2baf6c276280 100644
+> > --- a/sound/soc/sunxi/sun4i-i2s.c
+> > +++ b/sound/soc/sunxi/sun4i-i2s.c
+> > @@ -124,6 +124,21 @@
+> >  #define SUN8I_I2S_RX_CHAN_SEL_REG      0x54
+> >  #define SUN8I_I2S_RX_CHAN_MAP_REG      0x58
+> >
+> > +/* Defines required for sun50i-h6 support */
+> > +#define SUN50I_H6_I2S_TX_CHAN_SEL_OFFSET_MASK  GENMASK(21, 20)
+> > +#define SUN50I_H6_I2S_TX_CHAN_SEL_OFFSET(offset)       ((offset) << 20=
+)
+> > +#define SUN50I_H6_I2S_TX_CHAN_SEL_MASK         GENMASK(19, 16)
+> > +#define SUN50I_H6_I2S_TX_CHAN_SEL(chan)                ((chan - 1) << =
+16)
+> > +#define SUN50I_H6_I2S_TX_CHAN_EN_MASK          GENMASK(15, 0)
+> > +#define SUN50I_H6_I2S_TX_CHAN_EN(num_chan)     (((1 << num_chan) - 1))
+> > +
+> > +#define SUN50I_H6_I2S_TX_CHAN_MAP0_REG 0x44
+> > +#define SUN50I_H6_I2S_TX_CHAN_MAP1_REG 0x48
+> > +
+> > +#define SUN50I_H6_I2S_RX_CHAN_SEL_REG  0x64
+> > +#define SUN50I_H6_I2S_RX_CHAN_MAP0_REG 0x68
+> > +#define SUN50I_H6_I2S_RX_CHAN_MAP1_REG 0x6C
+> > +
+> >  struct sun4i_i2s;
+> >
+> >  /**
+> > @@ -474,6 +489,62 @@ static int sun8i_i2s_set_chan_cfg(const struct sun=
+4i_i2s *i2s,
+> >         return 0;
+> >  }
+> >
+> > +static int sun50i_h6_i2s_set_chan_cfg(const struct sun4i_i2s *i2s,
+> > +                                     const struct snd_pcm_hw_params *p=
+arams)
+> > +{
+> > +       unsigned int channels =3D params_channels(params);
+> > +       unsigned int slots =3D channels;
+> > +       unsigned int lrck_period;
+> > +
+> > +       if (i2s->slots)
+> > +               slots =3D i2s->slots;
+> > +
+> > +       /* Map the channels for playback and capture */
+> > +       regmap_write(i2s->regmap, SUN50I_H6_I2S_TX_CHAN_MAP1_REG, 0x765=
+43210);
+> > +       regmap_write(i2s->regmap, SUN50I_H6_I2S_RX_CHAN_MAP1_REG, 0x765=
+43210);
 >
-> Except it's really dedicated to the TDM mode and doesn't really make
-> much sense here.
+> Nit, since it supports up to 16 channels, you might want to map all 16 of=
+ them
+> now, instead of having to come back and fix it later.
+
+Thanks for the review. Do you mean there is missing MAP0 for RX/TX ?
+
++ regmap_write(i2s->regmap, SUN50I_H6_I2S_TX_CHAN_MAP0_REG, 0xFEDCBA98);
+  regmap_write(i2s->regmap, SUN50I_H6_I2S_TX_CHAN_MAP1_REG, 0x76543210);
++ regmap_write(i2s->regmap, SUN50I_H6_I2S_RX_CHAN_MAP0_REG, 0xFEDCBA98);
+  regmap_write(i2s->regmap, SUN50I_H6_I2S_RX_CHAN_MAP1_REG, 0x76543210);
+
+Regards,
+Clement
+
 >
-> If we have special requirements like this on the codec setup, that
-> sounds like a good justification for creating a custom codec instead of
-> shoehorning it into simple-card
-
-When all the remarks are fixed would it be possible to merge the rest
-of the series without the dts changes ?
-
-I will propose another series to introduce a dedicated codec for that.
-
+> Code wise, this patch is
 >
-> Maxime
+> Reviewed-by: Chen-Yu Tsai <wens@csie.org>
+>
+> I don't have a scope nor logic analyzer, so I wasn't able to participate =
+in the
+> LRCK discussion.
