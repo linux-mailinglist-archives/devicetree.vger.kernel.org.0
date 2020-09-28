@@ -2,133 +2,133 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from vger.kernel.org (vger.kernel.org [23.128.96.18])
-	by mail.lfdr.de (Postfix) with ESMTP id CD85C27B178
-	for <lists+devicetree@lfdr.de>; Mon, 28 Sep 2020 18:11:32 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTP id 622BE27B191
+	for <lists+devicetree@lfdr.de>; Mon, 28 Sep 2020 18:14:34 +0200 (CEST)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S1726558AbgI1QLb (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Mon, 28 Sep 2020 12:11:31 -0400
-Received: from mail.kernel.org ([198.145.29.99]:53972 "EHLO mail.kernel.org"
-        rhost-flags-OK-OK-OK-OK) by vger.kernel.org with ESMTP
-        id S1726497AbgI1QLb (ORCPT <rfc822;devicetree@vger.kernel.org>);
-        Mon, 28 Sep 2020 12:11:31 -0400
-Received: from mail-oo1-f44.google.com (mail-oo1-f44.google.com [209.85.161.44])
-        (using TLSv1.2 with cipher ECDHE-RSA-AES128-GCM-SHA256 (128/128 bits))
-        (No client certificate requested)
-        by mail.kernel.org (Postfix) with ESMTPSA id A0F4A21548;
-        Mon, 28 Sep 2020 16:11:30 +0000 (UTC)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=kernel.org;
-        s=default; t=1601309490;
-        bh=y7Ht+HIoWAID9ib1LG69AukUP/qaBDCDCsuCUzh0IU0=;
-        h=References:In-Reply-To:From:Date:Subject:To:Cc:From;
-        b=TWhsInoh8l00v6MHThgJtc5oUVQQPeTFbPwsPJNSu9LegpqMFEUd9e8B35nccSF0D
-         XhGT1iQfT2XZ7if8ms16F4tf3z7ifV1+3LnN0+W1DO8HX/O+G9DeAXvvzyhrXz9ahM
-         kn78bNqB3avW25ICQj/9SFpB8lkQNnHI6GOL5yC8=
-Received: by mail-oo1-f44.google.com with SMTP id 4so442728ooh.11;
-        Mon, 28 Sep 2020 09:11:30 -0700 (PDT)
-X-Gm-Message-State: AOAM531kM4nL9WD50JPCTJq9XlYM+zhdBzWad46fyjvxbGSM+Z+MRavL
-        VjhZfVkfxnSLM2WAbPbhyLd3aKilrx6QfJJ/mg==
-X-Google-Smtp-Source: ABdhPJxQ0XrJldHlAlasL8LskhnxKn4rvhzIbvnTwVOlPxEkFI7ABmwRRPVArMfumYTTnAZO3Bmo4AaXE338LE21RCU=
-X-Received: by 2002:a4a:d306:: with SMTP id g6mr1359413oos.25.1601309489933;
- Mon, 28 Sep 2020 09:11:29 -0700 (PDT)
+        id S1726667AbgI1QOU (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Mon, 28 Sep 2020 12:14:20 -0400
+Received: from lindbergh.monkeyblade.net ([23.128.96.19]:56280 "EHLO
+        lindbergh.monkeyblade.net" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
+        with ESMTP id S1726657AbgI1QOT (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Mon, 28 Sep 2020 12:14:19 -0400
+Received: from mail-wm1-x32d.google.com (mail-wm1-x32d.google.com [IPv6:2a00:1450:4864:20::32d])
+        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 9C9C5C061755
+        for <devicetree@vger.kernel.org>; Mon, 28 Sep 2020 09:14:18 -0700 (PDT)
+Received: by mail-wm1-x32d.google.com with SMTP id e2so1757599wme.1
+        for <devicetree@vger.kernel.org>; Mon, 28 Sep 2020 09:14:18 -0700 (PDT)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+        d=baylibre-com.20150623.gappssmtp.com; s=20150623;
+        h=from:to:cc:subject:date:message-id:in-reply-to:references
+         :mime-version:content-transfer-encoding;
+        bh=vbHHP40xkg2uYk/UH9HSDIAS1kguxIesOVY207PSNWM=;
+        b=FNsS1JaCt6m6mE/WfI8++x/y/+lxIpJoJGF+TsZB7s2VnQlOiprldL24g4EEBMhIdy
+         pnZySMRZ91Rnxw8DhYbli2oDrlt/yfizs5leKTyZTtrLVjQVEsA4YoxPrtH8LtCPWE6F
+         WtC37v5DzATeRgAGn9bfM8Iuw6HOBVgpTlswzf5QNYoDruGAsPupPfRvUDGCsL+YeAVT
+         E9U25/3fjIddYm3az2X4p7/xeazYapF4KNfMDiGpQbUnZdYDnXNL60W83gjKuUWkq8JN
+         hMpJLyNXdvsc9VRFFQehVCnOiw95MvMihshOxAi8s1ueIg6qZ6m5Aagp6fPid5/kCdF2
+         g83A==
+X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+        d=1e100.net; s=20161025;
+        h=x-gm-message-state:from:to:cc:subject:date:message-id:in-reply-to
+         :references:mime-version:content-transfer-encoding;
+        bh=vbHHP40xkg2uYk/UH9HSDIAS1kguxIesOVY207PSNWM=;
+        b=pdYjiDp1lnHCf7ZPhZheUqTmeYzBXYGoCcPgs9kFrapxa4uEP1QZ5DONrZGSKDI+hE
+         P6fskN9XhRkZ86vR4OcIVh0euqkNmIvqymmjTr0EQIjUk+/4G9kSlyZy9LgOraFTBBzc
+         SS/lDjZjeyKco1nfbXUFIleranAeG5wSsz7/aVbw6tK7cTqLGa8OdBK1reCoPk3Q8duF
+         DpS6eYSJFkuO35aMAg/QyQCo8Xgpz+MOkJGkpeYyRwbZFSBPpWQAoHQxQItv4dM7/7V7
+         Gk7cKSppDlUu2nmImyZylrBQH+ljaE9FvylDeu0nnkmLFJn+maQVNlZyLhNPpUJtgif2
+         aMcA==
+X-Gm-Message-State: AOAM532uhZRlxoVrAc/sNqWwPjvG03z+z/8/jljxFzn/uqnPdjzX+gTJ
+        i+ykY7SEXkuFyYrxIL07SLWevw==
+X-Google-Smtp-Source: ABdhPJz2Xorp3vXaFUhQ6uWGhTbeVdxJs51CEXnFKiSt47Nj3cKxXsEMNjeoSd7oepsFB9yy40noNg==
+X-Received: by 2002:a7b:c848:: with SMTP id c8mr2254953wml.184.1601309657138;
+        Mon, 28 Sep 2020 09:14:17 -0700 (PDT)
+Received: from localhost.localdomain ([2a01:e35:2ec0:82b0:19c2:a71d:5af8:dbf6])
+        by smtp.gmail.com with ESMTPSA id n4sm2004867wrp.61.2020.09.28.09.14.15
+        (version=TLS1_3 cipher=TLS_AES_256_GCM_SHA384 bits=256/256);
+        Mon, 28 Sep 2020 09:14:16 -0700 (PDT)
+From:   Neil Armstrong <narmstrong@baylibre.com>
+To:     hverkuil-cisco@xs4all.nl, devicetree@vger.kernel.org
+Cc:     Neil Armstrong <narmstrong@baylibre.com>,
+        linux-media@vger.kernel.org, linux-amlogic@lists.infradead.org,
+        linux-arm-kernel@lists.infradead.org, linux-kernel@vger.kernel.org
+Subject: [PATCH 1/4] dt-bindings: media: Add bindings for the Amlogic GE2D Accelerator Unit
+Date:   Mon, 28 Sep 2020 18:14:08 +0200
+Message-Id: <20200928161411.323581-2-narmstrong@baylibre.com>
+X-Mailer: git-send-email 2.25.1
+In-Reply-To: <20200928161411.323581-1-narmstrong@baylibre.com>
+References: <20200928161411.323581-1-narmstrong@baylibre.com>
 MIME-Version: 1.0
-References: <20200919053145.7564-1-post@lespocky.de> <20200919053145.7564-4-post@lespocky.de>
- <20200922154258.GA2731185@bogus> <25430034.0KxgpkDxtS@ada>
-In-Reply-To: <25430034.0KxgpkDxtS@ada>
-From:   Rob Herring <robh@kernel.org>
-Date:   Mon, 28 Sep 2020 11:11:18 -0500
-X-Gmail-Original-Message-ID: <CAL_Jsq+1ULfQAWGT5QN=Es9POXtO7-iu6ihZnZFoQ_bWKLFxCg@mail.gmail.com>
-Message-ID: <CAL_Jsq+1ULfQAWGT5QN=Es9POXtO7-iu6ihZnZFoQ_bWKLFxCg@mail.gmail.com>
-Subject: Re: [PATCH v5 3/3] dt-bindings: leds: Convert pwm to yaml
-To:     Alexander Dahl <ada@thorsis.com>
-Cc:     Alexander Dahl <post@lespocky.de>,
-        =?UTF-8?B?TWFyZWsgQmVow7pu?= <marek.behun@nic.cz>,
-        Linux LED Subsystem <linux-leds@vger.kernel.org>,
-        Pavel Machek <pavel@ucw.cz>,
-        Peter Ujfalusi <peter.ujfalusi@ti.com>,
-        devicetree@vger.kernel.org, Dan Murphy <dmurphy@ti.com>,
-        "linux-kernel@vger.kernel.org" <linux-kernel@vger.kernel.org>,
-        Jacek Anaszewski <jacek.anaszewski@gmail.com>
-Content-Type: text/plain; charset="UTF-8"
-Content-Transfer-Encoding: quoted-printable
+Content-Transfer-Encoding: 8bit
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-On Mon, Sep 28, 2020 at 6:19 AM Alexander Dahl <ada@thorsis.com> wrote:
->
-> Hello Rob,
->
-> Am Dienstag, 22. September 2020, 17:42:58 CEST schrieb Rob Herring:
-> > On Sat, 19 Sep 2020 07:31:45 +0200, Alexander Dahl wrote:
-> > > The example was adapted slightly to make use of the 'function' and
-> > > 'color' properties.  License discussed with the original author.
-> > >
-> > > Suggested-by: Jacek Anaszewski <jacek.anaszewski@gmail.com>
-> > > Signed-off-by: Alexander Dahl <post@lespocky.de>
-> > > Cc: Peter Ujfalusi <peter.ujfalusi@ti.com>
-> > > ---
-> > >
-> > > Notes:
-> > >     v4 -> v5:
-> > >       * updated based on feedback by Rob Herring
-> > >       * removed Acked-by
-> > >
-> > >     v3 -> v4:
-> > >       * added Cc to original author of the binding
-> > >
-> > >     v2 -> v3:
-> > >       * changed license identifier to recommended one
-> > >       * added Acked-by
-> > >
-> > >     v2:
-> > >       * added this patch to series (Suggested-by: Jacek Anaszewski)
-> > >
-> > >  .../devicetree/bindings/leds/leds-pwm.txt     | 50 -----------
-> > >  .../devicetree/bindings/leds/leds-pwm.yaml    | 82 +++++++++++++++++=
-++
-> > >  2 files changed, 82 insertions(+), 50 deletions(-)
-> > >  delete mode 100644 Documentation/devicetree/bindings/leds/leds-pwm.t=
-xt
-> > >  create mode 100644 Documentation/devicetree/bindings/leds/leds-pwm.y=
-aml
-> >
-> > My bot found errors running 'make dt_binding_check' on your patch:
-> >
-> > /builds/robherring/linux-dt-review/Documentation/devicetree/bindings/mf=
-d/iqs
-> > 62x.example.dt.yaml: pwmleds: 'panel' does not match any of the regexes=
-:
-> > '^led(-[0-9a-f]+)?$', 'pinctrl-[0-9]+' From schema:
-> > /builds/robherring/linux-dt-review/Documentation/devicetree/bindings/le=
-ds/l
-> > eds-pwm.yaml
->
-> I somehow expected errors on those checks, because I got actually two
-> different recommendations from you:
->
-> In feedback on v4 of this patch (series) you recommended '^led(-[0-9a-f]+=
-)?$'
-> for the (pwm) led node name, which I used in v5.  Or just allow any node =
-name
-> with ".*" like in gpio-keys.yaml =E2=80=A6
->
-> I just checked all in-tree dts files using "pwm-leds" and each also defin=
-es
-> the "label" property, so renaming those nodes should not alter the paths =
-in
-> sysfs, if I understood everything correctly.  So I see two options now:
->
-> 1) Go with the stricter check and fix all failing dts files and examples.
->
-> 2) Just use the very loose check.
+The GE2D is a 2D accelerator with various features like configurable blitter
+with alpha blending, frame rotation, scaling, format conversion and colorspace
+conversion.
 
-Either one is fine. Given label is present and there's not a ton of
-cases, then I'd probably go with 1.
+This adds the bindings for the GE2D version found in the AXG SoCs Family.
 
-> If 1), which patch would go first, renaming nodes in dts and examples or
-> converting bindings to yaml enabling the stricter check?
+Signed-off-by: Neil Armstrong <narmstrong@baylibre.com>
+---
+ .../bindings/media/amlogic,axg-ge2d.yaml      | 47 +++++++++++++++++++
+ 1 file changed, 47 insertions(+)
+ create mode 100644 Documentation/devicetree/bindings/media/amlogic,axg-ge2d.yaml
 
-There's currently no requirement on dts files being warning free. So
-the schema can come first and any dts fixes later.
+diff --git a/Documentation/devicetree/bindings/media/amlogic,axg-ge2d.yaml b/Documentation/devicetree/bindings/media/amlogic,axg-ge2d.yaml
+new file mode 100644
+index 000000000000..bee93bd84771
+--- /dev/null
++++ b/Documentation/devicetree/bindings/media/amlogic,axg-ge2d.yaml
+@@ -0,0 +1,47 @@
++# SPDX-License-Identifier: (GPL-2.0 OR BSD-2-Clause)
++# Copyright 2020 BayLibre, SAS
++%YAML 1.2
++---
++$id: "http://devicetree.org/schemas/media/amlogic,axg-ge2d.yaml#"
++$schema: "http://devicetree.org/meta-schemas/core.yaml#"
++
++title: Amlogic GE2D Acceleration Unit
++
++maintainers:
++  - Neil Armstrong <narmstrong@baylibre.com>
++
++properties:
++  compatible:
++    enum:
++      - amlogic,axg-ge2d
++
++  interrupts:
++    minItems: 1
++
++  reg:
++    minItems: 1
++
++  resets:
++    maxItems: 1
++
++  clocks:
++    minItems: 1
++
++required:
++  - compatible
++  - reg
++  - interrupts
++  - clocks
++  - resets
++
++additionalProperties: false
++
++examples:
++  - |
++    ge2d: ge2d@ff940000 {
++          compatible = "amlogic,axg-ge2d";
++          reg = <0xff940000 0x10000>;
++          interrupts = <150>;
++          clocks = <&clk_ge2d>;
++          resets = <&reset_ge2d>;
++    };
+-- 
+2.25.1
 
-Rob
