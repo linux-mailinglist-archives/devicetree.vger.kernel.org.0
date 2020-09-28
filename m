@@ -2,131 +2,197 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from vger.kernel.org (vger.kernel.org [23.128.96.18])
-	by mail.lfdr.de (Postfix) with ESMTP id 9170527AA05
-	for <lists+devicetree@lfdr.de>; Mon, 28 Sep 2020 10:55:55 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTP id E877127AA0E
+	for <lists+devicetree@lfdr.de>; Mon, 28 Sep 2020 10:57:36 +0200 (CEST)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S1726500AbgI1Izz (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Mon, 28 Sep 2020 04:55:55 -0400
-Received: from wnew1-smtp.messagingengine.com ([64.147.123.26]:48547 "EHLO
-        wnew1-smtp.messagingengine.com" rhost-flags-OK-OK-OK-OK)
-        by vger.kernel.org with ESMTP id S1726440AbgI1Izy (ORCPT
-        <rfc822;devicetree@vger.kernel.org>);
-        Mon, 28 Sep 2020 04:55:54 -0400
-Received: from compute4.internal (compute4.nyi.internal [10.202.2.44])
-        by mailnew.west.internal (Postfix) with ESMTP id 58758B74;
-        Mon, 28 Sep 2020 04:55:53 -0400 (EDT)
-Received: from mailfrontend1 ([10.202.2.162])
-  by compute4.internal (MEProxy); Mon, 28 Sep 2020 04:55:54 -0400
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=cerno.tech; h=
-        date:from:to:cc:subject:message-id:references:mime-version
-        :content-type:in-reply-to; s=fm3; bh=wUSUu2G3aVIryWaeA7vOSq4b5nt
-        Z2lJ4mb84/YsXOuI=; b=WZM48iBF91gdKnDjQ7uhJ0/RIFRw5RhXsOOeZlZJCKo
-        ysOwTqjBtlBCZj08M9nF22EmaxFAVEoLPCI8HL/0jdPlzcH2YFICniXpCoLiPtqH
-        VpOBH47bt+ui/2YfhU/yW5VfSsau0KQrKRpIe0o0c/LA7MH8NR/XbJViG+pkL2jD
-        B/g/l2T60cdiT268BZyz1XUMfVw55IQig/jerb/vptjxlA1X6M9x6a83g0v0CBK5
-        Bmmq1FDcnqounb0O4rwjBb8ol1ZrgQbcaIJowXG8EgIrm6mkVObuBjZaEx3BtVfa
-        XrLcZKvTOl2wgSLOTL7PgfwIArfBy2SMIZW7HfyAtbQ==
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=
-        messagingengine.com; h=cc:content-type:date:from:in-reply-to
-        :message-id:mime-version:references:subject:to:x-me-proxy
-        :x-me-proxy:x-me-sender:x-me-sender:x-sasl-enc; s=fm3; bh=wUSUu2
-        G3aVIryWaeA7vOSq4b5ntZ2lJ4mb84/YsXOuI=; b=A4aQVk9qURplYZemoSbP0T
-        EUoSZyu6BP+ZXw6FNbxPs0GVkLXlfle+zceapwfhWF20BfQ34PdGbXpWpcwdus8w
-        T8ByrOAMTp9PAVFOq7Dw8hBc+2GLY+/0ycOmDjNEUvrO37DrvgPHjPIMrlXu/3SH
-        5q8/uU/TxEl/IcgFyNTAaaq99scwACFHzeUlUBgrJI8c5BAIL7QKXasqfwACLnP3
-        OKdCTsL3Z0OzDIGDuPBTeNGz7iGRXdtW0uJDyfeK4dvfUEvLgEi//GS+qrpG9FgJ
-        z2gTBIwFOb2DHf8rlSu69xN17a5yR33Xj3A8eP4bkmOVhqRwYRi/uXVd98IT2DcQ
-        ==
-X-ME-Sender: <xms:F6VxX9h8l3bdAdhKV7_ZeWNJSwUX_O1_FpWJwZe1u_C2JnuMPQGRKQ>
-    <xme:F6VxXyBUwEdfOyLmpzIxGe9WCsxP_0R9KFUgHeaQKe4QIaeVg9mSAC_s3igP0_uM7
-    w1WHRnZF_vmQISJkGk>
-X-ME-Proxy-Cause: gggruggvucftvghtrhhoucdtuddrgedujedrvdeigddutdcutefuodetggdotefrodftvf
-    curfhrohhfihhlvgemucfhrghsthforghilhdpqfgfvfdpuffrtefokffrpgfnqfghnecu
-    uegrihhlohhuthemuceftddtnecusecvtfgvtghiphhivghnthhsucdlqddutddtmdenuc
-    fjughrpeffhffvuffkfhggtggujgesghdtreertddtudenucfhrhhomhepofgrgihimhgv
-    ucftihhprghrugcuoehmrgigihhmvgestggvrhhnohdrthgvtghhqeenucggtffrrghtth
-    gvrhhnpeduvdduhfekkeehgffftefflefgffdtheffudffgeevteffheeuiedvvdejvdfg
-    veenucfkphepledtrdekledrieekrdejieenucevlhhushhtvghrufhiiigvpedtnecurf
-    grrhgrmhepmhgrihhlfhhrohhmpehmrgigihhmvgestggvrhhnohdrthgvtghh
-X-ME-Proxy: <xmx:F6VxX9HpWJ2SssBbPsr8cR0GdgkIsAFIl4TChPshZo0Qsl62OBNPrA>
-    <xmx:F6VxXyTAfPBcPd-lFgiNOUKT-Dk05hFMJ2dwQsw_6WiFT0kUbPlw0Q>
-    <xmx:F6VxX6zrMQ_V4GpMBxdfOcUtIBmmlvBxqky092uEANXubuudMIwvkA>
-    <xmx:GKVxX1qlyUa-jOEbIeG-OVdzvi-kstcBwRc9s__r2vQLN4KC_S3NA-TUoVc>
-Received: from localhost (lfbn-tou-1-1502-76.w90-89.abo.wanadoo.fr [90.89.68.76])
-        by mail.messagingengine.com (Postfix) with ESMTPA id 50723328005E;
-        Mon, 28 Sep 2020 04:55:51 -0400 (EDT)
-Date:   Mon, 28 Sep 2020 10:55:49 +0200
-From:   Maxime Ripard <maxime@cerno.tech>
-To:     =?utf-8?B?Q2zDqW1lbnQgUMOpcm9u?= <peron.clem@gmail.com>
-Cc:     Chen-Yu Tsai <wens@csie.org>, Rob Herring <robh+dt@kernel.org>,
-        Mark Brown <broonie@kernel.org>,
-        Liam Girdwood <lgirdwood@gmail.com>,
-        Jaroslav Kysela <perex@perex.cz>,
-        Takashi Iwai <tiwai@suse.com>,
-        Marcus Cooper <codekipper@gmail.com>,
-        Jernej Skrabec <jernej.skrabec@siol.net>,
-        Linux-ALSA <alsa-devel@alsa-project.org>,
-        devicetree <devicetree@vger.kernel.org>,
-        linux-arm-kernel <linux-arm-kernel@lists.infradead.org>,
-        linux-kernel <linux-kernel@vger.kernel.org>,
-        linux-sunxi <linux-sunxi@googlegroups.com>,
-        Samuel Holland <samuel@sholland.org>
-Subject: Re: [PATCH v4 02/22] ASoC: sun4i-i2s: Change set_chan_cfg() params
-Message-ID: <20200928085549.izpgwdtkq5cwa4ut@gilmour.lan>
-References: <20200921102731.747736-1-peron.clem@gmail.com>
- <20200921102731.747736-3-peron.clem@gmail.com>
- <20200921122918.kzzu623wui277nwr@gilmour.lan>
- <CAJiuCce0thGcH19vMtDX0X8-9S32Y7kC2bnWo_6-SHozF8uDAA@mail.gmail.com>
+        id S1726497AbgI1I5g (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Mon, 28 Sep 2020 04:57:36 -0400
+Received: from lindbergh.monkeyblade.net ([23.128.96.19]:45086 "EHLO
+        lindbergh.monkeyblade.net" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
+        with ESMTP id S1726420AbgI1I5g (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Mon, 28 Sep 2020 04:57:36 -0400
+Received: from mail-vs1-xe41.google.com (mail-vs1-xe41.google.com [IPv6:2607:f8b0:4864:20::e41])
+        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 1F1D9C0613CE;
+        Mon, 28 Sep 2020 01:57:36 -0700 (PDT)
+Received: by mail-vs1-xe41.google.com with SMTP id a16so285686vsp.12;
+        Mon, 28 Sep 2020 01:57:36 -0700 (PDT)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+        d=gmail.com; s=20161025;
+        h=mime-version:references:in-reply-to:from:date:message-id:subject:to
+         :cc:content-transfer-encoding;
+        bh=ymvnEPp551TwlIsqFX4T8vHwRcqlCYOhPpKWgB7Vosc=;
+        b=mIaF7J/A2g3oRrjf/82htfkliPnXMmKpaIQYTJq9dvTjxdWsadMXzN9ImYqJLkajkz
+         Jkya5MNLDyCfSMFJ30HVQxO8W9AvS/uFwFpPeEzQBdsXfWHX41k+LDTcW1TcSExvXluL
+         JNeg3XX8XHYkpntNYHThxeAYtbaAkDozFW5mUDKLycRQM8wQGa6LryTAC99yaGHEKzbs
+         LwHosc8RwtSrIk/oaCAIadtzIoWc1QdY7Ox5sM3woz5oDbSedcd7PVH6q2j9IPCu/0pj
+         2J93EkSpTrXinlqe7J8zDBt7PE7nGR6Ra2jRlDXcaQy8dkKS0i0b2eLbQF3hS9H9WOUw
+         LBBQ==
+X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+        d=1e100.net; s=20161025;
+        h=x-gm-message-state:mime-version:references:in-reply-to:from:date
+         :message-id:subject:to:cc:content-transfer-encoding;
+        bh=ymvnEPp551TwlIsqFX4T8vHwRcqlCYOhPpKWgB7Vosc=;
+        b=p4Hsk0ECJHyeCXSowVvA5PkmhmuBi7/VexIr2Ch2yLo1utzCBz4S8eRgDtFeduzG4G
+         ojE0p/RKblxbyrgmBdWT5WGvYGc/gKw76kgTjQk3uW5xwxnDsxSzaaPlSpWl6PWW9F/p
+         6HColarxkEM7gCDfZc2AoKa0AwCtFRyFQuxLCcB/7Qg0GBE4/Co4JN41lBTSyr+QJmkQ
+         CG3r7BTLWxmRsij8h0Nh2eZhJJtgbQrbmBTjHj3F6fal4v3RZBHp/Aj0Q6/ZymE2uOgG
+         affxogdL80onWGS3Y1ePrB8fb2nmAp9Tttpuux/N5l6iTmFULJawA1HFE7g8bxYjrxKu
+         mYpg==
+X-Gm-Message-State: AOAM532XkY4hI8SoJ1HQ0wHAUXBQHlNqbX77mBjUwZcRkqU300HJoO8U
+        z0zXEBvQ0Bo44aLbTtT45lfwKZEhHakXllEdAes=
+X-Google-Smtp-Source: ABdhPJziuemYOoLIjPZGP9SqhTbyrtIgpuNdvMja+DHExszPf9tbmK+qcis+Hxgg2Sg7iJqm2YBaFrK1ODENSM93PTk=
+X-Received: by 2002:a67:8b45:: with SMTP id n66mr4878634vsd.45.1601283455301;
+ Mon, 28 Sep 2020 01:57:35 -0700 (PDT)
 MIME-Version: 1.0
-Content-Type: multipart/signed; micalg=pgp-sha256;
-        protocol="application/pgp-signature"; boundary="z5fpfx6vrqwdiuav"
-Content-Disposition: inline
-In-Reply-To: <CAJiuCce0thGcH19vMtDX0X8-9S32Y7kC2bnWo_6-SHozF8uDAA@mail.gmail.com>
+References: <20200921195555.1050731-1-badhri@google.com> <20200921195555.1050731-5-badhri@google.com>
+ <CAKgpwJUqfyZv1+-A4R8R--O-u2R65T+VUxL6PtW4c6kG0FJWfg@mail.gmail.com> <CAPTae5LcTqoc52C01rQjL9NzA5Yh=NH0zvvJNosih8n2kMTn+A@mail.gmail.com>
+In-Reply-To: <CAPTae5LcTqoc52C01rQjL9NzA5Yh=NH0zvvJNosih8n2kMTn+A@mail.gmail.com>
+From:   Jun Li <lijun.kernel@gmail.com>
+Date:   Mon, 28 Sep 2020 16:57:24 +0800
+Message-ID: <CAKgpwJXEyeeh9_W-A4JfcRCeV5iXnEeiZBZoDPDT_s23TkLSuw@mail.gmail.com>
+Subject: Re: [PATCH v8 05/11] dt-bindings: connector: Add property to set
+ initial current cap for FRS
+To:     Badhri Jagan Sridharan <badhri@google.com>
+Cc:     Guenter Roeck <linux@roeck-us.net>,
+        Heikki Krogerus <heikki.krogerus@linux.intel.com>,
+        Greg Kroah-Hartman <gregkh@linuxfoundation.org>,
+        Rob Herring <robh+dt@kernel.org>,
+        Lee Jones <lee.jones@linaro.org>,
+        Mark Brown <broonie@kernel.org>,
+        Maxime Ripard <mripard@kernel.org>,
+        Alexandre Belloni <alexandre.belloni@bootlin.com>,
+        Thierry Reding <treding@nvidia.com>,
+        Prashant Malani <pmalani@chromium.org>,
+        "open list:OPEN FIRMWARE AND FLATTENED DEVICE TREE BINDINGS" 
+        <devicetree@vger.kernel.org>, lkml <linux-kernel@vger.kernel.org>,
+        Linux USB List <linux-usb@vger.kernel.org>
+Content-Type: text/plain; charset="UTF-8"
+Content-Transfer-Encoding: quoted-printable
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
+Badhri Jagan Sridharan <badhri@google.com> =E4=BA=8E2020=E5=B9=B49=E6=9C=88=
+24=E6=97=A5=E5=91=A8=E5=9B=9B =E4=B8=8B=E5=8D=886:09=E5=86=99=E9=81=93=EF=
+=BC=9A
+>
+> Hi Jun,
+>
+> Thanks for the feedback !
+> The sink PDO from current source reflects the current source's(i.e.
+> transmitter of the FRS signal) power requirement during fr swap.
+> The current sink (i.e. receiver of the FRS signal) should check if it
+> will be able to satisfy the current source's
+> requirement during frswap before enabling the frs signal reception.
+> The property in this patch refers to maximum current capability
+> that the current sink can satisfy.
 
---z5fpfx6vrqwdiuav
-Content-Type: text/plain; charset=iso-8859-1
-Content-Disposition: inline
-Content-Transfer-Encoding: quoted-printable
+In this case I agree a new property is required.
 
-On Mon, Sep 21, 2020 at 07:15:13PM +0200, Cl=E9ment P=E9ron wrote:
-> Hi Maxime,
->=20
-> On Mon, 21 Sep 2020 at 14:29, Maxime Ripard <maxime@cerno.tech> wrote:
+Rob mentioned another similar property for typec[1], which is
+for typec source(without power delivery) to define its power
+capability to present its Rp, so a different usage.
+
+[1]https://lore.kernel.org/linux-arm-kernel/20200902075707.9052-2-amelie.de=
+launay@st.com/
+
+> Perhaps, I should name it
+> sink-frs-typec-current. Does that make sense to you ?
+
+it looks better, thanks.
+
+Li Jun
+>
+> Thanks,
+> Badhri
+>
+> On Wed, Sep 23, 2020 at 3:43 AM Jun Li <lijun.kernel@gmail.com> wrote:
 > >
-> > On Mon, Sep 21, 2020 at 12:27:11PM +0200, Cl=E9ment P=E9ron wrote:
-> > > As slots and slot_width can be overwritter in case set_tdm() is
-> > > called. Avoid to have this logic in set_chan_cfg().
+> > Badhri Jagan Sridharan <badhri@google.com> =E4=BA=8E2020=E5=B9=B49=E6=
+=9C=8822=E6=97=A5=E5=91=A8=E4=BA=8C =E4=B8=8A=E5=8D=883:57=E5=86=99=E9=81=
+=93=EF=BC=9A
 > > >
-> > > Instead pass the required values as params to set_chan_cfg().
+> > > This change adds frs-typec-current which allows setting the initial c=
+urrent
+> > > capability of the new source when vSafe5V is applied during PD3.0
+> > > sink Fast Role Swap.
+> > >
+> > > Signed-off-by: Badhri Jagan Sridharan <badhri@google.com>
+> > > ---
+> > > Changes since v1:
+> > > - Changing patch version to v6 to fix version number confusion.
+> > >
+> > > Changes since v6:
+> > > - Removed the redundant usb-connector.txt that I created by mistake.
+> > > - Moved to yaml.
+> > >
+> > > Changes since v7:
+> > > - Rebase
+> > > ---
+> > >  .../devicetree/bindings/connector/usb-connector.yaml   |  8 ++++++++
+> > >  include/dt-bindings/usb/pd.h                           | 10 ++++++++=
+++
+> > >  2 files changed, 18 insertions(+)
+> > >
+> > > diff --git a/Documentation/devicetree/bindings/connector/usb-connecto=
+r.yaml b/Documentation/devicetree/bindings/connector/usb-connector.yaml
+> > > index 9bd52e63c935..1ca8e6a337e5 100644
+> > > --- a/Documentation/devicetree/bindings/connector/usb-connector.yaml
+> > > +++ b/Documentation/devicetree/bindings/connector/usb-connector.yaml
+> > > @@ -142,6 +142,14 @@ properties:
+> > >      required:
+> > >        - port@0
+> > >
+> > > +  frs-typec-current:
+> > > +    description: Initial current capability of the new source when v=
+Safe5V
+> > > +      is applied during PD3.0 Fast Role Swap. "Table 6-14 Fixed Supp=
+ly PDO - Sink"
+> > > +      of "USB Power Delivery Specification Revision 3.0, Version 1.2=
+" provides the
+> > > +      different power levels and "6.4.1.3.1.6 Fast Role Swap USB Typ=
+e-C Current"
+> > > +      provides a detailed description of the field.
+> > > +    $ref: /schemas/types.yaml#/definitions/uint32
 > >
-> > It's not really clear here what the issue is, and how passing the slots
-> > and slot_width as arguments addresses it
+> > If it's a part of sink PDO, I think you don't need a new property for t=
+his, just
+> > define it directly into sink-pdos by adding a new PDO define for PD 3.0=
+,
+> > something like:
 > >
-> > > This also fix a bug when i2s->slot_width is set for TDM but not
-> > > properly used in set_chan_cfg().
+> > sink-pdos =3D <PDO_FIXED_v3(5000, 3000, PDO_FIXED_USB_COMM, FRS_CURRENT=
+_1P5A)>;
 > >
-> > Which bug?
->=20
-> Do you mean my commit log is too short or is it a real question to unders=
-tand ?
-
-Both, actually :)
-
-Maxime
-
---z5fpfx6vrqwdiuav
-Content-Type: application/pgp-signature; name="signature.asc"
-
------BEGIN PGP SIGNATURE-----
-
-iHUEABYIAB0WIQRcEzekXsqa64kGDp7j7w1vZxhRxQUCX3GlFQAKCRDj7w1vZxhR
-xYJzAP90E3Ebs8ekSnakjeM+AFop/3Kt5use/kVDKsSr/V2JlwD6A8+jug6YBRDY
-7kZEe3Y1iUyb4oLqEpjNxunahn+yfQA=
-=0O29
------END PGP SIGNATURE-----
-
---z5fpfx6vrqwdiuav--
+> > Li Jun
+> > > +
+> > >  required:
+> > >    - compatible
+> > >
+> > > diff --git a/include/dt-bindings/usb/pd.h b/include/dt-bindings/usb/p=
+d.h
+> > > index 985f2bbd4d24..db1ad4532197 100644
+> > > --- a/include/dt-bindings/usb/pd.h
+> > > +++ b/include/dt-bindings/usb/pd.h
+> > > @@ -35,6 +35,16 @@
+> > >
+> > >  #define VSAFE5V 5000 /* mv units */
+> > >
+> > > +/*
+> > > + * Based on "Table 6-14 Fixed Supply PDO - Sink" of "USB Power Deliv=
+ery Specification Revision 3.0,
+> > > + * Version 1.2"
+> > > + * Initial current capability of the new source when vSafe5V is appl=
+ied.
+> > > + */
+> > > +#define FRS_NOT_SUPPORTED      0
+> > > +#define FRS_DEFAULT_POWER      1
+> > > +#define FRS_5V_1P5A            2
+> > > +#define FRS_5V_3A              3
+> > > +
+> > >  #define PDO_BATT_MAX_VOLT_SHIFT        20      /* 50mV units */
+> > >  #define PDO_BATT_MIN_VOLT_SHIFT        10      /* 50mV units */
+> > >  #define PDO_BATT_MAX_PWR_SHIFT 0       /* 250mW units */
+> > > --
+> > > 2.28.0.681.g6f77f65b4e-goog
+> > >
