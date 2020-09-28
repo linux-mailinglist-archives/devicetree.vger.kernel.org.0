@@ -2,71 +2,68 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from vger.kernel.org (vger.kernel.org [23.128.96.18])
-	by mail.lfdr.de (Postfix) with ESMTP id 6005627B4DC
-	for <lists+devicetree@lfdr.de>; Mon, 28 Sep 2020 20:58:12 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTP id 140EA27B4E0
+	for <lists+devicetree@lfdr.de>; Mon, 28 Sep 2020 20:58:37 +0200 (CEST)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S1726465AbgI1S6L (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Mon, 28 Sep 2020 14:58:11 -0400
-Received: from mail-oo1-f67.google.com ([209.85.161.67]:38226 "EHLO
-        mail-oo1-f67.google.com" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S1726409AbgI1S6L (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Mon, 28 Sep 2020 14:58:11 -0400
-Received: by mail-oo1-f67.google.com with SMTP id r10so600505oor.5;
-        Mon, 28 Sep 2020 11:58:10 -0700 (PDT)
+        id S1726566AbgI1S6g (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Mon, 28 Sep 2020 14:58:36 -0400
+Received: from mail-ot1-f66.google.com ([209.85.210.66]:45909 "EHLO
+        mail-ot1-f66.google.com" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
+        with ESMTP id S1726500AbgI1S6g (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Mon, 28 Sep 2020 14:58:36 -0400
+Received: by mail-ot1-f66.google.com with SMTP id g96so1981277otb.12;
+        Mon, 28 Sep 2020 11:58:35 -0700 (PDT)
 X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
         d=1e100.net; s=20161025;
         h=x-gm-message-state:date:from:to:cc:subject:message-id:references
-         :mime-version:content-disposition:content-transfer-encoding
-         :in-reply-to;
-        bh=VlxqxH24WEJogVbYmNyI0XBntrebIN0nleBQLFM2PBU=;
-        b=cpqAwYxfHRBHlci1Qm58ySpXKISWX9YVUqntu4r5cN9H/4S/3OzDraI4lmzk/7aj7h
-         bWPeVLHQaC00FEab6SwCJ74qs4TWysa35XXdheQqNj2K8zhsxveuFl6dGGZ8sIqBsluv
-         BUJpJ4QmDpSMh4YEvdOnzBtBnwzvHl7/kZsfKpeWyIgckLgZffNv0Beo1muU97xhggFh
-         YOOy8mOuHm+VRmyyxCsXABw4CoAQs4H8mmGVRhZzey50GKaqQZbdczSya6E3kF6Bcvs7
-         OR3OEu9lskOHqWd9d+z8F61dSWIaK+y12sy8Ysffpv8Bf+FXCV9jhoVh7KRSaeKZrFOZ
-         tYVQ==
-X-Gm-Message-State: AOAM5328H8DIB3nvAwXIenQM9fKI4z2boS8z1YLwMHW6s3NggzOKm0gG
-        SIKDPtMQF+RZZ150z1tDyA==
-X-Google-Smtp-Source: ABdhPJyrk1od3/oBE+mU6P1bPqJLVVHHvQBDfq+YHBprH7X/AyOr8Q6Iclpi8G2HTlaMr/5stDL+5g==
-X-Received: by 2002:a4a:e616:: with SMTP id f22mr1870745oot.11.1601319490492;
-        Mon, 28 Sep 2020 11:58:10 -0700 (PDT)
+         :mime-version:content-disposition:in-reply-to;
+        bh=our4e3t8Fy5vpY5pkLJ9z16fOvHGdXxd8oZFBivNpAM=;
+        b=D31KEhzNibZ1jjPlcIyy50Yp287G4N/i8AGLdFdXROFmqJe4xGn7mi95D5IqUfs3GH
+         AFDnfq4+ICmIF7TB4aKJdUIbl5rWrtmWU/17WqjuVouJYQ1UTRm9q/kzgnIfudQdThK0
+         gHEFiYI3s3hy1Rl8XAqXezE81UW2lF+6+kY6vXdjqodHXayY42BjiahRXs3Yt28sYffc
+         KgNxGuUuCZ8G8El0a5+lV6V+d4S/ARpBMBRrF1vDURRiVVabdUvKoS1eD9Q3me+376n3
+         3XKcOvk7z32oFY8naym2bLjhubok3EFbN22cWlnIruUafYP7xSJI4/k5+IXIBM682EWm
+         LuOg==
+X-Gm-Message-State: AOAM532GCqrs7h2OW/q2Mzdru8kTgt6pdw5Y/rLambgEqiG0yfbEaexf
+        m1LwlWT/GLNXfemn/qA59g==
+X-Google-Smtp-Source: ABdhPJw6uss+SWgcm4Fl7VZl3bXDiABQeOiKW34TbMrFBMi9e7LJ7/IxFm+mZ8CBnIMa5tyBo3ymeA==
+X-Received: by 2002:a9d:335:: with SMTP id 50mr280179otv.90.1601319515157;
+        Mon, 28 Sep 2020 11:58:35 -0700 (PDT)
 Received: from xps15 (24-155-109-49.dyn.grandenetworks.net. [24.155.109.49])
-        by smtp.gmail.com with ESMTPSA id b1sm2278068oop.47.2020.09.28.11.58.09
+        by smtp.gmail.com with ESMTPSA id r33sm2230430ooi.48.2020.09.28.11.58.34
         (version=TLS1_3 cipher=TLS_AES_256_GCM_SHA384 bits=256/256);
-        Mon, 28 Sep 2020 11:58:09 -0700 (PDT)
-Received: (nullmailer pid 3078228 invoked by uid 1000);
-        Mon, 28 Sep 2020 18:58:09 -0000
-Date:   Mon, 28 Sep 2020 13:58:09 -0500
+        Mon, 28 Sep 2020 11:58:34 -0700 (PDT)
+Received: (nullmailer pid 3078868 invoked by uid 1000);
+        Mon, 28 Sep 2020 18:58:33 -0000
+Date:   Mon, 28 Sep 2020 13:58:33 -0500
 From:   Rob Herring <robh@kernel.org>
-To:     =?utf-8?B?TWljaGHFgiBNaXJvc8WCYXc=?= <mirq-linux@rere.qmqm.pl>
-Cc:     Rob Herring <robh+dt@kernel.org>, devicetree@vger.kernel.org,
-        Angus Ainslie <angus@akkea.ca>, linux-pm@vger.kernel.org,
-        Sebastian Reichel <sre@kernel.org>,
-        linux-kernel@vger.kernel.org, Yauhen Kharuzhy <jekhor@gmail.com>
-Subject: Re: [PATCH v4 1/2] power: bq25890: document IBAT compensation DT
- properties
-Message-ID: <20200928185809.GA3078178@bogus>
-References: <cover.1601146802.git.mirq-linux@rere.qmqm.pl>
- <edd68202c51088d6f5f539a7d8464fff049ff837.1601146802.git.mirq-linux@rere.qmqm.pl>
+To:     Vadim Pasternak <vadimp@nvidia.com>
+Cc:     devicetree@vger.kernel.org, linux@roeck-us.net, robh+dt@kernel.org,
+        linux-hwmon@vger.kernel.org
+Subject: Re: [PATCH hwmon-next v4 2/2] dt-bindings: Add MP2975 voltage
+ regulator device
+Message-ID: <20200928185833.GA3078816@bogus>
+References: <20200926204957.10268-1-vadimp@nvidia.com>
+ <20200926204957.10268-3-vadimp@nvidia.com>
 MIME-Version: 1.0
-Content-Type: text/plain; charset=utf-8
+Content-Type: text/plain; charset=us-ascii
 Content-Disposition: inline
-Content-Transfer-Encoding: 8bit
-In-Reply-To: <edd68202c51088d6f5f539a7d8464fff049ff837.1601146802.git.mirq-linux@rere.qmqm.pl>
+In-Reply-To: <20200926204957.10268-3-vadimp@nvidia.com>
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-On Sat, 26 Sep 2020 21:05:34 +0200, Michał Mirosław wrote:
-> Document new properties for IBAT compensation feature.
+On Sat, 26 Sep 2020 23:49:57 +0300, Vadim Pasternak wrote:
+> Monolithic Power Systems, Inc. (MPS) dual-loop, digital, multi-phase
+> controller.
 > 
-> Signed-off-by: Michał Mirosław <mirq-linux@rere.qmqm.pl>
+> Signed-off-by: Vadim Pasternak <vadimp@nvidia.com>
 > ---
-> v2: initial version
-> v4: renamed properties applying property-suffix
+> v2->v3
+>  - Fix after 'make dt_binding_check'.
 > ---
->  Documentation/devicetree/bindings/power/supply/bq25890.txt | 4 ++++
->  1 file changed, 4 insertions(+)
+>  Documentation/devicetree/bindings/trivial-devices.yaml | 2 ++
+>  1 file changed, 2 insertions(+)
 > 
 
-Reviewed-by: Rob Herring <robh@kernel.org>
+Acked-by: Rob Herring <robh@kernel.org>
