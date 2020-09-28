@@ -2,129 +2,67 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from vger.kernel.org (vger.kernel.org [23.128.96.18])
-	by mail.lfdr.de (Postfix) with ESMTP id 6F8C327A7F1
-	for <lists+devicetree@lfdr.de>; Mon, 28 Sep 2020 08:53:06 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTP id EBCE727A7FC
+	for <lists+devicetree@lfdr.de>; Mon, 28 Sep 2020 08:59:29 +0200 (CEST)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S1726461AbgI1GxF convert rfc822-to-8bit (ORCPT
-        <rfc822;lists+devicetree@lfdr.de>); Mon, 28 Sep 2020 02:53:05 -0400
-Received: from mail-lj1-f193.google.com ([209.85.208.193]:44752 "EHLO
-        mail-lj1-f193.google.com" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S1725308AbgI1GxF (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Mon, 28 Sep 2020 02:53:05 -0400
-Received: by mail-lj1-f193.google.com with SMTP id b19so98286lji.11;
-        Sun, 27 Sep 2020 23:53:03 -0700 (PDT)
+        id S1726540AbgI1G73 (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Mon, 28 Sep 2020 02:59:29 -0400
+Received: from mail-ed1-f66.google.com ([209.85.208.66]:41535 "EHLO
+        mail-ed1-f66.google.com" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
+        with ESMTP id S1725290AbgI1G73 (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Mon, 28 Sep 2020 02:59:29 -0400
+Received: by mail-ed1-f66.google.com with SMTP id ay8so98067edb.8;
+        Sun, 27 Sep 2020 23:59:28 -0700 (PDT)
 X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
         d=1e100.net; s=20161025;
-        h=x-gm-message-state:mime-version:references:in-reply-to:from:date
-         :message-id:subject:to:cc:content-transfer-encoding;
-        bh=Ks9FfGEmMHZLEsPsJfUxgzn6i0sxrDqEyXegeg+9Gd4=;
-        b=AX5+VizZU87tv+53paicwS3a8WNJ708gWwK+DEQNIyX0im7Bo0uUOeJi8ce25XdjVM
-         mccS1VO5zPwcUphCn1b8vqsF03BR044LPdgaFnpyVhIMXD45L8/BHIevAlRJJcUJID/z
-         sbGy5R9TMNGW/u1QUJVCHirCR+lXt0h3SOTkjBz8mKCGEg+9SFCsGtjpNYhrORul3bSB
-         4E1RNZ6HEhbovMVqkDhyW0ZssuiXHvrNuwH9M3WgIajuMB8X0gdSlfdU8qvKyPaSHbJ0
-         3XuADsn99MXv9LpRDKF02TgBNI+1t3jqrbpteLd6AyaA1h3HbqtUMc+TkRbv9pugIHTu
-         ZNyA==
-X-Gm-Message-State: AOAM5332Y+tQ+9YeSpxUG3+5C37Jk2sChoPg2hX0aSESGnDi/w4qld3H
-        g00yH7TT3nHiwWrLCG9Q1L4onAblC1IalA==
-X-Google-Smtp-Source: ABdhPJyHZNKnHbnaJR6wKmZ+jjIiWW/rqBRHz29DVgtUE5IL/lk/Rfw/1iluooBNziFDeMKw0z1mMw==
-X-Received: by 2002:a2e:240e:: with SMTP id k14mr4179253ljk.169.1601275982705;
-        Sun, 27 Sep 2020 23:53:02 -0700 (PDT)
-Received: from mail-lf1-f53.google.com (mail-lf1-f53.google.com. [209.85.167.53])
-        by smtp.gmail.com with ESMTPSA id 68sm8537ljf.14.2020.09.27.23.53.02
-        (version=TLS1_3 cipher=TLS_AES_128_GCM_SHA256 bits=128/128);
-        Sun, 27 Sep 2020 23:53:02 -0700 (PDT)
-Received: by mail-lf1-f53.google.com with SMTP id 77so9832181lfj.0;
-        Sun, 27 Sep 2020 23:53:02 -0700 (PDT)
-X-Received: by 2002:a19:b97:: with SMTP id 145mr3130963lfl.193.1601275982109;
- Sun, 27 Sep 2020 23:53:02 -0700 (PDT)
+        h=x-gm-message-state:date:from:to:cc:subject:message-id:references
+         :mime-version:content-disposition:in-reply-to:user-agent;
+        bh=ZPnuWUa+cjabnIx7ZIzBMUW05EELypIQJprVD0ZMD/4=;
+        b=fGOSou/SE48LjdAPrI/dgzwWK9Sski7ie3UX2lRzKmF3HT7bE9zOQyvjgSqtoO15W9
+         ltLeseajfnfDJqJZzvxqb55qlp8hCQfWqS+tOF2Llet4EchHljjp3UPcPMudarQ9WEmQ
+         tK3H6gyqX3WMgAcbFlMxLLzARURbFp/kD7yaBlDwf7Hw9XBNFF3mbRW5xwFm3c2tBBQy
+         7ny+ZPA0vlYOH2XFC7fZ+lJUWbo5YuOGDZHAEGd8dwdVSzNTbHx+UsvcfLVjNzPjbyyr
+         82U/LPl4lIrxI+NMoN/XNavraX09Czm8QOHeDO1q6pFS32nRz+d+RDr0qY+W0doa/AJw
+         JDcw==
+X-Gm-Message-State: AOAM532S/78u8ExeFm5lp+FiVP2pSKShiezDavLnicV+wCmfDsKd+YhO
+        /ovGLL3a91ODyccI+IrhZ1E=
+X-Google-Smtp-Source: ABdhPJxexhXlWADOk8fZK2dRr1B3lFoBDsTxk/K+HW84++SAJntrOjkjzQntNpULX18gXz6ZimDb5g==
+X-Received: by 2002:aa7:dc0e:: with SMTP id b14mr186696edu.17.1601276367572;
+        Sun, 27 Sep 2020 23:59:27 -0700 (PDT)
+Received: from kozik-lap ([194.230.155.132])
+        by smtp.googlemail.com with ESMTPSA id ce14sm169110edb.25.2020.09.27.23.59.25
+        (version=TLS1_2 cipher=ECDHE-ECDSA-CHACHA20-POLY1305 bits=256/256);
+        Sun, 27 Sep 2020 23:59:26 -0700 (PDT)
+Date:   Mon, 28 Sep 2020 08:59:24 +0200
+From:   Krzysztof Kozlowski <krzk@kernel.org>
+To:     Anson Huang <Anson.Huang@nxp.com>
+Cc:     robh+dt@kernel.org, shawnguo@kernel.org, s.hauer@pengutronix.de,
+        kernel@pengutronix.de, festevam@gmail.com, yibin.gong@nxp.com,
+        devicetree@vger.kernel.org, linux-arm-kernel@lists.infradead.org,
+        linux-kernel@vger.kernel.org, Linux-imx@nxp.com
+Subject: Re: [PATCH] arm64: dts: imx8mn-evk: Add cpu-supply to enable cpufreq
+Message-ID: <20200928065924.GA4676@kozik-lap>
+References: <1601259703-28308-1-git-send-email-Anson.Huang@nxp.com>
 MIME-Version: 1.0
-References: <20200927192912.46323-1-peron.clem@gmail.com>
-In-Reply-To: <20200927192912.46323-1-peron.clem@gmail.com>
-From:   Chen-Yu Tsai <wens@csie.org>
-Date:   Mon, 28 Sep 2020 14:52:50 +0800
-X-Gmail-Original-Message-ID: <CAGb2v660m4U1XPXWc=9G7GSW5e515VVXq7vPLJwXmAfoqWpvhA@mail.gmail.com>
-Message-ID: <CAGb2v660m4U1XPXWc=9G7GSW5e515VVXq7vPLJwXmAfoqWpvhA@mail.gmail.com>
-Subject: Re: [linux-sunxi] [PATCH v5 00/20] Add Allwinner H3/H5/H6/A64 HDMI audio
-To:     =?UTF-8?B?Q2zDqW1lbnQgUMOpcm9u?= <peron.clem@gmail.com>
-Cc:     Maxime Ripard <mripard@kernel.org>,
-        Rob Herring <robh+dt@kernel.org>,
-        Mark Brown <broonie@kernel.org>,
-        Liam Girdwood <lgirdwood@gmail.com>,
-        Jaroslav Kysela <perex@perex.cz>,
-        Takashi Iwai <tiwai@suse.com>,
-        Marcus Cooper <codekipper@gmail.com>,
-        Jernej Skrabec <jernej.skrabec@siol.net>,
-        Linux-ALSA <alsa-devel@alsa-project.org>,
-        devicetree <devicetree@vger.kernel.org>,
-        linux-arm-kernel <linux-arm-kernel@lists.infradead.org>,
-        linux-kernel <linux-kernel@vger.kernel.org>,
-        linux-sunxi <linux-sunxi@googlegroups.com>
-Content-Type: text/plain; charset="UTF-8"
-Content-Transfer-Encoding: 8BIT
+Content-Type: text/plain; charset=utf-8
+Content-Disposition: inline
+In-Reply-To: <1601259703-28308-1-git-send-email-Anson.Huang@nxp.com>
+User-Agent: Mutt/1.9.4 (2018-02-28)
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-On Mon, Sep 28, 2020 at 3:29 AM Clément Péron <peron.clem@gmail.com> wrote:
->
-> Hi,
->
-> This is exactly the same as v4 but with more details in some commit log
-> and also device-tree soundcard and DAI node have been merged.
->
-> Regards,
-> Clement
->
-> Change since v4;
-> - add more comment on get_wss() and set_channel_cfg() patch
-> - merge soundcard and DAI HDMI patches
->
-> Change since v3:
-> - add Samuel Holland patch to reconfigure FIFO_TX_REG when suspend is enabled
-> - readd inversion to H6 LRCK sun50i_h6_i2s_set_soc_fmt()
-> - Fix get_wss() for sun4i
-> - Add a commit to fix checkpatch warning
->
-> Change since v2:
-> - rebase on next-20200918
-> - drop revert LRCK polarity patch
-> - readd simple-audio-card,frame-inversion in dts
-> - Add patch for changing set_chan_cfg params
->
-> Change since v1:
-> - rebase on next-20200828
-> - add revert LRCK polarity
-> - remove all simple-audio-card,frame-inversion in dts
-> - add Ondrej patches for Orange Pi board
-> - Add arm64 defconfig patch
->
-> Clément Péron (6):
->   ASoC: sun4i-i2s: Change set_chan_cfg() params
->   ASoC: sun4i-i2s: Change get_sr() and get_wss() to be more explicit
->   ASoC: sun4i-i2s: Fix sun8i volatile regs
->   arm64: dts: allwinner: h6: Enable HDMI sound for Beelink GS1
->   arm64: defconfig: Enable Allwinner i2s driver
->   ASoC: sun4i-i2s: fix coding-style for callback definition
->
-> Jernej Skrabec (3):
->   ASoC: sun4i-i2s: Add support for H6 I2S
->   dt-bindings: ASoC: sun4i-i2s: Add H6 compatible
->   arm64: dts: allwinner: h6: Add DAI node and soundcard for HDMI
->
-> Marcus Cooper (7):
->   ASoC: sun4i-i2s: Set sign extend sample
->   ASoc: sun4i-i2s: Add 20 and 24 bit support
->   arm: dts: sunxi: h3/h5: Add DAI node and soundcard for HDMI
->   arm64: dts: allwinner: a64: Add DAI node and soundcard for HDMI
->   arm: sun8i: h3: Add HDMI audio to Orange Pi 2
->   arm: sun8i: h3: Add HDMI audio to Beelink X2
->   arm64: dts: allwinner: a64: Add HDMI audio to Pine64
->
-> Ondrej Jirman (3):
->   arm64: dts: allwinner: Enable HDMI audio on Orange Pi PC 2
->   ARM: dts: sun8i-h3: Enable HDMI audio on Orange Pi PC/One
->   arm64: dts: sun50i-h6-orangepi-3: Enable HDMI audio
+On Mon, Sep 28, 2020 at 10:21:43AM +0800, Anson Huang wrote:
+> PMIC driver is ready on i.MX8MN EVK board, assign cpu-supply for
+> each A53 and restore the operating points table to enable cpufreq.
+> 
+> Signed-off-by: Anson Huang <Anson.Huang@nxp.com>
+> ---
+>  arch/arm64/boot/dts/freescale/imx8mn-evk.dts | 32 ++++++++++++++--------------
+>  1 file changed, 16 insertions(+), 16 deletions(-)
+> 
 
-Acked-by: Chen-Yu Tsai <wens@csie.org>
+Reviewed-by: Krzysztof Kozlowski <krzk@kernel.org>
 
-for all the board DTS file changes.
+Best regards,
+Krzysztof
