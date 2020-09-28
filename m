@@ -2,245 +2,104 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from vger.kernel.org (vger.kernel.org [23.128.96.18])
-	by mail.lfdr.de (Postfix) with ESMTP id 3958527AB4C
-	for <lists+devicetree@lfdr.de>; Mon, 28 Sep 2020 11:54:41 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTP id 4F1A227ABE2
+	for <lists+devicetree@lfdr.de>; Mon, 28 Sep 2020 12:34:54 +0200 (CEST)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S1726589AbgI1Jyc (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Mon, 28 Sep 2020 05:54:32 -0400
-Received: from m42-4.mailgun.net ([69.72.42.4]:64706 "EHLO m42-4.mailgun.net"
-        rhost-flags-OK-OK-OK-OK) by vger.kernel.org with ESMTP
-        id S1726665AbgI1Jy3 (ORCPT <rfc822;devicetree@vger.kernel.org>);
-        Mon, 28 Sep 2020 05:54:29 -0400
-DKIM-Signature: a=rsa-sha256; v=1; c=relaxed/relaxed; d=mg.codeaurora.org; q=dns/txt;
- s=smtp; t=1601286868; h=References: In-Reply-To: Message-Id: Date:
- Subject: Cc: To: From: Sender;
- bh=fEiNiE7WcOtOuwWFNUUBWC5/RBsAGoYkHCbf1P9TbYE=; b=GkdJLyxg3FM9tD+wGYuisGf/TnaL0QBflMP+EzpJVUQ5s058Zj2Yg65AYueen2Xea8BsUa/k
- nRV36xStekp19s1MLwLuZ6M2C79ILVSL1BmUi29mHA0mMWpqeCLJTcH9cLFfWa/dujKH8BOt
- 81JCJ8Rg4RnHuF0T1liB/GHgaqE=
-X-Mailgun-Sending-Ip: 69.72.42.4
-X-Mailgun-Sid: WyI1YmJiNiIsICJkZXZpY2V0cmVlQHZnZXIua2VybmVsLm9yZyIsICJiZTllNGEiXQ==
-Received: from smtp.codeaurora.org
- (ec2-35-166-182-171.us-west-2.compute.amazonaws.com [35.166.182.171]) by
- smtp-out-n05.prod.us-east-1.postgun.com with SMTP id
- 5f71b2d4356bcc21fb0ece34 (version=TLS1.2,
- cipher=TLS_ECDHE_RSA_WITH_AES_128_GCM_SHA256); Mon, 28 Sep 2020 09:54:27
- GMT
-Sender: srivasam=codeaurora.org@mg.codeaurora.org
-Received: by smtp.codeaurora.org (Postfix, from userid 1001)
-        id 320CCC433B2; Mon, 28 Sep 2020 09:54:26 +0000 (UTC)
-X-Spam-Checker-Version: SpamAssassin 3.4.0 (2014-02-07) on
-        aws-us-west-2-caf-mail-1.web.codeaurora.org
-X-Spam-Level: 
-X-Spam-Status: No, score=-2.9 required=2.0 tests=ALL_TRUSTED,BAYES_00,SPF_FAIL,
-        URIBL_BLOCKED autolearn=no autolearn_force=no version=3.4.0
-Received: from hyd-lnxbld210.qualcomm.com (unknown [202.46.22.19])
-        (using TLSv1.2 with cipher ECDHE-RSA-AES128-SHA256 (128/128 bits))
-        (No client certificate requested)
-        (Authenticated sender: srivasam)
-        by smtp.codeaurora.org (Postfix) with ESMTPSA id A78BEC433A1;
-        Mon, 28 Sep 2020 09:54:17 +0000 (UTC)
-DMARC-Filter: OpenDMARC Filter v1.3.2 smtp.codeaurora.org A78BEC433A1
-Authentication-Results: aws-us-west-2-caf-mail-1.web.codeaurora.org; dmarc=none (p=none dis=none) header.from=codeaurora.org
-Authentication-Results: aws-us-west-2-caf-mail-1.web.codeaurora.org; spf=fail smtp.mailfrom=srivasam@codeaurora.org
-From:   Srinivasa Rao Mandadapu <srivasam@codeaurora.org>
-To:     agross@kernel.org, bjorn.andersson@linaro.org, lgirdwood@gmail.com,
-        broonie@kernel.org, robh+dt@kernel.org, plai@codeaurora.org,
-        bgoswami@codeaurora.org, perex@perex.cz, tiwai@suse.com,
-        srinivas.kandagatla@linaro.org, rohitkr@codeaurora.org,
-        linux-arm-msm@vger.kernel.org, alsa-devel@alsa-project.org,
-        devicetree@vger.kernel.org, linux-kernel@vger.kernel.org
-Cc:     V Sujith Kumar Reddy <vsujithk@codeaurora.org>,
-        Srinivasa Rao <srivasam@codeaurora.org>
-Subject: [PATCH v7 6/6] ASoC: qcom: sc7180: Add support for audio over DP
-Date:   Mon, 28 Sep 2020 15:23:31 +0530
-Message-Id: <1601286811-25962-7-git-send-email-srivasam@codeaurora.org>
-X-Mailer: git-send-email 2.7.4
-In-Reply-To: <1601286811-25962-1-git-send-email-srivasam@codeaurora.org>
-References: <1601286811-25962-1-git-send-email-srivasam@codeaurora.org>
+        id S1726578AbgI1Ket (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Mon, 28 Sep 2020 06:34:49 -0400
+Received: from lindbergh.monkeyblade.net ([23.128.96.19]:60168 "EHLO
+        lindbergh.monkeyblade.net" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
+        with ESMTP id S1726655AbgI1Ket (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Mon, 28 Sep 2020 06:34:49 -0400
+Received: from mail-vs1-xe41.google.com (mail-vs1-xe41.google.com [IPv6:2607:f8b0:4864:20::e41])
+        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 4C014C0613CF
+        for <devicetree@vger.kernel.org>; Mon, 28 Sep 2020 03:34:49 -0700 (PDT)
+Received: by mail-vs1-xe41.google.com with SMTP id j185so450154vsc.3
+        for <devicetree@vger.kernel.org>; Mon, 28 Sep 2020 03:34:49 -0700 (PDT)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+        d=linaro.org; s=google;
+        h=mime-version:references:in-reply-to:from:date:message-id:subject:to
+         :cc;
+        bh=p/sgL+aVEw/SbZ7i/2yif0Mub+iXCt2c2zPIclUv0qk=;
+        b=pHDNOTkK1V7ca9x0HKlzzq7pTSg/H+aIf186Cy8a0f/OeqSTQisEsUoFTZFQhy8qaN
+         hBY4X2zGeUwYIR2E5Cj/2M68DO2sMFKEGIHeWKhD7wfWp0zY7leR2lP+TWHyYViqFZWV
+         Mm6bFrDETuVmMuOFIWPwsjhx4bVxft1StvyLtv2iM3kaD7M7LFf5IolffmtQuipfZbPq
+         PsmdHoDYKOgGdXjMIW7bX/5p0Pkl9yKASW6UDyDxWVq+wT//9Ji9VgExVuKFXTXhqALI
+         sGC2YqCXzhh7GzIOGWYIO+yrs1RGYsKI+C27TMEdCh3v4AkbKvXUhuTlbyMauL9AGbNj
+         +J+A==
+X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+        d=1e100.net; s=20161025;
+        h=x-gm-message-state:mime-version:references:in-reply-to:from:date
+         :message-id:subject:to:cc;
+        bh=p/sgL+aVEw/SbZ7i/2yif0Mub+iXCt2c2zPIclUv0qk=;
+        b=eaJW8K6+AOdc8SDDISA5I3LZKRsRoTbRutF9hjALunVNF4flbKi1e6t24bA3hTClGa
+         LAlMjtK4w80lE4wbKFShuoaV7KfmC5VK6xLwSQ2wBRjdjVqmVpD3TDGxIAT0udHjjX/W
+         4cjlIcp5zcw/jYls21297zJ1Us0GgAfjSr8JNpF55ibh/zlDotuzCn/SbIiGj4gdrwVK
+         n74EzlWC/InVTBDHjcLokcHvOQj5JMUP5+oCElWiGyICjOMfmCReDaV3R3I0Dn9cXTMk
+         1WPlbRh6sFHFhvL6WvE52neRS/Q1CPjeuaBviIxLJtELxC7l+4JpZTLYePxD0nsLeS/d
+         1T/Q==
+X-Gm-Message-State: AOAM531gZt8lxJ8spI0ZAnQcEmANfDNHiMVsyEbZQKWPiisZiVHKgl9U
+        PenbY9sFDzWvyy8h3l4X0iIa2ANZIOGxsWojc8Tnhg==
+X-Google-Smtp-Source: ABdhPJxuAjx5AuVcbdnorA4qOfcmMQqNHWaWA1DejDLS3W+8Ah0RTXq4Hmd0ByQifEVKjqvCSAPHhrY945U8oc6S7xI=
+X-Received: by 2002:a67:3009:: with SMTP id w9mr5225484vsw.19.1601289288436;
+ Mon, 28 Sep 2020 03:34:48 -0700 (PDT)
+MIME-Version: 1.0
+References: <20200923105206.7988-1-faiz_abbas@ti.com>
+In-Reply-To: <20200923105206.7988-1-faiz_abbas@ti.com>
+From:   Ulf Hansson <ulf.hansson@linaro.org>
+Date:   Mon, 28 Sep 2020 12:34:12 +0200
+Message-ID: <CAPDyKFpC4dU2gqN+e=zoZXxBB7Ao-4x0gCHcjCWsJiPcyO5cog@mail.gmail.com>
+Subject: Re: [PATCH 0/6] Add UHS mode support for TI's AM65x, J721e, J7200 boards
+To:     Faiz Abbas <faiz_abbas@ti.com>
+Cc:     Linux Kernel Mailing List <linux-kernel@vger.kernel.org>,
+        DTML <devicetree@vger.kernel.org>,
+        "linux-mmc@vger.kernel.org" <linux-mmc@vger.kernel.org>,
+        Linux ARM <linux-arm-kernel@lists.infradead.org>,
+        Adrian Hunter <adrian.hunter@intel.com>,
+        Rob Herring <robh+dt@kernel.org>, Kishon <kishon@ti.com>
+Content-Type: text/plain; charset="UTF-8"
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-From: V Sujith Kumar Reddy <vsujithk@codeaurora.org>
+On Wed, 23 Sep 2020 at 12:52, Faiz Abbas <faiz_abbas@ti.com> wrote:
+>
+> The following are driver and documentation patches to enable UHS modes for
+> TI's AM65x, J721e, and J7200 boards. Device tree and defconfig patches
+> will be sent in a separate series.
+>
+> With the complete set, the following maximum modes will be supported:
+>
+> am654x-evm,idk          - SDR104, HS200
+> j721e-common-proc-board - DDR50, HS200
+> j7200-common-proc-board - DDR50, HS200
+>
+> These patches mainly add support for the software tuning algorithm[1]
+> needed for higher speed modes
+>
+> [1] [1] https://www.ti.com/lit/pdf/spract9
+>
+> Faiz Abbas (6):
+>   dt-bindings: mmc: sdhci-am654: Convert sdhci-am654 controller
+>     documentation to json schema
+>   dt-bindings: mmc: sdhci-am654: Add documentation for input tap delay
+>   mmc: sdhci_am654: Fix hard coded otap delay array size
+>   mmc: sdhci_am654: Add support for input tap delay
+>   mmc: sdhci_am654: Add support for software tuning
+>   mmc: sdhci_am654: Enable tuning for SDR50
+>
+>  .../devicetree/bindings/mmc/sdhci-am654.txt   |  65 ------
+>  .../devicetree/bindings/mmc/sdhci-am654.yaml  | 218 ++++++++++++++++++
+>  drivers/mmc/host/sdhci_am654.c                | 179 ++++++++++----
+>  3 files changed, 358 insertions(+), 104 deletions(-)
+>  delete mode 100644 Documentation/devicetree/bindings/mmc/sdhci-am654.txt
+>  create mode 100644 Documentation/devicetree/bindings/mmc/sdhci-am654.yaml
+>
+> --
+> 2.17.1
+>
 
-Add support for audio playback over DP in lpass
-sc7180 platform driver. Update lpass_variant
-structure for hdmi data configuaration.
+Applied for next, thanks!
 
-Signed-off-by: V Sujith Kumar Reddy <vsujithk@codeaurora.org>
-Signed-off-by: Srinivasa Rao <srivasam@codeaurora.org>
----
- sound/soc/qcom/lpass-sc7180.c | 116 +++++++++++++++++++++++++++++++++++++-----
- 1 file changed, 102 insertions(+), 14 deletions(-)
-
-diff --git a/sound/soc/qcom/lpass-sc7180.c b/sound/soc/qcom/lpass-sc7180.c
-index a8a3d8f..c6292f9e 100644
---- a/sound/soc/qcom/lpass-sc7180.c
-+++ b/sound/soc/qcom/lpass-sc7180.c
-@@ -60,38 +60,65 @@ static struct snd_soc_dai_driver sc7180_lpass_cpu_dai_driver[] = {
- 		.probe	= &asoc_qcom_lpass_cpu_dai_probe,
- 		.ops    = &asoc_qcom_lpass_cpu_dai_ops,
- 	},
-+	[LPASS_DP_RX] = {
-+		.id = LPASS_DP_RX,
-+		.name = "Hdmi",
-+		.playback = {
-+			.stream_name = "Hdmi Playback",
-+			.formats	= SNDRV_PCM_FMTBIT_S24,
-+			.rates = SNDRV_PCM_RATE_48000,
-+			.rate_min	= 48000,
-+			.rate_max	= 48000,
-+			.channels_min	= 2,
-+			.channels_max	= 2,
-+		},
-+		.ops    = &asoc_qcom_lpass_hdmi_dai_ops,
-+	},
- };
- 
- static int sc7180_lpass_alloc_dma_channel(struct lpass_data *drvdata,
--					   int direction)
-+					   int direction, unsigned int dai_id)
- {
- 	struct lpass_variant *v = drvdata->variant;
- 	int chan = 0;
- 
--	if (direction == SNDRV_PCM_STREAM_PLAYBACK) {
--		chan = find_first_zero_bit(&drvdata->dma_ch_bit_map,
--					v->rdma_channels);
-+	if (dai_id == LPASS_DP_RX) {
-+		if (direction == SNDRV_PCM_STREAM_PLAYBACK) {
-+			chan = find_first_zero_bit(&drvdata->hdmi_dma_ch_bit_map,
-+						v->hdmi_rdma_channels);
-+
-+			if (chan >= v->hdmi_rdma_channels)
-+				return -EBUSY;
-+		}
-+		set_bit(chan, &drvdata->hdmi_dma_ch_bit_map);
-+	} else {
-+		if (direction == SNDRV_PCM_STREAM_PLAYBACK) {
-+			chan = find_first_zero_bit(&drvdata->dma_ch_bit_map,
-+						v->rdma_channels);
- 
- 		if (chan >= v->rdma_channels)
- 			return -EBUSY;
--	} else {
--		chan = find_next_zero_bit(&drvdata->dma_ch_bit_map,
-+		} else {
-+			chan = find_next_zero_bit(&drvdata->dma_ch_bit_map,
- 					v->wrdma_channel_start +
- 					v->wrdma_channels,
- 					v->wrdma_channel_start);
- 
--		if (chan >=  v->wrdma_channel_start + v->wrdma_channels)
--			return -EBUSY;
--	}
--
--	set_bit(chan, &drvdata->dma_ch_bit_map);
-+			if (chan >=  v->wrdma_channel_start + v->wrdma_channels)
-+				return -EBUSY;
-+		}
- 
-+		set_bit(chan, &drvdata->dma_ch_bit_map);
-+	}
- 	return chan;
- }
- 
--static int sc7180_lpass_free_dma_channel(struct lpass_data *drvdata, int chan)
-+static int sc7180_lpass_free_dma_channel(struct lpass_data *drvdata, int chan, unsigned int dai_id)
- {
--	clear_bit(chan, &drvdata->dma_ch_bit_map);
-+	if (dai_id == LPASS_DP_RX)
-+		clear_bit(chan, &drvdata->hdmi_dma_ch_bit_map);
-+	else
-+		clear_bit(chan, &drvdata->dma_ch_bit_map);
- 
- 	return 0;
- }
-@@ -144,6 +171,9 @@ static struct lpass_variant sc7180_data = {
- 	.rdma_reg_base		= 0xC000,
- 	.rdma_reg_stride	= 0x1000,
- 	.rdma_channels		= 5,
-+	.hdmi_rdma_reg_base		= 0x64000,
-+	.hdmi_rdma_reg_stride	= 0x1000,
-+	.hdmi_rdma_channels		= 4,
- 	.dmactl_audif_start	= 1,
- 	.wrdma_reg_base		= 0x18000,
- 	.wrdma_reg_stride	= 0x1000,
-@@ -163,7 +193,7 @@ static struct lpass_variant sc7180_data = {
- 	.rdma_dyncclk		= REG_FIELD_ID(0xC000, 21, 21, 5, 0x1000),
- 	.rdma_bursten		= REG_FIELD_ID(0xC000, 20, 20, 5, 0x1000),
- 	.rdma_wpscnt		= REG_FIELD_ID(0xC000, 16, 19, 5, 0x1000),
--	.rdma_intf		= REG_FIELD_ID(0xC000, 12, 15, 5, 0x1000),
-+	.rdma_intf			= REG_FIELD_ID(0xC000, 12, 15, 5, 0x1000),
- 	.rdma_fifowm		= REG_FIELD_ID(0xC000, 1, 5, 5, 0x1000),
- 	.rdma_enable		= REG_FIELD_ID(0xC000, 0, 0, 5, 0x1000),
- 
-@@ -174,6 +204,64 @@ static struct lpass_variant sc7180_data = {
- 	.wrdma_fifowm		= REG_FIELD_ID(0x18000, 1, 5, 4, 0x1000),
- 	.wrdma_enable		= REG_FIELD_ID(0x18000, 0, 0, 4, 0x1000),
- 
-+	.hdmi_tx_ctl_addr	= 0x1000,
-+	.hdmi_legacy_addr	= 0x1008,
-+	.hdmi_vbit_addr		= 0x610c0,
-+	.hdmi_ch_lsb_addr	= 0x61048,
-+	.hdmi_ch_msb_addr	= 0x6104c,
-+	.ch_stride		= 0x8,
-+	.hdmi_parity_addr	= 0x61034,
-+	.hdmi_dmactl_addr	= 0x61038,
-+	.hdmi_dma_stride	= 0x4,
-+	.hdmi_DP_addr		= 0x610c8,
-+	.hdmi_sstream_addr	= 0x6101c,
-+	.hdmi_irq_reg_base		= 0x63000,
-+	.hdmi_irq_ports		= 1,
-+
-+	.hdmi_rdma_dyncclk		= REG_FIELD_ID(0x64000, 14, 14, 4, 0x1000),
-+	.hdmi_rdma_bursten		= REG_FIELD_ID(0x64000, 13, 13, 4, 0x1000),
-+	.hdmi_rdma_burst8		= REG_FIELD_ID(0x64000, 15, 15, 4, 0x1000),
-+	.hdmi_rdma_burst16		= REG_FIELD_ID(0x64000, 16, 16, 4, 0x1000),
-+	.hdmi_rdma_dynburst		= REG_FIELD_ID(0x64000, 18, 18, 4, 0x1000),
-+	.hdmi_rdma_wpscnt		= REG_FIELD_ID(0x64000, 10, 12, 4, 0x1000),
-+	.hdmi_rdma_fifowm		= REG_FIELD_ID(0x64000, 1, 5, 4, 0x1000),
-+	.hdmi_rdma_enable		= REG_FIELD_ID(0x64000, 0, 0, 4, 0x1000),
-+
-+	.sstream_en		= REG_FIELD(0x6101c, 0, 0),
-+	.dma_sel			= REG_FIELD(0x6101c, 1, 2),
-+	.auto_bbit_en	= REG_FIELD(0x6101c, 3, 3),
-+	.layout			= REG_FIELD(0x6101c, 4, 4),
-+	.layout_sp		= REG_FIELD(0x6101c, 5, 8),
-+	.set_sp_on_en	= REG_FIELD(0x6101c, 10, 10),
-+	.dp_audio		= REG_FIELD(0x6101c, 11, 11),
-+	.dp_staffing_en	= REG_FIELD(0x6101c, 12, 12),
-+	.dp_sp_b_hw_en	= REG_FIELD(0x6101c, 13, 13),
-+
-+	.mute			= REG_FIELD(0x610c8, 0, 0),
-+	.as_sdp_cc		= REG_FIELD(0x610c8, 1, 3),
-+	.as_sdp_ct		= REG_FIELD(0x610c8, 4, 7),
-+	.aif_db4			= REG_FIELD(0x610c8, 8, 15),
-+	.frequency		= REG_FIELD(0x610c8, 16, 21),
-+	.mst_index		= REG_FIELD(0x610c8, 28, 29),
-+	.dptx_index		= REG_FIELD(0x610c8, 30, 31),
-+
-+	.soft_reset		= REG_FIELD(0x1000, 31, 31),
-+	.force_reset	= REG_FIELD(0x1000, 30, 30),
-+
-+	.use_hw_chs		= REG_FIELD(0x61038, 0, 0),
-+	.use_hw_usr		= REG_FIELD(0x61038, 1, 1),
-+	.hw_chs_sel		= REG_FIELD(0x61038, 2, 4),
-+	.hw_usr_sel		= REG_FIELD(0x61038, 5, 6),
-+
-+	.replace_vbit	= REG_FIELD(0x610c0, 0, 0),
-+	.vbit_stream	= REG_FIELD(0x610c0, 1, 1),
-+
-+	.legacy_en		=  REG_FIELD(0x1008, 0, 0),
-+	.calc_en		=  REG_FIELD(0x61034, 0, 0),
-+	.lsb_bits		=  REG_FIELD(0x61048, 0, 31),
-+	.msb_bits		=  REG_FIELD(0x6104c, 0, 31),
-+
-+
- 	.clk_name		= (const char*[]) {
- 				   "pcnoc-sway-clk",
- 				   "audio-core",
--- 
-Qualcomm India Private Limited, on behalf of Qualcomm Innovation Center, Inc.,
-is a member of Code Aurora Forum, a Linux Foundation Collaborative Project.
-
+Kind regards
+Uffe
