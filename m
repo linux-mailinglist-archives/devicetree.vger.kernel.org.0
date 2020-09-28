@@ -2,94 +2,99 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from vger.kernel.org (vger.kernel.org [23.128.96.18])
-	by mail.lfdr.de (Postfix) with ESMTP id 4C60027A79A
-	for <lists+devicetree@lfdr.de>; Mon, 28 Sep 2020 08:36:11 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTP id 6E9CC27A7A7
+	for <lists+devicetree@lfdr.de>; Mon, 28 Sep 2020 08:38:03 +0200 (CEST)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S1726421AbgI1GgK (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Mon, 28 Sep 2020 02:36:10 -0400
-Received: from lindbergh.monkeyblade.net ([23.128.96.19]:51380 "EHLO
+        id S1726458AbgI1GiB (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Mon, 28 Sep 2020 02:38:01 -0400
+Received: from lindbergh.monkeyblade.net ([23.128.96.19]:51664 "EHLO
         lindbergh.monkeyblade.net" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S1725308AbgI1GgK (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Mon, 28 Sep 2020 02:36:10 -0400
-Received: from mail-ed1-x542.google.com (mail-ed1-x542.google.com [IPv6:2a00:1450:4864:20::542])
-        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 436E8C0613CE;
-        Sun, 27 Sep 2020 23:36:10 -0700 (PDT)
-Received: by mail-ed1-x542.google.com with SMTP id n22so56169edt.4;
-        Sun, 27 Sep 2020 23:36:10 -0700 (PDT)
+        with ESMTP id S1726420AbgI1GiB (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Mon, 28 Sep 2020 02:38:01 -0400
+Received: from mail-pg1-x541.google.com (mail-pg1-x541.google.com [IPv6:2607:f8b0:4864:20::541])
+        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 64070C0613CE;
+        Sun, 27 Sep 2020 23:38:01 -0700 (PDT)
+Received: by mail-pg1-x541.google.com with SMTP id u24so10071pgi.1;
+        Sun, 27 Sep 2020 23:38:01 -0700 (PDT)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=jms.id.au; s=google;
-        h=mime-version:references:in-reply-to:from:date:message-id:subject:to
-         :cc;
-        bh=/nKB/odECC+5oqZhSa7bIP3FBFtIvg26fikzOMA8o1U=;
-        b=hBmKYDc/kEi7zflj1bZ9+9WwU93fZ3m2wYbDRdaX9IGB3F3ZfNlsCEdoppa3RM7VVc
-         DEiyc52dDgzqn0d9p1kTWZFRM3KK/magW2NJSSRG/xIjZEZdrp/dcVvtX3G85ekpcoz/
-         l9/pccUo9GrE/5t8nqSkxTuFjcNa6M+Us2rPQ=
+        d=gmail.com; s=20161025;
+        h=from:to:cc:subject:date:message-id:mime-version
+         :content-transfer-encoding;
+        bh=b0chtk5rr8XDTzC1Vz9PdERcVqFOmea/OCGt+6P6mjE=;
+        b=M/fOxg41yJtwIweGfkUXKS4DhCzSmqY2kkbgvMY2OTdmDMRgkr6K7VKGmkzPx9128L
+         5lhw4DYpVejne21gL5f3/OUDy279MdWqYeG0dEpng6IVhVk/t6YhS92dhsN17eHRwtB4
+         myxZmB3Bs0kkOOTBjK3sYS+9+K6BpKP6gKFvCKSrttYPhYqT6Uk3vpdbftTym7bMA1jM
+         lHTTa7lyZScNA1gLd76jTM4Rr4nNcIp6Z1i9Dr/ZMPZv1eJuijohynSMjEu5xLidIfrO
+         E8cQ+6vAof+HbiNW2q+7H6EK0/zh4ZK+DryCYccV6Vr/OvXX8frUC6l/EyChq3Ddy/+Y
+         xiGA==
 X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
         d=1e100.net; s=20161025;
-        h=x-gm-message-state:mime-version:references:in-reply-to:from:date
-         :message-id:subject:to:cc;
-        bh=/nKB/odECC+5oqZhSa7bIP3FBFtIvg26fikzOMA8o1U=;
-        b=Spc98KGvEPjcyS7HgUqjfHYJQAUxyDsoxgW8uweOWEokCK7DRUnlJGg7rzpRGxm+8A
-         sz5E58jR8427Oocevdp1u63ufyCuZelYb4Iy1sSbf8fa+Pbu8hLfIUKVeuras+ig+ArR
-         8WLlpdX0C+gnuUKGp4OXT+sb+mCHCsqfbWxR3KYUg6Kyx4OpXySMLBA1fRq2l6J3iJdL
-         qM1CC6dXkw9FcG+XU9N80wfdLrV5oRkB95Bzg19TWemCguNTsykJ1cRHLpY7IZZYXu0S
-         FTsHoQV+UFjw5PF12r3uEsmbNf2zQrsoSeF5CL2p6+E4KZKKYOUaRODaQ7+UDNk1Z1wM
-         TLMA==
-X-Gm-Message-State: AOAM533dxb+76jxCD1ADlD/AmgBa1NgH6BtJrq3VtXiEbV3Ky0XCTYbs
-        c3jxL//EvHcoLGxC5AN4SUmU8t7u+qsIoX0WwXg=
-X-Google-Smtp-Source: ABdhPJyD4DRT+j+TjKP/dgAT8V8/M4iWxU6Zg+ZnI6IDRF/j+WOqGaSTMSlUw9s0o0su2LDEv+FCRh0AwzTCUuWdcxY=
-X-Received: by 2002:aa7:d7ca:: with SMTP id e10mr94667eds.191.1601274968942;
- Sun, 27 Sep 2020 23:36:08 -0700 (PDT)
+        h=x-gm-message-state:from:to:cc:subject:date:message-id:mime-version
+         :content-transfer-encoding;
+        bh=b0chtk5rr8XDTzC1Vz9PdERcVqFOmea/OCGt+6P6mjE=;
+        b=AQRiqWRrHfLECg9QhSCq73Bt+opfjO83GWzQvpFCebgCETm+HZHF4JR9xpAl0qI8ha
+         BUhuuk0utk2WCjFNYQjYwnNTRv3pdAplR/XcyeoF9CBI3xc5HbLWPZkxQ75OHrYhFtT+
+         5scXrTphDI5TQG/T7vSkEIXJT39kTyFH9fqXzmqdc3P0HjnCCJBm05AKADWoWSIg1m0Q
+         sfRBX4ROH65dMxmt4ridEZDddZ9KTMb9jJqSg4YUsaOZ+tyeN76wYMIUqZKGugCPJ9DH
+         QlFAmhB5uvgtzNvhmVanAPtXZHeebYntGgPmCB6qYJT9TXqjm5s0axjZprtEr88ADuUp
+         JCPg==
+X-Gm-Message-State: AOAM533mw2o7Uv4FkmGirmPcNgDdCGndVJJD/R2l8hlnsioOw0pzUw+S
+        hWSYqiXxG0kgYeZuq9693ua+QhBN7QFYi4Ht
+X-Google-Smtp-Source: ABdhPJyj1jBgh+AJFzEXL5d8eOV13dyDzQzXUtModYjoFV8sYvwq0POiaz94Z4R+8E8xiDjHI1/+CQ==
+X-Received: by 2002:a63:4854:: with SMTP id x20mr138642pgk.220.1601275080603;
+        Sun, 27 Sep 2020 23:38:00 -0700 (PDT)
+Received: from localhost (114-34-18-97.HINET-IP.hinet.net. [114.34.18.97])
+        by smtp.gmail.com with ESMTPSA id g26sm192663pfr.105.2020.09.27.23.37.59
+        (version=TLS1_3 cipher=TLS_AES_256_GCM_SHA384 bits=256/256);
+        Sun, 27 Sep 2020 23:37:59 -0700 (PDT)
+From:   Ajye Huang <ajye.huang@gmail.com>
+X-Google-Original-From: Ajye Huang <ajye_huang@compal.corp-partner.google.com>
+To:     linux-kernel@vger.kernel.org
+Cc:     Mark Brown <broonie@kernel.org>,
+        Rohit kumar <rohitkr@codeaurora.org>,
+        Banajit Goswami <bgoswami@codeaurora.org>,
+        Patrick Lai <plai@codeaurora.org>,
+        Srinivasa Rao Mandadapu <srivasam@codeaurora.org>,
+        Andy Gross <agross@kernel.org>,
+        Bjorn Andersson <bjorn.andersson@linaro.org>,
+        Liam Girdwood <lgirdwood@gmail.com>,
+        Rob Herring <robh+dt@kernel.org>,
+        Jaroslav Kysela <perex@perex.cz>, cychiang@chromium.org,
+        tzungbi@chromium.org, dianders@chromium.org,
+        linux-arm-kernel@lists.infradead.org,
+        linux-arm-msm@vger.kernel.org, devicetree@vger.kernel.org,
+        alsa-devel@alsa-project.org,
+        Ajye Huang <ajye_huang@compal.corp-partner.google.com>
+Subject: [PATCH v1 0/2] Modify documentation and machine driver for SC7180 sound card
+Date:   Mon, 28 Sep 2020 14:37:42 +0800
+Message-Id: <20200928063744.525700-1-ajye_huang@compal.corp-partner.google.com>
+X-Mailer: git-send-email 2.25.1
 MIME-Version: 1.0
-References: <20200923164730.176881-1-tmaimon77@gmail.com> <20200923164730.176881-4-tmaimon77@gmail.com>
-In-Reply-To: <20200923164730.176881-4-tmaimon77@gmail.com>
-From:   Joel Stanley <joel@jms.id.au>
-Date:   Mon, 28 Sep 2020 06:35:56 +0000
-Message-ID: <CACPK8Xfe9Bh_botSMPx72TPnDt_Ar_s+o6QcE_THrb07v4N-2w@mail.gmail.com>
-Subject: Re: [PATCH v7 3/5] arm: dts: add pinctrl and GPIO node to NPCM7XX
- device tree
-To:     Tomer Maimon <tmaimon77@gmail.com>
-Cc:     Rob Herring <robh+dt@kernel.org>,
-        Mark Rutland <mark.rutland@arm.com>,
-        Avi Fishman <avifishman70@gmail.com>,
-        Tali Perry <tali.perry1@gmail.com>,
-        Patrick Venture <venture@google.com>,
-        Nancy Yuen <yuenn@google.com>,
-        Benjamin Fair <benjaminfair@google.com>,
-        devicetree <devicetree@vger.kernel.org>,
-        Linux Kernel Mailing List <linux-kernel@vger.kernel.org>,
-        OpenBMC Maillist <openbmc@lists.ozlabs.org>
-Content-Type: text/plain; charset="UTF-8"
+Content-Transfer-Encoding: 8bit
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-On Wed, 23 Sep 2020 at 16:48, Tomer Maimon <tmaimon77@gmail.com> wrote:
->
-> Add pin controller and GPIO node to NPCM7XX device tree.
->
-> Signed-off-by: Tomer Maimon <tmaimon77@gmail.com>
-> ---
->  arch/arm/boot/dts/nuvoton-common-npcm7xx.dtsi | 565 ++++++++++++++++++
->  1 file changed, 565 insertions(+)
->
-> diff --git a/arch/arm/boot/dts/nuvoton-common-npcm7xx.dtsi b/arch/arm/boot/dts/nuvoton-common-npcm7xx.dtsi
-> index 72e364054e72..5df77a617e77 100644
-> --- a/arch/arm/boot/dts/nuvoton-common-npcm7xx.dtsi
-> +++ b/arch/arm/boot/dts/nuvoton-common-npcm7xx.dtsi
-> @@ -185,4 +185,569 @@
->                         };
->                 };
->         };
-> +
-> +       pinctrl: pinctrl@f0800000 {
-> +               #address-cells = <1>;
-> +               #size-cells = <1>;
-> +               compatible = "nuvoton,npcm750-pinctrl", "syscon", "simple-mfd";
-> +               ranges = <0 0xf0010000 0x8000>;
-> +               status = "okay";
+Note:
+- This patch depends on this patch series 
+ ASoC: qcom: dt-bindings: Add sc7180 machine bindings
+ https://patchwork.kernel.org/patch/11773221/
+ ASoC: qcom: sc7180: Add machine driver for sound card registration
+ https://patchwork.kernel.org/patch/11773223/
+- The patch is made by the collaboration of
+ Ajye Huang <ajye_huang@compal.corp-partner.google.com>
+ Cheng-Yi Chiang <cychiang@chromium.org>
 
-Nodes are enabled by default, so there's no need to add status="okay"
-here. It's no biggie, you can fix it up in a follow up patch.
+Thanks for the review!
 
-Reviewed-by: Joel Stanley <joel@jms.id.au>
+Ajye Huang (2):
+  ASoC: qcom: dt-bindings: Modify sc7180 machine bindings
+  ASoC: qcom: sc7180: Modify machine driver for 2mic
+
+ .../bindings/sound/qcom,sc7180.yaml           | 64 ++++++++++++++++++-
+ sound/soc/qcom/sc7180.c                       | 60 +++++++++++++++++
+ 2 files changed, 123 insertions(+), 1 deletion(-)
+
+-- 
+2.25.1
+
