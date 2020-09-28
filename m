@@ -2,99 +2,160 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from vger.kernel.org (vger.kernel.org [23.128.96.18])
-	by mail.lfdr.de (Postfix) with ESMTP id 7757427A50E
-	for <lists+devicetree@lfdr.de>; Mon, 28 Sep 2020 03:06:03 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTP id C75CB27A562
+	for <lists+devicetree@lfdr.de>; Mon, 28 Sep 2020 04:19:12 +0200 (CEST)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S1726601AbgI1BF5 (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Sun, 27 Sep 2020 21:05:57 -0400
-Received: from mx.socionext.com ([202.248.49.38]:27549 "EHLO mx.socionext.com"
-        rhost-flags-OK-OK-OK-OK) by vger.kernel.org with ESMTP
-        id S1726559AbgI1BFt (ORCPT <rfc822;devicetree@vger.kernel.org>);
-        Sun, 27 Sep 2020 21:05:49 -0400
-Received: from unknown (HELO kinkan-ex.css.socionext.com) ([172.31.9.52])
-  by mx.socionext.com with ESMTP; 28 Sep 2020 10:05:45 +0900
-Received: from mail.mfilter.local (m-filter-2 [10.213.24.62])
-        by kinkan-ex.css.socionext.com (Postfix) with ESMTP id B0BED180BE1;
-        Mon, 28 Sep 2020 10:05:45 +0900 (JST)
-Received: from 172.31.9.51 (172.31.9.51) by m-FILTER with ESMTP; Mon, 28 Sep 2020 10:05:45 +0900
-Received: from plum.e01.socionext.com (unknown [10.213.132.32])
-        by kinkan.css.socionext.com (Postfix) with ESMTP id 6F0251A0507;
-        Mon, 28 Sep 2020 10:05:45 +0900 (JST)
-From:   Kunihiko Hayashi <hayashi.kunihiko@socionext.com>
-To:     Rob Herring <robh+dt@kernel.org>,
-        Bjorn Helgaas <bhelgaas@google.com>,
-        Lorenzo Pieralisi <lorenzo.pieralisi@arm.com>,
-        Jingoo Han <jingoohan1@gmail.com>,
-        Gustavo Pimentel <gustavo.pimentel@synopsys.com>,
-        Murali Karicheri <m-karicheri2@ti.com>
-Cc:     linux-pci@vger.kernel.org, devicetree@vger.kernel.org,
-        linux-arm-kernel@lists.infradead.org, linux-kernel@vger.kernel.org,
-        Masami Hiramatsu <masami.hiramatsu@linaro.org>,
-        Jassi Brar <jaswinder.singh@linaro.org>,
-        Kunihiko Hayashi <hayashi.kunihiko@socionext.com>
-Subject: [PATCH v2 4/4] PCI: keystone: Remove iATU register mapping
-Date:   Mon, 28 Sep 2020 10:05:33 +0900
-Message-Id: <1601255133-17715-5-git-send-email-hayashi.kunihiko@socionext.com>
-X-Mailer: git-send-email 2.7.4
-In-Reply-To: <1601255133-17715-1-git-send-email-hayashi.kunihiko@socionext.com>
-References: <1601255133-17715-1-git-send-email-hayashi.kunihiko@socionext.com>
+        id S1726396AbgI1CTL (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Sun, 27 Sep 2020 22:19:11 -0400
+Received: from lindbergh.monkeyblade.net ([23.128.96.19]:40384 "EHLO
+        lindbergh.monkeyblade.net" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
+        with ESMTP id S1726421AbgI1CTL (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Sun, 27 Sep 2020 22:19:11 -0400
+Received: from mail-vk1-xa41.google.com (mail-vk1-xa41.google.com [IPv6:2607:f8b0:4864:20::a41])
+        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 15B9EC0613CF
+        for <devicetree@vger.kernel.org>; Sun, 27 Sep 2020 19:19:11 -0700 (PDT)
+Received: by mail-vk1-xa41.google.com with SMTP id a16so1195459vke.3
+        for <devicetree@vger.kernel.org>; Sun, 27 Sep 2020 19:19:11 -0700 (PDT)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+        d=chromium.org; s=google;
+        h=mime-version:references:in-reply-to:from:date:message-id:subject:to
+         :cc;
+        bh=8r8ZQ9WFem+xMGOEuRI4QXJqsFWB3RpcceUKwYsgmIE=;
+        b=UwBVC3kcZ8as2vQq5raFEecalgZi24VjAbQWkvAkqPqSIKs9/Rypej2ZHeDhZue48N
+         uwHaCBKHLs+1KCY4qI3wedU96I6Mux+6hJM0PRuASqzFWoIP/oTDzMJcpvPIwW0lTStL
+         nLAT/BYP8bBXu3sDR6cZGcmyVQKAKhxyLomq0=
+X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+        d=1e100.net; s=20161025;
+        h=x-gm-message-state:mime-version:references:in-reply-to:from:date
+         :message-id:subject:to:cc;
+        bh=8r8ZQ9WFem+xMGOEuRI4QXJqsFWB3RpcceUKwYsgmIE=;
+        b=UI5BgjAq3VRXVm0R3MVdDpz3Hclvxj1pfLvvZwHJ+ze5WEr4VD8qP4kzn6zrh0tgCV
+         I3S93TgykOauYtcvLsBDxR9Im9LZ6GIYs0bh9FxLWGwv4kBZmWAGdREZMJgqmoCBlRet
+         D43okaKX2rMHqphmLZEtuJo2AZxyDLHUx1YL2k1mLmoFYmOeFUCNNcFQrqa1OiVKm3S8
+         pjEx8QSrsa9xb39MCQU+O016voRIbY/sEQg10QNJFw+aE+b82pvo2VTYM0OwTF5EIGFE
+         +7Oflhx+g4hpoHs31bxmUU2CpuNczuc0rp1POX/vDMvC5/Xe2n6F2hyaB9SKB7yiUXfO
+         MVig==
+X-Gm-Message-State: AOAM532hLiUB23n3X9kuTv7kA2ujtTSsmk5TAkcpGWoAGVZHyIchn4ny
+        Lil3hGyjTbarVIneDU7OfSt0YFxs5Z2tGWAIvUhdIA==
+X-Google-Smtp-Source: ABdhPJzMzVYBekXtY/fDL9QkaeRJXXppiNLoJcZ5OmOeX7nmgFpzlOFVzI+FQV2QY4jYTtNiAJiVdaRJ5Eo/3cOsnr4=
+X-Received: by 2002:a1f:fcc2:: with SMTP id a185mr3771112vki.8.1601259549093;
+ Sun, 27 Sep 2020 19:19:09 -0700 (PDT)
+MIME-Version: 1.0
+References: <20200925065418.1077472-1-ikjn@chromium.org> <20200925145255.v3.5.Id1cb208392928afc7ceed4de06924243c7858cd0@changeid>
+ <1601195424.7766.4.camel@mtksdaap41>
+In-Reply-To: <1601195424.7766.4.camel@mtksdaap41>
+From:   Ikjoon Jang <ikjn@chromium.org>
+Date:   Mon, 28 Sep 2020 10:18:58 +0800
+Message-ID: <CAATdQgDP6kd=us35FJ=MWv4KtyATjd_RbEU5ENmBK+Z-m2GnSw@mail.gmail.com>
+Subject: Re: [PATCH v3 5/6] spi: spi-mtk-nor: support 36bit dma addressing
+To:     Yingjoe Chen <yingjoe.chen@mediatek.com>
+Cc:     Rob Herring <robh+dt@kernel.org>, Mark Brown <broonie@kernel.org>,
+        "open list:OPEN FIRMWARE AND FLATTENED DEVICE TREE BINDINGS" 
+        <devicetree@vger.kernel.org>, linux-spi@vger.kernel.org,
+        linux-mtd@lists.infradead.org,
+        Matthias Brugger <matthias.bgg@gmail.com>,
+        "moderated list:ARM/Mediatek SoC support" 
+        <linux-mediatek@lists.infradead.org>,
+        "moderated list:ARM/Mediatek SoC support" 
+        <linux-arm-kernel@lists.infradead.org>,
+        open list <linux-kernel@vger.kernel.org>
+Content-Type: text/plain; charset="UTF-8"
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-After applying "PCI: dwc: Add common iATU register support",
-there is no need to set own iATU in the Keystone driver itself.
+On Sun, Sep 27, 2020 at 4:30 PM Yingjoe Chen <yingjoe.chen@mediatek.com> wrote:
+>
+> On Fri, 2020-09-25 at 14:54 +0800, Ikjoon Jang wrote:
+> > This patch enables 36bit dma address support to spi-mtk-nor.
+> > Currently this is enabled only for mt8192-nor.
+> >
+> > Signed-off-by: Ikjoon Jang <ikjn@chromium.org>
+> > ---
+> >
+> > (no changes since v1)
+> >
+> >  drivers/spi/spi-mtk-nor.c | 18 +++++++++++++++++-
+> >  1 file changed, 17 insertions(+), 1 deletion(-)
+> >
+> > diff --git a/drivers/spi/spi-mtk-nor.c b/drivers/spi/spi-mtk-nor.c
+> > index 8dbafee7f431..35205635ed42 100644
+> > --- a/drivers/spi/spi-mtk-nor.c
+> > +++ b/drivers/spi/spi-mtk-nor.c
+> > @@ -78,6 +78,8 @@
+> >  #define MTK_NOR_REG_DMA_FADR         0x71c
+> >  #define MTK_NOR_REG_DMA_DADR         0x720
+> >  #define MTK_NOR_REG_DMA_END_DADR     0x724
+> > +#define MTK_NOR_REG_DMA_DADR_HB              0x738
+> > +#define MTK_NOR_REG_DMA_END_DADR_HB  0x73c
+> >
+> >  /* maximum bytes of TX in PRG mode */
+> >  #define MTK_NOR_PRG_MAX_SIZE         6
+> > @@ -106,6 +108,7 @@ struct mtk_nor {
+> >       unsigned int spi_freq;
+> >       bool wbuf_en;
+> >       bool has_irq;
+> > +     bool high_dma;
+> >       struct completion op_done;
+> >  };
+> >
+> > @@ -305,6 +308,11 @@ static int mtk_nor_dma_exec(struct mtk_nor *sp, u32 from, unsigned int length,
+> >       writel(dma_addr, sp->base + MTK_NOR_REG_DMA_DADR);
+> >       writel(dma_addr + length, sp->base + MTK_NOR_REG_DMA_END_DADR);
+> >
+> > +     if (sp->high_dma) {
+> > +             writel(dma_addr >> 32, sp->base + MTK_NOR_REG_DMA_DADR_HB);
+> > +             writel((dma_addr + length) >> 32, sp->base + MTK_NOR_REG_DMA_END_DADR_HB);
+> > +     }
+> > +
+>
+> Maybe use upper_32_bits() ?
 
-Cc: Murali Karicheri <m-karicheri2@ti.com>
-Cc: Jingoo Han <jingoohan1@gmail.com>
-Cc: Gustavo Pimentel <gustavo.pimentel@synopsys.com>
-Suggested-by: Rob Herring <robh@kernel.org>
-Signed-off-by: Kunihiko Hayashi <hayashi.kunihiko@socionext.com>
-Reviewed-by: Rob Herring <robh@kernel.org>
----
- drivers/pci/controller/dwc/pci-keystone.c | 20 ++++----------------
- 1 file changed, 4 insertions(+), 16 deletions(-)
+Thanks, good to know that!
 
-diff --git a/drivers/pci/controller/dwc/pci-keystone.c b/drivers/pci/controller/dwc/pci-keystone.c
-index b554812..a222728 100644
---- a/drivers/pci/controller/dwc/pci-keystone.c
-+++ b/drivers/pci/controller/dwc/pci-keystone.c
-@@ -1154,7 +1154,6 @@ static int __init ks_pcie_probe(struct platform_device *pdev)
- 	struct keystone_pcie *ks_pcie;
- 	struct device_link **link;
- 	struct gpio_desc *gpiod;
--	void __iomem *atu_base;
- 	struct resource *res;
- 	unsigned int version;
- 	void __iomem *base;
-@@ -1275,23 +1274,12 @@ static int __init ks_pcie_probe(struct platform_device *pdev)
- 		goto err_get_sync;
- 	}
- 
--	if (pci->version >= 0x480A) {
--		atu_base = devm_platform_ioremap_resource_byname(pdev, "atu");
--		if (IS_ERR(atu_base)) {
--			ret = PTR_ERR(atu_base);
--			goto err_get_sync;
--		}
--
--		pci->atu_base = atu_base;
--
-+	if (pci->version >= 0x480A)
- 		ret = ks_pcie_am654_set_mode(dev, mode);
--		if (ret < 0)
--			goto err_get_sync;
--	} else {
-+	else
- 		ret = ks_pcie_set_mode(dev);
--		if (ret < 0)
--			goto err_get_sync;
--	}
-+	if (ret < 0)
-+		goto err_get_sync;
- 
- 	switch (mode) {
- 	case DW_PCIE_RC_TYPE:
--- 
-2.7.4
+>
+>
+> >       if (sp->has_irq) {
+> >               reinit_completion(&sp->op_done);
+> >               mtk_nor_rmw(sp, MTK_NOR_REG_IRQ_EN, MTK_NOR_IRQ_DMA, 0);
+> > @@ -635,7 +643,8 @@ static const struct spi_controller_mem_ops mtk_nor_mem_ops = {
+> >  };
+> >
+> >  static const struct of_device_id mtk_nor_match[] = {
+> > -     { .compatible = "mediatek,mt8173-nor" },
+> > +     { .compatible = "mediatek,mt8192-nor", .data = (void *)36 },
+> > +     { .compatible = "mediatek,mt8173-nor", .data = (void *)32 },
+> >       { /* sentinel */ }
+> >  };
+> >  MODULE_DEVICE_TABLE(of, mtk_nor_match);
+> > @@ -647,6 +656,7 @@ static int mtk_nor_probe(struct platform_device *pdev)
+> >       void __iomem *base;
+> >       struct clk *spi_clk, *ctlr_clk;
+> >       int ret, irq;
+> > +     unsigned long dma_bits;
+> >
+> >       base = devm_platform_ioremap_resource(pdev, 0);
+> >       if (IS_ERR(base))
+> > @@ -660,6 +670,12 @@ static int mtk_nor_probe(struct platform_device *pdev)
+> >       if (IS_ERR(ctlr_clk))
+> >               return PTR_ERR(ctlr_clk);
+> >
+> > +     dma_bits = (unsigned long)of_device_get_match_data(&pdev->dev);
+> > +     if (dma_set_mask_and_coherent(&pdev->dev, DMA_BIT_MASK(dma_bits))) {
+> > +             dev_err(&pdev->dev, "failed to set dma mask(%lu)\n", dma_bits);
+> > +             return -EINVAL;
+> > +     }
+> > +
+>
+> As said in previous version. I don't see any place enable high_dma, so I
+> think this patch won't set >32bits for anychip. We need something like:
+>
+>         sp->hidh_dma = dma_bits > 32;
+>
+> Am I missing anything?
 
+Yeah, you're right, that line disappeared between v2 ~ v3 (by mistake).
+
+>
+> Joe.C
+>
