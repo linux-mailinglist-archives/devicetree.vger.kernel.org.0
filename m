@@ -2,114 +2,137 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from vger.kernel.org (vger.kernel.org [23.128.96.18])
-	by mail.lfdr.de (Postfix) with ESMTP id 74BDA27AB2F
-	for <lists+devicetree@lfdr.de>; Mon, 28 Sep 2020 11:49:42 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTP id 7AC6B27AB32
+	for <lists+devicetree@lfdr.de>; Mon, 28 Sep 2020 11:52:34 +0200 (CEST)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S1726650AbgI1Jtf (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Mon, 28 Sep 2020 05:49:35 -0400
-Received: from z5.mailgun.us ([104.130.96.5]:16269 "EHLO z5.mailgun.us"
-        rhost-flags-OK-OK-OK-OK) by vger.kernel.org with ESMTP
-        id S1726590AbgI1Jtd (ORCPT <rfc822;devicetree@vger.kernel.org>);
-        Mon, 28 Sep 2020 05:49:33 -0400
-DKIM-Signature: a=rsa-sha256; v=1; c=relaxed/relaxed; d=mg.codeaurora.org; q=dns/txt;
- s=smtp; t=1601286573; h=References: In-Reply-To: Message-Id: Date:
- Subject: Cc: To: From: Sender;
- bh=tDj5n6K8IeZnQ6btqEHXZBbw96aBXI7FnObmdzhi9PM=; b=xfZLvS9c0h0Vxu6h0CgYDZvnQhWJquhqSgE3K0atNKo8p29xdURqhyl0UtMrZMqbbFVhRXAi
- jz4eQHuoqOBaAj6z5NUNV0/ghxIq/zotzT0uOt0sSKSWisdQ/42BHiKs/xWFOBKIJaLjqDd5
- 7L75msA9SSgJOCSQgBl/MdKn+OY=
-X-Mailgun-Sending-Ip: 104.130.96.5
-X-Mailgun-Sid: WyI1YmJiNiIsICJkZXZpY2V0cmVlQHZnZXIua2VybmVsLm9yZyIsICJiZTllNGEiXQ==
-Received: from smtp.codeaurora.org
- (ec2-35-166-182-171.us-west-2.compute.amazonaws.com [35.166.182.171]) by
- smtp-out-n01.prod.us-east-1.postgun.com with SMTP id
- 5f71b1ad9cd44bf51a987bfc (version=TLS1.2,
- cipher=TLS_ECDHE_RSA_WITH_AES_128_GCM_SHA256); Mon, 28 Sep 2020 09:49:33
- GMT
-Sender: srivasam=codeaurora.org@mg.codeaurora.org
-Received: by smtp.codeaurora.org (Postfix, from userid 1001)
-        id 79233C43385; Mon, 28 Sep 2020 09:49:32 +0000 (UTC)
-X-Spam-Checker-Version: SpamAssassin 3.4.0 (2014-02-07) on
-        aws-us-west-2-caf-mail-1.web.codeaurora.org
-X-Spam-Level: 
-X-Spam-Status: No, score=-2.9 required=2.0 tests=ALL_TRUSTED,BAYES_00,SPF_FAIL,
-        URIBL_BLOCKED autolearn=no autolearn_force=no version=3.4.0
-Received: from hyd-lnxbld210.qualcomm.com (unknown [202.46.22.19])
-        (using TLSv1.2 with cipher ECDHE-RSA-AES128-SHA256 (128/128 bits))
-        (No client certificate requested)
-        (Authenticated sender: srivasam)
-        by smtp.codeaurora.org (Postfix) with ESMTPSA id D18D3C433C8;
-        Mon, 28 Sep 2020 09:49:28 +0000 (UTC)
-DMARC-Filter: OpenDMARC Filter v1.3.2 smtp.codeaurora.org D18D3C433C8
-Authentication-Results: aws-us-west-2-caf-mail-1.web.codeaurora.org; dmarc=none (p=none dis=none) header.from=codeaurora.org
-Authentication-Results: aws-us-west-2-caf-mail-1.web.codeaurora.org; spf=fail smtp.mailfrom=srivasam@codeaurora.org
-From:   Srinivasa Rao Mandadapu <srivasam@codeaurora.org>
-To:     agross@kernel.org, bjorn.andersson@linaro.org, robh+dt@kernel.org,
-        linux-arm-msm@vger.kernel.org, devicetree@vger.kernel.org,
-        linux-kernel@vger.kernel.org, rohitkr@codeaurora.org,
-        srinivas.kandagatla@linaro.org
-Cc:     V Sujith Kumar Reddy <vsujithk@codeaurora.org>,
-        Srinivasa Rao Mandadapu <srivasam@codeaurora.org>
-Subject: [PATCH v2 2/2] arm64: dts: qcom: sc7180-trogdor: Add lpass dai link for HDMI
-Date:   Mon, 28 Sep 2020 15:19:05 +0530
-Message-Id: <1601286545-25429-3-git-send-email-srivasam@codeaurora.org>
-X-Mailer: git-send-email 2.7.4
-In-Reply-To: <1601286545-25429-1-git-send-email-srivasam@codeaurora.org>
-References: <1601286545-25429-1-git-send-email-srivasam@codeaurora.org>
+        id S1726540AbgI1Jwd (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Mon, 28 Sep 2020 05:52:33 -0400
+Received: from lhrrgout.huawei.com ([185.176.76.210]:2924 "EHLO huawei.com"
+        rhost-flags-OK-OK-OK-FAIL) by vger.kernel.org with ESMTP
+        id S1726513AbgI1Jwd (ORCPT <rfc822;devicetree@vger.kernel.org>);
+        Mon, 28 Sep 2020 05:52:33 -0400
+Received: from lhreml710-chm.china.huawei.com (unknown [172.18.7.106])
+        by Forcepoint Email with ESMTP id F15ECFFB7E0B9848BF89;
+        Mon, 28 Sep 2020 10:52:31 +0100 (IST)
+Received: from localhost (10.52.126.2) by lhreml710-chm.china.huawei.com
+ (10.201.108.61) with Microsoft SMTP Server (version=TLS1_2,
+ cipher=TLS_ECDHE_RSA_WITH_AES_128_CBC_SHA256) id 15.1.1913.5; Mon, 28 Sep
+ 2020 10:52:31 +0100
+Date:   Mon, 28 Sep 2020 10:50:50 +0100
+From:   Jonathan Cameron <Jonathan.Cameron@Huawei.com>
+To:     Zhen Lei <thunder.leizhen@huawei.com>
+CC:     Wei Xu <xuwei5@hisilicon.com>, Rob Herring <robh+dt@kernel.org>,
+        devicetree <devicetree@vger.kernel.org>,
+        linux-arm-kernel <linux-arm-kernel@lists.infradead.org>,
+        linux-kernel <linux-kernel@vger.kernel.org>,
+        Kefeng Wang <wangkefeng.wang@huawei.com>,
+        Libin <huawei.libin@huawei.com>
+Subject: Re: [PATCH v3 20/21] dt-bindings: arm: hisilicon: convert
+ hisilicon, hi6220-sramctrl bindings to json-schema
+Message-ID: <20200928105050.0000395f@Huawei.com>
+In-Reply-To: <20200927062129.4573-21-thunder.leizhen@huawei.com>
+References: <20200927062129.4573-1-thunder.leizhen@huawei.com>
+        <20200927062129.4573-21-thunder.leizhen@huawei.com>
+Organization: Huawei Technologies Research and Development (UK) Ltd.
+X-Mailer: Claws Mail 3.17.4 (GTK+ 2.24.32; i686-w64-mingw32)
+MIME-Version: 1.0
+Content-Type: text/plain; charset="US-ASCII"
+Content-Transfer-Encoding: 7bit
+X-Originating-IP: [10.52.126.2]
+X-ClientProxiedBy: lhreml707-chm.china.huawei.com (10.201.108.56) To
+ lhreml710-chm.china.huawei.com (10.201.108.61)
+X-CFilter-Loop: Reflected
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-From: V Sujith Kumar Reddy <vsujithk@codeaurora.org>
+On Sun, 27 Sep 2020 14:21:28 +0800
+Zhen Lei <thunder.leizhen@huawei.com> wrote:
 
-Add dai link in sc7180-trogdor.dtsi for supporting audio over DP
+> Convert the Hisilicon Hi6220 SRAM controller binding to DT schema format
+> using json-schema.
+> 
+> Signed-off-by: Zhen Lei <thunder.leizhen@huawei.com>
+> ---
+>  .../hi3620/hisilicon,hi6220-sramctrl.txt           | 16 ---------
+>  .../hi3620/hisilicon,hi6220-sramctrl.yaml          | 38 ++++++++++++++++++++++
+>  2 files changed, 38 insertions(+), 16 deletions(-)
+>  delete mode 100644 Documentation/devicetree/bindings/arm/hisilicon/controller/hi3620/hisilicon,hi6220-sramctrl.txt
+>  create mode 100644 Documentation/devicetree/bindings/arm/hisilicon/controller/hi3620/hisilicon,hi6220-sramctrl.yaml
+> 
+> diff --git a/Documentation/devicetree/bindings/arm/hisilicon/controller/hi3620/hisilicon,hi6220-sramctrl.txt b/Documentation/devicetree/bindings/arm/hisilicon/controller/hi3620/hisilicon,hi6220-sramctrl.txt
+> deleted file mode 100644
+> index 963a2cb13a249d9..000000000000000
+> --- a/Documentation/devicetree/bindings/arm/hisilicon/controller/hi3620/hisilicon,hi6220-sramctrl.txt
+> +++ /dev/null
+> @@ -1,16 +0,0 @@
+> -Hisilicon Hi6220 SRAM controller
+> -
+> -Required properties:
+> -- compatible : "hisilicon,hi6220-sramctrl", "syscon"
+> -- reg : Register address and size
+> -
+> -Hisilicon's SoCs use sram for multiple purpose; on Hi6220 there have several
+> -SRAM banks for power management, modem, security, etc. Further, use "syscon"
+> -managing the common sram which can be shared by multiple modules.
+> -
+> -Example:
+> -	/*for Hi6220*/
+> -	sram: sram@fff80000 {
+> -		compatible = "hisilicon,hi6220-sramctrl", "syscon";
+> -		reg = <0x0 0xfff80000 0x0 0x12000>;
+> -	};
+> \ No newline at end of file
+> diff --git a/Documentation/devicetree/bindings/arm/hisilicon/controller/hi3620/hisilicon,hi6220-sramctrl.yaml b/Documentation/devicetree/bindings/arm/hisilicon/controller/hi3620/hisilicon,hi6220-sramctrl.yaml
+> new file mode 100644
+> index 000000000000000..f66d414a7a48071
+> --- /dev/null
+> +++ b/Documentation/devicetree/bindings/arm/hisilicon/controller/hi3620/hisilicon,hi6220-sramctrl.yaml
+> @@ -0,0 +1,38 @@
+> +# SPDX-License-Identifier: (GPL-2.0-only OR BSD-2-Clause)
+> +%YAML 1.2
+> +---
+> +$id: http://devicetree.org/schemas/arm/hisilicon/controller/hi3620/hisilicon,hi6220-sramctrl.yaml#
+> +$schema: http://devicetree.org/meta-schemas/core.yaml#
+> +
+> +title: Hisilicon Hi6220 SRAM controller
+> +
+> +maintainers:
+> +  - Wei Xu <xuwei5@hisilicon.com>
+> +
+> +description: |
+> +  Hisilicon's SoCs use sram for multiple purpose; on Hi6220 there have several
 
-Signed-off-by: V Sujith Kumar Reddy <vsujithk@codeaurora.org>
-Signed-off-by: Srinivasa Rao Mandadapu <srivasam@codeaurora.org>
----
- arch/arm64/boot/dts/qcom/sc7180-trogdor.dtsi | 15 +++++++++++++++
- 1 file changed, 15 insertions(+)
+SRAM for consistency
 
-diff --git a/arch/arm64/boot/dts/qcom/sc7180-trogdor.dtsi b/arch/arm64/boot/dts/qcom/sc7180-trogdor.dtsi
-index 5724982..2fbcb4f 100644
---- a/arch/arm64/boot/dts/qcom/sc7180-trogdor.dtsi
-+++ b/arch/arm64/boot/dts/qcom/sc7180-trogdor.dtsi
-@@ -230,6 +230,7 @@
- 			"Headphone Jack", "HPOR";
- 
- 		audio-jack = <&alc5682>;
-+		hdmi-jack = <&msm_dp>;
- 
- 		#address-cells = <1>;
- 		#size-cells = <0>;
-@@ -257,6 +258,17 @@
- 				sound-dai = <&max98357a>;
- 			};
- 		};
-+		dai-link@2 {
-+			link-name = "MultiMedia2";
-+			reg = <2>;
-+			cpu {
-+				sound-dai = <&lpass_cpu 2>;
-+			};
-+
-+			codec {
-+				sound-dai = <&msm_dp>;
-+			};
-+		};
- 	};
- };
- 
-@@ -782,6 +794,9 @@ hp_i2c: &i2c9 {
- 		reg = <MI2S_SECONDARY>;
- 		qcom,playback-sd-lines = <0>;
- 	};
-+	hdmi-primary@0 {
-+		reg = <LPASS_DP_RX>;
-+	};
- };
- 
- &mdp {
--- 
-Qualcomm India Private Limited, on behalf of Qualcomm Innovation Center, Inc.,
-is a member of Code Aurora Forum, a Linux Foundation Collaborative Project.
+> +  SRAM banks for power management, modem, security, etc. Further, use "syscon"
+> +  managing the common sram which can be shared by multiple modules.
+> +
+> +properties:
+> +  compatible:
+> +    items:
+> +      - const: hisilicon,hi6220-sramctrl
+> +      - const: syscon
+> +
+> +  reg:
+> +    description: Register address and size
+> +    maxItems: 1
+> +
+> +required:
+> +  - compatible
+> +  - reg
+> +
+> +examples:
+> +  - |
+> +    /* for Hi6220 */
+> +    sram: sram@fff80000 {
+> +        compatible = "hisilicon,hi6220-sramctrl", "syscon";
+> +        reg = <0xfff80000 0x12000>;
+> +    };
+> +...
+> \ No newline at end of file
+
+As per other files that have this, please add one.
+
+
 
