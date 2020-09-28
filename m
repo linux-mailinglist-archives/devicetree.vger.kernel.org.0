@@ -2,115 +2,100 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from vger.kernel.org (vger.kernel.org [23.128.96.18])
-	by mail.lfdr.de (Postfix) with ESMTP id A682727B868
-	for <lists+devicetree@lfdr.de>; Tue, 29 Sep 2020 01:43:54 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTP id 5C06027B85C
+	for <lists+devicetree@lfdr.de>; Tue, 29 Sep 2020 01:40:31 +0200 (CEST)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S1726961AbgI1Xnn (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Mon, 28 Sep 2020 19:43:43 -0400
-Received: from lindbergh.monkeyblade.net ([23.128.96.19]:41218 "EHLO
-        lindbergh.monkeyblade.net" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S1726379AbgI1Xnm (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Mon, 28 Sep 2020 19:43:42 -0400
-Received: from mail-vk1-xa42.google.com (mail-vk1-xa42.google.com [IPv6:2607:f8b0:4864:20::a42])
-        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 71DAFC0613DD
-        for <devicetree@vger.kernel.org>; Mon, 28 Sep 2020 15:13:41 -0700 (PDT)
-Received: by mail-vk1-xa42.google.com with SMTP id e5so1958922vkm.2
-        for <devicetree@vger.kernel.org>; Mon, 28 Sep 2020 15:13:41 -0700 (PDT)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=chromium.org; s=google;
-        h=mime-version:references:in-reply-to:from:date:message-id:subject:to
-         :cc;
-        bh=m8BYx0WkoWgdHVH2dPVlZsYwU7RwXyK6H4QoTRAqX6c=;
-        b=TSmFxQCggv2HBOhytrDlGhImhekd6aLI0sbFHWM4gaZ7w70MENTGQer0SSKJHDwy/d
-         KY5kZ5LVy0ZiLckrZ9i3mENPAVAayYpYUzSfJt4ti0sQhySay3VPyd68nSxUtevR0TLS
-         sf8vs50LVtxk9CkoXLDOoxbcYzL50yRaveDLg=
-X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=1e100.net; s=20161025;
-        h=x-gm-message-state:mime-version:references:in-reply-to:from:date
-         :message-id:subject:to:cc;
-        bh=m8BYx0WkoWgdHVH2dPVlZsYwU7RwXyK6H4QoTRAqX6c=;
-        b=IGhk0XWcjylw+9QO6We1lIjfyANJ+h3TiRH51FGdfPmbfNVr6HOI3FQ5BbhemEqVb2
-         LksXt2cCzNDkq2vDBnI9o4ZjtG1GVJbMbh9z7r5KTIg9oLVpqVWgu0jbXPV6xaSn1xKt
-         468gj9hBMDIT3S4gH0uOurc4QrFoIVzeVKjJgvy4brdkv/IUsnzixrC1yBrEjOXFOAhh
-         gUlSR10MrrR3HgztuDGbMzLjOqvuJm9csUzG9jwvO7sZNv39kkKSCfQNhztFnHfXm2Vb
-         OWPHDJQBHZqEzEzNATJADILxd5khRzIoqtDlpxJXRI9NNkbmJK2VlpF2JP41kW9I5kuL
-         9fWg==
-X-Gm-Message-State: AOAM531BeyqmsOpIMYaI4DW1XdOpVrOSNO6i0wHSdWQAOgjuf/6JOiqY
-        9vTuWIX/X4RObmKkB7NjA0qxMpomY6NrCw==
-X-Google-Smtp-Source: ABdhPJwpiPiIe/5NXyqhr3bSrGWp05ZcndfSvcjpLUKral4lM824SDlbtmytV0JjYdh0gbo//EnvxQ==
-X-Received: by 2002:a1f:9913:: with SMTP id b19mr1094269vke.4.1601331219426;
-        Mon, 28 Sep 2020 15:13:39 -0700 (PDT)
-Received: from mail-vs1-f45.google.com (mail-vs1-f45.google.com. [209.85.217.45])
-        by smtp.gmail.com with ESMTPSA id a195sm1277174vka.42.2020.09.28.15.13.38
-        for <devicetree@vger.kernel.org>
-        (version=TLS1_3 cipher=TLS_AES_128_GCM_SHA256 bits=128/128);
-        Mon, 28 Sep 2020 15:13:38 -0700 (PDT)
-Received: by mail-vs1-f45.google.com with SMTP id a16so1736534vsp.12
-        for <devicetree@vger.kernel.org>; Mon, 28 Sep 2020 15:13:38 -0700 (PDT)
-X-Received: by 2002:a67:ec9a:: with SMTP id h26mr1297894vsp.34.1601331217905;
- Mon, 28 Sep 2020 15:13:37 -0700 (PDT)
+        id S1726440AbgI1Xka (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Mon, 28 Sep 2020 19:40:30 -0400
+Received: from fllv0015.ext.ti.com ([198.47.19.141]:51802 "EHLO
+        fllv0015.ext.ti.com" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
+        with ESMTP id S1726338AbgI1Xka (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Mon, 28 Sep 2020 19:40:30 -0400
+Received: from fllv0034.itg.ti.com ([10.64.40.246])
+        by fllv0015.ext.ti.com (8.15.2/8.15.2) with ESMTP id 08SMq3wW045646;
+        Mon, 28 Sep 2020 17:52:03 -0500
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=ti.com;
+        s=ti-com-17Q1; t=1601333524;
+        bh=STg7IE+M7kXiOpxK1ULOrYJlIQH7zPjcF0BxRsCPWr0=;
+        h=From:To:CC:Subject:Date;
+        b=tg8gm6hKD5/tvv1x66Z/DnjuTx2lnEu4Mh80ahWjGGurStw53w4qu+fLB/ehv5rZ1
+         v7D/auwnrr8kUNESPfhpn2nbrC7d7vJbNCsr1qsvIRglbCxihUFRC+a8+fgXrxZ264
+         JMgqHZKbzCsRpANplpyHAQi9MXyskjbv2WKABJI4=
+Received: from DFLE100.ent.ti.com (dfle100.ent.ti.com [10.64.6.21])
+        by fllv0034.itg.ti.com (8.15.2/8.15.2) with ESMTPS id 08SMq3rO110391
+        (version=TLSv1.2 cipher=AES256-GCM-SHA384 bits=256 verify=FAIL);
+        Mon, 28 Sep 2020 17:52:03 -0500
+Received: from DFLE103.ent.ti.com (10.64.6.24) by DFLE100.ent.ti.com
+ (10.64.6.21) with Microsoft SMTP Server (version=TLS1_2,
+ cipher=TLS_ECDHE_RSA_WITH_AES_128_CBC_SHA256_P256) id 15.1.1979.3; Mon, 28
+ Sep 2020 17:52:03 -0500
+Received: from lelv0326.itg.ti.com (10.180.67.84) by DFLE103.ent.ti.com
+ (10.64.6.24) with Microsoft SMTP Server (version=TLS1_2,
+ cipher=TLS_ECDHE_RSA_WITH_AES_128_CBC_SHA256_P256) id 15.1.1979.3 via
+ Frontend Transport; Mon, 28 Sep 2020 17:52:03 -0500
+Received: from fllv0103.dal.design.ti.com (fllv0103.dal.design.ti.com [10.247.120.73])
+        by lelv0326.itg.ti.com (8.15.2/8.15.2) with ESMTP id 08SMq2kK044416;
+        Mon, 28 Sep 2020 17:52:03 -0500
+Received: from localhost ([10.250.35.102])
+        by fllv0103.dal.design.ti.com (8.14.7/8.14.7) with ESMTP id 08SMq2PK026630;
+        Mon, 28 Sep 2020 17:52:02 -0500
+From:   Suman Anna <s-anna@ti.com>
+To:     Rob Herring <robh+dt@kernel.org>
+CC:     Nishanth Menon <nm@ti.com>,
+        Bjorn Andersson <bjorn.andersson@linaro.org>,
+        <devicetree@vger.kernel.org>, <linux-remoteproc@vger.kernel.org>,
+        <linux-omap@vger.kernel.org>,
+        <linux-arm-kernel@lists.infradead.org>, Suman Anna <s-anna@ti.com>
+Subject: [PATCH -next] dt-bindings: hwlock: omap: Fix warnings with k3.yaml
+Date:   Mon, 28 Sep 2020 17:51:55 -0500
+Message-ID: <20200928225155.12432-1-s-anna@ti.com>
+X-Mailer: git-send-email 2.28.0
 MIME-Version: 1.0
-References: <20200928101326.v4.1.I248292623d3d0f6a4f0c5bc58478ca3c0062b49a@changeid>
-In-Reply-To: <20200928101326.v4.1.I248292623d3d0f6a4f0c5bc58478ca3c0062b49a@changeid>
-From:   Doug Anderson <dianders@chromium.org>
-Date:   Mon, 28 Sep 2020 15:13:26 -0700
-X-Gmail-Original-Message-ID: <CAD=FV=XWphkhFmEk6dzGn7h2mY5xBHY554rOfn+bSi5Nci27gA@mail.gmail.com>
-Message-ID: <CAD=FV=XWphkhFmEk6dzGn7h2mY5xBHY554rOfn+bSi5Nci27gA@mail.gmail.com>
-Subject: Re: [PATCH v4 1/2] dt-bindings: usb: Add binding for discrete onboard
- USB hubs
-To:     Matthias Kaehlcke <mka@chromium.org>
-Cc:     Greg Kroah-Hartman <gregkh@linuxfoundation.org>,
-        Rob Herring <robh+dt@kernel.org>,
-        Frank Rowand <frowand.list@gmail.com>,
-        LKML <linux-kernel@vger.kernel.org>, linux-usb@vger.kernel.org,
-        Bastien Nocera <hadess@hadess.net>,
-        Stephen Boyd <swboyd@chromium.org>,
-        Alan Stern <stern@rowland.harvard.edu>,
-        Ravi Chandra Sadineni <ravisadineni@chromium.org>,
-        Krzysztof Kozlowski <krzk@kernel.org>,
-        "open list:OPEN FIRMWARE AND FLATTENED DEVICE TREE BINDINGS" 
-        <devicetree@vger.kernel.org>, Peter Chen <peter.chen@nxp.com>
-Content-Type: text/plain; charset="UTF-8"
+Content-Transfer-Encoding: 8bit
+Content-Type: text/plain
+X-EXCLAIMER-MD-CONFIG: e1e8a2fd-e40a-4ac6-ac9b-f7e9cc9ee180
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-Hi,
+Update the AM65x HwSpinlock example to fix couple of warnings
+that started showing up after the conversion of K3 bindings to
+YAML format in commit 66e06509aa37 ("dt-bindings: arm: ti:
+Convert K3 board/soc bindings to DT schema").
 
-On Mon, Sep 28, 2020 at 10:14 AM Matthias Kaehlcke <mka@chromium.org> wrote:
->
-> +examples:
-> +  - |
-> +    usb_hub: usb-hub {
-> +        compatible = "realtek,rts5411", "onboard-usb-hub";
-> +        vdd-supply = <&pp3300_hub>;
-> +    };
-> +
-> +    usb_controller {
+ compatible: ['ti,am654'] is not valid under any of the given schemas (Possible causes of the failure):
+ compatible: ['ti,am654'] is too short
+ compatible:0: 'ti,am654' is not one of ['ti,am654-evm']
 
-Super nitty nit: prefer dashes for node names.
+Also, fix one of the node names while at this.
 
+Signed-off-by: Suman Anna <s-anna@ti.com>
+---
+ .../devicetree/bindings/hwlock/ti,omap-hwspinlock.yaml        | 4 ++--
+ 1 file changed, 2 insertions(+), 2 deletions(-)
 
-> +        dr_mode = "host";
-> +        #address-cells = <1>;
-> +        #size-cells = <0>;
-> +
-> +        /* 2.0 hub on port 1 */
-> +        hub@1 {
-> +            compatible = "usbbda,5411";
+diff --git a/Documentation/devicetree/bindings/hwlock/ti,omap-hwspinlock.yaml b/Documentation/devicetree/bindings/hwlock/ti,omap-hwspinlock.yaml
+index 2765758d95e1..ac35491a6f65 100644
+--- a/Documentation/devicetree/bindings/hwlock/ti,omap-hwspinlock.yaml
++++ b/Documentation/devicetree/bindings/hwlock/ti,omap-hwspinlock.yaml
+@@ -49,7 +49,7 @@ examples:
+     / {
+         /* K3 AM65x SoCs */
+         model = "Texas Instruments K3 AM654 SoC";
+-        compatible = "ti,am654";
++        compatible = "ti,am654-evm", "ti,am654";
+         #address-cells = <2>;
+         #size-cells = <2>;
+ 
+@@ -60,7 +60,7 @@ examples:
+             ranges = <0x00 0x00100000 0x00 0x00100000 0x00 0x00020000>, /* ctrl mmr */
+                      <0x00 0x30800000 0x00 0x30800000 0x00 0x0bc00000>; /* Main NavSS */
+ 
+-            main_navss@30800000 {
++            bus@30800000 {
+                 compatible = "simple-mfd";
+                 #address-cells = <2>;
+                 #size-cells = <2>;
+-- 
+2.28.0
 
-Presumably we need something in the bindings for "usbbda,5411" ?
-
-
-> +            reg = <1>;
-> +            hub = <&usb_hub>;
-> +        };
-> +
-> +        /* 3.0 hub on port 2 */
-> +        hub@2 {
-> +            compatible = "usbbda,411";
-
-Presumably we need something in the bindings for "usbbda,411" ?
-
-
--Doug
