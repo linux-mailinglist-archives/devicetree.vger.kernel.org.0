@@ -2,159 +2,155 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from vger.kernel.org (vger.kernel.org [23.128.96.18])
-	by mail.lfdr.de (Postfix) with ESMTP id 855C027B29A
-	for <lists+devicetree@lfdr.de>; Mon, 28 Sep 2020 18:54:40 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTP id D1F2527B2D8
+	for <lists+devicetree@lfdr.de>; Mon, 28 Sep 2020 19:14:00 +0200 (CEST)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S1726552AbgI1Qyj (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Mon, 28 Sep 2020 12:54:39 -0400
-Received: from mail-eopbgr150082.outbound.protection.outlook.com ([40.107.15.82]:14161
-        "EHLO EUR01-DB5-obe.outbound.protection.outlook.com"
-        rhost-flags-OK-OK-OK-FAIL) by vger.kernel.org with ESMTP
-        id S1726477AbgI1Qyj (ORCPT <rfc822;devicetree@vger.kernel.org>);
-        Mon, 28 Sep 2020 12:54:39 -0400
-ARC-Seal: i=1; a=rsa-sha256; s=arcselector9901; d=microsoft.com; cv=none;
- b=m/aQzX6WJ265Ab8HehXp9SQo8Z34wDSZy2Pb7S330rpLXL8LG26um9asFzlgOva9fF9rq17NoeE/WgdA842ledqNBve39N+uXVXhLXbiOA96FWNI43r3LOvIGUEW3z4PhVa7vxw6B3Zc3m2O7kRFcWHUcSMX7a+0pZ8YDPbBiG1m7VoAjOWsFSS+05w+eX1fzgFazHAn6V7kN5/ieYUdc9E+5+vnrBbqepg/j1cDP5IrPgh1gYf7VhhP7XvQ8WYW4tPhdYtHtB3yoeaQu3LPEf+p987C9ZUnRKQ/yJT3eX48NzqeLM9qo5jVzjmWRzVsfu9PgK53gJWz8g6zTQDtvg==
-ARC-Message-Signature: i=1; a=rsa-sha256; c=relaxed/relaxed; d=microsoft.com;
- s=arcselector9901;
- h=From:Date:Subject:Message-ID:Content-Type:MIME-Version:X-MS-Exchange-SenderADCheck;
- bh=qj0qWj+Y79e6Iy+lFmgp2VWfCTWHpxyJWNQ7TSqHuik=;
- b=FSIQX0X6sNEMe5cPpFfdC25bGMlfQ4gBftcO/Hlu0E+olARNYYsBlLeeOyfVhHfEMaHvR1EV21M+LTpxKErVM7Oh2xUWeRlkwCNNEZTkQE/iCvSGF6qAHG3NM9RPwOeF6UXVX3+6nWskd40gMJl8fifeHef5pU3sD8G+/ZSgQXnS3YSFtrCKjaVWLNUKq8KirtX9iQlE0KTdJYWk40Y0ETe8MUcmxi2wbiCSuMgwsaDts4M1bjAdDKKKEMt7fubasSkNtxxPUowLKjmiCbUSxIBiHDWqBUDVn7qos6MrGQQFQvTUfZcOA+JZTeTkWjcn7N2f2ibqL5DW9znr6OM0rw==
-ARC-Authentication-Results: i=1; mx.microsoft.com 1; spf=pass
- smtp.mailfrom=nxp.com; dmarc=pass action=none header.from=nxp.com; dkim=pass
- header.d=nxp.com; arc=none
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=nxp.com; s=selector2;
- h=From:Date:Subject:Message-ID:Content-Type:MIME-Version:X-MS-Exchange-SenderADCheck;
- bh=qj0qWj+Y79e6Iy+lFmgp2VWfCTWHpxyJWNQ7TSqHuik=;
- b=cKubuqs+eq+8ipn78X0znGnt/GzIKV2YDbAcyBwXhqrAD1/UKgoVjbefaTrywMXUwJfyP+P1U9pxX2hBPhr7mNdmP6Eg5EnNe1Kvs5EBK70A4cCX5ujJuPydZylj5shq62KAgYXTBDzv7LMEjzGgWymVhzskEavccC0azZAD2r4=
-Received: from VE1PR04MB6687.eurprd04.prod.outlook.com (2603:10a6:803:121::30)
- by VE1PR04MB7389.eurprd04.prod.outlook.com (2603:10a6:800:1b1::8) with
- Microsoft SMTP Server (version=TLS1_2,
- cipher=TLS_ECDHE_RSA_WITH_AES_256_GCM_SHA384) id 15.20.3412.23; Mon, 28 Sep
- 2020 16:54:35 +0000
-Received: from VE1PR04MB6687.eurprd04.prod.outlook.com
- ([fe80::8db9:c62f:dac5:ee3d]) by VE1PR04MB6687.eurprd04.prod.outlook.com
- ([fe80::8db9:c62f:dac5:ee3d%3]) with mapi id 15.20.3412.028; Mon, 28 Sep 2020
- 16:54:35 +0000
-From:   Leo Li <leoyang.li@nxp.com>
-To:     Ran Wang <ran.wang_1@nxp.com>, Shawn Guo <shawnguo@kernel.org>
-CC:     "moderated list:ARM/FREESCALE LAYERSCAPE ARM ARCHITECTURE" 
-        <linux-arm-kernel@lists.infradead.org>,
-        "open list:OPEN FIRMWARE AND FLATTENED DEVICE TREE BINDINGS" 
-        <devicetree@vger.kernel.org>,
-        open list <linux-kernel@vger.kernel.org>,
-        Biwen Li <biwen.li@nxp.com>
-Subject: RE: [PATCH] arm64: dts: fix endianness of rcpm
-Thread-Topic: [PATCH] arm64: dts: fix endianness of rcpm
-Thread-Index: AQHWlXeg5OEh8vaZ40O3/VsyacaGZal+RO5g
-Date:   Mon, 28 Sep 2020 16:54:35 +0000
-Message-ID: <VE1PR04MB6687E9A0F4E7E55E4ABFC1418F350@VE1PR04MB6687.eurprd04.prod.outlook.com>
-References: <20200928090455.34364-1-ran.wang_1@nxp.com>
-In-Reply-To: <20200928090455.34364-1-ran.wang_1@nxp.com>
-Accept-Language: en-US
-Content-Language: en-US
-X-MS-Has-Attach: 
-X-MS-TNEF-Correlator: 
-authentication-results: nxp.com; dkim=none (message not signed)
- header.d=none;nxp.com; dmarc=none action=none header.from=nxp.com;
-x-originating-ip: [136.49.234.194]
-x-ms-publictraffictype: Email
-x-ms-office365-filtering-ht: Tenant
-x-ms-office365-filtering-correlation-id: 0cca13db-5f92-4cc9-7a53-08d863cf2e28
-x-ms-traffictypediagnostic: VE1PR04MB7389:
-x-ms-exchange-transport-forked: True
-x-microsoft-antispam-prvs: <VE1PR04MB7389F8B12B35394C795D2B8B8F350@VE1PR04MB7389.eurprd04.prod.outlook.com>
-x-ms-oob-tlc-oobclassifiers: OLM:186;
-x-ms-exchange-senderadcheck: 1
-x-microsoft-antispam: BCL:0;
-x-microsoft-antispam-message-info: U45ZUNqj9VKQ46ReGTEPaXqrchvr3Nz8oAhjpwjglt31brKKfz+AuF7T8Y8GNvIFuKY8Wws3MPF6k8zcrqZLfz4GWCyWqiicutV5XUEnKFZNoKgq/vRKkjIOBOcRWa/s1cbIEuY9e+PkcpucZgO8nfyiq+qxhXsz3Jf7h+YsOknbogN9PkZfYRvPX+xOIu3sTvIpJL/aXLtEaaAmD/OnLMVXcMSJ7HbF0Isulgqz1+TJQDAQJohKVsl+AUWBg88PNtR5SfWuBmHUyqbp3fIUE2tDkxOxvuuH3n//r2GlxBGcdCDMWtAppiCwL1SxS0+tUWElCGaM3zKLuBI2JgphPRy1n12RxFTqUOuum9qpZU4M+sHvkp7I8zNNq9uZn7/E
-x-forefront-antispam-report: CIP:255.255.255.255;CTRY:;LANG:en;SCL:1;SRV:;IPV:NLI;SFV:NSPM;H:VE1PR04MB6687.eurprd04.prod.outlook.com;PTR:;CAT:NONE;SFS:(4636009)(376002)(346002)(366004)(39850400004)(136003)(396003)(53546011)(6506007)(2906002)(478600001)(186003)(26005)(9686003)(55016002)(8936002)(8676002)(5660300002)(4326008)(7696005)(33656002)(83380400001)(66446008)(66556008)(66946007)(66476007)(64756008)(76116006)(71200400001)(52536014)(54906003)(86362001)(316002)(110136005);DIR:OUT;SFP:1101;
-x-ms-exchange-antispam-messagedata: aDtD8OyMv64SeKQ7OmXeTv/al9A4PW+nNJJhDLLL57OpNXVzHgNEym6i9X3ZW4PxWfKrNj6VmDPxp7TJsUMnogr1gVH9XtlthWGjtXRDKkIL5Z1oZn9FAEYjLABDaDKHboNZpngGoU2A0sNJ/yPeDJUawxBxOcaxCNsIple+C5m7Eo14f9nJsmI6xy3iP4W8Xqg9A2KsMeNPLzkt3bBPw7xcTx/nS55ZQbq9G7dAR6X81Pr6BCoxqPfnkkxDko5qM3pkw3+Y1LRxsEtK5eWsbRh6bmC6TLDK+57EW/4OjR8uQDkREXzMARRGp25lRswDvnJN5gzeZwmYKtVJ9Kv3OeYHCxUo9Boq4mOjGVyI1XRi/zgQzsuufiCM7VL/0RS+dgsR6IM7lvTqp7eLMWbCqZZC3NxMMFXt2dS1mrd+h1xYKLMTus5CKM/fKfG5fikFKYRgvvsOLJjz2VpkXc/ma7pO1TvL/9og+RVIN/gYn3jlln5UtKBBkbOCLBnza5hLj7lXMbBg4JlCJZC4GcUqx6yFiK+XbUdz6nbnvjAdnGNulkkP87yy0BHAvemApuoc4obgmprSG8Lv1CWn+Ats7IU+1s5pAkui0K36uCn3N2cNWWUFxpdBZU2Uj37Yj2vUiZ1vUch5YqEGbIlmUATeJg==
-Content-Type: text/plain; charset="us-ascii"
-Content-Transfer-Encoding: quoted-printable
+        id S1726667AbgI1RN7 (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Mon, 28 Sep 2020 13:13:59 -0400
+Received: from lindbergh.monkeyblade.net ([23.128.96.19]:37336 "EHLO
+        lindbergh.monkeyblade.net" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
+        with ESMTP id S1726504AbgI1RN7 (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Mon, 28 Sep 2020 13:13:59 -0400
+Received: from mail-pj1-x1042.google.com (mail-pj1-x1042.google.com [IPv6:2607:f8b0:4864:20::1042])
+        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 8775FC061755
+        for <devicetree@vger.kernel.org>; Mon, 28 Sep 2020 10:13:59 -0700 (PDT)
+Received: by mail-pj1-x1042.google.com with SMTP id jw11so1022908pjb.0
+        for <devicetree@vger.kernel.org>; Mon, 28 Sep 2020 10:13:59 -0700 (PDT)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+        d=chromium.org; s=google;
+        h=from:to:cc:subject:date:message-id:mime-version
+         :content-transfer-encoding;
+        bh=6LRa3EvjxYw5aX67BhkFrS+Y1RXh3J3rTX/vMwJ4fBY=;
+        b=fUmFEKMPipnra4fmuQoqW2QD7diKt59CdvKRgJUQsIz3kme6UzweIUnkraR8O8Dxe+
+         Lnj32eVJfWh211rHwYWM214y6149q4KKfvonKPYpPw0+E2VmREcBHn9tBfuDTm6HxMxk
+         DnPAvbL8Hr7mCPlxxhDX5GFz9Ta8qYSDLN2lQ=
+X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+        d=1e100.net; s=20161025;
+        h=x-gm-message-state:from:to:cc:subject:date:message-id:mime-version
+         :content-transfer-encoding;
+        bh=6LRa3EvjxYw5aX67BhkFrS+Y1RXh3J3rTX/vMwJ4fBY=;
+        b=HHZAHkl0eFT+G0+zjIYOWZ4JjJv1itIj0xusi0we1Xpx0bXj1ZVFMnPcohDeXgioIT
+         cj6Ib1fM7l4VulpoMdF7EXg1WXhxgMVopCVmGAUL5vWbAXq3f2XllPqsZy34gcSZvRZe
+         eTdu20EZTtBD8QwoRJZzywwzdnlsYNwf8Qyz1ssJhnwgcaCDUhyABAzF5WKsBygVlfDQ
+         I58D2uIjAqi2NMKxoBf+PbdMSL7XJifM8GGx/u+SqOqQzMRDS9T9Z/t/kOdKe4PZciJS
+         hXAXYyKrNjgCyrnBOLiFxMyzdEw2nge5R65htFtpqll8YRDYu3c9QpMVtkbHkmMBJ2n9
+         COwQ==
+X-Gm-Message-State: AOAM533aVNNLQz6HARB/8v7uMDidpqPezovG0gDbLvC5O0cd36kSzpnd
+        ljtWDyiQ9kEDJMHSiX/ls4juDg==
+X-Google-Smtp-Source: ABdhPJyy/zNJpHFnMQFB7JuPIm4GDw3cJVD1GeygsRruKUtVR+7mZzv+HgAc6/mIiMlJZgHS/5Q9Wg==
+X-Received: by 2002:a17:90a:ca17:: with SMTP id x23mr263620pjt.96.1601313239051;
+        Mon, 28 Sep 2020 10:13:59 -0700 (PDT)
+Received: from localhost ([2620:15c:202:1:f693:9fff:fef4:e70a])
+        by smtp.gmail.com with ESMTPSA id gq14sm1869082pjb.44.2020.09.28.10.13.58
+        (version=TLS1_3 cipher=TLS_AES_128_GCM_SHA256 bits=128/128);
+        Mon, 28 Sep 2020 10:13:58 -0700 (PDT)
+From:   Matthias Kaehlcke <mka@chromium.org>
+To:     Greg Kroah-Hartman <gregkh@linuxfoundation.org>,
+        Rob Herring <robh+dt@kernel.org>,
+        Frank Rowand <frowand.list@gmail.com>
+Cc:     linux-kernel@vger.kernel.org, linux-usb@vger.kernel.org,
+        Bastien Nocera <hadess@hadess.net>,
+        Stephen Boyd <swboyd@chromium.org>,
+        Douglas Anderson <dianders@chromium.org>,
+        Alan Stern <stern@rowland.harvard.edu>,
+        Ravi Chandra Sadineni <ravisadineni@chromium.org>,
+        Krzysztof Kozlowski <krzk@kernel.org>,
+        devicetree@vger.kernel.org, Peter Chen <peter.chen@nxp.com>,
+        Matthias Kaehlcke <mka@chromium.org>
+Subject: [PATCH v4 1/2] dt-bindings: usb: Add binding for discrete onboard USB hubs
+Date:   Mon, 28 Sep 2020 10:13:54 -0700
+Message-Id: <20200928101326.v4.1.I248292623d3d0f6a4f0c5bc58478ca3c0062b49a@changeid>
+X-Mailer: git-send-email 2.28.0.709.gb0816b6eb0-goog
 MIME-Version: 1.0
-X-OriginatorOrg: nxp.com
-X-MS-Exchange-CrossTenant-AuthAs: Internal
-X-MS-Exchange-CrossTenant-AuthSource: VE1PR04MB6687.eurprd04.prod.outlook.com
-X-MS-Exchange-CrossTenant-Network-Message-Id: 0cca13db-5f92-4cc9-7a53-08d863cf2e28
-X-MS-Exchange-CrossTenant-originalarrivaltime: 28 Sep 2020 16:54:35.6330
- (UTC)
-X-MS-Exchange-CrossTenant-fromentityheader: Hosted
-X-MS-Exchange-CrossTenant-id: 686ea1d3-bc2b-4c6f-a92c-d99c5c301635
-X-MS-Exchange-CrossTenant-mailboxtype: HOSTED
-X-MS-Exchange-CrossTenant-userprincipalname: F9RJ+Bgv5Ja/v03ja6yObhDluVzR0R0pTqC6HazIDxAKk2/sCrjMYGBR1FMk8hmY3iDnH1TQOClxY/LIw8azeA==
-X-MS-Exchange-Transport-CrossTenantHeadersStamped: VE1PR04MB7389
+Content-Transfer-Encoding: 8bit
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
+Discrete onboard USB hubs (an example for such a hub is the Realtek
+RTS5411) need to be powered and may require initialization of other
+resources (like GPIOs or clocks) to work properly. This adds a device
+tree binding for these hubs.
 
+Signed-off-by: Matthias Kaehlcke <mka@chromium.org>
+---
 
-> -----Original Message-----
-> From: Ran Wang <ran.wang_1@nxp.com>
-> Sent: Monday, September 28, 2020 4:05 AM
-> To: Shawn Guo <shawnguo@kernel.org>; Leo Li <leoyang.li@nxp.com>
-> Cc: moderated list:ARM/FREESCALE LAYERSCAPE ARM ARCHITECTURE <linux-
-> arm-kernel@lists.infradead.org>; open list:OPEN FIRMWARE AND
-> FLATTENED DEVICE TREE BINDINGS <devicetree@vger.kernel.org>; open list
-> <linux-kernel@vger.kernel.org>; Biwen Li <biwen.li@nxp.com>
-> Subject: [PATCH] arm64: dts: fix endianness of rcpm
->=20
-> From: Biwen Li <biwen.li@nxp.com>
->=20
-> Add little-endian property of rcpm for ls1028a,ls1088a,ls208xa
->=20
-> Signed-off-by: Biwen Li <biwen.li@nxp.com>
+(no changes since v3)
 
-Acked-by: Li Yang <leoyang.li@nxp.com>
+Changes in v3:
+- updated commit message
+- removed recursive reference to $self
+- adjusted 'compatible' definition to support multiple entries
+- changed USB controller phandle to be a node
 
-> ---
->  arch/arm64/boot/dts/freescale/fsl-ls1028a.dtsi | 1 +
-> arch/arm64/boot/dts/freescale/fsl-ls1088a.dtsi | 1 +
-> arch/arm64/boot/dts/freescale/fsl-ls208xa.dtsi | 1 +
->  3 files changed, 3 insertions(+)
->=20
-> diff --git a/arch/arm64/boot/dts/freescale/fsl-ls1028a.dtsi
-> b/arch/arm64/boot/dts/freescale/fsl-ls1028a.dtsi
-> index 0efeb8f..651bfe1 100644
-> --- a/arch/arm64/boot/dts/freescale/fsl-ls1028a.dtsi
-> +++ b/arch/arm64/boot/dts/freescale/fsl-ls1028a.dtsi
-> @@ -1012,6 +1012,7 @@
->  			compatible =3D "fsl,ls1028a-rcpm", "fsl,qoriq-rcpm-
-> 2.1+";
->  			reg =3D <0x0 0x1e34040 0x0 0x1c>;
->  			#fsl,rcpm-wakeup-cells =3D <7>;
-> +			little-endian;
->  		};
->=20
->  		ftm_alarm0: timer@2800000 {
-> diff --git a/arch/arm64/boot/dts/freescale/fsl-ls1088a.dtsi
-> b/arch/arm64/boot/dts/freescale/fsl-ls1088a.dtsi
-> index 169f474..2ef812d 100644
-> --- a/arch/arm64/boot/dts/freescale/fsl-ls1088a.dtsi
-> +++ b/arch/arm64/boot/dts/freescale/fsl-ls1088a.dtsi
-> @@ -787,6 +787,7 @@
->  			compatible =3D "fsl,ls1088a-rcpm", "fsl,qoriq-rcpm-
-> 2.1+";
->  			reg =3D <0x0 0x1e34040 0x0 0x18>;
->  			#fsl,rcpm-wakeup-cells =3D <6>;
-> +			little-endian;
->  		};
->=20
->  		ftm_alarm0: timer@2800000 {
-> diff --git a/arch/arm64/boot/dts/freescale/fsl-ls208xa.dtsi
-> b/arch/arm64/boot/dts/freescale/fsl-ls208xa.dtsi
-> index 41102da..141b3d2 100644
-> --- a/arch/arm64/boot/dts/freescale/fsl-ls208xa.dtsi
-> +++ b/arch/arm64/boot/dts/freescale/fsl-ls208xa.dtsi
-> @@ -769,6 +769,7 @@
->  			compatible =3D "fsl,ls208xa-rcpm", "fsl,qoriq-rcpm-
-> 2.1+";
->  			reg =3D <0x0 0x1e34040 0x0 0x18>;
->  			#fsl,rcpm-wakeup-cells =3D <6>;
-> +			little-endian;
->  		};
->=20
->  		ftm_alarm0: timer@2800000 {
-> --
-> 2.7.4
+Changes in v2:
+- removed 'wakeup-source' and 'power-off-in-suspend' properties
+- consistently use spaces for indentation in example
+
+ .../bindings/usb/onboard_usb_hub.yaml         | 54 +++++++++++++++++++
+ 1 file changed, 54 insertions(+)
+ create mode 100644 Documentation/devicetree/bindings/usb/onboard_usb_hub.yaml
+
+diff --git a/Documentation/devicetree/bindings/usb/onboard_usb_hub.yaml b/Documentation/devicetree/bindings/usb/onboard_usb_hub.yaml
+new file mode 100644
+index 000000000000..c9783da3e75c
+--- /dev/null
++++ b/Documentation/devicetree/bindings/usb/onboard_usb_hub.yaml
+@@ -0,0 +1,54 @@
++# SPDX-License-Identifier: GPL-2.0-only or BSD-2-Clause
++%YAML 1.2
++---
++$id: http://devicetree.org/schemas/usb/onboard_usb_hub.yaml#
++$schema: http://devicetree.org/meta-schemas/core.yaml#
++
++title: Binding for onboard USB hubs
++
++maintainers:
++  - Matthias Kaehlcke <mka@chromium.org>
++
++properties:
++  compatible:
++    items:
++      - enum:
++        - realtek,rts5411
++      - const: onboard-usb-hub
++
++  vdd-supply:
++    description:
++      phandle to the regulator that provides power to the hub.
++
++required:
++  - compatible
++  - vdd-supply
++
++examples:
++  - |
++    usb_hub: usb-hub {
++        compatible = "realtek,rts5411", "onboard-usb-hub";
++        vdd-supply = <&pp3300_hub>;
++    };
++
++    usb_controller {
++        dr_mode = "host";
++        #address-cells = <1>;
++        #size-cells = <0>;
++
++        /* 2.0 hub on port 1 */
++        hub@1 {
++            compatible = "usbbda,5411";
++            reg = <1>;
++            hub = <&usb_hub>;
++        };
++
++        /* 3.0 hub on port 2 */
++        hub@2 {
++            compatible = "usbbda,411";
++            reg = <2>;
++            hub = <&usb_hub>;
++        };
++    };
++
++...
+-- 
+2.28.0.709.gb0816b6eb0-goog
 
