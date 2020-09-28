@@ -2,718 +2,199 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from vger.kernel.org (vger.kernel.org [23.128.96.18])
-	by mail.lfdr.de (Postfix) with ESMTP id 828F027A7C4
-	for <lists+devicetree@lfdr.de>; Mon, 28 Sep 2020 08:43:00 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTP id A6F7E27A7CA
+	for <lists+devicetree@lfdr.de>; Mon, 28 Sep 2020 08:45:22 +0200 (CEST)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S1726412AbgI1Gm7 (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Mon, 28 Sep 2020 02:42:59 -0400
-Received: from lindbergh.monkeyblade.net ([23.128.96.19]:52442 "EHLO
+        id S1725294AbgI1GpW (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Mon, 28 Sep 2020 02:45:22 -0400
+Received: from lindbergh.monkeyblade.net ([23.128.96.19]:52824 "EHLO
         lindbergh.monkeyblade.net" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S1725290AbgI1Gm5 (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Mon, 28 Sep 2020 02:42:57 -0400
-Received: from mail-ed1-x544.google.com (mail-ed1-x544.google.com [IPv6:2a00:1450:4864:20::544])
-        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 7B554C0613CE;
-        Sun, 27 Sep 2020 23:42:56 -0700 (PDT)
-Received: by mail-ed1-x544.google.com with SMTP id l17so39656edq.12;
-        Sun, 27 Sep 2020 23:42:56 -0700 (PDT)
+        with ESMTP id S1725290AbgI1GpV (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Mon, 28 Sep 2020 02:45:21 -0400
+Received: from mail-wr1-x442.google.com (mail-wr1-x442.google.com [IPv6:2a00:1450:4864:20::442])
+        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 752F4C0613CE;
+        Sun, 27 Sep 2020 23:45:21 -0700 (PDT)
+Received: by mail-wr1-x442.google.com with SMTP id j2so10920838wrx.7;
+        Sun, 27 Sep 2020 23:45:21 -0700 (PDT)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=jms.id.au; s=google;
-        h=mime-version:references:in-reply-to:from:date:message-id:subject:to
-         :cc;
-        bh=bUVhzoE1YhpTIQzZCdaXmbRNSb3545QE4RjdGCCy06k=;
-        b=AAFsbuxpkDNDAqu/WeCL0tQy+8NBBoIN7gw/D4Kgcbdj8ZNBZCLyngCSXRt/clqmpv
-         L93TgbLezkr09UAkhSdrndbmMaTjeDkxKBFy3kg8o9kb3hs/BMDJFsaptRlOVnL5U1/e
-         B26Dvq0vEM2qRo/O+I4aqXEWbpeXF5KL9TXSg=
+        d=gmail.com; s=20161025;
+        h=date:from:to:cc:subject:message-id:references:mime-version
+         :content-disposition:in-reply-to:user-agent;
+        bh=05iWIJYB2oDYyH9Jw0dcggBXad7SUALC3TiMsF+Azj8=;
+        b=DyqRJdfm63h/KMo4QCnEFJL1M2GlQQm95ZOeccn/9kNWjGfRDaRfzvyLYDX3uaYj+z
+         hIcMplZ+4XU/z0Wnu5QP5A8QcVISkLSL3jlONUkHjOASmAACf0ctZd0PKi8myCTGs6Q5
+         nfy/LLrgkZssLSkwWrleHwS09SwDfU21Q5XquTU19V7JRoxCrfiDo00lYe1zzHbo7EHN
+         gwhY7R8SuvYkvLUHJyVFS3JB1IzvKSrND1ZObSL2jCpvd8bTu8Iw1yUe0Lfk9+k5iv1z
+         wfhEa7fNThovhs//VzZ/gLvb15nTB+T8LeL63ow1O/dV0ZRNM8+EY24UXrluSX16akQD
+         r0oQ==
 X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
         d=1e100.net; s=20161025;
-        h=x-gm-message-state:mime-version:references:in-reply-to:from:date
-         :message-id:subject:to:cc;
-        bh=bUVhzoE1YhpTIQzZCdaXmbRNSb3545QE4RjdGCCy06k=;
-        b=l+JjXKO/7Pks+7XRyh1crd1JJ66tYnNtRgiDPcgcf/fZqipiE2b4O6gXlzFp7P1c00
-         eSNLAuKoBhMdNeESOwae9BsOvFjLDqtF8Lt3byXLYFK6lsBMu/HWKBuU4MRUlh9st87p
-         ophOsQ3KR1P1URw85d/sSJzuR82JIH0DTpBtoK0UB/BnlkaGWDMAKh8GcRuUSuMryLQa
-         /ZGL5i94vMDWJLzSrA/f/OjByvF1MbHb9YX4LqeAxsWReUwA2IQfCq9PUvwwYHYt8VcL
-         psOd+WIopIF2XG6ZxBTefa7Zfrahy/79jPwBm3kaOrop/rLlzcW3UKdWx/vUTkQe+nGl
-         naKA==
-X-Gm-Message-State: AOAM5319E7Udol83zLjloBkBMpTQn1bLgmaGHEnxFTVE/kY4G2HAkUnz
-        ig7jIu0vcAoJzy/ePDDTLUJl06lfUT+AVh118q8=
-X-Google-Smtp-Source: ABdhPJyFKeKAko6ux8E5BAU46tjSEAJKh9qX/fMsNyp+E0vMZiaExN5OEUXXkYnVrwK6wlW5pGYymSDZZfd/aJ7mWdo=
-X-Received: by 2002:aa7:ca4f:: with SMTP id j15mr115062edt.233.1601275375032;
- Sun, 27 Sep 2020 23:42:55 -0700 (PDT)
+        h=x-gm-message-state:date:from:to:cc:subject:message-id:references
+         :mime-version:content-disposition:in-reply-to:user-agent;
+        bh=05iWIJYB2oDYyH9Jw0dcggBXad7SUALC3TiMsF+Azj8=;
+        b=RWMiY5Uo1A0ijkcRhnhG/Zdz7FZymw5DJBdZZ9jhEoaCvMQrfiv3TjHsQ6CNfPV6/q
+         5uPdzS1KLzcBlcBFi+10Hctf84TR7ZRgvusQYRRn3B6BGXwFMvWDZL6AE5OkkJiXYouN
+         kqgsXNOM1xO7nCFQagkWfBqHq26gXfVSBQoa4WuxXps5fF4txUdVhhvfjMs9lUqoi1bv
+         m6IEFHWn6hvRI98MWowIlUMNgsaNYC+GIzML9DgoaF5o5eXQ7nAbn6lG3StXkiOGpY1G
+         OyFAPH634QpvcJvXL+B/v14X1PRzCl6GR4AK8n7xr4f36pHuSbCrRGaaTBb9tMJmWJC3
+         x9eQ==
+X-Gm-Message-State: AOAM530qgvw2xqTWKOMaARXVDtD631FpIjmcoDtVNxEHdOSYl4BVtVrw
+        wl+d2pDHMPRtfM94s766bfw=
+X-Google-Smtp-Source: ABdhPJxUmnoNK0Resy7N687L4omMhCRf+0hyyUxR25i0XfPeotFKDPjVtTTKDIUT/0aaVXHHjZiEbw==
+X-Received: by 2002:a5d:4fcc:: with SMTP id h12mr17093159wrw.199.1601275520072;
+        Sun, 27 Sep 2020 23:45:20 -0700 (PDT)
+Received: from localhost ([217.111.27.204])
+        by smtp.gmail.com with ESMTPSA id f1sm11637062wrx.75.2020.09.27.23.45.18
+        (version=TLS1_3 cipher=TLS_AES_256_GCM_SHA384 bits=256/256);
+        Sun, 27 Sep 2020 23:45:18 -0700 (PDT)
+Date:   Mon, 28 Sep 2020 08:45:17 +0200
+From:   Thierry Reding <thierry.reding@gmail.com>
+To:     Uwe =?utf-8?Q?Kleine-K=C3=B6nig?= <u.kleine-koenig@pengutronix.de>
+Cc:     Andy Shevchenko <andriy.shevchenko@intel.com>,
+        Rahul Tanwar <rahul.tanwar@linux.intel.com>,
+        linux-pwm@vger.kernel.org, lee.jones@linaro.org,
+        p.zabel@pengutronix.de, robh+dt@kernel.org,
+        linux-kernel@vger.kernel.org, devicetree@vger.kernel.org,
+        songjun.Wu@intel.com, cheol.yong.kim@intel.com,
+        qi-ming.wu@intel.com, rahul.tanwar.linux@gmail.com,
+        rtanwar@maxlinear.com
+Subject: Re: [PATCH v13 2/2] Add PWM fan controller driver for LGM SoC
+Message-ID: <20200928064517.GA2837573@ulmo>
+References: <cover.1600158087.git.rahul.tanwar@linux.intel.com>
+ <befa655d8beb326fc8aa405a25a8b3e62b7e6a4a.1600158087.git.rahul.tanwar@linux.intel.com>
+ <20200924065534.e2anwghhtysv63e7@pengutronix.de>
+ <20200924132334.GT3956970@smile.fi.intel.com>
+ <20200924141659.4wov7w2l2bllpre4@pengutronix.de>
 MIME-Version: 1.0
-References: <20200923164730.176881-1-tmaimon77@gmail.com> <20200923164730.176881-6-tmaimon77@gmail.com>
-In-Reply-To: <20200923164730.176881-6-tmaimon77@gmail.com>
-From:   Joel Stanley <joel@jms.id.au>
-Date:   Mon, 28 Sep 2020 06:42:42 +0000
-Message-ID: <CACPK8Xc1s7Q6b-m3nCVh6mfukv6Pih331=vpnMTQDLO09mHVWQ@mail.gmail.com>
-Subject: Re: [PATCH v7 5/5] arm: dts: add new device nodes to NPCM750 device
- tree EVB
-To:     Tomer Maimon <tmaimon77@gmail.com>
-Cc:     Rob Herring <robh+dt@kernel.org>,
-        Mark Rutland <mark.rutland@arm.com>,
-        Avi Fishman <avifishman70@gmail.com>,
-        Tali Perry <tali.perry1@gmail.com>,
-        Patrick Venture <venture@google.com>,
-        Nancy Yuen <yuenn@google.com>,
-        Benjamin Fair <benjaminfair@google.com>,
-        devicetree <devicetree@vger.kernel.org>,
-        Linux Kernel Mailing List <linux-kernel@vger.kernel.org>,
-        OpenBMC Maillist <openbmc@lists.ozlabs.org>
-Content-Type: text/plain; charset="UTF-8"
+Content-Type: multipart/signed; micalg=pgp-sha256;
+        protocol="application/pgp-signature"; boundary="xHFwDpU9dbj6ez1V"
+Content-Disposition: inline
+In-Reply-To: <20200924141659.4wov7w2l2bllpre4@pengutronix.de>
+User-Agent: Mutt/1.14.7 (2020-08-29)
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-On Wed, 23 Sep 2020 at 16:48, Tomer Maimon <tmaimon77@gmail.com> wrote:
->
-> Add the following new device nodes to
-> NPCM750 evolution board device tree:
->
->         - NPCM7xx Pin controller and GPIO
->         - NPCM7xx PWM and FAN.
->         - NPCM7xx EHCI USB.
->         - NPCM7xx KCS.
->         - NPCM Reset.
->         - NPCM Peripheral SPI.
->         - NPCM FIU SPI.
->         - NPCM HWRNG.
->         - NPCM I2C.
->         - STMicro STMMAC.
->
-> Signed-off-by: Tomer Maimon <tmaimon77@gmail.com>
-> ---
->  arch/arm/boot/dts/nuvoton-npcm750-evb.dts     | 405 +++++++++++++++++-
->  .../boot/dts/nuvoton-npcm750-pincfg-evb.dtsi  | 157 +++++++
->  2 files changed, 546 insertions(+), 16 deletions(-)
->  create mode 100644 arch/arm/boot/dts/nuvoton-npcm750-pincfg-evb.dtsi
->
-> diff --git a/arch/arm/boot/dts/nuvoton-npcm750-evb.dts b/arch/arm/boot/dts/nuvoton-npcm750-evb.dts
-> index 15f744f1beea..1623a18ac29b 100644
-> --- a/arch/arm/boot/dts/nuvoton-npcm750-evb.dts
-> +++ b/arch/arm/boot/dts/nuvoton-npcm750-evb.dts
-> @@ -4,36 +4,409 @@
->
->  /dts-v1/;
->  #include "nuvoton-npcm750.dtsi"
-> +#include "dt-bindings/gpio/gpio.h"
-> +#include "nuvoton-npcm750-pincfg-evb.dtsi"
->
->  / {
->         model = "Nuvoton npcm750 Development Board (Device Tree)";
->         compatible = "nuvoton,npcm750";
->
-> +       aliases {
-> +               ethernet2 = &gmac0;
-> +               ethernet3 = &gmac1;
-> +               serial0 = &serial0;
-> +               serial1 = &serial1;
-> +               serial2 = &serial2;
-> +               serial3 = &serial3;
-> +               i2c0 = &i2c0;
-> +               i2c1 = &i2c1;
-> +               i2c2 = &i2c2;
-> +               i2c3 = &i2c3;
-> +               i2c4 = &i2c4;
-> +               i2c5 = &i2c5;
-> +               i2c6 = &i2c6;
-> +               i2c7 = &i2c7;
-> +               i2c8 = &i2c8;
-> +               i2c9 = &i2c9;
-> +               i2c10 = &i2c10;
-> +               i2c11 = &i2c11;
-> +               i2c12 = &i2c12;
-> +               i2c13 = &i2c13;
-> +               i2c14 = &i2c14;
-> +               i2c15 = &i2c15;
-> +               spi0 = &spi0;
-> +               spi1 = &spi1;
-> +               fiu0 = &fiu0;
-> +               fiu1 = &fiu3;
-> +               fiu2 = &fiux;
-> +       };
-> +
->         chosen {
->                 stdout-path = &serial3;
->         };
->
->         memory {
-> -               reg = <0 0x40000000>;
-> +               device_type = "memory";
-> +               reg = <0x0 0x20000000>;
->         };
-> -};
->
-> -&watchdog1 {
-> -       status = "okay";
-> -};
-> +       ahb {
-> +               gmac0: eth@f0802000 {
-> +                       phy-mode = "rgmii-id";
-> +                       status = "okay";
-> +               };
 
-While this will work it is less error prone to refer to the existing
-node by it's phandle.
+--xHFwDpU9dbj6ez1V
+Content-Type: text/plain; charset=utf-8
+Content-Disposition: inline
+Content-Transfer-Encoding: quoted-printable
 
-&gmac0 {
-     phy-mode = "rgmii-id";
-     status = "okay";
-}
+On Thu, Sep 24, 2020 at 04:16:59PM +0200, Uwe Kleine-K=C3=B6nig wrote:
+> On Thu, Sep 24, 2020 at 04:23:34PM +0300, Andy Shevchenko wrote:
+> > On Thu, Sep 24, 2020 at 08:55:34AM +0200, Uwe Kleine-K=C3=B6nig wrote:
+> > > On Tue, Sep 15, 2020 at 04:23:37PM +0800, Rahul Tanwar wrote:
+> >=20
+> > ...
+> >=20
+> > > > +	ret =3D lgm_clk_enable(dev, pc);
+> > > > +	if (ret) {
+> > > > +		dev_err(dev, "failed to enable clock\n");
+> > >=20
+> > > You used dev_err_probe four times for six error paths. I wonder why y=
+ou
+> > > didn't use it here (and below for a failing pwmchip_add()).
+> >=20
+> > dev_err_probe() makes sense when we might experience deferred probe. In=
+ neither
+> > of mentioned function this can be the case.
+> >=20
+> > > > +		return ret;
+> > > > +	}
+> >=20
+> > ...
+> >=20
+> > > > +	ret =3D lgm_reset_control_deassert(dev, pc);
+> > > > +	if (ret)
+> > > > +		return dev_err_probe(dev, ret, "cannot deassert reset control\n"=
+);
+> > >=20
+> > > After lgm_reset_control_deassert is called pc->rst is unused. So there
+> > > is no need to have this member in struct lgm_pwm_chip. The same appli=
+es
+> > > to ->clk. (You have to pass rst (or clk) to devm_add_action_or_reset =
+for
+> > > that to work. Looks like a nice idea anyhow.)
+> >=20
+> > True. And above dev_err_probe() is not needed.
+>=20
+> You argue that dev_err_probe() gives no benefit as
+> lgm_reset_control_deassert won't return -EPROBE_DEFER, right?
+>=20
+> Still I consider it a useful function because
+>=20
+>  a) I (as an author or as a reviewer) don't need to think if the
+>     failing function might return -EPROBE_DEFER now or in the future.
+>     dev_err_probe does the right thing even for functions that don't
+>     return -EPROBE_DEFER.
+>=20
+>  b) With dev_err_probe() I can accomplish things in a single line that
+>     need two lines when open coding it.
+>=20
+>  c) dev_err_probe() emits the symbolic error name without having to
+>     resort to %pe + ERR_PTR.
+>=20
+>  d) Using dev_err_probe() for all error paths gives a consistency that I
+>     like with a maintainer's hat on.
 
+That would perhaps be true if all error paths did use dev_err_probe().
+And even if that were the case, dev_err_probe() doesn't guarantee that
+error messages will actually be consistent because developers can still
+provide whatever format string they like.
 
->
-> -&serial0 {
-> -       status = "okay";
-> -};
-> +               gmac1: eth@f0804000 {
-> +                       phy-mode = "rgmii-id";
-> +                       status = "okay";
-> +               };
+Also, the format of the messages that dev_err_probe() prints is unlike
+anything that I've seen, so introducing dev_err_probe() actually makes
+things more inconsistent, in my opinion.
 
-As with gmac0.
+I have in fact been advocating for people to use error messages of the
+form:
 
->
-> -&serial1 {
-> -       status = "okay";
-> -};
-> +               ehci1: usb@f0806000 {
-> +                       status = "okay";
-> +               };
+	"failed to ...: %d\n", err
 
-As above:
+or:
 
-&ehci1 {
-   status = "okay";
-}
+	"unable to ...: %d\n", err
 
->
-> -&serial2 {
-> -       status = "okay";
-> -};
-> +               fiu0: spi@fb000000 {
+Or some other similar form because that's the most common type that I
+have come across in the kernel. I think it's also easier to read those
+error messages because they contain the important data (i.e. the
+description, which tells you what went wrong) first and then are
+followed by the error code (which tells you how it failed).
 
-&fiu0 {
-  status = "okay"
-   spi-nor@1 {
-...
+Now I suspect the current format was chosen because we need to have the
+constant part first, because otherwise the arbitrary format string could
+be something that doesn't lend itself to have an error code appended.
 
-And as I read down, the entire device tree needs to be fixed.
+The current format is arguably also something that's easier to parse
+=66rom some script because the format is in a somewhat standard format. On
+the other hand, I think this is a bit misguided because we already have
+structured log messages, so I wonder if it might have been better to
+make the error code part of structured log messages to make them truly
+machine readable but leave the formatting up to developers so that they
+can use whatever is consistent within the driver or whatever fits best
+without actually adding a standard string to the log messages.
 
-> +                       status = "okay";
-> +                       spi-nor@0 {
-> +                               compatible = "jedec,spi-nor";
-> +                               #address-cells = <1>;
-> +                               #size-cells = <1>;
-> +                               spi-rx-bus-width = <2>;
-> +                               reg = <0>;
-> +                               spi-max-frequency = <5000000>;
-> +                               partitions@80000000 {
-> +                                       compatible = "fixed-partitions";
-> +                                       #address-cells = <1>;
-> +                                       #size-cells = <1>;
-> +                                       bbuboot1@0 {
-> +                                               label = "bb-uboot-1";
-> +                                               reg = <0x0000000 0x80000>;
-> +                                               read-only;
-> +                                               };
-> +                                       bbuboot2@80000 {
-> +                                               label = "bb-uboot-2";
-> +                                               reg = <0x0080000 0x80000>;
-> +                                               read-only;
-> +                                               };
-> +                                       envparam@100000 {
-> +                                               label = "env-param";
-> +                                               reg = <0x0100000 0x40000>;
-> +                                               read-only;
-> +                                               };
-> +                                       spare@140000 {
-> +                                               label = "spare";
-> +                                               reg = <0x0140000 0xC0000>;
-> +                                               };
-> +                                       kernel@200000 {
-> +                                               label = "kernel";
-> +                                               reg = <0x0200000 0x400000>;
-> +                                               };
-> +                                       rootfs@600000 {
-> +                                               label = "rootfs";
-> +                                               reg = <0x0600000 0x700000>;
-> +                                               };
-> +                                       spare1@D00000 {
-> +                                               label = "spare1";
-> +                                               reg = <0x0D00000 0x200000>;
-> +                                               };
-> +                                       spare2@0F00000 {
-> +                                               label = "spare2";
-> +                                               reg = <0x0F00000 0x200000>;
-> +                                               };
-> +                                       spare3@1100000 {
-> +                                               label = "spare3";
-> +                                               reg = <0x1100000 0x200000>;
-> +                                               };
-> +                                       spare4@1300000 {
-> +                                               label = "spare4";
-> +                                               reg = <0x1300000 0x0>;
-> +                                       };
-> +                               };
-> +                       };
-> +               };
-> +
-> +               fiu3: spi@c0000000 {
-> +                       pinctrl-0 = <&spi3_pins>, <&spi3quad_pins>;
-> +                       status = "okay";
-> +                       spi-nor@0 {
-> +                               compatible = "jedec,spi-nor";
-> +                               #address-cells = <1>;
-> +                               #size-cells = <1>;
-> +                               spi-rx-bus-width = <2>;
-> +                               reg = <0>;
-> +                               spi-max-frequency = <5000000>;
-> +                               partitions@A0000000 {
-> +                                       compatible = "fixed-partitions";
-> +                                       #address-cells = <1>;
-> +                                       #size-cells = <1>;
-> +                                       system1@0 {
-> +                                               label = "spi3-system1";
-> +                                               reg = <0x0 0x0>;
-> +                                       };
-> +                               };
-> +                       };
-> +               };
-> +
-> +               fiux: spi@fb001000 {
-> +                       spix-mode;
-> +               };
-> +
-> +               apb {
-> +
-> +                       watchdog1: watchdog@901C {
-> +                               status = "okay";
-> +                       };
-> +
-> +                       rng: rng@b000 {
-> +                               status = "okay";
-> +                       };
-> +
-> +                       serial0: serial@1000 {
-> +                               status = "okay";
-> +                       };
-> +
-> +                       serial1: serial@2000 {
-> +                               status = "okay";
-> +                       };
-> +
-> +                       serial2: serial@3000 {
-> +                               status = "okay";
-> +                       };
-> +
-> +                       serial3: serial@4000 {
-> +                               status = "okay";
-> +                       };
-> +
-> +                       adc: adc@c000 {
-> +                               status = "okay";
-> +                       };
-> +
-> +                       otp:otp@189000 {
-> +                               status = "okay";
-> +                       };
-> +
-> +                       lpc_kcs: lpc_kcs@7000 {
-> +                               kcs1: kcs1@0 {
-> +                                       status = "okay";
-> +                               };
->
-> -&serial3 {
-> -       status = "okay";
-> +                               kcs2: kcs2@0 {
-> +                                       status = "okay";
-> +                               };
-> +
-> +                               kcs3: kcs3@0 {
-> +                                       status = "okay";
-> +                               };
-> +                       };
-> +
-> +                       /* lm75 on SVB */
-> +                       i2c0: i2c@80000 {
-> +                               clock-frequency = <100000>;
-> +                               status = "okay";
-> +                               lm75@48 {
-> +                                       compatible = "lm75";
-> +                                       reg = <0x48>;
-> +                                       status = "okay";
-> +                               };
-> +                       };
-> +
-> +                       /* lm75 on EB */
-> +                       i2c1: i2c@81000 {
-> +                               clock-frequency = <100000>;
-> +                               status = "okay";
-> +                               lm75@48 {
-> +                                       compatible = "lm75";
-> +                                       reg = <0x48>;
-> +                                       status = "okay";
-> +                               };
-> +                       };
-> +
-> +                       /* tmp100 on EB */
-> +                       i2c2: i2c@82000 {
-> +                               clock-frequency = <100000>;
-> +                               status = "okay";
-> +                               tmp100@48 {
-> +                                       compatible = "tmp100";
-> +                                       reg = <0x48>;
-> +                                       status = "okay";
-> +                               };
-> +                       };
-> +
-> +                       i2c3: i2c@83000 {
-> +                               clock-frequency = <100000>;
-> +                               status = "okay";
-> +                       };
-> +
-> +                       i2c5: i2c@85000 {
-> +                               clock-frequency = <100000>;
-> +                               status = "okay";
-> +                       };
-> +
-> +                       /* tmp100 on SVB */
-> +                       i2c6: i2c@86000 {
-> +                               clock-frequency = <100000>;
-> +                               status = "okay";
-> +                               tmp100@48 {
-> +                                       compatible = "tmp100";
-> +                                       reg = <0x48>;
-> +                                       status = "okay";
-> +                               };
-> +                       };
-> +
-> +                       i2c7: i2c@87000 {
-> +                               clock-frequency = <100000>;
-> +                               status = "okay";
-> +                       };
-> +
-> +                       i2c8: i2c@88000 {
-> +                               clock-frequency = <100000>;
-> +                               status = "okay";
-> +                       };
-> +
-> +                       i2c9: i2c@89000 {
-> +                               clock-frequency = <100000>;
-> +                               status = "okay";
-> +                       };
-> +
-> +                       i2c10: i2c@8a000 {
-> +                               clock-frequency = <100000>;
-> +                               status = "okay";
-> +                       };
-> +
-> +                       i2c11: i2c@8b000 {
-> +                               clock-frequency = <100000>;
-> +                               status = "okay";
-> +                       };
-> +
-> +                       i2c14: i2c@8e000 {
-> +                               clock-frequency = <100000>;
-> +                               status = "okay";
-> +                       };
-> +
-> +                       pwm_fan:pwm-fan-controller@103000 {
-> +                               status = "okay";
-> +                               fan@0 {
-> +                                       reg = <0x00>;
-> +                                       fan-tach-ch = /bits/ 8 <0x00 0x01>;
-> +                                       cooling-levels = <127 255>;
-> +                               };
-> +                               fan@1 {
-> +                                       reg = <0x01>;
-> +                                       fan-tach-ch = /bits/ 8 <0x02 0x03>;
-> +                                       cooling-levels = /bits/ 8 <127 255>;
-> +                               };
-> +                               fan@2 {
-> +                                       reg = <0x02>;
-> +                                       fan-tach-ch = /bits/ 8 <0x04 0x05>;
-> +                                       cooling-levels = /bits/ 8 <127 255>;
-> +                               };
-> +                               fan@3 {
-> +                                       reg = <0x03>;
-> +                                       fan-tach-ch = /bits/ 8 <0x06 0x07>;
-> +                                       cooling-levels = /bits/ 8 <127 255>;
-> +                               };
-> +                               fan@4 {
-> +                                       reg = <0x04>;
-> +                                       fan-tach-ch = /bits/ 8 <0x08 0x09>;
-> +                                       cooling-levels = /bits/ 8 <127 255>;
-> +                               };
-> +                               fan@5 {
-> +                                       reg = <0x05>;
-> +                                       fan-tach-ch = /bits/ 8 <0x0A 0x0B>;
-> +                                       cooling-levels = /bits/ 8 <127 255>;
-> +                               };
-> +                               fan@6 {
-> +                                       reg = <0x06>;
-> +                                       fan-tach-ch = /bits/ 8 <0x0C 0x0D>;
-> +                                       cooling-levels = /bits/ 8 <127 255>;
-> +                               };
-> +                               fan@7 {
-> +                                       reg = <0x07>;
-> +                                       fan-tach-ch = /bits/ 8 <0x0E 0x0F>;
-> +                                       cooling-levels = /bits/ 8 <127 255>;
-> +                               };
-> +                       };
-> +
-> +                       spi0: spi@200000 {
-> +                               cs-gpios = <&gpio6 11 GPIO_ACTIVE_LOW>;
-> +                               status = "okay";
-> +                               Flash@0 {
-> +                                       compatible = "winbond,w25q128",
-> +                                       "jedec,spi-nor";
-> +                                       reg = <0x0>;
-> +                                       #address-cells = <1>;
-> +                                       #size-cells = <1>;
-> +                                       spi-max-frequency = <5000000>;
-> +                                       partition@0 {
-> +                                               label = "spi0_spare1";
-> +                                               reg = <0x0000000 0x800000>;
-> +                                       };
-> +                                       partition@1 {
-> +                                               label = "spi0_spare2";
-> +                                               reg = <0x800000 0x0>;
-> +                                       };
-> +                               };
-> +                       };
-> +
-> +                       spi1: spi@201000 {
-> +                               cs-gpios = <&gpio0 20 GPIO_ACTIVE_LOW>;
-> +                               status = "okay";
-> +                               Flash@0 {
-> +                                       compatible = "winbond,w25q128fw",
-> +                                       "jedec,spi-nor";
-> +                                       reg = <0x0>;
-> +                                       #address-cells = <1>;
-> +                                       #size-cells = <1>;
-> +                                       spi-max-frequency = <5000000>;
-> +                                       partition@0 {
-> +                                               label = "spi1_spare1";
-> +                                               reg = <0x0000000 0x800000>;
-> +                                       };
-> +                                       partition@1 {
-> +                                               label = "spi1_spare2";
-> +                                               reg = <0x800000 0x0>;
-> +                                       };
-> +                               };
-> +                       };
-> +               };
-> +       };
-> +
-> +       pinctrl: pinctrl@f0800000 {
+Thierry
 
-&pinctrl {
+--xHFwDpU9dbj6ez1V
+Content-Type: application/pgp-signature; name="signature.asc"
 
-> +               pinctrl-names = "default";
-> +               pinctrl-0 = <   &iox1_pins
-> +                               &pin8_input
-> +                               &pin9_output_high
-> +                               &pin10_input
-> +                               &pin11_output_high
-> +                               &pin16_input
-> +                               &pin24_output_high
-> +                               &pin25_output_low
-> +                               &pin32_output_high
-> +                               &jtag2_pins
-> +                               &pin61_output_high
-> +                               &pin62_output_high
-> +                               &pin63_output_high
-> +                               &lpc_pins
-> +                               &pin160_input
-> +                               &pin162_input
-> +                               &pin168_input
-> +                               &pin169_input
-> +                               &pin170_input
-> +                               &pin187_output_high
-> +                               &pin190_input
-> +                               &pin191_output_high
-> +                               &pin192_output_high
-> +                               &pin197_output_low
-> +                               &ddc_pins
-> +                               &pin218_input
-> +                               &pin219_output_low
-> +                               &pin220_output_low
-> +                               &pin221_output_high
-> +                               &pin222_input
-> +                               &pin223_output_low
-> +                               &spix_pins
-> +                               &pin228_output_low
-> +                               &pin231_output_high
-> +                               &pin255_input>;
-> +       };
->  };
-> diff --git a/arch/arm/boot/dts/nuvoton-npcm750-pincfg-evb.dtsi b/arch/arm/boot/dts/nuvoton-npcm750-pincfg-evb.dtsi
-> new file mode 100644
-> index 000000000000..edb4190826e6
-> --- /dev/null
-> +++ b/arch/arm/boot/dts/nuvoton-npcm750-pincfg-evb.dtsi
-> @@ -0,0 +1,157 @@
-> +// SPDX-License-Identifier: GPL-2.0
-> +// Copyright (c) 2018 Nuvoton Technology tomer.maimon@nuvoton.com
+-----BEGIN PGP SIGNATURE-----
 
-Drop your email address; it's in the git history if someone needs to look it up.
+iQIzBAABCAAdFiEEiOrDCAFJzPfAjcif3SOs138+s6EFAl9xhnkACgkQ3SOs138+
+s6FL3xAAi8SW4eZyqa3DzH2x8PIYh0nU4XdJiwu3FXjnpeZKFhpAw727Pf1Rwae7
+PMFnDggq2Q0GJC8Pzo95H0yBYaaVuQa93TLNszX3ofW0GZoZAadGPtGUjQrfFWcZ
+p7DySeukbO3BNIEDSIbMRYSUF+9cPq1sC4RAAQXP27Kdk62nbw2Tsr+AG7YXIBlj
+Z5N4zdFTv6LQRIIv08vpNyj74FSAb41wb+MR5vQnZKwlGRLJ0ZpVuW77SjFtj3Q7
+XMwrHljmSogGLIeqepX3I4McjzVfMXLWcF1sw6quBSX3zJo5DYybcvN6TUnWXQWe
+2AKyE+PGBjwBZcUJg9RM90VvGNjCJ3zm2WUQqLvsYRKC0eGubF9p65b36y6j0IIa
+A2gQNJQ5JiqW5q9Jm5I4RwTU0lZ/Mi+TwnKdZvPiPcC+YuRiqdUC5dHfXvWPfeCL
+eMFhmd7pRI8H7HkRNPo8z/tVufr+zHbYjtQljv2iCCZLXDfBPioX8jeTh9iXbj8Y
+wqR7F5vCC4pAWGLMw4o9jg0Zg5ywPRccXpNh8IbsrNONj0Y7MfXbo5lhxeqck10h
+ZnQRB67wK7iRbV23oos+R5Run1fU/PD4TD+m+6noGDHcmiOmX3g/ZxecAU5iB9pg
+e+V3/apZhQnJ3zwUssmZUfG501sECh3EqmZdUzDT6yrULhEiLtg=
+=Td2r
+-----END PGP SIGNATURE-----
 
-> +
-> +/ {
-> +       pinctrl: pinctrl@f0800000 {
-> +               pin8_input: pin8-input {
-> +                       pins = "GPIO8/LKGPO1";
-> +                       bias-disable;
-> +                       input-enable;
-> +               };
-> +               pin9_output_high: pin9-output-high {
-> +                       pins = "GPIO9/LKGPO2";
-> +                       bias-disable;
-> +                       output-high;
-> +               };
-> +               pin10_input: pin10-input {
-> +                       pins = "GPIO10/IOXHLD";
-> +                       bias-disable;
-> +                       input-enable;
-> +               };
-> +               pin11_output_high: pin11-output-high {
-> +                       pins = "GPIO11/IOXHCK";
-> +                       bias-disable;
-> +                       output-high;
-> +               };
-> +               pin16_input: pin16-input {
-> +                       pins = "GPIO16/LKGPO0";
-> +                       bias-disable;
-> +                       input-enable;
-> +               };
-> +               pin24_output_high: pin24-output-high {
-> +                       pins = "GPIO24/IOXHDO";
-> +                       bias-disable;
-> +                       output-high;
-> +               };
-> +               pin25_output_low: pin25-output-low {
-> +                       pins = "GPIO25/IOXHDI";
-> +                       bias-disable;
-> +                       output-low;
-> +               };
-> +               pin32_output_high: pin32-output-high {
-> +                       pins = "GPIO32/nSPI0CS1";
-> +                       bias-disable;
-> +                       output-high;
-> +               };
-> +               pin61_output_high: pin61-output-high {
-> +                       pins = "GPO61/nDTR1_BOUT1/STRAP6";
-> +                       bias-disable;
-> +                       output-high;
-> +               };
-> +               pin62_output_high: pin62-output-high {
-> +                       pins = "GPO62/nRTST1/STRAP5";
-> +                       bias-disable;
-> +                       output-high;
-> +               };
-> +               pin63_output_high: pin63-output-high {
-> +                       pins = "GPO63/TXD1/STRAP4";
-> +                       bias-disable;
-> +                       output-high;
-> +               };
-> +               pin160_input: pin160-input {
-> +                       pins = "GPIO160/CLKOUT/RNGOSCOUT";
-> +                       bias-disable;
-> +                       input-enable;
-> +               };
-> +               pin162_input: pin162-input {
-> +                       pins = "GPIO162/SERIRQ";
-> +                       bias-disable;
-> +                       input-enable;
-> +               };
-> +               pin168_input: pin168-input {
-> +                       pins = "GPIO168/nCLKRUN/nESPIALERT";
-> +                       bias-disable;
-> +                       input-enable;
-> +               };
-> +               pin169_input: pin169-input {
-> +                       pins = "GPIO169/nSCIPME";
-> +                       bias-disable;
-> +                       input-enable;
-> +               };
-> +               pin170_input: pin170-input {
-> +                       pins = "GPIO170/nSMI";
-> +                       bias-disable;
-> +                       input-enable;
-> +               };
-> +               pin187_output_high: pin187-output-high {
-> +                       pins = "GPIO187/nSPI3CS1";
-> +                       bias-disable;
-> +                       output-high;
-> +               };
-> +               pin190_input: pin190-input {
-> +                       pins = "GPIO190/nPRD_SMI";
-> +                       bias-disable;
-> +                       input-enable;
-> +               };
-> +               pin191_output_high: pin191-output-high {
-> +                       pins = "GPIO191";
-> +                       bias-disable;
-> +                       output-high;
-> +               };
-> +               pin192_output_high: pin192-output-high {
-> +                       pins = "GPIO192";
-> +                       bias-disable;
-> +                       output-high;
-> +               };
-> +               pin197_output_low: pin197-output-low {
-> +                       pins = "GPIO197/SMB0DEN";
-> +                       bias-disable;
-> +                       output-low;
-> +               };
-> +               pin218_input: pin218-input {
-> +                       pins = "GPIO218/nWDO1";
-> +                       bias-disable;
-> +                       input-enable;
-> +               };
-> +               pin219_output_low: pin219-output-low {
-> +                       pins = "GPIO219/nWDO2";
-> +                       bias-disable;
-> +                       output-low;
-> +               };
-> +               pin220_output_low: pin220-output-low {
-> +                       pins = "GPIO220/SMB12SCL";
-> +                       bias-disable;
-> +                       output-low;
-> +               };
-> +               pin221_output_high: pin221-output-high {
-> +                       pins = "GPIO221/SMB12SDA";
-> +                       bias-disable;
-> +                       output-high;
-> +               };
-> +               pin222_input: pin222-input {
-> +                       pins = "GPIO222/SMB13SCL";
-> +                       bias-disable;
-> +                       input-enable;
-> +               };
-> +               pin223_output_low: pin223-output-low {
-> +                       pins = "GPIO223/SMB13SDA";
-> +                       bias-disable;
-> +                       output-low;
-> +               };
-> +               pin228_output_low: pin228-output-low {
-> +                       pins = "GPIO228/nSPIXCS1";
-> +                       bias-disable;
-> +                       output-low;
-> +               };
-> +               pin231_output_high: pin231-output-high {
-> +                       pins = "GPIO230/SPIXD3";
-> +                       bias-disable;
-> +                       output-high;
-> +               };
-> +               pin255_input: pin255-input {
-> +                       pins = "GPI255/DACOSEL";
-> +                       bias-disable;
-> +                       input-enable;
-> +               };
-> +       };
-> +};
-> --
-> 2.22.0
->
+--xHFwDpU9dbj6ez1V--
