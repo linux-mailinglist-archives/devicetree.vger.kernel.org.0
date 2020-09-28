@@ -2,112 +2,133 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from vger.kernel.org (vger.kernel.org [23.128.96.18])
-	by mail.lfdr.de (Postfix) with ESMTP id 76AF027B150
-	for <lists+devicetree@lfdr.de>; Mon, 28 Sep 2020 18:00:00 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTP id CD85C27B178
+	for <lists+devicetree@lfdr.de>; Mon, 28 Sep 2020 18:11:32 +0200 (CEST)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S1726552AbgI1P74 (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Mon, 28 Sep 2020 11:59:56 -0400
-Received: from mail-oi1-f196.google.com ([209.85.167.196]:32903 "EHLO
-        mail-oi1-f196.google.com" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S1726477AbgI1P74 (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Mon, 28 Sep 2020 11:59:56 -0400
-Received: by mail-oi1-f196.google.com with SMTP id m7so1881529oie.0;
-        Mon, 28 Sep 2020 08:59:55 -0700 (PDT)
-X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=1e100.net; s=20161025;
-        h=x-gm-message-state:from:to:cc:subject:date:message-id:mime-version
-         :content-transfer-encoding;
-        bh=pDZaQ21Usp87w25mzRYuT8tC9E3ltWzHrXuhQk5quZo=;
-        b=h5dL8fJazHsTqNx/FGB2LX92fJaF0nofaWX8aKKjDOItT+TIpXJnlh2L2yW4ljS3ks
-         4p370+JcT3MamqrIn5gKkfBE8sdbmaGc7TMrkT6gnzoQTztDx9+/740tjjldpfJ43YXy
-         JITDzm5dy9UUoK4hbrVZXMw5Mf7IxSjMNco4Z0r4k95PJAwB92yghhlA4Af3sK+PFpSh
-         Ph70Aqdd3OkbzLHrcaukXD3Sy3xaD/UeIef2Lb8/z/oQIz9EF5trulet8ioPAr1xqvb/
-         hTJIQqfEUjdVXEO69WrEACtYZmST+17/u5kSR98YWdE4bB2b/fhtkhzg2axb5NcgMTw6
-         g/4w==
-X-Gm-Message-State: AOAM5339dJcN4tRlu5P55YnabrUyqZLtpq+bhwbFQs/EGqU6O5c7WEJq
-        X7CfC3H6XkDvYV6ldFrUnbfNgm/CHos2
-X-Google-Smtp-Source: ABdhPJzx+t1SOL3gjMvBl7qVDgfaG2ctw26l0RciW4e4fNOhVNui+5TwEJ9WxZinHySz68G0w5+aZg==
-X-Received: by 2002:aca:f203:: with SMTP id q3mr1238105oih.148.1601308794852;
-        Mon, 28 Sep 2020 08:59:54 -0700 (PDT)
-Received: from xps15.herring.priv (24-155-109-49.dyn.grandenetworks.net. [24.155.109.49])
-        by smtp.googlemail.com with ESMTPSA id u2sm2170497oot.39.2020.09.28.08.59.53
-        (version=TLS1_3 cipher=TLS_AES_256_GCM_SHA384 bits=256/256);
-        Mon, 28 Sep 2020 08:59:54 -0700 (PDT)
-From:   Rob Herring <robh@kernel.org>
-To:     devicetree@vger.kernel.org
-Cc:     linux-kernel@vger.kernel.org, Hyun Kwon <hyun.kwon@xilinx.com>,
-        Laurent Pinchart <laurent.pinchart@ideasonboard.com>,
-        Michal Simek <michal.simek@xilinx.com>,
-        Vinod Koul <vkoul@kernel.org>, dri-devel@lists.freedesktop.org,
-        dmaengine@vger.kernel.org
-Subject: [PATCH] dt-bindings: Fix 'reg' size issues in zynqmp examples
-Date:   Mon, 28 Sep 2020 10:59:53 -0500
-Message-Id: <20200928155953.2819930-1-robh@kernel.org>
-X-Mailer: git-send-email 2.25.1
+        id S1726558AbgI1QLb (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Mon, 28 Sep 2020 12:11:31 -0400
+Received: from mail.kernel.org ([198.145.29.99]:53972 "EHLO mail.kernel.org"
+        rhost-flags-OK-OK-OK-OK) by vger.kernel.org with ESMTP
+        id S1726497AbgI1QLb (ORCPT <rfc822;devicetree@vger.kernel.org>);
+        Mon, 28 Sep 2020 12:11:31 -0400
+Received: from mail-oo1-f44.google.com (mail-oo1-f44.google.com [209.85.161.44])
+        (using TLSv1.2 with cipher ECDHE-RSA-AES128-GCM-SHA256 (128/128 bits))
+        (No client certificate requested)
+        by mail.kernel.org (Postfix) with ESMTPSA id A0F4A21548;
+        Mon, 28 Sep 2020 16:11:30 +0000 (UTC)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=kernel.org;
+        s=default; t=1601309490;
+        bh=y7Ht+HIoWAID9ib1LG69AukUP/qaBDCDCsuCUzh0IU0=;
+        h=References:In-Reply-To:From:Date:Subject:To:Cc:From;
+        b=TWhsInoh8l00v6MHThgJtc5oUVQQPeTFbPwsPJNSu9LegpqMFEUd9e8B35nccSF0D
+         XhGT1iQfT2XZ7if8ms16F4tf3z7ifV1+3LnN0+W1DO8HX/O+G9DeAXvvzyhrXz9ahM
+         kn78bNqB3avW25ICQj/9SFpB8lkQNnHI6GOL5yC8=
+Received: by mail-oo1-f44.google.com with SMTP id 4so442728ooh.11;
+        Mon, 28 Sep 2020 09:11:30 -0700 (PDT)
+X-Gm-Message-State: AOAM531kM4nL9WD50JPCTJq9XlYM+zhdBzWad46fyjvxbGSM+Z+MRavL
+        VjhZfVkfxnSLM2WAbPbhyLd3aKilrx6QfJJ/mg==
+X-Google-Smtp-Source: ABdhPJxQ0XrJldHlAlasL8LskhnxKn4rvhzIbvnTwVOlPxEkFI7ABmwRRPVArMfumYTTnAZO3Bmo4AaXE338LE21RCU=
+X-Received: by 2002:a4a:d306:: with SMTP id g6mr1359413oos.25.1601309489933;
+ Mon, 28 Sep 2020 09:11:29 -0700 (PDT)
 MIME-Version: 1.0
-Content-Transfer-Encoding: 8bit
+References: <20200919053145.7564-1-post@lespocky.de> <20200919053145.7564-4-post@lespocky.de>
+ <20200922154258.GA2731185@bogus> <25430034.0KxgpkDxtS@ada>
+In-Reply-To: <25430034.0KxgpkDxtS@ada>
+From:   Rob Herring <robh@kernel.org>
+Date:   Mon, 28 Sep 2020 11:11:18 -0500
+X-Gmail-Original-Message-ID: <CAL_Jsq+1ULfQAWGT5QN=Es9POXtO7-iu6ihZnZFoQ_bWKLFxCg@mail.gmail.com>
+Message-ID: <CAL_Jsq+1ULfQAWGT5QN=Es9POXtO7-iu6ihZnZFoQ_bWKLFxCg@mail.gmail.com>
+Subject: Re: [PATCH v5 3/3] dt-bindings: leds: Convert pwm to yaml
+To:     Alexander Dahl <ada@thorsis.com>
+Cc:     Alexander Dahl <post@lespocky.de>,
+        =?UTF-8?B?TWFyZWsgQmVow7pu?= <marek.behun@nic.cz>,
+        Linux LED Subsystem <linux-leds@vger.kernel.org>,
+        Pavel Machek <pavel@ucw.cz>,
+        Peter Ujfalusi <peter.ujfalusi@ti.com>,
+        devicetree@vger.kernel.org, Dan Murphy <dmurphy@ti.com>,
+        "linux-kernel@vger.kernel.org" <linux-kernel@vger.kernel.org>,
+        Jacek Anaszewski <jacek.anaszewski@gmail.com>
+Content-Type: text/plain; charset="UTF-8"
+Content-Transfer-Encoding: quoted-printable
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-The default sizes in examples for 'reg' are 1 cell each. Fix the
-incorrect sizes in zynqmp examples:
+On Mon, Sep 28, 2020 at 6:19 AM Alexander Dahl <ada@thorsis.com> wrote:
+>
+> Hello Rob,
+>
+> Am Dienstag, 22. September 2020, 17:42:58 CEST schrieb Rob Herring:
+> > On Sat, 19 Sep 2020 07:31:45 +0200, Alexander Dahl wrote:
+> > > The example was adapted slightly to make use of the 'function' and
+> > > 'color' properties.  License discussed with the original author.
+> > >
+> > > Suggested-by: Jacek Anaszewski <jacek.anaszewski@gmail.com>
+> > > Signed-off-by: Alexander Dahl <post@lespocky.de>
+> > > Cc: Peter Ujfalusi <peter.ujfalusi@ti.com>
+> > > ---
+> > >
+> > > Notes:
+> > >     v4 -> v5:
+> > >       * updated based on feedback by Rob Herring
+> > >       * removed Acked-by
+> > >
+> > >     v3 -> v4:
+> > >       * added Cc to original author of the binding
+> > >
+> > >     v2 -> v3:
+> > >       * changed license identifier to recommended one
+> > >       * added Acked-by
+> > >
+> > >     v2:
+> > >       * added this patch to series (Suggested-by: Jacek Anaszewski)
+> > >
+> > >  .../devicetree/bindings/leds/leds-pwm.txt     | 50 -----------
+> > >  .../devicetree/bindings/leds/leds-pwm.yaml    | 82 +++++++++++++++++=
+++
+> > >  2 files changed, 82 insertions(+), 50 deletions(-)
+> > >  delete mode 100644 Documentation/devicetree/bindings/leds/leds-pwm.t=
+xt
+> > >  create mode 100644 Documentation/devicetree/bindings/leds/leds-pwm.y=
+aml
+> >
+> > My bot found errors running 'make dt_binding_check' on your patch:
+> >
+> > /builds/robherring/linux-dt-review/Documentation/devicetree/bindings/mf=
+d/iqs
+> > 62x.example.dt.yaml: pwmleds: 'panel' does not match any of the regexes=
+:
+> > '^led(-[0-9a-f]+)?$', 'pinctrl-[0-9]+' From schema:
+> > /builds/robherring/linux-dt-review/Documentation/devicetree/bindings/le=
+ds/l
+> > eds-pwm.yaml
+>
+> I somehow expected errors on those checks, because I got actually two
+> different recommendations from you:
+>
+> In feedback on v4 of this patch (series) you recommended '^led(-[0-9a-f]+=
+)?$'
+> for the (pwm) led node name, which I used in v5.  Or just allow any node =
+name
+> with ".*" like in gpio-keys.yaml =E2=80=A6
+>
+> I just checked all in-tree dts files using "pwm-leds" and each also defin=
+es
+> the "label" property, so renaming those nodes should not alter the paths =
+in
+> sysfs, if I understood everything correctly.  So I see two options now:
+>
+> 1) Go with the stricter check and fix all failing dts files and examples.
+>
+> 2) Just use the very loose check.
 
-Documentation/devicetree/bindings/dma/xilinx/xlnx,zynqmp-dpdma.example.dt.yaml: example-0: dma-controller@fd4c0000:reg:0: [0, 4249616384, 0, 4096] is too long
-	From schema: /usr/local/lib/python3.8/dist-packages/dtschema/schemas/reg.yaml
-Documentation/devicetree/bindings/display/xlnx/xlnx,zynqmp-dpsub.example.dt.yaml: example-0: display@fd4a0000:reg:0: [0, 4249485312, 0, 4096] is too long
-	From schema: /usr/local/lib/python3.8/dist-packages/dtschema/schemas/reg.yaml
-Documentation/devicetree/bindings/display/xlnx/xlnx,zynqmp-dpsub.example.dt.yaml: example-0: display@fd4a0000:reg:1: [0, 4249526272, 0, 4096] is too long
-	From schema: /usr/local/lib/python3.8/dist-packages/dtschema/schemas/reg.yaml
-Documentation/devicetree/bindings/display/xlnx/xlnx,zynqmp-dpsub.example.dt.yaml: example-0: display@fd4a0000:reg:2: [0, 4249530368, 0, 4096] is too long
-	From schema: /usr/local/lib/python3.8/dist-packages/dtschema/schemas/reg.yaml
-Documentation/devicetree/bindings/display/xlnx/xlnx,zynqmp-dpsub.example.dt.yaml: example-0: display@fd4a0000:reg:3: [0, 4249534464, 0, 4096] is too long
-	From schema: /usr/local/lib/python3.8/dist-packages/dtschema/schemas/reg.yaml
+Either one is fine. Given label is present and there's not a ton of
+cases, then I'd probably go with 1.
 
-Cc: Hyun Kwon <hyun.kwon@xilinx.com>
-Cc: Laurent Pinchart <laurent.pinchart@ideasonboard.com>
-Cc: Michal Simek <michal.simek@xilinx.com>
-Cc: Vinod Koul <vkoul@kernel.org>
-Cc: dri-devel@lists.freedesktop.org
-Cc: dmaengine@vger.kernel.org
-Signed-off-by: Rob Herring <robh@kernel.org>
----
- .../bindings/display/xlnx/xlnx,zynqmp-dpsub.yaml          | 8 ++++----
- .../devicetree/bindings/dma/xilinx/xlnx,zynqmp-dpdma.yaml | 2 +-
- 2 files changed, 5 insertions(+), 5 deletions(-)
+> If 1), which patch would go first, renaming nodes in dts and examples or
+> converting bindings to yaml enabling the stricter check?
 
-diff --git a/Documentation/devicetree/bindings/display/xlnx/xlnx,zynqmp-dpsub.yaml b/Documentation/devicetree/bindings/display/xlnx/xlnx,zynqmp-dpsub.yaml
-index 52a939cade3b..7b9d468c3e52 100644
---- a/Documentation/devicetree/bindings/display/xlnx/xlnx,zynqmp-dpsub.yaml
-+++ b/Documentation/devicetree/bindings/display/xlnx/xlnx,zynqmp-dpsub.yaml
-@@ -145,10 +145,10 @@ examples:
- 
-     display@fd4a0000 {
-         compatible = "xlnx,zynqmp-dpsub-1.7";
--        reg = <0x0 0xfd4a0000 0x0 0x1000>,
--              <0x0 0xfd4aa000 0x0 0x1000>,
--              <0x0 0xfd4ab000 0x0 0x1000>,
--              <0x0 0xfd4ac000 0x0 0x1000>;
-+        reg = <0xfd4a0000 0x1000>,
-+              <0xfd4aa000 0x1000>,
-+              <0xfd4ab000 0x1000>,
-+              <0xfd4ac000 0x1000>;
-         reg-names = "dp", "blend", "av_buf", "aud";
-         interrupts = <0 119 4>;
-         interrupt-parent = <&gic>;
-diff --git a/Documentation/devicetree/bindings/dma/xilinx/xlnx,zynqmp-dpdma.yaml b/Documentation/devicetree/bindings/dma/xilinx/xlnx,zynqmp-dpdma.yaml
-index 5de510f8c88c..2a595b18ff6c 100644
---- a/Documentation/devicetree/bindings/dma/xilinx/xlnx,zynqmp-dpdma.yaml
-+++ b/Documentation/devicetree/bindings/dma/xilinx/xlnx,zynqmp-dpdma.yaml
-@@ -57,7 +57,7 @@ examples:
- 
-     dma: dma-controller@fd4c0000 {
-       compatible = "xlnx,zynqmp-dpdma";
--      reg = <0x0 0xfd4c0000 0x0 0x1000>;
-+      reg = <0xfd4c0000 0x1000>;
-       interrupts = <GIC_SPI 122 IRQ_TYPE_LEVEL_HIGH>;
-       interrupt-parent = <&gic>;
-       clocks = <&dpdma_clk>;
--- 
-2.25.1
+There's currently no requirement on dts files being warning free. So
+the schema can come first and any dts fixes later.
 
+Rob
