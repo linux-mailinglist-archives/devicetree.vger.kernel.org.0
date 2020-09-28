@@ -2,90 +2,112 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from vger.kernel.org (vger.kernel.org [23.128.96.18])
-	by mail.lfdr.de (Postfix) with ESMTP id C071D27B06D
-	for <lists+devicetree@lfdr.de>; Mon, 28 Sep 2020 17:01:06 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTP id 6A7E327B075
+	for <lists+devicetree@lfdr.de>; Mon, 28 Sep 2020 17:02:12 +0200 (CEST)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S1726348AbgI1PBF (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Mon, 28 Sep 2020 11:01:05 -0400
-Received: from lindbergh.monkeyblade.net ([23.128.96.19]:44922 "EHLO
-        lindbergh.monkeyblade.net" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S1726310AbgI1PBF (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Mon, 28 Sep 2020 11:01:05 -0400
-Received: from mail-wr1-x442.google.com (mail-wr1-x442.google.com [IPv6:2a00:1450:4864:20::442])
-        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id C900AC061755;
-        Mon, 28 Sep 2020 08:01:04 -0700 (PDT)
-Received: by mail-wr1-x442.google.com with SMTP id g4so1719053wrs.5;
-        Mon, 28 Sep 2020 08:01:04 -0700 (PDT)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=gmail.com; s=20161025;
-        h=from:to:cc:subject:date:message-id:mime-version
-         :content-transfer-encoding;
-        bh=j4rmvqeCqQcnLgyoa1rABwXSUxqPaFqVmfgnmQ3TuWY=;
-        b=qSckvyirQ2xX0mglQCf2Nr57ahSvex8M8o9kQQ2yGXRWMizSts1cGS/X67+qu6ucxN
-         X9moYc8VRt5BOxWUjfaOiK/U99qPmNBKoQRP9M1egmvXHb9JLgOeOehYQ4lWureNKJtP
-         Xa3HgkVGOCzYODE/AC9SZmQp/Qf0BqlDAHOz2AzYcD8NDBOHGpg9KPYGQaeBuRDJ6Vt/
-         I/0/nE0PmvKlvKkzR0/kxdqd5681IPCy71BWlMFypCffR+9Unhqw1CLSghxm6Mm1xpvG
-         YrbPSjyj4//vG7QdbwDaIF6lvQURw1kyxTL+GlgUhBMIyasN+Y0S1/0+cTIzdLmhL+hV
-         OUzw==
-X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=1e100.net; s=20161025;
-        h=x-gm-message-state:from:to:cc:subject:date:message-id:mime-version
-         :content-transfer-encoding;
-        bh=j4rmvqeCqQcnLgyoa1rABwXSUxqPaFqVmfgnmQ3TuWY=;
-        b=DWI+zDjkkrSBBMWlyjpQTbr02q+Ik4MLnZpMpGxSw8J8ZmDcnTVH2wHB3CxgezcD3X
-         UMSFfHXvYWXVOSnQzh37YeaSxDSPI3QoZDEyOQuL3AuH0h9WNYwqTKUjzGon3jt057iT
-         fj2wzyuuiBhyRXGlqgvbgmDJDNfjTl+wy7XY3mykN1ZmNmV2NEazxBwb2rHVkte609Gg
-         GnsevXhkVHL1iOklpXkMBoipC+tCZpE5EKmmoTc3J30EZdgbyIXlku4vuEdQDFEsBHWS
-         rtePX8RWegDcxbQqK4m4IXE95kQ1y8rtEzu1auxIwmcFC1U3YQ7KijFAmQYIvfsxpYtb
-         laIA==
-X-Gm-Message-State: AOAM533UubfMg5n1wVSd3hJ+HmZ88H8w4UUyD0ibU92+Jabu8UK6QM6K
-        CIHvx2dzhvTuMDarUvix5veC7bbDXLttQQ==
-X-Google-Smtp-Source: ABdhPJxciGliXAToxp0AvwXzcJsjOMAZpov9CrokXaGDMDZKITJAjWkOz1bRtTNklcHD2ZdPz8oRvw==
-X-Received: by 2002:adf:9f10:: with SMTP id l16mr2329228wrf.77.1601305263323;
-        Mon, 28 Sep 2020 08:01:03 -0700 (PDT)
-Received: from localhost.localdomain (lputeaux-656-1-11-33.w82-127.abo.wanadoo.fr. [82.127.142.33])
-        by smtp.gmail.com with ESMTPSA id z127sm1598763wmc.2.2020.09.28.08.01.02
-        (version=TLS1_3 cipher=TLS_AES_256_GCM_SHA384 bits=256/256);
-        Mon, 28 Sep 2020 08:01:02 -0700 (PDT)
-From:   =?UTF-8?q?Cl=C3=A9ment=20P=C3=A9ron?= <peron.clem@gmail.com>
-To:     Maxime Ripard <mripard@kernel.org>
-Cc:     =?UTF-8?q?Cl=C3=A9ment=20P=C3=A9ron?= <peron.clem@gmail.com>,
-        Rob Herring <robh+dt@kernel.org>, Chen-Yu Tsai <wens@csie.org>,
-        devicetree@vger.kernel.org, linux-arm-kernel@lists.infradead.org,
+        id S1726420AbgI1PCL convert rfc822-to-8bit (ORCPT
+        <rfc822;lists+devicetree@lfdr.de>); Mon, 28 Sep 2020 11:02:11 -0400
+Received: from honk.sigxcpu.org ([24.134.29.49]:44550 "EHLO honk.sigxcpu.org"
+        rhost-flags-OK-OK-OK-OK) by vger.kernel.org with ESMTP
+        id S1726460AbgI1PCL (ORCPT <rfc822;devicetree@vger.kernel.org>);
+        Mon, 28 Sep 2020 11:02:11 -0400
+Received: from localhost (localhost [127.0.0.1])
+        by honk.sigxcpu.org (Postfix) with ESMTP id A27F6FB03;
+        Mon, 28 Sep 2020 17:02:07 +0200 (CEST)
+X-Virus-Scanned: Debian amavisd-new at honk.sigxcpu.org
+Received: from honk.sigxcpu.org ([127.0.0.1])
+        by localhost (honk.sigxcpu.org [127.0.0.1]) (amavisd-new, port 10024)
+        with ESMTP id q109Wptkrg7z; Mon, 28 Sep 2020 17:02:04 +0200 (CEST)
+Received: by bogon.sigxcpu.org (Postfix, from userid 1000)
+        id 461E045BEF; Mon, 28 Sep 2020 17:02:03 +0200 (CEST)
+Date:   Mon, 28 Sep 2020 17:02:03 +0200
+From:   Guido =?iso-8859-1?Q?G=FCnther?= <agx@sigxcpu.org>
+To:     Thierry Reding <thierry.reding@gmail.com>
+Cc:     Sam Ravnborg <sam@ravnborg.org>, David Airlie <airlied@linux.ie>,
+        Daniel Vetter <daniel@ffwll.ch>,
+        Rob Herring <robh+dt@kernel.org>,
+        dri-devel@lists.freedesktop.org, devicetree@vger.kernel.org,
         linux-kernel@vger.kernel.org
-Subject: [PATCH] arm64: dts: allwinner: h6: add eMMC voltage property for Beelink GS1
-Date:   Mon, 28 Sep 2020 17:00:37 +0200
-Message-Id: <20200928150038.97413-1-peron.clem@gmail.com>
-X-Mailer: git-send-email 2.25.1
+Subject: Re: [RFC PATCH v1 3/3] dt-binding: display: Require two rests on
+ mantix panel
+Message-ID: <20200928150203.GA58525@bogon.m.sigxcpu.org>
+References: <cover.1600707235.git.agx@sigxcpu.org>
+ <71a9108f3472ba9af4bead01b1b770d1e73eb08e.1600707235.git.agx@sigxcpu.org>
+ <20200924193807.GA1223313@ravnborg.org>
+ <20200928065039.GB2837573@ulmo>
 MIME-Version: 1.0
-Content-Type: text/plain; charset=UTF-8
-Content-Transfer-Encoding: 8bit
+Content-Type: text/plain; charset=iso-8859-1
+Content-Disposition: inline
+Content-Transfer-Encoding: 8BIT
+In-Reply-To: <20200928065039.GB2837573@ulmo>
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-VQMMC supply is connected to BLDO2 which provides 1.8V.
+Hi Thierry,
+On Mon, Sep 28, 2020 at 08:50:39AM +0200, Thierry Reding wrote:
+> On Thu, Sep 24, 2020 at 09:38:07PM +0200, Sam Ravnborg wrote:
+> > Hi Guido.
+> > 
+> > On Mon, Sep 21, 2020 at 06:55:52PM +0200, Guido Günther wrote:
+> > > We need to reset both for the panel to show an image.
+> > > 
+> > > Signed-off-by: Guido Günther <agx@sigxcpu.org>
+> > > ---
+> > >  .../bindings/display/panel/mantix,mlaf057we51-x.yaml       | 7 +++++--
+> > >  1 file changed, 5 insertions(+), 2 deletions(-)
+> > > 
+> > > diff --git a/Documentation/devicetree/bindings/display/panel/mantix,mlaf057we51-x.yaml b/Documentation/devicetree/bindings/display/panel/mantix,mlaf057we51-x.yaml
+> > > index 937323cc9aaa..ba5a18fac9f9 100644
+> > > --- a/Documentation/devicetree/bindings/display/panel/mantix,mlaf057we51-x.yaml
+> > > +++ b/Documentation/devicetree/bindings/display/panel/mantix,mlaf057we51-x.yaml
+> > > @@ -35,7 +35,9 @@ properties:
+> > >    vddi-supply:
+> > >      description: 1.8V I/O voltage supply
+> > >  
+> > > -  reset-gpios: true
+> > > +  reset-gpios:
+> > > +    minItems: 2
+> > > +    maxItems: 2
+> > 
+> > reset-gpios is, as you already wrote, defined in panel-common.yaml.
+> > Do not try to change it here.
+> > It would be much better, I think, to introduce a mantix,reset-gpios
+> > property.
+> > 
+> > This would avoid that we had two different reset-gpios definitions.
+> 
+> My understanding is that this will only override the defaults defined in
+> panel-common.yaml. So everything else about the
+> panel-common.yaml#/properties/reset-gpios definition remains valid and
+> all this does is say that when this matched on "mantix,mlaf057we51-x",
+> then the "reset-gpios" property is expected to contain two entries as
+> opposed to the single entry that is expected by default.
 
-Let's reflect this in the device-tree.
+I thought so too but I get:
 
-Fixes: 089bee8dd119 ("arm64: dts: allwinner: h6: Introduce Beelink GS1 board")
-Signed-off-by: ClÃ©ment PÃ©ron <peron.clem@gmail.com>
----
- arch/arm64/boot/dts/allwinner/sun50i-h6-beelink-gs1.dts | 1 +
- 1 file changed, 1 insertion(+)
+linux/Documentation/devicetree/bindings/display/panel/mantix,mlaf057we51-x.example.dt.yaml: panel@0: reset-gpios: [[4294967295, 29, 1], [4294967295, 24, 1]] is too long
+	From schema: /.../linux/Documentation/devicetree/bindings/display/panel/mantix,mlaf057we51-x.yaml
 
-diff --git a/arch/arm64/boot/dts/allwinner/sun50i-h6-beelink-gs1.dts b/arch/arm64/boot/dts/allwinner/sun50i-h6-beelink-gs1.dts
-index 049c21718846..3f20d2c9bbbb 100644
---- a/arch/arm64/boot/dts/allwinner/sun50i-h6-beelink-gs1.dts
-+++ b/arch/arm64/boot/dts/allwinner/sun50i-h6-beelink-gs1.dts
-@@ -145,6 +145,7 @@ &mmc2 {
- 	vqmmc-supply = <&reg_bldo2>;
- 	non-removable;
- 	cap-mmc-hw-reset;
-+	mmc-hs200-1_8v;
- 	bus-width = <8>;
- 	status = "okay";
- };
--- 
-2.25.1
+It seems to bepossible to *extend* reset-gpios though because when i use
+an example like:
+
+            reset-gpios = <&gpio1 29 GPIO_ACTIVE_LOW>,
+                          <&gpio1 24 GPIO_ACTIVE_LOW>;
+
+i correctly get
+
+linux/linux/Documentation/devicetree/bindings/display/panel/mantix,mlaf057we51-x.example.dt.yaml: panel@0: reset-gpios: [[4294967295, 29, 1]] is too short
+	From schema: /.../linux/Documentation/devicetree/bindings/display/panel/mantix,mlaf057we51-x.yaml
+ 
+so the `minItems: 2` is being picked up. This mens i can add
+properties but i can't overwrite the existing `maxItems: 2` - that's why
+i was wondering how that is supposed to work (if properties should be
+overrideable from common files or not).
+Cheers,
+ -- Guido
+
+> 
+> Thierry
+
 
