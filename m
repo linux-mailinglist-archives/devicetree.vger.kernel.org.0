@@ -2,345 +2,278 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from vger.kernel.org (vger.kernel.org [23.128.96.18])
-	by mail.lfdr.de (Postfix) with ESMTP id 8FB1127AF2C
-	for <lists+devicetree@lfdr.de>; Mon, 28 Sep 2020 15:37:52 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTP id 0FCF727AF38
+	for <lists+devicetree@lfdr.de>; Mon, 28 Sep 2020 15:41:04 +0200 (CEST)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S1726380AbgI1Nhw (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Mon, 28 Sep 2020 09:37:52 -0400
-Received: from lindbergh.monkeyblade.net ([23.128.96.19]:60348 "EHLO
+        id S1726460AbgI1NlD (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Mon, 28 Sep 2020 09:41:03 -0400
+Received: from lindbergh.monkeyblade.net ([23.128.96.19]:60834 "EHLO
         lindbergh.monkeyblade.net" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S1726344AbgI1Nhv (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Mon, 28 Sep 2020 09:37:51 -0400
-Received: from mail-ua1-x942.google.com (mail-ua1-x942.google.com [IPv6:2607:f8b0:4864:20::942])
-        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 70F89C061755
-        for <devicetree@vger.kernel.org>; Mon, 28 Sep 2020 06:37:51 -0700 (PDT)
-Received: by mail-ua1-x942.google.com with SMTP id u48so2204925uau.0
-        for <devicetree@vger.kernel.org>; Mon, 28 Sep 2020 06:37:51 -0700 (PDT)
+        with ESMTP id S1726325AbgI1NlC (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Mon, 28 Sep 2020 09:41:02 -0400
+Received: from mail-wr1-x441.google.com (mail-wr1-x441.google.com [IPv6:2a00:1450:4864:20::441])
+        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 7F434C061755;
+        Mon, 28 Sep 2020 06:41:02 -0700 (PDT)
+Received: by mail-wr1-x441.google.com with SMTP id j2so1387558wrx.7;
+        Mon, 28 Sep 2020 06:41:02 -0700 (PDT)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=linaro.org; s=google;
-        h=mime-version:references:in-reply-to:from:date:message-id:subject:to
-         :cc;
-        bh=nZHygFNG12BXzia+cdFp3TUOwboq01N6tmGz7GV0mjc=;
-        b=HbWOxEIfM8ntAMXUYW1Quv7Si1k1ydd3FSuy3Y/TPuIS7RMc29OkwEJR0tNpYB2sSx
-         xI4p05QJbWtfGREN10T+ITpc4sIOjiXUF2aO1WIEZA6LglCal5RWKkHR88xVID0VrApu
-         aC0PQoVratp4+6Z9EiF69NgWNjWLX11/OgS5XBU/p3RBuOB33feB0rZq3hrUrcGSmUxt
-         ixizvUGDUOZqsfmyrvLitoJ3kYqNS5PM2VddrRI79AUN1tUWGJrNjTlJ4Qs2iKNpDoVe
-         SUg4O209PASlkCgw+EkPKnecVhHYgIowYJJiPAfTpDNjdggNqotwKUpcA8saIOEhvM9i
-         sX5Q==
+        d=gmail.com; s=20161025;
+        h=date:from:to:cc:subject:message-id:references:mime-version
+         :content-disposition:in-reply-to:user-agent;
+        bh=QFY4b8157RCSTh0is5r4ZBDr6uhqr7sud1mk4+im8LY=;
+        b=tKTrbiEMf6sNKfr41DkOA5vVaU6gOJnNhXbwtWlQtEES3fq1YG7Nh7IkA8brlCm1sD
+         2DAA0blRjF397OkAKc+OU5WjH53mSDcUrjxjhvQceMUkLH1u29deHzc3dLOytoQTsNH/
+         fhC7bK05CS4hIKVg8zH8JHbKWiZ3A3xgC2sw3xULeCAGalG8F/cG6XNQa6jQXvPmV/+l
+         KXG5s2d3n2AQUvVK+Ydfsu2ZCas14QIjeViPZiwMX/6HB2WlkK7wxV5eKnggZfHLz14Q
+         i/BHvUyP8ZX2AKkV4HEoOSoYR07ihLe0RUYGOW0gZSzyW6H8gVhQJMCzHa7ZUAfbdHtt
+         50WQ==
 X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
         d=1e100.net; s=20161025;
-        h=x-gm-message-state:mime-version:references:in-reply-to:from:date
-         :message-id:subject:to:cc;
-        bh=nZHygFNG12BXzia+cdFp3TUOwboq01N6tmGz7GV0mjc=;
-        b=fC1DmjYz968/ynHPQ3zwKeAPzZ6Od8jdu8BeELBWRxoQhvj/LGxc46l5XPvzm9e+qM
-         XO1smunAW7TiN+5CybApzNDHJp4jHtrhAcMgCqo34bEAuRqDu2hhBmyPzglCQXhzuUAu
-         +1ikcAekjqm7NCLjYhhTCma3V0qTMosgrWfp1ZdmoFQqosehdCFzHp9AHUO2mJqObfZu
-         r//NQG6/WMoI28fywjA6WjbW6TGmPIKBIgu47dA3ErDe/Fcpryvgd+AUvhdqfth/g7YG
-         p1ueaKavd+wweliT35alzrkJpbCkeAIS1wNmws5rVeAO8NpzXwEI8jpJ8WK2FETGMyK6
-         xQbA==
-X-Gm-Message-State: AOAM531aA5qR//UoS4G/CZ68qCNiBcoCQM5HSUKBTFRez3fdo0P+dx5S
-        UV7Hl3eINzyIR4xXDNWPswRse00U1bvksm9bcYgFYQ==
-X-Google-Smtp-Source: ABdhPJw2Q4TTIOv2yPatvgHsLzUCYEIV+MWUndyjTwyGBf4wZLgws1Jetpn+GlCZT+z7/nWYZDuxjGXj0aGn+N+nNG4=
-X-Received: by 2002:ab0:2ea1:: with SMTP id y1mr740229uay.104.1601300270460;
- Mon, 28 Sep 2020 06:37:50 -0700 (PDT)
+        h=x-gm-message-state:date:from:to:cc:subject:message-id:references
+         :mime-version:content-disposition:in-reply-to:user-agent;
+        bh=QFY4b8157RCSTh0is5r4ZBDr6uhqr7sud1mk4+im8LY=;
+        b=MEnZY7y1ABIwA0tfL+TJ24BkzhClIZGPMEl+nrdAge3G/7c+bqsJ/QRJOgqhHJLD7K
+         GX/+gtyV0z3iQIjEyvxN3LG+rUTKzyhaxWRLYb44GVORWCL0danO8X1v792X/Vjq7Ifl
+         ohHhIP8rRzZ+vbYPsCsMWxQXVg2b+37fGFuR45Vbn7txsVWruHBJGTheSxSgcFhCxUdV
+         ZHQqai6M3TSH3xfryNvtgHUtJGb6Dpv7EfNNfx4ehTsqub0DCjGzL1qV4Vc4HSno5rap
+         JykQ4J2eRcNz3aIB1amCfp0onotkB1Y3LM+pQ3YOZCR0pXMslrur8s2HK/jf8hwINq99
+         qQ8w==
+X-Gm-Message-State: AOAM532cqzVnvz0FBOBHxyO+jiTxqqbTmFNJ3Y0gVOskJvif/LwZGUBc
+        PpUusP8D3Wlk9/bgpv93DSQ=
+X-Google-Smtp-Source: ABdhPJz5kK/P4iipCYrUZZ71fy9jCUkZv6HHRkiPzqwEYvmP/oz7j4sLPWdujmCqL3DtXSzuOGaI8g==
+X-Received: by 2002:a5d:5090:: with SMTP id a16mr1905003wrt.247.1601300461116;
+        Mon, 28 Sep 2020 06:41:01 -0700 (PDT)
+Received: from localhost ([217.111.27.204])
+        by smtp.gmail.com with ESMTPSA id j14sm1620596wrr.66.2020.09.28.06.40.59
+        (version=TLS1_3 cipher=TLS_AES_256_GCM_SHA384 bits=256/256);
+        Mon, 28 Sep 2020 06:40:59 -0700 (PDT)
+Date:   Mon, 28 Sep 2020 15:40:57 +0200
+From:   Thierry Reding <thierry.reding@gmail.com>
+To:     JC Kuo <jckuo@nvidia.com>
+Cc:     gregkh@linuxfoundation.org, robh@kernel.org, jonathanh@nvidia.com,
+        kishon@ti.com, linux-tegra@vger.kernel.org,
+        linux-usb@vger.kernel.org, linux-kernel@vger.kernel.org,
+        devicetree@vger.kernel.org, nkristam@nvidia.com
+Subject: Re: [PATCH v3 10/15] phy: tegra: xusb: Add wake/sleepwalk for
+ Tegra210
+Message-ID: <20200928134057.GK3065790@ulmo>
+References: <20200909081041.3190157-1-jckuo@nvidia.com>
+ <20200909081041.3190157-11-jckuo@nvidia.com>
 MIME-Version: 1.0
-References: <20200928130918.32326-1-wenbin.mei@mediatek.com> <20200928130918.32326-2-wenbin.mei@mediatek.com>
-In-Reply-To: <20200928130918.32326-2-wenbin.mei@mediatek.com>
-From:   Ulf Hansson <ulf.hansson@linaro.org>
-Date:   Mon, 28 Sep 2020 15:37:14 +0200
-Message-ID: <CAPDyKFoQs4Bmd=5vgB6NUr81FnVYPk1k4Z_8pn6KayS5aNQtUA@mail.gmail.com>
-Subject: Re: [PATCH v2 1/4] dt-bindings: mmc: Convert mtk-sd to json-schema
-To:     Wenbin Mei <wenbin.mei@mediatek.com>
-Cc:     Rob Herring <robh+dt@kernel.org>,
-        Chaotian Jing <chaotian.jing@mediatek.com>,
-        Matthias Brugger <matthias.bgg@gmail.com>,
-        "linux-mmc@vger.kernel.org" <linux-mmc@vger.kernel.org>,
-        DTML <devicetree@vger.kernel.org>,
-        Linux ARM <linux-arm-kernel@lists.infradead.org>,
-        "moderated list:ARM/Mediatek SoC support" 
-        <linux-mediatek@lists.infradead.org>,
-        Linux Kernel Mailing List <linux-kernel@vger.kernel.org>,
-        srv_heupstream <srv_heupstream@mediatek.com>
-Content-Type: text/plain; charset="UTF-8"
+Content-Type: multipart/signed; micalg=pgp-sha256;
+        protocol="application/pgp-signature"; boundary="GvuyDaC2GNSBQusT"
+Content-Disposition: inline
+In-Reply-To: <20200909081041.3190157-11-jckuo@nvidia.com>
+User-Agent: Mutt/1.14.7 (2020-08-29)
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-On Mon, 28 Sep 2020 at 15:12, Wenbin Mei <wenbin.mei@mediatek.com> wrote:
->
-> Convert the mtk-sd binding to DT schema format using json-schema.
->
-> Signed-off-by: Wenbin Mei <wenbin.mei@mediatek.com>
-> Reviewed-by: Ulf Hansson <ulf.hansson@linaro.org>
 
-Please, don't add reviewed-by tags during an ongoing review, unless
-the reviewer explicitly states that the change looks good. The same
-applies to patch 2 in this series.
+--GvuyDaC2GNSBQusT
+Content-Type: text/plain; charset=us-ascii
+Content-Disposition: inline
+Content-Transfer-Encoding: quoted-printable
 
-No need to resend this time because of this, but please keep this in
-mind when going forward.
+On Wed, Sep 09, 2020 at 04:10:36PM +0800, JC Kuo wrote:
+[...]
+> diff --git a/drivers/phy/tegra/xusb-tegra210.c b/drivers/phy/tegra/xusb-t=
+egra210.c
+[...]
+> @@ -2096,6 +2938,96 @@ static const struct phy_ops tegra210_sata_phy_ops =
+=3D {
+>  	.owner =3D THIS_MODULE,
+>  };
+> =20
+> +static inline bool is_usb3_phy(struct phy *phy)
+> +{
+> +	return (phy->ops =3D=3D &tegra210_pcie_phy_ops ||
+> +		phy->ops =3D=3D &tegra210_sata_phy_ops);
+> +}
+> +
+> +static inline bool is_hsic_phy(struct phy *phy)
+> +{
+> +	return phy->ops =3D=3D &tegra210_hsic_phy_ops;
+> +}
+> +
+> +static inline bool is_utmi_phy(struct phy *phy)
+> +{
+> +	return phy->ops =3D=3D &tegra210_usb2_phy_ops;
+> +}
+> +
+> +static int tegra210_xusb_padctl_enable_phy_wake(struct tegra_xusb_padctl=
+ *padctl, struct phy *phy)
+> +{
+> +	if (is_usb3_phy(phy))
+> +		return tegra210_usb3_enable_phy_wake(phy);
+> +
+> +	if (is_utmi_phy(phy))
+> +		return tegra210_utmi_enable_phy_wake(phy);
+> +
+> +	if (is_hsic_phy(phy))
+> +		return tegra210_hsic_enable_phy_wake(phy);
+> +
+> +	return -EINVAL;
+> +}
+> +
+> +static int tegra210_xusb_padctl_disable_phy_wake(struct tegra_xusb_padct=
+l *padctl, struct phy *phy)
+> +{
+> +	if (is_usb3_phy(phy))
+> +		return tegra210_usb3_disable_phy_wake(phy);
+> +
+> +	if (is_utmi_phy(phy))
+> +		return tegra210_utmi_disable_phy_wake(phy);
+> +
+> +	if (is_hsic_phy(phy))
+> +		return tegra210_hsic_disable_phy_wake(phy);
+> +
+> +	return -EINVAL;
+> +}
+> +
+> +static bool tegra210_xusb_padctl_remote_wake_detected(struct phy *phy)
+> +{
+> +	if (is_utmi_phy(phy))
+> +		return tegra210_utmi_phy_remote_wake_detected(phy);
+> +
+> +	if (is_hsic_phy(phy))
+> +		return tegra210_hsic_phy_remote_wake_detected(phy);
+> +
+> +	if (is_usb3_phy(phy))
+> +		return tegra210_usb3_phy_remote_wake_detected(phy);
+> +
+> +	return false;
+> +}
+> +
+> +static int tegra210_xusb_padctl_enable_phy_sleepwalk(struct tegra_xusb_p=
+adctl *padctl,
+> +						     struct phy *phy,
+> +						     enum usb_device_speed speed)
+> +{
+> +	if (is_usb3_phy(phy))
+> +		return tegra210_usb3_enable_phy_sleepwalk(phy);
+> +
+> +	if (is_utmi_phy(phy))
+> +		return tegra210_pmc_utmi_enable_phy_sleepwalk(phy, speed);
+> +
+> +	if (is_hsic_phy(phy))
+> +		return tegra210_pmc_hsic_enable_phy_sleepwalk(phy);
+> +
+> +	return -EINVAL;
+> +}
+> +
+> +static int tegra210_xusb_padctl_disable_phy_sleepwalk(struct tegra_xusb_=
+padctl *padctl,
+> +						      struct phy *phy)
+> +{
+> +	if (is_usb3_phy(phy))
+> +		return tegra210_usb3_disable_phy_sleepwalk(phy);
+> +
+> +	if (is_utmi_phy(phy))
+> +		return tegra210_pmc_utmi_disable_phy_sleepwalk(phy);
+> +
+> +	if (is_hsic_phy(phy))
+> +		return tegra210_pmc_hsic_disable_phy_sleepwalk(phy);
+> +
+> +	return -EINVAL;
+> +}
 
-Kind regards
-Uffe
+[...]
 
-> ---
->  .../devicetree/bindings/mmc/mtk-sd.txt        |  75 --------
->  .../devicetree/bindings/mmc/mtk-sd.yaml       | 165 ++++++++++++++++++
->  2 files changed, 165 insertions(+), 75 deletions(-)
->  delete mode 100644 Documentation/devicetree/bindings/mmc/mtk-sd.txt
->  create mode 100644 Documentation/devicetree/bindings/mmc/mtk-sd.yaml
->
-> diff --git a/Documentation/devicetree/bindings/mmc/mtk-sd.txt b/Documentation/devicetree/bindings/mmc/mtk-sd.txt
-> deleted file mode 100644
-> index 26a8f320a156..000000000000
-> --- a/Documentation/devicetree/bindings/mmc/mtk-sd.txt
-> +++ /dev/null
-> @@ -1,75 +0,0 @@
-> -* MTK MMC controller
-> -
-> -The MTK  MSDC can act as a MMC controller
-> -to support MMC, SD, and SDIO types of memory cards.
-> -
-> -This file documents differences between the core properties in mmc.txt
-> -and the properties used by the msdc driver.
-> -
-> -Required properties:
-> -- compatible: value should be either of the following.
-> -       "mediatek,mt8135-mmc": for mmc host ip compatible with mt8135
-> -       "mediatek,mt8173-mmc": for mmc host ip compatible with mt8173
-> -       "mediatek,mt8183-mmc": for mmc host ip compatible with mt8183
-> -       "mediatek,mt8516-mmc": for mmc host ip compatible with mt8516
-> -       "mediatek,mt6779-mmc": for mmc host ip compatible with mt6779
-> -       "mediatek,mt2701-mmc": for mmc host ip compatible with mt2701
-> -       "mediatek,mt2712-mmc": for mmc host ip compatible with mt2712
-> -       "mediatek,mt7622-mmc": for MT7622 SoC
-> -       "mediatek,mt7623-mmc", "mediatek,mt2701-mmc": for MT7623 SoC
-> -       "mediatek,mt7620-mmc", for MT7621 SoC (and others)
-> -
-> -- reg: physical base address of the controller and length
-> -- interrupts: Should contain MSDC interrupt number
-> -- clocks: Should contain phandle for the clock feeding the MMC controller
-> -- clock-names: Should contain the following:
-> -       "source" - source clock (required)
-> -       "hclk" - HCLK which used for host (required)
-> -       "source_cg" - independent source clock gate (required for MT2712)
-> -       "bus_clk" - bus clock used for internal register access (required for MT2712 MSDC0/3)
-> -- pinctrl-names: should be "default", "state_uhs"
-> -- pinctrl-0: should contain default/high speed pin ctrl
-> -- pinctrl-1: should contain uhs mode pin ctrl
-> -- vmmc-supply: power to the Core
-> -- vqmmc-supply: power to the IO
-> -
-> -Optional properties:
-> -- assigned-clocks: PLL of the source clock
-> -- assigned-clock-parents: parent of source clock, used for HS400 mode to get 400Mhz source clock
-> -- hs400-ds-delay: HS400 DS delay setting
-> -- mediatek,hs200-cmd-int-delay: HS200 command internal delay setting.
-> -                               This field has total 32 stages.
-> -                               The value is an integer from 0 to 31.
-> -- mediatek,hs400-cmd-int-delay: HS400 command internal delay setting
-> -                               This field has total 32 stages.
-> -                               The value is an integer from 0 to 31.
-> -- mediatek,hs400-cmd-resp-sel-rising:  HS400 command response sample selection
-> -                                      If present,HS400 command responses are sampled on rising edges.
-> -                                      If not present,HS400 command responses are sampled on falling edges.
-> -- mediatek,latch-ck: Some SoCs do not support enhance_rx, need set correct latch-ck to avoid data crc
-> -                    error caused by stop clock(fifo full)
-> -                    Valid range = [0:0x7]. if not present, default value is 0.
-> -                    applied to compatible "mediatek,mt2701-mmc".
-> -- resets: Phandle and reset specifier pair to softreset line of MSDC IP.
-> -- reset-names: Should be "hrst".
-> -
-> -Examples:
-> -mmc0: mmc@11230000 {
-> -       compatible = "mediatek,mt8173-mmc", "mediatek,mt8135-mmc";
-> -       reg = <0 0x11230000 0 0x108>;
-> -       interrupts = <GIC_SPI 39 IRQ_TYPE_LEVEL_LOW>;
-> -       vmmc-supply = <&mt6397_vemc_3v3_reg>;
-> -       vqmmc-supply = <&mt6397_vio18_reg>;
-> -       clocks = <&pericfg CLK_PERI_MSDC30_0>,
-> -                <&topckgen CLK_TOP_MSDC50_0_H_SEL>;
-> -       clock-names = "source", "hclk";
-> -       pinctrl-names = "default", "state_uhs";
-> -       pinctrl-0 = <&mmc0_pins_default>;
-> -       pinctrl-1 = <&mmc0_pins_uhs>;
-> -       assigned-clocks = <&topckgen CLK_TOP_MSDC50_0_SEL>;
-> -       assigned-clock-parents = <&topckgen CLK_TOP_MSDCPLL_D2>;
-> -       hs400-ds-delay = <0x14015>;
-> -       mediatek,hs200-cmd-int-delay = <26>;
-> -       mediatek,hs400-cmd-int-delay = <14>;
-> -       mediatek,hs400-cmd-resp-sel-rising;
-> -};
-> diff --git a/Documentation/devicetree/bindings/mmc/mtk-sd.yaml b/Documentation/devicetree/bindings/mmc/mtk-sd.yaml
-> new file mode 100644
-> index 000000000000..2d5ab1411cd5
-> --- /dev/null
-> +++ b/Documentation/devicetree/bindings/mmc/mtk-sd.yaml
-> @@ -0,0 +1,165 @@
-> +# MTK-License-Identifier: GPL-2.0
-> +%YAML 1.2
-> +---
-> +$id: http://devicetree.org/schemas/mmc/mtk-sd.yaml#
-> +$schema: http://devicetree.org/meta-schemas/core.yaml#
+Could we add function pointers to struct tegra_xusb_lane_ops for all of
+these? That would allow us to assign them once during probe and then we
+don't have to bother with these is_*() functions and multiplexing but
+instead just call ->enable_phy_wake() and ->disable_phy_wake() directly.
+
 > +
-> +title: MTK MSDC Storage Host Controller Binding
 > +
-> +maintainers:
-> +  - Ulf Hansson <ulf.hansson@linaro.org>
+
+There's an extra blank line here.
+
+>  static struct tegra_xusb_pad *
+>  tegra210_sata_pad_probe(struct tegra_xusb_padctl *padctl,
+>  			const struct tegra_xusb_pad_soc *soc,
+> @@ -2293,6 +3225,8 @@ tegra210_xusb_padctl_probe(struct device *dev,
+>  			   const struct tegra_xusb_padctl_soc *soc)
+>  {
+>  	struct tegra210_xusb_padctl *padctl;
+> +	struct device_node *node, *np =3D dev->of_node;
+
+We only need dev->of_node once, so I don't think we need to store it in
+a local variable. Just make this:
+
+	struct device_node *np;
+
+> +	struct platform_device *pmc_dev;
+
+I'd call this pdev, which is the canonical name for variables pointing
+to a platform device.
+
+>  	int err;
+> =20
+>  	padctl =3D devm_kzalloc(dev, sizeof(*padctl), GFP_KERNEL);
+> @@ -2306,6 +3240,23 @@ tegra210_xusb_padctl_probe(struct device *dev,
+>  	if (err < 0)
+>  		return ERR_PTR(err);
+> =20
+> +	node =3D of_parse_phandle(np, "nvidia,pmc", 0);
+> +	if (!node) {
+
+And make this:
+
+	np =3D of_parse_phandle(dev->of_node, "nvidia,pmc", 0);
+	if (!np) {
+
+> +		dev_info(dev, "nvidia,pmc property is missing\n");
+
+It might be better for this to be a warning, to make it easier to catch.
+
+> +		goto no_pmc;
+> +	}
 > +
-> +allOf:
-> +  - $ref: mmc-controller.yaml#
+> +	pmc_dev =3D of_find_device_by_node(node);
+> +	if (!pmc_dev) {
+> +		dev_info(dev, "pmc device is not available\n");
+
+Same here. Also s/pmc/PMC/ in the message
+
+> +		goto no_pmc;
+
+Maybe call the label "out", "done" or something similar. "no_pmc" makes
+it sound like it's meant for error cases, which makes it confusing when
+you fallthrough for the success case as well.
+
+Actually, in this case it might be easier to just return here instead of
+using a goto.
+
+> +	}
 > +
-> +properties:
-> +  compatible:
-> +    oneOf:
-> +      - const: mediatek,mt8135-mmc
-> +      - const: mediatek,mt8173-mmc
-> +      - const: mediatek,mt8183-mmc
-> +      - const: mediatek,mt8516-mmc
-> +      - const: mediatek,mt6779-mmc
-> +      - const: mediatek,mt2701-mmc
-> +      - const: mediatek,mt2712-mmc
-> +      - const: mediatek,mt7622-mmc
-> +      - items:
-> +        - const: mediatek,mt7623-mmc
-> +        - const: mediatek,mt2701-mmc
-> +      - const: mediatek,mt7620-mmc
-> +
-> +  reg:
-> +    description:
-> +      physical base address of the controller and length.
-> +    minItems: 1
-> +    maxItems: 2
-> +
-> +  interrupts:
-> +    description:
-> +      Should contain MSDC interrupt number.
-> +    maxItems: 1
-> +
-> +  clocks:
-> +    description:
-> +      Should contain phandle for the clock feeding the MMC controller.
-> +    minItems: 2
-> +    maxItems: 4
-> +    items:
-> +      - description: source clock (required).
-> +      - description: HCLK which used for host (required).
-> +      - description: independent source clock gate (required for MT2712).
-> +      - description: bus clock used for internal register access (required for MT2712 MSDC0/3).
-> +
-> +  clock-names:
-> +    minItems: 2
-> +    maxItems: 4
-> +    items:
-> +      - const: source
-> +      - const: hclk
-> +      - const: source_cg
-> +      - const: bus_clk
-> +
-> +  pinctrl-names:
-> +    items:
-> +      - const: default
-> +      - const: state_uhs
-> +
-> +  pinctrl-0:
-> +    description:
-> +      should contain default/high speed pin ctrl.
-> +    maxItems: 1
-> +
-> +  pinctrl-1:
-> +    description:
-> +      should contain uhs mode pin ctrl.
-> +    maxItems: 1
-> +
-> +  vmmc-supply:
-> +    description:
-> +      power to the Core.
-> +
-> +  vqmmc-supply:
-> +    description:
-> +      power to the IO.
-> +
-> +  assigned-clocks:
-> +    description:
-> +      PLL of the source clock.
-> +
-> +  assigned-clock-parents:
-> +    description:
-> +      parent of source clock, used for HS400 mode to get 400Mhz source clock.
-> +
-> +  hs400-ds-delay:
-> +    $ref: /schemas/types.yaml#/definitions/uint32
-> +    description:
-> +      HS400 DS delay setting.
-> +
-> +  mediatek,hs200-cmd-int-delay:
-> +    $ref: /schemas/types.yaml#/definitions/uint32
-> +    description:
-> +      HS200 command internal delay setting.
-> +      This field has total 32 stages.
-> +      The value is an integer from 0 to 31.
-> +
-> +  mediatek,hs400-cmd-int-delay:
-> +    $ref: /schemas/types.yaml#/definitions/uint32
-> +    description:
-> +      HS400 command internal delay setting.
-> +      This field has total 32 stages.
-> +      The value is an integer from 0 to 31.
-> +
-> +  mediatek,hs400-cmd-resp-sel-rising:
-> +    $ref: /schemas/types.yaml#/definitions/flag
-> +    description:
-> +      HS400 command response sample selection.
-> +      If present, HS400 command responses are sampled on rising edges.
-> +      If not present, HS400 command responses are sampled on falling edges.
-> +
-> +  mediatek,latch-ck:
-> +    $ref: /schemas/types.yaml#/definitions/uint32
-> +    description:
-> +      Some SoCs do not support enhance_rx, need set correct latch-ck to avoid
-> +      data crc error caused by stop clock(fifo full) Valid range = [0:0x7].
-> +      if not present, default value is 0.
-> +      applied to compatible "mediatek,mt2701-mmc".
-> +
-> +  resets:
-> +    maxItems: 1
-> +
-> +  reset-names:
-> +    const: hrst
-> +
-> +required:
-> +  - compatible
-> +  - reg
-> +  - interrupts
-> +  - clocks
-> +  - clock-names
-> +
-> +examples:
-> +  - |
-> +    #include <dt-bindings/interrupt-controller/irq.h>
-> +    #include <dt-bindings/interrupt-controller/arm-gic.h>
-> +    #include <dt-bindings/clock/mt8173-clk.h>
-> +    mmc0: mmc@11230000 {
-> +        compatible = "mediatek,mt8173-mmc";
-> +        reg = <0x11230000 0x1000>;
-> +        interrupts = <GIC_SPI 39 IRQ_TYPE_LEVEL_LOW>;
-> +        vmmc-supply = <&mt6397_vemc_3v3_reg>;
-> +        vqmmc-supply = <&mt6397_vio18_reg>;
-> +        clocks = <&pericfg CLK_PERI_MSDC30_0>,
-> +                 <&topckgen CLK_TOP_MSDC50_0_H_SEL>;
-> +        clock-names = "source", "hclk";
-> +        pinctrl-names = "default", "state_uhs";
-> +        pinctrl-0 = <&mmc0_pins_default>;
-> +        pinctrl-1 = <&mmc0_pins_uhs>;
-> +        assigned-clocks = <&topckgen CLK_TOP_MSDC50_0_SEL>;
-> +        assigned-clock-parents = <&topckgen CLK_TOP_MSDCPLL_D2>;
-> +        hs400-ds-delay = <0x14015>;
-> +        mediatek,hs200-cmd-int-delay = <26>;
-> +        mediatek,hs400-cmd-int-delay = <14>;
-> +        mediatek,hs400-cmd-resp-sel-rising;
-> +    };
-> +
-> +...
-> --
-> 2.18.0
+> +	padctl->regmap =3D dev_get_regmap(&pmc_dev->dev, "usb_sleepwalk");
+> +	if (!padctl->regmap)
+> +		dev_info(dev, "pmc regmap is not available.\n");
+
+Do we perhaps want to defer probe here?
+
+Thierry
+
+--GvuyDaC2GNSBQusT
+Content-Type: application/pgp-signature; name="signature.asc"
+
+-----BEGIN PGP SIGNATURE-----
+
+iQIzBAABCAAdFiEEiOrDCAFJzPfAjcif3SOs138+s6EFAl9x5+YACgkQ3SOs138+
+s6HcwBAArapSS6ayhM8YS0nvqyn2aFdfqlNkJpNdoWc4hJvQ8TpgbOd1VuAOf7dH
+3tRNmHMRQDqgyDuFjzKEBW4rWlgcHtZJwHXHDAq+o5R1JZ2fax4RvtP68MLQST2E
+DHU4CGNYfmBz2QIF0HppGkGmDmkp/qlNkBb+eo2gXzRnBRyrWwTEfun3Hpdy/dfc
+vHyHQh6k6mw+QCETfKMGpgW6HmZtJ4QLSMKURNW4yAAUOP6Tz+m+EsxpyLXvGp4Z
+qhgDkwPJZmXH3kI1VF7fo/Kjixo8tjLQMLOiBUy3gnX/YT00deTBiWZoKVLZ8Btv
+A+T4Jm1Qrm/AxYQbtBAfSdZ5YA72o6vi91nt/mGNfN3CHDmXwpqfyOOgvPyB8fPz
+nqp1N5dqetmSEn1INEklRgEeh1Yf4HRSs8ehXqc84SEjXsaS//2rd0pU8Xm8Cz9W
+E3IbvRul0tyTZBIQ8aYh1wsuCSsyctPHRsZ4nEtw8pxP8wqprah+u4N19mGXZ8yJ
+5g8L0/9u5toYxpxbdU1xlDyBtR0ek5PE7uLgOyaP9zC5pYVeiDe+7FfO1/m2y670
+cPkEJRCpg6oXj0LMZKHac1TPXWoOWcBG+/FsFqhSjaO34ta5vCFh9hUhSePLSVUi
+0SnXvebDDDU+0Ec+SdgCTLl1RYR3et/969D9cQHxQ8AOGpxA5+M=
+=BXxP
+-----END PGP SIGNATURE-----
+
+--GvuyDaC2GNSBQusT--
