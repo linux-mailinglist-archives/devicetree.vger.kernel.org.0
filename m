@@ -2,310 +2,137 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from vger.kernel.org (vger.kernel.org [23.128.96.18])
-	by mail.lfdr.de (Postfix) with ESMTP id E20D527A431
-	for <lists+devicetree@lfdr.de>; Sun, 27 Sep 2020 23:11:49 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTP id 018FC27A4AF
+	for <lists+devicetree@lfdr.de>; Mon, 28 Sep 2020 02:07:43 +0200 (CEST)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S1726415AbgI0VLs (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Sun, 27 Sep 2020 17:11:48 -0400
-Received: from mout.gmx.net ([212.227.15.19]:49497 "EHLO mout.gmx.net"
-        rhost-flags-OK-OK-OK-OK) by vger.kernel.org with ESMTP
-        id S1726309AbgI0VLs (ORCPT <rfc822;devicetree@vger.kernel.org>);
-        Sun, 27 Sep 2020 17:11:48 -0400
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=gmx.net;
-        s=badeba3b8450; t=1601241051;
-        bh=qVd4IBNRV8DN0dMqUdGypqqYYu8vUZdLxNcc0dQl9qg=;
-        h=X-UI-Sender-Class:Date:From:To:Cc:Subject:References:In-Reply-To;
-        b=IJhFE/modoHQ2WBVha3Qbx9Tcua6m5oQF+vINcmuu1zuJy4tVwpZw96xFN2v3xvt7
-         +TWVIiJYeFXTYzvhSlR5d7tyP5PDr02c67gg3U4DjxFYvnt9TvSKWVE2QK+2f6s4B7
-         1UbmFgbzhW2ttX15Ay3a2KEplh8HllCWDjOj1E48=
-X-UI-Sender-Class: 01bb95c1-4bf8-414a-932a-4f6e2808ef9c
-Received: from longitude ([5.146.195.151]) by mail.gmx.com (mrgmx004
- [212.227.17.190]) with ESMTPSA (Nemesis) id 1Mz9Yv-1kaRKa1AmJ-00wDva; Sun, 27
- Sep 2020 23:10:51 +0200
-Date:   Sun, 27 Sep 2020 23:10:44 +0200
-From:   Jonathan =?utf-8?Q?Neusch=C3=A4fer?= <j.neuschaefer@gmx.net>
-To:     Uwe =?utf-8?Q?Kleine-K=C3=B6nig?= <u.kleine-koenig@pengutronix.de>
-Cc:     Jonathan =?utf-8?Q?Neusch=C3=A4fer?= <j.neuschaefer@gmx.net>,
-        linux-kernel@vger.kernel.org,
-        Alexandre Belloni <alexandre.belloni@bootlin.com>,
-        Heiko Stuebner <heiko@sntech.de>, linux-pwm@vger.kernel.org,
-        Linus Walleij <linus.walleij@linaro.org>,
-        Thierry Reding <thierry.reding@gmail.com>,
-        Fabio Estevam <festevam@gmail.com>, linux-rtc@vger.kernel.org,
-        Arnd Bergmann <arnd@arndb.de>,
-        Mauro Carvalho Chehab <mchehab+huawei@kernel.org>,
-        Sam Ravnborg <sam@ravnborg.org>,
-        Daniel Palmer <daniel@0x0f.com>,
-        Andy Shevchenko <andy.shevchenko@gmail.com>,
-        Andreas Kemnade <andreas@kemnade.info>,
-        NXP Linux Team <linux-imx@nxp.com>,
-        devicetree@vger.kernel.org, Stephan Gerhold <stephan@gerhold.net>,
-        allen <allen.chen@ite.com.tw>,
-        Sascha Hauer <s.hauer@pengutronix.de>,
-        Lubomir Rintel <lkundrak@v3.sk>,
+        id S1726445AbgI1AHm (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Sun, 27 Sep 2020 20:07:42 -0400
+Received: from mail-eopbgr70080.outbound.protection.outlook.com ([40.107.7.80]:10048
+        "EHLO EUR04-HE1-obe.outbound.protection.outlook.com"
+        rhost-flags-OK-OK-OK-FAIL) by vger.kernel.org with ESMTP
+        id S1726316AbgI1AHl (ORCPT <rfc822;devicetree@vger.kernel.org>);
+        Sun, 27 Sep 2020 20:07:41 -0400
+ARC-Seal: i=1; a=rsa-sha256; s=arcselector9901; d=microsoft.com; cv=none;
+ b=Xq73/Aid18yC/hEosMImPFuK2Omx2k3aEChzf4NjimTePGFYhrGvl+VNLc1S70taOH9ZXtu1KnI+GeaG6PBB67QWxaqh2nPBC4l4B4GmZwpYCORP0NiUehabVRFDdPwft4Gybmi/5E0bxq8f2xaR58V7WFg6R5SnRmCplM1DlgS5hHhRCBKVKj2GyvFSdV+8V3Sl7psB3M+fRtQEvsZF1xy9fCvdyrjBPRSJZvacjzOkWNcqWQwsCqPbcD4iwvubiFp+AxC93iEZIkq23F57HnbNhY4mzZJuopP8LqzELnkaKBxGyJBTykoklV3OntI4hQR24BKGjD2L70vjIICv+A==
+ARC-Message-Signature: i=1; a=rsa-sha256; c=relaxed/relaxed; d=microsoft.com;
+ s=arcselector9901;
+ h=From:Date:Subject:Message-ID:Content-Type:MIME-Version:X-MS-Exchange-SenderADCheck;
+ bh=qNVmnMRpm7Qw7zdViAEqtgKyh8BW3srWgkqaqSmp3XE=;
+ b=ZEX8iBS5PKo9vRagWlD9tinCySbJAr2geC5CWB578CLxoRiMK9ul2Q9HWtd9B/tAOJ1iyo3bSB+4uVdlIIMfnRt4zjUyS7/4edI75tMGn5iosyLSW68EwCMFUAtBNwOtHR3sGxahhNCDMSZYqh9mT6BEJd9gcRbMvkQ0opqJEXzDOAy8uaERvMYVexDErzw3qkJIcVHI+a8d0rJzzbX9kp3NH/0rN9UyFUF35lmZ+8fWwaEoXWZQteSesLKYdEhXuqDpPxUsxpOQ+H9nhcZbmEu7STNTCu7UDf3M8csDukodxkgfux8EWUAaVcBuN1A2oiViLYPWuew4ySls0XMjgA==
+ARC-Authentication-Results: i=1; mx.microsoft.com 1; spf=pass
+ smtp.mailfrom=nxp.com; dmarc=pass action=none header.from=nxp.com; dkim=pass
+ header.d=nxp.com; arc=none
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=nxp.com; s=selector2;
+ h=From:Date:Subject:Message-ID:Content-Type:MIME-Version:X-MS-Exchange-SenderADCheck;
+ bh=qNVmnMRpm7Qw7zdViAEqtgKyh8BW3srWgkqaqSmp3XE=;
+ b=nqf4bhltDjQ63ipzgKdq2DUFWvs2BgItTL7rqgW7Df1eBKMrIVITdn4UQZOVG5A6Bb3JtY2uLvI/FvbiUaFuHtivHEpw4PG6M9NZM+0URAgoAn+FSeSAm4latZlfahJcuLakoCRtQrTLQ6THB8nzGGyuVquXCXn1K6f9BVaqZz4=
+Received: from AM7PR04MB7157.eurprd04.prod.outlook.com (2603:10a6:20b:118::20)
+ by AM7PR04MB6998.eurprd04.prod.outlook.com (2603:10a6:20b:10a::20) with
+ Microsoft SMTP Server (version=TLS1_2,
+ cipher=TLS_ECDHE_RSA_WITH_AES_256_GCM_SHA384) id 15.20.3412.24; Mon, 28 Sep
+ 2020 00:07:37 +0000
+Received: from AM7PR04MB7157.eurprd04.prod.outlook.com
+ ([fe80::1023:be8d:40c:efe1]) by AM7PR04MB7157.eurprd04.prod.outlook.com
+ ([fe80::1023:be8d:40c:efe1%4]) with mapi id 15.20.3412.029; Mon, 28 Sep 2020
+ 00:07:37 +0000
+From:   Peter Chen <peter.chen@nxp.com>
+To:     Krzysztof Kozlowski <krzk@kernel.org>,
         Rob Herring <robh+dt@kernel.org>,
-        Lee Jones <lee.jones@linaro.org>,
-        linux-arm-kernel@lists.infradead.org,
-        Alessandro Zummo <a.zummo@towertech.it>,
-        Mark Brown <broonie@kernel.org>,
-        Pengutronix Kernel Team <kernel@pengutronix.de>,
-        Heiko Stuebner <heiko.stuebner@theobroma-systems.com>,
-        Josua Mayer <josua.mayer@jm0.eu>,
         Shawn Guo <shawnguo@kernel.org>,
-        "David S. Miller" <davem@davemloft.net>
-Subject: Re: [PATCH v3 4/7] pwm: ntxec: Add driver for PWM function in
- Netronix EC
-Message-ID: <20200927211044.GC2510@latitude>
-References: <20200924192455.2484005-1-j.neuschaefer@gmx.net>
- <20200924192455.2484005-5-j.neuschaefer@gmx.net>
- <20200925063037.fcrmqvpe5noi3ef4@pengutronix.de>
+        Sascha Hauer <s.hauer@pengutronix.de>,
+        Pengutronix Kernel Team <kernel@pengutronix.de>,
+        Fabio Estevam <festevam@gmail.com>,
+        dl-linux-imx <linux-imx@nxp.com>, Adam Ford <aford173@gmail.com>,
+        Daniel Baluta <daniel.baluta@nxp.com>,
+        Anson Huang <anson.huang@nxp.com>,
+        "devicetree@vger.kernel.org" <devicetree@vger.kernel.org>,
+        "linux-arm-kernel@lists.infradead.org" 
+        <linux-arm-kernel@lists.infradead.org>,
+        "linux-kernel@vger.kernel.org" <linux-kernel@vger.kernel.org>,
+        Robin Gong <yibin.gong@nxp.com>
+Subject: RE: [PATCH 3/6] arm64: dts: imx8mm-evk: fix missing PMIC's interrupt
+ line pull-up
+Thread-Topic: [PATCH 3/6] arm64: dts: imx8mm-evk: fix missing PMIC's interrupt
+ line pull-up
+Thread-Index: AQHWlO+olLRGKxT3ukeC1Wj5HHirsal9LGpA
+Date:   Mon, 28 Sep 2020 00:07:37 +0000
+Message-ID: <AM7PR04MB7157F7BD17F220BA783EB0078B350@AM7PR04MB7157.eurprd04.prod.outlook.com>
+References: <20200927165947.7317-1-krzk@kernel.org>
+ <20200927165947.7317-3-krzk@kernel.org>
+In-Reply-To: <20200927165947.7317-3-krzk@kernel.org>
+Accept-Language: en-US
+Content-Language: en-US
+X-MS-Has-Attach: 
+X-MS-TNEF-Correlator: 
+authentication-results: kernel.org; dkim=none (message not signed)
+ header.d=none;kernel.org; dmarc=none action=none header.from=nxp.com;
+x-originating-ip: [180.164.158.209]
+x-ms-publictraffictype: Email
+x-ms-office365-filtering-ht: Tenant
+x-ms-office365-filtering-correlation-id: 16f93fdb-1063-473b-394d-08d8634281f8
+x-ms-traffictypediagnostic: AM7PR04MB6998:
+x-ms-exchange-transport-forked: True
+x-microsoft-antispam-prvs: <AM7PR04MB69989A768D3D3A0A0C08F3108B350@AM7PR04MB6998.eurprd04.prod.outlook.com>
+x-ms-oob-tlc-oobclassifiers: OLM:3631;
+x-ms-exchange-senderadcheck: 1
+x-microsoft-antispam: BCL:0;
+x-microsoft-antispam-message-info: 38rh1kU5ZImQ7ufGNFcgvE+e4aBucZw1IKwkve3a4EtfvtYIZ/EafPQode1wQov16/bTNnWOoWVo1GccMhFKzUm8NeWRG4igldhSgN8p7ryjFyXWOX72D9lS+NU8b99ef/3d6ji+9YOTQhBPVLiOe0HPSkd2xJZnx6ystH1iVGTZK5G5Mu6Ozb6FNE7bmv/WNY6KHPf4asblYTbX3J5/vP7WF6XJk6BgZdRpd7bBVIA+tg4PX65LpKhmzCcMkMaFe6KDxZr6MqtbJSMmR3dpJbFKFuUoYSN7orKnIDmET3Sw7hlzo+H2fBSzmcY5PW6dsY2v2Nt5dekbdYpYZUcfErqpMsyaqF8vraB30NEI3kRkXlYu7Xqns9QpujoTGJk9Pb9sdX1DaaRRQbiD7KVptDMVdMvVG7N00cAbeUgmuQ7NpOH1ZVgwTGlH2SPUWNJj
+x-forefront-antispam-report: CIP:255.255.255.255;CTRY:;LANG:en;SCL:1;SRV:;IPV:NLI;SFV:NSPM;H:AM7PR04MB7157.eurprd04.prod.outlook.com;PTR:;CAT:NONE;SFS:(4636009)(376002)(346002)(39860400002)(136003)(396003)(366004)(7696005)(2906002)(52536014)(110136005)(66946007)(44832011)(8936002)(64756008)(66556008)(66446008)(8676002)(66476007)(33656002)(76116006)(316002)(478600001)(86362001)(71200400001)(6636002)(55016002)(7416002)(6506007)(26005)(9686003)(5660300002)(186003)(921003)(32563001);DIR:OUT;SFP:1101;
+x-ms-exchange-antispam-messagedata: QNLkWJXWM1GMVt3q1NAsmXllFPN8Q6l512ow6cTS7shDfvjb/TZw3UiIkrwJI9MFjeu70wZJ7ipe97W3V1SxbDonNuu37YPst5mp+TsWNnlTbJf72YhDOz5oEBuXmt7Z5tjnuudXtmk9UZtPwVUHbJTuFC6ExHXHZXhSvq9rcv8YFKh2aJBYlLnxCgkS1VshhAekO/9MHwyXXdZnSj2Aw2cBOnVrRgDQn0Hs7rOe57rzXbSF3MgNJlui0IGQTQfiHS/3o30E+doy4LxdlS32iH++tRFHDzqPyZd/ZNJmu8VrtNSVJflDi71OILpbPAZH3VQ8UaKzVJ3Z3IfdmYBRQCgNDrG4kwuOlNCTuYJgKXflwGDY9c+Hpr57R96to97fvO4GSGBtPjZsoofEFMGIWyrmxxaYUuBV9VJwHH9U9+OpdSGKzFtTvQqrvpgZYty6HutGMvLnHiYIGHubw9CO9RPTkw3wJYdJa/i9Vztns9UzntP4GGyt5tFCBAF+IUvqR/JJ4l7rjdeOmT7nDqhSE107aLKGy5BnSpQJEI7z8B3ElVwrswbOykp41Wuvcj9hlrjQXLj8IgE5hM9h8lcsE5h1APvJzml6Xu8ZNJ/HfZY+aIpjWqju/dN1J8MiQNW9A0tTezZD5VIuNkSxeVL6fg==
+Content-Type: text/plain; charset="us-ascii"
+Content-Transfer-Encoding: quoted-printable
 MIME-Version: 1.0
-Content-Type: multipart/signed; micalg=pgp-sha512;
-        protocol="application/pgp-signature"; boundary="YD3LsXFS42OYHhNZ"
-Content-Disposition: inline
-In-Reply-To: <20200925063037.fcrmqvpe5noi3ef4@pengutronix.de>
-X-Provags-ID: V03:K1:00nuOkNowTQRCrCjdFKk5tV+lSRXoRV3Xt6XUa2nST9IL4fgThc
- VXjBJj3m1VTD0qkkgAo1TOFXZE6pQQ1qjelvnnGKZq1EP9dOhpcD7v7h5cjtEo2sFdYYIdc
- 5UL6G9nI0REvXhr2+qv2LrhmebYL3yKlApm6xX3ljX9dD0FDVtAMKMbLVN8bynoRFV7GQBQ
- dZkxKsNepdzAkm6wlYjgg==
-X-Spam-Flag: NO
-X-UI-Out-Filterresults: notjunk:1;V03:K0:SQoj+zePzdM=:Z5VssEvwXj1u0kDjfgKFtE
- AgRhljRygNTYhIUAHhgWuzeRK6v0WtyxrtvzkYWHbGjL9AUT2axQ8eikiLPUrnoL33O5OoYl9
- iwn7V8YNKetV6OzGErHDY8E4/5KdPLhXIWV7xlJ6N1cePyboHpkDxSllH4vU5ujQddaDjpF25
- aCkZxhKFmXXdBXWQwB5V9jrnUobgaAdGBXs1LjKrSQdX03faxl/1LHGZCUxfbKbbuMSi2Uv1P
- yQmlKtTvEnKgnsiA0+akZJAD+rUKMg39GyU6vvF7Feqtj8w8eBSVHgN1LNyb46TJeGkx8tFAA
- 6IRVk/wH7adyWP7n6vMgQig4OvmMmsLtfcBQsQRrhOFq/MejYKHhRNTgWz0IiUMFqTMgg4wJ9
- FestkvYe5BC7anktuvti3SCrUbHTWgBSLOfk/zola7xxWFFF6TxveGFmyi2YnTkq0f8T+Yojr
- utTpM0hEF5RIiezSnmC68clKkxsI3PuVfKfAmAUudCTOQV+Ttqf/tPxI4KWMUZehu9AXLusxy
- 3rQSkq8yTFnH0pLdoCjtXH3R1aoqfp6MF1TVDuK1E3dW7lMT5x2X4lWi13ZOvXijVZquW2KEn
- K5hs3AHAyIE4DhLLIEfsViKnMMOBV+aKqzou1qUSsAePgJHwr8lZychaR7jh72ZKzCdppnnG3
- EpgjEDTJllF3qEUsF/Zt++kFU4umPWx8URmnakSVJDSIFMpGjuHgLf1l6RZnm6tHYPVh8OU8j
- VHRLzOGkwBs+lAzO4OtSJbseJQjCxZUhYPTZw8z2pMzjv8OzUefXe56aJUB9lZWVtX3xP19ez
- ArSRg1t5MsgD1FunvGTRUGaQXZNfKmHfYAoKi/9h7vdDNCM/se9wgmiKbwqSLXGKs/Jg2d31G
- j0KNLjZvFAcSGcKS/JFg8XqEMrzHWGxYfmQmf7m1wjr1nDE5C6XbaZiA5RgdmwUCvxgOzYH1/
- nqwHWmuJNXX0ar5NXsaIKLeJEPPmMEmpmygtjFHLJ4osdLSOl1Beikj55CxUGLCLwmk0jAASF
- ZpgsaEnFp+ggd2kAuBB8+5jjfv6AJL+UpBi0QuGSoY7rcehju9qA8hk+rqJEBc24guAcROU+b
- /LTJkEURNjH+jLDBu6sQ9deam2dpuHJq/WG1BWlKl+qpjRQqDC40fEB4WdL8JUKrFOjptFEDu
- nYXjZ5r5Z1wTH6ci15/BC2PWVkEZyxMSngTYfGq7FmYMRllgC4z0tytU7F9LF6dw6WGMMT/pD
- UzduXX708P8t6fiYqAK9qghVzGmrS0Gqx85Zwgw==
+X-OriginatorOrg: nxp.com
+X-MS-Exchange-CrossTenant-AuthAs: Internal
+X-MS-Exchange-CrossTenant-AuthSource: AM7PR04MB7157.eurprd04.prod.outlook.com
+X-MS-Exchange-CrossTenant-Network-Message-Id: 16f93fdb-1063-473b-394d-08d8634281f8
+X-MS-Exchange-CrossTenant-originalarrivaltime: 28 Sep 2020 00:07:37.0822
+ (UTC)
+X-MS-Exchange-CrossTenant-fromentityheader: Hosted
+X-MS-Exchange-CrossTenant-id: 686ea1d3-bc2b-4c6f-a92c-d99c5c301635
+X-MS-Exchange-CrossTenant-mailboxtype: HOSTED
+X-MS-Exchange-CrossTenant-userprincipalname: 85hud88a8CjGcu+eZWsQsX7KcC+TDjblFvcS6KuHFZHfvvp0BHmZE43p2X5qJpiNIJXWkbq58WhT1hRRYn3oUQ==
+X-MS-Exchange-Transport-CrossTenantHeadersStamped: AM7PR04MB6998
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
+=20
+Add Robin Gong.
 
---YD3LsXFS42OYHhNZ
-Content-Type: text/plain; charset=utf-8
-Content-Disposition: inline
-Content-Transfer-Encoding: quoted-printable
-
-On Fri, Sep 25, 2020 at 08:30:37AM +0200, Uwe Kleine-K=C3=B6nig wrote:
-> Hello Jonathan,
-[...]
-> > +config PWM_NTXEC
-> > +	tristate "Netronix embedded controller PWM support"
-> > +	depends on MFD_NTXEC
-> > +	help
-> > +	  Say yes here if you want to support the PWM output of the embedded
-> > +	  controller found in certain e-book readers designed by the ODM
-> > +	  Netronix.
+> Subject: [PATCH 3/6] arm64: dts: imx8mm-evk: fix missing PMIC's interrupt=
+ line
+> pull-up
 >=20
-> Is it only me who had to look up what ODM means? If not, maybe spell it
-> out?
-
-I'm sure other readers will have the same problem. I'll spell it out.
-
-> > +/*
-> > + * The maximum input value (in nanoseconds) is determined by the time =
-base and
-> > + * the range of the hardware registers that hold the converted value.
-> > + * It fits into 32 bits, so we can do our calculations in 32 bits as w=
-ell.
-> > + */
-> > +#define MAX_PERIOD_NS (TIME_BASE_NS * 0x10000 - 1)
+> The PMIC's interrupt is level low and should be pulled up.  The PMIC's de=
+vice
+> node had pinctrl-0 property but it lacked pinctrl-names which is required=
+ to
+> apply the pin configuration.
 >=20
-> The maximal configurable period length is 0xffff, so I would have
-> expected MAX_PERIOD_NS to be 0xffff * TIME_BASE_NS?
-
-Due to the division rounding down, TIME_BASE_NS * 0x10000 - 1 would be
-the highest input that results in a representable value after the
-division, but I'm not sure it otherwise makes sense.
-
+> Fixes: 5f67317bd967 ("arm64: dts: imx8mm: correct interrupt flags")
+> Fixes: aa71d0648318 ("arm64: dts: imx8mm: Split the imx8mm evk board dts =
+to
+> a common dtsi")
+> Signed-off-by: Krzysztof Kozlowski <krzk@kernel.org>
+> ---
+>  arch/arm64/boot/dts/freescale/imx8mm-evk.dtsi | 1 +
+>  1 file changed, 1 insertion(+)
 >=20
-> > +static int ntxec_pwm_apply(struct pwm_chip *chip, struct pwm_device *p=
-wm_dev,
-> > +			   const struct pwm_state *state)
-> > +{
-> > +	struct ntxec_pwm *pwm =3D pwmchip_to_pwm(pwm_dev->chip);
-> > +	unsigned int duty =3D state->duty_cycle;
-> > +	unsigned int period =3D state->period;
-> > +	int res =3D 0;
-> > +
->=20
-> I assume your device only supports normal polarity? If so, please check
-> for it here and point out this limitation in the header (in the format
-> that is for example used in pwm-sifive.c to make it easy to grep for
-> that).
+> diff --git a/arch/arm64/boot/dts/freescale/imx8mm-evk.dtsi
+> b/arch/arm64/boot/dts/freescale/imx8mm-evk.dtsi
+> index f305a530ff6f..521eb3a5a12e 100644
+> --- a/arch/arm64/boot/dts/freescale/imx8mm-evk.dtsi
+> +++ b/arch/arm64/boot/dts/freescale/imx8mm-evk.dtsi
+> @@ -121,6 +121,7 @@
+>  	pmic@4b {
+>  		compatible =3D "rohm,bd71847";
+>  		reg =3D <0x4b>;
+> +		pinctrl-names =3D "default";
+>  		pinctrl-0 =3D <&pinctrl_pmic>;
+>  		interrupt-parent =3D <&gpio1>;
+>  		interrupts =3D <3 IRQ_TYPE_LEVEL_LOW>;
+> --
+> 2.17.1
 
-I haven't seen any indication that it supports inverted polarity. I'll
-point it out in the header comment, and add a check.
-
->=20
-> > +	if (period > MAX_PERIOD_NS) {
-> > +		dev_warn(pwm->dev,
-> > +			 "Period is not representable in 16 bits after division by %u: %u\n=
-",
-> > +			 TIME_BASE_NS, period);
->=20
-> No error messages in .apply() please; this might spam the kernel log.
->
-> Also the expectation when a too big period is requested is to configure
-> for the biggest possible period. So just do:
->=20
-> 	if (period > MAX_PERIOD_NS) {
-> 		period =3D MAX_PERIOD_NS;
->=20
-> 		if (duty > period)
-> 			duty =3D period;
-> 	}
->=20
-> (or something equivalent).
-
-Okay, I'll adjust it.
-
-> > +	/*
-> > +	 * Writing a duty cycle of zone puts the device into a state where
->=20
-> What is "zone"? A mixture of zero and one and so approximately 0.5?
-
-Oops, that's a typo. I just meant "zero".
-
-> > +	 * writing a higher duty cycle doesn't result in the brightness that =
-it
-> > +	 * usually results in. This can be fixed by cycling the ENABLE regist=
-er.
-> > +	 *
-> > +	 * As a workaround, write ENABLE=3D0 when the duty cycle is zero.
-> > +	 */
-> > +	if (state->enabled && duty !=3D 0) {
-> > +		res =3D regmap_write(pwm->ec->regmap, NTXEC_REG_ENABLE, ntxec_reg8(1=
-));
-> > +		if (res)
-> > +			return res;
-> > +
-> > +		/* Disable the auto-off timer */
-> > +		res =3D regmap_write(pwm->ec->regmap, NTXEC_REG_AUTO_OFF_HI, ntxec_r=
-eg8(0xff));
-> > +		if (res)
-> > +			return res;
-> > +
-> > +		return regmap_write(pwm->ec->regmap, NTXEC_REG_AUTO_OFF_LO, ntxec_re=
-g8(0xff));
-> > +	} else {
-> > +		return regmap_write(pwm->ec->regmap, NTXEC_REG_ENABLE, ntxec_reg8(0)=
-);
-> > +	}
->=20
-> This code is wrong for state->enabled =3D false.
-
-Why?
-
-> How does the PWM behave when .apply is called? Does it complete the
-> currently running period? Can it happen that when you switch from say
->=20
-> 	.duty_cycle =3D 900 * TIME_BASE_NS (0x384)
-> 	.period =3D 1800 * TIME_BASE_NS (0x708)
->=20
-> to
->=20
-> 	.duty_cycle =3D 300 * TIME_BASE_NS (0x12c)
-> 	.period =3D 600 * TIME_BASE_NS (0x258)
->=20
-> that a period with
->=20
-> 	.duty_cycle =3D 388 * TIME_BASE_NS (0x184)
-> 	.period =3D 1800 * TIME_BASE_NS (0x708)
-> =09
-> (because only NTXEC_REG_PERIOD_HIGH was written when the new period
-> started) or something similar is emitted?
-
-Changes take effect after the low byte is written, so a result like 0x184
-in the above example should not happen.
-
-When the period and duty cycle are both changed, it temporarily results
-in an inconsistent state:
-
- - period =3D 1800ns, duty cycle =3D 900ns
- - period =3D  600ns, duty cycle =3D 900ns (!)
- - period =3D  600ns, duty cycle =3D 300ns
-
-The inconsistent state of duty cycle > period is handled gracefully by
-the EC and it outputs a 100% duty cycle, as far as I can tell.
-
-I currently don't have a logic analyzer / oscilloscope to measure
-whether we get full PWM periods, or some kind of glitch when the new
-period starts in the middle of the last one.
-
-> > +}
-> > +
-> > +static struct pwm_ops ntxec_pwm_ops =3D {
-> > +	.apply =3D ntxec_pwm_apply,
->=20
-> Please implement a .get_state() callback. And enable PWM_DEBUG during
-> your tests.
-
-The device doesn't support reading back the PWM state. What should a
-driver do in this case?
-
-> > +	.owner =3D THIS_MODULE,
-> > +};
-> > +
-> > +static int ntxec_pwm_probe(struct platform_device *pdev)
-> > +{
-> > +	struct ntxec *ec =3D dev_get_drvdata(pdev->dev.parent);
-> > +	struct ntxec_pwm *pwm;
->=20
-> Please don't call this variable pwm. I would expect that a variable with
-> this name is of type pwm_device. I would have called it "ddata" (and the
-> type would be named ntxec_pwm_ddata for me); another usual name is "priv".
-
-Ok, I'll rename it.
-
-> > +	chip->npwm =3D 1;
-> > +
-> > +	res =3D pwmchip_add(chip);
-> > +	if (res < 0)
-> > +		return res;
-> > +
-> > +	platform_set_drvdata(pdev, pwm);
->=20
-> If you do the platform_set_drvdata earlier you can just do
->=20
-> 	return pwmchip_add(chip);
-
-Good idea, I'll do that.
-
-
-Thanks,
-Jonathan Neusch=C3=A4fer
-
---YD3LsXFS42OYHhNZ
-Content-Type: application/pgp-signature; name="signature.asc"
-
------BEGIN PGP SIGNATURE-----
-
-iQIzBAABCgAdFiEEvHAHGBBjQPVy+qvDCDBEmo7zX9sFAl9w/8UACgkQCDBEmo7z
-X9v+uBAAn25NpiHhNJtO6YKlwketM5qW1G37xao76/fwdBuKMc11FECDeyH6jd7/
-G/OSggdKa5hom2VNhTVMQ1UvRcTdZxuoJi9a/UMBFZo1HHfP/zWejuWZw5TeA2X9
-ubB+5qJTVbTTAoxzf8gu8nx4tYUBUqFhSGsKI+lqlJyGgHMD73P9/VBT4JobxjOA
-w4dKyUYcjfN2eVNqnuiSa/hYO11uugv+hqOjgiWAGcafBVUUzcWgpn6QG406v/1X
-MCm5tTLwkUOEPNsJmPQsbNmVXVIRJjppNq/jlPHIeGsm+JofkxQymk7VlzquGW64
-adnPIhAo/A0RrrKDV18p7/twuRVHvvxIoAPSIrOWZRE7vNQ9TqN2kwebvS/qSLbO
-/6RAwZW8bgPepQq0HSVjwOTwaP1XGutcSI/yNCF2VoAjEsKPWP7Qk9M8BZEnpz7D
-+bfM1Yfyeo8s0BFZ/MZIx+sfi1PeCpXKk2l7RV+E3W0hfdWIBoqjvonxth2kjU2T
-zvtv9kRXJA9yz2UEXo0jQWwO4AifcX6HK/xsmIiPXlI90cerAAKYeYV3atyTqjvr
-t5+/9IZxfQfspdOQBZ8k81OI/X2f2fiUXrsWfzMjTUjTRNkeNAm8MI8ARIf5QvPW
-pUtEJWd5PBGgn6QbG0dnGlNEQIV+YGZv0BlpOZ/xfPg1+VHWuaw=
-=IRtw
------END PGP SIGNATURE-----
-
---YD3LsXFS42OYHhNZ--
+Peter
