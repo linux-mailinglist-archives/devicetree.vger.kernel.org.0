@@ -2,160 +2,142 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from vger.kernel.org (vger.kernel.org [23.128.96.18])
-	by mail.lfdr.de (Postfix) with ESMTP id C75CB27A562
-	for <lists+devicetree@lfdr.de>; Mon, 28 Sep 2020 04:19:12 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTP id ECECB27A572
+	for <lists+devicetree@lfdr.de>; Mon, 28 Sep 2020 04:36:12 +0200 (CEST)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S1726396AbgI1CTL (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Sun, 27 Sep 2020 22:19:11 -0400
-Received: from lindbergh.monkeyblade.net ([23.128.96.19]:40384 "EHLO
-        lindbergh.monkeyblade.net" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S1726421AbgI1CTL (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Sun, 27 Sep 2020 22:19:11 -0400
-Received: from mail-vk1-xa41.google.com (mail-vk1-xa41.google.com [IPv6:2607:f8b0:4864:20::a41])
-        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 15B9EC0613CF
-        for <devicetree@vger.kernel.org>; Sun, 27 Sep 2020 19:19:11 -0700 (PDT)
-Received: by mail-vk1-xa41.google.com with SMTP id a16so1195459vke.3
-        for <devicetree@vger.kernel.org>; Sun, 27 Sep 2020 19:19:11 -0700 (PDT)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=chromium.org; s=google;
-        h=mime-version:references:in-reply-to:from:date:message-id:subject:to
-         :cc;
-        bh=8r8ZQ9WFem+xMGOEuRI4QXJqsFWB3RpcceUKwYsgmIE=;
-        b=UwBVC3kcZ8as2vQq5raFEecalgZi24VjAbQWkvAkqPqSIKs9/Rypej2ZHeDhZue48N
-         uwHaCBKHLs+1KCY4qI3wedU96I6Mux+6hJM0PRuASqzFWoIP/oTDzMJcpvPIwW0lTStL
-         nLAT/BYP8bBXu3sDR6cZGcmyVQKAKhxyLomq0=
-X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=1e100.net; s=20161025;
-        h=x-gm-message-state:mime-version:references:in-reply-to:from:date
-         :message-id:subject:to:cc;
-        bh=8r8ZQ9WFem+xMGOEuRI4QXJqsFWB3RpcceUKwYsgmIE=;
-        b=UI5BgjAq3VRXVm0R3MVdDpz3Hclvxj1pfLvvZwHJ+ze5WEr4VD8qP4kzn6zrh0tgCV
-         I3S93TgykOauYtcvLsBDxR9Im9LZ6GIYs0bh9FxLWGwv4kBZmWAGdREZMJgqmoCBlRet
-         D43okaKX2rMHqphmLZEtuJo2AZxyDLHUx1YL2k1mLmoFYmOeFUCNNcFQrqa1OiVKm3S8
-         pjEx8QSrsa9xb39MCQU+O016voRIbY/sEQg10QNJFw+aE+b82pvo2VTYM0OwTF5EIGFE
-         +7Oflhx+g4hpoHs31bxmUU2CpuNczuc0rp1POX/vDMvC5/Xe2n6F2hyaB9SKB7yiUXfO
-         MVig==
-X-Gm-Message-State: AOAM532hLiUB23n3X9kuTv7kA2ujtTSsmk5TAkcpGWoAGVZHyIchn4ny
-        Lil3hGyjTbarVIneDU7OfSt0YFxs5Z2tGWAIvUhdIA==
-X-Google-Smtp-Source: ABdhPJzMzVYBekXtY/fDL9QkaeRJXXppiNLoJcZ5OmOeX7nmgFpzlOFVzI+FQV2QY4jYTtNiAJiVdaRJ5Eo/3cOsnr4=
-X-Received: by 2002:a1f:fcc2:: with SMTP id a185mr3771112vki.8.1601259549093;
- Sun, 27 Sep 2020 19:19:09 -0700 (PDT)
+        id S1726412AbgI1CgL (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Sun, 27 Sep 2020 22:36:11 -0400
+Received: from mail-eopbgr40055.outbound.protection.outlook.com ([40.107.4.55]:63713
+        "EHLO EUR03-DB5-obe.outbound.protection.outlook.com"
+        rhost-flags-OK-OK-OK-FAIL) by vger.kernel.org with ESMTP
+        id S1726409AbgI1CgL (ORCPT <rfc822;devicetree@vger.kernel.org>);
+        Sun, 27 Sep 2020 22:36:11 -0400
+ARC-Seal: i=1; a=rsa-sha256; s=arcselector9901; d=microsoft.com; cv=none;
+ b=SFfl2tVBIhfNldJMeLKzi6nBWaAfvAD5+XQ3ySeG7toB6AYAS1BggdU8inDhf+ru7+iXNilioisxIKiATm/MvyYgChOPB+twyc+QEK+wuZrsfVgg4tHui36TjzJjCXZYiXGtlhhriEn7mmWvAzjldb9IrBNa1SNHnin50ij5F0Hwc4UNZX/7hGiSYzZKnx1wCl0vMRtOCRuTFyluFqa2pDx8xaW5unD4IbvgrZ6Zg8MFdAa8kDj2XaPxe/Pz/sW0zqla4bfpf+BomEXpQiu6Aao2uCj1le4Px0UdWFvmvrfbOP0VqQNtJkiZENrOdbA03JR+apiYMbtGNJHNaDLqcg==
+ARC-Message-Signature: i=1; a=rsa-sha256; c=relaxed/relaxed; d=microsoft.com;
+ s=arcselector9901;
+ h=From:Date:Subject:Message-ID:Content-Type:MIME-Version:X-MS-Exchange-SenderADCheck;
+ bh=5Bps/eBlf6S9kyQYOo1XoeeRYpyITWQ/q4HIboIwZNI=;
+ b=DfxOd536vXaOKruyyB9q1S7lgYc2XseqL5BgGuA1S1s66U4358vMOayhsbz/Y4FMHrlThbLpS8WEkrSUmBH/XfKOFkKx6ztM7h1M0A04LSsXbpMIeE0oEYzYE4yJ/lbAHJS2FM3KYXTwJTCP/o5o1nlGXxYLJ6p5FUfCdjyZoE23Ety6kMF4Lge31yc/PbHtjMAXfc5fa1zdQSR/QbTSfYzLCasiE4ypwPvEDw7tcGFduhsDDfk1l7RErBnVzHmLM3vRLW6T1Bt0U6A4SkWhY1MXQsdO2I/z/CsVRVCfR/xQlZhRtlA5fsnbZDlSrFrjzFbrWfoNkkhImtebOdjXLw==
+ARC-Authentication-Results: i=1; mx.microsoft.com 1; spf=pass
+ smtp.mailfrom=nxp.com; dmarc=pass action=none header.from=nxp.com; dkim=pass
+ header.d=nxp.com; arc=none
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=nxp.com; s=selector2;
+ h=From:Date:Subject:Message-ID:Content-Type:MIME-Version:X-MS-Exchange-SenderADCheck;
+ bh=5Bps/eBlf6S9kyQYOo1XoeeRYpyITWQ/q4HIboIwZNI=;
+ b=QxdDOG+Gw1m69uqsNBrd/eWY68cRraHn6kIDR7mRiY56CiZtk0lV2yidHgoZK4LQOeuYZw5krCMMq5swC5tCZP3AHYOLb817FcXxb80c37VtUZU9rS0C5vieTyDmaslSIaBiQP3eJS4W1BnsmceSxieSvd7XPvAHvt0vQvCSX4c=
+Authentication-Results: kernel.org; dkim=none (message not signed)
+ header.d=none;kernel.org; dmarc=none action=none header.from=nxp.com;
+Received: from DB3PR0402MB3916.eurprd04.prod.outlook.com (2603:10a6:8:10::18)
+ by DB8PR04MB7051.eurprd04.prod.outlook.com (2603:10a6:10:fd::20) with
+ Microsoft SMTP Server (version=TLS1_2,
+ cipher=TLS_ECDHE_RSA_WITH_AES_256_GCM_SHA384) id 15.20.3412.20; Mon, 28 Sep
+ 2020 02:36:07 +0000
+Received: from DB3PR0402MB3916.eurprd04.prod.outlook.com
+ ([fe80::9c75:8bb2:aff6:450d]) by DB3PR0402MB3916.eurprd04.prod.outlook.com
+ ([fe80::9c75:8bb2:aff6:450d%3]) with mapi id 15.20.3412.029; Mon, 28 Sep 2020
+ 02:36:07 +0000
+From:   Anson Huang <Anson.Huang@nxp.com>
+To:     robh+dt@kernel.org, shawnguo@kernel.org, s.hauer@pengutronix.de,
+        kernel@pengutronix.de, festevam@gmail.com, yibin.gong@nxp.com,
+        krzk@kernel.org, devicetree@vger.kernel.org,
+        linux-arm-kernel@lists.infradead.org, linux-kernel@vger.kernel.org
+Cc:     Linux-imx@nxp.com
+Subject: [PATCH] arm64: dts: imx8mn-evk: Add cpu-supply to enable cpufreq
+Date:   Mon, 28 Sep 2020 10:21:43 +0800
+Message-Id: <1601259703-28308-1-git-send-email-Anson.Huang@nxp.com>
+X-Mailer: git-send-email 2.7.4
+Content-Type: text/plain
+X-ClientProxiedBy: SG2PR0401CA0024.apcprd04.prod.outlook.com
+ (2603:1096:3:1::34) To DB3PR0402MB3916.eurprd04.prod.outlook.com
+ (2603:10a6:8:10::18)
 MIME-Version: 1.0
-References: <20200925065418.1077472-1-ikjn@chromium.org> <20200925145255.v3.5.Id1cb208392928afc7ceed4de06924243c7858cd0@changeid>
- <1601195424.7766.4.camel@mtksdaap41>
-In-Reply-To: <1601195424.7766.4.camel@mtksdaap41>
-From:   Ikjoon Jang <ikjn@chromium.org>
-Date:   Mon, 28 Sep 2020 10:18:58 +0800
-Message-ID: <CAATdQgDP6kd=us35FJ=MWv4KtyATjd_RbEU5ENmBK+Z-m2GnSw@mail.gmail.com>
-Subject: Re: [PATCH v3 5/6] spi: spi-mtk-nor: support 36bit dma addressing
-To:     Yingjoe Chen <yingjoe.chen@mediatek.com>
-Cc:     Rob Herring <robh+dt@kernel.org>, Mark Brown <broonie@kernel.org>,
-        "open list:OPEN FIRMWARE AND FLATTENED DEVICE TREE BINDINGS" 
-        <devicetree@vger.kernel.org>, linux-spi@vger.kernel.org,
-        linux-mtd@lists.infradead.org,
-        Matthias Brugger <matthias.bgg@gmail.com>,
-        "moderated list:ARM/Mediatek SoC support" 
-        <linux-mediatek@lists.infradead.org>,
-        "moderated list:ARM/Mediatek SoC support" 
-        <linux-arm-kernel@lists.infradead.org>,
-        open list <linux-kernel@vger.kernel.org>
-Content-Type: text/plain; charset="UTF-8"
+X-MS-Exchange-MessageSentRepresentingType: 1
+Received: from anson-OptiPlex-790.ap.freescale.net (119.31.174.66) by SG2PR0401CA0024.apcprd04.prod.outlook.com (2603:1096:3:1::34) with Microsoft SMTP Server (version=TLS1_2, cipher=TLS_ECDHE_RSA_WITH_AES_128_CBC_SHA256) id 15.20.3412.20 via Frontend Transport; Mon, 28 Sep 2020 02:36:04 +0000
+X-Mailer: git-send-email 2.7.4
+X-Originating-IP: [119.31.174.66]
+X-MS-PublicTrafficType: Email
+X-MS-Office365-Filtering-HT: Tenant
+X-MS-Office365-Filtering-Correlation-Id: 7817a4c0-c35d-48c8-2507-08d8635740a7
+X-MS-TrafficTypeDiagnostic: DB8PR04MB7051:
+X-MS-Exchange-Transport-Forked: True
+X-Microsoft-Antispam-PRVS: <DB8PR04MB7051B07AA878FAC7AE891266F5350@DB8PR04MB7051.eurprd04.prod.outlook.com>
+X-MS-Oob-TLC-OOBClassifiers: OLM:2399;
+X-MS-Exchange-SenderADCheck: 1
+X-Microsoft-Antispam: BCL:0;
+X-Microsoft-Antispam-Message-Info: il8q9ubGpZEFTPTDPd/5qhkHoYl0/BNjlKdCUMPpXIo3cJWcGnZ+0yGtEYZpZ4GcrVtkwLtgRJ/NFIotL9iPOOFe46usM/I25cj1fq+P0dBOsKznFsrZH0VkI/wC3nTBuW4nU2+1ACtOyLI9uR8/92Yfcj3x1INQyF+7VO7ezIEXcIWIgbg/rEwDCdeQcj4G4Ubpi3Tuz4x/0dwSoHlqlKNsuQQTTXTonpPAGCbkDLC1Z3DTUIB1tZrPRGeVm4NQHgB9Vz8hmRCXi3BiauNTs1fHlTPrVoZrNOLZIoBk3oWpE3JbmdlE+YizVrIiVGoW9kX8Se24wmOSOITPTcmZQSkp/y4ndp05mcuxYo8LYTCkggga+NWc0I1Pv2+o9uVVFMyVXXZ9R87QW6vNYbKtu+kOk+SMTmRGRCXu8vn20A/Nn/FLQNvjkQ07ueFiFFCx
+X-Forefront-Antispam-Report: CIP:255.255.255.255;CTRY:;LANG:en;SCL:1;SRV:;IPV:NLI;SFV:NSPM;H:DB3PR0402MB3916.eurprd04.prod.outlook.com;PTR:;CAT:NONE;SFS:(4636009)(136003)(39860400002)(396003)(366004)(376002)(346002)(6506007)(52116002)(2616005)(26005)(36756003)(86362001)(6666004)(16526019)(6486002)(186003)(8676002)(956004)(8936002)(4326008)(2906002)(316002)(478600001)(66556008)(66476007)(6512007)(83380400001)(66946007)(5660300002)(32563001)(921003);DIR:OUT;SFP:1101;
+X-MS-Exchange-AntiSpam-MessageData: bhLGviUsb3VBX/TaOVXncrY242XBWoDf+jJqWeZjfztyL6JL0wFhTGuwqxAUQOq20VfqUZm+VaZFOhFYUO6qK5+5zd6/SD1pRgqZW2Ux2be9V7qo0Hkm5VOEHToOI5V5UgtWPY9ZOyok4+9negNrVXMLqUkWFsTWPoQN3ajKnOGctLNzijpOVtuI//+ObO2+TMkxE1jwQhRwSS4jDr6RP2fbjKaxZfj6NGqp/qTOR3PEHRX5hwJdLklca+ZHFeoHAfd63/1l9tTlGpsVX9YMBsg6OrEN5/tuRm+ZOLdBnrX+G6EC5ZrxdM4zhQqqn8BvOxPj31cXwuDNVCIHeU4JkLrefa18WuSB0+Rd1i3cl5iO+iA9byAZw+K9B0phL83p9HnOs2U02XoMcl413+6z6IQaOSnTXGn8e1je5PMyiXlup46INtScPLGtipJhJBeVyGhq9T+E9p5gwUXuPsoki8/KM8+Zk53Et+tLnktGFT53V7G600jwLjTobHXTDQl4UmHKqEMCFj0vhhomwCZ3Ro1NLsGUX644zkDAkabSYOYLRhe16/s/JwR5rz6Sf8KKzeZXrEoueVc4RGG8mhz6dTZL6MzTZRbd3hWLvSuzuHq/eTvsjjxgYTWayqHPvO90apu18B9OqiaP2i1ZEblVzQ==
+X-OriginatorOrg: nxp.com
+X-MS-Exchange-CrossTenant-Network-Message-Id: 7817a4c0-c35d-48c8-2507-08d8635740a7
+X-MS-Exchange-CrossTenant-AuthSource: DB3PR0402MB3916.eurprd04.prod.outlook.com
+X-MS-Exchange-CrossTenant-AuthAs: Internal
+X-MS-Exchange-CrossTenant-OriginalArrivalTime: 28 Sep 2020 02:36:07.4628
+ (UTC)
+X-MS-Exchange-CrossTenant-FromEntityHeader: Hosted
+X-MS-Exchange-CrossTenant-Id: 686ea1d3-bc2b-4c6f-a92c-d99c5c301635
+X-MS-Exchange-CrossTenant-MailboxType: HOSTED
+X-MS-Exchange-CrossTenant-UserPrincipalName: dGg205MjkIw4dVhzaxH8DAYkDvy5eiEymAYoTvQri2yrH+3PNqBJp60vhNHIQ6idW3DhAesVjOXaS3bxVA92Mg==
+X-MS-Exchange-Transport-CrossTenantHeadersStamped: DB8PR04MB7051
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-On Sun, Sep 27, 2020 at 4:30 PM Yingjoe Chen <yingjoe.chen@mediatek.com> wrote:
->
-> On Fri, 2020-09-25 at 14:54 +0800, Ikjoon Jang wrote:
-> > This patch enables 36bit dma address support to spi-mtk-nor.
-> > Currently this is enabled only for mt8192-nor.
-> >
-> > Signed-off-by: Ikjoon Jang <ikjn@chromium.org>
-> > ---
-> >
-> > (no changes since v1)
-> >
-> >  drivers/spi/spi-mtk-nor.c | 18 +++++++++++++++++-
-> >  1 file changed, 17 insertions(+), 1 deletion(-)
-> >
-> > diff --git a/drivers/spi/spi-mtk-nor.c b/drivers/spi/spi-mtk-nor.c
-> > index 8dbafee7f431..35205635ed42 100644
-> > --- a/drivers/spi/spi-mtk-nor.c
-> > +++ b/drivers/spi/spi-mtk-nor.c
-> > @@ -78,6 +78,8 @@
-> >  #define MTK_NOR_REG_DMA_FADR         0x71c
-> >  #define MTK_NOR_REG_DMA_DADR         0x720
-> >  #define MTK_NOR_REG_DMA_END_DADR     0x724
-> > +#define MTK_NOR_REG_DMA_DADR_HB              0x738
-> > +#define MTK_NOR_REG_DMA_END_DADR_HB  0x73c
-> >
-> >  /* maximum bytes of TX in PRG mode */
-> >  #define MTK_NOR_PRG_MAX_SIZE         6
-> > @@ -106,6 +108,7 @@ struct mtk_nor {
-> >       unsigned int spi_freq;
-> >       bool wbuf_en;
-> >       bool has_irq;
-> > +     bool high_dma;
-> >       struct completion op_done;
-> >  };
-> >
-> > @@ -305,6 +308,11 @@ static int mtk_nor_dma_exec(struct mtk_nor *sp, u32 from, unsigned int length,
-> >       writel(dma_addr, sp->base + MTK_NOR_REG_DMA_DADR);
-> >       writel(dma_addr + length, sp->base + MTK_NOR_REG_DMA_END_DADR);
-> >
-> > +     if (sp->high_dma) {
-> > +             writel(dma_addr >> 32, sp->base + MTK_NOR_REG_DMA_DADR_HB);
-> > +             writel((dma_addr + length) >> 32, sp->base + MTK_NOR_REG_DMA_END_DADR_HB);
-> > +     }
-> > +
->
-> Maybe use upper_32_bits() ?
+PMIC driver is ready on i.MX8MN EVK board, assign cpu-supply for
+each A53 and restore the operating points table to enable cpufreq.
 
-Thanks, good to know that!
+Signed-off-by: Anson Huang <Anson.Huang@nxp.com>
+---
+ arch/arm64/boot/dts/freescale/imx8mn-evk.dts | 32 ++++++++++++++--------------
+ 1 file changed, 16 insertions(+), 16 deletions(-)
 
->
->
-> >       if (sp->has_irq) {
-> >               reinit_completion(&sp->op_done);
-> >               mtk_nor_rmw(sp, MTK_NOR_REG_IRQ_EN, MTK_NOR_IRQ_DMA, 0);
-> > @@ -635,7 +643,8 @@ static const struct spi_controller_mem_ops mtk_nor_mem_ops = {
-> >  };
-> >
-> >  static const struct of_device_id mtk_nor_match[] = {
-> > -     { .compatible = "mediatek,mt8173-nor" },
-> > +     { .compatible = "mediatek,mt8192-nor", .data = (void *)36 },
-> > +     { .compatible = "mediatek,mt8173-nor", .data = (void *)32 },
-> >       { /* sentinel */ }
-> >  };
-> >  MODULE_DEVICE_TABLE(of, mtk_nor_match);
-> > @@ -647,6 +656,7 @@ static int mtk_nor_probe(struct platform_device *pdev)
-> >       void __iomem *base;
-> >       struct clk *spi_clk, *ctlr_clk;
-> >       int ret, irq;
-> > +     unsigned long dma_bits;
-> >
-> >       base = devm_platform_ioremap_resource(pdev, 0);
-> >       if (IS_ERR(base))
-> > @@ -660,6 +670,12 @@ static int mtk_nor_probe(struct platform_device *pdev)
-> >       if (IS_ERR(ctlr_clk))
-> >               return PTR_ERR(ctlr_clk);
-> >
-> > +     dma_bits = (unsigned long)of_device_get_match_data(&pdev->dev);
-> > +     if (dma_set_mask_and_coherent(&pdev->dev, DMA_BIT_MASK(dma_bits))) {
-> > +             dev_err(&pdev->dev, "failed to set dma mask(%lu)\n", dma_bits);
-> > +             return -EINVAL;
-> > +     }
-> > +
->
-> As said in previous version. I don't see any place enable high_dma, so I
-> think this patch won't set >32bits for anychip. We need something like:
->
->         sp->hidh_dma = dma_bits > 32;
->
-> Am I missing anything?
+diff --git a/arch/arm64/boot/dts/freescale/imx8mn-evk.dts b/arch/arm64/boot/dts/freescale/imx8mn-evk.dts
+index 707d848..9e5c0af 100644
+--- a/arch/arm64/boot/dts/freescale/imx8mn-evk.dts
++++ b/arch/arm64/boot/dts/freescale/imx8mn-evk.dts
+@@ -14,6 +14,22 @@
+ 	compatible = "fsl,imx8mn-evk", "fsl,imx8mn";
+ };
+ 
++&A53_0 {
++	cpu-supply = <&buck2>;
++};
++
++&A53_1 {
++	cpu-supply = <&buck2>;
++};
++
++&A53_2 {
++	cpu-supply = <&buck2>;
++};
++
++&A53_3 {
++	cpu-supply = <&buck2>;
++};
++
+ &i2c1 {
+ 	pmic: pmic@25 {
+ 		compatible = "nxp,pca9450b";
+@@ -109,19 +125,3 @@
+ 		};
+ 	};
+ };
+-
+-&A53_0 {
+-	/delete-property/operating-points-v2;
+-};
+-
+-&A53_1 {
+-	/delete-property/operating-points-v2;
+-};
+-
+-&A53_2 {
+-	/delete-property/operating-points-v2;
+-};
+-
+-&A53_3 {
+-	/delete-property/operating-points-v2;
+-};
+-- 
+2.7.4
 
-Yeah, you're right, that line disappeared between v2 ~ v3 (by mistake).
-
->
-> Joe.C
->
