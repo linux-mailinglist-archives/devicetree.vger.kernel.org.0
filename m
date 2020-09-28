@@ -2,100 +2,174 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from vger.kernel.org (vger.kernel.org [23.128.96.18])
-	by mail.lfdr.de (Postfix) with ESMTP id 7961E27AF7E
-	for <lists+devicetree@lfdr.de>; Mon, 28 Sep 2020 15:57:05 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTP id 51FB427AFAF
+	for <lists+devicetree@lfdr.de>; Mon, 28 Sep 2020 16:07:04 +0200 (CEST)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S1726551AbgI1N5E (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Mon, 28 Sep 2020 09:57:04 -0400
-Received: from mail.kernel.org ([198.145.29.99]:33886 "EHLO mail.kernel.org"
-        rhost-flags-OK-OK-OK-OK) by vger.kernel.org with ESMTP
-        id S1726310AbgI1N5E (ORCPT <rfc822;devicetree@vger.kernel.org>);
-        Mon, 28 Sep 2020 09:57:04 -0400
-Received: from mail-oi1-f179.google.com (mail-oi1-f179.google.com [209.85.167.179])
-        (using TLSv1.2 with cipher ECDHE-RSA-AES128-GCM-SHA256 (128/128 bits))
-        (No client certificate requested)
-        by mail.kernel.org (Postfix) with ESMTPSA id 5629821D7F;
-        Mon, 28 Sep 2020 13:57:03 +0000 (UTC)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=kernel.org;
-        s=default; t=1601301423;
-        bh=jpy86xlaUGPlUxTUN9/FT28T6TJmY9Ad8uRAhplOiLM=;
-        h=References:In-Reply-To:From:Date:Subject:To:Cc:From;
-        b=vDmSUBpYh7JEkaKpuSJodZASpvn5qYNR9WD7Zz+ui1FtxvuddwJe0WaOjmp/axHLo
-         CvGi+htN93Dw+bCHcooMeEmLM6ROMwqzptJbER2UAJzI5Gc0Rbgm9qtlYuoiCTp2kJ
-         kSRDYEYKPRHzv/MBnvBvucpR9bEchfKfyRLFlTYk=
-Received: by mail-oi1-f179.google.com with SMTP id i17so1368230oig.10;
-        Mon, 28 Sep 2020 06:57:03 -0700 (PDT)
-X-Gm-Message-State: AOAM533YkebO7Em65jlKwaInsqvecp/1Izm6K5dwseVO26IlCjuIwbxh
-        6leaTj1LaaOHGON5YRlfpSw362VOLmMmtn0Mtg==
-X-Google-Smtp-Source: ABdhPJyYmZnCW5ClUtpTwg9oOuQczSxGPBFDOMMXF/U6MycG0QqSC1DUS8ybQXFW/wpG74B1ug8+ncnraesKmTdxWF0=
-X-Received: by 2002:aca:7543:: with SMTP id q64mr978362oic.147.1601301422618;
- Mon, 28 Sep 2020 06:57:02 -0700 (PDT)
+        id S1726327AbgI1OG7 (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Mon, 28 Sep 2020 10:06:59 -0400
+Received: from lindbergh.monkeyblade.net ([23.128.96.19]:36602 "EHLO
+        lindbergh.monkeyblade.net" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
+        with ESMTP id S1726291AbgI1OG7 (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Mon, 28 Sep 2020 10:06:59 -0400
+Received: from mail-wr1-x444.google.com (mail-wr1-x444.google.com [IPv6:2a00:1450:4864:20::444])
+        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 0838CC061755;
+        Mon, 28 Sep 2020 07:06:59 -0700 (PDT)
+Received: by mail-wr1-x444.google.com with SMTP id z1so1515027wrt.3;
+        Mon, 28 Sep 2020 07:06:58 -0700 (PDT)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+        d=gmail.com; s=20161025;
+        h=date:from:to:cc:subject:message-id:references:mime-version
+         :content-disposition:in-reply-to:user-agent;
+        bh=WfJczYERUFdenR05uGVZr/+UQWZo6E3KWcw73dbx8xM=;
+        b=OVAG3tfRnVO4B91UkFjR+7WYJqkELHiarMMp3PY6hV+bBupz6+vAcNn1oBz9H8aa9P
+         aO5OzLuQSvWI+LiK5LtxNB3gJ4Am2mVLcwqE5/k3A5TTYNCdWfGwSC17ZJbkIfM03RJk
+         hvaBHbuq8OBcAeUWE/5SDacrET0I2vv73woA9EUN/i9/o1c3xHW4tQfNDnopMIxs8z++
+         2QMv9VK6s3nYpioVqctmu0zh7WOnf5YNE7jx0vA2eMMQDOhATzM5styAGJsy/hMTjqqB
+         B6fGIg95y1YYxs3PfvrFt5iOqVm1A52ZIHcBSVJhRndXCPNpXBDaUO+/kPEw2bhths2e
+         tsYQ==
+X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+        d=1e100.net; s=20161025;
+        h=x-gm-message-state:date:from:to:cc:subject:message-id:references
+         :mime-version:content-disposition:in-reply-to:user-agent;
+        bh=WfJczYERUFdenR05uGVZr/+UQWZo6E3KWcw73dbx8xM=;
+        b=cN/heeAIDvUIeSX/FKhAsa1V8XM6Gutau96N3mRrIZttu920EB6ycI66FqdrvLIr6f
+         0fESUY10rRxOu78BLfpe4CIVfh6S5K5xqNtWscUgpzGTmyszbbHJQM0WPxNd/sAb5Kbj
+         cwpK6/XSozJ9WBhF5X5xuKholdefyAjKc72LgmhD0Yxnu0T2x9LgiSskGs1DZhrZC/9q
+         GbVER/OYTHGAcB5l92A4EQKYkgUk2GXRKr++WytqMQMV0fPNfyH7ZxZ7In4i5DEQJpv8
+         zQGvGdaiEdq22580xdyFgp95ZK7m3J0lT9j6uHFhpKzbAaRQ/MVvsMic09uNjKFyWOVH
+         OfwA==
+X-Gm-Message-State: AOAM5310XTlqmtjx2/siX5NeypWB2Yi9Gm0DYjZJwO4tuhTEYAjH5f+U
+        JphSx6+frdNxwZ4eZJuOjLA=
+X-Google-Smtp-Source: ABdhPJxjgeLkp529yuNNLZkTZ3ZmCkL3ww1KtD6lM5r8Qf7H/qMDhc+D1VnkkY5kPHg2hVcRukxd8A==
+X-Received: by 2002:a5d:4a4b:: with SMTP id v11mr1965571wrs.36.1601302017616;
+        Mon, 28 Sep 2020 07:06:57 -0700 (PDT)
+Received: from localhost ([217.111.27.204])
+        by smtp.gmail.com with ESMTPSA id k5sm1496343wmb.19.2020.09.28.07.06.55
+        (version=TLS1_3 cipher=TLS_AES_256_GCM_SHA384 bits=256/256);
+        Mon, 28 Sep 2020 07:06:56 -0700 (PDT)
+Date:   Mon, 28 Sep 2020 16:06:53 +0200
+From:   Thierry Reding <thierry.reding@gmail.com>
+To:     JC Kuo <jckuo@nvidia.com>
+Cc:     gregkh@linuxfoundation.org, robh@kernel.org, jonathanh@nvidia.com,
+        kishon@ti.com, linux-tegra@vger.kernel.org,
+        linux-usb@vger.kernel.org, linux-kernel@vger.kernel.org,
+        devicetree@vger.kernel.org, nkristam@nvidia.com
+Subject: Re: [PATCH v3 15/15] xhci: tegra: Enable ELPG for runtime/system PM
+Message-ID: <20200928140653.GO3065790@ulmo>
+References: <20200909081041.3190157-1-jckuo@nvidia.com>
+ <20200909081041.3190157-16-jckuo@nvidia.com>
 MIME-Version: 1.0
-References: <20200916081831.24747-1-ran.wang_1@nxp.com> <20200923023234.GA3751572@bogus>
- <AM6PR04MB5413BB2F8D044B2312DAEC4FF1380@AM6PR04MB5413.eurprd04.prod.outlook.com>
-In-Reply-To: <AM6PR04MB5413BB2F8D044B2312DAEC4FF1380@AM6PR04MB5413.eurprd04.prod.outlook.com>
-From:   Rob Herring <robh@kernel.org>
-Date:   Mon, 28 Sep 2020 08:56:51 -0500
-X-Gmail-Original-Message-ID: <CAL_Jsq+uzkr7CcvwQTe5vhpMPtdqL9v4EeqH5yZjMoT=JrDtDQ@mail.gmail.com>
-Message-ID: <CAL_Jsq+uzkr7CcvwQTe5vhpMPtdqL9v4EeqH5yZjMoT=JrDtDQ@mail.gmail.com>
-Subject: Re: [PATCH 1/5] Documentation: dt: binding: fsl: Add
- 'fsl,ippdexpcr1-alt-addr' property
-To:     Ran Wang <ran.wang_1@nxp.com>
-Cc:     Leo Li <leoyang.li@nxp.com>, Shawn Guo <shawnguo@kernel.org>,
-        "linuxppc-dev@lists.ozlabs.org" <linuxppc-dev@lists.ozlabs.org>,
-        "linux-arm-kernel@lists.infradead.org" 
-        <linux-arm-kernel@lists.infradead.org>,
-        "devicetree@vger.kernel.org" <devicetree@vger.kernel.org>,
-        "linux-kernel@vger.kernel.org" <linux-kernel@vger.kernel.org>,
-        Biwen Li <biwen.li@nxp.com>
-Content-Type: text/plain; charset="UTF-8"
+Content-Type: multipart/signed; micalg=pgp-sha256;
+        protocol="application/pgp-signature"; boundary="BuBclajtnfx5hylj"
+Content-Disposition: inline
+In-Reply-To: <20200909081041.3190157-16-jckuo@nvidia.com>
+User-Agent: Mutt/1.14.7 (2020-08-29)
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-On Wed, Sep 23, 2020 at 1:44 AM Ran Wang <ran.wang_1@nxp.com> wrote:
->
-> Hi Rob,
->
-> On Wednesday, September 23, 2020 10:33 AM, Rob Herring wrote:
-> >
-> > On Wed, Sep 16, 2020 at 04:18:27PM +0800, Ran Wang wrote:
-> > > From: Biwen Li <biwen.li@nxp.com>
-> > >
-> > > The 'fsl,ippdexpcr1-alt-addr' property is used to handle an errata
-> > > A-008646 on LS1021A
-> > >
-> > > Signed-off-by: Biwen Li <biwen.li@nxp.com>
-> > > Signed-off-by: Ran Wang <ran.wang_1@nxp.com>
-> > > ---
-> > >  Documentation/devicetree/bindings/soc/fsl/rcpm.txt | 19
-> > > +++++++++++++++++++
-> > >  1 file changed, 19 insertions(+)
-> > >
-> > > diff --git a/Documentation/devicetree/bindings/soc/fsl/rcpm.txt
-> > > b/Documentation/devicetree/bindings/soc/fsl/rcpm.txt
-> > > index 5a33619..1be58a3 100644
-> > > --- a/Documentation/devicetree/bindings/soc/fsl/rcpm.txt
-> > > +++ b/Documentation/devicetree/bindings/soc/fsl/rcpm.txt
-> > > @@ -34,6 +34,11 @@ Chassis Version          Example Chips
-> > >  Optional properties:
-> > >   - little-endian : RCPM register block is Little Endian. Without it RCPM
-> > >     will be Big Endian (default case).
-> > > + - fsl,ippdexpcr1-alt-addr : The property is related to a hardware issue
-> > > +   on SoC LS1021A and only needed on SoC LS1021A.
-> > > +   Must include 2 entries:
-> > > +   The first entry must be a link to the SCFG device node.
-> > > +   The 2nd entry must be offset of register IPPDEXPCR1 in SCFG.
-> >
-> > You don't need a DT change for this. You can find SCFG node by its compatible
-> > string and then the offset should be known given this issue is only on 1 SoC.
->
-> Did you mean that RCPM driver just to access IPPDEXPCR1 shadowed register in SCFG
-> directly without fetching it's offset info. from DT?
 
-Yes. There's only 1 possible value of the offset because there's only
-one SoC, so the driver can hardcode the offset. And I assume there's
-only one SCFG node, so you can find it by its compatible string
-(of_find_compatible_node).
+--BuBclajtnfx5hylj
+Content-Type: text/plain; charset=us-ascii
+Content-Disposition: inline
+Content-Transfer-Encoding: quoted-printable
 
-Rob
+On Wed, Sep 09, 2020 at 04:10:41PM +0800, JC Kuo wrote:
+> This commit implements the complete programming sequence for ELPG
+> entry and exit.
+>=20
+>  1. At ELPG entry, invokes tegra_xusb_padctl_enable_phy_sleepwalk()
+>     and tegra_xusb_padctl_enable_phy_wake() to configure XUSB PADCTL
+>     sleepwalk and wake detection circuits to maintain USB lines level
+>     and respond to wake events (wake-on-connect, wake-on-disconnect,
+>     device-initiated-wake).
+>=20
+>  2. At ELPG exit, invokes tegra_xusb_padctl_disable_phy_sleepwalk()
+>     and tegra_xusb_padctl_disable_phy_wake() to disarm sleepwalk and
+>     wake detection circuits.
+>=20
+> At runtime suspend, XUSB host controller can enter ELPG to reduce
+> power consumption. When XUSB PADCTL wake detection circuit detects
+> a wake event, an interrupt will be raised. xhci-tegra driver then
+> will invoke pm_runtime_resume() for xhci-tegra.
+>=20
+> Runtime resume could also be triggered by protocol drivers, this is
+> the host-initiated-wake event. At runtime resume, xhci-tegra driver
+> brings XUSB host controller out of ELPG to handle the wake events.
+>=20
+> The same ELPG enter/exit procedure will be performed for system
+> suspend/resume path so USB devices can remain connected across SC7.
+>=20
+> Signed-off-by: JC Kuo <jckuo@nvidia.com>
+> ---
+> v3:
+>    use 'unsigned int' for PHY index
+>    remove unnecessary 'else'
+>    drop IRQF_TRIGGER_HIGH when invokes devm_request_threaded_irq()
+>   =20
+>  drivers/usb/host/xhci-tegra.c | 389 +++++++++++++++++++++++++++++++---
+>  1 file changed, 360 insertions(+), 29 deletions(-)
+>=20
+> diff --git a/drivers/usb/host/xhci-tegra.c b/drivers/usb/host/xhci-tegra.c
+> index aabff8ee0bb3..ba3f40e78171 100644
+> --- a/drivers/usb/host/xhci-tegra.c
+> +++ b/drivers/usb/host/xhci-tegra.c
+> @@ -15,9 +15,11 @@
+>  #include <linux/kernel.h>
+>  #include <linux/module.h>
+>  #include <linux/of_device.h>
+> +#include <linux/of_irq.h>
+>  #include <linux/phy/phy.h>
+>  #include <linux/phy/tegra/xusb.h>
+>  #include <linux/platform_device.h>
+> +#include <linux/usb/ch9.h>
+>  #include <linux/pm.h>
+>  #include <linux/pm_domain.h>
+>  #include <linux/pm_runtime.h>
+> @@ -224,6 +226,7 @@ struct tegra_xusb {
+> =20
+>  	int xhci_irq;
+>  	int mbox_irq;
+> +	int padctl_irq;
+> =20
+>  	void __iomem *ipfs_base;
+>  	void __iomem *fpci_base;
+> @@ -269,10 +272,13 @@ struct tegra_xusb {
+>  		dma_addr_t phys;
+>  	} fw;
+> =20
+> +	bool suspended;
+>  	struct tegra_xusb_context context;
+>  };
+> =20
+>  static struct hc_driver __read_mostly tegra_xhci_hc_driver;
+> +static int tegra_xusb_exit_elpg(struct tegra_xusb *tegra, bool runtime);
+> +static int tegra_xusb_enter_elpg(struct tegra_xusb *tegra, bool runtime);
+
+Can we reshuffle the code to avoid these predeclarations? Looks like
+they're only used in tegra_xusb_runtime_{suspend,resume}(), so perhaps
+move the implementations right before those?
+
+Thierry
+
+--BuBclajtnfx5hylj
+Content-Type: application/pgp-signature; name="signature.asc"
+
+-----BEGIN PGP SIGNATURE-----
+
+iQIzBAABCAAdFiEEiOrDCAFJzPfAjcif3SOs138+s6EFAl9x7fsACgkQ3SOs138+
+s6GviA//bArY95N26kWGSQkCddCGbNVfmaKT8ob441Ff3cYz0E84EhyFK4NbKXiW
+SnK9nz92bD36pEOq4zHqrt3Fr/oxawBu7nUKn9EhQzabPUNT8u85MH9W5CopwhU4
+tJrLWmfiyJbX390CXU2jUW3rRs6sIZ6q7Cg8duX3J5cDZtijcJ6yZ5GFlqtEmwMq
+YwRlrVxm2yYo/jYvkmnYUDxwK/DT5KvX6cblQ69eh20DPL5e7J57uBEPNnum2n88
+5hFkNFjBjfy0lb1MhGq6mpSjXNzqWOUxS6CPNbi6VYahaIZjYbLqQljGobuuKQXQ
+J9Ri0zGLO46+4T3Rog6o4Rpm123Kuxl9EkyO/6WOQpMpIrw3KwJsZWmd3xMLBqNx
+WshobHLSIKXRaIm/Mng3QTFyOe2EqXbnItNlLlzCV68z3hF25GUUpmelSLfK+ltW
+Ywrh3xDEgUz/vVduW6AxYwpF1fKCNEtPS41VLn8vzwJ5C+Sy5AMhJWH/qoilFLZi
+aGt+jovRHfXaltxhUU8djloEjHIe57nflEcNnqTfzCHDP9oqhI3krU2QIt2t5xGB
+lxXOj/ZXC6DVDdcyHEfOxOk5siGvkf4vM871deQACPRthyb84UYqGVz91ztdz6+l
+sJnOIxr5fxqxSr8tz4COZFEr+LwrmWAhDC8ZriUo8GjvAW5DTp0=
+=ieLj
+-----END PGP SIGNATURE-----
+
+--BuBclajtnfx5hylj--
