@@ -2,138 +2,80 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from vger.kernel.org (vger.kernel.org [23.128.96.18])
-	by mail.lfdr.de (Postfix) with ESMTP id 0130827AB20
-	for <lists+devicetree@lfdr.de>; Mon, 28 Sep 2020 11:48:36 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTP id 4264727AB28
+	for <lists+devicetree@lfdr.de>; Mon, 28 Sep 2020 11:49:39 +0200 (CEST)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S1726735AbgI1Js3 (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Mon, 28 Sep 2020 05:48:29 -0400
-Received: from lhrrgout.huawei.com ([185.176.76.210]:2923 "EHLO huawei.com"
-        rhost-flags-OK-OK-OK-FAIL) by vger.kernel.org with ESMTP
-        id S1726604AbgI1Js3 (ORCPT <rfc822;devicetree@vger.kernel.org>);
-        Mon, 28 Sep 2020 05:48:29 -0400
-Received: from lhreml710-chm.china.huawei.com (unknown [172.18.7.107])
-        by Forcepoint Email with ESMTP id 81FBC5EA687BE95948BF;
-        Mon, 28 Sep 2020 10:48:28 +0100 (IST)
-Received: from localhost (10.52.126.2) by lhreml710-chm.china.huawei.com
- (10.201.108.61) with Microsoft SMTP Server (version=TLS1_2,
- cipher=TLS_ECDHE_RSA_WITH_AES_128_CBC_SHA256) id 15.1.1913.5; Mon, 28 Sep
- 2020 10:48:28 +0100
-Date:   Mon, 28 Sep 2020 10:46:46 +0100
-From:   Jonathan Cameron <Jonathan.Cameron@Huawei.com>
-To:     Zhen Lei <thunder.leizhen@huawei.com>
-CC:     Wei Xu <xuwei5@hisilicon.com>, Rob Herring <robh+dt@kernel.org>,
-        devicetree <devicetree@vger.kernel.org>,
-        linux-arm-kernel <linux-arm-kernel@lists.infradead.org>,
-        linux-kernel <linux-kernel@vger.kernel.org>,
-        Kefeng Wang <wangkefeng.wang@huawei.com>,
-        Libin <huawei.libin@huawei.com>
-Subject: Re: [PATCH v3 10/21] dt-bindings: arm: hisilicon: convert
- hisilicon, pcie-sas-subctrl bindings to json-schema
-Message-ID: <20200928104646.000073ce@Huawei.com>
-In-Reply-To: <20200927062129.4573-11-thunder.leizhen@huawei.com>
-References: <20200927062129.4573-1-thunder.leizhen@huawei.com>
-        <20200927062129.4573-11-thunder.leizhen@huawei.com>
-Organization: Huawei Technologies Research and Development (UK) Ltd.
-X-Mailer: Claws Mail 3.17.4 (GTK+ 2.24.32; i686-w64-mingw32)
-MIME-Version: 1.0
-Content-Type: text/plain; charset="US-ASCII"
-Content-Transfer-Encoding: 7bit
-X-Originating-IP: [10.52.126.2]
-X-ClientProxiedBy: lhreml707-chm.china.huawei.com (10.201.108.56) To
- lhreml710-chm.china.huawei.com (10.201.108.61)
-X-CFilter-Loop: Reflected
+        id S1726513AbgI1Jt2 (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Mon, 28 Sep 2020 05:49:28 -0400
+Received: from z5.mailgun.us ([104.130.96.5]:17115 "EHLO z5.mailgun.us"
+        rhost-flags-OK-OK-OK-OK) by vger.kernel.org with ESMTP
+        id S1726380AbgI1Jt1 (ORCPT <rfc822;devicetree@vger.kernel.org>);
+        Mon, 28 Sep 2020 05:49:27 -0400
+DKIM-Signature: a=rsa-sha256; v=1; c=relaxed/relaxed; d=mg.codeaurora.org; q=dns/txt;
+ s=smtp; t=1601286566; h=Message-Id: Date: Subject: Cc: To: From:
+ Sender; bh=WZnFcSSBWh5/uEF6fLzEL3125XGvLI0bBZgF8cApXXw=; b=tUFhzncrsiwFmJiSqhhAXFzG1JCLJ0ZRPlIA/O+IlgvQ3bhUK7Lfu6LXc1iSk/ltxDhGsoXZ
+ cvV38QIPIhcj/XdjYBel696GnwvnZgfZVcBhia/AWsocPPa01wuAqPuMMQdlIEQ0GGmZSABt
+ 8NPjGf73DQyUTsiHY4Mg/pHLQac=
+X-Mailgun-Sending-Ip: 104.130.96.5
+X-Mailgun-Sid: WyI1YmJiNiIsICJkZXZpY2V0cmVlQHZnZXIua2VybmVsLm9yZyIsICJiZTllNGEiXQ==
+Received: from smtp.codeaurora.org
+ (ec2-35-166-182-171.us-west-2.compute.amazonaws.com [35.166.182.171]) by
+ smtp-out-n02.prod.us-east-1.postgun.com with SMTP id
+ 5f71b1a589f51cb4f1b5f141 (version=TLS1.2,
+ cipher=TLS_ECDHE_RSA_WITH_AES_128_GCM_SHA256); Mon, 28 Sep 2020 09:49:25
+ GMT
+Sender: srivasam=codeaurora.org@mg.codeaurora.org
+Received: by smtp.codeaurora.org (Postfix, from userid 1001)
+        id E1332C433CA; Mon, 28 Sep 2020 09:49:24 +0000 (UTC)
+X-Spam-Checker-Version: SpamAssassin 3.4.0 (2014-02-07) on
+        aws-us-west-2-caf-mail-1.web.codeaurora.org
+X-Spam-Level: 
+X-Spam-Status: No, score=-2.9 required=2.0 tests=ALL_TRUSTED,BAYES_00,SPF_FAIL
+        autolearn=no autolearn_force=no version=3.4.0
+Received: from hyd-lnxbld210.qualcomm.com (unknown [202.46.22.19])
+        (using TLSv1.2 with cipher ECDHE-RSA-AES128-SHA256 (128/128 bits))
+        (No client certificate requested)
+        (Authenticated sender: srivasam)
+        by smtp.codeaurora.org (Postfix) with ESMTPSA id B0C03C433C8;
+        Mon, 28 Sep 2020 09:49:21 +0000 (UTC)
+DMARC-Filter: OpenDMARC Filter v1.3.2 smtp.codeaurora.org B0C03C433C8
+Authentication-Results: aws-us-west-2-caf-mail-1.web.codeaurora.org; dmarc=none (p=none dis=none) header.from=codeaurora.org
+Authentication-Results: aws-us-west-2-caf-mail-1.web.codeaurora.org; spf=fail smtp.mailfrom=srivasam@codeaurora.org
+From:   Srinivasa Rao Mandadapu <srivasam@codeaurora.org>
+To:     agross@kernel.org, bjorn.andersson@linaro.org, robh+dt@kernel.org,
+        linux-arm-msm@vger.kernel.org, devicetree@vger.kernel.org,
+        linux-kernel@vger.kernel.org, rohitkr@codeaurora.org,
+        srinivas.kandagatla@linaro.org
+Cc:     Srinivasa Rao Mandadapu <srivasam@codeaurora.org>
+Subject: [PATCH v2 0/2] Qualcomm's lpass device tree changes
+Date:   Mon, 28 Sep 2020 15:19:03 +0530
+Message-Id: <1601286545-25429-1-git-send-email-srivasam@codeaurora.org>
+X-Mailer: git-send-email 2.7.4
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-On Sun, 27 Sep 2020 14:21:18 +0800
-Zhen Lei <thunder.leizhen@huawei.com> wrote:
+These patches are device tree changes to support audio over DP.
+It includes changes of HDMI reg, interrupt and iommu and 
+hdmi dai link.
+These patches depends on the lpass I2S patch series
+and DP dts node patch series:
+  -- https://patchwork.kernel.org/patch/11785073/
+  -- https://patchwork.kernel.org/patch/11785235/
+  -- https://patchwork.kernel.org/patch/11719511/
 
-> Convert the Hisilicon HiP05/HiP06 PCIe-SAS subsystem controller binding
-> to DT schema format using json-schema.
-> 
-> Signed-off-by: Zhen Lei <thunder.leizhen@huawei.com>
+Changes Since v1:
+  -- hdmi dai is added in lpass-cpu node.
 
-One small thing inline to fix.
+V Sujith Kumar Reddy (2):
+  arm64: dts: qcom: sc7180: Update lpass cpu node for audio over dp
+  arm64: dts: qcom: sc7180-trogdor: Add lpass dai link for HDMI
 
-Jonathan
+ arch/arm64/boot/dts/qcom/sc7180-trogdor.dtsi | 15 +++++++++++++++
+ arch/arm64/boot/dts/qcom/sc7180.dtsi         | 17 ++++++++++-------
+ 2 files changed, 25 insertions(+), 7 deletions(-)
 
-> ---
->  .../controller/hisilicon,pcie-sas-subctrl.txt      | 15 ---------
->  .../controller/hisilicon,pcie-sas-subctrl.yaml     | 37 ++++++++++++++++++++++
->  2 files changed, 37 insertions(+), 15 deletions(-)
->  delete mode 100644 Documentation/devicetree/bindings/arm/hisilicon/controller/hisilicon,pcie-sas-subctrl.txt
->  create mode 100644 Documentation/devicetree/bindings/arm/hisilicon/controller/hisilicon,pcie-sas-subctrl.yaml
-> 
-> diff --git a/Documentation/devicetree/bindings/arm/hisilicon/controller/hisilicon,pcie-sas-subctrl.txt b/Documentation/devicetree/bindings/arm/hisilicon/controller/hisilicon,pcie-sas-subctrl.txt
-> deleted file mode 100644
-> index 43efdaf408f6fe1..000000000000000
-> --- a/Documentation/devicetree/bindings/arm/hisilicon/controller/hisilicon,pcie-sas-subctrl.txt
-> +++ /dev/null
-> @@ -1,15 +0,0 @@
-> -Hisilicon HiP05/HiP06 PCIe-SAS sub system controller
-> -
-> -Required properties:
-> -- compatible : "hisilicon,pcie-sas-subctrl", "syscon";
-> -- reg : Register address and size
-> -
-> -The PCIe-SAS sub system controller is shared by PCIe and SAS controllers in
-> -HiP05 or HiP06 Soc to implement some basic configurations.
-> -
-> -Example:
-> -	/* for HiP05 PCIe-SAS sub system */
-> -	pcie_sas: system_controller@b0000000 {
-> -		compatible = "hisilicon,pcie-sas-subctrl", "syscon";
-> -		reg = <0xb0000000 0x10000>;
-> -	};
-> \ No newline at end of file
-> diff --git a/Documentation/devicetree/bindings/arm/hisilicon/controller/hisilicon,pcie-sas-subctrl.yaml b/Documentation/devicetree/bindings/arm/hisilicon/controller/hisilicon,pcie-sas-subctrl.yaml
-> new file mode 100644
-> index 000000000000000..8d1341022de587d
-> --- /dev/null
-> +++ b/Documentation/devicetree/bindings/arm/hisilicon/controller/hisilicon,pcie-sas-subctrl.yaml
-> @@ -0,0 +1,37 @@
-> +# SPDX-License-Identifier: (GPL-2.0-only OR BSD-2-Clause)
-> +%YAML 1.2
-> +---
-> +$id: http://devicetree.org/schemas/arm/hisilicon/controller/hisilicon,pcie-sas-subctrl.yaml#
-> +$schema: http://devicetree.org/meta-schemas/core.yaml#
-> +
-> +title: Hisilicon HiP05/HiP06 PCIe-SAS subsystem controller
-> +
-> +maintainers:
-> +  - Wei Xu <xuwei5@hisilicon.com>
-> +
-> +description: |
-> +  The PCIe-SAS sub system controller is shared by PCIe and SAS controllers in
-> +  HiP05 or HiP06 Soc to implement some basic configurations.
-> +
-> +properties:
-> +  compatible:
-> +    items:
-> +      - const: hisilicon,pcie-sas-subctrl
-> +      - const: syscon
-> +
-> +  reg:
-> +    description: Register address and size
-> +    maxItems: 1
-> +
-> +required:
-> +  - compatible
-> +  - reg
-> +
-> +examples:
-> +  - |
-> +    /* for HiP05 PCIe-SAS sub system */
-> +    pcie_sas: system_controller@b0000000 {
-> +        compatible = "hisilicon,pcie-sas-subctrl", "syscon";
-> +        reg = <0xb0000000 0x10000>;
-> +    };
-> +...
-> \ No newline at end of file
-
-Trivial, but fix that by adding one.
-
-Jonathan
-
+-- 
+Qualcomm India Private Limited, on behalf of Qualcomm Innovation Center, Inc.,
+is a member of Code Aurora Forum, a Linux Foundation Collaborative Project.
 
