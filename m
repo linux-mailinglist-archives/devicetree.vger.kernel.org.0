@@ -2,191 +2,91 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from vger.kernel.org (vger.kernel.org [23.128.96.18])
-	by mail.lfdr.de (Postfix) with ESMTP id 2CF6227B2DE
-	for <lists+devicetree@lfdr.de>; Mon, 28 Sep 2020 19:14:26 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTP id 58C4627B2F5
+	for <lists+devicetree@lfdr.de>; Mon, 28 Sep 2020 19:20:14 +0200 (CEST)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S1726604AbgI1ROZ (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Mon, 28 Sep 2020 13:14:25 -0400
-Received: from lindbergh.monkeyblade.net ([23.128.96.19]:37408 "EHLO
-        lindbergh.monkeyblade.net" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S1726424AbgI1ROZ (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Mon, 28 Sep 2020 13:14:25 -0400
-Received: from mail-wr1-x444.google.com (mail-wr1-x444.google.com [IPv6:2a00:1450:4864:20::444])
-        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 3DA8FC061755;
-        Mon, 28 Sep 2020 10:14:23 -0700 (PDT)
-Received: by mail-wr1-x444.google.com with SMTP id t10so2229891wrv.1;
-        Mon, 28 Sep 2020 10:14:23 -0700 (PDT)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=gmail.com; s=20161025;
-        h=date:from:to:cc:subject:message-id:in-reply-to:references
-         :mime-version:content-transfer-encoding;
-        bh=ZAW6dcCoUbddPaYdr5/lbjgYoSVn9vUyYWWh66IQR2M=;
-        b=nkFN+z9v1kUNrol7AqK7Z6xx6MoDko4TE7Cw30iHBx68So86SMFHvxbK9rNAYyLh8O
-         kJomHCfJB+poR3gVVUrh7734yNNn0CCyVz2lwjDs7LVEoYYFIpH0xHXz0moihZ2JcOQ1
-         uacch0SprOmJexYeiwRvnwkhF2iEnvEWLeUdzbGpTH8wbfBzCT75o9+WyEP07HT5bXsA
-         Y5M5XGLcKMIOcnWaX+0e5Mfx00oZZpVMok6cBnqY/UPWM1Gh6Xtz65EGxMygG/Sbg7MI
-         hGd8wOBw5MEXXEojX9/J/IiOQYUiisVOwVtlc/nUmfEdqNG0OWcw5pUQHx3vEc7GbAhp
-         m6xg==
+        id S1726393AbgI1RUN (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Mon, 28 Sep 2020 13:20:13 -0400
+Received: from mail-oi1-f193.google.com ([209.85.167.193]:36103 "EHLO
+        mail-oi1-f193.google.com" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
+        with ESMTP id S1726325AbgI1RUN (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Mon, 28 Sep 2020 13:20:13 -0400
+Received: by mail-oi1-f193.google.com with SMTP id v20so2181575oiv.3
+        for <devicetree@vger.kernel.org>; Mon, 28 Sep 2020 10:20:12 -0700 (PDT)
 X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
         d=1e100.net; s=20161025;
-        h=x-gm-message-state:date:from:to:cc:subject:message-id:in-reply-to
-         :references:mime-version:content-transfer-encoding;
-        bh=ZAW6dcCoUbddPaYdr5/lbjgYoSVn9vUyYWWh66IQR2M=;
-        b=ZCme+hfs+YZ/yqnFw3yMfTcLX9Mm4E71dIl3k05nbzpHh/bjCG3h2nq2J9uK6XOn5/
-         Ju2W7v3GrLDY3HrlHbyszjAIBHqXlIDzV5cDaKMUxXJ84B+NRJ/LqBNaPzQMI9DDckLt
-         DaGPT3pqh5RFeypEviaieL+uCl65JrD669NB00F7Eh3/NFBsMzQo7LbtEjA8iBD0tgEY
-         6SbWK2KI14KxushmbqTyXvBZV4RBphrMtKRp+bP6tzoVW1o0Pw+uB4guC4ImNbraafJk
-         TITrnqg4GHRU4Ixp3W+RqxdhNqXWZreEtpNgIzMftbJEOB7s21lJk4cXVP1cHAWlJCnh
-         gUzg==
-X-Gm-Message-State: AOAM532qwPuREJhs8l3bFVW+x0rqIm8zv6kTDoGkXXb6q8pxdgl3GIIt
-        edJyuqs2VkvfdPwPjs7jWyU=
-X-Google-Smtp-Source: ABdhPJxzDWkSo4Db8lLVYiLe3RVkBDu7Qbr3OCQEll/PrffgJ7nvwrBvb7FsZx00rdn33neO2ikp2g==
-X-Received: by 2002:adf:ef48:: with SMTP id c8mr2818976wrp.370.1601313261840;
-        Mon, 28 Sep 2020 10:14:21 -0700 (PDT)
-Received: from a-VirtualBox ([103.120.71.253])
-        by smtp.gmail.com with ESMTPSA id q20sm2010984wmj.5.2020.09.28.10.14.17
+        h=x-gm-message-state:date:from:to:cc:subject:message-id:references
+         :mime-version:content-disposition:content-transfer-encoding
+         :in-reply-to;
+        bh=Bgu9eAda5uCAd7zAJ0nkA1GKRQCBD52+x73vgY7dYds=;
+        b=Twn0Hs33MHtrB9aBtPaimx20k4+q6p7d9TgMbm7kD8x4tQVw4BaCyWNBbHHnVzlihy
+         8VEXnTpyR8LKL0lmYIimhuVEwxamiREenKlWNMhSrE6JsN8UqUnWKrCaxEXspjpjIv8E
+         6UUXFRins5fkEYLJxVaO9SEUhqwMctfC5MptKkBw3lPLqF2ftTKIaHuKzmOleJOK7BqV
+         5Vque2oo8CMfDa5/jQzO2rKLEINVaNZdSJWmegxYRmNqzPg/bT1TsqIzLWpcX6GQFAZA
+         yr8lxdjpRw1a6Mo6L9lmUgc6jpRtnQ5hmT/4L26BtXQHWSSmivmc/k0l5sx+LeXjfmff
+         LBgQ==
+X-Gm-Message-State: AOAM532X6n/iuhPYgpA/HJgNtmF0GzDv7SlfvFOZVn2fcO8NjV0cQ6ZY
+        mK4sesaBzMadRjACypcFDA==
+X-Google-Smtp-Source: ABdhPJyYKkID+64TOwW0GhVQn1GY2FepKidAEtT/FdJ1h0IuHwhSWS3bDtGi/1eXiV8sKiN4Kzxs+w==
+X-Received: by 2002:aca:bec5:: with SMTP id o188mr1537065oif.21.1601313612380;
+        Mon, 28 Sep 2020 10:20:12 -0700 (PDT)
+Received: from xps15 (24-155-109-49.dyn.grandenetworks.net. [24.155.109.49])
+        by smtp.gmail.com with ESMTPSA id z5sm365012otp.16.2020.09.28.10.20.11
         (version=TLS1_3 cipher=TLS_AES_256_GCM_SHA384 bits=256/256);
-        Mon, 28 Sep 2020 10:14:21 -0700 (PDT)
-Date:   Mon, 28 Sep 2020 22:14:14 +0500
-From:   Bilal Wasim <bilalwasim676@gmail.com>
-To:     Jitao Shi <jitao.shi@mediatek.com>
-Cc:     Rob Herring <robh+dt@kernel.org>,
-        Mark Rutland <mark.rutland@arm.com>,
-        Matthias Brugger <matthias.bgg@gmail.com>,
-        Daniel Vetter <daniel@ffwll.ch>,
-        David Airlie <airlied@linux.ie>,
-        <dri-devel@lists.freedesktop.org>, <linux-kernel@vger.kernel.org>,
-        devicetree@vger.kernel.org, srv_heupstream@mediatek.com,
-        huijuan.xie@mediatek.com, stonea168@163.com,
-        cawa.cheng@mediatek.com, linux-mediatek@lists.infradead.org,
-        bibby.hsieh@mediatek.com, ck.hu@mediatek.com,
-        yingjoe.chen@mediatek.com, eddie.huang@mediatek.com,
-        linux-arm-kernel@lists.infradead.org
-Subject: Re: [v3 PATCH] drm/mediatek: dsi: fix scrolling of panel with small
- hfp or hbp
-Message-ID: <20200928221414.5cb079a9@a-VirtualBox>
-In-Reply-To: <20200917033009.24799-1-jitao.shi@mediatek.com>
-References: <20200917033009.24799-1-jitao.shi@mediatek.com>
-X-Mailer: Claws Mail 3.17.5 (GTK+ 2.24.32; x86_64-pc-linux-gnu)
+        Mon, 28 Sep 2020 10:20:11 -0700 (PDT)
+Received: (nullmailer pid 2924776 invoked by uid 1000);
+        Mon, 28 Sep 2020 17:20:11 -0000
+Date:   Mon, 28 Sep 2020 12:20:11 -0500
+From:   Rob Herring <robh@kernel.org>
+To:     Uwe =?iso-8859-1?Q?Kleine-K=F6nig?= 
+        <u.kleine-koenig@pengutronix.de>
+Cc:     Frank Rowand <frowand.list@gmail.com>,
+        Masahiro Yamada <yamada.masahiro@socionext.com>,
+        kernel@pengutronix.de, devicetree@vger.kernel.org
+Subject: Re: [PATCH] scripts/dtc: only append to HOST_EXTRACFLAGS instead of
+ overwriting
+Message-ID: <20200928172011.GA2922882@bogus>
+References: <20200917094024.17215-1-u.kleine-koenig@pengutronix.de>
+ <20200919143922.22793-1-u.kleine-koenig@pengutronix.de>
 MIME-Version: 1.0
-Content-Type: text/plain; charset=US-ASCII
-Content-Transfer-Encoding: 7bit
+Content-Type: text/plain; charset=iso-8859-1
+Content-Disposition: inline
+Content-Transfer-Encoding: 8bit
+In-Reply-To: <20200919143922.22793-1-u.kleine-koenig@pengutronix.de>
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-Hi Jitao, 
-
-On Thu, 17 Sep 2020 11:30:09 +0800
-Jitao Shi <jitao.shi@mediatek.com> wrote:
-
-> Replace horizontal_backporch_byte with vm->hback_porch * bpp to aovid
-> flowing judgement negative number.
+On Sat, Sep 19, 2020 at 04:39:22PM +0200, Uwe Kleine-König wrote:
+> When building with
 > 
-> if ((vm->hfront_porch * dsi_tmp_buf_bpp + horizontal_backporch_byte) >
-> 	data_phy_cycles * dsi->lanes + delta)
+> 	$ HOST_EXTRACFLAGS=-g make
 > 
-> Signed-off-by: Jitao Shi <jitao.shi@mediatek.com>
+> the expectation is that host tools are built with debug informations.
+> This however doesn't happen if the Makefile assigns a new value to the
+> HOST_EXTRACFLAGS instead of appending to it. So use += instead of := for
+> the first assignment.
+> 
+> Fixes: e3fd9b5384f3 ("scripts/dtc: consolidate include path options in Makefile")
+> Signed-off-by: Uwe Kleine-König <u.kleine-koenig@pengutronix.de>
 > ---
->  drivers/gpu/drm/mediatek/mtk_dsi.c | 54
-> ++++++++++++++------------------------ 1 file changed, 19
-> insertions(+), 35 deletions(-)
+> Hello,
 > 
-> diff --git a/drivers/gpu/drm/mediatek/mtk_dsi.c
-> b/drivers/gpu/drm/mediatek/mtk_dsi.c index 16fd99dcdacf..ddddf69ebeaf
-> 100644 --- a/drivers/gpu/drm/mediatek/mtk_dsi.c
-> +++ b/drivers/gpu/drm/mediatek/mtk_dsi.c
-> @@ -445,6 +445,7 @@ static void mtk_dsi_config_vdo_timing(struct
-> mtk_dsi *dsi) u32 horizontal_backporch_byte;
->  	u32 horizontal_frontporch_byte;
->  	u32 dsi_tmp_buf_bpp, data_phy_cycles;
-> +	u32 delta;
->  	struct mtk_phy_timing *timing = &dsi->phy_timing;
->  
->  	struct videomode *vm = &dsi->vm;
-> @@ -475,42 +476,25 @@ static void mtk_dsi_config_vdo_timing(struct
-> mtk_dsi *dsi) data_phy_cycles = timing->lpx + timing->da_hs_prepare +
->  			  timing->da_hs_zero + timing->da_hs_exit +
-> 3; 
-> -	if (dsi->mode_flags & MIPI_DSI_MODE_VIDEO_BURST) {
-> -		if ((vm->hfront_porch + vm->hback_porch) *
-> dsi_tmp_buf_bpp >
-> -		    data_phy_cycles * dsi->lanes + 18) {
-> -			horizontal_frontporch_byte =
-> -				vm->hfront_porch * dsi_tmp_buf_bpp -
-> -				(data_phy_cycles * dsi->lanes + 18) *
-> -				vm->hfront_porch /
-> -				(vm->hfront_porch + vm->hback_porch);
-> -
-> -			horizontal_backporch_byte =
-> -				horizontal_backporch_byte -
-> -				(data_phy_cycles * dsi->lanes + 18) *
-> -				vm->hback_porch /
-> -				(vm->hfront_porch + vm->hback_porch);
-> -		} else {
-> -			DRM_WARN("HFP less than d-phy, FPS will
-> under 60Hz\n");
-> -			horizontal_frontporch_byte =
-> vm->hfront_porch *
-> -						     dsi_tmp_buf_bpp;
-> -		}
-> +	delta = (dsi->mode_flags & MIPI_DSI_MODE_VIDEO_BURST) ? 18 :
-> 12; +
-> +	if ((vm->hfront_porch * dsi_tmp_buf_bpp +
-> horizontal_backporch_byte) >
-> +	    data_phy_cycles * dsi->lanes + delta) {
-> +		horizontal_frontporch_byte =
-> +			vm->hfront_porch * dsi_tmp_buf_bpp -
-> +			(data_phy_cycles * dsi->lanes + delta) *
-> +			vm->hfront_porch /
-> +			(vm->hfront_porch + vm->hback_porch);
-> +
-> +		horizontal_backporch_byte =
-> +			horizontal_backporch_byte -
-> +			(data_phy_cycles * dsi->lanes + delta) *
-> +			vm->hback_porch /
-> +			(vm->hfront_porch + vm->hback_porch);
->  	} else {
-> -		if ((vm->hfront_porch + vm->hback_porch) *
-> dsi_tmp_buf_bpp >
-> -		    data_phy_cycles * dsi->lanes + 12) {
-> -			horizontal_frontporch_byte =
-> -				vm->hfront_porch * dsi_tmp_buf_bpp -
-> -				(data_phy_cycles * dsi->lanes + 12) *
-> -				vm->hfront_porch /
-> -				(vm->hfront_porch + vm->hback_porch);
-> -			horizontal_backporch_byte =
-> horizontal_backporch_byte -
-> -				(data_phy_cycles * dsi->lanes + 12) *
-> -				vm->hback_porch /
-> -				(vm->hfront_porch + vm->hback_porch);
-> -		} else {
-> -			DRM_WARN("HFP less than d-phy, FPS will
-> under 60Hz\n");
-> -			horizontal_frontporch_byte =
-> vm->hfront_porch *
-> -						     dsi_tmp_buf_bpp;
-> -		}
-> +		DRM_WARN("HFP + HBP less than d-phy, FPS will under
-> 60Hz\n");
-> +		horizontal_frontporch_byte = vm->hfront_porch *
-> +					     dsi_tmp_buf_bpp;
->  	}
->  
->  	writel(horizontal_sync_active_byte, dsi->regs + DSI_HSA_WC);
+> this is a resend as I failed to add the devicetree mailing list to Cc
+> for the first mail :-\ Thanks to Rob for reminding me. Those who got
+> this mail twice and want to reply please make sure you reply to the
+> right (i.e. this) mail.
+> 
+> The patch is the same as my earlier patch "scripts/dtc: Don't overwrite
+> HOST_EXTRACFLAGS passed on command line" but here the commit log is not
+> wrong.
+> 
+> Thanks and sorry,
+> Uwe
+> 
+>  scripts/dtc/Makefile | 2 +-
+>  1 file changed, 1 insertion(+), 1 deletion(-)
 
-Can you explain how this patch is relevant to
-https://patchwork.kernel.org/patch/11718191/? It was sent out on
-17/Sept while the v2 was merged before that. 
+Applied, thanks.
 
-As the v2 patch (https://patchwork.kernel.org/patch/11718191/) breaks
-HDMI (eDP) on my Chromebook Elm (starting from 5.9-rc6), I'm guessing
-that that was a bad patch, and should be reverted? Instead, this v3
-should be applied? Is this correct? 
-
-If so, can you kindly send a new patch which reverts v2 and applies
-this one, as application of this patch on rc7 fails.
-
-Thanks,
-Bilal
-
+Rob
