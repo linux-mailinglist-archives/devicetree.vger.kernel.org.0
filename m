@@ -2,133 +2,76 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from vger.kernel.org (vger.kernel.org [23.128.96.18])
-	by mail.lfdr.de (Postfix) with ESMTP id 622BE27B191
-	for <lists+devicetree@lfdr.de>; Mon, 28 Sep 2020 18:14:34 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTP id 569BA27B1A7
+	for <lists+devicetree@lfdr.de>; Mon, 28 Sep 2020 18:18:33 +0200 (CEST)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S1726667AbgI1QOU (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Mon, 28 Sep 2020 12:14:20 -0400
-Received: from lindbergh.monkeyblade.net ([23.128.96.19]:56280 "EHLO
-        lindbergh.monkeyblade.net" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S1726657AbgI1QOT (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Mon, 28 Sep 2020 12:14:19 -0400
-Received: from mail-wm1-x32d.google.com (mail-wm1-x32d.google.com [IPv6:2a00:1450:4864:20::32d])
-        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 9C9C5C061755
-        for <devicetree@vger.kernel.org>; Mon, 28 Sep 2020 09:14:18 -0700 (PDT)
-Received: by mail-wm1-x32d.google.com with SMTP id e2so1757599wme.1
-        for <devicetree@vger.kernel.org>; Mon, 28 Sep 2020 09:14:18 -0700 (PDT)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=baylibre-com.20150623.gappssmtp.com; s=20150623;
-        h=from:to:cc:subject:date:message-id:in-reply-to:references
-         :mime-version:content-transfer-encoding;
-        bh=vbHHP40xkg2uYk/UH9HSDIAS1kguxIesOVY207PSNWM=;
-        b=FNsS1JaCt6m6mE/WfI8++x/y/+lxIpJoJGF+TsZB7s2VnQlOiprldL24g4EEBMhIdy
-         pnZySMRZ91Rnxw8DhYbli2oDrlt/yfizs5leKTyZTtrLVjQVEsA4YoxPrtH8LtCPWE6F
-         WtC37v5DzATeRgAGn9bfM8Iuw6HOBVgpTlswzf5QNYoDruGAsPupPfRvUDGCsL+YeAVT
-         E9U25/3fjIddYm3az2X4p7/xeazYapF4KNfMDiGpQbUnZdYDnXNL60W83gjKuUWkq8JN
-         hMpJLyNXdvsc9VRFFQehVCnOiw95MvMihshOxAi8s1ueIg6qZ6m5Aagp6fPid5/kCdF2
-         g83A==
-X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=1e100.net; s=20161025;
-        h=x-gm-message-state:from:to:cc:subject:date:message-id:in-reply-to
-         :references:mime-version:content-transfer-encoding;
-        bh=vbHHP40xkg2uYk/UH9HSDIAS1kguxIesOVY207PSNWM=;
-        b=pdYjiDp1lnHCf7ZPhZheUqTmeYzBXYGoCcPgs9kFrapxa4uEP1QZ5DONrZGSKDI+hE
-         P6fskN9XhRkZ86vR4OcIVh0euqkNmIvqymmjTr0EQIjUk+/4G9kSlyZy9LgOraFTBBzc
-         SS/lDjZjeyKco1nfbXUFIleranAeG5wSsz7/aVbw6tK7cTqLGa8OdBK1reCoPk3Q8duF
-         DpS6eYSJFkuO35aMAg/QyQCo8Xgpz+MOkJGkpeYyRwbZFSBPpWQAoHQxQItv4dM7/7V7
-         Gk7cKSppDlUu2nmImyZylrBQH+ljaE9FvylDeu0nnkmLFJn+maQVNlZyLhNPpUJtgif2
-         aMcA==
-X-Gm-Message-State: AOAM532uhZRlxoVrAc/sNqWwPjvG03z+z/8/jljxFzn/uqnPdjzX+gTJ
-        i+ykY7SEXkuFyYrxIL07SLWevw==
-X-Google-Smtp-Source: ABdhPJz2Xorp3vXaFUhQ6uWGhTbeVdxJs51CEXnFKiSt47Nj3cKxXsEMNjeoSd7oepsFB9yy40noNg==
-X-Received: by 2002:a7b:c848:: with SMTP id c8mr2254953wml.184.1601309657138;
-        Mon, 28 Sep 2020 09:14:17 -0700 (PDT)
-Received: from localhost.localdomain ([2a01:e35:2ec0:82b0:19c2:a71d:5af8:dbf6])
-        by smtp.gmail.com with ESMTPSA id n4sm2004867wrp.61.2020.09.28.09.14.15
-        (version=TLS1_3 cipher=TLS_AES_256_GCM_SHA384 bits=256/256);
-        Mon, 28 Sep 2020 09:14:16 -0700 (PDT)
-From:   Neil Armstrong <narmstrong@baylibre.com>
-To:     hverkuil-cisco@xs4all.nl, devicetree@vger.kernel.org
-Cc:     Neil Armstrong <narmstrong@baylibre.com>,
-        linux-media@vger.kernel.org, linux-amlogic@lists.infradead.org,
-        linux-arm-kernel@lists.infradead.org, linux-kernel@vger.kernel.org
-Subject: [PATCH 1/4] dt-bindings: media: Add bindings for the Amlogic GE2D Accelerator Unit
-Date:   Mon, 28 Sep 2020 18:14:08 +0200
-Message-Id: <20200928161411.323581-2-narmstrong@baylibre.com>
-X-Mailer: git-send-email 2.25.1
-In-Reply-To: <20200928161411.323581-1-narmstrong@baylibre.com>
-References: <20200928161411.323581-1-narmstrong@baylibre.com>
+        id S1726513AbgI1QSc (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Mon, 28 Sep 2020 12:18:32 -0400
+Received: from mail.kernel.org ([198.145.29.99]:43228 "EHLO mail.kernel.org"
+        rhost-flags-OK-OK-OK-OK) by vger.kernel.org with ESMTP
+        id S1726461AbgI1QSc (ORCPT <rfc822;devicetree@vger.kernel.org>);
+        Mon, 28 Sep 2020 12:18:32 -0400
+Received: from mail-oi1-f171.google.com (mail-oi1-f171.google.com [209.85.167.171])
+        (using TLSv1.2 with cipher ECDHE-RSA-AES128-GCM-SHA256 (128/128 bits))
+        (No client certificate requested)
+        by mail.kernel.org (Postfix) with ESMTPSA id 99B472100A;
+        Mon, 28 Sep 2020 16:18:31 +0000 (UTC)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=kernel.org;
+        s=default; t=1601309911;
+        bh=i7GYhiMn+37Sq008RrjJLJyTufrJOfeBNI1GsXR2zJ4=;
+        h=References:In-Reply-To:From:Date:Subject:To:Cc:From;
+        b=cDB1NvRv8ftd3jw3VSzwiLxClczdQcwc933hNUbKQKbuA0i7RwHVsMbYer8wGiJbE
+         nz/GzmgM/H/9g5U/83J9veVyEydouto60UZQ4CKK5aQGn6DUirQliV80SBXbXbo0g9
+         vluvwLxstfjt7ObGBbV8XUmpAp/iBjt0/9V8y8u4=
+Received: by mail-oi1-f171.google.com with SMTP id 185so1907264oie.11;
+        Mon, 28 Sep 2020 09:18:31 -0700 (PDT)
+X-Gm-Message-State: AOAM532/RevpsmTox0vAdTf3OK7QIeo7MMtPc2Q7wC8HdoUbJp/lW9Uu
+        yxcHNiaxZuQO3Yj3bHukTpZid5wHUwk/GoeouA==
+X-Google-Smtp-Source: ABdhPJzRQdtyqEKP3Qh3o/zvZRAaQrco0KiM29T4UPOfYZCCdDGe409GlfC+XPFgpg5kaVPax12E7YcDlEyteuK52PQ=
+X-Received: by 2002:aca:7543:: with SMTP id q64mr1393731oic.147.1601309910803;
+ Mon, 28 Sep 2020 09:18:30 -0700 (PDT)
 MIME-Version: 1.0
-Content-Transfer-Encoding: 8bit
+References: <20200812193248.11325-1-dmurphy@ti.com>
+In-Reply-To: <20200812193248.11325-1-dmurphy@ti.com>
+From:   Rob Herring <robh@kernel.org>
+Date:   Mon, 28 Sep 2020 11:18:19 -0500
+X-Gmail-Original-Message-ID: <CAL_JsqK1HDQOBRpiEVnHJ59RV+2XpcHfQaafvX1m2HfDs=kagg@mail.gmail.com>
+Message-ID: <CAL_JsqK1HDQOBRpiEVnHJ59RV+2XpcHfQaafvX1m2HfDs=kagg@mail.gmail.com>
+Subject: Re: [PATCH] dt: bindings: lp55xx: Updte yaml examples with new color ID
+To:     Dan Murphy <dmurphy@ti.com>
+Cc:     Pavel Machek <pavel@ucw.cz>, devicetree@vger.kernel.org,
+        Linux LED Subsystem <linux-leds@vger.kernel.org>,
+        "linux-kernel@vger.kernel.org" <linux-kernel@vger.kernel.org>
+Content-Type: text/plain; charset="UTF-8"
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-The GE2D is a 2D accelerator with various features like configurable blitter
-with alpha blending, frame rotation, scaling, format conversion and colorspace
-conversion.
+On Wed, Aug 12, 2020 at 2:32 PM Dan Murphy <dmurphy@ti.com> wrote:
+>
+> Update the binding examples for the color ID to LED_COLOR_ID_RGB
+>
+> Signed-off-by: Dan Murphy <dmurphy@ti.com>
+> ---
+>  Documentation/devicetree/bindings/leds/leds-lp55xx.yaml | 2 +-
+>  1 file changed, 1 insertion(+), 1 deletion(-)
+>
+> diff --git a/Documentation/devicetree/bindings/leds/leds-lp55xx.yaml b/Documentation/devicetree/bindings/leds/leds-lp55xx.yaml
+> index b1bb3feb0f4d..89f69d62493e 100644
+> --- a/Documentation/devicetree/bindings/leds/leds-lp55xx.yaml
+> +++ b/Documentation/devicetree/bindings/leds/leds-lp55xx.yaml
+> @@ -189,7 +189,7 @@ examples:
+>                 #address-cells = <1>;
+>                 #size-cells = <0>;
+>                 reg = <0x2>;
+> -               color = <LED_COLOR_ID_MULTI>;
+> +               color = <LED_COLOR_ID_RGB>;
 
-This adds the bindings for the GE2D version found in the AXG SoCs Family.
+Looks like common.yaml needs updating too:
 
-Signed-off-by: Neil Armstrong <narmstrong@baylibre.com>
----
- .../bindings/media/amlogic,axg-ge2d.yaml      | 47 +++++++++++++++++++
- 1 file changed, 47 insertions(+)
- create mode 100644 Documentation/devicetree/bindings/media/amlogic,axg-ge2d.yaml
+Documentation/devicetree/bindings/leds/leds-lp55xx.example.dt.yaml:
+led-controller@33: multi-led@2:color:0:0: 9 is greater than the
+maximum of 8
+From schema: /builds/robherring/linux-dt-bindings/Documentation/devicetree/bindings/leds/leds-lp55xx.yaml
 
-diff --git a/Documentation/devicetree/bindings/media/amlogic,axg-ge2d.yaml b/Documentation/devicetree/bindings/media/amlogic,axg-ge2d.yaml
-new file mode 100644
-index 000000000000..bee93bd84771
---- /dev/null
-+++ b/Documentation/devicetree/bindings/media/amlogic,axg-ge2d.yaml
-@@ -0,0 +1,47 @@
-+# SPDX-License-Identifier: (GPL-2.0 OR BSD-2-Clause)
-+# Copyright 2020 BayLibre, SAS
-+%YAML 1.2
-+---
-+$id: "http://devicetree.org/schemas/media/amlogic,axg-ge2d.yaml#"
-+$schema: "http://devicetree.org/meta-schemas/core.yaml#"
-+
-+title: Amlogic GE2D Acceleration Unit
-+
-+maintainers:
-+  - Neil Armstrong <narmstrong@baylibre.com>
-+
-+properties:
-+  compatible:
-+    enum:
-+      - amlogic,axg-ge2d
-+
-+  interrupts:
-+    minItems: 1
-+
-+  reg:
-+    minItems: 1
-+
-+  resets:
-+    maxItems: 1
-+
-+  clocks:
-+    minItems: 1
-+
-+required:
-+  - compatible
-+  - reg
-+  - interrupts
-+  - clocks
-+  - resets
-+
-+additionalProperties: false
-+
-+examples:
-+  - |
-+    ge2d: ge2d@ff940000 {
-+          compatible = "amlogic,axg-ge2d";
-+          reg = <0xff940000 0x10000>;
-+          interrupts = <150>;
-+          clocks = <&clk_ge2d>;
-+          resets = <&reset_ge2d>;
-+    };
--- 
-2.25.1
-
+Rob
