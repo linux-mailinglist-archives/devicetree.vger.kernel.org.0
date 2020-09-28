@@ -2,112 +2,162 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from vger.kernel.org (vger.kernel.org [23.128.96.18])
-	by mail.lfdr.de (Postfix) with ESMTP id 6A7E327B075
-	for <lists+devicetree@lfdr.de>; Mon, 28 Sep 2020 17:02:12 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTP id 8043B27B0C5
+	for <lists+devicetree@lfdr.de>; Mon, 28 Sep 2020 17:18:52 +0200 (CEST)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S1726420AbgI1PCL convert rfc822-to-8bit (ORCPT
-        <rfc822;lists+devicetree@lfdr.de>); Mon, 28 Sep 2020 11:02:11 -0400
-Received: from honk.sigxcpu.org ([24.134.29.49]:44550 "EHLO honk.sigxcpu.org"
-        rhost-flags-OK-OK-OK-OK) by vger.kernel.org with ESMTP
-        id S1726460AbgI1PCL (ORCPT <rfc822;devicetree@vger.kernel.org>);
-        Mon, 28 Sep 2020 11:02:11 -0400
-Received: from localhost (localhost [127.0.0.1])
-        by honk.sigxcpu.org (Postfix) with ESMTP id A27F6FB03;
-        Mon, 28 Sep 2020 17:02:07 +0200 (CEST)
-X-Virus-Scanned: Debian amavisd-new at honk.sigxcpu.org
-Received: from honk.sigxcpu.org ([127.0.0.1])
-        by localhost (honk.sigxcpu.org [127.0.0.1]) (amavisd-new, port 10024)
-        with ESMTP id q109Wptkrg7z; Mon, 28 Sep 2020 17:02:04 +0200 (CEST)
-Received: by bogon.sigxcpu.org (Postfix, from userid 1000)
-        id 461E045BEF; Mon, 28 Sep 2020 17:02:03 +0200 (CEST)
-Date:   Mon, 28 Sep 2020 17:02:03 +0200
-From:   Guido =?iso-8859-1?Q?G=FCnther?= <agx@sigxcpu.org>
-To:     Thierry Reding <thierry.reding@gmail.com>
-Cc:     Sam Ravnborg <sam@ravnborg.org>, David Airlie <airlied@linux.ie>,
-        Daniel Vetter <daniel@ffwll.ch>,
-        Rob Herring <robh+dt@kernel.org>,
-        dri-devel@lists.freedesktop.org, devicetree@vger.kernel.org,
-        linux-kernel@vger.kernel.org
-Subject: Re: [RFC PATCH v1 3/3] dt-binding: display: Require two rests on
- mantix panel
-Message-ID: <20200928150203.GA58525@bogon.m.sigxcpu.org>
-References: <cover.1600707235.git.agx@sigxcpu.org>
- <71a9108f3472ba9af4bead01b1b770d1e73eb08e.1600707235.git.agx@sigxcpu.org>
- <20200924193807.GA1223313@ravnborg.org>
- <20200928065039.GB2837573@ulmo>
+        id S1726590AbgI1PR2 (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Mon, 28 Sep 2020 11:17:28 -0400
+Received: from szxga04-in.huawei.com ([45.249.212.190]:14320 "EHLO huawei.com"
+        rhost-flags-OK-OK-OK-FAIL) by vger.kernel.org with ESMTP
+        id S1726564AbgI1PR1 (ORCPT <rfc822;devicetree@vger.kernel.org>);
+        Mon, 28 Sep 2020 11:17:27 -0400
+Received: from DGGEMS408-HUB.china.huawei.com (unknown [172.30.72.60])
+        by Forcepoint Email with ESMTP id B1558E4AA588337DDF8A;
+        Mon, 28 Sep 2020 23:17:19 +0800 (CST)
+Received: from thunder-town.china.huawei.com (10.174.177.253) by
+ DGGEMS408-HUB.china.huawei.com (10.3.19.208) with Microsoft SMTP Server id
+ 14.3.487.0; Mon, 28 Sep 2020 23:17:09 +0800
+From:   Zhen Lei <thunder.leizhen@huawei.com>
+To:     Wei Xu <xuwei5@hisilicon.com>, Rob Herring <robh+dt@kernel.org>,
+        "Jonathan Cameron" <Jonathan.Cameron@Huawei.com>,
+        devicetree <devicetree@vger.kernel.org>,
+        linux-arm-kernel <linux-arm-kernel@lists.infradead.org>,
+        linux-kernel <linux-kernel@vger.kernel.org>
+CC:     Zhen Lei <thunder.leizhen@huawei.com>,
+        Libin <huawei.libin@huawei.com>,
+        Kefeng Wang <wangkefeng.wang@huawei.com>
+Subject: [PATCH v4 00/20] add support for Hisilicon SD5203 SoC
+Date:   Mon, 28 Sep 2020 23:13:04 +0800
+Message-ID: <20200928151324.2134-1-thunder.leizhen@huawei.com>
+X-Mailer: git-send-email 2.26.0.windows.1
 MIME-Version: 1.0
-Content-Type: text/plain; charset=iso-8859-1
-Content-Disposition: inline
-Content-Transfer-Encoding: 8BIT
-In-Reply-To: <20200928065039.GB2837573@ulmo>
+Content-Transfer-Encoding: 7BIT
+Content-Type:   text/plain; charset=US-ASCII
+X-Originating-IP: [10.174.177.253]
+X-CFilter-Loop: Reflected
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-Hi Thierry,
-On Mon, Sep 28, 2020 at 08:50:39AM +0200, Thierry Reding wrote:
-> On Thu, Sep 24, 2020 at 09:38:07PM +0200, Sam Ravnborg wrote:
-> > Hi Guido.
-> > 
-> > On Mon, Sep 21, 2020 at 06:55:52PM +0200, Guido Günther wrote:
-> > > We need to reset both for the panel to show an image.
-> > > 
-> > > Signed-off-by: Guido Günther <agx@sigxcpu.org>
-> > > ---
-> > >  .../bindings/display/panel/mantix,mlaf057we51-x.yaml       | 7 +++++--
-> > >  1 file changed, 5 insertions(+), 2 deletions(-)
-> > > 
-> > > diff --git a/Documentation/devicetree/bindings/display/panel/mantix,mlaf057we51-x.yaml b/Documentation/devicetree/bindings/display/panel/mantix,mlaf057we51-x.yaml
-> > > index 937323cc9aaa..ba5a18fac9f9 100644
-> > > --- a/Documentation/devicetree/bindings/display/panel/mantix,mlaf057we51-x.yaml
-> > > +++ b/Documentation/devicetree/bindings/display/panel/mantix,mlaf057we51-x.yaml
-> > > @@ -35,7 +35,9 @@ properties:
-> > >    vddi-supply:
-> > >      description: 1.8V I/O voltage supply
-> > >  
-> > > -  reset-gpios: true
-> > > +  reset-gpios:
-> > > +    minItems: 2
-> > > +    maxItems: 2
-> > 
-> > reset-gpios is, as you already wrote, defined in panel-common.yaml.
-> > Do not try to change it here.
-> > It would be much better, I think, to introduce a mantix,reset-gpios
-> > property.
-> > 
-> > This would avoid that we had two different reset-gpios definitions.
-> 
-> My understanding is that this will only override the defaults defined in
-> panel-common.yaml. So everything else about the
-> panel-common.yaml#/properties/reset-gpios definition remains valid and
-> all this does is say that when this matched on "mantix,mlaf057we51-x",
-> then the "reset-gpios" property is expected to contain two entries as
-> opposed to the single entry that is expected by default.
+v3 --> v4:
+1. remove unexpected "\ No newline at end of file" of each new file.
+2. discard the subdirectory "hi3620" and "hipxx", all files in the two
+   directories are moved to the parent directory.
+3. add two spaces for the below cases:
+   - items:
+     - const: hisilicon,sysctrl.	//add two spaces
+4. only list the compatible of boards in hisilicon.yaml, that is:
+   1) a compatible of one board
+   2) a compatible of one board + a compatible of one SoC
+5. other trival fixes are not mentioned.
 
-I thought so too but I get:
 
-linux/Documentation/devicetree/bindings/display/panel/mantix,mlaf057we51-x.example.dt.yaml: panel@0: reset-gpios: [[4294967295, 29, 1], [4294967295, 24, 1]] is too long
-	From schema: /.../linux/Documentation/devicetree/bindings/display/panel/mantix,mlaf057we51-x.yaml
+v2 --> v3:
+1. Convert hisilicon.txt to hisilicon.yaml. Because there are many kinds
+   of Hisilicon controllers in it, so split each of them into a separate
+   file first. Then I convert all of them to DT schema format, and also
+   convert the other files in directory "../bindings/arm/hisilicon/".
+2. Add Patch 1: remove a unused compatible name in hip01-ca9x2.dts
+   This error is detected by hisilicon.yaml.
 
-It seems to bepossible to *extend* reset-gpios though because when i use
-an example like:
+   The merge window of 5.10 is narrow now, so please review Patch 1-7 first.
 
-            reset-gpios = <&gpio1 29 GPIO_ACTIVE_LOW>,
-                          <&gpio1 24 GPIO_ACTIVE_LOW>;
 
-i correctly get
+v1 --> v2:
+1. add binding for SD5203 SoC, Patch 1
+2. select DW_APB_ICTL instead of HISILICON_SD5203_VIC in Patch 2.
+   Meanwhile, change the compatible of interrupt-controller to "snps,dw-apb-ictl" in Patch 4.
+3. Fix the errors detected by dtbs_check. For example: add "reg" for cpu node, use lowercase a-f
+   to describe address, add "baudclk" for "snps,dw-apb-uart".
 
-linux/linux/Documentation/devicetree/bindings/display/panel/mantix,mlaf057we51-x.example.dt.yaml: panel@0: reset-gpios: [[4294967295, 29, 1]] is too short
-	From schema: /.../linux/Documentation/devicetree/bindings/display/panel/mantix,mlaf057we51-x.yaml
- 
-so the `minItems: 2` is being picked up. This mens i can add
-properties but i can't overwrite the existing `maxItems: 2` - that's why
-i was wondering how that is supposed to work (if properties should be
-overrideable from common files or not).
-Cheers,
- -- Guido
+v1:
+Add SD5203 SoC config option and devicetree file, also enable its debug UART.
 
-> 
-> Thierry
+
+Kefeng Wang (3):
+  ARM: hisi: add support for SD5203 SoC
+  ARM: debug: add UART early console support for SD5203
+  ARM: dts: add SD5203 dts
+
+Zhen Lei (17):
+  dt-bindings: arm: hisilicon: split the dt-bindings of each controller
+    into a separate file
+  dt-bindings: arm: hisilicon: convert Hisilicon board/soc bindings to
+    json-schema
+  dt-bindings: arm: hisilicon: add binding for SD5203 SoC
+  dt-bindings: arm: hisilicon: convert system controller bindings to
+    json-schema
+  dt-bindings: arm: hisilicon: convert hisilicon,peri-subctrl bindings
+    to json-schema
+  dt-bindings: arm: hisilicon: convert hisilicon,pcie-sas-subctrl
+    bindings to json-schema
+  dt-bindings: arm: hisilicon: convert hisilicon,cpuctrl bindings to
+    json-schema
+  dt-bindings: arm: hisilicon: convert hisilicon,pctrl bindings to
+    json-schema
+  dt-bindings: arm: hisilicon: convert hisilicon,hi3798cv200-perictrl
+    bindings to json-schema
+  dt-bindings: arm: hisilicon: convert hisilicon,dsa-subctrl bindings to
+    json-schema
+  dt-bindings: arm: hisilicon: convert hisilicon,hip04-fabric bindings
+    to json-schema
+  dt-bindings: arm: hisilicon: convert hisilicon,hip04-bootwrapper
+    bindings to json-schema
+  dt-bindings: arm: hisilicon: convert hisilicon,hi6220-aoctrl bindings
+    to json-schema
+  dt-bindings: arm: hisilicon: convert hisilicon,hi6220-mediactrl
+    bindings to json-schema
+  dt-bindings: arm: hisilicon: convert hisilicon,hi6220-pmctrl bindings
+    to json-schema
+  dt-bindings: arm: hisilicon: convert hisilicon,hi6220-sramctrl
+    bindings to json-schema
+  dt-bindings: arm: hisilicon: convert LPC controller bindings to
+    json-schema
+
+ .../hisilicon/controller/hisilicon,cpuctrl.yaml    |  28 ++
+ .../controller/hisilicon,dsa-subctrl.yaml          |  37 +++
+ .../controller/hisilicon,hi3798cv200-perictrl.yaml |  45 +++
+ .../controller/hisilicon,hi6220-aoctrl.yaml        |  42 +++
+ .../controller/hisilicon,hi6220-mediactrl.yaml     |  42 +++
+ .../controller/hisilicon,hi6220-pmctrl.yaml        |  42 +++
+ .../controller/hisilicon,hi6220-sramctrl.yaml      |  38 +++
+ .../controller/hisilicon,hip04-bootwrapper.yaml    |  32 +++
+ .../controller/hisilicon,hip04-fabric.yaml         |  26 ++
+ .../controller/hisilicon,pcie-sas-subctrl.yaml     |  37 +++
+ .../arm/hisilicon/controller/hisilicon,pctrl.yaml  |  34 +++
+ .../controller/hisilicon,peri-subctrl.yaml         |  34 +++
+ .../hisilicon/controller/hisilicon,sysctrl.yaml    | 115 ++++++++
+ .../bindings/arm/hisilicon/hi3519-sysctrl.txt      |  14 -
+ .../arm/hisilicon/hisilicon-low-pin-count.txt      |  33 ---
+ .../arm/hisilicon/hisilicon-low-pin-count.yaml     |  61 ++++
+ .../bindings/arm/hisilicon/hisilicon.txt           | 319 ---------------------
+ .../bindings/arm/hisilicon/hisilicon.yaml          |  66 +++++
+ arch/arm/Kconfig.debug                             |  11 +-
+ arch/arm/boot/dts/Makefile                         |   2 +
+ arch/arm/boot/dts/sd5203.dts                       |  96 +++++++
+ arch/arm/mach-hisi/Kconfig                         |  16 +-
+ 22 files changed, 801 insertions(+), 369 deletions(-)
+ create mode 100644 Documentation/devicetree/bindings/arm/hisilicon/controller/hisilicon,cpuctrl.yaml
+ create mode 100644 Documentation/devicetree/bindings/arm/hisilicon/controller/hisilicon,dsa-subctrl.yaml
+ create mode 100644 Documentation/devicetree/bindings/arm/hisilicon/controller/hisilicon,hi3798cv200-perictrl.yaml
+ create mode 100644 Documentation/devicetree/bindings/arm/hisilicon/controller/hisilicon,hi6220-aoctrl.yaml
+ create mode 100644 Documentation/devicetree/bindings/arm/hisilicon/controller/hisilicon,hi6220-mediactrl.yaml
+ create mode 100644 Documentation/devicetree/bindings/arm/hisilicon/controller/hisilicon,hi6220-pmctrl.yaml
+ create mode 100644 Documentation/devicetree/bindings/arm/hisilicon/controller/hisilicon,hi6220-sramctrl.yaml
+ create mode 100644 Documentation/devicetree/bindings/arm/hisilicon/controller/hisilicon,hip04-bootwrapper.yaml
+ create mode 100644 Documentation/devicetree/bindings/arm/hisilicon/controller/hisilicon,hip04-fabric.yaml
+ create mode 100644 Documentation/devicetree/bindings/arm/hisilicon/controller/hisilicon,pcie-sas-subctrl.yaml
+ create mode 100644 Documentation/devicetree/bindings/arm/hisilicon/controller/hisilicon,pctrl.yaml
+ create mode 100644 Documentation/devicetree/bindings/arm/hisilicon/controller/hisilicon,peri-subctrl.yaml
+ create mode 100644 Documentation/devicetree/bindings/arm/hisilicon/controller/hisilicon,sysctrl.yaml
+ delete mode 100644 Documentation/devicetree/bindings/arm/hisilicon/hi3519-sysctrl.txt
+ delete mode 100644 Documentation/devicetree/bindings/arm/hisilicon/hisilicon-low-pin-count.txt
+ create mode 100644 Documentation/devicetree/bindings/arm/hisilicon/hisilicon-low-pin-count.yaml
+ delete mode 100644 Documentation/devicetree/bindings/arm/hisilicon/hisilicon.txt
+ create mode 100644 Documentation/devicetree/bindings/arm/hisilicon/hisilicon.yaml
+ create mode 100644 arch/arm/boot/dts/sd5203.dts
+
+-- 
+1.8.3
 
 
