@@ -2,93 +2,151 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from vger.kernel.org (vger.kernel.org [23.128.96.18])
-	by mail.lfdr.de (Postfix) with ESMTP id B821727A6E2
-	for <lists+devicetree@lfdr.de>; Mon, 28 Sep 2020 07:19:06 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTP id 665E727A6FD
+	for <lists+devicetree@lfdr.de>; Mon, 28 Sep 2020 07:32:21 +0200 (CEST)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S1726558AbgI1FTF (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Mon, 28 Sep 2020 01:19:05 -0400
-Received: from m42-4.mailgun.net ([69.72.42.4]:32744 "EHLO m42-4.mailgun.net"
-        rhost-flags-OK-OK-OK-OK) by vger.kernel.org with ESMTP
-        id S1726526AbgI1FTF (ORCPT <rfc822;devicetree@vger.kernel.org>);
-        Mon, 28 Sep 2020 01:19:05 -0400
-DKIM-Signature: a=rsa-sha256; v=1; c=relaxed/relaxed; d=mg.codeaurora.org; q=dns/txt;
- s=smtp; t=1601270344; h=References: In-Reply-To: Message-Id: Date:
- Subject: To: From: Sender;
- bh=RbNvZei99Np5hV3HwybKIT+MHMoFc7xSEA4tQ9NIEjI=; b=HiEIvmxd9b7xu7e9pGrJlUPK7r0GP+nWD317YjpZ/m2OVDoq+QpGzDsi64zSFCd1B0GQjvVQ
- 6Rjq0t6rLtGLkwJ53vddtKa77RC7FeOOxkQLxpEm/jHR7m2QyiIGjCJfdJjSc8p1blSJgtjD
- RQYJ3ruXKRkQLEI25JZdLnLWVRQ=
-X-Mailgun-Sending-Ip: 69.72.42.4
-X-Mailgun-Sid: WyI1YmJiNiIsICJkZXZpY2V0cmVlQHZnZXIua2VybmVsLm9yZyIsICJiZTllNGEiXQ==
-Received: from smtp.codeaurora.org
- (ec2-35-166-182-171.us-west-2.compute.amazonaws.com [35.166.182.171]) by
- smtp-out-n07.prod.us-west-2.postgun.com with SMTP id
- 5f7171de5fb64f6e378940a8 (version=TLS1.2,
- cipher=TLS_ECDHE_RSA_WITH_AES_128_GCM_SHA256); Mon, 28 Sep 2020 05:17:18
- GMT
-Sender: varada=codeaurora.org@mg.codeaurora.org
-Received: by smtp.codeaurora.org (Postfix, from userid 1001)
-        id 07148C43382; Mon, 28 Sep 2020 05:17:18 +0000 (UTC)
-X-Spam-Checker-Version: SpamAssassin 3.4.0 (2014-02-07) on
-        aws-us-west-2-caf-mail-1.web.codeaurora.org
-X-Spam-Level: 
-X-Spam-Status: No, score=-2.9 required=2.0 tests=ALL_TRUSTED,BAYES_00,SPF_FAIL,
-        URIBL_BLOCKED autolearn=no autolearn_force=no version=3.4.0
-Received: from varda-linux.qualcomm.com (blr-c-bdr-fw-01_GlobalNAT_AllZones-Outside.qualcomm.com [103.229.19.19])
-        (using TLSv1.2 with cipher ECDHE-RSA-AES128-SHA256 (128/128 bits))
-        (No client certificate requested)
-        (Authenticated sender: varada)
-        by smtp.codeaurora.org (Postfix) with ESMTPSA id 62751C433C8;
-        Mon, 28 Sep 2020 05:17:09 +0000 (UTC)
-DMARC-Filter: OpenDMARC Filter v1.3.2 smtp.codeaurora.org 62751C433C8
-Authentication-Results: aws-us-west-2-caf-mail-1.web.codeaurora.org; dmarc=none (p=none dis=none) header.from=codeaurora.org
-Authentication-Results: aws-us-west-2-caf-mail-1.web.codeaurora.org; spf=fail smtp.mailfrom=varada@codeaurora.org
-From:   Varadarajan Narayanan <varada@codeaurora.org>
-To:     agross@kernel.org, bjorn.andersson@linaro.org, robh+dt@kernel.org,
-        mturquette@baylibre.com, sboyd@kernel.org,
-        linus.walleij@linaro.org, catalin.marinas@arm.com, will@kernel.org,
-        p.zabel@pengutronix.de, varada@codeaurora.org,
-        nsekar@codeaurora.org, linux-arm-msm@vger.kernel.org,
-        devicetree@vger.kernel.org, linux-kernel@vger.kernel.org,
-        linux-clk@vger.kernel.org, linux-gpio@vger.kernel.org,
-        linux-arm-kernel@lists.infradead.org, sricharan@codeaurora.org
-Subject: [PATCH 7/7] arm64: defconfig: Enable IPQ5018 SoC base configs
-Date:   Mon, 28 Sep 2020 10:45:40 +0530
-Message-Id: <1601270140-4306-8-git-send-email-varada@codeaurora.org>
-X-Mailer: git-send-email 2.7.4
-In-Reply-To: <1601270140-4306-1-git-send-email-varada@codeaurora.org>
-References: <1601270140-4306-1-git-send-email-varada@codeaurora.org>
+        id S1726412AbgI1FcT convert rfc822-to-8bit (ORCPT
+        <rfc822;lists+devicetree@lfdr.de>); Mon, 28 Sep 2020 01:32:19 -0400
+Received: from mail-lf1-f68.google.com ([209.85.167.68]:37529 "EHLO
+        mail-lf1-f68.google.com" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
+        with ESMTP id S1725290AbgI1FcT (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Mon, 28 Sep 2020 01:32:19 -0400
+Received: by mail-lf1-f68.google.com with SMTP id z19so9620909lfr.4;
+        Sun, 27 Sep 2020 22:32:17 -0700 (PDT)
+X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+        d=1e100.net; s=20161025;
+        h=x-gm-message-state:mime-version:references:in-reply-to:from:date
+         :message-id:subject:to:cc:content-transfer-encoding;
+        bh=phlxL4gdu7otO3M0yS2hHFofM05cgFHXHWsfvHe5FGc=;
+        b=WsZXfEGtLUv7pz/4VkpCM9hAIt+YO9qpmRzhStd1N1HULPZy9tA8RN+a3/7v0U4hYv
+         92v5GXRdFA8lGqZ2mkwXWV8zYt0El2pH6eBk95HB0FNAMmOLzfPqwHMPVBRRczfJ8Z/u
+         loY/rDd0ZqcWwUKsDtoJ/GA+oIWT979e52i5WkLjhcmHGV/7he4GhWwEMu4g6WvtSV4c
+         uiwjsShu0of3h0lUiy/Hw1ECQMSaSY/XsPCPy/kf0M1kkhaXVorUNdu+lFelXgIwqeMQ
+         eyE4BC3WsEYkW1ipcOuo5RGgqpga+pzRpo4/JF+3JhCgRWcWW2Kxb70hGjhHjUa8jaOY
+         p8qg==
+X-Gm-Message-State: AOAM5324AjOmTiFSHkRH8c7jnofe3K0HgwDkAyri2laCH44AtgLcupBd
+        ick18+h36mNclpnpJp+DVFvsuVtiEYt2Cw==
+X-Google-Smtp-Source: ABdhPJwKHvxL7Z+1MpH9Jxz2hY+3/GADbyaEfYsVc0Z4DmBUYd6JytBHR5c3q7KGXfTi33JK3JsevA==
+X-Received: by 2002:a19:418b:: with SMTP id o133mr3636166lfa.413.1601271136459;
+        Sun, 27 Sep 2020 22:32:16 -0700 (PDT)
+Received: from mail-lf1-f47.google.com (mail-lf1-f47.google.com. [209.85.167.47])
+        by smtp.gmail.com with ESMTPSA id u1sm2670419lfl.305.2020.09.27.22.32.15
+        (version=TLS1_3 cipher=TLS_AES_128_GCM_SHA256 bits=128/128);
+        Sun, 27 Sep 2020 22:32:16 -0700 (PDT)
+Received: by mail-lf1-f47.google.com with SMTP id q8so9608546lfb.6;
+        Sun, 27 Sep 2020 22:32:15 -0700 (PDT)
+X-Received: by 2002:a19:383:: with SMTP id 125mr3418787lfd.356.1601271135695;
+ Sun, 27 Sep 2020 22:32:15 -0700 (PDT)
+MIME-Version: 1.0
+References: <20200927192912.46323-1-peron.clem@gmail.com> <20200927192912.46323-10-peron.clem@gmail.com>
+In-Reply-To: <20200927192912.46323-10-peron.clem@gmail.com>
+From:   Chen-Yu Tsai <wens@csie.org>
+Date:   Mon, 28 Sep 2020 13:32:03 +0800
+X-Gmail-Original-Message-ID: <CAGb2v64uAHUd=Ag2pQDqH=gjtPVso5dnKKdCn3ihyiVh8V8L=g@mail.gmail.com>
+Message-ID: <CAGb2v64uAHUd=Ag2pQDqH=gjtPVso5dnKKdCn3ihyiVh8V8L=g@mail.gmail.com>
+Subject: Re: [linux-sunxi] [PATCH v5 09/20] arm64: dts: allwinner: h6: Add DAI
+ node and soundcard for HDMI
+To:     =?UTF-8?B?Q2zDqW1lbnQgUMOpcm9u?= <peron.clem@gmail.com>
+Cc:     Maxime Ripard <mripard@kernel.org>,
+        Rob Herring <robh+dt@kernel.org>,
+        Mark Brown <broonie@kernel.org>,
+        Liam Girdwood <lgirdwood@gmail.com>,
+        Jaroslav Kysela <perex@perex.cz>,
+        Takashi Iwai <tiwai@suse.com>,
+        Marcus Cooper <codekipper@gmail.com>,
+        Jernej Skrabec <jernej.skrabec@siol.net>,
+        Linux-ALSA <alsa-devel@alsa-project.org>,
+        devicetree <devicetree@vger.kernel.org>,
+        linux-arm-kernel <linux-arm-kernel@lists.infradead.org>,
+        linux-kernel <linux-kernel@vger.kernel.org>,
+        linux-sunxi <linux-sunxi@googlegroups.com>
+Content-Type: text/plain; charset="UTF-8"
+Content-Transfer-Encoding: 8BIT
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-Enables clk & pinctrl related configs
+On Mon, Sep 28, 2020 at 3:29 AM Clément Péron <peron.clem@gmail.com> wrote:
+>
+> From: Jernej Skrabec <jernej.skrabec@siol.net>
+>
+> Add the I2S node used by the HDMI and a simple-soundcard to
+> link audio between HDMI and I2S.
+>
+> Note that the HDMI codec requires an inverted frame clock and
+> a fixed I2S width. As there is no such option for I2S we use
+> TDM property of the simple-soundcard to do that.
+>
+> Signed-off-by: Jernej Skrabec <jernej.skrabec@siol.net>
+> Signed-off-by: Marcus Cooper <codekipper@gmail.com>
+> Signed-off-by: Clément Péron <peron.clem@gmail.com>
+> ---
+>  arch/arm64/boot/dts/allwinner/sun50i-h6.dtsi | 33 ++++++++++++++++++++
+>  1 file changed, 33 insertions(+)
+>
+> diff --git a/arch/arm64/boot/dts/allwinner/sun50i-h6.dtsi b/arch/arm64/boot/dts/allwinner/sun50i-h6.dtsi
+> index 28c77d6872f6..a8853ee7885a 100644
+> --- a/arch/arm64/boot/dts/allwinner/sun50i-h6.dtsi
+> +++ b/arch/arm64/boot/dts/allwinner/sun50i-h6.dtsi
+> @@ -67,6 +67,25 @@ de: display-engine {
+>                 status = "disabled";
+>         };
+>
+> +       hdmi_sound: hdmi-sound {
+> +               compatible = "simple-audio-card";
+> +               simple-audio-card,format = "i2s";
+> +               simple-audio-card,name = "sun50i-h6-hdmi";
+> +               simple-audio-card,mclk-fs = <128>;
+> +               simple-audio-card,frame-inversion;
+> +               status = "disabled";
+> +
+> +               simple-audio-card,codec {
+> +                       sound-dai = <&hdmi>;
+> +               };
+> +
+> +               simple-audio-card,cpu {
+> +                       sound-dai = <&i2s1>;
+> +                       dai-tdm-slot-num = <2>;
 
-Signed-off-by: Varadarajan Narayanan <varada@codeaurora.org>
----
- arch/arm64/configs/defconfig | 3 +++
- 1 file changed, 3 insertions(+)
+Doesn't this end up limiting the number of audio channels HDMI can carry?
+AFAICT the TDM properties are all optional, so just leave it out.
 
-diff --git a/arch/arm64/configs/defconfig b/arch/arm64/configs/defconfig
-index 6d04b95..ca25f79 100644
---- a/arch/arm64/configs/defconfig
-+++ b/arch/arm64/configs/defconfig
-@@ -473,6 +473,7 @@ CONFIG_PINCTRL_IMX8MQ=y
- CONFIG_PINCTRL_IMX8QXP=y
- CONFIG_PINCTRL_IMX8DXL=y
- CONFIG_PINCTRL_IPQ8074=y
-+CONFIG_PINCTRL_IPQ5018=y
- CONFIG_PINCTRL_IPQ6018=y
- CONFIG_PINCTRL_MSM8916=y
- CONFIG_PINCTRL_MSM8994=y
-@@ -851,6 +852,8 @@ CONFIG_QCOM_CLK_APCS_MSM8916=y
- CONFIG_QCOM_CLK_SMD_RPM=y
- CONFIG_QCOM_CLK_RPMH=y
- CONFIG_IPQ_GCC_8074=y
-+CONFIG_IPQ_GCC_5018=y
-+CONFIG_IPQ_APSS_5018=y
- CONFIG_IPQ_GCC_6018=y
- CONFIG_MSM_GCC_8916=y
- CONFIG_MSM_GCC_8994=y
--- 
-2.7.4
+Same goes for the other two patches.
 
+> +                       dai-tdm-slot-width = <32>;
+> +               };
+> +       };
+> +
+>         osc24M: osc24M_clk {
+>                 #clock-cells = <0>;
+>                 compatible = "fixed-clock";
+> @@ -609,6 +628,19 @@ mdio: mdio {
+>                         };
+>                 };
+>
+> +               i2s1: i2s@5091000 {
+> +                       #sound-dai-cells = <0>;
+> +                       compatible = "allwinner,sun50i-h6-i2s";
+> +                       reg = <0x05091000 0x1000>;
+> +                       interrupts = <GIC_SPI 19 IRQ_TYPE_LEVEL_HIGH>;
+> +                       clocks = <&ccu CLK_BUS_I2S1>, <&ccu CLK_I2S1>;
+> +                       clock-names = "apb", "mod";
+> +                       dmas = <&dma 4>, <&dma 4>;
+> +                       resets = <&ccu RST_BUS_I2S1>;
+> +                       dma-names = "rx", "tx";
+> +                       status = "disabled";
+> +               };
+> +
+>                 spdif: spdif@5093000 {
+>                         #sound-dai-cells = <0>;
+>                         compatible = "allwinner,sun50i-h6-spdif";
+> @@ -739,6 +771,7 @@ ohci3: usb@5311400 {
+>                 };
+>
+>                 hdmi: hdmi@6000000 {
+> +                       #sound-dai-cells = <0>;
+>                         compatible = "allwinner,sun50i-h6-dw-hdmi";
+>                         reg = <0x06000000 0x10000>;
+>                         reg-io-width = <1>;
+
+The rest of the patch looks OK.
