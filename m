@@ -2,146 +2,153 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from vger.kernel.org (vger.kernel.org [23.128.96.18])
-	by mail.lfdr.de (Postfix) with ESMTP id 2F72C27AC83
-	for <lists+devicetree@lfdr.de>; Mon, 28 Sep 2020 13:17:11 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTP id 5512E27AC89
+	for <lists+devicetree@lfdr.de>; Mon, 28 Sep 2020 13:18:36 +0200 (CEST)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S1726420AbgI1LRJ (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Mon, 28 Sep 2020 07:17:09 -0400
-Received: from szxga07-in.huawei.com ([45.249.212.35]:41718 "EHLO huawei.com"
-        rhost-flags-OK-OK-OK-FAIL) by vger.kernel.org with ESMTP
-        id S1726380AbgI1LRJ (ORCPT <rfc822;devicetree@vger.kernel.org>);
-        Mon, 28 Sep 2020 07:17:09 -0400
-Received: from DGGEMS405-HUB.china.huawei.com (unknown [172.30.72.60])
-        by Forcepoint Email with ESMTP id A9BF91335AC445B4FEB2;
-        Mon, 28 Sep 2020 19:17:06 +0800 (CST)
-Received: from [127.0.0.1] (10.174.177.253) by DGGEMS405-HUB.china.huawei.com
- (10.3.19.205) with Microsoft SMTP Server id 14.3.487.0; Mon, 28 Sep 2020
- 19:16:59 +0800
-Subject: Re: [PATCH v3 20/21] dt-bindings: arm: hisilicon: convert hisilicon,
- hi6220-sramctrl bindings to json-schema
-To:     Jonathan Cameron <Jonathan.Cameron@Huawei.com>
-CC:     Wei Xu <xuwei5@hisilicon.com>, Rob Herring <robh+dt@kernel.org>,
-        devicetree <devicetree@vger.kernel.org>,
-        linux-arm-kernel <linux-arm-kernel@lists.infradead.org>,
-        linux-kernel <linux-kernel@vger.kernel.org>,
-        Kefeng Wang <wangkefeng.wang@huawei.com>,
-        Libin <huawei.libin@huawei.com>
-References: <20200927062129.4573-1-thunder.leizhen@huawei.com>
- <20200927062129.4573-21-thunder.leizhen@huawei.com>
- <20200928105050.0000395f@Huawei.com>
-From:   "Leizhen (ThunderTown)" <thunder.leizhen@huawei.com>
-Message-ID: <e426cb30-9653-5a5e-c48e-a8bbd98b944f@huawei.com>
-Date:   Mon, 28 Sep 2020 19:16:58 +0800
-User-Agent: Mozilla/5.0 (Windows NT 10.0; WOW64; rv:60.0) Gecko/20100101
- Thunderbird/60.7.0
+        id S1726558AbgI1LSf (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Mon, 28 Sep 2020 07:18:35 -0400
+Received: from mx0b-001ae601.pphosted.com ([67.231.152.168]:59688 "EHLO
+        mx0b-001ae601.pphosted.com" rhost-flags-OK-OK-OK-OK)
+        by vger.kernel.org with ESMTP id S1726526AbgI1LSf (ORCPT
+        <rfc822;devicetree@vger.kernel.org>);
+        Mon, 28 Sep 2020 07:18:35 -0400
+Received: from pps.filterd (m0077474.ppops.net [127.0.0.1])
+        by mx0b-001ae601.pphosted.com (8.16.0.43/8.16.0.43) with SMTP id 08SBGBZE023725;
+        Mon, 28 Sep 2020 06:18:25 -0500
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=cirrus.com; h=from : to : cc :
+ subject : date : message-id : mime-version : content-transfer-encoding :
+ content-type; s=PODMain02222019;
+ bh=aHsAD30eplTLAmyfrhAwqb/bjmQuLl4rTfeV9gEtaIw=;
+ b=EXY1kpJ+Xd2zsMDwvksqlHgKAio3XoAjGDCgmD/p34L2+zI/X1Uf/f9AkzWbkUSRdtTg
+ RJc3W85RdyIDgWqBgc/xao/9j1b7o7ZRVI9xDwujtGiC5EEocL+lRbYF/Ok2nDOxfvPt
+ jlexAG5XjTD0ATs+AsQiVlWqcnucb2Z19DleQLMRmZS04QVQg+esdd0ycTr6Y1sbF+py
+ qh6p9vYpo3oFhgLxPuqBPnFyApcOKQ/JM2WkS7cKvbSt9t33NqTOIQEbPQ/zC5G1lsQb
+ DMskKFAmI/+lIqOtZf+rhHY7pWTulTmn+mPlrpms+b0lEHTmHqECIbkW73PC6oNqE7k/ kA== 
+Received: from ediex02.ad.cirrus.com ([87.246.76.36])
+        by mx0b-001ae601.pphosted.com with ESMTP id 33t22p25fv-1
+        (version=TLSv1.2 cipher=ECDHE-RSA-AES128-GCM-SHA256 bits=128 verify=NOT);
+        Mon, 28 Sep 2020 06:18:25 -0500
+Received: from EDIEX01.ad.cirrus.com (198.61.84.80) by EDIEX02.ad.cirrus.com
+ (198.61.84.81) with Microsoft SMTP Server (version=TLS1_2,
+ cipher=TLS_ECDHE_RSA_WITH_AES_128_GCM_SHA256) id 15.1.1913.5; Mon, 28 Sep
+ 2020 12:18:24 +0100
+Received: from ediswmail.ad.cirrus.com (198.61.86.93) by EDIEX01.ad.cirrus.com
+ (198.61.84.80) with Microsoft SMTP Server id 15.1.1913.5 via Frontend
+ Transport; Mon, 28 Sep 2020 12:18:24 +0100
+Received: from AUSNPC0LSNW1-debian.ad.cirrus.com (ausnpc0lsnw1.ad.cirrus.com [198.61.64.171])
+        by ediswmail.ad.cirrus.com (Postfix) with ESMTP id 5EC9845;
+        Mon, 28 Sep 2020 11:18:23 +0000 (UTC)
+From:   Richard Fitzgerald <rf@opensource.cirrus.com>
+To:     <broonie@kernel.org>, <robh+dt@kernel.org>
+CC:     <patches@opensource.cirrus.com>, <devicetree@vger.kernel.org>,
+        <alsa-devel@alsa-project.org>, <linux-kernel@vger.kernel.org>,
+        Charles Keepax <ckeepax@opensource.cirrus.com>
+Subject: [PATCH v2 1/2] ASoC: cs4234: Add dtschema binding document
+Date:   Mon, 28 Sep 2020 12:18:20 +0100
+Message-ID: <20200928111821.26967-1-rf@opensource.cirrus.com>
+X-Mailer: git-send-email 2.20.1
 MIME-Version: 1.0
-In-Reply-To: <20200928105050.0000395f@Huawei.com>
-Content-Type: text/plain; charset="utf-8"
-Content-Language: en-US
-Content-Transfer-Encoding: 7bit
-X-Originating-IP: [10.174.177.253]
-X-CFilter-Loop: Reflected
+Content-Transfer-Encoding: 8bit
+Content-Type: text/plain
+X-Proofpoint-Spam-Details: rule=notspam policy=default score=0 malwarescore=0 bulkscore=0 phishscore=0
+ clxscore=1015 adultscore=0 priorityscore=1501 mlxscore=0 mlxlogscore=999
+ impostorscore=0 suspectscore=0 spamscore=0 lowpriorityscore=0
+ classifier=spam adjust=0 reason=mlx scancount=1 engine=8.12.0-2006250000
+ definitions=main-2009280091
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
+From: Charles Keepax <ckeepax@opensource.cirrus.com>
 
+Document the bindings for the CS4234 ASoC codec driver.
 
-On 2020/9/28 17:50, Jonathan Cameron wrote:
-> On Sun, 27 Sep 2020 14:21:28 +0800
-> Zhen Lei <thunder.leizhen@huawei.com> wrote:
-> 
->> Convert the Hisilicon Hi6220 SRAM controller binding to DT schema format
->> using json-schema.
->>
->> Signed-off-by: Zhen Lei <thunder.leizhen@huawei.com>
->> ---
->>  .../hi3620/hisilicon,hi6220-sramctrl.txt           | 16 ---------
->>  .../hi3620/hisilicon,hi6220-sramctrl.yaml          | 38 ++++++++++++++++++++++
->>  2 files changed, 38 insertions(+), 16 deletions(-)
->>  delete mode 100644 Documentation/devicetree/bindings/arm/hisilicon/controller/hi3620/hisilicon,hi6220-sramctrl.txt
->>  create mode 100644 Documentation/devicetree/bindings/arm/hisilicon/controller/hi3620/hisilicon,hi6220-sramctrl.yaml
->>
->> diff --git a/Documentation/devicetree/bindings/arm/hisilicon/controller/hi3620/hisilicon,hi6220-sramctrl.txt b/Documentation/devicetree/bindings/arm/hisilicon/controller/hi3620/hisilicon,hi6220-sramctrl.txt
->> deleted file mode 100644
->> index 963a2cb13a249d9..000000000000000
->> --- a/Documentation/devicetree/bindings/arm/hisilicon/controller/hi3620/hisilicon,hi6220-sramctrl.txt
->> +++ /dev/null
->> @@ -1,16 +0,0 @@
->> -Hisilicon Hi6220 SRAM controller
->> -
->> -Required properties:
->> -- compatible : "hisilicon,hi6220-sramctrl", "syscon"
->> -- reg : Register address and size
->> -
->> -Hisilicon's SoCs use sram for multiple purpose; on Hi6220 there have several
->> -SRAM banks for power management, modem, security, etc. Further, use "syscon"
->> -managing the common sram which can be shared by multiple modules.
->> -
->> -Example:
->> -	/*for Hi6220*/
->> -	sram: sram@fff80000 {
->> -		compatible = "hisilicon,hi6220-sramctrl", "syscon";
->> -		reg = <0x0 0xfff80000 0x0 0x12000>;
->> -	};
->> \ No newline at end of file
->> diff --git a/Documentation/devicetree/bindings/arm/hisilicon/controller/hi3620/hisilicon,hi6220-sramctrl.yaml b/Documentation/devicetree/bindings/arm/hisilicon/controller/hi3620/hisilicon,hi6220-sramctrl.yaml
->> new file mode 100644
->> index 000000000000000..f66d414a7a48071
->> --- /dev/null
->> +++ b/Documentation/devicetree/bindings/arm/hisilicon/controller/hi3620/hisilicon,hi6220-sramctrl.yaml
->> @@ -0,0 +1,38 @@
->> +# SPDX-License-Identifier: (GPL-2.0-only OR BSD-2-Clause)
->> +%YAML 1.2
->> +---
->> +$id: http://devicetree.org/schemas/arm/hisilicon/controller/hi3620/hisilicon,hi6220-sramctrl.yaml#
->> +$schema: http://devicetree.org/meta-schemas/core.yaml#
->> +
->> +title: Hisilicon Hi6220 SRAM controller
->> +
->> +maintainers:
->> +  - Wei Xu <xuwei5@hisilicon.com>
->> +
->> +description: |
->> +  Hisilicon's SoCs use sram for multiple purpose; on Hi6220 there have several
-> 
-> SRAM for consistency
+Signed-off-by: Charles Keepax <ckeepax@opensource.cirrus.com>
+---
+ .../bindings/sound/cirrus,cs4234.yaml         | 74 +++++++++++++++++++
+ 1 file changed, 74 insertions(+)
+ create mode 100644 Documentation/devicetree/bindings/sound/cirrus,cs4234.yaml
 
-OK, I will correct it.
-
-> 
->> +  SRAM banks for power management, modem, security, etc. Further, use "syscon"
->> +  managing the common sram which can be shared by multiple modules.
->> +
->> +properties:
->> +  compatible:
->> +    items:
->> +      - const: hisilicon,hi6220-sramctrl
->> +      - const: syscon
->> +
->> +  reg:
->> +    description: Register address and size
->> +    maxItems: 1
->> +
->> +required:
->> +  - compatible
->> +  - reg
->> +
->> +examples:
->> +  - |
->> +    /* for Hi6220 */
->> +    sram: sram@fff80000 {
->> +        compatible = "hisilicon,hi6220-sramctrl", "syscon";
->> +        reg = <0xfff80000 0x12000>;
->> +    };
->> +...
->> \ No newline at end of file
-> 
-> As per other files that have this, please add one.
-> 
-> 
-> 
-> 
-> .
-> 
+diff --git a/Documentation/devicetree/bindings/sound/cirrus,cs4234.yaml b/Documentation/devicetree/bindings/sound/cirrus,cs4234.yaml
+new file mode 100644
+index 000000000000..156560b2a980
+--- /dev/null
++++ b/Documentation/devicetree/bindings/sound/cirrus,cs4234.yaml
+@@ -0,0 +1,74 @@
++# SPDX-License-Identifier: (GPL-2.0+ OR BSD-2-Clause)
++%YAML 1.2
++---
++$id: http://devicetree.org/schemas/sound/cirrus,cs4234.yaml#
++$schema: http://devicetree.org/meta-schemas/core.yaml#
++
++title: Cirrus Logic cs4234 audio CODEC
++
++maintainers:
++  - patches@opensource.cirrus.com
++
++description:
++  The CS4234 is a highly versatile CODEC that combines 4 channels of
++  high performance analog to digital conversion, 4 channels of high
++  performance digital to analog conversion for audio, and 1 channel of
++  digital to analog conversion to provide a nondelayed audio reference
++  signal to an external Class H tracking power supply. If not used to
++  drive a tracking power supply, the 5th DAC can instead be used as a
++  standard audio grade DAC, with performance specifications identical
++  to that of the 4 DACs in the audio path. Additionally, the CS4234
++  includes tunable group delay for each of the 4 audio DAC paths to
++  provide lead time for the external switch-mode power supply, and a
++  nondelayed path into the DAC outputs for input signals requiring a
++  low-latency path to the outputs.
++
++properties:
++  compatible:
++    enum:
++      - cirrus,cs4234
++
++  reg:
++    description:
++      The 7-bit I2C address depends on the state of the ADx pins, in
++      binary given by [0 0 1 0 AD2 AD1 AD0 0].
++    items:
++      minimum: 0x10
++      maximum: 0x17
++
++  VA-supply:
++    description:
++      Analogue power supply.
++
++  VL-supply:
++    description:
++      Interface power supply.
++
++  reset-gpios:
++    maxItems: 1
++
++required:
++  - compatible
++  - reg
++  - VA-supply
++  - VL-supply
++
++additionalProperties: false
++
++examples:
++  - |
++    i2c@e0004000 {
++        #address-cells = <1>;
++        #size-cells = <0>;
++        reg = <0xe0004000 0x1000>;
++
++        cs4234: codec@11 {
++            compatible = "cirrus,cs4234";
++            reg = <0x11>;
++
++            VA-supply = <&vdd3v3>;
++            VL-supply = <&vdd3v3>;
++
++            reset-gpios = <&gpio 0>;
++        };
++    };
+-- 
+2.20.1
 
