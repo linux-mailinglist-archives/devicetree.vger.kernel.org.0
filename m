@@ -2,112 +2,100 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from vger.kernel.org (vger.kernel.org [23.128.96.18])
-	by mail.lfdr.de (Postfix) with ESMTP id 8BA8627AF6A
-	for <lists+devicetree@lfdr.de>; Mon, 28 Sep 2020 15:53:18 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTP id 7961E27AF7E
+	for <lists+devicetree@lfdr.de>; Mon, 28 Sep 2020 15:57:05 +0200 (CEST)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S1726310AbgI1NxR (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Mon, 28 Sep 2020 09:53:17 -0400
-Received: from lindbergh.monkeyblade.net ([23.128.96.19]:34508 "EHLO
-        lindbergh.monkeyblade.net" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S1725290AbgI1NxR (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Mon, 28 Sep 2020 09:53:17 -0400
-Received: from mail-wr1-x444.google.com (mail-wr1-x444.google.com [IPv6:2a00:1450:4864:20::444])
-        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 09891C061755;
-        Mon, 28 Sep 2020 06:53:17 -0700 (PDT)
-Received: by mail-wr1-x444.google.com with SMTP id g4so1444686wrs.5;
-        Mon, 28 Sep 2020 06:53:16 -0700 (PDT)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=gmail.com; s=20161025;
-        h=date:from:to:cc:subject:message-id:references:mime-version
-         :content-disposition:in-reply-to:user-agent;
-        bh=f1wKe3InkkDui+crhECsBUh95jgL+WD2EWQapKErJFg=;
-        b=ZMuP/8jtF1vW9aFVHx7E5Aa2kuzgcFAkjJywaboHIAFRIWAcVOwBRC+CKi8b3mP1LE
-         n4cpD+f3wOz3wnz9jAqEW07Efs2ozICUu5zR0PDwuDQiRWDiUn5HPfLXkl1QKh60CU6x
-         A/wwMxEdoQlkPuXKjBw64Ppg06Io2GmBYGtPuLVtQn2DEQm8cl0zc6znEIIsUVLky0AO
-         D1HB7tJRACk/lRS1hKiNa2ChGM2K/ztSxndwz7CuYKFcPrG2PNcCxf7ZkqNvHeOOBTlX
-         Y5ojfUJ34c6q23cYx1iv5QUm9ppG0oOxqTpf6LwvqYBPLQihSuZqTWC/adlM/d0TOrsS
-         wJjA==
-X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=1e100.net; s=20161025;
-        h=x-gm-message-state:date:from:to:cc:subject:message-id:references
-         :mime-version:content-disposition:in-reply-to:user-agent;
-        bh=f1wKe3InkkDui+crhECsBUh95jgL+WD2EWQapKErJFg=;
-        b=gWfCYa2kL+aurj8i4N9cUjgudMs+KoRC1uCKMG+9CRu4i6DEHTwwNQUlJcQO+F36mc
-         zhpeGNDsr3eGkpTSHC4SW0UUw61s04l1R9O8mIbWe2EhVL8Z3ZRfNWrokkE/p7c7FXCu
-         NrH0R90PDC/X5Pf7+eGQkG9rXWtYqakU7tL8Wjzr+tRrOti5iDPxRjXK+G2Vb2YhADWv
-         TpFBHMCD/4q4h9MfRasJt4fhY69lhs0S5Tx8THLyU/4jmvZa9mF+LXFEq1i6fOkSicZI
-         3XoccfykArxvQnYnvJ+CSy5EOsyV622gdQ6QOtx5PQ7dV0CRzv5QXK2iZ7GQ8Jv6ulHo
-         yXYg==
-X-Gm-Message-State: AOAM531oAqxLUKImVPwSUJ9A1rawMAlrIq81Mdvkl17IBwpuCG8Ugu7F
-        QIse9Mvfwfu9tF0XDkxEDU0=
-X-Google-Smtp-Source: ABdhPJx3vpDJaU6EF8eGPYr6q+PONsBtwiVkw7Y+seDHSlVwTqpGsbABEe7+L7L2U8kgE/m/ssY0RA==
-X-Received: by 2002:adf:e4cc:: with SMTP id v12mr1854780wrm.216.1601301195761;
-        Mon, 28 Sep 2020 06:53:15 -0700 (PDT)
-Received: from localhost ([217.111.27.204])
-        by smtp.gmail.com with ESMTPSA id a20sm1275976wmm.40.2020.09.28.06.53.13
-        (version=TLS1_3 cipher=TLS_AES_256_GCM_SHA384 bits=256/256);
-        Mon, 28 Sep 2020 06:53:14 -0700 (PDT)
-Date:   Mon, 28 Sep 2020 15:53:11 +0200
-From:   Thierry Reding <thierry.reding@gmail.com>
-To:     JC Kuo <jckuo@nvidia.com>
-Cc:     gregkh@linuxfoundation.org, robh@kernel.org, jonathanh@nvidia.com,
-        kishon@ti.com, linux-tegra@vger.kernel.org,
-        linux-usb@vger.kernel.org, linux-kernel@vger.kernel.org,
-        devicetree@vger.kernel.org, nkristam@nvidia.com
-Subject: Re: [PATCH v3 14/15] usb: host: xhci-tegra: Unlink power domain
- devices
-Message-ID: <20200928135311.GN3065790@ulmo>
-References: <20200909081041.3190157-1-jckuo@nvidia.com>
- <20200909081041.3190157-15-jckuo@nvidia.com>
+        id S1726551AbgI1N5E (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Mon, 28 Sep 2020 09:57:04 -0400
+Received: from mail.kernel.org ([198.145.29.99]:33886 "EHLO mail.kernel.org"
+        rhost-flags-OK-OK-OK-OK) by vger.kernel.org with ESMTP
+        id S1726310AbgI1N5E (ORCPT <rfc822;devicetree@vger.kernel.org>);
+        Mon, 28 Sep 2020 09:57:04 -0400
+Received: from mail-oi1-f179.google.com (mail-oi1-f179.google.com [209.85.167.179])
+        (using TLSv1.2 with cipher ECDHE-RSA-AES128-GCM-SHA256 (128/128 bits))
+        (No client certificate requested)
+        by mail.kernel.org (Postfix) with ESMTPSA id 5629821D7F;
+        Mon, 28 Sep 2020 13:57:03 +0000 (UTC)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=kernel.org;
+        s=default; t=1601301423;
+        bh=jpy86xlaUGPlUxTUN9/FT28T6TJmY9Ad8uRAhplOiLM=;
+        h=References:In-Reply-To:From:Date:Subject:To:Cc:From;
+        b=vDmSUBpYh7JEkaKpuSJodZASpvn5qYNR9WD7Zz+ui1FtxvuddwJe0WaOjmp/axHLo
+         CvGi+htN93Dw+bCHcooMeEmLM6ROMwqzptJbER2UAJzI5Gc0Rbgm9qtlYuoiCTp2kJ
+         kSRDYEYKPRHzv/MBnvBvucpR9bEchfKfyRLFlTYk=
+Received: by mail-oi1-f179.google.com with SMTP id i17so1368230oig.10;
+        Mon, 28 Sep 2020 06:57:03 -0700 (PDT)
+X-Gm-Message-State: AOAM533YkebO7Em65jlKwaInsqvecp/1Izm6K5dwseVO26IlCjuIwbxh
+        6leaTj1LaaOHGON5YRlfpSw362VOLmMmtn0Mtg==
+X-Google-Smtp-Source: ABdhPJyYmZnCW5ClUtpTwg9oOuQczSxGPBFDOMMXF/U6MycG0QqSC1DUS8ybQXFW/wpG74B1ug8+ncnraesKmTdxWF0=
+X-Received: by 2002:aca:7543:: with SMTP id q64mr978362oic.147.1601301422618;
+ Mon, 28 Sep 2020 06:57:02 -0700 (PDT)
 MIME-Version: 1.0
-Content-Type: multipart/signed; micalg=pgp-sha256;
-        protocol="application/pgp-signature"; boundary="57SHPaztv6dlLu/a"
-Content-Disposition: inline
-In-Reply-To: <20200909081041.3190157-15-jckuo@nvidia.com>
-User-Agent: Mutt/1.14.7 (2020-08-29)
+References: <20200916081831.24747-1-ran.wang_1@nxp.com> <20200923023234.GA3751572@bogus>
+ <AM6PR04MB5413BB2F8D044B2312DAEC4FF1380@AM6PR04MB5413.eurprd04.prod.outlook.com>
+In-Reply-To: <AM6PR04MB5413BB2F8D044B2312DAEC4FF1380@AM6PR04MB5413.eurprd04.prod.outlook.com>
+From:   Rob Herring <robh@kernel.org>
+Date:   Mon, 28 Sep 2020 08:56:51 -0500
+X-Gmail-Original-Message-ID: <CAL_Jsq+uzkr7CcvwQTe5vhpMPtdqL9v4EeqH5yZjMoT=JrDtDQ@mail.gmail.com>
+Message-ID: <CAL_Jsq+uzkr7CcvwQTe5vhpMPtdqL9v4EeqH5yZjMoT=JrDtDQ@mail.gmail.com>
+Subject: Re: [PATCH 1/5] Documentation: dt: binding: fsl: Add
+ 'fsl,ippdexpcr1-alt-addr' property
+To:     Ran Wang <ran.wang_1@nxp.com>
+Cc:     Leo Li <leoyang.li@nxp.com>, Shawn Guo <shawnguo@kernel.org>,
+        "linuxppc-dev@lists.ozlabs.org" <linuxppc-dev@lists.ozlabs.org>,
+        "linux-arm-kernel@lists.infradead.org" 
+        <linux-arm-kernel@lists.infradead.org>,
+        "devicetree@vger.kernel.org" <devicetree@vger.kernel.org>,
+        "linux-kernel@vger.kernel.org" <linux-kernel@vger.kernel.org>,
+        Biwen Li <biwen.li@nxp.com>
+Content-Type: text/plain; charset="UTF-8"
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
+On Wed, Sep 23, 2020 at 1:44 AM Ran Wang <ran.wang_1@nxp.com> wrote:
+>
+> Hi Rob,
+>
+> On Wednesday, September 23, 2020 10:33 AM, Rob Herring wrote:
+> >
+> > On Wed, Sep 16, 2020 at 04:18:27PM +0800, Ran Wang wrote:
+> > > From: Biwen Li <biwen.li@nxp.com>
+> > >
+> > > The 'fsl,ippdexpcr1-alt-addr' property is used to handle an errata
+> > > A-008646 on LS1021A
+> > >
+> > > Signed-off-by: Biwen Li <biwen.li@nxp.com>
+> > > Signed-off-by: Ran Wang <ran.wang_1@nxp.com>
+> > > ---
+> > >  Documentation/devicetree/bindings/soc/fsl/rcpm.txt | 19
+> > > +++++++++++++++++++
+> > >  1 file changed, 19 insertions(+)
+> > >
+> > > diff --git a/Documentation/devicetree/bindings/soc/fsl/rcpm.txt
+> > > b/Documentation/devicetree/bindings/soc/fsl/rcpm.txt
+> > > index 5a33619..1be58a3 100644
+> > > --- a/Documentation/devicetree/bindings/soc/fsl/rcpm.txt
+> > > +++ b/Documentation/devicetree/bindings/soc/fsl/rcpm.txt
+> > > @@ -34,6 +34,11 @@ Chassis Version          Example Chips
+> > >  Optional properties:
+> > >   - little-endian : RCPM register block is Little Endian. Without it RCPM
+> > >     will be Big Endian (default case).
+> > > + - fsl,ippdexpcr1-alt-addr : The property is related to a hardware issue
+> > > +   on SoC LS1021A and only needed on SoC LS1021A.
+> > > +   Must include 2 entries:
+> > > +   The first entry must be a link to the SCFG device node.
+> > > +   The 2nd entry must be offset of register IPPDEXPCR1 in SCFG.
+> >
+> > You don't need a DT change for this. You can find SCFG node by its compatible
+> > string and then the offset should be known given this issue is only on 1 SoC.
+>
+> Did you mean that RCPM driver just to access IPPDEXPCR1 shadowed register in SCFG
+> directly without fetching it's offset info. from DT?
 
---57SHPaztv6dlLu/a
-Content-Type: text/plain; charset=us-ascii
-Content-Disposition: inline
+Yes. There's only 1 possible value of the offset because there's only
+one SoC, so the driver can hardcode the offset. And I assume there's
+only one SCFG node, so you can find it by its compatible string
+(of_find_compatible_node).
 
-On Wed, Sep 09, 2020 at 04:10:40PM +0800, JC Kuo wrote:
-> This commit unlinks xhci-tegra platform device with ss/host power
-> domain devices. Reasons for this change is - at elpg entry, PHY
-
-s/elpg/ELPG/
-
-> sleepwalk and wake configuration need to be done before powering
-> down ss/host partitions, and PHY need be powered off after powering
-
-s/ss/SS/ here (because it's an abbreviation) and in a few cases below.
-
-Otherwise this seems fine, though it'd be good if Jon could take a look
-since he's more familiar with the power domain setup here.
-
-Thierry
-
---57SHPaztv6dlLu/a
-Content-Type: application/pgp-signature; name="signature.asc"
-
------BEGIN PGP SIGNATURE-----
-
-iQIzBAABCAAdFiEEiOrDCAFJzPfAjcif3SOs138+s6EFAl9x6scACgkQ3SOs138+
-s6HLARAAqe5/57RnQmyIKmyK6Bjs3+oFASB6867fC7++5l4KWQh8kZV1a6/JCURA
-oelg3tHAt4ep9Mwi+tgCHMrbeKu3sALcv6WGXpvkeyOrBNF488KUF5I/f9NvNZU8
-fAjqbobs+cR5GOJAYvpMRHpLE+ZAzR5FQbvJobscf3lfq3wf87K+R98V8y6lyDTM
-Du+ZyEg0ejIT2bFru2AVd0cTx4bQaWrG2m3JBZNEyhc9y800gXqS2ryZGmhxWfza
-qQ4VpTFPsxgxikcScFwnpYoNaHbUcYHi8jvqrutRmttpMzcS9SxsOjTorEOfYWa1
-qXbCBJ+fPCXDmz5lAD0I/M6j1Quqb2W7VjilPSuFkfnygAituDVAFRMU5AboeCvr
-eqeo5Qxgp2SisYMjD4hMF37BVv1GwuavmiZU/yGpNGpzODg5AiXR7D1kSZdtZK4J
-/9T9HY5cvYSXMVJN+AuXHDPsmOrd4qrXYsyNFlVODa5i1qAGGYuhSZfnh+bpmTne
-lDKZ2tnd2IglYDndfIB+1wwQ3VCIHub0INxsrBXDvVjkJjLvP9IFG8HHTtgwojcN
-PyUtAuJyO6Jx/Rw/+3/swfBh/wpMUNSk41I44EbBrempYwuUNn4iJEz2bXkqNdFi
-ko2A4Uqukeml8mfHsAGnHGZ4+28Gy37ry10RaxlkckSoowmHOiY=
-=RgVx
------END PGP SIGNATURE-----
-
---57SHPaztv6dlLu/a--
+Rob
