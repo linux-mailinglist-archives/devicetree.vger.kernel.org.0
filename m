@@ -2,54 +2,54 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from vger.kernel.org (vger.kernel.org [23.128.96.18])
-	by mail.lfdr.de (Postfix) with ESMTP id 8E89C27B55E
-	for <lists+devicetree@lfdr.de>; Mon, 28 Sep 2020 21:36:01 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTP id B676727B562
+	for <lists+devicetree@lfdr.de>; Mon, 28 Sep 2020 21:36:32 +0200 (CEST)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S1726827AbgI1TgA (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Mon, 28 Sep 2020 15:36:00 -0400
-Received: from mail.kernel.org ([198.145.29.99]:36320 "EHLO mail.kernel.org"
+        id S1726846AbgI1Tgb (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Mon, 28 Sep 2020 15:36:31 -0400
+Received: from mail.kernel.org ([198.145.29.99]:36670 "EHLO mail.kernel.org"
         rhost-flags-OK-OK-OK-OK) by vger.kernel.org with ESMTP
-        id S1726812AbgI1TgA (ORCPT <rfc822;devicetree@vger.kernel.org>);
-        Mon, 28 Sep 2020 15:36:00 -0400
+        id S1726590AbgI1Tgb (ORCPT <rfc822;devicetree@vger.kernel.org>);
+        Mon, 28 Sep 2020 15:36:31 -0400
 Received: from localhost (fw-tnat.cambridge.arm.com [217.140.96.140])
         (using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
         (No client certificate requested)
-        by mail.kernel.org (Postfix) with ESMTPSA id 4002C2075F;
-        Mon, 28 Sep 2020 19:35:59 +0000 (UTC)
+        by mail.kernel.org (Postfix) with ESMTPSA id ABD1020773;
+        Mon, 28 Sep 2020 19:36:30 +0000 (UTC)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=kernel.org;
-        s=default; t=1601321759;
-        bh=lAI06F3qb6LpwpM9MrrzxKHv7dM8IzJK13Nh++HlPLo=;
+        s=default; t=1601321791;
+        bh=Uj+sz+Xs7Ywudhl2rn5RI1+auNOSn4V4ChTLsk2Xiok=;
         h=Date:From:To:Cc:In-Reply-To:References:Subject:From;
-        b=EFSzjanCXxnXF1kwKXY+K9ugGFSYhmZ1PRyYdWftcBDt6jOsfh+ecFXbtHmI9sxZc
-         vrCO2VImgdrZVQAMWUwUQ43mTYHliptDGjmvvwaEoIhGyZ1w9BLAqy01YLL2Y6mDQ/
-         4o+7Vertp3qlQYezkDTcrJoT5RsYf2Lo9rvfiME4=
-Date:   Mon, 28 Sep 2020 20:35:02 +0100
+        b=pXKOMeuNJB7vudrFDOPCqN38Gyemp3GgbWMHOvgHGaxyzoNIQwy682NZu1QSFRTZc
+         fCzUGRmV9LOk5/5CH9BpUpBVBkE3atMn9gWX5eRBMxAegdar0WgCv+1Xf3rsMO7qAg
+         T6zqs/QsL2oAVRQdwXeOfK6zfjbKLYr/6HaFOmTA=
+Date:   Mon, 28 Sep 2020 20:35:34 +0100
 From:   Mark Brown <broonie@kernel.org>
-To:     robh+dt@kernel.org, Richard Fitzgerald <rf@opensource.cirrus.com>
-Cc:     Charles Keepax <ckeepax@opensource.cirrus.com>,
-        alsa-devel@alsa-project.org, devicetree@vger.kernel.org,
-        patches@opensource.cirrus.com, linux-kernel@vger.kernel.org
-In-Reply-To: <20200928111821.26967-1-rf@opensource.cirrus.com>
-References: <20200928111821.26967-1-rf@opensource.cirrus.com>
-Subject: Re: [PATCH v2 1/2] ASoC: cs4234: Add dtschema binding document
-Message-Id: <160132168199.55254.6586119876179093156.b4-ty@kernel.org>
+To:     lgirdwood@gmail.com, robh+dt@kernel.org,
+        cy_huang <u0084500@gmail.com>
+Cc:     linux-kernel@vger.kernel.org, cy_huang@richtek.com,
+        devicetree@vger.kernel.org
+In-Reply-To: <1601277584-5526-1-git-send-email-u0084500@gmail.com>
+References: <1601277584-5526-1-git-send-email-u0084500@gmail.com>
+Subject: Re: [PATCH v2 1/2] regulator: rtmv20: Adds support for Richtek RTMV20 load switch regulator
+Message-Id: <160132173416.55513.3947354990218182662.b4-ty@kernel.org>
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-On Mon, 28 Sep 2020 12:18:20 +0100, Richard Fitzgerald wrote:
-> Document the bindings for the CS4234 ASoC codec driver.
+On Mon, 28 Sep 2020 15:19:43 +0800, cy_huang wrote:
+> Add support for Richtek RTMV20 load switch regulator.
 
 Applied to
 
-   https://git.kernel.org/pub/scm/linux/kernel/git/broonie/sound.git for-next
+   https://git.kernel.org/pub/scm/linux/kernel/git/broonie/regulator.git for-next
 
 Thanks!
 
-[1/2] ASoC: cs4234: Add dtschema binding document
-      commit: 5ebba5e7d71c965763f722e68cc60b8a4aa9cb31
-[2/2] ASoC: cs4234: Add support for Cirrus Logic CS4234 codec
-      commit: d4edae9c508c845d92bd59c60c4089c3addad6a8
+[1/2] regulator: rtmv20: Adds support for Richtek RTMV20 load switch regulator
+      commit: b8c054a5eaf0cf2b9532969e5168ce5e2d78c284
+[2/2] regulator: rtmv20: Add DT-binding document for Richtek RTMV20
+      commit: 9f4366ec2c50dc478a06cb2cf0fadd3b38495650
 
 All being well this means that it will be integrated into the linux-next
 tree (usually sometime in the next 24 hours) and sent to Linus during
