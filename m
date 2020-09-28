@@ -2,131 +2,86 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from vger.kernel.org (vger.kernel.org [23.128.96.18])
-	by mail.lfdr.de (Postfix) with ESMTP id CF0E227AAE6
-	for <lists+devicetree@lfdr.de>; Mon, 28 Sep 2020 11:37:47 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTP id 99F5A27AB04
+	for <lists+devicetree@lfdr.de>; Mon, 28 Sep 2020 11:44:28 +0200 (CEST)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S1726652AbgI1Jhq (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Mon, 28 Sep 2020 05:37:46 -0400
-Received: from mga07.intel.com ([134.134.136.100]:57449 "EHLO mga07.intel.com"
+        id S1726526AbgI1Jo1 (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Mon, 28 Sep 2020 05:44:27 -0400
+Received: from mga09.intel.com ([134.134.136.24]:52595 "EHLO mga09.intel.com"
         rhost-flags-OK-OK-OK-OK) by vger.kernel.org with ESMTP
-        id S1726573AbgI1Jhq (ORCPT <rfc822;devicetree@vger.kernel.org>);
-        Mon, 28 Sep 2020 05:37:46 -0400
-IronPort-SDR: RzH+KJLeFLsHzISHZ8XxRJrO+YuhijVXafDEa6n2HbJ7ziecep3xqJYvX2oIo/fxm13xXJ/xNH
- BJZwRIbSssHA==
-X-IronPort-AV: E=McAfee;i="6000,8403,9757"; a="226115560"
+        id S1726465AbgI1Jo1 (ORCPT <rfc822;devicetree@vger.kernel.org>);
+        Mon, 28 Sep 2020 05:44:27 -0400
+IronPort-SDR: deao8A7ukp81kaHi6Nk52caPkMlNpavCT0V4jSe2ZhY5GphyBKmEGVvoBi/vg9mopW8Qx+/meG
+ iEpPsZXL144g==
+X-IronPort-AV: E=McAfee;i="6000,8403,9757"; a="162852555"
 X-IronPort-AV: E=Sophos;i="5.77,313,1596524400"; 
-   d="scan'208";a="226115560"
+   d="scan'208";a="162852555"
 X-Amp-Result: SKIPPED(no attachment in message)
 X-Amp-File-Uploaded: False
-Received: from orsmga004.jf.intel.com ([10.7.209.38])
-  by orsmga105.jf.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384; 28 Sep 2020 02:37:45 -0700
-IronPort-SDR: FmBYh7J3ODuTzBO2WMNYSdVb2e1r18oVHokD32Z5WGhv4Bwoxs9B/oeb5l+FwVbZmjfzdwLSus
- A2Yq2G+KIpzA==
+Received: from fmsmga004.fm.intel.com ([10.253.24.48])
+  by orsmga102.jf.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384; 28 Sep 2020 02:44:25 -0700
+IronPort-SDR: AgT5WIzwW2L4a5X7RTdYr7C+dXajwXI93pawwVdhzxuNoUujsKs2Q5BywGcXv6hy1BwqdA2a8t
+ hGHugTl0CUXA==
+X-ExtLoop1: 1
 X-IronPort-AV: E=Sophos;i="5.77,313,1596524400"; 
-   d="scan'208";a="456755403"
-Received: from paasikivi.fi.intel.com ([10.237.72.42])
-  by orsmga004-auth.jf.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384; 28 Sep 2020 02:37:40 -0700
-Received: by paasikivi.fi.intel.com (Postfix, from userid 1000)
-        id 40DFA207A0; Mon, 28 Sep 2020 12:37:38 +0300 (EEST)
-Date:   Mon, 28 Sep 2020 12:37:38 +0300
-From:   Sakari Ailus <sakari.ailus@linux.intel.com>
-To:     Lee Jones <lee.jones@linaro.org>
-Cc:     Marek Behun <marek.behun@nic.cz>, linux-leds@vger.kernel.org,
-        Pavel Machek <pavel@ucw.cz>, Dan Murphy <dmurphy@ti.com>,
-        =?utf-8?Q?Ond=C5=99ej?= Jirman <megous@megous.com>,
-        linux-kernel@vger.kernel.org, Rob Herring <robh+dt@kernel.org>,
-        devicetree@vger.kernel.org,
-        Bartosz Golaszewski <bgolaszewski@baylibre.com>,
-        Sean Wang <sean.wang@mediatek.com>,
-        Matthias Brugger <matthias.bgg@gmail.com>,
-        Michael Ellerman <mpe@ellerman.id.au>,
-        Benjamin Herrenschmidt <benh@kernel.crashing.org>,
-        Paul Mackerras <paulus@samba.org>,
-        Orson Zhai <orsonzhai@gmail.com>,
-        Baolin Wang <baolin.wang7@gmail.com>,
-        Chunyan Zhang <zhang.lyra@gmail.com>,
-        Thierry Reding <thierry.reding@gmail.com>,
-        Uwe =?iso-8859-1?Q?Kleine-K=F6nig?= 
-        <u.kleine-koenig@pengutronix.de>,
-        Liam Girdwood <lgirdwood@gmail.com>,
-        linux-acpi@vger.kernel.org, Mark Brown <broonie@kernel.org>,
-        "Rafael J. Wysocki" <rjw@rjwysocki.net>
-Subject: Re: [PATCH leds v2 05/50] leds: various: guard of_match_table member
- value with of_match_ptr
-Message-ID: <20200928093738.GA26842@paasikivi.fi.intel.com>
-References: <20200917223338.14164-1-marek.behun@nic.cz>
- <20200917223338.14164-6-marek.behun@nic.cz>
- <20200918061500.GD26842@paasikivi.fi.intel.com>
- <20200918112058.6d3b0d5d@nic.cz>
- <20200918095759.GG26842@paasikivi.fi.intel.com>
- <20200928080336.GA4637@dell>
- <20200928081114.GB4637@dell>
-MIME-Version: 1.0
-Content-Type: text/plain; charset=iso-8859-1
-Content-Disposition: inline
-Content-Transfer-Encoding: 8bit
-In-Reply-To: <20200928081114.GB4637@dell>
-User-Agent: Mutt/1.10.1 (2018-07-13)
+   d="scan'208";a="338117456"
+Received: from sgsxdev001.isng.intel.com (HELO localhost) ([10.226.88.11])
+  by fmsmga004.fm.intel.com with ESMTP; 28 Sep 2020 02:44:22 -0700
+From:   Rahul Tanwar <rahul.tanwar@linux.intel.com>
+To:     jdelvare@suse.com, linux@roeck-us.net, p.zabel@pengutronix.de,
+        linux-hwmon@vger.kernel.org, robh+dt@kernel.org
+Cc:     linux-kernel@vger.kernel.org, devicetree@vger.kernel.org,
+        andriy.shevchenko@intel.com, songjun.Wu@intel.com,
+        cheol.yong.kim@intel.com, qi-ming.wu@intel.com,
+        rtanwar@maxlinear.com, Rahul Tanwar <rahul.tanwar@linux.intel.com>
+Subject: [PATCH v2 0/2] Add hwmon driver for Moortec PVT controller
+Date:   Mon, 28 Sep 2020 17:44:17 +0800
+Message-Id: <cover.1601285307.git.rahul.tanwar@linux.intel.com>
+X-Mailer: git-send-email 2.11.0
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-Hi Lee,
+Patch 1 adds DT bindings schema in YAML format.
+Patch 2 adds driver for MR75203 PVT controller.
 
-On Mon, Sep 28, 2020 at 09:11:14AM +0100, Lee Jones wrote:
-> On Mon, 28 Sep 2020, Lee Jones wrote:
-> 
-> > On Fri, 18 Sep 2020, Sakari Ailus wrote:
-> > 
-> > > On Fri, Sep 18, 2020 at 11:20:58AM +0200, Marek Behun wrote:
-> > > > On Fri, 18 Sep 2020 09:15:00 +0300
-> > > > Sakari Ailus <sakari.ailus@linux.intel.com> wrote:
-> > > > 
-> > > > > Hi Marek,
-> > > > > 
-> > > > > On Fri, Sep 18, 2020 at 12:32:53AM +0200, Marek Behún wrote:
-> > > > > > Change
-> > > > > >   .of_match_table = xxx,
-> > > > > > to
-> > > > > >   .of_match_table = of_match_ptr(xxx),
-> > > > > > in various drivers.
-> > > > > > 
-> > > > > > This should be standard even for drivers that depend on OF.  
-> > > > > 
-> > > > > After this patch, none of these drivers will work on ACPI systems anymore.
-> > > 
-> > > ^
-> > > 
-> > > If CONFIG_OF is disabled, that is.
-> > 
-> > What?  of_match_ptr() is designed to change depending on OF or !OF.
-> > 
-> > Are you confusing this with acpi_match_table()?
-> 
-> Okay, I just grepped the kernel and found some OF matching in the ACPI
-> bus code.  This seems odd to be (at first sight at least).  I'm not
-> entirely sure how this is supposed to work, but when you disable OF,
-> one could reasonably expect any matching utilising OF based tables to
-> be disabled too.
+v2:
+- Address below review concerns from Andy Shevchenko
+ * Add more info in comments for clamp_val usage for clk sys cycles.
+ * Add mod_devicetable.h & property.h and remove of.h
+ * Remove unnecessary additional mutex lock from driver. Rely on regmap's
+   internal lock.
+ * Use units in timeout macros.
+ * Use HZ_PER_MHZ instead of direct values.
+ * Use devm_platform_ioremap_resource_byname() instead of separate calls.
+ * Use device property read API instead of OF API.
+- Address below review concerns from Guenter Roeck
+ * Improve commit message - add hardware monitoring driver.
+ * Remove unnecessary platform_set_drvdata. Instead add driver data in
+   function args at one place where it is used. Fix a issue related to it.
+ * Remove unnecessary NULL assignment.
+- Address below review concerns from Philipp Zabel
+ * Switch to devm_reset_control_get_exclusive().
+ * Move reset_deassert at the last after clk_enable in probe.
+- Resolve make dt_binding_check error.
+- Add MODULE_LICENSE
 
-There's really no reason having to enable the entire OF framework just to
-allow compatible string matching.
+v1:
+- Initial version.
 
-> 
-> Not using of_match_ptr() on ACPI enabled platforms sounds batty to
-> me.  If this is valid, perhaps the of_match_ptr()semantics should be
-> changed to include ACPI.
 
-That'd be one option, yes. But not all drivers that work on both OF and
-ACPI rely on the compatible strings on ACPI.
+Rahul Tanwar (2):
+  Add DT bindings schema for PVT controller
+  Add hardware monitoring driver for Moortec MR75203 PVT controller
 
-Another option could be adding a new macro, to set that table on both OF
-and ACPI when needed? It could be called e.g. of_acpi_match_ptr(), for
-instance.
-
-Cc also linux-acpi list and Rafael.
+ .../devicetree/bindings/hwmon/moortec,mr75203.yaml |  70 +++
+ drivers/hwmon/Kconfig                              |  10 +
+ drivers/hwmon/Makefile                             |   1 +
+ drivers/hwmon/mr75203.c                            | 605 +++++++++++++++++++++
+ 4 files changed, 686 insertions(+)
+ create mode 100644 Documentation/devicetree/bindings/hwmon/moortec,mr75203.yaml
+ create mode 100644 drivers/hwmon/mr75203.c
 
 -- 
-Regards,
+2.11.0
 
-Sakari Ailus
