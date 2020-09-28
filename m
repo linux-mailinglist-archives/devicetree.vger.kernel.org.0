@@ -2,234 +2,84 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from vger.kernel.org (vger.kernel.org [23.128.96.18])
-	by mail.lfdr.de (Postfix) with ESMTP id 4FD1D27B5D7
-	for <lists+devicetree@lfdr.de>; Mon, 28 Sep 2020 21:59:16 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTP id 3589727B67D
+	for <lists+devicetree@lfdr.de>; Mon, 28 Sep 2020 22:41:55 +0200 (CEST)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S1726761AbgI1T7I (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Mon, 28 Sep 2020 15:59:08 -0400
-Received: from lindbergh.monkeyblade.net ([23.128.96.19]:34518 "EHLO
+        id S1726781AbgI1Uly (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Mon, 28 Sep 2020 16:41:54 -0400
+Received: from lindbergh.monkeyblade.net ([23.128.96.19]:41174 "EHLO
         lindbergh.monkeyblade.net" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S1726779AbgI1T7C (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Mon, 28 Sep 2020 15:59:02 -0400
-Received: from mail-wr1-x433.google.com (mail-wr1-x433.google.com [IPv6:2a00:1450:4864:20::433])
-        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 21DF6C0613CE;
-        Mon, 28 Sep 2020 12:59:02 -0700 (PDT)
-Received: by mail-wr1-x433.google.com with SMTP id o5so2629566wrn.13;
-        Mon, 28 Sep 2020 12:59:02 -0700 (PDT)
+        with ESMTP id S1726500AbgI1Ulx (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Mon, 28 Sep 2020 16:41:53 -0400
+Received: from mail-lj1-x241.google.com (mail-lj1-x241.google.com [IPv6:2a00:1450:4864:20::241])
+        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 16B63C061755;
+        Mon, 28 Sep 2020 13:41:52 -0700 (PDT)
+Received: by mail-lj1-x241.google.com with SMTP id a22so2130464ljp.13;
+        Mon, 28 Sep 2020 13:41:52 -0700 (PDT)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=gmail.com; s=20161025;
-        h=from:to:cc:subject:date:message-id:in-reply-to:references
-         :mime-version:content-transfer-encoding;
-        bh=NbGMC82aTOHw69bBF16p394ydgQFm7eLIkNq9Ff7svQ=;
-        b=d4VeKgmfatPXqcyO6XPFl5Qo4rREUj/LJRcodj8RyAlelnhAxznsv+FWqw+1k7A5n3
-         ckWZw5D/CaKHYaYYLlriu9Y58GAXx11Z1JYxXeLsuG0qUrZvpR2IkAAzloJKwrt3hVeg
-         pMSthIDsge5xxWpbOgph0VeF7Qh4/nWSuHcd0bs6TZ5JuSs5yRQFJS5CmKiVofEpJak8
-         r0nFf/wqNDw5FA4e01A6sRJsR9Ar1/0zJKjR7hqnZhJDtNyhjh64aI9p9+Cwr3ab/e7A
-         n8RaCg4sRQYzaWImE6SEqd86MRC2yrhjpqI8x/jn1K2rfvGs3VxLrl0VdISvS8fr+amn
-         i4eA==
+        d=googlemail.com; s=20161025;
+        h=mime-version:references:in-reply-to:from:date:message-id:subject:to
+         :cc;
+        bh=zx0CfU3J1VJLQIPqhr3Tt9PxwDIrKT2oBCuJthUB07o=;
+        b=MwEitxkMtu7a4LKCmc7FOTgRmpbIRPxCON2NnbgPAFnQQEqbMbB+XPd0FWK0nc0yKw
+         FYYNEbiHHsJxrVjZnYWbp4LsmWvle/+Net4bLJ4IBtK1j85PZGtFSEjqDkQAa887AJ5S
+         3hPYFtUXoqGi7YVlItiIRYXMzKpsr74N4pcaw3waF+Zz4eZm4YHIegmg7YJNqy9Os704
+         5NaI2RPw3U7tHDX0libVtJHw+VZmqTPTLm4zoYnAGwcwcC7NhJ0dLcqRNvj36mUFF3at
+         FrSUyVvIfma2dLx9FIMhgUiEqCpgbxeDC1fz/zSJLF7iyEzZEjH9XDV7PiQSodrJGZwS
+         pzJw==
 X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
         d=1e100.net; s=20161025;
-        h=x-gm-message-state:from:to:cc:subject:date:message-id:in-reply-to
-         :references:mime-version:content-transfer-encoding;
-        bh=NbGMC82aTOHw69bBF16p394ydgQFm7eLIkNq9Ff7svQ=;
-        b=Edgk/jQCd1UA8oijD3m4HjOSBpmwIgAWN+0G/a4MUzRdz1fOfmMRwTdX9Qm9pTbQEE
-         J/FGFQqpblsqfpp2QS4LCzl3Qxrv2gK41avNhk3x9T8R3Yn0Hh/3jSAT1A+Ponzze4aS
-         qvJK5n5c4ZU4szHzO00Ky0NQN6hAXpx9tFOCy65lfWzi1b7BIeagytajvsTg9DadTdiQ
-         AwDPsU4Y4busl8HzjnYomQTbas8KVBD+/um2coKSvuxogQbMz+cjpIcE/TmlYhoJAYH4
-         O2rMmAhHAkxRxRXtLy2uJVArDC5IlFwmGAFh4rSf9SiH8F1wFgKlaiMtFNyDK5cd2U1j
-         W4yg==
-X-Gm-Message-State: AOAM531YxutBRLXxDJyWuFHvL+vSPxrNQV4P5jlfqSxNXtHk3ByJS2D6
-        Y8J+aaMmWiWbmZgOsSg/cww=
-X-Google-Smtp-Source: ABdhPJya85/3p5+S9n9FcBpz3/kV9Q2zQVoxdyp9XDV/ritX+EuRAaJsknb/YBtOLMbrZLlxDw3zuQ==
-X-Received: by 2002:a5d:518b:: with SMTP id k11mr102696wrv.369.1601323140707;
-        Mon, 28 Sep 2020 12:59:00 -0700 (PDT)
-Received: from IcarusMOD.eternityproject.eu ([2.237.20.237])
-        by smtp.gmail.com with ESMTPSA id q4sm2607434wru.65.2020.09.28.12.58.59
-        (version=TLS1_3 cipher=TLS_AES_256_GCM_SHA384 bits=256/256);
-        Mon, 28 Sep 2020 12:59:00 -0700 (PDT)
-From:   kholk11@gmail.com
-To:     bjorn.andersson@linaro.org
-Cc:     robh+dt@kernel.org, agross@kernel.org, georgi.djakov@linaro.org,
-        kholk11@gmail.com, marijns95@gmail.com, konradybcio@gmail.com,
-        martin.botka1@gmail.com, linux-arm-msm@vger.kernel.org,
-        phone-devel@vger.kernel.org, devicetree@vger.kernel.org,
-        linux-pm@vger.kernel.org, linux-kernel@vger.kernel.org
-Subject: [PATCH v2 2/2] dt-bindings: interconnect: Add bindings for Qualcomm SDM660 NoC
-Date:   Mon, 28 Sep 2020 21:58:53 +0200
-Message-Id: <20200928195853.40084-3-kholk11@gmail.com>
-X-Mailer: git-send-email 2.28.0
-In-Reply-To: <20200928195853.40084-1-kholk11@gmail.com>
-References: <20200928195853.40084-1-kholk11@gmail.com>
+        h=x-gm-message-state:mime-version:references:in-reply-to:from:date
+         :message-id:subject:to:cc;
+        bh=zx0CfU3J1VJLQIPqhr3Tt9PxwDIrKT2oBCuJthUB07o=;
+        b=bTUG5kYAbtxsbb45x1G5H2Kc/ObCosfkZwBJoQhZ5anh6ouGIYuRPUeruBjiAzQ5Pc
+         NiwD6EkeMKGCofS/S4vxF1k405VQHipqc7qVZpbnx/V9xiGqNoyDOFxhDLkdCuXQTgqK
+         ZcJ3ZBtm2R5Q7HpsALmMFYiof1TWABEhy9RHbtINFg4WtBk3SdKPR//eVedRs5yWiulI
+         PQiTUDm6p5b4b9QgL0gbP1IrraMyO9WMbaCu7Wuy0zesaP2BCXe8gngp7DjKwZax2BST
+         32l13Szc3iEEVb7yPqKjs6+9cEq6RY7bFnYcwM3jBqoLHEZCid36Oy86oKU90TyWBhQo
+         a91A==
+X-Gm-Message-State: AOAM5334LRSvSzzO1HNJalFB9CUkGK28SRr1SiPvzth8cAVldN3/JFeo
+        KoY75/S5HLjlyEqr7RZSHfpt3ueFihPQYahQ6oQ=
+X-Google-Smtp-Source: ABdhPJxMJ5nOOOYxuicR17q4pCezl1xZMe2K4xB5mxX0ik/kdZii5diCzfauXchgWdRQMoQMPuYNvIQ/9O4BIOjMeYM=
+X-Received: by 2002:a2e:99d6:: with SMTP id l22mr100831ljj.195.1601325710449;
+ Mon, 28 Sep 2020 13:41:50 -0700 (PDT)
 MIME-Version: 1.0
-Content-Transfer-Encoding: 8bit
+References: <20200925033017.1790973-1-art@khadas.com> <20200925033017.1790973-6-art@khadas.com>
+ <CAFBinCAJ6svwiv9OM6EHz7468D9h+jW_ULiGrorgLetcODsAKQ@mail.gmail.com>
+ <CAKaHn9+CWLJYN1Tt46VxBGNBEbVVJZWeL6ZJSf9w-5DmoxrvgQ@mail.gmail.com>
+ <CAFBinCD0_QgKKcH+Kb2QbMWnx_csoXMEhSFYzmDscdTVB2TUJw@mail.gmail.com>
+ <CAKaHn9K6O8u6Br84S63V0PDFBhiRbMdd4-bvC5FxFe6izj_Dvg@mail.gmail.com>
+ <CAFBinCAb91M5Zyn8yM1Ww4KKPANM2uqvJB11=QGjMJ2fdU836w@mail.gmail.com> <CAKaHn9JxKBKW5AYvUNBAA+sNcHfNQNrx95NtLMnrfd0ypOaAoA@mail.gmail.com>
+In-Reply-To: <CAKaHn9JxKBKW5AYvUNBAA+sNcHfNQNrx95NtLMnrfd0ypOaAoA@mail.gmail.com>
+From:   Martin Blumenstingl <martin.blumenstingl@googlemail.com>
+Date:   Mon, 28 Sep 2020 22:41:39 +0200
+Message-ID: <CAFBinCDHbV2dT1KsXA6PukhsQXj+48Pes=gUeLGD9DFw7xJdYw@mail.gmail.com>
+Subject: Re: [PATCH 5/8] arm64: dts: meson: remove reset-gpios from ethernet
+ node for VIM2 meson-gxm-khadas-vim2
+To:     Art Nikpal <email2tema@gmail.com>
+Cc:     Neil Armstrong <narmstrong@baylibre.com>, khilman@baylibre.com,
+        robh+dt@kernel.org, jbrunet@baylibre.com,
+        devicetree@vger.kernel.org, linux-arm-kernel@lists.infradead.org,
+        linux-amlogic@lists.infradead.org, linux-kernel@vger.kernel.org,
+        Artem Lapkin <art@khadas.com>, nick@khadas.com,
+        Gouwa Wang <gouwa@khadas.com>
+Content-Type: text/plain; charset="UTF-8"
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-From: AngeloGioacchino Del Regno <kholk11@gmail.com>
+Hi Artem,
 
-Add the bindings for the Qualcomm SDM660-class NoC, valid for
-SDM630, SDM636, SDM660 and SDA variants.
+On Mon, Sep 28, 2020 at 10:42 AM Art Nikpal <email2tema@gmail.com> wrote:
+>
+> OK today i can't reproduce it again on my new equipments ;-)
+>
+> may be its some specific problem we can try forget about this
+uh, this is weird
+please let me know if you can reproduce it on your new hardware
 
-Signed-off-by: AngeloGioacchino Del Regno <kholk11@gmail.com>
----
- .../bindings/interconnect/qcom,sdm660.yaml    | 147 ++++++++++++++++++
- 1 file changed, 147 insertions(+)
- create mode 100644 Documentation/devicetree/bindings/interconnect/qcom,sdm660.yaml
+thanks for the update :-)
 
-diff --git a/Documentation/devicetree/bindings/interconnect/qcom,sdm660.yaml b/Documentation/devicetree/bindings/interconnect/qcom,sdm660.yaml
-new file mode 100644
-index 000000000000..440e9bc1382a
---- /dev/null
-+++ b/Documentation/devicetree/bindings/interconnect/qcom,sdm660.yaml
-@@ -0,0 +1,147 @@
-+# SPDX-License-Identifier: (GPL-2.0 OR BSD-2-Clause)
-+%YAML 1.2
-+---
-+$id: http://devicetree.org/schemas/interconnect/qcom,sdm660.yaml#
-+$schema: http://devicetree.org/meta-schemas/core.yaml#
-+
-+title: Qualcomm SDM660 Network-On-Chip interconnect
-+
-+maintainers:
-+  - Georgi Djakov <georgi.djakov@linaro.org>
-+
-+description: |
-+  The Qualcomm SDM660 interconnect providers support adjusting the
-+  bandwidth requirements between the various NoC fabrics.
-+
-+properties:
-+  reg:
-+    maxItems: 1
-+
-+  compatible:
-+    enum:
-+      - qcom,sdm660-a2noc
-+      - qcom,sdm660-bimc
-+      - qcom,sdm660-cnoc
-+      - qcom,sdm660-gnoc
-+      - qcom,sdm660-mnoc
-+      - qcom,sdm660-snoc
-+
-+  '#interconnect-cells':
-+    const: 1
-+
-+  clocks:
-+    minItems: 1
-+    maxItems: 3
-+
-+  clock-names:
-+    minItems: 1
-+    maxItems: 3
-+
-+required:
-+  - compatible
-+  - reg
-+  - '#interconnect-cells'
-+  - clock-names
-+  - clocks
-+
-+additionalProperties: false
-+
-+allOf:
-+  - if:
-+      properties:
-+        compatible:
-+          contains:
-+            enum:
-+              - qcom,sdm660-mnoc
-+    then:
-+      properties:
-+        clocks:
-+          items:
-+            - description: Bus Clock.
-+            - description: Bus A Clock.
-+            - description: CPU-NoC High-performance Bus Clock.
-+        clock-names:
-+          items:
-+            - const: bus
-+            - const: bus_a
-+            - const: iface
-+
-+  - if:
-+      properties:
-+        compatible:
-+          contains:
-+            enum:
-+              - qcom,sdm660-a2noc
-+              - qcom,sdm660-bimc
-+              - qcom,sdm660-cnoc
-+              - qcom,sdm660-gnoc
-+              - qcom,sdm660-snoc
-+    then:
-+      properties:
-+        clocks:
-+          items:
-+            - description: Bus Clock.
-+            - description: Bus A Clock.
-+        clock-names:
-+          items:
-+            - const: bus
-+            - const: bus_a
-+
-+examples:
-+  - |
-+      #include <dt-bindings/clock/qcom,rpmcc.h>
-+      #include <dt-bindings/clock/qcom,mmcc-sdm660.h>
-+
-+      bimc: interconnect@1008000 {
-+              compatible = "qcom,sdm660-bimc";
-+              reg = <0x01008000 0x78000>;
-+              #interconnect-cells = <1>;
-+              clock-names = "bus", "bus_a";
-+              clocks = <&rpmcc RPM_SMD_BIMC_CLK>,
-+                       <&rpmcc RPM_SMD_BIMC_A_CLK>;
-+      };
-+
-+      cnoc: interconnect@1500000 {
-+              compatible = "qcom,sdm660-cnoc";
-+              reg = <0x01500000 0x10000>;
-+              #interconnect-cells = <1>;
-+              clock-names = "bus", "bus_a";
-+              clocks = <&rpmcc RPM_SMD_CNOC_CLK>,
-+                       <&rpmcc RPM_SMD_CNOC_A_CLK>;
-+      };
-+
-+      snoc: interconnect@1626000 {
-+              compatible = "qcom,sdm660-snoc";
-+              reg = <0x01626000 0x7090>;
-+              #interconnect-cells = <1>;
-+              clock-names = "bus", "bus_a";
-+              clocks = <&rpmcc RPM_SMD_SNOC_CLK>,
-+                       <&rpmcc RPM_SMD_SNOC_A_CLK>;
-+      };
-+
-+      a2noc: interconnect@1704000 {
-+              compatible = "qcom,sdm660-a2noc";
-+              reg = <0x01704000 0xc100>;
-+              #interconnect-cells = <1>;
-+              clock-names = "bus", "bus_a";
-+              clocks = <&rpmcc RPM_SMD_AGGR2_NOC_CLK>,
-+                       <&rpmcc RPM_SMD_AGGR2_NOC_A_CLK>;
-+      };
-+
-+      mnoc: interconnect@1745000 {
-+              compatible = "qcom,sdm660-mnoc";
-+              reg = <0x01745000 0xa010>;
-+              #interconnect-cells = <1>;
-+              clock-names = "bus", "bus_a", "iface";
-+              clocks = <&rpmcc RPM_SMD_MMSSNOC_AXI_CLK>,
-+                       <&rpmcc RPM_SMD_MMSSNOC_AXI_CLK_A>,
-+                       <&mmcc AHB_CLK_SRC>;
-+      };
-+
-+      gnoc: interconnect@17900000 {
-+              compatible = "qcom,sdm660-gnoc";
-+              reg = <0x17900000 0xe000>;
-+              #interconnect-cells = <1>;
-+              clock-names = "bus", "bus_a";
-+              clocks = <&xo_board>, <&xo_board>;
-+      };
--- 
-2.28.0
 
+Best regards,
+Martin
