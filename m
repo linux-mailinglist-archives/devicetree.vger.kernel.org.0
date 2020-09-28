@@ -2,61 +2,85 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from vger.kernel.org (vger.kernel.org [23.128.96.18])
-	by mail.lfdr.de (Postfix) with ESMTP id 2D97C27A5C2
-	for <lists+devicetree@lfdr.de>; Mon, 28 Sep 2020 05:28:31 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTP id 5C92427A610
+	for <lists+devicetree@lfdr.de>; Mon, 28 Sep 2020 06:05:01 +0200 (CEST)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S1726442AbgI1D2a (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Sun, 27 Sep 2020 23:28:30 -0400
-Received: from mailgw02.mediatek.com ([1.203.163.81]:7882 "EHLO
-        mailgw02.mediatek.com" rhost-flags-OK-FAIL-OK-FAIL) by vger.kernel.org
-        with ESMTP id S1726393AbgI1D2a (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Sun, 27 Sep 2020 23:28:30 -0400
-X-UUID: 2e567311069b47fd9e21a0b4bb7b90c5-20200928
-DKIM-Signature: v=1; a=rsa-sha256; q=dns/txt; c=relaxed/relaxed; d=mediatek.com; s=dk;
-        h=Content-Transfer-Encoding:MIME-Version:Content-Type:References:In-Reply-To:Date:CC:To:From:Subject:Message-ID; bh=agUedE9PsMXuVeno9bFALFYE9PxOrPom7M+8kFzGWYA=;
-        b=GRiY7BdVQdwHOAQzibc9oZE06JufBhSXtL9aA66cGOxzdpuwcpBYZa2k4lJCTrcPIWCAETzbFx2wp2lYrnoHgLCUbPyW9OJIeTFOtgrKCKfd9UsRg+RqhjsRVIFqvDFGsTm8YIOfi0qiayG8prUez9EjYQJm3d6P83RoI8VR5og=;
-X-UUID: 2e567311069b47fd9e21a0b4bb7b90c5-20200928
-Received: from mtkcas34.mediatek.inc [(172.27.4.253)] by mailgw02.mediatek.com
-        (envelope-from <chuanjia.liu@mediatek.com>)
-        (mailgw01.mediatek.com ESMTP with TLSv1.2 ECDHE-RSA-AES256-SHA384 256/256)
-        with ESMTP id 1991438022; Mon, 28 Sep 2020 11:28:25 +0800
-Received: from MTKCAS36.mediatek.inc (172.27.4.186) by MTKMBS31N1.mediatek.inc
- (172.27.4.69) with Microsoft SMTP Server (TLS) id 15.0.1497.2; Mon, 28 Sep
- 2020 11:28:23 +0800
-Received: from [10.17.3.153] (10.17.3.153) by MTKCAS36.mediatek.inc
- (172.27.4.170) with Microsoft SMTP Server id 15.0.1497.2 via Frontend
- Transport; Mon, 28 Sep 2020 11:28:23 +0800
-Message-ID: <1601263551.21671.1.camel@mhfsdcap03>
-Subject: Re: Aw: [PATCH v6 0/4] Spilt PCIe node to comply with hardware
- design
-From:   Chuanjia Liu <chuanjia.liu@mediatek.com>
-To:     Frank Wunderlich <frank-w@public-files.de>
-CC:     Bjorn Helgaas <bhelgaas@google.com>,
-        Rob Herring <robh+dt@kernel.org>,
-        Lorenzo Pieralisi <lorenzo.pieralisi@arm.com>,
-        Matthias Brugger <matthias.bgg@gmail.com>,
-        <devicetree@vger.kernel.org>, Ryder Lee <ryder.lee@mediatek.com>,
-        <linux-pci@vger.kernel.org>, <linux-mediatek@lists.infradead.org>,
-        <linux-arm-kernel@lists.infradead.org>, <yong.wu@mediatek.com>
-Date:   Mon, 28 Sep 2020 11:25:51 +0800
-In-Reply-To: <trinity-a791b919-956f-4cde-a496-919d4f3f2ba9-1600083556775@3c-app-gmx-bap20>
-References: <20200914112659.7091-1-chuanjia.liu@mediatek.com>
-         <trinity-a791b919-956f-4cde-a496-919d4f3f2ba9-1600083556775@3c-app-gmx-bap20>
-Content-Type: text/plain; charset="UTF-8"
-X-Mailer: Evolution 3.10.4-0ubuntu2 
+        id S1725287AbgI1EE6 (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Mon, 28 Sep 2020 00:04:58 -0400
+Received: from lindbergh.monkeyblade.net ([23.128.96.19]:56510 "EHLO
+        lindbergh.monkeyblade.net" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
+        with ESMTP id S1725275AbgI1EE6 (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Mon, 28 Sep 2020 00:04:58 -0400
+Received: from mail-out.m-online.net (mail-out.m-online.net [IPv6:2001:a60:0:28:0:1:25:1])
+        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 44EC5C0613CE;
+        Sun, 27 Sep 2020 21:04:58 -0700 (PDT)
+Received: from frontend01.mail.m-online.net (unknown [192.168.8.182])
+        by mail-out.m-online.net (Postfix) with ESMTP id 4C086t3D3Jz1rt44;
+        Mon, 28 Sep 2020 06:04:54 +0200 (CEST)
+Received: from localhost (dynscan1.mnet-online.de [192.168.6.70])
+        by mail.m-online.net (Postfix) with ESMTP id 4C086t1Vv5z1qvJW;
+        Mon, 28 Sep 2020 06:04:54 +0200 (CEST)
+X-Virus-Scanned: amavisd-new at mnet-online.de
+Received: from mail.mnet-online.de ([192.168.8.182])
+        by localhost (dynscan1.mail.m-online.net [192.168.6.70]) (amavisd-new, port 10024)
+        with ESMTP id dTZDEMc4P2RL; Mon, 28 Sep 2020 06:04:52 +0200 (CEST)
+X-Auth-Info: NN9vCGYeqt26BFTY+HK0UHezTpi8SoVDEXDJd8cFD6Y=
+Received: from [192.168.1.106] (82-131-154-50.pool.digikabel.hu [82.131.154.50])
+        (using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
+        (No client certificate requested)
+        by mail.mnet-online.de (Postfix) with ESMTPSA;
+        Mon, 28 Sep 2020 06:04:52 +0200 (CEST)
+Reply-To: hs@denx.de
+Subject: Re: [RFC 12/14] dt-bindings: vendor-prefixes: add Aristainetos
+To:     Krzysztof Kozlowski <krzk@kernel.org>
+References: <20200926162811.5335-1-krzk@kernel.org>
+ <20200926162811.5335-12-krzk@kernel.org>
+Cc:     Rob Herring <robh+dt@kernel.org>, Shawn Guo <shawnguo@kernel.org>,
+        Sascha Hauer <s.hauer@pengutronix.de>,
+        Pengutronix Kernel Team <kernel@pengutronix.de>,
+        Fabio Estevam <festevam@gmail.com>,
+        NXP Linux Team <linux-imx@nxp.com>,
+        Stefan Riedmueller <s.riedmueller@phytec.de>,
+        Robert Jones <rjones@gateworks.com>,
+        Li Yang <leoyang.li@nxp.com>, devicetree@vger.kernel.org,
+        linux-kernel@vger.kernel.org, linux-arm-kernel@lists.infradead.org
+From:   Heiko Schocher <hs@denx.de>
+Message-ID: <2a329c9b-8bfc-fbd8-62a3-759f608347d6@denx.de>
+Date:   Mon, 28 Sep 2020 06:04:51 +0200
+User-Agent: Mozilla/5.0 (X11; Linux x86_64; rv:52.0) Gecko/20100101
+ Thunderbird/52.5.2
 MIME-Version: 1.0
-X-TM-SNTS-SMTP: FCAC36D56FCFFF84C336092A77EF8DD389128F98161ACBA993639780B59DBAF42000:8
-X-MTK:  N
-Content-Transfer-Encoding: base64
+In-Reply-To: <20200926162811.5335-12-krzk@kernel.org>
+Content-Type: text/plain; charset=utf-8; format=flowed
+Content-Language: en-US
+Content-Transfer-Encoding: 7bit
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-T24gTW9uLCAyMDIwLTA5LTE0IGF0IDEzOjM5ICswMjAwLCBGcmFuayBXdW5kZXJsaWNoIHdyb3Rl
-Og0KPiA+IEJldHJlZmY6IFtQQVRDSCB2NiAwLzRdIFNwaWx0IFBDSWUgbm9kZSB0byBjb21wbHkg
-d2l0aCBoYXJkd2FyZSBkZXNpZ24NCj4gDQo+IGp1c3QgaWYgeW91IG5lZWQgdG8gbWFrZSBhbm90
-aGVyIHZlcnNpb24gKGFzIGl0IGlzIG9ubHkgdGhlIGNvdmVyLWxldHRlcikgeW91IGNhbiBmaXgg
-dGhlIHR5cG8gaW4gc3ViamVjdCA7KQ0KDQpUaGFua3MgZm9yIHlvdXIgcmVtaW5kaW5nLCBJIHdp
-bGwgY2hhbmdlIGl0IGluIHRoZSBuZXh0IHZlcnNpb24uDQo+IA0KPiByZWdhcmRzIEZyYW5rDQo+
-IA0KDQo=
+Hello Krzysztof,
 
+Am 26.09.2020 um 18:28 schrieb Krzysztof Kozlowski:
+> Document binding for an unknown entity Aristainetos with few boards
+> mainlined.
+> 
+> Cc: Heiko Schocher <hs@denx.de>
+> Signed-off-by: Krzysztof Kozlowski <krzk@kernel.org>
+> 
+> ---
+> 
+> I tried to Google but except the patches from Heiko Schocher, I could
+> not find any meaningful data.
+> 
+> Heiko, you posted this. Do you know what is it?
+
+aristainetos is the name of the board, so it is not the vendor name.
+
+I just asked the customer if we can add a valid vendor name...
+
+bye,
+Heiko
+-- 
+DENX Software Engineering GmbH,      Managing Director: Wolfgang Denk
+HRB 165235 Munich, Office: Kirchenstr.5, D-82194 Groebenzell, Germany
+Phone: +49-8142-66989-52   Fax: +49-8142-66989-80   Email: hs@denx.de
