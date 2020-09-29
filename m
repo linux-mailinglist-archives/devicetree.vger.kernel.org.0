@@ -2,61 +2,62 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from vger.kernel.org (vger.kernel.org [23.128.96.18])
-	by mail.lfdr.de (Postfix) with ESMTP id F05FF27BA6C
-	for <lists+devicetree@lfdr.de>; Tue, 29 Sep 2020 03:43:58 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTP id 5B14A27BA93
+	for <lists+devicetree@lfdr.de>; Tue, 29 Sep 2020 03:59:59 +0200 (CEST)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S1727301AbgI2Bn6 (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Mon, 28 Sep 2020 21:43:58 -0400
-Received: from lindbergh.monkeyblade.net ([23.128.96.19]:59594 "EHLO
+        id S1727249AbgI2B7y (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Mon, 28 Sep 2020 21:59:54 -0400
+Received: from lindbergh.monkeyblade.net ([23.128.96.19]:33818 "EHLO
         lindbergh.monkeyblade.net" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S1725272AbgI2Bn6 (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Mon, 28 Sep 2020 21:43:58 -0400
-Received: from mail-pj1-x1042.google.com (mail-pj1-x1042.google.com [IPv6:2607:f8b0:4864:20::1042])
-        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 20D48C061755
-        for <devicetree@vger.kernel.org>; Mon, 28 Sep 2020 18:43:58 -0700 (PDT)
-Received: by mail-pj1-x1042.google.com with SMTP id bw23so1811837pjb.2
-        for <devicetree@vger.kernel.org>; Mon, 28 Sep 2020 18:43:58 -0700 (PDT)
+        with ESMTP id S1727185AbgI2B7y (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Mon, 28 Sep 2020 21:59:54 -0400
+Received: from mail-pf1-x441.google.com (mail-pf1-x441.google.com [IPv6:2607:f8b0:4864:20::441])
+        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 274D6C0613CF
+        for <devicetree@vger.kernel.org>; Mon, 28 Sep 2020 18:59:54 -0700 (PDT)
+Received: by mail-pf1-x441.google.com with SMTP id w7so2998254pfi.4
+        for <devicetree@vger.kernel.org>; Mon, 28 Sep 2020 18:59:54 -0700 (PDT)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
         d=chromium.org; s=google;
         h=date:from:to:cc:subject:message-id:references:mime-version
          :content-disposition:in-reply-to;
-        bh=Fo2RrYUf1cReiMQEx0TU5FOkDdexrCuS8Ny7Goxj60k=;
-        b=CUmodB9nAQCcmCu41vOpT+Akx3puaskkx8AAA2/8c0KgerETOBMOFci90fs8Cmvxbt
-         Fdo4NmGL9tdHAw35IQ4DTJNpRM8j2XDvXLPrQ3h1vnUt697xIEEmYIx6WRD1Q7mzd8wZ
-         pm308NYBKMi7mYYY9gsKKTORP3CStWgbAmxBg=
+        bh=WhT95g7YAtzbIyqI6THWYJwO/6uBiBP4C3UcEuIo1CQ=;
+        b=brsQhYryGAnvihYoHEddEhtL1o19bBQiYE0uTXBb6FCePWeFLvCHkpr4Sq/xqziFPi
+         xdBfxu4sB/Haxa+v+TPfZndFjylz6G6Bvc2YTnDTAZBLWzJy5/tnehrfmrgK8no50NFd
+         OoGp/npEWFW9ug2wI7Wj/C1J4ELG/LU6/Yyiw=
 X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
         d=1e100.net; s=20161025;
         h=x-gm-message-state:date:from:to:cc:subject:message-id:references
          :mime-version:content-disposition:in-reply-to;
-        bh=Fo2RrYUf1cReiMQEx0TU5FOkDdexrCuS8Ny7Goxj60k=;
-        b=nm4BaxTr8cMU9Q/gnUp1rlDx+menO/Ps9+ZrE57cNd8PUsk3tQliqrOFCPsehUnckE
-         MeC9g91+sFBDrqmRX4jrepdJPG33CAI/oaTPJkvzOgO/QnOxd86UqKEN5cJwM5vz5NW1
-         RoJDBWgXLh3+PH0ATR7qc1GtHMmXv2ri+dKvOlNQ3aZcy0JYtfrf8xI9O2854EUBvfAg
-         TqSMxLcc6jBx1HVskvr+lDZ8WIgv2lUyBz+HnYesoUSAkalZbFo64vplEoemedoveQXA
-         x9jUgKUu4ZRxGWo4DDgR7p5XmZgjytZeN5YCY3XPgEbX6ZGCc46M7nVlAfawOimJS3OL
-         bkqQ==
-X-Gm-Message-State: AOAM530mKVWc57tllWU94kogZRkqSHRjQaUNPIZxYLHY7royYZz21E3O
-        Iec0oQDItJEyJQp0o+5Ave1Ziw==
-X-Google-Smtp-Source: ABdhPJyEmEODYkMb0O/Ba/x4y/swdruOA3A4V8pF4WK7blH245iFVfeRTaXzLOGXI3gVm64nowNsHQ==
-X-Received: by 2002:a17:90a:d986:: with SMTP id d6mr1716338pjv.108.1601343837607;
-        Mon, 28 Sep 2020 18:43:57 -0700 (PDT)
+        bh=WhT95g7YAtzbIyqI6THWYJwO/6uBiBP4C3UcEuIo1CQ=;
+        b=mp62TVNsQDuI9InTBJGzScw/8PZ4AIqrbeKFrGRWCWBpnAypX37jW7sx8JSQEpJOm6
+         jnTmmXymi+5L3LMRjLUazCHs1J+Mb6VhFrV7a/mf3/GevebK2V54oih2bHbp0PtfuGpb
+         CT3fdVYGiECtrIgAgU/RLNswXayuTV536zP0J5UeMuR+a8uf6kyugpcWQenqLNoMkb0t
+         R9nVpCrKYIMHqx02/hffU55bCa1W9ixCRrFgXw1dvj0rFyLUoIt8D9nLLo0o8Jld3IE7
+         +NYUKPY85fvHuGCknflK/oA5r7S8xiRROMy3xY0Aj9Q5CrOUd7VZmtYAJuXwnZeiq81S
+         YfBw==
+X-Gm-Message-State: AOAM53353Jw3RENNmfl4OgROQkrftUpv1KPOzgVx3dQMAdtvNBjzS75C
+        LZNaGdQopnKiq8gs8OODoggiLg==
+X-Google-Smtp-Source: ABdhPJw5Iitufx3uByceiF28y3PFvGfDGCeQ0L6/LXQTqgGh0p6j1nvkzjlCrDTvhnods3yvYOmiwA==
+X-Received: by 2002:a62:924c:0:b029:151:c014:691e with SMTP id o73-20020a62924c0000b0290151c014691emr2035006pfd.41.1601344793474;
+        Mon, 28 Sep 2020 18:59:53 -0700 (PDT)
 Received: from localhost ([2620:15c:202:1:f693:9fff:fef4:e70a])
-        by smtp.gmail.com with ESMTPSA id f4sm2903758pfa.125.2020.09.28.18.43.56
+        by smtp.gmail.com with ESMTPSA id o4sm3093126pfh.39.2020.09.28.18.59.52
         (version=TLS1_3 cipher=TLS_AES_128_GCM_SHA256 bits=128/128);
-        Mon, 28 Sep 2020 18:43:57 -0700 (PDT)
-Date:   Mon, 28 Sep 2020 18:43:55 -0700
+        Mon, 28 Sep 2020 18:59:53 -0700 (PDT)
+Date:   Mon, 28 Sep 2020 18:59:51 -0700
 From:   Matthias Kaehlcke <mka@chromium.org>
-To:     Alan Stern <stern@rowland.harvard.edu>
+To:     Doug Anderson <dianders@chromium.org>
 Cc:     Greg Kroah-Hartman <gregkh@linuxfoundation.org>,
         Rob Herring <robh+dt@kernel.org>,
         Frank Rowand <frowand.list@gmail.com>,
-        linux-kernel@vger.kernel.org, linux-usb@vger.kernel.org,
+        LKML <linux-kernel@vger.kernel.org>, linux-usb@vger.kernel.org,
         Bastien Nocera <hadess@hadess.net>,
         Stephen Boyd <swboyd@chromium.org>,
-        Douglas Anderson <dianders@chromium.org>,
+        Alan Stern <stern@rowland.harvard.edu>,
         Ravi Chandra Sadineni <ravisadineni@chromium.org>,
         Krzysztof Kozlowski <krzk@kernel.org>,
-        devicetree@vger.kernel.org, Peter Chen <peter.chen@nxp.com>,
+        "open list:OPEN FIRMWARE AND FLATTENED DEVICE TREE BINDINGS" 
+        <devicetree@vger.kernel.org>, Peter Chen <peter.chen@nxp.com>,
         "Alexander A. Klimov" <grandmaster@al2klimov.de>,
         "David S. Miller" <davem@davemloft.net>,
         Johan Hovold <johan@kernel.org>,
@@ -64,99 +65,120 @@ Cc:     Greg Kroah-Hartman <gregkh@linuxfoundation.org>,
         Mauro Carvalho Chehab <mchehab+huawei@kernel.org>,
         Rob Herring <robh@kernel.org>
 Subject: Re: [PATCH v4 2/2] USB: misc: Add onboard_usb_hub driver
-Message-ID: <20200929014355.GA1099144@google.com>
+Message-ID: <20200929015951.GB1099144@google.com>
 References: <20200928101326.v4.1.I248292623d3d0f6a4f0c5bc58478ca3c0062b49a@changeid>
  <20200928101326.v4.2.I7c9a1f1d6ced41dd8310e8a03da666a32364e790@changeid>
- <20200928184759.GB142254@rowland.harvard.edu>
+ <CAD=FV=V+jnBkjT-heZ1h10pQPHsbuoY5+or0Kx7Oa4dAGTNW2w@mail.gmail.com>
 MIME-Version: 1.0
 Content-Type: text/plain; charset=utf-8
 Content-Disposition: inline
-In-Reply-To: <20200928184759.GB142254@rowland.harvard.edu>
+In-Reply-To: <CAD=FV=V+jnBkjT-heZ1h10pQPHsbuoY5+or0Kx7Oa4dAGTNW2w@mail.gmail.com>
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-On Mon, Sep 28, 2020 at 02:47:59PM -0400, Alan Stern wrote:
-> On Mon, Sep 28, 2020 at 10:13:55AM -0700, Matthias Kaehlcke wrote:
-> > The main issue this driver addresses is that a USB hub needs to be
-> > powered before it can be discovered. For discrete onboard hubs (an
-> > example for such a hub is the Realtek RTS5411) this is often solved
-> > by supplying the hub with an 'always-on' regulator, which is kind
-> > of a hack. Some onboard hubs may require further initialization
-> > steps, like changing the state of a GPIO or enabling a clock, which
-> > requires even more hacks. This driver creates a platform device
-> > representing the hub which performs the necessary initialization.
-> > Currently it only supports switching on a single regulator, support
-> > for multiple regulators or other actions can be added as needed.
-> > Different initialization sequences can be supported based on the
-> > compatible string.
-> > 
-> > Besides performing the initialization the driver can be configured
-> > to power the hub off during system suspend. This can help to extend
-> > battery life on battery powered devices which have no requirements
-> > to keep the hub powered during suspend. The driver can also be
-> > configured to leave the hub powered when a wakeup capable USB device
-> > is connected when suspending, and power it off otherwise.
-> > 
-> > Technically the driver consists of two drivers, the platform driver
-> > described above and a very thin USB driver that subclasses the
-> > generic driver. The purpose of this driver is to provide the platform
-> > driver with the USB devices corresponding to the hub(s) (a hub
-> > controller may provide multiple 'logical' hubs, e.g. one to support
-> > USB 2.0 and another for USB 3.x).
-> > 
-> > Co-developed-by: Ravi Chandra Sadineni <ravisadineni@chromium.org>
-> > Signed-off-by: Ravi Chandra Sadineni <ravisadineni@chromium.org>
-> > Signed-off-by: Matthias Kaehlcke <mka@chromium.org>
-> > ---
+Hi Doug,
+
+On Mon, Sep 28, 2020 at 03:03:20PM -0700, Doug Anderson wrote:
+> Hi,
 > 
-> Minor cut & paste error:
-> 
-> > +static int onboard_hub_power_off(struct onboard_hub *hub)
+> On Mon, Sep 28, 2020 at 10:14 AM Matthias Kaehlcke <mka@chromium.org> wrote:
+> >
+> > +static ssize_t power_off_in_suspend_show(struct device *dev, struct device_attribute *attr,
+> > +                          char *buf)
 > > +{
-> > +	int err;
+> > +       struct onboard_hub *hub = dev_get_drvdata(dev);
 > > +
-> > +	err = regulator_disable(hub->vdd);
-> > +	if (err) {
-> > +		dev_err(hub->dev, "failed to enable regulator: %d\n", err);
+> > +       return sprintf(buf, "%d\n", hub->power_off_in_suspend);
+> > +}
+> > +
+> > +static ssize_t power_off_in_suspend_store(struct device *dev, struct device_attribute *attr,
+> > +                           const char *buf, size_t count)
+> > +{
+> > +       struct onboard_hub *hub = dev_get_drvdata(dev);
+> > +       bool val;
+> > +       int ret;
+> > +
+> > +       ret = kstrtobool(buf, &val);
+> > +       if (ret < 0)
+> > +               return ret;
+> > +
+> > +       hub->power_off_in_suspend = val;
+> > +
+> > +       return count;
+> > +}
+> > +static DEVICE_ATTR_RW(power_off_in_suspend);
 > 
-> s/enable/disable/
+> I wish there was a short name that meant "try to power off in suspend
+> unless there's an active wakeup source underneath you".  The name here
+> is a bit misleading since we might keep this powered if there's an
+> active wakeup source even if "power_off_in_suspend" is true...  I
+> wonder if it's easier to describe the opposite, like
+> "always_power_in_suspend".  Then, if that's false, it'll be in
+> "automatic" mode and if it's true it'll always keep powered.
 
-yup, will fix
+I agree that the name is somewhat misleading and it's hard find something
+concise. 'always_power_in_suspend' would certainly be more correct, it
+would make it slightly harder to configure the 'always power off' case
+though, since you would have to make sure that USB wakeup is disabled. IIUC
+this should be the default though (unless explicitly enabled), so probably
+it's not so bad. I'm somewhat undecided between 'always_power_in_suspend'
+and 'keep_powered_in_suspend'.
 
-> Have you tried manually unbinding and rebinding the two drivers a few
-> times to make sure they will still work?
+> I guess you can also argue about what the default should be.  I guess
+> if you just left it as zero-initted then we'd (by default) power off
+> in suspend.  To me that seems like a saner default, but I'm probably
+> biased.
 
-I went through a few dozen bund/unbind cycles for both drivers and things
-looked good overall, but then last minute I found that determining whether
-wakeup capable devices are connected doesn't always work as (I) expected.
-I didn't see this earlier, it seems to be reproduce more easily after
-unbinding and rebinding the platform driver.
+I tend to agree, though yes, you could make a valid argument for either
+value.
 
-During development I already noticed that usb_wakeup_enabled_descendants()
-returns a cached value, which was a problem for an earlier version of the
-driver. The values are updated by hub_suspend(), my (flawed) assumption
-was that the USB driver would always suspend before the platform driver.
-This generally seems to be the case on my development platform after boot,
-but not necessarily after unbinding and rebinding the driver. Using the
-_suspend_late hook instead of _suspend seems to be a reliable workaround.
-
-> I'm a little concerned about  all the devm_* stuff in here; does that
-> get released when the driver is unbound from the device or when the device
-> is unregistered?  And if the latter, what happens if you have multiple
-> sysfs attribute groups going at the same time?
-
-The memory gets released when the device is unbound:
-
-device_release_driver
-  device_release_driver_internal
-    __device_release_driver
-      devres_release_all
-
-Anyway, if you prefer I can change the driver to use kmalloc/kfree.
-
-> Apart from those worries and the typo, this looks pretty good to me.
+> > +static int onboard_hub_remove(struct platform_device *pdev)
+> > +{
+> > +       struct onboard_hub *hub = dev_get_drvdata(&pdev->dev);
+> > +       struct udev_node *node;
+> > +       struct usb_device *udev;
+> > +
+> > +       hub->going_away = true;
+> > +
+> > +       mutex_lock(&hub->lock);
+> > +
+> > +       /* unbind the USB devices to avoid dangling references to this device */
+> > +       while (!list_empty(&hub->udev_list)) {
+> > +               node = list_first_entry(&hub->udev_list, struct udev_node, list);
+> > +               udev = node->udev;
+> > +
+> > +               /*
+> > +                * Unbinding the driver will call onboard_hub_remove_usbdev(),
+> > +                * which acquires hub->lock.  We must release the lock first.
+> > +                */
+> > +               get_device(&udev->dev);
+> > +               mutex_unlock(&hub->lock);
+> > +               device_release_driver(&udev->dev);
+> > +               put_device(&udev->dev);
+> > +               mutex_lock(&hub->lock);
 > 
-> Acked-by: Alan Stern <stern@rowland.harvard.edu>
+> I didn't try to grok all the removal corner cases since it seems like
+> you and Alan have been going over that.  If you feel like this needs
+> extra attention then yell and I'll look closer.
 
-Great, thanks for taking the time to review!
+Thanks, I think we are good, especially after the additional testing
+I did today.
+
+> > +static const struct of_device_id onboard_hub_match[] = {
+> > +       { .compatible = "onboard-usb-hub" },
+> > +       { .compatible = "realtek,rts5411" },
+> 
+> You only need "onboard-usb-hub" here.  The bindings still have
+> "realtek,rts5411" in them in case we later have to do something
+> different/special on that device, but the whole idea of including the
+> generic is that we don't need to add every specific instance to this
+> table.
+
+right, I'll remove the realtek string in the next version.
+
+> The above is pretty much nits, though, so:
+> 
+> Reviewed-by: Douglas Anderson <dianders@chromium.org>
+
+Thanks!
