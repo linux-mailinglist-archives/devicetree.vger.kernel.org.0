@@ -2,148 +2,78 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from vger.kernel.org (vger.kernel.org [23.128.96.18])
-	by mail.lfdr.de (Postfix) with ESMTP id 69D4F27BEC9
-	for <lists+devicetree@lfdr.de>; Tue, 29 Sep 2020 10:05:00 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTP id A3D4C27BEC7
+	for <lists+devicetree@lfdr.de>; Tue, 29 Sep 2020 10:04:51 +0200 (CEST)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S1727697AbgI2IFA (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Tue, 29 Sep 2020 04:05:00 -0400
-Received: from m42-4.mailgun.net ([69.72.42.4]:24179 "EHLO m42-4.mailgun.net"
-        rhost-flags-OK-OK-OK-OK) by vger.kernel.org with ESMTP
-        id S1726064AbgI2IE7 (ORCPT <rfc822;devicetree@vger.kernel.org>);
-        Tue, 29 Sep 2020 04:04:59 -0400
-DKIM-Signature: a=rsa-sha256; v=1; c=relaxed/relaxed; d=mg.codeaurora.org; q=dns/txt;
- s=smtp; t=1601366699; h=In-Reply-To: Content-Type: MIME-Version:
- References: Message-ID: Subject: Cc: To: From: Date: Sender;
- bh=r+8Y1/iTY5V2CVTSF4MuhfKKHmbWKG8EGomgri5/hVc=; b=cxVyKWCeDVRSSNfg03h1t1XIMRmB4r/0/9PMH1BPT47IAafRTbteW+SwoiEeSg87FTMYCr1t
- ooc2FLzcxHBKPmi9banMh8pFp6njrlqlrWnsfVv47k148unnNhljNk/6L2Hucr5G7m2Qqtux
- H/rDGTUN6pG7z30apub5NBquW3c=
-X-Mailgun-Sending-Ip: 69.72.42.4
-X-Mailgun-Sid: WyI1YmJiNiIsICJkZXZpY2V0cmVlQHZnZXIua2VybmVsLm9yZyIsICJiZTllNGEiXQ==
-Received: from smtp.codeaurora.org
- (ec2-35-166-182-171.us-west-2.compute.amazonaws.com [35.166.182.171]) by
- smtp-out-n05.prod.us-east-1.postgun.com with SMTP id
- 5f72ea9559892db41f51d011 (version=TLS1.2,
- cipher=TLS_ECDHE_RSA_WITH_AES_128_GCM_SHA256); Tue, 29 Sep 2020 08:04:37
- GMT
-Sender: varada=codeaurora.org@mg.codeaurora.org
-Received: by smtp.codeaurora.org (Postfix, from userid 1001)
-        id 9616AC4339C; Tue, 29 Sep 2020 08:04:36 +0000 (UTC)
-X-Spam-Checker-Version: SpamAssassin 3.4.0 (2014-02-07) on
-        aws-us-west-2-caf-mail-1.web.codeaurora.org
-X-Spam-Level: 
-X-Spam-Status: No, score=-2.9 required=2.0 tests=ALL_TRUSTED,BAYES_00,SPF_FAIL
-        autolearn=no autolearn_force=no version=3.4.0
-Received: from codeaurora.org (blr-c-bdr-fw-01_GlobalNAT_AllZones-Outside.qualcomm.com [103.229.19.19])
-        (using TLSv1.2 with cipher ECDHE-RSA-AES128-GCM-SHA256 (128/128 bits))
-        (No client certificate requested)
-        (Authenticated sender: varada)
-        by smtp.codeaurora.org (Postfix) with ESMTPSA id 2D953C433CA;
-        Tue, 29 Sep 2020 08:04:30 +0000 (UTC)
-DMARC-Filter: OpenDMARC Filter v1.3.2 smtp.codeaurora.org 2D953C433CA
-Authentication-Results: aws-us-west-2-caf-mail-1.web.codeaurora.org; dmarc=none (p=none dis=none) header.from=codeaurora.org
-Authentication-Results: aws-us-west-2-caf-mail-1.web.codeaurora.org; spf=fail smtp.mailfrom=varada@codeaurora.org
-Date:   Tue, 29 Sep 2020 13:34:26 +0530
-From:   Varadarajan Narayanan <varada@codeaurora.org>
-To:     Bjorn Andersson <bjorn.andersson@linaro.org>
-Cc:     agross@kernel.org, robh+dt@kernel.org, mturquette@baylibre.com,
-        sboyd@kernel.org, linus.walleij@linaro.org,
-        catalin.marinas@arm.com, will@kernel.org, p.zabel@pengutronix.de,
-        nsekar@codeaurora.org, linux-arm-msm@vger.kernel.org,
-        devicetree@vger.kernel.org, linux-kernel@vger.kernel.org,
-        linux-clk@vger.kernel.org, linux-gpio@vger.kernel.org,
-        linux-arm-kernel@lists.infradead.org, sricharan@codeaurora.org
-Subject: Re: [PATCH 5/7] pinctrl: qcom: Add IPQ5018 pinctrl driver
-Message-ID: <20200929080425.GA21805@codeaurora.org>
-References: <1601270140-4306-1-git-send-email-varada@codeaurora.org>
- <1601270140-4306-6-git-send-email-varada@codeaurora.org>
- <20200928184322.GB71055@builder.lan>
+        id S1727403AbgI2IEu (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Tue, 29 Sep 2020 04:04:50 -0400
+Received: from lindbergh.monkeyblade.net ([23.128.96.19]:33236 "EHLO
+        lindbergh.monkeyblade.net" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
+        with ESMTP id S1726064AbgI2IEu (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Tue, 29 Sep 2020 04:04:50 -0400
+Received: from bhuna.collabora.co.uk (bhuna.collabora.co.uk [IPv6:2a00:1098:0:82:1000:25:2eeb:e3e3])
+        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 78F30C061755
+        for <devicetree@vger.kernel.org>; Tue, 29 Sep 2020 01:04:50 -0700 (PDT)
+Received: from [127.0.0.1] (localhost [127.0.0.1])
+        (Authenticated sender: eballetbo)
+        with ESMTPSA id 4575C29B056
+Subject: Re: [PATCH] ARM: dts: cros-ec-keyboard: Add alternate keymap for
+ KEY_LEFTMETA
+To:     Stephen Boyd <swboyd@chromium.org>,
+        Benson Leung <bleung@chromium.org>
+Cc:     Heiko Stuebner <heiko@sntech.de>, devicetree@vger.kernel.org,
+        linux-arm-kernel@lists.infradead.org,
+        Douglas Anderson <dianders@chromium.org>,
+        Matthias Brugger <matthias.bgg@gmail.com>
+References: <20200925162604.2311841-1-swboyd@chromium.org>
+From:   Enric Balletbo i Serra <enric.balletbo@collabora.com>
+Message-ID: <16ec2003-462e-326b-8b3c-51d8b9ae9829@collabora.com>
+Date:   Tue, 29 Sep 2020 10:04:45 +0200
+User-Agent: Mozilla/5.0 (X11; Linux x86_64; rv:68.0) Gecko/20100101
+ Thunderbird/68.12.0
 MIME-Version: 1.0
-Content-Type: text/plain; charset=us-ascii
-Content-Disposition: inline
-In-Reply-To: <20200928184322.GB71055@builder.lan>
-User-Agent: Mutt/1.5.24 (2015-08-30)
+In-Reply-To: <20200925162604.2311841-1-swboyd@chromium.org>
+Content-Type: text/plain; charset=utf-8
+Content-Language: en-US
+Content-Transfer-Encoding: 7bit
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-On Mon, Sep 28, 2020 at 01:43:22PM -0500, Bjorn Andersson wrote:
-> On Mon 28 Sep 00:15 CDT 2020, Varadarajan Narayanan wrote:
-> > diff --git a/drivers/pinctrl/qcom/pinctrl-ipq5018.c b/drivers/pinctrl/qcom/pinctrl-ipq5018.c
-> [..]
-> > +static const struct msm_function ipq5018_functions[] = {
-> [..]
-> > +	FUNCTION(qspi_clk),
-> > +	FUNCTION(qspi_cs),
-> > +	FUNCTION(qspi0),
-> > +	FUNCTION(qspi1),
-> > +	FUNCTION(qspi2),
-> > +	FUNCTION(qspi3),
->
-> Instead of having one function name per pin it typically leads to
-> cleaner DT if you group these under the same name (i.e. "qspi")
+Hi Stephen,
 
-Ok.
+Thank you for your patch.
 
-> Same seems to apply to sdc, wci, xfem at least.
->
-> > +	FUNCTION(reset_out),
-> > +	FUNCTION(sdc1_clk),
-> > +	FUNCTION(sdc1_cmd),
-> > +	FUNCTION(sdc10),
-> > +	FUNCTION(sdc11),
-> > +	FUNCTION(sdc12),
-> > +	FUNCTION(sdc13),
-> > +	FUNCTION(wci0),
-> > +	FUNCTION(wci1),
-> > +	FUNCTION(wci2),
-> > +	FUNCTION(wci3),
-> > +	FUNCTION(wci4),
-> > +	FUNCTION(wci5),
-> > +	FUNCTION(wci6),
-> > +	FUNCTION(wci7),
-> > +	FUNCTION(wsa_swrm),
-> > +	FUNCTION(wsi_clk3),
-> > +	FUNCTION(wsi_data3),
-> > +	FUNCTION(wsis_reset),
-> > +	FUNCTION(xfem0),
-> > +	FUNCTION(xfem1),
-> > +	FUNCTION(xfem2),
-> > +	FUNCTION(xfem3),
-> > +	FUNCTION(xfem4),
-> > +	FUNCTION(xfem5),
-> > +	FUNCTION(xfem6),
-> > +	FUNCTION(xfem7),
-> > +};
+cc'ing Heiko and Matthias
 
-Ok.
+On 25/9/20 18:26, Stephen Boyd wrote:
+> On newer keyboards this key is in a different place. Add both options to
+> the keymap so that both new and old keyboards work.
+> 
+> Cc: Douglas Anderson <dianders@chromium.org>
+> Signed-off-by: Stephen Boyd <swboyd@chromium.org>
 
-> > +static const struct msm_pingroup ipq5018_groups[] = {
-> > +	PINGROUP(0, atest_char0, _, qdss_cti_trig_out_a0, wci0, wci0, xfem0,
->
-> What's up with wci0 being both function 4 and 5?
+Usually the DT changes go through the Rockchip dts or Mediatek dts tree, this is
+not a specific Rockchip/Mediatek change but for both. Are you fine If I pick the
+patch through the chrome-platform tree? I don't think there is any conflict.
 
-Will check this.
+Thanks,
+ Enric
 
-> > +		 _, _, _),
-> > +	PINGROUP(1, atest_char1, _, qdss_cti_trig_in_a0, wci1, wci1, xfem1,
-> > +		 _, _, _),
->
-> Please don't like break these, better blow the line length limit in
-> favor or readability.
->
-> > +	PINGROUP(2, atest_char2, _, qdss_cti_trig_out_a1, wci2, wci2, xfem2,
-> > +		 _, _, _),
-> > +	PINGROUP(3, atest_char3, _, qdss_cti_trig_in_a1, wci3, wci3, xfem3,
-> > +		 _, _, _),
-
-Ok.
-
-> Regards,
-> Bjorn
-
-Will post updated patches soon.
-
-Thanks
-Varada
---
-QUALCOMM INDIA, on behalf of Qualcomm Innovation Center, Inc. is a member of Code Aurora Forum, hosted by The Linux Foundation
+> ---
+>  arch/arm/boot/dts/cros-ec-keyboard.dtsi | 1 +
+>  1 file changed, 1 insertion(+)
+> 
+> diff --git a/arch/arm/boot/dts/cros-ec-keyboard.dtsi b/arch/arm/boot/dts/cros-ec-keyboard.dtsi
+> index 4a0c1037fbc0..165c5bcd510e 100644
+> --- a/arch/arm/boot/dts/cros-ec-keyboard.dtsi
+> +++ b/arch/arm/boot/dts/cros-ec-keyboard.dtsi
+> @@ -46,6 +46,7 @@ MATRIX_KEY(0x02, 0x08, KEY_LEFTBRACE)
+>  			MATRIX_KEY(0x02, 0x09, KEY_F8)
+>  			MATRIX_KEY(0x02, 0x0a, KEY_YEN)
+>  
+> +			MATRIX_KEY(0x03, 0x00, KEY_LEFTMETA)
+>  			MATRIX_KEY(0x03, 0x01, KEY_GRAVE)
+>  			MATRIX_KEY(0x03, 0x02, KEY_F2)
+>  			MATRIX_KEY(0x03, 0x03, KEY_5)
+> 
