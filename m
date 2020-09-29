@@ -2,309 +2,157 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from vger.kernel.org (vger.kernel.org [23.128.96.18])
-	by mail.lfdr.de (Postfix) with ESMTP id ACD7027C112
-	for <lists+devicetree@lfdr.de>; Tue, 29 Sep 2020 11:27:18 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTP id E02E627C149
+	for <lists+devicetree@lfdr.de>; Tue, 29 Sep 2020 11:32:25 +0200 (CEST)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S1727780AbgI2J1S (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Tue, 29 Sep 2020 05:27:18 -0400
-Received: from mail-vi1eur05on2084.outbound.protection.outlook.com ([40.107.21.84]:22624
-        "EHLO EUR05-VI1-obe.outbound.protection.outlook.com"
-        rhost-flags-OK-OK-OK-FAIL) by vger.kernel.org with ESMTP
-        id S1727761AbgI2J1R (ORCPT <rfc822;devicetree@vger.kernel.org>);
-        Tue, 29 Sep 2020 05:27:17 -0400
-ARC-Seal: i=1; a=rsa-sha256; s=arcselector9901; d=microsoft.com; cv=none;
- b=jLn7HwaCTXd3KwAe2IiYCe2Fdpci+NRfG3nKRS0uqZem5zlk07UYyDc0h8kcqJ7Nq+MpMw4ZYwZJaKBuRv1jNqfV5ngbpRljwyvKZyWMb7y5HJGdn/ZfZkyl2tGsxiwHTOLQ2qYAjE20tpMmb9q3Erog9T74VU5LaWXtpfkoQ/KfBWsRXNsQgoM0nV5A7dKiMFBvGTZxrjs6QaoAyzSCFljFypmbKW2VWvH8qHt3tWJGCBvyjY+dJpkQMZhp3cP9PNhOKLZkB0xM4JEacI7vye0H9oaY1+t3YMxJH2e+qo7Tz5bZ46ucEq3RnGp/F1qVQmELm8FmV3gJrtVeDQAyxw==
-ARC-Message-Signature: i=1; a=rsa-sha256; c=relaxed/relaxed; d=microsoft.com;
- s=arcselector9901;
- h=From:Date:Subject:Message-ID:Content-Type:MIME-Version:X-MS-Exchange-SenderADCheck;
- bh=Bi90CFMlfUn8UaER5hwAnYRfBuD0HxtlqQB2Jrmurxc=;
- b=Kobc3bJc90rcZhqo8Co13sbfi7rs596Ly9zUBdsD7newG98O26uOp2c8QLk6wL3sdBukhwstJd/T40FzQO3GHrXJwJnN9M9r6/c4zCtw4Oqq8eBDbY+JE90RmzwnD43Pir5/cT+eMv+tNarMDy+vNw1zb7fYH9/PnepO9Lcknppr+XpYt1i+XCoBhvvdbDM2I+5UJYiC3voEPCvjdaZaYxYNp9g8eFo4CDomzIdKU5+dDp8E0/vx9l6vRXCjMsGjPB4N6uVtMV/DNBDA9O8isTUmNCy1hqVp3o7w++qkJRdeNaI1HfvRQbgzuGRKXnm6bdTeaSC3xVa2BzNzNODEsQ==
-ARC-Authentication-Results: i=1; mx.microsoft.com 1; spf=pass
- smtp.mailfrom=oss.nxp.com; dmarc=pass action=none header.from=oss.nxp.com;
- dkim=pass header.d=oss.nxp.com; arc=none
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=NXP1.onmicrosoft.com;
- s=selector2-NXP1-onmicrosoft-com;
- h=From:Date:Subject:Message-ID:Content-Type:MIME-Version:X-MS-Exchange-SenderADCheck;
- bh=Bi90CFMlfUn8UaER5hwAnYRfBuD0HxtlqQB2Jrmurxc=;
- b=SzWtXKigFnDQeQQOjJkEML2S4qrNSQZVOiLUt1Xt1Lt275AJBEdGI5Vmbk6KfoMlNrNOdj+brUeiVpX5lFEsazJEk26+Q4ej89LWCoxmWuOKOzISr5z6gQe8Xbme+iDyZy1LNbvJ6mSW61LLZ8t8SCvwjYe8rztL+7D8e7K+hns=
-Received: from VI1PR0401MB2272.eurprd04.prod.outlook.com
- (2603:10a6:800:31::12) by VI1PR04MB4078.eurprd04.prod.outlook.com
- (2603:10a6:803:4e::30) with Microsoft SMTP Server (version=TLS1_2,
- cipher=TLS_ECDHE_RSA_WITH_AES_256_GCM_SHA384) id 15.20.3412.24; Tue, 29 Sep
- 2020 09:27:11 +0000
-Received: from VI1PR0401MB2272.eurprd04.prod.outlook.com
- ([fe80::e00e:ad13:489b:8000]) by VI1PR0401MB2272.eurprd04.prod.outlook.com
- ([fe80::e00e:ad13:489b:8000%6]) with mapi id 15.20.3412.029; Tue, 29 Sep 2020
- 09:27:11 +0000
-From:   "Viorel Suman (OSS)" <viorel.suman@oss.nxp.com>
-To:     Philipp Zabel <pza@pengutronix.de>,
-        "Viorel Suman (OSS)" <viorel.suman@oss.nxp.com>
-CC:     Liam Girdwood <lgirdwood@gmail.com>,
-        Mark Brown <broonie@kernel.org>,
-        Rob Herring <robh+dt@kernel.org>,
-        Jaroslav Kysela <perex@perex.cz>,
-        Takashi Iwai <tiwai@suse.com>, Timur Tabi <timur@kernel.org>,
-        Nicolin Chen <nicoleotsuka@gmail.com>,
-        Xiubo Li <Xiubo.Lee@gmail.com>,
-        Fabio Estevam <festevam@gmail.com>,
-        Shengjiu Wang <shengjiu.wang@gmail.com>,
-        Matthias Schiffer <matthias.schiffer@ew.tq-group.com>,
-        Cosmin-Gabriel Samoila <cosmin.samoila@nxp.com>,
-        "alsa-devel@alsa-project.org" <alsa-devel@alsa-project.org>,
-        "devicetree@vger.kernel.org" <devicetree@vger.kernel.org>,
-        "linux-kernel@vger.kernel.org" <linux-kernel@vger.kernel.org>,
-        "linuxppc-dev@lists.ozlabs.org" <linuxppc-dev@lists.ozlabs.org>,
-        dl-linux-imx <linux-imx@nxp.com>,
-        Viorel Suman <viorel.suman@gmail.com>
-Subject: RE: [PATCH v2 1/2] ASoC: fsl_xcvr: Add XCVR ASoC CPU DAI driver
-Thread-Topic: [PATCH v2 1/2] ASoC: fsl_xcvr: Add XCVR ASoC CPU DAI driver
-Thread-Index: AQHWkEqgDSS5CbAr10ON+1pXVni6nal0kbIAgArTIZA=
-Date:   Tue, 29 Sep 2020 09:27:11 +0000
-Message-ID: <VI1PR0401MB2272760740ECAF72FA507C2C92320@VI1PR0401MB2272.eurprd04.prod.outlook.com>
-References: <1600715292-28529-1-git-send-email-viorel.suman@oss.nxp.com>
- <1600715292-28529-2-git-send-email-viorel.suman@oss.nxp.com>
- <20200922120854.GA15104@pengutronix.de>
-In-Reply-To: <20200922120854.GA15104@pengutronix.de>
-Accept-Language: en-US
-Content-Language: en-US
-X-MS-Has-Attach: 
-X-MS-TNEF-Correlator: 
-authentication-results: pengutronix.de; dkim=none (message not signed)
- header.d=none;pengutronix.de; dmarc=none action=none header.from=oss.nxp.com;
-x-ms-exchange-messagesentrepresentingtype: 1
-x-originating-ip: [83.217.231.2]
-x-ms-publictraffictype: Email
-x-ms-office365-filtering-ht: Tenant
-x-ms-office365-filtering-correlation-id: 1932d0ff-ef19-4da0-ab32-08d86459d870
-x-ms-traffictypediagnostic: VI1PR04MB4078:
-x-ms-exchange-sharedmailbox-routingagent-processed: True
-x-ms-exchange-transport-forked: True
-x-microsoft-antispam-prvs: <VI1PR04MB4078DB3FD1A4A84D7AACA8B0D3320@VI1PR04MB4078.eurprd04.prod.outlook.com>
-x-ms-oob-tlc-oobclassifiers: OLM:2733;
-x-ms-exchange-senderadcheck: 1
-x-microsoft-antispam: BCL:0;
-x-microsoft-antispam-message-info: bYRG6SFYsHCqNrlahBu+SGpwzazOTA2pBC3gkRgOQbD2n6AwA4XjhLfIhFxTd31t+QdbJpXNwQIMpi9pQegqdO4h/DpZ9C+13EAt8lh/docU7GlBIb/ClGSzOXjUQTcH4gTP5pG2/dWKNPA1wCwpVl60mrJpZRhI/tgGy7BCGvesxiW496vhbD0LYe62qO6SD7oFRQ9Rd3jf9HnxLFf6CN5CWXfBODxKXtGJMjPjI9K0OKdORzCt5G0o5TzlhjOOf8zD3QqBxy3C1P5QdCacUJzGLJ04LAmSDj1PSanldrZ/f/nOP0Lj+MfB8oeOejNUebCPrF/54aHN4XbvK+40xtnaeVohJ4KkRz1dZ3W5frXJq5Bh2pAkmn1QOIpV5mg3
-x-forefront-antispam-report: CIP:255.255.255.255;CTRY:;LANG:en;SCL:1;SRV:;IPV:NLI;SFV:NSPM;H:VI1PR0401MB2272.eurprd04.prod.outlook.com;PTR:;CAT:NONE;SFS:(4636009)(396003)(376002)(346002)(366004)(136003)(39860400002)(55016002)(64756008)(66556008)(66476007)(186003)(71200400001)(66446008)(66946007)(7416002)(26005)(33656002)(2906002)(9686003)(5660300002)(8676002)(316002)(86362001)(478600001)(54906003)(76116006)(110136005)(52536014)(53546011)(6506007)(8936002)(7696005)(83380400001)(4326008);DIR:OUT;SFP:1101;
-x-ms-exchange-antispam-messagedata: +kRIjVNyPbo1K9MRq/QL6zna5SJK+u3XhYL0AKj3KxZ9sWw0rMtVX+ZqLsmgDOA2KoJnjLLygZyY/SMTL0UDMX9p57jY+V9FP0WDxLcZjNgGdGUHAgjq2hyIxqRC1h73VQjofXvTj8U2SFe7dZUQL0WgSZ0Ah/3yP0gU656Polz95KxqFsOMJ6zZO8L2IHDYJwQUkuqLYbij1KOf+rDjBxn/wW6qXhL8ONxK+IucRwiNuaQTR1rDUubdhZM8CG5zp10bk3tgl4YXWaaj1p54yl4nDyA5UD90o56ynuE05DeJcZYSI+i4IwWWFLj8McpHbor/2CY4acLE1MS+HqT0focIeM8Ro3iAJDXi/2GUzU6QRyauQayMz2VVb7GUkNTMGKI5oRA5UJOWtObpSFNDfN25IA9W4qMv8NVixnR5ufSylO14ISTTpkEI8IMUB5CTfHF5beJW/ldiwC/JevTQrLBtP1IAw7mHoV32+xiGePYb8P8koJCIbvIPO0pD9W5O7kcRK2XiMmkn1DAIYid/fG3Mv+Xo0vsV1oLoJdeCXhqEU6u53umwOCaSK5rPJSlbQZCYAoJMF+MX+X8YP2NZwqMKiZpvwyQgIMG2dAeEPWyJj5FLRFK9WHMjfdxfkxA211K2Hi69skFxmy+hhzy1zg==
-Content-Type: text/plain; charset="us-ascii"
-Content-Transfer-Encoding: quoted-printable
+        id S1728051AbgI2JcP (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Tue, 29 Sep 2020 05:32:15 -0400
+Received: from lindbergh.monkeyblade.net ([23.128.96.19]:46852 "EHLO
+        lindbergh.monkeyblade.net" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
+        with ESMTP id S1727740AbgI2JcM (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Tue, 29 Sep 2020 05:32:12 -0400
+Received: from mail-wr1-x42f.google.com (mail-wr1-x42f.google.com [IPv6:2a00:1450:4864:20::42f])
+        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 7309BC061755
+        for <devicetree@vger.kernel.org>; Tue, 29 Sep 2020 02:32:12 -0700 (PDT)
+Received: by mail-wr1-x42f.google.com with SMTP id x14so4525223wrl.12
+        for <devicetree@vger.kernel.org>; Tue, 29 Sep 2020 02:32:12 -0700 (PDT)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+        d=baylibre-com.20150623.gappssmtp.com; s=20150623;
+        h=from:to:cc:subject:date:message-id:in-reply-to:references
+         :mime-version:content-transfer-encoding;
+        bh=X+jktKSyt59M1RlyoUXQDUiIneqQcY7EbqJCiazlG1Y=;
+        b=myLb+Hr6JRovq+G7HcalEjWrE9xtAR8ykHBBv4s3xwlJeTdJdrmjx5VFHI1pfytwo0
+         mUhQu3iL2Ournn0t/Lt6tDQ3/R9CILOjnCnviUv35KudZ+7Z0Cyqa6UqD51Ty3Y5saOH
+         DPgDtkvBjlZFIF0UWJbr2hnHzKdCQ3B6ZnhmoQ22CZQxn7r+xVYRMH+e15Ix7p/1x4sQ
+         ZBViLZCSHqniJskizbyN1oVpwM0zko+0kfPvaMnTFXoJekFnX5H/LifKQR0CxpegdAbz
+         Exzywj3HVGjLH7WUraTq7YMKLUmk8jmUNTCzDRkWrTGwX8OyTIGx56u7uitDsmr4TIDV
+         HwuQ==
+X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+        d=1e100.net; s=20161025;
+        h=x-gm-message-state:from:to:cc:subject:date:message-id:in-reply-to
+         :references:mime-version:content-transfer-encoding;
+        bh=X+jktKSyt59M1RlyoUXQDUiIneqQcY7EbqJCiazlG1Y=;
+        b=naDhmUaB7XAw9aHWjRktCVups9vqUk8MSoyFaRI/yyb3qIx2xwdvs7CJWU75JF3Yyl
+         Pj4XmQ62wxMwXBuW4aC/TrlbTD9mdWlFrd97pRhdoTajBZTuLPGbDPRFdq2G3KrW7GxL
+         BrKbCrzIfPAtvUQk9v+Zw6d9Bz3zNhzbp00pTuHX1JcuD/OcMtUQ6PZnUz8XWb3O7Ac3
+         ZB2GfSrUdtTqA96f85/K+NgubLAH2upkBBOw6dJHiYSjAIT1bBLU5uiebAGB7Lm/cS+j
+         ql2oaHehPdezU8hGD9vV5rSvBUGt8Jvm0geQb33qjUXpJ5RkJfqt8x2QwJbFI0OIy4/a
+         a2jg==
+X-Gm-Message-State: AOAM531oG1OytibQ2oBNyRikPErlIXbxm+p7mwTPJhxyWyh2S5g3+ncZ
+        SybwdK/Et/5dGyPDzgscUpnEhA==
+X-Google-Smtp-Source: ABdhPJzXi4MqKZk/mmRCSffYTu1+LpmIZUNXQbMDjC5qAe67PTCaW4S2MNtIm7Lxjh1GKuVCkefxSA==
+X-Received: by 2002:adf:81c6:: with SMTP id 64mr3103257wra.176.1601371930925;
+        Tue, 29 Sep 2020 02:32:10 -0700 (PDT)
+Received: from localhost.localdomain ([2a01:e35:2ec0:82b0:d50c:1ee4:fec5:ad12])
+        by smtp.gmail.com with ESMTPSA id a10sm4596107wmj.38.2020.09.29.02.32.09
+        (version=TLS1_3 cipher=TLS_AES_256_GCM_SHA384 bits=256/256);
+        Tue, 29 Sep 2020 02:32:10 -0700 (PDT)
+From:   Neil Armstrong <narmstrong@baylibre.com>
+To:     kishon@ti.com, devicetree@vger.kernel.org
+Cc:     linux-amlogic@lists.infradead.org,
+        linux-arm-kernel@lists.infradead.org, linux-kernel@vger.kernel.org,
+        Neil Armstrong <narmstrong@baylibre.com>,
+        Rob Herring <robh@kernel.org>
+Subject: [PATCH v2 1/2] dt-bindings: phy: add Amlogic AXG MIPI D-PHY bindings
+Date:   Tue, 29 Sep 2020 11:32:02 +0200
+Message-Id: <20200929093203.337954-2-narmstrong@baylibre.com>
+X-Mailer: git-send-email 2.25.1
+In-Reply-To: <20200929093203.337954-1-narmstrong@baylibre.com>
+References: <20200929093203.337954-1-narmstrong@baylibre.com>
 MIME-Version: 1.0
-X-OriginatorOrg: oss.nxp.com
-X-MS-Exchange-CrossTenant-AuthAs: Internal
-X-MS-Exchange-CrossTenant-AuthSource: VI1PR0401MB2272.eurprd04.prod.outlook.com
-X-MS-Exchange-CrossTenant-Network-Message-Id: 1932d0ff-ef19-4da0-ab32-08d86459d870
-X-MS-Exchange-CrossTenant-originalarrivaltime: 29 Sep 2020 09:27:11.6745
- (UTC)
-X-MS-Exchange-CrossTenant-fromentityheader: Hosted
-X-MS-Exchange-CrossTenant-id: 686ea1d3-bc2b-4c6f-a92c-d99c5c301635
-X-MS-Exchange-CrossTenant-mailboxtype: HOSTED
-X-MS-Exchange-CrossTenant-userprincipalname: ioWmrxRlZqTOPDV/bNTRNVwJQjEunBwN0PNPWYSdc8nzTMewf1uBh/SS6Q3Ad2XHNKMmsscQMluPmFWkStYdew==
-X-MS-Exchange-Transport-CrossTenantHeadersStamped: VI1PR04MB4078
+Content-Transfer-Encoding: 8bit
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-Hi Philipp,
+The Amlogic AXg SoCs embeds a MIPI D-PHY to communicate with DSI
+panels, this adds the bindings.
 
-Thank you for your review, please check my comments inline.
+This D-PHY depends on a separate analog PHY.
 
-/Viorel
+Signed-off-by: Neil Armstrong <narmstrong@baylibre.com>
+Reviewed-by: Rob Herring <robh@kernel.org>
+---
+ .../bindings/phy/amlogic,axg-mipi-dphy.yaml   | 70 +++++++++++++++++++
+ 1 file changed, 70 insertions(+)
+ create mode 100644 Documentation/devicetree/bindings/phy/amlogic,axg-mipi-dphy.yaml
 
-> -----Original Message-----
-> From: Philipp Zabel [mailto:pza@pengutronix.de]
-> Sent: Tuesday, September 22, 2020 3:09 PM
-> To: Viorel Suman (OSS) <viorel.suman@oss.nxp.com>
-> Cc: Liam Girdwood <lgirdwood@gmail.com>; Mark Brown
-> <broonie@kernel.org>; Rob Herring <robh+dt@kernel.org>; Jaroslav Kysela
-> <perex@perex.cz>; Takashi Iwai <tiwai@suse.com>; Timur Tabi
-> <timur@kernel.org>; Nicolin Chen <nicoleotsuka@gmail.com>; Xiubo Li
-> <Xiubo.Lee@gmail.com>; Fabio Estevam <festevam@gmail.com>; Shengjiu
-> Wang <shengjiu.wang@gmail.com>; Viorel Suman <viorel.suman@nxp.com>;
-> Matthias Schiffer <matthias.schiffer@ew.tq-group.com>; Cosmin-Gabriel
-> Samoila <cosmin.samoila@nxp.com>; alsa-devel@alsa-project.org;
-> devicetree@vger.kernel.org; linux-kernel@vger.kernel.org; linuxppc-
-> dev@lists.ozlabs.org; dl-linux-imx <linux-imx@nxp.com>; Viorel Suman
-> <viorel.suman@gmail.com>
-> Subject: Re: [PATCH v2 1/2] ASoC: fsl_xcvr: Add XCVR ASoC CPU DAI driver
->=20
-> On Mon, Sep 21, 2020 at 10:08:11PM +0300, Viorel Suman (OSS) wrote:
-> > From: Viorel Suman <viorel.suman@nxp.com>
-> >
-> > XCVR (Audio Transceiver) is a on-chip functional module found on
-> > i.MX8MP. It support HDMI2.1 eARC, HDMI1.4 ARC and SPDIF.
-> >
-> > Signed-off-by: Viorel Suman <viorel.suman@nxp.com>
-> > ---
-> >  sound/soc/fsl/Kconfig    |   10 +
-> >  sound/soc/fsl/Makefile   |    2 +
-> >  sound/soc/fsl/fsl_xcvr.c | 1343
-> > ++++++++++++++++++++++++++++++++++++++++++++++
-> >  sound/soc/fsl/fsl_xcvr.h |  266 +++++++++
-> >  4 files changed, 1621 insertions(+)
-> >  create mode 100644 sound/soc/fsl/fsl_xcvr.c  create mode 100644
-> > sound/soc/fsl/fsl_xcvr.h
-> >
-> > diff --git a/sound/soc/fsl/Kconfig b/sound/soc/fsl/Kconfig index
-> > 3f76ff7..d04b64d 100644
-> > --- a/sound/soc/fsl/Kconfig
-> > +++ b/sound/soc/fsl/Kconfig
-> > @@ -95,6 +95,16 @@ config SND_SOC_FSL_EASRC
-> >  	  destination sample rate. It is a new design module compare with the
-> >  	  old ASRC.
-> >
-> > +config SND_SOC_FSL_XCVR
-> > +	tristate "NXP Audio Transceiver (XCVR) module support"
-> > +	select REGMAP_MMIO
-> > +	select SND_SOC_IMX_PCM_DMA if SND_IMX_SOC !=3D n
-> > +	select SND_SOC_GENERIC_DMAENGINE_PCM
-> > +	help
-> > +	  Say Y if you want to add Audio Transceiver (XCVR) support for NXP
-> > +	  iMX CPUs. XCVR is a digital module that supports HDMI2.1 eARC,
-> > +	  HDMI1.4 ARC and SPDIF.
-> > +
-> >  config SND_SOC_FSL_UTILS
-> >  	tristate
-> >
-> > diff --git a/sound/soc/fsl/Makefile b/sound/soc/fsl/Makefile index
-> > b835eeb..1d2231f 100644
-> > --- a/sound/soc/fsl/Makefile
-> > +++ b/sound/soc/fsl/Makefile
-> > @@ -25,6 +25,7 @@ snd-soc-fsl-utils-objs :=3D fsl_utils.o
-> > snd-soc-fsl-dma-objs :=3D fsl_dma.o  snd-soc-fsl-mqs-objs :=3D fsl_mqs.=
-o
-> > snd-soc-fsl-easrc-objs :=3D fsl_easrc.o
-> > +snd-soc-fsl-xcvr-objs :=3D fsl_xcvr.o
-> >
-> >  obj-$(CONFIG_SND_SOC_FSL_AUDMIX) +=3D snd-soc-fsl-audmix.o
-> >  obj-$(CONFIG_SND_SOC_FSL_ASOC_CARD) +=3D snd-soc-fsl-asoc-card.o @@
-> > -38,6 +39,7 @@ obj-$(CONFIG_SND_SOC_FSL_UTILS) +=3D snd-soc-fsl-utils.o
-> >  obj-$(CONFIG_SND_SOC_FSL_MQS) +=3D snd-soc-fsl-mqs.o
-> >  obj-$(CONFIG_SND_SOC_FSL_EASRC) +=3D snd-soc-fsl-easrc.o
-> >  obj-$(CONFIG_SND_SOC_POWERPC_DMA) +=3D snd-soc-fsl-dma.o
-> > +obj-$(CONFIG_SND_SOC_FSL_XCVR) +=3D snd-soc-fsl-xcvr.o
-> >
-> >  # MPC5200 Platform Support
-> >  obj-$(CONFIG_SND_MPC52xx_DMA) +=3D mpc5200_dma.o diff --git
-> > a/sound/soc/fsl/fsl_xcvr.c b/sound/soc/fsl/fsl_xcvr.c new file mode
-> > 100644 index 00000000..7391bca
-> > --- /dev/null
-> > +++ b/sound/soc/fsl/fsl_xcvr.c
-> > @@ -0,0 +1,1343 @@
-> [...]
-> > +static int fsl_xcvr_probe(struct platform_device *pdev) {
-> > +	struct device *dev =3D &pdev->dev;
-> > +	struct device_node *np =3D dev->of_node;
-> > +	const struct of_device_id *of_id;
-> > +	struct fsl_xcvr *xcvr;
-> > +	struct resource *ram_res, *regs_res, *rx_res, *tx_res;
-> > +	void __iomem *regs;
-> > +	int ret, irq;
-> > +
-> > +	of_id =3D of_match_device(fsl_xcvr_dt_ids, dev);
-> > +	if (!of_id)
-> > +		return -EINVAL;
-> > +
-> > +	xcvr =3D devm_kzalloc(dev, sizeof(*xcvr), GFP_KERNEL);
-> > +	if (!xcvr)
-> > +		return -ENOMEM;
-> > +
-> > +	xcvr->pdev =3D pdev;
-> > +	xcvr->ipg_clk =3D devm_clk_get(dev, "ipg");
-> > +	if (IS_ERR(xcvr->ipg_clk)) {
-> > +		dev_err(dev, "failed to get ipg clock\n");
-> > +		return PTR_ERR(xcvr->ipg_clk);
-> > +	}
-> > +
-> > +	xcvr->phy_clk =3D devm_clk_get(dev, "phy");
-> > +	if (IS_ERR(xcvr->phy_clk)) {
-> > +		dev_err(dev, "failed to get phy clock\n");
-> > +		return PTR_ERR(xcvr->phy_clk);
-> > +	}
-> > +
-> > +	xcvr->spba_clk =3D devm_clk_get(dev, "spba");
-> > +	if (IS_ERR(xcvr->spba_clk)) {
-> > +		dev_err(dev, "failed to get spba clock\n");
-> > +		return PTR_ERR(xcvr->spba_clk);
-> > +	}
-> > +
-> > +	xcvr->pll_ipg_clk =3D devm_clk_get(dev, "pll_ipg");
-> > +	if (IS_ERR(xcvr->pll_ipg_clk)) {
-> > +		dev_err(dev, "failed to get pll_ipg clock\n");
-> > +		return PTR_ERR(xcvr->pll_ipg_clk);
-> > +	}
-> > +
-> > +	ram_res =3D platform_get_resource_byname(pdev, IORESOURCE_MEM,
-> "ram");
-> > +	xcvr->ram_addr =3D devm_ioremap_resource(dev, ram_res);
-> > +	if (IS_ERR(xcvr->ram_addr))
-> > +		return PTR_ERR(xcvr->ram_addr);
-> > +
-> > +	regs_res =3D platform_get_resource_byname(pdev, IORESOURCE_MEM,
-> "regs");
-> > +	regs =3D devm_ioremap_resource(dev, regs_res);
-> > +	if (IS_ERR(regs))
-> > +		return PTR_ERR(regs);
-> > +
-> > +	xcvr->regmap =3D devm_regmap_init_mmio_clk(dev, NULL, regs,
-> > +						 &fsl_xcvr_regmap_cfg);
-> > +	if (IS_ERR(xcvr->regmap)) {
-> > +		dev_err(dev, "failed to init XCVR regmap: %ld\n",
-> > +			PTR_ERR(xcvr->regmap));
-> > +		return PTR_ERR(xcvr->regmap);
-> > +	}
-> > +
-> > +	xcvr->reset =3D of_reset_control_get(np, NULL);
->=20
-> Please use devm_reset_control_get_exclusive().
+diff --git a/Documentation/devicetree/bindings/phy/amlogic,axg-mipi-dphy.yaml b/Documentation/devicetree/bindings/phy/amlogic,axg-mipi-dphy.yaml
+new file mode 100644
+index 000000000000..be485f500887
+--- /dev/null
++++ b/Documentation/devicetree/bindings/phy/amlogic,axg-mipi-dphy.yaml
+@@ -0,0 +1,70 @@
++# SPDX-License-Identifier: (GPL-2.0 OR BSD-2-Clause)
++# Copyright 2020 BayLibre, SAS
++%YAML 1.2
++---
++$id: "http://devicetree.org/schemas/phy/amlogic,axg-mipi-dphy.yaml#"
++$schema: "http://devicetree.org/meta-schemas/core.yaml#"
++
++title: Amlogic AXG MIPI D-PHY
++
++maintainers:
++  - Neil Armstrong <narmstrong@baylibre.com>
++
++properties:
++  compatible:
++    enum:
++      - amlogic,axg-mipi-dphy
++
++  reg:
++    maxItems: 1
++
++  clocks:
++    maxItems: 1
++
++  clock-names:
++    items:
++      - const: pclk
++
++  resets:
++    maxItems: 1
++
++  reset-names:
++    items:
++      - const: phy
++
++  "#phy-cells":
++    const: 0
++
++  phys:
++    maxItems: 1
++
++  phy-names:
++    items:
++      - const: analog
++
++required:
++  - compatible
++  - reg
++  - clocks
++  - clock-names
++  - resets
++  - reset-names
++  - phys
++  - phy-names
++  - "#phy-cells"
++
++additionalProperties: false
++
++examples:
++  - |
++    phy@ff640000 {
++            compatible = "amlogic,axg-mipi-dphy";
++            reg = <0xff640000 0x100>;
++            clocks = <&clk_mipi_dsi_phy>;
++            clock-names = "pclk";
++            resets = <&reset_phy>;
++            reset-names = "phy";
++            phys = <&mipi_pcie_analog_dphy>;
++            phy-names = "analog";
++            #phy-cells = <0>;
++    };
+-- 
+2.25.1
 
-Done in V3.
-
->=20
-> [...]
-> > +static __maybe_unused int fsl_xcvr_runtime_resume(struct device *dev)
-> > +{
-> > +	struct fsl_xcvr *xcvr =3D dev_get_drvdata(dev);
-> > +	int ret;
-> > +
-> > +	ret =3D clk_prepare_enable(xcvr->ipg_clk);
-> > +	if (ret) {
-> > +		dev_err(dev, "failed to start IPG clock.\n");
-> > +		return ret;
-> > +	}
-> > +
-> > +	ret =3D clk_prepare_enable(xcvr->pll_ipg_clk);
-> > +	if (ret) {
-> > +		dev_err(dev, "failed to start PLL IPG clock.\n");
-> > +		goto stop_ipg_clk;
-> > +	}
-> > +
-> > +	ret =3D clk_prepare_enable(xcvr->phy_clk);
-> > +	if (ret) {
-> > +		dev_err(dev, "failed to start PHY clock: %d\n", ret);
-> > +		goto stop_pll_ipg_clk;
-> > +	}
-> > +
-> > +	ret =3D clk_prepare_enable(xcvr->spba_clk);
-> > +	if (ret) {
-> > +		dev_err(dev, "failed to start SPBA clock.\n");
-> > +		goto stop_phy_clk;
-> > +	}
-> > +
-> > +	regcache_cache_only(xcvr->regmap, false);
-> > +	regcache_mark_dirty(xcvr->regmap);
-> > +	ret =3D regcache_sync(xcvr->regmap);
-> > +
-> > +	if (ret) {
-> > +		dev_err(dev, "failed to sync regcache.\n");
-> > +		goto stop_spba_clk;
-> > +	}
-> > +
-> > +	reset_control_assert(xcvr->reset);
-> > +	reset_control_deassert(xcvr->reset);
->=20
-> No delay required between the two?
-
-Not required. Just to keep things in proper context - in
-V3 I moved reset_control_assert call into runtime_suspend.
-
-/Viorel
