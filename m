@@ -2,175 +2,71 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from vger.kernel.org (vger.kernel.org [23.128.96.18])
-	by mail.lfdr.de (Postfix) with ESMTP id D0FFE27DB76
-	for <lists+devicetree@lfdr.de>; Wed, 30 Sep 2020 00:09:18 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTP id E18FC27DB8A
+	for <lists+devicetree@lfdr.de>; Wed, 30 Sep 2020 00:17:44 +0200 (CEST)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S1728857AbgI2WJP (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Tue, 29 Sep 2020 18:09:15 -0400
-Received: from lindbergh.monkeyblade.net ([23.128.96.19]:51848 "EHLO
-        lindbergh.monkeyblade.net" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S1727922AbgI2WJP (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Tue, 29 Sep 2020 18:09:15 -0400
-Received: from mail-pj1-x1043.google.com (mail-pj1-x1043.google.com [IPv6:2607:f8b0:4864:20::1043])
-        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id BB328C0613D0
-        for <devicetree@vger.kernel.org>; Tue, 29 Sep 2020 15:09:14 -0700 (PDT)
-Received: by mail-pj1-x1043.google.com with SMTP id ml18so684353pjb.2
-        for <devicetree@vger.kernel.org>; Tue, 29 Sep 2020 15:09:14 -0700 (PDT)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=chromium.org; s=google;
-        h=date:from:to:cc:subject:message-id:references:mime-version
-         :content-disposition:in-reply-to;
-        bh=8fC27h9ZgDNL2axWTEutG+gx93n8Yc9ucaXhlyytfCs=;
-        b=EfZtR0Qr0tu9rn4I7XKHQgJEVbI8JywQ+y/MRkyNqRlmhY+TDgTFzOnLz7tL959Q22
-         2yetaoLrkqAmf9znNgBrl5+TeS37a6kDUc1TyYpq5CP39U+2kou5CYExO20RxnTh+8tl
-         FXtPJiPiZWnBNWz7ycVAWQFpUmD5H68oPQY88=
-X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=1e100.net; s=20161025;
-        h=x-gm-message-state:date:from:to:cc:subject:message-id:references
-         :mime-version:content-disposition:in-reply-to;
-        bh=8fC27h9ZgDNL2axWTEutG+gx93n8Yc9ucaXhlyytfCs=;
-        b=lhqrq5e6133V1wpIbhANj+CjTWHBCFjyT7TpCFbiijOMoeoZbu0h3nswZ6nk35wHuK
-         kyaBGeOqT7SArFFXn28WU67GtjZxm/Ix9iISj3ZyqinCeAy9T3euvMknnDjnBRaEHLdS
-         Sj7vfUS6lQ/0cWqYxkrLeBOi5Un4HU/LgTOYLxwflwljKFMFTmGNVHXhOWdlFgGUx+Fg
-         ZymlN0GLQdHGMbEIKGQNzZ95BOFHQb4PvWpDzPncDJ5s6H8G7W+6Vm3qmYJoZhbEEjmg
-         FzyBhThh5VHCPpZggDBcouz2q17ZXfp3qXJXrgR3ZTHwA2zyjrh8r+DXqxuQ1lr7VscF
-         n7YA==
-X-Gm-Message-State: AOAM5316al8MTJ+Ivpe6cioGX7EN5enPM93WEHEZat3Zv1uZGZfa8+iK
-        EyFjmdACfx8EV63L53+g/BE2IA==
-X-Google-Smtp-Source: ABdhPJxTYRtJRMu/SXLDA4x5xCJTpWeBSfOlq+vQ95AwOTdOXivReBz7xAPyU89owMQ29ex5vahf7Q==
-X-Received: by 2002:a17:90a:fa8b:: with SMTP id cu11mr5623209pjb.10.1601417354186;
-        Tue, 29 Sep 2020 15:09:14 -0700 (PDT)
-Received: from localhost ([2620:15c:202:1:f693:9fff:fef4:e70a])
-        by smtp.gmail.com with ESMTPSA id h11sm5930115pgi.10.2020.09.29.15.09.13
-        (version=TLS1_3 cipher=TLS_AES_128_GCM_SHA256 bits=128/128);
-        Tue, 29 Sep 2020 15:09:13 -0700 (PDT)
-Date:   Tue, 29 Sep 2020 15:09:12 -0700
-From:   Matthias Kaehlcke <mka@chromium.org>
-To:     Rob Herring <robh@kernel.org>
-Cc:     Greg Kroah-Hartman <gregkh@linuxfoundation.org>,
-        Frank Rowand <frowand.list@gmail.com>,
-        linux-kernel@vger.kernel.org, linux-usb@vger.kernel.org,
-        Bastien Nocera <hadess@hadess.net>,
-        Stephen Boyd <swboyd@chromium.org>,
-        Douglas Anderson <dianders@chromium.org>,
-        Alan Stern <stern@rowland.harvard.edu>,
-        Ravi Chandra Sadineni <ravisadineni@chromium.org>,
-        Krzysztof Kozlowski <krzk@kernel.org>,
-        devicetree@vger.kernel.org, Peter Chen <peter.chen@nxp.com>
-Subject: Re: [PATCH v4 1/2] dt-bindings: usb: Add binding for discrete
- onboard USB hubs
-Message-ID: <20200929220912.GF1621304@google.com>
-References: <20200928101326.v4.1.I248292623d3d0f6a4f0c5bc58478ca3c0062b49a@changeid>
- <20200929201701.GA1080459@bogus>
+        id S1728287AbgI2WRn (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Tue, 29 Sep 2020 18:17:43 -0400
+Received: from mail.baikalelectronics.com ([87.245.175.226]:37044 "EHLO
+        mail.baikalelectronics.ru" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
+        with ESMTP id S1728262AbgI2WRn (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Tue, 29 Sep 2020 18:17:43 -0400
+Received: from localhost (unknown [127.0.0.1])
+        by mail.baikalelectronics.ru (Postfix) with ESMTP id 7CE5E803086A;
+        Tue, 29 Sep 2020 22:17:38 +0000 (UTC)
+X-Virus-Scanned: amavisd-new at baikalelectronics.ru
+Received: from mail.baikalelectronics.ru ([127.0.0.1])
+        by localhost (mail.baikalelectronics.ru [127.0.0.1]) (amavisd-new, port 10024)
+        with ESMTP id 00aWBNZzgcag; Wed, 30 Sep 2020 01:17:38 +0300 (MSK)
+Date:   Wed, 30 Sep 2020 01:17:37 +0300
+From:   Serge Semin <Sergey.Semin@baikalelectronics.ru>
+To:     Mark Brown <broonie@kernel.org>
+CC:     Alexey Malahov <Alexey.Malahov@baikalelectronics.ru>,
+        Ramil Zaripov <Ramil.Zaripov@baikalelectronics.ru>,
+        Pavel Parkhomenko <Pavel.Parkhomenko@baikalelectronics.ru>,
+        Andy Shevchenko <andy.shevchenko@gmail.com>,
+        Andy Shevchenko <andriy.shevchenko@linux.intel.com>,
+        Lars Povlsen <lars.povlsen@microchip.com>,
+        "wuxu . wu" <wuxu.wu@huawei.com>, Feng Tang <feng.tang@intel.com>,
+        Rob Herring <robh+dt@kernel.org>, <linux-spi@vger.kernel.org>,
+        <devicetree@vger.kernel.org>, <linux-kernel@vger.kernel.org>
+Subject: Re: [PATCH 11/30] spi: dw: Add DWC SSI capability
+Message-ID: <20200929221737.fiwjr4y3vhme4546@mobilestation>
+References: <20200920112914.26501-1-Sergey.Semin@baikalelectronics.ru>
+ <20200920112914.26501-12-Sergey.Semin@baikalelectronics.ru>
+ <20200929135233.GG4799@sirena.org.uk>
 MIME-Version: 1.0
-Content-Type: text/plain; charset=utf-8
+Content-Type: text/plain; charset="us-ascii"
 Content-Disposition: inline
-In-Reply-To: <20200929201701.GA1080459@bogus>
+In-Reply-To: <20200929135233.GG4799@sirena.org.uk>
+X-ClientProxiedBy: MAIL.baikal.int (192.168.51.25) To mail (192.168.51.25)
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-Hi Rob,
-
-On Tue, Sep 29, 2020 at 03:17:01PM -0500, Rob Herring wrote:
-> On Mon, Sep 28, 2020 at 10:13:54AM -0700, Matthias Kaehlcke wrote:
-> > Discrete onboard USB hubs (an example for such a hub is the Realtek
-> > RTS5411) need to be powered and may require initialization of other
-> > resources (like GPIOs or clocks) to work properly. This adds a device
-> > tree binding for these hubs.
-> > 
-> > Signed-off-by: Matthias Kaehlcke <mka@chromium.org>
-> > ---
-> > 
-> > (no changes since v3)
-> > 
-> > Changes in v3:
-> > - updated commit message
-> > - removed recursive reference to $self
-> > - adjusted 'compatible' definition to support multiple entries
-> > - changed USB controller phandle to be a node
-> > 
-> > Changes in v2:
-> > - removed 'wakeup-source' and 'power-off-in-suspend' properties
-> > - consistently use spaces for indentation in example
-> > 
-> >  .../bindings/usb/onboard_usb_hub.yaml         | 54 +++++++++++++++++++
-> >  1 file changed, 54 insertions(+)
-> >  create mode 100644 Documentation/devicetree/bindings/usb/onboard_usb_hub.yaml
-> > 
-> > diff --git a/Documentation/devicetree/bindings/usb/onboard_usb_hub.yaml b/Documentation/devicetree/bindings/usb/onboard_usb_hub.yaml
-> > new file mode 100644
-> > index 000000000000..c9783da3e75c
-> > --- /dev/null
-> > +++ b/Documentation/devicetree/bindings/usb/onboard_usb_hub.yaml
-> > @@ -0,0 +1,54 @@
-> > +# SPDX-License-Identifier: GPL-2.0-only or BSD-2-Clause
-> > +%YAML 1.2
-> > +---
-> > +$id: http://devicetree.org/schemas/usb/onboard_usb_hub.yaml#
-> > +$schema: http://devicetree.org/meta-schemas/core.yaml#
-> > +
-> > +title: Binding for onboard USB hubs
-> > +
-> > +maintainers:
-> > +  - Matthias Kaehlcke <mka@chromium.org>
-> > +
-> > +properties:
-> > +  compatible:
-> > +    items:
-> > +      - enum:
-> > +        - realtek,rts5411
-> > +      - const: onboard-usb-hub
-> > +
-> > +  vdd-supply:
-> > +    description:
-> > +      phandle to the regulator that provides power to the hub.
-> > +
-> > +required:
-> > +  - compatible
-> > +  - vdd-supply
-> > +
-> > +examples:
-> > +  - |
-> > +    usb_hub: usb-hub {
-> > +        compatible = "realtek,rts5411", "onboard-usb-hub";
-> > +        vdd-supply = <&pp3300_hub>;
-> > +    };
+On Tue, Sep 29, 2020 at 02:52:33PM +0100, Mark Brown wrote:
+> On Sun, Sep 20, 2020 at 02:28:55PM +0300, Serge Semin wrote:
 > 
-> As I said in prior version, this separate node and 'hub' phandle is not 
-> going to work. You are doing this because you want a platform driver for 
-> "realtek,rts5411". That may be convenient for Linux, but doesn't reflect 
-> the h/w.
+> > -	/*
+> > -	 * SPI mode (SCPOL|SCPH)
+> > -	 * CTRLR0[ 8] Serial Clock Phase
+> > -	 * CTRLR0[ 9] Serial Clock Polarity
+> > -	 */
+> > -	cr0 |= ((spi->mode & SPI_CPOL) ? 1 : 0) << DWC_SSI_CTRLR0_SCPOL_OFFSET;
+> > -	cr0 |= ((spi->mode & SPI_CPHA) ? 1 : 0) << DWC_SSI_CTRLR0_SCPH_OFFSET;
+> 
 
-I agree that the hardware representation isn't totally straightforward, however
-the description isn't limited to Linux:
+> > +		cr0 |= SSI_MOTO_SPI << DWC_SSI_CTRLR0_FRF_OFFSET;
+> > +		cr0 |= ((spi->mode & SPI_CPOL) ? 1 : 0) << DWC_SSI_CTRLR0_SCPOL_OFFSET;
+> > +		cr0 |= ((spi->mode & SPI_CPHA) ? 1 : 0) << DWC_SSI_CTRLR0_SCPH_OFFSET;
+> 
+> The new code seems less well commented than the old code here.
 
-- there is a single IC (like the Realtek RTS5411)
-- the IC may require several resources to be initialized in a certain way
-  - this may require executing hardware specific code by some driver, which
-    isn't a USB device driver
-- the IC can 'contain' multiple USB hub devices, which can be connected to
-  separate USB busses
-- the IC doesn't have a control bus, which somewhat resembles the
-  'simple-audio-amplifier' driver, which also registers a platform device
-  to initialize its resources
+You are right. The comments are omitted. The thing is that they are absolutely
+redundant here, for the same reason they haven't been added to the standard
+update_cr0() method. Both the DWC SSI-capable and standard DW APB SSI-specific
+part of the code do the same thing: setup the CTRLR0 fields, which are described
+by the macro definitions. So there is no need to duplicate that information in
+the comments, moreover seeing it can be inferred from the code.
 
-- to provide the functionality of powering down the hub conditionally during
-  system suspend the driver (whether it's a platform driver or something else)
-  needs know which USB (hub) devices correspond to it. This is a real world
-  problem, on hardware that might see wide distribution.
-
-There were several attempts to solve this problem in the past, but none of them
-was accepted. So far Alan Stern seems to think the driver (not necessarily the
-binding as is) is a suitable solution, Greg KH also spent time reviewing it,
-without raising conceptual concerns. So it seems we have solution that would
-be generally landable from the USB side.
-
-I understand that your goal is to keep the device tree sane, which I'm sure
-can be challenging. If you really can't be convinced that the binding might
-be acceptable in its current or similiar form then please offer guidance
-on possible alternatives which allow to achieve the same functionality.
-
-Thanks
-
-Matthias
+-Sergey
