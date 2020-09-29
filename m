@@ -2,78 +2,148 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from vger.kernel.org (vger.kernel.org [23.128.96.18])
-	by mail.lfdr.de (Postfix) with ESMTP id 8F3BA27BEB4
-	for <lists+devicetree@lfdr.de>; Tue, 29 Sep 2020 10:02:19 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTP id 69D4F27BEC9
+	for <lists+devicetree@lfdr.de>; Tue, 29 Sep 2020 10:05:00 +0200 (CEST)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S1727634AbgI2ICS (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Tue, 29 Sep 2020 04:02:18 -0400
-Received: from mail-ed1-f68.google.com ([209.85.208.68]:41393 "EHLO
-        mail-ed1-f68.google.com" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S1727617AbgI2ICS (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Tue, 29 Sep 2020 04:02:18 -0400
-Received: by mail-ed1-f68.google.com with SMTP id l24so267670edj.8
-        for <devicetree@vger.kernel.org>; Tue, 29 Sep 2020 01:02:16 -0700 (PDT)
-X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=1e100.net; s=20161025;
-        h=x-gm-message-state:date:from:to:cc:subject:message-id:references
-         :mime-version:content-disposition:in-reply-to:user-agent;
-        bh=mMIS0X3LNYzV0bYX/+jZoiNbf6H8wTzeHRN8LvijP+I=;
-        b=M+AZ1iGZZn1XS0kBd+6ORW4hRTL1IfFTNy5XUYDa33AQ/8R6S3gICY6J+doXC3v0Uy
-         IKFhUM0Goxq/eOVFU+c091IWYGUP9qQ41e0L4c6mh4UXW1wWuSZlhJfYcdpYqz/0jtKX
-         acQi5iC3Y+yYRbT9SUHa1WNCXAryPvsQtRVijXr70emrQJ1wqjm9EzP02DbyxvyQQF5+
-         6VXlnwGpguCqwuHFzL02Y4kzzzVYtWY/ravBS5aYMQA4vceQv/LQIsbZTIaKh3Zth9/g
-         R0rky2nUuWDtlcrYO4dcxnaS4FA5/sLFrmYlDWVtsOKtLTCoFUMCOuNAC3trCwIbv81E
-         tTxw==
-X-Gm-Message-State: AOAM5313kNCOShSeiySEgMWDwo3yCDVAOo+epRkBLNeDXOd2x5Gu9mAs
-        5bjnUr2I8GLpCNcIfv8NYQQ=
-X-Google-Smtp-Source: ABdhPJwN89wkb+OWNCeeJ5ncHXcRo2ZwlGUt4n+raCs0zn/lLe51di1YcPF8WA4C7/MmEBlGUkfBjQ==
-X-Received: by 2002:a05:6402:1fb:: with SMTP id i27mr1929567edy.379.1601366536246;
-        Tue, 29 Sep 2020 01:02:16 -0700 (PDT)
-Received: from kozik-lap ([194.230.155.194])
-        by smtp.googlemail.com with ESMTPSA id bk13sm1939778ejb.58.2020.09.29.01.02.14
-        (version=TLS1_2 cipher=ECDHE-ECDSA-CHACHA20-POLY1305 bits=256/256);
-        Tue, 29 Sep 2020 01:02:15 -0700 (PDT)
-Date:   Tue, 29 Sep 2020 10:02:13 +0200
-From:   Krzysztof Kozlowski <krzk@kernel.org>
-To:     Jacky Bai <ping.bai@nxp.com>
-Cc:     shawnguo@kernel.org, robh+dt@kernel.org, s.hauer@pengutronix.de,
-        festevam@gmail.com, linux-imx@nxp.com, devicetree@vger.kernel.org
-Subject: Re: [PATCH 2/2] arm64: dts: freescale: Add pmu support on imx8mn
-Message-ID: <20200929080213.GD7139@kozik-lap>
-References: <20200927094742.2714535-1-ping.bai@nxp.com>
- <20200927094742.2714535-2-ping.bai@nxp.com>
+        id S1727697AbgI2IFA (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Tue, 29 Sep 2020 04:05:00 -0400
+Received: from m42-4.mailgun.net ([69.72.42.4]:24179 "EHLO m42-4.mailgun.net"
+        rhost-flags-OK-OK-OK-OK) by vger.kernel.org with ESMTP
+        id S1726064AbgI2IE7 (ORCPT <rfc822;devicetree@vger.kernel.org>);
+        Tue, 29 Sep 2020 04:04:59 -0400
+DKIM-Signature: a=rsa-sha256; v=1; c=relaxed/relaxed; d=mg.codeaurora.org; q=dns/txt;
+ s=smtp; t=1601366699; h=In-Reply-To: Content-Type: MIME-Version:
+ References: Message-ID: Subject: Cc: To: From: Date: Sender;
+ bh=r+8Y1/iTY5V2CVTSF4MuhfKKHmbWKG8EGomgri5/hVc=; b=cxVyKWCeDVRSSNfg03h1t1XIMRmB4r/0/9PMH1BPT47IAafRTbteW+SwoiEeSg87FTMYCr1t
+ ooc2FLzcxHBKPmi9banMh8pFp6njrlqlrWnsfVv47k148unnNhljNk/6L2Hucr5G7m2Qqtux
+ H/rDGTUN6pG7z30apub5NBquW3c=
+X-Mailgun-Sending-Ip: 69.72.42.4
+X-Mailgun-Sid: WyI1YmJiNiIsICJkZXZpY2V0cmVlQHZnZXIua2VybmVsLm9yZyIsICJiZTllNGEiXQ==
+Received: from smtp.codeaurora.org
+ (ec2-35-166-182-171.us-west-2.compute.amazonaws.com [35.166.182.171]) by
+ smtp-out-n05.prod.us-east-1.postgun.com with SMTP id
+ 5f72ea9559892db41f51d011 (version=TLS1.2,
+ cipher=TLS_ECDHE_RSA_WITH_AES_128_GCM_SHA256); Tue, 29 Sep 2020 08:04:37
+ GMT
+Sender: varada=codeaurora.org@mg.codeaurora.org
+Received: by smtp.codeaurora.org (Postfix, from userid 1001)
+        id 9616AC4339C; Tue, 29 Sep 2020 08:04:36 +0000 (UTC)
+X-Spam-Checker-Version: SpamAssassin 3.4.0 (2014-02-07) on
+        aws-us-west-2-caf-mail-1.web.codeaurora.org
+X-Spam-Level: 
+X-Spam-Status: No, score=-2.9 required=2.0 tests=ALL_TRUSTED,BAYES_00,SPF_FAIL
+        autolearn=no autolearn_force=no version=3.4.0
+Received: from codeaurora.org (blr-c-bdr-fw-01_GlobalNAT_AllZones-Outside.qualcomm.com [103.229.19.19])
+        (using TLSv1.2 with cipher ECDHE-RSA-AES128-GCM-SHA256 (128/128 bits))
+        (No client certificate requested)
+        (Authenticated sender: varada)
+        by smtp.codeaurora.org (Postfix) with ESMTPSA id 2D953C433CA;
+        Tue, 29 Sep 2020 08:04:30 +0000 (UTC)
+DMARC-Filter: OpenDMARC Filter v1.3.2 smtp.codeaurora.org 2D953C433CA
+Authentication-Results: aws-us-west-2-caf-mail-1.web.codeaurora.org; dmarc=none (p=none dis=none) header.from=codeaurora.org
+Authentication-Results: aws-us-west-2-caf-mail-1.web.codeaurora.org; spf=fail smtp.mailfrom=varada@codeaurora.org
+Date:   Tue, 29 Sep 2020 13:34:26 +0530
+From:   Varadarajan Narayanan <varada@codeaurora.org>
+To:     Bjorn Andersson <bjorn.andersson@linaro.org>
+Cc:     agross@kernel.org, robh+dt@kernel.org, mturquette@baylibre.com,
+        sboyd@kernel.org, linus.walleij@linaro.org,
+        catalin.marinas@arm.com, will@kernel.org, p.zabel@pengutronix.de,
+        nsekar@codeaurora.org, linux-arm-msm@vger.kernel.org,
+        devicetree@vger.kernel.org, linux-kernel@vger.kernel.org,
+        linux-clk@vger.kernel.org, linux-gpio@vger.kernel.org,
+        linux-arm-kernel@lists.infradead.org, sricharan@codeaurora.org
+Subject: Re: [PATCH 5/7] pinctrl: qcom: Add IPQ5018 pinctrl driver
+Message-ID: <20200929080425.GA21805@codeaurora.org>
+References: <1601270140-4306-1-git-send-email-varada@codeaurora.org>
+ <1601270140-4306-6-git-send-email-varada@codeaurora.org>
+ <20200928184322.GB71055@builder.lan>
 MIME-Version: 1.0
-Content-Type: text/plain; charset=utf-8
+Content-Type: text/plain; charset=us-ascii
 Content-Disposition: inline
-In-Reply-To: <20200927094742.2714535-2-ping.bai@nxp.com>
-User-Agent: Mutt/1.9.4 (2018-02-28)
+In-Reply-To: <20200928184322.GB71055@builder.lan>
+User-Agent: Mutt/1.5.24 (2015-08-30)
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-On Sun, Sep 27, 2020 at 05:47:42PM +0800, Jacky Bai wrote:
-> Add PMU node to enable pmu support on imx8mn.
-> 
-> Signed-off-by: Jacky Bai <ping.bai@nxp.com>
-> ---
->  arch/arm64/boot/dts/freescale/imx8mn.dtsi | 8 ++++++++
->  1 file changed, 8 insertions(+)
-> 
-> diff --git a/arch/arm64/boot/dts/freescale/imx8mn.dtsi b/arch/arm64/boot/dts/freescale/imx8mn.dtsi
-> index 746faf1cf2fb..589835d78727 100644
-> --- a/arch/arm64/boot/dts/freescale/imx8mn.dtsi
-> +++ b/arch/arm64/boot/dts/freescale/imx8mn.dtsi
-> @@ -186,6 +186,14 @@ clk_ext4: clock-ext4 {
->  		clock-output-names = "clk_ext4";
->  	};
->  
-> +	pmu {
-> +		compatible = "arm,armv8-pmuv3";
-> +		interrupts = <GIC_PPI 7
-> +			     (GIC_CPU_MASK_SIMPLE(6) | IRQ_TYPE_LEVEL_HIGH)>;
+On Mon, Sep 28, 2020 at 01:43:22PM -0500, Bjorn Andersson wrote:
+> On Mon 28 Sep 00:15 CDT 2020, Varadarajan Narayanan wrote:
+> > diff --git a/drivers/pinctrl/qcom/pinctrl-ipq5018.c b/drivers/pinctrl/qcom/pinctrl-ipq5018.c
+> [..]
+> > +static const struct msm_function ipq5018_functions[] = {
+> [..]
+> > +	FUNCTION(qspi_clk),
+> > +	FUNCTION(qspi_cs),
+> > +	FUNCTION(qspi0),
+> > +	FUNCTION(qspi1),
+> > +	FUNCTION(qspi2),
+> > +	FUNCTION(qspi3),
+>
+> Instead of having one function name per pin it typically leads to
+> cleaner DT if you group these under the same name (i.e. "qspi")
 
-The same as in 1/2 - unusual value for GIC_CPU_MASK_SIMPLE. There are
-four cores on Nano.
+Ok.
 
-Best regards,
-Krzysztof
+> Same seems to apply to sdc, wci, xfem at least.
+>
+> > +	FUNCTION(reset_out),
+> > +	FUNCTION(sdc1_clk),
+> > +	FUNCTION(sdc1_cmd),
+> > +	FUNCTION(sdc10),
+> > +	FUNCTION(sdc11),
+> > +	FUNCTION(sdc12),
+> > +	FUNCTION(sdc13),
+> > +	FUNCTION(wci0),
+> > +	FUNCTION(wci1),
+> > +	FUNCTION(wci2),
+> > +	FUNCTION(wci3),
+> > +	FUNCTION(wci4),
+> > +	FUNCTION(wci5),
+> > +	FUNCTION(wci6),
+> > +	FUNCTION(wci7),
+> > +	FUNCTION(wsa_swrm),
+> > +	FUNCTION(wsi_clk3),
+> > +	FUNCTION(wsi_data3),
+> > +	FUNCTION(wsis_reset),
+> > +	FUNCTION(xfem0),
+> > +	FUNCTION(xfem1),
+> > +	FUNCTION(xfem2),
+> > +	FUNCTION(xfem3),
+> > +	FUNCTION(xfem4),
+> > +	FUNCTION(xfem5),
+> > +	FUNCTION(xfem6),
+> > +	FUNCTION(xfem7),
+> > +};
+
+Ok.
+
+> > +static const struct msm_pingroup ipq5018_groups[] = {
+> > +	PINGROUP(0, atest_char0, _, qdss_cti_trig_out_a0, wci0, wci0, xfem0,
+>
+> What's up with wci0 being both function 4 and 5?
+
+Will check this.
+
+> > +		 _, _, _),
+> > +	PINGROUP(1, atest_char1, _, qdss_cti_trig_in_a0, wci1, wci1, xfem1,
+> > +		 _, _, _),
+>
+> Please don't like break these, better blow the line length limit in
+> favor or readability.
+>
+> > +	PINGROUP(2, atest_char2, _, qdss_cti_trig_out_a1, wci2, wci2, xfem2,
+> > +		 _, _, _),
+> > +	PINGROUP(3, atest_char3, _, qdss_cti_trig_in_a1, wci3, wci3, xfem3,
+> > +		 _, _, _),
+
+Ok.
+
+> Regards,
+> Bjorn
+
+Will post updated patches soon.
+
+Thanks
+Varada
+--
+QUALCOMM INDIA, on behalf of Qualcomm Innovation Center, Inc. is a member of Code Aurora Forum, hosted by The Linux Foundation
