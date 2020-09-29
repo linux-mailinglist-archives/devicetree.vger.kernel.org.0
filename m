@@ -2,67 +2,70 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from vger.kernel.org (vger.kernel.org [23.128.96.18])
-	by mail.lfdr.de (Postfix) with ESMTP id 9477727D67D
-	for <lists+devicetree@lfdr.de>; Tue, 29 Sep 2020 21:10:29 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTP id 0B31327D67E
+	for <lists+devicetree@lfdr.de>; Tue, 29 Sep 2020 21:10:45 +0200 (CEST)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S1728276AbgI2TK2 (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Tue, 29 Sep 2020 15:10:28 -0400
-Received: from mail-oi1-f195.google.com ([209.85.167.195]:42175 "EHLO
-        mail-oi1-f195.google.com" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S1728166AbgI2TK2 (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Tue, 29 Sep 2020 15:10:28 -0400
-Received: by mail-oi1-f195.google.com with SMTP id x14so6670558oic.9
-        for <devicetree@vger.kernel.org>; Tue, 29 Sep 2020 12:10:28 -0700 (PDT)
+        id S1728215AbgI2TKo (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Tue, 29 Sep 2020 15:10:44 -0400
+Received: from mail-oi1-f196.google.com ([209.85.167.196]:45623 "EHLO
+        mail-oi1-f196.google.com" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
+        with ESMTP id S1728166AbgI2TKo (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Tue, 29 Sep 2020 15:10:44 -0400
+Received: by mail-oi1-f196.google.com with SMTP id z26so6669404oih.12;
+        Tue, 29 Sep 2020 12:10:43 -0700 (PDT)
 X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
         d=1e100.net; s=20161025;
         h=x-gm-message-state:date:from:to:cc:subject:message-id:references
-         :mime-version:content-disposition:content-transfer-encoding
-         :in-reply-to;
-        bh=cxjVSznZfD5H5D7jNFeaCK/3LXiy41wXF6wkmxY3ifY=;
-        b=G9c1IoD4k28eBp7pcUhnmWQuxm4N0SqqA6a/uJJAW8z3BVB1I2x23umlVf52TFRvKs
-         m+nibaSnpIbZIVnkBRq4zWwMgh4sJcK9kGmesACPTQVf9iGrzusy8UrYeHcZi1WjYLrj
-         En9QaAuF4urkEj9udXSGQov8kWOwVpdqCDpIxToyS1rmrsJnacY+6bu/Sb3nJnXnvdJQ
-         XAM89T85lOXBT1qITcfqaDZ/XLBNisiqZBiqRcTW7GZQrI5Yrq57QIuzDTPcEQw47rlk
-         RojJL2Spu1Kmv0HDXSQXsqmTZ45H5+YpNqq9Nk2wXgpEDgTJQAfVfBwtpAQWilTx1cKh
-         QSxw==
-X-Gm-Message-State: AOAM5332TE4D07d5jkFf4DHGO4eAwPXqLZ3AJ3ewnw1ZKkluNEN/HkxY
-        Jj0P6rKFU7V+S1VhYdP1WQ==
-X-Google-Smtp-Source: ABdhPJwm4edm0GRNxj84lz3qtUqOpChCjn3yeTsuleYTjV+KFKKFz8rW/ZkLc41LHtC/hzaaQc0erw==
-X-Received: by 2002:a05:6808:183:: with SMTP id w3mr3565180oic.176.1601406627731;
-        Tue, 29 Sep 2020 12:10:27 -0700 (PDT)
+         :mime-version:content-disposition:in-reply-to;
+        bh=P1/m9QiSdgyvfStAgxDXDni/v1l7JjRuH6ifGD4UeHc=;
+        b=LaBatGsoEP8zmPUICLctBZGWpXYHpFNsAT9mpr36bfedAJF79Na4Bhoq7a8FZIxK57
+         GffQzZTDQ7lwD1QYfJPHzunFwpEVOyoJbhgWfj3ivsBIhKcv1QqoxU6R8RkH2SKQXCFm
+         IL1aqYnCDeARiLsGu7VSqKe4mRON2P9t1egoFXbDjmd6n2WgyK0JvjXsOUK4GMDmNdjI
+         eqtk2zf5eqf0jB2fHsJ9hnEQWYZXab1K4V3Dq5Lw/3hwxzeihN3fCQxRxstOYvJVoU37
+         v4z9ObSU8ejZJJ4oqAAlEqCFJBRu6DU9x99WZtUr1yrjUwr/3sz20N3RxuPu1Df42Vt/
+         upzQ==
+X-Gm-Message-State: AOAM530PMj/kHBmk0rKHd2lrFf7Dbsjmcn+zVxyuX4GQxjX5udfeFAvd
+        TXrBi4sHHhj/hGi5RycKjQ==
+X-Google-Smtp-Source: ABdhPJz0K1uHXOBWLKt6w53u6b3plRVlmc4EKrzlCakv2bqgabB1h7AD2jsOtPmUue1WdEZ0fLAoPw==
+X-Received: by 2002:a05:6808:44:: with SMTP id v4mr3606541oic.45.1601406643543;
+        Tue, 29 Sep 2020 12:10:43 -0700 (PDT)
 Received: from xps15 (24-155-109-49.dyn.grandenetworks.net. [24.155.109.49])
-        by smtp.gmail.com with ESMTPSA id y24sm3140448ooq.38.2020.09.29.12.10.26
+        by smtp.gmail.com with ESMTPSA id a75sm1191029oii.55.2020.09.29.12.10.42
         (version=TLS1_3 cipher=TLS_AES_256_GCM_SHA384 bits=256/256);
-        Tue, 29 Sep 2020 12:10:27 -0700 (PDT)
-Received: (nullmailer pid 983690 invoked by uid 1000);
-        Tue, 29 Sep 2020 19:10:26 -0000
-Date:   Tue, 29 Sep 2020 14:10:26 -0500
+        Tue, 29 Sep 2020 12:10:42 -0700 (PDT)
+Received: (nullmailer pid 984216 invoked by uid 1000);
+        Tue, 29 Sep 2020 19:10:42 -0000
+Date:   Tue, 29 Sep 2020 14:10:42 -0500
 From:   Rob Herring <robh@kernel.org>
-To:     Uwe =?iso-8859-1?Q?Kleine-K=F6nig?= <uwe@kleine-koenig.org>
-Cc:     Aditya Prayoga <aditya@kobol.io>,
-        linux-rockchip@lists.infradead.org,
-        Heiko Stuebner <heiko@sntech.de>,
-        Rob Herring <robh+dt@kernel.org>, devicetree@vger.kernel.org,
-        linux-arm-kernel@lists.infradead.org
-Subject: Re: [PATCH 1/2] dt-bindings: vendor-prefixes: Add kobol prefix
-Message-ID: <20200929191026.GA983622@bogus>
-References: <20200925214003.27186-1-uwe@kleine-koenig.org>
+To:     kholk11@gmail.com
+Cc:     will@kernel.org, marijns95@gmail.com, martin.botka1@gmail.com,
+        konradybcio@gmail.com, devicetree@vger.kernel.org,
+        linux-arm-kernel@lists.infradead.org, phone-devel@vger.kernel.org,
+        linux-arm-msm@vger.kernel.org, joro@8bytes.org,
+        robin.murphy@arm.com, bjorn.andersson@linaro.org,
+        linux-kernel@vger.kernel.org
+Subject: Re: [PATCH 3/8] dt-bindings: arm-smmu: add binding for SMMUv2 on
+ Qualcomm SDM660
+Message-ID: <20200929191042.GA984165@bogus>
+References: <20200926130004.13528-1-kholk11@gmail.com>
+ <20200926130004.13528-4-kholk11@gmail.com>
 MIME-Version: 1.0
-Content-Type: text/plain; charset=iso-8859-1
+Content-Type: text/plain; charset=us-ascii
 Content-Disposition: inline
-Content-Transfer-Encoding: 8bit
-In-Reply-To: <20200925214003.27186-1-uwe@kleine-koenig.org>
+In-Reply-To: <20200926130004.13528-4-kholk11@gmail.com>
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-On Fri, 25 Sep 2020 23:40:02 +0200, Uwe Kleine-König wrote:
-> The prefix is already used in arm/armada-388-helios4.dts.
+On Sat, 26 Sep 2020 14:59:59 +0200, kholk11@gmail.com wrote:
+> From: AngeloGioacchino Del Regno <kholk11@gmail.com>
 > 
-> Signed-off-by: Uwe Kleine-König <uwe@kleine-koenig.org>
+> Add the binding for the SMMUv2 found on Qualcomm SDM660.
+> 
+> Signed-off-by: AngeloGioacchino Del Regno <kholk11@gmail.com>
 > ---
->  Documentation/devicetree/bindings/vendor-prefixes.yaml | 2 ++
->  1 file changed, 2 insertions(+)
+>  Documentation/devicetree/bindings/iommu/arm,smmu.yaml | 1 +
+>  1 file changed, 1 insertion(+)
 > 
 
 Acked-by: Rob Herring <robh@kernel.org>
