@@ -2,177 +2,128 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from vger.kernel.org (vger.kernel.org [23.128.96.18])
-	by mail.lfdr.de (Postfix) with ESMTP id 2E24727D3BE
-	for <lists+devicetree@lfdr.de>; Tue, 29 Sep 2020 18:37:48 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTP id 766BD27D3DE
+	for <lists+devicetree@lfdr.de>; Tue, 29 Sep 2020 18:50:11 +0200 (CEST)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S1728186AbgI2Qhl (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Tue, 29 Sep 2020 12:37:41 -0400
-Received: from lindbergh.monkeyblade.net ([23.128.96.19]:56842 "EHLO
+        id S1728459AbgI2QuK (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Tue, 29 Sep 2020 12:50:10 -0400
+Received: from lindbergh.monkeyblade.net ([23.128.96.19]:58750 "EHLO
         lindbergh.monkeyblade.net" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S1728184AbgI2Qhl (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Tue, 29 Sep 2020 12:37:41 -0400
+        with ESMTP id S1728299AbgI2QuJ (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Tue, 29 Sep 2020 12:50:09 -0400
 Received: from mail-pj1-x1041.google.com (mail-pj1-x1041.google.com [IPv6:2607:f8b0:4864:20::1041])
-        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id DEA7FC061755;
-        Tue, 29 Sep 2020 09:37:40 -0700 (PDT)
-Received: by mail-pj1-x1041.google.com with SMTP id jw11so2950412pjb.0;
-        Tue, 29 Sep 2020 09:37:40 -0700 (PDT)
+        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 97C73C061755
+        for <devicetree@vger.kernel.org>; Tue, 29 Sep 2020 09:50:09 -0700 (PDT)
+Received: by mail-pj1-x1041.google.com with SMTP id h23so1834144pjv.5
+        for <devicetree@vger.kernel.org>; Tue, 29 Sep 2020 09:50:09 -0700 (PDT)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=gmail.com; s=20161025;
-        h=mime-version:references:in-reply-to:from:date:message-id:subject:to
-         :cc:content-transfer-encoding;
-        bh=tg5f8r5u/C7h4zTCABx8TCIEL7vsD7cEWgNSNx1Mhuo=;
-        b=mMzxQvjL29Mh9yG57bCHo7dUr7BOU1mi5S7nRbttYY7qjpEtgyB3th6JKvs04eLZpD
-         bh1InFSWp/G9PLsIwwV7KNWy/n6UOR1S07EU87EwmcT8rJ+fyEQfQC0pvCCMmtBTmLHG
-         UrA0dz164V3sVMRVinQXq3o7e0+3WYj5EEePB6e9WimQJ7sZd2WBOdPrAGcIiVT+OtC5
-         QGf7hXTxUyc5W2F2kMvrCl5PrnByNb+GrZLatlCcQbQI4NeohOxJy6Mou4s5orbOWctl
-         hU2+4OJ1CZf+APEJEIGwP8F7MxU2ILjNVscUd9h2NsS9+8csPUh2ANMVEPYXb8NKHenx
-         +ovg==
+        d=chromium.org; s=google;
+        h=date:from:to:cc:subject:message-id:references:mime-version
+         :content-disposition:in-reply-to;
+        bh=Bx2mthXKRoHRDLfXsb2AnpwZtquJD0dlMq0Tm2f6pbo=;
+        b=kL71NIMYdPjXj9LwpfUzVrCh5h7fD7Yv+zdFHSUfmLE1NPZJmaZ9wKG3Al+sHoom3Q
+         X1mleMc2oSA+FU5O26kA2JqTSVi6W+1T9DFkBwi6uO6k3Ke/avrU0UB+RXjtolq7NVMh
+         TWAfXr6KzhZB1btVxKac0lTeF1AzcRIFGCVYE=
 X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
         d=1e100.net; s=20161025;
-        h=x-gm-message-state:mime-version:references:in-reply-to:from:date
-         :message-id:subject:to:cc:content-transfer-encoding;
-        bh=tg5f8r5u/C7h4zTCABx8TCIEL7vsD7cEWgNSNx1Mhuo=;
-        b=YYtisWy8rzkYuF9VdIg4yAR9SivXQ4p7mWENJspVud4FtTUuMfRwpsakr7SqR+ocPz
-         4lmYnkwTj7exc+xOS6DnIebbv6F2jt/HCDM9CmYzlxCxoD9mHB/q6zSbmLbCLVMP1/+f
-         mdh4gAf323ImNVotNPF3xKea2AgTzgAMWlq/a73fpihshDDhxCaLQnIH6q/woaArsxDB
-         0oKIDnW5zZKwHhNxnq6jyXmIOWepbfnBUuuRvKp4J3cuBtkxpbYybI7BrD/Vbn+MK6nM
-         FspfhXG6AKicEgqiLvH7JiE4QENJOaAHU7n4f8ERspCowDi2fodXCC0s/MpZOd0xyEP9
-         buug==
-X-Gm-Message-State: AOAM531FiQlPaSE6aaSSfq21YgLmoX/LfVK0/S7XtFQ1Um0BmlgFIS+U
-        qWhhwaLqFxP7kD6gsJZ//ugeP98tYmPtMagX00Y=
-X-Google-Smtp-Source: ABdhPJzZ2MWu7BgoxsmDjhQpS0GWZbywEzkmOKzpwIhLoaMANgTMAtb9GN0oR97r5Kd5jzUPLjGd6xvp9GBlEWkoC5E=
-X-Received: by 2002:a17:90b:fc4:: with SMTP id gd4mr4713204pjb.129.1601397460322;
- Tue, 29 Sep 2020 09:37:40 -0700 (PDT)
-MIME-Version: 1.0
-References: <20200924192455.2484005-1-j.neuschaefer@gmx.net>
- <20200924192455.2484005-4-j.neuschaefer@gmx.net> <CAHp75VdUHPsuvDPLnfP9sM2p1FDiCsjkCf1SSM-y02ZsQxSDWQ@mail.gmail.com>
- <20200925213207.GA2510@latitude>
-In-Reply-To: <20200925213207.GA2510@latitude>
-From:   Andy Shevchenko <andy.shevchenko@gmail.com>
-Date:   Tue, 29 Sep 2020 19:37:21 +0300
-Message-ID: <CAHp75VchfQ-djkK6u+fLjq6kfqpzb0nqSLJOe76cb5S3J_F9GQ@mail.gmail.com>
-Subject: Re: [PATCH v3 3/7] mfd: Add base driver for Netronix embedded controller
-To:     =?UTF-8?Q?Jonathan_Neusch=C3=A4fer?= <j.neuschaefer@gmx.net>
-Cc:     Linux Kernel Mailing List <linux-kernel@vger.kernel.org>,
-        Lee Jones <lee.jones@linaro.org>,
+        h=x-gm-message-state:date:from:to:cc:subject:message-id:references
+         :mime-version:content-disposition:in-reply-to;
+        bh=Bx2mthXKRoHRDLfXsb2AnpwZtquJD0dlMq0Tm2f6pbo=;
+        b=UCjs8bgD1l1WHBTLrx3UB8005OSKx0TFYrPpqyB4EjBWGIkE4UTPAhhcwJ46isUi+5
+         WnUyANyjObHoh5YdfUqMUgJxriBffcVYPuV4twrUKPbOk1iDjF7ZLtLmG66TW1p0w1Ze
+         TokTcO9zHTwgfacRoNslP7nJINx9uBzHDCVHBtClo9tBa4UIOVyliYK8AqaC6Al3JWq7
+         em0hhm08VY5NjNKhOFINrzq7c35AUNdAd+Rc3/3C+mV4UibsI2hY7JygTzjSge3BzfRV
+         AH1Xtcz8DQRP0GMay6ZTBTI8mMkxoM6N1yGCddvYmp2vuqb+rA9mlFmor02kXj0DqVgc
+         caeA==
+X-Gm-Message-State: AOAM533fJCMA3YYMSvV3cb+8lFWIxV2G4x9iUgRMSkLa7150wbDy2lPT
+        FbYkmL78AVoX6zkCE0ZYbozBvg==
+X-Google-Smtp-Source: ABdhPJybp+vWW8POAUUihAVRXUIuN0KQCXkEsZZQnOy/LhF5uPULmb3JW82r6QxNFpQ9LMhQ70cZuA==
+X-Received: by 2002:a17:90b:3905:: with SMTP id ob5mr4572388pjb.61.1601398209134;
+        Tue, 29 Sep 2020 09:50:09 -0700 (PDT)
+Received: from localhost ([2620:15c:202:1:f693:9fff:fef4:e70a])
+        by smtp.gmail.com with ESMTPSA id 131sm6078036pfy.5.2020.09.29.09.50.07
+        (version=TLS1_3 cipher=TLS_AES_128_GCM_SHA256 bits=128/128);
+        Tue, 29 Sep 2020 09:50:08 -0700 (PDT)
+Date:   Tue, 29 Sep 2020 09:50:07 -0700
+From:   Matthias Kaehlcke <mka@chromium.org>
+To:     Alan Stern <stern@rowland.harvard.edu>
+Cc:     Greg Kroah-Hartman <gregkh@linuxfoundation.org>,
         Rob Herring <robh+dt@kernel.org>,
-        Thierry Reding <thierry.reding@gmail.com>,
-        =?UTF-8?Q?Uwe_Kleine=2DK=C3=B6nig?= 
-        <u.kleine-koenig@pengutronix.de>,
-        Alessandro Zummo <a.zummo@towertech.it>,
-        Alexandre Belloni <alexandre.belloni@bootlin.com>,
-        Shawn Guo <shawnguo@kernel.org>,
-        Sascha Hauer <s.hauer@pengutronix.de>,
-        Pengutronix Kernel Team <kernel@pengutronix.de>,
-        Fabio Estevam <festevam@gmail.com>,
-        NXP Linux Team <linux-imx@nxp.com>,
-        Sam Ravnborg <sam@ravnborg.org>,
-        Linus Walleij <linus.walleij@linaro.org>,
-        Heiko Stuebner <heiko.stuebner@theobroma-systems.com>,
-        Stephan Gerhold <stephan@gerhold.net>,
-        Lubomir Rintel <lkundrak@v3.sk>,
-        Mark Brown <broonie@kernel.org>, allen <allen.chen@ite.com.tw>,
-        Mauro Carvalho Chehab <mchehab+huawei@kernel.org>,
+        Frank Rowand <frowand.list@gmail.com>,
+        linux-kernel@vger.kernel.org, linux-usb@vger.kernel.org,
+        Bastien Nocera <hadess@hadess.net>,
+        Stephen Boyd <swboyd@chromium.org>,
+        Douglas Anderson <dianders@chromium.org>,
+        Ravi Chandra Sadineni <ravisadineni@chromium.org>,
+        Krzysztof Kozlowski <krzk@kernel.org>,
+        devicetree@vger.kernel.org, Peter Chen <peter.chen@nxp.com>,
+        "Alexander A. Klimov" <grandmaster@al2klimov.de>,
         "David S. Miller" <davem@davemloft.net>,
-        devicetree <devicetree@vger.kernel.org>,
-        linux-pwm@vger.kernel.org,
-        "open list:REAL TIME CLOCK (RTC) SUBSYSTEM" 
-        <linux-rtc@vger.kernel.org>,
-        linux-arm Mailing List <linux-arm-kernel@lists.infradead.org>,
-        Heiko Stuebner <heiko@sntech.de>,
-        Josua Mayer <josua.mayer@jm0.eu>,
-        Andreas Kemnade <andreas@kemnade.info>,
-        Arnd Bergmann <arnd@arndb.de>, Daniel Palmer <daniel@0x0f.com>
-Content-Type: text/plain; charset="UTF-8"
-Content-Transfer-Encoding: quoted-printable
+        Johan Hovold <johan@kernel.org>,
+        Masahiro Yamada <yamada.masahiro@socionext.com>,
+        Mauro Carvalho Chehab <mchehab+huawei@kernel.org>,
+        Rob Herring <robh@kernel.org>
+Subject: Re: [PATCH v4 2/2] USB: misc: Add onboard_usb_hub driver
+Message-ID: <20200929165007.GA1621304@google.com>
+References: <20200928101326.v4.1.I248292623d3d0f6a4f0c5bc58478ca3c0062b49a@changeid>
+ <20200928101326.v4.2.I7c9a1f1d6ced41dd8310e8a03da666a32364e790@changeid>
+ <20200928184759.GB142254@rowland.harvard.edu>
+ <20200929014355.GA1099144@google.com>
+ <20200929160036.GC173077@rowland.harvard.edu>
+MIME-Version: 1.0
+Content-Type: text/plain; charset=utf-8
+Content-Disposition: inline
+In-Reply-To: <20200929160036.GC173077@rowland.harvard.edu>
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-On Sat, Sep 26, 2020 at 12:32 AM Jonathan Neusch=C3=A4fer
-<j.neuschaefer@gmx.net> wrote:
-> On Fri, Sep 25, 2020 at 12:29:45PM +0300, Andy Shevchenko wrote:
-> > On Thu, Sep 24, 2020 at 10:26 PM Jonathan Neusch=C3=A4fer
-> > <j.neuschaefer@gmx.net> wrote:
+On Tue, Sep 29, 2020 at 12:00:36PM -0400, Alan Stern wrote:
+> On Mon, Sep 28, 2020 at 06:43:55PM -0700, Matthias Kaehlcke wrote:
+> > > Have you tried manually unbinding and rebinding the two drivers a few
+> > > times to make sure they will still work?
+> > 
+> > I went through a few dozen bund/unbind cycles for both drivers and things
+> > looked good overall, but then last minute I found that determining whether
+> > wakeup capable devices are connected doesn't always work as (I) expected.
+> > I didn't see this earlier, it seems to be reproduce more easily after
+> > unbinding and rebinding the platform driver.
+> > 
+> > During development I already noticed that usb_wakeup_enabled_descendants()
+> > returns a cached value, which was a problem for an earlier version of the
+> > driver. The values are updated by hub_suspend(), my (flawed) assumption
+> > was that the USB driver would always suspend before the platform driver.
+> > This generally seems to be the case on my development platform after boot,
+> > but not necessarily after unbinding and rebinding the driver. Using the
+> > _suspend_late hook instead of _suspend seems to be a reliable workaround.
+> 
+> Yes, for unrelated (i.e., not in a parent-child relation) devices, the 
+> PM subsystem doesn't guarantee ordering of suspend and resume callbacks.  
+> You can enforce the ordering by using device_pm_wait_for_dev().  But the 
+> suspend_late approach seems like a better solution in this case.
 
-...
+Thanks for the confirmation. Good to know about device_pm_wait_for_dev(),
+even if we are not going to use it in this case.
 
-> > > +               dev_alert(&poweroff_restart_client->dev,
-> > > +                         "Failed to power off (err =3D %d)\n", res);
-> >
-> > alert? This needs to be explained.
->
-> I copied the dev_alert from drivers/mfd/rn5t618.c.
->
-> Upon reconsideration, I'm not sure what the correct log level would be,
-> but _warn seems enough, or maybe _err is better
+> > > I'm a little concerned about  all the devm_* stuff in here; does that
+> > > get released when the driver is unbound from the device or when the device
+> > > is unregistered?  And if the latter, what happens if you have multiple
+> > > sysfs attribute groups going at the same time?
+> > 
+> > The memory gets released when the device is unbound:
+> > 
+> > device_release_driver
+> >   device_release_driver_internal
+> >     __device_release_driver
+> >       devres_release_all
+> > 
+> > Anyway, if you prefer I can change the driver to use kmalloc/kfree.
+> 
+> No, that's fine.  I just wasn't sure about this and wanted to check.
 
-It's up to you to decide, but crit/alert and similar has to be
-justified (commit message / comment in the code).
-
-...
-
-> > > +       /*
-> > > +        * NOTE: The lower half of the reset value is not sent, becau=
-se sending
-> > > +        * it causes an error
-> >
-> > Why? Any root cause? Perhaps you need to send 0xffff ?
->
-> Unknown, because I don't have the EC firmware for analysis. The vendor
-> kernel sends 0xff00 and gets an error.
->
-> Sending 0xffff doesn't help.
-
-Maybe a slightly elaborated comment that it's copied from the vendor
-kernel (which is?).
-
-> > > +        */
-
-...
-
-> > > +       dev_info(ec->dev,
-> > > +                "Netronix embedded controller version %04x detected.=
-\n",
-> > > +                version);
-> >
-> > This info level may confuse users if followed by an error path.
->
-> Right. I suppose printing incompatible versions is still useful, so how
-> about something like the following?
->
->
->        /* Bail out if we encounter an unknown firmware version */
->        switch (version) {
->        case 0xd726: /* found in Kobo Aura */
->                dev_info(ec->dev,
->                         "Netronix embedded controller version %04x detect=
-ed.\n",
->                         version);
->                break;
->        default:
->                dev_err(ec->dev,
->                         "Netronix embedded controller version %04x is not=
- supported.\n",
->                         version);
->                return -ENODEV;
->        }
-
-This is better.
-
-...
-
-> > > +               WARN_ON(poweroff_restart_client);
-> >
-> > WARN_ON? All these alerts, WARNs, BUGs must be explained. Screaming to
-> > the user is not good if it wasn't justified.
->
-> poweroff_restart_client being already set is not a situation that should
-> happen (and would indicate a bug in this driver, AFAICT), but I guess
-> the log message could be better in that case...
-
-As per above.
-
---=20
-With Best Regards,
-Andy Shevchenko
+I think the only concern would be a scenario where the USB devices are
+unbound and rebound over and over again, which would result in a
+struct udev_node being kept around for every bind until the platform
+device is removed. It seems unlikely and shouldn't be a big problem
+as long as the number of bind/unbind cycles is in the thousands rather
+than millions.
