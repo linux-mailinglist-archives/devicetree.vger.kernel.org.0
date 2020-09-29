@@ -2,63 +2,66 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from vger.kernel.org (vger.kernel.org [23.128.96.18])
-	by mail.lfdr.de (Postfix) with ESMTP id 11BAC27C2EE
-	for <lists+devicetree@lfdr.de>; Tue, 29 Sep 2020 12:56:20 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTP id A480527C2F0
+	for <lists+devicetree@lfdr.de>; Tue, 29 Sep 2020 12:56:53 +0200 (CEST)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S1727805AbgI2K4S (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Tue, 29 Sep 2020 06:56:18 -0400
-Received: from lindbergh.monkeyblade.net ([23.128.96.19]:59788 "EHLO
+        id S1727403AbgI2K4w (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Tue, 29 Sep 2020 06:56:52 -0400
+Received: from lindbergh.monkeyblade.net ([23.128.96.19]:59878 "EHLO
         lindbergh.monkeyblade.net" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S1727650AbgI2K4S (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Tue, 29 Sep 2020 06:56:18 -0400
-Received: from mail-ej1-x643.google.com (mail-ej1-x643.google.com [IPv6:2a00:1450:4864:20::643])
-        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 4903EC061755
-        for <devicetree@vger.kernel.org>; Tue, 29 Sep 2020 03:56:18 -0700 (PDT)
-Received: by mail-ej1-x643.google.com with SMTP id j11so14397326ejk.0
-        for <devicetree@vger.kernel.org>; Tue, 29 Sep 2020 03:56:18 -0700 (PDT)
+        with ESMTP id S1725535AbgI2K4w (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Tue, 29 Sep 2020 06:56:52 -0400
+Received: from mail-ej1-x644.google.com (mail-ej1-x644.google.com [IPv6:2a00:1450:4864:20::644])
+        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 4058CC061755
+        for <devicetree@vger.kernel.org>; Tue, 29 Sep 2020 03:56:52 -0700 (PDT)
+Received: by mail-ej1-x644.google.com with SMTP id gr14so14399231ejb.1
+        for <devicetree@vger.kernel.org>; Tue, 29 Sep 2020 03:56:52 -0700 (PDT)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
         d=monstr-eu.20150623.gappssmtp.com; s=20150623;
         h=mime-version:references:in-reply-to:from:date:message-id:subject:to
          :cc:content-transfer-encoding;
-        bh=Z2Vyi6859atB4dYO6brHpxNiRhMmXBV/4g45BzJSh9M=;
-        b=LeBWnXxjITAnHgdjGeTnzPfccTT+yPZUAB/+/e4PScWpvephwStvWmN/zCEcnGX6y0
-         cuqfj55fNJiU7WPIdLWLNsLsb7iAEcA+6BJ1ck4XRQTPJdgBgfm74TBHz2DgWzR+DBoD
-         a87zmNrLE9Ywr4CfScko3Ob+bj99nM6DcjFUmqEjVnZu7SZKyxrr2NXRVChkBBw1xpLR
-         WY0v+Ehgi9yuAF0dZYiAL3sWbobBn9BEjHXs7qbMWRMLEniHDt8u/r/yMV75yn1WGo0D
-         ntC3K4YSKIbcjeY1T83EqWp1p9xggBc+YfdmrczaShbuwre1BGhYHw6PYmXMU74Ks9/y
-         8DcQ==
+        bh=KuB6v1Z/cxaw+tkBcRkrNd8FIvmhihG+BlVshB3rkPY=;
+        b=Fdlaw10dczFFn8MNkevPHnqslMdFK7TLzB4yoHVlqpvK0Y5T1DkC0greHZY+A3NkMN
+         bGqP6juODF0rt4ySzD8nh0czdS2HmOe1vBsExYUnL6joorfe8wf/9GrP3MSHpF4C6RPT
+         ZBR0DwLWgOD7ZYHj+ukL4sibP0YMH2xIPdXxjE0Af1QUGV52+oqL2VZRtgmK5kmb6Pnf
+         LHOn+xfGAq6+qRvQAj5Dr/RXunwAvNCDf31YSUdQTV5nYeIOeh84n48n4nMm/J7HdDMb
+         uulN8/4rEqwuCB2ehzbKwgN6A0NDl7GGHmxWrIuBaK2OCh94ywo9/qKujmQzIF8k4iUr
+         cxZw==
 X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
         d=1e100.net; s=20161025;
         h=x-gm-message-state:mime-version:references:in-reply-to:from:date
          :message-id:subject:to:cc:content-transfer-encoding;
-        bh=Z2Vyi6859atB4dYO6brHpxNiRhMmXBV/4g45BzJSh9M=;
-        b=cX4E+m2P6r8SA3R0psQtOP3o2ISt1sPMEznQG4KytAdHJwReifr2eYTxqzzlK5w3wR
-         D3riCowWhHoiEckoqV07IOJnU+IfrMsni9QA/p2Dy6YC3qjDFtTrpmgPASptakWm1EP3
-         k8b/3xv6eOfJ/z5EIAjycHj6HrgjAHJnjwAxYbYBnJX0YawTeHrpbuE4jwDc/c8IXqoY
-         Y6rSqiir5YeVXuDwnyuygjy06BnFws3wfx4nVm3pAFvjnfD418BT1X0XXsH23LZnSF13
-         D6CzAssPpiJ6eKNwAdq9Pcv3QhMixxD/e/tRhL4YD/Cj5MzoMyqCexorIEfRiQNu0kPo
-         pl0Q==
-X-Gm-Message-State: AOAM533weM9gJUmBF4p8icZMx2bUkrrYM9bb/slRaNBj3TivzAh1PTiL
-        2pWwt3TEZ60d3/v87MtHQ0JV7RFAm4VS40+MFqVtpQ==
-X-Google-Smtp-Source: ABdhPJzOeNPblBxTNeJKT3nQJy9oYxE7lrbohxQ3PiScPQO5eTBenohjRKiBsX8zBIMpp7cSKNh4vk3m4WnqfHQR9rM=
-X-Received: by 2002:a17:906:3f95:: with SMTP id b21mr3128842ejj.93.1601376976903;
- Tue, 29 Sep 2020 03:56:16 -0700 (PDT)
+        bh=KuB6v1Z/cxaw+tkBcRkrNd8FIvmhihG+BlVshB3rkPY=;
+        b=stMBZFIWqx0/G+c8tTTaZ9/Yb6DTymh6WgS6dVUAN8fw2OGcbxSAZvkSVcpvbS3Anl
+         G5ucFV7tkx8abv08r5z4wakn6AU1ViN5xUptlq/hsksHhIpFRdh+uvL4y/6I5RzGgvt+
+         hTtC6wRzJizZtmfsvGXEXzEhs5zsEuEoQQEW53gJlGiQHJdfQGg8JvGMLqf9OGXIO9cU
+         W89swf2yIHfHO2ISHO+s/6QVcUeG36HQ1Wp/Nhq3qZD8Y2o3oJJJXy0Gqfa0r6+B2mQW
+         nywtBcvqwO7VHR94H5H6Sx6DpJL+i5mmYfsIDaKFf3GyaVtSWDzoGioAuzVl2j09GfDG
+         Sxhg==
+X-Gm-Message-State: AOAM532vGqPLyHUSeuG1jpUn7uKNUQWOoFCtToUCQmgnh+j82uxUDRgg
+        pEl7xpWru5p/lkmHGt0dQiNYzA228q6vawqbQcsU6w==
+X-Google-Smtp-Source: ABdhPJz1nj7/dZxqSczWRbM/uy/cM4dozQJLS8KAvvTusXkFzcgyTBee2Ak37tiJcAKDq1Nczxn49z8bodUSf+04Lsg=
+X-Received: by 2002:a17:906:95cd:: with SMTP id n13mr3101144ejy.297.1601377010890;
+ Tue, 29 Sep 2020 03:56:50 -0700 (PDT)
 MIME-Version: 1.0
-References: <8ba339425b9c9f319bdedce7741367055a30713c.1598257720.git.michal.simek@xilinx.com>
-In-Reply-To: <8ba339425b9c9f319bdedce7741367055a30713c.1598257720.git.michal.simek@xilinx.com>
+References: <cc294ae1a79ef845af6809ddb4049f0c0f5bb87a.1598259551.git.michal.simek@xilinx.com>
+In-Reply-To: <cc294ae1a79ef845af6809ddb4049f0c0f5bb87a.1598259551.git.michal.simek@xilinx.com>
 From:   Michal Simek <monstr@monstr.eu>
-Date:   Tue, 29 Sep 2020 12:56:05 +0200
-Message-ID: <CAHTX3dK3D+8MD=fPmooyUisjXqfd+3mmLJKLSzh3c3w_9v-OoA@mail.gmail.com>
-Subject: Re: [PATCH] arm64: dts: zynqmp: Remove undocumented u-boot properties
+Date:   Tue, 29 Sep 2020 12:56:39 +0200
+Message-ID: <CAHTX3dLF1GRi2nMCt0u8TQc96bu3a4OoxKjwQB54MRx87DOn4w@mail.gmail.com>
+Subject: Re: [PATCH] arm64: dts: zynqmp: Remove additional compatible string
+ for i2c IPs
 To:     LKML <linux-kernel@vger.kernel.org>,
         Michal Simek <monstr@monstr.eu>, git <git@xilinx.com>
 Cc:     Krzysztof Kozlowski <krzk@kernel.org>,
         Laurent Pinchart <laurent.pinchart@ideasonboard.com>,
         Manish Narani <manish.narani@xilinx.com>,
         Michael Tretter <m.tretter@pengutronix.de>,
+        Moritz Fischer <mdf@kernel.org>,
         Nava kishore Manne <nava.manne@xilinx.com>,
         Rajan Vaja <rajan.vaja@xilinx.com>,
         Rob Herring <robh+dt@kernel.org>,
+        =?UTF-8?Q?S=C3=B6ren_Brinkmann?= <soren.brinkmann@xilinx.com>,
         DTML <devicetree@vger.kernel.org>,
         linux-arm <linux-arm-kernel@lists.infradead.org>
 Content-Type: text/plain; charset="UTF-8"
@@ -67,73 +70,61 @@ Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-po 24. 8. 2020 v 10:28 odes=C3=ADlatel Michal Simek <michal.simek@xilinx.co=
+po 24. 8. 2020 v 10:59 odes=C3=ADlatel Michal Simek <michal.simek@xilinx.co=
 m> napsal:
 >
-> u-boot, DT properties are not documented anywhere in Linux DT binding
-> that's why remove them.
+> DT binding permits only one compatible string which was decribed in past =
+by
+> commit 63cab195bf49 ("i2c: removed work arounds in i2c driver for Zynq
+> Ultrascale+ MPSoC").
+> The commit aea37006e183 ("dt-bindings: i2c: cadence: Migrate i2c-cadence
+> documentation to YAML") has converted binding to yaml and the following
+> issues is reported:
+> ...: i2c@ff030000: compatible: Additional items are not allowed
+> ('cdns,i2c-r1p10' was unexpected)
+>         From schema:
+> .../Documentation/devicetree/bindings/i2c/cdns,i2c-r1p10.yaml fds
+> ...: i2c@ff030000: compatible: ['cdns,i2c-r1p14', 'cdns,i2c-r1p10'] is to=
+o
+> long
 >
+> The commit c415f9e8304a ("ARM64: zynqmp: Fix i2c node's compatible string=
+")
+> has added the second compatible string but without removing origin one.
+> The patch is only keeping one compatible string "cdns,i2c-r1p14".
+>
+> Fixes: c415f9e8304a ("ARM64: zynqmp: Fix i2c node's compatible string")
 > Signed-off-by: Michal Simek <michal.simek@xilinx.com>
 > ---
 >
->  arch/arm64/boot/dts/xilinx/zynqmp-clk-ccf.dtsi | 5 -----
->  arch/arm64/boot/dts/xilinx/zynqmp.dtsi         | 1 -
->  2 files changed, 6 deletions(-)
+>  arch/arm64/boot/dts/xilinx/zynqmp.dtsi | 4 ++--
+>  1 file changed, 2 insertions(+), 2 deletions(-)
 >
-> diff --git a/arch/arm64/boot/dts/xilinx/zynqmp-clk-ccf.dtsi b/arch/arm64/=
-boot/dts/xilinx/zynqmp-clk-ccf.dtsi
-> index 9868ca15dfc5..c94c3bb67edc 100644
-> --- a/arch/arm64/boot/dts/xilinx/zynqmp-clk-ccf.dtsi
-> +++ b/arch/arm64/boot/dts/xilinx/zynqmp-clk-ccf.dtsi
-> @@ -10,35 +10,30 @@
->  #include <dt-bindings/clock/xlnx-zynqmp-clk.h>
->  / {
->         pss_ref_clk: pss_ref_clk {
-> -               u-boot,dm-pre-reloc;
->                 compatible =3D "fixed-clock";
->                 #clock-cells =3D <0>;
->                 clock-frequency =3D <33333333>;
->         };
->
->         video_clk: video_clk {
-> -               u-boot,dm-pre-reloc;
->                 compatible =3D "fixed-clock";
->                 #clock-cells =3D <0>;
->                 clock-frequency =3D <27000000>;
->         };
->
->         pss_alt_ref_clk: pss_alt_ref_clk {
-> -               u-boot,dm-pre-reloc;
->                 compatible =3D "fixed-clock";
->                 #clock-cells =3D <0>;
->                 clock-frequency =3D <0>;
->         };
->
->         gt_crx_ref_clk: gt_crx_ref_clk {
-> -               u-boot,dm-pre-reloc;
->                 compatible =3D "fixed-clock";
->                 #clock-cells =3D <0>;
->                 clock-frequency =3D <108000000>;
->         };
->
->         aux_ref_clk: aux_ref_clk {
-> -               u-boot,dm-pre-reloc;
->                 compatible =3D "fixed-clock";
->                 #clock-cells =3D <0>;
->                 clock-frequency =3D <27000000>;
 > diff --git a/arch/arm64/boot/dts/xilinx/zynqmp.dtsi b/arch/arm64/boot/dts=
 /xilinx/zynqmp.dtsi
-> index d1e9a5eb4f70..6a8ff4bcc09b 100644
+> index 6a8ff4bcc09b..165a95a106c8 100644
 > --- a/arch/arm64/boot/dts/xilinx/zynqmp.dtsi
 > +++ b/arch/arm64/boot/dts/xilinx/zynqmp.dtsi
-> @@ -131,7 +131,6 @@ zynqmp_power: zynqmp-power {
->                         };
+> @@ -500,7 +500,7 @@ gpio: gpio@ff0a0000 {
+>                 };
 >
->                         zynqmp_clk: clock-controller {
-> -                               u-boot,dm-pre-reloc;
->                                 #clock-cells =3D <1>;
->                                 compatible =3D "xlnx,zynqmp-clk";
->                                 clocks =3D <&pss_ref_clk>,
+>                 i2c0: i2c@ff020000 {
+> -                       compatible =3D "cdns,i2c-r1p14", "cdns,i2c-r1p10"=
+;
+> +                       compatible =3D "cdns,i2c-r1p14";
+>                         status =3D "disabled";
+>                         interrupt-parent =3D <&gic>;
+>                         interrupts =3D <0 17 4>;
+> @@ -511,7 +511,7 @@ i2c0: i2c@ff020000 {
+>                 };
+>
+>                 i2c1: i2c@ff030000 {
+> -                       compatible =3D "cdns,i2c-r1p14", "cdns,i2c-r1p10"=
+;
+> +                       compatible =3D "cdns,i2c-r1p14";
+>                         status =3D "disabled";
+>                         interrupt-parent =3D <&gic>;
+>                         interrupts =3D <0 18 4>;
 > --
 > 2.28.0
 >
