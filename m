@@ -2,144 +2,82 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from vger.kernel.org (vger.kernel.org [23.128.96.18])
-	by mail.lfdr.de (Postfix) with ESMTP id BE66627C0A6
-	for <lists+devicetree@lfdr.de>; Tue, 29 Sep 2020 11:14:21 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTP id EE08927C0B8
+	for <lists+devicetree@lfdr.de>; Tue, 29 Sep 2020 11:15:24 +0200 (CEST)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S1728101AbgI2JOP (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Tue, 29 Sep 2020 05:14:15 -0400
-Received: from lucky1.263xmail.com ([211.157.147.133]:43218 "EHLO
-        lucky1.263xmail.com" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S1725536AbgI2JOF (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Tue, 29 Sep 2020 05:14:05 -0400
-X-Greylist: delayed 340 seconds by postgrey-1.27 at vger.kernel.org; Tue, 29 Sep 2020 05:14:02 EDT
-Received: from localhost (unknown [192.168.167.16])
-        by lucky1.263xmail.com (Postfix) with ESMTP id 8BA47C99A4;
-        Tue, 29 Sep 2020 17:11:23 +0800 (CST)
-X-MAIL-GRAY: 0
-X-MAIL-DELIVERY: 1
-X-ADDR-CHECKED4: 1
-X-ANTISPAM-LEVEL: 2
-X-ABS-CHECKED: 0
-Received: from localhost.localdomain (unknown [58.22.7.114])
-        by smtp.263.net (postfix) whith ESMTP id P30218T139798784222976S1601370676801501_;
-        Tue, 29 Sep 2020 17:11:24 +0800 (CST)
-X-IP-DOMAINF: 1
-X-UNIQUE-TAG: <4999b79e921842eae65ba625e0879f2b>
-X-RL-SENDER: yifeng.zhao@rock-chips.com
-X-SENDER: zyf@rock-chips.com
-X-LOGIN-NAME: yifeng.zhao@rock-chips.com
-X-FST-TO: miquel.raynal@bootlin.com
-X-SENDER-IP: 58.22.7.114
-X-ATTACHMENT-NUM: 0
-X-DNS-TYPE: 0
-X-System-Flag: 0
-From:   Yifeng Zhao <yifeng.zhao@rock-chips.com>
-To:     miquel.raynal@bootlin.com, richard@nod.at, vigneshr@ti.com,
-        robh+dt@kernel.org
-Cc:     devicetree@vger.kernel.org, linux-mtd@lists.infradead.org,
-        heiko@sntech.de, linux-rockchip@lists.infradead.org,
-        linux-arm-kernel@lists.infradead.org, linux-kernel@vger.kernel.org,
-        Yifeng Zhao <yifeng.zhao@rock-chips.com>
-Subject: [PATCH v9 8/8] arm: dts: rockchip: Add NFC node for RK3036 SoC
-Date:   Tue, 29 Sep 2020 17:11:14 +0800
-Message-Id: <20200929091114.21575-4-yifeng.zhao@rock-chips.com>
-X-Mailer: git-send-email 2.17.1
-In-Reply-To: <20200929091114.21575-1-yifeng.zhao@rock-chips.com>
-References: <20200929090807.21511-1-yifeng.zhao@rock-chips.com>
- <20200929091114.21575-1-yifeng.zhao@rock-chips.com>
+        id S1727950AbgI2JPX (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Tue, 29 Sep 2020 05:15:23 -0400
+Received: from mga06.intel.com ([134.134.136.31]:58538 "EHLO mga06.intel.com"
+        rhost-flags-OK-OK-OK-OK) by vger.kernel.org with ESMTP
+        id S1727775AbgI2JPX (ORCPT <rfc822;devicetree@vger.kernel.org>);
+        Tue, 29 Sep 2020 05:15:23 -0400
+IronPort-SDR: IX01F1jy1GOnq/4T/3a5iNUaN3FWKeaN2ynQy5FHh+Cd9Bc2M2CoolrsAtdIzyYj7E44MS3+Y5
+ LYtIsCY+W5GQ==
+X-IronPort-AV: E=McAfee;i="6000,8403,9758"; a="223738816"
+X-IronPort-AV: E=Sophos;i="5.77,317,1596524400"; 
+   d="scan'208";a="223738816"
+X-Amp-Result: SKIPPED(no attachment in message)
+X-Amp-File-Uploaded: False
+Received: from orsmga005.jf.intel.com ([10.7.209.41])
+  by orsmga104.jf.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384; 29 Sep 2020 02:15:18 -0700
+IronPort-SDR: 0DB0T6vhXOkGZh9FzgEDSSxLocytoEZPSXi5+vus9vfvea4Ft7NqXUZj4b0+bPNTsyCID90FCT
+ V2TKn+XagUmQ==
+X-IronPort-AV: E=Sophos;i="5.77,317,1596524400"; 
+   d="scan'208";a="489430265"
+Received: from paasikivi.fi.intel.com ([10.237.72.42])
+  by orsmga005-auth.jf.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384; 29 Sep 2020 02:15:14 -0700
+Received: by paasikivi.fi.intel.com (Postfix, from userid 1000)
+        id 42740204FD; Tue, 29 Sep 2020 12:15:12 +0300 (EEST)
+Date:   Tue, 29 Sep 2020 12:15:12 +0300
+From:   Sakari Ailus <sakari.ailus@linux.intel.com>
+To:     Krzysztof Kozlowski <krzk@kernel.org>
+Cc:     Mauro Carvalho Chehab <mchehab@kernel.org>,
+        Rob Herring <robh+dt@kernel.org>,
+        Shawn Guo <shawnguo@kernel.org>,
+        Sascha Hauer <s.hauer@pengutronix.de>,
+        Pengutronix Kernel Team <kernel@pengutronix.de>,
+        Fabio Estevam <festevam@gmail.com>,
+        NXP Linux Team <linux-imx@nxp.com>,
+        linux-media@vger.kernel.org, devicetree@vger.kernel.org,
+        linux-arm-kernel@lists.infradead.org, linux-kernel@vger.kernel.org
+Subject: Re: [PATCH v4 1/4] dt-bindings: media: imx258: add bindings for
+ IMX258 sensor
+Message-ID: <20200929091512.GF26842@paasikivi.fi.intel.com>
+References: <20200923152129.21736-1-krzk@kernel.org>
+MIME-Version: 1.0
+Content-Type: text/plain; charset=us-ascii
+Content-Disposition: inline
+In-Reply-To: <20200923152129.21736-1-krzk@kernel.org>
+User-Agent: Mutt/1.10.1 (2018-07-13)
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-Add NAND FLASH Controller(NFC) node for RK3036 SoC.
+Hi Krzysztof,
 
-Signed-off-by: Yifeng Zhao <yifeng.zhao@rock-chips.com>
----
+On Wed, Sep 23, 2020 at 05:21:26PM +0200, Krzysztof Kozlowski wrote:
+> Add bindings for the IMX258 camera sensor.  The bindings, just like the
+> driver, are quite limited, e.g. do not support regulator supplies.
+> 
+> Signed-off-by: Krzysztof Kozlowski <krzk@kernel.org>
+> 
+> ---
+> 
+> Changes since v3:
+> 1. Document also two lane setup.
+> 
+> Changes since v2:
+> 1. Remove clock-frequency, add reset GPIOs, add supplies.
 
-Changes in v9: None
-Changes in v8: None
-Changes in v7: None
-Changes in v6: None
-Changes in v5: None
-Changes in v4: None
-Changes in v3: None
-Changes in v2: None
+Oops. I missed this one.
 
- arch/arm/boot/dts/rk3036.dtsi | 52 +++++++++++++++++++++++++++++++++++
- 1 file changed, 52 insertions(+)
+How does the driver know the appropriate clock frequency for the platform
+if it's not in DT? The sensor supports a range of frequencies, not a single
+frequency.
 
-diff --git a/arch/arm/boot/dts/rk3036.dtsi b/arch/arm/boot/dts/rk3036.dtsi
-index d9a0c9a29b68..be8d46c0bbb0 100644
---- a/arch/arm/boot/dts/rk3036.dtsi
-+++ b/arch/arm/boot/dts/rk3036.dtsi
-@@ -291,6 +291,21 @@
- 		status = "disabled";
- 	};
- 
-+	nfc: nand-controller@10500000 {
-+		compatible = "rockchip,rk3036-nfc",
-+			     "rockchip,rk2928-nfc";
-+		reg = <0x10500000 0x4000>;
-+		interrupts = <GIC_SPI 18 IRQ_TYPE_LEVEL_HIGH>;
-+		clocks = <&cru HCLK_NANDC>, <&cru SCLK_NANDC>;
-+		clock-names = "ahb", "nfc";
-+		assigned-clocks = <&cru SCLK_NANDC>;
-+		assigned-clock-rates = <150000000>;
-+		pinctrl-0 = <&flash_ale &flash_bus8 &flash_cle &flash_csn0
-+			     &flash_rdn &flash_rdy &flash_wrn>;
-+		pinctrl-names = "default";
-+		status = "disabled";
-+	};
-+
- 	cru: clock-controller@20000000 {
- 		compatible = "rockchip,rk3036-cru";
- 		reg = <0x20000000 0x1000>;
-@@ -642,6 +657,43 @@
- 			};
- 		};
- 
-+		nfc {
-+			flash_ale: flash-ale {
-+				rockchip,pins = <2 RK_PA0 1 &pcfg_pull_default>;
-+			};
-+
-+			flash_bus8: flash-bus8 {
-+				rockchip,pins = <1 RK_PD0 1 &pcfg_pull_default>,
-+						<1 RK_PD1 1 &pcfg_pull_default>,
-+						<1 RK_PD2 1 &pcfg_pull_default>,
-+						<1 RK_PD3 1 &pcfg_pull_default>,
-+						<1 RK_PD4 1 &pcfg_pull_default>,
-+						<1 RK_PD5 1 &pcfg_pull_default>,
-+						<1 RK_PD6 1 &pcfg_pull_default>,
-+						<1 RK_PD7 1 &pcfg_pull_default>;
-+			};
-+
-+			flash_cle: flash-cle {
-+				rockchip,pins = <2 RK_PA1 1 &pcfg_pull_default>;
-+			};
-+
-+			flash_csn0: flash-csn0 {
-+				rockchip,pins = <2 RK_PA6 1 &pcfg_pull_default>;
-+			};
-+
-+			flash_rdn: flash-rdn {
-+				rockchip,pins = <2 RK_PA3 1 &pcfg_pull_default>;
-+			};
-+
-+			flash_rdy: flash-rdy {
-+				rockchip,pins = <2 RK_PA4 1 &pcfg_pull_default>;
-+			};
-+
-+			flash_wrn: flash-wrn {
-+				rockchip,pins = <2 RK_PA2 1 &pcfg_pull_default>;
-+			};
-+		};
-+
- 		emac {
- 			emac_xfer: emac-xfer {
- 				rockchip,pins = <2 RK_PB2 1 &pcfg_pull_default>, /* crs_dvalid */
+Could you add clock-frequency back?
+
 -- 
-2.17.1
+Kind regards,
 
-
-
+Sakari Ailus
