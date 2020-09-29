@@ -2,74 +2,89 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from vger.kernel.org (vger.kernel.org [23.128.96.18])
-	by mail.lfdr.de (Postfix) with ESMTP id DE41B27CFC2
-	for <lists+devicetree@lfdr.de>; Tue, 29 Sep 2020 15:47:22 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTP id D246327CFFA
+	for <lists+devicetree@lfdr.de>; Tue, 29 Sep 2020 15:53:34 +0200 (CEST)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S1730442AbgI2NrK (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Tue, 29 Sep 2020 09:47:10 -0400
-Received: from mailgw01.mediatek.com ([210.61.82.183]:58262 "EHLO
-        mailgw01.mediatek.com" rhost-flags-OK-FAIL-OK-FAIL) by vger.kernel.org
-        with ESMTP id S1730187AbgI2NrC (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Tue, 29 Sep 2020 09:47:02 -0400
-X-UUID: d5fe11d4d1054b26befe9927dbeb93d2-20200929
-DKIM-Signature: v=1; a=rsa-sha256; q=dns/txt; c=relaxed/relaxed; d=mediatek.com; s=dk;
-        h=Content-Transfer-Encoding:Content-Type:MIME-Version:References:In-Reply-To:Message-ID:Date:Subject:CC:To:From; bh=/ODE+lHaGlrQfgAiLYh/aPpeTyv6wYIwW1Yqa7xY6kI=;
-        b=CCcxVWbSGme13mJe109HvpEl00NzvFe/pShnMvdoyp7K3EAGP6vuVlsXwhOlvkVODpM+mz1+YGs7orXvK0/PFcqZB61oI5RUUWHotiy63ax152WzJ4gzrUB8hMzwgYB38keWADqKngBii6mKqGGL3qOQD0+KUTIJ9rGuri01hRw=;
-X-UUID: d5fe11d4d1054b26befe9927dbeb93d2-20200929
-Received: from mtkcas07.mediatek.inc [(172.21.101.84)] by mailgw01.mediatek.com
-        (envelope-from <crystal.guo@mediatek.com>)
-        (Cellopoint E-mail Firewall v4.1.14 Build 0819 with TLSv1.2 ECDHE-RSA-AES256-SHA384 256/256)
-        with ESMTP id 481364299; Tue, 29 Sep 2020 21:46:55 +0800
-Received: from MTKCAS06.mediatek.inc (172.21.101.30) by
- mtkmbs08n1.mediatek.inc (172.21.101.55) with Microsoft SMTP Server (TLS) id
- 15.0.1497.2; Tue, 29 Sep 2020 21:46:51 +0800
-Received: from localhost.localdomain (10.17.3.153) by MTKCAS06.mediatek.inc
- (172.21.101.73) with Microsoft SMTP Server id 15.0.1497.2 via Frontend
- Transport; Tue, 29 Sep 2020 21:46:51 +0800
-From:   Crystal Guo <crystal.guo@mediatek.com>
-To:     <p.zabel@pengutronix.de>, <robh+dt@kernel.org>,
-        <matthias.bgg@gmail.com>
-CC:     <srv_heupstream@mediatek.com>,
-        <linux-mediatek@lists.infradead.org>,
-        <linux-arm-kernel@lists.infradead.org>,
-        <linux-kernel@vger.kernel.org>, <devicetree@vger.kernel.org>,
-        <s-anna@ti.com>, <seiya.wang@mediatek.com>,
-        <stanley.chu@mediatek.com>, <yingjoe.chen@mediatek.com>,
-        <fan.chen@mediatek.com>, <yong.liang@mediatek.com>,
-        Crystal Guo <crystal.guo@mediatek.com>
-Subject: [v5,3/3] reset-controller: ti: force the write operation when assert or deassert
-Date:   Tue, 29 Sep 2020 21:46:42 +0800
-Message-ID: <20200929134642.26561-4-crystal.guo@mediatek.com>
-X-Mailer: git-send-email 2.18.0
-In-Reply-To: <20200929134642.26561-1-crystal.guo@mediatek.com>
-References: <20200929134642.26561-1-crystal.guo@mediatek.com>
+        id S1728617AbgI2Nxd (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Tue, 29 Sep 2020 09:53:33 -0400
+Received: from mail.kernel.org ([198.145.29.99]:41122 "EHLO mail.kernel.org"
+        rhost-flags-OK-OK-OK-OK) by vger.kernel.org with ESMTP
+        id S1727328AbgI2Nxd (ORCPT <rfc822;devicetree@vger.kernel.org>);
+        Tue, 29 Sep 2020 09:53:33 -0400
+Received: from localhost (fw-tnat.cambridge.arm.com [217.140.96.140])
+        (using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
+        (No client certificate requested)
+        by mail.kernel.org (Postfix) with ESMTPSA id E017C207C4;
+        Tue, 29 Sep 2020 13:53:31 +0000 (UTC)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=kernel.org;
+        s=default; t=1601387612;
+        bh=XMlJFSSuGLwN5k1WwBefP32bozx8G9mTS3B5NnSlArI=;
+        h=Date:From:To:Cc:Subject:References:In-Reply-To:From;
+        b=u/bz7GDKIVERvmjP07DfF7CO+293Gz1UAt+rBmWu17V2qzF+0qTFiNpmREcXcVWVw
+         IQanQVHjqxoBSg05IsapueT7Tcjrf+WJjD9qjUQCnc3Mse8jYI4A1x14LtQE2KgKeO
+         /vlGWgnaiSN+1GrlOak46O+mPgTsHwU7ippWMze0=
+Date:   Tue, 29 Sep 2020 14:52:33 +0100
+From:   Mark Brown <broonie@kernel.org>
+To:     Serge Semin <Sergey.Semin@baikalelectronics.ru>
+Cc:     Serge Semin <fancer.lancer@gmail.com>,
+        Alexey Malahov <Alexey.Malahov@baikalelectronics.ru>,
+        Ramil Zaripov <Ramil.Zaripov@baikalelectronics.ru>,
+        Pavel Parkhomenko <Pavel.Parkhomenko@baikalelectronics.ru>,
+        Andy Shevchenko <andy.shevchenko@gmail.com>,
+        Andy Shevchenko <andriy.shevchenko@linux.intel.com>,
+        Lars Povlsen <lars.povlsen@microchip.com>,
+        "wuxu . wu" <wuxu.wu@huawei.com>, Feng Tang <feng.tang@intel.com>,
+        Rob Herring <robh+dt@kernel.org>, linux-spi@vger.kernel.org,
+        devicetree@vger.kernel.org, linux-kernel@vger.kernel.org
+Subject: Re: [PATCH 11/30] spi: dw: Add DWC SSI capability
+Message-ID: <20200929135233.GG4799@sirena.org.uk>
+References: <20200920112914.26501-1-Sergey.Semin@baikalelectronics.ru>
+ <20200920112914.26501-12-Sergey.Semin@baikalelectronics.ru>
 MIME-Version: 1.0
-Content-Type: text/plain
-X-MTK:  N
-Content-Transfer-Encoding: base64
+Content-Type: multipart/signed; micalg=pgp-sha512;
+        protocol="application/pgp-signature"; boundary="eVzOFob/8UvintSX"
+Content-Disposition: inline
+In-Reply-To: <20200920112914.26501-12-Sergey.Semin@baikalelectronics.ru>
+X-Cookie: I left my WALLET in the BATHROOM!!
+User-Agent: Mutt/1.10.1 (2018-07-13)
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-Rm9yY2UgdGhlIHdyaXRlIG9wZXJhdGlvbiBpbiBjYXNlIHRoZSByZWFkIGFscmVhZHkgaGFwcGVu
-cw0KdG8gcmV0dXJuIHRoZSBjb3JyZWN0IHZhbHVlLg0KDQpTaWduZWQtb2ZmLWJ5OiBDcnlzdGFs
-IEd1byA8Y3J5c3RhbC5ndW9AbWVkaWF0ZWsuY29tPg0KLS0tDQogZHJpdmVycy9yZXNldC9yZXNl
-dC10aS1zeXNjb24uYyB8IDQgKystLQ0KIDEgZmlsZSBjaGFuZ2VkLCAyIGluc2VydGlvbnMoKyks
-IDIgZGVsZXRpb25zKC0pDQoNCmRpZmYgLS1naXQgYS9kcml2ZXJzL3Jlc2V0L3Jlc2V0LXRpLXN5
-c2Nvbi5jIGIvZHJpdmVycy9yZXNldC9yZXNldC10aS1zeXNjb24uYw0KaW5kZXggNWQxZjgzMDZj
-ZDRmLi5jMzQzOTRmMWU5ZTIgMTAwNjQ0DQotLS0gYS9kcml2ZXJzL3Jlc2V0L3Jlc2V0LXRpLXN5
-c2Nvbi5jDQorKysgYi9kcml2ZXJzL3Jlc2V0L3Jlc2V0LXRpLXN5c2Nvbi5jDQpAQCAtOTcsNyAr
-OTcsNyBAQCBzdGF0aWMgaW50IHRpX3N5c2Nvbl9yZXNldF9hc3NlcnQoc3RydWN0IHJlc2V0X2Nv
-bnRyb2xsZXJfZGV2ICpyY2RldiwNCiAJbWFzayA9IEJJVChjb250cm9sLT5hc3NlcnRfYml0KTsN
-CiAJdmFsdWUgPSAoY29udHJvbC0+ZmxhZ3MgJiBBU1NFUlRfU0VUKSA/IG1hc2sgOiAweDA7DQog
-DQotCXJldHVybiByZWdtYXBfdXBkYXRlX2JpdHMoZGF0YS0+cmVnbWFwLCBjb250cm9sLT5hc3Nl
-cnRfb2Zmc2V0LCBtYXNrLCB2YWx1ZSk7DQorCXJldHVybiByZWdtYXBfd3JpdGVfYml0cyhkYXRh
-LT5yZWdtYXAsIGNvbnRyb2wtPmFzc2VydF9vZmZzZXQsIG1hc2ssIHZhbHVlKTsNCiB9DQogDQog
-LyoqDQpAQCAtMTI4LDcgKzEyOCw3IEBAIHN0YXRpYyBpbnQgdGlfc3lzY29uX3Jlc2V0X2RlYXNz
-ZXJ0KHN0cnVjdCByZXNldF9jb250cm9sbGVyX2RldiAqcmNkZXYsDQogCW1hc2sgPSBCSVQoY29u
-dHJvbC0+ZGVhc3NlcnRfYml0KTsNCiAJdmFsdWUgPSAoY29udHJvbC0+ZmxhZ3MgJiBERUFTU0VS
-VF9TRVQpID8gbWFzayA6IDB4MDsNCiANCi0JcmV0dXJuIHJlZ21hcF91cGRhdGVfYml0cyhkYXRh
-LT5yZWdtYXAsIGNvbnRyb2wtPmRlYXNzZXJ0X29mZnNldCwgbWFzaywgdmFsdWUpOw0KKwlyZXR1
-cm4gcmVnbWFwX3dyaXRlX2JpdHMoZGF0YS0+cmVnbWFwLCBjb250cm9sLT5kZWFzc2VydF9vZmZz
-ZXQsIG1hc2ssIHZhbHVlKTsNCiB9DQogDQogLyoqDQotLSANCjIuMTguMA0K
 
+--eVzOFob/8UvintSX
+Content-Type: text/plain; charset=us-ascii
+Content-Disposition: inline
+
+On Sun, Sep 20, 2020 at 02:28:55PM +0300, Serge Semin wrote:
+
+> -	/*
+> -	 * SPI mode (SCPOL|SCPH)
+> -	 * CTRLR0[ 8] Serial Clock Phase
+> -	 * CTRLR0[ 9] Serial Clock Polarity
+> -	 */
+> -	cr0 |= ((spi->mode & SPI_CPOL) ? 1 : 0) << DWC_SSI_CTRLR0_SCPOL_OFFSET;
+> -	cr0 |= ((spi->mode & SPI_CPHA) ? 1 : 0) << DWC_SSI_CTRLR0_SCPH_OFFSET;
+
+> +		cr0 |= SSI_MOTO_SPI << DWC_SSI_CTRLR0_FRF_OFFSET;
+> +		cr0 |= ((spi->mode & SPI_CPOL) ? 1 : 0) << DWC_SSI_CTRLR0_SCPOL_OFFSET;
+> +		cr0 |= ((spi->mode & SPI_CPHA) ? 1 : 0) << DWC_SSI_CTRLR0_SCPH_OFFSET;
+
+The new code seems less well commented than the old code here.
+
+--eVzOFob/8UvintSX
+Content-Type: application/pgp-signature; name="signature.asc"
+
+-----BEGIN PGP SIGNATURE-----
+
+iQEzBAABCgAdFiEEreZoqmdXGLWf4p/qJNaLcl1Uh9AFAl9zPCAACgkQJNaLcl1U
+h9DKGgf8Dusx5FsYcQ5npzfLKiRdTmIprfoh+fIEbrMCruynt16OBQS/sX6tmoGe
+SRj8t6pzB+q7LJ49Ct9MG0mDcCfTSXRp2B+bXCT8cOVmGR64fdYYprqdJw0P2iRL
+rAm6idVXHqjHOM1PnJNlInPIEIQwFqqMXQ9tyn9dgOHDK80pHbZPtXxx/ouBRYi9
+YldOhxizTwenaE0koaxF4blxjPOs2f10QRlKji9zCMqMTOInFjtffJ7YDl56MMDI
+AXHvn8wTj0rDOkNXgmEN5kJrTTVG0ocZrJXTm5QLoGQD4eeAcrTuWhOg3+pRY8o7
+p0Izj1+Tyj0LVHTejlwAq239vgPhMw==
+=r+YB
+-----END PGP SIGNATURE-----
+
+--eVzOFob/8UvintSX--
