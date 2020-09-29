@@ -2,83 +2,94 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from vger.kernel.org (vger.kernel.org [23.128.96.18])
-	by mail.lfdr.de (Postfix) with ESMTP id 9254827CEC5
-	for <lists+devicetree@lfdr.de>; Tue, 29 Sep 2020 15:15:23 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTP id B48C927CEE1
+	for <lists+devicetree@lfdr.de>; Tue, 29 Sep 2020 15:18:50 +0200 (CEST)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S1728762AbgI2NOQ (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Tue, 29 Sep 2020 09:14:16 -0400
-Received: from lindbergh.monkeyblade.net ([23.128.96.19]:53394 "EHLO
-        lindbergh.monkeyblade.net" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S1728479AbgI2NOQ (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Tue, 29 Sep 2020 09:14:16 -0400
-Received: from mail-lf1-x141.google.com (mail-lf1-x141.google.com [IPv6:2a00:1450:4864:20::141])
-        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 31023C0613D1
-        for <devicetree@vger.kernel.org>; Tue, 29 Sep 2020 06:14:16 -0700 (PDT)
-Received: by mail-lf1-x141.google.com with SMTP id x69so5456136lff.3
-        for <devicetree@vger.kernel.org>; Tue, 29 Sep 2020 06:14:16 -0700 (PDT)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=linaro.org; s=google;
-        h=mime-version:references:in-reply-to:from:date:message-id:subject:to
-         :cc:content-transfer-encoding;
-        bh=piitBn56RFrmTdzxKCgKMNMaG7buUtqj3U42tB2+R4o=;
-        b=IyfH3BiA5+wCdKa78wiauvoqqjIP0kgktaFhQDORIlk135uvO+yH9+O759+Jh4KoVl
-         StMrJQzpS3a6Z/XwYLdCLO4BkX6S8cZOSHC3B9gjano+pB4G8s9l2Iu5m0upEISh1Zap
-         xJrWF04vvjmyzVD+UM54WcU1aWBeECKkm2WhIpLzfdHiVHX1N0me93/CWFaY5UzGJZ5+
-         lIuYDE881RWZJPCQ2RKIXXo5VoBb97bpEfOm0aZlLHeY/AIujZl5wtMDO8mRizVxB93o
-         irM667NOqXeL7MkxlmHDQiUPpdXYjSYmleUZpuUHASkyHUWGegY32wUO1tcPqSIobt2H
-         s1kQ==
-X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=1e100.net; s=20161025;
-        h=x-gm-message-state:mime-version:references:in-reply-to:from:date
-         :message-id:subject:to:cc:content-transfer-encoding;
-        bh=piitBn56RFrmTdzxKCgKMNMaG7buUtqj3U42tB2+R4o=;
-        b=lOShRE8ZLDQIxflqBvMylp0/zsuw5bAR4TvA1pl9JkOfrEn4yzgqZwg5oMsaMl4ZY9
-         wALB3V3Ef0WKT06UAACiR+NbEsQXWWmcGMlakbTHe6UVpi3iXx2LFbxZv8OIVkQR1tLv
-         b8HvsV9E2vI8n6417DcZcfCP4cB5w6bRPM4qgjM/wb0yN0aWkdXoALR9/Wat+MYf98D/
-         j1kpYB7sMdR4rBHULnQNkDkw3O+1RkcjxyF9j9AAXV1bshgcNniIsJJyXi8Ze2VTRv9A
-         lUGKYk6q79fQ6+9GFS0unNq+vwGMvSZhbcZPEjHz7O4xhCXcUAVrB2CgGgFvv9Cw6Pcg
-         3buA==
-X-Gm-Message-State: AOAM532aL+ite/Y7RVIheAx6Y1w10tLnYveQ/eknJHh9JDTKvBAj/LpF
-        s33xzombTft65QA6szTXDlzCKXlxLghMPmglGJAfQQ==
-X-Google-Smtp-Source: ABdhPJxY4OEBdIMXAC+O0qUm0tc5dMP1R9SEC02dP2BrQkPZJ3RAutobx0kzrmLiGeQblFQgjQNjRRJWB1Z5bZVzZiY=
-X-Received: by 2002:a19:6419:: with SMTP id y25mr1128689lfb.333.1601385254443;
- Tue, 29 Sep 2020 06:14:14 -0700 (PDT)
+        id S1728675AbgI2NSt (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Tue, 29 Sep 2020 09:18:49 -0400
+Received: from 212.199.177.27.static.012.net.il ([212.199.177.27]:56230 "EHLO
+        herzl.nuvoton.co.il" rhost-flags-OK-OK-OK-FAIL) by vger.kernel.org
+        with ESMTP id S1728323AbgI2NSt (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Tue, 29 Sep 2020 09:18:49 -0400
+Received: from taln60.nuvoton.co.il (ntil-fw [212.199.177.25])
+        by herzl.nuvoton.co.il (8.13.8/8.13.8) with ESMTP id 08TDIAKZ026515;
+        Tue, 29 Sep 2020 16:18:10 +0300
+Received: by taln60.nuvoton.co.il (Postfix, from userid 10070)
+        id 4CB63639D6; Tue, 29 Sep 2020 16:18:10 +0300 (IDT)
+From:   Tomer Maimon <tmaimon77@gmail.com>
+To:     robh+dt@kernel.org, mark.rutland@arm.com, avifishman70@gmail.com,
+        tali.perry1@gmail.com, venture@google.com, yuenn@google.com,
+        benjaminfair@google.com, joel@jms.id.au
+Cc:     devicetree@vger.kernel.org, linux-kernel@vger.kernel.org,
+        openbmc@lists.ozlabs.org, tmaimon77@gmail.com
+Subject: [PATCH v8 0/5] arm: dts: add and modify device node in NPCM7xx device tree
+Date:   Tue, 29 Sep 2020 16:18:02 +0300
+Message-Id: <20200929131807.15378-1-tmaimon77@gmail.com>
+X-Mailer: git-send-email 2.22.0
 MIME-Version: 1.0
-References: <20200917223338.14164-1-marek.behun@nic.cz> <20200917223338.14164-21-marek.behun@nic.cz>
-In-Reply-To: <20200917223338.14164-21-marek.behun@nic.cz>
-From:   Linus Walleij <linus.walleij@linaro.org>
-Date:   Tue, 29 Sep 2020 15:14:03 +0200
-Message-ID: <CACRpkdaQSQYNECsH=W4qsS2J3+iyWrgPxgC1jRpVMYRqyZaYkw@mail.gmail.com>
-Subject: Re: [PATCH leds v2 20/50] leds: pm8058: use struct led_init_data when registering
-To:     =?UTF-8?B?TWFyZWsgQmVow7pu?= <marek.behun@nic.cz>
-Cc:     Linux LED Subsystem <linux-leds@vger.kernel.org>,
-        Pavel Machek <pavel@ucw.cz>, Dan Murphy <dmurphy@ti.com>,
-        =?UTF-8?Q?Ond=C5=99ej_Jirman?= <megous@megous.com>,
-        "linux-kernel@vger.kernel.org" <linux-kernel@vger.kernel.org>,
-        Rob Herring <robh+dt@kernel.org>,
-        "open list:OPEN FIRMWARE AND FLATTENED DEVICE TREE BINDINGS" 
-        <devicetree@vger.kernel.org>,
-        Bjorn Andersson <bjorn.andersson@linaro.org>
-Content-Type: text/plain; charset="UTF-8"
-Content-Transfer-Encoding: quoted-printable
+Content-Transfer-Encoding: 8bit
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-On Fri, Sep 18, 2020 at 12:33 AM Marek Beh=C3=BAn <marek.behun@nic.cz> wrot=
-e:
+This patch set adds and modify device tree nodes in the NPCM7xx
+Baseboard Management Controller (BMC) device tree.
 
-> By using struct led_init_data when registering we do not need to parse
-> `label` DT property. Moreover `label` is deprecated and if it is not
-> present but `color` and `function` are, LED core will compose a name
-> from these properties instead.
->
-> Signed-off-by: Marek Beh=C3=BAn <marek.behun@nic.cz>
-> Cc: Linus Walleij <linus.walleij@linaro.org>
-> Cc: Bjorn Andersson <bjorn.andersson@linaro.org>
+The following device node add:
+        - NPCM7xx Pin controller and GPIO
+        - NPCM7xx PWM and FAN.
+        - NPCM7xx EHCI USB.
+        - NPCM7xx KCS.
+        - NPCM Reset.
+        - NPCM Peripheral SPI.
+        - NPCM FIU SPI.
+        - NPCM HWRNG.
+        - NPCM I2C.
+        - STMicro STMMAC.
 
-For this and the other PM8058 patches:
-Acked-by: Linus Walleij <linus.walleij@linaro.org>
+The following device node modified:
+        - NPCM7xx timer.
+        - NPCM7xx clock constants parameters.
 
-Yours,
-Linus Walleij
+NPCM7xx device tree tested on NPCM750 evaluation board.
+
+Changes since version 7:
+Address comments from Joel Stanely: https://www.spinics.net/lists/devicetree/msg380191.html
+
+Changes since version 6:
+Split commits.
+ 
+Changes since version 5:
+Address comments from Joel Stanely: https://lkml.org/lkml/2020/9/16/994
+ 
+Changes since version 4:
+ - Tested patches in Linux kernel 5.9.
+
+Changes since version 3:
+ - Tested patches in Linux kernel 5.6.
+
+Changes since version 2:
+ - Remove unnecessary output-enable flags.
+
+Changes since version 1:
+ - Add NPCM reset device node.
+ - Add reset parameters to NPCM driver device nodes.
+
+
+Tomer Maimon (5):
+  arm: dts: modify NPCM7xx device tree clock parameter
+  arm: dts: modify NPCM7xx device tree timer register size
+  arm: dts: add pinctrl and GPIO node to NPCM7XX device tree
+  arm: dts: add new device nodes to NPCM7XX device tree
+  arm: dts: add new device nodes to NPCM750 device tree EVB
+
+ arch/arm/boot/dts/nuvoton-common-npcm7xx.dtsi | 967 +++++++++++++++++-
+ arch/arm/boot/dts/nuvoton-npcm750-evb.dts     | 367 ++++++-
+ .../boot/dts/nuvoton-npcm750-pincfg-evb.dtsi  | 157 +++
+ arch/arm/boot/dts/nuvoton-npcm750.dtsi        |  24 +-
+ 4 files changed, 1495 insertions(+), 20 deletions(-)
+ create mode 100644 arch/arm/boot/dts/nuvoton-npcm750-pincfg-evb.dtsi
+
+-- 
+2.22.0
+
