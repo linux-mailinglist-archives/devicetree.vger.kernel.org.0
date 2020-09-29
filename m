@@ -2,131 +2,79 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from vger.kernel.org (vger.kernel.org [23.128.96.18])
-	by mail.lfdr.de (Postfix) with ESMTP id 1A6EA27D7D6
-	for <lists+devicetree@lfdr.de>; Tue, 29 Sep 2020 22:17:06 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTP id 4488827D7DB
+	for <lists+devicetree@lfdr.de>; Tue, 29 Sep 2020 22:17:46 +0200 (CEST)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S1728362AbgI2URE (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Tue, 29 Sep 2020 16:17:04 -0400
-Received: from mail-ot1-f66.google.com ([209.85.210.66]:44202 "EHLO
-        mail-ot1-f66.google.com" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S1725372AbgI2URE (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Tue, 29 Sep 2020 16:17:04 -0400
-Received: by mail-ot1-f66.google.com with SMTP id a2so5714754otr.11;
-        Tue, 29 Sep 2020 13:17:03 -0700 (PDT)
+        id S1729045AbgI2URp (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Tue, 29 Sep 2020 16:17:45 -0400
+Received: from mail-oi1-f196.google.com ([209.85.167.196]:43479 "EHLO
+        mail-oi1-f196.google.com" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
+        with ESMTP id S1725372AbgI2URp (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Tue, 29 Sep 2020 16:17:45 -0400
+Received: by mail-oi1-f196.google.com with SMTP id i17so6894566oig.10;
+        Tue, 29 Sep 2020 13:17:44 -0700 (PDT)
 X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
         d=1e100.net; s=20161025;
         h=x-gm-message-state:date:from:to:cc:subject:message-id:references
          :mime-version:content-disposition:in-reply-to;
-        bh=GF1S+O6TcCTua7IiLpMCQUTQhVT/wWc1LlYe9jO62rw=;
-        b=f9sW/e4uN7VQbHFuizFNwO6/w7ChbfERMyZkX/jZE1nkbyKXeF/KBSnpRmZode42tp
-         2wbtSI67BJOrsV734RyUORGwV9YyK8K/Y2qQH2VolnKs+4Nc7vcOZy+7dkMvZzJZCyVz
-         5f1pLhIlfFK2entKujV7Cejl56dNAfckxaWJX7H1WIq5MepvgUv4wHg9AD/j0kfz/djX
-         NrqEeN0z7UicC+eqZYVkJvEWXoyrgRTpXCxXqQaUgHWnYxblWYJ0pQYMD8ka+X+PGueR
-         daRl8Rq/fhRCNzkAtUmUuZffYYwGFGDd/8rUgjkt9ZsUrUaHqp5VevISbGvk3stq8Ffz
-         6ggQ==
-X-Gm-Message-State: AOAM530ToKXMJMZnhKwTS5+5atIWcf0tk8JXRXaOxxrkQdOLA5KrYbna
-        DawxS7YUpzQstqy407Zq2A==
-X-Google-Smtp-Source: ABdhPJwXlYj46ql9N4QV6q3UzHTUW9NrH00DqjEu+h2M9Wj4krankN8F/kzuSpSVFz5EUKv8RTJzmw==
-X-Received: by 2002:a05:6830:1f13:: with SMTP id u19mr4168856otg.127.1601410623317;
-        Tue, 29 Sep 2020 13:17:03 -0700 (PDT)
+        bh=t59aWAhpZ67eszyLSCndlt/OHfuA01Ub+RG0vyS1B2E=;
+        b=X3KRllpqRl49EGS9rag8lXncSvTmsoQy94nTlh/AryV8LCyYDGQupKIN5Q83sp3lRR
+         7IdnjlHJoKeRqYLGL6IhJ6m8MHu3hoVrrTJ86YOGsEEYuQpsDnPxDOlQUS7gX7JpnEXA
+         mtTWiYnYJWMHA4BZH4Oh8UBhNDfXlxpOjsxhfJzlOSwmCxBIU1wrdH3DKA24MkrSv4hr
+         Nnadx5OkBBuk2D70ekCKQpBLrD7AKPn5geaRl0ENnF/3/w8y8XcP2BBuRoU6x0NVB7Kz
+         AbSGSaoiysnxhiUBZPCD2gsuMJpyf6mChqpxQY7/cN84gH5oMyVyIK6lj3MUfTPvLvV9
+         IHMQ==
+X-Gm-Message-State: AOAM5315aCkfgawzE8X5LGVoTsgh4Y78q/iXmcPnwLaGvLEi/7thxrXT
+        zrNtE03HY2ZJjos+L421TRlyt9fiL1korXs=
+X-Google-Smtp-Source: ABdhPJw8oXYd5dk/F9BkkLRFREqhVnH4h9vwagRk0zBQyF0ATX6mu/B6LtNXUtj9G+uoPk7GzUntfw==
+X-Received: by 2002:aca:8cb:: with SMTP id 194mr3505368oii.37.1601410664200;
+        Tue, 29 Sep 2020 13:17:44 -0700 (PDT)
 Received: from xps15 (24-155-109-49.dyn.grandenetworks.net. [24.155.109.49])
-        by smtp.gmail.com with ESMTPSA id s20sm3175800oot.15.2020.09.29.13.17.02
+        by smtp.gmail.com with ESMTPSA id m20sm3144986oof.23.2020.09.29.13.17.43
         (version=TLS1_3 cipher=TLS_AES_256_GCM_SHA384 bits=256/256);
-        Tue, 29 Sep 2020 13:17:02 -0700 (PDT)
-Received: (nullmailer pid 1092114 invoked by uid 1000);
-        Tue, 29 Sep 2020 20:17:01 -0000
-Date:   Tue, 29 Sep 2020 15:17:01 -0500
+        Tue, 29 Sep 2020 13:17:43 -0700 (PDT)
+Received: (nullmailer pid 1093221 invoked by uid 1000);
+        Tue, 29 Sep 2020 20:17:42 -0000
+Date:   Tue, 29 Sep 2020 15:17:42 -0500
 From:   Rob Herring <robh@kernel.org>
-To:     Matthias Kaehlcke <mka@chromium.org>
-Cc:     Greg Kroah-Hartman <gregkh@linuxfoundation.org>,
-        Frank Rowand <frowand.list@gmail.com>,
-        linux-kernel@vger.kernel.org, linux-usb@vger.kernel.org,
-        Bastien Nocera <hadess@hadess.net>,
-        Stephen Boyd <swboyd@chromium.org>,
-        Douglas Anderson <dianders@chromium.org>,
-        Alan Stern <stern@rowland.harvard.edu>,
-        Ravi Chandra Sadineni <ravisadineni@chromium.org>,
-        Krzysztof Kozlowski <krzk@kernel.org>,
-        devicetree@vger.kernel.org, Peter Chen <peter.chen@nxp.com>
-Subject: Re: [PATCH v4 1/2] dt-bindings: usb: Add binding for discrete
- onboard USB hubs
-Message-ID: <20200929201701.GA1080459@bogus>
-References: <20200928101326.v4.1.I248292623d3d0f6a4f0c5bc58478ca3c0062b49a@changeid>
+To:     Alexandru Gagniuc <mr.nuke.me@gmail.com>
+Cc:     Jernej Skrabec <jernej.skrabec@siol.net>,
+        Rob Herring <robh+dt@kernel.org>,
+        dri-devel@lists.freedesktop.org, devicetree@vger.kernel.org,
+        Mauro Carvalho Chehab <mchehab+huawei@kernel.org>,
+        open list <linux-kernel@vger.kernel.org>,
+        Thomas Bogendoerfer <tsbogend@alpha.franken.de>,
+        Andrzej Hajda <a.hajda@samsung.com>,
+        Mark Brown <broonie@kernel.org>,
+        Neil Armstrong <narmstrong@baylibre.com>,
+        Laurent Pinchart <Laurent.pinchart@ideasonboard.com>,
+        David Airlie <airlied@linux.ie>,
+        Jonas Karlman <jonas@kwiboo.se>
+Subject: Re: [PATCH v2 2/2] dt-bindings: display: sii902x: Add supply bindings
+Message-ID: <20200929201742.GA1093186@bogus>
+References: <20200924200507.1175888-1-mr.nuke.me@gmail.com>
+ <20200928173056.1674274-1-mr.nuke.me@gmail.com>
+ <20200928173056.1674274-2-mr.nuke.me@gmail.com>
 MIME-Version: 1.0
 Content-Type: text/plain; charset=us-ascii
 Content-Disposition: inline
-In-Reply-To: <20200928101326.v4.1.I248292623d3d0f6a4f0c5bc58478ca3c0062b49a@changeid>
+In-Reply-To: <20200928173056.1674274-2-mr.nuke.me@gmail.com>
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-On Mon, Sep 28, 2020 at 10:13:54AM -0700, Matthias Kaehlcke wrote:
-> Discrete onboard USB hubs (an example for such a hub is the Realtek
-> RTS5411) need to be powered and may require initialization of other
-> resources (like GPIOs or clocks) to work properly. This adds a device
-> tree binding for these hubs.
+On Mon, 28 Sep 2020 12:30:54 -0500, Alexandru Gagniuc wrote:
+> The sii902x chip family requires IO and core voltages to reach the
+> correct voltage before chip initialization. Add binding for describing
+> the two supplies.
 > 
-> Signed-off-by: Matthias Kaehlcke <mka@chromium.org>
+> Signed-off-by: Alexandru Gagniuc <mr.nuke.me@gmail.com>
 > ---
+> Changes since v1:
+>   * Nothing. version incremented to stay in sync with sii902x regulator patch
 > 
-> (no changes since v3)
+>  Documentation/devicetree/bindings/display/bridge/sii902x.txt | 4 ++++
+>  1 file changed, 4 insertions(+)
 > 
-> Changes in v3:
-> - updated commit message
-> - removed recursive reference to $self
-> - adjusted 'compatible' definition to support multiple entries
-> - changed USB controller phandle to be a node
-> 
-> Changes in v2:
-> - removed 'wakeup-source' and 'power-off-in-suspend' properties
-> - consistently use spaces for indentation in example
-> 
->  .../bindings/usb/onboard_usb_hub.yaml         | 54 +++++++++++++++++++
->  1 file changed, 54 insertions(+)
->  create mode 100644 Documentation/devicetree/bindings/usb/onboard_usb_hub.yaml
-> 
-> diff --git a/Documentation/devicetree/bindings/usb/onboard_usb_hub.yaml b/Documentation/devicetree/bindings/usb/onboard_usb_hub.yaml
-> new file mode 100644
-> index 000000000000..c9783da3e75c
-> --- /dev/null
-> +++ b/Documentation/devicetree/bindings/usb/onboard_usb_hub.yaml
-> @@ -0,0 +1,54 @@
-> +# SPDX-License-Identifier: GPL-2.0-only or BSD-2-Clause
-> +%YAML 1.2
-> +---
-> +$id: http://devicetree.org/schemas/usb/onboard_usb_hub.yaml#
-> +$schema: http://devicetree.org/meta-schemas/core.yaml#
-> +
-> +title: Binding for onboard USB hubs
-> +
-> +maintainers:
-> +  - Matthias Kaehlcke <mka@chromium.org>
-> +
-> +properties:
-> +  compatible:
-> +    items:
-> +      - enum:
-> +        - realtek,rts5411
-> +      - const: onboard-usb-hub
-> +
-> +  vdd-supply:
-> +    description:
-> +      phandle to the regulator that provides power to the hub.
-> +
-> +required:
-> +  - compatible
-> +  - vdd-supply
-> +
-> +examples:
-> +  - |
-> +    usb_hub: usb-hub {
-> +        compatible = "realtek,rts5411", "onboard-usb-hub";
-> +        vdd-supply = <&pp3300_hub>;
-> +    };
 
-As I said in prior version, this separate node and 'hub' phandle is not 
-going to work. You are doing this because you want a platform driver for 
-"realtek,rts5411". That may be convenient for Linux, but doesn't reflect 
-the h/w.
-
-Rob
+Acked-by: Rob Herring <robh@kernel.org>
