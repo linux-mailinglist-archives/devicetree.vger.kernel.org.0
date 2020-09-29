@@ -2,93 +2,240 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from vger.kernel.org (vger.kernel.org [23.128.96.18])
-	by mail.lfdr.de (Postfix) with ESMTP id E318C27D064
-	for <lists+devicetree@lfdr.de>; Tue, 29 Sep 2020 16:02:30 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTP id 69CC727D08C
+	for <lists+devicetree@lfdr.de>; Tue, 29 Sep 2020 16:05:08 +0200 (CEST)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S1730376AbgI2OCa (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Tue, 29 Sep 2020 10:02:30 -0400
-Received: from mail-oi1-f195.google.com ([209.85.167.195]:40241 "EHLO
-        mail-oi1-f195.google.com" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S1729073AbgI2OC3 (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Tue, 29 Sep 2020 10:02:29 -0400
-Received: by mail-oi1-f195.google.com with SMTP id t76so5543792oif.7;
-        Tue, 29 Sep 2020 07:02:29 -0700 (PDT)
-X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=1e100.net; s=20161025;
-        h=x-gm-message-state:date:from:to:cc:subject:message-id:references
-         :mime-version:content-disposition:in-reply-to;
-        bh=jk9iyGyLhyyk1SDgqn0WKctOPbwRm9Gjuz33wrJ9IRs=;
-        b=EVC9bnc8s70nWisKc2qRi/fN9aLd0hZaucF8sijp8pm+68xQQLffq1V4GDuhoNpenT
-         f9sc/s5N627Xh8F3teODLS8QUhz69LuCgtuVmOhpfo8treIknD0tBoYX6/0Escc2kvFY
-         XuhPLtvh+lA1lPk7ud2X6ZPHGjhVKZluw6AZMSzuU4SYxLAwbFthxPEoilQKGkfkt7db
-         OydsxfLAKUNVBXqA7ZcMkBqNCzkTO7VPRV2B+82FwpPJ7YcwWd41wzRZItmv2XqbamFV
-         EqLFSAz2kwB4Lb2LdowOgV1nqTqNzRBg75WCLzBVFOiB1d++JcVnqUUG9njy+GaYzNvS
-         lqZA==
-X-Gm-Message-State: AOAM530fwfY/cWZ+bpfsAPsmNZ7LIBLUDc3U9BANbH3idiXunSjp8ZWz
-        gs4le6ndpx/SM3XlbaxPMA==
-X-Google-Smtp-Source: ABdhPJwcQH7DEPuH5sq6zTX2mTVPE3mPbU8dx3rG6rQcRGRI+wRDySV7uh90SHWFA9XVZR6KR6DcQA==
-X-Received: by 2002:aca:f417:: with SMTP id s23mr2645083oih.168.1601388148714;
-        Tue, 29 Sep 2020 07:02:28 -0700 (PDT)
-Received: from xps15 (24-155-109-49.dyn.grandenetworks.net. [24.155.109.49])
-        by smtp.gmail.com with ESMTPSA id j10sm1054657oif.36.2020.09.29.07.02.27
-        (version=TLS1_3 cipher=TLS_AES_256_GCM_SHA384 bits=256/256);
-        Tue, 29 Sep 2020 07:02:28 -0700 (PDT)
-Received: (nullmailer pid 495718 invoked by uid 1000);
-        Tue, 29 Sep 2020 14:02:27 -0000
-Date:   Tue, 29 Sep 2020 09:02:27 -0500
-From:   Rob Herring <robh@kernel.org>
-To:     Linus Walleij <linus.walleij@linaro.org>
-Cc:     Krzysztof Kozlowski <krzk@kernel.org>,
-        "open list:OPEN FIRMWARE AND FLATTENED DEVICE TREE BINDINGS" 
-        <devicetree@vger.kernel.org>, Anson Huang <Anson.Huang@nxp.com>,
-        "open list:GPIO SUBSYSTEM" <linux-gpio@vger.kernel.org>,
-        Fabio Estevam <festevam@gmail.com>,
-        Sascha Hauer <s.hauer@pengutronix.de>,
-        "linux-kernel@vger.kernel.org" <linux-kernel@vger.kernel.org>,
-        Stefan Agner <stefan@agner.ch>,
-        Bartosz Golaszewski <bgolaszewski@baylibre.com>,
-        NXP Linux Team <linux-imx@nxp.com>,
-        Pengutronix Kernel Team <kernel@pengutronix.de>,
-        Shawn Guo <shawnguo@kernel.org>,
-        Linux ARM <linux-arm-kernel@lists.infradead.org>
-Subject: Re: [PATCH v3 4/4] dt-bindings: gpio: gpio-vf610: fix iMX 7ULP
- compatible matching
-Message-ID: <20200929140227.GA494474@bogus>
-References: <20200920195848.27075-1-krzk@kernel.org>
- <20200920195848.27075-4-krzk@kernel.org>
- <CACRpkdZi_k=SeMPHADeErE3pn9ytb0dFTfVEb7mJYedg75dMbw@mail.gmail.com>
-MIME-Version: 1.0
-Content-Type: text/plain; charset=us-ascii
-Content-Disposition: inline
-In-Reply-To: <CACRpkdZi_k=SeMPHADeErE3pn9ytb0dFTfVEb7mJYedg75dMbw@mail.gmail.com>
+        id S1728884AbgI2OFH (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Tue, 29 Sep 2020 10:05:07 -0400
+Received: from relmlor2.renesas.com ([210.160.252.172]:21448 "EHLO
+        relmlie6.idc.renesas.com" rhost-flags-OK-OK-OK-FAIL)
+        by vger.kernel.org with ESMTP id S1728481AbgI2OFH (ORCPT
+        <rfc822;devicetree@vger.kernel.org>);
+        Tue, 29 Sep 2020 10:05:07 -0400
+X-IronPort-AV: E=Sophos;i="5.77,318,1596466800"; 
+   d="scan'208";a="58254312"
+Received: from unknown (HELO relmlir5.idc.renesas.com) ([10.200.68.151])
+  by relmlie6.idc.renesas.com with ESMTP; 29 Sep 2020 23:05:05 +0900
+Received: from localhost.localdomain (unknown [10.226.36.204])
+        by relmlir5.idc.renesas.com (Postfix) with ESMTP id 8E7F34006DF0;
+        Tue, 29 Sep 2020 23:05:03 +0900 (JST)
+From:   Lad Prabhakar <prabhakar.mahadev-lad.rj@bp.renesas.com>
+To:     Geert Uytterhoeven <geert+renesas@glider.be>,
+        Magnus Damm <magnus.damm@gmail.com>,
+        Rob Herring <robh+dt@kernel.org>,
+        linux-renesas-soc@vger.kernel.org, devicetree@vger.kernel.org
+Cc:     Laurent Pinchart <laurent.pinchart@ideasonboard.com>,
+        linux-kernel@vger.kernel.org,
+        Lad Prabhakar <prabhakar.mahadev-lad.rj@bp.renesas.com>,
+        Prabhakar <prabhakar.csengg@gmail.com>
+Subject: [PATCH v3] ARM: dts: r8a7742-iwg21d-q7: Add LCD support
+Date:   Tue, 29 Sep 2020 15:05:02 +0100
+Message-Id: <20200929140502.16017-1-prabhakar.mahadev-lad.rj@bp.renesas.com>
+X-Mailer: git-send-email 2.17.1
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-On Tue, Sep 29, 2020 at 01:54:44PM +0200, Linus Walleij wrote:
-> On Sun, Sep 20, 2020 at 9:59 PM Krzysztof Kozlowski <krzk@kernel.org> wrote:
-> 
-> > The i.MX 7ULP DTSes use two compatibles so update the binding to fix
-> > dtbs_check warnings like:
-> >
-> >   arch/arm/boot/dts/imx7ulp-com.dt.yaml: gpio@40ae0000:
-> >     compatible: ['fsl,imx7ulp-gpio', 'fsl,vf610-gpio'] is too long
-> >
-> >   arch/arm/boot/dts/imx7ulp-com.dt.yaml: gpio@40ae0000:
-> >     compatible: Additional items are not allowed ('fsl,vf610-gpio' was unexpected)
-> >
-> > Signed-off-by: Krzysztof Kozlowski <krzk@kernel.org>
-> 
-> This patch doesn't apply to my tree linux-gpio "devel":
-> 
-> $ git am --signoff
-> ./v3_20200920_krzk_dt_bindings_gpio_pl061_add_gpio_line_names.mbx
-> Applying: dt-bindings: gpio: gpio-vf610: fix iMX 7ULP compatible matching
-> error: Documentation/devicetree/bindings/gpio/gpio-vf610.yaml: does
-> not exist in index
-> Patch failed at 0001 dt-bindings: gpio: gpio-vf610: fix iMX 7ULP
-> compatible matching
+The iwg21d comes with a 7" capacitive touch screen, therefore
+add support for it.
 
-It's in my tree, so I've applied it.
+Signed-off-by: Lad Prabhakar <prabhakar.mahadev-lad.rj@bp.renesas.com>
+Reviewed-by: Marian-Cristian Rotariu <marian-cristian.rotariu.rb@bp.renesas.com>
+Reviewed-by: Laurent Pinchart <laurent.pinchart@ideasonboard.com>
+Reviewed-by: Geert Uytterhoeven <geert+renesas@glider.be>
+---
+v2->v3
+* Renamed vcc-supply to power-supply due to recent bindings changes [4]
+  (similar changes done for G1[MN] [5]).
+* Restored RB tags from Laurent and Geert.
+* Sorted the DTS
 
-Rob
+v1->v2
+* This patch is part of series [1] (rest of the patches have be accepted
+  by Geert [2]).
+* Added regulator for lvds
+* Added reset pin for touchpanel
+* This patch is based on series [3]
+
+[1] https://patchwork.kernel.org/project/linux-renesas-soc/list/
+    ?series=330277
+[2] https://git.kernel.org/pub/scm/linux/kernel/git/geert/
+    renesas-devel.git/log/?h=renesas-arm-dt-for-v5.10
+[3] https://patchwork.kernel.org/project/linux-renesas-soc/list/
+    ?series=330957
+[4] https://patchwork.kernel.org/patch/11792205/
+[5] https://git.kernel.org/pub/scm/linux/kernel/git/next/linux-next.git/
+    commit/?h=next-20200929&id=08d7a73fffb6769b1cf2278bf697e692daba3abf
+---
+ arch/arm/boot/dts/r8a7742-iwg21d-q7.dts | 99 +++++++++++++++++++++++++
+ 1 file changed, 99 insertions(+)
+
+diff --git a/arch/arm/boot/dts/r8a7742-iwg21d-q7.dts b/arch/arm/boot/dts/r8a7742-iwg21d-q7.dts
+index c2c05c9685d1..0063ef92f50e 100644
+--- a/arch/arm/boot/dts/r8a7742-iwg21d-q7.dts
++++ b/arch/arm/boot/dts/r8a7742-iwg21d-q7.dts
+@@ -30,6 +30,7 @@
+ 
+ /dts-v1/;
+ #include "r8a7742-iwg21m.dtsi"
++#include <dt-bindings/pwm/pwm.h>
+ 
+ / {
+ 	model = "iWave Systems RainboW-G21D-Qseven board based on RZ/G1H";
+@@ -52,6 +53,16 @@
+ 		clock-frequency = <26000000>;
+ 	};
+ 
++	lcd_backlight: backlight {
++		compatible = "pwm-backlight";
++		pwms = <&tpu 2 5000000 0>;
++		brightness-levels = <0 4 8 16 32 64 128 255>;
++		pinctrl-0 = <&backlight_pins>;
++		pinctrl-names = "default";
++		default-brightness-level = <7>;
++		enable-gpios = <&gpio3 11 GPIO_ACTIVE_HIGH>;
++	};
++
+ 	leds {
+ 		compatible = "gpio-leds";
+ 
+@@ -62,6 +73,41 @@
+ 		};
+ 	};
+ 
++	lvds-receiver {
++		compatible = "ti,ds90cf384a", "lvds-decoder";
++		power-supply = <&vcc_3v3_tft1>;
++
++		ports {
++			#address-cells = <1>;
++			#size-cells = <0>;
++
++			port@0 {
++				reg = <0>;
++				lvds_receiver_in: endpoint {
++					remote-endpoint = <&lvds0_out>;
++				};
++			};
++			port@1 {
++				reg = <1>;
++				lvds_receiver_out: endpoint {
++					remote-endpoint = <&panel_in>;
++				};
++			};
++		};
++	};
++
++	panel {
++		compatible = "edt,etm0700g0dh6";
++		backlight = <&lcd_backlight>;
++		power-supply = <&vcc_3v3_tft1>;
++
++		port {
++			panel_in: endpoint {
++				remote-endpoint = <&lvds_receiver_out>;
++			};
++		};
++	};
++
+ 	reg_1p5v: 1p5v {
+ 		compatible = "regulator-fixed";
+ 		regulator-name = "1P5V";
+@@ -85,6 +131,17 @@
+ 		};
+ 	};
+ 
++	vcc_3v3_tft1: regulator-panel {
++		compatible = "regulator-fixed";
++
++		regulator-name = "vcc-3v3-tft1";
++		regulator-min-microvolt = <3300000>;
++		regulator-max-microvolt = <3300000>;
++		enable-active-high;
++		startup-delay-us = <500>;
++		gpio = <&gpio5 28 GPIO_ACTIVE_HIGH>;
++	};
++
+ 	vcc_sdhi2: regulator-vcc-sdhi2 {
+ 		compatible = "regulator-fixed";
+ 
+@@ -139,6 +196,16 @@
+ 		VDDIO-supply = <&reg_3p3v>;
+ 		VDDD-supply = <&reg_1p5v>;
+ 	};
++
++	touch: touchpanel@38 {
++		compatible = "edt,edt-ft5406";
++		reg = <0x38>;
++		interrupt-parent = <&gpio0>;
++		interrupts = <24 IRQ_TYPE_EDGE_FALLING>;
++		/* GP1_29 is also shared with audio codec reset pin */
++		reset-gpios = <&gpio1 29 GPIO_ACTIVE_LOW>;
++		vcc-supply = <&vcc_3v3_tft1>;
++	};
+ };
+ 
+ &can1 {
+@@ -152,6 +219,18 @@
+ 	status = "okay";
+ };
+ 
++&du {
++	status = "okay";
++};
++
++&gpio0 {
++	touch-interrupt {
++		gpio-hog;
++		gpios = <24 GPIO_ACTIVE_LOW>;
++		input;
++	};
++};
++
+ &gpio1 {
+ 	can-trx-en-gpio{
+ 		gpio-hog;
+@@ -167,6 +246,17 @@
+ 	status = "okay";
+ };
+ 
++&lvds0 {
++	status = "okay";
++	ports {
++		port@1 {
++			lvds0_out: endpoint {
++				remote-endpoint = <&lvds_receiver_in>;
++			};
++		};
++	};
++};
++
+ &msiof0 {
+ 	pinctrl-0 = <&msiof0_pins>;
+ 	pinctrl-names = "default";
+@@ -229,6 +319,11 @@
+ 		function = "avb";
+ 	};
+ 
++	backlight_pins: backlight {
++		groups = "tpu0_to2";
++		function = "tpu0";
++	};
++
+ 	can1_pins: can1 {
+ 		groups = "can1_data_b";
+ 		function = "can1";
+@@ -335,6 +430,10 @@
+ 	shared-pin;
+ };
+ 
++&tpu {
++	status = "okay";
++};
++
+ &usbphy {
+ 	status = "okay";
+ };
+-- 
+2.17.1
+
