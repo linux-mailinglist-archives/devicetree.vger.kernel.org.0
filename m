@@ -2,102 +2,114 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from vger.kernel.org (vger.kernel.org [23.128.96.18])
-	by mail.lfdr.de (Postfix) with ESMTP id 6041527C19B
-	for <lists+devicetree@lfdr.de>; Tue, 29 Sep 2020 11:47:07 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTP id 29B1827C1A0
+	for <lists+devicetree@lfdr.de>; Tue, 29 Sep 2020 11:49:03 +0200 (CEST)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S1728107AbgI2JrC (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Tue, 29 Sep 2020 05:47:02 -0400
-Received: from lindbergh.monkeyblade.net ([23.128.96.19]:49124 "EHLO
+        id S1725710AbgI2JtC (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Tue, 29 Sep 2020 05:49:02 -0400
+Received: from lindbergh.monkeyblade.net ([23.128.96.19]:49434 "EHLO
         lindbergh.monkeyblade.net" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S1725765AbgI2JrC (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Tue, 29 Sep 2020 05:47:02 -0400
-Received: from mail-wr1-x441.google.com (mail-wr1-x441.google.com [IPv6:2a00:1450:4864:20::441])
-        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id D70D6C0613D0
-        for <devicetree@vger.kernel.org>; Tue, 29 Sep 2020 02:47:01 -0700 (PDT)
-Received: by mail-wr1-x441.google.com with SMTP id z1so4635478wrt.3
-        for <devicetree@vger.kernel.org>; Tue, 29 Sep 2020 02:47:01 -0700 (PDT)
+        with ESMTP id S1725497AbgI2JtC (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Tue, 29 Sep 2020 05:49:02 -0400
+Received: from mail-wm1-x341.google.com (mail-wm1-x341.google.com [IPv6:2a00:1450:4864:20::341])
+        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id D01E3C061755
+        for <devicetree@vger.kernel.org>; Tue, 29 Sep 2020 02:49:01 -0700 (PDT)
+Received: by mail-wm1-x341.google.com with SMTP id q9so3967347wmj.2
+        for <devicetree@vger.kernel.org>; Tue, 29 Sep 2020 02:49:01 -0700 (PDT)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
         d=linaro.org; s=google;
         h=date:from:to:cc:subject:message-id:references:mime-version
          :content-disposition:content-transfer-encoding:in-reply-to;
-        bh=Xgu+t4c0Hj/GvcOVJdD7iwVpZkR4c7q5e85qV1kBjNo=;
-        b=NOW8WOxtXjyauKTcGXQNShd+/NM0gPC9MrygYedOz5v41mrfSXbNUNmdQfME8QDtvO
-         f3jSB+rhaRY5W2z8QdLK51GueF373dNTEapV4x8ijeTdbjuXS7TENVmJHckAbNrP6Ggo
-         /6yV+RFR1KKo1mIpPBslUDmJ2C887+oSC5ZyYVvHLgMetOQ5XOLTJbWak2Qx1Sp38Ixf
-         UEv4X82/ARW2YE1S6kkP7Pb4cLXGQDuk2YiViBGqQTk0hIKsVlxcffYPpTLnbFIEnGXD
-         qvxQ4MyNmiumjCNW3d5+TYBVrABi0v+xJPjbJTp6CdEi5IYnZHw8t5nCUnzTI2T0Z6Ug
-         0jXQ==
+        bh=qKgppTswcH/i8YOUnUUtArNbaIhsF8It8d6gIIhqsNg=;
+        b=N+/CmWkdH8dzD3kQoo/cVLygV/YRevx4rKlEOjqIEZex5DaBMfEQjHL1n0KEB1DpHY
+         +Ce260v2IRZMiADZDWWIB5FTgocbBLlzZuS8by/jyfuzr+ZuW7ecg91koB0BToLggsuA
+         PQYrL2b67QSxYaHpeHfYpwldJ+hMZ9NjPQuDtZTZsHtURC1GyJctXeUjTucMXdZ7an0n
+         o7rh+34+vGWTggh+MPUsZEdGotcNbUIcvhdxLhfjR9mS8GQCa7VqDxkiMNEy/utEwqie
+         HbO1sfYNFKQokdARYNPNZo3dsI+33uqafYdueP9E655HDsOmBjZcReHWF/phdeQX+SHI
+         1+IQ==
 X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
         d=1e100.net; s=20161025;
         h=x-gm-message-state:date:from:to:cc:subject:message-id:references
          :mime-version:content-disposition:content-transfer-encoding
          :in-reply-to;
-        bh=Xgu+t4c0Hj/GvcOVJdD7iwVpZkR4c7q5e85qV1kBjNo=;
-        b=THFn0/mGScJtRCT1puJJR2lQUn19nP3kyMeMm3DXC5I4VeFiAB0fVt7epsF7MUU5BR
-         JSeIOXHs9oiFChbSAla8e03CD6ZVxH6NfKWIfAYN/8R0kdRgE1TnEpgnEo1XkV1LkEru
-         YqK+88OaXMQgEffb/5EgK+Mmevt7WHWbybCVPw/GNkH0yZMB5ws11ud3pQp5ECTDrk5+
-         Q7c3bcmDvqMiERQ8qfwCgL1eT7qP7CCbjLf8akcSx714hB5cZ+frm/P4GOpBncXw4DnP
-         oMD03nolGocT+/HipH/ILbahzrT2vVYCNuV6rkt0QMGr6Or4oNes2C8YrREUSgnlwG33
-         6VoQ==
-X-Gm-Message-State: AOAM533plURIo4IEJuR4gsFrE05W7Kn76ZDPWyjjxaXRn8NFclNnrVky
-        PKt6BbN5+GIHY8xUbnUz/gomnw==
-X-Google-Smtp-Source: ABdhPJxXEep7SF9Qpk4Znubq9FBmlxsqdwPUuDmXdWiZ+hVgqT1yyNneHvGay0XQFwJsamVSunbhtA==
-X-Received: by 2002:adf:f207:: with SMTP id p7mr3523229wro.152.1601372820224;
-        Tue, 29 Sep 2020 02:47:00 -0700 (PDT)
+        bh=qKgppTswcH/i8YOUnUUtArNbaIhsF8It8d6gIIhqsNg=;
+        b=rbVzoavvnbLXEgka4oIUEQu7uH+hvOCvOw9xnroLu/EndidGTC7AUkIoQLZTHZqp9C
+         tF0IkoYCG+sjsHu14s4b9bQD2TWNYhf8KZF6+DyjPLOa/H+UbmyhnWaO+4maumR/nibS
+         NOpLjf0t6XUmFLW0/xv0lMqV8lAT/ow/PftpAIIHk9WcZr3Or3roPnfx393aIuDv824v
+         Tt35ym1li+6kYsWOdIAs8Xeh/DIJAKjwzJaI0AnMDGAKPQVK9ATe1yLJS0mI0ue6Fue1
+         FrIrg/qPSO+QoeV2v1OgCcoYS1/nwwfzKpfcKNLQrjBpRzRjZpc6Vfscbxku7iNCrf98
+         sOfw==
+X-Gm-Message-State: AOAM531uJ+suMxssnq/OUaqTWim2evr83AKdvTRvd7RkL24WkVUdJKQR
+        dFzkvCY7QNgBMEbW4Vf6OQz2Dg+ZCEEeXw==
+X-Google-Smtp-Source: ABdhPJzCfG5rZ4v625cQ/u231U9hQ1X9lcEzE46+3GwQaEhfLhP/WyxHY6a6K/L60a+Stdr7M/CiZQ==
+X-Received: by 2002:a1c:7714:: with SMTP id t20mr3576106wmi.186.1601372940496;
+        Tue, 29 Sep 2020 02:49:00 -0700 (PDT)
 Received: from dell ([91.110.221.236])
-        by smtp.gmail.com with ESMTPSA id u186sm4763822wmu.34.2020.09.29.02.46.58
+        by smtp.gmail.com with ESMTPSA id m23sm4552947wmi.19.2020.09.29.02.48.59
         (version=TLS1_3 cipher=TLS_AES_256_GCM_SHA384 bits=256/256);
-        Tue, 29 Sep 2020 02:46:59 -0700 (PDT)
-Date:   Tue, 29 Sep 2020 10:46:57 +0100
+        Tue, 29 Sep 2020 02:48:59 -0700 (PDT)
+Date:   Tue, 29 Sep 2020 10:48:57 +0100
 From:   Lee Jones <lee.jones@linaro.org>
-To:     Krzysztof Kozlowski <krzk@kernel.org>
-Cc:     Rob Herring <robh+dt@kernel.org>,
-        Tim Harvey <tharvey@gateworks.com>,
-        Robert Jones <rjones@gateworks.com>,
-        Matti Vaittinen <matti.vaittinen@fi.rohmeurope.com>,
-        devicetree@vger.kernel.org, linux-kernel@vger.kernel.org,
-        linux-power@fi.rohmeurope.com
-Subject: Re: [PATCH v2] dt-bindings: mfd: correct interrupt flags in examples
-Message-ID: <20200929094657.GD6148@dell>
-References: <20200917185613.5905-1-krzk@kernel.org>
+To:     kernel test robot <lkp@intel.com>
+Cc:     Cristian Ciocaltea <cristian.ciocaltea@gmail.com>,
+        Rob Herring <robh+dt@kernel.org>,
+        Dmitry Torokhov <dmitry.torokhov@gmail.com>,
+        Sebastian Reichel <sre@kernel.org>,
+        Liam Girdwood <lgirdwood@gmail.com>,
+        Mark Brown <broonie@kernel.org>, kbuild-all@lists.01.org,
+        Manivannan Sadhasivam <manivannan.sadhasivam@linaro.org>,
+        Andreas =?iso-8859-1?Q?F=E4rber?= <afaerber@suse.de>,
+        linux-actions@lists.infradead.org, devicetree@vger.kernel.org
+Subject: Re: [PATCH v2 2/6] mfd: Add MFD driver for ATC260x PMICs
+Message-ID: <20200929094857.GF6148@dell>
+References: <7705c965d82a21571f93f38aeabbd3bcb3d23bac.1598043782.git.cristian.ciocaltea@gmail.com>
+ <202008221153.JTuVUmjB%lkp@intel.com>
 MIME-Version: 1.0
 Content-Type: text/plain; charset=utf-8
 Content-Disposition: inline
 Content-Transfer-Encoding: 8bit
-In-Reply-To: <20200917185613.5905-1-krzk@kernel.org>
+In-Reply-To: <202008221153.JTuVUmjB%lkp@intel.com>
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-On Thu, 17 Sep 2020, Krzysztof Kozlowski wrote:
+On Sat, 22 Aug 2020, kernel test robot wrote:
 
-> GPIO_ACTIVE_x flags are not correct in the context of interrupt flags.
-> These are simple defines so they could be used in DTS but they will not
-> have the same meaning:
-> 1. GPIO_ACTIVE_HIGH = 0 = IRQ_TYPE_NONE
-> 2. GPIO_ACTIVE_LOW  = 1 = IRQ_TYPE_EDGE_RISING
+> Hi Cristian,
 > 
-> Correct the interrupt flags, assuming the author of the code wanted same
-> logical behavior behind the name "ACTIVE_xxx", this is:
->   ACTIVE_LOW => IRQ_TYPE_LEVEL_LOW
+> Thank you for the patch! Yet something to improve:
 > 
-> Signed-off-by: Krzysztof Kozlowski <krzk@kernel.org>
-> Acked-by: Matti Vaittinen <matti.vaittinen@fi.rohmeurope.com> # for BD70528
-> Acked-by: Tim Harvey <tharvey@gateworks.com> # for gateworks-gsc.yaml
-> Acked-by: Rob Herring <robh@kernel.org>
+> [auto build test ERROR on lee-mfd/for-mfd-next]
+> [also build test ERROR on regulator/for-next v5.9-rc1 next-20200821]
+> [cannot apply to input/next power-supply/for-next]
+> [If your patch is applied to the wrong git tree, kindly drop us a note.
+> And when submitting patch, we suggest to use '--base' as documented in
+> https://git-scm.com/docs/git-format-patch]
+> 
+> url:    https://github.com/0day-ci/linux/commits/Cristian-Ciocaltea/Add-initial-support-for-ATC260x-PMICs/20200822-062126
+> base:   https://git.kernel.org/pub/scm/linux/kernel/git/lee/mfd.git for-mfd-next
+> config: sh-allmodconfig (attached as .config)
+> compiler: sh4-linux-gcc (GCC) 9.3.0
+> reproduce (this is a W=1 build):
+>         wget https://raw.githubusercontent.com/intel/lkp-tests/master/sbin/make.cross -O ~/bin/make.cross
+>         chmod +x ~/bin/make.cross
+>         # save the attached .config to linux build tree
+>         COMPILER_INSTALL_PATH=$HOME/0day COMPILER=gcc-9.3.0 make.cross ARCH=sh 
+> 
+> If you fix the issue, kindly add following tag as appropriate
+> Reported-by: kernel test robot <lkp@intel.com>
+> 
+> All errors (new ones prefixed by >>, old ones prefixed by <<):
+> 
+> WARNING: modpost: missing MODULE_LICENSE() in drivers/mfd/atc260x-core.o
+> >> FATAL: modpost: drivers/mfd/atc260x-i2c: sizeof(struct i2c_device_id)=24 is not a modulo of the size of section __mod_i2c__<identifier>_device_table=588.
+> >> Fix definition of struct i2c_device_id in mod_devicetable.h
 > 
 > ---
-> 
-> Changes since v1:
-> 1. Add acks
+> 0-DAY CI Kernel Test Service, Intel Corporation
+> https://lists.01.org/hyperkitty/list/kbuild-all@lists.01.org
 
-FYI, this should not bump the patch version.
-
-> ---
->  Documentation/devicetree/bindings/mfd/act8945a.txt          | 2 +-
->  Documentation/devicetree/bindings/mfd/gateworks-gsc.yaml    | 3 ++-
->  Documentation/devicetree/bindings/mfd/rohm,bd70528-pmic.txt | 2 +-
->  3 files changed, 4 insertions(+), 3 deletions(-)
+Is this something you plan to fix?
 
 -- 
 Lee Jones [李琼斯]
