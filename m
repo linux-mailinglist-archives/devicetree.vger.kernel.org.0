@@ -2,81 +2,73 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from vger.kernel.org (vger.kernel.org [23.128.96.18])
-	by mail.lfdr.de (Postfix) with ESMTP id A3E9627D825
-	for <lists+devicetree@lfdr.de>; Tue, 29 Sep 2020 22:30:18 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTP id 3FDFD27D82B
+	for <lists+devicetree@lfdr.de>; Tue, 29 Sep 2020 22:30:41 +0200 (CEST)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S1728396AbgI2UaQ (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Tue, 29 Sep 2020 16:30:16 -0400
-Received: from mail-oi1-f194.google.com ([209.85.167.194]:42650 "EHLO
-        mail-oi1-f194.google.com" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S1728241AbgI2UaP (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Tue, 29 Sep 2020 16:30:15 -0400
-Received: by mail-oi1-f194.google.com with SMTP id x14so6943640oic.9;
-        Tue, 29 Sep 2020 13:30:15 -0700 (PDT)
+        id S1729220AbgI2Uae (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Tue, 29 Sep 2020 16:30:34 -0400
+Received: from mail-oi1-f196.google.com ([209.85.167.196]:36770 "EHLO
+        mail-oi1-f196.google.com" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
+        with ESMTP id S1728241AbgI2Uae (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Tue, 29 Sep 2020 16:30:34 -0400
+Received: by mail-oi1-f196.google.com with SMTP id v20so6987976oiv.3;
+        Tue, 29 Sep 2020 13:30:33 -0700 (PDT)
 X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
         d=1e100.net; s=20161025;
         h=x-gm-message-state:date:from:to:cc:subject:message-id:references
          :mime-version:content-disposition:in-reply-to;
-        bh=I6lk5ddtUvJUDAiRO4BVqqX4rVcwqzUPcKWa0FPjTM8=;
-        b=PwSNWZ/+Sn0oc52d+XajSQmh0D/eVvD8lQoOFSMNNyEfbXIZutD88KbBHJ5zYjzaap
-         aeO3AC9AXU60Dr3dKpCkYTstiTC0ysMADH1npTwt6isBbxwSOSZ6juZboRxCvDquPq/s
-         xjj1Jl+vCaTp9Iw3Ao4jbY+O0kxtcq71PLsdoIeC7j/218YBB4G4ufn8IgRiiWCcHdbN
-         vDYZwKUovXd/KbJ3dFgMDaLypz6D6E2hMNVkPjsf+1MAWMYNTo16j9SWpFNqgr7JLK+L
-         yjKqgl49Dwoxu9a0hL/aMN6GBTQPdoSaiEA9X9EWoPAf7F4pFTeeoUZbcuLBohJDJ1kk
-         iBSA==
-X-Gm-Message-State: AOAM533Zm2EBX0qk800BKLdv1DbWzsbTdoSPippzGCyDR16law2s9ByQ
-        JyXt5gLyMqM2EHCHGU3t5g==
-X-Google-Smtp-Source: ABdhPJwsd0fbtkX1yuYMWhXsJFRApShyunN8Xx7cmQriDAAkTdbaN6Y0MDPDasviFbV6L11wRF7xZQ==
-X-Received: by 2002:a05:6808:3bb:: with SMTP id n27mr3580048oie.130.1601411415009;
-        Tue, 29 Sep 2020 13:30:15 -0700 (PDT)
+        bh=FPuz5WYxD2Tu+G8ZAl/6vtkSKIukSKn7qBbQcNvXQ6c=;
+        b=GM6H1SuChKBSIncCzp/RzEZdPWfQ7q/XeExIW4WiFBCaYukraygftOtB7Oq4h7YLbc
+         fwsGBz4eSdfhFiz1Oi5ha9fOfTgshj+8mZtDr4m2Wcl1+GoOVj70XHo8cP/bBX/UDXuB
+         1nWVEhdK2rz/eq9bqw8XOtywn0QBLAKdNysFeIxlJRYxODPX2dUzY0FGDh14AIRcM/+G
+         1MZr6GF6BlqCwEgqzBtpEDn50YYAuhooCATI+dzQXVJzwMvjZOT25IB9C71n/OtkbShW
+         rzBZ0b5P8G3uVcwOABsInDi1pxz4Ll4kdup8Un8D917O1EIpQdVz4kByoEcvsMvLnejL
+         ux6g==
+X-Gm-Message-State: AOAM530WZ5Ynsvpg35RNBg9A4Sx/bHipGPOt5faAvSb5mURcWaXiI+Ne
+        MDaC2ULZmKvckxociEt611Dqdh9Zd0c8eZI=
+X-Google-Smtp-Source: ABdhPJzaRmU7TO9qK1YLGHlubybZE2VKwptF+SyTHWB/MKRoeHcdoAj6k45sOvT7OjZo0M4H7d//wQ==
+X-Received: by 2002:a05:6808:9bc:: with SMTP id e28mr3696293oig.71.1601411433051;
+        Tue, 29 Sep 2020 13:30:33 -0700 (PDT)
 Received: from xps15 (24-155-109-49.dyn.grandenetworks.net. [24.155.109.49])
-        by smtp.gmail.com with ESMTPSA id m12sm1259283otq.8.2020.09.29.13.30.14
+        by smtp.gmail.com with ESMTPSA id v18sm3128046oof.41.2020.09.29.13.30.32
         (version=TLS1_3 cipher=TLS_AES_256_GCM_SHA384 bits=256/256);
-        Tue, 29 Sep 2020 13:30:14 -0700 (PDT)
-Received: (nullmailer pid 1115256 invoked by uid 1000);
-        Tue, 29 Sep 2020 20:30:13 -0000
-Date:   Tue, 29 Sep 2020 15:30:13 -0500
+        Tue, 29 Sep 2020 13:30:32 -0700 (PDT)
+Received: (nullmailer pid 1115864 invoked by uid 1000);
+        Tue, 29 Sep 2020 20:30:31 -0000
+Date:   Tue, 29 Sep 2020 15:30:31 -0500
 From:   Rob Herring <robh@kernel.org>
 To:     Zhen Lei <thunder.leizhen@huawei.com>
-Cc:     Libin <huawei.libin@huawei.com>,
+Cc:     linux-arm-kernel <linux-arm-kernel@lists.infradead.org>,
+        Wei Xu <xuwei5@hisilicon.com>, Libin <huawei.libin@huawei.com>,
         Jonathan Cameron <Jonathan.Cameron@Huawei.com>,
-        Wei Xu <xuwei5@hisilicon.com>,
-        devicetree <devicetree@vger.kernel.org>,
         Kefeng Wang <wangkefeng.wang@huawei.com>,
-        Rob Herring <robh+dt@kernel.org>,
+        devicetree <devicetree@vger.kernel.org>,
         linux-kernel <linux-kernel@vger.kernel.org>,
-        linux-arm-kernel <linux-arm-kernel@lists.infradead.org>
-Subject: Re: [PATCH v5 14/17] dt-bindings: arm: hisilicon: convert hisilicon,
- hip04-bootwrapper bindings to json-schema
-Message-ID: <20200929203013.GA1115224@bogus>
+        Rob Herring <robh+dt@kernel.org>
+Subject: Re: [PATCH v5 16/17] dt-bindings: arm: hisilicon: convert hisilicon,
+ hi3798cv200-perictrl bindings to json-schema
+Message-ID: <20200929203031.GA1115813@bogus>
 References: <20200929141454.2312-1-thunder.leizhen@huawei.com>
- <20200929141454.2312-15-thunder.leizhen@huawei.com>
+ <20200929141454.2312-17-thunder.leizhen@huawei.com>
 MIME-Version: 1.0
 Content-Type: text/plain; charset=us-ascii
 Content-Disposition: inline
-In-Reply-To: <20200929141454.2312-15-thunder.leizhen@huawei.com>
+In-Reply-To: <20200929141454.2312-17-thunder.leizhen@huawei.com>
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-On Tue, 29 Sep 2020 22:14:51 +0800, Zhen Lei wrote:
-> Convert the Hisilicon Bootwrapper boot method binding to DT schema format
-> using json-schema.
-> 
-> The property boot-method contains two groups of physical address range
-> information: bootwrapper and relocation. The "uint32-array" type is not
-> suitable for it, because the field "address" and "size" may occupy one or
-> two cells respectively. Use "minItems: 1" and "maxItems: 2" to allow it
-> can be written in "<addr size addr size>" or "<addr size>, <addr size>"
-> format.
+On Tue, 29 Sep 2020 22:14:53 +0800, Zhen Lei wrote:
+> Convert the Hisilicon Hi3798CV200 Peripheral Controller binding to DT
+> schema format using json-schema.
 > 
 > Signed-off-by: Zhen Lei <thunder.leizhen@huawei.com>
 > ---
->  .../hisilicon/controller/hip04-bootwrapper.yaml    | 34 ++++++++++++++++++++++
->  .../controller/hisilicon,hip04-bootwrapper.txt     |  9 ------
->  2 files changed, 34 insertions(+), 9 deletions(-)
->  create mode 100644 Documentation/devicetree/bindings/arm/hisilicon/controller/hip04-bootwrapper.yaml
->  delete mode 100644 Documentation/devicetree/bindings/arm/hisilicon/controller/hisilicon,hip04-bootwrapper.txt
+>  .../hisilicon/controller/hi3798cv200-perictrl.yaml | 64 ++++++++++++++++++++++
+>  .../controller/hisilicon,hi3798cv200-perictrl.txt  | 21 -------
+>  2 files changed, 64 insertions(+), 21 deletions(-)
+>  create mode 100644 Documentation/devicetree/bindings/arm/hisilicon/controller/hi3798cv200-perictrl.yaml
+>  delete mode 100644 Documentation/devicetree/bindings/arm/hisilicon/controller/hisilicon,hi3798cv200-perictrl.txt
 > 
 
 Applied, thanks!
