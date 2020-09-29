@@ -2,238 +2,161 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from vger.kernel.org (vger.kernel.org [23.128.96.18])
-	by mail.lfdr.de (Postfix) with ESMTP id A9AA527BA53
-	for <lists+devicetree@lfdr.de>; Tue, 29 Sep 2020 03:37:55 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTP id F05FF27BA6C
+	for <lists+devicetree@lfdr.de>; Tue, 29 Sep 2020 03:43:58 +0200 (CEST)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S1727218AbgI2Bh2 (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Mon, 28 Sep 2020 21:37:28 -0400
-Received: from szxga04-in.huawei.com ([45.249.212.190]:14765 "EHLO huawei.com"
-        rhost-flags-OK-OK-OK-FAIL) by vger.kernel.org with ESMTP
-        id S1727238AbgI2Bh2 (ORCPT <rfc822;devicetree@vger.kernel.org>);
-        Mon, 28 Sep 2020 21:37:28 -0400
-Received: from DGGEMS402-HUB.china.huawei.com (unknown [172.30.72.58])
-        by Forcepoint Email with ESMTP id B91D2B98ABC79E62AE2F;
-        Tue, 29 Sep 2020 09:37:25 +0800 (CST)
-Received: from [127.0.0.1] (10.174.177.253) by DGGEMS402-HUB.china.huawei.com
- (10.3.19.202) with Microsoft SMTP Server id 14.3.487.0; Tue, 29 Sep 2020
- 09:37:15 +0800
-Subject: Re: [PATCH v6 5/6] dt-bindings: dw-apb-ictl: convert to json-schema
-To:     Rob Herring <robh@kernel.org>
-CC:     Thomas Gleixner <tglx@linutronix.de>,
-        Jason Cooper <jason@lakedaemon.net>,
-        Marc Zyngier <maz@kernel.org>,
-        Alexey Brodkin <abrodkin@synopsys.com>,
-        "Vineet Gupta" <vgupta@synopsys.com>,
-        devicetree <devicetree@vger.kernel.org>,
-        linux-snps-arc <linux-snps-arc@lists.infradead.org>,
-        linux-kernel <linux-kernel@vger.kernel.org>,
-        Sebastian Hesselbarth <sebastian.hesselbarth@gmail.com>,
-        Haoyu Lv <lvhaoyu@huawei.com>, Libin <huawei.libin@huawei.com>,
-        Kefeng Wang <wangkefeng.wang@huawei.com>
-References: <20200924071754.4509-1-thunder.leizhen@huawei.com>
- <20200924071754.4509-6-thunder.leizhen@huawei.com>
- <20200928182645.GA3030999@bogus>
-From:   "Leizhen (ThunderTown)" <thunder.leizhen@huawei.com>
-Message-ID: <784bc919-7a3e-b332-a6d8-35d0e3494f2f@huawei.com>
-Date:   Tue, 29 Sep 2020 09:37:14 +0800
-User-Agent: Mozilla/5.0 (Windows NT 10.0; WOW64; rv:60.0) Gecko/20100101
- Thunderbird/60.7.0
+        id S1727301AbgI2Bn6 (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Mon, 28 Sep 2020 21:43:58 -0400
+Received: from lindbergh.monkeyblade.net ([23.128.96.19]:59594 "EHLO
+        lindbergh.monkeyblade.net" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
+        with ESMTP id S1725272AbgI2Bn6 (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Mon, 28 Sep 2020 21:43:58 -0400
+Received: from mail-pj1-x1042.google.com (mail-pj1-x1042.google.com [IPv6:2607:f8b0:4864:20::1042])
+        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 20D48C061755
+        for <devicetree@vger.kernel.org>; Mon, 28 Sep 2020 18:43:58 -0700 (PDT)
+Received: by mail-pj1-x1042.google.com with SMTP id bw23so1811837pjb.2
+        for <devicetree@vger.kernel.org>; Mon, 28 Sep 2020 18:43:58 -0700 (PDT)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+        d=chromium.org; s=google;
+        h=date:from:to:cc:subject:message-id:references:mime-version
+         :content-disposition:in-reply-to;
+        bh=Fo2RrYUf1cReiMQEx0TU5FOkDdexrCuS8Ny7Goxj60k=;
+        b=CUmodB9nAQCcmCu41vOpT+Akx3puaskkx8AAA2/8c0KgerETOBMOFci90fs8Cmvxbt
+         Fdo4NmGL9tdHAw35IQ4DTJNpRM8j2XDvXLPrQ3h1vnUt697xIEEmYIx6WRD1Q7mzd8wZ
+         pm308NYBKMi7mYYY9gsKKTORP3CStWgbAmxBg=
+X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+        d=1e100.net; s=20161025;
+        h=x-gm-message-state:date:from:to:cc:subject:message-id:references
+         :mime-version:content-disposition:in-reply-to;
+        bh=Fo2RrYUf1cReiMQEx0TU5FOkDdexrCuS8Ny7Goxj60k=;
+        b=nm4BaxTr8cMU9Q/gnUp1rlDx+menO/Ps9+ZrE57cNd8PUsk3tQliqrOFCPsehUnckE
+         MeC9g91+sFBDrqmRX4jrepdJPG33CAI/oaTPJkvzOgO/QnOxd86UqKEN5cJwM5vz5NW1
+         RoJDBWgXLh3+PH0ATR7qc1GtHMmXv2ri+dKvOlNQ3aZcy0JYtfrf8xI9O2854EUBvfAg
+         TqSMxLcc6jBx1HVskvr+lDZ8WIgv2lUyBz+HnYesoUSAkalZbFo64vplEoemedoveQXA
+         x9jUgKUu4ZRxGWo4DDgR7p5XmZgjytZeN5YCY3XPgEbX6ZGCc46M7nVlAfawOimJS3OL
+         bkqQ==
+X-Gm-Message-State: AOAM530mKVWc57tllWU94kogZRkqSHRjQaUNPIZxYLHY7royYZz21E3O
+        Iec0oQDItJEyJQp0o+5Ave1Ziw==
+X-Google-Smtp-Source: ABdhPJyEmEODYkMb0O/Ba/x4y/swdruOA3A4V8pF4WK7blH245iFVfeRTaXzLOGXI3gVm64nowNsHQ==
+X-Received: by 2002:a17:90a:d986:: with SMTP id d6mr1716338pjv.108.1601343837607;
+        Mon, 28 Sep 2020 18:43:57 -0700 (PDT)
+Received: from localhost ([2620:15c:202:1:f693:9fff:fef4:e70a])
+        by smtp.gmail.com with ESMTPSA id f4sm2903758pfa.125.2020.09.28.18.43.56
+        (version=TLS1_3 cipher=TLS_AES_128_GCM_SHA256 bits=128/128);
+        Mon, 28 Sep 2020 18:43:57 -0700 (PDT)
+Date:   Mon, 28 Sep 2020 18:43:55 -0700
+From:   Matthias Kaehlcke <mka@chromium.org>
+To:     Alan Stern <stern@rowland.harvard.edu>
+Cc:     Greg Kroah-Hartman <gregkh@linuxfoundation.org>,
+        Rob Herring <robh+dt@kernel.org>,
+        Frank Rowand <frowand.list@gmail.com>,
+        linux-kernel@vger.kernel.org, linux-usb@vger.kernel.org,
+        Bastien Nocera <hadess@hadess.net>,
+        Stephen Boyd <swboyd@chromium.org>,
+        Douglas Anderson <dianders@chromium.org>,
+        Ravi Chandra Sadineni <ravisadineni@chromium.org>,
+        Krzysztof Kozlowski <krzk@kernel.org>,
+        devicetree@vger.kernel.org, Peter Chen <peter.chen@nxp.com>,
+        "Alexander A. Klimov" <grandmaster@al2klimov.de>,
+        "David S. Miller" <davem@davemloft.net>,
+        Johan Hovold <johan@kernel.org>,
+        Masahiro Yamada <yamada.masahiro@socionext.com>,
+        Mauro Carvalho Chehab <mchehab+huawei@kernel.org>,
+        Rob Herring <robh@kernel.org>
+Subject: Re: [PATCH v4 2/2] USB: misc: Add onboard_usb_hub driver
+Message-ID: <20200929014355.GA1099144@google.com>
+References: <20200928101326.v4.1.I248292623d3d0f6a4f0c5bc58478ca3c0062b49a@changeid>
+ <20200928101326.v4.2.I7c9a1f1d6ced41dd8310e8a03da666a32364e790@changeid>
+ <20200928184759.GB142254@rowland.harvard.edu>
 MIME-Version: 1.0
-In-Reply-To: <20200928182645.GA3030999@bogus>
-Content-Type: text/plain; charset="utf-8"
-Content-Language: en-US
-Content-Transfer-Encoding: 7bit
-X-Originating-IP: [10.174.177.253]
-X-CFilter-Loop: Reflected
+Content-Type: text/plain; charset=utf-8
+Content-Disposition: inline
+In-Reply-To: <20200928184759.GB142254@rowland.harvard.edu>
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
+On Mon, Sep 28, 2020 at 02:47:59PM -0400, Alan Stern wrote:
+> On Mon, Sep 28, 2020 at 10:13:55AM -0700, Matthias Kaehlcke wrote:
+> > The main issue this driver addresses is that a USB hub needs to be
+> > powered before it can be discovered. For discrete onboard hubs (an
+> > example for such a hub is the Realtek RTS5411) this is often solved
+> > by supplying the hub with an 'always-on' regulator, which is kind
+> > of a hack. Some onboard hubs may require further initialization
+> > steps, like changing the state of a GPIO or enabling a clock, which
+> > requires even more hacks. This driver creates a platform device
+> > representing the hub which performs the necessary initialization.
+> > Currently it only supports switching on a single regulator, support
+> > for multiple regulators or other actions can be added as needed.
+> > Different initialization sequences can be supported based on the
+> > compatible string.
+> > 
+> > Besides performing the initialization the driver can be configured
+> > to power the hub off during system suspend. This can help to extend
+> > battery life on battery powered devices which have no requirements
+> > to keep the hub powered during suspend. The driver can also be
+> > configured to leave the hub powered when a wakeup capable USB device
+> > is connected when suspending, and power it off otherwise.
+> > 
+> > Technically the driver consists of two drivers, the platform driver
+> > described above and a very thin USB driver that subclasses the
+> > generic driver. The purpose of this driver is to provide the platform
+> > driver with the USB devices corresponding to the hub(s) (a hub
+> > controller may provide multiple 'logical' hubs, e.g. one to support
+> > USB 2.0 and another for USB 3.x).
+> > 
+> > Co-developed-by: Ravi Chandra Sadineni <ravisadineni@chromium.org>
+> > Signed-off-by: Ravi Chandra Sadineni <ravisadineni@chromium.org>
+> > Signed-off-by: Matthias Kaehlcke <mka@chromium.org>
+> > ---
+> 
+> Minor cut & paste error:
+> 
+> > +static int onboard_hub_power_off(struct onboard_hub *hub)
+> > +{
+> > +	int err;
+> > +
+> > +	err = regulator_disable(hub->vdd);
+> > +	if (err) {
+> > +		dev_err(hub->dev, "failed to enable regulator: %d\n", err);
+> 
+> s/enable/disable/
 
+yup, will fix
 
-On 2020/9/29 2:26, Rob Herring wrote:
-> On Thu, Sep 24, 2020 at 03:17:53PM +0800, Zhen Lei wrote:
->> Convert the Synopsys DesignWare APB interrupt controller (dw_apb_ictl)
->> binding to DT schema format using json-schema.
->>
->> Signed-off-by: Zhen Lei <thunder.leizhen@huawei.com>
->> ---
->>  .../interrupt-controller/snps,dw-apb-ictl.txt      | 43 -------------
->>  .../interrupt-controller/snps,dw-apb-ictl.yaml     | 74 ++++++++++++++++++++++
->>  2 files changed, 74 insertions(+), 43 deletions(-)
->>  delete mode 100644 Documentation/devicetree/bindings/interrupt-controller/snps,dw-apb-ictl.txt
->>  create mode 100644 Documentation/devicetree/bindings/interrupt-controller/snps,dw-apb-ictl.yaml
->>
->> diff --git a/Documentation/devicetree/bindings/interrupt-controller/snps,dw-apb-ictl.txt b/Documentation/devicetree/bindings/interrupt-controller/snps,dw-apb-ictl.txt
->> deleted file mode 100644
->> index 2db59df9408f4c6..000000000000000
->> --- a/Documentation/devicetree/bindings/interrupt-controller/snps,dw-apb-ictl.txt
->> +++ /dev/null
->> @@ -1,43 +0,0 @@
->> -Synopsys DesignWare APB interrupt controller (dw_apb_ictl)
->> -
->> -Synopsys DesignWare provides interrupt controller IP for APB known as
->> -dw_apb_ictl. The IP is used as secondary interrupt controller in some SoCs with
->> -APB bus, e.g. Marvell Armada 1500. It can also be used as primary interrupt
->> -controller in some SoCs, e.g. Hisilicon SD5203.
->> -
->> -Required properties:
->> -- compatible: shall be "snps,dw-apb-ictl"
->> -- reg: physical base address of the controller and length of memory mapped
->> -  region starting with ENABLE_LOW register
->> -- interrupt-controller: identifies the node as an interrupt controller
->> -- #interrupt-cells: number of cells to encode an interrupt-specifier, shall be 1
->> -
->> -Additional required property when it's used as secondary interrupt controller:
->> -- interrupts: interrupt reference to primary interrupt controller
->> -
->> -The interrupt sources map to the corresponding bits in the interrupt
->> -registers, i.e.
->> -- 0 maps to bit 0 of low interrupts,
->> -- 1 maps to bit 1 of low interrupts,
->> -- 32 maps to bit 0 of high interrupts,
->> -- 33 maps to bit 1 of high interrupts,
->> -- (optional) fast interrupts start at 64.
->> -
->> -Example:
->> -	/* dw_apb_ictl is used as secondary interrupt controller */
->> -	aic: interrupt-controller@3000 {
->> -		compatible = "snps,dw-apb-ictl";
->> -		reg = <0x3000 0xc00>;
->> -		interrupt-controller;
->> -		#interrupt-cells = <1>;
->> -		interrupt-parent = <&gic>;
->> -		interrupts = <GIC_SPI 3 IRQ_TYPE_LEVEL_HIGH>;
->> -	};
->> -
->> -	/* dw_apb_ictl is used as primary interrupt controller */
->> -	vic: interrupt-controller@10130000 {
->> -		compatible = "snps,dw-apb-ictl";
->> -		reg = <0x10130000 0x1000>;
->> -		interrupt-controller;
->> -		#interrupt-cells = <1>;
->> -	};
->> diff --git a/Documentation/devicetree/bindings/interrupt-controller/snps,dw-apb-ictl.yaml b/Documentation/devicetree/bindings/interrupt-controller/snps,dw-apb-ictl.yaml
->> new file mode 100644
->> index 000000000000000..1b05d36b5f7b943
->> --- /dev/null
->> +++ b/Documentation/devicetree/bindings/interrupt-controller/snps,dw-apb-ictl.yaml
->> @@ -0,0 +1,74 @@
->> +# SPDX-License-Identifier: (GPL-2.0-only OR BSD-2-Clause)
->> +%YAML 1.2
->> +---
->> +$id: http://devicetree.org/schemas/interrupt-controller/snps,dw-apb-ictl.yaml#
->> +$schema: http://devicetree.org/meta-schemas/core.yaml#
->> +
->> +title: Synopsys DesignWare APB interrupt controller (dw_apb_ictl)
->> +
->> +maintainers:
->> +  - Sebastian Hesselbarth <sebastian.hesselbarth@gmail.com>
->> +
->> +description: |
->> +  Synopsys DesignWare provides interrupt controller IP for APB known as
->> +  dw_apb_ictl. The IP is used as secondary interrupt controller in some SoCs
->> +  with APB bus, e.g. Marvell Armada 1500. It can also be used as primary
->> +  interrupt controller in some SoCs, e.g. Hisilicon SD5203.
->> +
->> +  The interrupt sources map to the corresponding bits in the interrupt
->> +  registers, i.e.
->> +  - 0 maps to bit 0 of low interrupts,
->> +  - 1 maps to bit 1 of low interrupts,
->> +  - 32 maps to bit 0 of high interrupts,
->> +  - 33 maps to bit 1 of high interrupts,
->> +  - (optional) fast interrupts start at 64.
->> +
->> +allOf:
->> +  - $ref: /schemas/interrupt-controller.yaml#
-> 
-> Don't need this. It's already selected based on node name.
+> Have you tried manually unbinding and rebinding the two drivers a few
+> times to make sure they will still work?
 
-OK, I will drop it.
+I went through a few dozen bund/unbind cycles for both drivers and things
+looked good overall, but then last minute I found that determining whether
+wakeup capable devices are connected doesn't always work as (I) expected.
+I didn't see this earlier, it seems to be reproduce more easily after
+unbinding and rebinding the platform driver.
 
-> 
->> +
->> +properties:
->> +  compatible:
->> +    const: snps,dw-apb-ictl
->> +
->> +  interrupt-controller: true
->> +
->> +  reg:
->> +    description: |
->> +      Physical base address of the controller and length of memory mapped
->> +      region starting with ENABLE_LOW register.
->> +    maxItems: 1
->> +
->> +  interrupts:
->> +    description: Interrupt reference to primary interrupt controller.
-> 
-> May not be primary. Could be another level in the middle. In any case, 
-> it's outside the scope of this binding, so just drop description.
+During development I already noticed that usb_wakeup_enabled_descendants()
+returns a cached value, which was a problem for an earlier version of the
+driver. The values are updated by hub_suspend(), my (flawed) assumption
+was that the USB driver would always suspend before the platform driver.
+This generally seems to be the case on my development platform after boot,
+but not necessarily after unbinding and rebinding the driver. Using the
+_suspend_late hook instead of _suspend seems to be a reliable workaround.
 
-OK, I will drop this description. So I have learned that only the new
-binding properties need to be described. Instead of keeping the original
-description during the conversion.
+> I'm a little concerned about  all the devm_* stuff in here; does that
+> get released when the driver is unbound from the device or when the device
+> is unregistered?  And if the latter, what happens if you have multiple
+> sysfs attribute groups going at the same time?
 
-> 
->> +    maxItems: 1
->> +
->> +  "#interrupt-cells":
->> +    description: Number of cells to encode an interrupt-specifier.
-> 
-> Can drop this.
+The memory gets released when the device is unbound:
 
-OK
+device_release_driver
+  device_release_driver_internal
+    __device_release_driver
+      devres_release_all
 
-> 
->> +    const: 1
->> +
->> +required:
->> +  - compatible
->> +  - reg
->> +  - interrupt-controller
->> +  - '#interrupt-cells'
-> 
-> additionalProperties: false
-> 
->> +
->> +examples:
->> +  - |
->> +    /* dw_apb_ictl is used as secondary interrupt controller */
->> +    aic: interrupt-controller@3000 {
-> 
-> Drop unused label (aic).
+Anyway, if you prefer I can change the driver to use kmalloc/kfree.
 
-OK
+> Apart from those worries and the typo, this looks pretty good to me.
+> 
+> Acked-by: Alan Stern <stern@rowland.harvard.edu>
 
-> 
->> +        compatible = "snps,dw-apb-ictl";
->> +        reg = <0x3000 0xc00>;
->> +        interrupt-controller;
->> +        #interrupt-cells = <1>;
->> +        interrupt-parent = <&gic>;
->> +        interrupts = <0 3 4>;
->> +    };
->> +
->> +    /* dw_apb_ictl is used as primary interrupt controller */
->> +    vic: interrupt-controller@10130000 {
-> 
-> Same here.
-
-OK, I will delete it.
-
-> 
->> +        compatible = "snps,dw-apb-ictl";
->> +        reg = <0x10130000 0x1000>;
->> +        interrupt-controller;
->> +        #interrupt-cells = <1>;
->> +    };
->> +...
->> -- 
->> 1.8.3
->>
->>
-> 
-> .
-> 
-
+Great, thanks for taking the time to review!
