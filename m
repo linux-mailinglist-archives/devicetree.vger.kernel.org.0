@@ -2,85 +2,86 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from vger.kernel.org (vger.kernel.org [23.128.96.18])
-	by mail.lfdr.de (Postfix) with ESMTP id 7FF1327CE96
-	for <lists+devicetree@lfdr.de>; Tue, 29 Sep 2020 15:09:29 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTP id C1ADF27CEB1
+	for <lists+devicetree@lfdr.de>; Tue, 29 Sep 2020 15:13:04 +0200 (CEST)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S1728407AbgI2NJ2 (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Tue, 29 Sep 2020 09:09:28 -0400
-Received: from gloria.sntech.de ([185.11.138.130]:59546 "EHLO gloria.sntech.de"
+        id S1729681AbgI2NMy (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Tue, 29 Sep 2020 09:12:54 -0400
+Received: from mail.kernel.org ([198.145.29.99]:57772 "EHLO mail.kernel.org"
         rhost-flags-OK-OK-OK-OK) by vger.kernel.org with ESMTP
-        id S1725776AbgI2NJ1 (ORCPT <rfc822;devicetree@vger.kernel.org>);
-        Tue, 29 Sep 2020 09:09:27 -0400
-Received: from ip5f5aa64a.dynamic.kabel-deutschland.de ([95.90.166.74] helo=diego.localnet)
-        by gloria.sntech.de with esmtpsa (TLS1.3:ECDHE_RSA_AES_256_GCM_SHA384:256)
-        (Exim 4.92)
-        (envelope-from <heiko@sntech.de>)
-        id 1kNFNj-000819-Jx; Tue, 29 Sep 2020 15:09:23 +0200
-From:   Heiko =?ISO-8859-1?Q?St=FCbner?= <heiko@sntech.de>
-To:     Stephen Boyd <swboyd@chromium.org>,
-        Benson Leung <bleung@chromium.org>,
-        Enric Balletbo i Serra <enric.balletbo@collabora.com>
-Cc:     devicetree@vger.kernel.org, linux-arm-kernel@lists.infradead.org,
-        Douglas Anderson <dianders@chromium.org>,
-        Matthias Brugger <matthias.bgg@gmail.com>
-Subject: Re: [PATCH] ARM: dts: cros-ec-keyboard: Add alternate keymap for KEY_LEFTMETA
-Date:   Tue, 29 Sep 2020 15:09:22 +0200
-Message-ID: <13926897.yVF7epPfh5@diego>
-In-Reply-To: <16ec2003-462e-326b-8b3c-51d8b9ae9829@collabora.com>
-References: <20200925162604.2311841-1-swboyd@chromium.org> <16ec2003-462e-326b-8b3c-51d8b9ae9829@collabora.com>
+        id S1729363AbgI2NMx (ORCPT <rfc822;devicetree@vger.kernel.org>);
+        Tue, 29 Sep 2020 09:12:53 -0400
+Received: from localhost (fw-tnat.cambridge.arm.com [217.140.96.140])
+        (using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
+        (No client certificate requested)
+        by mail.kernel.org (Postfix) with ESMTPSA id EDB85208FE;
+        Tue, 29 Sep 2020 13:12:51 +0000 (UTC)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=kernel.org;
+        s=default; t=1601385172;
+        bh=2rl44aidI3q+YJ67zNfJz2z3LJuhtx2vNYInVu39t9c=;
+        h=Date:From:To:Cc:Subject:References:In-Reply-To:From;
+        b=oxOf2Jt/xCnYJi6WX3kh0Yk4uHi44l0tqvXJqn+0wELxV2JcMAB4ecyfSDL+ZrG1i
+         nj5zBUWZofzBntN0foiDSAK9XvGMnF3EquTu+mtVQPyqTWtvNFE5NYShcqNIMZnXIk
+         ZowA64huVCkLUGkJx0D06y4l07GXH7AFJUmVGODI=
+Date:   Tue, 29 Sep 2020 14:11:53 +0100
+From:   Mark Brown <broonie@kernel.org>
+To:     Serge Semin <Sergey.Semin@baikalelectronics.ru>
+Cc:     Serge Semin <fancer.lancer@gmail.com>,
+        Alexey Malahov <Alexey.Malahov@baikalelectronics.ru>,
+        Ramil Zaripov <Ramil.Zaripov@baikalelectronics.ru>,
+        Pavel Parkhomenko <Pavel.Parkhomenko@baikalelectronics.ru>,
+        Andy Shevchenko <andy.shevchenko@gmail.com>,
+        Andy Shevchenko <andriy.shevchenko@linux.intel.com>,
+        Lars Povlsen <lars.povlsen@microchip.com>,
+        "wuxu . wu" <wuxu.wu@huawei.com>, Feng Tang <feng.tang@intel.com>,
+        Rob Herring <robh+dt@kernel.org>, linux-spi@vger.kernel.org,
+        devicetree@vger.kernel.org, linux-kernel@vger.kernel.org
+Subject: Re: [PATCH 02/30] spi: dw: Use ternary op to init set_cs callback
+Message-ID: <20200929131153.GD4799@sirena.org.uk>
+References: <20200920112914.26501-1-Sergey.Semin@baikalelectronics.ru>
+ <20200920112914.26501-3-Sergey.Semin@baikalelectronics.ru>
 MIME-Version: 1.0
-Content-Transfer-Encoding: 7Bit
-Content-Type: text/plain; charset="us-ascii"
+Content-Type: multipart/signed; micalg=pgp-sha512;
+        protocol="application/pgp-signature"; boundary="LKTjZJSUETSlgu2t"
+Content-Disposition: inline
+In-Reply-To: <20200920112914.26501-3-Sergey.Semin@baikalelectronics.ru>
+X-Cookie: I left my WALLET in the BATHROOM!!
+User-Agent: Mutt/1.10.1 (2018-07-13)
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-Am Dienstag, 29. September 2020, 10:04:45 CEST schrieb Enric Balletbo i Serra:
-> Hi Stephen,
-> 
-> Thank you for your patch.
-> 
-> cc'ing Heiko and Matthias
-> 
-> On 25/9/20 18:26, Stephen Boyd wrote:
-> > On newer keyboards this key is in a different place. Add both options to
-> > the keymap so that both new and old keyboards work.
-> > 
-> > Cc: Douglas Anderson <dianders@chromium.org>
-> > Signed-off-by: Stephen Boyd <swboyd@chromium.org>
 
-Reviewed-by: Heiko Stuebner <heiko@sntech.de>
+--LKTjZJSUETSlgu2t
+Content-Type: text/plain; charset=us-ascii
+Content-Disposition: inline
 
-> 
-> Usually the DT changes go through the Rockchip dts or Mediatek dts tree, this is
-> not a specific Rockchip/Mediatek change but for both. Are you fine If I pick the
-> patch through the chrome-platform tree? I don't think there is any conflict.
+On Sun, Sep 20, 2020 at 02:28:46PM +0300, Serge Semin wrote:
+> Simplify the dw_spi_add_host() method a bit by replacing the set_cs
+> callback overwrite procedure with direct setting the callback if a custom
+> version of one is specified.
 
-So from me, sure go ahead with picking this patch :-)
+> -	master->set_cs = dw_spi_set_cs;
+> +	master->set_cs = dws->set_cs ?: dw_spi_set_cs;
 
+> -	if (dws->set_cs)
+> -		master->set_cs = dws->set_cs;
 
-Heiko
+This doesn't look like a win for legibility or comprehensibility.
 
+--LKTjZJSUETSlgu2t
+Content-Type: application/pgp-signature; name="signature.asc"
 
-> > ---
-> >  arch/arm/boot/dts/cros-ec-keyboard.dtsi | 1 +
-> >  1 file changed, 1 insertion(+)
-> > 
-> > diff --git a/arch/arm/boot/dts/cros-ec-keyboard.dtsi b/arch/arm/boot/dts/cros-ec-keyboard.dtsi
-> > index 4a0c1037fbc0..165c5bcd510e 100644
-> > --- a/arch/arm/boot/dts/cros-ec-keyboard.dtsi
-> > +++ b/arch/arm/boot/dts/cros-ec-keyboard.dtsi
-> > @@ -46,6 +46,7 @@ MATRIX_KEY(0x02, 0x08, KEY_LEFTBRACE)
-> >  			MATRIX_KEY(0x02, 0x09, KEY_F8)
-> >  			MATRIX_KEY(0x02, 0x0a, KEY_YEN)
-> >  
-> > +			MATRIX_KEY(0x03, 0x00, KEY_LEFTMETA)
-> >  			MATRIX_KEY(0x03, 0x01, KEY_GRAVE)
-> >  			MATRIX_KEY(0x03, 0x02, KEY_F2)
-> >  			MATRIX_KEY(0x03, 0x03, KEY_5)
-> > 
-> 
+-----BEGIN PGP SIGNATURE-----
 
+iQEzBAABCgAdFiEEreZoqmdXGLWf4p/qJNaLcl1Uh9AFAl9zMpgACgkQJNaLcl1U
+h9BCEAf+LUL3IhFgY8tpN/cxDegxeKq+2luBPnBzkz4mnoVIAU2IRLjszEkA1AhE
+0+Ggq8GQjaAllOEKlP+yALng0JAQgCX+Skvlxy7O00I4nWdwVFf92r8KSh/0TUTW
+FFplexpsYJlLNN7XosVsuKKc2pzYXmp7FhBAklu0VBHUi/T/cc76veo5sTIZuaUM
+eVq4MYe7cbczRQ53QvqG5CJmy4QS3h7KkyIcuSkEouR/FNKMHBLliK5E2ybbO5k/
+nfNnvkbKWQpnDj58C7/Gx3+X6419zptudbKW2OCmYqJv2QaHSgc1SqDhFHRX5Ue8
+IHcUc0pLkvjrl2hTn5TEtwhQhOMBkQ==
+=eJqS
+-----END PGP SIGNATURE-----
 
-
-
+--LKTjZJSUETSlgu2t--
