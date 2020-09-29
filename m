@@ -2,121 +2,141 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from vger.kernel.org (vger.kernel.org [23.128.96.18])
-	by mail.lfdr.de (Postfix) with ESMTP id EDC5D27BAB9
-	for <lists+devicetree@lfdr.de>; Tue, 29 Sep 2020 04:14:46 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTP id F40C827BAE3
+	for <lists+devicetree@lfdr.de>; Tue, 29 Sep 2020 04:40:13 +0200 (CEST)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S1727288AbgI2COp (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Mon, 28 Sep 2020 22:14:45 -0400
-Received: from lindbergh.monkeyblade.net ([23.128.96.19]:36070 "EHLO
+        id S1727151AbgI2CkM (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Mon, 28 Sep 2020 22:40:12 -0400
+Received: from lindbergh.monkeyblade.net ([23.128.96.19]:39968 "EHLO
         lindbergh.monkeyblade.net" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S1726961AbgI2COm (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Mon, 28 Sep 2020 22:14:42 -0400
-Received: from mail-pf1-x443.google.com (mail-pf1-x443.google.com [IPv6:2607:f8b0:4864:20::443])
-        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 3A47EC0613CE
-        for <devicetree@vger.kernel.org>; Mon, 28 Sep 2020 19:14:41 -0700 (PDT)
-Received: by mail-pf1-x443.google.com with SMTP id x22so2998645pfo.12
-        for <devicetree@vger.kernel.org>; Mon, 28 Sep 2020 19:14:41 -0700 (PDT)
+        with ESMTP id S1727094AbgI2CkM (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Mon, 28 Sep 2020 22:40:12 -0400
+Received: from mail-yb1-xb4a.google.com (mail-yb1-xb4a.google.com [IPv6:2607:f8b0:4864:20::b4a])
+        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id B1461C061755
+        for <devicetree@vger.kernel.org>; Mon, 28 Sep 2020 19:40:10 -0700 (PDT)
+Received: by mail-yb1-xb4a.google.com with SMTP id u35so3238978ybd.13
+        for <devicetree@vger.kernel.org>; Mon, 28 Sep 2020 19:40:10 -0700 (PDT)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=chromium.org; s=google;
-        h=date:from:to:cc:subject:message-id:references:mime-version
-         :content-disposition:in-reply-to;
-        bh=NJyfJV0mLhvnopBF7R+bmMKM4pD4/rdCgYSx26wTIQQ=;
-        b=WeX9L69GnQyTFblx+JruceS9uLJZT3wTAfEH06yPM7treyDdXRmMfVSB7sqs09v5qk
-         fDdfP3kdprwfjBcjC5USwBtO+LCxvGMufjgkvMSIduvWiEIQQ7sfgtd3JznTK9ZhLgzw
-         LH2IMDposzLFHkQPVNm8IMBPCaSnwavCQJAqU=
+        d=google.com; s=20161025;
+        h=sender:date:message-id:mime-version:subject:from:to:cc;
+        bh=fUNDNepzGaiGXAFhfkvJ0RSbCFD3wqyJd1yrtWxeUj8=;
+        b=IoHqVaUbKcxLhyR1E/x98m/4a3etB97/ByKN3fmpKhAU/yIpgGoXK83g3Qd1IX2UDU
+         1ZUtrDoMfdBcWpDZ2LyKNvlLnBDixrKvVU6MfpADkYztdZeN6XYU3cejo9FI6Xa1AqaH
+         FdOtaRUlNJdLNfwrKRD3ftlZ3bmhNcZzD5VnV29ORmm/jIFxzYnr9FJ2bIgaXnoHvSH0
+         YvQ+VRzkzdoq1TfIh47EIBPxCoebhMwcNSWL2q75Z9qFPiNOXVBTXGTIixJyjKuP4E2p
+         FG0rOfhrWCtgmdYvYqz7V4XX6oIiqDzBU8FN5bYWIKYJZfWK8P9735CRrjXQeMfdtQAM
+         h75A==
 X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
         d=1e100.net; s=20161025;
-        h=x-gm-message-state:date:from:to:cc:subject:message-id:references
-         :mime-version:content-disposition:in-reply-to;
-        bh=NJyfJV0mLhvnopBF7R+bmMKM4pD4/rdCgYSx26wTIQQ=;
-        b=AFLQLakIwPJR4e/OLIEX/W6fn5v9fReyDOnojvKtLs/kHX9ze2DKIg0nNSYVkr7PPf
-         BktNUSIjuYO2BcqaiAuhp2qcVP0HnHDSF8ShbKSrmT94gODmGNhS0aFs9e4KShZ69H5u
-         fCdpJnIkxrxTUFEAgfhjdioOo9wVEXhhk6UzaWuR2cdqRtd1ecef2Ci1vfO6RjXa4aE7
-         ZdWgCEVyGByY9aZBB7l7Z7lwaLUdaICcSyDebzdV3w1Rvn8nxeFVJ0X9VLdYRMeKhRjW
-         QEEBR9PxP/m7+6yLP80t6ZtlcPsCZrH9FRrzUEsJnPZ91MmC1YNs4IZIpiEyIyhcaFsa
-         82sA==
-X-Gm-Message-State: AOAM531zF8xRdLwTnVOdCkAA3qZkAlQCU3mI64RBSxCYDFXKNAwL5bkf
-        OhiZYopyASqYbxzD2ibr241vVA==
-X-Google-Smtp-Source: ABdhPJzxfQrnv9qqyOeEAlNcjoz6xg6zHl6YLNk0ci2aubO4kcV3KSuIPgoUGDlZ1pvgC8UfFJSDpg==
-X-Received: by 2002:a17:902:a713:b029:d2:6356:8761 with SMTP id w19-20020a170902a713b02900d263568761mr2200547plq.77.1601345680707;
-        Mon, 28 Sep 2020 19:14:40 -0700 (PDT)
-Received: from localhost ([2620:15c:202:1:f693:9fff:fef4:e70a])
-        by smtp.gmail.com with ESMTPSA id l13sm2830722pgq.33.2020.09.28.19.14.39
-        (version=TLS1_3 cipher=TLS_AES_128_GCM_SHA256 bits=128/128);
-        Mon, 28 Sep 2020 19:14:40 -0700 (PDT)
-Date:   Mon, 28 Sep 2020 19:14:39 -0700
-From:   Matthias Kaehlcke <mka@chromium.org>
-To:     Doug Anderson <dianders@chromium.org>
-Cc:     Greg Kroah-Hartman <gregkh@linuxfoundation.org>,
+        h=x-gm-message-state:sender:date:message-id:mime-version:subject:from
+         :to:cc;
+        bh=fUNDNepzGaiGXAFhfkvJ0RSbCFD3wqyJd1yrtWxeUj8=;
+        b=SXkavLvB9E5d1LXd/8CgwCGeaH6RN2vaK+YIUxHVajCftMraN664AiHOOIv7CIdEcj
+         r9csLATVPqZ4IOUkPCyfIEg6RGo9ryhjWm4RBBy4uFDyNY+EMAYC8Hzaokh6nlg+OYsR
+         QdyTTwp5MBWf9Wpn169dNrSJ8jXxeMsPqzUultv+nLWPXiooFdTa1CDbOuhi/exYDN9V
+         rt5iNX4PBPpxQ/cocimccQ4MOlEgSjucaMYSsYn7B2KBGYUpB5fkmCHenD6k18awUN30
+         2mSbvtmF/aFRTpJRxnF1VDaso8wzGPHNzedZ787dwV0i0SiNm63/bcaJIVMF2Jo0So86
+         lT+w==
+X-Gm-Message-State: AOAM533zmmeMjSDohRi/3iCeqi4zJQAeT6TULyqdjtTLmiM5bl3iv/KD
+        CNA7QrbtrqtM9OLw4Xr2O/fXkSqyPyY=
+X-Google-Smtp-Source: ABdhPJwWXU59duMCBuhqcj11SshhXEPhlM0S15Xa3yI/4xvIvgERj3QGHigEMR+6CTNyprPNRCKAT6YejKk=
+Sender: "badhri via sendgmr" <badhri@badhri.mtv.corp.google.com>
+X-Received: from badhri.mtv.corp.google.com ([2620:15c:211:1:f292:1cff:fee0:66cf])
+ (user=badhri job=sendgmr) by 2002:a25:1381:: with SMTP id 123mr3584065ybt.406.1601347209808;
+ Mon, 28 Sep 2020 19:40:09 -0700 (PDT)
+Date:   Mon, 28 Sep 2020 19:39:49 -0700
+Message-Id: <20200929024004.244992-1-badhri@google.com>
+Mime-Version: 1.0
+X-Mailer: git-send-email 2.28.0.709.gb0816b6eb0-goog
+Subject: [PATCH v9 00/15] TCPM support for FRS and AutoDischarge Disconnect
+From:   Badhri Jagan Sridharan <badhri@google.com>
+To:     Guenter Roeck <linux@roeck-us.net>,
+        Heikki Krogerus <heikki.krogerus@linux.intel.com>,
+        Greg Kroah-Hartman <gregkh@linuxfoundation.org>,
         Rob Herring <robh+dt@kernel.org>,
-        Frank Rowand <frowand.list@gmail.com>,
-        LKML <linux-kernel@vger.kernel.org>, linux-usb@vger.kernel.org,
-        Bastien Nocera <hadess@hadess.net>,
-        Stephen Boyd <swboyd@chromium.org>,
-        Alan Stern <stern@rowland.harvard.edu>,
-        Ravi Chandra Sadineni <ravisadineni@chromium.org>,
-        Krzysztof Kozlowski <krzk@kernel.org>,
-        "open list:OPEN FIRMWARE AND FLATTENED DEVICE TREE BINDINGS" 
-        <devicetree@vger.kernel.org>, Peter Chen <peter.chen@nxp.com>
-Subject: Re: [PATCH v4 1/2] dt-bindings: usb: Add binding for discrete
- onboard USB hubs
-Message-ID: <20200929021439.GC1099144@google.com>
-References: <20200928101326.v4.1.I248292623d3d0f6a4f0c5bc58478ca3c0062b49a@changeid>
- <CAD=FV=XWphkhFmEk6dzGn7h2mY5xBHY554rOfn+bSi5Nci27gA@mail.gmail.com>
-MIME-Version: 1.0
-Content-Type: text/plain; charset=utf-8
-Content-Disposition: inline
-In-Reply-To: <CAD=FV=XWphkhFmEk6dzGn7h2mY5xBHY554rOfn+bSi5Nci27gA@mail.gmail.com>
+        Lee Jones <lee.jones@linaro.org>,
+        Mark Brown <broonie@kernel.org>,
+        Maxime Ripard <mripard@kernel.org>,
+        Alexandre Belloni <alexandre.belloni@bootlin.com>,
+        Thierry Reding <treding@nvidia.com>,
+        Prashant Malani <pmalani@chromium.org>,
+        Badhri Jagan Sridharan <badhri@google.com>
+Cc:     devicetree@vger.kernel.org, linux-kernel@vger.kernel.org,
+        linux-usb@vger.kernel.org
+Content-Type: text/plain; charset="UTF-8"
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-On Mon, Sep 28, 2020 at 03:13:26PM -0700, Doug Anderson wrote:
-> Hi,
-> 
-> On Mon, Sep 28, 2020 at 10:14 AM Matthias Kaehlcke <mka@chromium.org> wrote:
-> >
-> > +examples:
-> > +  - |
-> > +    usb_hub: usb-hub {
-> > +        compatible = "realtek,rts5411", "onboard-usb-hub";
-> > +        vdd-supply = <&pp3300_hub>;
+Hi,
 
-I will admit that using the name 'vdd' for a sole supply is somewhat
-arbitrary, if anybody has better suggestions I'm open to it :)
+Addressed three comments from v8:
+1. Fixed the make dt_binding_check that Rob Herring pointed out in
+   "dt-bindings: usb: Maxim type-c controller device tree binding
+   document"
+   https://lkml.org/lkml/2020/9/22/720
 
-> > +    };
-> > +
-> > +    usb_controller {
-> 
-> Super nitty nit: prefer dashes for node names.
+2. Moved to string based enums for new-source-frs-typec-current to
+   address comments from Rob herring for:
+   "dt-bindings: connector: Add property to set initial current cap
+   for FRS". As a result, introduced another patch:
+   "usb: typec: tcpm: Parse frs type-c current from device tree"
+   to refactor tcpm code to read new-source-frs-typec-current from
+   device tree. Previously this is was a uint32.
+   https://lkml.org/lkml/2020/9/22/729
 
-ack
+3. To address Heikki's comment on Auto discharge disconnect threshold
+   https://lkml.org/lkml/2020/9/21/1857
+   a. Removed the call to tcpm_set_auto_vbus_discharge_threshold
+      from source attach path.
+   b. Moved logic of setting TCPC_VBUS_SINK_DISCONNECT_THRESH_MAX to
+      tcpci.c as the tcpci_maxim was actually setting the default
+      values. Removed the get_auto_vbus_discharge_threshold callback
+      from tcpci_data for now. Can be added later if needed.
 
-> > +        dr_mode = "host";
-> > +        #address-cells = <1>;
-> > +        #size-cells = <0>;
-> > +
-> > +        /* 2.0 hub on port 1 */
-> > +        hub@1 {
-> > +            compatible = "usbbda,5411";
-> 
-> Presumably we need something in the bindings for "usbbda,5411" ?
+4. Added additional patches to address an isssue where vbus was being
+   left post disconnect after Fast Role Swap operation is executed.
+   a. usb: typec: tcpm: frs sourcing vbus callback
+   b. usb: typec: tcpci: frs sourcing vbus callback
+   c. usb: typec: tcpci_max77759: Fix vbus stuck on upon diconnecting sink
 
-I'm not sure how this should look like in a .yaml. Rob, do you have any
-suggestions?
+Thanks,
+Badhri.
 
-Strictly speaking the compatible string isn't needed, the driver will match
-the device without it based on VID/PID and the port.
+Badhri Jagan Sridharan (15):
+  usb: typec: tcpci: Add a getter method to retrieve tcpm_port reference
+  usb: typec: tcpci: Add set_vbus tcpci callback
+  dt-bindings: usb: Maxim type-c controller device tree binding document
+  usb: typec: tcpci_maxim: Chip level TCPC driver
+  dt-bindings: connector: Add property to set initial current cap for
+    FRS
+  usb: typec: tcpm: Add support for Sink Fast Role SWAP(FRS)
+  usb: typec: tcpci: Implement callbacks for FRS
+  usb: typec: tcpci_maxim: Add support for Sink FRS
+  usb: typec: tcpm: frs sourcing vbus callback
+  usb: typec: tcpci: frs sourcing vbus callback
+  usb: typec: tcpci_max77759: Fix vbus stuck on upon diconnecting sink
+  usb: typec: tcpm: Parse frs type-c current from device tree
+  usb: typec: tcpm: Implement enabling Auto Discharge disconnect support
+  usb: typec: tcpci: Implement Auto discharge disconnect callbacks
+  usb: typec: tcpci_maxim: Enable auto discharge disconnect
 
-> > +            reg = <1>;
-> > +            hub = <&usb_hub>;
-> > +        };
-> > +
-> > +        /* 3.0 hub on port 2 */
-> > +        hub@2 {
-> > +            compatible = "usbbda,411";
-> 
-> Presumably we need something in the bindings for "usbbda,411" ?
+ .../bindings/connector/usb-connector.yaml     |  26 +
+ .../devicetree/bindings/usb/maxim,tcpci.yaml  |  68 +++
+ drivers/usb/typec/tcpm/Kconfig                |   6 +
+ drivers/usb/typec/tcpm/Makefile               |  15 +-
+ drivers/usb/typec/tcpm/tcpci.c                | 102 +++-
+ drivers/usb/typec/tcpm/tcpci.h                |  30 +-
+ drivers/usb/typec/tcpm/tcpci_maxim.c          | 504 ++++++++++++++++++
+ drivers/usb/typec/tcpm/tcpm.c                 | 299 ++++++++++-
+ include/dt-bindings/usb/pd.h                  |  10 +
+ include/linux/usb/pd.h                        |  19 +-
+ include/linux/usb/tcpm.h                      |  27 +-
+ include/linux/usb/typec.h                     |  12 +
+ 12 files changed, 1093 insertions(+), 25 deletions(-)
+ create mode 100644 Documentation/devicetree/bindings/usb/maxim,tcpci.yaml
+ create mode 100644 drivers/usb/typec/tcpm/tcpci_maxim.c
 
-ditto
+-- 
+2.28.0.709.gb0816b6eb0-goog
+
