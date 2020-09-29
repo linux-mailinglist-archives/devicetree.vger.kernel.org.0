@@ -2,197 +2,97 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from vger.kernel.org (vger.kernel.org [23.128.96.18])
-	by mail.lfdr.de (Postfix) with ESMTP id CE21A27D47B
-	for <lists+devicetree@lfdr.de>; Tue, 29 Sep 2020 19:30:13 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTP id 307CD27D4CA
+	for <lists+devicetree@lfdr.de>; Tue, 29 Sep 2020 19:46:27 +0200 (CEST)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S1728107AbgI2RaM (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Tue, 29 Sep 2020 13:30:12 -0400
-Received: from lindbergh.monkeyblade.net ([23.128.96.19]:36630 "EHLO
-        lindbergh.monkeyblade.net" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S1725554AbgI2RaM (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Tue, 29 Sep 2020 13:30:12 -0400
-Received: from mail-pf1-x442.google.com (mail-pf1-x442.google.com [IPv6:2607:f8b0:4864:20::442])
-        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id D7ACFC0613D1
-        for <devicetree@vger.kernel.org>; Tue, 29 Sep 2020 10:30:06 -0700 (PDT)
-Received: by mail-pf1-x442.google.com with SMTP id d9so5258364pfd.3
-        for <devicetree@vger.kernel.org>; Tue, 29 Sep 2020 10:30:06 -0700 (PDT)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=linaro.org; s=google;
-        h=date:from:to:cc:subject:message-id:references:mime-version
-         :content-disposition:in-reply-to;
-        bh=fFztEzSJ2rV1rMZN9OkJojf3DIgVoZo3w4SHkm4pQyk=;
-        b=aeynrkEnHlUKQBiPgnMNPHfg0Nz/g4+4y8462gVE1P3bPzk3sGsp1nXqWgmTcx537r
-         K7NYa5MGpJxLWQ/ElST1A5ZqgN+GdxSQwLJiXt3UDJIVJdAR/ChP3fkVCrpIRP+IdFXy
-         8Yjieyth0CDInMoo2PGaIxgNGd8tsKCbAjF6QurEsgKr5SrrhLO5GkOZgn/9ePtPy+Q4
-         /FAckVwJnbOUDfuknKlAEctofIK3BQaIJOd8FlKw0yn2dIZi0km/l7eBAEuvVvGSyBg7
-         FeCjLtaeZjT2Zy52Sjl4EUXfOEO1I6G6g0x3Wkq7HI+szuz9JNYZsByWB7AwNGc+Qz8Q
-         hmyQ==
+        id S1729173AbgI2Rq0 (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Tue, 29 Sep 2020 13:46:26 -0400
+Received: from mail-oi1-f195.google.com ([209.85.167.195]:33291 "EHLO
+        mail-oi1-f195.google.com" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
+        with ESMTP id S1728775AbgI2Rq0 (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Tue, 29 Sep 2020 13:46:26 -0400
+Received: by mail-oi1-f195.google.com with SMTP id m7so6419363oie.0;
+        Tue, 29 Sep 2020 10:46:25 -0700 (PDT)
 X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
         d=1e100.net; s=20161025;
         h=x-gm-message-state:date:from:to:cc:subject:message-id:references
-         :mime-version:content-disposition:in-reply-to;
-        bh=fFztEzSJ2rV1rMZN9OkJojf3DIgVoZo3w4SHkm4pQyk=;
-        b=PNQmcsti30NQuOpsXWbzPshkiAX4QzYJnwwc+UcJEahGHoQ0wksSdByCMXEXYmGmo8
-         XPJnYNFBpP2PVpv0ZN38MSqz3wAdgr7eW1TTca4JstsirzpUvJoB60Xw/Ixq1b06D+cW
-         ai6gXvGRfXPqwq9ch7qeAbQAuH/c+R0f8Az1Brn9lVg6OzZ3giP44Z7My6wONb9On79z
-         B6ajkLGEGdi/d0PG4Xq3cwAOCycO8pvUg8uVBgqVMQSsxliFpvJzOTNpe0p1YR5GnB1r
-         zuWyVoubvCgl+Z4NiWNySsq9H2WmvEoSMzZ2LD/BPbsOxR60TulrB7LGwBkH0XectIvW
-         MT0Q==
-X-Gm-Message-State: AOAM5318zgnzE78sXAbP17mCES51DYyCYfSCOmrENjS2k5xvsb9Vt+Xh
-        2Ojawzr0gfY6vgcz8Ju/ujoFYw==
-X-Google-Smtp-Source: ABdhPJwYRq0qr3kl6y4PgVWlwBb8KVS0Fu4JKWsnWScQjJaKTexwp1yZHfnEDT2p1jBCWeNI6lFv2A==
-X-Received: by 2002:a62:26c1:0:b029:142:2501:35ef with SMTP id m184-20020a6226c10000b0290142250135efmr4783468pfm.79.1601400606139;
-        Tue, 29 Sep 2020 10:30:06 -0700 (PDT)
-Received: from xps15 (S0106002369de4dac.cg.shawcable.net. [68.147.8.254])
-        by smtp.gmail.com with ESMTPSA id n72sm6976829pfd.27.2020.09.29.10.30.04
+         :mime-version:content-disposition:content-transfer-encoding
+         :in-reply-to;
+        bh=mVned4RG5QRYTOR8H15/jWkAsq+BBK7cREUkxd/Xiaw=;
+        b=LMpMfG0UJ4xsTyg0gkhmVP08BqFOES6kdnkAfYnsUhTmwWC8djNkK6Oa2j6Gt4qN6l
+         hFlaLhyf7pB+CUU7SzV1CbO9u07VEgRHv4bcgBdMPcOcseTFgn6KpDB6phFzcSNoXaxK
+         u/Ys9OTT4BX+mLyFUjXr9/gRVKfgCjVhKP3MSklHpupjj27AP7GDJ5oMxUCtcfEMqTAb
+         XnHWWF7n8Qo/lbv/5Lvk+/jg1m5pcoqYgFwFzZhDt8OmchKym2mrZXLzRTRbEjvdyhMz
+         s+a1pNuwQ2cX8/hK6NbIaK75G4xlf+wmUv2xgpxZb+WHdEajYnp1WNlQL2MhjIH8JHyD
+         jfrQ==
+X-Gm-Message-State: AOAM533VCytkNma3Cm1IS6AWYKCVaBtKK9DFnXpeAXuHdnk1M9Ejq1+7
+        5vjuXfeZUUwLE5ZeRNHL/lkuZLo8Q80f
+X-Google-Smtp-Source: ABdhPJzPinEAfFDFESHqHJK2pNpDC0q8yKXQiSUiTSjbR/vQnrIORvLad5CBhsZcQqwQ5wDx1PTgIA==
+X-Received: by 2002:aca:2106:: with SMTP id 6mr3418235oiz.115.1601401585622;
+        Tue, 29 Sep 2020 10:46:25 -0700 (PDT)
+Received: from xps15 (24-155-109-49.dyn.grandenetworks.net. [24.155.109.49])
+        by smtp.gmail.com with ESMTPSA id v76sm1138615oif.58.2020.09.29.10.46.24
         (version=TLS1_3 cipher=TLS_AES_256_GCM_SHA384 bits=256/256);
-        Tue, 29 Sep 2020 10:30:05 -0700 (PDT)
-Date:   Tue, 29 Sep 2020 11:30:03 -0600
-From:   Mathieu Poirier <mathieu.poirier@linaro.org>
-To:     Alexandre Bailon <abailon@baylibre.com>
-Cc:     ohad@wizery.com, bjorn.andersson@linaro.org, robh+dt@kernel.org,
-        matthias.bgg@gmail.com, linux-remoteproc@vger.kernel.org,
-        devicetree@vger.kernel.org, linux-arm-kernel@lists.infradead.org,
-        linux-mediatek@lists.infradead.org, linux-kernel@vger.kernel.org,
-        stephane.leprovost@mediatek.com, gpain@baylibre.com
-Subject: Re: [PATCH v2 1/4] dt bindings: remoteproc: Add bindings for MT8183
- APU
-Message-ID: <20200929173003.GA124290@xps15>
-References: <20200910130148.8734-1-abailon@baylibre.com>
- <20200910130148.8734-2-abailon@baylibre.com>
+        Tue, 29 Sep 2020 10:46:25 -0700 (PDT)
+Received: (nullmailer pid 847532 invoked by uid 1000);
+        Tue, 29 Sep 2020 17:46:24 -0000
+Date:   Tue, 29 Sep 2020 12:46:24 -0500
+From:   Rob Herring <robh@kernel.org>
+To:     Sam Ravnborg <sam@ravnborg.org>
+Cc:     Guido =?iso-8859-1?Q?G=FCnther?= <agx@sigxcpu.org>,
+        Thierry Reding <thierry.reding@gmail.com>,
+        David Airlie <airlied@linux.ie>,
+        Daniel Vetter <daniel@ffwll.ch>,
+        dri-devel@lists.freedesktop.org, devicetree@vger.kernel.org,
+        linux-kernel@vger.kernel.org
+Subject: Re: [RFC PATCH v1 3/3] dt-binding: display: Require two rests on
+ mantix panel
+Message-ID: <20200929174624.GA832332@bogus>
+References: <cover.1600707235.git.agx@sigxcpu.org>
+ <71a9108f3472ba9af4bead01b1b770d1e73eb08e.1600707235.git.agx@sigxcpu.org>
+ <20200924193807.GA1223313@ravnborg.org>
 MIME-Version: 1.0
-Content-Type: text/plain; charset=us-ascii
+Content-Type: text/plain; charset=iso-8859-1
 Content-Disposition: inline
-In-Reply-To: <20200910130148.8734-2-abailon@baylibre.com>
+Content-Transfer-Encoding: 8bit
+In-Reply-To: <20200924193807.GA1223313@ravnborg.org>
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-On Thu, Sep 10, 2020 at 03:01:45PM +0200, Alexandre Bailon wrote:
-> This adds dt bindings for the APU present in the MT8183.
+On Thu, Sep 24, 2020 at 09:38:07PM +0200, Sam Ravnborg wrote:
+> Hi Guido.
 > 
-> Signed-off-by: Alexandre Bailon <abailon@baylibre.com>
-> ---
->  .../bindings/remoteproc/mtk,apu.yaml          | 107 ++++++++++++++++++
->  1 file changed, 107 insertions(+)
->  create mode 100644 Documentation/devicetree/bindings/remoteproc/mtk,apu.yaml
+> On Mon, Sep 21, 2020 at 06:55:52PM +0200, Guido Günther wrote:
+> > We need to reset both for the panel to show an image.
+> > 
+> > Signed-off-by: Guido Günther <agx@sigxcpu.org>
+> > ---
+> >  .../bindings/display/panel/mantix,mlaf057we51-x.yaml       | 7 +++++--
+> >  1 file changed, 5 insertions(+), 2 deletions(-)
+> > 
+> > diff --git a/Documentation/devicetree/bindings/display/panel/mantix,mlaf057we51-x.yaml b/Documentation/devicetree/bindings/display/panel/mantix,mlaf057we51-x.yaml
+> > index 937323cc9aaa..ba5a18fac9f9 100644
+> > --- a/Documentation/devicetree/bindings/display/panel/mantix,mlaf057we51-x.yaml
+> > +++ b/Documentation/devicetree/bindings/display/panel/mantix,mlaf057we51-x.yaml
+> > @@ -35,7 +35,9 @@ properties:
+> >    vddi-supply:
+> >      description: 1.8V I/O voltage supply
+> >  
+> > -  reset-gpios: true
+> > +  reset-gpios:
+> > +    minItems: 2
+> > +    maxItems: 2
 > 
-> diff --git a/Documentation/devicetree/bindings/remoteproc/mtk,apu.yaml b/Documentation/devicetree/bindings/remoteproc/mtk,apu.yaml
-> new file mode 100644
-> index 000000000000..7a71d2f5c4e6
-> --- /dev/null
-> +++ b/Documentation/devicetree/bindings/remoteproc/mtk,apu.yaml
-> @@ -0,0 +1,107 @@
-> +# SPDX-License-Identifier: (GPL-2.0-only OR BSD-2-Clause)
-> +%YAML 1.2
-> +
-> +---
-> +$id: "http://devicetree.org/schemas/remoteproc/mtk,apu.yaml#"
-> +$schema: "http://devicetree.org/meta-schemas/core.yaml#"
-> +
-> +title: MT8183 AI Processor Unit (APU) a.k.a. Vision Processor Unit (VPU)
-> +
-> +description:
-> +  This document defines the binding for the APU, a co-processor that could
-> +  offload the CPU for machine learning and neural network.
-> +
-> +maintainers:
-> +  - Alexandre Bailon <abailon@bayLibre.com>
-> +
-> +properties:
-> +  compatible:
-> +    const: mediatek,mt8183-apu
-> +
-> +  reg:
-> +    maxItems: 1
-> +
-> +  interrupts:
-> +    maxItems: 1
-> +
-> +  clocks:
-> +    description:
-> +      Three clocks are expected for AXI, IPU and JTAG.
-> +      The JTAG clock seems to be required to run the DSP,
-> +      even when JTAG is not in use."
-> +    maxItems: 3
-> +
-> +  clock-names:
-> +    items:
-> +      - const: axi
-> +      - const: ipu
-> +      - const: jtag
-> +
-> +  iommus:
-> +    maxItems: 3
-> +
-> +  memory-region:
-> +    maxItems: 1
-> +
-> +  power-domains:
-> +    maxItems: 1
-> +
-> +  pinctrl:
-> +    description: pinctrl handles, required to configure pins for JTAG.
-> +
-> +  pinctrl-names:
-> +    items:
-> +      - const: jtag
-> +    maxItems: 1
-> +
-> +required:
-> +  - compatible
-> +  - reg
-> +  - interrupts
-> +  - clocks
-> +  - clock-names
-> +  - iommus
-> +  - memory-region
-> +  - power-domains
-> +
-> +additionalProperties: false
-> +
+> reset-gpios is, as you already wrote, defined in panel-common.yaml.
+> Do not try to change it here.
+> It would be much better, I think, to introduce a mantix,reset-gpios
+> property.
 
-What about the pintctrl for the JTAG part?
+Yes.
 
-> +examples:
-> +  - |
-> +    #include <dt-bindings/clock/mt8183-clk.h>
-> +    #include <dt-bindings/interrupt-controller/arm-gic.h>
-> +    #include <dt-bindings/memory/mt8183-larb-port.h>
-> +    #include <dt-bindings/power/mt8183-power.h>
-> +
-> +    reserved-memory {
-> +      #address-cells = <1>;
-> +      #size-cells = <1>;
-> +      ranges;
-> +
-> +      apu_ram: apu_ram@0x60000000 {
-> +        compatible = "shared-dma-pool";
-> +        reg = <0x60000000 0x040000000>;
-> +        no-map;
-> +        linux,cma-default;
-> +      };
-> +    };
-> +
-> +    apu0: apu@19100000 {
-> +      compatible = "mediatek,mt8183-apu";
-> +      reg = <0x19180000 0x14000>;
-> +      interrupts = <GIC_SPI 292 IRQ_TYPE_LEVEL_LOW>;
-> +
-> +      iommus = <&iommu M4U_PORT_IMG_IPUO>,
-> +         <&iommu M4U_PORT_IMG_IPU3O>,
-> +         <&iommu M4U_PORT_IMG_IPUI>;
-> +
-> +      clocks = <&ipu_core0 CLK_IPU_CORE0_AXI>,
-> +         <&ipu_core0 CLK_IPU_CORE0_IPU>,
-> +         <&ipu_core0 CLK_IPU_CORE0_JTAG>;
-> +
-> +      clock-names = "axi", "ipu", "jtag";
-> +
-> +      power-domains = <&scpsys MT8183_POWER_DOMAIN_VPU_CORE0>;
-> +      memory-region = <&apu_ram>;
-> +    };
-> +...
-> -- 
-> 2.26.2
-> 
+You also need to define what each reset entry corresponds to as the 
+assertion/deassertion order could be important. You might just do 2 
+properties with <pinname>-gpios.
+
+Rob
