@@ -2,334 +2,288 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from vger.kernel.org (vger.kernel.org [23.128.96.18])
-	by mail.lfdr.de (Postfix) with ESMTP id 276BB27D555
-	for <lists+devicetree@lfdr.de>; Tue, 29 Sep 2020 20:01:54 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTP id E3C5427D56E
+	for <lists+devicetree@lfdr.de>; Tue, 29 Sep 2020 20:08:18 +0200 (CEST)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S1728041AbgI2SBt (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Tue, 29 Sep 2020 14:01:49 -0400
-Received: from lindbergh.monkeyblade.net ([23.128.96.19]:41630 "EHLO
-        lindbergh.monkeyblade.net" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S1725320AbgI2SBp (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Tue, 29 Sep 2020 14:01:45 -0400
-Received: from mail-pj1-x1043.google.com (mail-pj1-x1043.google.com [IPv6:2607:f8b0:4864:20::1043])
-        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 550CAC061755
-        for <devicetree@vger.kernel.org>; Tue, 29 Sep 2020 11:01:45 -0700 (PDT)
-Received: by mail-pj1-x1043.google.com with SMTP id kk9so3077560pjb.2
-        for <devicetree@vger.kernel.org>; Tue, 29 Sep 2020 11:01:45 -0700 (PDT)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=linaro.org; s=google;
-        h=date:from:to:cc:subject:message-id:references:mime-version
-         :content-disposition:in-reply-to;
-        bh=p2KegjCaWpZfkKR5IwwEO7WoWrrwh7P9M4al+Q9eyFw=;
-        b=ltm7u1IzNbmPXd4mELnjFy6fBuCuAEmTAWvG7wgY2Ju0Y2xDjUwBwmcqJz0HcdGXGj
-         owX73g8pFXrJQOGgBQ8VFf2/h1rfVzz57wAgJlQ1RXjI2yuj0FdNfmBHZhhrh7RhKj/U
-         THAagurUTSLh9MsQFHsao2aA/B81jzXhS4VhW2QroQXlgldavwNU+MnuG2iwuNlEbRI8
-         BTTP7ejSIkq5gj15IAj6cza0LmSX3yCq4dWxAlEw4G0tcZrVuIqVWmEuC9W8Me8R5T1r
-         hTfHhiPAt1PhaKDY4zdOz6cHVH38koWX6O1UULSeqvSWmlcsTmos7qg/uWQkDd3xieev
-         mwdQ==
+        id S1728044AbgI2SIS (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Tue, 29 Sep 2020 14:08:18 -0400
+Received: from mail-oi1-f195.google.com ([209.85.167.195]:39359 "EHLO
+        mail-oi1-f195.google.com" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
+        with ESMTP id S1726064AbgI2SIS (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Tue, 29 Sep 2020 14:08:18 -0400
+Received: by mail-oi1-f195.google.com with SMTP id c13so6463751oiy.6;
+        Tue, 29 Sep 2020 11:08:17 -0700 (PDT)
 X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
         d=1e100.net; s=20161025;
         h=x-gm-message-state:date:from:to:cc:subject:message-id:references
          :mime-version:content-disposition:in-reply-to;
-        bh=p2KegjCaWpZfkKR5IwwEO7WoWrrwh7P9M4al+Q9eyFw=;
-        b=KlZMdwrx2Dl1gzTP40X8jTDJlNNJKPGkZFv78iKGG5eT6l8xZml4Z2LIaNTQfWPv8p
-         8uFqS2u2890JmBSJ1+5qkjzePV0Smxu3Ww8vT7Esy187E5uRREryD5Gx+CGLHrEp4Am6
-         XhSdp8lWzFr0hBc2EiyjrluA9ac+Fi7ew6eFtoV7/plFWrMqN6mSwbdoe7KYH+zDjGzT
-         f3cfV9ZiorE7kaj8VEly0TiGiGizDe43kqPpx3Mr54gdLt1zPZ9/iiCeO3oruCSBRbyR
-         VvgGD6wxJ1PeSM1hg7YYlHVDuId9AYMM+7QI0WA6jhGfUcTegjZX1O1/cB2iK5MDaU2J
-         +/zw==
-X-Gm-Message-State: AOAM530B9AJY8z8iHMbHv2/xPstqM76xTghafpeczvWT+CxQS4wZFXza
-        //DMp8TMs/FiFJBPNJ+EIJZndg==
-X-Google-Smtp-Source: ABdhPJz5fuCu0iwJuiJcxoduPOjH/Dc8pBwOSprE2AvYkGXrMkTGOaSUFFpecrmFSuUfh4qlWaiRWQ==
-X-Received: by 2002:a17:90a:9912:: with SMTP id b18mr5292485pjp.192.1601402504742;
-        Tue, 29 Sep 2020 11:01:44 -0700 (PDT)
-Received: from xps15 (S0106002369de4dac.cg.shawcable.net. [68.147.8.254])
-        by smtp.gmail.com with ESMTPSA id q15sm5782201pgr.27.2020.09.29.11.01.42
+        bh=sU+G8HZjDOP5MRdUHbCt+p6p/tXjsZfEXILLEXLTGKk=;
+        b=UrZNLDRzMobPfCBcZ0h5j7AEY+3dap7/nB8sSw1famcQylwQxAQpAlQNorOUHczwVY
+         H8yRgKcOymomhUuUTilaXBHjuaSSqBTcF/uXnBxX5KfmOS9cEepgpDbdXF64EgOkTrlL
+         4PmjbJPaoKPO4z5e8tCNxLgsOtloq4AweWb/o3aF3/RcFXFzrf0waM6Zhu5ImMwLLu+5
+         imkVJPG06URl9mbZkdeDvHChNyRISbSmySrLi+Fly1G8tDSItQXiMoxEscUJle7BNFG4
+         aSnJB/qOG2urQp7kTlthOm02kW5fB/0hqgTp+JFvOOiQksxOEFm7VRt+i1Q9EaW5Ng0P
+         hmnw==
+X-Gm-Message-State: AOAM532EpVDBi6c0RMBraEps2RZvoAOzgCksz5Uudxenkev21awLgM/m
+        3lai+VPE2iLK/QXnrhj8bw==
+X-Google-Smtp-Source: ABdhPJz56B8S1F50AdUm8skiSUxwaNOgLIFcS5ICv5Jn5u0GiuSyXnNAj4hFIR8xLsNWCl8z8U7x2g==
+X-Received: by 2002:aca:f5cb:: with SMTP id t194mr3210736oih.144.1601402896731;
+        Tue, 29 Sep 2020 11:08:16 -0700 (PDT)
+Received: from xps15 (24-155-109-49.dyn.grandenetworks.net. [24.155.109.49])
+        by smtp.gmail.com with ESMTPSA id v20sm1150556oiv.47.2020.09.29.11.08.15
         (version=TLS1_3 cipher=TLS_AES_256_GCM_SHA384 bits=256/256);
-        Tue, 29 Sep 2020 11:01:43 -0700 (PDT)
-Date:   Tue, 29 Sep 2020 12:01:41 -0600
-From:   Mathieu Poirier <mathieu.poirier@linaro.org>
-To:     Alexandre Bailon <abailon@baylibre.com>
-Cc:     ohad@wizery.com, bjorn.andersson@linaro.org, robh+dt@kernel.org,
-        matthias.bgg@gmail.com, linux-remoteproc@vger.kernel.org,
-        devicetree@vger.kernel.org, linux-arm-kernel@lists.infradead.org,
-        linux-mediatek@lists.infradead.org, linux-kernel@vger.kernel.org,
-        stephane.leprovost@mediatek.com, gpain@baylibre.com
-Subject: Re: [PATCH v2 3/4] remoteproc: mtk_vpu_rproc: Add support of JTAG
-Message-ID: <20200929180141.GC124290@xps15>
-References: <20200910130148.8734-1-abailon@baylibre.com>
- <20200910130148.8734-4-abailon@baylibre.com>
+        Tue, 29 Sep 2020 11:08:16 -0700 (PDT)
+Received: (nullmailer pid 882710 invoked by uid 1000);
+        Tue, 29 Sep 2020 18:08:15 -0000
+Date:   Tue, 29 Sep 2020 13:08:15 -0500
+From:   Rob Herring <robh@kernel.org>
+To:     Chunfeng Yun <chunfeng.yun@mediatek.com>
+Cc:     Chun-Kuang Hu <chunkuang.hu@kernel.org>,
+        Kishon Vijay Abraham I <kishon@ti.com>,
+        Stanley Chu <stanley.chu@mediatek.com>,
+        Philipp Zabel <p.zabel@pengutronix.de>,
+        David Airlie <airlied@linux.ie>,
+        Daniel Vetter <daniel@ffwll.ch>, Vinod Koul <vkoul@kernel.org>,
+        Matthias Brugger <matthias.bgg@gmail.com>,
+        CK Hu <ck.hu@mediatek.com>, dri-devel@lists.freedesktop.org,
+        devicetree@vger.kernel.org, linux-kernel@vger.kernel.org,
+        linux-arm-kernel@lists.infradead.org,
+        linux-mediatek@lists.infradead.org
+Subject: Re: [PATCH 1/4] dt-bindings: phy: convert phy-mtk-xsphy.txt to YAML
+ schema
+Message-ID: <20200929180815.GA865690@bogus>
+References: <5af7c097d1c71a180d8ed1f1a44055859b42f1a0.1600760719.git.chunfeng.yun@mediatek.com>
 MIME-Version: 1.0
 Content-Type: text/plain; charset=us-ascii
 Content-Disposition: inline
-In-Reply-To: <20200910130148.8734-4-abailon@baylibre.com>
+In-Reply-To: <5af7c097d1c71a180d8ed1f1a44055859b42f1a0.1600760719.git.chunfeng.yun@mediatek.com>
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-On Thu, Sep 10, 2020 at 03:01:47PM +0200, Alexandre Bailon wrote:
-> The DSP could be debugged using JTAG.
-> The support of JTAG could enabled at build time and it could be enabled
-> using debugfs.
+On Tue, Sep 22, 2020 at 03:55:05PM +0800, Chunfeng Yun wrote:
+> Convert phy-mtk-xsphy.txt to YAML schema mediatek,xsphy.yaml
 > 
-> Signed-off-by: Alexandre Bailon <abailon@baylibre.com>
+> Signed-off-by: Chunfeng Yun <chunfeng.yun@mediatek.com>
 > ---
->  drivers/remoteproc/Kconfig   |   9 +++
->  drivers/remoteproc/mtk_apu.c | 151 ++++++++++++++++++++++++++++++++++-
->  2 files changed, 159 insertions(+), 1 deletion(-)
+>  .../bindings/phy/mediatek,xsphy.yaml          | 203 ++++++++++++++++++
+>  .../devicetree/bindings/phy/phy-mtk-xsphy.txt | 109 ----------
+>  2 files changed, 203 insertions(+), 109 deletions(-)
+>  create mode 100644 Documentation/devicetree/bindings/phy/mediatek,xsphy.yaml
+>  delete mode 100644 Documentation/devicetree/bindings/phy/phy-mtk-xsphy.txt
 > 
-> diff --git a/drivers/remoteproc/Kconfig b/drivers/remoteproc/Kconfig
-> index 4ebea57bf4c8..310462346bd8 100644
-> --- a/drivers/remoteproc/Kconfig
-> +++ b/drivers/remoteproc/Kconfig
-> @@ -61,6 +61,15 @@ config MTK_APU
->  
->  	  It's safe to say N here.
->  
-> +config MTK_APU_JTAG
-> +	bool "Enable support of JTAG"
-
-I think it is better to simply go with "Enable JTAG support"
-
-> +	depends on MTK_APU
-> +	help
-> +	  Say y to enable support of JTAG.
-
-Same here.
-
-> +	  By default, JTAG will remain disabled until it is enabled using
-> +	  debugfs: remoteproc/remoteproc0/jtag. Write 1 to enable it and
-
-s/remoteproc0/remoteprocX
-
-> +	  0 to disable it.
+> diff --git a/Documentation/devicetree/bindings/phy/mediatek,xsphy.yaml b/Documentation/devicetree/bindings/phy/mediatek,xsphy.yaml
+> new file mode 100644
+> index 000000000000..0aaa10640b5a
+> --- /dev/null
+> +++ b/Documentation/devicetree/bindings/phy/mediatek,xsphy.yaml
+> @@ -0,0 +1,203 @@
+> +# SPDX-License-Identifier: (GPL-2.0-only OR BSD-2-Clause)
+> +# Copyright (c) 2020 MediaTek
+> +%YAML 1.2
+> +---
+> +$id: http://devicetree.org/schemas/phy/mediatek,xsphy.yaml#
+> +$schema: http://devicetree.org/meta-schemas/core.yaml#
 > +
->  config OMAP_REMOTEPROC
->  	tristate "OMAP remoteproc support"
->  	depends on ARCH_OMAP4 || SOC_OMAP5 || SOC_DRA7XX
-> diff --git a/drivers/remoteproc/mtk_apu.c b/drivers/remoteproc/mtk_apu.c
-> index 6d2f577cfde5..07157fdc24ba 100644
-> --- a/drivers/remoteproc/mtk_apu.c
-> +++ b/drivers/remoteproc/mtk_apu.c
-> @@ -5,6 +5,7 @@
->  
->  #include <linux/bitops.h>
->  #include <linux/clk.h>
-> +#include <linux/debugfs.h>
->  #include <linux/delay.h>
->  #include <linux/highmem.h>
->  #include <linux/interrupt.h>
-> @@ -14,6 +15,7 @@
->  #include <linux/kernel.h>
->  #include <linux/module.h>
->  #include <linux/of_reserved_mem.h>
-> +#include <linux/pinctrl/consumer.h>
->  #include <linux/platform_device.h>
->  #include <linux/remoteproc.h>
->  
-> @@ -48,6 +50,11 @@
->  #define CORE_DEFAULT1				(0x00000140)
->  #define CORE_DEFAULT0_ARUSER_IDMA_USE_IOMMU	(0x10 << 0)
->  #define CORE_DEFAULT0_AWUSER_IDMA_USE_IOMMU	(0x10 << 5)
-> +#define CORE_DEFAULT2				(0x00000144)
-> +#define CORE_DEFAULT2_DBG_EN			BIT(3)
-> +#define CORE_DEFAULT2_NIDEN			BIT(2)
-> +#define CORE_DEFAULT2_SPNIDEN			BIT(1)
-> +#define CORE_DEFAULT2_SPIDEN			BIT(0)
->  #define CORE_XTENSA_ALTRESETVEC			(0x000001F8)
->  
->  struct mtk_apu_rproc {
-> @@ -57,6 +64,13 @@ struct mtk_apu_rproc {
->  	void __iomem *base;
->  	int irq;
->  	struct clk_bulk_data clks[3];
+> +title: MediaTek XS-PHY Controller Device Tree Bindings
 > +
-> +#ifdef CONFIG_MTK_APU_JTAG
-> +	struct pinctrl *pinctrl;
-> +	struct pinctrl_state *pinctrl_jtag;
-> +	bool jtag_enabled;
-> +	struct mutex jtag_mutex;
-
-Move this up to keep all the struct together.
-
-> +#endif
->  };
->  
->  static int mtk_apu_rproc_prepare(struct rproc *rproc)
-> @@ -166,6 +180,137 @@ static irqreturn_t handle_event(int irq, void *data)
->  	return IRQ_HANDLED;
->  }
->  
-> +#ifdef CONFIG_MTK_APU_JTAG
+> +maintainers:
+> +  - Chunfeng Yun <chunfeng.yun@mediatek.com>
 > +
-> +static int apu_enable_jtag(struct mtk_apu_rproc *apu_rproc)
-> +{
-> +	int ret = 0;
+> +description: |
+> +  The XS-PHY controller supports physical layer functionality for USB3.1
+> +  GEN2 controller on MediaTek SoCs.
 > +
-> +	mutex_lock(&apu_rproc->jtag_mutex);
-> +	if (apu_rproc->jtag_enabled) {
-> +		ret = -EINVAL;
-
-The JTAG is already enabled, I think enabling it again isn't a big deal and
-should simply return 0 rather than an error.
-
-> +		goto err_mutex_unlock;
-> +	}
+> +properties:
+> +  $nodename:
+> +    pattern: "^xs-phy@[0-9a-f]+$"
 > +
-> +	writel(CORE_DEFAULT2_SPNIDEN | CORE_DEFAULT2_SPIDEN |
-> +		CORE_DEFAULT2_NIDEN | CORE_DEFAULT2_DBG_EN,
-> +		apu_rproc->base + CORE_DEFAULT2);
-> +
-> +	apu_rproc->jtag_enabled = 1;
+> +  compatible:
+> +    oneOf:
+> +      - items:
+> +          - enum:
+> +              - mediatek,mt3611-xsphy
+> +          - enum:
+> +              - mediatek,xsphy
+> +      - items:
+> +          - const: mediatek,xsphy
 
-s/1/true
+mediatek,xsphy alone should not be valid.
 
 > +
-> +err_mutex_unlock:
-> +	mutex_unlock(&apu_rproc->jtag_mutex);
+> +  reg:
+> +    description: |
+> +      Register shared by multiple U3 ports, exclude port's private register,
+> +      if only U2 ports provided, shouldn't use the property.
+> +    maxItems: 1
 > +
-> +	return ret;
-> +}
+> +  "#address-cells":
+> +      enum: [1, 2]
 > +
-> +static int apu_disable_jtag(struct mtk_apu_rproc *apu_rproc)
-> +{
-> +	int ret = 0;
+> +  "#size-cells":
+> +      enum: [1, 2]
 > +
-> +	mutex_lock(&apu_rproc->jtag_mutex);
-> +	if (!apu_rproc->jtag_enabled) {
-> +		ret = -EINVAL;
+> +  ranges: true
+> +
+> +  mediatek,src-ref-clk-mhz:
+> +    description:
+> +      Frequency of reference clock for slew rate calibrate
+> +    $ref: /schemas/types.yaml#/definitions/uint32
+> +    default: 26
+> +
+> +  mediatek,src-coef:
+> +    description:
+> +      Coefficient for slew rate calibrate, depends on SoC process
+> +    $ref: /schemas/types.yaml#/definitions/uint32
+> +    default: 17
+> +
+> +# Required child node:
+> +patternProperties:
+> +  "^usb-phy@[0-9a-f]+$":
+> +    type: object
+> +    description: |
+> +      A sub-node is required for each port the controller provides.
+> +      Address range information including the usual 'reg' property
+> +      is used inside these nodes to describe the controller's topology.
+> +
+> +    properties:
+> +      reg:
+> +        maxItems: 1
+> +
+> +      clocks:
+> +        items:
+> +          - description: Reference clock, (HS is 48Mhz, SS/P is 24~27Mhz)
+> +
+> +      clock-names:
+> +        items:
+> +          - const: ref
+> +
+> +      "#phy-cells":
+> +        const: 1
+> +        description: |
+> +          The cells contain the following arguments.
+> +
+> +          - description: The PHY type
+> +              enum:
+> +                - PHY_TYPE_USB2
+> +                - PHY_TYPE_USB3
+> +
+> +      #The following optional vendor properties are only for debug or HQA test
+> +      mediatek,eye-src:
+> +        description:
+> +          The value of slew rate calibrate (U2 phy)
+> +        $ref: /schemas/types.yaml#/definitions/uint32
+> +        minimum: 1
+> +        maximum: 7
+> +
+> +      mediatek,eye-vrt:
+> +        description:
+> +          The selection of VRT reference voltage (U2 phy)
+> +        $ref: /schemas/types.yaml#/definitions/uint32
+> +        minimum: 1
+> +        maximum: 7
+> +
+> +      mediatek,eye-term:
+> +        description:
+> +          The selection of HS_TX TERM reference voltage (U2 phy)
+> +        $ref: /schemas/types.yaml#/definitions/uint32
+> +        minimum: 1
+> +        maximum: 7
+> +
+> +      mediatek,efuse-intr:
+> +        description:
+> +          The selection of Internal Resistor (U2/U3 phy)
+> +        $ref: /schemas/types.yaml#/definitions/uint32
+> +        minimum: 1
+> +        maximum: 63
+> +
+> +      mediatek,efuse-tx-imp:
+> +        description:
+> +          The selection of TX Impedance (U3 phy)
+> +        $ref: /schemas/types.yaml#/definitions/uint32
+> +        minimum: 1
+> +        maximum: 31
+> +
+> +      mediatek,efuse-rx-imp:
+> +        description:
+> +          The selection of RX Impedance (U3 phy)
+> +        $ref: /schemas/types.yaml#/definitions/uint32
+> +        minimum: 1
+> +        maximum: 31
+> +
+> +    required:
+> +      - reg
+> +      - clocks
+> +      - clock-names
+> +      - "#phy-cells"
+> +
+> +    additionalProperties: false
+> +
+> +required:
+> +  - compatible
+> +  - "#address-cells"
+> +  - "#size-cells"
+> +  - ranges
+> +
+> +additionalProperties: false
+> +
+> +#Banks layout of xsphy
+> +#-------------------------------------------------------------
 
-Same as above
+Move this to top-level 'description'.
 
-> +		goto err_mutex_unlock;
-> +	}
+> +#port        offset    bank
+> +#u2 port0    0x0000    MISC
+> +#            0x0100    FMREG
+> +#            0x0300    U2PHY_COM
+> +#u2 port1    0x1000    MISC
+> +#            0x1100    FMREG
+> +#            0x1300    U2PHY_COM
+> +#u2 port2    0x2000    MISC
+> +#            ...
+> +#u31 common  0x3000    DIG_GLB
+> +#            0x3100    PHYA_GLB
+> +#u31 port0   0x3400    DIG_LN_TOP
+> +#            0x3500    DIG_LN_TX0
+> +#            0x3600    DIG_LN_RX0
+> +#            0x3700    DIG_LN_DAIF
+> +#            0x3800    PHYA_LN
+> +#u31 port1   0x3a00    DIG_LN_TOP
+> +#            0x3b00    DIG_LN_TX0
+> +#            0x3c00    DIG_LN_RX0
+> +#            0x3d00    DIG_LN_DAIF
+> +#            0x3e00    PHYA_LN
+> +#            ...
+> +#DIG_GLB & PHYA_GLB are shared by U31 ports.
 > +
-> +	writel(0, apu_rproc->base + CORE_DEFAULT2);
+> +examples:
+> +  - |
+> +    #include <dt-bindings/phy/phy.h>
 > +
-> +	apu_rproc->jtag_enabled = 0;
-
-s/0/false
-
-Thanks for the patience,
-Mathieu
-
+> +    u3phy: xs-phy@11c40000 {
+> +        compatible = "mediatek,mt3611-xsphy", "mediatek,xsphy";
+> +        reg = <0x11c43000 0x0200>;
+> +        mediatek,src-ref-clk-mhz = <26>;
+> +        mediatek,src-coef = <17>;
+> +        #address-cells = <1>;
+> +        #size-cells = <1>;
+> +        ranges;
 > +
-> +err_mutex_unlock:
-> +	mutex_unlock(&apu_rproc->jtag_mutex);
+> +        u2port0: usb-phy@11c40000 {
+> +            reg = <0x11c40000 0x0400>;
+> +            clocks = <&clk48m>;
+> +            clock-names = "ref";
+> +            mediatek,eye-src = <4>;
+> +            #phy-cells = <1>;
+> +        };
 > +
-> +	return ret;
-> +}
+> +        u3port0: usb-phy@11c43000 {
+> +            reg = <0x11c43400 0x0500>;
+> +            clocks = <&clk26m>;
+> +            clock-names = "ref";
+> +            mediatek,efuse-intr = <28>;
+> +            #phy-cells = <1>;
+> +        };
+> +    };
 > +
-> +static ssize_t rproc_jtag_read(struct file *filp, char __user *userbuf,
-> +			       size_t count, loff_t *ppos)
-> +{
-> +	struct rproc *rproc = filp->private_data;
-> +	struct mtk_apu_rproc *apu_rproc = (struct mtk_apu_rproc *)rproc->priv;
-> +	char *buf = apu_rproc->jtag_enabled ? "enabled\n" : "disabled\n";
-> +
-> +	return simple_read_from_buffer(userbuf, count, ppos, buf, strlen(buf));
-> +}
-> +
-> +static ssize_t rproc_jtag_write(struct file *filp, const char __user *user_buf,
-> +				size_t count, loff_t *ppos)
-> +{
-> +	struct rproc *rproc = filp->private_data;
-> +	struct mtk_apu_rproc *apu_rproc = (struct mtk_apu_rproc *)rproc->priv;
-> +	char buf[10];
-> +	int ret;
-> +
-> +	if (count < 1 || count > sizeof(buf))
-> +		return -EINVAL;
-> +
-> +	ret = copy_from_user(buf, user_buf, count);
-> +	if (ret)
-> +		return -EFAULT;
-> +
-> +	/* remove end of line */
-> +	if (buf[count - 1] == '\n')
-> +		buf[count - 1] = '\0';
-> +
-> +	if (!strncmp(buf, "enabled", count))
-> +		ret = apu_enable_jtag(apu_rproc);
-> +	else if (!strncmp(buf, "disabled", count))
-> +		ret = apu_disable_jtag(apu_rproc);
-> +	else
-> +		return -EINVAL;
-> +
-> +	return ret ? ret : count;
-> +}
-> +
-> +static const struct file_operations rproc_jtag_ops = {
-> +	.read = rproc_jtag_read,
-> +	.write = rproc_jtag_write,
-> +	.open = simple_open,
-> +};
-> +
-> +static int apu_jtag_probe(struct mtk_apu_rproc *apu_rproc)
-> +{
-> +	int ret;
-> +
-> +	if (!apu_rproc->rproc->dbg_dir)
-> +		return -ENODEV;
-> +
-> +	apu_rproc->pinctrl = devm_pinctrl_get(apu_rproc->dev);
-> +	if (IS_ERR(apu_rproc->pinctrl)) {
-> +		dev_warn(apu_rproc->dev, "Failed to find JTAG pinctrl\n");
-> +		return PTR_ERR(apu_rproc->pinctrl);
-> +	}
-> +
-> +	apu_rproc->pinctrl_jtag = pinctrl_lookup_state(apu_rproc->pinctrl,
-> +						       "jtag");
-> +	if (IS_ERR(apu_rproc->pinctrl_jtag))
-> +		return PTR_ERR(apu_rproc->pinctrl_jtag);
-> +
-> +	ret = pinctrl_select_state(apu_rproc->pinctrl,
-> +				   apu_rproc->pinctrl_jtag);
-> +	if (ret < 0)
-> +		return ret;
-> +
-> +	mutex_init(&apu_rproc->jtag_mutex);
-> +
-> +	debugfs_create_file("jtag", 0600, apu_rproc->rproc->dbg_dir,
-> +			    apu_rproc->rproc, &rproc_jtag_ops);
-> +
-> +	return 0;
-> +}
-> +#else
-> +static int apu_jtag_probe(struct mtk_apu_rproc *apu_rproc)
-> +{
-> +	return 0;
-> +}
-> +
-> +static int apu_disable_jtag(struct mtk_apu_rproc *apu_rproc)
-> +{
-> +	return 0;
-> +}
-> +#endif /* CONFIG_MTK_APU_JTAG */
-> +
->  static int mtk_apu_rproc_probe(struct platform_device *pdev)
->  {
->  	struct device *dev = &pdev->dev;
-> @@ -242,6 +387,10 @@ static int mtk_apu_rproc_probe(struct platform_device *pdev)
->  		goto free_mem;
->  	}
->  
-> +	ret = apu_jtag_probe(apu_rproc);
-> +	if (ret)
-> +		dev_warn(dev, "Failed to configure jtag\n");
-> +
->  	return 0;
->  
->  free_mem:
-> @@ -259,7 +408,7 @@ static int mtk_apu_rproc_remove(struct platform_device *pdev)
->  	struct device *dev = &pdev->dev;
->  
->  	disable_irq(apu_rproc->irq);
-> -
-> +	apu_disable_jtag(apu_rproc);
->  	rproc_del(rproc);
->  	of_reserved_mem_device_release(dev);
->  	rproc_free(rproc);
-> -- 
-> 2.26.2
-> 
+> +...
