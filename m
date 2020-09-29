@@ -2,83 +2,87 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from vger.kernel.org (vger.kernel.org [23.128.96.18])
-	by mail.lfdr.de (Postfix) with ESMTP id 8094D27D323
-	for <lists+devicetree@lfdr.de>; Tue, 29 Sep 2020 17:52:05 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTP id A8CCC27D33E
+	for <lists+devicetree@lfdr.de>; Tue, 29 Sep 2020 18:00:38 +0200 (CEST)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S1728478AbgI2PwE (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Tue, 29 Sep 2020 11:52:04 -0400
-Received: from mail-oo1-f67.google.com ([209.85.161.67]:43477 "EHLO
-        mail-oo1-f67.google.com" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S1728401AbgI2PwE (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Tue, 29 Sep 2020 11:52:04 -0400
-Received: by mail-oo1-f67.google.com with SMTP id w25so1394555oos.10;
-        Tue, 29 Sep 2020 08:52:03 -0700 (PDT)
-X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=1e100.net; s=20161025;
-        h=x-gm-message-state:date:from:to:cc:subject:message-id:references
-         :mime-version:content-disposition:in-reply-to;
-        bh=MhoFV9ElUshrcZczyvzu0eUgcLqJJOPkpBHv4bhmpeI=;
-        b=RdsZrJzgENJ6Di1b0UM5oDw/IO41zWDh5yiJTVCS5+Z+Zm1rxZ2qHJLiA/Gq1MOdkW
-         i6bUbusZksqV7s9voEhltvbRmh5ww+Oqx5rGEh/bZVJ08mG9xSJ9v/o+3qizMc+x0gHO
-         m4SEq/YNNoNlI6NASKl2l/X1GqaF35zUFYZJTnXRnKiRVa4XuObyyvzmM/f4G/6VhcQc
-         BwUKsQiAKkC9PVD/l2m0c787pJt9zGvMIsJdIWytudgaQ3LMczDJiqnThmPpWjm9OK16
-         iq8GBpoiLSgXwuYGyrE4k66d1cNZp4h5p21j5hNpwd14HwfK2L0kX6SnJaSW3WeSXLTf
-         kaNg==
-X-Gm-Message-State: AOAM533ZJ2deEeNSYztqwdZywo4et0kiidEnWfEar13PBE7l6nx8jFfe
-        UJorON87WB0v3cSb+Fye2A==
-X-Google-Smtp-Source: ABdhPJwuG3Ld+elk2b1227zUoNomM14opr/hmEQ0EAWgc/iigZJuNC67UKZmjHIr3zDq+pDM9upmtA==
-X-Received: by 2002:a4a:c541:: with SMTP id j1mr5123201ooq.13.1601394722536;
-        Tue, 29 Sep 2020 08:52:02 -0700 (PDT)
-Received: from xps15 (24-155-109-49.dyn.grandenetworks.net. [24.155.109.49])
-        by smtp.gmail.com with ESMTPSA id l136sm1071824oig.7.2020.09.29.08.52.01
-        (version=TLS1_3 cipher=TLS_AES_256_GCM_SHA384 bits=256/256);
-        Tue, 29 Sep 2020 08:52:02 -0700 (PDT)
-Received: (nullmailer pid 668050 invoked by uid 1000);
-        Tue, 29 Sep 2020 15:52:01 -0000
-Date:   Tue, 29 Sep 2020 10:52:01 -0500
-From:   Rob Herring <robh@kernel.org>
-To:     Joakim Zhang <qiangqing.zhang@nxp.com>
-Cc:     mchehab@kernel.org, sean@mess.org, linux-media@vger.kernel.org,
-        devicetree@vger.kernel.org, linux-kernel@vger.kernel.org,
-        linux-imx@nxp.com
-Subject: Re: [PATCH V3 1/2] bindings: media: gpio-ir-receiver: add
- linux,autosuspend-period property
-Message-ID: <20200929155201.GA665464@bogus>
-References: <20200922190807.6830-1-qiangqing.zhang@nxp.com>
- <20200922190807.6830-2-qiangqing.zhang@nxp.com>
+        id S1728597AbgI2QAh (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Tue, 29 Sep 2020 12:00:37 -0400
+Received: from netrider.rowland.org ([192.131.102.5]:37159 "HELO
+        netrider.rowland.org" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
+        with SMTP id S1725497AbgI2QAh (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Tue, 29 Sep 2020 12:00:37 -0400
+Received: (qmail 175276 invoked by uid 1000); 29 Sep 2020 12:00:36 -0400
+Date:   Tue, 29 Sep 2020 12:00:36 -0400
+From:   Alan Stern <stern@rowland.harvard.edu>
+To:     Matthias Kaehlcke <mka@chromium.org>
+Cc:     Greg Kroah-Hartman <gregkh@linuxfoundation.org>,
+        Rob Herring <robh+dt@kernel.org>,
+        Frank Rowand <frowand.list@gmail.com>,
+        linux-kernel@vger.kernel.org, linux-usb@vger.kernel.org,
+        Bastien Nocera <hadess@hadess.net>,
+        Stephen Boyd <swboyd@chromium.org>,
+        Douglas Anderson <dianders@chromium.org>,
+        Ravi Chandra Sadineni <ravisadineni@chromium.org>,
+        Krzysztof Kozlowski <krzk@kernel.org>,
+        devicetree@vger.kernel.org, Peter Chen <peter.chen@nxp.com>,
+        "Alexander A. Klimov" <grandmaster@al2klimov.de>,
+        "David S. Miller" <davem@davemloft.net>,
+        Johan Hovold <johan@kernel.org>,
+        Masahiro Yamada <yamada.masahiro@socionext.com>,
+        Mauro Carvalho Chehab <mchehab+huawei@kernel.org>,
+        Rob Herring <robh@kernel.org>
+Subject: Re: [PATCH v4 2/2] USB: misc: Add onboard_usb_hub driver
+Message-ID: <20200929160036.GC173077@rowland.harvard.edu>
+References: <20200928101326.v4.1.I248292623d3d0f6a4f0c5bc58478ca3c0062b49a@changeid>
+ <20200928101326.v4.2.I7c9a1f1d6ced41dd8310e8a03da666a32364e790@changeid>
+ <20200928184759.GB142254@rowland.harvard.edu>
+ <20200929014355.GA1099144@google.com>
 MIME-Version: 1.0
 Content-Type: text/plain; charset=us-ascii
 Content-Disposition: inline
-In-Reply-To: <20200922190807.6830-2-qiangqing.zhang@nxp.com>
+In-Reply-To: <20200929014355.GA1099144@google.com>
+User-Agent: Mutt/1.10.1 (2018-07-13)
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-On Wed, Sep 23, 2020 at 03:08:06AM +0800, Joakim Zhang wrote:
-> Add linux,autosuspend-period property for gpio ir receiver. Some cpuidle
-> systems wake from idle may take a bit long time, for such case, need
-> disable cpuidle temporarily.
+On Mon, Sep 28, 2020 at 06:43:55PM -0700, Matthias Kaehlcke wrote:
+> > Have you tried manually unbinding and rebinding the two drivers a few
+> > times to make sure they will still work?
 > 
-> Signed-off-by: Joakim Zhang <qiangqing.zhang@nxp.com>
-> ---
-> ChangeLogs:
-> V1->V2:
-> 	* New add.
-> V2->V3:
-> 	* linux,autosuspend-period = 125; -> linux,autosuspend-period = <125>;
-> ---
->  Documentation/devicetree/bindings/media/gpio-ir-receiver.txt | 3 +++
->  1 file changed, 3 insertions(+)
+> I went through a few dozen bund/unbind cycles for both drivers and things
+> looked good overall, but then last minute I found that determining whether
+> wakeup capable devices are connected doesn't always work as (I) expected.
+> I didn't see this earlier, it seems to be reproduce more easily after
+> unbinding and rebinding the platform driver.
 > 
-> diff --git a/Documentation/devicetree/bindings/media/gpio-ir-receiver.txt b/Documentation/devicetree/bindings/media/gpio-ir-receiver.txt
-> index 58261fb7b408..e1447c9b0e26 100644
-> --- a/Documentation/devicetree/bindings/media/gpio-ir-receiver.txt
-> +++ b/Documentation/devicetree/bindings/media/gpio-ir-receiver.txt
-> @@ -7,6 +7,8 @@ Required properties:
->  Optional properties:
->  	- linux,rc-map-name: see rc.txt file in the same
->  	  directory.
-> +        - linux,autosuspend-period: autosuspend delay time,
-> +          the unit is milisecond.
+> During development I already noticed that usb_wakeup_enabled_descendants()
+> returns a cached value, which was a problem for an earlier version of the
+> driver. The values are updated by hub_suspend(), my (flawed) assumption
+> was that the USB driver would always suspend before the platform driver.
+> This generally seems to be the case on my development platform after boot,
+> but not necessarily after unbinding and rebinding the driver. Using the
+> _suspend_late hook instead of _suspend seems to be a reliable workaround.
 
-What makes this linux specific?
+Yes, for unrelated (i.e., not in a parent-child relation) devices, the 
+PM subsystem doesn't guarantee ordering of suspend and resume callbacks.  
+You can enforce the ordering by using device_pm_wait_for_dev().  But the 
+suspend_late approach seems like a better solution in this case.
+
+> > I'm a little concerned about  all the devm_* stuff in here; does that
+> > get released when the driver is unbound from the device or when the device
+> > is unregistered?  And if the latter, what happens if you have multiple
+> > sysfs attribute groups going at the same time?
+> 
+> The memory gets released when the device is unbound:
+> 
+> device_release_driver
+>   device_release_driver_internal
+>     __device_release_driver
+>       devres_release_all
+> 
+> Anyway, if you prefer I can change the driver to use kmalloc/kfree.
+
+No, that's fine.  I just wasn't sure about this and wanted to check.
+
+Alan Stern
