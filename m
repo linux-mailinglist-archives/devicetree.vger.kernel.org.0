@@ -2,457 +2,256 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from vger.kernel.org (vger.kernel.org [23.128.96.18])
-	by mail.lfdr.de (Postfix) with ESMTP id B1C9027C1D9
-	for <lists+devicetree@lfdr.de>; Tue, 29 Sep 2020 12:02:54 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTP id 3524827C1DF
+	for <lists+devicetree@lfdr.de>; Tue, 29 Sep 2020 12:06:43 +0200 (CEST)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S1725355AbgI2KCw (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Tue, 29 Sep 2020 06:02:52 -0400
-Received: from mail-eopbgr80059.outbound.protection.outlook.com ([40.107.8.59]:49659
-        "EHLO EUR04-VI1-obe.outbound.protection.outlook.com"
-        rhost-flags-OK-OK-OK-FAIL) by vger.kernel.org with ESMTP
-        id S1727892AbgI2KCw (ORCPT <rfc822;devicetree@vger.kernel.org>);
-        Tue, 29 Sep 2020 06:02:52 -0400
-ARC-Seal: i=1; a=rsa-sha256; s=arcselector9901; d=microsoft.com; cv=none;
- b=D40ML4NidF+uEgHksnQGCIw9V7IzpGGXZC1eUIcK39LRgp3Nx1L2i0s/CtKbOjW656w2wICtxouiP05Ot4Zcv/tMNH6LBzGnBIWkWQRELGv/y94ofMqlS6lE9+XBFH1UdApRDKGc55rnHOyklHkTcWQ7cI8ZOe6lLmvxggnf+fQDhaPCY3w/mypmHHeuJKeBqblCl2mM5uQkTQ3bMwgpProKU4Sira3Y7W0dZFIBkTQdMm750I/rV3Tr1+GEoTzWkQmmIJGGffRMp08OerK5ZUSDDIPla53rJ44mfou8sGwpE2abhEnfeY+0IDqgwuHlQj+ZVBXczqwj2PkfwBER3w==
-ARC-Message-Signature: i=1; a=rsa-sha256; c=relaxed/relaxed; d=microsoft.com;
- s=arcselector9901;
- h=From:Date:Subject:Message-ID:Content-Type:MIME-Version:X-MS-Exchange-SenderADCheck;
- bh=FiupPyU0eYIY9VG1HkODQf2t8UYDtIMpo4wU7o9ErwQ=;
- b=EbKdZb9FpExtxupKFL73/zw7b1/ZWp3baAw9Ex6zUDVKsEzk6Mn0zBQR16s4TbqAtkxDC57A6khW3R0dtNGY4L4aeUewn14U+MU2NGGl0rIz7LahemWh9CsilHjpqnoDOdDukjjHf9iBbaV2n8naHStgxDK9G9seYnU+BPNh0EhpgfM+7xnjGyUAfH2Fc5/VZJahiCZFWADPPzST86UivIyz1uHXyxejsJbDNXUo+ZkboQPUZ6HU8cbXXvXaGfm+AsnbLPLXjizkNWuP+inFPs6H80HJ8hSiiVM073N4AGT4LUxBMha/CbVfifIECgrfCS/mX/tEXcCCOhlDgOuseA==
-ARC-Authentication-Results: i=1; mx.microsoft.com 1; spf=pass
- smtp.mailfrom=nxp.com; dmarc=pass action=none header.from=nxp.com; dkim=pass
- header.d=nxp.com; arc=none
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=nxp.com; s=selector2;
- h=From:Date:Subject:Message-ID:Content-Type:MIME-Version:X-MS-Exchange-SenderADCheck;
- bh=FiupPyU0eYIY9VG1HkODQf2t8UYDtIMpo4wU7o9ErwQ=;
- b=Fsef0MnQzZj4tFO20sm9wxeSGQDteg9OIuubBvz1LMLLahGreYvARGuuHZjHpBFutSVvL+K/h2AftwBBPRbqEm7YilIrswhRiVj5cBFSrXDk9lPqCuJ0w+ABObj7ugthgiMjImq57xX0zLSM9rQgG9DTmmL9H7u57WgvdadFKpw=
-Authentication-Results: kernel.org; dkim=none (message not signed)
- header.d=none;kernel.org; dmarc=none action=none header.from=nxp.com;
-Received: from AM7PR04MB6885.eurprd04.prod.outlook.com (2603:10a6:20b:10d::24)
- by AM7PR04MB6968.eurprd04.prod.outlook.com (2603:10a6:20b:dc::13) with
- Microsoft SMTP Server (version=TLS1_2,
- cipher=TLS_ECDHE_RSA_WITH_AES_256_GCM_SHA384) id 15.20.3412.20; Tue, 29 Sep
- 2020 10:02:46 +0000
-Received: from AM7PR04MB6885.eurprd04.prod.outlook.com
- ([fe80::f431:1df6:f18b:ad99]) by AM7PR04MB6885.eurprd04.prod.outlook.com
- ([fe80::f431:1df6:f18b:ad99%6]) with mapi id 15.20.3412.029; Tue, 29 Sep 2020
- 10:02:46 +0000
-From:   meenakshi.aggarwal@nxp.com
-To:     shawnguo@kernel.org, robh+dt@kernel.org, V.sethi@nxp.com,
-        leoyang.li@nxp.com, linux-arm-kernel@lists.infradead.org,
-        devicetree@vger.kernel.org, linux-kernel@vger.kernel.org
-Cc:     Meenakshi Aggarwal <meenakshi.aggarwal@nxp.com>,
-        Ioana Ciornei <ioana.ciornei@nxp.com>,
-        Kuldeep Singh <kuldeep.singh@nxp.com>
-Subject: [PATCH v3 2/2] arm64: dts: lx2160a: add device tree for lx2162aqds board
-Date:   Tue, 29 Sep 2020 15:31:58 +0530
-Message-Id: <1601373718-13218-3-git-send-email-meenakshi.aggarwal@nxp.com>
-X-Mailer: git-send-email 2.7.4
-In-Reply-To: <1601373718-13218-1-git-send-email-meenakshi.aggarwal@nxp.com>
-References: <1599059610-7570-2-git-send-email-meenakshi.aggarwal@nxp.com>
- <1601373718-13218-1-git-send-email-meenakshi.aggarwal@nxp.com>
-Content-Type: text/plain
-X-ClientProxiedBy: SG2PR02CA0005.apcprd02.prod.outlook.com
- (2603:1096:3:17::17) To AM7PR04MB6885.eurprd04.prod.outlook.com
- (2603:10a6:20b:10d::24)
+        id S1725776AbgI2KGm (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Tue, 29 Sep 2020 06:06:42 -0400
+Received: from lindbergh.monkeyblade.net ([23.128.96.19]:52148 "EHLO
+        lindbergh.monkeyblade.net" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
+        with ESMTP id S1725355AbgI2KGm (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Tue, 29 Sep 2020 06:06:42 -0400
+Received: from metis.ext.pengutronix.de (metis.ext.pengutronix.de [IPv6:2001:67c:670:201:290:27ff:fe1d:cc33])
+        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 9DC68C061755
+        for <devicetree@vger.kernel.org>; Tue, 29 Sep 2020 03:06:41 -0700 (PDT)
+Received: from gallifrey.ext.pengutronix.de ([2001:67c:670:201:5054:ff:fe8d:eefb] helo=bjornoya.blackshift.org)
+        by metis.ext.pengutronix.de with esmtps (TLS1.3:ECDHE_RSA_AES_256_GCM_SHA384:256)
+        (Exim 4.92)
+        (envelope-from <mkl@pengutronix.de>)
+        id 1kNCWm-00087k-7o; Tue, 29 Sep 2020 12:06:32 +0200
+Received: from [IPv6:2a03:f580:87bc:d400:feea:fa2e:c0c5:a14c] (2a03-f580-87bc-d400-feea-fa2e-c0c5-a14c.ip6.dokom21.de [IPv6:2a03:f580:87bc:d400:feea:fa2e:c0c5:a14c])
+        (using TLSv1.3 with cipher TLS_AES_256_GCM_SHA384 (256/256 bits)
+         key-exchange ECDHE (P-384) server-signature RSA-PSS (4096 bits)
+         client-signature RSA-PSS (4096 bits))
+        (Client CN "mkl@blackshift.org", Issuer "StartCom Class 1 Client CA" (not verified))
+        (Authenticated sender: mkl@blackshift.org)
+        by smtp.blackshift.org (Postfix) with ESMTPSA id 1849456D474;
+        Tue, 29 Sep 2020 10:06:28 +0000 (UTC)
+To:     Geert Uytterhoeven <geert@linux-m68k.org>,
+        Manivannan Sadhasivam <manivannan.sadhasivam@linaro.org>,
+        Oleksij Rempel <o.rempel@pengutronix.de>
+Cc:     Wolfgang Grandegger <wg@grandegger.com>,
+        Rob Herring <robh+dt@kernel.org>, linux-can@vger.kernel.org,
+        "open list:OPEN FIRMWARE AND FLATTENED DEVICE TREE BINDINGS" 
+        <devicetree@vger.kernel.org>,
+        Linux Kernel Mailing List <linux-kernel@vger.kernel.org>,
+        dev.kurt@vandijck-laurijssen.be,
+        Thomas Kopp <Thomas.Kopp@microchip.com>
+References: <20200910133806.25077-1-manivannan.sadhasivam@linaro.org>
+ <20200910133806.25077-3-manivannan.sadhasivam@linaro.org>
+ <CAMuHMdVkwGjr6dJuMyhQNqFoJqbh6Ec5V2b5LenCshwpM2SDsQ@mail.gmail.com>
+From:   Marc Kleine-Budde <mkl@pengutronix.de>
+Autocrypt: addr=mkl@pengutronix.de; prefer-encrypt=mutual; keydata=
+ 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
+Subject: Re: [PATCH 2/6] dt-bindings: can: mcp25xxfd: document device tree
+ bindings
+Message-ID: <cbfa3fdb-bcfd-cca5-fcf5-95a78da0447d@pengutronix.de>
+Date:   Tue, 29 Sep 2020 12:06:24 +0200
+User-Agent: Mozilla/5.0 (X11; Linux x86_64; rv:68.0) Gecko/20100101
+ Thunderbird/68.12.0
 MIME-Version: 1.0
-X-MS-Exchange-MessageSentRepresentingType: 1
-Received: from lsv03032.swis.in-blr01.nxp.com (14.142.151.118) by SG2PR02CA0005.apcprd02.prod.outlook.com (2603:1096:3:17::17) with Microsoft SMTP Server (version=TLS1_2, cipher=TLS_ECDHE_RSA_WITH_AES_128_CBC_SHA256) id 15.20.3433.32 via Frontend Transport; Tue, 29 Sep 2020 10:02:43 +0000
-X-Mailer: git-send-email 2.7.4
-X-Originating-IP: [14.142.151.118]
-X-MS-PublicTrafficType: Email
-X-MS-Office365-Filtering-HT: Tenant
-X-MS-Office365-Filtering-Correlation-Id: bd6b9033-a2d4-41db-6b0d-08d8645ed08a
-X-MS-TrafficTypeDiagnostic: AM7PR04MB6968:
-X-MS-Exchange-Transport-Forked: True
-X-Microsoft-Antispam-PRVS: <AM7PR04MB6968E35437918F0DE21A703E8E320@AM7PR04MB6968.eurprd04.prod.outlook.com>
-X-MS-Oob-TLC-OOBClassifiers: OLM:1443;
-X-MS-Exchange-SenderADCheck: 1
-X-Microsoft-Antispam: BCL:0;
-X-Microsoft-Antispam-Message-Info: QB561MzpH4M2tqdv24CaS4AnL7S4H/+8TMoYI5+iT3yAACI3ZB0DL5R3irffB2Oxqg5pxgMtOdMtqcwQqu1BqX375AfI7Q3ghuJh6nTGuuFd+gN0TLuNwhx/azGNRid1/XGJp2dd6KjmAOUFoBgq1jzLgJVigxdP07OpEdKxl0KjlJMZv3LyFWiAY/k2I7GdkVSkTyVpvBZzmQwNwRmL/LQAd1q15lTYDEI6berTjiPfiGQZjEj6F7c4yzGXaNSUWgrFFC6zNM4GHuCVgicLAINvU5QX0rNqjhgpxKURbP2Ozh85ZyojXeN0XN/B7S3o13p4uJ1er/w8a/4yzeTxtZvqxd+m5hxcddv3gsmPpvwdira3l7qQEkeWJKvQK9eOTqw0ekSY+Hyv6ylqAbyJ3x6oWs564AOQcllDPgT3Rq0=
-X-Forefront-Antispam-Report: CIP:255.255.255.255;CTRY:;LANG:en;SCL:1;SRV:;IPV:NLI;SFV:NSPM;H:AM7PR04MB6885.eurprd04.prod.outlook.com;PTR:;CAT:NONE;SFS:(4636009)(136003)(366004)(396003)(376002)(346002)(39860400002)(5660300002)(66556008)(66476007)(36756003)(66946007)(316002)(9686003)(2616005)(1006002)(4326008)(6486002)(26005)(52116002)(7696005)(956004)(86362001)(54906003)(6666004)(2906002)(186003)(8936002)(478600001)(16526019)(8676002)(55236004)(110426005);DIR:OUT;SFP:1101;
-X-MS-Exchange-AntiSpam-MessageData: gBO7V2QZGr7xe/KBDykXo+6l3hJFd3HBNU01PU6b4mgm1nYfYWpqiIN7WLpm56hKtDCRPUBWymV7UCID93ZxHcufFWHWYU3hMY8ql6pm1wDzmYI2vkUDq4ujcvMlOuZt6SEHvHPluxPmuwTRdX5kwSlZLPLfaUB+Kr5fQw3ujsASl+BAOwlTGq06iIQBjZEu4MHw+9F+dYFYxARAiOj3t7PmPNhF8FlatrH8hOHIPsviIlr7wxTYtVEvI0gOrGzipKGOBav3QbihUWgMHpncXJLV5MZ9TTm0v+rbL6cmIBFoou6eU0ba6s7dLMu8KTZm2Ft4KEVX+do1Ta6ed6JK+KX+/UMExPkG3SZYZldtWKBf0at+Xl/MmO7QjRB6j2FHTBFndjS8/4lUDyh2CsfB2u3mmvHOYIr2S/O1uFEG4T30PoBtQbAT1NE4DLRKTGSJAv937tY+l+QyDpSnknBPUQROSvs6gZnVZ7QoMKl59gTLVBhaekcVSQEGekJOoXFw3vMTu4WNkwpJsdZLU1vG8G/eGB2lQ+KUw1yckljnv9f4ZfumYiCdAL5oscFB+X0G06zXpWnl/JQUr47S4/M2rsihoSzkHP4ejvj43OxMAJvQasMmAxfvr2FZnnqpE2TLbEPGWmUlilMEQiIxgcq8rg==
-X-OriginatorOrg: nxp.com
-X-MS-Exchange-CrossTenant-Network-Message-Id: bd6b9033-a2d4-41db-6b0d-08d8645ed08a
-X-MS-Exchange-CrossTenant-AuthSource: AM7PR04MB6885.eurprd04.prod.outlook.com
-X-MS-Exchange-CrossTenant-AuthAs: Internal
-X-MS-Exchange-CrossTenant-OriginalArrivalTime: 29 Sep 2020 10:02:46.3153
- (UTC)
-X-MS-Exchange-CrossTenant-FromEntityHeader: Hosted
-X-MS-Exchange-CrossTenant-Id: 686ea1d3-bc2b-4c6f-a92c-d99c5c301635
-X-MS-Exchange-CrossTenant-MailboxType: HOSTED
-X-MS-Exchange-CrossTenant-UserPrincipalName: 4asMbxHlhSgPe8A4sECXLeyq5WmGhbxJaQtkCt3gID4dhHJOsbDnNBTp+g5YPQCSzCaKTs4Q2EQ5GHJiOFgCWWcyuuHD2yTCqfZpm+STd6c=
-X-MS-Exchange-Transport-CrossTenantHeadersStamped: AM7PR04MB6968
+In-Reply-To: <CAMuHMdVkwGjr6dJuMyhQNqFoJqbh6Ec5V2b5LenCshwpM2SDsQ@mail.gmail.com>
+Content-Type: multipart/signed; micalg=pgp-sha512;
+ protocol="application/pgp-signature";
+ boundary="QB4FMdB6ZfwVUUqaNGlcb7SbCZIp5A0ZQ"
+X-SA-Exim-Connect-IP: 2001:67c:670:201:5054:ff:fe8d:eefb
+X-SA-Exim-Mail-From: mkl@pengutronix.de
+X-SA-Exim-Scanned: No (on metis.ext.pengutronix.de); SAEximRunCond expanded to false
+X-PTX-Original-Recipient: devicetree@vger.kernel.org
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-From: Meenakshi Aggarwal <meenakshi.aggarwal@nxp.com>
+This is an OpenPGP/MIME signed message (RFC 4880 and 3156)
+--QB4FMdB6ZfwVUUqaNGlcb7SbCZIp5A0ZQ
+Content-Type: multipart/mixed; boundary="GS8VHcTEJMRGQpoEd2ZySgOden3czQM04";
+ protected-headers="v1"
+From: Marc Kleine-Budde <mkl@pengutronix.de>
+To: Geert Uytterhoeven <geert@linux-m68k.org>,
+ Manivannan Sadhasivam <manivannan.sadhasivam@linaro.org>,
+ Oleksij Rempel <o.rempel@pengutronix.de>
+Cc: Wolfgang Grandegger <wg@grandegger.com>, Rob Herring
+ <robh+dt@kernel.org>, linux-can@vger.kernel.org,
+ "open list:OPEN FIRMWARE AND FLATTENED DEVICE TREE BINDINGS"
+ <devicetree@vger.kernel.org>,
+ Linux Kernel Mailing List <linux-kernel@vger.kernel.org>,
+ dev.kurt@vandijck-laurijssen.be, Thomas Kopp <Thomas.Kopp@microchip.com>
+Message-ID: <cbfa3fdb-bcfd-cca5-fcf5-95a78da0447d@pengutronix.de>
+Subject: Re: [PATCH 2/6] dt-bindings: can: mcp25xxfd: document device tree
+ bindings
+References: <20200910133806.25077-1-manivannan.sadhasivam@linaro.org>
+ <20200910133806.25077-3-manivannan.sadhasivam@linaro.org>
+ <CAMuHMdVkwGjr6dJuMyhQNqFoJqbh6Ec5V2b5LenCshwpM2SDsQ@mail.gmail.com>
+In-Reply-To: <CAMuHMdVkwGjr6dJuMyhQNqFoJqbh6Ec5V2b5LenCshwpM2SDsQ@mail.gmail.com>
 
-Add device tree support for LX2162AQDS board.
-LX2162A has same die as of LX2160A with different packaging.
+--GS8VHcTEJMRGQpoEd2ZySgOden3czQM04
+Content-Type: text/plain; charset=utf-8
+Content-Language: en-US
+Content-Transfer-Encoding: quoted-printable
 
-Signed-off-by: Ioana Ciornei <ioana.ciornei@nxp.com>
-Signed-off-by: Kuldeep Singh <kuldeep.singh@nxp.com>
-Signed-off-by: Meenakshi Aggarwal <meenakshi.aggarwal@nxp.com>
----
- arch/arm64/boot/dts/freescale/Makefile            |   1 +
- arch/arm64/boot/dts/freescale/fsl-lx2162a-qds.dts | 334 ++++++++++++++++++++++
- 2 files changed, 335 insertions(+)
- create mode 100644 arch/arm64/boot/dts/freescale/fsl-lx2162a-qds.dts
+On 9/29/20 11:46 AM, Geert Uytterhoeven wrote:
+> Hi Manivannan, Oleksij,
+>=20
+> On Thu, Sep 10, 2020 at 11:37 PM Manivannan Sadhasivam
+> <manivannan.sadhasivam@linaro.org> wrote:
+>> From: Oleksij Rempel <o.rempel@pengutronix.de>
+>>
+>> This patch adds the device-tree binding documentation for the Microchi=
+p
+>> MCP25xxFD SPI CAN controller family.
+>>
+>> Signed-off-by: Oleksij Rempel <o.rempel@pengutronix.de>
+>> Signed-off-by: Marc Kleine-Budde <mkl@pengutronix.de>
+>> Signed-off-by: Manivannan Sadhasivam <manivannan.sadhasivam@linaro.org=
+>
+>=20
+> Thanks for your patch, which is now commit 1b5a78e69c1fdae9
+> ("dt-binding: can: mcp25xxfd: document device tree bindings") in net-ne=
+xt.
+>=20
+>> --- /dev/null
+>> +++ b/Documentation/devicetree/bindings/net/can/microchip,mcp25xxfd.ya=
+ml
+>> @@ -0,0 +1,79 @@
+>> +# SPDX-License-Identifier: (GPL-2.0-only OR BSD-2-Clause)
+>> +%YAML 1.2
+>> +---
+>> +$id: http://devicetree.org/schemas/net/can/microchip,mcp25xxfd.yaml#
+>> +$schema: http://devicetree.org/meta-schemas/core.yaml#
+>> +
+>> +title:
+>> +  Microchip MCP2517FD and MCP2518FD stand-alone CAN controller device=
+ tree
+>> +  bindings
+>> +
+>> +maintainers:
+>> +  - Marc Kleine-Budde <mkl@pengutronix.de>
+>> +
+>> +properties:
+>> +  compatible:
+>> +    oneOf:
+>> +      - const: microchip,mcp2517fd
+>> +        description: for MCP2517FD
+>> +      - const: microchip,mcp2518fd
+>> +        description: for MCP2518FD
+>> +      - const: microchip,mcp25xxfd
+>> +        description: to autodetect chip variant
+>=20
+> The last one is a wildcard?
+> When would you want to use it (oh, in the example below)?
 
-diff --git a/arch/arm64/boot/dts/freescale/Makefile b/arch/arm64/boot/dts/freescale/Makefile
-index 903c0eb..0edc8ab 100644
---- a/arch/arm64/boot/dts/freescale/Makefile
-+++ b/arch/arm64/boot/dts/freescale/Makefile
-@@ -27,6 +27,7 @@ dtb-$(CONFIG_ARCH_LAYERSCAPE) += fsl-lx2160a-clearfog-cx.dtb
- dtb-$(CONFIG_ARCH_LAYERSCAPE) += fsl-lx2160a-honeycomb.dtb
- dtb-$(CONFIG_ARCH_LAYERSCAPE) += fsl-lx2160a-qds.dtb
- dtb-$(CONFIG_ARCH_LAYERSCAPE) += fsl-lx2160a-rdb.dtb
-+dtb-$(CONFIG_ARCH_LAYERSCAPE) += fsl-lx2162a-qds.dtb
- 
- dtb-$(CONFIG_ARCH_MXC) += imx8mm-beacon-kit.dtb
- dtb-$(CONFIG_ARCH_MXC) += imx8mm-evk.dtb
-diff --git a/arch/arm64/boot/dts/freescale/fsl-lx2162a-qds.dts b/arch/arm64/boot/dts/freescale/fsl-lx2162a-qds.dts
-new file mode 100644
-index 0000000..b29174e
---- /dev/null
-+++ b/arch/arm64/boot/dts/freescale/fsl-lx2162a-qds.dts
-@@ -0,0 +1,334 @@
-+// SPDX-License-Identifier: (GPL-2.0 OR MIT)
-+//
-+// Device Tree file for LX2162AQDS
-+//
-+// Copyright 2020 NXP
-+
-+/dts-v1/;
-+
-+#include "fsl-lx2160a.dtsi"
-+
-+/ {
-+	model = "NXP Layerscape LX2162AQDS";
-+	compatible = "nxp,lx2162a-qds", "fsl,lx2160a";
-+
-+	aliases {
-+		crypto = &crypto;
-+		serial0 = &uart0;
-+	};
-+
-+	chosen {
-+		stdout-path = "serial0:115200n8";
-+	};
-+
-+	sb_3v3: regulator-sb3v3 {
-+		compatible = "regulator-fixed";
-+		regulator-name = "LTM4619-3.3VSB";
-+		regulator-min-microvolt = <3300000>;
-+		regulator-max-microvolt = <3300000>;
-+	};
-+
-+	mdio-mux-1 {
-+		compatible = "mdio-mux-multiplexer";
-+		mux-controls = <&mux 0>;
-+		mdio-parent-bus = <&emdio1>;
-+		#address-cells=<1>;
-+		#size-cells = <0>;
-+
-+		mdio@0 { /* On-board RTL8211F PHY #1 RGMII1 */
-+			reg = <0x00>;
-+			#address-cells = <1>;
-+			#size-cells = <0>;
-+
-+			rgmii_phy1: ethernet-phy@1 {
-+				compatible = "ethernet-phy-id001c.c916";
-+				reg = <0x1>;
-+				eee-broken-1000t;
-+			};
-+		};
-+
-+		mdio@8 { /* On-board RTL8211F PHY #2 RGMII2 */
-+			reg = <0x8>;
-+			#address-cells = <1>;
-+			#size-cells = <0>;
-+
-+			rgmii_phy2: ethernet-phy@2 {
-+				compatible = "ethernet-phy-id001c.c916";
-+				reg = <0x2>;
-+				eee-broken-1000t;
-+			};
-+		};
-+
-+		mdio@18 { /* Slot #1 */
-+			reg = <0x18>;
-+			#address-cells = <1>;
-+			#size-cells = <0>;
-+		};
-+
-+		mdio@19 { /* Slot #2 */
-+			reg = <0x19>;
-+			#address-cells = <1>;
-+			#size-cells = <0>;
-+		};
-+
-+		mdio@1a { /* Slot #3 */
-+			reg = <0x1a>;
-+			#address-cells = <1>;
-+			#size-cells = <0>;
-+		};
-+
-+		mdio@1b { /* Slot #4 */
-+			reg = <0x1b>;
-+			#address-cells = <1>;
-+			#size-cells = <0>;
-+		};
-+
-+		mdio@1c { /* Slot #5 */
-+			reg = <0x1c>;
-+			#address-cells = <1>;
-+			#size-cells = <0>;
-+		};
-+
-+		mdio@1d { /* Slot #6 */
-+			reg = <0x1d>;
-+			#address-cells = <1>;
-+			#size-cells = <0>;
-+		};
-+
-+		mdio@1e { /* Slot #7 */
-+			reg = <0x1e>;
-+			#address-cells = <1>;
-+			#size-cells = <0>;
-+		};
-+
-+		mdio@1f { /* Slot #8 */
-+			reg = <0x1f>;
-+			#address-cells = <1>;
-+			#size-cells = <0>;
-+		};
-+	};
-+
-+	mdio-mux-2 {
-+		compatible = "mdio-mux-multiplexer";
-+		mux-controls = <&mux 1>;
-+		mdio-parent-bus = <&emdio2>;
-+		#address-cells=<1>;
-+		#size-cells = <0>;
-+
-+		mdio@0 { /* Slot #1 (secondary EMI) */
-+			reg = <0x00>;
-+			#address-cells = <1>;
-+			#size-cells = <0>;
-+		};
-+
-+		mdio@1 { /* Slot #2 (secondary EMI) */
-+			reg = <0x01>;
-+			#address-cells = <1>;
-+			#size-cells = <0>;
-+		};
-+
-+		mdio@2 { /* Slot #3 (secondary EMI) */
-+			reg = <0x02>;
-+			#address-cells = <1>;
-+			#size-cells = <0>;
-+		};
-+
-+		mdio@3 { /* Slot #4 (secondary EMI) */
-+			reg = <0x03>;
-+			#address-cells = <1>;
-+			#size-cells = <0>;
-+		};
-+
-+		mdio@4 { /* Slot #5 (secondary EMI) */
-+			reg = <0x04>;
-+			#address-cells = <1>;
-+			#size-cells = <0>;
-+		};
-+
-+		mdio@5 { /* Slot #6 (secondary EMI) */
-+			reg = <0x05>;
-+			#address-cells = <1>;
-+			#size-cells = <0>;
-+		};
-+
-+		mdio@6 { /* Slot #7 (secondary EMI) */
-+			reg = <0x06>;
-+			#address-cells = <1>;
-+			#size-cells = <0>;
-+		};
-+
-+		mdio@7 { /* Slot #8 (secondary EMI) */
-+			reg = <0x07>;
-+			#address-cells = <1>;
-+			#size-cells = <0>;
-+		};
-+	};
-+};
-+
-+&crypto {
-+	status = "okay";
-+};
-+
-+&dpmac17 {
-+	phy-handle = <&rgmii_phy1>;
-+	phy-connection-type = "rgmii-id";
-+};
-+
-+&dpmac18 {
-+	phy-handle = <&rgmii_phy2>;
-+	phy-connection-type = "rgmii-id";
-+};
-+
-+&dspi0 {
-+	status = "okay";
-+
-+	dflash0: flash@0 {
-+		#address-cells = <1>;
-+		#size-cells = <1>;
-+		compatible = "jedec,spi-nor";
-+		reg = <0>;
-+		spi-max-frequency = <1000000>;
-+	};
-+};
-+
-+&dspi1 {
-+	status = "okay";
-+
-+	dflash1: flash@0 {
-+		#address-cells = <1>;
-+		#size-cells = <1>;
-+		compatible = "jedec,spi-nor";
-+		reg = <0>;
-+		spi-max-frequency = <1000000>;
-+	};
-+};
-+
-+&dspi2 {
-+	status = "okay";
-+
-+	dflash2: flash@0 {
-+		#address-cells = <1>;
-+		#size-cells = <1>;
-+		compatible = "jedec,spi-nor";
-+		reg = <0>;
-+		spi-max-frequency = <1000000>;
-+	};
-+};
-+
-+&emdio1 {
-+	status = "okay";
-+};
-+
-+&emdio2 {
-+	status = "okay";
-+};
-+
-+&esdhc0 {
-+	status = "okay";
-+};
-+
-+&esdhc1 {
-+	status = "okay";
-+};
-+
-+&fspi {
-+	status = "okay";
-+
-+	mt35xu512aba0: flash@0 {
-+		#address-cells = <1>;
-+		#size-cells = <1>;
-+		compatible = "jedec,spi-nor";
-+		m25p,fast-read;
-+		spi-max-frequency = <50000000>;
-+		reg = <0>;
-+		spi-rx-bus-width = <8>;
-+		spi-tx-bus-width = <8>;
-+	};
-+};
-+
-+&i2c0 {
-+	status = "okay";
-+
-+	fpga@66 {
-+		compatible = "fsl,lx2160aqds-fpga", "fsl,fpga-qixis-i2c",
-+			     "simple-mfd";
-+		reg = <0x66>;
-+
-+		mux: mux-controller {
-+			compatible = "reg-mux";
-+			#mux-control-cells = <1>;
-+			mux-reg-masks = <0x54 0xf8>, /* 0: reg 0x54, bits 7:3 */
-+					<0x54 0x07>; /* 1: reg 0x54, bit 2:0 */
-+		};
-+	};
-+
-+	i2c-mux@77 {
-+		compatible = "nxp,pca9547";
-+		reg = <0x77>;
-+		#address-cells = <1>;
-+		#size-cells = <0>;
-+
-+		i2c@2 {
-+			#address-cells = <1>;
-+			#size-cells = <0>;
-+			reg = <0x2>;
-+
-+			power-monitor@40 {
-+				compatible = "ti,ina220";
-+				reg = <0x40>;
-+				shunt-resistor = <500>;
-+			};
-+
-+			power-monitor@41 {
-+				compatible = "ti,ina220";
-+				reg = <0x41>;
-+				shunt-resistor = <1000>;
-+			};
-+		};
-+
-+		i2c@3 {
-+			#address-cells = <1>;
-+			#size-cells = <0>;
-+			reg = <0x3>;
-+
-+			temperature-sensor@4c {
-+				compatible = "nxp,sa56004";
-+				reg = <0x4c>;
-+				vcc-supply = <&sb_3v3>;
-+			};
-+
-+			rtc@51 {
-+				compatible = "nxp,pcf2129";
-+				reg = <0x51>;
-+			};
-+		};
-+	};
-+};
-+
-+&sata0 {
-+	status = "okay";
-+};
-+
-+&sata1 {
-+	status = "okay";
-+};
-+
-+&sata2 {
-+	status = "okay";
-+};
-+
-+&sata3 {
-+	status = "okay";
-+};
-+
-+&uart0 {
-+	status = "okay";
-+};
-+
-+&uart1 {
-+	status = "okay";
-+};
-+
-+&usb0 {
-+	status = "okay";
-+};
--- 
-2.7.4
+Im using it in overlays for several raspi hats, e.g. a raspi to click boa=
+rd
+converter where I add mcp2517fd or mcp2518fd modules without the need to =
+change
+the overlay.
 
+> Can you guarantee Microchip will not introduce other components that
+> match this wildcard, but are not compatible?
+
+Guarantee is quite a strong word :)
+
+So far in that name space there are the mcp2510, mcp2515 and mcp25625. Fr=
+om the
+SW point of view the 2515 and 25625 are identical while being compatible =
+to the
+mcp2510 but offer more features. There's a single drver (mcp251x) for the=
+se.
+These chips implement the CAN-2.0 standard.
+
+Regarding the mcp2517fd and mcp2518fd, the "fd" in the name references th=
+e
+CAN-FD standard (successor to CAN-2.0).
+
+Maybe Thomas Kopp (Cc'ed) from Microchip can say something to this.
+
+We can rename the compatible to mcp251xfd to make it more specific.
+
+regards,
+Marc
+
+--=20
+Pengutronix e.K.                 | Marc Kleine-Budde           |
+Embedded Linux                   | https://www.pengutronix.de  |
+Vertretung West/Dortmund         | Phone: +49-231-2826-924     |
+Amtsgericht Hildesheim, HRA 2686 | Fax:   +49-5121-206917-5555 |
+
+
+--GS8VHcTEJMRGQpoEd2ZySgOden3czQM04--
+
+--QB4FMdB6ZfwVUUqaNGlcb7SbCZIp5A0ZQ
+Content-Type: application/pgp-signature; name="signature.asc"
+Content-Description: OpenPGP digital signature
+Content-Disposition: attachment; filename="signature.asc"
+
+-----BEGIN PGP SIGNATURE-----
+
+iQEzBAEBCgAdFiEEK3kIWJt9yTYMP3ehqclaivrt76kFAl9zByAACgkQqclaivrt
+76n2gQf9HkbizX3zocEZjxCncTVe9z2s4jgiAUNR2ygKzJ2nsKUrsadns1kgYY6x
+eblRtawzkUsfPxXaseaR/5zV1TxlA5W/t3O/Ynxlktk9lrark2YWiAPOfqBHdcUz
+dwOFC/D6rUCeXN+NtUZQpNsgtjRd08TfrZnyUWOM0xLOabGdjDzpYOuEiKULa9of
+La63Jn//6tYdTqArsWzXIOyjI2uQ9x2nlZStNv3rM6NIGpsLBzwlLp2hEzmrCzGC
+T1CwLLZ6vafbc97XrTEy/S0AIP8j1sT0Z/HJbJs0adDaUrZFScjYqfjZ27fpLUCs
+oLl+Oa9S69R4zMCcevOb+wn+O8mR0w==
+=ML/U
+-----END PGP SIGNATURE-----
+
+--QB4FMdB6ZfwVUUqaNGlcb7SbCZIp5A0ZQ--
