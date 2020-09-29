@@ -2,70 +2,71 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from vger.kernel.org (vger.kernel.org [23.128.96.18])
-	by mail.lfdr.de (Postfix) with ESMTP id 2008227D6B0
-	for <lists+devicetree@lfdr.de>; Tue, 29 Sep 2020 21:18:13 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTP id 0296C27D6B6
+	for <lists+devicetree@lfdr.de>; Tue, 29 Sep 2020 21:18:40 +0200 (CEST)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S1727993AbgI2TSI (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Tue, 29 Sep 2020 15:18:08 -0400
-Received: from mail-ot1-f66.google.com ([209.85.210.66]:43674 "EHLO
+        id S1725554AbgI2TSj (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Tue, 29 Sep 2020 15:18:39 -0400
+Received: from mail-ot1-f66.google.com ([209.85.210.66]:37887 "EHLO
         mail-ot1-f66.google.com" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S1725554AbgI2TSD (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Tue, 29 Sep 2020 15:18:03 -0400
-Received: by mail-ot1-f66.google.com with SMTP id n61so5558091ota.10;
-        Tue, 29 Sep 2020 12:18:02 -0700 (PDT)
+        with ESMTP id S1725306AbgI2TSi (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Tue, 29 Sep 2020 15:18:38 -0400
+Received: by mail-ot1-f66.google.com with SMTP id o8so5599424otl.4;
+        Tue, 29 Sep 2020 12:18:38 -0700 (PDT)
 X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
         d=1e100.net; s=20161025;
         h=x-gm-message-state:date:from:to:cc:subject:message-id:references
          :mime-version:content-disposition:in-reply-to;
-        bh=JeGhVbEqPx1oDD2M5M+TUTVsnabyJCp0cJtlo3CSbtY=;
-        b=DBoNVKEvEsa6mJJ6RjaHYqQKMAWnCiJUvwqeeQ1vEsnDEA1wS1CkQb/Zw0vJ7Oq4n8
-         7j5VZv1KpLptnLBD9wgAwpyQWhgl/rWZykP3OTVWm2BdV4LFXn6j3LpuQiyAy+ImfjWi
-         Qv4J997AXrfP8zYZ65UDl5DM5RTwjSk/noaWFGDLHeMJrg9154TwCFj4/Ysw147Ml5yj
-         eL3fuO2248hDMN/i5eDN2bQEMISiNfUjZkDOKWmAwiIP45Nv+hUktB3rTE7arcEa1mCQ
-         IIVBq1wTDx7GmyBTGrom/V5GoGJc4c4gwZWnXF+fqtojEIb8j6+INyDpxe4kCte8hbqQ
-         JiCQ==
-X-Gm-Message-State: AOAM531qYObTjuOwhZtEnxJirUni3s/Vq5y5WFy2X8QxXtR9EvXC6zzc
-        olXSdqwegsqclBYICtAlqA==
-X-Google-Smtp-Source: ABdhPJymAAAhE42/qB57SUdAxqdSq8ODJgUREV1cCr0pPgBkZJjWE5cbU9QhCPJtMZWaJkfgysNSIg==
-X-Received: by 2002:a9d:d01:: with SMTP id 1mr3545460oti.201.1601407082600;
-        Tue, 29 Sep 2020 12:18:02 -0700 (PDT)
+        bh=40hh8IQfWNRqHPCW5sa6gIpUFNpap78I4kipBZ1tykA=;
+        b=HFxH8HKKZ3wluULAjl0TUP+OrDwzVh0xw0AtIYt5cd6Lv+hR5ZMdu9L0MXy+EpGbf1
+         7WEO10KXrgviyvkBdM3O75YMFFIlOpn0cbxRMiP5l5U4MKxIsMlOt2kmliUMrn/U9rHo
+         SzT3DYo7DRQBsWLIE0ZUbXmt9Xa/bX6Q427l8l8QCZkBNsk49MBeQAkDC9m5+m+ihlDL
+         VfbRimtzfp9ihve4sNcfaDVT9mmA+xZgGRxaRPgvRZW+YAjTVg+x62W8TRMRvp/sgOZ2
+         KiHuWL0xfIDdXflHcx6DD2EvboUz5RHe0RB4hnsP7zKyb52HKQjN8vj429XjrqlSQDNc
+         fCBw==
+X-Gm-Message-State: AOAM532YsGqA4Av4cfs4Lg4Xv8RIKattL/8Wj+fnUEVIksmGeX1nJw47
+        3n2fPRaj0P9wqIADff8e2w==
+X-Google-Smtp-Source: ABdhPJwlV7uK1dgR+6SZOi39pk7d4hc1FXLPr2jkbumfVgkMzMmHJGB0pU45obgHQO+nBeEqQpHLRQ==
+X-Received: by 2002:a05:6830:1f09:: with SMTP id u9mr3529289otg.175.1601407117928;
+        Tue, 29 Sep 2020 12:18:37 -0700 (PDT)
 Received: from xps15 (24-155-109-49.dyn.grandenetworks.net. [24.155.109.49])
-        by smtp.gmail.com with ESMTPSA id l5sm1206225otj.40.2020.09.29.12.18.01
+        by smtp.gmail.com with ESMTPSA id k10sm1210057ots.60.2020.09.29.12.18.37
         (version=TLS1_3 cipher=TLS_AES_256_GCM_SHA384 bits=256/256);
-        Tue, 29 Sep 2020 12:18:02 -0700 (PDT)
-Received: (nullmailer pid 997182 invoked by uid 1000);
-        Tue, 29 Sep 2020 19:18:01 -0000
-Date:   Tue, 29 Sep 2020 14:18:01 -0500
+        Tue, 29 Sep 2020 12:18:37 -0700 (PDT)
+Received: (nullmailer pid 998175 invoked by uid 1000);
+        Tue, 29 Sep 2020 19:18:36 -0000
+Date:   Tue, 29 Sep 2020 14:18:36 -0500
 From:   Rob Herring <robh@kernel.org>
 To:     Krzysztof Kozlowski <krzk@kernel.org>
-Cc:     linux-kernel@vger.kernel.org, Rob Herring <robh+dt@kernel.org>,
+Cc:     Stefan Riedmueller <s.riedmueller@phytec.de>,
+        Rob Herring <robh+dt@kernel.org>, linux-kernel@vger.kernel.org,
+        Pengutronix Kernel Team <kernel@pengutronix.de>,
+        Fabio Estevam <festevam@gmail.com>,
         NXP Linux Team <linux-imx@nxp.com>,
         Robert Jones <rjones@gateworks.com>,
+        linux-arm-kernel@lists.infradead.org, Li Yang <leoyang.li@nxp.com>,
         Sascha Hauer <s.hauer@pengutronix.de>,
-        Pengutronix Kernel Team <kernel@pengutronix.de>,
-        devicetree@vger.kernel.org, Fabio Estevam <festevam@gmail.com>,
-        linux-arm-kernel@lists.infradead.org,
-        Shawn Guo <shawnguo@kernel.org>, Li Yang <leoyang.li@nxp.com>,
-        Stefan Riedmueller <s.riedmueller@phytec.de>
-Subject: Re: [PATCH 08/14] dt-bindings: arm: fsl: document i.MX53 boards
-Message-ID: <20200929191801.GA996934@bogus>
+        devicetree@vger.kernel.org, Shawn Guo <shawnguo@kernel.org>
+Subject: Re: [PATCH 09/14] dt-bindings: arm: fsl: document VF boards
+Message-ID: <20200929191836.GA998117@bogus>
 References: <20200926162811.5335-1-krzk@kernel.org>
- <20200926162811.5335-8-krzk@kernel.org>
+ <20200926162811.5335-9-krzk@kernel.org>
 MIME-Version: 1.0
 Content-Type: text/plain; charset=us-ascii
 Content-Disposition: inline
-In-Reply-To: <20200926162811.5335-8-krzk@kernel.org>
+In-Reply-To: <20200926162811.5335-9-krzk@kernel.org>
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-On Sat, 26 Sep 2020 18:28:05 +0200, Krzysztof Kozlowski wrote:
-> Document and adjust the compatibles for i.MX53 based boards.
+On Sat, 26 Sep 2020 18:28:06 +0200, Krzysztof Kozlowski wrote:
+> Document and adjust the compatibles for VF500 and VF600 based boards.
+> The Toradex Colibri Evaluation Boards use multiple compatibles.
 > 
 > Signed-off-by: Krzysztof Kozlowski <krzk@kernel.org>
 > ---
->  Documentation/devicetree/bindings/arm/fsl.yaml | 9 +++++++++
->  1 file changed, 9 insertions(+)
+>  .../devicetree/bindings/arm/fsl.yaml          | 24 +++++++++++++++----
+>  1 file changed, 20 insertions(+), 4 deletions(-)
 > 
 
 Reviewed-by: Rob Herring <robh@kernel.org>
