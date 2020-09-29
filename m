@@ -2,124 +2,105 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from vger.kernel.org (vger.kernel.org [23.128.96.18])
-	by mail.lfdr.de (Postfix) with ESMTP id 5B7DB27C192
-	for <lists+devicetree@lfdr.de>; Tue, 29 Sep 2020 11:46:43 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTP id 6041527C19B
+	for <lists+devicetree@lfdr.de>; Tue, 29 Sep 2020 11:47:07 +0200 (CEST)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S1727883AbgI2Jqm (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Tue, 29 Sep 2020 05:46:42 -0400
-Received: from mail-ej1-f67.google.com ([209.85.218.67]:42521 "EHLO
-        mail-ej1-f67.google.com" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S1727740AbgI2Jqm (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Tue, 29 Sep 2020 05:46:42 -0400
-Received: by mail-ej1-f67.google.com with SMTP id q13so14039631ejo.9;
-        Tue, 29 Sep 2020 02:46:40 -0700 (PDT)
+        id S1728107AbgI2JrC (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Tue, 29 Sep 2020 05:47:02 -0400
+Received: from lindbergh.monkeyblade.net ([23.128.96.19]:49124 "EHLO
+        lindbergh.monkeyblade.net" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
+        with ESMTP id S1725765AbgI2JrC (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Tue, 29 Sep 2020 05:47:02 -0400
+Received: from mail-wr1-x441.google.com (mail-wr1-x441.google.com [IPv6:2a00:1450:4864:20::441])
+        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id D70D6C0613D0
+        for <devicetree@vger.kernel.org>; Tue, 29 Sep 2020 02:47:01 -0700 (PDT)
+Received: by mail-wr1-x441.google.com with SMTP id z1so4635478wrt.3
+        for <devicetree@vger.kernel.org>; Tue, 29 Sep 2020 02:47:01 -0700 (PDT)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+        d=linaro.org; s=google;
+        h=date:from:to:cc:subject:message-id:references:mime-version
+         :content-disposition:content-transfer-encoding:in-reply-to;
+        bh=Xgu+t4c0Hj/GvcOVJdD7iwVpZkR4c7q5e85qV1kBjNo=;
+        b=NOW8WOxtXjyauKTcGXQNShd+/NM0gPC9MrygYedOz5v41mrfSXbNUNmdQfME8QDtvO
+         f3jSB+rhaRY5W2z8QdLK51GueF373dNTEapV4x8ijeTdbjuXS7TENVmJHckAbNrP6Ggo
+         /6yV+RFR1KKo1mIpPBslUDmJ2C887+oSC5ZyYVvHLgMetOQ5XOLTJbWak2Qx1Sp38Ixf
+         UEv4X82/ARW2YE1S6kkP7Pb4cLXGQDuk2YiViBGqQTk0hIKsVlxcffYPpTLnbFIEnGXD
+         qvxQ4MyNmiumjCNW3d5+TYBVrABi0v+xJPjbJTp6CdEi5IYnZHw8t5nCUnzTI2T0Z6Ug
+         0jXQ==
 X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
         d=1e100.net; s=20161025;
         h=x-gm-message-state:date:from:to:cc:subject:message-id:references
-         :mime-version:content-disposition:in-reply-to:user-agent;
-        bh=5nWv42Ih42N2NRVG8MQhIrrPCYfOCsYTrczhveDJBnc=;
-        b=FC0L4dITgIc8QQ4W9S4eR5FiNCly0KqK5dYN1AR0Aganaxh+r0OacdUzDG8EbmqBxP
-         wEln4FBuWx+c2LmnJlZxsuOdcklQBKBaVtK/KrIBkla9DlGbVLoaq/1EU0+7mAOmbjSZ
-         29JvrbZnD2qQlFTMnXF0k7CNRev1PeMzz8f+go59AVPn3FWuOmZfeftDmWsxb7/4F4PL
-         46VD4yonq1Xf8UGvYI2F4GVNmPLCagvy7r2jwPQst9aE3rQfJhtMR++5jPpG2leXZgRO
-         K/C0cwEy9zEqgBkOXyTz3vRjkssseib80s0jIhDJnGGIp2K7ZYKL7n+d0I/rPftSfQXz
-         Bm4Q==
-X-Gm-Message-State: AOAM532VMpeS1nNh6zixwMyLBkZ4uetX9wjq7n8CVRrIEWAkbq69sdq0
-        zEKzBJ6CZKTBE9brj6yZT+DBIY/O8HpA/Q==
-X-Google-Smtp-Source: ABdhPJw1hpwhNC3rQ/oGOS8jzFlP0SaAObmpGtctW3hXetAzfkJI/GW1bHdNVmPi10NuZ+Id7P2tZQ==
-X-Received: by 2002:a17:906:b88e:: with SMTP id hb14mr2840343ejb.543.1601372799559;
-        Tue, 29 Sep 2020 02:46:39 -0700 (PDT)
-Received: from kozik-lap ([194.230.155.194])
-        by smtp.googlemail.com with ESMTPSA id x6sm4663845ejf.59.2020.09.29.02.46.37
-        (version=TLS1_2 cipher=ECDHE-ECDSA-CHACHA20-POLY1305 bits=256/256);
-        Tue, 29 Sep 2020 02:46:38 -0700 (PDT)
-Date:   Tue, 29 Sep 2020 11:46:36 +0200
-From:   Krzysztof Kozlowski <krzk@kernel.org>
-To:     Sakari Ailus <sakari.ailus@linux.intel.com>
-Cc:     Mauro Carvalho Chehab <mchehab@kernel.org>,
-        Rob Herring <robh+dt@kernel.org>,
-        Shawn Guo <shawnguo@kernel.org>,
-        Sascha Hauer <s.hauer@pengutronix.de>,
-        Pengutronix Kernel Team <kernel@pengutronix.de>,
-        Fabio Estevam <festevam@gmail.com>,
-        NXP Linux Team <linux-imx@nxp.com>,
-        linux-media@vger.kernel.org, devicetree@vger.kernel.org,
-        linux-arm-kernel@lists.infradead.org,
-        "linux-kernel@vger.kernel.org" <linux-kernel@vger.kernel.org>
-Subject: Re: [PATCH v4 1/4] dt-bindings: media: imx258: add bindings for
- IMX258 sensor
-Message-ID: <20200929094636.GA11333@kozik-lap>
-References: <20200923152129.21736-1-krzk@kernel.org>
- <20200929091512.GF26842@paasikivi.fi.intel.com>
- <CAJKOXPfRnMg2sUO8dd8CRrwyQFNr-9HN5-QV7Uy4YTVrRJosWQ@mail.gmail.com>
- <20200929094046.GH26842@paasikivi.fi.intel.com>
+         :mime-version:content-disposition:content-transfer-encoding
+         :in-reply-to;
+        bh=Xgu+t4c0Hj/GvcOVJdD7iwVpZkR4c7q5e85qV1kBjNo=;
+        b=THFn0/mGScJtRCT1puJJR2lQUn19nP3kyMeMm3DXC5I4VeFiAB0fVt7epsF7MUU5BR
+         JSeIOXHs9oiFChbSAla8e03CD6ZVxH6NfKWIfAYN/8R0kdRgE1TnEpgnEo1XkV1LkEru
+         YqK+88OaXMQgEffb/5EgK+Mmevt7WHWbybCVPw/GNkH0yZMB5ws11ud3pQp5ECTDrk5+
+         Q7c3bcmDvqMiERQ8qfwCgL1eT7qP7CCbjLf8akcSx714hB5cZ+frm/P4GOpBncXw4DnP
+         oMD03nolGocT+/HipH/ILbahzrT2vVYCNuV6rkt0QMGr6Or4oNes2C8YrREUSgnlwG33
+         6VoQ==
+X-Gm-Message-State: AOAM533plURIo4IEJuR4gsFrE05W7Kn76ZDPWyjjxaXRn8NFclNnrVky
+        PKt6BbN5+GIHY8xUbnUz/gomnw==
+X-Google-Smtp-Source: ABdhPJxXEep7SF9Qpk4Znubq9FBmlxsqdwPUuDmXdWiZ+hVgqT1yyNneHvGay0XQFwJsamVSunbhtA==
+X-Received: by 2002:adf:f207:: with SMTP id p7mr3523229wro.152.1601372820224;
+        Tue, 29 Sep 2020 02:47:00 -0700 (PDT)
+Received: from dell ([91.110.221.236])
+        by smtp.gmail.com with ESMTPSA id u186sm4763822wmu.34.2020.09.29.02.46.58
+        (version=TLS1_3 cipher=TLS_AES_256_GCM_SHA384 bits=256/256);
+        Tue, 29 Sep 2020 02:46:59 -0700 (PDT)
+Date:   Tue, 29 Sep 2020 10:46:57 +0100
+From:   Lee Jones <lee.jones@linaro.org>
+To:     Krzysztof Kozlowski <krzk@kernel.org>
+Cc:     Rob Herring <robh+dt@kernel.org>,
+        Tim Harvey <tharvey@gateworks.com>,
+        Robert Jones <rjones@gateworks.com>,
+        Matti Vaittinen <matti.vaittinen@fi.rohmeurope.com>,
+        devicetree@vger.kernel.org, linux-kernel@vger.kernel.org,
+        linux-power@fi.rohmeurope.com
+Subject: Re: [PATCH v2] dt-bindings: mfd: correct interrupt flags in examples
+Message-ID: <20200929094657.GD6148@dell>
+References: <20200917185613.5905-1-krzk@kernel.org>
 MIME-Version: 1.0
 Content-Type: text/plain; charset=utf-8
 Content-Disposition: inline
-In-Reply-To: <20200929094046.GH26842@paasikivi.fi.intel.com>
-User-Agent: Mutt/1.9.4 (2018-02-28)
+Content-Transfer-Encoding: 8bit
+In-Reply-To: <20200917185613.5905-1-krzk@kernel.org>
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-On Tue, Sep 29, 2020 at 12:40:46PM +0300, Sakari Ailus wrote:
-> On Tue, Sep 29, 2020 at 11:18:46AM +0200, Krzysztof Kozlowski wrote:
-> > On Tue, 29 Sep 2020 at 11:15, Sakari Ailus <sakari.ailus@linux.intel.com> wrote:
-> > >
-> > > Hi Krzysztof,
-> > >
-> > > On Wed, Sep 23, 2020 at 05:21:26PM +0200, Krzysztof Kozlowski wrote:
-> > > > Add bindings for the IMX258 camera sensor.  The bindings, just like the
-> > > > driver, are quite limited, e.g. do not support regulator supplies.
-> > > >
-> > > > Signed-off-by: Krzysztof Kozlowski <krzk@kernel.org>
-> > > >
-> > > > ---
-> > > >
-> > > > Changes since v3:
-> > > > 1. Document also two lane setup.
-> > > >
-> > > > Changes since v2:
-> > > > 1. Remove clock-frequency, add reset GPIOs, add supplies.
-> > >
-> > > Oops. I missed this one.
-> > >
-> > > How does the driver know the appropriate clock frequency for the platform
-> > > if it's not in DT? The sensor supports a range of frequencies, not a single
-> > > frequency.
-> > >
-> > > Could you add clock-frequency back?
-> > 
-> > Not really, it was removed on Rob's request. The bindings do not
-> > describe driver's behavior so how the driver gets frequency should not
-> > be part of the bindings. Also it's not a real problem - the driver
-> > just calls clk_get_rate().
+On Thu, 17 Sep 2020, Krzysztof Kozlowski wrote:
+
+> GPIO_ACTIVE_x flags are not correct in the context of interrupt flags.
+> These are simple defines so they could be used in DTS but they will not
+> have the same meaning:
+> 1. GPIO_ACTIVE_HIGH = 0 = IRQ_TYPE_NONE
+> 2. GPIO_ACTIVE_LOW  = 1 = IRQ_TYPE_EDGE_RISING
 > 
-> How is the rate determined? I mean, many ISPs or CSI-2 receivers that
-> provide the clock are also capable of using a variety of frequencies. But
-> only one can be used on the platform in general.
-
-Having "clock-frequency" property in DTS did not solve that. It has no
-effect on actual frequency.
-
+> Correct the interrupt flags, assuming the author of the code wanted same
+> logical behavior behind the name "ACTIVE_xxx", this is:
+>   ACTIVE_LOW => IRQ_TYPE_LEVEL_LOW
 > 
-> Where does it come from if it's not in DT?
-
-The frequency is either chosen by consumer (imx258) or pre-assigned from
-DT, but not with "clock-frequency" property. There are generic
-properties for this: assigned-clocks, assigned-clock-rates and
-assigned-clock-parents.
-
-These properties should be added to DTS if additionalProperties is
-false, which is the case here... so I could add them. My DTS anyway does
-not use them, as the clock is generated internally on a camera board so
-I don't have a control over it.
-
-Best regards,
-Krzysztof
-
-
+> Signed-off-by: Krzysztof Kozlowski <krzk@kernel.org>
+> Acked-by: Matti Vaittinen <matti.vaittinen@fi.rohmeurope.com> # for BD70528
+> Acked-by: Tim Harvey <tharvey@gateworks.com> # for gateworks-gsc.yaml
+> Acked-by: Rob Herring <robh@kernel.org>
 > 
-> Using another frequency generally leads to failure later on as the desired
-> link frequency likely is not available for a random external clock
-> frequency.
+> ---
+> 
+> Changes since v1:
+> 1. Add acks
+
+FYI, this should not bump the patch version.
+
+> ---
+>  Documentation/devicetree/bindings/mfd/act8945a.txt          | 2 +-
+>  Documentation/devicetree/bindings/mfd/gateworks-gsc.yaml    | 3 ++-
+>  Documentation/devicetree/bindings/mfd/rohm,bd70528-pmic.txt | 2 +-
+>  3 files changed, 4 insertions(+), 3 deletions(-)
+
+-- 
+Lee Jones [李琼斯]
+Senior Technical Lead - Developer Services
+Linaro.org │ Open source software for Arm SoCs
+Follow Linaro: Facebook | Twitter | Blog
