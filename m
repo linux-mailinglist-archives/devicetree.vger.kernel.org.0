@@ -2,48 +2,48 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from vger.kernel.org (vger.kernel.org [23.128.96.18])
-	by mail.lfdr.de (Postfix) with ESMTP id E307327BF86
-	for <lists+devicetree@lfdr.de>; Tue, 29 Sep 2020 10:33:24 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTP id C812D27BF88
+	for <lists+devicetree@lfdr.de>; Tue, 29 Sep 2020 10:33:25 +0200 (CEST)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S1727822AbgI2Ick (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Tue, 29 Sep 2020 04:32:40 -0400
-Received: from lindbergh.monkeyblade.net ([23.128.96.19]:37504 "EHLO
+        id S1727835AbgI2Icp (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Tue, 29 Sep 2020 04:32:45 -0400
+Received: from lindbergh.monkeyblade.net ([23.128.96.19]:37520 "EHLO
         lindbergh.monkeyblade.net" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S1727818AbgI2Ick (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Tue, 29 Sep 2020 04:32:40 -0400
-Received: from mail-pf1-x443.google.com (mail-pf1-x443.google.com [IPv6:2607:f8b0:4864:20::443])
-        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 4EF72C0613D0
-        for <devicetree@vger.kernel.org>; Tue, 29 Sep 2020 01:32:39 -0700 (PDT)
-Received: by mail-pf1-x443.google.com with SMTP id d6so3793409pfn.9
-        for <devicetree@vger.kernel.org>; Tue, 29 Sep 2020 01:32:39 -0700 (PDT)
+        with ESMTP id S1727832AbgI2Ico (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Tue, 29 Sep 2020 04:32:44 -0400
+Received: from mail-pf1-x442.google.com (mail-pf1-x442.google.com [IPv6:2607:f8b0:4864:20::442])
+        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 172DDC0613D0
+        for <devicetree@vger.kernel.org>; Tue, 29 Sep 2020 01:32:44 -0700 (PDT)
+Received: by mail-pf1-x442.google.com with SMTP id w7so3812104pfi.4
+        for <devicetree@vger.kernel.org>; Tue, 29 Sep 2020 01:32:44 -0700 (PDT)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
         d=amarulasolutions.com; s=google;
-        h=from:to:cc:subject:date:message-id:mime-version
-         :content-transfer-encoding;
-        bh=lXrfz0lgdtXjn1yWAWiw2AoB3KPUQJy22o0sHXCM7rE=;
-        b=X+eOV2VtnvWodXlCp4alhgLMkPYiUsUzvIZMjV0MyTI1pAEzaqFuZR8uIUrpVmB2ji
-         XIU5Wwga0kxfLS7RsvbjoV8r7gXpuH6IMllYG95RNYOyFCtM2rmecZQVJRY/pnRK4LUI
-         sGqQ6mhSDSQVZiKNaHCcPmlUoFeL5C/2Dc0Uc=
+        h=from:to:cc:subject:date:message-id:in-reply-to:references
+         :mime-version:content-transfer-encoding;
+        bh=0sUVXqpZJYkTBREYHZGN9bQA2aipRxyO9aiTTvfxyw8=;
+        b=kfiW+NjdDy+C2sILWaGX88I2j6iS3pWFqcOPb2ZJZw4qrj1QS47zGBedSGdh8guFTY
+         7mMLHb1rV8z8LCZ4fhO82oLCjnExT4WTFpie9mwGkjshyZHsBWLWAYgzr7rylJaU8Nld
+         aw2KqJk/wk/SYbFuhHEKz38/9fMW122qWpEto=
 X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
         d=1e100.net; s=20161025;
-        h=x-gm-message-state:from:to:cc:subject:date:message-id:mime-version
-         :content-transfer-encoding;
-        bh=lXrfz0lgdtXjn1yWAWiw2AoB3KPUQJy22o0sHXCM7rE=;
-        b=q7UO1bjq3IQ3MC0soc3exB5TYaSe6A3w19pNazMc9uB+ct8hvk6VnVILX8z2zMYev1
-         HXlu9ePuUJA97c4DRMpibmHB6+7gbq7NbhYHeLCf3odk2coO/J3CfLCCN1TG1IAgpdpd
-         y47eOzX4cV/bzjjfSuNIIhuIq5nLPTcreXJQX/Fcw3NOvrBNRoKMg3tuT99G6KQBw6+u
-         6stV2VNzezP3CmLgsJnSCTsQ4B8BuONo7G8xHuXKWVJeNrxRy2gEQRYPIS+Hu6VkYECM
-         uNSR4QUe3V+nl+xIgi3RSDs2bYrpuZxe05iOCI6ANZnfeES1x9i1VSfzjPb5LdXpEYE/
-         mTfQ==
-X-Gm-Message-State: AOAM532+hLMxuFVd6VYFcDKXrqk4mFh/k9fmna/4W4pa8/THICh+gXVW
-        7g/oEM3o6aDu5hAlhk36Kl8K++4tH5EXdfhg
-X-Google-Smtp-Source: ABdhPJxS9qQ/WSI+qFu8XiAYmDf0txJeY0HYFYXYaxcTfKtN443h0IRWD7p/p/ALZTycg0vcibK8Lw==
-X-Received: by 2002:a05:6a00:844:b029:13f:dd99:d1a4 with SMTP id q4-20020a056a000844b029013fdd99d1a4mr3202215pfk.31.1601368358748;
-        Tue, 29 Sep 2020 01:32:38 -0700 (PDT)
+        h=x-gm-message-state:from:to:cc:subject:date:message-id:in-reply-to
+         :references:mime-version:content-transfer-encoding;
+        bh=0sUVXqpZJYkTBREYHZGN9bQA2aipRxyO9aiTTvfxyw8=;
+        b=ToS69wG0IOWlo5/MxJgBbjzPBVFex4sPhPOBnkDrLa3GXQTnENJaEqD8kkUTsQqQ/m
+         IgKbQR3+TZB6yK8yDBH9V6tBrcOpSJIUoICziHI4ys7S81RTtV6uspDRKai4lV7eHVTp
+         lP2IH6tw+U4lEp+a9GsWkJ1B1ihBdu7O+FA9bRPZztQLxpaAI37Tc1h+rqlYNTJ2IWvL
+         YAqRJG4Y4xnLmxQmRNo1C/tPipvkDFfe5Ti1KsPBGlvWqhwMKDivJOuMm6vxX0RQBQ7Z
+         AJAz5OgHkQLteaDcRTOTht1UWl7QAsp3duRecCnZX1GpP4bZOldm6cHYS5mLbkvG3FCk
+         Zv2g==
+X-Gm-Message-State: AOAM530dIoxfqNImHB0D6e3ghdikpUEU1zu3wUJI56MUlW2UPof0VcRU
+        60c14IeodJC1DAYhFLk2G8E3Gg==
+X-Google-Smtp-Source: ABdhPJzFRDorTIZS2Gzyq7KzAqkcBtri5d5hVUIMskwm3+Oj6sHiU6SVA+IXKnbF7FFx6WPpwe1KKw==
+X-Received: by 2002:a17:902:6902:b029:d0:cb2d:f26d with SMTP id j2-20020a1709026902b02900d0cb2df26dmr3650727plk.6.1601368363652;
+        Tue, 29 Sep 2020 01:32:43 -0700 (PDT)
 Received: from ub-XPS-13-9350.pdxnet.pdxeng.ch ([2405:201:c809:c7d5:b511:310d:8495:d767])
-        by smtp.gmail.com with ESMTPSA id 36sm3961241pgl.72.2020.09.29.01.32.33
+        by smtp.gmail.com with ESMTPSA id 36sm3961241pgl.72.2020.09.29.01.32.39
         (version=TLS1_3 cipher=TLS_AES_256_GCM_SHA384 bits=256/256);
-        Tue, 29 Sep 2020 01:32:38 -0700 (PDT)
+        Tue, 29 Sep 2020 01:32:43 -0700 (PDT)
 From:   Jagan Teki <jagan@amarulasolutions.com>
 To:     Heiko Stuebner <heiko@sntech.de>, Rob Herring <robh+dt@kernel.org>
 Cc:     Suniel Mahesh <sunil@amarulasolutions.com>,
@@ -52,11 +52,14 @@ Cc:     Suniel Mahesh <sunil@amarulasolutions.com>,
         linux-rockchip@lists.infradead.org, devicetree@vger.kernel.org,
         linux-kernel@vger.kernel.org,
         linux-amarula <linux-amarula@amarulasolutions.com>,
-        Jagan Teki <jagan@amarulasolutions.com>
-Subject: [PATCH v4 0/7] arm64: dts: rockchip: Add Engicam PX30.Core
-Date:   Tue, 29 Sep 2020 14:02:10 +0530
-Message-Id: <20200929083217.25406-1-jagan@amarulasolutions.com>
+        Jagan Teki <jagan@amarulasolutions.com>,
+        Rob Herring <robh@kernel.org>
+Subject: [PATCH v4 1/7] dt-bindings: arm: rockchip: Add Engicam PX30.Core EDIMM2.2 Starter Kit
+Date:   Tue, 29 Sep 2020 14:02:11 +0530
+Message-Id: <20200929083217.25406-2-jagan@amarulasolutions.com>
 X-Mailer: git-send-email 2.25.1
+In-Reply-To: <20200929083217.25406-1-jagan@amarulasolutions.com>
+References: <20200929083217.25406-1-jagan@amarulasolutions.com>
 MIME-Version: 1.0
 Content-Transfer-Encoding: 8bit
 Precedence: bulk
@@ -65,57 +68,42 @@ X-Mailing-List: devicetree@vger.kernel.org
 
 PX30.Core is an EDIMM SOM based on Rockchip PX30 from Engicam.
 
-PX30.Core needs to mount on top of Engicam baseboards for creating
-complete platform boards.
+EDIMM2.2 Starter Kit is an EDIMM 2.2 Form Factor Capacitive
+Evaluation Board from Engicam.
 
-Possible baseboards are,
-- EDIMM2.2 Starter Kit
-- C.TOUCH 2.0 Carrier Board
+PX30.Core needs to mount on top of this Evaluation board for
+creating complete PX30.Core EDIMM2.2 Starter Kit.
 
-Changes for v4:
-- collect Rob A-b
-Changes for v3:
-- resolved Johan comments about sorting node properties
-- add copyright to Amarula Solutions
-- update px30 dtsi author
+Add bindings for it.
+
+Signed-off-by: Jagan Teki <jagan@amarulasolutions.com>
+Acked-by: Rob Herring <robh@kernel.org>
+---
+Changes for v4, v3:
+- none
 Changes for v2:
-- include C.TOUCH 2.0 carrier board
-- skip 10" OF LCD as it requires separate dts with panel support.
+- collect Rob A-b
 
-Note: These baseboards can be used for i.MX8 SOM's as well. So having
-baseboard on respective SoC seems to be easy rather than making it
-common across all.
+ Documentation/devicetree/bindings/arm/rockchip.yaml | 6 ++++++
+ 1 file changed, 6 insertions(+)
 
-Any inputs?
-Jagan.
-
-Jagan Teki (6):
-  dt-bindings: arm: rockchip: Add Engicam PX30.Core EDIMM2.2 Starter Kit
-  arm64: dts: rockchip: px30: Add Engicam EDIMM2.2 Starter Kit
-  arm64: dts: rockchip: Add Engicam PX30.Core EDIMM2.2 Starter Kit
-  dt-bindings: arm: rockchip: Add Engicam PX30.Core C.TOUCH 2.0
-  arm64: dts: rockchip: px30: Add Engicam C.TOUCH 2.0
-  arm64: dts: rockchip: Add Engicam PX30.Core C.TOUCH 2.0
-
-Michael Trimarchi (1):
-  arm64: dts: rockchip: Add Engicam PX30.Core SOM
-
- .../devicetree/bindings/arm/rockchip.yaml     |  12 +
- arch/arm64/boot/dts/rockchip/Makefile         |   2 +
- .../dts/rockchip/px30-engicam-common.dtsi     |  39 +++
- .../dts/rockchip/px30-engicam-ctouch2.dtsi    |   8 +
- .../dts/rockchip/px30-engicam-edimm2.2.dtsi   |   7 +
- .../dts/rockchip/px30-px30-core-ctouch2.dts   |  22 ++
- .../dts/rockchip/px30-px30-core-edimm2.2.dts  |  21 ++
- .../boot/dts/rockchip/px30-px30-core.dtsi     | 232 ++++++++++++++++++
- 8 files changed, 343 insertions(+)
- create mode 100644 arch/arm64/boot/dts/rockchip/px30-engicam-common.dtsi
- create mode 100644 arch/arm64/boot/dts/rockchip/px30-engicam-ctouch2.dtsi
- create mode 100644 arch/arm64/boot/dts/rockchip/px30-engicam-edimm2.2.dtsi
- create mode 100644 arch/arm64/boot/dts/rockchip/px30-px30-core-ctouch2.dts
- create mode 100644 arch/arm64/boot/dts/rockchip/px30-px30-core-edimm2.2.dts
- create mode 100644 arch/arm64/boot/dts/rockchip/px30-px30-core.dtsi
-
+diff --git a/Documentation/devicetree/bindings/arm/rockchip.yaml b/Documentation/devicetree/bindings/arm/rockchip.yaml
+index 7025d00c06cc..bda0f2781890 100644
+--- a/Documentation/devicetree/bindings/arm/rockchip.yaml
++++ b/Documentation/devicetree/bindings/arm/rockchip.yaml
+@@ -70,6 +70,12 @@ properties:
+           - const: elgin,rv1108-r1
+           - const: rockchip,rv1108
+ 
++      - description: Engicam PX30.Core EDIMM2.2 Starter Kit
++        items:
++          - const: engicam,px30-core-edimm2.2
++          - const: engicam,px30-px30-core
++          - const: rockchip,px30
++
+       - description: Firefly Firefly-RK3288
+         items:
+           - enum:
 -- 
 2.25.1
 
