@@ -2,138 +2,238 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from vger.kernel.org (vger.kernel.org [23.128.96.18])
-	by mail.lfdr.de (Postfix) with ESMTP id AE22B27C52F
-	for <lists+devicetree@lfdr.de>; Tue, 29 Sep 2020 13:33:43 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTP id 5135727C54D
+	for <lists+devicetree@lfdr.de>; Tue, 29 Sep 2020 13:34:30 +0200 (CEST)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S1729431AbgI2LcM (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Tue, 29 Sep 2020 07:32:12 -0400
-Received: from esa5.microchip.iphmx.com ([216.71.150.166]:24133 "EHLO
-        esa5.microchip.iphmx.com" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S1728493AbgI2LaG (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Tue, 29 Sep 2020 07:30:06 -0400
-DKIM-Signature: v=1; a=rsa-sha256; c=simple/simple;
-  d=microchip.com; i=@microchip.com; q=dns/txt; s=mchp;
-  t=1601379007; x=1632915007;
-  h=from:to:cc:subject:date:message-id:references:
-   in-reply-to:content-transfer-encoding:mime-version;
-  bh=k2diZ9vY3DhB3YIh7xEodFh2NZ4a3r4j+K8pi+DiPNg=;
-  b=WO5LSz/NYx/22EygMtHD9g1E+dgGYHAFKuPdsrv3CrB0y5PClZpFvHKN
-   vicFRQGEG5NGYuTeYY9JC/x0VsAeeiOV2eC1CKPQ/vvVQZhvhSBU+67+W
-   W4Ku0GsMpbAzIyclV0gbeqQN7r6jrhZZK6gTihavmLK/a8SbTKcsZq8IG
-   5r0T/zT4HN5KG1A7nKCpGL76fQ8PXcf1akZ2Mffbh9n+7A3ifcQ/g/D1d
-   j2Pfpsb6hdr3JmfJfWQCX3xWCLaIkgjZ3LIZDTU0CMesezJOgaa4rxeh5
-   sR4dIGiPUpf+n4Hl3gSHVNMq/qfT1Xw7V8HjnIwSXoXQjpD276HEP+Ivk
-   Q==;
-IronPort-SDR: ajmADmWFW2J1HkYANdRQ+gQ2ktCGLG96nI8ivfnYEuAUKs25IBXcVZj3ZqYurl460I3HpiO8am
- EiHhTV9YpeO7TRzG0cLYQuUw6ffZP0uLEYvMzDYQOuqomiaavCM42Eyq1AV3K52OO0cXWQFfLE
- UhBQ+YFIhKrmKFq765MMeqzCTX/YeSekrWjqgo63SCtXg+2qJNYFMBEbPNckjOhAgSEA8egoF9
- lUz4gd0Ut2d9OMnrcX0GVrWsLaEHz2oDmV0ytacTzi9MXjV1L14mMMmkxB4FmiNwtZFz5shQTs
- aJo=
-X-IronPort-AV: E=Sophos;i="5.77,318,1596524400"; 
-   d="scan'208";a="92767086"
-Received: from smtpout.microchip.com (HELO email.microchip.com) ([198.175.253.82])
-  by esa5.microchip.iphmx.com with ESMTP/TLS/AES256-SHA256; 29 Sep 2020 04:25:59 -0700
-Received: from chn-vm-ex01.mchp-main.com (10.10.85.143) by
- chn-vm-ex04.mchp-main.com (10.10.85.152) with Microsoft SMTP Server
- (version=TLS1_2, cipher=TLS_ECDHE_RSA_WITH_AES_128_GCM_SHA256) id
- 15.1.1979.3; Tue, 29 Sep 2020 04:25:58 -0700
-Received: from NAM12-BN8-obe.outbound.protection.outlook.com (10.10.215.89) by
- email.microchip.com (10.10.87.71) with Microsoft SMTP Server (version=TLS1_2,
- cipher=TLS_ECDHE_RSA_WITH_AES_128_GCM_SHA256) id 15.1.1979.3 via Frontend
- Transport; Tue, 29 Sep 2020 04:25:48 -0700
+        id S1728442AbgI2LeQ (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Tue, 29 Sep 2020 07:34:16 -0400
+Received: from mail-am6eur05on2040.outbound.protection.outlook.com ([40.107.22.40]:7136
+        "EHLO EUR05-AM6-obe.outbound.protection.outlook.com"
+        rhost-flags-OK-OK-OK-FAIL) by vger.kernel.org with ESMTP
+        id S1729564AbgI2Ld3 (ORCPT <rfc822;devicetree@vger.kernel.org>);
+        Tue, 29 Sep 2020 07:33:29 -0400
 ARC-Seal: i=1; a=rsa-sha256; s=arcselector9901; d=microsoft.com; cv=none;
- b=VxwN5Cxk8FylNSlzMgCpraawJ9VtnzwUN806gyqIwnFcWeAAVfe8+9SEODEcj+DIKcTUF7WynvjHA40B0JAuIvYrFnng2TSoI9kv6XQOVjAbw8OCK7EKiAL4nVuIAu2muRJsjmfXIX2BU1Wt0doGU2pWtj89yQyvWfnqWBPpaN9iy17ZTGLnYYm9/kGI+VVzk8XhaATkgtrAQcku0I6xfYbGFZ5EodZshTP7cPL/eCyv/IFOJtbQ+qVI/RfbInb6YpgV6b3G5Aous5VG8xvm+7AIMLLv/35Wfs1Ll38NF06mfQlAsIF4VDdNgkiodfJxUDJsKYLfBiBvKMy9N2SINA==
+ b=Reqcky3FzGc8PhDNXif/xczpugQouTMmw4ynix/7kCQbOH6ahInWS2QTRmhN/rYP36i3gmpE2rqqDz7gKux2r2SpQp5INZnb/OTVNSp2keTX9KJnQ8AF81/PF/dur3ntimGJb/7MGF162DbAJ+sSgTqgcy3wTrycXZcXRn6X9WNqrKOr+o3dL1kkC8PwsKrX6tGqWXoAsoEUMbWECeaTZ4FbI1aQHFp3RlS9rZX6C9WVIp2iC9UI489MlOOmKvNZAHykzG0aD8BxuFB5oNykxzDi0MCydBaHwSb9qaX2XWpiKA72+kdVmKLAZ6+jKKT/Y7h5jS+m7+EquzWTdglX3g==
 ARC-Message-Signature: i=1; a=rsa-sha256; c=relaxed/relaxed; d=microsoft.com;
  s=arcselector9901;
  h=From:Date:Subject:Message-ID:Content-Type:MIME-Version:X-MS-Exchange-SenderADCheck;
- bh=k2diZ9vY3DhB3YIh7xEodFh2NZ4a3r4j+K8pi+DiPNg=;
- b=EinA0MDr9VcyWKK3zpCEUcMby8xikc7O31YZkpHdTEkYnmo0cMOLLIW8pzirlPVayq1ob3mzMeNH8MrXTZB6bhPoHR/C3r72I6rfqEbb8EjhH5KM1zpdInFK56OMk5ZMH+mjybi3LZLuEif6NDB6i9OcntLRj+XEtMD56gjt4YUPdBN3sV3enrtSeSzq7So5rJNVeMangIq+4gYF18xG4SBY2XiK8l3C8/nnVT4zxIKgV1wjqV8GhLNw51bNH7L1Ua2lwSHSU4IKoOIy5YMo5hcrv0ZebT7rx1TBdGhjwOWGzS/L9VY4uobudWvtP85GKoFpkNutQmuxYxiqxUGMOQ==
+ bh=lDj2atOl0im16itVrLLdeKpTlXAVvCK71oypg+vqzNU=;
+ b=fd5S7HWXjMhZ+J9SEL5nTOOb7nwuyqchMO3weSVH7nmcBMa+sdj2W52z4H3bXpwKxfHhJoR4x3af68tUwjZ2Pgo0FWzpy9SPxyuDCK7l04IuStcG0KWICIdvchuX9TrR4Mvfb0AOAIvY2ewzpuUEh52LCDo33o4yUZI5UxrY+hrppTLc7lMW0YN4eMtFnGntxy6+WgZHSJ55BafGlLYezKxPHf/cdvnwrUnL/9Tz+KqrNLJa3prniwDIT16TUvrxQgLfga2IrguLPh5mVG/43b1fDCe/X0YWyDaP4cbYuD3AOvX1/Upm6fZdbUD6/cXw+8N5r+fqL6/56KQVuieglA==
 ARC-Authentication-Results: i=1; mx.microsoft.com 1; spf=pass
- smtp.mailfrom=microchip.com; dmarc=pass action=none
- header.from=microchip.com; dkim=pass header.d=microchip.com; arc=none
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
- d=microchiptechnology.onmicrosoft.com;
- s=selector2-microchiptechnology-onmicrosoft-com;
+ smtp.mailfrom=nxp.com; dmarc=pass action=none header.from=nxp.com; dkim=pass
+ header.d=nxp.com; arc=none
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=nxp.com; s=selector2;
  h=From:Date:Subject:Message-ID:Content-Type:MIME-Version:X-MS-Exchange-SenderADCheck;
- bh=k2diZ9vY3DhB3YIh7xEodFh2NZ4a3r4j+K8pi+DiPNg=;
- b=KOGJjhNPsy39gJpq8I1+STpCa+LTbngF6QLOVQmNag3OOz8tBZWqgLnhxLswaCCTH8K4rhA3jjNULS/XXcW7hKxPwy7GWpMOSvKnTxw/bXfKSc46teZCzYA6/qiQltcOUcCqBi40okv11GKuQ1TlXsIKOhh96yrLXgtdGeBqTc8=
-Received: from DM6PR11MB4283.namprd11.prod.outlook.com (2603:10b6:5:206::32)
- by DM6PR11MB3868.namprd11.prod.outlook.com (2603:10b6:5:19f::13) with
+ bh=lDj2atOl0im16itVrLLdeKpTlXAVvCK71oypg+vqzNU=;
+ b=Q15nMGQb4ZBIBiVupSeDR65VEUSMSzPxorULk9DNBZbmVoQrzBm52PQAXQWmJzbMYzNK64aMf+RnUh8EHgam5zgg3GgCtax9lostiETuYKdZrY2AwaQvQCRMm3QxZneSIPRnlff0FxtrCeaGjgIW5yNz57+orgXNFAcNNdDVzio=
+Authentication-Results: kernel.org; dkim=none (message not signed)
+ header.d=none;kernel.org; dmarc=none action=none header.from=nxp.com;
+Received: from VI1PR04MB5696.eurprd04.prod.outlook.com (2603:10a6:803:e7::13)
+ by VI1PR04MB5504.eurprd04.prod.outlook.com (2603:10a6:803:d8::29) with
  Microsoft SMTP Server (version=TLS1_2,
- cipher=TLS_ECDHE_RSA_WITH_AES_256_GCM_SHA384) id 15.20.3433.32; Tue, 29 Sep
- 2020 11:25:56 +0000
-Received: from DM6PR11MB4283.namprd11.prod.outlook.com
- ([fe80::e97c:9647:f0c8:e603]) by DM6PR11MB4283.namprd11.prod.outlook.com
- ([fe80::e97c:9647:f0c8:e603%5]) with mapi id 15.20.3412.029; Tue, 29 Sep 2020
- 11:25:56 +0000
-From:   <Thomas.Kopp@microchip.com>
-To:     <mkl@pengutronix.de>, <geert@linux-m68k.org>,
-        <manivannan.sadhasivam@linaro.org>, <o.rempel@pengutronix.de>
-CC:     <wg@grandegger.com>, <robh+dt@kernel.org>,
-        <linux-can@vger.kernel.org>, <devicetree@vger.kernel.org>,
-        <linux-kernel@vger.kernel.org>, <dev.kurt@vandijck-laurijssen.be>
-Subject: RE: [PATCH 2/6] dt-bindings: can: mcp25xxfd: document device tree
- bindings
-Thread-Topic: [PATCH 2/6] dt-bindings: can: mcp25xxfd: document device tree
- bindings
-Thread-Index: AQHWh7qHzwbkY+uxckSZ1SssJeansKl/e10AgAAFjQCAABY4wA==
-Date:   Tue, 29 Sep 2020 11:25:56 +0000
-Message-ID: <DM6PR11MB4283A6A532ED88F7D1058A8BFB320@DM6PR11MB4283.namprd11.prod.outlook.com>
-References: <20200910133806.25077-1-manivannan.sadhasivam@linaro.org>
- <20200910133806.25077-3-manivannan.sadhasivam@linaro.org>
- <CAMuHMdVkwGjr6dJuMyhQNqFoJqbh6Ec5V2b5LenCshwpM2SDsQ@mail.gmail.com>
- <cbfa3fdb-bcfd-cca5-fcf5-95a78da0447d@pengutronix.de>
-In-Reply-To: <cbfa3fdb-bcfd-cca5-fcf5-95a78da0447d@pengutronix.de>
-Accept-Language: en-US
-Content-Language: en-US
-X-MS-Has-Attach: 
-X-MS-TNEF-Correlator: 
-authentication-results: pengutronix.de; dkim=none (message not signed)
- header.d=none;pengutronix.de; dmarc=none action=none
- header.from=microchip.com;
-x-originating-ip: [93.241.63.210]
-x-ms-publictraffictype: Email
-x-ms-office365-filtering-correlation-id: d61fecd1-7ae4-4043-0f2c-08d8646a6f22
-x-ms-traffictypediagnostic: DM6PR11MB3868:
-x-microsoft-antispam-prvs: <DM6PR11MB386825C8492649503875A346FB320@DM6PR11MB3868.namprd11.prod.outlook.com>
-x-bypassexternaltag: True
-x-ms-oob-tlc-oobclassifiers: OLM:9508;
-x-ms-exchange-senderadcheck: 1
-x-microsoft-antispam: BCL:0;
-x-microsoft-antispam-message-info: lBOdafeqklu/i/M+cJJNGT/Ej2rUaDeB3KIwK0LDop4sbvoqP7+BTHuiAjyAXSS/BV5nFiY66CYT1xl3n89a9RAZ/jss2OHu1ojci1ji2xfbqYQgkj4GGslIyVA3sLsnlVtykWogDsGZJac47Xb0bGs5BylMRzE2mMl4WMoCZByBaNHsSI+xYe/61pB0TRZDPHZOa3jUIePOnPvxFrESQZ55dVO9XkHWwuQC0lseruC7Pj8IBFXPll8edod5Jti8jxBAoE5bw+1hd+8UFyxudXNnsPjP+6bmY9+FtuQcHEbsgw3f7OlREtAlSNUEQMPFrzD0EQYJ6DCuwE7KE+VZ8w==
-x-forefront-antispam-report: CIP:255.255.255.255;CTRY:;LANG:en;SCL:1;SRV:;IPV:NLI;SFV:NSPM;H:DM6PR11MB4283.namprd11.prod.outlook.com;PTR:;CAT:NONE;SFS:(396003)(136003)(39860400002)(346002)(376002)(366004)(66476007)(66946007)(66556008)(64756008)(66446008)(55016002)(6506007)(26005)(71200400001)(86362001)(76116006)(4326008)(8676002)(7416002)(5660300002)(186003)(52536014)(4744005)(33656002)(7696005)(2906002)(54906003)(110136005)(8936002)(478600001)(316002)(9686003);DIR:OUT;SFP:1101;
-x-ms-exchange-antispam-messagedata: SQScqTG6XFSfNsucuH7NsUemqOw+EYpnqiaJrt6KNg0rB2+uuMxM6tMKjn0+uKKt10Igbbh6eqL7WdM0AX6a9XrJoCrkG81XNgDYRfmkMb5G5QH0/6xGETXTk3XFDhjPt3Jxrq/hAs9e1kxmstLZQoCFih4b4PIkd7wRUHCpVQmojCdOhrA9F+VIOTjjznnYGOKS3kfE6OdijlApAFfr8NCSPGFERJmLxsTDk0YOxLSTib3R5K3LLHTDRzBFbv8mUszWgKXxC8aHwRYAt1GvEbgYkl/N8EkHyJMb+rew2JkGzCqkRcg6CXh7JQSWJsD4XYLd0VsXOuMQfT7ieFPoJ8bWFi4zIrJU7rVakF59cv2KdnzrMdUfDdDXW5ZXEG+Yhkx98TIHsz/UooXuprP/shCX7zX/DW1JkK/A8ZAr5tyEvKVC1XUm8utubx9flTB1Zk+iMMfibQJTTR+B7//m3XptkCmf4vQNVdlqxt5AoBNkKyAAdXId4Wng5nmmpjGXk+kaxPfr4vjW4kw6EO34GchClNNfaooy+UXnz5xU+zyTH9bPS0HmYDDH56scF/VvMbfUQ8F4r43Xzn41kqUdre0v8SGSNdtDwp2DVH1Hr+GiF859WxH3sVWU6Hne+Xo9LEb+qMyV4SAD7osx1j7dSQ==
-x-ms-exchange-transport-forked: True
-Content-Type: text/plain; charset="utf-8"
-Content-Transfer-Encoding: base64
+ cipher=TLS_ECDHE_RSA_WITH_AES_256_GCM_SHA384) id 15.20.3412.20; Tue, 29 Sep
+ 2020 11:32:23 +0000
+Received: from VI1PR04MB5696.eurprd04.prod.outlook.com
+ ([fe80::983b:73a7:cc93:e63d]) by VI1PR04MB5696.eurprd04.prod.outlook.com
+ ([fe80::983b:73a7:cc93:e63d%3]) with mapi id 15.20.3433.032; Tue, 29 Sep 2020
+ 11:32:23 +0000
+From:   Vladimir Oltean <vladimir.oltean@nxp.com>
+To:     robh+dt@kernel.org, shawnguo@kernel.org, mpe@ellerman.id.au,
+        devicetree@vger.kernel.org
+Cc:     benh@kernel.crashing.org, paulus@samba.org,
+        linuxppc-dev@lists.ozlabs.org, linux-kernel@vger.kernel.org,
+        netdev@vger.kernel.org, madalin.bucur@oss.nxp.com,
+        radu-andrei.bulie@nxp.com, fido_max@inbox.ru,
+        Vladimir Oltean <olteanv@gmail.com>
+Subject: [PATCH v2 devicetree 2/2] powerpc: dts: t1040rdb: add ports for Seville Ethernet switch
+Date:   Tue, 29 Sep 2020 14:32:09 +0300
+Message-Id: <20200929113209.3767787-3-vladimir.oltean@nxp.com>
+X-Mailer: git-send-email 2.25.1
+In-Reply-To: <20200929113209.3767787-1-vladimir.oltean@nxp.com>
+References: <20200929113209.3767787-1-vladimir.oltean@nxp.com>
+Content-Transfer-Encoding: 8bit
+Content-Type: text/plain
+X-Originating-IP: [188.26.229.171]
+X-ClientProxiedBy: AM4PR05CA0008.eurprd05.prod.outlook.com (2603:10a6:205::21)
+ To VI1PR04MB5696.eurprd04.prod.outlook.com (2603:10a6:803:e7::13)
 MIME-Version: 1.0
+X-MS-Exchange-MessageSentRepresentingType: 1
+Received: from localhost.localdomain (188.26.229.171) by AM4PR05CA0008.eurprd05.prod.outlook.com (2603:10a6:205::21) with Microsoft SMTP Server (version=TLS1_2, cipher=TLS_ECDHE_RSA_WITH_AES_256_GCM_SHA384) id 15.20.3433.32 via Frontend Transport; Tue, 29 Sep 2020 11:32:21 +0000
+X-MS-PublicTrafficType: Email
+X-MS-Office365-Filtering-HT: Tenant
+X-MS-Office365-Filtering-Correlation-Id: 7399e800-0784-4a35-826d-08d8646b5543
+X-MS-TrafficTypeDiagnostic: VI1PR04MB5504:
+X-MS-Exchange-Transport-Forked: True
+X-Microsoft-Antispam-PRVS: <VI1PR04MB5504DEEFB635C7AE60F643D5E0320@VI1PR04MB5504.eurprd04.prod.outlook.com>
+X-MS-Oob-TLC-OOBClassifiers: OLM:6790;
+X-MS-Exchange-SenderADCheck: 1
+X-Microsoft-Antispam: BCL:0;
+X-Microsoft-Antispam-Message-Info: kx4jLjWqz1u6NV1xi5YWeCLXc2bOXihbffNnL0WEehxJAA5LlIgJyQQONo0vquATkKRlGvPBNYnNseLFzMs35GEmqsVb6SCyGeRmsQB83uPo2F+6TEUPlaZYUSS6Jj6DQEFjBXhr+hyCOgSaPN6+IGmE184df6B1Sefsa6jUsN1HHIKQSzAV8Cnh4fg9Xcvk3nhL0T768ZA59F1qBHE31R8Aqnk0LYe6rio4suOM+SaN5acvyWMcP3iQosri1xkVhHxD5tnRLgKkmA1J3V3CRnJVW5scJ3+DIO3dMIb3P6hC38a8JoD7YZtNiGYrS7LWj6pL7rEGm7EdyliXO9igR/kc9h1GkHjao1N65qXAKtG2kap7uHeidu2kfDNj9Uel12zTnfMBEzsF3WkDm4rkreKL7lqmKJfIF3ucceCqTUT1z53rTaRCQMVV6exSymaI
+X-Forefront-Antispam-Report: CIP:255.255.255.255;CTRY:;LANG:en;SCL:1;SRV:;IPV:NLI;SFV:NSPM;H:VI1PR04MB5696.eurprd04.prod.outlook.com;PTR:;CAT:NONE;SFS:(4636009)(366004)(5660300002)(36756003)(66476007)(66946007)(66556008)(1076003)(6512007)(69590400008)(44832011)(83380400001)(2616005)(6666004)(6486002)(26005)(4326008)(956004)(52116002)(86362001)(186003)(8936002)(16526019)(2906002)(7416002)(6506007)(8676002)(498600001);DIR:OUT;SFP:1101;
+X-MS-Exchange-AntiSpam-MessageData: rhlHLVAf+c8dN5D6a3rDcOvCp9YVR4z1ofYoOmccB2G5eM79L6skwnwVnTb1AYJWIjqcml6Eld4fOroBRMUkQ2GykSngM8renKt40LJ/rOHBeOFieFGFfayT7Kp8Fp1slI0OgKh9IIHPt/01XHtC487x4ft4+/+8LEPgsdOBsInTk3plZzopSbL182dQCgT1+YTLJXJ52jJR7odVI4UzcLOt8HsNFxf5mL61KPykdWgEoCvudRpGnBhvmVbyyAbLlri4ae0RlKhsQ9+mCRsBRDnFAXHjJKxQD5QKftkTYHj6lrpkdjEUZ20RJmzuBIKuXtsyqqC8NCEqHy2/Ku4bFU6kAUltWP6UZtfN8mqdoiYIcTAiKpSGFOxyRxV22lBYbTBxp+0Ps75oKxkNtDsnk/9hoj6iPX9mHrYgi1wTKW9QuEgTC2PnpDc6khcp7yAmygYgBfh7JQ390/EYyCIVuqWDP/pDm0OWAmlffCLEqUDQhMz3Ar+WShQahyk37LGc0ZcmeqAHB7n9qTNoSZWPegF8jv1GLZBSKGbaVMyx8bwV0uUU8Sj/4fJe/z3wjq+EjMyzePFpMShNzIh5DaONJa2qnafJA+T9JW0Sc8gUQF1sdtrwevpnUQDIgTihdPWZyJjwwR405pEQCe4p074+EQ==
+X-OriginatorOrg: nxp.com
+X-MS-Exchange-CrossTenant-Network-Message-Id: 7399e800-0784-4a35-826d-08d8646b5543
+X-MS-Exchange-CrossTenant-AuthSource: VI1PR04MB5696.eurprd04.prod.outlook.com
 X-MS-Exchange-CrossTenant-AuthAs: Internal
-X-MS-Exchange-CrossTenant-AuthSource: DM6PR11MB4283.namprd11.prod.outlook.com
-X-MS-Exchange-CrossTenant-Network-Message-Id: d61fecd1-7ae4-4043-0f2c-08d8646a6f22
-X-MS-Exchange-CrossTenant-originalarrivaltime: 29 Sep 2020 11:25:56.5070
+X-MS-Exchange-CrossTenant-OriginalArrivalTime: 29 Sep 2020 11:32:22.9649
  (UTC)
-X-MS-Exchange-CrossTenant-fromentityheader: Hosted
-X-MS-Exchange-CrossTenant-id: 3f4057f3-b418-4d4e-ba84-d55b4e897d88
-X-MS-Exchange-CrossTenant-mailboxtype: HOSTED
-X-MS-Exchange-CrossTenant-userprincipalname: HV/GzYwT/nZgU6BYBNKOemWO058ctGh979C9jv9kz4IBEmgYFio6nhL/0PKodjyTdkv1FdOKFSPOYiy/PgVVZR/5tX/EB/fD0tHzIg6dMOk=
-X-MS-Exchange-Transport-CrossTenantHeadersStamped: DM6PR11MB3868
+X-MS-Exchange-CrossTenant-FromEntityHeader: Hosted
+X-MS-Exchange-CrossTenant-Id: 686ea1d3-bc2b-4c6f-a92c-d99c5c301635
+X-MS-Exchange-CrossTenant-MailboxType: HOSTED
+X-MS-Exchange-CrossTenant-UserPrincipalName: 4vIlkU+GoZ3SPfn3f12U5lgzMdptWnQ3T162NaQTc3WRYNNZ7Wqu2psRHnoHeGynu0sRoDrEReErbKLda3hGzw==
+X-MS-Exchange-Transport-CrossTenantHeadersStamped: VI1PR04MB5504
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-PiBTbyBmYXIgaW4gdGhhdCBuYW1lIHNwYWNlIHRoZXJlIGFyZSB0aGUgbWNwMjUxMCwgbWNwMjUx
-NSBhbmQgbWNwMjU2MjUuDQo+IEZyb20gdGhlDQo+IFNXIHBvaW50IG9mIHZpZXcgdGhlIDI1MTUg
-YW5kIDI1NjI1IGFyZSBpZGVudGljYWwgd2hpbGUgYmVpbmcgY29tcGF0aWJsZQ0KPiB0byB0aGUN
-Cj4gbWNwMjUxMCBidXQgb2ZmZXIgbW9yZSBmZWF0dXJlcy4gVGhlcmUncyBhIHNpbmdsZSBkcnZl
-ciAobWNwMjUxeCkgZm9yDQo+IHRoZXNlLg0KPiBUaGVzZSBjaGlwcyBpbXBsZW1lbnQgdGhlIENB
-Ti0yLjAgc3RhbmRhcmQuDQo+IA0KPiBSZWdhcmRpbmcgdGhlIG1jcDI1MTdmZCBhbmQgbWNwMjUx
-OGZkLCB0aGUgImZkIiBpbiB0aGUgbmFtZSByZWZlcmVuY2VzDQo+IHRoZQ0KPiBDQU4tRkQgc3Rh
-bmRhcmQgKHN1Y2Nlc3NvciB0byBDQU4tMi4wKS4NCj4gDQo+IE1heWJlIFRob21hcyBLb3BwIChD
-YydlZCkgZnJvbSBNaWNyb2NoaXAgY2FuIHNheSBzb21ldGhpbmcgdG8gdGhpcy4NCj4gDQo+IFdl
-IGNhbiByZW5hbWUgdGhlIGNvbXBhdGlibGUgdG8gbWNwMjUxeGZkIHRvIG1ha2UgaXQgbW9yZSBz
-cGVjaWZpYy4NCkkgYWdyZWUgdGhhdCBtY3AyNTF4ZmQgd291bGQgYmUgYSBnb29kIGZpdC4gV2Ug
-YWxyZWFkeSBoYXZlICh0aGVvcmV0aWNhbCkNCmNvbmZsaWN0cyBmb3IgdGhlIHh4IGluIHRoZSBu
-YW1lc3BhY2UgZS5nLiB0aGUgTUNQMjU0MkZEIHdoaWNoIGlzIGEgDQp0cmFuc2NlaXZlciB3aXRo
-b3V0IGFueSBjb250cm9sbGVyIGZ1bmN0aW9uYWxpdHkuDQoNCkFsdGhvdWdoIGhhcmQgdG8gZ3Vh
-cmFudGVlIEkgdGhpbmsgaXQncyBmYWlyIHRvIGFzc3VtZSB0aGF0IG5vIE1DUDI1MXhGRCANCndp
-bGwgYmUgcmVsZWFzZWQgdGhhdCBpcyBpbmNvbXBhdGlibGUuDQoNClRob21hcw0K
+From: Vladimir Oltean <olteanv@gmail.com>
+
+Define the network interface names for the switch ports and hook them up
+to the 2 QSGMII PHYs that are onboard.
+
+A conscious decision was taken to go along with the numbers that are
+written on the front panel of the board and not with the hardware
+numbers of the switch chip ports. The 2 numbering schemes are
+shifted by 8.
+
+Signed-off-by: Vladimir Oltean <vladimir.oltean@nxp.com>
+---
+Changes in v2:
+Use the existing way of accessing the mdio bus and not labels.
+
+ arch/powerpc/boot/dts/fsl/t1040rdb.dts | 115 +++++++++++++++++++++++++
+ 1 file changed, 115 insertions(+)
+
+diff --git a/arch/powerpc/boot/dts/fsl/t1040rdb.dts b/arch/powerpc/boot/dts/fsl/t1040rdb.dts
+index 65ff34c49025..3fd08a2b6dcb 100644
+--- a/arch/powerpc/boot/dts/fsl/t1040rdb.dts
++++ b/arch/powerpc/boot/dts/fsl/t1040rdb.dts
+@@ -64,6 +64,40 @@ mdio@fc000 {
+ 				phy_sgmii_2: ethernet-phy@3 {
+ 					reg = <0x03>;
+ 				};
++
++				/* VSC8514 QSGMII PHY */
++				phy_qsgmii_0: ethernet-phy@4 {
++					reg = <0x4>;
++				};
++
++				phy_qsgmii_1: ethernet-phy@5 {
++					reg = <0x5>;
++				};
++
++				phy_qsgmii_2: ethernet-phy@6 {
++					reg = <0x6>;
++				};
++
++				phy_qsgmii_3: ethernet-phy@7 {
++					reg = <0x7>;
++				};
++
++				/* VSC8514 QSGMII PHY */
++				phy_qsgmii_4: ethernet-phy@8 {
++					reg = <0x8>;
++				};
++
++				phy_qsgmii_5: ethernet-phy@9 {
++					reg = <0x9>;
++				};
++
++				phy_qsgmii_6: ethernet-phy@a {
++					reg = <0xa>;
++				};
++
++				phy_qsgmii_7: ethernet-phy@b {
++					reg = <0xb>;
++				};
+ 			};
+ 		};
+ 	};
+@@ -76,3 +110,84 @@ cpld@3,0 {
+ };
+ 
+ #include "t1040si-post.dtsi"
++
++&seville_switch {
++	status = "okay";
++};
++
++&seville_port0 {
++	managed = "in-band-status";
++	phy-handle = <&phy_qsgmii_0>;
++	phy-mode = "qsgmii";
++	/* ETH4 written on chassis */
++	label = "swp4";
++	status = "okay";
++};
++
++&seville_port1 {
++	managed = "in-band-status";
++	phy-handle = <&phy_qsgmii_1>;
++	phy-mode = "qsgmii";
++	/* ETH5 written on chassis */
++	label = "swp5";
++	status = "okay";
++};
++
++&seville_port2 {
++	managed = "in-band-status";
++	phy-handle = <&phy_qsgmii_2>;
++	phy-mode = "qsgmii";
++	/* ETH6 written on chassis */
++	label = "swp6";
++	status = "okay";
++};
++
++&seville_port3 {
++	managed = "in-band-status";
++	phy-handle = <&phy_qsgmii_3>;
++	phy-mode = "qsgmii";
++	/* ETH7 written on chassis */
++	label = "swp7";
++	status = "okay";
++};
++
++&seville_port4 {
++	managed = "in-band-status";
++	phy-handle = <&phy_qsgmii_4>;
++	phy-mode = "qsgmii";
++	/* ETH8 written on chassis */
++	label = "swp8";
++	status = "okay";
++};
++
++&seville_port5 {
++	managed = "in-band-status";
++	phy-handle = <&phy_qsgmii_5>;
++	phy-mode = "qsgmii";
++	/* ETH9 written on chassis */
++	label = "swp9";
++	status = "okay";
++};
++
++&seville_port6 {
++	managed = "in-band-status";
++	phy-handle = <&phy_qsgmii_6>;
++	phy-mode = "qsgmii";
++	/* ETH10 written on chassis */
++	label = "swp10";
++	status = "okay";
++};
++
++&seville_port7 {
++	managed = "in-band-status";
++	phy-handle = <&phy_qsgmii_7>;
++	phy-mode = "qsgmii";
++	/* ETH11 written on chassis */
++	label = "swp11";
++	status = "okay";
++};
++
++&seville_port8 {
++	ethernet = <&enet0>;
++	status = "okay";
++};
+-- 
+2.25.1
+
