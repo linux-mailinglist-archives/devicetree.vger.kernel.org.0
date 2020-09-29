@@ -2,61 +2,87 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from vger.kernel.org (vger.kernel.org [23.128.96.18])
-	by mail.lfdr.de (Postfix) with ESMTP id 4AA0B27BF6A
-	for <lists+devicetree@lfdr.de>; Tue, 29 Sep 2020 10:30:32 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTP id 2F54427BF72
+	for <lists+devicetree@lfdr.de>; Tue, 29 Sep 2020 10:31:24 +0200 (CEST)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S1725536AbgI2Iab (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Tue, 29 Sep 2020 04:30:31 -0400
-Received: from mx2.suse.de ([195.135.220.15]:42744 "EHLO mx2.suse.de"
+        id S1727484AbgI2IbV (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Tue, 29 Sep 2020 04:31:21 -0400
+Received: from inva021.nxp.com ([92.121.34.21]:53726 "EHLO inva021.nxp.com"
         rhost-flags-OK-OK-OK-OK) by vger.kernel.org with ESMTP
-        id S1725372AbgI2Iab (ORCPT <rfc822;devicetree@vger.kernel.org>);
-        Tue, 29 Sep 2020 04:30:31 -0400
-X-Virus-Scanned: by amavisd-new at test-mx.suse.de
-Received: from relay2.suse.de (unknown [195.135.221.27])
-        by mx2.suse.de (Postfix) with ESMTP id 13773AD7F;
-        Tue, 29 Sep 2020 08:30:30 +0000 (UTC)
-From:   Michal Suchanek <msuchanek@suse.de>
-To:     linux-arm-kernel@lists.infradead.org
-Cc:     Michal Suchanek <msuchanek@suse.de>,
-        Rob Herring <robh+dt@kernel.org>,
-        Maxime Ripard <mripard@kernel.org>,
-        Chen-Yu Tsai <wens@csie.org>, devicetree@vger.kernel.org,
-        linux-kernel@vger.kernel.org
-Subject: [PATCH] ARM: dts: sun8i: h2+: Enable optional SPI flash on Orange Pi Zero board
-Date:   Tue, 29 Sep 2020 10:30:25 +0200
-Message-Id: <20200929083025.2089-1-msuchanek@suse.de>
-X-Mailer: git-send-email 2.28.0
-MIME-Version: 1.0
-Content-Transfer-Encoding: 8bit
+        id S1725536AbgI2IbV (ORCPT <rfc822;devicetree@vger.kernel.org>);
+        Tue, 29 Sep 2020 04:31:21 -0400
+Received: from inva021.nxp.com (localhost [127.0.0.1])
+        by inva021.eu-rdc02.nxp.com (Postfix) with ESMTP id BCE71200375;
+        Tue, 29 Sep 2020 10:31:19 +0200 (CEST)
+Received: from invc005.ap-rdc01.nxp.com (invc005.ap-rdc01.nxp.com [165.114.16.14])
+        by inva021.eu-rdc02.nxp.com (Postfix) with ESMTP id 1222D2015A0;
+        Tue, 29 Sep 2020 10:31:16 +0200 (CEST)
+Received: from localhost.localdomain (mega.ap.freescale.net [10.192.208.232])
+        by invc005.ap-rdc01.nxp.com (Postfix) with ESMTP id 27BE7402F0;
+        Tue, 29 Sep 2020 10:31:11 +0200 (CEST)
+From:   Ran Wang <ran.wang_1@nxp.com>
+To:     Li Yang <leoyang.li@nxp.com>, Rob Herring <robh+dt@kernel.org>,
+        Shawn Guo <shawnguo@kernel.org>
+Cc:     linuxppc-dev@lists.ozlabs.org,
+        linux-arm-kernel@lists.infradead.org, devicetree@vger.kernel.org,
+        linux-kernel@vger.kernel.org, Biwen Li <biwen.li@nxp.com>,
+        Ran Wang <ran.wang_1@nxp.com>
+Subject: [PATCH v3 1/5] Documentation: dt: binding: fsl: Add 'fsl,ippdexpcr1-alt-reg' property
+Date:   Tue, 29 Sep 2020 16:22:30 +0800
+Message-Id: <20200929082234.36619-1-ran.wang_1@nxp.com>
+X-Mailer: git-send-email 2.17.1
+X-Virus-Scanned: ClamAV using ClamSMTP
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-The flash is present on all new boards and users went out of their way
-to add it on the old ones.
+From: Biwen Li <biwen.li@nxp.com>
 
-Enabling it makes a more reasonable default.
+The 'fsl,ippdexpcr1-alt-reg' property is used to handle an errata A-008646
+on LS1021A.
 
-Signed-off-by: Michal Suchanek <msuchanek@suse.de>
+Signed-off-by: Biwen Li <biwen.li@nxp.com>
+Signed-off-by: Ran Wang <ran.wang_1@nxp.com>
 ---
- arch/arm/boot/dts/sun8i-h2-plus-orangepi-zero.dts | 4 ++--
- 1 file changed, 2 insertions(+), 2 deletions(-)
+Change in v3:
+ - Simplize related proterty definition and rename it.
 
-diff --git a/arch/arm/boot/dts/sun8i-h2-plus-orangepi-zero.dts b/arch/arm/boot/dts/sun8i-h2-plus-orangepi-zero.dts
-index f19ed981da9d..061d295bbba7 100644
---- a/arch/arm/boot/dts/sun8i-h2-plus-orangepi-zero.dts
-+++ b/arch/arm/boot/dts/sun8i-h2-plus-orangepi-zero.dts
-@@ -163,8 +163,8 @@ &ohci1 {
- };
+Change in v2:
+ - None
+
+ Documentation/devicetree/bindings/soc/fsl/rcpm.txt | 12 ++++++++++++
+ 1 file changed, 12 insertions(+)
+
+diff --git a/Documentation/devicetree/bindings/soc/fsl/rcpm.txt b/Documentation/devicetree/bindings/soc/fsl/rcpm.txt
+index 5a33619..62a22fc 100644
+--- a/Documentation/devicetree/bindings/soc/fsl/rcpm.txt
++++ b/Documentation/devicetree/bindings/soc/fsl/rcpm.txt
+@@ -34,6 +34,9 @@ Chassis Version		Example Chips
+ Optional properties:
+  - little-endian : RCPM register block is Little Endian. Without it RCPM
+    will be Big Endian (default case).
++ - fsl,ippdexpcr1-alt-reg : The property is trying to workaround a
++   hardware issue (found on SoC LS1021A only), if pressent, RCPM driver
++   will use SCFG_SPARECR8 as a shadow register for RCPM_IPPDEXPCR1.
  
- &spi0 {
--	/* Disable SPI NOR by default: it optional on Orange Pi Zero boards */
--	status = "disabled";
-+	/* Enable optional SPI NOR by default */
-+	status = "okay";
+ Example:
+ The RCPM node for T4240:
+@@ -43,6 +46,15 @@ The RCPM node for T4240:
+ 		#fsl,rcpm-wakeup-cells = <2>;
+ 	};
  
- 	flash@0 {
- 		#address-cells = <1>;
++The RCPM node for LS1021A:
++	rcpm: rcpm@1ee2140 {
++		compatible = "fsl,ls1021a-rcpm", "fsl,qoriq-rcpm-2.1+";
++		reg = <0x0 0x1ee2140 0x0 0x8>;
++		#fsl,rcpm-wakeup-cells = <2>;
++		fsl,ippdexpcr1-alt-reg;
++	};
++
++
+ * Freescale RCPM Wakeup Source Device Tree Bindings
+ -------------------------------------------
+ Required fsl,rcpm-wakeup property should be added to a device node if the device
 -- 
-2.28.0
+2.7.4
 
