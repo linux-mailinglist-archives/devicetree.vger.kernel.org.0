@@ -2,70 +2,334 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from vger.kernel.org (vger.kernel.org [23.128.96.18])
-	by mail.lfdr.de (Postfix) with ESMTP id 262F627D53F
-	for <lists+devicetree@lfdr.de>; Tue, 29 Sep 2020 19:57:20 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTP id 276BB27D555
+	for <lists+devicetree@lfdr.de>; Tue, 29 Sep 2020 20:01:54 +0200 (CEST)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S1727780AbgI2R5T (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Tue, 29 Sep 2020 13:57:19 -0400
-Received: from mail-oo1-f68.google.com ([209.85.161.68]:46883 "EHLO
-        mail-oo1-f68.google.com" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S1727360AbgI2R5T (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Tue, 29 Sep 2020 13:57:19 -0400
-Received: by mail-oo1-f68.google.com with SMTP id b12so1505905oop.13;
-        Tue, 29 Sep 2020 10:57:18 -0700 (PDT)
+        id S1728041AbgI2SBt (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Tue, 29 Sep 2020 14:01:49 -0400
+Received: from lindbergh.monkeyblade.net ([23.128.96.19]:41630 "EHLO
+        lindbergh.monkeyblade.net" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
+        with ESMTP id S1725320AbgI2SBp (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Tue, 29 Sep 2020 14:01:45 -0400
+Received: from mail-pj1-x1043.google.com (mail-pj1-x1043.google.com [IPv6:2607:f8b0:4864:20::1043])
+        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 550CAC061755
+        for <devicetree@vger.kernel.org>; Tue, 29 Sep 2020 11:01:45 -0700 (PDT)
+Received: by mail-pj1-x1043.google.com with SMTP id kk9so3077560pjb.2
+        for <devicetree@vger.kernel.org>; Tue, 29 Sep 2020 11:01:45 -0700 (PDT)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+        d=linaro.org; s=google;
+        h=date:from:to:cc:subject:message-id:references:mime-version
+         :content-disposition:in-reply-to;
+        bh=p2KegjCaWpZfkKR5IwwEO7WoWrrwh7P9M4al+Q9eyFw=;
+        b=ltm7u1IzNbmPXd4mELnjFy6fBuCuAEmTAWvG7wgY2Ju0Y2xDjUwBwmcqJz0HcdGXGj
+         owX73g8pFXrJQOGgBQ8VFf2/h1rfVzz57wAgJlQ1RXjI2yuj0FdNfmBHZhhrh7RhKj/U
+         THAagurUTSLh9MsQFHsao2aA/B81jzXhS4VhW2QroQXlgldavwNU+MnuG2iwuNlEbRI8
+         BTTP7ejSIkq5gj15IAj6cza0LmSX3yCq4dWxAlEw4G0tcZrVuIqVWmEuC9W8Me8R5T1r
+         hTfHhiPAt1PhaKDY4zdOz6cHVH38koWX6O1UULSeqvSWmlcsTmos7qg/uWQkDd3xieev
+         mwdQ==
 X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
         d=1e100.net; s=20161025;
         h=x-gm-message-state:date:from:to:cc:subject:message-id:references
          :mime-version:content-disposition:in-reply-to;
-        bh=Qp7SS2T14cd3C/5H7OFBLuz8PZLS14HzIh2NjdUhVbs=;
-        b=TMQIBn17HDu2TzliOQyuqSCSoj+5DybJtWAKfbofE1ylss2GoFP1KkoiVIKigs/IT2
-         9GyA+IQX5nE+8/Eq8oBFjsa77fUX4D2o0CqZbcqk14MeFEKDkdhc4iBxaaZksoq1Til/
-         I3KgJu/ba2DG5RLe98LhbP3bpOWQAjUof3hGgNSDkK5bV3aBRY4jJxV2o1ErxMZg2OTI
-         u1m0RcrhmodeRl+xe0YHoPsHdZH6kuMC8cuBKMa2qzqeXjSykwn7E87OTf4/HTwXVO2u
-         8WTNHtOz1wGcdz2Y6Gin89YtKw6xFLWYtcz3iT9AazWrKbMUkCP51EE2Bf3vAsOm+mqk
-         do8g==
-X-Gm-Message-State: AOAM531k/wmnS09TVQVVMwJTA9fcCeyr2m6OTTbEKVgtVE/9JO7xkROZ
-        YKOLTTwSMgw1qhN+WqpiJw==
-X-Google-Smtp-Source: ABdhPJyPPPR5zaH4ylWdewg8PL0HYyp+Im2DPtn2yqLeUBi4x5F0YYGe8L3UwiWAoA/LhAtVQgTj8A==
-X-Received: by 2002:a4a:751a:: with SMTP id j26mr5523657ooc.14.1601402238285;
-        Tue, 29 Sep 2020 10:57:18 -0700 (PDT)
-Received: from xps15 (24-155-109-49.dyn.grandenetworks.net. [24.155.109.49])
-        by smtp.gmail.com with ESMTPSA id k13sm3092247ood.31.2020.09.29.10.57.17
+        bh=p2KegjCaWpZfkKR5IwwEO7WoWrrwh7P9M4al+Q9eyFw=;
+        b=KlZMdwrx2Dl1gzTP40X8jTDJlNNJKPGkZFv78iKGG5eT6l8xZml4Z2LIaNTQfWPv8p
+         8uFqS2u2890JmBSJ1+5qkjzePV0Smxu3Ww8vT7Esy187E5uRREryD5Gx+CGLHrEp4Am6
+         XhSdp8lWzFr0hBc2EiyjrluA9ac+Fi7ew6eFtoV7/plFWrMqN6mSwbdoe7KYH+zDjGzT
+         f3cfV9ZiorE7kaj8VEly0TiGiGizDe43kqPpx3Mr54gdLt1zPZ9/iiCeO3oruCSBRbyR
+         VvgGD6wxJ1PeSM1hg7YYlHVDuId9AYMM+7QI0WA6jhGfUcTegjZX1O1/cB2iK5MDaU2J
+         +/zw==
+X-Gm-Message-State: AOAM530B9AJY8z8iHMbHv2/xPstqM76xTghafpeczvWT+CxQS4wZFXza
+        //DMp8TMs/FiFJBPNJ+EIJZndg==
+X-Google-Smtp-Source: ABdhPJz5fuCu0iwJuiJcxoduPOjH/Dc8pBwOSprE2AvYkGXrMkTGOaSUFFpecrmFSuUfh4qlWaiRWQ==
+X-Received: by 2002:a17:90a:9912:: with SMTP id b18mr5292485pjp.192.1601402504742;
+        Tue, 29 Sep 2020 11:01:44 -0700 (PDT)
+Received: from xps15 (S0106002369de4dac.cg.shawcable.net. [68.147.8.254])
+        by smtp.gmail.com with ESMTPSA id q15sm5782201pgr.27.2020.09.29.11.01.42
         (version=TLS1_3 cipher=TLS_AES_256_GCM_SHA384 bits=256/256);
-        Tue, 29 Sep 2020 10:57:17 -0700 (PDT)
-Received: (nullmailer pid 865499 invoked by uid 1000);
-        Tue, 29 Sep 2020 17:57:16 -0000
-Date:   Tue, 29 Sep 2020 12:57:16 -0500
-From:   Rob Herring <robh@kernel.org>
-To:     Oleksij Rempel <o.rempel@pengutronix.de>
-Cc:     Pengutronix Kernel Team <kernel@pengutronix.de>,
-        David Jander <david@protonic.nl>,
-        linux-arm-kernel@lists.infradead.org,
-        NXP Linux Team <linux-imx@nxp.com>,
-        Fabio Estevam <festevam@gmail.com>,
-        linux-kernel@vger.kernel.org, Mark Rutland <mark.rutland@arm.com>,
-        Rob Herring <robh+dt@kernel.org>,
-        Shawn Guo <shawnguo@kernel.org>, devicetree@vger.kernel.org,
-        Sascha Hauer <s.hauer@pengutronix.de>
-Subject: Re: [PATCH v3 2/3] dt-bindings: arm: fsl: add Plymovent M2M board
-Message-ID: <20200929175716.GA865448@bogus>
-References: <20200922051454.30878-1-o.rempel@pengutronix.de>
- <20200922051454.30878-3-o.rempel@pengutronix.de>
+        Tue, 29 Sep 2020 11:01:43 -0700 (PDT)
+Date:   Tue, 29 Sep 2020 12:01:41 -0600
+From:   Mathieu Poirier <mathieu.poirier@linaro.org>
+To:     Alexandre Bailon <abailon@baylibre.com>
+Cc:     ohad@wizery.com, bjorn.andersson@linaro.org, robh+dt@kernel.org,
+        matthias.bgg@gmail.com, linux-remoteproc@vger.kernel.org,
+        devicetree@vger.kernel.org, linux-arm-kernel@lists.infradead.org,
+        linux-mediatek@lists.infradead.org, linux-kernel@vger.kernel.org,
+        stephane.leprovost@mediatek.com, gpain@baylibre.com
+Subject: Re: [PATCH v2 3/4] remoteproc: mtk_vpu_rproc: Add support of JTAG
+Message-ID: <20200929180141.GC124290@xps15>
+References: <20200910130148.8734-1-abailon@baylibre.com>
+ <20200910130148.8734-4-abailon@baylibre.com>
 MIME-Version: 1.0
 Content-Type: text/plain; charset=us-ascii
 Content-Disposition: inline
-In-Reply-To: <20200922051454.30878-3-o.rempel@pengutronix.de>
+In-Reply-To: <20200910130148.8734-4-abailon@baylibre.com>
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-On Tue, 22 Sep 2020 07:14:53 +0200, Oleksij Rempel wrote:
-> Add Plymovent Group BV M2M iMX6dl based board
+On Thu, Sep 10, 2020 at 03:01:47PM +0200, Alexandre Bailon wrote:
+> The DSP could be debugged using JTAG.
+> The support of JTAG could enabled at build time and it could be enabled
+> using debugfs.
 > 
-> Signed-off-by: Oleksij Rempel <o.rempel@pengutronix.de>
+> Signed-off-by: Alexandre Bailon <abailon@baylibre.com>
 > ---
->  Documentation/devicetree/bindings/arm/fsl.yaml | 1 +
->  1 file changed, 1 insertion(+)
+>  drivers/remoteproc/Kconfig   |   9 +++
+>  drivers/remoteproc/mtk_apu.c | 151 ++++++++++++++++++++++++++++++++++-
+>  2 files changed, 159 insertions(+), 1 deletion(-)
 > 
+> diff --git a/drivers/remoteproc/Kconfig b/drivers/remoteproc/Kconfig
+> index 4ebea57bf4c8..310462346bd8 100644
+> --- a/drivers/remoteproc/Kconfig
+> +++ b/drivers/remoteproc/Kconfig
+> @@ -61,6 +61,15 @@ config MTK_APU
+>  
+>  	  It's safe to say N here.
+>  
+> +config MTK_APU_JTAG
+> +	bool "Enable support of JTAG"
 
-Acked-by: Rob Herring <robh@kernel.org>
+I think it is better to simply go with "Enable JTAG support"
+
+> +	depends on MTK_APU
+> +	help
+> +	  Say y to enable support of JTAG.
+
+Same here.
+
+> +	  By default, JTAG will remain disabled until it is enabled using
+> +	  debugfs: remoteproc/remoteproc0/jtag. Write 1 to enable it and
+
+s/remoteproc0/remoteprocX
+
+> +	  0 to disable it.
+> +
+>  config OMAP_REMOTEPROC
+>  	tristate "OMAP remoteproc support"
+>  	depends on ARCH_OMAP4 || SOC_OMAP5 || SOC_DRA7XX
+> diff --git a/drivers/remoteproc/mtk_apu.c b/drivers/remoteproc/mtk_apu.c
+> index 6d2f577cfde5..07157fdc24ba 100644
+> --- a/drivers/remoteproc/mtk_apu.c
+> +++ b/drivers/remoteproc/mtk_apu.c
+> @@ -5,6 +5,7 @@
+>  
+>  #include <linux/bitops.h>
+>  #include <linux/clk.h>
+> +#include <linux/debugfs.h>
+>  #include <linux/delay.h>
+>  #include <linux/highmem.h>
+>  #include <linux/interrupt.h>
+> @@ -14,6 +15,7 @@
+>  #include <linux/kernel.h>
+>  #include <linux/module.h>
+>  #include <linux/of_reserved_mem.h>
+> +#include <linux/pinctrl/consumer.h>
+>  #include <linux/platform_device.h>
+>  #include <linux/remoteproc.h>
+>  
+> @@ -48,6 +50,11 @@
+>  #define CORE_DEFAULT1				(0x00000140)
+>  #define CORE_DEFAULT0_ARUSER_IDMA_USE_IOMMU	(0x10 << 0)
+>  #define CORE_DEFAULT0_AWUSER_IDMA_USE_IOMMU	(0x10 << 5)
+> +#define CORE_DEFAULT2				(0x00000144)
+> +#define CORE_DEFAULT2_DBG_EN			BIT(3)
+> +#define CORE_DEFAULT2_NIDEN			BIT(2)
+> +#define CORE_DEFAULT2_SPNIDEN			BIT(1)
+> +#define CORE_DEFAULT2_SPIDEN			BIT(0)
+>  #define CORE_XTENSA_ALTRESETVEC			(0x000001F8)
+>  
+>  struct mtk_apu_rproc {
+> @@ -57,6 +64,13 @@ struct mtk_apu_rproc {
+>  	void __iomem *base;
+>  	int irq;
+>  	struct clk_bulk_data clks[3];
+> +
+> +#ifdef CONFIG_MTK_APU_JTAG
+> +	struct pinctrl *pinctrl;
+> +	struct pinctrl_state *pinctrl_jtag;
+> +	bool jtag_enabled;
+> +	struct mutex jtag_mutex;
+
+Move this up to keep all the struct together.
+
+> +#endif
+>  };
+>  
+>  static int mtk_apu_rproc_prepare(struct rproc *rproc)
+> @@ -166,6 +180,137 @@ static irqreturn_t handle_event(int irq, void *data)
+>  	return IRQ_HANDLED;
+>  }
+>  
+> +#ifdef CONFIG_MTK_APU_JTAG
+> +
+> +static int apu_enable_jtag(struct mtk_apu_rproc *apu_rproc)
+> +{
+> +	int ret = 0;
+> +
+> +	mutex_lock(&apu_rproc->jtag_mutex);
+> +	if (apu_rproc->jtag_enabled) {
+> +		ret = -EINVAL;
+
+The JTAG is already enabled, I think enabling it again isn't a big deal and
+should simply return 0 rather than an error.
+
+> +		goto err_mutex_unlock;
+> +	}
+> +
+> +	writel(CORE_DEFAULT2_SPNIDEN | CORE_DEFAULT2_SPIDEN |
+> +		CORE_DEFAULT2_NIDEN | CORE_DEFAULT2_DBG_EN,
+> +		apu_rproc->base + CORE_DEFAULT2);
+> +
+> +	apu_rproc->jtag_enabled = 1;
+
+s/1/true
+
+> +
+> +err_mutex_unlock:
+> +	mutex_unlock(&apu_rproc->jtag_mutex);
+> +
+> +	return ret;
+> +}
+> +
+> +static int apu_disable_jtag(struct mtk_apu_rproc *apu_rproc)
+> +{
+> +	int ret = 0;
+> +
+> +	mutex_lock(&apu_rproc->jtag_mutex);
+> +	if (!apu_rproc->jtag_enabled) {
+> +		ret = -EINVAL;
+
+Same as above
+
+> +		goto err_mutex_unlock;
+> +	}
+> +
+> +	writel(0, apu_rproc->base + CORE_DEFAULT2);
+> +
+> +	apu_rproc->jtag_enabled = 0;
+
+s/0/false
+
+Thanks for the patience,
+Mathieu
+
+> +
+> +err_mutex_unlock:
+> +	mutex_unlock(&apu_rproc->jtag_mutex);
+> +
+> +	return ret;
+> +}
+> +
+> +static ssize_t rproc_jtag_read(struct file *filp, char __user *userbuf,
+> +			       size_t count, loff_t *ppos)
+> +{
+> +	struct rproc *rproc = filp->private_data;
+> +	struct mtk_apu_rproc *apu_rproc = (struct mtk_apu_rproc *)rproc->priv;
+> +	char *buf = apu_rproc->jtag_enabled ? "enabled\n" : "disabled\n";
+> +
+> +	return simple_read_from_buffer(userbuf, count, ppos, buf, strlen(buf));
+> +}
+> +
+> +static ssize_t rproc_jtag_write(struct file *filp, const char __user *user_buf,
+> +				size_t count, loff_t *ppos)
+> +{
+> +	struct rproc *rproc = filp->private_data;
+> +	struct mtk_apu_rproc *apu_rproc = (struct mtk_apu_rproc *)rproc->priv;
+> +	char buf[10];
+> +	int ret;
+> +
+> +	if (count < 1 || count > sizeof(buf))
+> +		return -EINVAL;
+> +
+> +	ret = copy_from_user(buf, user_buf, count);
+> +	if (ret)
+> +		return -EFAULT;
+> +
+> +	/* remove end of line */
+> +	if (buf[count - 1] == '\n')
+> +		buf[count - 1] = '\0';
+> +
+> +	if (!strncmp(buf, "enabled", count))
+> +		ret = apu_enable_jtag(apu_rproc);
+> +	else if (!strncmp(buf, "disabled", count))
+> +		ret = apu_disable_jtag(apu_rproc);
+> +	else
+> +		return -EINVAL;
+> +
+> +	return ret ? ret : count;
+> +}
+> +
+> +static const struct file_operations rproc_jtag_ops = {
+> +	.read = rproc_jtag_read,
+> +	.write = rproc_jtag_write,
+> +	.open = simple_open,
+> +};
+> +
+> +static int apu_jtag_probe(struct mtk_apu_rproc *apu_rproc)
+> +{
+> +	int ret;
+> +
+> +	if (!apu_rproc->rproc->dbg_dir)
+> +		return -ENODEV;
+> +
+> +	apu_rproc->pinctrl = devm_pinctrl_get(apu_rproc->dev);
+> +	if (IS_ERR(apu_rproc->pinctrl)) {
+> +		dev_warn(apu_rproc->dev, "Failed to find JTAG pinctrl\n");
+> +		return PTR_ERR(apu_rproc->pinctrl);
+> +	}
+> +
+> +	apu_rproc->pinctrl_jtag = pinctrl_lookup_state(apu_rproc->pinctrl,
+> +						       "jtag");
+> +	if (IS_ERR(apu_rproc->pinctrl_jtag))
+> +		return PTR_ERR(apu_rproc->pinctrl_jtag);
+> +
+> +	ret = pinctrl_select_state(apu_rproc->pinctrl,
+> +				   apu_rproc->pinctrl_jtag);
+> +	if (ret < 0)
+> +		return ret;
+> +
+> +	mutex_init(&apu_rproc->jtag_mutex);
+> +
+> +	debugfs_create_file("jtag", 0600, apu_rproc->rproc->dbg_dir,
+> +			    apu_rproc->rproc, &rproc_jtag_ops);
+> +
+> +	return 0;
+> +}
+> +#else
+> +static int apu_jtag_probe(struct mtk_apu_rproc *apu_rproc)
+> +{
+> +	return 0;
+> +}
+> +
+> +static int apu_disable_jtag(struct mtk_apu_rproc *apu_rproc)
+> +{
+> +	return 0;
+> +}
+> +#endif /* CONFIG_MTK_APU_JTAG */
+> +
+>  static int mtk_apu_rproc_probe(struct platform_device *pdev)
+>  {
+>  	struct device *dev = &pdev->dev;
+> @@ -242,6 +387,10 @@ static int mtk_apu_rproc_probe(struct platform_device *pdev)
+>  		goto free_mem;
+>  	}
+>  
+> +	ret = apu_jtag_probe(apu_rproc);
+> +	if (ret)
+> +		dev_warn(dev, "Failed to configure jtag\n");
+> +
+>  	return 0;
+>  
+>  free_mem:
+> @@ -259,7 +408,7 @@ static int mtk_apu_rproc_remove(struct platform_device *pdev)
+>  	struct device *dev = &pdev->dev;
+>  
+>  	disable_irq(apu_rproc->irq);
+> -
+> +	apu_disable_jtag(apu_rproc);
+>  	rproc_del(rproc);
+>  	of_reserved_mem_device_release(dev);
+>  	rproc_free(rproc);
+> -- 
+> 2.26.2
+> 
