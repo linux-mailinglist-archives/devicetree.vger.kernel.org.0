@@ -2,87 +2,88 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from vger.kernel.org (vger.kernel.org [23.128.96.18])
-	by mail.lfdr.de (Postfix) with ESMTP id CA95027DC32
-	for <lists+devicetree@lfdr.de>; Wed, 30 Sep 2020 00:43:13 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTP id B019827DC8E
+	for <lists+devicetree@lfdr.de>; Wed, 30 Sep 2020 01:17:50 +0200 (CEST)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S1728622AbgI2WnI (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Tue, 29 Sep 2020 18:43:08 -0400
-Received: from mail.baikalelectronics.com ([87.245.175.226]:37140 "EHLO
-        mail.baikalelectronics.ru" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S1728124AbgI2WnI (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Tue, 29 Sep 2020 18:43:08 -0400
-Received: from localhost (unknown [127.0.0.1])
-        by mail.baikalelectronics.ru (Postfix) with ESMTP id 5E6698030719;
-        Tue, 29 Sep 2020 22:43:05 +0000 (UTC)
-X-Virus-Scanned: amavisd-new at baikalelectronics.ru
-Received: from mail.baikalelectronics.ru ([127.0.0.1])
-        by localhost (mail.baikalelectronics.ru [127.0.0.1]) (amavisd-new, port 10024)
-        with ESMTP id AsX_kHAlHXIb; Wed, 30 Sep 2020 01:43:04 +0300 (MSK)
-Date:   Wed, 30 Sep 2020 01:43:03 +0300
-From:   Serge Semin <Sergey.Semin@baikalelectronics.ru>
-To:     Mark Brown <broonie@kernel.org>
-CC:     Alexey Malahov <Alexey.Malahov@baikalelectronics.ru>,
-        Ramil Zaripov <Ramil.Zaripov@baikalelectronics.ru>,
-        Pavel Parkhomenko <Pavel.Parkhomenko@baikalelectronics.ru>,
-        Andy Shevchenko <andy.shevchenko@gmail.com>,
-        Andy Shevchenko <andriy.shevchenko@linux.intel.com>,
-        Lars Povlsen <lars.povlsen@microchip.com>,
-        "wuxu . wu" <wuxu.wu@huawei.com>, Feng Tang <feng.tang@intel.com>,
-        Rob Herring <robh+dt@kernel.org>, <linux-spi@vger.kernel.org>,
-        <devicetree@vger.kernel.org>, <linux-kernel@vger.kernel.org>
-Subject: Re: [PATCH 00/30] spi: dw: Add full Baikal-T1 SPI Controllers support
-Message-ID: <20200929224303.65awobe5dzwc2p4f@mobilestation>
-References: <20200920112914.26501-1-Sergey.Semin@baikalelectronics.ru>
- <20200929144351.GH4799@sirena.org.uk>
+        id S1728494AbgI2XRu (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Tue, 29 Sep 2020 19:17:50 -0400
+Received: from bhuna.collabora.co.uk ([46.235.227.227]:39306 "EHLO
+        bhuna.collabora.co.uk" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
+        with ESMTP id S1728206AbgI2XRu (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Tue, 29 Sep 2020 19:17:50 -0400
+Received: from [127.0.0.1] (localhost [127.0.0.1])
+        (Authenticated sender: sre)
+        with ESMTPSA id 94E6329B618
+Received: by earth.universe (Postfix, from userid 1000)
+        id 0D4C03C0C84; Wed, 30 Sep 2020 01:17:46 +0200 (CEST)
+Date:   Wed, 30 Sep 2020 01:17:46 +0200
+From:   Sebastian Reichel <sebastian.reichel@collabora.com>
+To:     =?utf-8?B?TWljaGHFgiBNaXJvc8WCYXc=?= <mirq-linux@rere.qmqm.pl>
+Cc:     Angus Ainslie <angus@akkea.ca>, Rob Herring <robh+dt@kernel.org>,
+        Yauhen Kharuzhy <jekhor@gmail.com>, devicetree@vger.kernel.org,
+        linux-kernel@vger.kernel.org, linux-pm@vger.kernel.org
+Subject: Re: [PATCH v4 0/2] power: bq25890: IBAT compensation support
+Message-ID: <20200929231746.ismdhwsjspoajccv@earth.universe>
+References: <cover.1601146802.git.mirq-linux@rere.qmqm.pl>
 MIME-Version: 1.0
-Content-Type: text/plain; charset="us-ascii"
+Content-Type: multipart/signed; micalg=pgp-sha512;
+        protocol="application/pgp-signature"; boundary="iwejtfvpsbziusc3"
 Content-Disposition: inline
-In-Reply-To: <20200929144351.GH4799@sirena.org.uk>
-X-ClientProxiedBy: MAIL.baikal.int (192.168.51.25) To mail (192.168.51.25)
+In-Reply-To: <cover.1601146802.git.mirq-linux@rere.qmqm.pl>
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-Hi Mark
 
-On Tue, Sep 29, 2020 at 03:43:51PM +0100, Mark Brown wrote:
-> On Sun, Sep 20, 2020 at 02:28:44PM +0300, Serge Semin wrote:
-> 
-> > First two patches are just cleanups to simplify the DW APB SSI device
-> > initialization a bit. We suggest to discard the IRQ threshold macro as
-> > unused and use a ternary operator to initialize the set_cs callback
-> > instead of assigning-and-updating it.
-> 
-> > Then we've discovered that the n_bytes field of the driver private data is
-> > used by the DW APB SSI IRQ handler, which requires it to be initialized
-> 
+--iwejtfvpsbziusc3
+Content-Type: text/plain; charset=utf-8
+Content-Disposition: inline
+Content-Transfer-Encoding: quoted-printable
 
-> This is a *huge* patch series which is a bit unweildy to review
-> (especially given the other 10+ patch series you sent at the same time),
+Hi,
 
-Yeah, sorry about the bulky series. If most of the changes have been more
-complicated than that, less inter-dependent and less directed to having the code
-prepared for the main alterations I would have definitely split them up in
-different series. But the biggest part of the patchset is just a preparation
-before adding the mem-ops, poll-based transfers and Baikal-T1 SPI support. So
-having them submitted without the main part of the patchset would be just weird.
+On Sat, Sep 26, 2020 at 09:05:31PM +0200, Micha=C5=82 Miros=C5=82aw wrote:
+> These two patches add support for IBAT compensation feature of bq2589x
+> chargers.
 
-The other 10+ patches were sent months ago. I've just resent them with minor
-alterations to get more attention.) Anyway since they concern an absolutely
-different functionality (DW APB SSI DMA driver) of course I've delivered them in
-the framework of the different patchset.
+Thanks, queued.
 
-> once you start getting over 10 patches it's time to pay attention to
-> series length and the fact that you're outlining a bunch of tangentially
-> related areas which could have been split out easily enough.  It is much
-> better to send smaller sets of patches at once, or if you're sending a
-> lot then to split them into smaller serieses.  This will tend to make
-> the review more approachable which will in turn tend to make things go
-> faster, people are much more likely to put off going through a huge
-> series.
+-- Sebastian
 
-I see you have already merged in the first nine patches. So would you like me
-to split the rest of them up into two series or it would be ok to resend (if
-required) them as one series seeing it's not that bulky anymore?
+> v4 fixed property names for the features and dropped other applied or rej=
+ected
+>    patches
+>=20
+> Micha=C5=82 Miros=C5=82aw (2):
+>   power: bq25890: document IBAT compensation DT properties
+>   power: bq25890: support IBAT compensation
+>=20
+>  .../devicetree/bindings/power/supply/bq25890.txt  |  4 ++++
+>  drivers/power/supply/bq25890_charger.c            | 15 +++++++++++++--
+>  2 files changed, 17 insertions(+), 2 deletions(-)
+>=20
+> --=20
+> 2.20.1
+>=20
 
--Sergey
+--iwejtfvpsbziusc3
+Content-Type: application/pgp-signature; name="signature.asc"
+
+-----BEGIN PGP SIGNATURE-----
+
+iQIzBAABCgAdFiEE72YNB0Y/i3JqeVQT2O7X88g7+poFAl9zwJYACgkQ2O7X88g7
++pqDvg/7BwNRj0SzIruPKzHngoEYQIoulSraVhAf4B6oDUPzEVBoydvYX+suzolS
+cXVAbn6QhK4gcjPhhyC/noRQ5CGnpvfz/S25o4hhBuR3s+JyWL3RNAAsoqodZCG9
+dJKeF7FZOyLWbwTGHu/vvHc2Q/ZAAPR2O56/RqDl/PYdIfledxYutLZj0rsUJX2A
+9Egqp7XrzmuLUKoIFoexndILzqszJ5xyyrxRQdZGVMDh22ujKmLs9NPetEog435w
+Awb0/a+HbX2pr1QJ9oAnoOb16GOlsObFIUkX7euls7CtS1d3uP5hH5F1HZhMcH9R
+Tm7uwl/cfYo2EtmjpQgYaCSkZGkAWhsfLYZ6V3b+bfx3D+0mAciEdSegRNLo8kkg
+RsUtd8XTa2mKOJvOWuHxxasRj2Cs7cuZbfVMODrAMUN/KjCrLE1knwSnOXAoobI9
+gCjOX3fyq6A7f0C3DxVEvFGKSeMyWhj2Wpj90tqi+sRd+FDpiMlc1LKMq/YEgzry
+JMRRSkLYL9W+tBK9d9S6NJYuyESmaK5IWassgnMDjE9F9kwgJ4SHg/xZio8kVXSM
+VsB+iQqrFfciEG3FzIZLB5rsrTTmzESN+dCNK2V+Zwa7ryP3th+Kh5wSJC1oiodd
+DGiXxsGg1F22bTq64CVTgbk8SOQ7VrxtwtSKRgIYCb36o5owaUU=
+=P4At
+-----END PGP SIGNATURE-----
+
+--iwejtfvpsbziusc3--
