@@ -2,107 +2,85 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from vger.kernel.org (vger.kernel.org [23.128.96.18])
-	by mail.lfdr.de (Postfix) with ESMTP id B6C1627C7DD
-	for <lists+devicetree@lfdr.de>; Tue, 29 Sep 2020 13:57:30 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTP id E5CFB27C742
+	for <lists+devicetree@lfdr.de>; Tue, 29 Sep 2020 13:52:56 +0200 (CEST)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S1730959AbgI2L5L (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Tue, 29 Sep 2020 07:57:11 -0400
-Received: from lindbergh.monkeyblade.net ([23.128.96.19]:39332 "EHLO
+        id S1730732AbgI2Lwl (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Tue, 29 Sep 2020 07:52:41 -0400
+Received: from lindbergh.monkeyblade.net ([23.128.96.19]:40734 "EHLO
         lindbergh.monkeyblade.net" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S1730467AbgI2Ln0 (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Tue, 29 Sep 2020 07:43:26 -0400
-Received: from mail-ed1-x543.google.com (mail-ed1-x543.google.com [IPv6:2a00:1450:4864:20::543])
-        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id E7BB8C061755
-        for <devicetree@vger.kernel.org>; Tue, 29 Sep 2020 04:43:25 -0700 (PDT)
-Received: by mail-ed1-x543.google.com with SMTP id b12so5956299edz.11
-        for <devicetree@vger.kernel.org>; Tue, 29 Sep 2020 04:43:25 -0700 (PDT)
+        with ESMTP id S1731120AbgI2Lwf (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Tue, 29 Sep 2020 07:52:35 -0400
+Received: from mail-lf1-x141.google.com (mail-lf1-x141.google.com [IPv6:2a00:1450:4864:20::141])
+        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 78797C0613D0
+        for <devicetree@vger.kernel.org>; Tue, 29 Sep 2020 04:52:34 -0700 (PDT)
+Received: by mail-lf1-x141.google.com with SMTP id z19so5171318lfr.4
+        for <devicetree@vger.kernel.org>; Tue, 29 Sep 2020 04:52:34 -0700 (PDT)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=monstr-eu.20150623.gappssmtp.com; s=20150623;
-        h=sender:from:to:cc:subject:date:message-id:mime-version
-         :content-transfer-encoding;
-        bh=+dyqjEM4Nfg9QjzaQRM4PsDpBxhgsJm9EEpCrS6WSrk=;
-        b=O0++lOrlF2XUoAEtNzozVCcPXrdX7huM9vUeXKDytO2VKXxu0ZRnc0EpFX9PZxlNon
-         73iM1/M6/V7EO/ghCCnZUXpzvveURB9toTusdPOtKR2Eb9j8HH86IjGpK0ailyx/7glw
-         sXi+37IDeJVNn5EFAMVzb8P3AOFo+sFtKJgv4QutZ6WIHevlqEbNfI38T8LHa5hYJvkf
-         scNKi99pTqfzwaDwypeqtPpH7VurjDzn1VpCU/7YZbs+N5Bt03NBydp32SX8Y+BqK42G
-         HiF+zVFa7xVmOO5cgNo+ie30kvsz8/xinJ1pw7QC1NLzlMHAocQ3NO0eTzpyvSVeSo8o
-         Vspg==
+        d=linaro.org; s=google;
+        h=mime-version:references:in-reply-to:from:date:message-id:subject:to
+         :cc;
+        bh=+tsxcTYlmIt7fvSKcCyMiXfnmpMUlkCmokvJqIWw/AQ=;
+        b=jjOWrjZ7uwCllS0OYNttixtOrGeXrQxJugCu2v3GwGaMU88Cbu9bKFfcGk4YgS8kA6
+         CsxTSPEhUEB3QIobkbv54/t2k1Apsnjom+7y/88PmGKC6hXYb23/zfW9e2NG9HFaTWH3
+         giuTVdl61v/yhftsQIkuKaAtvCQDNCkOPMMCmqk4P1QjWB1kaBJQopeN3vzmME+jkiMF
+         StGTEqKwiChGFx+SW7eOlWuhtGOUsgUvkCAYA8z9mGM0jiR9LJkVXCR2ev4BtHpPTdpD
+         4tg6P7tqtBhWeLx7A/5BU61hYP1khSLAlsN0wd4MfmqHTfV2chMeeo+BbvoDURpxfFpK
+         R8NQ==
 X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
         d=1e100.net; s=20161025;
-        h=x-gm-message-state:sender:from:to:cc:subject:date:message-id
-         :mime-version:content-transfer-encoding;
-        bh=+dyqjEM4Nfg9QjzaQRM4PsDpBxhgsJm9EEpCrS6WSrk=;
-        b=Z1l2uxyfI7p7UARVbWkCXcfYl2AKp7Pnxsz6+OdiUohmV/WQa36Dq5aXsx1jruUYKl
-         CugWyjeIwfi0QamU5iDT3zlYgM+uFBEocTsf/OKQKhIbwO0BkVCSofeiOm9YNZDjs37o
-         JdAL94icsFeqrMSqBXs4Oh14vGppy4Xaf7Tg6NoOXib1XB2LKO1AFlrNNQBA0fvnMJZm
-         VGbtvM9hSvHPyZtBcXvpfWATsZJiRLDarD3TQ25TMerRXylXZMU/oUEOZpJujQnCLo4Q
-         HZUswuQHw04QljHqaG/nce1zuo7PhUNhCt9fZiwtaD2SV03F4VOXwPmO5SetjSSMQSg6
-         UlKA==
-X-Gm-Message-State: AOAM5323KAqIKTJtQ92JuPDYdAyefbMqsZmESA6ywRN8bRqAe83ALLUA
-        89lOBnKgASSGVFh8UmKyngpRcw==
-X-Google-Smtp-Source: ABdhPJwCkbYQryEp9zC575hahXkX43eYlCJKVmEK97uBI5MCJC/chZJXCBIYjPjwdb0tqSv08gc57A==
-X-Received: by 2002:a50:84e8:: with SMTP id 95mr2662684edq.99.1601379804636;
-        Tue, 29 Sep 2020 04:43:24 -0700 (PDT)
-Received: from localhost (nat-35.starnet.cz. [178.255.168.35])
-        by smtp.gmail.com with ESMTPSA id lc2sm1777629ejb.86.2020.09.29.04.43.23
-        (version=TLS1_2 cipher=ECDHE-ECDSA-CHACHA20-POLY1305 bits=256/256);
-        Tue, 29 Sep 2020 04:43:24 -0700 (PDT)
-Sender: Michal Simek <monstr@monstr.eu>
-From:   Michal Simek <michal.simek@xilinx.com>
-To:     linux-kernel@vger.kernel.org, monstr@monstr.eu,
-        michal.simek@xilinx.com, git@xilinx.com
-Cc:     Kalyani Akula <kalyani.akula@xilinx.com>,
-        Krzysztof Kozlowski <krzk@kernel.org>,
-        Laurent Pinchart <laurent.pinchart@ideasonboard.com>,
-        Manish Narani <manish.narani@xilinx.com>,
-        Michael Tretter <m.tretter@pengutronix.de>,
-        Nava kishore Manne <nava.manne@xilinx.com>,
-        Rajan Vaja <rajan.vaja@xilinx.com>,
-        Rob Herring <robh+dt@kernel.org>, devicetree@vger.kernel.org,
-        linux-arm-kernel@lists.infradead.org
-Subject: [PATCH] arm64: dts: zynqmp: Fix pcie ranges description
-Date:   Tue, 29 Sep 2020 13:43:22 +0200
-Message-Id: <f59a63d8cb941592de6d2dee8afa6f120b2e40c8.1601379794.git.michal.simek@xilinx.com>
-X-Mailer: git-send-email 2.28.0
+        h=x-gm-message-state:mime-version:references:in-reply-to:from:date
+         :message-id:subject:to:cc;
+        bh=+tsxcTYlmIt7fvSKcCyMiXfnmpMUlkCmokvJqIWw/AQ=;
+        b=eNrZ1qS2iiwEW+opJNASwxHEaMMLfqUqmOn9xKDfYVyubrX+1mO654RA6qP9O2yBUw
+         WvNJLf62D4ErWq+jB1qiX635IOpcGBz5WAFmjBQ+qyUX9soB6TgCsTm8eWk7FXV6H6oj
+         efsfGhAJTXyBbGgdRvmRJw3GBLnTDOp0w4S2KoI40PlDC/beE7B8J9TZGVgO/qo8XhTm
+         7ULdtsHvhffLbA5Z0f2NqXgKDPFODJXazzPkZJKeKKJoqieEnDZLQyvEfQFSBOdtmNdG
+         u7m8tGuw3HrEBR36P1ihpzs/PVqX2qqeTUW5yOcWResMP+N3Qr15D7hi1Mu+gs1FygR0
+         X4RA==
+X-Gm-Message-State: AOAM532YQ2oz91Tg+3IuZYu4Qq6nYhOU1ly+ac5bXx2DvXJpaL3Uzzg8
+        /SwE71OD1329mLBFisxNBR90Dx0UvWs8IQ2bIj8lWw==
+X-Google-Smtp-Source: ABdhPJyz74jPaVUkdmhbwYZ2S+u3dSjvZvKxeT3Peh7LpsNsRgF1dUdYrIIkppHQ6YlpE4/57iHv2mOxCZjyaQ7fBcM=
+X-Received: by 2002:ac2:4c11:: with SMTP id t17mr1163049lfq.260.1601380352826;
+ Tue, 29 Sep 2020 04:52:32 -0700 (PDT)
 MIME-Version: 1.0
-Content-Transfer-Encoding: 8bit
+References: <20200920195848.27075-1-krzk@kernel.org>
+In-Reply-To: <20200920195848.27075-1-krzk@kernel.org>
+From:   Linus Walleij <linus.walleij@linaro.org>
+Date:   Tue, 29 Sep 2020 13:52:22 +0200
+Message-ID: <CACRpkdb+7jX7LV0U9J74sQefgxzkwOMv5E+8uvjrmb2Vexv+SQ@mail.gmail.com>
+Subject: Re: [PATCH v3 1/4] dt-bindings: gpio: pl061: add gpio-line-names
+To:     Krzysztof Kozlowski <krzk@kernel.org>
+Cc:     Bartosz Golaszewski <bgolaszewski@baylibre.com>,
+        Rob Herring <robh+dt@kernel.org>,
+        Shawn Guo <shawnguo@kernel.org>,
+        Sascha Hauer <s.hauer@pengutronix.de>,
+        Pengutronix Kernel Team <kernel@pengutronix.de>,
+        Fabio Estevam <festevam@gmail.com>,
+        NXP Linux Team <linux-imx@nxp.com>,
+        Anson Huang <Anson.Huang@nxp.com>,
+        Stefan Agner <stefan@agner.ch>,
+        "open list:GPIO SUBSYSTEM" <linux-gpio@vger.kernel.org>,
+        "open list:OPEN FIRMWARE AND FLATTENED DEVICE TREE BINDINGS" 
+        <devicetree@vger.kernel.org>,
+        Linux ARM <linux-arm-kernel@lists.infradead.org>,
+        "linux-kernel@vger.kernel.org" <linux-kernel@vger.kernel.org>
+Content-Type: text/plain; charset="UTF-8"
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-DT schema is checking tuples which should be properly separated. The patch
-is doing this separation to avoid the following warning:
-..yaml: axi: pcie@fd0e0000:ranges: [[33554432, 0, 3758096384, 0,
-3758096384, 0, 268435456, 1124073472, 6, 0, 6, 0, 2, 0]] is not valid under
-any of the given schemas (Possible causes of the failure):
-...dt.yaml: axi: pcie@fd0e0000:ranges: True was expected
-...dt.yaml: axi: pcie@fd0e0000:ranges:0: [33554432, 0, 3758096384, 0,
-3758096384, 0, 268435456, 1124073472, 6, 0, 6, 0, 2, 0] is too long
+On Sun, Sep 20, 2020 at 9:58 PM Krzysztof Kozlowski <krzk@kernel.org> wrote:
 
-Signed-off-by: Michal Simek <michal.simek@xilinx.com>
----
+> Describe common "gpio-line-names" property to fix dtbs_check warnings
+> like:
+>
+>   arch/arm64/boot/dts/hisilicon/hi3670-hikey970.dt.yaml: gpio@e8a0b000:
+>     'gpio-line-names' does not match any of the regexes: 'pinctrl-[0-9]+'
+>
+> Signed-off-by: Krzysztof Kozlowski <krzk@kernel.org>
 
-I have seen one conversation about it but don't have link which I can point
-to.
----
- arch/arm64/boot/dts/xilinx/zynqmp.dtsi | 4 ++--
- 1 file changed, 2 insertions(+), 2 deletions(-)
+Patch applied.
 
-diff --git a/arch/arm64/boot/dts/xilinx/zynqmp.dtsi b/arch/arm64/boot/dts/xilinx/zynqmp.dtsi
-index 771f60e0346d..98073f3223e5 100644
---- a/arch/arm64/boot/dts/xilinx/zynqmp.dtsi
-+++ b/arch/arm64/boot/dts/xilinx/zynqmp.dtsi
-@@ -542,8 +542,8 @@ pcie: pcie@fd0e0000 {
- 			      <0x0 0xfd480000 0x0 0x1000>,
- 			      <0x80 0x00000000 0x0 0x1000000>;
- 			reg-names = "breg", "pcireg", "cfg";
--			ranges = <0x02000000 0x00000000 0xe0000000 0x00000000 0xe0000000 0x00000000 0x10000000	/* non-prefetchable memory */
--				  0x43000000 0x00000006 0x00000000 0x00000006 0x00000000 0x00000002 0x00000000>;/* prefetchable memory */
-+			ranges = <0x02000000 0x00000000 0xe0000000 0x00000000 0xe0000000 0x00000000 0x10000000>,/* non-prefetchable memory */
-+				 <0x43000000 0x00000006 0x00000000 0x00000006 0x00000000 0x00000002 0x00000000>;/* prefetchable memory */
- 			bus-range = <0x00 0xff>;
- 			interrupt-map-mask = <0x0 0x0 0x0 0x7>;
- 			interrupt-map = <0x0 0x0 0x0 0x1 &pcie_intc 0x1>,
--- 
-2.28.0
-
+Yours,
+Linus Walleij
