@@ -2,86 +2,83 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from vger.kernel.org (vger.kernel.org [23.128.96.18])
-	by mail.lfdr.de (Postfix) with ESMTP id 2872827D318
-	for <lists+devicetree@lfdr.de>; Tue, 29 Sep 2020 17:48:51 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTP id 8094D27D323
+	for <lists+devicetree@lfdr.de>; Tue, 29 Sep 2020 17:52:05 +0200 (CEST)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S1730069AbgI2Psu (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Tue, 29 Sep 2020 11:48:50 -0400
-Received: from mail-oi1-f178.google.com ([209.85.167.178]:33850 "EHLO
-        mail-oi1-f178.google.com" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S1725497AbgI2Pst (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Tue, 29 Sep 2020 11:48:49 -0400
-Received: by mail-oi1-f178.google.com with SMTP id n2so5970910oij.1;
-        Tue, 29 Sep 2020 08:48:48 -0700 (PDT)
+        id S1728478AbgI2PwE (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Tue, 29 Sep 2020 11:52:04 -0400
+Received: from mail-oo1-f67.google.com ([209.85.161.67]:43477 "EHLO
+        mail-oo1-f67.google.com" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
+        with ESMTP id S1728401AbgI2PwE (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Tue, 29 Sep 2020 11:52:04 -0400
+Received: by mail-oo1-f67.google.com with SMTP id w25so1394555oos.10;
+        Tue, 29 Sep 2020 08:52:03 -0700 (PDT)
 X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
         d=1e100.net; s=20161025;
         h=x-gm-message-state:date:from:to:cc:subject:message-id:references
          :mime-version:content-disposition:in-reply-to;
-        bh=JVFwpNrq1SIlzGPYHpvVMOxGitI2JeKtHPxEZUWE+YU=;
-        b=H7QHe+ceuw3wY6tAtxilDv4WcqvHlrdUvNskm92THs+LwziFrUrO4kn3T5lY1eslHY
-         iE2kcL6BeS310Kev29bQmPnuHGyQuHDVooeJMGS32YTJrDCOUKXD0eDbSKBMMGe+jIzX
-         HUPrAC8YBZ1vokeLgYg/xNtiWhvgCWoWJ7L5/0A49fdSKFTN9FmLWLn0KqQCXT0JtXyz
-         bPpVwpSTf661J7OKvZH4RivNSPq695OfOfLqEnFTKy6Vcc2jE5hXWyvBNaAG7r0nAviH
-         xfXe0C3khaa0cQZD6iIUkcFWlvffQYo3zhOONa3rF+pSRNZFwqPDg7da7smBdI4QMQq1
-         youA==
-X-Gm-Message-State: AOAM532k3fClKGBhmbUNcV+JXcCxn98pIh9bwrWsiRW1rmbFpqy6rrZo
-        /nGXukUEVB8Eo6uzmJDJHBGIjpyXrwya
-X-Google-Smtp-Source: ABdhPJzSNzJP5DPJRFA+qMMldts+IB6wvoeLlHF6lW8kriWq9WfG35nyDzUE8rvIg+GDmnAEqgPUug==
-X-Received: by 2002:aca:d549:: with SMTP id m70mr2987760oig.49.1601394527334;
-        Tue, 29 Sep 2020 08:48:47 -0700 (PDT)
+        bh=MhoFV9ElUshrcZczyvzu0eUgcLqJJOPkpBHv4bhmpeI=;
+        b=RdsZrJzgENJ6Di1b0UM5oDw/IO41zWDh5yiJTVCS5+Z+Zm1rxZ2qHJLiA/Gq1MOdkW
+         i6bUbusZksqV7s9voEhltvbRmh5ww+Oqx5rGEh/bZVJ08mG9xSJ9v/o+3qizMc+x0gHO
+         m4SEq/YNNoNlI6NASKl2l/X1GqaF35zUFYZJTnXRnKiRVa4XuObyyvzmM/f4G/6VhcQc
+         BwUKsQiAKkC9PVD/l2m0c787pJt9zGvMIsJdIWytudgaQ3LMczDJiqnThmPpWjm9OK16
+         iq8GBpoiLSgXwuYGyrE4k66d1cNZp4h5p21j5hNpwd14HwfK2L0kX6SnJaSW3WeSXLTf
+         kaNg==
+X-Gm-Message-State: AOAM533ZJ2deEeNSYztqwdZywo4et0kiidEnWfEar13PBE7l6nx8jFfe
+        UJorON87WB0v3cSb+Fye2A==
+X-Google-Smtp-Source: ABdhPJwuG3Ld+elk2b1227zUoNomM14opr/hmEQ0EAWgc/iigZJuNC67UKZmjHIr3zDq+pDM9upmtA==
+X-Received: by 2002:a4a:c541:: with SMTP id j1mr5123201ooq.13.1601394722536;
+        Tue, 29 Sep 2020 08:52:02 -0700 (PDT)
 Received: from xps15 (24-155-109-49.dyn.grandenetworks.net. [24.155.109.49])
-        by smtp.gmail.com with ESMTPSA id e22sm1140797oib.18.2020.09.29.08.48.46
+        by smtp.gmail.com with ESMTPSA id l136sm1071824oig.7.2020.09.29.08.52.01
         (version=TLS1_3 cipher=TLS_AES_256_GCM_SHA384 bits=256/256);
-        Tue, 29 Sep 2020 08:48:46 -0700 (PDT)
-Received: (nullmailer pid 662454 invoked by uid 1000);
-        Tue, 29 Sep 2020 15:48:45 -0000
-Date:   Tue, 29 Sep 2020 10:48:45 -0500
+        Tue, 29 Sep 2020 08:52:02 -0700 (PDT)
+Received: (nullmailer pid 668050 invoked by uid 1000);
+        Tue, 29 Sep 2020 15:52:01 -0000
+Date:   Tue, 29 Sep 2020 10:52:01 -0500
 From:   Rob Herring <robh@kernel.org>
-To:     Crystal Guo <crystal.guo@mediatek.com>
-Cc:     linux-kernel@vger.kernel.org, yingjoe.chen@mediatek.com,
-        matthias.bgg@gmail.com, p.zabel@pengutronix.de,
-        seiya.wang@mediatek.com, fan.chen@mediatek.com,
-        linux-mediatek@lists.infradead.org,
-        linux-arm-kernel@lists.infradead.org, stanley.chu@mediatek.com,
-        robh+dt@kernel.org, srv_heupstream@mediatek.com,
-        devicetree@vger.kernel.org, yong.liang@mediatek.com
-Subject: Re: [v5,1/3] dt-binding: reset-controller: mediatek: add YAML schemas
-Message-ID: <20200929154845.GA662033@bogus>
-References: <20200929134642.26561-1-crystal.guo@mediatek.com>
- <20200929134642.26561-2-crystal.guo@mediatek.com>
+To:     Joakim Zhang <qiangqing.zhang@nxp.com>
+Cc:     mchehab@kernel.org, sean@mess.org, linux-media@vger.kernel.org,
+        devicetree@vger.kernel.org, linux-kernel@vger.kernel.org,
+        linux-imx@nxp.com
+Subject: Re: [PATCH V3 1/2] bindings: media: gpio-ir-receiver: add
+ linux,autosuspend-period property
+Message-ID: <20200929155201.GA665464@bogus>
+References: <20200922190807.6830-1-qiangqing.zhang@nxp.com>
+ <20200922190807.6830-2-qiangqing.zhang@nxp.com>
 MIME-Version: 1.0
 Content-Type: text/plain; charset=us-ascii
 Content-Disposition: inline
-In-Reply-To: <20200929134642.26561-2-crystal.guo@mediatek.com>
+In-Reply-To: <20200922190807.6830-2-qiangqing.zhang@nxp.com>
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-On Tue, 29 Sep 2020 21:46:40 +0800, Crystal Guo wrote:
-> Add a YAML documentation for Mediatek, which uses ti reset-controller
-> driver directly. The TI reset controller provides a common reset management,
-> and is suitable for Mediatek SoCs.
+On Wed, Sep 23, 2020 at 03:08:06AM +0800, Joakim Zhang wrote:
+> Add linux,autosuspend-period property for gpio ir receiver. Some cpuidle
+> systems wake from idle may take a bit long time, for such case, need
+> disable cpuidle temporarily.
 > 
-> Signed-off-by: Crystal Guo <crystal.guo@mediatek.com>
+> Signed-off-by: Joakim Zhang <qiangqing.zhang@nxp.com>
 > ---
->  .../bindings/reset/mediatek-syscon-reset.yaml | 51 +++++++++++++++++++
->  1 file changed, 51 insertions(+)
->  create mode 100644 Documentation/devicetree/bindings/reset/mediatek-syscon-reset.yaml
+> ChangeLogs:
+> V1->V2:
+> 	* New add.
+> V2->V3:
+> 	* linux,autosuspend-period = 125; -> linux,autosuspend-period = <125>;
+> ---
+>  Documentation/devicetree/bindings/media/gpio-ir-receiver.txt | 3 +++
+>  1 file changed, 3 insertions(+)
 > 
+> diff --git a/Documentation/devicetree/bindings/media/gpio-ir-receiver.txt b/Documentation/devicetree/bindings/media/gpio-ir-receiver.txt
+> index 58261fb7b408..e1447c9b0e26 100644
+> --- a/Documentation/devicetree/bindings/media/gpio-ir-receiver.txt
+> +++ b/Documentation/devicetree/bindings/media/gpio-ir-receiver.txt
+> @@ -7,6 +7,8 @@ Required properties:
+>  Optional properties:
+>  	- linux,rc-map-name: see rc.txt file in the same
+>  	  directory.
+> +        - linux,autosuspend-period: autosuspend delay time,
+> +          the unit is milisecond.
 
-
-My bot found errors running 'make dt_binding_check' on your patch:
-
-/builds/robherring/linux-dt-review/Documentation/devicetree/bindings/reset/mediatek-syscon-reset.example.dt.yaml: example-0: infracfg@10001000:reg:0: [0, 268439552, 0, 4096] is too long
-	From schema: /usr/local/lib/python3.8/dist-packages/dtschema/schemas/reg.yaml
-
-
-See https://patchwork.ozlabs.org/patch/1373428
-
-If you already ran 'make dt_binding_check' and didn't see the above
-error(s), then make sure dt-schema is up to date:
-
-pip3 install git+https://github.com/devicetree-org/dt-schema.git@master --upgrade
-
-Please check and re-submit.
-
+What makes this linux specific?
