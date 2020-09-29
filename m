@@ -2,199 +2,494 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from vger.kernel.org (vger.kernel.org [23.128.96.18])
-	by mail.lfdr.de (Postfix) with ESMTP id 5B71D27D840
-	for <lists+devicetree@lfdr.de>; Tue, 29 Sep 2020 22:33:22 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTP id 80B3827D8F0
+	for <lists+devicetree@lfdr.de>; Tue, 29 Sep 2020 22:40:00 +0200 (CEST)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S1728741AbgI2UdO (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Tue, 29 Sep 2020 16:33:14 -0400
-Received: from mail-eopbgr70045.outbound.protection.outlook.com ([40.107.7.45]:64590
-        "EHLO EUR04-HE1-obe.outbound.protection.outlook.com"
-        rhost-flags-OK-OK-OK-FAIL) by vger.kernel.org with ESMTP
-        id S1725372AbgI2UdO (ORCPT <rfc822;devicetree@vger.kernel.org>);
-        Tue, 29 Sep 2020 16:33:14 -0400
-ARC-Seal: i=1; a=rsa-sha256; s=arcselector9901; d=microsoft.com; cv=none;
- b=IWf4widwgQZKThnlEVLiV5f7hGJwRbTC4U4MU0IGO4bo+fWewmYoKR2JPyqkgZ8DqlOm/ae68lYqoYstOY2fcBg4oAa2P/YBbgqLrJyalH0yRnBv3TGhddj86jLgsI1I1GSQKEYuyAs6IHVdKsCpLhziKTeo+qel5NJx6L1RVmxfdpUVLfSHX4ZDBoexNeDAnHyZN8TpL3DZSPdP6URsnBxxR5GZA2E2d4T+cEXBSRM0bIgTXG0kn2E/ikRM1KSKb0pTD02pP1uLw/WlobAs+4METCwMeo+2sfR5ST2/HJZJBNxB7V0AE9cL/poOfaOWds6fgY7Aw5aeFyjAw0+UTg==
-ARC-Message-Signature: i=1; a=rsa-sha256; c=relaxed/relaxed; d=microsoft.com;
- s=arcselector9901;
- h=From:Date:Subject:Message-ID:Content-Type:MIME-Version:X-MS-Exchange-SenderADCheck;
- bh=oafLxV+rIZES4vJ960HZFA33bMs5RePS6TRTo+/am/k=;
- b=ODu+hkley3Ll1b4GtLlUKwwTCbxoIg4axhFj3eVeCuwTnnubMHMGImtikWW2UGjTJGe+f3ba1jcTKigOxbutMYLRQr/f5w+XAb8GVXI+Rh0Zet69ivCHMP1OGsCCuw3KFQ+hyDzOm12wM85OKpM/73bWzylW32tSYleEDG2E7wqIu1x1J8KnFAL9zs6AKQ+pxQaJ9SGDTAGHcnxzA6DYYu+W99lBGG6gWaGWzKCUAPmZGGGgyVDmgCEz0H2I7SFXX5Ex9uEHvB9EpkTA5tfrS1AzEx6szbZue6UwA8bIDKQu1GKtOvvYnvpD540PnFSUiF2nntjgzke7iAoPdthi8A==
-ARC-Authentication-Results: i=1; mx.microsoft.com 1; spf=pass
- smtp.mailfrom=nxp.com; dmarc=pass action=none header.from=nxp.com; dkim=pass
- header.d=nxp.com; arc=none
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=nxp.com; s=selector2;
- h=From:Date:Subject:Message-ID:Content-Type:MIME-Version:X-MS-Exchange-SenderADCheck;
- bh=oafLxV+rIZES4vJ960HZFA33bMs5RePS6TRTo+/am/k=;
- b=CYqpG2cSjWijk6Bfd03TugFdC2PuL2dvHWB7C14K4PRcCi5PG7f0+P0m1Mj4oeHzOOIlmR9diT0JRNoY4Hw9qnr98+YZVPLNTspnowVdAUPpZp7FoUxRKPGMpuAnCyZzB9hnbkMPqPAnD/pIIG0u757rzREzSTgPUMB+Ufh6hwQ=
-Received: from VI1PR04MB5696.eurprd04.prod.outlook.com (2603:10a6:803:e7::13)
- by VI1PR04MB6270.eurprd04.prod.outlook.com (2603:10a6:803:fb::14) with
- Microsoft SMTP Server (version=TLS1_2,
- cipher=TLS_ECDHE_RSA_WITH_AES_256_GCM_SHA384) id 15.20.3412.23; Tue, 29 Sep
- 2020 20:33:09 +0000
-Received: from VI1PR04MB5696.eurprd04.prod.outlook.com
- ([fe80::983b:73a7:cc93:e63d]) by VI1PR04MB5696.eurprd04.prod.outlook.com
- ([fe80::983b:73a7:cc93:e63d%3]) with mapi id 15.20.3433.032; Tue, 29 Sep 2020
- 20:33:09 +0000
-From:   Vladimir Oltean <vladimir.oltean@nxp.com>
-To:     Andrew Lunn <andrew@lunn.ch>
-CC:     "robh+dt@kernel.org" <robh+dt@kernel.org>,
-        "shawnguo@kernel.org" <shawnguo@kernel.org>,
-        "mpe@ellerman.id.au" <mpe@ellerman.id.au>,
-        "devicetree@vger.kernel.org" <devicetree@vger.kernel.org>,
-        "benh@kernel.crashing.org" <benh@kernel.crashing.org>,
-        "paulus@samba.org" <paulus@samba.org>,
-        "linuxppc-dev@lists.ozlabs.org" <linuxppc-dev@lists.ozlabs.org>,
-        "linux-kernel@vger.kernel.org" <linux-kernel@vger.kernel.org>,
-        "netdev@vger.kernel.org" <netdev@vger.kernel.org>,
-        "Madalin Bucur (OSS)" <madalin.bucur@oss.nxp.com>,
-        Radu-andrei Bulie <radu-andrei.bulie@nxp.com>,
-        "fido_max@inbox.ru" <fido_max@inbox.ru>,
-        Vladimir Oltean <olteanv@gmail.com>
-Subject: Re: [PATCH v2 devicetree 2/2] powerpc: dts: t1040rdb: add ports for
- Seville Ethernet switch
-Thread-Topic: [PATCH v2 devicetree 2/2] powerpc: dts: t1040rdb: add ports for
- Seville Ethernet switch
-Thread-Index: AQHWllQyl+0N41wVskyCvsQrZKm24ql//B+AgAAH04CAAAijAIAABjyA
-Date:   Tue, 29 Sep 2020 20:33:09 +0000
-Message-ID: <20200929203307.ywjtjyogbpo6x6xl@skbuf>
-References: <20200929113209.3767787-1-vladimir.oltean@nxp.com>
- <20200929113209.3767787-3-vladimir.oltean@nxp.com>
- <20200929191153.GF3996795@lunn.ch> <20200929193953.rgibttgt6lh5huef@skbuf>
- <20200929201048.GG3996795@lunn.ch>
-In-Reply-To: <20200929201048.GG3996795@lunn.ch>
-Accept-Language: en-US
-Content-Language: en-US
-X-MS-Has-Attach: 
-X-MS-TNEF-Correlator: 
-authentication-results: lunn.ch; dkim=none (message not signed)
- header.d=none;lunn.ch; dmarc=none action=none header.from=nxp.com;
-x-originating-ip: [188.26.229.171]
-x-ms-publictraffictype: Email
-x-ms-office365-filtering-ht: Tenant
-x-ms-office365-filtering-correlation-id: 349c6484-1201-4940-92b4-08d864b6e0d8
-x-ms-traffictypediagnostic: VI1PR04MB6270:
-x-ms-exchange-transport-forked: True
-x-microsoft-antispam-prvs: <VI1PR04MB6270903BD8B8674E2CA02B2FE0320@VI1PR04MB6270.eurprd04.prod.outlook.com>
-x-ms-oob-tlc-oobclassifiers: OLM:7691;
-x-ms-exchange-senderadcheck: 1
-x-microsoft-antispam: BCL:0;
-x-microsoft-antispam-message-info: +JhrorQJ6bJFJFQQCHgAVp531uWb7xYbu0/KXPcOvgHuXKxOBJtkQdVzls7ayTFnSZah44jEXu7RP1TphVvh4A+yUJfYROppiieoMdAQHe07XHTTSD2pmq4qHB8QWAuGkrKdUYkykEBLNXl/9OioX9p+WrXHUgCaN/fmW/k5qvY9FrcVDhCDsrwBVOiQ2avR15LoZRfQRq6YTKIoykl6fvqoaz9al7gPQUCYyFYssZ/Jc0FXsI68oKmVcZFo5b2ulv164FwX97ufPNRp/MMuAmqZU5Lt8uDGUMzooiPGIYAOxlLkPPlyHbTfGNj1tTAumsxtXpZWGMFbs2K9N96+qY8Is6MxzBneKa6JMo81O55ll4TiFr9ybUE5O/Zp3HuE
-x-forefront-antispam-report: CIP:255.255.255.255;CTRY:;LANG:en;SCL:1;SRV:;IPV:NLI;SFV:NSPM;H:VI1PR04MB5696.eurprd04.prod.outlook.com;PTR:;CAT:NONE;SFS:(4636009)(7916004)(39860400002)(136003)(376002)(396003)(366004)(346002)(2906002)(83380400001)(478600001)(186003)(54906003)(6506007)(316002)(91956017)(66946007)(66446008)(71200400001)(76116006)(64756008)(86362001)(66476007)(66556008)(26005)(44832011)(1076003)(33716001)(5660300002)(8936002)(4326008)(6916009)(6486002)(8676002)(6512007)(9686003)(7416002);DIR:OUT;SFP:1101;
-x-ms-exchange-antispam-messagedata: S+7N17SNMk6kF20BDUqYmkt4LFUJdfi+Q9g9DVoyCPS4tLj24Z2lnJqlSqjt5BmlNvt/z1AnvK+8NaY0Hh1s0itnXhvDTtY1Hs3CZ0FvpYYs1N2CUQnYdjhvk6SL4QopSaTZAF9P0QUUcCV8YQUnZkldAx5yOlHw+S4swQu9H3QpH2ypSe3vGP1I626hsSDwnnG/UpGIbM1a/B6TBT1BqKZBE2Z8JA15PQYuOotWCr/Wiju+KnFWPLGLYdOdlWddrNfFwAltq5mxkdT1HNL1C7HrXaIV8t+/SUH28D6aHypcQ8gBBEYgculKJM/ZPwn22l2kOUTV+FOYQktqBsPgEzXxGSfxUm8fDPETbemWyqlxAcA1/HnPkmgq4m75Yc5kdbfQfmioyajeNyX5CGcGaUEgTy27tffvXVdPzqWfF8VApotkp2BvM2sg9+zojZj6LJKdZoRJLtXY3La3Afapi2igL2sj3b2sK5buizcpMQJKHKwBZ2iGEyu/+C6Zwgm20I4M9OX/5VEyKZVMLH9uVDfyNCuB+MkjJ1ytOMj0lprVgOaNynkroJdLnFR0Y7P36u76/rPF8lZP7eAwjTpHXa7VieAfbUM/lIMrbnk8dtH3HtZbGrivJwRM0pz1gWJcchapc7CYeZI0BIhaxaF59w==
-Content-Type: text/plain; charset="us-ascii"
-Content-ID: <BEFB5A9AA2E4394C878894AEF5F98541@eurprd04.prod.outlook.com>
-Content-Transfer-Encoding: quoted-printable
+        id S1729688AbgI2Ujn (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Tue, 29 Sep 2020 16:39:43 -0400
+Received: from lindbergh.monkeyblade.net ([23.128.96.19]:37236 "EHLO
+        lindbergh.monkeyblade.net" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
+        with ESMTP id S1729422AbgI2Uf6 (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Tue, 29 Sep 2020 16:35:58 -0400
+Received: from mail-pg1-x541.google.com (mail-pg1-x541.google.com [IPv6:2607:f8b0:4864:20::541])
+        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 0F775C061755;
+        Tue, 29 Sep 2020 13:35:58 -0700 (PDT)
+Received: by mail-pg1-x541.google.com with SMTP id m34so4836890pgl.9;
+        Tue, 29 Sep 2020 13:35:58 -0700 (PDT)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+        d=gmail.com; s=20161025;
+        h=date:from:to:cc:subject:message-id:references:mime-version
+         :content-disposition:in-reply-to;
+        bh=7esz1zpt/WRpXyKl5QBUf62b8nnV+Gd47cnXXKzqgyU=;
+        b=b4kMDljIAeqLuKRJnctW240uQGdoGfQAkLo3ph8CZgwpWg48QQnbi/R+5Z4VyMM1CS
+         Ph5SAa+9fED864kN9iNXHJiyPNNqRZIkSw4YgzjGEhT0OKMG1ipbCXsPiriv/u05Nul5
+         ejIck+eDbFmjyi4iLXiqwLBC6wCEjxBDw0pDZ2cmE/S65AmDYyUVjYzc9/V+CqTkZazj
+         9piNsKFUAWBabBMEKlJrcAi2LQ0ExDLrKS5k3vzLOioIJjCjjHW5zwKOLZuqSGmeA9kO
+         nh1dQYljG5WuUFkw5264yKnZK8ucI2n2hmUdIqBjh4gHzjNp8RxkApUpW5bQX8ZVc1z/
+         vIcg==
+X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+        d=1e100.net; s=20161025;
+        h=x-gm-message-state:date:from:to:cc:subject:message-id:references
+         :mime-version:content-disposition:in-reply-to;
+        bh=7esz1zpt/WRpXyKl5QBUf62b8nnV+Gd47cnXXKzqgyU=;
+        b=iUAxBUHHxY7zKq6w6ADhHcvg4CcMTaHImjmJFEPMTImn33olc8Xou6jqc3D6UHZkcC
+         vYPfESGXBYwNDoMcQ+Cv/rfLkr/J4MK+3x8wBxkphusvQomplFH5wyEGxCzUwxT0C1f2
+         SvhOlhanO9mJJl/OBN/QGl7asCCeEl77PJVRZj1fBzZp/HTREoOzZ/BwxpKLZMcbS9Kf
+         8O6BfT+P/nx/vidWinfdvcVBQDJXdBUh3z4iMObmh3KnlP0+AepqcKSMNAFGcK6sHF/S
+         bB1haRQavWu/KaGEuBWB2fiKeB99WJuhifMjLOW0cyr7NhXzIvJOHMLjIRRCXFbrdHRL
+         2xLw==
+X-Gm-Message-State: AOAM530dehJQBmnrHNpJZ4yUyQYg31lw0KNyVcFit8S/40Wz8Emw4XYw
+        tv46K2xkPC/qeiNgrBrKZVQ=
+X-Google-Smtp-Source: ABdhPJyS3CEUv2UhlHUk/i0VyYBwQvljBMHHfzucFaHTqjc9SI+um/lHZzdn7uQ2Dsi5s3jJdDTMyw==
+X-Received: by 2002:a17:902:ee02:b029:d1:8c50:aa73 with SMTP id z2-20020a170902ee02b02900d18c50aa73mr6692510plb.42.1601411757287;
+        Tue, 29 Sep 2020 13:35:57 -0700 (PDT)
+Received: from dtor-ws ([2620:15c:202:201:a6ae:11ff:fe11:fcc3])
+        by smtp.gmail.com with ESMTPSA id in10sm5418946pjb.11.2020.09.29.13.35.56
+        (version=TLS1_3 cipher=TLS_AES_256_GCM_SHA384 bits=256/256);
+        Tue, 29 Sep 2020 13:35:56 -0700 (PDT)
+Date:   Tue, 29 Sep 2020 13:35:54 -0700
+From:   Dmitry Torokhov <dmitry.torokhov@gmail.com>
+To:     Cristian Ciocaltea <cristian.ciocaltea@gmail.com>
+Cc:     Lee Jones <lee.jones@linaro.org>, Rob Herring <robh+dt@kernel.org>,
+        Sebastian Reichel <sre@kernel.org>,
+        Liam Girdwood <lgirdwood@gmail.com>,
+        Mark Brown <broonie@kernel.org>,
+        Manivannan Sadhasivam <manivannan.sadhasivam@linaro.org>,
+        Andreas =?iso-8859-1?Q?F=E4rber?= <afaerber@suse.de>,
+        linux-actions@lists.infradead.org, devicetree@vger.kernel.org,
+        linux-kernel@vger.kernel.org, linux-input@vger.kernel.org,
+        linux-pm@vger.kernel.org
+Subject: Re: [PATCH v2 5/6] input: atc260x: Add onkey driver for ATC260x PMICs
+Message-ID: <20200929203554.GA3313608@dtor-ws>
+References: <cover.1598043782.git.cristian.ciocaltea@gmail.com>
+ <aec6ea5cfc9bf820cb4bb4a92297d2eecf6d285d.1598043782.git.cristian.ciocaltea@gmail.com>
+ <20200914210941.GC1681290@dtor-ws>
+ <20200918103503.GA27182@BV030612LT>
 MIME-Version: 1.0
-X-OriginatorOrg: nxp.com
-X-MS-Exchange-CrossTenant-AuthAs: Internal
-X-MS-Exchange-CrossTenant-AuthSource: VI1PR04MB5696.eurprd04.prod.outlook.com
-X-MS-Exchange-CrossTenant-Network-Message-Id: 349c6484-1201-4940-92b4-08d864b6e0d8
-X-MS-Exchange-CrossTenant-originalarrivaltime: 29 Sep 2020 20:33:09.1060
- (UTC)
-X-MS-Exchange-CrossTenant-fromentityheader: Hosted
-X-MS-Exchange-CrossTenant-id: 686ea1d3-bc2b-4c6f-a92c-d99c5c301635
-X-MS-Exchange-CrossTenant-mailboxtype: HOSTED
-X-MS-Exchange-CrossTenant-userprincipalname: I3IjvYFDoDRo8yPoCopYhIQaVlcFIIXhfaR9pnQMqcqogMn35AnWGl7AS5BGezwZNLYIGYUNwJJgm11Yvf5QWw==
-X-MS-Exchange-Transport-CrossTenantHeadersStamped: VI1PR04MB6270
+Content-Type: text/plain; charset=us-ascii
+Content-Disposition: inline
+In-Reply-To: <20200918103503.GA27182@BV030612LT>
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-On Tue, Sep 29, 2020 at 10:10:48PM +0200, Andrew Lunn wrote:
-> On Tue, Sep 29, 2020 at 07:39:54PM +0000, Vladimir Oltean wrote:
-> > On Tue, Sep 29, 2020 at 09:11:53PM +0200, Andrew Lunn wrote:
-> > > > +&seville_port0 {
-> > > > +	managed =3D "in-band-status";
-> > > > +	phy-handle =3D <&phy_qsgmii_0>;
-> > > > +	phy-mode =3D "qsgmii";
-> > > > +	/* ETH4 written on chassis */
-> > > > +	label =3D "swp4";
-> > >
-> > > If ETH4 is on the chassis why not use ETH4?
-> >
-> > You mean all-caps, just like that?
->
-> Yes.
->
-> DSA is often used in WiFI access point, etc. The user is not a
-> computer professional. If the WebGUI says ETH4, and the label on the
-> front says ETH4, they probably think the two are the same, and are
-> happy.
->
-> I have one box which does not have an labels on the front panels, but
-> the industrial sockets for Ethernet are colour coded. So the interface
-> names are red, blue, green, to match the socket colour, and the cable
-> set is also colour coded the same.
->
-> So long as it is unique, the kernel does not care. So make it easy for
-> the user.
+Hi Cristian,
 
-It would look like this:
+On Fri, Sep 18, 2020 at 01:35:03PM +0300, Cristian Ciocaltea wrote:
+> Hi Dmitry,
+> 
+> Thanks for the review!
+> 
+> On Mon, Sep 14, 2020 at 02:09:41PM -0700, Dmitry Torokhov wrote:
+> > Hi Cristian,
+> > 
+> > On Sat, Aug 22, 2020 at 01:19:51AM +0300, Cristian Ciocaltea wrote:
+> > > The Actions Semi ATC260x PMICs are able to manage an onkey button.
+> > > This driver exposes the ATC260x onkey as an input device. It can also
+> > > be configured to force a system reset on a long key-press with an
+> > > adjustable duration.
+> > > 
+> > > The currently supported chip variants are ATC2603C and ATC2609A.
+> > > 
+> > > Signed-off-by: Cristian Ciocaltea <cristian.ciocaltea@gmail.com>
+> > > ---
+> > >  drivers/input/misc/Kconfig         |  11 ++
+> > >  drivers/input/misc/Makefile        |   2 +-
+> > >  drivers/input/misc/atc260x-onkey.c | 304 +++++++++++++++++++++++++++++
+> > >  3 files changed, 316 insertions(+), 1 deletion(-)
+> > >  create mode 100644 drivers/input/misc/atc260x-onkey.c
+> > > 
+> > > diff --git a/drivers/input/misc/Kconfig b/drivers/input/misc/Kconfig
+> > > index 362e8a01980c..9e297ebdea57 100644
+> > > --- a/drivers/input/misc/Kconfig
+> > > +++ b/drivers/input/misc/Kconfig
+> > > @@ -83,6 +83,17 @@ config INPUT_ARIZONA_HAPTICS
+> > >  	  To compile this driver as a module, choose M here: the
+> > >  	  module will be called arizona-haptics.
+> > >  
+> > > +config INPUT_ATC260X_ONKEY
+> > > +	tristate "Actions Semi ATC260x PMIC ONKEY"
+> > > +	depends on MFD_ATC260X
+> > > +	help
+> > > +	  Support the ONKEY of ATC260x PMICs as an input device reporting
+> > > +	  power button status. ONKEY can be used to wakeup from low power
+> > > +	  modes and force a reset on long press.
+> > > +
+> > > +	  To compile this driver as a module, choose M here: the
+> > > +	  module will be called atc260x-onkey.
+> > > +
+> > >  config INPUT_ATMEL_CAPTOUCH
+> > >  	tristate "Atmel Capacitive Touch Button Driver"
+> > >  	depends on OF || COMPILE_TEST
+> > > diff --git a/drivers/input/misc/Makefile b/drivers/input/misc/Makefile
+> > > index a48e5f2d859d..7f854c6ecefa 100644
+> > > --- a/drivers/input/misc/Makefile
+> > > +++ b/drivers/input/misc/Makefile
+> > > @@ -16,6 +16,7 @@ obj-$(CONFIG_INPUT_ADXL34X_I2C)		+= adxl34x-i2c.o
+> > >  obj-$(CONFIG_INPUT_ADXL34X_SPI)		+= adxl34x-spi.o
+> > >  obj-$(CONFIG_INPUT_APANEL)		+= apanel.o
+> > >  obj-$(CONFIG_INPUT_ARIZONA_HAPTICS)	+= arizona-haptics.o
+> > > +obj-$(CONFIG_INPUT_ATC260X_ONKEY)	+= atc260x-onkey.o
+> > >  obj-$(CONFIG_INPUT_ATI_REMOTE2)		+= ati_remote2.o
+> > >  obj-$(CONFIG_INPUT_ATLAS_BTNS)		+= atlas_btns.o
+> > >  obj-$(CONFIG_INPUT_ATMEL_CAPTOUCH)	+= atmel_captouch.o
+> > > @@ -84,4 +85,3 @@ obj-$(CONFIG_INPUT_WM831X_ON)		+= wm831x-on.o
+> > >  obj-$(CONFIG_INPUT_XEN_KBDDEV_FRONTEND)	+= xen-kbdfront.o
+> > >  obj-$(CONFIG_INPUT_YEALINK)		+= yealink.o
+> > >  obj-$(CONFIG_INPUT_IDEAPAD_SLIDEBAR)	+= ideapad_slidebar.o
+> > > -
+> > > diff --git a/drivers/input/misc/atc260x-onkey.c b/drivers/input/misc/atc260x-onkey.c
+> > > new file mode 100644
+> > > index 000000000000..7caec7d6f9ac
+> > > --- /dev/null
+> > > +++ b/drivers/input/misc/atc260x-onkey.c
+> > > @@ -0,0 +1,304 @@
+> > > +// SPDX-License-Identifier: GPL-2.0+
+> > > +/*
+> > > + * Onkey driver for Actions Semi ATC260x PMICs.
+> > > + *
+> > > + * Copyright (c) 2020 Cristian Ciocaltea <cristian.ciocaltea@gmail.com>
+> > > + */
+> > > +
+> > > +#include <linux/bitfield.h>
+> > > +#include <linux/input.h>
+> > > +#include <linux/interrupt.h>
+> > > +#include <linux/mfd/atc260x/core.h>
+> > > +#include <linux/module.h>
+> > > +#include <linux/of.h>
+> > > +#include <linux/platform_device.h>
+> > > +#include <linux/regmap.h>
+> > > +
+> > > +/* <2s for short press, >2s for long press */
+> > > +#define KEY_PRESS_TIME_SEC	2
+> > > +
+> > > +/* Driver internals */
+> > > +enum atc260x_onkey_reset_status {
+> > > +	KEY_RESET_HW_DEFAULT,
+> > > +	KEY_RESET_DISABLED,
+> > > +	KEY_RESET_USER_SEL,
+> > > +};
+> > > +
+> > > +struct atc260x_onkey_params {
+> > > +	u32 reg_int_ctl;
+> > > +	u32 kdwn_state_bm;
+> > > +	u32 long_int_pnd_bm;
+> > > +	u32 short_int_pnd_bm;
+> > > +	u32 kdwn_int_pnd_bm;
+> > > +	u32 press_int_en_bm;
+> > > +	u32 kdwn_int_en_bm;
+> > > +	u32 press_time_bm;
+> > > +	u32 reset_en_bm;
+> > > +	u32 reset_time_bm;
+> > > +};
+> > > +
+> > > +struct atc260x_onkey {
+> > > +	struct atc260x *atc260x;
+> > > +	const struct atc260x_onkey_params *params;
+> > > +	struct input_dev *input_dev;
+> > > +	struct delayed_work work;
+> > > +};
+> > > +
+> > > +static const struct atc260x_onkey_params atc2603c_onkey_params = {
+> > > +	.reg_int_ctl		= ATC2603C_PMU_SYS_CTL2,
+> > > +	.long_int_pnd_bm	= ATC2603C_PMU_SYS_CTL2_ONOFF_LONG_PRESS,
+> > > +	.short_int_pnd_bm	= ATC2603C_PMU_SYS_CTL2_ONOFF_SHORT_PRESS,
+> > > +	.kdwn_int_pnd_bm	= ATC2603C_PMU_SYS_CTL2_ONOFF_PRESS_PD,
+> > > +	.press_int_en_bm	= ATC2603C_PMU_SYS_CTL2_ONOFF_INT_EN,
+> > > +	.kdwn_int_en_bm		= ATC2603C_PMU_SYS_CTL2_ONOFF_PRESS_INT_EN,
+> > > +	.kdwn_state_bm		= ATC2603C_PMU_SYS_CTL2_ONOFF_PRESS,
+> > > +	.press_time_bm		= ATC2603C_PMU_SYS_CTL2_ONOFF_PRESS_TIME,
+> > > +	.reset_en_bm		= ATC2603C_PMU_SYS_CTL2_ONOFF_PRESS_RESET_EN,
+> > > +	.reset_time_bm		= ATC2603C_PMU_SYS_CTL2_ONOFF_RESET_TIME_SEL,
+> > > +};
+> > > +
+> > > +static const struct atc260x_onkey_params atc2609a_onkey_params = {
+> > > +	.reg_int_ctl		= ATC2609A_PMU_SYS_CTL2,
+> > > +	.long_int_pnd_bm	= ATC2609A_PMU_SYS_CTL2_ONOFF_LONG_PRESS,
+> > > +	.short_int_pnd_bm	= ATC2609A_PMU_SYS_CTL2_ONOFF_SHORT_PRESS,
+> > > +	.kdwn_int_pnd_bm	= ATC2609A_PMU_SYS_CTL2_ONOFF_PRESS_PD,
+> > > +	.press_int_en_bm	= ATC2609A_PMU_SYS_CTL2_ONOFF_LSP_INT_EN,
+> > > +	.kdwn_int_en_bm		= ATC2609A_PMU_SYS_CTL2_ONOFF_PRESS_INT_EN,
+> > > +	.kdwn_state_bm		= ATC2609A_PMU_SYS_CTL2_ONOFF_PRESS,
+> > > +	.press_time_bm		= ATC2609A_PMU_SYS_CTL2_ONOFF_PRESS_TIME,
+> > > +	.reset_en_bm		= ATC2609A_PMU_SYS_CTL2_ONOFF_RESET_EN,
+> > > +	.reset_time_bm		= ATC2609A_PMU_SYS_CTL2_ONOFF_RESET_TIME_SEL,
+> > > +};
+> > > +
+> > > +static int atc2603x_onkey_hw_init(struct atc260x_onkey *onkey,
+> > > +				  enum atc260x_onkey_reset_status reset_status,
+> > > +				  u32 reset_time, u32 press_time)
+> > > +{
+> > > +	u32 reg_bm, reg_val;
+> > > +
+> > > +	reg_bm = onkey->params->long_int_pnd_bm |
+> > > +		 onkey->params->short_int_pnd_bm |
+> > > +		 onkey->params->kdwn_int_pnd_bm |
+> > > +		 onkey->params->press_int_en_bm |
+> > > +		 onkey->params->kdwn_int_en_bm;
+> > > +
+> > > +	reg_val = reg_bm | press_time;
+> > > +	reg_bm |= onkey->params->press_time_bm;
+> > > +
+> > > +	if (reset_status == KEY_RESET_DISABLED) {
+> > > +		reg_bm |= onkey->params->reset_en_bm;
+> > > +	} else if (reset_status == KEY_RESET_USER_SEL) {
+> > > +		reg_bm |= onkey->params->reset_en_bm |
+> > > +			  onkey->params->reset_time_bm;
+> > > +		reg_val |= onkey->params->reset_en_bm | reset_time;
+> > > +	}
+> > > +
+> > > +	return regmap_update_bits(onkey->atc260x->regmap,
+> > > +				  onkey->params->reg_int_ctl, reg_bm, reg_val);
+> > > +}
+> > > +
+> > > +static void atc260x_onkey_query(struct atc260x_onkey *onkey)
+> > > +{
+> > > +	u32 reg_bits;
+> > > +	int ret, key_down;
+> > > +
+> > > +	ret = regmap_read(onkey->atc260x->regmap,
+> > > +			  onkey->params->reg_int_ctl, &key_down);
+> > > +	if (ret) {
+> > > +		key_down = 1;
+> > > +		dev_err(onkey->atc260x->dev,
+> > > +			"Failed to read onkey status: %d\n", ret);
+> > > +	} else {
+> > > +		key_down &= onkey->params->kdwn_state_bm;
+> > > +	}
+> > > +
+> > > +	/*
+> > > +	 * The hardware generates interrupt only when the onkey pin is
+> > > +	 * asserted. Hence, the deassertion of the pin is simulated through
+> > > +	 * work queue.
+> > > +	 */
+> > > +	if (key_down) {
+> > > +		schedule_delayed_work(&onkey->work, msecs_to_jiffies(200));
+> > > +		return;
+> > > +	}
+> > > +
+> > > +	/*
+> > > +	 * The key-down status bit is cleared when the On/Off button
+> > > +	 * is released.
+> > > +	 */
+> > > +	input_report_key(onkey->input_dev, KEY_POWER, 0);
+> > > +	input_sync(onkey->input_dev);
+> > > +
+> > > +	reg_bits = onkey->params->long_int_pnd_bm |
+> > > +		   onkey->params->short_int_pnd_bm |
+> > > +		   onkey->params->kdwn_int_pnd_bm |
+> > > +		   onkey->params->press_int_en_bm |
+> > > +		   onkey->params->kdwn_int_en_bm;
+> > > +
+> > > +	/* Clear key press pending events and enable key press interrupts. */
+> > > +	regmap_update_bits(onkey->atc260x->regmap, onkey->params->reg_int_ctl,
+> > > +			   reg_bits, reg_bits);
+> > > +}
+> > > +
+> > > +static void atc260x_onkey_work(struct work_struct *work)
+> > > +{
+> > > +	struct atc260x_onkey *onkey = container_of(work, struct atc260x_onkey,
+> > > +						   work.work);
+> > > +	atc260x_onkey_query(onkey);
+> > > +}
+> > > +
+> > > +static irqreturn_t atc260x_onkey_irq(int irq, void *data)
+> > > +{
+> > > +	struct atc260x_onkey *onkey = data;
+> > > +	int ret;
+> > > +
+> > > +	/* Disable key press interrupts. */
+> > > +	ret = regmap_update_bits(onkey->atc260x->regmap,
+> > > +				 onkey->params->reg_int_ctl,
+> > > +				 onkey->params->press_int_en_bm |
+> > > +				 onkey->params->kdwn_int_en_bm, 0);
+> > > +	if (ret)
+> > > +		dev_err(onkey->atc260x->dev,
+> > > +			"Failed to disable interrupts: %d\n", ret);
+> > > +
+> > > +	input_report_key(onkey->input_dev, KEY_POWER, 1);
+> > > +	input_sync(onkey->input_dev);
+> > > +
+> > > +	atc260x_onkey_query(onkey);
+> > > +
+> > > +	return IRQ_HANDLED;
+> > > +}
+> > > +
+> > > +static int atc260x_onkey_probe(struct platform_device *pdev)
+> > > +{
+> > > +	struct atc260x *atc260x = dev_get_drvdata(pdev->dev.parent);
+> > > +	struct atc260x_onkey *onkey;
+> > > +	struct input_dev *input_dev;
+> > > +	enum atc260x_onkey_reset_status reset_status;
+> > > +	u32 press_time = KEY_PRESS_TIME_SEC, reset_time = 0;
+> > > +	int val, irq, ret;
+> > > +
+> > > +	if (!pdev->dev.of_node)
+> > > +		return -ENXIO;
+> > 
+> > Why is this needed?
+> 
+> The idea was to allow the user enable/disable the ONKEY functionality
+> of the MFD device via the 'onkey' DTS node. So if this node is not
+> present, the driver will not be loaded.
+> 
+> Is there a better/recommended way to handle this scenario?
 
-[root@T1040 ~] # ip link
-1: lo: <LOOPBACK,UP,LOWER_UP> mtu 65536 qdisc noqueue state UNKNOWN mode DE=
-FAULT group default qlen 1000
-    link/loopback 00:00:00:00:00:00 brd 00:00:00:00:00:00
-2: dummy0: <BROADCAST,NOARP,UP,LOWER_UP> mtu 1500 qdisc noqueue state UNKNO=
-WN mode DEFAULT group default qlen 1000
-    link/ether de:91:41:1a:92:b8 brd ff:ff:ff:ff:ff:ff
-3: fm1-gb3: <BROADCAST,MULTICAST,UP,LOWER_UP> mtu 1500 qdisc mq state UP mo=
-de DEFAULT group default qlen 1000
-    link/ether 00:1f:7b:6a:02:68 brd ff:ff:ff:ff:ff:ff
-4: fm1-gb4: <NO-CARRIER,BROADCAST,MULTICAST,UP> mtu 1500 qdisc mq state DOW=
-N mode DEFAULT group default qlen 1000
-    link/ether 00:1f:7b:6a:02:88 brd ff:ff:ff:ff:ff:ff
-5: fm1-gb0: <BROADCAST,MULTICAST,UP,LOWER_UP> mtu 1504 qdisc mq state UP mo=
-de DEFAULT group default qlen 1000
-    link/ether 00:1f:7b:6a:02:08 brd ff:ff:ff:ff:ff:ff
-6: fm1-gb1: <BROADCAST,MULTICAST,UP,LOWER_UP> mtu 1500 qdisc mq state UP mo=
-de DEFAULT group default qlen 1000
-    link/ether 00:1f:7b:6a:02:28 brd ff:ff:ff:ff:ff:ff
-7: fm1-gb2: <NO-CARRIER,BROADCAST,MULTICAST,UP> mtu 1500 qdisc mq state DOW=
-N mode DEFAULT group default qlen 1000
-    link/ether 00:1f:7b:6a:02:48 brd ff:ff:ff:ff:ff:ff
-8: tunl0@NONE: <NOARP> mtu 1480 qdisc noop state DOWN mode DEFAULT group de=
-fault qlen 1000
-    link/ipip 0.0.0.0 brd 0.0.0.0
-9: sit0@NONE: <NOARP> mtu 1480 qdisc noop state DOWN mode DEFAULT group def=
-ault qlen 1000
-    link/sit 0.0.0.0 brd 0.0.0.0
-10: ETH4@fm1-gb0: <BROADCAST,MULTICAST,UP,LOWER_UP> mtu 1500 qdisc noqueue =
-state UP mode DEFAULT group default qlen 1000
-    link/ether 00:1f:7b:6a:02:08 brd ff:ff:ff:ff:ff:ff
-11: ETH5@fm1-gb0: <NO-CARRIER,BROADCAST,MULTICAST,UP> mtu 1500 qdisc noqueu=
-e state LOWERLAYERDOWN mode DEFAULT group default qlen 1000
-    link/ether 00:1f:7b:6a:02:08 brd ff:ff:ff:ff:ff:ff
-12: ETH6@fm1-gb0: <NO-CARRIER,BROADCAST,MULTICAST,UP> mtu 1500 qdisc noqueu=
-e state LOWERLAYERDOWN mode DEFAULT group default qlen 1000
-    link/ether 00:1f:7b:6a:02:08 brd ff:ff:ff:ff:ff:ff
-13: ETH7@fm1-gb0: <NO-CARRIER,BROADCAST,MULTICAST,UP> mtu 1500 qdisc noqueu=
-e state LOWERLAYERDOWN mode DEFAULT group default qlen 1000
-    link/ether 00:1f:7b:6a:02:08 brd ff:ff:ff:ff:ff:ff
-14: ETH8@fm1-gb0: <NO-CARRIER,BROADCAST,MULTICAST,UP> mtu 1500 qdisc noqueu=
-e state LOWERLAYERDOWN mode DEFAULT group default qlen 1000
-    link/ether 00:1f:7b:6a:02:08 brd ff:ff:ff:ff:ff:ff
-15: ETH9@fm1-gb0: <NO-CARRIER,BROADCAST,MULTICAST,UP> mtu 1500 qdisc noqueu=
-e state LOWERLAYERDOWN mode DEFAULT group default qlen 1000
-    link/ether 00:1f:7b:6a:02:08 brd ff:ff:ff:ff:ff:ff
-16: ETH10@fm1-gb0: <NO-CARRIER,BROADCAST,MULTICAST,UP> mtu 1500 qdisc noque=
-ue state LOWERLAYERDOWN mode DEFAULT group default qlen 1000
-    link/ether 00:1f:7b:6a:02:08 brd ff:ff:ff:ff:ff:ff
-17: ETH11@fm1-gb0: <NO-CARRIER,BROADCAST,MULTICAST,UP> mtu 1500 qdisc noque=
-ue state LOWERLAYERDOWN mode DEFAULT group default qlen 1000
-    link/ether 00:1f:7b:6a:02:08 brd ff:ff:ff:ff:ff:ff
-[root@T1040 ~] # ip link set ETH4 down
-[   94.942190] mscc_seville ffe800000.ethernet-switch ETH4: Link is Down
-[root@T1040 ~] # ip link set ETH4 up
-[  100.262533] mscc_seville ffe800000.ethernet-switch ETH4: configuring for=
- inband/qsgmii link mode
-[  100.272122] 8021q: adding VLAN 0 to HW filter on device ETH4
-[  103.333369] mscc_seville ffe800000.ethernet-switch ETH4: Link is Up - 1G=
-bps/Full - flow control rx/tx
-[  103.342697] IPv6: ADDRCONF(NETDEV_CHANGE): ETH4: link becomes ready
+I believe the best way is not to create correspnding platform device if
+functionality is disabled. So the logic shoudl go into MFD piece.
 
-I'm not in love, but I guess at least there won't be any doubt if they
-are named like this. I'm sending another revision with these names soon.
+> 
+> > > +
+> > > +	onkey = devm_kzalloc(&pdev->dev, sizeof(*onkey), GFP_KERNEL);
+> > > +	if (!onkey)
+> > > +		return -ENOMEM;
+> > > +
+> > > +	ret = device_property_read_u32(&pdev->dev,
+> > > +				       "actions,reset-time-sec", &val);
+> > 
+> > Call this "error" please.
+> 
+> Would something like bellow suffice?
+> 
+> 	if (ret) {
+> 		dev_err(&pdev->dev, "Failed to read actions,reset-time-sec\n");
+> 		return ret;
+> 	}
 
-Thanks,
--Vladimir=
+
+I meant
+
+	error = device_property_read_u32(&pdev->dev,
+					 "actions,reset-time-sec", &val);
+	if (error) {
+		reset_status = KEY_RESET_HW_DEFAULT;
+	}
+
+
+> 
+> > > +	if (ret) {
+> > > +		reset_status = KEY_RESET_HW_DEFAULT;
+> > > +	} else if (val) {
+> > > +		if (val < 6 || val > 12) {
+> > > +			dev_err(&pdev->dev, "actions,reset-time-sec out of range\n");
+> > > +			return -EINVAL;
+> > > +		}
+> > > +
+> > > +		reset_status = KEY_RESET_USER_SEL;
+> > > +		reset_time = (val - 6) / 2;
+> > > +	} else {
+> > > +		reset_status = KEY_RESET_DISABLED;
+> > > +		dev_info(&pdev->dev, "Disabled reset on long-press\n");
+
+dev_dbg();
+
+> > > +	}
+> > > +
+> > > +	switch (atc260x->ic_type) {
+> > > +	case ATC2603C:
+> > > +		onkey->params = &atc2603c_onkey_params;
+> > > +		press_time = FIELD_PREP(ATC2603C_PMU_SYS_CTL2_ONOFF_PRESS_TIME,
+> > > +					press_time);
+> > > +		reset_time = FIELD_PREP(ATC2603C_PMU_SYS_CTL2_ONOFF_RESET_TIME_SEL,
+> > > +					reset_time);
+> > > +		break;
+> > > +	case ATC2609A:
+> > > +		onkey->params = &atc2609a_onkey_params;
+> > > +		press_time = FIELD_PREP(ATC2609A_PMU_SYS_CTL2_ONOFF_PRESS_TIME,
+> > > +					press_time);
+> > > +		reset_time = FIELD_PREP(ATC2609A_PMU_SYS_CTL2_ONOFF_RESET_TIME_SEL,
+> > > +					reset_time);
+> > > +		break;
+> > > +	default:
+> > > +		dev_err(&pdev->dev,
+> > > +			"OnKey not supported for ATC260x PMIC type: %u\n",
+> > > +			atc260x->ic_type);
+> > > +		return -EINVAL;
+> > > +	}
+> > > +
+> > > +	input_dev = devm_input_allocate_device(&pdev->dev);
+> > > +	if (!input_dev) {
+> > > +		dev_err(&pdev->dev, "Failed to allocate input device\n");
+> > > +		return -ENOMEM;
+> > > +	}
+> > > +
+> > > +	onkey->input_dev = input_dev;
+> > > +	onkey->atc260x = atc260x;
+> > > +
+> > > +	input_dev->name = "atc260x-onkey";
+> > > +	input_dev->phys = "atc260x-onkey/input0";
+> > > +	input_dev->evbit[0] = BIT_MASK(EV_KEY);
+> > 
+> > Not needed.
+> 
+> Done.
+> 
+> > > +	input_set_capability(input_dev, EV_KEY, KEY_POWER);
+> > > +
+> > > +	INIT_DELAYED_WORK(&onkey->work, atc260x_onkey_work);
+> > > +
+> > > +	irq = platform_get_irq(pdev, 0);
+> > > +	if (irq < 0)
+> > > +		return irq;
+> > > +
+> > > +	ret = devm_request_threaded_irq(&pdev->dev, irq, NULL,
+> > > +					atc260x_onkey_irq,
+> > > +					IRQF_TRIGGER_HIGH | IRQF_ONESHOT,
+> > 
+> > Do we need to force the trigger type? Can we rely on the parent to
+> > configure it as needed?
+> 
+> Done, I removed the trigger type enforcement.
+> 
+> > > +					dev_name(&pdev->dev), onkey);
+> > > +	if (ret) {
+> > > +		dev_err(&pdev->dev,
+> > > +			"Failed to register IRQ %d: %d\n", irq, ret);
+> > > +		return ret;
+> > > +	}
+> > > +
+> > > +	ret = input_register_device(input_dev);
+> > > +	if (ret) {
+> > > +		dev_err(&pdev->dev,
+> > > +			"Failed to register input device: %d\n", ret);
+> > > +		return ret;
+> > > +	}
+> > > +
+> > > +	ret = atc2603x_onkey_hw_init(onkey, reset_status,
+> > > +				     reset_time, press_time);
+> > > +	if (ret)
+> > > +		return ret;
+> > > +
+> > > +	platform_set_drvdata(pdev, onkey);
+> > > +	device_init_wakeup(&pdev->dev, true);
+> > > +
+> > > +	return 0;
+> > > +}
+> > > +
+> > > +static int atc260x_onkey_remove(struct platform_device *pdev)
+> > > +{
+> > > +	struct atc260x_onkey *onkey = platform_get_drvdata(pdev);
+> > > +
+> > > +	cancel_delayed_work_sync(&onkey->work);
+> > 
+> > This is racy. Past this point the interrupts are not disabled, so if key
+> > happens to be pressed you will re-schedule the work and it will go BOOM.
+> > 
+> > You are using threaded interrupt. Maybe consider sleeping and
+> > re-checking the key status right there.
+> 
+> I've seen this approach in a few drivers: da9055_onkey.c,
+> palmas-pwrbutton.c, wm831x-on.c
+> 
+> I noticed they also call 'free_irq()' right before
+> 'cancel_delayed_work_sync()'. Would this help mitigate the racing issue?
+
+Yes, but this messes up with devm releasing resources.
+
+Another option is to implement open/close and call enable_irq() in open
+and disable_irq/cancel_work_sync in close.
+
+Thanks.
+
+-- 
+Dmitry
