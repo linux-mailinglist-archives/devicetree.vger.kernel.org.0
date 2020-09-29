@@ -2,99 +2,238 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from vger.kernel.org (vger.kernel.org [23.128.96.18])
-	by mail.lfdr.de (Postfix) with ESMTP id 461BD27BA5C
-	for <lists+devicetree@lfdr.de>; Tue, 29 Sep 2020 03:39:34 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTP id A9AA527BA53
+	for <lists+devicetree@lfdr.de>; Tue, 29 Sep 2020 03:37:55 +0200 (CEST)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S1727396AbgI2BjC (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Mon, 28 Sep 2020 21:39:02 -0400
-Received: from inva021.nxp.com ([92.121.34.21]:47682 "EHLO inva021.nxp.com"
-        rhost-flags-OK-OK-OK-OK) by vger.kernel.org with ESMTP
-        id S1726421AbgI2BjB (ORCPT <rfc822;devicetree@vger.kernel.org>);
-        Mon, 28 Sep 2020 21:39:01 -0400
-Received: from inva021.nxp.com (localhost [127.0.0.1])
-        by inva021.eu-rdc02.nxp.com (Postfix) with ESMTP id D6F1F200E74;
-        Tue, 29 Sep 2020 03:38:58 +0200 (CEST)
-Received: from invc005.ap-rdc01.nxp.com (invc005.ap-rdc01.nxp.com [165.114.16.14])
-        by inva021.eu-rdc02.nxp.com (Postfix) with ESMTP id 80C6D200EAD;
-        Tue, 29 Sep 2020 03:38:55 +0200 (CEST)
-Received: from localhost.localdomain (mega.ap.freescale.net [10.192.208.232])
-        by invc005.ap-rdc01.nxp.com (Postfix) with ESMTP id 060764030D;
-        Tue, 29 Sep 2020 03:38:50 +0200 (CEST)
-From:   Ran Wang <ran.wang_1@nxp.com>
-To:     Fabio Estevam <festevam@gmail.com>,
-        Shawn Guo <shawnguo@kernel.org>, Li Yang <leoyang.li@nxp.com>
-Cc:     linux-arm-kernel@lists.infradead.org, devicetree@vger.kernel.org,
-        linux-kernel@vger.kernel.org, Biwen Li <biwen.li@nxp.com>,
-        Ran Wang <ran.wang_1@nxp.com>
-Subject: [PATCH v2] arm64: dts: fix endianness issue of rcpm
-Date:   Tue, 29 Sep 2020 09:30:21 +0800
-Message-Id: <20200929013021.46395-1-ran.wang_1@nxp.com>
-X-Mailer: git-send-email 2.17.1
+        id S1727218AbgI2Bh2 (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Mon, 28 Sep 2020 21:37:28 -0400
+Received: from szxga04-in.huawei.com ([45.249.212.190]:14765 "EHLO huawei.com"
+        rhost-flags-OK-OK-OK-FAIL) by vger.kernel.org with ESMTP
+        id S1727238AbgI2Bh2 (ORCPT <rfc822;devicetree@vger.kernel.org>);
+        Mon, 28 Sep 2020 21:37:28 -0400
+Received: from DGGEMS402-HUB.china.huawei.com (unknown [172.30.72.58])
+        by Forcepoint Email with ESMTP id B91D2B98ABC79E62AE2F;
+        Tue, 29 Sep 2020 09:37:25 +0800 (CST)
+Received: from [127.0.0.1] (10.174.177.253) by DGGEMS402-HUB.china.huawei.com
+ (10.3.19.202) with Microsoft SMTP Server id 14.3.487.0; Tue, 29 Sep 2020
+ 09:37:15 +0800
+Subject: Re: [PATCH v6 5/6] dt-bindings: dw-apb-ictl: convert to json-schema
+To:     Rob Herring <robh@kernel.org>
+CC:     Thomas Gleixner <tglx@linutronix.de>,
+        Jason Cooper <jason@lakedaemon.net>,
+        Marc Zyngier <maz@kernel.org>,
+        Alexey Brodkin <abrodkin@synopsys.com>,
+        "Vineet Gupta" <vgupta@synopsys.com>,
+        devicetree <devicetree@vger.kernel.org>,
+        linux-snps-arc <linux-snps-arc@lists.infradead.org>,
+        linux-kernel <linux-kernel@vger.kernel.org>,
+        Sebastian Hesselbarth <sebastian.hesselbarth@gmail.com>,
+        Haoyu Lv <lvhaoyu@huawei.com>, Libin <huawei.libin@huawei.com>,
+        Kefeng Wang <wangkefeng.wang@huawei.com>
+References: <20200924071754.4509-1-thunder.leizhen@huawei.com>
+ <20200924071754.4509-6-thunder.leizhen@huawei.com>
+ <20200928182645.GA3030999@bogus>
+From:   "Leizhen (ThunderTown)" <thunder.leizhen@huawei.com>
+Message-ID: <784bc919-7a3e-b332-a6d8-35d0e3494f2f@huawei.com>
+Date:   Tue, 29 Sep 2020 09:37:14 +0800
+User-Agent: Mozilla/5.0 (Windows NT 10.0; WOW64; rv:60.0) Gecko/20100101
+ Thunderbird/60.7.0
 MIME-Version: 1.0
-Content-Type: text/plain; charset=UTF-8
-Content-Transfer-Encoding: 8bit
-X-Virus-Scanned: ClamAV using ClamSMTP
+In-Reply-To: <20200928182645.GA3030999@bogus>
+Content-Type: text/plain; charset="utf-8"
+Content-Language: en-US
+Content-Transfer-Encoding: 7bit
+X-Originating-IP: [10.174.177.253]
+X-CFilter-Loop: Reflected
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-From: Biwen Li <biwen.li@nxp.com>
 
-Add little-endian property to RCPM node (for ls1028a,ls1088a,ls208xa),
-otherwise RCPM driver will program hardware with incorrect setting,
-causing system (such as LS1028ARDB) failed to be waked by wakeup source.
 
-Fixes: 791c88ca5713 (“arm64: dts: ls1028a: Add ftm_alarm0 DT node”)
-Fixes: f4fe3a8665495 (“arm64: dts: layerscape: add ftm_alarm0 node”)
-Signed-off-by: Biwen Li <biwen.li@nxp.com>
-Signed-off-by: Ran Wang <ran.wang_1@nxp.com>
-Acked-by: Li Yang <leoyang.li@nxp.com>
----
-Change in v2:
- - Update commit message with more details
- - Add Fixes and Singed-off tags
+On 2020/9/29 2:26, Rob Herring wrote:
+> On Thu, Sep 24, 2020 at 03:17:53PM +0800, Zhen Lei wrote:
+>> Convert the Synopsys DesignWare APB interrupt controller (dw_apb_ictl)
+>> binding to DT schema format using json-schema.
+>>
+>> Signed-off-by: Zhen Lei <thunder.leizhen@huawei.com>
+>> ---
+>>  .../interrupt-controller/snps,dw-apb-ictl.txt      | 43 -------------
+>>  .../interrupt-controller/snps,dw-apb-ictl.yaml     | 74 ++++++++++++++++++++++
+>>  2 files changed, 74 insertions(+), 43 deletions(-)
+>>  delete mode 100644 Documentation/devicetree/bindings/interrupt-controller/snps,dw-apb-ictl.txt
+>>  create mode 100644 Documentation/devicetree/bindings/interrupt-controller/snps,dw-apb-ictl.yaml
+>>
+>> diff --git a/Documentation/devicetree/bindings/interrupt-controller/snps,dw-apb-ictl.txt b/Documentation/devicetree/bindings/interrupt-controller/snps,dw-apb-ictl.txt
+>> deleted file mode 100644
+>> index 2db59df9408f4c6..000000000000000
+>> --- a/Documentation/devicetree/bindings/interrupt-controller/snps,dw-apb-ictl.txt
+>> +++ /dev/null
+>> @@ -1,43 +0,0 @@
+>> -Synopsys DesignWare APB interrupt controller (dw_apb_ictl)
+>> -
+>> -Synopsys DesignWare provides interrupt controller IP for APB known as
+>> -dw_apb_ictl. The IP is used as secondary interrupt controller in some SoCs with
+>> -APB bus, e.g. Marvell Armada 1500. It can also be used as primary interrupt
+>> -controller in some SoCs, e.g. Hisilicon SD5203.
+>> -
+>> -Required properties:
+>> -- compatible: shall be "snps,dw-apb-ictl"
+>> -- reg: physical base address of the controller and length of memory mapped
+>> -  region starting with ENABLE_LOW register
+>> -- interrupt-controller: identifies the node as an interrupt controller
+>> -- #interrupt-cells: number of cells to encode an interrupt-specifier, shall be 1
+>> -
+>> -Additional required property when it's used as secondary interrupt controller:
+>> -- interrupts: interrupt reference to primary interrupt controller
+>> -
+>> -The interrupt sources map to the corresponding bits in the interrupt
+>> -registers, i.e.
+>> -- 0 maps to bit 0 of low interrupts,
+>> -- 1 maps to bit 1 of low interrupts,
+>> -- 32 maps to bit 0 of high interrupts,
+>> -- 33 maps to bit 1 of high interrupts,
+>> -- (optional) fast interrupts start at 64.
+>> -
+>> -Example:
+>> -	/* dw_apb_ictl is used as secondary interrupt controller */
+>> -	aic: interrupt-controller@3000 {
+>> -		compatible = "snps,dw-apb-ictl";
+>> -		reg = <0x3000 0xc00>;
+>> -		interrupt-controller;
+>> -		#interrupt-cells = <1>;
+>> -		interrupt-parent = <&gic>;
+>> -		interrupts = <GIC_SPI 3 IRQ_TYPE_LEVEL_HIGH>;
+>> -	};
+>> -
+>> -	/* dw_apb_ictl is used as primary interrupt controller */
+>> -	vic: interrupt-controller@10130000 {
+>> -		compatible = "snps,dw-apb-ictl";
+>> -		reg = <0x10130000 0x1000>;
+>> -		interrupt-controller;
+>> -		#interrupt-cells = <1>;
+>> -	};
+>> diff --git a/Documentation/devicetree/bindings/interrupt-controller/snps,dw-apb-ictl.yaml b/Documentation/devicetree/bindings/interrupt-controller/snps,dw-apb-ictl.yaml
+>> new file mode 100644
+>> index 000000000000000..1b05d36b5f7b943
+>> --- /dev/null
+>> +++ b/Documentation/devicetree/bindings/interrupt-controller/snps,dw-apb-ictl.yaml
+>> @@ -0,0 +1,74 @@
+>> +# SPDX-License-Identifier: (GPL-2.0-only OR BSD-2-Clause)
+>> +%YAML 1.2
+>> +---
+>> +$id: http://devicetree.org/schemas/interrupt-controller/snps,dw-apb-ictl.yaml#
+>> +$schema: http://devicetree.org/meta-schemas/core.yaml#
+>> +
+>> +title: Synopsys DesignWare APB interrupt controller (dw_apb_ictl)
+>> +
+>> +maintainers:
+>> +  - Sebastian Hesselbarth <sebastian.hesselbarth@gmail.com>
+>> +
+>> +description: |
+>> +  Synopsys DesignWare provides interrupt controller IP for APB known as
+>> +  dw_apb_ictl. The IP is used as secondary interrupt controller in some SoCs
+>> +  with APB bus, e.g. Marvell Armada 1500. It can also be used as primary
+>> +  interrupt controller in some SoCs, e.g. Hisilicon SD5203.
+>> +
+>> +  The interrupt sources map to the corresponding bits in the interrupt
+>> +  registers, i.e.
+>> +  - 0 maps to bit 0 of low interrupts,
+>> +  - 1 maps to bit 1 of low interrupts,
+>> +  - 32 maps to bit 0 of high interrupts,
+>> +  - 33 maps to bit 1 of high interrupts,
+>> +  - (optional) fast interrupts start at 64.
+>> +
+>> +allOf:
+>> +  - $ref: /schemas/interrupt-controller.yaml#
+> 
+> Don't need this. It's already selected based on node name.
 
- arch/arm64/boot/dts/freescale/fsl-ls1028a.dtsi | 1 +
- arch/arm64/boot/dts/freescale/fsl-ls1088a.dtsi | 1 +
- arch/arm64/boot/dts/freescale/fsl-ls208xa.dtsi | 1 +
- 3 files changed, 3 insertions(+)
+OK, I will drop it.
 
-diff --git a/arch/arm64/boot/dts/freescale/fsl-ls1028a.dtsi b/arch/arm64/boot/dts/freescale/fsl-ls1028a.dtsi
-index 0efeb8f..651bfe1 100644
---- a/arch/arm64/boot/dts/freescale/fsl-ls1028a.dtsi
-+++ b/arch/arm64/boot/dts/freescale/fsl-ls1028a.dtsi
-@@ -1012,6 +1012,7 @@
- 			compatible = "fsl,ls1028a-rcpm", "fsl,qoriq-rcpm-2.1+";
- 			reg = <0x0 0x1e34040 0x0 0x1c>;
- 			#fsl,rcpm-wakeup-cells = <7>;
-+			little-endian;
- 		};
- 
- 		ftm_alarm0: timer@2800000 {
-diff --git a/arch/arm64/boot/dts/freescale/fsl-ls1088a.dtsi b/arch/arm64/boot/dts/freescale/fsl-ls1088a.dtsi
-index 169f474..2ef812d 100644
---- a/arch/arm64/boot/dts/freescale/fsl-ls1088a.dtsi
-+++ b/arch/arm64/boot/dts/freescale/fsl-ls1088a.dtsi
-@@ -787,6 +787,7 @@
- 			compatible = "fsl,ls1088a-rcpm", "fsl,qoriq-rcpm-2.1+";
- 			reg = <0x0 0x1e34040 0x0 0x18>;
- 			#fsl,rcpm-wakeup-cells = <6>;
-+			little-endian;
- 		};
- 
- 		ftm_alarm0: timer@2800000 {
-diff --git a/arch/arm64/boot/dts/freescale/fsl-ls208xa.dtsi b/arch/arm64/boot/dts/freescale/fsl-ls208xa.dtsi
-index 41102da..141b3d2 100644
---- a/arch/arm64/boot/dts/freescale/fsl-ls208xa.dtsi
-+++ b/arch/arm64/boot/dts/freescale/fsl-ls208xa.dtsi
-@@ -769,6 +769,7 @@
- 			compatible = "fsl,ls208xa-rcpm", "fsl,qoriq-rcpm-2.1+";
- 			reg = <0x0 0x1e34040 0x0 0x18>;
- 			#fsl,rcpm-wakeup-cells = <6>;
-+			little-endian;
- 		};
- 
- 		ftm_alarm0: timer@2800000 {
--- 
-2.7.4
+> 
+>> +
+>> +properties:
+>> +  compatible:
+>> +    const: snps,dw-apb-ictl
+>> +
+>> +  interrupt-controller: true
+>> +
+>> +  reg:
+>> +    description: |
+>> +      Physical base address of the controller and length of memory mapped
+>> +      region starting with ENABLE_LOW register.
+>> +    maxItems: 1
+>> +
+>> +  interrupts:
+>> +    description: Interrupt reference to primary interrupt controller.
+> 
+> May not be primary. Could be another level in the middle. In any case, 
+> it's outside the scope of this binding, so just drop description.
+
+OK, I will drop this description. So I have learned that only the new
+binding properties need to be described. Instead of keeping the original
+description during the conversion.
+
+> 
+>> +    maxItems: 1
+>> +
+>> +  "#interrupt-cells":
+>> +    description: Number of cells to encode an interrupt-specifier.
+> 
+> Can drop this.
+
+OK
+
+> 
+>> +    const: 1
+>> +
+>> +required:
+>> +  - compatible
+>> +  - reg
+>> +  - interrupt-controller
+>> +  - '#interrupt-cells'
+> 
+> additionalProperties: false
+> 
+>> +
+>> +examples:
+>> +  - |
+>> +    /* dw_apb_ictl is used as secondary interrupt controller */
+>> +    aic: interrupt-controller@3000 {
+> 
+> Drop unused label (aic).
+
+OK
+
+> 
+>> +        compatible = "snps,dw-apb-ictl";
+>> +        reg = <0x3000 0xc00>;
+>> +        interrupt-controller;
+>> +        #interrupt-cells = <1>;
+>> +        interrupt-parent = <&gic>;
+>> +        interrupts = <0 3 4>;
+>> +    };
+>> +
+>> +    /* dw_apb_ictl is used as primary interrupt controller */
+>> +    vic: interrupt-controller@10130000 {
+> 
+> Same here.
+
+OK, I will delete it.
+
+> 
+>> +        compatible = "snps,dw-apb-ictl";
+>> +        reg = <0x10130000 0x1000>;
+>> +        interrupt-controller;
+>> +        #interrupt-cells = <1>;
+>> +    };
+>> +...
+>> -- 
+>> 1.8.3
+>>
+>>
+> 
+> .
+> 
 
