@@ -2,189 +2,85 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from vger.kernel.org (vger.kernel.org [23.128.96.18])
-	by mail.lfdr.de (Postfix) with ESMTP id EAA8027CF10
-	for <lists+devicetree@lfdr.de>; Tue, 29 Sep 2020 15:25:45 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTP id 1BC0427CF22
+	for <lists+devicetree@lfdr.de>; Tue, 29 Sep 2020 15:29:13 +0200 (CEST)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S1728479AbgI2NZp (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Tue, 29 Sep 2020 09:25:45 -0400
-Received: from szxga06-in.huawei.com ([45.249.212.32]:60812 "EHLO huawei.com"
-        rhost-flags-OK-OK-OK-FAIL) by vger.kernel.org with ESMTP
-        id S1728441AbgI2NZp (ORCPT <rfc822;devicetree@vger.kernel.org>);
-        Tue, 29 Sep 2020 09:25:45 -0400
-Received: from DGGEMS407-HUB.china.huawei.com (unknown [172.30.72.59])
-        by Forcepoint Email with ESMTP id 6F51AD853F0E3BA08AE3;
-        Tue, 29 Sep 2020 21:25:42 +0800 (CST)
-Received: from [127.0.0.1] (10.174.177.253) by DGGEMS407-HUB.china.huawei.com
- (10.3.19.207) with Microsoft SMTP Server id 14.3.487.0; Tue, 29 Sep 2020
- 21:25:32 +0800
-Subject: Re: [PATCH v4 12/20] dt-bindings: arm: hisilicon: convert
- hisilicon,hi3798cv200-perictrl bindings to json-schema
-From:   "Leizhen (ThunderTown)" <thunder.leizhen@huawei.com>
-To:     Rob Herring <robh@kernel.org>
-CC:     devicetree <devicetree@vger.kernel.org>,
-        Kefeng Wang <wangkefeng.wang@huawei.com>,
-        linux-kernel <linux-kernel@vger.kernel.org>,
-        Wei Xu <xuwei5@hisilicon.com>, Libin <huawei.libin@huawei.com>,
-        "Jonathan Cameron" <Jonathan.Cameron@Huawei.com>,
-        linux-arm-kernel <linux-arm-kernel@lists.infradead.org>
-References: <20200928151324.2134-1-thunder.leizhen@huawei.com>
- <20200928151324.2134-13-thunder.leizhen@huawei.com>
- <20200928191425.GA3099266@bogus>
- <0568ed90-c6ac-ae1c-45ee-cdc6526d3fcf@huawei.com>
- <30a08e22-f8bb-1e42-087b-995dc525eaa4@huawei.com>
-Message-ID: <2d382466-5b91-7b43-2d12-8f7ceafe3691@huawei.com>
-Date:   Tue, 29 Sep 2020 21:25:31 +0800
-User-Agent: Mozilla/5.0 (Windows NT 10.0; WOW64; rv:60.0) Gecko/20100101
- Thunderbird/60.7.0
+        id S1729425AbgI2N3L (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Tue, 29 Sep 2020 09:29:11 -0400
+Received: from mail.kernel.org ([198.145.29.99]:43880 "EHLO mail.kernel.org"
+        rhost-flags-OK-OK-OK-OK) by vger.kernel.org with ESMTP
+        id S1728448AbgI2N3L (ORCPT <rfc822;devicetree@vger.kernel.org>);
+        Tue, 29 Sep 2020 09:29:11 -0400
+Received: from localhost (fw-tnat.cambridge.arm.com [217.140.96.140])
+        (using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
+        (No client certificate requested)
+        by mail.kernel.org (Postfix) with ESMTPSA id B8DB0208FE;
+        Tue, 29 Sep 2020 13:29:09 +0000 (UTC)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=kernel.org;
+        s=default; t=1601386150;
+        bh=cFnWipWsvzKq0QWJiU/ZjmzGD2hQyr2IG3LD/6DIPNU=;
+        h=Date:From:To:Cc:Subject:References:In-Reply-To:From;
+        b=twh62VJHIJHrbjpauzhuMluy8KBotG8kEzuwCsBMwVuJUb9S0PqiLWFqHXjY9Mw9c
+         Um7Q+fE0TLWvcAX/9ZHwmC8Iu6KnmHI/S9ux31ZOAQo8OEO5EQhO4Ypvg14cPLLaiS
+         Wx0zCHEjczonFOCggJY7WanqVaci7XCan39om1cs=
+Date:   Tue, 29 Sep 2020 14:28:11 +0100
+From:   Mark Brown <broonie@kernel.org>
+To:     Serge Semin <Sergey.Semin@baikalelectronics.ru>
+Cc:     Serge Semin <fancer.lancer@gmail.com>,
+        Alexey Malahov <Alexey.Malahov@baikalelectronics.ru>,
+        Ramil Zaripov <Ramil.Zaripov@baikalelectronics.ru>,
+        Pavel Parkhomenko <Pavel.Parkhomenko@baikalelectronics.ru>,
+        Andy Shevchenko <andy.shevchenko@gmail.com>,
+        Andy Shevchenko <andriy.shevchenko@linux.intel.com>,
+        Lars Povlsen <lars.povlsen@microchip.com>,
+        "wuxu . wu" <wuxu.wu@huawei.com>, Feng Tang <feng.tang@intel.com>,
+        Rob Herring <robh+dt@kernel.org>, linux-spi@vger.kernel.org,
+        devicetree@vger.kernel.org, linux-kernel@vger.kernel.org
+Subject: Re: [PATCH 04/30] Revert: spi: spi-dw: Add lock protect dw_spi rx/tx
+ to prevent concurrent calls
+Message-ID: <20200929132811.GF4799@sirena.org.uk>
+References: <20200920112914.26501-1-Sergey.Semin@baikalelectronics.ru>
+ <20200920112914.26501-5-Sergey.Semin@baikalelectronics.ru>
 MIME-Version: 1.0
-In-Reply-To: <30a08e22-f8bb-1e42-087b-995dc525eaa4@huawei.com>
-Content-Type: text/plain; charset="utf-8"
-Content-Language: en-US
-Content-Transfer-Encoding: 7bit
-X-Originating-IP: [10.174.177.253]
-X-CFilter-Loop: Reflected
+Content-Type: multipart/signed; micalg=pgp-sha512;
+        protocol="application/pgp-signature"; boundary="+ts6NCQ4mrNQIV8p"
+Content-Disposition: inline
+In-Reply-To: <20200920112914.26501-5-Sergey.Semin@baikalelectronics.ru>
+X-Cookie: I left my WALLET in the BATHROOM!!
+User-Agent: Mutt/1.10.1 (2018-07-13)
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
 
+--+ts6NCQ4mrNQIV8p
+Content-Type: text/plain; charset=us-ascii
+Content-Disposition: inline
 
-On 2020/9/29 17:21, Leizhen (ThunderTown) wrote:
-> 
-> 
-> On 2020/9/29 11:18, Leizhen (ThunderTown) wrote:
->>
->>
->> On 2020/9/29 3:14, Rob Herring wrote:
->>> On Mon, Sep 28, 2020 at 11:13:16PM +0800, Zhen Lei wrote:
->>>> Convert the Hisilicon Hi3798CV200 Peripheral Controller binding to DT
->>>> schema format using json-schema.
->>>>
->>>> Signed-off-by: Zhen Lei <thunder.leizhen@huawei.com>
->>>> ---
->>>>  .../controller/hisilicon,hi3798cv200-perictrl.txt  | 21 ----------
->>>>  .../controller/hisilicon,hi3798cv200-perictrl.yaml | 45 ++++++++++++++++++++++
->>>>  2 files changed, 45 insertions(+), 21 deletions(-)
->>>>  delete mode 100644 Documentation/devicetree/bindings/arm/hisilicon/controller/hisilicon,hi3798cv200-perictrl.txt
->>>>  create mode 100644 Documentation/devicetree/bindings/arm/hisilicon/controller/hisilicon,hi3798cv200-perictrl.yaml
->>>>
->>>> diff --git a/Documentation/devicetree/bindings/arm/hisilicon/controller/hisilicon,hi3798cv200-perictrl.txt b/Documentation/devicetree/bindings/arm/hisilicon/controller/hisilicon,hi3798cv200-perictrl.txt
->>>> deleted file mode 100644
->>>> index 0d5282f4670658d..000000000000000
->>>> --- a/Documentation/devicetree/bindings/arm/hisilicon/controller/hisilicon,hi3798cv200-perictrl.txt
->>>> +++ /dev/null
->>>> @@ -1,21 +0,0 @@
->>>> -Hisilicon Hi3798CV200 Peripheral Controller
->>>> -
->>>> -The Hi3798CV200 Peripheral Controller controls peripherals, queries
->>>> -their status, and configures some functions of peripherals.
->>>> -
->>>> -Required properties:
->>>> -- compatible: Should contain "hisilicon,hi3798cv200-perictrl", "syscon"
->>>> -  and "simple-mfd".
->>>> -- reg: Register address and size of Peripheral Controller.
->>>> -- #address-cells: Should be 1.
->>>> -- #size-cells: Should be 1.
->>>> -
->>>> -Examples:
->>>> -
->>>> -	perictrl: peripheral-controller@8a20000 {
->>>> -		compatible = "hisilicon,hi3798cv200-perictrl", "syscon",
->>>> -			     "simple-mfd";
->>>> -		reg = <0x8a20000 0x1000>;
->>>> -		#address-cells = <1>;
->>>> -		#size-cells = <1>;
->>>> -	};
->>>> diff --git a/Documentation/devicetree/bindings/arm/hisilicon/controller/hisilicon,hi3798cv200-perictrl.yaml b/Documentation/devicetree/bindings/arm/hisilicon/controller/hisilicon,hi3798cv200-perictrl.yaml
->>>> new file mode 100644
->>>> index 000000000000000..4e547017e368393
->>>> --- /dev/null
->>>> +++ b/Documentation/devicetree/bindings/arm/hisilicon/controller/hisilicon,hi3798cv200-perictrl.yaml
->>>> @@ -0,0 +1,45 @@
->>>> +# SPDX-License-Identifier: (GPL-2.0-only OR BSD-2-Clause)
->>>> +%YAML 1.2
->>>> +---
->>>> +$id: http://devicetree.org/schemas/arm/hisilicon/controller/hisilicon,hi3798cv200-perictrl.yaml#
->>>> +$schema: http://devicetree.org/meta-schemas/core.yaml#
->>>> +
->>>> +title: Hisilicon Hi3798CV200 Peripheral Controller
->>>> +
->>>> +maintainers:
->>>> +  - Wei Xu <xuwei5@hisilicon.com>
->>>> +
->>>> +description: |
->>>> +  The Hi3798CV200 Peripheral Controller controls peripherals, queries
->>>> +  their status, and configures some functions of peripherals.
->>>> +
->>>> +properties:
->>>> +  compatible:
->>>> +    items:
->>>> +      - const: hisilicon,hi3798cv200-perictrl
->>>> +      - const: syscon
->>>> +      - const: simple-mfd
->>>> +
->>>> +  reg:
->>>> +    description: Register address and size
->>>> +    maxItems: 1
->>>> +
->>>> +  '#address-cells':
->>>> +    const: 1
->>>> +
->>>> +  '#size-cells':
->>>> +    const: 1
->>>
->>> That implies child nodes. You need some sort of schema for them.
->>
->> OK, I will drop #address-cells and #size-cells in this binding.
-> 
-> I think I misunderstood. I shoud describe child nodes here.
-> 
-> It's National Day the day after tomorrow, total eight days off. It's so hurry.
-> I'll give up this patch! And do it for v5.11
+On Sun, Sep 20, 2020 at 02:28:48PM +0300, Serge Semin wrote:
+> There is no point in having the commit 19b61392c5a8 ("spi: spi-dw: Add
+> lock protect dw_spi rx/tx to prevent concurrent calls") applied. The
+> commit author made an assumption that the problem with the rx data
 
-I searched the dtsi, these two properties are required by property "ranges", so
-I will add it.
+Please submit patches using subject lines reflecting the style for the
+subsystem, this makes it easier for people to identify relevant patches.
+Look at what existing commits in the area you're changing are doing and
+make sure your subject lines visually resemble what they're doing.
+There's no need to resubmit to fix this alone.
 
-> 
-">>
->>>
->>>> +
->>>> +required:
->>>> +  - compatible
->>>> +  - reg
->>>> +
->>>> +examples:
->>>> +  - |
->>>> +    perictrl: peripheral-controller@8a20000 {
->>>> +        compatible = "hisilicon,hi3798cv200-perictrl", "syscon", "simple-mfd";
->>>> +        reg = <0x8a20000 0x1000>;
->>>> +        #address-cells = <1>;
->>>> +        #size-cells = <1>;
->>>> +    };
->>>> +...
->>>> -- 
->>>> 1.8.3
->>>>
->>>>
->>>
->>> .
->>>
->>
->>
->> _______________________________________________
->> linux-arm-kernel mailing list
->> linux-arm-kernel@lists.infradead.org
->> http://lists.infradead.org/mailman/listinfo/linux-arm-kernel
->>
->> .
->>
-> 
-> 
-> _______________________________________________
-> linux-arm-kernel mailing list
-> linux-arm-kernel@lists.infradead.org
-> http://lists.infradead.org/mailman/listinfo/linux-arm-kernel
-> 
-> .
-> 
+--+ts6NCQ4mrNQIV8p
+Content-Type: application/pgp-signature; name="signature.asc"
 
+-----BEGIN PGP SIGNATURE-----
+
+iQEzBAABCgAdFiEEreZoqmdXGLWf4p/qJNaLcl1Uh9AFAl9zNmoACgkQJNaLcl1U
+h9BBvQf/QU0hc1jrkeVXFBPWkdr9yvmXWX8FQWaMUkx3ukXHKkNYv9cLZFj8Xidx
+DRJAaNwueEpbihutbrA67Q5Nos6OzJPE6YKMvKIVNfYAAedPzoEX7qPM6grfT5ro
+ElFdLB7goGfTB+44utjSAg7LY7oLU6aemiz+6WHwa5wECOkEam3aLikY/9hi3Hvn
++u+3BSza0zzsori3UFXlQ6ueJ70hkPSZIuw1hCLv6NESLe0+NF5bUU5TOt+GzyxQ
+QNX/+m3OvhvugoOXj1pHN+oGT6Co7HCq9kU9o+OB32Vj67jj7oyMET66UmdvoA8z
+ASXi4cslqY7yqjhjYN+MvtjSfrLNng==
+=UrRA
+-----END PGP SIGNATURE-----
+
+--+ts6NCQ4mrNQIV8p--
