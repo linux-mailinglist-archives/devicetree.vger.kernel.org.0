@@ -2,790 +2,149 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from vger.kernel.org (vger.kernel.org [23.128.96.18])
-	by mail.lfdr.de (Postfix) with ESMTP id 183BD27D142
-	for <lists+devicetree@lfdr.de>; Tue, 29 Sep 2020 16:34:43 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTP id CDDD627D136
+	for <lists+devicetree@lfdr.de>; Tue, 29 Sep 2020 16:34:17 +0200 (CEST)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S1730863AbgI2Oej (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Tue, 29 Sep 2020 10:34:39 -0400
-Received: from z5.mailgun.us ([104.130.96.5]:28210 "EHLO z5.mailgun.us"
-        rhost-flags-OK-OK-OK-OK) by vger.kernel.org with ESMTP
-        id S1728459AbgI2Oej (ORCPT <rfc822;devicetree@vger.kernel.org>);
-        Tue, 29 Sep 2020 10:34:39 -0400
-DKIM-Signature: a=rsa-sha256; v=1; c=relaxed/relaxed; d=mg.codeaurora.org; q=dns/txt;
- s=smtp; t=1601390077; h=Content-Transfer-Encoding: Content-Type:
- In-Reply-To: MIME-Version: Date: Message-ID: From: References: Cc: To:
- Subject: Sender; bh=U5mJKX+kLPuZ3BiyxcW46dxHN3yq8FRjnGnbAo/Uj+w=; b=kQICCWXgN4bbvCSuvyzNB9BHIMILF3iAtuF7BCjJdWy8vDQQwhzHEpQ0VzNEAwslTfXbTVAQ
- LtMpKRv5JvzabHs04QNZA5Fgfta8eqLw4oyOV7JMLdJyeaQ2e5/DscDDaCqhra1TyYgrPbo2
- hXoXHCf0pWZZaPLj6upN86WD0bs=
-X-Mailgun-Sending-Ip: 104.130.96.5
-X-Mailgun-Sid: WyI1YmJiNiIsICJkZXZpY2V0cmVlQHZnZXIua2VybmVsLm9yZyIsICJiZTllNGEiXQ==
-Received: from smtp.codeaurora.org
- (ec2-35-166-182-171.us-west-2.compute.amazonaws.com [35.166.182.171]) by
- smtp-out-n05.prod.us-east-1.postgun.com with SMTP id
- 5f7344c31fdd3a1390bb3392 (version=TLS1.2,
- cipher=TLS_ECDHE_RSA_WITH_AES_128_GCM_SHA256); Tue, 29 Sep 2020 14:29:23
- GMT
-Sender: srivasam=codeaurora.org@mg.codeaurora.org
-Received: by smtp.codeaurora.org (Postfix, from userid 1001)
-        id DC1DCC433F1; Tue, 29 Sep 2020 14:29:22 +0000 (UTC)
-X-Spam-Checker-Version: SpamAssassin 3.4.0 (2014-02-07) on
-        aws-us-west-2-caf-mail-1.web.codeaurora.org
-X-Spam-Level: 
-X-Spam-Status: No, score=-2.9 required=2.0 tests=ALL_TRUSTED,BAYES_00,
-        NICE_REPLY_A,SPF_FAIL,URIBL_BLOCKED autolearn=no autolearn_force=no
-        version=3.4.0
-Received: from [10.131.172.121] (blr-bdr-fw-01_GlobalNAT_AllZones-Outside.qualcomm.com [103.229.18.19])
-        (using TLSv1.2 with cipher ECDHE-RSA-AES128-GCM-SHA256 (128/128 bits))
-        (No client certificate requested)
-        (Authenticated sender: srivasam)
-        by smtp.codeaurora.org (Postfix) with ESMTPSA id 95136C433CA;
-        Tue, 29 Sep 2020 14:29:15 +0000 (UTC)
-DMARC-Filter: OpenDMARC Filter v1.3.2 smtp.codeaurora.org 95136C433CA
-Authentication-Results: aws-us-west-2-caf-mail-1.web.codeaurora.org; dmarc=none (p=none dis=none) header.from=codeaurora.org
-Authentication-Results: aws-us-west-2-caf-mail-1.web.codeaurora.org; spf=fail smtp.mailfrom=srivasam@codeaurora.org
-Subject: Re: [PATCH v7 5/6] ASoC: qcom: Add support for lpass hdmi driver
-To:     Srinivas Kandagatla <srinivas.kandagatla@linaro.org>,
-        agross@kernel.org, bjorn.andersson@linaro.org, lgirdwood@gmail.com,
-        broonie@kernel.org, robh+dt@kernel.org, plai@codeaurora.org,
-        bgoswami@codeaurora.org, perex@perex.cz, tiwai@suse.com,
-        rohitkr@codeaurora.org, linux-arm-msm@vger.kernel.org,
-        alsa-devel@alsa-project.org, devicetree@vger.kernel.org,
-        linux-kernel@vger.kernel.org
-Cc:     V Sujith Kumar Reddy <vsujithk@codeaurora.org>
-References: <1601286811-25962-1-git-send-email-srivasam@codeaurora.org>
- <1601286811-25962-6-git-send-email-srivasam@codeaurora.org>
- <18b0e13f-28e4-e4e2-637d-f7c2de8e20f9@linaro.org>
-From:   Srinivasa Rao Mandadapu <srivasam@codeaurora.org>
-Organization: Qualcomm India Private Limited
-Message-ID: <406cde61-4965-117c-4019-ac8443a68266@codeaurora.org>
-Date:   Tue, 29 Sep 2020 19:59:13 +0530
-User-Agent: Mozilla/5.0 (Windows NT 10.0; Win64; x64; rv:78.0) Gecko/20100101
- Thunderbird/78.2.2
+        id S1729584AbgI2OeQ (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Tue, 29 Sep 2020 10:34:16 -0400
+Received: from mail-eopbgr80138.outbound.protection.outlook.com ([40.107.8.138]:5703
+        "EHLO EUR04-VI1-obe.outbound.protection.outlook.com"
+        rhost-flags-OK-OK-OK-FAIL) by vger.kernel.org with ESMTP
+        id S1725554AbgI2OeQ (ORCPT <rfc822;devicetree@vger.kernel.org>);
+        Tue, 29 Sep 2020 10:34:16 -0400
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+ d=l2task.onmicrosoft.com; s=selector1-l2task-onmicrosoft-com;
+ h=From:Date:Subject:Message-ID:Content-Type:MIME-Version:X-MS-Exchange-SenderADCheck;
+ bh=OWG7Nx9q1C2Grx7c/nWS4+L9zJ0Iz7+HRTGsFHaLUGQ=;
+ b=BlUDho43r7be35Tcxjpb7gqGHu3+/FU+cdXi9CQQMJHbCo40qS5XUOHAoh/VWaIz4s9qd8m4Ai5peUcTeBKBzRzL9/7Nhg2MDtPdhm8UM29L60WgNdk1R4qtYfO9TE8Kkpn4eItH+pTRrnsqaZ08iYEfN9QEE/0r+TmOQAQi48U=
+Received: from AM5PR0701CA0005.eurprd07.prod.outlook.com
+ (2603:10a6:203:51::15) by AM0PR10MB3331.EURPRD10.PROD.OUTLOOK.COM
+ (2603:10a6:208:18b::19) with Microsoft SMTP Server (version=TLS1_2,
+ cipher=TLS_ECDHE_RSA_WITH_AES_256_GCM_SHA384) id 15.20.3412.20; Tue, 29 Sep
+ 2020 14:34:13 +0000
+Received: from AM5EUR03FT059.eop-EUR03.prod.protection.outlook.com
+ (2603:10a6:203:51:cafe::b7) by AM5PR0701CA0005.outlook.office365.com
+ (2603:10a6:203:51::15) with Microsoft SMTP Server (version=TLS1_2,
+ cipher=TLS_ECDHE_RSA_WITH_AES_256_GCM_SHA384) id 15.20.3433.18 via Frontend
+ Transport; Tue, 29 Sep 2020 14:34:13 +0000
+X-MS-Exchange-Authentication-Results: spf=fail (sender IP is 104.40.229.156)
+ smtp.mailfrom=aerq.com; vger.kernel.org; dkim=fail (body hash did not verify)
+ header.d=l2task.onmicrosoft.com;vger.kernel.org; dmarc=none action=none
+ header.from=aerq.com;
+Received-SPF: Fail (protection.outlook.com: domain of aerq.com does not
+ designate 104.40.229.156 as permitted sender)
+ receiver=protection.outlook.com; client-ip=104.40.229.156;
+ helo=eu1.smtp.exclaimer.net;
+Received: from eu1.smtp.exclaimer.net (104.40.229.156) by
+ AM5EUR03FT059.mail.protection.outlook.com (10.152.17.193) with Microsoft SMTP
+ Server (version=TLS1_2, cipher=TLS_ECDHE_RSA_WITH_AES_256_CBC_SHA384) id
+ 15.20.3412.21 via Frontend Transport; Tue, 29 Sep 2020 14:34:12 +0000
+Received: from EUR05-VI1-obe.outbound.protection.outlook.com (104.47.17.175)
+         by eu1.smtp.exclaimer.net (104.40.229.156) with Exclaimer Signature Manager
+         ESMTP Proxy eu1.smtp.exclaimer.net (tlsversion=TLS12,
+         tlscipher=TLS_ECDHE_WITH_AES256_SHA384); Tue, 29 Sep 2020 14:34:13 +0000
+X-ExclaimerHostedSignatures-MessageProcessed: true
+X-ExclaimerProxyLatency: 11184970
+X-ExclaimerImprintLatency: 664734
+X-ExclaimerImprintAction: 27a206c0bcef49c5a066bbbe6637220b
+ARC-Seal: i=1; a=rsa-sha256; s=arcselector9901; d=microsoft.com; cv=none;
+ b=eYkU8rbrrMTQHRn12bgK4acxpzcremEUrFaf7iCaVFCQ61gtxsDNMW7hq8CVdOgR+ii8ICDit/3/38CDEblZErzL/xuFMEKhrgFzQ+lkBuwITqe3pnKy2It+aEhV3a/QQuCmPzA0FaOS5sreYkbNMRxvSTo3tyXWWOCDjfzTKmwCOHSHeBELya90x1CVvepSJvMa8lsiwWOS3VxlMuCzWL9tch5u95xj66IlMLJGwzCo0STViSN6nzUYPF/izVGHLftVF7sOc35G2YH+y+787Q0nWUGdtyM6+7pOCJUdXlWLVK8Tx1v6lHEVFZkqTd0qH3atAMiEZ/6tldmxi+xdsQ==
+ARC-Message-Signature: i=1; a=rsa-sha256; c=relaxed/relaxed; d=microsoft.com;
+ s=arcselector9901;
+ h=From:Date:Subject:Message-ID:Content-Type:MIME-Version:X-MS-Exchange-SenderADCheck;
+ bh=T25PbV/QSKtT8hZ6FDFVSomYkj+fX8WWtRcSAe16HHA=;
+ b=WCt7dX1oumLLEKCc+stluM2iXGLrq1g8pn6Rj1SylW5H0w4M2pRto5TkGSbtdXUMO9LWDlETqZK6h0MBXXJltIPgKxznO/79san6ezmP7zvTsxncQIXoSNbVEkvngwfEPWbNIT8O+r+uLE8zTVUFxMqQPKqSFjRjd+y3G0c0RVNHw5qX0DDAXXHfJJioni1ob5X5za8g35BRPWr88nbCbiNbobO6TK2u06HxRaAQ1KsFG3Sh7VQz7GMqqx4Z30WSQvTHRKnQLc19fRp/0y5OtDnqLrkR/LSwTlEbm/7BpmXEKCQxIjBg5Sv+bJlcA1pFMnRHm35sZM5RfAOvJRNGGA==
+ARC-Authentication-Results: i=1; mx.microsoft.com 1; spf=pass
+ smtp.mailfrom=aerq.com; dmarc=pass action=none header.from=aerq.com;
+ dkim=pass header.d=aerq.com; arc=none
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+ d=l2task.onmicrosoft.com; s=selector1-l2task-onmicrosoft-com;
+ h=From:Date:Subject:Message-ID:Content-Type:MIME-Version:X-MS-Exchange-SenderADCheck;
+ bh=T25PbV/QSKtT8hZ6FDFVSomYkj+fX8WWtRcSAe16HHA=;
+ b=emJGUmDyaYvPHOndH8HD+ny2KoU3w9VGJZmCd5e1ypVFUXb7ArEe0cOtlMpFDqZMiHl6P620kdUNJ2No5wk7a4vfv4JkBHdktDrWj0Hg0gnnNRzApg/aIAGjAhu3Qejx1dl5rqE/l84iNtc8BdK9YRZzx5xgvTd2nJhETVfqn6k=
+Authentication-Results-Original: vger.kernel.org; dkim=none (message not
+ signed) header.d=none;vger.kernel.org; dmarc=none action=none
+ header.from=aerq.com;
+Received: from DB8PR10MB3434.EURPRD10.PROD.OUTLOOK.COM (2603:10a6:10:e4::19)
+ by DBAPR10MB4091.EURPRD10.PROD.OUTLOOK.COM (2603:10a6:10:1c3::11) with
+ Microsoft SMTP Server (version=TLS1_2,
+ cipher=TLS_ECDHE_RSA_WITH_AES_256_GCM_SHA384) id 15.20.3412.22; Tue, 29 Sep
+ 2020 14:34:09 +0000
+Received: from DB8PR10MB3434.EURPRD10.PROD.OUTLOOK.COM
+ ([fe80::14f7:2e71:2913:d431]) by DB8PR10MB3434.EURPRD10.PROD.OUTLOOK.COM
+ ([fe80::14f7:2e71:2913:d431%7]) with mapi id 15.20.3433.032; Tue, 29 Sep 2020
+ 14:34:09 +0000
+From:   Alban Bedel <alban.bedel@aerq.com>
+To:     linux-hwmon@vger.kernel.org
+CC:     Jean Delvare <jdelvare@suse.com>,
+        Guenter Roeck <linux@roeck-us.net>,
+        Rob Herring <robh+dt@kernel.org>,
+        Liam Girdwood <lgirdwood@gmail.com>,
+        Mark Brown <broonie@kernel.org>, devicetree@vger.kernel.org,
+        linux-kernel@vger.kernel.org, Alban Bedel <alban.bedel@aerq.com>
+Subject: [PATCH v3 0/3] hwmon: (lm75) Add regulator support
+Date:   Tue, 29 Sep 2020 16:33:42 +0200
+Message-ID: <20200929143345.73170-1-alban.bedel@aerq.com>
+X-Mailer: git-send-email 2.25.1
+Content-Transfer-Encoding: quoted-printable
+Content-Type: text/plain
+X-Originating-IP: [88.130.152.63]
+X-ClientProxiedBy: AM0PR04CA0065.eurprd04.prod.outlook.com
+ (2603:10a6:208:1::42) To DB8PR10MB3434.EURPRD10.PROD.OUTLOOK.COM
+ (2603:10a6:10:e4::19)
 MIME-Version: 1.0
-In-Reply-To: <18b0e13f-28e4-e4e2-637d-f7c2de8e20f9@linaro.org>
-Content-Type: text/plain; charset=utf-8; format=flowed
-Content-Transfer-Encoding: 8bit
-Content-Language: en-US
+X-MS-Exchange-MessageSentRepresentingType: 1
+Received: from aerq-nb-1030.dotsec.gv (88.130.152.63) by AM0PR04CA0065.eurprd04.prod.outlook.com (2603:10a6:208:1::42) with Microsoft SMTP Server (version=TLS1_2, cipher=TLS_ECDHE_RSA_WITH_AES_256_GCM_SHA384) id 15.20.3412.20 via Frontend Transport; Tue, 29 Sep 2020 14:34:08 +0000
+X-MS-PublicTrafficType: Email
+X-MS-Office365-Filtering-Correlation-Id: 59479558-16c2-4553-423f-08d86484bc76
+X-MS-TrafficTypeDiagnostic: DBAPR10MB4091:|AM0PR10MB3331:
+X-MS-Exchange-Transport-Forked: True
+X-Microsoft-Antispam-PRVS: <AM0PR10MB3331661F516098FD115105F996320@AM0PR10MB3331.EURPRD10.PROD.OUTLOOK.COM>
+X-MS-Oob-TLC-OOBClassifiers: OLM:5797;OLM:5797;
+X-MS-Exchange-SenderADCheck: 1
+X-Microsoft-Antispam-Untrusted: BCL:0;
+X-Microsoft-Antispam-Message-Info-Original: 14m3+3Y2dIfmW5Q4bYSiDQ+jpMyKj+iC46lwZXISYkwQmpsvW8TCavOR2gJm89E953bnfUfJ1eIkJfTffgiOzdArujFIhhiBZ6HLJKf2HAfY3fkOMoVjfawjE/I6HUWNODwgPfNfmmURJUufeswxYN3/7R0p8UslH5Ht7O7kxAFiB/UQIBMnoIriFcMj0HSUqvOytHy71Oj8h/88nnM7DjriTkcKXuI2+phK+6clhfYaihCARYkSlyWg4H8e8r6322HyglHhgeDu1AsF+2UpEuF1HS9NktlMMybbin7lCkuPvnEmR47Gq1nUcjdhF9nk7d1qhTH8nQJEKCGPDEIObIYLjANC6KrA5A0BDZml/caqg3sHTFcdEn2cfsObFoYv
+X-Forefront-Antispam-Report-Untrusted: CIP:255.255.255.255;CTRY:;LANG:en;SCL:1;SRV:;IPV:NLI;SFV:NSPM;H:DB8PR10MB3434.EURPRD10.PROD.OUTLOOK.COM;PTR:;CAT:NONE;SFS:(39830400003)(396003)(366004)(346002)(376002)(2616005)(44832011)(6666004)(6506007)(1076003)(26005)(54906003)(36756003)(8936002)(186003)(52116002)(83380400001)(66946007)(5660300002)(508600001)(16526019)(6916009)(8676002)(6512007)(6486002)(956004)(2906002)(107886003)(66476007)(4326008)(66556008)(86362001)(4744005);DIR:OUT;SFP:1102;
+X-MS-Exchange-AntiSpam-MessageData: WbopKMMnMZcexsvjHvKNyWdw+wm9vCEycTcz1lWViNVerjYl7FVH93gO2wMaHUY/zvBKCWUEBfapvsuMcyxOGmk/FeVdavP2oiNz5VO2B3ncNgrV/H8VkH4DMe75KT8RSx6i1+1fi5uG/fojfecGWv3NDvpV2aXnqnfgg2PMApWMHRMbdxJ01s+iX8/84I9WM/Petryt6cUIc0k4h+tHJ5GJXQ2rbI+0LF7x1PcwTP+hV8rHk+DwvQXJcUaB9/YoivLv1YdYswaQK8ug5kumHcnrNhKnL1o1YX2ojZayszx5XkBWYLSFYuESU5Qdj0lx6XMyRBUd+9nDdrqBrZQbcmfyYG8PXJDa3t3kRWxV58TOHIieZfxbVQHISQrOHM8mNLwjk3PXC0IV49MN/bkF7C8196oVSPafiDjZlRUZZw+cdsrihT5pb9zAxCT+9MoFjcspVUrjxlYXSUx2qV2YljRaaFral+7dC0Dft5peF8m7C+0H2Gm01dCKLdkRG9Yx9X6ay84gBdl/4o0nrMoeBqCFyuJudXeKjV+aodbUvkOQo0Gu/s2MGusHnQaPpzZNE7DndzNToJF96CwtNdvGBSEph1Av6cDcelpqcLjRjZAlDEwwsJh1tnWdwEuyaHWTL+Zc6VC/zQVRmD5sltwldQ==
+X-MS-Exchange-Transport-CrossTenantHeadersStamped: DBAPR10MB4091
+X-EOPAttributedMessage: 0
+X-MS-Exchange-Transport-CrossTenantHeadersStripped: AM5EUR03FT059.eop-EUR03.prod.protection.outlook.com
+X-MS-Office365-Filtering-Correlation-Id-Prvs: 60983e86-d50f-4d06-22ee-08d86484b9ca
+X-Microsoft-Antispam: BCL:0;
+X-Microsoft-Antispam-Message-Info: SImweB1Hcbs1V/WlGARoef/wrWu0NQ/sype5BGbaq0gJYuRiFx2/aAKZyzH7ZyTtlvdb9SAewshh6YXmhH7+U8mpNb6dKJLNDvs9kZEhu2YsrdEELblKew/eBsPeKp62TqO2B+sOQnNFkjPxrRssWj5swElLXmYO2PAPbLmYFfwXee6f7D0PF1jFLPuB2CBlJY52twYGbqZNuXnjersgCpeDxXTqTFP3RWHD5djsdhvYrS7pML9GepSVnUWny+zM+Rwtm8eVopN5JnbnNr8qgwmDxVxQCM5yZaZJAWTA+Nk75ax+b6LoZvYpcTTqXRWK007d7wbJhOL062VRJ2tbbISkmiGQX6DFFtricl49eRWE/R/BKf1bnq8pTYsY9XiQnCyF24Q49S8aBHjayR5JA7EtkmbvFyaNE6zjBOsafQr4RJkWIEZfUPLa3MtatbXrFpOQ39QEuY+FwBg1BTtQSa2B8MDbdYA1T1yATmcl/3A=
+X-Forefront-Antispam-Report: CIP:104.40.229.156;CTRY:NL;LANG:en;SCL:1;SRV:;IPV:CAL;SFV:NSPM;H:eu1.smtp.exclaimer.net;PTR:eu1.smtp.exclaimer.net;CAT:NONE;SFS:(346002)(396003)(39830400003)(376002)(46966005)(6512007)(16526019)(186003)(6486002)(47076004)(26005)(54906003)(36756003)(5660300002)(70586007)(2906002)(8936002)(8676002)(4744005)(70206006)(6666004)(1076003)(508600001)(956004)(336012)(2616005)(316002)(86362001)(44832011)(6916009)(82310400003)(356005)(83380400001)(4326008)(7636003)(6506007)(7596003)(33310700002)(107886003);DIR:OUT;SFP:1102;
+X-OriginatorOrg: aerq.com
+X-MS-Exchange-CrossTenant-OriginalArrivalTime: 29 Sep 2020 14:34:12.6116
+ (UTC)
+X-MS-Exchange-CrossTenant-Network-Message-Id: 59479558-16c2-4553-423f-08d86484bc76
+X-MS-Exchange-CrossTenant-Id: bf24ff3e-ad0a-4c79-a44a-df7092489e22
+X-MS-Exchange-CrossTenant-OriginalAttributedTenantConnectingIp: TenantId=bf24ff3e-ad0a-4c79-a44a-df7092489e22;Ip=[104.40.229.156];Helo=[eu1.smtp.exclaimer.net]
+X-MS-Exchange-CrossTenant-AuthSource: AM5EUR03FT059.eop-EUR03.prod.protection.outlook.com
+X-MS-Exchange-CrossTenant-AuthAs: Anonymous
+X-MS-Exchange-CrossTenant-FromEntityHeader: HybridOnPrem
+X-MS-Exchange-Transport-CrossTenantHeadersStamped: AM0PR10MB3331
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-Thanks Srinivas For Review Comments!!!
+v2: - Fixed the DT example while converting to YAML
+    - Removed the unneeded maxItems from the binding documentation
+    - Use dummy regulator insted of explicitly handling missing regulator
 
-On 9/29/2020 2:32 PM, Srinivas Kandagatla wrote:
->
->
-> On 28/09/2020 10:53, Srinivasa Rao Mandadapu wrote:
->> From: V Sujith Kumar Reddy <vsujithk@codeaurora.org>
->>
->> Upadate lpass cpu and platform driver to support audio over dp.
->> Also add lpass-hdmi.c and lpass-hdmi.h.
->>
->
-> Thanks for doing the rework this patch looks much better now!
->
-> However I have few comments below!
->
->> Signed-off-by: V Sujith Kumar Reddy <vsujithk@codeaurora.org>
->> Signed-off-by: Srinivasa Rao <srivasam@codeaurora.org>
->> ---
->>   sound/soc/qcom/Kconfig           |  17 ++
->>   sound/soc/qcom/Makefile          |   2 +
->>   sound/soc/qcom/lpass-apq8016.c   |   4 +-
->>   sound/soc/qcom/lpass-cpu.c       |  53 ++++-
->>   sound/soc/qcom/lpass-hdmi.c      | 470 
->> +++++++++++++++++++++++++++++++++++++++
->>   sound/soc/qcom/lpass-hdmi.h      | 122 ++++++++++
->>   sound/soc/qcom/lpass-ipq806x.c   |   4 +-
->>   sound/soc/qcom/lpass-lpaif-reg.h |  52 ++++-
->>   sound/soc/qcom/lpass-platform.c  | 411 
->> +++++++++++++++++++++++++++-------
->>   sound/soc/qcom/lpass.h           | 113 +++++++++-
->>   10 files changed, 1137 insertions(+), 111 deletions(-)
->>   create mode 100644 sound/soc/qcom/lpass-hdmi.c
->>   create mode 100644 sound/soc/qcom/lpass-hdmi.h
->>
->> diff --git a/sound/soc/qcom/Kconfig b/sound/soc/qcom/Kconfig
->> index a7ef626..b7ddd05 100644
->> --- a/sound/soc/qcom/Kconfig
->> +++ b/sound/soc/qcom/Kconfig
->> @@ -12,6 +12,10 @@ config SND_SOC_LPASS_CPU
->>       tristate
->>       select REGMAP_MMIO
->>   +config SND_SOC_LPASS_HDMI
->> +    tristate
->> +    select REGMAP_MMIO
->> +
->>   config SND_SOC_LPASS_PLATFORM
->>       tristate
->>       select REGMAP_MMIO
->> @@ -30,6 +34,7 @@ config SND_SOC_LPASS_SC7180
->>       tristate
->>       select SND_SOC_LPASS_CPU
->>       select SND_SOC_LPASS_PLATFORM
->> +    select SND_SOC_LPASS_HDMI
->>     config SND_SOC_STORM
->>       tristate "ASoC I2S support for Storm boards"
->> @@ -120,4 +125,16 @@ config SND_SOC_SDM845
->>         SDM845 SoC-based systems.
->>         Say Y if you want to use audio device on this SoCs.
->
-> <<<<<<
->> +config SND_SOC_SC7180
->> +    tristate "SoC Machine driver for SC7180 boards"
->> +    depends on I2C
->> +    select SND_SOC_QCOM_COMMON
->> +    select SND_SOC_LPASS_SC7180
->> +    select SND_SOC_MAX98357A
->> +    select SND_SOC_RT5682_I2C
->> +    help
->> +      To add support for audio on Qualcomm Technologies Inc.
->> +      SC7180 SoC-based systems.
->> +      Say Y if you want to use audio device on this SoCs.
->> +
-> >>>>
->
-> Does this change belong to this patch!
+v3: - Use a devm action to handle disabling the regulator
 
-Yeah! This change is not related but compilation depends on this.
+Alban Bedel (3):
+  dt-bindings: hwmon: Convert lm75 bindings to yaml
+  dt-bindings: hwmon: Add the +vs supply to the lm75 bindings
+  hwmon: (lm75) Add regulator support
 
-we will remove this change for now.
+ .../devicetree/bindings/hwmon/lm75.txt        | 39 -----------
+ .../devicetree/bindings/hwmon/lm75.yaml       | 64 +++++++++++++++++++
+ drivers/hwmon/lm75.c                          | 24 +++++++
+ 3 files changed, 88 insertions(+), 39 deletions(-)
+ delete mode 100644 Documentation/devicetree/bindings/hwmon/lm75.txt
+ create mode 100644 Documentation/devicetree/bindings/hwmon/lm75.yaml
 
->
->
->>   endif #SND_SOC_QCOM
->> diff --git a/sound/soc/qcom/Makefile b/sound/soc/qcom/Makefile
->> index 7972c94..0bd90d7 100644
->> --- a/sound/soc/qcom/Makefile
->> +++ b/sound/soc/qcom/Makefile
->> @@ -1,12 +1,14 @@
->>   # SPDX-License-Identifier: GPL-2.0
->>   # Platform
->>   snd-soc-lpass-cpu-objs := lpass-cpu.o
->> +snd-soc-lpass-hdmi-objs := lpass-hdmi.o
->>   snd-soc-lpass-platform-objs := lpass-platform.o
->>   snd-soc-lpass-ipq806x-objs := lpass-ipq806x.o
->>   snd-soc-lpass-apq8016-objs := lpass-apq8016.o
->>   snd-soc-lpass-sc7180-objs := lpass-sc7180.o
->>     obj-$(CONFIG_SND_SOC_LPASS_CPU) += snd-soc-lpass-cpu.o
->> +obj-$(CONFIG_SND_SOC_LPASS_HDMI) += snd-soc-lpass-hdmi.o
->>   obj-$(CONFIG_SND_SOC_LPASS_PLATFORM) += snd-soc-lpass-platform.o
->>   obj-$(CONFIG_SND_SOC_LPASS_IPQ806X) += snd-soc-lpass-ipq806x.o
->>   obj-$(CONFIG_SND_SOC_LPASS_APQ8016) += snd-soc-lpass-apq8016.o
->> diff --git a/sound/soc/qcom/lpass-apq8016.c 
->> b/sound/soc/qcom/lpass-apq8016.c
->> index 5c8ae22..0aedb3a 100644
->> --- a/sound/soc/qcom/lpass-apq8016.c
->> +++ b/sound/soc/qcom/lpass-apq8016.c
->> @@ -125,7 +125,7 @@ static struct snd_soc_dai_driver 
->> apq8016_lpass_cpu_dai_driver[] = {
->>   };
->>     static int apq8016_lpass_alloc_dma_channel(struct lpass_data 
->> *drvdata,
->> -                       int direction)
->> +                       int direction, unsigned int dai_id)
->>   {
->>       struct lpass_variant *v = drvdata->variant;
->>       int chan = 0;
->> @@ -151,7 +151,7 @@ static int apq8016_lpass_alloc_dma_channel(struct 
->> lpass_data *drvdata,
->>       return chan;
->>   }
->>   -static int apq8016_lpass_free_dma_channel(struct lpass_data 
->> *drvdata, int chan)
->> +static int apq8016_lpass_free_dma_channel(struct lpass_data 
->> *drvdata, int chan, unsigned int dai_id)
->>   {
->>       clear_bit(chan, &drvdata->dma_ch_bit_map);
->>   diff --git a/sound/soc/qcom/lpass-cpu.c b/sound/soc/qcom/lpass-cpu.c
->> index 12950d2..81aaf51 100644
->> --- a/sound/soc/qcom/lpass-cpu.c
->> +++ b/sound/soc/qcom/lpass-cpu.c
->> @@ -535,13 +535,17 @@ static void of_lpass_cpu_parse_dai_data(struct 
->> device *dev,
->>               dev_err(dev, "valid dai id not found: %d\n", ret);
->>               continue;
->>           }
->> -
->> -        data->mi2s_playback_sd_mode[id] =
->> -            of_lpass_cpu_parse_sd_lines(dev, node,
->> -                            "qcom,playback-sd-lines");
->> -        data->mi2s_capture_sd_mode[id] =
->> -            of_lpass_cpu_parse_sd_lines(dev, node,
->> +        if (id == LPASS_DP_RX) {
->> +            data->hdmi_port_enable = 1;
->> +            dev_err(dev, "HDMI Port is enabled: %d\n", id);
->> +        } else {
->> +            data->mi2s_playback_sd_mode[id] =
->> +                of_lpass_cpu_parse_sd_lines(dev, node,
->> +                                "qcom,playback-sd-lines");
->> +            data->mi2s_capture_sd_mode[id] =
->> +                of_lpass_cpu_parse_sd_lines(dev, node,
->>                               "qcom,capture-sd-lines");
->> +        }
->>       }
->>   }
->>   @@ -589,13 +593,34 @@ int asoc_qcom_lpass_cpu_platform_probe(struct 
->> platform_device *pdev)
->>                           variant->wrdma_channel_start);
->>         drvdata->lpaif_map = devm_regmap_init_mmio(dev, drvdata->lpaif,
->> -            &lpass_cpu_regmap_config);
->> +        &lpass_cpu_regmap_config);
->
-> Looks like unnecessary change!
-Yes! will remove this.
->
->>       if (IS_ERR(drvdata->lpaif_map)) {
->>           dev_err(dev, "error initializing regmap: %ld\n",
->>               PTR_ERR(drvdata->lpaif_map));
->>           return PTR_ERR(drvdata->lpaif_map);
->>       }
->>   +    if (drvdata->hdmi_port_enable) {
->> +        res = platform_get_resource_byname(pdev, IORESOURCE_MEM, 
->> "lpass-hdmiif");
->> +
->> +        drvdata->hdmiif = devm_ioremap_resource(dev, res);
->> +        if (IS_ERR((void const __force *)drvdata->hdmiif)) {
->> +            dev_err(dev, "error mapping reg resource: %ld\n",
->> +                    PTR_ERR((void const __force *)drvdata->hdmiif));
->> +            return PTR_ERR((void const __force *)drvdata->hdmiif);
->> +        }
->> +
->> +        lpass_hdmi_regmap_config.max_register = 
->> LPAIF_HDMI_RDMAPER_REG(variant,
->> +                    variant->hdmi_rdma_channels);
->> +        drvdata->hdmiif_map = devm_regmap_init_mmio(dev, 
->> drvdata->hdmiif,
->> +                    &lpass_hdmi_regmap_config);
->> +        if (IS_ERR(drvdata->hdmiif_map)) {
->> +            dev_err(dev, "error initializing regmap: %ld\n",
->> +            PTR_ERR(drvdata->hdmiif_map));
->> +            return PTR_ERR(drvdata->hdmiif_map);
->> +        }
->> +    }
->> +
->>       if (variant->init) {
->>           ret = variant->init(pdev);
->>           if (ret) {
->> @@ -606,6 +631,9 @@ int asoc_qcom_lpass_cpu_platform_probe(struct 
->> platform_device *pdev)
->>         for (i = 0; i < variant->num_dai; i++) {
->>           dai_id = variant->dai_driver[i].id;
->> +        if (dai_id == LPASS_DP_RX)
->> +            continue;
->> +
->>           drvdata->mi2s_osr_clk[dai_id] = devm_clk_get(dev,
->>                            variant->dai_osr_clk_names[i]);
->>           if (IS_ERR(drvdata->mi2s_osr_clk[dai_id])) {
->> @@ -636,11 +664,16 @@ int asoc_qcom_lpass_cpu_platform_probe(struct 
->> platform_device *pdev)
->>       /* Initialize bitfields for dai I2SCTL register */
->>       ret = lpass_cpu_init_i2sctl_bitfields(dev, drvdata->i2sctl,
->>                           drvdata->lpaif_map);
->> -    if (ret) {
->> +    if (ret)
->>           dev_err(dev, "error init i2sctl field: %d\n", ret);
->> -        return ret;
->> -    }
->>   +    if (drvdata->hdmi_port_enable) {
->> +        ret = lpass_hdmi_init_bitfields(dev, drvdata->hdmiif_map);
->> +        if (ret) {
->> +            dev_err(dev, "%s error  hdmi init failed\n", __func__);
->> +            return ret;
->> +        }
->> +    }
->>       ret = devm_snd_soc_register_component(dev,
->>                             &lpass_cpu_comp_driver,
->>                             variant->dai_driver,
->> diff --git a/sound/soc/qcom/lpass-hdmi.c b/sound/soc/qcom/lpass-hdmi.c
->> new file mode 100644
->> index 0000000..fcbb5f2
->> --- /dev/null
->> +++ b/sound/soc/qcom/lpass-hdmi.c
->> @@ -0,0 +1,470 @@
->> +// SPDX-License-Identifier: GPL-2.0-only
->> +/*
->> + * Copyright (c) 2020 The Linux Foundation. All rights reserved.
->> + *
->> + * lpass-hdmi.c -- ALSA SoC HDMI-CPU DAI driver for QTi LPASS HDMI
->> + */
->> +
->> +
->> +#include <linux/kernel.h>
->> +#include <linux/module.h>
->> +#include <sound/pcm_params.h>
->> +#include <linux/regmap.h>
->> +#include <sound/soc.h>
->> +#include <sound/soc-dai.h>
->> +#include <dt-bindings/sound/sc7180-lpass.h>
->> +#include "lpass-lpaif-reg.h"
->> +#include "lpass.h"
->> +
->> +#define QCOM_REGMAP_FILED_ALLOC(d, m, f, mf)    \
->
-> s/QCOM_REGMAP_FILED_ALLOC/QCOM_REGMAP_FIELD_ALLOC
-Okay! will update this.
->
->> +    do { \
->> +        mf = devm_regmap_field_alloc(d, m, f);     \
->> +        if (IS_ERR(mf))                \
->> +            return -EINVAL;         \
->> +    } while (0)
->> +
->> +
->> +int lpass_hdmi_init_bitfields(struct device *dev, struct regmap *map)
->> +{
->> +    struct lpass_data *drvdata = dev_get_drvdata(dev);
->> +    struct lpass_variant *v = drvdata->variant;
->> +    unsigned int i;
->> +    struct lpass_hdmi_tx_ctl *tx_ctl;
->> +    struct lpass_hdmitx_legacy *legacy;
->> +    struct lpass_vbit_ctrl *vbit_ctl;
->> +    struct lpass_hdmi_tx_parity *tx_parity;
->> +    struct lpass_dp_metadata_ctl *meta_ctl;
->> +    struct lpass_sstream_ctl *sstream_ctl;
->> +    struct lpass_hdmi_tx_ch_msb *ch_msb;
->> +    struct lpass_hdmi_tx_ch_lsb *ch_lsb;
->> +    struct lpass_hdmitx_dmactl *tx_dmactl;
->
-> I see that you split the data structures into logical groups, does it 
-> really help the driver in anyway? I mean do you pass this structures 
-> to any functions?
-> Question is do you really need this level of abstraction?
-> Can't you just use flat regmap fileds with prefixes that would make 
-> code even cleaner!
-Yes! We will try to use direct regmap field where single member is there.
->
->
->> +    int rval;
->> +
->> +    tx_ctl = devm_kzalloc(dev, sizeof(*tx_ctl), GFP_KERNEL);
->> +    if (!tx_ctl)
->> +        return -ENOMEM;
->> +
->> +    QCOM_REGMAP_FILED_ALLOC(dev, map, v->soft_reset, 
->> tx_ctl->soft_reset);
->> +    QCOM_REGMAP_FILED_ALLOC(dev, map, v->force_reset, 
->> tx_ctl->force_reset);
->> +    drvdata->tx_ctl = tx_ctl;
->> +
->> +    legacy = devm_kzalloc(dev, sizeof(*legacy), GFP_KERNEL);
->> +    if (!legacy)
->> +        return -ENOMEM;
->> +
->> +    QCOM_REGMAP_FILED_ALLOC(dev, map, v->legacy_en, legacy->legacy_en);
->> +    drvdata->legacy = legacy;
->> +
->> +    vbit_ctl = devm_kzalloc(dev, sizeof(*vbit_ctl), GFP_KERNEL);
->> +    if (!vbit_ctl)
->> +        return -ENOMEM;
->> +
->> +    QCOM_REGMAP_FILED_ALLOC(dev, map, v->replace_vbit, 
->> vbit_ctl->replace_vbit);
->> +    QCOM_REGMAP_FILED_ALLOC(dev, map, v->vbit_stream, 
->> vbit_ctl->vbit_stream);
->> +    drvdata->vbit_ctl = vbit_ctl;
->> +
->> +    tx_parity = devm_kzalloc(dev, sizeof(*tx_parity), GFP_KERNEL);
->> +    if (!tx_parity)
->> +        return -ENOMEM;
->> +
->> +    QCOM_REGMAP_FILED_ALLOC(dev, map, v->calc_en, tx_parity->calc_en);
->> +    drvdata->tx_parity = tx_parity;
->> +
->> +    meta_ctl = devm_kzalloc(dev, sizeof(*meta_ctl), GFP_KERNEL);
->> +    if (!meta_ctl)
->> +        return -ENOMEM;
->> +
->> +    rval = devm_regmap_field_bulk_alloc(dev, map, &meta_ctl->mute, 
->> &v->mute, 7);
->> +    if (rval)
->> +        return rval;
->> +    drvdata->meta_ctl = meta_ctl;
->> +
->> +    sstream_ctl = devm_kzalloc(dev, sizeof(*sstream_ctl), GFP_KERNEL);
->> +    if (!sstream_ctl)
->> +        return -ENOMEM;
->> +
->> +    rval = devm_regmap_field_bulk_alloc(dev, map, 
->> &sstream_ctl->sstream_en, &v->sstream_en, 9);
->> +    if (rval)
->> +        return rval;
->> +
->> +    drvdata->sstream_ctl = sstream_ctl;
->> +
->> +    for (i = 0; i < LPASS_MAX_HDMI_DMA_CHANNELS; i++) {
->> +        ch_msb = devm_kzalloc(dev, sizeof(*ch_msb), GFP_KERNEL);
->> +        if (!ch_msb)
->> +            return -ENOMEM;
->> +
->> +        QCOM_REGMAP_FILED_ALLOC(dev, map, v->msb_bits, 
->> ch_msb->msb_bits);
->> +        drvdata->ch_msb[i] = ch_msb;
->> +
->> +        ch_lsb = devm_kzalloc(dev, sizeof(*ch_lsb), GFP_KERNEL);
->> +        if (!ch_lsb)
->> +            return -ENOMEM;
->> +
->> +        QCOM_REGMAP_FILED_ALLOC(dev, map, v->lsb_bits, 
->> ch_lsb->lsb_bits);
->> +        drvdata->ch_lsb[i] = ch_lsb;
->> +
->> +        tx_dmactl = devm_kzalloc(dev, sizeof(*tx_dmactl), GFP_KERNEL);
->> +        if (!tx_dmactl)
->> +            return -ENOMEM;
->> +
->> +        QCOM_REGMAP_FILED_ALLOC(dev, map, v->use_hw_chs, 
->> tx_dmactl->use_hw_chs);
->> +        QCOM_REGMAP_FILED_ALLOC(dev, map, v->use_hw_usr, 
->> tx_dmactl->use_hw_usr);
->> +        QCOM_REGMAP_FILED_ALLOC(dev, map, v->hw_chs_sel, 
->> tx_dmactl->hw_chs_sel);
->> +        QCOM_REGMAP_FILED_ALLOC(dev, map, v->hw_usr_sel, 
->> tx_dmactl->hw_usr_sel);
->> +        drvdata->hdmi_tx_dmactl[i] = tx_dmactl;
->> +    }
->> +    return 0;
->> +}
->> +EXPORT_SYMBOL(lpass_hdmi_init_bitfields);
->> +
-> ...
->
->> +
->> +static bool lpass_hdmi_regmap_volatile(struct device *dev, unsigned 
->> int reg)
->> +{
->> +    return true;
->> +}
->
-> Are you sure are all the registers volatile?
-Yes! Without volatile observed some issue.
->
->
->> +
->> +struct regmap_config lpass_hdmi_regmap_config = {
->> +    .reg_bits = 32,
->> +    .reg_stride = 4,
->> +    .val_bits = 32,
->> +    .writeable_reg = lpass_hdmi_regmap_writeable,
->> +    .readable_reg = lpass_hdmi_regmap_readable,
->> +    .volatile_reg = lpass_hdmi_regmap_volatile,
->> +    .cache_type = REGCACHE_FLAT,
->> +};
->> +EXPORT_SYMBOL(lpass_hdmi_regmap_config);
->> +
->> +MODULE_DESCRIPTION("QTi LPASS HDMI Driver");
->> +MODULE_LICENSE("GPL v2");
->> diff --git a/sound/soc/qcom/lpass-hdmi.h b/sound/soc/qcom/lpass-hdmi.h
->> new file mode 100644
->> index 0000000..0389af0
->> --- /dev/null
->> +++ b/sound/soc/qcom/lpass-hdmi.h
->> @@ -0,0 +1,122 @@
->> +/* SPDX-License-Identifier: GPL-2.0-only */
->> +/*
->> + * Copyright (c) 2020 The Linux Foundation. All rights reserved.
->> + *
->> + * lpass_hdmi.h - Definitions for the QTi LPASS HDMI
->> + */
->> +
->> +#ifndef __LPASS_HDMI_H__
->> +#define __LPASS_HDMI_H__
->> +
->> +#include <linux/regmap.h>
->> +
->> +#define LPASS_HDMITX_LEGACY_DISABLE        0x0
->> +#define LPASS_HDMITX_LEGACY_ENABLE        0x1
->> +#define LPASS_DP_AUDIO_BITWIDTH16        0x0
->> +#define LPASS_DP_AUDIO_BITWIDTH24        0xb
->> +#define LPASS_DATA_FORMAT_SHIFT            0x1
->> +#define LPASS_FREQ_BIT_SHIFT            24
->> +#define LPASS_DATA_FORMAT_LINEAR        0x0
->> +#define LPASS_DATA_FORMAT_NON_LINEAR    0x1
->> +#define LPASS_SAMPLING_FREQ32            0x3
->> +#define LPASS_SAMPLING_FREQ44            0x0
->> +#define LPASS_SAMPLING_FREQ48            0x2
->> +#define LPASS_TX_CTL_RESET                0x1
->> +#define LPASS_TX_CTL_CLEAR                0x0
->> +#define LPASS_SSTREAM_ENABLE            1
->> +#define LPASS_SSTREAM_DISABLE            0
->> +#define LPASS_LAYOUT_SP_DEFAULT            0xf
->> +#define LPASS_SSTREAM_DEFAULT_ENABLE    1
->> +#define LPASS_SSTREAM_DEFAULT_DISABLE    0
->> +#define LPASS_MUTE_ENABLE                1
->> +#define LPASS_MUTE_DISABLE                0
->> +#define LPASS_META_DEFAULT_VAL            0
->> +#define HW_MODE                            1
->> +#define SW_MODE                            0
->> +#define LEGACY_LPASS_LPAIF                1
->> +#define LEGACY_LPASS_HDMI                0
->> +#define REPLACE_VBIT                    0x1
->> +#define LINEAR_PCM_DATA                    0x0
->> +#define NON_LINEAR_PCM_DATA                0x1
->> +#define HDMITX_PARITY_CALC_EN            0x1
->> +#define HDMITX_PARITY_CALC_DIS            0x0
->> +#define LPASS_DATA_FORMAT_MASK            GENMASK(1, 1)
->> +#define LPASS_WORDLENGTH_MASK            GENMASK(3, 0)
->> +#define LPASS_FREQ_BIT_MASK                GENMASK(27, 24)
->> +
->> +#define LPASS_HDMI_TX_CTL_ADDR(v) (v->hdmi_tx_ctl_addr)
->> +#define LPASS_HDMI_TX_LEGACY_ADDR(v) (v->hdmi_legacy_addr)
->> +#define LPASS_HDMI_TX_VBIT_CTL_ADDR(v) (v->hdmi_vbit_addr)
->> +#define LPASS_HDMI_TX_PARITY_ADDR(v) (v->hdmi_parity_addr)
->> +#define LPASS_HDMI_TX_DP_ADDR(v)        (v->hdmi_DP_addr)
->> +#define LPASS_HDMI_TX_SSTREAM_ADDR(v) (v->hdmi_sstream_addr)
->> +
->> +#define LPASS_HDMI_TX_CH_LSB_ADDR(v, port) \
->> +        (v->hdmi_ch_lsb_addr + v->ch_stride * (port))
->> +#define LPASS_HDMI_TX_CH_MSB_ADDR(v, port) \
->> +        (v->hdmi_ch_msb_addr + v->ch_stride * (port))
->> +#define LPASS_HDMI_TX_DMA_ADDR(v, port) \
->> +        (v->hdmi_dmactl_addr + v->hdmi_dma_stride * (port))
->> +
->> +struct lpass_sstream_ctl {
->> +    struct regmap_field *sstream_en;
->> +    struct regmap_field *dma_sel;
->> +    struct regmap_field *auto_bbit_en;
->> +    struct regmap_field *layout;
->> +    struct regmap_field *layout_sp;
->> +    struct regmap_field *set_sp_on_en;
->> +    struct regmap_field *dp_audio;
->> +    struct regmap_field *dp_staffing_en;
->> +    struct regmap_field *dp_sp_b_hw_en;
->> +};
->> +
->> +struct lpass_dp_metadata_ctl {
->> +    struct regmap_field *mute;
->> +    struct regmap_field *as_sdp_cc;
->> +    struct regmap_field *as_sdp_ct;
->> +    struct regmap_field *aif_db4;
->> +    struct regmap_field *frequency;
->> +    struct regmap_field *mst_index;
->> +    struct regmap_field *dptx_index;
->> +};
->> +
->> +struct lpass_hdmi_tx_ctl {
->> +    struct regmap_field *soft_reset;
->> +    struct regmap_field *force_reset;
->> +};
->> +
->> +struct lpass_hdmitx_dmactl {
->> +    struct regmap_field *use_hw_chs;
->> +    struct regmap_field *use_hw_usr;
->> +    struct regmap_field *hw_chs_sel;
->> +    struct regmap_field *hw_usr_sel;
->> +};
->> +
->> +struct lpass_vbit_ctrl {
->> +        struct regmap_field *replace_vbit;
->> +        struct regmap_field *vbit_stream;
->> +};
->> +
->> +struct  lpass_hdmitx_legacy {
->> +    struct regmap_field *legacy_en;
->> +};
->> +
->> +struct  lpass_hdmi_tx_parity {
->> +    struct regmap_field *calc_en;
->> +};
->> +
->> +struct  lpass_hdmi_tx_ch_lsb {
->> +    struct regmap_field *lsb_bits;
->> +};
->> +
->> +struct  lpass_hdmi_tx_ch_msb {
->> +    struct regmap_field *msb_bits;
->> +};
->> +
->> +extern int lpass_hdmi_init_bitfields(struct device *dev, struct 
->> regmap *map);
->> +extern struct regmap_config lpass_hdmi_regmap_config;
->
-> You should consider moving the regmap_config to lpass-cpu.c, Not sure 
-> why we really need to export this symbol! most of this regmap config 
-> is only used in lpass-cpu.c
-Okay! will move it lpass-cpu.c
->
->
->> +extern const struct snd_soc_dai_ops asoc_qcom_lpass_hdmi_dai_ops;
->> +
->> +
->> +
->> +#endif /* __LPASS_HDMI_H__ */
->> diff --git a/sound/soc/qcom/lpass-ipq806x.c 
->> b/sound/soc/qcom/lpass-ipq806x.c
->> index 72f09b3..832a916 100644
->> --- a/sound/soc/qcom/lpass-ipq806x.c
->> +++ b/sound/soc/qcom/lpass-ipq806x.c
->> @@ -96,7 +96,7 @@ static int ipq806x_lpass_exit(struct 
->> platform_device *pdev)
->>       return 0;
->>   }
->>   -static int ipq806x_lpass_alloc_dma_channel(struct lpass_data 
->> *drvdata, int dir)
->> +static int ipq806x_lpass_alloc_dma_channel(struct lpass_data 
->> *drvdata, int dir, unsigned int dai_id)
->>   {
->>       if (dir == SNDRV_PCM_STREAM_PLAYBACK)
->>           return IPQ806X_LPAIF_RDMA_CHAN_MI2S;
->> @@ -104,7 +104,7 @@ static int ipq806x_lpass_alloc_dma_channel(struct 
->> lpass_data *drvdata, int dir)
->>           return -EINVAL;
->>   }
->>   -static int ipq806x_lpass_free_dma_channel(struct lpass_data 
->> *drvdata, int chan)
->> +static int ipq806x_lpass_free_dma_channel(struct lpass_data 
->> *drvdata, int chan, unsigned int dai_id)
->>   {
->>       return 0;
->>   }
-> ...
->
->> diff --git a/sound/soc/qcom/lpass-platform.c 
->> b/sound/soc/qcom/lpass-platform.c
->> index db0d959..390a66b 100644
->> --- a/sound/soc/qcom/lpass-platform.c
->> +++ b/sound/soc/qcom/lpass-platform.c
->> @@ -23,7 +23,7 @@ struct lpass_pcm_data {
->>       int i2s_port;
->>   };
->>   -#define LPASS_PLATFORM_BUFFER_SIZE    (16 * 1024)
->> +#define LPASS_PLATFORM_BUFFER_SIZE    (24 *  2 * 1024)
->
->
-> Why do you need to change this?
-> even if you plan to change this please send this as a seperate patch!
-Okay We will create separate patch for this change
->
->>   #define LPASS_PLATFORM_PERIODS        2
->>     static const struct snd_pcm_hardware lpass_platform_pcm_hardware = {
->> @@ -80,6 +80,23 @@ static int 
->> lpass_platform_alloc_dmactl_fields(struct device *dev,
->>                           &v->wrdma_intf, 6);
->>   }
->>   +static int lpass_platform_alloc_hdmidmactl_fields(struct device *dev,
->> +                     struct regmap *map)
->> +{
->> +    struct lpass_data *drvdata = dev_get_drvdata(dev);
->> +    struct lpass_variant *v = drvdata->variant;
->> +    struct lpaif_dmactl *rd_dmactl;
->> +
->> +    rd_dmactl = devm_kzalloc(dev, sizeof(struct lpaif_dmactl), 
->> GFP_KERNEL);
->> +    if (rd_dmactl == NULL)
->> +        return -ENOMEM;
->> +
->> +    drvdata->hdmi_rd_dmactl = rd_dmactl;
->> +
->> +    return devm_regmap_field_bulk_alloc(dev, map, &rd_dmactl->bursten,
->> +                        &v->hdmi_rdma_bursten, 8);
->> +}
->> +
->>   static int lpass_platform_pcmops_open(struct snd_soc_component 
->> *component,
->>                         struct snd_pcm_substream *substream)
->>   {
->> @@ -89,7 +106,9 @@ static int lpass_platform_pcmops_open(struct 
->> snd_soc_component *component,
->>       struct lpass_data *drvdata = 
->> snd_soc_component_get_drvdata(component);
->>       struct lpass_variant *v = drvdata->variant;
->>       int ret, dma_ch, dir = substream->stream;
->> -    struct lpass_pcm_data *data;
->> +    struct lpass_pcm_data *data = NULL;
->
-> What is the reason for intializing, Did you hit any compile warning?
-Yeah.. It's redundant. will remove this.
->> +    struct regmap *map;
->> +    unsigned int dai_id = cpu_dai->driver->id;
->>         data = kzalloc(sizeof(*data), GFP_KERNEL);
->>       if (!data)
->> @@ -99,25 +118,28 @@ static int lpass_platform_pcmops_open(struct 
->> snd_soc_component *component,
->>       runtime->private_data = data;
->>         if (v->alloc_dma_channel)
->> -        dma_ch = v->alloc_dma_channel(drvdata, dir);
->> +        dma_ch = v->alloc_dma_channel(drvdata, dir, dai_id);
->>       else
->>           dma_ch = 0;
->>         if (dma_ch < 0)
->>           return dma_ch;
->>   -    drvdata->substream[dma_ch] = substream;
->> -
->> -    ret = regmap_write(drvdata->lpaif_map,
->> -            LPAIF_DMACTL_REG(v, dma_ch, dir), 0);
->> +    if (cpu_dai->driver->id == LPASS_DP_RX) {
->> +        map = drvdata->hdmiif_map;
->> +        drvdata->hdmi_substream[dma_ch] = substream;
->> +    } else {
->> +        map = drvdata->lpaif_map;
->> +        drvdata->substream[dma_ch] = substream;
->> +    }
->> +    data->dma_ch = dma_ch;
->> +    ret = regmap_write(map,
->> +            LPAIF_DMACTL_REG(v, dma_ch, dir, data->i2s_port), 0);
->>       if (ret) {
->>           dev_err(soc_runtime->dev,
->>               "error writing to rdmactl reg: %d\n", ret);
->>           return ret;
->>       }
->> -
->> -    data->dma_ch = dma_ch;
->> -
->>       snd_soc_set_runtime_hwparams(substream, 
->> &lpass_platform_pcm_hardware);
->>         runtime->dma_bytes = 
->> lpass_platform_pcm_hardware.buffer_bytes_max;
->> @@ -139,14 +161,20 @@ static int lpass_platform_pcmops_close(struct 
->> snd_soc_component *component,
->>
->
-> ...
->
->>   static int lpass_platform_pcm_new(struct snd_soc_component *component,
->>                     struct snd_soc_pcm_runtime *soc_runtime)
->>   {
->> @@ -625,22 +856,20 @@ int asoc_qcom_lpass_platform_register(struct 
->> platform_device *pdev)
->>       if (drvdata->lpaif_irq < 0)
->>           return -ENODEV;
->>   -    /* ensure audio hardware is disabled */
->> -    ret = regmap_write(drvdata->lpaif_map,
->> -            LPAIF_IRQEN_REG(v, LPAIF_IRQ_PORT_HOST), 0);
->> +    ret = devm_request_irq(&pdev->dev, drvdata->lpaif_irq,
->> +            lpass_platform_lpaif_irq, 0, "lpass-irq-lpaif", drvdata);
->>       if (ret) {
->> -        dev_err(&pdev->dev, "error writing to irqen reg: %d\n", ret);
->> +        dev_err(&pdev->dev, "irq request failed: %d\n", ret);
->
-> This type of changes can be in seperate patch!
-This is change not required. will remove this change.
->
->>           return ret;
->>       }
->>   -    ret = devm_request_irq(&pdev->dev, drvdata->lpaif_irq,
->> -            lpass_platform_lpaif_irq, IRQF_TRIGGER_RISING,
->> -            "lpass-irq-lpaif", drvdata);
->> +    /* ensure audio hardware is disabled */
->> +    ret = regmap_write(drvdata->lpaif_map,
->> +            LPAIF_IRQEN_REG(v, LPAIF_IRQ_PORT_HOST), 0);
->>       if (ret) {
->> -        dev_err(&pdev->dev, "irq request failed: %d\n", ret);
->> +        dev_err(&pdev->dev, "error writing to irqen reg: %d\n", ret);
->>           return ret;
->>       }
->> -
->
-> Unnecessary change!
-Okay!. Will remove this.
->
->>       ret = lpass_platform_alloc_dmactl_fields(&pdev->dev,
->>                            drvdata->lpaif_map);
->
-> Thanks,
-> srini
-
--- 
-Qualcomm India Private Limited, on behalf of Qualcomm Innovation Center, Inc.,
-is a member of Code Aurora Forum, a Linux Foundation Collaborative Project.
+--=20
+2.25.1
 
