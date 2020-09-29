@@ -2,107 +2,69 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from vger.kernel.org (vger.kernel.org [23.128.96.18])
-	by mail.lfdr.de (Postfix) with ESMTP id EEFE327BBB4
-	for <lists+devicetree@lfdr.de>; Tue, 29 Sep 2020 06:01:49 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTP id 9758D27BC9E
+	for <lists+devicetree@lfdr.de>; Tue, 29 Sep 2020 07:56:43 +0200 (CEST)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S1725535AbgI2EBs (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Tue, 29 Sep 2020 00:01:48 -0400
-Received: from lindbergh.monkeyblade.net ([23.128.96.19]:52608 "EHLO
-        lindbergh.monkeyblade.net" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S1725497AbgI2EBs (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Tue, 29 Sep 2020 00:01:48 -0400
-Received: from mail-lf1-x144.google.com (mail-lf1-x144.google.com [IPv6:2a00:1450:4864:20::144])
-        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 8F690C061755;
-        Mon, 28 Sep 2020 21:01:47 -0700 (PDT)
-Received: by mail-lf1-x144.google.com with SMTP id y11so3850890lfl.5;
-        Mon, 28 Sep 2020 21:01:47 -0700 (PDT)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=gmail.com; s=20161025;
-        h=subject:from:to:cc:references:message-id:date:user-agent
-         :mime-version:in-reply-to:content-language:content-transfer-encoding;
-        bh=xJYJ1xOL5oF7tlJWhcaFZcfxBH+PkKUBN4FGKZt/x+U=;
-        b=b+6M4uKPVgLsJjI8VVLA9c0C8VvcnqnGhRo2VawGiarpWGDp39bSjQtYlBrY5plDys
-         +V1l0R+VAfVu6taRrLGwSF6q8Eok7PaOhnnyciXmLOf7JmpfPUcLFZwMTTGtXHJBwAA0
-         zCnFPIdsP5SG6dPfPrnZVk1CFbBU/fqaoW6U440B6TwiBmYHEJUnwlmNFxHA8exs+vA2
-         O1QE+S6FtrXdL489PYNUIlGlGa01XZgi47bvFuSbGCb5v9fGcm8g4Dsba1NnGT+Wx3ZW
-         x3jcVM9afU3xKu3rhsN31cLt+Rh6tgLNQiAnUjH98bcBSCC0V6RKtO7EHkSfY2QJNTg6
-         N58g==
-X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=1e100.net; s=20161025;
-        h=x-gm-message-state:subject:from:to:cc:references:message-id:date
-         :user-agent:mime-version:in-reply-to:content-language
-         :content-transfer-encoding;
-        bh=xJYJ1xOL5oF7tlJWhcaFZcfxBH+PkKUBN4FGKZt/x+U=;
-        b=e9+Lg45iyH0kdr1SGWWb1T11N+6RC6clnjwYEZxbCZToh5KbegUp+BGfRokA2YBu5q
-         xY8GYw9yzRMPsQKLlzzaF2zzFqxR8Z/DE0Vhy8fhOUsDcpxgMew6VVMbFKgdZOMcLzxp
-         yRPLs0P2lYf1QpJfuCmqEyn2Uh0aloFhNkJytT7gdsVe5IBXxyOtwcLBMzLdi+CwT5Ie
-         xY4N2M14GZWC/FOqlqFdVL9gNMpnrHnP8nCTxkoVe8Lqxq6e6xB4657XzMjUOsJ86GUf
-         HSEWXI8YoV65IIUBrwmZMKfN3S/xhBLM2f/UORX7fSKpsB7sVgt7x1dtSCwZlscjbQ3R
-         ZHSQ==
-X-Gm-Message-State: AOAM5314EeCcC0zoeegtDag318vRyAnaHfMWQ6DlQmvTu8eB5/qVuH7o
-        e8uhAFVD1JONGeXruk3D9SpYEyNl+uY=
-X-Google-Smtp-Source: ABdhPJyhZWHq1YAVgXNNTUdpYqr01wxVJKztWF4nDaW5+4JCe/tpBBmCl8JWl0bEnSYmeszjNRoxqw==
-X-Received: by 2002:a19:488a:: with SMTP id v132mr424123lfa.461.1601352105431;
-        Mon, 28 Sep 2020 21:01:45 -0700 (PDT)
-Received: from [192.168.2.145] (109-252-170-211.dynamic.spd-mgts.ru. [109.252.170.211])
-        by smtp.googlemail.com with ESMTPSA id h11sm3079396lfd.21.2020.09.28.21.01.44
-        (version=TLS1_3 cipher=TLS_AES_128_GCM_SHA256 bits=128/128);
-        Mon, 28 Sep 2020 21:01:44 -0700 (PDT)
-Subject: Re: [PATCH v2 1/3] ARM: tegra: Add device-tree for Ouya
-From:   Dmitry Osipenko <digetx@gmail.com>
-To:     Peter Geis <pgwipeout@gmail.com>
-Cc:     Rob Herring <robh+dt@kernel.org>,
-        Thierry Reding <thierry.reding@gmail.com>,
-        Jonathan Hunter <jonathanh@nvidia.com>,
-        Matt Merhar <mattmerhar@protonmail.com>,
-        Stephen Warren <swarren@wwwdotorg.org>,
-        Bob Ham <rah@settrans.net>,
-        Leonardo Bras <leobras.c@gmail.com>,
-        Michael Brougham <jusplainmike@gmail.com>,
-        linux-tegra@vger.kernel.org, devicetree@vger.kernel.org,
-        linux-kernel@vger.kernel.org
-References: <20200923210352.1176386-1-pgwipeout@gmail.com>
- <20200923210352.1176386-2-pgwipeout@gmail.com>
- <df2d6a8d-8a6c-464b-8f35-a7994ea01534@gmail.com>
- <CAMdYzYosBUUudsRnf9RQ1HKYq8cS4uXRm-9Mg1=hZy+v_Q_X6g@mail.gmail.com>
- <83a5ee67-e30d-db43-a210-345304ed6edd@gmail.com>
-Message-ID: <3801ef6d-0207-06b9-713e-285179703131@gmail.com>
-Date:   Tue, 29 Sep 2020 07:01:44 +0300
-User-Agent: Mozilla/5.0 (X11; Linux x86_64; rv:68.0) Gecko/20100101
- Thunderbird/68.10.0
+        id S1725550AbgI2F4m (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Tue, 29 Sep 2020 01:56:42 -0400
+Received: from mail.intenta.de ([178.249.25.132]:27198 "EHLO mail.intenta.de"
+        rhost-flags-OK-OK-OK-OK) by vger.kernel.org with ESMTP
+        id S1725372AbgI2F4m (ORCPT <rfc822;devicetree@vger.kernel.org>);
+        Tue, 29 Sep 2020 01:56:42 -0400
+DKIM-Signature: v=1; a=rsa-sha256; q=dns/txt; c=relaxed/relaxed; d=intenta.de; s=dkim1;
+        h=In-Reply-To:Content-Type:MIME-Version:References:Message-ID:Subject:CC:To:From:Date; bh=2pMj28T6Gnzme5ijvO2L3EUhNGLWzy7xk/Tfgk0DFuA=;
+        b=E4T4vFjfZ4c73i5EgjlFdygr8nqy7rNoDnidcy/VX1njr6BnKcpN1JTowcXDC9mvP+sRlOKZxXKTJx8imNAH7eEeK/g6Nlil7PsurMzKCvLF9G9STXK/sg4Z92K8BK0kDyPLmdQIQn8LunDKMbIE5xOoCTMdSQlSZmpwIundp/KAC6Vn65IRM57VV48k4k83rMBkzlcbPJNqLam/36Ij4F1hj40bYX8eXYq9zSVW2aBolofBQNJpav3SLKihhibOt3SJIgANagPa46bVcPY6b6vbvDLBFMkHzxUfrp1SUsczO8hQA2cSCcGkdBbaP2z93DKLbQ7yQTjbeT5CazCUNA==;
+Date:   Tue, 29 Sep 2020 07:56:30 +0200
+From:   Helmut Grohne <helmut.grohne@intenta.de>
+To:     Sasha Levin <sashal@kernel.org>
+CC:     "linux-kernel@vger.kernel.org" <linux-kernel@vger.kernel.org>,
+        "stable@vger.kernel.org" <stable@vger.kernel.org>,
+        Alexandre Belloni <alexandre.belloni@bootlin.com>,
+        "David S . Miller" <davem@davemloft.net>,
+        "devicetree@vger.kernel.org" <devicetree@vger.kernel.org>,
+        "linux-arm-kernel@lists.infradead.org" 
+        <linux-arm-kernel@lists.infradead.org>,
+        "netdev@vger.kernel.org" <netdev@vger.kernel.org>
+Subject: Re: [PATCH AUTOSEL 5.8 08/29] net: dsa: microchip: look for phy-mode
+ in port nodes
+Message-ID: <20200929055630.GA9320@laureti-dev>
+References: <20200929013027.2406344-1-sashal@kernel.org>
+ <20200929013027.2406344-8-sashal@kernel.org>
 MIME-Version: 1.0
-In-Reply-To: <83a5ee67-e30d-db43-a210-345304ed6edd@gmail.com>
-Content-Type: text/plain; charset=utf-8
-Content-Language: en-US
-Content-Transfer-Encoding: 8bit
+Content-Type: text/plain; charset="us-ascii"
+Content-Disposition: inline
+In-Reply-To: <20200929013027.2406344-8-sashal@kernel.org>
+User-Agent: Mutt/1.10.1 (2018-07-13)
+X-ClientProxiedBy: ICSMA002.intenta.de (10.10.16.48) To ICSMA002.intenta.de
+ (10.10.16.48)
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-26.09.2020 16:47, Dmitry Osipenko пишет:
-> 26.09.2020 05:01, Peter Geis пишет:
-> ...
->>>> +             pmic: pmic@2d {
->>>> +                     compatible = "ti,tps65911";
->>>> +                     reg = <0x2d>;
->>>> +
->>>> +                     interrupts = <GIC_SPI 86 IRQ_TYPE_LEVEL_HIGH>;
->>>> +                     #interrupt-cells = <2>;
->>>> +                     interrupt-controller;
->>>> +
->>>> +                     ti,system-power-controller;
->>>
->>> Are the ti,sleep-keep-ck32k and other properties not needed for Ouya
->>> like they are needed for Nexus 7?
->>
->> Ouya is wall powered, so ultra low power isn't terribly necessary.
->> Also with LP1 and LP0 not working, it doesn't make much sense to
->> implement this yet.
-> 
-> The keep-ck32 is not about power saving. If PMC is running off PMIC's
-> oscillator during LP1 suspend, then this should be one of the reasons
-> why LP1 doesn't work for you.
-> 
+Hi Sascha,
 
-I missed that you set nvidia,suspend-mode to LP2, so perhaps should be
-good as-is for now.
+On Tue, Sep 29, 2020 at 03:30:05AM +0200, Sasha Levin wrote:
+> From: Helmut Grohne <helmut.grohne@intenta.de>
+> 
+> [ Upstream commit edecfa98f602a597666e3c5cab2677ada38d93c5 ]
+> 
+> Documentation/devicetree/bindings/net/dsa/dsa.txt says that the phy-mode
+> property should be specified on port nodes. However, the microchip
+> drivers read it from the switch node.
+> 
+> Let the driver use the per-port property and fall back to the old
+> location with a warning.
+> 
+> Fix in-tree users.
+
+I don't think this patch is useful for stable users. It corrects a
+device tree layout issue. Any existing users of the functionality will
+have an odd, but working device tree and that will continue working
+(with a warning) after applying this patch. It just has a property on
+the "wrong" node. I don't think I'd like to update my device tree in a
+stable update.
+
+If you apply it anyway, please also apply a fixup:
+https://lore.kernel.org/netdev/20200924083746.GA9410@laureti-dev/
+
+Helmut
