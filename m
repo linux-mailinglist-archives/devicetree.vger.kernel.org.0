@@ -2,163 +2,109 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from vger.kernel.org (vger.kernel.org [23.128.96.18])
-	by mail.lfdr.de (Postfix) with ESMTP id 6E37E27CFF7
-	for <lists+devicetree@lfdr.de>; Tue, 29 Sep 2020 15:52:51 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTP id C6EA527CFFE
+	for <lists+devicetree@lfdr.de>; Tue, 29 Sep 2020 15:54:22 +0200 (CEST)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S1729098AbgI2Nwu (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Tue, 29 Sep 2020 09:52:50 -0400
-Received: from mail.kernel.org ([198.145.29.99]:40958 "EHLO mail.kernel.org"
-        rhost-flags-OK-OK-OK-OK) by vger.kernel.org with ESMTP
-        id S1728617AbgI2Nwu (ORCPT <rfc822;devicetree@vger.kernel.org>);
-        Tue, 29 Sep 2020 09:52:50 -0400
-Received: from mail-oi1-f182.google.com (mail-oi1-f182.google.com [209.85.167.182])
-        (using TLSv1.2 with cipher ECDHE-RSA-AES128-GCM-SHA256 (128/128 bits))
-        (No client certificate requested)
-        by mail.kernel.org (Postfix) with ESMTPSA id 05836207C4;
-        Tue, 29 Sep 2020 13:52:49 +0000 (UTC)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=kernel.org;
-        s=default; t=1601387569;
-        bh=pYsc5cZZIzjD7FvvqYNgn121yKTXFjoRl6+H8VM055s=;
-        h=References:In-Reply-To:From:Date:Subject:To:Cc:From;
-        b=nzy13enxPFatTrQ4Mos6ndxvfND1TQ94gXxPCnj+xBTl+rHkyNV1hwephuzqwsQnR
-         sIPh0bYfNWDv4fNoJtSIQQIh93k927cBpPb+wQxe6WjQ0ZMn0zOCsMLO+RtSFPjlJZ
-         gsw3pVthIilG5nQ4vFDuQYSUhCUFDOvPYHkhgLC4=
-Received: by mail-oi1-f182.google.com with SMTP id 26so5511047ois.5;
-        Tue, 29 Sep 2020 06:52:48 -0700 (PDT)
-X-Gm-Message-State: AOAM532sbdPmaBSlGLguT1rFOzQWvVCRvcblBkL9i04HEtq2gkdhSf8E
-        1s2ajVGqAYui+E3L5rGrCAFVrCVyj7iyLu30Mw==
-X-Google-Smtp-Source: ABdhPJyXONNDaN98Wxtkgi5lscM774CxDnMFwYXpEoqZnqTpG1+Bz7UGZxAstO0/LlvsGJZhyet6fTSTnrmquVNKf0s=
-X-Received: by 2002:aca:fc07:: with SMTP id a7mr2653496oii.106.1601387568135;
- Tue, 29 Sep 2020 06:52:48 -0700 (PDT)
-MIME-Version: 1.0
-References: <20200928151324.2134-1-thunder.leizhen@huawei.com>
- <20200928151324.2134-13-thunder.leizhen@huawei.com> <20200928191425.GA3099266@bogus>
- <0568ed90-c6ac-ae1c-45ee-cdc6526d3fcf@huawei.com> <30a08e22-f8bb-1e42-087b-995dc525eaa4@huawei.com>
- <2d382466-5b91-7b43-2d12-8f7ceafe3691@huawei.com>
-In-Reply-To: <2d382466-5b91-7b43-2d12-8f7ceafe3691@huawei.com>
-From:   Rob Herring <robh@kernel.org>
-Date:   Tue, 29 Sep 2020 08:52:36 -0500
-X-Gmail-Original-Message-ID: <CAL_Jsq+zwCsgnyARCW6cdWWgefoWYd374r1OejP5B4aJ8Hivwg@mail.gmail.com>
-Message-ID: <CAL_Jsq+zwCsgnyARCW6cdWWgefoWYd374r1OejP5B4aJ8Hivwg@mail.gmail.com>
-Subject: Re: [PATCH v4 12/20] dt-bindings: arm: hisilicon: convert
- hisilicon,hi3798cv200-perictrl bindings to json-schema
-To:     "Leizhen (ThunderTown)" <thunder.leizhen@huawei.com>
-Cc:     devicetree <devicetree@vger.kernel.org>,
-        Kefeng Wang <wangkefeng.wang@huawei.com>,
-        linux-kernel <linux-kernel@vger.kernel.org>,
-        Wei Xu <xuwei5@hisilicon.com>, Libin <huawei.libin@huawei.com>,
-        Jonathan Cameron <Jonathan.Cameron@huawei.com>,
-        linux-arm-kernel <linux-arm-kernel@lists.infradead.org>
+        id S1728487AbgI2NyQ (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Tue, 29 Sep 2020 09:54:16 -0400
+Received: from mailgw02.mediatek.com ([1.203.163.81]:2892 "EHLO
+        mailgw02.mediatek.com" rhost-flags-OK-FAIL-OK-FAIL) by vger.kernel.org
+        with ESMTP id S1727328AbgI2NyN (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Tue, 29 Sep 2020 09:54:13 -0400
+X-UUID: be755ad52f7f4df3a38c6f5a8705de53-20200929
+DKIM-Signature: v=1; a=rsa-sha256; q=dns/txt; c=relaxed/relaxed; d=mediatek.com; s=dk;
+        h=Content-Transfer-Encoding:MIME-Version:Content-Type:References:In-Reply-To:Date:CC:To:From:Subject:Message-ID; bh=3R2Pn+c7IE5Q3v0Jn/QXjb/p34wUQS/L7+BGyE+G9mI=;
+        b=WeXwrHISHquz3QzyPWAaKebf0s5B9znLqBP5oWJZKPFciFAx1xExB17GCi8eOAKowVSv/8jgedrEgxXINPcIHAcagNJB0yPG3ZVPe23kBLzzQOiSC5bcKP/Vxki9AAWwsdZXknoF3UZdfk69iCnrnlEhPCZhG5btdW5PeChzgvE=;
+X-UUID: be755ad52f7f4df3a38c6f5a8705de53-20200929
+Received: from mtkcas35.mediatek.inc [(172.27.4.253)] by mailgw02.mediatek.com
+        (envelope-from <crystal.guo@mediatek.com>)
+        (mailgw01.mediatek.com ESMTP with TLSv1.2 ECDHE-RSA-AES256-SHA384 256/256)
+        with ESMTP id 462118723; Tue, 29 Sep 2020 21:54:00 +0800
+Received: from MTKCAS36.mediatek.inc (172.27.4.186) by MTKMBS31N1.mediatek.inc
+ (172.27.4.69) with Microsoft SMTP Server (TLS) id 15.0.1497.2; Tue, 29 Sep
+ 2020 21:53:59 +0800
+Received: from [10.17.3.153] (10.17.3.153) by MTKCAS36.mediatek.inc
+ (172.27.4.170) with Microsoft SMTP Server id 15.0.1497.2 via Frontend
+ Transport; Tue, 29 Sep 2020 21:53:58 +0800
+Message-ID: <1601387640.14806.37.camel@mhfsdcap03>
+Subject: Re: [v4,3/4] reset-controller: ti: introduce a new reset handler
+From:   Crystal Guo <crystal.guo@mediatek.com>
+To:     "robh+dt@kernel.org" <robh+dt@kernel.org>,
+        Suman Anna <s-anna@ti.com>,
+        Philipp Zabel <p.zabel@pengutronix.de>,
+        "matthias.bgg@gmail.com" <matthias.bgg@gmail.com>
+CC:     srv_heupstream <srv_heupstream@mediatek.com>,
+        "linux-mediatek@lists.infradead.org" 
+        <linux-mediatek@lists.infradead.org>,
+        "linux-arm-kernel@lists.infradead.org" 
+        <linux-arm-kernel@lists.infradead.org>,
+        "linux-kernel@vger.kernel.org" <linux-kernel@vger.kernel.org>,
+        "devicetree@vger.kernel.org" <devicetree@vger.kernel.org>,
+        Seiya Wang =?UTF-8?Q?=28=E7=8E=8B=E8=BF=BA=E5=90=9B=29?= 
+        <seiya.wang@mediatek.com>,
+        Stanley Chu =?UTF-8?Q?=28=E6=9C=B1=E5=8E=9F=E9=99=9E=29?= 
+        <stanley.chu@mediatek.com>,
+        Yingjoe Chen =?UTF-8?Q?=28=E9=99=B3=E8=8B=B1=E6=B4=B2=29?= 
+        <Yingjoe.Chen@mediatek.com>,
+        Fan Chen =?UTF-8?Q?=28=E9=99=B3=E5=87=A1=29?= 
+        <fan.chen@mediatek.com>,
+        "Yong Liang =?UTF-8?Q?=28=E6=A2=81=E5=8B=87=29?=" 
+        <Yong.Liang@mediatek.com>
+Date:   Tue, 29 Sep 2020 21:54:00 +0800
+In-Reply-To: <1600092019.14806.32.camel@mhfsdcap03>
+References: <20200817030324.5690-1-crystal.guo@mediatek.com>
+         <20200817030324.5690-4-crystal.guo@mediatek.com>
+         <3a5decee-5f31-e27d-a120-1f835241a87c@ti.com>
+         <1599620279.14806.18.camel@mhfsdcap03>
+         <096362e9-dee8-4e7a-2518-47328068c2fd@ti.com>
+         <1599792140.14806.22.camel@mhfsdcap03>
+         <9d72aaef-49fe-ebb6-215d-05ad3ab27af4@ti.com>
+         <1599804422.14806.27.camel@mhfsdcap03>
+         <dae4ab91ec20e72963f2658efca4874a35dd739e.camel@pengutronix.de>
+         <407863ba-e336-11fc-297d-f1be1f58adaa@ti.com>
+         <1600092019.14806.32.camel@mhfsdcap03>
 Content-Type: text/plain; charset="UTF-8"
+X-Mailer: Evolution 3.10.4-0ubuntu2 
+MIME-Version: 1.0
+X-TM-SNTS-SMTP: 4D3137281912B1B8192E5255475BC4C9F56539D105696DE295B344C9EB617AE12000:8
+X-MTK:  N
+Content-Transfer-Encoding: base64
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-On Tue, Sep 29, 2020 at 8:25 AM Leizhen (ThunderTown)
-<thunder.leizhen@huawei.com> wrote:
->
->
->
-> On 2020/9/29 17:21, Leizhen (ThunderTown) wrote:
-> >
-> >
-> > On 2020/9/29 11:18, Leizhen (ThunderTown) wrote:
-> >>
-> >>
-> >> On 2020/9/29 3:14, Rob Herring wrote:
-> >>> On Mon, Sep 28, 2020 at 11:13:16PM +0800, Zhen Lei wrote:
-> >>>> Convert the Hisilicon Hi3798CV200 Peripheral Controller binding to DT
-> >>>> schema format using json-schema.
-> >>>>
-> >>>> Signed-off-by: Zhen Lei <thunder.leizhen@huawei.com>
-> >>>> ---
-> >>>>  .../controller/hisilicon,hi3798cv200-perictrl.txt  | 21 ----------
-> >>>>  .../controller/hisilicon,hi3798cv200-perictrl.yaml | 45 ++++++++++++++++++++++
-> >>>>  2 files changed, 45 insertions(+), 21 deletions(-)
-> >>>>  delete mode 100644 Documentation/devicetree/bindings/arm/hisilicon/controller/hisilicon,hi3798cv200-perictrl.txt
-> >>>>  create mode 100644 Documentation/devicetree/bindings/arm/hisilicon/controller/hisilicon,hi3798cv200-perictrl.yaml
-> >>>>
-> >>>> diff --git a/Documentation/devicetree/bindings/arm/hisilicon/controller/hisilicon,hi3798cv200-perictrl.txt b/Documentation/devicetree/bindings/arm/hisilicon/controller/hisilicon,hi3798cv200-perictrl.txt
-> >>>> deleted file mode 100644
-> >>>> index 0d5282f4670658d..000000000000000
-> >>>> --- a/Documentation/devicetree/bindings/arm/hisilicon/controller/hisilicon,hi3798cv200-perictrl.txt
-> >>>> +++ /dev/null
-> >>>> @@ -1,21 +0,0 @@
-> >>>> -Hisilicon Hi3798CV200 Peripheral Controller
-> >>>> -
-> >>>> -The Hi3798CV200 Peripheral Controller controls peripherals, queries
-> >>>> -their status, and configures some functions of peripherals.
-> >>>> -
-> >>>> -Required properties:
-> >>>> -- compatible: Should contain "hisilicon,hi3798cv200-perictrl", "syscon"
-> >>>> -  and "simple-mfd".
-> >>>> -- reg: Register address and size of Peripheral Controller.
-> >>>> -- #address-cells: Should be 1.
-> >>>> -- #size-cells: Should be 1.
-> >>>> -
-> >>>> -Examples:
-> >>>> -
-> >>>> -  perictrl: peripheral-controller@8a20000 {
-> >>>> -          compatible = "hisilicon,hi3798cv200-perictrl", "syscon",
-> >>>> -                       "simple-mfd";
-> >>>> -          reg = <0x8a20000 0x1000>;
-> >>>> -          #address-cells = <1>;
-> >>>> -          #size-cells = <1>;
-> >>>> -  };
-> >>>> diff --git a/Documentation/devicetree/bindings/arm/hisilicon/controller/hisilicon,hi3798cv200-perictrl.yaml b/Documentation/devicetree/bindings/arm/hisilicon/controller/hisilicon,hi3798cv200-perictrl.yaml
-> >>>> new file mode 100644
-> >>>> index 000000000000000..4e547017e368393
-> >>>> --- /dev/null
-> >>>> +++ b/Documentation/devicetree/bindings/arm/hisilicon/controller/hisilicon,hi3798cv200-perictrl.yaml
-> >>>> @@ -0,0 +1,45 @@
-> >>>> +# SPDX-License-Identifier: (GPL-2.0-only OR BSD-2-Clause)
-> >>>> +%YAML 1.2
-> >>>> +---
-> >>>> +$id: http://devicetree.org/schemas/arm/hisilicon/controller/hisilicon,hi3798cv200-perictrl.yaml#
-> >>>> +$schema: http://devicetree.org/meta-schemas/core.yaml#
-> >>>> +
-> >>>> +title: Hisilicon Hi3798CV200 Peripheral Controller
-> >>>> +
-> >>>> +maintainers:
-> >>>> +  - Wei Xu <xuwei5@hisilicon.com>
-> >>>> +
-> >>>> +description: |
-> >>>> +  The Hi3798CV200 Peripheral Controller controls peripherals, queries
-> >>>> +  their status, and configures some functions of peripherals.
-> >>>> +
-> >>>> +properties:
-> >>>> +  compatible:
-> >>>> +    items:
-> >>>> +      - const: hisilicon,hi3798cv200-perictrl
-> >>>> +      - const: syscon
-> >>>> +      - const: simple-mfd
-> >>>> +
-> >>>> +  reg:
-> >>>> +    description: Register address and size
-> >>>> +    maxItems: 1
-> >>>> +
-> >>>> +  '#address-cells':
-> >>>> +    const: 1
-> >>>> +
-> >>>> +  '#size-cells':
-> >>>> +    const: 1
-> >>>
-> >>> That implies child nodes. You need some sort of schema for them.
-> >>
-> >> OK, I will drop #address-cells and #size-cells in this binding.
-> >
-> > I think I misunderstood. I shoud describe child nodes here.
-> >
-> > It's National Day the day after tomorrow, total eight days off. It's so hurry.
-> > I'll give up this patch! And do it for v5.11
->
-> I searched the dtsi, these two properties are required by property "ranges", so
-> I will add it.
+T24gTW9uLCAyMDIwLTA5LTE0IGF0IDIyOjAwICswODAwLCBDcnlzdGFsIEd1byB3cm90ZToNCj4g
+T24gRnJpLCAyMDIwLTA5LTExIGF0IDIyOjQ0ICswODAwLCBTdW1hbiBBbm5hIHdyb3RlOg0KPiA+
+IE9uIDkvMTEvMjAgOToyNiBBTSwgUGhpbGlwcCBaYWJlbCB3cm90ZToNCj4gPiA+IEhpIENyeXN0
+YWwsDQo+ID4gPiANCj4gPiA+IE9uIEZyaSwgMjAyMC0wOS0xMSBhdCAxNDowNyArMDgwMCwgQ3J5
+c3RhbCBHdW8gd3JvdGU6DQo+ID4gPiBbLi4uXQ0KPiA+ID4+IFNob3VsZCBJIGFkZCB0aGUgU29D
+LXNwZWNpZmljIGRhdGEgYXMgZm9sbG93cz8NCj4gPiA+PiBUaGlzIG1heSBhbHNvIG1vZGlmeSB0
+aGUgdGkgb3JpZ2luYWwgY29kZSwgaXMgaXQgT0s/DQo+ID4gPj4NCj4gPiA+PiArICAgICAgIGRh
+dGEtPnJlc2V0X2RhdGEgPSBvZl9kZXZpY2VfZ2V0X21hdGNoX2RhdGEoJnBkZXYtPmRldik7DQo+
+ID4gPj4gKw0KPiA+ID4+ICsgICAgICAgbGlzdCA9IG9mX2dldF9wcm9wZXJ0eShucCwgZGF0YS0+
+cmVzZXRfZGF0YS0+cmVzZXRfYml0cywgJnNpemUpOw0KPiA+ID4+DQo+ID4gPj4gK3N0YXRpYyBj
+b25zdCBzdHJ1Y3QgY29tbW9uX3Jlc2V0X2RhdGEgdGlfcmVzZXRfZGF0YSA9IHsNCj4gPiA+PiAr
+ICAgICAgIC5yZXNldF9vcF9hdmFpbGFibGUgPSBmYWxzZSwNCj4gPiA+PiArICAgICAgIC5yZXNl
+dF9iaXRzID0gInRpLCByZXNldC1iaXRzIiwNCj4gPiA+ICAgICAgICAgICAgICAgICAgICAgICAg
+ICAgICBeDQo+ID4gPiBUaGF0IHNwYWNlIGRvZXNuJ3QgYmVsb25nIHRoZXJlLg0KPiA+ID4gDQo+
+ID4gPj4gK307DQo+ID4gPj4gKw0KPiA+ID4+ICtzdGF0aWMgY29uc3Qgc3RydWN0IGNvbW1vbl9y
+ZXNldF9kYXRhIG1lZGlhdGVrX3Jlc2V0X2RhdGEgPSB7DQo+ID4gPj4gKyAgICAgICAucmVzZXRf
+b3BfYXZhaWxhYmxlID0gdHJ1ZSwNCj4gPiA+PiArICAgICAgIC5yZXNldF9iaXRzID0gIm1lZGlh
+dGVrLCByZXNldC1iaXRzIiwNCj4gPiA+PiArfTsNCj4gPiA+IA0KPiA+ID4gSSB1bmRlcnN0YW5k
+IFJvYnMgY29tbWVudHMgYXMgbWVhbmluZyAidGkscmVzZXQtYml0cyIgc2hvdWxkIGhhdmUgYmVl
+bg0KPiA+ID4gY2FsbGVkICJyZXNldC1iaXRzIiBpbiB0aGUgZmlyc3QgcGxhY2UsIGFuZCB5b3Ug
+c2hvdWxkbid0IHJlcGVhdCBhZGRpbmcNCj4gPiA+IHRoZSB2ZW5kb3IgcHJlZml4LCBhcyB0aGF0
+IGlzIGltcGxpZWQgYnkgdGhlIGNvbXBhdGlibGUuIFNvIHRoaXMgc2hvdWxkDQo+ID4gPiBwcm9i
+YWJseSBiZSBqdXN0ICJyZXNldC1iaXRzIi4NCj4gPiANCj4gPiBIbW0sIG5vdCBzdXJlIGFib3V0
+IHRoYXQuIEkgdGhpbmsgUm9iIHdhbnRzIHRoZSByZXNldCBkYXRhIGl0c2VsZiB0byBiZSBhZGRl
+ZCBpbg0KPiA+IHRoZSBkcml2ZXIgYXMgaXMgYmVpbmcgZG9uZSBvbiBzb21lIG90aGVyIFNvQ3Mg
+KGVnOiBsaWtlIGluIHJlc2V0LXFjb20tcGRjLmMpLg0KPiA+IA0KPiA+IHJlZ2FyZHMNCj4gPiBT
+dW1hbg0KPiA+IA0KPiBIaSBSb2IsDQo+IA0KPiBDYW4geW91IGhlbHAgdG8gY29tbWVudCBhYm91
+dCB0aGlzIHBvaW50Pw0KPiBNb2RpZnkgInRpLHJlc2V0LWJpdHMiIHRvICJyZXNldC1iaXRzIiBv
+ciBhZGQgIm1lZGlhdGVrLHJlc2V0LWJpdHMiID8NCj4gDQo+IE1hbnkgdGhhbmtzfg0KPiBDcnlz
+dGFsDQo+IA0KPiA+ID4gDQo+ID4gPiBPdGhlcndpc2UgdGhpcyBsb29rcyBsaWtlIGl0IHNob3Vs
+ZCB3b3JrLg0KPiA+ID4gDQo+ID4gPiByZWdhcmRzDQo+ID4gPiBQaGlsaXBwDQo+ID4gPiANCj4g
+PiANCg0KRGVhcnMsDQoNCkkgaGF2ZSB1cGxvYWRlZCB0aGUgY2hhbmdlcyBhdA0KaHR0cHM6Ly9w
+YXRjaHdvcmsua2VybmVsLm9yZy9jb3Zlci8xMTgwNTkzNy8NClBsZWFzZSBoZWxwIG1lIHRvIHJl
+dmlldywgbWFueSB0aGFua3N+fg0KDQpyZWdhcmRzDQpDcnlzdGFsDQo+IA0KDQo=
 
-'ranges' also implies there are child nodes as does 'simple-mfd', so
-whatever child nodes you have are missing and need to be documented
-too. Also, 'ranges' implies the child nodes are memory-mapped, but
-'simple-mfd' implies they are not. 'simple-bus' is what should be used
-for memory-mapped children.
-
-Rob
