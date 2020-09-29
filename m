@@ -2,221 +2,172 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from vger.kernel.org (vger.kernel.org [23.128.96.18])
-	by mail.lfdr.de (Postfix) with ESMTP id 003AB27C0EB
-	for <lists+devicetree@lfdr.de>; Tue, 29 Sep 2020 11:20:36 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTP id C806627C0F9
+	for <lists+devicetree@lfdr.de>; Tue, 29 Sep 2020 11:22:12 +0200 (CEST)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S1727700AbgI2JUQ (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Tue, 29 Sep 2020 05:20:16 -0400
-Received: from mail-vi1eur05on2057.outbound.protection.outlook.com ([40.107.21.57]:29633
-        "EHLO EUR05-VI1-obe.outbound.protection.outlook.com"
+        id S1727989AbgI2JWC (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Tue, 29 Sep 2020 05:22:02 -0400
+Received: from szxga06-in.huawei.com ([45.249.212.32]:49424 "EHLO huawei.com"
         rhost-flags-OK-OK-OK-FAIL) by vger.kernel.org with ESMTP
-        id S1727892AbgI2JUM (ORCPT <rfc822;devicetree@vger.kernel.org>);
-        Tue, 29 Sep 2020 05:20:12 -0400
-ARC-Seal: i=1; a=rsa-sha256; s=arcselector9901; d=microsoft.com; cv=none;
- b=XJiJ34h3jA6T57+ao7s+FEqX8M775nOp+7IDw+uEapc5o2aKC3vG2QofpYaB90l2PfRWzS+4bgVjl8ugTeLJyHeGrCZDT8ZKfgS7g2ZYBIAj4QuF3LXqIcvXbg/vwzW6G1VYn4PQlEiP+8atJDnk/jIY7Hmeme4XQjZbiPM6iIqA1BOGomo/p3gilCSXEkxQx5gjQa4KJKpd0I3wiT5+rynpwPhcXKyaHrXVG2Y/hYdkFZ8cM405IKrLuoLMqiXqb4cUNY1wmZGt052bkWgiLZgy6qVw+rRL0P/SJ3NkxaRXZ8UMQXqerGmPU4Sm26oMUveMsz6iyi92aDxZizu6jQ==
-ARC-Message-Signature: i=1; a=rsa-sha256; c=relaxed/relaxed; d=microsoft.com;
- s=arcselector9901;
- h=From:Date:Subject:Message-ID:Content-Type:MIME-Version:X-MS-Exchange-SenderADCheck;
- bh=MNiJax0QLjM78wUbXKwzY6w1aZBNGq+Rsq4aqvMBrVE=;
- b=fQ1CL5MNPmss6rYAtc02nrkAXh3ZagQ9tW/MEifG6QvDhQgNXuQsC6JcXaKOrfpVksUQKdI71riSKxhHSzploj1uQO9W+IhKsXsw7m1d7DWebNhtYlj+zvNBcLc/zX52/mzgp3Hi9Bog8Xk72QGonBS2rAYFdcZSq+jsOBUV1imbvI7WZqTwKPNYMb4yPQgb8epyDRyNCgdTUP7NnjHEN9jEH7AVGwfw0DYUxxsNZS7+WPiwMR7i0UlMUiaFCdj/5dCaEPndkIrlDIpeqaHbx3o1FUZqYRoQfQrL65NSrIQeQf6W4qg6pbrfH89MGsuznwgrREiiVDcUirQp8EapWA==
-ARC-Authentication-Results: i=1; mx.microsoft.com 1; spf=pass
- smtp.mailfrom=oss.nxp.com; dmarc=pass action=none header.from=oss.nxp.com;
- dkim=pass header.d=oss.nxp.com; arc=none
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=NXP1.onmicrosoft.com;
- s=selector2-NXP1-onmicrosoft-com;
- h=From:Date:Subject:Message-ID:Content-Type:MIME-Version:X-MS-Exchange-SenderADCheck;
- bh=MNiJax0QLjM78wUbXKwzY6w1aZBNGq+Rsq4aqvMBrVE=;
- b=GWTbQV1twl75qQnIYDVwZV0XUZ637gEgIgto6biV8OIH6Pb7eWWiP/aGCDte4F73piqjk4IpxpZomAhW6m/NztAP9ZLqoer2HacJn0KUTmzACBu1OnaU0i1rsC1CLILdVdYvRikikI5cey6I4AA1iNuYXNeD0txWWv8osxQUgL8=
-Authentication-Results: gmail.com; dkim=none (message not signed)
- header.d=none;gmail.com; dmarc=none action=none header.from=oss.nxp.com;
-Received: from VI1PR0401MB2272.eurprd04.prod.outlook.com
- (2603:10a6:800:31::12) by VI1PR04MB4078.eurprd04.prod.outlook.com
- (2603:10a6:803:4e::30) with Microsoft SMTP Server (version=TLS1_2,
- cipher=TLS_ECDHE_RSA_WITH_AES_256_GCM_SHA384) id 15.20.3412.24; Tue, 29 Sep
- 2020 09:19:59 +0000
-Received: from VI1PR0401MB2272.eurprd04.prod.outlook.com
- ([fe80::e00e:ad13:489b:8000]) by VI1PR0401MB2272.eurprd04.prod.outlook.com
- ([fe80::e00e:ad13:489b:8000%6]) with mapi id 15.20.3412.029; Tue, 29 Sep 2020
- 09:19:59 +0000
-From:   "Viorel Suman (OSS)" <viorel.suman@oss.nxp.com>
-To:     Liam Girdwood <lgirdwood@gmail.com>,
-        Mark Brown <broonie@kernel.org>,
-        Rob Herring <robh+dt@kernel.org>,
-        Jaroslav Kysela <perex@perex.cz>,
-        Takashi Iwai <tiwai@suse.com>, Timur Tabi <timur@kernel.org>,
-        Nicolin Chen <nicoleotsuka@gmail.com>,
-        Xiubo Li <Xiubo.Lee@gmail.com>,
-        Fabio Estevam <festevam@gmail.com>,
-        Shengjiu Wang <shengjiu.wang@gmail.com>,
-        Philipp Zabel <p.zabel@pengutronix.de>,
-        Cosmin-Gabriel Samoila <cosmin.samoila@nxp.com>,
-        Viorel Suman <viorel.suman@nxp.com>,
-        Matthias Schiffer <matthias.schiffer@ew.tq-group.com>,
-        alsa-devel@alsa-project.org, devicetree@vger.kernel.org,
-        linux-kernel@vger.kernel.org, linuxppc-dev@lists.ozlabs.org
-Cc:     NXP Linux Team <linux-imx@nxp.com>,
-        Viorel Suman <viorel.suman@gmail.com>
-Subject: [PATCH v3 2/2] ASoC: dt-bindings: fsl_xcvr: Add document for XCVR
-Date:   Tue, 29 Sep 2020 12:19:27 +0300
-Message-Id: <1601371167-32239-3-git-send-email-viorel.suman@oss.nxp.com>
-X-Mailer: git-send-email 2.7.4
-In-Reply-To: <1601371167-32239-1-git-send-email-viorel.suman@oss.nxp.com>
-References: <1601371167-32239-1-git-send-email-viorel.suman@oss.nxp.com>
-Content-Type: text/plain
-X-ClientProxiedBy: AM0PR03CA0065.eurprd03.prod.outlook.com (2603:10a6:208::42)
- To VI1PR0401MB2272.eurprd04.prod.outlook.com (2603:10a6:800:31::12)
+        id S1727819AbgI2JWC (ORCPT <rfc822;devicetree@vger.kernel.org>);
+        Tue, 29 Sep 2020 05:22:02 -0400
+Received: from DGGEMS409-HUB.china.huawei.com (unknown [172.30.72.59])
+        by Forcepoint Email with ESMTP id 6F55FC92894B4D8C738B;
+        Tue, 29 Sep 2020 17:21:59 +0800 (CST)
+Received: from [127.0.0.1] (10.174.177.253) by DGGEMS409-HUB.china.huawei.com
+ (10.3.19.209) with Microsoft SMTP Server id 14.3.487.0; Tue, 29 Sep 2020
+ 17:21:49 +0800
+Subject: Re: [PATCH v4 12/20] dt-bindings: arm: hisilicon: convert
+ hisilicon,hi3798cv200-perictrl bindings to json-schema
+From:   "Leizhen (ThunderTown)" <thunder.leizhen@huawei.com>
+To:     Rob Herring <robh@kernel.org>
+CC:     devicetree <devicetree@vger.kernel.org>,
+        Kefeng Wang <wangkefeng.wang@huawei.com>,
+        linux-kernel <linux-kernel@vger.kernel.org>,
+        Wei Xu <xuwei5@hisilicon.com>, Libin <huawei.libin@huawei.com>,
+        "Jonathan Cameron" <Jonathan.Cameron@Huawei.com>,
+        linux-arm-kernel <linux-arm-kernel@lists.infradead.org>
+References: <20200928151324.2134-1-thunder.leizhen@huawei.com>
+ <20200928151324.2134-13-thunder.leizhen@huawei.com>
+ <20200928191425.GA3099266@bogus>
+ <0568ed90-c6ac-ae1c-45ee-cdc6526d3fcf@huawei.com>
+Message-ID: <30a08e22-f8bb-1e42-087b-995dc525eaa4@huawei.com>
+Date:   Tue, 29 Sep 2020 17:21:48 +0800
+User-Agent: Mozilla/5.0 (Windows NT 10.0; WOW64; rv:60.0) Gecko/20100101
+ Thunderbird/60.7.0
 MIME-Version: 1.0
-X-MS-Exchange-MessageSentRepresentingType: 1
-Received: from fsr-ub1664-116.ea.freescale.net (83.217.231.2) by AM0PR03CA0065.eurprd03.prod.outlook.com (2603:10a6:208::42) with Microsoft SMTP Server (version=TLS1_2, cipher=TLS_ECDHE_RSA_WITH_AES_128_CBC_SHA256) id 15.20.3412.22 via Frontend Transport; Tue, 29 Sep 2020 09:19:57 +0000
-X-Mailer: git-send-email 2.7.4
-X-Originating-IP: [83.217.231.2]
-X-MS-PublicTrafficType: Email
-X-MS-Office365-Filtering-HT: Tenant
-X-MS-Office365-Filtering-Correlation-Id: eac94021-844d-4d7d-6198-08d86458d69c
-X-MS-TrafficTypeDiagnostic: VI1PR04MB4078:
-X-MS-Exchange-SharedMailbox-RoutingAgent-Processed: True
-X-MS-Exchange-Transport-Forked: True
-X-Microsoft-Antispam-PRVS: <VI1PR04MB4078B640595F87BC916B6324D3320@VI1PR04MB4078.eurprd04.prod.outlook.com>
-X-MS-Oob-TLC-OOBClassifiers: OLM:3044;
-X-MS-Exchange-SenderADCheck: 1
-X-Microsoft-Antispam: BCL:0;
-X-Microsoft-Antispam-Message-Info: R9dncesucQUk9t1yvA2KrPRdh705lxpDQDL5F+nb0ZUIxrlgshf+jWS7yFla6Y8x6x5lrp2HtxWWzk7dCtZXkYV9HUTPCwpFET39zqtD56NYp52m8wQ0lhnjGkXtu3kjMFWUujcAPLRikkaT411VKcHRLifnhAZmDuVhNMeZnm483yDTOcfA5eUWHScb2R1czpVh01xsnUfbj23ca4U9PldRLrmkUTtIDTFePE14fSWRLkQ5cb9ms2jXPVq2KOnusV9iuMLRUp4y+m3KQLHVueVNUxlPlggMFdJdLOWHUolaDc1cPqM8SNdlykYzZfG+qZfPDcaqi9F2qhwOAjXav/5dXZ4AJk/KtlRvrHmIwC8psbgXL8r5h9a1+Q+KOxygb67Bneczr8h+Yqmm1eRujlo/V9RndFqftUE+5GnBvj9JtwkCTCrQpmzMiOEHVy51AoTaGLmkkVHzR+1aRS8ynbc1oNBlCNBDe6IvJmh5E484PgwmHI7qKvH/IQbuVK59
-X-Forefront-Antispam-Report: CIP:255.255.255.255;CTRY:;LANG:en;SCL:1;SRV:;IPV:NLI;SFV:NSPM;H:VI1PR0401MB2272.eurprd04.prod.outlook.com;PTR:;CAT:NONE;SFS:(4636009)(396003)(376002)(346002)(366004)(136003)(39860400002)(66556008)(66476007)(186003)(66946007)(7416002)(26005)(2906002)(16526019)(6512007)(5660300002)(966005)(8676002)(6486002)(956004)(316002)(2616005)(86362001)(478600001)(54906003)(110136005)(6506007)(8936002)(83380400001)(52116002)(6666004)(4326008)(921003);DIR:OUT;SFP:1101;
-X-MS-Exchange-AntiSpam-MessageData: hFQ9/d/sYd62Skm3Y7WaF8RwOV/qEidt39xkCy/46QbMsgr2i6+qotCIqcPOqtPc9lQBeINcoKY8vBrZkS0GjfJGzX4jHcJK5Ce/3W0Fmp6FQOTAm7zTee1aUjJCRBIAOAl4uQjIf7SAm3V1zsyK0Z3tEP413lCvn4m1RWbTPonff+Aw/encrvEXlBGIf/Bm981ee7X7Vpg+/n2x+rGWL1+Qz2OiZG1D8Aiaf8Xn3XrYD9LLWmGjduQWyXfxH+N1KlXr5PSfs3zg2N225vtMeTyW4cdK7lI1+iEnpr5APPuWZ3TG3kQIEKabsn6gBdkLqRvoKFlKc7IRaIhE/Pr77u+qIrUKRCVzfMwaskiG/wyezgmRu3HoVDWsVkyDvO3NMMUX1eqJC8yjqsZM1Z6prnzowZvFF6xxV+4YzrumSGCCGxiqYQP+pEwuGjus4UoaZI/gd7d6w7PaB/vfIJTntHydlfrDRyXsar/l2U0of6kI5GPyS7DOm+1r7lPxdaojAjnqgYnxPcdLAj1I2lUawpsY/vfSW8H2phygTDSuQPuoVimmvi80Nw7l8AIOKtbS+RSYLaAs9cjZR61YRHfHMAhYCH837Y3x8mFVj+PV+kfvHqgf1Nt6WYSkgxE99RPGomAsetR44cc6rp3Io+ZS/Q==
-X-OriginatorOrg: oss.nxp.com
-X-MS-Exchange-CrossTenant-Network-Message-Id: eac94021-844d-4d7d-6198-08d86458d69c
-X-MS-Exchange-CrossTenant-AuthSource: VI1PR0401MB2272.eurprd04.prod.outlook.com
-X-MS-Exchange-CrossTenant-AuthAs: Internal
-X-MS-Exchange-CrossTenant-OriginalArrivalTime: 29 Sep 2020 09:19:59.5716
- (UTC)
-X-MS-Exchange-CrossTenant-FromEntityHeader: Hosted
-X-MS-Exchange-CrossTenant-Id: 686ea1d3-bc2b-4c6f-a92c-d99c5c301635
-X-MS-Exchange-CrossTenant-MailboxType: HOSTED
-X-MS-Exchange-CrossTenant-UserPrincipalName: fPjuqaknNhAj22TfvoCGFyNG04VErN1Vrg1ursgRPvSYbREQAUIfkeAKeSkCXQMaa8JPusBb0KefYDxZhJg2OA==
-X-MS-Exchange-Transport-CrossTenantHeadersStamped: VI1PR04MB4078
+In-Reply-To: <0568ed90-c6ac-ae1c-45ee-cdc6526d3fcf@huawei.com>
+Content-Type: text/plain; charset="utf-8"
+Content-Language: en-US
+Content-Transfer-Encoding: 7bit
+X-Originating-IP: [10.174.177.253]
+X-CFilter-Loop: Reflected
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-From: Viorel Suman <viorel.suman@nxp.com>
 
-XCVR (Audio Transceiver) is a new IP module found on i.MX8MP.
 
-Signed-off-by: Viorel Suman <viorel.suman@nxp.com>
----
- .../devicetree/bindings/sound/fsl,xcvr.yaml        | 103 +++++++++++++++++++++
- 1 file changed, 103 insertions(+)
- create mode 100644 Documentation/devicetree/bindings/sound/fsl,xcvr.yaml
+On 2020/9/29 11:18, Leizhen (ThunderTown) wrote:
+> 
+> 
+> On 2020/9/29 3:14, Rob Herring wrote:
+>> On Mon, Sep 28, 2020 at 11:13:16PM +0800, Zhen Lei wrote:
+>>> Convert the Hisilicon Hi3798CV200 Peripheral Controller binding to DT
+>>> schema format using json-schema.
+>>>
+>>> Signed-off-by: Zhen Lei <thunder.leizhen@huawei.com>
+>>> ---
+>>>  .../controller/hisilicon,hi3798cv200-perictrl.txt  | 21 ----------
+>>>  .../controller/hisilicon,hi3798cv200-perictrl.yaml | 45 ++++++++++++++++++++++
+>>>  2 files changed, 45 insertions(+), 21 deletions(-)
+>>>  delete mode 100644 Documentation/devicetree/bindings/arm/hisilicon/controller/hisilicon,hi3798cv200-perictrl.txt
+>>>  create mode 100644 Documentation/devicetree/bindings/arm/hisilicon/controller/hisilicon,hi3798cv200-perictrl.yaml
+>>>
+>>> diff --git a/Documentation/devicetree/bindings/arm/hisilicon/controller/hisilicon,hi3798cv200-perictrl.txt b/Documentation/devicetree/bindings/arm/hisilicon/controller/hisilicon,hi3798cv200-perictrl.txt
+>>> deleted file mode 100644
+>>> index 0d5282f4670658d..000000000000000
+>>> --- a/Documentation/devicetree/bindings/arm/hisilicon/controller/hisilicon,hi3798cv200-perictrl.txt
+>>> +++ /dev/null
+>>> @@ -1,21 +0,0 @@
+>>> -Hisilicon Hi3798CV200 Peripheral Controller
+>>> -
+>>> -The Hi3798CV200 Peripheral Controller controls peripherals, queries
+>>> -their status, and configures some functions of peripherals.
+>>> -
+>>> -Required properties:
+>>> -- compatible: Should contain "hisilicon,hi3798cv200-perictrl", "syscon"
+>>> -  and "simple-mfd".
+>>> -- reg: Register address and size of Peripheral Controller.
+>>> -- #address-cells: Should be 1.
+>>> -- #size-cells: Should be 1.
+>>> -
+>>> -Examples:
+>>> -
+>>> -	perictrl: peripheral-controller@8a20000 {
+>>> -		compatible = "hisilicon,hi3798cv200-perictrl", "syscon",
+>>> -			     "simple-mfd";
+>>> -		reg = <0x8a20000 0x1000>;
+>>> -		#address-cells = <1>;
+>>> -		#size-cells = <1>;
+>>> -	};
+>>> diff --git a/Documentation/devicetree/bindings/arm/hisilicon/controller/hisilicon,hi3798cv200-perictrl.yaml b/Documentation/devicetree/bindings/arm/hisilicon/controller/hisilicon,hi3798cv200-perictrl.yaml
+>>> new file mode 100644
+>>> index 000000000000000..4e547017e368393
+>>> --- /dev/null
+>>> +++ b/Documentation/devicetree/bindings/arm/hisilicon/controller/hisilicon,hi3798cv200-perictrl.yaml
+>>> @@ -0,0 +1,45 @@
+>>> +# SPDX-License-Identifier: (GPL-2.0-only OR BSD-2-Clause)
+>>> +%YAML 1.2
+>>> +---
+>>> +$id: http://devicetree.org/schemas/arm/hisilicon/controller/hisilicon,hi3798cv200-perictrl.yaml#
+>>> +$schema: http://devicetree.org/meta-schemas/core.yaml#
+>>> +
+>>> +title: Hisilicon Hi3798CV200 Peripheral Controller
+>>> +
+>>> +maintainers:
+>>> +  - Wei Xu <xuwei5@hisilicon.com>
+>>> +
+>>> +description: |
+>>> +  The Hi3798CV200 Peripheral Controller controls peripherals, queries
+>>> +  their status, and configures some functions of peripherals.
+>>> +
+>>> +properties:
+>>> +  compatible:
+>>> +    items:
+>>> +      - const: hisilicon,hi3798cv200-perictrl
+>>> +      - const: syscon
+>>> +      - const: simple-mfd
+>>> +
+>>> +  reg:
+>>> +    description: Register address and size
+>>> +    maxItems: 1
+>>> +
+>>> +  '#address-cells':
+>>> +    const: 1
+>>> +
+>>> +  '#size-cells':
+>>> +    const: 1
+>>
+>> That implies child nodes. You need some sort of schema for them.
+> 
+> OK, I will drop #address-cells and #size-cells in this binding.
 
-diff --git a/Documentation/devicetree/bindings/sound/fsl,xcvr.yaml b/Documentation/devicetree/bindings/sound/fsl,xcvr.yaml
-new file mode 100644
-index 00000000..8abab2d
---- /dev/null
-+++ b/Documentation/devicetree/bindings/sound/fsl,xcvr.yaml
-@@ -0,0 +1,103 @@
-+# SPDX-License-Identifier: (GPL-2.0-only OR BSD-2-Clause)
-+%YAML 1.2
-+---
-+$id: http://devicetree.org/schemas/sound/fsl,xcvr.yaml#
-+$schema: http://devicetree.org/meta-schemas/core.yaml#
-+
-+title: NXP Audio Transceiver (XCVR) Controller
-+
-+maintainers:
-+  - Viorel Suman <viorel.suman@nxp.com>
-+
-+properties:
-+  $nodename:
-+    pattern: "^xcvr@.*"
-+
-+  compatible:
-+    const: fsl,imx8mp-xcvr
-+
-+  reg:
-+    items:
-+      - description: 20K RAM for code and data
-+      - description: registers space
-+      - description: RX FIFO address
-+      - description: TX FIFO address
-+
-+  reg-names:
-+    items:
-+      - const: ram
-+      - const: regs
-+      - const: rxfifo
-+      - const: txfifo
-+
-+  interrupts:
-+    maxItems: 1
-+
-+  clocks:
-+    items:
-+      - description: Peripheral clock
-+      - description: PHY clock
-+      - description: SPBA clock
-+      - description: PLL clock
-+
-+  clock-names:
-+    items:
-+      - const: ipg
-+      - const: phy
-+      - const: spba
-+      - const: pll_ipg
-+
-+  dmas:
-+    maxItems: 2
-+
-+  dma-names:
-+    items:
-+      - const: rx
-+      - const: tx
-+
-+  firmware-name:
-+    $ref: /schemas/types.yaml#/definitions/string
-+    const: imx/xcvr/xcvr-imx8mp.bin
-+    description: |
-+      Should contain the name of the default firmware image
-+      file located on the firmware search path
-+
-+  resets:
-+    maxItems: 1
-+
-+required:
-+  - compatible
-+  - reg
-+  - reg-names
-+  - interrupts
-+  - clocks
-+  - clock-names
-+  - dmas
-+  - dma-names
-+  - firmware-name
-+  - resets
-+
-+examples:
-+  - |
-+    #include <dt-bindings/interrupt-controller/arm-gic.h>
-+    #include <dt-bindings/clock/imx8mp-clock.h>
-+    #include <dt-bindings/reset/imx8mp-reset.h>
-+
-+    xcvr: xcvr@30cc0000 {
-+           compatible = "fsl,imx8mp-xcvr";
-+           reg = <0x30cc0000 0x800>,
-+                 <0x30cc0800 0x400>,
-+                 <0x30cc0c00 0x080>,
-+                 <0x30cc0e00 0x080>;
-+           reg-names = "ram", "regs", "rxfifo", "txfifo";
-+           interrupts = <0x0 128 IRQ_TYPE_LEVEL_HIGH>;
-+           clocks = <&audiomix_clk IMX8MP_CLK_AUDIOMIX_EARC_IPG>,
-+                    <&audiomix_clk IMX8MP_CLK_AUDIOMIX_EARC_PHY>,
-+                    <&audiomix_clk IMX8MP_CLK_AUDIOMIX_SPBA2_ROOT>,
-+                    <&audiomix_clk IMX8MP_CLK_AUDIOMIX_AUDPLL_ROOT>;
-+           clock-names = "ipg", "phy", "spba", "pll_ipg";
-+           dmas = <&sdma2 30 2 0>, <&sdma2 31 2 0>;
-+           dma-names = "rx", "tx";
-+           firmware-name = "imx/xcvr/xcvr-imx8mp.bin";
-+           resets = <&audiomix_reset 0>;
-+    };
--- 
-2.7.4
+I think I misunderstood. I shoud describe child nodes here.
+
+It's National Day the day after tomorrow, total eight days off. It's so hurry.
+I'll give up this patch! And do it for v5.11
+
+> 
+>>
+>>> +
+>>> +required:
+>>> +  - compatible
+>>> +  - reg
+>>> +
+>>> +examples:
+>>> +  - |
+>>> +    perictrl: peripheral-controller@8a20000 {
+>>> +        compatible = "hisilicon,hi3798cv200-perictrl", "syscon", "simple-mfd";
+>>> +        reg = <0x8a20000 0x1000>;
+>>> +        #address-cells = <1>;
+>>> +        #size-cells = <1>;
+>>> +    };
+>>> +...
+>>> -- 
+>>> 1.8.3
+>>>
+>>>
+>>
+>> .
+>>
+> 
+> 
+> _______________________________________________
+> linux-arm-kernel mailing list
+> linux-arm-kernel@lists.infradead.org
+> http://lists.infradead.org/mailman/listinfo/linux-arm-kernel
+> 
+> .
+> 
 
