@@ -2,70 +2,120 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from vger.kernel.org (vger.kernel.org [23.128.96.18])
-	by mail.lfdr.de (Postfix) with ESMTP id AD8E727BF79
-	for <lists+devicetree@lfdr.de>; Tue, 29 Sep 2020 10:31:52 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTP id E307327BF86
+	for <lists+devicetree@lfdr.de>; Tue, 29 Sep 2020 10:33:24 +0200 (CEST)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S1727753AbgI2Ib0 (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Tue, 29 Sep 2020 04:31:26 -0400
-Received: from inva021.nxp.com ([92.121.34.21]:53816 "EHLO inva021.nxp.com"
-        rhost-flags-OK-OK-OK-OK) by vger.kernel.org with ESMTP
-        id S1727740AbgI2IbY (ORCPT <rfc822;devicetree@vger.kernel.org>);
-        Tue, 29 Sep 2020 04:31:24 -0400
-Received: from inva021.nxp.com (localhost [127.0.0.1])
-        by inva021.eu-rdc02.nxp.com (Postfix) with ESMTP id 94E36201181;
-        Tue, 29 Sep 2020 10:31:22 +0200 (CEST)
-Received: from invc005.ap-rdc01.nxp.com (invc005.ap-rdc01.nxp.com [165.114.16.14])
-        by inva021.eu-rdc02.nxp.com (Postfix) with ESMTP id 3DACC20160F;
-        Tue, 29 Sep 2020 10:31:19 +0200 (CEST)
-Received: from localhost.localdomain (mega.ap.freescale.net [10.192.208.232])
-        by invc005.ap-rdc01.nxp.com (Postfix) with ESMTP id 0F4744030E;
-        Tue, 29 Sep 2020 10:31:14 +0200 (CEST)
-From:   Ran Wang <ran.wang_1@nxp.com>
-To:     Li Yang <leoyang.li@nxp.com>, Rob Herring <robh+dt@kernel.org>,
-        Shawn Guo <shawnguo@kernel.org>
-Cc:     linuxppc-dev@lists.ozlabs.org,
-        linux-arm-kernel@lists.infradead.org, devicetree@vger.kernel.org,
-        linux-kernel@vger.kernel.org, Ran Wang <ran.wang_1@nxp.com>
-Subject: [PATCH v3 5/5] arm: dts: ls1021a: fix rcpm failed to claim resource
-Date:   Tue, 29 Sep 2020 16:22:34 +0800
-Message-Id: <20200929082234.36619-5-ran.wang_1@nxp.com>
-X-Mailer: git-send-email 2.17.1
-In-Reply-To: <20200929082234.36619-1-ran.wang_1@nxp.com>
-References: <20200929082234.36619-1-ran.wang_1@nxp.com>
-X-Virus-Scanned: ClamAV using ClamSMTP
+        id S1727822AbgI2Ick (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Tue, 29 Sep 2020 04:32:40 -0400
+Received: from lindbergh.monkeyblade.net ([23.128.96.19]:37504 "EHLO
+        lindbergh.monkeyblade.net" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
+        with ESMTP id S1727818AbgI2Ick (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Tue, 29 Sep 2020 04:32:40 -0400
+Received: from mail-pf1-x443.google.com (mail-pf1-x443.google.com [IPv6:2607:f8b0:4864:20::443])
+        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 4EF72C0613D0
+        for <devicetree@vger.kernel.org>; Tue, 29 Sep 2020 01:32:39 -0700 (PDT)
+Received: by mail-pf1-x443.google.com with SMTP id d6so3793409pfn.9
+        for <devicetree@vger.kernel.org>; Tue, 29 Sep 2020 01:32:39 -0700 (PDT)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+        d=amarulasolutions.com; s=google;
+        h=from:to:cc:subject:date:message-id:mime-version
+         :content-transfer-encoding;
+        bh=lXrfz0lgdtXjn1yWAWiw2AoB3KPUQJy22o0sHXCM7rE=;
+        b=X+eOV2VtnvWodXlCp4alhgLMkPYiUsUzvIZMjV0MyTI1pAEzaqFuZR8uIUrpVmB2ji
+         XIU5Wwga0kxfLS7RsvbjoV8r7gXpuH6IMllYG95RNYOyFCtM2rmecZQVJRY/pnRK4LUI
+         sGqQ6mhSDSQVZiKNaHCcPmlUoFeL5C/2Dc0Uc=
+X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+        d=1e100.net; s=20161025;
+        h=x-gm-message-state:from:to:cc:subject:date:message-id:mime-version
+         :content-transfer-encoding;
+        bh=lXrfz0lgdtXjn1yWAWiw2AoB3KPUQJy22o0sHXCM7rE=;
+        b=q7UO1bjq3IQ3MC0soc3exB5TYaSe6A3w19pNazMc9uB+ct8hvk6VnVILX8z2zMYev1
+         HXlu9ePuUJA97c4DRMpibmHB6+7gbq7NbhYHeLCf3odk2coO/J3CfLCCN1TG1IAgpdpd
+         y47eOzX4cV/bzjjfSuNIIhuIq5nLPTcreXJQX/Fcw3NOvrBNRoKMg3tuT99G6KQBw6+u
+         6stV2VNzezP3CmLgsJnSCTsQ4B8BuONo7G8xHuXKWVJeNrxRy2gEQRYPIS+Hu6VkYECM
+         uNSR4QUe3V+nl+xIgi3RSDs2bYrpuZxe05iOCI6ANZnfeES1x9i1VSfzjPb5LdXpEYE/
+         mTfQ==
+X-Gm-Message-State: AOAM532+hLMxuFVd6VYFcDKXrqk4mFh/k9fmna/4W4pa8/THICh+gXVW
+        7g/oEM3o6aDu5hAlhk36Kl8K++4tH5EXdfhg
+X-Google-Smtp-Source: ABdhPJxS9qQ/WSI+qFu8XiAYmDf0txJeY0HYFYXYaxcTfKtN443h0IRWD7p/p/ALZTycg0vcibK8Lw==
+X-Received: by 2002:a05:6a00:844:b029:13f:dd99:d1a4 with SMTP id q4-20020a056a000844b029013fdd99d1a4mr3202215pfk.31.1601368358748;
+        Tue, 29 Sep 2020 01:32:38 -0700 (PDT)
+Received: from ub-XPS-13-9350.pdxnet.pdxeng.ch ([2405:201:c809:c7d5:b511:310d:8495:d767])
+        by smtp.gmail.com with ESMTPSA id 36sm3961241pgl.72.2020.09.29.01.32.33
+        (version=TLS1_3 cipher=TLS_AES_256_GCM_SHA384 bits=256/256);
+        Tue, 29 Sep 2020 01:32:38 -0700 (PDT)
+From:   Jagan Teki <jagan@amarulasolutions.com>
+To:     Heiko Stuebner <heiko@sntech.de>, Rob Herring <robh+dt@kernel.org>
+Cc:     Suniel Mahesh <sunil@amarulasolutions.com>,
+        Michael Trimarchi <michael@amarulasolutions.com>,
+        linux-arm-kernel@lists.infradead.org,
+        linux-rockchip@lists.infradead.org, devicetree@vger.kernel.org,
+        linux-kernel@vger.kernel.org,
+        linux-amarula <linux-amarula@amarulasolutions.com>,
+        Jagan Teki <jagan@amarulasolutions.com>
+Subject: [PATCH v4 0/7] arm64: dts: rockchip: Add Engicam PX30.Core
+Date:   Tue, 29 Sep 2020 14:02:10 +0530
+Message-Id: <20200929083217.25406-1-jagan@amarulasolutions.com>
+X-Mailer: git-send-email 2.25.1
+MIME-Version: 1.0
+Content-Transfer-Encoding: 8bit
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-The range of dcfg reg is wrong, which overlap with other device,
-such as rcpm. This issue causing rcpm driver failed to claim
-reg resource when calling devm_ioremap_resource().
+PX30.Core is an EDIMM SOM based on Rockchip PX30 from Engicam.
 
-Signed-off-by: Ran Wang <ran.wang_1@nxp.com>
-Acked-by: Li Yang <leoyang.li@nxp.com>
----
-Change in v3:
- - None
+PX30.Core needs to mount on top of Engicam baseboards for creating
+complete platform boards.
 
-Change in v2:
- - None
+Possible baseboards are,
+- EDIMM2.2 Starter Kit
+- C.TOUCH 2.0 Carrier Board
 
- arch/arm/boot/dts/ls1021a.dtsi | 2 +-
- 1 file changed, 1 insertion(+), 1 deletion(-)
+Changes for v4:
+- collect Rob A-b
+Changes for v3:
+- resolved Johan comments about sorting node properties
+- add copyright to Amarula Solutions
+- update px30 dtsi author
+Changes for v2:
+- include C.TOUCH 2.0 carrier board
+- skip 10" OF LCD as it requires separate dts with panel support.
 
-diff --git a/arch/arm/boot/dts/ls1021a.dtsi b/arch/arm/boot/dts/ls1021a.dtsi
-index cb95964..9e588ad 100644
---- a/arch/arm/boot/dts/ls1021a.dtsi
-+++ b/arch/arm/boot/dts/ls1021a.dtsi
-@@ -173,7 +173,7 @@
- 
- 		dcfg: dcfg@1ee0000 {
- 			compatible = "fsl,ls1021a-dcfg", "syscon";
--			reg = <0x0 0x1ee0000 0x0 0x10000>;
-+			reg = <0x0 0x1ee0000 0x0 0x1000>;
- 			big-endian;
- 		};
- 
+Note: These baseboards can be used for i.MX8 SOM's as well. So having
+baseboard on respective SoC seems to be easy rather than making it
+common across all.
+
+Any inputs?
+Jagan.
+
+Jagan Teki (6):
+  dt-bindings: arm: rockchip: Add Engicam PX30.Core EDIMM2.2 Starter Kit
+  arm64: dts: rockchip: px30: Add Engicam EDIMM2.2 Starter Kit
+  arm64: dts: rockchip: Add Engicam PX30.Core EDIMM2.2 Starter Kit
+  dt-bindings: arm: rockchip: Add Engicam PX30.Core C.TOUCH 2.0
+  arm64: dts: rockchip: px30: Add Engicam C.TOUCH 2.0
+  arm64: dts: rockchip: Add Engicam PX30.Core C.TOUCH 2.0
+
+Michael Trimarchi (1):
+  arm64: dts: rockchip: Add Engicam PX30.Core SOM
+
+ .../devicetree/bindings/arm/rockchip.yaml     |  12 +
+ arch/arm64/boot/dts/rockchip/Makefile         |   2 +
+ .../dts/rockchip/px30-engicam-common.dtsi     |  39 +++
+ .../dts/rockchip/px30-engicam-ctouch2.dtsi    |   8 +
+ .../dts/rockchip/px30-engicam-edimm2.2.dtsi   |   7 +
+ .../dts/rockchip/px30-px30-core-ctouch2.dts   |  22 ++
+ .../dts/rockchip/px30-px30-core-edimm2.2.dts  |  21 ++
+ .../boot/dts/rockchip/px30-px30-core.dtsi     | 232 ++++++++++++++++++
+ 8 files changed, 343 insertions(+)
+ create mode 100644 arch/arm64/boot/dts/rockchip/px30-engicam-common.dtsi
+ create mode 100644 arch/arm64/boot/dts/rockchip/px30-engicam-ctouch2.dtsi
+ create mode 100644 arch/arm64/boot/dts/rockchip/px30-engicam-edimm2.2.dtsi
+ create mode 100644 arch/arm64/boot/dts/rockchip/px30-px30-core-ctouch2.dts
+ create mode 100644 arch/arm64/boot/dts/rockchip/px30-px30-core-edimm2.2.dts
+ create mode 100644 arch/arm64/boot/dts/rockchip/px30-px30-core.dtsi
+
 -- 
-2.7.4
+2.25.1
 
