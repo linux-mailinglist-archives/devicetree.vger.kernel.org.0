@@ -2,109 +2,117 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from vger.kernel.org (vger.kernel.org [23.128.96.18])
-	by mail.lfdr.de (Postfix) with ESMTP id 70EF027BAFD
-	for <lists+devicetree@lfdr.de>; Tue, 29 Sep 2020 04:41:02 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTP id D386727BB18
+	for <lists+devicetree@lfdr.de>; Tue, 29 Sep 2020 04:42:39 +0200 (CEST)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S1727530AbgI2Ckq (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Mon, 28 Sep 2020 22:40:46 -0400
-Received: from lindbergh.monkeyblade.net ([23.128.96.19]:40106 "EHLO
+        id S1727649AbgI2Cmd (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Mon, 28 Sep 2020 22:42:33 -0400
+Received: from lindbergh.monkeyblade.net ([23.128.96.19]:40392 "EHLO
         lindbergh.monkeyblade.net" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S1727522AbgI2Ckl (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Mon, 28 Sep 2020 22:40:41 -0400
-Received: from mail-yb1-xb4a.google.com (mail-yb1-xb4a.google.com [IPv6:2607:f8b0:4864:20::b4a])
-        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 1C270C0613D9
-        for <devicetree@vger.kernel.org>; Mon, 28 Sep 2020 19:40:41 -0700 (PDT)
-Received: by mail-yb1-xb4a.google.com with SMTP id b8so3268658yba.10
-        for <devicetree@vger.kernel.org>; Mon, 28 Sep 2020 19:40:41 -0700 (PDT)
+        with ESMTP id S1727300AbgI2Cmc (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Mon, 28 Sep 2020 22:42:32 -0400
+Received: from mail-vs1-xe41.google.com (mail-vs1-xe41.google.com [IPv6:2607:f8b0:4864:20::e41])
+        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 87B79C0613CE
+        for <devicetree@vger.kernel.org>; Mon, 28 Sep 2020 19:42:32 -0700 (PDT)
+Received: by mail-vs1-xe41.google.com with SMTP id y194so2060043vsc.4
+        for <devicetree@vger.kernel.org>; Mon, 28 Sep 2020 19:42:32 -0700 (PDT)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
         d=google.com; s=20161025;
-        h=sender:date:in-reply-to:message-id:mime-version:references:subject
-         :from:to:cc;
-        bh=ETPAsWHvLyLNkSHJ+gS6oA+OTExuVARAMVUjKC9Fc/4=;
-        b=YOzN/rOvca1uPt9PY3XDoEf2RUnhEyq0eKxdF8Fg+uNyxFSFrujusub6QGt672Jep3
-         QQAQ1lYV+wvQ0XYYYxJrqwdRFZfO2FbRewFO+oty1wXCTAsmmK5tEmgyl0xi8oCvmsMi
-         BUgFbkwEWW32XL+iyuCv5n5sGW2/bfdQGc4XxpLppVKIgyXxlVX54V5fnETAwQOBUurf
-         kO+XGzvUsGuHa9ncWogKv+vLs2sUo+8z38OyopD8nZAaW0RpmXFU1oIlWwp8hY9Vyl2M
-         algRGGfrfjDNQmXqY81pqW6LXhe2dneFr05VEUk0eHVhjIAljJpvrH94ot4Z89qeNJxD
-         lJfg==
+        h=mime-version:references:in-reply-to:from:date:message-id:subject:to
+         :cc;
+        bh=uw5nh9RN7R8U+ZfvbK0LtQsN77w7IZwaYJoxj3Q8zTU=;
+        b=E7VInnTq9YtJfNECE3WhKz1gAcEfu2eoQ9hfsWJ+pYVHD/ULkNL/f47iZFimBIyzNM
+         jgyB/Lq+OZDNtdGMnuHz15GEfjV0VeT5k96cpLK9NUxVewPXsNuGNoU4oImBlZ+u/2SC
+         BmPs988t0J8fGIfP+xfMYtcUe828ipQuQnLdeaJUePjpbUjrrDqFaNIn99x09WfBsHyZ
+         KOqZVGs62a/Yz+9ZWJwtmO7fDeNcfNoZpRW8ldbc2XJLUIOYlhyr/IcvmHH7qLNluvTD
+         tJ6f6laWejUu2optt11xWdWX9fW2PHA2RN8zg1NShsr112WGQ9u5GNaKxIRhd5+riSHc
+         iang==
 X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
         d=1e100.net; s=20161025;
-        h=x-gm-message-state:sender:date:in-reply-to:message-id:mime-version
-         :references:subject:from:to:cc;
-        bh=ETPAsWHvLyLNkSHJ+gS6oA+OTExuVARAMVUjKC9Fc/4=;
-        b=p0HTx44ychL7bBhk1DAWQV6woAFr1fpGBAa7ocmgIB+SRRGjgksMhzlnCCK6YBxHRD
-         3xsOIp1ygrq9Xv/QlRuy7Gw9DkwVImpN2cEPIKOifYUYrByubHXRfAR0O0Nwrb+nF03y
-         yjx6Ugc3Zxl9dGx98B0kCyYk8On8GBOXGtN9DzBSbHwB+A5d7xsJncN693RYTy0ooTF/
-         LIDea7xlvlmuRhpmmSZS4kuA4pE5iQXIatbht3tAmYO6csxpNBgKyHp1bYFV29/CEG3R
-         fshD1rlv0yYdSrqQJ075XFTllEyh8xsQBfsXg+3CscvX1IGLu2yCRAEpaYmT237jD6nx
-         HjQA==
-X-Gm-Message-State: AOAM532c7IB/ZtTlLwjXUKsZWdTgwA1GnmVy1dtov0l5ol8uuw9MNz5y
-        vydUVbLywQZHHHTIjQenuaaLHeZFkfA=
-X-Google-Smtp-Source: ABdhPJxq3i3a+BB6LOmVW3EbE+nzVKJocf8lveCUAVDznppOElFjuLfBgYnTIP44KqRmyroDeGUQ0rVuSp4=
-Sender: "badhri via sendgmr" <badhri@badhri.mtv.corp.google.com>
-X-Received: from badhri.mtv.corp.google.com ([2620:15c:211:1:f292:1cff:fee0:66cf])
- (user=badhri job=sendgmr) by 2002:a25:d45:: with SMTP id 66mr3316010ybn.231.1601347240323;
- Mon, 28 Sep 2020 19:40:40 -0700 (PDT)
-Date:   Mon, 28 Sep 2020 19:40:04 -0700
-In-Reply-To: <20200929024004.244992-1-badhri@google.com>
-Message-Id: <20200929024004.244992-16-badhri@google.com>
-Mime-Version: 1.0
-References: <20200929024004.244992-1-badhri@google.com>
-X-Mailer: git-send-email 2.28.0.709.gb0816b6eb0-goog
-Subject: [PATCH v9 15/15] usb: typec: tcpci_maxim: Enable auto discharge disconnect
+        h=x-gm-message-state:mime-version:references:in-reply-to:from:date
+         :message-id:subject:to:cc;
+        bh=uw5nh9RN7R8U+ZfvbK0LtQsN77w7IZwaYJoxj3Q8zTU=;
+        b=eq7KSlrWpprws7YGcZXEDcHHGGBQRlhg7/jM5IRdno8AQ9SVjrc5XJ/F8gH1haVDys
+         C9DXl5mWLqSAOOAJSKJWUgz2KWNbswQjR9oqufvpiXOaebx5+e1Fmy+wWjl+N5HQ1uHN
+         cU+Vp6MDgLw73QtKWmogHCTJSAqySurqqXLrl3Ceg/Mh/KWr2ARoRLtkzHV15s7Cpzbv
+         KKh9rQiRVm6o5KZe+uc0gl4r2ZBKYDp2n2R1HhpB5t1y139vYDc0/y2I7AyYJdKwQ+E2
+         Clyma4xIhWZhfDFqWKD6ISuSmxDkWVrGrlPY0VKiDyj56ZW6A3SsLv1cFvFo9PT4GIlx
+         iZwQ==
+X-Gm-Message-State: AOAM531cHnAuU7vFzk64JJu/7UuaaTVi4G8Cf6ZuWRRGHXsoWffV0yHR
+        9kE0PoVPR5TI2TDw5zI6oi9q8V/loP5cBPJLU/rghg==
+X-Google-Smtp-Source: ABdhPJzUOhalNuyQlawgnc0Ao2D/WTkcabtSxp8DpUZ9Rx7W8PpIMnHiINcJa7hNtuSHiG6LpOi0mMD/whksr4Je/ac=
+X-Received: by 2002:a67:e3d4:: with SMTP id k20mr1614553vsm.60.1601347351497;
+ Mon, 28 Sep 2020 19:42:31 -0700 (PDT)
+MIME-Version: 1.0
+References: <20200921195555.1050731-1-badhri@google.com> <20200921195555.1050731-3-badhri@google.com>
+ <20200922155910.GA2759479@bogus>
+In-Reply-To: <20200922155910.GA2759479@bogus>
 From:   Badhri Jagan Sridharan <badhri@google.com>
-To:     Guenter Roeck <linux@roeck-us.net>,
-        Heikki Krogerus <heikki.krogerus@linux.intel.com>,
-        Greg Kroah-Hartman <gregkh@linuxfoundation.org>,
-        Rob Herring <robh+dt@kernel.org>,
+Date:   Mon, 28 Sep 2020 19:41:54 -0700
+Message-ID: <CAPTae5JijeJEZUzFQK18rzevYj1231_-0OKKzQj84PXEAKm1OQ@mail.gmail.com>
+Subject: Re: [PATCH v8 03/11] dt-bindings: usb: Maxim type-c controller device
+ tree binding document
+To:     Rob Herring <robh@kernel.org>
+Cc:     USB <linux-usb@vger.kernel.org>,
+        LKML <linux-kernel@vger.kernel.org>,
+        Thierry Reding <treding@nvidia.com>,
         Lee Jones <lee.jones@linaro.org>,
+        Rob Herring <robh+dt@kernel.org>,
+        Heikki Krogerus <heikki.krogerus@linux.intel.com>,
+        Prashant Malani <pmalani@chromium.org>,
+        "open list:OPEN FIRMWARE AND FLATTENED DEVICE TREE BINDINGS" 
+        <devicetree@vger.kernel.org>,
+        Greg Kroah-Hartman <gregkh@linuxfoundation.org>,
         Mark Brown <broonie@kernel.org>,
         Maxime Ripard <mripard@kernel.org>,
-        Alexandre Belloni <alexandre.belloni@bootlin.com>,
-        Thierry Reding <treding@nvidia.com>,
-        Prashant Malani <pmalani@chromium.org>,
-        Badhri Jagan Sridharan <badhri@google.com>
-Cc:     devicetree@vger.kernel.org, linux-kernel@vger.kernel.org,
-        linux-usb@vger.kernel.org
+        Guenter Roeck <linux@roeck-us.net>,
+        Alexandre Belloni <alexandre.belloni@bootlin.com>
 Content-Type: text/plain; charset="UTF-8"
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-Enable auto discharge disconnect for Maxim TCPC.
+On Tue, Sep 22, 2020 at 8:59 AM Rob Herring <robh@kernel.org> wrote:
+>
+> On Mon, 21 Sep 2020 12:55:47 -0700, Badhri Jagan Sridharan wrote:
+> > Add device tree binding document for Maxim TCPCI based Type-C chip driver
+> >
+> > Signed-off-by: Badhri Jagan Sridharan <badhri@google.com>
+> > ---
+> > Changes since v1:
+> > - Changing patch version to v6 to fix version number confusion.
+> >
+> > Changes since v6:
+> > - Migrated to yaml format.
+> >
+> > Changes since v7:
+> > - Rebase on usb-next
+> >  .../devicetree/bindings/usb/maxim,tcpci.yaml  | 63 +++++++++++++++++++
+> >  1 file changed, 63 insertions(+)
+> >  create mode 100644 Documentation/devicetree/bindings/usb/maxim,tcpci.yaml
+> >
+>
+>
+> My bot found errors running 'make dt_binding_check' on your patch:
+>
+> Error: Documentation/devicetree/bindings/usb/maxim,tcpci.example.dts:38.36-37 syntax error
+> FATAL ERROR: Unable to parse input tree
+> make[1]: *** [scripts/Makefile.lib:342: Documentation/devicetree/bindings/usb/maxim,tcpci.example.dt.yaml] Error 1
+> make[1]: *** Waiting for unfinished jobs....
+> make: *** [Makefile:1366: dt_binding_check] Error 2
+>
+>
+> See https://patchwork.ozlabs.org/patch/1368587
+>
+> If you already ran 'make dt_binding_check' and didn't see the above
+> error(s), then make sure dt-schema is up to date:
+>
+> pip3 install git+https://github.com/devicetree-org/dt-schema.git@master --upgrade
+>
+> Please check and re-submit.
+>
 
-Signed-off-by: Badhri Jagan Sridharan <badhri@google.com>
----
-Changes since v1:
-- Changing patch version to v6 to fix version number confusion.
+Fixed in v9 and have sent it out.
 
-Changes since v6:
-- Rebase on usb-next.
-
-Changes since v7:
-- Heikki's suggestion:
-Moved the actual write of TCPC_VBUS_SINK_DISCONNECT_THRES
-register to tcpci code.
-
-Changes since v8:
-- Moved the logic to program the default values of
-  TCPC_VBUS_SINK_DISCONNECT_THRESH into the tcpci code.
----
- drivers/usb/typec/tcpm/tcpci_maxim.c | 1 +
- 1 file changed, 1 insertion(+)
-
-diff --git a/drivers/usb/typec/tcpm/tcpci_maxim.c b/drivers/usb/typec/tcpm/tcpci_maxim.c
-index 43dcad95e897..55dea33387ec 100644
---- a/drivers/usb/typec/tcpm/tcpci_maxim.c
-+++ b/drivers/usb/typec/tcpm/tcpci_maxim.c
-@@ -441,6 +441,7 @@ static int max_tcpci_probe(struct i2c_client *client, const struct i2c_device_id
- 	chip->data.TX_BUF_BYTE_x_hidden = true;
- 	chip->data.init = tcpci_init;
- 	chip->data.frs_sourcing_vbus = max_tcpci_frs_sourcing_vbus;
-+	chip->data.auto_discharge_disconnect = true;
- 
- 	max_tcpci_init_regs(chip);
- 	chip->tcpci = tcpci_register_port(chip->dev, &chip->data);
--- 
-2.28.0.709.gb0816b6eb0-goog
-
+Thanks,
+Badhri
