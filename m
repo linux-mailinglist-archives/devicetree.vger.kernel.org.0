@@ -2,134 +2,275 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from vger.kernel.org (vger.kernel.org [23.128.96.18])
-	by mail.lfdr.de (Postfix) with ESMTP id 8379027D59A
-	for <lists+devicetree@lfdr.de>; Tue, 29 Sep 2020 20:17:49 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTP id BCA2427D5E3
+	for <lists+devicetree@lfdr.de>; Tue, 29 Sep 2020 20:36:16 +0200 (CEST)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S1727740AbgI2SRs (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Tue, 29 Sep 2020 14:17:48 -0400
-Received: from lindbergh.monkeyblade.net ([23.128.96.19]:44104 "EHLO
-        lindbergh.monkeyblade.net" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S1727605AbgI2SRs (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Tue, 29 Sep 2020 14:17:48 -0400
-Received: from mail-pg1-x544.google.com (mail-pg1-x544.google.com [IPv6:2607:f8b0:4864:20::544])
-        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 7D8B8C061755
-        for <devicetree@vger.kernel.org>; Tue, 29 Sep 2020 11:17:48 -0700 (PDT)
-Received: by mail-pg1-x544.google.com with SMTP id m34so4509726pgl.9
-        for <devicetree@vger.kernel.org>; Tue, 29 Sep 2020 11:17:48 -0700 (PDT)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=chromium.org; s=google;
-        h=date:from:to:cc:subject:message-id:references:mime-version
-         :content-disposition:in-reply-to;
-        bh=ryJBLPTda+9/HnHPC1FJ42KvIGwTgN32I9Cgw34tfzQ=;
-        b=WAV7G0W9JyfR6qwCZmNQyryplAPsfDbC4m9rrojYBmfC2BvYm1k1P4m9evtOUzbEN0
-         pI6ci3BGuKmE8A63nJNRw/phJ1Cw9Xmp8s2eGWErGbkfiQBqmr7MruCrLxGWFzyFKgGd
-         x46BnZMASPXgPh0tWPbeZH+PbVhZgsDZGowVM=
+        id S1728288AbgI2SgK (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Tue, 29 Sep 2020 14:36:10 -0400
+Received: from mail-ot1-f67.google.com ([209.85.210.67]:38316 "EHLO
+        mail-ot1-f67.google.com" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
+        with ESMTP id S1728341AbgI2SgE (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Tue, 29 Sep 2020 14:36:04 -0400
+Received: by mail-ot1-f67.google.com with SMTP id y5so5445778otg.5;
+        Tue, 29 Sep 2020 11:36:03 -0700 (PDT)
 X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
         d=1e100.net; s=20161025;
         h=x-gm-message-state:date:from:to:cc:subject:message-id:references
          :mime-version:content-disposition:in-reply-to;
-        bh=ryJBLPTda+9/HnHPC1FJ42KvIGwTgN32I9Cgw34tfzQ=;
-        b=k0iwFIIHUrSQzWkidJ7VSycFqT9OXVp2zdN7on4KHxE8CG8oLKnJ588bfxVKh0E3Q1
-         cEBY7VJU4zVSMOOUphySHXi48AWe0bSF17XgPvRLtaxdCECD5r2TWbqFBhzlzPeiIJmK
-         u96OUHZujb4y509T/0wDvFvB0F3L3NzyIzGRDJsFOSlUah+EpEU0mAP+Jq3JWu/P3JS7
-         obGMzDPACTtMNvRI9obhLR301R/c/urC0r6LFXkEJb6a5iTrVoQ/C4dB0im2yUPsT506
-         QMpRL+bZFG/Kek15VGrTdIlj4leaR4Xf72xhol9dlJyAnYmVE3dsQd2H5whedQwyCE23
-         7C9g==
-X-Gm-Message-State: AOAM533VRCXQ6847VU84lj0OJmCF93qXsE8zLKHrlcJPe5UHDTdSG6xb
-        g/kIFxSG5z4diIFGF3LEJkSEcA==
-X-Google-Smtp-Source: ABdhPJyTHcKPGR42VRdz9E76O936nMlyAOhqoqKKzD+F50tcGFJS4la+9ZyvF6AEDlrdJAJTtlBVGA==
-X-Received: by 2002:a05:6a00:1702:b029:142:2501:34d7 with SMTP id h2-20020a056a001702b0290142250134d7mr5299071pfc.48.1601403467849;
-        Tue, 29 Sep 2020 11:17:47 -0700 (PDT)
-Received: from localhost ([2620:15c:202:1:f693:9fff:fef4:e70a])
-        by smtp.gmail.com with ESMTPSA id y3sm6535643pfb.18.2020.09.29.11.17.46
-        (version=TLS1_3 cipher=TLS_AES_128_GCM_SHA256 bits=128/128);
-        Tue, 29 Sep 2020 11:17:47 -0700 (PDT)
-Date:   Tue, 29 Sep 2020 11:17:45 -0700
-From:   Matthias Kaehlcke <mka@chromium.org>
-To:     Sandeep Maheswaram <sanm@codeaurora.org>
-Cc:     Andy Gross <agross@kernel.org>,
-        Bjorn Andersson <bjorn.andersson@linaro.org>,
-        Greg Kroah-Hartman <gregkh@linuxfoundation.org>,
-        Rob Herring <robh+dt@kernel.org>,
-        Mark Rutland <mark.rutland@arm.com>,
-        Felipe Balbi <balbi@kernel.org>,
-        Stephen Boyd <swboyd@chromium.org>,
-        Doug Anderson <dianders@chromium.org>,
-        linux-arm-msm@vger.kernel.org, linux-usb@vger.kernel.org,
-        devicetree@vger.kernel.org, linux-kernel@vger.kernel.org,
-        Manu Gautam <mgautam@codeaurora.org>
-Subject: Re: [PATCH v3 1/5] usb: dwc3: core: Host wake up support from system
- suspend
-Message-ID: <20200929181745.GB1621304@google.com>
-References: <1601376452-31839-1-git-send-email-sanm@codeaurora.org>
- <1601376452-31839-2-git-send-email-sanm@codeaurora.org>
+        bh=IlSkqdphqKTO009g0fq1K14KI/lnuHp40ufCtsxgDoU=;
+        b=JndPTrOOPa/1hVoV+UGDNM5fl7hChYCQRVjD6lMG9ykFDaIgu5kbO/DkPKFe2tPx7k
+         CR5zIo/Dp5dkEMiiRzILugI/+CiPch73ZZ5Wqji8/mp/y6vq0tfMWRrUhrOhhWW4i1Dp
+         VjrRAXVkwswvJ/pqjtCR52BLeq1YrBlGol2eMi5X78j+ZOOmEKOU/k6kFsE/G+4YJ2je
+         ol9RO9aUjoDbFbQJq3DxehzjK4gOn54YC7d7cljuSbZwYfMRM+5pCD03fymRYaUCToIx
+         48YR83yBHeSOkLdg6XgDN188p6X0j56hY6fs3oZoX3psadxKw4CxvSO8Bi+Id4ZU5q/e
+         92eg==
+X-Gm-Message-State: AOAM531fzI3tTkujYZayMSpxUM3rloGoGjNQ2lexD+2gmWg3p+cNzvoM
+        SXzRW4WrNuE5kWMqarEzyQ==
+X-Google-Smtp-Source: ABdhPJwCAWMgESySEtLvlkXxZ5yrYSY7bUzq09eQIT1AyxZwXp1XoWNRQ5Gm5RAiEdzvVCRYVIv+IQ==
+X-Received: by 2002:a9d:77d3:: with SMTP id w19mr3789573otl.44.1601404563208;
+        Tue, 29 Sep 2020 11:36:03 -0700 (PDT)
+Received: from xps15 (24-155-109-49.dyn.grandenetworks.net. [24.155.109.49])
+        by smtp.gmail.com with ESMTPSA id i205sm1172128oih.23.2020.09.29.11.36.02
+        (version=TLS1_3 cipher=TLS_AES_256_GCM_SHA384 bits=256/256);
+        Tue, 29 Sep 2020 11:36:02 -0700 (PDT)
+Received: (nullmailer pid 926876 invoked by uid 1000);
+        Tue, 29 Sep 2020 18:36:01 -0000
+Date:   Tue, 29 Sep 2020 13:36:01 -0500
+From:   Rob Herring <robh@kernel.org>
+To:     Ben Levinsky <ben.levinsky@xilinx.com>
+Cc:     stefanos@xilinx.com, michals@xilinx.com, michael.auchter@ni.com,
+        devicetree@vger.kernel.org, mathieu.poirier@linaro.org,
+        emooring@xilinx.com, linux-remoteproc@vger.kernel.org,
+        linux-kernel@vger.kernel.org, linux-arm-kernel@lists.infradead.org,
+        Jason Wu <j.wu@xilinx.com>, Wendy Liang <jliang@xilinx.com>,
+        Michal Simek <michal.simek@xilinx.com>
+Subject: Re: [PATCH v16 4/5] dt-bindings: remoteproc: Add documentation for
+ ZynqMP R5 rproc bindings
+Message-ID: <20200929183601.GA892636@bogus>
+References: <20200922223930.4710-1-ben.levinsky@xilinx.com>
+ <20200922223930.4710-5-ben.levinsky@xilinx.com>
 MIME-Version: 1.0
-Content-Type: text/plain; charset=utf-8
+Content-Type: text/plain; charset=us-ascii
 Content-Disposition: inline
-In-Reply-To: <1601376452-31839-2-git-send-email-sanm@codeaurora.org>
+In-Reply-To: <20200922223930.4710-5-ben.levinsky@xilinx.com>
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-On Tue, Sep 29, 2020 at 04:17:28PM +0530, Sandeep Maheswaram wrote:
-> Avoiding phy powerdown in host mode so that it can be wake up by devices.
-> Added hs_phy_flags and ss_phy_flags to check connection status and
-> set phy mode and configure interrupts.
+On Tue, Sep 22, 2020 at 03:39:29PM -0700, Ben Levinsky wrote:
+> Add binding for ZynqMP R5 OpenAMP.
 > 
-> Signed-off-by: Sandeep Maheswaram <sanm@codeaurora.org>
+> Represent the RPU domain resources in one device node. Each RPU
+> processor is a subnode of the top RPU domain node.
+> 
+> Signed-off-by: Jason Wu <j.wu@xilinx.com>
+> Signed-off-by: Wendy Liang <jliang@xilinx.com>
+> Signed-off-by: Michal Simek <michal.simek@xilinx.com>
+> Signed-off-by: Ben Levinsky <ben.levinsky@xilinx.com>
 > ---
->  drivers/usb/dwc3/core.c | 14 +++-----------
->  drivers/usb/dwc3/core.h |  3 +++
->  2 files changed, 6 insertions(+), 11 deletions(-)
+> v3:
+> - update zynqmp_r5 yaml parsing to not raise warnings for extra
+>   information in children of R5 node. The warning "node has a unit
+>   name, but no reg or ranges property" will still be raised though 
+>   as this particular node is needed to describe the
+>   '#address-cells' and '#size-cells' information.
+> v4::
+> - remove warning '/example-0/rpu@ff9a0000/r5@0: 
+>   node has a unit name, but no reg or ranges property'
+>   by adding reg to r5 node.
+> v5:
+> - update device tree sample and yaml parsing to not raise any warnings
+> - description for memory-region in yaml parsing
+> - compatible string in yaml parsing for TCM
+> v6:
+> - remove coupling TCM nodes with remoteproc 
+> - remove mailbox as it is optional not needed
+> v7:
+> - change lockstep-mode to xlnx,cluster-mode
+> v9:
+> - show example IPC nodes and tcm bank nodes
+> v11:
+> - add property meta-memory-regions to illustrate link
+>   between r5 and TCM banks
+> - update so no warnings from 'make dt_binding_check'
+> v14:
+> - concerns were raised about the new property meta-memory-regions.
+>   There is no clear direction so for the moment I kept it in the series
+> - place IPC nodes in RAM in the reserved memory section
+> v15:
+> - change lockstep-mode prop as follows: if present, then RPU cluster is in
+>   lockstep mode. if not present, cluster is in split mode.
+> ---
+>  .../xilinx,zynqmp-r5-remoteproc.yaml          | 120 ++++++++++++++++++
+>  1 file changed, 120 insertions(+)
+>  create mode 100644 Documentation/devicetree/bindings/remoteproc/xilinx,zynqmp-r5-remoteproc.yaml
 > 
-> diff --git a/drivers/usb/dwc3/core.c b/drivers/usb/dwc3/core.c
-> index 385262f..c32ed10 100644
-> --- a/drivers/usb/dwc3/core.c
-> +++ b/drivers/usb/dwc3/core.c
-> @@ -1663,10 +1663,6 @@ static int dwc3_suspend_common(struct dwc3 *dwc, pm_message_t msg)
->  		dwc3_core_exit(dwc);
->  		break;
->  	case DWC3_GCTL_PRTCAP_HOST:
-> -		if (!PMSG_IS_AUTO(msg)) {
-> -			dwc3_core_exit(dwc);
-> -			break;
-> -		}
->  
->  		/* Let controller to suspend HSPHY before PHY driver suspends */
->  		if (dwc->dis_u2_susphy_quirk ||
-> @@ -1724,13 +1720,9 @@ static int dwc3_resume_common(struct dwc3 *dwc, pm_message_t msg)
->  		spin_unlock_irqrestore(&dwc->lock, flags);
->  		break;
->  	case DWC3_GCTL_PRTCAP_HOST:
-> -		if (!PMSG_IS_AUTO(msg)) {
-> -			ret = dwc3_core_init_for_resume(dwc);
-> -			if (ret)
-> -				return ret;
-> -			dwc3_set_prtcap(dwc, DWC3_GCTL_PRTCAP_HOST);
-> -			break;
-> -		}
+> diff --git a/Documentation/devicetree/bindings/remoteproc/xilinx,zynqmp-r5-remoteproc.yaml b/Documentation/devicetree/bindings/remoteproc/xilinx,zynqmp-r5-remoteproc.yaml
+> new file mode 100644
+> index 000000000000..ce02e425692e
+> --- /dev/null
+> +++ b/Documentation/devicetree/bindings/remoteproc/xilinx,zynqmp-r5-remoteproc.yaml
+> @@ -0,0 +1,120 @@
+> +# SPDX-License-Identifier: (GPL-2.0 OR BSD-2-Clause)
+> +%YAML 1.2
+> +---
+> +$id: "http://devicetree.org/schemas/remoteproc/xilinx,zynqmp-r5-remoteproc.yaml#"
+> +$schema: "http://devicetree.org/meta-schemas/core.yaml#"
 > +
-> +		dwc3_set_prtcap(dwc, DWC3_GCTL_PRTCAP_HOST);
+> +title: Xilinx R5 remote processor controller bindings
 > +
->  		/* Restore GUSB2PHYCFG bits that were modified in suspend */
->  		reg = dwc3_readl(dwc->regs, DWC3_GUSB2PHYCFG(0));
->  		if (dwc->dis_u2_susphy_quirk)
-> diff --git a/drivers/usb/dwc3/core.h b/drivers/usb/dwc3/core.h
-> index 83b6c87..cd385a8 100644
-> --- a/drivers/usb/dwc3/core.h
-> +++ b/drivers/usb/dwc3/core.h
-> @@ -1096,6 +1096,9 @@ struct dwc3 {
->  
->  	bool			phys_ready;
->  
-> +	unsigned int            hs_phy_flags;
-> +	unsigned int            ss_phy_flags;
+> +description:
+> +  This document defines the binding for the remoteproc component that loads and
+> +  boots firmwares on the Xilinx Zynqmp and Versal family chipset.
 > +
+> +  Note that the Linux has global addressing view of the R5-related memory (TCM)
+> +  so the absolute address ranges are provided in TCM reg's.
 
-It doesn't seem ss_phy_flags is really needed, it is only used
-in dwc3_set_phy_speed_flags(), a local variable could be used
-instead.
+blank line needed.
 
-The 'flags' are passed as 'mode' to phy_set_mode(), I think it
-would be clearer to reflect that in the name, i.e. 'hs_phy_mode'
-instead of 'hs_phy_flags'.
+TCMs specifically I'm concerned about how they are represented in system 
+DT and here...
+
+> +maintainers:
+> +  - Ed Mooring <ed.mooring@xilinx.com>
+> +  - Ben Levinsky <ben.levinsky@xilinx.com>
+> +
+> +properties:
+> +  compatible:
+> +    const: "xlnx,zynqmp-r5-remoteproc-1.0"
+
+Don't need quotes.
+
+The use of version numbers was allowed for Xilinx programmable IP. I 
+don't think this falls into that category.
+
+> +
+> +  lockstep-mode:
+> +    description:
+> +      If this property is present, then the configuration is lock-step.
+
+boolean...
+
+> +      Otherwise RPU is split.
+> +    maxItems: 1
+
+...or an array?
+
+Either way, doesn't work for TI R5.
+
+> +
+> +  interrupts:
+> +    description:
+> +      Interrupt mapping for remoteproc IPI. It is required if the
+> +      user uses the remoteproc driver with the RPMsg kernel driver.
+> +    maxItems: 6
+> +
+> +  memory-region:
+> +    description:
+> +      collection of memory carveouts used for elf-loading and inter-processor
+> +      communication.
+> +    maxItems: 4
+> +    minItems: 4
+
+Need to define what each region is.
+
+One blank line between properties.
+
+> +  meta-memory-regions:
+> +    description:
+> +      collection of memories that are not present in the top level memory
+> +      nodes' mapping. For example, R5s' TCM banks. These banks are needed
+> +      for R5 firmware meta data such as the R5 firmware's heap and stack
+
+Humm, needs a better explanation.
+
+> +  pnode-id:
+> +    maxItems: 1
+
+What's this?
+
+> +  mboxes:
+> +    maxItems: 2
+
+Need to define what each one is.
+
+> +  mbox-names:
+> +    maxItems: 2
+
+Need to define the names.
+
+> +
+> +examples:
+> +  - |
+> +     reserved-memory {
+> +          #address-cells = <1>;
+> +          #size-cells = <1>;
+> +          ranges;
+> +          elf_load: rproc@3ed000000 {
+> +               no-map;
+> +               reg = <0x3ed00000 0x40000>;
+> +          };
+> +
+> +          rpu0vdev0vring0: rpu0vdev0vring0@3ed40000 {
+> +               no-map;
+> +               reg = <0x3ed40000 0x4000>;
+> +          };
+> +          rpu0vdev0vring1: rpu0vdev0vring1@3ed44000 {
+> +               no-map;
+> +               reg = <0x3ed44000 0x4000>;
+> +          };
+> +          rpu0vdev0buffer: rpu0vdev0buffer@3ed48000 {
+> +               no-map;
+> +               reg = <0x3ed48000 0x100000>;
+> +          };
+> +
+> +     };
+> +
+> +     /*
+> +      * Below nodes are required if using TCM to load R5 firmware
+> +      * if not, then either do not provide nodes are label as disabled in
+> +      * status property
+> +      */
+> +     tcm0a: tcm_0a@ffe00000 {
+> +         reg = <0xffe00000 0x10000>;
+> +         pnode-id = <0xf>;
+> +         no-map;
+> +         status = "okay";
+> +         phandle = <0x40>;
+> +         compatible = "xlnx,tcm";
+
+TCM is a Xilinx specific thing?
+
+> +     };
+> +     tcm0b: tcm_1a@ffe20000 {
+> +         reg = <0xffe20000 0x10000>;
+> +         pnode-id = <0x10>;
+> +         no-map;
+> +         status = "okay";
+> +         compatible = "xlnx,tcm";
+> +         phandle = <0x41>;
+> +     };
+> +
+> +     rpu {
+> +          compatible = "xlnx,zynqmp-r5-remoteproc-1.0";
+> +          #address-cells = <1>;
+> +          #size-cells = <1>;
+> +          ranges;
+> +          lockstep-mode;
+> +          r5_0 {
+> +               ranges;
+> +               #address-cells = <1>;
+> +               #size-cells = <1>;
+> +               memory-region = <&elf_load>,
+> +                               <&rpu0vdev0vring0>,
+> +                               <&rpu0vdev0vring1>,
+> +                               <&rpu0vdev0buffer>;
+> +               meta-memory-regions = <&tcm_0a>, <&tcm_0b>;
+> +               pnode-id = <0x7>;
+> +          };
+> +     };
+> +
+> +...
+> -- 
+> 2.17.1
+> 
