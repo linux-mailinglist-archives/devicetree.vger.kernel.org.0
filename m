@@ -2,100 +2,64 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from vger.kernel.org (vger.kernel.org [23.128.96.18])
-	by mail.lfdr.de (Postfix) with ESMTP id 785BC27BE36
-	for <lists+devicetree@lfdr.de>; Tue, 29 Sep 2020 09:39:22 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTP id A102827BE62
+	for <lists+devicetree@lfdr.de>; Tue, 29 Sep 2020 09:50:28 +0200 (CEST)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S1727649AbgI2HjL (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Tue, 29 Sep 2020 03:39:11 -0400
-Received: from mail.thorsis.com ([92.198.35.195]:50670 "EHLO mail.thorsis.com"
-        rhost-flags-OK-OK-OK-OK) by vger.kernel.org with ESMTP
-        id S1725787AbgI2HjL (ORCPT <rfc822;devicetree@vger.kernel.org>);
-        Tue, 29 Sep 2020 03:39:11 -0400
-Received: from localhost (localhost [127.0.0.1])
-        by mail.thorsis.com (Postfix) with ESMTP id CA69E1B36;
-        Tue, 29 Sep 2020 09:39:09 +0200 (CEST)
-X-Virus-Scanned: Debian amavisd-new at mail.thorsis.com
-Received: from mail.thorsis.com ([127.0.0.1])
-        by localhost (mail.thorsis.com [127.0.0.1]) (amavisd-new, port 10024)
-        with ESMTP id VnJuFt-eA-Tp; Tue, 29 Sep 2020 09:39:09 +0200 (CEST)
-Received: by mail.thorsis.com (Postfix, from userid 109)
-        id 08DFF36B5; Tue, 29 Sep 2020 09:39:07 +0200 (CEST)
-X-Spam-Level: 
-X-Spam-Status: No, score=-1.9 required=5.0 tests=BAYES_00,NO_RECEIVED,
-        NO_RELAYS autolearn=unavailable autolearn_force=no version=3.4.2
-From:   Alexander Dahl <ada@thorsis.com>
-To:     Rob Herring <robh@kernel.org>
-Cc:     Alexander Dahl <post@lespocky.de>, linux-leds@vger.kernel.org,
-        devicetree@vger.kernel.org,
-        Jacek Anaszewski <jacek.anaszewski@gmail.com>,
-        Pavel Machek <pavel@ucw.cz>, Dan Murphy <dmurphy@ti.com>,
-        linux-kernel@vger.kernel.org,
-        Peter Ujfalusi <peter.ujfalusi@ti.com>,
-        Marek =?ISO-8859-1?Q?Beh=FAn?= <marek.behun@nic.cz>
-Subject: Re: [PATCH v5 3/3] dt-bindings: leds: Convert pwm to yaml
-Date:   Tue, 29 Sep 2020 09:39:01 +0200
-Message-ID: <23920329.U7EUVLB22C@ada>
-In-Reply-To: <20200922155747.GA2734659@bogus>
-References: <20200919053145.7564-1-post@lespocky.de> <20200919053145.7564-4-post@lespocky.de> <20200922155747.GA2734659@bogus>
-Content-Transfer-Encoding: quoted-printable
-Content-Type: text/plain; charset="UTF-8"
+        id S1725710AbgI2Hu1 (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Tue, 29 Sep 2020 03:50:27 -0400
+Received: from mail-ed1-f68.google.com ([209.85.208.68]:43863 "EHLO
+        mail-ed1-f68.google.com" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
+        with ESMTP id S1725554AbgI2Hu1 (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Tue, 29 Sep 2020 03:50:27 -0400
+Received: by mail-ed1-f68.google.com with SMTP id n13so5264721edo.10
+        for <devicetree@vger.kernel.org>; Tue, 29 Sep 2020 00:50:26 -0700 (PDT)
+X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+        d=1e100.net; s=20161025;
+        h=x-gm-message-state:date:from:to:cc:subject:message-id:references
+         :mime-version:content-disposition:in-reply-to:user-agent;
+        bh=BvORWp0VrSiWBo/SYJcoYCYDR9xoQ+b/J1lu1gLuCs8=;
+        b=dnNvi50pQmd8P5Q6krn1g0mG++nzrZD+zSz5jAVh8D3PgYitq+fmwE8vJvsw6fxRkM
+         U5NnW1EcE5ZsNODTTQpbHkpldbllMGARxEIq49m+8DIgh5ybCMNLZXotNPJ8Ea8qDlnm
+         xRcTXHPRlhQJVJNqeZe5j2XvkUCI4+ho+Vr1KCVsXztCjlYjk1gxCfA3U+lQMs0XFsDg
+         zBMvd2y1e9bR/PNLPikhU1HmR9iiuUMujjyd6ibLFthXMvn6oJVj8SJhFNBLvzmtxas7
+         wWibo0VbB0bYU48anesFNP3VsRNRsE6oOsJDZLU6OAEMIinC5Mlp76N1k4DR+Q2QBb9J
+         EbGA==
+X-Gm-Message-State: AOAM533vykkaozZWRmitb6MoVAsdWgScLlmfbZoo9Xuj8w9b1ocUFPte
+        abvf/GpHqA8G00UB4iwaBnY=
+X-Google-Smtp-Source: ABdhPJx4QGoFu5hCTppFKMx1zQ5AU1I0rTdskdUc2ccQRURNE8Bbp9mNIev2ZwOlAbXTbYf5Fd5RnQ==
+X-Received: by 2002:aa7:d58e:: with SMTP id r14mr1977810edq.52.1601365825530;
+        Tue, 29 Sep 2020 00:50:25 -0700 (PDT)
+Received: from kozik-lap ([194.230.155.194])
+        by smtp.googlemail.com with ESMTPSA id r13sm5032139edo.48.2020.09.29.00.50.24
+        (version=TLS1_2 cipher=ECDHE-ECDSA-CHACHA20-POLY1305 bits=256/256);
+        Tue, 29 Sep 2020 00:50:24 -0700 (PDT)
+Date:   Tue, 29 Sep 2020 09:50:22 +0200
+From:   Krzysztof Kozlowski <krzk@kernel.org>
+To:     Jacky Bai <ping.bai@nxp.com>
+Cc:     shawnguo@kernel.org, robh+dt@kernel.org, s.hauer@pengutronix.de,
+        festevam@gmail.com, linux-imx@nxp.com, devicetree@vger.kernel.org
+Subject: Re: [PATCH 1/2] dt-bindings: arm: fsl: Add imx8mn ddr3l evk board
+Message-ID: <20200929075022.GA7139@kozik-lap>
+References: <20200927094124.2714390-1-ping.bai@nxp.com>
+MIME-Version: 1.0
+Content-Type: text/plain; charset=utf-8
+Content-Disposition: inline
+In-Reply-To: <20200927094124.2714390-1-ping.bai@nxp.com>
+User-Agent: Mutt/1.9.4 (2018-02-28)
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-Hei hei,
+On Sun, Sep 27, 2020 at 05:41:23PM +0800, Jacky Bai wrote:
+> Add entry for i.MX8MN DDR3L EVK board.
+> 
+> Signed-off-by: Jacky Bai <ping.bai@nxp.com>
+> ---
+>  Documentation/devicetree/bindings/arm/fsl.yaml | 1 +
+>  1 file changed, 1 insertion(+)
+> 
 
-Am Dienstag, 22. September 2020, 17:57:47 CEST schrieb Rob Herring:
-> Use generic node names:
->=20
-> led-controller {
->=20
-> > +        compatible =3D "pwm-leds";
-> > +
-> > +        led-1 {
-> > +            label =3D "omap4::keypad";
-> > +            pwms =3D <&twl_pwm 0 7812500>;
-> > +            max-brightness =3D <127>;
-> > +        };
-> > +
-> > +        led-2 {
-> > +            color =3D <LED_COLOR_ID_GREEN>;
-> > +            function =3D LED_FUNCTION_CHARGING;
-> > +            pwms =3D <&twl_pwmled 0 7812500>;
-> > +            max-brightness =3D <255>;
-> > +        };
-> > +    };
-> > +
-> > +...
+Reviewed-by: Krzysztof Kozlowski <krzk@kernel.org>
 
-This is clear for the "one led-controller" case.  However, when trying to f=
-ix=20
-those node names in existing .dts files, I wondered how those should be nam=
-ed=20
-for multiple, different led-controllers, e.g. one using "pwm-leds" and anot=
-her=20
-one using "gpio-leds"? =20
-
-See arch/arm/boot/dts/at91-kizbox3-hs.dts for example, the nodes are called=
-=20
-"pwm_leds" and "leds" currently.  If both were part of a .dtsi and both nam=
-ed=20
-the same, you could not overwrite/complement those in a .dts file including=
-=20
-that .dtsi due to a name conflict.=20
-
-Just append a numerical index like this?
-
-  led-controller-1 {
-    =E2=80=A6
-  };
- =20
-  led-controller-2 {
-    =E2=80=A6
-  };
-
-Greets=20
-Alex
-
-
-
+Best regards,
+Krzysztof
