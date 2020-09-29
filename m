@@ -2,250 +2,100 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from vger.kernel.org (vger.kernel.org [23.128.96.18])
-	by mail.lfdr.de (Postfix) with ESMTP id 8479D27BE32
-	for <lists+devicetree@lfdr.de>; Tue, 29 Sep 2020 09:39:20 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTP id 785BC27BE36
+	for <lists+devicetree@lfdr.de>; Tue, 29 Sep 2020 09:39:22 +0200 (CEST)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S1727632AbgI2Hix (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Tue, 29 Sep 2020 03:38:53 -0400
-Received: from lindbergh.monkeyblade.net ([23.128.96.19]:57490 "EHLO
-        lindbergh.monkeyblade.net" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S1727634AbgI2Hiu (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Tue, 29 Sep 2020 03:38:50 -0400
-Received: from mail-pf1-x444.google.com (mail-pf1-x444.google.com [IPv6:2607:f8b0:4864:20::444])
-        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id EBABEC0613D1
-        for <devicetree@vger.kernel.org>; Tue, 29 Sep 2020 00:38:49 -0700 (PDT)
-Received: by mail-pf1-x444.google.com with SMTP id q123so3705325pfb.0
-        for <devicetree@vger.kernel.org>; Tue, 29 Sep 2020 00:38:49 -0700 (PDT)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=chromium.org; s=google;
-        h=from:to:cc:subject:date:message-id:in-reply-to:references
-         :mime-version:content-transfer-encoding;
-        bh=+r3GF4m4YugxKvqRkeEORPE8tzc/vmAmjb3ldF1z+f4=;
-        b=JtxfRfZCoc631J3QzxUjx4tE5DyJzN21HObAkaJYd4wrzRIqBXFDtvuODhfBDwkwZ0
-         p5topaqX9fGfxHY+UgHltGgyZ53cXwrSvY7+pi1vMor1i1veQRdlPnSIz9tMgLAbdfyl
-         Wks3teP5eZ2k0RkFBrzxXXh/TazUdXKvCRvHQ=
-X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=1e100.net; s=20161025;
-        h=x-gm-message-state:from:to:cc:subject:date:message-id:in-reply-to
-         :references:mime-version:content-transfer-encoding;
-        bh=+r3GF4m4YugxKvqRkeEORPE8tzc/vmAmjb3ldF1z+f4=;
-        b=L0ywNbUSd1/7NSVM8Jckcqm6WuBtK8ee9zXK6r6ym5oSZpUPtS9n/taUf1fPwLZakX
-         VNCeAZAlCpNeCfXb8vfs/40C0zftxNzY9x6/0FwZN5C8a+OFDMoYB+5dOueMz4vlmJh9
-         qWozzugN+3ouy0HLMV8CX5ALDx1qT7Pv3ABDIE4RTwz2u2193yFJGRp8z5we9eoEhMyr
-         yne1WIoGYcRNpCZ/NHBbLCGdIkGmDDFH5JCfEFxrXapOZjGrWjnGBXEo6Sf0D2QM8Q//
-         /9aWByxeMjJ8kflNnZqbysl9m4O4UKBG3L1EQR0sq1oZzCVLcP/EZEViGPmt71niGwkY
-         CE0g==
-X-Gm-Message-State: AOAM531/xx05ntSp0h8+bkzugAdm56fMAPd5yEiMO9qTS1XVwkpn4UGt
-        LBWGN/vkjKoskDaekejj5vi5mw==
-X-Google-Smtp-Source: ABdhPJyloqcHPGpb8wGIRonsrVvNDR1Fti9p84W6aNSgDQau78lYJz5cH0Ahbvu0HvDaz77e72y6mw==
-X-Received: by 2002:aa7:97a8:0:b029:13e:d13d:a105 with SMTP id d8-20020aa797a80000b029013ed13da105mr2970507pfq.33.1601365129442;
-        Tue, 29 Sep 2020 00:38:49 -0700 (PDT)
-Received: from ikjn-p920.tpe.corp.google.com ([2401:fa00:1:10:f693:9fff:fef4:a8fc])
-        by smtp.gmail.com with ESMTPSA id e13sm3737317pjy.38.2020.09.29.00.38.47
-        (version=TLS1_3 cipher=TLS_AES_256_GCM_SHA384 bits=256/256);
-        Tue, 29 Sep 2020 00:38:49 -0700 (PDT)
-From:   Ikjoon Jang <ikjn@chromium.org>
-To:     Rob Herring <robh+dt@kernel.org>, Mark Brown <broonie@kernel.org>,
-        devicetree@vger.kernel.org, linux-spi@vger.kernel.org,
-        linux-mtd@lists.infradead.org
-Cc:     Ikjoon Jang <ikjn@chromium.org>,
-        Matthias Brugger <matthias.bgg@gmail.com>,
-        linux-arm-kernel@lists.infradead.org, linux-kernel@vger.kernel.org,
-        linux-mediatek@lists.infradead.org
-Subject: [PATCH v4 4/4] spi: spi-mtk-nor: Add power management support
-Date:   Tue, 29 Sep 2020 15:37:55 +0800
-Message-Id: <20200929153320.v4.4.I68983b582d949a91866163bab588ff3c2a0d0275@changeid>
-X-Mailer: git-send-email 2.28.0.709.gb0816b6eb0-goog
-In-Reply-To: <20200929073755.3741416-1-ikjn@chromium.org>
-References: <20200929073755.3741416-1-ikjn@chromium.org>
-MIME-Version: 1.0
-Content-Transfer-Encoding: 8bit
+        id S1727649AbgI2HjL (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Tue, 29 Sep 2020 03:39:11 -0400
+Received: from mail.thorsis.com ([92.198.35.195]:50670 "EHLO mail.thorsis.com"
+        rhost-flags-OK-OK-OK-OK) by vger.kernel.org with ESMTP
+        id S1725787AbgI2HjL (ORCPT <rfc822;devicetree@vger.kernel.org>);
+        Tue, 29 Sep 2020 03:39:11 -0400
+Received: from localhost (localhost [127.0.0.1])
+        by mail.thorsis.com (Postfix) with ESMTP id CA69E1B36;
+        Tue, 29 Sep 2020 09:39:09 +0200 (CEST)
+X-Virus-Scanned: Debian amavisd-new at mail.thorsis.com
+Received: from mail.thorsis.com ([127.0.0.1])
+        by localhost (mail.thorsis.com [127.0.0.1]) (amavisd-new, port 10024)
+        with ESMTP id VnJuFt-eA-Tp; Tue, 29 Sep 2020 09:39:09 +0200 (CEST)
+Received: by mail.thorsis.com (Postfix, from userid 109)
+        id 08DFF36B5; Tue, 29 Sep 2020 09:39:07 +0200 (CEST)
+X-Spam-Level: 
+X-Spam-Status: No, score=-1.9 required=5.0 tests=BAYES_00,NO_RECEIVED,
+        NO_RELAYS autolearn=unavailable autolearn_force=no version=3.4.2
+From:   Alexander Dahl <ada@thorsis.com>
+To:     Rob Herring <robh@kernel.org>
+Cc:     Alexander Dahl <post@lespocky.de>, linux-leds@vger.kernel.org,
+        devicetree@vger.kernel.org,
+        Jacek Anaszewski <jacek.anaszewski@gmail.com>,
+        Pavel Machek <pavel@ucw.cz>, Dan Murphy <dmurphy@ti.com>,
+        linux-kernel@vger.kernel.org,
+        Peter Ujfalusi <peter.ujfalusi@ti.com>,
+        Marek =?ISO-8859-1?Q?Beh=FAn?= <marek.behun@nic.cz>
+Subject: Re: [PATCH v5 3/3] dt-bindings: leds: Convert pwm to yaml
+Date:   Tue, 29 Sep 2020 09:39:01 +0200
+Message-ID: <23920329.U7EUVLB22C@ada>
+In-Reply-To: <20200922155747.GA2734659@bogus>
+References: <20200919053145.7564-1-post@lespocky.de> <20200919053145.7564-4-post@lespocky.de> <20200922155747.GA2734659@bogus>
+Content-Transfer-Encoding: quoted-printable
+Content-Type: text/plain; charset="UTF-8"
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-This patch adds dev_pm_ops to mtk-nor to support suspend/resume,
-auto suspend delay is set to -1 by default.
+Hei hei,
 
-Accessing registers are only permitted after its clock is enabled
-to deal with unknown state of operating clk at probe time,
+Am Dienstag, 22. September 2020, 17:57:47 CEST schrieb Rob Herring:
+> Use generic node names:
+>=20
+> led-controller {
+>=20
+> > +        compatible =3D "pwm-leds";
+> > +
+> > +        led-1 {
+> > +            label =3D "omap4::keypad";
+> > +            pwms =3D <&twl_pwm 0 7812500>;
+> > +            max-brightness =3D <127>;
+> > +        };
+> > +
+> > +        led-2 {
+> > +            color =3D <LED_COLOR_ID_GREEN>;
+> > +            function =3D LED_FUNCTION_CHARGING;
+> > +            pwms =3D <&twl_pwmled 0 7812500>;
+> > +            max-brightness =3D <255>;
+> > +        };
+> > +    };
+> > +
+> > +...
 
-Signed-off-by: Ikjoon Jang <ikjn@chromium.org>
----
-Changes in v4:
-- No changes
+This is clear for the "one led-controller" case.  However, when trying to f=
+ix=20
+those node names in existing .dts files, I wondered how those should be nam=
+ed=20
+for multiple, different led-controllers, e.g. one using "pwm-leds" and anot=
+her=20
+one using "gpio-leds"? =20
 
-Changes in v3:
-- Remove unrelated changes of dma_set_mask_coherent()
+See arch/arm/boot/dts/at91-kizbox3-hs.dts for example, the nodes are called=
+=20
+"pwm_leds" and "leds" currently.  If both were part of a .dtsi and both nam=
+ed=20
+the same, you could not overwrite/complement those in a .dts file including=
+=20
+that .dtsi due to a name conflict.=20
 
- drivers/spi/spi-mtk-nor.c | 98 ++++++++++++++++++++++++++++++---------
- 1 file changed, 76 insertions(+), 22 deletions(-)
+Just append a numerical index like this?
 
-diff --git a/drivers/spi/spi-mtk-nor.c b/drivers/spi/spi-mtk-nor.c
-index eac613b3930d..6179eb163cd6 100644
---- a/drivers/spi/spi-mtk-nor.c
-+++ b/drivers/spi/spi-mtk-nor.c
-@@ -14,6 +14,7 @@
- #include <linux/kernel.h>
- #include <linux/module.h>
- #include <linux/of_device.h>
-+#include <linux/pm_runtime.h>
- #include <linux/spi/spi.h>
- #include <linux/spi/spi-mem.h>
- #include <linux/string.h>
-@@ -548,22 +549,15 @@ static int mtk_nor_enable_clk(struct mtk_nor *sp)
- 	return 0;
- }
- 
--static int mtk_nor_init(struct mtk_nor *sp)
-+static void mtk_nor_init(struct mtk_nor *sp)
- {
--	int ret;
--
--	ret = mtk_nor_enable_clk(sp);
--	if (ret)
--		return ret;
--
--	sp->spi_freq = clk_get_rate(sp->spi_clk);
-+	writel(0, sp->base + MTK_NOR_REG_IRQ_EN);
-+	writel(MTK_NOR_IRQ_MASK, sp->base + MTK_NOR_REG_IRQ_STAT);
- 
- 	writel(MTK_NOR_ENABLE_SF_CMD, sp->base + MTK_NOR_REG_WP);
- 	mtk_nor_rmw(sp, MTK_NOR_REG_CFG2, MTK_NOR_WR_CUSTOM_OP_EN, 0);
- 	mtk_nor_rmw(sp, MTK_NOR_REG_CFG3,
- 		    MTK_NOR_DISABLE_WREN | MTK_NOR_DISABLE_SR_POLL, 0);
--
--	return ret;
- }
- 
- static irqreturn_t mtk_nor_irq_handler(int irq, void *data)
-@@ -646,6 +640,7 @@ static int mtk_nor_probe(struct platform_device *pdev)
- 	ctlr->num_chipselect = 1;
- 	ctlr->setup = mtk_nor_setup;
- 	ctlr->transfer_one_message = mtk_nor_transfer_one_message;
-+	ctlr->auto_runtime_pm = true;
- 
- 	dev_set_drvdata(&pdev->dev, ctlr);
- 
-@@ -669,12 +664,19 @@ static int mtk_nor_probe(struct platform_device *pdev)
- 		return -ENOMEM;
- 	}
- 
-+	ret = mtk_nor_enable_clk(sp);
-+	if (ret < 0)
-+		return ret;
-+
-+	sp->spi_freq = clk_get_rate(sp->spi_clk);
-+
-+	mtk_nor_init(sp);
-+
- 	irq = platform_get_irq_optional(pdev, 0);
-+
- 	if (irq < 0) {
- 		dev_warn(sp->dev, "IRQ not available.");
- 	} else {
--		writel(MTK_NOR_IRQ_MASK, base + MTK_NOR_REG_IRQ_STAT);
--		writel(0, base + MTK_NOR_REG_IRQ_EN);
- 		ret = devm_request_irq(sp->dev, irq, mtk_nor_irq_handler, 0,
- 				       pdev->name, sp);
- 		if (ret < 0) {
-@@ -685,34 +687,86 @@ static int mtk_nor_probe(struct platform_device *pdev)
- 		}
- 	}
- 
--	ret = mtk_nor_init(sp);
--	if (ret < 0) {
--		kfree(ctlr);
--		return ret;
--	}
-+	pm_runtime_set_autosuspend_delay(&pdev->dev, -1);
-+	pm_runtime_use_autosuspend(&pdev->dev);
-+	pm_runtime_set_active(&pdev->dev);
-+	pm_runtime_enable(&pdev->dev);
-+	pm_runtime_get_noresume(&pdev->dev);
-+
-+	ret = devm_spi_register_controller(&pdev->dev, ctlr);
-+	if (ret < 0)
-+		goto err_probe;
-+
-+	pm_runtime_mark_last_busy(&pdev->dev);
-+	pm_runtime_put_autosuspend(&pdev->dev);
- 
- 	dev_info(&pdev->dev, "spi frequency: %d Hz\n", sp->spi_freq);
- 
--	return devm_spi_register_controller(&pdev->dev, ctlr);
-+	return 0;
-+
-+err_probe:
-+	pm_runtime_disable(&pdev->dev);
-+	pm_runtime_set_suspended(&pdev->dev);
-+	pm_runtime_dont_use_autosuspend(&pdev->dev);
-+
-+	mtk_nor_disable_clk(sp);
-+
-+	return ret;
- }
- 
- static int mtk_nor_remove(struct platform_device *pdev)
- {
--	struct spi_controller *ctlr;
--	struct mtk_nor *sp;
-+	struct spi_controller *ctlr = dev_get_drvdata(&pdev->dev);
-+	struct mtk_nor *sp = spi_controller_get_devdata(ctlr);
- 
--	ctlr = dev_get_drvdata(&pdev->dev);
--	sp = spi_controller_get_devdata(ctlr);
-+	pm_runtime_disable(&pdev->dev);
-+	pm_runtime_set_suspended(&pdev->dev);
-+	pm_runtime_dont_use_autosuspend(&pdev->dev);
-+
-+	mtk_nor_disable_clk(sp);
-+
-+	return 0;
-+}
-+
-+static int __maybe_unused mtk_nor_runtime_suspend(struct device *dev)
-+{
-+	struct spi_controller *ctlr = dev_get_drvdata(dev);
-+	struct mtk_nor *sp = spi_controller_get_devdata(ctlr);
- 
- 	mtk_nor_disable_clk(sp);
- 
- 	return 0;
- }
- 
-+static int __maybe_unused mtk_nor_runtime_resume(struct device *dev)
-+{
-+	struct spi_controller *ctlr = dev_get_drvdata(dev);
-+	struct mtk_nor *sp = spi_controller_get_devdata(ctlr);
-+
-+	return mtk_nor_enable_clk(sp);
-+}
-+
-+static int __maybe_unused mtk_nor_suspend(struct device *dev)
-+{
-+	return pm_runtime_force_suspend(dev);
-+}
-+
-+static int __maybe_unused mtk_nor_resume(struct device *dev)
-+{
-+	return pm_runtime_force_resume(dev);
-+}
-+
-+static const struct dev_pm_ops mtk_nor_pm_ops = {
-+	SET_RUNTIME_PM_OPS(mtk_nor_runtime_suspend,
-+			   mtk_nor_runtime_resume, NULL)
-+	SET_SYSTEM_SLEEP_PM_OPS(mtk_nor_suspend, mtk_nor_resume)
-+};
-+
- static struct platform_driver mtk_nor_driver = {
- 	.driver = {
- 		.name = DRIVER_NAME,
- 		.of_match_table = mtk_nor_match,
-+		.pm = &mtk_nor_pm_ops,
- 	},
- 	.probe = mtk_nor_probe,
- 	.remove = mtk_nor_remove,
--- 
-2.28.0.709.gb0816b6eb0-goog
+  led-controller-1 {
+    =E2=80=A6
+  };
+ =20
+  led-controller-2 {
+    =E2=80=A6
+  };
+
+Greets=20
+Alex
+
+
 
