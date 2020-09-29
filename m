@@ -2,94 +2,104 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from vger.kernel.org (vger.kernel.org [23.128.96.18])
-	by mail.lfdr.de (Postfix) with ESMTP id 548B427C181
-	for <lists+devicetree@lfdr.de>; Tue, 29 Sep 2020 11:43:43 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTP id 7CA8427C18F
+	for <lists+devicetree@lfdr.de>; Tue, 29 Sep 2020 11:46:25 +0200 (CEST)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S1727759AbgI2Jni (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Tue, 29 Sep 2020 05:43:38 -0400
-Received: from mga06.intel.com ([134.134.136.31]:60896 "EHLO mga06.intel.com"
-        rhost-flags-OK-OK-OK-OK) by vger.kernel.org with ESMTP
-        id S1727698AbgI2Jni (ORCPT <rfc822;devicetree@vger.kernel.org>);
-        Tue, 29 Sep 2020 05:43:38 -0400
-IronPort-SDR: DpmdmpR2lLfoLZxB+Xdy9FwIrvjsmBah1zk8mXEu5yA2kfV9Dnr1e4fSA6ffO9nRWY5WSRgy0r
- d4f1NoyCtS2w==
-X-IronPort-AV: E=McAfee;i="6000,8403,9758"; a="223742650"
-X-IronPort-AV: E=Sophos;i="5.77,318,1596524400"; 
-   d="scan'208";a="223742650"
-X-Amp-Result: SKIPPED(no attachment in message)
-X-Amp-File-Uploaded: False
-Received: from orsmga003.jf.intel.com ([10.7.209.27])
-  by orsmga104.jf.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384; 29 Sep 2020 02:43:37 -0700
-IronPort-SDR: WD+qoWE6LnEug60anhMsY7vQb4O4gTo65GPfZn61dErp8MTX4B/kTRUq4L18GR2r2Fb8ixAJRC
- l/GNr7w3c9mg==
-X-IronPort-AV: E=Sophos;i="5.77,318,1596524400"; 
-   d="scan'208";a="307697837"
-Received: from paasikivi.fi.intel.com ([10.237.72.42])
-  by orsmga003-auth.jf.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384; 29 Sep 2020 02:43:33 -0700
-Received: by paasikivi.fi.intel.com (Postfix, from userid 1000)
-        id C5BB2204FD; Tue, 29 Sep 2020 12:43:00 +0300 (EEST)
-Date:   Tue, 29 Sep 2020 12:43:00 +0300
-From:   Sakari Ailus <sakari.ailus@linux.intel.com>
+        id S1727937AbgI2JqW (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Tue, 29 Sep 2020 05:46:22 -0400
+Received: from lindbergh.monkeyblade.net ([23.128.96.19]:49016 "EHLO
+        lindbergh.monkeyblade.net" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
+        with ESMTP id S1725710AbgI2JqW (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Tue, 29 Sep 2020 05:46:22 -0400
+Received: from mail-wm1-x343.google.com (mail-wm1-x343.google.com [IPv6:2a00:1450:4864:20::343])
+        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id EACFFC0613D0
+        for <devicetree@vger.kernel.org>; Tue, 29 Sep 2020 02:46:20 -0700 (PDT)
+Received: by mail-wm1-x343.google.com with SMTP id v12so4088826wmh.3
+        for <devicetree@vger.kernel.org>; Tue, 29 Sep 2020 02:46:20 -0700 (PDT)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+        d=linaro.org; s=google;
+        h=date:from:to:cc:subject:message-id:references:mime-version
+         :content-disposition:content-transfer-encoding:in-reply-to;
+        bh=dHMGRNZnx0+XKPiHFdw+h/5M4WgM6srMYbtDSiaFkho=;
+        b=QYBPPtMM1EMizx0ESnOQSa70QoVvZpvAGGItWeiXvEhERUaFXZUE3tnPB7KnbwGJVE
+         NcbAKM849GXjcIL62N0SuuJG5vWMjklCJ8w9n3clvdlOFJcKRZos/XBfLKJ3Mq2fslZs
+         QRjgTSljhCkV6UFxVNCUBVH+KeXCwer4vV9QCIk6J6zLFx9MGkbNOslKwWdFPlZ6xrZr
+         zDT+pZPMv5M7tXZCSCAG1CvFIVkMstBEgUN/Ky3hsVihfXjXjyMf4kcB7YpbeeKAWUT6
+         4ktVCIwzlsMWSNNOWZM9UuOSV/DUxo1dJyT+x0xDwD9oB3sQefIdZzpSq7Lqu72dOXyI
+         lsdA==
+X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+        d=1e100.net; s=20161025;
+        h=x-gm-message-state:date:from:to:cc:subject:message-id:references
+         :mime-version:content-disposition:content-transfer-encoding
+         :in-reply-to;
+        bh=dHMGRNZnx0+XKPiHFdw+h/5M4WgM6srMYbtDSiaFkho=;
+        b=iHqAggh6kEZXbGpkA3Uz5OHTpfKiCtLGtcA9L8WpnoRvqZHCxjiZk3cgcaexDugINh
+         w0woe8BWYfwo/Tvf6LfhlABJIbzBAgrjdKyeG3jC6+B2yuZAdqgF8a4ozgjbrqGCN3bt
+         LcoUXXhu0dldOz3b5mYIe7JVBI90Lmmcc/UIHibC47mcWtvrd6tdVceFgsESyjZEzbrD
+         juduotBtfkkmNbmwCd6mnD+05lsdTtcPylYnt+y7BBBr2wU931N8RvD1Wc8EyutXfkhL
+         5AYd5Xkey8MDepMyoCdt8ZU9OatfeAm3nfUmsghXoSYTu9k5cx6dMYNuZmxIKsFDStff
+         cb1w==
+X-Gm-Message-State: AOAM533ISAisEl49qSstN52/xjCgaEEzuIYWgUKQ4Jq9ecyDDQ4gOOWm
+        7h20YgsDkkT7ExQt7abMo0IiPA==
+X-Google-Smtp-Source: ABdhPJzS4JUE1Kk/xqWGmh8/2XgO+UAIhHM7E1amuZcvb/DQrZB1Xwpde68JDWHPkqBO7E83yxj4rw==
+X-Received: by 2002:a1c:e256:: with SMTP id z83mr3852607wmg.137.1601372779489;
+        Tue, 29 Sep 2020 02:46:19 -0700 (PDT)
+Received: from dell ([91.110.221.236])
+        by smtp.gmail.com with ESMTPSA id i14sm5055806wml.24.2020.09.29.02.46.18
+        (version=TLS1_3 cipher=TLS_AES_256_GCM_SHA384 bits=256/256);
+        Tue, 29 Sep 2020 02:46:18 -0700 (PDT)
+Date:   Tue, 29 Sep 2020 10:46:16 +0100
+From:   Lee Jones <lee.jones@linaro.org>
 To:     Krzysztof Kozlowski <krzk@kernel.org>
-Cc:     Mauro Carvalho Chehab <mchehab@kernel.org>,
-        Rob Herring <robh+dt@kernel.org>,
-        Shawn Guo <shawnguo@kernel.org>,
-        Sascha Hauer <s.hauer@pengutronix.de>,
-        Pengutronix Kernel Team <kernel@pengutronix.de>,
-        Fabio Estevam <festevam@gmail.com>,
-        NXP Linux Team <linux-imx@nxp.com>,
-        linux-media@vger.kernel.org, devicetree@vger.kernel.org,
-        linux-arm-kernel@lists.infradead.org,
-        "linux-kernel@vger.kernel.org" <linux-kernel@vger.kernel.org>
-Subject: Re: [PATCH v4 1/4] dt-bindings: media: imx258: add bindings for
- IMX258 sensor
-Message-ID: <20200929094300.GI26842@paasikivi.fi.intel.com>
-References: <20200923152129.21736-1-krzk@kernel.org>
- <20200929091512.GF26842@paasikivi.fi.intel.com>
- <CAJKOXPfRnMg2sUO8dd8CRrwyQFNr-9HN5-QV7Uy4YTVrRJosWQ@mail.gmail.com>
+Cc:     Rob Herring <robh+dt@kernel.org>,
+        Tim Harvey <tharvey@gateworks.com>,
+        Robert Jones <rjones@gateworks.com>,
+        Matti Vaittinen <matti.vaittinen@fi.rohmeurope.com>,
+        devicetree@vger.kernel.org, linux-kernel@vger.kernel.org,
+        linux-power@fi.rohmeurope.com
+Subject: Re: [PATCH v2] dt-bindings: mfd: correct interrupt flags in examples
+Message-ID: <20200929094616.GC6148@dell>
+References: <20200917185613.5905-1-krzk@kernel.org>
 MIME-Version: 1.0
-Content-Type: text/plain; charset=us-ascii
+Content-Type: text/plain; charset=utf-8
 Content-Disposition: inline
-In-Reply-To: <CAJKOXPfRnMg2sUO8dd8CRrwyQFNr-9HN5-QV7Uy4YTVrRJosWQ@mail.gmail.com>
-User-Agent: Mutt/1.10.1 (2018-07-13)
+Content-Transfer-Encoding: 8bit
+In-Reply-To: <20200917185613.5905-1-krzk@kernel.org>
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-On Tue, Sep 29, 2020 at 11:18:46AM +0200, Krzysztof Kozlowski wrote:
-> On Tue, 29 Sep 2020 at 11:15, Sakari Ailus <sakari.ailus@linux.intel.com> wrote:
-> >
-> > Hi Krzysztof,
-> >
-> > On Wed, Sep 23, 2020 at 05:21:26PM +0200, Krzysztof Kozlowski wrote:
-> > > Add bindings for the IMX258 camera sensor.  The bindings, just like the
-> > > driver, are quite limited, e.g. do not support regulator supplies.
-> > >
-> > > Signed-off-by: Krzysztof Kozlowski <krzk@kernel.org>
-> > >
-> > > ---
-> > >
-> > > Changes since v3:
-> > > 1. Document also two lane setup.
-> > >
-> > > Changes since v2:
-> > > 1. Remove clock-frequency, add reset GPIOs, add supplies.
-> >
-> > Oops. I missed this one.
-> >
-> > How does the driver know the appropriate clock frequency for the platform
-> > if it's not in DT? The sensor supports a range of frequencies, not a single
-> > frequency.
-> >
-> > Could you add clock-frequency back?
-> 
-> Not really, it was removed on Rob's request. The bindings do not
-> describe driver's behavior so how the driver gets frequency should not
-> be part of the bindings. Also it's not a real problem - the driver
-> just calls clk_get_rate().
+On Thu, 17 Sep 2020, Krzysztof Kozlowski wrote:
 
-Btw. we also have this nowadays:
-Documentation/driver-api/media/camera-sensor.rst .
+> GPIO_ACTIVE_x flags are not correct in the context of interrupt flags.
+> These are simple defines so they could be used in DTS but they will not
+> have the same meaning:
+> 1. GPIO_ACTIVE_HIGH = 0 = IRQ_TYPE_NONE
+> 2. GPIO_ACTIVE_LOW  = 1 = IRQ_TYPE_EDGE_RISING
+> 
+> Correct the interrupt flags, assuming the author of the code wanted same
+> logical behavior behind the name "ACTIVE_xxx", this is:
+>   ACTIVE_LOW => IRQ_TYPE_LEVEL_LOW
+> 
+> Signed-off-by: Krzysztof Kozlowski <krzk@kernel.org>
+> Acked-by: Matti Vaittinen <matti.vaittinen@fi.rohmeurope.com> # for BD70528
+> Acked-by: Tim Harvey <tharvey@gateworks.com> # for gateworks-gsc.yaml
+> Acked-by: Rob Herring <robh@kernel.org>
+> 
+> ---
+> 
+> Changes since v1:
+> 1. Add acks
+> ---
+>  Documentation/devicetree/bindings/mfd/act8945a.txt          | 2 +-
+>  Documentation/devicetree/bindings/mfd/gateworks-gsc.yaml    | 3 ++-
+>  Documentation/devicetree/bindings/mfd/rohm,bd70528-pmic.txt | 2 +-
+>  3 files changed, 4 insertions(+), 3 deletions(-)
+
+Applied, thanks.
 
 -- 
-Sakari Ailus
+Lee Jones [李琼斯]
+Senior Technical Lead - Developer Services
+Linaro.org │ Open source software for Arm SoCs
+Follow Linaro: Facebook | Twitter | Blog
