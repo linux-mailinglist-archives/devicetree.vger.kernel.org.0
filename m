@@ -2,100 +2,83 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from vger.kernel.org (vger.kernel.org [23.128.96.18])
-	by mail.lfdr.de (Postfix) with ESMTP id DF0D427D94D
-	for <lists+devicetree@lfdr.de>; Tue, 29 Sep 2020 22:54:34 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTP id E981E27D963
+	for <lists+devicetree@lfdr.de>; Tue, 29 Sep 2020 22:58:22 +0200 (CEST)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S1728820AbgI2Uye (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Tue, 29 Sep 2020 16:54:34 -0400
-Received: from mail-oi1-f196.google.com ([209.85.167.196]:39207 "EHLO
-        mail-oi1-f196.google.com" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S1727740AbgI2Uyd (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Tue, 29 Sep 2020 16:54:33 -0400
-Received: by mail-oi1-f196.google.com with SMTP id c13so7034370oiy.6;
-        Tue, 29 Sep 2020 13:54:33 -0700 (PDT)
+        id S1729368AbgI2U6S (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Tue, 29 Sep 2020 16:58:18 -0400
+Received: from lindbergh.monkeyblade.net ([23.128.96.19]:40720 "EHLO
+        lindbergh.monkeyblade.net" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
+        with ESMTP id S1729227AbgI2U6R (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Tue, 29 Sep 2020 16:58:17 -0400
+Received: from mail-pj1-x1043.google.com (mail-pj1-x1043.google.com [IPv6:2607:f8b0:4864:20::1043])
+        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 369F6C0613D0
+        for <devicetree@vger.kernel.org>; Tue, 29 Sep 2020 13:58:17 -0700 (PDT)
+Received: by mail-pj1-x1043.google.com with SMTP id kk9so3401992pjb.2
+        for <devicetree@vger.kernel.org>; Tue, 29 Sep 2020 13:58:17 -0700 (PDT)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+        d=chromium.org; s=google;
+        h=from:to:cc:subject:date:message-id:mime-version
+         :content-transfer-encoding;
+        bh=G3+N8jl4iLhxEDGW7b+2sUqmEtHRJsrmsOkpbsCci28=;
+        b=RyBeF2LoJWmFx7cRTA0dxIqnOk43j8IDnZQNiKh1SxagTLajEc0seLhggi5jGNwyW8
+         TQieKx9sVRWYYBlg9ZTWqVF9GjUMTSMzvBgAuB04mS5kOVDgLfLTVwkZgN1ci6I/0+g/
+         ljpiR2ljIgE9OyOcGZzzg1Z0cU5Im372vb1CY=
 X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
         d=1e100.net; s=20161025;
-        h=x-gm-message-state:date:from:to:cc:subject:message-id:mime-version
-         :content-disposition:content-transfer-encoding;
-        bh=PYQmC7QRqL/jrjd8bqNyBSlI+Fhl5IXu5uYdUVIKlrA=;
-        b=U+dAx4lKwLa5Y6cOuy4tbD28nGMzSbrRdZ9XmSX9U6L7wGfWr4yF03hYijorEeOmsA
-         cO2DUaT3D0VGsHvBEDYstKv1dUKvVPAMG7IMcSgk7eaImJ42A/eCBSwCzffMKTx5SdLB
-         KOAsVqUdxkIjsv5JIBDK+xejZVWYJfmAHsRcZfNFl4RVJmK+jMc2rINDyBVyeAnwQgRX
-         GdlJKGj4Nl9wqegonnVwXf9ofJ40O4sNCC/WsnpUj9Z7rmgYPZ21XRAwek2e2LvWIzTE
-         WxbiGATIYywZzdjFZMDmr315umGYvsGqUOhZ87VDTEwfcp/ySeXwEfEcribuNvFrhcUg
-         iAZQ==
-X-Gm-Message-State: AOAM533DW19iwYmbFhlajvagFnN3gAkdzO2AChFry04Rz7Mbrq/1O2SG
-        NuVJsQqiWuX9wqEkuRmhpen9p2NJTk2KHAs=
-X-Google-Smtp-Source: ABdhPJzccgS0lVeNEYE02XkMKkSAAnx14wdjOG2wnSA4OeSW9k5T7aJlzInexX10TCMoOFwLBuA+0w==
-X-Received: by 2002:aca:c758:: with SMTP id x85mr3797200oif.102.1601412872879;
-        Tue, 29 Sep 2020 13:54:32 -0700 (PDT)
-Received: from xps15 (24-155-109-49.dyn.grandenetworks.net. [24.155.109.49])
-        by smtp.gmail.com with ESMTPSA id r7sm1248386oij.34.2020.09.29.13.54.32
-        (version=TLS1_3 cipher=TLS_AES_256_GCM_SHA384 bits=256/256);
-        Tue, 29 Sep 2020 13:54:32 -0700 (PDT)
-Received: (nullmailer pid 1171004 invoked by uid 1000);
-        Tue, 29 Sep 2020 20:54:31 -0000
-Date:   Tue, 29 Sep 2020 15:54:31 -0500
-From:   Rob Herring <robh@kernel.org>
-To:     Linus Torvalds <torvalds@linux-foundation.org>
-Cc:     linux-kernel@vger.kernel.org, devicetree@vger.kernel.org,
-        Frank Rowand <frowand.list@gmail.com>
-Subject: [GIT PULL] Devicetree fixes for v5.9, take 3
-Message-ID: <20200929205431.GA1165869@bogus>
+        h=x-gm-message-state:from:to:cc:subject:date:message-id:mime-version
+         :content-transfer-encoding;
+        bh=G3+N8jl4iLhxEDGW7b+2sUqmEtHRJsrmsOkpbsCci28=;
+        b=V3j4s5IsvJeGsglWGUpCP8X8oK0JQm2Qnv+qrsp4gJmn00stmmcpce0byWOjXar8oj
+         mN6qnn0/EDaigC3dgEOYbpAP2g4KdAJwx4HX7AWaKS2gTOJYD2zBxJ5MHToD6Hvim8nt
+         +sTcPltf/f8NSqaRbVsp+KwfSpCCdswaIfh54eXtsKoeUf38KMmNJMGJwccLDgrHOo7h
+         Q/K7Brw8HVovJRrl4eYcoMFcI8jBZB8w2JWmM6Jvbkn/bk2clav/0ICcA3vIokKlj5+d
+         Y6P4/ro+yV9CR6iKjOeaO1KDJwqAnhs61aOR8ubhgq2a6H/15ONY3IlzFVSpTIGbrv3y
+         nQOA==
+X-Gm-Message-State: AOAM533r0dFNcs57q2+MClq9CNLuKEISE7g4b17Eetf7tvBBZ/uJd8MQ
+        LGXoq2guY8P5J9bg6SOremv+nw==
+X-Google-Smtp-Source: ABdhPJyE/U1qwuzZg0kpvNJ18xK9ziz4FHxSxLVdwTW8gnEeYDBH1AMEUSknlOcfpPoDDQV5l8dW5A==
+X-Received: by 2002:a17:90a:2d87:: with SMTP id p7mr3619978pjd.179.1601413096753;
+        Tue, 29 Sep 2020 13:58:16 -0700 (PDT)
+Received: from evgreen-glaptop.cheshire.ch ([2601:646:c780:1404:a2ce:c8ff:fec4:54a3])
+        by smtp.gmail.com with ESMTPSA id k7sm5488101pjs.9.2020.09.29.13.58.14
+        (version=TLS1_2 cipher=ECDHE-RSA-AES128-SHA bits=128/128);
+        Tue, 29 Sep 2020 13:58:16 -0700 (PDT)
+From:   Evan Green <evgreen@chromium.org>
+To:     Rob Herring <robh+dt@kernel.org>,
+        Bjorn Andersson <bjorn.andersson@linaro.org>,
+        Srinivas Kandagatla <srinivas.kandagatla@linaro.org>
+Cc:     Douglas Anderson <dianders@chromium.org>,
+        Stephen Boyd <swboyd@chromium.org>,
+        Evan Green <evgreen@chromium.org>,
+        Andy Gross <agross@kernel.org>, devicetree@vger.kernel.org,
+        linux-arm-msm@vger.kernel.org, linux-kernel@vger.kernel.org
+Subject: [PATCH 0/3] nvmem: qfprom: Avoid untouchable regions
+Date:   Tue, 29 Sep 2020 13:58:04 -0700
+Message-Id: <20200929205807.2360405-1-evgreen@chromium.org>
+X-Mailer: git-send-email 2.26.2
 MIME-Version: 1.0
-Content-Type: text/plain; charset=iso-8859-1
-Content-Disposition: inline
 Content-Transfer-Encoding: 8bit
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-Hi Linus,
+Certain fuses are protected by the XPU such that the AP cannot
+access them. Attempting to do so causes an SError. Introduce an
+SoC-specific compatible string, and then use that to determine
+which fuse regions to present as Read as Zero / Write Ignore.
 
-Please pull a couple more DT related fixes for v5.9.
 
-Rob
+Evan Green (3):
+  dt-bindings: nvmem: Add qcom,sc7180-qfprom compatible string
+  arm64: dts: qcom: sc7180: Add soc-specific qfprom compat string
+  nvmem: qfprom: Don't touch certain fuses
 
-The following changes since commit 5cd841d2676a702e5f79a8bacbfbae3bfc2411f7:
+ .../bindings/nvmem/qcom,qfprom.yaml           |  4 +-
+ arch/arm64/boot/dts/qcom/sc7180.dtsi          |  2 +-
+ drivers/nvmem/qfprom.c                        | 55 +++++++++++++++++--
+ 3 files changed, 55 insertions(+), 6 deletions(-)
 
-  dt-bindings: vendor-prefixes: Remove trailing whitespace (2020-08-21 16:27:57 -0600)
+-- 
+2.26.2
 
-are available in the Git repository at:
-
-  git://git.kernel.org/pub/scm/linux/kernel/git/robh/linux.git tags/devicetree-fixes-for-5.9-3
-
-for you to fetch changes up to efe84d408bf41975db8506d3a1cc02e794e2309c:
-
-  scripts/dtc: only append to HOST_EXTRACFLAGS instead of overwriting (2020-09-29 15:48:08 -0500)
-
-----------------------------------------------------------------
-Devicetree fixes for v5.9, take 3:
-
-- Fix handling of HOST_EXTRACFLAGS for dtc
-
-- Several warning fixes for DT bindings
-
-----------------------------------------------------------------
-Marek Behún (1):
-      dt-bindings: leds: cznic,turris-omnia-leds: fix error in binding
-
-Maxime Ripard (1):
-      ARM: dts: bcm2835: Change firmware compatible from simple-bus to simple-mfd
-
-Rob Herring (1):
-      dt-bindings: Fix 'reg' size issues in zynqmp examples
-
-Tero Kristo (1):
-      dt-bindings: crypto: sa2ul: fix a DT binding check warning
-
-Uwe Kleine-König (1):
-      scripts/dtc: only append to HOST_EXTRACFLAGS instead of overwriting
-
- .../devicetree/bindings/arm/bcm/raspberrypi,bcm2835-firmware.yaml | 4 ++--
- Documentation/devicetree/bindings/crypto/ti,sa2ul.yaml            | 2 +-
- .../devicetree/bindings/display/xlnx/xlnx,zynqmp-dpsub.yaml       | 8 ++++----
- .../devicetree/bindings/dma/xilinx/xlnx,zynqmp-dpdma.yaml         | 2 +-
- .../devicetree/bindings/leds/cznic,turris-omnia-leds.yaml         | 2 +-
- arch/arm/boot/dts/bcm2835-rpi.dtsi                                | 2 +-
- scripts/dtc/Makefile                                              | 2 +-
- 7 files changed, 11 insertions(+), 11 deletions(-)
