@@ -2,108 +2,85 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from vger.kernel.org (vger.kernel.org [23.128.96.18])
-	by mail.lfdr.de (Postfix) with ESMTP id 9885027CCAC
-	for <lists+devicetree@lfdr.de>; Tue, 29 Sep 2020 14:38:26 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTP id 2F07B27CE16
+	for <lists+devicetree@lfdr.de>; Tue, 29 Sep 2020 14:51:56 +0200 (CEST)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S1733240AbgI2MiQ (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Tue, 29 Sep 2020 08:38:16 -0400
-Received: from mail-ej1-f68.google.com ([209.85.218.68]:34773 "EHLO
-        mail-ej1-f68.google.com" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S1733222AbgI2MiP (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Tue, 29 Sep 2020 08:38:15 -0400
-Received: by mail-ej1-f68.google.com with SMTP id gr14so14825264ejb.1;
-        Tue, 29 Sep 2020 05:38:13 -0700 (PDT)
+        id S1728395AbgI2Mva (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Tue, 29 Sep 2020 08:51:30 -0400
+Received: from lindbergh.monkeyblade.net ([23.128.96.19]:49828 "EHLO
+        lindbergh.monkeyblade.net" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
+        with ESMTP id S1728368AbgI2Mv3 (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Tue, 29 Sep 2020 08:51:29 -0400
+Received: from mail-lf1-x141.google.com (mail-lf1-x141.google.com [IPv6:2a00:1450:4864:20::141])
+        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 35551C0613D1
+        for <devicetree@vger.kernel.org>; Tue, 29 Sep 2020 05:51:29 -0700 (PDT)
+Received: by mail-lf1-x141.google.com with SMTP id 77so5394185lfj.0
+        for <devicetree@vger.kernel.org>; Tue, 29 Sep 2020 05:51:29 -0700 (PDT)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+        d=linaro.org; s=google;
+        h=mime-version:references:in-reply-to:from:date:message-id:subject:to
+         :cc;
+        bh=4ptsriY4LqRV3GJ566RNPaiV+XmYiNhIg946yy5oC2g=;
+        b=C1oMWXhl/V1we8SiQv7MD3uFufVOKUTx1KFYS3ZI3EMF5mo4zflrkl/KNYXDL7r9Es
+         cFSk/006NTDo233joIyrpSe3WP/glDonquZa8lFyPbzHO5E9d3WRe5bWA0aQPHy9G2d3
+         CEGYDADd//aSSrN9Apffy5e0CZZArqxDe0t5Uk/MS+2HjOwUVsbW1xoL9plDoQ18dgD0
+         pmaCC9xpy/Q79VICJs1PIohTlMCuCIkdgrgbD5w5723sAQVXiNNVBT3WuuN2x1mt5pgr
+         zjtpTKBdj9DCIV5+jHZiGAGL9xlc7tQgITfuuZh8N08Kp1w07y96lBKAKzknr7TI6hoP
+         MKiw==
 X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
         d=1e100.net; s=20161025;
-        h=x-gm-message-state:date:from:to:cc:subject:message-id:references
-         :mime-version:content-disposition:in-reply-to:user-agent;
-        bh=8cBo88Rf0XB3Amo8WHaoA3mvFSPQ6LbFDMO+GstCOgU=;
-        b=Mj+tyuiiZTC+4Uydo/wKMVjw2kpPqgFowW9aufPtw6EVKHXP1T6g398Wsueuyr2o7E
-         1m2wPQR0R/HyDeroDS8x8G3ElyKPf1Pywtr7PqPD3hPmV61drXl/mv2tp/S6D/z8lVP9
-         M6oCYXFL5poOJz17K9ZOW080P0uFVJqcU3pqduVYCZifWqLlEOEeMFOyr+R8zVFX0Evf
-         UrmgH2n0xEg32P80swtoeULkg/tf+/LRVovB+d/B8NKOr6ICiSfl98De9kiK8j4v1LR/
-         fGEJV7irR+H/8wVojbqVcqyd9PpGkGWzy2rUIm2b4Zr5OMwx5Vw3U+LQOtEl81pMJO/T
-         EfXQ==
-X-Gm-Message-State: AOAM533kOsAosbq3QGYhB+AIpDvP2JLO9JWQwFg1D3l4kGuqwwCepGdK
-        KMNYumz5MaOcR/jz91e3P4w=
-X-Google-Smtp-Source: ABdhPJywdVpCr+WJQxL/CB+8FU0Ise/EiUvtP1NqlRdfdlKrgf438XWp3aGFvYREkH3IV2E+mX7okA==
-X-Received: by 2002:a17:906:b28d:: with SMTP id q13mr3590683ejz.378.1601383092996;
-        Tue, 29 Sep 2020 05:38:12 -0700 (PDT)
-Received: from kozik-lap ([194.230.155.194])
-        by smtp.googlemail.com with ESMTPSA id c5sm5704977edt.24.2020.09.29.05.38.09
-        (version=TLS1_2 cipher=ECDHE-ECDSA-CHACHA20-POLY1305 bits=256/256);
-        Tue, 29 Sep 2020 05:38:11 -0700 (PDT)
-Date:   Tue, 29 Sep 2020 14:38:08 +0200
-From:   Krzysztof Kozlowski <krzk@kernel.org>
-To:     Linus Walleij <linus.walleij@linaro.org>
-Cc:     Bartosz Golaszewski <bgolaszewski@baylibre.com>,
-        Rob Herring <robh+dt@kernel.org>, Ray Jui <rjui@broadcom.com>,
-        Scott Branden <sbranden@broadcom.com>,
-        bcm-kernel-feedback-list <bcm-kernel-feedback-list@broadcom.com>,
-        Shawn Guo <shawnguo@kernel.org>,
-        Sascha Hauer <s.hauer@pengutronix.de>,
-        Pengutronix Kernel Team <kernel@pengutronix.de>,
-        Fabio Estevam <festevam@gmail.com>,
-        NXP Linux Team <linux-imx@nxp.com>,
-        Manivannan Sadhasivam <manivannan.sadhasivam@linaro.org>,
-        Andy Gross <agross@kernel.org>,
-        Bjorn Andersson <bjorn.andersson@linaro.org>,
-        Palmer Dabbelt <palmer@dabbelt.com>,
-        Paul Walmsley <paul.walmsley@sifive.com>,
-        Masahiro Yamada <yamada.masahiro@socionext.com>,
-        Chris Packham <chris.packham@alliedtelesis.co.nz>,
-        Anson Huang <Anson.Huang@nxp.com>,
-        Sungbo Eo <mans0n@gorani.run>, Stefan Agner <stefan@agner.ch>,
-        Srinivas Kandagatla <srinivas.kandagatla@linaro.org>,
-        Magnus Damm <magnus.damm@gmail.com>,
-        Geert Uytterhoeven <geert+renesas@glider.be>,
-        Yash Shah <yash.shah@sifive.com>,
-        Paul Kocialkowski <paul.kocialkowski@bootlin.com>,
+        h=x-gm-message-state:mime-version:references:in-reply-to:from:date
+         :message-id:subject:to:cc;
+        bh=4ptsriY4LqRV3GJ566RNPaiV+XmYiNhIg946yy5oC2g=;
+        b=dnctMgAJj5X63mVuZDS6OVOJJsIhcrF6wcOm8v4mdKq3vDC2q0FUggl8q00ulwBNUp
+         zMRGarTYghJx8R8H9CLyFDJA7FCGL0kG7Ccc2lfUsQ3kt+NOF3Z1zxqj9xtv3q4+jjIw
+         Sp/uYSr3zSA506on+eEOpjO/95m4butcHsBvb5JtUGtF0/O8KV6TGeKWrUgOFSdGUL8y
+         A1Gt5/3lxySeaMLxweq9+IGqm7Y41Ezaih1nnwNicW43SGxjYwzfU96wOLksMZh7DoOI
+         LopdEic5SiHpbBme1ldqq7pJPK/+K059Izom0eq+wLe7+JMUFLh5C6sqxVIg2No//qqx
+         O6nQ==
+X-Gm-Message-State: AOAM532vD7IDB2vV0AwX/2vkISr5N87ssbbEjS8jmd2+cAWo5WPdOy8K
+        rxRE76mNlM5shYSqs1Hf/Tltrb3rCVPUmaW3fC+XFQ==
+X-Google-Smtp-Source: ABdhPJzAklLFWTOhXE7N9aEIT8GTpcr3Umi0D1/nm0zTd6rrhgvTwNP0yZm6xyWGCQSyOiDqLPaAZ2G3phObiGG1cWk=
+X-Received: by 2002:a19:520b:: with SMTP id m11mr1033290lfb.502.1601383887479;
+ Tue, 29 Sep 2020 05:51:27 -0700 (PDT)
+MIME-Version: 1.0
+References: <20200913210825.2022552-1-drew@beagleboard.org>
+In-Reply-To: <20200913210825.2022552-1-drew@beagleboard.org>
+From:   Linus Walleij <linus.walleij@linaro.org>
+Date:   Tue, 29 Sep 2020 14:51:16 +0200
+Message-ID: <CACRpkdZXu9g_Rq7707-6hXqPVfbxPBcrnR8KwLm+zOgS_EabAQ@mail.gmail.com>
+Subject: Re: [PATCH] pinctrl: single: check if #pinctrl-cells exceeds 3
+To:     Drew Fustini <drew@beagleboard.org>,
+        Tony Lindgren <tony@atomide.com>
+Cc:     Linux ARM <linux-arm-kernel@lists.infradead.org>,
+        Rob Herring <robh+dt@kernel.org>,
+        Linux-OMAP <linux-omap@vger.kernel.org>,
+        "linux-kernel@vger.kernel.org" <linux-kernel@vger.kernel.org>,
         "open list:GPIO SUBSYSTEM" <linux-gpio@vger.kernel.org>,
+        Haojian Zhuang <haojian.zhuang@linaro.org>,
         "open list:OPEN FIRMWARE AND FLATTENED DEVICE TREE BINDINGS" 
         <devicetree@vger.kernel.org>,
-        Linux ARM <linux-arm-kernel@lists.infradead.org>,
-        "linux-kernel@vger.kernel.org" <linux-kernel@vger.kernel.org>,
-        linux-unisoc@lists.infradead.org,
-        MSM <linux-arm-msm@vger.kernel.org>,
-        linux-riscv@lists.infradead.org
-Subject: Re: [PATCH 0/8] gpio: add common dtschema
-Message-ID: <20200929123808.GA21809@kozik-lap>
-References: <20200916162250.16098-1-krzk@kernel.org>
- <CACRpkdacWQKgCY1E=ONegPRE001UA-DmvRKB+Yz1maapYQ5rVQ@mail.gmail.com>
-MIME-Version: 1.0
-Content-Type: text/plain; charset=utf-8
-Content-Disposition: inline
-In-Reply-To: <CACRpkdacWQKgCY1E=ONegPRE001UA-DmvRKB+Yz1maapYQ5rVQ@mail.gmail.com>
-User-Agent: Mutt/1.9.4 (2018-02-28)
+        =?UTF-8?Q?Beno=C3=AEt_Cousson?= <bcousson@baylibre.com>,
+        Jason Kridner <jkridner@beagleboard.org>,
+        Robert Nelson <robertcnelson@gmail.com>,
+        Trent Piepho <tpiepho@gmail.com>
+Content-Type: text/plain; charset="UTF-8"
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-On Tue, Sep 29, 2020 at 01:56:42PM +0200, Linus Walleij wrote:
-> On Wed, Sep 16, 2020 at 6:23 PM Krzysztof Kozlowski <krzk@kernel.org> wrote:
-> 
-> > This is independent work of pca953x bindings:
-> > https://lore.kernel.org/lkml/20200916155715.21009-1-krzk@kernel.org/T/#u
-> >
-> > The DTS patches can be also applied independently.
-> 
-> I'm a big fan of this patch series and hope for a v2 soon
-> so I can apply them.
+On Sun, Sep 13, 2020 at 11:17 PM Drew Fustini <drew@beagleboard.org> wrote:
 
-I sent the dt-bindings part of it already to dtschema and it was
-applied.  It's missing the description of properties due to licensing
-but at least it brings the hog nodes validation.
+> The property #pinctrl-cells can either be 2 or 3.  There is currently
+> only a check to make sure that #pinctrl-cells is 2 or greater.  This
+> patch adds a check to make sure it is not greater than 3.
+>
+> Fixes: a13395418888 ("pinctrl: single: parse #pinctrl-cells = 2")
+> Reported-by: Trent Piepho <tpiepho@gmail.com>
+> Link: https://lore.kernel.org/linux-omap/3139716.CMS8C0sQ7x@zen.local/
+> Signed-off-by: Drew Fustini <drew@beagleboard.org>
 
-> 
-> If you do not foresee any conflicts in the DTS files I can
-> apply also these, else you can apply them in the i.MX DTS
-> tree (wherever that is) or I can provide an immutable
-> branch, whichever you like!
+Tony, does this and the other patch look good to you?
 
-Thanks! I resent already the DTS in separate patchset and most of them
-went in.
-
-Best regards,
-Krzysztof
-
+Yours,
+Linus Walleij
