@@ -2,201 +2,102 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from vger.kernel.org (vger.kernel.org [23.128.96.18])
-	by mail.lfdr.de (Postfix) with ESMTP id 0D6D127BB4C
-	for <lists+devicetree@lfdr.de>; Tue, 29 Sep 2020 05:11:25 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTP id 6A5E027BB58
+	for <lists+devicetree@lfdr.de>; Tue, 29 Sep 2020 05:14:51 +0200 (CEST)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S1727088AbgI2DLX (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Mon, 28 Sep 2020 23:11:23 -0400
-Received: from szxga05-in.huawei.com ([45.249.212.191]:14700 "EHLO huawei.com"
-        rhost-flags-OK-OK-OK-FAIL) by vger.kernel.org with ESMTP
-        id S1727043AbgI2DLX (ORCPT <rfc822;devicetree@vger.kernel.org>);
-        Mon, 28 Sep 2020 23:11:23 -0400
-Received: from DGGEMS411-HUB.china.huawei.com (unknown [172.30.72.59])
-        by Forcepoint Email with ESMTP id ACA9D3CB6BA51EF0EAE4;
-        Tue, 29 Sep 2020 11:11:21 +0800 (CST)
-Received: from [127.0.0.1] (10.174.177.253) by DGGEMS411-HUB.china.huawei.com
- (10.3.19.211) with Microsoft SMTP Server id 14.3.487.0; Tue, 29 Sep 2020
- 11:11:12 +0800
-Subject: Re: [PATCH v4 20/20] dt-bindings: arm: hisilicon: convert LPC
- controller bindings to json-schema
-To:     Rob Herring <robh@kernel.org>
-CC:     Wei Xu <xuwei5@hisilicon.com>,
-        Jonathan Cameron <Jonathan.Cameron@Huawei.com>,
-        devicetree <devicetree@vger.kernel.org>,
-        linux-arm-kernel <linux-arm-kernel@lists.infradead.org>,
-        linux-kernel <linux-kernel@vger.kernel.org>,
-        Libin <huawei.libin@huawei.com>,
-        Kefeng Wang <wangkefeng.wang@huawei.com>
-References: <20200928151324.2134-1-thunder.leizhen@huawei.com>
- <20200928151324.2134-21-thunder.leizhen@huawei.com>
- <20200928191635.GB3099266@bogus>
-From:   "Leizhen (ThunderTown)" <thunder.leizhen@huawei.com>
-Message-ID: <ccee45bf-746e-3f78-f026-d06768ba845c@huawei.com>
-Date:   Tue, 29 Sep 2020 11:11:11 +0800
-User-Agent: Mozilla/5.0 (Windows NT 10.0; WOW64; rv:60.0) Gecko/20100101
- Thunderbird/60.7.0
+        id S1727421AbgI2DOr (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Mon, 28 Sep 2020 23:14:47 -0400
+Received: from lindbergh.monkeyblade.net ([23.128.96.19]:45348 "EHLO
+        lindbergh.monkeyblade.net" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
+        with ESMTP id S1727418AbgI2DOq (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Mon, 28 Sep 2020 23:14:46 -0400
+Received: from mail-oo1-xc41.google.com (mail-oo1-xc41.google.com [IPv6:2607:f8b0:4864:20::c41])
+        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 21BA2C061755
+        for <devicetree@vger.kernel.org>; Mon, 28 Sep 2020 20:14:45 -0700 (PDT)
+Received: by mail-oo1-xc41.google.com with SMTP id w25so902178oos.10
+        for <devicetree@vger.kernel.org>; Mon, 28 Sep 2020 20:14:45 -0700 (PDT)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+        d=linaro.org; s=google;
+        h=from:to:cc:subject:date:message-id:mime-version
+         :content-transfer-encoding;
+        bh=yIlNUdxEGSFfbjWcNq+Z8ZxMTaW9g2NynmJ/obF8AgQ=;
+        b=mGfWybiqpo/+BrhDH3wbskXWUEmVWqQeaqKnsahJR0v2pBENUUFj2RYd3G5gp0PSCx
+         sFMB1WK0xgviJ/z2xEMtdIsztAzQWvUCTFRw2KvKY7SoqFW8wReoewFyKFlYha5eahcH
+         R43nPzuBtwYUoZQT0QeoauXi+/kNKLLZhDUy1aHUiNPwoMJGetIGkGQjt3o7Vzacybz1
+         sZGO8QljsHqNE9qp20NM/wGj/F9zFh62/Csac+J9yAAib14yCK0vL4cV/wGJzoXN7IGM
+         hLblDXr7IyN2xMnFi4c7zU2OvLAyV524hQyo7Winw1oM8+onFjdeGanapKp+bjK1ERpq
+         U1bw==
+X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+        d=1e100.net; s=20161025;
+        h=x-gm-message-state:from:to:cc:subject:date:message-id:mime-version
+         :content-transfer-encoding;
+        bh=yIlNUdxEGSFfbjWcNq+Z8ZxMTaW9g2NynmJ/obF8AgQ=;
+        b=jDCydgUyHklbLe8pAQRSTANZwIvQCTlbm+YGRUz4ajvuQ+4sQz2gUdKOJGj0BUQklu
+         NpM1BuMsOq0zresoAPqwBr4zC9NbQkVx6ERnRN21mJyB9tAj4CHtck9G9G3Pv1+e6ubY
+         cFS/Foa7dhndm4lThyvmrH5+xkjrBEk+FF8TKb5WYxWGWQCE4GF83Ghdp3K11P4TjW9t
+         HG2Ka2nfbifMMeu2NRMwbzfxdHe/W792WLHN4UDVn8USHgU+0qlvOv9P4zwuW5fy4qrt
+         1KtNH9fd85e9qp/f+566RRuhjQcqT/RTAVYIZOaox8HCN4GeOwBBV0PFkhiCYQKfTA0g
+         wQJA==
+X-Gm-Message-State: AOAM530Bxy971JXnteWhMe6hpybz7EhYjFufRibLvtn22b3ohBaiA/aI
+        SZz++UuRL/VsFe/qCJS7smBA2A==
+X-Google-Smtp-Source: ABdhPJzwCi7ao/H+8OErGk5NmFdGRn2n18mn3wKEJziScU+conJVKX5SPZeE9vzKQ7lasDxro3UN9w==
+X-Received: by 2002:a4a:5258:: with SMTP id d85mr3028655oob.72.1601349284435;
+        Mon, 28 Sep 2020 20:14:44 -0700 (PDT)
+Received: from localhost.localdomain (99-135-181-32.lightspeed.austtx.sbcglobal.net. [99.135.181.32])
+        by smtp.gmail.com with ESMTPSA id 36sm729548otb.30.2020.09.28.20.14.43
+        (version=TLS1_3 cipher=TLS_AES_256_GCM_SHA384 bits=256/256);
+        Mon, 28 Sep 2020 20:14:43 -0700 (PDT)
+From:   Bjorn Andersson <bjorn.andersson@linaro.org>
+To:     Pavel Machek <pavel@ucw.cz>, Dan Murphy <dmurphy@ti.com>,
+        Rob Herring <robh+dt@kernel.org>,
+        Andy Gross <agross@kernel.org>,
+        Bjorn Andersson <bjorn.andersson@linaro.org>,
+        Thierry Reding <thierry.reding@gmail.com>,
+        =?UTF-8?q?Uwe=20Kleine-K=C3=B6nig?= 
+        <u.kleine-koenig@pengutronix.de>, Lee Jones <lee.jones@linaro.org>,
+        Martin Botka <martin.botka1@gmail.com>
+Cc:     linux-leds@vger.kernel.org, devicetree@vger.kernel.org,
+        linux-kernel@vger.kernel.org, linux-arm-msm@vger.kernel.org,
+        linux-pwm@vger.kernel.org
+Subject: [PATCH v4 0/4] Qualcomm Light Pulse Generator
+Date:   Mon, 28 Sep 2020 20:15:40 -0700
+Message-Id: <20200929031544.1000204-1-bjorn.andersson@linaro.org>
+X-Mailer: git-send-email 2.28.0
 MIME-Version: 1.0
-In-Reply-To: <20200928191635.GB3099266@bogus>
-Content-Type: text/plain; charset="utf-8"
-Content-Language: en-US
-Content-Transfer-Encoding: 7bit
-X-Originating-IP: [10.174.177.253]
-X-CFilter-Loop: Reflected
+Content-Transfer-Encoding: 8bit
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
+This series introduces a generic pattern interface in the LED class and
+a driver for the Qualcomm Light Pulse Generator.
 
+It seems like it's been almost 3 years since I posted v3, which was hung
+up on the lack of conclusion on the hw_pattern and multicolor support.
+Now that those are concluded I hope we can make some progress on the LPG
+support again.
 
-On 2020/9/29 3:16, Rob Herring wrote:
-> On Mon, Sep 28, 2020 at 11:13:24PM +0800, Zhen Lei wrote:
->> Convert the Hisilicon Hip06 SoCs implement a Low Pin Count (LPC)
->> controller binding to DT schema format using json-schema.
->>
->> Signed-off-by: Zhen Lei <thunder.leizhen@huawei.com>
->> ---
->>  .../arm/hisilicon/hisilicon-low-pin-count.txt      | 33 ------------
->>  .../arm/hisilicon/hisilicon-low-pin-count.yaml     | 61 ++++++++++++++++++++++
->>  2 files changed, 61 insertions(+), 33 deletions(-)
->>  delete mode 100644 Documentation/devicetree/bindings/arm/hisilicon/hisilicon-low-pin-count.txt
->>  create mode 100644 Documentation/devicetree/bindings/arm/hisilicon/hisilicon-low-pin-count.yaml
->>
->> diff --git a/Documentation/devicetree/bindings/arm/hisilicon/hisilicon-low-pin-count.txt b/Documentation/devicetree/bindings/arm/hisilicon/hisilicon-low-pin-count.txt
->> deleted file mode 100644
->> index 10bd35f9207f2ee..000000000000000
->> --- a/Documentation/devicetree/bindings/arm/hisilicon/hisilicon-low-pin-count.txt
->> +++ /dev/null
->> @@ -1,33 +0,0 @@
->> -Hisilicon Hip06 Low Pin Count device
->> -  Hisilicon Hip06 SoCs implement a Low Pin Count (LPC) controller, which
->> -  provides I/O access to some legacy ISA devices.
->> -  Hip06 is based on arm64 architecture where there is no I/O space. So, the
->> -  I/O ports here are not CPU addresses, and there is no 'ranges' property in
->> -  LPC device node.
->> -
->> -Required properties:
->> -- compatible:  value should be as follows:
->> -	(a) "hisilicon,hip06-lpc"
->> -	(b) "hisilicon,hip07-lpc"
->> -- #address-cells: must be 2 which stick to the ISA/EISA binding doc.
->> -- #size-cells: must be 1 which stick to the ISA/EISA binding doc.
->> -- reg: base memory range where the LPC register set is mapped.
->> -
->> -Note:
->> -  The node name before '@' must be "isa" to represent the binding stick to the
->> -  ISA/EISA binding specification.
->> -
->> -Example:
->> -
->> -isa@a01b0000 {
->> -	compatible = "hisilicon,hip06-lpc";
->> -	#address-cells = <2>;
->> -	#size-cells = <1>;
->> -	reg = <0x0 0xa01b0000 0x0 0x1000>;
->> -
->> -	ipmi0: bt@e4 {
->> -		compatible = "ipmi-bt";
->> -		device_type = "ipmi";
->> -		reg = <0x01 0xe4 0x04>;
->> -	};
->> -};
->> diff --git a/Documentation/devicetree/bindings/arm/hisilicon/hisilicon-low-pin-count.yaml b/Documentation/devicetree/bindings/arm/hisilicon/hisilicon-low-pin-count.yaml
->> new file mode 100644
->> index 000000000000000..83ca10adce71b62
->> --- /dev/null
->> +++ b/Documentation/devicetree/bindings/arm/hisilicon/hisilicon-low-pin-count.yaml
->> @@ -0,0 +1,61 @@
->> +# SPDX-License-Identifier: (GPL-2.0-only OR BSD-2-Clause)
->> +%YAML 1.2
->> +---
->> +$id: http://devicetree.org/schemas/arm/hisilicon/hisilicon-low-pin-count.yaml#
->> +$schema: http://devicetree.org/meta-schemas/core.yaml#
->> +
->> +title: Hisilicon Hip06 Low Pin Count device
->> +
->> +maintainers:
->> +  - Wei Xu <xuwei5@hisilicon.com>
->> +
->> +description: |
->> +  Hisilicon Hip06 SoCs implement a Low Pin Count (LPC) controller, which
->> +  provides I/O access to some legacy ISA devices.
->> +  Hip06 is based on arm64 architecture where there is no I/O space. So, the
->> +  I/O ports here are not CPU addresses, and there is no 'ranges' property in
->> +  LPC device node.
->> +
->> +properties:
->> +  $nodename:
->> +    pattern: '^isa@[0-9a-f]+$'
->> +    description: |
->> +      The node name before '@' must be "isa" to represent the binding stick
->> +      to the ISA/EISA binding specification.
->> +
->> +  compatible:
->> +    enum:
->> +      - hisilicon,hip06-lpc
->> +      - hisilicon,hip07-lpc
->> +
->> +  reg:
->> +    description: base memory range where the LPC register set is mapped.
-> 
-> Drop description.
+The dts patches are included in the series as "examples", ultimately my
+expectation is that the dt binding and driver patches are picked up
+through the leds tree, while Andy or myself take the dts patches.
 
-OK
+Bjorn Andersson (4):
+  dt-bindings: leds: Add Qualcomm Light Pulse Generator binding
+  leds: Add driver for Qualcomm LPG
+  arm64: dts: qcom: msm8996: Add mpp and lpg blocks
+  arm64: dts: qcom: Add user LEDs on db820c
 
-> 
->> +    maxItems: 1
->> +
->> +  '#address-cells':
->> +    description: must be 2 which stick to the ISA/EISA binding doc.
-> 
-> Drop.
+ .../bindings/leds/leds-qcom-lpg.yaml          |  170 +++
+ arch/arm64/boot/dts/qcom/apq8096-db820c.dtsi  |   49 +
+ arch/arm64/boot/dts/qcom/pm8994.dtsi          |    9 +
+ arch/arm64/boot/dts/qcom/pmi8994.dtsi         |   20 +
+ drivers/leds/Kconfig                          |    9 +
+ drivers/leds/Makefile                         |    1 +
+ drivers/leds/leds-qcom-lpg.c                  | 1213 +++++++++++++++++
+ 7 files changed, 1471 insertions(+)
+ create mode 100644 Documentation/devicetree/bindings/leds/leds-qcom-lpg.yaml
+ create mode 100644 drivers/leds/leds-qcom-lpg.c
 
-OK
-
-> 
->> +    const: 2
->> +
->> +  '#size-cells':
->> +    description: must be 1 which stick to the ISA/EISA binding doc.
-> 
-> Drop.
-
-OK
-
-> 
->> +    const: 1
->> +
->> +required:
->> +  - compatible
->> +  - reg
-> 
-> additionalProperties:
->   type: object
-
-OK, I will add it.
-
-> 
->> +
->> +examples:
->> +  - |
->> +    isa@a01b0000 {
->> +        compatible = "hisilicon,hip06-lpc";
->> +        #address-cells = <2>;
->> +        #size-cells = <1>;
->> +        reg = <0xa01b0000 0x1000>;
->> +
->> +        ipmi0: bt@e4 {
->> +            compatible = "ipmi-bt";
->> +            device_type = "ipmi";
->> +            reg = <0x01 0xe4 0x04>;
->> +        };
->> +    };
->> +...
->> -- 
->> 1.8.3
->>
->>
-> 
-> .
-> 
+-- 
+2.28.0
 
