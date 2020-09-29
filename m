@@ -2,75 +2,66 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from vger.kernel.org (vger.kernel.org [23.128.96.18])
-	by mail.lfdr.de (Postfix) with ESMTP id D384827D722
-	for <lists+devicetree@lfdr.de>; Tue, 29 Sep 2020 21:43:53 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTP id 0395527D72A
+	for <lists+devicetree@lfdr.de>; Tue, 29 Sep 2020 21:46:32 +0200 (CEST)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S1728362AbgI2Tnw (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Tue, 29 Sep 2020 15:43:52 -0400
-Received: from mail-oi1-f195.google.com ([209.85.167.195]:41472 "EHLO
-        mail-oi1-f195.google.com" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S1728229AbgI2Tnw (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Tue, 29 Sep 2020 15:43:52 -0400
-Received: by mail-oi1-f195.google.com with SMTP id x69so6799818oia.8;
-        Tue, 29 Sep 2020 12:43:52 -0700 (PDT)
-X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=1e100.net; s=20161025;
-        h=x-gm-message-state:date:from:to:cc:subject:message-id:references
-         :mime-version:content-disposition:in-reply-to;
-        bh=q9gOxkBk6n8kdo+ETunaech3ZF6PmJ4G3bzk+Wi+tL8=;
-        b=fL3RTyrCRAa05iBmWE9YI+W7WFFK4Y65xWv994E94ztbevNklYRp4KbXAdMCKI35Wc
-         ClryFidFxk7E7FvZH8a2ilMQHTq/x+yTdXD6iLpQvMx7m4Bz434GcbuJKksm7n4v09do
-         Ft2udsaN4/IcTIiW5aMLNpg0ErSOGPKjkcSRNz4DIPGxJ/5rWRcQOz+wg9eRIllPMhmU
-         cDnM3/6U5Kf2/T5VyiBP6lQr483/PvG3UTElDUL9PId1TwU+jkzh4Zf7BF/POiBzzKHk
-         5J9/HTKFE8EY6vI6WFZ+CV/c7SSgxr9KNfSvDLMzQIxlYaX75IqPtGpBCu+yafsPIvs6
-         XSDg==
-X-Gm-Message-State: AOAM53355cuyujAL2uIf/bt0AGiNJxA4SvXQ6MllQaf07yJR0/qXaU8C
-        vQtq3X4+dhxLDQZ6ouKPkzEAn2d6vmEo
-X-Google-Smtp-Source: ABdhPJymhNE82M1UsXoHK3kRUrd5SWesFi3N9ZwcJhuYSr7wRsm6AdFXovh4us4f/k8ukKVnUK2jbg==
-X-Received: by 2002:aca:fd58:: with SMTP id b85mr3399954oii.20.1601408631669;
-        Tue, 29 Sep 2020 12:43:51 -0700 (PDT)
-Received: from xps15 (24-155-109-49.dyn.grandenetworks.net. [24.155.109.49])
-        by smtp.gmail.com with ESMTPSA id u68sm1294671otb.9.2020.09.29.12.43.50
-        (version=TLS1_3 cipher=TLS_AES_256_GCM_SHA384 bits=256/256);
-        Tue, 29 Sep 2020 12:43:51 -0700 (PDT)
-Received: (nullmailer pid 1038804 invoked by uid 1000);
-        Tue, 29 Sep 2020 19:43:50 -0000
-Date:   Tue, 29 Sep 2020 14:43:50 -0500
-From:   Rob Herring <robh@kernel.org>
-To:     Peter Ujfalusi <peter.ujfalusi@ti.com>
-Cc:     jason@lakedaemon.net, robh+dt@kernel.org, nm@ti.com,
-        linux-kernel@vger.kernel.org, maz@kernel.org,
-        devicetree@vger.kernel.org, t-kristo@ti.com,
-        linux-arm-kernel@lists.infradead.org, lokeshvutla@ti.com,
-        ssantosh@kernel.org, tglx@linutronix.de
-Subject: Re: [PATCH 1/2] dt-bindings: irqchip: ti, sci-inta: Update for
- unmapped event handling
-Message-ID: <20200929194350.GA1038748@bogus>
-References: <20200928063930.12012-1-peter.ujfalusi@ti.com>
- <20200928063930.12012-2-peter.ujfalusi@ti.com>
+        id S1728397AbgI2Tqa (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Tue, 29 Sep 2020 15:46:30 -0400
+Received: from mail.kernel.org ([198.145.29.99]:43474 "EHLO mail.kernel.org"
+        rhost-flags-OK-OK-OK-OK) by vger.kernel.org with ESMTP
+        id S1727700AbgI2Tqa (ORCPT <rfc822;devicetree@vger.kernel.org>);
+        Tue, 29 Sep 2020 15:46:30 -0400
+Received: from mail-ot1-f54.google.com (mail-ot1-f54.google.com [209.85.210.54])
+        (using TLSv1.2 with cipher ECDHE-RSA-AES128-GCM-SHA256 (128/128 bits))
+        (No client certificate requested)
+        by mail.kernel.org (Postfix) with ESMTPSA id D6A9C2083B;
+        Tue, 29 Sep 2020 19:46:29 +0000 (UTC)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=kernel.org;
+        s=default; t=1601408790;
+        bh=jjEzi8lg/fixZ8RSJmRBsh7VZs4uZ4cmuyV6enGSxv4=;
+        h=References:In-Reply-To:From:Date:Subject:To:Cc:From;
+        b=Kpj8AilVQM5xcmwB1Vb5LrYlzGb2bJ3ug0FO3i3lKqqT6+bQVh7OTRej29MV5LnRV
+         psaTnlyAqXAIu8B02xUOFooNMugUfaHjJwE7dKKfCJFzGf7f6aln2133qYvfH/UIrW
+         uYKbeYC+vvdFVf3B0Na3rUddE8UxIy8jMDLBlGNk=
+Received: by mail-ot1-f54.google.com with SMTP id m13so5643364otl.9;
+        Tue, 29 Sep 2020 12:46:29 -0700 (PDT)
+X-Gm-Message-State: AOAM531UbWK847ffND11rL5wNQ6uTrCI7j5D3ljb4HBtlYZGHOJ3kfbR
+        xhnFSqO5QOQVNjY8Vr37ipcgNrptxpi/uTUXww==
+X-Google-Smtp-Source: ABdhPJwn8glarH4xnTwvOThxWuXdjV7eB4z3CGp5Z7Qqwtx9a47NmAh96i2eJuXIc3W9IlW8LNcb2k3TadFysAdRT+g=
+X-Received: by 2002:a9d:6b0d:: with SMTP id g13mr3933936otp.129.1601408789102;
+ Tue, 29 Sep 2020 12:46:29 -0700 (PDT)
 MIME-Version: 1.0
-Content-Type: text/plain; charset=us-ascii
-Content-Disposition: inline
-In-Reply-To: <20200928063930.12012-2-peter.ujfalusi@ti.com>
+References: <20200926131157.14633-1-kholk11@gmail.com> <20200929191254.GA984478@bogus>
+ <CAMS8qEX_eB1pMLfqVCh5sHVaRevCYnpr+846LyZf9dH1-DQvzQ@mail.gmail.com>
+In-Reply-To: <CAMS8qEX_eB1pMLfqVCh5sHVaRevCYnpr+846LyZf9dH1-DQvzQ@mail.gmail.com>
+From:   Rob Herring <robh@kernel.org>
+Date:   Tue, 29 Sep 2020 14:46:17 -0500
+X-Gmail-Original-Message-ID: <CAL_JsqJF6gxtFMtQ7A3-rT7LSH07T8u=PdfVFAXtTDm4peiFEg@mail.gmail.com>
+Message-ID: <CAL_JsqJF6gxtFMtQ7A3-rT7LSH07T8u=PdfVFAXtTDm4peiFEg@mail.gmail.com>
+Subject: Re: [PATCH] phy: qcom-qusb2: Add support for SDM630/660
+To:     Konrad Dybcio <konradybcio@gmail.com>
+Cc:     AngeloGioacchino Del Regno <kholk11@gmail.com>,
+        Andy Gross <agross@kernel.org>,
+        Bjorn Andersson <bjorn.andersson@linaro.org>,
+        Kishon Vijay Abraham I <kishon@ti.com>,
+        marijns95@gmail.com, Martin Botka <martin.botka1@gmail.com>,
+        DTML <devicetree@vger.kernel.org>,
+        linux-arm-msm <linux-arm-msm@vger.kernel.org>,
+        phone-devel@vger.kernel.org,
+        Linux Kernel Mailing List <linux-kernel@vger.kernel.org>
+Content-Type: text/plain; charset="UTF-8"
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-On Mon, 28 Sep 2020 09:39:29 +0300, Peter Ujfalusi wrote:
-> The new DMA architecture introduced with AM64 introduced new event types:
-> unampped events.
-> 
-> These events are mapped within INTA in contrast to other K3 devices where
-> the events with similar function was originating from the UDMAP or ringacc.
-> 
-> The ti,unmapped-event-sources should contain phandle array to the devices
-> in the system (typically DMA controllers) from where the unmapped events
-> originate.
-> 
-> Signed-off-by: Peter Ujfalusi <peter.ujfalusi@ti.com>
-> ---
->  .../bindings/interrupt-controller/ti,sci-inta.yaml           | 5 +++++
->  1 file changed, 5 insertions(+)
-> 
+On Tue, Sep 29, 2020 at 2:25 PM Konrad Dybcio <konradybcio@gmail.com> wrote:
+>
+> >You should just pull this from the driver data.
+>
+> I reused 8996's phy_cfg so as to change one line and not repeat dozens
+> for what's essentially the same thing, so I don't think it's the
+> better option..
 
-Reviewed-by: Rob Herring <robh@kernel.org>
+Okay, save it for the next person when the if statement grows.
+
+Rob
