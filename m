@@ -2,242 +2,89 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from vger.kernel.org (vger.kernel.org [23.128.96.18])
-	by mail.lfdr.de (Postfix) with ESMTP id 540B327D655
-	for <lists+devicetree@lfdr.de>; Tue, 29 Sep 2020 21:01:48 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTP id C879C27D66F
+	for <lists+devicetree@lfdr.de>; Tue, 29 Sep 2020 21:08:28 +0200 (CEST)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S1728276AbgI2TBr (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Tue, 29 Sep 2020 15:01:47 -0400
-Received: from lindbergh.monkeyblade.net ([23.128.96.19]:50844 "EHLO
-        lindbergh.monkeyblade.net" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S1727876AbgI2TBr (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Tue, 29 Sep 2020 15:01:47 -0400
-Received: from mail-pj1-x1041.google.com (mail-pj1-x1041.google.com [IPv6:2607:f8b0:4864:20::1041])
-        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 18589C061755
-        for <devicetree@vger.kernel.org>; Tue, 29 Sep 2020 12:01:47 -0700 (PDT)
-Received: by mail-pj1-x1041.google.com with SMTP id jw11so3179863pjb.0
-        for <devicetree@vger.kernel.org>; Tue, 29 Sep 2020 12:01:47 -0700 (PDT)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=chromium.org; s=google;
-        h=date:from:to:cc:subject:message-id:references:mime-version
-         :content-disposition:in-reply-to;
-        bh=7nARKy1YRpyTgSZxIUwrkU74pSG7aRsz7ayBIvLyxxw=;
-        b=K5Jq8aHp/pcgYY6/QdkXX9JB1LeqtGy1prh//v+zPwiUaXTQzBa2VCuXLyIaZ3nJeL
-         wW0cDksddcnfBWLBRQ5prkhoNZxxd0/Oy4PE35SdlJb/aqqbs454AE8WfY4X9NU1lMP2
-         c/fOAFbu8A+hI7P88st8YAXAvJ1cbSXMt5R9M=
+        id S1728543AbgI2TIX (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Tue, 29 Sep 2020 15:08:23 -0400
+Received: from mail-oi1-f196.google.com ([209.85.167.196]:40085 "EHLO
+        mail-oi1-f196.google.com" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
+        with ESMTP id S1728284AbgI2TIU (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Tue, 29 Sep 2020 15:08:20 -0400
+Received: by mail-oi1-f196.google.com with SMTP id t76so6673309oif.7;
+        Tue, 29 Sep 2020 12:08:19 -0700 (PDT)
 X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
         d=1e100.net; s=20161025;
         h=x-gm-message-state:date:from:to:cc:subject:message-id:references
          :mime-version:content-disposition:in-reply-to;
-        bh=7nARKy1YRpyTgSZxIUwrkU74pSG7aRsz7ayBIvLyxxw=;
-        b=Ety7tBZw4Suawp9erWZvTrkjDksHiO8c6z2F4gX3ZO18WIcVRwg1lmhJjTAJxbFo2Z
-         +IfWZoLtLO36RaQU4noFkanBNTg8XWgimHQlFp8MIjvy1/uiSVJoZU0uWRPxYGRqRLcD
-         xHdqvyMQx+QJkMGjed0RH/sTnztyUMEPJIm8w69TJqC1tsPy/opXPXRvR5nN+lgpTDDG
-         JZkb9HdzA0LYoBL0JlM/02/AtN6ggc8BC4M7TQFGMnmxMW3QG8zqyBjbrO7Wymdtv7VR
-         3oxEOxw4R1I3OUuRSxjK8Q020AB0ZiC0Fkd0pVbQB5dg4+d9EaWonkM5CDUE568c3yvG
-         eTfw==
-X-Gm-Message-State: AOAM530kWSQQUweYXEi6P8Ys1hDxEi7DVVFlQ44pKa08XBw2ei7G4qte
-        rYpIbmhMohAolaFUvwZlu+hEUA==
-X-Google-Smtp-Source: ABdhPJwB7K7TSZqFAymAj9u1ww16GuQvJSGxJcrJYqk3iQ+Nbhr/JctY+HTfM4yaTcGjCSTMeNnoqA==
-X-Received: by 2002:a17:90a:7bcf:: with SMTP id d15mr5083857pjl.230.1601406106614;
-        Tue, 29 Sep 2020 12:01:46 -0700 (PDT)
-Received: from localhost ([2620:15c:202:1:f693:9fff:fef4:e70a])
-        by smtp.gmail.com with ESMTPSA id 64sm6245442pfz.204.2020.09.29.12.01.45
-        (version=TLS1_3 cipher=TLS_AES_128_GCM_SHA256 bits=128/128);
-        Tue, 29 Sep 2020 12:01:46 -0700 (PDT)
-Date:   Tue, 29 Sep 2020 12:01:44 -0700
-From:   Matthias Kaehlcke <mka@chromium.org>
-To:     Sandeep Maheswaram <sanm@codeaurora.org>
-Cc:     Andy Gross <agross@kernel.org>,
+        bh=7M5WWuCCkp0VZzy+IL0R9xA2aVw6kleFif9899pGFyQ=;
+        b=NXnc7HSby/OO/nXaQ1YMZBX5OT6gXDJ7gHaXW8J54vU4YPqwGV8vhFdvjSZR0fQ27F
+         SIfh4TzBCId1DRMVmlVKzmqgvjkPNAFUfAXpgT46nVFQcVLnWbKc6dugWfUNYxpq1T+X
+         OXf4HLro8REnUAANM357BmdZQ/WDIYdYMIwtD+FCV9tfB8Guf5FUmyTLIYYADABGzfnh
+         JiJXFrj3FqWCvFRrFK3zn4QAU+UnmGb+klaaH3JsznN3uJpW7gjVYMiaa9Tl7AKgA+JO
+         3FfKESIpcb0iJma/SOEDVfVr2+dtpDfRbq5m9flwiFL19lPDXXQyDHyPYdgq5q1qUIX3
+         86IQ==
+X-Gm-Message-State: AOAM531mn9nj1RcuJ2UkgnGTlsESMhlG0sNLi6Q58MgnD6t2O4fD565z
+        ebMFRHA8dtimwPSgxHu22w==
+X-Google-Smtp-Source: ABdhPJy0b+HZcCj2usxdcLROYd54PlCp1iEn8dy5PwPN7+oTFJb3bRAq2L4tLGroeti9O+YaI9yabQ==
+X-Received: by 2002:aca:5c43:: with SMTP id q64mr3520166oib.18.1601406498870;
+        Tue, 29 Sep 2020 12:08:18 -0700 (PDT)
+Received: from xps15 (24-155-109-49.dyn.grandenetworks.net. [24.155.109.49])
+        by smtp.gmail.com with ESMTPSA id s13sm1207704otq.5.2020.09.29.12.08.17
+        (version=TLS1_3 cipher=TLS_AES_256_GCM_SHA384 bits=256/256);
+        Tue, 29 Sep 2020 12:08:18 -0700 (PDT)
+Received: (nullmailer pid 980133 invoked by uid 1000);
+        Tue, 29 Sep 2020 19:08:17 -0000
+Date:   Tue, 29 Sep 2020 14:08:17 -0500
+From:   Rob Herring <robh@kernel.org>
+To:     Amit Pundir <amit.pundir@linaro.org>
+Cc:     Kalle Valo <kvalo@codeaurora.org>,
+        David S Miller <davem@davemloft.net>,
+        Jakub Kicinski <kuba@kernel.org>,
         Bjorn Andersson <bjorn.andersson@linaro.org>,
-        Greg Kroah-Hartman <gregkh@linuxfoundation.org>,
-        Rob Herring <robh+dt@kernel.org>,
-        Mark Rutland <mark.rutland@arm.com>,
-        Felipe Balbi <balbi@kernel.org>,
-        Stephen Boyd <swboyd@chromium.org>,
-        Doug Anderson <dianders@chromium.org>,
-        linux-arm-msm@vger.kernel.org, linux-usb@vger.kernel.org,
-        devicetree@vger.kernel.org, linux-kernel@vger.kernel.org,
-        Manu Gautam <mgautam@codeaurora.org>
-Subject: Re: [PATCH v3 3/5] usb: dwc3: qcom: Configure wakeup interrupts and
- set genpd active wakeup flag
-Message-ID: <20200929190144.GD1621304@google.com>
-References: <1601376452-31839-1-git-send-email-sanm@codeaurora.org>
- <1601376452-31839-4-git-send-email-sanm@codeaurora.org>
+        Jeffrey Hugo <jeffrey.l.hugo@gmail.com>,
+        John Stultz <john.stultz@linaro.org>,
+        Sumit Semwal <sumit.semwal@linaro.org>,
+        Konrad Dybcio <konradybcio@gmail.com>,
+        ath10k@lists.infradead.org, devicetree@vger.kernel.org,
+        linux-wireless@vger.kernel.org, netdev@vger.kernel.org,
+        lkml <linux-kernel@vger.kernel.org>
+Subject: Re: [PATCH] ath10k: Introduce a devicetree quirk to skip host cap
+ QMI requests
+Message-ID: <20200929190817.GA968845@bogus>
+References: <1601058581-19461-1-git-send-email-amit.pundir@linaro.org>
 MIME-Version: 1.0
-Content-Type: text/plain; charset=utf-8
+Content-Type: text/plain; charset=us-ascii
 Content-Disposition: inline
-In-Reply-To: <1601376452-31839-4-git-send-email-sanm@codeaurora.org>
+In-Reply-To: <1601058581-19461-1-git-send-email-amit.pundir@linaro.org>
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-On Tue, Sep 29, 2020 at 04:17:30PM +0530, Sandeep Maheswaram wrote:
-> Configure interrupts based on hs_phy_flag to avoid triggering of
-> interrupts during system suspend and suspends successfully.
-> Set genpd active wakeup flag for usb gdsc if wakeup capable devices
-> are connected so that wake up happens without reenumeration.
+On Fri, Sep 25, 2020 at 11:59:41PM +0530, Amit Pundir wrote:
+> There are firmware versions which do not support host capability
+> QMI request. We suspect either the host cap is not implemented or
+> there may be firmware specific issues, but apparently there seem
+> to be a generation of firmware that has this particular behavior.
 > 
-> Signed-off-by: Sandeep Maheswaram <sanm@codeaurora.org>
-> ---
->  drivers/usb/dwc3/dwc3-qcom.c | 74 +++++++++++++++++++++++++++++++++++---------
->  1 file changed, 59 insertions(+), 15 deletions(-)
+> For example, firmware build on Xiaomi Poco F1 (sdm845) phone:
+> "QC_IMAGE_VERSION_STRING=WLAN.HL.2.0.c3-00257-QCAHLSWMTPLZ-1"
 > 
-> diff --git a/drivers/usb/dwc3/dwc3-qcom.c b/drivers/usb/dwc3/dwc3-qcom.c
-> index c703d55..b6f36bd 100644
-> --- a/drivers/usb/dwc3/dwc3-qcom.c
-> +++ b/drivers/usb/dwc3/dwc3-qcom.c
-> @@ -17,9 +17,11 @@
->  #include <linux/of_platform.h>
->  #include <linux/platform_device.h>
->  #include <linux/phy/phy.h>
-> +#include <linux/pm_domain.h>
->  #include <linux/usb/of.h>
->  #include <linux/reset.h>
->  #include <linux/iopoll.h>
-> +#include <linux/usb/hcd.h>
->  
->  #include "core.h"
->  
-> @@ -293,19 +295,33 @@ static void dwc3_qcom_interconnect_exit(struct dwc3_qcom *qcom)
->  
->  static void dwc3_qcom_disable_interrupts(struct dwc3_qcom *qcom)
->  {
-> +	struct dwc3 *dwc = platform_get_drvdata(qcom->dwc3);
-> +
->  	if (qcom->hs_phy_irq) {
->  		disable_irq_wake(qcom->hs_phy_irq);
->  		disable_irq_nosync(qcom->hs_phy_irq);
->  	}
->  
-> -	if (qcom->dp_hs_phy_irq) {
-> -		disable_irq_wake(qcom->dp_hs_phy_irq);
-> -		disable_irq_nosync(qcom->dp_hs_phy_irq);
-> -	}
-> +	if (dwc->hs_phy_flags & PHY_MODE_USB_HOST_LS) {
-> +		if (qcom->dp_hs_phy_irq) {
-> +			disable_irq_wake(qcom->dp_hs_phy_irq);
-> +			disable_irq_nosync(qcom->dp_hs_phy_irq);
-> +		}
-> +	} else if (dwc->hs_phy_flags & PHY_MODE_USB_HOST_HS) {
-> +		if (qcom->dm_hs_phy_irq) {
-> +			disable_irq_wake(qcom->dm_hs_phy_irq);
-> +			disable_irq_nosync(qcom->dm_hs_phy_irq);
-> +		}
-> +	} else {
-> +		if (qcom->dp_hs_phy_irq) {
-> +			disable_irq_wake(qcom->dp_hs_phy_irq);
-> +			disable_irq_nosync(qcom->dp_hs_phy_irq);
-> +		}
->  
-> -	if (qcom->dm_hs_phy_irq) {
-> -		disable_irq_wake(qcom->dm_hs_phy_irq);
-> -		disable_irq_nosync(qcom->dm_hs_phy_irq);
-> +		if (qcom->dm_hs_phy_irq) {
-> +			disable_irq_wake(qcom->dm_hs_phy_irq);
-> +			disable_irq_nosync(qcom->dm_hs_phy_irq);
-> +		}
-
-This function would benefit from a helper like this:
-
-static void dwc3_qcon_enable_wakeup_irq(int wake_irq)
-{
-	if (wake_irq) {
-		disable_irq_wake(wake_irq);
-		disable_irq_nosync(wake_irq);
-	}
-}
-
->  	}
->  
->  	if (qcom->ss_phy_irq) {
-> @@ -316,19 +332,33 @@ static void dwc3_qcom_disable_interrupts(struct dwc3_qcom *qcom)
->  
->  static void dwc3_qcom_enable_interrupts(struct dwc3_qcom *qcom)
->  {
-> +	struct dwc3 *dwc = platform_get_drvdata(qcom->dwc3);
-> +
->  	if (qcom->hs_phy_irq) {
->  		enable_irq(qcom->hs_phy_irq);
->  		enable_irq_wake(qcom->hs_phy_irq);
->  	}
->  
-> -	if (qcom->dp_hs_phy_irq) {
-> -		enable_irq(qcom->dp_hs_phy_irq);
-> -		enable_irq_wake(qcom->dp_hs_phy_irq);
-> -	}
-> +	if (dwc->hs_phy_flags & PHY_MODE_USB_HOST_LS) {
-> +		if (qcom->dp_hs_phy_irq) {
-> +			enable_irq(qcom->dp_hs_phy_irq);
-> +			enable_irq_wake(qcom->dp_hs_phy_irq);
-> +		}
-> +	} else if (dwc->hs_phy_flags & PHY_MODE_USB_HOST_HS) {
-> +		if (qcom->dm_hs_phy_irq) {
-> +			enable_irq(qcom->dm_hs_phy_irq);
-> +			enable_irq_wake(qcom->dm_hs_phy_irq);
-> +		}
-> +	} else {
-> +		if (qcom->dp_hs_phy_irq) {
-> +			enable_irq(qcom->dp_hs_phy_irq);
-> +			enable_irq_wake(qcom->dp_hs_phy_irq);
-> +		}
->  
-> -	if (qcom->dm_hs_phy_irq) {
-> -		enable_irq(qcom->dm_hs_phy_irq);
-> -		enable_irq_wake(qcom->dm_hs_phy_irq);
-> +		if (qcom->dm_hs_phy_irq) {
-> +			enable_irq(qcom->dm_hs_phy_irq);
-> +			enable_irq_wake(qcom->dm_hs_phy_irq);
-> +		}
->  	}
-
-Same as for _disable(), a helper would make this function more
-digestable.
-
->  	if (qcom->ss_phy_irq) {
-> @@ -341,6 +371,15 @@ static int dwc3_qcom_suspend(struct dwc3_qcom *qcom)
->  {
->  	u32 val;
->  	int i, ret;
-> +	struct dwc3 *dwc = platform_get_drvdata(qcom->dwc3);
-> +	struct usb_hcd  *hcd;
-
-nit: remove extra blank
-
-> +	struct generic_pm_domain *genpd = pd_to_genpd(qcom->dev->pm_domain);
-> +
-> +	if (dwc->xhci) {
-> +		hcd = platform_get_drvdata(dwc->xhci);
-> +		if (usb_wakeup_enabled_descendants(hcd->self.root_hub))
-> +			genpd->flags |= GENPD_FLAG_ACTIVE_WAKEUP;
-> +	}
-
-Do this after the check for 'qcom->is_suspended' below
-
->  
->  	if (qcom->is_suspended)
->  		return 0;
-> @@ -366,6 +405,11 @@ static int dwc3_qcom_resume(struct dwc3_qcom *qcom)
->  {
->  	int ret;
->  	int i;
-> +	struct dwc3 *dwc = platform_get_drvdata(qcom->dwc3);
-> +	struct generic_pm_domain *genpd = pd_to_genpd(qcom->dev->pm_domain);
-> +
-> +	if (dwc->xhci)
-> +		genpd->flags &= ~GENPD_FLAG_ACTIVE_WAKEUP;
-
-ditto
-
->  
->  	if (!qcom->is_suspended)
->  		return 0;
-> @@ -764,7 +808,7 @@ static int dwc3_qcom_probe(struct platform_device *pdev)
->  	if (ret)
->  		goto interconnect_exit;
->  
-> -	device_init_wakeup(&pdev->dev, 1);
-> +	device_init_wakeup(&pdev->dev, of_property_read_bool(np, "wakeup-source"));
->  	qcom->is_suspended = false;
->  	pm_runtime_set_active(dev);
->  	pm_runtime_enable(dev);
+> If we do not skip the host cap QMI request on Poco F1, then we
+> get a QMI_ERR_MALFORMED_MSG_V01 error message in the
+> ath10k_qmi_host_cap_send_sync(). But this error message is not
+> fatal to the firmware nor to the ath10k driver and we can still
+> bring up the WiFi services successfully if we just ignore it.
 > 
+> Hence introducing this DeviceTree quirk to skip host capability
+> QMI request for the firmware versions which do not support this
+> feature.
+
+So if you change the WiFi firmware, you may force a DT change too. Those 
+are pretty independent things otherwise.
+
+Why can't you just always ignore this error? If you can't deal with this 
+entirely in the driver, then it should be part of the WiFi firmware so 
+it's always in sync.
+
+Rob
