@@ -2,98 +2,125 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from vger.kernel.org (vger.kernel.org [23.128.96.18])
-	by mail.lfdr.de (Postfix) with ESMTP id C7ADA27F072
-	for <lists+devicetree@lfdr.de>; Wed, 30 Sep 2020 19:25:23 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTP id B844527F0A1
+	for <lists+devicetree@lfdr.de>; Wed, 30 Sep 2020 19:37:48 +0200 (CEST)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S1731337AbgI3RYp (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Wed, 30 Sep 2020 13:24:45 -0400
-Received: from jabberwock.ucw.cz ([46.255.230.98]:60648 "EHLO
-        jabberwock.ucw.cz" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S1725823AbgI3RYp (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Wed, 30 Sep 2020 13:24:45 -0400
-Received: by jabberwock.ucw.cz (Postfix, from userid 1017)
-        id 144EF1C0B76; Wed, 30 Sep 2020 19:24:42 +0200 (CEST)
-Date:   Wed, 30 Sep 2020 19:24:41 +0200
-From:   Pavel Machek <pavel@ucw.cz>
-To:     Alexander Dahl <ada@thorsis.com>
-Cc:     Alexander Dahl <post@lespocky.de>, linux-leds@vger.kernel.org,
-        devicetree@vger.kernel.org,
-        Jacek Anaszewski <jacek.anaszewski@gmail.com>,
-        Dan Murphy <dmurphy@ti.com>, Rob Herring <robh+dt@kernel.org>,
-        linux-kernel@vger.kernel.org,
-        Peter Ujfalusi <peter.ujfalusi@ti.com>,
-        Marek =?iso-8859-1?Q?Beh=FAn?= <marek.behun@nic.cz>,
-        Denis Osterland-Heim <denis.osterland@diehl.com>
-Subject: Re: [PATCH v5 1/3] leds: pwm: Remove platform_data support
-Message-ID: <20200930172441.GI27760@duo.ucw.cz>
-References: <20200919053145.7564-1-post@lespocky.de>
- <20200919053145.7564-2-post@lespocky.de>
- <20200919094418.GC12294@duo.ucw.cz>
- <11962635.BNa8PrgvAO@ada>
+        id S1731349AbgI3Rhr (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Wed, 30 Sep 2020 13:37:47 -0400
+Received: from lindbergh.monkeyblade.net ([23.128.96.19]:34044 "EHLO
+        lindbergh.monkeyblade.net" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
+        with ESMTP id S1725355AbgI3Rhr (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Wed, 30 Sep 2020 13:37:47 -0400
+Received: from mail-lj1-x244.google.com (mail-lj1-x244.google.com [IPv6:2a00:1450:4864:20::244])
+        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 41C66C061755
+        for <devicetree@vger.kernel.org>; Wed, 30 Sep 2020 10:37:47 -0700 (PDT)
+Received: by mail-lj1-x244.google.com with SMTP id r24so2325981ljm.3
+        for <devicetree@vger.kernel.org>; Wed, 30 Sep 2020 10:37:47 -0700 (PDT)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+        d=ragnatech-se.20150623.gappssmtp.com; s=20150623;
+        h=date:from:to:cc:subject:message-id:references:mime-version
+         :content-disposition:content-transfer-encoding:in-reply-to;
+        bh=nbODIVmtMlo+oLH9Hrd8YGZI1ZfekrJ3et3L9IP3emw=;
+        b=XMWwh4Nz6o2C7++lYVkhjkwC5h4Fg1CtBXKYaVfnuMN0DhI1MS18W9JzZHWGJ190qC
+         3Yn6DG46RbfYlASND+TtT+IOlnxrJmcLcxSLeHwbkQyZdViuFmTwIWAZBeD8IoS0NgJU
+         9/iu6348F5EBEQr0YdW3SqexfZcYhbP+g0Ce9IocdnoKHCkTPkissYZFeY5D/HkbZaUV
+         s9mlzqY4RyugivLGjSCtbpu4TEyGPKucmg/Kefjoa7DrChvJ+I+QfArOGA35WACDbwal
+         gY6BbBKRqovl/O0BCwOEWFasJnokCoS90w4YSuXv4Xd+jcRUCcQt1litY3yaF4F5TaZU
+         Qiug==
+X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+        d=1e100.net; s=20161025;
+        h=x-gm-message-state:date:from:to:cc:subject:message-id:references
+         :mime-version:content-disposition:content-transfer-encoding
+         :in-reply-to;
+        bh=nbODIVmtMlo+oLH9Hrd8YGZI1ZfekrJ3et3L9IP3emw=;
+        b=cxbtPULlCIHeI3uN2Y6o2IHP236sbnGXIC27snH3HSDYMjKo9HktM0tB0+BB6cyNLG
+         qH5dop5edvpEdHv8FGYQb3xfUOJcXnFBSWfh11y1VCNF2gh6isAZBrymZzL3BAt27cA0
+         W33gVBiqnVJLe23+WHPGDkrD0XkfQArgPRzbZyBP/Xmc6RDZGJjR2xS3ATT8lEHBdCkX
+         gS3GA2Y6ZyZ4sLXlTYGd5rZOMf6Xojj+4vuuyKs+7V0yGs25M8yf3ORpQKtf+isfzsVn
+         t2K26WBOZCg/NyS3fvmca5W47nQKrFrM77EV/SUEH0PIkfMwk+1slcUWPTruuBQHn9uA
+         lh7w==
+X-Gm-Message-State: AOAM532lidMKkV8c3P7ZRdqPlve+1zyMdBIygeTquKnaoqRzHXNLU+Wu
+        p2LaXppaPVt6ohEDlS2KmQanzg==
+X-Google-Smtp-Source: ABdhPJyqDCDXp1ZYRf9156ssXFOuXiNaysi5BzWkXQEbMYcWMwfcZgmysMuz722U1SrRArZ4ULE7OA==
+X-Received: by 2002:a2e:89ca:: with SMTP id c10mr1263859ljk.223.1601487465710;
+        Wed, 30 Sep 2020 10:37:45 -0700 (PDT)
+Received: from localhost (h-209-203.A463.priv.bahnhof.se. [155.4.209.203])
+        by smtp.gmail.com with ESMTPSA id 77sm261464lfg.199.2020.09.30.10.37.45
+        (version=TLS1_3 cipher=TLS_AES_256_GCM_SHA384 bits=256/256);
+        Wed, 30 Sep 2020 10:37:45 -0700 (PDT)
+Date:   Wed, 30 Sep 2020 19:37:44 +0200
+From:   Niklas =?iso-8859-1?Q?S=F6derlund?= 
+        <niklas.soderlund@ragnatech.se>
+To:     Marc Zyngier <maz@kernel.org>
+Cc:     devicetree@vger.kernel.org, linux-pci@vger.kernel.org,
+        linux-rockchip@lists.infradead.org,
+        linux-arm-kernel@lists.infradead.org, linux-kernel@vger.kernel.org,
+        Rob Herring <robh@kernel.org>,
+        Lorenzo Pieralisi <lorenzo.pieralisi@arm.com>,
+        Heiko Stuebner <heiko@sntech.de>,
+        Frank Rowand <frowand.list@gmail.com>,
+        Shawn Lin <shawn.lin@rock-chips.com>,
+        Jiaxun Yang <jiaxun.yang@flygoat.com>,
+        Rob Herring <robh+dt@kernel.org>,
+        Bjorn Helgaas <bhelgaas@google.com>, kernel-team@android.com,
+        samuel@dionne-riel.com
+Subject: Re: [PATCH v2] of: address: Work around missing device_type property
+ in pcie nodes
+Message-ID: <20200930173744.GG1516931@oden.dyn.berto.se>
+References: <20200819094255.474565-1-maz@kernel.org>
+ <20200930162722.GF1516931@oden.dyn.berto.se>
+ <977f60f07a4cb5c59f0e5f8a9dfb3993@kernel.org>
 MIME-Version: 1.0
-Content-Type: multipart/signed; micalg=pgp-sha1;
-        protocol="application/pgp-signature"; boundary="J+eNKFoVC4T1DV3f"
+Content-Type: text/plain; charset=iso-8859-1
 Content-Disposition: inline
-In-Reply-To: <11962635.BNa8PrgvAO@ada>
-User-Agent: Mutt/1.10.1 (2018-07-13)
+Content-Transfer-Encoding: 8bit
+In-Reply-To: <977f60f07a4cb5c59f0e5f8a9dfb3993@kernel.org>
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
+Hi Marc,
 
---J+eNKFoVC4T1DV3f
-Content-Type: text/plain; charset=us-ascii
-Content-Disposition: inline
-Content-Transfer-Encoding: quoted-printable
+On 2020-09-30 18:23:21 +0100, Marc Zyngier wrote:
+> Hi Niklas,
+> 
+> [+ Samuel]
+> 
+> On 2020-09-30 17:27, Niklas Söderlund wrote:
+> > Hi Marc,
+> > 
+> > I'm afraid this commit breaks booting my rk3399 device.
+> > 
+> > I bisected the problem to this patch merged as [1]. I'm testing on a
+> > Scarlet device and I'm using the unmodified upstream
+> > rk3399-gru-scarlet-inx.dtb for my tests.
+> > 
+> > The problem I'm experience is a black screen after the bootloader and
+> > the device is none responsive over the network. I have no serial console
+> > to this device so I'm afraid I can't tell you if there is anything
+> > useful on to aid debugging there.
+> > 
+> > If I try to test one commit earlier [2] the system boots as expected and
+> > everything works as it did for me in v5.8 and earlier. I have worked
+> > little with this device and have no clue about what is really on the PCI
+> > buss. But running from [2] I have this info about PCI if it's helpful,
+> > please ask if somethings missing.
+> 
+> Please see the thread at [1]. The problem was reported a few weeks back
+> by Samuel, and I was expecting Rob and Lorenzo to push a fix for this.
 
-Hi!
+Thanks for providing a solution.
 
-> > > +__attribute__((nonnull))
-> > >=20
-> > >  static int led_pwm_add(struct device *dev, struct led_pwm_priv *priv,
-> > > =20
-> > >  		       struct led_pwm *led, struct fwnode_handle *fwnode)
-> > > =20
-> > >  {
-> >=20
-> > This normally goes elsewhere -- right? I'd expect:
-> >=20
-> >=20
-> >   static int led_pwm_add(struct device *dev, struct led_pwm_priv *priv,
-> >   		       struct led_pwm *led, struct fwnode_handle *fwnode)
-> > 	  __attribute__((nonnull))
->=20
-> I found both variants in kernel code.  I can live with both variants and =
-have=20
-> no strong preference.
->=20
-> My initial intention to add it was to get a compiler warning in case some=
-one=20
-> does not pass a fwnode here, e.g. when using that old platform_data appro=
-ach=20
-> (which is supposed to be removed with this patch).  You might call it a s=
-elf=20
-> check on my own changes.  I can also drop that attribute if you don't wan=
-t=20
-> that kind of stuff in linux-leds.
+> 
+> Rob, Lorenzo, any update on this?
+> 
+>         M.
+> 
+> [1]
+> https://lore.kernel.org/linux-devicetree/20200829164920.7d28e01a@DUFFMAN/
+> -- 
+> Jazz is not dead. It just smells funny...
 
-I'm okay with it at the second place :-).
-
-Thanks,
-									Pavel
---=20
-(english) http://www.livejournal.com/~pavelmachek
-(cesky, pictures) http://atrey.karlin.mff.cuni.cz/~pavel/picture/horses/blo=
-g.html
-
---J+eNKFoVC4T1DV3f
-Content-Type: application/pgp-signature; name="signature.asc"
-
------BEGIN PGP SIGNATURE-----
-
-iF0EABECAB0WIQRPfPO7r0eAhk010v0w5/Bqldv68gUCX3S/WQAKCRAw5/Bqldv6
-8rDKAKCNDbu5Rgb8esUqr42ANlpnrNDlzgCgotvZMGrIVuUyMCrK5Q++5jbr4BE=
-=XHap
------END PGP SIGNATURE-----
-
---J+eNKFoVC4T1DV3f--
+-- 
+Regards,
+Niklas Söderlund
