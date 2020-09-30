@@ -2,69 +2,94 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from vger.kernel.org (vger.kernel.org [23.128.96.18])
-	by mail.lfdr.de (Postfix) with ESMTP id 2F19F27EEF0
-	for <lists+devicetree@lfdr.de>; Wed, 30 Sep 2020 18:21:32 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTP id 5C9CD27EEF4
+	for <lists+devicetree@lfdr.de>; Wed, 30 Sep 2020 18:21:34 +0200 (CEST)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S1731353AbgI3QUq (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Wed, 30 Sep 2020 12:20:46 -0400
-Received: from mail-out.m-online.net ([212.18.0.9]:35326 "EHLO
-        mail-out.m-online.net" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S1731343AbgI3QUl (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Wed, 30 Sep 2020 12:20:41 -0400
-Received: from frontend01.mail.m-online.net (unknown [192.168.8.182])
-        by mail-out.m-online.net (Postfix) with ESMTP id 4C1hLw1T08z1qs0w;
-        Wed, 30 Sep 2020 18:20:40 +0200 (CEST)
-Received: from localhost (dynscan1.mnet-online.de [192.168.6.70])
-        by mail.m-online.net (Postfix) with ESMTP id 4C1hLw0GtPz1sM9L;
-        Wed, 30 Sep 2020 18:20:40 +0200 (CEST)
-X-Virus-Scanned: amavisd-new at mnet-online.de
-Received: from mail.mnet-online.de ([192.168.8.182])
-        by localhost (dynscan1.mail.m-online.net [192.168.6.70]) (amavisd-new, port 10024)
-        with ESMTP id c-wf1UGdbtqe; Wed, 30 Sep 2020 18:20:38 +0200 (CEST)
-X-Auth-Info: /Iq/VO9mHudyK/aQgIfYAApGYrLCH4o1nwOUkf2kfO4=
-Received: from [IPv6:::1] (p578adb1c.dip0.t-ipconnect.de [87.138.219.28])
-        (using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
-        (No client certificate requested)
-        by mail.mnet-online.de (Postfix) with ESMTPSA;
-        Wed, 30 Sep 2020 18:20:38 +0200 (CEST)
-Subject: Re: [PATCH 10/11] arm64: dts: imx8mm: add GPC node and power domains
-To:     Lucas Stach <l.stach@pengutronix.de>,
-        Shawn Guo <shawnguo@kernel.org>,
+        id S1731099AbgI3QVF (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Wed, 30 Sep 2020 12:21:05 -0400
+Received: from lindbergh.monkeyblade.net ([23.128.96.19]:50396 "EHLO
+        lindbergh.monkeyblade.net" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
+        with ESMTP id S1731092AbgI3QVF (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Wed, 30 Sep 2020 12:21:05 -0400
+Received: from metis.ext.pengutronix.de (metis.ext.pengutronix.de [IPv6:2001:67c:670:201:290:27ff:fe1d:cc33])
+        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 082FAC0613D0
+        for <devicetree@vger.kernel.org>; Wed, 30 Sep 2020 09:21:05 -0700 (PDT)
+Received: from [2a0a:edc0:0:900:6245:cbff:fea0:1793] (helo=kresse.office.stw.pengutronix.de)
+        by metis.ext.pengutronix.de with esmtp (Exim 4.92)
+        (envelope-from <l.stach@pengutronix.de>)
+        id 1kNeqi-0003P4-5S; Wed, 30 Sep 2020 18:21:00 +0200
+Message-ID: <0e2c63f7f7c983d0ce392fa58d911fa64679b9d1.camel@pengutronix.de>
+From:   Lucas Stach <l.stach@pengutronix.de>
+To:     Marek Vasut <marex@denx.de>, Shawn Guo <shawnguo@kernel.org>,
         Rob Herring <robh+dt@kernel.org>
-Cc:     NXP Linux Team <linux-imx@nxp.com>,
-        Fabio Estevam <festevam@gmail.com>,
+Cc:     devicetree@vger.kernel.org,
         Frieder Schrempf <frieder.schrempf@kontron.de>,
-        linux-arm-kernel@lists.infradead.org, devicetree@vger.kernel.org,
-        kernel@pengutronix.de, patchwork-lst@pengutronix.de,
-        Abel Vesa <abel.vesa@nxp.com>
+        patchwork-lst@pengutronix.de, NXP Linux Team <linux-imx@nxp.com>,
+        kernel@pengutronix.de, Fabio Estevam <festevam@gmail.com>,
+        linux-arm-kernel@lists.infradead.org
+Date:   Wed, 30 Sep 2020 18:20:58 +0200
+In-Reply-To: <857201e9-01bc-c2cd-e3e3-244544fc9e0e@denx.de>
 References: <20200930155006.535712-1-l.stach@pengutronix.de>
- <20200930155006.535712-11-l.stach@pengutronix.de>
-From:   Marek Vasut <marex@denx.de>
-Message-ID: <f37405cb-4941-dec6-347a-3840afd41214@denx.de>
-Date:   Wed, 30 Sep 2020 18:20:21 +0200
-User-Agent: Mozilla/5.0 (X11; Linux x86_64; rv:68.0) Gecko/20100101
- Thunderbird/68.12.0
+         <20200930155006.535712-6-l.stach@pengutronix.de>
+         <857201e9-01bc-c2cd-e3e3-244544fc9e0e@denx.de>
+Content-Type: text/plain; charset="UTF-8"
+User-Agent: Evolution 3.30.5-1.1 
 MIME-Version: 1.0
-In-Reply-To: <20200930155006.535712-11-l.stach@pengutronix.de>
-Content-Type: text/plain; charset=utf-8
-Content-Language: en-US
 Content-Transfer-Encoding: 7bit
+X-SA-Exim-Connect-IP: 2a0a:edc0:0:900:6245:cbff:fea0:1793
+X-SA-Exim-Mail-From: l.stach@pengutronix.de
+X-Spam-Checker-Version: SpamAssassin 3.4.2 (2018-09-13) on
+        metis.ext.pengutronix.de
+X-Spam-Level: 
+X-Spam-Status: No, score=-1.6 required=4.0 tests=AWL,BAYES_00,RDNS_NONE,
+        SPF_HELO_NONE,SPF_SOFTFAIL autolearn=no autolearn_force=no
+        version=3.4.2
+Subject: Re: [PATCH 05/11] soc: imx: gpcv2: add runtime PM support for
+ power-domains
+X-SA-Exim-Version: 4.2.1 (built Wed, 08 May 2019 21:11:16 +0000)
+X-SA-Exim-Scanned: Yes (on metis.ext.pengutronix.de)
+X-PTX-Original-Recipient: devicetree@vger.kernel.org
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-On 9/30/20 5:50 PM, Lucas Stach wrote:
-> This adds the DT nodes to describe the power domains available on the
-> i.MX8MM. Things are a bit more complex compared to other GPCv2 power
-> domain setups, as there is now a hierarchy of domains where complete
-> subsystems (HSIO, GPU, DISPLAY) can be gated as a whole, but also
-> fine granular gating within those subsystems is possible.
-> 
-> Note that this is still incomplete, as both VPU and DISP domains are
-> missing their reset clocks. Those aren't directly sourced from the CCM,
-> but have another level of clock gating in the BLKCTL of those domains,
-> which needs a separate driver.
+On Mi, 2020-09-30 at 18:14 +0200, Marek Vasut wrote:
+> On 9/30/20 5:50 PM, Lucas Stach wrote:
+> [...]
+> > @@ -143,11 +144,17 @@ static int imx_pgc_power_up(struct generic_pm_domain *genpd)
+> >  	u32 reg_val;
+> >  	int i, ret;
+> >  
+> > +	ret = pm_runtime_get_sync(domain->dev);
+> > +	if (ret) {
+> > +		pm_runtime_put_noidle(domain->dev);
+> > +		return ret;
+> > +	}
+> > +
+> >  	if (!IS_ERR(domain->regulator)) {
+> >  		ret = regulator_enable(domain->regulator);
+> >  		if (ret) {
+> >  			dev_err(domain->dev, "failed to enable regulator\n");
+> > -			return ret;
+> > +			goto out_put_pm;
+> >  		}
+> >  	}
+> >  
+> > @@ -205,6 +212,8 @@ static int imx_pgc_power_up(struct generic_pm_domain *genpd)
+> >  		clk_disable_unprepare(domain->clk[i]);
+> >  	if (!IS_ERR(domain->regulator))
+> >  		regulator_disable(domain->regulator);
+> > +out_put_pm:
+> > +	pm_runtime_put(domain->dev);
+> >  
+> >  	return ret;
+> >  }
+> Shouldn't this be pm_runtime_put_sync() ?
 
-I already have a basic draft of that BLK_CTL driver for MX8MM based on
-work from Abel, so if we can agree the BLK_CTL is the way forward, I can
-post that.
+We don't really care when the parent domains powers down, we just care
+about it happening sometime, so I guess the code is fine as is, no?
+
+Regards,
+Lucas
+
+
