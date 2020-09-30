@@ -2,257 +2,91 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from vger.kernel.org (vger.kernel.org [23.128.96.18])
-	by mail.lfdr.de (Postfix) with ESMTP id CBA5927E620
-	for <lists+devicetree@lfdr.de>; Wed, 30 Sep 2020 12:02:47 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTP id A189C27E622
+	for <lists+devicetree@lfdr.de>; Wed, 30 Sep 2020 12:03:11 +0200 (CEST)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S1729424AbgI3KCq (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Wed, 30 Sep 2020 06:02:46 -0400
-Received: from lindbergh.monkeyblade.net ([23.128.96.19]:48528 "EHLO
+        id S1728695AbgI3KDK (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Wed, 30 Sep 2020 06:03:10 -0400
+Received: from lindbergh.monkeyblade.net ([23.128.96.19]:48598 "EHLO
         lindbergh.monkeyblade.net" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S1729444AbgI3KCq (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Wed, 30 Sep 2020 06:02:46 -0400
-Received: from mail-lj1-x241.google.com (mail-lj1-x241.google.com [IPv6:2a00:1450:4864:20::241])
-        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id B5C46C0613D0
-        for <devicetree@vger.kernel.org>; Wed, 30 Sep 2020 03:02:44 -0700 (PDT)
-Received: by mail-lj1-x241.google.com with SMTP id v23so1061363ljd.1
-        for <devicetree@vger.kernel.org>; Wed, 30 Sep 2020 03:02:44 -0700 (PDT)
+        with ESMTP id S1728655AbgI3KDK (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Wed, 30 Sep 2020 06:03:10 -0400
+Received: from mail-lf1-x143.google.com (mail-lf1-x143.google.com [IPv6:2a00:1450:4864:20::143])
+        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 2D27EC061755;
+        Wed, 30 Sep 2020 03:03:10 -0700 (PDT)
+Received: by mail-lf1-x143.google.com with SMTP id 197so793830lfo.11;
+        Wed, 30 Sep 2020 03:03:10 -0700 (PDT)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=linaro.org; s=google;
-        h=from:to:cc:subject:date:message-id:in-reply-to:references
-         :mime-version:content-transfer-encoding;
-        bh=IlnfeC5dNMsfRj34KVveDWWiSX6big7HcGo7tOgQ3Ps=;
-        b=eWO0F5gp7V8DSza5dh7RccwYowiNRo3RKTENbUioTQzilk8j3rY9vb5TSmevlE6yRk
-         88jkXMraQhK/td2BMXxcrV6SccZNxx/g+aUAHyv7NeExbVqoL7jBvxoFhODQdgw6F2+0
-         7SkNGdvgSzgb1t0rixg91W9G65XgTQB9/cGsYAapPXSRpdle8QO5XkmWhpSQpwBI+a3X
-         CT/LvYxV1cZE3YBUMemUhsUjq+cyY0g9aZEGbzbkkFwo9GdanqjCeKmqwScHn/h4/rax
-         ppm5wvFLvtQ5dCBN+2HgTq5mcfMrWsd8R89x+lNv3d1DN7jCyT0P3RVZbV9gV0C7wzng
-         8I/A==
+        d=gmail.com; s=20161025;
+        h=mime-version:references:in-reply-to:from:date:message-id:subject:to
+         :cc:content-transfer-encoding;
+        bh=6qspn01NWn8HRLwIZnHAxe0/BySrc7LTnFF+a+HiA10=;
+        b=n56H9rODV05DjWdDRaDEeOMCcqS/xeqc/Oy4IzVrD0cY2BUznVLlKKM1Lm3NRywEJh
+         IBu9VXwqtpAR9I/PJETWqBG5CVEWR4eNuwP1dhYH4w5ew2iDXC6CBTjXC2wEu1jCXLXF
+         yzpqP+Qcj3p0JESHrDYdR+6GxRc0JbAPtUlS+HXRw63YSlpBi84tM2Zy7+wq0AvWwXbX
+         dXPXNHPBgNRO0W6oy29KZ4+fHBC+cX9krS3NHYlmBLs1QiVV5Fql5zTu9uhsmf54GSNB
+         Ep8fg7xJIq5VaGoZSUqJsC2Xyh4cUVvMmOL3uug4s8wxs9wrCM5FJEKfwWIysDEX7plB
+         VfWA==
 X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
         d=1e100.net; s=20161025;
-        h=x-gm-message-state:from:to:cc:subject:date:message-id:in-reply-to
-         :references:mime-version:content-transfer-encoding;
-        bh=IlnfeC5dNMsfRj34KVveDWWiSX6big7HcGo7tOgQ3Ps=;
-        b=nYE2P1UwJVoSaj4rO+3vQZwAX4QPsl2iOQqmI9CEl++d6AhC72RCu+7rbrhoPTwy/2
-         qsGaG+zqRrllQsnI/0TnkRJ3SElHjsHmdXMrF6ZIM3BpllsbGNx5I/M+9CwZ9B4ri++V
-         TxrW3Xt4O+E57SLp6BZSdK3NuSCgPSRr53ZBA7PG+kGRHC+OiZGRBYYnP0QP58CV3DMx
-         nsO6tt3ltbmrbye+dhNC5TJhuHbLjHjIs0tBciDGnDKZxJ68RxgTz+BaWScptIZJ8J+6
-         acOZdoV2TPmK6H5fXPwsOG2+R/2Ajw6o3RS783cKpYXW9wTOqVzcsEpmpxSWlKemHLez
-         2d1Q==
-X-Gm-Message-State: AOAM530XP4QMM7L7AtMr0dpActrXp1fn2cs6im0q2ESbHPCspD+qkVRi
-        8V1J7h75bykAzewHXXJ9nQYEAQ==
-X-Google-Smtp-Source: ABdhPJzfi4bBw4vo/ctdv/15FMoqvRgp7UjESmXkIsBjb6gftwarbOzCN9E63aG6qc2KBV+o0cs9gw==
-X-Received: by 2002:a2e:8e71:: with SMTP id t17mr594550ljk.413.1601460163143;
-        Wed, 30 Sep 2020 03:02:43 -0700 (PDT)
-Received: from eriador.lan ([188.162.64.138])
-        by smtp.gmail.com with ESMTPSA id w4sm132479lff.231.2020.09.30.03.02.40
-        (version=TLS1_3 cipher=TLS_AES_256_GCM_SHA384 bits=256/256);
-        Wed, 30 Sep 2020 03:02:42 -0700 (PDT)
-From:   Dmitry Baryshkov <dmitry.baryshkov@linaro.org>
-To:     Andy Gross <agross@kernel.org>,
-        Bjorn Andersson <bjorn.andersson@linaro.org>,
-        Rob Herring <robh+dt@kernel.org>,
-        Zhang Rui <rui.zhang@intel.com>,
-        Daniel Lezcano <daniel.lezcano@linaro.org>,
-        Amit Kucheria <amitk@kernel.org>,
-        Jonathan Cameron <jic23@kernel.org>,
-        Hartmut Knaack <knaack.h@gmx.de>,
-        Lars-Peter Clausen <lars@metafoo.de>,
-        Peter Meerwald-Stadler <pmeerw@pmeerw.net>
-Cc:     linux-arm-msm@vger.kernel.org, linux-pm@vger.kernel.org,
-        devicetree@vger.kernel.org, linux-iio@vger.kernel.org,
-        Manivannan Sadhasivam <manivannan.sadhasivam@linaro.org>,
-        Jishnu Prakash <jprakash@qti.qualcomm.com>
-Subject: [PATCH v6 10/10] arm64: dts: qrb5165-rb5: port thermal zone definitions
-Date:   Wed, 30 Sep 2020 13:02:03 +0300
-Message-Id: <20200930100203.1988374-11-dmitry.baryshkov@linaro.org>
-X-Mailer: git-send-email 2.28.0
-In-Reply-To: <20200930100203.1988374-1-dmitry.baryshkov@linaro.org>
-References: <20200930100203.1988374-1-dmitry.baryshkov@linaro.org>
+        h=x-gm-message-state:mime-version:references:in-reply-to:from:date
+         :message-id:subject:to:cc:content-transfer-encoding;
+        bh=6qspn01NWn8HRLwIZnHAxe0/BySrc7LTnFF+a+HiA10=;
+        b=WuHC5sH5m7TBeJSfvr66z5rNx8xUsxr1WZjVdtSbogRvw9EDnl/hXymzaQ84QZnaFG
+         ysZjqIIYjHhjPdOA3xFkXJIYL2po6kMXZLrbni3YxKhErU2gBeoF6uyVh+ynuCoNSA2Y
+         liqEVQkLDR4DrWYmmOeElM40VThHQqeGpAz4Enwg7qin5xv9+iwrRpLX9gYtTWJXbqqY
+         cZZVlLXIMwINX/RUqCjx9407c1zc0UMdHCCpds2PnFRlLUk4zHVkXQBVFDyEY878FotE
+         Gwu436TRGCi8u3c2AHEOV7TtX8uDxgZGsK3VykJ4f0wUnwwDbUC2moTpQwonOAt5/bKG
+         ajXg==
+X-Gm-Message-State: AOAM531mTH66xR+YaV+0DEw5rSlw31VpQIXfGqRPCImKaWtiAUO5nI0a
+        J/cr6IQZ0zsoSE2zhXCTAm4E+QFyg4huX11Uv/Q=
+X-Google-Smtp-Source: ABdhPJwkpM/1GjBv0FpeirzkqG0YElUX8P+nWSjaVIVCOIbtDJQXUUG2xAlxm8QlAuUkM3ZV9Qxz6UBOOPxlP5Camew=
+X-Received: by 2002:a19:4a83:: with SMTP id x125mr653912lfa.38.1601460188546;
+ Wed, 30 Sep 2020 03:03:08 -0700 (PDT)
 MIME-Version: 1.0
-Content-Transfer-Encoding: 8bit
+References: <1601277584-5526-1-git-send-email-u0084500@gmail.com>
+ <1601277584-5526-2-git-send-email-u0084500@gmail.com> <20200929150624.GA583524@bogus>
+ <CADiBU3_7wj7W2evOAG1GM991OigPYy4FXraeOLCVreaMO86HXw@mail.gmail.com> <20200930094224.GA4974@sirena.org.uk>
+In-Reply-To: <20200930094224.GA4974@sirena.org.uk>
+From:   ChiYuan Huang <u0084500@gmail.com>
+Date:   Wed, 30 Sep 2020 18:02:56 +0800
+Message-ID: <CADiBU3_My=dpV1ef82PSs5wme8q1-fgPxoTLiQbJRcYd6KZw_A@mail.gmail.com>
+Subject: Re: [PATCH v2 2/2] regulator: rtmv20: Add DT-binding document for
+ Richtek RTMV20
+To:     Mark Brown <broonie@kernel.org>
+Cc:     Rob Herring <robh@kernel.org>, lgirdwood@gmail.com,
+        linux-kernel@vger.kernel.org, cy_huang <cy_huang@richtek.com>,
+        devicetree@vger.kernel.org
+Content-Type: text/plain; charset="UTF-8"
+Content-Transfer-Encoding: quoted-printable
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-Add thermal zones definitions basing on the downstream kernel.
+Mark Brown <broonie@kernel.org> =E6=96=BC 2020=E5=B9=B49=E6=9C=8830=E6=97=
+=A5 =E9=80=B1=E4=B8=89 =E4=B8=8B=E5=8D=885:43=E5=AF=AB=E9=81=93=EF=BC=9A
+>
+> On Wed, Sep 30, 2020 at 10:23:49AM +0800, ChiYuan Huang wrote:
+>
+> >    Due to that already merged into your regulator for-next git, may I
+> > send the patch to fix Rob's comment?
+>
+> Of course, yes please.
 
-Signed-off-by: Dmitry Baryshkov <dmitry.baryshkov@linaro.org>
----
- arch/arm64/boot/dts/qcom/qrb5165-rb5.dts | 154 +++++++++++++++++++++++
- 1 file changed, 154 insertions(+)
-
-diff --git a/arch/arm64/boot/dts/qcom/qrb5165-rb5.dts b/arch/arm64/boot/dts/qcom/qrb5165-rb5.dts
-index 1528a865f1f8..6cb8688910a2 100644
---- a/arch/arm64/boot/dts/qcom/qrb5165-rb5.dts
-+++ b/arch/arm64/boot/dts/qcom/qrb5165-rb5.dts
-@@ -58,6 +58,77 @@ bt {
- 
- 	};
- 
-+	thermal-zones {
-+		xo-therm {
-+			polling-delay-passive = <0>;
-+			polling-delay = <0>;
-+			thermal-sensors = <&pm8150_adc_tm 0>;
-+			trips {
-+				active-config0 {
-+					temperature = <50000>;
-+					hysteresis = <4000>;
-+					type = "passive";
-+				};
-+			};
-+		};
-+
-+		wifi-therm {
-+			polling-delay-passive = <0>;
-+			polling-delay = <0>;
-+			thermal-sensors = <&pm8150_adc_tm 1>;
-+			trips {
-+				active-config0 {
-+					temperature = <52000>;
-+					hysteresis = <4000>;
-+					type = "passive";
-+				};
-+			};
-+		};
-+
-+		conn-therm {
-+			polling-delay-passive = <0>;
-+			polling-delay = <0>;
-+			thermal-sensors = <&pm8150b_adc_tm 0>;
-+
-+			trips {
-+				active-config0 {
-+					temperature = <125000>;
-+					hysteresis = <1000>;
-+					type = "critical";
-+				};
-+			};
-+		};
-+
-+		skin-msm-therm {
-+			polling-delay-passive = <0>;
-+			polling-delay = <0>;
-+			thermal-sensors = <&pm8150l_adc_tm 0>;
-+
-+			trips {
-+				active-config0 {
-+					temperature = <50000>;
-+					hysteresis = <4000>;
-+					type = "passive";
-+				};
-+			};
-+		};
-+
-+		pm8150l-therm {
-+			polling-delay-passive = <0>;
-+			polling-delay = <0>;
-+			thermal-sensors = <&pm8150l_adc_tm 1>;
-+
-+			trips {
-+				active-config0 {
-+					temperature = <50000>;
-+					hysteresis = <4000>;
-+					type = "passive";
-+				};
-+			};
-+		};
-+
-+	};
-+
- 	vbat: vbat-regulator {
- 		compatible = "regulator-fixed";
- 		regulator-name = "VBAT";
-@@ -412,6 +483,89 @@ &i2c15 {
- 	status = "okay";
- };
- 
-+&pm8150_adc {
-+	xo-therm@4c {
-+		reg = <ADC5_XO_THERM_100K_PU>;
-+		qcom,ratiometric;
-+		qcom,hw-settle-time = <200>;
-+	};
-+
-+	wifi-therm@4e {
-+		reg = <ADC5_AMUX_THM2_100K_PU>;
-+		qcom,ratiometric;
-+		qcom,hw-settle-time = <200>;
-+	};
-+};
-+
-+&pm8150b_adc {
-+	conn-therm@4f {
-+		reg = <ADC5_AMUX_THM3_100K_PU>;
-+		qcom,ratiometric;
-+		qcom,hw-settle-time = <200>;
-+	};
-+};
-+
-+&pm8150l_adc {
-+	skin-msm-therm@4e {
-+		reg = <ADC5_AMUX_THM2_100K_PU>;
-+		qcom,ratiometric;
-+		qcom,hw-settle-time = <200>;
-+	};
-+
-+	pm8150l-therm@4f {
-+		reg = <ADC5_AMUX_THM3_100K_PU>;
-+		qcom,ratiometric;
-+		qcom,hw-settle-time = <200>;
-+	};
-+};
-+
-+&pm8150_adc_tm {
-+	status = "okay";
-+
-+	xo-therm@0 {
-+		reg = <0>;
-+		io-channels = <&pm8150_adc ADC5_XO_THERM_100K_PU>;
-+		qcom,ratiometric;
-+		qcom,hw-settle-time-us = <200>;
-+	};
-+
-+	wifi-therm@1 {
-+		reg = <1>;
-+		io-channels = <&pm8150_adc ADC5_AMUX_THM2_100K_PU>;
-+		qcom,ratiometric;
-+		qcom,hw-settle-time-us = <200>;
-+	};
-+};
-+
-+&pm8150b_adc_tm {
-+	status = "okay";
-+
-+	conn-therm@0 {
-+		reg = <0>;
-+		io-channels = <&pm8150b_adc ADC5_AMUX_THM3_100K_PU>;
-+		qcom,ratiometric;
-+		qcom,hw-settle-time-us = <200>;
-+	};
-+};
-+
-+&pm8150l_adc_tm {
-+	status = "okay";
-+
-+	skin-msm-therm@0 {
-+		reg = <0>;
-+		io-channels = <&pm8150l_adc ADC5_AMUX_THM2_100K_PU>;
-+		qcom,ratiometric;
-+		qcom,hw-settle-time-us = <200>;
-+	};
-+
-+	pm8150l-therm@1 {
-+		reg = <1>;
-+		io-channels = <&pm8150l_adc ADC5_AMUX_THM3_100K_PU>;
-+		qcom,ratiometric;
-+		qcom,hw-settle-time-us = <200>;
-+	};
-+};
-+
- &pm8150_gpios {
- 	gpio-reserved-ranges = <1 1>, <3 2>, <7 1>;
- 	gpio-line-names =
--- 
-2.28.0
-
+OK, Thx.
+>
+> > And I also found one line need to be added into rtmv20 probe phase.
+> > Please check below.
+> >         /*
+> >          * keep in shutdown mode to minimize the current consumption
+> >          * and also mark regcache as dirty
+> >          */
+> > +      regcache_cache_only(priv->regmap, true);
+> >         regcache_mark_dirty(priv->regmap);
+> >         gpiod_set_value(priv->enable_gpio, 0);
+> >
+> > Can I directly merge into one that includes Rob's comment and the
+> > above line to be added?
+>
+> Please make it a separate patch.
+I'll send the separate patch by next.
