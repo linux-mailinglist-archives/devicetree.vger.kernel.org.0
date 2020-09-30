@@ -2,95 +2,91 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from vger.kernel.org (vger.kernel.org [23.128.96.18])
-	by mail.lfdr.de (Postfix) with ESMTP id EB14027E247
-	for <lists+devicetree@lfdr.de>; Wed, 30 Sep 2020 09:11:15 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTP id EB0E327E259
+	for <lists+devicetree@lfdr.de>; Wed, 30 Sep 2020 09:12:12 +0200 (CEST)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S1728394AbgI3HLP (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Wed, 30 Sep 2020 03:11:15 -0400
-Received: from lindbergh.monkeyblade.net ([23.128.96.19]:50178 "EHLO
-        lindbergh.monkeyblade.net" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S1728149AbgI3HLO (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Wed, 30 Sep 2020 03:11:14 -0400
-Received: from mail-wm1-x342.google.com (mail-wm1-x342.google.com [IPv6:2a00:1450:4864:20::342])
-        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 7CA43C061755
-        for <devicetree@vger.kernel.org>; Wed, 30 Sep 2020 00:11:14 -0700 (PDT)
-Received: by mail-wm1-x342.google.com with SMTP id l15so566733wmh.1
-        for <devicetree@vger.kernel.org>; Wed, 30 Sep 2020 00:11:14 -0700 (PDT)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=linaro.org; s=google;
-        h=date:from:to:cc:subject:message-id:references:mime-version
-         :content-disposition:content-transfer-encoding:in-reply-to;
-        bh=/I/KAPNr4cLr7UsPUc0tQoibIIvI7K+uC/bv0mt4+Ws=;
-        b=mLCC/dK1CYxPvRMx0+/i/iwaHqlnZEbXj7U66pP5EWiWdEty9n1NH8w56cgQW1y6Ia
-         msm1WZ5EMywcl+dNhn8sbmrIPsEJr1+moq5gKIupcA3zrs5dySBE1vtfEnPsx1J7hrJU
-         ftxHBesYzB2lhQpM3/1hh2BS7XINxrMMdf8DDUQQp6FzIyJwn5to5UQOGK1CjsBLuUOf
-         j8JUVjmi7wn6bThCVbHpIwJ313T6p+hdF/0vW7QwKwDrUH9a4kmMdfPBzAVp9fC1r/LK
-         x3NTDitsR+eKj4jMpFNSN7WgtPwodNZixeDFx+sS8PgdtVeBmy46toU80nG1dqdDJtZM
-         44yA==
-X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=1e100.net; s=20161025;
-        h=x-gm-message-state:date:from:to:cc:subject:message-id:references
-         :mime-version:content-disposition:content-transfer-encoding
-         :in-reply-to;
-        bh=/I/KAPNr4cLr7UsPUc0tQoibIIvI7K+uC/bv0mt4+Ws=;
-        b=AntpOAVzk4SMJllUvA3sGtBKsnv3DqwqI18aAi22KH1PGGFRWOwQPnQxqki/t+cD+j
-         Ms46NSyBBYaAb8mxGR96/ecVU/Psj80JTDrUL72wS0yzA8aDaIf8abVF59A9xtpS4fiw
-         17jun+VfkM2Y2S4HfifFKFhm/NPxRfBVgwpfxViDwlKwQg3rrnndGkmOxvym77qYM4/h
-         Cct+e8Ab5dSmt2szoqyYA03PzgtGxcqD96+2HZE/N5o+zTR3ewPFTw4wk8n99oXRB21Q
-         7JvCXCR14rnNVkZQGUpUSc9iXKktGxP0AHujyhTSwkjLyrJa5ZWd5JuHCOWasxUYGkff
-         mqOQ==
-X-Gm-Message-State: AOAM532sfnMNOXwVP65565rx0A5c6YJ+cx0g8Ap9Xkpuc9NYCKx/w40I
-        zJ0lK/1yiukR0w+e/Fv4aVq0jSVAd5EoqQ==
-X-Google-Smtp-Source: ABdhPJztEyoO+moG/tKurp3NZWq0hO934Y+qi0MI0nul/M+ilazxtXBJ+9TUl9SDtCw2ym2PqJcWyA==
-X-Received: by 2002:a1c:9c4b:: with SMTP id f72mr1335848wme.188.1601449873200;
-        Wed, 30 Sep 2020 00:11:13 -0700 (PDT)
-Received: from dell ([91.110.221.236])
-        by smtp.gmail.com with ESMTPSA id u186sm1147668wmu.34.2020.09.30.00.11.12
-        (version=TLS1_3 cipher=TLS_AES_256_GCM_SHA384 bits=256/256);
-        Wed, 30 Sep 2020 00:11:12 -0700 (PDT)
-Date:   Wed, 30 Sep 2020 08:11:10 +0100
-From:   Lee Jones <lee.jones@linaro.org>
-To:     Zhen Lei <thunder.leizhen@huawei.com>
-Cc:     Wei Xu <xuwei5@hisilicon.com>, Rob Herring <robh+dt@kernel.org>,
-        Jonathan Cameron <Jonathan.Cameron@Huawei.com>,
-        devicetree <devicetree@vger.kernel.org>,
-        linux-arm-kernel <linux-arm-kernel@lists.infradead.org>,
-        linux-kernel <linux-kernel@vger.kernel.org>,
-        Libin <huawei.libin@huawei.com>,
-        Kefeng Wang <wangkefeng.wang@huawei.com>
-Subject: Re: [PATCH v6 01/17] dt-bindings: mfd: syscon: add some compatible
- strings for Hisilicon
-Message-ID: <20200930071110.GH6148@dell>
-References: <20200930031712.2365-1-thunder.leizhen@huawei.com>
- <20200930031712.2365-2-thunder.leizhen@huawei.com>
+        id S1728416AbgI3HML (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Wed, 30 Sep 2020 03:12:11 -0400
+Received: from mail.kernel.org ([198.145.29.99]:45714 "EHLO mail.kernel.org"
+        rhost-flags-OK-OK-OK-OK) by vger.kernel.org with ESMTP
+        id S1727657AbgI3HML (ORCPT <rfc822;devicetree@vger.kernel.org>);
+        Wed, 30 Sep 2020 03:12:11 -0400
+Received: from mail-ej1-f50.google.com (mail-ej1-f50.google.com [209.85.218.50])
+        (using TLSv1.2 with cipher ECDHE-RSA-AES128-GCM-SHA256 (128/128 bits))
+        (No client certificate requested)
+        by mail.kernel.org (Postfix) with ESMTPSA id 939922076E;
+        Wed, 30 Sep 2020 07:12:10 +0000 (UTC)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=kernel.org;
+        s=default; t=1601449930;
+        bh=VUeL5dJxtNCQIqEJ5JCk1LwvGeF5Hdo5GKlpgMiOp/c=;
+        h=References:In-Reply-To:From:Date:Subject:To:Cc:From;
+        b=YfrqBuAuonZXtO62eiTaf2qTghzXzsnl98KkC/6QTrSlap5SGGUHVuo3CRPv/VDeL
+         myh43nOmnp+WIIna2e5Pm8uZ9Zcq+KEvuRGVL04dp+ZKTJaZQTyg3fdXhLNGruZMNX
+         FVg0gJjQhIwa2GK1vA6XfDOFbkZnFgu+D4mXs3es=
+Received: by mail-ej1-f50.google.com with SMTP id dd13so1265877ejb.5;
+        Wed, 30 Sep 2020 00:12:10 -0700 (PDT)
+X-Gm-Message-State: AOAM531ae0h/WUtFojb2EUuqS1PTLuOA+Jqi4hbwjLWlW0AmPVxrmInR
+        p7/4tw76Yo3Cg/1D7Ha7r3Ci6NyOVYFm/+cRlbk=
+X-Google-Smtp-Source: ABdhPJyFS0R7Z+kb+bmnJUwvBv7Vreo7IzgUZoxCPLIZ5IXQoBbjinkmIkcvf9yxQF+aiKJlDOcE4VZOgMlOO6j9YxI=
+X-Received: by 2002:a17:906:1984:: with SMTP id g4mr1379084ejd.119.1601449929176;
+ Wed, 30 Sep 2020 00:12:09 -0700 (PDT)
 MIME-Version: 1.0
-Content-Type: text/plain; charset=utf-8
-Content-Disposition: inline
-Content-Transfer-Encoding: 8bit
-In-Reply-To: <20200930031712.2365-2-thunder.leizhen@huawei.com>
+References: <20200926162811.5335-1-krzk@kernel.org> <20200926162811.5335-12-krzk@kernel.org>
+ <2a329c9b-8bfc-fbd8-62a3-759f608347d6@denx.de> <686af5e6-d16a-7750-e47f-1ced9cb6c34a@denx.de>
+In-Reply-To: <686af5e6-d16a-7750-e47f-1ced9cb6c34a@denx.de>
+From:   Krzysztof Kozlowski <krzk@kernel.org>
+Date:   Wed, 30 Sep 2020 09:11:56 +0200
+X-Gmail-Original-Message-ID: <CAJKOXPe7XOQspzTFDRtb=y79mwXEZSGiYiQP3J58JMjCkVRSCQ@mail.gmail.com>
+Message-ID: <CAJKOXPe7XOQspzTFDRtb=y79mwXEZSGiYiQP3J58JMjCkVRSCQ@mail.gmail.com>
+Subject: Re: [RFC 12/14] dt-bindings: vendor-prefixes: add Aristainetos
+To:     hs@denx.de, Rob Herring <robh+dt@kernel.org>
+Cc:     Shawn Guo <shawnguo@kernel.org>,
+        Sascha Hauer <s.hauer@pengutronix.de>,
+        Pengutronix Kernel Team <kernel@pengutronix.de>,
+        Fabio Estevam <festevam@gmail.com>,
+        NXP Linux Team <linux-imx@nxp.com>,
+        Stefan Riedmueller <s.riedmueller@phytec.de>,
+        Robert Jones <rjones@gateworks.com>,
+        Li Yang <leoyang.li@nxp.com>, devicetree@vger.kernel.org,
+        "linux-kernel@vger.kernel.org" <linux-kernel@vger.kernel.org>,
+        linux-arm-kernel@lists.infradead.org
+Content-Type: text/plain; charset="UTF-8"
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-On Wed, 30 Sep 2020, Zhen Lei wrote:
+On Wed, 30 Sep 2020 at 06:16, Heiko Schocher <hs@denx.de> wrote:
+>
+> Hello Krzysztof,
+>
+> Am 28.09.2020 um 06:04 schrieb Heiko Schocher:
+> > Hello Krzysztof,
+> >
+> > Am 26.09.2020 um 18:28 schrieb Krzysztof Kozlowski:
+> >> Document binding for an unknown entity Aristainetos with few boards
+> >> mainlined.
+> >>
+> >> Cc: Heiko Schocher <hs@denx.de>
+> >> Signed-off-by: Krzysztof Kozlowski <krzk@kernel.org>
+> >>
+> >> ---
+> >>
+> >> I tried to Google but except the patches from Heiko Schocher, I could
+> >> not find any meaningful data.
+> >>
+> >> Heiko, you posted this. Do you know what is it?
+> >
+> > aristainetos is the name of the board, so it is not the vendor name.
+> >
+> > I just asked the customer if we can add a valid vendor name...
+>
+> Ok, it is not easy to get an okay from the customer to publish
+> his name.
+>
+> Is there a dummy or unknown entry for vendor?
 
-> Add some compatible strings for Hisilicon controllers:
-> hisilicon,hi6220-sramctrl  --> Hi6220 SRAM controller
-> hisilicon,pcie-sas-subctrl --> HiP05/HiP06 PCIe-SAS subsystem controller
-> hisilicon,peri-subctrl     --> HiP05/HiP06 PERI subsystem controller
-> hisilicon,dsa-subctrl      --> HiP05/HiP06 DSA subsystem controller
-> 
-> Signed-off-by: Zhen Lei <thunder.leizhen@huawei.com>
-> ---
->  Documentation/devicetree/bindings/mfd/syscon.yaml | 5 ++++-
->  1 file changed, 4 insertions(+), 1 deletion(-)
+We could use "denx" as it was done as part of your work or "linux".
+Rob, any hints here?
 
-This was already applied by the time you re-sent it.
-
-Any reason for sending it again?
-
--- 
-Lee Jones [李琼斯]
-Senior Technical Lead - Developer Services
-Linaro.org │ Open source software for Arm SoCs
-Follow Linaro: Facebook | Twitter | Blog
+Best regards,
+Krzysztof
