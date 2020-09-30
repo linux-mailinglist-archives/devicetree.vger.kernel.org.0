@@ -2,80 +2,108 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from vger.kernel.org (vger.kernel.org [23.128.96.18])
-	by mail.lfdr.de (Postfix) with ESMTP id 217F827E5EA
-	for <lists+devicetree@lfdr.de>; Wed, 30 Sep 2020 12:02:13 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTP id D4A7127E5EC
+	for <lists+devicetree@lfdr.de>; Wed, 30 Sep 2020 12:02:16 +0200 (CEST)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S1728235AbgI3KCL (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Wed, 30 Sep 2020 06:02:11 -0400
-Received: from lindbergh.monkeyblade.net ([23.128.96.19]:48340 "EHLO
+        id S1729127AbgI3KCQ (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Wed, 30 Sep 2020 06:02:16 -0400
+Received: from lindbergh.monkeyblade.net ([23.128.96.19]:48366 "EHLO
         lindbergh.monkeyblade.net" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S1725776AbgI3KCL (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Wed, 30 Sep 2020 06:02:11 -0400
-Received: from mail-pj1-x1042.google.com (mail-pj1-x1042.google.com [IPv6:2607:f8b0:4864:20::1042])
-        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 2C25AC061755
-        for <devicetree@vger.kernel.org>; Wed, 30 Sep 2020 03:02:11 -0700 (PDT)
-Received: by mail-pj1-x1042.google.com with SMTP id jw11so673310pjb.0
-        for <devicetree@vger.kernel.org>; Wed, 30 Sep 2020 03:02:11 -0700 (PDT)
+        with ESMTP id S1729004AbgI3KCQ (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Wed, 30 Sep 2020 06:02:16 -0400
+Received: from mail-pj1-x102f.google.com (mail-pj1-x102f.google.com [IPv6:2607:f8b0:4864:20::102f])
+        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id D5301C0613D4
+        for <devicetree@vger.kernel.org>; Wed, 30 Sep 2020 03:02:15 -0700 (PDT)
+Received: by mail-pj1-x102f.google.com with SMTP id l18so653381pjz.1
+        for <devicetree@vger.kernel.org>; Wed, 30 Sep 2020 03:02:15 -0700 (PDT)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
         d=linaro.org; s=google;
-        h=from:to:cc:subject:date:message-id;
-        bh=TPF6YKdz4OEVC8EPsySKMAkJJaxtO9jBU1rqnEtldNQ=;
-        b=d+s3AQEKnZn0OUF8cNY4yT+LUckpBFghzZVuu+U7ioW4R2aIqwBgmJrSD+5JOj6gd+
-         qxr9Mc+YgJ1OKrCQNHzmQmy45PtPZW5+P7BbwP8yAhajEXBW3ESNI85knwwULO7eLzHE
-         0TeHmbljVjTZLcc85C444BNdUDb8tBGrIiFyInuzHe1l+zxA9OWIXfY8u+jg1f79VPw4
-         qOdDEXgPkXQBP0GCGs+kw1iQK2HRyHUpsBnRPdc7WSuJLUCRTzR2ekZD4Kh5nP7x0jhj
-         Oz2sYP/KdGJUWNDbEjKzCnjpFv+vC3y6MCjILfu3LDItpfmUs/tEYmzmlRtXDFUEI+7a
-         /TSQ==
+        h=from:to:cc:subject:date:message-id:in-reply-to:references;
+        bh=UdW3gm1ADn0oDR7L02Rl9d5NYeVsj7eSjgALVvfgZ3I=;
+        b=ZuOjMUlcU/0BCxzdaBgZD+D8ctKAKNUF0ZAcRr4h5GfKC2nPOIbfW6Bgw8Hr4Cy+rW
+         XlIgzggikKCuB3GU/3iN6Mj1GhLPDKkZVrIav/DKT7xr4TEvgNbTablPR/TYdIzYOKfA
+         xjZxu45JsYpLtRh3gm+I2Z1anDBkqhXklYsyXJ01x89fuQil0MaQ0ih+Uh9cyBwZOqdE
+         JF5oRRuhoMR3KAtBh3ChKulEkIDbbyfTB/4Pu7LBb8Q00Gcvx+zJlZrtA2B29rmahVxJ
+         cg7IgVRi+vU5DGdXWEgDS0cYJS+SizIpL2vbSuQ4iffFdmQsq5z/BCDbxQYVV5xXNaDT
+         wofw==
 X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
         d=1e100.net; s=20161025;
-        h=x-gm-message-state:from:to:cc:subject:date:message-id;
-        bh=TPF6YKdz4OEVC8EPsySKMAkJJaxtO9jBU1rqnEtldNQ=;
-        b=j+leMVlDrbjBVyblABW81MB5P88JHT2SfxvRQ+YrX4saJxXhHAP8mADJZQvlh5h1eu
-         MWuQdwq6ub5RPJVJWJ58+gJQwtNJcUKJ59QDNWAS9rvFdWBg+Y4xYwROc9Z31FQyG6Q4
-         GzFs/9PTxoKOVSB9wl2gxOLLQrj17mQxJF7uPn1spMPGkg9p6Gh/hdhgSIyFGkbVUYIo
-         5J2YMmFcxF4uIw2hbgnstlpNCWNVpka4LIoyNnOdpqT9yjqx4CXZfSLqj3ufrtn9XEqG
-         SYGR81+FEBXr/572iHDOAiQfK/74hQDFjOuKHy1Y4azWPhuyio8TNMU56TGcUXyvCzfc
-         Bj+A==
-X-Gm-Message-State: AOAM5321vaNHSG3WSd1Ew9YT2zpEs/tRXM8rWqDQVTIsmm2lqV+57jfN
-        6awQR0rII0UL/XwaJ7oXFq6kMA==
-X-Google-Smtp-Source: ABdhPJya4sefjAvwlYSQDZpNkFyXnQ071yq6/CRkAkkWEECUcxm265GOdq0m1WwIOXZJGigPPPROFA==
-X-Received: by 2002:a17:902:9343:b029:d1:f3e1:c190 with SMTP id g3-20020a1709029343b02900d1f3e1c190mr1846628plp.2.1601460130636;
-        Wed, 30 Sep 2020 03:02:10 -0700 (PDT)
+        h=x-gm-message-state:from:to:cc:subject:date:message-id:in-reply-to
+         :references;
+        bh=UdW3gm1ADn0oDR7L02Rl9d5NYeVsj7eSjgALVvfgZ3I=;
+        b=B7QnKezUCrby2ZaJADhTEa6Bk/Dd8LBEZ5DjRn68nF1AblRurs3NouxY0jCcuFbADR
+         +nx0ow5oROlKpLlfmr3YG/ZS9Uj7MFNj44OTrDZjhLEJEHqDr5yJzqAEgfTO1i/8bklr
+         JPLO1bjjck+tKNSgHgd6evMA6UVYSwjnIoWYToTFEy3H9CwnOv/dP5WvOroj6W25oC2n
+         79+dzBZGU0GMAQmKSVdWjOop0IDJNxcWPpnwu+PnjWJWl9ek+isNKCQhCjAxPduKYqDO
+         a3e4+dz94VSBys7ClPE3f9VLNV9PXHsax3r5SMI1WhCusC9mecVGbb+Wv2ED3wxsR2dl
+         kPrQ==
+X-Gm-Message-State: AOAM531pCvutsCGGyN6Ut75hkyDIRZ+93z1O/Nqfk613t/pdmGemJrii
+        LsvpsGTJD8zj/YO85FlLWAoreczNU0gJWQH2
+X-Google-Smtp-Source: ABdhPJyxMGCvv9VXkgkCXXFTMuzS68luNGAmYgyVhsWR2JEJYGb4R2Bg6mUoxlBWnmZFPk21vnBcfw==
+X-Received: by 2002:a17:90a:b944:: with SMTP id f4mr1873953pjw.127.1601460135158;
+        Wed, 30 Sep 2020 03:02:15 -0700 (PDT)
 Received: from localhost.localdomain (li519-153.members.linode.com. [66.175.222.153])
-        by smtp.gmail.com with ESMTPSA id b2sm1890002pfp.3.2020.09.30.03.02.06
+        by smtp.gmail.com with ESMTPSA id b2sm1890002pfp.3.2020.09.30.03.02.10
         (version=TLS1_3 cipher=TLS_AES_256_GCM_SHA384 bits=256/256);
-        Wed, 30 Sep 2020 03:02:10 -0700 (PDT)
+        Wed, 30 Sep 2020 03:02:14 -0700 (PDT)
 From:   Jun Nie <jun.nie@linaro.org>
 To:     stephan@gerhold.net, bjorn.andersson@linaro.org, agross@kernel.org,
         linux-pm@vger.kernel.org, linux-arm-msm@vger.kernel.org,
         devicetree@vger.kernel.org, linux-kernel@vger.kernel.org,
         robh@kernel.org
 Cc:     shawn.guo@linaro.org, Jun Nie <jun.nie@linaro.org>
-Subject: [PATCH v3 0/2] Add MSM8939 RPM power domains
-Date:   Wed, 30 Sep 2020 18:01:43 +0800
-Message-Id: <20200930100145.9457-1-jun.nie@linaro.org>
+Subject: [PATCH v3 1/2] dt-bindings: power: rpmpd: Add MSM8939 RPM power domains
+Date:   Wed, 30 Sep 2020 18:01:44 +0800
+Message-Id: <20200930100145.9457-2-jun.nie@linaro.org>
 X-Mailer: git-send-email 2.17.1
+In-Reply-To: <20200930100145.9457-1-jun.nie@linaro.org>
+References: <20200930100145.9457-1-jun.nie@linaro.org>
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-Add MSM8939 RPM power domains and associated document. This is based on
-Stephan's patch set to reuse max state definition:
-https://lore.kernel.org/linux-arm-msm/20200916104135.25085-1-stephan@gerhold.net/
+MSM8939 has three RPM power domains: VDDCX and VDDMX and VDDMDCX.
+Add the device tree bindings to manage them through rpmpd.
 
-Changes vs v2:
- - fix max power domain state value.
- - trim code layout.
+Signed-off-by: Jun Nie <jun.nie@linaro.org>
+---
+ .../devicetree/bindings/power/qcom,rpmpd.yaml          |  1 +
+ include/dt-bindings/power/qcom-rpmpd.h                 | 10 ++++++++++
+ 2 files changed, 11 insertions(+)
 
-Jun Nie (2):
-  dt-bindings: power: rpmpd: Add MSM8939 RPM power domains
-  soc: qcom: rpmpd: Add MSM8939 power-domains
-
- .../devicetree/bindings/power/qcom,rpmpd.yaml |  1 +
- drivers/soc/qcom/rpmpd.c                      | 27 +++++++++++++++++++
- include/dt-bindings/power/qcom-rpmpd.h        | 10 +++++++
- 3 files changed, 38 insertions(+)
-
+diff --git a/Documentation/devicetree/bindings/power/qcom,rpmpd.yaml b/Documentation/devicetree/bindings/power/qcom,rpmpd.yaml
+index f136d06b7fc8..919150f426d4 100644
+--- a/Documentation/devicetree/bindings/power/qcom,rpmpd.yaml
++++ b/Documentation/devicetree/bindings/power/qcom,rpmpd.yaml
+@@ -17,6 +17,7 @@ properties:
+   compatible:
+     enum:
+       - qcom,msm8916-rpmpd
++      - qcom,msm8939-rpmpd
+       - qcom,msm8976-rpmpd
+       - qcom,msm8996-rpmpd
+       - qcom,msm8998-rpmpd
+diff --git a/include/dt-bindings/power/qcom-rpmpd.h b/include/dt-bindings/power/qcom-rpmpd.h
+index 83dae2cabb60..4c07f2402b94 100644
+--- a/include/dt-bindings/power/qcom-rpmpd.h
++++ b/include/dt-bindings/power/qcom-rpmpd.h
+@@ -71,6 +71,16 @@
+ #define MSM8916_VDDMX		3
+ #define MSM8916_VDDMX_AO	4
+ 
++/* MSM8939 Power Domains */
++#define MSM8939_VDDMDCX		0
++#define MSM8939_VDDMDCX_AO	1
++#define MSM8939_VDDMDCX_VFC	2
++#define MSM8939_VDDCX		3
++#define MSM8939_VDDCX_AO	4
++#define MSM8939_VDDCX_VFC	5
++#define MSM8939_VDDMX		6
++#define MSM8939_VDDMX_AO	7
++
+ /* MSM8976 Power Domain Indexes */
+ #define MSM8976_VDDCX		0
+ #define MSM8976_VDDCX_AO	1
 -- 
 2.17.1
 
