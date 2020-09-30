@@ -2,77 +2,75 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from vger.kernel.org (vger.kernel.org [23.128.96.18])
-	by mail.lfdr.de (Postfix) with ESMTP id 2424D27E355
-	for <lists+devicetree@lfdr.de>; Wed, 30 Sep 2020 10:07:52 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTP id 4ED8F27E367
+	for <lists+devicetree@lfdr.de>; Wed, 30 Sep 2020 10:15:32 +0200 (CEST)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S1725823AbgI3IHv (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Wed, 30 Sep 2020 04:07:51 -0400
-Received: from lindbergh.monkeyblade.net ([23.128.96.19]:58862 "EHLO
-        lindbergh.monkeyblade.net" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S1725440AbgI3IHv (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Wed, 30 Sep 2020 04:07:51 -0400
-Received: from bhuna.collabora.co.uk (bhuna.collabora.co.uk [IPv6:2a00:1098:0:82:1000:25:2eeb:e3e3])
-        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 3C206C061755;
-        Wed, 30 Sep 2020 01:07:51 -0700 (PDT)
-Received: from [127.0.0.1] (localhost [127.0.0.1])
-        (Authenticated sender: eballetbo)
-        with ESMTPSA id 28B3929AF81
-Subject: Re: DT warnings in Cros EC
-To:     Rob Herring <robh@kernel.org>, Benson Leung <bleung@chromium.org>,
-        Guenter Roeck <groeck@chromium.org>
-Cc:     devicetree@vger.kernel.org,
-        "linux-kernel@vger.kernel.org" <linux-kernel@vger.kernel.org>,
-        Lee Jones <lee.jones@linaro.org>
-References: <CAL_JsqJQDgGVwhc9JFuoG7-_cvV3fhLvd95k=0qKgxM+UsMm-g@mail.gmail.com>
-From:   Enric Balletbo i Serra <enric.balletbo@collabora.com>
-Message-ID: <1defbf05-33da-c251-7c2c-6f7ec7ec8999@collabora.com>
-Date:   Wed, 30 Sep 2020 10:07:46 +0200
-User-Agent: Mozilla/5.0 (X11; Linux x86_64; rv:68.0) Gecko/20100101
- Thunderbird/68.12.0
-MIME-Version: 1.0
-In-Reply-To: <CAL_JsqJQDgGVwhc9JFuoG7-_cvV3fhLvd95k=0qKgxM+UsMm-g@mail.gmail.com>
-Content-Type: text/plain; charset=utf-8
-Content-Language: en-US
-Content-Transfer-Encoding: 7bit
+        id S1728439AbgI3IPb (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Wed, 30 Sep 2020 04:15:31 -0400
+Received: from z5.mailgun.us ([104.130.96.5]:37029 "EHLO z5.mailgun.us"
+        rhost-flags-OK-OK-OK-OK) by vger.kernel.org with ESMTP
+        id S1725799AbgI3IPb (ORCPT <rfc822;devicetree@vger.kernel.org>);
+        Wed, 30 Sep 2020 04:15:31 -0400
+DKIM-Signature: a=rsa-sha256; v=1; c=relaxed/relaxed; d=mg.codeaurora.org; q=dns/txt;
+ s=smtp; t=1601453731; h=Message-Id: Date: Subject: Cc: To: From:
+ Sender; bh=ApJUWDC1QKKLVAUh8ABFaKlfJlW6qV/8Lk11jnQS6H4=; b=ANOibEKOLU0Pp01dPg+AbMM8O2Wp3BUdLNu6NgFEMHnmgJ1xU1CrXtplb0SvZQFKX1p9JOrJ
+ 6kVeV6iZGHMkLMbFvBNgw8lXJfDk6Bngqr4JozK+ZiCPCHeiUGk7K0DOxICTmMVOm+ozcZSy
+ wRRWje+DIj4p/AtUKM99AGC8UAY=
+X-Mailgun-Sending-Ip: 104.130.96.5
+X-Mailgun-Sid: WyI1YmJiNiIsICJkZXZpY2V0cmVlQHZnZXIua2VybmVsLm9yZyIsICJiZTllNGEiXQ==
+Received: from smtp.codeaurora.org
+ (ec2-35-166-182-171.us-west-2.compute.amazonaws.com [35.166.182.171]) by
+ smtp-out-n05.prod.us-west-2.postgun.com with SMTP id
+ 5f743e6e809bd330147cd1da (version=TLS1.2,
+ cipher=TLS_ECDHE_RSA_WITH_AES_128_GCM_SHA256); Wed, 30 Sep 2020 08:14:38
+ GMT
+Sender: schowdhu=codeaurora.org@mg.codeaurora.org
+Received: by smtp.codeaurora.org (Postfix, from userid 1001)
+        id 11F5BC433C8; Wed, 30 Sep 2020 08:14:38 +0000 (UTC)
+X-Spam-Checker-Version: SpamAssassin 3.4.0 (2014-02-07) on
+        aws-us-west-2-caf-mail-1.web.codeaurora.org
+X-Spam-Level: 
+X-Spam-Status: No, score=-2.9 required=2.0 tests=ALL_TRUSTED,BAYES_00,SPF_FAIL
+        autolearn=no autolearn_force=no version=3.4.0
+Received: from blr-ubuntu-525.qualcomm.com (blr-bdr-fw-01_GlobalNAT_AllZones-Outside.qualcomm.com [103.229.18.19])
+        (using TLSv1.2 with cipher ECDHE-RSA-AES128-SHA256 (128/128 bits))
+        (No client certificate requested)
+        (Authenticated sender: schowdhu)
+        by smtp.codeaurora.org (Postfix) with ESMTPSA id 7D7D0C433CA;
+        Wed, 30 Sep 2020 08:14:35 +0000 (UTC)
+DMARC-Filter: OpenDMARC Filter v1.3.2 smtp.codeaurora.org 7D7D0C433CA
+Authentication-Results: aws-us-west-2-caf-mail-1.web.codeaurora.org; dmarc=none (p=none dis=none) header.from=codeaurora.org
+Authentication-Results: aws-us-west-2-caf-mail-1.web.codeaurora.org; spf=fail smtp.mailfrom=schowdhu@codeaurora.org
+From:   Souradeep Chowdhury <schowdhu@codeaurora.org>
+To:     devicetree@vger.kernel.org, Andy Gross <agross@kernel.org>,
+        Bjorn Andersson <bjorn.andersson@linaro.org>
+Cc:     linux-arm-msm@vger.kernel.org, linux-kernel@vger.kernel.org,
+        Rajendra Nayak <rnayak@codeaurora.org>,
+        Souradeep Chowdhury <schowdhu@codeaurora.org>
+Subject: [PATCH V1 0/3] Add LLCC support for SM8150 SoC
+Date:   Wed, 30 Sep 2020 13:44:11 +0530
+Message-Id: <cover.1601452132.git.schowdhu@codeaurora.org>
+X-Mailer: git-send-email 2.7.4
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-Hi Rob,
+LLCC behaviour is controlled by the configuration data set
+in the llcc-qcom driver, add the same for SM8150 SoC.
+Add the compatible for SM8150 SoC
 
-On 28/9/20 18:49, Rob Herring wrote:
-> There's a bunch of warnings in the Cros EC schemas. They stem from
-> child node names needing to be defined. I started fixing, but it's
-> kind of a mess as there's a mixture of no unit addresses and different
-> unit address spaces (regulators and codec). And is type-C and extcon
-> mutually exclusive? I gave up, so please fix these:
-> 
-> /builds/robherring/linux-dt-bindings/Documentation/devicetree/bindings/extcon/extcon-usbc-cros-ec.example.dt.yaml:
-> cros-ec@0: 'extcon0', 'extcon1' do not match any of the regexes:
-> 'pinctrl-[0-9]+'
-> From schema: /builds/robherring/linux-dt-bindings/Documentation/devicetree/bindings/mfd/google,cros-ec.yaml
-> bindings/Documentation/devicetree/bindings/pwm/google,cros-ec-pwm.example.dt.yaml:
-> cros-ec@0: 'ec-pwm' does not match any of the regexes:
-> 'pinctrl-[0-9]+'
-> From schema: /builds/robherring/linux-dt-bindings/Documentation/devicetree/bindings/mfd/google,cros-ec.yaml
-> /builds/robherring/linux-dt-bindings/Documentation/devicetree/bindings/regulator/google,cros-ec-regulator.example.dt.yaml:
-> ec@0: '#address-cells', '#size-cells', 'regulator@0' do not match any
-> of the regexes: 'pinctrl-[0-9]+'
-> From schema: /builds/robherring/linux-dt-bindings/Documentation/devicetree/bindings/mfd/google,cros-ec.yaml
-> /builds/robherring/linux-dt-bindings/Documentation/devicetree/bindings/chrome/google,cros-ec-typec.example.dt.yaml:
-> ec@0: 'typec' does not match any of the regexes: 'pinctrl-[0-9]+'
-> From schema: /builds/robherring/linux-dt-bindings/Documentation/devicetree/bindings/mfd/google,cros-ec.yaml
-> /builds/robherring/linux-dt-bindings/Documentation/devicetree/bindings/sound/google,cros-ec-codec.example.dt.yaml:
-> cros-ec@0: '#address-cells', '#size-cells', 'ec-codec@10500000' do not
-> match any of the regexes: 'pinctrl-[0-9]+'
-> From schema: /builds/robherring/linux-dt-bindings/Documentation/devicetree/bindings/mfd/google,cros-ec.yaml
-> 
+Souradeep Chowdhury (3):
+  dt-bindings: msm: Add LLCC for SM8150
+  soc: qcom: llcc: Add configuration data for SM8150
+  arm64: dts: qcom: sm8150: Add LLC support for sm8150
 
-We will take a look soon and send patches to fix it.
+ .../bindings/arm/msm/qcom,llcc.yaml           |  1 +
+ arch/arm64/boot/dts/qcom/sm8150.dtsi          |  9 +++++-
+ drivers/soc/qcom/llcc-qcom.c                  | 30 +++++++++++++++++++
+ include/linux/soc/qcom/llcc-qcom.h            |  6 ++++
+ 4 files changed, 45 insertions(+), 1 deletion(-)
 
-Thanks,
-  Enric
+-- 
+QUALCOMM INDIA, on behalf of Qualcomm Innovation Center, Inc. is a member
+of Code Aurora Forum, hosted by The Linux Foundation
 
-> 
-> Rob
-> 
