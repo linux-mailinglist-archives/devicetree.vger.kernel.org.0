@@ -2,265 +2,86 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from vger.kernel.org (vger.kernel.org [23.128.96.18])
-	by mail.lfdr.de (Postfix) with ESMTP id 7F15C27EC8B
-	for <lists+devicetree@lfdr.de>; Wed, 30 Sep 2020 17:28:39 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTP id 2598927ED66
+	for <lists+devicetree@lfdr.de>; Wed, 30 Sep 2020 17:40:09 +0200 (CEST)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S1728496AbgI3P2g (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Wed, 30 Sep 2020 11:28:36 -0400
-Received: from lindbergh.monkeyblade.net ([23.128.96.19]:42130 "EHLO
-        lindbergh.monkeyblade.net" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S1728329AbgI3P2f (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Wed, 30 Sep 2020 11:28:35 -0400
-Received: from mail-ua1-x942.google.com (mail-ua1-x942.google.com [IPv6:2607:f8b0:4864:20::942])
-        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id CE869C0613D0
-        for <devicetree@vger.kernel.org>; Wed, 30 Sep 2020 08:28:34 -0700 (PDT)
-Received: by mail-ua1-x942.google.com with SMTP id n26so589571uao.8
-        for <devicetree@vger.kernel.org>; Wed, 30 Sep 2020 08:28:34 -0700 (PDT)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=chromium.org; s=google;
-        h=mime-version:references:in-reply-to:from:date:message-id:subject:to
-         :cc;
-        bh=KI6flaN45h6c4S1U3iS1qLPc2mhSgihfQFoOlFOrNoM=;
-        b=ARgjJDxIblSfCQxhmZ0tgJOwgQoXvkcDgIEd8BELIEsCD3a/b4+rIFKwD18gMYz1QV
-         EgcLIbGZ0igKWTWOObPuByRRi8Y9K6D8sqUBo3QwYRPUtfi+wt/663tFcVI+fOx0aw8m
-         38+eZxRGicAHtzfJtaWrqBcrmoZ6kcWFrKX2Q=
-X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=1e100.net; s=20161025;
-        h=x-gm-message-state:mime-version:references:in-reply-to:from:date
-         :message-id:subject:to:cc;
-        bh=KI6flaN45h6c4S1U3iS1qLPc2mhSgihfQFoOlFOrNoM=;
-        b=WdhmxHtlNznwbpVVXY81X8ui3u96l3jffOC9RoXpiBl8qY4m5bEKMtUJkhJ4NW6Qmx
-         Zh4BXQ/3aBC449Z58CMXDiPnNbYHSVm5oMvdhd6Rics1zWJ4Kq02Wrivh6bwK1XIVeuf
-         jvKcJZJP0Yh7ScEgc3nGQDT3znu2625QcKr3TsPa8uA5YeIw+MNBpioSLqpbTRbOqs8G
-         2hZDX6vPTNTfQYk82zxrMqvvmD21nZYpyCmGYLx0ffhp2HT3Slh1e9pH8p5QKUH0pfXF
-         swckhuCHS+J/wcooXG5nxbGG0sSMDE0RZChoFc6IXlBMM/W7k2COiaFUOIICTS63Ue7c
-         RT4g==
-X-Gm-Message-State: AOAM533DG1tv+NAWe/9TcLNgwmqGJ5l36v+N+SCPB7gBckmOhiAvO4d3
-        SPWX3Q5qjTBJOtpP3LK0ENLLNpSaMaDVMg==
-X-Google-Smtp-Source: ABdhPJwoyNCDasxy6IRnrQOY0uK6J68H6H04SOy3reYbPlBkP3qHFptflqQ2oUCvrUwUX8fP2c6XRQ==
-X-Received: by 2002:ab0:ef:: with SMTP id 102mr1857123uaj.142.1601479713303;
-        Wed, 30 Sep 2020 08:28:33 -0700 (PDT)
-Received: from mail-vk1-f182.google.com (mail-vk1-f182.google.com. [209.85.221.182])
-        by smtp.gmail.com with ESMTPSA id o145sm267257vkd.13.2020.09.30.08.28.31
-        for <devicetree@vger.kernel.org>
-        (version=TLS1_3 cipher=TLS_AES_128_GCM_SHA256 bits=128/128);
-        Wed, 30 Sep 2020 08:28:31 -0700 (PDT)
-Received: by mail-vk1-f182.google.com with SMTP id n193so458849vkf.12
-        for <devicetree@vger.kernel.org>; Wed, 30 Sep 2020 08:28:31 -0700 (PDT)
-X-Received: by 2002:ac5:c297:: with SMTP id h23mr1852218vkk.21.1601479710319;
- Wed, 30 Sep 2020 08:28:30 -0700 (PDT)
-MIME-Version: 1.0
-References: <20200928101326.v4.1.I248292623d3d0f6a4f0c5bc58478ca3c0062b49a@changeid>
- <20200929201701.GA1080459@bogus> <20200929220912.GF1621304@google.com>
- <20200930013229.GB194665@rowland.harvard.edu> <20200930124915.GA1826870@google.com>
- <CAL_JsqLq9ZJm_CMiqWwbQhgGeu_ac_j43pvk4+xCFueSbyL4wA@mail.gmail.com>
-In-Reply-To: <CAL_JsqLq9ZJm_CMiqWwbQhgGeu_ac_j43pvk4+xCFueSbyL4wA@mail.gmail.com>
-From:   Doug Anderson <dianders@chromium.org>
-Date:   Wed, 30 Sep 2020 08:28:17 -0700
-X-Gmail-Original-Message-ID: <CAD=FV=WcDzgcHNn1+gH+gq_WEwpD0XXdJGm2fBVpAB=3fVbzZA@mail.gmail.com>
-Message-ID: <CAD=FV=WcDzgcHNn1+gH+gq_WEwpD0XXdJGm2fBVpAB=3fVbzZA@mail.gmail.com>
-Subject: Re: [PATCH v4 1/2] dt-bindings: usb: Add binding for discrete onboard
- USB hubs
-To:     Rob Herring <robh@kernel.org>
-Cc:     Matthias Kaehlcke <mka@chromium.org>,
-        Alan Stern <stern@rowland.harvard.edu>,
-        Greg Kroah-Hartman <gregkh@linuxfoundation.org>,
-        Frank Rowand <frowand.list@gmail.com>,
+        id S1727438AbgI3PiS (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Wed, 30 Sep 2020 11:38:18 -0400
+Received: from smtprelay0206.hostedemail.com ([216.40.44.206]:36374 "EHLO
+        smtprelay.hostedemail.com" rhost-flags-OK-OK-OK-FAIL)
+        by vger.kernel.org with ESMTP id S1725468AbgI3PiS (ORCPT
+        <rfc822;devicetree@vger.kernel.org>);
+        Wed, 30 Sep 2020 11:38:18 -0400
+X-Greylist: delayed 471 seconds by postgrey-1.27 at vger.kernel.org; Wed, 30 Sep 2020 11:38:18 EDT
+Received: from smtprelay.hostedemail.com (10.5.19.251.rfc1918.com [10.5.19.251])
+        by smtpgrave07.hostedemail.com (Postfix) with ESMTP id 8DA7718097A43
+        for <devicetree@vger.kernel.org>; Wed, 30 Sep 2020 15:30:28 +0000 (UTC)
+Received: from filter.hostedemail.com (clb03-v110.bra.tucows.net [216.40.38.60])
+        by smtprelay07.hostedemail.com (Postfix) with ESMTP id E5188181D302B;
+        Wed, 30 Sep 2020 15:30:26 +0000 (UTC)
+X-Session-Marker: 6A6F6540706572636865732E636F6D
+X-Spam-Summary: 50,0,0,,d41d8cd98f00b204,joe@perches.com,,RULES_HIT:41:355:379:599:800:960:967:973:982:988:989:1260:1277:1311:1313:1314:1345:1359:1437:1515:1516:1518:1534:1541:1593:1594:1711:1730:1747:1777:1792:2393:2525:2538:2553:2560:2563:2682:2685:2828:2859:2892:2911:2933:2937:2939:2942:2945:2947:2951:2954:3022:3138:3139:3140:3141:3142:3352:3622:3865:3867:3868:3870:3871:3872:3873:3934:3936:3938:3941:3944:3947:3950:3953:3956:3959:4321:4425:5007:6119:6742:7903:9012:9025:9040:10004:10400:10848:11232:11658:11914:12043:12296:12297:12740:12760:12895:13069:13072:13161:13229:13311:13357:13439:13618:14181:14659:14721:14777:21063:21067:21080:21433:21451:21611:21627:21740:21788:21819:30003:30022:30054:30055:30056:30067:30075:30090:30091,0,RBL:none,CacheIP:none,Bayesian:0.5,0.5,0.5,Netcheck:none,DomainCache:0,MSF:not bulk,SPF:,MSBL:0,DNSBL:none,Custom_rules:0:0:0,LFtime:2,LUA_SUMMARY:none
+X-HE-Tag: vase23_3d0218b27193
+X-Filterd-Recvd-Size: 2476
+Received: from XPS-9350.home (unknown [47.151.133.149])
+        (Authenticated sender: joe@perches.com)
+        by omf15.hostedemail.com (Postfix) with ESMTPA;
+        Wed, 30 Sep 2020 15:30:22 +0000 (UTC)
+Message-ID: <f92c0644700ef7adc703907f95e4332f94d7aa7b.camel@perches.com>
+Subject: Re: [PATCH v6 2/3] MAINTAINERS: Add Purism Librem 5 section to the
+ list
+From:   Joe Perches <joe@perches.com>
+To:     Krzysztof Kozlowski <krzk@kernel.org>,
+        Shawn Guo <shawnguo@kernel.org>
+Cc:     Martin Kepplinger <martin.kepplinger@puri.sm>, robh@kernel.org,
+        kernel@puri.sm, s.hauer@pengutronix.de, kernel@pengutronix.de,
+        festevam@gmail.com, linux-imx@nxp.com, mchehab@kernel.org,
+        Anson.Huang@nxp.com, agx@sigxcpu.org, angus@akkea.ca,
+        broonie@kernel.org,
         "linux-kernel@vger.kernel.org" <linux-kernel@vger.kernel.org>,
-        Linux USB List <linux-usb@vger.kernel.org>,
-        Bastien Nocera <hadess@hadess.net>,
-        Stephen Boyd <swboyd@chromium.org>,
-        Ravi Chandra Sadineni <ravisadineni@chromium.org>,
-        Krzysztof Kozlowski <krzk@kernel.org>,
-        "open list:OPEN FIRMWARE AND FLATTENED DEVICE TREE BINDINGS" 
-        <devicetree@vger.kernel.org>, Peter Chen <peter.chen@nxp.com>
-Content-Type: text/plain; charset="UTF-8"
+        devicetree@vger.kernel.org, linux-arm-kernel@lists.infradead.org
+Date:   Wed, 30 Sep 2020 08:30:20 -0700
+In-Reply-To: <CAJKOXPcJUg+a8rJEn1D-_Ex3HEyHi7TZdh8VGPr9C23xq8L2pA@mail.gmail.com>
+References: <20200821121755.24599-1-martin.kepplinger@puri.sm>
+         <20200821121755.24599-2-martin.kepplinger@puri.sm>
+         <20200830131459.GL32096@dragon>
+         <CAJKOXPcJUg+a8rJEn1D-_Ex3HEyHi7TZdh8VGPr9C23xq8L2pA@mail.gmail.com>
+Content-Type: text/plain; charset="ISO-8859-1"
+User-Agent: Evolution 3.36.4-0ubuntu1 
+MIME-Version: 1.0
+Content-Transfer-Encoding: 7bit
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-Hi,
+On Wed, 2020-09-30 at 12:50 +0200, Krzysztof Kozlowski wrote:
+> On Sun, 30 Aug 2020 at 15:15, Shawn Guo <shawnguo@kernel.org> wrote:
+> > On Fri, Aug 21, 2020 at 02:17:54PM +0200, Martin Kepplinger wrote:
+> > > Add development information for the devicetree files for hardware
+> > > by Purism SPC.
+> > > 
+> > > Signed-off-by: Martin Kepplinger <martin.kepplinger@puri.sm>
+> > 
+> > I decided to drop this patch from my queue, as I took the suggestion
+> > from Joe and sent a patch to have get_maintainer report email address
+> > in the dts file.
+> > 
+> > Shawn
+> > 
+> > [1] https://lkml.org/lkml/2020/8/30/118
+> 
+> Shawn, Joe,
+> 
+> Cool idea! Multiple times I needed review/testing for individual
+> boards and this should be faster than going through git history.
+> 
+> Could you tell me how this is supposed to work for DTS/DTSI files? It
+> seems it ignores the comments, so usual copyright notice does not have
+> an effect. Where to put the address?
 
-On Wed, Sep 30, 2020 at 7:44 AM Rob Herring <robh@kernel.org> wrote:
->
-> On Wed, Sep 30, 2020 at 7:49 AM Matthias Kaehlcke <mka@chromium.org> wrote:
-> >
-> > Hi Alan,
-> >
-> > On Tue, Sep 29, 2020 at 09:32:29PM -0400, Alan Stern wrote:
-> > > On Tue, Sep 29, 2020 at 03:09:12PM -0700, Matthias Kaehlcke wrote:
-> > > > Hi Rob,
-> > > >
-> > > > On Tue, Sep 29, 2020 at 03:17:01PM -0500, Rob Herring wrote:
-> > > > > As I said in prior version, this separate node and 'hub' phandle is not
-> > > > > going to work. You are doing this because you want a platform driver for
-> > > > > "realtek,rts5411". That may be convenient for Linux, but doesn't reflect
-> > > > > the h/w.
-> > > >
-> > > > I agree that the hardware representation isn't totally straightforward, however
-> > > > the description isn't limited to Linux:
-> > > >
-> > > > - there is a single IC (like the Realtek RTS5411)
-> > > > - the IC may require several resources to be initialized in a certain way
-> > > >   - this may require executing hardware specific code by some driver, which
-> > > >     isn't a USB device driver
-> > > > - the IC can 'contain' multiple USB hub devices, which can be connected to
-> > > >   separate USB busses
-> > > > - the IC doesn't have a control bus, which somewhat resembles the
-> > > >   'simple-audio-amplifier' driver, which also registers a platform device
-> > > >   to initialize its resources
-> > > >
-> > > > - to provide the functionality of powering down the hub conditionally during
-> > > >   system suspend the driver (whether it's a platform driver or something else)
-> > > >   needs know which USB (hub) devices correspond to it. This is a real world
-> > > >   problem, on hardware that might see wide distribution.
-> > > >
-> > > > There were several attempts to solve this problem in the past, but none of them
-> > > > was accepted. So far Alan Stern seems to think the driver (not necessarily the
-> > > > binding as is) is a suitable solution, Greg KH also spent time reviewing it,
-> > > > without raising conceptual concerns. So it seems we have solution that would
-> > > > be generally landable from the USB side.
->
-> Just as I spend no time reviewing the driver side typically, I don't
-> think Alan or Greg spend any time on the DT side.
->
-> > > > I understand that your goal is to keep the device tree sane, which I'm sure
-> > > > can be challenging. If you really can't be convinced that the binding might
-> > > > be acceptable in its current or similiar form then please offer guidance
-> > > > on possible alternatives which allow to achieve the same functionality.
-> > >
-> > > You're really trying to represent this special IC in DT, right?
-> >
-> > Yes
-> >
-> > > Maybe  if you don't call it a "hub" but instead something that better reflects
-> > > what it actually is and does, the description will be more palatable.
->
-> It's a hub. The name is not the problem.
->
-> > Thanks for your suggestion.
-> >
-> > Datasheets from different manufacturers refer to these ICs as "USB hub
-> > controller". Calling the node "usb-hub-controller" would indeed help to
-> > distinguish it from the USB hub devices and represent existing hardware.
-> > And the USB device could have a "hub-controller" property, which also
-> > would be clearer than the current "hub" property.
->
-> There aren't 2 (or 3) devices here. There's a single USB device (a
-> hub) and the DT representation should reflect that.
+The get_maintainer.pl script reads an existing file and
+looks for whatever appears to be an email address.
 
-That's not completely true, though, is it?  As I understand it, a USB
-3 port is defined as containing both a USB 2 controller and a USB 3
-controller.  While it's one port, it's still conceptually two
-(separable) things.  The fact that they are on the same physical chip
-doesn't mean that they are one thing any more than a SoC (one chip)
-needs to be represented by one thing in the device tree.  Though, of
-course, I'm not the expert here, the argument that this IC is a USB 2
-hub, a USB 3 hub, and some control logic doesn't seem totally
-insane...
+It does not ignore comments.
 
 
-> We already have hubs in DT. See [1][2][3][4]. What's new here? Simply,
-> vdd-supply needs to be enabled for the hub to be enumerated. That's
-> not a unique problem for USB, but common for all "discoverable" buses
-> with MDIO being the most recent example I pointed you to. I'm not sure
-> what happened with the previous attempt for USB[5]. It didn't look
-> like there was a major issue. 'generic' power sequencing can't really
-> handle every case, but as long as bindings allow doing something
-> device specific I don't care so much. The driver side can evolve. The
-> DT bindings can't.
->
-> So what should this look like? There are 2 issues here. First, how do
-> we represent a USB3 device if that means multiple ports. I'm not
-> really sure other than it needs to be defined and documented. I think
-> the choices are: ignore the USB3 part (USB2 is always there and what's
-> used for enumeration, right?) or allow multiple ports in reg.
-
-Interesting question, that one.  When trying to optimize board designs
-we have certainly talked about separating out the USB 2 and USB 3 [1].
-For instance, we could take the USB 3 lines from the root hub and send
-them off to a high speed camera and then take the USB 2 lines and
-route them to a hub which then went to some low speed devices.  We
-chickened out and didn't do this, but we believed that it would work.
-
-
-> Do hubs
-> really have 2 ports for each connection?
-
-Yup.  It's really two hubs.
-
-localhost ~ # lsusb -t
-/:  Bus 02.Port 1: Dev 1, Class=root_hub, Driver=xhci-hcd/1p, 5000M
-    |__ Port 1: Dev 2, If 0, Class=Hub, Driver=hub/4p, 5000M
-/:  Bus 01.Port 1: Dev 1, Class=root_hub, Driver=xhci-hcd/1p, 480M
-    |__ Port 1: Dev 2, If 0, Class=Hub, Driver=hub/4p, 480M
-
-localhost ~ # lsusb
-Bus 002 Device 002: ID 0bda:0411 Realtek Semiconductor Corp.
-Bus 002 Device 001: ID 1d6b:0003 Linux Foundation 3.0 root hub
-Bus 001 Device 002: ID 0bda:5411 Realtek Semiconductor Corp.
-Bus 001 Device 001: ID 1d6b:0002 Linux Foundation 2.0 root hub
-
-I think this means that we're already forced to split this one device
-across two nodes in the device tree, right?  Oh, or I guess you said
-we could change the binding to allow more than one port in one reg?
-What would that look like?  You'd have more than one VID/PID listed in
-the compatible string and more than one "reg"?
-
-
-> The 2nd issue is where do extra properties for a device go. That's
-> nothing new nor special to USB. They go with the device node. We
-> already went thru that with the last attempt.
->
-> So for this case, we'd have something like this:
->
->     usb_controller {
->         dr_mode = "host";
->         #address-cells = <1>;
->         #size-cells = <0>;
->
->         hub@1 {
->             compatible = "usbbda,5411";
->             reg = <1>;
->             vdd-supply = <&pp3300_hub>;
->         };
->     };
->
-> This is no different than needing a reset line deasserted as the prior
-> attempt did.
-
-I'd believe that the above could be made to work with enough software
-change in the USB stack.  Presumably we wouldn't want to actually do a
-full probe of the device until USB actually enumerated it, but I guess
-you could add some type of optional "pre-probe" step where a driver is
-called?  So you'd call a pre-probe on whatever driver implements
-"usbbda,5411" and it would turn on the power supply.  ...then, if the
-device is actually there, the normal probe would be called?  I guess
-that'd work...
-
-One thing that strikes me as a possible problem, though, is that I
-totally envision HW guys coming back and saying: "oh, we want to
-second source that USB hub and randomly stuff a different hub on some
-boards".  In theory that's a reasonable suggestion, right?  USB is a
-probable bus.  We turn on power to the USB hub (and the regulator to
-turn on power is the same no matter which hub is stuffed) and then we
-can just check which device got enumerated.  It's likely that both
-hubs would behave the same from a software point of view, but they
-would have different VID/PID.
-
-As far as I understand the current USB bindings account for the fact
-that the device(s) specified in the device tree might or might not be
-there.  Adding a node under the controller like you show above means:
-"if something is plugged into port 1 of this USB hub and if that thing
-matches 0x0bda/0x5411 then here are the extra properties (vdd-supply)
-for it".  With your proposal I believe we're changing it to mean
-"there will definitely be a device plugged into port 1 of this USB hub
-and it will match 0x0bda/0x5411."  Unless I'm mistaken, that will have
-potential impacts on the ability to second source things.  I guess
-both pre-probe functions could be called and (since there can be
-multiple users of a regulator) it'd be OK, but if we get into reset
-lines it's not much fun.  However, describing the device more like
-Matthias has done it will be nicely compatible with second sourcing.
-
-
-[1] https://lore.kernel.org/r/CAHNYxRzH3F7r4A3hOJYWw8fwoSLBESyyN7XQ4HYfw1Y3qoNbJg@mail.gmail.com
