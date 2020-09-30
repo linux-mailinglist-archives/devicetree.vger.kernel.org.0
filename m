@@ -2,73 +2,102 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from vger.kernel.org (vger.kernel.org [23.128.96.18])
-	by mail.lfdr.de (Postfix) with ESMTP id 19F0C27EFD9
-	for <lists+devicetree@lfdr.de>; Wed, 30 Sep 2020 19:00:09 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTP id 6B90A27F032
+	for <lists+devicetree@lfdr.de>; Wed, 30 Sep 2020 19:23:35 +0200 (CEST)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S1726476AbgI3RAI (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Wed, 30 Sep 2020 13:00:08 -0400
-Received: from jabberwock.ucw.cz ([46.255.230.98]:55836 "EHLO
-        jabberwock.ucw.cz" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S1725892AbgI3RAH (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Wed, 30 Sep 2020 13:00:07 -0400
-Received: by jabberwock.ucw.cz (Postfix, from userid 1017)
-        id AE1371C0B81; Wed, 30 Sep 2020 19:00:06 +0200 (CEST)
-Date:   Wed, 30 Sep 2020 19:00:06 +0200
-From:   Pavel Machek <pavel@ucw.cz>
-To:     Marek =?iso-8859-1?Q?Beh=FAn?= <marek.behun@nic.cz>
-Cc:     linux-leds@vger.kernel.org, Dan Murphy <dmurphy@ti.com>,
-        NeilBrown <neilb@suse.de>,
-        Linus Walleij <linus.walleij@linaro.org>,
-        "H . Nikolaus Schaller" <hns@goldelico.com>,
-        Tony Lindgren <tony@atomide.com>,
-        Adam Ford <aford173@gmail.com>,
-        Viresh Kumar <viresh.kumar@linaro.org>,
-        Rob Herring <robh+dt@kernel.org>, devicetree@vger.kernel.org
-Subject: Re: [PATCH leds + devicetree 04/13] ARM: dts: omap3: gta04: rename
- LED controlled subnodes
-Message-ID: <20200930170006.GB27760@duo.ucw.cz>
-References: <20200919221548.29984-1-marek.behun@nic.cz>
- <20200919221548.29984-5-marek.behun@nic.cz>
+        id S1731388AbgI3RX3 (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Wed, 30 Sep 2020 13:23:29 -0400
+Received: from mail.kernel.org ([198.145.29.99]:38196 "EHLO mail.kernel.org"
+        rhost-flags-OK-OK-OK-OK) by vger.kernel.org with ESMTP
+        id S1731385AbgI3RXY (ORCPT <rfc822;devicetree@vger.kernel.org>);
+        Wed, 30 Sep 2020 13:23:24 -0400
+Received: from disco-boy.misterjones.org (disco-boy.misterjones.org [51.254.78.96])
+        (using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
+        (No client certificate requested)
+        by mail.kernel.org (Postfix) with ESMTPSA id 63992207C3;
+        Wed, 30 Sep 2020 17:23:23 +0000 (UTC)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=kernel.org;
+        s=default; t=1601486603;
+        bh=8a6SbQSDDDVVdYYlKR/FBtkSry+2l0Ey8N1zPkLZdNQ=;
+        h=Date:From:To:Cc:Subject:In-Reply-To:References:From;
+        b=byIxjrxAeXmtNUM1CoZLHrJAJ74QDa2UJwYIaMDuDomv00UUHVD07EDgjbyRMesQi
+         DPDuiOxS9U62ca8hKdQUBTsrwy+CDoXCvw4YdU3DS/Up/mv2ADjxgbl9ZMw5QvByXQ
+         hf+4CJVZHSrCVt7QtAEcPZxT+KYzatZisScwrfqo=
+Received: from disco-boy.misterjones.org ([51.254.78.96] helo=www.loen.fr)
+        by disco-boy.misterjones.org with esmtpsa (TLS1.2:ECDHE_RSA_AES_128_GCM_SHA256:128)
+        (Exim 4.92)
+        (envelope-from <maz@kernel.org>)
+        id 1kNfp3-00GDws-J7; Wed, 30 Sep 2020 18:23:21 +0100
 MIME-Version: 1.0
-Content-Type: multipart/signed; micalg=pgp-sha1;
-        protocol="application/pgp-signature"; boundary="z6Eq5LdranGa6ru8"
-Content-Disposition: inline
-In-Reply-To: <20200919221548.29984-5-marek.behun@nic.cz>
-User-Agent: Mutt/1.10.1 (2018-07-13)
+Content-Type: text/plain; charset=UTF-8;
+ format=flowed
+Content-Transfer-Encoding: 8bit
+Date:   Wed, 30 Sep 2020 18:23:21 +0100
+From:   Marc Zyngier <maz@kernel.org>
+To:     =?UTF-8?Q?Niklas_S=C3=B6derlund?= <niklas.soderlund@ragnatech.se>
+Cc:     devicetree@vger.kernel.org, linux-pci@vger.kernel.org,
+        linux-rockchip@lists.infradead.org,
+        linux-arm-kernel@lists.infradead.org, linux-kernel@vger.kernel.org,
+        Rob Herring <robh@kernel.org>,
+        Lorenzo Pieralisi <lorenzo.pieralisi@arm.com>,
+        Heiko Stuebner <heiko@sntech.de>,
+        Frank Rowand <frowand.list@gmail.com>,
+        Shawn Lin <shawn.lin@rock-chips.com>,
+        Jiaxun Yang <jiaxun.yang@flygoat.com>,
+        Rob Herring <robh+dt@kernel.org>,
+        Bjorn Helgaas <bhelgaas@google.com>, kernel-team@android.com,
+        samuel@dionne-riel.com
+Subject: Re: [PATCH v2] of: address: Work around missing device_type property
+ in pcie nodes
+In-Reply-To: <20200930162722.GF1516931@oden.dyn.berto.se>
+References: <20200819094255.474565-1-maz@kernel.org>
+ <20200930162722.GF1516931@oden.dyn.berto.se>
+User-Agent: Roundcube Webmail/1.4.8
+Message-ID: <977f60f07a4cb5c59f0e5f8a9dfb3993@kernel.org>
+X-Sender: maz@kernel.org
+X-SA-Exim-Connect-IP: 51.254.78.96
+X-SA-Exim-Rcpt-To: niklas.soderlund@ragnatech.se, devicetree@vger.kernel.org, linux-pci@vger.kernel.org, linux-rockchip@lists.infradead.org, linux-arm-kernel@lists.infradead.org, linux-kernel@vger.kernel.org, robh@kernel.org, lorenzo.pieralisi@arm.com, heiko@sntech.de, frowand.list@gmail.com, shawn.lin@rock-chips.com, jiaxun.yang@flygoat.com, robh+dt@kernel.org, bhelgaas@google.com, kernel-team@android.com, samuel@dionne-riel.com
+X-SA-Exim-Mail-From: maz@kernel.org
+X-SA-Exim-Scanned: No (on disco-boy.misterjones.org); SAEximRunCond expanded to false
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
+Hi Niklas,
 
---z6Eq5LdranGa6ru8
-Content-Type: text/plain; charset=iso-8859-1
-Content-Disposition: inline
-Content-Transfer-Encoding: quoted-printable
+[+ Samuel]
 
-On Sun 2020-09-20 00:15:39, Marek Beh=FAn wrote:
-> Rename LED controller subnodes to format "led@[0-6]" or "gpio@[0-6]" to
-> conform to the new YAML defined binding.
->=20
-> Use the `gpio-line-names` property to define GPIO names.
->=20
-> Signed-off-by: Marek Beh=FAn <marek.behun@nic.cz>
+On 2020-09-30 17:27, Niklas Söderlund wrote:
+> Hi Marc,
+> 
+> I'm afraid this commit breaks booting my rk3399 device.
+> 
+> I bisected the problem to this patch merged as [1]. I'm testing on a
+> Scarlet device and I'm using the unmodified upstream
+> rk3399-gru-scarlet-inx.dtb for my tests.
+> 
+> The problem I'm experience is a black screen after the bootloader and
+> the device is none responsive over the network. I have no serial 
+> console
+> to this device so I'm afraid I can't tell you if there is anything
+> useful on to aid debugging there.
+> 
+> If I try to test one commit earlier [2] the system boots as expected 
+> and
+> everything works as it did for me in v5.8 and earlier. I have worked
+> little with this device and have no clue about what is really on the 
+> PCI
+> buss. But running from [2] I have this info about PCI if it's helpful,
+> please ask if somethings missing.
 
-Not for me, dt maintainers should take this.
+Please see the thread at [1]. The problem was reported a few weeks back
+by Samuel, and I was expecting Rob and Lorenzo to push a fix for this.
 
-									Pavel
---=20
-(english) http://www.livejournal.com/~pavelmachek
-(cesky, pictures) http://atrey.karlin.mff.cuni.cz/~pavel/picture/horses/blo=
-g.html
+Rob, Lorenzo, any update on this?
 
---z6Eq5LdranGa6ru8
-Content-Type: application/pgp-signature; name="signature.asc"
+         M.
 
------BEGIN PGP SIGNATURE-----
-
-iF0EABECAB0WIQRPfPO7r0eAhk010v0w5/Bqldv68gUCX3S5lgAKCRAw5/Bqldv6
-8j3pAJoCu2GfO/KmD/WBfOSFTZ09GOYOJwCglSWjCWX2jFQ6r+WzpmRdn3kkJkk=
-=UEd5
------END PGP SIGNATURE-----
-
---z6Eq5LdranGa6ru8--
+[1] 
+https://lore.kernel.org/linux-devicetree/20200829164920.7d28e01a@DUFFMAN/
+-- 
+Jazz is not dead. It just smells funny...
