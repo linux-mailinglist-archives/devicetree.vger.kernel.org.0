@@ -2,75 +2,128 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from vger.kernel.org (vger.kernel.org [23.128.96.18])
-	by mail.lfdr.de (Postfix) with ESMTP id 42FE027EDEF
-	for <lists+devicetree@lfdr.de>; Wed, 30 Sep 2020 17:54:02 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTP id C838427EDF3
+	for <lists+devicetree@lfdr.de>; Wed, 30 Sep 2020 17:54:39 +0200 (CEST)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S1726476AbgI3PyA (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Wed, 30 Sep 2020 11:54:00 -0400
-Received: from mail.baikalelectronics.com ([87.245.175.226]:41154 "EHLO
-        mail.baikalelectronics.ru" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S1725815AbgI3PyA (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Wed, 30 Sep 2020 11:54:00 -0400
-Received: from localhost (unknown [127.0.0.1])
-        by mail.baikalelectronics.ru (Postfix) with ESMTP id 93ADB803071A;
-        Wed, 30 Sep 2020 15:53:58 +0000 (UTC)
-X-Virus-Scanned: amavisd-new at baikalelectronics.ru
-Received: from mail.baikalelectronics.ru ([127.0.0.1])
-        by localhost (mail.baikalelectronics.ru [127.0.0.1]) (amavisd-new, port 10024)
-        with ESMTP id f07XY6Mu8Rdm; Wed, 30 Sep 2020 18:53:57 +0300 (MSK)
-Date:   Wed, 30 Sep 2020 18:53:56 +0300
-From:   Serge Semin <Sergey.Semin@baikalelectronics.ru>
-To:     Mark Brown <broonie@kernel.org>
-CC:     Alexey Malahov <Alexey.Malahov@baikalelectronics.ru>,
-        Ramil Zaripov <Ramil.Zaripov@baikalelectronics.ru>,
-        Pavel Parkhomenko <Pavel.Parkhomenko@baikalelectronics.ru>,
-        Andy Shevchenko <andy.shevchenko@gmail.com>,
-        Andy Shevchenko <andriy.shevchenko@linux.intel.com>,
-        Lars Povlsen <lars.povlsen@microchip.com>,
-        "wuxu . wu" <wuxu.wu@huawei.com>, Feng Tang <feng.tang@intel.com>,
-        Rob Herring <robh+dt@kernel.org>, <linux-spi@vger.kernel.org>,
-        <devicetree@vger.kernel.org>, <linux-kernel@vger.kernel.org>
-Subject: Re: [PATCH 11/30] spi: dw: Add DWC SSI capability
-Message-ID: <20200930155356.sukgijepskotuj73@mobilestation>
-References: <20200920112914.26501-1-Sergey.Semin@baikalelectronics.ru>
- <20200920112914.26501-12-Sergey.Semin@baikalelectronics.ru>
- <20200929135233.GG4799@sirena.org.uk>
- <20200929221737.fiwjr4y3vhme4546@mobilestation>
- <20200930150312.ipt724uihixblr3a@mobilestation>
- <20200930154149.GL4974@sirena.org.uk>
+        id S1728674AbgI3Pyb (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Wed, 30 Sep 2020 11:54:31 -0400
+Received: from lindbergh.monkeyblade.net ([23.128.96.19]:46216 "EHLO
+        lindbergh.monkeyblade.net" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
+        with ESMTP id S1728292AbgI3PyZ (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Wed, 30 Sep 2020 11:54:25 -0400
+Received: from metis.ext.pengutronix.de (metis.ext.pengutronix.de [IPv6:2001:67c:670:201:290:27ff:fe1d:cc33])
+        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 52F8DC061755
+        for <devicetree@vger.kernel.org>; Wed, 30 Sep 2020 08:54:25 -0700 (PDT)
+Received: from [2a0a:edc0:0:1101:1d::39] (helo=dude03.red.stw.pengutronix.de)
+        by metis.ext.pengutronix.de with esmtp (Exim 4.92)
+        (envelope-from <l.stach@pengutronix.de>)
+        id 1kNeQt-0007jp-A2; Wed, 30 Sep 2020 17:54:19 +0200
+From:   Lucas Stach <l.stach@pengutronix.de>
+To:     Shawn Guo <shawnguo@kernel.org>, Rob Herring <robh+dt@kernel.org>
+Cc:     NXP Linux Team <linux-imx@nxp.com>,
+        Fabio Estevam <festevam@gmail.com>,
+        Frieder Schrempf <frieder.schrempf@kontron.de>,
+        Marek Vasut <marex@denx.de>,
+        linux-arm-kernel@lists.infradead.org, devicetree@vger.kernel.org,
+        kernel@pengutronix.de, patchwork-lst@pengutronix.de
+Date:   Wed, 30 Sep 2020 17:54:18 +0200
+Message-Id: <20200930155418.535857-1-l.stach@pengutronix.de>
+X-Mailer: git-send-email 2.20.1
 MIME-Version: 1.0
-Content-Type: text/plain; charset="us-ascii"
-Content-Disposition: inline
-In-Reply-To: <20200930154149.GL4974@sirena.org.uk>
-X-ClientProxiedBy: MAIL.baikal.int (192.168.51.25) To mail (192.168.51.25)
+Content-Transfer-Encoding: 8bit
+X-SA-Exim-Connect-IP: 2a0a:edc0:0:1101:1d::39
+X-SA-Exim-Mail-From: l.stach@pengutronix.de
+X-Spam-Checker-Version: SpamAssassin 3.4.2 (2018-09-13) on
+        metis.ext.pengutronix.de
+X-Spam-Level: 
+X-Spam-Status: No, score=-1.6 required=4.0 tests=AWL,BAYES_00,RDNS_NONE,
+        SPF_HELO_NONE,SPF_SOFTFAIL,URIBL_BLOCKED autolearn=no
+        autolearn_force=no version=3.4.2
+Subject: [PATCH] arm64: dts: imx8mm: Add GPU nodes for 2D and 3D core
+X-SA-Exim-Version: 4.2.1 (built Wed, 08 May 2019 21:11:16 +0000)
+X-SA-Exim-Scanned: Yes (on metis.ext.pengutronix.de)
+X-PTX-Original-Recipient: devicetree@vger.kernel.org
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-On Wed, Sep 30, 2020 at 04:41:49PM +0100, Mark Brown wrote:
-> On Wed, Sep 30, 2020 at 06:03:12PM +0300, Serge Semin wrote:
-> > On Wed, Sep 30, 2020 at 01:17:37AM +0300, Serge Semin wrote:
-> 
-> > > > > -	/*
-> > > > > -	 * SPI mode (SCPOL|SCPH)
-> > > > > -	 * CTRLR0[ 8] Serial Clock Phase
-> > > > > -	 * CTRLR0[ 9] Serial Clock Polarity
-> > > > > -	 */
-> > > > > -	cr0 |= ((spi->mode & SPI_CPOL) ? 1 : 0) << DWC_SSI_CTRLR0_SCPOL_OFFSET;
-> 
-> > anyway. If you are agree with me having that done here, then please, accept the
-> > patch the way it is. If you disagree, or have any other though, please give me
-> > your answer, why.
-> 
-> Those comments did seem to help mitigate the wall of acronym soup issue
-> that the code has, it seems a shame to drop them.
+From: Frieder Schrempf <frieder.schrempf@kontron.de>
 
-I see your point, but still don't think that those comment give much help like you
-said, because the mode->register mapping can be easily derived from the macro
-naming and values.
+According to the documents, the i.MX8M-Mini features a GC320 and a
+GCNanoUltra GPU core. Etnaviv detects them as:
 
-Anyway since you insist on having the comments left here, I'll get them back and
-add the similar ones for the standard DW-APB-SSI version of the controller so
-the code would look coherent.
+	etnaviv-gpu 38000000.gpu: model: GC600, revision: 4653
+	etnaviv-gpu 38008000.gpu: model: GC520, revision: 5341
 
--Sergey
+This seems to work fine more or less without any changes to the HWDB,
+which still might be needed in the future to correct some features,
+etc.
+
+[lst]: Added power domains and switched clock assignments to the
+       new clock defines used for the composite clocks, instead of
+       relying on the backwards compat defines.
+
+Signed-off-by: Frieder Schrempf <frieder.schrempf@kontron.de>
+Signed-off-by: Lucas Stach <l.stach@pengutronix.de>
+---
+This patch depends on the power domain support for i.MX8MM, as the
+GPUs are in a invalid state (which might lead to full system lockups)
+if they are not properly powered on via the power sequencing
+implemented in the GPCv2 driver.
+---
+ arch/arm64/boot/dts/freescale/imx8mm.dtsi | 39 +++++++++++++++++++++++
+ 1 file changed, 39 insertions(+)
+
+diff --git a/arch/arm64/boot/dts/freescale/imx8mm.dtsi b/arch/arm64/boot/dts/freescale/imx8mm.dtsi
+index ab379d02d4e4..2f5812763315 100644
+--- a/arch/arm64/boot/dts/freescale/imx8mm.dtsi
++++ b/arch/arm64/boot/dts/freescale/imx8mm.dtsi
+@@ -1012,6 +1012,45 @@
+ 			status = "disabled";
+ 		};
+ 
++		gpu_3d: gpu@38000000 {
++			compatible = "vivante,gc";
++			reg = <0x38000000 0x8000>;
++			interrupts = <GIC_SPI 3 IRQ_TYPE_LEVEL_HIGH>;
++			clocks = <&clk IMX8MM_CLK_GPU_AHB>,
++			         <&clk IMX8MM_CLK_GPU_BUS_ROOT>,
++			         <&clk IMX8MM_CLK_GPU3D_ROOT>,
++			         <&clk IMX8MM_CLK_GPU3D_ROOT>;
++			clock-names = "reg", "bus", "core", "shader";
++			assigned-clocks = <&clk IMX8MM_CLK_GPU3D_CORE>,
++			                  <&clk IMX8MM_CLK_GPU_AXI>,
++			                  <&clk IMX8MM_CLK_GPU_AHB>,
++			                  <&clk IMX8MM_GPU_PLL_OUT>;
++			assigned-clock-parents = <&clk IMX8MM_GPU_PLL_OUT>,
++			                         <&clk IMX8MM_SYS_PLL1_800M>,
++			                         <&clk IMX8MM_SYS_PLL1_800M>;
++			assigned-clock-rates = <0>, <0>,<400000000>,<1000000000>;
++			power-domains = <&pgc_gpu>;
++		};
++
++		gpu_2d: gpu@38008000 {
++			compatible = "vivante,gc";
++			reg = <0x38008000 0x8000>;
++			interrupts = <GIC_SPI 25 IRQ_TYPE_LEVEL_HIGH>;
++			clocks = <&clk IMX8MM_CLK_GPU_AHB>,
++			         <&clk IMX8MM_CLK_GPU_BUS_ROOT>,
++			         <&clk IMX8MM_CLK_GPU2D_ROOT>;
++			clock-names = "reg", "bus", "core";
++			assigned-clocks = <&clk IMX8MM_CLK_GPU2D_CORE>,
++			                  <&clk IMX8MM_CLK_GPU_AXI>,
++			                  <&clk IMX8MM_CLK_GPU_AHB>,
++			                  <&clk IMX8MM_GPU_PLL_OUT>;
++			assigned-clock-parents = <&clk IMX8MM_GPU_PLL_OUT>,
++			                         <&clk IMX8MM_SYS_PLL1_800M>,
++			                         <&clk IMX8MM_SYS_PLL1_800M>;
++			assigned-clock-rates = <0>, <0>,<400000000>,<1000000000>;
++			power-domains = <&pgc_gpu>;
++		};
++
+ 		gic: interrupt-controller@38800000 {
+ 			compatible = "arm,gic-v3";
+ 			reg = <0x38800000 0x10000>, /* GIC Dist */
+-- 
+2.20.1
+
