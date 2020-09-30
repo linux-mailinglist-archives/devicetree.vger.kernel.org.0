@@ -2,227 +2,175 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from vger.kernel.org (vger.kernel.org [23.128.96.18])
-	by mail.lfdr.de (Postfix) with ESMTP id 9F47727DE97
-	for <lists+devicetree@lfdr.de>; Wed, 30 Sep 2020 04:50:34 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTP id 97EB527DEA0
+	for <lists+devicetree@lfdr.de>; Wed, 30 Sep 2020 04:55:22 +0200 (CEST)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S1729708AbgI3Cue (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Tue, 29 Sep 2020 22:50:34 -0400
-Received: from szxga05-in.huawei.com ([45.249.212.191]:14731 "EHLO huawei.com"
-        rhost-flags-OK-OK-OK-FAIL) by vger.kernel.org with ESMTP
-        id S1729446AbgI3Cud (ORCPT <rfc822;devicetree@vger.kernel.org>);
-        Tue, 29 Sep 2020 22:50:33 -0400
-Received: from DGGEMS410-HUB.china.huawei.com (unknown [172.30.72.60])
-        by Forcepoint Email with ESMTP id 8F2B331F9658EF0A7C8F;
-        Wed, 30 Sep 2020 10:50:28 +0800 (CST)
-Received: from [127.0.0.1] (10.174.177.253) by DGGEMS410-HUB.china.huawei.com
- (10.3.19.210) with Microsoft SMTP Server id 14.3.487.0; Wed, 30 Sep 2020
- 10:50:20 +0800
-Subject: Re: [PATCH v5 15/17] dt-bindings: arm: hisilicon: convert Hi6220
- domain controller bindings to json-schema
-From:   "Leizhen (ThunderTown)" <thunder.leizhen@huawei.com>
-To:     Wei Xu <xuwei5@hisilicon.com>, Rob Herring <robh+dt@kernel.org>,
-        "Jonathan Cameron" <Jonathan.Cameron@Huawei.com>,
-        devicetree <devicetree@vger.kernel.org>,
-        linux-arm-kernel <linux-arm-kernel@lists.infradead.org>,
-        linux-kernel <linux-kernel@vger.kernel.org>
-CC:     Kefeng Wang <wangkefeng.wang@huawei.com>,
-        Libin <huawei.libin@huawei.com>
-References: <20200929141454.2312-1-thunder.leizhen@huawei.com>
- <20200929141454.2312-16-thunder.leizhen@huawei.com>
- <5a6a9cd5-e235-e610-bbca-6d2d4547f051@huawei.com>
-Message-ID: <91ae61b2-4bb0-e322-f231-325b7ee08e66@huawei.com>
-Date:   Wed, 30 Sep 2020 10:50:18 +0800
-User-Agent: Mozilla/5.0 (Windows NT 10.0; WOW64; rv:60.0) Gecko/20100101
- Thunderbird/60.7.0
+        id S1729584AbgI3CzL (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Tue, 29 Sep 2020 22:55:11 -0400
+Received: from mailgw02.mediatek.com ([1.203.163.81]:3158 "EHLO
+        mailgw02.mediatek.com" rhost-flags-OK-FAIL-OK-FAIL) by vger.kernel.org
+        with ESMTP id S1729446AbgI3CzL (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Tue, 29 Sep 2020 22:55:11 -0400
+X-UUID: e999b5bc72704bb993bd3466f57666d2-20200930
+DKIM-Signature: v=1; a=rsa-sha256; q=dns/txt; c=relaxed/relaxed; d=mediatek.com; s=dk;
+        h=Content-Transfer-Encoding:MIME-Version:Content-Type:References:In-Reply-To:Date:CC:To:From:Subject:Message-ID; bh=r6D23t2kKeZfahrk09DXea8q73XExsy/Y4j3R6PaCYg=;
+        b=Smuamo/e55iGy5soxvjgh/l5DKT3Ltb1Ub6334COCoPKZI94nTw9QT/WzUWRbaXEBjMLzsdHEaJilQ9vKHKrw8bRWbBGkwaPY2p9x8QfhoaM46ZN3WB7EzRNbolYV8awCfSSQtrPonKUw6G352D/5AMI+vMZV5ELcCm9ZVQkeLU=;
+X-UUID: e999b5bc72704bb993bd3466f57666d2-20200930
+Received: from mtkcas36.mediatek.inc [(172.27.4.253)] by mailgw02.mediatek.com
+        (envelope-from <wenbin.mei@mediatek.com>)
+        (mailgw01.mediatek.com ESMTP with TLSv1.2 ECDHE-RSA-AES256-SHA384 256/256)
+        with ESMTP id 268266405; Wed, 30 Sep 2020 10:55:03 +0800
+Received: from MTKCAS36.mediatek.inc (172.27.4.186) by MTKMBS31N1.mediatek.inc
+ (172.27.4.69) with Microsoft SMTP Server (TLS) id 15.0.1497.2; Wed, 30 Sep
+ 2020 10:55:01 +0800
+Received: from [10.17.3.153] (10.17.3.153) by MTKCAS36.mediatek.inc
+ (172.27.4.170) with Microsoft SMTP Server id 15.0.1497.2 via Frontend
+ Transport; Wed, 30 Sep 2020 10:55:00 +0800
+Message-ID: <1601434501.3226.2.camel@mhfsdcap03>
+Subject: Re: [PATCH v2 1/4] dt-bindings: mmc: Convert mtk-sd to json-schema
+From:   Wenbin Mei <wenbin.mei@mediatek.com>
+To:     Rob Herring <robh@kernel.org>
+CC:     Ulf Hansson <ulf.hansson@linaro.org>,
+        Chaotian Jing <chaotian.jing@mediatek.com>,
+        Matthias Brugger <matthias.bgg@gmail.com>,
+        <linux-mmc@vger.kernel.org>, <devicetree@vger.kernel.org>,
+        <linux-arm-kernel@lists.infradead.org>,
+        <linux-mediatek@lists.infradead.org>,
+        <linux-kernel@vger.kernel.org>, <srv_heupstream@mediatek.com>
+Date:   Wed, 30 Sep 2020 10:55:01 +0800
+In-Reply-To: <20200929200540.GA1051185@bogus>
+References: <20200928130918.32326-1-wenbin.mei@mediatek.com>
+         <20200928130918.32326-2-wenbin.mei@mediatek.com>
+         <20200929200540.GA1051185@bogus>
+Content-Type: text/plain; charset="UTF-8"
+X-Mailer: Evolution 3.10.4-0ubuntu2 
 MIME-Version: 1.0
-In-Reply-To: <5a6a9cd5-e235-e610-bbca-6d2d4547f051@huawei.com>
-Content-Type: text/plain; charset="utf-8"
-Content-Language: en-US
-Content-Transfer-Encoding: 7bit
-X-Originating-IP: [10.174.177.253]
-X-CFilter-Loop: Reflected
+X-TM-SNTS-SMTP: 778E435C9DC8413E23989109D0D2332ED0DAC1269C3F4610514279F083402CAC2000:8
+X-MTK:  N
+Content-Transfer-Encoding: base64
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-
-
-On 2020/9/30 9:38, Leizhen (ThunderTown) wrote:
-> Hi, Rob:
->   I'm so glad to see you applied my patches in this morning. However, this patch
-> is not applied and without any comment. Did you miss it?
-
-Oh, I got it, missed the property "#reset-cells". What a shame! I will post the new one.
-
-> 
-> 
-> On 2020/9/29 22:14, Zhen Lei wrote:
->> Convert the Hisilicon Hi6220 domain controllers binding to DT schema
->> format using json-schema. All of them are grouped into one yaml file, to
->> help users understand differences and avoid repeated descriptions.
->>
->> Signed-off-by: Zhen Lei <thunder.leizhen@huawei.com>
->> ---
->>  .../hisilicon/controller/hi6220-domain-ctrl.yaml   | 64 ++++++++++++++++++++++
->>  .../controller/hisilicon,hi6220-aoctrl.txt         | 18 ------
->>  .../controller/hisilicon,hi6220-mediactrl.txt      | 18 ------
->>  .../controller/hisilicon,hi6220-pmctrl.txt         | 18 ------
->>  4 files changed, 64 insertions(+), 54 deletions(-)
->>  create mode 100644 Documentation/devicetree/bindings/arm/hisilicon/controller/hi6220-domain-ctrl.yaml
->>  delete mode 100644 Documentation/devicetree/bindings/arm/hisilicon/controller/hisilicon,hi6220-aoctrl.txt
->>  delete mode 100644 Documentation/devicetree/bindings/arm/hisilicon/controller/hisilicon,hi6220-mediactrl.txt
->>  delete mode 100644 Documentation/devicetree/bindings/arm/hisilicon/controller/hisilicon,hi6220-pmctrl.txt
->>
->> diff --git a/Documentation/devicetree/bindings/arm/hisilicon/controller/hi6220-domain-ctrl.yaml b/Documentation/devicetree/bindings/arm/hisilicon/controller/hi6220-domain-ctrl.yaml
->> new file mode 100644
->> index 000000000000000..32c562720d877c9
->> --- /dev/null
->> +++ b/Documentation/devicetree/bindings/arm/hisilicon/controller/hi6220-domain-ctrl.yaml
->> @@ -0,0 +1,64 @@
->> +# SPDX-License-Identifier: (GPL-2.0-only OR BSD-2-Clause)
->> +%YAML 1.2
->> +---
->> +$id: http://devicetree.org/schemas/arm/hisilicon/controller/hi6220-domain-ctrl.yaml#
->> +$schema: http://devicetree.org/meta-schemas/core.yaml#
->> +
->> +title: Hisilicon Hi6220 domain controller
->> +
->> +maintainers:
->> +  - Wei Xu <xuwei5@hisilicon.com>
->> +
->> +description: |
->> +  Hisilicon designs some special domain controllers for mobile platform,
->> +  such as: the power Always On domain controller, the Media domain
->> +  controller(e.g. codec, G3D ...) and the Power Management domain
->> +  controller.
->> +
->> +  The compatible names of each domain controller are as follows:
->> +  Power Always ON domain controller  --> hisilicon,hi6220-aoctrl
->> +  Media domain controller            --> hisilicon,hi6220-mediactrl
->> +  Power Management domain controller --> hisilicon,hi6220-pmctrl
->> +
->> +properties:
->> +  compatible:
->> +    items:
->> +      - enum:
->> +          - hisilicon,hi6220-aoctrl
->> +          - hisilicon,hi6220-mediactrl
->> +          - hisilicon,hi6220-pmctrl
->> +      - const: syscon
->> +
->> +  reg:
->> +    maxItems: 1
->> +
->> +  '#clock-cells':
->> +    const: 1
->> +
->> +required:
->> +  - compatible
->> +  - reg
->> +  - '#clock-cells'
->> +
->> +additionalProperties: false
->> +
->> +examples:
->> +  - |
->> +    ao_ctrl@f7800000 {
->> +        compatible = "hisilicon,hi6220-aoctrl", "syscon";
->> +        reg = <0xf7800000 0x2000>;
->> +        #clock-cells = <1>;
->> +    };
->> +
->> +    media_ctrl@f4410000 {
->> +        compatible = "hisilicon,hi6220-mediactrl", "syscon";
->> +        reg = <0xf4410000 0x1000>;
->> +        #clock-cells = <1>;
->> +    };
->> +
->> +    pm_ctrl@f7032000 {
->> +        compatible = "hisilicon,hi6220-pmctrl", "syscon";
->> +        reg = <0xf7032000 0x1000>;
->> +        #clock-cells = <1>;
->> +    };
->> +...
->> diff --git a/Documentation/devicetree/bindings/arm/hisilicon/controller/hisilicon,hi6220-aoctrl.txt b/Documentation/devicetree/bindings/arm/hisilicon/controller/hisilicon,hi6220-aoctrl.txt
->> deleted file mode 100644
->> index 5a723c1d45f4a17..000000000000000
->> --- a/Documentation/devicetree/bindings/arm/hisilicon/controller/hisilicon,hi6220-aoctrl.txt
->> +++ /dev/null
->> @@ -1,18 +0,0 @@
->> -Hisilicon Hi6220 Power Always ON domain controller
->> -
->> -Required properties:
->> -- compatible : "hisilicon,hi6220-aoctrl"
->> -- reg : Register address and size
->> -- #clock-cells: should be set to 1, many clock registers are defined
->> -  under this controller and this property must be present.
->> -
->> -Hisilicon designs this system controller to control the power always
->> -on domain for mobile platform.
->> -
->> -Example:
->> -	/*for Hi6220*/
->> -	ao_ctrl: ao_ctrl@f7800000 {
->> -		compatible = "hisilicon,hi6220-aoctrl", "syscon";
->> -		reg = <0x0 0xf7800000 0x0 0x2000>;
->> -		#clock-cells = <1>;
->> -	};
->> diff --git a/Documentation/devicetree/bindings/arm/hisilicon/controller/hisilicon,hi6220-mediactrl.txt b/Documentation/devicetree/bindings/arm/hisilicon/controller/hisilicon,hi6220-mediactrl.txt
->> deleted file mode 100644
->> index dcfdcbcb6455771..000000000000000
->> --- a/Documentation/devicetree/bindings/arm/hisilicon/controller/hisilicon,hi6220-mediactrl.txt
->> +++ /dev/null
->> @@ -1,18 +0,0 @@
->> -Hisilicon Hi6220 Media domain controller
->> -
->> -Required properties:
->> -- compatible : "hisilicon,hi6220-mediactrl"
->> -- reg : Register address and size
->> -- #clock-cells: should be set to 1, many clock registers are defined
->> -  under this controller and this property must be present.
->> -
->> -Hisilicon designs this system controller to control the multimedia
->> -domain(e.g. codec, G3D ...) for mobile platform.
->> -
->> -Example:
->> -	/*for Hi6220*/
->> -	media_ctrl: media_ctrl@f4410000 {
->> -		compatible = "hisilicon,hi6220-mediactrl", "syscon";
->> -		reg = <0x0 0xf4410000 0x0 0x1000>;
->> -		#clock-cells = <1>;
->> -	};
->> diff --git a/Documentation/devicetree/bindings/arm/hisilicon/controller/hisilicon,hi6220-pmctrl.txt b/Documentation/devicetree/bindings/arm/hisilicon/controller/hisilicon,hi6220-pmctrl.txt
->> deleted file mode 100644
->> index 972842f07b5a2ce..000000000000000
->> --- a/Documentation/devicetree/bindings/arm/hisilicon/controller/hisilicon,hi6220-pmctrl.txt
->> +++ /dev/null
->> @@ -1,18 +0,0 @@
->> -Hisilicon Hi6220 Power Management domain controller
->> -
->> -Required properties:
->> -- compatible : "hisilicon,hi6220-pmctrl"
->> -- reg : Register address and size
->> -- #clock-cells: should be set to 1, some clock registers are define
->> -  under this controller and this property must be present.
->> -
->> -Hisilicon designs this system controller to control the power management
->> -domain for mobile platform.
->> -
->> -Example:
->> -	/*for Hi6220*/
->> -	pm_ctrl: pm_ctrl@f7032000 {
->> -		compatible = "hisilicon,hi6220-pmctrl", "syscon";
->> -		reg = <0x0 0xf7032000 0x0 0x1000>;
->> -		#clock-cells = <1>;
->> -	};
->>
-> 
-> 
-> _______________________________________________
-> linux-arm-kernel mailing list
-> linux-arm-kernel@lists.infradead.org
-> http://lists.infradead.org/mailman/listinfo/linux-arm-kernel
-> 
-> .
-> 
+VGhhbmtzIGZvciB5b3VyIHJlcGx5IQ0KSSB3aWxsIGNoYW5nZSB0aGUgZm9sbG93aW5nIHByb2Js
+ZW1zIGluIHRoZSBuZXh0IHZlcnNpb24uDQoNCk9uIFR1ZSwgMjAyMC0wOS0yOSBhdCAxNTowNSAt
+MDUwMCwgUm9iIEhlcnJpbmcgd3JvdGU6DQo+IE9uIE1vbiwgU2VwIDI4LCAyMDIwIGF0IDA5OjA5
+OjE1UE0gKzA4MDAsIFdlbmJpbiBNZWkgd3JvdGU6DQo+ID4gQ29udmVydCB0aGUgbXRrLXNkIGJp
+bmRpbmcgdG8gRFQgc2NoZW1hIGZvcm1hdCB1c2luZyBqc29uLXNjaGVtYS4NCj4gPiANCj4gPiBT
+aWduZWQtb2ZmLWJ5OiBXZW5iaW4gTWVpIDx3ZW5iaW4ubWVpQG1lZGlhdGVrLmNvbT4NCj4gPiBS
+ZXZpZXdlZC1ieTogVWxmIEhhbnNzb24gPHVsZi5oYW5zc29uQGxpbmFyby5vcmc+DQo+ID4gLS0t
+DQo+ID4gIC4uLi9kZXZpY2V0cmVlL2JpbmRpbmdzL21tYy9tdGstc2QudHh0ICAgICAgICB8ICA3
+NSAtLS0tLS0tLQ0KPiA+ICAuLi4vZGV2aWNldHJlZS9iaW5kaW5ncy9tbWMvbXRrLXNkLnlhbWwg
+ICAgICAgfCAxNjUgKysrKysrKysrKysrKysrKysrDQo+ID4gIDIgZmlsZXMgY2hhbmdlZCwgMTY1
+IGluc2VydGlvbnMoKyksIDc1IGRlbGV0aW9ucygtKQ0KPiA+ICBkZWxldGUgbW9kZSAxMDA2NDQg
+RG9jdW1lbnRhdGlvbi9kZXZpY2V0cmVlL2JpbmRpbmdzL21tYy9tdGstc2QudHh0DQo+ID4gIGNy
+ZWF0ZSBtb2RlIDEwMDY0NCBEb2N1bWVudGF0aW9uL2RldmljZXRyZWUvYmluZGluZ3MvbW1jL210
+ay1zZC55YW1sDQo+IA0KPiANCj4gPiBkaWZmIC0tZ2l0IGEvRG9jdW1lbnRhdGlvbi9kZXZpY2V0
+cmVlL2JpbmRpbmdzL21tYy9tdGstc2QueWFtbCBiL0RvY3VtZW50YXRpb24vZGV2aWNldHJlZS9i
+aW5kaW5ncy9tbWMvbXRrLXNkLnlhbWwNCj4gPiBuZXcgZmlsZSBtb2RlIDEwMDY0NA0KPiA+IGlu
+ZGV4IDAwMDAwMDAwMDAwMC4uMmQ1YWIxNDExY2Q1DQo+ID4gLS0tIC9kZXYvbnVsbA0KPiA+ICsr
+KyBiL0RvY3VtZW50YXRpb24vZGV2aWNldHJlZS9iaW5kaW5ncy9tbWMvbXRrLXNkLnlhbWwNCj4g
+PiBAQCAtMCwwICsxLDE2NSBAQA0KPiA+ICsjIE1USy1MaWNlbnNlLUlkZW50aWZpZXI6IEdQTC0y
+LjANCj4gPiArJVlBTUwgMS4yDQo+ID4gKy0tLQ0KPiA+ICskaWQ6IGh0dHA6Ly9kZXZpY2V0cmVl
+Lm9yZy9zY2hlbWFzL21tYy9tdGstc2QueWFtbCMNCj4gPiArJHNjaGVtYTogaHR0cDovL2Rldmlj
+ZXRyZWUub3JnL21ldGEtc2NoZW1hcy9jb3JlLnlhbWwjDQo+ID4gKw0KPiA+ICt0aXRsZTogTVRL
+IE1TREMgU3RvcmFnZSBIb3N0IENvbnRyb2xsZXIgQmluZGluZw0KPiA+ICsNCj4gPiArbWFpbnRh
+aW5lcnM6DQo+ID4gKyAgLSBVbGYgSGFuc3NvbiA8dWxmLmhhbnNzb25AbGluYXJvLm9yZz4NCj4g
+DQo+IFVzdWFsbHkgdGhpcyBpcyB0aGUgaC93IGJsb2NrIG93bmVyLCBub3QgYSBzdWJzeXN0ZW0g
+bWFpbnRhaW5lci4NCj4gDQo+ID4gKw0KPiA+ICthbGxPZjoNCj4gPiArICAtICRyZWY6IG1tYy1j
+b250cm9sbGVyLnlhbWwjDQo+ID4gKw0KPiA+ICtwcm9wZXJ0aWVzOg0KPiA+ICsgIGNvbXBhdGli
+bGU6DQo+ID4gKyAgICBvbmVPZjoNCj4gPiArICAgICAgLSBjb25zdDogbWVkaWF0ZWssbXQ4MTM1
+LW1tYw0KPiA+ICsgICAgICAtIGNvbnN0OiBtZWRpYXRlayxtdDgxNzMtbW1jDQo+ID4gKyAgICAg
+IC0gY29uc3Q6IG1lZGlhdGVrLG10ODE4My1tbWMNCj4gPiArICAgICAgLSBjb25zdDogbWVkaWF0
+ZWssbXQ4NTE2LW1tYw0KPiA+ICsgICAgICAtIGNvbnN0OiBtZWRpYXRlayxtdDY3NzktbW1jDQo+
+ID4gKyAgICAgIC0gY29uc3Q6IG1lZGlhdGVrLG10MjcwMS1tbWMNCj4gPiArICAgICAgLSBjb25z
+dDogbWVkaWF0ZWssbXQyNzEyLW1tYw0KPiA+ICsgICAgICAtIGNvbnN0OiBtZWRpYXRlayxtdDc2
+MjItbW1jDQo+IA0KPiBBbGwgdGhlc2UgY2FuIGJlIGFuIGVudW0uIEFuZCBzb3J0IHBsZWFzZS4N
+Cj4gDQo+ID4gKyAgICAgIC0gaXRlbXM6DQo+ID4gKyAgICAgICAgLSBjb25zdDogbWVkaWF0ZWss
+bXQ3NjIzLW1tYw0KPiA+ICsgICAgICAgIC0gY29uc3Q6IG1lZGlhdGVrLG10MjcwMS1tbWMNCj4g
+PiArICAgICAgLSBjb25zdDogbWVkaWF0ZWssbXQ3NjIwLW1tYw0KPiA+ICsNCj4gPiArICByZWc6
+DQo+ID4gKyAgICBkZXNjcmlwdGlvbjoNCj4gPiArICAgICAgcGh5c2ljYWwgYmFzZSBhZGRyZXNz
+IG9mIHRoZSBjb250cm9sbGVyIGFuZCBsZW5ndGguDQo+IA0KPiBEcm9wIHRoaXMuDQo+IA0KPiA+
+ICsgICAgbWluSXRlbXM6IDENCj4gPiArICAgIG1heEl0ZW1zOiAyDQo+IA0KPiBJZiBtb3JlIHRo
+YW4gMSwgbmVlZCB0byBzYXkgd2hhdCBlYWNoIGVudHJ5IGlzOg0KPiANCj4gaXRlbXM6DQo+ICAg
+LSBkZXNjcmlwdGlvbjogLi4uDQo+ICAgLSBkZXNjcmlwdGlvbjogLi4uDQo+IA0KPiA+ICsNCj4g
+PiArICBpbnRlcnJ1cHRzOg0KPiA+ICsgICAgZGVzY3JpcHRpb246DQo+ID4gKyAgICAgIFNob3Vs
+ZCBjb250YWluIE1TREMgaW50ZXJydXB0IG51bWJlci4NCj4gDQo+IERyb3AuDQo+IA0KPiA+ICsg
+ICAgbWF4SXRlbXM6IDENCj4gPiArDQo+ID4gKyAgY2xvY2tzOg0KPiA+ICsgICAgZGVzY3JpcHRp
+b246DQo+ID4gKyAgICAgIFNob3VsZCBjb250YWluIHBoYW5kbGUgZm9yIHRoZSBjbG9jayBmZWVk
+aW5nIHRoZSBNTUMgY29udHJvbGxlci4NCj4gPiArICAgIG1pbkl0ZW1zOiAyDQo+ID4gKyAgICBt
+YXhJdGVtczogNA0KPiA+ICsgICAgaXRlbXM6DQo+ID4gKyAgICAgIC0gZGVzY3JpcHRpb246IHNv
+dXJjZSBjbG9jayAocmVxdWlyZWQpLg0KPiA+ICsgICAgICAtIGRlc2NyaXB0aW9uOiBIQ0xLIHdo
+aWNoIHVzZWQgZm9yIGhvc3QgKHJlcXVpcmVkKS4NCj4gPiArICAgICAgLSBkZXNjcmlwdGlvbjog
+aW5kZXBlbmRlbnQgc291cmNlIGNsb2NrIGdhdGUgKHJlcXVpcmVkIGZvciBNVDI3MTIpLg0KPiA+
+ICsgICAgICAtIGRlc2NyaXB0aW9uOiBidXMgY2xvY2sgdXNlZCBmb3IgaW50ZXJuYWwgcmVnaXN0
+ZXIgYWNjZXNzIChyZXF1aXJlZCBmb3IgTVQyNzEyIE1TREMwLzMpLg0KPiA+ICsNCj4gPiArICBj
+bG9jay1uYW1lczoNCj4gPiArICAgIG1pbkl0ZW1zOiAyDQo+ID4gKyAgICBtYXhJdGVtczogNA0K
+PiA+ICsgICAgaXRlbXM6DQo+ID4gKyAgICAgIC0gY29uc3Q6IHNvdXJjZQ0KPiA+ICsgICAgICAt
+IGNvbnN0OiBoY2xrDQo+ID4gKyAgICAgIC0gY29uc3Q6IHNvdXJjZV9jZw0KPiA+ICsgICAgICAt
+IGNvbnN0OiBidXNfY2xrDQo+ID4gKw0KPiA+ICsgIHBpbmN0cmwtbmFtZXM6DQo+ID4gKyAgICBp
+dGVtczoNCj4gPiArICAgICAgLSBjb25zdDogZGVmYXVsdA0KPiA+ICsgICAgICAtIGNvbnN0OiBz
+dGF0ZV91aHMNCj4gPiArDQo+ID4gKyAgcGluY3RybC0wOg0KPiA+ICsgICAgZGVzY3JpcHRpb246
+DQo+ID4gKyAgICAgIHNob3VsZCBjb250YWluIGRlZmF1bHQvaGlnaCBzcGVlZCBwaW4gY3RybC4N
+Cj4gPiArICAgIG1heEl0ZW1zOiAxDQo+ID4gKw0KPiA+ICsgIHBpbmN0cmwtMToNCj4gPiArICAg
+IGRlc2NyaXB0aW9uOg0KPiA+ICsgICAgICBzaG91bGQgY29udGFpbiB1aHMgbW9kZSBwaW4gY3Ry
+bC4NCj4gPiArICAgIG1heEl0ZW1zOiAxDQo+ID4gKw0KPiA+ICsgIHZtbWMtc3VwcGx5Og0KPiA+
+ICsgICAgZGVzY3JpcHRpb246DQo+ID4gKyAgICAgIHBvd2VyIHRvIHRoZSBDb3JlLg0KPiA+ICsN
+Cj4gPiArICB2cW1tYy1zdXBwbHk6DQo+ID4gKyAgICBkZXNjcmlwdGlvbjoNCj4gPiArICAgICAg
+cG93ZXIgdG8gdGhlIElPLg0KPiA+ICsNCj4gPiArICBhc3NpZ25lZC1jbG9ja3M6DQo+ID4gKyAg
+ICBkZXNjcmlwdGlvbjoNCj4gPiArICAgICAgUExMIG9mIHRoZSBzb3VyY2UgY2xvY2suDQo+IA0K
+PiBIb3cgbWFueSAobWF4SXRlbXMpPw0KPiANCj4gPiArDQo+ID4gKyAgYXNzaWduZWQtY2xvY2st
+cGFyZW50czoNCj4gPiArICAgIGRlc2NyaXB0aW9uOg0KPiA+ICsgICAgICBwYXJlbnQgb2Ygc291
+cmNlIGNsb2NrLCB1c2VkIGZvciBIUzQwMCBtb2RlIHRvIGdldCA0MDBNaHogc291cmNlIGNsb2Nr
+Lg0KPiA+ICsNCj4gPiArICBoczQwMC1kcy1kZWxheToNCj4gPiArICAgICRyZWY6IC9zY2hlbWFz
+L3R5cGVzLnlhbWwjL2RlZmluaXRpb25zL3VpbnQzMg0KPiA+ICsgICAgZGVzY3JpcHRpb246DQo+
+ID4gKyAgICAgIEhTNDAwIERTIGRlbGF5IHNldHRpbmcuDQo+ID4gKw0KPiA+ICsgIG1lZGlhdGVr
+LGhzMjAwLWNtZC1pbnQtZGVsYXk6DQo+ID4gKyAgICAkcmVmOiAvc2NoZW1hcy90eXBlcy55YW1s
+Iy9kZWZpbml0aW9ucy91aW50MzINCj4gPiArICAgIGRlc2NyaXB0aW9uOg0KPiA+ICsgICAgICBI
+UzIwMCBjb21tYW5kIGludGVybmFsIGRlbGF5IHNldHRpbmcuDQo+ID4gKyAgICAgIFRoaXMgZmll
+bGQgaGFzIHRvdGFsIDMyIHN0YWdlcy4NCj4gPiArICAgICAgVGhlIHZhbHVlIGlzIGFuIGludGVn
+ZXIgZnJvbSAwIHRvIDMxLg0KPiANCj4gbWluaW11bTogMA0KPiBtYXhpbXVtOiAzMQ0KPiANCj4g
+QWRkIGFueSBjb25zdHJhaW50cyBvbiBvdGhlciBwcm9wZXJ0aWVzIHRvby4NCj4gDQo+ID4gKw0K
+PiA+ICsgIG1lZGlhdGVrLGhzNDAwLWNtZC1pbnQtZGVsYXk6DQo+ID4gKyAgICAkcmVmOiAvc2No
+ZW1hcy90eXBlcy55YW1sIy9kZWZpbml0aW9ucy91aW50MzINCj4gPiArICAgIGRlc2NyaXB0aW9u
+Og0KPiA+ICsgICAgICBIUzQwMCBjb21tYW5kIGludGVybmFsIGRlbGF5IHNldHRpbmcuDQo+ID4g
+KyAgICAgIFRoaXMgZmllbGQgaGFzIHRvdGFsIDMyIHN0YWdlcy4NCj4gPiArICAgICAgVGhlIHZh
+bHVlIGlzIGFuIGludGVnZXIgZnJvbSAwIHRvIDMxLg0KPiA+ICsNCj4gPiArICBtZWRpYXRlayxo
+czQwMC1jbWQtcmVzcC1zZWwtcmlzaW5nOg0KPiA+ICsgICAgJHJlZjogL3NjaGVtYXMvdHlwZXMu
+eWFtbCMvZGVmaW5pdGlvbnMvZmxhZw0KPiA+ICsgICAgZGVzY3JpcHRpb246DQo+ID4gKyAgICAg
+IEhTNDAwIGNvbW1hbmQgcmVzcG9uc2Ugc2FtcGxlIHNlbGVjdGlvbi4NCj4gPiArICAgICAgSWYg
+cHJlc2VudCwgSFM0MDAgY29tbWFuZCByZXNwb25zZXMgYXJlIHNhbXBsZWQgb24gcmlzaW5nIGVk
+Z2VzLg0KPiA+ICsgICAgICBJZiBub3QgcHJlc2VudCwgSFM0MDAgY29tbWFuZCByZXNwb25zZXMg
+YXJlIHNhbXBsZWQgb24gZmFsbGluZyBlZGdlcy4NCj4gPiArDQo+ID4gKyAgbWVkaWF0ZWssbGF0
+Y2gtY2s6DQo+ID4gKyAgICAkcmVmOiAvc2NoZW1hcy90eXBlcy55YW1sIy9kZWZpbml0aW9ucy91
+aW50MzINCj4gPiArICAgIGRlc2NyaXB0aW9uOg0KPiA+ICsgICAgICBTb21lIFNvQ3MgZG8gbm90
+IHN1cHBvcnQgZW5oYW5jZV9yeCwgbmVlZCBzZXQgY29ycmVjdCBsYXRjaC1jayB0byBhdm9pZA0K
+PiA+ICsgICAgICBkYXRhIGNyYyBlcnJvciBjYXVzZWQgYnkgc3RvcCBjbG9jayhmaWZvIGZ1bGwp
+IFZhbGlkIHJhbmdlID0gWzA6MHg3XS4NCj4gPiArICAgICAgaWYgbm90IHByZXNlbnQsIGRlZmF1
+bHQgdmFsdWUgaXMgMC4NCj4gPiArICAgICAgYXBwbGllZCB0byBjb21wYXRpYmxlICJtZWRpYXRl
+ayxtdDI3MDEtbW1jIi4NCj4gPiArDQo+ID4gKyAgcmVzZXRzOg0KPiA+ICsgICAgbWF4SXRlbXM6
+IDENCj4gPiArDQo+ID4gKyAgcmVzZXQtbmFtZXM6DQo+ID4gKyAgICBjb25zdDogaHJzdA0KPiA+
+ICsNCj4gPiArcmVxdWlyZWQ6DQo+ID4gKyAgLSBjb21wYXRpYmxlDQo+ID4gKyAgLSByZWcNCj4g
+PiArICAtIGludGVycnVwdHMNCj4gPiArICAtIGNsb2Nrcw0KPiA+ICsgIC0gY2xvY2stbmFtZXMN
+Cj4gPiArDQo+ID4gK2V4YW1wbGVzOg0KPiA+ICsgIC0gfA0KPiA+ICsgICAgI2luY2x1ZGUgPGR0
+LWJpbmRpbmdzL2ludGVycnVwdC1jb250cm9sbGVyL2lycS5oPg0KPiA+ICsgICAgI2luY2x1ZGUg
+PGR0LWJpbmRpbmdzL2ludGVycnVwdC1jb250cm9sbGVyL2FybS1naWMuaD4NCj4gPiArICAgICNp
+bmNsdWRlIDxkdC1iaW5kaW5ncy9jbG9jay9tdDgxNzMtY2xrLmg+DQo+ID4gKyAgICBtbWMwOiBt
+bWNAMTEyMzAwMDAgew0KPiA+ICsgICAgICAgIGNvbXBhdGlibGUgPSAibWVkaWF0ZWssbXQ4MTcz
+LW1tYyI7DQo+ID4gKyAgICAgICAgcmVnID0gPDB4MTEyMzAwMDAgMHgxMDAwPjsNCj4gPiArICAg
+ICAgICBpbnRlcnJ1cHRzID0gPEdJQ19TUEkgMzkgSVJRX1RZUEVfTEVWRUxfTE9XPjsNCj4gPiAr
+ICAgICAgICB2bW1jLXN1cHBseSA9IDwmbXQ2Mzk3X3ZlbWNfM3YzX3JlZz47DQo+ID4gKyAgICAg
+ICAgdnFtbWMtc3VwcGx5ID0gPCZtdDYzOTdfdmlvMThfcmVnPjsNCj4gPiArICAgICAgICBjbG9j
+a3MgPSA8JnBlcmljZmcgQ0xLX1BFUklfTVNEQzMwXzA+LA0KPiA+ICsgICAgICAgICAgICAgICAg
+IDwmdG9wY2tnZW4gQ0xLX1RPUF9NU0RDNTBfMF9IX1NFTD47DQo+ID4gKyAgICAgICAgY2xvY2st
+bmFtZXMgPSAic291cmNlIiwgImhjbGsiOw0KPiA+ICsgICAgICAgIHBpbmN0cmwtbmFtZXMgPSAi
+ZGVmYXVsdCIsICJzdGF0ZV91aHMiOw0KPiA+ICsgICAgICAgIHBpbmN0cmwtMCA9IDwmbW1jMF9w
+aW5zX2RlZmF1bHQ+Ow0KPiA+ICsgICAgICAgIHBpbmN0cmwtMSA9IDwmbW1jMF9waW5zX3Vocz47
+DQo+ID4gKyAgICAgICAgYXNzaWduZWQtY2xvY2tzID0gPCZ0b3Bja2dlbiBDTEtfVE9QX01TREM1
+MF8wX1NFTD47DQo+ID4gKyAgICAgICAgYXNzaWduZWQtY2xvY2stcGFyZW50cyA9IDwmdG9wY2tn
+ZW4gQ0xLX1RPUF9NU0RDUExMX0QyPjsNCj4gPiArICAgICAgICBoczQwMC1kcy1kZWxheSA9IDww
+eDE0MDE1PjsNCj4gPiArICAgICAgICBtZWRpYXRlayxoczIwMC1jbWQtaW50LWRlbGF5ID0gPDI2
+PjsNCj4gPiArICAgICAgICBtZWRpYXRlayxoczQwMC1jbWQtaW50LWRlbGF5ID0gPDE0PjsNCj4g
+PiArICAgICAgICBtZWRpYXRlayxoczQwMC1jbWQtcmVzcC1zZWwtcmlzaW5nOw0KPiA+ICsgICAg
+fTsNCj4gPiArDQo+ID4gKy4uLg0KPiA+IC0tIA0KPiA+IDIuMTguMA0KDQo=
 
