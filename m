@@ -2,132 +2,133 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from vger.kernel.org (vger.kernel.org [23.128.96.18])
-	by mail.lfdr.de (Postfix) with ESMTP id 882DD27E93E
-	for <lists+devicetree@lfdr.de>; Wed, 30 Sep 2020 15:11:23 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTP id 38CF127E943
+	for <lists+devicetree@lfdr.de>; Wed, 30 Sep 2020 15:13:33 +0200 (CEST)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S1728149AbgI3NLW (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Wed, 30 Sep 2020 09:11:22 -0400
-Received: from mail.baikalelectronics.com ([87.245.175.226]:40424 "EHLO
-        mail.baikalelectronics.ru" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S1725771AbgI3NLV (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Wed, 30 Sep 2020 09:11:21 -0400
-Received: from localhost (unknown [127.0.0.1])
-        by mail.baikalelectronics.ru (Postfix) with ESMTP id DE6D0803086A;
-        Wed, 30 Sep 2020 13:11:17 +0000 (UTC)
-X-Virus-Scanned: amavisd-new at baikalelectronics.ru
-Received: from mail.baikalelectronics.ru ([127.0.0.1])
-        by localhost (mail.baikalelectronics.ru [127.0.0.1]) (amavisd-new, port 10024)
-        with ESMTP id BmkIdQhB9nTu; Wed, 30 Sep 2020 16:11:17 +0300 (MSK)
-Date:   Wed, 30 Sep 2020 16:11:15 +0300
-From:   Serge Semin <Sergey.Semin@baikalelectronics.ru>
-To:     Mark Brown <broonie@kernel.org>
-CC:     Alexey Malahov <Alexey.Malahov@baikalelectronics.ru>,
-        Ramil Zaripov <Ramil.Zaripov@baikalelectronics.ru>,
-        Pavel Parkhomenko <Pavel.Parkhomenko@baikalelectronics.ru>,
-        Andy Shevchenko <andy.shevchenko@gmail.com>,
-        Andy Shevchenko <andriy.shevchenko@linux.intel.com>,
-        Lars Povlsen <lars.povlsen@microchip.com>,
-        "wuxu . wu" <wuxu.wu@huawei.com>, Feng Tang <feng.tang@intel.com>,
-        Rob Herring <robh+dt@kernel.org>, <linux-spi@vger.kernel.org>,
-        <devicetree@vger.kernel.org>, <linux-kernel@vger.kernel.org>
-Subject: Re: [PATCH 00/30] spi: dw: Add full Baikal-T1 SPI Controllers support
-Message-ID: <20200930131115.2lizge2ff64jbgpn@mobilestation>
-References: <20200920112914.26501-1-Sergey.Semin@baikalelectronics.ru>
- <20200929144351.GH4799@sirena.org.uk>
- <20200929224303.65awobe5dzwc2p4f@mobilestation>
- <20200930110403.GD4974@sirena.org.uk>
+        id S1728043AbgI3NNc (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Wed, 30 Sep 2020 09:13:32 -0400
+Received: from mail.kernel.org ([198.145.29.99]:43744 "EHLO mail.kernel.org"
+        rhost-flags-OK-OK-OK-OK) by vger.kernel.org with ESMTP
+        id S1725771AbgI3NNb (ORCPT <rfc822;devicetree@vger.kernel.org>);
+        Wed, 30 Sep 2020 09:13:31 -0400
+Received: from disco-boy.misterjones.org (disco-boy.misterjones.org [51.254.78.96])
+        (using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
+        (No client certificate requested)
+        by mail.kernel.org (Postfix) with ESMTPSA id EBBCB2075F;
+        Wed, 30 Sep 2020 13:13:30 +0000 (UTC)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=kernel.org;
+        s=default; t=1601471611;
+        bh=N6/eF3yhgVMwm5TkyG2yQLCE1Y1IytBNRnw4nZU0FxM=;
+        h=Date:From:To:Cc:Subject:In-Reply-To:References:From;
+        b=liJcJqAGt4iN95kRliW/ewKJBU/2b8pbLKBOt3tAiUkZsF4LJpZl4zylgIohSXpiE
+         f6AGGFo4n6Par5hIDsrBIsMgkJ3hcri0j1SqbYPhB4bNzAiw7IT7b83IoS4KdbL+qs
+         WOu1w0sgANTB7T8bLkfQmQTbgeNRzc/9uA2LeAmQ=
+Received: from disco-boy.misterjones.org ([51.254.78.96] helo=www.loen.fr)
+        by disco-boy.misterjones.org with esmtpsa (TLS1.2:ECDHE_RSA_AES_128_GCM_SHA256:128)
+        (Exim 4.92)
+        (envelope-from <maz@kernel.org>)
+        id 1kNbvF-00GAID-90; Wed, 30 Sep 2020 14:13:29 +0100
 MIME-Version: 1.0
-Content-Type: text/plain; charset="us-ascii"
-Content-Disposition: inline
-In-Reply-To: <20200930110403.GD4974@sirena.org.uk>
-X-ClientProxiedBy: MAIL.baikal.int (192.168.51.25) To mail (192.168.51.25)
+Content-Type: text/plain; charset=US-ASCII;
+ format=flowed
+Content-Transfer-Encoding: 7bit
+Date:   Wed, 30 Sep 2020 14:13:29 +0100
+From:   Marc Zyngier <maz@kernel.org>
+To:     Peter Ujfalusi <peter.ujfalusi@ti.com>
+Cc:     nm@ti.com, t-kristo@ti.com, ssantosh@kernel.org,
+        tglx@linutronix.de, jason@lakedaemon.net, robh+dt@kernel.org,
+        lokeshvutla@ti.com, linux-arm-kernel@lists.infradead.org,
+        linux-kernel@vger.kernel.org, devicetree@vger.kernel.org
+Subject: Re: [PATCH v2 2/2] irqchip/ti-sci-inta: Add support for unmapped
+ event handling
+In-Reply-To: <3dc2f27f-0a41-b538-11ac-970ad4310ccb@ti.com>
+References: <20200930074559.18028-1-peter.ujfalusi@ti.com>
+ <20200930074559.18028-3-peter.ujfalusi@ti.com>
+ <af9ce252820bab9a21207ef2173da9fd@kernel.org>
+ <3dc2f27f-0a41-b538-11ac-970ad4310ccb@ti.com>
+User-Agent: Roundcube Webmail/1.4.8
+Message-ID: <714738536a5566c511e83dc424e94bf7@kernel.org>
+X-Sender: maz@kernel.org
+X-SA-Exim-Connect-IP: 51.254.78.96
+X-SA-Exim-Rcpt-To: peter.ujfalusi@ti.com, nm@ti.com, t-kristo@ti.com, ssantosh@kernel.org, tglx@linutronix.de, jason@lakedaemon.net, robh+dt@kernel.org, lokeshvutla@ti.com, linux-arm-kernel@lists.infradead.org, linux-kernel@vger.kernel.org, devicetree@vger.kernel.org
+X-SA-Exim-Mail-From: maz@kernel.org
+X-SA-Exim-Scanned: No (on disco-boy.misterjones.org); SAEximRunCond expanded to false
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-On Wed, Sep 30, 2020 at 12:04:04PM +0100, Mark Brown wrote:
-> On Wed, Sep 30, 2020 at 01:43:03AM +0300, Serge Semin wrote:
-> > On Tue, Sep 29, 2020 at 03:43:51PM +0100, Mark Brown wrote:
+On 2020-09-30 11:01, Peter Ujfalusi wrote:
+> On 30/09/2020 11.33, Marc Zyngier wrote:
+>> On 2020-09-30 08:45, Peter Ujfalusi wrote:
+>>> The DMA (BCDMA/PKTDMA and their rings/flows) events are under the 
+>>> INTA's
+>>> supervision as unmapped events in AM64.
+>> 
+>> What does "unmapped event" mean? An event that doesn't require a 
+>> mapping?
+>> Or an internally generated event? Or a proxy event?
+>> 
+>>> 
+>>> In order to keep the current SW stack working, the INTA driver must
+>>> replace
+>>> the dev_id with it's own when a request comes for BCDMA or PKTDMA
+>>> resources.
+>> 
+>> This seems to support my second option. Please clarify what you mean
+>> exactly.
 > 
-> > > This is a *huge* patch series which is a bit unweildy to review
-> > > (especially given the other 10+ patch series you sent at the same time),
+> In previous devices with NAVSS we had event registers in UDMAP and in 
+> rings.
+> In AM64 with DMSS these event registers have been removed from the DMAs
+> (rings are part of the DMAs).
+> The event configuration registers in DMSS are part of the INTA and they
+> under 'unmapped events'.
+
+Is "unmapped events" an official TI wording, described as such in the 
+TRM?
+
 > 
-> > Yeah, sorry about the bulky series. If most of the changes have been more
-> > complicated than that, less inter-dependent and less directed to having the code
-> > prepared for the main alterations I would have definitely split them up in
-> > different series. But the biggest part of the patchset is just a preparation
-> > before adding the mem-ops, poll-based transfers and Baikal-T1 SPI support. So
-> > having them submitted without the main part of the patchset would be just weird.
+> In essence the difference boils down to the fact that we do not
+> configure event numbers (to be consumed by INTA) for the events coming
+> from DMAs, but they already have their specific offsets within INTA's
+> unmapped region.
+
+OK, so they are not "unmapped". They are just permanently mapped, aren't 
+they?
+
+> With this change in hardware we can not use the DMA's ti_sci device
+> identification number to configure these events to produce interrupts,
+> they are under INTA.
 > 
-> One option with things like this is to just not send everything at once
-> - even when split into multiple series it's a huge bulk of patches in an
-> inbox.  Unless the patches are obviously from their subjects repetitive
-> people probably aren't getting far enough in to look at the actual
-> patches or even their sizes before deciding it looks like a lot of work
-> and putting things off for later.
+> The only difference in ti_sci API is that for DMA related
+> interrupts/events we need to use the INTA's ti_sci device 
+> identification
+> number in place of the DMA component's.
 > 
-> > I see you have already merged in the first nine patches. So would you like me
-> > to split the rest of them up into two series or it would be ok to resend (if
-> > required) them as one series seeing it's not that bulky anymore?
+> I would say that I would describe the unmapped events with your first
+> option. They kind of not require mapping from the source to INTA. The
+> source of the event (DMA, ring) is pre-configured to send specific
+> events to target the unmapped event area at specific offsets.
+
+If they truly don't require a mapping, why is this patch actually 
+mapping
+them with the INTA as a source? Your explanation doesn't make much sense
+to me.
+
 > 
+> But in the unmapped event register one can still define either:
+> - to send a global event (to be used as trigger or for other purposes)
+> - to generate interrupt (in a similar way as the IMAP registers were
+> doing in NAVSS).
+> 
+> I'm not sure if this answers your question...
 
-> Not all of the first 9, IIRC I skipped one I had comments on.
+I still believe the term "unmapped event" doesn't describe what we have
+here. These events seems, at least from what the patch does, internally
+generated by the INTA.
 
-Yes, you skipped one and I've already given you my response on your comment
-about it: [PATCH 02/30] spi: dw: Use ternary op to init set_cs callback
-So have I responded to your comment on another patch:
-[PATCH 11/30] spi: dw: Add DWC SSI capability .
+Irrespective of this, my other comments still stand.
 
-I will need a response from you about them to go further with this patchset.
-
-> If they
-> can be split that would probably be helpful, if there are dependencies
-> then it's not going to buy too much.
-
-Well, all later patches depend on the changes introduced in the previous ones in
-one way or another. So in any case that will be an incremental series of patchsets
-otherwise they most likely won't get applied cleanly on the driver source code.
-For now we have got 21 patch left to review:
-I) First two ones you've given your comments on and are mostly related to the
-patches you have already merged in.
-1. 688c17cad5c2 spi: dw: Use ternary op to init set_cs callback
-2. 17d0b3abc03d spi: dw: Add DWC SSI capability
-
-II) Refactor the DW APB SSI controller config procedure.
-3. 6a436c824961 spi: dw: Detach SPI device specific CR0 config method
-4. 47614d60e44c spi: dw: Update SPI bus speed in a config function
-5. df64a4961801 spi: dw: Simplify the SPI bus speed config procedure
-6. 1a583b130bab spi: dw: Update Rx sample delay in the config function
-7. 9f205a8939a2 spi: dw: Add DW SPI controller config structure
-
-III) Refactor IRQ-based SPI transfer procedure.
-8. d4fa973a3f7c spi: dw: Refactor data IO procedure
-9. d998b98e3d93 spi: dw: Refactor IRQ-based SPI transfer procedure
-10. 7fc419af6e67 spi: dw: Perform IRQ setup in a dedicated function
-11. d3dfd997379a spi: dw: Unmask IRQs after enabling the chip
-12. 6ecf589320f3 spi: dw: Discard chip enabling on DMA setup error
-
-IV) Final preparation before adding the memory operations.
-13. 84a03fad452c spi: dw: De-assert chip-select on reset
-14. dd0212eb5738 spi: dw: Explicitly de-assert CS on SPI transfer completion
-15. d1eea0f556cf spi: dw: Move num-of retries parameter to the header file
-16. 3e70e5a6c1d9 spi: dw: Add generic DW SSI status-check method
-
-v) Introduce memory and poll-based operations.
-17. 52d733f30464 spi: dw: Add memory operations support
-18. c2f45eb3d662 spi: dw: Introduce max mem-ops SPI bus frequency setting
-19. ccf08869b6bd spi: dw: Add poll-based SPI transfers support
-
-vI) Add Baikal-T1 glue-driver
-20. a536c408f7aa dt-bindings: spi: dw: Add Baikal-T1 SPI Controllers
-21. 791e68755ead spi: dw: Add Baikal-T1 SPI Controller glue driver
-
-If you want I can resend the series split up as I described above. Alternatively
-I can collect I) - III) into a one patchset and IV) - VI) into another one.
-So to speak I'll do in whatever scenario you prefer. Just tell me which one is
-more suitable for you to review.
-
-In anyway we need to settle the issues regarding the first two patches. Please give
-me your answers on the comments I've left there in response to your comments.)
-
--Sergey
+         M.
+-- 
+Jazz is not dead. It just smells funny...
