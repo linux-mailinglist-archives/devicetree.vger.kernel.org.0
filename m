@@ -2,277 +2,139 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from vger.kernel.org (vger.kernel.org [23.128.96.18])
-	by mail.lfdr.de (Postfix) with ESMTP id 09D8027F62B
-	for <lists+devicetree@lfdr.de>; Thu,  1 Oct 2020 01:47:34 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTP id 65BBF27F645
+	for <lists+devicetree@lfdr.de>; Thu,  1 Oct 2020 01:49:01 +0200 (CEST)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S1731959AbgI3Xrc (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Wed, 30 Sep 2020 19:47:32 -0400
-Received: from mail.kernel.org ([198.145.29.99]:42128 "EHLO mail.kernel.org"
-        rhost-flags-OK-OK-OK-OK) by vger.kernel.org with ESMTP
-        id S1725800AbgI3Xr3 (ORCPT <rfc822;devicetree@vger.kernel.org>);
-        Wed, 30 Sep 2020 19:47:29 -0400
-Received: from earth.universe (dyndsl-091-096-063-136.ewe-ip-backbone.de [91.96.63.136])
-        (using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
-        (No client certificate requested)
-        by mail.kernel.org (Postfix) with ESMTPSA id E7EDE20C09;
-        Wed, 30 Sep 2020 23:47:27 +0000 (UTC)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=kernel.org;
-        s=default; t=1601509648;
-        bh=iR4aq6UI4mVmKcHUC5dsDNW9kyo86vbB1cOU/XmtlWk=;
-        h=Date:From:To:Cc:Subject:References:In-Reply-To:From;
-        b=FhN1TKskMUjnltP5VtGAUY/U/RwClmzKta5g+AA4e/iGXzaoj2WwdIgESVVjNPqYd
-         v6WnqwGqI3ajKJL30XbLJhTLCYt/MiRwBXVxjh4Pw7Vl3KA0FZj4lkV1ry3jO6ep6t
-         ftBBufGZ30EmVgjQ6w/0xOmaIAbTDezR/L1p+TZ8=
-Received: by earth.universe (Postfix, from userid 1000)
-        id CEE393C0C84; Thu,  1 Oct 2020 01:47:25 +0200 (CEST)
-Date:   Thu, 1 Oct 2020 01:47:25 +0200
-From:   Sebastian Reichel <sre@kernel.org>
-To:     Ricardo Rivera-Matos <r-rivera-matos@ti.com>
-Cc:     robh+dt@kernel.org, linux-pm@vger.kernel.org,
-        devicetree@vger.kernel.org, linux-kernel@vger.kernel.org,
-        dmurphy@ti.com
-Subject: Re: [PATCH v4 2/2] power: supply: bq256xx: Introduce the BQ256XX
- charger driver
-Message-ID: <20200930234725.467aylfzokwzw72z@earth.universe>
-References: <20200923152416.24822-1-r-rivera-matos@ti.com>
- <20200923152416.24822-3-r-rivera-matos@ti.com>
+        id S1730192AbgI3XtB (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Wed, 30 Sep 2020 19:49:01 -0400
+Received: from lindbergh.monkeyblade.net ([23.128.96.19]:35194 "EHLO
+        lindbergh.monkeyblade.net" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
+        with ESMTP id S1730668AbgI3XtA (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Wed, 30 Sep 2020 19:49:00 -0400
+Received: from mail-lj1-x242.google.com (mail-lj1-x242.google.com [IPv6:2a00:1450:4864:20::242])
+        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 5FC21C061755
+        for <devicetree@vger.kernel.org>; Wed, 30 Sep 2020 16:49:00 -0700 (PDT)
+Received: by mail-lj1-x242.google.com with SMTP id r24so3080796ljm.3
+        for <devicetree@vger.kernel.org>; Wed, 30 Sep 2020 16:49:00 -0700 (PDT)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+        d=ragnatech-se.20150623.gappssmtp.com; s=20150623;
+        h=date:from:to:cc:subject:message-id:references:mime-version
+         :content-disposition:content-transfer-encoding:in-reply-to;
+        bh=1K6GZ5cts7m5+dPoKFk/BNjOtI5JoHWgjjAufBHq48Y=;
+        b=tRyeEN3nhgw2RRiORdqa8mpKabxwtR2R8hUhmoETiBpNETmt2SnVpE5e0nP7yROGy9
+         tMHSmwiXfQxTXWC44UEShc2AgHdCjJS5UaQCxQi9+e7M5Ga5b0iOtCt7qjgRkMxxBPfH
+         3rJCakAOPi3yqMGC+Dp6OUPQBUNmhzbPk0YHNp7nTvYw5jQZX8GU1fAh4CfMPrViGxmb
+         kzUaTEpstRZnM9P6CEIfcsWNvfaEdZVwRQWg1L2EvrHPobqfO0VfvBAf/oyFuTzlyW4Z
+         DrqR/BYHu+yofs46Dxey5ewEqwVuVeyADzoGUH208xPIe160j3zc+ebPnE3YNFuxcUhv
+         c8ZQ==
+X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+        d=1e100.net; s=20161025;
+        h=x-gm-message-state:date:from:to:cc:subject:message-id:references
+         :mime-version:content-disposition:content-transfer-encoding
+         :in-reply-to;
+        bh=1K6GZ5cts7m5+dPoKFk/BNjOtI5JoHWgjjAufBHq48Y=;
+        b=e6VbWxut2w+K1piSxoTilLx0vbYHYeLlcnq5q0HXOLIOvdKQOwTzXnRBZSnUD+V5FU
+         HznQFgHlB9DNJkTIZp3xf26NF/7/zHth4f8rWH+WCEmSjiWPykMHysJlUEiL1gMeYAnR
+         qMW1PEhv4S1D+lTtmCpTPwgCU5cK8nPeRSVCVc6mGSojWk7QIGDDWGlX4CPcPnyLA/iR
+         GubJicERU28Wmbb8+4NlTLa5nv44q+ZeiipCWu5LGUCR+T/y4GwJDFe8kAO4+4VafRqA
+         icfesUffvk/aRTvonPRKRbNjv61VV+Up13QzsHYF889Yc2CvWLAS0YjLOLg67B3ArHuc
+         geaA==
+X-Gm-Message-State: AOAM5300RuBd4ui75EJ5h/IHeh7CBff8pTZ6JbWLrACpVKqE44SgNeFL
+        00sFBmO+swPUJ4cfgaz3ZBPyeg==
+X-Google-Smtp-Source: ABdhPJxf7ZY83Qyw/h83m+REyH2P0HviHDKEwswK3B/J5Q6hMpcTf1FtPONgOIKku3H2miUH7CQbUg==
+X-Received: by 2002:a2e:80d2:: with SMTP id r18mr1585556ljg.98.1601509738794;
+        Wed, 30 Sep 2020 16:48:58 -0700 (PDT)
+Received: from localhost (h-209-203.A463.priv.bahnhof.se. [155.4.209.203])
+        by smtp.gmail.com with ESMTPSA id q18sm346450lfr.138.2020.09.30.16.48.58
+        (version=TLS1_3 cipher=TLS_AES_256_GCM_SHA384 bits=256/256);
+        Wed, 30 Sep 2020 16:48:58 -0700 (PDT)
+Date:   Thu, 1 Oct 2020 01:48:57 +0200
+From:   Niklas =?utf-8?Q?S=C3=B6derlund?= <niklas.soderlund@ragnatech.se>
+To:     Bjorn Helgaas <helgaas@kernel.org>
+Cc:     Rob Herring <robh@kernel.org>, Bjorn Helgaas <bhelgaas@google.com>,
+        Marc Zyngier <maz@kernel.org>, devicetree@vger.kernel.org,
+        PCI <linux-pci@vger.kernel.org>,
+        "open list:ARM/Rockchip SoC..." <linux-rockchip@lists.infradead.org>,
+        linux-arm-kernel <linux-arm-kernel@lists.infradead.org>,
+        Lorenzo Pieralisi <lorenzo.pieralisi@arm.com>,
+        Heiko Stuebner <heiko@sntech.de>,
+        Frank Rowand <frowand.list@gmail.com>,
+        Shawn Lin <shawn.lin@rock-chips.com>,
+        Jiaxun Yang <jiaxun.yang@flygoat.com>,
+        Android Kernel Team <kernel-team@android.com>,
+        Samuel Dionne-Riel <samuel@dionne-riel.com>,
+        "linux-kernel@vger.kernel.org" <linux-kernel@vger.kernel.org>
+Subject: Re: [PATCH v2] of: address: Work around missing device_type property
+ in pcie nodes
+Message-ID: <20200930234857.g2gxdablzaewvwfq@oden.dyn.berto.se>
+References: <CAL_Jsq+xBKbYXWipwmZ=ZidorsMUFDw2NpUyxobx4FCTn+8Hmg@mail.gmail.com>
+ <20200930225154.GA2631019@bjorn-Precision-5520>
 MIME-Version: 1.0
-Content-Type: multipart/signed; micalg=pgp-sha512;
-        protocol="application/pgp-signature"; boundary="7pgq53fiwunzpu4p"
+Content-Type: text/plain; charset=iso-8859-1
 Content-Disposition: inline
-In-Reply-To: <20200923152416.24822-3-r-rivera-matos@ti.com>
+Content-Transfer-Encoding: 8bit
+In-Reply-To: <20200930225154.GA2631019@bjorn-Precision-5520>
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
+Hi Bjorn,
 
---7pgq53fiwunzpu4p
-Content-Type: text/plain; charset=us-ascii
-Content-Disposition: inline
+On 2020-09-30 17:51:54 -0500, Bjorn Helgaas wrote:
+> On Wed, Sep 30, 2020 at 03:34:10PM -0500, Rob Herring wrote:
+> > On Wed, Sep 30, 2020 at 12:37 PM Niklas Söderlund
+> > <niklas.soderlund@ragnatech.se> wrote:
+> > >
+> > > Hi Marc,
+> > >
+> > > On 2020-09-30 18:23:21 +0100, Marc Zyngier wrote:
+> > > > Hi Niklas,
+> > > >
+> > > > [+ Samuel]
+> > > >
+> > > > On 2020-09-30 17:27, Niklas Söderlund wrote:
+> > > > > Hi Marc,
+> > > > >
+> > > > > I'm afraid this commit breaks booting my rk3399 device.
+> > > > >
+> > > > > I bisected the problem to this patch merged as [1]. I'm testing on a
+> > > > > Scarlet device and I'm using the unmodified upstream
+> > > > > rk3399-gru-scarlet-inx.dtb for my tests.
+> > > > >
+> > > > > The problem I'm experience is a black screen after the bootloader and
+> > > > > the device is none responsive over the network. I have no serial console
+> > > > > to this device so I'm afraid I can't tell you if there is anything
+> > > > > useful on to aid debugging there.
+> > > > >
+> > > > > If I try to test one commit earlier [2] the system boots as expected and
+> > > > > everything works as it did for me in v5.8 and earlier. I have worked
+> > > > > little with this device and have no clue about what is really on the PCI
+> > > > > buss. But running from [2] I have this info about PCI if it's helpful,
+> > > > > please ask if somethings missing.
+> > > >
+> > > > Please see the thread at [1]. The problem was reported a few weeks back
+> > > > by Samuel, and I was expecting Rob and Lorenzo to push a fix for this.
+> > >
+> > > Thanks for providing a solution.
+> > >
+> > > >
+> > > > Rob, Lorenzo, any update on this?
+> > 
+> > The fix is in Bjorn's tree[1].
+> > 
+> > Bjorn, going to send this to Linus before v5.9 is out?
+> 
+> Definitely, thanks for the reminder.  I'm assuming the fix in question
+> is https://git.kernel.org/pub/scm/linux/kernel/git/helgaas/pci.git/commit/?h=for-linus&id=e338eecf3fe79054e8a31b8c39a1234b5acfdabe
 
-Hi,
+That patch solves my boot problem.
 
-You are leaking some resources, otherwise LGTM.
+Cherry-picked and tested directly on-top of v5.9-rc7 (which fails to 
+boot without the patch in question).
 
-On Wed, Sep 23, 2020 at 10:24:16AM -0500, Ricardo Rivera-Matos wrote:
-> [...]
-> +static int bq256xx_hw_init(struct bq256xx_device *bq)
-> +{
-> +	struct power_supply_battery_info bat_info = { };
-> +	int wd_reg_val = BQ256XX_WATCHDOG_DIS;
-> +	int ret = 0;
-> +	int i;
-> +
-> +	for (i = 0; i < BQ256XX_NUM_WD_VAL; i++) {
-> +		if (bq->watchdog_timer > bq256xx_watchdog_time[i] &&
-> +		    bq->watchdog_timer < bq256xx_watchdog_time[i + 1])
-> +			wd_reg_val = i;
-> +	}
-> +	ret = regmap_update_bits(bq->regmap, BQ256XX_CHARGER_CONTROL_1,
-> +				 BQ256XX_WATCHDOG_MASK, wd_reg_val <<
-> +						BQ256XX_WDT_BIT_SHIFT);
-> +
-> +	ret = power_supply_get_battery_info(bq->charger, &bat_info);
-> +	if (ret) {
-> +		dev_warn(bq->dev, "battery info missing, default values will be applied\n");
-> +
-> +		bat_info.constant_charge_current_max_ua =
-> +				bq->chip_info->bq256xx_def_ichg;
-> +
-> +		bat_info.constant_charge_voltage_max_uv =
-> +				bq->chip_info->bq256xx_def_vbatreg;
-> +
-> +		bat_info.precharge_current_ua =
-> +				bq->chip_info->bq256xx_def_iprechg;
-> +
-> +		bat_info.charge_term_current_ua =
-> +				bq->chip_info->bq256xx_def_iterm;
-> +
-> +		bq->init_data.ichg_max =
-> +				bq->chip_info->bq256xx_max_ichg;
-> +
-> +		bq->init_data.vbatreg_max =
-> +				bq->chip_info->bq256xx_max_vbatreg;
-> +	} else {
-> +		bq->init_data.ichg_max =
-> +			bat_info.constant_charge_current_max_ua;
-> +
-> +		bq->init_data.vbatreg_max =
-> +			bat_info.constant_charge_voltage_max_uv;
-> +	}
-> +
-> +	ret = bq->chip_info->bq256xx_set_vindpm(bq, bq->init_data.vindpm);
-> +	if (ret)
-> +		goto err_out;
-> +
-> +	ret = bq->chip_info->bq256xx_set_iindpm(bq, bq->init_data.iindpm);
-> +	if (ret)
-> +		goto err_out;
-> +
-> +	ret = bq->chip_info->bq256xx_set_ichg(bq,
-> +				bat_info.constant_charge_current_max_ua);
-> +	if (ret)
-> +		goto err_out;
-> +
-> +	ret = bq->chip_info->bq256xx_set_iprechg(bq,
-> +				bat_info.precharge_current_ua);
-> +	if (ret)
-> +		goto err_out;
-> +
-> +	ret = bq->chip_info->bq256xx_set_vbatreg(bq,
-> +				bat_info.constant_charge_voltage_max_uv);
-> +	if (ret)
-> +		goto err_out;
-> +
-> +	ret = bq->chip_info->bq256xx_set_iterm(bq,
-> +				bat_info.charge_term_current_ua);
-> +	if (ret)
-> +		goto err_out;
+> 
+> > [1] https://git.kernel.org/pub/scm/linux/kernel/git/helgaas/pci.git/log/?h=for-linus
 
-You need to power_supply_put_battery_info().
-
-> +
-> +	return 0;
-> +
-> +err_out:
-> +	return ret;
-> +}
-> +
-> +static int bq256xx_parse_dt(struct bq256xx_device *bq)
-> +{
-> +	int ret = 0;
-> +
-> +	ret = device_property_read_u32(bq->dev, "ti,watchdog-timeout-ms",
-> +				       &bq->watchdog_timer);
-> +	if (ret)
-> +		bq->watchdog_timer = BQ256XX_WATCHDOG_DIS;
-> +
-> +	if (bq->watchdog_timer > BQ256XX_WATCHDOG_MAX ||
-> +	    bq->watchdog_timer < BQ256XX_WATCHDOG_DIS)
-> +		return -EINVAL;
-> +
-> +	ret = device_property_read_u32(bq->dev,
-> +				       "input-voltage-limit-microvolt",
-> +				       &bq->init_data.vindpm);
-> +	if (ret)
-> +		bq->init_data.vindpm = bq->chip_info->bq256xx_def_vindpm;
-> +
-> +	ret = device_property_read_u32(bq->dev,
-> +				       "input-current-limit-microamp",
-> +				       &bq->init_data.iindpm);
-> +	if (ret)
-> +		bq->init_data.iindpm = bq->chip_info->bq256xx_def_iindpm;
-> +
-> +	return 0;
-> +}
-> +
-> +static int bq256xx_probe(struct i2c_client *client,
-> +			 const struct i2c_device_id *id)
-> +{
-> +	struct device *dev = &client->dev;
-> +	struct bq256xx_device *bq;
-> +	int ret;
-> +
-> +	bq = devm_kzalloc(dev, sizeof(*bq), GFP_KERNEL);
-> +	if (!bq)
-> +		return -ENOMEM;
-> +
-> +	bq->client = client;
-> +	bq->dev = dev;
-> +	bq->chip_info = &bq256xx_chip_info_tbl[id->driver_data];
-> +
-> +	mutex_init(&bq->lock);
-> +
-> +	strncpy(bq->model_name, id->name, I2C_NAME_SIZE);
-> +
-> +	bq->regmap = devm_regmap_init_i2c(client,
-> +					bq->chip_info->bq256xx_regmap_config);
-> +
-> +	if (IS_ERR(bq->regmap)) {
-> +		dev_err(dev, "Failed to allocate register map\n");
-> +		return PTR_ERR(bq->regmap);
-> +	}
-> +
-> +	i2c_set_clientdata(client, bq);
-> +
-> +	ret = bq256xx_parse_dt(bq);
-> +	if (ret) {
-> +		dev_err(dev, "Failed to read device tree properties%d\n", ret);
-> +		return ret;
-> +	}
-> +
-> +	/* OTG reporting */
-> +	bq->usb2_phy = devm_usb_get_phy(dev, USB_PHY_TYPE_USB2);
-> +	if (!IS_ERR_OR_NULL(bq->usb2_phy)) {
-> +		INIT_WORK(&bq->usb_work, bq256xx_usb_work);
-> +		bq->usb_nb.notifier_call = bq256xx_usb_notifier;
-> +		usb_register_notifier(bq->usb2_phy, &bq->usb_nb);
-> +	}
-> +
-> +	bq->usb3_phy = devm_usb_get_phy(dev, USB_PHY_TYPE_USB3);
-> +	if (!IS_ERR_OR_NULL(bq->usb3_phy)) {
-> +		INIT_WORK(&bq->usb_work, bq256xx_usb_work);
-> +		bq->usb_nb.notifier_call = bq256xx_usb_notifier;
-> +		usb_register_notifier(bq->usb3_phy, &bq->usb_nb);
-> +	}
-> +
-> +	if (client->irq) {
-> +		ret = devm_request_threaded_irq(dev, client->irq, NULL,
-> +						bq256xx_irq_handler_thread,
-> +						IRQF_TRIGGER_FALLING |
-> +						IRQF_ONESHOT,
-> +						dev_name(&client->dev), bq);
-> +		if (ret)
-> +			goto error_out;
-> +	}
-> +
-> +	ret = bq256xx_power_supply_init(bq, dev);
-> +	if (ret) {
-> +		dev_err(dev, "Failed to register power supply\n");
-> +		goto error_out;
-> +	}
-> +
-> +	ret = bq256xx_hw_init(bq);
-> +	if (ret) {
-> +		dev_err(dev, "Cannot initialize the chip.\n");
-> +		goto error_out;
-> +	}
-> +
-> +	return ret;
-> +
-> +error_out:
-> +	if (!IS_ERR_OR_NULL(bq->usb2_phy))
-> +		usb_unregister_notifier(bq->usb2_phy, &bq->usb_nb);
-> +
-> +	if (!IS_ERR_OR_NULL(bq->usb3_phy))
-> +		usb_unregister_notifier(bq->usb3_phy, &bq->usb_nb);
-> +	return ret;
-
-This also needs to be called during driver removal. Probably
-it's best to do this via devm_add_action_or_reset().
-
-> [...]
-
--- Sebastian
-
---7pgq53fiwunzpu4p
-Content-Type: application/pgp-signature; name="signature.asc"
-
------BEGIN PGP SIGNATURE-----
-
-iQIzBAABCgAdFiEE72YNB0Y/i3JqeVQT2O7X88g7+poFAl91GP8ACgkQ2O7X88g7
-+ppYlw//Q8IeAQxE/xXhvgs8NuIfoZbgio/EjZJNd2uixfhB8PL94/xV6RuFLJ70
-ERhJiS83fC7o5ijkMIuwSzxw2fgbmdCTVi1d9M9Z0O5VGWcA2WgLKNNSZJ1OV5Ii
-TEb4CljBdOjEWTyRybn+l5oPj34QH+C3x59u1fU3T1LJpUPPtLpaEFq3SK5T6NI2
-gmmDBdj7lOcoSp06uuZT5W9XmkWBxIUAE35+AFzvnwbedh2AdIsjjZtx2x428uO1
-zhvk9syqoTRCDHcBt7bvg9fLUg38FC1LAHlhoL6rRjRyjzSZSK58Yo7scK6HWgZe
-uLYTVy2LHNwl7+s/8BFcqM1gBIvfRozqR/DPIwYC1pLNxk7CqG04ZNOm1RI6Ma1m
-sEGKgG3sPaskd33v+TQT1N51W7K+iWa0wE368HB5o2DbtZtCN5nk7gIhAFynjPXV
-U+maHdi32GCODvzlPfdxuoFZrKOjS6wEOGD/fjDz5s7Z5Fb2l2VhFkw7E95iHgdU
-oSJLysZsG1w8NwhRVJDLlAw4+IEKWWhpOgELTMJJlrpUlrm4Vf7qst8Pqoxcnm8e
-rW3WzYifpUomcWdWzZpGFoQKazTP/oB3U/KVGs9ojhG1VYgR4l/Y4+VZ/yDDah06
-Fb6uoUUWCz8z+GFjsxvYJoBTW8GyW+b4VrTqPm/PGZ9XTvn5m90=
-=+yQa
------END PGP SIGNATURE-----
-
---7pgq53fiwunzpu4p--
+-- 
+Regards,
+Niklas Söderlund
