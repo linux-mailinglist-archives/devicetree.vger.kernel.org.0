@@ -2,22 +2,22 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from vger.kernel.org (vger.kernel.org [23.128.96.18])
-	by mail.lfdr.de (Postfix) with ESMTP id CE28C27EDD7
+	by mail.lfdr.de (Postfix) with ESMTP id 613F327EDD6
 	for <lists+devicetree@lfdr.de>; Wed, 30 Sep 2020 17:50:20 +0200 (CEST)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S1730912AbgI3PuT (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        id S1725893AbgI3PuT (ORCPT <rfc822;lists+devicetree@lfdr.de>);
         Wed, 30 Sep 2020 11:50:19 -0400
-Received: from lindbergh.monkeyblade.net ([23.128.96.19]:45564 "EHLO
+Received: from lindbergh.monkeyblade.net ([23.128.96.19]:45558 "EHLO
         lindbergh.monkeyblade.net" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S1730931AbgI3PuT (ORCPT
+        with ESMTP id S1730912AbgI3PuT (ORCPT
         <rfc822;devicetree@vger.kernel.org>); Wed, 30 Sep 2020 11:50:19 -0400
 Received: from metis.ext.pengutronix.de (metis.ext.pengutronix.de [IPv6:2001:67c:670:201:290:27ff:fe1d:cc33])
-        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 79EBDC061755
+        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 281B4C061755
         for <devicetree@vger.kernel.org>; Wed, 30 Sep 2020 08:50:19 -0700 (PDT)
 Received: from [2a0a:edc0:0:1101:1d::39] (helo=dude03.red.stw.pengutronix.de)
         by metis.ext.pengutronix.de with esmtp (Exim 4.92)
         (envelope-from <l.stach@pengutronix.de>)
-        id 1kNeMu-0006WU-DR; Wed, 30 Sep 2020 17:50:13 +0200
+        id 1kNeMv-0006WU-MA; Wed, 30 Sep 2020 17:50:14 +0200
 From:   Lucas Stach <l.stach@pengutronix.de>
 To:     Shawn Guo <shawnguo@kernel.org>, Rob Herring <robh+dt@kernel.org>
 Cc:     NXP Linux Team <linux-imx@nxp.com>,
@@ -26,8 +26,8 @@ Cc:     NXP Linux Team <linux-imx@nxp.com>,
         Marek Vasut <marex@denx.de>,
         linux-arm-kernel@lists.infradead.org, devicetree@vger.kernel.org,
         kernel@pengutronix.de, patchwork-lst@pengutronix.de
-Date:   Wed, 30 Sep 2020 17:49:59 +0200
-Message-Id: <20200930155006.535712-5-l.stach@pengutronix.de>
+Date:   Wed, 30 Sep 2020 17:50:00 +0200
+Message-Id: <20200930155006.535712-6-l.stach@pengutronix.de>
 X-Mailer: git-send-email 2.20.1
 In-Reply-To: <20200930155006.535712-1-l.stach@pengutronix.de>
 References: <20200930155006.535712-1-l.stach@pengutronix.de>
@@ -41,7 +41,7 @@ X-Spam-Level:
 X-Spam-Status: No, score=-1.5 required=4.0 tests=AWL,BAYES_00,RDNS_NONE,
         SPF_HELO_NONE,SPF_SOFTFAIL,URIBL_BLOCKED autolearn=no
         autolearn_force=no version=3.4.2
-Subject: [PATCH 04/11] soc: imx: gpcv2: wait for ADB400 handshake
+Subject: [PATCH 05/11] soc: imx: gpcv2: add runtime PM support for power-domains
 X-SA-Exim-Version: 4.2.1 (built Wed, 08 May 2019 21:11:16 +0000)
 X-SA-Exim-Scanned: Yes (on metis.ext.pengutronix.de)
 X-PTX-Original-Recipient: devicetree@vger.kernel.org
@@ -49,113 +49,89 @@ Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-New reference manuals show that there is actually a status bit for
-the ADB400 handshake. Add a poll loop to wait for the ADB400 to
-acknowledge our request.
+This allows to nest domains into other power domains and have the
+parent domain powered up/down as required by the child domains.
 
 Signed-off-by: Lucas Stach <l.stach@pengutronix.de>
 ---
- drivers/soc/imx/gpcv2.c | 43 +++++++++++++++++++++++++++++++++--------
- 1 file changed, 35 insertions(+), 8 deletions(-)
+ drivers/soc/imx/gpcv2.c | 18 +++++++++++++++++-
+ 1 file changed, 17 insertions(+), 1 deletion(-)
 
 diff --git a/drivers/soc/imx/gpcv2.c b/drivers/soc/imx/gpcv2.c
-index f91063c9fb92..3cfb8b51c23e 100644
+index 3cfb8b51c23e..5bb7b1cc7c10 100644
 --- a/drivers/soc/imx/gpcv2.c
 +++ b/drivers/soc/imx/gpcv2.c
-@@ -69,6 +69,9 @@
+@@ -12,6 +12,7 @@
+ #include <linux/of_device.h>
+ #include <linux/platform_device.h>
+ #include <linux/pm_domain.h>
++#include <linux/pm_runtime.h>
+ #include <linux/regmap.h>
+ #include <linux/regulator/consumer.h>
+ #include <linux/sizes.h>
+@@ -143,11 +144,17 @@ static int imx_pgc_power_up(struct generic_pm_domain *genpd)
+ 	u32 reg_val;
+ 	int i, ret;
  
- #define GPC_PU_PWRHSK			0x1fc
- 
-+#define IMX8M_GPU_HSK_PWRDNACKN			BIT(26)
-+#define IMX8M_VPU_HSK_PWRDNACKN			BIT(25)
-+#define IMX8M_DISP_HSK_PWRDNACKN		BIT(24)
- #define IMX8M_GPU_HSK_PWRDNREQN			BIT(6)
- #define IMX8M_VPU_HSK_PWRDNREQN			BIT(5)
- #define IMX8M_DISP_HSK_PWRDNREQN		BIT(4)
-@@ -114,7 +117,8 @@ struct imx_pgc_domain {
- 	const struct {
- 		u32 pxx;
- 		u32 map;
--		u32 hsk;
-+		u32 hskreq;
-+		u32 hskack;
- 	} bits;
- 
- 	const int voltage;
-@@ -176,9 +180,19 @@ static int imx_pgc_power_up(struct generic_pm_domain *genpd)
- 			   GPC_PGC_CTRL_PCR, 0);
- 
- 	/* request the ADB400 to power up */
--	if (domain->bits.hsk)
-+	if (domain->bits.hskreq) {
- 		regmap_update_bits(domain->regmap, GPC_PU_PWRHSK,
--				   domain->bits.hsk, domain->bits.hsk);
-+				   domain->bits.hskreq, domain->bits.hskreq);
-+
-+		ret = regmap_read_poll_timeout(domain->regmap, GPC_PU_PWRHSK,
-+					       reg_val,
-+					       (reg_val & domain->bits.hskack),
-+					       0, USEC_PER_MSEC);
-+		if (ret) {
-+			dev_err(domain->dev, "failed to power up ADB400\n");
-+			goto out_clk_disable;
-+		}
++	ret = pm_runtime_get_sync(domain->dev);
++	if (ret) {
++		pm_runtime_put_noidle(domain->dev);
++		return ret;
 +	}
- 
- 	/* Disable reset clocks for all devices in the domain */
- 	for (i = 0; i < domain->num_clks; i++)
-@@ -211,9 +225,19 @@ static int imx_pgc_power_down(struct generic_pm_domain *genpd)
++
+ 	if (!IS_ERR(domain->regulator)) {
+ 		ret = regulator_enable(domain->regulator);
+ 		if (ret) {
+ 			dev_err(domain->dev, "failed to enable regulator\n");
+-			return ret;
++			goto out_put_pm;
+ 		}
  	}
  
- 	/* request the ADB400 to power down */
--	if (domain->bits.hsk)
-+	if (domain->bits.hskreq) {
- 		regmap_update_bits(domain->regmap, GPC_PU_PWRHSK,
--				   domain->bits.hsk, 0);
-+				   domain->bits.hskreq, 0);
-+
-+		ret = regmap_read_poll_timeout(domain->regmap, GPC_PU_PWRHSK,
-+					       reg_val,
-+					       !(reg_val & domain->bits.hskack),
-+					       0, USEC_PER_MSEC);
-+		if (ret) {
-+			dev_err(domain->dev, "failed to power down ADB400\n");
-+			goto out_clk_disable;
-+		}
-+	}
+@@ -205,6 +212,8 @@ static int imx_pgc_power_up(struct generic_pm_domain *genpd)
+ 		clk_disable_unprepare(domain->clk[i]);
+ 	if (!IS_ERR(domain->regulator))
+ 		regulator_disable(domain->regulator);
++out_put_pm:
++	pm_runtime_put(domain->dev);
  
- 	/* enable power control */
- 	regmap_update_bits(domain->regmap, GPC_PGC_CTRL(domain->pgc),
-@@ -378,7 +402,8 @@ static const struct imx_pgc_domain imx8m_pgc_domains[] = {
- 		.bits  = {
- 			.pxx = IMX8M_GPU_SW_Pxx_REQ,
- 			.map = IMX8M_GPU_A53_DOMAIN,
--			.hsk = IMX8M_GPU_HSK_PWRDNREQN,
-+			.hskreq = IMX8M_GPU_HSK_PWRDNREQN,
-+			.hskack = IMX8M_GPU_HSK_PWRDNACKN,
- 		},
- 		.pgc   = IMX8M_PGC_GPU,
- 	},
-@@ -390,7 +415,8 @@ static const struct imx_pgc_domain imx8m_pgc_domains[] = {
- 		.bits  = {
- 			.pxx = IMX8M_VPU_SW_Pxx_REQ,
- 			.map = IMX8M_VPU_A53_DOMAIN,
--			.hsk = IMX8M_VPU_HSK_PWRDNREQN,
-+			.hskreq = IMX8M_VPU_HSK_PWRDNREQN,
-+			.hskack = IMX8M_VPU_HSK_PWRDNACKN,
- 		},
- 		.pgc   = IMX8M_PGC_VPU,
- 	},
-@@ -402,7 +428,8 @@ static const struct imx_pgc_domain imx8m_pgc_domains[] = {
- 		.bits  = {
- 			.pxx = IMX8M_DISP_SW_Pxx_REQ,
- 			.map = IMX8M_DISP_A53_DOMAIN,
--			.hsk = IMX8M_DISP_HSK_PWRDNREQN,
-+			.hskreq = IMX8M_DISP_HSK_PWRDNREQN,
-+			.hskack = IMX8M_DISP_HSK_PWRDNACKN,
- 		},
- 		.pgc   = IMX8M_PGC_DISP,
- 	},
+ 	return ret;
+ }
+@@ -270,6 +279,8 @@ static int imx_pgc_power_down(struct generic_pm_domain *genpd)
+ 		}
+ 	}
+ 
++	pm_runtime_put(domain->dev);
++
+ 	return 0;
+ 
+ out_clk_disable:
+@@ -567,6 +578,8 @@ static int imx_pgc_domain_probe(struct platform_device *pdev)
+ 		return ret;
+ 	}
+ 
++	pm_runtime_enable(domain->dev);
++
+ 	regmap_update_bits(domain->regmap, GPC_PGC_CPU_MAPPING,
+ 			   domain->bits.map, domain->bits.map);
+ 
+@@ -590,6 +603,7 @@ static int imx_pgc_domain_probe(struct platform_device *pdev)
+ out_domain_unmap:
+ 	regmap_update_bits(domain->regmap, GPC_PGC_CPU_MAPPING,
+ 			   domain->bits.map, 0);
++	pm_runtime_disable(domain->dev);
+ 	imx_pgc_put_clocks(domain);
+ 
+ 	return ret;
+@@ -605,6 +619,8 @@ static int imx_pgc_domain_remove(struct platform_device *pdev)
+ 	regmap_update_bits(domain->regmap, GPC_PGC_CPU_MAPPING,
+ 			   domain->bits.map, 0);
+ 
++	pm_runtime_disable(domain->dev);
++
+ 	imx_pgc_put_clocks(domain);
+ 
+ 	return 0;
 -- 
 2.20.1
 
