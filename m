@@ -2,332 +2,147 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from vger.kernel.org (vger.kernel.org [23.128.96.18])
-	by mail.lfdr.de (Postfix) with ESMTP id 1EC8527F549
-	for <lists+devicetree@lfdr.de>; Thu,  1 Oct 2020 00:40:34 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTP id 61C9D27F545
+	for <lists+devicetree@lfdr.de>; Thu,  1 Oct 2020 00:40:27 +0200 (CEST)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S1731735AbgI3Wk1 (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Wed, 30 Sep 2020 18:40:27 -0400
-Received: from lindbergh.monkeyblade.net ([23.128.96.19]:52668 "EHLO
-        lindbergh.monkeyblade.net" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S1731704AbgI3WkT (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Wed, 30 Sep 2020 18:40:19 -0400
-Received: from mail-ot1-x343.google.com (mail-ot1-x343.google.com [IPv6:2607:f8b0:4864:20::343])
-        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id C5456C0613D0
-        for <devicetree@vger.kernel.org>; Wed, 30 Sep 2020 15:40:17 -0700 (PDT)
-Received: by mail-ot1-x343.google.com with SMTP id a13so689227otl.13
-        for <devicetree@vger.kernel.org>; Wed, 30 Sep 2020 15:40:17 -0700 (PDT)
+        id S1731718AbgI3WkV (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Wed, 30 Sep 2020 18:40:21 -0400
+Received: from mail-eopbgr750084.outbound.protection.outlook.com ([40.107.75.84]:14450
+        "EHLO NAM02-BL2-obe.outbound.protection.outlook.com"
+        rhost-flags-OK-OK-OK-FAIL) by vger.kernel.org with ESMTP
+        id S1731699AbgI3WkU (ORCPT <rfc822;devicetree@vger.kernel.org>);
+        Wed, 30 Sep 2020 18:40:20 -0400
+ARC-Seal: i=1; a=rsa-sha256; s=arcselector9901; d=microsoft.com; cv=none;
+ b=fRwmveQBsfS335fXK5vSIJK0xYMyp5ltrTsxR7xyQ+2+Z3fKn3+5Sowg7qWMBcv1Bbsr1eNqjJdYThEcXpb9mUGrQbo7QSMhiOVvAA/Yee4fY7Fphv4HWAEHBeXemsQwQuasMZXW/Dks5RRa0DeEkE3lTbzQv2hlGAKwGBfbQ8RmFKt6nAa6AXybrvm9sfXPJD7jrLHG9wCiLbHDnGIobPY8hGNJv7Dm/mB3GISgbnGcpmZRLCtyNr+apKvTC7yqAvQKCR0lmdH39XKScE2eOXFfoIWkC/odM8kkKMLsQvzUgKrKaBNHHqOolTMph9MXykrW8wW7XOnuR+EI7CMyKg==
+ARC-Message-Signature: i=1; a=rsa-sha256; c=relaxed/relaxed; d=microsoft.com;
+ s=arcselector9901;
+ h=From:Date:Subject:Message-ID:Content-Type:MIME-Version:X-MS-Exchange-SenderADCheck;
+ bh=DjUXamIu4057vaSsOHtv633cpdreWsiILEgN6+GL85c=;
+ b=NJBJYr9d27IO2+m+FbPsQHcsBJtSNnMtb7ayyu/6DQ3iA/ewX4DDV76TOqLZKfuxbbhc4yG80RyUj9/MlUBjXeFZ3fmHfb2nkhhrZDC63B0Aom/ER7lAd13BpZn7zhLfsqgs4Zo2RgF+wi3y4+iS6NISBkcdOKToO2bk6O9H1H+wAvq+eo4JzM/yfY7CSIN94u65WONWl5zOi/KJiSb4hTWJnDDgTRgauANgO1+Nil5Vew6Bi19SrRNF3uZMLb0Fh4rm7J3DsNwaPgNT9AyMRfFWr80v3ZpPXyBxT8AtRQioQLrBK3V/8C9fHO1AeFIQoQP9TXreBt9Vp2crsVRGQg==
+ARC-Authentication-Results: i=1; mx.microsoft.com 1; spf=pass (sender ip is
+ 149.199.60.83) smtp.rcpttodomain=lists.infradead.org
+ smtp.mailfrom=xilinx.com; dmarc=bestguesspass action=none
+ header.from=xilinx.com; dkim=none (message not signed); arc=none
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=linaro.org; s=google;
-        h=from:to:cc:subject:date:message-id:in-reply-to:references
-         :mime-version:content-transfer-encoding;
-        bh=B02x+6qFwNDiIXaIKoI44hg6IcubNrceyp/h3OxHQCk=;
-        b=pvuNi+rYQvKETQMj7zSc0bfZg6yS9Zp8P8S4T/PKj+puIOobsX5Z1Nzzl65f87gkA9
-         im/rPs1hod0h9wkbw2lU4pCRBiwmEPmUvhAka/eJoW2OeRB0DssxlBRIu8sDK1/RY43I
-         Ba+49Ea5gI7xrUAS+pfEKuKq/uG62mU3azpLkvq1n87G8yfFMcsx3w2EIddlchmXUNdq
-         tkg8XziIHyG8lEArFLtAjMSC4+S0FDeq3n0NXc35Iz+4RitwKm/cw5v1YMx7e3sxMUun
-         MhmjHHsqJ89NBiT1FP2v0mJ2hx19kZVr1JDLs7cl6Q3AcnfW1TRjBrsttqNuUPRgh3SR
-         qcaA==
-X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=1e100.net; s=20161025;
-        h=x-gm-message-state:from:to:cc:subject:date:message-id:in-reply-to
-         :references:mime-version:content-transfer-encoding;
-        bh=B02x+6qFwNDiIXaIKoI44hg6IcubNrceyp/h3OxHQCk=;
-        b=FOPkJ31BLiP9u17lhYyHv+dVMtwCDuQkGu/xadfLUtJkOskb/Dg2DELxUII97dVDyk
-         Ft1J2whu2hkjmiXz7M2FYbsVHaaf0ENlnUC58tLw6Cag9eZ6KofHvHoNkOTHb3D+4H9k
-         DjfFhC9Yb84mpkE83sitpDMUeIMpMJRahT8yGmzuwLGAKz2x59j072A8RR10s10Os8YO
-         y+kqpovutWS8DEAhpy/j/1ttzTBgcjO2bIoO2963/YlF2ZhrWwhjIjr5EJm/j1rPFIqx
-         iV7YUDyZJv7tQO82gXPjtKZmJ6lvMyEIkKa4DgYmvL3ojf/3pHCx98/e8lteXkfBF3zh
-         ICzQ==
-X-Gm-Message-State: AOAM531leQjH0OLz0Re5EHrgIWGvekNw+Pu8/8r5BvNT+kKgqODln3c9
-        sjW7ZqcIrfgeaPbJUZMz90OESQ==
-X-Google-Smtp-Source: ABdhPJyyUYdFUIRbOQaZ76Rcf6inMgqh+OduTBSq4tEoqVgrxjCXZsV/JDBpugHNdorkOd9eqdU/wA==
-X-Received: by 2002:a05:6830:20d8:: with SMTP id z24mr2962682otq.3.1601505617097;
-        Wed, 30 Sep 2020 15:40:17 -0700 (PDT)
-Received: from builder.lan (104-57-184-186.lightspeed.austtx.sbcglobal.net. [104.57.184.186])
-        by smtp.gmail.com with ESMTPSA id p8sm781364oot.29.2020.09.30.15.40.16
-        (version=TLS1_3 cipher=TLS_AES_256_GCM_SHA384 bits=256/256);
-        Wed, 30 Sep 2020 15:40:16 -0700 (PDT)
-From:   Bjorn Andersson <bjorn.andersson@linaro.org>
-To:     David Airlie <airlied@linux.ie>, Daniel Vetter <daniel@ffwll.ch>,
-        Rob Herring <robh+dt@kernel.org>,
-        Andrzej Hajda <a.hajda@samsung.com>,
-        Neil Armstrong <narmstrong@baylibre.com>,
-        Laurent Pinchart <Laurent.pinchart@ideasonboard.com>,
-        Jonas Karlman <jonas@kwiboo.se>,
-        Jernej Skrabec <jernej.skrabec@siol.net>,
-        Douglas Anderson <dianders@chromium.org>
-Cc:     dri-devel@lists.freedesktop.org, devicetree@vger.kernel.org,
-        linux-kernel@vger.kernel.org, linux-arm-msm@vger.kernel.org
-Subject: [PATCH 2/2] drm/bridge: ti-sn65dsi86: Expose backlight controls
-Date:   Wed, 30 Sep 2020 17:35:32 -0500
-Message-Id: <20200930223532.77755-3-bjorn.andersson@linaro.org>
-X-Mailer: git-send-email 2.28.0
-In-Reply-To: <20200930223532.77755-1-bjorn.andersson@linaro.org>
-References: <20200930223532.77755-1-bjorn.andersson@linaro.org>
+ d=xilinx.onmicrosoft.com; s=selector2-xilinx-onmicrosoft-com;
+ h=From:Date:Subject:Message-ID:Content-Type:MIME-Version:X-MS-Exchange-SenderADCheck;
+ bh=DjUXamIu4057vaSsOHtv633cpdreWsiILEgN6+GL85c=;
+ b=gwW1SWSS0Gdfx/S9Ppyg9A14XdUK2Sfluc8tnOjt8kjqUGCtZL13YpXSBq/ZmC5gHuZqdZXPSr/uhJFknSb6tfz/6unEzzk0C4J4b4PEkgu8pxwHTzrmW2arat1525UJDUZzYyYPV9Nguzaz/tVrbk3X56M6+VVG/dxEUtAimUQ=
+Received: from SN4PR0801CA0011.namprd08.prod.outlook.com
+ (2603:10b6:803:29::21) by BY5PR02MB6081.namprd02.prod.outlook.com
+ (2603:10b6:a03:1f7::22) with Microsoft SMTP Server (version=TLS1_2,
+ cipher=TLS_ECDHE_RSA_WITH_AES_256_GCM_SHA384) id 15.20.3412.22; Wed, 30 Sep
+ 2020 22:40:17 +0000
+Received: from SN1NAM02FT029.eop-nam02.prod.protection.outlook.com
+ (2603:10b6:803:29:cafe::60) by SN4PR0801CA0011.outlook.office365.com
+ (2603:10b6:803:29::21) with Microsoft SMTP Server (version=TLS1_2,
+ cipher=TLS_ECDHE_RSA_WITH_AES_256_GCM_SHA384) id 15.20.3433.32 via Frontend
+ Transport; Wed, 30 Sep 2020 22:40:17 +0000
+X-MS-Exchange-Authentication-Results: spf=pass (sender IP is 149.199.60.83)
+ smtp.mailfrom=xilinx.com; lists.infradead.org; dkim=none (message not signed)
+ header.d=none;lists.infradead.org; dmarc=bestguesspass action=none
+ header.from=xilinx.com;
+Received-SPF: Pass (protection.outlook.com: domain of xilinx.com designates
+ 149.199.60.83 as permitted sender) receiver=protection.outlook.com;
+ client-ip=149.199.60.83; helo=xsj-pvapsmtpgw01;
+Received: from xsj-pvapsmtpgw01 (149.199.60.83) by
+ SN1NAM02FT029.mail.protection.outlook.com (10.152.72.110) with Microsoft SMTP
+ Server id 15.20.3412.21 via Frontend Transport; Wed, 30 Sep 2020 22:40:17
+ +0000
+Received: from [149.199.38.66] (port=52188 helo=smtp.xilinx.com)
+        by xsj-pvapsmtpgw01 with esmtp (Exim 4.90)
+        (envelope-from <stefano.stabellini@xilinx.com>)
+        id 1kNklK-0007HN-Be; Wed, 30 Sep 2020 15:39:50 -0700
+Received: from [127.0.0.1] (helo=localhost)
+        by smtp.xilinx.com with smtp (Exim 4.63)
+        (envelope-from <stefano.stabellini@xilinx.com>)
+        id 1kNklk-000326-QA; Wed, 30 Sep 2020 15:40:16 -0700
+Received: from xsj-pvapsmtp01 (xsj-smtp1.xilinx.com [149.199.38.66])
+        by xsj-smtp-dlp2.xlnx.xilinx.com (8.13.8/8.13.1) with ESMTP id 08UMe9aZ013833;
+        Wed, 30 Sep 2020 15:40:10 -0700
+Received: from [10.23.123.31] (helo=localhost)
+        by xsj-pvapsmtp01 with esmtp (Exim 4.63)
+        (envelope-from <stefanos@xilinx.com>)
+        id 1kNkld-0002uQ-Dg; Wed, 30 Sep 2020 15:40:09 -0700
+Date:   Wed, 30 Sep 2020 15:40:08 -0700 (PDT)
+From:   Stefano Stabellini <stefano.stabellini@xilinx.com>
+X-X-Sender: sstabellini@sstabellini-ThinkPad-T480s
+To:     Rob Herring <robh@kernel.org>
+cc:     Ben Levinsky <ben.levinsky@xilinx.com>, stefanos@xilinx.com,
+        michals@xilinx.com, michael.auchter@ni.com,
+        devicetree@vger.kernel.org, mathieu.poirier@linaro.org,
+        emooring@xilinx.com, linux-remoteproc@vger.kernel.org,
+        linux-kernel@vger.kernel.org, linux-arm-kernel@lists.infradead.org,
+        Jason Wu <j.wu@xilinx.com>, Wendy Liang <jliang@xilinx.com>,
+        Michal Simek <michal.simek@xilinx.com>
+Subject: Re: [PATCH v16 4/5] dt-bindings: remoteproc: Add documentation for
+ ZynqMP R5 rproc bindings
+In-Reply-To: <20200929183601.GA892636@bogus>
+Message-ID: <alpine.DEB.2.21.2009301536490.10908@sstabellini-ThinkPad-T480s>
+References: <20200922223930.4710-1-ben.levinsky@xilinx.com> <20200922223930.4710-5-ben.levinsky@xilinx.com> <20200929183601.GA892636@bogus>
+User-Agent: Alpine 2.21 (DEB 202 2017-01-01)
 MIME-Version: 1.0
-Content-Transfer-Encoding: 8bit
+Content-Type: text/plain; charset=US-ASCII
+X-RCIS-Action: ALLOW
+X-TM-AS-Product-Ver: IMSS-7.1.0.1224-8.2.0.1013-23620.005
+X-TM-AS-User-Approved-Sender: Yes;Yes
+X-EOPAttributedMessage: 0
+X-MS-Office365-Filtering-HT: Tenant
+X-MS-PublicTrafficType: Email
+X-MS-Office365-Filtering-Correlation-Id: 7c715a1a-9582-435d-4266-08d86591cdd0
+X-MS-TrafficTypeDiagnostic: BY5PR02MB6081:
+X-Microsoft-Antispam-PRVS: <BY5PR02MB6081511BB96A737B2EF6F6A5A0330@BY5PR02MB6081.namprd02.prod.outlook.com>
+X-Auto-Response-Suppress: DR, RN, NRN, OOF, AutoReply
+X-MS-Oob-TLC-OOBClassifiers: OLM:8273;
+X-MS-Exchange-SenderADCheck: 1
+X-Microsoft-Antispam: BCL:0;
+X-Microsoft-Antispam-Message-Info: kx5P0Fiw3LkMUriY4S7DMV2/kqcwUFPFg7LF/i4Khci7i0rm3FIU5Z5ll2P6xET9UFX1tPkf7ZyqkjiCMjM7sTLDC0MBsckO+FWSuJ+Q0r1FJkA9J6uDwTN+G9t2FV6xqhMxyjRzRak7vNbfntqHhwUlNDx9I0I+eicKchIBPbBplFW9g0AGixgnr5TYBGAmu4Qso4ge73/GSmJpzWV2ZMJi6Z5tF4+OGM7MFOtW/9YGUEHfPPHG84lXR7JKFWLpEAk0xOxoHGmcR/cNtGORyNdyZBNHgvpMjPDcVdXVJvdpfnGBMcT3vESyvpM6CdBH+SzKmQO6DM0ft2XpCZqKY3DCeSVOq9E6ZwJgBmlcOgtaNAfBzeq0SSObO3Cro1r6IQTkXNWTb4Wy+7/Yn2ohtNe+vJiKAECi2o2HgThXGk31QSwcnZCiaCHPqqpHG3JGIolQqkw+LHVq03YfVJ6HPdvkIPCpGiuc38YEZfAS9Aem7+eKLImGacoYEU/JsEolvHO66lCpBHQbck5h+xEfkw==
+X-Forefront-Antispam-Report: CIP:149.199.60.83;CTRY:US;LANG:en;SCL:1;SRV:;IPV:NLI;SFV:NSPM;H:xsj-pvapsmtpgw01;PTR:unknown-60-83.xilinx.com;CAT:NONE;SFS:(7916004)(39860400002)(346002)(376002)(136003)(396003)(46966005)(44832011)(186003)(478600001)(5660300002)(33716001)(426003)(107886003)(6916009)(336012)(4326008)(54906003)(70586007)(70206006)(8936002)(2906002)(8676002)(356005)(9686003)(316002)(9786002)(26005)(82310400003)(82740400003)(81166007)(47076004);DIR:OUT;SFP:1101;
+X-OriginatorOrg: xilinx.com
+X-MS-Exchange-CrossTenant-OriginalArrivalTime: 30 Sep 2020 22:40:17.0476
+ (UTC)
+X-MS-Exchange-CrossTenant-Network-Message-Id: 7c715a1a-9582-435d-4266-08d86591cdd0
+X-MS-Exchange-CrossTenant-Id: 657af505-d5df-48d0-8300-c31994686c5c
+X-MS-Exchange-CrossTenant-OriginalAttributedTenantConnectingIp: TenantId=657af505-d5df-48d0-8300-c31994686c5c;Ip=[149.199.60.83];Helo=[xsj-pvapsmtpgw01]
+X-MS-Exchange-CrossTenant-AuthSource: SN1NAM02FT029.eop-nam02.prod.protection.outlook.com
+X-MS-Exchange-CrossTenant-AuthAs: Anonymous
+X-MS-Exchange-CrossTenant-FromEntityHeader: HybridOnPrem
+X-MS-Exchange-Transport-CrossTenantHeadersStamped: BY5PR02MB6081
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-The TI SN65DSI86 can be configured to generate a PWM pulse on GPIO4,
-to be used to drive a backlight driver.
+On Tue, 29 Sep 2020, Rob Herring wrote:
+> > index 000000000000..ce02e425692e
+> > --- /dev/null
+> > +++ b/Documentation/devicetree/bindings/remoteproc/xilinx,zynqmp-r5-remoteproc.yaml
+> > @@ -0,0 +1,120 @@
+> > +# SPDX-License-Identifier: (GPL-2.0 OR BSD-2-Clause)
+> > +%YAML 1.2
+> > +---
+> > +$id: "http://devicetree.org/schemas/remoteproc/xilinx,zynqmp-r5-remoteproc.yaml#"
+> > +$schema: "http://devicetree.org/meta-schemas/core.yaml#"
+> > +
+> > +title: Xilinx R5 remote processor controller bindings
+> > +
+> > +description:
+> > +  This document defines the binding for the remoteproc component that loads and
+> > +  boots firmwares on the Xilinx Zynqmp and Versal family chipset.
+> > +
+> > +  Note that the Linux has global addressing view of the R5-related memory (TCM)
+> > +  so the absolute address ranges are provided in TCM reg's.
+> 
+> blank line needed.
+> 
+> TCMs specifically I'm concerned about how they are represented in system 
+> DT and here...
 
-Signed-off-by: Bjorn Andersson <bjorn.andersson@linaro.org>
----
- drivers/gpu/drm/bridge/Kconfig        |   1 +
- drivers/gpu/drm/bridge/ti-sn65dsi86.c | 143 +++++++++++++++++++++++++-
- 2 files changed, 140 insertions(+), 4 deletions(-)
+So far I have been keeping the TCMs in system DT as regular nodes under
+/amba. E.g.:
 
-diff --git a/drivers/gpu/drm/bridge/Kconfig b/drivers/gpu/drm/bridge/Kconfig
-index 43271c21d3fc..eea310bd88e1 100644
---- a/drivers/gpu/drm/bridge/Kconfig
-+++ b/drivers/gpu/drm/bridge/Kconfig
-@@ -195,6 +195,7 @@ config DRM_TI_SN65DSI86
- 	select REGMAP_I2C
- 	select DRM_PANEL
- 	select DRM_MIPI_DSI
-+	select BACKLIGHT_CLASS_DEVICE
- 	help
- 	  Texas Instruments SN65DSI86 DSI to eDP Bridge driver
- 
-diff --git a/drivers/gpu/drm/bridge/ti-sn65dsi86.c b/drivers/gpu/drm/bridge/ti-sn65dsi86.c
-index 5b6e19ecbc84..41e24d0dbd18 100644
---- a/drivers/gpu/drm/bridge/ti-sn65dsi86.c
-+++ b/drivers/gpu/drm/bridge/ti-sn65dsi86.c
-@@ -68,6 +68,7 @@
- #define  SN_GPIO_MUX_OUTPUT			1
- #define  SN_GPIO_MUX_SPECIAL			2
- #define  SN_GPIO_MUX_MASK			0x3
-+#define  SN_GPIO_MUX_SHIFT(gpio)		((gpio) * 2)
- #define SN_AUX_WDATA_REG(x)			(0x64 + (x))
- #define SN_AUX_ADDR_19_16_REG			0x74
- #define SN_AUX_ADDR_15_8_REG			0x75
-@@ -86,6 +87,12 @@
- #define SN_ML_TX_MODE_REG			0x96
- #define  ML_TX_MAIN_LINK_OFF			0
- #define  ML_TX_NORMAL_MODE			BIT(0)
-+#define SN_PWM_PRE_DIV_REG			0xA0
-+#define SN_BACKLIGHT_SCALE_REG			0xA1
-+#define SN_BACKLIGHT_REG			0xA3
-+#define SN_PWM_CTL_REG				0xA5
-+#define  SN_PWM_ENABLE				BIT(1)
-+#define  SN_PWM_INVERT				BIT(0)
- #define SN_AUX_CMD_STATUS_REG			0xF4
- #define  AUX_IRQ_STATUS_AUX_RPLY_TOUT		BIT(3)
- #define  AUX_IRQ_STATUS_AUX_SHORT		BIT(5)
-@@ -155,6 +162,8 @@ struct ti_sn_bridge {
- 	struct gpio_chip		gchip;
- 	DECLARE_BITMAP(gchip_output, SN_NUM_GPIOS);
- #endif
-+	u32				brightness;
-+	u32				max_brightness;
- };
- 
- static const struct regmap_range ti_sn_bridge_volatile_ranges[] = {
-@@ -173,6 +182,18 @@ static const struct regmap_config ti_sn_bridge_regmap_config = {
- 	.cache_type = REGCACHE_NONE,
- };
- 
-+static void ti_sn_bridge_read_u16(struct ti_sn_bridge *pdata,
-+				  unsigned int reg, u16 *val)
-+{
-+	unsigned int high;
-+	unsigned int low;
-+
-+	regmap_read(pdata->regmap, reg, &low);
-+	regmap_read(pdata->regmap, reg + 1, &high);
-+
-+	*val = high << 8 | low;
-+}
-+
- static void ti_sn_bridge_write_u16(struct ti_sn_bridge *pdata,
- 				   unsigned int reg, u16 val)
- {
-@@ -180,6 +201,50 @@ static void ti_sn_bridge_write_u16(struct ti_sn_bridge *pdata,
- 	regmap_write(pdata->regmap, reg + 1, val >> 8);
- }
- 
-+static int ti_sn_backlight_update(struct ti_sn_bridge *pdata)
-+{
-+	unsigned int pre_div;
-+
-+	if (!pdata->max_brightness)
-+		return 0;
-+
-+	/* Enable PWM on GPIO4 */
-+	regmap_update_bits(pdata->regmap, SN_GPIO_CTRL_REG,
-+			   SN_GPIO_MUX_MASK << SN_GPIO_MUX_SHIFT(4 - 1),
-+			   SN_GPIO_MUX_SPECIAL << SN_GPIO_MUX_SHIFT(4 - 1));
-+
-+	if (pdata->brightness) {
-+		/* Set max brightness */
-+		ti_sn_bridge_write_u16(pdata, SN_BACKLIGHT_SCALE_REG, pdata->max_brightness);
-+
-+		/* Set brightness */
-+		ti_sn_bridge_write_u16(pdata, SN_BACKLIGHT_REG, pdata->brightness);
-+
-+		/*
-+		 * The PWM frequency is derived from the refclk as:
-+		 * PWM_FREQ = REFCLK_FREQ / (PWM_PRE_DIV * BACKLIGHT_SCALE + 1)
-+		 *
-+		 * A hand wavy estimate based on 12MHz refclk and 500Hz desired
-+		 * PWM frequency gives us a pre_div resulting in a PWM
-+		 * frequency of between 500 and 1600Hz, depending on the actual
-+		 * refclk rate.
-+		 *
-+		 * One is added to avoid high BACKLIGHT_SCALE values to produce
-+		 * a pre_div of 0 - which cancels out the large BACKLIGHT_SCALE
-+		 * value.
-+		 */
-+		pre_div = 12000000 / (500 * pdata->max_brightness) + 1;
-+		regmap_write(pdata->regmap, SN_PWM_PRE_DIV_REG, pre_div);
-+
-+		/* Enable PWM */
-+		regmap_update_bits(pdata->regmap, SN_PWM_CTL_REG, SN_PWM_ENABLE, SN_PWM_ENABLE);
-+	} else {
-+		regmap_update_bits(pdata->regmap, SN_PWM_CTL_REG, SN_PWM_ENABLE, 0);
-+	}
-+
-+	return 0;
-+}
-+
- static int __maybe_unused ti_sn_bridge_resume(struct device *dev)
- {
- 	struct ti_sn_bridge *pdata = dev_get_drvdata(dev);
-@@ -193,7 +258,7 @@ static int __maybe_unused ti_sn_bridge_resume(struct device *dev)
- 
- 	gpiod_set_value(pdata->enable_gpio, 1);
- 
--	return ret;
-+	return ti_sn_backlight_update(pdata);
- }
- 
- static int __maybe_unused ti_sn_bridge_suspend(struct device *dev)
-@@ -1010,7 +1075,7 @@ static int ti_sn_bridge_gpio_direction_input(struct gpio_chip *chip,
- 					     unsigned int offset)
- {
- 	struct ti_sn_bridge *pdata = gpiochip_get_data(chip);
--	int shift = offset * 2;
-+	int shift = SN_GPIO_MUX_SHIFT(offset);
- 	int ret;
- 
- 	if (!test_and_clear_bit(offset, pdata->gchip_output))
-@@ -1038,7 +1103,7 @@ static int ti_sn_bridge_gpio_direction_output(struct gpio_chip *chip,
- 					      unsigned int offset, int val)
- {
- 	struct ti_sn_bridge *pdata = gpiochip_get_data(chip);
--	int shift = offset * 2;
-+	int shift = SN_GPIO_MUX_SHIFT(offset);
- 	int ret;
- 
- 	if (test_and_set_bit(offset, pdata->gchip_output))
-@@ -1073,12 +1138,17 @@ static const char * const ti_sn_bridge_gpio_names[SN_NUM_GPIOS] = {
- 
- static int ti_sn_setup_gpio_controller(struct ti_sn_bridge *pdata)
- {
-+	int ngpio = SN_NUM_GPIOS;
- 	int ret;
- 
- 	/* Only init if someone is going to use us as a GPIO controller */
- 	if (!of_property_read_bool(pdata->dev->of_node, "gpio-controller"))
- 		return 0;
- 
-+	/* If GPIO4 is used for backlight, reduce number of gpios */
-+	if (pdata->max_brightness)
-+		ngpio--;
-+
- 	pdata->gchip.label = dev_name(pdata->dev);
- 	pdata->gchip.parent = pdata->dev;
- 	pdata->gchip.owner = THIS_MODULE;
-@@ -1092,7 +1162,7 @@ static int ti_sn_setup_gpio_controller(struct ti_sn_bridge *pdata)
- 	pdata->gchip.set = ti_sn_bridge_gpio_set;
- 	pdata->gchip.can_sleep = true;
- 	pdata->gchip.names = ti_sn_bridge_gpio_names;
--	pdata->gchip.ngpio = SN_NUM_GPIOS;
-+	pdata->gchip.ngpio = ngpio;
- 	pdata->gchip.base = -1;
- 	ret = devm_gpiochip_add_data(pdata->dev, &pdata->gchip, pdata);
- 	if (ret)
-@@ -1159,6 +1229,65 @@ static void ti_sn_bridge_parse_lanes(struct ti_sn_bridge *pdata,
- 	pdata->ln_polrs = ln_polrs;
- }
- 
-+static int ti_sn_backlight_update_status(struct backlight_device *bl)
-+{
-+	struct ti_sn_bridge *pdata = bl_get_data(bl);
-+	int brightness = bl->props.brightness;
-+
-+	if (bl->props.power != FB_BLANK_UNBLANK ||
-+	    bl->props.fb_blank != FB_BLANK_UNBLANK ||
-+	    bl->props.state & BL_CORE_FBBLANK) {
-+		pdata->brightness = 0;
-+	}
-+
-+	pdata->brightness = brightness;
-+
-+	return ti_sn_backlight_update(pdata);
-+}
-+
-+static int ti_sn_backlight_get_brightness(struct backlight_device *bl)
-+{
-+	struct ti_sn_bridge *pdata = bl_get_data(bl);
-+	u16 val;
-+
-+	ti_sn_bridge_read_u16(pdata, SN_BACKLIGHT_REG, &val);
-+
-+	return val;
-+}
-+
-+const struct backlight_ops ti_sn_backlight_ops = {
-+	.update_status = ti_sn_backlight_update_status,
-+	.get_brightness = ti_sn_backlight_get_brightness,
-+};
-+
-+static int ti_sn_backlight_init(struct ti_sn_bridge *pdata)
-+{
-+	struct backlight_properties props = {};
-+	struct backlight_device	*bl;
-+	struct device *dev = pdata->dev;
-+	struct device_node *np = dev->of_node;
-+	int ret;
-+
-+	ret = of_property_read_u32(np, "ti,backlight-scale", &pdata->max_brightness);
-+	if (ret == -EINVAL) {
-+		return 0;
-+	} else if (ret || pdata->max_brightness >= 0xffff) {
-+		DRM_ERROR("invalid max-brightness\n");
-+		return -EINVAL;
-+	}
-+
-+	props.type = BACKLIGHT_RAW;
-+	props.max_brightness = pdata->max_brightness;
-+	bl = devm_backlight_device_register(dev, "sn65dsi86", dev, pdata,
-+					    &ti_sn_backlight_ops, &props);
-+	if (IS_ERR(bl)) {
-+		DRM_ERROR("failed to register backlight device\n");
-+		return PTR_ERR(bl);
-+	}
-+
-+	return 0;
-+}
-+
- static int ti_sn_bridge_probe(struct i2c_client *client,
- 			      const struct i2c_device_id *id)
- {
-@@ -1224,6 +1353,12 @@ static int ti_sn_bridge_probe(struct i2c_client *client,
- 
- 	pm_runtime_enable(pdata->dev);
- 
-+	ret = ti_sn_backlight_init(pdata);
-+	if (ret) {
-+		pm_runtime_disable(pdata->dev);
-+		return ret;
-+	}
-+
- 	ret = ti_sn_setup_gpio_controller(pdata);
- 	if (ret) {
- 		pm_runtime_disable(pdata->dev);
--- 
-2.28.0
+		tcm: tcm@ffe00000 {
+			compatible = "mmio-sram";
+			reg = <0x0 0xffe00000 0x0 0x10000>;
+		};
 
+(I am not sure if "mmio-sram" is the right compatible.)
