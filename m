@@ -2,170 +2,138 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from vger.kernel.org (vger.kernel.org [23.128.96.18])
-	by mail.lfdr.de (Postfix) with ESMTP id 37F2827DE31
-	for <lists+devicetree@lfdr.de>; Wed, 30 Sep 2020 03:59:13 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTP id 1FCAD27DE46
+	for <lists+devicetree@lfdr.de>; Wed, 30 Sep 2020 04:07:46 +0200 (CEST)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S1729739AbgI3B7M (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Tue, 29 Sep 2020 21:59:12 -0400
-Received: from szxga07-in.huawei.com ([45.249.212.35]:49982 "EHLO huawei.com"
-        rhost-flags-OK-OK-OK-FAIL) by vger.kernel.org with ESMTP
-        id S1729643AbgI3B7M (ORCPT <rfc822;devicetree@vger.kernel.org>);
-        Tue, 29 Sep 2020 21:59:12 -0400
-Received: from DGGEMS412-HUB.china.huawei.com (unknown [172.30.72.60])
-        by Forcepoint Email with ESMTP id 6F2CE4379591761CCE4F;
-        Wed, 30 Sep 2020 09:59:10 +0800 (CST)
-Received: from [127.0.0.1] (10.174.177.253) by DGGEMS412-HUB.china.huawei.com
- (10.3.19.212) with Microsoft SMTP Server id 14.3.487.0; Wed, 30 Sep 2020
- 09:59:04 +0800
-Subject: Re: [PATCH v4 12/20] dt-bindings: arm: hisilicon: convert
- hisilicon,hi3798cv200-perictrl bindings to json-schema
-To:     Rob Herring <robh@kernel.org>
-CC:     devicetree <devicetree@vger.kernel.org>,
-        Kefeng Wang <wangkefeng.wang@huawei.com>,
-        linux-kernel <linux-kernel@vger.kernel.org>,
-        Wei Xu <xuwei5@hisilicon.com>, Libin <huawei.libin@huawei.com>,
-        "Jonathan Cameron" <Jonathan.Cameron@huawei.com>,
-        linux-arm-kernel <linux-arm-kernel@lists.infradead.org>
-References: <20200928151324.2134-1-thunder.leizhen@huawei.com>
- <20200928151324.2134-13-thunder.leizhen@huawei.com>
- <20200928191425.GA3099266@bogus>
- <0568ed90-c6ac-ae1c-45ee-cdc6526d3fcf@huawei.com>
- <30a08e22-f8bb-1e42-087b-995dc525eaa4@huawei.com>
- <2d382466-5b91-7b43-2d12-8f7ceafe3691@huawei.com>
- <CAL_Jsq+zwCsgnyARCW6cdWWgefoWYd374r1OejP5B4aJ8Hivwg@mail.gmail.com>
-From:   "Leizhen (ThunderTown)" <thunder.leizhen@huawei.com>
-Message-ID: <9c785b7c-c049-4151-cad1-88d453e86b04@huawei.com>
-Date:   Wed, 30 Sep 2020 09:59:03 +0800
-User-Agent: Mozilla/5.0 (Windows NT 10.0; WOW64; rv:60.0) Gecko/20100101
- Thunderbird/60.7.0
-MIME-Version: 1.0
-In-Reply-To: <CAL_Jsq+zwCsgnyARCW6cdWWgefoWYd374r1OejP5B4aJ8Hivwg@mail.gmail.com>
-Content-Type: text/plain; charset="utf-8"
-Content-Language: en-US
-Content-Transfer-Encoding: 7bit
-X-Originating-IP: [10.174.177.253]
-X-CFilter-Loop: Reflected
+        id S1729322AbgI3CHe (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Tue, 29 Sep 2020 22:07:34 -0400
+Received: from lucky1.263xmail.com ([211.157.147.131]:34092 "EHLO
+        lucky1.263xmail.com" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
+        with ESMTP id S1729816AbgI3CHe (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Tue, 29 Sep 2020 22:07:34 -0400
+Received: from localhost (unknown [192.168.167.32])
+        by lucky1.263xmail.com (Postfix) with ESMTP id 8EAC5B54DD;
+        Wed, 30 Sep 2020 10:07:28 +0800 (CST)
+X-MAIL-GRAY: 0
+X-MAIL-DELIVERY: 1
+X-ADDR-CHECKED4: 1
+X-ANTISPAM-LEVEL: 2
+X-ABS-CHECKED: 0
+Received: from localhost.localdomain (unknown [58.22.7.114])
+        by smtp.263.net (postfix) whith ESMTP id P19667T139951023531776S1601431634383390_;
+        Wed, 30 Sep 2020 10:07:28 +0800 (CST)
+X-IP-DOMAINF: 1
+X-UNIQUE-TAG: <961a5b8020e5b0f0d53535798d99975a>
+X-RL-SENDER: yifeng.zhao@rock-chips.com
+X-SENDER: zyf@rock-chips.com
+X-LOGIN-NAME: yifeng.zhao@rock-chips.com
+X-FST-TO: miquel.raynal@bootlin.com
+X-SENDER-IP: 58.22.7.114
+X-ATTACHMENT-NUM: 0
+X-DNS-TYPE: 0
+X-System-Flag: 0
+From:   Yifeng Zhao <yifeng.zhao@rock-chips.com>
+To:     miquel.raynal@bootlin.com, richard@nod.at, vigneshr@ti.com,
+        robh+dt@kernel.org
+Cc:     devicetree@vger.kernel.org, linux-mtd@lists.infradead.org,
+        heiko@sntech.de, linux-rockchip@lists.infradead.org,
+        linux-arm-kernel@lists.infradead.org, linux-kernel@vger.kernel.org,
+        Yifeng Zhao <yifeng.zhao@rock-chips.com>
+Subject: [PATCH v10 0/8] Add Rockchip NFC drivers for RK3308 and others
+Date:   Wed, 30 Sep 2020 10:07:06 +0800
+Message-Id: <20200930020710.7394-1-yifeng.zhao@rock-chips.com>
+X-Mailer: git-send-email 2.17.1
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
 
+Rockchp's NFC(Nand Flash Controller) has four versions: V600, V622, V800 and
+V900.This series patch can support all four versions.
 
-On 2020/9/29 21:52, Rob Herring wrote:
-> On Tue, Sep 29, 2020 at 8:25 AM Leizhen (ThunderTown)
-> <thunder.leizhen@huawei.com> wrote:
->>
->>
->>
->> On 2020/9/29 17:21, Leizhen (ThunderTown) wrote:
->>>
->>>
->>> On 2020/9/29 11:18, Leizhen (ThunderTown) wrote:
->>>>
->>>>
->>>> On 2020/9/29 3:14, Rob Herring wrote:
->>>>> On Mon, Sep 28, 2020 at 11:13:16PM +0800, Zhen Lei wrote:
->>>>>> Convert the Hisilicon Hi3798CV200 Peripheral Controller binding to DT
->>>>>> schema format using json-schema.
->>>>>>
->>>>>> Signed-off-by: Zhen Lei <thunder.leizhen@huawei.com>
->>>>>> ---
->>>>>>  .../controller/hisilicon,hi3798cv200-perictrl.txt  | 21 ----------
->>>>>>  .../controller/hisilicon,hi3798cv200-perictrl.yaml | 45 ++++++++++++++++++++++
->>>>>>  2 files changed, 45 insertions(+), 21 deletions(-)
->>>>>>  delete mode 100644 Documentation/devicetree/bindings/arm/hisilicon/controller/hisilicon,hi3798cv200-perictrl.txt
->>>>>>  create mode 100644 Documentation/devicetree/bindings/arm/hisilicon/controller/hisilicon,hi3798cv200-perictrl.yaml
->>>>>>
->>>>>> diff --git a/Documentation/devicetree/bindings/arm/hisilicon/controller/hisilicon,hi3798cv200-perictrl.txt b/Documentation/devicetree/bindings/arm/hisilicon/controller/hisilicon,hi3798cv200-perictrl.txt
->>>>>> deleted file mode 100644
->>>>>> index 0d5282f4670658d..000000000000000
->>>>>> --- a/Documentation/devicetree/bindings/arm/hisilicon/controller/hisilicon,hi3798cv200-perictrl.txt
->>>>>> +++ /dev/null
->>>>>> @@ -1,21 +0,0 @@
->>>>>> -Hisilicon Hi3798CV200 Peripheral Controller
->>>>>> -
->>>>>> -The Hi3798CV200 Peripheral Controller controls peripherals, queries
->>>>>> -their status, and configures some functions of peripherals.
->>>>>> -
->>>>>> -Required properties:
->>>>>> -- compatible: Should contain "hisilicon,hi3798cv200-perictrl", "syscon"
->>>>>> -  and "simple-mfd".
->>>>>> -- reg: Register address and size of Peripheral Controller.
->>>>>> -- #address-cells: Should be 1.
->>>>>> -- #size-cells: Should be 1.
->>>>>> -
->>>>>> -Examples:
->>>>>> -
->>>>>> -  perictrl: peripheral-controller@8a20000 {
->>>>>> -          compatible = "hisilicon,hi3798cv200-perictrl", "syscon",
->>>>>> -                       "simple-mfd";
->>>>>> -          reg = <0x8a20000 0x1000>;
->>>>>> -          #address-cells = <1>;
->>>>>> -          #size-cells = <1>;
->>>>>> -  };
->>>>>> diff --git a/Documentation/devicetree/bindings/arm/hisilicon/controller/hisilicon,hi3798cv200-perictrl.yaml b/Documentation/devicetree/bindings/arm/hisilicon/controller/hisilicon,hi3798cv200-perictrl.yaml
->>>>>> new file mode 100644
->>>>>> index 000000000000000..4e547017e368393
->>>>>> --- /dev/null
->>>>>> +++ b/Documentation/devicetree/bindings/arm/hisilicon/controller/hisilicon,hi3798cv200-perictrl.yaml
->>>>>> @@ -0,0 +1,45 @@
->>>>>> +# SPDX-License-Identifier: (GPL-2.0-only OR BSD-2-Clause)
->>>>>> +%YAML 1.2
->>>>>> +---
->>>>>> +$id: http://devicetree.org/schemas/arm/hisilicon/controller/hisilicon,hi3798cv200-perictrl.yaml#
->>>>>> +$schema: http://devicetree.org/meta-schemas/core.yaml#
->>>>>> +
->>>>>> +title: Hisilicon Hi3798CV200 Peripheral Controller
->>>>>> +
->>>>>> +maintainers:
->>>>>> +  - Wei Xu <xuwei5@hisilicon.com>
->>>>>> +
->>>>>> +description: |
->>>>>> +  The Hi3798CV200 Peripheral Controller controls peripherals, queries
->>>>>> +  their status, and configures some functions of peripherals.
->>>>>> +
->>>>>> +properties:
->>>>>> +  compatible:
->>>>>> +    items:
->>>>>> +      - const: hisilicon,hi3798cv200-perictrl
->>>>>> +      - const: syscon
->>>>>> +      - const: simple-mfd
->>>>>> +
->>>>>> +  reg:
->>>>>> +    description: Register address and size
->>>>>> +    maxItems: 1
->>>>>> +
->>>>>> +  '#address-cells':
->>>>>> +    const: 1
->>>>>> +
->>>>>> +  '#size-cells':
->>>>>> +    const: 1
->>>>>
->>>>> That implies child nodes. You need some sort of schema for them.
->>>>
->>>> OK, I will drop #address-cells and #size-cells in this binding.
->>>
->>> I think I misunderstood. I shoud describe child nodes here.
->>>
->>> It's National Day the day after tomorrow, total eight days off. It's so hurry.
->>> I'll give up this patch! And do it for v5.11
->>
->> I searched the dtsi, these two properties are required by property "ranges", so
->> I will add it.
-> 
-> 'ranges' also implies there are child nodes as does 'simple-mfd', so
-> whatever child nodes you have are missing and need to be documented
-> too. Also, 'ranges' implies the child nodes are memory-mapped, but
-> 'simple-mfd' implies they are not. 'simple-bus' is what should be used
-> for memory-mapped children.
 
-Sorry, The reason for the jet lag, I went straight home after I sent the
-version 5 of these patches last night after 10 p.m. I saw you had applied
-the new one. Thanks for the information you showed me here.
+Changes in v10:
+- Fix compile error on master v5.9-rc7
 
-> 
-> Rob
-> 
-> .
-> 
+Changes in v9:
+- The nfc->buffer will realloc while the page size of the second mtd
+  is large than the first one
+- Fix coding style.
+- Remove struct rk_nfc_clk.
+- Prepend some function with rk_nfc_.
+- Replace function readl_poll_timeout_atomic with readl_relaxed_poll_timeout.
+- Remove function rk_nfc_read_byte and rk_nfc_write_byte.
+- Don't select the die if 'check_only == true' in function rk_nfc_exec_op.
+- Modify function rk_nfc_write_page and rk_nfc_write_page_raw.
+
+Changes in v8:
+- Fix make dt_binding_check error
+
+Changes in v7:
+- Fix some wrong define
+- Rebase to linux-next.
+- Fix coding style.
+- Reserved 4 bytes at the beginning of the oob area.
+- Page raw read and write included ecc data.
+
+Changes in v6:
+- Fix some wrong define
+- Modified the definition of compatible
+- The mtd->name set by NAND label property.
+- Add some comments.
+- Fix compile error.
+
+Changes in v5:
+- Fix some wrong define.
+- Add boot-medium define.
+- Remove some compatible define.
+- Add boot blocks support  with different ECC for bootROM.
+- Rename rockchip-nand.c to rockchip-nand-controller.c.
+- Unification of other variable names.
+- Remove some compatible define.
+
+Changes in v4:
+- The compatible define with rkxx_nfc.
+- Add assigned-clocks.
+- Fix some wrong defineChanges in.
+- Define platform data structure for the register offsets.
+- The compatible define with rkxx_nfc.
+- Use SET_SYSTEM_SLEEP_PM_OPS to define PM_OPS.
+- Use exec_op instead of legacy hooks.
+
+Changes in v3:
+- Change the title for the dt-bindings.
+
+Changes in v2:
+- Fix compile error.
+- Include header files sorted by file name.
+
+Yifeng Zhao (8):
+  dt-bindings: mtd: Describe Rockchip RK3xxx NAND flash controller
+  mtd: rawnand: rockchip: NFC drivers for RK3308, RK2928 and others
+  MAINTAINERS: add maintainers to ROCKCHIP NFC
+  arm64: dts: rockchip: Add NFC node for RK3308 SoC
+  arm64: dts: rockchip: Add NFC node for PX30 SoC
+  arm: dts: rockchip: Add NFC node for RV1108 SoC
+  arm: dts: rockchip: Add NFC node for RK2928 and other SoCs
+  arm: dts: rockchip: Add NFC node for RK3036 SoC
+
+ .../mtd/rockchip,nand-controller.yaml         |  162 ++
+ MAINTAINERS                                   |    4 +-
+ arch/arm/boot/dts/rk3036.dtsi                 |   52 +
+ arch/arm/boot/dts/rk3xxx.dtsi                 |    9 +
+ arch/arm/boot/dts/rv1108.dtsi                 |   11 +
+ arch/arm64/boot/dts/rockchip/px30.dtsi        |   15 +
+ arch/arm64/boot/dts/rockchip/rk3308.dtsi      |   15 +
+ drivers/mtd/nand/raw/Kconfig                  |   12 +
+ drivers/mtd/nand/raw/Makefile                 |    1 +
+ .../mtd/nand/raw/rockchip-nand-controller.c   | 1455 +++++++++++++++++
+ 10 files changed, 1734 insertions(+), 2 deletions(-)
+ create mode 100644 Documentation/devicetree/bindings/mtd/rockchip,nand-controller.yaml
+ create mode 100644 drivers/mtd/nand/raw/rockchip-nand-controller.c
+
+-- 
+2.17.1
+
+
 
