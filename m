@@ -2,248 +2,159 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from vger.kernel.org (vger.kernel.org [23.128.96.18])
-	by mail.lfdr.de (Postfix) with ESMTP id 13FA827E3D0
-	for <lists+devicetree@lfdr.de>; Wed, 30 Sep 2020 10:33:45 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTP id C61A927E3D9
+	for <lists+devicetree@lfdr.de>; Wed, 30 Sep 2020 10:34:59 +0200 (CEST)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S1725535AbgI3Ido (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Wed, 30 Sep 2020 04:33:44 -0400
-Received: from mail.kernel.org ([198.145.29.99]:38608 "EHLO mail.kernel.org"
-        rhost-flags-OK-OK-OK-OK) by vger.kernel.org with ESMTP
-        id S1727657AbgI3Idn (ORCPT <rfc822;devicetree@vger.kernel.org>);
-        Wed, 30 Sep 2020 04:33:43 -0400
-Received: from disco-boy.misterjones.org (disco-boy.misterjones.org [51.254.78.96])
-        (using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
-        (No client certificate requested)
-        by mail.kernel.org (Postfix) with ESMTPSA id E1500206B7;
-        Wed, 30 Sep 2020 08:33:42 +0000 (UTC)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=kernel.org;
-        s=default; t=1601454823;
-        bh=gzVLfv8RiLpAzmqXpqrx3KnFJdITD8hmlSt5xS1fWxU=;
-        h=Date:From:To:Cc:Subject:In-Reply-To:References:From;
-        b=tJOr65bbsPhh8hfGB4wO/avqaxBDyU/ewHkYhmuc3DE6XF1QhIg2X4y1d9gutc2uG
-         lB66UaJbOefbKGl/gk1ZDr/4XsR17/p3gRgqLf/6JrXAuL/bXW+gr+0ZEzDzIonXrr
-         F8v7AXHwGb9jKKiPlkMjuNr6AaHlhTaGEX0g09zo=
-Received: from disco-boy.misterjones.org ([51.254.78.96] helo=www.loen.fr)
-        by disco-boy.misterjones.org with esmtpsa (TLS1.2:ECDHE_RSA_AES_128_GCM_SHA256:128)
-        (Exim 4.92)
-        (envelope-from <maz@kernel.org>)
-        id 1kNXYS-00G6ve-V8; Wed, 30 Sep 2020 09:33:41 +0100
+        id S1725776AbgI3Ie7 (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Wed, 30 Sep 2020 04:34:59 -0400
+Received: from lindbergh.monkeyblade.net ([23.128.96.19]:34802 "EHLO
+        lindbergh.monkeyblade.net" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
+        with ESMTP id S1725535AbgI3Ie6 (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Wed, 30 Sep 2020 04:34:58 -0400
+Received: from mail-ed1-x541.google.com (mail-ed1-x541.google.com [IPv6:2a00:1450:4864:20::541])
+        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 95C5DC061755;
+        Wed, 30 Sep 2020 01:34:58 -0700 (PDT)
+Received: by mail-ed1-x541.google.com with SMTP id e22so902611edq.6;
+        Wed, 30 Sep 2020 01:34:58 -0700 (PDT)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+        d=gmail.com; s=20161025;
+        h=mime-version:references:in-reply-to:from:date:message-id:subject:to
+         :cc;
+        bh=J0A+wqhRYgYCS0PBoBxbU4Mhm6bbCMk9g/qDtg26dvE=;
+        b=szsuUEDK9DUP8DEfkyRIQibRkQMbrrbmkyh5OgqdFE+K/xB1soFZmeW9Uii6Zgjuin
+         4A7fFow6BeBDUOgTW0hmCDGcuUQc1bFzRBi7GkGdAYmry8kaM/eSOJJZW3y9rpX+CJLd
+         Mb6BMn3er5VfCJTYWUZogQUp0hUxCYVGWDrWqsyqxZlXd4gxywIEtuuCIeLY0kKsguIn
+         lM+MxZKDXbkQEcCbuAUHGo9TfeWZRj4CmDIO+kRvb9t4uhk2JvnR7bypTqIg4haOa3dp
+         ZYukyM9WUGrHvkDsX35lC/kFm9ecWv15qB2W4nIhIJGKCxPogUCaYKL0eotp5KkHT4zu
+         R3dQ==
+X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+        d=1e100.net; s=20161025;
+        h=x-gm-message-state:mime-version:references:in-reply-to:from:date
+         :message-id:subject:to:cc;
+        bh=J0A+wqhRYgYCS0PBoBxbU4Mhm6bbCMk9g/qDtg26dvE=;
+        b=SUJRhOqm95yo0Ppn87QqraQVaSWO8Dx1x343shauCQ0VKvLPCFJ3x6WUzoxbOm9zK3
+         4/slUiVQ2rX38Owy9VNKSqqrxmokJ8JXpyUWTLRJZO0De86NDwtJECdEUXaSuQbY8d9r
+         uu1LwX4c8m957MUMlFjd/oCMXi0+w6o6DQJ1v7nn8qohjZosI/+acgr7+kiILs5r9jZm
+         meZqsdtiErLGLIIHalIq6bMkrkc5fRyJH9ojYHsw5HtH7ECeWcG3b8lHMUrQ6B8FzMlI
+         LIube6LWolCbVmJg6SufD800rh66PFR2NIlb4kxQhwKw+ZIGtWxTSXyJb60+B9yD3xsM
+         98eA==
+X-Gm-Message-State: AOAM532AmO9ArCG4MviiZCBEcEE6LYT+msN6HbbjUxmwGmu/2HHttplW
+        MY+Zpq+csYcPK5Xd4bPuOv9zRb5pnCJMLAsNjI8=
+X-Google-Smtp-Source: ABdhPJyMdwL5ojipLR4+SXubUXmx/4sAzFh5PDj236VvaaUOBtjhksNDpE3gDJPtfFduDMWQUkMpiPO2SGNTKYd5kxs=
+X-Received: by 2002:a05:6402:503:: with SMTP id m3mr1524604edv.45.1601454897204;
+ Wed, 30 Sep 2020 01:34:57 -0700 (PDT)
 MIME-Version: 1.0
-Content-Type: text/plain; charset=US-ASCII;
- format=flowed
-Content-Transfer-Encoding: 7bit
-Date:   Wed, 30 Sep 2020 09:33:40 +0100
-From:   Marc Zyngier <maz@kernel.org>
-To:     Peter Ujfalusi <peter.ujfalusi@ti.com>
-Cc:     nm@ti.com, t-kristo@ti.com, ssantosh@kernel.org,
-        tglx@linutronix.de, jason@lakedaemon.net, robh+dt@kernel.org,
-        lokeshvutla@ti.com, linux-arm-kernel@lists.infradead.org,
-        linux-kernel@vger.kernel.org, devicetree@vger.kernel.org
-Subject: Re: [PATCH v2 2/2] irqchip/ti-sci-inta: Add support for unmapped
- event handling
-In-Reply-To: <20200930074559.18028-3-peter.ujfalusi@ti.com>
-References: <20200930074559.18028-1-peter.ujfalusi@ti.com>
- <20200930074559.18028-3-peter.ujfalusi@ti.com>
-User-Agent: Roundcube Webmail/1.4.8
-Message-ID: <af9ce252820bab9a21207ef2173da9fd@kernel.org>
-X-Sender: maz@kernel.org
-X-SA-Exim-Connect-IP: 51.254.78.96
-X-SA-Exim-Rcpt-To: peter.ujfalusi@ti.com, nm@ti.com, t-kristo@ti.com, ssantosh@kernel.org, tglx@linutronix.de, jason@lakedaemon.net, robh+dt@kernel.org, lokeshvutla@ti.com, linux-arm-kernel@lists.infradead.org, linux-kernel@vger.kernel.org, devicetree@vger.kernel.org
-X-SA-Exim-Mail-From: maz@kernel.org
-X-SA-Exim-Scanned: No (on disco-boy.misterjones.org); SAEximRunCond expanded to false
+References: <CA+7tXihwHbcuxZ10jGZrQkET9+Dbs31SfsYDt_6XB+-JM99gqA@mail.gmail.com>
+ <20200917103942.GA2477958@x1> <20200923065755.GR7101@atomide.com>
+ <CA+7tXigeNhQQVuAu0toZrvBKvMYkDU-8EWTpJR29HLTAMgoOBA@mail.gmail.com>
+ <20200924054324.GB9471@atomide.com> <CA+7tXigg+h3v61AVMaYRKa_ZwznehOUPEESMqXKsNDNCrFph3w@mail.gmail.com>
+ <20200924060645.GD9471@atomide.com> <CA+7tXijkS8UMFk4t=DuKjZZNnThbRarPQvxwxjg-uJFTKJRsXA@mail.gmail.com>
+ <20200924070443.GF9471@atomide.com> <CA+7tXihBdw9AOGL7Hp2cH9+ii8fUXaaZZDUP3icyeOkMuGm4qA@mail.gmail.com>
+ <20200930051521.GN9471@atomide.com>
+In-Reply-To: <20200930051521.GN9471@atomide.com>
+From:   Trent Piepho <tpiepho@gmail.com>
+Date:   Wed, 30 Sep 2020 01:34:46 -0700
+Message-ID: <CA+7tXig=3hbFXfmYMC5Hd1Zc2n-6uGXbMePPw_Cr4bOsyt7QQA@mail.gmail.com>
+Subject: Re: [PATCH] ARM: dts: document pinctrl-single,pins when
+ #pinctrl-cells = 2
+To:     Tony Lindgren <tony@atomide.com>
+Cc:     Drew Fustini <drew@beagleboard.org>,
+        Rob Herring <robh+dt@kernel.org>,
+        Linus Walleij <linus.walleij@linaro.org>,
+        Jason Kridner <jkridner@beagleboard.org>,
+        Robert Nelson <robertcnelson@gmail.com>,
+        linux-omap@vger.kernel.org, linux-kernel@vger.kernel.org,
+        devicetree@vger.kernel.org,
+        linux-gpio <linux-gpio@vger.kernel.org>,
+        Christina Quast <cquast@hanoverdisplays.com>
+Content-Type: text/plain; charset="UTF-8"
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-On 2020-09-30 08:45, Peter Ujfalusi wrote:
-> The DMA (BCDMA/PKTDMA and their rings/flows) events are under the 
-> INTA's
-> supervision as unmapped events in AM64.
+On Tue, Sep 29, 2020 at 10:15 PM Tony Lindgren <tony@atomide.com> wrote:
+> * Trent Piepho <tpiepho@gmail.com> [200929 20:16]:
+> > On Thu, Sep 24, 2020 at 12:04 AM Tony Lindgren <tony@atomide.com> wrote:
+> > > Certainly different compatible strings can be used as needed.
+> > > But pinctrl-single is not going to be am335x specific though :)
+> > > We have quite a few SoCs using it:
+> >
+> > So what doesn't make sense to me, is to put something am335x specific
+> > like two cells for conf and mux, into a generic driver like pinctrl
+> > single.
+>
+> Treating conf and mux separately is not am335x specific. Linux treats
+> them separately because the conf options typically can be described
+> in a generic way while the mux is just signal routing.
 
-What does "unmapped event" mean? An event that doesn't require a 
-mapping?
-Or an internally generated event? Or a proxy event?
+There's already a generic pinconf feature for pinctrl-single.  It
+seems like this could be used with am335x now without any changes,
+e.g. by adding "pinctrl-single,drive-strength" to define the bits that
+control drive strength.  It doesn't require added cells to use this.
+Pin mux and configuration fields all have masks defined.
 
-> 
-> In order to keep the current SW stack working, the INTA driver must 
-> replace
-> the dev_id with it's own when a request comes for BCDMA or PKTDMA
-> resources.
+Example, add this:
+#define PULL_MASK (PULL_UP|PULL_DISABLE)
+pinctrl-single,bias-pullup = <PULL_DISABLE PULL_UP PULL_DISABLE PULL_MASK>;
+pinctrl-single,bias-pulldown = <PULL_DISABLE 0 PULL_DISABLE PULL_MASK>;
 
-This seems to support my second option. Please clarify what you mean 
-exactly.
+If I read the driver right (the bindings doc is far from clear), then
+I think that configures the pin with pad pull up/down disabled and
+allows the generic pinconf system to enable the pullup or pulldown.
+Combining the definition of the fields with the value to initialize it
+in the same property doesn't make that much sense to me.
 
-> 
-> Implement parsing of the optional "ti,unmapped-event-sources" phandle 
-> array
-> to get the sci-dev-ids of the devices where the unmapped events 
-> originate.
-> 
-> Signed-off-by: Peter Ujfalusi <peter.ujfalusi@ti.com>
-> ---
->  drivers/irqchip/irq-ti-sci-inta.c | 72 +++++++++++++++++++++++++++++--
->  1 file changed, 68 insertions(+), 4 deletions(-)
-> 
-> diff --git a/drivers/irqchip/irq-ti-sci-inta.c
-> b/drivers/irqchip/irq-ti-sci-inta.c
-> index bc863ef7998d..00f5b34863c5 100644
-> --- a/drivers/irqchip/irq-ti-sci-inta.c
-> +++ b/drivers/irqchip/irq-ti-sci-inta.c
-> @@ -85,6 +85,8 @@ struct ti_sci_inta_vint_desc {
->   * @base:		Base address of the memory mapped IO registers
->   * @pdev:		Pointer to platform device.
->   * @ti_sci_id:		TI-SCI device identifier
-> + * @difu_cnt:		Number of TI-SCI device identifiers for unmapped events
-> + * @dev_ids_for_unmapped: Pointer to an array of TI-SCI device 
-> identifiers
->   */
->  struct ti_sci_inta_irq_domain {
->  	const struct ti_sci_handle *sci;
-> @@ -96,11 +98,33 @@ struct ti_sci_inta_irq_domain {
->  	void __iomem *base;
->  	struct platform_device *pdev;
->  	u32 ti_sci_id;
-> +
-> +	int difu_cnt;
+> With interrupts the IRQ_TYPE flags are generic and separate from the
+> hardware specific cells. If we wanted to, we could have something
+> similar for pinctrl framework.
 
-I like silly acronyms as much as the next man, but please adopt
-sensible names. unmapped_cnt, or something.
+pinctrl-cells is really pretty different from gpio-cells and
+interrupt-cells.  The latter two are used in handles that allow an
+external node to reference something in the node that defines the gpio
+or interrupt cells.  The generic flags are used by an *unrelated
+driver* to tell an platform specific interrupt controller driver it
+should configure an edge triggered interrupt.  It makes it easier to
+use the binding in the unrelated driver that needs an interrupt since
+the flags are always the same.  But mainly it works because the gpio
+and interrupt framework in the kernel already support these concepts,
+so the flags can get passed as is to existing kernel functions.
 
-> +	u32 *dev_ids_for_unmapped;
+But pinctrl-single,pins is only used inside pinctrl-single itself.
+There's no handle anywhere like:
+yoyodyne,reset = <&am335x_pinmux AM335X_PIN_FOO MUX_MODE7
+GENERIC_PULLUP_ENABLED_FLAG>;
+I don't see how one could get made either, since there's already a
+pinctrl system and it just doesn't work that way.
 
-unmapped_dev_ids?
+The closest thing would be the generic pin config type bindings, which
+go in the pinctrl driver's nodes, and look like this:
+&am335x_pinmux {
+    pinctrl_yoyo_reset: yoyogrp {
+        pins = "foo";
+        function = "gpio";
+        bias-pull-up;
+    };
+};
 
->  };
-> 
->  #define to_vint_desc(e, i) container_of(e, struct 
-> ti_sci_inta_vint_desc, \
->  					events[i])
-> 
-> +static u16 ti_sci_inta_get_dev_id(struct ti_sci_inta_irq_domain *inta,
-> +				  u32 hwirq)
-> +{
-> +	u16 dev_id = HWIRQ_TO_DEVID(hwirq);
-> +	int i;
-> +
-> +	if (inta->difu_cnt == 0)
-> +		return dev_id;
-> +
-> +	for (i = 0; i < inta->difu_cnt; i++) {
-> +		if (dev_id == inta->dev_ids_for_unmapped[i]) {
-> +			dev_id = inta->ti_sci_id;
+That would work on some other boards.  To use pinctrl-single, you'd
+need to have a binding that mapped pin and function names to numbers
+(why couldn't the pincfg binding use numbers!) and the bits/mask for
+pull up.  Which could be done.  But at that point pinctrl-single,pins
+is replaced, it wouldn't even get used, so adding more cells to it
+hasn't done anything for you.
 
-ti_sci_id is a u32, and you are implicitly casting it as u16.
-One of the two is wrong.
+> > Consider also that any future changes to the pinctrl-single bindings
+> > would need to be backward compatible with a device tree binary where
+> > two cells get combined.  So if the bindings being added here aren't
+> > done, then adding them now creates an unnecessary additional version
+> > to deal with for backward compatibility.
+>
+> I don't see issues with backward compabilty. If we specify that the
+> controller uses #pinctrl-cells = <2>, and some additional property
+> for specifying generic conf flags, we'd have a similar generic binding
+> to the interrupt binding.
 
-> +			break;
-> +		}
-> +	}
-> +
-> +	return dev_id;
-> +}
-> +
->  /**
->   * ti_sci_inta_irq_handler() - Chained IRQ handler for the vint irqs
->   * @desc:	Pointer to irq_desc corresponding to the irq
-> @@ -251,7 +275,7 @@ static struct ti_sci_inta_event_desc
-> *ti_sci_inta_alloc_event(struct ti_sci_inta
->  	u16 dev_id, dev_index;
->  	int err;
-> 
-> -	dev_id = HWIRQ_TO_DEVID(hwirq);
-> +	dev_id = ti_sci_inta_get_dev_id(inta, hwirq);
->  	dev_index = HWIRQ_TO_IRQID(hwirq);
-> 
->  	event_desc = &vint_desc->events[free_bit];
-> @@ -352,14 +376,15 @@ static void ti_sci_inta_free_irq(struct
-> ti_sci_inta_event_desc *event_desc,
->  {
->  	struct ti_sci_inta_vint_desc *vint_desc;
->  	struct ti_sci_inta_irq_domain *inta;
-> +	u16 dev_id;
-> 
->  	vint_desc = to_vint_desc(event_desc, event_desc->vint_bit);
->  	inta = vint_desc->domain->host_data;
-> +	dev_id = ti_sci_inta_get_dev_id(inta, hwirq);
->  	/* free event irq */
->  	mutex_lock(&inta->vint_mutex);
->  	inta->sci->ops.rm_irq_ops.free_event_map(inta->sci,
-> -						 HWIRQ_TO_DEVID(hwirq),
-> -						 HWIRQ_TO_IRQID(hwirq),
-> +						 dev_id, HWIRQ_TO_IRQID(hwirq),
->  						 inta->ti_sci_id,
->  						 vint_desc->vint_id,
->  						 event_desc->global_event,
-> @@ -562,7 +587,6 @@ static void 
-> ti_sci_inta_msi_set_desc(msi_alloc_info_t *arg,
->  	arg->desc = desc;
->  	arg->hwirq = TO_HWIRQ(pdev->id, desc->inta.dev_index);
->  }
-> -
->  static struct msi_domain_ops ti_sci_inta_msi_ops = {
->  	.set_desc	= ti_sci_inta_msi_set_desc,
->  };
-> @@ -574,6 +598,42 @@ static struct msi_domain_info
-> ti_sci_inta_msi_domain_info = {
->  	.chip	= &ti_sci_inta_msi_irq_chip,
->  };
-> 
-> +static int ti_sci_inta_get_unmapped_sources(struct
-> ti_sci_inta_irq_domain *inta)
-> +{
-> +	struct device *dev = &inta->pdev->dev;
-> +	struct device_node *node = dev_of_node(dev);
-> +	struct of_phandle_iterator it;
-> +	int count, err, ret, i;
-> +
-> +	count = of_count_phandle_with_args(node, "ti,unmapped-event-sources",
-> +					   NULL);
-> +	if (count <= 0)
-> +		return 0;
-> +
-> +	inta->dev_ids_for_unmapped = devm_kcalloc(dev, count,
-> +					sizeof(*inta->dev_ids_for_unmapped),
-> +					GFP_KERNEL);
-> +	if (!inta->dev_ids_for_unmapped)
-> +		return -ENOMEM;
-> +
-> +	i = 0;
-> +	of_for_each_phandle(&it, err, node, "ti,unmapped-event-sources",
-> +			    NULL, 0) {
-> +		ret = of_property_read_u32(it.node, "ti,sci-dev-id",
-> +					   &inta->dev_ids_for_unmapped[i++]);
-> +		if (ret) {
-> +			dev_err(dev, "ti,sci-dev-id read failure for %s\n",
-> +				of_node_full_name(it.node));
-
-Use the printk format specifier instead of of_node_full_name.
-
-> +			of_node_put(it.node);
-> +			return ret;
-> +		}
-> +	}
-> +
-> +	inta->difu_cnt = count;
-> +
-> +	return 0;
-> +}
-> +
->  static int ti_sci_inta_irq_domain_probe(struct platform_device *pdev)
->  {
->  	struct irq_domain *parent_domain, *domain, *msi_domain;
-> @@ -629,6 +689,10 @@ static int ti_sci_inta_irq_domain_probe(struct
-> platform_device *pdev)
->  	if (IS_ERR(inta->base))
->  		return PTR_ERR(inta->base);
-> 
-> +	ret = ti_sci_inta_get_unmapped_sources(inta);
-> +	if (ret)
-> +		return ret;
-> +
->  	domain = irq_domain_add_linear(dev_of_node(dev),
->  				       ti_sci_get_num_resources(inta->vint),
->  				       &ti_sci_inta_irq_domain_ops, inta);
-
-         M.
--- 
-Jazz is not dead. It just smells funny...
+Is "some additional property for specifying generic conf flags"
+different from the existing pinctrl-single,bias-pullup, etc.
+properties?  Because splitting the data cell into two parts doesn't
+make any difference to those.
