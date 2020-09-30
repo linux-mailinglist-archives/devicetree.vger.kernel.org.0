@@ -2,125 +2,102 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from vger.kernel.org (vger.kernel.org [23.128.96.18])
-	by mail.lfdr.de (Postfix) with ESMTP id 47A9227E01A
-	for <lists+devicetree@lfdr.de>; Wed, 30 Sep 2020 07:19:46 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTP id DB65A27DFFE
+	for <lists+devicetree@lfdr.de>; Wed, 30 Sep 2020 07:15:28 +0200 (CEST)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S1725320AbgI3FTh (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Wed, 30 Sep 2020 01:19:37 -0400
-Received: from twspam01.aspeedtech.com ([211.20.114.71]:46611 "EHLO
-        twspam01.aspeedtech.com" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S1725306AbgI3FTg (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Wed, 30 Sep 2020 01:19:36 -0400
-X-Greylist: delayed 451 seconds by postgrey-1.27 at vger.kernel.org; Wed, 30 Sep 2020 01:19:35 EDT
-Received: from twspam01.aspeedtech.com (localhost [127.0.0.2] (may be forged))
-        by twspam01.aspeedtech.com with ESMTP id 08U4qiuH080185;
-        Wed, 30 Sep 2020 12:52:44 +0800 (GMT-8)
-        (envelope-from billy_tsai@aspeedtech.com)
-Received: from mail.aspeedtech.com ([192.168.0.24])
-        by twspam01.aspeedtech.com with ESMTP id 08U4pwZv080126;
-        Wed, 30 Sep 2020 12:51:58 +0800 (GMT-8)
-        (envelope-from billy_tsai@aspeedtech.com)
-Received: from localhost.localdomain (192.168.10.9) by TWMBX02.aspeed.com
- (192.168.0.24) with Microsoft SMTP Server (TLS) id 15.0.1497.2; Wed, 30 Sep
- 2020 13:11:21 +0800
-From:   Billy Tsai <billy_tsai@aspeedtech.com>
-To:     <robh+dt@kernel.org>, <joel@jms.id.au>, <andrew@aj.id.au>,
-        <devicetree@vger.kernel.org>,
-        <linux-arm-kernel@lists.infradead.org>,
-        <linux-aspeed@lists.ozlabs.org>, <linux-kernel@vger.kernel.org>
-CC:     <BMC-SW@aspeedtech.com>
-Subject: [PATCH] ARM: dts: aspeed-g6: Add sgpiom/sgpios node
-Date:   Wed, 30 Sep 2020 13:11:13 +0800
-Message-ID: <20200930051113.32465-1-billy_tsai@aspeedtech.com>
-X-Mailer: git-send-email 2.17.1
+        id S1725497AbgI3FP1 (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Wed, 30 Sep 2020 01:15:27 -0400
+Received: from muru.com ([72.249.23.125]:45674 "EHLO muru.com"
+        rhost-flags-OK-OK-OK-OK) by vger.kernel.org with ESMTP
+        id S1725320AbgI3FP1 (ORCPT <rfc822;devicetree@vger.kernel.org>);
+        Wed, 30 Sep 2020 01:15:27 -0400
+Received: from atomide.com (localhost [127.0.0.1])
+        by muru.com (Postfix) with ESMTPS id D6B1580BF;
+        Wed, 30 Sep 2020 05:15:27 +0000 (UTC)
+Date:   Wed, 30 Sep 2020 08:15:21 +0300
+From:   Tony Lindgren <tony@atomide.com>
+To:     Trent Piepho <tpiepho@gmail.com>
+Cc:     Drew Fustini <drew@beagleboard.org>,
+        Rob Herring <robh+dt@kernel.org>,
+        Linus Walleij <linus.walleij@linaro.org>,
+        Jason Kridner <jkridner@beagleboard.org>,
+        Robert Nelson <robertcnelson@gmail.com>,
+        linux-omap@vger.kernel.org, linux-kernel@vger.kernel.org,
+        devicetree@vger.kernel.org,
+        linux-gpio <linux-gpio@vger.kernel.org>,
+        Christina Quast <cquast@hanoverdisplays.com>
+Subject: Re: [PATCH] ARM: dts: document pinctrl-single,pins when
+ #pinctrl-cells = 2
+Message-ID: <20200930051521.GN9471@atomide.com>
+References: <CA+7tXihwHbcuxZ10jGZrQkET9+Dbs31SfsYDt_6XB+-JM99gqA@mail.gmail.com>
+ <20200917103942.GA2477958@x1>
+ <20200923065755.GR7101@atomide.com>
+ <CA+7tXigeNhQQVuAu0toZrvBKvMYkDU-8EWTpJR29HLTAMgoOBA@mail.gmail.com>
+ <20200924054324.GB9471@atomide.com>
+ <CA+7tXigg+h3v61AVMaYRKa_ZwznehOUPEESMqXKsNDNCrFph3w@mail.gmail.com>
+ <20200924060645.GD9471@atomide.com>
+ <CA+7tXijkS8UMFk4t=DuKjZZNnThbRarPQvxwxjg-uJFTKJRsXA@mail.gmail.com>
+ <20200924070443.GF9471@atomide.com>
+ <CA+7tXihBdw9AOGL7Hp2cH9+ii8fUXaaZZDUP3icyeOkMuGm4qA@mail.gmail.com>
 MIME-Version: 1.0
-Content-Type: text/plain
-X-Originating-IP: [192.168.10.9]
-X-ClientProxiedBy: TWMBX02.aspeed.com (192.168.0.24) To TWMBX02.aspeed.com
- (192.168.0.24)
-X-DNSRBL: 
-X-MAIL: twspam01.aspeedtech.com 08U4pwZv080126
+Content-Type: text/plain; charset=us-ascii
+Content-Disposition: inline
+In-Reply-To: <CA+7tXihBdw9AOGL7Hp2cH9+ii8fUXaaZZDUP3icyeOkMuGm4qA@mail.gmail.com>
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-This commit add two sgpiom and two sgpios node into aspeed-g6.dtsi
-and change the register range of gpio0 to fix the hardware design.
+* Trent Piepho <tpiepho@gmail.com> [200929 20:16]:
+> On Thu, Sep 24, 2020 at 12:04 AM Tony Lindgren <tony@atomide.com> wrote:
+> > Certainly different compatible strings can be used as needed.
+> > But pinctrl-single is not going to be am335x specific though :)
+> > We have quite a few SoCs using it:
+> 
+> So what doesn't make sense to me, is to put something am335x specific
+> like two cells for conf and mux, into a generic driver like pinctrl
+> single.
 
-Signed-off-by: Billy Tsai <billy_tsai@aspeedtech.com>
----
- arch/arm/boot/dts/aspeed-g6.dtsi | 51 +++++++++++++++++++++++++++++++-
- 1 file changed, 50 insertions(+), 1 deletion(-)
+Treating conf and mux separately is not am335x specific. Linux treats
+them separately because the conf options typically can be described
+in a generic way while the mux is just signal routing.
 
-diff --git a/arch/arm/boot/dts/aspeed-g6.dtsi b/arch/arm/boot/dts/aspeed-g6.dtsi
-index 97ca743363d7..00237daec2a1 100644
---- a/arch/arm/boot/dts/aspeed-g6.dtsi
-+++ b/arch/arm/boot/dts/aspeed-g6.dtsi
-@@ -357,7 +357,7 @@
- 				#gpio-cells = <2>;
- 				gpio-controller;
- 				compatible = "aspeed,ast2600-gpio";
--				reg = <0x1e780000 0x800>;
-+				reg = <0x1e780000 0x500>;
- 				interrupts = <GIC_SPI 40 IRQ_TYPE_LEVEL_HIGH>;
- 				gpio-ranges = <&pinctrl 0 0 208>;
- 				ngpios = <208>;
-@@ -365,6 +365,55 @@
- 				interrupt-controller;
- 				#interrupt-cells = <2>;
- 			};
-+			sgpiom0: sgpiom@1e780500 {
-+				#gpio-cells = <2>;
-+				gpio-controller;
-+				compatible = "aspeed,ast2600-sgpiom";
-+				reg = <0x1e780500 0x100>;
-+				interrupts = <GIC_SPI 51 IRQ_TYPE_LEVEL_HIGH>;
-+				ngpios = <128>;
-+				clocks = <&syscon ASPEED_CLK_APB2>;
-+				interrupt-controller;
-+				bus-frequency = <12000000>;
-+
-+				pinctrl-names = "default";
-+				pinctrl-0 = <&pinctrl_sgpm1_default>;
-+				status = "disabled";
-+			};
-+
-+			sgpiom1: sgpiom@1e780600 {
-+				#gpio-cells = <2>;
-+				gpio-controller;
-+				compatible = "aspeed,ast2600-sgpiom";
-+				reg = <0x1e780600 0x100>;
-+				interrupts = <GIC_SPI 70 IRQ_TYPE_LEVEL_HIGH>;
-+				ngpios = <80>;
-+				clocks = <&syscon ASPEED_CLK_APB2>;
-+				interrupt-controller;
-+				bus-frequency = <12000000>;
-+
-+				pinctrl-names = "default";
-+				pinctrl-0 = <&pinctrl_sgpm2_default>;
-+				status = "disabled";
-+			};
-+
-+			sgpios0: sgpios@1e780700 {
-+				#gpio-cells = <2>;
-+				gpio-controller;
-+				compatible = "aspeed,ast2600-sgpios";
-+				reg = <0x1e780700 0x40>;
-+				interrupts = <GIC_SPI 52 IRQ_TYPE_LEVEL_HIGH>;
-+				clocks = <&syscon ASPEED_CLK_APB2>;
-+			};
-+
-+			sgpios1: sgpios@1e780740 {
-+				#gpio-cells = <2>;
-+				gpio-controller;
-+				compatible = "aspeed,ast2600-sgpios";
-+				reg = <0x1e780740 0x40>;
-+				interrupts = <GIC_SPI 71 IRQ_TYPE_LEVEL_HIGH>;
-+				clocks = <&syscon ASPEED_CLK_APB2>;
-+			};
- 
- 			gpio1: gpio@1e780800 {
- 				#gpio-cells = <2>;
--- 
-2.17.1
+Sure the conf values are currently not generic, but that could be
+done if wanted to and added some property to specify that the
+controller uses generic conf values.
 
+> This series adds two cells ORed into one.  Ok, that's generic, other
+> platforms could use it.  But it also accomplishes nothing, so what's
+> the point?  You've hinted there is more to come, which will accomplish
+> something, but what is it?  That can be:
+> Used by platforms other than am335x
+> Can't already be done with the pinctrl single pinconf features
+> Needs more than one data cell per pin
+
+For SoCs using #pinctrl-cells = <2> we now have conf and mux values
+separated in the dtb. Certainly that's a better place to be compared
+to earlier for any further pinconf changes.
+
+> Interrupt controllers have different numbers of cells, but they are
+> all platform specific, and the cells have defined platform specific
+> meanings.  pci-host-cam-generic is a somewhat generic interrupt
+> controller and it uses 1 cell, since it lacks device specific fields
+> to put into additional cells.
+
+With interrupts the IRQ_TYPE flags are generic and separate from the
+hardware specific cells. If we wanted to, we could have something
+similar for pinctrl framework.
+
+> Consider also that any future changes to the pinctrl-single bindings
+> would need to be backward compatible with a device tree binary where
+> two cells get combined.  So if the bindings being added here aren't
+> done, then adding them now creates an unnecessary additional version
+> to deal with for backward compatibility.
+
+I don't see issues with backward compabilty. If we specify that the
+controller uses #pinctrl-cells = <2>, and some additional property
+for specifying generic conf flags, we'd have a similar generic binding
+to the interrupt binding.
+
+Regards,
+
+Tony
