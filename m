@@ -2,128 +2,258 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from vger.kernel.org (vger.kernel.org [23.128.96.18])
-	by mail.lfdr.de (Postfix) with ESMTP id 0457127F198
-	for <lists+devicetree@lfdr.de>; Wed, 30 Sep 2020 20:50:24 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTP id CC20227F1C0
+	for <lists+devicetree@lfdr.de>; Wed, 30 Sep 2020 20:58:00 +0200 (CEST)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S1726992AbgI3SuW (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Wed, 30 Sep 2020 14:50:22 -0400
-Received: from lindbergh.monkeyblade.net ([23.128.96.19]:45224 "EHLO
-        lindbergh.monkeyblade.net" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S1725771AbgI3SuW (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Wed, 30 Sep 2020 14:50:22 -0400
-Received: from mail-ed1-x544.google.com (mail-ed1-x544.google.com [IPv6:2a00:1450:4864:20::544])
-        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 5844BC061755;
-        Wed, 30 Sep 2020 11:50:22 -0700 (PDT)
-Received: by mail-ed1-x544.google.com with SMTP id t16so2996676edw.7;
-        Wed, 30 Sep 2020 11:50:22 -0700 (PDT)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=gmail.com; s=20161025;
-        h=mime-version:references:in-reply-to:from:date:message-id:subject:to
-         :cc:content-transfer-encoding;
-        bh=Sg3JdskTv/baC1RIHHUI9THUReq0qsRlNzLxJycYwpY=;
-        b=iAx2GEEtJ4eZu+wgiOzIuHUkDDjjYQtWB9JgMtllCOLUZM+wluabzrKEe/ivOUx6yY
-         kgsCdXTtEWLEivK0FGWvR4KXAgbP1bL6imaFIsLRm7RAoJIpVG0tK83kUAj02duPE5+C
-         FUvSKv8SSLHKQ+rJ7EKpAAZMXxWTMcrh0JPWXskB6xF8v1Unq8iJEgrjuUB8Md5twErC
-         1k9NCBsjb/Sge1F+3mva4jSWHVgPAm0edgdwfmjGmTPwoA6GsMSwdS8wMHzjZmBJER+Y
-         Ix0x1Be1RXa6Gn9P4pjnt9xPo046R6dYJ6U8gYafZ6gU4UqAD9Kw5KFZDxd7eNRuszJR
-         wESw==
-X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=1e100.net; s=20161025;
-        h=x-gm-message-state:mime-version:references:in-reply-to:from:date
-         :message-id:subject:to:cc:content-transfer-encoding;
-        bh=Sg3JdskTv/baC1RIHHUI9THUReq0qsRlNzLxJycYwpY=;
-        b=XPl0gp7ZS8taOauBLsjVyJTExh1cma8hbgs02Fjpsf8UoHUfyXfaueGz4BfqeRuuBi
-         j7KmueRN+Yj47KR1icf/GV8/ED0+AS3H7gd5yGBdS+On78aV2VmiTHYHlHTAxGKRf25z
-         ekQi/myK3w+Z2hcbFCns/w0wJvaz5KD1Za676/XcpE0kqhkIzlmgc6rNUhEZf9kn5axR
-         6L8jWaxJ7NZXVlc6BtY9vuPv3YT24OSwbEB3yZbxuMCCOeHjLDeEDW+imsiJLVXDFRQN
-         o1ueR6tSUNoAyKEE5CI/S5y7lFu8oM3OHDdBH8ZPxvr4wqERuSINQCpsH2kPmT04EMe7
-         NOIA==
-X-Gm-Message-State: AOAM533B76s4JZ6VltGuRsWiWek1EuNvYdTrpd64R8EFj0IG4ewdaUK/
-        7+Mg1ZDuzKo1+R3RgwsYed6vn2jEKtoEGLsGDofxNjPc89rTujGB
-X-Google-Smtp-Source: ABdhPJwHY8Mt2cRi5DRYkuaDFjWn86zSncMMNn3sSdiwsWjgOGvvgfbLuzwcM4ocTjmoS32nnkGdtCx6MDoxuzB/NYc=
-X-Received: by 2002:aa7:c1d0:: with SMTP id d16mr4106617edp.209.1601491820999;
- Wed, 30 Sep 2020 11:50:20 -0700 (PDT)
+        id S1730271AbgI3Sz6 (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Wed, 30 Sep 2020 14:55:58 -0400
+Received: from mail.baikalelectronics.com ([87.245.175.226]:41638 "EHLO
+        mail.baikalelectronics.ru" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
+        with ESMTP id S1725893AbgI3Sz5 (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Wed, 30 Sep 2020 14:55:57 -0400
+Received: from localhost (unknown [127.0.0.1])
+        by mail.baikalelectronics.ru (Postfix) with ESMTP id CAB6A803071C;
+        Wed, 30 Sep 2020 18:55:51 +0000 (UTC)
+X-Virus-Scanned: amavisd-new at baikalelectronics.ru
+Received: from mail.baikalelectronics.ru ([127.0.0.1])
+        by localhost (mail.baikalelectronics.ru [127.0.0.1]) (amavisd-new, port 10024)
+        with ESMTP id 6REfFXcLILXz; Wed, 30 Sep 2020 21:55:50 +0300 (MSK)
+From:   Serge Semin <Sergey.Semin@baikalelectronics.ru>
+To:     Mark Brown <broonie@kernel.org>
+CC:     Serge Semin <Sergey.Semin@baikalelectronics.ru>,
+        Serge Semin <fancer.lancer@gmail.com>,
+        Alexey Malahov <Alexey.Malahov@baikalelectronics.ru>,
+        Ramil Zaripov <Ramil.Zaripov@baikalelectronics.ru>,
+        Pavel Parkhomenko <Pavel.Parkhomenko@baikalelectronics.ru>,
+        Andy Shevchenko <andy.shevchenko@gmail.com>,
+        Andy Shevchenko <andriy.shevchenko@linux.intel.com>,
+        Lars Povlsen <lars.povlsen@microchip.com>,
+        "wuxu . wu" <wuxu.wu@huawei.com>, Feng Tang <feng.tang@intel.com>,
+        Rob Herring <robh+dt@kernel.org>, <linux-spi@vger.kernel.org>,
+        <devicetree@vger.kernel.org>, <linux-kernel@vger.kernel.org>
+Subject: [PATCH v2 00/21] spi: dw: Add full Baikal-T1 SPI Controllers support
+Date:   Wed, 30 Sep 2020 21:55:24 +0300
+Message-ID: <20200930185545.29959-1-Sergey.Semin@baikalelectronics.ru>
 MIME-Version: 1.0
-References: <20200924054324.GB9471@atomide.com> <CA+7tXigg+h3v61AVMaYRKa_ZwznehOUPEESMqXKsNDNCrFph3w@mail.gmail.com>
- <20200924060645.GD9471@atomide.com> <CA+7tXijkS8UMFk4t=DuKjZZNnThbRarPQvxwxjg-uJFTKJRsXA@mail.gmail.com>
- <20200924070443.GF9471@atomide.com> <CA+7tXihBdw9AOGL7Hp2cH9+ii8fUXaaZZDUP3icyeOkMuGm4qA@mail.gmail.com>
- <20200930051521.GN9471@atomide.com> <CA+7tXig=3hbFXfmYMC5Hd1Zc2n-6uGXbMePPw_Cr4bOsyt7QQA@mail.gmail.com>
- <20200930091526.GQ9471@atomide.com> <CA+7tXihYb6AHrQLpO9UDHV7YFbzo_Pm8EdXNJXX+tJXX-L6UYA@mail.gmail.com>
- <20200930094714.GR9471@atomide.com>
-In-Reply-To: <20200930094714.GR9471@atomide.com>
-From:   Trent Piepho <tpiepho@gmail.com>
-Date:   Wed, 30 Sep 2020 11:50:10 -0700
-Message-ID: <CA+7tXijZJnJ-=erFq+XQCrwwV7tv+6PsmO5T8XSR3p1Jb6qjkg@mail.gmail.com>
-Subject: Re: [PATCH] ARM: dts: document pinctrl-single,pins when
- #pinctrl-cells = 2
-To:     Tony Lindgren <tony@atomide.com>
-Cc:     Drew Fustini <drew@beagleboard.org>,
-        Rob Herring <robh+dt@kernel.org>,
-        Linus Walleij <linus.walleij@linaro.org>,
-        Jason Kridner <jkridner@beagleboard.org>,
-        Robert Nelson <robertcnelson@gmail.com>,
-        linux-omap@vger.kernel.org, linux-kernel@vger.kernel.org,
-        devicetree@vger.kernel.org,
-        linux-gpio <linux-gpio@vger.kernel.org>,
-        Christina Quast <cquast@hanoverdisplays.com>
-Content-Type: text/plain; charset="UTF-8"
-Content-Transfer-Encoding: quoted-printable
+Content-Transfer-Encoding: 7BIT
+Content-Type:   text/plain; charset=US-ASCII
+X-ClientProxiedBy: MAIL.baikal.int (192.168.51.25) To mail (192.168.51.25)
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-On Wed, Sep 30, 2020 at 2:47 AM Tony Lindgren <tony@atomide.com> wrote:
->
-> * Trent Piepho <tpiepho@gmail.com> [200930 09:34]:
+Originally I intended to merge a dedicated Baikal-T1 System Boot SPI
+Controller driver into the kernel and leave the DW APB SSI driver
+untouched. But after a long discussion (see the link at the bottom of the
+letter) Mark and Andy persuaded me to integrate what we developed there
+into the DW APB SSI core driver to be useful for another controllers,
+which may have got the same peculiarities/problems as ours:
+- No IRQ.
+- No DMA.
+- No GPIO CS, so a native CS is utilized.
+- small Tx/Rx FIFO depth.
+- Automatic CS assertion/de-assertion.
+- Slow system bus.
+All of them have been fixed in the framework of this patchset in some
+extent at least for the SPI memory operations. As I expected it wasn't
+that easy and the integration took that many patches as you can see from
+the subject. Though some of them are mere cleanups or weakly related with
+the subject fixes, but we just couldn't leave the code as is at some
+places since we were working with the DW APB SSI driver anyway. Here is
+what we did to fix the original DW APB SSI driver, to make it less messy.
 
-> >
-> > Where do these flags go?  In pinctrl-single,pins?  Like:
-> >
-> > pinctrl-single,pins =3D <AM335X_PIN_MDC MUX_MODE7 PIN_INPUT_PULLUP>;
-> >
-> > But PIN_INPUT_PULLUP is a generic flag?  Which is translated into the
-> > proper value by??
->
-> Yes that's what I was thinking, something like this with generic flags:
->
-> pinctrl-single,pins =3D <AM335X_PIN_MDC (PIN_INPUT | PIN_PULLUP) MUX_MODE=
-7>;
+First two patches are just cleanups to simplify the DW APB SSI device
+initialization a bit. We suggest to discard the IRQ threshold macro as
+unused and use a ternary operator to initialize the set_cs callback
+instead of assigning-and-updating it.
 
-It doesn't seem like these patches help achieve that, since they
-create device tree binaries with a property that has the same name and
-number of cells, but the cells have a different meaning than above,
-and must be handled differently by the driver.  So you either drop
-compatibility or need to forever deal with supporting an interim
-format that is being created by these patches.
+Then we've discovered that the n_bytes field of the driver private data is
+used by the DW APB SSI IRQ handler, which requires it to be initialized
+before the SMP memory barrier and to be visible from another CPUs. Speaking
+about the SMP memory barrier. Having one right after the shared resources
+initialization is enough and there is no point in using the spin-lock to
+protect the Tx/Rx buffer pointers. The protection functionality is
+redundant there by the driver design. (Though I have a doubt whether the
+SMP memory barrier is also required there because the normal IO-methods
+like readl/writel implies a full memory barrier. So any memory operations
+performed before them are supposed to be seen by devices and another CPUs.
+See the patch log for details of my concern.)
 
-The conf and max are already split in (all but one) of the device tree
-SOURCE files via the macro with multiple fields.  That does seem like
-a good step if you wanted to transition into something like the above.
-But splitting it in the binary too doesn't help.  Is there a way the
-dtb now being created can turn into the above via a driver change?
-Absolutely not.  So what's the point of an interim binary format?  All
-that matters is what the source looks like, and since that doesn't
-change, nothing is accomplished.
+Thirdly we've found out that there is some confusion in the IRQs
+masking/unmasking/clearing in the SPI-transfer procedure. Multiple interrupts
+are unmasked on the SPI-transfer initialization, but just TXEI is only
+masked back on completion. Similarly IRQ status isn't cleared on the
+controller reset, which actually makes the reset being not full and errors
+prone in the controller probe procedure.
 
-I'll also point out that the current generic pinconf, done not via
-flags but with multiple properties for each configurable parameter,
-has a drive strength properties with strength in mA or =C2=B5A as a
-parameter.  How would you do that with generic bit flags?  I don't
-think you can fit everything in pinconf-generic.h into one 32 bit
-cell.
+Another very important optimization is using the IO-relaxed accessors in
+the dw_read_io_reg()/dw_write_io_reg() methods. Since the Tx/Rx FIFO data
+registers are the most frequently accessible controller resource, using
+relaxed accessors there will significantly improve the data read/write
+performance. At least on Baikal-T1 SoC such modification opens up a way to
+have the DW APB SSI controller working with higher SPI bus speeds, than
+without it.
 
-> > Or are you talking about replacing the existing pinctrl-0,
-> > pinctrl-names properties with a totally different system that looks
-> > more like gpio and interrupt handles?
->
-> That would be even better :) Might be just too much to deal with..
->
-> In any case the parser code could already be generic if we had generic
-> flags based on #pinctrl-cells.
+Fifthly we've made an effort to cleanup the code using the SPI-device
+private data - chip_data. We suggest to remove the chip type from there
+since it isn't used and isn't implemented right anyway. Then instead of
+having a bus speed, clock divider, transfer mode preserved there, and
+recalculating the CR0 fields of the SPI-device-specific phase, polarity
+and frame format each time the SPI transfer is requested, we can save it
+in the chip_data instance. By doing so we'll make that structure finally
+used as it was supposed to by design (see the spi-fsl-dspi.c, spi-pl022.c,
+spi-pxa2xx.c drivers for examples).
 
-But the pinctrl-single,pins isn't parsed.  It just uses the values as
-they are.  You'd have to write something to parse the cells and add
-more data to the dts that told the parser how to turn them into device
-specific values.  It seems like that could eventually achieve
-basically what is happening already with the dts preprocessor
-converting symbolic constants into device specific values.
+Sixthly instead of having the SPI-transfer specific CR0-update callback,
+we suggest to implement the DW APB SSI controller capabilities approach.
+By doing so we can now inject the vendor-specific peculiarities in
+different parts of the DW APB SSI core driver (which is required to
+implement both SPI-transfers and the SPI memory operations). This will
+also make the code less confusing like defining a callback in the core
+driver, setting it up in the glue layer, then calling it from the core
+driver again. Seeing the small capabilities implementation embedded
+in-situ is more readable than tracking the callbacks assignments. This
+will concern the CS-override, Keembay master setup, DW SSI-specific CR0
+registers layout capabilities.
+
+Seventhly since there are going to be two types of the transfers
+implemented in the DW APB SSI core driver, we need a common method to set
+the controller configuration like, Tx/Rx-mode, bus speed, data frame size
+and number of data frames to read in case of the memory operations. So we
+just detached the corresponding code from the SPI-transfer-one method and
+made it to be a part of the new dw_spi_update_config() function, which is
+former update_cr0(). Note that the new method will be also useful for the
+glue drivers, which due to the hardware design need to create their own
+memory operations (for instance, for the dirmap-operations provided in the
+Baikal-T System Boot SPI controller driver).
+
+Eighthly it is the data IO procedure and IRQ-based SPI-transfer
+implementation refactoring. The former one will look much simpler if the
+buffers initial pointers and the buffers length data utilized instead of
+the Tx/Rx buffers start and end pointers. The later one currently lacks of
+valid execution at the final stage of the SPI-transfer. So if there is no
+data left to send, but there is still data which needs to be received, the
+Tx FIFO Empty IRQ will constantly happen until all of the requested
+inbound data is received. So we suggest to fix that by taking the Rx FIFO
+Empty IRQ into account.
+
+Ninthly it's potentially errors prone to enable the DW APB SSI interrupts
+before enabling the chip. It specifically concerns a case if for some
+reason the DW APB SSI IRQs handler is executed before the controller is
+enabled. That will cause a part of the outbound data loss. So we suggest
+to reverse the order.
+
+Tenthly in order to be able to pre-initialize the Tx FIFO with data and
+only the start the SPI memory operations we need to have any CS
+de-activated. We'll fulfil that requirement by explicitly clearing the CS
+on the SPI transfer completion and at the explicit controller reset.
+
+Then seeing all the currently available and potentially being created
+types of the SPI transfers need to perform the DW APB SSI controller
+status register check and the errors handler procedure, we've created a
+common method for all of them.
+
+Eleventhly if before we've mostly had a series of fixups, cleanups and
+refactorings, here we've finally come to the new functionality
+implementation. It concerns the poll-based transfer (as Baikal-T1 System
+Boot SPI controller lacks a dedicated IRQ lane connected) and the SPI
+memory operations implementation. If the former feature is pretty much
+straightforward (see the patch log for details), the later one is a bit
+tricky. It's based on the EEPROM-read (write-then-read) and the Tx-only
+modes of the DW APB SSI controller, which as performing the automatic data
+read and write let's us to implement the faster IO procedure than using
+the Tx-Rx-mode-based approach. Having the memory-operations implemented
+that way is the best thing we can currently do to provide the errors-less
+SPI transfers to SPI devices with native CS attached.
+
+Note the approach utilized here to develop the SPI memory operations can
+be also used to create the "automatic CS toggle problem"-free(ish) SPI
+transfers (combine SPI-message transfers into two buffers, disable
+interrupts, push-pull the combined data). But we don't provide a solution
+in the framework of this patchset. It is a matter of a dedicated one,
+which we currently don't intend to spend our time on.
+
+Finally at the closure of the this patchset you'll find patches, which
+provide the Baikal-T1-specific DW APB SSI controllers support. The SoC has
+got three SPI controllers. Two of them are pretty much normal DW APB SSI
+interfaces: with IRQ, DMA, FIFOs of 64 words depth, 4x CSs. But the third
+one as being a part of the Baikal-T1 System Boot Controller has got a very
+limited resources: no IRQ, no DMA, only a single native chip-select and
+Tx/Rx FIFOs with just 8 words depth available. In order to provide a
+transparent initial boot code execution the System Boot SPI Controller is
+also utilized by an vendor-specific IP-block, which exposes an SPI flash
+memory direct mapping interface. Please see the corresponding patch for
+details.
+
+Link: https://lore.kernel.org/linux-spi/20200508093621.31619-1-Sergey.Semin@baikalelectronics.ru/
+
+[1] "LINUX KERNEL MEMORY BARRIERS", Documentation/memory-barriers.txt,
+    Section "KERNEL I/O BARRIER EFFECTS"
+
+Changelog v2:
+- Replace the ternary operator with the if-else statement in the set_cs
+  callback setting up.
+- Get back the in-code comments to the dw_spi_update_cr0() method and it'
+  further derivatives.
+- Discard the patches from the series as being merged in:
+  [PATCH 00/10] spi: spi-dw: Remove extraneous locking
+  [PATCH 00/09] spi: dw: Add KeemBay Master capability
+  [PATCH 00/08] spi: dw: Convert CS-override to DW SPI capabilities
+  [PATCH 00/07] spi: dw: Discard DW SSI chip type storages
+  [PATCH 00/06] spi: dw: Use relaxed IO-methods to access FIFOs
+  [PATCH 00/05] spi: dw: Disable all IRQs when controller is unused
+  [PATCH 00/04] spi: dw: Clear IRQ status on DW SPI controller reset
+  [PATCH 00/03] spi: dw: Initialize n_bytes before the memory barrier
+  [PATCH 00/01] spi: dw: Discard IRQ threshold macro
+
+Signed-off-by: Serge Semin <Sergey.Semin@baikalelectronics.ru>
+Cc: Alexey Malahov <Alexey.Malahov@baikalelectronics.ru>
+Cc: Ramil Zaripov <Ramil.Zaripov@baikalelectronics.ru>
+Cc: Pavel Parkhomenko <Pavel.Parkhomenko@baikalelectronics.ru>
+Cc: Andy Shevchenko <andy.shevchenko@gmail.com>
+Cc: Andy Shevchenko <andriy.shevchenko@linux.intel.com>
+Cc: Lars Povlsen <lars.povlsen@microchip.com>
+Cc: wuxu.wu <wuxu.wu@huawei.com>
+Cc: Feng Tang <feng.tang@intel.com>
+Cc: Rob Herring <robh+dt@kernel.org>
+Cc: linux-spi@vger.kernel.org
+Cc: devicetree@vger.kernel.org
+Cc: linux-kernel@vger.kernel.org
+
+Serge Semin (21):
+  spi: dw: Use an explicit set_cs assignment
+  spi: dw: Add DWC SSI capability
+  spi: dw: Detach SPI device specific CR0 config method
+  spi: dw: Update SPI bus speed in a config function
+  spi: dw: Simplify the SPI bus speed config procedure
+  spi: dw: Update Rx sample delay in the config function
+  spi: dw: Add DW SPI controller config structure
+  spi: dw: Refactor data IO procedure
+  spi: dw: Refactor IRQ-based SPI transfer procedure
+  spi: dw: Perform IRQ setup in a dedicated function
+  spi: dw: Unmask IRQs after enabling the chip
+  spi: dw: Discard chip enabling on DMA setup error
+  spi: dw: De-assert chip-select on reset
+  spi: dw: Explicitly de-assert CS on SPI transfer completion
+  spi: dw: Move num-of retries parameter to the header file
+  spi: dw: Add generic DW SSI status-check method
+  spi: dw: Add memory operations support
+  spi: dw: Introduce max mem-ops SPI bus frequency setting
+  spi: dw: Add poll-based SPI transfers support
+  dt-bindings: spi: dw: Add Baikal-T1 SPI Controllers
+  spi: dw: Add Baikal-T1 SPI Controller glue driver
+
+ .../bindings/spi/snps,dw-apb-ssi.yaml         |  33 +-
+ drivers/spi/Kconfig                           |  29 +
+ drivers/spi/Makefile                          |   1 +
+ drivers/spi/spi-dw-bt1.c                      | 339 ++++++++++
+ drivers/spi/spi-dw-core.c                     | 640 ++++++++++++++----
+ drivers/spi/spi-dw-dma.c                      |  16 +-
+ drivers/spi/spi-dw-mmio.c                     |  20 +-
+ drivers/spi/spi-dw.h                          |  48 +-
+ 8 files changed, 956 insertions(+), 170 deletions(-)
+ create mode 100644 drivers/spi/spi-dw-bt1.c
+
+-- 
+2.27.0
+
