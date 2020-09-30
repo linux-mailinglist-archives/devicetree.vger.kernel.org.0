@@ -2,250 +2,122 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from vger.kernel.org (vger.kernel.org [23.128.96.18])
-	by mail.lfdr.de (Postfix) with ESMTP id D594327E649
-	for <lists+devicetree@lfdr.de>; Wed, 30 Sep 2020 12:12:55 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTP id 74D1427E6F0
+	for <lists+devicetree@lfdr.de>; Wed, 30 Sep 2020 12:44:41 +0200 (CEST)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S1728500AbgI3KMz (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Wed, 30 Sep 2020 06:12:55 -0400
-Received: from lindbergh.monkeyblade.net ([23.128.96.19]:50124 "EHLO
+        id S1725779AbgI3Kok (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Wed, 30 Sep 2020 06:44:40 -0400
+Received: from lindbergh.monkeyblade.net ([23.128.96.19]:54984 "EHLO
         lindbergh.monkeyblade.net" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S1725779AbgI3KMy (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Wed, 30 Sep 2020 06:12:54 -0400
-Received: from mail-io1-xd44.google.com (mail-io1-xd44.google.com [IPv6:2607:f8b0:4864:20::d44])
-        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 2DBCDC061755;
-        Wed, 30 Sep 2020 03:12:54 -0700 (PDT)
-Received: by mail-io1-xd44.google.com with SMTP id z25so1163261iol.10;
-        Wed, 30 Sep 2020 03:12:54 -0700 (PDT)
+        with ESMTP id S1725776AbgI3Kok (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Wed, 30 Sep 2020 06:44:40 -0400
+Received: from mail-wr1-x441.google.com (mail-wr1-x441.google.com [IPv6:2a00:1450:4864:20::441])
+        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 1FF13C061755
+        for <devicetree@vger.kernel.org>; Wed, 30 Sep 2020 03:44:40 -0700 (PDT)
+Received: by mail-wr1-x441.google.com with SMTP id x14so1219100wrl.12
+        for <devicetree@vger.kernel.org>; Wed, 30 Sep 2020 03:44:40 -0700 (PDT)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
         d=gmail.com; s=20161025;
-        h=mime-version:references:in-reply-to:from:date:message-id:subject:to
-         :cc:content-transfer-encoding;
-        bh=/f1OTAWLOFyQByyjBp7gKJkQqlf7y1fR2nEKKjF+R7k=;
-        b=Gebb9eMcJ5yfFkylfLya/CB5BMiRp5tp3l3JfanfE2Q5D3UuPDShghq8AzqYauqHiY
-         lvCgPqczUI1NuPx6anNfKsaWsFyBC/pNXy9AwZmYhv8cLvAxvmUlTELJX909iZCe7riV
-         HHVvV+ZcDn6rGzB5K9NxiPtNIwsYTh5XTZIF+TLzvXmbQBSmD/4Krgqsc2/mtdhA/Q2j
-         GcHtLIgtzqEein0lGF3TP8bE+VmZTCZ9xxNieMfyN2TThaz0m7GcXximmRfjkZ4yogOh
-         2IpL/XlrtKwXdZR9WB1EKjYIIgGq6eeRC1NrRvMwi0K9cDWf3vQvyJhk9zkhVeyyrusP
-         Gqmg==
+        h=subject:to:cc:references:from:message-id:date:user-agent
+         :mime-version:in-reply-to:content-language:content-transfer-encoding;
+        bh=gE5J/D8JAGLzVHsrJSkWdUcZiiDO6Svi3j33Jox2T0Y=;
+        b=IW1HI5JBd0SNcNWY0VRPDg3wvz6YRS7i/Epy4NA+v1C7BchXomntvyJXsGUu2pTO98
+         6i/V2L7rkRHBXjXfT649zNzAQ4x9Nd2zo4hO5tbW9Y3oAYDdvLFhTgHyj1G85vv/Eu/C
+         K87uMUsfcrTzLn/0cm0hJCjZvcoutHvyPy9zv4rbV/u1jizmrJYhXl5N2Nhop/df7Sk3
+         9uDgQTSU5zROPPmPeTfg1GxqO/D0KXHTzFqzIN9/q+XHmqcfzYPJ2Q3b9e39TxbLzCC/
+         13afZDYXJnCfowIJpJI0EufTAs/vfGaM9I91lAUxUiT+/lXYH4ChwwFt3un921ozASfO
+         oZ2Q==
 X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
         d=1e100.net; s=20161025;
-        h=x-gm-message-state:mime-version:references:in-reply-to:from:date
-         :message-id:subject:to:cc:content-transfer-encoding;
-        bh=/f1OTAWLOFyQByyjBp7gKJkQqlf7y1fR2nEKKjF+R7k=;
-        b=ZJSBuNqe8xqhrOsLBMsX0OR7dQLtF0/HdZz51KnwvBlsBFw1M3F/L0nRpv2aypXtoP
-         yWMq1+qvnyKjtyv6Uvu7CRkYVLQx5hLUlcpLFpBr4TFBIFUXRgUp1d4sSqOXbnFz7Gdd
-         4lF+WqOfKAo6+Ip1so8rGcaSaXLTnJWVkjnH4PmV7lHF6/34ig4Ws+OC783ULcgUDC+G
-         IGSEo21ZIaPU9Lc6hLL5C54zowDaSLYjbS5V95pIkUyuQa0ZUI/tBdG2cllkrbOZjW4d
-         8h1LwcQsKD/B0rwp0/pLF3c0AIbqiKRAQRzcVVSg7Wtlb4dGzyLSEWEQWqaKkIG17Azh
-         E3OA==
-X-Gm-Message-State: AOAM531b1yA0RtSuUKWBNTvmn7f72X45VThzjTd3DCsvgn/T3N7CSlaw
-        PEo2ejL/9t3Cvsu0nPLn3Tye7jfWPyJ927Y+Xn2JxGuZqi0=
-X-Google-Smtp-Source: ABdhPJzlpDbnNL0UhpMZoIhJBBA7VIiOiuC/U8CgBNOJi1IM8RoCYebPmYNG9DDqVJacuMaeZPty304jCUrO7dWNP7c=
-X-Received: by 2002:a05:6638:218d:: with SMTP id s13mr1298088jaj.125.1601460773363;
- Wed, 30 Sep 2020 03:12:53 -0700 (PDT)
+        h=x-gm-message-state:subject:to:cc:references:from:message-id:date
+         :user-agent:mime-version:in-reply-to:content-language
+         :content-transfer-encoding;
+        bh=gE5J/D8JAGLzVHsrJSkWdUcZiiDO6Svi3j33Jox2T0Y=;
+        b=YWeXoeAbl2BH3SacYH3HWQ98JENph6WqscvvYgzXfOIDWggcd+m+Xyy9/0NMvPwr38
+         mkGq1UvvOwEB6HomHCiOjmnSo2oR8uNV74KNV32+xiUj5KRLNTb+h9sWqH/R7htzW33S
+         AVK1WMwBRpNx7f49uLVXILaF+F361AsNRtzKWcwDjdFQq79I2BuXLEnaHUSXSfE10ulo
+         dnhKKfjWr5vuPth9buEu+nyvCjFHhpdFXDMNGuNEWK6gX/tHD5u3bCTGbohd/1HQvQSi
+         9yKN9TjAEG7EsxL0Z/Gyo1YPx/XlpEFfEePyagKKgpk9c94vKz1OFnZyoQ5WVuapcMIR
+         7qmA==
+X-Gm-Message-State: AOAM533qHFSAYhMR4xrIM78azGMMEUrTuujRR27DVdlDQGB1L+MtvmXP
+        u1M+lyFFMZlo+qUOSK0m0ShMtNjP3QcXJQ==
+X-Google-Smtp-Source: ABdhPJydMLctE33a7b/ilEY3c85QFTQcQsQP/4exWaLX0TdpAPUZHCPjCjDNuN7CKxrAkA4qGRkP5A==
+X-Received: by 2002:adf:e4cf:: with SMTP id v15mr2408611wrm.174.1601462676416;
+        Wed, 30 Sep 2020 03:44:36 -0700 (PDT)
+Received: from ziggy.stardust ([37.223.143.170])
+        by smtp.gmail.com with ESMTPSA id 91sm2358812wrq.9.2020.09.30.03.44.35
+        (version=TLS1_3 cipher=TLS_AES_128_GCM_SHA256 bits=128/128);
+        Wed, 30 Sep 2020 03:44:35 -0700 (PDT)
+Subject: Re: [PATCH] ARM: dts: cros-ec-keyboard: Add alternate keymap for
+ KEY_LEFTMETA
+To:     Enric Balletbo i Serra <enric.balletbo@collabora.com>,
+        Stephen Boyd <swboyd@chromium.org>,
+        Benson Leung <bleung@chromium.org>
+Cc:     Heiko Stuebner <heiko@sntech.de>, devicetree@vger.kernel.org,
+        linux-arm-kernel@lists.infradead.org,
+        Douglas Anderson <dianders@chromium.org>
+References: <20200925162604.2311841-1-swboyd@chromium.org>
+ <16ec2003-462e-326b-8b3c-51d8b9ae9829@collabora.com>
+From:   Matthias Brugger <matthias.bgg@gmail.com>
+Message-ID: <dffd01f9-9c81-080a-9470-4bdd5a857408@gmail.com>
+Date:   Wed, 30 Sep 2020 12:44:34 +0200
+User-Agent: Mozilla/5.0 (X11; Linux x86_64; rv:68.0) Gecko/20100101
+ Thunderbird/68.12.0
 MIME-Version: 1.0
-References: <1600865452-19649-1-git-send-email-gene.chen.richtek@gmail.com>
- <1600865452-19649-2-git-send-email-gene.chen.richtek@gmail.com>
- <20200928184423.GA3041988@bogus> <CAE+NS35qEzfixkBJn17Ookqf8NZDwr+2RmDGGZTThMUHy=Yttg@mail.gmail.com>
-In-Reply-To: <CAE+NS35qEzfixkBJn17Ookqf8NZDwr+2RmDGGZTThMUHy=Yttg@mail.gmail.com>
-From:   Gene Chen <gene.chen.richtek@gmail.com>
-Date:   Thu, 1 Oct 2020 18:12:39 +0800
-Message-ID: <CAE+NS36tG3H=MKU1Ewo=9m36j0D6G6GhQDGDkHuGkRn7Wjrqjg@mail.gmail.com>
-Subject: Re: [PATCH v4 1/2] dt-bindings: leds: Add bindings for MT6360 LED
-To:     Rob Herring <robh@kernel.org>
-Cc:     Jacek Anaszewski <jacek.anaszewski@gmail.com>,
-        Pavel Machek <pavel@ucw.cz>,
-        Matthias Brugger <matthias.bgg@gmail.com>,
-        Dan Murphy <dmurphy@ti.com>,
-        Linux LED Subsystem <linux-leds@vger.kernel.org>,
-        devicetree <devicetree@vger.kernel.org>,
-        linux-arm Mailing List <linux-arm-kernel@lists.infradead.org>,
-        "moderated list:ARM/Mediatek SoC support" 
-        <linux-mediatek@lists.infradead.org>,
-        Linux Kernel Mailing List <linux-kernel@vger.kernel.org>,
-        Gene Chen <gene_chen@richtek.com>, Wilma.Wu@mediatek.com,
-        shufan_lee@richtek.com, cy_huang@richtek.com,
-        benjamin.chao@mediatek.com
-Content-Type: text/plain; charset="UTF-8"
-Content-Transfer-Encoding: quoted-printable
+In-Reply-To: <16ec2003-462e-326b-8b3c-51d8b9ae9829@collabora.com>
+Content-Type: text/plain; charset=utf-8; format=flowed
+Content-Language: en-US
+Content-Transfer-Encoding: 7bit
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-Gene Chen <gene.chen.richtek@gmail.com> =E6=96=BC 2020=E5=B9=B49=E6=9C=8830=
-=E6=97=A5 =E9=80=B1=E4=B8=89 =E4=B8=8B=E5=8D=8811:17=E5=AF=AB=E9=81=93=EF=
-=BC=9A
->
-> Rob Herring <robh@kernel.org> =E6=96=BC 2020=E5=B9=B49=E6=9C=8829=E6=97=
-=A5 =E9=80=B1=E4=BA=8C =E4=B8=8A=E5=8D=882:44=E5=AF=AB=E9=81=93=EF=BC=9A
-> >
-> > On Wed, Sep 23, 2020 at 08:50:51PM +0800, Gene Chen wrote:
-> > > From: Gene Chen <gene_chen@richtek.com>
-> > >
-> > > Add bindings document for LED support on MT6360 PMIC
-> > >
-> > > Signed-off-by: Gene Chen <gene_chen@richtek.com>
-> > > ---
-> > >  .../devicetree/bindings/leds/leds-mt6360.yaml      | 107 +++++++++++=
-++++++++++
-> > >  1 file changed, 107 insertions(+)
-> > >  create mode 100644 Documentation/devicetree/bindings/leds/leds-mt636=
-0.yaml
-> > >
-> > > diff --git a/Documentation/devicetree/bindings/leds/leds-mt6360.yaml =
-b/Documentation/devicetree/bindings/leds/leds-mt6360.yaml
-> > > new file mode 100644
-> > > index 0000000..a356a1f
-> > > --- /dev/null
-> > > +++ b/Documentation/devicetree/bindings/leds/leds-mt6360.yaml
-> > > @@ -0,0 +1,107 @@
-> > > +# SPDX-License-Identifier: (GPL-2.0-only OR BSD-2-Clause)
-> > > +%YAML 1.2
-> > > +---
-> > > +$id: http://devicetree.org/schemas/leds/leds-mt6360.yaml#
-> > > +$schema: http://devicetree.org/meta-schemas/core.yaml#
-> > > +
-> > > +title: LED driver for MT6360 PMIC from MediaTek Integrated.
-> >
-> > Where's the PMIC schema? This file needs to be referenced from it and
-> > that means it all needs to be one series.
-> >
->
-> Do you means as regulator/max77650-regulator.yaml?
->
-> description: |
->   This module is part of the MAX77650 MFD device. For more details
->   "see Documentation/devicetree/bindings/mfd/max77650.yaml"
->
 
-According to jacek suggestion, I merge fled0~2 to one RGB multicolor
-device as below,
-     led@0 {
-       reg =3D <0>;
-       function =3D LED_FUNCTION_INDICATOR;
-       color =3D <LED_COLOR_ID_RGB>;
-       led-max-microamp =3D <24000>;
-     };
 
-But I see make dt_binding_check error,
-/media/gene_chen/WD/upstream/linux/Documentation/devicetree/bindings/leds/l=
-eds-mt6360.example.dt.yaml:
-led-controller: led@0:color:0:0: 9 is greater than the maximum of 8
+On 29/09/2020 10:04, Enric Balletbo i Serra wrote:
+> Hi Stephen,
+> 
+> Thank you for your patch.
+> 
+> cc'ing Heiko and Matthias
+> 
+> On 25/9/20 18:26, Stephen Boyd wrote:
+>> On newer keyboards this key is in a different place. Add both options to
+>> the keymap so that both new and old keyboards work.
+>>
+>> Cc: Douglas Anderson <dianders@chromium.org>
+>> Signed-off-by: Stephen Boyd <swboyd@chromium.org>
 
-Maybe the maximum color need set from 8 to 9, which define
-LED_COLOR_ID_RGB in include/dt-bindings/leds/common.h
-  color:
-    description:
-      Color of the LED. Use one of the LED_COLOR_ID_* prefixed definitions =
-from
-      the header include/dt-bindings/leds/common.h. If there is no
-matching
-      LED_COLOR_ID available, add a new one.
-    $ref: /schemas/types.yaml#definitions/uint32
-    minimum: 0
-    maximum: 9
+Reviewed-by: Matthias Brugger <matthias.bgg@gmail.com>
 
-> > > +
-> > > +maintainers:
-> > > +  - Gene Chen <gene_chen@richtek.com>
-> > > +
-> > > +description: |
-> > > +  This module is part of the MT6360 MFD device.
-> > > +  Add MT6360 LED driver include 2-channel Flash LED with torch/strob=
-e mode,
-> > > +  and 4-channel RGB LED support Register/Flash/Breath Mode
-> > > +
-> > > +properties:
-> > > +  compatible:
-> > > +    const: mediatek,mt6360-led
-> > > +
-> > > +  "#address-cells":
-> > > +    const: 1
-> > > +
-> > > +  "#size-cells":
-> > > +    const: 0
-> > > +
-> > > +patternProperties:
-> > > +  "^led@[0-5]$":
-> > > +    type: object
-> > > +    $ref: common.yaml#
-> > > +    description:
-> > > +      Properties for a single LED.
-> > > +
-> > > +    properties:
-> > > +      reg:
-> > > +        description: Index of the LED.
-> > > +        enum:
-> > > +          - 0 # LED output INDICATOR1
-> > > +          - 1 # LED output INDICATOR2
-> > > +          - 2 # LED output INDICATOR3
-> > > +          - 3 # LED output INDICATOR4
-> > > +          - 4 # LED output FLED1
-> > > +          - 5 # LED output FLED2
-> > > +
-> > > +unevaluatedProperties: false
-> > > +
-> > > +required:
-> > > +  - compatible
-> > > +  - "#address-cells"
-> > > +  - "#size-cells"
-> > > +
-> > > +additionalProperties: false
-> > > +
-> > > +examples:
-> > > + - |
-> > > +   #include <dt-bindings/leds/common.h>
-> > > +   led-controller {
-> > > +     compatible =3D "mediatek,mt6360-led";
-> > > +     #address-cells =3D <1>;
-> > > +     #size-cells =3D <0>;
-> > > +
-> > > +     led@0 {
-> > > +       reg =3D <0>;
-> > > +       function =3D LED_FUNCTION_INDICATOR;
-> > > +       color =3D <LED_COLOR_ID_RED>;
-> > > +       default-state =3D "off";
-> > > +     };
-> > > +     led@1 {
-> > > +       reg =3D <1>;
-> > > +       function =3D LED_FUNCTION_INDICATOR;
-> > > +       color =3D <LED_COLOR_ID_GREEN>;
-> > > +       default-state =3D "off";
-> > > +     };
-> > > +     led@2 {
-> > > +       reg =3D <2>;
-> > > +       function =3D LED_FUNCTION_INDICATOR;
-> > > +       color =3D <LED_COLOR_ID_BLUE>;
-> > > +       default-state =3D "off";
-> > > +     };
-> > > +     led@3 {
-> > > +       reg =3D <3>;
-> > > +       function =3D LED_FUNCTION_INDICATOR;
-> > > +       color =3D <LED_COLOR_ID_AMBER>;
-> > > +       default-state =3D "off";
-> > > +     };
-> > > +     led@4 {
-> > > +       reg =3D <4>;
-> > > +       function =3D LED_FUNCTION_FLASH;
-> > > +       color =3D <LED_COLOR_ID_WHITE>;
-> > > +       function-enumerator =3D <1>;
-> > > +       default-state =3D "off";
-> > > +       led-max-microamp =3D <200000>;
-> > > +       flash-max-microamp =3D <500000>;
-> > > +       flash-max-timeout-us =3D <1024000>;
-> > > +     };
-> > > +     led@5 {
-> > > +       reg =3D <5>;
-> > > +       function =3D LED_FUNCTION_FLASH;
-> > > +       color =3D <LED_COLOR_ID_WHITE>;
-> > > +       function-enumerator =3D <2>;
-> > > +       default-state =3D "off";
-> > > +       led-max-microamp =3D <200000>;
-> > > +       flash-max-microamp =3D <500000>;
-> > > +       flash-max-timeout-us =3D <1024000>;
-> > > +     };
-> > > +   };
-> > > +...
-> > > --
-> > > 2.7.4
-> > >
+> 
+> Usually the DT changes go through the Rockchip dts or Mediatek dts tree, this is
+> not a specific Rockchip/Mediatek change but for both. Are you fine If I pick the
+> patch through the chrome-platform tree? I don't think there is any conflict.
+> 
+
+Please go ahead and take the patch through your tree.
+
+Regards,
+Matthias
+
+> Thanks,
+>   Enric
+> 
+>> ---
+>>   arch/arm/boot/dts/cros-ec-keyboard.dtsi | 1 +
+>>   1 file changed, 1 insertion(+)
+>>
+>> diff --git a/arch/arm/boot/dts/cros-ec-keyboard.dtsi b/arch/arm/boot/dts/cros-ec-keyboard.dtsi
+>> index 4a0c1037fbc0..165c5bcd510e 100644
+>> --- a/arch/arm/boot/dts/cros-ec-keyboard.dtsi
+>> +++ b/arch/arm/boot/dts/cros-ec-keyboard.dtsi
+>> @@ -46,6 +46,7 @@ MATRIX_KEY(0x02, 0x08, KEY_LEFTBRACE)
+>>   			MATRIX_KEY(0x02, 0x09, KEY_F8)
+>>   			MATRIX_KEY(0x02, 0x0a, KEY_YEN)
+>>   
+>> +			MATRIX_KEY(0x03, 0x00, KEY_LEFTMETA)
+>>   			MATRIX_KEY(0x03, 0x01, KEY_GRAVE)
+>>   			MATRIX_KEY(0x03, 0x02, KEY_F2)
+>>   			MATRIX_KEY(0x03, 0x03, KEY_5)
+>>
