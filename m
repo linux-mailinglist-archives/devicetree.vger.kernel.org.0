@@ -2,125 +2,104 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from vger.kernel.org (vger.kernel.org [23.128.96.18])
-	by mail.lfdr.de (Postfix) with ESMTP id B844527F0A1
-	for <lists+devicetree@lfdr.de>; Wed, 30 Sep 2020 19:37:48 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTP id 69D6327F0BE
+	for <lists+devicetree@lfdr.de>; Wed, 30 Sep 2020 19:51:33 +0200 (CEST)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S1731349AbgI3Rhr (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Wed, 30 Sep 2020 13:37:47 -0400
-Received: from lindbergh.monkeyblade.net ([23.128.96.19]:34044 "EHLO
+        id S1725372AbgI3Rvc (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Wed, 30 Sep 2020 13:51:32 -0400
+Received: from lindbergh.monkeyblade.net ([23.128.96.19]:36156 "EHLO
         lindbergh.monkeyblade.net" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S1725355AbgI3Rhr (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Wed, 30 Sep 2020 13:37:47 -0400
-Received: from mail-lj1-x244.google.com (mail-lj1-x244.google.com [IPv6:2a00:1450:4864:20::244])
-        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 41C66C061755
-        for <devicetree@vger.kernel.org>; Wed, 30 Sep 2020 10:37:47 -0700 (PDT)
-Received: by mail-lj1-x244.google.com with SMTP id r24so2325981ljm.3
-        for <devicetree@vger.kernel.org>; Wed, 30 Sep 2020 10:37:47 -0700 (PDT)
+        with ESMTP id S1730044AbgI3Rvc (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Wed, 30 Sep 2020 13:51:32 -0400
+Received: from mail-oo1-xc41.google.com (mail-oo1-xc41.google.com [IPv6:2607:f8b0:4864:20::c41])
+        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id A41BBC0613D0
+        for <devicetree@vger.kernel.org>; Wed, 30 Sep 2020 10:51:30 -0700 (PDT)
+Received: by mail-oo1-xc41.google.com with SMTP id g26so721733ooa.9
+        for <devicetree@vger.kernel.org>; Wed, 30 Sep 2020 10:51:30 -0700 (PDT)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=ragnatech-se.20150623.gappssmtp.com; s=20150623;
-        h=date:from:to:cc:subject:message-id:references:mime-version
-         :content-disposition:content-transfer-encoding:in-reply-to;
-        bh=nbODIVmtMlo+oLH9Hrd8YGZI1ZfekrJ3et3L9IP3emw=;
-        b=XMWwh4Nz6o2C7++lYVkhjkwC5h4Fg1CtBXKYaVfnuMN0DhI1MS18W9JzZHWGJ190qC
-         3Yn6DG46RbfYlASND+TtT+IOlnxrJmcLcxSLeHwbkQyZdViuFmTwIWAZBeD8IoS0NgJU
-         9/iu6348F5EBEQr0YdW3SqexfZcYhbP+g0Ce9IocdnoKHCkTPkissYZFeY5D/HkbZaUV
-         s9mlzqY4RyugivLGjSCtbpu4TEyGPKucmg/Kefjoa7DrChvJ+I+QfArOGA35WACDbwal
-         gY6BbBKRqovl/O0BCwOEWFasJnokCoS90w4YSuXv4Xd+jcRUCcQt1litY3yaF4F5TaZU
-         Qiug==
+        d=beagleboard-org.20150623.gappssmtp.com; s=20150623;
+        h=from:to:cc:subject:date:message-id:mime-version
+         :content-transfer-encoding;
+        bh=x+f7BiFjDcEDxXFaCSJ99BZco4Ifg1L6EBbZcOFvnW0=;
+        b=Tjo5bueIAl+YDaXQLfjHBsvP2PoT4OLmNlcC8xwkoQH/VR1hvMl7i49v/9KgdlGYAn
+         K+EPBZKlnqCsEWjW9J0VQYCpcb1MkZiJX5YM8I/dgwwFG1OlzdkTdzMmPlhxMR6bKtOm
+         glqau5EHXF0wVVACBnxT/XX5X+nIsn50LfD0Wp42IlCXali/Ys55JD6CXmSnUvbpkV9u
+         kblc+yKAA781zQqkLnNIP6BfrM78D1/LF0+h9fEhrkWcQ5kEHqDD0gT2odKSrVWsOCf3
+         4y3Pwa6P8b0/r2hahzmw00WFbLNFZcx2pBwEUNshnFnGqEz7CJRbQv/AccBDHTKFauoy
+         +lGg==
 X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
         d=1e100.net; s=20161025;
-        h=x-gm-message-state:date:from:to:cc:subject:message-id:references
-         :mime-version:content-disposition:content-transfer-encoding
-         :in-reply-to;
-        bh=nbODIVmtMlo+oLH9Hrd8YGZI1ZfekrJ3et3L9IP3emw=;
-        b=cxbtPULlCIHeI3uN2Y6o2IHP236sbnGXIC27snH3HSDYMjKo9HktM0tB0+BB6cyNLG
-         qH5dop5edvpEdHv8FGYQb3xfUOJcXnFBSWfh11y1VCNF2gh6isAZBrymZzL3BAt27cA0
-         W33gVBiqnVJLe23+WHPGDkrD0XkfQArgPRzbZyBP/Xmc6RDZGJjR2xS3ATT8lEHBdCkX
-         gS3GA2Y6ZyZ4sLXlTYGd5rZOMf6Xojj+4vuuyKs+7V0yGs25M8yf3ORpQKtf+isfzsVn
-         t2K26WBOZCg/NyS3fvmca5W47nQKrFrM77EV/SUEH0PIkfMwk+1slcUWPTruuBQHn9uA
-         lh7w==
-X-Gm-Message-State: AOAM532lidMKkV8c3P7ZRdqPlve+1zyMdBIygeTquKnaoqRzHXNLU+Wu
-        p2LaXppaPVt6ohEDlS2KmQanzg==
-X-Google-Smtp-Source: ABdhPJyqDCDXp1ZYRf9156ssXFOuXiNaysi5BzWkXQEbMYcWMwfcZgmysMuz722U1SrRArZ4ULE7OA==
-X-Received: by 2002:a2e:89ca:: with SMTP id c10mr1263859ljk.223.1601487465710;
-        Wed, 30 Sep 2020 10:37:45 -0700 (PDT)
-Received: from localhost (h-209-203.A463.priv.bahnhof.se. [155.4.209.203])
-        by smtp.gmail.com with ESMTPSA id 77sm261464lfg.199.2020.09.30.10.37.45
+        h=x-gm-message-state:from:to:cc:subject:date:message-id:mime-version
+         :content-transfer-encoding;
+        bh=x+f7BiFjDcEDxXFaCSJ99BZco4Ifg1L6EBbZcOFvnW0=;
+        b=TpgsyP8yVHwhbGORzAqtRl5yJC7i++qCz3Hk9Z3mSVr1sLEMlqR9xgdiFWMDj4QflE
+         j/c4WAIGw3ynvKeviBYkeSdq6JNGRabnApjc05Z6qY9mTUsvfAKAqHUf2+MeRDs3azVr
+         jatKRCLr3xPUVel2akfmyqTEEIzIKUZp/rNrMeVv3HHNLtEgp57Mgglv6hPIgpAMoJBc
+         XsjHAIgzc50r0nmNNuVlVaVuXy8F5kN1FiPMDOSux1BKI+fA71h/PBDPOg4LBJaBu7k/
+         CE+/nEX3bgdMInsrJM0Eq4+uQkwv0W5fkch/51JHIE2jXcpDhjVctercLA9Z33iwDWt/
+         vi5w==
+X-Gm-Message-State: AOAM530xbvuaoiUhCvPrYH7NccSE7oyQW7cKVA1dElUp73B3OfLccqAY
+        bmiVkucZpoQ3BN0LzgvppboOxQ==
+X-Google-Smtp-Source: ABdhPJx6+FOJ8Sbrdh3dEoSm+MMGjJn5gdkjEoss8V0I6jvvphZMyBw9mR4SxW7UOFzuQbn1x5gTUQ==
+X-Received: by 2002:a4a:95f1:: with SMTP id p46mr2629057ooi.93.1601488289996;
+        Wed, 30 Sep 2020 10:51:29 -0700 (PDT)
+Received: from x1.attlocal.net ([2600:1702:da0:ff40:985b:42bd:cfe:59b7])
+        by smtp.gmail.com with ESMTPSA id f194sm469873oib.44.2020.09.30.10.51.28
         (version=TLS1_3 cipher=TLS_AES_256_GCM_SHA384 bits=256/256);
-        Wed, 30 Sep 2020 10:37:45 -0700 (PDT)
-Date:   Wed, 30 Sep 2020 19:37:44 +0200
-From:   Niklas =?iso-8859-1?Q?S=F6derlund?= 
-        <niklas.soderlund@ragnatech.se>
-To:     Marc Zyngier <maz@kernel.org>
-Cc:     devicetree@vger.kernel.org, linux-pci@vger.kernel.org,
-        linux-rockchip@lists.infradead.org,
-        linux-arm-kernel@lists.infradead.org, linux-kernel@vger.kernel.org,
-        Rob Herring <robh@kernel.org>,
-        Lorenzo Pieralisi <lorenzo.pieralisi@arm.com>,
-        Heiko Stuebner <heiko@sntech.de>,
-        Frank Rowand <frowand.list@gmail.com>,
-        Shawn Lin <shawn.lin@rock-chips.com>,
-        Jiaxun Yang <jiaxun.yang@flygoat.com>,
-        Rob Herring <robh+dt@kernel.org>,
-        Bjorn Helgaas <bhelgaas@google.com>, kernel-team@android.com,
-        samuel@dionne-riel.com
-Subject: Re: [PATCH v2] of: address: Work around missing device_type property
- in pcie nodes
-Message-ID: <20200930173744.GG1516931@oden.dyn.berto.se>
-References: <20200819094255.474565-1-maz@kernel.org>
- <20200930162722.GF1516931@oden.dyn.berto.se>
- <977f60f07a4cb5c59f0e5f8a9dfb3993@kernel.org>
+        Wed, 30 Sep 2020 10:51:29 -0700 (PDT)
+From:   Drew Fustini <drew@beagleboard.org>
+To:     Tony Lindgren <tony@atomide.com>, Rob Herring <robh+dt@kernel.org>,
+        Linus Walleij <linus.walleij@linaro.org>,
+        Jason Kridner <jkridner@beagleboard.org>,
+        Robert Nelson <robertcnelson@gmail.com>,
+        Trent Piepho <tpiepho@gmail.com>,
+        Christina Quast <cquast@hanoverdisplays.com>,
+        linux-omap@vger.kernel.org, linux-kernel@vger.kernel.org,
+        devicetree@vger.kernel.org, linux-gpio@vger.kernel.org
+Cc:     Drew Fustini <drew@beagleboard.org>
+Subject: [PATCH v2] pinctrl: single: fix pinctrl_spec.args_count bounds check
+Date:   Wed, 30 Sep 2020 12:48:40 -0500
+Message-Id: <20200930174839.1308344-1-drew@beagleboard.org>
+X-Mailer: git-send-email 2.25.1
 MIME-Version: 1.0
-Content-Type: text/plain; charset=iso-8859-1
-Content-Disposition: inline
 Content-Transfer-Encoding: 8bit
-In-Reply-To: <977f60f07a4cb5c59f0e5f8a9dfb3993@kernel.org>
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-Hi Marc,
+The property #pinctrl-cells can either be 1 or 2:
 
-On 2020-09-30 18:23:21 +0100, Marc Zyngier wrote:
-> Hi Niklas,
-> 
-> [+ Samuel]
-> 
-> On 2020-09-30 17:27, Niklas Söderlund wrote:
-> > Hi Marc,
-> > 
-> > I'm afraid this commit breaks booting my rk3399 device.
-> > 
-> > I bisected the problem to this patch merged as [1]. I'm testing on a
-> > Scarlet device and I'm using the unmodified upstream
-> > rk3399-gru-scarlet-inx.dtb for my tests.
-> > 
-> > The problem I'm experience is a black screen after the bootloader and
-> > the device is none responsive over the network. I have no serial console
-> > to this device so I'm afraid I can't tell you if there is anything
-> > useful on to aid debugging there.
-> > 
-> > If I try to test one commit earlier [2] the system boots as expected and
-> > everything works as it did for me in v5.8 and earlier. I have worked
-> > little with this device and have no clue about what is really on the PCI
-> > buss. But running from [2] I have this info about PCI if it's helpful,
-> > please ask if somethings missing.
-> 
-> Please see the thread at [1]. The problem was reported a few weeks back
-> by Samuel, and I was expecting Rob and Lorenzo to push a fix for this.
+- if #pinctrl-cells = <1>, then pinctrl_spec.args_count = 2
+- if #pinctrl-cells = <2>, then pinctrl_spec.args_count = 3
 
-Thanks for providing a solution.
+All other values of pinctrl_spec.args_count are incorrect.  This fix
+checks the upper bound instead of just the lower bound.
 
-> 
-> Rob, Lorenzo, any update on this?
-> 
->         M.
-> 
-> [1]
-> https://lore.kernel.org/linux-devicetree/20200829164920.7d28e01a@DUFFMAN/
-> -- 
-> Jazz is not dead. It just smells funny...
+Fixes: a13395418888 ("pinctrl: single: parse #pinctrl-cells = 2")
+Reported-by: Trent Piepho <tpiepho@gmail.com>
+Link: https://lore.kernel.org/linux-omap/3139716.CMS8C0sQ7x@zen.local/
+Signed-off-by: Drew Fustini <drew@beagleboard.org>
+---
+v2 change:
+- correct the description as I had previously been mistakenly using the
+  term #pinctrl-cells instead of pinctrl_spec.args_count
 
+ drivers/pinctrl/pinctrl-single.c | 2 +-
+ 1 file changed, 1 insertion(+), 1 deletion(-)
+
+diff --git a/drivers/pinctrl/pinctrl-single.c b/drivers/pinctrl/pinctrl-single.c
+index efe41abc5d47..5cbf0e55087c 100644
+--- a/drivers/pinctrl/pinctrl-single.c
++++ b/drivers/pinctrl/pinctrl-single.c
+@@ -1014,7 +1014,7 @@ static int pcs_parse_one_pinctrl_entry(struct pcs_device *pcs,
+ 		if (res)
+ 			return res;
+ 
+-		if (pinctrl_spec.args_count < 2) {
++		if (pinctrl_spec.args_count < 2 || pinctrl_spec.args_count > 3) {
+ 			dev_err(pcs->dev, "invalid args_count for spec: %i\n",
+ 				pinctrl_spec.args_count);
+ 			break;
 -- 
-Regards,
-Niklas Söderlund
+2.25.1
+
