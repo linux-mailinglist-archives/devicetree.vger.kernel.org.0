@@ -2,155 +2,161 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from vger.kernel.org (vger.kernel.org [23.128.96.18])
-	by mail.lfdr.de (Postfix) with ESMTP id 39ED227EC54
-	for <lists+devicetree@lfdr.de>; Wed, 30 Sep 2020 17:22:13 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTP id DA1C627EC60
+	for <lists+devicetree@lfdr.de>; Wed, 30 Sep 2020 17:23:38 +0200 (CEST)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S1730654AbgI3PWA (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Wed, 30 Sep 2020 11:22:00 -0400
-Received: from lindbergh.monkeyblade.net ([23.128.96.19]:41056 "EHLO
-        lindbergh.monkeyblade.net" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S1725823AbgI3PVu (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Wed, 30 Sep 2020 11:21:50 -0400
-Received: from mail-wr1-x443.google.com (mail-wr1-x443.google.com [IPv6:2a00:1450:4864:20::443])
-        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id A7525C061755;
-        Wed, 30 Sep 2020 08:21:50 -0700 (PDT)
-Received: by mail-wr1-x443.google.com with SMTP id j2so2261144wrx.7;
-        Wed, 30 Sep 2020 08:21:50 -0700 (PDT)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=gmail.com; s=20161025;
-        h=from:to:cc:references:in-reply-to:subject:date:message-id
-         :mime-version:content-transfer-encoding:content-language
-         :thread-index;
-        bh=vMzDpUYgQzoXePZPyW6W3AFRaKDbmE0J4/++8kixplU=;
-        b=osP4XICVpQVA9vOP/L8FrT4irUZlCITExDq6g5/Z+P/sDULNlw0KZz6MY37fyJbgNW
-         0hcJNF3/eLBaZ8+LaDOZ7d1SpjqEkMsgv+chehcx6sHyoQFlTSKbm43a97PXs7/h2ms4
-         FOfxKEwNiaEHHAmnxcB0XQ3WjYQontixk0IxjiZqrnI28gnwQCKefgI7TNOyjpOShPKB
-         iJX+ssEX2eaNu/S8iqP6cxybmdBfgHkg6wsSYvowQTiMqbdoJPpf9duMcWNcqafIY6U/
-         c639h2KUY9lIVVGSmC3lmUmrXTCq3zlo0GLpHjmUSVoiN9mZX6vrt2ULUeysBgXTyg05
-         9oiA==
+        id S1730927AbgI3PX0 (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Wed, 30 Sep 2020 11:23:26 -0400
+Received: from mail-oi1-f194.google.com ([209.85.167.194]:37871 "EHLO
+        mail-oi1-f194.google.com" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
+        with ESMTP id S1730618AbgI3PXY (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Wed, 30 Sep 2020 11:23:24 -0400
+Received: by mail-oi1-f194.google.com with SMTP id a3so2113223oib.4;
+        Wed, 30 Sep 2020 08:23:23 -0700 (PDT)
 X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
         d=1e100.net; s=20161025;
-        h=x-gm-message-state:from:to:cc:references:in-reply-to:subject:date
-         :message-id:mime-version:content-transfer-encoding:content-language
-         :thread-index;
-        bh=vMzDpUYgQzoXePZPyW6W3AFRaKDbmE0J4/++8kixplU=;
-        b=FXI/sMMWcBngU78JIninmQOOjlzKgkfz8M28AIR9TsYOGBIys85BJ3oESqwjYRvA1I
-         79yY7hi5p50wm51UbrxpygeLszP8oMzrR7VAOuUk1H3Ax6vDnmt1sw/gxsFykuBlmAXD
-         kNoAx5KAm+xFHgH0e5dTcNUSE7bvJoq99Z3AbN+RkA6plohckAa/TFFfaOJDXGydZWK4
-         jV/TTcATANwjTv2AXHRfWa0EMcBiPqIkNjiz1+VNxWPJjKQ7+v3squERrsvy/Oe24ei4
-         GB0cBr9655pSRY2+qYYE7QHN7ZUkYh4JhlNUx05QNuVQJ+zOSQ3ooGBFstYhM0EmBH1T
-         6h6w==
-X-Gm-Message-State: AOAM531gdbtdd24Y7RGj+niEOk4O7jm58+cUs3J7pOSeSEju8zdtuENb
-        ZqRI2XStgrIq2bR9X7F8ZbnUEs7kyrglzg==
-X-Google-Smtp-Source: ABdhPJxmxtyYCrxfJtA9b6XsUqwRbQ84mbFaIc2beFn0TQxLDQBlddQI5kOBf6e0lHAsm07eTehXwQ==
-X-Received: by 2002:a5d:5261:: with SMTP id l1mr3667351wrc.193.1601479309173;
-        Wed, 30 Sep 2020 08:21:49 -0700 (PDT)
-Received: from AnsuelXPS (93-39-149-95.ip76.fastwebnet.it. [93.39.149.95])
-        by smtp.gmail.com with ESMTPSA id u12sm3584498wrt.81.2020.09.30.08.21.47
-        (version=TLS1_2 cipher=ECDHE-ECDSA-AES128-GCM-SHA256 bits=128/128);
-        Wed, 30 Sep 2020 08:21:48 -0700 (PDT)
-From:   <ansuelsmth@gmail.com>
-To:     "'Sudeep Holla'" <sudeep.holla@arm.com>
-Cc:     "'Rob Herring'" <robh+dt@kernel.org>,
-        "'Andy Gross'" <agross@kernel.org>,
-        "'Bjorn Andersson'" <bjorn.andersson@linaro.org>,
-        "'MyungJoo Ham'" <myungjoo.ham@samsung.com>,
-        "'Kyungmin Park'" <kyungmin.park@samsung.com>,
-        "'Chanwoo Choi'" <cw00.choi@samsung.com>,
-        <linux-arm-msm@vger.kernel.org>, <devicetree@vger.kernel.org>,
-        <linux-kernel@vger.kernel.org>, <linux-pm@vger.kernel.org>
-References: <20200929162926.139-1-ansuelsmth@gmail.com> <20200930092954.GA7125@bogus> <006c01d69720$abd3f230$037bd690$@gmail.com> <20200930135733.GA7609@bogus>
-In-Reply-To: <20200930135733.GA7609@bogus>
-Subject: RE: [PATCH v2 1/2] devfreq: qcom: Add L2 Krait Cache devfreq scaling driver
-Date:   Wed, 30 Sep 2020 17:21:46 +0200
-Message-ID: <001601d6973d$69fe96e0$3dfbc4a0$@gmail.com>
+        h=x-gm-message-state:date:from:to:cc:subject:message-id:references
+         :mime-version:content-disposition:in-reply-to;
+        bh=ykcgim5K3yxkyGZO+LFirZIQ94KQkHoRY4NcDJYbP5U=;
+        b=olJzKY0JMFi50cUdEbwwSRmX8AIBP1pVlvkPHUY7wKEpnTrXcS3LgAy3K4uWI4RJ8C
+         gmSgEzsHufBG9scEfTCbdgLvqo1UhDmKkzl6VhL9PqHDqCxS7iLk6fwA1+PXHq5VCYx0
+         gJiELGlnJgBWETQVt+0cOYPnWhueLHa0YWbXUIM6fOnAa7xjQb1p+p5rgzhKcXWkgyZk
+         iHEyV+Nfw0MKmka3ke0DkRLNFrZ4xeokb5oOf5j3SUuxQbpLKhJLtvCxxRmjxhCPiv/e
+         HzWR2xeokNuHgEtVIqhyWnoqUPcgd6WWz5uaBmFu55ws03tv4FtjwmdpYyypCiOAQGS1
+         j+1g==
+X-Gm-Message-State: AOAM532YaYeflD9ZIQGR5+S32/CqVn+CIx30uPIGAeVcF6OZcSCCvtTr
+        KLIlm+4XgXnLbTn9sp4Emg==
+X-Google-Smtp-Source: ABdhPJx2Kh0SA0nXsYZrDsVri141YxNAgtmSKCCv7TmY1YpebIiRUUbf9RMEVbQCUe8Maqd2sU6OnQ==
+X-Received: by 2002:aca:bd8a:: with SMTP id n132mr1671249oif.100.1601479403526;
+        Wed, 30 Sep 2020 08:23:23 -0700 (PDT)
+Received: from xps15 (24-155-109-49.dyn.grandenetworks.net. [24.155.109.49])
+        by smtp.gmail.com with ESMTPSA id s124sm382882oig.6.2020.09.30.08.23.22
+        (version=TLS1_3 cipher=TLS_AES_256_GCM_SHA384 bits=256/256);
+        Wed, 30 Sep 2020 08:23:22 -0700 (PDT)
+Received: (nullmailer pid 2896316 invoked by uid 1000);
+        Wed, 30 Sep 2020 15:23:17 -0000
+Date:   Wed, 30 Sep 2020 10:23:17 -0500
+From:   Rob Herring <robh@kernel.org>
+To:     Chuanjia Liu <chuanjia.liu@mediatek.com>
+Cc:     Bjorn Helgaas <bhelgaas@google.com>,
+        Lorenzo Pieralisi <lorenzo.pieralisi@arm.com>,
+        Matthias Brugger <matthias.bgg@gmail.com>,
+        linux-pci@vger.kernel.org, linux-mediatek@lists.infradead.org,
+        devicetree@vger.kernel.org, linux-arm-kernel@lists.infradead.org,
+        yong.wu@mediatek.com, Frank Wunderlich <frank-w@public-files.de>,
+        Ryder Lee <ryder.lee@mediatek.com>
+Subject: Re: [PATCH v6 2/4] PCI: mediatek: Add new method to get shared
+ pcie-cfg base and irq
+Message-ID: <20200930152317.GA2891120@bogus>
+References: <20200914112659.7091-1-chuanjia.liu@mediatek.com>
+ <20200914112659.7091-3-chuanjia.liu@mediatek.com>
 MIME-Version: 1.0
-Content-Type: text/plain;
-        charset="us-ascii"
-Content-Transfer-Encoding: 7bit
-X-Mailer: Microsoft Outlook 16.0
-Content-Language: it
-Thread-Index: AQHRHCX89vsNM0cZY8BINv1SaJtjIwLCr4YDAd5WpiECF5AAyKlWexsw
+Content-Type: text/plain; charset=us-ascii
+Content-Disposition: inline
+In-Reply-To: <20200914112659.7091-3-chuanjia.liu@mediatek.com>
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-> On Wed, Sep 30, 2020 at 01:56:01PM +0200, ansuelsmth@gmail.com
-> wrote:
-> > > Subject: Re: [PATCH v2 1/2] devfreq: qcom: Add L2 Krait Cache devfreq
-> > > scaling driver
-> > >
-> > > On Tue, Sep 29, 2020 at 06:29:24PM +0200, Ansuel Smith wrote:
-> > > > Qcom L2 Krait CPUs use the generic cpufreq-dt driver and doesn't
-> > actually
-> > > > scale the Cache frequency when the CPU frequency is changed. This
-> > > > devfreq driver register with the cpu notifier and scale the Cache
-> > > > based on the max Freq across all core as the CPU cache is shared
-> across
-> > > > all of them. If provided this also scale the voltage of the
-regulator
-> > > > attached to the CPU cache. The scaling logic is based on the CPU
-freq
-> > > > and the 3 scaling interval are set by the device dts.
-> > > >
-> > >
-> > > I have raised this concern before. I am worried this kind of
-independent
-> > > CPU and cache frequency controls make way for clkscrew kind of
-> attacks.
-> > > Why can't the clocks be made parent/child or secondary and
-> automatically
-> > > updated when CPU clocks are changed.
-> > >
-> >
-> > I don't think I understand this fully. Anyway about the clkscrew attack,
-> the
-> > range are set on the dts so unless someone actually wants to have a
-> > vulnerable system, the range can't be changes at runtime. The devfreq
-> > governor is set to immutable and can't be changes AFAIK.
-> >
+On Mon, Sep 14, 2020 at 07:26:57PM +0800, Chuanjia Liu wrote:
+> Add new method to get shared pcie-cfg base and pcie irq for
+> new dts format.
 > 
-> I don't think that matters, we are talking about Secure/Non-secure
-> boundary
-> here. DT can be modified or simple a rogue devfreq module can do all the
-> bad things.
+> Signed-off-by: Chuanjia Liu <chuanjia.liu@mediatek.com>
+> Acked-by: Ryder Lee <ryder.lee@mediatek.com>
+> ---
+>  drivers/pci/controller/pcie-mediatek.c | 23 ++++++++++++++++++++++-
+>  1 file changed, 22 insertions(+), 1 deletion(-)
 > 
+> diff --git a/drivers/pci/controller/pcie-mediatek.c b/drivers/pci/controller/pcie-mediatek.c
+> index cf4c18f0c25a..5b915eb0cf1e 100644
+> --- a/drivers/pci/controller/pcie-mediatek.c
+> +++ b/drivers/pci/controller/pcie-mediatek.c
+> @@ -14,6 +14,7 @@
+>  #include <linux/irqchip/chained_irq.h>
+>  #include <linux/irqdomain.h>
+>  #include <linux/kernel.h>
+> +#include <linux/mfd/syscon.h>
+>  #include <linux/msi.h>
+>  #include <linux/module.h>
+>  #include <linux/of_address.h>
+> @@ -23,6 +24,7 @@
+>  #include <linux/phy/phy.h>
+>  #include <linux/platform_device.h>
+>  #include <linux/pm_runtime.h>
+> +#include <linux/regmap.h>
+>  #include <linux/reset.h>
+>  
+>  #include "../pci.h"
+> @@ -205,6 +207,7 @@ struct mtk_pcie_port {
+>   * struct mtk_pcie - PCIe host information
+>   * @dev: pointer to PCIe device
+>   * @base: IO mapped register base
+> + * @cfg: IO mapped register map for PCIe config
+>   * @free_ck: free-run reference clock
+>   * @mem: non-prefetchable memory resource
+>   * @ports: pointer to PCIe port information
+> @@ -213,6 +216,7 @@ struct mtk_pcie_port {
+>  struct mtk_pcie {
+>  	struct device *dev;
+>  	void __iomem *base;
+> +	struct regmap *cfg;
+>  	struct clk *free_ck;
+>  
+>  	struct list_head ports;
+> @@ -648,7 +652,11 @@ static int mtk_pcie_setup_irq(struct mtk_pcie_port *port,
+>  		return err;
+>  	}
+>  
+> -	port->irq = platform_get_irq(pdev, port->slot);
+> +	if (of_find_property(dev->of_node, "interrupt-names", NULL))
+> +		port->irq = platform_get_irq_byname(pdev, "pcie_irq");
 
-Well it's what is happening right now (cpu at max + l2 at low) and from my
-test
-the system is just slowed down. But you are right about the security
-concerns.
+Not really any point in having a name with a single interrupt.
 
-> > About 'automatically updated when CPU changes', the cache is shared
-> across 2
-> > core and they scale independently. We can be in situation where one cpu
-> is
-> > at max and one at idle freq and the cache is set to idle. To fix this at
-> > every change the clk should find the max value and I think this would
-> make
-> > all the clk scaling very slow.
-> 
-> This sounds like we are going back to coupled idle states kind of setup.
-> Sorry we don't want those anymore.
-> 
-> > If you have any suggestion on how I can implement this better, I'm
-> > more than happy to address them. For now, the lack of this kind of cache
-> > scale, make the system really slow since by default the init of the cpu
-and
-> > cache clks put them at the lowest frequency and nobody changes that.
-> > (we have cpufreq scaling support but the cache is never actually scaled)
-> 
-> As I mentioned, if this needs to be done in OSPM, then hide it in the
-clock
-> building right dependencies. Clk will even have refcount so that one idle
-> CPU won't bring the cache down to idle frequency.
-> 
+> +	else
+> +		port->irq = platform_get_irq(pdev, port->slot);
 
-What I really can't understand is how I can describe the CPU freq interval.
-Since I can't use dts should I hardcode them? (cpu have more opp than the 
-l2 cache, they are not mapped 1:1)
+With the new binding, slot is always 0, right? Then you don't need any 
+change here.
 
-> --
-> Regards,
-> Sudeep
-
+> +
+>  	if (port->irq < 0)
+>  		return port->irq;
+>  
+> @@ -680,6 +688,10 @@ static int mtk_pcie_startup_port_v2(struct mtk_pcie_port *port)
+>  		val |= PCIE_CSR_LTSSM_EN(port->slot) |
+>  		       PCIE_CSR_ASPM_L1_EN(port->slot);
+>  		writel(val, pcie->base + PCIE_SYS_CFG_V2);
+> +	} else if (pcie->cfg) {
+> +		val = PCIE_CSR_LTSSM_EN(port->slot) |
+> +		      PCIE_CSR_ASPM_L1_EN(port->slot);
+> +		regmap_update_bits(pcie->cfg, PCIE_SYS_CFG_V2, val, val);
+>  	}
+>  
+>  	/* Assert all reset signals */
+> @@ -983,6 +995,7 @@ static int mtk_pcie_subsys_powerup(struct mtk_pcie *pcie)
+>  	struct device *dev = pcie->dev;
+>  	struct platform_device *pdev = to_platform_device(dev);
+>  	struct resource *regs;
+> +	struct device_node *cfg_node;
+>  	int err;
+>  
+>  	/* get shared registers, which are optional */
+> @@ -995,6 +1008,14 @@ static int mtk_pcie_subsys_powerup(struct mtk_pcie *pcie)
+>  		}
+>  	}
+>  
+> +	cfg_node = of_find_compatible_node(NULL, NULL,
+> +					   "mediatek,generic-pciecfg");
+> +	if (cfg_node) {
+> +		pcie->cfg = syscon_node_to_regmap(cfg_node);
+> +		if (IS_ERR(pcie->cfg))
+> +			return PTR_ERR(pcie->cfg);
+> +	}
+> +
+>  	pcie->free_ck = devm_clk_get(dev, "free_ck");
+>  	if (IS_ERR(pcie->free_ck)) {
+>  		if (PTR_ERR(pcie->free_ck) == -EPROBE_DEFER)
+> -- 
+> 2.18.0
