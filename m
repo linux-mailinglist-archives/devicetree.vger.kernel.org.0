@@ -2,163 +2,99 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from vger.kernel.org (vger.kernel.org [23.128.96.18])
-	by mail.lfdr.de (Postfix) with ESMTP id 2E21227DED0
-	for <lists+devicetree@lfdr.de>; Wed, 30 Sep 2020 05:19:06 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTP id B207127DF0E
+	for <lists+devicetree@lfdr.de>; Wed, 30 Sep 2020 05:37:32 +0200 (CEST)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S1730044AbgI3DTF (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Tue, 29 Sep 2020 23:19:05 -0400
-Received: from szxga05-in.huawei.com ([45.249.212.191]:14740 "EHLO huawei.com"
-        rhost-flags-OK-OK-OK-FAIL) by vger.kernel.org with ESMTP
-        id S1729973AbgI3DSt (ORCPT <rfc822;devicetree@vger.kernel.org>);
-        Tue, 29 Sep 2020 23:18:49 -0400
-Received: from DGGEMS410-HUB.china.huawei.com (unknown [172.30.72.58])
-        by Forcepoint Email with ESMTP id B36B3205B953FF83444C;
-        Wed, 30 Sep 2020 11:18:47 +0800 (CST)
-Received: from thunder-town.china.huawei.com (10.174.177.253) by
- DGGEMS410-HUB.china.huawei.com (10.3.19.210) with Microsoft SMTP Server id
- 14.3.487.0; Wed, 30 Sep 2020 11:18:38 +0800
-From:   Zhen Lei <thunder.leizhen@huawei.com>
-To:     Wei Xu <xuwei5@hisilicon.com>, Rob Herring <robh+dt@kernel.org>,
-        "Jonathan Cameron" <Jonathan.Cameron@Huawei.com>,
-        devicetree <devicetree@vger.kernel.org>,
-        linux-arm-kernel <linux-arm-kernel@lists.infradead.org>,
-        linux-kernel <linux-kernel@vger.kernel.org>
-CC:     Zhen Lei <thunder.leizhen@huawei.com>,
-        Libin <huawei.libin@huawei.com>,
-        Kefeng Wang <wangkefeng.wang@huawei.com>
-Subject: [PATCH v6 17/17] dt-bindings: arm: hisilicon: convert LPC controller bindings to json-schema
-Date:   Wed, 30 Sep 2020 11:17:12 +0800
-Message-ID: <20200930031712.2365-18-thunder.leizhen@huawei.com>
-X-Mailer: git-send-email 2.26.0.windows.1
-In-Reply-To: <20200930031712.2365-1-thunder.leizhen@huawei.com>
-References: <20200930031712.2365-1-thunder.leizhen@huawei.com>
+        id S1728068AbgI3Dha (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Tue, 29 Sep 2020 23:37:30 -0400
+Received: from userp2120.oracle.com ([156.151.31.85]:43304 "EHLO
+        userp2120.oracle.com" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
+        with ESMTP id S1725320AbgI3Dh3 (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Tue, 29 Sep 2020 23:37:29 -0400
+Received: from pps.filterd (userp2120.oracle.com [127.0.0.1])
+        by userp2120.oracle.com (8.16.0.42/8.16.0.42) with SMTP id 08U3PW2U124710;
+        Wed, 30 Sep 2020 03:37:04 GMT
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=oracle.com; h=from : to : cc :
+ subject : date : message-id : in-reply-to : references : mime-version :
+ content-transfer-encoding; s=corp-2020-01-29;
+ bh=JIO2OhkkQj/te/56QEIG6eLxxBrz3gNMbTJM/EjNIE0=;
+ b=TH29ePoP1RKgZ3g+wmY/4SK2ohmC8Hz1XBIWFYRGKQuGHmpzPziOjeYclheu6t4jQSnU
+ MNGLyoww1N+9+2YXG5hG7kOn4d4fy1d3vQzkKyHKsfnAMtP/LigYsaQU9OHxTwv2c++k
+ 7siM1tVHfqBf3mn4b53EpRaP3sIJ9sPToZTOBOc9z2epmmno5TSznsH7pUR3OzaFHac4
+ CDTBgV+q3uGvAwgTq16Y3aGQctuHyFw1odp5IL806vFY4iOXNdJMrPMP02KIwPlHMRJ0
+ I0fW9u069WH/PsKoUOA+gWX+fPfifHzMYVNN0KyKVzyuzANibJ3iXeL515zGfr+oheEh EQ== 
+Received: from aserp3020.oracle.com (aserp3020.oracle.com [141.146.126.70])
+        by userp2120.oracle.com with ESMTP id 33sx9n67e9-1
+        (version=TLSv1.2 cipher=ECDHE-RSA-AES256-GCM-SHA384 bits=256 verify=FAIL);
+        Wed, 30 Sep 2020 03:37:04 +0000
+Received: from pps.filterd (aserp3020.oracle.com [127.0.0.1])
+        by aserp3020.oracle.com (8.16.0.42/8.16.0.42) with SMTP id 08U3QVFX064910;
+        Wed, 30 Sep 2020 03:35:03 GMT
+Received: from userv0121.oracle.com (userv0121.oracle.com [156.151.31.72])
+        by aserp3020.oracle.com with ESMTP id 33tfhygkyv-1
+        (version=TLSv1.2 cipher=ECDHE-RSA-AES256-GCM-SHA384 bits=256 verify=OK);
+        Wed, 30 Sep 2020 03:35:03 +0000
+Received: from abhmp0010.oracle.com (abhmp0010.oracle.com [141.146.116.16])
+        by userv0121.oracle.com (8.14.4/8.13.8) with ESMTP id 08U3Yxha015339;
+        Wed, 30 Sep 2020 03:35:00 GMT
+Received: from ca-mkp.ca.oracle.com (/10.156.108.201)
+        by default (Oracle Beehive Gateway v4.0)
+        with ESMTP ; Tue, 29 Sep 2020 20:34:59 -0700
+From:   "Martin K. Petersen" <martin.petersen@oracle.com>
+To:     avri.altman@wdc.com, chunfeng.yun@mediatek.com, kishon@ti.com,
+        pedrom.sousa@synopsys.com, robh+dt@kernel.org,
+        Stanley Chu <stanley.chu@mediatek.com>, robh@kernel.org,
+        yingjoe.chen@mediatek.com, mark.rutland@arm.com,
+        linux-scsi@vger.kernel.org, devicetree@vger.kernel.org,
+        alim.akhtar@samsung.com
+Cc:     "Martin K . Petersen" <martin.petersen@oracle.com>,
+        jiajie.hao@mediatek.com, arvin.wang@mediatek.com,
+        peter.wang@mediatek.com, chaotian.jing@mediatek.com,
+        matthias.bgg@gmail.com, linux-mediatek@lists.infradead.org,
+        henryc.chen@mediatek.com, kuohong.wang@mediatek.com,
+        liwei213@huawei.com, vivek.gautam@codeaurora.org,
+        chun-hung.wu@mediatek.com, andy.teng@mediatek.com,
+        cc.chou@mediatek.com
+Subject: Re: [PATCH v3 0/2] scsi: ufs-mediatek: Support performance mode for inline encryption engine
+Date:   Tue, 29 Sep 2020 23:34:51 -0400
+Message-Id: <160143685414.27701.1344452138838007621.b4-ty@oracle.com>
+X-Mailer: git-send-email 2.28.0
+In-Reply-To: <20200914050052.3974-1-stanley.chu@mediatek.com>
+References: <20200914050052.3974-1-stanley.chu@mediatek.com>
 MIME-Version: 1.0
-Content-Transfer-Encoding: 7BIT
-Content-Type:   text/plain; charset=US-ASCII
-X-Originating-IP: [10.174.177.253]
-X-CFilter-Loop: Reflected
+Content-Transfer-Encoding: 8bit
+X-Proofpoint-Virus-Version: vendor=nai engine=6000 definitions=9759 signatures=668680
+X-Proofpoint-Spam-Details: rule=notspam policy=default score=0 spamscore=0 mlxlogscore=999 bulkscore=0
+ phishscore=0 malwarescore=0 adultscore=0 suspectscore=0 mlxscore=0
+ classifier=spam adjust=0 reason=mlx scancount=1 engine=8.12.0-2006250000
+ definitions=main-2009300023
+X-Proofpoint-Virus-Version: vendor=nai engine=6000 definitions=9759 signatures=668680
+X-Proofpoint-Spam-Details: rule=notspam policy=default score=0 mlxlogscore=999 suspectscore=0
+ phishscore=0 mlxscore=0 lowpriorityscore=0 adultscore=0 clxscore=1015
+ spamscore=0 impostorscore=0 malwarescore=0 bulkscore=0 priorityscore=1501
+ classifier=spam adjust=0 reason=mlx scancount=1 engine=8.12.0-2006250000
+ definitions=main-2009300023
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-Convert the Hisilicon Hip06 SoCs implement a Low Pin Count (LPC)
-controller binding to DT schema format using json-schema.
+On Mon, 14 Sep 2020 13:00:50 +0800, Stanley Chu wrote:
 
-Signed-off-by: Zhen Lei <thunder.leizhen@huawei.com>
----
- .../arm/hisilicon/hisilicon-low-pin-count.txt      | 33 ------------
- .../bindings/arm/hisilicon/low-pin-count.yaml      | 61 ++++++++++++++++++++++
- 2 files changed, 61 insertions(+), 33 deletions(-)
- delete mode 100644 Documentation/devicetree/bindings/arm/hisilicon/hisilicon-low-pin-count.txt
- create mode 100644 Documentation/devicetree/bindings/arm/hisilicon/low-pin-count.yaml
+> This series adds high-performance mode support for MediaTek UFS inline encryption engine.
+> This feature is only required in specific platforms, i.e., MT8192 series.
+> 
+> Please help consider this patch set in kernel v5.10.
+> 
+> Thanks.
+> 
+> [...]
 
-diff --git a/Documentation/devicetree/bindings/arm/hisilicon/hisilicon-low-pin-count.txt b/Documentation/devicetree/bindings/arm/hisilicon/hisilicon-low-pin-count.txt
-deleted file mode 100644
-index 10bd35f9207f2ee..000000000000000
---- a/Documentation/devicetree/bindings/arm/hisilicon/hisilicon-low-pin-count.txt
-+++ /dev/null
-@@ -1,33 +0,0 @@
--Hisilicon Hip06 Low Pin Count device
--  Hisilicon Hip06 SoCs implement a Low Pin Count (LPC) controller, which
--  provides I/O access to some legacy ISA devices.
--  Hip06 is based on arm64 architecture where there is no I/O space. So, the
--  I/O ports here are not CPU addresses, and there is no 'ranges' property in
--  LPC device node.
--
--Required properties:
--- compatible:  value should be as follows:
--	(a) "hisilicon,hip06-lpc"
--	(b) "hisilicon,hip07-lpc"
--- #address-cells: must be 2 which stick to the ISA/EISA binding doc.
--- #size-cells: must be 1 which stick to the ISA/EISA binding doc.
--- reg: base memory range where the LPC register set is mapped.
--
--Note:
--  The node name before '@' must be "isa" to represent the binding stick to the
--  ISA/EISA binding specification.
--
--Example:
--
--isa@a01b0000 {
--	compatible = "hisilicon,hip06-lpc";
--	#address-cells = <2>;
--	#size-cells = <1>;
--	reg = <0x0 0xa01b0000 0x0 0x1000>;
--
--	ipmi0: bt@e4 {
--		compatible = "ipmi-bt";
--		device_type = "ipmi";
--		reg = <0x01 0xe4 0x04>;
--	};
--};
-diff --git a/Documentation/devicetree/bindings/arm/hisilicon/low-pin-count.yaml b/Documentation/devicetree/bindings/arm/hisilicon/low-pin-count.yaml
-new file mode 100644
-index 000000000000000..3b36e683bb1511d
---- /dev/null
-+++ b/Documentation/devicetree/bindings/arm/hisilicon/low-pin-count.yaml
-@@ -0,0 +1,61 @@
-+# SPDX-License-Identifier: (GPL-2.0-only OR BSD-2-Clause)
-+%YAML 1.2
-+---
-+$id: http://devicetree.org/schemas/arm/hisilicon/low-pin-count.yaml#
-+$schema: http://devicetree.org/meta-schemas/core.yaml#
-+
-+title: Hisilicon HiP06 Low Pin Count device
-+
-+maintainers:
-+  - Wei Xu <xuwei5@hisilicon.com>
-+
-+description: |
-+  Hisilicon HiP06 SoCs implement a Low Pin Count (LPC) controller, which
-+  provides I/O access to some legacy ISA devices.
-+  HiP06 is based on arm64 architecture where there is no I/O space. So, the
-+  I/O ports here are not CPU addresses, and there is no 'ranges' property in
-+  LPC device node.
-+
-+properties:
-+  $nodename:
-+    pattern: '^isa@[0-9a-f]+$'
-+    description: |
-+      The node name before '@' must be "isa" to represent the binding stick
-+      to the ISA/EISA binding specification.
-+
-+  compatible:
-+    enum:
-+      - hisilicon,hip06-lpc
-+      - hisilicon,hip07-lpc
-+
-+  reg:
-+    maxItems: 1
-+
-+  '#address-cells':
-+    const: 2
-+
-+  '#size-cells':
-+    const: 1
-+
-+required:
-+  - compatible
-+  - reg
-+
-+additionalProperties:
-+  type: object
-+
-+examples:
-+  - |
-+    isa@a01b0000 {
-+        compatible = "hisilicon,hip06-lpc";
-+        #address-cells = <2>;
-+        #size-cells = <1>;
-+        reg = <0xa01b0000 0x1000>;
-+
-+        ipmi0: bt@e4 {
-+            compatible = "ipmi-bt";
-+            device_type = "ipmi";
-+            reg = <0x01 0xe4 0x04>;
-+        };
-+    };
-+...
+Applied to 5.10/scsi-queue, thanks!
+
+[1/2] scsi: ufs-mediatek: Support performance mode for inline encryption engine
+      https://git.kernel.org/mkp/scsi/c/590b0d2372fe
+[2/2] scsi: ufs-mediatek: dt-bindings: Add mt8192-ufshci compatible string
+      https://git.kernel.org/mkp/scsi/c/c1a3bf99d76e
+
 -- 
-1.8.3
-
-
+Martin K. Petersen	Oracle Linux Engineering
