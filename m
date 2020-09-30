@@ -2,77 +2,163 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from vger.kernel.org (vger.kernel.org [23.128.96.18])
-	by mail.lfdr.de (Postfix) with ESMTP id 44F8327E5A7
-	for <lists+devicetree@lfdr.de>; Wed, 30 Sep 2020 11:51:15 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTP id 9A42827E5E1
+	for <lists+devicetree@lfdr.de>; Wed, 30 Sep 2020 12:01:00 +0200 (CEST)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S1729018AbgI3JvO (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Wed, 30 Sep 2020 05:51:14 -0400
-Received: from lindbergh.monkeyblade.net ([23.128.96.19]:46650 "EHLO
-        lindbergh.monkeyblade.net" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S1728951AbgI3JvO (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Wed, 30 Sep 2020 05:51:14 -0400
-Received: from mail-lf1-x143.google.com (mail-lf1-x143.google.com [IPv6:2a00:1450:4864:20::143])
-        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id B8A00C0613D1
-        for <devicetree@vger.kernel.org>; Wed, 30 Sep 2020 02:51:13 -0700 (PDT)
-Received: by mail-lf1-x143.google.com with SMTP id x69so1375155lff.3
-        for <devicetree@vger.kernel.org>; Wed, 30 Sep 2020 02:51:13 -0700 (PDT)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=linaro.org; s=google;
-        h=mime-version:references:in-reply-to:from:date:message-id:subject:to
-         :cc;
-        bh=wO+8kMzgsuDmMLo7G30wB5sG1xa3BEBZziOy+MymYXk=;
-        b=tUtX71vy9tkoqQ62geyvq12wiO77un7b6TRqnG+ENxpQHgnumjwFS1bqF0b8mGULdD
-         qInUR3CpLEeBM4dgrl/3ul/9IlRnkO4q9zFRlQNDNSLCVpLi0lZkCrRyGfzHjA5Jv1VW
-         jx7ntT36DDdF28gnuPM2gKhPec0JeXdYV8LbDPwv63C+KjoiNrYc/ViOpSQ5XWuxbiRn
-         fHeUb0O9TRsm1Ep6K22wzYmpL3ef0WwA2c3A4VsC42k5P52eW1h9nyiwPuae58mZyjax
-         /6Km/DXxFYce3s8evh3zagKef08Z7LG9pAzqKPk5O49thHu645PLmf2mEVq+uRdARX3W
-         dkKA==
-X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=1e100.net; s=20161025;
-        h=x-gm-message-state:mime-version:references:in-reply-to:from:date
-         :message-id:subject:to:cc;
-        bh=wO+8kMzgsuDmMLo7G30wB5sG1xa3BEBZziOy+MymYXk=;
-        b=dRD3ileKH959B1WjG/uppWQTSAFTjMNX0Y2zJr2ix3tKQBiaZtZk5l5kXneg8g+j+b
-         TPwdutZWJYAib4/K9UfThZiO/+Y3XqNCjR4P1wAilxCVMDfMNx0wXzBC23wKf5ya8cHu
-         GMOVB+n6WILFX6/VjlZsO7RRsmWTUPmYoF0/CO2yZu/0FkilBhWVyubgJvCQE4sV8/ti
-         ph1FP8vwxp/5K39zRAnNtpGpoD8c0FcO6/lpzY8FLwScn40UljPPiAHfnFGrS2cvrnWE
-         1j8/A/W4TqAu9Q95vOv0P2PLMzoK+B9K6z9IpZIVe3KcA66VOppkXRAIwCtwfwNQw8IN
-         Idew==
-X-Gm-Message-State: AOAM531VhxhWCaZ6wcjK2u8lvkiDjesb+lFQmDqU00TFeQQsmFtZmRVe
-        1TN79kJHc7oUqqu0r8Hdnd4zrmKFHIBn5zdgv3EtMA==
-X-Google-Smtp-Source: ABdhPJwVN/b8vttgt3uOMaBEvUr+oplFF2B0xPQJVcc+yGWSBU4xGd0qF/xKmXqUhsenbuPNWV0rGcf2C9xSeYz4Yoo=
-X-Received: by 2002:a19:6c2:: with SMTP id 185mr545793lfg.441.1601459471538;
- Wed, 30 Sep 2020 02:51:11 -0700 (PDT)
+        id S1727426AbgI3KBA (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Wed, 30 Sep 2020 06:01:00 -0400
+Received: from relay12.mail.gandi.net ([217.70.178.232]:49073 "EHLO
+        relay12.mail.gandi.net" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
+        with ESMTP id S1725776AbgI3KA7 (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Wed, 30 Sep 2020 06:00:59 -0400
+Received: from localhost (lfbn-lyo-1-1908-165.w90-65.abo.wanadoo.fr [90.65.88.165])
+        (Authenticated sender: alexandre.belloni@bootlin.com)
+        by relay12.mail.gandi.net (Postfix) with ESMTPSA id 09FF3200011;
+        Wed, 30 Sep 2020 10:00:55 +0000 (UTC)
+Date:   Wed, 30 Sep 2020 12:00:55 +0200
+From:   Alexandre Belloni <alexandre.belloni@bootlin.com>
+To:     Rob Herring <robh@kernel.org>
+Cc:     Thierry Reding <thierry.reding@gmail.com>,
+        Uwe =?iso-8859-1?Q?Kleine-K=F6nig?= 
+        <u.kleine-koenig@pengutronix.de>,
+        Nicolas Ferre <nicolas.ferre@microchip.com>,
+        linux-pwm@vger.kernel.org, devicetree@vger.kernel.org,
+        linux-arm-kernel@lists.infradead.org, linux-kernel@vger.kernel.org
+Subject: Re: [PATCH 1/4] dt-bindings: microchip: atmel,at91rm9200-tcb: add
+ atmel,tcb-pwm
+Message-ID: <20200930100055.GF2804081@piout.net>
+References: <20200820225546.2246517-1-alexandre.belloni@bootlin.com>
+ <20200820225546.2246517-2-alexandre.belloni@bootlin.com>
+ <20200908204834.GA886652@bogus>
 MIME-Version: 1.0
-References: <20200930092053.2114-1-mike.looijmans@topic.nl> <20200930092053.2114-2-mike.looijmans@topic.nl>
-In-Reply-To: <20200930092053.2114-2-mike.looijmans@topic.nl>
-From:   Linus Walleij <linus.walleij@linaro.org>
-Date:   Wed, 30 Sep 2020 11:51:00 +0200
-Message-ID: <CACRpkdbfqGsvHX_O21oLaCWim=A-OpBV-NzvSvbt5SfjxXN+oQ@mail.gmail.com>
-Subject: Re: [PATCH v2 2/2] gpio: pca953x: Add support for the NXP PCAL9554B/C
-To:     Mike Looijmans <mike.looijmans@topic.nl>
-Cc:     Bartosz Golaszewski <bgolaszewski@baylibre.com>,
-        "open list:GPIO SUBSYSTEM" <linux-gpio@vger.kernel.org>,
-        Rob Herring <robh+dt@kernel.org>,
-        "open list:OPEN FIRMWARE AND FLATTENED DEVICE TREE BINDINGS" 
-        <devicetree@vger.kernel.org>,
-        "linux-kernel@vger.kernel.org" <linux-kernel@vger.kernel.org>
-Content-Type: text/plain; charset="UTF-8"
+Content-Type: text/plain; charset=us-ascii
+Content-Disposition: inline
+In-Reply-To: <20200908204834.GA886652@bogus>
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-On Wed, Sep 30, 2020 at 11:21 AM Mike Looijmans <mike.looijmans@topic.nl> wrote:
+On 08/09/2020 14:48:34-0600, Rob Herring wrote:
+> On Fri, Aug 21, 2020 at 12:55:43AM +0200, Alexandre Belloni wrote:
+> > Move the TCB pwm nodes under their parent and move its documentation to the
+> > main file.
+> > 
+> > Signed-off-by: Alexandre Belloni <alexandre.belloni@bootlin.com>
+> > ---
+> > Cc: Rob Herring <robh+dt@kernel.org>
+> > 
+> >  .../devicetree/bindings/pwm/atmel-tcb-pwm.txt | 16 ----------
+> >  .../soc/microchip/atmel,at91rm9200-tcb.yaml   | 31 ++++++++++++++++++-
+> >  2 files changed, 30 insertions(+), 17 deletions(-)
+> >  delete mode 100644 Documentation/devicetree/bindings/pwm/atmel-tcb-pwm.txt
+> > 
+> > diff --git a/Documentation/devicetree/bindings/pwm/atmel-tcb-pwm.txt b/Documentation/devicetree/bindings/pwm/atmel-tcb-pwm.txt
+> > deleted file mode 100644
+> > index 985fcc65f8c4..000000000000
+> > --- a/Documentation/devicetree/bindings/pwm/atmel-tcb-pwm.txt
+> > +++ /dev/null
+> > @@ -1,16 +0,0 @@
+> > -Atmel TCB PWM controller
+> > -
+> > -Required properties:
+> > -- compatible: should be "atmel,tcb-pwm"
+> > -- #pwm-cells: should be 3. See pwm.yaml in this directory for a description of
+> > -  the cells format. The only third cell flag supported by this binding is
+> > -  PWM_POLARITY_INVERTED.
+> > -- tc-block: The Timer Counter block to use as a PWM chip.
+> 
+> What happened to 'tc-block'? Commit message should mention why it is 
+> gone.
+> 
+> > -
+> > -Example:
+> > -
+> > -pwm {
+> > -	compatible = "atmel,tcb-pwm";
+> > -	#pwm-cells = <3>;
+> > -	tc-block = <1>;
+> > -};
+> > diff --git a/Documentation/devicetree/bindings/soc/microchip/atmel,at91rm9200-tcb.yaml b/Documentation/devicetree/bindings/soc/microchip/atmel,at91rm9200-tcb.yaml
+> > index 55fffae05dcf..a51adfdb58f6 100644
+> > --- a/Documentation/devicetree/bindings/soc/microchip/atmel,at91rm9200-tcb.yaml
+> > +++ b/Documentation/devicetree/bindings/soc/microchip/atmel,at91rm9200-tcb.yaml
+> > @@ -59,6 +59,7 @@ patternProperties:
+> >          items:
+> >            - enum:
+> >                - atmel,tcb-timer
+> > +              - atmel,tcb-pwm
+> >                - microchip,tcb-capture
+> >        reg:
+> >          description:
+> > @@ -68,11 +69,33 @@ patternProperties:
+> >  
+> >          minItems: 1
+> >          maxItems: 3
+> > +    required:
+> > +      - compatible
+> > +      - reg
+> > +
+> > +  "^pwm@[0-2]$":
+> > +    description: The timer block channels that are used as PWMs.
+> > +    $ref: ../../pwm/pwm.yaml#
+> > +    type: object
+> > +    properties:
+> > +      compatible:
+> > +        const: atmel,tcb-pwm
+> > +      reg:
+> > +        description:
+> > +          TCB channel to use for this PWM.
+> 
+> enum: [ 0, 1, 2 ]
+> 
 
-> The NXP PCAL9554B is a variant of the PCA953x GPIO expander,
-> with 8 GPIOs, latched interrupts and some advanced configuration
-> options. The "C" version only differs in I2C address.
->
-> Signed-off-by: Mike Looijmans <mike.looijmans@topic.nl>
-> ---
-> v2: Split devicetree and code into separate patches
+This does not work:
+Documentation/devicetree/bindings/soc/microchip/atmel,at91rm9200-tcb.yaml: patternProperties:^pwm@[0-2]$:properties:reg:enum: False schema does not allow [0, 1, 2]
 
-Patch applied.
+I guess it is because reg is of type uint32-matrix.
 
-Yours,
-Linus Walleij
+I'm not sure there is a point in adding it in the first place since the
+unit-address is already limited to [0-2] and so reg will also be [0-2]
+
+> > +
+> > +        maxItems: 1
+> > +      "#pwm-cells":
+> > +        description:
+> > +          The only third cell flag supported by this binding is
+> > +          PWM_POLARITY_INVERTED.
+> > +        const: 3
+> >  
+> >      required:
+> >        - compatible
+> >        - reg
+> 
+>        additionalProperties: false
+> 
+> >  
+> > +
+> >  allOf:
+> >    - if:
+> >        properties:
+> > @@ -158,7 +181,13 @@ examples:
+> >                          compatible = "atmel,tcb-timer";
+> >                          reg = <1>;
+> >                  };
+> > -        };
+> > +
+> > +                pwm@2 {
+> > +                        compatible = "atmel,tcb-pwm";
+> > +                        reg = <2>;
+> > +                        #pwm-cells = <3>;
+> > +                };
+> > +         };
+> >      /* TCB0 Capture with QDEC: */
+> >          timer@f800c000 {
+> >                  compatible = "atmel,at91rm9200-tcb", "simple-mfd", "syscon";
+> > -- 
+> > 2.26.2
+> > 
+
+-- 
+Alexandre Belloni, Bootlin
+Embedded Linux and Kernel engineering
+https://bootlin.com
