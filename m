@@ -2,117 +2,85 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from vger.kernel.org (vger.kernel.org [23.128.96.18])
-	by mail.lfdr.de (Postfix) with ESMTP id C0A1427E589
-	for <lists+devicetree@lfdr.de>; Wed, 30 Sep 2020 11:47:25 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTP id 0A59D27E5A1
+	for <lists+devicetree@lfdr.de>; Wed, 30 Sep 2020 11:50:52 +0200 (CEST)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S1729053AbgI3JrV (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Wed, 30 Sep 2020 05:47:21 -0400
-Received: from muru.com ([72.249.23.125]:45762 "EHLO muru.com"
-        rhost-flags-OK-OK-OK-OK) by vger.kernel.org with ESMTP
-        id S1728999AbgI3JrU (ORCPT <rfc822;devicetree@vger.kernel.org>);
-        Wed, 30 Sep 2020 05:47:20 -0400
-Received: from atomide.com (localhost [127.0.0.1])
-        by muru.com (Postfix) with ESMTPS id 7435E810D;
-        Wed, 30 Sep 2020 09:47:20 +0000 (UTC)
-Date:   Wed, 30 Sep 2020 12:47:14 +0300
-From:   Tony Lindgren <tony@atomide.com>
-To:     Trent Piepho <tpiepho@gmail.com>
-Cc:     Drew Fustini <drew@beagleboard.org>,
-        Rob Herring <robh+dt@kernel.org>,
-        Linus Walleij <linus.walleij@linaro.org>,
-        Jason Kridner <jkridner@beagleboard.org>,
-        Robert Nelson <robertcnelson@gmail.com>,
-        linux-omap@vger.kernel.org, linux-kernel@vger.kernel.org,
-        devicetree@vger.kernel.org,
-        linux-gpio <linux-gpio@vger.kernel.org>,
-        Christina Quast <cquast@hanoverdisplays.com>
-Subject: Re: [PATCH] ARM: dts: document pinctrl-single,pins when
- #pinctrl-cells = 2
-Message-ID: <20200930094714.GR9471@atomide.com>
-References: <20200924054324.GB9471@atomide.com>
- <CA+7tXigg+h3v61AVMaYRKa_ZwznehOUPEESMqXKsNDNCrFph3w@mail.gmail.com>
- <20200924060645.GD9471@atomide.com>
- <CA+7tXijkS8UMFk4t=DuKjZZNnThbRarPQvxwxjg-uJFTKJRsXA@mail.gmail.com>
- <20200924070443.GF9471@atomide.com>
- <CA+7tXihBdw9AOGL7Hp2cH9+ii8fUXaaZZDUP3icyeOkMuGm4qA@mail.gmail.com>
- <20200930051521.GN9471@atomide.com>
- <CA+7tXig=3hbFXfmYMC5Hd1Zc2n-6uGXbMePPw_Cr4bOsyt7QQA@mail.gmail.com>
- <20200930091526.GQ9471@atomide.com>
- <CA+7tXihYb6AHrQLpO9UDHV7YFbzo_Pm8EdXNJXX+tJXX-L6UYA@mail.gmail.com>
+        id S1728149AbgI3Juv (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Wed, 30 Sep 2020 05:50:51 -0400
+Received: from lindbergh.monkeyblade.net ([23.128.96.19]:46584 "EHLO
+        lindbergh.monkeyblade.net" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
+        with ESMTP id S1725823AbgI3Juv (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Wed, 30 Sep 2020 05:50:51 -0400
+Received: from mail-lf1-x144.google.com (mail-lf1-x144.google.com [IPv6:2a00:1450:4864:20::144])
+        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id CECC9C061755
+        for <devicetree@vger.kernel.org>; Wed, 30 Sep 2020 02:50:50 -0700 (PDT)
+Received: by mail-lf1-x144.google.com with SMTP id 197so752913lfo.11
+        for <devicetree@vger.kernel.org>; Wed, 30 Sep 2020 02:50:50 -0700 (PDT)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+        d=linaro.org; s=google;
+        h=mime-version:references:in-reply-to:from:date:message-id:subject:to
+         :cc;
+        bh=4kDE8wrBm+qziaG4g1g/VJGmcusF/BRkFisBqvCmFDc=;
+        b=iB9qiHLogQUzM7o9zQ0HZSYyL+GiBm7AI8MvcXqzE0jGilJA0KZYljsZ8m9uKTTCQc
+         R1njFwaJF0vK63FD5OBjwsuSnFdkTGxq798Au1eMT7JiYmwoqa0pwiHjvkaiSwV0ikqN
+         RtmufQ+1PQox26UJ7CET8s54aSa4d1keVad5xLbcKEAKG+6H33cNjCWBYqwgxnLbyBq8
+         XABwbLDKig7zrWK55uisXFhtb6jUAbChmHI6iQKy/MB+qAvXuIePzXWoGh9+DC1FGvFJ
+         3S8LXpJdpL9q5RR+PEkKs4oeML1VVrza/35HZGGZwS5SnkZkSoNFX8lJJhpDxwnnuDQa
+         QY3Q==
+X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+        d=1e100.net; s=20161025;
+        h=x-gm-message-state:mime-version:references:in-reply-to:from:date
+         :message-id:subject:to:cc;
+        bh=4kDE8wrBm+qziaG4g1g/VJGmcusF/BRkFisBqvCmFDc=;
+        b=LmYzGhW98cMc7XeremJIusDmKzdq/Dw+E6rEyFHkVUYWO/2Vgv6YoTEGi4oeLbNs41
+         YeO1UTiCoqshwrfa/z0yYRMOU224D3jfnODl566z4PUvwN/o9RmYE0N6AG2GmxwY1Ubk
+         Jp9q7Lm01UgUmsgF0i2QwduYbGbFEb0liq/x/n3Vlwh9aOm25/FB6/UitxAJNHTzrKMC
+         EhOjPdgivCPx3ouKu3dKA/i2YfVFqvOIadbfwZjR/Hzwap02V6XtTPEkVhPkTSlItaxC
+         G3mZJybWh4xQrPpKfFI+UIFCZ6x+hxYG8XXLEjpUGgc1BbYwYFWGWcQSNho7gawoRAl6
+         uXBg==
+X-Gm-Message-State: AOAM533OL/d8EJ/Nkoe72qdx7L2cKSx9BpK9bg7v96fyiRN4tM9V4MSZ
+        qHIksc/485BqDOT7IwPaA8WIZNlE5dL3DYgqGZOrsg==
+X-Google-Smtp-Source: ABdhPJxm7dZ5605/6k4XUptX9QM1RtmPezAq+DEnqYIEsde95WBlbJgEIx/rubuQiw8SILz7iUX4fADZC23QYKW2izE=
+X-Received: by 2002:ac2:4c11:: with SMTP id t17mr641852lfq.260.1601459449318;
+ Wed, 30 Sep 2020 02:50:49 -0700 (PDT)
 MIME-Version: 1.0
-Content-Type: text/plain; charset=us-ascii
-Content-Disposition: inline
-In-Reply-To: <CA+7tXihYb6AHrQLpO9UDHV7YFbzo_Pm8EdXNJXX+tJXX-L6UYA@mail.gmail.com>
+References: <20200930092053.2114-1-mike.looijmans@topic.nl>
+In-Reply-To: <20200930092053.2114-1-mike.looijmans@topic.nl>
+From:   Linus Walleij <linus.walleij@linaro.org>
+Date:   Wed, 30 Sep 2020 11:50:38 +0200
+Message-ID: <CACRpkdbsYcmv9m2EiQNgPDZ0MdjPnWTxXvnqATVPvWpB=8Oqkw@mail.gmail.com>
+Subject: Re: [PATCH v2 1/2] dt-bindings: gpio: pca953x: Add support for the
+ NXP PCAL9554B/C
+To:     Mike Looijmans <mike.looijmans@topic.nl>
+Cc:     Bartosz Golaszewski <bgolaszewski@baylibre.com>,
+        "open list:GPIO SUBSYSTEM" <linux-gpio@vger.kernel.org>,
+        Rob Herring <robh+dt@kernel.org>,
+        "open list:OPEN FIRMWARE AND FLATTENED DEVICE TREE BINDINGS" 
+        <devicetree@vger.kernel.org>,
+        "linux-kernel@vger.kernel.org" <linux-kernel@vger.kernel.org>
+Content-Type: text/plain; charset="UTF-8"
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-* Trent Piepho <tpiepho@gmail.com> [200930 09:34]:
-> On Wed, Sep 30, 2020 at 2:15 AM Tony Lindgren <tony@atomide.com> wrote:
-> >
-> > * Trent Piepho <tpiepho@gmail.com> [200930 08:35]:
-> > > The closest thing would be the generic pin config type bindings, which
-> > > go in the pinctrl driver's nodes, and look like this:
-> > > &am335x_pinmux {
-> > >     pinctrl_yoyo_reset: yoyogrp {
-> > >         pins = "foo";
-> > >         function = "gpio";
-> > >         bias-pull-up;
-> > >     };
-> > > };
-> >
-> > There's a bit of a dtb size and boot time issue for adding properties
-> > for each pin where that needs to be done for several hundred pins :)
-> 
-> pins is list, multiple pins can be specified at once.  Otherwise the
-> property name would be "pin" and not "pins"  There's also a groups
-> property to refer to multiple pins at once, e.g.
-> 
-> arch/mips/boot/dts/ingenic/ci20.dts-    pins_mmc1: mmc1 {
-> arch/mips/boot/dts/ingenic/ci20.dts-            function = "mmc1";
-> arch/mips/boot/dts/ingenic/ci20.dts:            groups =
-> "mmc1-1bit-d", "mmc1-4bit-d";
-> arch/mips/boot/dts/ingenic/ci20.dts-            bias-disable;
-> arch/mips/boot/dts/ingenic/ci20.dts-    };
-> 
-> arch/mips/boot/dts/pic32/pic32mzda_sk.dts-      user_leds_s0: user_leds_s0 {
-> arch/mips/boot/dts/pic32/pic32mzda_sk.dts:              pins = "H0", "H1", "H2";
-> arch/mips/boot/dts/pic32/pic32mzda_sk.dts-              output-low;
-> arch/mips/boot/dts/pic32/pic32mzda_sk.dts-              microchip,digital;
-> arch/mips/boot/dts/pic32/pic32mzda_sk.dts-      };
+On Wed, Sep 30, 2020 at 11:21 AM Mike Looijmans <mike.looijmans@topic.nl> wrote:
 
-Right.
+> The NXP PCAL9554B is a variant of the PCA953x GPIO expander,
+> with 8 GPIOs, latched interrupts and some advanced configuration
+> options. The "C" version only differs in I2C address.
+>
+> This adds the entry to the devicetree bindings.
+>
+> Signed-off-by: Mike Looijmans <mike.looijmans@topic.nl>
+> ---
+> v2: Split devicetree and code into separate patches
 
-> > > Is "some additional property for specifying generic conf flags"
-> > > different from the existing pinctrl-single,bias-pullup, etc.
-> > > properties?  Because splitting the data cell into two parts doesn't
-> > > make any difference to those.
-> >
-> > So with an interrupt style binding with generic pinconf flags we can
-> > leave out the parsing of multiple properties for each pin. Sure the
-> > pin is only referenced by the controller like you pointed out but the
-> > pinconf flags could be generic.
-> 
-> Where do these flags go?  In pinctrl-single,pins?  Like:
-> 
-> pinctrl-single,pins = <AM335X_PIN_MDC MUX_MODE7 PIN_INPUT_PULLUP>;
-> 
-> But PIN_INPUT_PULLUP is a generic flag?  Which is translated into the
-> proper value by??
+Reviewed-by: Linus Walleij <linus.walleij@linaro.org>
 
-Yes that's what I was thinking, something like this with generic flags:
+This patch 1/2 does not apply to my tree, I suppose Rob has
+to apply it?
 
-pinctrl-single,pins = <AM335X_PIN_MDC (PIN_INPUT | PIN_PULLUP) MUX_MODE7>;
+I will try to apply 2/2.
 
-> Or are you talking about replacing the existing pinctrl-0,
-> pinctrl-names properties with a totally different system that looks
-> more like gpio and interrupt handles?
-
-That would be even better :) Might be just too much to deal with..
-
-In any case the parser code could already be generic if we had generic
-flags based on #pinctrl-cells.
-
-Regards,
-
-Tony
+Yours,
+Linus Walleij
