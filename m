@@ -2,214 +2,101 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from vger.kernel.org (vger.kernel.org [23.128.96.18])
-	by mail.lfdr.de (Postfix) with ESMTP id B9DE127E300
-	for <lists+devicetree@lfdr.de>; Wed, 30 Sep 2020 09:51:05 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTP id 4598327E313
+	for <lists+devicetree@lfdr.de>; Wed, 30 Sep 2020 09:57:34 +0200 (CEST)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S1728192AbgI3HvF (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Wed, 30 Sep 2020 03:51:05 -0400
-Received: from fllv0016.ext.ti.com ([198.47.19.142]:34294 "EHLO
-        fllv0016.ext.ti.com" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S1728149AbgI3HvF (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Wed, 30 Sep 2020 03:51:05 -0400
-Received: from lelv0265.itg.ti.com ([10.180.67.224])
-        by fllv0016.ext.ti.com (8.15.2/8.15.2) with ESMTP id 08U7jqn2033060;
-        Wed, 30 Sep 2020 02:45:52 -0500
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=ti.com;
-        s=ti-com-17Q1; t=1601451952;
-        bh=5qtanVzEh28bAg4VGE9ykZDe066N0zlhLSP+cichi6I=;
-        h=From:To:CC:Subject:Date:In-Reply-To:References;
-        b=u175Yo/sEOm7/nUdXMgESf64UzD1Hxoij0nf8sFKAbu9RRIWWX1DyEtAMWcDana/9
-         SB4TyQy9Knl16NP+OcokesecL7KsjKKb3+xU3xhi1gLsH+oGmAVvgciuz5NI8WfB2X
-         qVc5JfbJUUjkuUALxQPCJZLqG9n71M/20/1eUipw=
-Received: from DFLE103.ent.ti.com (dfle103.ent.ti.com [10.64.6.24])
-        by lelv0265.itg.ti.com (8.15.2/8.15.2) with ESMTPS id 08U7jqB7094542
-        (version=TLSv1.2 cipher=AES256-GCM-SHA384 bits=256 verify=FAIL);
-        Wed, 30 Sep 2020 02:45:52 -0500
-Received: from DFLE109.ent.ti.com (10.64.6.30) by DFLE103.ent.ti.com
- (10.64.6.24) with Microsoft SMTP Server (version=TLS1_2,
- cipher=TLS_ECDHE_RSA_WITH_AES_128_CBC_SHA256_P256) id 15.1.1979.3; Wed, 30
- Sep 2020 02:45:51 -0500
-Received: from fllv0039.itg.ti.com (10.64.41.19) by DFLE109.ent.ti.com
- (10.64.6.30) with Microsoft SMTP Server (version=TLS1_2,
- cipher=TLS_ECDHE_RSA_WITH_AES_128_CBC_SHA256_P256) id 15.1.1979.3 via
- Frontend Transport; Wed, 30 Sep 2020 02:45:51 -0500
-Received: from feketebors.ti.com (ileax41-snat.itg.ti.com [10.172.224.153])
-        by fllv0039.itg.ti.com (8.15.2/8.15.2) with ESMTP id 08U7jhDn078449;
-        Wed, 30 Sep 2020 02:45:49 -0500
-From:   Peter Ujfalusi <peter.ujfalusi@ti.com>
-To:     <nm@ti.com>, <t-kristo@ti.com>, <ssantosh@kernel.org>,
-        <tglx@linutronix.de>, <jason@lakedaemon.net>, <maz@kernel.org>,
-        <robh+dt@kernel.org>, <lokeshvutla@ti.com>
-CC:     <linux-arm-kernel@lists.infradead.org>,
-        <linux-kernel@vger.kernel.org>, <devicetree@vger.kernel.org>
-Subject: [PATCH v2 2/2] irqchip/ti-sci-inta: Add support for unmapped event handling
-Date:   Wed, 30 Sep 2020 10:45:59 +0300
-Message-ID: <20200930074559.18028-3-peter.ujfalusi@ti.com>
-X-Mailer: git-send-email 2.28.0
-In-Reply-To: <20200930074559.18028-1-peter.ujfalusi@ti.com>
-References: <20200930074559.18028-1-peter.ujfalusi@ti.com>
+        id S1725535AbgI3H5b (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Wed, 30 Sep 2020 03:57:31 -0400
+Received: from lindbergh.monkeyblade.net ([23.128.96.19]:57240 "EHLO
+        lindbergh.monkeyblade.net" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
+        with ESMTP id S1725440AbgI3H5b (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Wed, 30 Sep 2020 03:57:31 -0400
+Received: from mail-pj1-x1041.google.com (mail-pj1-x1041.google.com [IPv6:2607:f8b0:4864:20::1041])
+        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id EA39DC061755
+        for <devicetree@vger.kernel.org>; Wed, 30 Sep 2020 00:57:30 -0700 (PDT)
+Received: by mail-pj1-x1041.google.com with SMTP id jw11so465154pjb.0
+        for <devicetree@vger.kernel.org>; Wed, 30 Sep 2020 00:57:30 -0700 (PDT)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+        d=chromium.org; s=google;
+        h=from:to:cc:subject:date:message-id:mime-version
+         :content-transfer-encoding;
+        bh=41fwcJQb0JloACvIEe9HUyDrLHIz7eaahBS/h+lPtsE=;
+        b=UoDMGOpNZOcv306Av56L58WpIKkFRRO5LD9wk0oAXCv92QUq9oroHBT9Yo0BZGyhQG
+         lyqWpAcFQZF6XcKem9xUqWTb8t7X4I5pV39ylYVhvS19cB4bH21hBL5RdmiZaPCG0zAd
+         K/EeZHSivRKdwsR8L7sGRx/qHmCafBxjpC3ro=
+X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+        d=1e100.net; s=20161025;
+        h=x-gm-message-state:from:to:cc:subject:date:message-id:mime-version
+         :content-transfer-encoding;
+        bh=41fwcJQb0JloACvIEe9HUyDrLHIz7eaahBS/h+lPtsE=;
+        b=Zm6BbBKbQjm7m+Fm8u8akuIhbN/o+4aJYzpn5axHEH/xWxK97MVda9ATVZyzD0qyyK
+         O88JPR+qUle/FeQNFeAATlGg+ywu/Ljv7eDIT3frMJeWKcn5yNpicvsr9S7C8cJHCMWf
+         +WpwhGOXE0qcRm1H9cPOSkRYwR0EVgZLVIvBstSjSeN5W7Kts4mYBlobtryTqkHUv433
+         BwReG//xjSyn4sY5qMvT634KEc1CmFg0UCwR9TiIlhBcEwwCrTKiDCtIQ7z8WRKwgDZU
+         ONQ+lVOzHqV5J4yIdKJHZPMcjTMcd1CovTZfiACpoXpfByP8fraSJTpdZSGrzZaV753W
+         8ZXw==
+X-Gm-Message-State: AOAM533v8daGpqw8g9dyuy9Pb3Gnwc3Z6+Gx0ZOBy/8XG6AxuVAcbHiW
+        atv2o/LJp5NZJSUd7c4PPFwmQg==
+X-Google-Smtp-Source: ABdhPJyuwN2+tjnzg6O8OhS7ont52/rp9+T5SgNFLtGxgBwbHXWzB/BrruRiih7xrffPfRg19wTMUg==
+X-Received: by 2002:a17:90a:d311:: with SMTP id p17mr1457615pju.135.1601452650326;
+        Wed, 30 Sep 2020 00:57:30 -0700 (PDT)
+Received: from smtp.gmail.com ([2620:15c:202:1:3e52:82ff:fe6c:83ab])
+        by smtp.gmail.com with ESMTPSA id l21sm1272131pjq.54.2020.09.30.00.57.29
+        (version=TLS1_3 cipher=TLS_AES_256_GCM_SHA384 bits=256/256);
+        Wed, 30 Sep 2020 00:57:29 -0700 (PDT)
+From:   Stephen Boyd <swboyd@chromium.org>
+To:     Jonathan Cameron <jic23@kernel.org>
+Cc:     linux-kernel@vger.kernel.org, linux-iio@vger.kernel.org,
+        Daniel Campello <campello@chromium.org>,
+        Lars-Peter Clausen <lars@metafoo.de>,
+        Peter Meerwald-Stadler <pmeerw@pmeerw.net>,
+        Douglas Anderson <dianders@chromium.org>,
+        Gwendal Grignou <gwendal@chromium.org>,
+        Evan Green <evgreen@chromium.org>,
+        Rob Herring <robh+dt@kernel.org>, devicetree@vger.kernel.org
+Subject: [PATCH v2 0/6] iio: sx9310: Support setting various settings
+Date:   Wed, 30 Sep 2020 00:57:22 -0700
+Message-Id: <20200930075728.2410327-1-swboyd@chromium.org>
+X-Mailer: git-send-email 2.28.0.709.gb0816b6eb0-goog
 MIME-Version: 1.0
 Content-Transfer-Encoding: 8bit
-Content-Type: text/plain
-X-EXCLAIMER-MD-CONFIG: e1e8a2fd-e40a-4ac6-ac9b-f7e9cc9ee180
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-The DMA (BCDMA/PKTDMA and their rings/flows) events are under the INTA's
-supervision as unmapped events in AM64.
+I need to configure various settings such as thresholds, gain factors,
+etc. on this device. Some settings matter at boot, while others can wait
+for userspace to configure things. This patch series adds support to
+set these various bits in the registers of this device.
 
-In order to keep the current SW stack working, the INTA driver must replace
-the dev_id with it's own when a request comes for BCDMA or PKTDMA
-resources.
+Changes from v1 (https://lore.kernel.org/r/20200903221828.3657250-1-swboyd@chromium.org)
+ - A bunch more patches for userspace settings
+ - Removed body thresholds as they're probably not used
+ - Removed compensate common as it probably doesn't matter
+ - Moved thresholds, gain factor, hysteresis, debounce to userspace
 
-Implement parsing of the optional "ti,unmapped-event-sources" phandle array
-to get the sci-dev-ids of the devices where the unmapped events originate.
+Stephen Boyd (6):
+  iio: sx9310: Support hardware gain factor
+  iio: sx9310: Support setting proximity thresholds
+  iio: sx9310: Support setting hysteresis values
+  iio: sx9310: Support setting debounce values
+  dt-bindings: iio: sx9310: Add various settings as DT properties
+  iio: sx9310: Set various settings from DT
 
-Signed-off-by: Peter Ujfalusi <peter.ujfalusi@ti.com>
----
- drivers/irqchip/irq-ti-sci-inta.c | 72 +++++++++++++++++++++++++++++--
- 1 file changed, 68 insertions(+), 4 deletions(-)
+ .../iio/proximity/semtech,sx9310.yaml         |  61 ++
+ drivers/iio/proximity/sx9310.c                | 524 +++++++++++++++++-
+ 2 files changed, 579 insertions(+), 6 deletions(-)
 
-diff --git a/drivers/irqchip/irq-ti-sci-inta.c b/drivers/irqchip/irq-ti-sci-inta.c
-index bc863ef7998d..00f5b34863c5 100644
---- a/drivers/irqchip/irq-ti-sci-inta.c
-+++ b/drivers/irqchip/irq-ti-sci-inta.c
-@@ -85,6 +85,8 @@ struct ti_sci_inta_vint_desc {
-  * @base:		Base address of the memory mapped IO registers
-  * @pdev:		Pointer to platform device.
-  * @ti_sci_id:		TI-SCI device identifier
-+ * @difu_cnt:		Number of TI-SCI device identifiers for unmapped events
-+ * @dev_ids_for_unmapped: Pointer to an array of TI-SCI device identifiers
-  */
- struct ti_sci_inta_irq_domain {
- 	const struct ti_sci_handle *sci;
-@@ -96,11 +98,33 @@ struct ti_sci_inta_irq_domain {
- 	void __iomem *base;
- 	struct platform_device *pdev;
- 	u32 ti_sci_id;
-+
-+	int difu_cnt;
-+	u32 *dev_ids_for_unmapped;
- };
- 
- #define to_vint_desc(e, i) container_of(e, struct ti_sci_inta_vint_desc, \
- 					events[i])
- 
-+static u16 ti_sci_inta_get_dev_id(struct ti_sci_inta_irq_domain *inta,
-+				  u32 hwirq)
-+{
-+	u16 dev_id = HWIRQ_TO_DEVID(hwirq);
-+	int i;
-+
-+	if (inta->difu_cnt == 0)
-+		return dev_id;
-+
-+	for (i = 0; i < inta->difu_cnt; i++) {
-+		if (dev_id == inta->dev_ids_for_unmapped[i]) {
-+			dev_id = inta->ti_sci_id;
-+			break;
-+		}
-+	}
-+
-+	return dev_id;
-+}
-+
- /**
-  * ti_sci_inta_irq_handler() - Chained IRQ handler for the vint irqs
-  * @desc:	Pointer to irq_desc corresponding to the irq
-@@ -251,7 +275,7 @@ static struct ti_sci_inta_event_desc *ti_sci_inta_alloc_event(struct ti_sci_inta
- 	u16 dev_id, dev_index;
- 	int err;
- 
--	dev_id = HWIRQ_TO_DEVID(hwirq);
-+	dev_id = ti_sci_inta_get_dev_id(inta, hwirq);
- 	dev_index = HWIRQ_TO_IRQID(hwirq);
- 
- 	event_desc = &vint_desc->events[free_bit];
-@@ -352,14 +376,15 @@ static void ti_sci_inta_free_irq(struct ti_sci_inta_event_desc *event_desc,
- {
- 	struct ti_sci_inta_vint_desc *vint_desc;
- 	struct ti_sci_inta_irq_domain *inta;
-+	u16 dev_id;
- 
- 	vint_desc = to_vint_desc(event_desc, event_desc->vint_bit);
- 	inta = vint_desc->domain->host_data;
-+	dev_id = ti_sci_inta_get_dev_id(inta, hwirq);
- 	/* free event irq */
- 	mutex_lock(&inta->vint_mutex);
- 	inta->sci->ops.rm_irq_ops.free_event_map(inta->sci,
--						 HWIRQ_TO_DEVID(hwirq),
--						 HWIRQ_TO_IRQID(hwirq),
-+						 dev_id, HWIRQ_TO_IRQID(hwirq),
- 						 inta->ti_sci_id,
- 						 vint_desc->vint_id,
- 						 event_desc->global_event,
-@@ -562,7 +587,6 @@ static void ti_sci_inta_msi_set_desc(msi_alloc_info_t *arg,
- 	arg->desc = desc;
- 	arg->hwirq = TO_HWIRQ(pdev->id, desc->inta.dev_index);
- }
--
- static struct msi_domain_ops ti_sci_inta_msi_ops = {
- 	.set_desc	= ti_sci_inta_msi_set_desc,
- };
-@@ -574,6 +598,42 @@ static struct msi_domain_info ti_sci_inta_msi_domain_info = {
- 	.chip	= &ti_sci_inta_msi_irq_chip,
- };
- 
-+static int ti_sci_inta_get_unmapped_sources(struct ti_sci_inta_irq_domain *inta)
-+{
-+	struct device *dev = &inta->pdev->dev;
-+	struct device_node *node = dev_of_node(dev);
-+	struct of_phandle_iterator it;
-+	int count, err, ret, i;
-+
-+	count = of_count_phandle_with_args(node, "ti,unmapped-event-sources",
-+					   NULL);
-+	if (count <= 0)
-+		return 0;
-+
-+	inta->dev_ids_for_unmapped = devm_kcalloc(dev, count,
-+					sizeof(*inta->dev_ids_for_unmapped),
-+					GFP_KERNEL);
-+	if (!inta->dev_ids_for_unmapped)
-+		return -ENOMEM;
-+
-+	i = 0;
-+	of_for_each_phandle(&it, err, node, "ti,unmapped-event-sources",
-+			    NULL, 0) {
-+		ret = of_property_read_u32(it.node, "ti,sci-dev-id",
-+					   &inta->dev_ids_for_unmapped[i++]);
-+		if (ret) {
-+			dev_err(dev, "ti,sci-dev-id read failure for %s\n",
-+				of_node_full_name(it.node));
-+			of_node_put(it.node);
-+			return ret;
-+		}
-+	}
-+
-+	inta->difu_cnt = count;
-+
-+	return 0;
-+}
-+
- static int ti_sci_inta_irq_domain_probe(struct platform_device *pdev)
- {
- 	struct irq_domain *parent_domain, *domain, *msi_domain;
-@@ -629,6 +689,10 @@ static int ti_sci_inta_irq_domain_probe(struct platform_device *pdev)
- 	if (IS_ERR(inta->base))
- 		return PTR_ERR(inta->base);
- 
-+	ret = ti_sci_inta_get_unmapped_sources(inta);
-+	if (ret)
-+		return ret;
-+
- 	domain = irq_domain_add_linear(dev_of_node(dev),
- 				       ti_sci_get_num_resources(inta->vint),
- 				       &ti_sci_inta_irq_domain_ops, inta);
+Cc: Daniel Campello <campello@chromium.org>
+Cc: Lars-Peter Clausen <lars@metafoo.de>
+Cc: Peter Meerwald-Stadler <pmeerw@pmeerw.net>
+Cc: Douglas Anderson <dianders@chromium.org>
+Cc: Gwendal Grignou <gwendal@chromium.org>
+Cc: Evan Green <evgreen@chromium.org>
+Cc: Rob Herring <robh+dt@kernel.org>
+Cc: <devicetree@vger.kernel.org>
+
+base-commit: 1bebdcb928eba880f3a119bacb8149216206958a
 -- 
-Peter
-
-Texas Instruments Finland Oy, Porkkalankatu 22, 00180 Helsinki.
-Y-tunnus/Business ID: 0615521-4. Kotipaikka/Domicile: Helsinki
+Sent by a computer, using git, on the internet
 
