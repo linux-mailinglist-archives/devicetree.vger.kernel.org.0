@@ -2,70 +2,87 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from vger.kernel.org (vger.kernel.org [23.128.96.18])
-	by mail.lfdr.de (Postfix) with ESMTP id 4967C27E815
-	for <lists+devicetree@lfdr.de>; Wed, 30 Sep 2020 14:00:09 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTP id BD24C27E838
+	for <lists+devicetree@lfdr.de>; Wed, 30 Sep 2020 14:09:20 +0200 (CEST)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S1729268AbgI3MAH (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Wed, 30 Sep 2020 08:00:07 -0400
-Received: from mail.kernel.org ([198.145.29.99]:51210 "EHLO mail.kernel.org"
-        rhost-flags-OK-OK-OK-OK) by vger.kernel.org with ESMTP
-        id S1725776AbgI3MAH (ORCPT <rfc822;devicetree@vger.kernel.org>);
-        Wed, 30 Sep 2020 08:00:07 -0400
-Received: from localhost (fw-tnat.cambridge.arm.com [217.140.96.140])
-        (using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
-        (No client certificate requested)
-        by mail.kernel.org (Postfix) with ESMTPSA id 744DB2085B;
-        Wed, 30 Sep 2020 12:00:06 +0000 (UTC)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=kernel.org;
-        s=default; t=1601467207;
-        bh=/9SvyBBYs3IgSi5OubLgm0zLFJxvEi+e0ogNZktW6Sw=;
-        h=Date:From:To:Cc:In-Reply-To:References:Subject:From;
-        b=TVAbfgEU9dIAGm1Tw5FPY+jCbPHGowPJo9WwlozR/8zFU0BHZ2tMnLb3loWcml5oz
-         dn3qbeh5Ok2hLxL4Xmy/IAQgzvBXpv2Kvk1U3E5kZFa4WD9WsVSazTr5+oHCmXbwdm
-         C+cxUDjIFLy9emHlv55n72W229xKa8L4/GRioE7k=
-Date:   Wed, 30 Sep 2020 12:59:08 +0100
-From:   Mark Brown <broonie@kernel.org>
-To:     cy_huang <u0084500@gmail.com>, robh+dt@kernel.org
-Cc:     lgirdwood@gmail.com, cy_huang@richtek.com,
-        linux-kernel@vger.kernel.org, devicetree@vger.kernel.org
-In-Reply-To: <1601460480-4259-1-git-send-email-u0084500@gmail.com>
-References: <1601460480-4259-1-git-send-email-u0084500@gmail.com>
-Subject: Re: [PATCH] regulator: rtmv20: Update DT binding document and property name parsing
-Message-Id: <160146714296.40216.643020252480635401.b4-ty@kernel.org>
+        id S1728270AbgI3MJT (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Wed, 30 Sep 2020 08:09:19 -0400
+Received: from fllv0016.ext.ti.com ([198.47.19.142]:57240 "EHLO
+        fllv0016.ext.ti.com" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
+        with ESMTP id S1725776AbgI3MJT (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Wed, 30 Sep 2020 08:09:19 -0400
+Received: from fllv0034.itg.ti.com ([10.64.40.246])
+        by fllv0016.ext.ti.com (8.15.2/8.15.2) with ESMTP id 08UC9B9L125240;
+        Wed, 30 Sep 2020 07:09:11 -0500
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=ti.com;
+        s=ti-com-17Q1; t=1601467751;
+        bh=R+Qlfq/XvKdsTKt62UazgZacJVr+bQyOr5bxAS3WZNQ=;
+        h=Date:From:To:CC:Subject:References:In-Reply-To;
+        b=CMGz56eIB3hwfmwOAI1/YHIGnLrE2UA2i5SlOHCwr2rIPIHmT45uygLo5isbw37VM
+         ar+WWoJduHw7d2AAQTyznADuf58OH1Dlb+2uHPP7VuPvSkitzzZWFtFaFnSSLy/wh9
+         Cw3+f4Mwst4EJbMgvMIEr/rvlxUsilOStCEK0egU=
+Received: from DLEE115.ent.ti.com (dlee115.ent.ti.com [157.170.170.26])
+        by fllv0034.itg.ti.com (8.15.2/8.15.2) with ESMTPS id 08UC9BgT091195
+        (version=TLSv1.2 cipher=AES256-GCM-SHA384 bits=256 verify=FAIL);
+        Wed, 30 Sep 2020 07:09:11 -0500
+Received: from DLEE112.ent.ti.com (157.170.170.23) by DLEE115.ent.ti.com
+ (157.170.170.26) with Microsoft SMTP Server (version=TLS1_2,
+ cipher=TLS_ECDHE_RSA_WITH_AES_128_CBC_SHA256_P256) id 15.1.1979.3; Wed, 30
+ Sep 2020 07:09:10 -0500
+Received: from fllv0039.itg.ti.com (10.64.41.19) by DLEE112.ent.ti.com
+ (157.170.170.23) with Microsoft SMTP Server (version=TLS1_2,
+ cipher=TLS_ECDHE_RSA_WITH_AES_128_CBC_SHA256_P256) id 15.1.1979.3 via
+ Frontend Transport; Wed, 30 Sep 2020 07:09:11 -0500
+Received: from localhost (ileax41-snat.itg.ti.com [10.172.224.153])
+        by fllv0039.itg.ti.com (8.15.2/8.15.2) with ESMTP id 08UC9Av6029555;
+        Wed, 30 Sep 2020 07:09:10 -0500
+Date:   Wed, 30 Sep 2020 07:09:10 -0500
+From:   Nishanth Menon <nm@ti.com>
+To:     Roger Quadros <rogerq@ti.com>
+CC:     <peda@axentia.se>, <t-kristo@ti.com>, <nsekhar@ti.com>,
+        <kishon@ti.com>, <robh+dt@kernel.org>,
+        <devicetree@vger.kernel.org>,
+        <linux-arm-kernel@lists.infradead.org>,
+        <linux-kernel@vger.kernel.org>
+Subject: Re: [PATCH v4 0/6] arm64: dts: ti: Add USB support for J7200 EVM
+Message-ID: <20200930120910.7qfoesml2icjgxkf@akan>
+References: <20200921143941.13905-1-rogerq@ti.com>
+MIME-Version: 1.0
+Content-Type: text/plain; charset="us-ascii"
+Content-Disposition: inline
+In-Reply-To: <20200921143941.13905-1-rogerq@ti.com>
+User-Agent: NeoMutt/20171215
+X-EXCLAIMER-MD-CONFIG: e1e8a2fd-e40a-4ac6-ac9b-f7e9cc9ee180
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-On Wed, 30 Sep 2020 18:08:00 +0800, cy_huang wrote:
-> 1. Add vendor suffix to all proprietary properties.
-> 2. Fix typo.
-> 3. Change lsw to normal property, not pattern property.
-> 4. Due to item 1, modify source code for property parsing.
+On 17:39-20200921, Roger Quadros wrote:
+> Hi Tero/Nishanth,
+> 
+> This series adds USB2.0 support for the J7200 EVM.
+> 
+> Series is based on top of:
+> 
+>     Faiz's MMC/SD support series
+>     https://lore.kernel.org/lkml/20200907090520.25313-1-faiz_abbas@ti.com/
+>     Lokesh's initial support series
+>     https://patchwork.kernel.org/cover/11740039/
+>     Vignesh's I2C support series
+>     https://lore.kernel.org/patchwork/cover/1282152/
+>     Vignesh's Hyperflash series
+>     https://lore.kernel.org/patchwork/cover/1285326/
+>     MUX binding cleanup
+>     https://lore.kernel.org/lkml/20200918165930.2031-1-rogerq@ti.com/
+> 
+> cheers,
+> -roger
 
-Applied to
 
-   https://git.kernel.org/pub/scm/linux/kernel/git/broonie/regulator.git for-next
-
-Thanks!
-
-[1/1] regulator: rtmv20: Update DT binding document and property name parsing
-      commit: 89a5f77e3f3a7fb8d6cf25668489d66069ebe4b7
-
-All being well this means that it will be integrated into the linux-next
-tree (usually sometime in the next 24 hours) and sent to Linus during
-the next merge window (or sooner if it is a bug fix), however if
-problems are discovered then the patch may be dropped or reverted.
-
-You may get further e-mails resulting from automated or manual testing
-and review of the tree, please engage with people reporting problems and
-send followup patches addressing any issues that are reported if needed.
-
-If any updates are required or you are submitting further changes they
-should be sent as incremental updates against current git, existing
-patches will not be replaced.
-
-Please add any relevant lists and maintainers to the CCs when replying
-to this mail.
-
-Thanks,
-Mark
+Your series does'nt apply on my tree anymore - even after merging
+ti-k3-dt-fixes-for-v5.9 . Could you rebase your patches on top of
+next-20200930 ?
+-- 
+Regards,
+Nishanth Menon
+Key (0xDDB5849D1736249D) / Fingerprint: F8A2 8693 54EB 8232 17A3  1A34 DDB5 849D 1736 249D
