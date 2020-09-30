@@ -2,94 +2,90 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from vger.kernel.org (vger.kernel.org [23.128.96.18])
-	by mail.lfdr.de (Postfix) with ESMTP id 9B07E27EF5F
-	for <lists+devicetree@lfdr.de>; Wed, 30 Sep 2020 18:38:41 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTP id 638CD27EFD3
+	for <lists+devicetree@lfdr.de>; Wed, 30 Sep 2020 18:59:35 +0200 (CEST)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S1731250AbgI3Qii (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Wed, 30 Sep 2020 12:38:38 -0400
-Received: from mail-out.m-online.net ([212.18.0.9]:34419 "EHLO
-        mail-out.m-online.net" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S1731177AbgI3Qih (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Wed, 30 Sep 2020 12:38:37 -0400
-Received: from frontend01.mail.m-online.net (unknown [192.168.8.182])
-        by mail-out.m-online.net (Postfix) with ESMTP id 4C1hlZ26C5z1qs0j;
-        Wed, 30 Sep 2020 18:38:34 +0200 (CEST)
-Received: from localhost (dynscan1.mnet-online.de [192.168.6.70])
-        by mail.m-online.net (Postfix) with ESMTP id 4C1hlZ0rC6z1sM9S;
-        Wed, 30 Sep 2020 18:38:34 +0200 (CEST)
-X-Virus-Scanned: amavisd-new at mnet-online.de
-Received: from mail.mnet-online.de ([192.168.8.182])
-        by localhost (dynscan1.mail.m-online.net [192.168.6.70]) (amavisd-new, port 10024)
-        with ESMTP id gxTK7355gXbw; Wed, 30 Sep 2020 18:38:32 +0200 (CEST)
-X-Auth-Info: xSj/d+9u4FhzgJVzHmQ8d3oy+pVTWHj3KXUfKnHJsWg=
-Received: from [IPv6:::1] (p578adb1c.dip0.t-ipconnect.de [87.138.219.28])
-        (using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
-        (No client certificate requested)
-        by mail.mnet-online.de (Postfix) with ESMTPSA;
-        Wed, 30 Sep 2020 18:38:32 +0200 (CEST)
-Subject: Re: [PATCH 07/11] soc: imx: gpcv2: add support for optional resets
-To:     Lucas Stach <l.stach@pengutronix.de>,
-        Shawn Guo <shawnguo@kernel.org>,
+        id S1726574AbgI3Q7e (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Wed, 30 Sep 2020 12:59:34 -0400
+Received: from jabberwock.ucw.cz ([46.255.230.98]:55744 "EHLO
+        jabberwock.ucw.cz" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
+        with ESMTP id S1725872AbgI3Q7e (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Wed, 30 Sep 2020 12:59:34 -0400
+Received: by jabberwock.ucw.cz (Postfix, from userid 1017)
+        id 3BCD41C0B76; Wed, 30 Sep 2020 18:59:31 +0200 (CEST)
+Date:   Wed, 30 Sep 2020 18:59:30 +0200
+From:   Pavel Machek <pavel@ucw.cz>
+To:     Rob Herring <robh@kernel.org>
+Cc:     Marek =?iso-8859-1?Q?Beh=FAn?= <marek.behun@nic.cz>,
+        devicetree@vger.kernel.org, linux-leds@vger.kernel.org,
+        Linus Walleij <linus.walleij@linaro.org>,
+        "H . Nikolaus Schaller" <hns@goldelico.com>,
+        Tony Lindgren <tony@atomide.com>,
+        Adam Ford <aford173@gmail.com>,
+        Viresh Kumar <viresh.kumar@linaro.org>,
+        NeilBrown <neilb@suse.de>, Dan Murphy <dmurphy@ti.com>,
         Rob Herring <robh+dt@kernel.org>
-Cc:     devicetree@vger.kernel.org,
-        Frieder Schrempf <frieder.schrempf@kontron.de>,
-        patchwork-lst@pengutronix.de, NXP Linux Team <linux-imx@nxp.com>,
-        kernel@pengutronix.de, Fabio Estevam <festevam@gmail.com>,
-        linux-arm-kernel@lists.infradead.org, Abel Vesa <abel.vesa@nxp.com>
-References: <20200930155006.535712-1-l.stach@pengutronix.de>
- <20200930155006.535712-8-l.stach@pengutronix.de>
- <eecb12db-cf2f-c7bb-1da7-803f77e05e64@denx.de>
- <f86ecad9d46fa5ca2d92e314a9e3981ae4384da1.camel@pengutronix.de>
- <da60080c-8a2f-87f7-90cf-31bdfa338ef8@denx.de>
- <502fb976959b61472be351576ca8e6c880bea2bf.camel@pengutronix.de>
-From:   Marek Vasut <marex@denx.de>
-Message-ID: <c06ebae8-c694-47ed-3533-219ed820b8fb@denx.de>
-Date:   Wed, 30 Sep 2020 18:38:31 +0200
-User-Agent: Mozilla/5.0 (X11; Linux x86_64; rv:68.0) Gecko/20100101
- Thunderbird/68.12.0
+Subject: Re: [PATCH leds + devicetree 03/13] dt-bindings: leds: tca6507:
+ convert to YAML
+Message-ID: <20200930165930.GA27760@duo.ucw.cz>
+References: <20200919221548.29984-1-marek.behun@nic.cz>
+ <20200919221548.29984-4-marek.behun@nic.cz>
+ <20200929165606.GA767552@bogus>
 MIME-Version: 1.0
-In-Reply-To: <502fb976959b61472be351576ca8e6c880bea2bf.camel@pengutronix.de>
-Content-Type: text/plain; charset=utf-8
-Content-Language: en-US
-Content-Transfer-Encoding: 7bit
+Content-Type: multipart/signed; micalg=pgp-sha1;
+        protocol="application/pgp-signature"; boundary="9amGYk9869ThD9tj"
+Content-Disposition: inline
+In-Reply-To: <20200929165606.GA767552@bogus>
+User-Agent: Mutt/1.10.1 (2018-07-13)
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-On 9/30/20 6:34 PM, Lucas Stach wrote:
-> On Mi, 2020-09-30 at 18:30 +0200, Marek Vasut wrote:
->> On 9/30/20 6:23 PM, Lucas Stach wrote:
->>> On Mi, 2020-09-30 at 18:15 +0200, Marek Vasut wrote:
->>>> On 9/30/20 5:50 PM, Lucas Stach wrote:
->>>>> Normally the reset for the devices inside the power domain is
->>>>> triggered automatically from the PGC in the power-up sequencing,
->>>>> however on i.MX8MM this doesn't work for the GPU power domains.
->>>>
->>>> One has to wonder whether the VPU power domain has similar hardware bug
->>>> on the MX8MM ?
->>>
->>> Nope the VPUs have separate reset bits in the BLK_CTL. So after
->>> powering up the VPUMIX domain one can assert/deassert reset to the
->>> individual VPU cores.
->>
->> Is there any documentation for the BLK_CTL on MX8MM ? I can't find any
->> in the official RM.
-> 
-> I'm still waiting on some info from NXP about this. It is not
-> documented in the RM.
 
-Yes, I know.
+--9amGYk9869ThD9tj
+Content-Type: text/plain; charset=iso-8859-1
+Content-Disposition: inline
+Content-Transfer-Encoding: quoted-printable
 
->> And also, the GPUs need to use SRC reset, does the BLK_CTL reset do the
->> same "degree" of reset to the VPU as the SRC reset does to the GPUs ?
-> 
-> At least that is what I'm assuming.
-> 
-> The fundamental issue with the GPU domain is that there is no BLK_CTL
-> in the GPUMIX domain and the resets are hooked up to the shared SRC
-> reset, instead of having GPU BLK_CTL level resets.
+On Tue 2020-09-29 11:56:06, Rob Herring wrote:
+> On Sun, 20 Sep 2020 00:15:38 +0200, Marek Beh=FAn wrote:
+> > This converts the tca6507 LED binding to yaml.
+> >=20
+> > Signed-off-by: Marek Beh=FAn <marek.behun@nic.cz>
+> > Cc: NeilBrown <neilb@suse.de>
+> > Cc: Linus Walleij <linus.walleij@linaro.org>
+> > Cc: H. Nikolaus Schaller <hns@goldelico.com>
+> > Cc: Tony Lindgren <tony@atomide.com>
+> > Cc: Adam Ford <aford173@gmail.com>
+> > Cc: Viresh Kumar <viresh.kumar@linaro.org>
+> > Cc: Rob Herring <robh+dt@kernel.org>
+> > Cc: devicetree@vger.kernel.org
+> > ---
+> >  .../devicetree/bindings/leds/tca6507.txt      |  49 -------
+> >  .../devicetree/bindings/leds/ti,tca6507.yaml  | 134 ++++++++++++++++++
+> >  2 files changed, 134 insertions(+), 49 deletions(-)
+> >  delete mode 100644 Documentation/devicetree/bindings/leds/tca6507.txt
+> >  create mode 100644 Documentation/devicetree/bindings/leds/ti,tca6507.y=
+aml
+> >=20
+>=20
+> Reviewed-by: Rob Herring <robh@kernel.org>
 
-Yep.
+Thanks, applied.
 
-I'll CC Abel, maybe there is still undocumented way to reset the GPUs on
-the MX8MM separately too.
+--=20
+(english) http://www.livejournal.com/~pavelmachek
+(cesky, pictures) http://atrey.karlin.mff.cuni.cz/~pavel/picture/horses/blo=
+g.html
+
+--9amGYk9869ThD9tj
+Content-Type: application/pgp-signature; name="signature.asc"
+
+-----BEGIN PGP SIGNATURE-----
+
+iF0EABECAB0WIQRPfPO7r0eAhk010v0w5/Bqldv68gUCX3S5cgAKCRAw5/Bqldv6
+8i0oAJ934xCRcpK1fsGTfXVUu1FgrJQJXACdHeP435zEXoQmwjHDjX7Ws1AvADI=
+=uK9j
+-----END PGP SIGNATURE-----
+
+--9amGYk9869ThD9tj--
