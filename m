@@ -2,181 +2,132 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from vger.kernel.org (vger.kernel.org [23.128.96.18])
-	by mail.lfdr.de (Postfix) with ESMTP id 5CF9327E929
-	for <lists+devicetree@lfdr.de>; Wed, 30 Sep 2020 15:03:56 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTP id 882DD27E93E
+	for <lists+devicetree@lfdr.de>; Wed, 30 Sep 2020 15:11:23 +0200 (CEST)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S1728149AbgI3NDz (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Wed, 30 Sep 2020 09:03:55 -0400
-Received: from new2-smtp.messagingengine.com ([66.111.4.224]:55843 "EHLO
-        new2-smtp.messagingengine.com" rhost-flags-OK-OK-OK-OK)
-        by vger.kernel.org with ESMTP id S1727997AbgI3NDw (ORCPT
-        <rfc822;devicetree@vger.kernel.org>);
-        Wed, 30 Sep 2020 09:03:52 -0400
-Received: from compute3.internal (compute3.nyi.internal [10.202.2.43])
-        by mailnew.nyi.internal (Postfix) with ESMTP id DED485803F9;
-        Wed, 30 Sep 2020 09:03:50 -0400 (EDT)
-Received: from mailfrontend1 ([10.202.2.162])
-  by compute3.internal (MEProxy); Wed, 30 Sep 2020 09:03:50 -0400
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=cerno.tech; h=
-        date:from:to:cc:subject:message-id:references:mime-version
-        :content-type:in-reply-to; s=fm1; bh=ZdwfVB/wko7OBSY39TKujsLQ42L
-        f41XzWXXZDcYCaXY=; b=VO9NeQD23JEE9EXZQEJGUncwXldLBxYSm5SJiIiQwq0
-        wdqXNPeChK9Uq2eZlZXWc5ZZDwWzYK8eSRkFD+HgYFYb7YGGoM8d35OSJRjf0D60
-        EeMCLwz0IzBYwH3/I1vyMafm6LUZXy8oQ+1g+pKFK0tYlkbZG57P5cnX6QqzFHx+
-        DHPPZwEDIYLLas/bkqSjApFUwnrocXAKYh6aCCdAXV8ywyzuzvl2I7ZB4iIe6GSJ
-        oRe2Il3ukk3b4pH5KyjJ8ZwR9jNqFAPwYjoyg1TiTvB+cTshTnVrO1FDWCKwfLNB
-        AL3k/Th0tMyBEI/8n1BSHSc0PGJn76FHsJdREfGgYxg==
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=
-        messagingengine.com; h=cc:content-type:date:from:in-reply-to
-        :message-id:mime-version:references:subject:to:x-me-proxy
-        :x-me-proxy:x-me-sender:x-me-sender:x-sasl-enc; s=fm3; bh=ZdwfVB
-        /wko7OBSY39TKujsLQ42Lf41XzWXXZDcYCaXY=; b=TQfCC1br38S2KEgs4TkIXx
-        TkV4JHmZ7d1/p6sVX+i9nHe3nqs07bkSKmhuhTpVVTtIXAiZ6iLooJk8s+Rkz34U
-        Vm1b9WIKhFe0gGV+FVUIizYZWsQOO7PFBtp2KL6eFZrpT8pG/WlA1kK2dpR7DtR9
-        WAD04gxivT8peO/1YfPB561BvH9acAiBQ5eetB6UEbKXh2uHXkBVPkj/DY1T46fW
-        qdvspx7nvsd1q9/1COJcTJH91W3vTzX/+TtVFrsoG0bSVCbGuTsaT3t38XhBXvqW
-        0/HZtP/gQiuoVe0hpSeXacILNHFQILpaTqzN3KUcttwRBnEZfaRQkJCd2rKTz3uQ
-        ==
-X-ME-Sender: <xms:NIJ0X73_lPIFH_22b2Lp4p5wdvxCkB8KV7AX5AUuSKgCsfN6eUKk6Q>
-    <xme:NIJ0X6HNZheRy6Fi2OVWDYxfrFbS6TdeyY-vRumbiTrsSKXg2K7byleqaUkpSfHiI
-    R8NHruVsgWQPCA5LTE>
-X-ME-Proxy-Cause: gggruggvucftvghtrhhoucdtuddrgedujedrfedvgdehiecutefuodetggdotefrodftvf
-    curfhrohhfihhlvgemucfhrghsthforghilhdpqfgfvfdpuffrtefokffrpgfnqfghnecu
-    uegrihhlohhuthemuceftddtnecusecvtfgvtghiphhivghnthhsucdlqddutddtmdenuc
-    fjughrpeffhffvuffkfhggtggujgesghdtreertddtvdenucfhrhhomhepofgrgihimhgv
-    ucftihhprghrugcuoehmrgigihhmvgestggvrhhnohdrthgvtghhqeenucggtffrrghtth
-    gvrhhnpeelkeeghefhuddtleejgfeljeffheffgfeijefhgfeufefhtdevteegheeiheeg
-    udenucfkphepledtrdekledrieekrdejieenucevlhhushhtvghrufhiiigvpedtnecurf
-    grrhgrmhepmhgrihhlfhhrohhmpehmrgigihhmvgestggvrhhnohdrthgvtghh
-X-ME-Proxy: <xmx:NIJ0X76LUHn_lqKjL6cw8hiFDxQnFAOnI32jHpV4G8Zzj7AMDrnZpg>
-    <xmx:NIJ0Xw2g4-AdQIY2sKM9U0ua5We66gA2HUpbXDzFpPzEUf14mYb0EA>
-    <xmx:NIJ0X-GX9lD4iKnCAafrYRAEMXkdApcRVO9tnuG5KbmJDrNsPIDfbQ>
-    <xmx:NoJ0X7f_oEUVuYtqqZasJhVHrlR8ZVrP0q3KdcEZSNPli9Cp_CGG-Q>
-Received: from localhost (lfbn-tou-1-1502-76.w90-89.abo.wanadoo.fr [90.89.68.76])
-        by mail.messagingengine.com (Postfix) with ESMTPA id 073D7328005A;
-        Wed, 30 Sep 2020 09:03:47 -0400 (EDT)
-Date:   Wed, 30 Sep 2020 15:03:45 +0200
-From:   Maxime Ripard <maxime@cerno.tech>
-To:     Daniel Vetter <daniel@ffwll.ch>
-Cc:     Mark Rutland <mark.rutland@arm.com>,
-        Rob Herring <robh+dt@kernel.org>,
-        Frank Rowand <frowand.list@gmail.com>,
-        Daniel Vetter <daniel.vetter@intel.com>,
-        David Airlie <airlied@linux.ie>,
-        Maarten Lankhorst <maarten.lankhorst@linux.intel.com>,
-        Thomas Zimmermann <tzimmermann@suse.de>,
-        Eric Anholt <eric@anholt.net>,
-        devicetree <devicetree@vger.kernel.org>,
-        Tim Gover <tim.gover@raspberrypi.com>,
-        Dave Stevenson <dave.stevenson@raspberrypi.com>,
-        dri-devel <dri-devel@lists.freedesktop.org>,
-        bcm-kernel-feedback-list@broadcom.com,
-        linux-rpi-kernel@lists.infradead.org,
-        Phil Elwell <phil@raspberrypi.com>,
-        Linux ARM <linux-arm-kernel@lists.infradead.org>
-Subject: Re: [PATCH 1/2] drm/vc4: hdmi: Disable Wifi Frequencies
-Message-ID: <20200930130345.qhtes5wv5sf42kuu@gilmour.lan>
-References: <20200925130744.575725-1-maxime@cerno.tech>
- <CAKMK7uG8=depCjWACjFxSph6o4rrPu1Ng28F7om_CYaiMj_HQQ@mail.gmail.com>
+        id S1728149AbgI3NLW (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Wed, 30 Sep 2020 09:11:22 -0400
+Received: from mail.baikalelectronics.com ([87.245.175.226]:40424 "EHLO
+        mail.baikalelectronics.ru" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
+        with ESMTP id S1725771AbgI3NLV (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Wed, 30 Sep 2020 09:11:21 -0400
+Received: from localhost (unknown [127.0.0.1])
+        by mail.baikalelectronics.ru (Postfix) with ESMTP id DE6D0803086A;
+        Wed, 30 Sep 2020 13:11:17 +0000 (UTC)
+X-Virus-Scanned: amavisd-new at baikalelectronics.ru
+Received: from mail.baikalelectronics.ru ([127.0.0.1])
+        by localhost (mail.baikalelectronics.ru [127.0.0.1]) (amavisd-new, port 10024)
+        with ESMTP id BmkIdQhB9nTu; Wed, 30 Sep 2020 16:11:17 +0300 (MSK)
+Date:   Wed, 30 Sep 2020 16:11:15 +0300
+From:   Serge Semin <Sergey.Semin@baikalelectronics.ru>
+To:     Mark Brown <broonie@kernel.org>
+CC:     Alexey Malahov <Alexey.Malahov@baikalelectronics.ru>,
+        Ramil Zaripov <Ramil.Zaripov@baikalelectronics.ru>,
+        Pavel Parkhomenko <Pavel.Parkhomenko@baikalelectronics.ru>,
+        Andy Shevchenko <andy.shevchenko@gmail.com>,
+        Andy Shevchenko <andriy.shevchenko@linux.intel.com>,
+        Lars Povlsen <lars.povlsen@microchip.com>,
+        "wuxu . wu" <wuxu.wu@huawei.com>, Feng Tang <feng.tang@intel.com>,
+        Rob Herring <robh+dt@kernel.org>, <linux-spi@vger.kernel.org>,
+        <devicetree@vger.kernel.org>, <linux-kernel@vger.kernel.org>
+Subject: Re: [PATCH 00/30] spi: dw: Add full Baikal-T1 SPI Controllers support
+Message-ID: <20200930131115.2lizge2ff64jbgpn@mobilestation>
+References: <20200920112914.26501-1-Sergey.Semin@baikalelectronics.ru>
+ <20200929144351.GH4799@sirena.org.uk>
+ <20200929224303.65awobe5dzwc2p4f@mobilestation>
+ <20200930110403.GD4974@sirena.org.uk>
 MIME-Version: 1.0
-Content-Type: multipart/signed; micalg=pgp-sha256;
-        protocol="application/pgp-signature"; boundary="5vzqhdw2glpkay7g"
+Content-Type: text/plain; charset="us-ascii"
 Content-Disposition: inline
-In-Reply-To: <CAKMK7uG8=depCjWACjFxSph6o4rrPu1Ng28F7om_CYaiMj_HQQ@mail.gmail.com>
+In-Reply-To: <20200930110403.GD4974@sirena.org.uk>
+X-ClientProxiedBy: MAIL.baikal.int (192.168.51.25) To mail (192.168.51.25)
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
+On Wed, Sep 30, 2020 at 12:04:04PM +0100, Mark Brown wrote:
+> On Wed, Sep 30, 2020 at 01:43:03AM +0300, Serge Semin wrote:
+> > On Tue, Sep 29, 2020 at 03:43:51PM +0100, Mark Brown wrote:
+> 
+> > > This is a *huge* patch series which is a bit unweildy to review
+> > > (especially given the other 10+ patch series you sent at the same time),
+> 
+> > Yeah, sorry about the bulky series. If most of the changes have been more
+> > complicated than that, less inter-dependent and less directed to having the code
+> > prepared for the main alterations I would have definitely split them up in
+> > different series. But the biggest part of the patchset is just a preparation
+> > before adding the mem-ops, poll-based transfers and Baikal-T1 SPI support. So
+> > having them submitted without the main part of the patchset would be just weird.
+> 
+> One option with things like this is to just not send everything at once
+> - even when split into multiple series it's a huge bulk of patches in an
+> inbox.  Unless the patches are obviously from their subjects repetitive
+> people probably aren't getting far enough in to look at the actual
+> patches or even their sizes before deciding it looks like a lot of work
+> and putting things off for later.
+> 
+> > I see you have already merged in the first nine patches. So would you like me
+> > to split the rest of them up into two series or it would be ok to resend (if
+> > required) them as one series seeing it's not that bulky anymore?
+> 
 
---5vzqhdw2glpkay7g
-Content-Type: text/plain; charset=us-ascii
-Content-Disposition: inline
-Content-Transfer-Encoding: quoted-printable
+> Not all of the first 9, IIRC I skipped one I had comments on.
 
-Hi Daniel,
+Yes, you skipped one and I've already given you my response on your comment
+about it: [PATCH 02/30] spi: dw: Use ternary op to init set_cs callback
+So have I responded to your comment on another patch:
+[PATCH 11/30] spi: dw: Add DWC SSI capability .
 
-On Mon, Sep 28, 2020 at 11:02:11AM +0200, Daniel Vetter wrote:
-> On Mon, Sep 28, 2020 at 9:06 AM Maxime Ripard <maxime@cerno.tech> wrote:
-> >
-> > There's cross-talk on the RPi4 between the 2.4GHz channels used by the =
-WiFi
-> > chip and some resolutions, most notably 1440p at 60Hz.
-> >
-> > In such a case, we can either reject entirely the mode, or lower slight=
-ly
-> > the pixel frequency to remove the overlap. Let's go for the latter.
-> >
-> > Signed-off-by: Maxime Ripard <maxime@cerno.tech>
-> > ---
-> >  .../bindings/display/brcm,bcm2711-hdmi.yaml        |  6 ++++++
-> >  drivers/gpu/drm/vc4/vc4_hdmi.c                     | 14 +++++++++++++-
-> >  drivers/gpu/drm/vc4/vc4_hdmi.h                     |  8 ++++++++
-> >  3 files changed, 27 insertions(+), 1 deletion(-)
-> >
-> > diff --git a/Documentation/devicetree/bindings/display/brcm,bcm2711-hdm=
-i.yaml b/Documentation/devicetree/bindings/display/brcm,bcm2711-hdmi.yaml
-> > index 03a76729d26c..63e7fe999c0a 100644
-> > --- a/Documentation/devicetree/bindings/display/brcm,bcm2711-hdmi.yaml
-> > +++ b/Documentation/devicetree/bindings/display/brcm,bcm2711-hdmi.yaml
-> > @@ -76,6 +76,12 @@ properties:
-> >    resets:
-> >      maxItems: 1
-> >
-> > +  raspberrypi,disable-wifi-frequencies:
-> > +    type: boolean
-> > +    description: >
-> > +      Should the pixel frequencies in the WiFi frequencies range be
-> > +      avoided?
-> > +
-> >  required:
-> >    - compatible
-> >    - reg
-> > diff --git a/drivers/gpu/drm/vc4/vc4_hdmi.c b/drivers/gpu/drm/vc4/vc4_h=
-dmi.c
-> > index acfb4e235214..74da7c00ecd0 100644
-> > --- a/drivers/gpu/drm/vc4/vc4_hdmi.c
-> > +++ b/drivers/gpu/drm/vc4/vc4_hdmi.c
-> > @@ -877,13 +877,22 @@ static int vc4_hdmi_encoder_atomic_check(struct d=
-rm_encoder *encoder,
-> >         struct vc4_hdmi_connector_state *vc4_state =3D conn_state_to_vc=
-4_hdmi_conn_state(conn_state);
-> >         struct drm_display_mode *mode =3D &crtc_state->adjusted_mode;
-> >         struct vc4_hdmi *vc4_hdmi =3D encoder_to_vc4_hdmi(encoder);
-> > -       unsigned long long pixel_rate =3D mode->clock * 1000;
-> > +       unsigned long long pixel_rate;
-> >
-> >         if (vc4_hdmi->variant->broken_odd_h_timings &&
-> >             ((mode->hdisplay % 2) || (mode->hsync_start % 2) ||
-> >              (mode->hsync_end % 2) || (mode->htotal % 2)))
-> >                 return -EINVAL;
-> >
-> > +       /*
-> > +        * The 1440p@60 pixel rate is in the same range than the WiFi
-> > +        * channels. Slightly lower the frequency to bring it out of the
-> > +        * WiFi range.
-> > +        */
-> > +       if (vc4_hdmi->disable_wifi_frequencies && mode->clock =3D=3D 24=
-1500)
-> > +               mode->clock =3D 238560;
->=20
-> Don't you want to map for a (narrow) range of frequencies here? Just
-> for that infamous 60p vs 59.99p thing and similar. And I think that
-> would still be in that band you want to avoid.
+I will need a response from you about them to go further with this patchset.
 
-Testing for a range seems better indeed, I'll send a new version
+> If they
+> can be split that would probably be helpful, if there are dependencies
+> then it's not going to buy too much.
 
-Thanks!
-Maxime
+Well, all later patches depend on the changes introduced in the previous ones in
+one way or another. So in any case that will be an incremental series of patchsets
+otherwise they most likely won't get applied cleanly on the driver source code.
+For now we have got 21 patch left to review:
+I) First two ones you've given your comments on and are mostly related to the
+patches you have already merged in.
+1. 688c17cad5c2 spi: dw: Use ternary op to init set_cs callback
+2. 17d0b3abc03d spi: dw: Add DWC SSI capability
 
---5vzqhdw2glpkay7g
-Content-Type: application/pgp-signature; name="signature.asc"
+II) Refactor the DW APB SSI controller config procedure.
+3. 6a436c824961 spi: dw: Detach SPI device specific CR0 config method
+4. 47614d60e44c spi: dw: Update SPI bus speed in a config function
+5. df64a4961801 spi: dw: Simplify the SPI bus speed config procedure
+6. 1a583b130bab spi: dw: Update Rx sample delay in the config function
+7. 9f205a8939a2 spi: dw: Add DW SPI controller config structure
 
------BEGIN PGP SIGNATURE-----
+III) Refactor IRQ-based SPI transfer procedure.
+8. d4fa973a3f7c spi: dw: Refactor data IO procedure
+9. d998b98e3d93 spi: dw: Refactor IRQ-based SPI transfer procedure
+10. 7fc419af6e67 spi: dw: Perform IRQ setup in a dedicated function
+11. d3dfd997379a spi: dw: Unmask IRQs after enabling the chip
+12. 6ecf589320f3 spi: dw: Discard chip enabling on DMA setup error
 
-iHUEABYIAB0WIQRcEzekXsqa64kGDp7j7w1vZxhRxQUCX3SCMQAKCRDj7w1vZxhR
-xQ4hAQDcedgF2zlIz4vzP9fEomlvxK0kFn7Ms84BXyT4kqqMpAD+MoaAiUAVnaeg
-tX0rXNjAZz+PapFraeoqXptISd+dpQs=
-=wLNY
------END PGP SIGNATURE-----
+IV) Final preparation before adding the memory operations.
+13. 84a03fad452c spi: dw: De-assert chip-select on reset
+14. dd0212eb5738 spi: dw: Explicitly de-assert CS on SPI transfer completion
+15. d1eea0f556cf spi: dw: Move num-of retries parameter to the header file
+16. 3e70e5a6c1d9 spi: dw: Add generic DW SSI status-check method
 
---5vzqhdw2glpkay7g--
+v) Introduce memory and poll-based operations.
+17. 52d733f30464 spi: dw: Add memory operations support
+18. c2f45eb3d662 spi: dw: Introduce max mem-ops SPI bus frequency setting
+19. ccf08869b6bd spi: dw: Add poll-based SPI transfers support
+
+vI) Add Baikal-T1 glue-driver
+20. a536c408f7aa dt-bindings: spi: dw: Add Baikal-T1 SPI Controllers
+21. 791e68755ead spi: dw: Add Baikal-T1 SPI Controller glue driver
+
+If you want I can resend the series split up as I described above. Alternatively
+I can collect I) - III) into a one patchset and IV) - VI) into another one.
+So to speak I'll do in whatever scenario you prefer. Just tell me which one is
+more suitable for you to review.
+
+In anyway we need to settle the issues regarding the first two patches. Please give
+me your answers on the comments I've left there in response to your comments.)
+
+-Sergey
