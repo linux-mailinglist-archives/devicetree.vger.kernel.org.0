@@ -2,185 +2,60 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from vger.kernel.org (vger.kernel.org [23.128.96.18])
-	by mail.lfdr.de (Postfix) with ESMTP id E9DA727E518
-	for <lists+devicetree@lfdr.de>; Wed, 30 Sep 2020 11:26:25 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTP id A724427E52C
+	for <lists+devicetree@lfdr.de>; Wed, 30 Sep 2020 11:31:53 +0200 (CEST)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S1728676AbgI3J0Z (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Wed, 30 Sep 2020 05:26:25 -0400
-Received: from lindbergh.monkeyblade.net ([23.128.96.19]:42794 "EHLO
-        lindbergh.monkeyblade.net" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S1728660AbgI3J0Y (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Wed, 30 Sep 2020 05:26:24 -0400
-Received: from metis.ext.pengutronix.de (metis.ext.pengutronix.de [IPv6:2001:67c:670:201:290:27ff:fe1d:cc33])
-        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 86B2AC061755
-        for <devicetree@vger.kernel.org>; Wed, 30 Sep 2020 02:26:24 -0700 (PDT)
-Received: from gallifrey.ext.pengutronix.de ([2001:67c:670:201:5054:ff:fe8d:eefb] helo=bjornoya.blackshift.org)
-        by metis.ext.pengutronix.de with esmtps (TLS1.3:ECDHE_RSA_AES_256_GCM_SHA384:256)
-        (Exim 4.92)
-        (envelope-from <mkl@pengutronix.de>)
-        id 1kNYNP-0001oa-0g; Wed, 30 Sep 2020 11:26:19 +0200
-Received: from [IPv6:2a03:f580:87bc:d400:b742:a929:3f3f:414e] (unknown [IPv6:2a03:f580:87bc:d400:b742:a929:3f3f:414e])
-        (using TLSv1.3 with cipher TLS_AES_256_GCM_SHA384 (256/256 bits)
-         key-exchange ECDHE (P-384) server-signature RSA-PSS (4096 bits) server-digest SHA256
-         client-signature RSA-PSS (4096 bits) client-digest SHA256)
-        (Client CN "mkl@blackshift.org", Issuer "StartCom Class 1 Client CA" (not verified))
-        (Authenticated sender: mkl@blackshift.org)
-        by smtp.blackshift.org (Postfix) with ESMTPSA id E798E56E52F;
-        Wed, 30 Sep 2020 09:26:16 +0000 (UTC)
-Subject: Re: [PATCH 1/2] can: mcp25xxfd: narrow down wildcards in device tree
- bindings
-From:   Marc Kleine-Budde <mkl@pengutronix.de>
-To:     Thomas Kopp <thomas.kopp@microchip.com>,
-        manivannan.sadhasivam@linaro.org, o.rempel@pengutronix.de,
-        geert@linux-m68k.org
-Cc:     linux-can@vger.kernel.org, dev.kurt@vandijck-laurijssen.be,
-        devicetree@vger.kernel.org, robh+dt@kernel.org, wg@grandegger.com
-References: <20200930091423.755-1-thomas.kopp@microchip.com>
- <88cc8fcb-38a0-e0db-4f9d-1255d9abfada@pengutronix.de>
-Autocrypt: addr=mkl@pengutronix.de; prefer-encrypt=mutual; keydata=
- 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
-Message-ID: <e8f27aa3-7414-c967-c8a3-498234fe69fd@pengutronix.de>
-Date:   Wed, 30 Sep 2020 11:26:12 +0200
-User-Agent: Mozilla/5.0 (X11; Linux x86_64; rv:68.0) Gecko/20100101
- Thunderbird/68.12.0
+        id S1728775AbgI3Jbw (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Wed, 30 Sep 2020 05:31:52 -0400
+Received: from foss.arm.com ([217.140.110.172]:60818 "EHLO foss.arm.com"
+        rhost-flags-OK-OK-OK-OK) by vger.kernel.org with ESMTP
+        id S1725776AbgI3Jbw (ORCPT <rfc822;devicetree@vger.kernel.org>);
+        Wed, 30 Sep 2020 05:31:52 -0400
+Received: from usa-sjc-imap-foss1.foss.arm.com (unknown [10.121.207.14])
+        by usa-sjc-mx-foss1.foss.arm.com (Postfix) with ESMTP id E493AD6E;
+        Wed, 30 Sep 2020 02:31:51 -0700 (PDT)
+Received: from bogus (unknown [10.57.47.250])
+        by usa-sjc-imap-foss1.foss.arm.com (Postfix) with ESMTPSA id E8B1D3F70D;
+        Wed, 30 Sep 2020 02:31:46 -0700 (PDT)
+Date:   Wed, 30 Sep 2020 10:29:54 +0100
+From:   Sudeep Holla <sudeep.holla@arm.com>
+To:     Ansuel Smith <ansuelsmth@gmail.com>
+Cc:     Rob Herring <robh+dt@kernel.org>, Andy Gross <agross@kernel.org>,
+        Bjorn Andersson <bjorn.andersson@linaro.org>,
+        MyungJoo Ham <myungjoo.ham@samsung.com>,
+        Kyungmin Park <kyungmin.park@samsung.com>,
+        Sudeep Holla <sudeep.holla@arm.com>,
+        Chanwoo Choi <cw00.choi@samsung.com>,
+        linux-arm-msm@vger.kernel.org, devicetree@vger.kernel.org,
+        linux-kernel@vger.kernel.org, linux-pm@vger.kernel.org
+Subject: Re: [PATCH v2 1/2] devfreq: qcom: Add L2 Krait Cache devfreq scaling
+ driver
+Message-ID: <20200930092954.GA7125@bogus>
+References: <20200929162926.139-1-ansuelsmth@gmail.com>
 MIME-Version: 1.0
-In-Reply-To: <88cc8fcb-38a0-e0db-4f9d-1255d9abfada@pengutronix.de>
-Content-Type: multipart/signed; micalg=pgp-sha512;
- protocol="application/pgp-signature";
- boundary="r897g2id2u11zAyc9OH59mUjrwIvTcUmt"
-X-SA-Exim-Connect-IP: 2001:67c:670:201:5054:ff:fe8d:eefb
-X-SA-Exim-Mail-From: mkl@pengutronix.de
-X-SA-Exim-Scanned: No (on metis.ext.pengutronix.de); SAEximRunCond expanded to false
-X-PTX-Original-Recipient: devicetree@vger.kernel.org
+Content-Type: text/plain; charset=us-ascii
+Content-Disposition: inline
+In-Reply-To: <20200929162926.139-1-ansuelsmth@gmail.com>
+User-Agent: Mutt/1.9.4 (2018-02-28)
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-This is an OpenPGP/MIME signed message (RFC 4880 and 3156)
---r897g2id2u11zAyc9OH59mUjrwIvTcUmt
-Content-Type: multipart/mixed; boundary="4MdyijwrvdfawTPSViq7LZ9VxMxVvizQl";
- protected-headers="v1"
-From: Marc Kleine-Budde <mkl@pengutronix.de>
-To: Thomas Kopp <thomas.kopp@microchip.com>,
- manivannan.sadhasivam@linaro.org, o.rempel@pengutronix.de,
- geert@linux-m68k.org
-Cc: linux-can@vger.kernel.org, dev.kurt@vandijck-laurijssen.be,
- devicetree@vger.kernel.org, robh+dt@kernel.org, wg@grandegger.com
-Message-ID: <e8f27aa3-7414-c967-c8a3-498234fe69fd@pengutronix.de>
-Subject: Re: [PATCH 1/2] can: mcp25xxfd: narrow down wildcards in device tree
- bindings
-References: <20200930091423.755-1-thomas.kopp@microchip.com>
- <88cc8fcb-38a0-e0db-4f9d-1255d9abfada@pengutronix.de>
-In-Reply-To: <88cc8fcb-38a0-e0db-4f9d-1255d9abfada@pengutronix.de>
+On Tue, Sep 29, 2020 at 06:29:24PM +0200, Ansuel Smith wrote:
+> Qcom L2 Krait CPUs use the generic cpufreq-dt driver and doesn't actually
+> scale the Cache frequency when the CPU frequency is changed. This
+> devfreq driver register with the cpu notifier and scale the Cache
+> based on the max Freq across all core as the CPU cache is shared across
+> all of them. If provided this also scale the voltage of the regulator
+> attached to the CPU cache. The scaling logic is based on the CPU freq
+> and the 3 scaling interval are set by the device dts.
+>
 
---4MdyijwrvdfawTPSViq7LZ9VxMxVvizQl
-Content-Type: text/plain; charset=utf-8
-Content-Language: de-DE
-Content-Transfer-Encoding: quoted-printable
+I have raised this concern before. I am worried this kind of independent
+CPU and cache frequency controls make way for clkscrew kind of attacks.
+Why can't the clocks be made parent/child or secondary and automatically
+updated when CPU clocks are changed.
 
-On 9/30/20 11:15 AM, Marc Kleine-Budde wrote:
-> On 9/30/20 11:14 AM, Thomas Kopp wrote:
->> The wildcard should be narrowed down to prevent existing and
->> future devices that are not compatible from matching.
->> It is very unlikely that incompatible devices will be released
->> that do not match the wildcard.
->>
->> Discussion Reference: https://lore.kernel.org/r/CAMuHMdVkwGjr6dJuMyhQN=
-qFoJqbh6Ec5V2b5LenCshwpM2SDsQ@mail.gmail.com/
->>
->> Reported-by: Geert Uytterhoeven <geert@linux-m68k.org>
->>
->> Signed-off-by: Thomas Kopp <thomas.kopp@microchip.com>
->=20
-> lol, who was faster? :D
-
-I've taken your patches.
-
-Tnx,
-Marc
-
---=20
-Pengutronix e.K.                 | Marc Kleine-Budde           |
-Embedded Linux                   | https://www.pengutronix.de  |
-Vertretung West/Dortmund         | Phone: +49-231-2826-924     |
-Amtsgericht Hildesheim, HRA 2686 | Fax:   +49-5121-206917-5555 |
-
-
---4MdyijwrvdfawTPSViq7LZ9VxMxVvizQl--
-
---r897g2id2u11zAyc9OH59mUjrwIvTcUmt
-Content-Type: application/pgp-signature; name="signature.asc"
-Content-Description: OpenPGP digital signature
-Content-Disposition: attachment; filename="signature.asc"
-
------BEGIN PGP SIGNATURE-----
-
-iQEzBAEBCgAdFiEEK3kIWJt9yTYMP3ehqclaivrt76kFAl90TzUACgkQqclaivrt
-76k+Cwf9GKOuSVYSsfUjF5WgY/CvSBMH+4Y7ZTX53NV4j7sRJpF0FGv36i7l9UmS
-2Rm5lXrnEvk5MG8z/MMVbQmTXa37Lsi9uLxV7lDaXtVkbsurlWJMJotOAFKPNooj
-jfGfriCnekgF7w3DSkYLGMWeqeiOFmkrs2nzs5u1z5M+Hjo+qkA7n74Ib7V1LjlA
-rSTR/vtM+if5KWaHIC7QJ4JDrR106oAIJ/wTfyCoKqHu9b9Yq3AVXjbPYmWgpGAE
-GL4PidtTEWKuYOsFxTzAwo7Ft0lBJvvus05ZYp87AY2w39YPXSI5ZJ9tFS+s2kGp
-uoT7Ysi/ySpRI7+7PAEpuS/fwKhDlw==
-=AK7J
------END PGP SIGNATURE-----
-
---r897g2id2u11zAyc9OH59mUjrwIvTcUmt--
+-- 
+Regards,
+Sudeep
