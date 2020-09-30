@@ -2,99 +2,88 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from vger.kernel.org (vger.kernel.org [23.128.96.18])
-	by mail.lfdr.de (Postfix) with ESMTP id B207127DF0E
-	for <lists+devicetree@lfdr.de>; Wed, 30 Sep 2020 05:37:32 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTP id 1D07527DF0C
+	for <lists+devicetree@lfdr.de>; Wed, 30 Sep 2020 05:37:27 +0200 (CEST)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S1728068AbgI3Dha (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Tue, 29 Sep 2020 23:37:30 -0400
-Received: from userp2120.oracle.com ([156.151.31.85]:43304 "EHLO
-        userp2120.oracle.com" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S1725320AbgI3Dh3 (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Tue, 29 Sep 2020 23:37:29 -0400
-Received: from pps.filterd (userp2120.oracle.com [127.0.0.1])
-        by userp2120.oracle.com (8.16.0.42/8.16.0.42) with SMTP id 08U3PW2U124710;
-        Wed, 30 Sep 2020 03:37:04 GMT
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=oracle.com; h=from : to : cc :
- subject : date : message-id : in-reply-to : references : mime-version :
- content-transfer-encoding; s=corp-2020-01-29;
- bh=JIO2OhkkQj/te/56QEIG6eLxxBrz3gNMbTJM/EjNIE0=;
- b=TH29ePoP1RKgZ3g+wmY/4SK2ohmC8Hz1XBIWFYRGKQuGHmpzPziOjeYclheu6t4jQSnU
- MNGLyoww1N+9+2YXG5hG7kOn4d4fy1d3vQzkKyHKsfnAMtP/LigYsaQU9OHxTwv2c++k
- 7siM1tVHfqBf3mn4b53EpRaP3sIJ9sPToZTOBOc9z2epmmno5TSznsH7pUR3OzaFHac4
- CDTBgV+q3uGvAwgTq16Y3aGQctuHyFw1odp5IL806vFY4iOXNdJMrPMP02KIwPlHMRJ0
- I0fW9u069WH/PsKoUOA+gWX+fPfifHzMYVNN0KyKVzyuzANibJ3iXeL515zGfr+oheEh EQ== 
-Received: from aserp3020.oracle.com (aserp3020.oracle.com [141.146.126.70])
-        by userp2120.oracle.com with ESMTP id 33sx9n67e9-1
-        (version=TLSv1.2 cipher=ECDHE-RSA-AES256-GCM-SHA384 bits=256 verify=FAIL);
-        Wed, 30 Sep 2020 03:37:04 +0000
-Received: from pps.filterd (aserp3020.oracle.com [127.0.0.1])
-        by aserp3020.oracle.com (8.16.0.42/8.16.0.42) with SMTP id 08U3QVFX064910;
-        Wed, 30 Sep 2020 03:35:03 GMT
-Received: from userv0121.oracle.com (userv0121.oracle.com [156.151.31.72])
-        by aserp3020.oracle.com with ESMTP id 33tfhygkyv-1
-        (version=TLSv1.2 cipher=ECDHE-RSA-AES256-GCM-SHA384 bits=256 verify=OK);
-        Wed, 30 Sep 2020 03:35:03 +0000
-Received: from abhmp0010.oracle.com (abhmp0010.oracle.com [141.146.116.16])
-        by userv0121.oracle.com (8.14.4/8.13.8) with ESMTP id 08U3Yxha015339;
-        Wed, 30 Sep 2020 03:35:00 GMT
-Received: from ca-mkp.ca.oracle.com (/10.156.108.201)
-        by default (Oracle Beehive Gateway v4.0)
-        with ESMTP ; Tue, 29 Sep 2020 20:34:59 -0700
-From:   "Martin K. Petersen" <martin.petersen@oracle.com>
-To:     avri.altman@wdc.com, chunfeng.yun@mediatek.com, kishon@ti.com,
-        pedrom.sousa@synopsys.com, robh+dt@kernel.org,
-        Stanley Chu <stanley.chu@mediatek.com>, robh@kernel.org,
-        yingjoe.chen@mediatek.com, mark.rutland@arm.com,
-        linux-scsi@vger.kernel.org, devicetree@vger.kernel.org,
-        alim.akhtar@samsung.com
-Cc:     "Martin K . Petersen" <martin.petersen@oracle.com>,
-        jiajie.hao@mediatek.com, arvin.wang@mediatek.com,
-        peter.wang@mediatek.com, chaotian.jing@mediatek.com,
-        matthias.bgg@gmail.com, linux-mediatek@lists.infradead.org,
-        henryc.chen@mediatek.com, kuohong.wang@mediatek.com,
-        liwei213@huawei.com, vivek.gautam@codeaurora.org,
-        chun-hung.wu@mediatek.com, andy.teng@mediatek.com,
-        cc.chou@mediatek.com
-Subject: Re: [PATCH v3 0/2] scsi: ufs-mediatek: Support performance mode for inline encryption engine
-Date:   Tue, 29 Sep 2020 23:34:51 -0400
-Message-Id: <160143685414.27701.1344452138838007621.b4-ty@oracle.com>
-X-Mailer: git-send-email 2.28.0
-In-Reply-To: <20200914050052.3974-1-stanley.chu@mediatek.com>
-References: <20200914050052.3974-1-stanley.chu@mediatek.com>
+        id S1725372AbgI3Dh0 (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Tue, 29 Sep 2020 23:37:26 -0400
+Received: from mailgw01.mediatek.com ([210.61.82.183]:42652 "EHLO
+        mailgw01.mediatek.com" rhost-flags-OK-FAIL-OK-FAIL) by vger.kernel.org
+        with ESMTP id S1725320AbgI3Dh0 (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Tue, 29 Sep 2020 23:37:26 -0400
+X-UUID: fcb3a0e8fcff4d4ea64a39c99de5a5b7-20200930
+DKIM-Signature: v=1; a=rsa-sha256; q=dns/txt; c=relaxed/relaxed; d=mediatek.com; s=dk;
+        h=Content-Transfer-Encoding:MIME-Version:Content-Type:References:In-Reply-To:Date:CC:To:From:Subject:Message-ID; bh=nFjY+65HkqTIZS8cgP/4xc/0uFaZraXhLQV67OqTdbo=;
+        b=jLzGBIU/L7LxLBmXWaLGR2ayRZugR9e0ab3xyA5D9N2DlC+m38PdbbP2GCwMlN/Fb4ubVyrgmX3c8dAybi3aHg2Tp670nrUo+Pmx2uu90Bq3pWxRJ7XnUde3TLrDgb5w/smviMP3LgAyjaKvmZf3VFZB29AO8LJAfbE6UIwHpOQ=;
+X-UUID: fcb3a0e8fcff4d4ea64a39c99de5a5b7-20200930
+Received: from mtkcas10.mediatek.inc [(172.21.101.39)] by mailgw01.mediatek.com
+        (envelope-from <weiyi.lu@mediatek.com>)
+        (Cellopoint E-mail Firewall v4.1.14 Build 0819 with TLSv1.2 ECDHE-RSA-AES256-SHA384 256/256)
+        with ESMTP id 1300487384; Wed, 30 Sep 2020 11:37:20 +0800
+Received: from mtkcas07.mediatek.inc (172.21.101.84) by
+ mtkmbs07n1.mediatek.inc (172.21.101.16) with Microsoft SMTP Server (TLS) id
+ 15.0.1497.2; Wed, 30 Sep 2020 11:37:15 +0800
+Received: from [172.21.77.4] (172.21.77.4) by mtkcas07.mediatek.inc
+ (172.21.101.73) with Microsoft SMTP Server id 15.0.1497.2 via Frontend
+ Transport; Wed, 30 Sep 2020 11:37:19 +0800
+Message-ID: <1601437039.28469.3.camel@mtksdaap41>
+Subject: Re: [PATCH v17 06/12] soc: mediatek: Add support for hierarchical
+ scpsys device node
+From:   Weiyi Lu <weiyi.lu@mediatek.com>
+To:     Nicolas Boichat <drinkcat@chromium.org>
+CC:     Enric Balletbo Serra <eballetbo@gmail.com>,
+        Matthias Brugger <matthias.bgg@gmail.com>,
+        Rob Herring <robh@kernel.org>,
+        Sascha Hauer <kernel@pengutronix.de>,
+        James Liao <jamesjj.liao@mediatek.com>,
+        Fan Chen <fan.chen@mediatek.com>,
+        linux-arm Mailing List <linux-arm-kernel@lists.infradead.org>,
+        lkml <linux-kernel@vger.kernel.org>,
+        Devicetree List <devicetree@vger.kernel.org>,
+        "moderated list:ARM/Mediatek SoC support" 
+        <linux-mediatek@lists.infradead.org>,
+        srv_heupstream <srv_heupstream@mediatek.com>
+Date:   Wed, 30 Sep 2020 11:37:19 +0800
+In-Reply-To: <CANMq1KByYjeD0D81sPzDxx5SzrPvpGxPgm+xvLWcFsmfUJDWBQ@mail.gmail.com>
+References: <1596705715-15320-1-git-send-email-weiyi.lu@mediatek.com>
+         <1596705715-15320-7-git-send-email-weiyi.lu@mediatek.com>
+         <CANMq1KByYjeD0D81sPzDxx5SzrPvpGxPgm+xvLWcFsmfUJDWBQ@mail.gmail.com>
+Content-Type: text/plain; charset="UTF-8"
+X-Mailer: Evolution 3.10.4-0ubuntu2 
 MIME-Version: 1.0
-Content-Transfer-Encoding: 8bit
-X-Proofpoint-Virus-Version: vendor=nai engine=6000 definitions=9759 signatures=668680
-X-Proofpoint-Spam-Details: rule=notspam policy=default score=0 spamscore=0 mlxlogscore=999 bulkscore=0
- phishscore=0 malwarescore=0 adultscore=0 suspectscore=0 mlxscore=0
- classifier=spam adjust=0 reason=mlx scancount=1 engine=8.12.0-2006250000
- definitions=main-2009300023
-X-Proofpoint-Virus-Version: vendor=nai engine=6000 definitions=9759 signatures=668680
-X-Proofpoint-Spam-Details: rule=notspam policy=default score=0 mlxlogscore=999 suspectscore=0
- phishscore=0 mlxscore=0 lowpriorityscore=0 adultscore=0 clxscore=1015
- spamscore=0 impostorscore=0 malwarescore=0 bulkscore=0 priorityscore=1501
- classifier=spam adjust=0 reason=mlx scancount=1 engine=8.12.0-2006250000
- definitions=main-2009300023
+X-MTK:  N
+Content-Transfer-Encoding: base64
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-On Mon, 14 Sep 2020 13:00:50 +0800, Stanley Chu wrote:
+T24gTW9uLCAyMDIwLTA5LTI4IGF0IDE1OjE0ICswODAwLCBOaWNvbGFzIEJvaWNoYXQgd3JvdGU6
+DQo+IE9uIFRodSwgQXVnIDYsIDIwMjAgYXQgNToyMiBQTSBXZWl5aSBMdSA8d2VpeWkubHVAbWVk
+aWF0ZWsuY29tPiB3cm90ZToNCj4gPg0KPiA+IFRyeSB0byBsaXN0IGFsbCB0aGUgcG93ZXIgZG9t
+YWlucyBvZiB1bmRlciBwb3dlciBjb250cm9sbGVyDQo+ID4gbm9kZSB0byBzaG93IHRoZSBkZXBl
+bmRlbmN5IGJldHdlZW4gZWFjaCBwb3dlciBkb21haW4gZGlyZWN0bHkNCj4gPiBpbnN0ZWFkIG9m
+IGZpbGxpbmcgdGhlIGRlcGVuZGVuY3kgaW4gc2NwX3NvY19kYXRhLg0KPiA+IEFuZCBjb3VsZCBi
+ZSBtb3JlIGNsZWFybHkgdG8gZ3JvdXAgc3Vic3lzIGNsb2NrcyBpbnRvIHBvd2VyIGRvbWFpbg0K
+PiA+IHN1YiBub2RlIHRvIGludHJvZHVjZSBzdWJzeXMgY2xvY2tzIG9mIGJ1cyBwcm90ZWN0aW9u
+IGluIG5leHQgcGF0Y2guDQo+ID4NCj4gPiBTaWduZWQtb2ZmLWJ5OiBXZWl5aSBMdSA8d2VpeWku
+bHVAbWVkaWF0ZWsuY29tPg0KPiA+IC0tLQ0KPiBbc25pcF0NCj4gPiArc3RhdGljIGludCB0cmF2
+ZXJzZV9zY3Aoc3RydWN0IHBsYXRmb3JtX2RldmljZSAqcGRldiwgc3RydWN0IHNjcCAqc2NwLA0K
+PiA+ICsgICAgICAgICAgICAgICAgICAgICAgIGNvbnN0IHN0cnVjdCBzY3BfZG9tYWluX2RhdGEg
+KnNjcF9kb21haW5fZGF0YSkNCj4gPiArew0KPiA+ICsgICAgICAgc3RydWN0IGRldmljZSAqZGV2
+ID0gJnBkZXYtPmRldjsNCj4gPiArICAgICAgIHN0cnVjdCBkZXZpY2Vfbm9kZSAqbnAgPSBkZXYt
+Pm9mX25vZGU7DQo+ID4gKyAgICAgICBzdHJ1Y3QgZGV2aWNlX25vZGUgKnN1YjsNCj4gPiArICAg
+ICAgIGludCByZXQ7DQo+ID4gKw0KPiA+ICsgICAgICAgSU5JVF9MSVNUX0hFQUQoJnNjcC0+ZGVw
+X2xpbmtzKTsNCj4gPiArDQo+ID4gKyAgICAgICBmb3JfZWFjaF9hdmFpbGFibGVfY2hpbGRfb2Zf
+bm9kZShucCwgc3ViKSB7DQo+ID4gKyAgICAgICAgICAgICAgIHJldCA9IHNjcHN5c19nZXRfZG9t
+YWluKHBkZXYsIHNjcCwgc3ViLCBzY3BfZG9tYWluX2RhdGEpOw0KPiA+ICsgICAgICAgICAgICAg
+ICBpZiAocmV0KSB7DQo+ID4gKyAgICAgICAgICAgICAgICAgICAgICAgZGV2X2VycigmcGRldi0+
+ZGV2LCAiZmFpbGVkIHRvIGhhbmRsZSBub2RlICVwT0ZuOiAlZFxuIiwgc3ViLCByZXQpOw0KPiAN
+Cj4gbWlub3IgY29tbWVudDogdGhpcyBlcnJvciBzaG91bGQgbm90IGJlIHByaW50ZWQgaWYgcmV0
+ID09DQo+IC1FUFJPQkVfREVGRVIgKHVzZSB0aGUgbmV3IGRldl9lcnJfcHJvYmU/KQ0KPiANCg0K
+WW91J3JlIHJpZ2h0ISBJJ2xsIHVzZSBkZXZfZXJyX3Byb2JlKCkgaW5zdGVhZCBpZiBhbnlvbmUg
+aXMgaW50ZXJlc3RlZA0KaW4gdGhpcyBzZXJpZXMuIFRoYW5rIHlvdSENCg0KPiA+ICsgICAgICAg
+ICAgICAgICAgICAgICAgIGdvdG8gZXJyOw0KPiA+ICsgICAgICAgICAgICAgICB9DQo+ID4gKyAg
+ICAgICB9DQo+ID4gKw0KPiA+ICsgICAgICAgcmV0dXJuIDA7DQo+ID4gKw0KPiA+ICtlcnI6DQo+
+ID4gKyAgICAgICBvZl9ub2RlX3B1dChzdWIpOw0KPiA+ICsgICAgICAgcmV0dXJuIHJldDsNCj4g
+PiArfQ0KPiBbc25pcF0NCg0K
 
-> This series adds high-performance mode support for MediaTek UFS inline encryption engine.
-> This feature is only required in specific platforms, i.e., MT8192 series.
-> 
-> Please help consider this patch set in kernel v5.10.
-> 
-> Thanks.
-> 
-> [...]
-
-Applied to 5.10/scsi-queue, thanks!
-
-[1/2] scsi: ufs-mediatek: Support performance mode for inline encryption engine
-      https://git.kernel.org/mkp/scsi/c/590b0d2372fe
-[2/2] scsi: ufs-mediatek: dt-bindings: Add mt8192-ufshci compatible string
-      https://git.kernel.org/mkp/scsi/c/c1a3bf99d76e
-
--- 
-Martin K. Petersen	Oracle Linux Engineering
