@@ -2,126 +2,248 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from vger.kernel.org (vger.kernel.org [23.128.96.18])
-	by mail.lfdr.de (Postfix) with ESMTP id CFBE927E3C5
-	for <lists+devicetree@lfdr.de>; Wed, 30 Sep 2020 10:31:44 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTP id 13FA827E3D0
+	for <lists+devicetree@lfdr.de>; Wed, 30 Sep 2020 10:33:45 +0200 (CEST)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S1728606AbgI3Ibh (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Wed, 30 Sep 2020 04:31:37 -0400
-Received: from mailgw01.mediatek.com ([210.61.82.183]:32801 "EHLO
-        mailgw01.mediatek.com" rhost-flags-OK-FAIL-OK-FAIL) by vger.kernel.org
-        with ESMTP id S1728149AbgI3Ibb (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Wed, 30 Sep 2020 04:31:31 -0400
-X-UUID: e54419746cce49278959398548b4fb90-20200930
-DKIM-Signature: v=1; a=rsa-sha256; q=dns/txt; c=relaxed/relaxed; d=mediatek.com; s=dk;
-        h=Content-Transfer-Encoding:Content-Type:MIME-Version:References:In-Reply-To:Message-ID:Date:Subject:CC:To:From; bh=ua3qzbbELhDUqHL6B2hkJ3+GoeysnJWSTXOlUV9J9SY=;
-        b=GAv4Pkn1OjfEhZhmFo5wAMC8dApzk1CG25bO5cibaqYFmtCBdZOlsI5wZJqmiA2Xuy0uCCV1RL7RPWQhAL2+yfBox56nTHRCeTnwiMTwYmnJUxW+ZauMlWjn/8nc66PLgCZcjuhkLGPEj0q26cQm0lNwlISDMdGroCMQlaBawfc=;
-X-UUID: e54419746cce49278959398548b4fb90-20200930
-Received: from mtkcas10.mediatek.inc [(172.21.101.39)] by mailgw01.mediatek.com
-        (envelope-from <wenbin.mei@mediatek.com>)
-        (Cellopoint E-mail Firewall v4.1.14 Build 0819 with TLSv1.2 ECDHE-RSA-AES256-SHA384 256/256)
-        with ESMTP id 489661216; Wed, 30 Sep 2020 16:31:27 +0800
-Received: from mtkcas08.mediatek.inc (172.21.101.126) by
- mtkmbs07n1.mediatek.inc (172.21.101.16) with Microsoft SMTP Server (TLS) id
- 15.0.1497.2; Wed, 30 Sep 2020 16:31:25 +0800
-Received: from localhost.localdomain (10.17.3.153) by mtkcas08.mediatek.inc
- (172.21.101.73) with Microsoft SMTP Server id 15.0.1497.2 via Frontend
- Transport; Wed, 30 Sep 2020 16:31:23 +0800
-From:   Wenbin Mei <wenbin.mei@mediatek.com>
-To:     Ulf Hansson <ulf.hansson@linaro.org>,
-        Rob Herring <robh+dt@kernel.org>
-CC:     Chaotian Jing <chaotian.jing@mediatek.com>,
-        Matthias Brugger <matthias.bgg@gmail.com>,
-        <linux-mmc@vger.kernel.org>, <devicetree@vger.kernel.org>,
-        <linux-arm-kernel@lists.infradead.org>,
-        <linux-mediatek@lists.infradead.org>,
-        <linux-kernel@vger.kernel.org>, <srv_heupstream@mediatek.com>,
-        Wenbin Mei <wenbin.mei@mediatek.com>
-Subject: [PATCH v3 4/4] mmc: mediatek: Add subsys clock control for MT8192 msdc
-Date:   Wed, 30 Sep 2020 16:31:20 +0800
-Message-ID: <20200930083120.11971-5-wenbin.mei@mediatek.com>
-X-Mailer: git-send-email 2.18.0
-In-Reply-To: <20200930083120.11971-1-wenbin.mei@mediatek.com>
-References: <20200930083120.11971-1-wenbin.mei@mediatek.com>
+        id S1725535AbgI3Ido (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Wed, 30 Sep 2020 04:33:44 -0400
+Received: from mail.kernel.org ([198.145.29.99]:38608 "EHLO mail.kernel.org"
+        rhost-flags-OK-OK-OK-OK) by vger.kernel.org with ESMTP
+        id S1727657AbgI3Idn (ORCPT <rfc822;devicetree@vger.kernel.org>);
+        Wed, 30 Sep 2020 04:33:43 -0400
+Received: from disco-boy.misterjones.org (disco-boy.misterjones.org [51.254.78.96])
+        (using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
+        (No client certificate requested)
+        by mail.kernel.org (Postfix) with ESMTPSA id E1500206B7;
+        Wed, 30 Sep 2020 08:33:42 +0000 (UTC)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=kernel.org;
+        s=default; t=1601454823;
+        bh=gzVLfv8RiLpAzmqXpqrx3KnFJdITD8hmlSt5xS1fWxU=;
+        h=Date:From:To:Cc:Subject:In-Reply-To:References:From;
+        b=tJOr65bbsPhh8hfGB4wO/avqaxBDyU/ewHkYhmuc3DE6XF1QhIg2X4y1d9gutc2uG
+         lB66UaJbOefbKGl/gk1ZDr/4XsR17/p3gRgqLf/6JrXAuL/bXW+gr+0ZEzDzIonXrr
+         F8v7AXHwGb9jKKiPlkMjuNr6AaHlhTaGEX0g09zo=
+Received: from disco-boy.misterjones.org ([51.254.78.96] helo=www.loen.fr)
+        by disco-boy.misterjones.org with esmtpsa (TLS1.2:ECDHE_RSA_AES_128_GCM_SHA256:128)
+        (Exim 4.92)
+        (envelope-from <maz@kernel.org>)
+        id 1kNXYS-00G6ve-V8; Wed, 30 Sep 2020 09:33:41 +0100
 MIME-Version: 1.0
-Content-Type: text/plain
-X-MTK:  N
-Content-Transfer-Encoding: base64
+Content-Type: text/plain; charset=US-ASCII;
+ format=flowed
+Content-Transfer-Encoding: 7bit
+Date:   Wed, 30 Sep 2020 09:33:40 +0100
+From:   Marc Zyngier <maz@kernel.org>
+To:     Peter Ujfalusi <peter.ujfalusi@ti.com>
+Cc:     nm@ti.com, t-kristo@ti.com, ssantosh@kernel.org,
+        tglx@linutronix.de, jason@lakedaemon.net, robh+dt@kernel.org,
+        lokeshvutla@ti.com, linux-arm-kernel@lists.infradead.org,
+        linux-kernel@vger.kernel.org, devicetree@vger.kernel.org
+Subject: Re: [PATCH v2 2/2] irqchip/ti-sci-inta: Add support for unmapped
+ event handling
+In-Reply-To: <20200930074559.18028-3-peter.ujfalusi@ti.com>
+References: <20200930074559.18028-1-peter.ujfalusi@ti.com>
+ <20200930074559.18028-3-peter.ujfalusi@ti.com>
+User-Agent: Roundcube Webmail/1.4.8
+Message-ID: <af9ce252820bab9a21207ef2173da9fd@kernel.org>
+X-Sender: maz@kernel.org
+X-SA-Exim-Connect-IP: 51.254.78.96
+X-SA-Exim-Rcpt-To: peter.ujfalusi@ti.com, nm@ti.com, t-kristo@ti.com, ssantosh@kernel.org, tglx@linutronix.de, jason@lakedaemon.net, robh+dt@kernel.org, lokeshvutla@ti.com, linux-arm-kernel@lists.infradead.org, linux-kernel@vger.kernel.org, devicetree@vger.kernel.org
+X-SA-Exim-Mail-From: maz@kernel.org
+X-SA-Exim-Scanned: No (on disco-boy.misterjones.org); SAEximRunCond expanded to false
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-TVQ4MTkyIG1zZGMgaXMgYW4gaW5kZXBlbmRlbnQgc3ViIHN5c3RlbSwgd2UgbmVlZCBjb250cm9s
-IG1vcmUgYnVzDQpjbG9ja3MgZm9yIGl0Lg0KQWRkIHN1cHBvcnQgZm9yIHRoZSBhZGRpdGlvbmFs
-IHN1YnN5cyBjbG9ja3MgdG8gYWxsb3cgaXQgdG8gYmUNCmNvbmZpZ3VyZWQgYXBwcm9wcmlhdGVs
-eS4NCg0KU2lnbmVkLW9mZi1ieTogV2VuYmluIE1laSA8d2VuYmluLm1laUBtZWRpYXRlay5jb20+
-DQotLS0NCiBkcml2ZXJzL21tYy9ob3N0L210ay1zZC5jIHwgNzcgKysrKysrKysrKysrKysrKysr
-KysrKysrKysrKysrLS0tLS0tLS0tDQogMSBmaWxlIGNoYW5nZWQsIDU5IGluc2VydGlvbnMoKyks
-IDE4IGRlbGV0aW9ucygtKQ0KDQpkaWZmIC0tZ2l0IGEvZHJpdmVycy9tbWMvaG9zdC9tdGstc2Qu
-YyBiL2RyaXZlcnMvbW1jL2hvc3QvbXRrLXNkLmMNCmluZGV4IGE3MDQ3NDVlNTg4Mi4uOWExNDIy
-OTU1NTkzIDEwMDY0NA0KLS0tIGEvZHJpdmVycy9tbWMvaG9zdC9tdGstc2QuYw0KKysrIGIvZHJp
-dmVycy9tbWMvaG9zdC9tdGstc2QuYw0KQEAgLTQyNSw2ICs0MjUsOCBAQCBzdHJ1Y3QgbXNkY19o
-b3N0IHsNCiAJc3RydWN0IGNsayAqaF9jbGs7ICAgICAgLyogbXNkYyBoX2NsayAqLw0KIAlzdHJ1
-Y3QgY2xrICpidXNfY2xrOwkvKiBidXMgY2xvY2sgd2hpY2ggdXNlZCB0byBhY2Nlc3MgcmVnaXN0
-ZXIgKi8NCiAJc3RydWN0IGNsayAqc3JjX2Nsa19jZzsgLyogbXNkYyBzb3VyY2UgY2xvY2sgY29u
-dHJvbCBnYXRlICovDQorCXN0cnVjdCBjbGsgKnN5c19jbGtfY2c7CS8qIG1zZGMgc3Vic3lzIGNs
-b2NrIGNvbnRyb2wgZ2F0ZSAqLw0KKwlzdHJ1Y3QgY2xrX2J1bGtfZGF0YSBidWxrX2Nsa3NbM107
-CS8qIHBjbGssIGF4aSwgYWhiIGNsb2NrIGNvbnRyb2wgZ2F0ZSAqLw0KIAl1MzIgbWNsazsJCS8q
-IG1tYyBzdWJzeXN0ZW0gY2xvY2sgZnJlcXVlbmN5ICovDQogCXUzMiBzcmNfY2xrX2ZyZXE7CS8q
-IHNvdXJjZSBjbG9jayBmcmVxdWVuY3kgKi8NCiAJdW5zaWduZWQgY2hhciB0aW1pbmc7DQpAQCAt
-Nzg0LDYgKzc4Niw4IEBAIHN0YXRpYyB2b2lkIG1zZGNfc2V0X2J1c3lfdGltZW91dChzdHJ1Y3Qg
-bXNkY19ob3N0ICpob3N0LCB1NjQgbnMsIHU2NCBjbGtzKQ0KIA0KIHN0YXRpYyB2b2lkIG1zZGNf
-Z2F0ZV9jbG9jayhzdHJ1Y3QgbXNkY19ob3N0ICpob3N0KQ0KIHsNCisJY2xrX2J1bGtfZGlzYWJs
-ZV91bnByZXBhcmUoQVJSQVlfU0laRShob3N0LT5idWxrX2Nsa3MpLA0KKwkJCQkgICBob3N0LT5i
-dWxrX2Nsa3MpOw0KIAljbGtfZGlzYWJsZV91bnByZXBhcmUoaG9zdC0+c3JjX2Nsa19jZyk7DQog
-CWNsa19kaXNhYmxlX3VucHJlcGFyZShob3N0LT5zcmNfY2xrKTsNCiAJY2xrX2Rpc2FibGVfdW5w
-cmVwYXJlKGhvc3QtPmJ1c19jbGspOw0KQEAgLTc5MiwxMCArNzk2LDE3IEBAIHN0YXRpYyB2b2lk
-IG1zZGNfZ2F0ZV9jbG9jayhzdHJ1Y3QgbXNkY19ob3N0ICpob3N0KQ0KIA0KIHN0YXRpYyB2b2lk
-IG1zZGNfdW5nYXRlX2Nsb2NrKHN0cnVjdCBtc2RjX2hvc3QgKmhvc3QpDQogew0KKwlpbnQgcmV0
-Ow0KKw0KIAljbGtfcHJlcGFyZV9lbmFibGUoaG9zdC0+aF9jbGspOw0KIAljbGtfcHJlcGFyZV9l
-bmFibGUoaG9zdC0+YnVzX2Nsayk7DQogCWNsa19wcmVwYXJlX2VuYWJsZShob3N0LT5zcmNfY2xr
-KTsNCiAJY2xrX3ByZXBhcmVfZW5hYmxlKGhvc3QtPnNyY19jbGtfY2cpOw0KKwlyZXQgPSBjbGtf
-YnVsa19wcmVwYXJlX2VuYWJsZShBUlJBWV9TSVpFKGhvc3QtPmJ1bGtfY2xrcyksDQorCQkJCSAg
-ICAgIGhvc3QtPmJ1bGtfY2xrcyk7DQorCWlmIChyZXQpDQorCQlkZXZfZGJnKGhvc3QtPmRldiwg
-ImVuYWJsZSBjbGtzIGZhaWxlZCFcbiIpOw0KKw0KIAl3aGlsZSAoIShyZWFkbChob3N0LT5iYXNl
-ICsgTVNEQ19DRkcpICYgTVNEQ19DRkdfQ0tTVEIpKQ0KIAkJY3B1X3JlbGF4KCk7DQogfQ0KQEAg
-LTIzNjYsNiArMjM3Nyw1MiBAQCBzdGF0aWMgdm9pZCBtc2RjX29mX3Byb3BlcnR5X3BhcnNlKHN0
-cnVjdCBwbGF0Zm9ybV9kZXZpY2UgKnBkZXYsDQogCQlob3N0LT5jcWhjaSA9IGZhbHNlOw0KIH0N
-CiANCitzdGF0aWMgaW50IG1zZGNfb2ZfY2xvY2tfcGFyc2Uoc3RydWN0IHBsYXRmb3JtX2Rldmlj
-ZSAqcGRldiwNCisJCQkgICAgICAgc3RydWN0IG1zZGNfaG9zdCAqaG9zdCkNCit7DQorCXN0cnVj
-dCBjbGsgKmNsazsNCisNCisJaG9zdC0+c3JjX2NsayA9IGRldm1fY2xrX2dldCgmcGRldi0+ZGV2
-LCAic291cmNlIik7DQorCWlmIChJU19FUlIoaG9zdC0+c3JjX2NsaykpDQorCQlyZXR1cm4gUFRS
-X0VSUihob3N0LT5zcmNfY2xrKTsNCisNCisJaG9zdC0+aF9jbGsgPSBkZXZtX2Nsa19nZXQoJnBk
-ZXYtPmRldiwgImhjbGsiKTsNCisJaWYgKElTX0VSUihob3N0LT5oX2NsaykpDQorCQlyZXR1cm4g
-UFRSX0VSUihob3N0LT5oX2Nsayk7DQorDQorCWhvc3QtPmJ1c19jbGsgPSBkZXZtX2Nsa19nZXQo
-JnBkZXYtPmRldiwgImJ1c19jbGsiKTsNCisJaWYgKElTX0VSUihob3N0LT5idXNfY2xrKSkNCisJ
-CWhvc3QtPmJ1c19jbGsgPSBOVUxMOw0KKw0KKwkvKnNvdXJjZSBjbG9jayBjb250cm9sIGdhdGUg
-aXMgb3B0aW9uYWwgY2xvY2sqLw0KKwlob3N0LT5zcmNfY2xrX2NnID0gZGV2bV9jbGtfZ2V0KCZw
-ZGV2LT5kZXYsICJzb3VyY2VfY2ciKTsNCisJaWYgKElTX0VSUihob3N0LT5zcmNfY2xrX2NnKSkN
-CisJCWhvc3QtPnNyY19jbGtfY2cgPSBOVUxMOw0KKw0KKwlob3N0LT5zeXNfY2xrX2NnID0gZGV2
-bV9jbGtfZ2V0KCZwZGV2LT5kZXYsICJzeXNfY2ciKTsNCisJaWYgKElTX0VSUihob3N0LT5zeXNf
-Y2xrX2NnKSkNCisJCWhvc3QtPnN5c19jbGtfY2cgPSBOVUxMOw0KKwllbHNlDQorCQljbGtfcHJl
-cGFyZV9lbmFibGUoaG9zdC0+c3lzX2Nsa19jZyk7DQorDQorCWNsayA9IGRldm1fY2xrX2dldCgm
-cGRldi0+ZGV2LCAicGNsa19jZyIpOw0KKwlpZiAoSVNfRVJSKGNsaykpDQorCQljbGsgPSBOVUxM
-Ow0KKwlob3N0LT5idWxrX2Nsa3NbMF0uY2xrID0gY2xrOw0KKw0KKwljbGsgPSBkZXZtX2Nsa19n
-ZXQoJnBkZXYtPmRldiwgImF4aV9jZyIpOw0KKwlpZiAoSVNfRVJSKGNsaykpDQorCQljbGsgPSBO
-VUxMOw0KKwlob3N0LT5idWxrX2Nsa3NbMV0uY2xrID0gY2xrOw0KKw0KKwljbGsgPSBkZXZtX2Ns
-a19nZXQoJnBkZXYtPmRldiwgImFoYl9jZyIpOw0KKwlpZiAoSVNfRVJSKGNsaykpDQorCQljbGsg
-PSBOVUxMOw0KKwlob3N0LT5idWxrX2Nsa3NbMl0uY2xrID0gY2xrOw0KKw0KKwlyZXR1cm4gMDsN
-Cit9DQorDQogc3RhdGljIGludCBtc2RjX2Rydl9wcm9iZShzdHJ1Y3QgcGxhdGZvcm1fZGV2aWNl
-ICpwZGV2KQ0KIHsNCiAJc3RydWN0IG1tY19ob3N0ICptbWM7DQpAQCAtMjQwNSwyNSArMjQ2Miw5
-IEBAIHN0YXRpYyBpbnQgbXNkY19kcnZfcHJvYmUoc3RydWN0IHBsYXRmb3JtX2RldmljZSAqcGRl
-dikNCiAJaWYgKHJldCkNCiAJCWdvdG8gaG9zdF9mcmVlOw0KIA0KLQlob3N0LT5zcmNfY2xrID0g
-ZGV2bV9jbGtfZ2V0KCZwZGV2LT5kZXYsICJzb3VyY2UiKTsNCi0JaWYgKElTX0VSUihob3N0LT5z
-cmNfY2xrKSkgew0KLQkJcmV0ID0gUFRSX0VSUihob3N0LT5zcmNfY2xrKTsNCi0JCWdvdG8gaG9z
-dF9mcmVlOw0KLQl9DQotDQotCWhvc3QtPmhfY2xrID0gZGV2bV9jbGtfZ2V0KCZwZGV2LT5kZXYs
-ICJoY2xrIik7DQotCWlmIChJU19FUlIoaG9zdC0+aF9jbGspKSB7DQotCQlyZXQgPSBQVFJfRVJS
-KGhvc3QtPmhfY2xrKTsNCisJcmV0ID0gbXNkY19vZl9jbG9ja19wYXJzZShwZGV2LCBob3N0KTsN
-CisJaWYgKHJldCkNCiAJCWdvdG8gaG9zdF9mcmVlOw0KLQl9DQotDQotCWhvc3QtPmJ1c19jbGsg
-PSBkZXZtX2Nsa19nZXQoJnBkZXYtPmRldiwgImJ1c19jbGsiKTsNCi0JaWYgKElTX0VSUihob3N0
-LT5idXNfY2xrKSkNCi0JCWhvc3QtPmJ1c19jbGsgPSBOVUxMOw0KLQkvKnNvdXJjZSBjbG9jayBj
-b250cm9sIGdhdGUgaXMgb3B0aW9uYWwgY2xvY2sqLw0KLQlob3N0LT5zcmNfY2xrX2NnID0gZGV2
-bV9jbGtfZ2V0KCZwZGV2LT5kZXYsICJzb3VyY2VfY2ciKTsNCi0JaWYgKElTX0VSUihob3N0LT5z
-cmNfY2xrX2NnKSkNCi0JCWhvc3QtPnNyY19jbGtfY2cgPSBOVUxMOw0KIA0KIAlob3N0LT5yZXNl
-dCA9IGRldm1fcmVzZXRfY29udHJvbF9nZXRfb3B0aW9uYWxfZXhjbHVzaXZlKCZwZGV2LT5kZXYs
-DQogCQkJCQkJCQkiaHJzdCIpOw0KLS0gDQoyLjE4LjANCg==
+On 2020-09-30 08:45, Peter Ujfalusi wrote:
+> The DMA (BCDMA/PKTDMA and their rings/flows) events are under the 
+> INTA's
+> supervision as unmapped events in AM64.
 
+What does "unmapped event" mean? An event that doesn't require a 
+mapping?
+Or an internally generated event? Or a proxy event?
+
+> 
+> In order to keep the current SW stack working, the INTA driver must 
+> replace
+> the dev_id with it's own when a request comes for BCDMA or PKTDMA
+> resources.
+
+This seems to support my second option. Please clarify what you mean 
+exactly.
+
+> 
+> Implement parsing of the optional "ti,unmapped-event-sources" phandle 
+> array
+> to get the sci-dev-ids of the devices where the unmapped events 
+> originate.
+> 
+> Signed-off-by: Peter Ujfalusi <peter.ujfalusi@ti.com>
+> ---
+>  drivers/irqchip/irq-ti-sci-inta.c | 72 +++++++++++++++++++++++++++++--
+>  1 file changed, 68 insertions(+), 4 deletions(-)
+> 
+> diff --git a/drivers/irqchip/irq-ti-sci-inta.c
+> b/drivers/irqchip/irq-ti-sci-inta.c
+> index bc863ef7998d..00f5b34863c5 100644
+> --- a/drivers/irqchip/irq-ti-sci-inta.c
+> +++ b/drivers/irqchip/irq-ti-sci-inta.c
+> @@ -85,6 +85,8 @@ struct ti_sci_inta_vint_desc {
+>   * @base:		Base address of the memory mapped IO registers
+>   * @pdev:		Pointer to platform device.
+>   * @ti_sci_id:		TI-SCI device identifier
+> + * @difu_cnt:		Number of TI-SCI device identifiers for unmapped events
+> + * @dev_ids_for_unmapped: Pointer to an array of TI-SCI device 
+> identifiers
+>   */
+>  struct ti_sci_inta_irq_domain {
+>  	const struct ti_sci_handle *sci;
+> @@ -96,11 +98,33 @@ struct ti_sci_inta_irq_domain {
+>  	void __iomem *base;
+>  	struct platform_device *pdev;
+>  	u32 ti_sci_id;
+> +
+> +	int difu_cnt;
+
+I like silly acronyms as much as the next man, but please adopt
+sensible names. unmapped_cnt, or something.
+
+> +	u32 *dev_ids_for_unmapped;
+
+unmapped_dev_ids?
+
+>  };
+> 
+>  #define to_vint_desc(e, i) container_of(e, struct 
+> ti_sci_inta_vint_desc, \
+>  					events[i])
+> 
+> +static u16 ti_sci_inta_get_dev_id(struct ti_sci_inta_irq_domain *inta,
+> +				  u32 hwirq)
+> +{
+> +	u16 dev_id = HWIRQ_TO_DEVID(hwirq);
+> +	int i;
+> +
+> +	if (inta->difu_cnt == 0)
+> +		return dev_id;
+> +
+> +	for (i = 0; i < inta->difu_cnt; i++) {
+> +		if (dev_id == inta->dev_ids_for_unmapped[i]) {
+> +			dev_id = inta->ti_sci_id;
+
+ti_sci_id is a u32, and you are implicitly casting it as u16.
+One of the two is wrong.
+
+> +			break;
+> +		}
+> +	}
+> +
+> +	return dev_id;
+> +}
+> +
+>  /**
+>   * ti_sci_inta_irq_handler() - Chained IRQ handler for the vint irqs
+>   * @desc:	Pointer to irq_desc corresponding to the irq
+> @@ -251,7 +275,7 @@ static struct ti_sci_inta_event_desc
+> *ti_sci_inta_alloc_event(struct ti_sci_inta
+>  	u16 dev_id, dev_index;
+>  	int err;
+> 
+> -	dev_id = HWIRQ_TO_DEVID(hwirq);
+> +	dev_id = ti_sci_inta_get_dev_id(inta, hwirq);
+>  	dev_index = HWIRQ_TO_IRQID(hwirq);
+> 
+>  	event_desc = &vint_desc->events[free_bit];
+> @@ -352,14 +376,15 @@ static void ti_sci_inta_free_irq(struct
+> ti_sci_inta_event_desc *event_desc,
+>  {
+>  	struct ti_sci_inta_vint_desc *vint_desc;
+>  	struct ti_sci_inta_irq_domain *inta;
+> +	u16 dev_id;
+> 
+>  	vint_desc = to_vint_desc(event_desc, event_desc->vint_bit);
+>  	inta = vint_desc->domain->host_data;
+> +	dev_id = ti_sci_inta_get_dev_id(inta, hwirq);
+>  	/* free event irq */
+>  	mutex_lock(&inta->vint_mutex);
+>  	inta->sci->ops.rm_irq_ops.free_event_map(inta->sci,
+> -						 HWIRQ_TO_DEVID(hwirq),
+> -						 HWIRQ_TO_IRQID(hwirq),
+> +						 dev_id, HWIRQ_TO_IRQID(hwirq),
+>  						 inta->ti_sci_id,
+>  						 vint_desc->vint_id,
+>  						 event_desc->global_event,
+> @@ -562,7 +587,6 @@ static void 
+> ti_sci_inta_msi_set_desc(msi_alloc_info_t *arg,
+>  	arg->desc = desc;
+>  	arg->hwirq = TO_HWIRQ(pdev->id, desc->inta.dev_index);
+>  }
+> -
+>  static struct msi_domain_ops ti_sci_inta_msi_ops = {
+>  	.set_desc	= ti_sci_inta_msi_set_desc,
+>  };
+> @@ -574,6 +598,42 @@ static struct msi_domain_info
+> ti_sci_inta_msi_domain_info = {
+>  	.chip	= &ti_sci_inta_msi_irq_chip,
+>  };
+> 
+> +static int ti_sci_inta_get_unmapped_sources(struct
+> ti_sci_inta_irq_domain *inta)
+> +{
+> +	struct device *dev = &inta->pdev->dev;
+> +	struct device_node *node = dev_of_node(dev);
+> +	struct of_phandle_iterator it;
+> +	int count, err, ret, i;
+> +
+> +	count = of_count_phandle_with_args(node, "ti,unmapped-event-sources",
+> +					   NULL);
+> +	if (count <= 0)
+> +		return 0;
+> +
+> +	inta->dev_ids_for_unmapped = devm_kcalloc(dev, count,
+> +					sizeof(*inta->dev_ids_for_unmapped),
+> +					GFP_KERNEL);
+> +	if (!inta->dev_ids_for_unmapped)
+> +		return -ENOMEM;
+> +
+> +	i = 0;
+> +	of_for_each_phandle(&it, err, node, "ti,unmapped-event-sources",
+> +			    NULL, 0) {
+> +		ret = of_property_read_u32(it.node, "ti,sci-dev-id",
+> +					   &inta->dev_ids_for_unmapped[i++]);
+> +		if (ret) {
+> +			dev_err(dev, "ti,sci-dev-id read failure for %s\n",
+> +				of_node_full_name(it.node));
+
+Use the printk format specifier instead of of_node_full_name.
+
+> +			of_node_put(it.node);
+> +			return ret;
+> +		}
+> +	}
+> +
+> +	inta->difu_cnt = count;
+> +
+> +	return 0;
+> +}
+> +
+>  static int ti_sci_inta_irq_domain_probe(struct platform_device *pdev)
+>  {
+>  	struct irq_domain *parent_domain, *domain, *msi_domain;
+> @@ -629,6 +689,10 @@ static int ti_sci_inta_irq_domain_probe(struct
+> platform_device *pdev)
+>  	if (IS_ERR(inta->base))
+>  		return PTR_ERR(inta->base);
+> 
+> +	ret = ti_sci_inta_get_unmapped_sources(inta);
+> +	if (ret)
+> +		return ret;
+> +
+>  	domain = irq_domain_add_linear(dev_of_node(dev),
+>  				       ti_sci_get_num_resources(inta->vint),
+>  				       &ti_sci_inta_irq_domain_ops, inta);
+
+         M.
+-- 
+Jazz is not dead. It just smells funny...
