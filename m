@@ -2,101 +2,165 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from vger.kernel.org (vger.kernel.org [23.128.96.18])
-	by mail.lfdr.de (Postfix) with ESMTP id 4598327E313
-	for <lists+devicetree@lfdr.de>; Wed, 30 Sep 2020 09:57:34 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTP id 009FB27E31A
+	for <lists+devicetree@lfdr.de>; Wed, 30 Sep 2020 09:57:45 +0200 (CEST)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S1725535AbgI3H5b (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Wed, 30 Sep 2020 03:57:31 -0400
-Received: from lindbergh.monkeyblade.net ([23.128.96.19]:57240 "EHLO
+        id S1728417AbgI3H5o (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Wed, 30 Sep 2020 03:57:44 -0400
+Received: from lindbergh.monkeyblade.net ([23.128.96.19]:57278 "EHLO
         lindbergh.monkeyblade.net" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S1725440AbgI3H5b (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Wed, 30 Sep 2020 03:57:31 -0400
-Received: from mail-pj1-x1041.google.com (mail-pj1-x1041.google.com [IPv6:2607:f8b0:4864:20::1041])
-        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id EA39DC061755
-        for <devicetree@vger.kernel.org>; Wed, 30 Sep 2020 00:57:30 -0700 (PDT)
-Received: by mail-pj1-x1041.google.com with SMTP id jw11so465154pjb.0
-        for <devicetree@vger.kernel.org>; Wed, 30 Sep 2020 00:57:30 -0700 (PDT)
+        with ESMTP id S1728384AbgI3H5j (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Wed, 30 Sep 2020 03:57:39 -0400
+Received: from mail-pl1-x641.google.com (mail-pl1-x641.google.com [IPv6:2607:f8b0:4864:20::641])
+        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id CF81AC0613D6
+        for <devicetree@vger.kernel.org>; Wed, 30 Sep 2020 00:57:35 -0700 (PDT)
+Received: by mail-pl1-x641.google.com with SMTP id y20so533407pll.12
+        for <devicetree@vger.kernel.org>; Wed, 30 Sep 2020 00:57:35 -0700 (PDT)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
         d=chromium.org; s=google;
-        h=from:to:cc:subject:date:message-id:mime-version
-         :content-transfer-encoding;
-        bh=41fwcJQb0JloACvIEe9HUyDrLHIz7eaahBS/h+lPtsE=;
-        b=UoDMGOpNZOcv306Av56L58WpIKkFRRO5LD9wk0oAXCv92QUq9oroHBT9Yo0BZGyhQG
-         lyqWpAcFQZF6XcKem9xUqWTb8t7X4I5pV39ylYVhvS19cB4bH21hBL5RdmiZaPCG0zAd
-         K/EeZHSivRKdwsR8L7sGRx/qHmCafBxjpC3ro=
+        h=from:to:cc:subject:date:message-id:in-reply-to:references
+         :mime-version:content-transfer-encoding;
+        bh=GDEcWHlyapYQvTzBGPWxhwlFd+2hXwYzlj+sRCbxoP0=;
+        b=n7gSOYsXocsjgth2CDy902uJFO1zzt0WyA1PedfCq8fZFumii1yZIkBzQd99o57jeL
+         OQJLRxvfPxFjb5pxCc6/SWUIc0ANPF1xnntYLbHiOqCe2iDjCy0kvr6dJPP8ST465npn
+         4IM5KOnFkw++/7cFqA/INBXSOPysUEWZ2Gmz0=
 X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
         d=1e100.net; s=20161025;
-        h=x-gm-message-state:from:to:cc:subject:date:message-id:mime-version
-         :content-transfer-encoding;
-        bh=41fwcJQb0JloACvIEe9HUyDrLHIz7eaahBS/h+lPtsE=;
-        b=Zm6BbBKbQjm7m+Fm8u8akuIhbN/o+4aJYzpn5axHEH/xWxK97MVda9ATVZyzD0qyyK
-         O88JPR+qUle/FeQNFeAATlGg+ywu/Ljv7eDIT3frMJeWKcn5yNpicvsr9S7C8cJHCMWf
-         +WpwhGOXE0qcRm1H9cPOSkRYwR0EVgZLVIvBstSjSeN5W7Kts4mYBlobtryTqkHUv433
-         BwReG//xjSyn4sY5qMvT634KEc1CmFg0UCwR9TiIlhBcEwwCrTKiDCtIQ7z8WRKwgDZU
-         ONQ+lVOzHqV5J4yIdKJHZPMcjTMcd1CovTZfiACpoXpfByP8fraSJTpdZSGrzZaV753W
-         8ZXw==
-X-Gm-Message-State: AOAM533v8daGpqw8g9dyuy9Pb3Gnwc3Z6+Gx0ZOBy/8XG6AxuVAcbHiW
-        atv2o/LJp5NZJSUd7c4PPFwmQg==
-X-Google-Smtp-Source: ABdhPJyuwN2+tjnzg6O8OhS7ont52/rp9+T5SgNFLtGxgBwbHXWzB/BrruRiih7xrffPfRg19wTMUg==
-X-Received: by 2002:a17:90a:d311:: with SMTP id p17mr1457615pju.135.1601452650326;
-        Wed, 30 Sep 2020 00:57:30 -0700 (PDT)
+        h=x-gm-message-state:from:to:cc:subject:date:message-id:in-reply-to
+         :references:mime-version:content-transfer-encoding;
+        bh=GDEcWHlyapYQvTzBGPWxhwlFd+2hXwYzlj+sRCbxoP0=;
+        b=h6bOmhwo50t6izsmsSjjQ60BaCBGBrwZILyTADCtY8UPO2s8IyRdvTZ49aGHgkdawc
+         oaZkUKda76w340dpCOy6QVEqjhwy7gOxZm34kXkq8k5lzMTM+axixoJh+OR5xSYMyPcE
+         otUFs+tfJA/WZYZynefWiaphvo7sjNCHG+7GtBPlVoTzw8g4fGYmF1g+c29PVCCy/eMJ
+         0/Xw3cDeFg7gQxk/U1mBtKDYCAWfKfPzcwTIhdj15XuCSXqAV5atdVoVpElYcq6vD+fw
+         1F5G0/Pu3h0sgXI7wOnkyYSW4ElgucUY03xqeyr0zcwC61yleVT11xzazYjcNPPd7Vzm
+         ZT5g==
+X-Gm-Message-State: AOAM530QQ1XXQv84xZgisFuxfNmHR5CUDLqwo/cgnbL0GtaiOpWsAbHJ
+        SAXq5G7W305MS/MIT5XeMyMagQ==
+X-Google-Smtp-Source: ABdhPJz0F1CB/zSe1XmZdBhGdtw+r/P5uj6z+DERjylbMqGq6vqic9eQqPdxtS+2HxwNxFDNzDkNkA==
+X-Received: by 2002:a17:90a:ae12:: with SMTP id t18mr1488011pjq.147.1601452655437;
+        Wed, 30 Sep 2020 00:57:35 -0700 (PDT)
 Received: from smtp.gmail.com ([2620:15c:202:1:3e52:82ff:fe6c:83ab])
-        by smtp.gmail.com with ESMTPSA id l21sm1272131pjq.54.2020.09.30.00.57.29
+        by smtp.gmail.com with ESMTPSA id l21sm1272131pjq.54.2020.09.30.00.57.34
         (version=TLS1_3 cipher=TLS_AES_256_GCM_SHA384 bits=256/256);
-        Wed, 30 Sep 2020 00:57:29 -0700 (PDT)
+        Wed, 30 Sep 2020 00:57:34 -0700 (PDT)
 From:   Stephen Boyd <swboyd@chromium.org>
 To:     Jonathan Cameron <jic23@kernel.org>
 Cc:     linux-kernel@vger.kernel.org, linux-iio@vger.kernel.org,
         Daniel Campello <campello@chromium.org>,
         Lars-Peter Clausen <lars@metafoo.de>,
         Peter Meerwald-Stadler <pmeerw@pmeerw.net>,
+        Rob Herring <robh+dt@kernel.org>, devicetree@vger.kernel.org,
         Douglas Anderson <dianders@chromium.org>,
         Gwendal Grignou <gwendal@chromium.org>,
-        Evan Green <evgreen@chromium.org>,
-        Rob Herring <robh+dt@kernel.org>, devicetree@vger.kernel.org
-Subject: [PATCH v2 0/6] iio: sx9310: Support setting various settings
-Date:   Wed, 30 Sep 2020 00:57:22 -0700
-Message-Id: <20200930075728.2410327-1-swboyd@chromium.org>
+        Evan Green <evgreen@chromium.org>
+Subject: [PATCH v2 5/6] dt-bindings: iio: sx9310: Add various settings as DT properties
+Date:   Wed, 30 Sep 2020 00:57:27 -0700
+Message-Id: <20200930075728.2410327-6-swboyd@chromium.org>
 X-Mailer: git-send-email 2.28.0.709.gb0816b6eb0-goog
+In-Reply-To: <20200930075728.2410327-1-swboyd@chromium.org>
+References: <20200930075728.2410327-1-swboyd@chromium.org>
 MIME-Version: 1.0
 Content-Transfer-Encoding: 8bit
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-I need to configure various settings such as thresholds, gain factors,
-etc. on this device. Some settings matter at boot, while others can wait
-for userspace to configure things. This patch series adds support to
-set these various bits in the registers of this device.
-
-Changes from v1 (https://lore.kernel.org/r/20200903221828.3657250-1-swboyd@chromium.org)
- - A bunch more patches for userspace settings
- - Removed body thresholds as they're probably not used
- - Removed compensate common as it probably doesn't matter
- - Moved thresholds, gain factor, hysteresis, debounce to userspace
-
-Stephen Boyd (6):
-  iio: sx9310: Support hardware gain factor
-  iio: sx9310: Support setting proximity thresholds
-  iio: sx9310: Support setting hysteresis values
-  iio: sx9310: Support setting debounce values
-  dt-bindings: iio: sx9310: Add various settings as DT properties
-  iio: sx9310: Set various settings from DT
-
- .../iio/proximity/semtech,sx9310.yaml         |  61 ++
- drivers/iio/proximity/sx9310.c                | 524 +++++++++++++++++-
- 2 files changed, 579 insertions(+), 6 deletions(-)
+We need to set various bits in the hardware registers for this device to
+operate properly depending on how it is installed. Add a handful of DT
+properties to configure these things.
 
 Cc: Daniel Campello <campello@chromium.org>
 Cc: Lars-Peter Clausen <lars@metafoo.de>
 Cc: Peter Meerwald-Stadler <pmeerw@pmeerw.net>
+Cc: Rob Herring <robh+dt@kernel.org>
+Cc: <devicetree@vger.kernel.org>
 Cc: Douglas Anderson <dianders@chromium.org>
 Cc: Gwendal Grignou <gwendal@chromium.org>
 Cc: Evan Green <evgreen@chromium.org>
-Cc: Rob Herring <robh+dt@kernel.org>
-Cc: <devicetree@vger.kernel.org>
+Signed-off-by: Stephen Boyd <swboyd@chromium.org>
+---
+ .../iio/proximity/semtech,sx9310.yaml         | 61 +++++++++++++++++++
+ 1 file changed, 61 insertions(+)
 
-base-commit: 1bebdcb928eba880f3a119bacb8149216206958a
+diff --git a/Documentation/devicetree/bindings/iio/proximity/semtech,sx9310.yaml b/Documentation/devicetree/bindings/iio/proximity/semtech,sx9310.yaml
+index 5739074d3592..a85b8fa25861 100644
+--- a/Documentation/devicetree/bindings/iio/proximity/semtech,sx9310.yaml
++++ b/Documentation/devicetree/bindings/iio/proximity/semtech,sx9310.yaml
+@@ -40,6 +40,61 @@ properties:
+   "#io-channel-cells":
+     const: 1
+ 
++  semtech,cs0-ground:
++    description: Indicates the CS0 sensor is connected to ground.
++    type: boolean
++
++  semtech,combined-sensors:
++    $ref: /schemas/types.yaml#/definitions/uint32-array
++    description: |
++      List of which sensors are combined and represented by CS3.
++      Possible values are -
++      3        - CS3 (internal)
++      0 1      - CS0 + CS1
++      1 2      - CS1 + CS2 (default)
++      0 1 2 3  - CS0 + CS1 + CS2 + CS3
++    minItems: 1
++    maxItems: 4
++
++  semtech,resolution:
++    description:
++      Capacitance measure resolution. Refer to datasheet for more details.
++    enum:
++      - coarsest
++      - very-coarse
++      - coarse
++      - medium-coarse
++      - medium
++      - fine
++      - very-fine
++      - finest
++
++  semtech,startup-sensor:
++    $ref: /schemas/types.yaml#definitions/uint32
++    enum: [0, 1, 2, 3]
++    default: 0
++    description:
++      Sensor used for start-up proximity detection. The combined
++      sensor is represented by the value 3. This is used for initial
++      compensation.
++
++  semtech,proxraw-strength:
++    $ref: /schemas/types.yaml#definitions/uint32
++    enum: [0, 2, 4, 8]
++    default: 2
++    description:
++      PROXRAW filter strength. A value of 0 represents off, and other values
++      represent 1-1/N.
++
++  semtech,avg-pos-strength:
++    $ref: /schemas/types.yaml#definitions/uint32
++    enum: [0, 16, 64, 128, 256, 512, 1024, 4294967295]
++    default: 16
++    description:
++      Average positive filter strength. A value of 0 represents off and
++      UINT_MAX (4294967295) represents infinite. Other values
++      represent 1-1/N.
++
+ required:
+   - compatible
+   - reg
+@@ -61,5 +116,11 @@ examples:
+         vdd-supply = <&pp3300_a>;
+         svdd-supply = <&pp1800_prox>;
+         #io-channel-cells = <1>;
++        semtech,cs0-ground;
++        semtech,combined-sensors = <1 2 3>;
++        semtech,resolution = "fine";
++        semtech,startup-sensor = <1>;
++        semtech,proxraw-strength = <2>;
++        semtech,avg-pos-strength = <64>;
+       };
+     };
 -- 
 Sent by a computer, using git, on the internet
 
