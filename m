@@ -2,82 +2,191 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from vger.kernel.org (vger.kernel.org [23.128.96.18])
-	by mail.lfdr.de (Postfix) with ESMTP id 1AF3527E663
-	for <lists+devicetree@lfdr.de>; Wed, 30 Sep 2020 12:19:02 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTP id AAF9027E669
+	for <lists+devicetree@lfdr.de>; Wed, 30 Sep 2020 12:19:25 +0200 (CEST)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S1728430AbgI3KTB (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Wed, 30 Sep 2020 06:19:01 -0400
-Received: from lindbergh.monkeyblade.net ([23.128.96.19]:51058 "EHLO
-        lindbergh.monkeyblade.net" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S1725872AbgI3KTB (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Wed, 30 Sep 2020 06:19:01 -0400
-Received: from mail-pf1-x441.google.com (mail-pf1-x441.google.com [IPv6:2607:f8b0:4864:20::441])
-        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 8F31AC061755;
-        Wed, 30 Sep 2020 03:19:00 -0700 (PDT)
-Received: by mail-pf1-x441.google.com with SMTP id k13so893432pfg.1;
-        Wed, 30 Sep 2020 03:19:00 -0700 (PDT)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=gmail.com; s=20161025;
-        h=from:to:cc:subject:date:message-id;
-        bh=kbcNPf2FnaimbYNu8mZt61aQbxjrHO1kHPwcw7TixwU=;
-        b=TnAO3VtAH6qGuUotLS41T91OsAlhsJy7SB2QbFSEmPrZ8X8uSqpKbCD+qGWSnmwNsl
-         JB9YIyKNmURvHT0B/ZwPJ+bevdfji9LYFhvfH9JMSAa+kKuQkfWE2eBFJIrYu3QrcVCx
-         Xkspe9MKXBGR2WzC0m3dsmwrFlZtkaYBsKQz/aE5YN3YdzMj0YrEfBchA/OlhI8puSEh
-         //DCghikkqT/wn5thCQVo4irIjFXZte+gHKYmt6aLTWOwhODzGrjA0sCvxm6v2nDE8cR
-         Z3b8PFLMKHjiVwXjgtmpmfJp/LUMifMAd5yeYioPai+pYXTANemcv9b5qS5wYinf96Oq
-         X/vg==
-X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=1e100.net; s=20161025;
-        h=x-gm-message-state:from:to:cc:subject:date:message-id;
-        bh=kbcNPf2FnaimbYNu8mZt61aQbxjrHO1kHPwcw7TixwU=;
-        b=FhIyqYYGgttZ1dY6LFOG7NdkarEgVl9NBLpLtUaKqHOdnjfyQH4VMR96NgRes1uCKd
-         8hyNOZceKFFH4kF4/VBt8pEx5xn/TZjGstxWZ84OOPFVJ5V0I865oPlipCt/2JRp69Dj
-         NvliJmWQ6L3/DB2UEXzszvLQQ/TYIUkj7AIPG7Il46P95qeWN5rPCBsY7e3wYn1CvB0j
-         7y0K0lD20ErjOBAHt/xn+hRHqvOCMvANX0VZblf1sqXxO6yLqUfhm1ydLqipyawOjuUk
-         OvCMvD5ZkuxQATrW7K64OPu2CXy8eEOJD0Nkurl1a8TMqDyBaY6+8aDr9QRHX5e82ia6
-         NA4A==
-X-Gm-Message-State: AOAM532MQBcxV6EKymmAPhSR6Wde857tor413zdnvbibn71oa9QqeTwq
-        1nszmvRyiMhSOq8y1SiPJhA=
-X-Google-Smtp-Source: ABdhPJyifpDRR3IA6zAGGv1C9PADlLiEAdUnsPbK4RqMk4QeqJQeyz2GQYSaFqKf2m8S5KUry0xWtQ==
-X-Received: by 2002:a63:786:: with SMTP id 128mr1606485pgh.69.1601461140095;
-        Wed, 30 Sep 2020 03:19:00 -0700 (PDT)
-Received: from localhost.localdomain ([2402:7500:46b:9c58:dff:2627:f8ff:93b4])
-        by smtp.gmail.com with ESMTPSA id b2sm1966566pfp.3.2020.09.30.03.18.56
-        (version=TLS1_2 cipher=ECDHE-ECDSA-AES128-GCM-SHA256 bits=128/128);
-        Wed, 30 Sep 2020 03:18:59 -0700 (PDT)
-From:   cy_huang <u0084500@gmail.com>
-To:     broonie@kernel.org, robh+dt@kernel.org
-Cc:     lgirdwood@gmail.com, cy_huang@richtek.com,
-        linux-kernel@vger.kernel.org, devicetree@vger.kernel.org
-Subject: [PATCH] regulator: rtmv20: Add missing regcache cache only before marked as dirty
-Date:   Wed, 30 Sep 2020 18:18:52 +0800
-Message-Id: <1601461132-15251-1-git-send-email-u0084500@gmail.com>
-X-Mailer: git-send-email 2.7.4
+        id S1729104AbgI3KTY (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Wed, 30 Sep 2020 06:19:24 -0400
+Received: from new3-smtp.messagingengine.com ([66.111.4.229]:41119 "EHLO
+        new3-smtp.messagingengine.com" rhost-flags-OK-OK-OK-OK)
+        by vger.kernel.org with ESMTP id S1725872AbgI3KTY (ORCPT
+        <rfc822;devicetree@vger.kernel.org>);
+        Wed, 30 Sep 2020 06:19:24 -0400
+Received: from compute3.internal (compute3.nyi.internal [10.202.2.43])
+        by mailnew.nyi.internal (Postfix) with ESMTP id 85A535803DF;
+        Wed, 30 Sep 2020 06:19:20 -0400 (EDT)
+Received: from mailfrontend2 ([10.202.2.163])
+  by compute3.internal (MEProxy); Wed, 30 Sep 2020 06:19:20 -0400
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=cerno.tech; h=
+        date:from:to:cc:subject:message-id:references:mime-version
+        :content-type:in-reply-to; s=fm1; bh=51hsmLqz9/nNSWtqEjjDNGJdPsf
+        EI5fyVu8+ZU5LqF8=; b=WASw4mxJEzKv4bds0eEWxanJSnI/2TKzJEUgsQAGns3
+        K+soucfi0bPYbyYRo3hhV+xWYaT33ApNtXXs0Nwba1F8Zksphw19wtwMpkEsRBg9
+        lfpEtRSCKY4/T9hUOJsdx6p5qqsl6mwJEHx+wL0hv8ZsLItEPeRPGfttTYL76Wun
+        vp9EGkBesq3JUdmRxSllCZxfVr79dt1jIxQ5LXt1qgIMbkifknSO0OHRhTaIxMkQ
+        Z62wwYaL6kNA80yXBYi7bMK/F7LamFV4YvBfBxITQqsorF32KBBxwp1eUVvAPNkK
+        qrVY1iYj9S7tG1DV6Wu589+KH8z47or6lWkQ2ZMBp9g==
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=
+        messagingengine.com; h=cc:content-type:date:from:in-reply-to
+        :message-id:mime-version:references:subject:to:x-me-proxy
+        :x-me-proxy:x-me-sender:x-me-sender:x-sasl-enc; s=fm3; bh=51hsmL
+        qz9/nNSWtqEjjDNGJdPsfEI5fyVu8+ZU5LqF8=; b=crhmRSvelGLaAGFWUJPjgv
+        uKnov9mX1EL8WL3DMWP4wGDzRygCbY+R3BBNyNp8e6SZ5YyDlmaBdHd7pRLVSexy
+        uf1uy4/HahQgkbJtTVqAXk1MW8OFvbd5jW+fqwG8q4CslwHXdhnh0eJMcLU2g8hl
+        QNJifjA98V9QC4UF2Dj2S+BxJ1MwwLhQz0dqAh18KUiKRk33ZRekQexvjFRvU6JY
+        lqIAseNkZv1gUIoj5tdvF9Zd7K+VxNePb6JCHDU6J+/h5N1Qd29hTAKKt2lYcY0T
+        osQNm6Pngnm0e8/OvFhJgEnNkjwhpwv8akNAfEXMnArnqwOlolFb1CWgoUi8lc2A
+        ==
+X-ME-Sender: <xms:pFt0X4Wd3qhT-TZ9qhPg1BHxHw5GZnFD-mu5cJuwUNnFxliKqpP_Tw>
+    <xme:pFt0X8mr4LxPywLl8iEgImh4u6YQ24Z_WBREKKhrYQs5O-mtuMcfMt54-mXbYC5tt
+    ce1coA8CNO0u9W3_F0>
+X-ME-Proxy-Cause: gggruggvucftvghtrhhoucdtuddrgedujedrfedvgddvvdcutefuodetggdotefrodftvf
+    curfhrohhfihhlvgemucfhrghsthforghilhdpqfgfvfdpuffrtefokffrpgfnqfghnecu
+    uegrihhlohhuthemuceftddtnecusecvtfgvtghiphhivghnthhsucdlqddutddtmdenuc
+    fjughrpeffhffvuffkfhggtggujgesghdtreertddtjeenucfhrhhomhepofgrgihimhgv
+    ucftihhprghrugcuoehmrgigihhmvgestggvrhhnohdrthgvtghhqeenucggtffrrghtth
+    gvrhhnpeeutdfgjeeuudehvefgvedvtedtudelfffgffekledtffekgedukeejueevieeg
+    udenucfkphepledtrdekledrieekrdejieenucevlhhushhtvghrufhiiigvpedtnecurf
+    grrhgrmhepmhgrihhlfhhrohhmpehmrgigihhmvgestggvrhhnohdrthgvtghh
+X-ME-Proxy: <xmx:pFt0X8YSrOhdFUqfBftZwAhGIXgEEZ8MDTkZ_uSwZUYh06GHd5LYlw>
+    <xmx:pFt0X3VOjfFbtLGDHhxUKGnbzDG8fI_0kK79xe_6SvsU4o1RsdQmQw>
+    <xmx:pFt0XylKx9OjYan_RZVkAEgxf2-wJhuoDE2P1M_S3lBLa3LemWj8CA>
+    <xmx:qFt0X0cYfcm7CApF1P6Xth7KOw2Aw1dfv1k0FyBcsce4IyYa2QbvNA>
+Received: from localhost (lfbn-tou-1-1502-76.w90-89.abo.wanadoo.fr [90.89.68.76])
+        by mail.messagingengine.com (Postfix) with ESMTPA id A2C33306467E;
+        Wed, 30 Sep 2020 06:19:16 -0400 (EDT)
+Date:   Wed, 30 Sep 2020 12:19:15 +0200
+From:   Maxime Ripard <maxime@cerno.tech>
+To:     =?utf-8?B?Q2zDqW1lbnQgUMOpcm9u?= <peron.clem@gmail.com>
+Cc:     Jernej =?utf-8?Q?=C5=A0krabec?= <jernej.skrabec@siol.net>,
+        Chen-Yu Tsai <wens@csie.org>, Rob Herring <robh+dt@kernel.org>,
+        Mark Brown <broonie@kernel.org>,
+        Liam Girdwood <lgirdwood@gmail.com>,
+        Jaroslav Kysela <perex@perex.cz>,
+        Takashi Iwai <tiwai@suse.com>,
+        Marcus Cooper <codekipper@gmail.com>,
+        Linux-ALSA <alsa-devel@alsa-project.org>,
+        devicetree <devicetree@vger.kernel.org>,
+        linux-arm-kernel <linux-arm-kernel@lists.infradead.org>,
+        linux-kernel <linux-kernel@vger.kernel.org>,
+        linux-sunxi <linux-sunxi@googlegroups.com>
+Subject: Re: [PATCH v4 09/22] arm64: dts: allwinner: h6: Add HDMI audio node
+Message-ID: <20200930101915.sultshdvxgu5u2rs@gilmour.lan>
+References: <20200921102731.747736-1-peron.clem@gmail.com>
+ <20200921135925.q7mde2cnt5jtzkb5@gilmour.lan>
+ <CAJiuCcfz9A_Vmzq=s3LK2kGB_1tZPkC9Ux+Brdocp9py0fovAg@mail.gmail.com>
+ <59286578.E0qSRroNqr@kista>
+ <20200928084308.eipnvlfqe3c5lfmg@gilmour.lan>
+ <CAJiuCceHXr_5PvG-FW+hRNV7Q33hGrp8kLbO0EgfqqBxF7wbqQ@mail.gmail.com>
+MIME-Version: 1.0
+Content-Type: multipart/signed; micalg=pgp-sha256;
+        protocol="application/pgp-signature"; boundary="we3fv24y4dnxqond"
+Content-Disposition: inline
+In-Reply-To: <CAJiuCceHXr_5PvG-FW+hRNV7Q33hGrp8kLbO0EgfqqBxF7wbqQ@mail.gmail.com>
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-From: ChiYuan Huang <cy_huang@richtek.com>
 
-Add missing regcache cache only before masked as dirty.
+--we3fv24y4dnxqond
+Content-Type: text/plain; charset=utf-8
+Content-Disposition: inline
+Content-Transfer-Encoding: quoted-printable
 
-Signed-off-by: ChiYuan Huang <cy_huang@richtek.com>
----
- drivers/regulator/rtmv20-regulator.c | 1 +
- 1 file changed, 1 insertion(+)
+On Mon, Sep 28, 2020 at 04:27:42PM +0200, Cl=C3=A9ment P=C3=A9ron wrote:
+> On Mon, 28 Sep 2020 at 10:43, Maxime Ripard <maxime@cerno.tech> wrote:
+> >
+> > On Mon, Sep 21, 2020 at 08:37:09PM +0200, Jernej =C5=A0krabec wrote:
+> > > Dne ponedeljek, 21. september 2020 ob 19:23:49 CEST je Cl=C3=A9ment P=
+=C3=A9ron
+> > > napisal(a):
+> > > > Hi Maxime,
+> > > >
+> > > > On Mon, 21 Sep 2020 at 15:59, Maxime Ripard <maxime@cerno.tech> wro=
+te:
+> > > > >
+> > > > > On Mon, Sep 21, 2020 at 12:27:18PM +0200, Cl=C3=A9ment P=C3=A9ron=
+ wrote:
+> > > > > > From: Jernej Skrabec <jernej.skrabec@siol.net>
+> > > > > >
+> > > > > > Add a simple-soundcard to link audio between HDMI and I2S.
+> > > > > >
+> > > > > > Signed-off-by: Jernej Skrabec <jernej.skrabec@siol.net>
+> > > > > > Signed-off-by: Marcus Cooper <codekipper@gmail.com>
+> > > > > > Signed-off-by: Cl=C3=A9ment P=C3=A9ron <peron.clem@gmail.com>
+> > > > > > ---
+> > > > > >  arch/arm64/boot/dts/allwinner/sun50i-h6.dtsi | 33 ++++++++++++=
+++++++++
+> > > > > >  1 file changed, 33 insertions(+)
+> > > > > >
+> > > > > > diff --git a/arch/arm64/boot/dts/allwinner/sun50i-h6.dtsi b/arc=
+h/arm64/
+> > > boot/dts/allwinner/sun50i-h6.dtsi
+> > > > > > index 28c77d6872f6..a8853ee7885a 100644
+> > > > > > --- a/arch/arm64/boot/dts/allwinner/sun50i-h6.dtsi
+> > > > > > +++ b/arch/arm64/boot/dts/allwinner/sun50i-h6.dtsi
+> > > > > > @@ -67,6 +67,25 @@ de: display-engine {
+> > > > > >               status =3D "disabled";
+> > > > > >       };
+> > > > > >
+> > > > > > +     hdmi_sound: hdmi-sound {
+> > > > > > +             compatible =3D "simple-audio-card";
+> > > > > > +             simple-audio-card,format =3D "i2s";
+> > > > > > +             simple-audio-card,name =3D "sun50i-h6-hdmi";
+> > > > > > +             simple-audio-card,mclk-fs =3D <128>;
+> > > > > > +             simple-audio-card,frame-inversion;
+> > > > > > +             status =3D "disabled";
+> > > > > > +
+> > > > > > +             simple-audio-card,codec {
+> > > > > > +                     sound-dai =3D <&hdmi>;
+> > > > > > +             };
+> > > > > > +
+> > > > > > +             simple-audio-card,cpu {
+> > > > > > +                     sound-dai =3D <&i2s1>;
+> > > > > > +                     dai-tdm-slot-num =3D <2>;
+> > > > > > +                     dai-tdm-slot-width =3D <32>;
+> > > > >
+> > > > > It looks weird to have both some TDM setup here, and yet the form=
+at in
+> > > > > i2s?
+> > > >
+> > > > Yes, I agree I will check if it's really needed.
+> > >
+> > > I think this was explained before.
+> >
+> > Possibly, but this should be in a comment or at least the commit log
+> >
+> > > Anyway, this is needed to force width to 32, no matter actual sample
+> > > width. That's a requirement of HDMI codec. I believe Marcus Cooper
+> > > have another codec which also needs fixed width.
+> > >
+> > > There is no similar property for I2S, so TDM one is used here.
+> >
+> > Except it's really dedicated to the TDM mode and doesn't really make
+> > much sense here.
+> >
+> > If we have special requirements like this on the codec setup, that
+> > sounds like a good justification for creating a custom codec instead of
+> > shoehorning it into simple-card
+>=20
+> When all the remarks are fixed would it be possible to merge the rest
+> of the series without the dts changes ?
+>=20
+> I will propose another series to introduce a dedicated codec for that.
 
-diff --git a/drivers/regulator/rtmv20-regulator.c b/drivers/regulator/rtmv20-regulator.c
-index 1075b10..0a07598 100644
---- a/drivers/regulator/rtmv20-regulator.c
-+++ b/drivers/regulator/rtmv20-regulator.c
-@@ -321,6 +321,7 @@ static int rtmv20_probe(struct i2c_client *i2c)
- 	 * keep in shutdown mode to minimize the current consumption
- 	 * and also mark regcache as dirty
- 	 */
-+	regcache_cache_only(priv->regmap, true);
- 	regcache_mark_dirty(priv->regmap);
- 	gpiod_set_value(priv->enable_gpio, 0);
- 
--- 
-2.7.4
+Yeah, sure
 
+Maxime
+
+--we3fv24y4dnxqond
+Content-Type: application/pgp-signature; name="signature.asc"
+
+-----BEGIN PGP SIGNATURE-----
+
+iHUEABYIAB0WIQRcEzekXsqa64kGDp7j7w1vZxhRxQUCX3RbogAKCRDj7w1vZxhR
+xQ1TAQCXyCe5QVWRsk4Xo0kYUfS4nqr+j6X8lC7NGSFSHCXQbQD/fNe30ApybdwS
+uWFA5qC2rFHZegZ7IFIgsScWh32Hag0=
+=Tk4P
+-----END PGP SIGNATURE-----
+
+--we3fv24y4dnxqond--
