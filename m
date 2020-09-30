@@ -2,136 +2,89 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from vger.kernel.org (vger.kernel.org [23.128.96.18])
-	by mail.lfdr.de (Postfix) with ESMTP id 13CF327EAF3
-	for <lists+devicetree@lfdr.de>; Wed, 30 Sep 2020 16:31:59 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTP id BBEE727EB35
+	for <lists+devicetree@lfdr.de>; Wed, 30 Sep 2020 16:44:56 +0200 (CEST)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S1729903AbgI3Ob5 (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Wed, 30 Sep 2020 10:31:57 -0400
-Received: from mailout2.w1.samsung.com ([210.118.77.12]:53833 "EHLO
-        mailout2.w1.samsung.com" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S1726680AbgI3Ob5 (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Wed, 30 Sep 2020 10:31:57 -0400
-Received: from eucas1p1.samsung.com (unknown [182.198.249.206])
-        by mailout2.w1.samsung.com (KnoxPortal) with ESMTP id 20200930143155euoutp0225675b4ec72329d60e9ad472a08494be~5ljldhZq01897018970euoutp02b
-        for <devicetree@vger.kernel.org>; Wed, 30 Sep 2020 14:31:55 +0000 (GMT)
-DKIM-Filter: OpenDKIM Filter v2.11.0 mailout2.w1.samsung.com 20200930143155euoutp0225675b4ec72329d60e9ad472a08494be~5ljldhZq01897018970euoutp02b
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=samsung.com;
-        s=mail20170921; t=1601476315;
-        bh=VdTMVF/5RBjfkqF1GszAZp16h8e/DsklT6np30DQjHE=;
-        h=From:To:Cc:Subject:Date:References:From;
-        b=TsTdwYTsKr76Y9TzkXSfp1fF8kOnmn0aWFWVQ/UcFVB1IrGSUkcRptcTBVD3chaqy
-         /a1TUD9hrSCIv+y0nobWfYokkg36A1ZqIFLEhWGm3Fm0aqWW/63aGmbv/tjGRacov7
-         XyMmeF46WSYZUZIFfRbBnWkIgvgIvlHKqQ7eX7iE=
-Received: from eusmges1new.samsung.com (unknown [203.254.199.242]) by
-        eucas1p2.samsung.com (KnoxPortal) with ESMTP id
-        20200930143155eucas1p288ee6fba10f00cca2d3befec1340b391~5ljlHGye_0260402604eucas1p2-;
-        Wed, 30 Sep 2020 14:31:55 +0000 (GMT)
-Received: from eucas1p2.samsung.com ( [182.198.249.207]) by
-        eusmges1new.samsung.com (EUCPMTA) with SMTP id 23.7B.06456.BD6947F5; Wed, 30
-        Sep 2020 15:31:55 +0100 (BST)
-Received: from eusmtrp2.samsung.com (unknown [182.198.249.139]) by
-        eucas1p2.samsung.com (KnoxPortal) with ESMTPA id
-        20200930143154eucas1p22c1560c485f5d8b8be729c76028c89c7~5ljkmymV00258402584eucas1p21;
-        Wed, 30 Sep 2020 14:31:54 +0000 (GMT)
-Received: from eusmgms1.samsung.com (unknown [182.198.249.179]) by
-        eusmtrp2.samsung.com (KnoxPortal) with ESMTP id
-        20200930143154eusmtrp290f2e874f36d0cc3c9d887ecd66737ab~5ljkmGWKQ2809328093eusmtrp2X;
-        Wed, 30 Sep 2020 14:31:54 +0000 (GMT)
-X-AuditID: cbfec7f2-809ff70000001938-05-5f7496dbe3a6
-Received: from eusmtip2.samsung.com ( [203.254.199.222]) by
-        eusmgms1.samsung.com (EUCPMTA) with SMTP id 6D.C5.06314.AD6947F5; Wed, 30
-        Sep 2020 15:31:54 +0100 (BST)
-Received: from localhost (unknown [106.120.51.46]) by eusmtip2.samsung.com
-        (KnoxPortal) with ESMTPA id
-        20200930143154eusmtip242fb214d20d775c8ad10b93e01927cac~5ljkdL2oi1540515405eusmtip2J;
-        Wed, 30 Sep 2020 14:31:54 +0000 (GMT)
-From:   =?UTF-8?q?=C5=81ukasz=20Stelmach?= <l.stelmach@samsung.com>
-To:     Rob Herring <robh+dt@kernel.org>, Kukjin Kim <kgene@kernel.org>,
-        Krzysztof Kozlowski <krzk@kernel.org>,
-        devicetree@vger.kernel.org, linux-arm-kernel@lists.infradead.org,
-        linux-samsung-soc@vger.kernel.org, linux-kernel@vger.kernel.org
-Cc:     b.zolnierkie@samsung.com, m.szyprowski@samsung.com,
-        =?UTF-8?q?=C5=81ukasz=20Stelmach?= <l.stelmach@samsung.com>
-Subject: [PATCH] ARM: dts: exynos: Add a placeholder for a MAC address
-Date:   Wed, 30 Sep 2020 16:31:51 +0200
-Message-Id: <20200930143151.23961-1-l.stelmach@samsung.com>
-X-Mailer: git-send-email 2.26.2
+        id S1730651AbgI3Oos (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Wed, 30 Sep 2020 10:44:48 -0400
+Received: from mail.kernel.org ([198.145.29.99]:46676 "EHLO mail.kernel.org"
+        rhost-flags-OK-OK-OK-OK) by vger.kernel.org with ESMTP
+        id S1726680AbgI3Ooo (ORCPT <rfc822;devicetree@vger.kernel.org>);
+        Wed, 30 Sep 2020 10:44:44 -0400
+Received: from localhost (fw-tnat.cambridge.arm.com [217.140.96.140])
+        (using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
+        (No client certificate requested)
+        by mail.kernel.org (Postfix) with ESMTPSA id 63C3C206FC;
+        Wed, 30 Sep 2020 14:44:43 +0000 (UTC)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=kernel.org;
+        s=default; t=1601477083;
+        bh=qt7pfXhhMPetwSOE19ksOBdlPYEQgZvgP2oT8Ll9FWI=;
+        h=Date:From:To:Cc:Subject:References:In-Reply-To:From;
+        b=wDnGt683QhtK7gZSqDOgZ5zdJ+MlWU+hNiGXg0fuHDa/C/Te5hWFf5b9kXC1qbay3
+         HzVcB6rR3eUFAW2m9hG8O//OxXOtVP2B7k3E90Tq6w7J/WeCepjlsttp/f8yosuPjS
+         BPbO0/i4rJo/GNqZ/w+aQ6ZHNLUlgrShAlWJzwdk=
+Date:   Wed, 30 Sep 2020 15:43:44 +0100
+From:   Mark Brown <broonie@kernel.org>
+To:     Serge Semin <Sergey.Semin@baikalelectronics.ru>
+Cc:     Alexey Malahov <Alexey.Malahov@baikalelectronics.ru>,
+        Ramil Zaripov <Ramil.Zaripov@baikalelectronics.ru>,
+        Pavel Parkhomenko <Pavel.Parkhomenko@baikalelectronics.ru>,
+        Andy Shevchenko <andy.shevchenko@gmail.com>,
+        Andy Shevchenko <andriy.shevchenko@linux.intel.com>,
+        Lars Povlsen <lars.povlsen@microchip.com>,
+        "wuxu . wu" <wuxu.wu@huawei.com>, Feng Tang <feng.tang@intel.com>,
+        Rob Herring <robh+dt@kernel.org>, linux-spi@vger.kernel.org,
+        devicetree@vger.kernel.org, linux-kernel@vger.kernel.org
+Subject: Re: [PATCH 00/30] spi: dw: Add full Baikal-T1 SPI Controllers support
+Message-ID: <20200930144344.GJ4974@sirena.org.uk>
+References: <20200920112914.26501-1-Sergey.Semin@baikalelectronics.ru>
+ <20200929144351.GH4799@sirena.org.uk>
+ <20200929224303.65awobe5dzwc2p4f@mobilestation>
+ <20200930110403.GD4974@sirena.org.uk>
+ <20200930131115.2lizge2ff64jbgpn@mobilestation>
 MIME-Version: 1.0
-Organization: Samsung R&D Institute Poland
-Content-Transfer-Encoding: 8bit
-X-Brightmail-Tracker: H4sIAAAAAAAAA+NgFlrOKsWRmVeSWpSXmKPExsWy7djP87q3p5XEG2yeymOxccZ6Vov5R86x
-        WvQ/fs1scf78BnaLm4dWMFpsenyN1eLyrjlsFjPO72OyWHvkLrtF694j7A5cHptWdbJ5bF5S
-        79G3ZRWjx+dNcgEsUVw2Kak5mWWpRfp2CVwZbw6tZio4yV7RvPQpUwPjRLYuRk4OCQETifmf
-        XjJ3MXJxCAmsYJR4dGwvE4TzhVHi6a5lLBDOZ0aJB5c2ssK0TJt6kBUisZxRYuGNB1Atzxkl
-        3vX0MYJUsQk4SvQvPQFWJQLSPnPuJCaQBLNAqcTW42+ZQWxhATeJW08WgF3CIqAq0TZtMlgz
-        r4C1RMexmcwQ6+Ql2pdvZ4OIC0qcnPmEBcTmF9CSWNN0nQViprxE89bZYF9ICCxil3j9dAMj
-        RLOLxP+Wy1CvCku8Or6FHcKWkfi/cz7QQRxAdr3E5ElmEL09jBLb5vxggaixlrhz7hcbSA2z
-        gKbE+l36EGFHibM7utghWvkkbrwVhDiBT2LStunMEGFeiY42IYhqFYl1/XugBkpJ9L5awQhR
-        4iHRfZFrAqPiLCR/zULyyyyEtQsYmVcxiqeWFuempxYb5qWW6xUn5haX5qXrJefnbmIEJp/T
-        /45/2sH49VLSIUYBDkYlHt4JeSXxQqyJZcWVuYcYJTiYlUR4nc6ejhPiTUmsrEotyo8vKs1J
-        LT7EKM3BoiTOa7zoZayQQHpiSWp2ampBahFMlomDU6qBcZrFh3tBdbEaW3i+dKhWLk+OPOvd
-        Zs26ZPGXwJPTp3/N2bzfrzTrwl/NL99DP17P3/jSuO+uybFezWqZ3U03cwSmiTcc/3xET/Df
-        DufyL3MSrH8+Wv1phbOjoWPz/H15e+0SlB5LT3fY0BUUdspAeJrEDe/X+6QC9facTpp/7WFz
-        u3lphhzjHiWW4oxEQy3mouJEAJrsPeY6AwAA
-X-Brightmail-Tracker: H4sIAAAAAAAAA+NgFprLIsWRmVeSWpSXmKPExsVy+t/xe7q3ppXEG3zdpGmxccZ6Vov5R86x
-        WvQ/fs1scf78BnaLm4dWMFpsenyN1eLyrjlsFjPO72OyWHvkLrtF694j7A5cHptWdbJ5bF5S
-        79G3ZRWjx+dNcgEsUXo2RfmlJakKGfnFJbZK0YYWRnqGlhZ6RiaWeobG5rFWRqZK+nY2Kak5
-        mWWpRfp2CXoZbw6tZio4yV7RvPQpUwPjRLYuRk4OCQETiWlTD7J2MXJxCAksZZToe/MTyOEA
-        SkhJrJybDlEjLPHnWhdYvZDAU0aJSdfEQWw2AUeJ/qUnWEFsEYGfjBLbzjqCtDILlEu8OBgI
-        EhYWcJO49WQBWCuLgKpE27TJjCA2r4C1RMexmcwQ4+Ul2pdvZ4OIC0qcnPmEBWKMusT6eUIg
-        YX4BLYk1TddZQGxmoPLmrbOZJzAKzELSMQuhYxaSqgWMzKsYRVJLi3PTc4sN9YoTc4tL89L1
-        kvNzNzECo2bbsZ+bdzBe2hh8iFGAg1GJh3dCXkm8EGtiWXFl7iFGCQ5mJRFep7On44R4UxIr
-        q1KL8uOLSnNSiw8xmgK9M5FZSjQ5HxjRQD2GpobmFpaG5sbmxmYWSuK8HQIHY4QE0hNLUrNT
-        UwtSi2D6mDg4pRoYZ6zfbFvpLGzz3WDGsvoTe4MfHb553L2KzX7ZsgaOvceZL3HfEThQse/t
-        et5r8XIs3kLbX4Z8flZ979D2a5qOjf2VjYoHtwWLSy1SPVv2yrvw+OnLLAzW+5LfRj/6vOZo
-        iIPeXNFvP55cVmJd22T9uCpC+31P7/wP/3LYrcrtjZrDl02N8uhZqcRSnJFoqMVcVJwIABLd
-        N2WwAgAA
-X-CMS-MailID: 20200930143154eucas1p22c1560c485f5d8b8be729c76028c89c7
-X-Msg-Generator: CA
-Content-Type: text/plain; charset="utf-8"
-X-RootMTR: 20200930143154eucas1p22c1560c485f5d8b8be729c76028c89c7
-X-EPHeader: CA
-CMS-TYPE: 201P
-X-CMS-RootMailID: 20200930143154eucas1p22c1560c485f5d8b8be729c76028c89c7
-References: <CGME20200930143154eucas1p22c1560c485f5d8b8be729c76028c89c7@eucas1p2.samsung.com>
+Content-Type: multipart/signed; micalg=pgp-sha512;
+        protocol="application/pgp-signature"; boundary="zOcTNEe3AzgCmdo9"
+Content-Disposition: inline
+In-Reply-To: <20200930131115.2lizge2ff64jbgpn@mobilestation>
+X-Cookie: Doing gets it done.
+User-Agent: Mutt/1.10.1 (2018-07-13)
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-Add a placeholder for a MAC address. A bootloader may fill it
-to set the MAC address and override EEPROM settings.
 
-Signed-off-by: Łukasz Stelmach <l.stelmach@samsung.com>
----
- arch/arm/boot/dts/exynos5422-odroidxu3.dts | 18 ++++++++++++++++++
- 1 file changed, 18 insertions(+)
+--zOcTNEe3AzgCmdo9
+Content-Type: text/plain; charset=us-ascii
+Content-Disposition: inline
 
-diff --git a/arch/arm/boot/dts/exynos5422-odroidxu3.dts b/arch/arm/boot/dts/exynos5422-odroidxu3.dts
-index db0bc17a667b..9f7f3eacb750 100644
---- a/arch/arm/boot/dts/exynos5422-odroidxu3.dts
-+++ b/arch/arm/boot/dts/exynos5422-odroidxu3.dts
-@@ -70,3 +70,21 @@ &pwm {
- &usbdrd_dwc3_1 {
- 	dr_mode = "peripheral";
- };
-+
-+&usbhost2 {
-+	#address-cells = <1>;
-+	#size-cells = <0>;
-+
-+	hub@1 {
-+		compatible = "usb8087,0024";
-+		reg = <1>;
-+		#address-cells = <1>;
-+		#size-cells = <0>;
-+
-+		ethernet: usbether@1 {
-+			compatible = "usb0c45,6310";
-+			reg = <1>;
-+			mac-address = [00 00 00 00 00 00]; /* Filled in by a bootloader */
-+		};
-+	};
-+};
--- 
-2.26.2
+On Wed, Sep 30, 2020 at 04:11:15PM +0300, Serge Semin wrote:
+> On Wed, Sep 30, 2020 at 12:04:04PM +0100, Mark Brown wrote:
 
+> > Not all of the first 9, IIRC I skipped one I had comments on.
+
+> Yes, you skipped one and I've already given you my response on your comment
+> about it: [PATCH 02/30] spi: dw: Use ternary op to init set_cs callback
+> So have I responded to your comment on another patch:
+> [PATCH 11/30] spi: dw: Add DWC SSI capability .
+
+> I will need a response from you about them to go further with this patchset.
+
+I'm not sure I saw any concrete questions with those?
+
+--zOcTNEe3AzgCmdo9
+Content-Type: application/pgp-signature; name="signature.asc"
+
+-----BEGIN PGP SIGNATURE-----
+
+iQEzBAABCgAdFiEEreZoqmdXGLWf4p/qJNaLcl1Uh9AFAl90maAACgkQJNaLcl1U
+h9BkJQf/YxSDENRYeU12odA8T9vIC5Bx+tNv9uayK8uZGOrRDPNOsnb+w0gvuCP4
+s+zg6vQ5GVqZ5er1c4w7fUT7OGvj0EV+ofIEcpc3bBcWMFxxvCb0nXr2269jWYxU
+1ACB6DM/GRz7JUXxTIiIvfWa0JPJSY3ynnhf5Ke2mpDeGZmx3gXTqu8tyKJUy1sC
+H7VpYtc8ZpiQZJ9U0XvtTfj9P/VqQTuzV+7Ha//yf0nGpWcMRWjTsCvxNoXbD4GR
+ecDq7NDfZY2q+iW5ao9YrCAeyGiDStUpBS/a375LeHY796IpiIn1tsi9jvvtfIIa
+U9JXWH2OujGDhptZwqh4uN7nFV/BEw==
+=FgSu
+-----END PGP SIGNATURE-----
+
+--zOcTNEe3AzgCmdo9--
