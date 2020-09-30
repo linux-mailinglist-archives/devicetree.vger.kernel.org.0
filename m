@@ -2,91 +2,73 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from vger.kernel.org (vger.kernel.org [23.128.96.18])
-	by mail.lfdr.de (Postfix) with ESMTP id EB0E327E259
-	for <lists+devicetree@lfdr.de>; Wed, 30 Sep 2020 09:12:12 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTP id 075BB27E279
+	for <lists+devicetree@lfdr.de>; Wed, 30 Sep 2020 09:21:23 +0200 (CEST)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S1728416AbgI3HML (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Wed, 30 Sep 2020 03:12:11 -0400
-Received: from mail.kernel.org ([198.145.29.99]:45714 "EHLO mail.kernel.org"
-        rhost-flags-OK-OK-OK-OK) by vger.kernel.org with ESMTP
-        id S1727657AbgI3HML (ORCPT <rfc822;devicetree@vger.kernel.org>);
-        Wed, 30 Sep 2020 03:12:11 -0400
-Received: from mail-ej1-f50.google.com (mail-ej1-f50.google.com [209.85.218.50])
-        (using TLSv1.2 with cipher ECDHE-RSA-AES128-GCM-SHA256 (128/128 bits))
-        (No client certificate requested)
-        by mail.kernel.org (Postfix) with ESMTPSA id 939922076E;
-        Wed, 30 Sep 2020 07:12:10 +0000 (UTC)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=kernel.org;
-        s=default; t=1601449930;
-        bh=VUeL5dJxtNCQIqEJ5JCk1LwvGeF5Hdo5GKlpgMiOp/c=;
-        h=References:In-Reply-To:From:Date:Subject:To:Cc:From;
-        b=YfrqBuAuonZXtO62eiTaf2qTghzXzsnl98KkC/6QTrSlap5SGGUHVuo3CRPv/VDeL
-         myh43nOmnp+WIIna2e5Pm8uZ9Zcq+KEvuRGVL04dp+ZKTJaZQTyg3fdXhLNGruZMNX
-         FVg0gJjQhIwa2GK1vA6XfDOFbkZnFgu+D4mXs3es=
-Received: by mail-ej1-f50.google.com with SMTP id dd13so1265877ejb.5;
-        Wed, 30 Sep 2020 00:12:10 -0700 (PDT)
-X-Gm-Message-State: AOAM531ae0h/WUtFojb2EUuqS1PTLuOA+Jqi4hbwjLWlW0AmPVxrmInR
-        p7/4tw76Yo3Cg/1D7Ha7r3Ci6NyOVYFm/+cRlbk=
-X-Google-Smtp-Source: ABdhPJyFS0R7Z+kb+bmnJUwvBv7Vreo7IzgUZoxCPLIZ5IXQoBbjinkmIkcvf9yxQF+aiKJlDOcE4VZOgMlOO6j9YxI=
-X-Received: by 2002:a17:906:1984:: with SMTP id g4mr1379084ejd.119.1601449929176;
- Wed, 30 Sep 2020 00:12:09 -0700 (PDT)
+        id S1725823AbgI3HVW (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Wed, 30 Sep 2020 03:21:22 -0400
+Received: from szxga05-in.huawei.com ([45.249.212.191]:14742 "EHLO huawei.com"
+        rhost-flags-OK-OK-OK-FAIL) by vger.kernel.org with ESMTP
+        id S1725440AbgI3HVW (ORCPT <rfc822;devicetree@vger.kernel.org>);
+        Wed, 30 Sep 2020 03:21:22 -0400
+Received: from DGGEMS413-HUB.china.huawei.com (unknown [172.30.72.58])
+        by Forcepoint Email with ESMTP id 110B451DC318BD008111;
+        Wed, 30 Sep 2020 15:21:20 +0800 (CST)
+Received: from [127.0.0.1] (10.174.177.253) by DGGEMS413-HUB.china.huawei.com
+ (10.3.19.213) with Microsoft SMTP Server id 14.3.487.0; Wed, 30 Sep 2020
+ 15:21:13 +0800
+Subject: Re: [PATCH v6 01/17] dt-bindings: mfd: syscon: add some compatible
+ strings for Hisilicon
+To:     Lee Jones <lee.jones@linaro.org>
+CC:     devicetree <devicetree@vger.kernel.org>,
+        Kefeng Wang <wangkefeng.wang@huawei.com>,
+        linux-kernel <linux-kernel@vger.kernel.org>,
+        Wei Xu <xuwei5@hisilicon.com>,
+        Rob Herring <robh+dt@kernel.org>,
+        Libin <huawei.libin@huawei.com>,
+        Jonathan Cameron <Jonathan.Cameron@Huawei.com>,
+        linux-arm-kernel <linux-arm-kernel@lists.infradead.org>
+References: <20200930031712.2365-1-thunder.leizhen@huawei.com>
+ <20200930031712.2365-2-thunder.leizhen@huawei.com>
+ <20200930071110.GH6148@dell>
+From:   "Leizhen (ThunderTown)" <thunder.leizhen@huawei.com>
+Message-ID: <3045a295-928a-eae6-c887-e34446a170e0@huawei.com>
+Date:   Wed, 30 Sep 2020 15:21:11 +0800
+User-Agent: Mozilla/5.0 (Windows NT 10.0; WOW64; rv:60.0) Gecko/20100101
+ Thunderbird/60.7.0
 MIME-Version: 1.0
-References: <20200926162811.5335-1-krzk@kernel.org> <20200926162811.5335-12-krzk@kernel.org>
- <2a329c9b-8bfc-fbd8-62a3-759f608347d6@denx.de> <686af5e6-d16a-7750-e47f-1ced9cb6c34a@denx.de>
-In-Reply-To: <686af5e6-d16a-7750-e47f-1ced9cb6c34a@denx.de>
-From:   Krzysztof Kozlowski <krzk@kernel.org>
-Date:   Wed, 30 Sep 2020 09:11:56 +0200
-X-Gmail-Original-Message-ID: <CAJKOXPe7XOQspzTFDRtb=y79mwXEZSGiYiQP3J58JMjCkVRSCQ@mail.gmail.com>
-Message-ID: <CAJKOXPe7XOQspzTFDRtb=y79mwXEZSGiYiQP3J58JMjCkVRSCQ@mail.gmail.com>
-Subject: Re: [RFC 12/14] dt-bindings: vendor-prefixes: add Aristainetos
-To:     hs@denx.de, Rob Herring <robh+dt@kernel.org>
-Cc:     Shawn Guo <shawnguo@kernel.org>,
-        Sascha Hauer <s.hauer@pengutronix.de>,
-        Pengutronix Kernel Team <kernel@pengutronix.de>,
-        Fabio Estevam <festevam@gmail.com>,
-        NXP Linux Team <linux-imx@nxp.com>,
-        Stefan Riedmueller <s.riedmueller@phytec.de>,
-        Robert Jones <rjones@gateworks.com>,
-        Li Yang <leoyang.li@nxp.com>, devicetree@vger.kernel.org,
-        "linux-kernel@vger.kernel.org" <linux-kernel@vger.kernel.org>,
-        linux-arm-kernel@lists.infradead.org
-Content-Type: text/plain; charset="UTF-8"
+In-Reply-To: <20200930071110.GH6148@dell>
+Content-Type: text/plain; charset="utf-8"
+Content-Language: en-US
+Content-Transfer-Encoding: 7bit
+X-Originating-IP: [10.174.177.253]
+X-CFilter-Loop: Reflected
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-On Wed, 30 Sep 2020 at 06:16, Heiko Schocher <hs@denx.de> wrote:
->
-> Hello Krzysztof,
->
-> Am 28.09.2020 um 06:04 schrieb Heiko Schocher:
-> > Hello Krzysztof,
-> >
-> > Am 26.09.2020 um 18:28 schrieb Krzysztof Kozlowski:
-> >> Document binding for an unknown entity Aristainetos with few boards
-> >> mainlined.
-> >>
-> >> Cc: Heiko Schocher <hs@denx.de>
-> >> Signed-off-by: Krzysztof Kozlowski <krzk@kernel.org>
-> >>
-> >> ---
-> >>
-> >> I tried to Google but except the patches from Heiko Schocher, I could
-> >> not find any meaningful data.
-> >>
-> >> Heiko, you posted this. Do you know what is it?
-> >
-> > aristainetos is the name of the board, so it is not the vendor name.
-> >
-> > I just asked the customer if we can add a valid vendor name...
->
-> Ok, it is not easy to get an okay from the customer to publish
-> his name.
->
-> Is there a dummy or unknown entry for vendor?
 
-We could use "denx" as it was done as part of your work or "linux".
-Rob, any hints here?
 
-Best regards,
-Krzysztof
+On 2020/9/30 15:11, Lee Jones wrote:
+> On Wed, 30 Sep 2020, Zhen Lei wrote:
+> 
+>> Add some compatible strings for Hisilicon controllers:
+>> hisilicon,hi6220-sramctrl  --> Hi6220 SRAM controller
+>> hisilicon,pcie-sas-subctrl --> HiP05/HiP06 PCIe-SAS subsystem controller
+>> hisilicon,peri-subctrl     --> HiP05/HiP06 PERI subsystem controller
+>> hisilicon,dsa-subctrl      --> HiP05/HiP06 DSA subsystem controller
+>>
+>> Signed-off-by: Zhen Lei <thunder.leizhen@huawei.com>
+>> ---
+>>  Documentation/devicetree/bindings/mfd/syscon.yaml | 5 ++++-
+>>  1 file changed, 4 insertions(+), 1 deletion(-)
+> 
+> This was already applied by the time you re-sent it.
+> 
+> Any reason for sending it again?
+
+Path 15 are modified. The Document patches except Patch 15 are applied,
+but the config/DTS patches are not applied(They are applied after I re-sent).
+
+> 
+
