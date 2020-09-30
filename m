@@ -2,133 +2,145 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from vger.kernel.org (vger.kernel.org [23.128.96.18])
-	by mail.lfdr.de (Postfix) with ESMTP id 762F228163F
-	for <lists+devicetree@lfdr.de>; Fri,  2 Oct 2020 17:13:02 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTP id 55A3028394B
+	for <lists+devicetree@lfdr.de>; Mon,  5 Oct 2020 17:13:41 +0200 (CEST)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S2388190AbgJBPNC (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Fri, 2 Oct 2020 11:13:02 -0400
-Received: from foss.arm.com ([217.140.110.172]:38760 "EHLO foss.arm.com"
-        rhost-flags-OK-OK-OK-OK) by vger.kernel.org with ESMTP
-        id S2388176AbgJBPNB (ORCPT <rfc822;devicetree@vger.kernel.org>);
-        Fri, 2 Oct 2020 11:13:01 -0400
-Received: from usa-sjc-imap-foss1.foss.arm.com (unknown [10.121.207.14])
-        by usa-sjc-mx-foss1.foss.arm.com (Postfix) with ESMTP id CD3B41396;
-        Fri,  2 Oct 2020 08:13:00 -0700 (PDT)
-Received: from [10.57.50.3] (unknown [10.57.50.3])
-        by usa-sjc-imap-foss1.foss.arm.com (Postfix) with ESMTPSA id A9ABC3F73B;
-        Fri,  2 Oct 2020 08:12:57 -0700 (PDT)
-Subject: Re: [PATCH v2 3/3] dt-bindings: thermal: update sustainable-power
- with abstract scale
-To:     Doug Anderson <dianders@chromium.org>
-Cc:     LKML <linux-kernel@vger.kernel.org>,
-        Linux PM <linux-pm@vger.kernel.org>, linux-doc@vger.kernel.org,
-        "open list:OPEN FIRMWARE AND FLATTENED DEVICE TREE BINDINGS" 
-        <devicetree@vger.kernel.org>, Rob Herring <robh+dt@kernel.org>,
-        amitk@kernel.org, Jonathan Corbet <corbet@lwn.net>,
-        Daniel Lezcano <daniel.lezcano@linaro.org>,
-        Dietmar.Eggemann@arm.com, Quentin Perret <qperret@google.com>,
-        Matthias Kaehlcke <mka@chromium.org>,
-        Rajendra Nayak <rnayak@codeaurora.org>,
-        "Rafael J. Wysocki" <rjw@rjwysocki.net>
-References: <20201002114426.31277-1-lukasz.luba@arm.com>
- <20201002114426.31277-4-lukasz.luba@arm.com>
- <CAD=FV=UbNP5-G1z95F37Fmv8=n0JPSSwnPQO_K==WpAc4vAHWQ@mail.gmail.com>
-From:   Lukasz Luba <lukasz.luba@arm.com>
-Message-ID: <e9b6fc5a-45d3-168d-db38-6c068da26f6b@arm.com>
-Date:   Fri, 2 Oct 2020 16:12:55 +0100
-User-Agent: Mozilla/5.0 (X11; Linux x86_64; rv:60.0) Gecko/20100101
- Thunderbird/60.9.0
+        id S1726398AbgJEPNk (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Mon, 5 Oct 2020 11:13:40 -0400
+Received: from new1-smtp.messagingengine.com ([66.111.4.221]:50003 "EHLO
+        new1-smtp.messagingengine.com" rhost-flags-OK-OK-OK-OK)
+        by vger.kernel.org with ESMTP id S1726248AbgJEPNk (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Mon, 5 Oct 2020 11:13:40 -0400
+Received: from compute6.internal (compute6.nyi.internal [10.202.2.46])
+        by mailnew.nyi.internal (Postfix) with ESMTP id 2AD2E580350;
+        Mon,  5 Oct 2020 11:13:39 -0400 (EDT)
+Received: from mailfrontend1 ([10.202.2.162])
+  by compute6.internal (MEProxy); Mon, 05 Oct 2020 11:13:39 -0400
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=cerno.tech; h=
+        date:to:cc:subject:message-id:from:references:mime-version
+        :content-type:in-reply-to; s=fm1; bh=FtG2Bzuy5PqxUd7fnFYHl5Znz5H
+        mAs+KH2eBPZ//Wzo=; b=NVCuzXlnXtSq15LRXTCVx5qRPNGYjQTymOsYZNvdS6x
+        Aa11UQdQXmoAa2K2cZXjUrPEyEe1JeO3WsKuQUmsDR33Jr1TGS9q7Vo7r6aQF2FI
+        mDqQgIYhbBwapj0Wl++gAT6grbt7bc6JTQknfOnBJEmUmNRwDORF2QYoUTnOeMYl
+        Kk0OBUfmJ2ngAUKZZNEGX6CiZc+uzkchZnx2/pwZ0ZkXKS8e35QQGRNnS5kBzPcU
+        izgIa5Zf8brXKVwY8yxE2itdO4mQV7Ice4xyDSp+iMd0qeJNReoCJ+RkQNp2f4nY
+        k5cEGtoTU/DIrIqG+cSCBsZnUwLdeKLP+74zlsUm0mQ==
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=
+        messagingengine.com; h=cc:content-type:date:from:in-reply-to
+        :message-id:mime-version:references:subject:to:x-me-proxy
+        :x-me-proxy:x-me-sender:x-me-sender:x-sasl-enc; s=fm1; bh=FtG2Bz
+        uy5PqxUd7fnFYHl5Znz5HmAs+KH2eBPZ//Wzo=; b=chBh/6Sydgee2d8NJ1zO+H
+        IY5XR5iEAcOwKKrQ8aMnQY0bt0hYsvY1u0IY56M9NnBEISFkwAS9dT0ZsXxDTHT4
+        0wCxVNpGDprCu1G9Cve4NIPEm2LnfJEGxhAVhoRVcsMaV2I1AuY5d/zl3ksI/s9O
+        lGcjxi11CwsyXHFJSn9c7U2ZDAygcHFpnjMIhCAyig4fPVDlIyV7HG0C96WUgvuS
+        0idtewaBFmsqyuWZuYHud9ulzqeuNC9bfVGG7sO5W0sF5SNFY0qWsMOkL136V1Z5
+        X1zgnBlk/nMORuRpmdglmNbBmTGHrTetjH8n/tB/fyQ+7jeqac7OZF3TdNrcjuTw
+        ==
+X-ME-Sender: <xms:ITh7XzWawbNEZJIGdQ6u6hrdaC2CGyhpDFJBmaThbCq44HxZpTelnQ>
+    <xme:ITh7X7lizOAZmEyAoRpHUP8HdTOwAso0HlYlRdFgwDEZzLo09Z_u40i48kabfSnme
+    EKvTYljw7IgAtmsVuM>
+X-ME-Proxy-Cause: gggruggvucftvghtrhhoucdtuddrgedujedrgedvgdekjecutefuodetggdotefrodftvf
+    curfhrohhfihhlvgemucfhrghsthforghilhdpqfgfvfdpuffrtefokffrpgfnqfghnecu
+    uegrihhlohhuthemuceftddtnecusecvtfgvtghiphhivghnthhsucdlqddutddtmdenuc
+    fjughrpeffvffukffhfhggtggujgesghdtreertddtvdenucfhrhhomhepofgrgihimhgv
+    ucftihhprghrugcuoehmrgigihhmvgestggvrhhnohdrthgvtghhqeenucggtffrrghtth
+    gvrhhnpeeikefffefhffeiffehfeeghfevfeekfeejveetfeegjeejvefghfffheeifeeh
+    ffenucfkphepledtrdekledrieekrdejieenucevlhhushhtvghrufhiiigvpedtnecurf
+    grrhgrmhepmhgrihhlfhhrohhmpehmrgigihhmvgestggvrhhnohdrthgvtghh
+X-ME-Proxy: <xmx:ITh7X_aWpL87qXoNeTUni3Ph9aqbr8BD3tvAlDkqxy_2GbAzqVXkxA>
+    <xmx:ITh7X-W2YDxNVHOJc-0ytNBko9aVVCx8yTMtbQMTI8xMrXDXygOYFg>
+    <xmx:ITh7X9lh3wY9NU7clPp9MRtg8w04s108r_bUsqlqD9HP4UCpwHXz9Q>
+    <xmx:Izh7X_nWnKPB0sUybWIXq66laDgyKJ_h4t0UJfHyhbBFnQsOzM51qA>
+Received: from localhost (lfbn-tou-1-1502-76.w90-89.abo.wanadoo.fr [90.89.68.76])
+        by mail.messagingengine.com (Postfix) with ESMTPA id B94E43280059;
+        Mon,  5 Oct 2020 11:13:36 -0400 (EDT)
+Date:   Wed, 30 Sep 2020 15:04:59 +0200
+To:     Rob Herring <robh@kernel.org>
+Cc:     Mark Rutland <mark.rutland@arm.com>,
+        Frank Rowand <frowand.list@gmail.com>,
+        Daniel Vetter <daniel.vetter@intel.com>,
+        David Airlie <airlied@linux.ie>,
+        Maarten Lankhorst <maarten.lankhorst@linux.intel.com>,
+        Thomas Zimmermann <tzimmermann@suse.de>,
+        Eric Anholt <eric@anholt.net>, devicetree@vger.kernel.org,
+        dri-devel@lists.freedesktop.org,
+        linux-rpi-kernel@lists.infradead.org,
+        bcm-kernel-feedback-list@broadcom.com,
+        linux-arm-kernel@lists.infradead.org,
+        Dave Stevenson <dave.stevenson@raspberrypi.com>,
+        Tim Gover <tim.gover@raspberrypi.com>,
+        Phil Elwell <phil@raspberrypi.com>
+Subject: Re: [PATCH 1/2] drm/vc4: hdmi: Disable Wifi Frequencies
+Message-ID: <20200930130459.kfurbu34lc7jeuok@gilmour.lan>
+From:   Maxime Ripard <maxime@cerno.tech>
+References: <20200925130744.575725-1-maxime@cerno.tech>
+ <20200929190055.GA962101@bogus>
 MIME-Version: 1.0
-In-Reply-To: <CAD=FV=UbNP5-G1z95F37Fmv8=n0JPSSwnPQO_K==WpAc4vAHWQ@mail.gmail.com>
-Content-Type: text/plain; charset=utf-8; format=flowed
-Content-Language: en-US
-Content-Transfer-Encoding: 7bit
+Content-Type: multipart/signed; micalg=pgp-sha256;
+        protocol="application/pgp-signature"; boundary="u4bs7qtkzx5ibc3n"
+Content-Disposition: inline
+In-Reply-To: <20200929190055.GA962101@bogus>
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-Hi Doug,
 
-On 10/2/20 3:31 PM, Doug Anderson wrote:
-> Hi,
-> 
-> On Fri, Oct 2, 2020 at 4:45 AM Lukasz Luba <lukasz.luba@arm.com> wrote:
->>
->> Update the documentation for the binding 'sustainable-power' and allow
->> to provide values in an abstract scale. It is required when the cooling
->> devices use an abstract scale for their power values.
->>
->> Signed-off-by: Lukasz Luba <lukasz.luba@arm.com>
->> ---
->>   .../devicetree/bindings/thermal/thermal-zones.yaml  | 13 +++++++++----
->>   1 file changed, 9 insertions(+), 4 deletions(-)
->>
->> diff --git a/Documentation/devicetree/bindings/thermal/thermal-zones.yaml b/Documentation/devicetree/bindings/thermal/thermal-zones.yaml
->> index 3ec9cc87ec50..4d8f2e37d1e6 100644
->> --- a/Documentation/devicetree/bindings/thermal/thermal-zones.yaml
->> +++ b/Documentation/devicetree/bindings/thermal/thermal-zones.yaml
->> @@ -99,10 +99,15 @@ patternProperties:
->>         sustainable-power:
->>           $ref: /schemas/types.yaml#/definitions/uint32
->>           description:
->> -          An estimate of the sustainable power (in mW) that this thermal zone
->> -          can dissipate at the desired control temperature. For reference, the
->> -          sustainable power of a 4-inch phone is typically 2000mW, while on a
->> -          10-inch tablet is around 4500mW.
->> +          An estimate of the sustainable power (in mW or in an abstract scale)
->> +         that this thermal zone can dissipate at the desired control
->> +         temperature. For reference, the sustainable power of a 4-inch phone
->> +         is typically 2000mW, while on a 10-inch tablet is around 4500mW.
->> +
->> +         It is possible to express the sustainable power in an abstract
->> +         scale. This is the case when the related cooling devices use also
->> +         abstract scale to express their power usage. The scale must be
->> +         consistent.
-> 
-> Two thoughts:
-> 
-> 1. If we're going to allow "sustainable-power" to be in abstract
-> scale, why not allow "dynamic-power-coefficient" to be in abstract
-> scale too?  I assume that the whole reason against that originally was
-> the idea of device tree purity, but if we're allowing the abstract
-> scale here then there seems no reason not to allow it for
-> "dynamic-power-coefficient".
+--u4bs7qtkzx5ibc3n
+Content-Type: text/plain; charset=us-ascii
+Content-Disposition: inline
+Content-Transfer-Encoding: quoted-printable
 
-With this binding it's a bit more tricky.
-I also have to discuss a few things internally. This requirement of
-uW/MHz/V^2 makes the code easier also for potential drivers
-like GPU (which are going to register the devfreq cooling with EM).
+Hi Rob,
 
-Let me think about it, but for now I would just update these bits.
-These are required to proper IPA operation, the dyn.-pow.-coef. is a
-nice to have and possible next step.
+On Tue, Sep 29, 2020 at 02:00:55PM -0500, Rob Herring wrote:
+> On Fri, Sep 25, 2020 at 03:07:43PM +0200, Maxime Ripard wrote:
+> > There's cross-talk on the RPi4 between the 2.4GHz channels used by the =
+WiFi
+> > chip and some resolutions, most notably 1440p at 60Hz.
+> >=20
+> > In such a case, we can either reject entirely the mode, or lower slight=
+ly
+> > the pixel frequency to remove the overlap. Let's go for the latter.
+> >=20
+> > Signed-off-by: Maxime Ripard <maxime@cerno.tech>
+> > ---
+> >  .../bindings/display/brcm,bcm2711-hdmi.yaml        |  6 ++++++
+> >  drivers/gpu/drm/vc4/vc4_hdmi.c                     | 14 +++++++++++++-
+> >  drivers/gpu/drm/vc4/vc4_hdmi.h                     |  8 ++++++++
+> >  3 files changed, 27 insertions(+), 1 deletion(-)
+> >=20
+> > diff --git a/Documentation/devicetree/bindings/display/brcm,bcm2711-hdm=
+i.yaml b/Documentation/devicetree/bindings/display/brcm,bcm2711-hdmi.yaml
+> > index 03a76729d26c..63e7fe999c0a 100644
+> > --- a/Documentation/devicetree/bindings/display/brcm,bcm2711-hdmi.yaml
+> > +++ b/Documentation/devicetree/bindings/display/brcm,bcm2711-hdmi.yaml
+> > @@ -76,6 +76,12 @@ properties:
+> >    resets:
+> >      maxItems: 1
+> > =20
+> > +  raspberrypi,disable-wifi-frequencies:
+> > +    type: boolean
+> > +    description: >
+> > +      Should the pixel frequencies in the WiFi frequencies range be
+> > +      avoided?
+>=20
+> Based on googling the issue, perhaps should be a common property?
 
-> 
-> 2. Is it worth adding some type of indication of what type of units
-> "sustainable-power" is represented in?  Maybe even a made up unit so
-> that you could tell the difference between made up units in the same
-> system?  I'd envision something like:
-> 
-> sustainable-power-units = "qualcomm,sc7180-bogoWatts"
-> 
-> ...and on the dynamic-power-coefficient side, the same:
-> 
-> dynamic-power-coefficient-units = "qualcomm,sc7180-bogoWatts"
-> 
-> One could imagine someone even later (after devices are widely
-> distributed) figuring out translations between these bogoWatts numbers
-> and real Watts if someone could come up with a case where it matters.
+This is a fairly generic issue indeed, but went for the most
+non-intrusive way. Do you have a better idea of a generic name, or do
+you just want me to drop the vendor prefix?
 
-To figure this out we don't need a new binding.
-I think a simple comment in the DT would be enough for this, even e.g.:
+Maxime
 
-sustainable-power = <100> /* bogoWatts */
+--u4bs7qtkzx5ibc3n
+Content-Type: application/pgp-signature; name="signature.asc"
 
+-----BEGIN PGP SIGNATURE-----
 
-Thank you for your comments.
-BTW, I haven't put your 'Reviewed-by' because I have added this
-sustainable-power new stuff in patch 1/3. I will grateful if you
-have a look on that.
+iHUEABYIAB0WIQRcEzekXsqa64kGDp7j7w1vZxhRxQUCX3SCewAKCRDj7w1vZxhR
+xR6PAP9FsndGYY6v0exCfbGLeQIs4y5yblaoV5yQPygk9VDPOQD9GeC07fLj3UJQ
+Yph2AlUG43iC5/XHQuxmhu+6Qyigowg=
+=DlkQ
+-----END PGP SIGNATURE-----
 
-Regards,
-Lukasz
+--u4bs7qtkzx5ibc3n--
