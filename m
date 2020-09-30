@@ -2,342 +2,171 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from vger.kernel.org (vger.kernel.org [23.128.96.18])
-	by mail.lfdr.de (Postfix) with ESMTP id 8B8E327F5AD
-	for <lists+devicetree@lfdr.de>; Thu,  1 Oct 2020 01:07:27 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTP id B1BED27F626
+	for <lists+devicetree@lfdr.de>; Thu,  1 Oct 2020 01:47:28 +0200 (CEST)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S1731445AbgI3XHV (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Wed, 30 Sep 2020 19:07:21 -0400
-Received: from lindbergh.monkeyblade.net ([23.128.96.19]:56892 "EHLO
-        lindbergh.monkeyblade.net" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S1732031AbgI3XHN (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Wed, 30 Sep 2020 19:07:13 -0400
-Received: from mail-ot1-x344.google.com (mail-ot1-x344.google.com [IPv6:2607:f8b0:4864:20::344])
-        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 22028C0613D0
-        for <devicetree@vger.kernel.org>; Wed, 30 Sep 2020 16:07:12 -0700 (PDT)
-Received: by mail-ot1-x344.google.com with SMTP id s66so3561338otb.2
-        for <devicetree@vger.kernel.org>; Wed, 30 Sep 2020 16:07:12 -0700 (PDT)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=kali.org; s=google;
-        h=subject:to:cc:references:from:message-id:date:user-agent
-         :mime-version:in-reply-to:content-transfer-encoding:content-language;
-        bh=Qs5V8/HF0CuXqSYMyn+PhUaoHWeJ0sbIik6Dnu+LcL4=;
-        b=VSMtGINb//BRejynJ20cZCnyfWBRooaLG8BGi7NaXBImNsHZje4sQXvaq8gtd2Mahw
-         EBf7CAmxXHekWGxIcT7nmGu/PiBd9dITCDqx+Zg4X33subKBvUnTPdku0MaSwPOJcO1t
-         ln2ljNj41JJyMo6IkBWOASbJqyfxFaczJNKxv6E6ufaJAlkJVm4Gr61XC1usGxzFDeG3
-         cF//Hec0Q2ckXNHbKKllxgLJirEaPmQEsFaTxwOdH6dbK9HAor7NXMiQupbiHE1KZhp4
-         HrWp8NbDHfoJ3zawp21JgDHRJU5nVNPiKGiHW3//HUlarE4JQdIMRGBIxTcwl3++O0/j
-         o/8Q==
-X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=1e100.net; s=20161025;
-        h=x-gm-message-state:subject:to:cc:references:from:message-id:date
-         :user-agent:mime-version:in-reply-to:content-transfer-encoding
-         :content-language;
-        bh=Qs5V8/HF0CuXqSYMyn+PhUaoHWeJ0sbIik6Dnu+LcL4=;
-        b=Mlq0/sk/OOA6FIy/RWPWzNAjUDrWeD0jlMARgr5NN/0iiR1prHLrRhiEmcXgB3BBTv
-         eysMaKT90csibWRDywClUmbT3jEEyWiyTBgPYGM+T18plpFw61XO6yKrXEwpu74LxHvL
-         uv/NDKB6UKcHfnDGQTSQTVceKo5E4p5l1Rv3kN7L/+XF1uT5CTM5LSwkPLk0z1+zxHXX
-         5e0Lw9i6whBr5Exu4zRVGtTUx9SXJqbmce9PPMxJQpgCBbmCCCEYySUB/+59mQ2h3Wr4
-         whddpshILN+9+pFDgjxxVNaUA5rhohDQTF0CMt/HnAHZ8+nrKotXHDaKvkSLhW+MoE1r
-         hRKA==
-X-Gm-Message-State: AOAM532HtyGP2qgEvfMOC+g9eEgGxSEQKAeuAlbZ1hfIX4QhFZKqP/FQ
-        dEzWLIX0j/lq2XYl57XL/sU2/Q==
-X-Google-Smtp-Source: ABdhPJzzFqulT+LjmyZ/QfPntG9KhFyN8TsSuhGAsi+qowPkNy8PekJGIUe8WrR95kHtbAqmWoWW3w==
-X-Received: by 2002:a05:6830:20d5:: with SMTP id z21mr3172113otq.110.1601507231480;
-        Wed, 30 Sep 2020 16:07:11 -0700 (PDT)
-Received: from Steevs-MBP.hackershack.net (cpe-173-175-113-3.satx.res.rr.com. [173.175.113.3])
-        by smtp.gmail.com with ESMTPSA id x15sm799711oor.33.2020.09.30.16.07.10
-        (version=TLS1_3 cipher=TLS_AES_128_GCM_SHA256 bits=128/128);
-        Wed, 30 Sep 2020 16:07:10 -0700 (PDT)
-Subject: Re: [PATCH 2/2] drm/bridge: ti-sn65dsi86: Expose backlight controls
-To:     Bjorn Andersson <bjorn.andersson@linaro.org>,
-        David Airlie <airlied@linux.ie>,
-        Daniel Vetter <daniel@ffwll.ch>,
+        id S1730320AbgI3Xr1 (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Wed, 30 Sep 2020 19:47:27 -0400
+Received: from mout.kundenserver.de ([212.227.17.10]:60805 "EHLO
+        mout.kundenserver.de" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
+        with ESMTP id S1725800AbgI3Xr1 (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Wed, 30 Sep 2020 19:47:27 -0400
+Received: from methusalix.internal.home.lespocky.de ([92.117.51.117]) by
+ mrelayeu.kundenserver.de (mreue108 [212.227.15.183]) with ESMTPSA (Nemesis)
+ id 1MTiLj-1jyIQs3sRZ-00U2pM; Thu, 01 Oct 2020 01:47:04 +0200
+Received: from lemmy.internal.home.lespocky.de ([192.168.243.176] helo=lemmy.home.lespocky.de)
+        by methusalix.internal.home.lespocky.de with esmtpsa  (TLS1.3) tls TLS_AES_256_GCM_SHA384
+        (Exim 4.94)
+        (envelope-from <alex@home.lespocky.de>)
+        id 1kNloJ-0007Ye-6b; Thu, 01 Oct 2020 01:47:00 +0200
+Received: (nullmailer pid 7671 invoked by uid 2001);
+        Wed, 30 Sep 2020 23:46:58 -0000
+From:   Alexander Dahl <post@lespocky.de>
+To:     linux-leds@vger.kernel.org, devicetree@vger.kernel.org,
+        linux-kernel@vger.kernel.org, linux-arm-kernel@lists.infradead.org,
+        linux-samsung-soc@vger.kernel.org, linux-omap@vger.kernel.org,
+        linux-stm32@st-md-mailman.stormreply.com,
+        linux-amlogic@lists.infradead.org, linux-mips@vger.kernel.org
+Cc:     Pavel Machek <pavel@ucw.cz>, Dan Murphy <dmurphy@ti.com>,
         Rob Herring <robh+dt@kernel.org>,
-        Andrzej Hajda <a.hajda@samsung.com>,
-        Neil Armstrong <narmstrong@baylibre.com>,
-        Laurent Pinchart <Laurent.pinchart@ideasonboard.com>,
-        Jonas Karlman <jonas@kwiboo.se>,
-        Jernej Skrabec <jernej.skrabec@siol.net>,
-        Douglas Anderson <dianders@chromium.org>
-Cc:     dri-devel@lists.freedesktop.org, devicetree@vger.kernel.org,
-        linux-kernel@vger.kernel.org, linux-arm-msm@vger.kernel.org
-References: <20200930223532.77755-1-bjorn.andersson@linaro.org>
- <20200930223532.77755-3-bjorn.andersson@linaro.org>
-From:   Steev Klimaszewski <steev@kali.org>
-Message-ID: <cee77d68-262e-e39b-bab4-a3bfbd1de6fe@kali.org>
-Date:   Wed, 30 Sep 2020 18:07:09 -0500
-User-Agent: Mozilla/5.0 (Macintosh; Intel Mac OS X 10.15; rv:68.0)
- Gecko/20100101 Thunderbird/68.12.0
+        Alexander Dahl <ada@thorsis.com>,
+        Peter Ujfalusi <peter.ujfalusi@ti.com>,
+        Jacek Anaszewski <jacek.anaszewski@gmail.com>,
+        Alexander Dahl <post@lespocky.de>
+Subject: [PATCH v6 0/7] leds: pwm: Make automatic labels work
+Date:   Thu,  1 Oct 2020 01:46:30 +0200
+Message-Id: <20200930234637.7573-1-post@lespocky.de>
+X-Mailer: git-send-email 2.20.1
 MIME-Version: 1.0
-In-Reply-To: <20200930223532.77755-3-bjorn.andersson@linaro.org>
-Content-Type: text/plain; charset=utf-8
-Content-Transfer-Encoding: 7bit
-Content-Language: en-US
+Content-Type: text/plain; charset=UTF-8
+Content-Transfer-Encoding: 8bit
+X-Scan-Signature: a725df07d7ef17d6c9c3b8b0b262d2c4
+X-Spam-Score: -2.8 (--)
+X-Provags-ID: V03:K1:1elWBi7e5x3yI9alpARH+EzCpdRWKPCu5CRyf0GlHEX72/7ReQG
+ uK+KfSK9bq2XSjeizOMOQ1aX81WAtDM6x33xXmSQR4PGyxTAFe+Gyet5tvr5SsoocF8fkI6
+ wSoVyqgv448pDp8oa8pMgpO1/2adBnPHdkc6W+5jqszUFcPSeKSiuI0MNhA2Cm5ImFDpZJd
+ CTEWaoq7Zs45webTwlzJg==
+X-Spam-Flag: NO
+X-UI-Out-Filterresults: notjunk:1;V03:K0:6alNuLrEGTM=:/JzZgqFL5jcymyQztVcQOq
+ FjxmZcvrBOVCPqcnXy+7LRNn5FCV5x5rFniePHKClSKDklFA4XytiJHTWPmRH9scMeoS+B/64
+ BlVgHSGulgI65FjtqdOjhileRqNHQIAzBZFbiqQpFNgq202+GikFCy/xaHpOVEh9vg1IajYCg
+ Lt2eTnDEB6DJGd0SFFM842tbVSWrI+WNSL360BFHDKFAPPPAVI9v3d8UpyaPR7KXcb1uVYWCt
+ Hau+i8KYufRR7C1yX5kkvYa5LTp0YaMb0Ve1AGNoUzRBQwJVhGlY4V3tEcZInhhVHbhgkuL6O
+ fOsv227odzxhpVjJUpU/bA4Km556V1smNzzjItRCNc5HuK1IRc2nqpm8rIQC5nekctRbVWoLV
+ 3PiWxpx65aIICaHcYPUejEw4aeNO8l2jyzzDzJYsyZ/YYWQ+WhfvfwS6y2CfQk6ZkhJX14JcV
+ /PU/XTVQaV931qWbzKdRfR/o4zTOlmBUq7NncVRTHyfAHo7CTLWk/W9RFVVl5jSMjvUgGtAt2
+ SRsXkr11xKUT3BEHgNRDwtgfcIzkT1/5lykDr7NRvqX6jQEG82cb2ItZrccHXrWAIUOs8wzHL
+ tBNrUqdkqhI4bqoGzIMThGTJB4Q119crVleU9q0AjRzrjwmc8sa6vWnjRXjl4SZLuMSXEaVb7
+ BjoIGbdsc8iPEdoPHiSb5o/b+FnAMlKVCgRiiu8Tgr6mU24AjEduYafCSw19DqMnNp6sVjeN1
+ QoSC10dCkrDX1VvK7iCze3yiqtIGW+Dyi+QDP7oAR3Dnnubg6HFlDL7Qjm4X5VOwlEL/W9uVb
+ srj/mjCZd9wH4qLjLDzrwxLf52R1XcL+nIJENySPlOGCa5beS/UYs1Xpa/UA7Hff+6YMO6W
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
+Hei hei,
 
-On 9/30/20 5:35 PM, Bjorn Andersson wrote:
-> The TI SN65DSI86 can be configured to generate a PWM pulse on GPIO4,
-> to be used to drive a backlight driver.
->
-> Signed-off-by: Bjorn Andersson <bjorn.andersson@linaro.org>
-> ---
->  drivers/gpu/drm/bridge/Kconfig        |   1 +
->  drivers/gpu/drm/bridge/ti-sn65dsi86.c | 143 +++++++++++++++++++++++++-
->  2 files changed, 140 insertions(+), 4 deletions(-)
->
-> diff --git a/drivers/gpu/drm/bridge/Kconfig b/drivers/gpu/drm/bridge/Kconfig
-> index 43271c21d3fc..eea310bd88e1 100644
-> --- a/drivers/gpu/drm/bridge/Kconfig
-> +++ b/drivers/gpu/drm/bridge/Kconfig
-> @@ -195,6 +195,7 @@ config DRM_TI_SN65DSI86
->  	select REGMAP_I2C
->  	select DRM_PANEL
->  	select DRM_MIPI_DSI
-> +	select BACKLIGHT_CLASS_DEVICE
->  	help
->  	  Texas Instruments SN65DSI86 DSI to eDP Bridge driver
->  
-> diff --git a/drivers/gpu/drm/bridge/ti-sn65dsi86.c b/drivers/gpu/drm/bridge/ti-sn65dsi86.c
-> index 5b6e19ecbc84..41e24d0dbd18 100644
-> --- a/drivers/gpu/drm/bridge/ti-sn65dsi86.c
-> +++ b/drivers/gpu/drm/bridge/ti-sn65dsi86.c
-> @@ -68,6 +68,7 @@
->  #define  SN_GPIO_MUX_OUTPUT			1
->  #define  SN_GPIO_MUX_SPECIAL			2
->  #define  SN_GPIO_MUX_MASK			0x3
-> +#define  SN_GPIO_MUX_SHIFT(gpio)		((gpio) * 2)
->  #define SN_AUX_WDATA_REG(x)			(0x64 + (x))
->  #define SN_AUX_ADDR_19_16_REG			0x74
->  #define SN_AUX_ADDR_15_8_REG			0x75
-> @@ -86,6 +87,12 @@
->  #define SN_ML_TX_MODE_REG			0x96
->  #define  ML_TX_MAIN_LINK_OFF			0
->  #define  ML_TX_NORMAL_MODE			BIT(0)
-> +#define SN_PWM_PRE_DIV_REG			0xA0
-> +#define SN_BACKLIGHT_SCALE_REG			0xA1
-> +#define SN_BACKLIGHT_REG			0xA3
-> +#define SN_PWM_CTL_REG				0xA5
-> +#define  SN_PWM_ENABLE				BIT(1)
-> +#define  SN_PWM_INVERT				BIT(0)
->  #define SN_AUX_CMD_STATUS_REG			0xF4
->  #define  AUX_IRQ_STATUS_AUX_RPLY_TOUT		BIT(3)
->  #define  AUX_IRQ_STATUS_AUX_SHORT		BIT(5)
-> @@ -155,6 +162,8 @@ struct ti_sn_bridge {
->  	struct gpio_chip		gchip;
->  	DECLARE_BITMAP(gchip_output, SN_NUM_GPIOS);
->  #endif
-> +	u32				brightness;
-> +	u32				max_brightness;
->  };
->  
->  static const struct regmap_range ti_sn_bridge_volatile_ranges[] = {
-> @@ -173,6 +182,18 @@ static const struct regmap_config ti_sn_bridge_regmap_config = {
->  	.cache_type = REGCACHE_NONE,
->  };
->  
-> +static void ti_sn_bridge_read_u16(struct ti_sn_bridge *pdata,
-> +				  unsigned int reg, u16 *val)
-> +{
-> +	unsigned int high;
-> +	unsigned int low;
-> +
-> +	regmap_read(pdata->regmap, reg, &low);
-> +	regmap_read(pdata->regmap, reg + 1, &high);
-> +
-> +	*val = high << 8 | low;
-> +}
-> +
->  static void ti_sn_bridge_write_u16(struct ti_sn_bridge *pdata,
->  				   unsigned int reg, u16 val)
->  {
-> @@ -180,6 +201,50 @@ static void ti_sn_bridge_write_u16(struct ti_sn_bridge *pdata,
->  	regmap_write(pdata->regmap, reg + 1, val >> 8);
->  }
->  
-> +static int ti_sn_backlight_update(struct ti_sn_bridge *pdata)
-> +{
-> +	unsigned int pre_div;
-> +
-> +	if (!pdata->max_brightness)
-> +		return 0;
-> +
-> +	/* Enable PWM on GPIO4 */
-> +	regmap_update_bits(pdata->regmap, SN_GPIO_CTRL_REG,
-> +			   SN_GPIO_MUX_MASK << SN_GPIO_MUX_SHIFT(4 - 1),
-> +			   SN_GPIO_MUX_SPECIAL << SN_GPIO_MUX_SHIFT(4 - 1));
-> +
-> +	if (pdata->brightness) {
-> +		/* Set max brightness */
-> +		ti_sn_bridge_write_u16(pdata, SN_BACKLIGHT_SCALE_REG, pdata->max_brightness);
-> +
-> +		/* Set brightness */
-> +		ti_sn_bridge_write_u16(pdata, SN_BACKLIGHT_REG, pdata->brightness);
-> +
-> +		/*
-> +		 * The PWM frequency is derived from the refclk as:
-> +		 * PWM_FREQ = REFCLK_FREQ / (PWM_PRE_DIV * BACKLIGHT_SCALE + 1)
-> +		 *
-> +		 * A hand wavy estimate based on 12MHz refclk and 500Hz desired
-> +		 * PWM frequency gives us a pre_div resulting in a PWM
-> +		 * frequency of between 500 and 1600Hz, depending on the actual
-> +		 * refclk rate.
-> +		 *
-> +		 * One is added to avoid high BACKLIGHT_SCALE values to produce
-> +		 * a pre_div of 0 - which cancels out the large BACKLIGHT_SCALE
-> +		 * value.
-> +		 */
-> +		pre_div = 12000000 / (500 * pdata->max_brightness) + 1;
-> +		regmap_write(pdata->regmap, SN_PWM_PRE_DIV_REG, pre_div);
-> +
-> +		/* Enable PWM */
-> +		regmap_update_bits(pdata->regmap, SN_PWM_CTL_REG, SN_PWM_ENABLE, SN_PWM_ENABLE);
-> +	} else {
-> +		regmap_update_bits(pdata->regmap, SN_PWM_CTL_REG, SN_PWM_ENABLE, 0);
-> +	}
-> +
-> +	return 0;
-> +}
-> +
->  static int __maybe_unused ti_sn_bridge_resume(struct device *dev)
->  {
->  	struct ti_sn_bridge *pdata = dev_get_drvdata(dev);
-> @@ -193,7 +258,7 @@ static int __maybe_unused ti_sn_bridge_resume(struct device *dev)
->  
->  	gpiod_set_value(pdata->enable_gpio, 1);
->  
-> -	return ret;
-> +	return ti_sn_backlight_update(pdata);
->  }
->  
->  static int __maybe_unused ti_sn_bridge_suspend(struct device *dev)
-> @@ -1010,7 +1075,7 @@ static int ti_sn_bridge_gpio_direction_input(struct gpio_chip *chip,
->  					     unsigned int offset)
->  {
->  	struct ti_sn_bridge *pdata = gpiochip_get_data(chip);
-> -	int shift = offset * 2;
-> +	int shift = SN_GPIO_MUX_SHIFT(offset);
->  	int ret;
->  
->  	if (!test_and_clear_bit(offset, pdata->gchip_output))
-> @@ -1038,7 +1103,7 @@ static int ti_sn_bridge_gpio_direction_output(struct gpio_chip *chip,
->  					      unsigned int offset, int val)
->  {
->  	struct ti_sn_bridge *pdata = gpiochip_get_data(chip);
-> -	int shift = offset * 2;
-> +	int shift = SN_GPIO_MUX_SHIFT(offset);
->  	int ret;
->  
->  	if (test_and_set_bit(offset, pdata->gchip_output))
-> @@ -1073,12 +1138,17 @@ static const char * const ti_sn_bridge_gpio_names[SN_NUM_GPIOS] = {
->  
->  static int ti_sn_setup_gpio_controller(struct ti_sn_bridge *pdata)
->  {
-> +	int ngpio = SN_NUM_GPIOS;
->  	int ret;
->  
->  	/* Only init if someone is going to use us as a GPIO controller */
->  	if (!of_property_read_bool(pdata->dev->of_node, "gpio-controller"))
->  		return 0;
->  
-> +	/* If GPIO4 is used for backlight, reduce number of gpios */
-> +	if (pdata->max_brightness)
-> +		ngpio--;
-> +
->  	pdata->gchip.label = dev_name(pdata->dev);
->  	pdata->gchip.parent = pdata->dev;
->  	pdata->gchip.owner = THIS_MODULE;
-> @@ -1092,7 +1162,7 @@ static int ti_sn_setup_gpio_controller(struct ti_sn_bridge *pdata)
->  	pdata->gchip.set = ti_sn_bridge_gpio_set;
->  	pdata->gchip.can_sleep = true;
->  	pdata->gchip.names = ti_sn_bridge_gpio_names;
-> -	pdata->gchip.ngpio = SN_NUM_GPIOS;
-> +	pdata->gchip.ngpio = ngpio;
->  	pdata->gchip.base = -1;
->  	ret = devm_gpiochip_add_data(pdata->dev, &pdata->gchip, pdata);
->  	if (ret)
-> @@ -1159,6 +1229,65 @@ static void ti_sn_bridge_parse_lanes(struct ti_sn_bridge *pdata,
->  	pdata->ln_polrs = ln_polrs;
->  }
->  
-> +static int ti_sn_backlight_update_status(struct backlight_device *bl)
-> +{
-> +	struct ti_sn_bridge *pdata = bl_get_data(bl);
-> +	int brightness = bl->props.brightness;
-> +
-> +	if (bl->props.power != FB_BLANK_UNBLANK ||
-> +	    bl->props.fb_blank != FB_BLANK_UNBLANK ||
-> +	    bl->props.state & BL_CORE_FBBLANK) {
-> +		pdata->brightness = 0;
-> +	}
-> +
-> +	pdata->brightness = brightness;
-> +
-> +	return ti_sn_backlight_update(pdata);
-> +}
-> +
-> +static int ti_sn_backlight_get_brightness(struct backlight_device *bl)
-> +{
-> +	struct ti_sn_bridge *pdata = bl_get_data(bl);
-> +	u16 val;
-> +
-> +	ti_sn_bridge_read_u16(pdata, SN_BACKLIGHT_REG, &val);
-> +
-> +	return val;
-> +}
-> +
-> +const struct backlight_ops ti_sn_backlight_ops = {
-> +	.update_status = ti_sn_backlight_update_status,
-> +	.get_brightness = ti_sn_backlight_get_brightness,
-> +};
-> +
-> +static int ti_sn_backlight_init(struct ti_sn_bridge *pdata)
-> +{
-> +	struct backlight_properties props = {};
-> +	struct backlight_device	*bl;
-> +	struct device *dev = pdata->dev;
-> +	struct device_node *np = dev->of_node;
-> +	int ret;
-> +
-> +	ret = of_property_read_u32(np, "ti,backlight-scale", &pdata->max_brightness);
-> +	if (ret == -EINVAL) {
-> +		return 0;
-> +	} else if (ret || pdata->max_brightness >= 0xffff) {
-> +		DRM_ERROR("invalid max-brightness\n");
-> +		return -EINVAL;
-> +	}
-> +
-> +	props.type = BACKLIGHT_RAW;
-> +	props.max_brightness = pdata->max_brightness;
-> +	bl = devm_backlight_device_register(dev, "sn65dsi86", dev, pdata,
-> +					    &ti_sn_backlight_ops, &props);
-> +	if (IS_ERR(bl)) {
-> +		DRM_ERROR("failed to register backlight device\n");
-> +		return PTR_ERR(bl);
-> +	}
-> +
-> +	return 0;
-> +}
-> +
->  static int ti_sn_bridge_probe(struct i2c_client *client,
->  			      const struct i2c_device_id *id)
->  {
-> @@ -1224,6 +1353,12 @@ static int ti_sn_bridge_probe(struct i2c_client *client,
->  
->  	pm_runtime_enable(pdata->dev);
->  
-> +	ret = ti_sn_backlight_init(pdata);
-> +	if (ret) {
-> +		pm_runtime_disable(pdata->dev);
-> +		return ret;
-> +	}
-> +
->  	ret = ti_sn_setup_gpio_controller(pdata);
->  	if (ret) {
->  		pm_runtime_disable(pdata->dev);
+for leds-gpio you can use the properties 'function' and 'color' in the
+devicetree node and omit 'label', the label is constructed
+automatically.  This is a common feature supposed to be working for all
+LED drivers.  However it did not yet work for the 'leds-pwm' driver.
+
+This series removes platform_data support for the leds-pwm driver and
+takes the opportunity to update the leds-pwm dt-bindings accordingly.
+
+After myself being one week on vacation patch 2/3 was already picked by
+Pavel and I gathered some more feedback on the remaining issues.
+
+v6 was compile tested and dt_bindings_check and dtbs_check were run.
+
+Note: I added some patches to fix DT schema warnings, but I did not put
+every reviewer/supporter/maintainer printed by get_maintainers in Cc to
+keep that list reasonable small.
+
+Series changelog below …
+
+Greets
+Alex
+
+v6:
+- rebased series on recent pavel/for-next
+- added Reviewed-by from Marek to patch 1
+- patch 2 from v5 was picked by Pavel and is already in his for-next
+  branch
+- previous patch 3/3 (now 2/7) was reworked based on feedback by Rob
+- added more dt patches fixing warnings after binding conversion to yaml
+
+v5:
+- replaced patch 1/3 by a new patch removing platform_data support for
+  the leds-pwm driver
+- little rewording of commit message in patch 2/3
+- updated patch 3/3 based on feedback by Rob Herring
+- added Marek Behún to Cc, because he also works on removing
+  platform_data support
+- rebased series on pavel/for-next
+
+v4:
+- added led-class patch handling fwnode passing differently (patch 1/3)
+- adapted leds-pwm patch to new led-class (patch 2/3)
+- contacted original author of leds-pwm dt binding on license issue
+  (patch 3/3)
+
+v3:
+- series rebased on v5.9-rc4
+- changed license of .yaml file to recommended one (patch 2/2)
+- added Acked-by to both patches
+
+v2:
+- series rebased on v5.9-rc3
+- added the dt-bindings update patch (2/2)
+
+v1:
+- based on v5.9-rc2
+- backport on v5.4.59 tested and working
+
+Alexander Dahl (7):
+  leds: pwm: Remove platform_data support
+  dt-bindings: leds: Convert pwm to yaml
+  dt-bindings: mfd: Fix schema warnings for pwm-leds
+  ARM: dts: at91: smartkiz: Reference led node directly
+  ARM: dts: Fix schema warnings for pwm-leds
+  arm64: dts: meson: Fix schema warnings for pwm-leds
+  MIPS: DTS: img: Fix schema warnings for pwm-leds
+
+ .../devicetree/bindings/leds/leds-pwm.txt     | 50 -------------
+ .../devicetree/bindings/leds/leds-pwm.yaml    | 70 +++++++++++++++++++
+ .../devicetree/bindings/mfd/iqs62x.yaml       |  5 +-
+ arch/arm/boot/dts/at91-kizbox.dts             | 10 +--
+ arch/arm/boot/dts/at91-kizbox2-common.dtsi    |  8 +--
+ arch/arm/boot/dts/at91-kizbox3-hs.dts         | 16 ++---
+ arch/arm/boot/dts/at91-kizbox3_common.dtsi    | 10 +--
+ arch/arm/boot/dts/at91-kizboxmini-common.dtsi |  8 +--
+ arch/arm/boot/dts/at91-smartkiz.dts           |  6 +-
+ arch/arm/boot/dts/at91sam9m10g45ek.dts        | 10 +--
+ arch/arm/boot/dts/at91sam9rlek.dts            | 10 +--
+ .../boot/dts/berlin2cd-google-chromecast.dts  |  6 +-
+ arch/arm/boot/dts/exynos5422-odroidhc1.dts    |  4 +-
+ arch/arm/boot/dts/exynos5422-odroidxu4.dts    |  4 +-
+ .../boot/dts/exynos54xx-odroidxu-leds.dtsi    | 11 +--
+ arch/arm/boot/dts/imx53-ppd.dts               | 15 ++--
+ arch/arm/boot/dts/imx6qdl-cubox-i.dtsi        |  4 +-
+ .../boot/dts/imx6sx-softing-vining-2000.dts   |  8 +--
+ arch/arm/boot/dts/omap3-beagle-xm.dts         | 10 +--
+ arch/arm/boot/dts/omap3-overo-base.dtsi       |  4 +-
+ arch/arm/boot/dts/omap4-kc1.dts               |  6 +-
+ arch/arm/boot/dts/omap4-sdp.dts               | 26 +++----
+ arch/arm/boot/dts/stm32mp157c-lxa-mc1.dts     | 12 ++--
+ .../amlogic/meson-gxl-s905x-khadas-vim.dts    |  4 +-
+ .../dts/amlogic/meson-gxm-khadas-vim2.dts     |  4 +-
+ .../boot/dts/amlogic/meson-sm1-sei610.dts     |  8 +--
+ arch/mips/boot/dts/img/pistachio_marduk.dts   |  5 +-
+ drivers/leds/leds-pwm.c                       | 30 ++------
+ 28 files changed, 184 insertions(+), 180 deletions(-)
+ delete mode 100644 Documentation/devicetree/bindings/leds/leds-pwm.txt
+ create mode 100644 Documentation/devicetree/bindings/leds/leds-pwm.yaml
 
 
-Tested-By: Steev Klimaszewski <steev@kali.org>
+base-commit: 8fd8f94235c2c925d80b2316e0ab2bdd00af9bae
+-- 
+2.20.1
 
