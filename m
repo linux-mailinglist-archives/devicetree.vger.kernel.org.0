@@ -2,88 +2,145 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from vger.kernel.org (vger.kernel.org [23.128.96.18])
-	by mail.lfdr.de (Postfix) with ESMTP id 4484827EF49
-	for <lists+devicetree@lfdr.de>; Wed, 30 Sep 2020 18:34:15 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTP id 93DCA27EF5D
+	for <lists+devicetree@lfdr.de>; Wed, 30 Sep 2020 18:38:37 +0200 (CEST)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S1725815AbgI3QeO (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Wed, 30 Sep 2020 12:34:14 -0400
-Received: from lindbergh.monkeyblade.net ([23.128.96.19]:52446 "EHLO
-        lindbergh.monkeyblade.net" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S1725355AbgI3QeO (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Wed, 30 Sep 2020 12:34:14 -0400
-Received: from metis.ext.pengutronix.de (metis.ext.pengutronix.de [IPv6:2001:67c:670:201:290:27ff:fe1d:cc33])
-        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 033B8C061755
-        for <devicetree@vger.kernel.org>; Wed, 30 Sep 2020 09:34:14 -0700 (PDT)
-Received: from [2a0a:edc0:0:900:6245:cbff:fea0:1793] (helo=kresse.office.stw.pengutronix.de)
-        by metis.ext.pengutronix.de with esmtp (Exim 4.92)
-        (envelope-from <l.stach@pengutronix.de>)
-        id 1kNf3Q-00052K-6s; Wed, 30 Sep 2020 18:34:09 +0200
-Message-ID: <502fb976959b61472be351576ca8e6c880bea2bf.camel@pengutronix.de>
-From:   Lucas Stach <l.stach@pengutronix.de>
-To:     Marek Vasut <marex@denx.de>, Shawn Guo <shawnguo@kernel.org>,
-        Rob Herring <robh+dt@kernel.org>
-Cc:     devicetree@vger.kernel.org,
-        Frieder Schrempf <frieder.schrempf@kontron.de>,
-        patchwork-lst@pengutronix.de, NXP Linux Team <linux-imx@nxp.com>,
-        kernel@pengutronix.de, Fabio Estevam <festevam@gmail.com>,
-        linux-arm-kernel@lists.infradead.org
-Date:   Wed, 30 Sep 2020 18:34:07 +0200
-In-Reply-To: <da60080c-8a2f-87f7-90cf-31bdfa338ef8@denx.de>
-References: <20200930155006.535712-1-l.stach@pengutronix.de>
-         <20200930155006.535712-8-l.stach@pengutronix.de>
-         <eecb12db-cf2f-c7bb-1da7-803f77e05e64@denx.de>
-         <f86ecad9d46fa5ca2d92e314a9e3981ae4384da1.camel@pengutronix.de>
-         <da60080c-8a2f-87f7-90cf-31bdfa338ef8@denx.de>
-Content-Type: text/plain; charset="UTF-8"
-User-Agent: Evolution 3.30.5-1.1 
+        id S1731214AbgI3Qic (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Wed, 30 Sep 2020 12:38:32 -0400
+Received: from fllv0016.ext.ti.com ([198.47.19.142]:32978 "EHLO
+        fllv0016.ext.ti.com" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
+        with ESMTP id S1731177AbgI3Qic (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Wed, 30 Sep 2020 12:38:32 -0400
+Received: from fllv0034.itg.ti.com ([10.64.40.246])
+        by fllv0016.ext.ti.com (8.15.2/8.15.2) with ESMTP id 08UGcLpo100181;
+        Wed, 30 Sep 2020 11:38:21 -0500
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=ti.com;
+        s=ti-com-17Q1; t=1601483901;
+        bh=+9e+e3U3sfHhwn5PMnTHu6NY606IQ6st10bFkNcuyR0=;
+        h=From:To:CC:Subject:Date;
+        b=DSspbDPyu9QOLJewr7aT4vS/fsr0fmTW0yr9BeU2GUBXyDRBf0OkLcxkS3+TpM8zy
+         MCg+4rw1bQJQtHvsr13nwpCKTR53xVheCzFLhalY1P8OVI7uB3hplAHpDCcuze1kxl
+         6djzvtrAcb/W/alFvRcNpIxdjtidw7xS18LJWDC8=
+Received: from DFLE112.ent.ti.com (dfle112.ent.ti.com [10.64.6.33])
+        by fllv0034.itg.ti.com (8.15.2/8.15.2) with ESMTPS id 08UGcLKd120041
+        (version=TLSv1.2 cipher=AES256-GCM-SHA384 bits=256 verify=FAIL);
+        Wed, 30 Sep 2020 11:38:21 -0500
+Received: from DFLE113.ent.ti.com (10.64.6.34) by DFLE112.ent.ti.com
+ (10.64.6.33) with Microsoft SMTP Server (version=TLS1_2,
+ cipher=TLS_ECDHE_RSA_WITH_AES_128_CBC_SHA256_P256) id 15.1.1979.3; Wed, 30
+ Sep 2020 11:38:21 -0500
+Received: from lelv0326.itg.ti.com (10.180.67.84) by DFLE113.ent.ti.com
+ (10.64.6.34) with Microsoft SMTP Server (version=TLS1_2,
+ cipher=TLS_ECDHE_RSA_WITH_AES_128_CBC_SHA256_P256) id 15.1.1979.3 via
+ Frontend Transport; Wed, 30 Sep 2020 11:38:21 -0500
+Received: from localhost (ileax41-snat.itg.ti.com [10.172.224.153])
+        by lelv0326.itg.ti.com (8.15.2/8.15.2) with ESMTP id 08UGcK3g016759;
+        Wed, 30 Sep 2020 11:38:20 -0500
+From:   Dan Murphy <dmurphy@ti.com>
+To:     <lgirdwood@gmail.com>, <broonie@kernel.org>, <tiwai@suse.com>,
+        <robh+dt@kernel.org>
+CC:     <devicetree@vger.kernel.org>, <alsa-devel@alsa-project.org>,
+        <linux-kernel@vger.kernel.org>, Dan Murphy <dmurphy@ti.com>
+Subject: [PATCH 1/2] dt-bindings: tas2764: Add the TAS2764 binding doc
+Date:   Wed, 30 Sep 2020 11:38:08 -0500
+Message-ID: <20200930163809.6978-1-dmurphy@ti.com>
+X-Mailer: git-send-email 2.27.0
 MIME-Version: 1.0
-Content-Transfer-Encoding: 7bit
-X-SA-Exim-Connect-IP: 2a0a:edc0:0:900:6245:cbff:fea0:1793
-X-SA-Exim-Mail-From: l.stach@pengutronix.de
-X-Spam-Checker-Version: SpamAssassin 3.4.2 (2018-09-13) on
-        metis.ext.pengutronix.de
-X-Spam-Level: 
-X-Spam-Status: No, score=-1.6 required=4.0 tests=AWL,BAYES_00,RDNS_NONE,
-        SPF_HELO_NONE,SPF_SOFTFAIL autolearn=no autolearn_force=no
-        version=3.4.2
-Subject: Re: [PATCH 07/11] soc: imx: gpcv2: add support for optional resets
-X-SA-Exim-Version: 4.2.1 (built Wed, 08 May 2019 21:11:16 +0000)
-X-SA-Exim-Scanned: Yes (on metis.ext.pengutronix.de)
-X-PTX-Original-Recipient: devicetree@vger.kernel.org
+Content-Transfer-Encoding: 8bit
+Content-Type: text/plain
+X-EXCLAIMER-MD-CONFIG: e1e8a2fd-e40a-4ac6-ac9b-f7e9cc9ee180
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-On Mi, 2020-09-30 at 18:30 +0200, Marek Vasut wrote:
-> On 9/30/20 6:23 PM, Lucas Stach wrote:
-> > On Mi, 2020-09-30 at 18:15 +0200, Marek Vasut wrote:
-> > > On 9/30/20 5:50 PM, Lucas Stach wrote:
-> > > > Normally the reset for the devices inside the power domain is
-> > > > triggered automatically from the PGC in the power-up sequencing,
-> > > > however on i.MX8MM this doesn't work for the GPU power domains.
-> > > 
-> > > One has to wonder whether the VPU power domain has similar hardware bug
-> > > on the MX8MM ?
-> > 
-> > Nope the VPUs have separate reset bits in the BLK_CTL. So after
-> > powering up the VPUMIX domain one can assert/deassert reset to the
-> > individual VPU cores.
-> 
-> Is there any documentation for the BLK_CTL on MX8MM ? I can't find any
-> in the official RM.
+Add the binding for the TAS2764 Smart Amplifier.
 
-I'm still waiting on some info from NXP about this. It is not
-documented in the RM.
+Signed-off-by: Dan Murphy <dmurphy@ti.com>
+---
+ .../devicetree/bindings/sound/tas2764.yaml    | 74 +++++++++++++++++++
+ 1 file changed, 74 insertions(+)
+ create mode 100644 Documentation/devicetree/bindings/sound/tas2764.yaml
 
-> And also, the GPUs need to use SRC reset, does the BLK_CTL reset do the
-> same "degree" of reset to the VPU as the SRC reset does to the GPUs ?
-
-At least that is what I'm assuming.
-
-The fundamental issue with the GPU domain is that there is no BLK_CTL
-in the GPUMIX domain and the resets are hooked up to the shared SRC
-reset, instead of having GPU BLK_CTL level resets.
-
-Regards,
-Lucas
+diff --git a/Documentation/devicetree/bindings/sound/tas2764.yaml b/Documentation/devicetree/bindings/sound/tas2764.yaml
+new file mode 100644
+index 000000000000..4e758ff81003
+--- /dev/null
++++ b/Documentation/devicetree/bindings/sound/tas2764.yaml
+@@ -0,0 +1,74 @@
++# SPDX-License-Identifier: (GPL-2.0-only OR BSD-2-Clause)
++# Copyright (C) 2020 Texas Instruments Incorporated
++%YAML 1.2
++---
++$id: "http://devicetree.org/schemas/sound/tas2764.yaml#"
++$schema: "http://devicetree.org/meta-schemas/core.yaml#"
++
++title: Texas Instruments TAS2764 Smart PA
++
++maintainers:
++  - Dan Murphy <dmurphy@ti.com>
++
++description: |
++  The TAS2764 is a mono, digital input Class-D audio amplifier optimized for
++  efficiently driving high peak power into small loudspeakers.
++  Integrated speaker voltage and current sense provides for
++  real time monitoring of loudspeaker behavior.
++
++properties:
++  compatible:
++    enum:
++      - ti,tas2764
++
++  reg:
++    maxItems: 1
++    description: |
++       I2C address of the device can be between 0x38 to 0x45.
++
++  reset-gpio:
++    description: GPIO used to reset the device.
++
++  shutdown-gpios:
++    description: GPIO used to control the state of the device.
++
++  interrupts:
++    maxItems: 1
++
++  ti,imon-slot-no:
++    $ref: /schemas/types.yaml#/definitions/uint32
++    description: TDM TX current sense time slot.
++
++  ti,vmon-slot-no:
++    $ref: /schemas/types.yaml#/definitions/uint32
++    description: TDM TX voltage sense time slot.
++
++  '#sound-dai-cells':
++    const: 1
++
++required:
++  - compatible
++  - reg
++
++additionalProperties: false
++
++examples:
++  - |
++   #include <dt-bindings/gpio/gpio.h>
++   i2c0 {
++     #address-cells = <1>;
++     #size-cells = <0>;
++     codec: codec@38 {
++       compatible = "ti,tas2764";
++       reg = <0x38>;
++       #sound-dai-cells = <1>;
++       interrupt-parent = <&gpio1>;
++       interrupts = <14>;
++       reset-gpio = <&gpio1 15 0>;
++       shutdown-gpios = <&gpio1 15 0>;
++       ti,imon-slot-no = <0>;
++       ti,vmon-slot-no = <2>;
++     };
++   };
++
++...
+-- 
+2.28.0.585.ge1cfff676549
 
