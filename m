@@ -2,98 +2,136 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from vger.kernel.org (vger.kernel.org [23.128.96.18])
-	by mail.lfdr.de (Postfix) with ESMTP id 3703927EA6E
-	for <lists+devicetree@lfdr.de>; Wed, 30 Sep 2020 15:58:15 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTP id 13CF327EAF3
+	for <lists+devicetree@lfdr.de>; Wed, 30 Sep 2020 16:31:59 +0200 (CEST)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S1730281AbgI3N6J (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Wed, 30 Sep 2020 09:58:09 -0400
-Received: from foss.arm.com ([217.140.110.172]:36834 "EHLO foss.arm.com"
-        rhost-flags-OK-OK-OK-OK) by vger.kernel.org with ESMTP
-        id S1729903AbgI3N6I (ORCPT <rfc822;devicetree@vger.kernel.org>);
-        Wed, 30 Sep 2020 09:58:08 -0400
-Received: from usa-sjc-imap-foss1.foss.arm.com (unknown [10.121.207.14])
-        by usa-sjc-mx-foss1.foss.arm.com (Postfix) with ESMTP id DD1FB30E;
-        Wed, 30 Sep 2020 06:58:07 -0700 (PDT)
-Received: from bogus (unknown [10.57.47.250])
-        by usa-sjc-imap-foss1.foss.arm.com (Postfix) with ESMTPSA id 2E0A73F6CF;
-        Wed, 30 Sep 2020 06:58:04 -0700 (PDT)
-Date:   Wed, 30 Sep 2020 14:57:33 +0100
-From:   Sudeep Holla <sudeep.holla@arm.com>
-To:     ansuelsmth@gmail.com
-Cc:     'Rob Herring' <robh+dt@kernel.org>,
-        'Andy Gross' <agross@kernel.org>,
-        'Bjorn Andersson' <bjorn.andersson@linaro.org>,
-        'MyungJoo Ham' <myungjoo.ham@samsung.com>,
-        'Kyungmin Park' <kyungmin.park@samsung.com>,
-        'Chanwoo Choi' <cw00.choi@samsung.com>,
-        Sudeep Holla <sudeep.holla@arm.com>,
-        linux-arm-msm@vger.kernel.org, devicetree@vger.kernel.org,
-        linux-kernel@vger.kernel.org, linux-pm@vger.kernel.org
-Subject: Re: [PATCH v2 1/2] devfreq: qcom: Add L2 Krait Cache devfreq scaling
- driver
-Message-ID: <20200930135733.GA7609@bogus>
-References: <20200929162926.139-1-ansuelsmth@gmail.com>
- <20200930092954.GA7125@bogus>
- <006c01d69720$abd3f230$037bd690$@gmail.com>
+        id S1729903AbgI3Ob5 (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Wed, 30 Sep 2020 10:31:57 -0400
+Received: from mailout2.w1.samsung.com ([210.118.77.12]:53833 "EHLO
+        mailout2.w1.samsung.com" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
+        with ESMTP id S1726680AbgI3Ob5 (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Wed, 30 Sep 2020 10:31:57 -0400
+Received: from eucas1p1.samsung.com (unknown [182.198.249.206])
+        by mailout2.w1.samsung.com (KnoxPortal) with ESMTP id 20200930143155euoutp0225675b4ec72329d60e9ad472a08494be~5ljldhZq01897018970euoutp02b
+        for <devicetree@vger.kernel.org>; Wed, 30 Sep 2020 14:31:55 +0000 (GMT)
+DKIM-Filter: OpenDKIM Filter v2.11.0 mailout2.w1.samsung.com 20200930143155euoutp0225675b4ec72329d60e9ad472a08494be~5ljldhZq01897018970euoutp02b
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=samsung.com;
+        s=mail20170921; t=1601476315;
+        bh=VdTMVF/5RBjfkqF1GszAZp16h8e/DsklT6np30DQjHE=;
+        h=From:To:Cc:Subject:Date:References:From;
+        b=TsTdwYTsKr76Y9TzkXSfp1fF8kOnmn0aWFWVQ/UcFVB1IrGSUkcRptcTBVD3chaqy
+         /a1TUD9hrSCIv+y0nobWfYokkg36A1ZqIFLEhWGm3Fm0aqWW/63aGmbv/tjGRacov7
+         XyMmeF46WSYZUZIFfRbBnWkIgvgIvlHKqQ7eX7iE=
+Received: from eusmges1new.samsung.com (unknown [203.254.199.242]) by
+        eucas1p2.samsung.com (KnoxPortal) with ESMTP id
+        20200930143155eucas1p288ee6fba10f00cca2d3befec1340b391~5ljlHGye_0260402604eucas1p2-;
+        Wed, 30 Sep 2020 14:31:55 +0000 (GMT)
+Received: from eucas1p2.samsung.com ( [182.198.249.207]) by
+        eusmges1new.samsung.com (EUCPMTA) with SMTP id 23.7B.06456.BD6947F5; Wed, 30
+        Sep 2020 15:31:55 +0100 (BST)
+Received: from eusmtrp2.samsung.com (unknown [182.198.249.139]) by
+        eucas1p2.samsung.com (KnoxPortal) with ESMTPA id
+        20200930143154eucas1p22c1560c485f5d8b8be729c76028c89c7~5ljkmymV00258402584eucas1p21;
+        Wed, 30 Sep 2020 14:31:54 +0000 (GMT)
+Received: from eusmgms1.samsung.com (unknown [182.198.249.179]) by
+        eusmtrp2.samsung.com (KnoxPortal) with ESMTP id
+        20200930143154eusmtrp290f2e874f36d0cc3c9d887ecd66737ab~5ljkmGWKQ2809328093eusmtrp2X;
+        Wed, 30 Sep 2020 14:31:54 +0000 (GMT)
+X-AuditID: cbfec7f2-809ff70000001938-05-5f7496dbe3a6
+Received: from eusmtip2.samsung.com ( [203.254.199.222]) by
+        eusmgms1.samsung.com (EUCPMTA) with SMTP id 6D.C5.06314.AD6947F5; Wed, 30
+        Sep 2020 15:31:54 +0100 (BST)
+Received: from localhost (unknown [106.120.51.46]) by eusmtip2.samsung.com
+        (KnoxPortal) with ESMTPA id
+        20200930143154eusmtip242fb214d20d775c8ad10b93e01927cac~5ljkdL2oi1540515405eusmtip2J;
+        Wed, 30 Sep 2020 14:31:54 +0000 (GMT)
+From:   =?UTF-8?q?=C5=81ukasz=20Stelmach?= <l.stelmach@samsung.com>
+To:     Rob Herring <robh+dt@kernel.org>, Kukjin Kim <kgene@kernel.org>,
+        Krzysztof Kozlowski <krzk@kernel.org>,
+        devicetree@vger.kernel.org, linux-arm-kernel@lists.infradead.org,
+        linux-samsung-soc@vger.kernel.org, linux-kernel@vger.kernel.org
+Cc:     b.zolnierkie@samsung.com, m.szyprowski@samsung.com,
+        =?UTF-8?q?=C5=81ukasz=20Stelmach?= <l.stelmach@samsung.com>
+Subject: [PATCH] ARM: dts: exynos: Add a placeholder for a MAC address
+Date:   Wed, 30 Sep 2020 16:31:51 +0200
+Message-Id: <20200930143151.23961-1-l.stelmach@samsung.com>
+X-Mailer: git-send-email 2.26.2
 MIME-Version: 1.0
-Content-Type: text/plain; charset=us-ascii
-Content-Disposition: inline
-In-Reply-To: <006c01d69720$abd3f230$037bd690$@gmail.com>
-User-Agent: Mutt/1.9.4 (2018-02-28)
+Organization: Samsung R&D Institute Poland
+Content-Transfer-Encoding: 8bit
+X-Brightmail-Tracker: H4sIAAAAAAAAA+NgFlrOKsWRmVeSWpSXmKPExsWy7djP87q3p5XEG2yeymOxccZ6Vov5R86x
+        WvQ/fs1scf78BnaLm4dWMFpsenyN1eLyrjlsFjPO72OyWHvkLrtF694j7A5cHptWdbJ5bF5S
+        79G3ZRWjx+dNcgEsUVw2Kak5mWWpRfp2CVwZbw6tZio4yV7RvPQpUwPjRLYuRk4OCQETifmf
+        XjJ3MXJxCAmsYJR4dGwvE4TzhVHi6a5lLBDOZ0aJB5c2ssK0TJt6kBUisZxRYuGNB1Atzxkl
+        3vX0MYJUsQk4SvQvPQFWJQLSPnPuJCaQBLNAqcTW42+ZQWxhATeJW08WgF3CIqAq0TZtMlgz
+        r4C1RMexmcwQ6+Ql2pdvZ4OIC0qcnPmEBcTmF9CSWNN0nQViprxE89bZYF9ICCxil3j9dAMj
+        RLOLxP+Wy1CvCku8Or6FHcKWkfi/cz7QQRxAdr3E5ElmEL09jBLb5vxggaixlrhz7hcbSA2z
+        gKbE+l36EGFHibM7utghWvkkbrwVhDiBT2LStunMEGFeiY42IYhqFYl1/XugBkpJ9L5awQhR
+        4iHRfZFrAqPiLCR/zULyyyyEtQsYmVcxiqeWFuempxYb5qWW6xUn5haX5qXrJefnbmIEJp/T
+        /45/2sH49VLSIUYBDkYlHt4JeSXxQqyJZcWVuYcYJTiYlUR4nc6ejhPiTUmsrEotyo8vKs1J
+        LT7EKM3BoiTOa7zoZayQQHpiSWp2ampBahFMlomDU6qBcZrFh3tBdbEaW3i+dKhWLk+OPOvd
+        Zs26ZPGXwJPTp3/N2bzfrzTrwl/NL99DP17P3/jSuO+uybFezWqZ3U03cwSmiTcc/3xET/Df
+        DufyL3MSrH8+Wv1phbOjoWPz/H15e+0SlB5LT3fY0BUUdspAeJrEDe/X+6QC9facTpp/7WFz
+        u3lphhzjHiWW4oxEQy3mouJEAJrsPeY6AwAA
+X-Brightmail-Tracker: H4sIAAAAAAAAA+NgFprLIsWRmVeSWpSXmKPExsVy+t/xe7q3ppXEG3zdpGmxccZ6Vov5R86x
+        WvQ/fs1scf78BnaLm4dWMFpsenyN1eLyrjlsFjPO72OyWHvkLrtF694j7A5cHptWdbJ5bF5S
+        79G3ZRWjx+dNcgEsUXo2RfmlJakKGfnFJbZK0YYWRnqGlhZ6RiaWeobG5rFWRqZK+nY2Kak5
+        mWWpRfp2CXoZbw6tZio4yV7RvPQpUwPjRLYuRk4OCQETiWlTD7J2MXJxCAksZZToe/MTyOEA
+        SkhJrJybDlEjLPHnWhdYvZDAU0aJSdfEQWw2AUeJ/qUnWEFsEYGfjBLbzjqCtDILlEu8OBgI
+        EhYWcJO49WQBWCuLgKpE27TJjCA2r4C1RMexmcwQ4+Ul2pdvZ4OIC0qcnPmEBWKMusT6eUIg
+        YX4BLYk1TddZQGxmoPLmrbOZJzAKzELSMQuhYxaSqgWMzKsYRVJLi3PTc4sN9YoTc4tL89L1
+        kvNzNzECo2bbsZ+bdzBe2hh8iFGAg1GJh3dCXkm8EGtiWXFl7iFGCQ5mJRFep7On44R4UxIr
+        q1KL8uOLSnNSiw8xmgK9M5FZSjQ5HxjRQD2GpobmFpaG5sbmxmYWSuK8HQIHY4QE0hNLUrNT
+        UwtSi2D6mDg4pRoYZ6zfbFvpLGzz3WDGsvoTe4MfHb553L2KzX7ZsgaOvceZL3HfEThQse/t
+        et5r8XIs3kLbX4Z8flZ979D2a5qOjf2VjYoHtwWLSy1SPVv2yrvw+OnLLAzW+5LfRj/6vOZo
+        iIPeXNFvP55cVmJd22T9uCpC+31P7/wP/3LYrcrtjZrDl02N8uhZqcRSnJFoqMVcVJwIABLd
+        N2WwAgAA
+X-CMS-MailID: 20200930143154eucas1p22c1560c485f5d8b8be729c76028c89c7
+X-Msg-Generator: CA
+Content-Type: text/plain; charset="utf-8"
+X-RootMTR: 20200930143154eucas1p22c1560c485f5d8b8be729c76028c89c7
+X-EPHeader: CA
+CMS-TYPE: 201P
+X-CMS-RootMailID: 20200930143154eucas1p22c1560c485f5d8b8be729c76028c89c7
+References: <CGME20200930143154eucas1p22c1560c485f5d8b8be729c76028c89c7@eucas1p2.samsung.com>
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-On Wed, Sep 30, 2020 at 01:56:01PM +0200, ansuelsmth@gmail.com wrote:
-> > Subject: Re: [PATCH v2 1/2] devfreq: qcom: Add L2 Krait Cache devfreq
-> > scaling driver
-> >
-> > On Tue, Sep 29, 2020 at 06:29:24PM +0200, Ansuel Smith wrote:
-> > > Qcom L2 Krait CPUs use the generic cpufreq-dt driver and doesn't
-> actually
-> > > scale the Cache frequency when the CPU frequency is changed. This
-> > > devfreq driver register with the cpu notifier and scale the Cache
-> > > based on the max Freq across all core as the CPU cache is shared across
-> > > all of them. If provided this also scale the voltage of the regulator
-> > > attached to the CPU cache. The scaling logic is based on the CPU freq
-> > > and the 3 scaling interval are set by the device dts.
-> > >
-> >
-> > I have raised this concern before. I am worried this kind of independent
-> > CPU and cache frequency controls make way for clkscrew kind of attacks.
-> > Why can't the clocks be made parent/child or secondary and automatically
-> > updated when CPU clocks are changed.
-> >
->
-> I don't think I understand this fully. Anyway about the clkscrew attack, the
-> range are set on the dts so unless someone actually wants to have a
-> vulnerable system, the range can't be changes at runtime. The devfreq
-> governor is set to immutable and can't be changes AFAIK.
->
+Add a placeholder for a MAC address. A bootloader may fill it
+to set the MAC address and override EEPROM settings.
 
-I don't think that matters, we are talking about Secure/Non-secure boundary
-here. DT can be modified or simple a rogue devfreq module can do all the
-bad things.
+Signed-off-by: Łukasz Stelmach <l.stelmach@samsung.com>
+---
+ arch/arm/boot/dts/exynos5422-odroidxu3.dts | 18 ++++++++++++++++++
+ 1 file changed, 18 insertions(+)
 
-> About 'automatically updated when CPU changes', the cache is shared across 2
-> core and they scale independently. We can be in situation where one cpu is
-> at max and one at idle freq and the cache is set to idle. To fix this at
-> every change the clk should find the max value and I think this would make
-> all the clk scaling very slow.
+diff --git a/arch/arm/boot/dts/exynos5422-odroidxu3.dts b/arch/arm/boot/dts/exynos5422-odroidxu3.dts
+index db0bc17a667b..9f7f3eacb750 100644
+--- a/arch/arm/boot/dts/exynos5422-odroidxu3.dts
++++ b/arch/arm/boot/dts/exynos5422-odroidxu3.dts
+@@ -70,3 +70,21 @@ &pwm {
+ &usbdrd_dwc3_1 {
+ 	dr_mode = "peripheral";
+ };
++
++&usbhost2 {
++	#address-cells = <1>;
++	#size-cells = <0>;
++
++	hub@1 {
++		compatible = "usb8087,0024";
++		reg = <1>;
++		#address-cells = <1>;
++		#size-cells = <0>;
++
++		ethernet: usbether@1 {
++			compatible = "usb0c45,6310";
++			reg = <1>;
++			mac-address = [00 00 00 00 00 00]; /* Filled in by a bootloader */
++		};
++	};
++};
+-- 
+2.26.2
 
-This sounds like we are going back to coupled idle states kind of setup.
-Sorry we don't want those anymore.
-
-> If you have any suggestion on how I can implement this better, I'm
-> more than happy to address them. For now, the lack of this kind of cache
-> scale, make the system really slow since by default the init of the cpu and
-> cache clks put them at the lowest frequency and nobody changes that.
-> (we have cpufreq scaling support but the cache is never actually scaled)
-
-As I mentioned, if this needs to be done in OSPM, then hide it in the clock
-building right dependencies. Clk will even have refcount so that one idle
-CPU won't bring the cache down to idle frequency.
-
---
-Regards,
-Sudeep
