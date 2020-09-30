@@ -2,70 +2,88 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from vger.kernel.org (vger.kernel.org [23.128.96.18])
-	by mail.lfdr.de (Postfix) with ESMTP id 2BBC227F248
-	for <lists+devicetree@lfdr.de>; Wed, 30 Sep 2020 21:04:50 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTP id 8DF5227F22D
+	for <lists+devicetree@lfdr.de>; Wed, 30 Sep 2020 21:02:08 +0200 (CEST)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S1730220AbgI3TC7 (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Wed, 30 Sep 2020 15:02:59 -0400
-Received: from mailout.easymail.ca ([64.68.200.34]:47460 "EHLO
-        mailout.easymail.ca" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S1729806AbgI3TC7 (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Wed, 30 Sep 2020 15:02:59 -0400
-X-Greylist: delayed 324 seconds by postgrey-1.27 at vger.kernel.org; Wed, 30 Sep 2020 15:02:58 EDT
-Received: from localhost (localhost [127.0.0.1])
-        by mailout.easymail.ca (Postfix) with ESMTP id 6F246A13C6;
-        Wed, 30 Sep 2020 18:57:34 +0000 (UTC)
-X-Virus-Scanned: Debian amavisd-new at emo05-pco.easydns.vpn
-Received: from mailout.easymail.ca ([127.0.0.1])
-        by localhost (emo05-pco.easydns.vpn [127.0.0.1]) (amavisd-new, port 10024)
-        with ESMTP id mixK6SbgLMhN; Wed, 30 Sep 2020 18:57:34 +0000 (UTC)
-Received: from jupiter.simonsouth.net (unknown [108.162.141.195])
+        id S1729859AbgI3TBw (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Wed, 30 Sep 2020 15:01:52 -0400
+Received: from mail.kernel.org ([198.145.29.99]:37534 "EHLO mail.kernel.org"
+        rhost-flags-OK-OK-OK-OK) by vger.kernel.org with ESMTP
+        id S1725799AbgI3TBw (ORCPT <rfc822;devicetree@vger.kernel.org>);
+        Wed, 30 Sep 2020 15:01:52 -0400
+Received: from localhost.localdomain (unknown [194.230.155.194])
         (using TLSv1.2 with cipher ECDHE-RSA-AES128-GCM-SHA256 (128/128 bits))
         (No client certificate requested)
-        by mailout.easymail.ca (Postfix) with ESMTPSA id 6BED9A13B2;
-        Wed, 30 Sep 2020 18:57:18 +0000 (UTC)
-From:   Simon South <simon@simonsouth.net>
-To:     robh+dt@kernel.org, heiko@sntech.de, smoch@web.de,
-        t.schramm@manjaro.org, jbx6244@gmail.com, katsuhiro@katsuster.net,
-        sigmaris@gmail.com, devicetree@vger.kernel.org,
-        linux-arm-kernel@lists.infradead.org,
-        linux-rockchip@lists.infradead.org, linux-kernel@vger.kernel.org
-Cc:     Simon South <simon@simonsouth.net>
-Subject: [PATCH] arm64: dts: rockchip: Pinebook Pro: Use supported PCIe link speed
-Date:   Wed, 30 Sep 2020 14:56:27 -0400
-Message-Id: <20200930185627.5918-1-simon@simonsouth.net>
-X-Mailer: git-send-email 2.28.0
-MIME-Version: 1.0
-Content-Transfer-Encoding: 8bit
+        by mail.kernel.org (Postfix) with ESMTPSA id B705120708;
+        Wed, 30 Sep 2020 19:01:48 +0000 (UTC)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=kernel.org;
+        s=default; t=1601492511;
+        bh=sOXQXh8knxv1AF9xNNR8yw3Dd9cyJ6Qbl/YyFiJMgl4=;
+        h=From:To:Subject:Date:From;
+        b=g9gP4ZdPP5ydl5PIzqYuXaghjmilQAsIWz3/WQmHGEKLRbk2gT97p3WKnBEfVI9h6
+         dMc6syNFKeBZgWNpCuaQncIktcQI6ufVkwl7pDumawkDnib4HRwkpRlNRHGvrYES5i
+         FkQ14/XPzPo7AZq3q7urL+tWvyPDnjU2Pql1SQmA=
+From:   Krzysztof Kozlowski <krzk@kernel.org>
+To:     Rob Herring <robh+dt@kernel.org>, Shawn Guo <shawnguo@kernel.org>,
+        Sascha Hauer <s.hauer@pengutronix.de>,
+        Pengutronix Kernel Team <kernel@pengutronix.de>,
+        Fabio Estevam <festevam@gmail.com>,
+        NXP Linux Team <linux-imx@nxp.com>,
+        Krzysztof Kozlowski <krzk@kernel.org>,
+        Anson Huang <Anson.Huang@nxp.com>,
+        Andreas Kemnade <andreas@kemnade.info>,
+        Stefan Riedmueller <s.riedmueller@phytec.de>,
+        Robert Jones <rjones@gateworks.com>,
+        Li Yang <leoyang.li@nxp.com>, devicetree@vger.kernel.org,
+        linux-kernel@vger.kernel.org, linux-arm-kernel@lists.infradead.org
+Subject: [PATCH v2 00/12] ARM: dts: imx: Board compatibles cleanup
+Date:   Wed, 30 Sep 2020 21:01:31 +0200
+Message-Id: <20200930190143.27032-1-krzk@kernel.org>
+X-Mailer: git-send-email 2.17.1
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-On Pinebook Pro laptops with an NVMe SSD installed, prevent random
-crashes in the NVMe driver by not attempting to use a PCIe link speed
-higher than that supported by the RK3399 SoC.
+Hi,
 
-See commit 712fa1777207 ("arm64: dts: rockchip: add max-link-speed for
-rk3399").
+Changes since v1:
+1. Drop applied vendor-prefix patches.
+2. Add Reviews from Rob.
+3. Use ABB prefix for Aristainetos boards.
+4. Add missed compatibles for i.MX51, i.MX53 and i.MX6DL.
+5. Fix typo (VF600 -> VF610) in VF boards.
+6. New vendor prefixes (patches): #1 and #2.
 
-Fixes: 5a65505a6988 ("arm64: dts: rockchip: Add initial support for Pinebook Pro")
-Signed-off-by: Simon South <simon@simonsouth.net>
----
- arch/arm64/boot/dts/rockchip/rk3399-pinebook-pro.dts | 1 -
- 1 file changed, 1 deletion(-)
+Best regards,
+Krzysztof
 
-diff --git a/arch/arm64/boot/dts/rockchip/rk3399-pinebook-pro.dts b/arch/arm64/boot/dts/rockchip/rk3399-pinebook-pro.dts
-index 06d48338c836..219b7507a10f 100644
---- a/arch/arm64/boot/dts/rockchip/rk3399-pinebook-pro.dts
-+++ b/arch/arm64/boot/dts/rockchip/rk3399-pinebook-pro.dts
-@@ -790,7 +790,6 @@ &pcie_phy {
- &pcie0 {
- 	bus-scan-delay-ms = <1000>;
- 	ep-gpios = <&gpio2 RK_PD4 GPIO_ACTIVE_HIGH>;
--	max-link-speed = <2>;
- 	num-lanes = <4>;
- 	pinctrl-names = "default";
- 	pinctrl-0 = <&pcie_clkreqn_cpm>;
+
+Krzysztof Kozlowski (12):
+  dt-bindings: vendor-prefixes: add MicroSys
+  dt-bindings: vendor-prefixes: add Revotics
+  dt-bindings: arm: fsl: document i.MX25 and i.MX27 boards
+  dt-bindings: arm: fsl: document i.MX51 boards
+  dt-bindings: arm: fsl: document i.MX53 boards
+  dt-bindings: arm: fsl: document VF boards
+  dt-bindings: arm: fsl: document i.MX6DL boards
+  ARM: dts: imx6dl-pico: fix board compatibles
+  dt-bindings: vendor-prefixes: add ABB
+  dt-bindings: arm: fsl: document i.MX6DL Aristainetos boards
+  ARM: dts: imx6dl: add compatibles for Aristainetos boards
+  dt-bindings: arm: fsl: document i.MX6Q boards
+
+ .../devicetree/bindings/arm/fsl.yaml          | 223 ++++++++++++++++--
+ .../devicetree/bindings/vendor-prefixes.yaml  |   6 +
+ arch/arm/boot/dts/imx6dl-aristainetos2_4.dts  |   2 +-
+ arch/arm/boot/dts/imx6dl-aristainetos2_7.dts  |   2 +-
+ arch/arm/boot/dts/imx6dl-aristainetos_4.dts   |   2 +-
+ arch/arm/boot/dts/imx6dl-aristainetos_7.dts   |   2 +-
+ arch/arm/boot/dts/imx6dl-pico-dwarf.dts       |   2 +-
+ arch/arm/boot/dts/imx6dl-pico-hobbit.dts      |   2 +-
+ arch/arm/boot/dts/imx6dl-pico-nymph.dts       |   2 +-
+ arch/arm/boot/dts/imx6dl-pico-pi.dts          |   2 +-
+ 10 files changed, 216 insertions(+), 29 deletions(-)
+
 -- 
-2.28.0
+2.17.1
 
