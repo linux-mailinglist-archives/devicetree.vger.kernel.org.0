@@ -2,54 +2,55 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from vger.kernel.org (vger.kernel.org [23.128.96.18])
-	by mail.lfdr.de (Postfix) with ESMTP id 6587827E55A
-	for <lists+devicetree@lfdr.de>; Wed, 30 Sep 2020 11:40:17 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTP id 0767827E560
+	for <lists+devicetree@lfdr.de>; Wed, 30 Sep 2020 11:40:36 +0200 (CEST)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S1727657AbgI3JkR (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Wed, 30 Sep 2020 05:40:17 -0400
-Received: from lindbergh.monkeyblade.net ([23.128.96.19]:44938 "EHLO
+        id S1725779AbgI3Jke (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Wed, 30 Sep 2020 05:40:34 -0400
+Received: from lindbergh.monkeyblade.net ([23.128.96.19]:44992 "EHLO
         lindbergh.monkeyblade.net" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S1725823AbgI3JkQ (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Wed, 30 Sep 2020 05:40:16 -0400
+        with ESMTP id S1728999AbgI3Jke (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Wed, 30 Sep 2020 05:40:34 -0400
 Received: from mail-ed1-x544.google.com (mail-ed1-x544.google.com [IPv6:2a00:1450:4864:20::544])
-        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 5B807C0613D0
-        for <devicetree@vger.kernel.org>; Wed, 30 Sep 2020 02:40:16 -0700 (PDT)
-Received: by mail-ed1-x544.google.com with SMTP id g4so1119810edk.0
-        for <devicetree@vger.kernel.org>; Wed, 30 Sep 2020 02:40:16 -0700 (PDT)
+        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id F0312C0613D0
+        for <devicetree@vger.kernel.org>; Wed, 30 Sep 2020 02:40:33 -0700 (PDT)
+Received: by mail-ed1-x544.google.com with SMTP id 33so718908edq.13
+        for <devicetree@vger.kernel.org>; Wed, 30 Sep 2020 02:40:33 -0700 (PDT)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
         d=baylibre-com.20150623.gappssmtp.com; s=20150623;
         h=mime-version:references:in-reply-to:from:date:message-id:subject:to
          :cc;
-        bh=O0Cz0Zm8YQoZqX3ZdlzcOSzBf2shLCSEiyc7EaC/Ajs=;
-        b=TY5abaFEhAX8cf/YA0ezETfk+qya2no/nSWgqGwoVSy9JShJGpKxq0/9JBBA91gZVa
-         ttKOPn4riaDEeLms5hRZBUgqMM0gC61qDUnDqJ8+VHRokeaj7Z3bvuxXB4vfHOfsvaYr
-         8jAoDUr/LPhpUGFUl8S6zq1gAm6iRo0zM70bv19WtFckWNE60hld5hOQqXgYT1lvIVJE
-         3O18evHFBU3EEJFWPjgyyzPZdTn/y39ajS+abk9qI9zUHh49B/kXXmzufu37P1zHCSMa
-         KmFiUgUxQhqCN/YIDJVpp9hDoMv/ojd4NguQQP3gTWChL2plFTJNPDqvBsnQdqGDMSk/
-         aLmA==
+        bh=pxwl6vJ7NlP3+dTWpMovM7e1DudeEOjt0JB5STP1e8w=;
+        b=ZitIgb1o3RtIlUrhpJ50PCc/UK8UVLIRyv79th9TeWsA8csJknxt1K/sb9Ht6tYoTx
+         BLtAWOb+pSfZDkg+9pRWdog0HwUnFm+uL/WMhoxcOffuEKjIbluG4WHAJ3qXvKiKzYIh
+         3TJvXpz0sSfCNGC0TkdOtY5jd0duQ+r0RlVqXXG6P8EqcaezSN3KIIM9c8YfDK1MBaht
+         do4yJAVcsApOJYZ5TBHdmoJJ3BXniQcBifxCWLVrb53mwJVQ5t67v0T6xkjsLw6FiBix
+         xwHg9y1q51Hc41LthumOPD2TbOVFjIvYk+kgItPFb4RwJzD49bMDP83q1xfWheTB49EK
+         aCOQ==
 X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
         d=1e100.net; s=20161025;
         h=x-gm-message-state:mime-version:references:in-reply-to:from:date
          :message-id:subject:to:cc;
-        bh=O0Cz0Zm8YQoZqX3ZdlzcOSzBf2shLCSEiyc7EaC/Ajs=;
-        b=DI3KsZ9y0n5zDhr5oADK1aCFnR6low6uM9EZ2ibrFr+fDx7ttieQAMc9WR+JNEabFZ
-         hBV5i9hn1Tlsjyx8LN4PNFBQLLTyysISli3tlfXhMfHtG7n4IIx5bLO1xtAaooy7pXdt
-         403BBzX99EEWHWKZddD6XxXlclzlyKsxSsM/Gj3okhI+kquPesZecMUNLJuX9lxwC9fR
-         LnqqZKiq7mnNAW6B8j3+rOTYbYWlD7FfLsO4FHzyr8CeUbCuqCs2EC8/B6IdeVUKTcaf
-         r+3dAEqq822ddC0nUP9zwAkcNDwrPiRF3RsHtn+Ib2ZZqYHm6BfgIth+sbeRtwegS4Wz
-         c+jQ==
-X-Gm-Message-State: AOAM53154aJAsxe8B5Hg87GjGmfMYibDnXF/CO/hERj6QXMBjDwS+uC4
-        k5zOhWxVbKnfeGfraCpGUAjb8R5LqB1FDcWRBbIUOA==
-X-Google-Smtp-Source: ABdhPJyWWGgUn2oNtUsYmqSpl1Se2ijc4eYlRCDYw6awgB9A2KYqB+xFkLzp7nwqUKd/wq++N/1FAD+6QV2ogzXRzdk=
-X-Received: by 2002:a05:6402:2c3:: with SMTP id b3mr1717194edx.213.1601458815102;
- Wed, 30 Sep 2020 02:40:15 -0700 (PDT)
+        bh=pxwl6vJ7NlP3+dTWpMovM7e1DudeEOjt0JB5STP1e8w=;
+        b=i7VyGBtSzCW1UbaCAL3yLxHPuQmAIFrrMIfPPxMwqrUt4v7XZffU+gQ1sXKCXjgj2p
+         eiUhUaReQr32YgpaEE8iReHfe6vE42G4nFYRb8lvKz8IvvJm+H7xmZRreGGELBVfooTQ
+         QrVPUKqKyHqF7/MwZv/kRP7kd9BJNUypWos52fVQr0qGRJr2acRIVT0u8SMZyZIRy9AE
+         UIjfR6HJTFXeYAJkDVH4Z2qvg6OuM1Elj2wjVgNzMDWIA6IMMy9ZFHqj4p+r8ePzkhcM
+         FqGAb25Z6vvLNQppkittp+THiXjTZt9TV353uLNRmKlwRUkrFF0YjNvKoozdWt3cA/2l
+         Jlqw==
+X-Gm-Message-State: AOAM532kr7kfdxVnxZZyHiK4rLi6TNlmphEx/Lg02BkUIPN0DqmFm9z7
+        cO/LZwRRKMlBUkpqUvZFRljO7udPmuk7ITQlGttgTQ==
+X-Google-Smtp-Source: ABdhPJzwbGBzKP6VvMUQcxMG01XenJjUKeVs2qSsw3fsj4YoYAy9TZVtvNOrKyJwfTgT8Op4iITpLqXD7NLusQrUxfc=
+X-Received: by 2002:a50:e442:: with SMTP id e2mr1802575edm.186.1601458832682;
+ Wed, 30 Sep 2020 02:40:32 -0700 (PDT)
 MIME-Version: 1.0
-References: <20200930092053.2114-1-mike.looijmans@topic.nl> <20200930092053.2114-2-mike.looijmans@topic.nl>
-In-Reply-To: <20200930092053.2114-2-mike.looijmans@topic.nl>
+References: <20200930092053.2114-1-mike.looijmans@topic.nl>
+In-Reply-To: <20200930092053.2114-1-mike.looijmans@topic.nl>
 From:   Bartosz Golaszewski <bgolaszewski@baylibre.com>
-Date:   Wed, 30 Sep 2020 11:40:04 +0200
-Message-ID: <CAMpxmJW+we06L0cCGOQL6vOzw+ZFhwkoMtw--CpEB0TKAsCZMg@mail.gmail.com>
-Subject: Re: [PATCH v2 2/2] gpio: pca953x: Add support for the NXP PCAL9554B/C
+Date:   Wed, 30 Sep 2020 11:40:22 +0200
+Message-ID: <CAMpxmJVdRfJJ_Wvf-fVdpvbnEWvpOtiYhRwkoASZnvFAjTDmGw@mail.gmail.com>
+Subject: Re: [PATCH v2 1/2] dt-bindings: gpio: pca953x: Add support for the
+ NXP PCAL9554B/C
 To:     Mike Looijmans <mike.looijmans@topic.nl>
 Cc:     Linus Walleij <linus.walleij@linaro.org>,
         linux-gpio <linux-gpio@vger.kernel.org>,
@@ -67,11 +68,29 @@ On Wed, Sep 30, 2020 at 11:21 AM Mike Looijmans <mike.looijmans@topic.nl> wrote:
 > with 8 GPIOs, latched interrupts and some advanced configuration
 > options. The "C" version only differs in I2C address.
 >
+> This adds the entry to the devicetree bindings.
+>
 > Signed-off-by: Mike Looijmans <mike.looijmans@topic.nl>
 > ---
+> v2: Split devicetree and code into separate patches
+>
+>  Documentation/devicetree/bindings/gpio/gpio-pca953x.txt | 1 +
+>  1 file changed, 1 insertion(+)
+>
+> diff --git a/Documentation/devicetree/bindings/gpio/gpio-pca953x.txt b/Documentation/devicetree/bindings/gpio/gpio-pca953x.txt
+> index 3126c3817e2a..99dc1936f633 100644
+> --- a/Documentation/devicetree/bindings/gpio/gpio-pca953x.txt
+> +++ b/Documentation/devicetree/bindings/gpio/gpio-pca953x.txt
+> @@ -20,6 +20,7 @@ Required properties:
+>         nxp,pcal6416
+>         nxp,pcal6524
+>         nxp,pcal9535
+> +       nxp,pcal9554b
+>         nxp,pcal9555a
+>         maxim,max7310
+>         maxim,max7312
+> --
+> 2.17.1
+>
 
 Reviewed-by: Bartosz Golaszewski <bgolaszewski@baylibre.com>
-
-I'll let Linus pick it up, I already sent my final PR for v5.10.
-
-Bartosz
