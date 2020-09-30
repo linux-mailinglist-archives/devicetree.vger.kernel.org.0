@@ -2,134 +2,73 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from vger.kernel.org (vger.kernel.org [23.128.96.18])
-	by mail.lfdr.de (Postfix) with ESMTP id 8C77727E8E6
-	for <lists+devicetree@lfdr.de>; Wed, 30 Sep 2020 14:50:17 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTP id 04E2927E8E7
+	for <lists+devicetree@lfdr.de>; Wed, 30 Sep 2020 14:50:18 +0200 (CEST)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S1728270AbgI3Mtd (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Wed, 30 Sep 2020 08:49:33 -0400
-Received: from lindbergh.monkeyblade.net ([23.128.96.19]:45802 "EHLO
-        lindbergh.monkeyblade.net" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S1730087AbgI3MtT (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Wed, 30 Sep 2020 08:49:19 -0400
-Received: from mail-pf1-x442.google.com (mail-pf1-x442.google.com [IPv6:2607:f8b0:4864:20::442])
-        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id D706EC0613D0
-        for <devicetree@vger.kernel.org>; Wed, 30 Sep 2020 05:49:17 -0700 (PDT)
-Received: by mail-pf1-x442.google.com with SMTP id x123so1107035pfc.7
-        for <devicetree@vger.kernel.org>; Wed, 30 Sep 2020 05:49:17 -0700 (PDT)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=chromium.org; s=google;
-        h=date:from:to:cc:subject:message-id:references:mime-version
-         :content-disposition:in-reply-to;
-        bh=Hi0H92Bq2J25J0s0e+A1at2PAKtZ7XP1o/TSnDx73G4=;
-        b=m7yGzf02GWGB8fsRcfy7TJmA52mscCE9I5Fnon+Y8DyuRviSmLR7H3VOHu9S19kJ/m
-         Gjnl/S1bkYmnbchn+2a9F97f/mlCm7DENsseOJUfN9RTS1GRLPh/02w1sF3zPxqIxMJ6
-         Zi4/zKf5JL4U9IGNbHWQY0rkagzsZnvjnPfI8=
-X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=1e100.net; s=20161025;
-        h=x-gm-message-state:date:from:to:cc:subject:message-id:references
-         :mime-version:content-disposition:in-reply-to;
-        bh=Hi0H92Bq2J25J0s0e+A1at2PAKtZ7XP1o/TSnDx73G4=;
-        b=RHm3hFol3nUJZWlmfgcz7S5IsoKA9+PHZ02eQsO1yO08AhFOizrh/2sXFzkLkQ6DjY
-         NVPQWWwT2ntWtiAc7NHsDAXetCF/TRP2xmA9pf/xm2wkzRJMYb4Ap3YGAWUx1pMytxaO
-         gNoz4rGTsweVZZ1SyIZNE5h714RaPbkSab1m0eaDOUXiDk2+4x/+pv76Ua0u0pm2Ab8f
-         i0dclAMyScmpdEFHl7vPFl1gj+ubKZdNdeg1ztaAmm13J2+qNrKoUMiAbN8DGdEOSMJq
-         ynYcZcHpqR9nynPg3PrGTdYoL/MfAXQQyee/Oz/lyVMGdE9AImfD/RvbipBY2af8NcrZ
-         XceA==
-X-Gm-Message-State: AOAM531C/C08VEsIvSNaLx9ZM7Kf0eYkEQLm0iLz0dU11tdKl5oUUFxC
-        2paveDForOumMNptX0ByPN5bRg==
-X-Google-Smtp-Source: ABdhPJymormMJMSPNAs6rJNZj5EscLA8KEholgWxwRSoNZQq+bnaxxpvS/LRfGgLiRMuyAWMJtuiog==
-X-Received: by 2002:a63:1958:: with SMTP id 24mr1271947pgz.326.1601470157196;
-        Wed, 30 Sep 2020 05:49:17 -0700 (PDT)
-Received: from localhost ([2620:15c:202:1:f693:9fff:fef4:e70a])
-        by smtp.gmail.com with ESMTPSA id a1sm2471540pfr.12.2020.09.30.05.49.16
-        (version=TLS1_3 cipher=TLS_AES_128_GCM_SHA256 bits=128/128);
-        Wed, 30 Sep 2020 05:49:16 -0700 (PDT)
-Date:   Wed, 30 Sep 2020 05:49:15 -0700
-From:   Matthias Kaehlcke <mka@chromium.org>
-To:     Alan Stern <stern@rowland.harvard.edu>
-Cc:     Rob Herring <robh@kernel.org>,
-        Greg Kroah-Hartman <gregkh@linuxfoundation.org>,
-        Frank Rowand <frowand.list@gmail.com>,
-        linux-kernel@vger.kernel.org, linux-usb@vger.kernel.org,
-        Bastien Nocera <hadess@hadess.net>,
-        Stephen Boyd <swboyd@chromium.org>,
-        Douglas Anderson <dianders@chromium.org>,
-        Ravi Chandra Sadineni <ravisadineni@chromium.org>,
-        Krzysztof Kozlowski <krzk@kernel.org>,
-        devicetree@vger.kernel.org, Peter Chen <peter.chen@nxp.com>
-Subject: Re: [PATCH v4 1/2] dt-bindings: usb: Add binding for discrete
- onboard USB hubs
-Message-ID: <20200930124915.GA1826870@google.com>
-References: <20200928101326.v4.1.I248292623d3d0f6a4f0c5bc58478ca3c0062b49a@changeid>
- <20200929201701.GA1080459@bogus>
- <20200929220912.GF1621304@google.com>
- <20200930013229.GB194665@rowland.harvard.edu>
+        id S1729976AbgI3Mtn (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Wed, 30 Sep 2020 08:49:43 -0400
+Received: from mail.kernel.org ([198.145.29.99]:34936 "EHLO mail.kernel.org"
+        rhost-flags-OK-OK-OK-OK) by vger.kernel.org with ESMTP
+        id S1729762AbgI3Mtn (ORCPT <rfc822;devicetree@vger.kernel.org>);
+        Wed, 30 Sep 2020 08:49:43 -0400
+Received: from mail-ot1-f53.google.com (mail-ot1-f53.google.com [209.85.210.53])
+        (using TLSv1.2 with cipher ECDHE-RSA-AES128-GCM-SHA256 (128/128 bits))
+        (No client certificate requested)
+        by mail.kernel.org (Postfix) with ESMTPSA id A66EF20936;
+        Wed, 30 Sep 2020 12:49:42 +0000 (UTC)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=kernel.org;
+        s=default; t=1601470182;
+        bh=07hSLMQoSpJSnvfViRt2er9D+38nJ1S81f1pw8lhyYI=;
+        h=References:In-Reply-To:From:Date:Subject:To:Cc:From;
+        b=TgzEXMtQYCQ4hji7DOmdTnfI2lS3zxPnvm2KRDJwzG0XLgpzd0IJ97uLGmzQcoiQO
+         Wd16HXQmPuh+vW9xDcMTBtL92NfjBHi97PdgUhKt+CrWruep/gPrasN/4kXkuDpSAl
+         c/sO48ID8ZeZHagmOjeXESh3YeF+x5PprxgexAro=
+Received: by mail-ot1-f53.google.com with SMTP id y5so1667507otg.5;
+        Wed, 30 Sep 2020 05:49:42 -0700 (PDT)
+X-Gm-Message-State: AOAM532Q4TwoigQSatjyiOws96T3YFJuPWUcH38NErt46dWA9eauyBYm
+        gA/YshH8PXnu+14XpOOLfublX4nnfvH1WQsB6w==
+X-Google-Smtp-Source: ABdhPJyR5QEMfsRPmsJEZQZKhpIiC7BJ0ZReMqLzMNDvpzBCR4FJ4JQzuiKDWDYNYA1PrgT9fFAZmU47iuzjUTHfy/s=
+X-Received: by 2002:a9d:6b0d:: with SMTP id g13mr1499160otp.129.1601470182041;
+ Wed, 30 Sep 2020 05:49:42 -0700 (PDT)
 MIME-Version: 1.0
-Content-Type: text/plain; charset=utf-8
-Content-Disposition: inline
-In-Reply-To: <20200930013229.GB194665@rowland.harvard.edu>
+References: <1601444167-11316-1-git-send-email-hayashi.kunihiko@socionext.com> <1601444167-11316-4-git-send-email-hayashi.kunihiko@socionext.com>
+In-Reply-To: <1601444167-11316-4-git-send-email-hayashi.kunihiko@socionext.com>
+From:   Rob Herring <robh+dt@kernel.org>
+Date:   Wed, 30 Sep 2020 07:49:30 -0500
+X-Gmail-Original-Message-ID: <CAL_Jsq+e+krj9xvOKdYNAGYFxPvRUsTQ=OzNvKg1D5_LherKvA@mail.gmail.com>
+Message-ID: <CAL_Jsq+e+krj9xvOKdYNAGYFxPvRUsTQ=OzNvKg1D5_LherKvA@mail.gmail.com>
+Subject: Re: [PATCH v3 3/4] PCI: dwc: Add common iATU register support
+To:     Kunihiko Hayashi <hayashi.kunihiko@socionext.com>
+Cc:     Bjorn Helgaas <bhelgaas@google.com>,
+        Lorenzo Pieralisi <lorenzo.pieralisi@arm.com>,
+        Jingoo Han <jingoohan1@gmail.com>,
+        Gustavo Pimentel <gustavo.pimentel@synopsys.com>,
+        Murali Karicheri <m-karicheri2@ti.com>,
+        PCI <linux-pci@vger.kernel.org>, devicetree@vger.kernel.org,
+        linux-arm-kernel <linux-arm-kernel@lists.infradead.org>,
+        "linux-kernel@vger.kernel.org" <linux-kernel@vger.kernel.org>,
+        Masami Hiramatsu <masami.hiramatsu@linaro.org>,
+        Jassi Brar <jaswinder.singh@linaro.org>
+Content-Type: text/plain; charset="UTF-8"
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-Hi Alan,
+On Wed, Sep 30, 2020 at 12:36 AM Kunihiko Hayashi
+<hayashi.kunihiko@socionext.com> wrote:
+>
+> This gets iATU register area from reg property that has reg-names "atu".
+> In Synopsys DWC version 4.80 or later, since iATU register area is
+> separated from core register area, this area is necessary to get from
+> DT independently.
+>
+> Cc: Murali Karicheri <m-karicheri2@ti.com>
+> Cc: Jingoo Han <jingoohan1@gmail.com>
+> Cc: Gustavo Pimentel <gustavo.pimentel@synopsys.com>
+> Suggested-by: Rob Herring <robh@kernel.org>
+> Signed-off-by: Kunihiko Hayashi <hayashi.kunihiko@socionext.com>
+> ---
+>  drivers/pci/controller/dwc/pcie-designware.c | 5 +++++
+>  1 file changed, 5 insertions(+)
 
-On Tue, Sep 29, 2020 at 09:32:29PM -0400, Alan Stern wrote:
-> On Tue, Sep 29, 2020 at 03:09:12PM -0700, Matthias Kaehlcke wrote:
-> > Hi Rob,
-> > 
-> > On Tue, Sep 29, 2020 at 03:17:01PM -0500, Rob Herring wrote:
-> > > As I said in prior version, this separate node and 'hub' phandle is not 
-> > > going to work. You are doing this because you want a platform driver for 
-> > > "realtek,rts5411". That may be convenient for Linux, but doesn't reflect 
-> > > the h/w.
-> > 
-> > I agree that the hardware representation isn't totally straightforward, however
-> > the description isn't limited to Linux:
-> > 
-> > - there is a single IC (like the Realtek RTS5411)
-> > - the IC may require several resources to be initialized in a certain way
-> >   - this may require executing hardware specific code by some driver, which
-> >     isn't a USB device driver
-> > - the IC can 'contain' multiple USB hub devices, which can be connected to
-> >   separate USB busses
-> > - the IC doesn't have a control bus, which somewhat resembles the
-> >   'simple-audio-amplifier' driver, which also registers a platform device
-> >   to initialize its resources
-> > 
-> > - to provide the functionality of powering down the hub conditionally during
-> >   system suspend the driver (whether it's a platform driver or something else)
-> >   needs know which USB (hub) devices correspond to it. This is a real world
-> >   problem, on hardware that might see wide distribution.
-> > 
-> > There were several attempts to solve this problem in the past, but none of them
-> > was accepted. So far Alan Stern seems to think the driver (not necessarily the
-> > binding as is) is a suitable solution, Greg KH also spent time reviewing it,
-> > without raising conceptual concerns. So it seems we have solution that would
-> > be generally landable from the USB side.
-> > 
-> > I understand that your goal is to keep the device tree sane, which I'm sure
-> > can be challenging. If you really can't be convinced that the binding might
-> > be acceptable in its current or similiar form then please offer guidance
-> > on possible alternatives which allow to achieve the same functionality.
-> 
-> You're really trying to represent this special IC in DT, right?
-
-Yes
-
-> Maybe  if you don't call it a "hub" but instead something that better reflects
-> what it actually is and does, the description will be more palatable.
-
-Thanks for your suggestion.
-
-Datasheets from different manufacturers refer to these ICs as "USB hub
-controller". Calling the node "usb-hub-controller" would indeed help to
-distinguish it from the USB hub devices and represent existing hardware.
-And the USB device could have a "hub-controller" property, which also
-would be clearer than the current "hub" property.
-
-Rob, would this help to convince you?
-
-Thanks
-
-Matthias
+Reviewed-by: Rob Herring <robh@kernel.org>
