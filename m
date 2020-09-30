@@ -2,242 +2,185 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from vger.kernel.org (vger.kernel.org [23.128.96.18])
-	by mail.lfdr.de (Postfix) with ESMTP id 846E027E50C
-	for <lists+devicetree@lfdr.de>; Wed, 30 Sep 2020 11:21:47 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTP id E9DA727E518
+	for <lists+devicetree@lfdr.de>; Wed, 30 Sep 2020 11:26:25 +0200 (CEST)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S1729247AbgI3JVq (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Wed, 30 Sep 2020 05:21:46 -0400
-Received: from lindbergh.monkeyblade.net ([23.128.96.19]:42068 "EHLO
+        id S1728676AbgI3J0Z (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Wed, 30 Sep 2020 05:26:25 -0400
+Received: from lindbergh.monkeyblade.net ([23.128.96.19]:42794 "EHLO
         lindbergh.monkeyblade.net" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S1729135AbgI3JVk (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Wed, 30 Sep 2020 05:21:40 -0400
-Received: from mail-lf1-x143.google.com (mail-lf1-x143.google.com [IPv6:2a00:1450:4864:20::143])
-        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id D966DC061755
-        for <devicetree@vger.kernel.org>; Wed, 30 Sep 2020 02:21:39 -0700 (PDT)
-Received: by mail-lf1-x143.google.com with SMTP id 77so1293832lfj.0
-        for <devicetree@vger.kernel.org>; Wed, 30 Sep 2020 02:21:39 -0700 (PDT)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=linaro.org; s=google;
-        h=mime-version:references:in-reply-to:from:date:message-id:subject:to
-         :cc;
-        bh=nDALLkEBZ3g+XnHosKYd5kNAL+8/krUGOWN367VieQw=;
-        b=UcVYPUG6V9xpIygyNaSFeeW11q0jC3otxEzCW5tdEYBbg2lLdQhtIH7CzmwXgKaiS3
-         1BN34bY6ziO20ONgBRrIi18eR/G5aXmO560OEv6xdTyBRf4JCzkCpB427MuiEvyInR0A
-         K1YF0fdMW0euDWU9AxB7jUAjIjslPtI2sA3sjcWu3vR6aBxRwHPJrSTscaBI0qtD5NRu
-         reohlHs1BYRxasdl0rGel7ICYX3AyV6n+L4LSDD1LD78OLCIEjdMmVasW84Auj566N/r
-         8/jTnB3duHLfevNiq7WjY3GFi/su0eLx3h548CZm0cVu9W5GLXxydMB4vCcbwB6fwx55
-         ejew==
-X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=1e100.net; s=20161025;
-        h=x-gm-message-state:mime-version:references:in-reply-to:from:date
-         :message-id:subject:to:cc;
-        bh=nDALLkEBZ3g+XnHosKYd5kNAL+8/krUGOWN367VieQw=;
-        b=EvnuwifpInOUUb6yAjUrmZlYfr0kedan/uY5cE8ZPLHpVb1/D8FNskFEuip+daYPJ5
-         AFyU+R3QTxW0AL9b4a6p3W7jemlCgLg8wEVJtKb1q4V1KwUTToZmftfbDVmbJXuZn+Az
-         K8WVjaOkvaqR/6iE8avnMnO0FkHPjniC/u9jzkpYRzBda/k2pM4cxupu0UpYoUdpZM9i
-         TbNzKCXRn++uNSyXJv/nKZTIMG6PKvglqf7wwO5txla2WI37lKECzZ1aOvFnttOhx0Pd
-         8mpV9/lVLdf+ID8ErPWZfLY71Yo4Fxp3eoFHdp9lTxfoFOH/izGmJy/FYPQ/AIe7U4n+
-         Zedg==
-X-Gm-Message-State: AOAM530mQAR6jGcAApvqFBW3MtZMotewBtH/ARrxo+9zVQ8emYgnd64v
-        NAtL01q/bplCqhmAVX9xk8cR6rmYi0qJkFUp+B1pTQ==
-X-Google-Smtp-Source: ABdhPJwA8MFQ966zPAFFRvo1oCHuuRNQ2mM89Bj+Zwhrq8WSo27dINGhXF6SeriHIm3TsyAfpOcS/0a0OIVG6S2W3I8=
-X-Received: by 2002:a19:6c2:: with SMTP id 185mr512735lfg.441.1601457698203;
- Wed, 30 Sep 2020 02:21:38 -0700 (PDT)
+        with ESMTP id S1728660AbgI3J0Y (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Wed, 30 Sep 2020 05:26:24 -0400
+Received: from metis.ext.pengutronix.de (metis.ext.pengutronix.de [IPv6:2001:67c:670:201:290:27ff:fe1d:cc33])
+        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 86B2AC061755
+        for <devicetree@vger.kernel.org>; Wed, 30 Sep 2020 02:26:24 -0700 (PDT)
+Received: from gallifrey.ext.pengutronix.de ([2001:67c:670:201:5054:ff:fe8d:eefb] helo=bjornoya.blackshift.org)
+        by metis.ext.pengutronix.de with esmtps (TLS1.3:ECDHE_RSA_AES_256_GCM_SHA384:256)
+        (Exim 4.92)
+        (envelope-from <mkl@pengutronix.de>)
+        id 1kNYNP-0001oa-0g; Wed, 30 Sep 2020 11:26:19 +0200
+Received: from [IPv6:2a03:f580:87bc:d400:b742:a929:3f3f:414e] (unknown [IPv6:2a03:f580:87bc:d400:b742:a929:3f3f:414e])
+        (using TLSv1.3 with cipher TLS_AES_256_GCM_SHA384 (256/256 bits)
+         key-exchange ECDHE (P-384) server-signature RSA-PSS (4096 bits) server-digest SHA256
+         client-signature RSA-PSS (4096 bits) client-digest SHA256)
+        (Client CN "mkl@blackshift.org", Issuer "StartCom Class 1 Client CA" (not verified))
+        (Authenticated sender: mkl@blackshift.org)
+        by smtp.blackshift.org (Postfix) with ESMTPSA id E798E56E52F;
+        Wed, 30 Sep 2020 09:26:16 +0000 (UTC)
+Subject: Re: [PATCH 1/2] can: mcp25xxfd: narrow down wildcards in device tree
+ bindings
+From:   Marc Kleine-Budde <mkl@pengutronix.de>
+To:     Thomas Kopp <thomas.kopp@microchip.com>,
+        manivannan.sadhasivam@linaro.org, o.rempel@pengutronix.de,
+        geert@linux-m68k.org
+Cc:     linux-can@vger.kernel.org, dev.kurt@vandijck-laurijssen.be,
+        devicetree@vger.kernel.org, robh+dt@kernel.org, wg@grandegger.com
+References: <20200930091423.755-1-thomas.kopp@microchip.com>
+ <88cc8fcb-38a0-e0db-4f9d-1255d9abfada@pengutronix.de>
+Autocrypt: addr=mkl@pengutronix.de; prefer-encrypt=mutual; keydata=
+ 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
+Message-ID: <e8f27aa3-7414-c967-c8a3-498234fe69fd@pengutronix.de>
+Date:   Wed, 30 Sep 2020 11:26:12 +0200
+User-Agent: Mozilla/5.0 (X11; Linux x86_64; rv:68.0) Gecko/20100101
+ Thunderbird/68.12.0
 MIME-Version: 1.0
-References: <20200903133528.8595-1-lars.povlsen@microchip.com>
- <20200903133528.8595-2-lars.povlsen@microchip.com> <CACRpkdZUQG1T_Bx5G275tSjDez0skDKGSc370B57FZ35NA6iEA@mail.gmail.com>
- <87r1r5wky3.fsf@soft-dev15.microsemi.net>
-In-Reply-To: <87r1r5wky3.fsf@soft-dev15.microsemi.net>
-From:   Linus Walleij <linus.walleij@linaro.org>
-Date:   Wed, 30 Sep 2020 11:21:27 +0200
-Message-ID: <CACRpkdYxK6Uf1_3Me7hbJZ+rPAUXCj4k7D2e5je7iBNZosEtQw@mail.gmail.com>
-Subject: Re: [PATCH v2 1/3] dt-bindings: pinctrl: Add bindings for
- pinctrl-mchp-sgpio driver
-To:     Lars Povlsen <lars.povlsen@microchip.com>
-Cc:     Rob Herring <robh+dt@kernel.org>,
-        Microchip Linux Driver Support <UNGLinuxDriver@microchip.com>,
-        "open list:OPEN FIRMWARE AND FLATTENED DEVICE TREE BINDINGS" 
-        <devicetree@vger.kernel.org>,
-        "open list:GPIO SUBSYSTEM" <linux-gpio@vger.kernel.org>,
-        Linux ARM <linux-arm-kernel@lists.infradead.org>,
-        "linux-kernel@vger.kernel.org" <linux-kernel@vger.kernel.org>,
-        Alexandre Belloni <alexandre.belloni@bootlin.com>
-Content-Type: text/plain; charset="UTF-8"
+In-Reply-To: <88cc8fcb-38a0-e0db-4f9d-1255d9abfada@pengutronix.de>
+Content-Type: multipart/signed; micalg=pgp-sha512;
+ protocol="application/pgp-signature";
+ boundary="r897g2id2u11zAyc9OH59mUjrwIvTcUmt"
+X-SA-Exim-Connect-IP: 2001:67c:670:201:5054:ff:fe8d:eefb
+X-SA-Exim-Mail-From: mkl@pengutronix.de
+X-SA-Exim-Scanned: No (on metis.ext.pengutronix.de); SAEximRunCond expanded to false
+X-PTX-Original-Recipient: devicetree@vger.kernel.org
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-Hi Lars,
+This is an OpenPGP/MIME signed message (RFC 4880 and 3156)
+--r897g2id2u11zAyc9OH59mUjrwIvTcUmt
+Content-Type: multipart/mixed; boundary="4MdyijwrvdfawTPSViq7LZ9VxMxVvizQl";
+ protected-headers="v1"
+From: Marc Kleine-Budde <mkl@pengutronix.de>
+To: Thomas Kopp <thomas.kopp@microchip.com>,
+ manivannan.sadhasivam@linaro.org, o.rempel@pengutronix.de,
+ geert@linux-m68k.org
+Cc: linux-can@vger.kernel.org, dev.kurt@vandijck-laurijssen.be,
+ devicetree@vger.kernel.org, robh+dt@kernel.org, wg@grandegger.com
+Message-ID: <e8f27aa3-7414-c967-c8a3-498234fe69fd@pengutronix.de>
+Subject: Re: [PATCH 1/2] can: mcp25xxfd: narrow down wildcards in device tree
+ bindings
+References: <20200930091423.755-1-thomas.kopp@microchip.com>
+ <88cc8fcb-38a0-e0db-4f9d-1255d9abfada@pengutronix.de>
+In-Reply-To: <88cc8fcb-38a0-e0db-4f9d-1255d9abfada@pengutronix.de>
 
-thanks for working on this!
+--4MdyijwrvdfawTPSViq7LZ9VxMxVvizQl
+Content-Type: text/plain; charset=utf-8
+Content-Language: de-DE
+Content-Transfer-Encoding: quoted-printable
 
-On Sun, Sep 13, 2020 at 9:11 PM Lars Povlsen <lars.povlsen@microchip.com> wrote:
+On 9/30/20 11:15 AM, Marc Kleine-Budde wrote:
+> On 9/30/20 11:14 AM, Thomas Kopp wrote:
+>> The wildcard should be narrowed down to prevent existing and
+>> future devices that are not compatible from matching.
+>> It is very unlikely that incompatible devices will be released
+>> that do not match the wildcard.
+>>
+>> Discussion Reference: https://lore.kernel.org/r/CAMuHMdVkwGjr6dJuMyhQN=
+qFoJqbh6Ec5V2b5LenCshwpM2SDsQ@mail.gmail.com/
+>>
+>> Reported-by: Geert Uytterhoeven <geert@linux-m68k.org>
+>>
+>> Signed-off-by: Thomas Kopp <thomas.kopp@microchip.com>
+>=20
+> lol, who was faster? :D
 
-> > What I do not understand is why this GPIO controller is placed in the
-> > bindings of the pin controllers? Do you plan to add pin control
-> > properties to the bindings in the future?
->
-> I have made provisions for some of the generic pinconf parameters, and
-> since the controller also has support for some alternate modes like
-> (syncronized) blink at various rates, I thought I better add it as
-> pinctrl straight away.
+I've taken your patches.
 
-OK fair enough let's keep the bindings here.
+Tnx,
+Marc
 
-BTW the latter function sounds like some kind of PWM?
+--=20
+Pengutronix e.K.                 | Marc Kleine-Budde           |
+Embedded Linux                   | https://www.pengutronix.de  |
+Vertretung West/Dortmund         | Phone: +49-231-2826-924     |
+Amtsgericht Hildesheim, HRA 2686 | Fax:   +49-5121-206917-5555 |
 
-> >> +  gpio-controller: true
-> >> +
-> >> +  '#gpio-cells':
-> >> +    description: GPIO consumers must specify four arguments, first the
-> >> +      port number, then the bit number, then a input/output flag and
-> >> +      finally the GPIO flags (from include/dt-bindings/gpio/gpio.h).
-> >> +      The dt-bindings/gpio/mchp-sgpio.h file define manifest constants
-> >> +      PIN_INPUT and PIN_OUTPUT.
-> >> +    const: 4
-> >
-> > I do not follow this new third input/output flag at all.
->
-> Its actually a sort of bank address, since the individual "pins" are
-> unidirectional.
 
-I'm a bit confused here...
-The standard advice for any "banked" GPIOs is to represent
-each "bank" as a separate node (with a corresponding gpio_chip
-in the Linux kernel). Then you can just use the standard
-bindings to pick a line from one of these nodes.
+--4MdyijwrvdfawTPSViq7LZ9VxMxVvizQl--
 
-> The PIN_INPUT/PIN_OUTPUT is defined in similar fashion in other pinctrl
-> binding header files... I can drop the define and use, but as it will be
-> used to address individual pins, I think it adds to readability.
+--r897g2id2u11zAyc9OH59mUjrwIvTcUmt
+Content-Type: application/pgp-signature; name="signature.asc"
+Content-Description: OpenPGP digital signature
+Content-Disposition: attachment; filename="signature.asc"
 
-Hmmm. What makes these names expecially confusing is the
-Documentation/devicetree/bindings/pinctrl/pincfg-node.yaml defines:
-input-enable
-input-disable
-output-enable
-output-high
-output-low
+-----BEGIN PGP SIGNATURE-----
 
-In the Linux kernel further there is:
-include/linux/pinctrl/pinconf-generic.h that defines:
-PIN_CONFIG_INPUT_ENABLE
-PIN_CONFIG_OUTPUT_ENABLE
-PIN_CONFIG_OUTPUT
+iQEzBAEBCgAdFiEEK3kIWJt9yTYMP3ehqclaivrt76kFAl90TzUACgkQqclaivrt
+76k+Cwf9GKOuSVYSsfUjF5WgY/CvSBMH+4Y7ZTX53NV4j7sRJpF0FGv36i7l9UmS
+2Rm5lXrnEvk5MG8z/MMVbQmTXa37Lsi9uLxV7lDaXtVkbsurlWJMJotOAFKPNooj
+jfGfriCnekgF7w3DSkYLGMWeqeiOFmkrs2nzs5u1z5M+Hjo+qkA7n74Ib7V1LjlA
+rSTR/vtM+if5KWaHIC7QJ4JDrR106oAIJ/wTfyCoKqHu9b9Yq3AVXjbPYmWgpGAE
+GL4PidtTEWKuYOsFxTzAwo7Ft0lBJvvus05ZYp87AY2w39YPXSI5ZJ9tFS+s2kGp
+uoT7Ysi/ySpRI7+7PAEpuS/fwKhDlw==
+=AK7J
+-----END PGP SIGNATURE-----
 
-Since you are using the pin control framework this gets really
-hard to hash out.
-
-I don't really understand why it is needed.
-
-> Like this (excerpts from a DT with a switchdev driver using SFP's and
-> LED's on sgpio):
->
-> /{
->         leds {
->                 compatible = "gpio-leds";
->                 led@0 {
->                         label = "eth60:yellow";
->                         gpios = <&sgpio1 28 0 PIN_OUTPUT GPIO_ACTIVE_LOW>;
->                         default-state = "off";
->                 };
->                 ...
->         };
-> };
-
-If what you intend to achieve is to make the GPIO come up in output mode,
-you can either just have the driver do that as needed by the consumer.
-If you absolutely have to do it in the device tree, then implement
-pin control (pin config) and have it something like this:
-
-leds {
-        compatible = "gpio-leds";
-        pinctrl-names = "default";
-        pinctrl-0 = <&my_led_pinctrl>;
-        led@0 {
-                label = "eth60:yellow";
-                gpios = <&sgpio1 28 GPIO_ACTIVE_LOW>;
-                default-state = "off";
-        };
-        ...
-
-        my_led_pinctrl: pinctrl-led {
-                pins = "gpio95"; // Just an example way of referring to the pin
-                bias-disable;
-                output-enable;
-        };
-};
-
-> >> +  microchip,sgpio-port-ranges:
-> >> +    description: This is a sequence of tuples, defining intervals of
-> >> +      enabled ports in the serial input stream. The enabled ports must
-> >> +      match the hardware configuration in order for signals to be
-> >> +      properly written/read to/from the controller holding
-> >> +      registers. Being tuples, then number of arguments must be
-> >> +      even. The tuples mast be ordered (low, high) and are
-> >> +      inclusive. Arguments must be between 0 and 31.
-> >> +    $ref: /schemas/types.yaml#/definitions/uint32-array
-> >> +    minItems: 2
-> >> +    maxItems: 64
-> >
-> > And you are *absolutely sure* that you can't just figure this out
-> > from the compatible string? Or add a few compatible strings for
-> > the existing variants?
->
-> Yes, this really needs to be configured for each board individually -
-> and cant be probed. It defines how the bitstream to/from the shift
-> registers is constructed/demuxed.
-
-And you have considered the option of simply letting the driver
-check which board we are then? The property at the very
-top of the device tree.
-
-if (of_machine_is_compatible("my_board")) {
-    ....
-} else if (of_machine_is_compatible("my_other_board")) {
-    ....
-}
-
-So that you simply use the board compatible string to determine
-this?
-
-> >> +/* mchp-sgpio specific pin type defines */
-> >> +#undef PIN_OUTPUT
-> >> +#undef PIN_INPUT
-> >> +#define PIN_OUTPUT     0
-> >> +#define PIN_INPUT      1
-> >
-> > I'm not a fan of this. It seems like something that should be set in
-> > response to the gpiochip callbacks .direction_input and
-> > .direction_output callbacks.
-> >
->
-> As I tried to explain above, its a part of the pin address - aka bank
-> selector - whether your are accessing the input or the output side. And
-> since the directions have totally different - and concurrent - use, they
-> need to be individually addressed, not "configured".
->
-> In the example presented, sgpio2-p28b0 IN is loss-of-signal, and the
-> OUT is the sfp tx-disable control.
-
-I suspect the proper way to do it is to create one node for
-the input side and one node for the output side and also create
-two different gpio chips in the kernel.
-
-my-device {
-       compatible = "my-device";
-       gpioin: input-gpio {
-           ....
-       };
-       gpioout: output-gpio {
-           ....
-       };
-};
-
-Note: I didn't think over the naming in this example.
-
-You will need code in your driver to parse the subnodes and
-populate two gpio_chips.
-
-Yours,
-Linus Walleij
+--r897g2id2u11zAyc9OH59mUjrwIvTcUmt--
