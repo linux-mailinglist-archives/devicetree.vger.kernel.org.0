@@ -2,110 +2,115 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from vger.kernel.org (vger.kernel.org [23.128.96.18])
-	by mail.lfdr.de (Postfix) with ESMTP id E47EE27F0E6
-	for <lists+devicetree@lfdr.de>; Wed, 30 Sep 2020 19:53:44 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTP id 5ECB827F0F6
+	for <lists+devicetree@lfdr.de>; Wed, 30 Sep 2020 20:00:56 +0200 (CEST)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S1730049AbgI3Rxf (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Wed, 30 Sep 2020 13:53:35 -0400
-Received: from lindbergh.monkeyblade.net ([23.128.96.19]:36500 "EHLO
+        id S1725872AbgI3SAz (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Wed, 30 Sep 2020 14:00:55 -0400
+Received: from lindbergh.monkeyblade.net ([23.128.96.19]:37632 "EHLO
         lindbergh.monkeyblade.net" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S1725872AbgI3Rxe (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Wed, 30 Sep 2020 13:53:34 -0400
-Received: from mail-ot1-x343.google.com (mail-ot1-x343.google.com [IPv6:2607:f8b0:4864:20::343])
-        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 88BF7C0613D1
-        for <devicetree@vger.kernel.org>; Wed, 30 Sep 2020 10:53:34 -0700 (PDT)
-Received: by mail-ot1-x343.google.com with SMTP id 95so2663348ota.13
-        for <devicetree@vger.kernel.org>; Wed, 30 Sep 2020 10:53:34 -0700 (PDT)
+        with ESMTP id S1725372AbgI3SAz (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Wed, 30 Sep 2020 14:00:55 -0400
+Received: from mail-vs1-xe43.google.com (mail-vs1-xe43.google.com [IPv6:2607:f8b0:4864:20::e43])
+        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 1C083C0613D0
+        for <devicetree@vger.kernel.org>; Wed, 30 Sep 2020 11:00:55 -0700 (PDT)
+Received: by mail-vs1-xe43.google.com with SMTP id 7so1385060vsp.6
+        for <devicetree@vger.kernel.org>; Wed, 30 Sep 2020 11:00:55 -0700 (PDT)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=beagleboard-org.20150623.gappssmtp.com; s=20150623;
-        h=date:from:to:cc:subject:message-id:references:mime-version
-         :content-disposition:in-reply-to;
-        bh=nmx3GK+BJ0d4VG1MnUd724aknrThpuCxNaLSY0XJ58c=;
-        b=xS8WcxEVpDZKYDvgXPcKeyIkiQzftLTmFl1axoEXs0Fs32CiYI0KH+BPVPgCu6eiKV
-         42m2Uh5QfSYCU0vvxw0usyqGn8nqfxXeCy3g2usLicSNcT3LdNDZfvdwf2eAoq7kTuUn
-         9URHPG0/NHIcclklxub5afY/bGPhuRywQDtbKL7okklvJqXiNrbmgeAh+yJ+QxgUEhP6
-         hk7YmdzwYb0o2+fEnedyN4Tsc2cDh2t4jFOssNAd5XW6hSFR06iTvsNyKW9recaLnIvs
-         frv4wfZLcvUgM3BDXaCuxAd4Wmdo5FgaXCj0KLCCh2DcHUXmGuk2btBzop8MkZn+T8E/
-         O/UQ==
+        d=chromium.org; s=google;
+        h=mime-version:references:in-reply-to:from:date:message-id:subject:to
+         :cc;
+        bh=ION+wzhBe/H3HfVhVn+aQX6OzRaoZpbpam2ANPg8S4M=;
+        b=WlaLzAfIf8gOrN61qUpliyZBNgObrr8xUTvxW9ednPw5sEUmkOlDoTRsT+tZIJiEk+
+         us0nNAvOS0At26rSTh8xkL+17Pg+KGnqWPys/tJv23e2ngAd5AyuMaDSTJvI2/Vj8E1d
+         52d5VerCqA/Zzxk3XPVyGQoWIzXc6R5108cCk=
 X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
         d=1e100.net; s=20161025;
-        h=x-gm-message-state:date:from:to:cc:subject:message-id:references
-         :mime-version:content-disposition:in-reply-to;
-        bh=nmx3GK+BJ0d4VG1MnUd724aknrThpuCxNaLSY0XJ58c=;
-        b=fKllQ9AruVkW0TF9iNSSyK07om50x2ki3VO1h0kGdoZIm3tT3e6zqbu0Rn6ezgY+4c
-         zv6xawTK6HQ0x7QJQSHeHfldhnhmaJtJbuVKB52g7Kbo7iBYYDsp1pgwrBBtJqgSClQD
-         2u7V5s5cFxtroxPOEctNOcjnkUPeyDTHhJYdLdf1zn6CfcuLY7pbuBRtdwNXWOp61Nks
-         PlCYE7C+NP91sqGgLWaSIQACnLyFomqtT/oSJfugWdRp84+5mUHBskicRNbA4rNG024y
-         lECBE78L94kOJ5TjAAJsHmZ8ScuVEaWFf9MByDZXxtFUlmCdc6dHnfCtOeanjeOcRvUj
-         HUyg==
-X-Gm-Message-State: AOAM533uTmassB5jgxQYBcig4w6tOjca9LOuJqpzppP+foKDpUOA6Iw7
-        BisO5USWo7PUv9JXD7tAHJOxPQ==
-X-Google-Smtp-Source: ABdhPJzpc1y+G2Mh4hI2b6mUBCT6UIG0Wm+AK1cTWmMfvdiwkQpSWSp64VdS6GC+wwAIzRfTI4QyCA==
-X-Received: by 2002:a9d:2925:: with SMTP id d34mr2284108otb.140.1601488413886;
-        Wed, 30 Sep 2020 10:53:33 -0700 (PDT)
-Received: from x1 ([2600:1702:da0:ff40:985b:42bd:cfe:59b7])
-        by smtp.gmail.com with ESMTPSA id c19sm555297ooq.35.2020.09.30.10.53.32
-        (version=TLS1_3 cipher=TLS_AES_256_GCM_SHA384 bits=256/256);
-        Wed, 30 Sep 2020 10:53:33 -0700 (PDT)
-Date:   Wed, 30 Sep 2020 12:53:30 -0500
-From:   Drew Fustini <drew@beagleboard.org>
-To:     Tony Lindgren <tony@atomide.com>
-Cc:     Linus Walleij <linus.walleij@linaro.org>,
-        Linux ARM <linux-arm-kernel@lists.infradead.org>,
-        Rob Herring <robh+dt@kernel.org>,
-        Linux-OMAP <linux-omap@vger.kernel.org>,
-        "linux-kernel@vger.kernel.org" <linux-kernel@vger.kernel.org>,
-        "open list:GPIO SUBSYSTEM" <linux-gpio@vger.kernel.org>,
-        Haojian Zhuang <haojian.zhuang@linaro.org>,
-        "open list:OPEN FIRMWARE AND FLATTENED DEVICE TREE BINDINGS" 
-        <devicetree@vger.kernel.org>,
-        =?iso-8859-1?Q?Beno=EEt?= Cousson <bcousson@baylibre.com>,
-        Jason Kridner <jkridner@beagleboard.org>,
-        Robert Nelson <robertcnelson@gmail.com>,
-        Trent Piepho <tpiepho@gmail.com>
-Subject: Re: [PATCH] pinctrl: single: check if #pinctrl-cells exceeds 3
-Message-ID: <20200930175330.GA1295202@x1>
-References: <20200913210825.2022552-1-drew@beagleboard.org>
- <CACRpkdZXu9g_Rq7707-6hXqPVfbxPBcrnR8KwLm+zOgS_EabAQ@mail.gmail.com>
- <20200930051659.GO9471@atomide.com>
+        h=x-gm-message-state:mime-version:references:in-reply-to:from:date
+         :message-id:subject:to:cc;
+        bh=ION+wzhBe/H3HfVhVn+aQX6OzRaoZpbpam2ANPg8S4M=;
+        b=Dr70UefelkxvKjNMIm3LJ9A8ofGXDwJR8n+ancire9382exb3w85426Lesr0MM8Xik
+         VmpQCWJOHuy6CoQwlX+UX/+R3y/DFIMKYcA6FfBI72oXuem8t4Dn3oL/RfSQ9WQkDZzM
+         NPSLVLQYQecrRb5hTV1LBTnfEoL8bBEdiYv0df3q8OpJc9+ks6Zyd0tmduZWBAzvIdbb
+         v8kP/OuKHhvr7Ooo4a9tMa0hREwKay4lnlCcl4YfenVCPxmbf7yQIso2ml8G3SEfFyZk
+         0f6DSYoRL+Tf5d0E55PEIgH23Y2tUjpzo/gmPaYiCa6waTU1/qKCnphQdb2w7j8fGqnj
+         GIWg==
+X-Gm-Message-State: AOAM5336k5LcJCFzv/MHeuNfSN+jT7EYuNbueTSmUJxfqr9sNUVT5AQk
+        h4dttQ6CS+C1s4o9MxTJd2n+YeQdK1JO3A==
+X-Google-Smtp-Source: ABdhPJy+lsuIqD2Hwobk4aPQ99l2mke68YEeLwWEL+mO61eXIvYWAXLK20BcmhETB8c4T8REIUwBvw==
+X-Received: by 2002:a05:6102:3029:: with SMTP id v9mr2532715vsa.5.1601488853924;
+        Wed, 30 Sep 2020 11:00:53 -0700 (PDT)
+Received: from mail-vs1-f48.google.com (mail-vs1-f48.google.com. [209.85.217.48])
+        by smtp.gmail.com with ESMTPSA id q23sm338820vkq.18.2020.09.30.11.00.51
+        for <devicetree@vger.kernel.org>
+        (version=TLS1_3 cipher=TLS_AES_128_GCM_SHA256 bits=128/128);
+        Wed, 30 Sep 2020 11:00:52 -0700 (PDT)
+Received: by mail-vs1-f48.google.com with SMTP id w11so1369460vsw.13
+        for <devicetree@vger.kernel.org>; Wed, 30 Sep 2020 11:00:51 -0700 (PDT)
+X-Received: by 2002:a05:6102:2f7:: with SMTP id j23mr2430596vsj.37.1601488851471;
+ Wed, 30 Sep 2020 11:00:51 -0700 (PDT)
 MIME-Version: 1.0
-Content-Type: text/plain; charset=us-ascii
-Content-Disposition: inline
-In-Reply-To: <20200930051659.GO9471@atomide.com>
+References: <20200928101326.v4.1.I248292623d3d0f6a4f0c5bc58478ca3c0062b49a@changeid>
+ <20200929201701.GA1080459@bogus> <20200929220912.GF1621304@google.com>
+ <20200930013229.GB194665@rowland.harvard.edu> <20200930124915.GA1826870@google.com>
+ <CAL_JsqLq9ZJm_CMiqWwbQhgGeu_ac_j43pvk4+xCFueSbyL4wA@mail.gmail.com> <CAD=FV=WcDzgcHNn1+gH+gq_WEwpD0XXdJGm2fBVpAB=3fVbzZA@mail.gmail.com>
+In-Reply-To: <CAD=FV=WcDzgcHNn1+gH+gq_WEwpD0XXdJGm2fBVpAB=3fVbzZA@mail.gmail.com>
+From:   Doug Anderson <dianders@chromium.org>
+Date:   Wed, 30 Sep 2020 11:00:39 -0700
+X-Gmail-Original-Message-ID: <CAD=FV=WhowcppEhmd=QG7YFk5iSVaCKsfGJkGBQJTwMs=bwekA@mail.gmail.com>
+Message-ID: <CAD=FV=WhowcppEhmd=QG7YFk5iSVaCKsfGJkGBQJTwMs=bwekA@mail.gmail.com>
+Subject: Re: [PATCH v4 1/2] dt-bindings: usb: Add binding for discrete onboard
+ USB hubs
+To:     Rob Herring <robh@kernel.org>
+Cc:     Matthias Kaehlcke <mka@chromium.org>,
+        Alan Stern <stern@rowland.harvard.edu>,
+        Greg Kroah-Hartman <gregkh@linuxfoundation.org>,
+        Frank Rowand <frowand.list@gmail.com>,
+        "linux-kernel@vger.kernel.org" <linux-kernel@vger.kernel.org>,
+        Linux USB List <linux-usb@vger.kernel.org>,
+        Bastien Nocera <hadess@hadess.net>,
+        Stephen Boyd <swboyd@chromium.org>,
+        Ravi Chandra Sadineni <ravisadineni@chromium.org>,
+        Krzysztof Kozlowski <krzk@kernel.org>,
+        "open list:OPEN FIRMWARE AND FLATTENED DEVICE TREE BINDINGS" 
+        <devicetree@vger.kernel.org>, Peter Chen <peter.chen@nxp.com>
+Content-Type: text/plain; charset="UTF-8"
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-On Wed, Sep 30, 2020 at 08:16:59AM +0300, Tony Lindgren wrote:
-> * Linus Walleij <linus.walleij@linaro.org> [200929 12:51]:
-> > On Sun, Sep 13, 2020 at 11:17 PM Drew Fustini <drew@beagleboard.org> wrote:
-> > 
-> > > The property #pinctrl-cells can either be 2 or 3.  There is currently
-> > > only a check to make sure that #pinctrl-cells is 2 or greater.  This
-> > > patch adds a check to make sure it is not greater than 3.
-> > >
-> > > Fixes: a13395418888 ("pinctrl: single: parse #pinctrl-cells = 2")
-> > > Reported-by: Trent Piepho <tpiepho@gmail.com>
-> > > Link: https://lore.kernel.org/linux-omap/3139716.CMS8C0sQ7x@zen.local/
-> > > Signed-off-by: Drew Fustini <drew@beagleboard.org>
-> > 
-> > Tony, does this and the other patch look good to you?
-> 
-> Hmm well the description looks a bit confusing, #pinctrl-cells can
-> also be 1 that's the default. Might be worth clarifying that part.
-> 
-> Regards,
-> 
-> Tony
+Hi,
 
-Yes, that was my fault for confusing #pinctrl-cells with
-pinctrl_spec.args_count.
+> On Wed, Sep 30, 2020 at 7:44 AM Rob Herring <robh@kernel.org> wrote:
+> >
+> > We already have hubs in DT. See [1][2][3][4]. What's new here?
 
-- if #pinctrl-cells = <1>, then pinctrl_spec.args_count = 2
-- if #pinctrl-cells = <2>, then pinctrl_spec.args_count = 3
-- all other values are not valid
+After I sent my response I kept thinking about this and I realized
+that I have prior art I can point out too!  :-)  Check out
+"smsc,usb3503a".  That is describing a USB hub too and, at least on
+"exynos5250-spring.dts" is is a top level node.  Since "smsc,usb3503a"
+can be optionally connected to an i2c bus too, it could be listed
+under an i2c controller as well (I believe it wasn't hooked up to i2c
+on spring).
 
-I will post a v2.
+Interestingly enough, the USB Hub that Matthias is trying to add
+support for can _also_ be hooked up to i2c.  We don't actually have
+i2c hooked up on our board, but conceivably it could be.  Presumably,
+if i2c was hooked up, we would have no other choice but to represent
+this chip as several device tree nodes: at least one under the i2c
+controller and one (or two) under the USB controller.  Just because
+(on this board) i2c isn't hooked up doesn't change the fact that there
+is some extra control logic that could be represented in its own
+device tree node.  To me, this seems to give extra evidence that the
+correct way to model this device in device tree is with several nodes.
 
-Thanks,
-Drew
+I'll point out that on "exynos5250-spring.dts" we didn't have to solve
+the problem that Matthias is trying to solve here because we never
+actually supported waking up from USB devices there.  Thus the
+regulator for the hub on spring can be unconditionally powered off in
+suspend.  On newer boards we'd like to support waking up from USB
+devices but also to save power if no wakeup devices are plugged into
+USB.  In order to achieve this we need some type of link from the
+top-level hub device to the actual USB devices that were enumerated.
+
+-Doug
