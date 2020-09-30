@@ -2,133 +2,109 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from vger.kernel.org (vger.kernel.org [23.128.96.18])
-	by mail.lfdr.de (Postfix) with ESMTP id 38CF127E943
-	for <lists+devicetree@lfdr.de>; Wed, 30 Sep 2020 15:13:33 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTP id 0BEE827E94F
+	for <lists+devicetree@lfdr.de>; Wed, 30 Sep 2020 15:18:17 +0200 (CEST)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S1728043AbgI3NNc (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Wed, 30 Sep 2020 09:13:32 -0400
-Received: from mail.kernel.org ([198.145.29.99]:43744 "EHLO mail.kernel.org"
-        rhost-flags-OK-OK-OK-OK) by vger.kernel.org with ESMTP
-        id S1725771AbgI3NNb (ORCPT <rfc822;devicetree@vger.kernel.org>);
-        Wed, 30 Sep 2020 09:13:31 -0400
-Received: from disco-boy.misterjones.org (disco-boy.misterjones.org [51.254.78.96])
-        (using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
-        (No client certificate requested)
-        by mail.kernel.org (Postfix) with ESMTPSA id EBBCB2075F;
-        Wed, 30 Sep 2020 13:13:30 +0000 (UTC)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=kernel.org;
-        s=default; t=1601471611;
-        bh=N6/eF3yhgVMwm5TkyG2yQLCE1Y1IytBNRnw4nZU0FxM=;
-        h=Date:From:To:Cc:Subject:In-Reply-To:References:From;
-        b=liJcJqAGt4iN95kRliW/ewKJBU/2b8pbLKBOt3tAiUkZsF4LJpZl4zylgIohSXpiE
-         f6AGGFo4n6Par5hIDsrBIsMgkJ3hcri0j1SqbYPhB4bNzAiw7IT7b83IoS4KdbL+qs
-         WOu1w0sgANTB7T8bLkfQmQTbgeNRzc/9uA2LeAmQ=
-Received: from disco-boy.misterjones.org ([51.254.78.96] helo=www.loen.fr)
-        by disco-boy.misterjones.org with esmtpsa (TLS1.2:ECDHE_RSA_AES_128_GCM_SHA256:128)
-        (Exim 4.92)
-        (envelope-from <maz@kernel.org>)
-        id 1kNbvF-00GAID-90; Wed, 30 Sep 2020 14:13:29 +0100
+        id S1728149AbgI3NSQ (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Wed, 30 Sep 2020 09:18:16 -0400
+Received: from fllv0015.ext.ti.com ([198.47.19.141]:54104 "EHLO
+        fllv0015.ext.ti.com" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
+        with ESMTP id S1725771AbgI3NSQ (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Wed, 30 Sep 2020 09:18:16 -0400
+Received: from fllv0034.itg.ti.com ([10.64.40.246])
+        by fllv0015.ext.ti.com (8.15.2/8.15.2) with ESMTP id 08UDICOZ119204;
+        Wed, 30 Sep 2020 08:18:12 -0500
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=ti.com;
+        s=ti-com-17Q1; t=1601471892;
+        bh=g3P+tTvRBhBJ0CqML1eeeCRB2CNFF8mL6TWF/a+RuYY=;
+        h=From:To:CC:Subject:Date:In-Reply-To:References;
+        b=r/iZui1Uao/T0zSrfNupfdtdwPlPxLaKcCMwA3EfcC8gN574tSresLkOSVv+u8ary
+         Od8NCCQ9vX8wa2urAlf1aFrWZVYiyAKv0gsQMQZm08vGCefNxPgTMbCO/XaB0YS39V
+         gHq8BD4bP+bzGdQZ3kfHSjkp15oY11whsKaBbaFA=
+Received: from DFLE100.ent.ti.com (dfle100.ent.ti.com [10.64.6.21])
+        by fllv0034.itg.ti.com (8.15.2/8.15.2) with ESMTPS id 08UDICEn072783
+        (version=TLSv1.2 cipher=AES256-GCM-SHA384 bits=256 verify=FAIL);
+        Wed, 30 Sep 2020 08:18:12 -0500
+Received: from DFLE100.ent.ti.com (10.64.6.21) by DFLE100.ent.ti.com
+ (10.64.6.21) with Microsoft SMTP Server (version=TLS1_2,
+ cipher=TLS_ECDHE_RSA_WITH_AES_128_CBC_SHA256_P256) id 15.1.1979.3; Wed, 30
+ Sep 2020 08:18:12 -0500
+Received: from fllv0040.itg.ti.com (10.64.41.20) by DFLE100.ent.ti.com
+ (10.64.6.21) with Microsoft SMTP Server (version=TLS1_2,
+ cipher=TLS_ECDHE_RSA_WITH_AES_128_CBC_SHA256_P256) id 15.1.1979.3 via
+ Frontend Transport; Wed, 30 Sep 2020 08:18:12 -0500
+Received: from localhost (ileax41-snat.itg.ti.com [10.172.224.153])
+        by fllv0040.itg.ti.com (8.15.2/8.15.2) with ESMTP id 08UDICZj087889;
+        Wed, 30 Sep 2020 08:18:12 -0500
+From:   Nishanth Menon <nm@ti.com>
+To:     Roger Quadros <rogerq@ti.com>
+CC:     Nishanth Menon <nm@ti.com>, <linux-kernel@vger.kernel.org>,
+        <linux-arm-kernel@lists.infradead.org>, <kishon@ti.com>,
+        <t-kristo@ti.com>, <devicetree@vger.kernel.org>, <nsekhar@ti.com>
+Subject: Re: [PATCH v5 0/6] arm64: dts: ti: Add USB support for J7200 EVM
+Date:   Wed, 30 Sep 2020 08:18:11 -0500
+Message-ID: <160147173534.23544.3459300161168133887.b4-ty@ti.com>
+X-Mailer: git-send-email 2.28.0
+In-Reply-To: <20200930122032.23481-1-rogerq@ti.com>
+References: <20200930122032.23481-1-rogerq@ti.com>
 MIME-Version: 1.0
-Content-Type: text/plain; charset=US-ASCII;
- format=flowed
-Content-Transfer-Encoding: 7bit
-Date:   Wed, 30 Sep 2020 14:13:29 +0100
-From:   Marc Zyngier <maz@kernel.org>
-To:     Peter Ujfalusi <peter.ujfalusi@ti.com>
-Cc:     nm@ti.com, t-kristo@ti.com, ssantosh@kernel.org,
-        tglx@linutronix.de, jason@lakedaemon.net, robh+dt@kernel.org,
-        lokeshvutla@ti.com, linux-arm-kernel@lists.infradead.org,
-        linux-kernel@vger.kernel.org, devicetree@vger.kernel.org
-Subject: Re: [PATCH v2 2/2] irqchip/ti-sci-inta: Add support for unmapped
- event handling
-In-Reply-To: <3dc2f27f-0a41-b538-11ac-970ad4310ccb@ti.com>
-References: <20200930074559.18028-1-peter.ujfalusi@ti.com>
- <20200930074559.18028-3-peter.ujfalusi@ti.com>
- <af9ce252820bab9a21207ef2173da9fd@kernel.org>
- <3dc2f27f-0a41-b538-11ac-970ad4310ccb@ti.com>
-User-Agent: Roundcube Webmail/1.4.8
-Message-ID: <714738536a5566c511e83dc424e94bf7@kernel.org>
-X-Sender: maz@kernel.org
-X-SA-Exim-Connect-IP: 51.254.78.96
-X-SA-Exim-Rcpt-To: peter.ujfalusi@ti.com, nm@ti.com, t-kristo@ti.com, ssantosh@kernel.org, tglx@linutronix.de, jason@lakedaemon.net, robh+dt@kernel.org, lokeshvutla@ti.com, linux-arm-kernel@lists.infradead.org, linux-kernel@vger.kernel.org, devicetree@vger.kernel.org
-X-SA-Exim-Mail-From: maz@kernel.org
-X-SA-Exim-Scanned: No (on disco-boy.misterjones.org); SAEximRunCond expanded to false
+Content-Transfer-Encoding: 8bit
+Content-Type: text/plain
+X-EXCLAIMER-MD-CONFIG: e1e8a2fd-e40a-4ac6-ac9b-f7e9cc9ee180
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-On 2020-09-30 11:01, Peter Ujfalusi wrote:
-> On 30/09/2020 11.33, Marc Zyngier wrote:
->> On 2020-09-30 08:45, Peter Ujfalusi wrote:
->>> The DMA (BCDMA/PKTDMA and their rings/flows) events are under the 
->>> INTA's
->>> supervision as unmapped events in AM64.
->> 
->> What does "unmapped event" mean? An event that doesn't require a 
->> mapping?
->> Or an internally generated event? Or a proxy event?
->> 
->>> 
->>> In order to keep the current SW stack working, the INTA driver must
->>> replace
->>> the dev_id with it's own when a request comes for BCDMA or PKTDMA
->>> resources.
->> 
->> This seems to support my second option. Please clarify what you mean
->> exactly.
+On Wed, 30 Sep 2020 15:20:26 +0300, Roger Quadros wrote:
+> This series adds USB2.0 support for the J7200 EVM.
 > 
-> In previous devices with NAVSS we had event registers in UDMAP and in 
-> rings.
-> In AM64 with DMSS these event registers have been removed from the DMAs
-> (rings are part of the DMAs).
-> The event configuration registers in DMSS are part of the INTA and they
-> under 'unmapped events'.
-
-Is "unmapped events" an official TI wording, described as such in the 
-TRM?
-
+> Series is based on top of: linux-next next-20200930
 > 
-> In essence the difference boils down to the fact that we do not
-> configure event numbers (to be consumed by INTA) for the events coming
-> from DMAs, but they already have their specific offsets within INTA's
-> unmapped region.
-
-OK, so they are not "unmapped". They are just permanently mapped, aren't 
-they?
-
-> With this change in hardware we can not use the DMA's ti_sci device
-> identification number to configure these events to produce interrupts,
-> they are under INTA.
+> cheers,
+> -roger
 > 
-> The only difference in ti_sci API is that for DMA related
-> interrupts/events we need to use the INTA's ti_sci device 
-> identification
-> number in place of the DMA component's.
-> 
-> I would say that I would describe the unmapped events with your first
-> option. They kind of not require mapping from the source to INTA. The
-> source of the event (DMA, ring) is pre-configured to send specific
-> events to target the unmapped event area at specific offsets.
+> [...]
 
-If they truly don't require a mapping, why is this patch actually 
-mapping
-them with the INTA as a source? Your explanation doesn't make much sense
-to me.
+Hi Roger Quadros,
 
-> 
-> But in the unmapped event register one can still define either:
-> - to send a global event (to be used as trigger or for other purposes)
-> - to generate interrupt (in a similar way as the IMAP registers were
-> doing in NAVSS).
-> 
-> I'm not sure if this answers your question...
+I have applied the following to branch ti-k3-dts-next on [1] along with
+ti-k3-dt-fixes-for-v5.9.
 
-I still believe the term "unmapped event" doesn't describe what we have
-here. These events seems, at least from what the patch does, internally
-generated by the INTA.
+Thank you!
 
-Irrespective of this, my other comments still stand.
+[1/6] dt-bindings: ti-serdes-mux: Add defines for J7200 SoC
+      commit: ba90e0c92666979298a2c42ca396ac56d00cf33e
+[2/6] arm64: dts: ti: k3-j7200-main: Add SERDES lane control mux
+      commit: 1509295295c03c570bd65c3e393b334c188218cd
+[3/6] arm64: dts: ti: k3-j7200-main.dtsi: Add USB to SERDES lane MUX
+      commit: 9a09e6e9cfcf5424e78636e9b9585de5c07407bc
+[4/6] arm64: dts: ti: k3-j7200-main: Add USB controller
+      commit: 6197d7139d128d3391a94bfad467ffe349a869a6
+[5/6] arm64: dts: ti: k3-j7200-common-proc-board: Configure the SERDES lane function
+      commit: e38a45b0192c4562e610c9c81e4c742b48fa69f0
+[6/6] arm64: dts: ti: k3-j7200-common-proc-board: Add USB support
+      commit: bbcb0522ae0cea0f2561e7dad243f8a3d5ab5559
 
-         M.
+
+All being well this means that it will be integrated into the linux-next
+tree (usually sometime in the next 24 hours) and sent up the chain during
+the next merge window (or sooner if it is a relevant bug fix), however if
+problems are discovered then the patch may be dropped or reverted.
+
+You may get further e-mails resulting from automated or manual testing
+and review of the tree, please engage with people reporting problems and
+send followup patches addressing any issues that are reported if needed.
+
+If any updates are required or you are submitting further changes they
+should be sent as incremental updates against current git, existing
+patches will not be replaced.
+
+Please add any relevant lists and maintainers to the CCs when replying
+to this mail.
+
+[1] git://git.kernel.org/pub/scm/linux/kernel/git/nmenon/linux.git
 -- 
-Jazz is not dead. It just smells funny...
+Regards,
+Nishanth Menon
+Key (0xDDB5849D1736249D) / Fingerprint: F8A2 8693 54EB 8232 17A3  1A34 DDB5 849D 1736 249D
+
