@@ -2,128 +2,122 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from vger.kernel.org (vger.kernel.org [23.128.96.18])
-	by mail.lfdr.de (Postfix) with ESMTP id 01DB627E690
-	for <lists+devicetree@lfdr.de>; Wed, 30 Sep 2020 12:27:38 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTP id 1EEDE27E6A3
+	for <lists+devicetree@lfdr.de>; Wed, 30 Sep 2020 12:29:01 +0200 (CEST)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S1729053AbgI3K1h (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Wed, 30 Sep 2020 06:27:37 -0400
-Received: from out3-smtp.messagingengine.com ([66.111.4.27]:40535 "EHLO
-        out3-smtp.messagingengine.com" rhost-flags-OK-OK-OK-OK)
-        by vger.kernel.org with ESMTP id S1729018AbgI3K1g (ORCPT
-        <rfc822;devicetree@vger.kernel.org>);
-        Wed, 30 Sep 2020 06:27:36 -0400
-Received: from compute3.internal (compute3.nyi.internal [10.202.2.43])
-        by mailout.nyi.internal (Postfix) with ESMTP id 9477F5C007C;
-        Wed, 30 Sep 2020 06:27:35 -0400 (EDT)
-Received: from mailfrontend1 ([10.202.2.162])
-  by compute3.internal (MEProxy); Wed, 30 Sep 2020 06:27:35 -0400
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=cerno.tech; h=
-        date:from:to:cc:subject:message-id:references:mime-version
-        :content-type:in-reply-to; s=fm1; bh=1y4Y0NHZAXecbtxa1zV02fr80/8
-        WXgLtRma17gWfLkk=; b=TJ7FBPDfGxi5+eE/Bo5YTSGNZbhRZVl/DlsW9iZFIGY
-        Aevz23PpsNdYDLHemYmpY1NnxitOyrqaHM0t6TaGieDNRLNYqOurBIDp2ZYjCO+c
-        piTRpEqPbVZN0H5O4QVWtMi91aamtv1zhoEk8VXpNETh23FIFiVwdPm2UWJkXN7v
-        hCVplBYKeXzgFAg+uHYNwJqR/T+hOrHhFOeL+dXFOivWYj3gc7O/+DCSV5DMkzig
-        rMB9uHx3k4w0V1FPlM44u+8ZO/H5o9SBQrMW0TQ4a7/aGMhiJOITlhovKZbPZZwr
-        QysMqTz1H4HcPgf4c7HT2aKMHwNUPjjZiNx+jTaFTHw==
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=
-        messagingengine.com; h=cc:content-type:date:from:in-reply-to
-        :message-id:mime-version:references:subject:to:x-me-proxy
-        :x-me-proxy:x-me-sender:x-me-sender:x-sasl-enc; s=fm3; bh=1y4Y0N
-        HZAXecbtxa1zV02fr80/8WXgLtRma17gWfLkk=; b=IbORayQHzOnV8n6WFxaKS9
-        lFh7SOu5Xrbc9ODFv1N/l47kWHn+ehB5GC5svKIZCVOI+vGrgdu9gdODdsnIUab2
-        CndzcNyhMjGxqjJ+fCLF6IVcc071cmMdmuvAuuPZougVoq9s6xX2yJLh5WiIXs9V
-        HXHm9WJFL6HMrNJsvfWHtH8KbVCiGC5BMluVFskZ9bk+ZcZlLU1VdbQldNPfTV5r
-        +bR6becco53rM7PcL+PDkndhzTLa5CL+z8qNGezsc/cqZjvwlY2ZDPfBVN7BsLNR
-        Oknl8hzf5wuHua05FwOjg3aOTFCNQNe5aArODHC+hrvl2Fzh+DPVOO5AZLc6GsKA
-        ==
-X-ME-Sender: <xms:ll10X5qI_R_z4PzkPO8kz2l_ldbCqwrwmh6raWjXHQZnBDfND0B-Ng>
-    <xme:ll10X7qhmylxMCk5i6fZ28im3aKwNesF9etS5U7akLOckopo9tjCIEmxLaquq1n5a
-    IsPjCapNEoKsvQ296M>
-X-ME-Proxy-Cause: gggruggvucftvghtrhhoucdtuddrgedujedrfedvgddvgecutefuodetggdotefrodftvf
-    curfhrohhfihhlvgemucfhrghsthforghilhdpqfgfvfdpuffrtefokffrpgfnqfghnecu
-    uegrihhlohhuthemuceftddtnecusecvtfgvtghiphhivghnthhsucdlqddutddtmdenuc
-    fjughrpeffhffvuffkfhggtggujgesghdtreertddtudenucfhrhhomhepofgrgihimhgv
-    ucftihhprghrugcuoehmrgigihhmvgestggvrhhnohdrthgvtghhqeenucggtffrrghtth
-    gvrhhnpeduvdduhfekkeehgffftefflefgffdtheffudffgeevteffheeuiedvvdejvdfg
-    veenucfkphepledtrdekledrieekrdejieenucevlhhushhtvghrufhiiigvpedtnecurf
-    grrhgrmhepmhgrihhlfhhrohhmpehmrgigihhmvgestggvrhhnohdrthgvtghh
-X-ME-Proxy: <xmx:ll10X2NQaeWdDnTsxjo3psTsUg5zgF6ztRQKBmE9J1csH3qns81nsg>
-    <xmx:ll10X06YN4bnc3MBS1ZCrocow_ewgrTerZ_D0mCor_qxAbsjI6YJDg>
-    <xmx:ll10X46xrWDhbMBpLqKDVyK5SFiPRGIMTgdMyahnePATZsk1yODXeA>
-    <xmx:l110X2mgRXFI2GLEeLIjV7Jmcq2Duw67J3CYFwALa1vg7SftdAuZEw>
-Received: from localhost (lfbn-tou-1-1502-76.w90-89.abo.wanadoo.fr [90.89.68.76])
-        by mail.messagingengine.com (Postfix) with ESMTPA id C63963280059;
-        Wed, 30 Sep 2020 06:27:33 -0400 (EDT)
-Date:   Wed, 30 Sep 2020 12:27:32 +0200
-From:   Maxime Ripard <maxime@cerno.tech>
-To:     =?utf-8?B?Q2zDqW1lbnQgUMOpcm9u?= <peron.clem@gmail.com>
-Cc:     Rob Herring <robh+dt@kernel.org>, Chen-Yu Tsai <wens@csie.org>,
-        devicetree@vger.kernel.org, linux-arm-kernel@lists.infradead.org,
-        linux-kernel@vger.kernel.org
-Subject: Re: [PATCH] arm64: dts: allwinner: h6: add eMMC voltage property for
- Beelink GS1
-Message-ID: <20200930102732.zc3vs4vzm3fyt5dc@gilmour.lan>
-References: <20200928150038.97413-1-peron.clem@gmail.com>
+        id S1729435AbgI3K27 (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Wed, 30 Sep 2020 06:28:59 -0400
+Received: from mail.kernel.org ([198.145.29.99]:33496 "EHLO mail.kernel.org"
+        rhost-flags-OK-OK-OK-OK) by vger.kernel.org with ESMTP
+        id S1729424AbgI3K26 (ORCPT <rfc822;devicetree@vger.kernel.org>);
+        Wed, 30 Sep 2020 06:28:58 -0400
+Received: from mail-ej1-f49.google.com (mail-ej1-f49.google.com [209.85.218.49])
+        (using TLSv1.2 with cipher ECDHE-RSA-AES128-GCM-SHA256 (128/128 bits))
+        (No client certificate requested)
+        by mail.kernel.org (Postfix) with ESMTPSA id 90AC12085B;
+        Wed, 30 Sep 2020 10:28:57 +0000 (UTC)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=kernel.org;
+        s=default; t=1601461737;
+        bh=mbpDcPnXqfq0NeYcDMguth6Htz+txY3G/ufHXXdxeqo=;
+        h=References:In-Reply-To:From:Date:Subject:To:Cc:From;
+        b=o/OZ/rKxqjuuu/tTWYx6laCvApOr4LB7qRPDVEgEdfqbHdunCCHfy734i4J7INBQE
+         bJoL6WoJbvxfx22htNzzQfK2Wf9/EpbXI0Kea6aqDSNkYdM4Ykxu8/bToI73ChKVmX
+         r83o17Hs0mpHls3AfufATiXCw7xayDwBkdOxdw2c=
+Received: by mail-ej1-f49.google.com with SMTP id q13so2003019ejo.9;
+        Wed, 30 Sep 2020 03:28:57 -0700 (PDT)
+X-Gm-Message-State: AOAM530cBhL8prfdWQJIKNoLkIC/lQlIEo6B/ztDGP3y12BgMxqyJps6
+        6FMNgLvgSs8YHqi3oFlWvWAv7NpYkT1Jnp8qM1w=
+X-Google-Smtp-Source: ABdhPJz8Ugd4z0UfwVWjjaen5DTm9+7ewSR+YqfdwUXyDIkfmGOdVpDBNoxFkspHVRsXZbkUoH2A7JL6SUEkkYmU5nI=
+X-Received: by 2002:a17:906:1a11:: with SMTP id i17mr2006438ejf.381.1601461736013;
+ Wed, 30 Sep 2020 03:28:56 -0700 (PDT)
 MIME-Version: 1.0
-Content-Type: multipart/signed; micalg=pgp-sha256;
-        protocol="application/pgp-signature"; boundary="6lpxdfuiykpljni3"
-Content-Disposition: inline
-In-Reply-To: <20200928150038.97413-1-peron.clem@gmail.com>
+References: <20200926162811.5335-1-krzk@kernel.org> <20200926162811.5335-12-krzk@kernel.org>
+ <2a329c9b-8bfc-fbd8-62a3-759f608347d6@denx.de> <686af5e6-d16a-7750-e47f-1ced9cb6c34a@denx.de>
+ <CAJKOXPe7XOQspzTFDRtb=y79mwXEZSGiYiQP3J58JMjCkVRSCQ@mail.gmail.com> <abccfe07-4218-50a2-346b-bde77d1a987e@denx.de>
+In-Reply-To: <abccfe07-4218-50a2-346b-bde77d1a987e@denx.de>
+From:   Krzysztof Kozlowski <krzk@kernel.org>
+Date:   Wed, 30 Sep 2020 12:28:44 +0200
+X-Gmail-Original-Message-ID: <CAJKOXPdUkjd9--EC3GF08tsMMAr3t8BqJqddi4s+pwQV0+Pj_A@mail.gmail.com>
+Message-ID: <CAJKOXPdUkjd9--EC3GF08tsMMAr3t8BqJqddi4s+pwQV0+Pj_A@mail.gmail.com>
+Subject: Re: [RFC 12/14] dt-bindings: vendor-prefixes: add Aristainetos
+To:     hs@denx.de
+Cc:     Rob Herring <robh+dt@kernel.org>, Shawn Guo <shawnguo@kernel.org>,
+        Sascha Hauer <s.hauer@pengutronix.de>,
+        Pengutronix Kernel Team <kernel@pengutronix.de>,
+        Fabio Estevam <festevam@gmail.com>,
+        NXP Linux Team <linux-imx@nxp.com>,
+        Stefan Riedmueller <s.riedmueller@phytec.de>,
+        Robert Jones <rjones@gateworks.com>,
+        Li Yang <leoyang.li@nxp.com>, devicetree@vger.kernel.org,
+        "linux-kernel@vger.kernel.org" <linux-kernel@vger.kernel.org>,
+        linux-arm-kernel@lists.infradead.org
+Content-Type: text/plain; charset="UTF-8"
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
+On Wed, 30 Sep 2020 at 12:14, Heiko Schocher <hs@denx.de> wrote:
+>
+> Hello Krzysztof,
+>
+> Am 30.09.2020 um 09:11 schrieb Krzysztof Kozlowski:
+> > On Wed, 30 Sep 2020 at 06:16, Heiko Schocher <hs@denx.de> wrote:
+> >>
+> >> Hello Krzysztof,
+> >>
+> >> Am 28.09.2020 um 06:04 schrieb Heiko Schocher:
+> >>> Hello Krzysztof,
+> >>>
+> >>> Am 26.09.2020 um 18:28 schrieb Krzysztof Kozlowski:
+> >>>> Document binding for an unknown entity Aristainetos with few boards
+> >>>> mainlined.
+> >>>>
+> >>>> Cc: Heiko Schocher <hs@denx.de>
+> >>>> Signed-off-by: Krzysztof Kozlowski <krzk@kernel.org>
+> >>>>
+> >>>> ---
+> >>>>
+> >>>> I tried to Google but except the patches from Heiko Schocher, I could
+> >>>> not find any meaningful data.
+> >>>>
+> >>>> Heiko, you posted this. Do you know what is it?
+> >>>
+> >>> aristainetos is the name of the board, so it is not the vendor name.
+> >>>
+> >>> I just asked the customer if we can add a valid vendor name...
+> >>
+> >> Ok, it is not easy to get an okay from the customer to publish
+> >> his name.
+> >>
+> >> Is there a dummy or unknown entry for vendor?
+> >
+> > We could use "denx" as it was done as part of your work or "linux".
+> > Rob, any hints here?
+>
+> Ok we can use as vendor "abb" in all DTS files and regarding your
+> change in Documentation/devicetree/bindings/vendor-prefixes.yaml
+> it can be:
+>
+> diff --git a/Documentation/devicetree/bindings/vendor-prefixes.yaml
+> b/Documentation/devicetree/bindings/vendor-prefixes.yaml
+> index 789a01b3d93a..bb4c85f00c8f 100644
+> --- a/Documentation/devicetree/bindings/vendor-prefixes.yaml
+> +++ b/Documentation/devicetree/bindings/vendor-prefixes.yaml
+> @@ -105,6 +105,8 @@ patternProperties:
+>       description: arcx Inc. / Archronix Inc.
+>     "^aries,.*":
+>       description: Aries Embedded GmbH
+> +  "^abb,.*":
+> +    description: ABB
+>     "^arm,.*":
+>       description: ARM Ltd.
+>     "^armadeus,.*":
+>
+> Would you work in this changes?
 
---6lpxdfuiykpljni3
-Content-Type: text/plain; charset=iso-8859-1
-Content-Disposition: inline
-Content-Transfer-Encoding: quoted-printable
+Yes, I will send a v2 with a new name.
 
-Hi,
+Thanks for checking this.
 
-On Mon, Sep 28, 2020 at 05:00:37PM +0200, Cl=E9ment P=E9ron wrote:
-> VQMMC supply is connected to BLDO2 which provides 1.8V.
->=20
-> Let's reflect this in the device-tree.
-
-This commit log doesn't really explain what is going on though?
-
-> Fixes: 089bee8dd119 ("arm64: dts: allwinner: h6: Introduce Beelink GS1 bo=
-ard")
-> Signed-off-by: Cl=E9ment P=E9ron <peron.clem@gmail.com>
-> ---
->  arch/arm64/boot/dts/allwinner/sun50i-h6-beelink-gs1.dts | 1 +
->  1 file changed, 1 insertion(+)
->=20
-> diff --git a/arch/arm64/boot/dts/allwinner/sun50i-h6-beelink-gs1.dts b/ar=
-ch/arm64/boot/dts/allwinner/sun50i-h6-beelink-gs1.dts
-> index 049c21718846..3f20d2c9bbbb 100644
-> --- a/arch/arm64/boot/dts/allwinner/sun50i-h6-beelink-gs1.dts
-> +++ b/arch/arm64/boot/dts/allwinner/sun50i-h6-beelink-gs1.dts
-> @@ -145,6 +145,7 @@ &mmc2 {
->  	vqmmc-supply =3D <&reg_bldo2>;
-
-The Device Tree already expresses that the vqmmc supply is connected to
-BLDO2 which provides 1.8V here (together with the reg_bldo2 node).
-
->  	non-removable;
->  	cap-mmc-hw-reset;
-> +	mmc-hs200-1_8v;
-
-Whereas this indicates that the eMMC supports the HS200 MMC mode at 1.8V
-
-Maxime
-
---6lpxdfuiykpljni3
-Content-Type: application/pgp-signature; name="signature.asc"
-
------BEGIN PGP SIGNATURE-----
-
-iHUEABYIAB0WIQRcEzekXsqa64kGDp7j7w1vZxhRxQUCX3RdlAAKCRDj7w1vZxhR
-xSesAP9s9WAi1LMpMRDxK5vzmj9DgMppelaptRFG3PuJh0gWFAD+JYOfwFY0H7ya
-8OXTPwa/4b3zt5HyzazAGeoEnAtqwAY=
-=Chcd
------END PGP SIGNATURE-----
-
---6lpxdfuiykpljni3--
+Best regards,
+Krzysztof
