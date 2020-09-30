@@ -2,191 +2,128 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from vger.kernel.org (vger.kernel.org [23.128.96.18])
-	by mail.lfdr.de (Postfix) with ESMTP id AAF9027E669
-	for <lists+devicetree@lfdr.de>; Wed, 30 Sep 2020 12:19:25 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTP id 01DB627E690
+	for <lists+devicetree@lfdr.de>; Wed, 30 Sep 2020 12:27:38 +0200 (CEST)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S1729104AbgI3KTY (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Wed, 30 Sep 2020 06:19:24 -0400
-Received: from new3-smtp.messagingengine.com ([66.111.4.229]:41119 "EHLO
-        new3-smtp.messagingengine.com" rhost-flags-OK-OK-OK-OK)
-        by vger.kernel.org with ESMTP id S1725872AbgI3KTY (ORCPT
+        id S1729053AbgI3K1h (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Wed, 30 Sep 2020 06:27:37 -0400
+Received: from out3-smtp.messagingengine.com ([66.111.4.27]:40535 "EHLO
+        out3-smtp.messagingengine.com" rhost-flags-OK-OK-OK-OK)
+        by vger.kernel.org with ESMTP id S1729018AbgI3K1g (ORCPT
         <rfc822;devicetree@vger.kernel.org>);
-        Wed, 30 Sep 2020 06:19:24 -0400
+        Wed, 30 Sep 2020 06:27:36 -0400
 Received: from compute3.internal (compute3.nyi.internal [10.202.2.43])
-        by mailnew.nyi.internal (Postfix) with ESMTP id 85A535803DF;
-        Wed, 30 Sep 2020 06:19:20 -0400 (EDT)
-Received: from mailfrontend2 ([10.202.2.163])
-  by compute3.internal (MEProxy); Wed, 30 Sep 2020 06:19:20 -0400
+        by mailout.nyi.internal (Postfix) with ESMTP id 9477F5C007C;
+        Wed, 30 Sep 2020 06:27:35 -0400 (EDT)
+Received: from mailfrontend1 ([10.202.2.162])
+  by compute3.internal (MEProxy); Wed, 30 Sep 2020 06:27:35 -0400
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=cerno.tech; h=
         date:from:to:cc:subject:message-id:references:mime-version
-        :content-type:in-reply-to; s=fm1; bh=51hsmLqz9/nNSWtqEjjDNGJdPsf
-        EI5fyVu8+ZU5LqF8=; b=WASw4mxJEzKv4bds0eEWxanJSnI/2TKzJEUgsQAGns3
-        K+soucfi0bPYbyYRo3hhV+xWYaT33ApNtXXs0Nwba1F8Zksphw19wtwMpkEsRBg9
-        lfpEtRSCKY4/T9hUOJsdx6p5qqsl6mwJEHx+wL0hv8ZsLItEPeRPGfttTYL76Wun
-        vp9EGkBesq3JUdmRxSllCZxfVr79dt1jIxQ5LXt1qgIMbkifknSO0OHRhTaIxMkQ
-        Z62wwYaL6kNA80yXBYi7bMK/F7LamFV4YvBfBxITQqsorF32KBBxwp1eUVvAPNkK
-        qrVY1iYj9S7tG1DV6Wu589+KH8z47or6lWkQ2ZMBp9g==
+        :content-type:in-reply-to; s=fm1; bh=1y4Y0NHZAXecbtxa1zV02fr80/8
+        WXgLtRma17gWfLkk=; b=TJ7FBPDfGxi5+eE/Bo5YTSGNZbhRZVl/DlsW9iZFIGY
+        Aevz23PpsNdYDLHemYmpY1NnxitOyrqaHM0t6TaGieDNRLNYqOurBIDp2ZYjCO+c
+        piTRpEqPbVZN0H5O4QVWtMi91aamtv1zhoEk8VXpNETh23FIFiVwdPm2UWJkXN7v
+        hCVplBYKeXzgFAg+uHYNwJqR/T+hOrHhFOeL+dXFOivWYj3gc7O/+DCSV5DMkzig
+        rMB9uHx3k4w0V1FPlM44u+8ZO/H5o9SBQrMW0TQ4a7/aGMhiJOITlhovKZbPZZwr
+        QysMqTz1H4HcPgf4c7HT2aKMHwNUPjjZiNx+jTaFTHw==
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=
         messagingengine.com; h=cc:content-type:date:from:in-reply-to
         :message-id:mime-version:references:subject:to:x-me-proxy
-        :x-me-proxy:x-me-sender:x-me-sender:x-sasl-enc; s=fm3; bh=51hsmL
-        qz9/nNSWtqEjjDNGJdPsfEI5fyVu8+ZU5LqF8=; b=crhmRSvelGLaAGFWUJPjgv
-        uKnov9mX1EL8WL3DMWP4wGDzRygCbY+R3BBNyNp8e6SZ5YyDlmaBdHd7pRLVSexy
-        uf1uy4/HahQgkbJtTVqAXk1MW8OFvbd5jW+fqwG8q4CslwHXdhnh0eJMcLU2g8hl
-        QNJifjA98V9QC4UF2Dj2S+BxJ1MwwLhQz0dqAh18KUiKRk33ZRekQexvjFRvU6JY
-        lqIAseNkZv1gUIoj5tdvF9Zd7K+VxNePb6JCHDU6J+/h5N1Qd29hTAKKt2lYcY0T
-        osQNm6Pngnm0e8/OvFhJgEnNkjwhpwv8akNAfEXMnArnqwOlolFb1CWgoUi8lc2A
+        :x-me-proxy:x-me-sender:x-me-sender:x-sasl-enc; s=fm3; bh=1y4Y0N
+        HZAXecbtxa1zV02fr80/8WXgLtRma17gWfLkk=; b=IbORayQHzOnV8n6WFxaKS9
+        lFh7SOu5Xrbc9ODFv1N/l47kWHn+ehB5GC5svKIZCVOI+vGrgdu9gdODdsnIUab2
+        CndzcNyhMjGxqjJ+fCLF6IVcc071cmMdmuvAuuPZougVoq9s6xX2yJLh5WiIXs9V
+        HXHm9WJFL6HMrNJsvfWHtH8KbVCiGC5BMluVFskZ9bk+ZcZlLU1VdbQldNPfTV5r
+        +bR6becco53rM7PcL+PDkndhzTLa5CL+z8qNGezsc/cqZjvwlY2ZDPfBVN7BsLNR
+        Oknl8hzf5wuHua05FwOjg3aOTFCNQNe5aArODHC+hrvl2Fzh+DPVOO5AZLc6GsKA
         ==
-X-ME-Sender: <xms:pFt0X4Wd3qhT-TZ9qhPg1BHxHw5GZnFD-mu5cJuwUNnFxliKqpP_Tw>
-    <xme:pFt0X8mr4LxPywLl8iEgImh4u6YQ24Z_WBREKKhrYQs5O-mtuMcfMt54-mXbYC5tt
-    ce1coA8CNO0u9W3_F0>
-X-ME-Proxy-Cause: gggruggvucftvghtrhhoucdtuddrgedujedrfedvgddvvdcutefuodetggdotefrodftvf
+X-ME-Sender: <xms:ll10X5qI_R_z4PzkPO8kz2l_ldbCqwrwmh6raWjXHQZnBDfND0B-Ng>
+    <xme:ll10X7qhmylxMCk5i6fZ28im3aKwNesF9etS5U7akLOckopo9tjCIEmxLaquq1n5a
+    IsPjCapNEoKsvQ296M>
+X-ME-Proxy-Cause: gggruggvucftvghtrhhoucdtuddrgedujedrfedvgddvgecutefuodetggdotefrodftvf
     curfhrohhfihhlvgemucfhrghsthforghilhdpqfgfvfdpuffrtefokffrpgfnqfghnecu
     uegrihhlohhuthemuceftddtnecusecvtfgvtghiphhivghnthhsucdlqddutddtmdenuc
-    fjughrpeffhffvuffkfhggtggujgesghdtreertddtjeenucfhrhhomhepofgrgihimhgv
+    fjughrpeffhffvuffkfhggtggujgesghdtreertddtudenucfhrhhomhepofgrgihimhgv
     ucftihhprghrugcuoehmrgigihhmvgestggvrhhnohdrthgvtghhqeenucggtffrrghtth
-    gvrhhnpeeutdfgjeeuudehvefgvedvtedtudelfffgffekledtffekgedukeejueevieeg
-    udenucfkphepledtrdekledrieekrdejieenucevlhhushhtvghrufhiiigvpedtnecurf
+    gvrhhnpeduvdduhfekkeehgffftefflefgffdtheffudffgeevteffheeuiedvvdejvdfg
+    veenucfkphepledtrdekledrieekrdejieenucevlhhushhtvghrufhiiigvpedtnecurf
     grrhgrmhepmhgrihhlfhhrohhmpehmrgigihhmvgestggvrhhnohdrthgvtghh
-X-ME-Proxy: <xmx:pFt0X8YSrOhdFUqfBftZwAhGIXgEEZ8MDTkZ_uSwZUYh06GHd5LYlw>
-    <xmx:pFt0X3VOjfFbtLGDHhxUKGnbzDG8fI_0kK79xe_6SvsU4o1RsdQmQw>
-    <xmx:pFt0XylKx9OjYan_RZVkAEgxf2-wJhuoDE2P1M_S3lBLa3LemWj8CA>
-    <xmx:qFt0X0cYfcm7CApF1P6Xth7KOw2Aw1dfv1k0FyBcsce4IyYa2QbvNA>
+X-ME-Proxy: <xmx:ll10X2NQaeWdDnTsxjo3psTsUg5zgF6ztRQKBmE9J1csH3qns81nsg>
+    <xmx:ll10X06YN4bnc3MBS1ZCrocow_ewgrTerZ_D0mCor_qxAbsjI6YJDg>
+    <xmx:ll10X46xrWDhbMBpLqKDVyK5SFiPRGIMTgdMyahnePATZsk1yODXeA>
+    <xmx:l110X2mgRXFI2GLEeLIjV7Jmcq2Duw67J3CYFwALa1vg7SftdAuZEw>
 Received: from localhost (lfbn-tou-1-1502-76.w90-89.abo.wanadoo.fr [90.89.68.76])
-        by mail.messagingengine.com (Postfix) with ESMTPA id A2C33306467E;
-        Wed, 30 Sep 2020 06:19:16 -0400 (EDT)
-Date:   Wed, 30 Sep 2020 12:19:15 +0200
+        by mail.messagingengine.com (Postfix) with ESMTPA id C63963280059;
+        Wed, 30 Sep 2020 06:27:33 -0400 (EDT)
+Date:   Wed, 30 Sep 2020 12:27:32 +0200
 From:   Maxime Ripard <maxime@cerno.tech>
 To:     =?utf-8?B?Q2zDqW1lbnQgUMOpcm9u?= <peron.clem@gmail.com>
-Cc:     Jernej =?utf-8?Q?=C5=A0krabec?= <jernej.skrabec@siol.net>,
-        Chen-Yu Tsai <wens@csie.org>, Rob Herring <robh+dt@kernel.org>,
-        Mark Brown <broonie@kernel.org>,
-        Liam Girdwood <lgirdwood@gmail.com>,
-        Jaroslav Kysela <perex@perex.cz>,
-        Takashi Iwai <tiwai@suse.com>,
-        Marcus Cooper <codekipper@gmail.com>,
-        Linux-ALSA <alsa-devel@alsa-project.org>,
-        devicetree <devicetree@vger.kernel.org>,
-        linux-arm-kernel <linux-arm-kernel@lists.infradead.org>,
-        linux-kernel <linux-kernel@vger.kernel.org>,
-        linux-sunxi <linux-sunxi@googlegroups.com>
-Subject: Re: [PATCH v4 09/22] arm64: dts: allwinner: h6: Add HDMI audio node
-Message-ID: <20200930101915.sultshdvxgu5u2rs@gilmour.lan>
-References: <20200921102731.747736-1-peron.clem@gmail.com>
- <20200921135925.q7mde2cnt5jtzkb5@gilmour.lan>
- <CAJiuCcfz9A_Vmzq=s3LK2kGB_1tZPkC9Ux+Brdocp9py0fovAg@mail.gmail.com>
- <59286578.E0qSRroNqr@kista>
- <20200928084308.eipnvlfqe3c5lfmg@gilmour.lan>
- <CAJiuCceHXr_5PvG-FW+hRNV7Q33hGrp8kLbO0EgfqqBxF7wbqQ@mail.gmail.com>
+Cc:     Rob Herring <robh+dt@kernel.org>, Chen-Yu Tsai <wens@csie.org>,
+        devicetree@vger.kernel.org, linux-arm-kernel@lists.infradead.org,
+        linux-kernel@vger.kernel.org
+Subject: Re: [PATCH] arm64: dts: allwinner: h6: add eMMC voltage property for
+ Beelink GS1
+Message-ID: <20200930102732.zc3vs4vzm3fyt5dc@gilmour.lan>
+References: <20200928150038.97413-1-peron.clem@gmail.com>
 MIME-Version: 1.0
 Content-Type: multipart/signed; micalg=pgp-sha256;
-        protocol="application/pgp-signature"; boundary="we3fv24y4dnxqond"
+        protocol="application/pgp-signature"; boundary="6lpxdfuiykpljni3"
 Content-Disposition: inline
-In-Reply-To: <CAJiuCceHXr_5PvG-FW+hRNV7Q33hGrp8kLbO0EgfqqBxF7wbqQ@mail.gmail.com>
+In-Reply-To: <20200928150038.97413-1-peron.clem@gmail.com>
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
 
---we3fv24y4dnxqond
-Content-Type: text/plain; charset=utf-8
+--6lpxdfuiykpljni3
+Content-Type: text/plain; charset=iso-8859-1
 Content-Disposition: inline
 Content-Transfer-Encoding: quoted-printable
 
-On Mon, Sep 28, 2020 at 04:27:42PM +0200, Cl=C3=A9ment P=C3=A9ron wrote:
-> On Mon, 28 Sep 2020 at 10:43, Maxime Ripard <maxime@cerno.tech> wrote:
-> >
-> > On Mon, Sep 21, 2020 at 08:37:09PM +0200, Jernej =C5=A0krabec wrote:
-> > > Dne ponedeljek, 21. september 2020 ob 19:23:49 CEST je Cl=C3=A9ment P=
-=C3=A9ron
-> > > napisal(a):
-> > > > Hi Maxime,
-> > > >
-> > > > On Mon, 21 Sep 2020 at 15:59, Maxime Ripard <maxime@cerno.tech> wro=
-te:
-> > > > >
-> > > > > On Mon, Sep 21, 2020 at 12:27:18PM +0200, Cl=C3=A9ment P=C3=A9ron=
- wrote:
-> > > > > > From: Jernej Skrabec <jernej.skrabec@siol.net>
-> > > > > >
-> > > > > > Add a simple-soundcard to link audio between HDMI and I2S.
-> > > > > >
-> > > > > > Signed-off-by: Jernej Skrabec <jernej.skrabec@siol.net>
-> > > > > > Signed-off-by: Marcus Cooper <codekipper@gmail.com>
-> > > > > > Signed-off-by: Cl=C3=A9ment P=C3=A9ron <peron.clem@gmail.com>
-> > > > > > ---
-> > > > > >  arch/arm64/boot/dts/allwinner/sun50i-h6.dtsi | 33 ++++++++++++=
-++++++++
-> > > > > >  1 file changed, 33 insertions(+)
-> > > > > >
-> > > > > > diff --git a/arch/arm64/boot/dts/allwinner/sun50i-h6.dtsi b/arc=
-h/arm64/
-> > > boot/dts/allwinner/sun50i-h6.dtsi
-> > > > > > index 28c77d6872f6..a8853ee7885a 100644
-> > > > > > --- a/arch/arm64/boot/dts/allwinner/sun50i-h6.dtsi
-> > > > > > +++ b/arch/arm64/boot/dts/allwinner/sun50i-h6.dtsi
-> > > > > > @@ -67,6 +67,25 @@ de: display-engine {
-> > > > > >               status =3D "disabled";
-> > > > > >       };
-> > > > > >
-> > > > > > +     hdmi_sound: hdmi-sound {
-> > > > > > +             compatible =3D "simple-audio-card";
-> > > > > > +             simple-audio-card,format =3D "i2s";
-> > > > > > +             simple-audio-card,name =3D "sun50i-h6-hdmi";
-> > > > > > +             simple-audio-card,mclk-fs =3D <128>;
-> > > > > > +             simple-audio-card,frame-inversion;
-> > > > > > +             status =3D "disabled";
-> > > > > > +
-> > > > > > +             simple-audio-card,codec {
-> > > > > > +                     sound-dai =3D <&hdmi>;
-> > > > > > +             };
-> > > > > > +
-> > > > > > +             simple-audio-card,cpu {
-> > > > > > +                     sound-dai =3D <&i2s1>;
-> > > > > > +                     dai-tdm-slot-num =3D <2>;
-> > > > > > +                     dai-tdm-slot-width =3D <32>;
-> > > > >
-> > > > > It looks weird to have both some TDM setup here, and yet the form=
-at in
-> > > > > i2s?
-> > > >
-> > > > Yes, I agree I will check if it's really needed.
-> > >
-> > > I think this was explained before.
-> >
-> > Possibly, but this should be in a comment or at least the commit log
-> >
-> > > Anyway, this is needed to force width to 32, no matter actual sample
-> > > width. That's a requirement of HDMI codec. I believe Marcus Cooper
-> > > have another codec which also needs fixed width.
-> > >
-> > > There is no similar property for I2S, so TDM one is used here.
-> >
-> > Except it's really dedicated to the TDM mode and doesn't really make
-> > much sense here.
-> >
-> > If we have special requirements like this on the codec setup, that
-> > sounds like a good justification for creating a custom codec instead of
-> > shoehorning it into simple-card
->=20
-> When all the remarks are fixed would it be possible to merge the rest
-> of the series without the dts changes ?
->=20
-> I will propose another series to introduce a dedicated codec for that.
+Hi,
 
-Yeah, sure
+On Mon, Sep 28, 2020 at 05:00:37PM +0200, Cl=E9ment P=E9ron wrote:
+> VQMMC supply is connected to BLDO2 which provides 1.8V.
+>=20
+> Let's reflect this in the device-tree.
+
+This commit log doesn't really explain what is going on though?
+
+> Fixes: 089bee8dd119 ("arm64: dts: allwinner: h6: Introduce Beelink GS1 bo=
+ard")
+> Signed-off-by: Cl=E9ment P=E9ron <peron.clem@gmail.com>
+> ---
+>  arch/arm64/boot/dts/allwinner/sun50i-h6-beelink-gs1.dts | 1 +
+>  1 file changed, 1 insertion(+)
+>=20
+> diff --git a/arch/arm64/boot/dts/allwinner/sun50i-h6-beelink-gs1.dts b/ar=
+ch/arm64/boot/dts/allwinner/sun50i-h6-beelink-gs1.dts
+> index 049c21718846..3f20d2c9bbbb 100644
+> --- a/arch/arm64/boot/dts/allwinner/sun50i-h6-beelink-gs1.dts
+> +++ b/arch/arm64/boot/dts/allwinner/sun50i-h6-beelink-gs1.dts
+> @@ -145,6 +145,7 @@ &mmc2 {
+>  	vqmmc-supply =3D <&reg_bldo2>;
+
+The Device Tree already expresses that the vqmmc supply is connected to
+BLDO2 which provides 1.8V here (together with the reg_bldo2 node).
+
+>  	non-removable;
+>  	cap-mmc-hw-reset;
+> +	mmc-hs200-1_8v;
+
+Whereas this indicates that the eMMC supports the HS200 MMC mode at 1.8V
 
 Maxime
 
---we3fv24y4dnxqond
+--6lpxdfuiykpljni3
 Content-Type: application/pgp-signature; name="signature.asc"
 
 -----BEGIN PGP SIGNATURE-----
 
-iHUEABYIAB0WIQRcEzekXsqa64kGDp7j7w1vZxhRxQUCX3RbogAKCRDj7w1vZxhR
-xQ1TAQCXyCe5QVWRsk4Xo0kYUfS4nqr+j6X8lC7NGSFSHCXQbQD/fNe30ApybdwS
-uWFA5qC2rFHZegZ7IFIgsScWh32Hag0=
-=Tk4P
+iHUEABYIAB0WIQRcEzekXsqa64kGDp7j7w1vZxhRxQUCX3RdlAAKCRDj7w1vZxhR
+xSesAP9s9WAi1LMpMRDxK5vzmj9DgMppelaptRFG3PuJh0gWFAD+JYOfwFY0H7ya
+8OXTPwa/4b3zt5HyzazAGeoEnAtqwAY=
+=Chcd
 -----END PGP SIGNATURE-----
 
---we3fv24y4dnxqond--
+--6lpxdfuiykpljni3--
