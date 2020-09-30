@@ -2,91 +2,167 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from vger.kernel.org (vger.kernel.org [23.128.96.18])
-	by mail.lfdr.de (Postfix) with ESMTP id C7EA927DEB8
-	for <lists+devicetree@lfdr.de>; Wed, 30 Sep 2020 05:08:21 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTP id 63B5127DEC4
+	for <lists+devicetree@lfdr.de>; Wed, 30 Sep 2020 05:18:46 +0200 (CEST)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S1726924AbgI3DIU (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Tue, 29 Sep 2020 23:08:20 -0400
-Received: from szxga06-in.huawei.com ([45.249.212.32]:54126 "EHLO huawei.com"
+        id S1729774AbgI3DSk (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Tue, 29 Sep 2020 23:18:40 -0400
+Received: from szxga05-in.huawei.com ([45.249.212.191]:14735 "EHLO huawei.com"
         rhost-flags-OK-OK-OK-FAIL) by vger.kernel.org with ESMTP
-        id S1726299AbgI3DIU (ORCPT <rfc822;devicetree@vger.kernel.org>);
-        Tue, 29 Sep 2020 23:08:20 -0400
-Received: from DGGEMS414-HUB.china.huawei.com (unknown [172.30.72.60])
-        by Forcepoint Email with ESMTP id 35F0D59FB086B3622ADA;
-        Wed, 30 Sep 2020 11:08:18 +0800 (CST)
-Received: from [10.57.101.250] (10.57.101.250) by
- DGGEMS414-HUB.china.huawei.com (10.3.19.214) with Microsoft SMTP Server id
- 14.3.487.0; Wed, 30 Sep 2020 11:08:08 +0800
-Subject: Re: [PATCH v5 09/17] ARM: dts: hisilicon: fix ststem controller
- compatible node
-To:     Zhen Lei <thunder.leizhen@huawei.com>,
-        Rob Herring <robh+dt@kernel.org>,
-        Jonathan Cameron <Jonathan.Cameron@Huawei.com>,
+        id S1729784AbgI3DSk (ORCPT <rfc822;devicetree@vger.kernel.org>);
+        Tue, 29 Sep 2020 23:18:40 -0400
+Received: from DGGEMS410-HUB.china.huawei.com (unknown [172.30.72.60])
+        by Forcepoint Email with ESMTP id 6F123A76FA735C0EF8B9;
+        Wed, 30 Sep 2020 11:18:37 +0800 (CST)
+Received: from thunder-town.china.huawei.com (10.174.177.253) by
+ DGGEMS410-HUB.china.huawei.com (10.3.19.210) with Microsoft SMTP Server id
+ 14.3.487.0; Wed, 30 Sep 2020 11:18:28 +0800
+From:   Zhen Lei <thunder.leizhen@huawei.com>
+To:     Wei Xu <xuwei5@hisilicon.com>, Rob Herring <robh+dt@kernel.org>,
+        "Jonathan Cameron" <Jonathan.Cameron@Huawei.com>,
         devicetree <devicetree@vger.kernel.org>,
         linux-arm-kernel <linux-arm-kernel@lists.infradead.org>,
         linux-kernel <linux-kernel@vger.kernel.org>
-References: <20200929141454.2312-1-thunder.leizhen@huawei.com>
- <20200929141454.2312-10-thunder.leizhen@huawei.com>
-CC:     Libin <huawei.libin@huawei.com>,
+CC:     Zhen Lei <thunder.leizhen@huawei.com>,
+        Libin <huawei.libin@huawei.com>,
         Kefeng Wang <wangkefeng.wang@huawei.com>
-From:   Wei Xu <xuwei5@hisilicon.com>
-Message-ID: <5F73F698.3040700@hisilicon.com>
-Date:   Wed, 30 Sep 2020 11:08:08 +0800
-User-Agent: Mozilla/5.0 (Windows NT 6.1; WOW64; rv:38.0) Gecko/20100101
- Thunderbird/38.2.0
+Subject: [PATCH v6 00/17] add support for Hisilicon SD5203 SoC
+Date:   Wed, 30 Sep 2020 11:16:55 +0800
+Message-ID: <20200930031712.2365-1-thunder.leizhen@huawei.com>
+X-Mailer: git-send-email 2.26.0.windows.1
 MIME-Version: 1.0
-In-Reply-To: <20200929141454.2312-10-thunder.leizhen@huawei.com>
-Content-Type: text/plain; charset="utf-8"
-Content-Transfer-Encoding: 7bit
-X-Originating-IP: [10.57.101.250]
+Content-Transfer-Encoding: 7BIT
+Content-Type:   text/plain; charset=US-ASCII
+X-Originating-IP: [10.174.177.253]
 X-CFilter-Loop: Reflected
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-Hi Zhen Lei,
+v5 --> v6:
+1. Add a new property "#reset-cells" and update the example in Patch 15.
+   All other patches are not changed.
 
-On 2020/9/29 22:14, Zhen Lei wrote:
-> The DT binding for Hisilicon system controllers requires to have a
-> "syscon" compatible string.
-> 
-> Signed-off-by: Zhen Lei <thunder.leizhen@huawei.com>
+v4 --> v5:
+1. Drop the descriptions of the common properties, such as "reg".
+2. Add "additionalProperties: false" or "additionalProperties: type: object"
+   for each new yaml file.
+3. Group three Hi6220 domain controller into one yaml file, see Patch 15
+4. Remove the prefix "hisilicon," of each yaml file, all of them are under
+   hisilicon directory, no need to duplicated it.
+5. move four controllers into syscon.yaml, because they have no specific
+   properties, see Patch 1-2.
+6. Add the name of the board which based on sd5203, see Patch 5 and 8.
+7. Add Patch 9, all controller should contain "syscon" compatible string.
+8. Add property "ranges" and update the example, see Patch 16.
+9. Romove the labels in all examples.
+10. other trival fixes are not mentioned.
 
-Thanks!
-Applied to the hisilicon arm32 dt tree.
+Please review Patch 1-9 first, other patches are not urgent and each of them
+is independent.
 
-Best Regards,
-Wei
 
-> ---
->  arch/arm/boot/dts/hi3620.dtsi | 2 +-
->  arch/arm/boot/dts/hip04.dtsi  | 2 +-
->  2 files changed, 2 insertions(+), 2 deletions(-)
-> 
-> diff --git a/arch/arm/boot/dts/hi3620.dtsi b/arch/arm/boot/dts/hi3620.dtsi
-> index 355175b25fd6220..f683440ee5694b4 100644
-> --- a/arch/arm/boot/dts/hi3620.dtsi
-> +++ b/arch/arm/boot/dts/hi3620.dtsi
-> @@ -89,7 +89,7 @@
->  		};
->  
->  		sysctrl: system-controller@802000 {
-> -			compatible = "hisilicon,sysctrl";
-> +			compatible = "hisilicon,sysctrl", "syscon";
->  			#address-cells = <1>;
->  			#size-cells = <1>;
->  			ranges = <0 0x802000 0x1000>;
-> diff --git a/arch/arm/boot/dts/hip04.dtsi b/arch/arm/boot/dts/hip04.dtsi
-> index f5871b1d1ec452c..555bc6b6720fc94 100644
-> --- a/arch/arm/boot/dts/hip04.dtsi
-> +++ b/arch/arm/boot/dts/hip04.dtsi
-> @@ -213,7 +213,7 @@
->  		};
->  
->  		sysctrl: sysctrl {
-> -			compatible = "hisilicon,sysctrl";
-> +			compatible = "hisilicon,sysctrl", "syscon";
->  			reg = <0x3e00000 0x00100000>;
->  		};
->  
-> 
+v3 --> v4:
+1. remove unexpected "\ No newline at end of file" of each new file.
+2. discard the subdirectory "hi3620" and "hipxx", all files in the two
+   directories are moved to the parent directory.
+3. add two spaces for the below cases:
+   - items:
+     - const: hisilicon,sysctrl.	//add two spaces
+4. only list the compatible of boards in hisilicon.yaml, that is:
+   1) a compatible of one board
+   2) a compatible of one board + a compatible of one SoC
+5. other trival fixes are not mentioned.
+
+
+v2 --> v3:
+1. Convert hisilicon.txt to hisilicon.yaml. Because there are many kinds
+   of Hisilicon controllers in it, so split each of them into a separate
+   file first. Then I convert all of them to DT schema format, and also
+   convert the other files in directory "../bindings/arm/hisilicon/".
+2. Add Patch 1: remove a unused compatible name in hip01-ca9x2.dts
+   This error is detected by hisilicon.yaml.
+
+   The merge window of 5.10 is narrow now, so please review Patch 1-7 first.
+
+
+v1 --> v2:
+1. add binding for SD5203 SoC, Patch 1
+2. select DW_APB_ICTL instead of HISILICON_SD5203_VIC in Patch 2.
+   Meanwhile, change the compatible of interrupt-controller to "snps,dw-apb-ictl" in Patch 4.
+3. Fix the errors detected by dtbs_check. For example: add "reg" for cpu node, use lowercase a-f
+   to describe address, add "baudclk" for "snps,dw-apb-uart".
+
+v1:
+Add SD5203 SoC config option and devicetree file, also enable its debug UART.
+
+Kefeng Wang (3):
+  ARM: hisi: add support for SD5203 SoC
+  ARM: debug: add UART early console support for SD5203
+  ARM: dts: add SD5203 dts
+
+Zhen Lei (14):
+  dt-bindings: mfd: syscon: add some compatible strings for Hisilicon
+  dt-bindings: arm: hisilicon: delete the descriptions of HiP05/HiP06
+    controllers
+  dt-bindings: arm: hisilicon: split the dt-bindings of each controller
+    into a separate file
+  dt-bindings: arm: hisilicon: convert Hisilicon board/soc bindings to
+    json-schema
+  dt-bindings: arm: hisilicon: add binding for SD5203 SoC
+  ARM: dts: hisilicon: fix ststem controller compatible node
+  dt-bindings: arm: hisilicon: convert system controller bindings to
+    json-schema
+  dt-bindings: arm: hisilicon: convert hisilicon,cpuctrl bindings to
+    json-schema
+  dt-bindings: arm: hisilicon: convert hisilicon,pctrl bindings to
+    json-schema
+  dt-bindings: arm: hisilicon: convert hisilicon,hip04-fabric bindings
+    to json-schema
+  dt-bindings: arm: hisilicon: convert hisilicon,hip04-bootwrapper
+    bindings to json-schema
+  dt-bindings: arm: hisilicon: convert Hi6220 domain controller bindings
+    to json-schema
+  dt-bindings: arm: hisilicon: convert hisilicon,hi3798cv200-perictrl
+    bindings to json-schema
+  dt-bindings: arm: hisilicon: convert LPC controller bindings to
+    json-schema
+
+ .../bindings/arm/hisilicon/controller/cpuctrl.yaml |  29 ++
+ .../hisilicon/controller/hi3798cv200-perictrl.yaml |  64 +++++
+ .../hisilicon/controller/hi6220-domain-ctrl.yaml   |  68 +++++
+ .../hisilicon/controller/hip04-bootwrapper.yaml    |  34 +++
+ .../arm/hisilicon/controller/hip04-fabric.yaml     |  27 ++
+ .../bindings/arm/hisilicon/controller/pctrl.yaml   |  34 +++
+ .../bindings/arm/hisilicon/controller/sysctrl.yaml | 110 +++++++
+ .../bindings/arm/hisilicon/hi3519-sysctrl.txt      |  14 -
+ .../arm/hisilicon/hisilicon-low-pin-count.txt      |  33 ---
+ .../bindings/arm/hisilicon/hisilicon.txt           | 319 ---------------------
+ .../bindings/arm/hisilicon/hisilicon.yaml          |  67 +++++
+ .../bindings/arm/hisilicon/low-pin-count.yaml      |  61 ++++
+ Documentation/devicetree/bindings/mfd/syscon.yaml  |   5 +-
+ arch/arm/Kconfig.debug                             |  11 +-
+ arch/arm/boot/dts/Makefile                         |   2 +
+ arch/arm/boot/dts/hi3620.dtsi                      |   2 +-
+ arch/arm/boot/dts/hip04.dtsi                       |   2 +-
+ arch/arm/boot/dts/sd5203.dts                       |  96 +++++++
+ arch/arm/mach-hisi/Kconfig                         |  16 +-
+ 19 files changed, 622 insertions(+), 372 deletions(-)
+ create mode 100644 Documentation/devicetree/bindings/arm/hisilicon/controller/cpuctrl.yaml
+ create mode 100644 Documentation/devicetree/bindings/arm/hisilicon/controller/hi3798cv200-perictrl.yaml
+ create mode 100644 Documentation/devicetree/bindings/arm/hisilicon/controller/hi6220-domain-ctrl.yaml
+ create mode 100644 Documentation/devicetree/bindings/arm/hisilicon/controller/hip04-bootwrapper.yaml
+ create mode 100644 Documentation/devicetree/bindings/arm/hisilicon/controller/hip04-fabric.yaml
+ create mode 100644 Documentation/devicetree/bindings/arm/hisilicon/controller/pctrl.yaml
+ create mode 100644 Documentation/devicetree/bindings/arm/hisilicon/controller/sysctrl.yaml
+ delete mode 100644 Documentation/devicetree/bindings/arm/hisilicon/hi3519-sysctrl.txt
+ delete mode 100644 Documentation/devicetree/bindings/arm/hisilicon/hisilicon-low-pin-count.txt
+ delete mode 100644 Documentation/devicetree/bindings/arm/hisilicon/hisilicon.txt
+ create mode 100644 Documentation/devicetree/bindings/arm/hisilicon/hisilicon.yaml
+ create mode 100644 Documentation/devicetree/bindings/arm/hisilicon/low-pin-count.yaml
+ create mode 100644 arch/arm/boot/dts/sd5203.dts
+
+-- 
+1.8.3
+
+
