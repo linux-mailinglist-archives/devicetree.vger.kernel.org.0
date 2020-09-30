@@ -2,92 +2,90 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from vger.kernel.org (vger.kernel.org [23.128.96.18])
-	by mail.lfdr.de (Postfix) with ESMTP id E307627ED9D
-	for <lists+devicetree@lfdr.de>; Wed, 30 Sep 2020 17:42:58 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTP id 0DBAC27EDD3
+	for <lists+devicetree@lfdr.de>; Wed, 30 Sep 2020 17:50:19 +0200 (CEST)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S1728292AbgI3Pmv (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Wed, 30 Sep 2020 11:42:51 -0400
-Received: from mail.kernel.org ([198.145.29.99]:53202 "EHLO mail.kernel.org"
-        rhost-flags-OK-OK-OK-OK) by vger.kernel.org with ESMTP
-        id S1731080AbgI3Pmt (ORCPT <rfc822;devicetree@vger.kernel.org>);
-        Wed, 30 Sep 2020 11:42:49 -0400
-Received: from localhost (fw-tnat.cambridge.arm.com [217.140.96.140])
-        (using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
-        (No client certificate requested)
-        by mail.kernel.org (Postfix) with ESMTPSA id 307F720738;
-        Wed, 30 Sep 2020 15:42:48 +0000 (UTC)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=kernel.org;
-        s=default; t=1601480568;
-        bh=8sQ6NvdMplUJ15wo7baIF5gA6jk6LfkU0g0LGqWLZ9I=;
-        h=Date:From:To:Cc:Subject:References:In-Reply-To:From;
-        b=pU9E6k3qs/t0wtWzba1fZXB/rImUqcxEsd7bbAhtq4TiYglsyfR565UInryXv2aiO
-         31/LQUqJK4hgbKhiH+5sQ4RNtwXh9iHZ0EFI1pOprExqaVgt/oxIkAyjZ6mDKaey+f
-         a0FPCMTGJako9VMNcXkVpt0v4fujiUx17ZUVJrjM=
-Date:   Wed, 30 Sep 2020 16:41:49 +0100
-From:   Mark Brown <broonie@kernel.org>
-To:     Serge Semin <Sergey.Semin@baikalelectronics.ru>
-Cc:     Alexey Malahov <Alexey.Malahov@baikalelectronics.ru>,
-        Ramil Zaripov <Ramil.Zaripov@baikalelectronics.ru>,
-        Pavel Parkhomenko <Pavel.Parkhomenko@baikalelectronics.ru>,
-        Andy Shevchenko <andy.shevchenko@gmail.com>,
-        Andy Shevchenko <andriy.shevchenko@linux.intel.com>,
-        Lars Povlsen <lars.povlsen@microchip.com>,
-        "wuxu . wu" <wuxu.wu@huawei.com>, Feng Tang <feng.tang@intel.com>,
-        Rob Herring <robh+dt@kernel.org>, linux-spi@vger.kernel.org,
-        devicetree@vger.kernel.org, linux-kernel@vger.kernel.org
-Subject: Re: [PATCH 11/30] spi: dw: Add DWC SSI capability
-Message-ID: <20200930154149.GL4974@sirena.org.uk>
-References: <20200920112914.26501-1-Sergey.Semin@baikalelectronics.ru>
- <20200920112914.26501-12-Sergey.Semin@baikalelectronics.ru>
- <20200929135233.GG4799@sirena.org.uk>
- <20200929221737.fiwjr4y3vhme4546@mobilestation>
- <20200930150312.ipt724uihixblr3a@mobilestation>
+        id S1730897AbgI3PuS (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Wed, 30 Sep 2020 11:50:18 -0400
+Received: from lindbergh.monkeyblade.net ([23.128.96.19]:45552 "EHLO
+        lindbergh.monkeyblade.net" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
+        with ESMTP id S1725893AbgI3PuS (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Wed, 30 Sep 2020 11:50:18 -0400
+Received: from metis.ext.pengutronix.de (metis.ext.pengutronix.de [IPv6:2001:67c:670:201:290:27ff:fe1d:cc33])
+        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 34340C061755
+        for <devicetree@vger.kernel.org>; Wed, 30 Sep 2020 08:50:18 -0700 (PDT)
+Received: from [2a0a:edc0:0:1101:1d::39] (helo=dude03.red.stw.pengutronix.de)
+        by metis.ext.pengutronix.de with esmtp (Exim 4.92)
+        (envelope-from <l.stach@pengutronix.de>)
+        id 1kNeMp-0006WU-No; Wed, 30 Sep 2020 17:50:08 +0200
+From:   Lucas Stach <l.stach@pengutronix.de>
+To:     Shawn Guo <shawnguo@kernel.org>, Rob Herring <robh+dt@kernel.org>
+Cc:     NXP Linux Team <linux-imx@nxp.com>,
+        Fabio Estevam <festevam@gmail.com>,
+        Frieder Schrempf <frieder.schrempf@kontron.de>,
+        Marek Vasut <marex@denx.de>,
+        linux-arm-kernel@lists.infradead.org, devicetree@vger.kernel.org,
+        kernel@pengutronix.de, patchwork-lst@pengutronix.de
+Date:   Wed, 30 Sep 2020 17:49:55 +0200
+Message-Id: <20200930155006.535712-1-l.stach@pengutronix.de>
+X-Mailer: git-send-email 2.20.1
 MIME-Version: 1.0
-Content-Type: multipart/signed; micalg=pgp-sha512;
-        protocol="application/pgp-signature"; boundary="vJI8q/aziP9idhqk"
-Content-Disposition: inline
-In-Reply-To: <20200930150312.ipt724uihixblr3a@mobilestation>
-X-Cookie: Doing gets it done.
-User-Agent: Mutt/1.10.1 (2018-07-13)
+Content-Transfer-Encoding: 8bit
+X-SA-Exim-Connect-IP: 2a0a:edc0:0:1101:1d::39
+X-SA-Exim-Mail-From: l.stach@pengutronix.de
+X-Spam-Checker-Version: SpamAssassin 3.4.2 (2018-09-13) on
+        metis.ext.pengutronix.de
+X-Spam-Level: 
+X-Spam-Status: No, score=-1.5 required=4.0 tests=AWL,BAYES_00,RDNS_NONE,
+        SPF_HELO_NONE,SPF_SOFTFAIL autolearn=no autolearn_force=no
+        version=3.4.2
+Subject: [PATCH 00/11] i.MX8MM power domain support
+X-SA-Exim-Version: 4.2.1 (built Wed, 08 May 2019 21:11:16 +0000)
+X-SA-Exim-Scanned: Yes (on metis.ext.pengutronix.de)
+X-PTX-Original-Recipient: devicetree@vger.kernel.org
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
+Hi all,
 
---vJI8q/aziP9idhqk
-Content-Type: text/plain; charset=us-ascii
-Content-Disposition: inline
+this adds power domain support for the i.MX8MM to the existing GPCv2
+driver. It is not complete yet, as it is still missing the VPU and
+display power domains, as those require support for the BLK_CTL
+regions of the VPUMIX and DISPLAYMIX domains. A Linux driver for
+those regions on the i.MX8MP is currently under development and we
+plan to use this as a template for the i.MX8MM when the dust has
+settled. The changes in this series have been made with this in
+mind, so once the BLK_CTL driver exists it should be a matter of
+hooking things together via DT, with no further changes required on
+the GPCv2 driver side (famous last words).
 
-On Wed, Sep 30, 2020 at 06:03:12PM +0300, Serge Semin wrote:
-> On Wed, Sep 30, 2020 at 01:17:37AM +0300, Serge Semin wrote:
+Special thanks to Marek Vasut who helped with testing and debugging
+of early versions of this code.
 
-> > > > -	/*
-> > > > -	 * SPI mode (SCPOL|SCPH)
-> > > > -	 * CTRLR0[ 8] Serial Clock Phase
-> > > > -	 * CTRLR0[ 9] Serial Clock Polarity
-> > > > -	 */
-> > > > -	cr0 |= ((spi->mode & SPI_CPOL) ? 1 : 0) << DWC_SSI_CTRLR0_SCPOL_OFFSET;
+Regards,
+Lucas
 
-> anyway. If you are agree with me having that done here, then please, accept the
-> patch the way it is. If you disagree, or have any other though, please give me
-> your answer, why.
+Lucas Stach (11):
+  soc: imx: gpcv2: move to more ideomatic error handling in probe
+  soc: imx: gpcv2: move domain mapping to domain driver probe
+  soc: imx: gpcv2: split power up and power down sequence control
+  soc: imx: gpcv2: wait for ADB400 handshake
+  soc: imx: gpcv2: add runtime PM support for power-domains
+  soc: imx: gpcv2: allow domains without power-sequence control
+  soc: imx: gpcv2: add support for optional resets
+  dt-bindings: add defines for i.MX8MM power domains
+  soc: imx: gpcv2: add support for i.MX8MM power domains
+  arm64: dts: imx8mm: add GPC node and power domains
+  arm64: dts: imx8mm: put USB controllers into power-domains
 
-Those comments did seem to help mitigate the wall of acronym soup issue
-that the code has, it seems a shame to drop them.
+ .../bindings/power/fsl,imx-gpcv2.yaml         |   8 +
+ arch/arm64/boot/dts/freescale/imx8mm.dtsi     |  59 +++
+ drivers/soc/imx/gpcv2.c                       | 501 +++++++++++++++---
+ include/dt-bindings/power/imx8mm-power.h      |  22 +
+ 4 files changed, 516 insertions(+), 74 deletions(-)
+ create mode 100644 include/dt-bindings/power/imx8mm-power.h
 
---vJI8q/aziP9idhqk
-Content-Type: application/pgp-signature; name="signature.asc"
+-- 
+2.20.1
 
------BEGIN PGP SIGNATURE-----
-
-iQEzBAABCgAdFiEEreZoqmdXGLWf4p/qJNaLcl1Uh9AFAl90pzwACgkQJNaLcl1U
-h9DtaQf+IE0e8PMo8R/Mn/5c7o/Vw0Ff+UAnhxcFz6fcO+sj/anDoDYnBOB1JDp+
-4+MzAIQqQnVNE06WjW3K4cd937uS0LjyTmtNoJJqotM/4E00vEp11+Q8DjaCeQTb
-4GURVxfNh6oDRS495wgKfE1IjEqslrEKBWV0nn3vZpWywbK6GhvPzxTcndTPxEWR
-wUV5YU/Cz7qVDyBHHnpKhRWA8NuFaynwdqH9seDbEzdtFa4FounrWbv38eLRIN48
-xYto958NpQQKEwuWh2PDF5GzFrYjZq/wP8XpSN65nC8Moay4CMED64IWMakpGawe
-32l1C3SCcWlblxlxeruavP0MWwVUNQ==
-=SeQr
------END PGP SIGNATURE-----
-
---vJI8q/aziP9idhqk--
