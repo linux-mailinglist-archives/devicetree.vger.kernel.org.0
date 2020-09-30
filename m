@@ -2,73 +2,117 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from vger.kernel.org (vger.kernel.org [23.128.96.18])
-	by mail.lfdr.de (Postfix) with ESMTP id 267BE27E765
-	for <lists+devicetree@lfdr.de>; Wed, 30 Sep 2020 13:06:09 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTP id 1EA3327E773
+	for <lists+devicetree@lfdr.de>; Wed, 30 Sep 2020 13:10:26 +0200 (CEST)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S1729266AbgI3LGI (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Wed, 30 Sep 2020 07:06:08 -0400
-Received: from mail.kernel.org ([198.145.29.99]:47656 "EHLO mail.kernel.org"
-        rhost-flags-OK-OK-OK-OK) by vger.kernel.org with ESMTP
-        id S1728149AbgI3LGI (ORCPT <rfc822;devicetree@vger.kernel.org>);
-        Wed, 30 Sep 2020 07:06:08 -0400
-Received: from localhost (fw-tnat.cambridge.arm.com [217.140.96.140])
-        (using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
-        (No client certificate requested)
-        by mail.kernel.org (Postfix) with ESMTPSA id 7F2392076B;
-        Wed, 30 Sep 2020 11:06:07 +0000 (UTC)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=kernel.org;
-        s=default; t=1601463968;
-        bh=A+5d4n50XZGl/CNzpoGjTWy3agqpCL9F0ZtwZwYubWk=;
-        h=Date:From:To:Cc:Subject:References:In-Reply-To:From;
-        b=wu8q+qWAno4fq0pmDBPwwUhaPqvsx7R5ZyT5oyqFSsNo/89BB3sgxY1x8dhC1jM+G
-         hhrc69YY8TjT7tnIYYuN0e3BIJD3Ld2LUrigi89XbkfnZqoxvvnKuFI8Lk/CPlPVjv
-         Vwpv8Es8H4vGwR13Mk0DEkHSs8WDMfNFc2XacbTw=
-Date:   Wed, 30 Sep 2020 12:05:08 +0100
-From:   Mark Brown <broonie@kernel.org>
-To:     cy_huang <u0084500@gmail.com>
-Cc:     robh+dt@kernel.org, lgirdwood@gmail.com, cy_huang@richtek.com,
-        linux-kernel@vger.kernel.org, devicetree@vger.kernel.org
-Subject: Re: [PATCH] regulator: rtmv20: Update DT binding document and
- property name parsing
-Message-ID: <20200930110508.GE4974@sirena.org.uk>
-References: <1601460480-4259-1-git-send-email-u0084500@gmail.com>
+        id S1729086AbgI3LKW (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Wed, 30 Sep 2020 07:10:22 -0400
+Received: from lindbergh.monkeyblade.net ([23.128.96.19]:58904 "EHLO
+        lindbergh.monkeyblade.net" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
+        with ESMTP id S1728235AbgI3LKV (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Wed, 30 Sep 2020 07:10:21 -0400
+Received: from mail-wr1-x442.google.com (mail-wr1-x442.google.com [IPv6:2a00:1450:4864:20::442])
+        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 69C7EC0613D2
+        for <devicetree@vger.kernel.org>; Wed, 30 Sep 2020 04:10:21 -0700 (PDT)
+Received: by mail-wr1-x442.google.com with SMTP id s12so1306837wrw.11
+        for <devicetree@vger.kernel.org>; Wed, 30 Sep 2020 04:10:21 -0700 (PDT)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+        d=linaro.org; s=google;
+        h=mime-version:references:in-reply-to:from:date:message-id:subject:to
+         :cc;
+        bh=1mgERC2re+LsQHv7WHehbQUmBGbS8iq333nN2VyixEQ=;
+        b=Lef71amHGweagbo5hPClbodyOxYqqm3V53cYc6ws5IcSNCyHr7PnFK7gFhvd9e9vzi
+         7tpBe5IwPJ3viwdbl7PQY3ffMe4uAAS99/CpCU9PV7j0kasr8bRQGdndMwgpgseocmWU
+         MEX7yRxAF0WjqKbl+FuNs1A6L+JGqOYs2rue+iuOpIGuYHYIidz7810IEbZSPRRcx9no
+         oHEcP4Ccwbn4ToFGWvDiIagOwvS1UxSqXBtUJ53Iw/KNAYjv3sugX4CLJv2mikGGyiyc
+         3YZBRuxb54ev35XxIcvUwsL3w92YyCrdTqXpA0YReGp0eoHj8UVgVZNsKHedEW8xLRsD
+         YHKA==
+X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+        d=1e100.net; s=20161025;
+        h=x-gm-message-state:mime-version:references:in-reply-to:from:date
+         :message-id:subject:to:cc;
+        bh=1mgERC2re+LsQHv7WHehbQUmBGbS8iq333nN2VyixEQ=;
+        b=f32CzBrOldLF6k8GgdUZXC3OzgOUQPVFz37tHGBor6W/3G/Dwj24qK28GOgj7ITyrz
+         Fyc5tmLx2lDT8cCjhjdrECb5Qw7O7mYFr+ugNG22OJUsr4CKy/dX2mtzQskxE50o5LeP
+         FIpxWRYp5UF+sKAd9iHTjm2BQMWh1pGfoKB+rw5eKTcs1apCXOLX7pcwz1vt50fAqOIf
+         vfp9JzgEaMJJWB1eiYjSL+Q8rrFhBW2tN/IrtjTeQfT2jjAwrt4EFxfMDNHeqpTw4+oY
+         NQuVYn93B0M1UJFJg150liYg733MBAxxLCQuWGpC+w2C67o9VTcarJsNlZJJ13/NDpcc
+         PeAA==
+X-Gm-Message-State: AOAM5300LzWPQSeZz/Om3z/gsx+frxmxq/+Ulwkmi6J7j2GYq+JC36AR
+        GlKkD56qr/aqX4pmpf4ZLgYz6lw6IpFn4eP8QEsKMg==
+X-Google-Smtp-Source: ABdhPJxRAYAdDId2wFAHvCCnCfATHqjzpdk/XpVpNAQwQh/eUI2ddso1JTacHLyknbdLNgOUWFmFEXuBxkd0/Q3MKEE=
+X-Received: by 2002:adf:e952:: with SMTP id m18mr2478350wrn.171.1601464219892;
+ Wed, 30 Sep 2020 04:10:19 -0700 (PDT)
 MIME-Version: 1.0
-Content-Type: multipart/signed; micalg=pgp-sha512;
-        protocol="application/pgp-signature"; boundary="phCU5ROyZO6kBE05"
-Content-Disposition: inline
-In-Reply-To: <1601460480-4259-1-git-send-email-u0084500@gmail.com>
-X-Cookie: Doing gets it done.
-User-Agent: Mutt/1.10.1 (2018-07-13)
+References: <1601058581-19461-1-git-send-email-amit.pundir@linaro.org> <20200929190817.GA968845@bogus>
+In-Reply-To: <20200929190817.GA968845@bogus>
+From:   Amit Pundir <amit.pundir@linaro.org>
+Date:   Wed, 30 Sep 2020 16:39:43 +0530
+Message-ID: <CAMi1Hd1NhPipHMWFjGu6MMJDNRNndmvYrEt-5sFowYJPwtJdxw@mail.gmail.com>
+Subject: Re: [PATCH] ath10k: Introduce a devicetree quirk to skip host cap QMI requests
+To:     Rob Herring <robh@kernel.org>
+Cc:     Kalle Valo <kvalo@codeaurora.org>,
+        David S Miller <davem@davemloft.net>,
+        Jakub Kicinski <kuba@kernel.org>,
+        Bjorn Andersson <bjorn.andersson@linaro.org>,
+        Jeffrey Hugo <jeffrey.l.hugo@gmail.com>,
+        John Stultz <john.stultz@linaro.org>,
+        Sumit Semwal <sumit.semwal@linaro.org>,
+        Konrad Dybcio <konradybcio@gmail.com>,
+        ath10k <ath10k@lists.infradead.org>,
+        dt <devicetree@vger.kernel.org>, linux-wireless@vger.kernel.org,
+        netdev@vger.kernel.org, lkml <linux-kernel@vger.kernel.org>
+Content-Type: text/plain; charset="UTF-8"
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
+On Wed, 30 Sep 2020 at 00:38, Rob Herring <robh@kernel.org> wrote:
+>
+> On Fri, Sep 25, 2020 at 11:59:41PM +0530, Amit Pundir wrote:
+> > There are firmware versions which do not support host capability
+> > QMI request. We suspect either the host cap is not implemented or
+> > there may be firmware specific issues, but apparently there seem
+> > to be a generation of firmware that has this particular behavior.
+> >
+> > For example, firmware build on Xiaomi Poco F1 (sdm845) phone:
+> > "QC_IMAGE_VERSION_STRING=WLAN.HL.2.0.c3-00257-QCAHLSWMTPLZ-1"
+> >
+> > If we do not skip the host cap QMI request on Poco F1, then we
+> > get a QMI_ERR_MALFORMED_MSG_V01 error message in the
+> > ath10k_qmi_host_cap_send_sync(). But this error message is not
+> > fatal to the firmware nor to the ath10k driver and we can still
+> > bring up the WiFi services successfully if we just ignore it.
+> >
+> > Hence introducing this DeviceTree quirk to skip host capability
+> > QMI request for the firmware versions which do not support this
+> > feature.
+>
+> So if you change the WiFi firmware, you may force a DT change too. Those
+> are pretty independent things otherwise.
 
---phCU5ROyZO6kBE05
-Content-Type: text/plain; charset=us-ascii
-Content-Disposition: inline
-Content-Transfer-Encoding: quoted-printable
+This is a valid concern and I'm not sure about the other devices, but
+on PocoF1 I have tried all the three released firmware version updates:
 
-On Wed, Sep 30, 2020 at 06:08:00PM +0800, cy_huang wrote:
-> From: ChiYuan Huang <cy_huang@richtek.com>
->=20
-> 1. Add vendor suffix to all proprietary properties.
+WLAN.HL.2.0.c3-00257-QCAHLSWMTPLZ-1
+WLAN.HL.2.0.c3-00445-QCAHLSWMTPLZ-1
+WLAN.HL.2.0.c3-00534-QCAHLSWMTPLZ-1
 
-You should need a driver update to match this one?
+and none of them works without this skip host-cap patch or equivalent
+hack. PocoF1 is already 2+ years old device and sadly I do not expect
+any major vendor update coming its way.
 
---phCU5ROyZO6kBE05
-Content-Type: application/pgp-signature; name="signature.asc"
+>
+> Why can't you just always ignore this error? If you can't deal with this
+> entirely in the driver, then it should be part of the WiFi firmware so
+> it's always in sync.
 
------BEGIN PGP SIGNATURE-----
+I don't know the technical details of the ath10k/qmi driver, but I'm
+OK if we just ignore the return value of
+ath10k_qmi_host_cap_send_sync() and move along.
 
-iQEzBAABCgAdFiEEreZoqmdXGLWf4p/qJNaLcl1Uh9AFAl90ZmQACgkQJNaLcl1U
-h9DLLAf6A8PokkW2b799yPHKLilZUQOZDjvGgvqG2hQ0DvAXO3VszQ7k1hvnYtOZ
-aKz9t/SKUQtYPN2V/Yw1cQ1vqIBgYyjxm1RJhDwGgEOGtvxOwdp8V/SNHRU7al/L
-9ZbhQb6A2PkVq2MVMsYEnGFYgDAGf0gYoiQkdd63psa5JoCUEk4WYCMh8C7su6on
-j9GtdRcYAlPjMXuBqwN6W+aSct5pV6aPXUJmQUPMFQqPkvxfWGs5eQEfEXVbaM0X
-W3jYIdcl/wxLlFSvPtUSCxpmw/fvJwpp8RmSF0pjGDMz6lCSmh3qVUjlA3gOt4QL
-zrGGE8MIT92j+/xZiQ5ainJ7o5NCvg==
-=TDzA
------END PGP SIGNATURE-----
+Regards,
+Amit Pundir
 
---phCU5ROyZO6kBE05--
+>
+> Rob
