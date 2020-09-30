@@ -2,73 +2,81 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from vger.kernel.org (vger.kernel.org [23.128.96.18])
-	by mail.lfdr.de (Postfix) with ESMTP id 04E2927E8E7
-	for <lists+devicetree@lfdr.de>; Wed, 30 Sep 2020 14:50:18 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTP id DA6ED27E8FD
+	for <lists+devicetree@lfdr.de>; Wed, 30 Sep 2020 14:52:38 +0200 (CEST)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S1729976AbgI3Mtn (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Wed, 30 Sep 2020 08:49:43 -0400
-Received: from mail.kernel.org ([198.145.29.99]:34936 "EHLO mail.kernel.org"
-        rhost-flags-OK-OK-OK-OK) by vger.kernel.org with ESMTP
-        id S1729762AbgI3Mtn (ORCPT <rfc822;devicetree@vger.kernel.org>);
-        Wed, 30 Sep 2020 08:49:43 -0400
-Received: from mail-ot1-f53.google.com (mail-ot1-f53.google.com [209.85.210.53])
-        (using TLSv1.2 with cipher ECDHE-RSA-AES128-GCM-SHA256 (128/128 bits))
-        (No client certificate requested)
-        by mail.kernel.org (Postfix) with ESMTPSA id A66EF20936;
-        Wed, 30 Sep 2020 12:49:42 +0000 (UTC)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=kernel.org;
-        s=default; t=1601470182;
-        bh=07hSLMQoSpJSnvfViRt2er9D+38nJ1S81f1pw8lhyYI=;
-        h=References:In-Reply-To:From:Date:Subject:To:Cc:From;
-        b=TgzEXMtQYCQ4hji7DOmdTnfI2lS3zxPnvm2KRDJwzG0XLgpzd0IJ97uLGmzQcoiQO
-         Wd16HXQmPuh+vW9xDcMTBtL92NfjBHi97PdgUhKt+CrWruep/gPrasN/4kXkuDpSAl
-         c/sO48ID8ZeZHagmOjeXESh3YeF+x5PprxgexAro=
-Received: by mail-ot1-f53.google.com with SMTP id y5so1667507otg.5;
-        Wed, 30 Sep 2020 05:49:42 -0700 (PDT)
-X-Gm-Message-State: AOAM532Q4TwoigQSatjyiOws96T3YFJuPWUcH38NErt46dWA9eauyBYm
-        gA/YshH8PXnu+14XpOOLfublX4nnfvH1WQsB6w==
-X-Google-Smtp-Source: ABdhPJyR5QEMfsRPmsJEZQZKhpIiC7BJ0ZReMqLzMNDvpzBCR4FJ4JQzuiKDWDYNYA1PrgT9fFAZmU47iuzjUTHfy/s=
-X-Received: by 2002:a9d:6b0d:: with SMTP id g13mr1499160otp.129.1601470182041;
- Wed, 30 Sep 2020 05:49:42 -0700 (PDT)
+        id S1729982AbgI3Mwh (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Wed, 30 Sep 2020 08:52:37 -0400
+Received: from outside2.canonet.ne.jp ([210.134.165.79]:57616 "EHLO
+        outside2.canonet.ne.jp" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
+        with ESMTP id S1729980AbgI3Mwh (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Wed, 30 Sep 2020 08:52:37 -0400
+Received: from cmcheck2.canonet.ne.jp (unknown [172.21.160.142])
+        by outside2.canonet.ne.jp (Postfix) with ESMTP id E68B21E0306;
+        Wed, 30 Sep 2020 21:52:34 +0900 (JST)
+Received: from echeck2.canonet.ne.jp ([172.21.160.32])
+        by cmcheck2 with ESMTP
+        id Nbb0kHBcnpmpXNbb0kfygh; Wed, 30 Sep 2020 21:52:34 +0900
+Received: from echeck2.canonet.ne.jp (localhost [127.0.0.1])
+        by esets.canonet.ne.jp (Postfix) with ESMTP id 70EEA1C01E7;
+        Wed, 30 Sep 2020 21:52:34 +0900 (JST)
+X-Virus-Scanner: This message was checked by ESET Mail Security
+        for Linux/BSD. For more information on ESET Mail Security,
+        please, visit our website: http://www.eset.com/.
+Received: from smtp2.canonet.ne.jp (smtp2.canonet.ne.jp [172.21.160.22])
+        by echeck2.canonet.ne.jp (Postfix) with ESMTP id 017261C0251;
+        Wed, 30 Sep 2020 21:52:34 +0900 (JST)
+Received: from chikousha.co.jp (webmail.canonet.ne.jp [210.134.164.250])
+        by smtp2.canonet.ne.jp (Postfix) with ESMTPA id E7BE515F962;
+        Wed, 30 Sep 2020 21:52:32 +0900 (JST)
 MIME-Version: 1.0
-References: <1601444167-11316-1-git-send-email-hayashi.kunihiko@socionext.com> <1601444167-11316-4-git-send-email-hayashi.kunihiko@socionext.com>
-In-Reply-To: <1601444167-11316-4-git-send-email-hayashi.kunihiko@socionext.com>
-From:   Rob Herring <robh+dt@kernel.org>
-Date:   Wed, 30 Sep 2020 07:49:30 -0500
-X-Gmail-Original-Message-ID: <CAL_Jsq+e+krj9xvOKdYNAGYFxPvRUsTQ=OzNvKg1D5_LherKvA@mail.gmail.com>
-Message-ID: <CAL_Jsq+e+krj9xvOKdYNAGYFxPvRUsTQ=OzNvKg1D5_LherKvA@mail.gmail.com>
-Subject: Re: [PATCH v3 3/4] PCI: dwc: Add common iATU register support
-To:     Kunihiko Hayashi <hayashi.kunihiko@socionext.com>
-Cc:     Bjorn Helgaas <bhelgaas@google.com>,
-        Lorenzo Pieralisi <lorenzo.pieralisi@arm.com>,
-        Jingoo Han <jingoohan1@gmail.com>,
-        Gustavo Pimentel <gustavo.pimentel@synopsys.com>,
-        Murali Karicheri <m-karicheri2@ti.com>,
-        PCI <linux-pci@vger.kernel.org>, devicetree@vger.kernel.org,
-        linux-arm-kernel <linux-arm-kernel@lists.infradead.org>,
-        "linux-kernel@vger.kernel.org" <linux-kernel@vger.kernel.org>,
-        Masami Hiramatsu <masami.hiramatsu@linaro.org>,
-        Jassi Brar <jaswinder.singh@linaro.org>
-Content-Type: text/plain; charset="UTF-8"
+Message-ID: <20200930125232.00000CC3.0564@chikousha.co.jp>
+Date:   Wed, 30 Sep 2020 21:52:32 +0900
+From:   "Dawuda Usman" <info@chikousha.co.jp>
+To:     <dawudausm@gmail.com>
+Reply-To: <dawudausm@gmail.com>
+Subject: Hello my friend
+Content-Type: text/plain; charset=US-ASCII
+Content-Transfer-Encoding: 7bit
+X-Priority: 3
+ORGANIZATION: Dawuda Usman
+X-MAILER: Active! mail
+X-EsetResult: clean, %VIRUSNAME%
+X-ESET-AS: R=SPAM;S=100;OP=CALC;TIME=1601470354;VERSION=7861;MC=603096071;TRN=15;CRV=0;IPC=210.134.164.250;SP=0;SIPS=1;PI=5;F=0
+X-I-ESET-AS: RN=442;RNP=
+X-ESET-Antispam: SPAM
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-On Wed, Sep 30, 2020 at 12:36 AM Kunihiko Hayashi
-<hayashi.kunihiko@socionext.com> wrote:
->
-> This gets iATU register area from reg property that has reg-names "atu".
-> In Synopsys DWC version 4.80 or later, since iATU register area is
-> separated from core register area, this area is necessary to get from
-> DT independently.
->
-> Cc: Murali Karicheri <m-karicheri2@ti.com>
-> Cc: Jingoo Han <jingoohan1@gmail.com>
-> Cc: Gustavo Pimentel <gustavo.pimentel@synopsys.com>
-> Suggested-by: Rob Herring <robh@kernel.org>
-> Signed-off-by: Kunihiko Hayashi <hayashi.kunihiko@socionext.com>
-> ---
->  drivers/pci/controller/dwc/pcie-designware.c | 5 +++++
->  1 file changed, 5 insertions(+)
+Dear Friend,
 
-Reviewed-by: Rob Herring <robh@kernel.org>
+I am Mr. Dawuda Usman working with the department of Audit and 
+accounting manager here in the Bank, There is this fund that was keep in 
+my custody years ago,please I need your assistance for the transferring 
+of this fund to your bank account
+for both of us benefit for life time investment and the amount is (US$4.
+5M DOLLARS).
+
+I have every inquiry details to make the bank believe you and release 
+the fund in within 5 banking working days with your full co-operation
+with me after success.
+
+Note/ 50% for you why 50% for me after success of the transfer to your
+bank account.
+
+Below information is what I need from you so will can be reaching each 
+other .
+
+1)Private telephone number...
+2)Age...
+3)Nationality...
+4)Occupation ...
+5)Full name ...
+
+Thanks.
+
+Mr. Dawuda Usman
+
+
+
