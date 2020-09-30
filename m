@@ -2,18 +2,18 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from vger.kernel.org (vger.kernel.org [23.128.96.18])
-	by mail.lfdr.de (Postfix) with ESMTP id 66EDB27DE45
-	for <lists+devicetree@lfdr.de>; Wed, 30 Sep 2020 04:07:45 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTP id BB0B127DE40
+	for <lists+devicetree@lfdr.de>; Wed, 30 Sep 2020 04:07:34 +0200 (CEST)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S1729844AbgI3CHe (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Tue, 29 Sep 2020 22:07:34 -0400
-Received: from lucky1.263xmail.com ([211.157.147.134]:49182 "EHLO
+        id S1729817AbgI3CHd (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Tue, 29 Sep 2020 22:07:33 -0400
+Received: from lucky1.263xmail.com ([211.157.147.131]:34142 "EHLO
         lucky1.263xmail.com" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S1729807AbgI3CHe (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Tue, 29 Sep 2020 22:07:34 -0400
+        with ESMTP id S1729322AbgI3CHd (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Tue, 29 Sep 2020 22:07:33 -0400
 Received: from localhost (unknown [192.168.167.32])
-        by lucky1.263xmail.com (Postfix) with ESMTP id 7998DC302A;
-        Wed, 30 Sep 2020 10:07:30 +0800 (CST)
+        by lucky1.263xmail.com (Postfix) with ESMTP id CED70B54B3;
+        Wed, 30 Sep 2020 10:07:31 +0800 (CST)
 X-MAIL-GRAY: 0
 X-MAIL-DELIVERY: 1
 X-ADDR-CHECKED4: 1
@@ -21,9 +21,9 @@ X-ANTISPAM-LEVEL: 2
 X-ABS-CHECKED: 0
 Received: from localhost.localdomain (unknown [58.22.7.114])
         by smtp.263.net (postfix) whith ESMTP id P19667T139951023531776S1601431634383390_;
-        Wed, 30 Sep 2020 10:07:30 +0800 (CST)
+        Wed, 30 Sep 2020 10:07:31 +0800 (CST)
 X-IP-DOMAINF: 1
-X-UNIQUE-TAG: <fbf8e9f73ca9311697f84b9e3726b59c>
+X-UNIQUE-TAG: <ac64d69a5c8d7c572f96aef0f56d7a65>
 X-RL-SENDER: yifeng.zhao@rock-chips.com
 X-SENDER: zyf@rock-chips.com
 X-LOGIN-NAME: yifeng.zhao@rock-chips.com
@@ -38,10 +38,11 @@ To:     miquel.raynal@bootlin.com, richard@nod.at, vigneshr@ti.com,
 Cc:     devicetree@vger.kernel.org, linux-mtd@lists.infradead.org,
         heiko@sntech.de, linux-rockchip@lists.infradead.org,
         linux-arm-kernel@lists.infradead.org, linux-kernel@vger.kernel.org,
+        Yifeng Zhao <zyf@rock-chips.com>,
         Yifeng Zhao <yifeng.zhao@rock-chips.com>
-Subject: [PATCH v10 3/8] MAINTAINERS: add maintainers to ROCKCHIP NFC
-Date:   Wed, 30 Sep 2020 10:07:09 +0800
-Message-Id: <20200930020710.7394-4-yifeng.zhao@rock-chips.com>
+Subject: [PATCH v10 4/8] arm64: dts: rockchip: Add NFC node for RK3308 SoC
+Date:   Wed, 30 Sep 2020 10:07:10 +0800
+Message-Id: <20200930020710.7394-5-yifeng.zhao@rock-chips.com>
 X-Mailer: git-send-email 2.17.1
 In-Reply-To: <20200930020710.7394-1-yifeng.zhao@rock-chips.com>
 References: <20200930020710.7394-1-yifeng.zhao@rock-chips.com>
@@ -49,8 +50,11 @@ Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-Add maintainers to ROCKCHIP NFC.
+From: Yifeng Zhao <zyf@rock-chips.com>
 
+Add NAND FLASH Controller(NFC) node for RK3308 SoC.
+
+Signed-off-by: Yifeng Zhao <zyf@rock-chips.com>
 Signed-off-by: Yifeng Zhao <yifeng.zhao@rock-chips.com>
 ---
 
@@ -64,28 +68,35 @@ Changes in v4: None
 Changes in v3: None
 Changes in v2: None
 
- MAINTAINERS | 4 ++--
- 1 file changed, 2 insertions(+), 2 deletions(-)
+ arch/arm64/boot/dts/rockchip/rk3308.dtsi | 15 +++++++++++++++
+ 1 file changed, 15 insertions(+)
 
-diff --git a/MAINTAINERS b/MAINTAINERS
-index 190c7fa2ea01..5500df349836 100644
---- a/MAINTAINERS
-+++ b/MAINTAINERS
-@@ -2382,12 +2382,12 @@ L:	linux-arm-kernel@lists.infradead.org (moderated for non-subscribers)
- L:	linux-rockchip@lists.infradead.org
- S:	Maintained
- T:	git git://git.kernel.org/pub/scm/linux/kernel/git/mmind/linux-rockchip.git
-+F:	Documentation/devicetree/bindings/*/*rockchip*.yaml
- F:	Documentation/devicetree/bindings/i2c/i2c-rk3x.yaml
--F:	Documentation/devicetree/bindings/mmc/rockchip-dw-mshc.yaml
--F:	Documentation/devicetree/bindings/spi/spi-rockchip.yaml
- F:	arch/arm/boot/dts/rk3*
- F:	arch/arm/boot/dts/rv1108*
- F:	arch/arm/mach-rockchip/
-+F:	drivers/*/*/*/*rockchip*
- F:	drivers/*/*/*rockchip*
- F:	drivers/*/*rockchip*
- F:	drivers/clk/rockchip/
+diff --git a/arch/arm64/boot/dts/rockchip/rk3308.dtsi b/arch/arm64/boot/dts/rockchip/rk3308.dtsi
+index 0cf954062387..f98c65c9bd13 100644
+--- a/arch/arm64/boot/dts/rockchip/rk3308.dtsi
++++ b/arch/arm64/boot/dts/rockchip/rk3308.dtsi
+@@ -629,6 +629,21 @@
+ 		status = "disabled";
+ 	};
+ 
++	nfc: nand-controller@ff4b0000 {
++		compatible = "rockchip,rk3308-nfc",
++			     "rockchip,rv1108-nfc";
++		reg = <0x0 0xff4b0000 0x0 0x4000>;
++		interrupts = <GIC_SPI 81 IRQ_TYPE_LEVEL_HIGH>;
++		clocks = <&cru HCLK_NANDC>, <&cru SCLK_NANDC>;
++		clock-names = "ahb", "nfc";
++		assigned-clocks = <&cru SCLK_NANDC>;
++		assigned-clock-rates = <150000000>;
++		pinctrl-0 = <&flash_ale &flash_bus8 &flash_cle &flash_csn0
++			     &flash_rdn &flash_rdy &flash_wrn>;
++		pinctrl-names = "default";
++		status = "disabled";
++	};
++
+ 	cru: clock-controller@ff500000 {
+ 		compatible = "rockchip,rk3308-cru";
+ 		reg = <0x0 0xff500000 0x0 0x1000>;
 -- 
 2.17.1
 
