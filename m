@@ -2,92 +2,117 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from vger.kernel.org (vger.kernel.org [23.128.96.18])
-	by mail.lfdr.de (Postfix) with ESMTP id D33B727E572
-	for <lists+devicetree@lfdr.de>; Wed, 30 Sep 2020 11:43:25 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTP id C0A1427E589
+	for <lists+devicetree@lfdr.de>; Wed, 30 Sep 2020 11:47:25 +0200 (CEST)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S1728858AbgI3JnY (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Wed, 30 Sep 2020 05:43:24 -0400
-Received: from mail.kernel.org ([198.145.29.99]:45028 "EHLO mail.kernel.org"
+        id S1729053AbgI3JrV (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Wed, 30 Sep 2020 05:47:21 -0400
+Received: from muru.com ([72.249.23.125]:45762 "EHLO muru.com"
         rhost-flags-OK-OK-OK-OK) by vger.kernel.org with ESMTP
-        id S1727657AbgI3JnY (ORCPT <rfc822;devicetree@vger.kernel.org>);
-        Wed, 30 Sep 2020 05:43:24 -0400
-Received: from localhost (fw-tnat.cambridge.arm.com [217.140.96.140])
-        (using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
-        (No client certificate requested)
-        by mail.kernel.org (Postfix) with ESMTPSA id 50DA32075F;
-        Wed, 30 Sep 2020 09:43:23 +0000 (UTC)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=kernel.org;
-        s=default; t=1601459003;
-        bh=NvWW62h6WWBuoP9glEUGad2o5z5ZaSoXYNbdyewWpfM=;
-        h=Date:From:To:Cc:Subject:References:In-Reply-To:From;
-        b=jjDwd9YSoUyv+dpsXfnzgBGt4E/j76OicGy2vhR9ddwirY3wCYjfASguWn46kZOiv
-         8ruRL3DsrDUhDPwHvqdx4lM6nuzPudd+kQmj++QznnxPhPsDIQC6KOy2EmrG7cRY8u
-         heV9Vbf+e7rjkZEEFR+MnsXHLCDvcCr06gPu15CA=
-Date:   Wed, 30 Sep 2020 10:42:24 +0100
-From:   Mark Brown <broonie@kernel.org>
-To:     ChiYuan Huang <u0084500@gmail.com>
-Cc:     Rob Herring <robh@kernel.org>, lgirdwood@gmail.com,
-        linux-kernel@vger.kernel.org, cy_huang <cy_huang@richtek.com>,
-        devicetree@vger.kernel.org
-Subject: Re: [PATCH v2 2/2] regulator: rtmv20: Add DT-binding document for
- Richtek RTMV20
-Message-ID: <20200930094224.GA4974@sirena.org.uk>
-References: <1601277584-5526-1-git-send-email-u0084500@gmail.com>
- <1601277584-5526-2-git-send-email-u0084500@gmail.com>
- <20200929150624.GA583524@bogus>
- <CADiBU3_7wj7W2evOAG1GM991OigPYy4FXraeOLCVreaMO86HXw@mail.gmail.com>
+        id S1728999AbgI3JrU (ORCPT <rfc822;devicetree@vger.kernel.org>);
+        Wed, 30 Sep 2020 05:47:20 -0400
+Received: from atomide.com (localhost [127.0.0.1])
+        by muru.com (Postfix) with ESMTPS id 7435E810D;
+        Wed, 30 Sep 2020 09:47:20 +0000 (UTC)
+Date:   Wed, 30 Sep 2020 12:47:14 +0300
+From:   Tony Lindgren <tony@atomide.com>
+To:     Trent Piepho <tpiepho@gmail.com>
+Cc:     Drew Fustini <drew@beagleboard.org>,
+        Rob Herring <robh+dt@kernel.org>,
+        Linus Walleij <linus.walleij@linaro.org>,
+        Jason Kridner <jkridner@beagleboard.org>,
+        Robert Nelson <robertcnelson@gmail.com>,
+        linux-omap@vger.kernel.org, linux-kernel@vger.kernel.org,
+        devicetree@vger.kernel.org,
+        linux-gpio <linux-gpio@vger.kernel.org>,
+        Christina Quast <cquast@hanoverdisplays.com>
+Subject: Re: [PATCH] ARM: dts: document pinctrl-single,pins when
+ #pinctrl-cells = 2
+Message-ID: <20200930094714.GR9471@atomide.com>
+References: <20200924054324.GB9471@atomide.com>
+ <CA+7tXigg+h3v61AVMaYRKa_ZwznehOUPEESMqXKsNDNCrFph3w@mail.gmail.com>
+ <20200924060645.GD9471@atomide.com>
+ <CA+7tXijkS8UMFk4t=DuKjZZNnThbRarPQvxwxjg-uJFTKJRsXA@mail.gmail.com>
+ <20200924070443.GF9471@atomide.com>
+ <CA+7tXihBdw9AOGL7Hp2cH9+ii8fUXaaZZDUP3icyeOkMuGm4qA@mail.gmail.com>
+ <20200930051521.GN9471@atomide.com>
+ <CA+7tXig=3hbFXfmYMC5Hd1Zc2n-6uGXbMePPw_Cr4bOsyt7QQA@mail.gmail.com>
+ <20200930091526.GQ9471@atomide.com>
+ <CA+7tXihYb6AHrQLpO9UDHV7YFbzo_Pm8EdXNJXX+tJXX-L6UYA@mail.gmail.com>
 MIME-Version: 1.0
-Content-Type: multipart/signed; micalg=pgp-sha512;
-        protocol="application/pgp-signature"; boundary="NzB8fVQJ5HfG6fxh"
+Content-Type: text/plain; charset=us-ascii
 Content-Disposition: inline
-In-Reply-To: <CADiBU3_7wj7W2evOAG1GM991OigPYy4FXraeOLCVreaMO86HXw@mail.gmail.com>
-X-Cookie: Doing gets it done.
-User-Agent: Mutt/1.10.1 (2018-07-13)
+In-Reply-To: <CA+7tXihYb6AHrQLpO9UDHV7YFbzo_Pm8EdXNJXX+tJXX-L6UYA@mail.gmail.com>
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
+* Trent Piepho <tpiepho@gmail.com> [200930 09:34]:
+> On Wed, Sep 30, 2020 at 2:15 AM Tony Lindgren <tony@atomide.com> wrote:
+> >
+> > * Trent Piepho <tpiepho@gmail.com> [200930 08:35]:
+> > > The closest thing would be the generic pin config type bindings, which
+> > > go in the pinctrl driver's nodes, and look like this:
+> > > &am335x_pinmux {
+> > >     pinctrl_yoyo_reset: yoyogrp {
+> > >         pins = "foo";
+> > >         function = "gpio";
+> > >         bias-pull-up;
+> > >     };
+> > > };
+> >
+> > There's a bit of a dtb size and boot time issue for adding properties
+> > for each pin where that needs to be done for several hundred pins :)
+> 
+> pins is list, multiple pins can be specified at once.  Otherwise the
+> property name would be "pin" and not "pins"  There's also a groups
+> property to refer to multiple pins at once, e.g.
+> 
+> arch/mips/boot/dts/ingenic/ci20.dts-    pins_mmc1: mmc1 {
+> arch/mips/boot/dts/ingenic/ci20.dts-            function = "mmc1";
+> arch/mips/boot/dts/ingenic/ci20.dts:            groups =
+> "mmc1-1bit-d", "mmc1-4bit-d";
+> arch/mips/boot/dts/ingenic/ci20.dts-            bias-disable;
+> arch/mips/boot/dts/ingenic/ci20.dts-    };
+> 
+> arch/mips/boot/dts/pic32/pic32mzda_sk.dts-      user_leds_s0: user_leds_s0 {
+> arch/mips/boot/dts/pic32/pic32mzda_sk.dts:              pins = "H0", "H1", "H2";
+> arch/mips/boot/dts/pic32/pic32mzda_sk.dts-              output-low;
+> arch/mips/boot/dts/pic32/pic32mzda_sk.dts-              microchip,digital;
+> arch/mips/boot/dts/pic32/pic32mzda_sk.dts-      };
 
---NzB8fVQJ5HfG6fxh
-Content-Type: text/plain; charset=us-ascii
-Content-Disposition: inline
-Content-Transfer-Encoding: quoted-printable
+Right.
 
-On Wed, Sep 30, 2020 at 10:23:49AM +0800, ChiYuan Huang wrote:
+> > > Is "some additional property for specifying generic conf flags"
+> > > different from the existing pinctrl-single,bias-pullup, etc.
+> > > properties?  Because splitting the data cell into two parts doesn't
+> > > make any difference to those.
+> >
+> > So with an interrupt style binding with generic pinconf flags we can
+> > leave out the parsing of multiple properties for each pin. Sure the
+> > pin is only referenced by the controller like you pointed out but the
+> > pinconf flags could be generic.
+> 
+> Where do these flags go?  In pinctrl-single,pins?  Like:
+> 
+> pinctrl-single,pins = <AM335X_PIN_MDC MUX_MODE7 PIN_INPUT_PULLUP>;
+> 
+> But PIN_INPUT_PULLUP is a generic flag?  Which is translated into the
+> proper value by??
 
->    Due to that already merged into your regulator for-next git, may I
-> send the patch to fix Rob's comment?
+Yes that's what I was thinking, something like this with generic flags:
 
-Of course, yes please.
+pinctrl-single,pins = <AM335X_PIN_MDC (PIN_INPUT | PIN_PULLUP) MUX_MODE7>;
 
-> And I also found one line need to be added into rtmv20 probe phase.
-> Please check below.
->         /*
->          * keep in shutdown mode to minimize the current consumption
->          * and also mark regcache as dirty
->          */
-> +      regcache_cache_only(priv->regmap, true);
->         regcache_mark_dirty(priv->regmap);
->         gpiod_set_value(priv->enable_gpio, 0);
->=20
-> Can I directly merge into one that includes Rob's comment and the
-> above line to be added?
+> Or are you talking about replacing the existing pinctrl-0,
+> pinctrl-names properties with a totally different system that looks
+> more like gpio and interrupt handles?
 
-Please make it a separate patch.
+That would be even better :) Might be just too much to deal with..
 
---NzB8fVQJ5HfG6fxh
-Content-Type: application/pgp-signature; name="signature.asc"
+In any case the parser code could already be generic if we had generic
+flags based on #pinctrl-cells.
 
------BEGIN PGP SIGNATURE-----
+Regards,
 
-iQEzBAABCgAdFiEEreZoqmdXGLWf4p/qJNaLcl1Uh9AFAl90Uv0ACgkQJNaLcl1U
-h9DO1gf9HplYJj7OmCi5xb/uLhaoCwyFB4DFVHa+ZNtrQ7RSlJDaP0ar+TSNrYqJ
-qQDG0MWoJ9oJreEsQTpNgshIYquX9nX8/gTlXgkbCTHH41FOrVIO6/mYc4v0g8HZ
-ypv6umuXeIZJDzJwBS2eqe6E3VvfMgS8jhcZQs2lDoXGdpC0q5JEEHPpdEi1Kigp
-KzkCMIAeYwehfVz3K1xSl//zVbQrTCq84EQ0UNSukhmmDnppWRK7MLe5oBIieMAq
-2bxURIF811cUdgS3OKytI1oe8fS49HYzetyLK3LfGsTDakIWY2fyZEqeFuKRD6HS
-/zjQ59OfMtVZZqBQ37fjdN6Zg4PKKg==
-=boR4
------END PGP SIGNATURE-----
-
---NzB8fVQJ5HfG6fxh--
+Tony
