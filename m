@@ -2,73 +2,217 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from vger.kernel.org (vger.kernel.org [23.128.96.18])
-	by mail.lfdr.de (Postfix) with ESMTP id 075BB27E279
-	for <lists+devicetree@lfdr.de>; Wed, 30 Sep 2020 09:21:23 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTP id 7EF3A27E273
+	for <lists+devicetree@lfdr.de>; Wed, 30 Sep 2020 09:18:06 +0200 (CEST)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S1725823AbgI3HVW (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Wed, 30 Sep 2020 03:21:22 -0400
-Received: from szxga05-in.huawei.com ([45.249.212.191]:14742 "EHLO huawei.com"
-        rhost-flags-OK-OK-OK-FAIL) by vger.kernel.org with ESMTP
-        id S1725440AbgI3HVW (ORCPT <rfc822;devicetree@vger.kernel.org>);
-        Wed, 30 Sep 2020 03:21:22 -0400
-Received: from DGGEMS413-HUB.china.huawei.com (unknown [172.30.72.58])
-        by Forcepoint Email with ESMTP id 110B451DC318BD008111;
-        Wed, 30 Sep 2020 15:21:20 +0800 (CST)
-Received: from [127.0.0.1] (10.174.177.253) by DGGEMS413-HUB.china.huawei.com
- (10.3.19.213) with Microsoft SMTP Server id 14.3.487.0; Wed, 30 Sep 2020
- 15:21:13 +0800
-Subject: Re: [PATCH v6 01/17] dt-bindings: mfd: syscon: add some compatible
- strings for Hisilicon
-To:     Lee Jones <lee.jones@linaro.org>
-CC:     devicetree <devicetree@vger.kernel.org>,
-        Kefeng Wang <wangkefeng.wang@huawei.com>,
-        linux-kernel <linux-kernel@vger.kernel.org>,
-        Wei Xu <xuwei5@hisilicon.com>,
-        Rob Herring <robh+dt@kernel.org>,
-        Libin <huawei.libin@huawei.com>,
-        Jonathan Cameron <Jonathan.Cameron@Huawei.com>,
-        linux-arm-kernel <linux-arm-kernel@lists.infradead.org>
-References: <20200930031712.2365-1-thunder.leizhen@huawei.com>
- <20200930031712.2365-2-thunder.leizhen@huawei.com>
- <20200930071110.GH6148@dell>
-From:   "Leizhen (ThunderTown)" <thunder.leizhen@huawei.com>
-Message-ID: <3045a295-928a-eae6-c887-e34446a170e0@huawei.com>
-Date:   Wed, 30 Sep 2020 15:21:11 +0800
-User-Agent: Mozilla/5.0 (Windows NT 10.0; WOW64; rv:60.0) Gecko/20100101
- Thunderbird/60.7.0
+        id S1728346AbgI3HSG (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Wed, 30 Sep 2020 03:18:06 -0400
+Received: from lindbergh.monkeyblade.net ([23.128.96.19]:51228 "EHLO
+        lindbergh.monkeyblade.net" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
+        with ESMTP id S1725440AbgI3HSF (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Wed, 30 Sep 2020 03:18:05 -0400
+Received: from mail-il1-x141.google.com (mail-il1-x141.google.com [IPv6:2607:f8b0:4864:20::141])
+        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 3F7F3C061755;
+        Wed, 30 Sep 2020 00:18:04 -0700 (PDT)
+Received: by mail-il1-x141.google.com with SMTP id e5so607974ils.10;
+        Wed, 30 Sep 2020 00:18:04 -0700 (PDT)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+        d=gmail.com; s=20161025;
+        h=mime-version:references:in-reply-to:from:date:message-id:subject:to
+         :cc:content-transfer-encoding;
+        bh=psbw7i3MjIvoS2hf9QWQDtYAJuKq8vzar3Jam1ZH0Hc=;
+        b=Bo38yM+jEIXzcswNHY6Gromdckl+k/MJVOjA1MHzuDkQoT9nQBpD0amEjmmzjtnVre
+         sXXyFzsFmjOmI4EF68WdzDlaxszOdtuW7OMWv9OdjvZKyeBiPaJQDI/cN51W+owyDrX/
+         2DKOi8S1lRxu/wgUVjp8SxE5C0YR8QKPvUeIbPoMiQUlMK0if16AAB5e7S5o3kRitlbk
+         Y0DeD1ppuhY9LyV4A3RcfHyM+OfCvE9ZeCtp708rRlBlRft6cCmnnpMMzrRTrD8iwApe
+         V1gheB01BXK8/vXN1zqZWpOhKbIKT46gN5o3cEslAAyfzXcV5qh9fk8CRfWnVU9c26nc
+         Wukg==
+X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+        d=1e100.net; s=20161025;
+        h=x-gm-message-state:mime-version:references:in-reply-to:from:date
+         :message-id:subject:to:cc:content-transfer-encoding;
+        bh=psbw7i3MjIvoS2hf9QWQDtYAJuKq8vzar3Jam1ZH0Hc=;
+        b=hU6IQNMe/DoIWiMslcqAEKpAl0pT6tJQQicaTw2Nh5OXkyuX994+PClFhR7smUhSjM
+         3dQR/IIC7X8h4U6P2sDJYDE82G7KwK17bhnwToMzMKrMM6dn1fzQWlE1AXvqgafdIgy2
+         d0nk8UuWmJf5pMpIiRtApkK5mnzwsCOzpx1tmnc+ECa7iVVotLjWvLQfWnAsFhvUZqqD
+         H+kjr0g9enmPcbzE+kzA7yVXnFeZcE320rZZDfC/HtUqoiXb7cFRVhc13Z68I3Zkj3Ff
+         SCVY+2HUVKAhttvygBNw2YEdvNGhFeEgqZKmz0oVpQgJooMpgW4BtEUaaFo1eSYlyEEE
+         GtEQ==
+X-Gm-Message-State: AOAM530uOR4LkCeMwYMJ8HyuvVLYhzPJ+XreGkAzbBLPPk5jRw6qrLit
+        p1nKicF2rVsZLFHbMRnkdU4fl8+VXM/+0P5quNKccEs2+xM=
+X-Google-Smtp-Source: ABdhPJwqQ8KMmr3JDuN8zpHdfHPUqvbHvZzb65j8t8gjstpZRO17wytTnMH0Il3P/9PcrXkOUf0BUof0KeQ4RlVi+8I=
+X-Received: by 2002:a92:1589:: with SMTP id 9mr960077ilv.292.1601450283511;
+ Wed, 30 Sep 2020 00:18:03 -0700 (PDT)
 MIME-Version: 1.0
-In-Reply-To: <20200930071110.GH6148@dell>
-Content-Type: text/plain; charset="utf-8"
-Content-Language: en-US
-Content-Transfer-Encoding: 7bit
-X-Originating-IP: [10.174.177.253]
-X-CFilter-Loop: Reflected
+References: <1600865452-19649-1-git-send-email-gene.chen.richtek@gmail.com>
+ <1600865452-19649-2-git-send-email-gene.chen.richtek@gmail.com> <20200928184423.GA3041988@bogus>
+In-Reply-To: <20200928184423.GA3041988@bogus>
+From:   Gene Chen <gene.chen.richtek@gmail.com>
+Date:   Wed, 30 Sep 2020 23:17:51 +0800
+Message-ID: <CAE+NS35qEzfixkBJn17Ookqf8NZDwr+2RmDGGZTThMUHy=Yttg@mail.gmail.com>
+Subject: Re: [PATCH v4 1/2] dt-bindings: leds: Add bindings for MT6360 LED
+To:     Rob Herring <robh@kernel.org>
+Cc:     Jacek Anaszewski <jacek.anaszewski@gmail.com>,
+        Pavel Machek <pavel@ucw.cz>,
+        Matthias Brugger <matthias.bgg@gmail.com>,
+        Dan Murphy <dmurphy@ti.com>,
+        Linux LED Subsystem <linux-leds@vger.kernel.org>,
+        devicetree <devicetree@vger.kernel.org>,
+        linux-arm Mailing List <linux-arm-kernel@lists.infradead.org>,
+        "moderated list:ARM/Mediatek SoC support" 
+        <linux-mediatek@lists.infradead.org>,
+        Linux Kernel Mailing List <linux-kernel@vger.kernel.org>,
+        Gene Chen <gene_chen@richtek.com>, Wilma.Wu@mediatek.com,
+        shufan_lee@richtek.com, cy_huang@richtek.com,
+        benjamin.chao@mediatek.com
+Content-Type: text/plain; charset="UTF-8"
+Content-Transfer-Encoding: quoted-printable
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
+Rob Herring <robh@kernel.org> =E6=96=BC 2020=E5=B9=B49=E6=9C=8829=E6=97=A5 =
+=E9=80=B1=E4=BA=8C =E4=B8=8A=E5=8D=882:44=E5=AF=AB=E9=81=93=EF=BC=9A
+>
+> On Wed, Sep 23, 2020 at 08:50:51PM +0800, Gene Chen wrote:
+> > From: Gene Chen <gene_chen@richtek.com>
+> >
+> > Add bindings document for LED support on MT6360 PMIC
+> >
+> > Signed-off-by: Gene Chen <gene_chen@richtek.com>
+> > ---
+> >  .../devicetree/bindings/leds/leds-mt6360.yaml      | 107 +++++++++++++=
+++++++++
+> >  1 file changed, 107 insertions(+)
+> >  create mode 100644 Documentation/devicetree/bindings/leds/leds-mt6360.=
+yaml
+> >
+> > diff --git a/Documentation/devicetree/bindings/leds/leds-mt6360.yaml b/=
+Documentation/devicetree/bindings/leds/leds-mt6360.yaml
+> > new file mode 100644
+> > index 0000000..a356a1f
+> > --- /dev/null
+> > +++ b/Documentation/devicetree/bindings/leds/leds-mt6360.yaml
+> > @@ -0,0 +1,107 @@
+> > +# SPDX-License-Identifier: (GPL-2.0-only OR BSD-2-Clause)
+> > +%YAML 1.2
+> > +---
+> > +$id: http://devicetree.org/schemas/leds/leds-mt6360.yaml#
+> > +$schema: http://devicetree.org/meta-schemas/core.yaml#
+> > +
+> > +title: LED driver for MT6360 PMIC from MediaTek Integrated.
+>
+> Where's the PMIC schema? This file needs to be referenced from it and
+> that means it all needs to be one series.
+>
 
+Do you means as regulator/max77650-regulator.yaml?
 
-On 2020/9/30 15:11, Lee Jones wrote:
-> On Wed, 30 Sep 2020, Zhen Lei wrote:
-> 
->> Add some compatible strings for Hisilicon controllers:
->> hisilicon,hi6220-sramctrl  --> Hi6220 SRAM controller
->> hisilicon,pcie-sas-subctrl --> HiP05/HiP06 PCIe-SAS subsystem controller
->> hisilicon,peri-subctrl     --> HiP05/HiP06 PERI subsystem controller
->> hisilicon,dsa-subctrl      --> HiP05/HiP06 DSA subsystem controller
->>
->> Signed-off-by: Zhen Lei <thunder.leizhen@huawei.com>
->> ---
->>  Documentation/devicetree/bindings/mfd/syscon.yaml | 5 ++++-
->>  1 file changed, 4 insertions(+), 1 deletion(-)
-> 
-> This was already applied by the time you re-sent it.
-> 
-> Any reason for sending it again?
+description: |
+  This module is part of the MAX77650 MFD device. For more details
+  "see Documentation/devicetree/bindings/mfd/max77650.yaml"
 
-Path 15 are modified. The Document patches except Patch 15 are applied,
-but the config/DTS patches are not applied(They are applied after I re-sent).
-
-> 
-
+> > +
+> > +maintainers:
+> > +  - Gene Chen <gene_chen@richtek.com>
+> > +
+> > +description: |
+> > +  This module is part of the MT6360 MFD device.
+> > +  Add MT6360 LED driver include 2-channel Flash LED with torch/strobe =
+mode,
+> > +  and 4-channel RGB LED support Register/Flash/Breath Mode
+> > +
+> > +properties:
+> > +  compatible:
+> > +    const: mediatek,mt6360-led
+> > +
+> > +  "#address-cells":
+> > +    const: 1
+> > +
+> > +  "#size-cells":
+> > +    const: 0
+> > +
+> > +patternProperties:
+> > +  "^led@[0-5]$":
+> > +    type: object
+> > +    $ref: common.yaml#
+> > +    description:
+> > +      Properties for a single LED.
+> > +
+> > +    properties:
+> > +      reg:
+> > +        description: Index of the LED.
+> > +        enum:
+> > +          - 0 # LED output INDICATOR1
+> > +          - 1 # LED output INDICATOR2
+> > +          - 2 # LED output INDICATOR3
+> > +          - 3 # LED output INDICATOR4
+> > +          - 4 # LED output FLED1
+> > +          - 5 # LED output FLED2
+> > +
+> > +unevaluatedProperties: false
+> > +
+> > +required:
+> > +  - compatible
+> > +  - "#address-cells"
+> > +  - "#size-cells"
+> > +
+> > +additionalProperties: false
+> > +
+> > +examples:
+> > + - |
+> > +   #include <dt-bindings/leds/common.h>
+> > +   led-controller {
+> > +     compatible =3D "mediatek,mt6360-led";
+> > +     #address-cells =3D <1>;
+> > +     #size-cells =3D <0>;
+> > +
+> > +     led@0 {
+> > +       reg =3D <0>;
+> > +       function =3D LED_FUNCTION_INDICATOR;
+> > +       color =3D <LED_COLOR_ID_RED>;
+> > +       default-state =3D "off";
+> > +     };
+> > +     led@1 {
+> > +       reg =3D <1>;
+> > +       function =3D LED_FUNCTION_INDICATOR;
+> > +       color =3D <LED_COLOR_ID_GREEN>;
+> > +       default-state =3D "off";
+> > +     };
+> > +     led@2 {
+> > +       reg =3D <2>;
+> > +       function =3D LED_FUNCTION_INDICATOR;
+> > +       color =3D <LED_COLOR_ID_BLUE>;
+> > +       default-state =3D "off";
+> > +     };
+> > +     led@3 {
+> > +       reg =3D <3>;
+> > +       function =3D LED_FUNCTION_INDICATOR;
+> > +       color =3D <LED_COLOR_ID_AMBER>;
+> > +       default-state =3D "off";
+> > +     };
+> > +     led@4 {
+> > +       reg =3D <4>;
+> > +       function =3D LED_FUNCTION_FLASH;
+> > +       color =3D <LED_COLOR_ID_WHITE>;
+> > +       function-enumerator =3D <1>;
+> > +       default-state =3D "off";
+> > +       led-max-microamp =3D <200000>;
+> > +       flash-max-microamp =3D <500000>;
+> > +       flash-max-timeout-us =3D <1024000>;
+> > +     };
+> > +     led@5 {
+> > +       reg =3D <5>;
+> > +       function =3D LED_FUNCTION_FLASH;
+> > +       color =3D <LED_COLOR_ID_WHITE>;
+> > +       function-enumerator =3D <2>;
+> > +       default-state =3D "off";
+> > +       led-max-microamp =3D <200000>;
+> > +       flash-max-microamp =3D <500000>;
+> > +       flash-max-timeout-us =3D <1024000>;
+> > +     };
+> > +   };
+> > +...
+> > --
+> > 2.7.4
+> >
