@@ -2,93 +2,227 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from vger.kernel.org (vger.kernel.org [23.128.96.18])
-	by mail.lfdr.de (Postfix) with ESMTP id E36A027DE88
-	for <lists+devicetree@lfdr.de>; Wed, 30 Sep 2020 04:31:04 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTP id 9F47727DE97
+	for <lists+devicetree@lfdr.de>; Wed, 30 Sep 2020 04:50:34 +0200 (CEST)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S1729555AbgI3CbE (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Tue, 29 Sep 2020 22:31:04 -0400
-Received: from Mailgw01.mediatek.com ([1.203.163.78]:31684 "EHLO
-        mailgw01.mediatek.com" rhost-flags-OK-FAIL-OK-FAIL) by vger.kernel.org
-        with ESMTP id S1729446AbgI3CbE (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Tue, 29 Sep 2020 22:31:04 -0400
-X-Greylist: delayed 302 seconds by postgrey-1.27 at vger.kernel.org; Tue, 29 Sep 2020 22:31:02 EDT
-X-UUID: fe31606e6cc3441f99ebff7d0d465015-20200930
-DKIM-Signature: v=1; a=rsa-sha256; q=dns/txt; c=relaxed/relaxed; d=mediatek.com; s=dk;
-        h=Content-Transfer-Encoding:MIME-Version:Content-Type:References:In-Reply-To:Date:CC:To:From:Subject:Message-ID; bh=FPhHR58XeaLRoJ4yRG0FFx7jDt7EJ3VRl8a75Zvvs3o=;
-        b=GwV4YRWnVvSNUyEh/57CZrSCJPacuk3fzz4B+Ui152nZIeWlxxvm9XT4E0aVN1g3MOXMcCF926gcVeYU3jGNKmIm5qPOSopTa9ngsoYkZin/Wx3P1NVrwpUAMb/0+dZXzj5/4Wjh0xBv6SKksp0NYJoOHvlblM7NNhjjkZBnzV4=;
-X-UUID: fe31606e6cc3441f99ebff7d0d465015-20200930
-Received: from mtkcas34.mediatek.inc [(172.27.4.253)] by mailgw01.mediatek.com
-        (envelope-from <crystal.guo@mediatek.com>)
-        (mailgw01.mediatek.com ESMTP with TLSv1.2 ECDHE-RSA-AES256-SHA384 256/256)
-        with ESMTP id 795390689; Wed, 30 Sep 2020 10:25:55 +0800
-Received: from MTKCAS36.mediatek.inc (172.27.4.186) by MTKMBS31N1.mediatek.inc
- (172.27.4.69) with Microsoft SMTP Server (TLS) id 15.0.1497.2; Wed, 30 Sep
- 2020 10:25:45 +0800
-Received: from [10.17.3.153] (10.17.3.153) by MTKCAS36.mediatek.inc
- (172.27.4.170) with Microsoft SMTP Server id 15.0.1497.2 via Frontend
- Transport; Wed, 30 Sep 2020 10:25:48 +0800
-Message-ID: <1601432748.14806.39.camel@mhfsdcap03>
-Subject: Re: [v5,1/3] dt-binding: reset-controller: mediatek: add YAML
- schemas
-From:   Crystal Guo <crystal.guo@mediatek.com>
-To:     Rob Herring <robh@kernel.org>
-CC:     "linux-kernel@vger.kernel.org" <linux-kernel@vger.kernel.org>,
-        "Yingjoe Chen =?UTF-8?Q?=28=E9=99=B3=E8=8B=B1=E6=B4=B2=29?=" 
-        <Yingjoe.Chen@mediatek.com>,
-        "matthias.bgg@gmail.com" <matthias.bgg@gmail.com>,
-        "p.zabel@pengutronix.de" <p.zabel@pengutronix.de>,
-        Seiya Wang =?UTF-8?Q?=28=E7=8E=8B=E8=BF=BA=E5=90=9B=29?= 
-        <seiya.wang@mediatek.com>,
-        Fan Chen =?UTF-8?Q?=28=E9=99=B3=E5=87=A1=29?= 
-        <fan.chen@mediatek.com>,
-        "linux-mediatek@lists.infradead.org" 
-        <linux-mediatek@lists.infradead.org>,
-        "linux-arm-kernel@lists.infradead.org" 
-        <linux-arm-kernel@lists.infradead.org>,
-        Stanley Chu =?UTF-8?Q?=28=E6=9C=B1=E5=8E=9F=E9=99=9E=29?= 
-        <stanley.chu@mediatek.com>,
-        "robh+dt@kernel.org" <robh+dt@kernel.org>,
-        srv_heupstream <srv_heupstream@mediatek.com>,
-        "devicetree@vger.kernel.org" <devicetree@vger.kernel.org>,
-        Yong Liang =?UTF-8?Q?=28=E6=A2=81=E5=8B=87=29?= 
-        <Yong.Liang@mediatek.com>
-Date:   Wed, 30 Sep 2020 10:25:48 +0800
-In-Reply-To: <20200929154845.GA662033@bogus>
-References: <20200929134642.26561-1-crystal.guo@mediatek.com>
-         <20200929134642.26561-2-crystal.guo@mediatek.com>
-         <20200929154845.GA662033@bogus>
-Content-Type: text/plain; charset="UTF-8"
-X-Mailer: Evolution 3.10.4-0ubuntu2 
+        id S1729708AbgI3Cue (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Tue, 29 Sep 2020 22:50:34 -0400
+Received: from szxga05-in.huawei.com ([45.249.212.191]:14731 "EHLO huawei.com"
+        rhost-flags-OK-OK-OK-FAIL) by vger.kernel.org with ESMTP
+        id S1729446AbgI3Cud (ORCPT <rfc822;devicetree@vger.kernel.org>);
+        Tue, 29 Sep 2020 22:50:33 -0400
+Received: from DGGEMS410-HUB.china.huawei.com (unknown [172.30.72.60])
+        by Forcepoint Email with ESMTP id 8F2B331F9658EF0A7C8F;
+        Wed, 30 Sep 2020 10:50:28 +0800 (CST)
+Received: from [127.0.0.1] (10.174.177.253) by DGGEMS410-HUB.china.huawei.com
+ (10.3.19.210) with Microsoft SMTP Server id 14.3.487.0; Wed, 30 Sep 2020
+ 10:50:20 +0800
+Subject: Re: [PATCH v5 15/17] dt-bindings: arm: hisilicon: convert Hi6220
+ domain controller bindings to json-schema
+From:   "Leizhen (ThunderTown)" <thunder.leizhen@huawei.com>
+To:     Wei Xu <xuwei5@hisilicon.com>, Rob Herring <robh+dt@kernel.org>,
+        "Jonathan Cameron" <Jonathan.Cameron@Huawei.com>,
+        devicetree <devicetree@vger.kernel.org>,
+        linux-arm-kernel <linux-arm-kernel@lists.infradead.org>,
+        linux-kernel <linux-kernel@vger.kernel.org>
+CC:     Kefeng Wang <wangkefeng.wang@huawei.com>,
+        Libin <huawei.libin@huawei.com>
+References: <20200929141454.2312-1-thunder.leizhen@huawei.com>
+ <20200929141454.2312-16-thunder.leizhen@huawei.com>
+ <5a6a9cd5-e235-e610-bbca-6d2d4547f051@huawei.com>
+Message-ID: <91ae61b2-4bb0-e322-f231-325b7ee08e66@huawei.com>
+Date:   Wed, 30 Sep 2020 10:50:18 +0800
+User-Agent: Mozilla/5.0 (Windows NT 10.0; WOW64; rv:60.0) Gecko/20100101
+ Thunderbird/60.7.0
 MIME-Version: 1.0
-X-TM-SNTS-SMTP: 7E20F32A211AA1F1D02E05A08D0CC71DFBC3DC598235B15E6056F5EF68E72CC72000:8
-X-MTK:  N
-Content-Transfer-Encoding: base64
+In-Reply-To: <5a6a9cd5-e235-e610-bbca-6d2d4547f051@huawei.com>
+Content-Type: text/plain; charset="utf-8"
+Content-Language: en-US
+Content-Transfer-Encoding: 7bit
+X-Originating-IP: [10.174.177.253]
+X-CFilter-Loop: Reflected
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-T24gVHVlLCAyMDIwLTA5LTI5IGF0IDIzOjQ4ICswODAwLCBSb2IgSGVycmluZyB3cm90ZToNCj4g
-T24gVHVlLCAyOSBTZXAgMjAyMCAyMTo0Njo0MCArMDgwMCwgQ3J5c3RhbCBHdW8gd3JvdGU6DQo+
-ID4gQWRkIGEgWUFNTCBkb2N1bWVudGF0aW9uIGZvciBNZWRpYXRlaywgd2hpY2ggdXNlcyB0aSBy
-ZXNldC1jb250cm9sbGVyDQo+ID4gZHJpdmVyIGRpcmVjdGx5LiBUaGUgVEkgcmVzZXQgY29udHJv
-bGxlciBwcm92aWRlcyBhIGNvbW1vbiByZXNldCBtYW5hZ2VtZW50LA0KPiA+IGFuZCBpcyBzdWl0
-YWJsZSBmb3IgTWVkaWF0ZWsgU29Dcy4NCj4gPiANCj4gPiBTaWduZWQtb2ZmLWJ5OiBDcnlzdGFs
-IEd1byA8Y3J5c3RhbC5ndW9AbWVkaWF0ZWsuY29tPg0KPiA+IC0tLQ0KPiA+ICAuLi4vYmluZGlu
-Z3MvcmVzZXQvbWVkaWF0ZWstc3lzY29uLXJlc2V0LnlhbWwgfCA1MSArKysrKysrKysrKysrKysr
-KysrDQo+ID4gIDEgZmlsZSBjaGFuZ2VkLCA1MSBpbnNlcnRpb25zKCspDQo+ID4gIGNyZWF0ZSBt
-b2RlIDEwMDY0NCBEb2N1bWVudGF0aW9uL2RldmljZXRyZWUvYmluZGluZ3MvcmVzZXQvbWVkaWF0
-ZWstc3lzY29uLXJlc2V0LnlhbWwNCj4gPiANCj4gDQo+IA0KPiBNeSBib3QgZm91bmQgZXJyb3Jz
-IHJ1bm5pbmcgJ21ha2UgZHRfYmluZGluZ19jaGVjaycgb24geW91ciBwYXRjaDoNCj4gDQo+IC9i
-dWlsZHMvcm9iaGVycmluZy9saW51eC1kdC1yZXZpZXcvRG9jdW1lbnRhdGlvbi9kZXZpY2V0cmVl
-L2JpbmRpbmdzL3Jlc2V0L21lZGlhdGVrLXN5c2Nvbi1yZXNldC5leGFtcGxlLmR0LnlhbWw6IGV4
-YW1wbGUtMDogaW5mcmFjZmdAMTAwMDEwMDA6cmVnOjA6IFswLCAyNjg0Mzk1NTIsIDAsIDQwOTZd
-IGlzIHRvbyBsb25nDQo+IAlGcm9tIHNjaGVtYTogL3Vzci9sb2NhbC9saWIvcHl0aG9uMy44L2Rp
-c3QtcGFja2FnZXMvZHRzY2hlbWEvc2NoZW1hcy9yZWcueWFtbA0KPiANCj4gDQo+IFNlZSBodHRw
-czovL3BhdGNod29yay5vemxhYnMub3JnL3BhdGNoLzEzNzM0MjgNCj4gDQo+IElmIHlvdSBhbHJl
-YWR5IHJhbiAnbWFrZSBkdF9iaW5kaW5nX2NoZWNrJyBhbmQgZGlkbid0IHNlZSB0aGUgYWJvdmUN
-Cj4gZXJyb3IocyksIHRoZW4gbWFrZSBzdXJlIGR0LXNjaGVtYSBpcyB1cCB0byBkYXRlOg0KPiAN
-Cj4gcGlwMyBpbnN0YWxsIGdpdCtodHRwczovL2dpdGh1Yi5jb20vZGV2aWNldHJlZS1vcmcvZHQt
-c2NoZW1hLmdpdEBtYXN0ZXIgLS11cGdyYWRlDQo+IA0KPiBQbGVhc2UgY2hlY2sgYW5kIHJlLXN1
-Ym1pdC4NCj4gDQoNClRoYW5rcyBmb3IgeW91ciByZW1pbmQsIHJlLXN1Ym1pdCBhdDoNCmh0dHBz
-Oi8vcGF0Y2h3b3JrLmtlcm5lbC5vcmcvcGF0Y2gvMTE4MDc3MjEvDQoNCg0K
+
+
+On 2020/9/30 9:38, Leizhen (ThunderTown) wrote:
+> Hi, Rob:
+>   I'm so glad to see you applied my patches in this morning. However, this patch
+> is not applied and without any comment. Did you miss it?
+
+Oh, I got it, missed the property "#reset-cells". What a shame! I will post the new one.
+
+> 
+> 
+> On 2020/9/29 22:14, Zhen Lei wrote:
+>> Convert the Hisilicon Hi6220 domain controllers binding to DT schema
+>> format using json-schema. All of them are grouped into one yaml file, to
+>> help users understand differences and avoid repeated descriptions.
+>>
+>> Signed-off-by: Zhen Lei <thunder.leizhen@huawei.com>
+>> ---
+>>  .../hisilicon/controller/hi6220-domain-ctrl.yaml   | 64 ++++++++++++++++++++++
+>>  .../controller/hisilicon,hi6220-aoctrl.txt         | 18 ------
+>>  .../controller/hisilicon,hi6220-mediactrl.txt      | 18 ------
+>>  .../controller/hisilicon,hi6220-pmctrl.txt         | 18 ------
+>>  4 files changed, 64 insertions(+), 54 deletions(-)
+>>  create mode 100644 Documentation/devicetree/bindings/arm/hisilicon/controller/hi6220-domain-ctrl.yaml
+>>  delete mode 100644 Documentation/devicetree/bindings/arm/hisilicon/controller/hisilicon,hi6220-aoctrl.txt
+>>  delete mode 100644 Documentation/devicetree/bindings/arm/hisilicon/controller/hisilicon,hi6220-mediactrl.txt
+>>  delete mode 100644 Documentation/devicetree/bindings/arm/hisilicon/controller/hisilicon,hi6220-pmctrl.txt
+>>
+>> diff --git a/Documentation/devicetree/bindings/arm/hisilicon/controller/hi6220-domain-ctrl.yaml b/Documentation/devicetree/bindings/arm/hisilicon/controller/hi6220-domain-ctrl.yaml
+>> new file mode 100644
+>> index 000000000000000..32c562720d877c9
+>> --- /dev/null
+>> +++ b/Documentation/devicetree/bindings/arm/hisilicon/controller/hi6220-domain-ctrl.yaml
+>> @@ -0,0 +1,64 @@
+>> +# SPDX-License-Identifier: (GPL-2.0-only OR BSD-2-Clause)
+>> +%YAML 1.2
+>> +---
+>> +$id: http://devicetree.org/schemas/arm/hisilicon/controller/hi6220-domain-ctrl.yaml#
+>> +$schema: http://devicetree.org/meta-schemas/core.yaml#
+>> +
+>> +title: Hisilicon Hi6220 domain controller
+>> +
+>> +maintainers:
+>> +  - Wei Xu <xuwei5@hisilicon.com>
+>> +
+>> +description: |
+>> +  Hisilicon designs some special domain controllers for mobile platform,
+>> +  such as: the power Always On domain controller, the Media domain
+>> +  controller(e.g. codec, G3D ...) and the Power Management domain
+>> +  controller.
+>> +
+>> +  The compatible names of each domain controller are as follows:
+>> +  Power Always ON domain controller  --> hisilicon,hi6220-aoctrl
+>> +  Media domain controller            --> hisilicon,hi6220-mediactrl
+>> +  Power Management domain controller --> hisilicon,hi6220-pmctrl
+>> +
+>> +properties:
+>> +  compatible:
+>> +    items:
+>> +      - enum:
+>> +          - hisilicon,hi6220-aoctrl
+>> +          - hisilicon,hi6220-mediactrl
+>> +          - hisilicon,hi6220-pmctrl
+>> +      - const: syscon
+>> +
+>> +  reg:
+>> +    maxItems: 1
+>> +
+>> +  '#clock-cells':
+>> +    const: 1
+>> +
+>> +required:
+>> +  - compatible
+>> +  - reg
+>> +  - '#clock-cells'
+>> +
+>> +additionalProperties: false
+>> +
+>> +examples:
+>> +  - |
+>> +    ao_ctrl@f7800000 {
+>> +        compatible = "hisilicon,hi6220-aoctrl", "syscon";
+>> +        reg = <0xf7800000 0x2000>;
+>> +        #clock-cells = <1>;
+>> +    };
+>> +
+>> +    media_ctrl@f4410000 {
+>> +        compatible = "hisilicon,hi6220-mediactrl", "syscon";
+>> +        reg = <0xf4410000 0x1000>;
+>> +        #clock-cells = <1>;
+>> +    };
+>> +
+>> +    pm_ctrl@f7032000 {
+>> +        compatible = "hisilicon,hi6220-pmctrl", "syscon";
+>> +        reg = <0xf7032000 0x1000>;
+>> +        #clock-cells = <1>;
+>> +    };
+>> +...
+>> diff --git a/Documentation/devicetree/bindings/arm/hisilicon/controller/hisilicon,hi6220-aoctrl.txt b/Documentation/devicetree/bindings/arm/hisilicon/controller/hisilicon,hi6220-aoctrl.txt
+>> deleted file mode 100644
+>> index 5a723c1d45f4a17..000000000000000
+>> --- a/Documentation/devicetree/bindings/arm/hisilicon/controller/hisilicon,hi6220-aoctrl.txt
+>> +++ /dev/null
+>> @@ -1,18 +0,0 @@
+>> -Hisilicon Hi6220 Power Always ON domain controller
+>> -
+>> -Required properties:
+>> -- compatible : "hisilicon,hi6220-aoctrl"
+>> -- reg : Register address and size
+>> -- #clock-cells: should be set to 1, many clock registers are defined
+>> -  under this controller and this property must be present.
+>> -
+>> -Hisilicon designs this system controller to control the power always
+>> -on domain for mobile platform.
+>> -
+>> -Example:
+>> -	/*for Hi6220*/
+>> -	ao_ctrl: ao_ctrl@f7800000 {
+>> -		compatible = "hisilicon,hi6220-aoctrl", "syscon";
+>> -		reg = <0x0 0xf7800000 0x0 0x2000>;
+>> -		#clock-cells = <1>;
+>> -	};
+>> diff --git a/Documentation/devicetree/bindings/arm/hisilicon/controller/hisilicon,hi6220-mediactrl.txt b/Documentation/devicetree/bindings/arm/hisilicon/controller/hisilicon,hi6220-mediactrl.txt
+>> deleted file mode 100644
+>> index dcfdcbcb6455771..000000000000000
+>> --- a/Documentation/devicetree/bindings/arm/hisilicon/controller/hisilicon,hi6220-mediactrl.txt
+>> +++ /dev/null
+>> @@ -1,18 +0,0 @@
+>> -Hisilicon Hi6220 Media domain controller
+>> -
+>> -Required properties:
+>> -- compatible : "hisilicon,hi6220-mediactrl"
+>> -- reg : Register address and size
+>> -- #clock-cells: should be set to 1, many clock registers are defined
+>> -  under this controller and this property must be present.
+>> -
+>> -Hisilicon designs this system controller to control the multimedia
+>> -domain(e.g. codec, G3D ...) for mobile platform.
+>> -
+>> -Example:
+>> -	/*for Hi6220*/
+>> -	media_ctrl: media_ctrl@f4410000 {
+>> -		compatible = "hisilicon,hi6220-mediactrl", "syscon";
+>> -		reg = <0x0 0xf4410000 0x0 0x1000>;
+>> -		#clock-cells = <1>;
+>> -	};
+>> diff --git a/Documentation/devicetree/bindings/arm/hisilicon/controller/hisilicon,hi6220-pmctrl.txt b/Documentation/devicetree/bindings/arm/hisilicon/controller/hisilicon,hi6220-pmctrl.txt
+>> deleted file mode 100644
+>> index 972842f07b5a2ce..000000000000000
+>> --- a/Documentation/devicetree/bindings/arm/hisilicon/controller/hisilicon,hi6220-pmctrl.txt
+>> +++ /dev/null
+>> @@ -1,18 +0,0 @@
+>> -Hisilicon Hi6220 Power Management domain controller
+>> -
+>> -Required properties:
+>> -- compatible : "hisilicon,hi6220-pmctrl"
+>> -- reg : Register address and size
+>> -- #clock-cells: should be set to 1, some clock registers are define
+>> -  under this controller and this property must be present.
+>> -
+>> -Hisilicon designs this system controller to control the power management
+>> -domain for mobile platform.
+>> -
+>> -Example:
+>> -	/*for Hi6220*/
+>> -	pm_ctrl: pm_ctrl@f7032000 {
+>> -		compatible = "hisilicon,hi6220-pmctrl", "syscon";
+>> -		reg = <0x0 0xf7032000 0x0 0x1000>;
+>> -		#clock-cells = <1>;
+>> -	};
+>>
+> 
+> 
+> _______________________________________________
+> linux-arm-kernel mailing list
+> linux-arm-kernel@lists.infradead.org
+> http://lists.infradead.org/mailman/listinfo/linux-arm-kernel
+> 
+> .
+> 
 
