@@ -2,137 +2,137 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from vger.kernel.org (vger.kernel.org [23.128.96.18])
-	by mail.lfdr.de (Postfix) with ESMTP id B61EB27FA50
-	for <lists+devicetree@lfdr.de>; Thu,  1 Oct 2020 09:32:17 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTP id BDC5727FA7B
+	for <lists+devicetree@lfdr.de>; Thu,  1 Oct 2020 09:47:00 +0200 (CEST)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S1730695AbgJAHcR (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Thu, 1 Oct 2020 03:32:17 -0400
-Received: from mail-ej1-f67.google.com ([209.85.218.67]:34741 "EHLO
-        mail-ej1-f67.google.com" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S1725878AbgJAHcP (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Thu, 1 Oct 2020 03:32:15 -0400
-Received: by mail-ej1-f67.google.com with SMTP id gr14so6579125ejb.1;
-        Thu, 01 Oct 2020 00:32:12 -0700 (PDT)
-X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=1e100.net; s=20161025;
-        h=x-gm-message-state:date:from:to:cc:subject:message-id:references
-         :mime-version:content-disposition:in-reply-to:user-agent;
-        bh=GDPrLOwa2YDIt9rOahcyvMHm5jBbfc6BnJW0QyGmLM8=;
-        b=VFD+mFrAfDoGofYfm6GZ/0Etu5F5uu6cKAMglsCymGrXXBgZszwIuVqFA3cM8JQrhh
-         4pluvwCGv6FLm+FzUTNrmStPcvWmDf0vUdX/bF+E26tGwDnHNwPpger/EyCxPmxwMU3E
-         84rAFl/EjlOAA5H6zKTfa4GHa0SO5SVpBVyJKpx8LjMb0MycjASuFW3tGASFRz/3WxEj
-         5Te3TZZEHkxuF6+QNhYiPueWWCQYK5TEocUdHtE/jUveDKwMnDFNnCvqoWRd4MoIPw9x
-         IXyfFsS394Tr6POrNEvXT1WWgPZDVBBiI/PZhhVwZOUmxbS4wH1VSLHY2goqGlcpIagZ
-         FWYg==
-X-Gm-Message-State: AOAM533kMi8IW6SnqLp+f3LBdtsdtvSYJyGMJuo76KYlDyr7aw076Kpb
-        dtqQ20ybqPQ1OQmWsBTGL4g=
-X-Google-Smtp-Source: ABdhPJzy3xgC6JU5blEUxdisaf5j4WjB6FYtXHbhypV1gfguZbrHfAJLc/4OCEMClu7A7rt/3kWtsw==
-X-Received: by 2002:a17:906:4c89:: with SMTP id q9mr6954374eju.290.1601537531522;
-        Thu, 01 Oct 2020 00:32:11 -0700 (PDT)
-Received: from kozik-lap ([194.230.155.194])
-        by smtp.googlemail.com with ESMTPSA id p7sm539897edq.5.2020.10.01.00.32.09
-        (version=TLS1_2 cipher=ECDHE-ECDSA-CHACHA20-POLY1305 bits=256/256);
-        Thu, 01 Oct 2020 00:32:10 -0700 (PDT)
-Date:   Thu, 1 Oct 2020 09:32:08 +0200
-From:   Krzysztof Kozlowski <krzk@kernel.org>
-To:     Ahmad Fatoum <a.fatoum@pengutronix.de>
-Cc:     Rob Herring <robh+dt@kernel.org>, Shawn Guo <shawnguo@kernel.org>,
-        Sascha Hauer <s.hauer@pengutronix.de>,
-        Pengutronix Kernel Team <kernel@pengutronix.de>,
+        id S1725918AbgJAHqt (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Thu, 1 Oct 2020 03:46:49 -0400
+Received: from mail-eopbgr40094.outbound.protection.outlook.com ([40.107.4.94]:34368
+        "EHLO EUR03-DB5-obe.outbound.protection.outlook.com"
+        rhost-flags-OK-OK-OK-FAIL) by vger.kernel.org with ESMTP
+        id S1725878AbgJAHqt (ORCPT <rfc822;devicetree@vger.kernel.org>);
+        Thu, 1 Oct 2020 03:46:49 -0400
+ARC-Seal: i=1; a=rsa-sha256; s=arcselector9901; d=microsoft.com; cv=none;
+ b=EYO5WaxjkwF0/RUgVGrb/UjHqGbxS/PB6WsCeJevJFz82Ub4yisKH60l2GZ6uQkoXx6rzwQA9tQwRR14odlmw4IuQ32wRKLB+W9qC69UuZFnBU9ZhyIaxKrmmv3zYldQvfA7RQsuHWI8bXWC7ngNB89aGj9sYQQNGj/juw3VjJMKNVSKOAEIXF1FJfs8tcosn9BCbiglmb/p+zdAwiuYlHyuceoyONH7V2JB3UaY43DqC4pgzmBCz+B+IhSuW/Mt94UPro2947XB6lGlI9F06bRCreKgBG2gHbPWLTSwrCjioN2PTU+fAkTNla0bzsnL9r57XoVZLcoqO+3qtg5baA==
+ARC-Message-Signature: i=1; a=rsa-sha256; c=relaxed/relaxed; d=microsoft.com;
+ s=arcselector9901;
+ h=From:Date:Subject:Message-ID:Content-Type:MIME-Version:X-MS-Exchange-SenderADCheck;
+ bh=81WYbgvZKoNO1WXbtYxr9xaoXJ4mdikR4PMkJ3ty+Jc=;
+ b=LY6aPFcx/1KmlnZptA9Rt0GBgva7Pwd9DxEGPnqr7HcP8Ulc2hsd6RKud312tXjmelfRQ9QT8huhx4eCmGwqdIaKtGIWg2hytswPZG4znTH366KMG3wx5h7Mrp3v9jpzcqjOHtxgu6ePhpCH9hk2a+dUWSBjGTLzcas6Iw7/teBOUlCkyYNvOZEgM8/zbzO2JurLfqYjd+y5DBTqMZO0qthOV887QMZC2JIr23MItNjAz4UfuLazRn3u7sDkBoPSN3B/eBVWa7FBLTdVCTFlJGHa69rhaspUKoiQdwfsS1djdoetPjqdFDhnpQGnkkyk9J1Hcc9NH8h57NJ58ZtVzw==
+ARC-Authentication-Results: i=1; mx.microsoft.com 1; spf=pass
+ smtp.mailfrom=kontron.de; dmarc=pass action=none header.from=kontron.de;
+ dkim=pass header.d=kontron.de; arc=none
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=mysnt.onmicrosoft.com;
+ s=selector2-mysnt-onmicrosoft-com;
+ h=From:Date:Subject:Message-ID:Content-Type:MIME-Version:X-MS-Exchange-SenderADCheck;
+ bh=81WYbgvZKoNO1WXbtYxr9xaoXJ4mdikR4PMkJ3ty+Jc=;
+ b=eSPh6VbY7iIpB8jwDGGdHsnEt2Uf89PK8ZZFYxIHCqufI5AEVbrQ8S5/o8dr0FvkkwAfAUPPANepCynGiyY+u+sCG4CFSouTik/Stcvqo9j7l0rig+zTAZLpHnQ2htpUsXupMEWjjTqIpl8MQAuzZe9i8GKiwjL4VgzKdC1cQk8=
+Authentication-Results: pengutronix.de; dkim=none (message not signed)
+ header.d=none;pengutronix.de; dmarc=none action=none header.from=kontron.de;
+Received: from AM0PR10MB2963.EURPRD10.PROD.OUTLOOK.COM (2603:10a6:208:157::14)
+ by AM0PR10MB2722.EURPRD10.PROD.OUTLOOK.COM (2603:10a6:208:123::27) with
+ Microsoft SMTP Server (version=TLS1_2,
+ cipher=TLS_ECDHE_RSA_WITH_AES_256_GCM_SHA384) id 15.20.3433.34; Thu, 1 Oct
+ 2020 07:46:45 +0000
+Received: from AM0PR10MB2963.EURPRD10.PROD.OUTLOOK.COM
+ ([fe80::852:b8d:8b04:d2f5]) by AM0PR10MB2963.EURPRD10.PROD.OUTLOOK.COM
+ ([fe80::852:b8d:8b04:d2f5%6]) with mapi id 15.20.3433.032; Thu, 1 Oct 2020
+ 07:46:45 +0000
+Subject: Re: [PATCH 00/11] i.MX8MM power domain support
+To:     Lucas Stach <l.stach@pengutronix.de>,
+        Shawn Guo <shawnguo@kernel.org>,
+        Rob Herring <robh+dt@kernel.org>
+Cc:     NXP Linux Team <linux-imx@nxp.com>,
         Fabio Estevam <festevam@gmail.com>,
-        NXP Linux Team <linux-imx@nxp.com>,
-        Anson Huang <Anson.Huang@nxp.com>,
-        Andreas Kemnade <andreas@kemnade.info>,
-        Stefan Riedmueller <s.riedmueller@phytec.de>,
-        Robert Jones <rjones@gateworks.com>,
-        Li Yang <leoyang.li@nxp.com>, devicetree@vger.kernel.org,
-        linux-kernel@vger.kernel.org, linux-arm-kernel@lists.infradead.org
-Subject: Re: [PATCH v2 08/12] ARM: dts: imx6dl-pico: fix board compatibles
-Message-ID: <20201001073208.GA5208@kozik-lap>
-References: <20200930190143.27032-1-krzk@kernel.org>
- <20200930190143.27032-9-krzk@kernel.org>
- <0a0afea6-8cbb-3e89-5a4f-89660c942ca3@pengutronix.de>
+        Marek Vasut <marex@denx.de>,
+        linux-arm-kernel@lists.infradead.org, devicetree@vger.kernel.org,
+        kernel@pengutronix.de, patchwork-lst@pengutronix.de
+References: <20200930155006.535712-1-l.stach@pengutronix.de>
+From:   Frieder Schrempf <frieder.schrempf@kontron.de>
+Message-ID: <1461917a-5b8a-3487-bcb1-b4380df34852@kontron.de>
+Date:   Thu, 1 Oct 2020 09:46:43 +0200
+User-Agent: Mozilla/5.0 (X11; Linux x86_64; rv:68.0) Gecko/20100101
+ Thunderbird/68.10.0
+In-Reply-To: <20200930155006.535712-1-l.stach@pengutronix.de>
+Content-Type: text/plain; charset=utf-8; format=flowed
+Content-Language: en-US
+Content-Transfer-Encoding: 7bit
+X-Originating-IP: [89.247.42.197]
+X-ClientProxiedBy: AM6PR10CA0059.EURPRD10.PROD.OUTLOOK.COM
+ (2603:10a6:209:80::36) To AM0PR10MB2963.EURPRD10.PROD.OUTLOOK.COM
+ (2603:10a6:208:157::14)
 MIME-Version: 1.0
-Content-Type: text/plain; charset=utf-8
-Content-Disposition: inline
-In-Reply-To: <0a0afea6-8cbb-3e89-5a4f-89660c942ca3@pengutronix.de>
-User-Agent: Mutt/1.9.4 (2018-02-28)
+X-MS-Exchange-MessageSentRepresentingType: 1
+Received: from [192.168.10.17] (89.247.42.197) by AM6PR10CA0059.EURPRD10.PROD.OUTLOOK.COM (2603:10a6:209:80::36) with Microsoft SMTP Server (version=TLS1_2, cipher=TLS_ECDHE_RSA_WITH_AES_256_GCM_SHA384) id 15.20.3433.32 via Frontend Transport; Thu, 1 Oct 2020 07:46:44 +0000
+X-MS-PublicTrafficType: Email
+X-MS-Office365-Filtering-Correlation-Id: f1a78dce-778e-4eff-4bf7-08d865de2542
+X-MS-TrafficTypeDiagnostic: AM0PR10MB2722:
+X-Microsoft-Antispam-PRVS: <AM0PR10MB272268E8705F35D7AD9B4525E9300@AM0PR10MB2722.EURPRD10.PROD.OUTLOOK.COM>
+X-MS-Oob-TLC-OOBClassifiers: OLM:8882;
+X-MS-Exchange-SenderADCheck: 1
+X-Microsoft-Antispam: BCL:0;
+X-Microsoft-Antispam-Message-Info: Oky5TfZYwdgEJowM2tObGrX7XqRz9OjGnd+JmKTomXhQX7JuAbEjcUcHbyoaFt+mdLYVKpuZvQ7muwnpoc1mSVehaEcipol5+YCAW5zydjTWLj7fqtJxJ5NLAV2KtgJ60A1L7xI0PK2oO99zKp0Ef9gpZ0L0bk644hmqH9Qyj9i+vp63LfugSkqXUjXM5sX5VxQjVg0EoC29/kSqxtgACfcyqWOLl1Q8niZnW/MTYoAYx3asJNnUXhber0XwbHQXXkPESj6ynPUeMoNehkGKr1I4JNXEO4R0dzF1IMI4DHdlPoT8pNn5G0wSppe+iMQy6lPuDb8NZ3GcNDf5jMEvR7wb1JI4vRfoFj/zgDLvGPX1EOqlemSt72b8kzlQdJkg
+X-Forefront-Antispam-Report: CIP:255.255.255.255;CTRY:;LANG:en;SCL:1;SRV:;IPV:NLI;SFV:NSPM;H:AM0PR10MB2963.EURPRD10.PROD.OUTLOOK.COM;PTR:;CAT:NONE;SFS:(4636009)(346002)(376002)(396003)(136003)(366004)(39850400004)(66556008)(956004)(2616005)(66476007)(16526019)(186003)(5660300002)(44832011)(4326008)(478600001)(83380400001)(8676002)(31696002)(8936002)(2906002)(86362001)(31686004)(66946007)(53546011)(52116002)(36756003)(54906003)(26005)(6486002)(16576012)(316002)(7416002)(110136005)(43740500002);DIR:OUT;SFP:1102;
+X-MS-Exchange-AntiSpam-MessageData: 1t/5nZpeNYkfS7/SH/jXvCWXCv0cIFtCKhtd6EEUs7yPwWGvi9UTO2nY9Cx21og5LGX4iBzzCYBOLSN8NJqIlMeCLdl7uIto+ZchANB5d39kbMrSk+2cnDcuzjQb4ZowKGzvZoDL1fqxC4zUApepI01p9dd9qZZlMzS83aiKMd2HVsl3Kq7kNxicghcFzNF8ynGlnuHcwAglom+j/o5W2VFr9b0B3YBnbVFP+JjwZ9XjtpFZGAaoImp5lydlY8YVHBiAltC1v36M/ECeAqwHLbFRDmdc0aFIbM71H2Sr+D1luKUzHrxNTYtlTcUr9oo2qPUw8fhlykadbmWFnjZnY6G2v7TWE2sxBmvqu4vbJn2KL6G9pbAHvpDih8GtT0toLqAjvY0SgcazzND550Jdv+SjhxCLIm9G559DWCUOOuBodtAWlt7hCnM2cxi38mNfbenB6X9ONfE0uVRh0selORtT/U2RzPZ6E5XQrk0zJthxZwz8uERwj1oQTFF1gAdf/wNKBgk7zaeuH5/ygzXNPMrmWFUQNmVsiWYhUSjpg3y4k7M5UYYR6CjxqNZ5eCxdZB0NxumDX1qPeekEImfDSMKGU/B9blmnS91Yh5kw2IlmWI4E8tprejeOKvyrwSsE3w8XHBjx5WJmN6y2MkRzPw==
+X-OriginatorOrg: kontron.de
+X-MS-Exchange-CrossTenant-Network-Message-Id: f1a78dce-778e-4eff-4bf7-08d865de2542
+X-MS-Exchange-CrossTenant-AuthSource: AM0PR10MB2963.EURPRD10.PROD.OUTLOOK.COM
+X-MS-Exchange-CrossTenant-AuthAs: Internal
+X-MS-Exchange-CrossTenant-OriginalArrivalTime: 01 Oct 2020 07:46:45.6991
+ (UTC)
+X-MS-Exchange-CrossTenant-FromEntityHeader: Hosted
+X-MS-Exchange-CrossTenant-Id: 8c9d3c97-3fd9-41c8-a2b1-646f3942daf1
+X-MS-Exchange-CrossTenant-MailboxType: HOSTED
+X-MS-Exchange-CrossTenant-UserPrincipalName: uroIUuNZgPtKwIfIxIvVQuNbLfiQhpyE1aYhSEtKBqw0Es3P8pYCZSswyeXCOlyY4VoJQnVETPrcMVMoBxTq8y8RSHELTxe9w5tBCINRPCU=
+X-MS-Exchange-Transport-CrossTenantHeadersStamped: AM0PR10MB2722
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-On Thu, Oct 01, 2020 at 09:22:03AM +0200, Ahmad Fatoum wrote:
-> Hello Krzysztof,
+On 30.09.20 17:49, Lucas Stach wrote:
+> Hi all,
 > 
-> On 9/30/20 9:01 PM, Krzysztof Kozlowski wrote:
-> > There are four flavors of TechNexion PICO-IMX6 boards.  They have their
-> > own DTSes, even though in Dwarf, Nymph and Pi are exactly the same.
-> > They also have their own bindings so adjust the compatibles to match the
-> > bindings.
-> > 
-> > Signed-off-by: Krzysztof Kozlowski <krzk@kernel.org>
-> > 
-> > ---
-> > 
-> > Changes since v1:
-> > 1. None
-> > ---
-> >  arch/arm/boot/dts/imx6dl-pico-dwarf.dts  | 2 +-
-> >  arch/arm/boot/dts/imx6dl-pico-hobbit.dts | 2 +-
-> >  arch/arm/boot/dts/imx6dl-pico-nymph.dts  | 2 +-
-> >  arch/arm/boot/dts/imx6dl-pico-pi.dts     | 2 +-
-> >  4 files changed, 4 insertions(+), 4 deletions(-)
-> > 
-> > diff --git a/arch/arm/boot/dts/imx6dl-pico-dwarf.dts b/arch/arm/boot/dts/imx6dl-pico-dwarf.dts
-> > index 659a8e8714ea..d85b15a8c127 100644
-> > --- a/arch/arm/boot/dts/imx6dl-pico-dwarf.dts
-> > +++ b/arch/arm/boot/dts/imx6dl-pico-dwarf.dts
-> > @@ -13,5 +13,5 @@
-> >  
-> >  / {
-> >  	model = "TechNexion PICO-IMX6 DualLite/Solo Board and Dwarf baseboard";
-> > -	compatible = "technexion,imx6dl-pico", "fsl,imx6dl";
-> > +	compatible = "technexion,imx6dl-pico-dwarf", "fsl,imx6dl";
+> this adds power domain support for the i.MX8MM to the existing GPCv2
+> driver. It is not complete yet, as it is still missing the VPU and
+> display power domains, as those require support for the BLK_CTL
+> regions of the VPUMIX and DISPLAYMIX domains. A Linux driver for
+> those regions on the i.MX8MP is currently under development and we
+> plan to use this as a template for the i.MX8MM when the dust has
+> settled. The changes in this series have been made with this in
+> mind, so once the BLK_CTL driver exists it should be a matter of
+> hooking things together via DT, with no further changes required on
+> the GPCv2 driver side (famous last words).
 > 
-> Could you change this to have all three compatibles ("technexion,imx6dl-pico-dwarf", "technexion,imx6dl-pico",
-> "fsl,imx6dl") and likewise for the other files? 
-> That way other firmware that reuses the Linux device tree files and match against the SoM compatible
-> continues to work after update.
+> Special thanks to Marek Vasut who helped with testing and debugging
+> of early versions of this code.
+
+I tested this on our i.MX8MM boards by making sure the GPUs and USBs 
+come up properly. It works just fine on v5.9-rc6 and also backported to 
+5.4. So for the whole series:
+
+Tested-by: Frieder Schrempf <frieder.schrempf@kontron.de>
+
 > 
-> >  };
-> > diff --git a/arch/arm/boot/dts/imx6dl-pico-hobbit.dts b/arch/arm/boot/dts/imx6dl-pico-hobbit.dts
-> > index d7403c5c4337..08fedcbcc91b 100644
-> > --- a/arch/arm/boot/dts/imx6dl-pico-hobbit.dts
-> > +++ b/arch/arm/boot/dts/imx6dl-pico-hobbit.dts
-> > @@ -13,5 +13,5 @@
-> >  
-> >  / {
-> >  	model = "TechNexion PICO-IMX6 DualLite/Solo Board and Hobbit baseboard";
-> > -	compatible = "technexion,imx6dl-pico", "fsl,imx6dl";
-> > +	compatible = "technexion,imx6dl-pico-hobbit", "fsl,imx6dl";
-> >  };
-> > diff --git a/arch/arm/boot/dts/imx6dl-pico-nymph.dts b/arch/arm/boot/dts/imx6dl-pico-nymph.dts
-> > index b282dbf953aa..32ccfc5d41ce 100644
-> > --- a/arch/arm/boot/dts/imx6dl-pico-nymph.dts
-> > +++ b/arch/arm/boot/dts/imx6dl-pico-nymph.dts
-> > @@ -13,5 +13,5 @@
-> >  
-> >  / {
-> >  	model = "TechNexion PICO-IMX6 DualLite/Solo Board and Nymph baseboard";
-> > -	compatible = "technexion,imx6dl-pico", "fsl,imx6dl";
-> > +	compatible = "technexion,imx6dl-pico-nymph", "fsl,imx6dl";
-> >  };
-> > diff --git a/arch/arm/boot/dts/imx6dl-pico-pi.dts b/arch/arm/boot/dts/imx6dl-pico-pi.dts
-> > index b7b1c07f96f3..4590e8ad9a91 100644
-> > --- a/arch/arm/boot/dts/imx6dl-pico-pi.dts
-> > +++ b/arch/arm/boot/dts/imx6dl-pico-pi.dts
-
-The bindings, added in commit 53b61224ca40 ("dt-bindings: arm: fsl: Add
-TechNexion boards"), describe that these are the only valid compatibles.
-"technexion,imx6dl-pico" is not valid and would require changing the
-bindings, thus breaking compatibility which you want to avoid.
-
-The bindings, not what is present in DTS, is considered ABI.
-
-Best regards,
-Krzysztof
+> Regards,
+> Lucas
+> 
+> Lucas Stach (11):
+>    soc: imx: gpcv2: move to more ideomatic error handling in probe
+>    soc: imx: gpcv2: move domain mapping to domain driver probe
+>    soc: imx: gpcv2: split power up and power down sequence control
+>    soc: imx: gpcv2: wait for ADB400 handshake
+>    soc: imx: gpcv2: add runtime PM support for power-domains
+>    soc: imx: gpcv2: allow domains without power-sequence control
+>    soc: imx: gpcv2: add support for optional resets
+>    dt-bindings: add defines for i.MX8MM power domains
+>    soc: imx: gpcv2: add support for i.MX8MM power domains
+>    arm64: dts: imx8mm: add GPC node and power domains
+>    arm64: dts: imx8mm: put USB controllers into power-domains
+> 
+>   .../bindings/power/fsl,imx-gpcv2.yaml         |   8 +
+>   arch/arm64/boot/dts/freescale/imx8mm.dtsi     |  59 +++
+>   drivers/soc/imx/gpcv2.c                       | 501 +++++++++++++++---
+>   include/dt-bindings/power/imx8mm-power.h      |  22 +
+>   4 files changed, 516 insertions(+), 74 deletions(-)
+>   create mode 100644 include/dt-bindings/power/imx8mm-power.h
+> 
