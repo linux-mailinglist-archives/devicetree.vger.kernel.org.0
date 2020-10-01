@@ -2,139 +2,157 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from vger.kernel.org (vger.kernel.org [23.128.96.18])
-	by mail.lfdr.de (Postfix) with ESMTP id CFFA3280159
-	for <lists+devicetree@lfdr.de>; Thu,  1 Oct 2020 16:33:57 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTP id E5D792801E0
+	for <lists+devicetree@lfdr.de>; Thu,  1 Oct 2020 16:58:37 +0200 (CEST)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S1732299AbgJAOd5 (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Thu, 1 Oct 2020 10:33:57 -0400
-Received: from lindbergh.monkeyblade.net ([23.128.96.19]:58654 "EHLO
-        lindbergh.monkeyblade.net" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S1732020AbgJAOd4 (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Thu, 1 Oct 2020 10:33:56 -0400
-Received: from mail-wr1-x441.google.com (mail-wr1-x441.google.com [IPv6:2a00:1450:4864:20::441])
-        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 59B4FC0613D0;
-        Thu,  1 Oct 2020 07:33:56 -0700 (PDT)
-Received: by mail-wr1-x441.google.com with SMTP id o5so6033711wrn.13;
-        Thu, 01 Oct 2020 07:33:56 -0700 (PDT)
+        id S1732700AbgJAO6B (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Thu, 1 Oct 2020 10:58:01 -0400
+Received: from mail-eopbgr130122.outbound.protection.outlook.com ([40.107.13.122]:47645
+        "EHLO EUR01-HE1-obe.outbound.protection.outlook.com"
+        rhost-flags-OK-OK-OK-FAIL) by vger.kernel.org with ESMTP
+        id S1732620AbgJAO54 (ORCPT <rfc822;devicetree@vger.kernel.org>);
+        Thu, 1 Oct 2020 10:57:56 -0400
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=gmail.com; s=20161025;
-        h=subject:to:cc:references:from:message-id:date:user-agent
-         :mime-version:in-reply-to:content-language:content-transfer-encoding;
-        bh=b3P3LV9RhutiTsTO5Suv2CILZHpCdIFEhL9gMG13gMw=;
-        b=sjH0URHHv1v932gE4pVV6KEJUXeW1bwdd/NKsLAqRnL953En3UJHLfhivZd1U4USGg
-         oZdHqZX4Vo3MFvg7lGHG4NVwI0UWCLBv7km08T3rTR3cbP/9g4tSSaOHfJAgjgyMdOFX
-         jlUjUpwTmzoaCzuwHtHHg2bVFpzSbgzo/oKY82QEpNt/6VP+2yxNzJsSJ6FnK6pZgnyu
-         2tcN7DVOBDKK/KUB8F8kb4EIDbTHppMg2K5N4C+AZA4DJn1b3uwLdHFLLwkmJBw1PP4e
-         My7EwZwjrEKBL9mih3YXF32qj6dPSwutX8OqXOkSW0Ew7pGDE0EH0xfxKFQ9+m9wkqt8
-         6maw==
-X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=1e100.net; s=20161025;
-        h=x-gm-message-state:subject:to:cc:references:from:message-id:date
-         :user-agent:mime-version:in-reply-to:content-language
-         :content-transfer-encoding;
-        bh=b3P3LV9RhutiTsTO5Suv2CILZHpCdIFEhL9gMG13gMw=;
-        b=rdgyCNgd0h8/Dr4xJI1gwCctuXLv1nwWVT4AwhAyxNky9aQfK9u6GTu4k/mRdJwGAy
-         lBslcsApNJG58acSkLw45vSo0pJSmJeI9duBWW+tk7YHLJDGiXpNuH8joGjCScK5NJu2
-         Srv7pE09gEbfnasHGG0GxLvRm/SYSLMUV01JkvT3RdGnbd8UhVtbNm73mVd0eAAuou+G
-         cSn+19qvWwE4ExB5XAv4fyxusbEHDJgvBntzVx4w1z6XYKFeUqr/GTtCu3fbzrDrcUFY
-         Yoga5jI2cKaGmrHGAZYmxLxUM8WcNYiGSVmIxvjH6wdR0NKh0C4YEko2D0NtE2eHPTEA
-         ooNQ==
-X-Gm-Message-State: AOAM533gLcZeOrbiy8VSvDXd8II4f7LfccgxT4UYlO/6sAgydOnUl0IT
-        NGrQCTKiBpI0EBOb+aCS24o=
-X-Google-Smtp-Source: ABdhPJylhiCucri9sPMCLR8/g4mcnNpPddQeyxJ58v14bLXNYPfCCAqVmUSj2SiOW/SyoMqa8Wa1xg==
-X-Received: by 2002:adf:eacf:: with SMTP id o15mr9953527wrn.12.1601562835011;
-        Thu, 01 Oct 2020 07:33:55 -0700 (PDT)
-Received: from ziggy.stardust ([213.195.119.110])
-        by smtp.gmail.com with ESMTPSA id 70sm219279wmb.41.2020.10.01.07.33.53
-        (version=TLS1_3 cipher=TLS_AES_128_GCM_SHA256 bits=128/128);
-        Thu, 01 Oct 2020 07:33:53 -0700 (PDT)
-Subject: Re: [PATCH v17 06/12] soc: mediatek: Add support for hierarchical
- scpsys device node
-To:     Weiyi Lu <weiyi.lu@mediatek.com>,
-        Nicolas Boichat <drinkcat@chromium.org>
-Cc:     Enric Balletbo Serra <eballetbo@gmail.com>,
-        Rob Herring <robh@kernel.org>,
-        Sascha Hauer <kernel@pengutronix.de>,
-        James Liao <jamesjj.liao@mediatek.com>,
-        Fan Chen <fan.chen@mediatek.com>,
-        linux-arm Mailing List <linux-arm-kernel@lists.infradead.org>,
-        lkml <linux-kernel@vger.kernel.org>,
-        Devicetree List <devicetree@vger.kernel.org>,
-        "moderated list:ARM/Mediatek SoC support" 
-        <linux-mediatek@lists.infradead.org>,
-        srv_heupstream <srv_heupstream@mediatek.com>
-References: <1596705715-15320-1-git-send-email-weiyi.lu@mediatek.com>
- <1596705715-15320-7-git-send-email-weiyi.lu@mediatek.com>
- <CANMq1KByYjeD0D81sPzDxx5SzrPvpGxPgm+xvLWcFsmfUJDWBQ@mail.gmail.com>
- <1601437039.28469.3.camel@mtksdaap41>
-From:   Matthias Brugger <matthias.bgg@gmail.com>
-Message-ID: <0f750b5c-86b6-f78f-f03f-d63bb599922e@gmail.com>
-Date:   Thu, 1 Oct 2020 16:33:52 +0200
-User-Agent: Mozilla/5.0 (X11; Linux x86_64; rv:68.0) Gecko/20100101
- Thunderbird/68.12.0
+ d=l2task.onmicrosoft.com; s=selector1-l2task-onmicrosoft-com;
+ h=From:Date:Subject:Message-ID:Content-Type:MIME-Version:X-MS-Exchange-SenderADCheck;
+ bh=XPz7tgoijVFB4KqXP5M4sM//rBR6HhH3hyDevQtaNqA=;
+ b=SzTyvcDLM+8A4g+Eu+0LCfoi0IGOJijHkdGnGFKGvVZO7GAiz9RfUXvwozUHyfRkrEVhQeuqexUah2ldNd7OJfyl9u0/mzfOQIvin5jIXEapac3CMVMxXn0/7lKB2MFQekkUTn+R95v58/8qehO9vscysd0YRIDoCZJbo5wQJKU=
+Received: from AM6P193CA0081.EURP193.PROD.OUTLOOK.COM (2603:10a6:209:88::22)
+ by AM0PR10MB3012.EURPRD10.PROD.OUTLOOK.COM (2603:10a6:208:15f::33) with
+ Microsoft SMTP Server (version=TLS1_2,
+ cipher=TLS_ECDHE_RSA_WITH_AES_256_GCM_SHA384) id 15.20.3433.32; Thu, 1 Oct
+ 2020 14:57:51 +0000
+Received: from AM5EUR03FT064.eop-EUR03.prod.protection.outlook.com
+ (2603:10a6:209:88:cafe::d7) by AM6P193CA0081.outlook.office365.com
+ (2603:10a6:209:88::22) with Microsoft SMTP Server (version=TLS1_2,
+ cipher=TLS_ECDHE_RSA_WITH_AES_256_GCM_SHA384) id 15.20.3433.32 via Frontend
+ Transport; Thu, 1 Oct 2020 14:57:51 +0000
+X-MS-Exchange-Authentication-Results: spf=fail (sender IP is 52.169.0.179)
+ smtp.mailfrom=aerq.com; vger.kernel.org; dkim=fail (body hash did not verify)
+ header.d=l2task.onmicrosoft.com;vger.kernel.org; dmarc=none action=none
+ header.from=aerq.com;
+Received-SPF: Fail (protection.outlook.com: domain of aerq.com does not
+ designate 52.169.0.179 as permitted sender) receiver=protection.outlook.com;
+ client-ip=52.169.0.179; helo=eu2.smtp.exclaimer.net;
+Received: from eu2.smtp.exclaimer.net (52.169.0.179) by
+ AM5EUR03FT064.mail.protection.outlook.com (10.152.17.53) with Microsoft SMTP
+ Server (version=TLS1_2, cipher=TLS_ECDHE_RSA_WITH_AES_256_CBC_SHA384) id
+ 15.20.3433.34 via Frontend Transport; Thu, 1 Oct 2020 14:57:49 +0000
+Received: from EUR01-VE1-obe.outbound.protection.outlook.com (104.47.1.54) by
+         eu2.smtp.exclaimer.net (52.169.0.179) with Exclaimer Signature Manager
+         ESMTP Proxy eu2.smtp.exclaimer.net (tlsversion=TLS12,
+         tlscipher=TLS_ECDHE_WITH_AES256_SHA384); Thu, 1 Oct 2020 14:57:50 +0000
+X-ExclaimerHostedSignatures-MessageProcessed: true
+X-ExclaimerProxyLatency: 15390854
+X-ExclaimerImprintLatency: 908080
+X-ExclaimerImprintAction: 5966083044c64435ab591bedbfe11f85
+ARC-Seal: i=1; a=rsa-sha256; s=arcselector9901; d=microsoft.com; cv=none;
+ b=gyjudMRjsJ8xXqhvpaMg8aYOfxvdy+7ONIpIO6Oa9jNnVMdX+8oyyLiE6hjVQIibye1FpA4+nQp8gMergKIfXAb4v5TGl9heNXH3vROXcwO/f9kwAbRKK/CLIJSRioXfIMGrDeiTSUQ8kvqyOnU+e8F6iw9fbhpUELATUgBiaJwsSb41FiPmQQxjotyHpigf5S+PzAgc2QPk1Mw2F7S06N+9AMaqb2v8EdZtfk0Gr05MqIA2vBdzLrP16AihaXOG+FlFknqiSltck+GXvXn8zg3OATnQF9dVWbtANXg+hHkBnEODQWKNuyRIdOHBMMIm9R1E11pRl6aXff5aoDS9ag==
+ARC-Message-Signature: i=1; a=rsa-sha256; c=relaxed/relaxed; d=microsoft.com;
+ s=arcselector9901;
+ h=From:Date:Subject:Message-ID:Content-Type:MIME-Version:X-MS-Exchange-SenderADCheck;
+ bh=HUnAJCTvZKBJYUbbr7y5fEwWpmOayshQpGCtBQd6ekc=;
+ b=Uw2jBHl946KcbYNnzQGkvGxW6XsvQm3phDRJ3aK0X/AbRq3RQzeXtNH2FOgfc3/prm6bQ9N0lEliUHjT64RraUWxZxko5WdMMB0LB+d4/+PprIZcbBCW13G7GZtQGXVsKOR26+Y1O3Dn/uAIEjFGHQAlWi3t5r7C6rjQ8KTojtaFJrf5xV34Q04KsFqk1bqa92+kCihy2HuScAdUWBX6KSPUJCu5Yfhq/6zi/wmVx/W4ucq8cnDldYMEgv1BPyXmNvfFG8jz87dHARStbptg2tao2/MqGuBMAil2IE4yZR/QiQSr6piUbGe4vuZX5Yzz40CVtp1z1nxo4zm1pBszyw==
+ARC-Authentication-Results: i=1; mx.microsoft.com 1; spf=pass
+ smtp.mailfrom=aerq.com; dmarc=pass action=none header.from=aerq.com;
+ dkim=pass header.d=aerq.com; arc=none
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+ d=l2task.onmicrosoft.com; s=selector1-l2task-onmicrosoft-com;
+ h=From:Date:Subject:Message-ID:Content-Type:MIME-Version:X-MS-Exchange-SenderADCheck;
+ bh=HUnAJCTvZKBJYUbbr7y5fEwWpmOayshQpGCtBQd6ekc=;
+ b=BKrQqrRWl8KgH6N7FzkuAlrr7ojguYfn0fb8MZbhbKxuf6p89tusRqh13FqHt/zv6bo77VQYA1a9/cSMugZz2Hq3bYNJ+Uv0H++1dA2+17cd38sgimwSW80vMIGjqpBoiw6E4YiX3itt43fehstNFG/dXqD1nBSYRdEAA7bjueQ=
+Authentication-Results-Original: vger.kernel.org; dkim=none (message not
+ signed) header.d=none;vger.kernel.org; dmarc=none action=none
+ header.from=aerq.com;
+Received: from AM0PR10MB3428.EURPRD10.PROD.OUTLOOK.COM (2603:10a6:208:161::27)
+ by AM0PR10MB2417.EURPRD10.PROD.OUTLOOK.COM (2603:10a6:208:d5::25) with
+ Microsoft SMTP Server (version=TLS1_2,
+ cipher=TLS_ECDHE_RSA_WITH_AES_256_GCM_SHA384) id 15.20.3433.37; Thu, 1 Oct
+ 2020 14:57:47 +0000
+Received: from AM0PR10MB3428.EURPRD10.PROD.OUTLOOK.COM
+ ([fe80::4c24:8830:7ae8:87a4]) by AM0PR10MB3428.EURPRD10.PROD.OUTLOOK.COM
+ ([fe80::4c24:8830:7ae8:87a4%7]) with mapi id 15.20.3433.032; Thu, 1 Oct 2020
+ 14:57:47 +0000
+From:   Alban Bedel <alban.bedel@aerq.com>
+To:     linux-hwmon@vger.kernel.org
+CC:     Jean Delvare <jdelvare@suse.com>,
+        Guenter Roeck <linux@roeck-us.net>,
+        Rob Herring <robh+dt@kernel.org>,
+        Liam Girdwood <lgirdwood@gmail.com>,
+        Mark Brown <broonie@kernel.org>, devicetree@vger.kernel.org,
+        linux-kernel@vger.kernel.org, Alban Bedel <alban.bedel@aerq.com>
+Subject: [PATCH v4 0/3] hwmon: (lm75) Add regulator support
+Date:   Thu,  1 Oct 2020 16:57:35 +0200
+Message-ID: <20201001145738.17326-1-alban.bedel@aerq.com>
+X-Mailer: git-send-email 2.25.1
+Content-Transfer-Encoding: quoted-printable
+Content-Type: text/plain
+X-Originating-IP: [87.123.201.111]
+X-ClientProxiedBy: AM0PR06CA0121.eurprd06.prod.outlook.com
+ (2603:10a6:208:ab::26) To AM0PR10MB3428.EURPRD10.PROD.OUTLOOK.COM
+ (2603:10a6:208:161::27)
 MIME-Version: 1.0
-In-Reply-To: <1601437039.28469.3.camel@mtksdaap41>
-Content-Type: text/plain; charset=utf-8; format=flowed
-Content-Language: en-US
-Content-Transfer-Encoding: 7bit
+X-MS-Exchange-MessageSentRepresentingType: 1
+Received: from aerq-nb-1030.dotsec.gv (87.123.201.111) by AM0PR06CA0121.eurprd06.prod.outlook.com (2603:10a6:208:ab::26) with Microsoft SMTP Server (version=TLS1_2, cipher=TLS_ECDHE_RSA_WITH_AES_256_GCM_SHA384) id 15.20.3433.32 via Frontend Transport; Thu, 1 Oct 2020 14:57:47 +0000
+X-MS-PublicTrafficType: Email
+X-MS-Office365-Filtering-Correlation-Id: 51c32c98-e978-4c68-f114-08d8661a5e41
+X-MS-TrafficTypeDiagnostic: AM0PR10MB2417:|AM0PR10MB3012:
+X-MS-Exchange-Transport-Forked: True
+X-Microsoft-Antispam-PRVS: <AM0PR10MB30126BECD6CDC136E66447F396300@AM0PR10MB3012.EURPRD10.PROD.OUTLOOK.COM>
+X-MS-Oob-TLC-OOBClassifiers: OLM:7691;OLM:7691;
+X-MS-Exchange-SenderADCheck: 1
+X-Microsoft-Antispam-Untrusted: BCL:0;
+X-Microsoft-Antispam-Message-Info-Original: 7QXyRFuvJvTJ8Pfg9SY0IDP1hI/mnqsR9k8Gseyfqv+9GbmNoO3aNslnyNJI2+d2hiKMWQs3xzKffi6zH6E5YCc2Rjrgykh3PBMCjXd2mlYbvUR55NURzZi0s/a2JBQhxWTAARjAKVJgSjtjH6aKcY3p9l/8jTBy3utm5ysmJd7Z87wVj4EwYeO7UM320eVWuQiLU7+V3gX4cMRq/UYsfDZpfmLmP1nK+w/UawoF8uY2+NwWp2TfHfy/d8VbERaT2GqEx8R3gEN5sE0WzWFIYam3N48huFHhsZmwE6iEpG25h7r6Sk+fe5owzeFIOznY4ma5rzD0AMtJxQ+lgWRz1w==
+X-Forefront-Antispam-Report-Untrusted: CIP:255.255.255.255;CTRY:;LANG:en;SCL:1;SRV:;IPV:NLI;SFV:NSPM;H:AM0PR10MB3428.EURPRD10.PROD.OUTLOOK.COM;PTR:;CAT:NONE;SFS:(396003)(39840400004)(366004)(136003)(346002)(376002)(8936002)(26005)(4326008)(36756003)(5660300002)(54906003)(8676002)(2616005)(86362001)(186003)(478600001)(16526019)(6486002)(52116002)(6506007)(44832011)(83380400001)(66946007)(2906002)(6666004)(6916009)(316002)(956004)(6512007)(1076003)(66556008)(66476007)(107886003);DIR:OUT;SFP:1102;
+X-MS-Exchange-AntiSpam-MessageData: 7nNuEwVe017E5Srjc3Udw4UqZNBTAhOuMZheUq4ryH3SMGZgTT6O2M6IHhsn9nAOTc7SuD+wAWImh3oc73KYW4F00ED4zKsjDvha13e0yGn2usQRL/jIh6ll+/zT0O+XJmCTDoJyGI4cHOIzrLAgMIe51+rArFqM+d65wWebuwxP7CkyXiIOTjDy3nINV+wZTqGXBUzhrAImwj8673RkLIxMnYRfoDuGPuW3ggcoP+TNbM06VlNF/rUOP2Tcq81yrkjQdjh32LFHP+pbFrQ6rWmJ6bqPPtJ+MFk23Sh/9nZdk5plts9pEZCPj8Qgadti1ddGzG5xgeb3Arw+66GuUWPa8dXG3cyKwuAZyAK201x+ukbgkxPeeqoIbOYNQ+yisIqSP950yTTnlXUQc0rpPgqN20313nJ4/7tcu/CdaU+AEL8Cb7WlCP02BpVND0krCvCREjUAfQiZhNuZ59409mBR9FWh5KKEM+bScXDlNOOZPeYeNGWu+uQvGb8W/kr0oOp533Rm7XN8Jgtw8tmDHMVpG0EJUlaYNgC79jf1dFWFwiaolXjJMAmIBxseraRSKEqDQptdBZ79NwmcKYE7T6gjNb3oeM4DJv9m9rm1X8wb7wGBCBO/XbH9XNJB8Wi/UzRY9nWg43jnCCmh6TziIA==
+X-MS-Exchange-Transport-CrossTenantHeadersStamped: AM0PR10MB2417
+X-EOPAttributedMessage: 0
+X-MS-Exchange-Transport-CrossTenantHeadersStripped: AM5EUR03FT064.eop-EUR03.prod.protection.outlook.com
+X-MS-Office365-Filtering-Correlation-Id-Prvs: a65f07b7-585c-47e2-4068-08d8661a5c20
+X-Microsoft-Antispam: BCL:0;
+X-Microsoft-Antispam-Message-Info: ishGFLotlbXoVUl310KD36rfR7SljO3Y5qBYFUnbRzCceowL6qQpGYOexqcZsRFJ1gCuBMSdRA/zzupniXXrjx+hd4g99urcsRBlpyTnYPnxoiWuln04ZwUvKvVrm1FJqZEhv75mhcBHxjvkPvD+6ZbmH0uB8b6mz7Paa2WZxlMCo7fZHbfC8ex52Q2ZWVUgqLyJabZD+NhkTZ2EUR7ioUwMZ3iIhjopn/mtKVA2WwL97Y26D3R37LYQM5cVkE+DqBtZuSbVz7YEtrefSR/zpTlAlQGzndRiQ8cOQfcAreCZPfDwB2fKEmv2AeKW0o6Pxj+wgwt2JlFS+glSFGlcIEmNhVpeeGSTiy5usZgJWBIxIL6wPJGiTK0oP/p7nreCABRFVtPn5T+vJ/aDTGfkS2ewvbVBixuPtFfVVop3SX+y1jBZ53IRY0o++4kc5mon
+X-Forefront-Antispam-Report: CIP:52.169.0.179;CTRY:IE;LANG:en;SCL:1;SRV:;IPV:CAL;SFV:NSPM;H:eu2.smtp.exclaimer.net;PTR:eu2.smtp.exclaimer.net;CAT:NONE;SFS:(396003)(376002)(346002)(39840400004)(136003)(46966005)(316002)(6486002)(1076003)(356005)(7636003)(7596003)(8676002)(33310700002)(8936002)(956004)(6666004)(2616005)(6916009)(70206006)(70586007)(26005)(44832011)(6506007)(5660300002)(186003)(47076004)(2906002)(478600001)(336012)(16526019)(36756003)(6512007)(4326008)(82310400003)(86362001)(107886003)(54906003)(83380400001);DIR:OUT;SFP:1102;
+X-OriginatorOrg: aerq.com
+X-MS-Exchange-CrossTenant-OriginalArrivalTime: 01 Oct 2020 14:57:49.7743
+ (UTC)
+X-MS-Exchange-CrossTenant-Network-Message-Id: 51c32c98-e978-4c68-f114-08d8661a5e41
+X-MS-Exchange-CrossTenant-Id: bf24ff3e-ad0a-4c79-a44a-df7092489e22
+X-MS-Exchange-CrossTenant-OriginalAttributedTenantConnectingIp: TenantId=bf24ff3e-ad0a-4c79-a44a-df7092489e22;Ip=[52.169.0.179];Helo=[eu2.smtp.exclaimer.net]
+X-MS-Exchange-CrossTenant-AuthSource: AM5EUR03FT064.eop-EUR03.prod.protection.outlook.com
+X-MS-Exchange-CrossTenant-AuthAs: Anonymous
+X-MS-Exchange-CrossTenant-FromEntityHeader: HybridOnPrem
+X-MS-Exchange-Transport-CrossTenantHeadersStamped: AM0PR10MB3012
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
+Hi everybody,
 
+this small series add regulator support to the lm75 driver for boards
+that don't always power such a sensor. While at it also convert the
+DT bindings to yaml.
 
-On 30/09/2020 05:37, Weiyi Lu wrote:
-> On Mon, 2020-09-28 at 15:14 +0800, Nicolas Boichat wrote:
->> On Thu, Aug 6, 2020 at 5:22 PM Weiyi Lu <weiyi.lu@mediatek.com> wrote:
->>>
->>> Try to list all the power domains of under power controller
->>> node to show the dependency between each power domain directly
->>> instead of filling the dependency in scp_soc_data.
->>> And could be more clearly to group subsys clocks into power domain
->>> sub node to introduce subsys clocks of bus protection in next patch.
->>>
->>> Signed-off-by: Weiyi Lu <weiyi.lu@mediatek.com>
->>> ---
->> [snip]
->>> +static int traverse_scp(struct platform_device *pdev, struct scp *scp,
->>> +                       const struct scp_domain_data *scp_domain_data)
->>> +{
->>> +       struct device *dev = &pdev->dev;
->>> +       struct device_node *np = dev->of_node;
->>> +       struct device_node *sub;
->>> +       int ret;
->>> +
->>> +       INIT_LIST_HEAD(&scp->dep_links);
->>> +
->>> +       for_each_available_child_of_node(np, sub) {
->>> +               ret = scpsys_get_domain(pdev, scp, sub, scp_domain_data);
->>> +               if (ret) {
->>> +                       dev_err(&pdev->dev, "failed to handle node %pOFn: %d\n", sub, ret);
->>
->> minor comment: this error should not be printed if ret ==
->> -EPROBE_DEFER (use the new dev_err_probe?)
->>
-> 
-> You're right! I'll use dev_err_probe() instead if anyone is interested
-> in this series. Thank you!
-> 
+v2: - Fixed the DT example while converting to YAML
+    - Removed the unneeded maxItems from the binding documentation
+    - Use dummy regulator insted of explicitly handling missing regulator
 
-I'd propose that we put all our effort of reviewing and testing into the series 
-Enric send:
-https://lore.kernel.org/linux-mediatek/20200910172826.3074357-1-enric.balletbo@collabora.com/
+v3: - Use a devm action to handle disabling the regulator
 
-Regards,
-Matthias
+v4: - Added the missing `additionalProperties: false` when converting
+      the binding documentation to yaml
 
->>> +                       goto err;
->>> +               }
->>> +       }
->>> +
->>> +       return 0;
->>> +
->>> +err:
->>> +       of_node_put(sub);
->>> +       return ret;
->>> +}
->> [snip]
-> 
+Alban Bedel (3):
+  dt-bindings: hwmon: Convert lm75 bindings to yaml
+  dt-bindings: hwmon: Add the +vs supply to the lm75 bindings
+  hwmon: (lm75) Add regulator support
+
+ .../devicetree/bindings/hwmon/lm75.txt        | 39 -----------
+ .../devicetree/bindings/hwmon/lm75.yaml       | 66 +++++++++++++++++++
+ drivers/hwmon/lm75.c                          | 24 +++++++
+ 3 files changed, 90 insertions(+), 39 deletions(-)
+ delete mode 100644 Documentation/devicetree/bindings/hwmon/lm75.txt
+ create mode 100644 Documentation/devicetree/bindings/hwmon/lm75.yaml
+
+--=20
+2.25.1
+
