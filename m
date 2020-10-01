@@ -2,89 +2,78 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from vger.kernel.org (vger.kernel.org [23.128.96.18])
-	by mail.lfdr.de (Postfix) with ESMTP id 70E0827FC1B
-	for <lists+devicetree@lfdr.de>; Thu,  1 Oct 2020 10:59:43 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTP id AC89127FC4A
+	for <lists+devicetree@lfdr.de>; Thu,  1 Oct 2020 11:11:56 +0200 (CEST)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S1725975AbgJAI7m (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Thu, 1 Oct 2020 04:59:42 -0400
-Received: from mail.kernel.org ([198.145.29.99]:43612 "EHLO mail.kernel.org"
-        rhost-flags-OK-OK-OK-OK) by vger.kernel.org with ESMTP
-        id S1725894AbgJAI7m (ORCPT <rfc822;devicetree@vger.kernel.org>);
-        Thu, 1 Oct 2020 04:59:42 -0400
-Received: from mail-ed1-f53.google.com (mail-ed1-f53.google.com [209.85.208.53])
-        (using TLSv1.2 with cipher ECDHE-RSA-AES128-GCM-SHA256 (128/128 bits))
+        id S1731838AbgJAJLn (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Thu, 1 Oct 2020 05:11:43 -0400
+Received: from lindbergh.monkeyblade.net ([23.128.96.19]:37170 "EHLO
+        lindbergh.monkeyblade.net" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
+        with ESMTP id S1731805AbgJAJLk (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Thu, 1 Oct 2020 05:11:40 -0400
+Received: from ssl.serverraum.org (ssl.serverraum.org [IPv6:2a01:4f8:151:8464::1:2])
+        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 477D6C0613D0;
+        Thu,  1 Oct 2020 02:11:40 -0700 (PDT)
+Received: from mwalle01.sab.local. (unknown [213.135.10.150])
+        (using TLSv1.3 with cipher TLS_AES_256_GCM_SHA384 (256/256 bits)
+         key-exchange ECDHE (P-384) server-signature RSA-PSS (2048 bits) server-digest SHA256)
         (No client certificate requested)
-        by mail.kernel.org (Postfix) with ESMTPSA id 913E320BED
-        for <devicetree@vger.kernel.org>; Thu,  1 Oct 2020 08:59:41 +0000 (UTC)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=kernel.org;
-        s=default; t=1601542781;
-        bh=dxjby0k4ruLwHuefwwJvXuvzJQNaPvKX3XCpTvZTRCM=;
-        h=References:In-Reply-To:From:Date:Subject:To:Cc:From;
-        b=Kx4RWEsmwMlKo2SzSFITiZFfDMjwJcFrkAWQlVpKSnDSWi6udeSq8QCGHrZs/sYo5
-         6oucwe9d7kRUToShABZ1ivYwv70Fvhm6bjhemhTbqPu4Sc2ghVP/xM8JNcc0qFETQJ
-         LAXsdQhVfIO4I+z4HtxOA1F0WtMHMEU34JyvCkac=
-Received: by mail-ed1-f53.google.com with SMTP id b12so4778536edz.11
-        for <devicetree@vger.kernel.org>; Thu, 01 Oct 2020 01:59:41 -0700 (PDT)
-X-Gm-Message-State: AOAM530RwHN2B44gv7NAhbwlMHmq43cIuKaSdqvyg8Jf6XL2lRwmNZJZ
-        RmgIyXkuOUKx9Y3k5rvVWHdgrK0a0AYcct3QrLQ=
-X-Google-Smtp-Source: ABdhPJwUjk9wE19HiYa3JYp+FUpf9iC9/3rDAVR8kbLcgeAE1A3Y/+vLDwP6i33Po/TVw9jWZyfHlUOvWS4rhI7kkPQ=
-X-Received: by 2002:a50:e78f:: with SMTP id b15mr7208895edn.104.1601542780136;
- Thu, 01 Oct 2020 01:59:40 -0700 (PDT)
+        by ssl.serverraum.org (Postfix) with ESMTPSA id DA77122FAD;
+        Thu,  1 Oct 2020 11:11:35 +0200 (CEST)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=walle.cc; s=mail2016061301;
+        t=1601543496;
+        h=from:from:reply-to:subject:subject:date:date:message-id:message-id:
+         to:to:cc:cc:mime-version:mime-version:
+         content-transfer-encoding:content-transfer-encoding;
+        bh=Msd7QP9ufU1637xwoCtbzRf1NuAnH4fqHmEgE77mVYc=;
+        b=mfa/2XjUfXYW4X1buF8TiR+tAAZEEdse3n495e7WPrFaUhgoPKyAyXUDL0g4TR/WMz6D3f
+        7HXJZhGzuEZ04tOIWiIkazM6GxFLH//bzgY8Zv9nztlxhOmBoH0HxEiHgeAoMhzPzhH7qD
+        5ziCcFbkW3h37qTX4gjSBrINxxyAD6g=
+From:   Michael Walle <michael@walle.cc>
+To:     linux-arm-kernel@lists.infradead.org, devicetree@vger.kernel.org,
+        linux-kernel@vger.kernel.org, linux-can@vger.kernel.org
+Cc:     Shawn Guo <shawnguo@kernel.org>, Li Yang <leoyang.li@nxp.com>,
+        Rob Herring <robh+dt@kernel.org>,
+        Marc Kleine-Budde <mkl@pengutronix.de>,
+        Joakim Zhang <qiangqing.zhang@nxp.com>,
+        Oleksij Rempel <o.rempel@pengutronix.de>,
+        Michael Walle <michael@walle.cc>
+Subject: [PATCH v2 0/3] arm64: dts: add FlexCAN support to LS1028A and sl28
+Date:   Thu,  1 Oct 2020 11:11:28 +0200
+Message-Id: <20201001091131.30514-1-michael@walle.cc>
+X-Mailer: git-send-email 2.20.1
 MIME-Version: 1.0
-References: <20200930155006.535712-1-l.stach@pengutronix.de> <20200930155006.535712-8-l.stach@pengutronix.de>
-In-Reply-To: <20200930155006.535712-8-l.stach@pengutronix.de>
-From:   Krzysztof Kozlowski <krzk@kernel.org>
-Date:   Thu, 1 Oct 2020 10:59:27 +0200
-X-Gmail-Original-Message-ID: <CAJKOXPf=0Vf-YonZ2dw1g5cz_i-m3gkrO-gGzBJFPrdfh0FG4w@mail.gmail.com>
-Message-ID: <CAJKOXPf=0Vf-YonZ2dw1g5cz_i-m3gkrO-gGzBJFPrdfh0FG4w@mail.gmail.com>
-Subject: Re: [PATCH 07/11] soc: imx: gpcv2: add support for optional resets
-To:     Lucas Stach <l.stach@pengutronix.de>
-Cc:     Shawn Guo <shawnguo@kernel.org>, Rob Herring <robh+dt@kernel.org>,
-        NXP Linux Team <linux-imx@nxp.com>,
-        Fabio Estevam <festevam@gmail.com>,
-        Frieder Schrempf <frieder.schrempf@kontron.de>,
-        Marek Vasut <marex@denx.de>,
-        linux-arm-kernel@lists.infradead.org, devicetree@vger.kernel.org,
-        kernel@pengutronix.de, patchwork-lst@pengutronix.de
-Content-Type: text/plain; charset="UTF-8"
+Content-Transfer-Encoding: 8bit
+X-Spam: Yes
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-On Wed, 30 Sep 2020 at 17:52, Lucas Stach <l.stach@pengutronix.de> wrote:
->
-> Normally the reset for the devices inside the power domain is
-> triggered automatically from the PGC in the power-up sequencing,
-> however on i.MX8MM this doesn't work for the GPU power domains.
->
-> Add support for triggering the reset explicitly during the power
-> up sequencing.
->
-> Signed-off-by: Lucas Stach <l.stach@pengutronix.de>
-> ---
->  .../devicetree/bindings/power/fsl,imx-gpcv2.yaml    |  6 ++++++
->  drivers/soc/imx/gpcv2.c                             | 13 +++++++++++++
->  2 files changed, 19 insertions(+)
->
-> diff --git a/Documentation/devicetree/bindings/power/fsl,imx-gpcv2.yaml b/Documentation/devicetree/bindings/power/fsl,imx-gpcv2.yaml
-> index bde09a0b2da3..9773771b9000 100644
-> --- a/Documentation/devicetree/bindings/power/fsl,imx-gpcv2.yaml
-> +++ b/Documentation/devicetree/bindings/power/fsl,imx-gpcv2.yaml
-> @@ -62,6 +62,12 @@ properties:
->
->            power-supply: true
->
-> +          resets:
-> +            description: |
-> +              A number of phandles to resets that need to be asserted during
-> +              power-up sequencing of the domain.
-> +            minItems: 1
-> +
->          required:
->            - '#power-domain-cells'
->            - reg
+Now that FlexCAN support for newer IPs is finally hitting upstream [1],
+lets add the corresponding nodes for the LS1028A SoC and enable it for the
+Kontron sl28 board.
 
-Separate patch for dt-bindings, please.
+changes since v1:
+ - added new patch "dt-bindings: can: flexcan: list supported processors"
+   Suggested by Lee.
 
-Best regards,
-Krzysztof
+   Please keep in mind that this only an intermediate step, as Marc already
+   pointed out [2] that Oleksij is alreay working on converting the
+   bindings to YAML format.
+
+[1] https://lore.kernel.org/netdev/20200923085418.2685858-1-mkl@pengutronix.de/
+[2] https://lore.kernel.org/linux-can/790ce102-7542-b65e-0945-a04faf6e4b89@pengutronix.de/
+
+Michael Walle (3):
+  dt-bindings: can: flexcan: list supported processors
+  arm64: dts: ls1028a: add missing CAN nodes
+  arm64: dts: freescale: sl28: add CAN node
+
+ .../bindings/net/can/fsl-flexcan.txt           |  6 ++++++
+ .../dts/freescale/fsl-ls1028a-kontron-sl28.dts |  4 ++++
+ arch/arm64/boot/dts/freescale/fsl-ls1028a.dtsi | 18 ++++++++++++++++++
+ 3 files changed, 28 insertions(+)
+
+-- 
+2.20.1
+
