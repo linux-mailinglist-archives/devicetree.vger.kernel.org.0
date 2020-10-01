@@ -2,103 +2,90 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from vger.kernel.org (vger.kernel.org [23.128.96.18])
-	by mail.lfdr.de (Postfix) with ESMTP id 8925B2808DA
-	for <lists+devicetree@lfdr.de>; Thu,  1 Oct 2020 22:55:26 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTP id 5CDCA2808DE
+	for <lists+devicetree@lfdr.de>; Thu,  1 Oct 2020 22:57:24 +0200 (CEST)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S1727807AbgJAUzZ (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Thu, 1 Oct 2020 16:55:25 -0400
-Received: from lindbergh.monkeyblade.net ([23.128.96.19]:32814 "EHLO
+        id S1727053AbgJAU5G (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Thu, 1 Oct 2020 16:57:06 -0400
+Received: from lindbergh.monkeyblade.net ([23.128.96.19]:33072 "EHLO
         lindbergh.monkeyblade.net" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S1726515AbgJAUzZ (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Thu, 1 Oct 2020 16:55:25 -0400
-Received: from mail-lf1-x141.google.com (mail-lf1-x141.google.com [IPv6:2a00:1450:4864:20::141])
-        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id AD911C0613D0
-        for <devicetree@vger.kernel.org>; Thu,  1 Oct 2020 13:55:23 -0700 (PDT)
-Received: by mail-lf1-x141.google.com with SMTP id 197so246477lfo.11
-        for <devicetree@vger.kernel.org>; Thu, 01 Oct 2020 13:55:23 -0700 (PDT)
+        with ESMTP id S1726515AbgJAU5G (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Thu, 1 Oct 2020 16:57:06 -0400
+Received: from mail-lj1-x241.google.com (mail-lj1-x241.google.com [IPv6:2a00:1450:4864:20::241])
+        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id C1C26C0613D0;
+        Thu,  1 Oct 2020 13:57:05 -0700 (PDT)
+Received: by mail-lj1-x241.google.com with SMTP id a15so44831ljk.2;
+        Thu, 01 Oct 2020 13:57:05 -0700 (PDT)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=linaro.org; s=google;
-        h=mime-version:references:in-reply-to:from:date:message-id:subject:to
-         :cc:content-transfer-encoding;
-        bh=sUwVY0ru0oyk2oPMYDEmbC7f2EjJTmP8EUJlYRwwpWM=;
-        b=ikkeOggLJzhsaIG6/WpDai/9snxuJME6FU3cGMoEu3m4riO09XGSgiRJ5SNNeNN01y
-         FzluLXjTfzsSB5TXUySv0F+GB9U/5iA9lwoVWhY5q9IHZSLQZBzZG6LQ3j70JbNV52rT
-         PJ4XrxA6XoobYH4NfzG/+/fX4VHxsmsrXw2jpQgiB/1gc80IKh3uad4zELSO3qoHK8KD
-         1wF9ZDv8y+H56PswjJDWWVMwZ4e6PUGuor/5suGMSljlwsqfvLIfpCHI402lyeI2t9JD
-         RP43rIEYyURBnsrV5okEnF7sA8MjahdeyyY2sswbWzLa3eQWe21X83OAo7A07JD9+42K
-         QsPg==
+        d=gmail.com; s=20161025;
+        h=subject:to:cc:references:from:message-id:date:user-agent
+         :mime-version:in-reply-to:content-language:content-transfer-encoding;
+        bh=XflpFmvYU4ZauRyF/CvBEwazfjgIznjHbxbdFQln060=;
+        b=pB1zmEc6F+GNDrYLg2UDm3+/iTPpyEZy82EwS6wWv6/OIbXMKTiu2yN//9Ac84AiNg
+         gTXy52KKNB6js3gVl0ifMsGb85RSdIHM+Ln17kx1FCqgfg24pXWZlcP2s90nvmWrVM8g
+         f4OTw3GEdfH48iFyfS1wUWfouG8Xb41rFGvMYH7uLW+gwoAZZ80Eb2es1GBX+QFqJuZT
+         tIy/40aGUd+Ld5xjZecBZoiwey8WewTHJBUr7c98dsRf4z5orc937BsQ3dLa+8wtKxd4
+         QUSLJjImPfuVBbG7KLdWIM9TQkD1nLXri/a2+ktop2U2v3DGIuYLL3XP/0jKV8XGblP9
+         3mDw==
 X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
         d=1e100.net; s=20161025;
-        h=x-gm-message-state:mime-version:references:in-reply-to:from:date
-         :message-id:subject:to:cc:content-transfer-encoding;
-        bh=sUwVY0ru0oyk2oPMYDEmbC7f2EjJTmP8EUJlYRwwpWM=;
-        b=DeYo+t/T+ttBiNXroBadXtF5BmKS8YA2Eb4dHYbsEO0YTzyf94dl97dZvJnR53TjKE
-         pw3zOp9rKacdB6fueeXlvrbR25H127ebT6m5F+9o5fIBg2FEaGgWBt3QInyfJHNyRXj+
-         fRZgnvVY0vVc94AAwC+LYvAf/wzMrp7yWcWWJBMMKYva833bRcih/k3DkyVuzVaV7bU/
-         Eief9S/Pnop1BQ+oFlaozbIEBOOtdEUoUGongzKjAZ51A5rPHTUS4YTkCIGV/4POUQ2Z
-         7iRHrfvfAXLe6IJPYfP4hUv3TxvLH5ephBWxMrw9ohJ9LHBq5DIBMOCsxJexx74SB88t
-         fzxA==
-X-Gm-Message-State: AOAM531TCALU9gom/GZSAY47H6s+RfPtgmvWHrn4Vp+ignXpWNATjd0v
-        HcoXIcawzQIIK7cIuoTxy96Ph4q+HlQTECvfaU84fw==
-X-Google-Smtp-Source: ABdhPJxHgvnEw1qIpL9dhNt4c74dN8Dj54fD6Z6tXTayCX3G3lAF2dtrooXJ4r18IZIvt2xh0I3s1wp9qfCyBDIiZM0=
-X-Received: by 2002:a19:1c8:: with SMTP id 191mr3084299lfb.585.1601585722134;
- Thu, 01 Oct 2020 13:55:22 -0700 (PDT)
+        h=x-gm-message-state:subject:to:cc:references:from:message-id:date
+         :user-agent:mime-version:in-reply-to:content-language
+         :content-transfer-encoding;
+        bh=XflpFmvYU4ZauRyF/CvBEwazfjgIznjHbxbdFQln060=;
+        b=dgvkX8HTXIcxTekCG5WC36lTtZXhA74wphi8REKg2Y4WiKSkPLo78IE+wzIqpl5txf
+         leFUVxQte6hLqUpSr6vAf7hiPleF0oGte5RLzwIPKYh46ZpWWb+rK/IosorUXJj9kqjv
+         JEO7/eN/3EGjTEPpQ5FFUE99AS7gabvBwD6aDGkmcWIhQAOdQ2x2rJ+J1AU3AamxggIO
+         srJyVitZ58uiC+3P3eAxeTCgnZidmBRybuL70DINYN+pYeIniWr5yjU7RaKWJR1ppey2
+         RA4zdlF8tCB9cJQOEX7bfDOLhXGRwpsnp8d/JY/CQ7ASP06Jm/SVVV7d6R4Tow91PSyG
+         4Hzw==
+X-Gm-Message-State: AOAM530ea+44BFctMpyMGS5IpReO8uHNvCxWe1kr3wSvMVkVlgOO5zHZ
+        gXoTZTtifgKKPwi9YytAL0OC5w/Su04=
+X-Google-Smtp-Source: ABdhPJzzGOQYtFDLJ0Uinx31Or+7BavRRvl4lQZJncQmtxUElVDfDWAHIwhVcDOYFMPCeoTTheo3UQ==
+X-Received: by 2002:a2e:9d8a:: with SMTP id c10mr3146731ljj.83.1601585824206;
+        Thu, 01 Oct 2020 13:57:04 -0700 (PDT)
+Received: from [192.168.2.145] ([109.252.91.252])
+        by smtp.googlemail.com with ESMTPSA id g23sm712844lfb.230.2020.10.01.13.57.02
+        (version=TLS1_3 cipher=TLS_AES_128_GCM_SHA256 bits=128/128);
+        Thu, 01 Oct 2020 13:57:03 -0700 (PDT)
+Subject: Re: [PATCH v3 10/13] ASoC: tegra: Add audio graph based card driver
+To:     Sameer Pujar <spujar@nvidia.com>, broonie@kernel.org,
+        lgirdwood@gmail.com, robh+dt@kernel.org,
+        kuninori.morimoto.gx@renesas.com,
+        pierre-louis.bossart@linux.intel.com, perex@perex.cz,
+        tiwai@suse.com, thierry.reding@gmail.com, jonathanh@nvidia.com
+Cc:     alsa-devel@alsa-project.org, devicetree@vger.kernel.org,
+        linux-tegra@vger.kernel.org, linux-kernel@vger.kernel.org,
+        sharadg@nvidia.com, mkumard@nvidia.com, viswanathl@nvidia.com,
+        rlokhande@nvidia.com, dramesh@nvidia.com, atalambedu@nvidia.com,
+        nwartikar@nvidia.com, swarren@nvidia.com, nicoleotsuka@gmail.com
+References: <1601573587-15288-1-git-send-email-spujar@nvidia.com>
+ <1601573587-15288-11-git-send-email-spujar@nvidia.com>
+From:   Dmitry Osipenko <digetx@gmail.com>
+Message-ID: <98f01f9e-96f8-6867-1af3-475294e81a9d@gmail.com>
+Date:   Thu, 1 Oct 2020 23:57:02 +0300
+User-Agent: Mozilla/5.0 (X11; Linux x86_64; rv:68.0) Gecko/20100101
+ Thunderbird/68.10.0
 MIME-Version: 1.0
-References: <20201001200943.1193870-1-robh@kernel.org>
-In-Reply-To: <20201001200943.1193870-1-robh@kernel.org>
-From:   Linus Walleij <linus.walleij@linaro.org>
-Date:   Thu, 1 Oct 2020 22:55:10 +0200
-Message-ID: <CACRpkdbz6jDN_NYrCDAHsWLyhimUstjf3q2kuQHMgE_HcepCLg@mail.gmail.com>
-Subject: Re: [PATCH] dt-bindings: arm: Add missing root node constraint for
- board/SoC bindings
-To:     Rob Herring <robh@kernel.org>
-Cc:     "open list:OPEN FIRMWARE AND FLATTENED DEVICE TREE BINDINGS" 
-        <devicetree@vger.kernel.org>,
-        Linux ARM <linux-arm-kernel@lists.infradead.org>,
-        =?UTF-8?Q?Andreas_F=C3=A4rber?= <afaerber@suse.de>,
-        Manivannan Sadhasivam <manivannan.sadhasivam@linaro.org>,
-        Baruch Siach <baruch@tkos.co.il>,
-        Linus Walleij <linusw@kernel.org>,
-        Imre Kaloz <kaloz@openwrt.org>,
-        Krzysztof Halasa <khalasa@piap.pl>,
-        Andy Gross <agross@kernel.org>,
-        Bjorn Andersson <bjorn.andersson@linaro.org>,
-        Maxime Coquelin <mcoquelin.stm32@gmail.com>,
-        Alexandre Torgue <alexandre.torgue@st.com>,
-        Thierry Reding <thierry.reding@gmail.com>,
-        Jonathan Hunter <jonathanh@nvidia.com>,
-        Dinh Nguyen <dinguyen@kernel.org>,
-        Anders Berg <anders.berg@lsi.com>
-Content-Type: text/plain; charset="UTF-8"
-Content-Transfer-Encoding: quoted-printable
+In-Reply-To: <1601573587-15288-11-git-send-email-spujar@nvidia.com>
+Content-Type: text/plain; charset=utf-8
+Content-Language: en-US
+Content-Transfer-Encoding: 8bit
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-On Thu, Oct 1, 2020 at 10:09 PM Rob Herring <robh@kernel.org> wrote:
+01.10.2020 20:33, Sameer Pujar пишет:
+> +/* Setup PLL clock as per the given sample rate */
+> +static int tegra_audio_graph_update_pll(struct snd_pcm_substream *substream,
+> +					struct snd_pcm_hw_params *params)
+> +{
+> +	struct snd_soc_pcm_runtime *rtd = asoc_substream_to_rtd(substream);
+> +	struct asoc_simple_priv *priv = snd_soc_card_get_drvdata(rtd->card);
+> +	struct device *dev = rtd->card->dev;
+> +	struct tegra_audio_graph_data *graph_data =
+> +		(struct tegra_audio_graph_data *)priv->data;
+> +	struct tegra_audio_chip_data *chip_data =
+> +		(struct tegra_audio_chip_data *)of_device_get_match_data(dev);
 
-> Board/SoC top-level compatible bindings should be constrained to the root
-> node. Add the missing constraints that the node name must be "/".
->
-> Cc: "Andreas F=C3=A4rber" <afaerber@suse.de>
-> Cc: Manivannan Sadhasivam <manivannan.sadhasivam@linaro.org>
-> Cc: Baruch Siach <baruch@tkos.co.il>
-> Cc: Linus Walleij <linusw@kernel.org>
-> Cc: Imre Kaloz <kaloz@openwrt.org>
-> Cc: Krzysztof Halasa <khalasa@piap.pl>
-> Cc: Andy Gross <agross@kernel.org>
-> Cc: Bjorn Andersson <bjorn.andersson@linaro.org>
-> Cc: Maxime Coquelin <mcoquelin.stm32@gmail.com>
-> Cc: Alexandre Torgue <alexandre.torgue@st.com>
-> Cc: Thierry Reding <thierry.reding@gmail.com>
-> Cc: Jonathan Hunter <jonathanh@nvidia.com>
-> Cc: Dinh Nguyen <dinguyen@kernel.org>
-> Cc: Anders Berg <anders.berg@lsi.com>
-> Cc: linux-arm-kernel@lists.infradead.org
-> Signed-off-by: Rob Herring <robh@kernel.org>
-
-Makes sense.
-Reviewed-by: Linus Walleij <linus.walleij@linaro.org>
-
-Yours,
-Linus Walleij
+void* doesn't need casting
