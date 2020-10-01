@@ -2,99 +2,70 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from vger.kernel.org (vger.kernel.org [23.128.96.18])
-	by mail.lfdr.de (Postfix) with ESMTP id F114C280A4D
-	for <lists+devicetree@lfdr.de>; Fri,  2 Oct 2020 00:34:17 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTP id E4A61280A70
+	for <lists+devicetree@lfdr.de>; Fri,  2 Oct 2020 00:47:40 +0200 (CEST)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S1733117AbgJAWeR (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Thu, 1 Oct 2020 18:34:17 -0400
-Received: from mail.kernel.org ([198.145.29.99]:45450 "EHLO mail.kernel.org"
+        id S1733120AbgJAWrk (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Thu, 1 Oct 2020 18:47:40 -0400
+Received: from mail.kernel.org ([198.145.29.99]:53658 "EHLO mail.kernel.org"
         rhost-flags-OK-OK-OK-OK) by vger.kernel.org with ESMTP
-        id S1733053AbgJAWeQ (ORCPT <rfc822;devicetree@vger.kernel.org>);
-        Thu, 1 Oct 2020 18:34:16 -0400
-Received: from earth.universe (unknown [185.213.155.232])
+        id S1726741AbgJAWrj (ORCPT <rfc822;devicetree@vger.kernel.org>);
+        Thu, 1 Oct 2020 18:47:39 -0400
+Received: from localhost (fw-tnat.cambridge.arm.com [217.140.96.140])
         (using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
         (No client certificate requested)
-        by mail.kernel.org (Postfix) with ESMTPSA id 143A620719;
-        Thu,  1 Oct 2020 22:34:16 +0000 (UTC)
+        by mail.kernel.org (Postfix) with ESMTPSA id F13172074B;
+        Thu,  1 Oct 2020 22:47:38 +0000 (UTC)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=kernel.org;
-        s=default; t=1601591656;
-        bh=C0tsO5cNgagmCLODaUqFSnF84xDb1/vsiTrnbyr/CQE=;
-        h=Date:From:To:Cc:Subject:References:In-Reply-To:From;
-        b=Po8wSS7Lim+uQWRzodvEUaJSDByxhChjJ8gg1miei/1Y7Rnvmr3ss27KkeJ5JX3M6
-         IjAo8XMdDo2LdE5k/DLFnOmdI73zkFltdoJtJc/qLmxeJRWyx7mTES1V0qx2fwm1eu
-         gJ8uyiNdR8GOgZPNVRMUakMMddmT3H/8heDTkTU8=
-Received: by earth.universe (Postfix, from userid 1000)
-        id C57BC3C0C84; Fri,  2 Oct 2020 00:34:13 +0200 (CEST)
-Date:   Fri, 2 Oct 2020 00:34:13 +0200
-From:   Sebastian Reichel <sre@kernel.org>
-To:     Krzysztof Kozlowski <krzk@kernel.org>
-Cc:     Rob Herring <robh+dt@kernel.org>,
-        Pali =?utf-8?B?Um9ow6Fy?= <pali@kernel.org>,
-        Dan Murphy <dmurphy@ti.com>, linux-pm@vger.kernel.org,
-        devicetree@vger.kernel.org, linux-kernel@vger.kernel.org
-Subject: Re: [PATCH v2 0/6] power: supply: bq27xxx: add bq34z100
-Message-ID: <20201001223413.e57afzv6dwwpbpqy@earth.universe>
-References: <20200919140418.3705-1-krzk@kernel.org>
+        s=default; t=1601592459;
+        bh=HaZK10shVaF0sGBaLYo+hXt29nlPICTj9C3MPvCxu7g=;
+        h=Date:From:To:Cc:In-Reply-To:References:Subject:From;
+        b=unZSUCVlkb3tzf5YIxFgWSj54QCJtrbpghNBF2+OQwr6GQDmuQEtpvZWl0vgvgsha
+         gE/2fTuvyM5PLlQlZP3EzNKr+fG+le7Q7ZUcjTgSRXlG/2Vh8oaImbVhMX7bh4uVw7
+         76BSP5vprMUx0G+Q1wMZj8WfKDIhQlN1eXWj/oDo=
+Date:   Thu, 01 Oct 2020 23:46:40 +0100
+From:   Mark Brown <broonie@kernel.org>
+To:     devicetree@vger.kernel.org, Rob Herring <robh@kernel.org>
+Cc:     Liam Girdwood <lgirdwood@gmail.com>, linux-kernel@vger.kernel.org,
+        alsa-devel@alsa-project.org
+In-Reply-To: <20200826184851.3431531-1-robh@kernel.org>
+References: <20200826184851.3431531-1-robh@kernel.org>
+Subject: Re: [PATCH 1/3] dt-bindings: sound: Remove unused 'linux,hdmi-audio'
+Message-Id: <160159237545.44588.11956509419329615135.b4-ty@kernel.org>
 MIME-Version: 1.0
-Content-Type: multipart/signed; micalg=pgp-sha512;
-        protocol="application/pgp-signature"; boundary="s7xxlsn5s4d2k2l3"
-Content-Disposition: inline
-In-Reply-To: <20200919140418.3705-1-krzk@kernel.org>
+Content-Type: text/plain; charset="utf-8"
+Content-Transfer-Encoding: 7bit
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
+On Wed, 26 Aug 2020 12:48:49 -0600, Rob Herring wrote:
+> The binding was added in 2013 and has had no driver since 2015.
 
---s7xxlsn5s4d2k2l3
-Content-Type: text/plain; charset=us-ascii
-Content-Disposition: inline
-Content-Transfer-Encoding: quoted-printable
+Applied to
 
-Hi,
+   https://git.kernel.org/pub/scm/linux/kernel/git/broonie/sound.git for-next
 
-On Sat, Sep 19, 2020 at 04:04:12PM +0200, Krzysztof Kozlowski wrote:
-> Changes since v1:
-> 1. Squash patch 3 and 4 - cleanups, as suggested.
->=20
-> Best regards,
-> Krzysztof
->=20
-> Krzysztof Kozlowski (6):
->   dt-bindings: power: bq27xxx: add bq34z100
->   power: supply: bq27xxx: report "not charging" on all types
->   power: supply: bq27xxx: adjust whitespace and use BIT() for bitflags
->   power: supply: bq27xxx: add separate flag for single SoC register
->   power: supply: bq27xxx: add separate flag for capacity inaccurate
->   power: supply: bq27xxx: add support for TI bq34z100
->=20
->  .../bindings/power/supply/bq27xxx.yaml        |  1 +
->  drivers/power/supply/bq27xxx_battery.c        | 83 +++++++++++++++----
->  drivers/power/supply/bq27xxx_battery_i2c.c    |  2 +
->  include/linux/power/bq27xxx_battery.h         |  1 +
->  4 files changed, 72 insertions(+), 15 deletions(-)
+Thanks!
 
-Thanks, queued.
+[1/1] ASoC: Remove unused 'linux,hdmi-audio'
+      commit: 08dd413b9ddf253ec3ee783a0a21df3754823be9
 
--- Sebastian
+All being well this means that it will be integrated into the linux-next
+tree (usually sometime in the next 24 hours) and sent to Linus during
+the next merge window (or sooner if it is a bug fix), however if
+problems are discovered then the patch may be dropped or reverted.
 
---s7xxlsn5s4d2k2l3
-Content-Type: application/pgp-signature; name="signature.asc"
+You may get further e-mails resulting from automated or manual testing
+and review of the tree, please engage with people reporting problems and
+send followup patches addressing any issues that are reported if needed.
 
------BEGIN PGP SIGNATURE-----
+If any updates are required or you are submitting further changes they
+should be sent as incremental updates against current git, existing
+patches will not be replaced.
 
-iQIzBAABCgAdFiEE72YNB0Y/i3JqeVQT2O7X88g7+poFAl92WV4ACgkQ2O7X88g7
-+poE7RAAkAxVds7XXwqb9RoEXZrWEGsPqUXIV50splqtvOilhj+dAQdnBfzE/Dwl
-IZdivUrwtQKe2D441mkyYTLhxBS+NBLKqK3sySwF9pAbdiqyel3h2l/67o37nViJ
-ANEa3NjrohwMzWUc8u9/utD4pb2sJYHYoLBcpX7nOkHnqrau7Etz8d3Tb/RGpAs5
-pRkygMZThZHegBiP5BN10MilDBBm4V8W1P1OrbDm4RWNWAu1VtZlYjAvxO72N6Pk
-fqm7btZ8VJQG4eMbnRfMywBvizUDOW3Cy+zoM6hNgTIw0/N8YnHhNm53Qm+0nLrW
-Yph2BAj2CdkgQ6OFezYRvc9ARIleeDSiMZBLTcaC8AAuY1fj/HmspO5iTf+kfaI4
-lESXZVFwBix/icP3ohE+1zHSaP1elQrED+INPOHXWBVxeCTr9aqmZLnSbTJcm71R
-0BIs4OEnhKN/8QdguOSoqi3k8s9tBV+/KNW9gDaUHfogonCryDhZV02yKzya64I4
-3vMnS+xBqR2QzM8WyyMyCXetA4ZB8Elt0Xb2YppdHtjx4qpYPH7Rd4yyrbbvUsEK
-xzA767Tzih7NmaZWBl5es7ZdL+YOWpaZRuBiOD3pTxpOkx2d9GKJg19jZDGTONdo
-1qMPc76Qwxh05EgI9joHTukInnx9FXs/nJeijXPqK/Vd0lwyb8E=
-=HTDD
------END PGP SIGNATURE-----
+Please add any relevant lists and maintainers to the CCs when replying
+to this mail.
 
---s7xxlsn5s4d2k2l3--
+Thanks,
+Mark
