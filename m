@@ -2,148 +2,260 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from vger.kernel.org (vger.kernel.org [23.128.96.18])
-	by mail.lfdr.de (Postfix) with ESMTP id 4173C27F709
-	for <lists+devicetree@lfdr.de>; Thu,  1 Oct 2020 03:11:18 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTP id 8518327F754
+	for <lists+devicetree@lfdr.de>; Thu,  1 Oct 2020 03:25:00 +0200 (CEST)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S1730378AbgJABLR convert rfc822-to-8bit (ORCPT
-        <rfc822;lists+devicetree@lfdr.de>); Wed, 30 Sep 2020 21:11:17 -0400
-Received: from mail-eopbgr1300109.outbound.protection.outlook.com ([40.107.130.109]:6608
-        "EHLO APC01-HK2-obe.outbound.protection.outlook.com"
-        rhost-flags-OK-OK-OK-FAIL) by vger.kernel.org with ESMTP
-        id S1728660AbgJABLQ (ORCPT <rfc822;devicetree@vger.kernel.org>);
-        Wed, 30 Sep 2020 21:11:16 -0400
-ARC-Seal: i=1; a=rsa-sha256; s=arcselector9901; d=microsoft.com; cv=none;
- b=nz8nMuJv5H3xx51PcDX5XFf/U6kdpvfPnzOyuV2mYJfadGtpiXR9EoJMY2kfThffuB3cmswKNxJBRhEghDy1SHJ4X2t0UJjpEP9zrGjjYEKCicZQk3Img6et1tTeOK9mulfXF7SgKoPVUVDcd95q1q4TFpwRZzbiEipOfBPpgIesJw5Hsktisz7/S/on2onSVoCoGypQh75bQQ3KxA0oe9l1hbhPPySYle7hg9J4CLSMwoyOBvwjx1A0gMLkfXNlnIVfxNMJx+PqoqXgA8nHJQLOZKKQnTocm6mDFLb8G1obx0XrLyFhLmI2x8LZ6FUgqyxB6Y6UuByX8fFdKLYecg==
-ARC-Message-Signature: i=1; a=rsa-sha256; c=relaxed/relaxed; d=microsoft.com;
- s=arcselector9901;
- h=From:Date:Subject:Message-ID:Content-Type:MIME-Version:X-MS-Exchange-SenderADCheck;
- bh=mGAgkfbQwuOlzsqNaLqv9ag2x4edtVrzecvxDDzd+q4=;
- b=gujoRcT6Frh/V+gond7o8zeojmVKhaejk2Bb7SnWxKebb8XZkbeftuDULUqXOF8UV8x6JHSBizZA/YoaujgxoGNg6NrffiKfuV+dIH47TPVwU2DsqqoeEBIr8+6lQdU1vU/lDTNedjbvyx0TQ7xnulZv7nMJnHmdM4oKpYZtfiygczW16zF9l805t4ISSIpz7sWwWJxuQosNXS1dIlXZHBJEa0oUzRw+HG+s034b6MUF71nPdpHG6YeIr51j2jfhQLXZ1MRmPt3PsvxNU1FjB1fTag7/h2WEXUr7R6+Ql7cWPgz/z9ahVZoJcbeyIiwNlqP33pHYiJY9GxVqi/sLeA==
-ARC-Authentication-Results: i=1; mx.microsoft.com 1; spf=pass
- smtp.mailfrom=aspeedtech.com; dmarc=pass action=none
- header.from=aspeedtech.com; dkim=pass header.d=aspeedtech.com; arc=none
-Received: from HK0PR06MB3380.apcprd06.prod.outlook.com (2603:1096:203:82::18)
- by HK2PR0601MB1924.apcprd06.prod.outlook.com (2603:1096:202:c::19) with
- Microsoft SMTP Server (version=TLS1_2,
- cipher=TLS_ECDHE_RSA_WITH_AES_256_GCM_SHA384) id 15.20.3412.22; Thu, 1 Oct
- 2020 01:11:08 +0000
-Received: from HK0PR06MB3380.apcprd06.prod.outlook.com
- ([fe80::6def:b61:3beb:f3d5]) by HK0PR06MB3380.apcprd06.prod.outlook.com
- ([fe80::6def:b61:3beb:f3d5%6]) with mapi id 15.20.3412.029; Thu, 1 Oct 2020
- 01:11:08 +0000
-From:   Ryan Chen <ryan_chen@aspeedtech.com>
-To:     Andrew Jeffery <andrew@aj.id.au>,
-        Billy Tsai <billy_tsai@aspeedtech.com>,
-        Rob Herring <robh+dt@kernel.org>,
-        Joel Stanley <joel@jms.id.au>,
-        "devicetree@vger.kernel.org" <devicetree@vger.kernel.org>,
-        "linux-arm-kernel@lists.infradead.org" 
-        <linux-arm-kernel@lists.infradead.org>,
-        "linux-aspeed@lists.ozlabs.org" <linux-aspeed@lists.ozlabs.org>,
-        "linux-kernel@vger.kernel.org" <linux-kernel@vger.kernel.org>
-CC:     BMC-SW <BMC-SW@aspeedtech.com>
-Subject: RE: [RESEND PATCH] ARM: dts: aspeed-g6: Fix gpio memory region
-Thread-Topic: [RESEND PATCH] ARM: dts: aspeed-g6: Fix gpio memory region
-Thread-Index: AQHWlwjxAC+Kpafu9USq5zc4ADh2qqmB4Q0AgAAFh4CAAAgjEA==
-Date:   Thu, 1 Oct 2020 01:11:08 +0000
-Message-ID: <HK0PR06MB3380BC1CB19918128E5A60B3F2300@HK0PR06MB3380.apcprd06.prod.outlook.com>
-References: <20200930051113.32465-1-billy_tsai@aspeedtech.com>
- <20200930090603.19891-1-billy_tsai@aspeedtech.com>
- <b7bcc925-b0da-446f-84a7-1a564a1f4f83@www.fastmail.com>
- <2b3c4303-ef63-4c34-be00-ff59abc32e69@www.fastmail.com>
-In-Reply-To: <2b3c4303-ef63-4c34-be00-ff59abc32e69@www.fastmail.com>
-Accept-Language: zh-TW, en-US
-Content-Language: zh-TW
-X-MS-Has-Attach: 
-X-MS-TNEF-Correlator: 
-authentication-results: aj.id.au; dkim=none (message not signed)
- header.d=none;aj.id.au; dmarc=none action=none header.from=aspeedtech.com;
-x-originating-ip: [211.20.114.70]
-x-ms-publictraffictype: Email
-x-ms-office365-filtering-correlation-id: b5eb95f2-699b-4b5f-f51e-08d865a6e129
-x-ms-traffictypediagnostic: HK2PR0601MB1924:
-x-ms-exchange-transport-forked: True
-x-microsoft-antispam-prvs: <HK2PR0601MB19249004FA1E7164D34B556BF2300@HK2PR0601MB1924.apcprd06.prod.outlook.com>
-x-ms-oob-tlc-oobclassifiers: OLM:6430;
-x-ms-exchange-senderadcheck: 1
-x-microsoft-antispam: BCL:0;
-x-microsoft-antispam-message-info: FbFNCTOrQ/4R+cTsfGjWzizZlxwa75/fgFyU2Vh9NPVXRaEsHLKtVNLM9k8LdMD0cpEr4J5qBNLgUtQ9xdV78CBh81Nbvz6ZmFhf+WtuAgJOrFcar5DwggsVUL5CavDT7/+shFQjTXW3e2B1DuMyZUF2tzfHpAm7dsQGs8NwmBgokvJOR38zME3iu2LYHG5TcZ48HDa2nXfgUYXj9aOz4mT60tPBBA8+mqg9JhU+jZv17GBAQ9Ew/065dKBZU649iHE+TgVNZIsqs8/ZvDTEfwN0ZjYBV/qLVBpGBBFpiDKfXpRs6sbiQoNcz5tlwXdUZfHyuNnSyddFAV8ZQVLM+olZNHkQCY3629W6kgMQFpRvIcMlagtKuhIDZW2u2H6S
-x-forefront-antispam-report: CIP:255.255.255.255;CTRY:;LANG:en;SCL:1;SRV:;IPV:NLI;SFV:NSPM;H:HK0PR06MB3380.apcprd06.prod.outlook.com;PTR:;CAT:NONE;SFS:(39830400003)(366004)(396003)(136003)(376002)(346002)(66946007)(186003)(53546011)(110136005)(316002)(66476007)(66556008)(66446008)(64756008)(55236004)(71200400001)(6506007)(76116006)(9686003)(26005)(8936002)(55016002)(8676002)(4326008)(2906002)(7696005)(33656002)(83380400001)(478600001)(107886003)(52536014)(86362001)(5660300002);DIR:OUT;SFP:1102;
-x-ms-exchange-antispam-messagedata: 2b8KwpkZCDVJ+u7uTmeD8ITsIKBtTPdMQm5rjGoaD0kHM/x5/CmcZjgg0pug2hr5Q8wAKcVP5VDMtVJ8syFEYb0cHzqj5tTlTSqE/wxfnR7WyeyKdO8/9ApbjcX/RCXKZFYDbic3H0uB4KKAsoYz4jFjtxoJYgN5LCGu43FqO7iELpXALX49qzIYPCUDbDzf2C7IaP3T9sI6VK3tSYpjB6iwOq9hBPgIlDRrOecoUrJYIgTr8sqVPLV2Eav5TaK+X7w15CNzP3K/rZinveFUs8lF7LKA7QzPdxRdgfx9MfwNZGQqiyiU1bt4Qr5wyd0QyCto2erL+g5CklT52ZSbqm5JQeg7CUHazGULI1vcadj7xmllInlFHkO43J4VzM3qts60IdVJpO8RqFwBR7syf6sB1wCUD2UvpBQM03IucN0rG20BmfWMGRxRLx7RtkQ7YVS8cuN6qafLxiKjweWlCroXe6Mi5gqtwS8QmKayGj7efEljXnG13GFLOXtjAFZBCgTkZiNWy7Ng62zdKh81+jRHBUM1g+IOQjyxXiLBsuqy45rKI1esGLFWkw/U/KlTSHquG0PK7mL0B25poRfqFCPBUbx4nZuB9xe0PeDTW8ID2C6cG1I7eq8V9nGeOVkTDj0vO11iAet1M/kzfgKkEw==
-Content-Type: text/plain; charset="us-ascii"
-Content-Transfer-Encoding: 8BIT
+        id S1730260AbgJABYO (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Wed, 30 Sep 2020 21:24:14 -0400
+Received: from netrider.rowland.org ([192.131.102.5]:39747 "HELO
+        netrider.rowland.org" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
+        with SMTP id S1729980AbgJABYO (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Wed, 30 Sep 2020 21:24:14 -0400
+Received: (qmail 232901 invoked by uid 1000); 30 Sep 2020 21:24:13 -0400
+Date:   Wed, 30 Sep 2020 21:24:13 -0400
+From:   Alan Stern <stern@rowland.harvard.edu>
+To:     Rob Herring <robh@kernel.org>
+Cc:     Doug Anderson <dianders@chromium.org>,
+        Matthias Kaehlcke <mka@chromium.org>,
+        Greg Kroah-Hartman <gregkh@linuxfoundation.org>,
+        Frank Rowand <frowand.list@gmail.com>,
+        "linux-kernel@vger.kernel.org" <linux-kernel@vger.kernel.org>,
+        Linux USB List <linux-usb@vger.kernel.org>,
+        Bastien Nocera <hadess@hadess.net>,
+        Stephen Boyd <swboyd@chromium.org>,
+        Ravi Chandra Sadineni <ravisadineni@chromium.org>,
+        Krzysztof Kozlowski <krzk@kernel.org>,
+        "open list:OPEN FIRMWARE AND FLATTENED DEVICE TREE BINDINGS" 
+        <devicetree@vger.kernel.org>, Peter Chen <peter.chen@nxp.com>
+Subject: Re: [PATCH v4 1/2] dt-bindings: usb: Add binding for discrete
+ onboard USB hubs
+Message-ID: <20201001012413.GA232049@rowland.harvard.edu>
+References: <20200928101326.v4.1.I248292623d3d0f6a4f0c5bc58478ca3c0062b49a@changeid>
+ <20200929201701.GA1080459@bogus>
+ <20200929220912.GF1621304@google.com>
+ <20200930013229.GB194665@rowland.harvard.edu>
+ <20200930124915.GA1826870@google.com>
+ <CAL_JsqLq9ZJm_CMiqWwbQhgGeu_ac_j43pvk4+xCFueSbyL4wA@mail.gmail.com>
+ <CAD=FV=WcDzgcHNn1+gH+gq_WEwpD0XXdJGm2fBVpAB=3fVbzZA@mail.gmail.com>
+ <CAL_Jsq+Zi+hCmUEiSmYw=pVK472=OW1ZjLnkH1NodWUm8FA5+g@mail.gmail.com>
 MIME-Version: 1.0
-X-OriginatorOrg: aspeedtech.com
-X-MS-Exchange-CrossTenant-AuthAs: Internal
-X-MS-Exchange-CrossTenant-AuthSource: HK0PR06MB3380.apcprd06.prod.outlook.com
-X-MS-Exchange-CrossTenant-Network-Message-Id: b5eb95f2-699b-4b5f-f51e-08d865a6e129
-X-MS-Exchange-CrossTenant-originalarrivaltime: 01 Oct 2020 01:11:08.8625
- (UTC)
-X-MS-Exchange-CrossTenant-fromentityheader: Hosted
-X-MS-Exchange-CrossTenant-id: 43d4aa98-e35b-4575-8939-080e90d5a249
-X-MS-Exchange-CrossTenant-mailboxtype: HOSTED
-X-MS-Exchange-CrossTenant-userprincipalname: E5ksiEVii7gr0rlzPEfjYMuXYZUPt4APnN/a1M9GtH/v2JLKutChcZH0TX7Opf7Ce4JGZ5fZ+bqlYWJbW4aTu1ASnxy7L39qbnLScE1IwdY=
-X-MS-Exchange-Transport-CrossTenantHeadersStamped: HK2PR0601MB1924
+Content-Type: text/plain; charset=us-ascii
+Content-Disposition: inline
+In-Reply-To: <CAL_Jsq+Zi+hCmUEiSmYw=pVK472=OW1ZjLnkH1NodWUm8FA5+g@mail.gmail.com>
+User-Agent: Mutt/1.10.1 (2018-07-13)
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-> -----Original Message-----
-> From: Andrew Jeffery <andrew@aj.id.au>
-> Sent: Thursday, October 1, 2020 8:32 AM
-> To: Billy Tsai <billy_tsai@aspeedtech.com>; Rob Herring <robh+dt@kernel.org>;
-> Joel Stanley <joel@jms.id.au>; devicetree@vger.kernel.org;
-> linux-arm-kernel@lists.infradead.org; linux-aspeed@lists.ozlabs.org;
-> linux-kernel@vger.kernel.org; Ryan Chen <ryan_chen@aspeedtech.com>
-> Cc: BMC-SW <BMC-SW@aspeedtech.com>
-> Subject: Re: [RESEND PATCH] ARM: dts: aspeed-g6: Fix gpio memory region
-> 
-> 
-> 
-> On Thu, 1 Oct 2020, at 09:42, Andrew Jeffery wrote:
-> > Hi Billy,
+On Wed, Sep 30, 2020 at 03:20:28PM -0500, Rob Herring wrote:
+> On Wed, Sep 30, 2020 at 10:28 AM Doug Anderson <dianders@chromium.org> wrote:
+
+> > > There aren't 2 (or 3) devices here. There's a single USB device (a
+> > > hub) and the DT representation should reflect that.
 > >
-> > On Wed, 30 Sep 2020, at 18:36, Billy Tsai wrote:
-> > > Signed-off-by: Billy Tsai <billy_tsai@aspeedtech.com>
-> > > ---
-> > >  arch/arm/boot/dts/aspeed-g6.dtsi | 2 +-
-> > >  1 file changed, 1 insertion(+), 1 deletion(-)
+> > That's not completely true, though, is it?
+> 
+> I was referring to the hub. I only see 1 datasheet, 1 IC and 1 block
+> diagram... Lots of devices have more than one interface though usually
+> not different speeds of the same thing.
+> 
+> > As I understand it, a USB
+> > 3 port is defined as containing both a USB 2 controller and a USB 3
+> > controller.  While it's one port, it's still conceptually two
+> > (separable) things.  The fact that they are on the same physical chip
+> > doesn't mean that they are one thing any more than a SoC (one chip)
+> > needs to be represented by one thing in the device tree.  Though, of
+> > course, I'm not the expert here, the argument that this IC is a USB 2
+> > hub, a USB 3 hub, and some control logic doesn't seem totally
+> > insane...
+> 
+> Until there's a shared resource.
+
+Here's how the hardware works:
+
+A USB-3 cable contains two sets of data wires: one set running at <=
+480 Mb/s and carrying USB-2 protocol packets, and one set running at
+>= 5000 Mb/s and carrying USB-3 protocol packets.  The two sets are
+logically and physically independent and act as separate data buses.
+In fact, I believe it is possible to put one of the buses into runtime
+suspend while the other continues to operate normally.
+
+Every device attached to a USB-3 cable must use only one set of these
+wires at a time -- except for hubs.  A USB-3 hub must use both sets
+and will appear to the host as two independent hubs, one on each bus.
+
+Whether you want to represent a USB-3 hub as two separate devices in
+DT is up to you.  I think doing so makes sense, but I don't know very
+much about Device Tree.
+
+> > > We already have hubs in DT. See [1][2][3][4]. What's new here? Simply,
+> > > vdd-supply needs to be enabled for the hub to be enumerated. That's
+> > > not a unique problem for USB, but common for all "discoverable" buses
+> > > with MDIO being the most recent example I pointed you to. I'm not sure
+> > > what happened with the previous attempt for USB[5]. It didn't look
+> > > like there was a major issue. 'generic' power sequencing can't really
+> > > handle every case, but as long as bindings allow doing something
+> > > device specific I don't care so much. The driver side can evolve. The
+> > > DT bindings can't.
 > > >
-> > > diff --git a/arch/arm/boot/dts/aspeed-g6.dtsi
-> > > b/arch/arm/boot/dts/aspeed-g6.dtsi
-> > > index 97ca743363d7..b9ec8b579f73 100644
-> > > --- a/arch/arm/boot/dts/aspeed-g6.dtsi
-> > > +++ b/arch/arm/boot/dts/aspeed-g6.dtsi
-> > > @@ -357,7 +357,7 @@
-> > >  				#gpio-cells = <2>;
-> > >  				gpio-controller;
-> > >  				compatible = "aspeed,ast2600-gpio";
-> > > -				reg = <0x1e780000 0x800>;
-> > > +				reg = <0x1e780000 0x500>;
+> > > So what should this look like? There are 2 issues here. First, how do
+> > > we represent a USB3 device if that means multiple ports. I'm not
+> > > really sure other than it needs to be defined and documented. I think
+> > > the choices are: ignore the USB3 part (USB2 is always there and what's
+> > > used for enumeration, right?) or allow multiple ports in reg.
 > >
-> > We took the 0x800 value from the memory space layout table in the
-> > datasheet for the 2600. Should that be updated too? Or are you just
-> > limiting the region to the registers currently described rather than the
-> allocated address space?
+> > Interesting question, that one.  When trying to optimize board designs
+> > we have certainly talked about separating out the USB 2 and USB 3 [1].
+> > For instance, we could take the USB 3 lines from the root hub and send
+> > them off to a high speed camera and then take the USB 2 lines and
+> > route them to a hub which then went to some low speed devices.  We
+> > chickened out and didn't do this, but we believed that it would work.
 > 
-> Ah, actually, I see what's going on. We really have this layout (taking some
-> liberties):
-> 
-> 0x1e785000 - 0x1e785500: PGPIO 3.3V
-> 0x1e785500 - 0x1e785600: SGPM1
-> 0x1e785600 - 0x1e785700: SGPM2
-> 0x1e785700 - 0x1e785740: SPGS1
-> 0x1e785740 - 0x1e785780: SPGS2
-> 0x1e785800 - 0x1e786000: PGPIO 1.8V
-> 
-> Ryan: Can you change the address space layout table to reflect this? That way it
-> still functions as a quick - but accurate - reference.
+> Great. :( No doubt that we'll see this at some point. Though I'd
+> assume if connectors are involved, USB3 only is not USB compliant and
+> that will ripple to all the upstream ports. I guess it could be as
+> crazy as any USB2 port and any USB3 port in one connector. One from a
+> hub and one from the root port. Though aren't there port power
+> controls which would probably prevent such craziness.
 
-Yes will resend the patch for update the table. 
-0x1e780000 ~ 0x1e780400 PGPIO 3.3V
-0x1e780500 - 0x1e780600: SGPM1
-0x1e780600 - 0x1e780700: SGPM2
-0x1e780700 - 0x1e780740: SPGS1
-0x1e780740 - 0x1e780780: SPGS2
-0x1e780800 - 0x1e781000: PGPIO 1.8V
+A hub that attaches only to the USB-3 data wires in a cable is not USB
+compliant.  A USB-2 device plugged into such a hub would not work.
 
+But ports can be wired up in weird ways.  For example, it is possible
+to have the USB-3 wires from a port going directly to the host
+controller, while the USB-2 wires from the same port go through a
+USB-2 hub which is then connected to a separate host controller.  (In
+fact, my office computer has just such an arrangement.)
+
+> We certainly have separate host controllers as well.
+> 
+> > > Do hubs
+> > > really have 2 ports for each connection?
+> >
+> > Yup.  It's really two hubs.
+> >
+> > localhost ~ # lsusb -t
+> > /:  Bus 02.Port 1: Dev 1, Class=root_hub, Driver=xhci-hcd/1p, 5000M
+> >     |__ Port 1: Dev 2, If 0, Class=Hub, Driver=hub/4p, 5000M
+> > /:  Bus 01.Port 1: Dev 1, Class=root_hub, Driver=xhci-hcd/1p, 480M
+> >     |__ Port 1: Dev 2, If 0, Class=Hub, Driver=hub/4p, 480M
+> 
+> Humm, seems we're mixing buses and ports in the numbering. The USB
+
+The "Port 1" numbers on the "Bus" lines doesn't make any sense; they
+are meaningless.  If you ignore them the rest is logical.
+
+> binding says it's ports. Not sure that matters, but something to think
+> about.
+> 
+> > localhost ~ # lsusb
+> > Bus 002 Device 002: ID 0bda:0411 Realtek Semiconductor Corp.
+> > Bus 002 Device 001: ID 1d6b:0003 Linux Foundation 3.0 root hub
+> > Bus 001 Device 002: ID 0bda:5411 Realtek Semiconductor Corp.
+> > Bus 001 Device 001: ID 1d6b:0002 Linux Foundation 2.0 root hub
+> >
+> > I think this means that we're already forced to split this one device
+> > across two nodes in the device tree, right?  Oh, or I guess you said
+> > we could change the binding to allow more than one port in one reg?
+> > What would that look like?
+> 
+> reg = <1 2>;
+> 
+> Though that's not going to work if you have 2 separate host controllers.
+> 
+> I think splitting devices is the wrong approach. I think we want to
+> link USB2 and USB3 ports instead. We've already got some property to
+> do this, but at the host controller level. Called 'companion'
+> something IIRC. Probably that needs to be more flexible.
+
+The USB term is "peer" ports.  That is, given a USB-3 hub (which shows
+up as one hub on the USB-3 bus and one on the USB-2 bus), port N on
+the the USB-3 incarnation of the hub is the peer of port M on the
+USB-2 incarnation (for some value of M which doesn't always have to be
+the same as N).  In other words, suppose that when you plug a USB-3
+device into the hub it shows up on (logical) port N, and when you plug
+a USB-2 device into the same port on that hub it shows up on (logical)
+port M.  Then ports N and M on the USB-3 and USB-2 incarnations of the
+hub are peers.
+
+To make things even more confusing, the USB-2 and USB-3 incarnations
+of a USB hub don't have to have the same number of ports!  Some of the
+physical ports on the hub may be USB-2 only.
+
+> > You'd have more than one VID/PID listed in
+> > the compatible string and more than one "reg"?
+> 
+> 2 compatible strings I guess.
+> 
+> > > The 2nd issue is where do extra properties for a device go. That's
+> > > nothing new nor special to USB. They go with the device node. We
+> > > already went thru that with the last attempt.
+> > >
+> > > So for this case, we'd have something like this:
+> > >
+> > >     usb_controller {
+> > >         dr_mode = "host";
+> > >         #address-cells = <1>;
+> > >         #size-cells = <0>;
+> > >
+> > >         hub@1 {
+> > >             compatible = "usbbda,5411";
+> > >             reg = <1>;
+> > >             vdd-supply = <&pp3300_hub>;
+> > >         };
+> > >     };
+> > >
+> > > This is no different than needing a reset line deasserted as the prior
+> > > attempt did.
+> >
+> > I'd believe that the above could be made to work with enough software
+> > change in the USB stack.
+> 
+> I believe the prior attempt did just that.
+> 
+> >  Presumably we wouldn't want to actually do a
+> > full probe of the device until USB actually enumerated it, but I guess
+> > you could add some type of optional "pre-probe" step where a driver is
+> > called?  So you'd call a pre-probe on whatever driver implements
+> > "usbbda,5411" and it would turn on the power supply.  ...then, if the
+> > device is actually there, the normal probe would be called?  I guess
+> > that'd work...
+> 
+> Yes, I've been saying for some time we need a pre-probe. Or we need a
+> forced probe where the subsystem walks the DT nodes for the bus and
+> probes the devices in DT (if they're in DT, we know they are present).
+> This was the discussion only a few weeks ago for MDIO (which I think
+> concluded with they already do the latter).
+
+This is why I suggested putting the new code into the xhci-platform
+driver.  That is the right place for doing these "pre-probes" of DT
+nodes for hubs attached to the host controller.
+
+> Instead, I typically see attempts at 'generic' properties for doing
+> power sequencing. That is a never ending stream of properties to add
+> more controls or more timing constraints on the sequences.
+> 
+> > One thing that strikes me as a possible problem, though, is that I
+> > totally envision HW guys coming back and saying: "oh, we want to
+> > second source that USB hub and randomly stuff a different hub on some
+> > boards".  In theory that's a reasonable suggestion, right?  USB is a
+> > probable bus.  We turn on power to the USB hub (and the regulator to
+> > turn on power is the same no matter which hub is stuffed) and then we
+> > can just check which device got enumerated.  It's likely that both
+> > hubs would behave the same from a software point of view, but they
+> > would have different VID/PID.
+> 
+> A 2nd compatible string solves this. Or the s/w needs to tolerate a
+> mismatch in VID/PID. Pre-probe matches on compatible string and real
+> probe matches on VID/PID and there doesn't have to be any relationship
+> between the 2.
+> 
+> If you have another way to power the device other than just 'Vbus' or
+> self-powered, then you aren't really USB compliant.
+
+That statement is questionable.  After all, "self-powered" really
+means nothing more than "not bus-powered" (apart from borderline cases
+of devices that take part of their power from the bus and part from
+somewhere else).
+
+Alan Stern
