@@ -2,139 +2,103 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from vger.kernel.org (vger.kernel.org [23.128.96.18])
-	by mail.lfdr.de (Postfix) with ESMTP id 65BBF27F645
-	for <lists+devicetree@lfdr.de>; Thu,  1 Oct 2020 01:49:01 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTP id 4767B27F698
+	for <lists+devicetree@lfdr.de>; Thu,  1 Oct 2020 02:21:07 +0200 (CEST)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S1730192AbgI3XtB (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Wed, 30 Sep 2020 19:49:01 -0400
-Received: from lindbergh.monkeyblade.net ([23.128.96.19]:35194 "EHLO
-        lindbergh.monkeyblade.net" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S1730668AbgI3XtA (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Wed, 30 Sep 2020 19:49:00 -0400
-Received: from mail-lj1-x242.google.com (mail-lj1-x242.google.com [IPv6:2a00:1450:4864:20::242])
-        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 5FC21C061755
-        for <devicetree@vger.kernel.org>; Wed, 30 Sep 2020 16:49:00 -0700 (PDT)
-Received: by mail-lj1-x242.google.com with SMTP id r24so3080796ljm.3
-        for <devicetree@vger.kernel.org>; Wed, 30 Sep 2020 16:49:00 -0700 (PDT)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=ragnatech-se.20150623.gappssmtp.com; s=20150623;
-        h=date:from:to:cc:subject:message-id:references:mime-version
-         :content-disposition:content-transfer-encoding:in-reply-to;
-        bh=1K6GZ5cts7m5+dPoKFk/BNjOtI5JoHWgjjAufBHq48Y=;
-        b=tRyeEN3nhgw2RRiORdqa8mpKabxwtR2R8hUhmoETiBpNETmt2SnVpE5e0nP7yROGy9
-         tMHSmwiXfQxTXWC44UEShc2AgHdCjJS5UaQCxQi9+e7M5Ga5b0iOtCt7qjgRkMxxBPfH
-         3rJCakAOPi3yqMGC+Dp6OUPQBUNmhzbPk0YHNp7nTvYw5jQZX8GU1fAh4CfMPrViGxmb
-         kzUaTEpstRZnM9P6CEIfcsWNvfaEdZVwRQWg1L2EvrHPobqfO0VfvBAf/oyFuTzlyW4Z
-         DrqR/BYHu+yofs46Dxey5ewEqwVuVeyADzoGUH208xPIe160j3zc+ebPnE3YNFuxcUhv
-         c8ZQ==
-X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=1e100.net; s=20161025;
-        h=x-gm-message-state:date:from:to:cc:subject:message-id:references
-         :mime-version:content-disposition:content-transfer-encoding
-         :in-reply-to;
-        bh=1K6GZ5cts7m5+dPoKFk/BNjOtI5JoHWgjjAufBHq48Y=;
-        b=e6VbWxut2w+K1piSxoTilLx0vbYHYeLlcnq5q0HXOLIOvdKQOwTzXnRBZSnUD+V5FU
-         HznQFgHlB9DNJkTIZp3xf26NF/7/zHth4f8rWH+WCEmSjiWPykMHysJlUEiL1gMeYAnR
-         qMW1PEhv4S1D+lTtmCpTPwgCU5cK8nPeRSVCVc6mGSojWk7QIGDDWGlX4CPcPnyLA/iR
-         GubJicERU28Wmbb8+4NlTLa5nv44q+ZeiipCWu5LGUCR+T/y4GwJDFe8kAO4+4VafRqA
-         icfesUffvk/aRTvonPRKRbNjv61VV+Up13QzsHYF889Yc2CvWLAS0YjLOLg67B3ArHuc
-         geaA==
-X-Gm-Message-State: AOAM5300RuBd4ui75EJ5h/IHeh7CBff8pTZ6JbWLrACpVKqE44SgNeFL
-        00sFBmO+swPUJ4cfgaz3ZBPyeg==
-X-Google-Smtp-Source: ABdhPJxf7ZY83Qyw/h83m+REyH2P0HviHDKEwswK3B/J5Q6hMpcTf1FtPONgOIKku3H2miUH7CQbUg==
-X-Received: by 2002:a2e:80d2:: with SMTP id r18mr1585556ljg.98.1601509738794;
-        Wed, 30 Sep 2020 16:48:58 -0700 (PDT)
-Received: from localhost (h-209-203.A463.priv.bahnhof.se. [155.4.209.203])
-        by smtp.gmail.com with ESMTPSA id q18sm346450lfr.138.2020.09.30.16.48.58
-        (version=TLS1_3 cipher=TLS_AES_256_GCM_SHA384 bits=256/256);
-        Wed, 30 Sep 2020 16:48:58 -0700 (PDT)
-Date:   Thu, 1 Oct 2020 01:48:57 +0200
-From:   Niklas =?utf-8?Q?S=C3=B6derlund?= <niklas.soderlund@ragnatech.se>
-To:     Bjorn Helgaas <helgaas@kernel.org>
-Cc:     Rob Herring <robh@kernel.org>, Bjorn Helgaas <bhelgaas@google.com>,
-        Marc Zyngier <maz@kernel.org>, devicetree@vger.kernel.org,
-        PCI <linux-pci@vger.kernel.org>,
-        "open list:ARM/Rockchip SoC..." <linux-rockchip@lists.infradead.org>,
-        linux-arm-kernel <linux-arm-kernel@lists.infradead.org>,
-        Lorenzo Pieralisi <lorenzo.pieralisi@arm.com>,
-        Heiko Stuebner <heiko@sntech.de>,
-        Frank Rowand <frowand.list@gmail.com>,
-        Shawn Lin <shawn.lin@rock-chips.com>,
-        Jiaxun Yang <jiaxun.yang@flygoat.com>,
-        Android Kernel Team <kernel-team@android.com>,
-        Samuel Dionne-Riel <samuel@dionne-riel.com>,
-        "linux-kernel@vger.kernel.org" <linux-kernel@vger.kernel.org>
-Subject: Re: [PATCH v2] of: address: Work around missing device_type property
- in pcie nodes
-Message-ID: <20200930234857.g2gxdablzaewvwfq@oden.dyn.berto.se>
-References: <CAL_Jsq+xBKbYXWipwmZ=ZidorsMUFDw2NpUyxobx4FCTn+8Hmg@mail.gmail.com>
- <20200930225154.GA2631019@bjorn-Precision-5520>
-MIME-Version: 1.0
-Content-Type: text/plain; charset=iso-8859-1
-Content-Disposition: inline
-Content-Transfer-Encoding: 8bit
-In-Reply-To: <20200930225154.GA2631019@bjorn-Precision-5520>
+        id S1730599AbgJAAVG (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Wed, 30 Sep 2020 20:21:06 -0400
+Received: from out3-smtp.messagingengine.com ([66.111.4.27]:37505 "EHLO
+        out3-smtp.messagingengine.com" rhost-flags-OK-OK-OK-OK)
+        by vger.kernel.org with ESMTP id S1730268AbgJAAVG (ORCPT
+        <rfc822;devicetree@vger.kernel.org>);
+        Wed, 30 Sep 2020 20:21:06 -0400
+X-Greylist: delayed 486 seconds by postgrey-1.27 at vger.kernel.org; Wed, 30 Sep 2020 20:21:05 EDT
+Received: from compute4.internal (compute4.nyi.internal [10.202.2.44])
+        by mailout.nyi.internal (Postfix) with ESMTP id C074A5C00CA;
+        Wed, 30 Sep 2020 20:12:58 -0400 (EDT)
+Received: from imap2 ([10.202.2.52])
+  by compute4.internal (MEProxy); Wed, 30 Sep 2020 20:12:58 -0400
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=aj.id.au; h=
+        mime-version:message-id:in-reply-to:references:date:from:to:cc
+        :subject:content-type; s=fm3; bh=mmqRcUlvPdUwSQM/x6F+Lvk29MhRVNZ
+        Y0OId6LTaioA=; b=oO0WfMhqd7/SXXOpkm4pvo+CUM/mfVa0S/9LQpznEWngn7L
+        pp0BMwLnlNeQX6AK1AaeMTvSe6uHdzjHNpNrfbQINBoDediIUxMfyrIEOjXkf9kW
+        6Q8g7HSHoGwgHMXYV1mT40L0nOdaRCJJi1P8cQHW80tO8+20x0rFVrpGvg+tnbER
+        MLAgDnRO4Dr0rsg4Ysc/DKiekVD0z+zFyxLFPPvgA0B8tqZ9TPX2IJ1gUGQvcn3/
+        veGMQcF3n8oPVTZ4FTpQVGQtWSzQu1pR/KT/lcVbHsoLoxIhZfdljJVR7OOduSKV
+        vXG887JOfL0Qjl1NaNKMrUfjQePncm9YfjYP/ng==
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=
+        messagingengine.com; h=cc:content-type:date:from:in-reply-to
+        :message-id:mime-version:references:subject:to:x-me-proxy
+        :x-me-proxy:x-me-sender:x-me-sender:x-sasl-enc; s=fm3; bh=mmqRcU
+        lvPdUwSQM/x6F+Lvk29MhRVNZY0OId6LTaioA=; b=Hq9VBLO5rOGiQyygLKdC4D
+        npI2wsldxkFbJmNyZsGsDducaQYSd7YWUSFbtq/CYo+LKBZvsP/3lImpwAnoN+2t
+        120kjqML3EHNEQAMmiR+m+s1ySUcosEztiLq3CdTJzGo1sKur+7i8DXXAA2yCuC9
+        kjhllFwMETxWRB1ckvbIfOQSvSCV5j2JwoVyby8tKPakQyfbYMl6z8k8p19f2KKS
+        EU/jbcz9vyjj/o79Za9og95bKpD8t2eaDB3lZkWxiU6wdMP0QxGP6uZakgFrKMKk
+        6rkuFUg8WaGc+waZROyoIOA6+kRNvgSEESNydOf58BdOBZaXMpRwkr82mrLGWS6g
+        ==
+X-ME-Sender: <xms:Bx91X7su7hjam-0xm23UCihQ1Gcd_cqki62_nBAphXy9EG5h1LkNRg>
+    <xme:Bx91X8cDwCFJueCMpSjErWxi7-55X0gP_8C6fl2qHJdzBSi2nn_beQR0oA0q26gp0
+    CN9pE4-2fMMwb6kDQ>
+X-ME-Proxy-Cause: gggruggvucftvghtrhhoucdtuddrgedujedrfeefgdeffecutefuodetggdotefrodftvf
+    curfhrohhfihhlvgemucfhrghsthforghilhdpqfgfvfdpuffrtefokffrpgfnqfghnecu
+    uegrihhlohhuthemuceftddtnecusecvtfgvtghiphhivghnthhsucdlqddutddtmdenuc
+    fjughrpefofgggkfgjfhffhffvufgtsehttdertderredtnecuhfhrohhmpedftehnughr
+    vgifucflvghffhgvrhihfdcuoegrnhgurhgvfiesrghjrdhiugdrrghuqeenucggtffrrg
+    htthgvrhhnpeehhfefkefgkeduveehffehieehudejfeejveejfedugfefuedtuedvhefh
+    veeuffenucevlhhushhtvghrufhiiigvpedtnecurfgrrhgrmhepmhgrihhlfhhrohhmpe
+    grnhgurhgvfiesrghjrdhiugdrrghu
+X-ME-Proxy: <xmx:Bx91X-y9-ua34XWjr1AP1838iiPZeGiC4yoAokyMCla9rmMsIXb-mQ>
+    <xmx:Bx91X6NR2KEiVwWJ6sEWfXUt9PFHP9NfS6-AR793GxKdHLfXcnlUsw>
+    <xmx:Bx91X7_4-hq0dL2JfE7tG1mbOBy85BGnA-4pTIcDhQSxVPzPyEN1YA>
+    <xmx:Ch91X2mB-zkFx8juQfFmrRsdGF2ESBYnEvSlwDJpZ_JWtz9gRuqZqA>
+Received: by mailuser.nyi.internal (Postfix, from userid 501)
+        id BF278E0181; Wed, 30 Sep 2020 20:12:54 -0400 (EDT)
+X-Mailer: MessagingEngine.com Webmail Interface
+User-Agent: Cyrus-JMAP/3.3.0-382-ge235179-fm-20200928.002-ge2351794
+Mime-Version: 1.0
+Message-Id: <b7bcc925-b0da-446f-84a7-1a564a1f4f83@www.fastmail.com>
+In-Reply-To: <20200930090603.19891-1-billy_tsai@aspeedtech.com>
+References: <20200930051113.32465-1-billy_tsai@aspeedtech.com>
+ <20200930090603.19891-1-billy_tsai@aspeedtech.com>
+Date:   Thu, 01 Oct 2020 09:42:34 +0930
+From:   "Andrew Jeffery" <andrew@aj.id.au>
+To:     "Billy Tsai" <billy_tsai@aspeedtech.com>,
+        "Rob Herring" <robh+dt@kernel.org>,
+        "Joel Stanley" <joel@jms.id.au>, devicetree@vger.kernel.org,
+        linux-arm-kernel@lists.infradead.org,
+        linux-aspeed@lists.ozlabs.org, linux-kernel@vger.kernel.org
+Cc:     BMC-SW@aspeedtech.com
+Subject: Re: [RESEND PATCH] ARM: dts: aspeed-g6: Fix gpio memory region
+Content-Type: text/plain
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-Hi Bjorn,
+Hi Billy,
 
-On 2020-09-30 17:51:54 -0500, Bjorn Helgaas wrote:
-> On Wed, Sep 30, 2020 at 03:34:10PM -0500, Rob Herring wrote:
-> > On Wed, Sep 30, 2020 at 12:37 PM Niklas Söderlund
-> > <niklas.soderlund@ragnatech.se> wrote:
-> > >
-> > > Hi Marc,
-> > >
-> > > On 2020-09-30 18:23:21 +0100, Marc Zyngier wrote:
-> > > > Hi Niklas,
-> > > >
-> > > > [+ Samuel]
-> > > >
-> > > > On 2020-09-30 17:27, Niklas Söderlund wrote:
-> > > > > Hi Marc,
-> > > > >
-> > > > > I'm afraid this commit breaks booting my rk3399 device.
-> > > > >
-> > > > > I bisected the problem to this patch merged as [1]. I'm testing on a
-> > > > > Scarlet device and I'm using the unmodified upstream
-> > > > > rk3399-gru-scarlet-inx.dtb for my tests.
-> > > > >
-> > > > > The problem I'm experience is a black screen after the bootloader and
-> > > > > the device is none responsive over the network. I have no serial console
-> > > > > to this device so I'm afraid I can't tell you if there is anything
-> > > > > useful on to aid debugging there.
-> > > > >
-> > > > > If I try to test one commit earlier [2] the system boots as expected and
-> > > > > everything works as it did for me in v5.8 and earlier. I have worked
-> > > > > little with this device and have no clue about what is really on the PCI
-> > > > > buss. But running from [2] I have this info about PCI if it's helpful,
-> > > > > please ask if somethings missing.
-> > > >
-> > > > Please see the thread at [1]. The problem was reported a few weeks back
-> > > > by Samuel, and I was expecting Rob and Lorenzo to push a fix for this.
-> > >
-> > > Thanks for providing a solution.
-> > >
-> > > >
-> > > > Rob, Lorenzo, any update on this?
-> > 
-> > The fix is in Bjorn's tree[1].
-> > 
-> > Bjorn, going to send this to Linus before v5.9 is out?
+On Wed, 30 Sep 2020, at 18:36, Billy Tsai wrote:
+> Signed-off-by: Billy Tsai <billy_tsai@aspeedtech.com>
+> ---
+>  arch/arm/boot/dts/aspeed-g6.dtsi | 2 +-
+>  1 file changed, 1 insertion(+), 1 deletion(-)
 > 
-> Definitely, thanks for the reminder.  I'm assuming the fix in question
-> is https://git.kernel.org/pub/scm/linux/kernel/git/helgaas/pci.git/commit/?h=for-linus&id=e338eecf3fe79054e8a31b8c39a1234b5acfdabe
+> diff --git a/arch/arm/boot/dts/aspeed-g6.dtsi b/arch/arm/boot/dts/aspeed-g6.dtsi
+> index 97ca743363d7..b9ec8b579f73 100644
+> --- a/arch/arm/boot/dts/aspeed-g6.dtsi
+> +++ b/arch/arm/boot/dts/aspeed-g6.dtsi
+> @@ -357,7 +357,7 @@
+>  				#gpio-cells = <2>;
+>  				gpio-controller;
+>  				compatible = "aspeed,ast2600-gpio";
+> -				reg = <0x1e780000 0x800>;
+> +				reg = <0x1e780000 0x500>;
 
-That patch solves my boot problem.
+We took the 0x800 value from the memory space layout table in the datasheet for 
+the 2600. Should that be updated too? Or are you just limiting the region to 
+the registers currently described rather than the allocated address space?
 
-Cherry-picked and tested directly on-top of v5.9-rc7 (which fails to 
-boot without the patch in question).
+Cheers,
 
-> 
-> > [1] https://git.kernel.org/pub/scm/linux/kernel/git/helgaas/pci.git/log/?h=for-linus
-
--- 
-Regards,
-Niklas Söderlund
+Andrew
