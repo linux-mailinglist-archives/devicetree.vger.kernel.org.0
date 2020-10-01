@@ -2,109 +2,134 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from vger.kernel.org (vger.kernel.org [23.128.96.18])
-	by mail.lfdr.de (Postfix) with ESMTP id 45EF627FD83
-	for <lists+devicetree@lfdr.de>; Thu,  1 Oct 2020 12:37:11 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTP id 140C327FDEA
+	for <lists+devicetree@lfdr.de>; Thu,  1 Oct 2020 12:58:12 +0200 (CEST)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S1731647AbgJAKhK (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Thu, 1 Oct 2020 06:37:10 -0400
-Received: from mail-ej1-f67.google.com ([209.85.218.67]:42590 "EHLO
-        mail-ej1-f67.google.com" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S1731131AbgJAKhK (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Thu, 1 Oct 2020 06:37:10 -0400
-Received: by mail-ej1-f67.google.com with SMTP id q13so7268419ejo.9;
-        Thu, 01 Oct 2020 03:37:08 -0700 (PDT)
-X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=1e100.net; s=20161025;
-        h=x-gm-message-state:date:from:to:cc:subject:message-id:references
-         :mime-version:content-disposition:in-reply-to:user-agent;
-        bh=XeATPLtiujNPtbWy8eOfYkG34Rmci3Rho1NFx2mqnxY=;
-        b=HkMiNzaoqHVA27xblu9Ooe6Z+pjjPl1sq0Dt56f1ohLkDvR+kZ+hpyfv94LLcqVoW3
-         jy/vRnmaYyMYbhpPPS+C94+Z8u6NffZFNma1tY4NPFuJw8uGtosrNc3w7csl25rRUxsL
-         6hr5fnlKe/RXn6xZNXHX3PX14kEFH1QU+1BKE+p8MHdKiiHaJ0HkQ97vBwtBY1ZainYb
-         VNOdUy6avQpacdHOBWGp4rbWgq9NFtJFSRYbV7pl6RvGQa9VSgU9mYA3rrk08hzEnc0A
-         zspRYBIGHQ+ylLGzo1CoAuSv6q7wXxQhX/O8VIgrSQcNfM+EGCHUFTTEqaIy0kzKghEH
-         zmtw==
-X-Gm-Message-State: AOAM532aI54vSv47EyqBhAkG/bOIPZ1u7HJ7ktE7w44QM9IWZYO1ZvT4
-        oSW+WSCWvtZtRULwfaPiNnw=
-X-Google-Smtp-Source: ABdhPJxL9pxjDS00Vg2RUHbokVDD46x2SLH6Tdd8HfjwLtwogfEvXijc454ys1aaalQGGOItX9p+hA==
-X-Received: by 2002:a17:906:b790:: with SMTP id dt16mr7064587ejb.33.1601548628154;
-        Thu, 01 Oct 2020 03:37:08 -0700 (PDT)
-Received: from kozik-lap ([194.230.155.194])
-        by smtp.googlemail.com with ESMTPSA id q1sm3985967ejy.37.2020.10.01.03.37.06
-        (version=TLS1_2 cipher=ECDHE-ECDSA-CHACHA20-POLY1305 bits=256/256);
-        Thu, 01 Oct 2020 03:37:07 -0700 (PDT)
-Date:   Thu, 1 Oct 2020 12:37:04 +0200
-From:   Krzysztof Kozlowski <krzk@kernel.org>
-To:     Ahmad Fatoum <a.fatoum@pengutronix.de>
-Cc:     Rob Herring <robh+dt@kernel.org>, Shawn Guo <shawnguo@kernel.org>,
-        Sascha Hauer <s.hauer@pengutronix.de>,
-        Pengutronix Kernel Team <kernel@pengutronix.de>,
-        Fabio Estevam <festevam@gmail.com>,
-        NXP Linux Team <linux-imx@nxp.com>,
-        Anson Huang <Anson.Huang@nxp.com>,
-        Andreas Kemnade <andreas@kemnade.info>,
-        Stefan Riedmueller <s.riedmueller@phytec.de>,
-        Robert Jones <rjones@gateworks.com>,
-        Li Yang <leoyang.li@nxp.com>, devicetree@vger.kernel.org,
-        linux-kernel@vger.kernel.org, linux-arm-kernel@lists.infradead.org
-Subject: Re: [PATCH v2 08/12] ARM: dts: imx6dl-pico: fix board compatibles
-Message-ID: <20201001103704.GA26287@kozik-lap>
-References: <20200930190143.27032-1-krzk@kernel.org>
- <20200930190143.27032-9-krzk@kernel.org>
- <0a0afea6-8cbb-3e89-5a4f-89660c942ca3@pengutronix.de>
- <20201001073208.GA5208@kozik-lap>
- <027fd826-6822-9e92-0c6c-2ebed63f4a07@pengutronix.de>
+        id S1731931AbgJAK6G (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Thu, 1 Oct 2020 06:58:06 -0400
+Received: from ns.mm-sol.com ([37.157.136.199]:58964 "EHLO extserv.mm-sol.com"
+        rhost-flags-OK-OK-OK-OK) by vger.kernel.org with ESMTP
+        id S1731913AbgJAK6G (ORCPT <rfc822;devicetree@vger.kernel.org>);
+        Thu, 1 Oct 2020 06:58:06 -0400
+Received: from [192.168.1.7] (unknown [195.24.90.54])
+        (using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
+        (Client did not present a certificate)
+        by extserv.mm-sol.com (Postfix) with ESMTPSA id C3FFDD066;
+        Thu,  1 Oct 2020 13:58:01 +0300 (EEST)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=mm-sol.com; s=201706;
+        t=1601549882; bh=aeX9p36tew60f0R0DEdoSn8LDBixknrj+HYsM83QCg4=;
+        h=Subject:To:Cc:From:Date:From;
+        b=BB8TEdyHqtY83Pya1Q1s6sUUOg+BTaI58jDzFhkUBrjqY5dk9CCi2k/LWf98m/5Yf
+         GKddAmqEnLSCpciO37LnQUGnDH9MqIvl3PwvEo1Ik0IaXTgLSzOFtLonIuGbIyiQ7q
+         ZMLjIGrAieWXGRgmxcC/zygHMCpVVj3qwQmGjMDik5J/dKuvv+yN43BjDLgFch9MIQ
+         EiIHGK9BYKg9aZyizfZcLIxfrTPnR6SLH3fyYARl0smeRuPLh15P3lC1LL9U0/hrdH
+         Di3G7m5qL8lYQdJHUY1Gu2gfsg8sUIR8KNR6P2+yQpNjEoU3IOFU8rYKtUDKjgxZ4I
+         CXWAIaHJxlO9w==
+Subject: Re: [PATCH v2 5/5] PCI: qcom: Add support for configuring BDF to SID
+ mapping for SM8250
+To:     Manivannan Sadhasivam <manivannan.sadhasivam@linaro.org>
+Cc:     agross@kernel.org, bjorn.andersson@linaro.org, kishon@ti.com,
+        vkoul@kernel.org, robh@kernel.org, bhelgaas@google.com,
+        lorenzo.pieralisi@arm.com, linux-arm-msm@vger.kernel.org,
+        linux-pci@vger.kernel.org, linux-kernel@vger.kernel.org,
+        mgautam@codeaurora.org, devicetree@vger.kernel.org,
+        Marc Gonzalez <marc.w.gonzalez@free.fr>
+References: <20200930150925.31921-1-manivannan.sadhasivam@linaro.org>
+ <20200930150925.31921-6-manivannan.sadhasivam@linaro.org>
+ <507b3d50-6792-60b7-1ccd-f7b3031c20ac@mm-sol.com>
+ <20201001055736.GB3203@Mani-XPS-13-9360>
+From:   Stanimir Varbanov <svarbanov@mm-sol.com>
+Message-ID: <e63b3ed4-d822-45dc-de60-23385fb45468@mm-sol.com>
+Date:   Thu, 1 Oct 2020 13:57:59 +0300
+User-Agent: Mozilla/5.0 (X11; Linux x86_64; rv:68.0) Gecko/20100101
+ Thunderbird/68.10.0
 MIME-Version: 1.0
+In-Reply-To: <20201001055736.GB3203@Mani-XPS-13-9360>
 Content-Type: text/plain; charset=utf-8
-Content-Disposition: inline
-In-Reply-To: <027fd826-6822-9e92-0c6c-2ebed63f4a07@pengutronix.de>
-User-Agent: Mutt/1.9.4 (2018-02-28)
+Content-Language: en-US
+Content-Transfer-Encoding: 7bit
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-On Thu, Oct 01, 2020 at 12:19:08PM +0200, Ahmad Fatoum wrote:
-> Hi,
+Hi Mani,
+
+On 10/1/20 8:57 AM, Manivannan Sadhasivam wrote:
+> Hi Stan,
 > 
-> On 10/1/20 9:32 AM, Krzysztof Kozlowski wrote:
-> > On Thu, Oct 01, 2020 at 09:22:03AM +0200, Ahmad Fatoum wrote:
-> >>> diff --git a/arch/arm/boot/dts/imx6dl-pico-hobbit.dts b/arch/arm/boot/dts/imx6dl-pico-hobbit.dts
-> >>> index d7403c5c4337..08fedcbcc91b 100644
-> >>> --- a/arch/arm/boot/dts/imx6dl-pico-hobbit.dts
-> >>> +++ b/arch/arm/boot/dts/imx6dl-pico-hobbit.dts
-> >>> @@ -13,5 +13,5 @@
-> >>>  
-> >>>  / {
-> >>>  	model = "TechNexion PICO-IMX6 DualLite/Solo Board and Hobbit baseboard";
-> >>> -	compatible = "technexion,imx6dl-pico", "fsl,imx6dl";
-> >>> +	compatible = "technexion,imx6dl-pico-hobbit", "fsl,imx6dl";
-> >>>  };
-> > 
-> > The bindings, added in commit 53b61224ca40 ("dt-bindings: arm: fsl: Add
-> > TechNexion boards"), describe that these are the only valid compatibles.
-> > "technexion,imx6dl-pico" is not valid and would require changing the
-> > bindings, thus breaking compatibility which you want to avoid.> 
-> > The bindings, not what is present in DTS, is considered ABI.
+> On Thu, Oct 01, 2020 at 12:46:46AM +0300, Stanimir Varbanov wrote:
+>> Hi Mani,
+>>
+>> On 9/30/20 6:09 PM, Manivannan Sadhasivam wrote:
+>>> For SM8250, we need to write the BDF to SID mapping in PCIe controller
+>>> register space for proper working. This is accomplished by extracting
+>>> the BDF and SID values from "iommu-map" property in DT and writing those
+>>> in the register address calculated from the hash value of BDF. In case
+>>> of collisions, the index of the next entry will also be written.
+>>
+>> This describes what the patch is doing. But why? Is that done in the
+>> other DWC low-level drivers or this is qcom specialty?
+>>
 > 
-> The existing binding doesn't cover these boards then and needs to be
-> extended, no? How about following patch?
+> AFAIK, only some NXP SoCs deal with similar kind of mapping but right now
+> this is a Qcom only stuff.
+> 
+>>>
+>>> For the sake of it, let's introduce a "config_sid" callback and do it
+>>> conditionally for SM8250.
+>>>
+>>> Signed-off-by: Manivannan Sadhasivam <manivannan.sadhasivam@linaro.org>
+>>> ---
+>>>  drivers/pci/controller/dwc/Kconfig     |   1 +
+>>>  drivers/pci/controller/dwc/pcie-qcom.c | 138 +++++++++++++++++++++++++
+>>>  2 files changed, 139 insertions(+)
 
-What do you mean it doesn't cover? It was added exactly to handle them:
-+              - technexion,imx6q-pico-dwarf   # TechNexion i.MX6Q Pico-Dwarf
-+              - technexion,imx6q-pico-hobbit  # TechNexion i.MX6Q Pico-Hobbit
-+              - technexion,imx6q-pico-nymph   # TechNexion i.MX6Q Pico-Nymph
-+              - technexion,imx6q-pico-pi      # TechNexion i.MX6Q Pico-Pi
+<snip>
+
+>>>  
+>>> +static int qcom_pcie_get_iommu_map(struct qcom_pcie *pcie)
+>>> +{
+>>> +	/* iommu map structure */
+>>> +	struct {
+>>> +		u32 bdf;
+>>> +		u32 phandle;
+>>> +		u32 smmu_sid;
+>>> +		u32 smmu_sid_len;
+>>> +	} *map;
+>>> +	struct device *dev = pcie->pci->dev;
+>>> +	int i, size = 0;
+>>> +	u32 smmu_sid_base;
+>>> +
+>>> +	of_get_property(dev->of_node, "iommu-map", &size);
+>>> +	if (!size)
+>>> +		return 0;
+>>> +
+>>> +	map = kzalloc(size, GFP_KERNEL);
+>>> +	if (!map)
+>>> +		return -ENOMEM;
+>>> +
+>>> +	of_property_read_u32_array(dev->of_node,
+>>> +		"iommu-map", (u32 *)map, size / sizeof(u32));
+>>
+>> iommu-map is a standard DT property why we have to parse it manually?
+>>
+> 
+> So right now we don't have a way to pass this information from DT. And there
+> is no IOMMU API to parse the fields also. We need to extract this information
+> to program the hash tables (BDF, SID) as the mapping between BDF and SID is not
+> 1:1 in SM8250.
+
+We used iommu-map for msm8998 see this commit:
+
+b84dfd175c09888751f501e471fdca346f582e06
+("arm64: dts: qcom: msm8998: Add PCIe PHY and RC nodes")
+
+I also Cc-ed Marc if he knows something more.
 
 > 
-> [I guess we need to keep the two-compatible list they were originally
->  in for compatibility even if it's unused among upstream device trees?]
+> Perhaps I can add this information in commit message.
 
-You want to change both the binding (thus breaking the ABI) and update
-the DTS to reflect new ABI. Then why having a binding at all?
 
-I would assume that either binding is correct or DTS. You propose that
-both are wrong and both need changes... in such case this is clearly
-broken.
-
-Best regards,
-Krzysztof
+-- 
+regards,
+Stan
