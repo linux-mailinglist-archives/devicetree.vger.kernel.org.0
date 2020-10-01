@@ -2,110 +2,142 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from vger.kernel.org (vger.kernel.org [23.128.96.18])
-	by mail.lfdr.de (Postfix) with ESMTP id 7274728053D
-	for <lists+devicetree@lfdr.de>; Thu,  1 Oct 2020 19:31:25 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTP id A99FD280551
+	for <lists+devicetree@lfdr.de>; Thu,  1 Oct 2020 19:33:23 +0200 (CEST)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S1732858AbgJARbY (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Thu, 1 Oct 2020 13:31:24 -0400
-Received: from mx2.suse.de ([195.135.220.15]:55638 "EHLO mx2.suse.de"
-        rhost-flags-OK-OK-OK-OK) by vger.kernel.org with ESMTP
-        id S1732407AbgJARbY (ORCPT <rfc822;devicetree@vger.kernel.org>);
-        Thu, 1 Oct 2020 13:31:24 -0400
-X-Virus-Scanned: by amavisd-new at test-mx.suse.de
-Received: from relay2.suse.de (unknown [195.135.221.27])
-        by mx2.suse.de (Postfix) with ESMTP id 548E3B224;
-        Thu,  1 Oct 2020 17:31:22 +0000 (UTC)
-Message-ID: <b47232e2173e9e5ddf8f5be4c7b5a2f897f34eb7.camel@suse.de>
-Subject: Re: [PATCH 1/4] of/fdt: Update zone_dma_bits when running in bcm2711
-From:   Nicolas Saenz Julienne <nsaenzjulienne@suse.de>
-To:     Catalin Marinas <catalin.marinas@arm.com>,
-        Rob Herring <robh+dt@kernel.org>
-Cc:     devicetree@vger.kernel.org, will@kernel.org,
-        Frank Rowand <frowand.list@gmail.com>,
-        linux-kernel@vger.kernel.org, linux-mm@kvack.org,
-        iommu@lists.linux-foundation.org, robh+dt@kernel.org,
-        linux-rpi-kernel@lists.infradead.org, robin.murphy@arm.com,
-        hch@lst.de, linux-arm-kernel@lists.infradead.org
-Date:   Thu, 01 Oct 2020 19:31:19 +0200
-In-Reply-To: <20201001172320.GQ21544@gaia>
-References: <20201001161740.29064-1-nsaenzjulienne@suse.de>
-         <20201001161740.29064-2-nsaenzjulienne@suse.de>
-         <20201001171500.GN21544@gaia> <20201001172320.GQ21544@gaia>
-Content-Type: multipart/signed; micalg="pgp-sha256";
-        protocol="application/pgp-signature"; boundary="=-seD6uijt62oXdXYvdJ0h"
-User-Agent: Evolution 3.36.5 
+        id S1732791AbgJARdX (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Thu, 1 Oct 2020 13:33:23 -0400
+Received: from hqnvemgate26.nvidia.com ([216.228.121.65]:17916 "EHLO
+        hqnvemgate26.nvidia.com" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
+        with ESMTP id S1732096AbgJARdW (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Thu, 1 Oct 2020 13:33:22 -0400
+Received: from hqmail.nvidia.com (Not Verified[216.228.121.13]) by hqnvemgate26.nvidia.com (using TLS: TLSv1.2, AES256-SHA)
+        id <B5f7612d50004>; Thu, 01 Oct 2020 10:33:09 -0700
+Received: from HQMAIL111.nvidia.com (172.20.187.18) by HQMAIL107.nvidia.com
+ (172.20.187.13) with Microsoft SMTP Server (TLS) id 15.0.1473.3; Thu, 1 Oct
+ 2020 17:33:20 +0000
+Received: from audio.nvidia.com (10.124.1.5) by mail.nvidia.com
+ (172.20.187.18) with Microsoft SMTP Server id 15.0.1473.3 via Frontend
+ Transport; Thu, 1 Oct 2020 17:33:15 +0000
+From:   Sameer Pujar <spujar@nvidia.com>
+To:     <broonie@kernel.org>, <lgirdwood@gmail.com>, <robh+dt@kernel.org>,
+        <kuninori.morimoto.gx@renesas.com>,
+        <pierre-louis.bossart@linux.intel.com>, <perex@perex.cz>,
+        <tiwai@suse.com>, <thierry.reding@gmail.com>,
+        <jonathanh@nvidia.com>
+CC:     <alsa-devel@alsa-project.org>, <devicetree@vger.kernel.org>,
+        <linux-tegra@vger.kernel.org>, <linux-kernel@vger.kernel.org>,
+        <sharadg@nvidia.com>, <mkumard@nvidia.com>,
+        <viswanathl@nvidia.com>, <rlokhande@nvidia.com>,
+        <dramesh@nvidia.com>, <atalambedu@nvidia.com>,
+        <nwartikar@nvidia.com>, <swarren@nvidia.com>,
+        <nicoleotsuka@gmail.com>, Sameer Pujar <spujar@nvidia.com>
+Subject: [PATCH v3 00/13] Audio graph card updates and usage with Tegra210 audio
+Date:   Thu, 1 Oct 2020 23:02:54 +0530
+Message-ID: <1601573587-15288-1-git-send-email-spujar@nvidia.com>
+X-Mailer: git-send-email 2.7.4
 MIME-Version: 1.0
+Content-Type: text/plain
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=nvidia.com; s=n1;
+        t=1601573589; bh=zIvUzbc372htqDG/kgYhVBEV7XV+PVNNp5+Sxf3SNgs=;
+        h=From:To:CC:Subject:Date:Message-ID:X-Mailer:MIME-Version:
+         Content-Type;
+        b=msj1eZReDZtL2j2G91y9txTk98M5l8Wv36m5qqRHxQvAJnI0aYkX7BGwQTJTqG/78
+         RrPMpvDF5v5uGKYkKOSImbU36Hu8Xe9UHvlJ7dSt5t1pwQRGPaYYWpF4VQR/qWs69i
+         rLbEEf2HGyQk4uadJgI7id70udcfP8S865fOzcWBOCf30p0yU4OynNKWkBgW58Vufm
+         REpiIkOMX0tKqnUmsGcbYUw6e+Haa9wvZ27mExyLfZm7EO1RbL8UwaW7GfxuYCkvFS
+         lHIjMmMC7UhmP5pmYfSwU5jivdbi8egSpeMCqXfKusW91Ezqa+jWmbeOeRjBVPH74T
+         JFDrya9M8/Osg==
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
+Summary of changes:
+ * Support multiple instances of a component. For example there can be
+   multiple I2S devices which can use the same component driver.
 
---=-seD6uijt62oXdXYvdJ0h
-Content-Type: text/plain; charset="UTF-8"
-Content-Transfer-Encoding: quoted-printable
+ * Support open platforms with empty Codec endpoint. Customers can plug
+   their own HW and can populate codec endpoint.
 
-On Thu, 2020-10-01 at 18:23 +0100, Catalin Marinas wrote:
-> On Thu, Oct 01, 2020 at 06:15:01PM +0100, Catalin Marinas wrote:
-> > Hi Nicolas,
-> >=20
-> > Thanks for putting this together.
-> >=20
-> > On Thu, Oct 01, 2020 at 06:17:37PM +0200, Nicolas Saenz Julienne wrote:
-> > > diff --git a/drivers/of/fdt.c b/drivers/of/fdt.c
-> > > index 4602e467ca8b..cd0d115ef329 100644
-> > > --- a/drivers/of/fdt.c
-> > > +++ b/drivers/of/fdt.c
-> > > @@ -25,6 +25,7 @@
-> > >  #include <linux/serial_core.h>
-> > >  #include <linux/sysfs.h>
-> > >  #include <linux/random.h>
-> > > +#include <linux/dma-direct.h>	/* for zone_dma_bits */
-> > > =20
-> > >  #include <asm/setup.h>  /* for COMMAND_LINE_SIZE */
-> > >  #include <asm/page.h>
-> > > @@ -1198,6 +1199,14 @@ void __init early_init_dt_scan_nodes(void)
-> > >  	of_scan_flat_dt(early_init_dt_scan_memory, NULL);
-> > >  }
-> > > =20
-> > > +void __init early_init_dt_update_zone_dma_bits(void)
-> > > +{
-> > > +	unsigned long dt_root =3D of_get_flat_dt_root();
-> > > +
-> > > +	if (of_flat_dt_is_compatible(dt_root, "brcm,bcm2711"))
-> > > +		zone_dma_bits =3D 30;
-> > > +}
-> >=20
-> > I think we could keep this entirely in the arm64 setup_machine_fdt() an=
-d
-> > not pollute the core code with RPi4-specific code.
->=20
-> Actually, even better, could we not move the check to
-> arm64_memblock_init() when we initialise zone_dma_bits?
+ * In a component model there can be many components which can be
+   connected togethe. In such cases Identify no-pcm DPCM DAI links which
+   can be used in BE<->BE connections.
 
-I did it this way as I vaguely remembered Rob saying he wanted to centralis=
-e
-all early boot fdt code in one place. But I'll be happy to move it there.
+ * Add Tegra audio graph driver which is based on generic audio graph
+   driver and specific customizations are done in Tegra driver.
 
-Regards,
-Nicolas
+ * This pushes DT support for Tegra210 based platforms which uses
+   audio-graph card and above enhancements.
+
+The series is based on following references where DPCM usgae for Tegra
+Audio and simple-card driver proposal were discussed.
+
+ * https://lkml.org/lkml/2020/4/30/519 (DPCM for Tegra)
+ * https://lkml.org/lkml/2020/6/27/4 (simple-card driver)
+
+Changelog
+=========
+
+v1 -> v2
+--------
+ * Re-organized ports/endpoints description for ADMAIF and XBAR.
+   Updated DT patches accordingly.
+ * After above change, multiple Codec endpoint support is not
+   required and hence dropped for now. This will be considered
+   separately if at all required in future.
+ * Re-ordered patches in the series.
 
 
---=-seD6uijt62oXdXYvdJ0h
-Content-Type: application/pgp-signature; name="signature.asc"
-Content-Description: This is a digitally signed message part
-Content-Transfer-Encoding: 7bit
+v2 -> v3
+--------
+ * Dropped new compatible addition in generic graph driver
+   after reviewing it with Morimoto-san. Instead added Tegra
+   audio graph driver and new compatibles are added in the same.
+ * Added new patches to expose new members for customization
+   in audio graph driver.
+ * Added new patch for Tegra audio graph driver and related
+   documentation.
+ * Minor change in below commit where mutex version of helper is used
+   "ASoC: audio-graph: Identify 'no_pcm' DAI links for DPCM"
+ * DT binding is updated to use the newly exposed compatibles
+ * No changes in other patches
 
------BEGIN PGP SIGNATURE-----
 
-iQEzBAABCAAdFiEErOkkGDHCg2EbPcGjlfZmHno8x/4FAl92EmcACgkQlfZmHno8
-x/650wf7BuG9OAXrpcJx+slOiIpUn27A9VP5PUiZhylbJPYElYlFJCs1q9tLFNHw
-2xXUtjY3QDdSH9GtDY1utSkQ2VeyqLRsDeVMkiwV721Gtn3y9veD2tNiJb4WXtet
-C9us1mhEFgpu691D6JilmlxSxjfCOHZYGmZXGpTOPOSu12/YQlHCYc33cRKkDbfn
-G5H0tNc4gXkWwJh5OSZixd08Ek7+d4HzG8hpZB5ifDWYLY7ZTDWC27mF1xYWGwAE
-d7WUXSQ11UaAQBl5maIqrL3X19tg/GsdidU3yrsjIBtBEFaulKmVtggI33JTfgoo
-v517kqitPiAV14ZYWJoifJK6ZppdiQ==
-=E6vz
------END PGP SIGNATURE-----
+Sameer Pujar (13):
+  ASoC: soc-core: Fix component name_prefix parsing
+  ASoC: soc-pcm: Get all BEs along DAPM path
+  ASoC: audio-graph: Use of_node and DAI for DPCM DAI link names
+  ASoC: audio-graph: Identify 'no_pcm' DAI links for DPCM
+  ASoC: audio-graph: Support empty Codec endpoint
+  ASoC: simple-card-utils: Expose new members for asoc_simple_priv
+  ASoC: audio-graph: Update driver as per new exposed members
+  ASoC: audio-graph: Expose helpers from audio graph
+  ASoC: dt-bindings: tegra: Add schema for audio graph card
+  ASoC: tegra: Add audio graph based card driver
+  arm64: defconfig: Enable Tegra audio graph card driver
+  arm64: tegra: Audio graph header for Tegra210
+  arm64: tegra: Audio graph sound card for Jetson Nano and TX1
 
---=-seD6uijt62oXdXYvdJ0h--
+ .../sound/nvidia,tegra-audio-graph-card.yaml       |  67 +++++
+ .../boot/dts/nvidia/tegra210-audio-graph.dtsi      | 138 ++++++++++
+ arch/arm64/boot/dts/nvidia/tegra210-p2371-2180.dts | 219 ++++++++++++++++
+ arch/arm64/boot/dts/nvidia/tegra210-p3450-0000.dts | 124 +++++++++
+ arch/arm64/configs/defconfig                       |   1 +
+ include/sound/graph_card.h                         |  19 ++
+ include/sound/simple_card_utils.h                  |   4 +
+ include/sound/soc.h                                |   1 +
+ sound/soc/generic/audio-graph-card.c               |  92 +++++--
+ sound/soc/soc-core.c                               |   3 +-
+ sound/soc/soc-pcm.c                                |   3 +-
+ sound/soc/tegra/Kconfig                            |   9 +
+ sound/soc/tegra/Makefile                           |   2 +
+ sound/soc/tegra/tegra_audio_graph_card.c           | 291 +++++++++++++++++++++
+ 14 files changed, 955 insertions(+), 18 deletions(-)
+ create mode 100644 Documentation/devicetree/bindings/sound/nvidia,tegra-audio-graph-card.yaml
+ create mode 100644 arch/arm64/boot/dts/nvidia/tegra210-audio-graph.dtsi
+ create mode 100644 include/sound/graph_card.h
+ create mode 100644 sound/soc/tegra/tegra_audio_graph_card.c
+
+-- 
+2.7.4
 
