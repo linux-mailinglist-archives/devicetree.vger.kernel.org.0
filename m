@@ -2,107 +2,64 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from vger.kernel.org (vger.kernel.org [23.128.96.18])
-	by mail.lfdr.de (Postfix) with ESMTP id 5731F280833
-	for <lists+devicetree@lfdr.de>; Thu,  1 Oct 2020 22:02:19 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTP id 60D0C280839
+	for <lists+devicetree@lfdr.de>; Thu,  1 Oct 2020 22:07:12 +0200 (CEST)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S1732836AbgJAUCS (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Thu, 1 Oct 2020 16:02:18 -0400
-Received: from mail.kernel.org ([198.145.29.99]:42290 "EHLO mail.kernel.org"
-        rhost-flags-OK-OK-OK-OK) by vger.kernel.org with ESMTP
-        id S1729993AbgJAUCS (ORCPT <rfc822;devicetree@vger.kernel.org>);
-        Thu, 1 Oct 2020 16:02:18 -0400
-Received: from mail-ot1-f45.google.com (mail-ot1-f45.google.com [209.85.210.45])
-        (using TLSv1.2 with cipher ECDHE-RSA-AES128-GCM-SHA256 (128/128 bits))
+        id S1730070AbgJAUHL (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Thu, 1 Oct 2020 16:07:11 -0400
+Received: from retiisi.org.uk ([95.216.213.190]:37694 "EHLO
+        hillosipuli.retiisi.eu" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
+        with ESMTP id S1726606AbgJAUHL (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Thu, 1 Oct 2020 16:07:11 -0400
+Received: from valkosipuli.localdomain (valkosipuli.retiisi.org.uk [IPv6:2a01:4f9:c010:4572::80:2])
+        (using TLSv1.3 with cipher TLS_AES_256_GCM_SHA384 (256/256 bits)
+         key-exchange ECDHE (P-256) server-signature RSA-PSS (4096 bits) server-digest SHA256)
         (No client certificate requested)
-        by mail.kernel.org (Postfix) with ESMTPSA id 4D05321481;
-        Thu,  1 Oct 2020 20:02:17 +0000 (UTC)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=kernel.org;
-        s=default; t=1601582537;
-        bh=X4GALR0/qFK5SmDexVvDnxfl0R4yatvYbaVfr1S5mhE=;
-        h=References:In-Reply-To:From:Date:Subject:To:Cc:From;
-        b=fv2G+gwnjbVlRGYvDBilOq2DE7yzKzzO8czOj6nHOIlOG/mHWnM7eMS0UnhsKFGj6
-         5AGtaofc2zEU0GXPaYgpbm0rXI6BhjbEqKIFlupL502zynstjccnTSOGevRhvnrbja
-         rxmA+KojicON0YDUGZ3jAjfkhYmrmY3culfbV5qQ=
-Received: by mail-ot1-f45.google.com with SMTP id u25so6749278otq.6;
-        Thu, 01 Oct 2020 13:02:17 -0700 (PDT)
-X-Gm-Message-State: AOAM532KQtpRCGmRJrlR1a1+ElEqlL769hAHS5bhTbMtTdjo+X6uucFZ
-        W09QRypX9mA8x4m7Bibyjgw0bPcTxLYg7+kFJQ==
-X-Google-Smtp-Source: ABdhPJxiEDxZ0FgXOi5cEGTxp8JWRcCOqobBw1qQ2DkZLAGugxsEI/6ZnBC1AlXUEf9at/4YzkBjFq5m7bNvdiq3ow4=
-X-Received: by 2002:a05:6830:1008:: with SMTP id a8mr5715034otp.107.1601582536474;
- Thu, 01 Oct 2020 13:02:16 -0700 (PDT)
+        by hillosipuli.retiisi.eu (Postfix) with ESMTPS id EAA6A634C87;
+        Thu,  1 Oct 2020 23:06:50 +0300 (EEST)
+Received: from sailus by valkosipuli.localdomain with local (Exim 4.92)
+        (envelope-from <sakari.ailus@retiisi.org.uk>)
+        id 1kO4qo-0000sq-Ou; Thu, 01 Oct 2020 23:06:50 +0300
+Date:   Thu, 1 Oct 2020 23:06:50 +0300
+From:   Sakari Ailus <sakari.ailus@iki.fi>
+To:     Ricardo Ribalda Delgado <ribalda@kernel.org>
+Cc:     Jacopo Mondi <jacopo+renesas@jmondi.org>,
+        Rob Herring <robh+dt@kernel.org>, devicetree@vger.kernel.org,
+        linux-media <linux-media@vger.kernel.org>,
+        Mauro Carvalho Chehab <mchehab@kernel.org>,
+        Sakari Ailus <sakari.ailus@linux.intel.com>,
+        Hans Verkuil <hverkuil-cisco@xs4all.nl>,
+        Laurent Pinchart <laurent.pinchart@ideasonboard.com>,
+        linux-renesas-soc@vger.kernel.org
+Subject: Re: [PATCH v5] dt-bindings: media: imx214: Convert to json-schema
+Message-ID: <20201001200650.GM2024@valkosipuli.retiisi.org.uk>
+References: <20200910162030.614029-1-jacopo+renesas@jmondi.org>
+ <CAPybu_0+mga9FvOs=aWS90sVnb1ZvYYuP2AUckov60jAXyPqXw@mail.gmail.com>
 MIME-Version: 1.0
-References: <20201001161740.29064-1-nsaenzjulienne@suse.de>
- <20201001161740.29064-2-nsaenzjulienne@suse.de> <20201001171500.GN21544@gaia>
- <20201001172320.GQ21544@gaia> <b47232e2173e9e5ddf8f5be4c7b5a2f897f34eb7.camel@suse.de>
-In-Reply-To: <b47232e2173e9e5ddf8f5be4c7b5a2f897f34eb7.camel@suse.de>
-From:   Rob Herring <robh+dt@kernel.org>
-Date:   Thu, 1 Oct 2020 15:02:05 -0500
-X-Gmail-Original-Message-ID: <CAL_JsqKS8-QTDEMmAahbOG6hay5kAYAUwhH04-U2hycxhFc6yw@mail.gmail.com>
-Message-ID: <CAL_JsqKS8-QTDEMmAahbOG6hay5kAYAUwhH04-U2hycxhFc6yw@mail.gmail.com>
-Subject: Re: [PATCH 1/4] of/fdt: Update zone_dma_bits when running in bcm2711
-To:     Nicolas Saenz Julienne <nsaenzjulienne@suse.de>
-Cc:     Catalin Marinas <catalin.marinas@arm.com>,
-        devicetree@vger.kernel.org, Will Deacon <will@kernel.org>,
-        Frank Rowand <frowand.list@gmail.com>,
-        "linux-kernel@vger.kernel.org" <linux-kernel@vger.kernel.org>,
-        linux-mm <linux-mm@kvack.org>,
-        Linux IOMMU <iommu@lists.linux-foundation.org>,
-        "moderated list:BROADCOM BCM2835 ARM ARCHITECTURE" 
-        <linux-rpi-kernel@lists.infradead.org>,
-        Robin Murphy <robin.murphy@arm.com>,
-        Christoph Hellwig <hch@lst.de>,
-        linux-arm-kernel <linux-arm-kernel@lists.infradead.org>
-Content-Type: text/plain; charset="UTF-8"
+Content-Type: text/plain; charset=us-ascii
+Content-Disposition: inline
+In-Reply-To: <CAPybu_0+mga9FvOs=aWS90sVnb1ZvYYuP2AUckov60jAXyPqXw@mail.gmail.com>
+User-Agent: Mutt/1.10.1 (2018-07-13)
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-On Thu, Oct 1, 2020 at 12:31 PM Nicolas Saenz Julienne
-<nsaenzjulienne@suse.de> wrote:
->
-> On Thu, 2020-10-01 at 18:23 +0100, Catalin Marinas wrote:
-> > On Thu, Oct 01, 2020 at 06:15:01PM +0100, Catalin Marinas wrote:
-> > > Hi Nicolas,
-> > >
-> > > Thanks for putting this together.
-> > >
-> > > On Thu, Oct 01, 2020 at 06:17:37PM +0200, Nicolas Saenz Julienne wrote:
-> > > > diff --git a/drivers/of/fdt.c b/drivers/of/fdt.c
-> > > > index 4602e467ca8b..cd0d115ef329 100644
-> > > > --- a/drivers/of/fdt.c
-> > > > +++ b/drivers/of/fdt.c
-> > > > @@ -25,6 +25,7 @@
-> > > >  #include <linux/serial_core.h>
-> > > >  #include <linux/sysfs.h>
-> > > >  #include <linux/random.h>
-> > > > +#include <linux/dma-direct.h>    /* for zone_dma_bits */
-> > > >
-> > > >  #include <asm/setup.h>  /* for COMMAND_LINE_SIZE */
-> > > >  #include <asm/page.h>
-> > > > @@ -1198,6 +1199,14 @@ void __init early_init_dt_scan_nodes(void)
-> > > >   of_scan_flat_dt(early_init_dt_scan_memory, NULL);
-> > > >  }
-> > > >
-> > > > +void __init early_init_dt_update_zone_dma_bits(void)
-> > > > +{
-> > > > + unsigned long dt_root = of_get_flat_dt_root();
-> > > > +
-> > > > + if (of_flat_dt_is_compatible(dt_root, "brcm,bcm2711"))
-> > > > +         zone_dma_bits = 30;
-> > > > +}
-> > >
-> > > I think we could keep this entirely in the arm64 setup_machine_fdt() and
-> > > not pollute the core code with RPi4-specific code.
+Hi Ricardo,
+
+On Fri, Sep 11, 2020 at 08:28:40AM +0200, Ricardo Ribalda Delgado wrote:
+> Thanks for the port
+> 
+> 
+> On Thu, Sep 10, 2020 at 6:17 PM Jacopo Mondi <jacopo+renesas@jmondi.org> wrote:
 > >
-> > Actually, even better, could we not move the check to
-> > arm64_memblock_init() when we initialise zone_dma_bits?
->
-> I did it this way as I vaguely remembered Rob saying he wanted to centralise
-> all early boot fdt code in one place. But I'll be happy to move it there.
+> > Convert the imx214 bindings document to json-schema and update
+> > the MAINTAINERS file accordingly.
+> >
+> > Reviewed-by: Laurent Pinchart <laurent.pinchart@ideasonboard.com>
+> > Signed-off-by: Jacopo Mondi <jacopo+renesas@jmondi.org>
+> Signed-off-by: Ricardo Ribalda <ribalda@kernel.org>
 
-Right, unless zone_dma_bits is only an arm64 thing, then this doesn't
-really have anything arch specific.
+Sob or Acked-by?
 
-Reviewed-by: Rob Herring <robh@kernel.org>
-
-Rob
+-- 
+Sakari Ailus
