@@ -2,73 +2,57 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from vger.kernel.org (vger.kernel.org [23.128.96.18])
-	by mail.lfdr.de (Postfix) with ESMTP id 474AB2803A9
-	for <lists+devicetree@lfdr.de>; Thu,  1 Oct 2020 18:16:52 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTP id 2DF032803AF
+	for <lists+devicetree@lfdr.de>; Thu,  1 Oct 2020 18:17:58 +0200 (CEST)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S1732431AbgJAQQv (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Thu, 1 Oct 2020 12:16:51 -0400
-Received: from mail.kernel.org ([198.145.29.99]:41710 "EHLO mail.kernel.org"
+        id S1732360AbgJAQR4 (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Thu, 1 Oct 2020 12:17:56 -0400
+Received: from mx2.suse.de ([195.135.220.15]:57816 "EHLO mx2.suse.de"
         rhost-flags-OK-OK-OK-OK) by vger.kernel.org with ESMTP
-        id S1732026AbgJAQQv (ORCPT <rfc822;devicetree@vger.kernel.org>);
-        Thu, 1 Oct 2020 12:16:51 -0400
-Received: from localhost (fw-tnat.cambridge.arm.com [217.140.96.140])
-        (using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
-        (No client certificate requested)
-        by mail.kernel.org (Postfix) with ESMTPSA id 39C02208B6;
-        Thu,  1 Oct 2020 16:16:50 +0000 (UTC)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=kernel.org;
-        s=default; t=1601569010;
-        bh=550ObKj0OVd2Etj3DF5vnvAqjxclqiEwkkyg6mAkvxE=;
-        h=Date:From:To:Cc:Subject:References:In-Reply-To:From;
-        b=Bmjgy8MqtcupAOak4HQajWBjJUKV8rpBI3XdM4osHD01IKETSd8rwxdCeS/75/EuG
-         H7kY85ZIXHs+X6mvxsES9TFFyI9LO/1R07OnfFIWlzEA9jxaC+xKe6slXQQIp42uZ/
-         5hyBwsW0PP2KGywPzUm4Uv+Lds9m6D57GvyLaOt4=
-Date:   Thu, 1 Oct 2020 17:15:51 +0100
-From:   Mark Brown <broonie@kernel.org>
-To:     Dan Murphy <dmurphy@ti.com>
-Cc:     lgirdwood@gmail.com, tiwai@suse.com, robh+dt@kernel.org,
-        devicetree@vger.kernel.org, alsa-devel@alsa-project.org,
-        linux-kernel@vger.kernel.org
-Subject: Re: [PATCH 1/2] dt-bindings: tas2764: Add the TAS2764 binding doc
-Message-ID: <20201001161551.GN6715@sirena.org.uk>
-References: <20200930163809.6978-1-dmurphy@ti.com>
+        id S1732026AbgJAQR4 (ORCPT <rfc822;devicetree@vger.kernel.org>);
+        Thu, 1 Oct 2020 12:17:56 -0400
+X-Virus-Scanned: by amavisd-new at test-mx.suse.de
+Received: from relay2.suse.de (unknown [195.135.221.27])
+        by mx2.suse.de (Postfix) with ESMTP id 4E70FAF3B;
+        Thu,  1 Oct 2020 16:17:54 +0000 (UTC)
+From:   Nicolas Saenz Julienne <nsaenzjulienne@suse.de>
+To:     robh+dt@kernel.org, catalin.marinas@arm.com, hch@lst.de,
+        robin.murphy@arm.com, devicetree@vger.kernel.org,
+        iommu@lists.linux-foundation.org, linux-mm@kvack.org
+Cc:     will@kernel.org, linux-kernel@vger.kernel.org,
+        linux-arm-kernel@lists.infradead.org,
+        linux-rpi-kernel@lists.infradead.org,
+        Nicolas Saenz Julienne <nsaenzjulienne@suse.de>
+Subject: [PATCH 0/4] arm64: Default to 32-bit wide ZONE_DMA
+Date:   Thu,  1 Oct 2020 18:17:36 +0200
+Message-Id: <20201001161740.29064-1-nsaenzjulienne@suse.de>
+X-Mailer: git-send-email 2.28.0
 MIME-Version: 1.0
-Content-Type: multipart/signed; micalg=pgp-sha512;
-        protocol="application/pgp-signature"; boundary="zHDeOHGDnzKksZSU"
-Content-Disposition: inline
-In-Reply-To: <20200930163809.6978-1-dmurphy@ti.com>
-X-Cookie: Stay away from flying saucers today.
-User-Agent: Mutt/1.10.1 (2018-07-13)
+Content-Transfer-Encoding: 8bit
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
+Using two distinct DMA zones turned out to be problematic. Here's an
+attempt go back to a saner default.
 
---zHDeOHGDnzKksZSU
-Content-Type: text/plain; charset=us-ascii
-Content-Disposition: inline
+I tested this on both a RPi4 and QEMU.
 
-On Wed, Sep 30, 2020 at 11:38:08AM -0500, Dan Murphy wrote:
+---
 
-> +  reset-gpio:
-> +    description: GPIO used to reset the device.
+Nicolas Saenz Julienne (4):
+  of/fdt: Update zone_dma_bits when running in bcm2711
+  dma-direct: Turn zone_dma_bits default value into a define
+  arm64: Default to 32-bit ZONE_DMA
+  mm: Update DMA zones description with arm64 newer behavior
 
-Even if only a single GPIO is allowed DT properties for GPIOs should be
-plural.
+ arch/arm64/mm/init.c       | 12 ++++++++----
+ drivers/of/fdt.c           | 10 ++++++++++
+ include/linux/dma-direct.h |  1 +
+ include/linux/mmzone.h     |  5 +++--
+ kernel/dma/direct.c        |  2 +-
+ 5 files changed, 23 insertions(+), 7 deletions(-)
 
---zHDeOHGDnzKksZSU
-Content-Type: application/pgp-signature; name="signature.asc"
+-- 
+2.28.0
 
------BEGIN PGP SIGNATURE-----
-
-iQEzBAABCgAdFiEEreZoqmdXGLWf4p/qJNaLcl1Uh9AFAl92ALYACgkQJNaLcl1U
-h9ArgQf8D8WxeqQaN7IwoEzY6Ot/1JL/mF1DDRlBglnQGCE0NOABnw2x6ugo59YB
-wxH6KxdizFIQ8tVWN3sd8lOzEArin9zxKDcaRWSjxyL5NH98nzzEFNrQX3Qf69N4
-ziFdb45MaKovNo/tSYiYNglMN+WkCRu6E5PkxErBREcT84yHK5XjNj/FSwmqMnBt
-gvlNtojgTNkO0OhzLFiDEA5Ha61i4zir+tKhIGDfeWikc4jV8YIkryjzX0mFUXdE
-w8tlELxcaillspGo+HFcyyZ7y8vvAaDaMm1b6AcbQWTM1vNagNxNgPZzJUj/Vqh5
-0mBYPVs46434GFpBbcD5r/1oD8efWQ==
-=C474
------END PGP SIGNATURE-----
-
---zHDeOHGDnzKksZSU--
