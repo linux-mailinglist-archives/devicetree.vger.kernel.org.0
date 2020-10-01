@@ -2,122 +2,250 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from vger.kernel.org (vger.kernel.org [23.128.96.18])
-	by mail.lfdr.de (Postfix) with ESMTP id 1EEDE27E6A3
-	for <lists+devicetree@lfdr.de>; Wed, 30 Sep 2020 12:29:01 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTP id D594327E649
+	for <lists+devicetree@lfdr.de>; Wed, 30 Sep 2020 12:12:55 +0200 (CEST)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S1729435AbgI3K27 (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Wed, 30 Sep 2020 06:28:59 -0400
-Received: from mail.kernel.org ([198.145.29.99]:33496 "EHLO mail.kernel.org"
-        rhost-flags-OK-OK-OK-OK) by vger.kernel.org with ESMTP
-        id S1729424AbgI3K26 (ORCPT <rfc822;devicetree@vger.kernel.org>);
-        Wed, 30 Sep 2020 06:28:58 -0400
-Received: from mail-ej1-f49.google.com (mail-ej1-f49.google.com [209.85.218.49])
-        (using TLSv1.2 with cipher ECDHE-RSA-AES128-GCM-SHA256 (128/128 bits))
-        (No client certificate requested)
-        by mail.kernel.org (Postfix) with ESMTPSA id 90AC12085B;
-        Wed, 30 Sep 2020 10:28:57 +0000 (UTC)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=kernel.org;
-        s=default; t=1601461737;
-        bh=mbpDcPnXqfq0NeYcDMguth6Htz+txY3G/ufHXXdxeqo=;
-        h=References:In-Reply-To:From:Date:Subject:To:Cc:From;
-        b=o/OZ/rKxqjuuu/tTWYx6laCvApOr4LB7qRPDVEgEdfqbHdunCCHfy734i4J7INBQE
-         bJoL6WoJbvxfx22htNzzQfK2Wf9/EpbXI0Kea6aqDSNkYdM4Ykxu8/bToI73ChKVmX
-         r83o17Hs0mpHls3AfufATiXCw7xayDwBkdOxdw2c=
-Received: by mail-ej1-f49.google.com with SMTP id q13so2003019ejo.9;
-        Wed, 30 Sep 2020 03:28:57 -0700 (PDT)
-X-Gm-Message-State: AOAM530cBhL8prfdWQJIKNoLkIC/lQlIEo6B/ztDGP3y12BgMxqyJps6
-        6FMNgLvgSs8YHqi3oFlWvWAv7NpYkT1Jnp8qM1w=
-X-Google-Smtp-Source: ABdhPJz8Ugd4z0UfwVWjjaen5DTm9+7ewSR+YqfdwUXyDIkfmGOdVpDBNoxFkspHVRsXZbkUoH2A7JL6SUEkkYmU5nI=
-X-Received: by 2002:a17:906:1a11:: with SMTP id i17mr2006438ejf.381.1601461736013;
- Wed, 30 Sep 2020 03:28:56 -0700 (PDT)
+        id S1728500AbgI3KMz (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Wed, 30 Sep 2020 06:12:55 -0400
+Received: from lindbergh.monkeyblade.net ([23.128.96.19]:50124 "EHLO
+        lindbergh.monkeyblade.net" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
+        with ESMTP id S1725779AbgI3KMy (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Wed, 30 Sep 2020 06:12:54 -0400
+Received: from mail-io1-xd44.google.com (mail-io1-xd44.google.com [IPv6:2607:f8b0:4864:20::d44])
+        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 2DBCDC061755;
+        Wed, 30 Sep 2020 03:12:54 -0700 (PDT)
+Received: by mail-io1-xd44.google.com with SMTP id z25so1163261iol.10;
+        Wed, 30 Sep 2020 03:12:54 -0700 (PDT)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+        d=gmail.com; s=20161025;
+        h=mime-version:references:in-reply-to:from:date:message-id:subject:to
+         :cc:content-transfer-encoding;
+        bh=/f1OTAWLOFyQByyjBp7gKJkQqlf7y1fR2nEKKjF+R7k=;
+        b=Gebb9eMcJ5yfFkylfLya/CB5BMiRp5tp3l3JfanfE2Q5D3UuPDShghq8AzqYauqHiY
+         lvCgPqczUI1NuPx6anNfKsaWsFyBC/pNXy9AwZmYhv8cLvAxvmUlTELJX909iZCe7riV
+         HHVvV+ZcDn6rGzB5K9NxiPtNIwsYTh5XTZIF+TLzvXmbQBSmD/4Krgqsc2/mtdhA/Q2j
+         GcHtLIgtzqEein0lGF3TP8bE+VmZTCZ9xxNieMfyN2TThaz0m7GcXximmRfjkZ4yogOh
+         2IpL/XlrtKwXdZR9WB1EKjYIIgGq6eeRC1NrRvMwi0K9cDWf3vQvyJhk9zkhVeyyrusP
+         Gqmg==
+X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+        d=1e100.net; s=20161025;
+        h=x-gm-message-state:mime-version:references:in-reply-to:from:date
+         :message-id:subject:to:cc:content-transfer-encoding;
+        bh=/f1OTAWLOFyQByyjBp7gKJkQqlf7y1fR2nEKKjF+R7k=;
+        b=ZJSBuNqe8xqhrOsLBMsX0OR7dQLtF0/HdZz51KnwvBlsBFw1M3F/L0nRpv2aypXtoP
+         yWMq1+qvnyKjtyv6Uvu7CRkYVLQx5hLUlcpLFpBr4TFBIFUXRgUp1d4sSqOXbnFz7Gdd
+         4lF+WqOfKAo6+Ip1so8rGcaSaXLTnJWVkjnH4PmV7lHF6/34ig4Ws+OC783ULcgUDC+G
+         IGSEo21ZIaPU9Lc6hLL5C54zowDaSLYjbS5V95pIkUyuQa0ZUI/tBdG2cllkrbOZjW4d
+         8h1LwcQsKD/B0rwp0/pLF3c0AIbqiKRAQRzcVVSg7Wtlb4dGzyLSEWEQWqaKkIG17Azh
+         E3OA==
+X-Gm-Message-State: AOAM531b1yA0RtSuUKWBNTvmn7f72X45VThzjTd3DCsvgn/T3N7CSlaw
+        PEo2ejL/9t3Cvsu0nPLn3Tye7jfWPyJ927Y+Xn2JxGuZqi0=
+X-Google-Smtp-Source: ABdhPJzlpDbnNL0UhpMZoIhJBBA7VIiOiuC/U8CgBNOJi1IM8RoCYebPmYNG9DDqVJacuMaeZPty304jCUrO7dWNP7c=
+X-Received: by 2002:a05:6638:218d:: with SMTP id s13mr1298088jaj.125.1601460773363;
+ Wed, 30 Sep 2020 03:12:53 -0700 (PDT)
 MIME-Version: 1.0
-References: <20200926162811.5335-1-krzk@kernel.org> <20200926162811.5335-12-krzk@kernel.org>
- <2a329c9b-8bfc-fbd8-62a3-759f608347d6@denx.de> <686af5e6-d16a-7750-e47f-1ced9cb6c34a@denx.de>
- <CAJKOXPe7XOQspzTFDRtb=y79mwXEZSGiYiQP3J58JMjCkVRSCQ@mail.gmail.com> <abccfe07-4218-50a2-346b-bde77d1a987e@denx.de>
-In-Reply-To: <abccfe07-4218-50a2-346b-bde77d1a987e@denx.de>
-From:   Krzysztof Kozlowski <krzk@kernel.org>
-Date:   Wed, 30 Sep 2020 12:28:44 +0200
-X-Gmail-Original-Message-ID: <CAJKOXPdUkjd9--EC3GF08tsMMAr3t8BqJqddi4s+pwQV0+Pj_A@mail.gmail.com>
-Message-ID: <CAJKOXPdUkjd9--EC3GF08tsMMAr3t8BqJqddi4s+pwQV0+Pj_A@mail.gmail.com>
-Subject: Re: [RFC 12/14] dt-bindings: vendor-prefixes: add Aristainetos
-To:     hs@denx.de
-Cc:     Rob Herring <robh+dt@kernel.org>, Shawn Guo <shawnguo@kernel.org>,
-        Sascha Hauer <s.hauer@pengutronix.de>,
-        Pengutronix Kernel Team <kernel@pengutronix.de>,
-        Fabio Estevam <festevam@gmail.com>,
-        NXP Linux Team <linux-imx@nxp.com>,
-        Stefan Riedmueller <s.riedmueller@phytec.de>,
-        Robert Jones <rjones@gateworks.com>,
-        Li Yang <leoyang.li@nxp.com>, devicetree@vger.kernel.org,
-        "linux-kernel@vger.kernel.org" <linux-kernel@vger.kernel.org>,
-        linux-arm-kernel@lists.infradead.org
+References: <1600865452-19649-1-git-send-email-gene.chen.richtek@gmail.com>
+ <1600865452-19649-2-git-send-email-gene.chen.richtek@gmail.com>
+ <20200928184423.GA3041988@bogus> <CAE+NS35qEzfixkBJn17Ookqf8NZDwr+2RmDGGZTThMUHy=Yttg@mail.gmail.com>
+In-Reply-To: <CAE+NS35qEzfixkBJn17Ookqf8NZDwr+2RmDGGZTThMUHy=Yttg@mail.gmail.com>
+From:   Gene Chen <gene.chen.richtek@gmail.com>
+Date:   Thu, 1 Oct 2020 18:12:39 +0800
+Message-ID: <CAE+NS36tG3H=MKU1Ewo=9m36j0D6G6GhQDGDkHuGkRn7Wjrqjg@mail.gmail.com>
+Subject: Re: [PATCH v4 1/2] dt-bindings: leds: Add bindings for MT6360 LED
+To:     Rob Herring <robh@kernel.org>
+Cc:     Jacek Anaszewski <jacek.anaszewski@gmail.com>,
+        Pavel Machek <pavel@ucw.cz>,
+        Matthias Brugger <matthias.bgg@gmail.com>,
+        Dan Murphy <dmurphy@ti.com>,
+        Linux LED Subsystem <linux-leds@vger.kernel.org>,
+        devicetree <devicetree@vger.kernel.org>,
+        linux-arm Mailing List <linux-arm-kernel@lists.infradead.org>,
+        "moderated list:ARM/Mediatek SoC support" 
+        <linux-mediatek@lists.infradead.org>,
+        Linux Kernel Mailing List <linux-kernel@vger.kernel.org>,
+        Gene Chen <gene_chen@richtek.com>, Wilma.Wu@mediatek.com,
+        shufan_lee@richtek.com, cy_huang@richtek.com,
+        benjamin.chao@mediatek.com
 Content-Type: text/plain; charset="UTF-8"
+Content-Transfer-Encoding: quoted-printable
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-On Wed, 30 Sep 2020 at 12:14, Heiko Schocher <hs@denx.de> wrote:
+Gene Chen <gene.chen.richtek@gmail.com> =E6=96=BC 2020=E5=B9=B49=E6=9C=8830=
+=E6=97=A5 =E9=80=B1=E4=B8=89 =E4=B8=8B=E5=8D=8811:17=E5=AF=AB=E9=81=93=EF=
+=BC=9A
 >
-> Hello Krzysztof,
->
-> Am 30.09.2020 um 09:11 schrieb Krzysztof Kozlowski:
-> > On Wed, 30 Sep 2020 at 06:16, Heiko Schocher <hs@denx.de> wrote:
-> >>
-> >> Hello Krzysztof,
-> >>
-> >> Am 28.09.2020 um 06:04 schrieb Heiko Schocher:
-> >>> Hello Krzysztof,
-> >>>
-> >>> Am 26.09.2020 um 18:28 schrieb Krzysztof Kozlowski:
-> >>>> Document binding for an unknown entity Aristainetos with few boards
-> >>>> mainlined.
-> >>>>
-> >>>> Cc: Heiko Schocher <hs@denx.de>
-> >>>> Signed-off-by: Krzysztof Kozlowski <krzk@kernel.org>
-> >>>>
-> >>>> ---
-> >>>>
-> >>>> I tried to Google but except the patches from Heiko Schocher, I could
-> >>>> not find any meaningful data.
-> >>>>
-> >>>> Heiko, you posted this. Do you know what is it?
-> >>>
-> >>> aristainetos is the name of the board, so it is not the vendor name.
-> >>>
-> >>> I just asked the customer if we can add a valid vendor name...
-> >>
-> >> Ok, it is not easy to get an okay from the customer to publish
-> >> his name.
-> >>
-> >> Is there a dummy or unknown entry for vendor?
+> Rob Herring <robh@kernel.org> =E6=96=BC 2020=E5=B9=B49=E6=9C=8829=E6=97=
+=A5 =E9=80=B1=E4=BA=8C =E4=B8=8A=E5=8D=882:44=E5=AF=AB=E9=81=93=EF=BC=9A
 > >
-> > We could use "denx" as it was done as part of your work or "linux".
-> > Rob, any hints here?
+> > On Wed, Sep 23, 2020 at 08:50:51PM +0800, Gene Chen wrote:
+> > > From: Gene Chen <gene_chen@richtek.com>
+> > >
+> > > Add bindings document for LED support on MT6360 PMIC
+> > >
+> > > Signed-off-by: Gene Chen <gene_chen@richtek.com>
+> > > ---
+> > >  .../devicetree/bindings/leds/leds-mt6360.yaml      | 107 +++++++++++=
+++++++++++
+> > >  1 file changed, 107 insertions(+)
+> > >  create mode 100644 Documentation/devicetree/bindings/leds/leds-mt636=
+0.yaml
+> > >
+> > > diff --git a/Documentation/devicetree/bindings/leds/leds-mt6360.yaml =
+b/Documentation/devicetree/bindings/leds/leds-mt6360.yaml
+> > > new file mode 100644
+> > > index 0000000..a356a1f
+> > > --- /dev/null
+> > > +++ b/Documentation/devicetree/bindings/leds/leds-mt6360.yaml
+> > > @@ -0,0 +1,107 @@
+> > > +# SPDX-License-Identifier: (GPL-2.0-only OR BSD-2-Clause)
+> > > +%YAML 1.2
+> > > +---
+> > > +$id: http://devicetree.org/schemas/leds/leds-mt6360.yaml#
+> > > +$schema: http://devicetree.org/meta-schemas/core.yaml#
+> > > +
+> > > +title: LED driver for MT6360 PMIC from MediaTek Integrated.
+> >
+> > Where's the PMIC schema? This file needs to be referenced from it and
+> > that means it all needs to be one series.
+> >
 >
-> Ok we can use as vendor "abb" in all DTS files and regarding your
-> change in Documentation/devicetree/bindings/vendor-prefixes.yaml
-> it can be:
+> Do you means as regulator/max77650-regulator.yaml?
 >
-> diff --git a/Documentation/devicetree/bindings/vendor-prefixes.yaml
-> b/Documentation/devicetree/bindings/vendor-prefixes.yaml
-> index 789a01b3d93a..bb4c85f00c8f 100644
-> --- a/Documentation/devicetree/bindings/vendor-prefixes.yaml
-> +++ b/Documentation/devicetree/bindings/vendor-prefixes.yaml
-> @@ -105,6 +105,8 @@ patternProperties:
->       description: arcx Inc. / Archronix Inc.
->     "^aries,.*":
->       description: Aries Embedded GmbH
-> +  "^abb,.*":
-> +    description: ABB
->     "^arm,.*":
->       description: ARM Ltd.
->     "^armadeus,.*":
+> description: |
+>   This module is part of the MAX77650 MFD device. For more details
+>   "see Documentation/devicetree/bindings/mfd/max77650.yaml"
 >
-> Would you work in this changes?
 
-Yes, I will send a v2 with a new name.
+According to jacek suggestion, I merge fled0~2 to one RGB multicolor
+device as below,
+     led@0 {
+       reg =3D <0>;
+       function =3D LED_FUNCTION_INDICATOR;
+       color =3D <LED_COLOR_ID_RGB>;
+       led-max-microamp =3D <24000>;
+     };
 
-Thanks for checking this.
+But I see make dt_binding_check error,
+/media/gene_chen/WD/upstream/linux/Documentation/devicetree/bindings/leds/l=
+eds-mt6360.example.dt.yaml:
+led-controller: led@0:color:0:0: 9 is greater than the maximum of 8
 
-Best regards,
-Krzysztof
+Maybe the maximum color need set from 8 to 9, which define
+LED_COLOR_ID_RGB in include/dt-bindings/leds/common.h
+  color:
+    description:
+      Color of the LED. Use one of the LED_COLOR_ID_* prefixed definitions =
+from
+      the header include/dt-bindings/leds/common.h. If there is no
+matching
+      LED_COLOR_ID available, add a new one.
+    $ref: /schemas/types.yaml#definitions/uint32
+    minimum: 0
+    maximum: 9
+
+> > > +
+> > > +maintainers:
+> > > +  - Gene Chen <gene_chen@richtek.com>
+> > > +
+> > > +description: |
+> > > +  This module is part of the MT6360 MFD device.
+> > > +  Add MT6360 LED driver include 2-channel Flash LED with torch/strob=
+e mode,
+> > > +  and 4-channel RGB LED support Register/Flash/Breath Mode
+> > > +
+> > > +properties:
+> > > +  compatible:
+> > > +    const: mediatek,mt6360-led
+> > > +
+> > > +  "#address-cells":
+> > > +    const: 1
+> > > +
+> > > +  "#size-cells":
+> > > +    const: 0
+> > > +
+> > > +patternProperties:
+> > > +  "^led@[0-5]$":
+> > > +    type: object
+> > > +    $ref: common.yaml#
+> > > +    description:
+> > > +      Properties for a single LED.
+> > > +
+> > > +    properties:
+> > > +      reg:
+> > > +        description: Index of the LED.
+> > > +        enum:
+> > > +          - 0 # LED output INDICATOR1
+> > > +          - 1 # LED output INDICATOR2
+> > > +          - 2 # LED output INDICATOR3
+> > > +          - 3 # LED output INDICATOR4
+> > > +          - 4 # LED output FLED1
+> > > +          - 5 # LED output FLED2
+> > > +
+> > > +unevaluatedProperties: false
+> > > +
+> > > +required:
+> > > +  - compatible
+> > > +  - "#address-cells"
+> > > +  - "#size-cells"
+> > > +
+> > > +additionalProperties: false
+> > > +
+> > > +examples:
+> > > + - |
+> > > +   #include <dt-bindings/leds/common.h>
+> > > +   led-controller {
+> > > +     compatible =3D "mediatek,mt6360-led";
+> > > +     #address-cells =3D <1>;
+> > > +     #size-cells =3D <0>;
+> > > +
+> > > +     led@0 {
+> > > +       reg =3D <0>;
+> > > +       function =3D LED_FUNCTION_INDICATOR;
+> > > +       color =3D <LED_COLOR_ID_RED>;
+> > > +       default-state =3D "off";
+> > > +     };
+> > > +     led@1 {
+> > > +       reg =3D <1>;
+> > > +       function =3D LED_FUNCTION_INDICATOR;
+> > > +       color =3D <LED_COLOR_ID_GREEN>;
+> > > +       default-state =3D "off";
+> > > +     };
+> > > +     led@2 {
+> > > +       reg =3D <2>;
+> > > +       function =3D LED_FUNCTION_INDICATOR;
+> > > +       color =3D <LED_COLOR_ID_BLUE>;
+> > > +       default-state =3D "off";
+> > > +     };
+> > > +     led@3 {
+> > > +       reg =3D <3>;
+> > > +       function =3D LED_FUNCTION_INDICATOR;
+> > > +       color =3D <LED_COLOR_ID_AMBER>;
+> > > +       default-state =3D "off";
+> > > +     };
+> > > +     led@4 {
+> > > +       reg =3D <4>;
+> > > +       function =3D LED_FUNCTION_FLASH;
+> > > +       color =3D <LED_COLOR_ID_WHITE>;
+> > > +       function-enumerator =3D <1>;
+> > > +       default-state =3D "off";
+> > > +       led-max-microamp =3D <200000>;
+> > > +       flash-max-microamp =3D <500000>;
+> > > +       flash-max-timeout-us =3D <1024000>;
+> > > +     };
+> > > +     led@5 {
+> > > +       reg =3D <5>;
+> > > +       function =3D LED_FUNCTION_FLASH;
+> > > +       color =3D <LED_COLOR_ID_WHITE>;
+> > > +       function-enumerator =3D <2>;
+> > > +       default-state =3D "off";
+> > > +       led-max-microamp =3D <200000>;
+> > > +       flash-max-microamp =3D <500000>;
+> > > +       flash-max-timeout-us =3D <1024000>;
+> > > +     };
+> > > +   };
+> > > +...
+> > > --
+> > > 2.7.4
+> > >
