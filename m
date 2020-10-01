@@ -2,77 +2,73 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from vger.kernel.org (vger.kernel.org [23.128.96.18])
-	by mail.lfdr.de (Postfix) with ESMTP id 14EF82804AF
-	for <lists+devicetree@lfdr.de>; Thu,  1 Oct 2020 19:09:29 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTP id AD5902804E7
+	for <lists+devicetree@lfdr.de>; Thu,  1 Oct 2020 19:15:10 +0200 (CEST)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S1732968AbgJARJX (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Thu, 1 Oct 2020 13:09:23 -0400
-Received: from mail.kernel.org ([198.145.29.99]:43062 "EHLO mail.kernel.org"
+        id S1732287AbgJARPG (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Thu, 1 Oct 2020 13:15:06 -0400
+Received: from mail.kernel.org ([198.145.29.99]:46596 "EHLO mail.kernel.org"
         rhost-flags-OK-OK-OK-OK) by vger.kernel.org with ESMTP
-        id S1732213AbgJARJV (ORCPT <rfc822;devicetree@vger.kernel.org>);
-        Thu, 1 Oct 2020 13:09:21 -0400
-Received: from kozik-lap.mshome.net (unknown [194.230.155.194])
-        (using TLSv1.2 with cipher ECDHE-RSA-AES128-GCM-SHA256 (128/128 bits))
+        id S1732274AbgJARPF (ORCPT <rfc822;devicetree@vger.kernel.org>);
+        Thu, 1 Oct 2020 13:15:05 -0400
+Received: from gaia (unknown [31.124.44.166])
+        (using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
         (No client certificate requested)
-        by mail.kernel.org (Postfix) with ESMTPSA id 26C3721D24;
-        Thu,  1 Oct 2020 17:09:15 +0000 (UTC)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=kernel.org;
-        s=default; t=1601572160;
-        bh=EHDSFDUu1XrCiwgQ9v7UroEYnBC6MstIZ2/WKeeNUVg=;
-        h=From:To:Subject:Date:In-Reply-To:References:From;
-        b=soradmhiTA/UXgXQgkpYtdN4zOaP3PygSj0L1UpiHC+6Z+kZMd5Exg/zcBkGVJu92
-         wOzNEaxaK6bLojbdifoCOFCKc1x/Ph4/3zFYtfJZ13EdnrqRpEj85OdiRFVdSq2rJz
-         COWeY1/XZBkMj+N6mPdfVbdOqh8gmgHger6zydHk=
-From:   Krzysztof Kozlowski <krzk@kernel.org>
-To:     Rob Herring <robh+dt@kernel.org>, Shawn Guo <shawnguo@kernel.org>,
-        Sascha Hauer <s.hauer@pengutronix.de>,
-        Pengutronix Kernel Team <kernel@pengutronix.de>,
-        Fabio Estevam <festevam@gmail.com>,
-        NXP Linux Team <linux-imx@nxp.com>,
-        Krzysztof Kozlowski <krzk@kernel.org>,
-        Anson Huang <Anson.Huang@nxp.com>,
-        Andreas Kemnade <andreas@kemnade.info>,
-        Stefan Riedmueller <s.riedmueller@phytec.de>,
-        Robert Jones <rjones@gateworks.com>,
-        =?UTF-8?q?S=C3=A9bastien=20Szymanski?= 
-        <sebastien.szymanski@armadeus.com>, Li Yang <leoyang.li@nxp.com>,
-        devicetree@vger.kernel.org, linux-kernel@vger.kernel.org,
-        linux-arm-kernel@lists.infradead.org
-Subject: [PATCH 12/12] ARM: dts: imx7s-warp: correct vendor in compatible to Element14
-Date:   Thu,  1 Oct 2020 19:07:59 +0200
-Message-Id: <20201001170759.9592-13-krzk@kernel.org>
-X-Mailer: git-send-email 2.17.1
-In-Reply-To: <20201001170759.9592-1-krzk@kernel.org>
-References: <20201001170759.9592-1-krzk@kernel.org>
+        by mail.kernel.org (Postfix) with ESMTPSA id 7C84420872;
+        Thu,  1 Oct 2020 17:15:03 +0000 (UTC)
+Date:   Thu, 1 Oct 2020 18:15:01 +0100
+From:   Catalin Marinas <catalin.marinas@arm.com>
+To:     Nicolas Saenz Julienne <nsaenzjulienne@suse.de>
+Cc:     robh+dt@kernel.org, hch@lst.de, robin.murphy@arm.com,
+        devicetree@vger.kernel.org, iommu@lists.linux-foundation.org,
+        linux-mm@kvack.org, Frank Rowand <frowand.list@gmail.com>,
+        will@kernel.org, linux-kernel@vger.kernel.org,
+        linux-arm-kernel@lists.infradead.org,
+        linux-rpi-kernel@lists.infradead.org
+Subject: Re: [PATCH 1/4] of/fdt: Update zone_dma_bits when running in bcm2711
+Message-ID: <20201001171500.GN21544@gaia>
+References: <20201001161740.29064-1-nsaenzjulienne@suse.de>
+ <20201001161740.29064-2-nsaenzjulienne@suse.de>
+MIME-Version: 1.0
+Content-Type: text/plain; charset=us-ascii
+Content-Disposition: inline
+In-Reply-To: <20201001161740.29064-2-nsaenzjulienne@suse.de>
+User-Agent: Mutt/1.10.1 (2018-07-13)
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-The WaRP7 board (Wearable Development Platform) was apparently made by
-Element14, not by "Warp".  Correct the  vendor in compatible to reflect
-this.  The compatibles were not documented in the bindings before.
+Hi Nicolas,
 
-Link: https://www.element14.com/community/docs/DOC-79058
-Signed-off-by: Krzysztof Kozlowski <krzk@kernel.org>
----
- arch/arm/boot/dts/imx7s-warp.dts | 4 ++--
- 1 file changed, 2 insertions(+), 2 deletions(-)
+Thanks for putting this together.
 
-diff --git a/arch/arm/boot/dts/imx7s-warp.dts b/arch/arm/boot/dts/imx7s-warp.dts
-index d6b4888fa686..569bbd84e371 100644
---- a/arch/arm/boot/dts/imx7s-warp.dts
-+++ b/arch/arm/boot/dts/imx7s-warp.dts
-@@ -10,8 +10,8 @@
- #include "imx7s.dtsi"
- 
- / {
--	model = "Warp i.MX7 Board";
--	compatible = "warp,imx7s-warp", "fsl,imx7s";
-+	model = "Element14 Warp i.MX7 Board";
-+	compatible = "element14,imx7s-warp", "fsl,imx7s";
- 
- 	memory@80000000 {
- 		device_type = "memory";
+On Thu, Oct 01, 2020 at 06:17:37PM +0200, Nicolas Saenz Julienne wrote:
+> diff --git a/drivers/of/fdt.c b/drivers/of/fdt.c
+> index 4602e467ca8b..cd0d115ef329 100644
+> --- a/drivers/of/fdt.c
+> +++ b/drivers/of/fdt.c
+> @@ -25,6 +25,7 @@
+>  #include <linux/serial_core.h>
+>  #include <linux/sysfs.h>
+>  #include <linux/random.h>
+> +#include <linux/dma-direct.h>	/* for zone_dma_bits */
+>  
+>  #include <asm/setup.h>  /* for COMMAND_LINE_SIZE */
+>  #include <asm/page.h>
+> @@ -1198,6 +1199,14 @@ void __init early_init_dt_scan_nodes(void)
+>  	of_scan_flat_dt(early_init_dt_scan_memory, NULL);
+>  }
+>  
+> +void __init early_init_dt_update_zone_dma_bits(void)
+> +{
+> +	unsigned long dt_root = of_get_flat_dt_root();
+> +
+> +	if (of_flat_dt_is_compatible(dt_root, "brcm,bcm2711"))
+> +		zone_dma_bits = 30;
+> +}
+
+I think we could keep this entirely in the arm64 setup_machine_fdt() and
+not pollute the core code with RPi4-specific code.
+
 -- 
-2.17.1
-
+Catalin
