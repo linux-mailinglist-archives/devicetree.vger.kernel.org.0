@@ -2,94 +2,77 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from vger.kernel.org (vger.kernel.org [23.128.96.18])
-	by mail.lfdr.de (Postfix) with ESMTP id EAFFA27FA1D
-	for <lists+devicetree@lfdr.de>; Thu,  1 Oct 2020 09:22:41 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTP id 250EB27FA4C
+	for <lists+devicetree@lfdr.de>; Thu,  1 Oct 2020 09:32:06 +0200 (CEST)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S1731045AbgJAHWl convert rfc822-to-8bit (ORCPT
-        <rfc822;lists+devicetree@lfdr.de>); Thu, 1 Oct 2020 03:22:41 -0400
-Received: from mail-ed1-f67.google.com ([209.85.208.67]:40551 "EHLO
-        mail-ed1-f67.google.com" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S1725883AbgJAHWl (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Thu, 1 Oct 2020 03:22:41 -0400
-Received: by mail-ed1-f67.google.com with SMTP id t16so4528769edw.7;
-        Thu, 01 Oct 2020 00:22:39 -0700 (PDT)
-X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=1e100.net; s=20161025;
-        h=x-gm-message-state:date:from:to:cc:subject:message-id:references
-         :mime-version:content-disposition:content-transfer-encoding
-         :in-reply-to:user-agent;
-        bh=fwr1GeVaFEp1uM5sVnPT1yQbyvQmB6fV3m98V7FTLsE=;
-        b=HlqT77hLOhdW7BqyeFS7+kf6Nm/XJ7DIwzXYMT/FP7ZXosS4WrUF3cjc5RImcQfeq6
-         ukgQ41cklCvn7SsvrGLuLnIuZnk+/TEfDGNBgjA2UaLoLDZebRcxRc7jXIMFZB7a/EeV
-         9gHsQc7hhI5dC8aYBAkJFpboOvV/pTwRYUzGYjtE8yTC5hQDx+0VWr5S44gJaOfaRQa9
-         g2Xh1OJ5R8yRYXh0j5pkV+lYhm+jOqtPmJARIFc708a+oRNxaJVXUfr0naLo0Pn7sZUH
-         kL7uJhRErWPffAKA3QUIEYjLArpa5hRI+UlhjquBCdZ0McfTsGNqkZlZb3S6Btu5GhnL
-         8waA==
-X-Gm-Message-State: AOAM5321M2qcwc+NuWAo0VCWX5deNi0uzt81Oa/kvWuQ/dX0lmTKk/px
-        65aYfOZP4Co5yrMifwhaL7cTm+wdRKo=
-X-Google-Smtp-Source: ABdhPJyursdQ3jc4/q0hvBhAH8cOPenfHB/GW7XJSvMFDQANFlI7O7t0Exapy9HiBOqu25ycbqhjvw==
-X-Received: by 2002:aa7:ce15:: with SMTP id d21mr6744623edv.284.1601536959051;
-        Thu, 01 Oct 2020 00:22:39 -0700 (PDT)
-Received: from kozik-lap ([194.230.155.194])
-        by smtp.googlemail.com with ESMTPSA id v25sm3367079edr.29.2020.10.01.00.22.37
-        (version=TLS1_2 cipher=ECDHE-ECDSA-CHACHA20-POLY1305 bits=256/256);
-        Thu, 01 Oct 2020 00:22:38 -0700 (PDT)
-Date:   Thu, 1 Oct 2020 09:22:36 +0200
-From:   Krzysztof Kozlowski <krzk@kernel.org>
-To:     =?utf-8?Q?=C5=81ukasz?= Stelmach <l.stelmach@samsung.com>
-Cc:     Rob Herring <robh+dt@kernel.org>, Kukjin Kim <kgene@kernel.org>,
-        devicetree@vger.kernel.org, linux-arm-kernel@lists.infradead.org,
-        linux-samsung-soc@vger.kernel.org, linux-kernel@vger.kernel.org,
-        b.zolnierkie@samsung.com, m.szyprowski@samsung.com
-Subject: Re: [PATCH] ARM: dts: exynos: Add a placeholder for a MAC address
-Message-ID: <20201001072236.GA4815@kozik-lap>
-References: <CGME20200930143154eucas1p22c1560c485f5d8b8be729c76028c89c7@eucas1p2.samsung.com>
- <20200930143151.23961-1-l.stelmach@samsung.com>
+        id S1730378AbgJAHcF (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Thu, 1 Oct 2020 03:32:05 -0400
+Received: from muru.com ([72.249.23.125]:45838 "EHLO muru.com"
+        rhost-flags-OK-OK-OK-OK) by vger.kernel.org with ESMTP
+        id S1725878AbgJAHcE (ORCPT <rfc822;devicetree@vger.kernel.org>);
+        Thu, 1 Oct 2020 03:32:04 -0400
+Received: from atomide.com (localhost [127.0.0.1])
+        by muru.com (Postfix) with ESMTPS id 008778057;
+        Thu,  1 Oct 2020 07:32:05 +0000 (UTC)
+Date:   Thu, 1 Oct 2020 10:31:59 +0300
+From:   Tony Lindgren <tony@atomide.com>
+To:     Drew Fustini <drew@beagleboard.org>
+Cc:     Rob Herring <robh+dt@kernel.org>,
+        Linus Walleij <linus.walleij@linaro.org>,
+        Jason Kridner <jkridner@beagleboard.org>,
+        Robert Nelson <robertcnelson@gmail.com>,
+        Trent Piepho <tpiepho@gmail.com>,
+        Christina Quast <cquast@hanoverdisplays.com>,
+        linux-omap@vger.kernel.org, linux-kernel@vger.kernel.org,
+        devicetree@vger.kernel.org, linux-gpio@vger.kernel.org
+Subject: Re: [PATCH v2] pinctrl: single: fix pinctrl_spec.args_count bounds
+ check
+Message-ID: <20201001073159.GT9471@atomide.com>
+References: <20200930174839.1308344-1-drew@beagleboard.org>
 MIME-Version: 1.0
-Content-Type: text/plain; charset=utf-8
+Content-Type: text/plain; charset=us-ascii
 Content-Disposition: inline
-Content-Transfer-Encoding: 8BIT
-In-Reply-To: <20200930143151.23961-1-l.stelmach@samsung.com>
-User-Agent: Mutt/1.9.4 (2018-02-28)
+In-Reply-To: <20200930174839.1308344-1-drew@beagleboard.org>
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-On Wed, Sep 30, 2020 at 04:31:51PM +0200, Łukasz Stelmach wrote:
-> Add a placeholder for a MAC address. A bootloader may fill it
-> to set the MAC address and override EEPROM settings.
+* Drew Fustini <drew@beagleboard.org> [200930 17:51]:
+> The property #pinctrl-cells can either be 1 or 2:
 > 
-> Signed-off-by: Łukasz Stelmach <l.stelmach@samsung.com>
+> - if #pinctrl-cells = <1>, then pinctrl_spec.args_count = 2
+> - if #pinctrl-cells = <2>, then pinctrl_spec.args_count = 3
+> 
+> All other values of pinctrl_spec.args_count are incorrect.  This fix
+> checks the upper bound instead of just the lower bound.
+> 
+> Fixes: a13395418888 ("pinctrl: single: parse #pinctrl-cells = 2")
+> Reported-by: Trent Piepho <tpiepho@gmail.com>
+> Link: https://lore.kernel.org/linux-omap/3139716.CMS8C0sQ7x@zen.local/
+> Signed-off-by: Drew Fustini <drew@beagleboard.org>
 > ---
->  arch/arm/boot/dts/exynos5422-odroidxu3.dts | 18 ++++++++++++++++++
->  1 file changed, 18 insertions(+)
+> v2 change:
+> - correct the description as I had previously been mistakenly using the
+>   term #pinctrl-cells instead of pinctrl_spec.args_count
+
+Acked-by: Tony Lindgren <tony@atomide.com>
+
+>  drivers/pinctrl/pinctrl-single.c | 2 +-
+>  1 file changed, 1 insertion(+), 1 deletion(-)
 > 
-> diff --git a/arch/arm/boot/dts/exynos5422-odroidxu3.dts b/arch/arm/boot/dts/exynos5422-odroidxu3.dts
-> index db0bc17a667b..9f7f3eacb750 100644
-> --- a/arch/arm/boot/dts/exynos5422-odroidxu3.dts
-> +++ b/arch/arm/boot/dts/exynos5422-odroidxu3.dts
-> @@ -70,3 +70,21 @@ &pwm {
->  &usbdrd_dwc3_1 {
->  	dr_mode = "peripheral";
->  };
-> +
-> +&usbhost2 {
-> +	#address-cells = <1>;
-> +	#size-cells = <0>;
-> +
-> +	hub@1 {
-> +		compatible = "usb8087,0024";
-> +		reg = <1>;
-> +		#address-cells = <1>;
-> +		#size-cells = <0>;
-> +
-> +		ethernet: usbether@1 {
-> +			compatible = "usb0c45,6310";
-> +			reg = <1>;
-> +			mac-address = [00 00 00 00 00 00]; /* Filled in by a bootloader */
-
-Why do you need a placeholder? U-Boot can just append the
-address/property.
-
-Best regards,
-Krzysztof
+> diff --git a/drivers/pinctrl/pinctrl-single.c b/drivers/pinctrl/pinctrl-single.c
+> index efe41abc5d47..5cbf0e55087c 100644
+> --- a/drivers/pinctrl/pinctrl-single.c
+> +++ b/drivers/pinctrl/pinctrl-single.c
+> @@ -1014,7 +1014,7 @@ static int pcs_parse_one_pinctrl_entry(struct pcs_device *pcs,
+>  		if (res)
+>  			return res;
+>  
+> -		if (pinctrl_spec.args_count < 2) {
+> +		if (pinctrl_spec.args_count < 2 || pinctrl_spec.args_count > 3) {
+>  			dev_err(pcs->dev, "invalid args_count for spec: %i\n",
+>  				pinctrl_spec.args_count);
+>  			break;
+> -- 
+> 2.25.1
+> 
