@@ -2,118 +2,227 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from vger.kernel.org (vger.kernel.org [23.128.96.18])
-	by mail.lfdr.de (Postfix) with ESMTP id 947C527F923
-	for <lists+devicetree@lfdr.de>; Thu,  1 Oct 2020 07:40:22 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTP id 3EAD727F92C
+	for <lists+devicetree@lfdr.de>; Thu,  1 Oct 2020 07:57:48 +0200 (CEST)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S1725921AbgJAFkV (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Thu, 1 Oct 2020 01:40:21 -0400
-Received: from mga06.intel.com ([134.134.136.31]:19677 "EHLO mga06.intel.com"
-        rhost-flags-OK-OK-OK-OK) by vger.kernel.org with ESMTP
-        id S1725878AbgJAFkU (ORCPT <rfc822;devicetree@vger.kernel.org>);
-        Thu, 1 Oct 2020 01:40:20 -0400
-IronPort-SDR: b0D8siVmXNaD3QLk17uSI5Vj15KRchiYcZ59BiI6wJ5jnV2Gi5bqxk3s8yuyTuMIYrnERdHrFl
- eozemEfAsF3w==
-X-IronPort-AV: E=McAfee;i="6000,8403,9760"; a="224244708"
-X-IronPort-AV: E=Sophos;i="5.77,323,1596524400"; 
-   d="scan'208";a="224244708"
-X-Amp-Result: SKIPPED(no attachment in message)
-X-Amp-File-Uploaded: False
-Received: from fmsmga006.fm.intel.com ([10.253.24.20])
-  by orsmga104.jf.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384; 30 Sep 2020 22:40:20 -0700
-IronPort-SDR: ZeQ/HmMGugdir6cS+MJc4G09CmF7OSw/ec7Bucckqe22Oy7TRXkBZ7TUr5WCe5lJYzmKPBAcSD
- 1MhuR02Wz8hg==
-X-ExtLoop1: 1
-X-IronPort-AV: E=Sophos;i="5.77,323,1596524400"; 
-   d="scan'208";a="514552266"
-Received: from ubuntu18.png.intel.com ([10.88.229.38])
-  by fmsmga006.fm.intel.com with ESMTP; 30 Sep 2020 22:40:18 -0700
-From:   vijayakannan.ayyathurai@intel.com
-To:     thierry.reding@gmail.com, u.kleine-koenig@pengutronix.de,
-        robh+dt@kernel.org
-Cc:     linux-pwm@vger.kernel.org, devicetree@vger.kernel.org,
-        wan.ahmad.zainie.wan.mohamad@intel.com,
-        andriy.shevchenko@linux.intel.com, mgross@linux.intel.com,
-        lakshmi.bai.raja.subramanian@intel.com,
-        vijayakannan.ayyathurai@intel.com
-Subject: [PATCH v9 2/2] dt-bindings: pwm: keembay: Add bindings for Intel Keem Bay PWM
-Date:   Thu,  1 Oct 2020 13:37:51 +0800
-Message-Id: <20201001053751.10405-3-vijayakannan.ayyathurai@intel.com>
-X-Mailer: git-send-email 2.17.1
-In-Reply-To: <20201001053751.10405-1-vijayakannan.ayyathurai@intel.com>
-References: <20201001053751.10405-1-vijayakannan.ayyathurai@intel.com>
+        id S1725878AbgJAF5r (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Thu, 1 Oct 2020 01:57:47 -0400
+Received: from lindbergh.monkeyblade.net ([23.128.96.19]:35476 "EHLO
+        lindbergh.monkeyblade.net" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
+        with ESMTP id S1725959AbgJAF5r (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Thu, 1 Oct 2020 01:57:47 -0400
+Received: from mail-pj1-x1042.google.com (mail-pj1-x1042.google.com [IPv6:2607:f8b0:4864:20::1042])
+        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id D4199C0613D1
+        for <devicetree@vger.kernel.org>; Wed, 30 Sep 2020 22:57:46 -0700 (PDT)
+Received: by mail-pj1-x1042.google.com with SMTP id j19so1386867pjl.4
+        for <devicetree@vger.kernel.org>; Wed, 30 Sep 2020 22:57:46 -0700 (PDT)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+        d=linaro.org; s=google;
+        h=date:from:to:cc:subject:message-id:references:mime-version
+         :content-disposition:in-reply-to:user-agent;
+        bh=kiX+HcnWEaQ/frOzIoE2M7foTxs3fyHoDiIV9RqEj4g=;
+        b=UyLt6mK8U5anWM0yWYfYHgN8KUllVC8Z+S8rujEtdgKN+E6GSCjt5ku5WHt1L5Rvg2
+         XR7LDStBwn4bXnz7u11QrOJrfHrScCKZcbMtxlX4iZXIbumru1lGOGssooubUMqJHtGt
+         WtYRf0OaMywrwlte/hSSyrRN+6Dnl2TmntSsowHISo1Hsw7eZ+blFd7hnE9J/Pq8pxZm
+         AuF939JUdGxbUUiGe2VeYtCA59N6wii4ALylbRdt3tQGuga6G0pGrxVed1+rRjKgSis8
+         G1qLzrDQj+CpGgfcx02NcbbBOTnk8gX/72KKgURqge8roKLtKCgbT0VmAO+/Byaeimn2
+         lSVQ==
+X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+        d=1e100.net; s=20161025;
+        h=x-gm-message-state:date:from:to:cc:subject:message-id:references
+         :mime-version:content-disposition:in-reply-to:user-agent;
+        bh=kiX+HcnWEaQ/frOzIoE2M7foTxs3fyHoDiIV9RqEj4g=;
+        b=cAvQsv854jQSpVbwpI32ul0AsBCnlEtjo6Dqaj0ZXHZM1Enyi8EjJYvWqA3N4J6mYn
+         Km+5p68i7/ag3xjxP0zsHHMWzuhKNt3lGf1FpzEkVWxnMHtI7VT1KY84+fi6dW85iGXR
+         JrUBcLwBTEvkUQmiQkaPCHUZOhYiGEJdpO3TpYX54SaAykWc32/jZfwlCznJJAaqGarK
+         wj8cZhMqlt0sHReLIXghoVxkQ7bzezDmMpevNTWvz+w9JmU64YNpT50z1/NiEHokMXHb
+         ATK5RgJMvkaq6zLumGaXI+9mYtGp8TqTwuLHB+01EaNTgjc0sFSHr+ml/SH9lzk4qb5u
+         PPQg==
+X-Gm-Message-State: AOAM531qH6zEuaW6XItgx4X+/3q2CcDoPQNJYu2TMPwEcsFvyRwexEOs
+        yvea37iWUZYTdy8oFXnm/U/S3xynnHTg
+X-Google-Smtp-Source: ABdhPJxheAicHAZx58yBCUFoYDzimhPjr2e22zKPIuj3vDiczyWS1xLAJgsp3NExq3YfGP4PMoSn+w==
+X-Received: by 2002:a17:90a:ad8b:: with SMTP id s11mr5587657pjq.40.1601531866063;
+        Wed, 30 Sep 2020 22:57:46 -0700 (PDT)
+Received: from Mani-XPS-13-9360 ([2409:4072:188:5adb:1423:88c1:4321:a364])
+        by smtp.gmail.com with ESMTPSA id 36sm4129742pgl.72.2020.09.30.22.57.39
+        (version=TLS1_2 cipher=ECDHE-ECDSA-CHACHA20-POLY1305 bits=256/256);
+        Wed, 30 Sep 2020 22:57:45 -0700 (PDT)
+Date:   Thu, 1 Oct 2020 11:27:36 +0530
+From:   Manivannan Sadhasivam <manivannan.sadhasivam@linaro.org>
+To:     Stanimir Varbanov <svarbanov@mm-sol.com>
+Cc:     agross@kernel.org, bjorn.andersson@linaro.org, kishon@ti.com,
+        vkoul@kernel.org, robh@kernel.org, bhelgaas@google.com,
+        lorenzo.pieralisi@arm.com, linux-arm-msm@vger.kernel.org,
+        linux-pci@vger.kernel.org, linux-kernel@vger.kernel.org,
+        mgautam@codeaurora.org, devicetree@vger.kernel.org
+Subject: Re: [PATCH v2 5/5] PCI: qcom: Add support for configuring BDF to SID
+ mapping for SM8250
+Message-ID: <20201001055736.GB3203@Mani-XPS-13-9360>
+References: <20200930150925.31921-1-manivannan.sadhasivam@linaro.org>
+ <20200930150925.31921-6-manivannan.sadhasivam@linaro.org>
+ <507b3d50-6792-60b7-1ccd-f7b3031c20ac@mm-sol.com>
 MIME-Version: 1.0
-Content-Type: text/plain; charset=UTF-8
-Content-Transfer-Encoding: 8bit
+Content-Type: text/plain; charset=us-ascii
+Content-Disposition: inline
+In-Reply-To: <507b3d50-6792-60b7-1ccd-f7b3031c20ac@mm-sol.com>
+User-Agent: Mutt/1.9.4 (2018-02-28)
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-From: Vijayakannan Ayyathurai <vijayakannan.ayyathurai@intel.com>
+Hi Stan,
 
-Add PWM Device Tree bindings documentation for the Intel Keem Bay SoC.
+On Thu, Oct 01, 2020 at 12:46:46AM +0300, Stanimir Varbanov wrote:
+> Hi Mani,
+> 
+> On 9/30/20 6:09 PM, Manivannan Sadhasivam wrote:
+> > For SM8250, we need to write the BDF to SID mapping in PCIe controller
+> > register space for proper working. This is accomplished by extracting
+> > the BDF and SID values from "iommu-map" property in DT and writing those
+> > in the register address calculated from the hash value of BDF. In case
+> > of collisions, the index of the next entry will also be written.
+> 
+> This describes what the patch is doing. But why? Is that done in the
+> other DWC low-level drivers or this is qcom specialty?
+> 
 
-Signed-off-by: Vineetha G. Jaya Kumaran <vineetha.g.jaya.kumaran@intel.com>
-Reviewed-by: Rob Herring <robh@kernel.org>
-Acked-by: Uwe Kleine-König <u.kleine-koenig@pengutronix.de>
-Signed-off-by: Vijayakannan Ayyathurai <vijayakannan.ayyathurai@intel.com>
----
- .../bindings/pwm/intel,keembay-pwm.yaml       | 47 +++++++++++++++++++
- 1 file changed, 47 insertions(+)
- create mode 100644 Documentation/devicetree/bindings/pwm/intel,keembay-pwm.yaml
+AFAIK, only some NXP SoCs deal with similar kind of mapping but right now
+this is a Qcom only stuff.
 
-diff --git a/Documentation/devicetree/bindings/pwm/intel,keembay-pwm.yaml b/Documentation/devicetree/bindings/pwm/intel,keembay-pwm.yaml
-new file mode 100644
-index 000000000000..a37433487632
---- /dev/null
-+++ b/Documentation/devicetree/bindings/pwm/intel,keembay-pwm.yaml
-@@ -0,0 +1,47 @@
-+# SPDX-License-Identifier: (GPL-2.0-only OR BSD-2-Clause)
-+# Copyright (C) 2020 Intel Corporation
-+%YAML 1.2
-+---
-+$id: http://devicetree.org/schemas/pwm/intel,keembay-pwm.yaml#
-+$schema: http://devicetree.org/meta-schemas/core.yaml#
-+
-+title: Intel Keem Bay PWM Device Tree Bindings
-+
-+maintainers:
-+  - Vineetha G. Jaya Kumaran <vineetha.g.jaya.kumaran@intel.com>
-+
-+allOf:
-+  - $ref: pwm.yaml#
-+
-+properties:
-+  compatible:
-+    enum:
-+      - intel,keembay-pwm
-+
-+  reg:
-+    maxItems: 1
-+
-+  clocks:
-+    maxItems: 1
-+
-+  "#pwm-cells":
-+    const: 2
-+
-+required:
-+ - compatible
-+ - reg
-+ - clocks
-+ - '#pwm-cells'
-+
-+additionalProperties: false
-+
-+examples:
-+  - |
-+    #define KEEM_BAY_A53_GPIO
-+
-+    pwm@203200a0 {
-+      compatible = "intel,keembay-pwm";
-+      reg = <0x203200a0 0xe8>;
-+      clocks = <&scmi_clk KEEM_BAY_A53_GPIO>;
-+      #pwm-cells = <2>;
-+    };
--- 
-2.17.1
+> > 
+> > For the sake of it, let's introduce a "config_sid" callback and do it
+> > conditionally for SM8250.
+> > 
+> > Signed-off-by: Manivannan Sadhasivam <manivannan.sadhasivam@linaro.org>
+> > ---
+> >  drivers/pci/controller/dwc/Kconfig     |   1 +
+> >  drivers/pci/controller/dwc/pcie-qcom.c | 138 +++++++++++++++++++++++++
+> >  2 files changed, 139 insertions(+)
+> > 
 
+[...]
+
+> > +
+> > +/* sid info structure */
+> > +struct qcom_pcie_sid_info_t {
+> 
+> why _t postfix? Maybe qcom_pcie_sid ?
+> 
+
+Just to differentiate the struct name and its variable. But I can
+remove the _t suffix.
+
+> SID - Stream ID ?
+> 
+
+Yes! Will expand in commit message also.
+
+> > +	u16 bdf;
+> > +	u8 pcie_sid;
+> > +	u8 hash;
+> > +	u32 smmu_sid;
+> > +	u32 value;
+> >  };
+> >  
+> >  struct qcom_pcie {
+> > @@ -193,6 +208,8 @@ struct qcom_pcie {
+> >  	struct phy *phy;
+> >  	struct gpio_desc *reset;
+> >  	const struct qcom_pcie_ops *ops;
+> > +	struct qcom_pcie_sid_info_t *sid_info;
+> > +	u32 sid_info_len;
+> >  	int gen;
+> >  };
+> >  
+> > @@ -1257,6 +1274,120 @@ static int qcom_pcie_link_up(struct dw_pcie *pci)
+> >  	return !!(val & PCI_EXP_LNKSTA_DLLLA);
+> >  }
+> >  
+> > +static int qcom_pcie_get_iommu_map(struct qcom_pcie *pcie)
+> > +{
+> > +	/* iommu map structure */
+> > +	struct {
+> > +		u32 bdf;
+> > +		u32 phandle;
+> > +		u32 smmu_sid;
+> > +		u32 smmu_sid_len;
+> > +	} *map;
+> > +	struct device *dev = pcie->pci->dev;
+> > +	int i, size = 0;
+> > +	u32 smmu_sid_base;
+> > +
+> > +	of_get_property(dev->of_node, "iommu-map", &size);
+> > +	if (!size)
+> > +		return 0;
+> > +
+> > +	map = kzalloc(size, GFP_KERNEL);
+> > +	if (!map)
+> > +		return -ENOMEM;
+> > +
+> > +	of_property_read_u32_array(dev->of_node,
+> > +		"iommu-map", (u32 *)map, size / sizeof(u32));
+> 
+> iommu-map is a standard DT property why we have to parse it manually?
+> 
+
+So right now we don't have a way to pass this information from DT. And there
+is no IOMMU API to parse the fields also. We need to extract this information
+to program the hash tables (BDF, SID) as the mapping between BDF and SID is not
+1:1 in SM8250.
+
+Perhaps I can add this information in commit message.
+
+> > +
+> > +	pcie->sid_info_len = size / (sizeof(*map));
+> > +	pcie->sid_info = devm_kcalloc(dev, pcie->sid_info_len,
+> > +				sizeof(*pcie->sid_info), GFP_KERNEL);
+> > +	if (!pcie->sid_info) {
+> > +		kfree(map);
+> > +		return -ENOMEM;
+> > +	}
+> > +
+> > +	/* Extract the SMMU SID base from the first entry of iommu-map */
+> > +	smmu_sid_base = map[0].smmu_sid;
+> > +	for (i = 0; i < pcie->sid_info_len; i++) {
+> > +		pcie->sid_info[i].bdf = map[i].bdf;
+> > +		pcie->sid_info[i].smmu_sid = map[i].smmu_sid;
+> > +		pcie->sid_info[i].pcie_sid =
+> > +				pcie->sid_info[i].smmu_sid - smmu_sid_base;
+> > +	}
+> > +
+> > +	kfree(map);
+> > +
+> > +	return 0;
+> > +}
+> > +
+> > +static int qcom_pcie_config_sid_sm8250(struct qcom_pcie *pcie)
+> > +{
+> > +	void __iomem *bdf_to_sid_base = pcie->parf +
+> > +		PCIE20_PARF_BDF_TO_SID_TABLE_N;
+> > +	u8 qcom_pcie_crc8_table[CRC8_TABLE_SIZE];
+> > +	int ret, i;
+> > +
+> > +	ret = qcom_pcie_get_iommu_map(pcie);
+> > +	if (ret)
+> > +		return ret;
+> > +
+> > +	if (!pcie->sid_info)
+> > +		return 0;
+> > +
+> > +	crc8_populate_msb(qcom_pcie_crc8_table, QCOM_PCIE_CRC8_POLYNOMIAL);
+> > +
+> > +	/* Registers need to be zero out first */
+> > +	memset_io(bdf_to_sid_base, 0, CRC8_TABLE_SIZE * sizeof(u32));
+> > +
+> > +	/* Initial setup for boot */
+> 
+> Could you elaborate more what the code below is trying to achieve. Is
+> that connected to bootloaders?
+> 
+
+No. This is trying to program the hash tables for initial boot but I think this
+doesn't make sense here as it will be done all the time. I'll just remove this
+comment.
+
+Thanks,
+Mani
