@@ -2,103 +2,56 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from vger.kernel.org (vger.kernel.org [23.128.96.18])
-	by mail.lfdr.de (Postfix) with ESMTP id 4767B27F698
-	for <lists+devicetree@lfdr.de>; Thu,  1 Oct 2020 02:21:07 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTP id 2671F27F69D
+	for <lists+devicetree@lfdr.de>; Thu,  1 Oct 2020 02:23:47 +0200 (CEST)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S1730599AbgJAAVG (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Wed, 30 Sep 2020 20:21:06 -0400
-Received: from out3-smtp.messagingengine.com ([66.111.4.27]:37505 "EHLO
-        out3-smtp.messagingengine.com" rhost-flags-OK-OK-OK-OK)
-        by vger.kernel.org with ESMTP id S1730268AbgJAAVG (ORCPT
-        <rfc822;devicetree@vger.kernel.org>);
-        Wed, 30 Sep 2020 20:21:06 -0400
-X-Greylist: delayed 486 seconds by postgrey-1.27 at vger.kernel.org; Wed, 30 Sep 2020 20:21:05 EDT
-Received: from compute4.internal (compute4.nyi.internal [10.202.2.44])
-        by mailout.nyi.internal (Postfix) with ESMTP id C074A5C00CA;
-        Wed, 30 Sep 2020 20:12:58 -0400 (EDT)
-Received: from imap2 ([10.202.2.52])
-  by compute4.internal (MEProxy); Wed, 30 Sep 2020 20:12:58 -0400
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=aj.id.au; h=
-        mime-version:message-id:in-reply-to:references:date:from:to:cc
-        :subject:content-type; s=fm3; bh=mmqRcUlvPdUwSQM/x6F+Lvk29MhRVNZ
-        Y0OId6LTaioA=; b=oO0WfMhqd7/SXXOpkm4pvo+CUM/mfVa0S/9LQpznEWngn7L
-        pp0BMwLnlNeQX6AK1AaeMTvSe6uHdzjHNpNrfbQINBoDediIUxMfyrIEOjXkf9kW
-        6Q8g7HSHoGwgHMXYV1mT40L0nOdaRCJJi1P8cQHW80tO8+20x0rFVrpGvg+tnbER
-        MLAgDnRO4Dr0rsg4Ysc/DKiekVD0z+zFyxLFPPvgA0B8tqZ9TPX2IJ1gUGQvcn3/
-        veGMQcF3n8oPVTZ4FTpQVGQtWSzQu1pR/KT/lcVbHsoLoxIhZfdljJVR7OOduSKV
-        vXG887JOfL0Qjl1NaNKMrUfjQePncm9YfjYP/ng==
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=
-        messagingengine.com; h=cc:content-type:date:from:in-reply-to
-        :message-id:mime-version:references:subject:to:x-me-proxy
-        :x-me-proxy:x-me-sender:x-me-sender:x-sasl-enc; s=fm3; bh=mmqRcU
-        lvPdUwSQM/x6F+Lvk29MhRVNZY0OId6LTaioA=; b=Hq9VBLO5rOGiQyygLKdC4D
-        npI2wsldxkFbJmNyZsGsDducaQYSd7YWUSFbtq/CYo+LKBZvsP/3lImpwAnoN+2t
-        120kjqML3EHNEQAMmiR+m+s1ySUcosEztiLq3CdTJzGo1sKur+7i8DXXAA2yCuC9
-        kjhllFwMETxWRB1ckvbIfOQSvSCV5j2JwoVyby8tKPakQyfbYMl6z8k8p19f2KKS
-        EU/jbcz9vyjj/o79Za9og95bKpD8t2eaDB3lZkWxiU6wdMP0QxGP6uZakgFrKMKk
-        6rkuFUg8WaGc+waZROyoIOA6+kRNvgSEESNydOf58BdOBZaXMpRwkr82mrLGWS6g
-        ==
-X-ME-Sender: <xms:Bx91X7su7hjam-0xm23UCihQ1Gcd_cqki62_nBAphXy9EG5h1LkNRg>
-    <xme:Bx91X8cDwCFJueCMpSjErWxi7-55X0gP_8C6fl2qHJdzBSi2nn_beQR0oA0q26gp0
-    CN9pE4-2fMMwb6kDQ>
-X-ME-Proxy-Cause: gggruggvucftvghtrhhoucdtuddrgedujedrfeefgdeffecutefuodetggdotefrodftvf
-    curfhrohhfihhlvgemucfhrghsthforghilhdpqfgfvfdpuffrtefokffrpgfnqfghnecu
-    uegrihhlohhuthemuceftddtnecusecvtfgvtghiphhivghnthhsucdlqddutddtmdenuc
-    fjughrpefofgggkfgjfhffhffvufgtsehttdertderredtnecuhfhrohhmpedftehnughr
-    vgifucflvghffhgvrhihfdcuoegrnhgurhgvfiesrghjrdhiugdrrghuqeenucggtffrrg
-    htthgvrhhnpeehhfefkefgkeduveehffehieehudejfeejveejfedugfefuedtuedvhefh
-    veeuffenucevlhhushhtvghrufhiiigvpedtnecurfgrrhgrmhepmhgrihhlfhhrohhmpe
-    grnhgurhgvfiesrghjrdhiugdrrghu
-X-ME-Proxy: <xmx:Bx91X-y9-ua34XWjr1AP1838iiPZeGiC4yoAokyMCla9rmMsIXb-mQ>
-    <xmx:Bx91X6NR2KEiVwWJ6sEWfXUt9PFHP9NfS6-AR793GxKdHLfXcnlUsw>
-    <xmx:Bx91X7_4-hq0dL2JfE7tG1mbOBy85BGnA-4pTIcDhQSxVPzPyEN1YA>
-    <xmx:Ch91X2mB-zkFx8juQfFmrRsdGF2ESBYnEvSlwDJpZ_JWtz9gRuqZqA>
-Received: by mailuser.nyi.internal (Postfix, from userid 501)
-        id BF278E0181; Wed, 30 Sep 2020 20:12:54 -0400 (EDT)
-X-Mailer: MessagingEngine.com Webmail Interface
-User-Agent: Cyrus-JMAP/3.3.0-382-ge235179-fm-20200928.002-ge2351794
-Mime-Version: 1.0
-Message-Id: <b7bcc925-b0da-446f-84a7-1a564a1f4f83@www.fastmail.com>
-In-Reply-To: <20200930090603.19891-1-billy_tsai@aspeedtech.com>
-References: <20200930051113.32465-1-billy_tsai@aspeedtech.com>
- <20200930090603.19891-1-billy_tsai@aspeedtech.com>
-Date:   Thu, 01 Oct 2020 09:42:34 +0930
-From:   "Andrew Jeffery" <andrew@aj.id.au>
-To:     "Billy Tsai" <billy_tsai@aspeedtech.com>,
-        "Rob Herring" <robh+dt@kernel.org>,
-        "Joel Stanley" <joel@jms.id.au>, devicetree@vger.kernel.org,
-        linux-arm-kernel@lists.infradead.org,
-        linux-aspeed@lists.ozlabs.org, linux-kernel@vger.kernel.org
-Cc:     BMC-SW@aspeedtech.com
-Subject: Re: [RESEND PATCH] ARM: dts: aspeed-g6: Fix gpio memory region
-Content-Type: text/plain
+        id S1731931AbgJAAXq (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Wed, 30 Sep 2020 20:23:46 -0400
+Received: from mail.kernel.org ([198.145.29.99]:54076 "EHLO mail.kernel.org"
+        rhost-flags-OK-OK-OK-OK) by vger.kernel.org with ESMTP
+        id S1730258AbgJAAXp (ORCPT <rfc822;devicetree@vger.kernel.org>);
+        Wed, 30 Sep 2020 20:23:45 -0400
+Received: from kernel.org (unknown [104.132.0.74])
+        (using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
+        (No client certificate requested)
+        by mail.kernel.org (Postfix) with ESMTPSA id 200D5207C3;
+        Thu,  1 Oct 2020 00:23:45 +0000 (UTC)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=kernel.org;
+        s=default; t=1601511825;
+        bh=8pv2TcbT/1xAdAFt2BsMtyl+dWvvIdqjb2qvPpd8Uz8=;
+        h=In-Reply-To:References:Subject:From:Cc:To:Date:From;
+        b=l8WGtLYkgUewiqMWmK9qBr0mMxXZBX2ey1oG+EpA/fFCSwDmgFrdIVyJov2P8ZkqR
+         O4ngPvCBZNswXx1OQHTLPQZlkYt0O0FipZlkaZI8fsvVYxDLNbN6CEhuczaWZrpvWT
+         0BM2ro7c17nDAtoRRNMk9TIZROxscxdhxDs/aUjQ=
+Content-Type: text/plain; charset="utf-8"
+MIME-Version: 1.0
+Content-Transfer-Encoding: quoted-printable
+In-Reply-To: <20200911130950.578483-1-dmitry.baryshkov@linaro.org>
+References: <20200911130950.578483-1-dmitry.baryshkov@linaro.org>
+Subject: Re: [RFC 0/4] clk: qcom: handle power domains links for GDSC
+From:   Stephen Boyd <sboyd@kernel.org>
+Cc:     linux-arm-msm@vger.kernel.org,
+        Manivannan Sadhasivam <manivannan.sadhasivam@linaro.org>,
+        devicetree@vger.kernel.org
+To:     Andy Gross <agross@kernel.org>,
+        Bjorn Andersson <bjorn.andersson@linaro.org>,
+        Dmitry Baryshkov <dmitry.baryshkov@linaro.org>,
+        Jonathan Marek <jonathan@marek.ca>,
+        Michael Turquette <mturquette@baylibre.com>,
+        Rob Herring <robh+dt@kernel.org>
+Date:   Wed, 30 Sep 2020 17:23:43 -0700
+Message-ID: <160151182386.310579.7297378317318019098@swboyd.mtv.corp.google.com>
+User-Agent: alot/0.9.1
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-Hi Billy,
+Quoting Dmitry Baryshkov (2020-09-11 06:09:46)
+> On SM8250 MDSS_GDSC requires MMCX domain to be powered to access GDSC
+> registers. Handle this requirement in the gdsc code by binding the power
+> domain via dts file. The example in the schema file demonstrates this
+> binding (which is not required for SDM845).
+>=20
 
-On Wed, 30 Sep 2020, at 18:36, Billy Tsai wrote:
-> Signed-off-by: Billy Tsai <billy_tsai@aspeedtech.com>
-> ---
->  arch/arm/boot/dts/aspeed-g6.dtsi | 2 +-
->  1 file changed, 1 insertion(+), 1 deletion(-)
-> 
-> diff --git a/arch/arm/boot/dts/aspeed-g6.dtsi b/arch/arm/boot/dts/aspeed-g6.dtsi
-> index 97ca743363d7..b9ec8b579f73 100644
-> --- a/arch/arm/boot/dts/aspeed-g6.dtsi
-> +++ b/arch/arm/boot/dts/aspeed-g6.dtsi
-> @@ -357,7 +357,7 @@
->  				#gpio-cells = <2>;
->  				gpio-controller;
->  				compatible = "aspeed,ast2600-gpio";
-> -				reg = <0x1e780000 0x800>;
-> +				reg = <0x1e780000 0x500>;
-
-We took the 0x800 value from the memory space layout table in the datasheet for 
-the 2600. Should that be updated too? Or are you just limiting the region to 
-the registers currently described rather than the allocated address space?
-
-Cheers,
-
-Andrew
+Please Cc the linux-clk list on clk patches. It might be obvious now
+that I don't always look at this email pile to fish out clk things.
