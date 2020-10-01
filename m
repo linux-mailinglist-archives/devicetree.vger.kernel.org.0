@@ -2,104 +2,65 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from vger.kernel.org (vger.kernel.org [23.128.96.18])
-	by mail.lfdr.de (Postfix) with ESMTP id 763562807FE
-	for <lists+devicetree@lfdr.de>; Thu,  1 Oct 2020 21:44:57 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTP id 0B3AA280825
+	for <lists+devicetree@lfdr.de>; Thu,  1 Oct 2020 21:54:02 +0200 (CEST)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S1730070AbgJATo4 (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Thu, 1 Oct 2020 15:44:56 -0400
-Received: from hqnvemgate26.nvidia.com ([216.228.121.65]:18229 "EHLO
-        hqnvemgate26.nvidia.com" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S1729990AbgJATo4 (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Thu, 1 Oct 2020 15:44:56 -0400
-Received: from hqmail.nvidia.com (Not Verified[216.228.121.13]) by hqnvemgate26.nvidia.com (using TLS: TLSv1.2, AES256-SHA)
-        id <B5f7631ab0001>; Thu, 01 Oct 2020 12:44:43 -0700
-Received: from [10.26.45.122] (10.124.1.5) by HQMAIL107.nvidia.com
- (172.20.187.13) with Microsoft SMTP Server (TLS) id 15.0.1473.3; Thu, 1 Oct
- 2020 19:44:47 +0000
-Subject: Re: [PATCH v3 10/13] ASoC: tegra: Add audio graph based card driver
-To:     =?UTF-8?B?TWljaGHFgiBNaXJvc8WCYXc=?= <mirq-linux@rere.qmqm.pl>,
-        "Sameer Pujar" <spujar@nvidia.com>
-CC:     <broonie@kernel.org>, <lgirdwood@gmail.com>, <robh+dt@kernel.org>,
-        <kuninori.morimoto.gx@renesas.com>,
-        <pierre-louis.bossart@linux.intel.com>, <perex@perex.cz>,
-        <tiwai@suse.com>, <thierry.reding@gmail.com>,
-        <alsa-devel@alsa-project.org>, <devicetree@vger.kernel.org>,
-        <linux-tegra@vger.kernel.org>, <linux-kernel@vger.kernel.org>,
-        <sharadg@nvidia.com>, <mkumard@nvidia.com>,
-        <viswanathl@nvidia.com>, <rlokhande@nvidia.com>,
-        <dramesh@nvidia.com>, <atalambedu@nvidia.com>,
-        <nwartikar@nvidia.com>, <swarren@nvidia.com>,
-        <nicoleotsuka@gmail.com>
-References: <1601573587-15288-1-git-send-email-spujar@nvidia.com>
- <1601573587-15288-11-git-send-email-spujar@nvidia.com>
- <20201001190733.GD23339@qmqm.qmqm.pl>
-From:   Jon Hunter <jonathanh@nvidia.com>
-Message-ID: <85fe1be4-7b67-da99-06a5-28089f662a1d@nvidia.com>
-Date:   Thu, 1 Oct 2020 20:44:44 +0100
-User-Agent: Mozilla/5.0 (X11; Linux x86_64; rv:68.0) Gecko/20100101
- Thunderbird/68.10.0
-MIME-Version: 1.0
-In-Reply-To: <20201001190733.GD23339@qmqm.qmqm.pl>
-Content-Type: text/plain; charset="iso-8859-2"
-Content-Language: en-US
-Content-Transfer-Encoding: quoted-printable
-X-Originating-IP: [10.124.1.5]
-X-ClientProxiedBy: HQMAIL111.nvidia.com (172.20.187.18) To
- HQMAIL107.nvidia.com (172.20.187.13)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=nvidia.com; s=n1;
-        t=1601581483; bh=SzR9+Kg5ALQEhT+jW9ABsLDoFclETsOIFF0nIoKFTsA=;
-        h=Subject:To:CC:References:From:Message-ID:Date:User-Agent:
-         MIME-Version:In-Reply-To:Content-Type:Content-Language:
-         Content-Transfer-Encoding:X-Originating-IP:X-ClientProxiedBy;
-        b=VnZsQ/DtIwGXa9gGozOJfBdr/CWcgyy5AB1KaSPWc6HwRB/SLJvflJHSIqwv9WeLD
-         DSm4YmBMmwFzpkqawyiIW8cTP8upzOJsLvd3GcOE+kI6+MEzAVNL9EuDX7ysk1qla2
-         T/xWi2lo63yvxPkwDRSlnNV+xiykixQD62CYiG5LaQnzwzIuShDTylG/ciZZqbFPzG
-         nwZuFqNQQzZV40S1nILc37TJJpze9P7fAyI8vjEbHf1y8onAKOY/OcCbIw46p+kIMR
-         KaGuBnlzYFcZivHzgfCEhY4JYfXnv7sb5JszTw7DsgfQpwbTDIDxFlzRd7Xcdu4H0W
-         /bK8u789odIBg==
+        id S1733118AbgJATyB (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Thu, 1 Oct 2020 15:54:01 -0400
+Received: from lindbergh.monkeyblade.net ([23.128.96.19]:51552 "EHLO
+        lindbergh.monkeyblade.net" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
+        with ESMTP id S1730045AbgJATyB (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Thu, 1 Oct 2020 15:54:01 -0400
+Received: from shards.monkeyblade.net (shards.monkeyblade.net [IPv6:2620:137:e000::1:9])
+        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 6EF02C0613D0;
+        Thu,  1 Oct 2020 12:54:01 -0700 (PDT)
+Received: from localhost (unknown [IPv6:2601:601:9f00:477::3d5])
+        (using TLSv1 with cipher AES256-SHA (256/256 bits))
+        (Client did not present a certificate)
+        (Authenticated sender: davem-davemloft)
+        by shards.monkeyblade.net (Postfix) with ESMTPSA id 921AB147DE1D2;
+        Thu,  1 Oct 2020 12:37:12 -0700 (PDT)
+Date:   Thu, 01 Oct 2020 12:53:59 -0700 (PDT)
+Message-Id: <20201001.125359.1752693461501787622.davem@davemloft.net>
+To:     geert+renesas@glider.be
+Cc:     kuba@kernel.org, robh+dt@kernel.org, sergei.shtylyov@gmail.com,
+        f.fainelli@gmail.com, andrew@lunn.ch, linux@rempel-privat.de,
+        philippe.schenker@toradex.com, hkallweit1@gmail.com,
+        dmurphy@ti.com, kazuya.mizuguchi.ks@renesas.com,
+        wsa+renesas@sang-engineering.com, magnus.damm@gmail.com,
+        netdev@vger.kernel.org, devicetree@vger.kernel.org,
+        linux-renesas-soc@vger.kernel.org, linux-kernel@vger.kernel.org
+Subject: Re: [PATCH net-next v4 resend 0/5] net/ravb: Add support for
+ explicit internal clock delay configuration
+From:   David Miller <davem@davemloft.net>
+In-Reply-To: <20201001101008.14365-1-geert+renesas@glider.be>
+References: <20201001101008.14365-1-geert+renesas@glider.be>
+X-Mailer: Mew version 6.8 on Emacs 27.1
+Mime-Version: 1.0
+Content-Type: Text/Plain; charset=us-ascii
+Content-Transfer-Encoding: 7bit
+X-Greylist: Sender succeeded SMTP AUTH, not delayed by milter-greylist-4.5.12 (shards.monkeyblade.net [2620:137:e000::1:9]); Thu, 01 Oct 2020 12:37:13 -0700 (PDT)
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
+From: Geert Uytterhoeven <geert+renesas@glider.be>
+Date: Thu,  1 Oct 2020 12:10:03 +0200
 
-On 01/10/2020 20:07, Micha=B3 Miros=B3aw wrote:
-> On Thu, Oct 01, 2020 at 11:03:04PM +0530, Sameer Pujar wrote:
->> Add Tegra audio machine driver which is based on generic audio graph car=
-d
->> driver. It re-uses most of the common stuff from audio graph driver and
->> uses the same DT binding. Required Tegra specific customizations are don=
-e
->> in the driver.
-> [...]
->> +	switch (srate) {
->> +	case 11025:
->> +	case 22050:
->> +	case 44100:
->> +	case 88200:
->> +	case 176400:
->> +		plla_out0_rate =3D chip_data->plla_out0_rates[x11_RATE];
->> +		plla_rate =3D chip_data->plla_rates[x11_RATE];
->> +		break;
->> +	case 8000:
->> +	case 16000:
->> +	case 32000:
->> +	case 48000:
->> +	case 96000:
->> +	case 192000:
-> [...]
->=20
-> Do you really need to enumerate the frequencies? Wouldn't just checking
-> srate % 11025 be enough to divide the set in two? Or just calculating
-> the PLLA base rate by multiplying?
+> Some Renesas EtherAVB variants support internal clock delay
+> configuration, which can add larger delays than the delays that are
+> typically supported by the PHY (using an "rgmii-*id" PHY mode, and/or
+> "[rt]xc-skew-ps" properties).
+> 
+> Historically, the EtherAVB driver configured these delays based on the
+> "rgmii-*id" PHY mode.  This caused issues with PHY drivers that
+> implement PHY internal delays properly[1].  Hence a backwards-compatible
+> workaround was added by masking the PHY mode[2].
+> 
+> This patch series implements the next step of the plan outlined in [3],
+> and adds proper support for explicit configuration of the MAC internal
+> clock delays using new "[rt]x-internal-delay-ps" properties.  If none of
+> these properties is present, the driver falls back to the old handling.
+ ...
 
-
-This is quite common among other ASoC drivers from what I can see. The
-PLL rate does not scale with the srate, we just use a different PLL rate
-depending on if the srate is 11025 Hz or 8000 Hz based. I don't see any
-need to change the above.
-
-Cheers
-Jon
-
---=20
-nvpublic
+Series applied, thank you.
