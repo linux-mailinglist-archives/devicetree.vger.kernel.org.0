@@ -2,101 +2,108 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from vger.kernel.org (vger.kernel.org [23.128.96.18])
-	by mail.lfdr.de (Postfix) with ESMTP id D526D27F9A5
-	for <lists+devicetree@lfdr.de>; Thu,  1 Oct 2020 08:49:41 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTP id 2571D27F9CD
+	for <lists+devicetree@lfdr.de>; Thu,  1 Oct 2020 08:59:40 +0200 (CEST)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S1726992AbgJAGth (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Thu, 1 Oct 2020 02:49:37 -0400
-Received: from fllv0015.ext.ti.com ([198.47.19.141]:56170 "EHLO
-        fllv0015.ext.ti.com" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S1725878AbgJAGth (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Thu, 1 Oct 2020 02:49:37 -0400
-Received: from fllv0035.itg.ti.com ([10.64.41.0])
-        by fllv0015.ext.ti.com (8.15.2/8.15.2) with ESMTP id 0916nUF5115339;
-        Thu, 1 Oct 2020 01:49:30 -0500
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=ti.com;
-        s=ti-com-17Q1; t=1601534970;
-        bh=f39Tm9PGnT5Kb0GT6JYUCDYVTa14cU//tN6YQOFFebI=;
-        h=Subject:From:To:CC:References:Date:In-Reply-To;
-        b=st8gO3sABqq7+kizVNNxkEYJQ1ZwW9CLDWe175b9z+pqhimCnX55ne98V5ZjTCF0l
-         quqRD5yjS7Revhh915W2t1J8+JHBK/KFl4aF+wkIaZjG30J9vna/ACNbNeBQ0KnzHx
-         +TSuM33rmYMQGZgGcwvKFerY/CtLAh/GOPKdgdck=
-Received: from DFLE114.ent.ti.com (dfle114.ent.ti.com [10.64.6.35])
-        by fllv0035.itg.ti.com (8.15.2/8.15.2) with ESMTP id 0916nUkb050443;
-        Thu, 1 Oct 2020 01:49:30 -0500
-Received: from DFLE103.ent.ti.com (10.64.6.24) by DFLE114.ent.ti.com
- (10.64.6.35) with Microsoft SMTP Server (version=TLS1_2,
- cipher=TLS_ECDHE_RSA_WITH_AES_128_CBC_SHA256_P256) id 15.1.1979.3; Thu, 1 Oct
- 2020 01:49:30 -0500
-Received: from lelv0326.itg.ti.com (10.180.67.84) by DFLE103.ent.ti.com
- (10.64.6.24) with Microsoft SMTP Server (version=TLS1_2,
- cipher=TLS_ECDHE_RSA_WITH_AES_128_CBC_SHA256_P256) id 15.1.1979.3 via
- Frontend Transport; Thu, 1 Oct 2020 01:49:29 -0500
-Received: from [192.168.2.6] (ileax41-snat.itg.ti.com [10.172.224.153])
-        by lelv0326.itg.ti.com (8.15.2/8.15.2) with ESMTP id 0916nRJL084046;
-        Thu, 1 Oct 2020 01:49:27 -0500
-Subject: Re: [PATCH 09/18] dt-bindings: dma: ti: Add document for K3 BCDMA
-From:   Peter Ujfalusi <peter.ujfalusi@ti.com>
-To:     <vkoul@kernel.org>, <nm@ti.com>, <ssantosh@kernel.org>,
-        <robh+dt@kernel.org>, <vigneshr@ti.com>
-CC:     <dan.j.williams@intel.com>, <t-kristo@ti.com>,
-        <lokeshvutla@ti.com>, <linux-arm-kernel@lists.infradead.org>,
-        <linux-kernel@vger.kernel.org>, <devicetree@vger.kernel.org>,
-        <dmaengine@vger.kernel.org>
-References: <20200930091412.8020-1-peter.ujfalusi@ti.com>
- <20200930091412.8020-10-peter.ujfalusi@ti.com>
-X-Pep-Version: 2.0
-Message-ID: <9b0cea1e-c9c3-b38f-2bf1-1501133c16ae@ti.com>
-Date:   Thu, 1 Oct 2020 09:49:43 +0300
-User-Agent: Mozilla/5.0 (X11; Linux x86_64; rv:68.0) Gecko/20100101
- Thunderbird/68.12.0
+        id S1730649AbgJAG7f (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Thu, 1 Oct 2020 02:59:35 -0400
+Received: from lindbergh.monkeyblade.net ([23.128.96.19]:44968 "EHLO
+        lindbergh.monkeyblade.net" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
+        with ESMTP id S1725883AbgJAG7e (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Thu, 1 Oct 2020 02:59:34 -0400
+Received: from mail-wm1-x343.google.com (mail-wm1-x343.google.com [IPv6:2a00:1450:4864:20::343])
+        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id A5D80C0613D0
+        for <devicetree@vger.kernel.org>; Wed, 30 Sep 2020 23:59:32 -0700 (PDT)
+Received: by mail-wm1-x343.google.com with SMTP id s13so1748890wmh.4
+        for <devicetree@vger.kernel.org>; Wed, 30 Sep 2020 23:59:32 -0700 (PDT)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+        d=linaro.org; s=google;
+        h=date:from:to:cc:subject:message-id:references:mime-version
+         :content-disposition:content-transfer-encoding:in-reply-to;
+        bh=I7H3+3zuXlnwMTT9uJKAAuFuUpvHKKuLQD0ufEc89Ec=;
+        b=X4G8Q/XJypmAtZzInxZclYRa9PxF0zGPQCoePn7yt/JM19orLfLUR194h+ViPYYdmY
+         s78PM284RuTmqCT0bJnD+RQu6vgafIGOolyPUA4i/OCRo5q9z0FgXvKyEKGazkoE3Vs7
+         dhcosh8V4L9fKKAcrcK6PjvUzMaQiIE3rVcSY1OYmUM1bkahBxrtW6AoSu0auAFB52Mh
+         d01z/9QpNHV8lZMY4iBlXaO9mw2WiqgYs2+B8VT+8uTTlgbCIHjeByGRGRrNQQfU2Xs9
+         EWJxRdwyhkN0VdybbF5fV2pnZolLxkbvN60uKgkecqIrsRR1exb/4xqWyPVTQ3HAbrJa
+         nrXw==
+X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+        d=1e100.net; s=20161025;
+        h=x-gm-message-state:date:from:to:cc:subject:message-id:references
+         :mime-version:content-disposition:content-transfer-encoding
+         :in-reply-to;
+        bh=I7H3+3zuXlnwMTT9uJKAAuFuUpvHKKuLQD0ufEc89Ec=;
+        b=n4pVxA8vOfQsax+niyg5bZNmCWur+aNWY8rjbvZIK5AZ5/SVHA0BC1ZYG/nCllfEO6
+         UQnT0mTbsuurRl1pmztq0MLKTx+hIzKWRkpnC8gr7c3XQ37NDzOPODUjeFA5a7GdGlkY
+         NbCSfTFvP3x7Ic2MJawH+lt1FgFWBbCVvDMNi24guPelrYkN80PMjDiz0ZBMAT3SyvlX
+         6g2l0vNEPvt3P8SDHgWzP/dTzGLw1W/wvwTLz+I/R4m5bR+sL8qcn2AaD2MEE8p/rgrV
+         k4laT+FKpWm/n4XwFzR9sPyFBGL2Ff9qvR/2duR07QMpGfGuEQIiD/vFPHFsF5ToWy2e
+         AO0Q==
+X-Gm-Message-State: AOAM531xNj2oPgLtmTDrOKj00/pxPzxwk/l0idaLJg4OJ33j7PqfR/h/
+        jN18IjPIp1Okars5HLvKqsbbrQ==
+X-Google-Smtp-Source: ABdhPJyJ6sLSqbEYubVG8iWSLoGsRShxYo4Z7aaiVxrytC20EZMrqFnoszXDrW6WnkGhmPIQeNL9GQ==
+X-Received: by 2002:a1c:ed05:: with SMTP id l5mr6826644wmh.106.1601535571292;
+        Wed, 30 Sep 2020 23:59:31 -0700 (PDT)
+Received: from dell ([91.110.221.236])
+        by smtp.gmail.com with ESMTPSA id 11sm6884601wmi.14.2020.09.30.23.59.26
+        (version=TLS1_3 cipher=TLS_AES_256_GCM_SHA384 bits=256/256);
+        Wed, 30 Sep 2020 23:59:30 -0700 (PDT)
+Date:   Thu, 1 Oct 2020 07:59:17 +0100
+From:   Lee Jones <lee.jones@linaro.org>
+To:     "Leizhen (ThunderTown)" <thunder.leizhen@huawei.com>
+Cc:     devicetree <devicetree@vger.kernel.org>,
+        Kefeng Wang <wangkefeng.wang@huawei.com>,
+        linux-kernel <linux-kernel@vger.kernel.org>,
+        Wei Xu <xuwei5@hisilicon.com>,
+        Rob Herring <robh+dt@kernel.org>,
+        Libin <huawei.libin@huawei.com>,
+        Jonathan Cameron <Jonathan.Cameron@Huawei.com>,
+        linux-arm-kernel <linux-arm-kernel@lists.infradead.org>
+Subject: Re: [PATCH v6 01/17] dt-bindings: mfd: syscon: add some compatible
+ strings for Hisilicon
+Message-ID: <20201001065917.GJ6148@dell>
+References: <20200930031712.2365-1-thunder.leizhen@huawei.com>
+ <20200930031712.2365-2-thunder.leizhen@huawei.com>
+ <20200930071110.GH6148@dell>
+ <3045a295-928a-eae6-c887-e34446a170e0@huawei.com>
 MIME-Version: 1.0
-In-Reply-To: <20200930091412.8020-10-peter.ujfalusi@ti.com>
-Content-Type: text/plain; charset="utf-8"
-Content-Language: en-US
-Content-Transfer-Encoding: quoted-printable
-X-EXCLAIMER-MD-CONFIG: e1e8a2fd-e40a-4ac6-ac9b-f7e9cc9ee180
+Content-Type: text/plain; charset=utf-8
+Content-Disposition: inline
+Content-Transfer-Encoding: 8bit
+In-Reply-To: <3045a295-928a-eae6-c887-e34446a170e0@huawei.com>
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-Hi Rob,
+On Wed, 30 Sep 2020, Leizhen (ThunderTown) wrote:
 
-On 30/09/2020 12.14, Peter Ujfalusi wrote:
-> New binding document for
-> Texas Instruments K3 Block Copy DMA (BCDMA).
->=20
-> BCDMA is introduced as part of AM64.
->=20
-> Signed-off-by: Peter Ujfalusi <peter.ujfalusi@ti.com>
-> ---
->  .../devicetree/bindings/dma/ti/k3-bcdma.yaml  | 183 ++++++++++++++++++=
+> 
+> 
+> On 2020/9/30 15:11, Lee Jones wrote:
+> > On Wed, 30 Sep 2020, Zhen Lei wrote:
+> > 
+> >> Add some compatible strings for Hisilicon controllers:
+> >> hisilicon,hi6220-sramctrl  --> Hi6220 SRAM controller
+> >> hisilicon,pcie-sas-subctrl --> HiP05/HiP06 PCIe-SAS subsystem controller
+> >> hisilicon,peri-subctrl     --> HiP05/HiP06 PERI subsystem controller
+> >> hisilicon,dsa-subctrl      --> HiP05/HiP06 DSA subsystem controller
+> >>
+> >> Signed-off-by: Zhen Lei <thunder.leizhen@huawei.com>
+> >> ---
+> >>  Documentation/devicetree/bindings/mfd/syscon.yaml | 5 ++++-
+> >>  1 file changed, 4 insertions(+), 1 deletion(-)
+> > 
+> > This was already applied by the time you re-sent it.
+> > 
+> > Any reason for sending it again?
+> 
+> Path 15 are modified. The Document patches except Patch 15 are applied,
+> but the config/DTS patches are not applied(They are applied after I re-sent).
 
->  1 file changed, 183 insertions(+)
->  create mode 100644 Documentation/devicetree/bindings/dma/ti/k3-bcdma.y=
-aml
->=20
-> diff --git a/Documentation/devicetree/bindings/dma/ti/k3-bcdma.yaml b/D=
-ocumentation/devicetree/bindings/dma/ti/k3-bcdma.yaml
-> new file mode 100644
-> index 000000000000..c84fb641738f
-> --- /dev/null
-> +++ b/Documentation/devicetree/bindings/dma/ti/k3-bcdma.yaml
-> @@ -0,0 +1,183 @@
+Could you please only send patches which have not been applied.
 
-=2E..
-
-> +  compatible:
-> +    enum:
-> +      - ti,am64-dmss-bcdma
-
-Would it be OK if I use ti,am64x-dmss-bcdma or should I stick with
-am64-dmss-bcdma.
-The TRM refers to the family as AM64x, but having the 'x' in the
-compatible did not sounded right.
-
-- P=C3=A9ter
-
-Texas Instruments Finland Oy, Porkkalankatu 22, 00180 Helsinki.
-Y-tunnus/Business ID: 0615521-4. Kotipaikka/Domicile: Helsinki
-
+-- 
+Lee Jones [李琼斯]
+Senior Technical Lead - Developer Services
+Linaro.org │ Open source software for Arm SoCs
+Follow Linaro: Facebook | Twitter | Blog
