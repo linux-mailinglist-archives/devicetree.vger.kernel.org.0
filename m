@@ -2,141 +2,73 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from vger.kernel.org (vger.kernel.org [23.128.96.18])
-	by mail.lfdr.de (Postfix) with ESMTP id E778327FC56
-	for <lists+devicetree@lfdr.de>; Thu,  1 Oct 2020 11:17:05 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTP id 3B04927FCCD
+	for <lists+devicetree@lfdr.de>; Thu,  1 Oct 2020 12:06:53 +0200 (CEST)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S1730862AbgJAJRE (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Thu, 1 Oct 2020 05:17:04 -0400
-Received: from mail.kernel.org ([198.145.29.99]:54334 "EHLO mail.kernel.org"
+        id S1731647AbgJAKGw (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Thu, 1 Oct 2020 06:06:52 -0400
+Received: from mga07.intel.com ([134.134.136.100]:41820 "EHLO mga07.intel.com"
         rhost-flags-OK-OK-OK-OK) by vger.kernel.org with ESMTP
-        id S1725894AbgJAJRE (ORCPT <rfc822;devicetree@vger.kernel.org>);
-        Thu, 1 Oct 2020 05:17:04 -0400
-Received: from mail-ej1-f54.google.com (mail-ej1-f54.google.com [209.85.218.54])
-        (using TLSv1.2 with cipher ECDHE-RSA-AES128-GCM-SHA256 (128/128 bits))
-        (No client certificate requested)
-        by mail.kernel.org (Postfix) with ESMTPSA id DE0292087D;
-        Thu,  1 Oct 2020 09:17:03 +0000 (UTC)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=kernel.org;
-        s=default; t=1601543824;
-        bh=6tCffKGBRQz3g32yfl6DkyDrZEG2XbapbE2KKFd9bFs=;
-        h=References:In-Reply-To:From:Date:Subject:To:Cc:From;
-        b=AN5SSI5U9O+gMSlLWJ7RJOfXa6uj3epvq3cELm3AS4w2TgnFg/ARJ99641p7wyjax
-         /Vd1pJplNN2ZBYVbriQEJSC8YfpkG2CBaGDgmIngJsh0Ag3sfPb7VoR1NK/lBocqpU
-         yjNKsTwUq4SwbS0IzKrXv0GFCXToU7BCaJFXEdYE=
-Received: by mail-ej1-f54.google.com with SMTP id i26so6925998ejb.12;
-        Thu, 01 Oct 2020 02:17:03 -0700 (PDT)
-X-Gm-Message-State: AOAM532hCmnhb101TA0jGuVTQoLwBtmlg5LhmBWhmF7Bcq0UbFWc9uYE
-        LR4pZV2Pd77fsatHlMQnRKoWT2qDnDfA5ZNgPZ0=
-X-Google-Smtp-Source: ABdhPJx7RqEWMyME2IKnFfBCTPbZGoQbdgNCC9RgXX5fvV3JQrHTkEvY3um+08QeqrdUI5ekmiwWk7hCt1fKWvSIx/Y=
-X-Received: by 2002:a17:906:82d1:: with SMTP id a17mr6907875ejy.385.1601543822483;
- Thu, 01 Oct 2020 02:17:02 -0700 (PDT)
+        id S1730378AbgJAKGw (ORCPT <rfc822;devicetree@vger.kernel.org>);
+        Thu, 1 Oct 2020 06:06:52 -0400
+IronPort-SDR: OyOxrY2H67PqtXlSu2hc6Fg0RwI9iv6s3ozrHq4BWlP2k2VZ8DiygGSgkAAW9Dw/uTzcbSnCT0
+ 9VZbE41oyOGw==
+X-IronPort-AV: E=McAfee;i="6000,8403,9760"; a="226807279"
+X-IronPort-AV: E=Sophos;i="5.77,323,1596524400"; 
+   d="scan'208";a="226807279"
+X-Amp-Result: SKIPPED(no attachment in message)
+X-Amp-File-Uploaded: False
+Received: from fmsmga004.fm.intel.com ([10.253.24.48])
+  by orsmga105.jf.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384; 01 Oct 2020 03:06:51 -0700
+IronPort-SDR: DtnqfC+OjMxDl1qfLU4CbOt76fh+SG23n+DepQWOlHH0VGZYBqhrbjk26AKldi2jfc9DBw1KPX
+ x7xuuNULy+pQ==
+X-IronPort-AV: E=Sophos;i="5.77,323,1596524400"; 
+   d="scan'208";a="339493734"
+Received: from smile.fi.intel.com (HELO smile) ([10.237.68.40])
+  by fmsmga004-auth.fm.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384; 01 Oct 2020 03:06:48 -0700
+Received: from andy by smile with local (Exim 4.94)
+        (envelope-from <andriy.shevchenko@linux.intel.com>)
+        id 1kNvU3-003Ccm-N7; Thu, 01 Oct 2020 13:06:43 +0300
+Date:   Thu, 1 Oct 2020 13:06:43 +0300
+From:   Andy Shevchenko <andriy.shevchenko@linux.intel.com>
+To:     vijayakannan.ayyathurai@intel.com
+Cc:     thierry.reding@gmail.com, u.kleine-koenig@pengutronix.de,
+        robh+dt@kernel.org, linux-pwm@vger.kernel.org,
+        devicetree@vger.kernel.org, wan.ahmad.zainie.wan.mohamad@intel.com,
+        mgross@linux.intel.com, lakshmi.bai.raja.subramanian@intel.com
+Subject: Re: [PATCH v9 1/2] pwm: Add PWM driver for Intel Keem Bay
+Message-ID: <20201001100643.GA3956970@smile.fi.intel.com>
+References: <20201001053751.10405-1-vijayakannan.ayyathurai@intel.com>
+ <20201001053751.10405-2-vijayakannan.ayyathurai@intel.com>
 MIME-Version: 1.0
-References: <CGME20201001083615eucas1p2886f47d032844823b419a92fa02994ad@eucas1p2.samsung.com>
- <20201001072236.GA4815@kozik-lap> <dleftjr1qigx6p.fsf%l.stelmach@samsung.com>
-In-Reply-To: <dleftjr1qigx6p.fsf%l.stelmach@samsung.com>
-From:   Krzysztof Kozlowski <krzk@kernel.org>
-Date:   Thu, 1 Oct 2020 11:16:48 +0200
-X-Gmail-Original-Message-ID: <CAJKOXPfghaFLruCJwkgoG0j_G6+EVZTPKY2MNsQ33CkxD2naxg@mail.gmail.com>
-Message-ID: <CAJKOXPfghaFLruCJwkgoG0j_G6+EVZTPKY2MNsQ33CkxD2naxg@mail.gmail.com>
-Subject: Re: [PATCH] ARM: dts: exynos: Add a placeholder for a MAC address
-To:     Lukasz Stelmach <l.stelmach@samsung.com>
-Cc:     Rob Herring <robh+dt@kernel.org>, Kukjin Kim <kgene@kernel.org>,
-        devicetree@vger.kernel.org, linux-arm-kernel@lists.infradead.org,
-        "linux-samsung-soc@vger.kernel.org" 
-        <linux-samsung-soc@vger.kernel.org>,
-        "linux-kernel@vger.kernel.org" <linux-kernel@vger.kernel.org>,
-        =?UTF-8?B?QmFydMWCb21pZWogxbtvxYJuaWVya2lld2ljeg==?= 
-        <b.zolnierkie@samsung.com>,
-        Marek Szyprowski <m.szyprowski@samsung.com>
-Content-Type: text/plain; charset="UTF-8"
-Content-Transfer-Encoding: quoted-printable
+Content-Type: text/plain; charset=us-ascii
+Content-Disposition: inline
+In-Reply-To: <20201001053751.10405-2-vijayakannan.ayyathurai@intel.com>
+Organization: Intel Finland Oy - BIC 0357606-4 - Westendinkatu 7, 02160 Espoo
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-On Thu, 1 Oct 2020 at 10:36, Lukasz Stelmach <l.stelmach@samsung.com> wrote=
-:
->
-> It was <2020-10-01 czw 09:22>, when Krzysztof Kozlowski wrote:
-> > On Wed, Sep 30, 2020 at 04:31:51PM +0200, =C5=81ukasz Stelmach wrote:
-> >> Add a placeholder for a MAC address. A bootloader may fill it
-> >> to set the MAC address and override EEPROM settings.
-> >>
-> >> Signed-off-by: =C5=81ukasz Stelmach <l.stelmach@samsung.com>
-> >> ---
-> >>  arch/arm/boot/dts/exynos5422-odroidxu3.dts | 18 ++++++++++++++++++
-> >>  1 file changed, 18 insertions(+)
-> >>
-> >> diff --git a/arch/arm/boot/dts/exynos5422-odroidxu3.dts b/arch/arm/boo=
-t/dts/exynos5422-odroidxu3.dts
-> >> index db0bc17a667b..9f7f3eacb750 100644
-> >> --- a/arch/arm/boot/dts/exynos5422-odroidxu3.dts
-> >> +++ b/arch/arm/boot/dts/exynos5422-odroidxu3.dts
-> >> @@ -70,3 +70,21 @@ &pwm {
-> >>  &usbdrd_dwc3_1 {
-> >>      dr_mode =3D "peripheral";
-> >>  };
-> >> +
-> >> +&usbhost2 {
-> >> +    #address-cells =3D <1>;
-> >> +    #size-cells =3D <0>;
-> >> +
-> >> +    hub@1 {
-> >> +            compatible =3D "usb8087,0024";
-> >> +            reg =3D <1>;
-> >> +            #address-cells =3D <1>;
-> >> +            #size-cells =3D <0>;
-> >> +
-> >> +            ethernet: usbether@1 {
-> >> +                    compatible =3D "usb0c45,6310";
-> >> +                    reg =3D <1>;
-> >> +                    mac-address =3D [00 00 00 00 00 00]; /* Filled in=
- by a bootloader */
-> >
-> > Why do you need a placeholder? U-Boot can just append the
-> > address/property.
->
-> Several other dts files have such placeholder
->
-> git grep 'mac-addr.*\[00 00 00 00 00 00\]' arch/arm/boot/dts/ | wc -l
-> 26
+On Thu, Oct 01, 2020 at 01:37:50PM +0800, vijayakannan.ayyathurai@intel.com wrote:
+> From: Vijayakannan Ayyathurai <vijayakannan.ayyathurai@intel.com>
+> 
+> The Intel Keem Bay SoC requires PWM support.
+> Add the pwm-keembay driver to enable this.
+> 
+> Signed-off-by: Lai, Poey Seng <poey.seng.lai@intel.com>
+> Signed-off-by: Vineetha G. Jaya Kumaran <vineetha.g.jaya.kumaran@intel.com>
+> Co-developed-by: Vineetha G. Jaya Kumaran <vineetha.g.jaya.kumaran@intel.com>
+> Reviewed-by: Andy Shevchenko <andriy.shevchenko@linux.intel.com>
+> Signed-off-by: Vijayakannan Ayyathurai <vijayakannan.ayyathurai@intel.com>
 
-Yeah, but if this is cargo cult, then it is not a good reason. First of all=
-,
-git grep '[^-]mac-addr.*\[.*00 00 00 00 00 00.*\]' arch/arm/boot/dts/
-gives just seven boards. Not a big number to make a standard. :)
+> Reported-by: kernel test robot <lkp@intel.com>
 
-The meaning of mac-address, I think, is not a placeholder, but:
-"should be used in cases where the MAC address assigned to the device
-by the boot program is different from the local-mac-address property."
+No, the absence of the driver is not what was reported.
+If you wish to give a credit to LKP, use changelog for that.
 
-I think you actually wanted a local-mac-address and the majority of
-DTSes use it. Not mac-address.
 
->
-> I can see two scenarios where this patch may be helpful. Another
-> (simple) boot loading code might be used.
+-- 
+With Best Regards,
+Andy Shevchenko
 
-OK, good point. However other bootloader still has to adhere to the DT
-specification and the bindings.
 
-> The value may also be
-> customized during build time and used without any support of a
-> bootloader.
-
-Yes, with an overlay. You do not need a placeholder for this and
-actually having a placeholder instead of using overlays is the wrong
-approach for customization of boots/builds.
-
-> Finding and filling a placeholder would be easier in u-boot too.
-
-U-Boot already has the code for updating mac-address or
-local-mac-address so how is it easier for him? You mean that it cannot
-find an ethernet node here?
-
-> And it serves as a reference how to configure a USB device in a dts
-
-Great places for references are examples in bindings.
-
-Best regards,
-Krzysztof
