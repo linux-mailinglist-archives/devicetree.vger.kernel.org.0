@@ -2,80 +2,89 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from vger.kernel.org (vger.kernel.org [23.128.96.18])
-	by mail.lfdr.de (Postfix) with ESMTP id 09BAE280742
-	for <lists+devicetree@lfdr.de>; Thu,  1 Oct 2020 20:53:15 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTP id CB6F628076D
+	for <lists+devicetree@lfdr.de>; Thu,  1 Oct 2020 21:05:59 +0200 (CEST)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S1729990AbgJASxN (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Thu, 1 Oct 2020 14:53:13 -0400
-Received: from rere.qmqm.pl ([91.227.64.183]:46713 "EHLO rere.qmqm.pl"
-        rhost-flags-OK-OK-OK-OK) by vger.kernel.org with ESMTP
-        id S1729047AbgJASxN (ORCPT <rfc822;devicetree@vger.kernel.org>);
-        Thu, 1 Oct 2020 14:53:13 -0400
-Received: from remote.user (localhost [127.0.0.1])
-        by rere.qmqm.pl (Postfix) with ESMTPSA id 4C2MhP4nqNz5q;
-        Thu,  1 Oct 2020 20:53:09 +0200 (CEST)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=rere.qmqm.pl; s=1;
-        t=1601578391; bh=zSyouXSzbs9cKzFRJcH0AXftiUn4k6ySHEC5MVl7zyo=;
-        h=Date:From:To:Cc:Subject:References:In-Reply-To:From;
-        b=ZUuykW6IKbiwyU/SF5GlOUOqO1doBpgX/6vHlFQ4nRmPZbu2BNy8lC6+J4SPnZdvJ
-         YbvCu6Ybs6Hjzce0qc++aSxSxiQ/CVyD5Ngoz826x3bwSE7EP5kQEgYkXZcp6HUY2V
-         +pWzrN5r7iS6lvHfUiViZ+njU6M4JDng8Y4IKRq+LJBjwMsCfoVcmxhQmH+lmNMVWg
-         d+qo+59JI92JnBjEPGCaJYA4YjppAsEeIqSDHV9b8gOQ7fQEquUIJb3OrekobpkECK
-         04fwNJDbkJShaB2nb67QUQxO4x40vtRWazOHqymzJgaWOy5U350ksIsD/Z2xREVlaA
-         kl0K/oYeL5zRw==
-X-Virus-Status: Clean
-X-Virus-Scanned: clamav-milter 0.102.4 at mail
-Date:   Thu, 1 Oct 2020 20:53:08 +0200
-From:   =?iso-8859-2?Q?Micha=B3_Miros=B3aw?= <mirq-linux@rere.qmqm.pl>
-To:     Sameer Pujar <spujar@nvidia.com>
-Cc:     broonie@kernel.org, lgirdwood@gmail.com, robh+dt@kernel.org,
-        kuninori.morimoto.gx@renesas.com,
-        pierre-louis.bossart@linux.intel.com, perex@perex.cz,
-        tiwai@suse.com, thierry.reding@gmail.com, jonathanh@nvidia.com,
-        alsa-devel@alsa-project.org, devicetree@vger.kernel.org,
-        linux-tegra@vger.kernel.org, linux-kernel@vger.kernel.org,
-        sharadg@nvidia.com, mkumard@nvidia.com, viswanathl@nvidia.com,
-        rlokhande@nvidia.com, dramesh@nvidia.com, atalambedu@nvidia.com,
-        nwartikar@nvidia.com, swarren@nvidia.com, nicoleotsuka@gmail.com
-Subject: Re: [PATCH v3 01/13] ASoC: soc-core: Fix component name_prefix
- parsing
-Message-ID: <20201001185308.GC23339@qmqm.qmqm.pl>
-References: <1601573587-15288-1-git-send-email-spujar@nvidia.com>
- <1601573587-15288-2-git-send-email-spujar@nvidia.com>
+        id S1729990AbgJATF6 (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Thu, 1 Oct 2020 15:05:58 -0400
+Received: from fllv0016.ext.ti.com ([198.47.19.142]:48436 "EHLO
+        fllv0016.ext.ti.com" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
+        with ESMTP id S1729047AbgJATF6 (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Thu, 1 Oct 2020 15:05:58 -0400
+Received: from fllv0035.itg.ti.com ([10.64.41.0])
+        by fllv0016.ext.ti.com (8.15.2/8.15.2) with ESMTP id 091J5oQ9034177;
+        Thu, 1 Oct 2020 14:05:50 -0500
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=ti.com;
+        s=ti-com-17Q1; t=1601579150;
+        bh=4o911QoPtRmo9v0dPSy0bJk5ofbB/X+AjEc+G4ud9hY=;
+        h=From:To:CC:Subject:Date;
+        b=zVcsg5nIJOHfYWgFLDTW5ofPvM2VxVALK2S7JbnjISKnHtdFwHIjjRsBP2t0CwgmV
+         qhNo7Gd6ijQkZ1us0497zAYE0XZgzg+b5dFTq4sQ90yxPJ9fJ+bofL3iQcQOe7K3j6
+         XzdebEVe95yZ847T8ZlGSq9VSlFQppkvX5VHnCAE=
+Received: from DFLE108.ent.ti.com (dfle108.ent.ti.com [10.64.6.29])
+        by fllv0035.itg.ti.com (8.15.2/8.15.2) with ESMTP id 091J5oGg106138;
+        Thu, 1 Oct 2020 14:05:50 -0500
+Received: from DFLE114.ent.ti.com (10.64.6.35) by DFLE108.ent.ti.com
+ (10.64.6.29) with Microsoft SMTP Server (version=TLS1_2,
+ cipher=TLS_ECDHE_RSA_WITH_AES_128_CBC_SHA256_P256) id 15.1.1979.3; Thu, 1 Oct
+ 2020 14:05:50 -0500
+Received: from lelv0327.itg.ti.com (10.180.67.183) by DFLE114.ent.ti.com
+ (10.64.6.35) with Microsoft SMTP Server (version=TLS1_2,
+ cipher=TLS_ECDHE_RSA_WITH_AES_128_CBC_SHA256_P256) id 15.1.1979.3 via
+ Frontend Transport; Thu, 1 Oct 2020 14:05:50 -0500
+Received: from a0230074-Latitude-E7470.ent.ti.com (ileax41-snat.itg.ti.com [10.172.224.153])
+        by lelv0327.itg.ti.com (8.15.2/8.15.2) with ESMTP id 091J5gYl070134;
+        Thu, 1 Oct 2020 14:05:44 -0500
+From:   Faiz Abbas <faiz_abbas@ti.com>
+To:     <linux-kernel@vger.kernel.org>, <devicetree@vger.kernel.org>,
+        <linux-arm-kernel@lists.infradead.org>
+CC:     <will@kernel.org>, <robh+dt@kernel.org>, <nm@ti.com>,
+        <t-kristo@ti.com>, <faiz_abbas@ti.com>
+Subject: [PATCH 0/8] Add support for UHS modes in TI's J721e and J7200 boards
+Date:   Fri, 2 Oct 2020 00:35:33 +0530
+Message-ID: <20201001190541.6364-1-faiz_abbas@ti.com>
+X-Mailer: git-send-email 2.17.1
 MIME-Version: 1.0
-Content-Type: text/plain; charset=iso-8859-2
-Content-Disposition: inline
-Content-Transfer-Encoding: 8bit
-In-Reply-To: <1601573587-15288-2-git-send-email-spujar@nvidia.com>
-User-Agent: Mutt/1.10.1 (2018-07-13)
+Content-Type: text/plain
+X-EXCLAIMER-MD-CONFIG: e1e8a2fd-e40a-4ac6-ac9b-f7e9cc9ee180
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-On Thu, Oct 01, 2020 at 11:02:55PM +0530, Sameer Pujar wrote:
-> The "prefix" can be defined in DAI link node or it can be specified as
-> part of the component node itself. Currently "sound-name-prefix" defined
-> in a component is not taking effect. Actually the property is not getting
-> parsed. It can be fixed by parsing "sound-name-prefix" property whenever
-> "prefix" is missing in DAI link Codec node.
-[...]
-> --- a/sound/soc/soc-core.c
-> +++ b/sound/soc/soc-core.c
-> @@ -1124,7 +1124,8 @@ static void soc_set_name_prefix(struct snd_soc_card *card,
->  	for (i = 0; i < card->num_configs; i++) {
->  		struct snd_soc_codec_conf *map = &card->codec_conf[i];
->  
-> -		if (snd_soc_is_matching_component(&map->dlc, component)) {
-> +		if (snd_soc_is_matching_component(&map->dlc, component) &&
-> +		    map->name_prefix) {
->  			component->name_prefix = map->name_prefix;
->  			return;
->  		}
+The following patches add support for UHS modes for TI's j721e and j7200
+boards.
 
-Hi,
+Patches 1-3 add support for gpios to j7200-evm
 
-It is not obvious how the patch fixes the problem described. I guess now
-map->name_prefix is NULL on some level and overrides prefix found earlier?
+Patches 4-6 add support for voltage regulators for required by the
+SD card in both devices as well as enable UHS modes at 1.8V
 
-Best Regards,
-Micha³ Miros³aw
+Patches 5-6 add some required configs to the arm64 defconfig.
+
+This series depends on driver patches adding tuning support here:
+https://lore.kernel.org/linux-arm-kernel/20200923105206.7988-1-faiz_abbas@ti.com/
+
+Faiz Abbas (8):
+  arm64: dts: ti: k3-j7200-main: Add gpio nodes in main domain
+  arm64: dts: ti: k3-j7200: Add gpio nodes in wakeup domain
+  arm64: dts: ti: k3-j7200-common-proc-board: Disable unused gpio
+    modules
+  arm64: dts: ti: k3-j721e-main: Add output tap delay values
+  arm64: dts: ti: k3-j721e-common-proc-board: Add support SD card UHS
+    modes
+  arm64: dts: ti: k3-j7200-common-proc-board: Add support SD card UHS
+    modes
+  arm64: defconfig: Enable OMAP I2C driver
+  arm64: defconfig: Enable DAVINCI_GPIO driver
+
+ .../dts/ti/k3-j7200-common-proc-board.dts     | 48 +++++++++++++
+ arch/arm64/boot/dts/ti/k3-j7200-main.dtsi     | 69 ++++++++++++++++++-
+ .../boot/dts/ti/k3-j7200-mcu-wakeup.dtsi      | 32 +++++++++
+ .../dts/ti/k3-j721e-common-proc-board.dts     | 35 +++++++++-
+ arch/arm64/boot/dts/ti/k3-j721e-main.dtsi     | 22 ++++--
+ arch/arm64/configs/defconfig                  |  2 +
+ 6 files changed, 201 insertions(+), 7 deletions(-)
+
+-- 
+2.17.1
+
