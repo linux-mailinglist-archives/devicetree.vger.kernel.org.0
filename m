@@ -2,227 +2,128 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from vger.kernel.org (vger.kernel.org [23.128.96.18])
-	by mail.lfdr.de (Postfix) with ESMTP id 2866F27FCF6
-	for <lists+devicetree@lfdr.de>; Thu,  1 Oct 2020 12:10:59 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTP id A4EA427FD26
+	for <lists+devicetree@lfdr.de>; Thu,  1 Oct 2020 12:19:16 +0200 (CEST)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S1732044AbgJAKK5 (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Thu, 1 Oct 2020 06:10:57 -0400
-Received: from mailout2.w1.samsung.com ([210.118.77.12]:57861 "EHLO
-        mailout2.w1.samsung.com" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S1731682AbgJAKKy (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Thu, 1 Oct 2020 06:10:54 -0400
-Received: from eucas1p2.samsung.com (unknown [182.198.249.207])
-        by mailout2.w1.samsung.com (KnoxPortal) with ESMTP id 20201001101052euoutp026dc73cd951631790e5b3bbb6efc291ed~51o8PsBn_0878308783euoutp02O;
-        Thu,  1 Oct 2020 10:10:52 +0000 (GMT)
-DKIM-Filter: OpenDKIM Filter v2.11.0 mailout2.w1.samsung.com 20201001101052euoutp026dc73cd951631790e5b3bbb6efc291ed~51o8PsBn_0878308783euoutp02O
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=samsung.com;
-        s=mail20170921; t=1601547052;
-        bh=FDkCZfXAdn7nAXHfdgXn6IGM+MGM14NmfFoTLDDPNYo=;
-        h=From:To:Cc:Subject:Date:In-Reply-To:References:From;
-        b=UBVCT2g7aEClIp86VYEqn47/k8+1QkMeyOp9HrEjgvlnJ0Eaxk1AJk9SNAPYC2Gkc
-         +T9MJndR7vhHZWSticXzE7Yz7k/oRopEptPapP3139tOo0XM/o0mIC6hsiSQ1OcAmd
-         UUqxHmtd407xWLHz5dUMBLWCx38Ok3hkGoq+d6Xk=
-Received: from eusmges2new.samsung.com (unknown [203.254.199.244]) by
-        eucas1p2.samsung.com (KnoxPortal) with ESMTP id
-        20201001101052eucas1p2cc8fa4f2bb10262e914baa861e21de26~51o752MdS0995309953eucas1p2-;
-        Thu,  1 Oct 2020 10:10:52 +0000 (GMT)
-Received: from eucas1p2.samsung.com ( [182.198.249.207]) by
-        eusmges2new.samsung.com (EUCPMTA) with SMTP id 25.14.05997.B2BA57F5; Thu,  1
-        Oct 2020 11:10:52 +0100 (BST)
-Received: from eusmtrp1.samsung.com (unknown [182.198.249.138]) by
-        eucas1p2.samsung.com (KnoxPortal) with ESMTPA id
-        20201001101051eucas1p2d6237daf16a89831e9b7b5bf106c7074~51o7bKmfj1052610526eucas1p2Q;
-        Thu,  1 Oct 2020 10:10:51 +0000 (GMT)
-Received: from eusmgms2.samsung.com (unknown [182.198.249.180]) by
-        eusmtrp1.samsung.com (KnoxPortal) with ESMTP id
-        20201001101051eusmtrp13df0850895e39ed943e2b0ae0ecb494f~51o7aZR9h0379403794eusmtrp1u;
-        Thu,  1 Oct 2020 10:10:51 +0000 (GMT)
-X-AuditID: cbfec7f4-65dff7000000176d-16-5f75ab2bb37d
-Received: from eusmtip2.samsung.com ( [203.254.199.222]) by
-        eusmgms2.samsung.com (EUCPMTA) with SMTP id 54.45.06017.B2BA57F5; Thu,  1
-        Oct 2020 11:10:51 +0100 (BST)
-Received: from localhost (unknown [106.120.51.46]) by eusmtip2.samsung.com
-        (KnoxPortal) with ESMTPA id
-        20201001101051eusmtip2ae8930176c91a31cf01c9b4d71f06d23~51o7RR7Y92130821308eusmtip2u;
-        Thu,  1 Oct 2020 10:10:51 +0000 (GMT)
-From:   Lukasz Stelmach <l.stelmach@samsung.com>
+        id S1731908AbgJAKTO (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Thu, 1 Oct 2020 06:19:14 -0400
+Received: from lindbergh.monkeyblade.net ([23.128.96.19]:47644 "EHLO
+        lindbergh.monkeyblade.net" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
+        with ESMTP id S1731819AbgJAKTN (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Thu, 1 Oct 2020 06:19:13 -0400
+Received: from metis.ext.pengutronix.de (metis.ext.pengutronix.de [IPv6:2001:67c:670:201:290:27ff:fe1d:cc33])
+        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 17398C0613D0
+        for <devicetree@vger.kernel.org>; Thu,  1 Oct 2020 03:19:13 -0700 (PDT)
+Received: from gallifrey.ext.pengutronix.de ([2001:67c:670:201:5054:ff:fe8d:eefb] helo=[IPv6:::1])
+        by metis.ext.pengutronix.de with esmtp (Exim 4.92)
+        (envelope-from <a.fatoum@pengutronix.de>)
+        id 1kNvg5-0005E9-KP; Thu, 01 Oct 2020 12:19:09 +0200
+Subject: Re: [PATCH v2 08/12] ARM: dts: imx6dl-pico: fix board compatibles
 To:     Krzysztof Kozlowski <krzk@kernel.org>
-Cc:     Rob Herring <robh+dt@kernel.org>, Kukjin Kim <kgene@kernel.org>,
-        devicetree@vger.kernel.org, linux-arm-kernel@lists.infradead.org,
-        "linux-samsung-soc\@vger.kernel.org" 
-        <linux-samsung-soc@vger.kernel.org>,
-        "linux-kernel\@vger.kernel.org" <linux-kernel@vger.kernel.org>,
-        =?utf-8?Q?Bart=C5=82omiej_=C5=BBo=C5=82nierkiewicz?= 
-        <b.zolnierkie@samsung.com>,
-        Marek Szyprowski <m.szyprowski@samsung.com>
-Subject: Re: [PATCH] ARM: dts: exynos: Add a placeholder for a MAC address
-Date:   Thu, 01 Oct 2020 12:10:27 +0200
-In-Reply-To: <CAJKOXPfghaFLruCJwkgoG0j_G6+EVZTPKY2MNsQ33CkxD2naxg@mail.gmail.com>
-        (Krzysztof Kozlowski's message of "Thu, 1 Oct 2020 11:16:48 +0200")
-Message-ID: <dleftja6x6gsto.fsf%l.stelmach@samsung.com>
-User-Agent: Gnus/5.13 (Gnus v5.13) Emacs/26.1 (gnu/linux)
+Cc:     Rob Herring <robh+dt@kernel.org>, Shawn Guo <shawnguo@kernel.org>,
+        Sascha Hauer <s.hauer@pengutronix.de>,
+        Pengutronix Kernel Team <kernel@pengutronix.de>,
+        Fabio Estevam <festevam@gmail.com>,
+        NXP Linux Team <linux-imx@nxp.com>,
+        Anson Huang <Anson.Huang@nxp.com>,
+        Andreas Kemnade <andreas@kemnade.info>,
+        Stefan Riedmueller <s.riedmueller@phytec.de>,
+        Robert Jones <rjones@gateworks.com>,
+        Li Yang <leoyang.li@nxp.com>, devicetree@vger.kernel.org,
+        linux-kernel@vger.kernel.org, linux-arm-kernel@lists.infradead.org
+References: <20200930190143.27032-1-krzk@kernel.org>
+ <20200930190143.27032-9-krzk@kernel.org>
+ <0a0afea6-8cbb-3e89-5a4f-89660c942ca3@pengutronix.de>
+ <20201001073208.GA5208@kozik-lap>
+From:   Ahmad Fatoum <a.fatoum@pengutronix.de>
+Message-ID: <027fd826-6822-9e92-0c6c-2ebed63f4a07@pengutronix.de>
+Date:   Thu, 1 Oct 2020 12:19:08 +0200
+User-Agent: Mozilla/5.0 (X11; Linux x86_64; rv:68.0) Gecko/20100101
+ Thunderbird/68.12.0
 MIME-Version: 1.0
-Content-Type: multipart/signed; boundary="=-=-="; micalg="pgp-sha256";
-        protocol="application/pgp-signature"
-X-Brightmail-Tracker: H4sIAAAAAAAAA+NgFjrBKsWRmVeSWpSXmKPExsWy7djP87o6q0vjDW61MVpsnLGe1WL+kXOs
-        Fv2PXzNbnD+/gd1i0+NrrBaXd81hs5hxfh+Txdojd9ktWvceYXfg9Ni0qpPNY/OSeo++LasY
-        PT5vkgtgieKySUnNySxLLdK3S+DK+HThLHvBB6WK3+tfszYwPpDuYuTkkBAwkZg2/RVLFyMX
-        h5DACkaJ7R9es0I4XxglDq/fzwJSJSTwmVFi5ckCmI5NP38zQRQtZ5TY+XkhVMdzRoneP9MZ
-        uxg5ONgE9CTWro0AaRAR0JS4/vc7WA2zwCxmid6La1hBEsICXhKX7uxjBLFZBFQlZry4AnYH
-        p8B0RokD/76BJXgFzCXOrLkAZosKWEpseXGfHSIuKHFy5hOw85gFciVmnn/DCNIsIXCOXeJ7
-        Vyc7xK0uEvtmdDJB2MISr45vgYrLSJye3MMCcqmEQL3E5ElmEL09jBLb5vxggaixlrhz7hcb
-        hO0ocffoMUaIej6JG28FIfbySUzaNp0ZIswr0dEmBFGtIrGufw/UFCmJ3lcrGCFsD4mXk5qg
-        IbeEUWLqn2dMExgVZiF5ZxaSd2YBjWUGBt76XfoQYW2JZQtfM0PYthLr1r1nWcDIuopRPLW0
-        ODc9tdgoL7Vcrzgxt7g0L10vOT93EyMwTZ3+d/zLDsZdf5IOMQpwMCrx8E7IK4kXYk0sK67M
-        PcSoAjTp0YbVFxilWPLy81KVRHidzp6OE+JNSaysSi3Kjy8qzUktPsQozcGiJM5rvOhlrJBA
-        emJJanZqakFqEUyWiYNTqoFxtkihsVh7crgX44HHgiEvjLMTlN8kJF44mtgzdY6ywju9r+I/
-        TxtotL6OsZUvsGx+ysD+9nOORlflB35riaVzShwFumxymmdtdfg05dyeCOZpkjtqullf+vB2
-        6xdvNxCZHfmjdn78R8vzrWxnMyZePtFaMyc/wf9j36PKWr3Qr09VVj7Y+leJpTgj0VCLuag4
-        EQAGI80BWwMAAA==
-X-Brightmail-Tracker: H4sIAAAAAAAAA+NgFtrPIsWRmVeSWpSXmKPExsVy+t/xe7raq0vjDc6dlbfYOGM9q8X8I+dY
-        Lfofv2a2OH9+A7vFpsfXWC0u75rDZjHj/D4mi7VH7rJbtO49wu7A6bFpVSebx+Yl9R59W1Yx
-        enzeJBfAEqVnU5RfWpKqkJFfXGKrFG1oYaRnaGmhZ2RiqWdobB5rZWSqpG9nk5Kak1mWWqRv
-        l6CX8enCWfaCD0oVv9e/Zm1gfCDdxcjJISFgIrHp52+mLkYuDiGBpYwSz+Z2ADkcQAkpiZVz
-        0yFqhCX+XOtig6h5yijRveA5I0gNm4CexNq1ESA1IgKaEtf/fmcFsZkF5jFLzGnNALGFBbwk
-        Lt3ZxwhiCwkESKy+fYgJxGYRUJWY8eIKC8hMToHpjBIH/n0DK+IVMJc4s+YCmC0qYCmx5cV9
-        doi4oMTJmU9YIBZkS3xd/Zx5AqPALCSpWUhSs4DOYwa6af0ufYiwtsSyha+ZIWxbiXXr3rMs
-        YGRdxSiSWlqcm55bbKRXnJhbXJqXrpecn7uJERhh24793LKDsetd8CFGAQ5GJR7eCXkl8UKs
-        iWXFlbmHGFWAxjzasPoCoxRLXn5eqpIIr9PZ03FCvCmJlVWpRfnxRaU5qcWHGE2BHp3ILCWa
-        nA9MCkD9hqaG5haWhubG5sZmFkrivB0CB2OEBNITS1KzU1MLUotg+pg4OKUaGBnmzlx/iv0L
-        ++9PscaMlrfEkyz/7uHODuNasr5Ir+HfUcal1hwSHmUBH8wn33614VdF9sHKBwqWVm+v9aht
-        dtkWaFolfOne5a1irjXaKXcq193u1nrOp9p0JsKTeWnR2ZU+WxKYLzjtWv2kh+WZRcLFsM0/
-        GgVWl26fGPdsiV5ZRpTrnbtJZkosxRmJhlrMRcWJAF8uRSjSAgAA
-X-CMS-MailID: 20201001101051eucas1p2d6237daf16a89831e9b7b5bf106c7074
-X-Msg-Generator: CA
-X-RootMTR: 20201001101051eucas1p2d6237daf16a89831e9b7b5bf106c7074
-X-EPHeader: CA
-CMS-TYPE: 201P
-X-CMS-RootMailID: 20201001101051eucas1p2d6237daf16a89831e9b7b5bf106c7074
-References: <CAJKOXPfghaFLruCJwkgoG0j_G6+EVZTPKY2MNsQ33CkxD2naxg@mail.gmail.com>
-        <CGME20201001101051eucas1p2d6237daf16a89831e9b7b5bf106c7074@eucas1p2.samsung.com>
+In-Reply-To: <20201001073208.GA5208@kozik-lap>
+Content-Type: text/plain; charset=utf-8
+Content-Language: en-US
+Content-Transfer-Encoding: 7bit
+X-SA-Exim-Connect-IP: 2001:67c:670:201:5054:ff:fe8d:eefb
+X-SA-Exim-Mail-From: a.fatoum@pengutronix.de
+X-SA-Exim-Scanned: No (on metis.ext.pengutronix.de); SAEximRunCond expanded to false
+X-PTX-Original-Recipient: devicetree@vger.kernel.org
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
---=-=-=
-Content-Type: text/plain; charset="utf-8"
-Content-Transfer-Encoding: quoted-printable
+Hi,
 
-It was <2020-10-01 czw 11:16>, when Krzysztof Kozlowski wrote:
-> On Thu, 1 Oct 2020 at 10:36, Lukasz Stelmach <l.stelmach@samsung.com> wro=
-te:
->>
->> It was <2020-10-01 czw 09:22>, when Krzysztof Kozlowski wrote:
->> > On Wed, Sep 30, 2020 at 04:31:51PM +0200, =C5=81ukasz Stelmach wrote:
->> >> Add a placeholder for a MAC address. A bootloader may fill it
->> >> to set the MAC address and override EEPROM settings.
->> >>
->> >> Signed-off-by: =C5=81ukasz Stelmach <l.stelmach@samsung.com>
->> >> ---
->> >>  arch/arm/boot/dts/exynos5422-odroidxu3.dts | 18 ++++++++++++++++++
->> >>  1 file changed, 18 insertions(+)
->> >>
->> >> diff --git a/arch/arm/boot/dts/exynos5422-odroidxu3.dts b/arch/arm/bo=
-ot/dts/exynos5422-odroidxu3.dts
->> >> index db0bc17a667b..9f7f3eacb750 100644
->> >> --- a/arch/arm/boot/dts/exynos5422-odroidxu3.dts
->> >> +++ b/arch/arm/boot/dts/exynos5422-odroidxu3.dts
->> >> @@ -70,3 +70,21 @@ &pwm {
->> >>  &usbdrd_dwc3_1 {
->> >>      dr_mode =3D "peripheral";
->> >>  };
->> >> +
->> >> +&usbhost2 {
->> >> +    #address-cells =3D <1>;
->> >> +    #size-cells =3D <0>;
->> >> +
->> >> +    hub@1 {
->> >> +            compatible =3D "usb8087,0024";
->> >> +            reg =3D <1>;
->> >> +            #address-cells =3D <1>;
->> >> +            #size-cells =3D <0>;
->> >> +
->> >> +            ethernet: usbether@1 {
->> >> +                    compatible =3D "usb0c45,6310";
->> >> +                    reg =3D <1>;
->> >> +                    mac-address =3D [00 00 00 00 00 00]; /* Filled i=
-n by a bootloader */
->> >
->> > Why do you need a placeholder? U-Boot can just append the
->> > address/property.
->>
->> Several other dts files have such placeholder
->>
->> git grep 'mac-addr.*\[00 00 00 00 00 00\]' arch/arm/boot/dts/ | wc -l
->> 26
->
-> Yeah, but if this is cargo cult, then it is not a good reason. First of a=
-ll,
-> git grep '[^-]mac-addr.*\[.*00 00 00 00 00 00.*\]' arch/arm/boot/dts/
-> gives just seven boards. Not a big number to make a standard. :)
->
-> The meaning of mac-address, I think, is not a placeholder, but:
-> "should be used in cases where the MAC address assigned to the device
-> by the boot program is different from the local-mac-address property."
->
-> I think you actually wanted a local-mac-address and the majority of
-> DTSes use it. Not mac-address.
+On 10/1/20 9:32 AM, Krzysztof Kozlowski wrote:
+> On Thu, Oct 01, 2020 at 09:22:03AM +0200, Ahmad Fatoum wrote:
+>>> diff --git a/arch/arm/boot/dts/imx6dl-pico-hobbit.dts b/arch/arm/boot/dts/imx6dl-pico-hobbit.dts
+>>> index d7403c5c4337..08fedcbcc91b 100644
+>>> --- a/arch/arm/boot/dts/imx6dl-pico-hobbit.dts
+>>> +++ b/arch/arm/boot/dts/imx6dl-pico-hobbit.dts
+>>> @@ -13,5 +13,5 @@
+>>>  
+>>>  / {
+>>>  	model = "TechNexion PICO-IMX6 DualLite/Solo Board and Hobbit baseboard";
+>>> -	compatible = "technexion,imx6dl-pico", "fsl,imx6dl";
+>>> +	compatible = "technexion,imx6dl-pico-hobbit", "fsl,imx6dl";
+>>>  };
+> 
+> The bindings, added in commit 53b61224ca40 ("dt-bindings: arm: fsl: Add
+> TechNexion boards"), describe that these are the only valid compatibles.
+> "technexion,imx6dl-pico" is not valid and would require changing the
+> bindings, thus breaking compatibility which you want to avoid.> 
+> The bindings, not what is present in DTS, is considered ABI.
 
-Indeed that makes sense. I am fixing this.
+The existing binding doesn't cover these boards then and needs to be
+extended, no? How about following patch?
 
->> I can see two scenarios where this patch may be helpful. Another
->> (simple) boot loading code might be used.
->
-> OK, good point. However other bootloader still has to adhere to the DT
-> specification and the bindings.
->
->> The value may also be
->> customized during build time and used without any support of a
->> bootloader.
->
-> Yes, with an overlay. You do not need a placeholder for this and
-> actually having a placeholder instead of using overlays is the wrong
-> approach for customization of boots/builds.
+[I guess we need to keep the two-compatible list they were originally
+ in for compatibility even if it's unused among upstream device trees?]
 
-Still, not every bootloading scenario allows for using overlays.
-Applying an overlay to change the MAC address after boot makes little
-sense since you can simply
+Cheers,
+Ahmad
 
-    ip link set address 00:01:02:03:04:05 dev eth0
+-------------------------8<---------------------------
 
->> Finding and filling a placeholder would be easier in u-boot too.
->
-> U-Boot already has the code for updating mac-address or
-> local-mac-address so how is it easier for him? You mean that it cannot
-> find an ethernet node here?
+From d2e44951f900a1774ef289db22812969e72925d6 Mon Sep 17 00:00:00 2001
+From: Ahmad Fatoum <a.fatoum@pengutronix.de>
+Date: Thu, 1 Oct 2020 12:03:36 +0200
+Subject: [RFC PATCH] dt-bindings: arm: fsl: add technexion,imx6dl-pico compatible
 
-I didn't know that. Point for you.
+The technexion,imx6dl-pico -dwarf, -hobbit, -nymph and -pi all use the
+same SoM. Reflect this compatibility with the SoM in the binding.
 
->> And it serves as a reference how to configure a USB device in a dts
->
-> Great places for references are examples in bindings.
+Signed-off-by: Ahmad Fatoum <a.fatoum@pengutronix.de>
+---
+ Documentation/devicetree/bindings/arm/fsl.yaml | 10 ++++++++++
+ 1 file changed, 10 insertions(+)
 
-Not so much IMHO because they are not strictly related to real
-hardware you can examine and see the connection between DT and the
-hardware.
+diff --git a/Documentation/devicetree/bindings/arm/fsl.yaml b/Documentation/devicetree/bindings/arm/fsl.yaml
+index 6da9d734cdb7..b7110305ce81 100644
+--- a/Documentation/devicetree/bindings/arm/fsl.yaml
++++ b/Documentation/devicetree/bindings/arm/fsl.yaml
+@@ -211,6 +211,16 @@ properties:
+           - const: gw,ventana
+           - const: fsl,imx6dl
+ 
++      - description: i.MX6DL TechNexion Pico Boards
++        items:
++          - enum:
++              - technexion,imx6dl-pico-dwarf   # TechNexion i.MX6DL Pico-Dwarf
++              - technexion,imx6dl-pico-hobbit  # TechNexion i.MX6DL Pico-Hobbit
++              - technexion,imx6dl-pico-nymph   # TechNexion i.MX6DL Pico-Nymph
++              - technexion,imx6dl-pico-pi      # TechNexion i.MX6DL Pico-Pi
++          - const: technexion,imx6dl-pico
++          - const: fsl,imx6dl
++
+       - description: i.MX6SL based Boards
+         items:
+           - enum:
 
-=2D-=20
-=C5=81ukasz Stelmach
-Samsung R&D Institute Poland
-Samsung Electronics
 
---=-=-=
-Content-Type: application/pgp-signature; name="signature.asc"
-
------BEGIN PGP SIGNATURE-----
-
-iQEzBAEBCAAdFiEEXpuyqjq9kGEVr9UQsK4enJilgBAFAl91qxMACgkQsK4enJil
-gBBTTwf/amxo1GBpBXsow0ul8NAV0fVrMFUo6TuthxMNCTUNAN6an9FchPPr/j0L
-Qn4bQwrypKfEZw+AxP7IrvGUgOaPdtu6C71T5CmsfMDP2+2Gi4lvwDVYQF254Crx
-jVS2FC54rMjn9GiLOj5N7JvXg2vY4f6PC6KgWYojwozMp9QEP0CJanxBUlIVXejL
-Wi4av4NigcDtIwMtBG8gFss55Lk7AFQaiBS8zgIKqFET5Q9uMtE0cX/OBBOVuxAp
-KtXdlB+nZzLDaak1MiNsnu3hT80Idxlbg5150Q4k3ROXHK8+qhWLr/yBj4WLHKds
-5oEc1fHCAxKFPCDQpwKXmxi+F2knWQ==
-=VLsF
------END PGP SIGNATURE-----
---=-=-=--
+-- 
+Pengutronix e.K.                           |                             |
+Steuerwalder Str. 21                       | http://www.pengutronix.de/  |
+31137 Hildesheim, Germany                  | Phone: +49-5121-206917-0    |
+Amtsgericht Hildesheim, HRA 2686           | Fax:   +49-5121-206917-5555 |
