@@ -2,115 +2,119 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from vger.kernel.org (vger.kernel.org [23.128.96.18])
-	by mail.lfdr.de (Postfix) with ESMTP id 43F6F280B41
-	for <lists+devicetree@lfdr.de>; Fri,  2 Oct 2020 01:17:09 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTP id 18247280B45
+	for <lists+devicetree@lfdr.de>; Fri,  2 Oct 2020 01:20:04 +0200 (CEST)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S1733140AbgJAXRI (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Thu, 1 Oct 2020 19:17:08 -0400
-Received: from lindbergh.monkeyblade.net ([23.128.96.19]:54832 "EHLO
-        lindbergh.monkeyblade.net" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S1727780AbgJAXRH (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Thu, 1 Oct 2020 19:17:07 -0400
-Received: from mail-wr1-x441.google.com (mail-wr1-x441.google.com [IPv6:2a00:1450:4864:20::441])
-        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id C8EF8C0613D0
-        for <devicetree@vger.kernel.org>; Thu,  1 Oct 2020 16:17:06 -0700 (PDT)
-Received: by mail-wr1-x441.google.com with SMTP id w5so501489wrp.8
-        for <devicetree@vger.kernel.org>; Thu, 01 Oct 2020 16:17:06 -0700 (PDT)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=linaro.org; s=google;
-        h=subject:to:cc:references:from:message-id:date:user-agent
-         :mime-version:in-reply-to:content-language:content-transfer-encoding;
-        bh=lsAtKdbbGwCFSZvYEK9LUdJCmMnTxvc7zkOvFkI0M00=;
-        b=lxdO82HCa9E2YycZTS2qqXAS5Yo7m1LuRhU1iYTtrP5Nj++fBqSsSDiYZ45GPj4Dxt
-         EJA0LQGIC2ufGci443gnZKEPY8iJ1Eu2V14sD3w0nhs2h5INIG5JqEWOsRBAXhxzREtm
-         CvzjX+Zdgar8Rs7Q1ck7I0FflIkRQTw6gEaRhlwvvIONK8FjbSdWaImTCBzUW/C5MtId
-         Cf7xqqyZB8aCT1kqlChy9Md18tOSTvheayZ0HAPXj0pXwLkX4NE3++loguZsouvAa5F8
-         Nasj54K54vpUyNYBPmR88ghkA1PBrbCRZqbrBcCO8k8sxT96Ky1rLxx5op5RP00Rqsnm
-         Qd3Q==
-X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=1e100.net; s=20161025;
-        h=x-gm-message-state:subject:to:cc:references:from:message-id:date
-         :user-agent:mime-version:in-reply-to:content-language
-         :content-transfer-encoding;
-        bh=lsAtKdbbGwCFSZvYEK9LUdJCmMnTxvc7zkOvFkI0M00=;
-        b=qQRaEI3D20QRjc1dBSR80ZphNpSrz3q2KxEimlvi8cp5jWmyjCWuxezk/DRSEINImo
-         EHm5SLyR7vmHEcPYQHQicKaUtkm7rwRGMvEBkZSVYJ85l5pPklZJvET4dAynwo6e9Jfn
-         ki1clqmZ2JZRx/n3tucr6gHNRkylDJkPXRKYis4dYXqno26afRu8JY5s+V9IF61Vc6AC
-         pcAvmXPOkeUqWgkwaEmEptZoYsBkWrGVHz/bmjO2zR9aYEtyfLAeGRHpI33l2Qc7f68O
-         gx67JxRHeslxX59wYaEVQLDR3PGVnETxawQp8wB9C7LtVmfA0E3uuWpRs7c8P1H+6ShH
-         LlZA==
-X-Gm-Message-State: AOAM530k+NZQ5wkkpAu9o+7NbIv2q2hIeV9JTN6Jp/l+u8QiQvEJN24T
-        LVEOBy1Dr1XlECPs0Lh6owOb9g==
-X-Google-Smtp-Source: ABdhPJyce3UDx0zfoKvLMrvqG+BBLnRweOGD6TtIsyQPWDZyrmk5GImxMgnDwomAHbx/YW73FO0xzA==
-X-Received: by 2002:adf:de11:: with SMTP id b17mr11356928wrm.82.1601594224596;
-        Thu, 01 Oct 2020 16:17:04 -0700 (PDT)
-Received: from [192.168.1.7] ([195.24.90.54])
-        by smtp.googlemail.com with ESMTPSA id v2sm2271598wme.19.2020.10.01.16.17.02
-        (version=TLS1_3 cipher=TLS_AES_128_GCM_SHA256 bits=128/128);
-        Thu, 01 Oct 2020 16:17:03 -0700 (PDT)
-Subject: Re: [PATCH v6 0/5] DVFS support for Venus
-To:     Doug Anderson <dianders@chromium.org>
-Cc:     Rajendra Nayak <rnayak@codeaurora.org>,
-        Rob Herring <robh+dt@kernel.org>,
-        Andy Gross <agross@kernel.org>,
-        Bjorn Andersson <bjorn.andersson@linaro.org>,
-        linux-arm-msm <linux-arm-msm@vger.kernel.org>,
-        Linux Media Mailing List <linux-media@vger.kernel.org>,
-        "open list:OPEN FIRMWARE AND FLATTENED DEVICE TREE BINDINGS" 
-        <devicetree@vger.kernel.org>, LKML <linux-kernel@vger.kernel.org>,
-        Matthias Kaehlcke <mka@chromium.org>
-References: <1598970026-7199-1-git-send-email-rnayak@codeaurora.org>
- <34ed34bd-90fd-0e84-6020-c487d612ad2f@codeaurora.org>
- <aec87de2-500d-763c-df01-c0daec56b1e2@linaro.org>
- <CAD=FV=U=OCQpVL6VOVd4B6rW7HFC5S-wGauMAsOdvzwjLzKLuw@mail.gmail.com>
-From:   Stanimir Varbanov <stanimir.varbanov@linaro.org>
-Message-ID: <5c9ce5fe-f903-e1bf-8a6e-3714a023ee4f@linaro.org>
-Date:   Fri, 2 Oct 2020 02:17:01 +0300
-User-Agent: Mozilla/5.0 (X11; Linux x86_64; rv:68.0) Gecko/20100101
- Thunderbird/68.10.0
+        id S1733002AbgJAXUD (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Thu, 1 Oct 2020 19:20:03 -0400
+Received: from perceval.ideasonboard.com ([213.167.242.64]:54832 "EHLO
+        perceval.ideasonboard.com" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
+        with ESMTP id S1728090AbgJAXUC (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Thu, 1 Oct 2020 19:20:02 -0400
+Received: from pendragon.ideasonboard.com (62-78-145-57.bb.dnainternet.fi [62.78.145.57])
+        by perceval.ideasonboard.com (Postfix) with ESMTPSA id 44E3A60;
+        Fri,  2 Oct 2020 01:20:00 +0200 (CEST)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=ideasonboard.com;
+        s=mail; t=1601594400;
+        bh=rfIIQwVRd/AeRqJEFC4VlBko7IIup6fEBhePqztkIR8=;
+        h=Date:From:To:Cc:Subject:References:In-Reply-To:From;
+        b=D39RLFAyWjqKwgTPH1a8EHsX07hOSfHzj62ZmTqxirfGmrvGP/bNc+NtszXhl6VkN
+         s/2MWQTd2wrRkETjQru4rieOG9kAhy0ON8UMTzUYGrqnlM0cL7JGAsCd5S7c/Yz0tb
+         zIcNp663oGEWjRaTK/g4LECn89v68Mj7AMAsS75s=
+Date:   Fri, 2 Oct 2020 02:19:22 +0300
+From:   Laurent Pinchart <laurent.pinchart@ideasonboard.com>
+To:     Saravana Kannan <saravanak@google.com>
+Cc:     Rob Herring <robh+dt@kernel.org>,
+        Frank Rowand <frowand.list@gmail.com>, geert+renesas@glider.be,
+        gregkh@linuxfoundation.org, grygorii.strashko@ti.com,
+        linux-omap@vger.kernel.org, linux-pm@vger.kernel.org,
+        peter.ujfalusi@ti.com, rjw@rjwysocki.net, tomi.valkeinen@ti.com,
+        tony@atomide.com, ulf.hansson@linaro.org, kernel-team@android.com,
+        devicetree@vger.kernel.org, linux-kernel@vger.kernel.org
+Subject: Re: [PATCH v1] of: platform: Batch fwnode parsing in the
+ init_machine() path
+Message-ID: <20201001231922.GG3722@pendragon.ideasonboard.com>
+References: <CAGETcx8owDP_Bu4oNCyHEsME8XpKygxghm8+yNc2RyMA4wyjCA@mail.gmail.com>
+ <20201001225952.3676755-1-saravanak@google.com>
 MIME-Version: 1.0
-In-Reply-To: <CAD=FV=U=OCQpVL6VOVd4B6rW7HFC5S-wGauMAsOdvzwjLzKLuw@mail.gmail.com>
 Content-Type: text/plain; charset=utf-8
-Content-Language: en-US
-Content-Transfer-Encoding: 7bit
+Content-Disposition: inline
+In-Reply-To: <20201001225952.3676755-1-saravanak@google.com>
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-Hi,
+Hi Saravana,
 
-On 10/1/20 11:40 PM, Doug Anderson wrote:
-> Hi,
-> 
-> On Wed, Sep 16, 2020 at 12:26 AM Stanimir Varbanov
-> <stanimir.varbanov@linaro.org> wrote:
->>
->> Hi,
->>
->> On 9/16/20 8:33 AM, Rajendra Nayak wrote:
->>>
->>> On 9/1/2020 7:50 PM, Rajendra Nayak wrote:
->>>> Rob, can you pick PATCH 1 since its already reviewed by you.
->>>> Stan, Patch 2 and 3 will need to be picked by you and they both have
->>>> your ACKs
->>>
->>> Rob/Stan, any plans to get the patches merged for 5.10?
->>
->> 2/5 and 3/5 are queued up for v5.10 through media tree.
-> 
-> Normally I'd expect device tree bindings (patch #1) to go through the
-> same tree as the driver changes.  Does the media tree work
-> differently?  If you're expecting Rob Herring to land the device tree
-> binding change, is he aware?
+Thank you for the patch.
 
-I sent pull request to Mauro with 1/5 included.
-Thanks for spotting.
+On Thu, Oct 01, 2020 at 03:59:51PM -0700, Saravana Kannan wrote:
+> When commit 93d2e4322aa7 ("of: platform: Batch fwnode parsing when
+> adding all top level devices") optimized the fwnode parsing when all top
+> level devices are added, it missed out optimizing this for platform
+> where the top level devices are added through the init_machine() path.
+> 
+> This commit does the optimization for all paths by simply moving the
+> fw_devlink_pause/resume() inside of_platform_default_populate().
 
+Based on v5.9-rc5, before the patch:
+
+[    0.652887] cpuidle: using governor menu
+[   12.349476] No ATAGs?
+
+After the patch:
+
+[    0.650460] cpuidle: using governor menu
+[   12.262101] No ATAGs?
+
+:-(
+
+> Reported-by: Tomi Valkeinen <tomi.valkeinen@ti.com>
+> Signed-off-by: Saravana Kannan <saravanak@google.com>
+> ---
+>  drivers/of/platform.c | 19 +++++++++++++++----
+>  1 file changed, 15 insertions(+), 4 deletions(-)
 > 
-> 
-> -Doug
-> 
+> diff --git a/drivers/of/platform.c b/drivers/of/platform.c
+> index 071f04da32c8..79972e49b539 100644
+> --- a/drivers/of/platform.c
+> +++ b/drivers/of/platform.c
+> @@ -501,8 +501,21 @@ int of_platform_default_populate(struct device_node *root,
+>  				 const struct of_dev_auxdata *lookup,
+>  				 struct device *parent)
+>  {
+> -	return of_platform_populate(root, of_default_bus_match_table, lookup,
+> -				    parent);
+> +	int ret;
+> +
+> +	/*
+> +	 * fw_devlink_pause/resume() are only safe to be called around top
+> +	 * level device addition due to locking constraints.
+> +	 */
+> +	if (!root)
+> +		fw_devlink_pause();
+> +
+> +	ret = of_platform_populate(root, of_default_bus_match_table, lookup,
+> +				   parent);
+> +
+> +	if (!root)
+> +		fw_devlink_resume();
+> +	return ret;
+>  }
+>  EXPORT_SYMBOL_GPL(of_platform_default_populate);
+>  
+> @@ -538,9 +551,7 @@ static int __init of_platform_default_populate_init(void)
+>  	}
+>  
+>  	/* Populate everything else. */
+> -	fw_devlink_pause();
+>  	of_platform_default_populate(NULL, NULL, NULL);
+> -	fw_devlink_resume();
+>  
+>  	return 0;
+>  }
 
 -- 
-regards,
-Stan
+Regards,
+
+Laurent Pinchart
