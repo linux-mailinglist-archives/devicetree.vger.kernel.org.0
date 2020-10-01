@@ -2,97 +2,158 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from vger.kernel.org (vger.kernel.org [23.128.96.18])
-	by mail.lfdr.de (Postfix) with ESMTP id 13760280953
-	for <lists+devicetree@lfdr.de>; Thu,  1 Oct 2020 23:19:02 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTP id 03C6C28097D
+	for <lists+devicetree@lfdr.de>; Thu,  1 Oct 2020 23:40:01 +0200 (CEST)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S1726855AbgJAVTB (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Thu, 1 Oct 2020 17:19:01 -0400
-Received: from lindbergh.monkeyblade.net ([23.128.96.19]:36482 "EHLO
+        id S1727124AbgJAVkA (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Thu, 1 Oct 2020 17:40:00 -0400
+Received: from lindbergh.monkeyblade.net ([23.128.96.19]:39686 "EHLO
         lindbergh.monkeyblade.net" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S1726581AbgJAVTA (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Thu, 1 Oct 2020 17:19:00 -0400
-Received: from mail-pf1-x444.google.com (mail-pf1-x444.google.com [IPv6:2607:f8b0:4864:20::444])
-        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id B6D48C0613E2
-        for <devicetree@vger.kernel.org>; Thu,  1 Oct 2020 14:19:00 -0700 (PDT)
-Received: by mail-pf1-x444.google.com with SMTP id b124so5818202pfg.13
-        for <devicetree@vger.kernel.org>; Thu, 01 Oct 2020 14:19:00 -0700 (PDT)
+        with ESMTP id S1726626AbgJAVkA (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Thu, 1 Oct 2020 17:40:00 -0400
+Received: from mail-pj1-x1042.google.com (mail-pj1-x1042.google.com [IPv6:2607:f8b0:4864:20::1042])
+        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 29DB3C0613D0
+        for <devicetree@vger.kernel.org>; Thu,  1 Oct 2020 14:40:00 -0700 (PDT)
+Received: by mail-pj1-x1042.google.com with SMTP id i3so72774pjz.4
+        for <devicetree@vger.kernel.org>; Thu, 01 Oct 2020 14:40:00 -0700 (PDT)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
         d=chromium.org; s=google;
-        h=from:to:cc:subject:date:message-id:mime-version
-         :content-transfer-encoding;
-        bh=o6gfDXEJLeAYyj9Q6Zq3Q1hxYl7JjjLOkCkFFqFw28U=;
-        b=aX/si9tOkchkaGMk3LdngnIu1GASm/NLGr+AK+wKhh78asvuqlfSXJGdK5V89uPO7I
-         E2gb+pj2CprllK7XDzYwU5ECAEARZno2bMoUScyskTDVI0FESNfaVGfkrVCc+pb+UjJK
-         +rr6GkoyuXusXuBxnUl6IBv8UWOJIFHafnURI=
+        h=date:from:to:cc:subject:message-id:references:mime-version
+         :content-disposition:in-reply-to;
+        bh=ip4I9Zi92cmMy48EZDjEqPXg+PzOqP4wFP+0NOc0leE=;
+        b=WTnFo6h7qTDLtJzYjwKVAtNU/occKNeoida7yMLlmzoxLe2fzaVVWqANDfs1zj7PTO
+         l60FsvpvT6bTSvVsvd55fbacf4g+a/Rwpi1mLXQW40gO6w1Vl5ySDrXRBQC5+mAbKquH
+         2SKHIZocesnNABZLexOctr5c/hPDP6/0m1Fj0=
 X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
         d=1e100.net; s=20161025;
-        h=x-gm-message-state:from:to:cc:subject:date:message-id:mime-version
-         :content-transfer-encoding;
-        bh=o6gfDXEJLeAYyj9Q6Zq3Q1hxYl7JjjLOkCkFFqFw28U=;
-        b=K1Vmu6R+Lu9dRY8R9eR63vkWe5zN0ZwOGJdMxOrupzTmvVfFcnFpugZqEHFdlv2ZyH
-         R6qfzoX7AJwIpRNL6K3nI4wp9+AZ0pZRb+b0elBYSmW+Mpt1WRdx6BQxRrUKFTNSKSY9
-         /ZbQsWxL/IPgkA8qVQ9VNek3ZaEsxIsnWNH/vbXVF7XC5i7XJL29kpa0OnMnlIRomwGc
-         7jTjCYJ+zldL3sO/ejes6gOxFUGVT5EuiGPgfbt4RJcE4XcU5ApGjk9ABXcp4aiSKy4P
-         upouSjnaY9zawhkOfDH42V/rqSHqfB9liKDtgWdZ4gQM7mIUKA5y2WqYDrTzSfo12Akp
-         w8JA==
-X-Gm-Message-State: AOAM532As9EWHPleZJXtukpUWgt+CfCL8n5uAXJ/2HbZ5lkijGEKjwjY
-        riYoiugKsw5xDyupmB45gLH07g==
-X-Google-Smtp-Source: ABdhPJwZF0ZAWF2PfTHClWpYeuET6GaWsOLh7BAKXN8nDHEimGl2jek4GooFykamHhkjawIgEYQLDA==
-X-Received: by 2002:aa7:9059:0:b029:151:d725:e230 with SMTP id n25-20020aa790590000b0290151d725e230mr8854719pfo.77.1601587140205;
-        Thu, 01 Oct 2020 14:19:00 -0700 (PDT)
-Received: from tictac2.mtv.corp.google.com ([2620:15c:202:1:42b0:34ff:fe3d:58e6])
-        by smtp.gmail.com with ESMTPSA id q5sm7268990pfn.172.2020.10.01.14.18.59
-        (version=TLS1_3 cipher=TLS_AES_256_GCM_SHA384 bits=256/256);
-        Thu, 01 Oct 2020 14:18:59 -0700 (PDT)
-From:   Douglas Anderson <dianders@chromium.org>
-To:     Bjorn Andersson <bjorn.andersson@linaro.org>
-Cc:     Douglas Anderson <dianders@chromium.org>,
-        Andy Gross <agross@kernel.org>,
-        Georgi Djakov <georgi.djakov@linaro.org>,
-        Matthias Kaehlcke <mka@chromium.org>,
-        Rob Herring <robh+dt@kernel.org>,
-        Sibi Sankar <sibis@codeaurora.org>, devicetree@vger.kernel.org,
-        linux-arm-msm@vger.kernel.org, linux-kernel@vger.kernel.org
-Subject: [PATCH] arm64: dts: qcom: sc7180: Fix one forgotten interconnect reference
-Date:   Thu,  1 Oct 2020 14:18:55 -0700
-Message-Id: <20201001141838.1.I08054d1d976eed64ffa1b0e21d568e0dc6040b54@changeid>
-X-Mailer: git-send-email 2.28.0.709.gb0816b6eb0-goog
+        h=x-gm-message-state:date:from:to:cc:subject:message-id:references
+         :mime-version:content-disposition:in-reply-to;
+        bh=ip4I9Zi92cmMy48EZDjEqPXg+PzOqP4wFP+0NOc0leE=;
+        b=gG4niAtEhAytxX/+FODoaDehGAm22rSZc327oictGzVYaRvT3xESUxvuxzjwIEX6v3
+         uPPY3gBNEnezUux6fG+xoxLpF/HNeWDnhsDv4ug1J2YIntb7OuraWGpN/JDWb/Zk+8Ok
+         IxyU2ezdqCaNDapLtE4P2NjgAVWbg10FY04G0de+snAg9932wjYpAhM/7hTl18W1ZeIL
+         inkcRcSXI3f/fQ4cNE5y2Js0Y0XL+ITViSF+yijFzpEXlE6Uqwe6AB33mnnmrMGdM6jF
+         YnJGDJ5oI1QjobAAwuaMi+17I0rRENDVQtYTfXfdT3VjOjUKc3M0Ug7UmHQl+08Smj5J
+         U7TQ==
+X-Gm-Message-State: AOAM531NdM3blvUqbV/cBN75UZT+dFwOMWBX9Yc+f5ub7dSaJ7a7ckvU
+        Shh2nioNrDGYkVLTBq3OCZvQwQ==
+X-Google-Smtp-Source: ABdhPJwsFXq6zSWxUWlEvb8LGWzKnUYFfTMmDFpm+t6KJ1yD7cy92p01ZXNxTyikGyl26sHg5FwE/Q==
+X-Received: by 2002:a17:90b:891:: with SMTP id bj17mr1876241pjb.11.1601588399703;
+        Thu, 01 Oct 2020 14:39:59 -0700 (PDT)
+Received: from localhost ([2620:15c:202:1:f693:9fff:fef4:e70a])
+        by smtp.gmail.com with ESMTPSA id k7sm788262pjs.9.2020.10.01.14.39.58
+        (version=TLS1_3 cipher=TLS_AES_128_GCM_SHA256 bits=128/128);
+        Thu, 01 Oct 2020 14:39:58 -0700 (PDT)
+Date:   Thu, 1 Oct 2020 14:39:57 -0700
+From:   Matthias Kaehlcke <mka@chromium.org>
+To:     Rob Herring <robh@kernel.org>
+Cc:     Doug Anderson <dianders@chromium.org>,
+        Alan Stern <stern@rowland.harvard.edu>,
+        Greg Kroah-Hartman <gregkh@linuxfoundation.org>,
+        Frank Rowand <frowand.list@gmail.com>,
+        "linux-kernel@vger.kernel.org" <linux-kernel@vger.kernel.org>,
+        Linux USB List <linux-usb@vger.kernel.org>,
+        Bastien Nocera <hadess@hadess.net>,
+        Stephen Boyd <swboyd@chromium.org>,
+        Ravi Chandra Sadineni <ravisadineni@chromium.org>,
+        Krzysztof Kozlowski <krzk@kernel.org>,
+        "open list:OPEN FIRMWARE AND FLATTENED DEVICE TREE BINDINGS" 
+        <devicetree@vger.kernel.org>, Peter Chen <peter.chen@nxp.com>
+Subject: Re: [PATCH v4 1/2] dt-bindings: usb: Add binding for discrete
+ onboard USB hubs
+Message-ID: <20201001213957.GA2362632@google.com>
+References: <20200928101326.v4.1.I248292623d3d0f6a4f0c5bc58478ca3c0062b49a@changeid>
+ <20200929201701.GA1080459@bogus>
+ <20200929220912.GF1621304@google.com>
+ <20200930013229.GB194665@rowland.harvard.edu>
+ <20200930124915.GA1826870@google.com>
+ <CAL_JsqLq9ZJm_CMiqWwbQhgGeu_ac_j43pvk4+xCFueSbyL4wA@mail.gmail.com>
+ <CAD=FV=WcDzgcHNn1+gH+gq_WEwpD0XXdJGm2fBVpAB=3fVbzZA@mail.gmail.com>
+ <CAD=FV=WhowcppEhmd=QG7YFk5iSVaCKsfGJkGBQJTwMs=bwekA@mail.gmail.com>
+ <CAL_Jsq+mzUV53U1h6YixT=d+Q6oouNNNeFGHvpauMh054x-3Jg@mail.gmail.com>
 MIME-Version: 1.0
-Content-Transfer-Encoding: 8bit
+Content-Type: text/plain; charset=utf-8
+Content-Disposition: inline
+In-Reply-To: <CAL_Jsq+mzUV53U1h6YixT=d+Q6oouNNNeFGHvpauMh054x-3Jg@mail.gmail.com>
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-In commit e23b1220a246 ("arm64: dts: qcom: sc7180: Increase the number
-of interconnect cells") we missed increasing the cells on one
-interconnect.  That's no bueno.  Fix it.
+On Wed, Sep 30, 2020 at 02:19:32PM -0500, Rob Herring wrote:
+> On Wed, Sep 30, 2020 at 1:00 PM Doug Anderson <dianders@chromium.org> wrote:
+> >
+> > Hi,
+> >
+> > > On Wed, Sep 30, 2020 at 7:44 AM Rob Herring <robh@kernel.org> wrote:
+> > > >
+> > > > We already have hubs in DT. See [1][2][3][4]. What's new here?
+> >
+> > After I sent my response I kept thinking about this and I realized
+> > that I have prior art I can point out too!  :-)  Check out
+> > "smsc,usb3503a".  That is describing a USB hub too and, at least on
+> > "exynos5250-spring.dts" is is a top level node.  Since "smsc,usb3503a"
+> > can be optionally connected to an i2c bus too, it could be listed
+> > under an i2c controller as well (I believe it wasn't hooked up to i2c
+> > on spring).
+> >
+> > Interestingly enough, the USB Hub that Matthias is trying to add
+> > support for can _also_ be hooked up to i2c.  We don't actually have
+> > i2c hooked up on our board, but conceivably it could be.  Presumably,
+> > if i2c was hooked up, we would have no other choice but to represent
+> > this chip as several device tree nodes: at least one under the i2c
+> > controller and one (or two) under the USB controller.  Just because
+> > (on this board) i2c isn't hooked up doesn't change the fact that there
+> > is some extra control logic that could be represented in its own
+> > device tree node.  To me, this seems to give extra evidence that the
+> > correct way to model this device in device tree is with several nodes.
+> >
+> > I'll point out that on "exynos5250-spring.dts" we didn't have to solve
+> > the problem that Matthias is trying to solve here because we never
+> > actually supported waking up from USB devices there.  Thus the
+> > regulator for the hub on spring can be unconditionally powered off in
+> > suspend.  On newer boards we'd like to support waking up from USB
+> > devices but also to save power if no wakeup devices are plugged into
+> > USB.  In order to achieve this we need some type of link from the
+> > top-level hub device to the actual USB devices that were enumerated.
+> 
+> Yes, in a prior version I mentioned we already had 2 ways to describe
+> hubs. I view this as a 3rd way.
 
-NOTE: it appears that things aren't totally broken without this fix,
-but clearly something isn't going to be working right.  If nothing
-else, without this fix I see this in the logs:
+The description of the onboard hub driver is essentially the same as
+that for the 'smsc,usb3503a'. Ths driver doesn't require the USB device
+nodes, but they could as well exist, they are only omitted most of the
+time because USB does discovery, some DT files include these implicit
+nodes though.
 
-  OF: /soc@0/mdss@ae00000: could not get #interconnect-cells for /soc@0/interrupt-controller@17a00000
+It would be possible to rewrite the onboard_usb_hub driver in a way that
+it wouldn't require phandles of the 'usb_hub' (or whatever) node, and
+instead provide the 'usb_hub' with phandles of the USB devices. The
+hub would be specified exactly once:
 
-Fixes: e23b1220a246 ("arm64: dts: qcom: sc7180: Increase the number of interconnect cells")
-Signed-off-by: Douglas Anderson <dianders@chromium.org>
----
+{
+	usb_hub: usb-hub {
+		compatible = "realtek,rts5411", "onboard-usb-hub";
+		usbdevs = <&usb_1_udev1>, <&usb_1_udev2>;
+		vdd-supply = <&pp3300_hub>;
+        };
 
- arch/arm64/boot/dts/qcom/sc7180.dtsi | 2 +-
- 1 file changed, 1 insertion(+), 1 deletion(-)
+	&usb_1_dwc3 {
+		usb_1_udev1: usb@1 {
+        		reg = <1>;
+		};
 
-diff --git a/arch/arm64/boot/dts/qcom/sc7180.dtsi b/arch/arm64/boot/dts/qcom/sc7180.dtsi
-index 6678f1e8e395..a02776ce77a1 100644
---- a/arch/arm64/boot/dts/qcom/sc7180.dtsi
-+++ b/arch/arm64/boot/dts/qcom/sc7180.dtsi
-@@ -2811,7 +2811,7 @@ mdss: mdss@ae00000 {
- 			interrupt-controller;
- 			#interrupt-cells = <1>;
- 
--			interconnects = <&mmss_noc MASTER_MDP0 &mc_virt SLAVE_EBI1>;
-+			interconnects = <&mmss_noc MASTER_MDP0 0 &mc_virt SLAVE_EBI1 0>;
- 			interconnect-names = "mdp0-mem";
- 
- 			iommus = <&apps_smmu 0x800 0x2>;
--- 
-2.28.0.709.gb0816b6eb0-goog
+		usb_1_udev2: usb@2 {
+			reg = <2>;
+	        };
+	};
+}
 
+The only difference with the 'smsc,usb3503a' would be that the nodes of
+the (existing!) USB devices would be specified (without any custom
+properties).
+
+I'm not convinced that 'pre-probes' can solve the entire problem on the
+driver side and keep thinking that there needs to be a single non-USB
+instance that controls the power state, particularly for the
+suspend/resume case. I will provide some more details in another reply
+to this thread.
