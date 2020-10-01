@@ -2,119 +2,101 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from vger.kernel.org (vger.kernel.org [23.128.96.18])
-	by mail.lfdr.de (Postfix) with ESMTP id DEA7127F99B
-	for <lists+devicetree@lfdr.de>; Thu,  1 Oct 2020 08:42:10 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTP id D526D27F9A5
+	for <lists+devicetree@lfdr.de>; Thu,  1 Oct 2020 08:49:41 +0200 (CEST)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S1731131AbgJAGmE (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Thu, 1 Oct 2020 02:42:04 -0400
-Received: from mail-ej1-f68.google.com ([209.85.218.68]:37563 "EHLO
-        mail-ej1-f68.google.com" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S1726992AbgJAGmD (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Thu, 1 Oct 2020 02:42:03 -0400
-Received: by mail-ej1-f68.google.com with SMTP id nw23so6366953ejb.4;
-        Wed, 30 Sep 2020 23:42:01 -0700 (PDT)
-X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=1e100.net; s=20161025;
-        h=x-gm-message-state:date:from:to:cc:subject:message-id:references
-         :mime-version:content-disposition:in-reply-to:user-agent;
-        bh=AFhmMjQUJ4d/TCY1Soy1FghGhE1GLMxB/YcvvfKL18Y=;
-        b=KsyBRg0+4kFoduXZ5Rqm4JsKN1wFIDdWZn9jk9l+YgabIo40fDxm9bYDHw922dqKkj
-         aFWTHcwQh2TYny7F5eWlJ8Uxj2gIC7OMEtjnujstOHic3iftUOhoIStfKatzz3mGQ88O
-         v3vtm1d5BB4ha+c6f2plhOcs3HYANHxR8yoIQqqhpnvLxQYj4FYzvzzUn1zA2U02CQ7K
-         nesa6QxVy3jzOgmC1uG2stii1+Ak2eJroG+ED53sB/Mt/Qii119thUll2FOypTGn2b2Z
-         ov1mkvkTUTQyjjp65UnSBHF/98oInje+akUMh+0e9BP3zBTDYT+JxRwoves2LqcNwBFh
-         rddA==
-X-Gm-Message-State: AOAM532EopTei/UZnWS8SdWq11Xtp8ct6Ew+2Yc7o6g0M/1ET7PPz4tq
-        6gygjytTllwrssHNy4YrDAg=
-X-Google-Smtp-Source: ABdhPJypB3zCOCcDJbhJSVfDFxjYjy+8oWdrBVDzuFFC3vv0mlahEnCsQ0cYw3m2eN0WN8K7H+wl5g==
-X-Received: by 2002:a17:906:2cd2:: with SMTP id r18mr6820842ejr.371.1601534520883;
-        Wed, 30 Sep 2020 23:42:00 -0700 (PDT)
-Received: from kozik-lap ([194.230.155.194])
-        by smtp.googlemail.com with ESMTPSA id lo25sm3262836ejb.53.2020.09.30.23.41.57
-        (version=TLS1_2 cipher=ECDHE-ECDSA-CHACHA20-POLY1305 bits=256/256);
-        Wed, 30 Sep 2020 23:41:59 -0700 (PDT)
-Date:   Thu, 1 Oct 2020 08:41:56 +0200
-From:   Krzysztof Kozlowski <krzk@kernel.org>
-To:     Zhen Lei <thunder.leizhen@huawei.com>
-Cc:     Wei Xu <xuwei5@hisilicon.com>, Rob Herring <robh+dt@kernel.org>,
-        Jonathan Cameron <Jonathan.Cameron@Huawei.com>,
-        devicetree <devicetree@vger.kernel.org>,
-        linux-arm-kernel <linux-arm-kernel@lists.infradead.org>,
-        linux-kernel <linux-kernel@vger.kernel.org>,
-        Libin <huawei.libin@huawei.com>,
-        Kefeng Wang <wangkefeng.wang@huawei.com>
-Subject: Re: [PATCH v6 14/17] dt-bindings: arm: hisilicon: convert
- hisilicon,hip04-bootwrapper bindings to json-schema
-Message-ID: <20201001064156.GF3018@kozik-lap>
-References: <20200930031712.2365-1-thunder.leizhen@huawei.com>
- <20200930031712.2365-15-thunder.leizhen@huawei.com>
+        id S1726992AbgJAGth (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Thu, 1 Oct 2020 02:49:37 -0400
+Received: from fllv0015.ext.ti.com ([198.47.19.141]:56170 "EHLO
+        fllv0015.ext.ti.com" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
+        with ESMTP id S1725878AbgJAGth (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Thu, 1 Oct 2020 02:49:37 -0400
+Received: from fllv0035.itg.ti.com ([10.64.41.0])
+        by fllv0015.ext.ti.com (8.15.2/8.15.2) with ESMTP id 0916nUF5115339;
+        Thu, 1 Oct 2020 01:49:30 -0500
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=ti.com;
+        s=ti-com-17Q1; t=1601534970;
+        bh=f39Tm9PGnT5Kb0GT6JYUCDYVTa14cU//tN6YQOFFebI=;
+        h=Subject:From:To:CC:References:Date:In-Reply-To;
+        b=st8gO3sABqq7+kizVNNxkEYJQ1ZwW9CLDWe175b9z+pqhimCnX55ne98V5ZjTCF0l
+         quqRD5yjS7Revhh915W2t1J8+JHBK/KFl4aF+wkIaZjG30J9vna/ACNbNeBQ0KnzHx
+         +TSuM33rmYMQGZgGcwvKFerY/CtLAh/GOPKdgdck=
+Received: from DFLE114.ent.ti.com (dfle114.ent.ti.com [10.64.6.35])
+        by fllv0035.itg.ti.com (8.15.2/8.15.2) with ESMTP id 0916nUkb050443;
+        Thu, 1 Oct 2020 01:49:30 -0500
+Received: from DFLE103.ent.ti.com (10.64.6.24) by DFLE114.ent.ti.com
+ (10.64.6.35) with Microsoft SMTP Server (version=TLS1_2,
+ cipher=TLS_ECDHE_RSA_WITH_AES_128_CBC_SHA256_P256) id 15.1.1979.3; Thu, 1 Oct
+ 2020 01:49:30 -0500
+Received: from lelv0326.itg.ti.com (10.180.67.84) by DFLE103.ent.ti.com
+ (10.64.6.24) with Microsoft SMTP Server (version=TLS1_2,
+ cipher=TLS_ECDHE_RSA_WITH_AES_128_CBC_SHA256_P256) id 15.1.1979.3 via
+ Frontend Transport; Thu, 1 Oct 2020 01:49:29 -0500
+Received: from [192.168.2.6] (ileax41-snat.itg.ti.com [10.172.224.153])
+        by lelv0326.itg.ti.com (8.15.2/8.15.2) with ESMTP id 0916nRJL084046;
+        Thu, 1 Oct 2020 01:49:27 -0500
+Subject: Re: [PATCH 09/18] dt-bindings: dma: ti: Add document for K3 BCDMA
+From:   Peter Ujfalusi <peter.ujfalusi@ti.com>
+To:     <vkoul@kernel.org>, <nm@ti.com>, <ssantosh@kernel.org>,
+        <robh+dt@kernel.org>, <vigneshr@ti.com>
+CC:     <dan.j.williams@intel.com>, <t-kristo@ti.com>,
+        <lokeshvutla@ti.com>, <linux-arm-kernel@lists.infradead.org>,
+        <linux-kernel@vger.kernel.org>, <devicetree@vger.kernel.org>,
+        <dmaengine@vger.kernel.org>
+References: <20200930091412.8020-1-peter.ujfalusi@ti.com>
+ <20200930091412.8020-10-peter.ujfalusi@ti.com>
+X-Pep-Version: 2.0
+Message-ID: <9b0cea1e-c9c3-b38f-2bf1-1501133c16ae@ti.com>
+Date:   Thu, 1 Oct 2020 09:49:43 +0300
+User-Agent: Mozilla/5.0 (X11; Linux x86_64; rv:68.0) Gecko/20100101
+ Thunderbird/68.12.0
 MIME-Version: 1.0
-Content-Type: text/plain; charset=utf-8
-Content-Disposition: inline
-In-Reply-To: <20200930031712.2365-15-thunder.leizhen@huawei.com>
-User-Agent: Mutt/1.9.4 (2018-02-28)
+In-Reply-To: <20200930091412.8020-10-peter.ujfalusi@ti.com>
+Content-Type: text/plain; charset="utf-8"
+Content-Language: en-US
+Content-Transfer-Encoding: quoted-printable
+X-EXCLAIMER-MD-CONFIG: e1e8a2fd-e40a-4ac6-ac9b-f7e9cc9ee180
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-On Wed, Sep 30, 2020 at 11:17:09AM +0800, Zhen Lei wrote:
-> Convert the Hisilicon Bootwrapper boot method binding to DT schema format
-> using json-schema.
-> 
-> The property boot-method contains two groups of physical address range
-> information: bootwrapper and relocation. The "uint32-array" type is not
-> suitable for it, because the field "address" and "size" may occupy one or
-> two cells respectively. Use "minItems: 1" and "maxItems: 2" to allow it
-> can be written in "<addr size addr size>" or "<addr size>, <addr size>"
-> format.
-> 
-> Signed-off-by: Zhen Lei <thunder.leizhen@huawei.com>
+Hi Rob,
+
+On 30/09/2020 12.14, Peter Ujfalusi wrote:
+> New binding document for
+> Texas Instruments K3 Block Copy DMA (BCDMA).
+>=20
+> BCDMA is introduced as part of AM64.
+>=20
+> Signed-off-by: Peter Ujfalusi <peter.ujfalusi@ti.com>
 > ---
->  .../hisilicon/controller/hip04-bootwrapper.yaml    | 34 ++++++++++++++++++++++
->  .../controller/hisilicon,hip04-bootwrapper.txt     |  9 ------
->  2 files changed, 34 insertions(+), 9 deletions(-)
->  create mode 100644 Documentation/devicetree/bindings/arm/hisilicon/controller/hip04-bootwrapper.yaml
->  delete mode 100644 Documentation/devicetree/bindings/arm/hisilicon/controller/hisilicon,hip04-bootwrapper.txt
-> 
-> diff --git a/Documentation/devicetree/bindings/arm/hisilicon/controller/hip04-bootwrapper.yaml b/Documentation/devicetree/bindings/arm/hisilicon/controller/hip04-bootwrapper.yaml
+>  .../devicetree/bindings/dma/ti/k3-bcdma.yaml  | 183 ++++++++++++++++++=
+
+>  1 file changed, 183 insertions(+)
+>  create mode 100644 Documentation/devicetree/bindings/dma/ti/k3-bcdma.y=
+aml
+>=20
+> diff --git a/Documentation/devicetree/bindings/dma/ti/k3-bcdma.yaml b/D=
+ocumentation/devicetree/bindings/dma/ti/k3-bcdma.yaml
 > new file mode 100644
-> index 000000000000000..7378159e61df998
+> index 000000000000..c84fb641738f
 > --- /dev/null
-> +++ b/Documentation/devicetree/bindings/arm/hisilicon/controller/hip04-bootwrapper.yaml
-> @@ -0,0 +1,34 @@
-> +# SPDX-License-Identifier: (GPL-2.0-only OR BSD-2-Clause)
-> +%YAML 1.2
-> +---
-> +$id: http://devicetree.org/schemas/arm/hisilicon/controller/hip04-bootwrapper.yaml#
-> +$schema: http://devicetree.org/meta-schemas/core.yaml#
-> +
-> +title: Bootwrapper boot method
-> +
-> +maintainers:
-> +  - Wei Xu <xuwei5@hisilicon.com>
-> +
-> +description: Bootwrapper boot method (software protocol on SMP)
-> +
-> +properties:
+> +++ b/Documentation/devicetree/bindings/dma/ti/k3-bcdma.yaml
+> @@ -0,0 +1,183 @@
+
+=2E..
+
 > +  compatible:
-> +    items:
-> +      - const: hisilicon,hip04-bootwrapper
-> +
-> +  boot-method:
-> +    description: |
-> +      Address and size of boot method.
-> +      [0]: bootwrapper physical address
-> +      [1]: bootwrapper size
-> +      [2]: relocation physical address
-> +      [3]: relocation size
+> +    enum:
+> +      - ti,am64-dmss-bcdma
 
-Intead: items with each item description (bootwrapper address,
-relocation address). This way also min/max Items should not be needed.
+Would it be OK if I use ti,am64x-dmss-bcdma or should I stick with
+am64-dmss-bcdma.
+The TRM refers to the family as AM64x, but having the 'x' in the
+compatible did not sounded right.
 
-Best regards,
-Krzysztof
+- P=C3=A9ter
 
+Texas Instruments Finland Oy, Porkkalankatu 22, 00180 Helsinki.
+Y-tunnus/Business ID: 0615521-4. Kotipaikka/Domicile: Helsinki
 
-> +    minItems: 1
-> +    maxItems: 2
-> +
