@@ -2,133 +2,131 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from vger.kernel.org (vger.kernel.org [23.128.96.18])
-	by mail.lfdr.de (Postfix) with ESMTP id CA5E927F9D4
-	for <lists+devicetree@lfdr.de>; Thu,  1 Oct 2020 09:00:50 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTP id 3D8E427FA1B
+	for <lists+devicetree@lfdr.de>; Thu,  1 Oct 2020 09:22:17 +0200 (CEST)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S1730884AbgJAHAu (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Thu, 1 Oct 2020 03:00:50 -0400
-Received: from muru.com ([72.249.23.125]:45806 "EHLO muru.com"
-        rhost-flags-OK-OK-OK-OK) by vger.kernel.org with ESMTP
-        id S1725878AbgJAHAu (ORCPT <rfc822;devicetree@vger.kernel.org>);
-        Thu, 1 Oct 2020 03:00:50 -0400
-Received: from atomide.com (localhost [127.0.0.1])
-        by muru.com (Postfix) with ESMTPS id 314B98057;
-        Thu,  1 Oct 2020 07:00:49 +0000 (UTC)
-Date:   Thu, 1 Oct 2020 10:00:43 +0300
-From:   Tony Lindgren <tony@atomide.com>
-To:     Trent Piepho <tpiepho@gmail.com>
-Cc:     Drew Fustini <drew@beagleboard.org>,
+        id S1731106AbgJAHWL (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Thu, 1 Oct 2020 03:22:11 -0400
+Received: from lindbergh.monkeyblade.net ([23.128.96.19]:48422 "EHLO
+        lindbergh.monkeyblade.net" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
+        with ESMTP id S1725938AbgJAHWK (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Thu, 1 Oct 2020 03:22:10 -0400
+Received: from metis.ext.pengutronix.de (metis.ext.pengutronix.de [IPv6:2001:67c:670:201:290:27ff:fe1d:cc33])
+        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 73C89C0613D0
+        for <devicetree@vger.kernel.org>; Thu,  1 Oct 2020 00:22:10 -0700 (PDT)
+Received: from gallifrey.ext.pengutronix.de ([2001:67c:670:201:5054:ff:fe8d:eefb] helo=[IPv6:::1])
+        by metis.ext.pengutronix.de with esmtp (Exim 4.92)
+        (envelope-from <a.fatoum@pengutronix.de>)
+        id 1kNsuk-0000iy-E1; Thu, 01 Oct 2020 09:22:06 +0200
+Subject: Re: [PATCH v2 08/12] ARM: dts: imx6dl-pico: fix board compatibles
+To:     Krzysztof Kozlowski <krzk@kernel.org>,
         Rob Herring <robh+dt@kernel.org>,
-        Linus Walleij <linus.walleij@linaro.org>,
-        Jason Kridner <jkridner@beagleboard.org>,
-        Robert Nelson <robertcnelson@gmail.com>,
-        linux-omap@vger.kernel.org, linux-kernel@vger.kernel.org,
-        devicetree@vger.kernel.org,
-        linux-gpio <linux-gpio@vger.kernel.org>,
-        Christina Quast <cquast@hanoverdisplays.com>
-Subject: Re: [PATCH] ARM: dts: document pinctrl-single,pins when
- #pinctrl-cells = 2
-Message-ID: <20201001070043.GS9471@atomide.com>
-References: <20200924060645.GD9471@atomide.com>
- <CA+7tXijkS8UMFk4t=DuKjZZNnThbRarPQvxwxjg-uJFTKJRsXA@mail.gmail.com>
- <20200924070443.GF9471@atomide.com>
- <CA+7tXihBdw9AOGL7Hp2cH9+ii8fUXaaZZDUP3icyeOkMuGm4qA@mail.gmail.com>
- <20200930051521.GN9471@atomide.com>
- <CA+7tXig=3hbFXfmYMC5Hd1Zc2n-6uGXbMePPw_Cr4bOsyt7QQA@mail.gmail.com>
- <20200930091526.GQ9471@atomide.com>
- <CA+7tXihYb6AHrQLpO9UDHV7YFbzo_Pm8EdXNJXX+tJXX-L6UYA@mail.gmail.com>
- <20200930094714.GR9471@atomide.com>
- <CA+7tXijZJnJ-=erFq+XQCrwwV7tv+6PsmO5T8XSR3p1Jb6qjkg@mail.gmail.com>
+        Shawn Guo <shawnguo@kernel.org>,
+        Sascha Hauer <s.hauer@pengutronix.de>,
+        Pengutronix Kernel Team <kernel@pengutronix.de>,
+        Fabio Estevam <festevam@gmail.com>,
+        NXP Linux Team <linux-imx@nxp.com>,
+        Anson Huang <Anson.Huang@nxp.com>,
+        Andreas Kemnade <andreas@kemnade.info>,
+        Stefan Riedmueller <s.riedmueller@phytec.de>,
+        Robert Jones <rjones@gateworks.com>,
+        Li Yang <leoyang.li@nxp.com>, devicetree@vger.kernel.org,
+        linux-kernel@vger.kernel.org, linux-arm-kernel@lists.infradead.org
+References: <20200930190143.27032-1-krzk@kernel.org>
+ <20200930190143.27032-9-krzk@kernel.org>
+From:   Ahmad Fatoum <a.fatoum@pengutronix.de>
+Message-ID: <0a0afea6-8cbb-3e89-5a4f-89660c942ca3@pengutronix.de>
+Date:   Thu, 1 Oct 2020 09:22:03 +0200
+User-Agent: Mozilla/5.0 (X11; Linux x86_64; rv:68.0) Gecko/20100101
+ Thunderbird/68.12.0
 MIME-Version: 1.0
+In-Reply-To: <20200930190143.27032-9-krzk@kernel.org>
 Content-Type: text/plain; charset=utf-8
-Content-Disposition: inline
-Content-Transfer-Encoding: 8bit
-In-Reply-To: <CA+7tXijZJnJ-=erFq+XQCrwwV7tv+6PsmO5T8XSR3p1Jb6qjkg@mail.gmail.com>
+Content-Language: en-US
+Content-Transfer-Encoding: 7bit
+X-SA-Exim-Connect-IP: 2001:67c:670:201:5054:ff:fe8d:eefb
+X-SA-Exim-Mail-From: a.fatoum@pengutronix.de
+X-SA-Exim-Scanned: No (on metis.ext.pengutronix.de); SAEximRunCond expanded to false
+X-PTX-Original-Recipient: devicetree@vger.kernel.org
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-* Trent Piepho <tpiepho@gmail.com> [200930 18:50]:
-> On Wed, Sep 30, 2020 at 2:47 AM Tony Lindgren <tony@atomide.com> wrote:
-> >
-> > * Trent Piepho <tpiepho@gmail.com> [200930 09:34]:
+Hello Krzysztof,
+
+On 9/30/20 9:01 PM, Krzysztof Kozlowski wrote:
+> There are four flavors of TechNexion PICO-IMX6 boards.  They have their
+> own DTSes, even though in Dwarf, Nymph and Pi are exactly the same.
+> They also have their own bindings so adjust the compatibles to match the
+> bindings.
 > 
-> > >
-> > > Where do these flags go?  In pinctrl-single,pins?  Like:
-> > >
-> > > pinctrl-single,pins = <AM335X_PIN_MDC MUX_MODE7 PIN_INPUT_PULLUP>;
-> > >
-> > > But PIN_INPUT_PULLUP is a generic flag?  Which is translated into the
-> > > proper value by??
-> >
-> > Yes that's what I was thinking, something like this with generic flags:
-> >
-> > pinctrl-single,pins = <AM335X_PIN_MDC (PIN_INPUT | PIN_PULLUP) MUX_MODE7>;
+> Signed-off-by: Krzysztof Kozlowski <krzk@kernel.org>
 > 
-> It doesn't seem like these patches help achieve that, since they
-> create device tree binaries with a property that has the same name and
-> number of cells, but the cells have a different meaning than above,
-> and must be handled differently by the driver.  So you either drop
-> compatibility or need to forever deal with supporting an interim
-> format that is being created by these patches.
+> ---
 > 
-> The conf and max are already split in (all but one) of the device tree
-> SOURCE files via the macro with multiple fields.  That does seem like
-> a good step if you wanted to transition into something like the above.
-> But splitting it in the binary too doesn't help.  Is there a way the
-> dtb now being created can turn into the above via a driver change?
-> Absolutely not.  So what's the point of an interim binary format?  All
-> that matters is what the source looks like, and since that doesn't
-> change, nothing is accomplished.
-
-We do get the conf and mux data separated though. This fixes the long
-term complaint that the pinctrl single binding mixes conf and mux data.
-And the driver can take the dtb conf values and convert them into
-something generic and use more generic pinctrl functions. So I would
-not call it interim binary format, it's something we'll be using in
-the long term. I would also like to get to the next step that we've
-been discussing, but who knows if we ever get there. Feel free to
-get the ball rolling on the new generic binding, we'll be discussing
-it for years as has happened with the earlier attempts :)
-
-BTW, for more complicated use cases, we can already quite easily
-create hardware specific drivers with the use of GENERIC_PINCTRL_GROUPS
-and GENERIC_PINMUX_FUNCTIONS, see for example the iodelay driver at
-drivers/pinctrl/ti/pinctrl-ti-iodelay.c. It uses #pinctrl-cells = 2 and
-passes the timing values in two cells.
-
-> I'll also point out that the current generic pinconf, done not via
-> flags but with multiple properties for each configurable parameter,
-> has a drive strength properties with strength in mA or µA as a
-> parameter.  How would you do that with generic bit flags?  I don't
-> think you can fit everything in pinconf-generic.h into one 32 bit
-> cell.
-
-Good point. The values could be passed by increasing the value for
-#pinctrl-cells and then the generic format would need to look like:
-
-pinctrl-single,pins = <AM335X_PIN_MDC (PIN_INPUT | PIN_PULLUP)
-                       1234 MUX_MODE7>;
-
-> > > Or are you talking about replacing the existing pinctrl-0,
-> > > pinctrl-names properties with a totally different system that looks
-> > > more like gpio and interrupt handles?
-> >
-> > That would be even better :) Might be just too much to deal with..
-> >
-> > In any case the parser code could already be generic if we had generic
-> > flags based on #pinctrl-cells.
+> Changes since v1:
+> 1. None
+> ---
+>  arch/arm/boot/dts/imx6dl-pico-dwarf.dts  | 2 +-
+>  arch/arm/boot/dts/imx6dl-pico-hobbit.dts | 2 +-
+>  arch/arm/boot/dts/imx6dl-pico-nymph.dts  | 2 +-
+>  arch/arm/boot/dts/imx6dl-pico-pi.dts     | 2 +-
+>  4 files changed, 4 insertions(+), 4 deletions(-)
 > 
-> But the pinctrl-single,pins isn't parsed.  It just uses the values as
-> they are.  You'd have to write something to parse the cells and add
-> more data to the dts that told the parser how to turn them into device
-> specific values.  It seems like that could eventually achieve
-> basically what is happening already with the dts preprocessor
-> converting symbolic constants into device specific values.
+> diff --git a/arch/arm/boot/dts/imx6dl-pico-dwarf.dts b/arch/arm/boot/dts/imx6dl-pico-dwarf.dts
+> index 659a8e8714ea..d85b15a8c127 100644
+> --- a/arch/arm/boot/dts/imx6dl-pico-dwarf.dts
+> +++ b/arch/arm/boot/dts/imx6dl-pico-dwarf.dts
+> @@ -13,5 +13,5 @@
+>  
+>  / {
+>  	model = "TechNexion PICO-IMX6 DualLite/Solo Board and Dwarf baseboard";
+> -	compatible = "technexion,imx6dl-pico", "fsl,imx6dl";
+> +	compatible = "technexion,imx6dl-pico-dwarf", "fsl,imx6dl";
 
-Except we'd be setting the conf in a generic way and would avoid
-potentially lots of pin specific properties.
+Could you change this to have all three compatibles ("technexion,imx6dl-pico-dwarf", "technexion,imx6dl-pico",
+"fsl,imx6dl") and likewise for the other files? 
+That way other firmware that reuses the Linux device tree files and match against the SoM compatible
+continues to work after update.
 
-Regards,
+>  };
+> diff --git a/arch/arm/boot/dts/imx6dl-pico-hobbit.dts b/arch/arm/boot/dts/imx6dl-pico-hobbit.dts
+> index d7403c5c4337..08fedcbcc91b 100644
+> --- a/arch/arm/boot/dts/imx6dl-pico-hobbit.dts
+> +++ b/arch/arm/boot/dts/imx6dl-pico-hobbit.dts
+> @@ -13,5 +13,5 @@
+>  
+>  / {
+>  	model = "TechNexion PICO-IMX6 DualLite/Solo Board and Hobbit baseboard";
+> -	compatible = "technexion,imx6dl-pico", "fsl,imx6dl";
+> +	compatible = "technexion,imx6dl-pico-hobbit", "fsl,imx6dl";
+>  };
+> diff --git a/arch/arm/boot/dts/imx6dl-pico-nymph.dts b/arch/arm/boot/dts/imx6dl-pico-nymph.dts
+> index b282dbf953aa..32ccfc5d41ce 100644
+> --- a/arch/arm/boot/dts/imx6dl-pico-nymph.dts
+> +++ b/arch/arm/boot/dts/imx6dl-pico-nymph.dts
+> @@ -13,5 +13,5 @@
+>  
+>  / {
+>  	model = "TechNexion PICO-IMX6 DualLite/Solo Board and Nymph baseboard";
+> -	compatible = "technexion,imx6dl-pico", "fsl,imx6dl";
+> +	compatible = "technexion,imx6dl-pico-nymph", "fsl,imx6dl";
+>  };
+> diff --git a/arch/arm/boot/dts/imx6dl-pico-pi.dts b/arch/arm/boot/dts/imx6dl-pico-pi.dts
+> index b7b1c07f96f3..4590e8ad9a91 100644
+> --- a/arch/arm/boot/dts/imx6dl-pico-pi.dts
+> +++ b/arch/arm/boot/dts/imx6dl-pico-pi.dts
+> @@ -13,5 +13,5 @@
+>  
+>  / {
+>  	model = "TechNexion PICO-IMX6 DualLite/Solo Board and PI baseboard";
+> -	compatible = "technexion,imx6dl-pico", "fsl,imx6dl";
+> +	compatible = "technexion,imx6dl-pico-pi", "fsl,imx6dl";
+>  };
+> 
 
-Tony
+-- 
+Pengutronix e.K.                           |                             |
+Steuerwalder Str. 21                       | http://www.pengutronix.de/  |
+31137 Hildesheim, Germany                  | Phone: +49-5121-206917-0    |
+Amtsgericht Hildesheim, HRA 2686           | Fax:   +49-5121-206917-5555 |
