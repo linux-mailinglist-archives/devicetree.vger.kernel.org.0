@@ -2,220 +2,84 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from vger.kernel.org (vger.kernel.org [23.128.96.18])
-	by mail.lfdr.de (Postfix) with ESMTP id 48EF627F958
-	for <lists+devicetree@lfdr.de>; Thu,  1 Oct 2020 08:14:25 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTP id A1ED427F971
+	for <lists+devicetree@lfdr.de>; Thu,  1 Oct 2020 08:27:15 +0200 (CEST)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S1725962AbgJAGOV (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Thu, 1 Oct 2020 02:14:21 -0400
-Received: from lindbergh.monkeyblade.net ([23.128.96.19]:37988 "EHLO
-        lindbergh.monkeyblade.net" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S1725878AbgJAGOV (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Thu, 1 Oct 2020 02:14:21 -0400
-Received: from mail-vs1-xe44.google.com (mail-vs1-xe44.google.com [IPv6:2607:f8b0:4864:20::e44])
-        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 0AAE6C0613D0
-        for <devicetree@vger.kernel.org>; Wed, 30 Sep 2020 23:14:13 -0700 (PDT)
-Received: by mail-vs1-xe44.google.com with SMTP id j3so2082348vsm.0
-        for <devicetree@vger.kernel.org>; Wed, 30 Sep 2020 23:14:13 -0700 (PDT)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=chromium.org; s=google;
-        h=mime-version:references:in-reply-to:from:date:message-id:subject:to
-         :cc;
-        bh=VlK25AeCqL3jo7oZoKivx7ZKCZnGaTWNtqH24P3Rx58=;
-        b=nsKh9SmyYr6dFqhw75fYDL7n5mG3UUdgFMIuakzzITavWvq6EHjqF1X9nWwIt2r+wX
-         ojx5yjM71XwFhwhBRKWEodxX/dyhQeHrEI6fO/7tXmPZCrQuvRAeuMTU8UkiYbAfYgfV
-         y257KdPrMIfZeX9eyDP+cp0PpHAtvE9Vqtfko=
-X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=1e100.net; s=20161025;
-        h=x-gm-message-state:mime-version:references:in-reply-to:from:date
-         :message-id:subject:to:cc;
-        bh=VlK25AeCqL3jo7oZoKivx7ZKCZnGaTWNtqH24P3Rx58=;
-        b=fuzIblMcpn/nI2mtb6F6CaVEksiKrDdILXYxkTOCJowh21v7oT8lgu6s1mEVw4SmKL
-         m3B2Dt1nXLXQ0amBOcxeMeMi+Cv4g2OYDGpfjEDfWTEmnDnRwXvm6kfFECqTP5EZwi69
-         8kx+pVQ9bu9PmgxAxLjG9uwe1WdL3gb6ASw0LWZNmzcKItn0CjvbG5Tls+SX2aTOe4i0
-         3Cf0btx7kEZGl2USVlm3A0NDuZYYtveAyEwXU6sTKVgoqUdXpcCkTb4WUk+aA/ghv8Q9
-         CMsLe8d/Fu8jdiVRt+RauYyHqCA/VD0xqeCwQcD6mN9m7WE/1EaA7wKloUxdGBucJ1/4
-         88qA==
-X-Gm-Message-State: AOAM530L7Aay43JkPwIa/VhVUQL/woVKXWEAqHQnESchNj8NMYJ12xa+
-        UJaC8j54LIPdijfzFyuuNgwpCBHo6sHeL3vl4kSGFw==
-X-Google-Smtp-Source: ABdhPJxLXQQGLRLzY6RFBL5DI0m1HQoOFsQi0w8LIWHFTIqUlUJYtSC0vKE7KVqUO73TNfZ8033bmhNJ5nUfTYZXppE=
-X-Received: by 2002:a67:be08:: with SMTP id x8mr4072437vsq.47.1601532853052;
- Wed, 30 Sep 2020 23:14:13 -0700 (PDT)
+        id S1725883AbgJAG1O (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Thu, 1 Oct 2020 02:27:14 -0400
+Received: from mail.kernel.org ([198.145.29.99]:42036 "EHLO mail.kernel.org"
+        rhost-flags-OK-OK-OK-OK) by vger.kernel.org with ESMTP
+        id S1725878AbgJAG1O (ORCPT <rfc822;devicetree@vger.kernel.org>);
+        Thu, 1 Oct 2020 02:27:14 -0400
+Received: from mail-ej1-f43.google.com (mail-ej1-f43.google.com [209.85.218.43])
+        (using TLSv1.2 with cipher ECDHE-RSA-AES128-GCM-SHA256 (128/128 bits))
+        (No client certificate requested)
+        by mail.kernel.org (Postfix) with ESMTPSA id 54B4120888;
+        Thu,  1 Oct 2020 06:27:13 +0000 (UTC)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=kernel.org;
+        s=default; t=1601533633;
+        bh=26OzpoXVjNmkETeSzn8dz/u5lE23kmWOTAChnW4Go7A=;
+        h=References:In-Reply-To:From:Date:Subject:To:Cc:From;
+        b=g/cKkkbvFRn6lEejrz3fX2uK4DhU4EemhzS8DfevjSjUC0qEb+V+AA8omvPI7kRlZ
+         e1JsA7mmfeN4s7VuyNJ6cJhPbBREg7CQaqD52qBQd+fWS7Z/bcqnsXWRnn3Li6d1wG
+         pKzUQj14JFf953moV5LAi7/FcnFhlfAOR5D8MQGY=
+Received: by mail-ej1-f43.google.com with SMTP id md26so649214ejb.10;
+        Wed, 30 Sep 2020 23:27:13 -0700 (PDT)
+X-Gm-Message-State: AOAM5319TRLP1TxMnY4Yiu7Y6K+xhUt3mnhnfERWipx9/MOpKoKUqukw
+        10UQddZtNuc97s0/HvRQx4OVouph495jPduqhb4=
+X-Google-Smtp-Source: ABdhPJxuKkKM5+S9tTbnroIoTuTIsm7aVoi92bSQY9FPQF2AHqWz69Tgpy/I9r36K1AuEKlqMBfTJM015uGom93ATCc=
+X-Received: by 2002:a17:906:491:: with SMTP id f17mr6375413eja.454.1601533631814;
+ Wed, 30 Sep 2020 23:27:11 -0700 (PDT)
 MIME-Version: 1.0
-References: <20200930083120.11971-1-wenbin.mei@mediatek.com> <20200930083120.11971-5-wenbin.mei@mediatek.com>
-In-Reply-To: <20200930083120.11971-5-wenbin.mei@mediatek.com>
-From:   Nicolas Boichat <drinkcat@chromium.org>
-Date:   Thu, 1 Oct 2020 14:14:02 +0800
-Message-ID: <CANMq1KCQ9x1kgME3dAQmGzjUoqkNLuWGS4dG07qhNKQ3N=o_dw@mail.gmail.com>
-Subject: Re: [PATCH v3 4/4] mmc: mediatek: Add subsys clock control for MT8192 msdc
-To:     Wenbin Mei <wenbin.mei@mediatek.com>
-Cc:     Ulf Hansson <ulf.hansson@linaro.org>,
-        Rob Herring <robh+dt@kernel.org>,
-        Chaotian Jing <chaotian.jing@mediatek.com>,
-        Matthias Brugger <matthias.bgg@gmail.com>,
-        linux-mmc@vger.kernel.org,
-        Devicetree List <devicetree@vger.kernel.org>,
-        linux-arm Mailing List <linux-arm-kernel@lists.infradead.org>,
-        "moderated list:ARM/Mediatek SoC support" 
-        <linux-mediatek@lists.infradead.org>,
-        lkml <linux-kernel@vger.kernel.org>,
-        srv_heupstream <srv_heupstream@mediatek.com>
+References: <20200930031712.2365-1-thunder.leizhen@huawei.com> <20200930031712.2365-2-thunder.leizhen@huawei.com>
+In-Reply-To: <20200930031712.2365-2-thunder.leizhen@huawei.com>
+From:   Krzysztof Kozlowski <krzk@kernel.org>
+Date:   Thu, 1 Oct 2020 08:27:00 +0200
+X-Gmail-Original-Message-ID: <CAJKOXPdnNncLYgxAcHYS1SGVQkKO=SzFiq4BF=iUU+W3=noMAw@mail.gmail.com>
+Message-ID: <CAJKOXPdnNncLYgxAcHYS1SGVQkKO=SzFiq4BF=iUU+W3=noMAw@mail.gmail.com>
+Subject: Re: [PATCH v6 01/17] dt-bindings: mfd: syscon: add some compatible
+ strings for Hisilicon
+To:     Zhen Lei <thunder.leizhen@huawei.com>
+Cc:     Wei Xu <xuwei5@hisilicon.com>, Rob Herring <robh+dt@kernel.org>,
+        Jonathan Cameron <Jonathan.Cameron@huawei.com>,
+        devicetree <devicetree@vger.kernel.org>,
+        linux-arm-kernel <linux-arm-kernel@lists.infradead.org>,
+        linux-kernel <linux-kernel@vger.kernel.org>,
+        Libin <huawei.libin@huawei.com>,
+        Kefeng Wang <wangkefeng.wang@huawei.com>
 Content-Type: text/plain; charset="UTF-8"
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-On Wed, Sep 30, 2020 at 4:31 PM Wenbin Mei <wenbin.mei@mediatek.com> wrote:
+On Wed, 30 Sep 2020 at 05:19, Zhen Lei <thunder.leizhen@huawei.com> wrote:
 >
-> MT8192 msdc is an independent sub system, we need control more bus
-> clocks for it.
-> Add support for the additional subsys clocks to allow it to be
-> configured appropriately.
+> Add some compatible strings for Hisilicon controllers:
+> hisilicon,hi6220-sramctrl  --> Hi6220 SRAM controller
+> hisilicon,pcie-sas-subctrl --> HiP05/HiP06 PCIe-SAS subsystem controller
+> hisilicon,peri-subctrl     --> HiP05/HiP06 PERI subsystem controller
+> hisilicon,dsa-subctrl      --> HiP05/HiP06 DSA subsystem controller
 >
-> Signed-off-by: Wenbin Mei <wenbin.mei@mediatek.com>
+> Signed-off-by: Zhen Lei <thunder.leizhen@huawei.com>
 > ---
->  drivers/mmc/host/mtk-sd.c | 77 ++++++++++++++++++++++++++++++---------
->  1 file changed, 59 insertions(+), 18 deletions(-)
+>  Documentation/devicetree/bindings/mfd/syscon.yaml | 5 ++++-
+>  1 file changed, 4 insertions(+), 1 deletion(-)
 >
-> diff --git a/drivers/mmc/host/mtk-sd.c b/drivers/mmc/host/mtk-sd.c
-> index a704745e5882..9a1422955593 100644
-> --- a/drivers/mmc/host/mtk-sd.c
-> +++ b/drivers/mmc/host/mtk-sd.c
-> @@ -425,6 +425,8 @@ struct msdc_host {
->         struct clk *h_clk;      /* msdc h_clk */
->         struct clk *bus_clk;    /* bus clock which used to access register */
->         struct clk *src_clk_cg; /* msdc source clock control gate */
-> +       struct clk *sys_clk_cg; /* msdc subsys clock control gate */
-> +       struct clk_bulk_data bulk_clks[3];      /* pclk, axi, ahb clock control gate */
->         u32 mclk;               /* mmc subsystem clock frequency */
->         u32 src_clk_freq;       /* source clock frequency */
->         unsigned char timing;
-> @@ -784,6 +786,8 @@ static void msdc_set_busy_timeout(struct msdc_host *host, u64 ns, u64 clks)
->
->  static void msdc_gate_clock(struct msdc_host *host)
->  {
-> +       clk_bulk_disable_unprepare(ARRAY_SIZE(host->bulk_clks),
-> +                                  host->bulk_clks);
->         clk_disable_unprepare(host->src_clk_cg);
->         clk_disable_unprepare(host->src_clk);
->         clk_disable_unprepare(host->bus_clk);
-> @@ -792,10 +796,17 @@ static void msdc_gate_clock(struct msdc_host *host)
->
->  static void msdc_ungate_clock(struct msdc_host *host)
->  {
-> +       int ret;
-> +
->         clk_prepare_enable(host->h_clk);
->         clk_prepare_enable(host->bus_clk);
->         clk_prepare_enable(host->src_clk);
->         clk_prepare_enable(host->src_clk_cg);
-> +       ret = clk_bulk_prepare_enable(ARRAY_SIZE(host->bulk_clks),
-> +                                     host->bulk_clks);
-> +       if (ret)
-> +               dev_dbg(host->dev, "enable clks failed!\n");
-
-dev_err looks a lot more appropriate. Also, don't you want to exit the
-function in that case, rather than going to the while loop below where
-you may get stuck?
-
-> +
->         while (!(readl(host->base + MSDC_CFG) & MSDC_CFG_CKSTB))
->                 cpu_relax();
->  }
-> @@ -2366,6 +2377,52 @@ static void msdc_of_property_parse(struct platform_device *pdev,
->                 host->cqhci = false;
->  }
->
-> +static int msdc_of_clock_parse(struct platform_device *pdev,
-> +                              struct msdc_host *host)
-> +{
-> +       struct clk *clk;
-> +
-> +       host->src_clk = devm_clk_get(&pdev->dev, "source");
-> +       if (IS_ERR(host->src_clk))
-> +               return PTR_ERR(host->src_clk);
-> +
-> +       host->h_clk = devm_clk_get(&pdev->dev, "hclk");
-> +       if (IS_ERR(host->h_clk))
-> +               return PTR_ERR(host->h_clk);
-> +
-> +       host->bus_clk = devm_clk_get(&pdev->dev, "bus_clk");
-> +       if (IS_ERR(host->bus_clk))
-> +               host->bus_clk = NULL;
-
-Use devm_clk_get_optional instead (ditto for the next 2).
-
-> +
-> +       /*source clock control gate is optional clock*/
-> +       host->src_clk_cg = devm_clk_get(&pdev->dev, "source_cg");
-> +       if (IS_ERR(host->src_clk_cg))
-> +               host->src_clk_cg = NULL;
-> +
-> +       host->sys_clk_cg = devm_clk_get(&pdev->dev, "sys_cg");
-> +       if (IS_ERR(host->sys_clk_cg))
-> +               host->sys_clk_cg = NULL;
-> +       else
-> +               clk_prepare_enable(host->sys_clk_cg);
-
-This doesn't need to be in an else branch, calling clk_prepare_enable
-on a NULL clock is fine.
-
-However, is it expected that this clock is turned on forever after
-probe?! At the very least, the clock should be disabled in
-msdc_drv_remove, but, really, I think it should be enabled as needed,
-like the other clocks, in msdc_gate_clock?
-
-> +
-> +       clk = devm_clk_get(&pdev->dev, "pclk_cg");
-> +       if (IS_ERR(clk))
-> +               clk = NULL;
-> +       host->bulk_clks[0].clk = clk;
-> +
-> +       clk = devm_clk_get(&pdev->dev, "axi_cg");
-> +       if (IS_ERR(clk))
-> +               clk = NULL;
-> +       host->bulk_clks[1].clk = clk;
-> +
-> +       clk = devm_clk_get(&pdev->dev, "ahb_cg");
-> +       if (IS_ERR(clk))
-> +               clk = NULL;
-> +       host->bulk_clks[2].clk = clk;
-
-Use devm_clk_bulk_get_optional for these 3.
-
-> +
-> +       return 0;
-> +}
-> +
->  static int msdc_drv_probe(struct platform_device *pdev)
->  {
->         struct mmc_host *mmc;
-> @@ -2405,25 +2462,9 @@ static int msdc_drv_probe(struct platform_device *pdev)
->         if (ret)
->                 goto host_free;
->
-> -       host->src_clk = devm_clk_get(&pdev->dev, "source");
-> -       if (IS_ERR(host->src_clk)) {
-> -               ret = PTR_ERR(host->src_clk);
-> -               goto host_free;
-> -       }
+> diff --git a/Documentation/devicetree/bindings/mfd/syscon.yaml b/Documentation/devicetree/bindings/mfd/syscon.yaml
+> index 049ec2ffc7f97e4..fc2e85004d363bf 100644
+> --- a/Documentation/devicetree/bindings/mfd/syscon.yaml
+> +++ b/Documentation/devicetree/bindings/mfd/syscon.yaml
+> @@ -40,7 +40,10 @@ properties:
+>                - allwinner,sun50i-a64-system-controller
+>                - microchip,sparx5-cpu-syscon
+>                - mstar,msc313-pmsleep
 > -
-> -       host->h_clk = devm_clk_get(&pdev->dev, "hclk");
-> -       if (IS_ERR(host->h_clk)) {
-> -               ret = PTR_ERR(host->h_clk);
-> +       ret = msdc_of_clock_parse(pdev, host);
-> +       if (ret)
->                 goto host_free;
-> -       }
-> -
-> -       host->bus_clk = devm_clk_get(&pdev->dev, "bus_clk");
-> -       if (IS_ERR(host->bus_clk))
-> -               host->bus_clk = NULL;
-> -       /*source clock control gate is optional clock*/
-> -       host->src_clk_cg = devm_clk_get(&pdev->dev, "source_cg");
-> -       if (IS_ERR(host->src_clk_cg))
-> -               host->src_clk_cg = NULL;
->
->         host->reset = devm_reset_control_get_optional_exclusive(&pdev->dev,
->                                                                 "hrst");
-> --
-> 2.18.0
+> +              - hisilicon,hi6220-sramctrl
+> +              - hisilicon,pcie-sas-subctrl
+> +              - hisilicon,peri-subctrl
+> +              - hisilicon,dsa-subctrl
+
+Add them in alphabetical order, not at the end of list.
+
+Best regards,
+Krzysztof
