@@ -2,100 +2,182 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from vger.kernel.org (vger.kernel.org [23.128.96.18])
-	by mail.lfdr.de (Postfix) with ESMTP id 90CB4281828
-	for <lists+devicetree@lfdr.de>; Fri,  2 Oct 2020 18:42:13 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTP id 6EA152818D5
+	for <lists+devicetree@lfdr.de>; Fri,  2 Oct 2020 19:08:34 +0200 (CEST)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S1733260AbgJBQmM (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Fri, 2 Oct 2020 12:42:12 -0400
-Received: from lindbergh.monkeyblade.net ([23.128.96.19]:46804 "EHLO
+        id S2388111AbgJBRIc (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Fri, 2 Oct 2020 13:08:32 -0400
+Received: from lindbergh.monkeyblade.net ([23.128.96.19]:51046 "EHLO
         lindbergh.monkeyblade.net" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S1726017AbgJBQmM (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Fri, 2 Oct 2020 12:42:12 -0400
-Received: from bhuna.collabora.co.uk (bhuna.collabora.co.uk [IPv6:2a00:1098:0:82:1000:25:2eeb:e3e3])
-        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 0459DC0613D0;
-        Fri,  2 Oct 2020 09:42:12 -0700 (PDT)
-Received: from [IPv6:2003:c7:cf13:ec00:987c:fa6c:93a9:1dfa] (p200300c7cf13ec00987cfa6c93a91dfa.dip0.t-ipconnect.de [IPv6:2003:c7:cf13:ec00:987c:fa6c:93a9:1dfa])
-        (using TLSv1.2 with cipher ECDHE-RSA-AES128-GCM-SHA256 (128/128 bits))
-        (No client certificate requested)
-        (Authenticated sender: dafna)
-        by bhuna.collabora.co.uk (Postfix) with ESMTPSA id 98B2829DDEB;
-        Fri,  2 Oct 2020 17:42:08 +0100 (BST)
-Subject: Re: [PATCH v3 0/3] media: rockchip: Introduce driver for Rockchip's
- camera interface
-To:     Ezequiel Garcia <ezequiel@vanguardiasur.com.ar>,
-        Maxime Chevallier <maxime.chevallier@bootlin.com>
-Cc:     Mauro Carvalho Chehab <mchehab@kernel.org>,
-        Rob Herring <robh+dt@kernel.org>,
-        Robin Murphy <robin.murphy@arm.com>,
-        Mark Rutland <mark.rutland@arm.com>,
-        Heiko Stuebner <heiko@sntech.de>,
-        Hans Verkuil <hverkuil-cisco@xs4all.nl>,
-        Helen Koike <helen.koike@collabora.com>,
-        linux-media <linux-media@vger.kernel.org>,
-        devicetree <devicetree@vger.kernel.org>,
-        linux-arm-kernel <linux-arm-kernel@lists.infradead.org>,
-        "open list:ARM/Rockchip SoC..." <linux-rockchip@lists.infradead.org>,
-        Linux Kernel Mailing List <linux-kernel@vger.kernel.org>,
-        Thomas Petazzoni <thomas.petazzoni@bootlin.com>,
-        Miquel Raynal <miquel.raynal@bootlin.com>,
-        Paul Kocialkowski <paul.kocialkowski@bootlin.com>
-References: <20200922165535.1356622-1-maxime.chevallier@bootlin.com>
- <CAAEAJfCBi3AE23hbHB19FFNpmELp2hh3BU+qrdtmgBFJzv9A_g@mail.gmail.com>
-From:   Dafna Hirschfeld <dafna.hirschfeld@collabora.com>
-Message-ID: <e80036b7-f66f-83f0-a9cc-b904e0089db5@collabora.com>
-Date:   Fri, 2 Oct 2020 18:42:05 +0200
-User-Agent: Mozilla/5.0 (X11; Linux x86_64; rv:68.0) Gecko/20100101
- Thunderbird/68.10.0
+        with ESMTP id S1733260AbgJBRIc (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Fri, 2 Oct 2020 13:08:32 -0400
+Received: from mail-ua1-x942.google.com (mail-ua1-x942.google.com [IPv6:2607:f8b0:4864:20::942])
+        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 5A7E2C0613D0
+        for <devicetree@vger.kernel.org>; Fri,  2 Oct 2020 10:08:32 -0700 (PDT)
+Received: by mail-ua1-x942.google.com with SMTP id h15so583690uab.3
+        for <devicetree@vger.kernel.org>; Fri, 02 Oct 2020 10:08:32 -0700 (PDT)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+        d=chromium.org; s=google;
+        h=mime-version:references:in-reply-to:from:date:message-id:subject:to
+         :cc;
+        bh=PbIvQOosZgo3R2BZJc8GACD4WYs5J2seBOEgLzJ9hBM=;
+        b=CZpsJgYy8Zu1oH8utkKUY6fcC7xmaRZvupW4XBuX1ERHa99qsoAgCEsacauygHGyOw
+         a0sRG5fZlNs27aC1wNw//vRECILHOTEvvJja90QWG6g5CHF6BT5msQEGWa+NZiA1tFNb
+         AiiJsTtFWWGUwe6oIWGmSlzioRe6qjG8nLib0=
+X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+        d=1e100.net; s=20161025;
+        h=x-gm-message-state:mime-version:references:in-reply-to:from:date
+         :message-id:subject:to:cc;
+        bh=PbIvQOosZgo3R2BZJc8GACD4WYs5J2seBOEgLzJ9hBM=;
+        b=Eeee4RzMr/uOFPEoxjK/1RvMzDtlde2ssYEctNidReUYQ3IUh1sxHhUjzIzAbgCsSX
+         GcgssJqHbuLlwwXBJNIfihZQliVI9AX8kQTXQd9sDJ75dR273Iksj1nYkj5Y2JYCdkvF
+         XVQjk6pnpv3agH/VP1rOrGNRNiy2txqhhPeY5W6Z/Pjxiz03uQ/DpmdAScKpjyuz8xi8
+         i6vOmvbm4JsQQKx6gMv5roJNiQPBd8goxJshh9bh0opg/Sz31BIMNE/FHTxU/P8zsQgv
+         LnoPhaGEntw+Us2Nq/yvVTsC5KNa+sudonzfN4LaKea/N9lyfM36girfeYudomb/YbIL
+         WPFA==
+X-Gm-Message-State: AOAM533aMxhTGVpRL5g+jZV0PA86ZdysNFLr4d0PkZ+dFJA4yLmQ8TZJ
+        ye9k5qSHR45aq6kFXg54G8kVJWoVY06mBA==
+X-Google-Smtp-Source: ABdhPJz/GaHcqm0qq+oSJHKK4eupII9GkCcfoakNiXPbVcCDpDoiXVJyNNaxhM2AtsINUJql/yVD7g==
+X-Received: by 2002:ab0:5b86:: with SMTP id y6mr1943725uae.101.1601658511029;
+        Fri, 02 Oct 2020 10:08:31 -0700 (PDT)
+Received: from mail-vs1-f50.google.com (mail-vs1-f50.google.com. [209.85.217.50])
+        by smtp.gmail.com with ESMTPSA id 49sm303462uae.19.2020.10.02.10.08.29
+        for <devicetree@vger.kernel.org>
+        (version=TLS1_3 cipher=TLS_AES_128_GCM_SHA256 bits=128/128);
+        Fri, 02 Oct 2020 10:08:30 -0700 (PDT)
+Received: by mail-vs1-f50.google.com with SMTP id p11so856835vsg.3
+        for <devicetree@vger.kernel.org>; Fri, 02 Oct 2020 10:08:29 -0700 (PDT)
+X-Received: by 2002:a67:f4c2:: with SMTP id s2mr1917881vsn.4.1601658509277;
+ Fri, 02 Oct 2020 10:08:29 -0700 (PDT)
 MIME-Version: 1.0
-In-Reply-To: <CAAEAJfCBi3AE23hbHB19FFNpmELp2hh3BU+qrdtmgBFJzv9A_g@mail.gmail.com>
-Content-Type: text/plain; charset=utf-8; format=flowed
-Content-Language: en-US
-Content-Transfer-Encoding: 7bit
+References: <20200928101326.v4.1.I248292623d3d0f6a4f0c5bc58478ca3c0062b49a@changeid>
+ <20200929201701.GA1080459@bogus> <20200929220912.GF1621304@google.com>
+ <20200930013229.GB194665@rowland.harvard.edu> <20200930124915.GA1826870@google.com>
+ <CAL_JsqLq9ZJm_CMiqWwbQhgGeu_ac_j43pvk4+xCFueSbyL4wA@mail.gmail.com>
+ <CAD=FV=WcDzgcHNn1+gH+gq_WEwpD0XXdJGm2fBVpAB=3fVbzZA@mail.gmail.com> <CAL_Jsq+Zi+hCmUEiSmYw=pVK472=OW1ZjLnkH1NodWUm8FA5+g@mail.gmail.com>
+In-Reply-To: <CAL_Jsq+Zi+hCmUEiSmYw=pVK472=OW1ZjLnkH1NodWUm8FA5+g@mail.gmail.com>
+From:   Doug Anderson <dianders@chromium.org>
+Date:   Fri, 2 Oct 2020 10:08:17 -0700
+X-Gmail-Original-Message-ID: <CAD=FV=WJrvWBLk3oLpv6Q3uY4w7YeQBXVdkpn+SAS5dnxp9-=Q@mail.gmail.com>
+Message-ID: <CAD=FV=WJrvWBLk3oLpv6Q3uY4w7YeQBXVdkpn+SAS5dnxp9-=Q@mail.gmail.com>
+Subject: Re: [PATCH v4 1/2] dt-bindings: usb: Add binding for discrete onboard
+ USB hubs
+To:     Rob Herring <robh@kernel.org>
+Cc:     Matthias Kaehlcke <mka@chromium.org>,
+        Alan Stern <stern@rowland.harvard.edu>,
+        Greg Kroah-Hartman <gregkh@linuxfoundation.org>,
+        Frank Rowand <frowand.list@gmail.com>,
+        "linux-kernel@vger.kernel.org" <linux-kernel@vger.kernel.org>,
+        Linux USB List <linux-usb@vger.kernel.org>,
+        Bastien Nocera <hadess@hadess.net>,
+        Stephen Boyd <swboyd@chromium.org>,
+        Ravi Chandra Sadineni <ravisadineni@chromium.org>,
+        Krzysztof Kozlowski <krzk@kernel.org>,
+        "open list:OPEN FIRMWARE AND FLATTENED DEVICE TREE BINDINGS" 
+        <devicetree@vger.kernel.org>, Peter Chen <peter.chen@nxp.com>
+Content-Type: text/plain; charset="UTF-8"
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
+Hi,
+
+On Wed, Sep 30, 2020 at 1:20 PM Rob Herring <robh@kernel.org> wrote:
+>
+> > > > Datasheets from different manufacturers refer to these ICs as "USB hub
+> > > > controller". Calling the node "usb-hub-controller" would indeed help to
+> > > > distinguish it from the USB hub devices and represent existing hardware.
+> > > > And the USB device could have a "hub-controller" property, which also
+> > > > would be clearer than the current "hub" property.
+> > >
+> > > There aren't 2 (or 3) devices here. There's a single USB device (a
+> > > hub) and the DT representation should reflect that.
+> >
+> > That's not completely true, though, is it?
+>
+> I was referring to the hub. I only see 1 datasheet, 1 IC and 1 block
+> diagram... Lots of devices have more than one interface though usually
+> not different speeds of the same thing.
+
+Right, there is certainly more than one way to look at it and the way
+to look at it is based on how it's most convenient, I guess.  I mean,
+an SoC often has 1 (very long) datasheet, 1 IC, and 1 block diagram
+too...
+
+As a more similar example of single device that is listed in more than
+one location in the device tree, we can also look at embedded SDIO
+BT/WiFi combo cards.  This single device often provides WiFi under an
+SDIO bus and BT under a serial / USB bus.  I'm not 100% sure there are
+actually cases were the same board provides device tree data to both
+at the same time, but "brcm,bcm43540-bt" is an example of providing
+data to the Bluetooth (connected over serial port) and
+"brcm,bcm4329-fmac" to the WiFi (connected over the SDIO bus).  Of
+course WiFi/BT cheat in that the control logic is represented by the
+SDIO power sequencing stuff...
 
 
-Am 02.10.20 um 18:31 schrieb Ezequiel Garcia:
-> Hi Maxime,
-> 
-> On Tue, 22 Sep 2020 at 13:55, Maxime Chevallier
-> <maxime.chevallier@bootlin.com> wrote:
->>
->> Hi everyone,
->>
->> This is the third iteration of the series introducing a driver for the
->> PX30 camera interface.
->>
->> This was previously known as the "cif" driver in other iterations, but
->> was renamed to "vip" following Ezequiel's advices to match the datasheet
->> name.
->>
->> This is based on a BSP driver, and I'm not fully familiar with the media
->> and V4L2 frameworks, so I guess some review is still needed.
->>
->> This new series adds some stability fixes, and introduces the
->> double-buffering frame handling, giving better performances.
->>
->> Thanks to everyone who reviewed the first two iterations,
->>
->> Maxime
->>
->> Maxime Chevallier (3):
->>    media: dt-bindings: media: Document Rockchip VIP bindings
->>    media: rockchip: Introduce driver for Rockhip's camera interface
-> 
-> I can't find this "v3 2/3 media: rockchip: Introduce driver for
-> Rockhip's camera interface" patch in my mailbox. Perhaps it was too
-> large and got filtered?
-> Or maybe it's an issue on my side?
+Back to our case, though.  I guess the issue here is that we're the
+child of more than one bus.  Let's first pretend that the i2c lines of
+this hub are actually hooked up and establish how that would look
+first.  Then we can think about how it looks if this same device isn't
+hooked up via i2c.  In this case, it sounds as if you still don't want
+the device split among two nodes.  So I guess you'd prefer something
+like:
 
-I do see it on my mailbox, if it helps..
+i2c {
+  usb-hub@xx {
+    reg = <xx>;
+    compatible = "realtek,rts5411", "onboard-usb-hub";
+    vdd-supply = <&pp3300_hub>;
+    usb-devices = <&usb_controller 1>;
+  };
+};
 
-Dafna,
+...and then you wouldn't have anything under the USB controller
+itself.  Is that correct?  So even though there are existing bindings
+saying that a USB device should be listed via VID/PID, the desire to
+represent this as a single node overrides that, right?  (NOTE: this is
+similar to what Matthias proposed in his response except that I've
+added an index so that we don't need _anything_ under the controller).
 
-> 
-> Cheers,
-> Ezequiel
-> 
+Having this primarily listed under the i2c bus makes sense because the
+control logic for the hub is hooked up via i2c.  Having the power
+supply associated with it also makes some amount of sense since it's a
+control signal.  It's also convenient that i2c devices have their
+probe called _before_ we try to detect if they're there because it's
+common that i2c devices need power applied first.
+
+Now, just because we don't have the i2c bus hooked up doesn't change
+the fact that there is control logic.  We also certainly wouldn't want
+two ways of describing this same hub: one way if the i2c is hooked up
+and one way if it's not hooked up.  To me this means that the we
+should be describing this hub as a top-level node if i2c isn't hooked
+up, just like we do with "smsc,usb3503a"
+
+Said another way, we have these points:
+
+a) The control logic for this bus could be hooked up to an i2c bus.
+
+b) If the control logic is hooked up to an i2c bus it feels like
+that's where the device's primary node should be placed, not under the
+USB controller.
+
+c) To keep the i2c and non-i2c case as similar as possible, if the i2c
+bus isn't hooked up the hub's primary node should be a top-level node,
+not under the USB controller.
+
+
+NOTE ALSO: the fact that we might want to list this hub under an i2c
+controller also seems like it's a good argument against putting this
+logic in the xhci-platform driver?
+
+
+I _think_ the above representation would be OK with Rob (right?) and I
+think it'd be pretty easy to adapt Matthias's existing code to work
+with it.  We'd have to make sure we were careful that things worked in
+either probe ordering (in case the firmware happened to leave the
+power rail on sometimes and the USB devices started probing before the
+hub driver did), but it feels like it should be possible, right?
+
+
+ -Doug
