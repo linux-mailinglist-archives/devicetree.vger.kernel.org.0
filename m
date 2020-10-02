@@ -2,105 +2,123 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from vger.kernel.org (vger.kernel.org [23.128.96.18])
-	by mail.lfdr.de (Postfix) with ESMTP id 89A0B2815AF
-	for <lists+devicetree@lfdr.de>; Fri,  2 Oct 2020 16:49:55 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTP id 749E52815DA
+	for <lists+devicetree@lfdr.de>; Fri,  2 Oct 2020 16:55:20 +0200 (CEST)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S2388177AbgJBOty (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Fri, 2 Oct 2020 10:49:54 -0400
-Received: from inva020.nxp.com ([92.121.34.13]:47618 "EHLO inva020.nxp.com"
-        rhost-flags-OK-OK-OK-OK) by vger.kernel.org with ESMTP
-        id S2387688AbgJBOtt (ORCPT <rfc822;devicetree@vger.kernel.org>);
-        Fri, 2 Oct 2020 10:49:49 -0400
-Received: from inva020.nxp.com (localhost [127.0.0.1])
-        by inva020.eu-rdc02.nxp.com (Postfix) with ESMTP id 423E61A106B;
-        Fri,  2 Oct 2020 16:49:48 +0200 (CEST)
-Received: from inva024.eu-rdc02.nxp.com (inva024.eu-rdc02.nxp.com [134.27.226.22])
-        by inva020.eu-rdc02.nxp.com (Postfix) with ESMTP id 35EB21A105A;
-        Fri,  2 Oct 2020 16:49:48 +0200 (CEST)
-Received: from fsr-ub1864-126.ea.freescale.net (fsr-ub1864-126.ea.freescale.net [10.171.82.212])
-        by inva024.eu-rdc02.nxp.com (Postfix) with ESMTP id E63F4202AC;
-        Fri,  2 Oct 2020 16:49:47 +0200 (CEST)
-From:   Ioana Ciornei <ioana.ciornei@nxp.com>
-To:     davem@davemloft.net, netdev@vger.kernel.org
-Cc:     shawnguo@kernel.org, robh+dt@kernel.org,
-        devicetree@vger.kernel.org, Ioana Ciornei <ioana.ciornei@nxp.com>
-Subject: [RESEND net-next 9/9] arm64: dts: lx2160ardb: add nodes for the AQR107 PHYs
-Date:   Fri,  2 Oct 2020 17:48:47 +0300
-Message-Id: <20201002144847.13793-10-ioana.ciornei@nxp.com>
-X-Mailer: git-send-email 2.17.1
-In-Reply-To: <20201002144847.13793-1-ioana.ciornei@nxp.com>
-References: <20201002144847.13793-1-ioana.ciornei@nxp.com>
-X-Virus-Scanned: ClamAV using ClamSMTP
+        id S2387919AbgJBOzT (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Fri, 2 Oct 2020 10:55:19 -0400
+Received: from lindbergh.monkeyblade.net ([23.128.96.19]:58474 "EHLO
+        lindbergh.monkeyblade.net" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
+        with ESMTP id S1726386AbgJBOzT (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Fri, 2 Oct 2020 10:55:19 -0400
+Received: from mail-ej1-x643.google.com (mail-ej1-x643.google.com [IPv6:2a00:1450:4864:20::643])
+        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 5DC15C0613E2
+        for <devicetree@vger.kernel.org>; Fri,  2 Oct 2020 07:55:19 -0700 (PDT)
+Received: by mail-ej1-x643.google.com with SMTP id qp15so2408338ejb.3
+        for <devicetree@vger.kernel.org>; Fri, 02 Oct 2020 07:55:19 -0700 (PDT)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+        d=baylibre-com.20150623.gappssmtp.com; s=20150623;
+        h=references:user-agent:from:to:subject:in-reply-to:date:message-id
+         :mime-version;
+        bh=pDks6p78EBD7ss15qrLLTZCcCpPLA2YETzRFSCodWyo=;
+        b=q/NornTt2eh3x4yoPtr/QjxWUZ2YMcknK7dAxDB+N5RmzQA4dWhmZyWx5jVdcCuG8E
+         Yglw1CIOPe/A8+I5xu85MEFyzft7kKBfuTGQyopZPaTnltBYnqhAn8lNM1+9THbJkn9q
+         JMR07CI+5Xl3TwCFT99/ikUuNKDQcuPa9AfEeStfjPTrjqSTVYDO7fj1u8iY7bZSg9oU
+         sA9/47NW0gggg+6zu3DM074irN83HJDylN6I2UVFpnRQnK4HD8YMcpDkgr/NFRUN9RDF
+         UaolQPYhm1V61C1X+X4jBGSRLRQQxqdCX0UtmgijuNAW6vm7OIxEKrTh2oY1VjNaXv0s
+         aA3A==
+X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+        d=1e100.net; s=20161025;
+        h=x-gm-message-state:references:user-agent:from:to:subject
+         :in-reply-to:date:message-id:mime-version;
+        bh=pDks6p78EBD7ss15qrLLTZCcCpPLA2YETzRFSCodWyo=;
+        b=kAAceUsS1P+waJ6ictc3i5mbMeAr/sljF9auBJbwEZjO0uUbdSvd5npmSo8MlptMJR
+         G4USrwG782alDUEOGBs7BwQKcBxGFO5BNNgCK0YCJoEV/gh3AIfnXsrVLvZxcr44Qt8J
+         s6aEeNtVR2LiShnTrYz7++JcgpQ6ba+DuLhJLjvaiOxas++/QQZMa9bjd9e3COjlJIPw
+         EHezJeCpXtFPWw2QuVPq226r/QhrWguBwZ8hUTAP5Xwl8fA9OKJZQGVNze/Q3uYCQOrV
+         IWQaQPE7YhxudPw/3IQXtZ3GEXAacpRx5iTgRoKiXeRPrsDjMoMkE0/bIts670yUjoMD
+         wn2w==
+X-Gm-Message-State: AOAM530nw+mKq1/UGhXQMoiMWYY3m+s5NDzQJA3mEDbLQfa1vnTQMhuQ
+        2sknYwxGVvfE06BH8pHnD5O2Qw==
+X-Google-Smtp-Source: ABdhPJxeWoIW2hk98lm8JxgeH6OqwPbzwaF2nR6YfVrAzo27GB7rxcfU1hjQOZwHmbzvboDD1SmiBg==
+X-Received: by 2002:a17:906:a256:: with SMTP id bi22mr2629106ejb.375.1601650517967;
+        Fri, 02 Oct 2020 07:55:17 -0700 (PDT)
+Received: from localhost (cag06-3-82-243-161-21.fbx.proxad.net. [82.243.161.21])
+        by smtp.gmail.com with ESMTPSA id p17sm1397771edw.10.2020.10.02.07.55.17
+        (version=TLS1_3 cipher=TLS_AES_256_GCM_SHA384 bits=256/256);
+        Fri, 02 Oct 2020 07:55:17 -0700 (PDT)
+References: <20201002143141.14870-1-christianshewitt@gmail.com>
+User-agent: mu4e 1.3.3; emacs 26.3
+From:   Jerome Brunet <jbrunet@baylibre.com>
+To:     Christian Hewitt <christianshewitt@gmail.com>,
+        Rob Herring <robh+dt@kernel.org>,
+        Mark Rutland <mark.rutland@arm.com>,
+        Kevin Hilman <khilman@baylibre.com>,
+        devicetree@vger.kernel.org, linux-arm-kernel@lists.infradead.org,
+        linux-amlogic@lists.infradead.org, linux-kernel@vger.kernel.org
+Subject: Re: [PATCH v2 00/10] arm64: dts: meson: add more GX soundcards
+In-reply-to: <20201002143141.14870-1-christianshewitt@gmail.com>
+Date:   Fri, 02 Oct 2020 16:55:16 +0200
+Message-ID: <1jy2koisob.fsf@starbuckisacylon.baylibre.com>
+MIME-Version: 1.0
+Content-Type: text/plain
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-Annotate the EMDIO1 node and describe the 2 AQR107 PHYs found on the
-LX2160ARDB board. Also, add the necessary phy-handles for DPMACs 3 and 4
-to their associated PHY.
 
-Signed-off-by: Ioana Ciornei <ioana.ciornei@nxp.com>
----
- .../boot/dts/freescale/fsl-lx2160a-rdb.dts    | 32 +++++++++++++++++++
- 1 file changed, 32 insertions(+)
+On Fri 02 Oct 2020 at 16:31, Christian Hewitt <christianshewitt@gmail.com> wrote:
 
-diff --git a/arch/arm64/boot/dts/freescale/fsl-lx2160a-rdb.dts b/arch/arm64/boot/dts/freescale/fsl-lx2160a-rdb.dts
-index 54fe8cd3a711..7723ad5efd37 100644
---- a/arch/arm64/boot/dts/freescale/fsl-lx2160a-rdb.dts
-+++ b/arch/arm64/boot/dts/freescale/fsl-lx2160a-rdb.dts
-@@ -35,6 +35,18 @@ &crypto {
- 	status = "okay";
- };
- 
-+&dpmac3 {
-+	phy-handle = <&aquantia_phy1>;
-+	phy-connection-type = "usxgmii";
-+	managed = "in-band-status";
-+};
-+
-+&dpmac4 {
-+	phy-handle = <&aquantia_phy2>;
-+	phy-connection-type = "usxgmii";
-+	managed = "in-band-status";
-+};
-+
- &dpmac17 {
- 	phy-handle = <&rgmii_phy1>;
- 	phy-connection-type = "rgmii-id";
-@@ -61,6 +73,18 @@ rgmii_phy2: ethernet-phy@2 {
- 		reg = <0x2>;
- 		eee-broken-1000t;
- 	};
-+
-+	aquantia_phy1: ethernet-phy@4 {
-+		/* AQR107 PHY */
-+		compatible = "ethernet-phy-ieee802.3-c45";
-+		reg = <0x4>;
-+	};
-+
-+	aquantia_phy2: ethernet-phy@5 {
-+		/* AQR107 PHY */
-+		compatible = "ethernet-phy-ieee802.3-c45";
-+		reg = <0x5>;
-+	};
- };
- 
- &esdhc0 {
-@@ -156,6 +180,14 @@ rtc@51 {
- 	};
- };
- 
-+&pcs_mdio3 {
-+	status = "okay";
-+};
-+
-+&pcs_mdio4 {
-+	status = "okay";
-+};
-+
- &sata0 {
- 	status = "okay";
- };
--- 
-2.28.0
+> This series adds basic support for LPCM audio over HDMI and S/PDIF
+> interfaces to GXBB/GXL/GXM devices without support. I'm sure audio
+> support can be extended in places (some devices have internal DACs
+> and headphone hardware) but this gets the basics working.
+>
+> I have personally tested with the khadas-vim2, odroid-c2, and both
+> wetek devices as I have them, and there are positive forum reports
+> from users with vega-s95 and some no-name P20X box devices.
+
+It is fine to add what you have tested but I'm not confortable adding
+untested stuff which will later give the false idea that they are
+supposed to work.
+
+Amplifiers and codec may require different settings and ressources
+(such as GPIO and regulators) to actually operate properly.
+
+As far the p200 and p201, like the g12 u200, those are reference design
+with various sound card possibilities which usually don't apply to end
+products.
+
+For example the p200 is missing both input and output codecs, the sound
+amplifier and, as it stands, is likely to be muted.
+
+>
+> Changes from v1
+> - Drop nexbox-a1 and rbox-pro changes - the regulator changes are
+> needed to get the dts to compile, but I do not have schematics to
+> validate the changes or the hardware to test with.
+>
+> Christian Hewitt (10):
+>   arm64: dts: meson: add audio playback to a95x
+>   arm64: dts: meson: add audio playback to khadas-vim2
+>   arm64: dts: meson: add audio playback to nanopi-k2
+>   arm64: dts: meson: add audio playback to odroid-c2
+>   arm64: dts: meson: add audio playback to p201
+>   arm64: dts: meson: add audio playback to p200
+>   arm64: dts: meson: add audio playback to p212-s905x dtsi
+>   arm64: dts: meson: add audio playback to vega-s95 dtsi
+>   arm64: dts: meson: add audio playback to wetek-hub
+>   arm64: dts: meson: add audio playback to wetek-play2
+>
+>  .../boot/dts/amlogic/meson-gxbb-nanopi-k2.dts | 40 ++++++++++++
+>  .../dts/amlogic/meson-gxbb-nexbox-a95x.dts    | 40 ++++++++++++
+>  .../boot/dts/amlogic/meson-gxbb-odroidc2.dts  | 40 ++++++++++++
+>  .../boot/dts/amlogic/meson-gxbb-p200.dts      | 61 +++++++++++++++++++
+>  .../boot/dts/amlogic/meson-gxbb-p201.dts      | 40 ++++++++++++
+>  .../boot/dts/amlogic/meson-gxbb-vega-s95.dtsi | 61 +++++++++++++++++++
+>  .../boot/dts/amlogic/meson-gxbb-wetek-hub.dts | 40 ++++++++++++
+>  .../dts/amlogic/meson-gxbb-wetek-play2.dts    | 61 +++++++++++++++++++
+>  .../dts/amlogic/meson-gxl-s905x-p212.dtsi     | 40 ++++++++++++
+>  .../dts/amlogic/meson-gxm-khadas-vim2.dts     | 44 ++++++++++++-
+>  10 files changed, 464 insertions(+), 3 deletions(-)
 
