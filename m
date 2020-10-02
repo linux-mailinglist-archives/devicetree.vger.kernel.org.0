@@ -2,128 +2,86 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from vger.kernel.org (vger.kernel.org [23.128.96.18])
-	by mail.lfdr.de (Postfix) with ESMTP id 5F023281322
-	for <lists+devicetree@lfdr.de>; Fri,  2 Oct 2020 14:49:34 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTP id 094B828133B
+	for <lists+devicetree@lfdr.de>; Fri,  2 Oct 2020 14:56:51 +0200 (CEST)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S1726029AbgJBMtd (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Fri, 2 Oct 2020 08:49:33 -0400
-Received: from fllv0015.ext.ti.com ([198.47.19.141]:40178 "EHLO
-        fllv0015.ext.ti.com" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S1725964AbgJBMtd (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Fri, 2 Oct 2020 08:49:33 -0400
-Received: from lelv0265.itg.ti.com ([10.180.67.224])
-        by fllv0015.ext.ti.com (8.15.2/8.15.2) with ESMTP id 092CnQPq101968;
-        Fri, 2 Oct 2020 07:49:26 -0500
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=ti.com;
-        s=ti-com-17Q1; t=1601642966;
-        bh=DIr+K1xQCW/Rcaq19mKmaMXxG7mGcseJhQmSdu1WAWI=;
-        h=Date:From:To:CC:Subject:References:In-Reply-To;
-        b=DXSzVbQDyfM72ndqghi1FvtbKPlcBukuyIJdB5dpcmEntQn9AOVzoron4GXOg+S2I
-         80BqBE71q68pqboHioWBQmbr0foeqvzDVIa68f8qnGvp9rhYO01SFz6LzXQE8ibK0L
-         /KYwBUkNEU3UOt7HK//pXP8IGkm3xbw+odQ+Z8J0=
-Received: from DFLE109.ent.ti.com (dfle109.ent.ti.com [10.64.6.30])
-        by lelv0265.itg.ti.com (8.15.2/8.15.2) with ESMTPS id 092CnQeq050504
-        (version=TLSv1.2 cipher=AES256-GCM-SHA384 bits=256 verify=FAIL);
-        Fri, 2 Oct 2020 07:49:26 -0500
-Received: from DFLE103.ent.ti.com (10.64.6.24) by DFLE109.ent.ti.com
- (10.64.6.30) with Microsoft SMTP Server (version=TLS1_2,
- cipher=TLS_ECDHE_RSA_WITH_AES_128_CBC_SHA256_P256) id 15.1.1979.3; Fri, 2 Oct
- 2020 07:49:26 -0500
-Received: from fllv0040.itg.ti.com (10.64.41.20) by DFLE103.ent.ti.com
- (10.64.6.24) with Microsoft SMTP Server (version=TLS1_2,
- cipher=TLS_ECDHE_RSA_WITH_AES_128_CBC_SHA256_P256) id 15.1.1979.3 via
- Frontend Transport; Fri, 2 Oct 2020 07:49:26 -0500
-Received: from localhost (ileax41-snat.itg.ti.com [10.172.224.153])
-        by fllv0040.itg.ti.com (8.15.2/8.15.2) with ESMTP id 092CnQ36123431;
-        Fri, 2 Oct 2020 07:49:26 -0500
-Date:   Fri, 2 Oct 2020 07:49:26 -0500
-From:   Nishanth Menon <nm@ti.com>
-To:     Faiz Abbas <faiz_abbas@ti.com>
-CC:     <linux-kernel@vger.kernel.org>, <devicetree@vger.kernel.org>,
-        <linux-arm-kernel@lists.infradead.org>, <will@kernel.org>,
-        <robh+dt@kernel.org>, <t-kristo@ti.com>
-Subject: Re: [PATCH 0/8] Add support for UHS modes in TI's J721e and J7200
- boards
-Message-ID: <20201002124926.rr5dk5hhygavgqs3@akan>
-References: <20201001190541.6364-1-faiz_abbas@ti.com>
- <20201001191302.dlp2tzbvkk35vzgd@akan>
- <2a7ceab9-37ec-9117-1d98-9f307b4b5390@ti.com>
+        id S1726282AbgJBM4u (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Fri, 2 Oct 2020 08:56:50 -0400
+Received: from mail.kernel.org ([198.145.29.99]:56288 "EHLO mail.kernel.org"
+        rhost-flags-OK-OK-OK-OK) by vger.kernel.org with ESMTP
+        id S1726017AbgJBM4t (ORCPT <rfc822;devicetree@vger.kernel.org>);
+        Fri, 2 Oct 2020 08:56:49 -0400
+Received: from localhost (fw-tnat.cambridge.arm.com [217.140.96.140])
+        (using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
+        (No client certificate requested)
+        by mail.kernel.org (Postfix) with ESMTPSA id B5DF7206DC;
+        Fri,  2 Oct 2020 12:56:48 +0000 (UTC)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=kernel.org;
+        s=default; t=1601643409;
+        bh=0ZXo3fdb400Wi7zTirNJi+vIRV9asZikW2THLjL9Fq0=;
+        h=Date:From:To:Cc:Subject:References:In-Reply-To:From;
+        b=ZBGuG5VQsj2N3F4O70bdAHANb0swRshE3sqyFD2xCSnGYwS07cIR6uMQUMKAR4/W+
+         0CnYf6aVIGZiEZ5CRcmpBqjWrBsaMDrsYxiY2WCQttd/tmjPfQGa0tdmbRaC4WKtM3
+         BAtLQ4L7guLXI4BI13Uwp26e3/s29XEb5CZorAvE=
+Date:   Fri, 2 Oct 2020 13:55:49 +0100
+From:   Mark Brown <broonie@kernel.org>
+To:     Andy Shevchenko <andy.shevchenko@gmail.com>
+Cc:     Serge Semin <Sergey.Semin@baikalelectronics.ru>,
+        Serge Semin <fancer.lancer@gmail.com>,
+        Alexey Malahov <Alexey.Malahov@baikalelectronics.ru>,
+        Ramil Zaripov <Ramil.Zaripov@baikalelectronics.ru>,
+        Pavel Parkhomenko <Pavel.Parkhomenko@baikalelectronics.ru>,
+        Lars Povlsen <lars.povlsen@microchip.com>,
+        "wuxu . wu" <wuxu.wu@huawei.com>, Feng Tang <feng.tang@intel.com>,
+        Rob Herring <robh+dt@kernel.org>, linux-spi@vger.kernel.org,
+        devicetree@vger.kernel.org, linux-kernel@vger.kernel.org
+Subject: Re: [PATCH v3 00/21] spi: dw: Add full Baikal-T1 SPI Controllers
+ support
+Message-ID: <20201002125549.GB5527@sirena.org.uk>
+References: <20201001222829.15977-1-Sergey.Semin@baikalelectronics.ru>
+ <20201002102444.GY3956970@smile.fi.intel.com>
 MIME-Version: 1.0
-Content-Type: text/plain; charset="us-ascii"
+Content-Type: multipart/signed; micalg=pgp-sha512;
+        protocol="application/pgp-signature"; boundary="0ntfKIWw70PvrIHh"
 Content-Disposition: inline
-In-Reply-To: <2a7ceab9-37ec-9117-1d98-9f307b4b5390@ti.com>
-User-Agent: NeoMutt/20171215
-X-EXCLAIMER-MD-CONFIG: e1e8a2fd-e40a-4ac6-ac9b-f7e9cc9ee180
+In-Reply-To: <20201002102444.GY3956970@smile.fi.intel.com>
+X-Cookie: Words must be weighed, not counted.
+User-Agent: Mutt/1.10.1 (2018-07-13)
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-On 10:14-20201002, Faiz Abbas wrote:
-> Hi Nishanth,
-> 
-> On 02/10/20 12:43 am, Nishanth Menon wrote:
-> > On 00:35-20201002, Faiz Abbas wrote:
-> >> The following patches add support for UHS modes for TI's j721e and j7200
-> >> boards.
-> >>
-> >> Patches 1-3 add support for gpios to j7200-evm
-> >>
-> >> Patches 4-6 add support for voltage regulators for required by the
-> >> SD card in both devices as well as enable UHS modes at 1.8V
-> >>
-> >> Patches 5-6 add some required configs to the arm64 defconfig.
-> >>
-> >> This series depends on driver patches adding tuning support here:
-> >> https://lore.kernel.org/linux-arm-kernel/20200923105206.7988-1-faiz_abbas@ti.com/
-> >>
-> >> Faiz Abbas (8):
-> >>   arm64: dts: ti: k3-j7200-main: Add gpio nodes in main domain
-> >>   arm64: dts: ti: k3-j7200: Add gpio nodes in wakeup domain
-> >>   arm64: dts: ti: k3-j7200-common-proc-board: Disable unused gpio
-> >>     modules
-> >>   arm64: dts: ti: k3-j721e-main: Add output tap delay values
-> >>   arm64: dts: ti: k3-j721e-common-proc-board: Add support SD card UHS
-> >>     modes
-> >>   arm64: dts: ti: k3-j7200-common-proc-board: Add support SD card UHS
-> >>     modes
-> > 
-> > Split these up please!
-> 
-> Into SD card UHS and gpio series?
-> 
-> >>   arm64: defconfig: Enable OMAP I2C driver
-> >>   arm64: defconfig: Enable DAVINCI_GPIO driver
-> >>
-> > 
-> > defconfig patches can be posted independent of dts patches, they go to
-> > different branches.
-> 
-> I was trying to follow Arnd's advice here:
-> https://lore.kernel.org/linux-arm-kernel/CAK8P3a1JpCCCV-CVQj3+eMfWF+=4AuHPpv390Tyj2pKn63_ZVg@mail.gmail.com/
-> 
-> He says that defconfig patches can be sent at the same time as dts updates and maintainers can send those
-> as separate pull requests.
 
-BTW, [1] your patches 7/8 and 8/8 never hit the mailing list, So, I am
-commenting on the defconfig patches without actually seeing the patches,
-and solely based on $subject in the cover letter.
+--0ntfKIWw70PvrIHh
+Content-Type: text/plain; charset=us-ascii
+Content-Disposition: inline
 
-The reason for my comment was that I think defconfig series could go
-independent of the remaining series into 5.10, since they are not
-related specifically to this series, they are probably needed even for
-am654 and j721e nodes that already exist and was a miss that we didn't
-enable. Tying that to this specific series didn't make sense to me.
+On Fri, Oct 02, 2020 at 01:24:44PM +0300, Andy Shevchenko wrote:
+> On Fri, Oct 02, 2020 at 01:28:08AM +0300, Serge Semin wrote:
 
-But either way, we are way past rc7. I don't have enough time for
-these patches to bake in -next to make it to 5.10 window. So, lets try
-reposting this after rc1 tag is done so that I can send the defconfig
-(separately for 5.10 window) and the dts staged towards 5.11 (and no,
-I don't consider the dts patches as fixes - they are enabling the next
-level of functionality).
+> > the subject. Though some of them are mere cleanups or weakly related with
+> > the subject fixes, but we just couldn't leave the code as is at some
+> > places since we were working with the DW APB SSI driver anyway. Here is
+> > what we did to fix the original DW APB SSI driver, to make it less messy.
 
-[1] https://lore.kernel.org/linux-arm-kernel/20201001190541.6364-7-faiz_abbas@ti.com/
+> Maybe it's time to put your name into MAINTAINERS for this driver?
 
--- 
-Regards,
-Nishanth Menon
-Key (0xDDB5849D1736249D) / Fingerprint: F8A2 8693 54EB 8232 17A3  1A34 DDB5 849D 1736 249D
+Seems sensible to me - Andy, it probably makes sense to add you as well?
+Does one of you want to send a patch for this?
+
+--0ntfKIWw70PvrIHh
+Content-Type: application/pgp-signature; name="signature.asc"
+
+-----BEGIN PGP SIGNATURE-----
+
+iQEzBAABCgAdFiEEreZoqmdXGLWf4p/qJNaLcl1Uh9AFAl93I1QACgkQJNaLcl1U
+h9Doiwf/TdOWB+DygK44AJ9c0G4abf7KIjbpqcyPh6MBmaEV7dDvZv90r43zabkJ
+HP5jwcdiGjtBKhGRSIMjrs7REmqNA2HBn8lH4VIoKbWVL9znfRRDwPeT7YY7W7k8
+pU+lA6KUrHomWjg38I+ln5Ff2DmracaIEH8fxQkP7VBTwpIRjf4QiuaRXmhZdCgG
+gYNzhmu5rezd9rjezUdcFHM9mmJ+UKCZcszmM+vYoWmwgGp778g8ka7bR3SPRB/x
+Z2q0E9gbjQU0XOE1R1xpPjlh9pINELSnIReEANoNeeo0CycXEDeHG3MXS3xgQu3S
+BIDecFRQU4r1T2o7hX/Y0oKo2RRK6g==
+=lR8c
+-----END PGP SIGNATURE-----
+
+--0ntfKIWw70PvrIHh--
