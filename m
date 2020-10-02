@@ -2,102 +2,62 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from vger.kernel.org (vger.kernel.org [23.128.96.18])
-	by mail.lfdr.de (Postfix) with ESMTP id E5005280E31
-	for <lists+devicetree@lfdr.de>; Fri,  2 Oct 2020 09:41:38 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTP id A58B7280E63
+	for <lists+devicetree@lfdr.de>; Fri,  2 Oct 2020 09:59:53 +0200 (CEST)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S1726282AbgJBHlf (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Fri, 2 Oct 2020 03:41:35 -0400
-Received: from lindbergh.monkeyblade.net ([23.128.96.19]:48314 "EHLO
+        id S1726010AbgJBH7w convert rfc822-to-8bit (ORCPT
+        <rfc822;lists+devicetree@lfdr.de>); Fri, 2 Oct 2020 03:59:52 -0400
+Received: from lindbergh.monkeyblade.net ([23.128.96.19]:51134 "EHLO
         lindbergh.monkeyblade.net" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S1725993AbgJBHlf (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Fri, 2 Oct 2020 03:41:35 -0400
+        with ESMTP id S1725968AbgJBH7w (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Fri, 2 Oct 2020 03:59:52 -0400
 Received: from metis.ext.pengutronix.de (metis.ext.pengutronix.de [IPv6:2001:67c:670:201:290:27ff:fe1d:cc33])
-        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 44FC2C0613E2
-        for <devicetree@vger.kernel.org>; Fri,  2 Oct 2020 00:41:35 -0700 (PDT)
-Received: from gallifrey.ext.pengutronix.de ([2001:67c:670:201:5054:ff:fe8d:eefb] helo=[127.0.0.1])
-        by metis.ext.pengutronix.de with esmtp (Exim 4.92)
-        (envelope-from <a.fatoum@pengutronix.de>)
-        id 1kOFh5-0005Rh-6T; Fri, 02 Oct 2020 09:41:31 +0200
-Subject: Re: [PATCH v2 08/12] ARM: dts: imx6dl-pico: fix board compatibles
-To:     Krzysztof Kozlowski <krzk@kernel.org>
-Cc:     Rob Herring <robh+dt@kernel.org>, Shawn Guo <shawnguo@kernel.org>,
-        Sascha Hauer <s.hauer@pengutronix.de>,
-        Pengutronix Kernel Team <kernel@pengutronix.de>,
-        Fabio Estevam <festevam@gmail.com>,
-        NXP Linux Team <linux-imx@nxp.com>,
-        Anson Huang <Anson.Huang@nxp.com>,
-        Andreas Kemnade <andreas@kemnade.info>,
-        Stefan Riedmueller <s.riedmueller@phytec.de>,
-        Robert Jones <rjones@gateworks.com>,
-        Li Yang <leoyang.li@nxp.com>, devicetree@vger.kernel.org,
-        linux-kernel@vger.kernel.org, linux-arm-kernel@lists.infradead.org
-References: <20200930190143.27032-1-krzk@kernel.org>
- <20200930190143.27032-9-krzk@kernel.org>
- <0a0afea6-8cbb-3e89-5a4f-89660c942ca3@pengutronix.de>
- <20201001073208.GA5208@kozik-lap>
- <027fd826-6822-9e92-0c6c-2ebed63f4a07@pengutronix.de>
- <20201001103704.GA26287@kozik-lap>
-From:   Ahmad Fatoum <a.fatoum@pengutronix.de>
-Message-ID: <7fcea21d-4651-9ba7-5331-86530296a847@pengutronix.de>
-Date:   Fri, 2 Oct 2020 09:41:28 +0200
-User-Agent: Mozilla/5.0 (X11; Linux x86_64; rv:68.0) Gecko/20100101
- Thunderbird/68.12.0
+        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 76C29C0613D0
+        for <devicetree@vger.kernel.org>; Fri,  2 Oct 2020 00:59:52 -0700 (PDT)
+Received: from lupine.hi.pengutronix.de ([2001:67c:670:100:3ad5:47ff:feaf:1a17] helo=lupine)
+        by metis.ext.pengutronix.de with esmtps (TLS1.3:ECDHE_RSA_AES_256_GCM_SHA384:256)
+        (Exim 4.92)
+        (envelope-from <p.zabel@pengutronix.de>)
+        id 1kOFyg-0006uu-9r; Fri, 02 Oct 2020 09:59:42 +0200
+Received: from pza by lupine with local (Exim 4.92)
+        (envelope-from <p.zabel@pengutronix.de>)
+        id 1kOFyX-0002aC-Sz; Fri, 02 Oct 2020 09:59:33 +0200
+Message-ID: <3e6248770b881181353a00cf2a7087485d1ae0c1.camel@pengutronix.de>
+Subject: Re: [PATCH 2/5] ASoC: mediatek: mt8192: add platform driver
+From:   Philipp Zabel <p.zabel@pengutronix.de>
+To:     Jiaxin Yu <jiaxin.yu@mediatek.com>, broonie@kernel.org,
+        tiwai@suse.com, matthias.bgg@gmail.com, robh+dt@kernel.org,
+        tzungbi@google.com, alsa-devel@alsa-project.org,
+        linux-arm-kernel@lists.infradead.org,
+        linux-mediatek@lists.infradead.org, devicetree@vger.kernel.org
+Cc:     shane.chien@mediatek.com, kuninori.morimoto.gx@renesas.com,
+        maowenan@huawei.com
+Date:   Fri, 02 Oct 2020 09:59:33 +0200
+In-Reply-To: <1601624142-18991-3-git-send-email-jiaxin.yu@mediatek.com>
+References: <1601624142-18991-1-git-send-email-jiaxin.yu@mediatek.com>
+         <1601624142-18991-3-git-send-email-jiaxin.yu@mediatek.com>
+Content-Type: text/plain; charset="UTF-8"
+Content-Transfer-Encoding: 8BIT
+User-Agent: Evolution 3.30.5-1.1 
 MIME-Version: 1.0
-In-Reply-To: <20201001103704.GA26287@kozik-lap>
-Content-Type: text/plain; charset=utf-8
-Content-Language: en-US
-Content-Transfer-Encoding: 7bit
-X-SA-Exim-Connect-IP: 2001:67c:670:201:5054:ff:fe8d:eefb
-X-SA-Exim-Mail-From: a.fatoum@pengutronix.de
+X-SA-Exim-Connect-IP: 2001:67c:670:100:3ad5:47ff:feaf:1a17
+X-SA-Exim-Mail-From: p.zabel@pengutronix.de
 X-SA-Exim-Scanned: No (on metis.ext.pengutronix.de); SAEximRunCond expanded to false
 X-PTX-Original-Recipient: devicetree@vger.kernel.org
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-Hello,
+Hi Jiaxin,
 
-On 10/1/20 12:37 PM, Krzysztof Kozlowski wrote:
->> The existing binding doesn't cover these boards then and needs to be
->> extended, no? How about following patch?
-> 
-> What do you mean it doesn't cover? It was added exactly to handle them:
-> +              - technexion,imx6q-pico-dwarf   # TechNexion i.MX6Q Pico-Dwarf
-> +              - technexion,imx6q-pico-hobbit  # TechNexion i.MX6Q Pico-Hobbit
-> +              - technexion,imx6q-pico-nymph   # TechNexion i.MX6Q Pico-Nymph
-> +              - technexion,imx6q-pico-pi      # TechNexion i.MX6Q Pico-Pi
-> 
+On Fri, 2020-10-02 at 15:35 +0800, Jiaxin Yu wrote:
+> +static int mt8192_afe_pcm_dev_probe(struct platform_device *pdev)
+> +{
+[...]
+> +       /* reset controller to reset audio regs before regmap cache */
+> +       rstc = devm_reset_control_get(dev, "audiosys");
 
-Still they are unused. So I'd think these boards should be handled like boards
-that predated bindings: a binding is written that doesn't break existing users.
+Please use devm_reset_control_get_exclusive() instead.
 
->> [I guess we need to keep the two-compatible list they were originally
->>  in for compatibility even if it's unused among upstream device trees?]
-> 
-> You want to change both the binding (thus breaking the ABI) and update
-> the DTS to reflect new ABI. Then why having a binding at all?
-
-If we leave the old two-compatible enumeration intact, there is no ABI broken.
-
-> I would assume that either binding is correct or DTS. You propose that
-> both are wrong and both need changes... in such case this is clearly
-> broken.
-
-IMO the DTS is the correct one. If you want to honor the author's intention
-that each base board has a different compatible, it should be an extra
-compatible and not replace the existing one that may be already in use.
-
-Cheers
-Ahmad
-
-
-> 
-> Best regards,
-> Krzysztof
-> 
-
--- 
-Pengutronix e.K.                           |                             |
-Steuerwalder Str. 21                       | http://www.pengutronix.de/  |
-31137 Hildesheim, Germany                  | Phone: +49-5121-206917-0    |
-Amtsgericht Hildesheim, HRA 2686           | Fax:   +49-5121-206917-5555 |
+regards
+Philipp
