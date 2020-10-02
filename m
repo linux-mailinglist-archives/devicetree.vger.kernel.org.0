@@ -2,758 +2,205 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from vger.kernel.org (vger.kernel.org [23.128.96.18])
-	by mail.lfdr.de (Postfix) with ESMTP id 0645F280D70
-	for <lists+devicetree@lfdr.de>; Fri,  2 Oct 2020 08:24:20 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTP id 7F9EC280D7A
+	for <lists+devicetree@lfdr.de>; Fri,  2 Oct 2020 08:30:21 +0200 (CEST)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S1725995AbgJBGYP (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Fri, 2 Oct 2020 02:24:15 -0400
-Received: from mga07.intel.com ([134.134.136.100]:19006 "EHLO mga07.intel.com"
-        rhost-flags-OK-OK-OK-OK) by vger.kernel.org with ESMTP
-        id S1725948AbgJBGYP (ORCPT <rfc822;devicetree@vger.kernel.org>);
-        Fri, 2 Oct 2020 02:24:15 -0400
-IronPort-SDR: BMLZB6iw4Rnp7PxVrMkqGOK0vYey0olQeTx37es3J0wC6B98F5J7tZli5ge6pf97KVIUqCikOP
- +WXE9qPBG6Kg==
-X-IronPort-AV: E=McAfee;i="6000,8403,9761"; a="227050325"
-X-IronPort-AV: E=Sophos;i="5.77,326,1596524400"; 
-   d="scan'208";a="227050325"
-X-Amp-Result: SKIPPED(no attachment in message)
-X-Amp-File-Uploaded: False
-Received: from orsmga002.jf.intel.com ([10.7.209.21])
-  by orsmga105.jf.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384; 01 Oct 2020 23:24:14 -0700
-IronPort-SDR: ilKYUXrjUh65z0tGS2wAur9ebJJe7lhKahnyrmKYZwhybxUlyCB7KuPzwllnTcW0XC7jt7mRRl
- Voy7T5GpkU8A==
-X-ExtLoop1: 1
-X-IronPort-AV: E=Sophos;i="5.77,326,1596524400"; 
-   d="scan'208";a="325711613"
-Received: from linux.intel.com ([10.54.29.200])
-  by orsmga002.jf.intel.com with ESMTP; 01 Oct 2020 23:24:14 -0700
-Received: from [10.214.167.113] (rtanwar-MOBL.gar.corp.intel.com [10.214.167.113])
-        by linux.intel.com (Postfix) with ESMTP id 8FE1158082E;
-        Thu,  1 Oct 2020 23:24:10 -0700 (PDT)
-Subject: Re: [PATCH v3 2/2] Add hardware monitoring driver for Moortec MR75203
- PVT controller
-To:     Guenter Roeck <linux@roeck-us.net>, jdelvare@suse.com,
-        p.zabel@pengutronix.de, linux-hwmon@vger.kernel.org,
-        robh+dt@kernel.org
-Cc:     linux-kernel@vger.kernel.org, devicetree@vger.kernel.org,
-        andriy.shevchenko@intel.com, songjun.Wu@intel.com,
-        cheol.yong.kim@intel.com, qi-ming.wu@intel.com,
-        rtanwar@maxlinear.com
-References: <cover.1601369789.git.rahul.tanwar@linux.intel.com>
- <b7ff9d98376b53500d3b5db40987df204b0ab247.1601369789.git.rahul.tanwar@linux.intel.com>
- <272fedd6-3452-cd6d-1eff-9e051250b9f3@roeck-us.net>
-From:   "Tanwar, Rahul" <rahul.tanwar@linux.intel.com>
-Message-ID: <b167b5c0-3b7f-6106-652f-e105adf51d62@linux.intel.com>
-Date:   Fri, 2 Oct 2020 14:24:09 +0800
-User-Agent: Mozilla/5.0 (Windows NT 10.0; WOW64; rv:68.0) Gecko/20100101
+        id S1726015AbgJBGaU (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Fri, 2 Oct 2020 02:30:20 -0400
+Received: from mail-dm6nam10on2058.outbound.protection.outlook.com ([40.107.93.58]:40166
+        "EHLO NAM10-DM6-obe.outbound.protection.outlook.com"
+        rhost-flags-OK-OK-OK-FAIL) by vger.kernel.org with ESMTP
+        id S1726010AbgJBGaU (ORCPT <rfc822;devicetree@vger.kernel.org>);
+        Fri, 2 Oct 2020 02:30:20 -0400
+ARC-Seal: i=1; a=rsa-sha256; s=arcselector9901; d=microsoft.com; cv=none;
+ b=Cgyjvebwvxvn/5H2NE9CVsE5Fr2HXTONNXN2HggxKlfZ7PnyZuHtrgCznDCGxP3hbukyazDYNNbY+gqRdLoVbMtm9WC32sM5rXyZYwgvM4XCLhNFX8hh6l8/t01QD+4e9kB/Ceu0uw3/vw0X5Ez66Ee9cU82gkx3qjyb4SqrG5QeaqvMrROw8uE610XEzMAxFsPDu/r0oKskAEiqHPfP8heKAJLefwaA3P7w6ZFeGru364hsLPgd4QilbiRKSz+VCZz4RwkSYf0ohW+eG8nUbVfuNJwA/yNWs7O3nA9ZecyL0SPmH8g5Tio8dWBHhB2h/LWhlC4ILdyeDNm28+P0BQ==
+ARC-Message-Signature: i=1; a=rsa-sha256; c=relaxed/relaxed; d=microsoft.com;
+ s=arcselector9901;
+ h=From:Date:Subject:Message-ID:Content-Type:MIME-Version:X-MS-Exchange-SenderADCheck;
+ bh=iZD3k86trrIUaXqiU0ap8g9W2u80SYjtDfICfr/HJ/A=;
+ b=XP12DUiqxNvrXUiLyrJpdVuEOuONri9M/De1cGN671hkQ9B5bbiZE6FHVQfnCC2+auww2KNmW8BWMK/P1uQafuvCcSZKRrz2pRhMqwxqlITwsXrro+LYkxChzzesUJ5lyxv1mQnH9T1zhksofTYPcAzukVC4ul5Z0fe5xZO5nrOWqQLmx7opetDVGi5EcIeZXaEwCSfupQbkknDBadxHYeL8pza/8sn9YzZKRvP1ULeIna5EYbe3FOsy3neE/d6NkkSIoFOe5V62ZpZcPpLIx+Da4+KRS0QApD5+gBJRYAMKCw3av8t5ZY+HJUC1D8wqpneAOanLPSdWjKGVgyWxDQ==
+ARC-Authentication-Results: i=1; mx.microsoft.com 1; spf=pass (sender ip is
+ 149.199.60.83) smtp.rcpttodomain=lists.infradead.org
+ smtp.mailfrom=xilinx.com; dmarc=bestguesspass action=none
+ header.from=xilinx.com; dkim=none (message not signed); arc=none
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+ d=xilinx.onmicrosoft.com; s=selector2-xilinx-onmicrosoft-com;
+ h=From:Date:Subject:Message-ID:Content-Type:MIME-Version:X-MS-Exchange-SenderADCheck;
+ bh=iZD3k86trrIUaXqiU0ap8g9W2u80SYjtDfICfr/HJ/A=;
+ b=rouEIhWKdV0t9m4ITE5P2tB0RS10e4qNbNHoHBYBoPjKROmFGVrPn68w+uK4L6NKwJjAkEUnTkpcMa0tuC40VNTqh1AwYdZvKLgWffLT0PCUWMNSjGvW7+D6K/siAciaiGNAxGwkzefgEsdmdACvY+O8XgzpHmffdEDzr4lGt1U=
+Received: from SN2PR01CA0067.prod.exchangelabs.com (2603:10b6:800::35) by
+ BN6PR02MB2625.namprd02.prod.outlook.com (2603:10b6:404:57::12) with Microsoft
+ SMTP Server (version=TLS1_2, cipher=TLS_ECDHE_RSA_WITH_AES_256_GCM_SHA384) id
+ 15.20.3433.35; Fri, 2 Oct 2020 06:30:14 +0000
+Received: from SN1NAM02FT018.eop-nam02.prod.protection.outlook.com
+ (2603:10b6:800:0:cafe::1a) by SN2PR01CA0067.outlook.office365.com
+ (2603:10b6:800::35) with Microsoft SMTP Server (version=TLS1_2,
+ cipher=TLS_ECDHE_RSA_WITH_AES_256_GCM_SHA384) id 15.20.3433.35 via Frontend
+ Transport; Fri, 2 Oct 2020 06:30:13 +0000
+X-MS-Exchange-Authentication-Results: spf=pass (sender IP is 149.199.60.83)
+ smtp.mailfrom=xilinx.com; lists.infradead.org; dkim=none (message not signed)
+ header.d=none;lists.infradead.org; dmarc=bestguesspass action=none
+ header.from=xilinx.com;
+Received-SPF: Pass (protection.outlook.com: domain of xilinx.com designates
+ 149.199.60.83 as permitted sender) receiver=protection.outlook.com;
+ client-ip=149.199.60.83; helo=xsj-pvapsmtpgw01;
+Received: from xsj-pvapsmtpgw01 (149.199.60.83) by
+ SN1NAM02FT018.mail.protection.outlook.com (10.152.72.122) with Microsoft SMTP
+ Server id 15.20.3412.21 via Frontend Transport; Fri, 2 Oct 2020 06:30:13
+ +0000
+Received: from [149.199.38.66] (port=33447 helo=smtp.xilinx.com)
+        by xsj-pvapsmtpgw01 with esmtp (Exim 4.90)
+        (envelope-from <michal.simek@xilinx.com>)
+        id 1kOEZd-00053t-2c; Thu, 01 Oct 2020 23:29:45 -0700
+Received: from [127.0.0.1] (helo=localhost)
+        by smtp.xilinx.com with smtp (Exim 4.63)
+        (envelope-from <michal.simek@xilinx.com>)
+        id 1kOEa5-00050h-Ci; Thu, 01 Oct 2020 23:30:13 -0700
+Received: from [172.30.17.110]
+        by xsj-pvapsmtp01 with esmtp (Exim 4.63)
+        (envelope-from <michals@xilinx.com>)
+        id 1kOEa1-0004mR-CN; Thu, 01 Oct 2020 23:30:09 -0700
+Subject: Re: [PATCH] arm64: dts: zynqmp: Fix pcie ranges description
+To:     Laurent Pinchart <laurent.pinchart@ideasonboard.com>,
+        Michal Simek <michal.simek@xilinx.com>
+Cc:     linux-kernel@vger.kernel.org, monstr@monstr.eu, git@xilinx.com,
+        Kalyani Akula <kalyani.akula@xilinx.com>,
+        Krzysztof Kozlowski <krzk@kernel.org>,
+        Manish Narani <manish.narani@xilinx.com>,
+        Michael Tretter <m.tretter@pengutronix.de>,
+        Nava kishore Manne <nava.manne@xilinx.com>,
+        Rajan Vaja <rajan.vaja@xilinx.com>,
+        Rob Herring <robh+dt@kernel.org>, devicetree@vger.kernel.org,
+        linux-arm-kernel@lists.infradead.org
+References: <f59a63d8cb941592de6d2dee8afa6f120b2e40c8.1601379794.git.michal.simek@xilinx.com>
+ <20201002020249.GU3722@pendragon.ideasonboard.com>
+From:   Michal Simek <michal.simek@xilinx.com>
+Autocrypt: addr=michals@xilinx.com; keydata=
+ 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
+ 0Z1MQlmNcq2bhOMzTxuXX2NDzUZs4aqEyZQ=
+Message-ID: <100535b9-d643-f91c-af46-fb8114d7d6ed@xilinx.com>
+Date:   Fri, 2 Oct 2020 08:30:05 +0200
+User-Agent: Mozilla/5.0 (X11; Linux x86_64; rv:68.0) Gecko/20100101
  Thunderbird/68.12.0
 MIME-Version: 1.0
-In-Reply-To: <272fedd6-3452-cd6d-1eff-9e051250b9f3@roeck-us.net>
+In-Reply-To: <20201002020249.GU3722@pendragon.ideasonboard.com>
 Content-Type: text/plain; charset=utf-8
-Content-Transfer-Encoding: 7bit
 Content-Language: en-US
+Content-Transfer-Encoding: 7bit
+X-TM-AS-Product-Ver: IMSS-7.1.0.1224-8.2.0.1013-23620.005
+X-TM-AS-User-Approved-Sender: Yes;Yes
+X-EOPAttributedMessage: 0
+X-MS-Office365-Filtering-HT: Tenant
+X-MS-PublicTrafficType: Email
+X-MS-Office365-Filtering-Correlation-Id: 2420b05d-db0f-46c4-6299-08d8669c9ebb
+X-MS-TrafficTypeDiagnostic: BN6PR02MB2625:
+X-LD-Processed: 657af505-d5df-48d0-8300-c31994686c5c,ExtAddr
+X-Microsoft-Antispam-PRVS: <BN6PR02MB26251BBEF880A26822CE673BC6310@BN6PR02MB2625.namprd02.prod.outlook.com>
+X-Auto-Response-Suppress: DR, RN, NRN, OOF, AutoReply
+X-MS-Oob-TLC-OOBClassifiers: OLM:10000;
+X-MS-Exchange-SenderADCheck: 1
+X-Microsoft-Antispam: BCL:0;
+X-Microsoft-Antispam-Message-Info: sRASEek8uIZMbcKgSPcSWBTu5NVUTakcv37rPQ7v3IoJ9sxILuEfzitMZauDmRv3ZlN26ubpo54dAp4CEHWvcLcCgcBG+Ft/lbGKI4267oRYOvsq7RLcCF1fNilUgCLGFmFhsRdIKSGBqwihsKMPJ3npm9oKt5Sbsa+AanBLO5cM7aVJVsHv04lebBPiipLjhA3njrw3OzmCeIy8XeJzJbeMHmdUYffLRTzGyvvj/z0rF+u0QkQLmb3TI+H5mHgViBpzcv8+QpaxW6iQm1VUn97kV3YkdsBDp/m8FtpqWshQsQXjAZ7PShPEcl+t4yIRQguyKJBQN+1GeThpQBT5fPdzvLU5cpOxhfzLHKHuv+UCIajQzGLJH3EBas+26aEhfDUSrS9irNiq4t+wItNfJb0v8FaJHA9ZStBNctIrMUSIpS8rwzeK75sd7wsFwqWR
+X-Forefront-Antispam-Report: CIP:149.199.60.83;CTRY:US;LANG:en;SCL:1;SRV:;IPV:NLI;SFV:NSPM;H:xsj-pvapsmtpgw01;PTR:unknown-60-83.xilinx.com;CAT:NONE;SFS:(396003)(39860400002)(376002)(136003)(346002)(46966005)(47076004)(70206006)(336012)(36756003)(2616005)(9786002)(70586007)(8676002)(426003)(5660300002)(478600001)(8936002)(4326008)(82310400003)(81166007)(54906003)(356005)(83380400001)(186003)(44832011)(2906002)(6666004)(110136005)(82740400003)(26005)(316002)(31696002)(31686004)(43740500002);DIR:OUT;SFP:1101;
+X-OriginatorOrg: xilinx.com
+X-MS-Exchange-CrossTenant-OriginalArrivalTime: 02 Oct 2020 06:30:13.6827
+ (UTC)
+X-MS-Exchange-CrossTenant-Network-Message-Id: 2420b05d-db0f-46c4-6299-08d8669c9ebb
+X-MS-Exchange-CrossTenant-Id: 657af505-d5df-48d0-8300-c31994686c5c
+X-MS-Exchange-CrossTenant-OriginalAttributedTenantConnectingIp: TenantId=657af505-d5df-48d0-8300-c31994686c5c;Ip=[149.199.60.83];Helo=[xsj-pvapsmtpgw01]
+X-MS-Exchange-CrossTenant-AuthSource: SN1NAM02FT018.eop-nam02.prod.protection.outlook.com
+X-MS-Exchange-CrossTenant-AuthAs: Anonymous
+X-MS-Exchange-CrossTenant-FromEntityHeader: HybridOnPrem
+X-MS-Exchange-Transport-CrossTenantHeadersStamped: BN6PR02MB2625
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
+Hi Laurent,
 
-Hi Guenter,
+On 02. 10. 20 4:02, Laurent Pinchart wrote:
+> Hi Michal,
+> 
+> Thank you for the patch.
+> 
+> On Tue, Sep 29, 2020 at 01:43:22PM +0200, Michal Simek wrote:
+>> DT schema is checking tuples which should be properly separated. The patch
+>> is doing this separation to avoid the following warning:
+>> ..yaml: axi: pcie@fd0e0000:ranges: [[33554432, 0, 3758096384, 0,
+>> 3758096384, 0, 268435456, 1124073472, 6, 0, 6, 0, 2, 0]] is not valid under
+>> any of the given schemas (Possible causes of the failure):
+>> ...dt.yaml: axi: pcie@fd0e0000:ranges: True was expected
+>> ...dt.yaml: axi: pcie@fd0e0000:ranges:0: [33554432, 0, 3758096384, 0,
+>> 3758096384, 0, 268435456, 1124073472, 6, 0, 6, 0, 2, 0] is too long
+> 
+> I would keep the error message unwrapped as it's a bit confusing to
+> read, even if it exceeds the normal 72 columns limit of commit messaged.
 
-On 2/10/2020 2:26 am, Guenter Roeck wrote:
-> On 9/29/20 1:59 AM, Rahul Tanwar wrote:
->> PVT controller (MR75203) is used to configure & control
->> Moortec embedded analog IP which contains temprature
->> sensor(TS), voltage monitor(VM) & process detector(PD)
->> modules. Add hardware monitoring driver to support
->> MR75203 PVT controller.
->>
->> Signed-off-by: Rahul Tanwar <rahul.tanwar@linux.intel.com>
->> ---
->>  drivers/hwmon/Kconfig   |  10 +
->>  drivers/hwmon/Makefile  |   1 +
->>  drivers/hwmon/mr75203.c | 605 ++++++++++++++++++++++++++++++++++++++++++++++++
->>  3 files changed, 616 insertions(+)
->>  create mode 100644 drivers/hwmon/mr75203.c
->>
->> diff --git a/drivers/hwmon/Kconfig b/drivers/hwmon/Kconfig
->> index 8dc28b26916e..2defb46677b4 100644
->> --- a/drivers/hwmon/Kconfig
->> +++ b/drivers/hwmon/Kconfig
->> @@ -1112,6 +1112,16 @@ config SENSORS_MENF21BMC_HWMON
->>  	  This driver can also be built as a module. If so the module
->>  	  will be called menf21bmc_hwmon.
->>  
->> +config SENSORS_MR75203
->> +	tristate "Moortec Semiconductor MR75203 PVT Controller"
->> +	select REGMAP_MMIO
->> +	help
->> +	  If you say yes here you get support for Moortec MR75203
->> +	  PVT controller.
->> +
->> +	  This driver can also be built as a module. If so, the module
->> +	  will be called mr75203.
->> +
->>  config SENSORS_ADCXX
->>  	tristate "National Semiconductor ADCxxxSxxx"
->>  	depends on SPI_MASTER
->> diff --git a/drivers/hwmon/Makefile b/drivers/hwmon/Makefile
->> index a8f4b35b136b..bb4bd92a5149 100644
->> --- a/drivers/hwmon/Makefile
->> +++ b/drivers/hwmon/Makefile
->> @@ -142,6 +142,7 @@ obj-$(CONFIG_SENSORS_MCP3021)	+= mcp3021.o
->>  obj-$(CONFIG_SENSORS_TC654)	+= tc654.o
->>  obj-$(CONFIG_SENSORS_MLXREG_FAN) += mlxreg-fan.o
->>  obj-$(CONFIG_SENSORS_MENF21BMC_HWMON) += menf21bmc_hwmon.o
->> +obj-$(CONFIG_SENSORS_MR75203)	+= mr75203.o
->>  obj-$(CONFIG_SENSORS_NCT6683)	+= nct6683.o
->>  obj-$(CONFIG_SENSORS_NCT6775)	+= nct6775.o
->>  obj-$(CONFIG_SENSORS_NCT7802)	+= nct7802.o
->> diff --git a/drivers/hwmon/mr75203.c b/drivers/hwmon/mr75203.c
->> new file mode 100644
->> index 000000000000..30a70a3ae82b
->> --- /dev/null
->> +++ b/drivers/hwmon/mr75203.c
->> @@ -0,0 +1,605 @@
->> +// SPDX-License-Identifier: GPL-2.0
->> +/*
->> + * Copyright (C) 2020 MaxLinear, Inc.
->> + *
->> + * This driver is a hardware monitoring driver for PVT controller
->> + * (MR75203) which is used to configure & control Moortec embedded
->> + * analog IP to enable multiple embedded temprature sensor(TS),
->
-> temperature
+From git log I see that both ways are used.
 
-Well noted.
+> 
+>> Signed-off-by: Michal Simek <michal.simek@xilinx.com>
+> 
+> Reviewed-by: Laurent Pinchart <laurent.pinchart@ideasonboard.com>
 
->> + * voltage monitor(VM) & process detector(PD) modules.
->> + */
->> +#include <linux/clk.h>
->> +#include <linux/hwmon.h>
->> +#include <linux/module.h>
->> +#include <linux/mod_devicetable.h>
->> +#include <linux/mutex.h>
->> +#include <linux/platform_device.h>
->> +#include <linux/property.h>
->> +#include <linux/regmap.h>
->> +#include <linux/reset.h>
->> +
->> +/* PVT Common register */
->> +#define PVT_IP_CONFIG	0x04
->> +#define TS_NUM_MSK	GENMASK(4, 0)
->> +#define TS_NUM_SFT	0
->> +#define PD_NUM_MSK	GENMASK(12, 8)
->> +#define PD_NUM_SFT	8
->> +#define VM_NUM_MSK	GENMASK(20, 16)
->> +#define VM_NUM_SFT	16
->> +#define CH_NUM_MSK	GENMASK(31, 24)
->> +#define CH_NUM_SFT	24
->> +
->> +/* Macro Common Register */
->> +#define CLK_SYNTH		0x00
->> +#define CLK_SYNTH_LO_SFT	0
->> +#define CLK_SYNTH_HI_SFT	8
->> +#define CLK_SYNTH_HOLD_SFT	16
->> +#define CLK_SYNTH_EN		BIT(24)
->> +#define CLK_SYS_CYCLES_MAX	514
->> +#define CLK_SYS_CYCLES_MIN	2
->> +#define HZ_PER_MHZ		1000000L
->> +
->> +#define SDIF_DISABLE	0x04
->> +
->> +#define SDIF_STAT	0x08
->> +#define SDIF_BUSY	BIT(0)
->> +#define SDIF_LOCK	BIT(1)
->> +
->> +#define SDIF_W		0x0c
->> +#define SDIF_PROG	BIT(31)
->> +#define SDIF_WRN_W	BIT(27)
->> +#define SDIF_WRN_R	0x00
->> +#define SDIF_ADDR_SFT	24
->> +
->> +#define SDIF_HALT	0x10
->> +#define SDIF_CTRL	0x14
->> +#define SDIF_SMPL_CTRL	0x20
->> +
->> +/* TS & PD Individual Macro Register */
->> +#define COM_REG_SIZE	0x40
->> +
->> +#define SDIF_DONE(n)	(COM_REG_SIZE + 0x14 + 0x40 * (n))
->> +#define SDIF_SMPL_DONE	BIT(0)
->> +
->> +#define SDIF_DATA(n)	(COM_REG_SIZE + 0x18 + 0x40 * (n))
->> +#define SAMPLE_DATA_MSK	GENMASK(15, 0)
->> +
->> +#define HILO_RESET(n)	(COM_REG_SIZE + 0x2c + 0x40 * (n))
->> +
->> +/* VM Individual Macro Register */
->> +#define VM_COM_REG_SIZE	0x200
->> +#define VM_SDIF_DONE(n)	(VM_COM_REG_SIZE + 0x34 + 0x200 * (n))
->> +#define VM_SDIF_DATA(n)	(VM_COM_REG_SIZE + 0x40 + 0x200 * (n))
->> +
->> +/* SDA Slave Register */
->> +#define IP_CTRL			0x00
->> +#define IP_RST_REL		BIT(1)
->> +#define IP_RUN_CONT		BIT(3)
->> +#define IP_AUTO			BIT(8)
->> +#define IP_VM_MODE		BIT(10)
->> +
->> +#define IP_CFG			0x01
->> +#define CFG0_MODE_2		BIT(0)
->> +#define CFG0_PARALLEL_OUT	0
->> +#define CFG0_12_BIT		0
->> +#define CFG1_VOL_MEAS_MODE	0
->> +#define CFG1_PARALLEL_OUT	0
->> +#define CFG1_14_BIT		0
->> +
->> +#define IP_DATA		0x03
->> +
->> +#define IP_POLL		0x04
->> +#define VM_CH_INIT	BIT(20)
->> +#define VM_CH_REQ	BIT(21)
->> +
->> +#define IP_TMR			0x05
->> +#define POWER_DELAY_CYCLE_256	0x80
->> +#define POWER_DELAY_CYCLE_64	0x40
->> +
->> +#define PVT_POLL_DELAY_US	20
->> +#define PVT_POLL_TIMEOUT_US	20000
->> +#define PVT_H_CONST		100000
->> +#define PVT_CAL5_CONST		2047
->> +#define PVT_G_CONST		40000
->> +#define PVT_CONV_BITS		10
->> +#define PVT_N_CONST		90
->> +#define PVT_R_CONST		245805
->> +
->> +struct pvt_device {
->> +	struct regmap		*c_map;
->> +	struct regmap		*t_map;
->> +	struct regmap		*p_map;
->> +	struct regmap		*v_map;
->> +	struct clk		*clk;
->> +	struct reset_control	*rst;
->> +	u32			t_num;
->> +	u32			p_num;
->> +	u32			v_num;
->> +	u32			ip_freq;
->> +	u8			*vm_idx;
->> +};
->> +
->> +static umode_t pvt_is_visible(const void *data, enum hwmon_sensor_types type,
->> +			      u32 attr, int channel)
->> +{
->> +	switch (type) {
->> +	case hwmon_temp:
->> +		if (attr == hwmon_temp_input)
->> +			return 0444;
->> +		else
->> +			return 0;
->> +	case hwmon_in:
->> +		if (attr == hwmon_in_input)
->> +			return 0444;
->> +		else
->> +			return 0;
-> else after return is unnecessary.
-
-Agree, will update.
-
->> +	default:
->> +		return 0;
->> +	}
->> +}
->> +
->> +static int pvt_read_temp(struct device *dev, u32 attr, int channel, long *val)
->> +{
->> +	struct pvt_device *pvt = dev_get_drvdata(dev);
->> +	struct regmap *t_map = pvt->t_map;
->> +	u32 stat, nbs;
->> +	int ret;
->> +	u64 tmp;
->> +
->> +	if (channel >= pvt->t_num)
->> +		return -EINVAL;
->> +
-> Those checks are not really needed.
-
-Well noted.
-
->> +	switch (attr) {
->> +	case hwmon_temp_input:
->> +		ret = regmap_read_poll_timeout(t_map, SDIF_DONE(channel),
->> +					       stat, stat & SDIF_SMPL_DONE,
->> +					       PVT_POLL_DELAY_US,
->> +					       PVT_POLL_TIMEOUT_US);
->> +		if (ret)
->> +			return ret;
->> +
->> +		regmap_read(t_map, SDIF_DATA(channel), &nbs);
-> regmap_read() can return an error.
-
-Yes, agree. Will update all regmap read/writes.
-
->> +		nbs &= SAMPLE_DATA_MSK;
->> +
->> +		/*
->> +		 * Convert the register value to
->> +		 * degrees centigrade temperature
->> +		 */
->> +		tmp = nbs * PVT_H_CONST;
->> +		do_div(tmp, PVT_CAL5_CONST);
->> +		*val = tmp - PVT_G_CONST - pvt->ip_freq;
->> +
->> +		return 0;
->> +	default:
->> +		return -EOPNOTSUPP;
->> +	}
->> +}
->> +
->> +static int pvt_read_in(struct device *dev, u32 attr, int channel, long *val)
->> +{
->> +	struct pvt_device *pvt = dev_get_drvdata(dev);
->> +	struct regmap *v_map = pvt->v_map;
->> +	u32 n, stat;
->> +	u8 vm_idx;
->> +	int ret;
->> +
->> +	if (channel >= pvt->v_num)
->> +		return -EINVAL;
->> +
->> +	vm_idx = pvt->vm_idx[channel];
->> +
->> +	switch (attr) {
->> +	case hwmon_in_input:
->> +		ret = regmap_read_poll_timeout(v_map, VM_SDIF_DONE(vm_idx),
->> +					       stat, stat & SDIF_SMPL_DONE,
->> +					       PVT_POLL_DELAY_US,
->> +					       PVT_POLL_TIMEOUT_US);
->> +		if (ret)
->> +			return ret;
->> +
->> +		regmap_read(v_map, VM_SDIF_DATA(vm_idx), &n);
-> regmap_read can return an error.
->
->> +		n &= SAMPLE_DATA_MSK;
->> +		/* Convert the N bitstream count into voltage */
->> +		*val = (PVT_N_CONST * n - PVT_R_CONST) >> PVT_CONV_BITS;
->> +
->> +		return 0;
->> +	default:
->> +		return -EOPNOTSUPP;
->> +	}
->> +}
->> +
->> +static int pvt_read(struct device *dev, enum hwmon_sensor_types type,
->> +		    u32 attr, int channel, long *val)
->> +{
->> +	switch (type) {
->> +	case hwmon_temp:
->> +		return pvt_read_temp(dev, attr, channel, val);
->> +	case hwmon_in:
->> +		return pvt_read_in(dev, attr, channel, val);
->> +	default:
->> +		return -EOPNOTSUPP;
->> +	}
->> +}
->> +
->> +static const u32 pvt_chip_config[] = {
->> +	HWMON_C_REGISTER_TZ,
->> +	0
->> +};
->> +
->> +static const struct hwmon_channel_info pvt_chip = {
->> +	.type = hwmon_chip,
->> +	.config = pvt_chip_config,
->> +};
->> +
->> +static struct hwmon_channel_info pvt_temp = {
->> +	.type = hwmon_temp,
->> +};
->> +
->> +static struct hwmon_channel_info pvt_in = {
->> +	.type = hwmon_in,
->> +};
->> +
->> +static const struct hwmon_ops pvt_hwmon_ops = {
->> +	.is_visible = pvt_is_visible,
->> +	.read = pvt_read,
->> +};
->> +
->> +static struct hwmon_chip_info pvt_chip_info = {
->> +	.ops = &pvt_hwmon_ops,
->> +};
->> +
->> +static int pvt_init(struct pvt_device *pvt)
->> +{
->> +	u16 sys_freq, key, middle, low = 4, high = 8;
->> +	struct regmap *t_map = pvt->t_map;
->> +	struct regmap *p_map = pvt->p_map;
->> +	struct regmap *v_map = pvt->v_map;
->> +	u32 t_num = pvt->t_num;
->> +	u32 p_num = pvt->p_num;
->> +	u32 v_num = pvt->v_num;
->> +	u32 clk_synth, val;
->> +	int ret;
->> +
->> +	sys_freq = clk_get_rate(pvt->clk) / HZ_PER_MHZ;
->> +	while (high >= low) {
->> +		middle = (low + high + 1) / 2;
->> +		key = DIV_ROUND_CLOSEST(sys_freq, middle);
->> +		if (key > CLK_SYS_CYCLES_MAX) {
->> +			low = middle + 1;
->> +			continue;
->> +		} else if (key < CLK_SYS_CYCLES_MIN) {
->> +			high = middle - 1;
->> +			continue;
->> +		}
->> +
->> +		break;
->> +	}
->> +
->> +	/*
->> +	 * The system supports 'clk_sys' to 'clk_ip' frequency ratios
->> +	 * from 2:1 to 512:1
->> +	 */
->> +	key = clamp_val(key, CLK_SYS_CYCLES_MIN, CLK_SYS_CYCLES_MAX) - 2;
->> +
->> +	clk_synth = ((key + 1) >> 1) << CLK_SYNTH_LO_SFT |
->> +		    (key >> 1) << CLK_SYNTH_HI_SFT |
->> +		    (key >> 1) << CLK_SYNTH_HOLD_SFT | CLK_SYNTH_EN;
->> +
->> +	pvt->ip_freq = sys_freq * 100 / (key + 2);
->> +
->> +	if (t_num) {
->> +		regmap_write(t_map, SDIF_SMPL_CTRL, 0x0);
->> +		regmap_write(t_map, SDIF_HALT, 0x0);
->> +		regmap_write(t_map, CLK_SYNTH, clk_synth);
->> +		regmap_write(t_map, SDIF_DISABLE, 0x0);
->> +
-> regmap_write can return an error. If this doesn't apply here for some reason
-> (same as the reads), please add a note to the top of the driver explaining
-> the reason.
->
->> +		ret = regmap_read_poll_timeout(t_map, SDIF_STAT,
->> +					       val, !(val & SDIF_BUSY),
->> +					       PVT_POLL_DELAY_US,
->> +					       PVT_POLL_TIMEOUT_US);
->> +		if (ret)
->> +			return ret;
->> +
->> +		val = CFG0_MODE_2 | CFG0_PARALLEL_OUT | CFG0_12_BIT |
->> +		      IP_CFG << SDIF_ADDR_SFT | SDIF_WRN_W | SDIF_PROG;
->> +		regmap_write(t_map, SDIF_W, val);
->> +
->> +		ret = regmap_read_poll_timeout(t_map, SDIF_STAT,
->> +					       val, !(val & SDIF_BUSY),
->> +					       PVT_POLL_DELAY_US,
->> +					       PVT_POLL_TIMEOUT_US);
->> +		if (ret)
->> +			return ret;
->> +
->> +		val = POWER_DELAY_CYCLE_256 | IP_TMR << SDIF_ADDR_SFT |
->> +			      SDIF_WRN_W | SDIF_PROG;
->> +		regmap_write(t_map, SDIF_W, val);
->> +
->> +		ret = regmap_read_poll_timeout(t_map, SDIF_STAT,
->> +					       val, !(val & SDIF_BUSY),
->> +					       PVT_POLL_DELAY_US,
->> +					       PVT_POLL_TIMEOUT_US);
->> +		if (ret)
->> +			return ret;
->> +
->> +		val = IP_RST_REL | IP_RUN_CONT | IP_AUTO |
->> +		      IP_CTRL << SDIF_ADDR_SFT |
->> +		      SDIF_WRN_W | SDIF_PROG;
->> +		regmap_write(t_map, SDIF_W, val);
->> +	}
->> +
->> +	if (p_num) {
->> +		regmap_write(p_map, SDIF_HALT, 0x0);
->> +		regmap_write(p_map, SDIF_DISABLE, BIT(p_num) - 1);
->> +		regmap_write(p_map, CLK_SYNTH, clk_synth);
->> +	}
->> +
->> +	if (v_num) {
->> +		regmap_write(v_map, SDIF_SMPL_CTRL, 0x0);
->> +		regmap_write(v_map, SDIF_HALT, 0x0);
->> +		regmap_write(v_map, CLK_SYNTH, clk_synth);
->> +		regmap_write(v_map, SDIF_DISABLE, 0x0);
->> +
->> +		ret = regmap_read_poll_timeout(v_map, SDIF_STAT,
->> +					       val, !(val & SDIF_BUSY),
->> +					       PVT_POLL_DELAY_US,
->> +					       PVT_POLL_TIMEOUT_US);
->> +		if (ret)
->> +			return ret;
->> +
->> +		val = CFG1_VOL_MEAS_MODE | CFG1_PARALLEL_OUT |
->> +		      CFG1_14_BIT | IP_CFG << SDIF_ADDR_SFT |
->> +		      SDIF_WRN_W | SDIF_PROG;
->> +		regmap_write(v_map, SDIF_W, val);
->> +
->> +		ret = regmap_read_poll_timeout(v_map, SDIF_STAT,
->> +					       val, !(val & SDIF_BUSY),
->> +					       PVT_POLL_DELAY_US,
->> +					       PVT_POLL_TIMEOUT_US);
->> +		if (ret)
->> +			return ret;
->> +
->> +		val = POWER_DELAY_CYCLE_64 | IP_TMR << SDIF_ADDR_SFT |
->> +		      SDIF_WRN_W | SDIF_PROG;
->> +		regmap_write(v_map, SDIF_W, val);
->> +
->> +		ret = regmap_read_poll_timeout(v_map, SDIF_STAT,
->> +					       val, !(val & SDIF_BUSY),
->> +					       PVT_POLL_DELAY_US,
->> +					       PVT_POLL_TIMEOUT_US);
->> +		if (ret)
->> +			return ret;
->> +
->> +		val = IP_RST_REL | IP_RUN_CONT | IP_AUTO | IP_VM_MODE |
->> +		      IP_CTRL << SDIF_ADDR_SFT |
->> +		      SDIF_WRN_W | SDIF_PROG;
->> +		regmap_write(v_map, SDIF_W, val);
->> +	}
->> +
->> +	return 0;
->> +}
->> +
->> +static struct regmap_config pvt_regmap_config = {
->> +	.reg_bits = 32,
->> +	.reg_stride = 4,
->> +	.val_bits = 32,
->> +};
->> +
->> +static int pvt_get_regmap(struct platform_device *pdev, char *reg_name,
->> +			  struct pvt_device *pvt)
->> +{
->> +	struct device *dev = &pdev->dev;
->> +	struct regmap **reg_map;
->> +	void __iomem *io_base;
->> +
->> +	if (!strcmp(reg_name, "common"))
->> +		reg_map = &pvt->c_map;
->> +	else if (!strcmp(reg_name, "ts"))
->> +		reg_map = &pvt->t_map;
->> +	else if (!strcmp(reg_name, "pd"))
->> +		reg_map = &pvt->p_map;
->> +	else if (!strcmp(reg_name, "vm"))
->> +		reg_map = &pvt->v_map;
->> +	else
->> +		return -EINVAL;
->> +
->> +	io_base = devm_platform_ioremap_resource_byname(pdev, reg_name);
->> +	if (IS_ERR(io_base))
->> +		return PTR_ERR(io_base);
->> +
->> +	pvt_regmap_config.name = reg_name;
-> This may be convenient, but I am concerned that it might cause trouble if there
-> is more than one such controller in the system. Can you confirm that there will
-> always be one, and exactly one, such device in any given system ?
-
-Yes, it is confirmed that there will be only one and exactly one such controller
-in any given system.
-
->> +	*reg_map = devm_regmap_init_mmio(dev, io_base, &pvt_regmap_config);
->> +	if (IS_ERR(*reg_map)) {
->> +		dev_err(dev, "failed to init register map\n");
->> +		return PTR_ERR(*reg_map);
->> +	}
->> +
->> +	return 0;
->> +}
->> +
->> +static void pvt_clk_disable(void *data)
->> +{
->> +	struct pvt_device *pvt = data;
->> +
->> +	clk_disable_unprepare(pvt->clk);
->> +}
->> +
->> +static int pvt_clk_enable(struct device *dev, struct pvt_device *pvt)
->> +{
->> +	int ret;
->> +
->> +	ret = clk_prepare_enable(pvt->clk);
->> +	if (ret)
->> +		return ret;
->> +
->> +	return devm_add_action_or_reset(dev, pvt_clk_disable, pvt);
->> +}
->> +
->> +static void pvt_reset_control_assert(void *data)
->> +{
->> +	struct pvt_device *pvt = data;
->> +
->> +	reset_control_assert(pvt->rst);
->> +}
->> +
->> +static int pvt_reset_control_deassert(struct device *dev, struct pvt_device *pvt)
->> +{
->> +	int ret;
->> +
->> +	ret = reset_control_deassert(pvt->rst);
->> +	if (ret)
->> +		return ret;
->> +
->> +	return devm_add_action_or_reset(dev, pvt_reset_control_assert, pvt);
->> +}
->> +
->> +static int mr75203_probe(struct platform_device *pdev)
->> +{
->> +	const struct hwmon_channel_info **pvt_info;
->> +	u32 ts_num, vm_num, pd_num, val, index, i;
->> +	struct device *dev = &pdev->dev;
->> +	u32 *temp_config, *in_config;
->> +	struct device *hwmon_dev;
->> +	struct pvt_device *pvt;
->> +	int ret;
->> +
->> +	pvt = devm_kzalloc(dev, sizeof(*pvt), GFP_KERNEL);
->> +	if (!pvt)
->> +		return -ENOMEM;
->> +
->> +	ret = pvt_get_regmap(pdev, "common", pvt);
->> +	if (ret)
->> +		return ret;
->> +
->> +	pvt->clk = devm_clk_get(dev, NULL);
->> +	if (IS_ERR(pvt->clk))
->> +		return dev_err_probe(dev, PTR_ERR(pvt->clk), "failed to get clock\n");
->> +
->> +	ret = pvt_clk_enable(dev, pvt);
->> +	if (ret) {
->> +		dev_err(dev, "failed to enable clock\n");
->> +		return ret;
->> +	}
->> +
->> +	pvt->rst = devm_reset_control_get_exclusive(dev, NULL);
->> +	if (IS_ERR(pvt->rst))
->> +		return dev_err_probe(dev, PTR_ERR(pvt->rst),
->> +				     "failed to get reset control\n");
->> +
->> +	ret = pvt_reset_control_deassert(dev, pvt);
->> +	if (ret)
->> +		return dev_err_probe(dev, ret, "cannot deassert reset control\n");
->> +
->> +	regmap_read(pvt->c_map, PVT_IP_CONFIG, &val);
->> +	ts_num = (val & TS_NUM_MSK) >> TS_NUM_SFT;
->> +	pd_num = (val & PD_NUM_MSK) >> PD_NUM_SFT;
->> +	vm_num = (val & VM_NUM_MSK) >> VM_NUM_SFT;
->> +	pvt->t_num = ts_num;
->> +	pvt->p_num = pd_num;
->> +	pvt->v_num = vm_num;
->> +	val = 0;
->> +	if (ts_num)
->> +		val++;
->> +	if (vm_num)
->> +		val++;
->> +	if (!val)
->> +		return -ENODEV;
->> +
->> +	pvt_info = devm_kcalloc(dev, val + 2, sizeof(*pvt_info), GFP_KERNEL);
->> +	if (!pvt_info)
->> +		return -ENOMEM;
->> +	pvt_info[0] = &pvt_chip;
->> +	index = 1;
->> +
->> +	if (ts_num) {
->> +		ret = pvt_get_regmap(pdev, "ts", pvt);
->> +		if (ret)
->> +			return ret;
->> +
->> +		temp_config = devm_kcalloc(dev, ts_num + 1,
->> +					   sizeof(*temp_config), GFP_KERNEL);
->> +		if (!temp_config)
->> +			return -ENOMEM;
->> +
->> +		for (i = 0; i < ts_num; i++)
->> +			temp_config[i] = HWMON_T_INPUT;
->> +
->> +		temp_config[ts_num] = 0;
->> +		pvt_temp.config = temp_config;
->> +
->> +		pvt_info[index++] = &pvt_temp;
->> +	}
->> +
->> +	if (pd_num) {
->> +		ret = pvt_get_regmap(pdev, "pd", pvt);
->> +		if (ret)
->> +			return ret;
->> +	}
->> +
->> +	if (vm_num) {
->> +		u32 num = vm_num;
->> +
->> +		ret = pvt_get_regmap(pdev, "vm", pvt);
->> +		if (ret)
->> +			return ret;
->> +
->> +		pvt->vm_idx = devm_kcalloc(dev, vm_num, sizeof(*pvt->vm_idx),
->> +					   GFP_KERNEL);
->> +		if (!pvt->vm_idx)
->> +			return -ENOMEM;
->> +
->> +		for (i = 0; i < vm_num; i++)
->> +			pvt->vm_idx[i] = i;
->> +
->> +		ret = device_property_read_u8_array(dev, "intel,vm-map",
->> +						    pvt->vm_idx, vm_num);
->> +		if (!ret)
->> +			for (i = 0; i < vm_num; i++)
->> +				if (pvt->vm_idx[i] >= vm_num ||
->> +				    pvt->vm_idx[i] == 0xff) {
->> +					num = i;
->> +					break;
->> +				}
->> +
->> +		in_config = devm_kcalloc(dev, num + 1,
->> +					 sizeof(*in_config), GFP_KERNEL);
->> +		if (!in_config)
->> +			return -ENOMEM;
->> +
->> +		memset32(in_config, HWMON_I_INPUT, num);
->> +		in_config[num] = 0;
->> +		pvt_in.config = in_config;
->> +
->> +		pvt_info[index++] = &pvt_in;
->> +	}
->> +
->> +	ret = pvt_init(pvt);
->> +	if (ret) {
->> +		dev_err(dev, "failed to init pvt: %d\n", ret);
->> +		return ret;
->> +	}
->> +
->> +	pvt_chip_info.info = pvt_info;
->> +	hwmon_dev = devm_hwmon_device_register_with_info(dev, "pvt",
->> +							 pvt,
->> +							 &pvt_chip_info,
->> +							 NULL);
->> +
->> +	return PTR_ERR_OR_ZERO(hwmon_dev);
->> +}
->> +
->> +static const struct of_device_id moortec_pvt_of_match[] = {
->> +	{ .compatible = "moortec,mr75203" },
->> +	{ }
->> +};
->> +MODULE_DEVICE_TABLE(of, moortec_pvt_of_match);
->> +
->> +static struct platform_driver moortec_pvt_driver = {
->> +	.driver = {
->> +		.name = "moortec-pvt",
->> +		.of_match_table = moortec_pvt_of_match,
->> +	},
->> +	.probe = mr75203_probe,
->> +};
->> +module_platform_driver(moortec_pvt_driver);
->> +
->> +MODULE_LICENSE("GPL v2");
->>
-
-Thanks.
-
-Regards,
-Rahul
-
-
+Thanks,
+Michal
