@@ -2,145 +2,94 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from vger.kernel.org (vger.kernel.org [23.128.96.18])
-	by mail.lfdr.de (Postfix) with ESMTP id 55A3028394B
-	for <lists+devicetree@lfdr.de>; Mon,  5 Oct 2020 17:13:41 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTP id 029582816AE
+	for <lists+devicetree@lfdr.de>; Fri,  2 Oct 2020 17:34:03 +0200 (CEST)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S1726398AbgJEPNk (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Mon, 5 Oct 2020 11:13:40 -0400
-Received: from new1-smtp.messagingengine.com ([66.111.4.221]:50003 "EHLO
-        new1-smtp.messagingengine.com" rhost-flags-OK-OK-OK-OK)
-        by vger.kernel.org with ESMTP id S1726248AbgJEPNk (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Mon, 5 Oct 2020 11:13:40 -0400
-Received: from compute6.internal (compute6.nyi.internal [10.202.2.46])
-        by mailnew.nyi.internal (Postfix) with ESMTP id 2AD2E580350;
-        Mon,  5 Oct 2020 11:13:39 -0400 (EDT)
-Received: from mailfrontend1 ([10.202.2.162])
-  by compute6.internal (MEProxy); Mon, 05 Oct 2020 11:13:39 -0400
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=cerno.tech; h=
-        date:to:cc:subject:message-id:from:references:mime-version
-        :content-type:in-reply-to; s=fm1; bh=FtG2Bzuy5PqxUd7fnFYHl5Znz5H
-        mAs+KH2eBPZ//Wzo=; b=NVCuzXlnXtSq15LRXTCVx5qRPNGYjQTymOsYZNvdS6x
-        Aa11UQdQXmoAa2K2cZXjUrPEyEe1JeO3WsKuQUmsDR33Jr1TGS9q7Vo7r6aQF2FI
-        mDqQgIYhbBwapj0Wl++gAT6grbt7bc6JTQknfOnBJEmUmNRwDORF2QYoUTnOeMYl
-        Kk0OBUfmJ2ngAUKZZNEGX6CiZc+uzkchZnx2/pwZ0ZkXKS8e35QQGRNnS5kBzPcU
-        izgIa5Zf8brXKVwY8yxE2itdO4mQV7Ice4xyDSp+iMd0qeJNReoCJ+RkQNp2f4nY
-        k5cEGtoTU/DIrIqG+cSCBsZnUwLdeKLP+74zlsUm0mQ==
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=
-        messagingengine.com; h=cc:content-type:date:from:in-reply-to
-        :message-id:mime-version:references:subject:to:x-me-proxy
-        :x-me-proxy:x-me-sender:x-me-sender:x-sasl-enc; s=fm1; bh=FtG2Bz
-        uy5PqxUd7fnFYHl5Znz5HmAs+KH2eBPZ//Wzo=; b=chBh/6Sydgee2d8NJ1zO+H
-        IY5XR5iEAcOwKKrQ8aMnQY0bt0hYsvY1u0IY56M9NnBEISFkwAS9dT0ZsXxDTHT4
-        0wCxVNpGDprCu1G9Cve4NIPEm2LnfJEGxhAVhoRVcsMaV2I1AuY5d/zl3ksI/s9O
-        lGcjxi11CwsyXHFJSn9c7U2ZDAygcHFpnjMIhCAyig4fPVDlIyV7HG0C96WUgvuS
-        0idtewaBFmsqyuWZuYHud9ulzqeuNC9bfVGG7sO5W0sF5SNFY0qWsMOkL136V1Z5
-        X1zgnBlk/nMORuRpmdglmNbBmTGHrTetjH8n/tB/fyQ+7jeqac7OZF3TdNrcjuTw
-        ==
-X-ME-Sender: <xms:ITh7XzWawbNEZJIGdQ6u6hrdaC2CGyhpDFJBmaThbCq44HxZpTelnQ>
-    <xme:ITh7X7lizOAZmEyAoRpHUP8HdTOwAso0HlYlRdFgwDEZzLo09Z_u40i48kabfSnme
-    EKvTYljw7IgAtmsVuM>
-X-ME-Proxy-Cause: gggruggvucftvghtrhhoucdtuddrgedujedrgedvgdekjecutefuodetggdotefrodftvf
-    curfhrohhfihhlvgemucfhrghsthforghilhdpqfgfvfdpuffrtefokffrpgfnqfghnecu
-    uegrihhlohhuthemuceftddtnecusecvtfgvtghiphhivghnthhsucdlqddutddtmdenuc
-    fjughrpeffvffukffhfhggtggujgesghdtreertddtvdenucfhrhhomhepofgrgihimhgv
-    ucftihhprghrugcuoehmrgigihhmvgestggvrhhnohdrthgvtghhqeenucggtffrrghtth
-    gvrhhnpeeikefffefhffeiffehfeeghfevfeekfeejveetfeegjeejvefghfffheeifeeh
-    ffenucfkphepledtrdekledrieekrdejieenucevlhhushhtvghrufhiiigvpedtnecurf
-    grrhgrmhepmhgrihhlfhhrohhmpehmrgigihhmvgestggvrhhnohdrthgvtghh
-X-ME-Proxy: <xmx:ITh7X_aWpL87qXoNeTUni3Ph9aqbr8BD3tvAlDkqxy_2GbAzqVXkxA>
-    <xmx:ITh7X-W2YDxNVHOJc-0ytNBko9aVVCx8yTMtbQMTI8xMrXDXygOYFg>
-    <xmx:ITh7X9lh3wY9NU7clPp9MRtg8w04s108r_bUsqlqD9HP4UCpwHXz9Q>
-    <xmx:Izh7X_nWnKPB0sUybWIXq66laDgyKJ_h4t0UJfHyhbBFnQsOzM51qA>
-Received: from localhost (lfbn-tou-1-1502-76.w90-89.abo.wanadoo.fr [90.89.68.76])
-        by mail.messagingengine.com (Postfix) with ESMTPA id B94E43280059;
-        Mon,  5 Oct 2020 11:13:36 -0400 (EDT)
-Date:   Wed, 30 Sep 2020 15:04:59 +0200
-To:     Rob Herring <robh@kernel.org>
-Cc:     Mark Rutland <mark.rutland@arm.com>,
-        Frank Rowand <frowand.list@gmail.com>,
-        Daniel Vetter <daniel.vetter@intel.com>,
-        David Airlie <airlied@linux.ie>,
-        Maarten Lankhorst <maarten.lankhorst@linux.intel.com>,
-        Thomas Zimmermann <tzimmermann@suse.de>,
-        Eric Anholt <eric@anholt.net>, devicetree@vger.kernel.org,
-        dri-devel@lists.freedesktop.org,
-        linux-rpi-kernel@lists.infradead.org,
-        bcm-kernel-feedback-list@broadcom.com,
-        linux-arm-kernel@lists.infradead.org,
-        Dave Stevenson <dave.stevenson@raspberrypi.com>,
-        Tim Gover <tim.gover@raspberrypi.com>,
-        Phil Elwell <phil@raspberrypi.com>
-Subject: Re: [PATCH 1/2] drm/vc4: hdmi: Disable Wifi Frequencies
-Message-ID: <20200930130459.kfurbu34lc7jeuok@gilmour.lan>
-From:   Maxime Ripard <maxime@cerno.tech>
-References: <20200925130744.575725-1-maxime@cerno.tech>
- <20200929190055.GA962101@bogus>
+        id S2387990AbgJBPeC (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Fri, 2 Oct 2020 11:34:02 -0400
+Received: from lindbergh.monkeyblade.net ([23.128.96.19]:36232 "EHLO
+        lindbergh.monkeyblade.net" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
+        with ESMTP id S2387893AbgJBPeB (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Fri, 2 Oct 2020 11:34:01 -0400
+Received: from mail-pf1-x443.google.com (mail-pf1-x443.google.com [IPv6:2607:f8b0:4864:20::443])
+        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 54A0EC0613D0;
+        Fri,  2 Oct 2020 08:34:00 -0700 (PDT)
+Received: by mail-pf1-x443.google.com with SMTP id w21so1479805pfc.7;
+        Fri, 02 Oct 2020 08:34:00 -0700 (PDT)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+        d=gmail.com; s=20161025;
+        h=subject:to:cc:references:from:message-id:date:user-agent
+         :mime-version:in-reply-to:content-language:content-transfer-encoding;
+        bh=1u5DHSgPvfJnxuXAGcYpoZqPhgnicM/Uc6lZhhDs3W8=;
+        b=LR9UXNg5SiQ0mEZ5YOEuwwwQ3K/sPR0QgdhN+RVk3yHJttj3q7BeplSqc8gy/u0QQs
+         PhG0z4SD3AdFOxpSTkRy3zJw2vX1fPIu6cl4r4g4aq1itUHVCdyT2FybdvifYsS6f434
+         O0LuptDJrejVFP7po8f+uwdyNuw+ebOuJ+GTOYuqcZA8nAhPiIxamJ6rAJ8vWyyMo56S
+         2VqFQHvM7KYFLUdUlNLBlCGurEcJdRfvRzR/jwWUlZjgKoOyQ/wkyTTYV5Wh+vyTgO+/
+         ea3kkRCAvvCdwFoDcLP6qB40/ZLt79f/0kJZljYK0FaP3bMydh74mFyqO5fdPjcmInOf
+         1t5Q==
+X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+        d=1e100.net; s=20161025;
+        h=x-gm-message-state:subject:to:cc:references:from:message-id:date
+         :user-agent:mime-version:in-reply-to:content-language
+         :content-transfer-encoding;
+        bh=1u5DHSgPvfJnxuXAGcYpoZqPhgnicM/Uc6lZhhDs3W8=;
+        b=U2zfhboebinPh41T2kE7DMAPVqoSBdPL7cNeHmYRTOJOKt0REcN1ZSIQiLYNF+Rv5T
+         9VivBHWIvry1wpFK+Qarkfyd0ubuL0W1QCD3eyk0p6PjCOzCkwJbZ2DuO4HBPJP7O1io
+         UyT28DDi/142dWJ4zdFx8P9KLBZrB2kaCqwc8x/qOKNsrOyhhmL17eJLdRD61BaFM5iV
+         4ABP635gA2mxszGVoMsdtZaS10qHJsYXDXZiDtECNyvSCpkP3O+y7Hku9I5oWSgq7gdU
+         3nNAwPu+8mPQDLeweJ1sMEzV0SCwcPpj9mYXyVWv+++Qu2m3/sz+JmjuVRnoKMndo4aB
+         3lAQ==
+X-Gm-Message-State: AOAM532esWN2qI2FHQ6yyWdc5AunI3JqAuo4KGBqxjV5NIUQcXLTwsI9
+        FCd3jBl50sl4ljWziWx/is87qbD6in87Xw==
+X-Google-Smtp-Source: ABdhPJzZrEGvd2qlqAHlSI1Ix0tcMeXFlJowsm5xcxteqwDSMd6myDKAs3wn9ggC4Bmz2tPKYy/ZYg==
+X-Received: by 2002:a65:42c2:: with SMTP id l2mr2803892pgp.61.1601652839201;
+        Fri, 02 Oct 2020 08:33:59 -0700 (PDT)
+Received: from [10.230.29.112] ([192.19.223.252])
+        by smtp.gmail.com with ESMTPSA id ml20sm1912810pjb.20.2020.10.02.08.33.57
+        (version=TLS1_3 cipher=TLS_AES_128_GCM_SHA256 bits=128/128);
+        Fri, 02 Oct 2020 08:33:58 -0700 (PDT)
+Subject: Re: [RESEND net-next 1/9] arm64: dts: ls1088a: add external MDIO
+ device nodes
+To:     Ioana Ciornei <ioana.ciornei@nxp.com>, davem@davemloft.net,
+        netdev@vger.kernel.org
+Cc:     shawnguo@kernel.org, robh+dt@kernel.org, devicetree@vger.kernel.org
+References: <20201002144847.13793-1-ioana.ciornei@nxp.com>
+ <20201002144847.13793-2-ioana.ciornei@nxp.com>
+From:   Florian Fainelli <f.fainelli@gmail.com>
+Message-ID: <f5c9c03b-8839-4923-b9f8-7ab9a9554d43@gmail.com>
+Date:   Fri, 2 Oct 2020 08:33:57 -0700
+User-Agent: Mozilla/5.0 (Windows NT 10.0; Win64; x64; rv:78.0) Gecko/20100101
+ Firefox/78.0 Thunderbird/78.3.1
 MIME-Version: 1.0
-Content-Type: multipart/signed; micalg=pgp-sha256;
-        protocol="application/pgp-signature"; boundary="u4bs7qtkzx5ibc3n"
-Content-Disposition: inline
-In-Reply-To: <20200929190055.GA962101@bogus>
+In-Reply-To: <20201002144847.13793-2-ioana.ciornei@nxp.com>
+Content-Type: text/plain; charset=utf-8; format=flowed
+Content-Language: en-US
+Content-Transfer-Encoding: 7bit
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
 
---u4bs7qtkzx5ibc3n
-Content-Type: text/plain; charset=us-ascii
-Content-Disposition: inline
-Content-Transfer-Encoding: quoted-printable
 
-Hi Rob,
+On 10/2/2020 7:48 AM, Ioana Ciornei wrote:
+> Add the external MDIO device nodes found in the WRIOP global memory
+> region. This is needed for management of external PHYs.
+> 
+> Signed-off-by: Ioana Ciornei <ioana.ciornei@nxp.com>
+> ---
+>   arch/arm64/boot/dts/freescale/fsl-ls1088a.dtsi | 18 ++++++++++++++++++
+>   1 file changed, 18 insertions(+)
+> 
+> diff --git a/arch/arm64/boot/dts/freescale/fsl-ls1088a.dtsi b/arch/arm64/boot/dts/freescale/fsl-ls1088a.dtsi
+> index 169f4742ae3b..22544e3b7737 100644
+> --- a/arch/arm64/boot/dts/freescale/fsl-ls1088a.dtsi
+> +++ b/arch/arm64/boot/dts/freescale/fsl-ls1088a.dtsi
+> @@ -654,6 +654,24 @@ ptp-timer@8b95000 {
+>   			fsl,extts-fifo;
+>   		};
+>   
+> +		emdio1: mdio@0x8B96000 {
 
-On Tue, Sep 29, 2020 at 02:00:55PM -0500, Rob Herring wrote:
-> On Fri, Sep 25, 2020 at 03:07:43PM +0200, Maxime Ripard wrote:
-> > There's cross-talk on the RPi4 between the 2.4GHz channels used by the =
-WiFi
-> > chip and some resolutions, most notably 1440p at 60Hz.
-> >=20
-> > In such a case, we can either reject entirely the mode, or lower slight=
-ly
-> > the pixel frequency to remove the overlap. Let's go for the latter.
-> >=20
-> > Signed-off-by: Maxime Ripard <maxime@cerno.tech>
-> > ---
-> >  .../bindings/display/brcm,bcm2711-hdmi.yaml        |  6 ++++++
-> >  drivers/gpu/drm/vc4/vc4_hdmi.c                     | 14 +++++++++++++-
-> >  drivers/gpu/drm/vc4/vc4_hdmi.h                     |  8 ++++++++
-> >  3 files changed, 27 insertions(+), 1 deletion(-)
-> >=20
-> > diff --git a/Documentation/devicetree/bindings/display/brcm,bcm2711-hdm=
-i.yaml b/Documentation/devicetree/bindings/display/brcm,bcm2711-hdmi.yaml
-> > index 03a76729d26c..63e7fe999c0a 100644
-> > --- a/Documentation/devicetree/bindings/display/brcm,bcm2711-hdmi.yaml
-> > +++ b/Documentation/devicetree/bindings/display/brcm,bcm2711-hdmi.yaml
-> > @@ -76,6 +76,12 @@ properties:
-> >    resets:
-> >      maxItems: 1
-> > =20
-> > +  raspberrypi,disable-wifi-frequencies:
-> > +    type: boolean
-> > +    description: >
-> > +      Should the pixel frequencies in the WiFi frequencies range be
-> > +      avoided?
->=20
-> Based on googling the issue, perhaps should be a common property?
-
-This is a fairly generic issue indeed, but went for the most
-non-intrusive way. Do you have a better idea of a generic name, or do
-you just want me to drop the vendor prefix?
-
-Maxime
-
---u4bs7qtkzx5ibc3n
-Content-Type: application/pgp-signature; name="signature.asc"
-
------BEGIN PGP SIGNATURE-----
-
-iHUEABYIAB0WIQRcEzekXsqa64kGDp7j7w1vZxhRxQUCX3SCewAKCRDj7w1vZxhR
-xR6PAP9FsndGYY6v0exCfbGLeQIs4y5yblaoV5yQPygk9VDPOQD9GeC07fLj3UJQ
-Yph2AlUG43iC5/XHQuxmhu+6Qyigowg=
-=DlkQ
------END PGP SIGNATURE-----
-
---u4bs7qtkzx5ibc3n--
+You should drop the 0x fro the unit address and likewise below.
+-- 
+Florian
