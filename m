@@ -2,125 +2,92 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from vger.kernel.org (vger.kernel.org [23.128.96.18])
-	by mail.lfdr.de (Postfix) with ESMTP id 52895281186
-	for <lists+devicetree@lfdr.de>; Fri,  2 Oct 2020 13:49:24 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTP id B81052811B4
+	for <lists+devicetree@lfdr.de>; Fri,  2 Oct 2020 13:55:47 +0200 (CEST)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S1726386AbgJBLtX (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Fri, 2 Oct 2020 07:49:23 -0400
-Received: from fllv0015.ext.ti.com ([198.47.19.141]:54894 "EHLO
-        fllv0015.ext.ti.com" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S1725964AbgJBLtX (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Fri, 2 Oct 2020 07:49:23 -0400
-Received: from lelv0266.itg.ti.com ([10.180.67.225])
-        by fllv0015.ext.ti.com (8.15.2/8.15.2) with ESMTP id 092Bn8Hq080454;
-        Fri, 2 Oct 2020 06:49:08 -0500
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=ti.com;
-        s=ti-com-17Q1; t=1601639348;
-        bh=s3DN3MeqQyiIvhI3oNKOPX1pPbCC/r3S5ZGQ31V60RA=;
-        h=Subject:To:CC:References:From:Date:In-Reply-To;
-        b=Z5DrgLMv56Poc2oWfXOawXuLHQ2/fFzYZ6+70o9HE4e29SH6nBoficclVL18S9A9q
-         kx/JmBSOo7SvJUAuw7o1Z5lvnOnmOQrm5vEUhN7y84e9M6K0/bHMH5+2Th53P2PvFW
-         j22qdYl3Vuxb4yZoPUo/8d1EjsFZc3s/cFriAzlU=
-Received: from DLEE115.ent.ti.com (dlee115.ent.ti.com [157.170.170.26])
-        by lelv0266.itg.ti.com (8.15.2/8.15.2) with ESMTPS id 092Bn8UN009228
-        (version=TLSv1.2 cipher=AES256-GCM-SHA384 bits=256 verify=FAIL);
-        Fri, 2 Oct 2020 06:49:08 -0500
-Received: from DLEE109.ent.ti.com (157.170.170.41) by DLEE115.ent.ti.com
- (157.170.170.26) with Microsoft SMTP Server (version=TLS1_2,
- cipher=TLS_ECDHE_RSA_WITH_AES_128_CBC_SHA256_P256) id 15.1.1979.3; Fri, 2 Oct
- 2020 06:49:07 -0500
-Received: from lelv0326.itg.ti.com (10.180.67.84) by DLEE109.ent.ti.com
- (157.170.170.41) with Microsoft SMTP Server (version=TLS1_2,
- cipher=TLS_ECDHE_RSA_WITH_AES_128_CBC_SHA256_P256) id 15.1.1979.3 via
- Frontend Transport; Fri, 2 Oct 2020 06:49:08 -0500
-Received: from [10.250.71.177] (ileax41-snat.itg.ti.com [10.172.224.153])
-        by lelv0326.itg.ti.com (8.15.2/8.15.2) with ESMTP id 092Bn7Vu054127;
-        Fri, 2 Oct 2020 06:49:07 -0500
-Subject: Re: [PATCH 2/2] ASoC: tas2764: Add the driver for the TAS2764
-To:     Mark Brown <broonie@kernel.org>
-CC:     <lgirdwood@gmail.com>, <tiwai@suse.com>, <robh+dt@kernel.org>,
-        <devicetree@vger.kernel.org>, <alsa-devel@alsa-project.org>,
-        <linux-kernel@vger.kernel.org>
-References: <20200930163809.6978-1-dmurphy@ti.com>
- <20200930163809.6978-2-dmurphy@ti.com> <20201001162505.GO6715@sirena.org.uk>
-From:   Dan Murphy <dmurphy@ti.com>
-Message-ID: <e579ca44-dbc8-f7ff-a4b5-3d19ce9b5d7a@ti.com>
-Date:   Fri, 2 Oct 2020 06:49:07 -0500
-User-Agent: Mozilla/5.0 (X11; Linux x86_64; rv:68.0) Gecko/20100101
- Thunderbird/68.10.0
+        id S1726010AbgJBLzq (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Fri, 2 Oct 2020 07:55:46 -0400
+Received: from mail.kernel.org ([198.145.29.99]:47906 "EHLO mail.kernel.org"
+        rhost-flags-OK-OK-OK-OK) by vger.kernel.org with ESMTP
+        id S1726282AbgJBLzq (ORCPT <rfc822;devicetree@vger.kernel.org>);
+        Fri, 2 Oct 2020 07:55:46 -0400
+Received: from gaia (unknown [95.149.105.49])
+        (using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
+        (No client certificate requested)
+        by mail.kernel.org (Postfix) with ESMTPSA id 12001206B7;
+        Fri,  2 Oct 2020 11:55:43 +0000 (UTC)
+Date:   Fri, 2 Oct 2020 12:55:41 +0100
+From:   Catalin Marinas <catalin.marinas@arm.com>
+To:     Nicolas Saenz Julienne <nsaenzjulienne@suse.de>
+Cc:     Rob Herring <robh+dt@kernel.org>, devicetree@vger.kernel.org,
+        will@kernel.org, Frank Rowand <frowand.list@gmail.com>,
+        linux-kernel@vger.kernel.org, linux-mm@kvack.org,
+        iommu@lists.linux-foundation.org,
+        linux-rpi-kernel@lists.infradead.org, robin.murphy@arm.com,
+        hch@lst.de, linux-arm-kernel@lists.infradead.org
+Subject: Re: [PATCH 1/4] of/fdt: Update zone_dma_bits when running in bcm2711
+Message-ID: <20201002115541.GC7034@gaia>
+References: <20201001161740.29064-1-nsaenzjulienne@suse.de>
+ <20201001161740.29064-2-nsaenzjulienne@suse.de>
+ <20201001171500.GN21544@gaia>
+ <20201001172320.GQ21544@gaia>
+ <b47232e2173e9e5ddf8f5be4c7b5a2f897f34eb7.camel@suse.de>
 MIME-Version: 1.0
-In-Reply-To: <20201001162505.GO6715@sirena.org.uk>
-Content-Type: text/plain; charset="windows-1252"; format=flowed
-Content-Transfer-Encoding: 7bit
-Content-Language: en-US
-X-EXCLAIMER-MD-CONFIG: e1e8a2fd-e40a-4ac6-ac9b-f7e9cc9ee180
+Content-Type: text/plain; charset=us-ascii
+Content-Disposition: inline
+In-Reply-To: <b47232e2173e9e5ddf8f5be4c7b5a2f897f34eb7.camel@suse.de>
+User-Agent: Mutt/1.10.1 (2018-07-13)
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-Mark
+On Thu, Oct 01, 2020 at 07:31:19PM +0200, Nicolas Saenz Julienne wrote:
+> On Thu, 2020-10-01 at 18:23 +0100, Catalin Marinas wrote:
+> > On Thu, Oct 01, 2020 at 06:15:01PM +0100, Catalin Marinas wrote:
+> > > On Thu, Oct 01, 2020 at 06:17:37PM +0200, Nicolas Saenz Julienne wrote:
+> > > > diff --git a/drivers/of/fdt.c b/drivers/of/fdt.c
+> > > > index 4602e467ca8b..cd0d115ef329 100644
+> > > > --- a/drivers/of/fdt.c
+> > > > +++ b/drivers/of/fdt.c
+> > > > @@ -25,6 +25,7 @@
+> > > >  #include <linux/serial_core.h>
+> > > >  #include <linux/sysfs.h>
+> > > >  #include <linux/random.h>
+> > > > +#include <linux/dma-direct.h>	/* for zone_dma_bits */
+> > > >  
+> > > >  #include <asm/setup.h>  /* for COMMAND_LINE_SIZE */
+> > > >  #include <asm/page.h>
+> > > > @@ -1198,6 +1199,14 @@ void __init early_init_dt_scan_nodes(void)
+> > > >  	of_scan_flat_dt(early_init_dt_scan_memory, NULL);
+> > > >  }
+> > > >  
+> > > > +void __init early_init_dt_update_zone_dma_bits(void)
+> > > > +{
+> > > > +	unsigned long dt_root = of_get_flat_dt_root();
+> > > > +
+> > > > +	if (of_flat_dt_is_compatible(dt_root, "brcm,bcm2711"))
+> > > > +		zone_dma_bits = 30;
+> > > > +}
+> > > 
+> > > I think we could keep this entirely in the arm64 setup_machine_fdt() and
+> > > not pollute the core code with RPi4-specific code.
+> > 
+> > Actually, even better, could we not move the check to
+> > arm64_memblock_init() when we initialise zone_dma_bits?
+> 
+> I did it this way as I vaguely remembered Rob saying he wanted to centralise
+> all early boot fdt code in one place. But I'll be happy to move it there.
 
-Thanks for the review
+I can see Rob replied and I'm fine if that's his preference. However,
+what I don't particularly like is that in the arm64 code, if
+zone_dma_bits == 24, we set it to 32 assuming that it wasn't touched by
+the early_init_dt_update_zone_dma_bits(). What if at some point we'll
+get a platform that actually needs 24 here (I truly hope not, but just
+the principle of relying on magic values)?
 
-On 10/1/20 11:25 AM, Mark Brown wrote:
-> On Wed, Sep 30, 2020 at 11:38:09AM -0500, Dan Murphy wrote:
->
-> This all looks good - a few very minor things below but nothing
-> substantial:
->
->> +	default:
->> +		dev_err(tas2764->dev, "Not supported evevt\n");
->> +		return -EINVAL;
-> evevt -> event
-OK
->
->> +static int tas2764_mute(struct snd_soc_dai *dai, int mute, int direction)
->> +{
->> +	struct snd_soc_component *component = dai->component;
->> +	int ret = snd_soc_component_update_bits(component, TAS2764_PWR_CTRL,
->> +						TAS2764_PWR_CTRL_MASK,
->> +						mute ? TAS2764_PWR_CTRL_MUTE : 0);
->> +
->> +	if (ret < 0)
->> +		return ret;
-> This looks weird with the ternery operator and extreme indentation -
-> could you please at least split the declaration of ret from the call to
-> make the line length a bit extreme?
+So rather than guessing, I'd prefer if the arch code can override
+ZONE_DMA_BITS_DEFAULT. Then, in arm64, we'll just set it to 32 and no
+need to explicitly touch the zone_dma_bits variable.
 
-I will fix it up
-
-
->> +	switch (fmt & SND_SOC_DAIFMT_FORMAT_MASK) {
->> +	case SND_SOC_DAIFMT_I2S:
->> +	case SND_SOC_DAIFMT_DSP_A:
->> +		tdm_rx_start_slot = 1;
->> +		break;
->> +	case SND_SOC_DAIFMT_DSP_B:
->> +	case SND_SOC_DAIFMT_LEFT_J:
->> +		tdm_rx_start_slot = 0;
->> +		break;
-> I'm not seeing any other handling that distinguishes between the I2S and
-> DSP modes anywhere - I'm guessing this is because the device is really
-> only implementing the DSP modes but because it's mono this is compatible
-> with the I2S modes?  It'd be worth having a comment saying this since
-> while that would be OK not distinguishing between modes properly is a
-> common error in drivers so it'd help avoid cut'n'paste issues if someone
-> uses this code as a reference.
-
-Ah it does do LEFT J and Right J so I will fix this
-
-
->> +static int tas2764_register_codec(struct tas2764_priv *tas2764)
->> +{
->> +	return devm_snd_soc_register_component(tas2764->dev,
->> +					       &soc_component_driver_tas2764,
->> +					       tas2764_dai_driver,
->> +					       ARRAY_SIZE(tas2764_dai_driver));
->> +}
-> This is a bit odd - can we not just inline the component registration
-> rather than having this function?
-
-I will eliminate this completely and move to i2c_probe
-
-Dan
-
+-- 
+Catalin
