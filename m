@@ -2,86 +2,107 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from vger.kernel.org (vger.kernel.org [23.128.96.18])
-	by mail.lfdr.de (Postfix) with ESMTP id 094B828133B
-	for <lists+devicetree@lfdr.de>; Fri,  2 Oct 2020 14:56:51 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTP id 6BE1E281412
+	for <lists+devicetree@lfdr.de>; Fri,  2 Oct 2020 15:34:37 +0200 (CEST)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S1726282AbgJBM4u (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Fri, 2 Oct 2020 08:56:50 -0400
-Received: from mail.kernel.org ([198.145.29.99]:56288 "EHLO mail.kernel.org"
-        rhost-flags-OK-OK-OK-OK) by vger.kernel.org with ESMTP
-        id S1726017AbgJBM4t (ORCPT <rfc822;devicetree@vger.kernel.org>);
-        Fri, 2 Oct 2020 08:56:49 -0400
-Received: from localhost (fw-tnat.cambridge.arm.com [217.140.96.140])
-        (using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
-        (No client certificate requested)
-        by mail.kernel.org (Postfix) with ESMTPSA id B5DF7206DC;
-        Fri,  2 Oct 2020 12:56:48 +0000 (UTC)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=kernel.org;
-        s=default; t=1601643409;
-        bh=0ZXo3fdb400Wi7zTirNJi+vIRV9asZikW2THLjL9Fq0=;
-        h=Date:From:To:Cc:Subject:References:In-Reply-To:From;
-        b=ZBGuG5VQsj2N3F4O70bdAHANb0swRshE3sqyFD2xCSnGYwS07cIR6uMQUMKAR4/W+
-         0CnYf6aVIGZiEZ5CRcmpBqjWrBsaMDrsYxiY2WCQttd/tmjPfQGa0tdmbRaC4WKtM3
-         BAtLQ4L7guLXI4BI13Uwp26e3/s29XEb5CZorAvE=
-Date:   Fri, 2 Oct 2020 13:55:49 +0100
-From:   Mark Brown <broonie@kernel.org>
-To:     Andy Shevchenko <andy.shevchenko@gmail.com>
-Cc:     Serge Semin <Sergey.Semin@baikalelectronics.ru>,
-        Serge Semin <fancer.lancer@gmail.com>,
-        Alexey Malahov <Alexey.Malahov@baikalelectronics.ru>,
-        Ramil Zaripov <Ramil.Zaripov@baikalelectronics.ru>,
-        Pavel Parkhomenko <Pavel.Parkhomenko@baikalelectronics.ru>,
-        Lars Povlsen <lars.povlsen@microchip.com>,
-        "wuxu . wu" <wuxu.wu@huawei.com>, Feng Tang <feng.tang@intel.com>,
-        Rob Herring <robh+dt@kernel.org>, linux-spi@vger.kernel.org,
-        devicetree@vger.kernel.org, linux-kernel@vger.kernel.org
-Subject: Re: [PATCH v3 00/21] spi: dw: Add full Baikal-T1 SPI Controllers
- support
-Message-ID: <20201002125549.GB5527@sirena.org.uk>
-References: <20201001222829.15977-1-Sergey.Semin@baikalelectronics.ru>
- <20201002102444.GY3956970@smile.fi.intel.com>
+        id S1726569AbgJBNeg (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Fri, 2 Oct 2020 09:34:36 -0400
+Received: from lindbergh.monkeyblade.net ([23.128.96.19]:46004 "EHLO
+        lindbergh.monkeyblade.net" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
+        with ESMTP id S1726017AbgJBNeg (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Fri, 2 Oct 2020 09:34:36 -0400
+Received: from mail-pf1-x432.google.com (mail-pf1-x432.google.com [IPv6:2607:f8b0:4864:20::432])
+        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id C3792C0613D0
+        for <devicetree@vger.kernel.org>; Fri,  2 Oct 2020 06:34:34 -0700 (PDT)
+Received: by mail-pf1-x432.google.com with SMTP id o20so1225585pfp.11
+        for <devicetree@vger.kernel.org>; Fri, 02 Oct 2020 06:34:34 -0700 (PDT)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+        d=0x0f.com; s=google;
+        h=from:to:cc:subject:date:message-id:mime-version
+         :content-transfer-encoding;
+        bh=ViPTzj087zkbAeUxiUkd10L4hw2bpChdJQz/eom05Xs=;
+        b=YtoZj8Qlq0KoV5Vv5Iwd6zL1PvI9UQgeu0ScJDwCVcI7sOIYj8OdtixYO43LVMWdEm
+         ndWD1pIJo5sv4nKtNTh311V6m+qIqkthOhc6gsEq/tWreG1tnqZm0GWQdsT0UMobkmw5
+         fUBG6UIhk6nyaT5xkM3QDBQ3zjxFovPcQMAz8=
+X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+        d=1e100.net; s=20161025;
+        h=x-gm-message-state:from:to:cc:subject:date:message-id:mime-version
+         :content-transfer-encoding;
+        bh=ViPTzj087zkbAeUxiUkd10L4hw2bpChdJQz/eom05Xs=;
+        b=HImqFUadUwBGLuWpAMYC1e9/3qd6BeF27roMTp1LTMI5ybbCprUGgRVVbuaSg4NxXy
+         Bq8w3msLSdhNSOo9i5lEZXvyGW0IXSTEMA8f6OtgwCOiFw9k83vH9hRYtSmHpYluKkJI
+         YDCL7l7KOLkhCATPIuwaceW+MSlqaAtcracr9mvuhZVAR/5ShQt5czerg1iTmp41dtSq
+         l81crdXHT9Gij/33U1IR4RPjNK18+ny18Q7M0MvcRs4J1EkPD6uftOBkHzqO/HIMDGSI
+         fL++gO+t9TQ98aJruupb1dKbz6PBc2M6h2F3FAAa2mIUCe/lZWFTegU78uoDw5Bd9wLX
+         hcog==
+X-Gm-Message-State: AOAM531pRdzf+nFwYtTPuNhzMazI1m4bbzWytivwxYLnDxaIyc+dif0b
+        HaIAqwseQT21WpVCkIbQ9kZO9IPUf3zkDw==
+X-Google-Smtp-Source: ABdhPJyltF3pO67bl3jb3gcEPWV5yGLyFSorGya+l9F6U8GZcXySxsbslze7MNg1Rb22P/PVxWvCsg==
+X-Received: by 2002:a62:6147:0:b029:142:2501:34e8 with SMTP id v68-20020a6261470000b0290142250134e8mr2743784pfb.65.1601645674188;
+        Fri, 02 Oct 2020 06:34:34 -0700 (PDT)
+Received: from shiro.work (p1268123-ipngn200803sizuokaden.shizuoka.ocn.ne.jp. [118.13.124.123])
+        by smtp.googlemail.com with ESMTPSA id k14sm1708219pjd.45.2020.10.02.06.34.31
+        (version=TLS1_3 cipher=TLS_AES_256_GCM_SHA384 bits=256/256);
+        Fri, 02 Oct 2020 06:34:33 -0700 (PDT)
+From:   Daniel Palmer <daniel@0x0f.com>
+To:     soc@kernel.org
+Cc:     linux-arm-kernel@lists.infradead.org, devicetree@vger.kernel.org,
+        mark-pk.tsai@mediatek.com, arnd@arndb.de, maz@kernel.org,
+        Daniel Palmer <daniel@0x0f.com>
+Subject: [PATCH v2 0/5] ARM: mstar: wire up interrupt controllers
+Date:   Fri,  2 Oct 2020 22:34:13 +0900
+Message-Id: <20201002133418.2250277-1-daniel@0x0f.com>
+X-Mailer: git-send-email 2.27.0
 MIME-Version: 1.0
-Content-Type: multipart/signed; micalg=pgp-sha512;
-        protocol="application/pgp-signature"; boundary="0ntfKIWw70PvrIHh"
-Content-Disposition: inline
-In-Reply-To: <20201002102444.GY3956970@smile.fi.intel.com>
-X-Cookie: Words must be weighed, not counted.
-User-Agent: Mutt/1.10.1 (2018-07-13)
+Content-Transfer-Encoding: 8bit
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
+Mark-PK Tsai's driver for the MStar interrupt
+controller should be going into 5.10[0].
 
---0ntfKIWw70PvrIHh
-Content-Type: text/plain; charset=us-ascii
-Content-Disposition: inline
+This small series selects the driver when building
+support for MStar/SigmaStar Arm v7 SoCs, adds the
+instances of it to the base dtsi and wires up the
+interrupt for pm_uart.
 
-On Fri, Oct 02, 2020 at 01:24:44PM +0300, Andy Shevchenko wrote:
-> On Fri, Oct 02, 2020 at 01:28:08AM +0300, Serge Semin wrote:
+Differences from v1:
 
-> > the subject. Though some of them are mere cleanups or weakly related with
-> > the subject fixes, but we just couldn't leave the code as is at some
-> > places since we were working with the DW APB SSI driver anyway. Here is
-> > what we did to fix the original DW APB SSI driver, to make it less messy.
+- Added two extra commits that fix up the file names
+  for the MStar dtsi/dts files as requested by Arnd.
 
-> Maybe it's time to put your name into MAINTAINERS for this driver?
+Daniel Palmer (5):
+  ARM: mstar: Select MStar intc
+  ARM: mstar: Add interrupt controller to base dtsi
+  ARM: mstar: Add interrupt to pm_uart
+  ARM: mstar: Add mstar prefix to all of the dtsi/dts files
+  ARM: mstar: Fix up the fallout from moving the dts/dtsi files
 
-Seems sensible to me - Andy, it probably makes sense to add you as well?
-Does one of you want to send a patch for this?
+ MAINTAINERS                                   |  4 +---
+ arch/arm/boot/dts/Makefile                    |  6 +++---
+ ... mstar-infinity-msc313-breadbee_crust.dts} |  2 +-
+ ...sc313e.dtsi => mstar-infinity-msc313.dtsi} |  2 +-
+ .../{infinity.dtsi => mstar-infinity.dtsi}    |  0
+ ...s => mstar-infinity3-msc313e-breadbee.dts} |  2 +-
+ ...336n.dtsi => mstar-infinity3-msc313e.dtsi} |  2 +-
+ .../{infinity3.dtsi => mstar-infinity3.dtsi}  |  2 +-
+ ...=> mstar-mercury5-ssc8336n-midrived08.dts} |  2 +-
+ ...c313.dtsi => mstar-mercury5-ssc8336n.dtsi} |  2 +-
+ .../{mercury5.dtsi => mstar-mercury5.dtsi}    |  0
+ arch/arm/boot/dts/mstar-v7.dtsi               | 20 +++++++++++++++++++
+ arch/arm/mach-mstar/Kconfig                   |  1 +
+ 13 files changed, 32 insertions(+), 13 deletions(-)
+ rename arch/arm/boot/dts/{infinity-msc313-breadbee_crust.dts => mstar-infinity-msc313-breadbee_crust.dts} (90%)
+ rename arch/arm/boot/dts/{infinity3-msc313e.dtsi => mstar-infinity-msc313.dtsi} (87%)
+ rename arch/arm/boot/dts/{infinity.dtsi => mstar-infinity.dtsi} (100%)
+ rename arch/arm/boot/dts/{infinity3-msc313e-breadbee.dts => mstar-infinity3-msc313e-breadbee.dts} (89%)
+ rename arch/arm/boot/dts/{mercury5-ssc8336n.dtsi => mstar-infinity3-msc313e.dtsi} (87%)
+ rename arch/arm/boot/dts/{infinity3.dtsi => mstar-infinity3.dtsi} (84%)
+ rename arch/arm/boot/dts/{mercury5-ssc8336n-midrived08.dts => mstar-mercury5-ssc8336n-midrived08.dts} (89%)
+ rename arch/arm/boot/dts/{infinity-msc313.dtsi => mstar-mercury5-ssc8336n.dtsi} (87%)
+ rename arch/arm/boot/dts/{mercury5.dtsi => mstar-mercury5.dtsi} (100%)
 
---0ntfKIWw70PvrIHh
-Content-Type: application/pgp-signature; name="signature.asc"
+-- 
+2.27.0
 
------BEGIN PGP SIGNATURE-----
-
-iQEzBAABCgAdFiEEreZoqmdXGLWf4p/qJNaLcl1Uh9AFAl93I1QACgkQJNaLcl1U
-h9Doiwf/TdOWB+DygK44AJ9c0G4abf7KIjbpqcyPh6MBmaEV7dDvZv90r43zabkJ
-HP5jwcdiGjtBKhGRSIMjrs7REmqNA2HBn8lH4VIoKbWVL9znfRRDwPeT7YY7W7k8
-pU+lA6KUrHomWjg38I+ln5Ff2DmracaIEH8fxQkP7VBTwpIRjf4QiuaRXmhZdCgG
-gYNzhmu5rezd9rjezUdcFHM9mmJ+UKCZcszmM+vYoWmwgGp778g8ka7bR3SPRB/x
-Z2q0E9gbjQU0XOE1R1xpPjlh9pINELSnIReEANoNeeo0CycXEDeHG3MXS3xgQu3S
-BIDecFRQU4r1T2o7hX/Y0oKo2RRK6g==
-=lR8c
------END PGP SIGNATURE-----
-
---0ntfKIWw70PvrIHh--
