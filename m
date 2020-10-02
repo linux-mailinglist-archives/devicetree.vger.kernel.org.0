@@ -2,96 +2,171 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from vger.kernel.org (vger.kernel.org [23.128.96.18])
-	by mail.lfdr.de (Postfix) with ESMTP id 805EC281968
-	for <lists+devicetree@lfdr.de>; Fri,  2 Oct 2020 19:38:29 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTP id 75F022819B8
+	for <lists+devicetree@lfdr.de>; Fri,  2 Oct 2020 19:39:43 +0200 (CEST)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S2388034AbgJBRi2 (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Fri, 2 Oct 2020 13:38:28 -0400
-Received: from lindbergh.monkeyblade.net ([23.128.96.19]:55730 "EHLO
+        id S2388500AbgJBRje (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Fri, 2 Oct 2020 13:39:34 -0400
+Received: from lindbergh.monkeyblade.net ([23.128.96.19]:55938 "EHLO
         lindbergh.monkeyblade.net" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S1726224AbgJBRi2 (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Fri, 2 Oct 2020 13:38:28 -0400
-Received: from mail-ot1-x343.google.com (mail-ot1-x343.google.com [IPv6:2607:f8b0:4864:20::343])
-        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 20436C0613D0
-        for <devicetree@vger.kernel.org>; Fri,  2 Oct 2020 10:38:28 -0700 (PDT)
-Received: by mail-ot1-x343.google.com with SMTP id g96so2117288otb.12
-        for <devicetree@vger.kernel.org>; Fri, 02 Oct 2020 10:38:28 -0700 (PDT)
+        with ESMTP id S2388484AbgJBRj1 (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Fri, 2 Oct 2020 13:39:27 -0400
+Received: from mail-oi1-x241.google.com (mail-oi1-x241.google.com [IPv6:2607:f8b0:4864:20::241])
+        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id A3F8EC0613D0
+        for <devicetree@vger.kernel.org>; Fri,  2 Oct 2020 10:39:26 -0700 (PDT)
+Received: by mail-oi1-x241.google.com with SMTP id c13so1994700oiy.6
+        for <devicetree@vger.kernel.org>; Fri, 02 Oct 2020 10:39:26 -0700 (PDT)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
         d=sartura-hr.20150623.gappssmtp.com; s=20150623;
         h=mime-version:references:in-reply-to:from:date:message-id:subject:to
          :cc;
-        bh=RRHIpLL5JKXeqD/g2RyUOG+CiEIyOXTKb06G3qE0ufA=;
-        b=GqQrZXE3KUB4ITD1icOKtph32YW1dZsWguYwMh8ync2TRdTLmEiVzNJr50m5wtziyk
-         9jFg6Ss4SL+emdiDklGjkVba/ccAC2XQlUuXmSqFpp57fCk0ZQglPJsWYm3d92as0Wg/
-         w3z4BXDNxVRd1zvicbX4/tiKlqwXRrk7JI8CGNjq63OBbPTCoRG0JS9RsvwLhx+IvEMN
-         D5ox06IGUXw8+6egR7Uny6Fa7vuw37rO2bi6hwp/JhBsP4RjR0r1X0OqQU60VPKZubgK
-         O5Vck7tF2AfSALKRAQOj2EjMnBNgLmOwUKfc1O0EKLTRMhYAIBRnCV3u+JJRt9cKlTV3
-         IlgA==
+        bh=ule5Qp5lbMfHaY0RAIOheId/VOYyQUNSqQkCu9QXrwc=;
+        b=RsWduYJjPDsmhfA0N6SiS3A8cjjci69TyMJnXNuoBlVAYGeLjfUovB54bB8YifmQZS
+         dd8DlhE+poY1vwJakTA+OYdTXlBT7KkeYppgqBfB9Mpxwlbht2gFq1dCD7Th4zSOhGLk
+         bskGAhBZAhXgouEyLgnFwoHjpDD2mhOq1mS/riwWL9HBBH0v0R4ED+hcVJWit24fk0Ud
+         FQELFzw90RXsZudKVJZOvesHZ04cp7heu6AXnUv8aM8qeehi3+uuqERVdFe14FwVgR15
+         /iz6qtcA+qEx4a4XTzQiEX0tp11FHj0qwre/TuyLqUDSIJnE2prIy+EKutzY+ONdk5Cr
+         zLog==
 X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
         d=1e100.net; s=20161025;
         h=x-gm-message-state:mime-version:references:in-reply-to:from:date
          :message-id:subject:to:cc;
-        bh=RRHIpLL5JKXeqD/g2RyUOG+CiEIyOXTKb06G3qE0ufA=;
-        b=iLXnTkEuLdTFJapj/TsKt896+i13jpvZQlsAPXt7LApQmBsLa7Og0eKPkQnnNO2Rkw
-         2WNDP9j/nUHtF9RftntcsTp6Qk0bPK9Xf3qaIlXeueYDPBkedkLp5UGuV0IkSQF24xb+
-         4kxJqHW7hJ3UFyhywPbMd1DyVHiiqTw/HHBYo51Ax6xE3uChNMabl6/5NOfvW9rKgGHr
-         D16mSYPKPbwA+62E/hV1TZz5Vg6anQzog+BbbeIk34rSGD6z0Od2kdhTuJoOD3tdf6Sh
-         SjccCyI48n6y7jgPR7gE/9Vr4k4BP0oxmd3sQBmTykNFRcqNU1HzBECe79Njc7smQTZz
-         vHEQ==
-X-Gm-Message-State: AOAM5323XReN7LgKrbEJ4AuS1FFHTauJuiTDYsnoSMZclVta7U8gn2me
-        AhXBfONJ5vLoaVFwvV5DshiXopMXsKSZvvna5FeFBw==
-X-Google-Smtp-Source: ABdhPJyhmw1VzG2XqiqLSYOOhvDov7mXdPfbzgKvU6IngUw+WRhv0bD0qSqs6ZG3RCJazZBpF7/K8V4jk42uC4HlGRQ=
-X-Received: by 2002:a05:6830:1d96:: with SMTP id y22mr2493422oti.243.1601660307469;
- Fri, 02 Oct 2020 10:38:27 -0700 (PDT)
+        bh=ule5Qp5lbMfHaY0RAIOheId/VOYyQUNSqQkCu9QXrwc=;
+        b=Ix3aghg/qvlWFTIkz8aQPKAgjV95cgtM2Zjw4rDgjYI2zHy96sq1lv/PuONNSrrVvY
+         ujajXrG3/+Rj4qDICpW1B3SJcj+oQTkM8m77FnrIBBGCqh1xH4+OXoLfpeLDL2piJByz
+         cWO0IY//JpwxKPXbrxPCiZN6seV/GNwZaoAz33xp1SXJYezhe9tD/gmi3jO/+ZCSpZtD
+         hPrzsKU9mm2snM2svm/B7HUAEPFd5qZep3vCxK69OvpzGPH2HLehiARVCfwZwdKkJ8sB
+         GR99LtAq1v361fGs2Yav8+1n1RbZa00LvkfcchK5l+ZbchY4Kt0U5lMYULg/QMPb1Ass
+         v3Ew==
+X-Gm-Message-State: AOAM53102SCZEnJigHEZYjYqyXpZpv5OnBeR3DRoFyIcvU1yaA54WpAy
+        VpF97u5dxoN1bWJhlw1Huk153vR5YROZyv8PpSS0Iw==
+X-Google-Smtp-Source: ABdhPJwg690Zdw18KeyjOlJrSIrZ5ZOPOR0vqBIuTeFXQjz9ruDkmCVvKFVkZ0TfN7KQGYrUwpI2zAYPrT/nycSfelc=
+X-Received: by 2002:aca:4ac2:: with SMTP id x185mr1866012oia.96.1601660366046;
+ Fri, 02 Oct 2020 10:39:26 -0700 (PDT)
 MIME-Version: 1.0
-References: <20200907101937.10155-1-robert.marko@sartura.hr>
-In-Reply-To: <20200907101937.10155-1-robert.marko@sartura.hr>
+References: <20200909163831.1894142-1-robert.marko@sartura.hr>
+In-Reply-To: <20200909163831.1894142-1-robert.marko@sartura.hr>
 From:   Robert Marko <robert.marko@sartura.hr>
-Date:   Fri, 2 Oct 2020 19:38:16 +0200
-Message-ID: <CA+HBbNEf4pC+NUs4C-Q-boA11ARLKayZN497_M7MEAyq9+neLA@mail.gmail.com>
-Subject: Re: [PATCH] arm: dts: IPQ4019: add SDHCI VQMMC LDO node
+Date:   Fri, 2 Oct 2020 19:39:15 +0200
+Message-ID: <CA+HBbNGZmeejTPszL1jf_01wZP6xZqRyZUa15XpO+y6JCw3ajg@mail.gmail.com>
+Subject: Re: [PATCH v8] ARM: dts: qcom: ipq4019: add USB devicetree nodes
 To:     Andy Gross <agross@kernel.org>,
         Bjorn Andersson <bjorn.andersson@linaro.org>,
         robh+dt@kernel.org, linux-arm-msm <linux-arm-msm@vger.kernel.org>,
         devicetree@vger.kernel.org, linux-kernel@vger.kernel.org
-Cc:     Luka Perkov <luka.perkov@sartura.hr>
+Cc:     John Crispin <john@phrozen.org>,
+        Luka Perkov <luka.perkov@sartura.hr>,
+        Vinod Koul <vkoul@kernel.org>
 Content-Type: text/plain; charset="UTF-8"
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-On Mon, Sep 7, 2020 at 12:19 PM Robert Marko <robert.marko@sartura.hr> wrote:
+On Wed, Sep 9, 2020 at 6:38 PM Robert Marko <robert.marko@sartura.hr> wrote:
 >
-> Since we now have driver for the SDHCI VQMMC LDO needed
-> for I/0 voltage levels lets introduce the necessary node for it.
+> From: John Crispin <john@phrozen.org>
 >
+> Since we now have driver for the USB PHY, and USB controller is already supported by the DWC3 driver lets add the necessary nodes to DTSI.
+>
+> Signed-off-by: John Crispin <john@phrozen.org>
 > Signed-off-by: Robert Marko <robert.marko@sartura.hr>
 > Cc: Luka Perkov <luka.perkov@sartura.hr>
+> Reviewed-by: Vinod Koul <vkoul@kernel.org>
 > ---
->  arch/arm/boot/dts/qcom-ipq4019.dtsi | 10 ++++++++++
->  1 file changed, 10 insertions(+)
+> Changes from v7 to v8:
+> * Add labels for usb2 and usb3 nodes
+> Changes from v6 to v7:
+> * Remove changes to qcom-ipq4019-ap.dk01.1.dtsi
+> It has slipped in unwanted, we only want to add
+> nodes to the DTSI.
+>
+>  arch/arm/boot/dts/qcom-ipq4019.dtsi | 74 +++++++++++++++++++++++++++++
+>  1 file changed, 74 insertions(+)
 >
 > diff --git a/arch/arm/boot/dts/qcom-ipq4019.dtsi b/arch/arm/boot/dts/qcom-ipq4019.dtsi
-> index 6741a1972e55..7774dbd3cec7 100644
+> index 74d8e2c8e4b3..4a973253024a 100644
 > --- a/arch/arm/boot/dts/qcom-ipq4019.dtsi
 > +++ b/arch/arm/boot/dts/qcom-ipq4019.dtsi
-> @@ -211,6 +211,16 @@ tlmm: pinctrl@1000000 {
->                         interrupts = <GIC_SPI 208 IRQ_TYPE_LEVEL_HIGH>;
+> @@ -605,5 +605,79 @@ ethphy4: ethernet-phy@4 {
+>                                 reg = <4>;
+>                         };
 >                 };
->
-> +               vqmmc: regulator@1948000 {
-> +                       compatible = "qcom,vqmmc-ipq4019-regulator";
-> +                       reg = <0x01948000 0x4>;
-> +                       regulator-name = "vqmmc";
-> +                       regulator-min-microvolt = <1500000>;
-> +                       regulator-max-microvolt = <3000000>;
-> +                       regulator-always-on;
+> +
+> +               usb3_ss_phy: ssphy@9a000 {
+> +                       compatible = "qcom,usb-ss-ipq4019-phy";
+> +                       #phy-cells = <0>;
+> +                       reg = <0x9a000 0x800>;
+> +                       reg-names = "phy_base";
+> +                       resets = <&gcc USB3_UNIPHY_PHY_ARES>;
+> +                       reset-names = "por_rst";
 > +                       status = "disabled";
 > +               };
 > +
->                 sdhci: sdhci@7824900 {
->                         compatible = "qcom,sdhci-msm-v4";
->                         reg = <0x7824900 0x11c>, <0x7824000 0x800>;
+> +               usb3_hs_phy: hsphy@a6000 {
+> +                       compatible = "qcom,usb-hs-ipq4019-phy";
+> +                       #phy-cells = <0>;
+> +                       reg = <0xa6000 0x40>;
+> +                       reg-names = "phy_base";
+> +                       resets = <&gcc USB3_HSPHY_POR_ARES>, <&gcc USB3_HSPHY_S_ARES>;
+> +                       reset-names = "por_rst", "srif_rst";
+> +                       status = "disabled";
+> +               };
+> +
+> +               usb3: usb3@8af8800 {
+> +                       compatible = "qcom,dwc3";
+> +                       reg = <0x8af8800 0x100>;
+> +                       #address-cells = <1>;
+> +                       #size-cells = <1>;
+> +                       clocks = <&gcc GCC_USB3_MASTER_CLK>,
+> +                                <&gcc GCC_USB3_SLEEP_CLK>,
+> +                                <&gcc GCC_USB3_MOCK_UTMI_CLK>;
+> +                       clock-names = "master", "sleep", "mock_utmi";
+> +                       ranges;
+> +                       status = "disabled";
+> +
+> +                       dwc3@8a00000 {
+> +                               compatible = "snps,dwc3";
+> +                               reg = <0x8a00000 0xf8000>;
+> +                               interrupts = <GIC_SPI 132 IRQ_TYPE_LEVEL_HIGH>;
+> +                               phys = <&usb3_hs_phy>, <&usb3_ss_phy>;
+> +                               phy-names = "usb2-phy", "usb3-phy";
+> +                               dr_mode = "host";
+> +                       };
+> +               };
+> +
+> +               usb2_hs_phy: hsphy@a8000 {
+> +                       compatible = "qcom,usb-hs-ipq4019-phy";
+> +                       #phy-cells = <0>;
+> +                       reg = <0xa8000 0x40>;
+> +                       reg-names = "phy_base";
+> +                       resets = <&gcc USB2_HSPHY_POR_ARES>, <&gcc USB2_HSPHY_S_ARES>;
+> +                       reset-names = "por_rst", "srif_rst";
+> +                       status = "disabled";
+> +               };
+> +
+> +               usb2: usb2@60f8800 {
+> +                       compatible = "qcom,dwc3";
+> +                       reg = <0x60f8800 0x100>;
+> +                       #address-cells = <1>;
+> +                       #size-cells = <1>;
+> +                       clocks = <&gcc GCC_USB2_MASTER_CLK>,
+> +                                <&gcc GCC_USB2_SLEEP_CLK>,
+> +                                <&gcc GCC_USB2_MOCK_UTMI_CLK>;
+> +                       clock-names = "master", "sleep", "mock_utmi";
+> +                       ranges;
+> +                       status = "disabled";
+> +
+> +                       dwc3@6000000 {
+> +                               compatible = "snps,dwc3";
+> +                               reg = <0x6000000 0xf8000>;
+> +                               interrupts = <GIC_SPI 136 IRQ_TYPE_LEVEL_HIGH>;
+> +                               phys = <&usb2_hs_phy>;
+> +                               phy-names = "usb2-phy";
+> +                               dr_mode = "host";
+> +                       };
+> +               };
+>         };
+>  };
 > --
 > 2.26.2
 >
