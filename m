@@ -2,190 +2,94 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from vger.kernel.org (vger.kernel.org [23.128.96.18])
-	by mail.lfdr.de (Postfix) with ESMTP id B1B83281755
-	for <lists+devicetree@lfdr.de>; Fri,  2 Oct 2020 18:01:34 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTP id 8183E281781
+	for <lists+devicetree@lfdr.de>; Fri,  2 Oct 2020 18:10:23 +0200 (CEST)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S1726090AbgJBQBd (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Fri, 2 Oct 2020 12:01:33 -0400
-Received: from lindbergh.monkeyblade.net ([23.128.96.19]:40530 "EHLO
-        lindbergh.monkeyblade.net" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S1726017AbgJBQBd (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Fri, 2 Oct 2020 12:01:33 -0400
-Received: from mail-io1-xd41.google.com (mail-io1-xd41.google.com [IPv6:2607:f8b0:4864:20::d41])
-        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 56ADCC0613D0;
-        Fri,  2 Oct 2020 09:01:33 -0700 (PDT)
-Received: by mail-io1-xd41.google.com with SMTP id z25so2048524iol.10;
-        Fri, 02 Oct 2020 09:01:33 -0700 (PDT)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=gmail.com; s=20161025;
-        h=mime-version:references:in-reply-to:from:date:message-id:subject:to
-         :cc:content-transfer-encoding;
-        bh=djx2E1NwbIz4/NZf9pUZHpgnzpKYA44NN+Q6dr4EQBY=;
-        b=VOR2gMTsMF6YapeksUWrfxuuAonuvm7dyeNpVx9In8aGbHotqpoTp2kPpH9tJMnKd0
-         MwlDHqMPU/qxAiLIrntySAJ2F3QSZMHfjitSZ4qs8HhpyDW9pLJEuOlnaUu9Fbx1STLP
-         L7jG2/EywJPwzl57SDzNq8n3Q8upBdCBHO8SE4Q95EzDzHnekbehmmjpvQiJ38c4w3d5
-         I06XIghpFSFn+xXvsH4An6TPEpaG3HwOekq32V+DavFdKvEgCnmw8WVJPhSpTungpf42
-         FQ4BKfASHwV4Xcmx78Keu9hYXx+x6ftUzKcm1sp3K1nj+8x81GN7oc4yOO0YG0fHc/cu
-         fu9w==
-X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=1e100.net; s=20161025;
-        h=x-gm-message-state:mime-version:references:in-reply-to:from:date
-         :message-id:subject:to:cc:content-transfer-encoding;
-        bh=djx2E1NwbIz4/NZf9pUZHpgnzpKYA44NN+Q6dr4EQBY=;
-        b=nmlPKetAxhto/ao46PNpt1a45QtGw1ndLP4dN44vHQn2lNwUinAJmaGjJySUEeldoo
-         rSahQOMF6cpZ/HxSCbVcJPqgblwxjU/hQ3Cgfwv1GEcch5NQ76twxG2zluWN92Iy2W3S
-         WGDlQamkg1ZcpGWqEAXOa2hMFY5L1ayOG9zA+7O6drW4GuJNaoUAQtGk4FvlRqLgSf+E
-         UpDUNxTrPurUccaemEH0j6tczUdkHtBSqcfUXFWFMFQbuGAGYrGTMTH8szSYL30jG3bq
-         +y29mZVyOFOuOQkBJNruKvZ3CAR/aYGq6snA1SfMTMjxjvb9VeGHZoQeiUVYLyEBEth7
-         eNiQ==
-X-Gm-Message-State: AOAM532/5xgas/6w+Mk8mlT1LXvouLrSP/OcQ++CEn2JnwCVEPuTsk+P
-        QDOzBcG4+K3ETO5P3L/XqmWuVDDkWba/Z9tpA04=
-X-Google-Smtp-Source: ABdhPJzr6hI4rDHBo9EOgqPBQNjU8Ul0TWnkEY/jKqZML69oSKgD/moghYTeu46CCisvwf7vmiU36Zt8SWWVPT/jWho=
-X-Received: by 2002:a5d:8ace:: with SMTP id e14mr2463373iot.124.1601654492346;
- Fri, 02 Oct 2020 09:01:32 -0700 (PDT)
+        id S1726569AbgJBQKW (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Fri, 2 Oct 2020 12:10:22 -0400
+Received: from esa2.microchip.iphmx.com ([68.232.149.84]:23505 "EHLO
+        esa2.microchip.iphmx.com" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
+        with ESMTP id S1726386AbgJBQKW (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Fri, 2 Oct 2020 12:10:22 -0400
+X-Greylist: delayed 426 seconds by postgrey-1.27 at vger.kernel.org; Fri, 02 Oct 2020 12:10:21 EDT
+DKIM-Signature: v=1; a=rsa-sha256; c=simple/simple;
+  d=microchip.com; i=@microchip.com; q=dns/txt; s=mchp;
+  t=1601655021; x=1633191021;
+  h=from:to:cc:subject:date:message-id:mime-version:
+   content-transfer-encoding;
+  bh=0xm80mI835j7RsnCf27YVapcCw5rmNqJqXj1F/aXJDg=;
+  b=wI6GKhyqVsG1dFAxqG5bAsdJVmdLur23avUBNrqDHn6TZWLgDzzd6kmP
+   Z432zZ4m8Qr8jbrrr2JKECVMX2zKbi5Bwj2gtNoSXANue+S43ma3FcB4m
+   tircAsJdBWAhgk0+WO/ZHaXPThz3xzM568i1v74pTYZK0hKKHXna7vkyc
+   6IM+fv/7y3Ll+l7w5Fz6Emi1MKP6xbD38/Y6Gu2U7o8VuDp5vzWHT4zb0
+   SZIu8ON316eEW4sDKoTMuG3+maciz/K8MvTUqK9x2NO8QrzEUyUpck+xP
+   BS+NFlzE/9mxxpAyLjaRCFhaIrjEz+4VtN9MmR/5302pt4gyFGFtc2MXD
+   w==;
+IronPort-SDR: ERktlbb9SHgHSVs1WBh0+wVf8cBcyCqMHlQ0klUWs2eYzPAhkilLDtnZI034NRrW9SYYQ4y/SF
+ TBt+4s0vOUCoF5b4iAub8CAdJeF3LMSgCGhCflj+y1KckMaVv/gZBLSs2WmVc58cyh3/TqQkXH
+ Btow4/O+EkpNSg0nOIOalDBdDP4fM/TsYK+FIfb/683JBP/fxGXObqLI650Ts7AjwLadhu+s60
+ iWqR7T1NuXSHaJz0MBE7xdmY2NnPhp7ejDVlFqG3q+dq4fomyPqB35UrgOLkvtpTTyRNxT4CC9
+ +EA=
+X-IronPort-AV: E=Sophos;i="5.77,328,1596524400"; 
+   d="scan'208";a="91238271"
+Received: from smtpout.microchip.com (HELO email.microchip.com) ([198.175.253.82])
+  by esa2.microchip.iphmx.com with ESMTP/TLS/AES256-SHA256; 02 Oct 2020 09:03:15 -0700
+Received: from chn-vm-ex01.mchp-main.com (10.10.85.143) by
+ chn-vm-ex04.mchp-main.com (10.10.85.152) with Microsoft SMTP Server
+ (version=TLS1_2, cipher=TLS_ECDHE_RSA_WITH_AES_128_GCM_SHA256) id
+ 15.1.1979.3; Fri, 2 Oct 2020 09:03:14 -0700
+Received: from rob-ult-m19940.amer.actel.com (10.10.115.15) by
+ chn-vm-ex01.mchp-main.com (10.10.85.143) with Microsoft SMTP Server id
+ 15.1.1979.3 via Frontend Transport; Fri, 2 Oct 2020 09:02:32 -0700
+From:   Codrin Ciubotariu <codrin.ciubotariu@microchip.com>
+To:     <alsa-devel@alsa-project.org>, <devicetree@vger.kernel.org>,
+        <linux-kernel@vger.kernel.org>,
+        <linux-arm-kernel@lists.infradead.org>
+CC:     <lgirdwood@gmail.com>, <broonie@kernel.org>, <robh+dt@kernel.org>,
+        <perex@perex.cz>, <tiwai@suse.com>, <nicolas.ferre@microchip.com>,
+        <alexandre.belloni@bootlin.com>, <ludovic.desroches@microchip.com>,
+        "Codrin Ciubotariu" <codrin.ciubotariu@microchip.com>
+Subject: [PATCH 0/2] Add driver for Microchip S/PDIF RX
+Date:   Fri, 2 Oct 2020 19:03:03 +0300
+Message-ID: <20201002160305.815523-1-codrin.ciubotariu@microchip.com>
+X-Mailer: git-send-email 2.25.1
 MIME-Version: 1.0
-References: <20200927192912.46323-1-peron.clem@gmail.com> <20200927192912.46323-10-peron.clem@gmail.com>
- <CAGb2v64uAHUd=Ag2pQDqH=gjtPVso5dnKKdCn3ihyiVh8V8L=g@mail.gmail.com> <CAGb2v64U9b1Ayq-XNCHb3z6spsds6eDaz3C4EsV9xFOquHrB7w@mail.gmail.com>
-In-Reply-To: <CAGb2v64U9b1Ayq-XNCHb3z6spsds6eDaz3C4EsV9xFOquHrB7w@mail.gmail.com>
-From:   =?UTF-8?B?Q2zDqW1lbnQgUMOpcm9u?= <peron.clem@gmail.com>
-Date:   Fri, 2 Oct 2020 18:01:21 +0200
-Message-ID: <CAJiuCcfThSqpobeZW7ugnmokc4Xy0n9o+5jvOfP9eqzvDbu_BQ@mail.gmail.com>
-Subject: Re: [linux-sunxi] [PATCH v5 09/20] arm64: dts: allwinner: h6: Add DAI
- node and soundcard for HDMI
-To:     Chen-Yu Tsai <wens@csie.org>
-Cc:     Maxime Ripard <mripard@kernel.org>,
-        Rob Herring <robh+dt@kernel.org>,
-        Mark Brown <broonie@kernel.org>,
-        Liam Girdwood <lgirdwood@gmail.com>,
-        Jaroslav Kysela <perex@perex.cz>,
-        Takashi Iwai <tiwai@suse.com>,
-        Marcus Cooper <codekipper@gmail.com>,
-        Jernej Skrabec <jernej.skrabec@siol.net>,
-        Linux-ALSA <alsa-devel@alsa-project.org>,
-        devicetree <devicetree@vger.kernel.org>,
-        linux-arm-kernel <linux-arm-kernel@lists.infradead.org>,
-        linux-kernel <linux-kernel@vger.kernel.org>,
-        linux-sunxi <linux-sunxi@googlegroups.com>
-Content-Type: text/plain; charset="UTF-8"
-Content-Transfer-Encoding: quoted-printable
+Content-Transfer-Encoding: 8bit
+Content-Type: text/plain
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-Hi Chen-Yu,
+The Sony/Philips Digital Interface Receiver (SPDIFRX) is a serial port
+compliant with the IEC-60958 standard. Among its caracteristics, we
+mention the following:
+ - SPDIF/AES-EBU Compatible Serial Port
+ - 32 Samples FIFO
+ - Data Width Configurable to 24 bits, 20 bits or 16 bits
+ - Packed and Unpacked Data Support for System Memory Optimization
+ - Line State Events Report and Source of Interrupt
+ - Line Error Rate Report
+ - Full Memory Map of 192 bits for Channel 1 and Channel 2 Status and
+   User Data
+ - First 32-bit Status A, Status B Change Report and Source of Interrupt
+ - Line Digital Filter
+ - Register Write Protection
+ - Abnormal Software Access and Internal Sequencer Integrity Check Reports
 
-On Mon, 28 Sep 2020 at 07:42, Chen-Yu Tsai <wens@csie.org> wrote:
->
-> On Mon, Sep 28, 2020 at 1:32 PM Chen-Yu Tsai <wens@csie.org> wrote:
-> >
-> > On Mon, Sep 28, 2020 at 3:29 AM Cl=C3=A9ment P=C3=A9ron <peron.clem@gma=
-il.com> wrote:
-> > >
-> > > From: Jernej Skrabec <jernej.skrabec@siol.net>
-> > >
-> > > Add the I2S node used by the HDMI and a simple-soundcard to
-> > > link audio between HDMI and I2S.
-> > >
-> > > Note that the HDMI codec requires an inverted frame clock and
-> > > a fixed I2S width. As there is no such option for I2S we use
-> > > TDM property of the simple-soundcard to do that.
-> > >
-> > > Signed-off-by: Jernej Skrabec <jernej.skrabec@siol.net>
-> > > Signed-off-by: Marcus Cooper <codekipper@gmail.com>
-> > > Signed-off-by: Cl=C3=A9ment P=C3=A9ron <peron.clem@gmail.com>
-> > > ---
-> > >  arch/arm64/boot/dts/allwinner/sun50i-h6.dtsi | 33 ++++++++++++++++++=
-++
-> > >  1 file changed, 33 insertions(+)
-> > >
-> > > diff --git a/arch/arm64/boot/dts/allwinner/sun50i-h6.dtsi b/arch/arm6=
-4/boot/dts/allwinner/sun50i-h6.dtsi
-> > > index 28c77d6872f6..a8853ee7885a 100644
-> > > --- a/arch/arm64/boot/dts/allwinner/sun50i-h6.dtsi
-> > > +++ b/arch/arm64/boot/dts/allwinner/sun50i-h6.dtsi
-> > > @@ -67,6 +67,25 @@ de: display-engine {
-> > >                 status =3D "disabled";
-> > >         };
-> > >
-> > > +       hdmi_sound: hdmi-sound {
-> > > +               compatible =3D "simple-audio-card";
-> > > +               simple-audio-card,format =3D "i2s";
-> > > +               simple-audio-card,name =3D "sun50i-h6-hdmi";
-> > > +               simple-audio-card,mclk-fs =3D <128>;
-> > > +               simple-audio-card,frame-inversion;
-> > > +               status =3D "disabled";
-> > > +
-> > > +               simple-audio-card,codec {
-> > > +                       sound-dai =3D <&hdmi>;
-> > > +               };
-> > > +
-> > > +               simple-audio-card,cpu {
-> > > +                       sound-dai =3D <&i2s1>;
-> > > +                       dai-tdm-slot-num =3D <2>;
-> >
-> > Doesn't this end up limiting the number of audio channels HDMI can carr=
-y?
-> > AFAICT the TDM properties are all optional, so just leave it out.
-> >
-> > Same goes for the other two patches.
-> >
-> > > +                       dai-tdm-slot-width =3D <32>;
-> > > +               };
-> > > +       };
-> > > +
-> > >         osc24M: osc24M_clk {
-> > >                 #clock-cells =3D <0>;
-> > >                 compatible =3D "fixed-clock";
-> > > @@ -609,6 +628,19 @@ mdio: mdio {
-> > >                         };
-> > >                 };
-> > >
-> > > +               i2s1: i2s@5091000 {
-> > > +                       #sound-dai-cells =3D <0>;
-> > > +                       compatible =3D "allwinner,sun50i-h6-i2s";
-> > > +                       reg =3D <0x05091000 0x1000>;
-> > > +                       interrupts =3D <GIC_SPI 19 IRQ_TYPE_LEVEL_HIG=
-H>;
-> > > +                       clocks =3D <&ccu CLK_BUS_I2S1>, <&ccu CLK_I2S=
-1>;
-> > > +                       clock-names =3D "apb", "mod";
-> > > +                       dmas =3D <&dma 4>, <&dma 4>;
-> > > +                       resets =3D <&ccu RST_BUS_I2S1>;
-> > > +                       dma-names =3D "rx", "tx";
->
-> Sorry, missed this one.
->
-> Given that usage for this interface is transmit only, and there is no
-> RX DRQ number assigned to it, you should drop the RX DMA number and name.
+This interface is available in Microchip's SAMA7G5 SoC.
 
-Indeed if there is no DRQ number assigned we shouldn't have it in the
-device-tree
+Codrin Ciubotariu (2):
+  dt-bindings: sound: add DT bindings for Microchip S/PDIF RX Controller
+  ASoC: mchp-spdifrx: add driver for SPDIF RX
 
-but Samuel told me that the `make dtbs_check` reports:
+ .../bindings/sound/mchp,spdifrx.yaml          |  73 ++
+ sound/soc/atmel/Kconfig                       |  13 +
+ sound/soc/atmel/Makefile                      |   2 +
+ sound/soc/atmel/mchp-spdifrx.c                | 954 ++++++++++++++++++
+ 4 files changed, 1042 insertions(+)
+ create mode 100644 Documentation/devicetree/bindings/sound/mchp,spdifrx.yaml
+ create mode 100644 sound/soc/atmel/mchp-spdifrx.c
 
-i2s@1c22800: dma-names:0: 'rx' was expected
-i2s@1c22800: dma-names: ['tx'] is too short
-i2s@1c22800: dmas: [[28, 27]] is too short
+-- 
+2.25.1
 
-Should I fix the YAML so?
-
-Regards,
-Clement
-
->
-> > > +                       status =3D "disabled";
-> > > +               };
-> > > +
-> > >                 spdif: spdif@5093000 {
-> > >                         #sound-dai-cells =3D <0>;
-> > >                         compatible =3D "allwinner,sun50i-h6-spdif";
-> > > @@ -739,6 +771,7 @@ ohci3: usb@5311400 {
-> > >                 };
-> > >
-> > >                 hdmi: hdmi@6000000 {
-> > > +                       #sound-dai-cells =3D <0>;
-> > >                         compatible =3D "allwinner,sun50i-h6-dw-hdmi";
-> > >                         reg =3D <0x06000000 0x10000>;
-> > >                         reg-io-width =3D <1>;
-> >
-> > The rest of the patch looks OK.
