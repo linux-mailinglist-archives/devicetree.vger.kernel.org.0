@@ -2,92 +2,96 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from vger.kernel.org (vger.kernel.org [23.128.96.18])
-	by mail.lfdr.de (Postfix) with ESMTP id B81052811B4
-	for <lists+devicetree@lfdr.de>; Fri,  2 Oct 2020 13:55:47 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTP id 1731A2811DF
+	for <lists+devicetree@lfdr.de>; Fri,  2 Oct 2020 14:00:01 +0200 (CEST)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S1726010AbgJBLzq (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Fri, 2 Oct 2020 07:55:46 -0400
-Received: from mail.kernel.org ([198.145.29.99]:47906 "EHLO mail.kernel.org"
-        rhost-flags-OK-OK-OK-OK) by vger.kernel.org with ESMTP
-        id S1726282AbgJBLzq (ORCPT <rfc822;devicetree@vger.kernel.org>);
-        Fri, 2 Oct 2020 07:55:46 -0400
-Received: from gaia (unknown [95.149.105.49])
-        (using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
-        (No client certificate requested)
-        by mail.kernel.org (Postfix) with ESMTPSA id 12001206B7;
-        Fri,  2 Oct 2020 11:55:43 +0000 (UTC)
-Date:   Fri, 2 Oct 2020 12:55:41 +0100
-From:   Catalin Marinas <catalin.marinas@arm.com>
-To:     Nicolas Saenz Julienne <nsaenzjulienne@suse.de>
-Cc:     Rob Herring <robh+dt@kernel.org>, devicetree@vger.kernel.org,
-        will@kernel.org, Frank Rowand <frowand.list@gmail.com>,
-        linux-kernel@vger.kernel.org, linux-mm@kvack.org,
-        iommu@lists.linux-foundation.org,
-        linux-rpi-kernel@lists.infradead.org, robin.murphy@arm.com,
-        hch@lst.de, linux-arm-kernel@lists.infradead.org
-Subject: Re: [PATCH 1/4] of/fdt: Update zone_dma_bits when running in bcm2711
-Message-ID: <20201002115541.GC7034@gaia>
-References: <20201001161740.29064-1-nsaenzjulienne@suse.de>
- <20201001161740.29064-2-nsaenzjulienne@suse.de>
- <20201001171500.GN21544@gaia>
- <20201001172320.GQ21544@gaia>
- <b47232e2173e9e5ddf8f5be4c7b5a2f897f34eb7.camel@suse.de>
+        id S1726176AbgJBMAA (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Fri, 2 Oct 2020 08:00:00 -0400
+Received: from lindbergh.monkeyblade.net ([23.128.96.19]:59710 "EHLO
+        lindbergh.monkeyblade.net" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
+        with ESMTP id S1725964AbgJBMAA (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Fri, 2 Oct 2020 08:00:00 -0400
+Received: from mail-ot1-x342.google.com (mail-ot1-x342.google.com [IPv6:2607:f8b0:4864:20::342])
+        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id DFCB6C0613D0
+        for <devicetree@vger.kernel.org>; Fri,  2 Oct 2020 04:59:59 -0700 (PDT)
+Received: by mail-ot1-x342.google.com with SMTP id q21so1076591ota.8
+        for <devicetree@vger.kernel.org>; Fri, 02 Oct 2020 04:59:59 -0700 (PDT)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+        d=gmail.com; s=20161025;
+        h=mime-version:reply-to:from:date:message-id:subject:to
+         :content-transfer-encoding;
+        bh=zdxUWMWXTEs/zs0LJh1bxLoOHpDg1k5nkLimqXptzik=;
+        b=D2Ada0QmTZi27A0xLS1e0qDC29HoFYDYghmrnVYqMdhxsXC7Nes6qshAYuQoEQEfLp
+         M7ONZ59+SJ6b7rFJT2O5qbKfE2HjRtiQIakgEginpfnqAWX7g6OYJHfXX/EkYqUTG0j/
+         BC6lLykHIP4CKI+tz8iJniergbY+9NgkISghvGesBy+Hv3WtiXC1Ha/MsGklPcj4xMFz
+         Zv/vKG8ITXguqsJOYay22TKk93SIUssQCQNHs55A6V5QQRu/ajjJJp1e4ukUYURey//N
+         tLJ1OXbtF8LoUxutyWBB1L2PHbL6oJZOq7GS1i84PQFrgY0obWCQiVl/Y3WDYeteRMxZ
+         cpfw==
+X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+        d=1e100.net; s=20161025;
+        h=x-gm-message-state:mime-version:reply-to:from:date:message-id
+         :subject:to:content-transfer-encoding;
+        bh=zdxUWMWXTEs/zs0LJh1bxLoOHpDg1k5nkLimqXptzik=;
+        b=oZ+QqjvFu61Nvx5kCElb0ZV3tIvgzBE4QEQcEHrOEP79ML6QTOrmSziUnpPKeV5Cth
+         wthA015IVzUlZD8tOQnqEn6UXKImlfcWlP7HPtM/UXAMGzSYRGL80OuCjsIle6enbQqE
+         L7d0gvrqdZV7EneCiP+8qhNo00quiXSVZFdQPbbQViH630iSLiHeOMd2LRyoOUaXy/uj
+         eFK/X2cfNKFAriD00LEijFf+5GUGwq7x+dSK02pio/jvWs1WeVUfMbGvac1oXrT42Sq7
+         wi/Popdx8csMoohSPTlfKh72QmA/JzBO4ryeIuALf/j24sTczurF5obFsmlNaTJ5XVJL
+         2J+g==
+X-Gm-Message-State: AOAM531ccJDAZh8wkfBIu4cqCdUKvPWTi1kR39apjGKbjWOj+mggrrv3
+        VWUr7s6Nuga+d2wlHgePjGFh4quJePs2/6RIdjc=
+X-Google-Smtp-Source: ABdhPJx7hTI7COdGAoJr1PC4cdjk/7SE4QliD8to4Cpxc1EnfUi2dg3KiKn5tStvC2uA9ckSlEAjsBT6JFX4vVnR8X8=
+X-Received: by 2002:a9d:2606:: with SMTP id a6mr1274983otb.259.1601639998852;
+ Fri, 02 Oct 2020 04:59:58 -0700 (PDT)
 MIME-Version: 1.0
-Content-Type: text/plain; charset=us-ascii
-Content-Disposition: inline
-In-Reply-To: <b47232e2173e9e5ddf8f5be4c7b5a2f897f34eb7.camel@suse.de>
-User-Agent: Mutt/1.10.1 (2018-07-13)
+Received: by 2002:aca:c710:0:0:0:0:0 with HTTP; Fri, 2 Oct 2020 04:59:57 -0700 (PDT)
+Reply-To: ayishagddafio@mail.ru
+From:   AISHA GADDAFI <mrsmariazongo20@gmail.com>
+Date:   Fri, 2 Oct 2020 04:59:57 -0700
+Message-ID: <CAE4eQ9hxF=+rPRz6moxy-moMXBgOgJ6DpSrqHBCQL__Xw-6wbg@mail.gmail.com>
+Subject: Lieber Freund (Assalamu Alaikum),?
+To:     undisclosed-recipients:;
+Content-Type: text/plain; charset="UTF-8"
+Content-Transfer-Encoding: quoted-printable
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-On Thu, Oct 01, 2020 at 07:31:19PM +0200, Nicolas Saenz Julienne wrote:
-> On Thu, 2020-10-01 at 18:23 +0100, Catalin Marinas wrote:
-> > On Thu, Oct 01, 2020 at 06:15:01PM +0100, Catalin Marinas wrote:
-> > > On Thu, Oct 01, 2020 at 06:17:37PM +0200, Nicolas Saenz Julienne wrote:
-> > > > diff --git a/drivers/of/fdt.c b/drivers/of/fdt.c
-> > > > index 4602e467ca8b..cd0d115ef329 100644
-> > > > --- a/drivers/of/fdt.c
-> > > > +++ b/drivers/of/fdt.c
-> > > > @@ -25,6 +25,7 @@
-> > > >  #include <linux/serial_core.h>
-> > > >  #include <linux/sysfs.h>
-> > > >  #include <linux/random.h>
-> > > > +#include <linux/dma-direct.h>	/* for zone_dma_bits */
-> > > >  
-> > > >  #include <asm/setup.h>  /* for COMMAND_LINE_SIZE */
-> > > >  #include <asm/page.h>
-> > > > @@ -1198,6 +1199,14 @@ void __init early_init_dt_scan_nodes(void)
-> > > >  	of_scan_flat_dt(early_init_dt_scan_memory, NULL);
-> > > >  }
-> > > >  
-> > > > +void __init early_init_dt_update_zone_dma_bits(void)
-> > > > +{
-> > > > +	unsigned long dt_root = of_get_flat_dt_root();
-> > > > +
-> > > > +	if (of_flat_dt_is_compatible(dt_root, "brcm,bcm2711"))
-> > > > +		zone_dma_bits = 30;
-> > > > +}
-> > > 
-> > > I think we could keep this entirely in the arm64 setup_machine_fdt() and
-> > > not pollute the core code with RPi4-specific code.
-> > 
-> > Actually, even better, could we not move the check to
-> > arm64_memblock_init() when we initialise zone_dma_bits?
-> 
-> I did it this way as I vaguely remembered Rob saying he wanted to centralise
-> all early boot fdt code in one place. But I'll be happy to move it there.
+--=20
+Lieber Freund (Assalamu Alaikum),
 
-I can see Rob replied and I'm fine if that's his preference. However,
-what I don't particularly like is that in the arm64 code, if
-zone_dma_bits == 24, we set it to 32 assuming that it wasn't touched by
-the early_init_dt_update_zone_dma_bits(). What if at some point we'll
-get a platform that actually needs 24 here (I truly hope not, but just
-the principle of relying on magic values)?
+Ich bin vor einer privaten Suche auf Ihren E-Mail-Kontakt gesto=C3=9Fen
+Ihre Hilfe. Mein Name ist Aisha Al-Qaddafi, eine alleinerziehende
+Mutter und eine Witwe
+mit drei Kindern. Ich bin die einzige leibliche Tochter des Sp=C3=A4tlibysc=
+hen
+Pr=C3=A4sident (verstorbener Oberst Muammar Gaddafi).
 
-So rather than guessing, I'd prefer if the arch code can override
-ZONE_DMA_BITS_DEFAULT. Then, in arm64, we'll just set it to 32 and no
-need to explicitly touch the zone_dma_bits variable.
+Ich habe Investmentfonds im Wert von siebenundzwanzig Millionen
+f=C3=BCnfhunderttausend
+United State Dollar ($ 27.500.000.00) und ich brauche eine
+vertrauensw=C3=BCrdige Investition
+Manager / Partner aufgrund meines aktuellen Fl=C3=BCchtlingsstatus bin ich =
+jedoch
+M=C3=B6glicherweise interessieren Sie sich f=C3=BCr die Unterst=C3=BCtzung =
+von
+Investitionsprojekten in Ihrem Land
+Von dort aus k=C3=B6nnen wir in naher Zukunft Gesch=C3=A4ftsbeziehungen auf=
+bauen.
 
--- 
-Catalin
+Ich bin bereit, mit Ihnen =C3=BCber das Verh=C3=A4ltnis zwischen Investitio=
+n und
+Unternehmensgewinn zu verhandeln
+Basis f=C3=BCr die zuk=C3=BCnftige Investition Gewinne zu erzielen.
+
+Wenn Sie bereit sind, dieses Projekt in meinem Namen zu bearbeiten,
+antworten Sie bitte dringend
+Damit ich Ihnen mehr Informationen =C3=BCber die Investmentfonds geben kann=
+.
+
+Ihre dringende Antwort wird gesch=C3=A4tzt. schreibe mir an diese email adr=
+esse (
+ayishagddafio@mail.ru ) zur weiteren Diskussion.
+
+Freundliche Gr=C3=BC=C3=9Fe
+Frau Aisha Al-Qaddafi
