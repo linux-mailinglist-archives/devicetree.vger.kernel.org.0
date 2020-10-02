@@ -2,66 +2,66 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from vger.kernel.org (vger.kernel.org [23.128.96.18])
-	by mail.lfdr.de (Postfix) with ESMTP id 029582816AE
-	for <lists+devicetree@lfdr.de>; Fri,  2 Oct 2020 17:34:03 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTP id 3DFA02816BB
+	for <lists+devicetree@lfdr.de>; Fri,  2 Oct 2020 17:37:14 +0200 (CEST)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S2387990AbgJBPeC (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Fri, 2 Oct 2020 11:34:02 -0400
-Received: from lindbergh.monkeyblade.net ([23.128.96.19]:36232 "EHLO
+        id S2388127AbgJBPhN (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Fri, 2 Oct 2020 11:37:13 -0400
+Received: from lindbergh.monkeyblade.net ([23.128.96.19]:36720 "EHLO
         lindbergh.monkeyblade.net" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S2387893AbgJBPeB (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Fri, 2 Oct 2020 11:34:01 -0400
-Received: from mail-pf1-x443.google.com (mail-pf1-x443.google.com [IPv6:2607:f8b0:4864:20::443])
-        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 54A0EC0613D0;
-        Fri,  2 Oct 2020 08:34:00 -0700 (PDT)
-Received: by mail-pf1-x443.google.com with SMTP id w21so1479805pfc.7;
-        Fri, 02 Oct 2020 08:34:00 -0700 (PDT)
+        with ESMTP id S1726017AbgJBPhN (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Fri, 2 Oct 2020 11:37:13 -0400
+Received: from mail-pf1-x441.google.com (mail-pf1-x441.google.com [IPv6:2607:f8b0:4864:20::441])
+        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 6CEA5C0613D0;
+        Fri,  2 Oct 2020 08:37:13 -0700 (PDT)
+Received: by mail-pf1-x441.google.com with SMTP id n14so1490891pff.6;
+        Fri, 02 Oct 2020 08:37:13 -0700 (PDT)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
         d=gmail.com; s=20161025;
         h=subject:to:cc:references:from:message-id:date:user-agent
          :mime-version:in-reply-to:content-language:content-transfer-encoding;
-        bh=1u5DHSgPvfJnxuXAGcYpoZqPhgnicM/Uc6lZhhDs3W8=;
-        b=LR9UXNg5SiQ0mEZ5YOEuwwwQ3K/sPR0QgdhN+RVk3yHJttj3q7BeplSqc8gy/u0QQs
-         PhG0z4SD3AdFOxpSTkRy3zJw2vX1fPIu6cl4r4g4aq1itUHVCdyT2FybdvifYsS6f434
-         O0LuptDJrejVFP7po8f+uwdyNuw+ebOuJ+GTOYuqcZA8nAhPiIxamJ6rAJ8vWyyMo56S
-         2VqFQHvM7KYFLUdUlNLBlCGurEcJdRfvRzR/jwWUlZjgKoOyQ/wkyTTYV5Wh+vyTgO+/
-         ea3kkRCAvvCdwFoDcLP6qB40/ZLt79f/0kJZljYK0FaP3bMydh74mFyqO5fdPjcmInOf
-         1t5Q==
+        bh=tW/tQRJkx7M0MHOQZke642HuatkzRo9Oo4QqDIuWkwU=;
+        b=RW/Zlno5dwvcjqyiBel/glNmwoJCaph1KEcHThPQpyp7VIMrUd3uuZImc6YHcTlkjQ
+         86rKzCAX5DCH0U1R1AnSXobYtmXj1o45AkxNOBeOV6HC/ol3NQExXfxWrut72gRJcePA
+         oXl4MD2Jd+7UYTMXtyT2mBS4FeCNLxXgGvtD/btV82y5aHIq8WTeRPY4ByiGLSNK/ww1
+         pGQnPgyctqz1oAWsJ9O5KtKMb2fc+iWaB/quy/mK5LLy/u0DVZqdvwhTRrCONijFzlXQ
+         x+HnQRHcnBNfuSLmG7UXI+Mns1EHC4PcDadPd+7NQFgZCEdjg19krlhRpnKLst7UqmgT
+         uI8g==
 X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
         d=1e100.net; s=20161025;
         h=x-gm-message-state:subject:to:cc:references:from:message-id:date
          :user-agent:mime-version:in-reply-to:content-language
          :content-transfer-encoding;
-        bh=1u5DHSgPvfJnxuXAGcYpoZqPhgnicM/Uc6lZhhDs3W8=;
-        b=U2zfhboebinPh41T2kE7DMAPVqoSBdPL7cNeHmYRTOJOKt0REcN1ZSIQiLYNF+Rv5T
-         9VivBHWIvry1wpFK+Qarkfyd0ubuL0W1QCD3eyk0p6PjCOzCkwJbZ2DuO4HBPJP7O1io
-         UyT28DDi/142dWJ4zdFx8P9KLBZrB2kaCqwc8x/qOKNsrOyhhmL17eJLdRD61BaFM5iV
-         4ABP635gA2mxszGVoMsdtZaS10qHJsYXDXZiDtECNyvSCpkP3O+y7Hku9I5oWSgq7gdU
-         3nNAwPu+8mPQDLeweJ1sMEzV0SCwcPpj9mYXyVWv+++Qu2m3/sz+JmjuVRnoKMndo4aB
-         3lAQ==
-X-Gm-Message-State: AOAM532esWN2qI2FHQ6yyWdc5AunI3JqAuo4KGBqxjV5NIUQcXLTwsI9
-        FCd3jBl50sl4ljWziWx/is87qbD6in87Xw==
-X-Google-Smtp-Source: ABdhPJzZrEGvd2qlqAHlSI1Ix0tcMeXFlJowsm5xcxteqwDSMd6myDKAs3wn9ggC4Bmz2tPKYy/ZYg==
-X-Received: by 2002:a65:42c2:: with SMTP id l2mr2803892pgp.61.1601652839201;
-        Fri, 02 Oct 2020 08:33:59 -0700 (PDT)
+        bh=tW/tQRJkx7M0MHOQZke642HuatkzRo9Oo4QqDIuWkwU=;
+        b=MeKNlWIZyvNhxamfrEr3jBp7bCFTYjQokV0wHQdbr5wkUsWuZWQOIEeQP+u6rXdNrQ
+         etMpg7hvuf2ftuhuISl4Xdbzlyb6kmiBWOmpyzmvKDq0bLXubEHxNslPJ9vvn0x1bmUH
+         ZZ5aErBT9gXu2raurQiGCrMMQgOxRFCa3gXfBwhZmBYTZSIvssI7CkhCn8l2xaHIrXng
+         i5kYw6XHQs97Pc42QY+ohBKfrVQbrjl34u6p2EpeIvFn2MfcXWEP+rbHNXbAqlRZQWn/
+         zQDzmH959lDkpMdMqGzy9N39C7dlV2KcfB3ZKNjUT9Tk3tAmPzoqAF1uhv4FTzSNXRHw
+         Aw6Q==
+X-Gm-Message-State: AOAM532AFKg6Vish6T0NTOTRkwrOPa+pd2Q0zI5H4HnT1+MCxKE3QOR6
+        kGXZts5ggstBwUaP8LpGChOQSzYKK/RsxQ==
+X-Google-Smtp-Source: ABdhPJwcfZcVKbs/4+yqAPz2kOarpxrU1z/XvjQ1akojCTvXjFSIFsux2YwtnLZxdFSynJi5dUApfA==
+X-Received: by 2002:aa7:8e54:0:b029:142:2501:34d2 with SMTP id d20-20020aa78e540000b0290142250134d2mr3260389pfr.43.1601653029546;
+        Fri, 02 Oct 2020 08:37:09 -0700 (PDT)
 Received: from [10.230.29.112] ([192.19.223.252])
-        by smtp.gmail.com with ESMTPSA id ml20sm1912810pjb.20.2020.10.02.08.33.57
+        by smtp.gmail.com with ESMTPSA id b16sm1683921pgj.77.2020.10.02.08.37.05
         (version=TLS1_3 cipher=TLS_AES_128_GCM_SHA256 bits=128/128);
-        Fri, 02 Oct 2020 08:33:58 -0700 (PDT)
-Subject: Re: [RESEND net-next 1/9] arm64: dts: ls1088a: add external MDIO
- device nodes
+        Fri, 02 Oct 2020 08:37:08 -0700 (PDT)
+Subject: Re: [RESEND net-next 2/9] arm64: dts: ls1088ardb: add QSGMII PHY
+ nodes
 To:     Ioana Ciornei <ioana.ciornei@nxp.com>, davem@davemloft.net,
         netdev@vger.kernel.org
 Cc:     shawnguo@kernel.org, robh+dt@kernel.org, devicetree@vger.kernel.org
 References: <20201002144847.13793-1-ioana.ciornei@nxp.com>
- <20201002144847.13793-2-ioana.ciornei@nxp.com>
+ <20201002144847.13793-3-ioana.ciornei@nxp.com>
 From:   Florian Fainelli <f.fainelli@gmail.com>
-Message-ID: <f5c9c03b-8839-4923-b9f8-7ab9a9554d43@gmail.com>
-Date:   Fri, 2 Oct 2020 08:33:57 -0700
+Message-ID: <02d2d46c-8a88-2d44-f8b7-ed73cae93eda@gmail.com>
+Date:   Fri, 2 Oct 2020 08:37:03 -0700
 User-Agent: Mozilla/5.0 (Windows NT 10.0; Win64; x64; rv:78.0) Gecko/20100101
  Firefox/78.0 Thunderbird/78.3.1
 MIME-Version: 1.0
-In-Reply-To: <20201002144847.13793-2-ioana.ciornei@nxp.com>
+In-Reply-To: <20201002144847.13793-3-ioana.ciornei@nxp.com>
 Content-Type: text/plain; charset=utf-8; format=flowed
 Content-Language: en-US
 Content-Transfer-Encoding: 7bit
@@ -72,24 +72,37 @@ X-Mailing-List: devicetree@vger.kernel.org
 
 
 On 10/2/2020 7:48 AM, Ioana Ciornei wrote:
-> Add the external MDIO device nodes found in the WRIOP global memory
-> region. This is needed for management of external PHYs.
+> Annotate the external MDIO1 node and describe the 8 QSGMII PHYs found on
+> the LS1088ARDB board and add phy-handles for DPMACs 3-10 to its
+> associated PHY.  Also, add the internal PCS MDIO nodes for the internal
+> MDIO buses found on the LS1088A SoC along with their internal PCS PHY
+> and link the corresponding DPMAC to the PCS through the pcs-handle.
 > 
 > Signed-off-by: Ioana Ciornei <ioana.ciornei@nxp.com>
 > ---
->   arch/arm64/boot/dts/freescale/fsl-ls1088a.dtsi | 18 ++++++++++++++++++
->   1 file changed, 18 insertions(+)
+>   .../boot/dts/freescale/fsl-ls1088a-rdb.dts    | 100 ++++++++++++++++++
+>   .../arm64/boot/dts/freescale/fsl-ls1088a.dtsi |  50 +++++++++
+>   2 files changed, 150 insertions(+)
 > 
-> diff --git a/arch/arm64/boot/dts/freescale/fsl-ls1088a.dtsi b/arch/arm64/boot/dts/freescale/fsl-ls1088a.dtsi
-> index 169f4742ae3b..22544e3b7737 100644
-> --- a/arch/arm64/boot/dts/freescale/fsl-ls1088a.dtsi
-> +++ b/arch/arm64/boot/dts/freescale/fsl-ls1088a.dtsi
-> @@ -654,6 +654,24 @@ ptp-timer@8b95000 {
->   			fsl,extts-fifo;
->   		};
+> diff --git a/arch/arm64/boot/dts/freescale/fsl-ls1088a-rdb.dts b/arch/arm64/boot/dts/freescale/fsl-ls1088a-rdb.dts
+> index 5633e59febc3..d7886b084f7f 100644
+> --- a/arch/arm64/boot/dts/freescale/fsl-ls1088a-rdb.dts
+> +++ b/arch/arm64/boot/dts/freescale/fsl-ls1088a-rdb.dts
+> @@ -17,6 +17,98 @@ / {
+>   	compatible = "fsl,ls1088a-rdb", "fsl,ls1088a";
+>   };
 >   
-> +		emdio1: mdio@0x8B96000 {
+> +&dpmac3 {
+> +	phy-handle = <&mdio1_phy5>;
+> +	phy-connection-type = "qsgmii";
+> +	managed = "in-band-status";
+> +	pcs-handle = <&pcs3_0>;
 
-You should drop the 0x fro the unit address and likewise below.
+from net-next/master
+
+  git grep 'pcs-handle' Documentation/devicetree/bindings/*
+zsh: exit 1     git grep 'pcs-handle' Documentation/devicetree/bindings/*
+
+Is there a binding that we are missing?
 -- 
 Florian
