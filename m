@@ -2,183 +2,135 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from vger.kernel.org (vger.kernel.org [23.128.96.18])
-	by mail.lfdr.de (Postfix) with ESMTP id 80B3C281C63
-	for <lists+devicetree@lfdr.de>; Fri,  2 Oct 2020 21:57:09 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTP id CD0EA281C9B
+	for <lists+devicetree@lfdr.de>; Fri,  2 Oct 2020 22:08:41 +0200 (CEST)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S1725300AbgJBT5I (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Fri, 2 Oct 2020 15:57:08 -0400
-Received: from lindbergh.monkeyblade.net ([23.128.96.19]:49048 "EHLO
-        lindbergh.monkeyblade.net" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S1725710AbgJBT5I (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Fri, 2 Oct 2020 15:57:08 -0400
-Received: from mail-yb1-xb42.google.com (mail-yb1-xb42.google.com [IPv6:2607:f8b0:4864:20::b42])
-        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 13A92C0613E3
-        for <devicetree@vger.kernel.org>; Fri,  2 Oct 2020 12:57:08 -0700 (PDT)
-Received: by mail-yb1-xb42.google.com with SMTP id c3so1898015ybl.0
-        for <devicetree@vger.kernel.org>; Fri, 02 Oct 2020 12:57:08 -0700 (PDT)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=google.com; s=20161025;
-        h=mime-version:references:in-reply-to:from:date:message-id:subject:to
-         :cc;
-        bh=ovDZo6QnGnQC0kINVGF5qf4WbCs4Yqe98wIOWANbtKg=;
-        b=UzeMUDhDnRK5Zj4JKpjmSyH6QyQJIplVfeAecbSXbr+GqkaKcz+A2xs23EVpwVIP4A
-         DiVMo1auRWW9uWTP56jwFTybtxfbB6NboEImXqe06VB/E3S+3guRXb5TR7YEyEI8vwG1
-         Xwi1HqMzpvRGjLqYPDzI3UV7LAbl7nllJHjSzT6DlKLb7lFcfUogx5YirNM1QU4Ls4M9
-         lmVfrMK8cyWkA/JedCBYimVYMP9CGz8Ds+xrrdCZBf2rUSTLa7978K4T1IlUmLT1Zii/
-         fxSQYoPETD6BVfAtupoW0bFMe7rsMae1Uo28zoBg2pb6Yf7foybVXpwbW7g+qke2xieM
-         2NaA==
-X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=1e100.net; s=20161025;
-        h=x-gm-message-state:mime-version:references:in-reply-to:from:date
-         :message-id:subject:to:cc;
-        bh=ovDZo6QnGnQC0kINVGF5qf4WbCs4Yqe98wIOWANbtKg=;
-        b=V5jsSpc1QoEW9a37XfeTVZ0+8tkMqqr5zppxBlxuIqLQEeE2YNEdgGG2HiPrvV329F
-         vwN9JZPXNr6+JpBXtW7xoxXn6eZeNcSOaO8Xnqtdf8DTg4DTY3CIjlwzmr+EMB0393Ou
-         zrmd1jstnsDqI6yxvQj1m26RZRtMJ3+4NY4dHHRJtLWrEZ4GPSQprzdnF9moFiqA092g
-         78+AqLRW65GuFGZj+XgBEalqej8QeySX4Nfz5k7f+6FAIyg59mdZcnGer1cGoTJn5F9y
-         vT680bKdWl93mByW3e8PgQIPzFU+fbFgGphqUY+wuRQZP8A+wNS0pFH602/Y7HD6OnRq
-         QH1g==
-X-Gm-Message-State: AOAM530rSz5JOujNSVcl4Z1ksSIqsfEddAONgf2rkkwGI6p5HnqwTp73
-        BU+mq3RaMKQQ+kUHqPYHG377GCv2ocs3kzQTj2qtog==
-X-Google-Smtp-Source: ABdhPJyl0s7GTJ62NG5k4yw6Ymud52LDDbeT6tumBwa+x5MFnYxR/h9uXoWYGtSNR1x7smt2HXd89rFABggj8zU4fWI=
-X-Received: by 2002:a25:c512:: with SMTP id v18mr5323591ybe.20.1601668626877;
- Fri, 02 Oct 2020 12:57:06 -0700 (PDT)
-MIME-Version: 1.0
-References: <CAGETcx8owDP_Bu4oNCyHEsME8XpKygxghm8+yNc2RyMA4wyjCA@mail.gmail.com>
- <20201001225952.3676755-1-saravanak@google.com> <CAL_JsqKOUkKBKyxPtZ+BFXPiOfm2uPXhgJPxKP=WS-qX6kSB0w@mail.gmail.com>
- <CAGETcx-tq446JQN0RpKhtyCXB+Y_PUePN_tBZsUmtpO7othm4g@mail.gmail.com>
- <20201002175423.GE3933@pendragon.ideasonboard.com> <CAGETcx-7nJaU6pDo_KL-nKmCaxv57C5aaXq-pvo4XiN=N0K5Jg@mail.gmail.com>
- <20201002182712.GF3933@pendragon.ideasonboard.com> <11018e7e-a6a1-2df6-5639-821a7c0cb68b@ti.com>
-In-Reply-To: <11018e7e-a6a1-2df6-5639-821a7c0cb68b@ti.com>
-From:   Saravana Kannan <saravanak@google.com>
-Date:   Fri, 2 Oct 2020 12:56:30 -0700
-Message-ID: <CAGETcx8DCiEJy-1PiHheyuuw3YBYfFh67MBcOwv4JEviXmsp3Q@mail.gmail.com>
-Subject: Re: [PATCH v1] of: platform: Batch fwnode parsing in the
- init_machine() path
-To:     Grygorii Strashko <grygorii.strashko@ti.com>
-Cc:     Laurent Pinchart <laurent.pinchart@ideasonboard.com>,
+        id S1725730AbgJBUIf (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Fri, 2 Oct 2020 16:08:35 -0400
+Received: from mail.baikalelectronics.com ([87.245.175.226]:52586 "EHLO
+        mail.baikalelectronics.ru" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
+        with ESMTP id S1725550AbgJBUIf (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Fri, 2 Oct 2020 16:08:35 -0400
+Received: from localhost (unknown [127.0.0.1])
+        by mail.baikalelectronics.ru (Postfix) with ESMTP id 790D0803017E;
+        Fri,  2 Oct 2020 20:08:31 +0000 (UTC)
+X-Virus-Scanned: amavisd-new at baikalelectronics.ru
+Received: from mail.baikalelectronics.ru ([127.0.0.1])
+        by localhost (mail.baikalelectronics.ru [127.0.0.1]) (amavisd-new, port 10024)
+        with ESMTP id CedhyI3Q0LBc; Fri,  2 Oct 2020 23:08:29 +0300 (MSK)
+Date:   Fri, 2 Oct 2020 23:08:29 +0300
+From:   Serge Semin <Sergey.Semin@baikalelectronics.ru>
+To:     Andy Shevchenko <andy.shevchenko@gmail.com>
+CC:     Serge Semin <fancer.lancer@gmail.com>,
+        Mark Brown <broonie@kernel.org>,
+        Alexey Malahov <Alexey.Malahov@baikalelectronics.ru>,
+        Ramil Zaripov <Ramil.Zaripov@baikalelectronics.ru>,
+        Pavel Parkhomenko <Pavel.Parkhomenko@baikalelectronics.ru>,
+        Lars Povlsen <lars.povlsen@microchip.com>,
+        "wuxu . wu" <wuxu.wu@huawei.com>, Feng Tang <feng.tang@intel.com>,
         Rob Herring <robh+dt@kernel.org>,
-        Frank Rowand <frowand.list@gmail.com>,
-        Geert Uytterhoeven <geert+renesas@glider.be>,
-        Greg Kroah-Hartman <gregkh@linuxfoundation.org>,
-        linux-omap <linux-omap@vger.kernel.org>,
-        "open list:THERMAL" <linux-pm@vger.kernel.org>,
-        Peter Ujfalusi <peter.ujfalusi@ti.com>,
-        "Rafael J. Wysocki" <rjw@rjwysocki.net>,
-        Tomi Valkeinen <tomi.valkeinen@ti.com>,
-        Tony Lindgren <tony@atomide.com>,
-        Ulf Hansson <ulf.hansson@linaro.org>,
-        Android Kernel Team <kernel-team@android.com>,
-        "open list:OPEN FIRMWARE AND FLATTENED DEVICE TREE BINDINGS" 
-        <devicetree@vger.kernel.org>,
-        "linux-kernel@vger.kernel.org" <linux-kernel@vger.kernel.org>
-Content-Type: text/plain; charset="UTF-8"
+        linux-spi <linux-spi@vger.kernel.org>,
+        devicetree <devicetree@vger.kernel.org>,
+        Linux Kernel Mailing List <linux-kernel@vger.kernel.org>
+Subject: Re: [PATCH v3 02/21] spi: dw: Add DWC SSI capability
+Message-ID: <20201002200829.belx73ez3n4hympp@mobilestation>
+References: <20201001222829.15977-1-Sergey.Semin@baikalelectronics.ru>
+ <20201001222829.15977-3-Sergey.Semin@baikalelectronics.ru>
+ <20201002101929.GW3956970@smile.fi.intel.com>
+ <20201002171849.jhio6nz6r6jigrf3@mobilestation>
+ <CAHp75Vd7KS+sGT=1aZLJXzQi+L3wZ1430dj1TmE=u3PUHoDz7Q@mail.gmail.com>
+ <20201002194609.4l7fifu2kkxtrszo@mobilestation>
+MIME-Version: 1.0
+Content-Type: text/plain; charset="us-ascii"
+Content-Disposition: inline
+In-Reply-To: <20201002194609.4l7fifu2kkxtrszo@mobilestation>
+X-ClientProxiedBy: MAIL.baikal.int (192.168.51.25) To mail (192.168.51.25)
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-On Fri, Oct 2, 2020 at 11:35 AM 'Grygorii Strashko' via kernel-team
-<kernel-team@android.com> wrote:
->
-> hi Saravana,
->
-> On 02/10/2020 21:27, Laurent Pinchart wrote:
-> > Hi Saravana,
-> >
-> > On Fri, Oct 02, 2020 at 10:58:55AM -0700, Saravana Kannan wrote:
-> >> On Fri, Oct 2, 2020 at 10:55 AM Laurent Pinchart wrote:
-> >>> On Fri, Oct 02, 2020 at 10:51:51AM -0700, Saravana Kannan wrote:
-> >>>> On Fri, Oct 2, 2020 at 7:08 AM Rob Herring <robh+dt@kernel.org> wrote:
-> >>>>> On Thu, Oct 1, 2020 at 5:59 PM Saravana Kannan <saravanak@google.com> wrote:
-> >>>>>>
-> >>>>>> When commit 93d2e4322aa7 ("of: platform: Batch fwnode parsing when
-> >>>>>> adding all top level devices") optimized the fwnode parsing when all top
-> >>>>>> level devices are added, it missed out optimizing this for platform
-> >>>>>> where the top level devices are added through the init_machine() path.
-> >>>>>>
-> >>>>>> This commit does the optimization for all paths by simply moving the
-> >>>>>> fw_devlink_pause/resume() inside of_platform_default_populate().
-> >>>>>>
-> >>>>>> Reported-by: Tomi Valkeinen <tomi.valkeinen@ti.com>
-> >>>>>> Signed-off-by: Saravana Kannan <saravanak@google.com>
-> >>>>>> ---
-> >>>>>>   drivers/of/platform.c | 19 +++++++++++++++----
-> >>>>>>   1 file changed, 15 insertions(+), 4 deletions(-)
-> >>>>>>
-> >>>>>> diff --git a/drivers/of/platform.c b/drivers/of/platform.c
-> >>>>>> index 071f04da32c8..79972e49b539 100644
-> >>>>>> --- a/drivers/of/platform.c
-> >>>>>> +++ b/drivers/of/platform.c
-> >>>>>> @@ -501,8 +501,21 @@ int of_platform_default_populate(struct device_node *root,
-> >>>>>>                                   const struct of_dev_auxdata *lookup,
-> >>>>>>                                   struct device *parent)
-> >>>>>>   {
-> >>>>>> -       return of_platform_populate(root, of_default_bus_match_table, lookup,
-> >>>>>> -                                   parent);
-> >>>>>> +       int ret;
-> >>>>>> +
-> >>>>>> +       /*
-> >>>>>> +        * fw_devlink_pause/resume() are only safe to be called around top
-> >>>>>> +        * level device addition due to locking constraints.
-> >>>>>> +        */
-> >>>>>> +       if (!root)
-> >>>>>> +               fw_devlink_pause();
-> >>>>>> +
-> >>>>>> +       ret = of_platform_populate(root, of_default_bus_match_table, lookup,
-> >>>>>> +                                  parent);
-> >>>>>
-> >>>>> of_platform_default_populate() vs. of_platform_populate() is just a
-> >>>>> different match table. I don't think the behavior should otherwise be
-> >>>>> different.
-> >>>>>
-> >>>>> There's also of_platform_probe() which has slightly different matching
-> >>>>> behavior. It should not behave differently either with respect to
-> >>>>> devlinks.
-> >>>>
-> >>>> So I'm trying to do this only when the top level devices are added for
-> >>>> the first time. of_platform_default_populate() seems to be the most
-> >>>> common path. For other cases, I think we just need to call
-> >>>> fw_devlink_pause/resume() wherever the top level devices are added for
-> >>>> the first time. As I said in the other email, we can't add
-> >>>> fw_devlink_pause/resume() by default to of_platform_populate().
-> >>>>
-> >>>> Do you have other ideas for achieving "call fw_devlink_pause/resume()
-> >>>> only when top level devices are added for the first time"?
-> >>>
-> >>> I'm not an expert in this domain, but before investigating it, would you
-> >>> be able to share a hack patch that implements this (in the most simple
-> >>> way) to check if it actually fixes the delays I experience on my system
-> >>> ?
-> >>
-> >> So I take it the patch I sent out didn't work for you? Can you tell me
-> >> what machine/DT you are using?
-> >
-> > I've replied to the patch:
-> >
-> > Based on v5.9-rc5, before the patch:
-> >
-> > [    0.652887] cpuidle: using governor menu
-> > [   12.349476] No ATAGs?
-> >
-> > After the patch:
-> >
-> > [    0.650460] cpuidle: using governor menu
-> > [   12.262101] No ATAGs?
-> >
-> > I'm using an AM57xx EVM, whose DT is not upstream, but it's essentially
-> > a am57xx-beagle-x15-revb1.dts (it includes that DTS) with a few
-> > additional nodes for GPIO keys, LCD panel, backlight and touchscreen.
-> >
->
-> hope you are receiving my mails as I've provided you with all required information already [1]
+On Fri, Oct 02, 2020 at 10:46:09PM +0300, Serge Semin wrote:
+> On Fri, Oct 02, 2020 at 09:26:07PM +0300, Andy Shevchenko wrote:
+> > On Fri, Oct 2, 2020 at 8:18 PM Serge Semin
+> > <Sergey.Semin@baikalelectronics.ru> wrote:
+> > >
+> > > On Fri, Oct 02, 2020 at 01:19:29PM +0300, Andy Shevchenko wrote:
+> > > > On Fri, Oct 02, 2020 at 01:28:10AM +0300, Serge Semin wrote:
+> > > > > Currently DWC SSI core is supported by means of setting up the
+> > > > > core-specific update_cr0() callback. It isn't suitable for multiple
+> > > > > reasons. First of all having exported several methods doing the same thing
+> > > > > but for different chips makes the code harder to maintain. Secondly the
+> > > > > spi-dw-core driver exports the methods, then the spi-dw-mmio driver sets
+> > > > > the private data callback with one of them so to be called by the core
+> > > > > driver again. That makes the code logic too complicated. Thirdly using
+> > > > > callbacks for just updating the CR0 register is problematic, since in case
+> > > > > if the register needed to be updated from different parts of the code,
+> > > > > we'd have to create another callback (for instance the SPI device-specific
+> > > > > parameters don't need to be calculated each time the SPI transfer is
+> > > > > submitted, so it's better to pre-calculate the CR0 data at the SPI-device
+> > > > > setup stage).
+> > > > >
+> > > > > So keeping all the above in mind let's discard the update_cr0() callbacks,
+> > > > > define a generic and static dw_spi_update_cr0() method and create the
+> > > > > DW_SPI_CAP_DWC_SSI capability, which when enabled would activate the
+> > > > > alternative CR0 register layout.
+> > > > >
+> > > > > While at it add the comments to the code path of the normal DW APB SSI
+> > > > > controller setup to make the dw_spi_update_cr0() method looking coherent.
+> > > >
+> > >
+> > > > What the point to increase indentation level and produce additional churn?
+> > > > Can't you simply leave functions, unexport them, and call in one conditional of
+> > > > whatever new function is called?
+> > >
+> > > I forgot to mention that in the commit log, there is another reason why it's
+> > > better to create a generic dw_spi_update_cr0() instead of doing what you suggest.
+> > > As it will be seen from the following up patches, the dw_spi_update_cr0() function
+> > > (to be more precise it's successor, but anyway) will be used from the SPI memory
+> > > ops implementation. So if-else-ing here and there isn't a good idea for
+> > > maintainability. For the same reason of the maintainability it's better to have a
+> > > generic method which reflects all the config peculiarities, so in case of any
+> > > changes they would be not be forgotten to be introduced for both DWC SSI and DW
+> > > APB SSI parts of the setup procedures. As I see it that overbeats the additional
+> > > indentation level drawback.
+> > 
+> 
+> > What I meant is to leave functions as is and call them under conditional
+> > 
+> > if ()
+> >  call one
+> > else
+> >  call another
+> 
+> Yeah, I understood what you meant. What you suggest would be a better solution
+> if I needed to call the dw_spi_update_cr0() method just from a single place of
+> the driver (but in that case I wouldn't need to replace the callback-based
+> approach with the Capabilities-based one at all). The thing is that the
+> dw_spi_update_cr0() will be also called from the SPI memory exec_op() callback
+> (see patch "[PATCH v3 17/21] spi: dw: Add memory operations support" and the
+> method dw_spi_update_config() invocation) in the same way as it is called from
+> the SPI core transfer-one callback. Following your suggestion I would have to
+> implement the same "if () call one else call another" pattern there too. Copying
+> it here and there would be a weak design from the maintainability point of view
+> and from the coding style too. Much better is to create a generic
+> dw_spi_update_cr0() (later in this patchset it will be renamed to
+> dw_spi_update_config()...), which would work for both DWC SSI and DW APB SSI by
+> embedding the "if (is_CAP) call one else call another" into the method itself as
+> I suggested in this patch.
 
-Laurent/Grygorii,
+Oh, and the same "if-else" pattern would need to be either left in the
+dw_spi_get_cr0()/dw_spi_prepare_cr0() or added around the dw_spi_prepare_cr0()
+method invocation with creating two versions of it. So no, I'd stick with the
+design I suggested in this patch: just two "if-else"s and the generic versions
+of the dw_spi_prepare_cr0() and dw_spi_update_cr0() functions.
 
-Looks like I'm definitely missing emails. Sorry about the confusion.
+-Sergey
 
-I have some other urgent things on my plate right now. Is it okay if I
-get to this in a day or two? In the end, we'll find a solution that
-addresses most/all of the delay.
-
-Thanks,
-Saravana
+> 
+> -Sergey
+> 
+> > 
+> > 
+> > -- 
+> > With Best Regards,
+> > Andy Shevchenko
