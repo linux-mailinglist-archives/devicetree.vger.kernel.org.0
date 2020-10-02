@@ -2,182 +2,97 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from vger.kernel.org (vger.kernel.org [23.128.96.18])
-	by mail.lfdr.de (Postfix) with ESMTP id 6EA152818D5
-	for <lists+devicetree@lfdr.de>; Fri,  2 Oct 2020 19:08:34 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTP id C9CD5281905
+	for <lists+devicetree@lfdr.de>; Fri,  2 Oct 2020 19:18:55 +0200 (CEST)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S2388111AbgJBRIc (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Fri, 2 Oct 2020 13:08:32 -0400
-Received: from lindbergh.monkeyblade.net ([23.128.96.19]:51046 "EHLO
-        lindbergh.monkeyblade.net" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S1733260AbgJBRIc (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Fri, 2 Oct 2020 13:08:32 -0400
-Received: from mail-ua1-x942.google.com (mail-ua1-x942.google.com [IPv6:2607:f8b0:4864:20::942])
-        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 5A7E2C0613D0
-        for <devicetree@vger.kernel.org>; Fri,  2 Oct 2020 10:08:32 -0700 (PDT)
-Received: by mail-ua1-x942.google.com with SMTP id h15so583690uab.3
-        for <devicetree@vger.kernel.org>; Fri, 02 Oct 2020 10:08:32 -0700 (PDT)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=chromium.org; s=google;
-        h=mime-version:references:in-reply-to:from:date:message-id:subject:to
-         :cc;
-        bh=PbIvQOosZgo3R2BZJc8GACD4WYs5J2seBOEgLzJ9hBM=;
-        b=CZpsJgYy8Zu1oH8utkKUY6fcC7xmaRZvupW4XBuX1ERHa99qsoAgCEsacauygHGyOw
-         a0sRG5fZlNs27aC1wNw//vRECILHOTEvvJja90QWG6g5CHF6BT5msQEGWa+NZiA1tFNb
-         AiiJsTtFWWGUwe6oIWGmSlzioRe6qjG8nLib0=
-X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=1e100.net; s=20161025;
-        h=x-gm-message-state:mime-version:references:in-reply-to:from:date
-         :message-id:subject:to:cc;
-        bh=PbIvQOosZgo3R2BZJc8GACD4WYs5J2seBOEgLzJ9hBM=;
-        b=Eeee4RzMr/uOFPEoxjK/1RvMzDtlde2ssYEctNidReUYQ3IUh1sxHhUjzIzAbgCsSX
-         GcgssJqHbuLlwwXBJNIfihZQliVI9AX8kQTXQd9sDJ75dR273Iksj1nYkj5Y2JYCdkvF
-         XVQjk6pnpv3agH/VP1rOrGNRNiy2txqhhPeY5W6Z/Pjxiz03uQ/DpmdAScKpjyuz8xi8
-         i6vOmvbm4JsQQKx6gMv5roJNiQPBd8goxJshh9bh0opg/Sz31BIMNE/FHTxU/P8zsQgv
-         LnoPhaGEntw+Us2Nq/yvVTsC5KNa+sudonzfN4LaKea/N9lyfM36girfeYudomb/YbIL
-         WPFA==
-X-Gm-Message-State: AOAM533aMxhTGVpRL5g+jZV0PA86ZdysNFLr4d0PkZ+dFJA4yLmQ8TZJ
-        ye9k5qSHR45aq6kFXg54G8kVJWoVY06mBA==
-X-Google-Smtp-Source: ABdhPJz/GaHcqm0qq+oSJHKK4eupII9GkCcfoakNiXPbVcCDpDoiXVJyNNaxhM2AtsINUJql/yVD7g==
-X-Received: by 2002:ab0:5b86:: with SMTP id y6mr1943725uae.101.1601658511029;
-        Fri, 02 Oct 2020 10:08:31 -0700 (PDT)
-Received: from mail-vs1-f50.google.com (mail-vs1-f50.google.com. [209.85.217.50])
-        by smtp.gmail.com with ESMTPSA id 49sm303462uae.19.2020.10.02.10.08.29
-        for <devicetree@vger.kernel.org>
-        (version=TLS1_3 cipher=TLS_AES_128_GCM_SHA256 bits=128/128);
-        Fri, 02 Oct 2020 10:08:30 -0700 (PDT)
-Received: by mail-vs1-f50.google.com with SMTP id p11so856835vsg.3
-        for <devicetree@vger.kernel.org>; Fri, 02 Oct 2020 10:08:29 -0700 (PDT)
-X-Received: by 2002:a67:f4c2:: with SMTP id s2mr1917881vsn.4.1601658509277;
- Fri, 02 Oct 2020 10:08:29 -0700 (PDT)
+        id S2387688AbgJBRSy (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Fri, 2 Oct 2020 13:18:54 -0400
+Received: from mail.baikalelectronics.com ([87.245.175.226]:52172 "EHLO
+        mail.baikalelectronics.ru" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
+        with ESMTP id S1726017AbgJBRSy (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Fri, 2 Oct 2020 13:18:54 -0400
+Received: from localhost (unknown [127.0.0.1])
+        by mail.baikalelectronics.ru (Postfix) with ESMTP id 1B787803017F;
+        Fri,  2 Oct 2020 17:18:51 +0000 (UTC)
+X-Virus-Scanned: amavisd-new at baikalelectronics.ru
+Received: from mail.baikalelectronics.ru ([127.0.0.1])
+        by localhost (mail.baikalelectronics.ru [127.0.0.1]) (amavisd-new, port 10024)
+        with ESMTP id PCURxKfZ5pJw; Fri,  2 Oct 2020 20:18:50 +0300 (MSK)
+Date:   Fri, 2 Oct 2020 20:18:49 +0300
+From:   Serge Semin <Sergey.Semin@baikalelectronics.ru>
+To:     Andy Shevchenko <andy.shevchenko@gmail.com>
+CC:     Serge Semin <fancer.lancer@gmail.com>,
+        Mark Brown <broonie@kernel.org>,
+        Alexey Malahov <Alexey.Malahov@baikalelectronics.ru>,
+        Ramil Zaripov <Ramil.Zaripov@baikalelectronics.ru>,
+        Pavel Parkhomenko <Pavel.Parkhomenko@baikalelectronics.ru>,
+        Lars Povlsen <lars.povlsen@microchip.com>,
+        "wuxu . wu" <wuxu.wu@huawei.com>, Feng Tang <feng.tang@intel.com>,
+        Rob Herring <robh+dt@kernel.org>, <linux-spi@vger.kernel.org>,
+        <devicetree@vger.kernel.org>, <linux-kernel@vger.kernel.org>
+Subject: Re: [PATCH v3 02/21] spi: dw: Add DWC SSI capability
+Message-ID: <20201002171849.jhio6nz6r6jigrf3@mobilestation>
+References: <20201001222829.15977-1-Sergey.Semin@baikalelectronics.ru>
+ <20201001222829.15977-3-Sergey.Semin@baikalelectronics.ru>
+ <20201002101929.GW3956970@smile.fi.intel.com>
 MIME-Version: 1.0
-References: <20200928101326.v4.1.I248292623d3d0f6a4f0c5bc58478ca3c0062b49a@changeid>
- <20200929201701.GA1080459@bogus> <20200929220912.GF1621304@google.com>
- <20200930013229.GB194665@rowland.harvard.edu> <20200930124915.GA1826870@google.com>
- <CAL_JsqLq9ZJm_CMiqWwbQhgGeu_ac_j43pvk4+xCFueSbyL4wA@mail.gmail.com>
- <CAD=FV=WcDzgcHNn1+gH+gq_WEwpD0XXdJGm2fBVpAB=3fVbzZA@mail.gmail.com> <CAL_Jsq+Zi+hCmUEiSmYw=pVK472=OW1ZjLnkH1NodWUm8FA5+g@mail.gmail.com>
-In-Reply-To: <CAL_Jsq+Zi+hCmUEiSmYw=pVK472=OW1ZjLnkH1NodWUm8FA5+g@mail.gmail.com>
-From:   Doug Anderson <dianders@chromium.org>
-Date:   Fri, 2 Oct 2020 10:08:17 -0700
-X-Gmail-Original-Message-ID: <CAD=FV=WJrvWBLk3oLpv6Q3uY4w7YeQBXVdkpn+SAS5dnxp9-=Q@mail.gmail.com>
-Message-ID: <CAD=FV=WJrvWBLk3oLpv6Q3uY4w7YeQBXVdkpn+SAS5dnxp9-=Q@mail.gmail.com>
-Subject: Re: [PATCH v4 1/2] dt-bindings: usb: Add binding for discrete onboard
- USB hubs
-To:     Rob Herring <robh@kernel.org>
-Cc:     Matthias Kaehlcke <mka@chromium.org>,
-        Alan Stern <stern@rowland.harvard.edu>,
-        Greg Kroah-Hartman <gregkh@linuxfoundation.org>,
-        Frank Rowand <frowand.list@gmail.com>,
-        "linux-kernel@vger.kernel.org" <linux-kernel@vger.kernel.org>,
-        Linux USB List <linux-usb@vger.kernel.org>,
-        Bastien Nocera <hadess@hadess.net>,
-        Stephen Boyd <swboyd@chromium.org>,
-        Ravi Chandra Sadineni <ravisadineni@chromium.org>,
-        Krzysztof Kozlowski <krzk@kernel.org>,
-        "open list:OPEN FIRMWARE AND FLATTENED DEVICE TREE BINDINGS" 
-        <devicetree@vger.kernel.org>, Peter Chen <peter.chen@nxp.com>
-Content-Type: text/plain; charset="UTF-8"
+Content-Type: text/plain; charset="us-ascii"
+Content-Disposition: inline
+In-Reply-To: <20201002101929.GW3956970@smile.fi.intel.com>
+X-ClientProxiedBy: MAIL.baikal.int (192.168.51.25) To mail (192.168.51.25)
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-Hi,
+On Fri, Oct 02, 2020 at 01:19:29PM +0300, Andy Shevchenko wrote:
+> On Fri, Oct 02, 2020 at 01:28:10AM +0300, Serge Semin wrote:
+> > Currently DWC SSI core is supported by means of setting up the
+> > core-specific update_cr0() callback. It isn't suitable for multiple
+> > reasons. First of all having exported several methods doing the same thing
+> > but for different chips makes the code harder to maintain. Secondly the
+> > spi-dw-core driver exports the methods, then the spi-dw-mmio driver sets
+> > the private data callback with one of them so to be called by the core
+> > driver again. That makes the code logic too complicated. Thirdly using
+> > callbacks for just updating the CR0 register is problematic, since in case
+> > if the register needed to be updated from different parts of the code,
+> > we'd have to create another callback (for instance the SPI device-specific
+> > parameters don't need to be calculated each time the SPI transfer is
+> > submitted, so it's better to pre-calculate the CR0 data at the SPI-device
+> > setup stage).
+> > 
+> > So keeping all the above in mind let's discard the update_cr0() callbacks,
+> > define a generic and static dw_spi_update_cr0() method and create the
+> > DW_SPI_CAP_DWC_SSI capability, which when enabled would activate the
+> > alternative CR0 register layout.
+> > 
+> > While at it add the comments to the code path of the normal DW APB SSI
+> > controller setup to make the dw_spi_update_cr0() method looking coherent.
+> 
 
-On Wed, Sep 30, 2020 at 1:20 PM Rob Herring <robh@kernel.org> wrote:
->
-> > > > Datasheets from different manufacturers refer to these ICs as "USB hub
-> > > > controller". Calling the node "usb-hub-controller" would indeed help to
-> > > > distinguish it from the USB hub devices and represent existing hardware.
-> > > > And the USB device could have a "hub-controller" property, which also
-> > > > would be clearer than the current "hub" property.
-> > >
-> > > There aren't 2 (or 3) devices here. There's a single USB device (a
-> > > hub) and the DT representation should reflect that.
-> >
-> > That's not completely true, though, is it?
->
-> I was referring to the hub. I only see 1 datasheet, 1 IC and 1 block
-> diagram... Lots of devices have more than one interface though usually
-> not different speeds of the same thing.
+> What the point to increase indentation level and produce additional churn?
+> Can't you simply leave functions, unexport them, and call in one conditional of
+> whatever new function is called?
 
-Right, there is certainly more than one way to look at it and the way
-to look at it is based on how it's most convenient, I guess.  I mean,
-an SoC often has 1 (very long) datasheet, 1 IC, and 1 block diagram
-too...
+I forgot to mention that in the commit log, there is another reason why it's
+better to create a generic dw_spi_update_cr0() instead of doing what you suggest.
+As it will be seen from the following up patches, the dw_spi_update_cr0() function
+(to be more precise it's successor, but anyway) will be used from the SPI memory
+ops implementation. So if-else-ing here and there isn't a good idea for
+maintainability. For the same reason of the maintainability it's better to have a
+generic method which reflects all the config peculiarities, so in case of any
+changes they would be not be forgotten to be introduced for both DWC SSI and DW
+APB SSI parts of the setup procedures. As I see it that overbeats the additional
+indentation level drawback.
 
-As a more similar example of single device that is listed in more than
-one location in the device tree, we can also look at embedded SDIO
-BT/WiFi combo cards.  This single device often provides WiFi under an
-SDIO bus and BT under a serial / USB bus.  I'm not 100% sure there are
-actually cases were the same board provides device tree data to both
-at the same time, but "brcm,bcm43540-bt" is an example of providing
-data to the Bluetooth (connected over serial port) and
-"brcm,bcm4329-fmac" to the WiFi (connected over the SDIO bus).  Of
-course WiFi/BT cheat in that the control logic is represented by the
-SDIO power sequencing stuff...
+-Sergey
 
-
-Back to our case, though.  I guess the issue here is that we're the
-child of more than one bus.  Let's first pretend that the i2c lines of
-this hub are actually hooked up and establish how that would look
-first.  Then we can think about how it looks if this same device isn't
-hooked up via i2c.  In this case, it sounds as if you still don't want
-the device split among two nodes.  So I guess you'd prefer something
-like:
-
-i2c {
-  usb-hub@xx {
-    reg = <xx>;
-    compatible = "realtek,rts5411", "onboard-usb-hub";
-    vdd-supply = <&pp3300_hub>;
-    usb-devices = <&usb_controller 1>;
-  };
-};
-
-...and then you wouldn't have anything under the USB controller
-itself.  Is that correct?  So even though there are existing bindings
-saying that a USB device should be listed via VID/PID, the desire to
-represent this as a single node overrides that, right?  (NOTE: this is
-similar to what Matthias proposed in his response except that I've
-added an index so that we don't need _anything_ under the controller).
-
-Having this primarily listed under the i2c bus makes sense because the
-control logic for the hub is hooked up via i2c.  Having the power
-supply associated with it also makes some amount of sense since it's a
-control signal.  It's also convenient that i2c devices have their
-probe called _before_ we try to detect if they're there because it's
-common that i2c devices need power applied first.
-
-Now, just because we don't have the i2c bus hooked up doesn't change
-the fact that there is control logic.  We also certainly wouldn't want
-two ways of describing this same hub: one way if the i2c is hooked up
-and one way if it's not hooked up.  To me this means that the we
-should be describing this hub as a top-level node if i2c isn't hooked
-up, just like we do with "smsc,usb3503a"
-
-Said another way, we have these points:
-
-a) The control logic for this bus could be hooked up to an i2c bus.
-
-b) If the control logic is hooked up to an i2c bus it feels like
-that's where the device's primary node should be placed, not under the
-USB controller.
-
-c) To keep the i2c and non-i2c case as similar as possible, if the i2c
-bus isn't hooked up the hub's primary node should be a top-level node,
-not under the USB controller.
-
-
-NOTE ALSO: the fact that we might want to list this hub under an i2c
-controller also seems like it's a good argument against putting this
-logic in the xhci-platform driver?
-
-
-I _think_ the above representation would be OK with Rob (right?) and I
-think it'd be pretty easy to adapt Matthias's existing code to work
-with it.  We'd have to make sure we were careful that things worked in
-either probe ordering (in case the firmware happened to leave the
-power rail on sometimes and the USB devices started probing before the
-hub driver did), but it feels like it should be possible, right?
-
-
- -Doug
+> 
+> I have an impression that split of the series is done in a way that first
+> patches in the series are not optimized to what is done in the last patches in
+> the series.
+> 
+> -- 
+> With Best Regards,
+> Andy Shevchenko
+> 
+> 
