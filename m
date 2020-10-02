@@ -2,100 +2,97 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from vger.kernel.org (vger.kernel.org [23.128.96.18])
-	by mail.lfdr.de (Postfix) with ESMTP id D0E26280D89
-	for <lists+devicetree@lfdr.de>; Fri,  2 Oct 2020 08:36:24 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTP id A8A98280DD3
+	for <lists+devicetree@lfdr.de>; Fri,  2 Oct 2020 09:04:37 +0200 (CEST)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S1726015AbgJBGgX convert rfc822-to-8bit (ORCPT
-        <rfc822;lists+devicetree@lfdr.de>); Fri, 2 Oct 2020 02:36:23 -0400
-Received: from mslow2.mail.gandi.net ([217.70.178.242]:60252 "EHLO
-        mslow2.mail.gandi.net" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S1725948AbgJBGgX (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Fri, 2 Oct 2020 02:36:23 -0400
-Received: from relay5-d.mail.gandi.net (unknown [217.70.183.197])
-        by mslow2.mail.gandi.net (Postfix) with ESMTP id C16B93A3BC3
-        for <devicetree@vger.kernel.org>; Fri,  2 Oct 2020 06:27:26 +0000 (UTC)
-X-Originating-IP: 91.224.148.103
-Received: from xps13 (unknown [91.224.148.103])
-        (Authenticated sender: miquel.raynal@bootlin.com)
-        by relay5-d.mail.gandi.net (Postfix) with ESMTPSA id C3A481C000B;
-        Fri,  2 Oct 2020 06:27:01 +0000 (UTC)
-Date:   Fri, 2 Oct 2020 08:27:00 +0200
-From:   Miquel Raynal <miquel.raynal@bootlin.com>
-To:     Yifeng Zhao <yifeng.zhao@rock-chips.com>
-Cc:     richard@nod.at, vigneshr@ti.com, robh+dt@kernel.org,
-        devicetree@vger.kernel.org, linux-mtd@lists.infradead.org,
-        heiko@sntech.de, linux-rockchip@lists.infradead.org,
-        linux-arm-kernel@lists.infradead.org, linux-kernel@vger.kernel.org
-Subject: Re: [PATCH v9 2/8] mtd: rawnand: rockchip: NFC drivers for RK3308,
- RK2928 and others
-Message-ID: <20201002082700.7ed74f27@xps13>
-In-Reply-To: <20200929090807.21511-3-yifeng.zhao@rock-chips.com>
-References: <20200929090807.21511-1-yifeng.zhao@rock-chips.com>
-        <20200929090807.21511-3-yifeng.zhao@rock-chips.com>
-Organization: Bootlin
-X-Mailer: Claws Mail 3.17.4 (GTK+ 2.24.32; x86_64-pc-linux-gnu)
-MIME-Version: 1.0
-Content-Type: text/plain; charset=UTF-8
-Content-Transfer-Encoding: 8BIT
+        id S1725961AbgJBHEh (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Fri, 2 Oct 2020 03:04:37 -0400
+Received: from mga05.intel.com ([192.55.52.43]:7176 "EHLO mga05.intel.com"
+        rhost-flags-OK-OK-OK-OK) by vger.kernel.org with ESMTP
+        id S1725948AbgJBHEg (ORCPT <rfc822;devicetree@vger.kernel.org>);
+        Fri, 2 Oct 2020 03:04:36 -0400
+IronPort-SDR: CrUY5BW27JmOR1hIEHYhkzv9XTQKc5xLhd71+0nymlIP/vyZZdzxNLoCsFBaJxGfh1IiMhy9c0
+ 0GWwAi1OdIyg==
+X-IronPort-AV: E=McAfee;i="6000,8403,9761"; a="247670838"
+X-IronPort-AV: E=Sophos;i="5.77,326,1596524400"; 
+   d="scan'208";a="247670838"
+X-Amp-Result: SKIPPED(no attachment in message)
+X-Amp-File-Uploaded: False
+Received: from fmsmga004.fm.intel.com ([10.253.24.48])
+  by fmsmga105.fm.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384; 02 Oct 2020 00:04:34 -0700
+IronPort-SDR: CqtDPQA2IJwfAuHcwRxr6bL6aK47Eih2VhqXdNMX7BnFRUyi7DTEX9bl5ytC/rF5XgAW2IT3zX
+ IdwBfMCDqvfA==
+X-ExtLoop1: 1
+X-IronPort-AV: E=Sophos;i="5.77,326,1596524400"; 
+   d="scan'208";a="339881518"
+Received: from sgsxdev001.isng.intel.com (HELO localhost) ([10.226.88.11])
+  by fmsmga004.fm.intel.com with ESMTP; 02 Oct 2020 00:04:31 -0700
+From:   Rahul Tanwar <rahul.tanwar@linux.intel.com>
+To:     jdelvare@suse.com, linux@roeck-us.net, p.zabel@pengutronix.de,
+        linux-hwmon@vger.kernel.org, robh+dt@kernel.org
+Cc:     linux-kernel@vger.kernel.org, devicetree@vger.kernel.org,
+        andriy.shevchenko@intel.com, songjun.Wu@intel.com,
+        cheol.yong.kim@intel.com, qi-ming.wu@intel.com,
+        rtanwar@maxlinear.com, Rahul Tanwar <rahul.tanwar@linux.intel.com>
+Subject: [PATCH v4 0/2] Add hwmon driver for Moortec PVT controller
+Date:   Fri,  2 Oct 2020 15:04:25 +0800
+Message-Id: <cover.1601621983.git.rahul.tanwar@linux.intel.com>
+X-Mailer: git-send-email 2.11.0
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-Hi Yifeng,
+Patch 1 adds DT bindings schema in YAML format.
+Patch 2 adds driver for MR75203 PVT controller.
 
-Yifeng Zhao <yifeng.zhao@rock-chips.com> wrote on Tue, 29 Sep 2020
-17:08:05 +0800:
+v4:
+- Fix a spelling mistake in comments.
+- Add return value error checking for all regmap_reads/writes.
+- Remove unnecessary else statement and a validation check.
 
-> This driver supports Rockchip NFC (NAND Flash Controller) found on RK3308,
-> RK2928, RKPX30, RV1108 and other SOCs. The driver has been tested using
-> 8-bit NAND interface on the ARM based RK3308 platform.
-> 
-> Support Rockchip SoCs and NFC versions:
-> - PX30 and RK3326(NFCv900).
-> 	ECC: 16/40/60/70 bits/1KB.
-> 	CLOCK: ahb and nfc.
-> - RK3308 and RV1108(NFCv800).
-> 	ECC: 16 bits/1KB.
-> 	CLOCK: ahb and nfc.
-> - RK3036 and RK3128(NFCv622).
-> 	ECC: 16/24/40/60 bits/1KB.
-> 	CLOCK: ahb and nfc.
-> - RK3066, RK3188 and RK2928(NFCv600).
-> 	ECC: 16/24/40/60 bits/1KB.
-> 	CLOCK: ahb.
-> 
-> Supported features:
-> - Read full page data by DMA.
-> - Support HW ECC(one step is 1KB).
-> - Support 2 - 32K page size.
-> - Support 8 CS(depend on SoCs)
-> 
-> Limitations:
-> - No support for the ecc step size is 512.
-> - Untested on some SoCs.
-> - No support for subpages.
-> - No support for the builtin randomizer.
-> - The original bad block mask is not supported. It is recommended to use
->   the BBT(bad block table).
-> 
-> Signed-off-by: Yifeng Zhao <yifeng.zhao@rock-chips.com>
-> ---
-> 
-> Changes in v9:
-> - The nfc->buffer will realloc while the page size of the second mtd
->   is large than the first one
-> - Fix coding style.
-> - Remove struct rk_nfc_clk.
-> - Prepend some function with rk_nfc_.
-> - Replace function readl_poll_timeout_atomic with readl_relaxed_poll_timeout.
-> - Remove function rk_nfc_read_byte and rk_nfc_write_byte.
-> - Don't select the die if 'check_only == true' in function rk_nfc_exec_op.
-> - Modify function rk_nfc_write_page and rk_nfc_write_page_raw.
+v3:
+- Resolve make dt_binding_check errors.
+- Add vendor prefix and type reference for one property in yaml schema.
+- Update new property name in the driver.
 
-You should probably rebase your patches on a more recent kernel, there
-are several inconsistencies with the current core (see the kernel test
-robot reports). Please consider having a look at the history to follow
-the naming. If you need help, please ask!
+v2:
+- Address below review concerns from Andy Shevchenko
+ * Add more info in comments for clamp_val usage for clk sys cycles.
+ * Add mod_devicetable.h & property.h and remove of.h
+ * Remove unnecessary additional mutex lock from driver. Rely on regmap's
+   internal lock.
+ * Use units in timeout macros.
+ * Use HZ_PER_MHZ instead of direct values.
+ * Use devm_platform_ioremap_resource_byname() instead of separate calls.
+ * Use device property read API instead of OF API.
+- Address below review concerns from Guenter Roeck
+ * Improve commit message - add hardware monitoring driver.
+ * Remove unnecessary platform_set_drvdata. Instead add driver data in
+   function args at one place where it is used. Fix a issue related to it.
+ * Remove unnecessary NULL assignment.
+- Address below review concerns from Philipp Zabel
+ * Switch to devm_reset_control_get_exclusive().
+ * Move reset_deassert at the last after clk_enable in probe.
+- Resolve make dt_binding_check error.
+- Add MODULE_LICENSE
 
-Cheers,
-Miquèl
+v1:
+- Initial version.
+
+
+
+Rahul Tanwar (2):
+  Add DT bindings schema for PVT controller
+  Add hardware monitoring driver for Moortec MR75203 PVT controller
+
+ .../devicetree/bindings/hwmon/moortec,mr75203.yaml |  71 +++
+ drivers/hwmon/Kconfig                              |  10 +
+ drivers/hwmon/Makefile                             |   1 +
+ drivers/hwmon/mr75203.c                            | 651 +++++++++++++++++++++
+ 4 files changed, 733 insertions(+)
+ create mode 100644 Documentation/devicetree/bindings/hwmon/moortec,mr75203.yaml
+ create mode 100644 drivers/hwmon/mr75203.c
+
+-- 
+2.11.0
+
