@@ -2,218 +2,167 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from vger.kernel.org (vger.kernel.org [23.128.96.18])
-	by mail.lfdr.de (Postfix) with ESMTP id 90044281EAF
-	for <lists+devicetree@lfdr.de>; Sat,  3 Oct 2020 00:55:16 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTP id 3543F281EBF
+	for <lists+devicetree@lfdr.de>; Sat,  3 Oct 2020 00:58:36 +0200 (CEST)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S1725379AbgJBWzP (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Fri, 2 Oct 2020 18:55:15 -0400
-Received: from mout.gmx.net ([212.227.17.21]:38939 "EHLO mout.gmx.net"
+        id S1725550AbgJBW6f (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Fri, 2 Oct 2020 18:58:35 -0400
+Received: from mail.kernel.org ([198.145.29.99]:44704 "EHLO mail.kernel.org"
         rhost-flags-OK-OK-OK-OK) by vger.kernel.org with ESMTP
-        id S1725283AbgJBWzP (ORCPT <rfc822;devicetree@vger.kernel.org>);
-        Fri, 2 Oct 2020 18:55:15 -0400
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=gmx.net;
-        s=badeba3b8450; t=1601679255;
-        bh=ifmQtRuT3dg6xtz/3ou+lH+WAmOOUez1iX/REx8JnI0=;
-        h=X-UI-Sender-Class:Date:From:To:Cc:Subject:References:In-Reply-To;
-        b=TWl5+Tnb6LW1l+v0w1mHFCjvwE1VhQiYviUzbZgOpskNa3W4wFZlHbfbNGlDi84qI
-         WuxRTKOXFnal4yUlvlJ2uA1qlj5D7KIlW9v3bclP6qPcZ3clm554t9yf/icJNfgkSf
-         JkQ0AzsOJPmGhuBrPQMe9zAL6XHk6MWNqtXoMt+U=
-X-UI-Sender-Class: 01bb95c1-4bf8-414a-932a-4f6e2808ef9c
-Received: from longitude ([5.146.195.151]) by mail.gmx.com (mrgmx105
- [212.227.17.168]) with ESMTPSA (Nemesis) id 1MybGX-1kcRLv2znR-00z0WA; Sat, 03
- Oct 2020 00:54:14 +0200
-Date:   Sat, 3 Oct 2020 00:54:08 +0200
-From:   Jonathan =?utf-8?Q?Neusch=C3=A4fer?= <j.neuschaefer@gmx.net>
-To:     Andy Shevchenko <andy.shevchenko@gmail.com>
-Cc:     Jonathan =?utf-8?Q?Neusch=C3=A4fer?= <j.neuschaefer@gmx.net>,
-        Linux Kernel Mailing List <linux-kernel@vger.kernel.org>,
-        Lee Jones <lee.jones@linaro.org>,
-        Rob Herring <robh+dt@kernel.org>,
-        Thierry Reding <thierry.reding@gmail.com>,
-        Uwe =?utf-8?Q?Kleine-K=C3=B6nig?= 
-        <u.kleine-koenig@pengutronix.de>,
-        Alessandro Zummo <a.zummo@towertech.it>,
-        Alexandre Belloni <alexandre.belloni@bootlin.com>,
-        Shawn Guo <shawnguo@kernel.org>,
-        Sascha Hauer <s.hauer@pengutronix.de>,
-        Pengutronix Kernel Team <kernel@pengutronix.de>,
-        Fabio Estevam <festevam@gmail.com>,
-        NXP Linux Team <linux-imx@nxp.com>,
-        Sam Ravnborg <sam@ravnborg.org>,
-        Linus Walleij <linus.walleij@linaro.org>,
-        Heiko Stuebner <heiko.stuebner@theobroma-systems.com>,
-        Stephan Gerhold <stephan@gerhold.net>,
-        Lubomir Rintel <lkundrak@v3.sk>,
-        Mark Brown <broonie@kernel.org>, allen <allen.chen@ite.com.tw>,
-        Mauro Carvalho Chehab <mchehab+huawei@kernel.org>,
-        "David S. Miller" <davem@davemloft.net>,
-        devicetree <devicetree@vger.kernel.org>,
-        linux-pwm@vger.kernel.org,
-        "open list:REAL TIME CLOCK (RTC) SUBSYSTEM" 
-        <linux-rtc@vger.kernel.org>,
-        linux-arm Mailing List <linux-arm-kernel@lists.infradead.org>,
-        Heiko Stuebner <heiko@sntech.de>,
-        Josua Mayer <josua.mayer@jm0.eu>,
-        Andreas Kemnade <andreas@kemnade.info>,
-        Arnd Bergmann <arnd@arndb.de>, Daniel Palmer <daniel@0x0f.com>
-Subject: Re: [PATCH v3 3/7] mfd: Add base driver for Netronix embedded
- controller
-Message-ID: <20201002225408.GA500800@latitude>
-References: <20200924192455.2484005-1-j.neuschaefer@gmx.net>
- <20200924192455.2484005-4-j.neuschaefer@gmx.net>
- <CAHp75VdUHPsuvDPLnfP9sM2p1FDiCsjkCf1SSM-y02ZsQxSDWQ@mail.gmail.com>
- <20200925213207.GA2510@latitude>
- <CAHp75VchfQ-djkK6u+fLjq6kfqpzb0nqSLJOe76cb5S3J_F9GQ@mail.gmail.com>
+        id S1725283AbgJBW6f (ORCPT <rfc822;devicetree@vger.kernel.org>);
+        Fri, 2 Oct 2020 18:58:35 -0400
+Received: from mail-ot1-f52.google.com (mail-ot1-f52.google.com [209.85.210.52])
+        (using TLSv1.2 with cipher ECDHE-RSA-AES128-GCM-SHA256 (128/128 bits))
+        (No client certificate requested)
+        by mail.kernel.org (Postfix) with ESMTPSA id 398C7206FA;
+        Fri,  2 Oct 2020 22:58:34 +0000 (UTC)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=kernel.org;
+        s=default; t=1601679514;
+        bh=kcgoZa2FML0rIwT6XbrrIjjoXmqKbfCgFpDorfrshps=;
+        h=References:In-Reply-To:From:Date:Subject:To:Cc:From;
+        b=dPNLZjPQ+Gie0FqEHETgS8rjP8PH1KEwxxTUj3iu/Rl3xP9qmXeHfPHJndVuss/Mm
+         C/HteBa7MlygE9u3slxynzGh/Po+/KqQ/G1y0pn3Lg6a8GZhFn7emUoj4QKRZwFn7/
+         c0KyXxvIIT9j0dV1ILSvPlVZwO5qI88sKl78g4VA=
+Received: by mail-ot1-f52.google.com with SMTP id s66so3011477otb.2;
+        Fri, 02 Oct 2020 15:58:34 -0700 (PDT)
+X-Gm-Message-State: AOAM5318jS0sPP8v/x6KWr2ks422ZoKVF9l0Q1iTU59VsBLeXkhlr1cY
+        mmmhrhPwJYJqS2mLL8c6IerUK/2XKBabGPPrRQ==
+X-Google-Smtp-Source: ABdhPJxEmXxNEtMkiFWap/kdASetpxroZKkBdAu1ipH8rGGfLySK+JHQ9y8EdrYrLKHmls+JVOFTu1wBuZPYvSBAeZk=
+X-Received: by 2002:a05:6830:1008:: with SMTP id a8mr3123918otp.107.1601679513550;
+ Fri, 02 Oct 2020 15:58:33 -0700 (PDT)
 MIME-Version: 1.0
-Content-Type: multipart/signed; micalg=pgp-sha512;
-        protocol="application/pgp-signature"; boundary="azLHFNyN32YCQGCU"
-Content-Disposition: inline
-In-Reply-To: <CAHp75VchfQ-djkK6u+fLjq6kfqpzb0nqSLJOe76cb5S3J_F9GQ@mail.gmail.com>
-X-Provags-ID: V03:K1:UrsUGltGIkJV85rtkpSSHNGZVa7KQScWf3gXtGHd+DtPWbCV7xL
- TV7J9pw2yhOV/5n9PO1RRNXvDO5RCJgYGCKVpnWL2/lbWJxRuFhhnRGvcu6DxlMyiIeVFjU
- rdohUZnQT1AQA9gqw3uOGPgUn8KPYRsfLjbwdtw6CGGDkdYFy+vy1Qx03rpiZdQ5x0Wlyfe
- LHzNGpsijNJRotmPwaVcw==
-X-Spam-Flag: NO
-X-UI-Out-Filterresults: notjunk:1;V03:K0:M1EZiit1jLw=:pCdHzy8gSeY/pMntYMC+cL
- G05AVuGFzvoyXZ0ffU1uz9R53SOiFhWNKimeyP/m375sDSGkM8ovOpO2oPqCfnnb84Y+WQRGj
- ZRMkm9HQMO6qt2dsYq6CZYd2k+2PDM6D/d93dxULRkX6+7ol2d7f0Dh859ds87FR+omotuS2s
- 6ClKvV4QbHkzQqZGNqUp4YHpbzI9IyfChqYx7gilHOQ21wMMyzgXn/nohob/d5Jce2CtXcBCY
- LLafngGp4Hm34Z3mznuanHWI3zUVdEg2fq4+NkEP7/4BPIpj5BNr3ejOSZlce6VEwRPJr8hH0
- fDI+j3EwOBOSKHY3iO2xaHl9uQ7A8jUjqSMU4p2dgr68sqdpOYqahxrkHXZYgAKGUF44GyScO
- +lKiY8ukubdUftM5VJLaL70LLDQuhPLzW1T9ibdvll70W+dD5tQTj1d2Z8E7GFeQwcNFUN2+H
- R4/UtvlA0TXPAZRWOH73TCf6i9u2bVvUklY2PQKVqzePGOoUwN9/jExRpkoAWY5CE1/cPq1g5
- ros+4k2HbJqzrRHS9zrNKSm8yEh9uWFYsEG/aYRp68g2uFUKurIycXJz6K+6gB08B05lAXFaj
- hr27u0bvQzcIBo73OqDoGvAo0WOvdGyl+Ysm6cIzFFrUWCQAmCUUSjGc7lsfOHJpu1Bf03ft6
- N1YKjFe6Xmu6UbJa1x1klgzW1Qw1RgsIpRUvYK7Mhu9Tx61ogbzFarjcL2wkwj4D9VPs5ZTim
- OTro+TKmojff+PaeBoZ2PBT6jDYxsoV/yJtVGSv/qv27Nh6AixRQK6wMH3tQ6HFKTLwqblF78
- 7yowgD2/rxZ1eaN53dVQQRqJcqkScXvsxNPUr982W0XC4BobrbnTKKckZ4UE6ico2g/YATMIh
- jFrJaT03etyq6dOHjXbjodbl9uMw65ajQBIsObQqpl9iN7sWoKbRJ3ZAIgRjm5Ucdec7JK4FM
- osFiKGjsGKEWD0KzPCPSNQlLCAxKqFAbrnapKLdZRzbYrev63GCKHXkKY89CG4zaK8GHgPurm
- XgafGeD5vszcUC38uS26rLOYKyYNeK99hSym1S4EMgjPdzY9rO5wI7Ip6ET5lOJPCBJnEFMgy
- s2qsbbG8/QDy5cXSKrM2zgeHRnY4YGMBdiFejdD24naAbi8RobAovjY8j5AjBeW7UJQjPEafs
- UnFHfXSDnHScZPoSXwG6uHlSgHxSNRO0WOzOOQJhUYEwZisRtGzOv4FLAuxPRQTSmYM6idoVJ
- 6oLZJN5Cq0VWa6VkJoYSpDN0c2ws2uEjuKnfzbQ==
+References: <20200928101326.v4.1.I248292623d3d0f6a4f0c5bc58478ca3c0062b49a@changeid>
+ <20200929201701.GA1080459@bogus> <20200929220912.GF1621304@google.com>
+ <20200930013229.GB194665@rowland.harvard.edu> <20200930124915.GA1826870@google.com>
+ <CAL_JsqLq9ZJm_CMiqWwbQhgGeu_ac_j43pvk4+xCFueSbyL4wA@mail.gmail.com>
+ <CAD=FV=WcDzgcHNn1+gH+gq_WEwpD0XXdJGm2fBVpAB=3fVbzZA@mail.gmail.com>
+ <CAL_Jsq+Zi+hCmUEiSmYw=pVK472=OW1ZjLnkH1NodWUm8FA5+g@mail.gmail.com>
+ <CAD=FV=WJrvWBLk3oLpv6Q3uY4w7YeQBXVdkpn+SAS5dnxp9-=Q@mail.gmail.com> <20201002183633.GA296334@rowland.harvard.edu>
+In-Reply-To: <20201002183633.GA296334@rowland.harvard.edu>
+From:   Rob Herring <robh@kernel.org>
+Date:   Fri, 2 Oct 2020 17:58:22 -0500
+X-Gmail-Original-Message-ID: <CAL_JsqKHFA5RWz1SRLkR2JXydURL2pA+4C0+C+4SrJR_h4M0dw@mail.gmail.com>
+Message-ID: <CAL_JsqKHFA5RWz1SRLkR2JXydURL2pA+4C0+C+4SrJR_h4M0dw@mail.gmail.com>
+Subject: Re: [PATCH v4 1/2] dt-bindings: usb: Add binding for discrete onboard
+ USB hubs
+To:     Alan Stern <stern@rowland.harvard.edu>
+Cc:     Doug Anderson <dianders@chromium.org>,
+        Matthias Kaehlcke <mka@chromium.org>,
+        Greg Kroah-Hartman <gregkh@linuxfoundation.org>,
+        Frank Rowand <frowand.list@gmail.com>,
+        "linux-kernel@vger.kernel.org" <linux-kernel@vger.kernel.org>,
+        Linux USB List <linux-usb@vger.kernel.org>,
+        Bastien Nocera <hadess@hadess.net>,
+        Stephen Boyd <swboyd@chromium.org>,
+        Ravi Chandra Sadineni <ravisadineni@chromium.org>,
+        Krzysztof Kozlowski <krzk@kernel.org>,
+        "open list:OPEN FIRMWARE AND FLATTENED DEVICE TREE BINDINGS" 
+        <devicetree@vger.kernel.org>, Peter Chen <peter.chen@nxp.com>
+Content-Type: text/plain; charset="UTF-8"
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-
---azLHFNyN32YCQGCU
-Content-Type: text/plain; charset=utf-8
-Content-Disposition: inline
-Content-Transfer-Encoding: quoted-printable
-
-On Tue, Sep 29, 2020 at 07:37:21PM +0300, Andy Shevchenko wrote:
-> On Sat, Sep 26, 2020 at 12:32 AM Jonathan Neusch=C3=A4fer
-> <j.neuschaefer@gmx.net> wrote:
-> > On Fri, Sep 25, 2020 at 12:29:45PM +0300, Andy Shevchenko wrote:
-> > > On Thu, Sep 24, 2020 at 10:26 PM Jonathan Neusch=C3=A4fer
-> > > <j.neuschaefer@gmx.net> wrote:
->=20
-> ...
->=20
-> > > > +               dev_alert(&poweroff_restart_client->dev,
-> > > > +                         "Failed to power off (err =3D %d)\n", res=
-);
-> > >
-> > > alert? This needs to be explained.
-> >
-> > I copied the dev_alert from drivers/mfd/rn5t618.c.
-> >
-> > Upon reconsideration, I'm not sure what the correct log level would be,
-> > but _warn seems enough, or maybe _err is better
->=20
-> It's up to you to decide, but crit/alert and similar has to be
-> justified (commit message / comment in the code).
-
-Alright, thanks for explaining.
-
-> > > > +       /*
-> > > > +        * NOTE: The lower half of the reset value is not sent, bec=
-ause sending
-> > > > +        * it causes an error
-> > >
-> > > Why? Any root cause? Perhaps you need to send 0xffff ?
-> >
-> > Unknown, because I don't have the EC firmware for analysis. The vendor
-> > kernel sends 0xff00 and gets an error.
-> >
-> > Sending 0xffff doesn't help.
->=20
-> Maybe a slightly elaborated comment that it's copied from the vendor
-> kernel (which is?).
-
-Good idea, I'll do that.
-
-> ...
->=20
-> > > > +       dev_info(ec->dev,
-> > > > +                "Netronix embedded controller version %04x detecte=
-d.\n",
-> > > > +                version);
-> > >
-> > > This info level may confuse users if followed by an error path.
-> >
-> > Right. I suppose printing incompatible versions is still useful, so how
-> > about something like the following?
+On Fri, Oct 2, 2020 at 1:36 PM Alan Stern <stern@rowland.harvard.edu> wrote:
+>
+> On Fri, Oct 02, 2020 at 10:08:17AM -0700, Doug Anderson wrote:
+> > As a more similar example of single device that is listed in more than
+> > one location in the device tree, we can also look at embedded SDIO
+> > BT/WiFi combo cards.  This single device often provides WiFi under an
+> > SDIO bus and BT under a serial / USB bus.  I'm not 100% sure there are
+> > actually cases were the same board provides device tree data to both
+> > at the same time, but "brcm,bcm43540-bt" is an example of providing
+> > data to the Bluetooth (connected over serial port) and
+> > "brcm,bcm4329-fmac" to the WiFi (connected over the SDIO bus).  Of
+> > course WiFi/BT cheat in that the control logic is represented by the
+> > SDIO power sequencing stuff...
 > >
 > >
-> >        /* Bail out if we encounter an unknown firmware version */
-> >        switch (version) {
-> >        case 0xd726: /* found in Kobo Aura */
-> >                dev_info(ec->dev,
-> >                         "Netronix embedded controller version %04x dete=
-cted.\n",
-> >                         version);
-> >                break;
-> >        default:
-> >                dev_err(ec->dev,
-> >                         "Netronix embedded controller version %04x is n=
-ot supported.\n",
-> >                         version);
-> >                return -ENODEV;
-> >        }
->=20
-> This is better.
->=20
-> ...
->=20
-> > > > +               WARN_ON(poweroff_restart_client);
-> > >
-> > > WARN_ON? All these alerts, WARNs, BUGs must be explained. Screaming to
-> > > the user is not good if it wasn't justified.
+> > Back to our case, though.  I guess the issue here is that we're the
+> > child of more than one bus.  Let's first pretend that the i2c lines of
+> > this hub are actually hooked up and establish how that would look
+> > first.  Then we can think about how it looks if this same device isn't
+> > hooked up via i2c.  In this case, it sounds as if you still don't want
+> > the device split among two nodes.  So I guess you'd prefer something
+> > like:
 > >
-> > poweroff_restart_client being already set is not a situation that should
-> > happen (and would indicate a bug in this driver, AFAICT), but I guess
-> > the log message could be better in that case...
->=20
-> As per above.
+> > i2c {
+> >   usb-hub@xx {
+> >     reg = <xx>;
+> >     compatible = "realtek,rts5411", "onboard-usb-hub";
+> >     vdd-supply = <&pp3300_hub>;
+> >     usb-devices = <&usb_controller 1>;
+> >   };
+> > };
+> >
+> > ...and then you wouldn't have anything under the USB controller
+> > itself.  Is that correct?  So even though there are existing bindings
+> > saying that a USB device should be listed via VID/PID, the desire to
+> > represent this as a single node overrides that, right?  (NOTE: this is
+> > similar to what Matthias proposed in his response except that I've
+> > added an index so that we don't need _anything_ under the controller).
+> >
+> > Having this primarily listed under the i2c bus makes sense because the
+> > control logic for the hub is hooked up via i2c.  Having the power
+> > supply associated with it also makes some amount of sense since it's a
+> > control signal.  It's also convenient that i2c devices have their
+> > probe called _before_ we try to detect if they're there because it's
+> > common that i2c devices need power applied first.
+> >
+> > Now, just because we don't have the i2c bus hooked up doesn't change
+> > the fact that there is control logic.  We also certainly wouldn't want
+> > two ways of describing this same hub: one way if the i2c is hooked up
+> > and one way if it's not hooked up.  To me this means that the we
+> > should be describing this hub as a top-level node if i2c isn't hooked
+> > up, just like we do with "smsc,usb3503a"
+> >
+> > Said another way, we have these points:
+> >
+> > a) The control logic for this bus could be hooked up to an i2c bus.
+> >
+> > b) If the control logic is hooked up to an i2c bus it feels like
+> > that's where the device's primary node should be placed, not under the
+> > USB controller.
+> >
+> > c) To keep the i2c and non-i2c case as similar as possible, if the i2c
+> > bus isn't hooked up the hub's primary node should be a top-level node,
+> > not under the USB controller.
+> >
+> >
+> > NOTE ALSO: the fact that we might want to list this hub under an i2c
+> > controller also seems like it's a good argument against putting this
+> > logic in the xhci-platform driver?
+>
+> More and more we are going to see devices that are attached to multiple
+> buses.  In this case, one for power control and another for
+> commands/data.  If DT doesn't already have a canonical way of handling
+> such situations, it needs to develop one soon.
 
-Okay, I'll rework the dev_alert/WARN_ON parts.
+Attached to multiple buses directly is kind of rare from what I've
+seen. Most of the time, it's regulators, GPIOs, clocks, etc. which are
+well defined in DT. If there is a 2nd bus, it's almost always I2C.
 
+> One can make a case that there should be multiple device nodes in this
+> situation, somehow referring to each other so that the system knows they
+> all describe the same device.  Maybe one "primary" node for the device
+> and the others acting kind of like symbolic links.
+>
+> Regardless of how the situation is represented in DT, there remains the
+> issue of where (i.e., in which driver module) the appropriate code
+> belongs.  This goes far beyond USB.  In general, what happens when one
+> sort of device normally isn't hooked up through a power regulator, so
+> its driver doesn't have any code to enable a regulator, but then some
+> system does exactly that?
+>
+> Even worse, what if the device is on a discoverable bus, so the driver
+> doesn't get invoked at all until the device is discovered, but on the
+> new system it can't be discovered until the regulator is enabled?
 
+Yep, it's the same issue here with USB, MDIO which just came up a few
+weeks ago, MMC/SD which hacked around it with 'mmc-pwrseq' binding
+(not something I want to duplicate) and every other discoverable bus.
+What do they all have in common? The kernel's driver model being
+unable to cope with this situation. We really need a common solution
+here and not bus or device specific hack-arounds.
 
-Thanks,
-Jonathan Neusch=C3=A4fer
-
---azLHFNyN32YCQGCU
-Content-Type: application/pgp-signature; name="signature.asc"
-
------BEGIN PGP SIGNATURE-----
-
-iQIzBAABCgAdFiEEvHAHGBBjQPVy+qvDCDBEmo7zX9sFAl93r30ACgkQCDBEmo7z
-X9sFyA/+PxkayxMmWS6aZriR35iArW9FwzoI/FTynPwp7rIU9mEWM5LrusnWLV/k
-rgbasDHs6h2NLH7T7uDsc8ry8+rZ1TLSFvmfehJPCmKCnHBn6ffQqe9E1qXI5gQS
-Ua/o/7rEZDyAsMcTpm4yW1ffjE00H1dmevY9dQVKkr01SHo/ImtJKyxaCa/QpMKA
-4/UXEoHnKcGVd3CFEouiQG14KgWpzcodrqQLbfUNJfYLObMKs2ecZ1aYvjgCd0yR
-lYL/JeMhKNXyA4mj/Tx6AdOqfDs7dr3jpEsRXNWzeqJ8bMi2N9BLUJcHvefwP00V
-dxMqZF0sSTvXbthNs+Plr961rvzQYlI7HvfPPrWclBYvHNafaEZ//NIywX4drKUR
-Kp6Xi8kFR3wpCYwnbxt7bWmDz1npI5ZrDfDHwID8lZQcCqcTZqKGzRqbMJNjL56H
-n/CouOLei3LnY72vJaXTwzAT85/EBEOdx+VgKf3KLtEhMrXM3vtx7pYaAoOFDJ8a
-CLBv67rmInGfjdCNusox9yqs/NPpV0kBOxSqJaiCeIHNLLqEi1DgQx/J4PeKAF3K
-FqvtK7+XLx8lzhEykppPNWV57hzNJwZ6c2Vv/ucViTGlr19qvbd25YF4mEKMuAbp
-ZxhVx7DwbHFIoBpiqQ33+lX1FucFmZUrYwWezVTciwWbEf9YzVE=
-=1H3t
------END PGP SIGNATURE-----
-
---azLHFNyN32YCQGCU--
+Rob
