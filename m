@@ -2,255 +2,136 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from vger.kernel.org (vger.kernel.org [23.128.96.18])
-	by mail.lfdr.de (Postfix) with ESMTP id A0FA32814DA
-	for <lists+devicetree@lfdr.de>; Fri,  2 Oct 2020 16:19:08 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTP id 8AFAE281525
+	for <lists+devicetree@lfdr.de>; Fri,  2 Oct 2020 16:31:37 +0200 (CEST)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S2388014AbgJBOTH (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Fri, 2 Oct 2020 10:19:07 -0400
-Received: from lindbergh.monkeyblade.net ([23.128.96.19]:52884 "EHLO
+        id S2388126AbgJBObf (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Fri, 2 Oct 2020 10:31:35 -0400
+Received: from lindbergh.monkeyblade.net ([23.128.96.19]:54802 "EHLO
         lindbergh.monkeyblade.net" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S1726017AbgJBOTH (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Fri, 2 Oct 2020 10:19:07 -0400
-Received: from mail-pj1-x1043.google.com (mail-pj1-x1043.google.com [IPv6:2607:f8b0:4864:20::1043])
-        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 60261C0613E2
-        for <devicetree@vger.kernel.org>; Fri,  2 Oct 2020 07:19:07 -0700 (PDT)
-Received: by mail-pj1-x1043.google.com with SMTP id t23so785246pji.0
-        for <devicetree@vger.kernel.org>; Fri, 02 Oct 2020 07:19:07 -0700 (PDT)
+        with ESMTP id S2387908AbgJBObd (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Fri, 2 Oct 2020 10:31:33 -0400
+Received: from mail-vk1-xa42.google.com (mail-vk1-xa42.google.com [IPv6:2607:f8b0:4864:20::a42])
+        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 4EA03C0613E3
+        for <devicetree@vger.kernel.org>; Fri,  2 Oct 2020 07:31:32 -0700 (PDT)
+Received: by mail-vk1-xa42.google.com with SMTP id e5so346134vkm.2
+        for <devicetree@vger.kernel.org>; Fri, 02 Oct 2020 07:31:32 -0700 (PDT)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=linaro.org; s=google;
-        h=date:from:to:cc:subject:message-id:references:mime-version
-         :content-disposition:content-transfer-encoding:in-reply-to
-         :user-agent;
-        bh=YkeJLZ30OG+ddCOfzjIHizuo4xiQrhttkNgf55q+gfk=;
-        b=x9Qr9HRwlRoKVHpKrcuf20VcTjdawxhaFyiJAnqCn2BxJMsGvat/Y9N0st+GaEfH4Q
-         ahsQMHcOmY+YcTZDtDPgXR8H5vGKsg5+azt57xpmJHEJE0nsgrcn6U0eJw8UIPhfYdBw
-         oS75j9WEpr/SWNbK+yZKu6VLn5J2tygkdKhn965unwaw3bHNOZNrUNwt4ac4m3eHIRAn
-         S9JKpoNm6NObLMV17ByWg/4UY2ENJNLgjxb/Myh/6CKq8XFLMexxvwnDOHeaXtTJy0OC
-         FCnfVvc98Upt0DfhKffrD/SnjlQP7Fmxa/xmHTGWxSIhbJGxy029JAUk6lSWYKorlshE
-         +Sjg==
+        d=chromium.org; s=google;
+        h=mime-version:references:in-reply-to:from:date:message-id:subject:to
+         :cc;
+        bh=cnU95a4B/lopWn7PJb9EKa9/N6eV+gD0Xs8KJ/fY4rM=;
+        b=A5cXXjzFewYmWbzazwRS0/VaBU2zMwnx+gFsMz74IU9GsLD3USy5XdWUJzxT39eCc7
+         lnBzqESdtLpD0XCCYhvmegsVhtPZJmgxrgt5ttIqBvgDpGo/QdTT6fGyWy8toyId5OSE
+         FWLvaBXHHL3dljVDcvJ7tOLPA1Na5BenHsg6Q=
 X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
         d=1e100.net; s=20161025;
-        h=x-gm-message-state:date:from:to:cc:subject:message-id:references
-         :mime-version:content-disposition:content-transfer-encoding
-         :in-reply-to:user-agent;
-        bh=YkeJLZ30OG+ddCOfzjIHizuo4xiQrhttkNgf55q+gfk=;
-        b=NjA08SMYIvOHIRrhATei1BensUpUunhBPvh31BRceG/bRaFOAYUeNhc/WQYWn/uXQ6
-         +SrcdU8+QNKnkkibmEc3XgHZUwriOctk8kx+JPbxqUBOhZm/GCuBgrKowu4KAXvNS1N7
-         eln7aLFhER8XnatBw11n6nK32HIyNEQjzAGJCXXEjDbBZf1Je5AdinEuw75AktyFD57J
-         DxuYLiHjxZkFHbcFfY6z35H4IxvvhhYpi6s5ufHXyjPE9ECR+2Z48mPNBwrDPnLCpoH+
-         GtvWxKB89Kmrrfmx7gFwrjo1p37bRAfqAVocc+9K2KS4Hg8CAV5Z85M0yf9EWEYYUW8y
-         3M+A==
-X-Gm-Message-State: AOAM531uhjA/L54kmH7U6ql8s6VHD8aswl7yvlJHRKRsoGJmoaPRHMK7
-        xkXMf9fTVlY0tpCPzNq+tTNU
-X-Google-Smtp-Source: ABdhPJz7bqL/PXQ+zEWNuEE9A+kghAvnIRPU/7X4rUyPtuywrxRci6KXMKwtRwtoGzzgEK/VH31mpQ==
-X-Received: by 2002:a17:90b:3013:: with SMTP id hg19mr3004311pjb.90.1601648346773;
-        Fri, 02 Oct 2020 07:19:06 -0700 (PDT)
-Received: from Mani-XPS-13-9360 ([2409:4072:648b:81b4:b1f8:3dc1:c168:1411])
-        by smtp.gmail.com with ESMTPSA id t1sm1860125pja.9.2020.10.02.07.18.57
-        (version=TLS1_2 cipher=ECDHE-ECDSA-CHACHA20-POLY1305 bits=256/256);
-        Fri, 02 Oct 2020 07:19:06 -0700 (PDT)
-Date:   Fri, 2 Oct 2020 19:48:53 +0530
-From:   Manivannan Sadhasivam <manivannan.sadhasivam@linaro.org>
-To:     Rob Herring <robh@kernel.org>
-Cc:     devicetree@vger.kernel.org, linux-arm-kernel@lists.infradead.org,
-        Andreas =?iso-8859-1?Q?F=E4rber?= <afaerber@suse.de>,
-        Baruch Siach <baruch@tkos.co.il>,
-        Linus Walleij <linusw@kernel.org>,
-        Imre Kaloz <kaloz@openwrt.org>,
-        Krzysztof Halasa <khalasa@piap.pl>,
-        Andy Gross <agross@kernel.org>,
-        Bjorn Andersson <bjorn.andersson@linaro.org>,
-        Maxime Coquelin <mcoquelin.stm32@gmail.com>,
-        Alexandre Torgue <alexandre.torgue@st.com>,
-        Thierry Reding <thierry.reding@gmail.com>,
-        Jonathan Hunter <jonathanh@nvidia.com>,
-        Dinh Nguyen <dinguyen@kernel.org>,
-        Anders Berg <anders.berg@lsi.com>
-Subject: Re: [PATCH] dt-bindings: arm: Add missing root node constraint for
- board/SoC bindings
-Message-ID: <20201002141853.GA7178@Mani-XPS-13-9360>
-References: <20201001200943.1193870-1-robh@kernel.org>
+        h=x-gm-message-state:mime-version:references:in-reply-to:from:date
+         :message-id:subject:to:cc;
+        bh=cnU95a4B/lopWn7PJb9EKa9/N6eV+gD0Xs8KJ/fY4rM=;
+        b=YFjebqWXfyxWcEiflFWMOY9IRv1pCn1ENstWhQkkWUeB96lTP+TOtZSBXiFnuaN7j/
+         5LuUJzOpQXKv7pbt9OhUbFWbJsZihYS5/S6U0QkXqnavOH0rNEKvIJoVA1/OLss+stN2
+         vrcj43TGhh3AUnLUV1HYAtXEB3EzB6FPjAtk7ZzhioO2ABBfeYtqwEmOLcAEle8+wdRo
+         9DCajPEtgvyn3Eq3iW8CNdhQsQzY8FiCyXS5DsgpZlifD6qDfiFXXuQrjuRwNA3+Cpoc
+         /Mz30HoaLffdHv58Il8gTZDmDjHw8MFImhEnjFTX/O5vIMXjm4qPiFK0sxjoD2OykWCn
+         7Nwg==
+X-Gm-Message-State: AOAM530vQL66MLaoVhkScmGScPvTn+Mc5fg/kCLVWtN/tjXdVewVab5n
+        vudv7CDWFmC2KN/pG+Dfw+YJRZEKDhO/BQ==
+X-Google-Smtp-Source: ABdhPJwi3JcENANQADE7di8KRYW9aGZgR/UPQtxgyKcohjR21WV4WPqpg/qP+2sA7LGSoDej5yG0fA==
+X-Received: by 2002:a05:6122:6bb:: with SMTP id r27mr1286393vkq.3.1601649091089;
+        Fri, 02 Oct 2020 07:31:31 -0700 (PDT)
+Received: from mail-vs1-f51.google.com (mail-vs1-f51.google.com. [209.85.217.51])
+        by smtp.gmail.com with ESMTPSA id o83sm266807vko.29.2020.10.02.07.31.29
+        for <devicetree@vger.kernel.org>
+        (version=TLS1_3 cipher=TLS_AES_128_GCM_SHA256 bits=128/128);
+        Fri, 02 Oct 2020 07:31:30 -0700 (PDT)
+Received: by mail-vs1-f51.google.com with SMTP id g11so731411vsp.13
+        for <devicetree@vger.kernel.org>; Fri, 02 Oct 2020 07:31:29 -0700 (PDT)
+X-Received: by 2002:a67:f4c2:: with SMTP id s2mr1288376vsn.4.1601649088871;
+ Fri, 02 Oct 2020 07:31:28 -0700 (PDT)
 MIME-Version: 1.0
-Content-Type: text/plain; charset=iso-8859-1
-Content-Disposition: inline
-Content-Transfer-Encoding: 8bit
-In-Reply-To: <20201001200943.1193870-1-robh@kernel.org>
-User-Agent: Mutt/1.9.4 (2018-02-28)
+References: <20201002114426.31277-1-lukasz.luba@arm.com> <20201002114426.31277-4-lukasz.luba@arm.com>
+In-Reply-To: <20201002114426.31277-4-lukasz.luba@arm.com>
+From:   Doug Anderson <dianders@chromium.org>
+Date:   Fri, 2 Oct 2020 07:31:17 -0700
+X-Gmail-Original-Message-ID: <CAD=FV=UbNP5-G1z95F37Fmv8=n0JPSSwnPQO_K==WpAc4vAHWQ@mail.gmail.com>
+Message-ID: <CAD=FV=UbNP5-G1z95F37Fmv8=n0JPSSwnPQO_K==WpAc4vAHWQ@mail.gmail.com>
+Subject: Re: [PATCH v2 3/3] dt-bindings: thermal: update sustainable-power
+ with abstract scale
+To:     Lukasz Luba <lukasz.luba@arm.com>
+Cc:     LKML <linux-kernel@vger.kernel.org>,
+        Linux PM <linux-pm@vger.kernel.org>, linux-doc@vger.kernel.org,
+        "open list:OPEN FIRMWARE AND FLATTENED DEVICE TREE BINDINGS" 
+        <devicetree@vger.kernel.org>, Rob Herring <robh+dt@kernel.org>,
+        amitk@kernel.org, Jonathan Corbet <corbet@lwn.net>,
+        Daniel Lezcano <daniel.lezcano@linaro.org>,
+        Dietmar.Eggemann@arm.com, Quentin Perret <qperret@google.com>,
+        Matthias Kaehlcke <mka@chromium.org>,
+        Rajendra Nayak <rnayak@codeaurora.org>,
+        "Rafael J. Wysocki" <rjw@rjwysocki.net>
+Content-Type: text/plain; charset="UTF-8"
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-On Thu, Oct 01, 2020 at 03:09:43PM -0500, Rob Herring wrote:
-> Board/SoC top-level compatible bindings should be constrained to the root
-> node. Add the missing constraints that the node name must be "/".
-> 
-> Cc: "Andreas Färber" <afaerber@suse.de>
-> Cc: Manivannan Sadhasivam <manivannan.sadhasivam@linaro.org>
-> Cc: Baruch Siach <baruch@tkos.co.il>
-> Cc: Linus Walleij <linusw@kernel.org>
-> Cc: Imre Kaloz <kaloz@openwrt.org>
-> Cc: Krzysztof Halasa <khalasa@piap.pl>
-> Cc: Andy Gross <agross@kernel.org>
-> Cc: Bjorn Andersson <bjorn.andersson@linaro.org>
-> Cc: Maxime Coquelin <mcoquelin.stm32@gmail.com>
-> Cc: Alexandre Torgue <alexandre.torgue@st.com>
-> Cc: Thierry Reding <thierry.reding@gmail.com>
-> Cc: Jonathan Hunter <jonathanh@nvidia.com>
-> Cc: Dinh Nguyen <dinguyen@kernel.org>
-> Cc: Anders Berg <anders.berg@lsi.com>
-> Cc: linux-arm-kernel@lists.infradead.org
-> Signed-off-by: Rob Herring <robh@kernel.org>
+Hi,
+
+On Fri, Oct 2, 2020 at 4:45 AM Lukasz Luba <lukasz.luba@arm.com> wrote:
+>
+> Update the documentation for the binding 'sustainable-power' and allow
+> to provide values in an abstract scale. It is required when the cooling
+> devices use an abstract scale for their power values.
+>
+> Signed-off-by: Lukasz Luba <lukasz.luba@arm.com>
 > ---
->  Documentation/devicetree/bindings/arm/actions.yaml      | 2 ++
+>  .../devicetree/bindings/thermal/thermal-zones.yaml  | 13 +++++++++----
+>  1 file changed, 9 insertions(+), 4 deletions(-)
+>
+> diff --git a/Documentation/devicetree/bindings/thermal/thermal-zones.yaml b/Documentation/devicetree/bindings/thermal/thermal-zones.yaml
+> index 3ec9cc87ec50..4d8f2e37d1e6 100644
+> --- a/Documentation/devicetree/bindings/thermal/thermal-zones.yaml
+> +++ b/Documentation/devicetree/bindings/thermal/thermal-zones.yaml
+> @@ -99,10 +99,15 @@ patternProperties:
+>        sustainable-power:
+>          $ref: /schemas/types.yaml#/definitions/uint32
+>          description:
+> -          An estimate of the sustainable power (in mW) that this thermal zone
+> -          can dissipate at the desired control temperature. For reference, the
+> -          sustainable power of a 4-inch phone is typically 2000mW, while on a
+> -          10-inch tablet is around 4500mW.
+> +          An estimate of the sustainable power (in mW or in an abstract scale)
+> +         that this thermal zone can dissipate at the desired control
+> +         temperature. For reference, the sustainable power of a 4-inch phone
+> +         is typically 2000mW, while on a 10-inch tablet is around 4500mW.
+> +
+> +         It is possible to express the sustainable power in an abstract
+> +         scale. This is the case when the related cooling devices use also
+> +         abstract scale to express their power usage. The scale must be
+> +         consistent.
 
-For actions,
+Two thoughts:
 
-Reviewed-by: Manivannan Sadhasivam <manivannan.sadhasivam@linaro.org>
+1. If we're going to allow "sustainable-power" to be in abstract
+scale, why not allow "dynamic-power-coefficient" to be in abstract
+scale too?  I assume that the whole reason against that originally was
+the idea of device tree purity, but if we're allowing the abstract
+scale here then there seems no reason not to allow it for
+"dynamic-power-coefficient".
 
-Thanks,
-Mani
+2. Is it worth adding some type of indication of what type of units
+"sustainable-power" is represented in?  Maybe even a made up unit so
+that you could tell the difference between made up units in the same
+system?  I'd envision something like:
 
->  Documentation/devicetree/bindings/arm/altera.yaml       | 2 ++
->  Documentation/devicetree/bindings/arm/axxia.yaml        | 2 ++
->  Documentation/devicetree/bindings/arm/bitmain.yaml      | 2 ++
->  Documentation/devicetree/bindings/arm/digicolor.yaml    | 2 ++
->  Documentation/devicetree/bindings/arm/intel-ixp4xx.yaml | 2 ++
->  Documentation/devicetree/bindings/arm/qcom.yaml         | 2 ++
->  Documentation/devicetree/bindings/arm/rda.yaml          | 2 ++
->  Documentation/devicetree/bindings/arm/stm32/stm32.yaml  | 2 ++
->  Documentation/devicetree/bindings/arm/tegra.yaml        | 2 ++
->  10 files changed, 20 insertions(+)
-> 
-> diff --git a/Documentation/devicetree/bindings/arm/actions.yaml b/Documentation/devicetree/bindings/arm/actions.yaml
-> index ace3fdaa8396..14023f0a8552 100644
-> --- a/Documentation/devicetree/bindings/arm/actions.yaml
-> +++ b/Documentation/devicetree/bindings/arm/actions.yaml
-> @@ -11,6 +11,8 @@ maintainers:
->    - Manivannan Sadhasivam <manivannan.sadhasivam@linaro.org>
->  
->  properties:
-> +  $nodename:
-> +    const: "/"
->    compatible:
->      oneOf:
->        # The Actions Semi S500 is a quad-core ARM Cortex-A9 SoC.
-> diff --git a/Documentation/devicetree/bindings/arm/altera.yaml b/Documentation/devicetree/bindings/arm/altera.yaml
-> index b388c5aa7984..0bc5020b7539 100644
-> --- a/Documentation/devicetree/bindings/arm/altera.yaml
-> +++ b/Documentation/devicetree/bindings/arm/altera.yaml
-> @@ -10,6 +10,8 @@ maintainers:
->    - Dinh Nguyen <dinguyen@kernel.org>
->  
->  properties:
-> +  $nodename:
-> +    const: "/"
->    compatible:
->      items:
->        - enum:
-> diff --git a/Documentation/devicetree/bindings/arm/axxia.yaml b/Documentation/devicetree/bindings/arm/axxia.yaml
-> index 98780a569f22..3ea5f2fdcd96 100644
-> --- a/Documentation/devicetree/bindings/arm/axxia.yaml
-> +++ b/Documentation/devicetree/bindings/arm/axxia.yaml
-> @@ -10,6 +10,8 @@ maintainers:
->    - Anders Berg <anders.berg@lsi.com>
->  
->  properties:
-> +  $nodename:
-> +    const: "/"
->    compatible:
->      description: LSI AXM5516 Validation board (Amarillo)
->      items:
-> diff --git a/Documentation/devicetree/bindings/arm/bitmain.yaml b/Documentation/devicetree/bindings/arm/bitmain.yaml
-> index 5cd5b36cff2d..5880083ab8d0 100644
-> --- a/Documentation/devicetree/bindings/arm/bitmain.yaml
-> +++ b/Documentation/devicetree/bindings/arm/bitmain.yaml
-> @@ -10,6 +10,8 @@ maintainers:
->    - Manivannan Sadhasivam <manivannan.sadhasivam@linaro.org>
->  
->  properties:
-> +  $nodename:
-> +    const: "/"
->    compatible:
->      items:
->        - enum:
-> diff --git a/Documentation/devicetree/bindings/arm/digicolor.yaml b/Documentation/devicetree/bindings/arm/digicolor.yaml
-> index d9c80b827e9b..849e20518339 100644
-> --- a/Documentation/devicetree/bindings/arm/digicolor.yaml
-> +++ b/Documentation/devicetree/bindings/arm/digicolor.yaml
-> @@ -10,6 +10,8 @@ maintainers:
->    - Baruch Siach <baruch@tkos.co.il>
->  
->  properties:
-> +  $nodename:
-> +    const: "/"
->    compatible:
->      const: cnxt,cx92755
->  
-> diff --git a/Documentation/devicetree/bindings/arm/intel-ixp4xx.yaml b/Documentation/devicetree/bindings/arm/intel-ixp4xx.yaml
-> index f4f7451e5e8a..f18302efb90e 100644
-> --- a/Documentation/devicetree/bindings/arm/intel-ixp4xx.yaml
-> +++ b/Documentation/devicetree/bindings/arm/intel-ixp4xx.yaml
-> @@ -10,6 +10,8 @@ maintainers:
->    - Linus Walleij <linus.walleij@linaro.org>
->  
->  properties:
-> +  $nodename:
-> +    const: "/"
->    compatible:
->      oneOf:
->        - items:
-> diff --git a/Documentation/devicetree/bindings/arm/qcom.yaml b/Documentation/devicetree/bindings/arm/qcom.yaml
-> index 6031aee0f5a8..ae6284be9fef 100644
-> --- a/Documentation/devicetree/bindings/arm/qcom.yaml
-> +++ b/Documentation/devicetree/bindings/arm/qcom.yaml
-> @@ -73,6 +73,8 @@ description: |
->    foundry 2.
->  
->  properties:
-> +  $nodename:
-> +    const: "/"
->    compatible:
->      oneOf:
->        - items:
-> diff --git a/Documentation/devicetree/bindings/arm/rda.yaml b/Documentation/devicetree/bindings/arm/rda.yaml
-> index 51cec2b63b04..9672aa0c760d 100644
-> --- a/Documentation/devicetree/bindings/arm/rda.yaml
-> +++ b/Documentation/devicetree/bindings/arm/rda.yaml
-> @@ -10,6 +10,8 @@ maintainers:
->    - Manivannan Sadhasivam <manivannan.sadhasivam@linaro.org>
->  
->  properties:
-> +  $nodename:
-> +    const: "/"
->    compatible:
->      items:
->        - enum:
-> diff --git a/Documentation/devicetree/bindings/arm/stm32/stm32.yaml b/Documentation/devicetree/bindings/arm/stm32/stm32.yaml
-> index 790e6dd48e34..696a0101ebcc 100644
-> --- a/Documentation/devicetree/bindings/arm/stm32/stm32.yaml
-> +++ b/Documentation/devicetree/bindings/arm/stm32/stm32.yaml
-> @@ -10,6 +10,8 @@ maintainers:
->    - Alexandre Torgue <alexandre.torgue@st.com>
->  
->  properties:
-> +  $nodename:
-> +    const: "/"
->    compatible:
->      oneOf:
->        - items:
-> diff --git a/Documentation/devicetree/bindings/arm/tegra.yaml b/Documentation/devicetree/bindings/arm/tegra.yaml
-> index e0b3debaee9e..b4d53290c5f0 100644
-> --- a/Documentation/devicetree/bindings/arm/tegra.yaml
-> +++ b/Documentation/devicetree/bindings/arm/tegra.yaml
-> @@ -11,6 +11,8 @@ maintainers:
->    - Jonathan Hunter <jonathanh@nvidia.com>
->  
->  properties:
-> +  $nodename:
-> +    const: "/"
->    compatible:
->      oneOf:
->        - items:
-> -- 
-> 2.25.1
-> 
+sustainable-power-units = "qualcomm,sc7180-bogoWatts"
+
+...and on the dynamic-power-coefficient side, the same:
+
+dynamic-power-coefficient-units = "qualcomm,sc7180-bogoWatts"
+
+One could imagine someone even later (after devices are widely
+distributed) figuring out translations between these bogoWatts numbers
+and real Watts if someone could come up with a case where it matters.
+
+
+-Doug
