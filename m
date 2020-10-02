@@ -2,109 +2,88 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from vger.kernel.org (vger.kernel.org [23.128.96.18])
-	by mail.lfdr.de (Postfix) with ESMTP id 894A52814A7
-	for <lists+devicetree@lfdr.de>; Fri,  2 Oct 2020 16:08:10 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTP id 1CBC82814CD
+	for <lists+devicetree@lfdr.de>; Fri,  2 Oct 2020 16:16:26 +0200 (CEST)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S1726176AbgJBOIJ (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Fri, 2 Oct 2020 10:08:09 -0400
-Received: from mail.kernel.org ([198.145.29.99]:50158 "EHLO mail.kernel.org"
-        rhost-flags-OK-OK-OK-OK) by vger.kernel.org with ESMTP
-        id S1726017AbgJBOIJ (ORCPT <rfc822;devicetree@vger.kernel.org>);
-        Fri, 2 Oct 2020 10:08:09 -0400
-Received: from mail-ot1-f51.google.com (mail-ot1-f51.google.com [209.85.210.51])
-        (using TLSv1.2 with cipher ECDHE-RSA-AES128-GCM-SHA256 (128/128 bits))
-        (No client certificate requested)
-        by mail.kernel.org (Postfix) with ESMTPSA id 3F14F207DE;
-        Fri,  2 Oct 2020 14:08:08 +0000 (UTC)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=kernel.org;
-        s=default; t=1601647688;
-        bh=+3VAWIyE736i8QJoJWyBkDl46THgUH5Y4ZYxc7rww6M=;
-        h=References:In-Reply-To:From:Date:Subject:To:Cc:From;
-        b=YS1CG4Oq4huZaIu8Ij+hCQ8yMeyS36kpM3ri/SpDmf7c/4ohOYavdzjqQINHrtMh8
-         S5TM/P/23W3g2UnzrPxSe2Cntf/zAVfCMhcH9eXkTdMJNNfMdIo/WYFPRCIjCth4PB
-         eR0N9LtyPPEpeKWJA/sR5JRvkpq+rlfyzILcDgr4=
-Received: by mail-ot1-f51.google.com with SMTP id m13so1437744otl.9;
-        Fri, 02 Oct 2020 07:08:08 -0700 (PDT)
-X-Gm-Message-State: AOAM531bQPWfd7wgP9QFVIN1VvpxAL30hBz5JwGPdvepdcwGWXdfPvu0
-        4Mu3d4ctwv3QVkGCP+HNiTLUxBF0u44Jwbp5lg==
-X-Google-Smtp-Source: ABdhPJyhESEM7l1n2tIx5F0cvgikaOZ2/i+MUqha3K8do3Q2vmEsuhRy0a+dFZdN8iCN+3dCIkrbCldSgjZJebzgVBg=
-X-Received: by 2002:a9d:7998:: with SMTP id h24mr1914471otm.192.1601647687409;
- Fri, 02 Oct 2020 07:08:07 -0700 (PDT)
-MIME-Version: 1.0
-References: <CAGETcx8owDP_Bu4oNCyHEsME8XpKygxghm8+yNc2RyMA4wyjCA@mail.gmail.com>
- <20201001225952.3676755-1-saravanak@google.com>
-In-Reply-To: <20201001225952.3676755-1-saravanak@google.com>
-From:   Rob Herring <robh+dt@kernel.org>
-Date:   Fri, 2 Oct 2020 09:07:55 -0500
-X-Gmail-Original-Message-ID: <CAL_JsqKOUkKBKyxPtZ+BFXPiOfm2uPXhgJPxKP=WS-qX6kSB0w@mail.gmail.com>
-Message-ID: <CAL_JsqKOUkKBKyxPtZ+BFXPiOfm2uPXhgJPxKP=WS-qX6kSB0w@mail.gmail.com>
-Subject: Re: [PATCH v1] of: platform: Batch fwnode parsing in the
- init_machine() path
-To:     Saravana Kannan <saravanak@google.com>
-Cc:     Frank Rowand <frowand.list@gmail.com>,
-        Geert Uytterhoeven <geert+renesas@glider.be>,
-        Greg Kroah-Hartman <gregkh@linuxfoundation.org>,
-        Grygorii Strashko <grygorii.strashko@ti.com>,
-        Laurent Pinchart <laurent.pinchart@ideasonboard.com>,
-        linux-omap <linux-omap@vger.kernel.org>,
-        "open list:THERMAL" <linux-pm@vger.kernel.org>,
-        Peter Ujfalusi <peter.ujfalusi@ti.com>,
-        "Rafael J. Wysocki" <rjw@rjwysocki.net>,
-        Tomi Valkeinen <tomi.valkeinen@ti.com>,
-        Tony Lindgren <tony@atomide.com>,
-        Ulf Hansson <ulf.hansson@linaro.org>,
-        Android Kernel Team <kernel-team@android.com>,
-        devicetree@vger.kernel.org,
-        "linux-kernel@vger.kernel.org" <linux-kernel@vger.kernel.org>
-Content-Type: text/plain; charset="UTF-8"
+        id S1733260AbgJBOQZ (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Fri, 2 Oct 2020 10:16:25 -0400
+Received: from lindbergh.monkeyblade.net ([23.128.96.19]:52466 "EHLO
+        lindbergh.monkeyblade.net" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
+        with ESMTP id S1726282AbgJBOQY (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Fri, 2 Oct 2020 10:16:24 -0400
+Received: from mail-wm1-x341.google.com (mail-wm1-x341.google.com [IPv6:2a00:1450:4864:20::341])
+        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 91482C0613D0;
+        Fri,  2 Oct 2020 07:16:24 -0700 (PDT)
+Received: by mail-wm1-x341.google.com with SMTP id 13so1870111wmf.0;
+        Fri, 02 Oct 2020 07:16:24 -0700 (PDT)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+        d=gmail.com; s=20161025;
+        h=from:to:cc:subject:date:message-id;
+        bh=Y59AvHknuZ7JPu5M+VZVtPAwMMTkQJ0YRDyu3cqZUqo=;
+        b=AUSpHf8PfXj7qpN1VSy7IQFUfcXcQ4bnW+llmPBaBPVSwZe8klVXC4dS7JcR2++scQ
+         0QL/9SLK8kts8mzJC0Hg+/5JL1K8jbHDa8GvHfst66H2MpGFVQAvHcbQHHbhv5JyYADg
+         DRXq6oorUadJDHdG6TYnR3xFleF27f1+QhgxYNf7MP9OA/mQsu1gUjCU2lMBgaPnk0UA
+         aL/jaBIzzqRXTKAE8T2ezUzKnHEigWzN5SOP1FPWZY1vlQfP1O+i/NAmeRq+YtqkguIW
+         a5YhP66+59PDXiaGvzDFRcVwtoF32YL82H7qm8PgkYKE6w/Uk9I61lQL9AVqQfoRunbQ
+         5YVQ==
+X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+        d=1e100.net; s=20161025;
+        h=x-gm-message-state:from:to:cc:subject:date:message-id;
+        bh=Y59AvHknuZ7JPu5M+VZVtPAwMMTkQJ0YRDyu3cqZUqo=;
+        b=h0zqOBcxi/mty+cD0/8KSgXsvpJ2QONDyiegBa4nfosndRZ/ZhwyktXFwupQiieOWu
+         s+rcqVmRq76L3Kkf79bd3DCRkmu2x2CPfbaObfbB665NXJbKIrq7MMGDMhCSXs5MaWWx
+         CUKzxnJ5AkIWMf3QPRFXdsiCYF2C9Q09L4von2sschtYCXfNIbWyYVlaP9EKJTAT/VrJ
+         MZ9Ghxm6RVKSMF3A5RVqfRShAvuHycZJ1QFULypvoDDaLr8nYTgEFgSvASI/MMjsfep3
+         cMUaIfRd5bsdesOcve/Qc1jyta9vsEu/BsTYqZxUEnnSTbTvc0dbtyZg/AjrJSIzsEbx
+         8png==
+X-Gm-Message-State: AOAM532OFu9d5kq6b9ZVRBFAkF/3ywYSVPf0s573w9k/+2IHFRBwFn8U
+        to6QK4PQXmfg702jnG8S2HU=
+X-Google-Smtp-Source: ABdhPJz1OABUr8GbX4Yxk3rwgQihoo4Blr4FsZ/1vOIH+3RtopswaIYecRlbTnanlx/u4SV1WdpAJA==
+X-Received: by 2002:a1c:c28a:: with SMTP id s132mr3338419wmf.13.1601648183304;
+        Fri, 02 Oct 2020 07:16:23 -0700 (PDT)
+Received: from localhost.localdomain ([87.200.95.144])
+        by smtp.gmail.com with ESMTPSA id j14sm2045755wrr.66.2020.10.02.07.16.20
+        (version=TLS1_3 cipher=TLS_AES_256_GCM_SHA384 bits=256/256);
+        Fri, 02 Oct 2020 07:16:22 -0700 (PDT)
+From:   Christian Hewitt <christianshewitt@gmail.com>
+To:     Rob Herring <robh+dt@kernel.org>,
+        Mark Rutland <mark.rutland@arm.com>,
+        Kevin Hilman <khilman@baylibre.com>,
+        devicetree@vger.kernel.org, linux-arm-kernel@lists.infradead.org,
+        linux-amlogic@lists.infradead.org, linux-kernel@vger.kernel.org
+Cc:     Christian Hewitt <christianshewitt@gmail.com>
+Subject: [PATCH] arm64: dts: meson: add SM1 soundcard name to VIM3L
+Date:   Fri,  2 Oct 2020 14:16:19 +0000
+Message-Id: <20201002141619.14387-1-christianshewitt@gmail.com>
+X-Mailer: git-send-email 2.17.1
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-On Thu, Oct 1, 2020 at 5:59 PM Saravana Kannan <saravanak@google.com> wrote:
->
-> When commit 93d2e4322aa7 ("of: platform: Batch fwnode parsing when
-> adding all top level devices") optimized the fwnode parsing when all top
-> level devices are added, it missed out optimizing this for platform
-> where the top level devices are added through the init_machine() path.
->
-> This commit does the optimization for all paths by simply moving the
-> fw_devlink_pause/resume() inside of_platform_default_populate().
->
-> Reported-by: Tomi Valkeinen <tomi.valkeinen@ti.com>
-> Signed-off-by: Saravana Kannan <saravanak@google.com>
-> ---
->  drivers/of/platform.c | 19 +++++++++++++++----
->  1 file changed, 15 insertions(+), 4 deletions(-)
->
-> diff --git a/drivers/of/platform.c b/drivers/of/platform.c
-> index 071f04da32c8..79972e49b539 100644
-> --- a/drivers/of/platform.c
-> +++ b/drivers/of/platform.c
-> @@ -501,8 +501,21 @@ int of_platform_default_populate(struct device_node *root,
->                                  const struct of_dev_auxdata *lookup,
->                                  struct device *parent)
->  {
-> -       return of_platform_populate(root, of_default_bus_match_table, lookup,
-> -                                   parent);
-> +       int ret;
-> +
-> +       /*
-> +        * fw_devlink_pause/resume() are only safe to be called around top
-> +        * level device addition due to locking constraints.
-> +        */
-> +       if (!root)
-> +               fw_devlink_pause();
-> +
-> +       ret = of_platform_populate(root, of_default_bus_match_table, lookup,
-> +                                  parent);
+VIM3L now inherits the sound node from the VIM3 common dtsi but is
+an SM1 device, so label it as such, and stop users blaming future
+support issues on the distro/app "wrongly detecting" their device.
 
-of_platform_default_populate() vs. of_platform_populate() is just a
-different match table. I don't think the behavior should otherwise be
-different.
+Signed-off-by: Christian Hewitt <christianshewitt@gmail.com>
+---
+ arch/arm64/boot/dts/amlogic/meson-sm1-khadas-vim3l.dts | 4 ++++
+ 1 file changed, 4 insertions(+)
 
-There's also of_platform_probe() which has slightly different matching
-behavior. It should not behave differently either with respect to
-devlinks.
+diff --git a/arch/arm64/boot/dts/amlogic/meson-sm1-khadas-vim3l.dts b/arch/arm64/boot/dts/amlogic/meson-sm1-khadas-vim3l.dts
+index 4b517ca72059..f46f0ecc37ec 100644
+--- a/arch/arm64/boot/dts/amlogic/meson-sm1-khadas-vim3l.dts
++++ b/arch/arm64/boot/dts/amlogic/meson-sm1-khadas-vim3l.dts
+@@ -32,6 +32,10 @@
+ 		regulator-boot-on;
+ 		regulator-always-on;
+ 	};
++
++	sound {
++		model = "SM1-KHADAS-VIM3L";
++	};
+ };
+ 
+ &cpu0 {
+-- 
+2.17.1
 
-Rob
