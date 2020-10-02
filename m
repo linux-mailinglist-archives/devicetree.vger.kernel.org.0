@@ -2,136 +2,190 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from vger.kernel.org (vger.kernel.org [23.128.96.18])
-	by mail.lfdr.de (Postfix) with ESMTP id 1D7D8281716
-	for <lists+devicetree@lfdr.de>; Fri,  2 Oct 2020 17:48:52 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTP id B1B83281755
+	for <lists+devicetree@lfdr.de>; Fri,  2 Oct 2020 18:01:34 +0200 (CEST)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S1726569AbgJBPsv (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Fri, 2 Oct 2020 11:48:51 -0400
-Received: from mail-eopbgr10065.outbound.protection.outlook.com ([40.107.1.65]:49365
-        "EHLO EUR02-HE1-obe.outbound.protection.outlook.com"
-        rhost-flags-OK-OK-OK-FAIL) by vger.kernel.org with ESMTP
-        id S1726090AbgJBPsu (ORCPT <rfc822;devicetree@vger.kernel.org>);
-        Fri, 2 Oct 2020 11:48:50 -0400
-ARC-Seal: i=1; a=rsa-sha256; s=arcselector9901; d=microsoft.com; cv=none;
- b=oUqtgkHuf4CtsdsdUewwDbupPrahl2PW+8Y2+4JAS7+mWTfLP6LPjb5jFZADAUpeygaMcXhK6nAPSGbFJYGegPMvhWmHaXzVy2SHnfmAYQm2wUeSXjUKvsFjqOkhPm3NEDKQ90t1HycJJTXcaAi1M047j3Opze/03EVGdNbtj8Nf3JNjZQ0VnSo7D0KLyggOLv2pycJ0+/syVeDlYq5IyU1uw6DPKzofmMAM5xeEQSuuZNRZQDflN1UBP58DXL5H9Y/vgiXDrImEGJs5FsemGVMwwBIsdPEfrAngfSR6vUTcL73iZwhdV7BaOWU9R5wiZKuMvs/yOur8CVV9YmUltA==
-ARC-Message-Signature: i=1; a=rsa-sha256; c=relaxed/relaxed; d=microsoft.com;
- s=arcselector9901;
- h=From:Date:Subject:Message-ID:Content-Type:MIME-Version:X-MS-Exchange-SenderADCheck;
- bh=7QjjdrDe/lMQTIVoe++tOx+swkeowT5TBpNaC0hXTxk=;
- b=XkzTtDSIBpw2SzwJr/AnJW6LmGg+fLIkBewWsrHFfube0XjPgwzQAYrWrqtuEU+szi1AjXvG+d890xXI/kfojspXYCtWUV6hUXQ1q5ZER1xrRWudMOv2+ogk0ZIxcFQDPhTsF3DwaqPdogPaZfxN/vZ1wcWjGE7giyM4LXW+Xnyn0sT6KTuP+LzB9mSO1b3itgGvAhMpt7owB1Q+qb11Za9xsp4nXP9hrdHuY2OXyFePp7xXYLdpMsyz2dhrkbn4oiHcMNVoXEUqFjdPGFEnya3RFifRkK2OOIOfcPwln//m1kZtHctor+dByjNLC2wZ1Oy+6Hpf9ZL1Odmt3AGWdg==
-ARC-Authentication-Results: i=1; mx.microsoft.com 1; spf=pass
- smtp.mailfrom=nxp.com; dmarc=pass action=none header.from=nxp.com; dkim=pass
- header.d=nxp.com; arc=none
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=nxp.com; s=selector2;
- h=From:Date:Subject:Message-ID:Content-Type:MIME-Version:X-MS-Exchange-SenderADCheck;
- bh=7QjjdrDe/lMQTIVoe++tOx+swkeowT5TBpNaC0hXTxk=;
- b=irNbeust0iEinPyzUolth5vGqKGjmX124EIfadg6vaRUxK6wbvlzlCdLdDVr5+v1dCKQ4TA39M6OrL1bVBr9gQ2giWxRJlv+DLGvnULJ2eTFbw7b+7SsY5TwRrEnioRU2ybbbykWSjZFeB2ckp/13dAaiOk1fN3bbN6vTQz77tI=
-Received: from VI1PR0402MB3871.eurprd04.prod.outlook.com
- (2603:10a6:803:16::14) by VI1PR0402MB2942.eurprd04.prod.outlook.com
- (2603:10a6:800:b5::11) with Microsoft SMTP Server (version=TLS1_2,
- cipher=TLS_ECDHE_RSA_WITH_AES_256_GCM_SHA384) id 15.20.3433.38; Fri, 2 Oct
- 2020 15:48:47 +0000
-Received: from VI1PR0402MB3871.eurprd04.prod.outlook.com
- ([fe80::3c18:4bf1:4da0:a3bf]) by VI1PR0402MB3871.eurprd04.prod.outlook.com
- ([fe80::3c18:4bf1:4da0:a3bf%3]) with mapi id 15.20.3412.032; Fri, 2 Oct 2020
- 15:48:47 +0000
-From:   Ioana Ciornei <ioana.ciornei@nxp.com>
-To:     Florian Fainelli <f.fainelli@gmail.com>
-CC:     "davem@davemloft.net" <davem@davemloft.net>,
-        "netdev@vger.kernel.org" <netdev@vger.kernel.org>,
-        "shawnguo@kernel.org" <shawnguo@kernel.org>,
-        "robh+dt@kernel.org" <robh+dt@kernel.org>,
-        "devicetree@vger.kernel.org" <devicetree@vger.kernel.org>
-Subject: Re: [RESEND net-next 2/9] arm64: dts: ls1088ardb: add QSGMII PHY
- nodes
-Thread-Topic: [RESEND net-next 2/9] arm64: dts: ls1088ardb: add QSGMII PHY
- nodes
-Thread-Index: AQHWmMtFXF6Z21i18kyPSUvp65o2QamEcimAgAADRgA=
-Date:   Fri, 2 Oct 2020 15:48:47 +0000
-Message-ID: <20201002154846.6rfkgrcl24hbal5c@skbuf>
-References: <20201002144847.13793-1-ioana.ciornei@nxp.com>
- <20201002144847.13793-3-ioana.ciornei@nxp.com>
- <02d2d46c-8a88-2d44-f8b7-ed73cae93eda@gmail.com>
-In-Reply-To: <02d2d46c-8a88-2d44-f8b7-ed73cae93eda@gmail.com>
-Accept-Language: en-US
-Content-Language: en-US
-X-MS-Has-Attach: 
-X-MS-TNEF-Correlator: 
-authentication-results: gmail.com; dkim=none (message not signed)
- header.d=none;gmail.com; dmarc=none action=none header.from=nxp.com;
-x-originating-ip: [188.26.229.171]
-x-ms-publictraffictype: Email
-x-ms-office365-filtering-ht: Tenant
-x-ms-office365-filtering-correlation-id: 7c01385e-37d2-4d52-66b9-08d866eaa67f
-x-ms-traffictypediagnostic: VI1PR0402MB2942:
-x-microsoft-antispam-prvs: <VI1PR0402MB29423910E60D836756D450DDE0310@VI1PR0402MB2942.eurprd04.prod.outlook.com>
-x-ms-oob-tlc-oobclassifiers: OLM:6430;
-x-ms-exchange-senderadcheck: 1
-x-microsoft-antispam: BCL:0;
-x-microsoft-antispam-message-info: 6JYgnI5FlQy8Y8ArdHNb06RahHGh+FIf+kJ3t2i0vZq7a5XgvihdRtWi0LfTstxpVsmsqTr4vKXx/5F/lx8YtfD5g9IPEU64QRsYXDpN6ZWpM3JUWbxewnDoIKkbvlMQdku0sWmbrqgFYTvEz0HP4Skif+Oz0WhPf0pP0bw8PDM7VCTHC4hbJDuxYX6t0tSL4/oyfONkP0IAnAwRDzlzdeJwFZ/Po9g8dAzJyvUSC1az8vCU2J2fN4Hq6nsjjvewEcAJ+xtUD54FhfKYsALCM3VegBAyN2N+ZmC+Hj9IrExknF/Z/1zWSJUcOXdFLzL73zropqOp7UPF8eXmUSzOcg==
-x-forefront-antispam-report: CIP:255.255.255.255;CTRY:;LANG:en;SCL:1;SRV:;IPV:NLI;SFV:NSPM;H:VI1PR0402MB3871.eurprd04.prod.outlook.com;PTR:;CAT:NONE;SFS:(4636009)(7916004)(39860400002)(366004)(376002)(396003)(136003)(346002)(8676002)(6506007)(2906002)(53546011)(83380400001)(44832011)(4326008)(6486002)(71200400001)(5660300002)(316002)(8936002)(54906003)(86362001)(1076003)(33716001)(9686003)(26005)(91956017)(186003)(66476007)(66556008)(6512007)(64756008)(66946007)(76116006)(478600001)(6916009)(66446008);DIR:OUT;SFP:1101;
-x-ms-exchange-antispam-messagedata: Wp/0ICJTXI8ucNNnvOeWEqFzR3Z5VrEOEDWmSWJtflZ6wgbyDVeR396Qr6S5ywRwRU2LdEyoyMWfLdNLpSKxmccfPd15Nna0fJsVdtxWPnRi5djlYPrECFreVIkn5g6uP19w3B6XSUw3Mk64w+Wc69nxgKSmZWO4SOIctPloxBjSR+Xdk50BliNUi7pStDo8zHmQBerMEmajlUDpwMXhlmMMC4ZaqrQYS98V2JoC9nKpMA5t22iMQN12RNnsMU48MRideqOEk/e3EwVh/4/yZfnDceatusC9hQHbpirWsYx0H4D2k/hd0dZoaOxHHyAGi3scqXC3TZ3qSS+GAZsCWCo6WkJH/cdTltKhwH2LNP5hqr2RnTEalwp9lXlONQcseN4ifALVHxWBse70hBucdz4lX5Tx9bNiCCjIcTKKvph09FW5YTrU5cVliIJvth/8Mk9FRGFPmmlGaCfpb6zDPCkbSosUw3pZRhMH/pUnJBurxFEhp0+VdvKTGXP507BkQh4kZAE+o1t13OCswaej8KxD8hM2xy2o+o2U9kLv7XLVh0eNxE6y5YrRXzZnpZ3amGbMhTh9SKcyHpNQuoL0F2f+GNuWoY3mq9x5wmU3azcapM8wfgSpFpiQrWLnZmHXetSdPXEF/J9BAlBLm7Uagw==
-x-ms-exchange-transport-forked: True
-Content-Type: text/plain; charset="us-ascii"
-Content-ID: <38D619128FEB1C4FB6F5FD22D6FD9F9B@eurprd04.prod.outlook.com>
-Content-Transfer-Encoding: quoted-printable
+        id S1726090AbgJBQBd (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Fri, 2 Oct 2020 12:01:33 -0400
+Received: from lindbergh.monkeyblade.net ([23.128.96.19]:40530 "EHLO
+        lindbergh.monkeyblade.net" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
+        with ESMTP id S1726017AbgJBQBd (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Fri, 2 Oct 2020 12:01:33 -0400
+Received: from mail-io1-xd41.google.com (mail-io1-xd41.google.com [IPv6:2607:f8b0:4864:20::d41])
+        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 56ADCC0613D0;
+        Fri,  2 Oct 2020 09:01:33 -0700 (PDT)
+Received: by mail-io1-xd41.google.com with SMTP id z25so2048524iol.10;
+        Fri, 02 Oct 2020 09:01:33 -0700 (PDT)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+        d=gmail.com; s=20161025;
+        h=mime-version:references:in-reply-to:from:date:message-id:subject:to
+         :cc:content-transfer-encoding;
+        bh=djx2E1NwbIz4/NZf9pUZHpgnzpKYA44NN+Q6dr4EQBY=;
+        b=VOR2gMTsMF6YapeksUWrfxuuAonuvm7dyeNpVx9In8aGbHotqpoTp2kPpH9tJMnKd0
+         MwlDHqMPU/qxAiLIrntySAJ2F3QSZMHfjitSZ4qs8HhpyDW9pLJEuOlnaUu9Fbx1STLP
+         L7jG2/EywJPwzl57SDzNq8n3Q8upBdCBHO8SE4Q95EzDzHnekbehmmjpvQiJ38c4w3d5
+         I06XIghpFSFn+xXvsH4An6TPEpaG3HwOekq32V+DavFdKvEgCnmw8WVJPhSpTungpf42
+         FQ4BKfASHwV4Xcmx78Keu9hYXx+x6ftUzKcm1sp3K1nj+8x81GN7oc4yOO0YG0fHc/cu
+         fu9w==
+X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+        d=1e100.net; s=20161025;
+        h=x-gm-message-state:mime-version:references:in-reply-to:from:date
+         :message-id:subject:to:cc:content-transfer-encoding;
+        bh=djx2E1NwbIz4/NZf9pUZHpgnzpKYA44NN+Q6dr4EQBY=;
+        b=nmlPKetAxhto/ao46PNpt1a45QtGw1ndLP4dN44vHQn2lNwUinAJmaGjJySUEeldoo
+         rSahQOMF6cpZ/HxSCbVcJPqgblwxjU/hQ3Cgfwv1GEcch5NQ76twxG2zluWN92Iy2W3S
+         WGDlQamkg1ZcpGWqEAXOa2hMFY5L1ayOG9zA+7O6drW4GuJNaoUAQtGk4FvlRqLgSf+E
+         UpDUNxTrPurUccaemEH0j6tczUdkHtBSqcfUXFWFMFQbuGAGYrGTMTH8szSYL30jG3bq
+         +y29mZVyOFOuOQkBJNruKvZ3CAR/aYGq6snA1SfMTMjxjvb9VeGHZoQeiUVYLyEBEth7
+         eNiQ==
+X-Gm-Message-State: AOAM532/5xgas/6w+Mk8mlT1LXvouLrSP/OcQ++CEn2JnwCVEPuTsk+P
+        QDOzBcG4+K3ETO5P3L/XqmWuVDDkWba/Z9tpA04=
+X-Google-Smtp-Source: ABdhPJzr6hI4rDHBo9EOgqPBQNjU8Ul0TWnkEY/jKqZML69oSKgD/moghYTeu46CCisvwf7vmiU36Zt8SWWVPT/jWho=
+X-Received: by 2002:a5d:8ace:: with SMTP id e14mr2463373iot.124.1601654492346;
+ Fri, 02 Oct 2020 09:01:32 -0700 (PDT)
 MIME-Version: 1.0
-X-OriginatorOrg: nxp.com
-X-MS-Exchange-CrossTenant-AuthAs: Internal
-X-MS-Exchange-CrossTenant-AuthSource: VI1PR0402MB3871.eurprd04.prod.outlook.com
-X-MS-Exchange-CrossTenant-Network-Message-Id: 7c01385e-37d2-4d52-66b9-08d866eaa67f
-X-MS-Exchange-CrossTenant-originalarrivaltime: 02 Oct 2020 15:48:47.3033
- (UTC)
-X-MS-Exchange-CrossTenant-fromentityheader: Hosted
-X-MS-Exchange-CrossTenant-id: 686ea1d3-bc2b-4c6f-a92c-d99c5c301635
-X-MS-Exchange-CrossTenant-mailboxtype: HOSTED
-X-MS-Exchange-CrossTenant-userprincipalname: lT+8CQg69U9riXWEb2SWBFT8/8wxjesRPv5Fyo7g4w2hHmBDuo5eoTwmo4eoAj81TE2hoHiSKXued8f7BlAfOA==
-X-MS-Exchange-Transport-CrossTenantHeadersStamped: VI1PR0402MB2942
+References: <20200927192912.46323-1-peron.clem@gmail.com> <20200927192912.46323-10-peron.clem@gmail.com>
+ <CAGb2v64uAHUd=Ag2pQDqH=gjtPVso5dnKKdCn3ihyiVh8V8L=g@mail.gmail.com> <CAGb2v64U9b1Ayq-XNCHb3z6spsds6eDaz3C4EsV9xFOquHrB7w@mail.gmail.com>
+In-Reply-To: <CAGb2v64U9b1Ayq-XNCHb3z6spsds6eDaz3C4EsV9xFOquHrB7w@mail.gmail.com>
+From:   =?UTF-8?B?Q2zDqW1lbnQgUMOpcm9u?= <peron.clem@gmail.com>
+Date:   Fri, 2 Oct 2020 18:01:21 +0200
+Message-ID: <CAJiuCcfThSqpobeZW7ugnmokc4Xy0n9o+5jvOfP9eqzvDbu_BQ@mail.gmail.com>
+Subject: Re: [linux-sunxi] [PATCH v5 09/20] arm64: dts: allwinner: h6: Add DAI
+ node and soundcard for HDMI
+To:     Chen-Yu Tsai <wens@csie.org>
+Cc:     Maxime Ripard <mripard@kernel.org>,
+        Rob Herring <robh+dt@kernel.org>,
+        Mark Brown <broonie@kernel.org>,
+        Liam Girdwood <lgirdwood@gmail.com>,
+        Jaroslav Kysela <perex@perex.cz>,
+        Takashi Iwai <tiwai@suse.com>,
+        Marcus Cooper <codekipper@gmail.com>,
+        Jernej Skrabec <jernej.skrabec@siol.net>,
+        Linux-ALSA <alsa-devel@alsa-project.org>,
+        devicetree <devicetree@vger.kernel.org>,
+        linux-arm-kernel <linux-arm-kernel@lists.infradead.org>,
+        linux-kernel <linux-kernel@vger.kernel.org>,
+        linux-sunxi <linux-sunxi@googlegroups.com>
+Content-Type: text/plain; charset="UTF-8"
+Content-Transfer-Encoding: quoted-printable
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-On Fri, Oct 02, 2020 at 08:37:03AM -0700, Florian Fainelli wrote:
->=20
->=20
-> On 10/2/2020 7:48 AM, Ioana Ciornei wrote:
-> > Annotate the external MDIO1 node and describe the 8 QSGMII PHYs found o=
-n
-> > the LS1088ARDB board and add phy-handles for DPMACs 3-10 to its
-> > associated PHY.  Also, add the internal PCS MDIO nodes for the internal
-> > MDIO buses found on the LS1088A SoC along with their internal PCS PHY
-> > and link the corresponding DPMAC to the PCS through the pcs-handle.
-> >=20
-> > Signed-off-by: Ioana Ciornei <ioana.ciornei@nxp.com>
-> > ---
-> >   .../boot/dts/freescale/fsl-ls1088a-rdb.dts    | 100 +++++++++++++++++=
-+
-> >   .../arm64/boot/dts/freescale/fsl-ls1088a.dtsi |  50 +++++++++
-> >   2 files changed, 150 insertions(+)
-> >=20
-> > diff --git a/arch/arm64/boot/dts/freescale/fsl-ls1088a-rdb.dts b/arch/a=
-rm64/boot/dts/freescale/fsl-ls1088a-rdb.dts
-> > index 5633e59febc3..d7886b084f7f 100644
-> > --- a/arch/arm64/boot/dts/freescale/fsl-ls1088a-rdb.dts
-> > +++ b/arch/arm64/boot/dts/freescale/fsl-ls1088a-rdb.dts
-> > @@ -17,6 +17,98 @@ / {
-> >   	compatible =3D "fsl,ls1088a-rdb", "fsl,ls1088a";
-> >   };
-> > +&dpmac3 {
-> > +	phy-handle =3D <&mdio1_phy5>;
-> > +	phy-connection-type =3D "qsgmii";
-> > +	managed =3D "in-band-status";
-> > +	pcs-handle =3D <&pcs3_0>;
->=20
-> from net-next/master
->=20
->  git grep 'pcs-handle' Documentation/devicetree/bindings/*
-> zsh: exit 1     git grep 'pcs-handle' Documentation/devicetree/bindings/*
->=20
-> Is there a binding that we are missing?
+Hi Chen-Yu,
 
-I missed adding the new binding description for pcs-handle.
-I'll update it in v2.
+On Mon, 28 Sep 2020 at 07:42, Chen-Yu Tsai <wens@csie.org> wrote:
+>
+> On Mon, Sep 28, 2020 at 1:32 PM Chen-Yu Tsai <wens@csie.org> wrote:
+> >
+> > On Mon, Sep 28, 2020 at 3:29 AM Cl=C3=A9ment P=C3=A9ron <peron.clem@gma=
+il.com> wrote:
+> > >
+> > > From: Jernej Skrabec <jernej.skrabec@siol.net>
+> > >
+> > > Add the I2S node used by the HDMI and a simple-soundcard to
+> > > link audio between HDMI and I2S.
+> > >
+> > > Note that the HDMI codec requires an inverted frame clock and
+> > > a fixed I2S width. As there is no such option for I2S we use
+> > > TDM property of the simple-soundcard to do that.
+> > >
+> > > Signed-off-by: Jernej Skrabec <jernej.skrabec@siol.net>
+> > > Signed-off-by: Marcus Cooper <codekipper@gmail.com>
+> > > Signed-off-by: Cl=C3=A9ment P=C3=A9ron <peron.clem@gmail.com>
+> > > ---
+> > >  arch/arm64/boot/dts/allwinner/sun50i-h6.dtsi | 33 ++++++++++++++++++=
+++
+> > >  1 file changed, 33 insertions(+)
+> > >
+> > > diff --git a/arch/arm64/boot/dts/allwinner/sun50i-h6.dtsi b/arch/arm6=
+4/boot/dts/allwinner/sun50i-h6.dtsi
+> > > index 28c77d6872f6..a8853ee7885a 100644
+> > > --- a/arch/arm64/boot/dts/allwinner/sun50i-h6.dtsi
+> > > +++ b/arch/arm64/boot/dts/allwinner/sun50i-h6.dtsi
+> > > @@ -67,6 +67,25 @@ de: display-engine {
+> > >                 status =3D "disabled";
+> > >         };
+> > >
+> > > +       hdmi_sound: hdmi-sound {
+> > > +               compatible =3D "simple-audio-card";
+> > > +               simple-audio-card,format =3D "i2s";
+> > > +               simple-audio-card,name =3D "sun50i-h6-hdmi";
+> > > +               simple-audio-card,mclk-fs =3D <128>;
+> > > +               simple-audio-card,frame-inversion;
+> > > +               status =3D "disabled";
+> > > +
+> > > +               simple-audio-card,codec {
+> > > +                       sound-dai =3D <&hdmi>;
+> > > +               };
+> > > +
+> > > +               simple-audio-card,cpu {
+> > > +                       sound-dai =3D <&i2s1>;
+> > > +                       dai-tdm-slot-num =3D <2>;
+> >
+> > Doesn't this end up limiting the number of audio channels HDMI can carr=
+y?
+> > AFAICT the TDM properties are all optional, so just leave it out.
+> >
+> > Same goes for the other two patches.
+> >
+> > > +                       dai-tdm-slot-width =3D <32>;
+> > > +               };
+> > > +       };
+> > > +
+> > >         osc24M: osc24M_clk {
+> > >                 #clock-cells =3D <0>;
+> > >                 compatible =3D "fixed-clock";
+> > > @@ -609,6 +628,19 @@ mdio: mdio {
+> > >                         };
+> > >                 };
+> > >
+> > > +               i2s1: i2s@5091000 {
+> > > +                       #sound-dai-cells =3D <0>;
+> > > +                       compatible =3D "allwinner,sun50i-h6-i2s";
+> > > +                       reg =3D <0x05091000 0x1000>;
+> > > +                       interrupts =3D <GIC_SPI 19 IRQ_TYPE_LEVEL_HIG=
+H>;
+> > > +                       clocks =3D <&ccu CLK_BUS_I2S1>, <&ccu CLK_I2S=
+1>;
+> > > +                       clock-names =3D "apb", "mod";
+> > > +                       dmas =3D <&dma 4>, <&dma 4>;
+> > > +                       resets =3D <&ccu RST_BUS_I2S1>;
+> > > +                       dma-names =3D "rx", "tx";
+>
+> Sorry, missed this one.
+>
+> Given that usage for this interface is transmit only, and there is no
+> RX DRQ number assigned to it, you should drop the RX DMA number and name.
 
-Thanks,
-Ioana=
+Indeed if there is no DRQ number assigned we shouldn't have it in the
+device-tree
+
+but Samuel told me that the `make dtbs_check` reports:
+
+i2s@1c22800: dma-names:0: 'rx' was expected
+i2s@1c22800: dma-names: ['tx'] is too short
+i2s@1c22800: dmas: [[28, 27]] is too short
+
+Should I fix the YAML so?
+
+Regards,
+Clement
+
+>
+> > > +                       status =3D "disabled";
+> > > +               };
+> > > +
+> > >                 spdif: spdif@5093000 {
+> > >                         #sound-dai-cells =3D <0>;
+> > >                         compatible =3D "allwinner,sun50i-h6-spdif";
+> > > @@ -739,6 +771,7 @@ ohci3: usb@5311400 {
+> > >                 };
+> > >
+> > >                 hdmi: hdmi@6000000 {
+> > > +                       #sound-dai-cells =3D <0>;
+> > >                         compatible =3D "allwinner,sun50i-h6-dw-hdmi";
+> > >                         reg =3D <0x06000000 0x10000>;
+> > >                         reg-io-width =3D <1>;
+> >
+> > The rest of the patch looks OK.
