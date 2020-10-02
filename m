@@ -2,84 +2,156 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from vger.kernel.org (vger.kernel.org [23.128.96.18])
-	by mail.lfdr.de (Postfix) with ESMTP id 6E1D028108C
-	for <lists+devicetree@lfdr.de>; Fri,  2 Oct 2020 12:25:05 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTP id EA5A72810A5
+	for <lists+devicetree@lfdr.de>; Fri,  2 Oct 2020 12:36:21 +0200 (CEST)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S1726464AbgJBKY7 (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Fri, 2 Oct 2020 06:24:59 -0400
-Received: from mga06.intel.com ([134.134.136.31]:18469 "EHLO mga06.intel.com"
-        rhost-flags-OK-OK-OK-OK) by vger.kernel.org with ESMTP
-        id S1726329AbgJBKY7 (ORCPT <rfc822;devicetree@vger.kernel.org>);
-        Fri, 2 Oct 2020 06:24:59 -0400
-IronPort-SDR: jd6KA0dtsfYl2gFNyn7LTppSlQCy/Vj3+jEbcyEbyVG3uRY39hsQhfMfyZkfseai74bBQj6eBo
- BNn16g2RFr1A==
-X-IronPort-AV: E=McAfee;i="6000,8403,9761"; a="224574311"
-X-IronPort-AV: E=Sophos;i="5.77,327,1596524400"; 
-   d="scan'208";a="224574311"
-X-Amp-Result: SKIPPED(no attachment in message)
-X-Amp-File-Uploaded: False
-Received: from fmsmga001.fm.intel.com ([10.253.24.23])
-  by orsmga104.jf.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384; 02 Oct 2020 03:24:53 -0700
-IronPort-SDR: cvPO6Dln90oEmE8FVxe90ZjMXh+ldvSeD4RSw528/WCozuFm2q2UFsGrTJy3lFQgRKusks+o8W
- usMR+Gq8Ka5A==
-X-IronPort-AV: E=Sophos;i="5.77,327,1596524400"; 
-   d="scan'208";a="416399919"
-Received: from smile.fi.intel.com (HELO smile) ([10.237.68.40])
-  by fmsmga001-auth.fm.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384; 02 Oct 2020 03:24:49 -0700
-Received: from andy by smile with local (Exim 4.94)
-        (envelope-from <andy.shevchenko@gmail.com>)
-        id 1kOIF2-003Phw-54; Fri, 02 Oct 2020 13:24:44 +0300
-Date:   Fri, 2 Oct 2020 13:24:44 +0300
-From:   Andy Shevchenko <andy.shevchenko@gmail.com>
-To:     Serge Semin <Sergey.Semin@baikalelectronics.ru>
-Cc:     Mark Brown <broonie@kernel.org>,
-        Serge Semin <fancer.lancer@gmail.com>,
-        Alexey Malahov <Alexey.Malahov@baikalelectronics.ru>,
-        Ramil Zaripov <Ramil.Zaripov@baikalelectronics.ru>,
-        Pavel Parkhomenko <Pavel.Parkhomenko@baikalelectronics.ru>,
-        Lars Povlsen <lars.povlsen@microchip.com>,
-        "wuxu . wu" <wuxu.wu@huawei.com>, Feng Tang <feng.tang@intel.com>,
-        Rob Herring <robh+dt@kernel.org>, linux-spi@vger.kernel.org,
-        devicetree@vger.kernel.org, linux-kernel@vger.kernel.org
-Subject: Re: [PATCH v3 00/21] spi: dw: Add full Baikal-T1 SPI Controllers
- support
-Message-ID: <20201002102444.GY3956970@smile.fi.intel.com>
-References: <20201001222829.15977-1-Sergey.Semin@baikalelectronics.ru>
+        id S2387661AbgJBKgU (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Fri, 2 Oct 2020 06:36:20 -0400
+Received: from mail-ej1-f68.google.com ([209.85.218.68]:36136 "EHLO
+        mail-ej1-f68.google.com" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
+        with ESMTP id S1725993AbgJBKgU (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Fri, 2 Oct 2020 06:36:20 -0400
+Received: by mail-ej1-f68.google.com with SMTP id qp15so1279510ejb.3;
+        Fri, 02 Oct 2020 03:36:18 -0700 (PDT)
+X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+        d=1e100.net; s=20161025;
+        h=x-gm-message-state:date:from:to:cc:subject:message-id:references
+         :mime-version:content-disposition:in-reply-to;
+        bh=dDy3qtZ35E/i8OLAIFoon1SpiK0GJwYbZILAywJ7tHg=;
+        b=Z4Lv3nIFkRvbKWD0AKXLJua5U8/HC9PWxCRgaZbT7OAMOjnajj9YtvwCWQ30A6blGg
+         IG+1yLDv7U8iwqzO9IwWLbm/Mc/pPhdZwsndXxM8HLUkMcmdSVTK6y1dU8Y+FZetuvoD
+         WTGWDP9m5RtxiiALqNXOXCE9UM+nLhza2DznJY2Gj3JgAeexLwdbq5U5asAFuq6YePj7
+         7GX21O9061bd1IvMtN/ddg+94K5/TQx0oPPJmBZXcxnAcO5XFX4hbwJkpxBe4JZ2z+10
+         BFoQBnVw+2SurGOy4LliiJs7eeatutovmNROXrAfIr3u/x7qOb9i407mxZ0x1h+F0oVY
+         FRkA==
+X-Gm-Message-State: AOAM533TfxnPD7WY7tWKA5gGsATymNXeXkLIz/CdTl0F2HoWa4MrizjD
+        AyzfzoilzzZxgrBs89isOLs=
+X-Google-Smtp-Source: ABdhPJynUB3EUlaUojOp94UErSVj4RC3gp7IQD83k4BxVOVgrM8ah9xebaojRtUnTHKkKotrmKs3cg==
+X-Received: by 2002:a17:906:2cc1:: with SMTP id r1mr1488416ejr.305.1601634977959;
+        Fri, 02 Oct 2020 03:36:17 -0700 (PDT)
+Received: from pi3 ([194.230.155.194])
+        by smtp.googlemail.com with ESMTPSA id q13sm874130edr.27.2020.10.02.03.36.16
+        (version=TLS1_3 cipher=TLS_AES_256_GCM_SHA384 bits=256/256);
+        Fri, 02 Oct 2020 03:36:16 -0700 (PDT)
+Date:   Fri, 2 Oct 2020 12:36:14 +0200
+From:   Krzysztof Kozlowski <krzk@kernel.org>
+To:     Marco Felsch <m.felsch@pengutronix.de>
+Cc:     Ahmad Fatoum <a.fatoum@pengutronix.de>, devicetree@vger.kernel.org,
+        Robert Jones <rjones@gateworks.com>,
+        Stefan Riedmueller <s.riedmueller@phytec.de>,
+        Anson Huang <Anson.Huang@nxp.com>,
+        Shawn Guo <shawnguo@kernel.org>,
+        Sascha Hauer <s.hauer@pengutronix.de>,
+        linux-kernel@vger.kernel.org, Li Yang <leoyang.li@nxp.com>,
+        Rob Herring <robh+dt@kernel.org>,
+        NXP Linux Team <linux-imx@nxp.com>,
+        Pengutronix Kernel Team <kernel@pengutronix.de>,
+        Andreas Kemnade <andreas@kemnade.info>,
+        Fabio Estevam <festevam@gmail.com>,
+        linux-arm-kernel@lists.infradead.org
+Subject: Re: [PATCH v2 08/12] ARM: dts: imx6dl-pico: fix board compatibles
+Message-ID: <20201002103614.GA6799@pi3>
+References: <20200930190143.27032-1-krzk@kernel.org>
+ <20200930190143.27032-9-krzk@kernel.org>
+ <0a0afea6-8cbb-3e89-5a4f-89660c942ca3@pengutronix.de>
+ <20201001073208.GA5208@kozik-lap>
+ <027fd826-6822-9e92-0c6c-2ebed63f4a07@pengutronix.de>
+ <20201001103704.GA26287@kozik-lap>
+ <7fcea21d-4651-9ba7-5331-86530296a847@pengutronix.de>
+ <20201002082012.GA6605@pi3>
+ <20201002084119.buc6z7hpesoahmg2@pengutronix.de>
 MIME-Version: 1.0
-Content-Type: text/plain; charset=us-ascii
+Content-Type: text/plain; charset=utf-8
 Content-Disposition: inline
-In-Reply-To: <20201001222829.15977-1-Sergey.Semin@baikalelectronics.ru>
-Organization: Intel Finland Oy - BIC 0357606-4 - Westendinkatu 7, 02160 Espoo
+In-Reply-To: <20201002084119.buc6z7hpesoahmg2@pengutronix.de>
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-On Fri, Oct 02, 2020 at 01:28:08AM +0300, Serge Semin wrote:
-> Originally I intended to merge a dedicated Baikal-T1 System Boot SPI
-> Controller driver into the kernel and leave the DW APB SSI driver
-> untouched. But after a long discussion (see the link at the bottom of the
-> letter) Mark and Andy persuaded me to integrate what we developed there
-> into the DW APB SSI core driver to be useful for another controllers,
-> which may have got the same peculiarities/problems as ours:
-> - No IRQ.
-> - No DMA.
-> - No GPIO CS, so a native CS is utilized.
-> - small Tx/Rx FIFO depth.
-> - Automatic CS assertion/de-assertion.
-> - Slow system bus.
-> All of them have been fixed in the framework of this patchset in some
-> extent at least for the SPI memory operations. As I expected it wasn't
-> that easy and the integration took that many patches as you can see from
-> the subject. Though some of them are mere cleanups or weakly related with
-> the subject fixes, but we just couldn't leave the code as is at some
-> places since we were working with the DW APB SSI driver anyway. Here is
-> what we did to fix the original DW APB SSI driver, to make it less messy.
+On Fri, Oct 02, 2020 at 10:41:19AM +0200, Marco Felsch wrote:
+> Hi,
+> 
+> sorry for jumping in.
+> 
+> On 20-10-02 10:20, Krzysztof Kozlowski wrote:
+> > On Fri, Oct 02, 2020 at 09:41:28AM +0200, Ahmad Fatoum wrote:
+> > > Hello,
+> > > 
+> > > On 10/1/20 12:37 PM, Krzysztof Kozlowski wrote:
+> > > >> The existing binding doesn't cover these boards then and needs to be
+> > > >> extended, no? How about following patch?
+> > > > 
+> > > > What do you mean it doesn't cover? It was added exactly to handle them:
+> > > > +              - technexion,imx6q-pico-dwarf   # TechNexion i.MX6Q Pico-Dwarf
+> > > > +              - technexion,imx6q-pico-hobbit  # TechNexion i.MX6Q Pico-Hobbit
+> > > > +              - technexion,imx6q-pico-nymph   # TechNexion i.MX6Q Pico-Nymph
+> > > > +              - technexion,imx6q-pico-pi      # TechNexion i.MX6Q Pico-Pi
+> > > > 
+> > > 
+> > > Still they are unused. So I'd think these boards should be handled like boards
+> > > that predated bindings: a binding is written that doesn't break existing users.
+> > 
+> > OK, let's assume the binding is not correct and DTSes are good.
+> > 
+> > > 
+> > > >> [I guess we need to keep the two-compatible list they were originally
+> > > >>  in for compatibility even if it's unused among upstream device trees?]
+> > > > 
+> > > > You want to change both the binding (thus breaking the ABI) and update
+> > > > the DTS to reflect new ABI. Then why having a binding at all?
+> > > 
+> > > If we leave the old two-compatible enumeration intact, there is no ABI broken.
+> > 
+> > Just to clarify, because I don't get here the "no ABI broken" part:
+> > ABI is the binding, not the DTS. We can change intree DTS as we like,
+> > replace compatibles, add nodes, remove nodes. There is no stability
+> > requirement for DTS contents.
+> > 
+> > If we leave two-compatible binding intact, it is a broken binding since
+> > beginning. Removing non-working, fake ABI is not breaking it because it
+> > could never work.
+> 
+> The problem here is that it wasn't covered by the review and now we have
+> the mess. I see the DTB and the Bootloader as Firmware. Now imagine if
+> the bootloader for these boards had some dt-fixup logic which won't
+> apply anymore or if the bootloader board init won't get called anymore
+> since the bootloader folks used the compatible found in the DTS. This
+> can cause a regression if the old Bootloader tries to boot the new
+> Kernel+DTS.
 
-Maybe it's time to put your name into MAINTAINERS for this driver?
+Good points. It's nice to have a binding documented but it is more
+likely that bootloader guys were depending on actual contents of DTS.
 
+> 
+> > > > I would assume that either binding is correct or DTS. You propose that
+> > > > both are wrong and both need changes... in such case this is clearly
+> > > > broken.
+> > > 
+> > > IMO the DTS is the correct one. If you want to honor the author's intention
+> > > that each base board has a different compatible, it should be an extra
+> > > compatible and not replace the existing one that may be already in use.
+> 
+> Question is what was the author's intention? @Fabio do you have any
+> comments here?
+> 
+> > OK, we can go with DTS approach. I fixed few of such cases as well,
+> > assuming that DTS was intended and binding was incorrect. In such case
+> > all boards will be documented under one compatible technexion,imx6q-pico
+> > and DTS will not be changed.
+> 
+> Or keep the exisiting bindings and adding the new one. Therefore the
+> yaml needs to handle two cases for each imx6[qdl]:
+>   compatible = "technexion,imx6dl-pico-dwarf", "technexion,imx6dl-pico", "fsl,imx6dl";
+> and
+>   compatible = "technexion,imx6dl-pico", "fsl,imx6dl";
 
--- 
-With Best Regards,
-Andy Shevchenko
+This is the combination I wanted to avoid because it kind of proofs that
+both (binding and DTS) were incorrect or insufficient. If both are
+incorrect, then there might be no point to keep it stable.
 
+Few other i.MX boards use one compatible for multiple DTS. Usually it is
+a module's compatible and boards just do not add their own.
+
+Best regards,
+Krzysztof
 
