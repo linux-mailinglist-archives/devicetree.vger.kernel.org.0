@@ -2,134 +2,82 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from vger.kernel.org (vger.kernel.org [23.128.96.18])
-	by mail.lfdr.de (Postfix) with ESMTP id 53C962817A6
-	for <lists+devicetree@lfdr.de>; Fri,  2 Oct 2020 18:18:30 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTP id 3BBC42817AB
+	for <lists+devicetree@lfdr.de>; Fri,  2 Oct 2020 18:18:46 +0200 (CEST)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S2387908AbgJBQS3 (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Fri, 2 Oct 2020 12:18:29 -0400
-Received: from lindbergh.monkeyblade.net ([23.128.96.19]:43130 "EHLO
-        lindbergh.monkeyblade.net" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S1726017AbgJBQSY (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Fri, 2 Oct 2020 12:18:24 -0400
-Received: from mail-wm1-x343.google.com (mail-wm1-x343.google.com [IPv6:2a00:1450:4864:20::343])
-        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id D65DCC0613D0
-        for <devicetree@vger.kernel.org>; Fri,  2 Oct 2020 09:18:23 -0700 (PDT)
-Received: by mail-wm1-x343.google.com with SMTP id e2so2345521wme.1
-        for <devicetree@vger.kernel.org>; Fri, 02 Oct 2020 09:18:23 -0700 (PDT)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=linaro.org; s=google;
-        h=subject:to:cc:references:from:autocrypt:message-id:date
-         :mime-version:in-reply-to:content-language:content-transfer-encoding;
-        bh=3FjrWORHL6C+v7fMa3YJ9mfj4USIePuw2hsMTnCmv2E=;
-        b=Gg7IouTIP67wOSgm9xiDaMoFtgD0SiZgGyhLk9XlyiC0Xks1oDIaTVJjF5bAcdcQpG
-         tXz8YFeFCI8FVgO947edVG/DKlajmrp2RxyRxAmdrgl1hRN5VLRah4lB7QxYyA7R6BQz
-         A2+FSl3RCXsue6yN9JGbnNpbg5dPuPOkQafsd8wzr5roGWogXzp12R/9YPhfk298eT44
-         xSAWY9jIq8yOJ5vORvvd+bUiUAfX2P3PN2k1+O339M6jmPOy0tXErMhE0Pe4Vw6rVlgq
-         xsLltnRWPwRryu34cfK36aIGtxJs93WzZuQhST0IZRVl4eXTgoYT1YGmcQVcIdr1M0Tb
-         Go9w==
-X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=1e100.net; s=20161025;
-        h=x-gm-message-state:subject:to:cc:references:from:autocrypt
-         :message-id:date:mime-version:in-reply-to:content-language
-         :content-transfer-encoding;
-        bh=3FjrWORHL6C+v7fMa3YJ9mfj4USIePuw2hsMTnCmv2E=;
-        b=XRxqJN9kv0fASwpD5MxTVSLQM5IV8S4zBsuH3bpxNbFW+/if1mLBixDJTTga++Nr6f
-         lkIxKRdryvOMkMuMojlB7mu33SyQWwLqUvGj3z77SgIfn1YY4ltlmBGef4DM8pEg4Nxi
-         2Hkef38poXzH000185mo8DjKK6fTtkfb/WsRAPSXcVC5fEx6N/n2TcWqsSEfxL5ohc03
-         dBtZ6CYlSLlUmlJ4HTca7kM0LP06X//e1yy9Tv3V/7jNPO9IGeFpliBWThiQknePcofK
-         EBbCseokCSm6lvqvhN9PPnFvK3ipaMFHHkXKs4v1RAVHIt/UPOHomqAY71dCaT2Im73I
-         Z97w==
-X-Gm-Message-State: AOAM532ukg43t4oYUsVetU1DsXwYdX+rCf0k6H0mf1O5ko0zQjGDBbDC
-        kln70GgpqNMpmEhkgRjeDTLZdw==
-X-Google-Smtp-Source: ABdhPJxMql+lFAHwwuS456ZEPJ9XRYjfMnjvZn9Kyof5utaqh+mddZMT/GBDYgapWFi1y6Z7wj1enA==
-X-Received: by 2002:a1c:9c8c:: with SMTP id f134mr3713260wme.27.1601655502352;
-        Fri, 02 Oct 2020 09:18:22 -0700 (PDT)
-Received: from [10.44.66.8] ([212.45.67.2])
-        by smtp.googlemail.com with ESMTPSA id j206sm2310851wmj.5.2020.10.02.09.18.21
-        (version=TLS1_3 cipher=TLS_AES_128_GCM_SHA256 bits=128/128);
-        Fri, 02 Oct 2020 09:18:21 -0700 (PDT)
-Subject: Re: [PATCH] arm64: dts: qcom: sc7180: Fix one forgotten interconnect
- reference
-To:     Douglas Anderson <dianders@chromium.org>,
-        Bjorn Andersson <bjorn.andersson@linaro.org>
-Cc:     Andy Gross <agross@kernel.org>,
-        Matthias Kaehlcke <mka@chromium.org>,
+        id S2388134AbgJBQSo (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Fri, 2 Oct 2020 12:18:44 -0400
+Received: from mail.kernel.org ([198.145.29.99]:51054 "EHLO mail.kernel.org"
+        rhost-flags-OK-OK-OK-OK) by vger.kernel.org with ESMTP
+        id S2388111AbgJBQSo (ORCPT <rfc822;devicetree@vger.kernel.org>);
+        Fri, 2 Oct 2020 12:18:44 -0400
+Received: from localhost.localdomain (unknown [194.230.155.194])
+        (using TLSv1.2 with cipher ECDHE-RSA-AES128-GCM-SHA256 (128/128 bits))
+        (No client certificate requested)
+        by mail.kernel.org (Postfix) with ESMTPSA id D5DE82085B;
+        Fri,  2 Oct 2020 16:18:41 +0000 (UTC)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=kernel.org;
+        s=default; t=1601655523;
+        bh=XtQcpi2VsVyiIP8B3XIaQmsvW+R88K4mS6OhwtQt/S8=;
+        h=From:To:Cc:Subject:Date:From;
+        b=WutDyYK8dYKN87q583WzQFFzY1G7oR10QzePiIqLkHFIFub359xKJzjlA8A+AXacs
+         pfMFCqdfCyBjSymg5Kc7eHj+twVJGA7HFnm4nqMWFABPD2WHideySK3QkzDMoG7fpq
+         R8Cfy6ZD3ip3aFioVrFR6+E4Ns+RpfBvzOGC+YTE=
+From:   Krzysztof Kozlowski <krzk@kernel.org>
+To:     Jassi Brar <jassisinghbrar@gmail.com>,
         Rob Herring <robh+dt@kernel.org>,
-        Sibi Sankar <sibis@codeaurora.org>, devicetree@vger.kernel.org,
-        linux-arm-msm@vger.kernel.org, linux-kernel@vger.kernel.org
-References: <20201001141838.1.I08054d1d976eed64ffa1b0e21d568e0dc6040b54@changeid>
-From:   Georgi Djakov <georgi.djakov@linaro.org>
-Autocrypt: addr=georgi.djakov@linaro.org; prefer-encrypt=mutual; keydata=
- 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
- KEmKjLDvB0pePJkdTw==
-Message-ID: <63aa154c-d56d-2510-9042-a6634ffffc7b@linaro.org>
-Date:   Fri, 2 Oct 2020 19:18:20 +0300
-MIME-Version: 1.0
-In-Reply-To: <20201001141838.1.I08054d1d976eed64ffa1b0e21d568e0dc6040b54@changeid>
-Content-Type: text/plain; charset=utf-8
-Content-Language: en-US
-Content-Transfer-Encoding: 7bit
+        Dong Aisheng <aisheng.dong@nxp.com>,
+        linux-kernel@vger.kernel.org, devicetree@vger.kernel.org
+Cc:     Krzysztof Kozlowski <krzk@kernel.org>
+Subject: [RESEND v3] dt-bindings: mailbox: fsl,mu: Add missing power-domains
+Date:   Fri,  2 Oct 2020 18:18:37 +0200
+Message-Id: <20201002161837.5784-1-krzk@kernel.org>
+X-Mailer: git-send-email 2.17.1
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-Thanks for the patch!
+Add quite common property - power-domains - to fix dtbs_check warnings
+like:
 
-On 10/2/20 00:18, Douglas Anderson wrote:
-> In commit e23b1220a246 ("arm64: dts: qcom: sc7180: Increase the number
-> of interconnect cells") we missed increasing the cells on one
-> interconnect.  That's no bueno.  Fix it.
-> 
-> NOTE: it appears that things aren't totally broken without this fix,
-> but clearly something isn't going to be working right.  If nothing
-> else, without this fix I see this in the logs:
-> 
->   OF: /soc@0/mdss@ae00000: could not get #interconnect-cells for /soc@0/interrupt-controller@17a00000
-> 
-> Fixes: e23b1220a246 ("arm64: dts: qcom: sc7180: Increase the number of interconnect cells")
-> Signed-off-by: Douglas Anderson <dianders@chromium.org>
+  arch/arm64/boot/dts/freescale/imx8qxp-mek.dt.yaml:
+    mailbox@5d280000: 'power-domains' does not match any of the regexes: 'pinctrl-[0-9]+'
 
-Reviewed-by: Georgi Djakov <georgi.djakov@linaro.org>
+Signed-off-by: Krzysztof Kozlowski <krzk@kernel.org>
+Reviewed-by: Dong Aisheng <aisheng.dong@nxp.com>
 
-BR,
-Georgi
+---
+
+Hi Rob,
+
+You previously reviewed this patch. Can you pick it up to your tree?
+
+Best regards,
+Krzysztof
+
+Changes since v2:
+1. Set maxItems to power domains to 1
+
+Changes since v1:
+1. Add missing properties instead of unevaluatedProperties
+---
+ Documentation/devicetree/bindings/mailbox/fsl,mu.yaml | 3 +++
+ 1 file changed, 3 insertions(+)
+
+diff --git a/Documentation/devicetree/bindings/mailbox/fsl,mu.yaml b/Documentation/devicetree/bindings/mailbox/fsl,mu.yaml
+index 7ed096360be2..15cef82cd356 100644
+--- a/Documentation/devicetree/bindings/mailbox/fsl,mu.yaml
++++ b/Documentation/devicetree/bindings/mailbox/fsl,mu.yaml
+@@ -72,6 +72,9 @@ properties:
+     description: boolean, if present, means it is for side B MU.
+     type: boolean
+ 
++  power-domains:
++    maxItems: 1
++
+ required:
+   - compatible
+   - reg
+-- 
+2.17.1
+
