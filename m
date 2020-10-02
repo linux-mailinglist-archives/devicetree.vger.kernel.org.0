@@ -2,143 +2,177 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from vger.kernel.org (vger.kernel.org [23.128.96.18])
-	by mail.lfdr.de (Postfix) with ESMTP id 4D985280F22
-	for <lists+devicetree@lfdr.de>; Fri,  2 Oct 2020 10:41:23 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTP id 89B25280F37
+	for <lists+devicetree@lfdr.de>; Fri,  2 Oct 2020 10:48:49 +0200 (CEST)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S2387679AbgJBIlW (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Fri, 2 Oct 2020 04:41:22 -0400
-Received: from lindbergh.monkeyblade.net ([23.128.96.19]:57486 "EHLO
-        lindbergh.monkeyblade.net" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S1725961AbgJBIlV (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Fri, 2 Oct 2020 04:41:21 -0400
-Received: from metis.ext.pengutronix.de (metis.ext.pengutronix.de [IPv6:2001:67c:670:201:290:27ff:fe1d:cc33])
-        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id A48E8C0613D0
-        for <devicetree@vger.kernel.org>; Fri,  2 Oct 2020 01:41:21 -0700 (PDT)
-Received: from pty.hi.pengutronix.de ([2001:67c:670:100:1d::c5])
-        by metis.ext.pengutronix.de with esmtps (TLS1.2:ECDHE_RSA_AES_256_GCM_SHA384:256)
-        (Exim 4.92)
-        (envelope-from <mfe@pengutronix.de>)
-        id 1kOGcx-0003Lp-Rq; Fri, 02 Oct 2020 10:41:19 +0200
-Received: from mfe by pty.hi.pengutronix.de with local (Exim 4.89)
-        (envelope-from <mfe@pengutronix.de>)
-        id 1kOGcx-0004x9-21; Fri, 02 Oct 2020 10:41:19 +0200
-Date:   Fri, 2 Oct 2020 10:41:19 +0200
-From:   Marco Felsch <m.felsch@pengutronix.de>
-To:     Krzysztof Kozlowski <krzk@kernel.org>
-Cc:     Ahmad Fatoum <a.fatoum@pengutronix.de>, devicetree@vger.kernel.org,
-        Robert Jones <rjones@gateworks.com>,
-        Stefan Riedmueller <s.riedmueller@phytec.de>,
-        Anson Huang <Anson.Huang@nxp.com>,
-        Shawn Guo <shawnguo@kernel.org>,
-        Sascha Hauer <s.hauer@pengutronix.de>,
-        linux-kernel@vger.kernel.org, Li Yang <leoyang.li@nxp.com>,
-        Rob Herring <robh+dt@kernel.org>,
-        NXP Linux Team <linux-imx@nxp.com>,
-        Pengutronix Kernel Team <kernel@pengutronix.de>,
-        Andreas Kemnade <andreas@kemnade.info>,
-        Fabio Estevam <festevam@gmail.com>,
-        linux-arm-kernel@lists.infradead.org
-Subject: Re: [PATCH v2 08/12] ARM: dts: imx6dl-pico: fix board compatibles
-Message-ID: <20201002084119.buc6z7hpesoahmg2@pengutronix.de>
-References: <20200930190143.27032-1-krzk@kernel.org>
- <20200930190143.27032-9-krzk@kernel.org>
- <0a0afea6-8cbb-3e89-5a4f-89660c942ca3@pengutronix.de>
- <20201001073208.GA5208@kozik-lap>
- <027fd826-6822-9e92-0c6c-2ebed63f4a07@pengutronix.de>
- <20201001103704.GA26287@kozik-lap>
- <7fcea21d-4651-9ba7-5331-86530296a847@pengutronix.de>
- <20201002082012.GA6605@pi3>
+        id S1726176AbgJBIsn (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Fri, 2 Oct 2020 04:48:43 -0400
+Received: from fllv0016.ext.ti.com ([198.47.19.142]:48260 "EHLO
+        fllv0016.ext.ti.com" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
+        with ESMTP id S1725993AbgJBIsn (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Fri, 2 Oct 2020 04:48:43 -0400
+Received: from lelv0266.itg.ti.com ([10.180.67.225])
+        by fllv0016.ext.ti.com (8.15.2/8.15.2) with ESMTP id 0928meiZ060590;
+        Fri, 2 Oct 2020 03:48:40 -0500
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=ti.com;
+        s=ti-com-17Q1; t=1601628520;
+        bh=KxIx2Q8BMe/BobBif6MsMuzIp5+oXC2YcE/NTHkf08I=;
+        h=From:Subject:To:CC:References:Date:In-Reply-To;
+        b=U+xQbIMyUgrRoMVxee4SCSno9XMO5dABhiIjPusxZ4ky9+l/dr/Sq122nX6MjVDpB
+         nJku4NJoapMnhmUY3R2fBXibJJ7VRiz5IoXUe1p+BZB1Y3Ftxv0VZPQI7O5sig9gcZ
+         rK2pWAAFnpPN4ogns1PmJBj+qFJYKZTpR6TUrjkg=
+Received: from DFLE113.ent.ti.com (dfle113.ent.ti.com [10.64.6.34])
+        by lelv0266.itg.ti.com (8.15.2/8.15.2) with ESMTPS id 0928me96009602
+        (version=TLSv1.2 cipher=AES256-GCM-SHA384 bits=256 verify=FAIL);
+        Fri, 2 Oct 2020 03:48:40 -0500
+Received: from DFLE100.ent.ti.com (10.64.6.21) by DFLE113.ent.ti.com
+ (10.64.6.34) with Microsoft SMTP Server (version=TLS1_2,
+ cipher=TLS_ECDHE_RSA_WITH_AES_128_CBC_SHA256_P256) id 15.1.1979.3; Fri, 2 Oct
+ 2020 03:48:39 -0500
+Received: from fllv0040.itg.ti.com (10.64.41.20) by DFLE100.ent.ti.com
+ (10.64.6.21) with Microsoft SMTP Server (version=TLS1_2,
+ cipher=TLS_ECDHE_RSA_WITH_AES_128_CBC_SHA256_P256) id 15.1.1979.3 via
+ Frontend Transport; Fri, 2 Oct 2020 03:48:39 -0500
+Received: from [192.168.2.6] (ileax41-snat.itg.ti.com [10.172.224.153])
+        by fllv0040.itg.ti.com (8.15.2/8.15.2) with ESMTP id 0928mbcW099978;
+        Fri, 2 Oct 2020 03:48:38 -0500
+From:   Peter Ujfalusi <peter.ujfalusi@ti.com>
+Subject: Re: [PATCH v3 2/3] dmaengine: add peripheral configuration
+To:     Vinod Koul <vkoul@kernel.org>
+CC:     <dmaengine@vger.kernel.org>, Rob Herring <robh+dt@kernel.org>,
+        Bjorn Andersson <bjorn.andersson@linaro.org>,
+        <linux-arm-msm@vger.kernel.org>, <devicetree@vger.kernel.org>,
+        <linux-kernel@vger.kernel.org>
+References: <20200923063410.3431917-1-vkoul@kernel.org>
+ <20200923063410.3431917-3-vkoul@kernel.org>
+ <29f95fff-c484-0131-d1fe-b06e3000fb9f@ti.com>
+ <20201001112307.GX2968@vkoul-mobl>
+X-Pep-Version: 2.0
+Message-ID: <f063ae03-41da-480a-19ba-d061e140e4d2@ti.com>
+Date:   Fri, 2 Oct 2020 11:48:55 +0300
+User-Agent: Mozilla/5.0 (X11; Linux x86_64; rv:68.0) Gecko/20100101
+ Thunderbird/68.12.0
 MIME-Version: 1.0
-Content-Type: text/plain; charset=us-ascii
-Content-Disposition: inline
-In-Reply-To: <20201002082012.GA6605@pi3>
-X-Sent-From: Pengutronix Hildesheim
-X-URL:  http://www.pengutronix.de/
-X-IRC:  #ptxdist @freenode
-X-Accept-Language: de,en
-X-Accept-Content-Type: text/plain
-X-Uptime: 10:28:08 up 321 days, 23:46, 363 users,  load average: 0.21, 0.18,
- 0.09
-User-Agent: NeoMutt/20170113 (1.7.2)
-X-SA-Exim-Connect-IP: 2001:67c:670:100:1d::c5
-X-SA-Exim-Mail-From: mfe@pengutronix.de
-X-SA-Exim-Scanned: No (on metis.ext.pengutronix.de); SAEximRunCond expanded to false
-X-PTX-Original-Recipient: devicetree@vger.kernel.org
+In-Reply-To: <20201001112307.GX2968@vkoul-mobl>
+Content-Type: text/plain; charset="utf-8"
+Content-Language: en-US
+Content-Transfer-Encoding: quoted-printable
+X-EXCLAIMER-MD-CONFIG: e1e8a2fd-e40a-4ac6-ac9b-f7e9cc9ee180
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-Hi,
+Hi Vinod,
 
-sorry for jumping in.
+On 01/10/2020 14.23, Vinod Koul wrote:
+> Hi Peter,
+>=20
+> On 29-09-20, 11:06, Peter Ujfalusi wrote:
+>=20
+>>> + * @spi: peripheral config for spi
+>>> + * @i2c: peripheral config for i2c
+>>> + */
+>>> +struct dmaengine_peripheral_config {
+>>> +	enum dmaengine_peripheral peripheral;
+>>> +	u8 set_config;
+>>> +	u32 rx_len;
+>>> +	struct dmaengine_spi_config spi;
+>>> +	struct dmaengine_i2c_config i2c;
+>>
+>> I know that you want this to be as generic as much as it is possible,
+>> but do we really want to?
+>=20
+> That is really a good question ;-)
+>=20
+>> GPIv2 will also handle I2S peripheral, other vendor's similar solution=
 
-On 20-10-02 10:20, Krzysztof Kozlowski wrote:
-> On Fri, Oct 02, 2020 at 09:41:28AM +0200, Ahmad Fatoum wrote:
-> > Hello,
-> > 
-> > On 10/1/20 12:37 PM, Krzysztof Kozlowski wrote:
-> > >> The existing binding doesn't cover these boards then and needs to be
-> > >> extended, no? How about following patch?
-> > > 
-> > > What do you mean it doesn't cover? It was added exactly to handle them:
-> > > +              - technexion,imx6q-pico-dwarf   # TechNexion i.MX6Q Pico-Dwarf
-> > > +              - technexion,imx6q-pico-hobbit  # TechNexion i.MX6Q Pico-Hobbit
-> > > +              - technexion,imx6q-pico-nymph   # TechNexion i.MX6Q Pico-Nymph
-> > > +              - technexion,imx6q-pico-pi      # TechNexion i.MX6Q Pico-Pi
-> > > 
-> > 
-> > Still they are unused. So I'd think these boards should be handled like boards
-> > that predated bindings: a binding is written that doesn't break existing users.
-> 
-> OK, let's assume the binding is not correct and DTSes are good.
-> 
-> > 
-> > >> [I guess we need to keep the two-compatible list they were originally
-> > >>  in for compatibility even if it's unused among upstream device trees?]
-> > > 
-> > > You want to change both the binding (thus breaking the ABI) and update
-> > > the DTS to reflect new ABI. Then why having a binding at all?
-> > 
-> > If we leave the old two-compatible enumeration intact, there is no ABI broken.
-> 
-> Just to clarify, because I don't get here the "no ABI broken" part:
-> ABI is the binding, not the DTS. We can change intree DTS as we like,
-> replace compatibles, add nodes, remove nodes. There is no stability
-> requirement for DTS contents.
-> 
-> If we leave two-compatible binding intact, it is a broken binding since
-> beginning. Removing non-working, fake ABI is not breaking it because it
-> could never work.
+>=20
+> Not I2S, but yes but additional peripherals is always a question
 
-The problem here is that it wasn't covered by the review and now we have
-the mess. I see the DTB and the Bootloader as Firmware. Now imagine if
-the bootloader for these boards had some dt-fixup logic which won't
-apply anymore or if the bootloader board init won't get called anymore
-since the bootloader folks used the compatible found in the DTS. This
-can cause a regression if the old Bootloader tries to boot the new
-Kernel+DTS.
+Never underestimate the 'creativity'.
 
-> > > I would assume that either binding is correct or DTS. You propose that
-> > > both are wrong and both need changes... in such case this is clearly
-> > > broken.
-> > 
-> > IMO the DTS is the correct one. If you want to honor the author's intention
-> > that each base board has a different compatible, it should be an extra
-> > compatible and not replace the existing one that may be already in use.
+>> would require different sets of parameters unique to their IPs?
+>>
+>> How we are going to handle similar setups for DMA which is used for
+>> networking, SPI/I2C/I2S/NAND/display/capture, etc?
+>>
+>> Imho these settings are really part of the peripheral's domain and not=
 
-Question is what was the author's intention? @Fabio do you have any
-comments here?
+>> the DMA. It is just a small detail that instead of direct register
+>> writes, your setup is using the DMA descriptors to write.
+>> It is similar to what I use as metadata (part of the descriptor belong=
+s
+>> and owned by the client driver).
+>>
+>> I think it would be better to have:
+>>
+>> enum dmaengine_peripheral {
+>> 	DMAENGINE_PERIPHERAL_GPI_SPI =3D 1,
+>> 	DMAENGINE_PERIPHERAL_GPI_UART,
+>> 	DMAENGINE_PERIPHERAL_GPI_I2C,
+>> 	DMAENGINE_PERIPHERAL_XYZ_SPI,
+>> 	DMAENGINE_PERIPHERAL_XYZ_AASRC,
+>> 	DMAENGINE_PERIPHERAL_ABC_CAM,
+>> 	...
+>> 	DMAENGINE_PERIPHERAL_LAST,
+>> };
+>>
+>> enum dmaengine_peripheral peripheral_type;
+>> void *peripheral_config;
+>>
+>>
+>> and that's it. The set_config is specific to GPI.
+>> It can be debated where the structs should be defined, in the generic
+>> dmaengine.h or in include/linux/dma/ as controller specific
+>> (gpi_peripheral.h) or a generic one, like dmaengine_peripheral.h
+>>
+>> The SPI/I2C/UART client of yours would pass the GPI specific struct as=
 
-> OK, we can go with DTS approach. I fixed few of such cases as well,
-> assuming that DTS was intended and binding was incorrect. In such case
-> all boards will be documented under one compatible technexion,imx6q-pico
-> and DTS will not be changed.
+>> in any case it has to know what is the DMA it is serviced by.
+>=20
+> If we want to take that approach, I can actually move the whole logic o=
+f
+> creating the specific TREs from DMA to clients and they pass on TRE
+> values and driver adds to ring after appending DMA TREs
 
-Or keep the exisiting bindings and adding the new one. Therefore the
-yaml needs to handle two cases for each imx6[qdl]:
-  compatible = "technexion,imx6dl-pico-dwarf", "technexion,imx6dl-pico", "fsl,imx6dl";
-and
-  compatible = "technexion,imx6dl-pico", "fsl,imx6dl";
+The drawback is that you are tying the driver to a specific DMA with
+directly giving the TREs. If the TRE (or other method) is used by a
+newer device you need to work on both sides.
 
-Regards,
-  Marco
+> Question is how should this interface look like? reuse metadata or add =
+a
+> new API which sets the txn specific data (void pointer and size) to the=
+
+> txn..=20
+
+It depends which is best for the use case.
+I see the metadata useful when you need to send different
+metadata/configuration with each transfer.
+It can be also useful when you need it seldom, but for your use case and
+setup the dma_slave_config extended with
+
+enum dmaengine_peripheral peripheral_type;
+void *peripheral_config;
+
+would be a bit more explicit.
+
+I would then deal with the peripheral config in this way:
+when the DMA driver's device_config is called, I would take the
+parameters and set a flag that the config needs to be processed as it
+has changed.
+In the next prep_slave_sg() then I would prepare the TREs with the
+config and clear the flag that the next transfer does not need the
+configuration anymore.
+
+In this way each dmaengine_slave_config() will trigger at the next
+prep_slave_sg time configuration update for the peripheral to be
+included in the TREs.
+The set_config would be internal to the DMA driver, clients just need to
+update the configuration when they need to and everything is taken care o=
+f.
+
+- P=C3=A9ter
+
+Texas Instruments Finland Oy, Porkkalankatu 22, 00180 Helsinki.
+Y-tunnus/Business ID: 0615521-4. Kotipaikka/Domicile: Helsinki
+
