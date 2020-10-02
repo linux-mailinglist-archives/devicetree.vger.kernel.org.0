@@ -2,123 +2,198 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from vger.kernel.org (vger.kernel.org [23.128.96.18])
-	by mail.lfdr.de (Postfix) with ESMTP id 749E52815DA
-	for <lists+devicetree@lfdr.de>; Fri,  2 Oct 2020 16:55:20 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTP id B5C12281606
+	for <lists+devicetree@lfdr.de>; Fri,  2 Oct 2020 17:04:18 +0200 (CEST)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S2387919AbgJBOzT (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Fri, 2 Oct 2020 10:55:19 -0400
-Received: from lindbergh.monkeyblade.net ([23.128.96.19]:58474 "EHLO
-        lindbergh.monkeyblade.net" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S1726386AbgJBOzT (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Fri, 2 Oct 2020 10:55:19 -0400
-Received: from mail-ej1-x643.google.com (mail-ej1-x643.google.com [IPv6:2a00:1450:4864:20::643])
-        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 5DC15C0613E2
-        for <devicetree@vger.kernel.org>; Fri,  2 Oct 2020 07:55:19 -0700 (PDT)
-Received: by mail-ej1-x643.google.com with SMTP id qp15so2408338ejb.3
-        for <devicetree@vger.kernel.org>; Fri, 02 Oct 2020 07:55:19 -0700 (PDT)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=baylibre-com.20150623.gappssmtp.com; s=20150623;
-        h=references:user-agent:from:to:subject:in-reply-to:date:message-id
-         :mime-version;
-        bh=pDks6p78EBD7ss15qrLLTZCcCpPLA2YETzRFSCodWyo=;
-        b=q/NornTt2eh3x4yoPtr/QjxWUZ2YMcknK7dAxDB+N5RmzQA4dWhmZyWx5jVdcCuG8E
-         Yglw1CIOPe/A8+I5xu85MEFyzft7kKBfuTGQyopZPaTnltBYnqhAn8lNM1+9THbJkn9q
-         JMR07CI+5Xl3TwCFT99/ikUuNKDQcuPa9AfEeStfjPTrjqSTVYDO7fj1u8iY7bZSg9oU
-         sA9/47NW0gggg+6zu3DM074irN83HJDylN6I2UVFpnRQnK4HD8YMcpDkgr/NFRUN9RDF
-         UaolQPYhm1V61C1X+X4jBGSRLRQQxqdCX0UtmgijuNAW6vm7OIxEKrTh2oY1VjNaXv0s
-         aA3A==
-X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=1e100.net; s=20161025;
-        h=x-gm-message-state:references:user-agent:from:to:subject
-         :in-reply-to:date:message-id:mime-version;
-        bh=pDks6p78EBD7ss15qrLLTZCcCpPLA2YETzRFSCodWyo=;
-        b=kAAceUsS1P+waJ6ictc3i5mbMeAr/sljF9auBJbwEZjO0uUbdSvd5npmSo8MlptMJR
-         G4USrwG782alDUEOGBs7BwQKcBxGFO5BNNgCK0YCJoEV/gh3AIfnXsrVLvZxcr44Qt8J
-         s6aEeNtVR2LiShnTrYz7++JcgpQ6ba+DuLhJLjvaiOxas++/QQZMa9bjd9e3COjlJIPw
-         EHezJeCpXtFPWw2QuVPq226r/QhrWguBwZ8hUTAP5Xwl8fA9OKJZQGVNze/Q3uYCQOrV
-         IWQaQPE7YhxudPw/3IQXtZ3GEXAacpRx5iTgRoKiXeRPrsDjMoMkE0/bIts670yUjoMD
-         wn2w==
-X-Gm-Message-State: AOAM530nw+mKq1/UGhXQMoiMWYY3m+s5NDzQJA3mEDbLQfa1vnTQMhuQ
-        2sknYwxGVvfE06BH8pHnD5O2Qw==
-X-Google-Smtp-Source: ABdhPJxeWoIW2hk98lm8JxgeH6OqwPbzwaF2nR6YfVrAzo27GB7rxcfU1hjQOZwHmbzvboDD1SmiBg==
-X-Received: by 2002:a17:906:a256:: with SMTP id bi22mr2629106ejb.375.1601650517967;
-        Fri, 02 Oct 2020 07:55:17 -0700 (PDT)
-Received: from localhost (cag06-3-82-243-161-21.fbx.proxad.net. [82.243.161.21])
-        by smtp.gmail.com with ESMTPSA id p17sm1397771edw.10.2020.10.02.07.55.17
-        (version=TLS1_3 cipher=TLS_AES_256_GCM_SHA384 bits=256/256);
-        Fri, 02 Oct 2020 07:55:17 -0700 (PDT)
-References: <20201002143141.14870-1-christianshewitt@gmail.com>
-User-agent: mu4e 1.3.3; emacs 26.3
-From:   Jerome Brunet <jbrunet@baylibre.com>
-To:     Christian Hewitt <christianshewitt@gmail.com>,
-        Rob Herring <robh+dt@kernel.org>,
-        Mark Rutland <mark.rutland@arm.com>,
-        Kevin Hilman <khilman@baylibre.com>,
-        devicetree@vger.kernel.org, linux-arm-kernel@lists.infradead.org,
-        linux-amlogic@lists.infradead.org, linux-kernel@vger.kernel.org
-Subject: Re: [PATCH v2 00/10] arm64: dts: meson: add more GX soundcards
-In-reply-to: <20201002143141.14870-1-christianshewitt@gmail.com>
-Date:   Fri, 02 Oct 2020 16:55:16 +0200
-Message-ID: <1jy2koisob.fsf@starbuckisacylon.baylibre.com>
+        id S2388244AbgJBPEL (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Fri, 2 Oct 2020 11:04:11 -0400
+Received: from fllv0016.ext.ti.com ([198.47.19.142]:39628 "EHLO
+        fllv0016.ext.ti.com" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
+        with ESMTP id S1726017AbgJBPEL (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Fri, 2 Oct 2020 11:04:11 -0400
+Received: from lelv0265.itg.ti.com ([10.180.67.224])
+        by fllv0016.ext.ti.com (8.15.2/8.15.2) with ESMTP id 092F3uOF059943;
+        Fri, 2 Oct 2020 10:03:56 -0500
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=ti.com;
+        s=ti-com-17Q1; t=1601651036;
+        bh=00EmeBEsJXIW+I4V1YKyuovGpP0u20l2BkMznworpNU=;
+        h=Subject:From:To:CC:References:Date:In-Reply-To;
+        b=lLGeoVfqeNI3kVh58Nc0c/m5l6fA3pyaPy7WAqEsZberBjuXAtySV4EamOfjvsQ2M
+         g9UdCC3CKq4spM1TtSEEhzBtVlIjOTSwuZ0jKQwZPFaSPlM4kAQV5YrscOQm4837XY
+         NPx3M9tjSG3MzpQzk3yup6irAn30fdrS3oZtx5Ks=
+Received: from DFLE103.ent.ti.com (dfle103.ent.ti.com [10.64.6.24])
+        by lelv0265.itg.ti.com (8.15.2/8.15.2) with ESMTPS id 092F3u6e001694
+        (version=TLSv1.2 cipher=AES256-GCM-SHA384 bits=256 verify=FAIL);
+        Fri, 2 Oct 2020 10:03:56 -0500
+Received: from DFLE106.ent.ti.com (10.64.6.27) by DFLE103.ent.ti.com
+ (10.64.6.24) with Microsoft SMTP Server (version=TLS1_2,
+ cipher=TLS_ECDHE_RSA_WITH_AES_128_CBC_SHA256_P256) id 15.1.1979.3; Fri, 2 Oct
+ 2020 10:03:55 -0500
+Received: from fllv0040.itg.ti.com (10.64.41.20) by DFLE106.ent.ti.com
+ (10.64.6.27) with Microsoft SMTP Server (version=TLS1_2,
+ cipher=TLS_ECDHE_RSA_WITH_AES_128_CBC_SHA256_P256) id 15.1.1979.3 via
+ Frontend Transport; Fri, 2 Oct 2020 10:03:55 -0500
+Received: from [10.250.100.73] (ileax41-snat.itg.ti.com [10.172.224.153])
+        by fllv0040.itg.ti.com (8.15.2/8.15.2) with ESMTP id 092F3oeb115201;
+        Fri, 2 Oct 2020 10:03:51 -0500
+Subject: Re: [PATCH v1] of: platform: Batch fwnode parsing in the
+ init_machine() path
+From:   Grygorii Strashko <grygorii.strashko@ti.com>
+To:     Laurent Pinchart <laurent.pinchart@ideasonboard.com>,
+        Saravana Kannan <saravanak@google.com>
+CC:     Rob Herring <robh+dt@kernel.org>,
+        Frank Rowand <frowand.list@gmail.com>,
+        <geert+renesas@glider.be>, <gregkh@linuxfoundation.org>,
+        <linux-omap@vger.kernel.org>, <linux-pm@vger.kernel.org>,
+        <peter.ujfalusi@ti.com>, <rjw@rjwysocki.net>,
+        <tomi.valkeinen@ti.com>, <tony@atomide.com>,
+        <ulf.hansson@linaro.org>, <kernel-team@android.com>,
+        <devicetree@vger.kernel.org>, <linux-kernel@vger.kernel.org>
+References: <CAGETcx8owDP_Bu4oNCyHEsME8XpKygxghm8+yNc2RyMA4wyjCA@mail.gmail.com>
+ <20201001225952.3676755-1-saravanak@google.com>
+ <20201001231922.GG3722@pendragon.ideasonboard.com>
+ <17bdc3f0-d816-151a-fef2-88cd38fc8621@ti.com>
+Message-ID: <e0ef8816-11ea-3a1a-cac6-14b9f6c92bcf@ti.com>
+Date:   Fri, 2 Oct 2020 18:03:48 +0300
+User-Agent: Mozilla/5.0 (X11; Linux x86_64; rv:68.0) Gecko/20100101
+ Thunderbird/68.10.0
 MIME-Version: 1.0
-Content-Type: text/plain
+In-Reply-To: <17bdc3f0-d816-151a-fef2-88cd38fc8621@ti.com>
+Content-Type: text/plain; charset="utf-8"; format=flowed
+Content-Language: en-US
+Content-Transfer-Encoding: 8bit
+X-EXCLAIMER-MD-CONFIG: e1e8a2fd-e40a-4ac6-ac9b-f7e9cc9ee180
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
 
-On Fri 02 Oct 2020 at 16:31, Christian Hewitt <christianshewitt@gmail.com> wrote:
 
-> This series adds basic support for LPCM audio over HDMI and S/PDIF
-> interfaces to GXBB/GXL/GXM devices without support. I'm sure audio
-> support can be extended in places (some devices have internal DACs
-> and headphone hardware) but this gets the basics working.
->
-> I have personally tested with the khadas-vim2, odroid-c2, and both
-> wetek devices as I have them, and there are positive forum reports
-> from users with vega-s95 and some no-name P20X box devices.
+On 02/10/2020 14:40, Grygorii Strashko wrote:
+> 
+> 
+> On 02/10/2020 02:19, Laurent Pinchart wrote:
+>> Hi Saravana,
+>>
+>> Thank you for the patch.
+>>
+>> On Thu, Oct 01, 2020 at 03:59:51PM -0700, Saravana Kannan wrote:
+>>> When commit 93d2e4322aa7 ("of: platform: Batch fwnode parsing when
+>>> adding all top level devices") optimized the fwnode parsing when all top
+>>> level devices are added, it missed out optimizing this for platform
+>>> where the top level devices are added through the init_machine() path.
+>>>
+>>> This commit does the optimization for all paths by simply moving the
+>>> fw_devlink_pause/resume() inside of_platform_default_populate().
+>>
+>> Based on v5.9-rc5, before the patch:
+>>
+>> [    0.652887] cpuidle: using governor menu
+>> [   12.349476] No ATAGs?
+>>
+>> After the patch:
+>>
+>> [    0.650460] cpuidle: using governor menu
+>> [   12.262101] No ATAGs?
+>>
+>> :-(
+> 
+> This is kinda expected :( because omap2 arch doesn't call of_platform_default_populate()
+> 
+> Call path:
+> board-generic.c
+>   DT_MACHINE_START()
+>     .init_machine    = omap_generic_init,
+> 
+>   omap_generic_init()
+>     pdata_quirks_init(omap_dt_match_table);
+>          of_platform_populate(NULL, omap_dt_match_table,
+>                   omap_auxdata_lookup, NULL);
+> 
+> Other affected platforms
+> arm: mach-ux500
+> some mips
+> some powerpc
+> 
+> there are also case when a lot of devices placed under bus node, in such case
+>   of_platform_populate() calls from bus drivers will also suffer from this issue.
+> 
+> I think one option could be to add some parameter to _populate() or introduce new api.
+> 
+> By the way, is there option to disable this feature at all?
+> Is there Kconfig option?
+> Is there any reasons why such complex and time consuming code added to the kernel and not implemented on DTC level?
+> 
+> 
+> Also, I've came with another diff, pls check.
+> 
+> [    0.000000] Booting Linux on physical CPU 0x0
+> [    0.000000] Linux version 5.9.0-rc6-01791-g9acba6b38757-dirty (grygorii@grygorii-XPS-13-9370) (arm-linux-gnueabihf-gcc (GNU Toolcha0
+> [    0.000000] CPU: ARMv7 Processor [412fc0f2] revision 2 (ARMv7), cr=10c5387d
+> [    0.000000] CPU: div instructions available: patching division code
+> [    0.000000] CPU: PIPT / VIPT nonaliasing data cache, PIPT instruction cache
+> [    0.000000] OF: fdt: Machine model: TI AM5718 IDK
+> ...
+> [    0.053443] cpuidle: using governor ladder
+> [    0.053470] cpuidle: using governor menu
+> [    0.089304] No ATAGs?
+> ...
+> [    3.092291] devtmpfs: mounted
+> [    3.095804] Freeing unused kernel memory: 1024K
+> [    3.100483] Run /sbin/init as init process
+> 
+> 
+> 
+> ------ >< ---
+> diff --git a/drivers/of/platform.c b/drivers/of/platform.c
+> index 071f04da32c8..4521b26e7745 100644
+> --- a/drivers/of/platform.c
+> +++ b/drivers/of/platform.c
+> @@ -514,6 +514,12 @@ static const struct of_device_id reserved_mem_matches[] = {
+>          {}
+>   };
+> 
+> +static int __init of_platform_fw_devlink_pause(void)
+> +{
+> +       fw_devlink_pause();
+> +}
+> +core_initcall(of_platform_fw_devlink_pause);
+> +
+>   static int __init of_platform_default_populate_init(void)
+>   {
+>          struct device_node *node;
+> @@ -538,9 +544,7 @@ static int __init of_platform_default_populate_init(void)
+>          }
+> 
+>          /* Populate everything else. */
+> -       fw_devlink_pause();
+>          of_platform_default_populate(NULL, NULL, NULL);
+> -       fw_devlink_resume();
+> 
+>          return 0;
+>   }
+> @@ -548,6 +552,7 @@ arch_initcall_sync(of_platform_default_populate_init);
+> 
+>   static int __init of_platform_sync_state_init(void)
+>   {
+> +       fw_devlink_resume();
 
-It is fine to add what you have tested but I'm not confortable adding
-untested stuff which will later give the false idea that they are
-supposed to work.
+^ it seems has to be done earlier, like
++static int __init of_platform_fw_devlink_resume(void)
++{
++       fw_devlink_resume();
++       return 0;
++}
++device_initcall_sync(of_platform_fw_devlink_resume);
 
-Amplifiers and codec may require different settings and ressources
-(such as GPIO and regulators) to actually operate properly.
 
-As far the p200 and p201, like the g12 u200, those are reference design
-with various sound card possibilities which usually don't apply to end
-products.
+>          device_links_supplier_sync_state_resume();
+>          return 0;
+>   }
+> 
+> 
+> 
 
-For example the p200 is missing both input and output codecs, the sound
-amplifier and, as it stands, is likely to be muted.
-
->
-> Changes from v1
-> - Drop nexbox-a1 and rbox-pro changes - the regulator changes are
-> needed to get the dts to compile, but I do not have schematics to
-> validate the changes or the hardware to test with.
->
-> Christian Hewitt (10):
->   arm64: dts: meson: add audio playback to a95x
->   arm64: dts: meson: add audio playback to khadas-vim2
->   arm64: dts: meson: add audio playback to nanopi-k2
->   arm64: dts: meson: add audio playback to odroid-c2
->   arm64: dts: meson: add audio playback to p201
->   arm64: dts: meson: add audio playback to p200
->   arm64: dts: meson: add audio playback to p212-s905x dtsi
->   arm64: dts: meson: add audio playback to vega-s95 dtsi
->   arm64: dts: meson: add audio playback to wetek-hub
->   arm64: dts: meson: add audio playback to wetek-play2
->
->  .../boot/dts/amlogic/meson-gxbb-nanopi-k2.dts | 40 ++++++++++++
->  .../dts/amlogic/meson-gxbb-nexbox-a95x.dts    | 40 ++++++++++++
->  .../boot/dts/amlogic/meson-gxbb-odroidc2.dts  | 40 ++++++++++++
->  .../boot/dts/amlogic/meson-gxbb-p200.dts      | 61 +++++++++++++++++++
->  .../boot/dts/amlogic/meson-gxbb-p201.dts      | 40 ++++++++++++
->  .../boot/dts/amlogic/meson-gxbb-vega-s95.dtsi | 61 +++++++++++++++++++
->  .../boot/dts/amlogic/meson-gxbb-wetek-hub.dts | 40 ++++++++++++
->  .../dts/amlogic/meson-gxbb-wetek-play2.dts    | 61 +++++++++++++++++++
->  .../dts/amlogic/meson-gxl-s905x-p212.dtsi     | 40 ++++++++++++
->  .../dts/amlogic/meson-gxm-khadas-vim2.dts     | 44 ++++++++++++-
->  10 files changed, 464 insertions(+), 3 deletions(-)
-
+-- 
+Best regards,
+grygorii
