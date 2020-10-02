@@ -2,40 +2,24 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from vger.kernel.org (vger.kernel.org [23.128.96.18])
-	by mail.lfdr.de (Postfix) with ESMTP id 7ACD6280EA7
-	for <lists+devicetree@lfdr.de>; Fri,  2 Oct 2020 10:20:29 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTP id 935B1280F08
+	for <lists+devicetree@lfdr.de>; Fri,  2 Oct 2020 10:34:37 +0200 (CEST)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S2387629AbgJBIUX (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Fri, 2 Oct 2020 04:20:23 -0400
-Received: from mail-ed1-f65.google.com ([209.85.208.65]:35838 "EHLO
-        mail-ed1-f65.google.com" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S2387536AbgJBIUS (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Fri, 2 Oct 2020 04:20:18 -0400
-Received: by mail-ed1-f65.google.com with SMTP id i1so791924edv.2;
-        Fri, 02 Oct 2020 01:20:16 -0700 (PDT)
-X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=1e100.net; s=20161025;
-        h=x-gm-message-state:date:from:to:cc:subject:message-id:references
-         :mime-version:content-disposition:in-reply-to;
-        bh=Bkh1SP/RxLZt/FHcHaOcXfHwmKZUTF99Sb6EVCBToAI=;
-        b=CS85g0ZND0gmO0VZCaW0s9IxXZ/PZJ4mYMYi1U/mC2B81cYYKzk69+oT9Xk2Mlb2kY
-         cACf9gK+TiTob/GHClgDBpTU1nwRr0H7KznKlUmSf39n98k30qAttHLtOQXOwym8N50T
-         XPlsmiHBRvr39z3veAOGkYg82aY3ThTWBWDZ7qgBkWCfCuhfvzBnd+s2hxjsXxzfqfUU
-         CkkJfbd4UrHBGV8OyuSCyCeJruyO0SN0miv3ETvReDq91B1Yc568imt8eZHCQLOXY7qg
-         4TZNffrRoCg9D1KnpMW7QVphmf7lIWVw4KLd84OaqEqdmeAAxe7GYEXTgZIDvqEYjszG
-         ROQA==
-X-Gm-Message-State: AOAM531zYF5YKGoz2xHRRb2czxRLfP9MIOpyTuydzmk/3J22mDBINsid
-        QZrBrIA1DAytCZKfpUEye6Q=
-X-Google-Smtp-Source: ABdhPJxX55AwyVhonHu2pITZEj1/D9GVJtA481IouPj2agmtzYOF7zuZPrsa4fVc+noKKiqP5rLSgA==
-X-Received: by 2002:aa7:d1d5:: with SMTP id g21mr1145493edp.348.1601626815502;
-        Fri, 02 Oct 2020 01:20:15 -0700 (PDT)
-Received: from pi3 ([194.230.155.194])
-        by smtp.googlemail.com with ESMTPSA id y25sm633136edv.15.2020.10.02.01.20.13
-        (version=TLS1_3 cipher=TLS_AES_256_GCM_SHA384 bits=256/256);
-        Fri, 02 Oct 2020 01:20:14 -0700 (PDT)
-Date:   Fri, 2 Oct 2020 10:20:12 +0200
-From:   Krzysztof Kozlowski <krzk@kernel.org>
-To:     Ahmad Fatoum <a.fatoum@pengutronix.de>
+        id S2387621AbgJBIef (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Fri, 2 Oct 2020 04:34:35 -0400
+Received: from lindbergh.monkeyblade.net ([23.128.96.19]:56438 "EHLO
+        lindbergh.monkeyblade.net" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
+        with ESMTP id S1725961AbgJBIef (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Fri, 2 Oct 2020 04:34:35 -0400
+Received: from metis.ext.pengutronix.de (metis.ext.pengutronix.de [IPv6:2001:67c:670:201:290:27ff:fe1d:cc33])
+        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id EB8CCC0613D0
+        for <devicetree@vger.kernel.org>; Fri,  2 Oct 2020 01:34:34 -0700 (PDT)
+Received: from gallifrey.ext.pengutronix.de ([2001:67c:670:201:5054:ff:fe8d:eefb] helo=[IPv6:::1])
+        by metis.ext.pengutronix.de with esmtp (Exim 4.92)
+        (envelope-from <a.fatoum@pengutronix.de>)
+        id 1kOGWN-0002M2-NK; Fri, 02 Oct 2020 10:34:31 +0200
+Subject: Re: [PATCH v2 08/12] ARM: dts: imx6dl-pico: fix board compatibles
+To:     Krzysztof Kozlowski <krzk@kernel.org>
 Cc:     Rob Herring <robh+dt@kernel.org>, Shawn Guo <shawnguo@kernel.org>,
         Sascha Hauer <s.hauer@pengutronix.de>,
         Pengutronix Kernel Team <kernel@pengutronix.de>,
@@ -47,8 +31,6 @@ Cc:     Rob Herring <robh+dt@kernel.org>, Shawn Guo <shawnguo@kernel.org>,
         Robert Jones <rjones@gateworks.com>,
         Li Yang <leoyang.li@nxp.com>, devicetree@vger.kernel.org,
         linux-kernel@vger.kernel.org, linux-arm-kernel@lists.infradead.org
-Subject: Re: [PATCH v2 08/12] ARM: dts: imx6dl-pico: fix board compatibles
-Message-ID: <20201002082012.GA6605@pi3>
 References: <20200930190143.27032-1-krzk@kernel.org>
  <20200930190143.27032-9-krzk@kernel.org>
  <0a0afea6-8cbb-3e89-5a4f-89660c942ca3@pengutronix.de>
@@ -56,64 +38,95 @@ References: <20200930190143.27032-1-krzk@kernel.org>
  <027fd826-6822-9e92-0c6c-2ebed63f4a07@pengutronix.de>
  <20201001103704.GA26287@kozik-lap>
  <7fcea21d-4651-9ba7-5331-86530296a847@pengutronix.de>
+ <20201002082012.GA6605@pi3>
+From:   Ahmad Fatoum <a.fatoum@pengutronix.de>
+Message-ID: <784e0528-f4c1-5c0f-44e8-b19afbffe3ba@pengutronix.de>
+Date:   Fri, 2 Oct 2020 10:34:29 +0200
+User-Agent: Mozilla/5.0 (X11; Linux x86_64; rv:68.0) Gecko/20100101
+ Thunderbird/68.12.0
 MIME-Version: 1.0
+In-Reply-To: <20201002082012.GA6605@pi3>
 Content-Type: text/plain; charset=utf-8
-Content-Disposition: inline
-In-Reply-To: <7fcea21d-4651-9ba7-5331-86530296a847@pengutronix.de>
+Content-Language: en-US
+Content-Transfer-Encoding: 7bit
+X-SA-Exim-Connect-IP: 2001:67c:670:201:5054:ff:fe8d:eefb
+X-SA-Exim-Mail-From: a.fatoum@pengutronix.de
+X-SA-Exim-Scanned: No (on metis.ext.pengutronix.de); SAEximRunCond expanded to false
+X-PTX-Original-Recipient: devicetree@vger.kernel.org
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-On Fri, Oct 02, 2020 at 09:41:28AM +0200, Ahmad Fatoum wrote:
-> Hello,
+Hello,
+
+On 10/2/20 10:20 AM, Krzysztof Kozlowski wrote:
+> On Fri, Oct 02, 2020 at 09:41:28AM +0200, Ahmad Fatoum wrote:
+>> Hello,
+>>
+>> On 10/1/20 12:37 PM, Krzysztof Kozlowski wrote:
+>>>> The existing binding doesn't cover these boards then and needs to be
+>>>> extended, no? How about following patch?
+>>>
+>>> What do you mean it doesn't cover? It was added exactly to handle them:
+>>> +              - technexion,imx6q-pico-dwarf   # TechNexion i.MX6Q Pico-Dwarf
+>>> +              - technexion,imx6q-pico-hobbit  # TechNexion i.MX6Q Pico-Hobbit
+>>> +              - technexion,imx6q-pico-nymph   # TechNexion i.MX6Q Pico-Nymph
+>>> +              - technexion,imx6q-pico-pi      # TechNexion i.MX6Q Pico-Pi
+>>>
+>>
+>> Still they are unused. So I'd think these boards should be handled like boards
+>> that predated bindings: a binding is written that doesn't break existing users.
 > 
-> On 10/1/20 12:37 PM, Krzysztof Kozlowski wrote:
-> >> The existing binding doesn't cover these boards then and needs to be
-> >> extended, no? How about following patch?
-> > 
-> > What do you mean it doesn't cover? It was added exactly to handle them:
-> > +              - technexion,imx6q-pico-dwarf   # TechNexion i.MX6Q Pico-Dwarf
-> > +              - technexion,imx6q-pico-hobbit  # TechNexion i.MX6Q Pico-Hobbit
-> > +              - technexion,imx6q-pico-nymph   # TechNexion i.MX6Q Pico-Nymph
-> > +              - technexion,imx6q-pico-pi      # TechNexion i.MX6Q Pico-Pi
-> > 
+> OK, let's assume the binding is not correct and DTSes are good.
 > 
-> Still they are unused. So I'd think these boards should be handled like boards
-> that predated bindings: a binding is written that doesn't break existing users.
+>>
+>>>> [I guess we need to keep the two-compatible list they were originally
+>>>>  in for compatibility even if it's unused among upstream device trees?]
+>>>
+>>> You want to change both the binding (thus breaking the ABI) and update
+>>> the DTS to reflect new ABI. Then why having a binding at all?
+>>
+>> If we leave the old two-compatible enumeration intact, there is no ABI broken.
+> 
+> Just to clarify, because I don't get here the "no ABI broken" part:
+> ABI is the binding, not the DTS. We can change intree DTS as we like,
+> replace compatibles, add nodes, remove nodes. There is no stability
+> requirement for DTS contents.
+> If we leave two-compatible binding intact, it is a broken binding since
+> beginning. Removing non-working, fake ABI is not breaking it because it
+> could never work.
 
-OK, let's assume the binding is not correct and DTSes are good.
+Then I misunderstood you. I was thinking about possible out-of-tree users
+that have boards based on this and are adhering to the binding. Dropping
+the binding would break those (albeit it's a quite manageable form of
+brokenness here).
+
+>>> I would assume that either binding is correct or DTS. You propose that
+>>> both are wrong and both need changes... in such case this is clearly
+>>> broken.
+>>
+>> IMO the DTS is the correct one. If you want to honor the author's intention
+>> that each base board has a different compatible, it should be an extra
+>> compatible and not replace the existing one that may be already in use.
+> 
+> OK, we can go with DTS approach. I fixed few of such cases as well,
+> assuming that DTS was intended and binding was incorrect. In such case
+> all boards will be documented under one compatible technexion,imx6q-pico
+> and DTS will not be changed.
+
+Sounds good. If further differentiation proves to be needed, it can be a
+new compatible added in a separate commit.
+
+Thanks
+Ahmad
 
 > 
-> >> [I guess we need to keep the two-compatible list they were originally
-> >>  in for compatibility even if it's unused among upstream device trees?]
-> > 
-> > You want to change both the binding (thus breaking the ABI) and update
-> > the DTS to reflect new ABI. Then why having a binding at all?
+> Best regards,
+> Krzysztof
 > 
-> If we leave the old two-compatible enumeration intact, there is no ABI broken.
 
-Just to clarify, because I don't get here the "no ABI broken" part:
-ABI is the binding, not the DTS. We can change intree DTS as we like,
-replace compatibles, add nodes, remove nodes. There is no stability
-requirement for DTS contents.
-
-If we leave two-compatible binding intact, it is a broken binding since
-beginning. Removing non-working, fake ABI is not breaking it because it
-could never work.
-
-> 
-> > I would assume that either binding is correct or DTS. You propose that
-> > both are wrong and both need changes... in such case this is clearly
-> > broken.
-> 
-> IMO the DTS is the correct one. If you want to honor the author's intention
-> that each base board has a different compatible, it should be an extra
-> compatible and not replace the existing one that may be already in use.
-
-OK, we can go with DTS approach. I fixed few of such cases as well,
-assuming that DTS was intended and binding was incorrect. In such case
-all boards will be documented under one compatible technexion,imx6q-pico
-and DTS will not be changed.
-
-Best regards,
-Krzysztof
+-- 
+Pengutronix e.K.                           |                             |
+Steuerwalder Str. 21                       | http://www.pengutronix.de/  |
+31137 Hildesheim, Germany                  | Phone: +49-5121-206917-0    |
+Amtsgericht Hildesheim, HRA 2686           | Fax:   +49-5121-206917-5555 |
