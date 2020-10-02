@@ -2,142 +2,148 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from vger.kernel.org (vger.kernel.org [23.128.96.18])
-	by mail.lfdr.de (Postfix) with ESMTP id A6602281CAE
-	for <lists+devicetree@lfdr.de>; Fri,  2 Oct 2020 22:12:34 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTP id 1844A281CF4
+	for <lists+devicetree@lfdr.de>; Fri,  2 Oct 2020 22:30:07 +0200 (CEST)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S1725783AbgJBUMa (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Fri, 2 Oct 2020 16:12:30 -0400
-Received: from mail.baikalelectronics.com ([87.245.175.226]:52614 "EHLO
-        mail.baikalelectronics.ru" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S1725300AbgJBUMa (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Fri, 2 Oct 2020 16:12:30 -0400
-Received: from localhost (unknown [127.0.0.1])
-        by mail.baikalelectronics.ru (Postfix) with ESMTP id 171BA803017F;
-        Fri,  2 Oct 2020 20:12:24 +0000 (UTC)
-X-Virus-Scanned: amavisd-new at baikalelectronics.ru
-Received: from mail.baikalelectronics.ru ([127.0.0.1])
-        by localhost (mail.baikalelectronics.ru [127.0.0.1]) (amavisd-new, port 10024)
-        with ESMTP id j4oElvGK0yI3; Fri,  2 Oct 2020 23:12:22 +0300 (MSK)
-Date:   Fri, 2 Oct 2020 23:12:21 +0300
-From:   Serge Semin <Sergey.Semin@baikalelectronics.ru>
-To:     Andy Shevchenko <andy.shevchenko@gmail.com>
-CC:     Serge Semin <fancer.lancer@gmail.com>,
-        Mark Brown <broonie@kernel.org>,
-        Alexey Malahov <Alexey.Malahov@baikalelectronics.ru>,
-        Ramil Zaripov <Ramil.Zaripov@baikalelectronics.ru>,
-        Pavel Parkhomenko <Pavel.Parkhomenko@baikalelectronics.ru>,
-        Lars Povlsen <lars.povlsen@microchip.com>,
-        "wuxu . wu" <wuxu.wu@huawei.com>, Feng Tang <feng.tang@intel.com>,
-        Rob Herring <robh+dt@kernel.org>,
-        linux-spi <linux-spi@vger.kernel.org>,
-        devicetree <devicetree@vger.kernel.org>,
-        Linux Kernel Mailing List <linux-kernel@vger.kernel.org>
-Subject: Re: [PATCH v3 02/21] spi: dw: Add DWC SSI capability
-Message-ID: <20201002201221.vaevfnyteu26pyol@mobilestation>
-References: <20201001222829.15977-1-Sergey.Semin@baikalelectronics.ru>
- <20201001222829.15977-3-Sergey.Semin@baikalelectronics.ru>
- <20201002101929.GW3956970@smile.fi.intel.com>
- <20201002171849.jhio6nz6r6jigrf3@mobilestation>
- <CAHp75Vd7KS+sGT=1aZLJXzQi+L3wZ1430dj1TmE=u3PUHoDz7Q@mail.gmail.com>
- <20201002194609.4l7fifu2kkxtrszo@mobilestation>
- <20201002200829.belx73ez3n4hympp@mobilestation>
+        id S1725782AbgJBUaC (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Fri, 2 Oct 2020 16:30:02 -0400
+Received: from mail.kernel.org ([198.145.29.99]:36164 "EHLO mail.kernel.org"
+        rhost-flags-OK-OK-OK-OK) by vger.kernel.org with ESMTP
+        id S1725355AbgJBU37 (ORCPT <rfc822;devicetree@vger.kernel.org>);
+        Fri, 2 Oct 2020 16:29:59 -0400
+Received: from mail-ot1-f53.google.com (mail-ot1-f53.google.com [209.85.210.53])
+        (using TLSv1.2 with cipher ECDHE-RSA-AES128-GCM-SHA256 (128/128 bits))
+        (No client certificate requested)
+        by mail.kernel.org (Postfix) with ESMTPSA id A08EF20738;
+        Fri,  2 Oct 2020 20:29:58 +0000 (UTC)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=kernel.org;
+        s=default; t=1601670598;
+        bh=Jq5FzMIKmv4HKvsTHTbzBndTI/C6/P9+f3xYup51fmQ=;
+        h=References:In-Reply-To:From:Date:Subject:To:Cc:From;
+        b=WwK+A1Vq7uhVXQ6AEmIpf3a+ikFA9l00RGtIbRbn7svPlKReu3uJ2XDx4v9mTHkTd
+         BqyTfMjccoipnL81D2qcj2Nf/t1e7JYGdsKdCM6HH9KysPZvHZjN5nznCks6UFbILu
+         zbvX4qFnrZ4ZC2FKS/kcgfrWAK0tlbs3Ie0RdyW0=
+Received: by mail-ot1-f53.google.com with SMTP id y5so2660532otg.5;
+        Fri, 02 Oct 2020 13:29:58 -0700 (PDT)
+X-Gm-Message-State: AOAM531eVWlxxd36c/4qpI9bV/qRpLrKVzhzU6yPnKlnnHyWgX5/ym4/
+        z4K8THe8kfNFrue5aNeHGiKe9JPaug72PQiHMg==
+X-Google-Smtp-Source: ABdhPJxjkMJXnwwneaZ30p+ovuBJv9kbNXIuM/tlm4T0DCPig5Sg2rY21BiwauWKc1Ygp6O0+2yBJfiJcTLJAo3+Voo=
+X-Received: by 2002:a9d:7998:: with SMTP id h24mr3076133otm.192.1601670597975;
+ Fri, 02 Oct 2020 13:29:57 -0700 (PDT)
 MIME-Version: 1.0
-Content-Type: text/plain; charset="us-ascii"
-Content-Disposition: inline
-In-Reply-To: <20201002200829.belx73ez3n4hympp@mobilestation>
-X-ClientProxiedBy: MAIL.baikal.int (192.168.51.25) To mail (192.168.51.25)
+References: <CAGETcx8owDP_Bu4oNCyHEsME8XpKygxghm8+yNc2RyMA4wyjCA@mail.gmail.com>
+ <20201001225952.3676755-1-saravanak@google.com> <CAL_JsqKOUkKBKyxPtZ+BFXPiOfm2uPXhgJPxKP=WS-qX6kSB0w@mail.gmail.com>
+ <CAGETcx-tq446JQN0RpKhtyCXB+Y_PUePN_tBZsUmtpO7othm4g@mail.gmail.com>
+In-Reply-To: <CAGETcx-tq446JQN0RpKhtyCXB+Y_PUePN_tBZsUmtpO7othm4g@mail.gmail.com>
+From:   Rob Herring <robh+dt@kernel.org>
+Date:   Fri, 2 Oct 2020 15:29:46 -0500
+X-Gmail-Original-Message-ID: <CAL_Jsq+6mxtFei3+1ic4c5XCftJ8nZK6_S5_d15yEXQ02BTNKw@mail.gmail.com>
+Message-ID: <CAL_Jsq+6mxtFei3+1ic4c5XCftJ8nZK6_S5_d15yEXQ02BTNKw@mail.gmail.com>
+Subject: Re: [PATCH v1] of: platform: Batch fwnode parsing in the
+ init_machine() path
+To:     Saravana Kannan <saravanak@google.com>
+Cc:     Frank Rowand <frowand.list@gmail.com>,
+        Geert Uytterhoeven <geert+renesas@glider.be>,
+        Greg Kroah-Hartman <gregkh@linuxfoundation.org>,
+        Grygorii Strashko <grygorii.strashko@ti.com>,
+        Laurent Pinchart <laurent.pinchart@ideasonboard.com>,
+        linux-omap <linux-omap@vger.kernel.org>,
+        "open list:THERMAL" <linux-pm@vger.kernel.org>,
+        Peter Ujfalusi <peter.ujfalusi@ti.com>,
+        "Rafael J. Wysocki" <rjw@rjwysocki.net>,
+        Tomi Valkeinen <tomi.valkeinen@ti.com>,
+        Tony Lindgren <tony@atomide.com>,
+        Ulf Hansson <ulf.hansson@linaro.org>,
+        Android Kernel Team <kernel-team@android.com>,
+        "open list:OPEN FIRMWARE AND FLATTENED DEVICE TREE BINDINGS" 
+        <devicetree@vger.kernel.org>,
+        "linux-kernel@vger.kernel.org" <linux-kernel@vger.kernel.org>
+Content-Type: text/plain; charset="UTF-8"
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-On Fri, Oct 02, 2020 at 11:08:29PM +0300, Serge Semin wrote:
-> On Fri, Oct 02, 2020 at 10:46:09PM +0300, Serge Semin wrote:
-> > On Fri, Oct 02, 2020 at 09:26:07PM +0300, Andy Shevchenko wrote:
-> > > On Fri, Oct 2, 2020 at 8:18 PM Serge Semin
-> > > <Sergey.Semin@baikalelectronics.ru> wrote:
-> > > >
-> > > > On Fri, Oct 02, 2020 at 01:19:29PM +0300, Andy Shevchenko wrote:
-> > > > > On Fri, Oct 02, 2020 at 01:28:10AM +0300, Serge Semin wrote:
-> > > > > > Currently DWC SSI core is supported by means of setting up the
-> > > > > > core-specific update_cr0() callback. It isn't suitable for multiple
-> > > > > > reasons. First of all having exported several methods doing the same thing
-> > > > > > but for different chips makes the code harder to maintain. Secondly the
-> > > > > > spi-dw-core driver exports the methods, then the spi-dw-mmio driver sets
-> > > > > > the private data callback with one of them so to be called by the core
-> > > > > > driver again. That makes the code logic too complicated. Thirdly using
-> > > > > > callbacks for just updating the CR0 register is problematic, since in case
-> > > > > > if the register needed to be updated from different parts of the code,
-> > > > > > we'd have to create another callback (for instance the SPI device-specific
-> > > > > > parameters don't need to be calculated each time the SPI transfer is
-> > > > > > submitted, so it's better to pre-calculate the CR0 data at the SPI-device
-> > > > > > setup stage).
-> > > > > >
-> > > > > > So keeping all the above in mind let's discard the update_cr0() callbacks,
-> > > > > > define a generic and static dw_spi_update_cr0() method and create the
-> > > > > > DW_SPI_CAP_DWC_SSI capability, which when enabled would activate the
-> > > > > > alternative CR0 register layout.
-> > > > > >
-> > > > > > While at it add the comments to the code path of the normal DW APB SSI
-> > > > > > controller setup to make the dw_spi_update_cr0() method looking coherent.
-> > > > >
-> > > >
-> > > > > What the point to increase indentation level and produce additional churn?
-> > > > > Can't you simply leave functions, unexport them, and call in one conditional of
-> > > > > whatever new function is called?
-> > > >
-> > > > I forgot to mention that in the commit log, there is another reason why it's
-> > > > better to create a generic dw_spi_update_cr0() instead of doing what you suggest.
-> > > > As it will be seen from the following up patches, the dw_spi_update_cr0() function
-> > > > (to be more precise it's successor, but anyway) will be used from the SPI memory
-> > > > ops implementation. So if-else-ing here and there isn't a good idea for
-> > > > maintainability. For the same reason of the maintainability it's better to have a
-> > > > generic method which reflects all the config peculiarities, so in case of any
-> > > > changes they would be not be forgotten to be introduced for both DWC SSI and DW
-> > > > APB SSI parts of the setup procedures. As I see it that overbeats the additional
-> > > > indentation level drawback.
-> > > 
-> > 
-> > > What I meant is to leave functions as is and call them under conditional
-> > > 
-> > > if ()
-> > >  call one
-> > > else
-> > >  call another
-> > 
-> > Yeah, I understood what you meant. What you suggest would be a better solution
-> > if I needed to call the dw_spi_update_cr0() method just from a single place of
-> > the driver (but in that case I wouldn't need to replace the callback-based
-> > approach with the Capabilities-based one at all). The thing is that the
-> > dw_spi_update_cr0() will be also called from the SPI memory exec_op() callback
-> > (see patch "[PATCH v3 17/21] spi: dw: Add memory operations support" and the
-> > method dw_spi_update_config() invocation) in the same way as it is called from
-> > the SPI core transfer-one callback. Following your suggestion I would have to
-> > implement the same "if () call one else call another" pattern there too. Copying
-> > it here and there would be a weak design from the maintainability point of view
-> > and from the coding style too. Much better is to create a generic
-> > dw_spi_update_cr0() (later in this patchset it will be renamed to
-> > dw_spi_update_config()...), which would work for both DWC SSI and DW APB SSI by
-> > embedding the "if (is_CAP) call one else call another" into the method itself as
-> > I suggested in this patch.
-> 
-> Oh, and the same "if-else" pattern would need to be either left in the
-> dw_spi_get_cr0()/dw_spi_prepare_cr0() or added around the dw_spi_prepare_cr0()
+On Fri, Oct 2, 2020 at 12:52 PM Saravana Kannan <saravanak@google.com> wrote:
+>
+> On Fri, Oct 2, 2020 at 7:08 AM Rob Herring <robh+dt@kernel.org> wrote:
+> >
+> > On Thu, Oct 1, 2020 at 5:59 PM Saravana Kannan <saravanak@google.com> wrote:
+> > >
+> > > When commit 93d2e4322aa7 ("of: platform: Batch fwnode parsing when
+> > > adding all top level devices") optimized the fwnode parsing when all top
+> > > level devices are added, it missed out optimizing this for platform
+> > > where the top level devices are added through the init_machine() path.
+> > >
+> > > This commit does the optimization for all paths by simply moving the
+> > > fw_devlink_pause/resume() inside of_platform_default_populate().
+> > >
+> > > Reported-by: Tomi Valkeinen <tomi.valkeinen@ti.com>
+> > > Signed-off-by: Saravana Kannan <saravanak@google.com>
+> > > ---
+> > >  drivers/of/platform.c | 19 +++++++++++++++----
+> > >  1 file changed, 15 insertions(+), 4 deletions(-)
+> > >
+> > > diff --git a/drivers/of/platform.c b/drivers/of/platform.c
+> > > index 071f04da32c8..79972e49b539 100644
+> > > --- a/drivers/of/platform.c
+> > > +++ b/drivers/of/platform.c
+> > > @@ -501,8 +501,21 @@ int of_platform_default_populate(struct device_node *root,
+> > >                                  const struct of_dev_auxdata *lookup,
+> > >                                  struct device *parent)
+> > >  {
+> > > -       return of_platform_populate(root, of_default_bus_match_table, lookup,
+> > > -                                   parent);
+> > > +       int ret;
+> > > +
+> > > +       /*
+> > > +        * fw_devlink_pause/resume() are only safe to be called around top
+> > > +        * level device addition due to locking constraints.
+> > > +        */
+> > > +       if (!root)
+> > > +               fw_devlink_pause();
+> > > +
+> > > +       ret = of_platform_populate(root, of_default_bus_match_table, lookup,
+> > > +                                  parent);
+> >
+> > of_platform_default_populate() vs. of_platform_populate() is just a
+> > different match table. I don't think the behavior should otherwise be
+> > different.
+> >
+> > There's also of_platform_probe() which has slightly different matching
+> > behavior. It should not behave differently either with respect to
+> > devlinks.
+>
+> So I'm trying to do this only when the top level devices are added for
+> the first time. of_platform_default_populate() seems to be the most
+> common path. For other cases, I think we just need to call
+> fw_devlink_pause/resume() wherever the top level devices are added for
+> the first time.
 
-* I meant dw_spi_update_cr0() here...
+> As I said in the other email, we can't add
+> fw_devlink_pause/resume() by default to of_platform_populate().
 
--Sergey
+If you detect it's the first time, you could?
 
-> method invocation with creating two versions of it. So no, I'd stick with the
-> design I suggested in this patch: just two "if-else"s and the generic versions
-> of the dw_spi_prepare_cr0() and dw_spi_update_cr0() functions.
-> 
-> -Sergey
-> 
-> > 
-> > -Sergey
-> > 
-> > > 
-> > > 
-> > > -- 
-> > > With Best Regards,
-> > > Andy Shevchenko
+>
+> Do you have other ideas for achieving "call fw_devlink_pause/resume()
+> only when top level devices are added for the first time"?
+
+Eliminate the cases not using of_platform_default_populate().
+
+There's 2 main reasons for the non default cases. The first is
+auxdata. Really, for any modern platform that people care about (and
+care about the boot time), they should not be using auxdata. That's
+just for the DT transition. You know, a temporary thing from 9 years
+ago.
+
+The 2nd is having some parent device. This is typically an soc_device.
+I really think this is kind of dumb. We should either have the parent
+device always or never. After all, everything's an SoC right? Of
+course changing that will break some Android systems since they like
+to use non-ABI sysfs device paths.
+
+There could also be some initcall ordering issues. IIRC, in the last
+round of cleanups in this area, at91 gpio/pinctrl had an issue with
+that. I think I have a half done fix for that I started.
+
+Rob
