@@ -2,149 +2,125 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from vger.kernel.org (vger.kernel.org [23.128.96.18])
-	by mail.lfdr.de (Postfix) with ESMTP id 58CF9281BB1
-	for <lists+devicetree@lfdr.de>; Fri,  2 Oct 2020 21:22:49 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTP id 89CC2281C34
+	for <lists+devicetree@lfdr.de>; Fri,  2 Oct 2020 21:42:50 +0200 (CEST)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S2388503AbgJBTWg (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Fri, 2 Oct 2020 15:22:36 -0400
-Received: from mailout1.w1.samsung.com ([210.118.77.11]:41156 "EHLO
-        mailout1.w1.samsung.com" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S2388488AbgJBTWW (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Fri, 2 Oct 2020 15:22:22 -0400
-Received: from eucas1p2.samsung.com (unknown [182.198.249.207])
-        by mailout1.w1.samsung.com (KnoxPortal) with ESMTP id 20201002192218euoutp0167ae62187ec02f08edfda75861d0a944~6QzsAuXnr0907809078euoutp01G
-        for <devicetree@vger.kernel.org>; Fri,  2 Oct 2020 19:22:18 +0000 (GMT)
-DKIM-Filter: OpenDKIM Filter v2.11.0 mailout1.w1.samsung.com 20201002192218euoutp0167ae62187ec02f08edfda75861d0a944~6QzsAuXnr0907809078euoutp01G
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=samsung.com;
-        s=mail20170921; t=1601666538;
-        bh=gd7YoCV7kMqP+MzczzH7033jKrGcHE5ydNMEk/LHvFg=;
-        h=From:To:Cc:Subject:Date:In-Reply-To:References:From;
-        b=Ot9JnM16PcTpVlKv64yi0e6eCnz5/dXHFULxhPdeKGdLbybEbRJYkK1xupnOBZEFn
-         B8IdOhJfqQjgDspWvKJQziTf5ds6p/y5XZoSEzIL8iNmS0Tit4p0D2M+SDiXx1ic+k
-         fi/+xHj+Cu23cSW9nyNWO//rLV3vDKl7W6S/F0Po=
-Received: from eusmges3new.samsung.com (unknown [203.254.199.245]) by
-        eucas1p2.samsung.com (KnoxPortal) with ESMTP id
-        20201002192217eucas1p229797112417bec5326ecd0e0e2b899e6~6QzrVYjk61780917809eucas1p2e;
-        Fri,  2 Oct 2020 19:22:17 +0000 (GMT)
-Received: from eucas1p2.samsung.com ( [182.198.249.207]) by
-        eusmges3new.samsung.com (EUCPMTA) with SMTP id 7F.37.06318.9ED777F5; Fri,  2
-        Oct 2020 20:22:17 +0100 (BST)
-Received: from eusmtrp2.samsung.com (unknown [182.198.249.139]) by
-        eucas1p2.samsung.com (KnoxPortal) with ESMTPA id
-        20201002192217eucas1p2357f80b100fb130d1ef1ac281042ff7c~6Qzq6z83f1780917809eucas1p2d;
-        Fri,  2 Oct 2020 19:22:17 +0000 (GMT)
-Received: from eusmgms1.samsung.com (unknown [182.198.249.179]) by
-        eusmtrp2.samsung.com (KnoxPortal) with ESMTP id
-        20201002192216eusmtrp217d13b792d9dea8bd9054d90c28132ce~6Qzq6K-B43070930709eusmtrp29;
-        Fri,  2 Oct 2020 19:22:16 +0000 (GMT)
-X-AuditID: cbfec7f5-38bff700000018ae-25-5f777de98ddc
-Received: from eusmtip1.samsung.com ( [203.254.199.221]) by
-        eusmgms1.samsung.com (EUCPMTA) with SMTP id B7.3F.06314.8ED777F5; Fri,  2
-        Oct 2020 20:22:16 +0100 (BST)
-Received: from localhost (unknown [106.120.51.46]) by eusmtip1.samsung.com
-        (KnoxPortal) with ESMTPA id
-        20201002192216eusmtip13f6e70dce507beb65d8c668358369ef2~6QzqsiWMq0278102781eusmtip1G;
-        Fri,  2 Oct 2020 19:22:16 +0000 (GMT)
-From:   =?UTF-8?q?=C5=81ukasz=20Stelmach?= <l.stelmach@samsung.com>
-To:     "David S. Miller" <davem@davemloft.net>,
-        Jakub Kicinski <kuba@kernel.org>,
-        Krzysztof Kozlowski <krzk@kernel.org>,
-        Kukjin Kim <kgene@kernel.org>,
-        Rob Herring <robh+dt@kernel.org>,
-        Russell King <linux@armlinux.org.uk>,
-        Andrew Lunn <andrew@lunn.ch>, jim.cromie@gmail.com,
-        linux-arm-kernel@lists.infradead.org, linux-kernel@vger.kernel.org,
-        linux-samsung-soc@vger.kernel.org, netdev@vger.kernel.org,
-        devicetree@vger.kernel.org
-Cc:     =?UTF-8?q?Bart=C5=82omiej=20=C5=BBolnierkiewicz?= 
-        <b.zolnierkie@samsung.com>,
-        Marek Szyprowski <m.szyprowski@samsung.com>,
-        =?UTF-8?q?=C5=81ukasz=20Stelmach?= <l.stelmach@samsung.com>
-Subject: [PATCH v2 4/4] ARM: defconfig: Enable ax88796c driver
-Date:   Fri,  2 Oct 2020 21:22:10 +0200
-Message-Id: <20201002192210.19967-5-l.stelmach@samsung.com>
-X-Mailer: git-send-email 2.26.2
-In-Reply-To: <20201002192210.19967-1-l.stelmach@samsung.com>
+        id S1726813AbgJBTmu (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Fri, 2 Oct 2020 15:42:50 -0400
+Received: from lindbergh.monkeyblade.net ([23.128.96.19]:46818 "EHLO
+        lindbergh.monkeyblade.net" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
+        with ESMTP id S1725991AbgJBTmt (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Fri, 2 Oct 2020 15:42:49 -0400
+Received: from mail-io1-xd42.google.com (mail-io1-xd42.google.com [IPv6:2607:f8b0:4864:20::d42])
+        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 9AD6DC0613D0;
+        Fri,  2 Oct 2020 12:42:49 -0700 (PDT)
+Received: by mail-io1-xd42.google.com with SMTP id u6so2782264iow.9;
+        Fri, 02 Oct 2020 12:42:49 -0700 (PDT)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+        d=gmail.com; s=20161025;
+        h=mime-version:references:in-reply-to:from:date:message-id:subject:to
+         :cc;
+        bh=Tp0tOCwH4dQMQU1jbfVhp24TqbT0i1fDhMp/Wjobwn8=;
+        b=Ap7BSOIg4OYbxFaSN2BlpmRPL+ZAkBcTZrouR4dsU30UKpICJijKJ/ZKAS6wW4oHaR
+         OyP+3l6C6uMDU03Q6tpXnqhFDVFB9IR6XytRpunCtgNVyC/DAL2wSHwIIHwINrTOsmgL
+         QvefHlNHwW3UDe97tfHkM5PAZ+gY/Pgs469Suewfhkcgws4I/b3tXId3xiEIk73Ka6Mj
+         PHfroUsC2mTBZ4yJt1f8hgd9NEq9hYMX7smV3CUH9W3eHBrUwl5/wJDAC9tzwmVfaG5H
+         Hmcrx3ygdd1ejXFkr+kAlZtS7ISHo96Xloghd5SLNeG571l9IZ3cm2WB34KnlHXP9CRz
+         bseQ==
+X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+        d=1e100.net; s=20161025;
+        h=x-gm-message-state:mime-version:references:in-reply-to:from:date
+         :message-id:subject:to:cc;
+        bh=Tp0tOCwH4dQMQU1jbfVhp24TqbT0i1fDhMp/Wjobwn8=;
+        b=Ygyb5BjDHCmELWBytGYlxN9GAodWCkmKi3Jqiux/WVmrPAiHDylAYHq4WdivKLC5pK
+         fr4zbx1tuFa9SADc5xf0cnYglIisnvQ5eQP6dFM2mYVc6j6vgMv997lYl8pvw7SbEIa8
+         pMq4LV+LNSwxIztDZ602MJ6Qxeou5emMJVDmhBXnYYbS0i0oJOMtAja2446CYqJQE+66
+         /zFVUvOY8pdtzmamfmgQr2/Ob9cDL15a/hgmyXFihs6JFpQoII/Qvx+nyCvB/K4F7MJd
+         eg6R+JWsLv12O24vZ7ubp1eUw4x52Rb8P+aWKYSaTQVf/cd+JgYl1806pTetg+mk7Z/f
+         1TCA==
+X-Gm-Message-State: AOAM533UzljD/HOaOIvA2n8p8+hAu8iXK3fFZ7KtsSPMIqjxfuc2ofzj
+        MGb1OKYfOkaX2nd58mgeCwniEi3+9RVYvpbHU5k=
+X-Google-Smtp-Source: ABdhPJxY2bgAHNcLjUx4s5JpdfOPAFmahzwdpqCgDX5pvJ9JC7WhorJMYbgzNc+x15ANKY9rU+GBxXmAPuGg6Uzmn14=
+X-Received: by 2002:a6b:be44:: with SMTP id o65mr3195330iof.53.1601667768748;
+ Fri, 02 Oct 2020 12:42:48 -0700 (PDT)
 MIME-Version: 1.0
-Organization: Samsung R&D Institute Poland
-Content-Transfer-Encoding: 8bit
-X-Brightmail-Tracker: H4sIAAAAAAAAA01Se0hTURzm7N673a1mZ5vkTy2DVUgvLQw5pVhm1IX+KXpRpLbyopKvdjUz
-        CMXeUllaacsoonCZpk1dbtTSIWWtnKL4CDVKKawka2WlvbZdo/77fud83/f7vsNhKXU3E8Am
-        p2Xy+jRdilaqoM0PvzsXDR/Mjl/c2qQhzn47Re6UVjOkzHmYJleaWxnSNdLHkMLBdxRxOmtk
-        pM18miG9diMipsEuhnRYy6Sk1GmTEPv5+4hUNffLyMOr08mR+82ylZjr6GqnuLqbvRLOYuiX
-        caaKE1Ku9nouZ2lwSbjTdRWIc5mC1rPbFZEJfEryPl4fGrVTkdTtaJFlHJHv/1n4ms5DE7IC
-        JGcBL4UXtk6mAClYNTYiqL/8ihKHzwieH3UgcXAhcFaVUH8lvy0NXrkalyMwdoSJpDcIyg53
-        I8+FFEdD4Y0Wr68vNlPwvvYa7RkobENgGTjntmJZDY4Cy5OFHgGN50JzS55XrMQR0Nk+LhW3
-        zYJj5Xe9WI4jwZpfIxM5Knh8cYj24Gl4PlTmd3sx5eYfqr/k7QD4BAsTlk9INFoNT186Jito
-        4O2juskXmOGuc0XiyQM4F4qLwkXtSQTmsm+0yImAvlZPINa9YB5UW0NFejQMnF0rQh/oGVGJ
-        CXygyFxCicdKOH5ULXrMgduF9yb9AuDUWyM6g7SG/7oY/stv+LfqKqIqkB+fJaQm8kJYGp8d
-        IuhShay0xJDd6akm5P5ujl+PvjQg249ddoRZpJ2qZBdnx6sZ3T4hJ9WOgKW0vspVzxxxamWC
-        LucAr0+P12el8IIdBbK01k8Zdm04Vo0TdZn8Hp7P4PV/byWsPCAPmTZtyN5VuUl4VaIhEQVT
-        Nio0aOpIOw6vnrntjcnaY0CNF2y9nbcuWkYztwZ/tBZnLfCP3r/owHlXbaMjXOUflK5PiFu3
-        GRljVR/WZJbsuNsU2Da6fG8kK/d5kDLxcllNT+meIRN7bGg2H+P6um5wCz8WNMaNMqqBmBWN
-        MePB97S0kKRbMp/SC7o/iaLWjWoDAAA=
-X-Brightmail-Tracker: H4sIAAAAAAAAA+NgFnrJIsWRmVeSWpSXmKPExsVy+t/xu7ovasvjDZ6sMLc4f/cQs8XGGetZ
-        Leacb2GxmH/kHKvFtbd3WC36H79mtjh/fgO7xYVtfawWNw+tYLTY9Pgaq8XlXXPYLGac38dk
-        cWjqXkaLtUfuslscWyBm0br3CLuDgMflaxeZPbasvMnksXPWXXaPTas62Tw2L6n32LnjM5NH
-        35ZVjB6fN8kFcETp2RTll5akKmTkF5fYKkUbWhjpGVpa6BmZWOoZGpvHWhmZKunb2aSk5mSW
-        pRbp2yXoZVw/fYK9oJWz4m//M5YGxt/sXYycHBICJhL/d+4Asrk4hASWMkps2nqMsYuRAygh
-        JbFybjpEjbDEn2tdbBA1Txkldj7fxQiSYBNwlOhfeoIVJCEicIhZ4tuTMywgDrPAPkaJ/UcX
-        s4NMEhawk9h5SgekgUVAVeLIiQawZl4Ba4krF3+xQWyQl2hfvh3M5hSwkdjVtAHsOiGgmss3
-        j0LVC0qcnPmEBWQks4C6xPp5QiBhfgEtiTVN11lAbGagMc1bZzNPYBSahaRjFkLHLCRVCxiZ
-        VzGKpJYW56bnFhvqFSfmFpfmpesl5+duYgRG87ZjPzfvYLy0MfgQowAHoxIPb4JRebwQa2JZ
-        cWXuIUYJDmYlEV6ns6fjhHhTEiurUovy44tKc1KLDzGaAr05kVlKNDkfmGjySuINTQ3NLSwN
-        zY3Njc0slMR5OwQOxggJpCeWpGanphakFsH0MXFwSjUwzlzzt3WX6nse9wWtTlfuyf/+92nz
-        itMS8Uvzqpx2XWO5fHpi1d2G2+JtdR3333sqmoR72egwSsnHqq27rWTvZHbXkO2h7aKNa449
-        cjBtsGowtFRX8a50vl4n+3rx+fjV3S9aXNINZk3izdM0WyIS0vg7sKEsx0RVwvDTkataefLN
-        d7TtJnkosRRnJBpqMRcVJwIAu8ZsyfwCAAA=
-X-CMS-MailID: 20201002192217eucas1p2357f80b100fb130d1ef1ac281042ff7c
-X-Msg-Generator: CA
-Content-Type: text/plain; charset="utf-8"
-X-RootMTR: 20201002192217eucas1p2357f80b100fb130d1ef1ac281042ff7c
-X-EPHeader: CA
-CMS-TYPE: 201P
-X-CMS-RootMailID: 20201002192217eucas1p2357f80b100fb130d1ef1ac281042ff7c
-References: <20201002192210.19967-1-l.stelmach@samsung.com>
-        <CGME20201002192217eucas1p2357f80b100fb130d1ef1ac281042ff7c@eucas1p2.samsung.com>
+References: <20200928114445.19689-1-sudeep.holla@arm.com> <20200928114445.19689-5-sudeep.holla@arm.com>
+In-Reply-To: <20200928114445.19689-5-sudeep.holla@arm.com>
+From:   Jassi Brar <jassisinghbrar@gmail.com>
+Date:   Fri, 2 Oct 2020 14:42:37 -0500
+Message-ID: <CABb+yY11d8uS34yfE6-c_NP6n5pmxvmjs67aOKEAduhUpnU3Uw@mail.gmail.com>
+Subject: Re: [PATCH 4/4] mailbox: arm_mhu: Add ARM MHU doorbell driver
+To:     Sudeep Holla <sudeep.holla@arm.com>
+Cc:     Jassi Brar <jaswinder.singh@linaro.org>,
+        Viresh Kumar <viresh.kumar@linaro.org>,
+        ALKML <linux-arm-kernel@lists.infradead.org>,
+        DTML <devicetree@vger.kernel.org>,
+        LKML <linux-kernel@vger.kernel.org>,
+        Vincent Guittot <vincent.guittot@linaro.org>,
+        Frank Rowand <frowand.list@gmail.com>,
+        Bjorn Andersson <bjorn.andersson@linaro.org>,
+        Rob Herring <robh@kernel.org>, Rob Herring <robh+dt@kernel.org>
+Content-Type: text/plain; charset="UTF-8"
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-Enable ax88796c driver for the ethernet chip on Exynos3250-based
-ARTIK5 boards.
+On Mon, Sep 28, 2020 at 6:45 AM Sudeep Holla <sudeep.holla@arm.com> wrote:
 
-Signed-off-by: Łukasz Stelmach <l.stelmach@samsung.com>
----
- arch/arm/configs/exynos_defconfig   | 2 ++
- arch/arm/configs/multi_v7_defconfig | 2 ++
- 2 files changed, 4 insertions(+)
+> +
+> +static void mhu_db_shutdown(struct mbox_chan *chan)
+> +{
+> +       struct mhu_db_channel *chan_info = chan->con_priv;
+> +       struct mbox_controller *mbox = &chan_info->mhu->mbox;
+> +       int i;
+> +
+> +       for (i = 0; i < mbox->num_chans; i++)
+> +               if (chan == &mbox->chans[i])
+> +                       break;
+> +
+> +       if (mbox->num_chans == i) {
+> +               dev_warn(mbox->dev, "Request to free non-existent channel\n");
+> +               return;
+> +       }
+> +
+> +       /* Reset channel */
+> +       mhu_db_mbox_clear_irq(chan);
+> +       chan->con_priv = NULL;
+>
+request->free->request will fail because of this NULL assignment.
+Maybe add a 'taken' flag in mhu_db_channel, which should also be
+checked before calling mbox_chan_received_data because the data may
+arrive for a now relinquished channel.
 
-diff --git a/arch/arm/configs/exynos_defconfig b/arch/arm/configs/exynos_defconfig
-index 6e8b5ff0859c..82480b2bf545 100644
---- a/arch/arm/configs/exynos_defconfig
-+++ b/arch/arm/configs/exynos_defconfig
-@@ -107,6 +107,8 @@ CONFIG_MD=y
- CONFIG_BLK_DEV_DM=y
- CONFIG_DM_CRYPT=m
- CONFIG_NETDEVICES=y
-+CONFIG_NET_VENDOR_ASIX=y
-+CONFIG_SPI_AX88796C=y
- CONFIG_SMSC911X=y
- CONFIG_USB_RTL8150=m
- CONFIG_USB_RTL8152=y
-diff --git a/arch/arm/configs/multi_v7_defconfig b/arch/arm/configs/multi_v7_defconfig
-index e9e76e32f10f..a8b4e95d4148 100644
---- a/arch/arm/configs/multi_v7_defconfig
-+++ b/arch/arm/configs/multi_v7_defconfig
-@@ -241,6 +241,8 @@ CONFIG_SATA_HIGHBANK=y
- CONFIG_SATA_MV=y
- CONFIG_SATA_RCAR=y
- CONFIG_NETDEVICES=y
-+CONFIG_NET_VENDOR_ASIX=y
-+CONFIG_SPI_AX88796C=m
- CONFIG_VIRTIO_NET=y
- CONFIG_B53_SPI_DRIVER=m
- CONFIG_B53_MDIO_DRIVER=m
--- 
-2.26.2
-
+> +
+> +static struct mbox_chan *mhu_db_mbox_xlate(struct mbox_controller *mbox,
+> +                                          const struct of_phandle_args *spec)
+> +{
+> +       struct arm_mhu *mhu = dev_get_drvdata(mbox->dev);
+> +       struct mhu_db_channel *chan_info;
+> +       struct mbox_chan *chan = NULL;
+> +       unsigned int pchan = spec->args[0];
+> +       unsigned int doorbell = spec->args[1];
+> +       int i;
+> +
+> +       /* Bounds checking */
+> +       if (pchan >= MHU_CHANS || doorbell >= MHU_NUM_DOORBELLS) {
+> +               dev_err(mbox->dev,
+> +                       "Invalid channel requested pchan: %d doorbell: %d\n",
+> +                       pchan, doorbell);
+> +               return ERR_PTR(-EINVAL);
+> +       }
+> +
+> +       for (i = 0; i < mbox->num_chans; i++) {
+> +               chan_info = mbox->chans[i].con_priv;
+> +
+> +               /* Is requested channel free? */
+> +               if (chan_info &&
+> +                   mbox->dev == chan_info->mhu->dev &&
+> +                   pchan == chan_info->pchan &&
+> +                   doorbell == chan_info->doorbell) {
+> +                       dev_err(mbox->dev, "Channel in use\n");
+> +                       return ERR_PTR(-EBUSY);
+> +               }
+> +
+You may want to reuse mhu_db_mbox_to_channel.
