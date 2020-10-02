@@ -2,200 +2,111 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from vger.kernel.org (vger.kernel.org [23.128.96.18])
-	by mail.lfdr.de (Postfix) with ESMTP id 2E85B280F86
-	for <lists+devicetree@lfdr.de>; Fri,  2 Oct 2020 11:08:36 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTP id 52122280F99
+	for <lists+devicetree@lfdr.de>; Fri,  2 Oct 2020 11:11:29 +0200 (CEST)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S1726288AbgJBJIf (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Fri, 2 Oct 2020 05:08:35 -0400
-Received: from hqnvemgate26.nvidia.com ([216.228.121.65]:9002 "EHLO
-        hqnvemgate26.nvidia.com" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S1725993AbgJBJIf (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Fri, 2 Oct 2020 05:08:35 -0400
-Received: from hqmail.nvidia.com (Not Verified[216.228.121.13]) by hqnvemgate26.nvidia.com (using TLS: TLSv1.2, AES256-SHA)
-        id <B5f76ee060000>; Fri, 02 Oct 2020 02:08:22 -0700
-Received: from [10.25.97.216] (172.20.13.39) by HQMAIL107.nvidia.com
- (172.20.187.13) with Microsoft SMTP Server (TLS) id 15.0.1473.3; Fri, 2 Oct
- 2020 09:08:27 +0000
-Subject: Re: [PATCH v3 10/13] ASoC: tegra: Add audio graph based card driver
-To:     Kuninori Morimoto <kuninori.morimoto.gx@renesas.com>
-CC:     <broonie@kernel.org>, <lgirdwood@gmail.com>, <robh+dt@kernel.org>,
-        <pierre-louis.bossart@linux.intel.com>, <perex@perex.cz>,
-        <tiwai@suse.com>, <thierry.reding@gmail.com>,
-        <jonathanh@nvidia.com>, <alsa-devel@alsa-project.org>,
-        <devicetree@vger.kernel.org>, <linux-tegra@vger.kernel.org>,
-        <linux-kernel@vger.kernel.org>, <sharadg@nvidia.com>,
-        <mkumard@nvidia.com>, <viswanathl@nvidia.com>,
-        <rlokhande@nvidia.com>, <dramesh@nvidia.com>,
-        <atalambedu@nvidia.com>, <nwartikar@nvidia.com>,
-        <swarren@nvidia.com>, <nicoleotsuka@gmail.com>
-References: <1601573587-15288-1-git-send-email-spujar@nvidia.com>
- <1601573587-15288-11-git-send-email-spujar@nvidia.com>
- <87362xkxdv.wl-kuninori.morimoto.gx@renesas.com>
-From:   Sameer Pujar <spujar@nvidia.com>
-Message-ID: <25771697-fc85-b377-ae99-a5e0957ba02d@nvidia.com>
-Date:   Fri, 2 Oct 2020 14:38:24 +0530
-User-Agent: Mozilla/5.0 (Windows NT 10.0; WOW64; rv:68.0) Gecko/20100101
- Thunderbird/68.10.0
+        id S2387561AbgJBJL2 (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Fri, 2 Oct 2020 05:11:28 -0400
+Received: from lindbergh.monkeyblade.net ([23.128.96.19]:33894 "EHLO
+        lindbergh.monkeyblade.net" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
+        with ESMTP id S1725993AbgJBJL2 (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Fri, 2 Oct 2020 05:11:28 -0400
+Received: from mail-wm1-x343.google.com (mail-wm1-x343.google.com [IPv6:2a00:1450:4864:20::343])
+        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id DA65FC0613D0;
+        Fri,  2 Oct 2020 02:11:27 -0700 (PDT)
+Received: by mail-wm1-x343.google.com with SMTP id j136so926381wmj.2;
+        Fri, 02 Oct 2020 02:11:27 -0700 (PDT)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+        d=gmail.com; s=20161025;
+        h=subject:to:cc:references:from:message-id:date:user-agent
+         :mime-version:in-reply-to:content-language:content-transfer-encoding;
+        bh=n8sjYxuBkwwfLCJdcsNIECFFL7vsWBubB9+n9PHGGPs=;
+        b=TCdfGntsyw1waB7d5uBvcniLx8tutSj7FDcOqvJU4dyVkDfnDWJ7IhasTN846qxkRF
+         eUvNlYKJ60wEdTN0SxEicLHUPbdVzztUVIkfC6nNeWtfsRQmqRZgu2UJynLpfcWrFq7Y
+         +C82+9ko/wvLdY7CmZPElmbUnO3WXiI8VCKr9TgiHKCeJyDhfXmggU6DX/AGICVxLwnW
+         y+kppNhU4mF28ptAXoXC6pqbG28FxSBRpMrnzD/JhC8P2/5TxPjJ3VvgHv2VKBYelR2L
+         zNJ6Kzu0yp/qHcih9cM51/HNxs1+UxqB/OA/CVr8KBOkAoDweaiUJhNkbrWWBUhqINm8
+         y7kw==
+X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+        d=1e100.net; s=20161025;
+        h=x-gm-message-state:subject:to:cc:references:from:message-id:date
+         :user-agent:mime-version:in-reply-to:content-language
+         :content-transfer-encoding;
+        bh=n8sjYxuBkwwfLCJdcsNIECFFL7vsWBubB9+n9PHGGPs=;
+        b=KxCTgSMMssZQE/EVdI/M0LoyOS5I3Bf5NqkTihGEPI4N193DBezF3SPadxmh/t6Zru
+         rCRyDBBMEg92lVa1/JuLGgWMY0mrEux92p3nWEGJvgf3GzH1ZW+L5jij6v3+B9nYzvZF
+         woIuqsachUjFqVSUoUvL+SOY9DM8s+Rbq3rnXYagWTuuU7N8K+GEVWGe/HimZSSXlGNl
+         0cjAP13IxC7+wzbhNetrszlDUPPFjgX3wMYEGD3vF+vmhgwSfVHEOgeWbIz59Rabkh+A
+         89chjsjzRgP6dkdRuGj/VjjKLaiyJzlwJi4uFATCJPl8cLzBXAnR41t6yTrwXuwSCqX+
+         J+hA==
+X-Gm-Message-State: AOAM530JebwTPsSTkG1FrndY8usvSZXaLP9eRip0eyiK6XInj28gOcOj
+        ty9nSmrok5lFd7T+GyTnzWQ=
+X-Google-Smtp-Source: ABdhPJy8Mrw34LM+35Ok95pZgOyUQ2MIWncbi40rYI4yc/UePQnaewZFhARbTSOC00ajkgbtSYmNnA==
+X-Received: by 2002:a1c:1bd8:: with SMTP id b207mr1748837wmb.139.1601629886617;
+        Fri, 02 Oct 2020 02:11:26 -0700 (PDT)
+Received: from ziggy.stardust ([213.195.119.110])
+        by smtp.gmail.com with ESMTPSA id t203sm1031893wmg.43.2020.10.02.02.11.25
+        (version=TLS1_3 cipher=TLS_AES_128_GCM_SHA256 bits=128/128);
+        Fri, 02 Oct 2020 02:11:26 -0700 (PDT)
+Subject: Re: [PATCH v2 12/12] arm64: dts: mediatek: Add mt8183 power domains
+ controller
+To:     Enric Balletbo i Serra <enric.balletbo@collabora.com>,
+        linux-kernel@vger.kernel.org
+Cc:     Collabora Kernel ML <kernel@collabora.com>, fparent@baylibre.com,
+        drinkcat@chromium.org, hsinyi@chromium.org, weiyi.lu@mediatek.com,
+        Matthias Brugger <mbrugger@suse.com>,
+        Rob Herring <robh+dt@kernel.org>, devicetree@vger.kernel.org,
+        linux-arm-kernel@lists.infradead.org,
+        linux-mediatek@lists.infradead.org
+References: <20201001160154.3587848-1-enric.balletbo@collabora.com>
+ <20201001160154.3587848-13-enric.balletbo@collabora.com>
+From:   Matthias Brugger <matthias.bgg@gmail.com>
+Message-ID: <6b972d3c-df15-7900-eeb0-df928fa3899f@gmail.com>
+Date:   Fri, 2 Oct 2020 11:11:24 +0200
+User-Agent: Mozilla/5.0 (X11; Linux x86_64; rv:68.0) Gecko/20100101
+ Thunderbird/68.12.0
 MIME-Version: 1.0
-In-Reply-To: <87362xkxdv.wl-kuninori.morimoto.gx@renesas.com>
-Content-Type: text/plain; charset="utf-8"; format=flowed
-Content-Transfer-Encoding: quoted-printable
-Content-Language: en-GB
-X-Originating-IP: [172.20.13.39]
-X-ClientProxiedBy: HQMAIL107.nvidia.com (172.20.187.13) To
- HQMAIL107.nvidia.com (172.20.187.13)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=nvidia.com; s=n1;
-        t=1601629702; bh=Kt+g9/UZmAGL50310mcza+eVE1I97Du/ixdvc4G5b90=;
-        h=Subject:To:CC:References:From:Message-ID:Date:User-Agent:
-         MIME-Version:In-Reply-To:Content-Type:Content-Transfer-Encoding:
-         Content-Language:X-Originating-IP:X-ClientProxiedBy;
-        b=CoU6Nc6E5XAEn7LDW3584duRTi+jbqtjHwa1bGmSK1fHiuF8illbTNO9rdhzOjBVc
-         MEqT+EhBJ291p14rpPWSDYbR9XIFtCoqGRFyamcUONcj2q5cSJCjNga/pXndfYxjOT
-         xDRszAmKPJoPCxcpINfX41gYBogY9CkpexNbSnTIyzUYacfoO9oTflLL8PwhS9A4ps
-         Uc7Ljz1YQpqoppZcK+yxp/tK9bx89ol0famGdtR/7g8nqDA9n73gsII6Pzdlhun+Sw
-         Tq18T6730YJjY8vyWwM7ymDA+tUNWqWbVzdI3gGhXWs5Kj5/FCbYZasxKKpvnPo9q4
-         uXZWexFlHkHiw==
+In-Reply-To: <20201001160154.3587848-13-enric.balletbo@collabora.com>
+Content-Type: text/plain; charset=utf-8; format=flowed
+Content-Language: en-US
+Content-Transfer-Encoding: 7bit
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
 
->> Add Tegra audio machine driver which is based on generic audio graph car=
-d
->> driver. It re-uses most of the common stuff from audio graph driver and
->> uses the same DT binding. Required Tegra specific customizations are don=
-e
->> in the driver.
-> (snip)
->> +static const struct snd_soc_ops tegra_audio_graph_ops =3D {
->> +     .startup        =3D asoc_simple_startup,
->> +     .shutdown       =3D asoc_simple_shutdown,
->> +     .hw_params      =3D tegra_audio_graph_hw_params,
->> +};
-> This is just an idea,
-> but can we use hooks here somehow ?
->
->          .ops_hook_pre
->          .ops_hook_func
->          .ops_hook_post
->
->          if (priv->ops_hook_pre->func)
->                  priv->ops_hook_pre->func_pre(...);
->
->          if (priv->ops_hook_func->func)
->                  priv->ops_hook_func->func(...); /* driver's function */
->          else
->                  graph_func(...);        /* audio-graph function */
->
->          if (priv->ops_hook_post->func)
->                  priv->ops_hook_post->func(...);
 
-Right now I just required to populate some flags or structures and do=20
-not have any specific pre()/post() functions to be called. Can this be=20
-reserved for later?
+On 01/10/2020 18:01, Enric Balletbo i Serra wrote:
+> From: Matthias Brugger <mbrugger@suse.com>
+> 
+> Add power domains controller node for SoC mt8183
+> 
+> Signed-off-by: Matthias Brugger <mbrugger@suse.com>
+> Signed-off-by: Enric Balletbo i Serra <enric.balletbo@collabora.com>
+> ---
+> 
+> Changes in v2: None
+> 
+>   arch/arm64/boot/dts/mediatek/mt8183.dtsi | 162 +++++++++++++++++++++++
+>   drivers/soc/mediatek/mtk-mmsys.c         |   4 -
+>   2 files changed, 162 insertions(+), 4 deletions(-)
+> 
+[...]
+> diff --git a/drivers/soc/mediatek/mtk-mmsys.c b/drivers/soc/mediatek/mtk-mmsys.c
+> index ec4cc5eeabff..0c490f509655 100644
+> --- a/drivers/soc/mediatek/mtk-mmsys.c
+> +++ b/drivers/soc/mediatek/mtk-mmsys.c
+> @@ -560,10 +560,6 @@ static const struct of_device_id of_match_mtk_mmsys[] = {
+>   		.compatible = "mediatek,mt8173-mmsys",
+>   		.data = &mt8173_mmsys_driver_data,
+>   	},
+> -	{
+> -		.compatible = "mediatek,mt8183-mmsys",
+> -		.data = &mt8183_mmsys_driver_data,
+> -	},
 
->
->
->> +static int tegra_audio_graph_probe(struct platform_device *pdev)
->> +{
->> +     struct asoc_simple_priv *priv;
->> +     struct device *dev =3D &pdev->dev;
->> +     struct snd_soc_card *card;
->> +     struct link_info li;
->> +     int err;
->> +
->> +     /* Allocate the private data and the DAI link array */
->> +     priv =3D devm_kzalloc(dev, sizeof(*priv), GFP_KERNEL);
->> +     if (!priv)
->> +             return -ENOMEM;
->> +
->> +     priv->data =3D (struct tegra_audio_graph_data *)
->> +             devm_kzalloc(dev, sizeof(*priv->data), GFP_KERNEL);
->> +     if (!priv->data)
->> +             return -ENOMEM;
->> +
->> +     card =3D simple_priv_to_card(priv);
->> +
->> +     card->owner =3D THIS_MODULE;
->> +     card->dev =3D dev;
->> +     card->component_chaining =3D true;
->> +     card->probe =3D tegra_audio_graph_card_probe;
->> +
->> +     priv->ops =3D &tegra_audio_graph_ops;
->> +     priv->force_dpcm =3D 1;
->> +
->> +     memset(&li, 0, sizeof(li));
->> +     graph_get_dais_count(priv, &li);
->> +     if (!li.link || !li.dais)
->> +             return -EINVAL;
->> +
->> +     err =3D asoc_simple_init_priv(priv, &li);
->> +     if (err < 0)
->> +             return err;
->> +
->> +     err =3D graph_parse_of(priv);
->> +     if (err < 0) {
->> +             if (err !=3D -EPROBE_DEFER)
->> +                     dev_err(dev, "Parse error %d\n", err);
->> +             goto cleanup;
->> +     }
->> +
->> +     snd_soc_card_set_drvdata(card, priv);
->> +
->> +     asoc_simple_debug_info(priv);
->> +
->> +     err =3D devm_snd_soc_register_card(dev, card);
->> +     if (err < 0)
->> +             goto cleanup;
->> +
->> +     return 0;
->> +
->> +cleanup:
->> +     asoc_simple_clean_reference(card);
->> +
->> +     return err;
->> +}
+Looks like an oversight from your side? At least it's not explained in the 
+commit message.
 
-> These are almost same as graph_probe().
-> Maybe we can separate graph_probe() and export function ?
-
-Yes possible, I can move more stuff into graph_parse_of() which is=20
-already an exported function in the current series. This can be utilized=20
-by both generic audio graph and Tegra audio graph.
-
-Something like below,
-
-static int tegra_audio_graph_probe(struct platform_device *pdev)
-{
- =C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0 struct tegra_audio_priv *priv;
- =C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0 struct device *dev =3D &pdev->d=
-ev;
- =C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0 struct snd_soc_card *card;
-
- =C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0 priv =3D devm_kzalloc(dev, size=
-of(*priv), GFP_KERNEL);
- =C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0 if (!priv)
- =C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=
-=C2=A0=C2=A0=C2=A0 return -ENOMEM;
-
- =C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0 card =3D simple_priv_to_card(&p=
-riv->simple);
-
- =C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0 card->owner =3D THIS_MODULE;
- =C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0 card->dev =3D dev;
- =C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0 card->probe =3D tegra_audio_gra=
-ph_card_probe;
-
- =C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0 /* graph_parse_of() depends on =
-below */
- =C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0 card->component_chaining =3D 1;
- =C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0 priv->simple.ops =3D &tegra_aud=
-io_graph_ops;
- =C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0 priv->simple.force_dpcm =3D 1;
-
- =C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0 return graph_parse_of(&priv->si=
-mple);
-}
-
-Does this sound fine?
-
+Regards,
+Matthias
