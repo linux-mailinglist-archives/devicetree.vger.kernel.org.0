@@ -2,78 +2,186 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from vger.kernel.org (vger.kernel.org [23.128.96.18])
-	by mail.lfdr.de (Postfix) with ESMTP id 9BDC528178F
-	for <lists+devicetree@lfdr.de>; Fri,  2 Oct 2020 18:13:40 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTP id 43BBF2817A2
+	for <lists+devicetree@lfdr.de>; Fri,  2 Oct 2020 18:18:09 +0200 (CEST)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S1733260AbgJBQNj (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Fri, 2 Oct 2020 12:13:39 -0400
-Received: from mail-ej1-f65.google.com ([209.85.218.65]:38321 "EHLO
-        mail-ej1-f65.google.com" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S1726386AbgJBQNj (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Fri, 2 Oct 2020 12:13:39 -0400
-Received: by mail-ej1-f65.google.com with SMTP id ce10so2753498ejc.5;
-        Fri, 02 Oct 2020 09:13:38 -0700 (PDT)
-X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=1e100.net; s=20161025;
-        h=x-gm-message-state:date:from:to:cc:subject:message-id:references
-         :mime-version:content-disposition:in-reply-to:user-agent;
-        bh=rTQRaRKy11dUVgsaGQZKMbWSoq0FV88949/wL2UaUSY=;
-        b=n8znu/YplqeTgtcCjLmKe/svRxNQ01FyO/XV6zeHx1dAMUTyR6zYhz9yZ7oxWPVG9X
-         YYqc8MSSOzfpi0lC9jvjxpUHb+9RqkWzuPlBR1jJrcnVJg2Fu7tKnSVajBDshIzGllQL
-         yHciybt4xagkENMLLQnVEzGMOZPP+21lGnsH2j6dHE/RT6TO2nYU65wSFX1kGOTyIZK1
-         wbznGvfmi+V8C1P2unZqjqZ/fAgAWOuhFlPkL+Op2Tk753LMGFmN0v5C+o2l1+ChMJyU
-         3Dla6ivdwTJWqQesCeoKQKQMtM4TMmZzM0icGwsq36uFbw1xSysW0sdDc5jft3cjwSSy
-         Av/g==
-X-Gm-Message-State: AOAM530VDDrHZPv3cxFiadmA08shnpATqhvIeMcVMe44tSGpi3l4l9Vy
-        j5YAVDa3Ge0lklGV7T85I30=
-X-Google-Smtp-Source: ABdhPJzsa4+GOXUgunMMStxgATNr5uJYd/ltlSw6rxkURPMW1LngcpcFLyjB77N8vcRZTGAEGiqEqw==
-X-Received: by 2002:a17:906:3ac5:: with SMTP id z5mr3039554ejd.46.1601655218008;
-        Fri, 02 Oct 2020 09:13:38 -0700 (PDT)
-Received: from kozik-lap ([194.230.155.194])
-        by smtp.googlemail.com with ESMTPSA id g9sm575787ejz.23.2020.10.02.09.13.36
-        (version=TLS1_2 cipher=ECDHE-ECDSA-CHACHA20-POLY1305 bits=256/256);
-        Fri, 02 Oct 2020 09:13:36 -0700 (PDT)
-Date:   Fri, 2 Oct 2020 18:13:34 +0200
-From:   Krzysztof Kozlowski <krzk@kernel.org>
-To:     Lee Jones <lee.jones@linaro.org>
-Cc:     Rob Herring <robh+dt@kernel.org>,
-        Matti Vaittinen <matti.vaittinen@fi.rohmeurope.com>,
-        devicetree@vger.kernel.org, linux-kernel@vger.kernel.org
-Subject: Re: [PATCH v2] dt-bindings: mfd: rohm,bd71837-pmic: Add common
- properties
-Message-ID: <20201002161334.GC4542@kozik-lap>
-References: <20200917193754.542-1-krzk@kernel.org>
+        id S1726569AbgJBQSI (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Fri, 2 Oct 2020 12:18:08 -0400
+Received: from mail.kernel.org ([198.145.29.99]:50632 "EHLO mail.kernel.org"
+        rhost-flags-OK-OK-OK-OK) by vger.kernel.org with ESMTP
+        id S1726017AbgJBQSI (ORCPT <rfc822;devicetree@vger.kernel.org>);
+        Fri, 2 Oct 2020 12:18:08 -0400
+Received: from mail-ed1-f41.google.com (mail-ed1-f41.google.com [209.85.208.41])
+        (using TLSv1.2 with cipher ECDHE-RSA-AES128-GCM-SHA256 (128/128 bits))
+        (No client certificate requested)
+        by mail.kernel.org (Postfix) with ESMTPSA id 183342085B;
+        Fri,  2 Oct 2020 16:18:07 +0000 (UTC)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=kernel.org;
+        s=default; t=1601655487;
+        bh=qKotbjg9kcKQ9kFUjGcF4Wc0HsTaB353+5mrYaSDDCQ=;
+        h=References:In-Reply-To:From:Date:Subject:To:Cc:From;
+        b=KTqcRmGIxuBsugsYc3QNXyB43KgLKQ9zy7a0ZL2VLKTac+57x7+Da+cQjG5EWi9W5
+         5RjT/V3wWUwLHhRblDOh0yp1QEVbVh2jNWWOyaFL3bJ+FgSncjBolK/2wF6P9ZP8Al
+         Ga22xMjFzSc5fNnLr2MM9JAT+b9yEgFgZf1nBvwM=
+Received: by mail-ed1-f41.google.com with SMTP id dn5so2224469edb.10;
+        Fri, 02 Oct 2020 09:18:07 -0700 (PDT)
+X-Gm-Message-State: AOAM533O9fmXzY2gkzaMXJkZ2HzcIc2LWQF2zIV/EV2dkPOgdAKSfsIt
+        MoRDRK1d2VotZ+sqJ04402Do2SVkOnrrEO/jHg==
+X-Google-Smtp-Source: ABdhPJyafmj/u0SG8QNpaP1VvSH+STsRaizRRbacdoCZ2+w+W/LvGvkYpsx/bWsJ+8QEICEnsr4GD7tdYTR68Pb/FQk=
+X-Received: by 2002:a05:6402:d09:: with SMTP id eb9mr3131896edb.219.1601655485577;
+ Fri, 02 Oct 2020 09:18:05 -0700 (PDT)
 MIME-Version: 1.0
-Content-Type: text/plain; charset=utf-8
-Content-Disposition: inline
-In-Reply-To: <20200917193754.542-1-krzk@kernel.org>
-User-Agent: Mutt/1.9.4 (2018-02-28)
+References: <1598497593-15781-1-git-send-email-neal.liu@mediatek.com>
+ <1599028813.32069.1.camel@mtkswgap22> <1599640627.6370.3.camel@mtkswgap22>
+ <1600246737.14155.3.camel@mtkswgap22> <1600758789.19001.4.camel@mtkswgap22> <1601449808.7564.2.camel@mtkswgap22>
+In-Reply-To: <1601449808.7564.2.camel@mtkswgap22>
+From:   Chun-Kuang Hu <chunkuang.hu@kernel.org>
+Date:   Sat, 3 Oct 2020 00:17:54 +0800
+X-Gmail-Original-Message-ID: <CAAOTY__HA9W9jXSFTmZPxPeO_f1580ARDLcZO1hpX1p0a3+oUA@mail.gmail.com>
+Message-ID: <CAAOTY__HA9W9jXSFTmZPxPeO_f1580ARDLcZO1hpX1p0a3+oUA@mail.gmail.com>
+Subject: Re: [PATCH v7] Add MediaTek MT6779 devapc driver
+To:     Neal Liu <neal.liu@mediatek.com>
+Cc:     Matthias Brugger <matthias.bgg@gmail.com>,
+        Rob Herring <robh+dt@kernel.org>,
+        Chun-Kuang Hu <chunkuang.hu@kernel.org>,
+        "devicetree@vger.kernel.org" <devicetree@vger.kernel.org>,
+        "linux-arm-kernel@lists.infradead.org" 
+        <linux-arm-kernel@lists.infradead.org>,
+        "linux-mediatek@lists.infradead.org" 
+        <linux-mediatek@lists.infradead.org>,
+        lkml <linux-kernel@vger.kernel.org>,
+        wsd_upstream <wsd_upstream@mediatek.com>
+Content-Type: text/plain; charset="UTF-8"
+Content-Transfer-Encoding: quoted-printable
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-On Thu, Sep 17, 2020 at 09:37:54PM +0200, Krzysztof Kozlowski wrote:
-> Add common properties appearing in DTSes (clock-names,
-> clock-output-names) with the common values (actually used in DTSes) to
-> fix dtbs_check warnings like:
-> 
->   arch/arm64/boot/dts/freescale/imx8mq-librem5-r2.dt.yaml:
->     pmic@4b: 'clock-names', 'clock-output-names', do not match any of the regexes: 'pinctrl-[0-9]+'
-> 
-> Signed-off-by: Krzysztof Kozlowski <krzk@kernel.org>
-> 
-> ---
-> 
-> Changes since v1:
-> 1. Define the names, as used in existing DTS files.
-> ---
->  .../devicetree/bindings/mfd/rohm,bd71837-pmic.yaml          | 6 ++++++
->  1 file changed, 6 insertions(+)
+Hi, Neal:
 
-Dear Lee,
+You may find Matthias in IRC [1], the channel name is #linux-mediatek
 
-Could you take it via MFD tree? There is a review from Rob and ack from
-author (Matti).
+[1] https://webchat.freenode.net/
 
-Best regards,
-Krzysztof
+Neal Liu <neal.liu@mediatek.com> =E6=96=BC 2020=E5=B9=B49=E6=9C=8830=E6=97=
+=A5 =E9=80=B1=E4=B8=89 =E4=B8=8B=E5=8D=883:10=E5=AF=AB=E9=81=93=EF=BC=9A
+>
+> Hi Matt,
+>
+> Hope this mail could find you well.
+> Is everything okay?
+> It would be glad if you could reply me no matter the review status.
+>
+> Thanks
+>
+> -Neal
+>
+> On Tue, 2020-09-22 at 15:13 +0800, Neal Liu wrote:
+> > Hi Matthias,
+> >
+> > We need this driver supported on main-line.
+> > Could you save your time for us to review it?
+> > Thanks
+> >
+> > -Neal
+> >
+> > On Wed, 2020-09-16 at 16:58 +0800, Neal Liu wrote:
+> > > Hi Rob, Matthias, Chun-Kuang,
+> > >
+> > > Sorry for pushing you so hard.
+> > > May I know is this patch set is comfortable to apply on latest kernel=
+?
+> > > Thanks
+> > >
+> > > -Neal
+> > >
+> > > On Wed, 2020-09-09 at 16:37 +0800, Neal Liu wrote:
+> > > > Hi Rob, Matthias, Chun-Kuang,
+> > > >
+> > > > Please kindly let me know your comments about this patch set.
+> > > > Thanks
+> > > >
+> > > > -Neal
+> > > >
+> > > > On Wed, 2020-09-02 at 14:40 +0800, Neal Liu wrote:
+> > > > > Hi Rob, Matthias, Chun-Kuang,
+> > > > >
+> > > > > Gentle ping for this patch set.
+> > > > > Thanks
+> > > > >
+> > > > > -Neal
+> > > > >
+> > > > > On Thu, 2020-08-27 at 11:06 +0800, Neal Liu wrote:
+> > > > > > These patch series introduce a MediaTek MT6779 devapc driver.
+> > > > > >
+> > > > > > MediaTek bus fabric provides TrustZone security support and dat=
+a protection to prevent slaves from being accessed by unexpected masters.
+> > > > > > The security violation is logged and sent to the processor for =
+further analysis or countermeasures.
+> > > > > >
+> > > > > > Any occurrence of security violation would raise an interrupt, =
+and it will be handled by mtk-devapc driver.
+> > > > > > The violation information is printed in order to find the murde=
+rer.
+> > > > > >
+> > > > > > changes since v6:
+> > > > > > - remove unnecessary mask/unmask module irq during ISR.
+> > > > > >
+> > > > > > changes since v5:
+> > > > > > - remove redundant write reg operation.
+> > > > > > - use static variable of vio_dbgs instead.
+> > > > > > - add stop_devapc() if driver is removed.
+> > > > > >
+> > > > > > changes since v4:
+> > > > > > - refactor data structure.
+> > > > > > - merge two simple functions into one.
+> > > > > > - refactor register setting to prevent too many function call o=
+verhead.
+> > > > > >
+> > > > > > changes since v3:
+> > > > > > - revise violation handling flow to make it more easily to unde=
+rstand
+> > > > > >   hardware behavior.
+> > > > > > - add more comments to understand how hardware works.
+> > > > > >
+> > > > > > changes since v2:
+> > > > > > - pass platform info through DT data.
+> > > > > > - remove unnecessary function.
+> > > > > > - remove slave_type because it always equals to 1 in current su=
+pport SoC.
+> > > > > > - use vio_idx_num instread of list all devices' index.
+> > > > > > - add more comments to describe hardware behavior.
+> > > > > >
+> > > > > > changes since v1:
+> > > > > > - move SoC specific part to DT data.
+> > > > > > - remove unnecessary boundary check.
+> > > > > > - remove unnecessary data type declaration.
+> > > > > > - use read_poll_timeout() instread of for loop polling.
+> > > > > > - revise coding style elegantly.
+> > > > > >
+> > > > > >
+> > > > > > *** BLURB HERE ***
+> > > > > >
+> > > > > > Neal Liu (2):
+> > > > > >   dt-bindings: devapc: add bindings for mtk-devapc
+> > > > > >   soc: mediatek: add mt6779 devapc driver
+> > > > > >
+> > > > > >  .../bindings/soc/mediatek/devapc.yaml         |  58 ++++
+> > > > > >  drivers/soc/mediatek/Kconfig                  |   9 +
+> > > > > >  drivers/soc/mediatek/Makefile                 |   1 +
+> > > > > >  drivers/soc/mediatek/mtk-devapc.c             | 305 ++++++++++=
+++++++++
+> > > > > >  4 files changed, 373 insertions(+)
+> > > > > >  create mode 100644 Documentation/devicetree/bindings/soc/media=
+tek/devapc.yaml
+> > > > > >  create mode 100644 drivers/soc/mediatek/mtk-devapc.c
+> > > > > >
+> > > > >
+> > > > >
+> > > >
+> > > >
+> > >
+> > >
+> >
+> >
+>
