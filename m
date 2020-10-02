@@ -2,158 +2,100 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from vger.kernel.org (vger.kernel.org [23.128.96.18])
-	by mail.lfdr.de (Postfix) with ESMTP id 2D7EA281538
-	for <lists+devicetree@lfdr.de>; Fri,  2 Oct 2020 16:32:25 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTP id 5A1AA281591
+	for <lists+devicetree@lfdr.de>; Fri,  2 Oct 2020 16:44:33 +0200 (CEST)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S2388195AbgJBOcU (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Fri, 2 Oct 2020 10:32:20 -0400
-Received: from lindbergh.monkeyblade.net ([23.128.96.19]:54924 "EHLO
+        id S2388092AbgJBOob (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Fri, 2 Oct 2020 10:44:31 -0400
+Received: from lindbergh.monkeyblade.net ([23.128.96.19]:56812 "EHLO
         lindbergh.monkeyblade.net" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S2388190AbgJBOcK (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Fri, 2 Oct 2020 10:32:10 -0400
-Received: from mail-wr1-x442.google.com (mail-wr1-x442.google.com [IPv6:2a00:1450:4864:20::442])
-        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 8CBB3C0613E2;
-        Fri,  2 Oct 2020 07:32:10 -0700 (PDT)
-Received: by mail-wr1-x442.google.com with SMTP id x14so2049927wrl.12;
-        Fri, 02 Oct 2020 07:32:10 -0700 (PDT)
+        with ESMTP id S1726090AbgJBOo3 (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Fri, 2 Oct 2020 10:44:29 -0400
+Received: from mail-ed1-x543.google.com (mail-ed1-x543.google.com [IPv6:2a00:1450:4864:20::543])
+        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id D9900C0613D0
+        for <devicetree@vger.kernel.org>; Fri,  2 Oct 2020 07:44:27 -0700 (PDT)
+Received: by mail-ed1-x543.google.com with SMTP id c8so1908570edv.5
+        for <devicetree@vger.kernel.org>; Fri, 02 Oct 2020 07:44:27 -0700 (PDT)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=gmail.com; s=20161025;
-        h=from:to:cc:subject:date:message-id:in-reply-to:references;
-        bh=1gIivsKhrs5B4E2eM/SXdSVH3UTq3Ox3b3pPitMs8zM=;
-        b=MfBTfakv1DRtuw9LCRw4XUKI/kYSLWvtvMK9+FY9LWPBYKa40UMI4u0TIeCpfNWSyU
-         h8v9BKBhEWmYAAVutZzmZGlI9cFjvlgLBKuoVeZjZudhJa9W1uZKQnnHHV4x+cdm8Zc6
-         DpuKoW1hlmiQ6Nzuw6CTxk+aTMBmgidolj0Fj+ngitt+nHGa1wyHA/bR2bebyp2CoxVV
-         kvn6ZdzqjxjDZXtcGhJ614im0o+M8ANk5EqdxwpyIXNaHwkGFneoX5kNowMHZd4GjBTn
-         rdsI5WZxm8dpwai4anLgXgXvUm5W9RLNGkdtGY0xwMkagvbHJj9zf5wOlAcv90jMshdj
-         dofg==
+        d=baylibre-com.20150623.gappssmtp.com; s=20150623;
+        h=references:user-agent:from:to:subject:in-reply-to:date:message-id
+         :mime-version;
+        bh=H8SXq+IivXLIchSfhBFhCsQdlWRn5LQ5/8Y7HUIonDM=;
+        b=1oEjBHmcmrl7G72HPcgOOjmMfPKnY1mzHxUAG+YMZ0vx5yTz/K/Sr1YBmASnczaJn0
+         KsRBqbHaizK1jG+UCS2OF+8ZLJLqMqLv+Qen1kVBIpZJbdfq/dUsiU+Mmu7Y3+uzO5P4
+         pCSBt9oMxiH71ROSEvG80TXBpOAtBV3llQKzZKcDdkT9CtxBAqmGBZsn6/TfJ70xwX96
+         DPyIt4n5O1IvPYzVOCwTwfdhnX4a1u67Bd8FK7z+19KSRNfLUrTQk5VLPtCXDB3MBw1m
+         BQTywGcXHi5+/eMlx+RjQc96/GWlDtU8ZMYdTN4PM4mUvk79Xb1Wm+vsHU+qrt7TxYXX
+         CkOw==
 X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
         d=1e100.net; s=20161025;
-        h=x-gm-message-state:from:to:cc:subject:date:message-id:in-reply-to
-         :references;
-        bh=1gIivsKhrs5B4E2eM/SXdSVH3UTq3Ox3b3pPitMs8zM=;
-        b=pePb+KioEHEYCNEmSHlDI/tYGhOToX6A+MypH9HbV9MbJ6liRKNDdZAB5X5VPbb17U
-         0S7w2g1F0LEXD5xy/P9D0oT4kql8whneDW9l+PGtoU+EChWVdVCStmqLns1eNNRAk+C8
-         Zn0suKlkEwF1oglnSovNA/W8HO7jlMYUn0PvXWSIBdcAVZ3bCUiZ9uw9TFBz4ocJDZic
-         QDG7FWqAPKF3yIHpRC6WUCkGLYRWuzZHXJiqVm0qJkw91VeNjPcZXwzcnfHHx5uIlOmI
-         lHdlFoeKZngkrGuYR/RcxYmor3bSETTUZn4Yi0XK4Ja0B86FmMX1PMB1hTfVwRBjxdZx
-         T97w==
-X-Gm-Message-State: AOAM532AH4qtGlYBAtPjP6Ak6/XH58q8XhZ/3C9em1ig9dQFi+vcKdAU
-        +nVIwwikU2hS8PRLGKDyhw9EpBS/cEY=
-X-Google-Smtp-Source: ABdhPJxAsMJBFt1mDap8JdZGwOlH4Qktsgmqvksw+2k8HBZUYiiD/BrMPdckAeioJ12tY1m0Iy9+tw==
-X-Received: by 2002:adf:a18c:: with SMTP id u12mr3591224wru.90.1601649129282;
-        Fri, 02 Oct 2020 07:32:09 -0700 (PDT)
-Received: from localhost.localdomain ([87.200.95.144])
-        by smtp.gmail.com with ESMTPSA id w7sm1907392wrm.92.2020.10.02.07.32.07
+        h=x-gm-message-state:references:user-agent:from:to:subject
+         :in-reply-to:date:message-id:mime-version;
+        bh=H8SXq+IivXLIchSfhBFhCsQdlWRn5LQ5/8Y7HUIonDM=;
+        b=ORpQmGNV0nIaDgxlPOobVkK5RPaJCZFtvL6y1wOsyfLaEg+FRKkHSDij1uM7+5aYhf
+         Y7OAFFnC9hBrM36cVCmRlzYZCwp3NTEQSjAwnnyZynniqMV6K1IcG8FFubrDdD2qjPgn
+         2BRIzAW+D/oK8CJahB/hGwB5kBMf29B+f3ZNTErwcfhLomyiZjGSI9FvdwEcUiEAdzjN
+         UxDYJ7zfbwEd6er+nhUfGkVINLSZ6MS85KEivud9/BrUokkI4XuFFdSaojoMV3JoOBvY
+         lfURo3yKt7UQsReOzTUAfxiAI8vInhJRE2kYqyjHbG6y25yQfIXVheSmP9GV6tAXn1E/
+         11Sw==
+X-Gm-Message-State: AOAM531ZHizaWpvoMMqkRLihCZjh+IEYgHurRlX2UjDilB86wHT7RMcD
+        /32clze48fMbFmcnGMGOaf17Jg==
+X-Google-Smtp-Source: ABdhPJyXQIsKPwo9MrANy8jUk3eZWf5PjDyGiQHyY2oynpsndOEwqFNGuAI3YT5mheABVJKbCxFbMg==
+X-Received: by 2002:aa7:c98f:: with SMTP id c15mr1761863edt.200.1601649866534;
+        Fri, 02 Oct 2020 07:44:26 -0700 (PDT)
+Received: from localhost (cag06-3-82-243-161-21.fbx.proxad.net. [82.243.161.21])
+        by smtp.gmail.com with ESMTPSA id cz11sm508493edb.62.2020.10.02.07.44.25
         (version=TLS1_3 cipher=TLS_AES_256_GCM_SHA384 bits=256/256);
-        Fri, 02 Oct 2020 07:32:08 -0700 (PDT)
-From:   Christian Hewitt <christianshewitt@gmail.com>
-To:     Rob Herring <robh+dt@kernel.org>,
+        Fri, 02 Oct 2020 07:44:25 -0700 (PDT)
+References: <20201002141619.14387-1-christianshewitt@gmail.com>
+User-agent: mu4e 1.3.3; emacs 26.3
+From:   Jerome Brunet <jbrunet@baylibre.com>
+To:     Christian Hewitt <christianshewitt@gmail.com>,
+        Rob Herring <robh+dt@kernel.org>,
         Mark Rutland <mark.rutland@arm.com>,
         Kevin Hilman <khilman@baylibre.com>,
         devicetree@vger.kernel.org, linux-arm-kernel@lists.infradead.org,
         linux-amlogic@lists.infradead.org, linux-kernel@vger.kernel.org
-Cc:     Christian Hewitt <christianshewitt@gmail.com>
-Subject: [PATCH v2 10/10] arm64: dts: meson: add audio playback to wetek-play2
-Date:   Fri,  2 Oct 2020 14:31:41 +0000
-Message-Id: <20201002143141.14870-11-christianshewitt@gmail.com>
-X-Mailer: git-send-email 2.17.1
-In-Reply-To: <20201002143141.14870-1-christianshewitt@gmail.com>
-References: <20201002143141.14870-1-christianshewitt@gmail.com>
+Subject: Re: [PATCH] arm64: dts: meson: add SM1 soundcard name to VIM3L
+In-reply-to: <20201002141619.14387-1-christianshewitt@gmail.com>
+Date:   Fri, 02 Oct 2020 16:44:24 +0200
+Message-ID: <1jzh54it6f.fsf@starbuckisacylon.baylibre.com>
+MIME-Version: 1.0
+Content-Type: text/plain
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-Add initial support limited to HDMI i2s and SPDIF (LPCM).
 
-Signed-off-by: Christian Hewitt <christianshewitt@gmail.com>
----
- .../dts/amlogic/meson-gxbb-wetek-play2.dts    | 61 +++++++++++++++++++
- 1 file changed, 61 insertions(+)
+On Fri 02 Oct 2020 at 16:16, Christian Hewitt <christianshewitt@gmail.com> wrote:
 
-diff --git a/arch/arm64/boot/dts/amlogic/meson-gxbb-wetek-play2.dts b/arch/arm64/boot/dts/amlogic/meson-gxbb-wetek-play2.dts
-index 2ab8a3d10079..f2562c7de67c 100644
---- a/arch/arm64/boot/dts/amlogic/meson-gxbb-wetek-play2.dts
-+++ b/arch/arm64/boot/dts/amlogic/meson-gxbb-wetek-play2.dts
-@@ -8,11 +8,19 @@
- 
- #include "meson-gxbb-wetek.dtsi"
- #include <dt-bindings/input/input.h>
-+#include <dt-bindings/sound/meson-aiu.h>
- 
- / {
- 	compatible = "wetek,play2", "amlogic,meson-gxbb";
- 	model = "WeTek Play 2";
- 
-+	spdif_dit: audio-codec-0 {
-+		#sound-dai-cells = <0>;
-+		compatible = "linux,spdif-dit";
-+		status = "okay";
-+		sound-name-prefix = "DIT";
-+	};
-+
- 	leds {
- 		led-wifi {
- 			label = "wetek-play:wifi-status";
-@@ -39,6 +47,59 @@
- 			gpios = <&gpio_ao GPIOAO_3 GPIO_ACTIVE_LOW>;
- 		};
- 	};
-+
-+	sound {
-+		compatible = "amlogic,gx-sound-card";
-+		model = "GXBB-WETEK-PLAY2";
-+		assigned-clocks = <&clkc CLKID_MPLL0>,
-+				  <&clkc CLKID_MPLL1>,
-+				  <&clkc CLKID_MPLL2>;
-+		assigned-clock-parents = <0>, <0>, <0>;
-+		assigned-clock-rates = <294912000>,
-+				       <270950400>,
-+				       <393216000>;
-+		status = "okay";
-+
-+		dai-link-0 {
-+			sound-dai = <&aiu AIU_CPU CPU_I2S_FIFO>;
-+		};
-+
-+		dai-link-1 {
-+			sound-dai = <&aiu AIU_CPU CPU_SPDIF_FIFO>;
-+		};
-+
-+		dai-link-2 {
-+			sound-dai = <&aiu AIU_CPU CPU_I2S_ENCODER>;
-+			dai-format = "i2s";
-+			mclk-fs = <256>;
-+
-+			codec-0 {
-+				sound-dai = <&aiu AIU_HDMI CTRL_I2S>;
-+			};
-+		};
-+
-+		dai-link-3 {
-+			sound-dai = <&aiu AIU_CPU CPU_SPDIF_ENCODER>;
-+
-+			codec-0 {
-+				sound-dai = <&spdif_dit>;
-+			};
-+		};
-+
-+		dai-link-4 {
-+			sound-dai = <&aiu AIU_HDMI CTRL_OUT>;
-+
-+			codec-0 {
-+				sound-dai = <&hdmi_tx>;
-+			};
-+		};
-+	};
-+};
-+
-+&aiu {
-+	status = "okay";
-+	pinctrl-0 = <&spdif_out_y_pins>;
-+	pinctrl-names = "default";
- };
- 
- &i2c_A {
--- 
-2.17.1
+> VIM3L now inherits the sound node from the VIM3 common dtsi but is
+> an SM1 device, so label it as such, and stop users blaming future
+> support issues on the distro/app "wrongly detecting" their device.
+>
+> Signed-off-by: Christian Hewitt <christianshewitt@gmail.com>
+> ---
+>  arch/arm64/boot/dts/amlogic/meson-sm1-khadas-vim3l.dts | 4 ++++
+>  1 file changed, 4 insertions(+)
+>
+> diff --git a/arch/arm64/boot/dts/amlogic/meson-sm1-khadas-vim3l.dts b/arch/arm64/boot/dts/amlogic/meson-sm1-khadas-vim3l.dts
+> index 4b517ca72059..f46f0ecc37ec 100644
+> --- a/arch/arm64/boot/dts/amlogic/meson-sm1-khadas-vim3l.dts
+> +++ b/arch/arm64/boot/dts/amlogic/meson-sm1-khadas-vim3l.dts
+> @@ -32,6 +32,10 @@
+>  		regulator-boot-on;
+>  		regulator-always-on;
+>  	};
+> +
+> +	sound {
+> +		model = "SM1-KHADAS-VIM3L";
+> +	};
+
+The sound card is the same so I don't see why the sm1 board should have
+a different name. If you are not happy with the name, please update it
+in the common file.
+
+>  };
+>  
+>  &cpu0 {
 
