@@ -2,143 +2,162 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from vger.kernel.org (vger.kernel.org [23.128.96.18])
-	by mail.lfdr.de (Postfix) with ESMTP id 11775281FEA
-	for <lists+devicetree@lfdr.de>; Sat,  3 Oct 2020 03:04:12 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTP id DE21728207E
+	for <lists+devicetree@lfdr.de>; Sat,  3 Oct 2020 04:21:17 +0200 (CEST)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S1725747AbgJCBEK (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Fri, 2 Oct 2020 21:04:10 -0400
-Received: from m42-4.mailgun.net ([69.72.42.4]:41043 "EHLO m42-4.mailgun.net"
+        id S1725681AbgJCCVR (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Fri, 2 Oct 2020 22:21:17 -0400
+Received: from mga01.intel.com ([192.55.52.88]:52959 "EHLO mga01.intel.com"
         rhost-flags-OK-OK-OK-OK) by vger.kernel.org with ESMTP
-        id S1725536AbgJCBEK (ORCPT <rfc822;devicetree@vger.kernel.org>);
-        Fri, 2 Oct 2020 21:04:10 -0400
-DKIM-Signature: a=rsa-sha256; v=1; c=relaxed/relaxed; d=mg.codeaurora.org; q=dns/txt;
- s=smtp; t=1601687049; h=Content-Transfer-Encoding: Content-Type:
- In-Reply-To: MIME-Version: Date: Message-ID: From: References: Cc: To:
- Subject: Sender; bh=uLdRdc6iCqjf3IBwzfBNgoRr8xpJ3Qi3oTyKWutFUaA=; b=MDg/YbDwC02ICpF7FpsHxpzP7RbhvOjZnTxZV610WaRiqMeJBz3S476T9xc0DGiHIMSWwBPa
- 5fK5T3DEIHrfQbFsPWhFwfy1b9vnMYYcYxtEHw1hsXc4iqEnatiADiRtmb1HDgF/9M/dxfXB
- 6OUYwtFysM+awp1sUuGiO9BQkNc=
-X-Mailgun-Sending-Ip: 69.72.42.4
-X-Mailgun-Sid: WyI1YmJiNiIsICJkZXZpY2V0cmVlQHZnZXIua2VybmVsLm9yZyIsICJiZTllNGEiXQ==
-Received: from smtp.codeaurora.org
- (ec2-35-166-182-171.us-west-2.compute.amazonaws.com [35.166.182.171]) by
- smtp-out-n07.prod.us-east-1.postgun.com with SMTP id
- 5f77ce09aad2c3cd1c2fbd19 (version=TLS1.2,
- cipher=TLS_ECDHE_RSA_WITH_AES_128_GCM_SHA256); Sat, 03 Oct 2020 01:04:09
- GMT
-Sender: wcheng=codeaurora.org@mg.codeaurora.org
-Received: by smtp.codeaurora.org (Postfix, from userid 1001)
-        id 558F9C433C8; Sat,  3 Oct 2020 01:04:08 +0000 (UTC)
-X-Spam-Checker-Version: SpamAssassin 3.4.0 (2014-02-07) on
-        aws-us-west-2-caf-mail-1.web.codeaurora.org
-X-Spam-Level: 
-X-Spam-Status: No, score=-3.2 required=2.0 tests=ALL_TRUSTED,BAYES_00,
-        NICE_REPLY_A,SPF_FAIL autolearn=no autolearn_force=no version=3.4.0
-Received: from [10.110.56.245] (i-global254.qualcomm.com [199.106.103.254])
-        (using TLSv1.2 with cipher ECDHE-RSA-AES128-GCM-SHA256 (128/128 bits))
-        (No client certificate requested)
-        (Authenticated sender: wcheng)
-        by smtp.codeaurora.org (Postfix) with ESMTPSA id B2E29C433CA;
-        Sat,  3 Oct 2020 01:04:06 +0000 (UTC)
-DMARC-Filter: OpenDMARC Filter v1.3.2 smtp.codeaurora.org B2E29C433CA
-Authentication-Results: aws-us-west-2-caf-mail-1.web.codeaurora.org; dmarc=none (p=none dis=none) header.from=codeaurora.org
-Authentication-Results: aws-us-west-2-caf-mail-1.web.codeaurora.org; spf=fail smtp.mailfrom=wcheng@codeaurora.org
-Subject: Re: [PATCH v3 1/5] dt-bindings: usb: convert ti,hd3ss3220 bindings to
- json-schema
-To:     Biju Das <biju.das.jz@bp.renesas.com>,
-        Rob Herring <robh+dt@kernel.org>,
-        Greg Kroah-Hartman <gregkh@linuxfoundation.org>
-Cc:     Prabhakar Mahadev Lad <prabhakar.mahadev-lad.rj@bp.renesas.com>,
-        Yoshihiro Shimoda <yoshihiro.shimoda.uh@renesas.com>,
-        Heikki Krogerus <heikki.krogerus@linux.intel.com>,
-        "linux-usb@vger.kernel.org" <linux-usb@vger.kernel.org>,
-        "devicetree@vger.kernel.org" <devicetree@vger.kernel.org>,
-        Geert Uytterhoeven <geert+renesas@glider.be>,
-        Chris Paterson <Chris.Paterson2@renesas.com>,
-        Biju Das <biju.das@bp.renesas.com>,
-        "linux-renesas-soc@vger.kernel.org" 
-        <linux-renesas-soc@vger.kernel.org>
-References: <20200824141053.5062-1-biju.das.jz@bp.renesas.com>
- <20200824141053.5062-2-biju.das.jz@bp.renesas.com>
- <da7b8ea3-8cc1-5590-2200-c495e6c733af@codeaurora.org>
- <TYBPR01MB5309BED73D5BB6243D84C74B863E0@TYBPR01MB5309.jpnprd01.prod.outlook.com>
- <TYBPR01MB5309C832C9DE7B1B5E5FBCA886360@TYBPR01MB5309.jpnprd01.prod.outlook.com>
-From:   Wesley Cheng <wcheng@codeaurora.org>
-Message-ID: <5855e79f-0f97-6f8a-2738-93424d2ed3a0@codeaurora.org>
-Date:   Fri, 2 Oct 2020 18:04:05 -0700
-User-Agent: Mozilla/5.0 (Windows NT 10.0; Win64; x64; rv:78.0) Gecko/20100101
- Thunderbird/78.2.2
-MIME-Version: 1.0
-In-Reply-To: <TYBPR01MB5309C832C9DE7B1B5E5FBCA886360@TYBPR01MB5309.jpnprd01.prod.outlook.com>
-Content-Type: text/plain; charset=utf-8
-Content-Language: en-US
-Content-Transfer-Encoding: 7bit
+        id S1725536AbgJCCVR (ORCPT <rfc822;devicetree@vger.kernel.org>);
+        Fri, 2 Oct 2020 22:21:17 -0400
+IronPort-SDR: 7/uviVYuU5IF9lXlA5YGLgn3ZcAQ5GHqHn+0D5PPcwNylDknxrnMNHtH4udZJ0IThvii+pPrBF
+ frNwE/6HuO2A==
+X-IronPort-AV: E=McAfee;i="6000,8403,9762"; a="181245704"
+X-IronPort-AV: E=Sophos;i="5.77,330,1596524400"; 
+   d="scan'208";a="181245704"
+X-Amp-Result: SKIPPED(no attachment in message)
+X-Amp-File-Uploaded: False
+Received: from orsmga005.jf.intel.com ([10.7.209.41])
+  by fmsmga101.fm.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384; 02 Oct 2020 19:21:13 -0700
+IronPort-SDR: WUrX3AbuVmvUlg49ZyUGV8sOSUPuvGESlve32TSYY/ckqFWszhidx0lIM3wuMGgiY539iu/vTR
+ FyeQYKCMq9hw==
+X-IronPort-AV: E=Sophos;i="5.77,330,1596524400"; 
+   d="scan'208";a="511720798"
+Received: from cshinn-mobl1.amr.corp.intel.com (HELO achrisan-DESK2.amr.corp.intel.com) ([10.255.91.49])
+  by orsmga005-auth.jf.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-SHA; 02 Oct 2020 19:21:12 -0700
+From:   Anitha Chrisanthus <anitha.chrisanthus@intel.com>
+To:     devicetree@vger.kernel.org, anitha.chrisanthus@intel.com,
+        bob.j.paauwe@intel.com, edmund.j.dea@intel.com
+Cc:     sam@ravnborg.org, narmstrong@baylibre.com
+Subject: [PATCH v1] dt-bindings: display: Add support for Intel KeemBay Display
+Date:   Fri,  2 Oct 2020 19:21:02 -0700
+Message-Id: <1601691662-12954-1-git-send-email-anitha.chrisanthus@intel.com>
+X-Mailer: git-send-email 2.7.4
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
->>>
->>> Hi Biju,
->>>
->>> I'm involved in a separate thread[1] and I just wanted to get your
->>> inputs on how you understood the port and endpoint assignments for the
->>> USB type C connectors in different designs.
->>>
->>> Since the hd3ss3220 does the type C lane detect and has an integrated
->>> lane select mux, what is the ss_ep being used for?
->>
->> In our case, Type C Connector --> HS lines directly connected to SoC, where
->> as the SS lines connected  to HD3SS3220 Mux and output of mux is
->> Connected to SoC.
->>
->> This mux driver detects state change on the CC lines, reading the
->> orientation/role and communicating this information to SoC for assigning
->> roles using USB role switch framework.
->>
->> Case 1:-  Model connector node as the child node of the mux.
->>
->> The bindings for this case [1] is not complaint to typec connector bindings,
->> since it is missing port@0 node.
->> [1] https://git.kernel.org/pub/scm/linux/kernel/git/next/linux-
->> next.git/tree/Documentation/devicetree/bindings/usb/ti,hd3ss3220.txt?h=n
->> ext-20200917
->>
->> typec Connector bindings requires port@0 should be HS and port@1 should
->> be SS as per the discussion [2],  so I need to remodel connector node as
->> separate one.
->> [2] https://patchwork.kernel.org/patch/11669423/
->>
->> Case 2:-  Model connector node as a separate one based on the hardware
->> design
->>
->> Type c connector port@0  --> SoC  (hs ep) Type c connector  port@1 -->
->> connected to USB3.0 Mux -->  SoC( for usb3 role switch)
->>
->> Here the input of the Mux is connected to TypeC connector and Output of
->> the mux is connected to the SoC, which is inline with hardware design.
->> The full example of this model here [3]
->> [3] https://patchwork.kernel.org/patch/11733263/
->>
->> In both our designs, looks like, type c connector connected to SS MUX and
->> output of SS Mux is Connected to SoC for role switch. Am I missing some
->> thing?
->> So may be we need to update the connector bindings for this use case. What
->> do you think?
-> 
-> FYI, I have posted v4 with changes in usb connector bindings.
-> 
-> [1] https://patchwork.kernel.org/patch/11787677/
-> [2] https://patchwork.kernel.org/patch/11787679/
-> 
-Hi Biju,
+This patch adds bindings for Intel KeemBay Display
 
-Great, thanks! Let me take a look :).
+Signed-off-by: Anitha Chrisanthus <anitha.chrisanthus@intel.com>
+---
+ .../bindings/display/intel,kmb_display.yaml        | 106 +++++++++++++++++++++
+ 1 file changed, 106 insertions(+)
+ create mode 100644 Documentation/devicetree/bindings/display/intel,kmb_display.yaml
 
-Thanks
-
-Regards,
-Wesley Cheng
-
-
+diff --git a/Documentation/devicetree/bindings/display/intel,kmb_display.yaml b/Documentation/devicetree/bindings/display/intel,kmb_display.yaml
+new file mode 100644
+index 0000000..65835cb
+--- /dev/null
++++ b/Documentation/devicetree/bindings/display/intel,kmb_display.yaml
+@@ -0,0 +1,106 @@
++# SPDX-License-Identifier: GPL-2.0-only
++%YAML 1.2
++---
++$id: http://devicetree.org/schemas/display/intel,kmb_display.yaml#
++$schema: http://devicetree.org/meta-schemas/core.yaml#
++
++title: Devicetree bindings for Intel Keem Bay display controller
++
++maintainers:
++  - Anitha Chrisanthus <anitha.chrisanthus@intel.com>
++  - Edmond J Dea <edmund.j.dea@intel.com>
++
++properties:
++  compatible:
++    const: intel,kmb_display
++
++  reg:
++    maxItems: 3
++    items:
++      - description: Lcd registers range
++      - description: Mipi registers range
++      - description: Msscam registers range
++
++  reg-names:
++    items:
++      - const: lcd_regs
++      - const: mipi_regs
++      - const: msscam_regs
++
++  clocks:
++    items:
++      - description: LCD controller clock
++      - description: Mipi DSI clock
++      - description: Mipi DSI econfig clock
++      - description: Mipi DSI config clock
++      - description: System clock or pll0 clock
++
++  clock-names:
++    items:
++      - const: clk_lcd
++      - const: clk_mipi
++      - const: clk_mipi_ecfg
++      - const: clk_mipi_cfg
++      - const: clk_pll0
++
++  interrupts:
++    maxItems: 1
++
++  interrupt-names:
++    items:
++      - const: irq_lcd
++
++  encoder-slave:
++    description: bridge node entry for mipi to hdmi converter
++
++  port:
++    type: object
++    description: >
++          Port node with one endpoint connected to mipi to hdmi converter node.
++
++required:
++  - compatible
++  - reg
++  - reg-names
++  - clocks
++  - clock-names
++  - interrupts
++  - interrupt-names
++  - encoder-slave
++  - port
++
++additionalProperties: false
++
++examples:
++  - |
++    #include <dt-bindings/interrupt-controller/irq.h>
++    #define GIC_SPI
++    #define MOVISOC_KMB_MSS_AUX_LCD
++    #define MOVISOC_KMB_MSS_AUX_MIPI_TX0
++    #define MOVISOC_KMB_MSS_AUX_MIPI_ECFG
++    #define MOVISOC_KMB_MSS_AUX_MIPI_CFG
++    #define MOVISOC_KMB_A53_PLL_0_OUT_0
++    display: display@20900000 {
++      compatible = "intel,kmb_display";
++      reg = <0x20930000 0x3000>,
++            <0x20900000 0x4000>,
++            <0x20910000 0x30>;
++      reg-names = "lcd_regs", "mipi_regs", "msscam_regs";
++      interrupts = <GIC_SPI 33 IRQ_TYPE_LEVEL_HIGH>;
++      interrupt-names = "irq_lcd";
++      clocks = <&scmi_clk MOVISOC_KMB_MSS_AUX_LCD>,
++               <&scmi_clk MOVISOC_KMB_MSS_AUX_MIPI_TX0>,
++               <&scmi_clk MOVISOC_KMB_MSS_AUX_MIPI_ECFG>,
++               <&scmi_clk MOVISOC_KMB_MSS_AUX_MIPI_CFG>,
++               <&scmi_clk MOVISOC_KMB_A53_PLL_0_OUT_0>;
++      clock-names = "clk_lcd", "clk_mipi", "clk_mipi_ecfg",
++                    "clk_mipi_cfg", "clk_pll0";
++
++      encoder-slave = <&adv7535>;
++
++      port {
++            dsi_output: endpoint {
++                remote-endpoint = <&adv7535_input>;
++            };
++      };
++    };
 -- 
-The Qualcomm Innovation Center, Inc. is a member of the Code Aurora Forum,
-a Linux Foundation Collaborative Project
+2.7.4
+
