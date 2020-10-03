@@ -2,92 +2,79 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from vger.kernel.org (vger.kernel.org [23.128.96.18])
-	by mail.lfdr.de (Postfix) with ESMTP id 57EB628259D
-	for <lists+devicetree@lfdr.de>; Sat,  3 Oct 2020 19:33:43 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTP id 6FA4428253F
+	for <lists+devicetree@lfdr.de>; Sat,  3 Oct 2020 17:56:44 +0200 (CEST)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S1725833AbgJCRdm (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Sat, 3 Oct 2020 13:33:42 -0400
-Received: from msg-2.mailo.com ([213.182.54.12]:55670 "EHLO msg-2.mailo.com"
+        id S1725812AbgJCP4n (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Sat, 3 Oct 2020 11:56:43 -0400
+Received: from mail.kernel.org ([198.145.29.99]:39902 "EHLO mail.kernel.org"
         rhost-flags-OK-OK-OK-OK) by vger.kernel.org with ESMTP
-        id S1725797AbgJCRdm (ORCPT <rfc822;devicetree@vger.kernel.org>);
-        Sat, 3 Oct 2020 13:33:42 -0400
-X-Greylist: delayed 11171 seconds by postgrey-1.27 at vger.kernel.org; Sat, 03 Oct 2020 13:33:41 EDT
-DKIM-Signature: v=1; a=rsa-sha256; c=simple/simple; d=mailoo.org; s=mailo;
-        t=1601735247; bh=imNu7MHThjAESrJNpmhOyRli59QkLGoI0kFTAxDCsF8=;
-        h=X-EA-Auth:Message-ID:Subject:From:To:Cc:Date:In-Reply-To:
-         References:Content-Type:MIME-Version:Content-Transfer-Encoding;
-        b=dkMhJ5QchIXG+Hy8U/wfRx6/oubjDIaRXvmWAAWFfawB6K0AxUrgCTw18dL4djFnk
-         ei6Jzj7BArFFCk2gZr7J3EdNa6kB46xr5jFll/hep3ZvnprKjz/A0HHTObsxf8PW9q
-         UHpjoKrDY4nwba5Q+7DYMhii3mSSOvc3yb8+q8Ks=
-Received: by b-3.in.mailobj.net [192.168.90.13] with ESMTP
-        via proxy.mailoo.org [213.182.55.207]
-        Sat,  3 Oct 2020 16:27:27 +0200 (CEST)
-X-EA-Auth: chZqOqSjMGhpYYrQYEHoviLKXI/U1P1qJspKX9NxQLD9OuH6MudHEBb/csrmzqyfTT+/ZA0dRFaEiu+ioS21gGuiUmLOx5GEte2jXfSbrto=
-Message-ID: <104955668ed768682adf1757e79022117460d268.camel@mailoo.org>
-Subject: Re: [PATCH 1/5] interconnect: qcom: Consolidate interconnect RPM
- support
-From:   Vincent Knecht <vincent.knecht@mailoo.org>
-To:     Jun Nie <jun.nie@linaro.org>, devicetree@vger.kernel.org,
-        georgi.djakov@linaro.org, bjorn.andersson@linaro.org,
-        agross@kernel.org, linux-pm@vger.kernel.org,
-        linux-arm-msm@vger.kernel.org, linux-kernel@vger.kernel.org,
-        robh@kernel.org
-Cc:     shawn.guo@linaro.org
-Date:   Sat, 03 Oct 2020 16:27:25 +0200
-In-Reply-To: <20200930081645.3434-2-jun.nie@linaro.org>
-References: <20200930081645.3434-1-jun.nie@linaro.org>
-         <20200930081645.3434-2-jun.nie@linaro.org>
-Content-Type: text/plain; charset="UTF-8"
-User-Agent: Evolution 3.34.4 (3.34.4-1.fc31) 
+        id S1725788AbgJCP4n (ORCPT <rfc822;devicetree@vger.kernel.org>);
+        Sat, 3 Oct 2020 11:56:43 -0400
+Received: from localhost (83-86-74-64.cable.dynamic.v4.ziggo.nl [83.86.74.64])
+        (using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
+        (No client certificate requested)
+        by mail.kernel.org (Postfix) with ESMTPSA id 24CA5206DD;
+        Sat,  3 Oct 2020 15:56:42 +0000 (UTC)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=kernel.org;
+        s=default; t=1601740602;
+        bh=+Qr/oi93hmMNoul0FY76l1kh6zO+V2R/n1xArY6qIqQ=;
+        h=Date:From:To:Cc:Subject:References:In-Reply-To:From;
+        b=k11E+SRPgcQ4czycOaNSTlsSzTTRYfSBlnH4pAjuSsiNBaY8AB6Mq1MIq1yv2Z/rG
+         zMr1UImBinO5S+KrnMY0QJguUJzEddDJK9etp5l9tooIB/XOHr5FknGrTtIeJJAnOR
+         +Wlv3ez4y17OomSnMbkPqhmT3qCIZ8gXQQRs37Us=
+Date:   Sat, 3 Oct 2020 17:57:26 +0200
+From:   Greg Kroah-Hartman <gregkh@linuxfoundation.org>
+To:     Badhri Jagan Sridharan <badhri@google.com>
+Cc:     Guenter Roeck <linux@roeck-us.net>,
+        Heikki Krogerus <heikki.krogerus@linux.intel.com>,
+        Rob Herring <robh+dt@kernel.org>,
+        Lee Jones <lee.jones@linaro.org>,
+        Mark Brown <broonie@kernel.org>,
+        Maxime Ripard <mripard@kernel.org>,
+        Alexandre Belloni <alexandre.belloni@bootlin.com>,
+        Thierry Reding <treding@nvidia.com>,
+        Prashant Malani <pmalani@chromium.org>,
+        "open list:OPEN FIRMWARE AND FLATTENED DEVICE TREE BINDINGS" 
+        <devicetree@vger.kernel.org>, LKML <linux-kernel@vger.kernel.org>,
+        USB <linux-usb@vger.kernel.org>
+Subject: Re: [PATCH v9 02/15] usb: typec: tcpci: Add set_vbus tcpci callback
+Message-ID: <20201003155726.GC1509449@kroah.com>
+References: <20200929024004.244992-1-badhri@google.com>
+ <20200929024004.244992-3-badhri@google.com>
+ <20201002133952.GA3411859@kroah.com>
+ <20201002134041.GA3412330@kroah.com>
+ <CAPTae5LBeY1qifPmGce+6Cu2hjVx=QZazk53Y=n6RPPRAuozLA@mail.gmail.com>
 MIME-Version: 1.0
-Content-Transfer-Encoding: quoted-printable
+Content-Type: text/plain; charset=us-ascii
+Content-Disposition: inline
+In-Reply-To: <CAPTae5LBeY1qifPmGce+6Cu2hjVx=QZazk53Y=n6RPPRAuozLA@mail.gmail.com>
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-Le mercredi 30 septembre 2020 =C3=A0 16:16 +0800, Jun Nie a =C3=A9crit :
-> Add RPM based interconnect driver implements the set and aggregate
-> functionalities that translates bandwidth requests into RPM messages.
-> These modules provide a common set of functionalities for all
-> Qualcomm RPM based interconnect providers and should help reduce code
-> duplication when adding new providers.
->=20
-> Signed-off-by: Jun Nie <jun.nie@linaro.org>
-> ---
->  drivers/interconnect/qcom/Makefile  |   3 +-
->  drivers/interconnect/qcom/icc-rpm.c | 194 ++++++++++++++++++++++
->  drivers/interconnect/qcom/icc-rpm.h |  73 +++++++++
->  drivers/interconnect/qcom/msm8916.c | 241 ++--------------------------
->  4 files changed, 279 insertions(+), 232 deletions(-)
->  create mode 100644 drivers/interconnect/qcom/icc-rpm.c
->  create mode 100644 drivers/interconnect/qcom/icc-rpm.h
->=20
-> diff --git a/drivers/interconnect/qcom/Makefile
-> b/drivers/interconnect/qcom/Makefile
-> index 1702ece67dc5..f5e803489de0 100644
-> --- a/drivers/interconnect/qcom/Makefile
-> +++ b/drivers/interconnect/qcom/Makefile
-> @@ -9,7 +9,7 @@ icc-rpmh-obj				:=3D icc-rpmh.o
->  qnoc-sc7180-objs			:=3D sc7180.o
->  qnoc-sdm845-objs			:=3D sdm845.o
->  qnoc-sm8150-objs			:=3D sm8150.o
-> -icc-smd-rpm-objs			:=3D smd-rpm.o
-> +icc-smd-rpm-objs			:=3D smd-rpm.o icc-rpm.o
-> =20
->  obj-$(CONFIG_INTERCONNECT_QCOM_BCM_VOTER) +=3D icc-bcm-voter.o
->  obj-$(CONFIG_INTERCONNECT_QCOM_MSM8916) +=3D qnoc-msm8916.o
-> @@ -21,3 +21,4 @@ obj-$(CONFIG_INTERCONNECT_QCOM_SC7180) +=3D qnoc-sc7180=
-.o
->  obj-$(CONFIG_INTERCONNECT_QCOM_SDM845) +=3D qnoc-sdm845.o
->  obj-$(CONFIG_INTERCONNECT_QCOM_SM8150) +=3D qnoc-sm8150.o
->  obj-$(CONFIG_INTERCONNECT_QCOM_SMD_RPM) +=3D icc-smd-rpm.o
-> +obj-$(CONFIG_INTERCONNECT_QCOM_SMD_RPM) +=3D icc-smd-rpm.o
+On Fri, Oct 02, 2020 at 09:08:00AM -0700, Badhri Jagan Sridharan wrote:
+> Hi Greg,
+> 
+> Yes I tested it on usb-next before sending it out.
+> 
+>   630 |  tcpci->tcpc.enable_frs = tcpci_enable_frs;
+> 
+> In https://patchwork.kernel.org/project/linux-usb/list/?series=356837
+> i.e v9 version of this series,
+> Patch 7 i.e. https://patchwork.kernel.org/patch/11804847/ is where the
+> above line is added.
+> 
+> I restested in combinations [1]  [2] [3] [4]. All of them were clear
+> cherry-picks. I didnt any merge conflicts.
+> 
+> Maybe you are applying patches in a different order ?
 
-Duplicate ?
+I didn't think so.  Can you try applying the patches, in order, and
+building after each one to see if you get the same error or not?
 
-Thanks for msm8939 work, please Cc: me on any related patch :-)
+My usb-next branch is up to date with all of the recent patches.
 
+thanks,
 
-
-
-
+greg k-h
