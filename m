@@ -2,95 +2,91 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from vger.kernel.org (vger.kernel.org [23.128.96.18])
-	by mail.lfdr.de (Postfix) with ESMTP id 32CBA28264B
-	for <lists+devicetree@lfdr.de>; Sat,  3 Oct 2020 21:36:21 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTP id 0339C28269E
+	for <lists+devicetree@lfdr.de>; Sat,  3 Oct 2020 22:31:46 +0200 (CEST)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S1725888AbgJCTgK (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Sat, 3 Oct 2020 15:36:10 -0400
-Received: from lindbergh.monkeyblade.net ([23.128.96.19]:40522 "EHLO
+        id S1725875AbgJCUbo (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Sat, 3 Oct 2020 16:31:44 -0400
+Received: from lindbergh.monkeyblade.net ([23.128.96.19]:48970 "EHLO
         lindbergh.monkeyblade.net" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S1725884AbgJCTgK (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Sat, 3 Oct 2020 15:36:10 -0400
-Received: from mail-lj1-x241.google.com (mail-lj1-x241.google.com [IPv6:2a00:1450:4864:20::241])
-        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id DC427C0613E7
-        for <devicetree@vger.kernel.org>; Sat,  3 Oct 2020 12:36:09 -0700 (PDT)
-Received: by mail-lj1-x241.google.com with SMTP id b19so3927864lji.11
-        for <devicetree@vger.kernel.org>; Sat, 03 Oct 2020 12:36:09 -0700 (PDT)
+        with ESMTP id S1725864AbgJCUbn (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Sat, 3 Oct 2020 16:31:43 -0400
+Received: from mail-lf1-x143.google.com (mail-lf1-x143.google.com [IPv6:2a00:1450:4864:20::143])
+        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 14303C0613D0
+        for <devicetree@vger.kernel.org>; Sat,  3 Oct 2020 13:31:42 -0700 (PDT)
+Received: by mail-lf1-x143.google.com with SMTP id b12so6205962lfp.9
+        for <devicetree@vger.kernel.org>; Sat, 03 Oct 2020 13:31:41 -0700 (PDT)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
         d=lixom-net.20150623.gappssmtp.com; s=20150623;
         h=date:from:to:cc:subject:message-id:references:mime-version
          :content-disposition:in-reply-to:user-agent;
-        bh=A5i2OjTLBkoVH5tm7bzHi/USJTrW+lyYNLFkq/+L0FE=;
-        b=h3cyyzFG4wrIzM4oY5CE0DCL/Xlwnalfgek7F6Jl6pEXbpfFB93mpo+Ea2whCFCE5A
-         eefa/5pd2+DMdH7Z23HajkB6EKfH9TQdBlvDWC/a/yWf/yWAaK3kpZ5rfSM1c0B6zbr1
-         GobhSXja3U2BbV98T6fHAf4LoaR5R2hb7t7GfiJNBPkFNklMUMYSNmE71ValjBQ684sd
-         n48zNbKObaLBDIFo679zmuOCOamJ4Jlspgzx3Mvd5FNsnM8HdU6I7vFYZczmmabom/4R
-         VjN6RK9fG5tbRAYG/qpvwlVcCEGkkHeR9DCTS0LUgUXPAl0h8bDDFiX0DngZWCyfoz2n
-         VM5Q==
+        bh=hrmYGlSzfi9NcY27JUQ0Az4uMkGe37VFXF6J2fP0dWk=;
+        b=y8gQdLkbBHs4S4paUJOkiMMxuUoC8WCRyYgTDoe1QmO8lcFnNaDHWSvZFM+aWTwUQb
+         QS7+N2Iwh18Fp0SieSdkcY5RqmHAItzOx0Z6Lqq7hTiQIgGg1By9bWMJ7u6QCkwy8tfP
+         kNxlAnkWBmTBi/fGg29qdjnxRQww+8Pr+n3lhx5lTbM+mhdALtVesTQPCIAUUoEX9Ddz
+         CwNNJed3a5rEEdXbxUGz4+eU41ycgPKBfsjj6awS1rWbK6OZeRu51j49cIFmVQtqTuJc
+         9yiozkOvrrs5g4rUn2wFfu8UDD4GkS45agwKNQOiybGy9fn7YweEdvIJDRFQm/3JYzOn
+         mkZQ==
 X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
         d=1e100.net; s=20161025;
         h=x-gm-message-state:date:from:to:cc:subject:message-id:references
          :mime-version:content-disposition:in-reply-to:user-agent;
-        bh=A5i2OjTLBkoVH5tm7bzHi/USJTrW+lyYNLFkq/+L0FE=;
-        b=CIzMCTB7qRIGlgnbA6iproszd/ETBRu57yHKKe+Z8r4Mi2zOy+ekoD4RJ1+5CBQc6+
-         nlexs6VLZIFpG1GAj2KDrSzWvlXRZNWToHQMPC3XVZJHUjHByiia7Tuc3hx5ORzcEx73
-         WRgt0wa1RZ7EkOqANFIZZm+lzamI1Rjlxe6efk2LHfeBQUj0BldXPvoxs7bxPPtQt0wA
-         lEDp5DPk3sn4ZzUFNPsdjGY8M9Hz6KSxeXLhf0W8akFD3i2jDlprw/Gs+dvmBQ3yytkZ
-         ZsSu6aevMoxIwrYroiCw1/5fyoIK6wevcsdBlzzsLdqmL7DRgZYRN4Dv5l5qRkIjSQG4
-         4nyA==
-X-Gm-Message-State: AOAM530vNZu0c7FeZtOPS1ckC10GL8jXdkcgsFONLfPUfoibgY+xEGcm
-        MRUi+WeTgSo3fPIcGzRKO0RmPA==
-X-Google-Smtp-Source: ABdhPJzHJtCvvQB+I/1En4cpoIp25Yjr+eteA0t1Q7YniLLB8jaOGU2zQtPRVLJFu9G/iNWeJuwReg==
-X-Received: by 2002:a2e:8e30:: with SMTP id r16mr2385633ljk.304.1601753768288;
-        Sat, 03 Oct 2020 12:36:08 -0700 (PDT)
+        bh=hrmYGlSzfi9NcY27JUQ0Az4uMkGe37VFXF6J2fP0dWk=;
+        b=M8juuzuYfySKdw8H+zdd+skF3SOzRaPFXyuug29RaTMmLxDUljT9Tq6b02Oe1gmGqk
+         kf/bMciLc2SC39F2dK4xcpGHoMalLBSGFzDyNdC9HloNbp5U+ibPeREa8Eibs0ppdNcY
+         JF2iTTgTo3FjwcaK3L6YZGz2b5x2k3if3YG+Px8k8QKlFhUTGSd5pN54w/r6WKjlmuxZ
+         AStI4fj9FU6wVsIulrKXvQjUQECnwjLLgVO9gdru3T+xNScdlStNV7QOay1/7QcL2fWO
+         NIvnCva6/1OyDe4ubZf2rrCvdb44UUAreqdooBhTLS4836Rnj1JGFAPlfYl0ZmrpnRks
+         oD8g==
+X-Gm-Message-State: AOAM533nVigmvHMSW83Es1AIuT6HVx0biGJoUwTrASLXyHV+iqQ7Drqn
+        Ne7ovYn6MHLvKfVqaB0KyFNCXC2njRaLqE0N
+X-Google-Smtp-Source: ABdhPJyqK61rWNeTRHeu9Bsg0j3XSQPwxp/eGLKHTzbAHsf1DqqgyiM+rG/Y9sOzhwgmyUFvsAZ3FQ==
+X-Received: by 2002:a05:6512:2147:: with SMTP id s7mr2718698lfr.498.1601757098546;
+        Sat, 03 Oct 2020 13:31:38 -0700 (PDT)
 Received: from localhost (h85-30-9-151.cust.a3fiber.se. [85.30.9.151])
-        by smtp.gmail.com with ESMTPSA id o17sm1911597lfi.261.2020.10.03.12.36.06
+        by smtp.gmail.com with ESMTPSA id r13sm1882503lfe.114.2020.10.03.13.31.36
         (version=TLS1_3 cipher=TLS_AES_256_GCM_SHA384 bits=256/256);
-        Sat, 03 Oct 2020 12:36:07 -0700 (PDT)
-Date:   Sat, 3 Oct 2020 12:33:10 -0700
+        Sat, 03 Oct 2020 13:31:37 -0700 (PDT)
+Date:   Sat, 3 Oct 2020 12:48:51 -0700
 From:   Olof Johansson <olof@lixom.net>
-To:     Krzysztof Kozlowski <krzk@kernel.org>
-Cc:     Arnd Bergmann <arnd@arndb.de>,
-        Khuong Dinh <khuong@os.amperecomputing.com>,
-        Rob Herring <robh+dt@kernel.org>, devicetree@vger.kernel.org,
-        linux-kernel@vger.kernel.org, arm@kernel.org, soc@kernel.org,
-        linux-arm-kernel@lists.infradead.org
-Subject: Re: [PATCH 1/2] arm64: dts: apm: drop unused reg-io-width from DW
- APB GPIO controller
-Message-ID: <20201003193310.GD8203@lx2k>
-References: <20200917165040.22908-1-krzk@kernel.org>
- <20201002160922.GA4542@kozik-lap>
+To:     Daniel Palmer <daniel@0x0f.com>
+Cc:     soc@kernel.org, linux-arm-kernel@lists.infradead.org,
+        devicetree@vger.kernel.org, mark-pk.tsai@mediatek.com,
+        arnd@arndb.de, maz@kernel.org
+Subject: Re: [PATCH v2 0/5] ARM: mstar: wire up interrupt controllers
+Message-ID: <20201003194851.GG8203@lx2k>
+References: <20201002133418.2250277-1-daniel@0x0f.com>
 MIME-Version: 1.0
 Content-Type: text/plain; charset=us-ascii
 Content-Disposition: inline
-In-Reply-To: <20201002160922.GA4542@kozik-lap>
+In-Reply-To: <20201002133418.2250277-1-daniel@0x0f.com>
 User-Agent: Mutt/1.10.1 (2018-07-13)
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-On Fri, Oct 02, 2020 at 06:09:22PM +0200, Krzysztof Kozlowski wrote:
-> On Thu, Sep 17, 2020 at 06:50:39PM +0200, Krzysztof Kozlowski wrote:
-> > The Synopsys DesignWare APB GPIO controller driver does not parse
-> > reg-io-width and dtschema does not allow it so drop it to fix dtschema
-> > warnings like:
-> > 
-> >   arch/arm64/boot/dts/apm/apm-mustang.dt.yaml: gpio@1c024000:
-> >     'reg-io-width' does not match any of the regexes: '^gpio-(port|controller)@[0-9a-f]+$', 'pinctrl-[0-9]+'
-> > 
-> > Signed-off-by: Krzysztof Kozlowski <krzk@kernel.org>
-> > 
-> > ---
+On Fri, Oct 02, 2020 at 10:34:13PM +0900, Daniel Palmer wrote:
+> Mark-PK Tsai's driver for the MStar interrupt
+> controller should be going into 5.10[0].
 > 
-> Dear Arnd and Olof,
+> This small series selects the driver when building
+> support for MStar/SigmaStar Arm v7 SoCs, adds the
+> instances of it to the base dtsi and wires up the
+> interrupt for pm_uart.
 > 
-> There is no response from APM maintainer, so maybe you could apply these
-> two patches directly? Optionally I could take it and send to you via
-> pull-request.
+> Differences from v1:
+> 
+> - Added two extra commits that fix up the file names
+>   for the MStar dtsi/dts files as requested by Arnd.
+> 
+> Daniel Palmer (5):
+>   ARM: mstar: Select MStar intc
+>   ARM: mstar: Add interrupt controller to base dtsi
+>   ARM: mstar: Add interrupt to pm_uart
+>   ARM: mstar: Add mstar prefix to all of the dtsi/dts files
+>   ARM: mstar: Fix up the fallout from moving the dts/dtsi files
 
-I've already applied them, so no need. Thanks for following up though, seems
-like the patchwork email service hasn't been working on all patches.
+Thanks, applied to arm/soc (patch 1), and arm/dt for the rest.
 
 
 -Olof
-
