@@ -2,160 +2,122 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from vger.kernel.org (vger.kernel.org [23.128.96.18])
-	by mail.lfdr.de (Postfix) with ESMTP id 994F628273C
-	for <lists+devicetree@lfdr.de>; Sun,  4 Oct 2020 00:50:29 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTP id 9630428276E
+	for <lists+devicetree@lfdr.de>; Sun,  4 Oct 2020 01:49:19 +0200 (CEST)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S1726031AbgJCWu2 (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Sat, 3 Oct 2020 18:50:28 -0400
-Received: from mail-out.m-online.net ([212.18.0.9]:34522 "EHLO
-        mail-out.m-online.net" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S1726027AbgJCWu2 (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Sat, 3 Oct 2020 18:50:28 -0400
-Received: from frontend01.mail.m-online.net (unknown [192.168.8.182])
-        by mail-out.m-online.net (Postfix) with ESMTP id 4C3hsD5LfSz1qs3t;
-        Sun,  4 Oct 2020 00:50:24 +0200 (CEST)
-Received: from localhost (dynscan1.mnet-online.de [192.168.6.70])
-        by mail.m-online.net (Postfix) with ESMTP id 4C3hsD44kyz1qy6R;
-        Sun,  4 Oct 2020 00:50:24 +0200 (CEST)
-X-Virus-Scanned: amavisd-new at mnet-online.de
-Received: from mail.mnet-online.de ([192.168.8.182])
-        by localhost (dynscan1.mail.m-online.net [192.168.6.70]) (amavisd-new, port 10024)
-        with ESMTP id vFcNXQFwUaIF; Sun,  4 Oct 2020 00:50:22 +0200 (CEST)
-X-Auth-Info: rBmzivWnzWNIJHJiK4FX/DfzXNzYDmve1ZhXiNaeQx8=
-Received: from desktop.lan (ip-89-176-112-137.net.upcbroadband.cz [89.176.112.137])
-        (using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
+        id S1726103AbgJCXtS (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Sat, 3 Oct 2020 19:49:18 -0400
+Received: from relay-us1.mymailcheap.com ([51.81.35.219]:39862 "EHLO
+        relay-us1.mymailcheap.com" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
+        with ESMTP id S1726091AbgJCXtS (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Sat, 3 Oct 2020 19:49:18 -0400
+Received: from relay5.mymailcheap.com (relay5.mymailcheap.com [159.100.241.64])
+        by relay-us1.mymailcheap.com (Postfix) with ESMTPS id C774A20DEE;
+        Sat,  3 Oct 2020 23:49:16 +0000 (UTC)
+Received: from relay1.mymailcheap.com (relay1.mymailcheap.com [144.217.248.102])
+        by relay5.mymailcheap.com (Postfix) with ESMTPS id 056672008F;
+        Sat,  3 Oct 2020 23:49:14 +0000 (UTC)
+Received: from filter1.mymailcheap.com (filter1.mymailcheap.com [149.56.130.247])
+        by relay1.mymailcheap.com (Postfix) with ESMTPS id 910C13F1C5;
+        Sat,  3 Oct 2020 23:49:11 +0000 (UTC)
+Received: from localhost (localhost [127.0.0.1])
+        by filter1.mymailcheap.com (Postfix) with ESMTP id 75D9D2A361;
+        Sat,  3 Oct 2020 19:49:11 -0400 (EDT)
+DKIM-Signature: v=1; a=rsa-sha256; c=simple/simple; d=mymailcheap.com;
+        s=default; t=1601768951;
+        bh=qAwEyk8bMnq0oXFGNBT19/TVcG/XHmTLrck2+ZDPto8=;
+        h=From:To:Cc:Subject:Date:From;
+        b=QOoj+k1P4kYBe5uLUO3B2dH4nvXdj5GvGl2epaKDCDT9C1L4mRxAXtlBBhlFsmCUo
+         GnzI6jmy+9RyXFUj8oKHYYVqv5BBBIHvsJ8QWDn2O7s9PrN7RN4HBJKWGT1X/hUOTx
+         iIoqsph5TQXmt7bhBifDReqHcicN8yJGh3XWBmPY=
+X-Virus-Scanned: Debian amavisd-new at filter1.mymailcheap.com
+Received: from filter1.mymailcheap.com ([127.0.0.1])
+        by localhost (filter1.mymailcheap.com [127.0.0.1]) (amavisd-new, port 10024)
+        with ESMTP id fJ2aTtH-8zU4; Sat,  3 Oct 2020 19:49:10 -0400 (EDT)
+Received: from mail20.mymailcheap.com (mail20.mymailcheap.com [51.83.111.147])
+        (using TLSv1.2 with cipher ADH-AES256-GCM-SHA384 (256/256 bits))
         (No client certificate requested)
-        by mail.mnet-online.de (Postfix) with ESMTPSA;
-        Sun,  4 Oct 2020 00:50:22 +0200 (CEST)
-From:   Marek Vasut <marex@denx.de>
-To:     linux-arm-kernel@lists.infradead.org
-Cc:     Marek Vasut <marex@denx.de>, Abel Vesa <abel.vesa@nxp.com>,
-        Dong Aisheng <aisheng.dong@nxp.com>,
-        Fabio Estevam <festevam@gmail.com>,
-        =?UTF-8?q?Guido=20G=C3=BCnther?= <agx@sigxcpu.org>,
-        Jaehoon Chung <jh80.chung@samsung.com>,
-        Lucas Stach <l.stach@pengutronix.de>,
-        Marek Szyprowski <m.szyprowski@samsung.com>,
-        NXP Linux Team <linux-imx@nxp.com>,
-        Rob Herring <robh+dt@kernel.org>,
-        Shawn Guo <shawnguo@kernel.org>,
-        linux-samsung-soc@vger.kernel.org, devicetree@vger.kernel.org
-Subject: [PATCH] phy: exynos-mipi-video: Add support for NXP i.MX8MM
-Date:   Sun,  4 Oct 2020 00:50:19 +0200
-Message-Id: <20201003225020.164358-1-marex@denx.de>
+        by filter1.mymailcheap.com (Postfix) with ESMTPS;
+        Sat,  3 Oct 2020 19:49:10 -0400 (EDT)
+Received: from [148.251.23.173] (ml.mymailcheap.com [148.251.23.173])
+        by mail20.mymailcheap.com (Postfix) with ESMTP id 543FC40BFB;
+        Sat,  3 Oct 2020 23:49:07 +0000 (UTC)
+Authentication-Results: mail20.mymailcheap.com;
+        dkim=pass (1024-bit key; unprotected) header.d=aosc.io header.i=@aosc.io header.b="bMw4jbMz";
+        dkim-atps=neutral
+AI-Spam-Status: Not processed
+Received: from ice-e5v2.lan (unknown [59.41.163.122])
+        (using TLSv1.3 with cipher TLS_AES_256_GCM_SHA384 (256/256 bits)
+         key-exchange ECDHE (P-256) server-signature RSA-PSS (2048 bits) server-digest SHA256)
+        (No client certificate requested)
+        by mail20.mymailcheap.com (Postfix) with ESMTPSA id 3359140BFB;
+        Sat,  3 Oct 2020 23:48:56 +0000 (UTC)
+DKIM-Signature: v=1; a=rsa-sha256; c=simple/simple; d=aosc.io; s=default;
+        t=1601768940; bh=qAwEyk8bMnq0oXFGNBT19/TVcG/XHmTLrck2+ZDPto8=;
+        h=From:To:Cc:Subject:Date:From;
+        b=bMw4jbMz/qJt/gLhl2ScYpLWO0qtQDtqigU+FfNlms19Vy8KhK/rA/ALnJlcFRSxr
+         UQZ1dRq8C5s8BuFPL3yuvZ0n5v9LPz1FUdBjkE0xFCabtUYT+3M13s3W/mHT9/yJL8
+         nLo7fmXvEXTQl+4F+3RkW2qXMC1xFuZVSuQd1hrU=
+From:   Icenowy Zheng <icenowy@aosc.io>
+To:     Rob Herring <robh+dt@kernel.org>,
+        Maxime Ripard <mripard@kernel.org>,
+        Chen-Yu Tsai <wens@csie.org>,
+        =?UTF-8?q?Cl=C3=A9ment=20P=C3=A9ron?= <peron.clem@gmail.com>
+Cc:     devicetree@vger.kernel.org, linux-arm-kernel@lists.infradead.org,
+        linux-kernel@vger.kernel.org, linux-sunxi@googlegroups.com,
+        Icenowy Zheng <icenowy@aosc.io>
+Subject: [PATCH 0/2] Try to fix DT schema problems for V3-series DTs
+Date:   Sun,  4 Oct 2020 07:48:42 +0800
+Message-Id: <20201003234842.1121077-1-icenowy@aosc.io>
 X-Mailer: git-send-email 2.28.0
 MIME-Version: 1.0
-Content-Type: text/plain; charset=UTF-8
 Content-Transfer-Encoding: 8bit
+X-Rspamd-Queue-Id: 543FC40BFB
+X-Spamd-Result: default: False [6.40 / 20.00];
+         RCVD_VIA_SMTP_AUTH(0.00)[];
+         TO_DN_SOME(0.00)[];
+         R_MISSING_CHARSET(2.50)[];
+         BROKEN_CONTENT_TYPE(1.50)[];
+         R_SPF_SOFTFAIL(0.00)[~all];
+         ML_SERVERS(-3.10)[148.251.23.173];
+         DKIM_TRACE(0.00)[aosc.io:+];
+         RCPT_COUNT_SEVEN(0.00)[9];
+         FREEMAIL_TO(0.00)[kernel.org,csie.org,gmail.com];
+         RCVD_NO_TLS_LAST(0.10)[];
+         RECEIVED_SPAMHAUS_PBL(0.00)[59.41.163.122:received];
+         FROM_EQ_ENVFROM(0.00)[];
+         MIME_TRACE(0.00)[0:+];
+         ASN(0.00)[asn:24940, ipnet:148.251.0.0/16, country:DE];
+         ARC_NA(0.00)[];
+         R_DKIM_ALLOW(0.00)[aosc.io:s=default];
+         FROM_HAS_DN(0.00)[];
+         FREEMAIL_ENVRCPT(0.00)[gmail.com];
+         TO_MATCH_ENVRCPT_ALL(0.00)[];
+         TAGGED_RCPT(0.00)[dt];
+         MIME_GOOD(-0.10)[text/plain];
+         DMARC_NA(0.00)[aosc.io];
+         MID_CONTAINS_FROM(1.00)[];
+         HFILTER_HELO_BAREIP(3.00)[148.251.23.173,1];
+         RCVD_COUNT_TWO(0.00)[2];
+         SUSPICIOUS_RECIPS(1.50)[]
+X-Rspamd-Server: mail20.mymailcheap.com
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-This patch adds support for MIPI DPHY found in NXP i.MX8MM.
+This patchset tries to fix DT schema verification errors that exist in
+V3-series device trees.
 
-Signed-off-by: Marek Vasut <marex@denx.de>
-Cc: Abel Vesa <abel.vesa@nxp.com>
-Cc: Dong Aisheng <aisheng.dong@nxp.com>
-Cc: Fabio Estevam <festevam@gmail.com>
-Cc: Guido Günther <agx@sigxcpu.org>
-Cc: Jaehoon Chung <jh80.chung@samsung.com>
-Cc: Lucas Stach <l.stach@pengutronix.de>
-Cc: Marek Szyprowski <m.szyprowski@samsung.com>
-Cc: NXP Linux Team <linux-imx@nxp.com>
-Cc: Rob Herring <robh+dt@kernel.org>
-Cc: Shawn Guo <shawnguo@kernel.org>
-Cc: linux-samsung-soc@vger.kernel.org
-Cc: devicetree@vger.kernel.org
----
- .../devicetree/bindings/phy/samsung-phy.txt   |  7 ++++---
- drivers/phy/samsung/Kconfig                   |  6 +++---
- drivers/phy/samsung/phy-exynos-mipi-video.c   | 21 +++++++++++++++++++
- 3 files changed, 28 insertions(+), 6 deletions(-)
+The first patch drops bogus properties that is not needed in PineCube
+DT, and the second one adds compatible to the binding.
 
-diff --git a/Documentation/devicetree/bindings/phy/samsung-phy.txt b/Documentation/devicetree/bindings/phy/samsung-phy.txt
-index 7510830a79bd..7b9dc361ab0c 100644
---- a/Documentation/devicetree/bindings/phy/samsung-phy.txt
-+++ b/Documentation/devicetree/bindings/phy/samsung-phy.txt
-@@ -1,14 +1,15 @@
--Samsung S5P/Exynos SoC series MIPI CSIS/DSIM DPHY
---------------------------------------------------
-+Samsung S5P/Exynos and NXP i.MX8MM SoC series MIPI CSIS/DSIM DPHY
-+-----------------------------------------------------------------
- 
- Required properties:
- - compatible : should be one of the listed compatibles:
- 	- "samsung,s5pv210-mipi-video-phy"
- 	- "samsung,exynos5420-mipi-video-phy"
- 	- "samsung,exynos5433-mipi-video-phy"
-+	- "fsl,imx8mm-mipi-video-phy"
- - #phy-cells : from the generic phy bindings, must be 1;
- 
--In case of s5pv210 and exynos5420 compatible PHYs:
-+In case of s5pv210, exynos5420, imx8mm compatible PHYs:
- - syscon - phandle to the PMU system controller
- 
- In case of exynos5433 compatible PHY:
-diff --git a/drivers/phy/samsung/Kconfig b/drivers/phy/samsung/Kconfig
-index e20d2fcc9fe7..342b75f6e4f6 100644
---- a/drivers/phy/samsung/Kconfig
-+++ b/drivers/phy/samsung/Kconfig
-@@ -12,14 +12,14 @@ config PHY_EXYNOS_DP_VIDEO
- 	  Support for Display Port PHY found on Samsung Exynos SoCs.
- 
- config PHY_EXYNOS_MIPI_VIDEO
--	tristate "S5P/Exynos SoC series MIPI CSI-2/DSI PHY driver"
-+	tristate "S5P/Exynos/i.MX8MM SoC series MIPI CSI-2/DSI PHY driver"
- 	depends on HAS_IOMEM
--	depends on ARCH_S5PV210 || ARCH_EXYNOS || COMPILE_TEST
-+	depends on ARCH_S5PV210 || ARCH_EXYNOS || ARCH_MXC || COMPILE_TEST
- 	select GENERIC_PHY
- 	default y if ARCH_S5PV210 || ARCH_EXYNOS
- 	help
- 	  Support for MIPI CSI-2 and MIPI DSI DPHY found on Samsung S5P
--	  and Exynos SoCs.
-+	  and Exynos SoCs, and on NXP i.MX8MM SoCs.
- 
- config PHY_EXYNOS_PCIE
- 	bool "Exynos PCIe PHY driver"
-diff --git a/drivers/phy/samsung/phy-exynos-mipi-video.c b/drivers/phy/samsung/phy-exynos-mipi-video.c
-index c1df1ef3ee3c..b735b8089cd7 100644
---- a/drivers/phy/samsung/phy-exynos-mipi-video.c
-+++ b/drivers/phy/samsung/phy-exynos-mipi-video.c
-@@ -214,6 +214,24 @@ static const struct mipi_phy_device_desc exynos5433_mipi_phy = {
- 	},
- };
- 
-+static const struct mipi_phy_device_desc imx8mm_mipi_phy = {
-+	.num_regmaps = 1,
-+	.regmap_names = {"syscon"},
-+	.num_phys = 1,
-+	.phys = {
-+		{
-+			/* EXYNOS_MIPI_PHY_ID_DSIM0 */
-+			.coupled_phy_id = EXYNOS_MIPI_PHY_ID_NONE,
-+			.enable_val = BIT(17),
-+			.enable_reg = 8,
-+			.enable_map = EXYNOS_MIPI_REGMAP_PMU,
-+			.resetn_val = BIT(5),
-+			.resetn_reg = 0,
-+			.resetn_map = EXYNOS_MIPI_REGMAP_PMU,
-+		},
-+	},
-+};
-+
- struct exynos_mipi_video_phy {
- 	struct regmap *regmaps[EXYNOS_MIPI_REGMAPS_NUM];
- 	int num_phys;
-@@ -349,6 +367,9 @@ static const struct of_device_id exynos_mipi_video_phy_of_match[] = {
- 	}, {
- 		.compatible = "samsung,exynos5433-mipi-video-phy",
- 		.data = &exynos5433_mipi_phy,
-+	}, {
-+		.compatible = "fsl,imx8mm-mipi-video-phy",
-+		.data = &imx8mm_mipi_phy,
- 	},
- 	{ /* sentinel */ },
- };
+Icenowy Zheng (2):
+  ARM: dts: sun8i: s3: drop bogus cells for CSI subnode on PineCube
+  dt-bindings: sram: sunxi-sram: add V3s compatible string
+
+ .../bindings/sram/allwinner,sun4i-a10-system-control.yaml      | 3 +++
+ arch/arm/boot/dts/sun8i-s3-pinecube.dts                        | 3 ---
+ 2 files changed, 3 insertions(+), 3 deletions(-)
+
 -- 
 2.28.0
-
