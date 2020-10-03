@@ -2,52 +2,52 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from vger.kernel.org (vger.kernel.org [23.128.96.18])
-	by mail.lfdr.de (Postfix) with ESMTP id AFB4D282646
-	for <lists+devicetree@lfdr.de>; Sat,  3 Oct 2020 21:36:08 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTP id 32CBA28264B
+	for <lists+devicetree@lfdr.de>; Sat,  3 Oct 2020 21:36:21 +0200 (CEST)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S1725857AbgJCTgI (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Sat, 3 Oct 2020 15:36:08 -0400
-Received: from lindbergh.monkeyblade.net ([23.128.96.19]:40512 "EHLO
+        id S1725888AbgJCTgK (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Sat, 3 Oct 2020 15:36:10 -0400
+Received: from lindbergh.monkeyblade.net ([23.128.96.19]:40522 "EHLO
         lindbergh.monkeyblade.net" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S1725831AbgJCTgI (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Sat, 3 Oct 2020 15:36:08 -0400
-Received: from mail-lf1-x141.google.com (mail-lf1-x141.google.com [IPv6:2a00:1450:4864:20::141])
-        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id B193FC0613D0
-        for <devicetree@vger.kernel.org>; Sat,  3 Oct 2020 12:36:07 -0700 (PDT)
-Received: by mail-lf1-x141.google.com with SMTP id z19so6118995lfr.4
-        for <devicetree@vger.kernel.org>; Sat, 03 Oct 2020 12:36:07 -0700 (PDT)
+        with ESMTP id S1725884AbgJCTgK (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Sat, 3 Oct 2020 15:36:10 -0400
+Received: from mail-lj1-x241.google.com (mail-lj1-x241.google.com [IPv6:2a00:1450:4864:20::241])
+        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id DC427C0613E7
+        for <devicetree@vger.kernel.org>; Sat,  3 Oct 2020 12:36:09 -0700 (PDT)
+Received: by mail-lj1-x241.google.com with SMTP id b19so3927864lji.11
+        for <devicetree@vger.kernel.org>; Sat, 03 Oct 2020 12:36:09 -0700 (PDT)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
         d=lixom-net.20150623.gappssmtp.com; s=20150623;
         h=date:from:to:cc:subject:message-id:references:mime-version
          :content-disposition:in-reply-to:user-agent;
-        bh=w3Ngi5vlbzYdW/bDZyAeIiKsITew3BleP03QjUOOp9E=;
-        b=NL3W0BU3MYVSlmKaGe0apPVLCOWMrRvHHy6MxlaJ4zkI/5fZW6A2ly8bd/ZSw5zN4l
-         UbsojxYClh5sDdVjL4VpsS+1gbchOMXIpbo/Lee4jyQjFVIGH4K4vnRxRPrCK5jDlJso
-         L6itAExkxUCBRPMKT0n9qougujJj4UbEIlXkvQ71i2fX+7ioM4OYkc6X5DZh/i/GB0hV
-         9mKb+fFKNYcIppRJpwX5/3kxqLUSBZqNCNejgkAI0xLPwMr2fuZ3mQe84JhOs+7X027h
-         ykx2K8gU3qUEs8T7OBOX8Xm1JaQfj8jo+p7YHBpqtr9bNMhyYrmZoILcw3dZYVUqyfkg
-         fS+A==
+        bh=A5i2OjTLBkoVH5tm7bzHi/USJTrW+lyYNLFkq/+L0FE=;
+        b=h3cyyzFG4wrIzM4oY5CE0DCL/Xlwnalfgek7F6Jl6pEXbpfFB93mpo+Ea2whCFCE5A
+         eefa/5pd2+DMdH7Z23HajkB6EKfH9TQdBlvDWC/a/yWf/yWAaK3kpZ5rfSM1c0B6zbr1
+         GobhSXja3U2BbV98T6fHAf4LoaR5R2hb7t7GfiJNBPkFNklMUMYSNmE71ValjBQ684sd
+         n48zNbKObaLBDIFo679zmuOCOamJ4Jlspgzx3Mvd5FNsnM8HdU6I7vFYZczmmabom/4R
+         VjN6RK9fG5tbRAYG/qpvwlVcCEGkkHeR9DCTS0LUgUXPAl0h8bDDFiX0DngZWCyfoz2n
+         VM5Q==
 X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
         d=1e100.net; s=20161025;
         h=x-gm-message-state:date:from:to:cc:subject:message-id:references
          :mime-version:content-disposition:in-reply-to:user-agent;
-        bh=w3Ngi5vlbzYdW/bDZyAeIiKsITew3BleP03QjUOOp9E=;
-        b=X4rimZKG+wdjJPoe06Q//3+Y76xTkRAM+LST+51atIDZS2pc7QtRx6H+NoIB/FmV2i
-         NJzZsKfMe/54rY6Dm73NQqwabvUFZ3dT+wygkfnNpVYJxiwZpPwIgNVbUzYH7lfLn1Pr
-         eXlP+dWPK5zNplMzil4po8gdKHi3F01UGfDHJnQOtFCS2T6+awSt7xqgncpABblQlE+V
-         I7E1fQhzyb/ZQUwi1bGUhzXq1uWXYk1ZBnMc5hNuvA8ump69UeoxjEfhItz2LoXAqfJC
-         kYfJGoZeUqbSIBh0wVZd1Z0dylXMNgZ+O7sl7pwt1nhAUZP79uY1Xa6ky53+MI89gm+d
-         dj4w==
-X-Gm-Message-State: AOAM531uonfvVg5ieCUP81AZy2edhT1zO7fg3q+70MhSIrfjCQN9QK/X
-        KrHQmkjxg0/XltbWH7TI0Eqmkg==
-X-Google-Smtp-Source: ABdhPJzlCylEeGhrYpzJE62KmnsvFA9SXe6+3IcJwxU1POJcuOBkf2krH+BSRuYP+ZJuVQlcdpntFg==
-X-Received: by 2002:a19:4c1:: with SMTP id 184mr924325lfe.547.1601753766144;
-        Sat, 03 Oct 2020 12:36:06 -0700 (PDT)
+        bh=A5i2OjTLBkoVH5tm7bzHi/USJTrW+lyYNLFkq/+L0FE=;
+        b=CIzMCTB7qRIGlgnbA6iproszd/ETBRu57yHKKe+Z8r4Mi2zOy+ekoD4RJ1+5CBQc6+
+         nlexs6VLZIFpG1GAj2KDrSzWvlXRZNWToHQMPC3XVZJHUjHByiia7Tuc3hx5ORzcEx73
+         WRgt0wa1RZ7EkOqANFIZZm+lzamI1Rjlxe6efk2LHfeBQUj0BldXPvoxs7bxPPtQt0wA
+         lEDp5DPk3sn4ZzUFNPsdjGY8M9Hz6KSxeXLhf0W8akFD3i2jDlprw/Gs+dvmBQ3yytkZ
+         ZsSu6aevMoxIwrYroiCw1/5fyoIK6wevcsdBlzzsLdqmL7DRgZYRN4Dv5l5qRkIjSQG4
+         4nyA==
+X-Gm-Message-State: AOAM530vNZu0c7FeZtOPS1ckC10GL8jXdkcgsFONLfPUfoibgY+xEGcm
+        MRUi+WeTgSo3fPIcGzRKO0RmPA==
+X-Google-Smtp-Source: ABdhPJzHJtCvvQB+I/1En4cpoIp25Yjr+eteA0t1Q7YniLLB8jaOGU2zQtPRVLJFu9G/iNWeJuwReg==
+X-Received: by 2002:a2e:8e30:: with SMTP id r16mr2385633ljk.304.1601753768288;
+        Sat, 03 Oct 2020 12:36:08 -0700 (PDT)
 Received: from localhost (h85-30-9-151.cust.a3fiber.se. [85.30.9.151])
-        by smtp.gmail.com with ESMTPSA id b28sm1826099lfq.107.2020.10.03.12.36.04
+        by smtp.gmail.com with ESMTPSA id o17sm1911597lfi.261.2020.10.03.12.36.06
         (version=TLS1_3 cipher=TLS_AES_256_GCM_SHA384 bits=256/256);
-        Sat, 03 Oct 2020 12:36:04 -0700 (PDT)
-Date:   Sat, 3 Oct 2020 12:31:36 -0700
+        Sat, 03 Oct 2020 12:36:07 -0700 (PDT)
+Date:   Sat, 3 Oct 2020 12:33:10 -0700
 From:   Olof Johansson <olof@lixom.net>
 To:     Krzysztof Kozlowski <krzk@kernel.org>
 Cc:     Arnd Bergmann <arnd@arndb.de>,
@@ -57,7 +57,7 @@ Cc:     Arnd Bergmann <arnd@arndb.de>,
         linux-arm-kernel@lists.infradead.org
 Subject: Re: [PATCH 1/2] arm64: dts: apm: drop unused reg-io-width from DW
  APB GPIO controller
-Message-ID: <20201003193136.GC8203@lx2k>
+Message-ID: <20201003193310.GD8203@lx2k>
 References: <20200917165040.22908-1-krzk@kernel.org>
  <20201002160922.GA4542@kozik-lap>
 MIME-Version: 1.0
@@ -88,7 +88,9 @@ On Fri, Oct 02, 2020 at 06:09:22PM +0200, Krzysztof Kozlowski wrote:
 > two patches directly? Optionally I could take it and send to you via
 > pull-request.
 
-Sure, applying.
+I've already applied them, so no need. Thanks for following up though, seems
+like the patchwork email service hasn't been working on all patches.
 
 
 -Olof
+
