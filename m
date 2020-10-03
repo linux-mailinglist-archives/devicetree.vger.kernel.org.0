@@ -2,112 +2,92 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from vger.kernel.org (vger.kernel.org [23.128.96.18])
-	by mail.lfdr.de (Postfix) with ESMTP id 687202824AB
-	for <lists+devicetree@lfdr.de>; Sat,  3 Oct 2020 16:21:44 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTP id 57EB628259D
+	for <lists+devicetree@lfdr.de>; Sat,  3 Oct 2020 19:33:43 +0200 (CEST)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S1725831AbgJCOUl (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Sat, 3 Oct 2020 10:20:41 -0400
-Received: from lindbergh.monkeyblade.net ([23.128.96.19]:48750 "EHLO
-        lindbergh.monkeyblade.net" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S1725972AbgJCOU0 (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Sat, 3 Oct 2020 10:20:26 -0400
-Received: from mail-wr1-x441.google.com (mail-wr1-x441.google.com [IPv6:2a00:1450:4864:20::441])
-        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 9EC40C0613D0;
-        Sat,  3 Oct 2020 07:20:25 -0700 (PDT)
-Received: by mail-wr1-x441.google.com with SMTP id w5so4845827wrp.8;
-        Sat, 03 Oct 2020 07:20:25 -0700 (PDT)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=gmail.com; s=20161025;
-        h=from:to:cc:subject:date:message-id:in-reply-to:references
-         :mime-version:content-transfer-encoding;
-        bh=Q/UCGl1ZdUoHsUHtTTTH+r1dTXLa/BTl7CcT5LFzhtQ=;
-        b=u8GC3+J+LJHL0bHYqdtwcb3saMTpTg/ICMHyMfYfjlApBBb4bwA+VHYb//eiAZZMwV
-         3xmfzwIbOsqMMYb9IaDEZEW/OGpDmXSg/+Vn+/x00zBkbN6N4mlp6nhEB6G9jsGMVLTO
-         lVH7H2i4jWa+FZvUauEfJBPYJFK5dilmhU/Yxs2XI2ElpomZq0rsrYySZ9CwgjE9EnFv
-         vpSurOm8cd03JBQvYfTW07dTigWjso/hQQUchefNbaVLHHI80Ozb+pyG0pJ+619nW3QT
-         fJli5utqMvduQ5cmsuZCSOlz+l9xlRe9BoTULGcX/DaCpmfuMhHbJqq6+ZyX0RmLlCfj
-         S4MQ==
-X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=1e100.net; s=20161025;
-        h=x-gm-message-state:from:to:cc:subject:date:message-id:in-reply-to
-         :references:mime-version:content-transfer-encoding;
-        bh=Q/UCGl1ZdUoHsUHtTTTH+r1dTXLa/BTl7CcT5LFzhtQ=;
-        b=qW4WfoHheK58eOU2+r2Pe/HETXGzlzuD5CSmlJpfD3Q0pT5Hu2j6mZSPFzOnasPQDB
-         lMGeCz6LA66d8XV/tO+unGTeQkOx2keQm50ZKg/2yhuSsa7skvKjZjqPQbEbxf+QayEW
-         4PMUZdm8RQMDkItutORsoHuy7Agm/3NmdQqPfrN4e1KEPJ2K3QBKbBF9u15bqVCr4gOh
-         gtPEAH6qtfrFHu5dznkBYh8qrO6evlfFpza0C43wANO+FeDZwXQ6dmGvWQN+QkzIeXj9
-         8xkCwAUgUtu/vJJpP8IY2DaqinVacWrRDHaKH2AmSp0/SffsP2VdGMN+84dSVL9CvhAg
-         RCMQ==
-X-Gm-Message-State: AOAM532DQTvb9yl29bT+2SRbNygOoOLJ6/qYnKbcJCmDMpbA6HoYPrTh
-        PQTW4hXd9g44P7hOd544UQY=
-X-Google-Smtp-Source: ABdhPJxHfyuLH8+eJsmhPM4gM03KPgUvXhOFVldQ+mJwiPnHNBL32S2zcjp6aubvOgLXigkLM11n9A==
-X-Received: by 2002:a5d:4486:: with SMTP id j6mr2306431wrq.278.1601734824252;
-        Sat, 03 Oct 2020 07:20:24 -0700 (PDT)
-Received: from clement-Latitude-7490.numericable.fr (213-245-241-245.rev.numericable.fr. [213.245.241.245])
-        by smtp.gmail.com with ESMTPSA id d18sm5417473wrm.10.2020.10.03.07.20.22
-        (version=TLS1_3 cipher=TLS_AES_256_GCM_SHA384 bits=256/256);
-        Sat, 03 Oct 2020 07:20:23 -0700 (PDT)
-From:   =?UTF-8?q?Cl=C3=A9ment=20P=C3=A9ron?= <peron.clem@gmail.com>
-To:     Maxime Ripard <mripard@kernel.org>, Chen-Yu Tsai <wens@csie.org>,
-        Rob Herring <robh+dt@kernel.org>,
-        Mark Brown <broonie@kernel.org>,
-        Liam Girdwood <lgirdwood@gmail.com>
-Cc:     Jaroslav Kysela <perex@perex.cz>, Takashi Iwai <tiwai@suse.com>,
-        Marcus Cooper <codekipper@gmail.com>,
-        Jernej Skrabec <jernej.skrabec@siol.net>,
-        alsa-devel@alsa-project.org, devicetree@vger.kernel.org,
-        linux-arm-kernel@lists.infradead.org, linux-kernel@vger.kernel.org,
-        linux-sunxi@googlegroups.com,
-        =?UTF-8?q?Cl=C3=A9ment=20P=C3=A9ron?= <peron.clem@gmail.com>
-Subject: [PATCH v6 14/14] arm: dts: sunxi: h3/h5: Add I2S2 node
-Date:   Sat,  3 Oct 2020 16:19:50 +0200
-Message-Id: <20201003141950.455829-15-peron.clem@gmail.com>
-X-Mailer: git-send-email 2.25.1
-In-Reply-To: <20201003141950.455829-1-peron.clem@gmail.com>
-References: <20201003141950.455829-1-peron.clem@gmail.com>
+        id S1725833AbgJCRdm (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Sat, 3 Oct 2020 13:33:42 -0400
+Received: from msg-2.mailo.com ([213.182.54.12]:55670 "EHLO msg-2.mailo.com"
+        rhost-flags-OK-OK-OK-OK) by vger.kernel.org with ESMTP
+        id S1725797AbgJCRdm (ORCPT <rfc822;devicetree@vger.kernel.org>);
+        Sat, 3 Oct 2020 13:33:42 -0400
+X-Greylist: delayed 11171 seconds by postgrey-1.27 at vger.kernel.org; Sat, 03 Oct 2020 13:33:41 EDT
+DKIM-Signature: v=1; a=rsa-sha256; c=simple/simple; d=mailoo.org; s=mailo;
+        t=1601735247; bh=imNu7MHThjAESrJNpmhOyRli59QkLGoI0kFTAxDCsF8=;
+        h=X-EA-Auth:Message-ID:Subject:From:To:Cc:Date:In-Reply-To:
+         References:Content-Type:MIME-Version:Content-Transfer-Encoding;
+        b=dkMhJ5QchIXG+Hy8U/wfRx6/oubjDIaRXvmWAAWFfawB6K0AxUrgCTw18dL4djFnk
+         ei6Jzj7BArFFCk2gZr7J3EdNa6kB46xr5jFll/hep3ZvnprKjz/A0HHTObsxf8PW9q
+         UHpjoKrDY4nwba5Q+7DYMhii3mSSOvc3yb8+q8Ks=
+Received: by b-3.in.mailobj.net [192.168.90.13] with ESMTP
+        via proxy.mailoo.org [213.182.55.207]
+        Sat,  3 Oct 2020 16:27:27 +0200 (CEST)
+X-EA-Auth: chZqOqSjMGhpYYrQYEHoviLKXI/U1P1qJspKX9NxQLD9OuH6MudHEBb/csrmzqyfTT+/ZA0dRFaEiu+ioS21gGuiUmLOx5GEte2jXfSbrto=
+Message-ID: <104955668ed768682adf1757e79022117460d268.camel@mailoo.org>
+Subject: Re: [PATCH 1/5] interconnect: qcom: Consolidate interconnect RPM
+ support
+From:   Vincent Knecht <vincent.knecht@mailoo.org>
+To:     Jun Nie <jun.nie@linaro.org>, devicetree@vger.kernel.org,
+        georgi.djakov@linaro.org, bjorn.andersson@linaro.org,
+        agross@kernel.org, linux-pm@vger.kernel.org,
+        linux-arm-msm@vger.kernel.org, linux-kernel@vger.kernel.org,
+        robh@kernel.org
+Cc:     shawn.guo@linaro.org
+Date:   Sat, 03 Oct 2020 16:27:25 +0200
+In-Reply-To: <20200930081645.3434-2-jun.nie@linaro.org>
+References: <20200930081645.3434-1-jun.nie@linaro.org>
+         <20200930081645.3434-2-jun.nie@linaro.org>
+Content-Type: text/plain; charset="UTF-8"
+User-Agent: Evolution 3.34.4 (3.34.4-1.fc31) 
 MIME-Version: 1.0
-Content-Type: text/plain; charset=UTF-8
-Content-Transfer-Encoding: 8bit
+Content-Transfer-Encoding: quoted-printable
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-From: Marcus Cooper <codekipper@gmail.com>
+Le mercredi 30 septembre 2020 =C3=A0 16:16 +0800, Jun Nie a =C3=A9crit :
+> Add RPM based interconnect driver implements the set and aggregate
+> functionalities that translates bandwidth requests into RPM messages.
+> These modules provide a common set of functionalities for all
+> Qualcomm RPM based interconnect providers and should help reduce code
+> duplication when adding new providers.
+>=20
+> Signed-off-by: Jun Nie <jun.nie@linaro.org>
+> ---
+>  drivers/interconnect/qcom/Makefile  |   3 +-
+>  drivers/interconnect/qcom/icc-rpm.c | 194 ++++++++++++++++++++++
+>  drivers/interconnect/qcom/icc-rpm.h |  73 +++++++++
+>  drivers/interconnect/qcom/msm8916.c | 241 ++--------------------------
+>  4 files changed, 279 insertions(+), 232 deletions(-)
+>  create mode 100644 drivers/interconnect/qcom/icc-rpm.c
+>  create mode 100644 drivers/interconnect/qcom/icc-rpm.h
+>=20
+> diff --git a/drivers/interconnect/qcom/Makefile
+> b/drivers/interconnect/qcom/Makefile
+> index 1702ece67dc5..f5e803489de0 100644
+> --- a/drivers/interconnect/qcom/Makefile
+> +++ b/drivers/interconnect/qcom/Makefile
+> @@ -9,7 +9,7 @@ icc-rpmh-obj				:=3D icc-rpmh.o
+>  qnoc-sc7180-objs			:=3D sc7180.o
+>  qnoc-sdm845-objs			:=3D sdm845.o
+>  qnoc-sm8150-objs			:=3D sm8150.o
+> -icc-smd-rpm-objs			:=3D smd-rpm.o
+> +icc-smd-rpm-objs			:=3D smd-rpm.o icc-rpm.o
+> =20
+>  obj-$(CONFIG_INTERCONNECT_QCOM_BCM_VOTER) +=3D icc-bcm-voter.o
+>  obj-$(CONFIG_INTERCONNECT_QCOM_MSM8916) +=3D qnoc-msm8916.o
+> @@ -21,3 +21,4 @@ obj-$(CONFIG_INTERCONNECT_QCOM_SC7180) +=3D qnoc-sc7180=
+.o
+>  obj-$(CONFIG_INTERCONNECT_QCOM_SDM845) +=3D qnoc-sdm845.o
+>  obj-$(CONFIG_INTERCONNECT_QCOM_SM8150) +=3D qnoc-sm8150.o
+>  obj-$(CONFIG_INTERCONNECT_QCOM_SMD_RPM) +=3D icc-smd-rpm.o
+> +obj-$(CONFIG_INTERCONNECT_QCOM_SMD_RPM) +=3D icc-smd-rpm.o
 
-Add H3/H5 I2S2 node connected to the HDMI interface.
+Duplicate ?
 
-Signed-off-by: Jernej Skrabec <jernej.skrabec@siol.net>
-Signed-off-by: Marcus Cooper <codekipper@gmail.com>
-Acked-by: Chen-Yu Tsai <wens@csie.org>
-Signed-off-by: Clément Péron <peron.clem@gmail.com>
----
- arch/arm/boot/dts/sunxi-h3-h5.dtsi | 13 +++++++++++++
- 1 file changed, 13 insertions(+)
+Thanks for msm8939 work, please Cc: me on any related patch :-)
 
-diff --git a/arch/arm/boot/dts/sunxi-h3-h5.dtsi b/arch/arm/boot/dts/sunxi-h3-h5.dtsi
-index 22d533d18992..9be13378d4df 100644
---- a/arch/arm/boot/dts/sunxi-h3-h5.dtsi
-+++ b/arch/arm/boot/dts/sunxi-h3-h5.dtsi
-@@ -662,6 +662,19 @@ i2s1: i2s@1c22400 {
- 			status = "disabled";
- 		};
- 
-+		i2s2: i2s@1c22800 {
-+			#sound-dai-cells = <0>;
-+			compatible = "allwinner,sun8i-h3-i2s";
-+			reg = <0x01c22800 0x400>;
-+			interrupts = <GIC_SPI 15 IRQ_TYPE_LEVEL_HIGH>;
-+			clocks = <&ccu CLK_BUS_I2S2>, <&ccu CLK_I2S2>;
-+			clock-names = "apb", "mod";
-+			dmas = <&dma 27>;
-+			resets = <&ccu RST_BUS_I2S2>;
-+			dma-names = "tx";
-+			status = "disabled";
-+		};
-+
- 		codec: codec@1c22c00 {
- 			#sound-dai-cells = <0>;
- 			compatible = "allwinner,sun8i-h3-codec";
--- 
-2.25.1
+
+
+
 
