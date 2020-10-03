@@ -2,122 +2,121 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from vger.kernel.org (vger.kernel.org [23.128.96.18])
-	by mail.lfdr.de (Postfix) with ESMTP id 07D62282213
-	for <lists+devicetree@lfdr.de>; Sat,  3 Oct 2020 09:49:08 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTP id 9E08628226A
+	for <lists+devicetree@lfdr.de>; Sat,  3 Oct 2020 10:18:20 +0200 (CEST)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S1725710AbgJCHtG (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Sat, 3 Oct 2020 03:49:06 -0400
-Received: from mail.kernel.org ([198.145.29.99]:49884 "EHLO mail.kernel.org"
-        rhost-flags-OK-OK-OK-OK) by vger.kernel.org with ESMTP
-        id S1725648AbgJCHtG (ORCPT <rfc822;devicetree@vger.kernel.org>);
-        Sat, 3 Oct 2020 03:49:06 -0400
-Received: from localhost (83-86-74-64.cable.dynamic.v4.ziggo.nl [83.86.74.64])
-        (using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
-        (No client certificate requested)
-        by mail.kernel.org (Postfix) with ESMTPSA id 1CF12206CA;
-        Sat,  3 Oct 2020 07:49:04 +0000 (UTC)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=kernel.org;
-        s=default; t=1601711345;
-        bh=rSNbOsR9qrZbk/22kRR7H2mTyhHla1eb6pLRYw92C3A=;
-        h=Date:From:To:Cc:Subject:References:In-Reply-To:From;
-        b=Xpfo7j5Ogz+5FMLQE6JEcdCuZJLS220njFOGq0w4q/ezcS8/YUJxV/tVp00x1cRme
-         PeytJ+bYJeETsXVwvFCvNmLXIxzaEU/n9jv+Ho+tcc1DWNdFus5jjW+U0OJ02cZ/dL
-         cV4hpDQF2Gtg0pwq+PecAcI5R7GAWDWmhCugOA3g=
-Date:   Sat, 3 Oct 2020 09:49:01 +0200
-From:   Greg Kroah-Hartman <gregkh@linuxfoundation.org>
-To:     Rob Herring <robh@kernel.org>
-Cc:     devicetree@vger.kernel.org, linux-kernel@vger.kernel.org,
-        Thierry Reding <thierry.reding@gmail.com>,
-        Linus Walleij <linus.walleij@linaro.org>,
-        Stephen Boyd <sboyd@kernel.org>,
-        Shawn Guo <shawnguo@kernel.org>,
-        Bjorn Andersson <bjorn.andersson@linaro.org>,
-        Baolin Wang <baolin.wang7@gmail.com>,
-        Guenter Roeck <linux@roeck-us.net>,
-        Jonathan Cameron <jic23@kernel.org>,
-        Mauro Carvalho Chehab <mchehab@kernel.org>,
-        Laurent Pinchart <laurent.pinchart+renesas@ideasonboard.com>,
-        Lee Jones <lee.jones@linaro.org>,
-        Ulf Hansson <ulf.hansson@linaro.org>,
-        "David S. Miller" <davem@davemloft.net>,
-        Bjorn Helgaas <bhelgaas@google.com>,
-        Vinod Koul <vkoul@kernel.org>,
-        Liam Girdwood <lgirdwood@gmail.com>,
-        Mark Brown <broonie@kernel.org>,
-        Daniel Lezcano <daniel.lezcano@linaro.org>,
-        linux-clk@vger.kernel.org, dri-devel@lists.freedesktop.org,
-        linux-spi@vger.kernel.org, linux-gpio@vger.kernel.org,
-        linux-hwmon@vger.kernel.org, linux-iio@vger.kernel.org,
-        openipmi-developer@lists.sourceforge.net,
-        linux-leds@vger.kernel.org, linux-media@vger.kernel.org,
-        linux-rockchip@lists.infradead.org,
-        linux-stm32@st-md-mailman.stormreply.com,
-        linux-mips@vger.kernel.org, linux-mmc@vger.kernel.org,
-        netdev@vger.kernel.org, linux-pci@vger.kernel.org,
-        linux-pm@vger.kernel.org, linux-remoteproc@vger.kernel.org,
-        linux-serial@vger.kernel.org, alsa-devel@alsa-project.org,
-        linux-usb@vger.kernel.org
-Subject: Re: [PATCH] dt-bindings: Another round of adding missing
- 'additionalProperties'
-Message-ID: <20201003074901.GA109727@kroah.com>
-References: <20201002234143.3570746-1-robh@kernel.org>
+        id S1725763AbgJCISQ (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Sat, 3 Oct 2020 04:18:16 -0400
+Received: from lindbergh.monkeyblade.net ([23.128.96.19]:49772 "EHLO
+        lindbergh.monkeyblade.net" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
+        with ESMTP id S1725601AbgJCISQ (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Sat, 3 Oct 2020 04:18:16 -0400
+Received: from mail-pj1-x1042.google.com (mail-pj1-x1042.google.com [IPv6:2607:f8b0:4864:20::1042])
+        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 0D070C0613D0;
+        Sat,  3 Oct 2020 01:18:16 -0700 (PDT)
+Received: by mail-pj1-x1042.google.com with SMTP id b17so2390576pji.1;
+        Sat, 03 Oct 2020 01:18:15 -0700 (PDT)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+        d=gmail.com; s=20161025;
+        h=mime-version:references:in-reply-to:from:date:message-id:subject:to
+         :cc:content-transfer-encoding;
+        bh=+BYI0/u6OpMKyw3gjay+S2BO3oSX5QDwS4LJbDTNE+0=;
+        b=MKgL9seMPv5Xnyriytx9J/qyyRCDv2PJfCoEFgTjWbSksEOeFbBffkBa/WpD1oB1r7
+         xCerWCditb25c/6DdUc5pJt8z79TB3ojEvNDSs99M6Jom+NsmByO8xW0iNMLJiwurBwt
+         mfDTfL2xASh5zpm9mBgG9wM1NmdAf6ZC+IIjYLai+nz5YO2zmR2jWemMXSUwWbSGmtSg
+         kK2EDni/h0qbZWohVEb4CDHyoEBJhwUmR3VyCDTGVxVVfz7CQwDx34WCJo2pxi4xsCKK
+         UBOY+1GWrj90IiUX655XMwlQgLr39jT/SbQmn/InoPRsuB9oVNGH9NfOH3HsZHPUwjjr
+         N9dA==
+X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+        d=1e100.net; s=20161025;
+        h=x-gm-message-state:mime-version:references:in-reply-to:from:date
+         :message-id:subject:to:cc:content-transfer-encoding;
+        bh=+BYI0/u6OpMKyw3gjay+S2BO3oSX5QDwS4LJbDTNE+0=;
+        b=dxe/ueZsMwXL28qV/jO8FcKhjK08rf5907FSemby0aGjFsr++2pq9uTS+0pXn6weQP
+         kF1tAmtL7sBC7uW3Qy/w3Xhy6gpUawryFHO5TYT4IK22USq7wWk+z+6dMXqk4/16fAc2
+         Ofr2gNtEPAcpGoyRv9zogc5JBTFNmNcebq/WPKDxN9HroBXjAW2MaTtv5Ls892pxfYEy
+         NKS4hmDVpKn38YCpy7NnVk6Ehb6ZJZKX5+n2E+QK8dNPOqt2Pb8q2jOTsq44d10Cjgft
+         jGdRv4QyzFNAypUXg8OKdhfzpjvxkwAtUavLKcRDKL/CCZNU7o5F+uHcNlZO/XK05KYY
+         K3+A==
+X-Gm-Message-State: AOAM533EXkh1cD7cgmkKs8RIzeQWbLpfZPiCCX/kg3XQCKQ2poNFnAgB
+        i0WxekKiM1dlRDm40/aNIb12v5Y6iEJKC/CSbK0=
+X-Google-Smtp-Source: ABdhPJywj3WBJFKaEItRt4k8MI0LfRZi8eXCe2NuFYGEk4FbyHWblbBuqNEFRs63V6ZVeA12FGaXPyYhwrKDMBchlv4=
+X-Received: by 2002:a17:90a:b387:: with SMTP id e7mr6734978pjr.228.1601713095383;
+ Sat, 03 Oct 2020 01:18:15 -0700 (PDT)
 MIME-Version: 1.0
-Content-Type: text/plain; charset=us-ascii
-Content-Disposition: inline
-In-Reply-To: <20201002234143.3570746-1-robh@kernel.org>
+References: <20200924192455.2484005-1-j.neuschaefer@gmx.net>
+ <20200924192455.2484005-5-j.neuschaefer@gmx.net> <20200925063037.fcrmqvpe5noi3ef4@pengutronix.de>
+ <20200927211044.GC2510@latitude> <20200928083546.gwu7ucx7os5yc5bn@pengutronix.de>
+ <20201002233630.GB500800@latitude>
+In-Reply-To: <20201002233630.GB500800@latitude>
+From:   Andy Shevchenko <andy.shevchenko@gmail.com>
+Date:   Sat, 3 Oct 2020 11:17:58 +0300
+Message-ID: <CAHp75VeSB4i_QNOX1UbrooNo0twqgbOhoaxnwk5a+=dEFWMzqA@mail.gmail.com>
+Subject: Re: [PATCH v3 4/7] pwm: ntxec: Add driver for PWM function in
+ Netronix EC
+To:     =?UTF-8?Q?Jonathan_Neusch=C3=A4fer?= <j.neuschaefer@gmx.net>
+Cc:     =?UTF-8?Q?Uwe_Kleine=2DK=C3=B6nig?= 
+        <u.kleine-koenig@pengutronix.de>,
+        Alexandre Belloni <alexandre.belloni@bootlin.com>,
+        Heiko Stuebner <heiko@sntech.de>,
+        devicetree <devicetree@vger.kernel.org>,
+        Linus Walleij <linus.walleij@linaro.org>,
+        Thierry Reding <thierry.reding@gmail.com>,
+        Sam Ravnborg <sam@ravnborg.org>,
+        "open list:REAL TIME CLOCK (RTC) SUBSYSTEM" 
+        <linux-rtc@vger.kernel.org>, Arnd Bergmann <arnd@arndb.de>,
+        Mauro Carvalho Chehab <mchehab+huawei@kernel.org>,
+        Fabio Estevam <festevam@gmail.com>,
+        Daniel Palmer <daniel@0x0f.com>,
+        Andreas Kemnade <andreas@kemnade.info>,
+        NXP Linux Team <linux-imx@nxp.com>,
+        linux-pwm@vger.kernel.org, Stephan Gerhold <stephan@gerhold.net>,
+        allen <allen.chen@ite.com.tw>,
+        Sascha Hauer <s.hauer@pengutronix.de>,
+        Lubomir Rintel <lkundrak@v3.sk>,
+        Rob Herring <robh+dt@kernel.org>,
+        Lee Jones <lee.jones@linaro.org>,
+        linux-arm Mailing List <linux-arm-kernel@lists.infradead.org>,
+        Alessandro Zummo <a.zummo@towertech.it>,
+        Linux Kernel Mailing List <linux-kernel@vger.kernel.org>,
+        Mark Brown <broonie@kernel.org>,
+        Pengutronix Kernel Team <kernel@pengutronix.de>,
+        Heiko Stuebner <heiko.stuebner@theobroma-systems.com>,
+        Josua Mayer <josua.mayer@jm0.eu>,
+        Shawn Guo <shawnguo@kernel.org>,
+        "David S. Miller" <davem@davemloft.net>
+Content-Type: text/plain; charset="UTF-8"
+Content-Transfer-Encoding: quoted-printable
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-On Fri, Oct 02, 2020 at 06:41:43PM -0500, Rob Herring wrote:
-> Another round of wack-a-mole. The json-schema default is additional
-> unknown properties are allowed, but for DT all properties should be
-> defined.
-> 
-> Cc: Thierry Reding <thierry.reding@gmail.com>
-> Cc: Linus Walleij <linus.walleij@linaro.org>
-> Cc: Stephen Boyd <sboyd@kernel.org>
-> Cc: Shawn Guo <shawnguo@kernel.org>
-> Cc: Bjorn Andersson <bjorn.andersson@linaro.org>
-> Cc: Baolin Wang <baolin.wang7@gmail.com>
-> Cc: Guenter Roeck <linux@roeck-us.net>
-> Cc: Jonathan Cameron <jic23@kernel.org>
-> Cc: Mauro Carvalho Chehab <mchehab@kernel.org>
-> Cc: Laurent Pinchart <laurent.pinchart+renesas@ideasonboard.com>
-> Cc: Lee Jones <lee.jones@linaro.org>
-> Cc: Ulf Hansson <ulf.hansson@linaro.org>
-> Cc: "David S. Miller" <davem@davemloft.net>
-> Cc: Bjorn Helgaas <bhelgaas@google.com>
-> Cc: Vinod Koul <vkoul@kernel.org>
-> Cc: Liam Girdwood <lgirdwood@gmail.com>
-> Cc: Mark Brown <broonie@kernel.org>
-> Cc: Greg Kroah-Hartman <gregkh@linuxfoundation.org>
-> Cc: Daniel Lezcano <daniel.lezcano@linaro.org>
-> Cc: linux-clk@vger.kernel.org
-> Cc: dri-devel@lists.freedesktop.org
-> Cc: linux-spi@vger.kernel.org
-> Cc: linux-gpio@vger.kernel.org
-> Cc: linux-hwmon@vger.kernel.org
-> Cc: linux-iio@vger.kernel.org
-> Cc: openipmi-developer@lists.sourceforge.net
-> Cc: linux-leds@vger.kernel.org
-> Cc: linux-media@vger.kernel.org
-> Cc: linux-rockchip@lists.infradead.org
-> Cc: linux-stm32@st-md-mailman.stormreply.com
-> Cc: linux-mips@vger.kernel.org
-> Cc: linux-mmc@vger.kernel.org
-> Cc: netdev@vger.kernel.org
-> Cc: linux-pci@vger.kernel.org
-> Cc: linux-pm@vger.kernel.org
-> Cc: linux-remoteproc@vger.kernel.org
-> Cc: linux-serial@vger.kernel.org
-> Cc: alsa-devel@alsa-project.org
-> Cc: linux-usb@vger.kernel.org
-> Signed-off-by: Rob Herring <robh@kernel.org>
-> ---
-> 
-> I'll take this thru the DT tree.
+On Sat, Oct 3, 2020 at 2:36 AM Jonathan Neusch=C3=A4fer
+<j.neuschaefer@gmx.net> wrote:
+> On Mon, Sep 28, 2020 at 10:35:46AM +0200, Uwe Kleine-K=C3=B6nig wrote:
+> > On Sun, Sep 27, 2020 at 11:10:44PM +0200, Jonathan Neusch=C3=A4fer wrot=
+e:
 
-For USB:
+...
 
-Reviewed-by: Greg Kroah-Hartman <gregkh@linuxfoundation.org>
+> > You can even check this with an LED using something like:
+> >
+> >       pwm_apply(mypwm, {.enabled =3D true, .duty_cycle =3D $big, .perio=
+d =3D $big});
+> >       pwm_apply(mypwm, {.enabled =3D false, ... });
+> >
+> > . If the period is completed the LED is on for $big ns, if not the LED
+> > is on for a timespan that is probably hardly noticable with the human
+> > eye.
+>
+> The longest configurable period is about 8ms, so it's not long enough to
+> see anything. However, after writing enable=3D0, it can take about a
+> second for the PWM signal to turn off... this hardware is a bit weird.
+
+Sounds like you have 1/128 divisor and off/on is done on lower
+frequency. (We saw PWMs with an additional 7-bit counter, reminds me
+Crystal Cove PMIC PWM).
+
+--=20
+With Best Regards,
+Andy Shevchenko
