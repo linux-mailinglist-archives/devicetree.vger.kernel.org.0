@@ -2,110 +2,148 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from vger.kernel.org (vger.kernel.org [23.128.96.18])
-	by mail.lfdr.de (Postfix) with ESMTP id 801BA282480
-	for <lists+devicetree@lfdr.de>; Sat,  3 Oct 2020 16:16:18 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTP id 2973628248E
+	for <lists+devicetree@lfdr.de>; Sat,  3 Oct 2020 16:19:57 +0200 (CEST)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S1725828AbgJCOQL (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Sat, 3 Oct 2020 10:16:11 -0400
-Received: from mo4-p02-ob.smtp.rzone.de ([85.215.255.84]:25021 "EHLO
-        mo4-p02-ob.smtp.rzone.de" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S1725782AbgJCOQL (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Sat, 3 Oct 2020 10:16:11 -0400
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; t=1601734569;
-        s=strato-dkim-0002; d=goldelico.com;
-        h=References:In-Reply-To:Message-Id:Date:Subject:Cc:To:From:
-        X-RZG-CLASS-ID:X-RZG-AUTH:From:Subject:Sender;
-        bh=bEm3QEiaBmcEgvr3w1BrIX12xWr95cu35StsZUlJDn0=;
-        b=qvSGlK75tFtN7CbFyLbZTaIn9CFLAwpT7GCsRDDdC66p1rmRKOFq3ScXyE3vsu2l0A
-        Ccw4WH5vKNkSYU4/Qoas4x3Ut9mSqmYS9s/WXRbVLWLnYROFLHv5l3O+5YvNgRAYZ/+p
-        oN1DvRGpw9M2awkqbtlQ3J6tAcGlpBZClH+a9NL6Ru5enSzkUmwKHTagRV+ej1lAQlaV
-        iU7Dzf1XvHk2ZTWhEaPjxY7hZEnQcpYZr5UNQANShT3rQi+OTJlefAYOfzP97RU10I5c
-        IUzj7CWp3grM4laE4111Y/lonfBZPBUOYwxey5Hg7GxTeU3Yi9T5a3+HBuKZSZbbRrEz
-        dHYQ==
-X-RZG-AUTH: ":JGIXVUS7cutRB/49FwqZ7WcJeFKiMhflhwDubTJ9o12DNOsPj0pDzZw9i90="
-X-RZG-CLASS-ID: mo00
-Received: from iMac.fritz.box
-        by smtp.strato.de (RZmta 47.2.1 DYNA|AUTH)
-        with ESMTPSA id 3005f6w93EA23C4
-        (using TLSv1.3 with cipher TLS_AES_256_GCM_SHA384 (256 bits))
-        (Client did not present a certificate);
-        Sat, 3 Oct 2020 16:10:02 +0200 (CEST)
-From:   "H. Nikolaus Schaller" <hns@goldelico.com>
-To:     =?UTF-8?q?Beno=C3=AEt=20Cousson?= <bcousson@baylibre.com>,
-        Tony Lindgren <tony@atomide.com>,
-        Rob Herring <robh+dt@kernel.org>
-Cc:     linux-omap@vger.kernel.org, devicetree@vger.kernel.org,
-        linux-kernel@vger.kernel.org, letux-kernel@openphoenux.org,
-        kernel@pyra-handheld.com,
-        "H. Nikolaus Schaller" <hns@goldelico.com>
-Subject: [PATCH 2/2] ARM: dts: pandaboard es: add bluetooth uart for HCI
-Date:   Sat,  3 Oct 2020 16:10:01 +0200
-Message-Id: <eab9ebb735ab68f104623aa083b0e15f6ac263ea.1601734200.git.hns@goldelico.com>
-X-Mailer: git-send-email 2.26.2
-In-Reply-To: <cover.1601734200.git.hns@goldelico.com>
-References: <cover.1601734200.git.hns@goldelico.com>
+        id S1725791AbgJCOT4 (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Sat, 3 Oct 2020 10:19:56 -0400
+Received: from lindbergh.monkeyblade.net ([23.128.96.19]:48642 "EHLO
+        lindbergh.monkeyblade.net" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
+        with ESMTP id S1725781AbgJCOT4 (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Sat, 3 Oct 2020 10:19:56 -0400
+Received: from mail-wm1-x343.google.com (mail-wm1-x343.google.com [IPv6:2a00:1450:4864:20::343])
+        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id B4AFEC0613D0;
+        Sat,  3 Oct 2020 07:19:55 -0700 (PDT)
+Received: by mail-wm1-x343.google.com with SMTP id e2so4563688wme.1;
+        Sat, 03 Oct 2020 07:19:55 -0700 (PDT)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+        d=gmail.com; s=20161025;
+        h=from:to:cc:subject:date:message-id:mime-version
+         :content-transfer-encoding;
+        bh=sAKeLC7pKBrSZOIJOxRnqxVieh8N56D+SKtFZ1KaxX0=;
+        b=OM5gZ26qxRLmtq3I0KrEhNN1Ve7bUeZ5qW6c2m+KV3XDw+XP6F5HqAN3aFsBoqh8/R
+         r5EXMUPngagmQJ7ZJholjm7QwETF1PfOB3Xb523NuW6hZA6u3QkQMehgAUhPAB470rkm
+         WHhTeJ7td0LNj4Gu3DHDpUOMI2dmdf+tSrrZLE5/1d+rwZGtgrHEs/XVMtd2Yp1pQLu+
+         7ZGUy0XtT1GdMyKfga3jgcE/Cu8HeGl+a+9PtDYOrkh/mQKaxiGMmUdmQYnNI1Cu/7t1
+         BvoDjDzc92Lry8+4eHcryQXaeALTKc3wo9rtquDtuSYTLXigTYuUqVWeCDrMWhtktc5G
+         MePQ==
+X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+        d=1e100.net; s=20161025;
+        h=x-gm-message-state:from:to:cc:subject:date:message-id:mime-version
+         :content-transfer-encoding;
+        bh=sAKeLC7pKBrSZOIJOxRnqxVieh8N56D+SKtFZ1KaxX0=;
+        b=d2/NgBJUiNwRw1gLnYkxW4GcPGeIhFt9sYstghmjJJ/OGz0rhrb5ISoNoUEmaNDVif
+         EdZahOyMd9M1FOXbsZhj8jSClFgGdNxZEFJU0uAmbVxeQoBrIz+p4LS+QQZCfe4MPZBo
+         HEyj0lq7Xcriwvne9fvnRtV4cP3ITAfPOQVrzomyCo3js+yNXzP1wvLHjnTQTH+8YzIX
+         xNShjUfWtqNnsuQfoNxZomiYT4YyNlXEK/uraNJGyZvsXkLvQS2VpfZguD4WPBa4BE+4
+         0zSmAsGIGo4ZldRbqBvsCMwXIjG+dBbJ0WB6F9X4tC8ogF/2Q4kdv6Xq9AQ3tHZIE7UZ
+         tKdA==
+X-Gm-Message-State: AOAM5313lbAJFBPDyU+0niGDjT7dUDp2xoB+DcvW9ABsoV1I3hKgto3m
+        UwzqjwSd3nSHRFAs/3xC7RE=
+X-Google-Smtp-Source: ABdhPJyTeQ1m65Ns5vfNh53o537krrvtVOgQyCvbeT2a8kq2REcyo1Fx0HsdEvdPwNM5+u1CS7dBuQ==
+X-Received: by 2002:a05:600c:216:: with SMTP id 22mr7667470wmi.149.1601734794185;
+        Sat, 03 Oct 2020 07:19:54 -0700 (PDT)
+Received: from clement-Latitude-7490.numericable.fr (213-245-241-245.rev.numericable.fr. [213.245.241.245])
+        by smtp.gmail.com with ESMTPSA id d18sm5417473wrm.10.2020.10.03.07.19.52
+        (version=TLS1_3 cipher=TLS_AES_256_GCM_SHA384 bits=256/256);
+        Sat, 03 Oct 2020 07:19:52 -0700 (PDT)
+From:   =?UTF-8?q?Cl=C3=A9ment=20P=C3=A9ron?= <peron.clem@gmail.com>
+To:     Maxime Ripard <mripard@kernel.org>, Chen-Yu Tsai <wens@csie.org>,
+        Rob Herring <robh+dt@kernel.org>,
+        Mark Brown <broonie@kernel.org>,
+        Liam Girdwood <lgirdwood@gmail.com>
+Cc:     Jaroslav Kysela <perex@perex.cz>, Takashi Iwai <tiwai@suse.com>,
+        Marcus Cooper <codekipper@gmail.com>,
+        Jernej Skrabec <jernej.skrabec@siol.net>,
+        alsa-devel@alsa-project.org, devicetree@vger.kernel.org,
+        linux-arm-kernel@lists.infradead.org, linux-kernel@vger.kernel.org,
+        linux-sunxi@googlegroups.com,
+        =?UTF-8?q?Cl=C3=A9ment=20P=C3=A9ron?= <peron.clem@gmail.com>
+Subject: [PATCH v6 00/14] Add Allwinner H3/H5/H6/A64 HDMI audio
+Date:   Sat,  3 Oct 2020 16:19:36 +0200
+Message-Id: <20201003141950.455829-1-peron.clem@gmail.com>
+X-Mailer: git-send-email 2.25.1
 MIME-Version: 1.0
+Content-Type: text/plain; charset=UTF-8
 Content-Transfer-Encoding: 8bit
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-The wl271 bluetooth uart is connected to uart2.
-Setup a serdev uart child and separate bluetooth and uart2 pinmux
-from wl12xx pinmux to better group the pins and muxes.
+Hi,
 
-Signed-off-by: H. Nikolaus Schaller <hns@goldelico.com>
----
- arch/arm/boot/dts/omap4-panda-es.dts | 32 ++++++++++++++++++++++++++++
- 1 file changed, 32 insertions(+)
+To avoid using set-tdm property of the simple-soundcard we will introduce
+a specific soundcard for Allwinner HDMI later.
 
-diff --git a/arch/arm/boot/dts/omap4-panda-es.dts b/arch/arm/boot/dts/omap4-panda-es.dts
-index 6afa8fd7c412de..7c6886cd738f03 100644
---- a/arch/arm/boot/dts/omap4-panda-es.dts
-+++ b/arch/arm/boot/dts/omap4-panda-es.dts
-@@ -49,6 +49,22 @@ button_pins: pinmux_button_pins {
- 			OMAP4_IOPAD(0x0fc, PIN_INPUT_PULLUP | MUX_MODE3) /* gpio_113 */
- 		>;
- 	};
-+
-+	bt_pins: pinmux_bt_pins {
-+		pinctrl-single,pins = <
-+			OMAP4_IOPAD(0x06c, PIN_OUTPUT | MUX_MODE3)		/* gpmc_a22.gpio_46 - BTEN */
-+			OMAP4_IOPAD(0x072, PIN_OUTPUT_PULLUP | MUX_MODE3)	/* gpmc_a25.gpio_49 - BTWAKEUP */
-+		>;
-+	};
-+
-+	uart2_pins: pinmux_uart2_pins {
-+		pinctrl-single,pins = <
-+			OMAP4_IOPAD(0x118, PIN_INPUT_PULLUP | MUX_MODE0)	/* uart2_cts.uart2_cts - HCI */
-+			OMAP4_IOPAD(0x11a, PIN_OUTPUT | MUX_MODE0)		/* uart2_rts.uart2_rts */
-+			OMAP4_IOPAD(0x11c, PIN_INPUT_PULLUP | MUX_MODE0)	/* uart2_rx.uart2_rx */
-+			OMAP4_IOPAD(0x11e, PIN_OUTPUT | MUX_MODE0)		/* uart2_tx.uart2_tx */
-+		>;
-+	};
- };
- 
- &led_wkgpio_pins {
-@@ -80,3 +96,19 @@ buttonS2 {
- &gpio1_target {
- 	 ti,no-reset-on-init;
- };
-+
-+&wl12xx_gpio {
-+	pinctrl-single,pins = <
-+		OMAP4_IOPAD(0x066, PIN_OUTPUT | MUX_MODE3)		/* gpmc_a19.gpio_43 */
-+		OMAP4_IOPAD(0x070, PIN_OUTPUT_PULLUP | MUX_MODE3)	/* gpmc_a24.gpio_48 */
-+	>;
-+};
-+
-+&uart2 {
-+	pinctrl-names = "default";
-+	pinctrl-0 = <&uart2_pins &bt_pins>;
-+	bluetooth: tiwi {
-+		compatible = "ti,wl1271-st";
-+		enable-gpios = <&gpio2 14 GPIO_ACTIVE_HIGH>;	/* GPIO_46 */
-+	};
-+};
+So I have dropped the simple-soundcard, the title of the serie is no more
+relevent...
+
+Regards,
+Clement
+
+Change since v5:
+- Drop HDMI simple soundcard
+- Collect Chen-Yu Tsai tags
+- Configure channels from 9 to 15.
+- Remove DMA RX for H3/H5
+- Fix Documentation for H3/H5
+
+Change since v4:
+- add more comment on get_wss() and set_channel_cfg() patch
+- merge soundcard and DAI HDMI patches
+
+Change since v3:
+- add Samuel Holland patch to reconfigure FIFO_TX_REG when suspend is enabled
+- readd inversion to H6 LRCK sun50i_h6_i2s_set_soc_fmt()
+- Fix get_wss() for sun4i
+- Add a commit to fix checkpatch warning
+
+Change since v2:
+- rebase on next-20200918
+- drop revert LRCK polarity patch
+- readd simple-audio-card,frame-inversion in dts
+- Add patch for changing set_chan_cfg params
+
+Change since v1:
+- rebase on next-20200828
+- add revert LRCK polarity
+- remove all simple-audio-card,frame-inversion in dts
+- add Ondrej patches for Orange Pi board
+- Add arm64 defconfig patch
+
+*** BLURB HERE ***
+
+Clément Péron (6):
+  ASoC: sun4i-i2s: Change set_chan_cfg() params
+  ASoC: sun4i-i2s: Change get_sr() and get_wss() to be more explicit
+  ASoC: sun4i-i2s: Fix sun8i volatile regs
+  ASoC: sun4i-i2s: fix coding-style for callback definition
+  arm64: defconfig: Enable Allwinner i2s driver
+  dt-bindings: sound: sun4i-i2s: Document H3 with missing RX channel
+    possibility
+
+Jernej Skrabec (3):
+  ASoC: sun4i-i2s: Add support for H6 I2S
+  dt-bindings: ASoC: sun4i-i2s: Add H6 compatible
+  arm64: dts: allwinner: h6: Add I2S1 node
+
+Marcus Cooper (4):
+  ASoC: sun4i-i2s: Set sign extend sample
+  ASoc: sun4i-i2s: Add 20 and 24 bit support
+  arm64: dts: allwinner: a64: Add I2S2 node
+  arm: dts: sunxi: h3/h5: Add I2S2 node
+
+Samuel Holland (1):
+  ASoC: sun4i-i2s: Fix setting of FIFO modes
+
+ .../sound/allwinner,sun4i-a10-i2s.yaml        |   6 +-
+ arch/arm/boot/dts/sunxi-h3-h5.dtsi            |  13 +
+ arch/arm64/boot/dts/allwinner/sun50i-a64.dtsi |  14 +
+ arch/arm64/boot/dts/allwinner/sun50i-h6.dtsi  |  13 +
+ arch/arm64/configs/defconfig                  |   1 +
+ sound/soc/sunxi/sun4i-i2s.c                   | 376 +++++++++++++++---
+ 6 files changed, 368 insertions(+), 55 deletions(-)
+
 -- 
-2.26.2
+2.25.1
 
