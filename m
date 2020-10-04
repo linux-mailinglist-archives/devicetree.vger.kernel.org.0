@@ -2,145 +2,69 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from vger.kernel.org (vger.kernel.org [23.128.96.18])
-	by mail.lfdr.de (Postfix) with ESMTP id 52125282856
-	for <lists+devicetree@lfdr.de>; Sun,  4 Oct 2020 05:14:58 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTP id A07D928291B
+	for <lists+devicetree@lfdr.de>; Sun,  4 Oct 2020 07:50:39 +0200 (CEST)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S1726526AbgJDDO5 (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Sat, 3 Oct 2020 23:14:57 -0400
-Received: from lindbergh.monkeyblade.net ([23.128.96.19]:54304 "EHLO
-        lindbergh.monkeyblade.net" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S1726516AbgJDDO4 (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Sat, 3 Oct 2020 23:14:56 -0400
-Received: from mail-pf1-x44a.google.com (mail-pf1-x44a.google.com [IPv6:2607:f8b0:4864:20::44a])
-        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 3286AC0613E8
-        for <devicetree@vger.kernel.org>; Sat,  3 Oct 2020 20:14:55 -0700 (PDT)
-Received: by mail-pf1-x44a.google.com with SMTP id a27so3866441pfl.17
-        for <devicetree@vger.kernel.org>; Sat, 03 Oct 2020 20:14:55 -0700 (PDT)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=google.com; s=20161025;
-        h=sender:date:in-reply-to:message-id:mime-version:references:subject
-         :from:to;
-        bh=LhQBM6coR58Co/ZAPA0BFc3M4Mk5vH1MxVZJV9ls2vA=;
-        b=bAzh9QPy/8+oA04boCqNdkX9voAP/+Gg756k4vP8HjMlDBZ2nMYJSINilK52c1NBez
-         q31UZmbwzvjug2Q0mmo/iOB0pErHbhLKpnX7RpVvOUjq+adQfQHjzgPFvaNwzE8USvMZ
-         Guh8IPPr51x8M9+F6QYQjsbzHNOjGopcZaSZaur+vqIN53nJWpTlwkj73EXl9dcvbrTG
-         eqquSXE5F0qaVh8hIOxHPuOP7hhHirFxcXaWA7ovnvMdC3D1O8KhQUoLKFZhasL2iKtC
-         0WBHitfyKkreWL0ePFIGykj+vZuGJRaN8kvVoh3CneyY8Puw69/q9TcplQdVm9mMAqEa
-         InTA==
-X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=1e100.net; s=20161025;
-        h=x-gm-message-state:sender:date:in-reply-to:message-id:mime-version
-         :references:subject:from:to;
-        bh=LhQBM6coR58Co/ZAPA0BFc3M4Mk5vH1MxVZJV9ls2vA=;
-        b=RxqKuuu4VkwuFYW1ov2o8p71QtkSiH4lVdnqQpoqS90L751gnGumCtBv9dNX25wPKd
-         dOxA3bpIUqOJ2Vica6e7AGWAUQdp2e5L8QAMvcds4UoboF8pa+ncmF9zZRDciss1FdZ5
-         BeBsp2GsOKYqy0AOCulxYNAVUyMi9wFl7AxrHAE+UmZSlEXL1TTUagSjRux7khg8xgVF
-         vNfDlAI2yt8sv+3iueX15ExixVE7BrfsX9Qk0kaqmgrJBEM9C/2303gOfMtCiRDYQ5dy
-         JX0IgJULhTRhr10odY30RshnmZsdTkCLYC35QOlUSuAhLr4LRKpkwJ2YIHzTfddE5Dgl
-         1NOQ==
-X-Gm-Message-State: AOAM5321U4xwoYa0LCwaDFdm9HMPFblpA6PtYVWTGwNu92YRPHqA6W3u
-        DZOTw0HXw94WXTpQt2+dRAeVst5HagaWb+sx
-X-Google-Smtp-Source: ABdhPJwzzMxNDTk6r9V6wNabUs9CJ15rB1Am55ZHxJYf8iqp+g/GkSnAUj9Ajd4XZxCWHO/XflZpBBlIIstATRSz
-Sender: "linchuyuan via sendgmr" <linchuyuan@chu-dev.c.googlers.com>
-X-Received: from chu-dev.c.googlers.com ([fda3:e722:ac3:10:24:72f4:c0a8:3cfb])
- (user=linchuyuan job=sendgmr) by 2002:a17:90a:990c:: with SMTP id
- b12mr233850pjp.0.1601781294305; Sat, 03 Oct 2020 20:14:54 -0700 (PDT)
-Date:   Sun,  4 Oct 2020 03:14:45 +0000
-In-Reply-To: <20201004031445.2321090-1-linchuyuan@google.com>
-Message-Id: <20201004031445.2321090-3-linchuyuan@google.com>
-Mime-Version: 1.0
-References: <20201004031445.2321090-1-linchuyuan@google.com>
-X-Mailer: git-send-email 2.28.0.806.g8561365e88-goog
-Subject: [PATCH v4 2/2] hwmon: pmbus: max20730: adjust the vout reading given
- voltage divider
-From:   Chu Lin <linchuyuan@google.com>
-To:     linchuyuan@google.com, jdelvare@suse.com, linux@roeck-us.net,
-        robh+dt@kernel.org, linux-hwmon@vger.kernel.org,
-        devicetree@vger.kernel.org, linux-kernel@vger.kernel.org
-Content-Type: text/plain; charset="UTF-8"
+        id S1725822AbgJDFui (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Sun, 4 Oct 2020 01:50:38 -0400
+Received: from mailgw02.mediatek.com ([210.61.82.184]:39660 "EHLO
+        mailgw02.mediatek.com" rhost-flags-OK-FAIL-OK-FAIL) by vger.kernel.org
+        with ESMTP id S1725819AbgJDFui (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Sun, 4 Oct 2020 01:50:38 -0400
+X-UUID: 30dced02d66d411b88bb2734d2ad1759-20201004
+DKIM-Signature: v=1; a=rsa-sha256; q=dns/txt; c=relaxed/relaxed; d=mediatek.com; s=dk;
+        h=Content-Transfer-Encoding:Content-Type:MIME-Version:Message-ID:Date:Subject:CC:To:From; bh=R1eNNkVeR51W23UaO/9D2srShKgkSQlKxuAx45eQzEE=;
+        b=JN5Kf1it8RML7AQiqpfdrEha/XerUBDXU10DLO5QLjnuIFI1dgNXYK0mdJ6A0HxuKyYYlJ8iEBLZiu533OLJs0x1xpPbXdgqtwEQ5cz3ogNQg1nzjJeHXWEp+3VdkYPUjHK3NenIFk2coA5NgODLgIDbqz4e6HhqoD3B8ybpt8w=;
+X-UUID: 30dced02d66d411b88bb2734d2ad1759-20201004
+Received: from mtkcas06.mediatek.inc [(172.21.101.30)] by mailgw02.mediatek.com
+        (envelope-from <phil.chang@mediatek.com>)
+        (Cellopoint E-mail Firewall v4.1.14 Build 0819 with TLSv1.2 ECDHE-RSA-AES256-SHA384 256/256)
+        with ESMTP id 1485577375; Sun, 04 Oct 2020 13:50:28 +0800
+Received: from MTKCAS06.mediatek.inc (172.21.101.30) by
+ mtkmbs06n1.mediatek.inc (172.21.101.129) with Microsoft SMTP Server (TLS) id
+ 15.0.1497.2; Sun, 4 Oct 2020 13:50:27 +0800
+Received: from mtksdccf07.mediatek.inc (172.21.84.99) by MTKCAS06.mediatek.inc
+ (172.21.101.73) with Microsoft SMTP Server id 15.0.1497.2 via Frontend
+ Transport; Sun, 4 Oct 2020 13:50:26 +0800
+From:   Phil Chang <phil.chang@mediatek.com>
+To:     <linux-arm-kernel@lists.infradead.org>
+CC:     Rob Herring <robh+dt@kernel.org>,
+        Frank Rowand <frowand.list@gmail.com>,
+        Matthias Brugger <matthias.bgg@gmail.com>,
+        <devicetree@vger.kernel.org>, <linux-kernel@vger.kernel.org>,
+        <linux-mediatek@lists.infradead.org>,
+        Phil Chang <phil.chang@mediatek.com>,
+        YJ Chiang <yj.chiang@mediatek.com>,
+        Alix Wu <alix.wu@mediatek.com>, Joe Liu <joe.liu@mediatek.com>
+Subject: [PATCH] [PATCH] of_reserved_mem: Increase the number of reserved regions
+Date:   Sun, 4 Oct 2020 13:50:24 +0800
+Message-ID: <20201004055024.23542-1-phil.chang@mediatek.com>
+X-Mailer: git-send-email 2.18.0
+MIME-Version: 1.0
+Content-Type: text/plain
+X-MTK:  N
+Content-Transfer-Encoding: base64
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-Problem:
-We use voltage dividers so that the voltage presented at the voltage
-sense pins is confusing. We might need to convert these readings to more
-meaningful readings given the voltage divider.
-
-Solution:
-Read the voltage divider resistance from dts and convert the voltage
-reading to a more meaningful reading.
-
-Testing:
-max20730 with voltage divider
-
-Signed-off-by: Chu Lin <linchuyuan@google.com>
----
-ChangeLog v1 -> v2
-  hwmon: pmbus: max20730:
-  - Don't do anything to the ret if an error is returned from pmbus_read_word
-  - avoid overflow when doing multiplication
-
-ChangeLog v2 -> v3
-  dt-bindings: hwmon: max20730:
-  - Provide the binding documentation in yaml format
-  hwmon: pmbus: max20730:
-  - No change
-
-ChangeLog v3 -> v4
-  dt-bindings: hwmon: max20730:
-  - Fix highefficiency to high efficiency in description
-  - Fix presents to present in vout-voltage-divider
-  - Add additionalProperties: false
-  hwmon: pmbus: max20730:
-  - No change
-
- drivers/hwmon/pmbus/max20730.c | 18 ++++++++++++++++++
- 1 file changed, 18 insertions(+)
-
-diff --git a/drivers/hwmon/pmbus/max20730.c b/drivers/hwmon/pmbus/max20730.c
-index a151a2b588a5..fbf2f1e6c969 100644
---- a/drivers/hwmon/pmbus/max20730.c
-+++ b/drivers/hwmon/pmbus/max20730.c
-@@ -31,6 +31,7 @@ struct max20730_data {
- 	struct pmbus_driver_info info;
- 	struct mutex lock;	/* Used to protect against parallel writes */
- 	u16 mfr_devset1;
-+	u32 vout_voltage_divider[2];
- };
- 
- #define to_max20730_data(x)  container_of(x, struct max20730_data, info)
-@@ -114,6 +115,14 @@ static int max20730_read_word_data(struct i2c_client *client, int page,
- 		max_c = max_current[data->id][(data->mfr_devset1 >> 5) & 0x3];
- 		ret = val_to_direct(max_c, PSC_CURRENT_OUT, info);
- 		break;
-+	case PMBUS_READ_VOUT:
-+		ret = pmbus_read_word_data(client, page, phase, reg);
-+		if (ret > 0 && data->vout_voltage_divider[0] && data->vout_voltage_divider[1]) {
-+			u64 temp = DIV_ROUND_CLOSEST_ULL((u64)ret * data->vout_voltage_divider[1],
-+							 data->vout_voltage_divider[0]);
-+			ret = clamp_val(temp, 0, 0xffff);
-+		}
-+		break;
- 	default:
- 		ret = -ENODATA;
- 		break;
-@@ -364,6 +373,15 @@ static int max20730_probe(struct i2c_client *client,
- 	data->id = chip_id;
- 	mutex_init(&data->lock);
- 	memcpy(&data->info, &max20730_info[chip_id], sizeof(data->info));
-+	if (of_property_read_u32_array(client->dev.of_node, "vout-voltage-divider",
-+				       data->vout_voltage_divider,
-+				       ARRAY_SIZE(data->vout_voltage_divider)) != 0)
-+		memset(data->vout_voltage_divider, 0, sizeof(data->vout_voltage_divider));
-+	if (data->vout_voltage_divider[1] < data->vout_voltage_divider[0]) {
-+		dev_err(dev,
-+			"The total resistance of voltage divider is less than output resistance\n");
-+		return -ENODEV;
-+	}
- 
- 	ret = i2c_smbus_read_word_data(client, MAX20730_MFR_DEVSET1);
- 	if (ret < 0)
--- 
-2.28.0.806.g8561365e88-goog
+Q2VydGFpbiBTb0NzIG5lZWQgdG8gc3VwcG9ydCBsYXJnZSBhbW91bnQgb2YgcmVzZXJ2ZWQgbWVt
+b3J5DQpyZWdpb25zLCBlc3BlY2lhbGx5IHRvIGZvbGxvdyB0aGUgR0tJIHJ1bGVzIGZyb20gR29v
+Z2xlLg0KSW4gTVRLIG5ldyBTb0MgcmVxdWlyZXMgbW9yZSB0aGFuIDY4IHJlZ2lvbnMgb2YgcmVz
+ZXJ2ZWQgbWVtb3J5DQpmb3IgZWFjaCBJUCdzIHVzYWdlLCBzdWNoIGFzIGxvYWQgZmlybXdhcmUg
+dG8gc3BlY2lmaWMgc2FwY2UsDQpzbyB0aGF0IG5lZWQgdG8gcmVzZXJ2ZSBtb3JlIHJlZ2lzaW9u
+cyANCg0KU2lnbmVkLW9mZi1ieTogSm9lIExpdSA8am9lLmxpdUBtZWRpYXRlay5jb20+DQpTaWdu
+ZWQtb2ZmLWJ5OiBZSiBDaGlhbmcgPHlqLmNoaWFuZ0BtZWRpYXRlay5jb20+DQpTaWduZWQtb2Zm
+LWJ5OiBBbGl4IFd1IDxhbGl4Lnd1QG1lZGlhdGVrLmNvbT4NClNpZ25lZC1vZmYtYnk6IFBoaWwg
+Q2hhbmcgPHBoaWwuY2hhbmdAbWVkaWF0ZWsuY29tPg0KLS0tDQogZHJpdmVycy9vZi9vZl9yZXNl
+cnZlZF9tZW0uYyB8IDIgKy0NCiAxIGZpbGUgY2hhbmdlZCwgMSBpbnNlcnRpb24oKyksIDEgZGVs
+ZXRpb24oLSkNCg0KZGlmZiAtLWdpdCBhL2RyaXZlcnMvb2Yvb2ZfcmVzZXJ2ZWRfbWVtLmMgYi9k
+cml2ZXJzL29mL29mX3Jlc2VydmVkX21lbS5jDQppbmRleCA0NmI5MzcxYzhhMzMuLjU5NWYwNzQx
+ZGNlZiAxMDA2NDQNCi0tLSBhL2RyaXZlcnMvb2Yvb2ZfcmVzZXJ2ZWRfbWVtLmMNCisrKyBiL2Ry
+aXZlcnMvb2Yvb2ZfcmVzZXJ2ZWRfbWVtLmMNCkBAIC0yMiw3ICsyMiw3IEBADQogI2luY2x1ZGUg
+PGxpbnV4L3NsYWIuaD4NCiAjaW5jbHVkZSA8bGludXgvbWVtYmxvY2suaD4NCiANCi0jZGVmaW5l
+IE1BWF9SRVNFUlZFRF9SRUdJT05TCTY0DQorI2RlZmluZSBNQVhfUkVTRVJWRURfUkVHSU9OUwkx
+MjgNCiBzdGF0aWMgc3RydWN0IHJlc2VydmVkX21lbSByZXNlcnZlZF9tZW1bTUFYX1JFU0VSVkVE
+X1JFR0lPTlNdOw0KIHN0YXRpYyBpbnQgcmVzZXJ2ZWRfbWVtX2NvdW50Ow0KIA0KLS0gDQoyLjE4
+LjANCg==
 
