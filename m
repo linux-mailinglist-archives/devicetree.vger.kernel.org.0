@@ -2,246 +2,159 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from vger.kernel.org (vger.kernel.org [23.128.96.18])
-	by mail.lfdr.de (Postfix) with ESMTP id 9E09A2829A2
-	for <lists+devicetree@lfdr.de>; Sun,  4 Oct 2020 10:34:19 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTP id 17F562829AF
+	for <lists+devicetree@lfdr.de>; Sun,  4 Oct 2020 10:51:32 +0200 (CEST)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S1725911AbgJDIeP (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Sun, 4 Oct 2020 04:34:15 -0400
-Received: from lindbergh.monkeyblade.net ([23.128.96.19]:46472 "EHLO
+        id S1725830AbgJDIvb (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Sun, 4 Oct 2020 04:51:31 -0400
+Received: from lindbergh.monkeyblade.net ([23.128.96.19]:49114 "EHLO
         lindbergh.monkeyblade.net" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S1725825AbgJDIeP (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Sun, 4 Oct 2020 04:34:15 -0400
-Received: from mail-lj1-x242.google.com (mail-lj1-x242.google.com [IPv6:2a00:1450:4864:20::242])
-        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id A9DD9C0613CE;
-        Sun,  4 Oct 2020 01:34:14 -0700 (PDT)
-Received: by mail-lj1-x242.google.com with SMTP id b19so4590112lji.11;
-        Sun, 04 Oct 2020 01:34:14 -0700 (PDT)
+        with ESMTP id S1725825AbgJDIvb (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Sun, 4 Oct 2020 04:51:31 -0400
+Received: from mail-lf1-x142.google.com (mail-lf1-x142.google.com [IPv6:2a00:1450:4864:20::142])
+        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id AC42AC0613CE;
+        Sun,  4 Oct 2020 01:51:30 -0700 (PDT)
+Received: by mail-lf1-x142.google.com with SMTP id y11so7316259lfl.5;
+        Sun, 04 Oct 2020 01:51:30 -0700 (PDT)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
         d=gmail.com; s=20161025;
-        h=from:to:cc:subject:date:message-id:in-reply-to:references
-         :mime-version:content-transfer-encoding;
-        bh=CmkH6mrBic1gDucrxN0KGfEebKPkaCEZzW0RbWxgH8k=;
-        b=X2JFPowtZi7IvCKvUe3JxyOWd34do8eriAmKgoebrUr7GNZkmuYXJZmJa4Y/MSuGNi
-         eXGb5QZ/WlV3XokJXUpTPys/SGk2v/Vpq+sYWD1WTLRJ0KfiZmylsAAUv3eugUxwDuOD
-         GN69K48Cdm8psejlsAW4LxuH1mg3J9gj2G/5i4SWmYXc0MdSQ8Akulgv8nMzfi2d+/ol
-         0UwW6eLh/lmtk4wXiod6JKnCmTQ2BkUZLpk/xkk8YplY6YvVPdVeamvJZaLYdbvLApmS
-         atgaSFY5jLcgiOQmz7aE2Bvyq3mZ9yWz8cad36HFRDTpp5JKfpxcUDOGAx8RoATNDf/e
-         9fDw==
+        h=from:to:cc:subject:date:message-id:mime-version
+         :content-transfer-encoding;
+        bh=1EMxUviwz/CJ/4qYChB+sXj1n3HdtHHkMxKQEJWzWbQ=;
+        b=Zm2B9f9GM65LVyC7Ke63rPB8LZe2xCOaN0jxnc7gu0y9zG481lJ1s/3CewaYOPQqaL
+         OaVaxMSy/A3LUiODYcsd9o1SUTpAMmno7rTIUGgy1f2ko9ugAFpEUSdsASsnPmBSFJwI
+         m9/tfVDnrY4xccGI6qrLBheE5BWqf+EvJ7mQfj7xr8OxwGckCplZeepR2YQ4E4zGIsfR
+         dIv5dziWrbeTRuoKP/OmIue40OdGFD+IfoIjwX1pqYE/UmCl+n8OgygudFtLMjuf23a0
+         atCpGDz+l2a31Ge3kF5N/YKjRr5Q1p7PL+bpFtFAabjFanoRRV+xH4wu5v45FNPCKfON
+         6RbA==
 X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
         d=1e100.net; s=20161025;
-        h=x-gm-message-state:from:to:cc:subject:date:message-id:in-reply-to
-         :references:mime-version:content-transfer-encoding;
-        bh=CmkH6mrBic1gDucrxN0KGfEebKPkaCEZzW0RbWxgH8k=;
-        b=dru4fQopaw2PFh4wB6cVKptbpTVJG/+UruZ4CCipkFXVtFSciYEmd8Y66Ogmn6C6Zv
-         iX+8/eR3W+CfqZJdz1GT/wUbr6ddUZWcJDzlLIpPrdlfggwqhPAARxkQJRXofmXrI2Ab
-         jX72vxSnAqFHchs7155zwdBUrBVtg3lE5E52Yg3aAWDn1g6Ar2HzbZD6zDinpI8ONijM
-         146ErUUYa8+9P6GNqG2rsPfXa3OiX9ifGdaquRTmfK8eI+oTFy459+arM/CeV5J087rm
-         leBIT3pQcJmYAb3BeLOE4TPzLaoUaCsiaBb513sUSjWqFP7ckW8BmO0chNloZJn+6qsO
-         ohHQ==
-X-Gm-Message-State: AOAM530LWaBhAEtz7tz/t9lB6JxzeUuYWVkUdRBp5E0UXuyyIFsXnzd5
-        HoxOK1zFYqF8TcEBrBILTiY=
-X-Google-Smtp-Source: ABdhPJzhVB+wexEjy9PfxrhExhi8PXMIqq8f2x11yQlSQKJRjDYzuykB77BauAcqrca6NXTnROUQlg==
-X-Received: by 2002:a2e:8e81:: with SMTP id z1mr2791689ljk.379.1601800451921;
-        Sun, 04 Oct 2020 01:34:11 -0700 (PDT)
+        h=x-gm-message-state:from:to:cc:subject:date:message-id:mime-version
+         :content-transfer-encoding;
+        bh=1EMxUviwz/CJ/4qYChB+sXj1n3HdtHHkMxKQEJWzWbQ=;
+        b=QvgUPGpjQ3PLCk5o5tbrT3xcyxRK3kAwM+6ArZV1RWr3GI9ckI1ty3Y98ZZPQIFwL1
+         Ytsut+RV4qPUrbVGvdd8WvEStcUh/JJFVgubQ3FwTcfQU8Kjq82OYrI0Cms8FlMI3eZl
+         JvCX/7Z97jo1rYOuepkzkOoJPX3jPKZyYfJ4Kt6irtjRxKp28gcgJHyYoc7e1ACbHr/D
+         8EFLNoakv+EPsnjSPWf5+g/S7SuRRz6JiQjTr4LhQ7FeRWKUEUpamprsAAu9/778nCYW
+         SPxyl0HFGIC0L6/ffzCXXYODmdXFc64G4o8MPDFeHSZ70ojrfuDOIOL2v4f/9+qsx05p
+         O/tg==
+X-Gm-Message-State: AOAM533yY2G4/Fg4nMcUD4XrI4N518ELfF32VwfWMnMd8mfXapc/1DYf
+        NnNwaSNm+vibfVPtBN/wofI=
+X-Google-Smtp-Source: ABdhPJzNK1pYhVaarVM8ARL83DwiIyWXUid7PAbWXaU8e6SlFwx0gJcKDUknCOQXpPc16WD89WIKhw==
+X-Received: by 2002:ac2:592d:: with SMTP id v13mr1703745lfi.355.1601801489157;
+        Sun, 04 Oct 2020 01:51:29 -0700 (PDT)
 Received: from localhost.localdomain (host-5-58-109-138.bitternet.ua. [5.58.109.138])
-        by smtp.gmail.com with ESMTPSA id 73sm2299654lff.125.2020.10.04.01.34.10
+        by smtp.gmail.com with ESMTPSA id u1sm2217468lfu.24.2020.10.04.01.51.28
         (version=TLS1_3 cipher=TLS_AES_256_GCM_SHA384 bits=256/256);
-        Sun, 04 Oct 2020 01:34:11 -0700 (PDT)
+        Sun, 04 Oct 2020 01:51:28 -0700 (PDT)
 From:   Vladimir Lypak <junak.pub@gmail.com>
 To:     Andy Gross <agross@kernel.org>,
         Bjorn Andersson <bjorn.andersson@linaro.org>,
-        Linus Walleij <linus.walleij@linaro.org>,
+        Liam Girdwood <lgirdwood@gmail.com>,
+        Mark Brown <broonie@kernel.org>,
         Rob Herring <robh+dt@kernel.org>,
-        linux-arm-msm@vger.kernel.org, linux-gpio@vger.kernel.org,
-        devicetree@vger.kernel.org, linux-kernel@vger.kernel.org
+        Kathiravan T <kathirav@codeaurora.org>,
+        linux-arm-msm@vger.kernel.org, linux-kernel@vger.kernel.org,
+        devicetree@vger.kernel.org
 Cc:     Vladimir Lypak <junak.pub@gmail.com>
-Subject: [PATCH 2/2] dt-bindings: pinctrl: qcom: add msm8953 pinctrl bindings
-Date:   Sun,  4 Oct 2020 11:16:44 +0300
-Message-Id: <20201004081644.323858-2-junak.pub@gmail.com>
+Subject: [PATCH 1/2] regulator: qcom_smd: add pm8953 regulators
+Date:   Sun,  4 Oct 2020 11:34:12 +0300
+Message-Id: <20201004083413.324351-1-junak.pub@gmail.com>
 X-Mailer: git-send-email 2.28.0
-In-Reply-To: <20201004081644.323858-1-junak.pub@gmail.com>
-References: <20201004081644.323858-1-junak.pub@gmail.com>
 MIME-Version: 1.0
 Content-Transfer-Encoding: 8bit
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-Add device tree bindings documentation for Qualcomm MSM8953
-pinctrl driver.
+The PM8953 is commonly used on board with MSM8953 SoCs or its variants:
+APQ8053, SDM(SDA)450 and SDM(SDA)632.
+It provides 7 SMPS and 23 LDO regulators.
 
 Signed-off-by: Vladimir Lypak <junak.pub@gmail.com>
 ---
- .../pinctrl/qcom,msm8953-pinctrl.yaml         | 160 ++++++++++++++++++
- 1 file changed, 160 insertions(+)
- create mode 100644 Documentation/devicetree/bindings/pinctrl/qcom,msm8953-pinctrl.yaml
+ drivers/regulator/qcom_smd-regulator.c | 54 ++++++++++++++++++++++++++
+ 1 file changed, 54 insertions(+)
 
-diff --git a/Documentation/devicetree/bindings/pinctrl/qcom,msm8953-pinctrl.yaml b/Documentation/devicetree/bindings/pinctrl/qcom,msm8953-pinctrl.yaml
-new file mode 100644
-index 000000000000..e539149834b6
---- /dev/null
-+++ b/Documentation/devicetree/bindings/pinctrl/qcom,msm8953-pinctrl.yaml
-@@ -0,0 +1,160 @@
-+# SPDX-License-Identifier: (GPL-2.0-only OR BSD-2-Clause)
-+%YAML 1.2
-+---
-+$id: http://devicetree.org/schemas/pinctrl/qcom,msm8953-pinctrl.yaml#
-+$schema: http://devicetree.org/meta-schemas/core.yaml#
+diff --git a/drivers/regulator/qcom_smd-regulator.c b/drivers/regulator/qcom_smd-regulator.c
+index faa99690b7b3..bb944ee5fe3b 100644
+--- a/drivers/regulator/qcom_smd-regulator.c
++++ b/drivers/regulator/qcom_smd-regulator.c
+@@ -403,6 +403,24 @@ static const struct regulator_desc pm8950_pldo = {
+ 	.ops = &rpm_smps_ldo_ops,
+ };
+ 
++static const struct regulator_desc pm8953_lnldo = {
++	.linear_ranges = (struct linear_range[]) {
++		REGULATOR_LINEAR_RANGE(1380000, 8, 15, 120000),
++		REGULATOR_LINEAR_RANGE(690000, 0, 7, 60000),
++	},
++	.n_linear_ranges = 2,
++	.n_voltages = 16,
++	.ops = &rpm_smps_ldo_ops,
++};
 +
-+title: Qualcomm Technologies, Inc. MSM8953 TLMM block
++static const struct regulator_desc pm8953_ult_nldo = {
++	.linear_ranges = (struct linear_range[]) {
++		REGULATOR_LINEAR_RANGE(375000, 0, 93, 12500),
++	},
++	.n_linear_ranges = 1,
++	.n_voltages = 94,
++	.ops = &rpm_smps_ldo_ops,
++};
+ 
+ static const struct regulator_desc pm8994_hfsmps = {
+ 	.linear_ranges = (struct linear_range[]) {
+@@ -854,6 +872,41 @@ static const struct rpm_regulator_data rpm_pm8950_regulators[] = {
+ 	{}
+ };
+ 
++static const struct rpm_regulator_data rpm_pm8953_regulators[] = {
++	{  "s1", QCOM_SMD_RPM_SMPA,  1, &pm8998_hfsmps, "vdd_s1" },
++	{  "s2", QCOM_SMD_RPM_SMPA,  2, &pm8998_hfsmps, "vdd_s2" },
++	{  "s3", QCOM_SMD_RPM_SMPA,  3, &pm8998_hfsmps, "vdd_s3" },
++	{  "s4", QCOM_SMD_RPM_SMPA,  4, &pm8998_hfsmps, "vdd_s4" },
++	{  "s5", QCOM_SMD_RPM_SMPA,  5, &pm8950_ftsmps2p5, "vdd_s5" },
++	{  "s6", QCOM_SMD_RPM_SMPA,  6, &pm8950_ftsmps2p5, "vdd_s6" },
++	{  "s7", QCOM_SMD_RPM_SMPA,  7, &pm8998_hfsmps, "vdd_s7" },
 +
-+maintainers:
-+  - Bjorn Andersson <bjorn.andersson@linaro.org>
++	{  "l1", QCOM_SMD_RPM_LDOA,  1, &pm8953_ult_nldo, "vdd_l1" },
++	{  "l2", QCOM_SMD_RPM_LDOA,  2, &pm8953_ult_nldo, "vdd_l2_l3" },
++	{  "l3", QCOM_SMD_RPM_LDOA,  3, &pm8953_ult_nldo, "vdd_l2_l3" },
++	{  "l4", QCOM_SMD_RPM_LDOA,  4, &pm8950_ult_pldo, "vdd_l4_l5_l6_l7_l16_l19" },
++	{  "l5", QCOM_SMD_RPM_LDOA,  5, &pm8950_ult_pldo, "vdd_l4_l5_l6_l7_l16_l19" },
++	{  "l6", QCOM_SMD_RPM_LDOA,  6, &pm8950_ult_pldo, "vdd_l4_l5_l6_l7_l16_l19" },
++	{  "l7", QCOM_SMD_RPM_LDOA,  7, &pm8950_ult_pldo, "vdd_l4_l5_l6_l7_l16_l19" },
++	{  "l8", QCOM_SMD_RPM_LDOA,  8, &pm8950_ult_pldo, "vdd_l8_l11_l12_l13_l14_l15" },
++	{  "l9", QCOM_SMD_RPM_LDOA,  9, &pm8950_ult_pldo, "vdd_l9_l10_l17_l18_l22" },
++	{ "l10", QCOM_SMD_RPM_LDOA, 10, &pm8950_ult_pldo, "vdd_l9_l10_l17_l18_l22" },
++	{ "l11", QCOM_SMD_RPM_LDOA, 11, &pm8950_ult_pldo, "vdd_l8_l11_l12_l13_l14_l15" },
++	{ "l12", QCOM_SMD_RPM_LDOA, 12, &pm8950_ult_pldo, "vdd_l8_l11_l12_l13_l14_l15" },
++	{ "l13", QCOM_SMD_RPM_LDOA, 13, &pm8950_ult_pldo, "vdd_l8_l11_l12_l13_l14_l15" },
++	{ "l14", QCOM_SMD_RPM_LDOA, 14, &pm8950_ult_pldo, "vdd_l8_l11_l12_l13_l14_l15" },
++	{ "l15", QCOM_SMD_RPM_LDOA, 15, &pm8950_ult_pldo, "vdd_l8_l11_l12_l13_l14_l15" },
++	{ "l16", QCOM_SMD_RPM_LDOA, 16, &pm8950_ult_pldo, "vdd_l4_l5_l6_l7_l16_l19" },
++	{ "l17", QCOM_SMD_RPM_LDOA, 17, &pm8950_ult_pldo, "vdd_l9_l10_l17_l18_l22" },
++	{ "l18", QCOM_SMD_RPM_LDOA, 18, &pm8950_ult_pldo, "vdd_l9_l10_l17_l18_l22" },
++	{ "l19", QCOM_SMD_RPM_LDOA, 19, &pm8953_ult_nldo, "vdd_l4_l5_l6_l7_l16_l19" },
++	{ "l20", QCOM_SMD_RPM_LDOA, 20, &pm8953_lnldo,    "vdd_l20" },
++	{ "l21", QCOM_SMD_RPM_LDOA, 21, &pm8953_lnldo,    "vdd_l21" },
++	{ "l22", QCOM_SMD_RPM_LDOA, 22, &pm8950_ult_pldo, "vdd_l9_l10_l17_l18_l22" },
++	{ "l23", QCOM_SMD_RPM_LDOA, 23, &pm8953_ult_nldo, "vdd_l23" },
++	{}
++};
 +
-+description: |
-+  This binding describes the Top Level Mode Multiplexer block found in the
-+  MSM8953 platform.
-+
-+properties:
-+  compatible:
-+    const: qcom,msm8953-pinctrl
-+
-+  reg:
-+    maxItems: 1
-+
-+  interrupts:
-+    description: Specifies the TLMM summary IRQ
-+    maxItems: 1
-+
-+  interrupt-controller: true
-+
-+  '#interrupt-cells':
-+    description:
-+      Specifies the PIN numbers and Flags, as defined in defined in
-+      include/dt-bindings/interrupt-controller/irq.h
-+    const: 2
-+
-+  gpio-controller: true
-+
-+  '#gpio-cells':
-+    description: Specifying the pin number and flags, as defined in
-+      include/dt-bindings/gpio/gpio.h
-+    const: 2
-+
-+  gpio-ranges:
-+    maxItems: 1
-+
-+  wakeup-parent:
-+    maxItems: 1
-+
-+#PIN CONFIGURATION NODES
-+patternProperties:
-+  '^.*$':
-+    if:
-+      type: object
-+    then:
-+      properties:
-+        pins:
-+          description:
-+            List of gpio pins affected by the properties specified in this
-+            subnode.
-+          items:
-+            oneOf:
-+              - pattern: "^gpio([0-9]|[1-9][0-9]|1[0-7][0-9])$"
-+              - enum: [ sdc1_clk, sdc1_cmd, sdc1_data, sdc1_rclk, sdc2_clk,
-+                        sdc2_cmd, sdc2_data, qdsd_clk, qdsd_cmd, qdsd_data0,
-+                        qdsd_data1, qdsd_data2, qdsd_data3 ]
-+          minItems: 1
-+          maxItems: 16
-+
-+        function:
-+          description:
-+            Specify the alternative function to be configured for the specified
-+            pins.
-+
-+          enum: [ accel_int, adsp_ext, alsp_int, atest_bbrx0, atest_bbrx1,
-+                  atest_char, atest_char0, atest_char1, atest_char2, atest_char3,
-+                  atest_gpsadc_dtest0_native, atest_gpsadc_dtest1_native, atest_tsens,
-+                  atest_wlan0, atest_wlan1, bimc_dte0, bimc_dte1, blsp1_spi,
-+                  blsp3_spi, blsp6_spi, blsp7_spi, blsp_i2c1, blsp_i2c2, blsp_i2c3,
-+                  blsp_i2c4, blsp_i2c5, blsp_i2c6, blsp_i2c7, blsp_i2c8, blsp_spi1,
-+                  blsp_spi2, blsp_spi3, blsp_spi4, blsp_spi5, blsp_spi6, blsp_spi7,
-+                  blsp_spi8, blsp_uart2, blsp_uart4, blsp_uart5, blsp_uart6, cam0_ldo,
-+                  cam1_ldo, cam1_rst, cam1_standby, cam2_rst, cam2_standby, cam3_rst,
-+                  cam3_standby, cam_irq, cam_mclk, cap_int, cci_async, cci_i2c,
-+                  cci_timer0, cci_timer1, cci_timer2, cci_timer3, cci_timer4,
-+                  cdc_pdm0, codec_int1, codec_int2, codec_reset, cri_trng, cri_trng0,
-+                  cri_trng1, dac_calib0, dac_calib1, dac_calib10, dac_calib11,
-+                  dac_calib12, dac_calib13, dac_calib14, dac_calib15, dac_calib16,
-+                  dac_calib17, dac_calib18, dac_calib19, dac_calib2, dac_calib20,
-+                  dac_calib21, dac_calib22, dac_calib23, dac_calib24, dac_calib25,
-+                  dac_calib3, dac_calib4, dac_calib5, dac_calib6, dac_calib7,
-+                  dac_calib8, dac_calib9, dbg_out, ddr_bist, dmic0_clk, dmic0_data,
-+                  ebi_cdc, ebi_ch0, ext_lpass, flash_strobe, fp_int, gcc_gp1_clk_a,
-+                  gcc_gp1_clk_b, gcc_gp2_clk_a, gcc_gp2_clk_b, gcc_gp3_clk_a,
-+                  gcc_gp3_clk_b, gcc_plltest, gcc_tlmm, gpio, gsm0_tx, gsm1_tx,
-+                  gyro_int, hall_int, hdmi_int, key_focus, key_home, key_snapshot,
-+                  key_volp, ldo_en, ldo_update, lpass_slimbus, lpass_slimbus0,
-+                  lpass_slimbus1, m_voc, mag_int, mdp_vsync, mipi_dsi0, modem_tsync,
-+                  mss_lte, nav_pps, nav_pps_in_a, nav_pps_in_b, nav_tsync,
-+                  nfc_disable, nfc_dwl, nfc_irq, ois_sync, pa_indicator, pbs0, pbs1,
-+                  pbs2, pressure_int, pri_mi2s, pri_mi2s_mclk_a, pri_mi2s_mclk_b,
-+                  pri_mi2s_ws, prng_rosc, pwr_crypto_enabled_a, pwr_crypto_enabled_b,
-+                  pwr_down, pwr_modem_enabled_a, pwr_modem_enabled_b,
-+                  pwr_nav_enabled_a, pwr_nav_enabled_b, qdss_cti_trig_in_a0,
-+                  qdss_cti_trig_in_a1, qdss_cti_trig_in_b0, qdss_cti_trig_in_b1,
-+                  qdss_cti_trig_out_a0, qdss_cti_trig_out_a1, qdss_cti_trig_out_b0,
-+                  qdss_cti_trig_out_b1, qdss_traceclk_a, qdss_traceclk_b,
-+                  qdss_tracectl_a, qdss_tracectl_b, qdss_tracedata_a,
-+                  qdss_tracedata_b, sd_write, sdcard_det, sec_mi2s, sec_mi2s_mclk_a,
-+                  sec_mi2s_mclk_b, smb_int, ss_switch, ssbi_wtr1, ts_resout,
-+                  ts_sample, ts_xvdd, tsens_max, uim1_clk, uim1_data, uim1_present,
-+                  uim1_reset, uim2_clk, uim2_data, uim2_present, uim2_reset,
-+                  uim_batt, us_emitter, us_euro, wcss_bt, wcss_fm, wcss_wlan,
-+                  wcss_wlan0, wcss_wlan1, wcss_wlan2, wsa_en, wsa_io, wsa_irq ]
-+
-+        drive-strength:
-+          enum: [2, 4, 6, 8, 10, 12, 14, 16]
-+          default: 2
-+          description:
-+            Selects the drive strength for the specified pins, in mA.
-+
-+        bias-pull-down: true
-+
-+        bias-pull-up: true
-+
-+        bias-disable: true
-+
-+        output-high: true
-+
-+        output-low: true
-+
-+      required:
-+        - pins
-+        - function
-+
-+      additionalProperties: false
-+
-+required:
-+  - compatible
-+  - reg
-+  - interrupts
-+  - interrupt-controller
-+  - '#interrupt-cells'
-+  - gpio-controller
-+  - '#gpio-cells'
-+  - gpio-ranges
-+
-+additionalProperties: false
-+
-+examples:
-+  - |
-+        #include <dt-bindings/interrupt-controller/arm-gic.h>
-+        tlmm: pinctrl@1000000 {
-+              compatible = "qcom,msm8953-pinctrl";
-+              reg = <0x01000000 0x300000>;
-+              interrupts = <GIC_SPI 208 IRQ_TYPE_LEVEL_HIGH>;
-+              interrupt-controller;
-+              #interrupt-cells = <2>;
-+              gpio-controller;
-+              #gpio-cells = <2>;
-+              gpio-ranges = <&tlmm 0 0 142>;
-+        };
+ static const struct rpm_regulator_data rpm_pm8994_regulators[] = {
+ 	{ "s1", QCOM_SMD_RPM_SMPA, 1, &pm8994_ftsmps, "vdd_s1" },
+ 	{ "s2", QCOM_SMD_RPM_SMPA, 2, &pm8994_ftsmps, "vdd_s2" },
+@@ -1041,6 +1094,7 @@ static const struct of_device_id rpm_of_match[] = {
+ 	{ .compatible = "qcom,rpm-pm8916-regulators", .data = &rpm_pm8916_regulators },
+ 	{ .compatible = "qcom,rpm-pm8941-regulators", .data = &rpm_pm8941_regulators },
+ 	{ .compatible = "qcom,rpm-pm8950-regulators", .data = &rpm_pm8950_regulators },
++	{ .compatible = "qcom,rpm-pm8953-regulators", .data = &rpm_pm8953_regulators },
+ 	{ .compatible = "qcom,rpm-pm8994-regulators", .data = &rpm_pm8994_regulators },
+ 	{ .compatible = "qcom,rpm-pm8998-regulators", .data = &rpm_pm8998_regulators },
+ 	{ .compatible = "qcom,rpm-pm660-regulators", .data = &rpm_pm660_regulators },
 -- 
 2.24.1
 
