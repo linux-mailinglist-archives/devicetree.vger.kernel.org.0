@@ -2,98 +2,75 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from vger.kernel.org (vger.kernel.org [23.128.96.18])
-	by mail.lfdr.de (Postfix) with ESMTP id D0B9A282B04
-	for <lists+devicetree@lfdr.de>; Sun,  4 Oct 2020 15:35:46 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTP id 20572282B0F
+	for <lists+devicetree@lfdr.de>; Sun,  4 Oct 2020 15:44:44 +0200 (CEST)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S1726212AbgJDNfg (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Sun, 4 Oct 2020 09:35:36 -0400
-Received: from lindbergh.monkeyblade.net ([23.128.96.19]:36034 "EHLO
-        lindbergh.monkeyblade.net" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S1726204AbgJDNff (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Sun, 4 Oct 2020 09:35:35 -0400
-Received: from mail-qk1-x743.google.com (mail-qk1-x743.google.com [IPv6:2607:f8b0:4864:20::743])
-        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 86E46C0613CE;
-        Sun,  4 Oct 2020 06:35:35 -0700 (PDT)
-Received: by mail-qk1-x743.google.com with SMTP id c62so8710593qke.1;
-        Sun, 04 Oct 2020 06:35:35 -0700 (PDT)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=gmail.com; s=20161025;
-        h=from:to:cc:subject:date:message-id:in-reply-to:references
-         :mime-version:content-transfer-encoding;
-        bh=GdMuyxsbVZIjvN8C24RgnButiYoPlCvAUwNgP4R+JK4=;
-        b=B054CBI71xDz3HkFD7sP5tVUKkYe3qZF+XJ8G0DZoOCF1KmmcM02p11RCuec/cEOFF
-         soca4Yl4SUBwp0wC27UJ7xSAxMiVg5FK4SfjJG+aa41VTvFxpjU437liZzy0neQMbzmU
-         f3SbkD9/4CbvcRevA88VC0CVDbX/F1uWGBjDkncfCkCl6Ilz1PEor9ZC3HxLveIM/mZH
-         oF+1In9cmnEjKx1HYpklcUlCF6ipqPnN2vNbQ2LW9hEsQvZ+GpEj07Yd/6bF+p6nu8OG
-         FMgdYDvEsbroJvgcQfRnWKXhMZrWDiVwZc7V5hBzoi5kI5mIX2R+w2rf4HpGsMbomf/1
-         Nenw==
+        id S1726073AbgJDNon (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Sun, 4 Oct 2020 09:44:43 -0400
+Received: from mail-ed1-f67.google.com ([209.85.208.67]:33403 "EHLO
+        mail-ed1-f67.google.com" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
+        with ESMTP id S1725927AbgJDNon (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Sun, 4 Oct 2020 09:44:43 -0400
+Received: by mail-ed1-f67.google.com with SMTP id g4so6631242edk.0
+        for <devicetree@vger.kernel.org>; Sun, 04 Oct 2020 06:44:40 -0700 (PDT)
 X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
         d=1e100.net; s=20161025;
-        h=x-gm-message-state:from:to:cc:subject:date:message-id:in-reply-to
-         :references:mime-version:content-transfer-encoding;
-        bh=GdMuyxsbVZIjvN8C24RgnButiYoPlCvAUwNgP4R+JK4=;
-        b=EZQPINJ8ojJ5rs2cYcfZaXwo68EhkqoRqYuZHDcZyTiaN/h/nh9cL00Uc09HtP8eiI
-         OWCbLMRejYjRvpRI0M3orhbk41kMb5q/5Ul3wwtbY3PU8V9JD14HRWGoPt0zT9WeontX
-         E/4LUrJwWZIyOY1wk1Skfn6yQJzBU+RWNN2gmNf7CYMuHMdGz/JtnH4YQftN9wQ4pS7x
-         ey1vahKCAFfVdL3+gI4BpWpIIPdgLQ1goKENo1ecqlBmdNBwED6mpKUYPePePIWy06ZR
-         J2UMyDeaXHoN9Cv1ilWGYufmlDv4tKl1kaffh2idbw/IAgQDJoR1SlsDZ4iSiIaxJIBz
-         66rA==
-X-Gm-Message-State: AOAM531vknSB4DyXQN/Ls35a4OqVWFyxnEnie6KW1v1P6We9ykcmRt9R
-        HRMQLfIWdPPwtv1/l0TkiyAf/FHj6Ts49A0G
-X-Google-Smtp-Source: ABdhPJxi+AiiswEzaHEs1P7kpUNHqnvoXCBWO/4C0c6pRNATgALq8FNl8M9GVw4osajp95Ufq9856g==
-X-Received: by 2002:a37:7747:: with SMTP id s68mr5301926qkc.491.1601818534623;
-        Sun, 04 Oct 2020 06:35:34 -0700 (PDT)
-Received: from rockpro64.hsd1.md.comcast.net ([2601:153:900:7730::20])
-        by smtp.gmail.com with ESMTPSA id b9sm5539369qta.39.2020.10.04.06.35.33
-        (version=TLS1_3 cipher=TLS_AES_256_GCM_SHA384 bits=256/256);
-        Sun, 04 Oct 2020 06:35:34 -0700 (PDT)
-From:   Peter Geis <pgwipeout@gmail.com>
-To:     Rob Herring <robh+dt@kernel.org>,
-        Thierry Reding <thierry.reding@gmail.com>,
-        Jonathan Hunter <jonathanh@nvidia.com>,
-        Matt Merhar <mattmerhar@protonmail.com>,
-        Dmitry Osipenko <digetx@gmail.com>,
-        Stephen Warren <swarren@wwwdotorg.org>,
-        Bob Ham <rah@settrans.net>,
-        Leonardo Bras <leobras.c@gmail.com>,
-        Michael Brougham <jusplainmike@gmail.com>
-Cc:     linux-tegra@vger.kernel.org, devicetree@vger.kernel.org,
-        linux-kernel@vger.kernel.org, Peter Geis <pgwipeout@gmail.com>,
-        Rob Herring <robh@kernel.org>
-Subject: [PATCH v3 3/3] dt-bindings: ARM: tegra: Add Ouya game console
-Date:   Sun,  4 Oct 2020 13:31:14 +0000
-Message-Id: <20201004133114.845230-4-pgwipeout@gmail.com>
-X-Mailer: git-send-email 2.25.1
-In-Reply-To: <20201004133114.845230-1-pgwipeout@gmail.com>
-References: <20201004133114.845230-1-pgwipeout@gmail.com>
+        h=x-gm-message-state:date:from:to:cc:subject:message-id:references
+         :mime-version:content-disposition:in-reply-to:user-agent;
+        bh=CRTYvxw2J9QY5WVSxmAMhb38KlqYhLp/2cLaz23oRrk=;
+        b=iVXLLfB4gbn1EmcEujnW1Ft6Sg5fihbP3k5JvKmTINgwlnYJnIA8z/H81oUBpEcRr4
+         zaEUmWRwrVDpcjdAqejlr/ion/7y6aiCjr1PC99w3UjNdj5qI9WzJ4425gbzxo7ESodN
+         qzTO5T0KYPRBzYkBlQdE9om3EC/CmYgENJhtcAfn4HLx7rpSAagGHqjQRQ0rnoJu/bqb
+         xzpMVX2p+5pufVIns3V34WkRTqpU+upbqS4DdNZ7i+K7iq+xg6vs08FORmT3QWgypAV+
+         UQHZPCti2X1q80muYfbJ9DgKKK/F2OxVL8yv16kcB2TB86AIQxNwm0XLpigrXRSdSM15
+         +bfw==
+X-Gm-Message-State: AOAM532hr5lDYPkXCoedPbiZYquQ+MmNXmFsHNCYE4+hCjHGNl8Btfdd
+        vzav2FpaQ9ORE+ICxPEQXTYAeIdxS+4=
+X-Google-Smtp-Source: ABdhPJxj0IuU15am6WC5SeZDJhy0o33yarzYbo4O7cAbjXdoX4dGgZ+l+AtriCPHghMYu1V5JfiVew==
+X-Received: by 2002:aa7:dada:: with SMTP id x26mr9215202eds.167.1601819079876;
+        Sun, 04 Oct 2020 06:44:39 -0700 (PDT)
+Received: from kozik-lap ([194.230.155.194])
+        by smtp.googlemail.com with ESMTPSA id a5sm6552368edl.6.2020.10.04.06.44.38
+        (version=TLS1_2 cipher=ECDHE-ECDSA-CHACHA20-POLY1305 bits=256/256);
+        Sun, 04 Oct 2020 06:44:38 -0700 (PDT)
+Date:   Sun, 4 Oct 2020 15:44:36 +0200
+From:   Krzysztof Kozlowski <krzk@kernel.org>
+To:     Li Jun <jun.li@nxp.com>
+Cc:     robh+dt@kernel.org, shawnguo@kernel.org, balbi@kernel.org,
+        gregkh@linuxfoundation.org, s.hauer@pengutronix.de,
+        kernel@pengutronix.de, festevam@gmail.com, linux-imx@nxp.com,
+        Anson.Huang@nxp.com, aisheng.dong@nxp.com, peng.fan@nxp.com,
+        fugang.duan@nxp.com, horia.geanta@nxp.com, qiangqing.zhang@nxp.com,
+        peter.chen@nxp.com, devicetree@vger.kernel.org,
+        linux-arm-kernel@lists.infradead.org
+Subject: Re: [PATCH v5 1/4] dt-bindings: usb: dwc3-imx8mp: add imx8mp dwc3
+ glue bindings
+Message-ID: <20201004134436.GA3158@kozik-lap>
+References: <1601726527-23326-1-git-send-email-jun.li@nxp.com>
+ <1601726527-23326-2-git-send-email-jun.li@nxp.com>
 MIME-Version: 1.0
-Content-Transfer-Encoding: 8bit
+Content-Type: text/plain; charset=utf-8
+Content-Disposition: inline
+In-Reply-To: <1601726527-23326-2-git-send-email-jun.li@nxp.com>
+User-Agent: Mutt/1.9.4 (2018-02-28)
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-Add a binding for the Tegra30-based Ouya game console.
+On Sat, Oct 03, 2020 at 08:02:04PM +0800, Li Jun wrote:
+> NXP imx8mp integrates 2 dwc3 3.30b IP and add some wakeup logic
+> to support low power mode, the glue layer is for this wakeup
+> functionality, which has a separated interrupt, can support
+> wakeup from U3 and connect events for host, and vbus wakeup for
+> device.
+> 
+> Signed-off-by: Li Jun <jun.li@nxp.com>
+> ---
+>  .../devicetree/bindings/usb/fsl,imx8mp-dwc3.yaml   | 105 +++++++++++++++++++++
+>  1 file changed, 105 insertions(+)
+> 
 
-Signed-off-by: Peter Geis <pgwipeout@gmail.com>
-Acked-by: Rob Herring <robh@kernel.org>
----
- Documentation/devicetree/bindings/arm/tegra.yaml | 3 +++
- 1 file changed, 3 insertions(+)
+Reviewed-by: Krzysztof Kozlowski <krzk@kernel.org>
 
-diff --git a/Documentation/devicetree/bindings/arm/tegra.yaml b/Documentation/devicetree/bindings/arm/tegra.yaml
-index e0b3debaee9e..a8bafe68315f 100644
---- a/Documentation/devicetree/bindings/arm/tegra.yaml
-+++ b/Documentation/devicetree/bindings/arm/tegra.yaml
-@@ -69,6 +69,9 @@ properties:
-           - const: asus,tilapia
-           - const: asus,grouper
-           - const: nvidia,tegra30
-+      - items:
-+          - const: ouya,ouya
-+          - const: nvidia,tegra30
-       - items:
-           - enum:
-               - nvidia,dalmore
--- 
-2.25.1
-
+Best regards,
+Krzysztof
