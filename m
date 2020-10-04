@@ -2,157 +2,84 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from vger.kernel.org (vger.kernel.org [23.128.96.18])
-	by mail.lfdr.de (Postfix) with ESMTP id 988A7282B82
-	for <lists+devicetree@lfdr.de>; Sun,  4 Oct 2020 17:43:53 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTP id 47006282BC8
+	for <lists+devicetree@lfdr.de>; Sun,  4 Oct 2020 18:15:44 +0200 (CEST)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S1725825AbgJDPns (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Sun, 4 Oct 2020 11:43:48 -0400
-Received: from lindbergh.monkeyblade.net ([23.128.96.19]:55540 "EHLO
-        lindbergh.monkeyblade.net" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S1725937AbgJDPns (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Sun, 4 Oct 2020 11:43:48 -0400
-Received: from mail-ot1-x343.google.com (mail-ot1-x343.google.com [IPv6:2607:f8b0:4864:20::343])
-        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 2CC2EC0613CE;
-        Sun,  4 Oct 2020 08:43:48 -0700 (PDT)
-Received: by mail-ot1-x343.google.com with SMTP id s66so6243639otb.2;
-        Sun, 04 Oct 2020 08:43:48 -0700 (PDT)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=gmail.com; s=20161025;
-        h=sender:date:from:to:cc:subject:message-id:references:mime-version
-         :content-disposition:in-reply-to:user-agent;
-        bh=Qi/VID7y2SIwzNo6dbcXrRRFn4NPp8vANshNlUq5tjo=;
-        b=VtNTfV/Iil1s0ncK/AIaMq0CZUfgkksUFTrZmoopKJqeydiAfRh1LxRy3mU9AvdwyB
-         SwR4I1yYJFHbCKdAmoA3s+b7WLhXSGYmpFVm86Q018c6ukf4CFRh+MOGo+t6OnYo2njW
-         waq4ClyvivyjTQiwu/5OwmRLlpo+sDZqiL5/2h0yTUJf3nUSd//EoThMISKR6IZstLhQ
-         /vUg3QlD3tqRapIuQzatP4qMSkc87tGdCIX05rOvmpDI061xPNUBgmLI0hTmnZJLrO5P
-         aR8w4xnJT6fSQYbiP1aF2ICGwejbvNQ7Gjk4v8syV43o4sgk9kmSUiMtgiq4JtaNSKnv
-         /i1Q==
-X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=1e100.net; s=20161025;
-        h=x-gm-message-state:sender:date:from:to:cc:subject:message-id
-         :references:mime-version:content-disposition:in-reply-to:user-agent;
-        bh=Qi/VID7y2SIwzNo6dbcXrRRFn4NPp8vANshNlUq5tjo=;
-        b=ZNVBIIDQfnADy7zsx9VTNZW+VESqwjBIHv1A3uCMSUTS+jWMwew2WY/QoNo+8ehIx4
-         41Go9JEfGmSTXicrrtoKd6jPW82vmyJNcK6eBAEYKLLZ9/5XSA06UAlf7wYY4NKJa64G
-         1j+Kp0KuuJZD7O1f+5Z63vq97KMuxMGpkVXgFbJoo/7O+Peg5qXv00jO4DUgLH0dfR69
-         1uoJKiV0l6+CftgQzic4P8pF34q4YDVSqPjFQuidyLnUzOgB29QphbhvWofcw2aPQQrx
-         xPRtGf1O0qH25hh7OWdW2EfONqOIqvQ+axjG+OIZKRU+0uKtUpd7AQz2NriXlR/6gB2I
-         WP3Q==
-X-Gm-Message-State: AOAM532SGfmVJxLHafQdxcsANFcAZvHMfwyrZG0uOynfnmmuV83OMAEw
-        cjLHyjWr6RFY7NMFb3ezi5ZTAFT9vBU=
-X-Google-Smtp-Source: ABdhPJzx3okC9Z9OkNWFurYFJS2tGuZYCIBr3zBqB1AEawXdWvHzkzaeEpxSorZ1sNZihSNqrrGXVQ==
-X-Received: by 2002:a05:6830:45b:: with SMTP id d27mr1816297otc.15.1601826227366;
-        Sun, 04 Oct 2020 08:43:47 -0700 (PDT)
-Received: from localhost ([2600:1700:e321:62f0:329c:23ff:fee3:9d7c])
-        by smtp.gmail.com with ESMTPSA id u15sm2083262otg.78.2020.10.04.08.43.46
-        (version=TLS1_2 cipher=ECDHE-ECDSA-CHACHA20-POLY1305 bits=256/256);
-        Sun, 04 Oct 2020 08:43:46 -0700 (PDT)
-Sender: Guenter Roeck <groeck7@gmail.com>
-Date:   Sun, 4 Oct 2020 08:43:45 -0700
-From:   Guenter Roeck <linux@roeck-us.net>
-To:     Chu Lin <linchuyuan@google.com>
-Cc:     jdelvare@suse.com, robh+dt@kernel.org, linux-hwmon@vger.kernel.org,
-        devicetree@vger.kernel.org, linux-kernel@vger.kernel.org
-Subject: Re: [PATCH v4 2/2] hwmon: pmbus: max20730: adjust the vout reading
- given voltage divider
-Message-ID: <20201004154345.GA110630@roeck-us.net>
-References: <20201004031445.2321090-1-linchuyuan@google.com>
- <20201004031445.2321090-3-linchuyuan@google.com>
+        id S1726103AbgJDQPc (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Sun, 4 Oct 2020 12:15:32 -0400
+Received: from mail.kernel.org ([198.145.29.99]:48318 "EHLO mail.kernel.org"
+        rhost-flags-OK-OK-OK-OK) by vger.kernel.org with ESMTP
+        id S1726083AbgJDQPc (ORCPT <rfc822;devicetree@vger.kernel.org>);
+        Sun, 4 Oct 2020 12:15:32 -0400
+Received: from localhost (unknown [171.61.67.142])
+        (using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
+        (No client certificate requested)
+        by mail.kernel.org (Postfix) with ESMTPSA id 61CEB2068D;
+        Sun,  4 Oct 2020 16:15:30 +0000 (UTC)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=kernel.org;
+        s=default; t=1601828131;
+        bh=ipIbwBDHbGx7U/nYVtWvwEV/y7/NQhikV5Ng+1S41wo=;
+        h=Date:From:To:Cc:Subject:References:In-Reply-To:From;
+        b=BkrFjq5pesVDCZqCgigvVGnAkYU3kAenXEVcy0C+EYf4QSa7nY/PHBghx8c3UJ+K0
+         V7wA5EiZjeOgOA1F0vSfPpr62TK79z4/hmO6HvTvKyMEs+fXYkKqMHx+Zl0SJ9Rz3x
+         kkipw8CWwDYt7zwpufpGFZLd9NoEY63vruFFDBV0=
+Date:   Sun, 4 Oct 2020 21:45:26 +0530
+From:   Vinod Koul <vkoul@kernel.org>
+To:     Rob Herring <robh@kernel.org>
+Cc:     devicetree@vger.kernel.org, linux-kernel@vger.kernel.org,
+        Thierry Reding <thierry.reding@gmail.com>,
+        Linus Walleij <linus.walleij@linaro.org>,
+        Stephen Boyd <sboyd@kernel.org>,
+        Shawn Guo <shawnguo@kernel.org>,
+        Bjorn Andersson <bjorn.andersson@linaro.org>,
+        Baolin Wang <baolin.wang7@gmail.com>,
+        Guenter Roeck <linux@roeck-us.net>,
+        Jonathan Cameron <jic23@kernel.org>,
+        Mauro Carvalho Chehab <mchehab@kernel.org>,
+        Laurent Pinchart <laurent.pinchart+renesas@ideasonboard.com>,
+        Lee Jones <lee.jones@linaro.org>,
+        Ulf Hansson <ulf.hansson@linaro.org>,
+        "David S. Miller" <davem@davemloft.net>,
+        Bjorn Helgaas <bhelgaas@google.com>,
+        Liam Girdwood <lgirdwood@gmail.com>,
+        Mark Brown <broonie@kernel.org>,
+        Greg Kroah-Hartman <gregkh@linuxfoundation.org>,
+        Daniel Lezcano <daniel.lezcano@linaro.org>,
+        linux-clk@vger.kernel.org, dri-devel@lists.freedesktop.org,
+        linux-spi@vger.kernel.org, linux-gpio@vger.kernel.org,
+        linux-hwmon@vger.kernel.org, linux-iio@vger.kernel.org,
+        openipmi-developer@lists.sourceforge.net,
+        linux-leds@vger.kernel.org, linux-media@vger.kernel.org,
+        linux-rockchip@lists.infradead.org,
+        linux-stm32@st-md-mailman.stormreply.com,
+        linux-mips@vger.kernel.org, linux-mmc@vger.kernel.org,
+        netdev@vger.kernel.org, linux-pci@vger.kernel.org,
+        linux-pm@vger.kernel.org, linux-remoteproc@vger.kernel.org,
+        linux-serial@vger.kernel.org, alsa-devel@alsa-project.org,
+        linux-usb@vger.kernel.org
+Subject: Re: [PATCH] dt-bindings: Another round of adding missing
+ 'additionalProperties'
+Message-ID: <20201004161526.GA2968@vkoul-mobl>
+References: <20201002234143.3570746-1-robh@kernel.org>
 MIME-Version: 1.0
 Content-Type: text/plain; charset=us-ascii
 Content-Disposition: inline
-In-Reply-To: <20201004031445.2321090-3-linchuyuan@google.com>
-User-Agent: Mutt/1.9.4 (2018-02-28)
+In-Reply-To: <20201002234143.3570746-1-robh@kernel.org>
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-On Sun, Oct 04, 2020 at 03:14:45AM +0000, Chu Lin wrote:
-> Problem:
-> We use voltage dividers so that the voltage presented at the voltage
-> sense pins is confusing. We might need to convert these readings to more
-> meaningful readings given the voltage divider.
-> 
-> Solution:
-> Read the voltage divider resistance from dts and convert the voltage
-> reading to a more meaningful reading.
-> 
-> Testing:
-> max20730 with voltage divider
-> 
-> Signed-off-by: Chu Lin <linchuyuan@google.com>
-> ---
-> ChangeLog v1 -> v2
->   hwmon: pmbus: max20730:
->   - Don't do anything to the ret if an error is returned from pmbus_read_word
->   - avoid overflow when doing multiplication
-> 
-> ChangeLog v2 -> v3
->   dt-bindings: hwmon: max20730:
->   - Provide the binding documentation in yaml format
->   hwmon: pmbus: max20730:
->   - No change
-> 
-> ChangeLog v3 -> v4
->   dt-bindings: hwmon: max20730:
->   - Fix highefficiency to high efficiency in description
->   - Fix presents to present in vout-voltage-divider
->   - Add additionalProperties: false
->   hwmon: pmbus: max20730:
->   - No change
+On 02-10-20, 18:41, Rob Herring wrote:
 
-You claim that there have been no changes since v2 of this patch,
-yet you dropped my Reviewed-by: tag. Any reason ?
+>  .../phy/amlogic,meson-g12a-usb2-phy.yaml      |  2 ++
+>  .../bindings/phy/qcom,ipq806x-usb-phy-hs.yaml |  2 ++
+>  .../bindings/phy/qcom,ipq806x-usb-phy-ss.yaml |  2 ++
+>  .../bindings/phy/qcom,qusb2-phy.yaml          |  1 +
+>  .../bindings/phy/qcom-usb-ipq4019-phy.yaml    |  2 ++
 
-Guenter
+For phy changes:
 
-> 
->  drivers/hwmon/pmbus/max20730.c | 18 ++++++++++++++++++
->  1 file changed, 18 insertions(+)
-> 
-> diff --git a/drivers/hwmon/pmbus/max20730.c b/drivers/hwmon/pmbus/max20730.c
-> index a151a2b588a5..fbf2f1e6c969 100644
-> --- a/drivers/hwmon/pmbus/max20730.c
-> +++ b/drivers/hwmon/pmbus/max20730.c
-> @@ -31,6 +31,7 @@ struct max20730_data {
->  	struct pmbus_driver_info info;
->  	struct mutex lock;	/* Used to protect against parallel writes */
->  	u16 mfr_devset1;
-> +	u32 vout_voltage_divider[2];
->  };
->  
->  #define to_max20730_data(x)  container_of(x, struct max20730_data, info)
-> @@ -114,6 +115,14 @@ static int max20730_read_word_data(struct i2c_client *client, int page,
->  		max_c = max_current[data->id][(data->mfr_devset1 >> 5) & 0x3];
->  		ret = val_to_direct(max_c, PSC_CURRENT_OUT, info);
->  		break;
-> +	case PMBUS_READ_VOUT:
-> +		ret = pmbus_read_word_data(client, page, phase, reg);
-> +		if (ret > 0 && data->vout_voltage_divider[0] && data->vout_voltage_divider[1]) {
-> +			u64 temp = DIV_ROUND_CLOSEST_ULL((u64)ret * data->vout_voltage_divider[1],
-> +							 data->vout_voltage_divider[0]);
-> +			ret = clamp_val(temp, 0, 0xffff);
-> +		}
-> +		break;
->  	default:
->  		ret = -ENODATA;
->  		break;
-> @@ -364,6 +373,15 @@ static int max20730_probe(struct i2c_client *client,
->  	data->id = chip_id;
->  	mutex_init(&data->lock);
->  	memcpy(&data->info, &max20730_info[chip_id], sizeof(data->info));
-> +	if (of_property_read_u32_array(client->dev.of_node, "vout-voltage-divider",
-> +				       data->vout_voltage_divider,
-> +				       ARRAY_SIZE(data->vout_voltage_divider)) != 0)
-> +		memset(data->vout_voltage_divider, 0, sizeof(data->vout_voltage_divider));
-> +	if (data->vout_voltage_divider[1] < data->vout_voltage_divider[0]) {
-> +		dev_err(dev,
-> +			"The total resistance of voltage divider is less than output resistance\n");
-> +		return -ENODEV;
-> +	}
->  
->  	ret = i2c_smbus_read_word_data(client, MAX20730_MFR_DEVSET1);
->  	if (ret < 0)
-> -- 
-> 2.28.0.806.g8561365e88-goog
-> 
+Acked-By: Vinod Koul <vkoul@kernel.org>
+
+-- 
+~Vinod
