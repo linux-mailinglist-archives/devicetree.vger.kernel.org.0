@@ -2,159 +2,141 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from vger.kernel.org (vger.kernel.org [23.128.96.18])
-	by mail.lfdr.de (Postfix) with ESMTP id C635C2834B0
-	for <lists+devicetree@lfdr.de>; Mon,  5 Oct 2020 13:13:33 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTP id E7E91283780
+	for <lists+devicetree@lfdr.de>; Mon,  5 Oct 2020 16:18:28 +0200 (CEST)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S1725887AbgJELNc (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Mon, 5 Oct 2020 07:13:32 -0400
-Received: from mx0a-00128a01.pphosted.com ([148.163.135.77]:44678 "EHLO
-        mx0a-00128a01.pphosted.com" rhost-flags-OK-OK-OK-OK)
-        by vger.kernel.org with ESMTP id S1725843AbgJELNc (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Mon, 5 Oct 2020 07:13:32 -0400
-Received: from pps.filterd (m0167088.ppops.net [127.0.0.1])
-        by mx0a-00128a01.pphosted.com (8.16.0.42/8.16.0.42) with SMTP id 095BAEpB029464;
-        Mon, 5 Oct 2020 07:13:11 -0400
-Received: from nwd2mta3.analog.com ([137.71.173.56])
-        by mx0a-00128a01.pphosted.com with ESMTP id 33xk56c3uv-1
-        (version=TLSv1.2 cipher=ECDHE-RSA-AES256-GCM-SHA384 bits=256 verify=NOT);
-        Mon, 05 Oct 2020 07:13:10 -0400
-Received: from ASHBMBX9.ad.analog.com (ashbmbx9.ad.analog.com [10.64.17.10])
-        by nwd2mta3.analog.com (8.14.7/8.14.7) with ESMTP id 095BD9xA051994
-        (version=TLSv1/SSLv3 cipher=ECDHE-RSA-AES128-GCM-SHA256 bits=128 verify=FAIL);
-        Mon, 5 Oct 2020 07:13:09 -0400
-Received: from ASHBCASHYB5.ad.analog.com (10.64.17.133) by
- ASHBMBX9.ad.analog.com (10.64.17.10) with Microsoft SMTP Server
- (version=TLS1_2, cipher=TLS_ECDHE_RSA_WITH_AES_128_GCM_SHA256) id
- 15.1.1779.2; Mon, 5 Oct 2020 07:12:55 -0400
-Received: from ASHBMBX9.ad.analog.com (10.64.17.10) by
- ASHBCASHYB5.ad.analog.com (10.64.17.133) with Microsoft SMTP Server
- (version=TLS1_2, cipher=TLS_ECDHE_RSA_WITH_AES_128_GCM_SHA256) id
- 15.1.1779.2; Mon, 5 Oct 2020 07:12:55 -0400
-Received: from zeus.spd.analog.com (10.66.68.11) by ASHBMBX9.ad.analog.com
- (10.64.17.10) with Microsoft SMTP Server id 15.1.1779.2 via Frontend
- Transport; Mon, 5 Oct 2020 07:12:55 -0400
-Received: from btogorean-pc.ad.analog.com ([10.48.65.113])
-        by zeus.spd.analog.com (8.15.1/8.15.1) with ESMTP id 095BCi8U002619;
-        Mon, 5 Oct 2020 07:13:06 -0400
-From:   Bogdan Togorean <bogdan.togorean@analog.com>
-To:     <dri-devel@lists.freedesktop.org>
-CC:     Bogdan Togorean <bogdan.togorean@analog.com>,
-        David Airlie <airlied@linux.ie>,
-        Daniel Vetter <daniel@ffwll.ch>,
-        Rob Herring <robh+dt@kernel.org>,
+        id S1725936AbgJEOS2 (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Mon, 5 Oct 2020 10:18:28 -0400
+Received: from new4-smtp.messagingengine.com ([66.111.4.230]:49737 "EHLO
+        new4-smtp.messagingengine.com" rhost-flags-OK-OK-OK-OK)
+        by vger.kernel.org with ESMTP id S1725932AbgJEOS2 (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Mon, 5 Oct 2020 10:18:28 -0400
+Received: from compute6.internal (compute6.nyi.internal [10.202.2.46])
+        by mailnew.nyi.internal (Postfix) with ESMTP id 71C67580333;
+        Mon,  5 Oct 2020 10:18:26 -0400 (EDT)
+Received: from mailfrontend1 ([10.202.2.162])
+  by compute6.internal (MEProxy); Mon, 05 Oct 2020 10:18:26 -0400
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=cerno.tech; h=
+        date:from:to:cc:subject:message-id:references:mime-version
+        :content-type:in-reply-to; s=fm1; bh=6wsLdnF0Lcj4VRsQV0kAmaPfVtC
+        x6J2lDHDdjPu+HyI=; b=qEf14hR9GLWy2VYGK0g4RItIG6bSVGLVfyck9C/MtYK
+        8QojfuokJjmy3jNrqw0QbShD5V37P4bhDNMyH1k87xvZAHRb++uD1Q/1F6MOTRBP
+        DlaDa2+CQA3IzxmfPJKvvpD/Y7r3uEICJUatd4zgWHZgQDAX/lK0BzlT7yKLbeHg
+        CNdldgGtoIb0jhGG7YRbPx3XUCqJyZ+NsH3oHR5XTXDxlvTDUV3RElsI3aChgiOp
+        fPufdD373MI8kbPfKYe75WjXx45v+1zjZB9BDb7M75ykDKJ41NQ/OYscMSuXFHKk
+        MIX6o6R7JccBjBLvLY6rvIxwI/wcRJJbHJfvzyMnjAw==
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=
+        messagingengine.com; h=cc:content-type:date:from:in-reply-to
+        :message-id:mime-version:references:subject:to:x-me-proxy
+        :x-me-proxy:x-me-sender:x-me-sender:x-sasl-enc; s=fm1; bh=6wsLdn
+        F0Lcj4VRsQV0kAmaPfVtCx6J2lDHDdjPu+HyI=; b=o9jZWd/ynS7GLOdyWQCj+m
+        rEctlEU2QqL3K2BEK37+O9DiRY2JSM6vC/nGDXSI/KZkAnkDFYH9aRXvwA6st8IE
+        6Fni0N9Sx4WK0pJetFjGY+4QzrnkLB8Gqj6cy2RLKGF+afuu+2RYg8BujsbAJdV4
+        9thcnZtcy2NrDLnd3uSaHUmj8nsSxu7Wu9obcGZ3xyrrR4IG+KPKYQwBmUesuOm0
+        JCkdT+fdz69g1b3r9pY7ZPu23cG9BCE8dOEF01lN4elyDJQcNn6+UhYE6ilNrmxd
+        8E/JG+3CufRvYMmdLGl9HZCk1GL7i6ic9InU7KeLfMh0+cdAoRDtKfCqI8kgJEiQ
+        ==
+X-ME-Sender: <xms:Kyt7X05OcjCXZEew0bn6vCYkyt8pJYCgVk2q2f0YQrW6Kt8FfS8Omw>
+    <xme:Kyt7X16H427lNHlHNvc_MQDYWca3xi9_o6Ci85wfsHIXXlf8e0mCLlDEd6JKt39zt
+    LQEJmZR3wSRLC7HsE0>
+X-ME-Proxy-Cause: gggruggvucftvghtrhhoucdtuddrgedujedrgedvgdejjecutefuodetggdotefrodftvf
+    curfhrohhfihhlvgemucfhrghsthforghilhdpqfgfvfdpuffrtefokffrpgfnqfghnecu
+    uegrihhlohhuthemuceftddtnecusecvtfgvtghiphhivghnthhsucdlqddutddtmdenuc
+    fjughrpeffhffvuffkfhggtggujgesghdtreertddtvdenucfhrhhomhepofgrgihimhgv
+    ucftihhprghrugcuoehmrgigihhmvgestggvrhhnohdrthgvtghhqeenucggtffrrghtth
+    gvrhhnpeelkeeghefhuddtleejgfeljeffheffgfeijefhgfeufefhtdevteegheeiheeg
+    udenucfkphepledtrdekledrieekrdejieenucevlhhushhtvghrufhiiigvpedtnecurf
+    grrhgrmhepmhgrihhlfhhrohhmpehmrgigihhmvgestggvrhhnohdrthgvtghh
+X-ME-Proxy: <xmx:Kyt7Xzdvh-hGhEgpTjkaAHOt0OaJpUJ1MoJ74zpLKsmEc4G4m-qWuw>
+    <xmx:Kyt7X5IwLS0iCslBAxt1ZzDYdotsIiy-Jl714TA0gXokk1meWhUthw>
+    <xmx:Kyt7X4KevHQonHGNq1_mdxw4KnJA6ttiwH-NC1V3Uo9igGQAK3wdWg>
+    <xmx:Mit7X9WZF7If6pSu-DXFP3uQc8AcRZsbPmbhZL_YAGAjApkVcHN2tA>
+Received: from localhost (lfbn-tou-1-1502-76.w90-89.abo.wanadoo.fr [90.89.68.76])
+        by mail.messagingengine.com (Postfix) with ESMTPA id 9A796328005D;
+        Mon,  5 Oct 2020 10:18:19 -0400 (EDT)
+Date:   Mon, 5 Oct 2020 16:18:17 +0200
+From:   Maxime Ripard <maxime@cerno.tech>
+To:     Chen-Yu Tsai <wens@csie.org>
+Cc:     dri-devel <dri-devel@lists.freedesktop.org>,
         Maarten Lankhorst <maarten.lankhorst@linux.intel.com>,
-        Maxime Ripard <mripard@kernel.org>,
         Thomas Zimmermann <tzimmermann@suse.de>,
-        Alexandru Ardelean <alexandru.ardelean@analog.com>,
-        Lars-Peter Clausen <lars@metafoo.de>,
-        Mike Looijmans <mike.looijmans@topic.nl>,
-        <devicetree@vger.kernel.org>, <linux-kernel@vger.kernel.org>
-Subject: [PATCH 2/2] drm: dt-bindings: adi: axi-hdmi-tx: Add DT bindings for axi-hdmi-tx
-Date:   Mon, 5 Oct 2020 17:12:09 +0300
-Message-ID: <20201005141226.180655-2-bogdan.togorean@analog.com>
-X-Mailer: git-send-email 2.28.0
-In-Reply-To: <20201005141226.180655-1-bogdan.togorean@analog.com>
-References: <20201005141226.180655-1-bogdan.togorean@analog.com>
+        Daniel Vetter <daniel.vetter@intel.com>,
+        David Airlie <airlied@linux.ie>,
+        devicetree <devicetree@vger.kernel.org>,
+        Mark Rutland <mark.rutland@arm.com>,
+        Rob Herring <robh+dt@kernel.org>,
+        Frank Rowand <frowand.list@gmail.com>,
+        Laurent Pinchart <laurent.pinchart@ideasonboard.com>,
+        linux-arm-kernel <linux-arm-kernel@lists.infradead.org>
+Subject: Re: [PATCH v2 2/4] drm/sun4i: tcon: Refactor the LVDS and panel
+ probing
+Message-ID: <20201005141817.rsj7d6wwnsgdrydo@gilmour.lan>
+References: <cover.7029eefe5c5350920f91d4cd4cbc061466752f3c.1596101672.git-series.maxime@cerno.tech>
+ <1df5a7bcafa091e008edb439ee9de4262ae4d5d1.1596101672.git-series.maxime@cerno.tech>
+ <CAGb2v64dsqavVYL4UvjWw=DzpbE-Egwso1Ma8xH3qYgS2Te9zg@mail.gmail.com>
 MIME-Version: 1.0
-Content-Transfer-Encoding: 7BIT
-Content-Type:   text/plain; charset=US-ASCII
-X-ADIRoutedOnPrem: True
-X-Proofpoint-Virus-Version: vendor=fsecure engine=2.50.10434:6.0.235,18.0.687
- definitions=2020-10-05_06:2020-10-02,2020-10-05 signatures=0
-X-Proofpoint-Spam-Details: rule=outbound_notspam policy=outbound score=0 mlxscore=0 phishscore=0
- clxscore=1015 lowpriorityscore=0 priorityscore=1501 suspectscore=1
- malwarescore=0 impostorscore=0 mlxlogscore=999 spamscore=0 adultscore=0
- bulkscore=0 classifier=spam adjust=0 reason=mlx scancount=1
- engine=8.12.0-2006250000 definitions=main-2010050084
+Content-Type: multipart/signed; micalg=pgp-sha256;
+        protocol="application/pgp-signature"; boundary="k233jlwaazxqabpi"
+Content-Disposition: inline
+In-Reply-To: <CAGb2v64dsqavVYL4UvjWw=DzpbE-Egwso1Ma8xH3qYgS2Te9zg@mail.gmail.com>
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-Add YAML device tree bindings for Analog Devices Inc. AXI HDMI TX
-IP core DRM driver.
 
-Signed-off-by: Bogdan Togorean <bogdan.togorean@analog.com>
----
- .../bindings/gpu/adi,axi-hdmi-tx.yaml         | 70 +++++++++++++++++++
- 1 file changed, 70 insertions(+)
- create mode 100644 Documentation/devicetree/bindings/gpu/adi,axi-hdmi-tx.yaml
+--k233jlwaazxqabpi
+Content-Type: text/plain; charset=us-ascii
+Content-Disposition: inline
+Content-Transfer-Encoding: quoted-printable
 
-diff --git a/Documentation/devicetree/bindings/gpu/adi,axi-hdmi-tx.yaml b/Documentation/devicetree/bindings/gpu/adi,axi-hdmi-tx.yaml
-new file mode 100644
-index 000000000000..ab7e71d14d1d
---- /dev/null
-+++ b/Documentation/devicetree/bindings/gpu/adi,axi-hdmi-tx.yaml
-@@ -0,0 +1,70 @@
-+# SPDX-License-Identifier: (GPL-2.0 OR BSD-2-Clause)
-+%YAML 1.2
-+---
-+$id: http://devicetree.org/schemas/gpu/adi,axi-hdmi-tx.yaml#
-+$schema: http://devicetree.org/meta-schemas/core.yaml#
-+
-+title: Analog Devices AXI HDMI TX HDL core
-+
-+maintainers:
-+  - Bogdan Togorean <bogdan.togorean@analog.com>
-+
-+description: |
-+  The AXI HDMI HDL driver is the driver for the HDL graphics core which
-+  is used on various FPGA designs. It's mostly used to interface with
-+  the ADV7511 driver on some Zynq boards (e.g. ZC702 & ZedBoard).
-+
-+properties:
-+  compatible:
-+    const: adi,axi-hdmi-tx-1.00.a
-+
-+  reg:
-+    maxItems: 1
-+
-+  dmas:
-+    items:
-+      - description: phandle to AXIS DMA controller
-+    maxItems: 1
-+
-+  dma-names:
-+    items:
-+      - const: video
-+
-+  clocks:
-+    maxItems: 1
-+    description: phandle to the pixel clock
-+
-+  adi,is-rgb:
-+    type: boolean
-+    description: control color space conversion
-+
-+  port:
-+    type: object
-+    description: |
-+      Port as described in Documentation/devicetree/bindings/graph.txt.
-+      Remote output connection to ADV7511 driver
-+
-+required:
-+  - compatible
-+  - reg
-+  - dmas
-+  - dma-names
-+  - clocks
-+  - port
-+
-+examples:
-+  - |
-+    axi_hdmi_tx: axi_hdmi@70e00000 {
-+            compatible = "adi,axi-hdmi-tx-1.00.a";
-+            reg = <0x70e00000 0x10000>;
-+            dmas = <&hdmi_dma 0>;
-+            dma-names = "video";
-+            clocks = <&hdmi_clock>;
-+
-+            port {
-+                    axi_hdmi_out: endpoint {
-+                            remote-endpoint = <&zynq_hdmi_in>;
-+                    };
-+            };
-+    };
-+...
--- 
-2.28.0
+Hi Chen-Yu,
 
+Sorry for the delay
+
+On Sat, Aug 29, 2020 at 02:43:53PM +0800, Chen-Yu Tsai wrote:
+> > +static int sun4i_tcon_register_panel(struct drm_device *drm,
+> > +                                    struct sun4i_tcon *tcon)
+> > +{
+> > +       struct device_node *companion;
+> > +       struct device_node *remote;
+> > +       struct device *dev =3D tcon->dev;
+> > +       bool has_lvds_alt;
+> > +       bool has_lvds_rst;
+> > +       int ret;
+> > +
+> > +       /*
+> > +        * If we have an LVDS panel connected to the TCON, we should
+> > +        * just probe the LVDS connector. Otherwise, let's just register
+> > +        * an RGB panel.
+> > +        */
+> > +       remote =3D of_graph_get_remote_node(dev->of_node, 1, 0);
+> > +       if (!tcon->quirks->supports_lvds ||
+> > +           !of_device_is_compatible(remote, "panel-lvds"))
+> > +               return sun4i_rgb_init(drm, tcon);
+>=20
+> Slightly related: IIRC there are a few LVDS panels supported in panel-sim=
+ple
+> so they don't use the panel-lvds compatible. Any idea how to deal with th=
+ose?
+
+I agree that this is an issue, I'm not entirely sure how to fix it. The
+proper fix would be to have multiple output ports, one for each output
+type, but given how our current binding looks like I'm not sure how we
+could retro-fit that without some horror-looking code.
+
+Maybe we can add a property on the endpoint?
+
+Maxime
+
+--k233jlwaazxqabpi
+Content-Type: application/pgp-signature; name="signature.asc"
+
+-----BEGIN PGP SIGNATURE-----
+
+iHUEABYIAB0WIQRcEzekXsqa64kGDp7j7w1vZxhRxQUCX3srKQAKCRDj7w1vZxhR
+xW3UAP9LhISLvgGCp85tX5q7sVKwegF/hpc+qmUEDuDHFUfNxAD/TgzPFraDdq+R
+cptbFzYYVHyTjiKe1IYyDHx6x0BdTgA=
+=n+wt
+-----END PGP SIGNATURE-----
+
+--k233jlwaazxqabpi--
