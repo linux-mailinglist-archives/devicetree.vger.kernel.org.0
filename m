@@ -2,250 +2,156 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from vger.kernel.org (vger.kernel.org [23.128.96.18])
-	by mail.lfdr.de (Postfix) with ESMTP id ED24F2832B4
-	for <lists+devicetree@lfdr.de>; Mon,  5 Oct 2020 11:04:00 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTP id 7932E2832C2
+	for <lists+devicetree@lfdr.de>; Mon,  5 Oct 2020 11:07:09 +0200 (CEST)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S1725936AbgJEJEA (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Mon, 5 Oct 2020 05:04:00 -0400
-Received: from bhuna.collabora.co.uk ([46.235.227.227]:46668 "EHLO
-        bhuna.collabora.co.uk" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S1725885AbgJEJD7 (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Mon, 5 Oct 2020 05:03:59 -0400
-Received: from [127.0.0.1] (localhost [127.0.0.1])
-        (Authenticated sender: eballetbo)
-        with ESMTPSA id 28742298618
-Subject: Re: [PATCH 2/3] dt-bindings: input: convert cros-ec-keyb to
- json-schema
-To:     =?UTF-8?Q?Ricardo_Ca=c3=b1uelo?= <ricardo.canuelo@collabora.com>,
-        robh@kernel.org
-Cc:     kernel@collabora.com, bleung@chromium.org, groeck@chromium.org,
-        sjg@chromium.org, dianders@chromium.org,
-        devicetree@vger.kernel.org,
-        Dmitry Torokhov <dmitry.torokhov@gmail.com>
-References: <20201005071403.17450-1-ricardo.canuelo@collabora.com>
- <20201005071403.17450-3-ricardo.canuelo@collabora.com>
-From:   Enric Balletbo i Serra <enric.balletbo@collabora.com>
-Message-ID: <3f30a00e-8b1c-4ac7-c5ed-8f23c7af9af0@collabora.com>
-Date:   Mon, 5 Oct 2020 11:03:54 +0200
-User-Agent: Mozilla/5.0 (X11; Linux x86_64; rv:68.0) Gecko/20100101
- Thunderbird/68.12.0
+        id S1725922AbgJEJHH (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Mon, 5 Oct 2020 05:07:07 -0400
+Received: from lindbergh.monkeyblade.net ([23.128.96.19]:45924 "EHLO
+        lindbergh.monkeyblade.net" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
+        with ESMTP id S1725915AbgJEJHH (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Mon, 5 Oct 2020 05:07:07 -0400
+Received: from mail-pg1-x541.google.com (mail-pg1-x541.google.com [IPv6:2607:f8b0:4864:20::541])
+        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id B1BD2C0613CE;
+        Mon,  5 Oct 2020 02:07:07 -0700 (PDT)
+Received: by mail-pg1-x541.google.com with SMTP id t14so5591383pgl.10;
+        Mon, 05 Oct 2020 02:07:07 -0700 (PDT)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+        d=gmail.com; s=20161025;
+        h=mime-version:references:in-reply-to:from:date:message-id:subject:to
+         :cc;
+        bh=eUORg47spfL73f7H/PLu8NLMtjAqRWZqjYpdZQW2IeA=;
+        b=mczHn7MVXcsomQTFrw5fjFQDY6Z2sHBj48BuZ+oqxp0x1dRrhtzk7jZ799ntIIiXxX
+         lZJOgxdZiEewNVhmAThkQtkBri/M92ZndaceRxCWEF/3hBbUe21AvPxrFjS8zIjl5z8A
+         TeStuo/AHh2/bx8Wyk8EDbFMH62S3C2xj2r5rFPDrrzcOqmNdXvonpBbdxYLtJpGoSej
+         Pi58cFQwb2Qv5HT7FSgqsJdHGCA3M6PkZUFdKAyuEKmRS/1r61BaJ7WDBCpMTGGWsq9V
+         Cf4/5Oc/VP6cNow8noQMnn81MZA4fzac7y0IkZws1K8fvkEmFrAlJTNz/xkzaJNWsY5q
+         ohQA==
+X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+        d=1e100.net; s=20161025;
+        h=x-gm-message-state:mime-version:references:in-reply-to:from:date
+         :message-id:subject:to:cc;
+        bh=eUORg47spfL73f7H/PLu8NLMtjAqRWZqjYpdZQW2IeA=;
+        b=JAdKZ7VdCALXfBiDWZIRBCqbfwqiJttOyvVw8sWIc4sQ/EkO1EuTI3k+bB58kPbDmV
+         5pXklEvQ25fvJ1NTv0oniTC4cd/HAxo+JTax993H8GY6ZL5PkjjoiL+v7cW55CZ/LGuB
+         9J9XAyxBBBRLWAG5NyAXQUGiBsq+7pQWnagFsTZyz1AIVPYNCnubBFB9hO9nO7GMD21e
+         GC9ToAWUwfYbtaiIk0Kr4/fP5Q7jnT7yQ4TEF5S4P57nQZXIzh85/xN+Z1L6tMCfQKCA
+         Y1ZexHqo4WcRl77Yg0+4cV6XmZUsJYjYdPysw5cyvBQUgMIQLImYhOPf9cpIh1eDS1c1
+         zoCQ==
+X-Gm-Message-State: AOAM531TlAg5iL26cJOZr62NasEEhiSJkWFFUxcswsa2Nhh7sKGCHeIf
+        2R+h8Ww79yAAemLlGwfiuc5kgDj7mn8kQAXDgm8=
+X-Google-Smtp-Source: ABdhPJzhbg94S7Z/1w94KPVZXA60oHdU7QVEKuolCSxzPQuXMVhODL+N9B6n/+8Je+21Z9sl4PM+WEFOH36w974C6MY=
+X-Received: by 2002:a63:ec4c:: with SMTP id r12mr13296765pgj.74.1601888827197;
+ Mon, 05 Oct 2020 02:07:07 -0700 (PDT)
 MIME-Version: 1.0
-In-Reply-To: <20201005071403.17450-3-ricardo.canuelo@collabora.com>
-Content-Type: text/plain; charset=utf-8
-Content-Language: en-US
-Content-Transfer-Encoding: 8bit
+References: <cover.1601621983.git.rahul.tanwar@linux.intel.com>
+ <e8c462ffc826d06c108aac45f8476083097cfa55.1601621983.git.rahul.tanwar@linux.intel.com>
+ <20201002181135.GI3956970@smile.fi.intel.com> <f224391a-2e51-ec37-7045-4a16f04b5384@linux.intel.com>
+In-Reply-To: <f224391a-2e51-ec37-7045-4a16f04b5384@linux.intel.com>
+From:   Andy Shevchenko <andy.shevchenko@gmail.com>
+Date:   Mon, 5 Oct 2020 12:06:48 +0300
+Message-ID: <CAHp75VcHk0qZ_pFAvZLC4+8=r7E=cqe3J+enB3UWD9X1KQQ4Ng@mail.gmail.com>
+Subject: Re: [PATCH v4 2/2] Add hardware monitoring driver for Moortec MR75203
+ PVT controller
+To:     "Tanwar, Rahul" <rahul.tanwar@linux.intel.com>
+Cc:     Andy Shevchenko <andriy.shevchenko@intel.com>,
+        Jean Delvare <jdelvare@suse.com>,
+        Guenter Roeck <linux@roeck-us.net>,
+        Philipp Zabel <p.zabel@pengutronix.de>,
+        linux-hwmon@vger.kernel.org, Rob Herring <robh+dt@kernel.org>,
+        Linux Kernel Mailing List <linux-kernel@vger.kernel.org>,
+        devicetree <devicetree@vger.kernel.org>, songjun.Wu@intel.com,
+        cheol.yong.kim@intel.com, qi-ming.wu@intel.com,
+        rtanwar@maxlinear.com
+Content-Type: text/plain; charset="UTF-8"
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-Hi Ricardo,
+On Mon, Oct 5, 2020 at 11:53 AM Tanwar, Rahul
+<rahul.tanwar@linux.intel.com> wrote:
+> On 3/10/2020 2:11 am, Andy Shevchenko wrote:
+> > On Fri, Oct 02, 2020 at 03:04:27PM +0800, Rahul Tanwar wrote:
 
-Thank you for your on this. Some few comments below.
+...
 
-Note that there was already an attempt for this here [1]. So I think you should
-address those comments too.
+> >> +            pvt_temp.config = temp_config;
+> >> +
+> >> +            pvt_info[index++] = &pvt_temp;
+> >> +    }
+> >> +
+> >> +    if (pd_num) {
+> >> +            ret = pvt_get_regmap(pdev, "pd", pvt);
+> >> +            if (ret)
+> >> +                    return ret;
+> >> +    }
+> >> +
+> >> +    if (vm_num) {
+> >> +            u32 num = vm_num;
+> >> +
+> >> +            ret = pvt_get_regmap(pdev, "vm", pvt);
+> >> +            if (ret)
+> >> +                    return ret;
+> >> +
+> >> +            pvt->vm_idx = devm_kcalloc(dev, vm_num, sizeof(*pvt->vm_idx),
+> >> +                                       GFP_KERNEL);
+> >> +            if (!pvt->vm_idx)
+> >> +                    return -ENOMEM;
+> >> +            for (i = 0; i < vm_num; i++)
+> >> +                    pvt->vm_idx[i] = i;
+> > What the point if you are replace them below in one case?
+> >
+> >> +            ret = device_property_read_u8_array(dev, "intel,vm-map",
+> >> +                                                pvt->vm_idx, vm_num);
+> >> +            if (!ret)
+> > Misses {} and because of above
+> >
+> >       if (ret) {
+> >               for () ...
+> >       } else {
+> >               for () ...
+> >       }
+> >
+> >> +                    for (i = 0; i < vm_num; i++)
+> >> +                            if (pvt->vm_idx[i] >= vm_num ||
+> >> +                                pvt->vm_idx[i] == 0xff) {
+> >> +                                    num = i;
+> >> +                                    break;
+> >> +                            }
+> > Or looking in this, perhaps move the incremental for-loop here and start it
+> > with num which is 0.
+>
+> Not able to understand what exactly you are suggesting here. Presently
+> it is like below:
+> 1. Init vm_idx array with incremental values.
+> 2. Read array from device property.
+> 3. If success, figure out the last valid value and assign to num.
+>
+> Can you please elaborate and explain more clearly? Thanks.
 
-cc'ing Dmitry as he is the input maintainer.
+device_property_read_u8_array() effectively (partially) rewrites the
+vm_idx array.
+The code above is inefficient and not clear.
+My understanding based on the above is that half of the code may be dropped.
 
-[1] https://patchwork.kernel.org/patch/11350059/
+So, clearer variant looks like this to me:
 
-On 5/10/20 9:14, Ricardo Cañuelo wrote:
-> Convert the google,cros-ec-keyb binding to YAML.
-> 
-> Signed-off-by: Ricardo Cañuelo <ricardo.canuelo@collabora.com>
-> ---
->  .../bindings/input/cros-ec-keyb.txt           | 72 ---------------
->  .../bindings/input/google,cros-ec-keyb.yaml   | 92 +++++++++++++++++++
->  2 files changed, 92 insertions(+), 72 deletions(-)
->  delete mode 100644 Documentation/devicetree/bindings/input/cros-ec-keyb.txt
->  create mode 100644 Documentation/devicetree/bindings/input/google,cros-ec-keyb.yaml
-> 
-> diff --git a/Documentation/devicetree/bindings/input/cros-ec-keyb.txt b/Documentation/devicetree/bindings/input/cros-ec-keyb.txt
-> deleted file mode 100644
-> index 0f6355ce39b5..000000000000
-> --- a/Documentation/devicetree/bindings/input/cros-ec-keyb.txt
-> +++ /dev/null
-> @@ -1,72 +0,0 @@
-> -ChromeOS EC Keyboard
-> -
-> -Google's ChromeOS EC Keyboard is a simple matrix keyboard implemented on
-> -a separate EC (Embedded Controller) device. It provides a message for reading
-> -key scans from the EC. These are then converted into keycodes for processing
-> -by the kernel.
-> -
-> -This binding is based on matrix-keymap.txt and extends/modifies it as follows:
-> -
-> -Required properties:
-> -- compatible: "google,cros-ec-keyb"
-> -
-> -Optional properties:
-> -- google,needs-ghost-filter: True to enable a ghost filter for the matrix
-> -keyboard. This is recommended if the EC does not have its own logic or
-> -hardware for this.
-> -
-> -
-> -Example:
-> -
-> -cros-ec-keyb {
-> -	compatible = "google,cros-ec-keyb";
-> -	keypad,num-rows = <8>;
-> -	keypad,num-columns = <13>;
-> -	google,needs-ghost-filter;
-> -	/*
-> -	 * Keymap entries take the form of 0xRRCCKKKK where
-> -	 * RR=Row CC=Column KKKK=Key Code
-> -	 * The values below are for a US keyboard layout and
-> -	 * are taken from the Linux driver. Note that the
-> -	 * 102ND key is not used for US keyboards.
-> -	 */
-> -	linux,keymap = <
-> -		/* CAPSLCK F1         B          F10     */
-> -		0x0001003a 0x0002003b 0x00030030 0x00040044
-> -		/* N       =          R_ALT      ESC     */
-> -		0x00060031 0x0008000d 0x000a0064 0x01010001
-> -		/* F4      G          F7         H       */
-> -		0x0102003e 0x01030022 0x01040041 0x01060023
-> -		/* '       F9         BKSPACE    L_CTRL  */
-> -		0x01080028 0x01090043 0x010b000e 0x0200001d
-> -		/* TAB     F3         T          F6      */
-> -		0x0201000f 0x0202003d 0x02030014 0x02040040
-> -		/* ]       Y          102ND      [       */
-> -		0x0205001b 0x02060015 0x02070056 0x0208001a
-> -		/* F8      GRAVE      F2         5       */
-> -		0x02090042 0x03010029 0x0302003c 0x03030006
-> -		/* F5      6          -          \       */
-> -		0x0304003f 0x03060007 0x0308000c 0x030b002b
-> -		/* R_CTRL  A          D          F       */
-> -		0x04000061 0x0401001e 0x04020020 0x04030021
-> -		/* S       K          J          ;       */
-> -		0x0404001f 0x04050025 0x04060024 0x04080027
-> -		/* L       ENTER      Z          C       */
-> -		0x04090026 0x040b001c 0x0501002c 0x0502002e
-> -		/* V       X          ,          M       */
-> -		0x0503002f 0x0504002d 0x05050033 0x05060032
-> -		/* L_SHIFT /          .          SPACE   */
-> -		0x0507002a 0x05080035 0x05090034 0x050B0039
-> -		/* 1       3          4          2       */
-> -		0x06010002 0x06020004 0x06030005 0x06040003
-> -		/* 8       7          0          9       */
-> -		0x06050009 0x06060008 0x0608000b 0x0609000a
-> -		/* L_ALT   DOWN       RIGHT      Q       */
-> -		0x060a0038 0x060b006c 0x060c006a 0x07010010
-> -		/* E       R          W          I       */
-> -		0x07020012 0x07030013 0x07040011 0x07050017
-> -		/* U       R_SHIFT    P          O       */
-> -		0x07060016 0x07070036 0x07080019 0x07090018
-> -		/* UP      LEFT    */
-> -		0x070b0067 0x070c0069>;
-> -};
-> diff --git a/Documentation/devicetree/bindings/input/google,cros-ec-keyb.yaml b/Documentation/devicetree/bindings/input/google,cros-ec-keyb.yaml
-> new file mode 100644
-> index 000000000000..384df2fc21f8
-> --- /dev/null
-> +++ b/Documentation/devicetree/bindings/input/google,cros-ec-keyb.yaml
-> @@ -0,0 +1,92 @@
-> +# SPDX-License-Identifier: (GPL-2.0 OR BSD-2-Clause)
-> +%YAML 1.2
-> +---
-> +
-> +$id: http://devicetree.org/schemas/input/google,cros-ec-keyb.yaml#
-> +$schema: http://devicetree.org/meta-schemas/core.yaml#
-> +
-> +title: ChromeOS EC Keyboard
-> +
-> +maintainers:
-> +  - Simon Glass <sjg@chromium.org>
-> +  - Benson Leung <bleung@chromium.org>
-> +  - Enric Balletbo i Serra <enric.balletbo@collabora.com>
-> +
-> +description: |
-> +  Google's ChromeOS EC Keyboard is a simple matrix keyboard
-> +  implemented on a separate EC (Embedded Controller) device. It provides
-> +  a message for reading key scans from the EC. These are then converted
-> +  into keycodes for processing by the kernel.
-> +
-> +allOf:
-> +  - $ref: "/schemas/input/matrix-keymap.yaml#"
-> +
-> +properties:
-> +  compatible:
-> +    const: google,cros-ec-keyb
-> +
-> +  google,needs-ghost-filter:
-> +    description:
-> +      Enable a ghost filter for the matrix keyboard. This is recommended
-> +      if the EC does not have its own logic or hardware for this.
-> +    type: boolean
-> +
-> +required:
-> +  - compatible
-> +
-> +unevaluatedProperties: false
-> +
+  ret = device_property_read_u8_array(dev, "intel,vm-map", pvt->vm_idx, vm_num);
+  if (ret) {
+    num = 0;
+  } else {
+    for (i = 0; i < vm_num; i++) {
+      if (pvt->vm_idx[i] >= vm_num || pvt->vm_idx[i] == 0xff)
+        break;
+    }
+    num = i;
+  }
+  for (i = num; i < vm_num; i++)
+    pvt->vm_idx[i] = i;
 
-Not sure about unevaluatedProperties does here, I might miss something. But,
-shouldn't you add `additionalProperties: false` instead?
+And all these require a good comment to describe why you are doing the
+trailing loop.
 
-
-> +examples:
-> +  - |
-> +    cros-ec-keyb {
-
-The keyboard controller is always a subnode inside the cros_ec, please use a
-complete example.
-
-Thanks,
- Enric
-
-> +        compatible = "google,cros-ec-keyb";
-> +        keypad,num-rows = <8>;
-> +        keypad,num-columns = <13>;
-> +        google,needs-ghost-filter;
-> +        /*
-> +         * Keymap entries take the form of 0xRRCCKKKK where
-> +         * RR=Row CC=Column KKKK=Key Code
-> +         * The values below are for a US keyboard layout and
-> +         * are taken from the Linux driver. Note that the
-> +         * 102ND key is not used for US keyboards.
-> +         */
-> +        linux,keymap = <
-> +            /* CAPSLCK F1         B          F10     */
-> +            0x0001003a 0x0002003b 0x00030030 0x00040044
-> +            /* N       =          R_ALT      ESC     */
-> +            0x00060031 0x0008000d 0x000a0064 0x01010001
-> +            /* F4      G          F7         H       */
-> +            0x0102003e 0x01030022 0x01040041 0x01060023
-> +            /* '       F9         BKSPACE    L_CTRL  */
-> +            0x01080028 0x01090043 0x010b000e 0x0200001d
-> +            /* TAB     F3         T          F6      */
-> +            0x0201000f 0x0202003d 0x02030014 0x02040040
-> +            /* ]       Y          102ND      [       */
-> +            0x0205001b 0x02060015 0x02070056 0x0208001a
-> +            /* F8      GRAVE      F2         5       */
-> +            0x02090042 0x03010029 0x0302003c 0x03030006
-> +            /* F5      6          -          \       */
-> +            0x0304003f 0x03060007 0x0308000c 0x030b002b
-> +            /* R_CTRL  A          D          F       */
-> +            0x04000061 0x0401001e 0x04020020 0x04030021
-> +            /* S       K          J          ;       */
-> +            0x0404001f 0x04050025 0x04060024 0x04080027
-> +            /* L       ENTER      Z          C       */
-> +            0x04090026 0x040b001c 0x0501002c 0x0502002e
-> +            /* V       X          ,          M       */
-> +            0x0503002f 0x0504002d 0x05050033 0x05060032
-> +            /* L_SHIFT /          .          SPACE   */
-> +            0x0507002a 0x05080035 0x05090034 0x050B0039
-> +            /* 1       3          4          2       */
-> +            0x06010002 0x06020004 0x06030005 0x06040003
-> +            /* 8       7          0          9       */
-> +            0x06050009 0x06060008 0x0608000b 0x0609000a
-> +            /* L_ALT   DOWN       RIGHT      Q       */
-> +            0x060a0038 0x060b006c 0x060c006a 0x07010010
-> +            /* E       R          W          I       */
-> +            0x07020012 0x07030013 0x07040011 0x07050017
-> +            /* U       R_SHIFT    P          O       */
-> +            0x07060016 0x07070036 0x07080019 0x07090018
-> +            /* UP      LEFT    */
-> +            0x070b0067 0x070c0069>;
-> +    };
-> 
+-- 
+With Best Regards,
+Andy Shevchenko
