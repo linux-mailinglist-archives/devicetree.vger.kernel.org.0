@@ -2,94 +2,156 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from vger.kernel.org (vger.kernel.org [23.128.96.18])
-	by mail.lfdr.de (Postfix) with ESMTP id 7E9A12842C2
-	for <lists+devicetree@lfdr.de>; Tue,  6 Oct 2020 00:59:28 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTP id 14A7C2842DF
+	for <lists+devicetree@lfdr.de>; Tue,  6 Oct 2020 01:17:00 +0200 (CEST)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S1727002AbgJEW71 (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Mon, 5 Oct 2020 18:59:27 -0400
-Received: from lindbergh.monkeyblade.net ([23.128.96.19]:33576 "EHLO
-        lindbergh.monkeyblade.net" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S1726986AbgJEW71 (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Mon, 5 Oct 2020 18:59:27 -0400
-Received: from mail-lf1-x142.google.com (mail-lf1-x142.google.com [IPv6:2a00:1450:4864:20::142])
-        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id C0D74C0613A8
-        for <devicetree@vger.kernel.org>; Mon,  5 Oct 2020 15:59:26 -0700 (PDT)
-Received: by mail-lf1-x142.google.com with SMTP id u8so12863051lff.1
-        for <devicetree@vger.kernel.org>; Mon, 05 Oct 2020 15:59:26 -0700 (PDT)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=linaro.org; s=google;
-        h=from:to:cc:subject:date:message-id:in-reply-to:references
-         :mime-version:content-transfer-encoding;
-        bh=URbRbK8Q61G+2pVymEoBNgHS+ZaND/H3JCVWYbn/B1M=;
-        b=xgC22HA42f1CdnNlzhyOnGP1kbLIKqQxFlsiNSzh8OjYBDdC04BJCGJO6Nc9L6sRfk
-         De2E1xNL+UM4yeOVFC2U9RppMR5hhshKq+37HbdfDiKzP1edvf2zGTCO4DViezg54wnz
-         z7C9dzdG65oS2FZum8I/dkdvs8Sxpk2l/n006VzSIc1ejC1TOJn29YMkqGvlHuW7WVSI
-         JR7ifTzYhUoa7I3nsI8TznOVfKvc2vLUeQr9wMaKto9ECxXMrWfsZMIvKSZhYgFRaDsA
-         Tfp8ER3a95KnuzvQrsenGaJM8IjicqN9xyhGnnh1KzvAJuu0BFepirpu5ws24zh5xFyD
-         XZqg==
-X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=1e100.net; s=20161025;
-        h=x-gm-message-state:from:to:cc:subject:date:message-id:in-reply-to
-         :references:mime-version:content-transfer-encoding;
-        bh=URbRbK8Q61G+2pVymEoBNgHS+ZaND/H3JCVWYbn/B1M=;
-        b=ESD1jC4hTuvnI48FXhwKwzRqXyHYs7G045OGv606D1uWsFincjR5PfiQiy129Km1DI
-         TzLRT/HoTI2wom+jcHSFzwKcrwWFA3Xy2dvt4CfehTUvmh8FQoNYALL9RwtuLb1ah2Xu
-         SqC0HRFl/OCUCfeRjM0aoQX13dKC8P1kuIjr/Su9LXvaTIt9NPT5bZ5j1+mwRYdLGR2U
-         ViiWmd1UVYnamaTgCs0DQjJj0sB97vZYguC6gbw/RairbG/45u98fIlOJ1qZXT97GqmM
-         8iJZZJSI8+wvDdqQwDVzGtmUBHnUNTgBzkxxS10lSvvUTNw6fWr3YZG0wdor9TrggYGq
-         tx7A==
-X-Gm-Message-State: AOAM533Q8QXXJH4MHsD6YzaPSGQ0GzRcMTl9/S3QXxwqh9BBYAEE7ef9
-        vCevphCkBsRGvcQ4D5gflBBdMw==
-X-Google-Smtp-Source: ABdhPJzxC1WKMZ4+d9UonYnhE7ac09yIhbmSlzrfCqlGQSkgDtYOHcjVMoz5wIqK8ms4fFgzNPrEUg==
-X-Received: by 2002:a19:514:: with SMTP id 20mr502777lff.512.1601938765154;
-        Mon, 05 Oct 2020 15:59:25 -0700 (PDT)
-Received: from eriador.lan ([188.162.64.219])
-        by smtp.gmail.com with ESMTPSA id x4sm353831ljc.80.2020.10.05.15.59.23
-        (version=TLS1_3 cipher=TLS_AES_256_GCM_SHA384 bits=256/256);
-        Mon, 05 Oct 2020 15:59:24 -0700 (PDT)
-From:   Dmitry Baryshkov <dmitry.baryshkov@linaro.org>
-To:     Andy Gross <agross@kernel.org>,
-        Bjorn Andersson <bjorn.andersson@linaro.org>,
-        Rob Herring <robh+dt@kernel.org>,
-        Jonathan Marek <jonathan@marek.ca>,
-        Stephen Boyd <sboyd@kernel.org>,
-        Michael Turquette <mturquette@baylibre.com>
-Cc:     linux-arm-msm@vger.kernel.org,
-        Manivannan Sadhasivam <manivannan.sadhasivam@linaro.org>,
-        devicetree@vger.kernel.org, linux-clk@vger.kernel.org
-Subject: [PATCH v1 3/3] clk: qcom: dispcc-sm8250: handle MMCX power domain
-Date:   Tue,  6 Oct 2020 01:59:14 +0300
-Message-Id: <20201005225914.315852-4-dmitry.baryshkov@linaro.org>
-X-Mailer: git-send-email 2.28.0
-In-Reply-To: <20201005225914.315852-1-dmitry.baryshkov@linaro.org>
-References: <20201005225914.315852-1-dmitry.baryshkov@linaro.org>
+        id S1726821AbgJEXQs (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Mon, 5 Oct 2020 19:16:48 -0400
+Received: from mail.kernel.org ([198.145.29.99]:40968 "EHLO mail.kernel.org"
+        rhost-flags-OK-OK-OK-OK) by vger.kernel.org with ESMTP
+        id S1725865AbgJEXQs (ORCPT <rfc822;devicetree@vger.kernel.org>);
+        Mon, 5 Oct 2020 19:16:48 -0400
+Received: from mail-ej1-f54.google.com (mail-ej1-f54.google.com [209.85.218.54])
+        (using TLSv1.2 with cipher ECDHE-RSA-AES128-GCM-SHA256 (128/128 bits))
+        (No client certificate requested)
+        by mail.kernel.org (Postfix) with ESMTPSA id E647D20853;
+        Mon,  5 Oct 2020 23:16:46 +0000 (UTC)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=kernel.org;
+        s=default; t=1601939807;
+        bh=6DMPlpHNHe4zYX2cCxmqu0FZ0HVxYMhqiIb/DWSRMTI=;
+        h=References:In-Reply-To:From:Date:Subject:To:Cc:From;
+        b=H+b6kenMeWsX9eq+4bPl2RCSDUICLwxdkRcGYM/TXz4OOuu1uD9NgoRzZIlFj5t0g
+         gpu3fAOxggZHgfW5CRKUgDcavU8OJAeSsZnlHfeWDd51fiRlYIacqvMd3XebH5z4Lh
+         ErQL7BIX8FSUiKiUFArd5+sy+lTGLB8TK3H5LiIM=
+Received: by mail-ej1-f54.google.com with SMTP id lw21so10662842ejb.6;
+        Mon, 05 Oct 2020 16:16:46 -0700 (PDT)
+X-Gm-Message-State: AOAM5336x4O5AvY0tAR8FD3B+LiQ+OyNXeP5n4lrNvgQbHtkVJ55WmxU
+        jdm6dt//4zX3FSdJzwBBWhGfFHaBqlZQwuP/Lw==
+X-Google-Smtp-Source: ABdhPJz+Lh5Br5zMq2O8/0TV2SM0C8V3geQcrgh1DjX05SgjXPF8trpetHJx9SOXrPdjPK+KRKeszl906LIvVUbBr4I=
+X-Received: by 2002:a17:906:158f:: with SMTP id k15mr2114998ejd.310.1601939805305;
+ Mon, 05 Oct 2020 16:16:45 -0700 (PDT)
 MIME-Version: 1.0
-Content-Transfer-Encoding: 8bit
+References: <20201004055024.23542-1-phil.chang@mediatek.com>
+ <CAAOTY_8vCb-adkbpdmbTWLeOFt-+dHjr4HVonHX7XPkLkzy1yA@mail.gmail.com>
+ <1601918237.17256.3.camel@mtksdccf07> <CAL_JsqJQcWsguwfehAoaRf4o-2VqXxSzKzTqg7s4+N1bp=6V5Q@mail.gmail.com>
+In-Reply-To: <CAL_JsqJQcWsguwfehAoaRf4o-2VqXxSzKzTqg7s4+N1bp=6V5Q@mail.gmail.com>
+From:   Chun-Kuang Hu <chunkuang.hu@kernel.org>
+Date:   Tue, 6 Oct 2020 07:16:33 +0800
+X-Gmail-Original-Message-ID: <CAAOTY_8iGY_-_6iOxgigjbQc8k6iD38BAQiMi9vWEkddCGPJ9g@mail.gmail.com>
+Message-ID: <CAAOTY_8iGY_-_6iOxgigjbQc8k6iD38BAQiMi9vWEkddCGPJ9g@mail.gmail.com>
+Subject: Re: [PATCH] [PATCH] of_reserved_mem: Increase the number of reserved regions
+To:     Rob Herring <robh+dt@kernel.org>
+Cc:     Phil Chang <phil.chang@mediatek.com>,
+        Chun-Kuang Hu <chunkuang.hu@kernel.org>,
+        Linux ARM <linux-arm-kernel@lists.infradead.org>,
+        DTML <devicetree@vger.kernel.org>,
+        Alix Wu <alix.wu@mediatek.com>,
+        YJ Chiang <yj.chiang@mediatek.com>,
+        linux-kernel <linux-kernel@vger.kernel.org>,
+        "moderated list:ARM/Mediatek SoC support" 
+        <linux-mediatek@lists.infradead.org>,
+        Matthias Brugger <matthias.bgg@gmail.com>,
+        Joe Liu <joe.liu@mediatek.com>,
+        Frank Rowand <frowand.list@gmail.com>
+Content-Type: text/plain; charset="UTF-8"
+Content-Transfer-Encoding: quoted-printable
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-On SM8250 MMCX power domain is required to access MMDS_GDSC registers.
-Enable using this power domain for the gdsc.
+Rob Herring <robh+dt@kernel.org> =E6=96=BC 2020=E5=B9=B410=E6=9C=886=E6=97=
+=A5 =E9=80=B1=E4=BA=8C =E4=B8=8A=E5=8D=882:57=E5=AF=AB=E9=81=93=EF=BC=9A
+>
+> On Mon, Oct 5, 2020 at 12:17 PM Phil Chang <phil.chang@mediatek.com> wrot=
+e:
+> >
+> > Hi Chun-Kuang
+>
+> Please don't top post to the lists.
+>
+> > Sorry for typo. In fact, the dts of new SoC is not upstream yet. I'm so
+> > sorry for couldn't show the detail now.
+>
+> Don't have to have the dts upstream. Can you point to a downstream dts
+> or post a snippet of the reserved memory?
+>
+> > How about the configurable MAX_RESERVED_REGIONS size like this patch?
+> > https://patchwork.kernel.org/patch/10692101/
+>
+> No, as I already said in that patch. But glad you found what's needed
+> to make it dynamic. But even for dynamic, I want to understand the
+> use.
 
-Signed-off-by: Dmitry Baryshkov <dmitry.baryshkov@linaro.org>
----
- drivers/clk/qcom/dispcc-sm8250.c | 2 ++
- 1 file changed, 2 insertions(+)
+I get the point. We should prevent too many config. If this
+information could be get from dts, we should not get it from config.
+Agree that WHY of this patch is more important than HOW of this patch.
 
-diff --git a/drivers/clk/qcom/dispcc-sm8250.c b/drivers/clk/qcom/dispcc-sm8250.c
-index 07a98d3f882d..3941054a7b07 100644
---- a/drivers/clk/qcom/dispcc-sm8250.c
-+++ b/drivers/clk/qcom/dispcc-sm8250.c
-@@ -963,6 +963,8 @@ static struct gdsc mdss_gdsc = {
- 	},
- 	.pwrsts = PWRSTS_OFF_ON,
- 	.flags = HW_CTRL,
-+	.domain = "mmcx",
-+	.perf_idx = 0,
- };
- 
- static struct clk_regmap *disp_cc_sm8250_clocks[] = {
--- 
-2.28.0
+Regards,
+Chun-Kuang.
 
+>
+> Rob
+>
+> >
+> >
+> > On Sun, 2020-10-04 at 21:05 +0800, Chun-Kuang Hu wrote:
+> > > Hi, Phil:
+> > >
+> > > Phil Chang <phil.chang@mediatek.com> =E6=96=BC 2020=E5=B9=B410=E6=9C=
+=884=E6=97=A5 =E9=80=B1=E6=97=A5 =E4=B8=8B=E5=8D=881:51=E5=AF=AB=E9=81=93=
+=EF=BC=9A
+> > > >
+> > > > Certain SoCs need to support large amount of reserved memory
+> > > > regions, especially to follow the GKI rules from Google.
+> > > > In MTK new SoC requires more than 68 regions of reserved memory
+> > > > for each IP's usage, such as load firmware to specific sapce,
+> > >
+> > > space
+> > >
+> > > > so that need to reserve more regisions
+> > >
+> > > regions.
+> > >
+> > > I guess this requirement is from Mediatek SoC, but I find below devic=
+e
+> > > tree and just find one reserved memory region,
+> > >
+> > > arch/arm64/boot/dts/mediatek/mt7622.dtsi
+> > > arch/arm64/boot/dts/mediatek/mt8173.dtsi
+> > > arch/arm64/boot/dts/mediatek/mt8516.dtsi
+> > >
+> > > Could you show me the 68 regions?
+> > >
+> > > Regards,
+> > > Chun-Kuang.
+> > >
+> > > >
+> > > > Signed-off-by: Joe Liu <joe.liu@mediatek.com>
+> > > > Signed-off-by: YJ Chiang <yj.chiang@mediatek.com>
+> > > > Signed-off-by: Alix Wu <alix.wu@mediatek.com>
+> > > > Signed-off-by: Phil Chang <phil.chang@mediatek.com>
+> > > > ---
+> > > >  drivers/of/of_reserved_mem.c | 2 +-
+> > > >  1 file changed, 1 insertion(+), 1 deletion(-)
+> > > >
+> > > > diff --git a/drivers/of/of_reserved_mem.c b/drivers/of/of_reserved_=
+mem.c
+> > > > index 46b9371c8a33..595f0741dcef 100644
+> > > > --- a/drivers/of/of_reserved_mem.c
+> > > > +++ b/drivers/of/of_reserved_mem.c
+> > > > @@ -22,7 +22,7 @@
+> > > >  #include <linux/slab.h>
+> > > >  #include <linux/memblock.h>
+> > > >
+> > > > -#define MAX_RESERVED_REGIONS   64
+> > > > +#define MAX_RESERVED_REGIONS   128
+> > > >  static struct reserved_mem reserved_mem[MAX_RESERVED_REGIONS];
+> > > >  static int reserved_mem_count;
+> > > >
+> > > > --
+> > > > 2.18.0
+> > > > _______________________________________________
+> > > > Linux-mediatek mailing list
+> > > > Linux-mediatek@lists.infradead.org
+> > > > http://lists.infradead.org/mailman/listinfo/linux-mediatek
+> >
