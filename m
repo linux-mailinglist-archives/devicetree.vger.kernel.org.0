@@ -2,121 +2,133 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from vger.kernel.org (vger.kernel.org [23.128.96.18])
-	by mail.lfdr.de (Postfix) with ESMTP id E48962830EA
-	for <lists+devicetree@lfdr.de>; Mon,  5 Oct 2020 09:36:10 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTP id 08E05283119
+	for <lists+devicetree@lfdr.de>; Mon,  5 Oct 2020 09:48:51 +0200 (CEST)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S1725873AbgJEHgJ (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Mon, 5 Oct 2020 03:36:09 -0400
-Received: from lindbergh.monkeyblade.net ([23.128.96.19]:59956 "EHLO
-        lindbergh.monkeyblade.net" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S1725870AbgJEHgJ (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Mon, 5 Oct 2020 03:36:09 -0400
-Received: from metis.ext.pengutronix.de (metis.ext.pengutronix.de [IPv6:2001:67c:670:201:290:27ff:fe1d:cc33])
-        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 41793C0613CE
-        for <devicetree@vger.kernel.org>; Mon,  5 Oct 2020 00:36:09 -0700 (PDT)
-Received: from pty.hi.pengutronix.de ([2001:67c:670:100:1d::c5])
-        by metis.ext.pengutronix.de with esmtps (TLS1.2:ECDHE_RSA_AES_256_GCM_SHA384:256)
-        (Exim 4.92)
-        (envelope-from <ukl@pengutronix.de>)
-        id 1kPL2F-0004xR-10; Mon, 05 Oct 2020 09:35:51 +0200
-Received: from ukl by pty.hi.pengutronix.de with local (Exim 4.89)
-        (envelope-from <ukl@pengutronix.de>)
-        id 1kPL23-0001St-3I; Mon, 05 Oct 2020 09:35:39 +0200
-Date:   Mon, 5 Oct 2020 09:35:38 +0200
-From:   Uwe =?utf-8?Q?Kleine-K=C3=B6nig?= <u.kleine-koenig@pengutronix.de>
-To:     Jonathan =?utf-8?Q?Neusch=C3=A4fer?= <j.neuschaefer@gmx.net>
-Cc:     Alexandre Belloni <alexandre.belloni@bootlin.com>,
-        Heiko Stuebner <heiko@sntech.de>, devicetree@vger.kernel.org,
-        Linus Walleij <linus.walleij@linaro.org>,
-        Thierry Reding <thierry.reding@gmail.com>,
-        Sam Ravnborg <sam@ravnborg.org>, linux-rtc@vger.kernel.org,
-        Arnd Bergmann <arnd@arndb.de>,
-        Mauro Carvalho Chehab <mchehab+huawei@kernel.org>,
-        Fabio Estevam <festevam@gmail.com>,
-        Daniel Palmer <daniel@0x0f.com>,
-        Andy Shevchenko <andy.shevchenko@gmail.com>,
-        Andreas Kemnade <andreas@kemnade.info>,
-        NXP Linux Team <linux-imx@nxp.com>,
-        linux-pwm@vger.kernel.org, Stephan Gerhold <stephan@gerhold.net>,
-        allen <allen.chen@ite.com.tw>,
-        Sascha Hauer <s.hauer@pengutronix.de>,
-        Lubomir Rintel <lkundrak@v3.sk>,
-        Rob Herring <robh+dt@kernel.org>,
-        Lee Jones <lee.jones@linaro.org>,
-        linux-arm-kernel@lists.infradead.org,
-        Alessandro Zummo <a.zummo@towertech.it>,
-        linux-kernel@vger.kernel.org, Mark Brown <broonie@kernel.org>,
-        Pengutronix Kernel Team <kernel@pengutronix.de>,
-        Heiko Stuebner <heiko.stuebner@theobroma-systems.com>,
-        Josua Mayer <josua.mayer@jm0.eu>,
-        Shawn Guo <shawnguo@kernel.org>,
-        "David S. Miller" <davem@davemloft.net>
-Subject: Re: [PATCH v3 5/7] rtc: New driver for RTC in Netronix embedded
- controller
-Message-ID: <20201005073538.g37j3tfc7q4gifdz@pengutronix.de>
-References: <20200924192455.2484005-1-j.neuschaefer@gmx.net>
- <20200924192455.2484005-6-j.neuschaefer@gmx.net>
- <20200925054424.snlr3lggnsv575wu@pengutronix.de>
- <20201004014323.GD500800@latitude>
+        id S1725880AbgJEHst (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Mon, 5 Oct 2020 03:48:49 -0400
+Received: from fllv0016.ext.ti.com ([198.47.19.142]:44664 "EHLO
+        fllv0016.ext.ti.com" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
+        with ESMTP id S1725873AbgJEHst (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Mon, 5 Oct 2020 03:48:49 -0400
+Received: from lelv0266.itg.ti.com ([10.180.67.225])
+        by fllv0016.ext.ti.com (8.15.2/8.15.2) with ESMTP id 0957mWH2086977;
+        Mon, 5 Oct 2020 02:48:32 -0500
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=ti.com;
+        s=ti-com-17Q1; t=1601884112;
+        bh=69KgE8mHDfu6DlspDD/TZVauI7Aqq+Hq9zM+62Tt5iQ=;
+        h=From:To:CC:Subject:Date;
+        b=crrbqVe+mfaoLopTGIyE703GAuieoqiO5vwmF4OMXOgOmnOsWih6fpVj4tG7k4iPa
+         yciaLIRqrhI215Ym5GWaeO38dJ7MqNedCaDXb8wwQrpZq+pufRDPiUKumKCvJRfr6B
+         1lxilV/YjMxHdFHvVDy8fqpQTufPdCIZNabLUv9Q=
+Received: from DLEE105.ent.ti.com (dlee105.ent.ti.com [157.170.170.35])
+        by lelv0266.itg.ti.com (8.15.2/8.15.2) with ESMTPS id 0957mW65087001
+        (version=TLSv1.2 cipher=AES256-GCM-SHA384 bits=256 verify=FAIL);
+        Mon, 5 Oct 2020 02:48:32 -0500
+Received: from DLEE109.ent.ti.com (157.170.170.41) by DLEE105.ent.ti.com
+ (157.170.170.35) with Microsoft SMTP Server (version=TLS1_2,
+ cipher=TLS_ECDHE_RSA_WITH_AES_128_CBC_SHA256_P256) id 15.1.1979.3; Mon, 5 Oct
+ 2020 02:48:32 -0500
+Received: from fllv0040.itg.ti.com (10.64.41.20) by DLEE109.ent.ti.com
+ (157.170.170.41) with Microsoft SMTP Server (version=TLS1_2,
+ cipher=TLS_ECDHE_RSA_WITH_AES_128_CBC_SHA256_P256) id 15.1.1979.3 via
+ Frontend Transport; Mon, 5 Oct 2020 02:48:32 -0500
+Received: from feketebors.ti.com (ileax41-snat.itg.ti.com [10.172.224.153])
+        by fllv0040.itg.ti.com (8.15.2/8.15.2) with ESMTP id 0957mTw2111860;
+        Mon, 5 Oct 2020 02:48:30 -0500
+From:   Peter Ujfalusi <peter.ujfalusi@ti.com>
+To:     <nm@ti.com>, <t-kristo@ti.com>
+CC:     <linux-kernel@vger.kernel.org>, <devicetree@vger.kernel.org>,
+        <linux-arm-kernel@lists.infradead.org>, <robh+dt@kernel.org>
+Subject: [PATCH] arm64: dts: ti: k3-j7200-main: Add McASP nodes
+Date:   Mon, 5 Oct 2020 10:48:50 +0300
+Message-ID: <20201005074850.11247-1-peter.ujfalusi@ti.com>
+X-Mailer: git-send-email 2.28.0
 MIME-Version: 1.0
-Content-Type: multipart/signed; micalg=pgp-sha512;
-        protocol="application/pgp-signature"; boundary="ve23n3n3k4nkv36h"
-Content-Disposition: inline
-In-Reply-To: <20201004014323.GD500800@latitude>
-X-SA-Exim-Connect-IP: 2001:67c:670:100:1d::c5
-X-SA-Exim-Mail-From: ukl@pengutronix.de
-X-SA-Exim-Scanned: No (on metis.ext.pengutronix.de); SAEximRunCond expanded to false
-X-PTX-Original-Recipient: devicetree@vger.kernel.org
+Content-Transfer-Encoding: 8bit
+Content-Type: text/plain
+X-EXCLAIMER-MD-CONFIG: e1e8a2fd-e40a-4ac6-ac9b-f7e9cc9ee180
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
+Add the nodes for McASP 0-2 and keep them disabled because several
+required properties are not present as they are board specific.
 
---ve23n3n3k4nkv36h
-Content-Type: text/plain; charset=iso-8859-1
-Content-Disposition: inline
-Content-Transfer-Encoding: quoted-printable
+Signed-off-by: Peter Ujfalusi <peter.ujfalusi@ti.com>
+---
+ arch/arm64/boot/dts/ti/k3-j7200-main.dtsi | 57 +++++++++++++++++++++++
+ 1 file changed, 57 insertions(+)
 
-Hello Jonathan,
+diff --git a/arch/arm64/boot/dts/ti/k3-j7200-main.dtsi b/arch/arm64/boot/dts/ti/k3-j7200-main.dtsi
+index 72d6496e88dd..cc6c2a81887a 100644
+--- a/arch/arm64/boot/dts/ti/k3-j7200-main.dtsi
++++ b/arch/arm64/boot/dts/ti/k3-j7200-main.dtsi
+@@ -446,4 +446,61 @@ usb0: usb@6000000 {
+ 			dr_mode = "otg";
+ 		};
+ 	};
++
++	mcasp0: mcasp@02b00000 {
++		compatible = "ti,am33xx-mcasp-audio";
++		reg = <0x0 0x02b00000 0x0 0x2000>,
++			<0x0 0x02b08000 0x0 0x1000>;
++		reg-names = "mpu","dat";
++		interrupts = <GIC_SPI 544 IRQ_TYPE_LEVEL_HIGH>,
++				<GIC_SPI 545 IRQ_TYPE_LEVEL_HIGH>;
++		interrupt-names = "tx", "rx";
++
++		dmas = <&main_udmap 0xc400>, <&main_udmap 0x4400>;
++		dma-names = "tx", "rx";
++
++		clocks = <&k3_clks 174 40>;
++		clock-names = "fck";
++		power-domains = <&k3_pds 174 TI_SCI_PD_EXCLUSIVE>;
++
++		status = "disabled";
++	};
++
++	mcasp1: mcasp@02b10000 {
++		compatible = "ti,am33xx-mcasp-audio";
++		reg = <0x0 0x02b10000 0x0 0x2000>,
++			<0x0 0x02b18000 0x0 0x1000>;
++		reg-names = "mpu","dat";
++		interrupts = <GIC_SPI 546 IRQ_TYPE_LEVEL_HIGH>,
++				<GIC_SPI 547 IRQ_TYPE_LEVEL_HIGH>;
++		interrupt-names = "tx", "rx";
++
++		dmas = <&main_udmap 0xc401>, <&main_udmap 0x4401>;
++		dma-names = "tx", "rx";
++
++		clocks = <&k3_clks 175 40>;
++		clock-names = "fck";
++		power-domains = <&k3_pds 175 TI_SCI_PD_EXCLUSIVE>;
++
++		status = "disabled";
++	};
++
++	mcasp2: mcasp@02b20000 {
++		compatible = "ti,am33xx-mcasp-audio";
++		reg = <0x0 0x02b20000 0x0 0x2000>,
++			<0x0 0x02b28000 0x0 0x1000>;
++		reg-names = "mpu","dat";
++		interrupts = <GIC_SPI 548 IRQ_TYPE_LEVEL_HIGH>,
++				<GIC_SPI 549 IRQ_TYPE_LEVEL_HIGH>;
++		interrupt-names = "tx", "rx";
++
++		dmas = <&main_udmap 0xc402>, <&main_udmap 0x4402>;
++		dma-names = "tx", "rx";
++
++		clocks = <&k3_clks 176 40>;
++		clock-names = "fck";
++		power-domains = <&k3_pds 176 TI_SCI_PD_EXCLUSIVE>;
++
++		status = "disabled";
++	};
+ };
+-- 
+Peter
 
-On Sun, Oct 04, 2020 at 03:43:23AM +0200, Jonathan Neusch=E4fer wrote:
-> On Fri, Sep 25, 2020 at 07:44:24AM +0200, Uwe Kleine-K=F6nig wrote:
-> > > +static struct platform_driver ntxec_rtc_driver =3D {
-> > > +	.driver =3D {
-> > > +		.name =3D "ntxec-rtc",
-> > > +	},
-> > > +	.probe =3D ntxec_rtc_probe,
-> >=20
-> > No .remove function?
->=20
-> I don't think it would serve a purpose in this driver. There are no
-> device-specific resources to release (no clocks to unprepare, for
-> example).
+Texas Instruments Finland Oy, Porkkalankatu 22, 00180 Helsinki.
+Y-tunnus/Business ID: 0615521-4. Kotipaikka/Domicile: Helsinki
 
-I had in mind that without a .remove callback the driver cannot detach.
-but looking in the code (drivers/base/platform.c) this seems wrong.
-So my concern can be considered void.
-
-Best regards
-Uwe
-
---=20
-Pengutronix e.K.                           | Uwe Kleine-K=F6nig            |
-Industrial Linux Solutions                 | https://www.pengutronix.de/ |
-
---ve23n3n3k4nkv36h
-Content-Type: application/pgp-signature; name="signature.asc"
-
------BEGIN PGP SIGNATURE-----
-
-iQEzBAABCgAdFiEEfnIqFpAYrP8+dKQLwfwUeK3K7AkFAl96zMcACgkQwfwUeK3K
-7AkG8wf+MDL1PUfowGS0UkWxYzb50CA1v9Z1Bx0aEmXSf9HVA6T8xsjxQwsDQXS5
-Q3pzcQbjH1uGtttynGQPFMlc78UfIAktFUQmL2CjGTpNtbo/V0ljUJPWDt71Y2L1
-ZMOfiC1KwjRgIdlNz3DHDbNcwZ9i3BcQ26Ua2vfPqL4cxnBuSmTxMerScJcio7bq
-PH2zr2+7B3c03j1hdXhpnsbegbN8nc6ktjyDh/yOmPyz34wdBHExMkITFIf4IXX1
-Qrez1zwcPayzDzE25VR6w1rdyvHhg1Zh9hz8tU+ixJmuIXyoUql+nTeepAd8uJZk
-wowaWSYgMq53Vg02xGLMUHGVzFCc1g==
-=0UxN
------END PGP SIGNATURE-----
-
---ve23n3n3k4nkv36h--
