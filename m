@@ -2,77 +2,158 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from vger.kernel.org (vger.kernel.org [23.128.96.18])
-	by mail.lfdr.de (Postfix) with ESMTP id 396D3283121
-	for <lists+devicetree@lfdr.de>; Mon,  5 Oct 2020 09:53:37 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTP id 2D3B728315E
+	for <lists+devicetree@lfdr.de>; Mon,  5 Oct 2020 10:04:56 +0200 (CEST)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S1725875AbgJEHxg (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Mon, 5 Oct 2020 03:53:36 -0400
-Received: from mail-ot1-f68.google.com ([209.85.210.68]:34282 "EHLO
-        mail-ot1-f68.google.com" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S1725870AbgJEHxg (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Mon, 5 Oct 2020 03:53:36 -0400
-Received: by mail-ot1-f68.google.com with SMTP id d28so1487153ote.1;
-        Mon, 05 Oct 2020 00:53:35 -0700 (PDT)
+        id S1725923AbgJEIEy (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Mon, 5 Oct 2020 04:04:54 -0400
+Received: from lindbergh.monkeyblade.net ([23.128.96.19]:36238 "EHLO
+        lindbergh.monkeyblade.net" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
+        with ESMTP id S1725898AbgJEIEy (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Mon, 5 Oct 2020 04:04:54 -0400
+Received: from mail-wr1-x444.google.com (mail-wr1-x444.google.com [IPv6:2a00:1450:4864:20::444])
+        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id B7CC2C0613A9
+        for <devicetree@vger.kernel.org>; Mon,  5 Oct 2020 01:04:53 -0700 (PDT)
+Received: by mail-wr1-x444.google.com with SMTP id o5so8397127wrn.13
+        for <devicetree@vger.kernel.org>; Mon, 05 Oct 2020 01:04:53 -0700 (PDT)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+        d=linaro.org; s=google;
+        h=date:from:to:cc:subject:message-id:references:mime-version
+         :content-disposition:content-transfer-encoding:in-reply-to;
+        bh=IeiNTBeAySgxF765tOCATEDwXLrm3RiAjoTBQHN6wK0=;
+        b=QT2sz2z2T2ObbOF9cBuqPj/xMs2V2JkpGaC1yQPewHnLjCK6KfpJxnFBd52Yg4AGmP
+         VJxRGRPxaRQLhLWf/cJj+4TFWIvc5S6rpMyihLW8guAo+UvNRqZKoELqvBpOePuA/Etp
+         z293SdQf8ZGebrwCEz1gY7IlvwFjzz13UZb9UEwJiawxT5K21aKdmv/U8ZWx8aU8cdsz
+         g1EJ2lezQTBEJzLkUS6vaHwbRc5HEANA2MQBDDgPE/harsOdRDrcIYwSmq3urQxn7+oQ
+         VI6XlJwzca0RWlRBNRLXanZ5iKvZaicHTe2BxzY/5qO5xvvbJ/G2d1fmd5VfFwE503zT
+         3Stw==
 X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
         d=1e100.net; s=20161025;
-        h=x-gm-message-state:mime-version:references:in-reply-to:from:date
-         :message-id:subject:to:cc;
-        bh=Ufois23g/mxCxfWP4cgLmm6PEOAY+7dY4/+DMcUR2+w=;
-        b=FA7Ev8Pq4/JRrznF1mtUsa3V8Pi0KFA4yNTByRXII5M5DjZR37dnSHAgbHlbVswb6I
-         NgdXlxer+f6QJDOcMwhMhjBgqZ46VZse4WUhjfrDbMWK8oBYihKwsIG2k6vGkR+Apmp0
-         2lFWooYxYbtbS2k1oOP8RkJeLSVPBmow0CCxQ4NlVTaalv6xUnqdOfWvj+YUY24oZ5gz
-         9eFCzj8R9hSv/yZ2r3uN5j9Q7cqMq4DxuhS8hnz8RBPFTi0ugxUlmjAwkL4MGpU0toU4
-         AUvYPKy34kZY0LP7MIWuF/49xqzrjjGKA77jyx6JUcaYE0Jhb8yuDkolq4xrio4o0Ea2
-         CauQ==
-X-Gm-Message-State: AOAM531eXcLYuXyzYOpF1nSKUC+Hl25FHXZJGTT+foME1bx1er2N3QIe
-        TL1bvxTF1zTH+hWLfyVQeHVLSxQ0ZfVu1Uj4mm/Ndbhm
-X-Google-Smtp-Source: ABdhPJwUMXeRAmZD+uY78qToNvcWn90EF6i7ZUcRJ+D3EO5sQQQnaD1A+zraaFQREFNFC7RNbTYDhVfHoH8AhHh+DSw=
-X-Received: by 2002:a9d:3b76:: with SMTP id z109mr11079631otb.250.1601884415195;
- Mon, 05 Oct 2020 00:53:35 -0700 (PDT)
+        h=x-gm-message-state:date:from:to:cc:subject:message-id:references
+         :mime-version:content-disposition:content-transfer-encoding
+         :in-reply-to;
+        bh=IeiNTBeAySgxF765tOCATEDwXLrm3RiAjoTBQHN6wK0=;
+        b=lYQiZ8q1wcb7fnCx4OqK31YQr9RgG/fep33Ljl08efJLLfEflPPUrrjzaINqZ4FeBN
+         6EaAR/MgFNHk3ey16G72lqlXWKnFEH2ee1uSNZeb/EhH8Z42h2NPKkOiev93P7tTiR5b
+         Sph71lGbP2dwj50GHOukU0axreafjEieYOTyQ8jmTMo187/sjSwAl5JcWk9/EF632xo/
+         mIyZN0NJjHqaPSHKdtUq1SSvPOT/w7RD45jitLx08XJSTA1LuPOqEDeG0RiPhvilphWS
+         3FAXFeGK1le6lkORinyGeIjnD7oJQT09W+3Gj9U6kUyRj9JwLBtihKoVTlJ4RdXrQGc7
+         zXKQ==
+X-Gm-Message-State: AOAM531Qe0/zgzV92h7jEw4yRr6XAbYwG27E6JqkDPytguvz3+Zd2zZ0
+        q/qJxn/c2BKAhuyEDRX4hOnkxg==
+X-Google-Smtp-Source: ABdhPJxB5n46P+iT3QRjzewwc6VgfO5oWkwQMA51B+oAEZSgUCF8P3GFXLcjkKteouHQRqUkrIZvVQ==
+X-Received: by 2002:adf:f10e:: with SMTP id r14mr9419051wro.337.1601885092289;
+        Mon, 05 Oct 2020 01:04:52 -0700 (PDT)
+Received: from dell ([91.110.221.236])
+        by smtp.gmail.com with ESMTPSA id x2sm11899009wrl.13.2020.10.05.01.04.49
+        (version=TLS1_3 cipher=TLS_AES_256_GCM_SHA384 bits=256/256);
+        Mon, 05 Oct 2020 01:04:51 -0700 (PDT)
+Date:   Mon, 5 Oct 2020 09:04:48 +0100
+From:   Lee Jones <lee.jones@linaro.org>
+To:     Rob Herring <robh@kernel.org>
+Cc:     devicetree@vger.kernel.org, linux-kernel@vger.kernel.org,
+        Thierry Reding <thierry.reding@gmail.com>,
+        Linus Walleij <linus.walleij@linaro.org>,
+        Stephen Boyd <sboyd@kernel.org>,
+        Shawn Guo <shawnguo@kernel.org>,
+        Bjorn Andersson <bjorn.andersson@linaro.org>,
+        Baolin Wang <baolin.wang7@gmail.com>,
+        Guenter Roeck <linux@roeck-us.net>,
+        Jonathan Cameron <jic23@kernel.org>,
+        Mauro Carvalho Chehab <mchehab@kernel.org>,
+        Laurent Pinchart <laurent.pinchart+renesas@ideasonboard.com>,
+        Ulf Hansson <ulf.hansson@linaro.org>,
+        "David S. Miller" <davem@davemloft.net>,
+        Bjorn Helgaas <bhelgaas@google.com>,
+        Vinod Koul <vkoul@kernel.org>,
+        Liam Girdwood <lgirdwood@gmail.com>,
+        Mark Brown <broonie@kernel.org>,
+        Greg Kroah-Hartman <gregkh@linuxfoundation.org>,
+        Daniel Lezcano <daniel.lezcano@linaro.org>,
+        linux-clk@vger.kernel.org, dri-devel@lists.freedesktop.org,
+        linux-spi@vger.kernel.org, linux-gpio@vger.kernel.org,
+        linux-hwmon@vger.kernel.org, linux-iio@vger.kernel.org,
+        openipmi-developer@lists.sourceforge.net,
+        linux-leds@vger.kernel.org, linux-media@vger.kernel.org,
+        linux-rockchip@lists.infradead.org,
+        linux-stm32@st-md-mailman.stormreply.com,
+        linux-mips@vger.kernel.org, linux-mmc@vger.kernel.org,
+        netdev@vger.kernel.org, linux-pci@vger.kernel.org,
+        linux-pm@vger.kernel.org, linux-remoteproc@vger.kernel.org,
+        linux-serial@vger.kernel.org, alsa-devel@alsa-project.org,
+        linux-usb@vger.kernel.org
+Subject: Re: [PATCH] dt-bindings: Another round of adding missing
+ 'additionalProperties'
+Message-ID: <20201005080448.GT6148@dell>
+References: <20201002234143.3570746-1-robh@kernel.org>
 MIME-Version: 1.0
-References: <20201002163945.7885-1-krzk@kernel.org>
-In-Reply-To: <20201002163945.7885-1-krzk@kernel.org>
-From:   Geert Uytterhoeven <geert@linux-m68k.org>
-Date:   Mon, 5 Oct 2020 09:53:24 +0200
-Message-ID: <CAMuHMdX5dW_UJbDektyFPMeS-go0g+UmAA1ji=AK3-k+HX_dNw@mail.gmail.com>
-Subject: Re: [RESEND PATCH v3] arm64: dts: renesas: align GPIO hog names with dtschema
-To:     Krzysztof Kozlowski <krzk@kernel.org>
-Cc:     Magnus Damm <magnus.damm@gmail.com>,
-        Rob Herring <robh+dt@kernel.org>,
-        Linux-Renesas <linux-renesas-soc@vger.kernel.org>,
-        "open list:OPEN FIRMWARE AND FLATTENED DEVICE TREE BINDINGS" 
-        <devicetree@vger.kernel.org>,
-        Linux Kernel Mailing List <linux-kernel@vger.kernel.org>
-Content-Type: text/plain; charset="UTF-8"
+Content-Type: text/plain; charset=utf-8
+Content-Disposition: inline
+Content-Transfer-Encoding: 8bit
+In-Reply-To: <20201002234143.3570746-1-robh@kernel.org>
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-On Fri, Oct 2, 2020 at 6:39 PM Krzysztof Kozlowski <krzk@kernel.org> wrote:
-> The convention for node names is to use hyphens, not underscores.
-> dtschema for pca95xx expects GPIO hogs to end with 'hog' suffix.
->
-> Signed-off-by: Krzysztof Kozlowski <krzk@kernel.org>
+On Fri, 02 Oct 2020, Rob Herring wrote:
+
+> Another round of wack-a-mole. The json-schema default is additional
+> unknown properties are allowed, but for DT all properties should be
+> defined.
+> 
+> Cc: Thierry Reding <thierry.reding@gmail.com>
+> Cc: Linus Walleij <linus.walleij@linaro.org>
+> Cc: Stephen Boyd <sboyd@kernel.org>
+> Cc: Shawn Guo <shawnguo@kernel.org>
+> Cc: Bjorn Andersson <bjorn.andersson@linaro.org>
+> Cc: Baolin Wang <baolin.wang7@gmail.com>
+> Cc: Guenter Roeck <linux@roeck-us.net>
+> Cc: Jonathan Cameron <jic23@kernel.org>
+> Cc: Mauro Carvalho Chehab <mchehab@kernel.org>
+> Cc: Laurent Pinchart <laurent.pinchart+renesas@ideasonboard.com>
+> Cc: Lee Jones <lee.jones@linaro.org>
+> Cc: Ulf Hansson <ulf.hansson@linaro.org>
+> Cc: "David S. Miller" <davem@davemloft.net>
+> Cc: Bjorn Helgaas <bhelgaas@google.com>
+> Cc: Vinod Koul <vkoul@kernel.org>
+> Cc: Liam Girdwood <lgirdwood@gmail.com>
+> Cc: Mark Brown <broonie@kernel.org>
+> Cc: Greg Kroah-Hartman <gregkh@linuxfoundation.org>
+> Cc: Daniel Lezcano <daniel.lezcano@linaro.org>
+> Cc: linux-clk@vger.kernel.org
+> Cc: dri-devel@lists.freedesktop.org
+> Cc: linux-spi@vger.kernel.org
+> Cc: linux-gpio@vger.kernel.org
+> Cc: linux-hwmon@vger.kernel.org
+> Cc: linux-iio@vger.kernel.org
+> Cc: openipmi-developer@lists.sourceforge.net
+> Cc: linux-leds@vger.kernel.org
+> Cc: linux-media@vger.kernel.org
+> Cc: linux-rockchip@lists.infradead.org
+> Cc: linux-stm32@st-md-mailman.stormreply.com
+> Cc: linux-mips@vger.kernel.org
+> Cc: linux-mmc@vger.kernel.org
+> Cc: netdev@vger.kernel.org
+> Cc: linux-pci@vger.kernel.org
+> Cc: linux-pm@vger.kernel.org
+> Cc: linux-remoteproc@vger.kernel.org
+> Cc: linux-serial@vger.kernel.org
+> Cc: alsa-devel@alsa-project.org
+> Cc: linux-usb@vger.kernel.org
+> Signed-off-by: Rob Herring <robh@kernel.org>
 > ---
->  .../boot/dts/renesas/r8a77951-salvator-xs.dts      |  2 +-
->  .../boot/dts/renesas/r8a77965-salvator-xs.dts      |  2 +-
->  arch/arm64/boot/dts/renesas/ulcb-kf.dtsi           | 14 +++++++-------
->  3 files changed, 9 insertions(+), 9 deletions(-)
->
-> The dt-schema changes were applied.
+> 
+> I'll take this thru the DT tree.
 
-Thanks for notifying me!
+[...]
 
-Reviewed-by: Geert Uytterhoeven <geert+renesas@glider.be>
-i.e. will queue in renesas-devel for v5.11.
+>  .../bindings/mfd/gateworks-gsc.yaml           |  2 ++
+>  .../bindings/mfd/xylon,logicvc.yaml           | 14 +++++++++++--
 
-Gr{oetje,eeting}s,
-
-                        Geert
+Acked-by: Lee Jones <lee.jones@linaro.org>
 
 -- 
-Geert Uytterhoeven -- There's lots of Linux beyond ia32 -- geert@linux-m68k.org
-
-In personal conversations with technical people, I call myself a hacker. But
-when I'm talking to journalists I just say "programmer" or something like that.
-                                -- Linus Torvalds
+Lee Jones [李琼斯]
+Senior Technical Lead - Developer Services
+Linaro.org │ Open source software for Arm SoCs
+Follow Linaro: Facebook | Twitter | Blog
