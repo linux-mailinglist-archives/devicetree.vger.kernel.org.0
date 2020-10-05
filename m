@@ -2,90 +2,98 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from vger.kernel.org (vger.kernel.org [23.128.96.18])
-	by mail.lfdr.de (Postfix) with ESMTP id 2885B283188
-	for <lists+devicetree@lfdr.de>; Mon,  5 Oct 2020 10:08:38 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTP id 776C3283193
+	for <lists+devicetree@lfdr.de>; Mon,  5 Oct 2020 10:13:09 +0200 (CEST)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S1725880AbgJEIIe (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Mon, 5 Oct 2020 04:08:34 -0400
-Received: from lindbergh.monkeyblade.net ([23.128.96.19]:36812 "EHLO
+        id S1725934AbgJEINI (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Mon, 5 Oct 2020 04:13:08 -0400
+Received: from lindbergh.monkeyblade.net ([23.128.96.19]:37550 "EHLO
         lindbergh.monkeyblade.net" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S1725885AbgJEIIb (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Mon, 5 Oct 2020 04:08:31 -0400
-Received: from mail-wm1-x344.google.com (mail-wm1-x344.google.com [IPv6:2a00:1450:4864:20::344])
-        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 09F8EC0613A7
-        for <devicetree@vger.kernel.org>; Mon,  5 Oct 2020 01:08:30 -0700 (PDT)
-Received: by mail-wm1-x344.google.com with SMTP id k18so7762934wmj.5
-        for <devicetree@vger.kernel.org>; Mon, 05 Oct 2020 01:08:29 -0700 (PDT)
+        with ESMTP id S1725880AbgJEINI (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Mon, 5 Oct 2020 04:13:08 -0400
+Received: from mail-wr1-x442.google.com (mail-wr1-x442.google.com [IPv6:2a00:1450:4864:20::442])
+        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 0F8A5C0613A7
+        for <devicetree@vger.kernel.org>; Mon,  5 Oct 2020 01:13:08 -0700 (PDT)
+Received: by mail-wr1-x442.google.com with SMTP id w5so8434318wrp.8
+        for <devicetree@vger.kernel.org>; Mon, 05 Oct 2020 01:13:07 -0700 (PDT)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
         d=linaro.org; s=google;
         h=date:from:to:cc:subject:message-id:references:mime-version
          :content-disposition:content-transfer-encoding:in-reply-to;
-        bh=UCvVeSLKK559VO4ZB+QwjH9RWXmffaa+dxijfritaDY=;
-        b=csq4/ueW8T9mVp6iz7fMWRFUokeuGS/44HWy7kRgQ9PXlgvMdWE11xdG7d1Pja6W89
-         Ov38XwM/63PDGoqZJUEuY/GRpmqWBkC+yvomfmiIfyPurE0i78ucTUCBRUb/H+WtACv3
-         YIa0fwJ6yAHbHkUvLjpTs7n3iErMhqRUadja9/TeA94BIwtuf9hqhZ/8YjfpGZUgXbZV
-         zOz1ztCMXq3SbADwlW6fIA9IedcJjAJvIhqFciPkTE6InpjbzhWoDhdH8pNbE3GUyJ1q
-         b2FbcnzA2vC4q7SDyW2vbbSzbZxt9X3k+mLOYtrdToPapug8pWW0McfJFuM7WkK8BHle
-         iwTA==
+        bh=4j4QvxQFPIdjM0NymHg9aDCccSJMx3lPNQ3ZZsRnW9c=;
+        b=lOBcNVcbkKoNhgnYx2j3l/8/rE1EovMe0uiEZoQ3F3dBUYXZn1FRWR0+sD9F31Sdxn
+         wgGbBYdiv3YOJT0OrzMBN+7iN71myGFfaDWdq8WcJE6RRZ40jkQFPTlnTClarl+i+eVr
+         80nH6zYU/mPYfHx44fEn2fHOqDGt9eUiVHMWmUV3LJLJm+Lry0UUlOSZPJ2XeydzvK9e
+         SKdPBcU8jWbnaNUGfwBPqejrTVx1GGA0HtAilj3c9zmlkMfheaNSunMB0SF46FA2cPLp
+         SkaMQ+wClu9c78EsJXC9Jsva+Cs/BiRV57lTf1EvcQJhg+lF6Ja6XNlnFGT0XezhOZhI
+         0eTA==
 X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
         d=1e100.net; s=20161025;
         h=x-gm-message-state:date:from:to:cc:subject:message-id:references
          :mime-version:content-disposition:content-transfer-encoding
          :in-reply-to;
-        bh=UCvVeSLKK559VO4ZB+QwjH9RWXmffaa+dxijfritaDY=;
-        b=aInS0C9bQ04k3PrhjrtyJLt1ea8wUaYlrtpaFPaJ/M0tZdhSNkHGoSopsGXALDfFEc
-         1/XfE0PAYsFxvppTatQ3ukcjJR1mKGk3dDA7UymizDYujo2vVFMR6YPdJUDvw4ReQKzL
-         yi8uHkyc7XXNnnk41TqTCP7u0NaGfMCGTGVgdD3wC//wuDOY4NUDhQ+vLOs4TY7dkYMX
-         b2XQDY8ZG6KhfXTkCLPeIw4rHjQDYplFp0wxvAKKGKB/zEAHhGC9zYRQ0lgo9oql0KFN
-         bYoISOpshwaS9C6/E3F/1SGvYdHVCQJAgpBlvQPGjXXj88iG+W18dYpLFeIliC3PuvOf
-         PxgA==
-X-Gm-Message-State: AOAM530weCsrQSp+Cw3F1nm2QM8oCULK2/J0qTtOth4KgpQYm8l6WcGF
-        Mck/aoXLLhZ3a4Mo47vsNbq70A==
-X-Google-Smtp-Source: ABdhPJyV5jLCEoDv4YUwDHeaUo0em0iKgJXzTx7AilzgUOf3OUbqBilo8mHXN6Iqk4MLuvi0eVu10w==
-X-Received: by 2002:a7b:cf04:: with SMTP id l4mr6810566wmg.137.1601885308697;
-        Mon, 05 Oct 2020 01:08:28 -0700 (PDT)
+        bh=4j4QvxQFPIdjM0NymHg9aDCccSJMx3lPNQ3ZZsRnW9c=;
+        b=okHeZta5RW+7oEUIvs5RYGedHuEPTgxfYV04J97msRX7GBPKklSD8gI4ozqsQm+THA
+         2hO50/h6izUeoXBnjgu+WceYpkT+0U/8vXkOBGMFqrFZkhrHBjF6NXFIF9YEI3U1KdlD
+         FAjNwDd5dTJa2soPwbrWhGpTvQ/R4zjoFtbRUy3uFOna/uo3wpIdU/JZJgHo30ElSXWe
+         yp0zEGjzrdM0cjH9/6qUSUnQP/mfuwsNwNM7e74NkLNN+05aDpCeL+j3sfyol+2vZKZ+
+         J/nNOesWodsVFKjE/ByQkYQQ8wRmNTwsa0AHzZfZSkCcfe9PNYvHwq/DtaUHIyY9I2X+
+         1YSw==
+X-Gm-Message-State: AOAM531WDJSIoGFh+jApL53jlR5s0VrWPWgD7MTYMskKVg34wsFSN7to
+        7XXC5aJVQd8YMwlfLbs5DrepednTUZNzbQ==
+X-Google-Smtp-Source: ABdhPJzcn3WGwQ6Bxl5YytCol9Xo+JbY5VHHuchADF6kmbtqN8Zjz20jZ4GTcwvZM4G/vSHHCWsqww==
+X-Received: by 2002:a5d:4a49:: with SMTP id v9mr11023195wrs.153.1601885586773;
+        Mon, 05 Oct 2020 01:13:06 -0700 (PDT)
 Received: from dell ([91.110.221.236])
-        by smtp.gmail.com with ESMTPSA id i14sm11940941wml.24.2020.10.05.01.08.27
+        by smtp.gmail.com with ESMTPSA id d30sm4972548wrc.19.2020.10.05.01.13.05
         (version=TLS1_3 cipher=TLS_AES_256_GCM_SHA384 bits=256/256);
-        Mon, 05 Oct 2020 01:08:28 -0700 (PDT)
-Date:   Mon, 5 Oct 2020 09:08:26 +0100
+        Mon, 05 Oct 2020 01:13:06 -0700 (PDT)
+Date:   Mon, 5 Oct 2020 09:13:04 +0100
 From:   Lee Jones <lee.jones@linaro.org>
-To:     Rob Herring <robh@kernel.org>
-Cc:     devicetree@vger.kernel.org, linux-kernel@vger.kernel.org,
-        Roger Quadros <rogerq@ti.com>, Tero Kristo <t-kristo@ti.com>,
-        Kishon Vijay Abraham I <kishon@ti.com>
-Subject: Re: [PATCH] dt-bindings: mfd: ti,j721e-system-controller: Fix
- incorrect pattern property
-Message-ID: <20201005080826.GU6148@dell>
-References: <20201002230606.3522954-1-robh@kernel.org>
+To:     Krzysztof Kozlowski <krzk@kernel.org>
+Cc:     Rob Herring <robh+dt@kernel.org>,
+        Matti Vaittinen <matti.vaittinen@fi.rohmeurope.com>,
+        devicetree@vger.kernel.org, linux-kernel@vger.kernel.org
+Subject: Re: [PATCH v2] dt-bindings: mfd: rohm,bd71837-pmic: Add common
+ properties
+Message-ID: <20201005081304.GV6148@dell>
+References: <20200917193754.542-1-krzk@kernel.org>
+ <20201002161334.GC4542@kozik-lap>
 MIME-Version: 1.0
 Content-Type: text/plain; charset=utf-8
 Content-Disposition: inline
 Content-Transfer-Encoding: 8bit
-In-Reply-To: <20201002230606.3522954-1-robh@kernel.org>
+In-Reply-To: <20201002161334.GC4542@kozik-lap>
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-On Fri, 02 Oct 2020, Rob Herring wrote:
+On Fri, 02 Oct 2020, Krzysztof Kozlowski wrote:
 
-> Pattern properties go under 'patternProperties', not 'properties'.
-> Otherwise, the pattern is treated as a literal string.
+> On Thu, Sep 17, 2020 at 09:37:54PM +0200, Krzysztof Kozlowski wrote:
+> > Add common properties appearing in DTSes (clock-names,
+> > clock-output-names) with the common values (actually used in DTSes) to
+> > fix dtbs_check warnings like:
+> > 
+> >   arch/arm64/boot/dts/freescale/imx8mq-librem5-r2.dt.yaml:
+> >     pmic@4b: 'clock-names', 'clock-output-names', do not match any of the regexes: 'pinctrl-[0-9]+'
+> > 
+> > Signed-off-by: Krzysztof Kozlowski <krzk@kernel.org>
+> > 
+> > ---
+> > 
+> > Changes since v1:
+> > 1. Define the names, as used in existing DTS files.
+> > ---
+> >  .../devicetree/bindings/mfd/rohm,bd71837-pmic.yaml          | 6 ++++++
+> >  1 file changed, 6 insertions(+)
 > 
-> A corresponding meta-schema check has been added to catch bad DT property
-> names like this.
+> Dear Lee,
 > 
-> Fixes: e0f946915b23 ("dt-bindings: mfd: ti,j721e-system-controller.yaml: Add J721e system controller")
-> Cc: Roger Quadros <rogerq@ti.com>
-> Cc: Tero Kristo <t-kristo@ti.com>
-> Cc: Lee Jones <lee.jones@linaro.org>
-> Cc: Kishon Vijay Abraham I <kishon@ti.com>
-> Signed-off-by: Rob Herring <robh@kernel.org>
-> ---
->  .../devicetree/bindings/mfd/ti,j721e-system-controller.yaml   | 4 ++--
->  1 file changed, 2 insertions(+), 2 deletions(-)
+> Could you take it via MFD tree? There is a review from Rob and ack from
+> author (Matti).
 
-Acked-by: Lee Jones <lee.jones@linaro.org>
+I don't usually take patches this late in the cycle.
 
 -- 
 Lee Jones [李琼斯]
