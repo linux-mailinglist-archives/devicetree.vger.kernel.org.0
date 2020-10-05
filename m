@@ -2,93 +2,105 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from vger.kernel.org (vger.kernel.org [23.128.96.18])
-	by mail.lfdr.de (Postfix) with ESMTP id 7B9EE283360
-	for <lists+devicetree@lfdr.de>; Mon,  5 Oct 2020 11:35:23 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTP id 4D57928337F
+	for <lists+devicetree@lfdr.de>; Mon,  5 Oct 2020 11:40:26 +0200 (CEST)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S1725981AbgJEJfU (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Mon, 5 Oct 2020 05:35:20 -0400
-Received: from lindbergh.monkeyblade.net ([23.128.96.19]:50348 "EHLO
-        lindbergh.monkeyblade.net" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S1725887AbgJEJfU (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Mon, 5 Oct 2020 05:35:20 -0400
-Received: from bhuna.collabora.co.uk (bhuna.collabora.co.uk [IPv6:2a00:1098:0:82:1000:25:2eeb:e3e3])
-        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id D5ED8C0613CE
-        for <devicetree@vger.kernel.org>; Mon,  5 Oct 2020 02:35:19 -0700 (PDT)
-Received: from [127.0.0.1] (localhost [127.0.0.1])
-        (Authenticated sender: rcn)
-        with ESMTPSA id 7C1F0298986
-Date:   Mon, 5 Oct 2020 11:35:14 +0200
-From:   Ricardo =?utf-8?Q?Ca=C3=B1uelo?= <ricardo.canuelo@collabora.com>
-To:     Enric Balletbo i Serra <enric.balletbo@collabora.com>
-Cc:     robh@kernel.org, kernel@collabora.com, bleung@chromium.org,
-        groeck@chromium.org, sjg@chromium.org, dianders@chromium.org,
-        devicetree@vger.kernel.org,
-        Dmitry Torokhov <dmitry.torokhov@gmail.com>
-Subject: Re: [PATCH 2/3] dt-bindings: input: convert cros-ec-keyb to
- json-schema
-Message-ID: <20201005093514.kvgniedeu2ltj3pp@rcn-XPS-13-9360>
-References: <20201005071403.17450-1-ricardo.canuelo@collabora.com>
- <20201005071403.17450-3-ricardo.canuelo@collabora.com>
- <3f30a00e-8b1c-4ac7-c5ed-8f23c7af9af0@collabora.com>
+        id S1725922AbgJEJkZ (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Mon, 5 Oct 2020 05:40:25 -0400
+Received: from out1-smtp.messagingengine.com ([66.111.4.25]:57895 "EHLO
+        out1-smtp.messagingengine.com" rhost-flags-OK-OK-OK-OK)
+        by vger.kernel.org with ESMTP id S1725887AbgJEJkZ (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Mon, 5 Oct 2020 05:40:25 -0400
+Received: from compute6.internal (compute6.nyi.internal [10.202.2.46])
+        by mailout.nyi.internal (Postfix) with ESMTP id B75045C0078;
+        Mon,  5 Oct 2020 05:40:23 -0400 (EDT)
+Received: from mailfrontend1 ([10.202.2.162])
+  by compute6.internal (MEProxy); Mon, 05 Oct 2020 05:40:23 -0400
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=cerno.tech; h=
+        date:from:to:cc:subject:message-id:references:mime-version
+        :content-type:in-reply-to; s=fm1; bh=UHNtaHVM18Po1ku1s/cSW2/azyD
+        NvLkXptM713fZpLg=; b=jwhSFG1tDF9gh7ZxtoLOKxRhdQ2ock/dA6wLnl5xidw
+        cSBvEYnQL/kcYtk4a6GBNj2EcHBEjbC0iGFP6f+xD+sI9oPafaDjcno8VrEx1n1t
+        6TGn2tyNcByTpcn1blg6JOlCBbeggHS9Yoos+5P1/XoLwO+YnKI1dVevzjRJm/Gy
+        t7gDHI48ADWNF8sc70Ycbo/k7GvkLg9QJWG+dx1DaCCt/T3EO3WloWrr4ZO92vhB
+        hPrJr7ONaPMSdTI9QaxiLYOGDxef8OvkCg1y1rXiHscqgiRYAWTXLzstRtXHGj2B
+        C+QI2eBAo+TXlTrmg7uzXZtCGTV2kyWvP8o4Lx1M5kA==
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=
+        messagingengine.com; h=cc:content-type:date:from:in-reply-to
+        :message-id:mime-version:references:subject:to:x-me-proxy
+        :x-me-proxy:x-me-sender:x-me-sender:x-sasl-enc; s=fm1; bh=UHNtaH
+        VM18Po1ku1s/cSW2/azyDNvLkXptM713fZpLg=; b=dtIMLXwNtRFO/gyQVk2RF9
+        FGDxP7WraMZOWtkqFECPGQV1PmSUBogX0hjEF/9aUmLDeFRXdJTdzG2nYmTWd8mT
+        Tt3VXDOJNbSWpERX9vC31rAy9jbWVcwwFPjMRJs7Jl5dIgM7BN5y9j4SEu9Y6p0u
+        lNwhNkvQEZ9l6AChr/Yv5s9PBn2ggJnbYPpUsJEgdVjD+ZYJ8nbRPqPkQEmuRhur
+        jC1Q93ENc8lGrjpYTCJwwCV9M7dMztAr8kPlGGfyAjEm6zUAcNIhfcrZMPKXz2Oz
+        ywV7ePBejI7ecEsTZ7WMDqeg5PsgbJum6IzOpfnRpdnwI66iWk0oNYpkOZQFu9IA
+        ==
+X-ME-Sender: <xms:Bup6X7nrX_0xamNBV9M3BJ4yypdqR7vdOTz_M8Z5lLt_Z-FolUcUkA>
+    <xme:Bup6X-2vIRSz5mSVSiYPxpBj-LDh7xT84mBwXesKLuIHcnOBEkgDO7e6-ryRw9zSA
+    rur15yqtio8pjU2UbU>
+X-ME-Proxy-Cause: gggruggvucftvghtrhhoucdtuddrgedujedrgedvgddvtdcutefuodetggdotefrodftvf
+    curfhrohhfihhlvgemucfhrghsthforghilhdpqfgfvfdpuffrtefokffrpgfnqfghnecu
+    uegrihhlohhuthemuceftddtnecusecvtfgvtghiphhivghnthhsucdlqddutddtmdenuc
+    fjughrpeffhffvuffkfhggtggujgesghdtreertddtudenucfhrhhomhepofgrgihimhgv
+    ucftihhprghrugcuoehmrgigihhmvgestggvrhhnohdrthgvtghhqeenucggtffrrghtth
+    gvrhhnpeduvdduhfekkeehgffftefflefgffdtheffudffgeevteffheeuiedvvdejvdfg
+    veenucfkphepledtrdekledrieekrdejieenucevlhhushhtvghrufhiiigvpedtnecurf
+    grrhgrmhepmhgrihhlfhhrohhmpehmrgigihhmvgestggvrhhnohdrthgvtghh
+X-ME-Proxy: <xmx:B-p6XxouQ4JjjjCXfnrlo9LowjBK020ydakbMxObREqw1bRmRHR7Mg>
+    <xmx:B-p6Xzlp4SL05zHOe77kWwTc8HUfolZ-25sROUrtM-He_fUIDgiU0g>
+    <xmx:B-p6X53HUgmpzRPmawEyRuF1WtzcChyfRdDBJY2x7Ozg6qlQTpg9wg>
+    <xmx:B-p6XyzIn4Nw_EoPKBiAVUTPU04ME0312s7y5hNepVP3nitwvpjKDQ>
+Received: from localhost (lfbn-tou-1-1502-76.w90-89.abo.wanadoo.fr [90.89.68.76])
+        by mail.messagingengine.com (Postfix) with ESMTPA id B10033280063;
+        Mon,  5 Oct 2020 05:40:22 -0400 (EDT)
+Date:   Mon, 5 Oct 2020 11:40:21 +0200
+From:   Maxime Ripard <maxime@cerno.tech>
+To:     =?utf-8?B?Q2zDqW1lbnQgUMOpcm9u?= <peron.clem@gmail.com>
+Cc:     Rob Herring <robh+dt@kernel.org>, Chen-Yu Tsai <wens@csie.org>,
+        devicetree@vger.kernel.org, linux-arm-kernel@lists.infradead.org,
+        linux-kernel@vger.kernel.org
+Subject: Re: [PATCH] ARM: dts: sun4i-a10: fix cpu_alert temperature
+Message-ID: <20201005094021.czx5nryu7hcwckni@gilmour.lan>
+References: <20201003100332.431178-1-peron.clem@gmail.com>
 MIME-Version: 1.0
-Content-Type: text/plain; charset=utf-8
+Content-Type: multipart/signed; micalg=pgp-sha256;
+        protocol="application/pgp-signature"; boundary="kqznxsxruwtsckix"
 Content-Disposition: inline
-In-Reply-To: <3f30a00e-8b1c-4ac7-c5ed-8f23c7af9af0@collabora.com>
-User-Agent: NeoMutt/20171215
+In-Reply-To: <20201003100332.431178-1-peron.clem@gmail.com>
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-Hi Enric,
 
-Thanks for reviewing the patch and for your suggestions. I'll prepare a
-new series with the fixes.
+--kqznxsxruwtsckix
+Content-Type: text/plain; charset=iso-8859-1
+Content-Disposition: inline
+Content-Transfer-Encoding: quoted-printable
 
-On lun 05-10-2020 11:03:54, Enric Balletbo i Serra wrote:
-> Note that there was already an attempt for this here [1]. So I think you should
-> address those comments too.
-> 
-> cc'ing Dmitry as he is the input maintainer.
-> 
-> [1] https://patchwork.kernel.org/patch/11350059/
+On Sat, Oct 03, 2020 at 12:03:32PM +0200, Cl=E9ment P=E9ron wrote:
+> When running dtbs_check thermal_zone warn about the
+> temperature declared.
+>=20
+> thermal-zones: cpu-thermal:trips:cpu-alert0:temperature:0:0: 850000 is gr=
+eater than the maximum of 200000
+>=20
+> It's indeed wrong the real value is 85=B0C and not 850=B0C.
+>=20
+> Signed-off-by: Cl=E9ment P=E9ron <peron.clem@gmail.com>
 
-Thanks, I wasn't aware of that.
+Applied, thanks!
+Maxime
 
-> > +unevaluatedProperties: false
-> > +
-> 
-> Not sure about unevaluatedProperties does here, I might miss something. But,
-> shouldn't you add `additionalProperties: false` instead?
+--kqznxsxruwtsckix
+Content-Type: application/pgp-signature; name="signature.asc"
 
-The idea of using this came from
-Documentation/devicetree/bindings/example-schema.yaml, when it explains
-the "additionalProperties: false" line:
+-----BEGIN PGP SIGNATURE-----
 
-    This can't be used in cases where another schema is referenced
-    (i.e. allOf: [{$ref: ...}]).  If and only if another schema is
-    referenced and arbitrary children nodes can appear,
-    "unevaluatedProperties: false" could be used.  Typical example is
-    I2C controller where no name pattern matching for children can be
-    added.
+iHUEABYIAB0WIQRcEzekXsqa64kGDp7j7w1vZxhRxQUCX3rqBQAKCRDj7w1vZxhR
+xdmEAQDyTGVDxFy25Vpmyy+kWvmeXSoWDz5mYJpdfsbIRprvXwD9EMsyGefobgSn
+soA5/dC86PLdMGChzMmdBd8WiK7WdA4=
+=NljJ
+-----END PGP SIGNATURE-----
 
-This binding references matrix-keymap.yaml and it may use some
-properties defined in it (although they're not
-subnodes). bindings/input/imx-keypad.yaml does the same.
-
-The alternative would be to define "additionalProperties: false" and
-redefine the matrix-keymap properties used in this binding too
-(keypad,num-rows keypad,num-columns and linux,keymap). Or to ditch
-"additionalProperties: false" altogether, but I don't think that's a
-proper solution.
-
-> > +examples:
-> > +  - |
-> > +    cros-ec-keyb {
-> 
-> The keyboard controller is always a subnode inside the cros_ec, please use a
-> complete example.
-
-Ok, I'll do that.
-
-Cheers,
-Ricardo
+--kqznxsxruwtsckix--
