@@ -2,141 +2,96 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from vger.kernel.org (vger.kernel.org [23.128.96.18])
-	by mail.lfdr.de (Postfix) with ESMTP id E0256283F24
-	for <lists+devicetree@lfdr.de>; Mon,  5 Oct 2020 20:57:45 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTP id 0B1E0283F52
+	for <lists+devicetree@lfdr.de>; Mon,  5 Oct 2020 21:09:54 +0200 (CEST)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S1726830AbgJES5d (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Mon, 5 Oct 2020 14:57:33 -0400
-Received: from mail.kernel.org ([198.145.29.99]:59696 "EHLO mail.kernel.org"
-        rhost-flags-OK-OK-OK-OK) by vger.kernel.org with ESMTP
-        id S1726657AbgJES5d (ORCPT <rfc822;devicetree@vger.kernel.org>);
-        Mon, 5 Oct 2020 14:57:33 -0400
-Received: from mail-oi1-f175.google.com (mail-oi1-f175.google.com [209.85.167.175])
-        (using TLSv1.2 with cipher ECDHE-RSA-AES128-GCM-SHA256 (128/128 bits))
-        (No client certificate requested)
-        by mail.kernel.org (Postfix) with ESMTPSA id 0F5E220FC3;
-        Mon,  5 Oct 2020 18:57:32 +0000 (UTC)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=kernel.org;
-        s=default; t=1601924252;
-        bh=5sBlf2EPxcY+i8bwPmBW/rVdcSRu5idEAY1UAVMD3lY=;
-        h=References:In-Reply-To:From:Date:Subject:To:Cc:From;
-        b=I2D+EipKP0omGz0Ld3Luie8tPjs8y+9S4HKFn4ya6Q50+mBz4Dq9HHdE9LRbCy1Kb
-         bd1O09H814/GO7oBRkovr7Ha3bbtMVhuAJn6k7VJiySYzrXjLC0oxygyLdqK4btkh7
-         keddtmnyNEIwAo8gg0gqcRkxXyEf8Cdgx4Cvlz9w=
-Received: by mail-oi1-f175.google.com with SMTP id 16so2145303oix.9;
-        Mon, 05 Oct 2020 11:57:32 -0700 (PDT)
-X-Gm-Message-State: AOAM5312HWpoOejP3wsPplTz14St/U41ibgPlE7YtEb5PALqANP1uckq
-        I0CpzfdVM9rFlcfiLfSx2AU85VOjXJtsqkThjg==
-X-Google-Smtp-Source: ABdhPJyXdcSo2Li4laYJlNMKjj8n6wrlDkVCgB3+NRhqSkW2Z9SImOMNHT5VmWucvZaU5k4QlTl/x8x+pbU+t/xixj8=
-X-Received: by 2002:a54:4f89:: with SMTP id g9mr492047oiy.106.1601924251431;
- Mon, 05 Oct 2020 11:57:31 -0700 (PDT)
+        id S1727714AbgJETJw (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Mon, 5 Oct 2020 15:09:52 -0400
+Received: from lindbergh.monkeyblade.net ([23.128.96.19]:54790 "EHLO
+        lindbergh.monkeyblade.net" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
+        with ESMTP id S1726657AbgJETJw (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Mon, 5 Oct 2020 15:09:52 -0400
+Received: from mail-wm1-x344.google.com (mail-wm1-x344.google.com [IPv6:2a00:1450:4864:20::344])
+        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 5D8E6C0613CE;
+        Mon,  5 Oct 2020 12:09:52 -0700 (PDT)
+Received: by mail-wm1-x344.google.com with SMTP id p15so576593wmi.4;
+        Mon, 05 Oct 2020 12:09:52 -0700 (PDT)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+        d=gmail.com; s=20161025;
+        h=from:to:cc:subject:date:message-id:mime-version
+         :content-transfer-encoding;
+        bh=Nc/EoWSskfJwFiPqwL0OQo4dD0QX3BcE0Pr9s1Q9WEU=;
+        b=X8u/q3gLehIM1K5Gk2w7zWIotH1xU0VjCs36cpIivMarOSBHyWFeMrgN1swQBcCU/m
+         bzyPfCz64Cv3mGOKSpq7pHI6z60ZZq6kspsZ+ilmXrLgBwOvWlhCh+nGJjnDG0FqOUY0
+         yNgnBi8umO2oIpYfkN8dK12AwsoU/UfDOaD8qUEbT65PsVPRrvTkd/ZlkR+dQXWWBVAd
+         lPWzzGhgCc6KqPwR0Vm0CmUVtp8PF4cgqy/MMu/heOYph+AnE9/YauSXOwhi/2x7tB1E
+         YtT7P9jjAc3u3hrSmyfmMzdt6JEpxM77gqoY76UFoltp/1ChbIUxep143nK64lNCkeuc
+         RCmQ==
+X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+        d=1e100.net; s=20161025;
+        h=x-gm-message-state:from:to:cc:subject:date:message-id:mime-version
+         :content-transfer-encoding;
+        bh=Nc/EoWSskfJwFiPqwL0OQo4dD0QX3BcE0Pr9s1Q9WEU=;
+        b=YFNZzmb57hSujpfssowEqDA+LQE355bniuVu4gJFPWzDUluRyheIjqZ7gfO4EsKQVn
+         stsDhVkxCksCIf1AXrRITgY9iGCfQthrrw3TQYZF23P4noDVJBw7h2JiecAqOa8XwPDP
+         QBgsBMPEZL6uCICo92ptcFXvc+rXW1MtQqyPgsWtBvvtxu6Q5eS3uCQe6pxTS0TBTFz8
+         cLvXza+80DvxCwAzYMcjAbm0edRdkW0RRdMaIV+eYqMGSh4DaaPmLHqwoulHX4mR/t5V
+         lW0THjiHZ6Z3kQKY/48M4E9bEZjtGleHwbE3iOBx+BJ1EZki5acDtwHgBmoXiBQsKHVi
+         EDHg==
+X-Gm-Message-State: AOAM531fOMoV/5uxMk73ipqhZ1pouw9DqJHGQEK8kuJnqXJc8zPJQAQi
+        wqbdxNSARvjx/DIzA1cru2U=
+X-Google-Smtp-Source: ABdhPJz7v8BcJ5QlHjdc0rMtUeLTUeLkqK5T44k5Odo5n2379Mr3PpcHv9UKYsIli0dKdWFWPjdzeg==
+X-Received: by 2002:a1c:2901:: with SMTP id p1mr865861wmp.170.1601924990861;
+        Mon, 05 Oct 2020 12:09:50 -0700 (PDT)
+Received: from clement-Latitude-7490.numericable.fr (213-245-241-245.rev.numericable.fr. [213.245.241.245])
+        by smtp.gmail.com with ESMTPSA id i33sm1195402wri.79.2020.10.05.12.09.49
+        (version=TLS1_3 cipher=TLS_AES_256_GCM_SHA384 bits=256/256);
+        Mon, 05 Oct 2020 12:09:50 -0700 (PDT)
+From:   =?UTF-8?q?Cl=C3=A9ment=20P=C3=A9ron?= <peron.clem@gmail.com>
+To:     Maxime Ripard <mripard@kernel.org>
+Cc:     Yangtao Li <frank@allwinnertech.com>,
+        =?UTF-8?q?Cl=C3=A9ment=20P=C3=A9ron?= <peron.clem@gmail.com>,
+        Linus Walleij <linus.walleij@linaro.org>,
+        Rob Herring <robh+dt@kernel.org>, Chen-Yu Tsai <wens@csie.org>,
+        linux-gpio@vger.kernel.org, devicetree@vger.kernel.org,
+        linux-arm-kernel@lists.infradead.org, linux-kernel@vger.kernel.org
+Subject: [PATCH] dt-bindings: pinctrl: sunxi: Allow pinctrl with more interrupt banks
+Date:   Mon,  5 Oct 2020 21:09:39 +0200
+Message-Id: <20201005190939.21016-1-peron.clem@gmail.com>
+X-Mailer: git-send-email 2.25.1
 MIME-Version: 1.0
-References: <20201004055024.23542-1-phil.chang@mediatek.com>
- <CAAOTY_8vCb-adkbpdmbTWLeOFt-+dHjr4HVonHX7XPkLkzy1yA@mail.gmail.com> <1601918237.17256.3.camel@mtksdccf07>
-In-Reply-To: <1601918237.17256.3.camel@mtksdccf07>
-From:   Rob Herring <robh+dt@kernel.org>
-Date:   Mon, 5 Oct 2020 13:57:20 -0500
-X-Gmail-Original-Message-ID: <CAL_JsqJQcWsguwfehAoaRf4o-2VqXxSzKzTqg7s4+N1bp=6V5Q@mail.gmail.com>
-Message-ID: <CAL_JsqJQcWsguwfehAoaRf4o-2VqXxSzKzTqg7s4+N1bp=6V5Q@mail.gmail.com>
-Subject: Re: [PATCH] [PATCH] of_reserved_mem: Increase the number of reserved regions
-To:     Phil Chang <phil.chang@mediatek.com>
-Cc:     Chun-Kuang Hu <chunkuang.hu@kernel.org>,
-        Linux ARM <linux-arm-kernel@lists.infradead.org>,
-        DTML <devicetree@vger.kernel.org>,
-        Alix Wu <alix.wu@mediatek.com>,
-        YJ Chiang <yj.chiang@mediatek.com>,
-        linux-kernel <linux-kernel@vger.kernel.org>,
-        "moderated list:ARM/Mediatek SoC support" 
-        <linux-mediatek@lists.infradead.org>,
-        Matthias Brugger <matthias.bgg@gmail.com>,
-        Joe Liu <joe.liu@mediatek.com>,
-        Frank Rowand <frowand.list@gmail.com>
-Content-Type: text/plain; charset="UTF-8"
-Content-Transfer-Encoding: quoted-printable
+Content-Type: text/plain; charset=UTF-8
+Content-Transfer-Encoding: 8bit
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-On Mon, Oct 5, 2020 at 12:17 PM Phil Chang <phil.chang@mediatek.com> wrote:
->
-> Hi Chun-Kuang
+Recently introduced Allwinner A100 pinctrl block has 7 interrupts.
 
-Please don't top post to the lists.
+This trig a warning when running dtb_checks:
+sun50i-a100-allwinner-perf1.dt.yaml: pinctrl@300b000: interrupts: [...] is too long
+	From schema: .../allwinner,sun4i-a10-pinctrl.yaml
 
-> Sorry for typo. In fact, the dts of new SoC is not upstream yet. I'm so
-> sorry for couldn't show the detail now.
+Fix this by allowing up to 7 interrupts.
 
-Don't have to have the dts upstream. Can you point to a downstream dts
-or post a snippet of the reserved memory?
+Signed-off-by: Clément Péron <peron.clem@gmail.com>
+---
+ .../bindings/pinctrl/allwinner,sun4i-a10-pinctrl.yaml           | 2 +-
+ 1 file changed, 1 insertion(+), 1 deletion(-)
 
-> How about the configurable MAX_RESERVED_REGIONS size like this patch?
-> https://patchwork.kernel.org/patch/10692101/
+diff --git a/Documentation/devicetree/bindings/pinctrl/allwinner,sun4i-a10-pinctrl.yaml b/Documentation/devicetree/bindings/pinctrl/allwinner,sun4i-a10-pinctrl.yaml
+index 34a17d5c6135..5240487dfe50 100644
+--- a/Documentation/devicetree/bindings/pinctrl/allwinner,sun4i-a10-pinctrl.yaml
++++ b/Documentation/devicetree/bindings/pinctrl/allwinner,sun4i-a10-pinctrl.yaml
+@@ -61,7 +61,7 @@ properties:
+ 
+   interrupts:
+     minItems: 1
+-    maxItems: 5
++    maxItems: 7
+     description:
+       One interrupt per external interrupt bank supported on the
+       controller, sorted by bank number ascending order.
+-- 
+2.25.1
 
-No, as I already said in that patch. But glad you found what's needed
-to make it dynamic. But even for dynamic, I want to understand the
-use.
-
-Rob
-
->
->
-> On Sun, 2020-10-04 at 21:05 +0800, Chun-Kuang Hu wrote:
-> > Hi, Phil:
-> >
-> > Phil Chang <phil.chang@mediatek.com> =E6=96=BC 2020=E5=B9=B410=E6=9C=88=
-4=E6=97=A5 =E9=80=B1=E6=97=A5 =E4=B8=8B=E5=8D=881:51=E5=AF=AB=E9=81=93=EF=
-=BC=9A
-> > >
-> > > Certain SoCs need to support large amount of reserved memory
-> > > regions, especially to follow the GKI rules from Google.
-> > > In MTK new SoC requires more than 68 regions of reserved memory
-> > > for each IP's usage, such as load firmware to specific sapce,
-> >
-> > space
-> >
-> > > so that need to reserve more regisions
-> >
-> > regions.
-> >
-> > I guess this requirement is from Mediatek SoC, but I find below device
-> > tree and just find one reserved memory region,
-> >
-> > arch/arm64/boot/dts/mediatek/mt7622.dtsi
-> > arch/arm64/boot/dts/mediatek/mt8173.dtsi
-> > arch/arm64/boot/dts/mediatek/mt8516.dtsi
-> >
-> > Could you show me the 68 regions?
-> >
-> > Regards,
-> > Chun-Kuang.
-> >
-> > >
-> > > Signed-off-by: Joe Liu <joe.liu@mediatek.com>
-> > > Signed-off-by: YJ Chiang <yj.chiang@mediatek.com>
-> > > Signed-off-by: Alix Wu <alix.wu@mediatek.com>
-> > > Signed-off-by: Phil Chang <phil.chang@mediatek.com>
-> > > ---
-> > >  drivers/of/of_reserved_mem.c | 2 +-
-> > >  1 file changed, 1 insertion(+), 1 deletion(-)
-> > >
-> > > diff --git a/drivers/of/of_reserved_mem.c b/drivers/of/of_reserved_me=
-m.c
-> > > index 46b9371c8a33..595f0741dcef 100644
-> > > --- a/drivers/of/of_reserved_mem.c
-> > > +++ b/drivers/of/of_reserved_mem.c
-> > > @@ -22,7 +22,7 @@
-> > >  #include <linux/slab.h>
-> > >  #include <linux/memblock.h>
-> > >
-> > > -#define MAX_RESERVED_REGIONS   64
-> > > +#define MAX_RESERVED_REGIONS   128
-> > >  static struct reserved_mem reserved_mem[MAX_RESERVED_REGIONS];
-> > >  static int reserved_mem_count;
-> > >
-> > > --
-> > > 2.18.0
-> > > _______________________________________________
-> > > Linux-mediatek mailing list
-> > > Linux-mediatek@lists.infradead.org
-> > > http://lists.infradead.org/mailman/listinfo/linux-mediatek
->
