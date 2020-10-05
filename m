@@ -2,164 +2,90 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from vger.kernel.org (vger.kernel.org [23.128.96.18])
-	by mail.lfdr.de (Postfix) with ESMTP id EA42E282F03
-	for <lists+devicetree@lfdr.de>; Mon,  5 Oct 2020 05:07:50 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTP id 33FE0282F32
+	for <lists+devicetree@lfdr.de>; Mon,  5 Oct 2020 06:07:54 +0200 (CEST)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S1725863AbgJEDHt (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Sun, 4 Oct 2020 23:07:49 -0400
-Received: from lindbergh.monkeyblade.net ([23.128.96.19]:47190 "EHLO
+        id S1725869AbgJEEHs (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Mon, 5 Oct 2020 00:07:48 -0400
+Received: from lindbergh.monkeyblade.net ([23.128.96.19]:56308 "EHLO
         lindbergh.monkeyblade.net" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S1725841AbgJEDHt (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Sun, 4 Oct 2020 23:07:49 -0400
-Received: from mail-ed1-x542.google.com (mail-ed1-x542.google.com [IPv6:2a00:1450:4864:20::542])
-        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id F2E3EC0613A5
-        for <devicetree@vger.kernel.org>; Sun,  4 Oct 2020 20:07:48 -0700 (PDT)
-Received: by mail-ed1-x542.google.com with SMTP id n22so7700679edt.4
-        for <devicetree@vger.kernel.org>; Sun, 04 Oct 2020 20:07:48 -0700 (PDT)
+        with ESMTP id S1725844AbgJEEHs (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Mon, 5 Oct 2020 00:07:48 -0400
+Received: from mail-pg1-x542.google.com (mail-pg1-x542.google.com [IPv6:2607:f8b0:4864:20::542])
+        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id CAEA2C0613A6;
+        Sun,  4 Oct 2020 21:07:32 -0700 (PDT)
+Received: by mail-pg1-x542.google.com with SMTP id y14so5142864pgf.12;
+        Sun, 04 Oct 2020 21:07:32 -0700 (PDT)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=google.com; s=20161025;
-        h=mime-version:references:in-reply-to:from:date:message-id:subject:to
-         :cc;
-        bh=uT8eBmZAqAJJEsDETrljz3PEL4hvmZF2Cp5EfH9iMro=;
-        b=FZnenUBZkR5/srG/i1tklrh+dgQj/7iCDNZNFSp2gchwIc4kWqSXuplT3kXQWR4GWT
-         nuUcUqBPAR463D9bC67rLHycs8UE7FIb/vK/zEgLhGK7vuV7OOSjN60qy2/yMEzzEv09
-         xzYhs0elSJ4cbXQbnmShHO2doSN7qBRkgkOMGjE32n+KTWFa8q4hy9POz9qvydWfM3wV
-         5I6bjSN2A38mcRvRuF/KbXZcEwPZ38r+sr8OLcBENFgWdMKrLYOwNpmnjdWRIOc2kUUq
-         mZEFK/UG6i0HmWfj6NZxe2iSW/cd0+ZXM1P4Xz+WQ25v0xlmUBy7hehWhWa5wkn3ueuv
-         OEVw==
+        d=gmail.com; s=20161025;
+        h=date:from:to:cc:subject:message-id:references:mime-version
+         :content-disposition:in-reply-to;
+        bh=kR14db6Ki5aihI8usj3ZmbgmzWosbU7rqzy9hS9hMQg=;
+        b=lyffoknSw5PBKePgYqy/rffojx8eMHQbUamKEQMVfWodEcSV0KocKRhzqkZBKfBV7i
+         08UsBBLfqqrEnvoR7sB94CADgBc6MOSM0FqRn1kirij/0bV6vv/0eYG6lqzCGk3Yj+Xh
+         MffdN6t6RYa7x/HrIfXzL4oTqLtcV19fYtF3ns+uixO4BaB4ACMt2umufMIBYsWdHGzq
+         BiUZC/bPO+A14mG72+LjlqbEOUM+5KPVX2Uy1fj0x2FKQ43Pi+wNsFitfIf9fzExrK0z
+         I7fhFM3RnqlVOahrz0jPczoom3GbLCcvjqlf3Bh5NbuFfwhrVKwFp0RtnfymKmmVl1WV
+         9iTQ==
 X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
         d=1e100.net; s=20161025;
-        h=x-gm-message-state:mime-version:references:in-reply-to:from:date
-         :message-id:subject:to:cc;
-        bh=uT8eBmZAqAJJEsDETrljz3PEL4hvmZF2Cp5EfH9iMro=;
-        b=slS0bch1NzANvTPsu7TyfR18JSyqZTqTApo8GI1kvEzzsObq8LpySwnwj7WGsc/5lY
-         /bP5o2PU653yB1/98K7nsXJ6ijtIELzC5HPNl7PRDAOpePZdnFHl/7u760jKIyEqH0Qq
-         BTZ/q1llyWcRgfo98aTJzD/BFPMyC8SgBM0AiHAmZ3qfyh5pLz//6WESOatc3IEiTGuK
-         itJDnl0WfxCbwI49vu6pf6hfil/pYWHNdcFMUYggh87a9PUf+MnHu18POlOdn3G+rxrJ
-         9+6BzjN469N/8o7piM3nTDPBte0by0EvET41cQF6GmEefpl3t8WC5irGeJZimALMFQnk
-         rK1A==
-X-Gm-Message-State: AOAM5323KpoQfq1JM4dTjsDIt9ZApDzLFrHA2QkbMeo6xqFU3cg3lj3I
-        RHlyOIfG5CAIjS+CRrQRSImHugl8MdQcZIhR2epawA==
-X-Google-Smtp-Source: ABdhPJyiHYoWxb75JlXnvyI+r40RWo4/rUWvWOoBwuuStjJ4Ut9bCfRyWWdZ8apTr71La2o6cqiks3+W3pUiGae+qT0=
-X-Received: by 2002:a05:6402:32f:: with SMTP id q15mr5789731edw.230.1601867267305;
- Sun, 04 Oct 2020 20:07:47 -0700 (PDT)
+        h=x-gm-message-state:date:from:to:cc:subject:message-id:references
+         :mime-version:content-disposition:in-reply-to;
+        bh=kR14db6Ki5aihI8usj3ZmbgmzWosbU7rqzy9hS9hMQg=;
+        b=FJdk+iKpaLh5Codl9KAyDktrQ5Mkn6/3NLdE2GKmLgwZfibLppY0cDkwUWQ6OHDbVw
+         4wyvVygTnAFVyZDo1dJYrgk/iz1UNONWkQaaWc4BkekD9Djyu0XKef8xxgJMhBpeuzxn
+         h48PsVDR3B684uwg6VbhLnOY7RXNMLWPYrxx/EIU4KtgmkPf8iqav+qgRmxUlgodYvld
+         t09IkXO1K20Ek8tlLo88naWsxdf3Wj2NQvFGcJyXvbNNw2R/+gFGg6gpI8mXShqIRPf/
+         MGzXtDl7rDFoplww+p32T/jBP/CpSnlna4t9QP/KsyPqIrqC1ji9hrWXvXW8AVlirTyo
+         Wppw==
+X-Gm-Message-State: AOAM5309Y/+gmd8G4sU6fF8PR8IQJuuNvoWxDUrM1nl643p6xAUDHmA6
+        e9k4BoBlwqed4eF7orkOW/0=
+X-Google-Smtp-Source: ABdhPJyZCBvYuuJGpF4w0tC9WlE3yjY1sXSQX+rnSwaYy3cxdFZdkYLZlkS4vydGJkiCx99lvuedPA==
+X-Received: by 2002:a62:e404:0:b029:150:7d36:cd88 with SMTP id r4-20020a62e4040000b02901507d36cd88mr14939471pfh.24.1601870852233;
+        Sun, 04 Oct 2020 21:07:32 -0700 (PDT)
+Received: from dtor-ws ([2620:15c:202:201:a6ae:11ff:fe11:fcc3])
+        by smtp.gmail.com with ESMTPSA id t15sm21767139pjq.3.2020.10.04.21.07.31
+        (version=TLS1_3 cipher=TLS_AES_256_GCM_SHA384 bits=256/256);
+        Sun, 04 Oct 2020 21:07:31 -0700 (PDT)
+Date:   Sun, 4 Oct 2020 21:07:29 -0700
+From:   Dmitry Torokhov <dmitry.torokhov@gmail.com>
+To:     michael.srba@seznam.cz
+Cc:     Rob Herring <robh+dt@kernel.org>,
+        Henrik Rydberg <rydberg@bitmath.org>,
+        Sam Ravnborg <sam@ravnborg.org>,
+        Linus Walleij <linus.walleij@linaro.org>,
+        Stephan Gerhold <stephan@gerhold.net>,
+        Paul Burton <paulburton@kernel.org>,
+        Heiko Stuebner <heiko.stuebner@theobroma-systems.com>,
+        Lubomir Rintel <lkundrak@v3.sk>,
+        Kamlesh Gurudasani <kamlesh.gurudasani@gmail.com>,
+        Mark Brown <broonie@kernel.org>,
+        Krzysztof Kozlowski <krzk@kernel.org>,
+        linux-input@vger.kernel.org, devicetree@vger.kernel.org,
+        ~postmarketos/upstreaming@lists.sr.ht,
+        Rob Herring <robh@kernel.org>
+Subject: Re: [PATCH v6 2/2] dt-bindings: input/touchscreen: add bindings for
+ zinitix
+Message-ID: <20201005040729.GF1009802@dtor-ws>
+References: <20201001122949.16846-1-michael.srba@seznam.cz>
+ <20201001122949.16846-2-michael.srba@seznam.cz>
 MIME-Version: 1.0
-References: <20201004031445.2321090-1-linchuyuan@google.com>
- <20201004031445.2321090-3-linchuyuan@google.com> <20201004154345.GA110630@roeck-us.net>
-In-Reply-To: <20201004154345.GA110630@roeck-us.net>
-From:   Chu Lin <linchuyuan@google.com>
-Date:   Sun, 4 Oct 2020 20:07:36 -0700
-Message-ID: <CAKCA56AenkTvWrNkLvJSfSC6z0kCcB=YeKA2yX69uLgF+nASbA@mail.gmail.com>
-Subject: Re: [PATCH v4 2/2] hwmon: pmbus: max20730: adjust the vout reading
- given voltage divider
-To:     Guenter Roeck <linux@roeck-us.net>
-Cc:     jdelvare@suse.com, robh+dt@kernel.org, linux-hwmon@vger.kernel.org,
-        devicetree@vger.kernel.org, linux-kernel@vger.kernel.org
-Content-Type: text/plain; charset="UTF-8"
+Content-Type: text/plain; charset=us-ascii
+Content-Disposition: inline
+In-Reply-To: <20201001122949.16846-2-michael.srba@seznam.cz>
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-On Sun, Oct 4, 2020 at 8:43 AM Guenter Roeck <linux@roeck-us.net> wrote:
->
-> On Sun, Oct 04, 2020 at 03:14:45AM +0000, Chu Lin wrote:
-> > Problem:
-> > We use voltage dividers so that the voltage presented at the voltage
-> > sense pins is confusing. We might need to convert these readings to more
-> > meaningful readings given the voltage divider.
-> >
-> > Solution:
-> > Read the voltage divider resistance from dts and convert the voltage
-> > reading to a more meaningful reading.
-> >
-> > Testing:
-> > max20730 with voltage divider
-> >
-> > Signed-off-by: Chu Lin <linchuyuan@google.com>
-> > ---
-> > ChangeLog v1 -> v2
-> >   hwmon: pmbus: max20730:
-> >   - Don't do anything to the ret if an error is returned from pmbus_read_word
-> >   - avoid overflow when doing multiplication
-> >
-> > ChangeLog v2 -> v3
-> >   dt-bindings: hwmon: max20730:
-> >   - Provide the binding documentation in yaml format
-> >   hwmon: pmbus: max20730:
-> >   - No change
-> >
-> > ChangeLog v3 -> v4
-> >   dt-bindings: hwmon: max20730:
-> >   - Fix highefficiency to high efficiency in description
-> >   - Fix presents to present in vout-voltage-divider
-> >   - Add additionalProperties: false
-> >   hwmon: pmbus: max20730:
-> >   - No change
->
-> You claim that there have been no changes since v2 of this patch,
-> yet you dropped my Reviewed-by: tag. Any reason ?
->
-> Guenter
-Sorry for the confusion. I thought I can't tag the patch with the Review-by tag.
-Just to make sure I do correctly next time, once you tagged a certain
-patch in the batch
-If there is no change from version to version for this patch, I should
-carry the tags when
-submitting new revisions. Also, please let me know what is the best
-way to fix this revision?
-Should I submit a new V5 with the tag attached?
+On Thu, Oct 01, 2020 at 02:29:49PM +0200, michael.srba@seznam.cz wrote:
+> From: Michael Srba <Michael.Srba@seznam.cz>
+> 
+> This patch adds dts bindings for the zinitix bt541 touchscreen.
+> 
+> Signed-off-by: Michael Srba <Michael.Srba@seznam.cz>
+> Reviewed-by: Rob Herring <robh@kernel.org>
 
-Sincerely,
-Chu
+Applied, thank you.
 
->
-> >
-> >  drivers/hwmon/pmbus/max20730.c | 18 ++++++++++++++++++
-> >  1 file changed, 18 insertions(+)
-> >
-> > diff --git a/drivers/hwmon/pmbus/max20730.c b/drivers/hwmon/pmbus/max20730.c
-> > index a151a2b588a5..fbf2f1e6c969 100644
-> > --- a/drivers/hwmon/pmbus/max20730.c
-> > +++ b/drivers/hwmon/pmbus/max20730.c
-> > @@ -31,6 +31,7 @@ struct max20730_data {
-> >       struct pmbus_driver_info info;
-> >       struct mutex lock;      /* Used to protect against parallel writes */
-> >       u16 mfr_devset1;
-> > +     u32 vout_voltage_divider[2];
-> >  };
-> >
-> >  #define to_max20730_data(x)  container_of(x, struct max20730_data, info)
-> > @@ -114,6 +115,14 @@ static int max20730_read_word_data(struct i2c_client *client, int page,
-> >               max_c = max_current[data->id][(data->mfr_devset1 >> 5) & 0x3];
-> >               ret = val_to_direct(max_c, PSC_CURRENT_OUT, info);
-> >               break;
-> > +     case PMBUS_READ_VOUT:
-> > +             ret = pmbus_read_word_data(client, page, phase, reg);
-> > +             if (ret > 0 && data->vout_voltage_divider[0] && data->vout_voltage_divider[1]) {
-> > +                     u64 temp = DIV_ROUND_CLOSEST_ULL((u64)ret * data->vout_voltage_divider[1],
-> > +                                                      data->vout_voltage_divider[0]);
-> > +                     ret = clamp_val(temp, 0, 0xffff);
-> > +             }
-> > +             break;
-> >       default:
-> >               ret = -ENODATA;
-> >               break;
-> > @@ -364,6 +373,15 @@ static int max20730_probe(struct i2c_client *client,
-> >       data->id = chip_id;
-> >       mutex_init(&data->lock);
-> >       memcpy(&data->info, &max20730_info[chip_id], sizeof(data->info));
-> > +     if (of_property_read_u32_array(client->dev.of_node, "vout-voltage-divider",
-> > +                                    data->vout_voltage_divider,
-> > +                                    ARRAY_SIZE(data->vout_voltage_divider)) != 0)
-> > +             memset(data->vout_voltage_divider, 0, sizeof(data->vout_voltage_divider));
-> > +     if (data->vout_voltage_divider[1] < data->vout_voltage_divider[0]) {
-> > +             dev_err(dev,
-> > +                     "The total resistance of voltage divider is less than output resistance\n");
-> > +             return -ENODEV;
-> > +     }
-> >
-> >       ret = i2c_smbus_read_word_data(client, MAX20730_MFR_DEVSET1);
-> >       if (ret < 0)
-> > --
-> > 2.28.0.806.g8561365e88-goog
-> >
+-- 
+Dmitry
