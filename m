@@ -2,82 +2,82 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from vger.kernel.org (vger.kernel.org [23.128.96.18])
-	by mail.lfdr.de (Postfix) with ESMTP id D5D9B283C33
-	for <lists+devicetree@lfdr.de>; Mon,  5 Oct 2020 18:15:47 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTP id 68370283C84
+	for <lists+devicetree@lfdr.de>; Mon,  5 Oct 2020 18:30:43 +0200 (CEST)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S1728375AbgJEQP2 (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Mon, 5 Oct 2020 12:15:28 -0400
-Received: from netrider.rowland.org ([192.131.102.5]:52771 "HELO
-        netrider.rowland.org" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with SMTP id S1727426AbgJEQP2 (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Mon, 5 Oct 2020 12:15:28 -0400
-Received: (qmail 382715 invoked by uid 1000); 5 Oct 2020 12:15:27 -0400
-Date:   Mon, 5 Oct 2020 12:15:27 -0400
-From:   Alan Stern <stern@rowland.harvard.edu>
-To:     Matthias Kaehlcke <mka@chromium.org>
-Cc:     Rob Herring <robh@kernel.org>,
-        Doug Anderson <dianders@chromium.org>,
-        Greg Kroah-Hartman <gregkh@linuxfoundation.org>,
-        Frank Rowand <frowand.list@gmail.com>,
-        "linux-kernel@vger.kernel.org" <linux-kernel@vger.kernel.org>,
-        Linux USB List <linux-usb@vger.kernel.org>,
-        Bastien Nocera <hadess@hadess.net>,
-        Stephen Boyd <swboyd@chromium.org>,
-        Ravi Chandra Sadineni <ravisadineni@chromium.org>,
-        Krzysztof Kozlowski <krzk@kernel.org>,
-        "open list:OPEN FIRMWARE AND FLATTENED DEVICE TREE BINDINGS" 
-        <devicetree@vger.kernel.org>, Peter Chen <peter.chen@nxp.com>
-Subject: Re: [PATCH v4 1/2] dt-bindings: usb: Add binding for discrete
- onboard USB hubs
-Message-ID: <20201005161527.GI376584@rowland.harvard.edu>
-References: <20200930013229.GB194665@rowland.harvard.edu>
- <20200930124915.GA1826870@google.com>
- <CAL_JsqLq9ZJm_CMiqWwbQhgGeu_ac_j43pvk4+xCFueSbyL4wA@mail.gmail.com>
- <CAD=FV=WcDzgcHNn1+gH+gq_WEwpD0XXdJGm2fBVpAB=3fVbzZA@mail.gmail.com>
- <CAL_Jsq+Zi+hCmUEiSmYw=pVK472=OW1ZjLnkH1NodWUm8FA5+g@mail.gmail.com>
- <CAD=FV=WJrvWBLk3oLpv6Q3uY4w7YeQBXVdkpn+SAS5dnxp9-=Q@mail.gmail.com>
- <20201002183633.GA296334@rowland.harvard.edu>
- <CAL_JsqKHFA5RWz1SRLkR2JXydURL2pA+4C0+C+4SrJR_h4M0dw@mail.gmail.com>
- <20201003124142.GA318272@rowland.harvard.edu>
- <20201005160655.GA4135817@google.com>
-MIME-Version: 1.0
-Content-Type: text/plain; charset=us-ascii
-Content-Disposition: inline
-In-Reply-To: <20201005160655.GA4135817@google.com>
-User-Agent: Mutt/1.10.1 (2018-07-13)
+        id S1727146AbgJEQai (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Mon, 5 Oct 2020 12:30:38 -0400
+Received: from foss.arm.com ([217.140.110.172]:52554 "EHLO foss.arm.com"
+        rhost-flags-OK-OK-OK-OK) by vger.kernel.org with ESMTP
+        id S1727006AbgJEQai (ORCPT <rfc822;devicetree@vger.kernel.org>);
+        Mon, 5 Oct 2020 12:30:38 -0400
+Received: from usa-sjc-imap-foss1.foss.arm.com (unknown [10.121.207.14])
+        by usa-sjc-mx-foss1.foss.arm.com (Postfix) with ESMTP id 9AE1711D4;
+        Mon,  5 Oct 2020 09:30:37 -0700 (PDT)
+Received: from e123648.arm.com (unknown [10.57.49.124])
+        by usa-sjc-imap-foss1.foss.arm.com (Postfix) with ESMTPA id 1FA5B3F66B;
+        Mon,  5 Oct 2020 09:30:33 -0700 (PDT)
+From:   Lukasz Luba <lukasz.luba@arm.com>
+To:     linux-kernel@vger.kernel.org, linux-pm@vger.kernel.org,
+        linux-doc@vger.kernel.org, devicetree@vger.kernel.org,
+        robh+dt@kernel.org
+Cc:     amitk@kernel.org, corbet@lwn.net, daniel.lezcano@linaro.org,
+        lukasz.luba@arm.com, Dietmar.Eggemann@arm.com, qperret@google.com,
+        dianders@chromium.org, mka@chromium.org, rnayak@codeaurora.org,
+        rjw@rjwysocki.net
+Subject: [RESEND][PATCH v2 3/3] dt-bindings: thermal: update sustainable-power with abstract scale
+Date:   Mon,  5 Oct 2020 17:30:16 +0100
+Message-Id: <20201005163016.13650-1-lukasz.luba@arm.com>
+X-Mailer: git-send-email 2.17.1
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-On Mon, Oct 05, 2020 at 09:06:55AM -0700, Matthias Kaehlcke wrote:
-> On Sat, Oct 03, 2020 at 08:41:42AM -0400, Alan Stern wrote:
-> > The decision to enable the power regulator at system startup would be 
-> > kernel policy, not a part of the DT description.  But there ought to be 
-> > a standard way of recognizing which resource requirements of this sort 
-> > should be handled at startup.  Then there could be a special module (in 
-> > the driver model core? -- that doesn't really seem appropriate) which 
-> > would search through the whole DT database for resources of this kind 
-> > and enable them.
-> 
-> This might work for some cases that only have a single resource or multiple
-> resources but no timing/sequencing requirements. For the more complex cases
-> it would probably end up in something similar to the pwrseq series
-> (https://lore.kernel.org/patchwork/project/lkml/list/?series=314989&state=%2A&archive=both),
-> which was nack-ed by Rafael, Rob also expressed he didn't want to go
-> down that road.
-> 
-> It seems to me that initialization of the resources needs to be done by
-> the/a driver for the device, which knows about the sequencing requirements.
-> Potentially this could be done in a pre-probe function that you brought up
-> earlier.
+Update the documentation for the binding 'sustainable-power' and allow
+to provide values in an abstract scale. It is required when the cooling
+devices use an abstract scale for their power values.
 
-One of the important points of my suggestion was that the resource init 
-should be done _outside_ of the device's driver, precisely because the 
-driver module might not even be loaded until the resources are set up 
-and the device is discovered.
+Signed-off-by: Lukasz Luba <lukasz.luba@arm.com>
+---
 
-The conclusion is that we need to have code that is aware of some 
-detailed needs of a specific device but is not part of the device's 
-driver.  I'm not sure what the best way to implement this would be.
+Hi Rob,
+ 
+This is a fixed patch for DT binding, which now passes the
+make dt_binding_check (I have changed tabs into spaces).
+The former patch error that I have received is here [1]. 
 
-Alan Stern
+Regards,
+Lukasz
+
+[1] https://lore.kernel.org/linux-pm/20201002114426.31277-1-lukasz.luba@arm.com/T/#md4b02a3ada592df67446566180643ba56788c159
+
+ .../devicetree/bindings/thermal/thermal-zones.yaml  | 13 +++++++++----
+ 1 file changed, 9 insertions(+), 4 deletions(-)
+
+diff --git a/Documentation/devicetree/bindings/thermal/thermal-zones.yaml b/Documentation/devicetree/bindings/thermal/thermal-zones.yaml
+index 3ec9cc87ec50..c445927749c3 100644
+--- a/Documentation/devicetree/bindings/thermal/thermal-zones.yaml
++++ b/Documentation/devicetree/bindings/thermal/thermal-zones.yaml
+@@ -99,10 +99,15 @@ patternProperties:
+       sustainable-power:
+         $ref: /schemas/types.yaml#/definitions/uint32
+         description:
+-          An estimate of the sustainable power (in mW) that this thermal zone
+-          can dissipate at the desired control temperature. For reference, the
+-          sustainable power of a 4-inch phone is typically 2000mW, while on a
+-          10-inch tablet is around 4500mW.
++          An estimate of the sustainable power (in mW or in an abstract scale)
++          that this thermal zone can dissipate at the desired control
++          temperature. For reference, the sustainable power of a 4-inch phone
++          is typically 2000mW, while on a 10-inch tablet is around 4500mW.
++
++          It is possible to express the sustainable power in an abstract
++          scale. This is the case when the related cooling devices use also
++          abstract scale to express their power usage. The scale must be
++          consistent.
+ 
+       trips:
+         type: object
+-- 
+2.17.1
+
