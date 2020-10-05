@@ -2,106 +2,156 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from vger.kernel.org (vger.kernel.org [23.128.96.18])
-	by mail.lfdr.de (Postfix) with ESMTP id 9CF902831D6
-	for <lists+devicetree@lfdr.de>; Mon,  5 Oct 2020 10:22:56 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTP id 0B6DA2831EF
+	for <lists+devicetree@lfdr.de>; Mon,  5 Oct 2020 10:26:53 +0200 (CEST)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S1725895AbgJEIWs (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Mon, 5 Oct 2020 04:22:48 -0400
-Received: from out1-smtp.messagingengine.com ([66.111.4.25]:50661 "EHLO
-        out1-smtp.messagingengine.com" rhost-flags-OK-OK-OK-OK)
-        by vger.kernel.org with ESMTP id S1725885AbgJEIWr (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Mon, 5 Oct 2020 04:22:47 -0400
-Received: from compute6.internal (compute6.nyi.internal [10.202.2.46])
-        by mailout.nyi.internal (Postfix) with ESMTP id 568295C009D;
-        Mon,  5 Oct 2020 04:22:46 -0400 (EDT)
-Received: from mailfrontend1 ([10.202.2.162])
-  by compute6.internal (MEProxy); Mon, 05 Oct 2020 04:22:46 -0400
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=cerno.tech; h=
-        date:from:to:cc:subject:message-id:references:mime-version
-        :content-type:in-reply-to; s=fm1; bh=144E1nORHU6Bi8RuTX18+KNYJSQ
-        CiEOAZG3PvFOe/rg=; b=QF13/8vx/MPgHH/SbSRNgxR2VPugP5QCSaQMowgymL7
-        cS7n92a5r9SORGM8+waS+B6d1Mbv4JCeiFW9d6OLvIUdh6bT6ef+6V7onMp+CBll
-        fT2DVAXMr2tMti4yXN2dPRwxELc80Wf8o8gQt1PyZFFaEwpW9GPjtVhbdUDVqVes
-        hJnbepYmp5AD4SjOis50SVgQSUIL1Z0No05LAyJrIIkjsysBp9Ym/e9SE/pV2ydI
-        RA7fWyRCnwzuSh0Ca7nkNgWJZRluDixjzIeyuNBW5WVavVZlGI5Stldv3wTP/p4/
-        xYHiPdZMQu8EkHUkQs/XKniSKaol0V4JhDG67o1btpQ==
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=
-        messagingengine.com; h=cc:content-type:date:from:in-reply-to
-        :message-id:mime-version:references:subject:to:x-me-proxy
-        :x-me-proxy:x-me-sender:x-me-sender:x-sasl-enc; s=fm1; bh=144E1n
-        ORHU6Bi8RuTX18+KNYJSQCiEOAZG3PvFOe/rg=; b=NKo8VrA3uArRcP4fBIICj0
-        hMBEEqPfeCh/JttBfA87bZVBd9Nqzo9iHXbBJxMMQZZj1OnWK5sqsoT0RVyeAGLo
-        7MEpkY9liSirzdZfWEGQHLiTHpM3EVMbagPGiKAcYNmAUtFY0L+Atke3WczFrS45
-        WDO/wGgzqa0zRaOKGgAT7DPmeNR/0N6MiyGCkEHRRRo8C/RycxGgpJVz9y67y9+p
-        /hbLdlHCSjG2h3KXh7oSWYqsNvgoa0aYei5Dw/vdLcAFtDSBbdsBjYh8tOSWBt3N
-        vls+ggj0HT18A0wqeBgZEx5SgHXTCm/lxUg16Gkp3dR9KsLjl4I+nqAybnILIGyA
-        ==
-X-ME-Sender: <xms:1dd6X3lEAhDjkQeyUelTPbiGkofB6o3pNkusx97Iwks_l-CsnnDzPA>
-    <xme:1dd6X635_S_ERr8q-GO9dNep-_WmGAfwZ-8rsa5pI_M8X1ssBmPGdCq0E94jKiU02
-    VEircHmlH_w31wTYbQ>
-X-ME-Proxy-Cause: gggruggvucftvghtrhhoucdtuddrgedujedrgedvgddtgecutefuodetggdotefrodftvf
-    curfhrohhfihhlvgemucfhrghsthforghilhdpqfgfvfdpuffrtefokffrpgfnqfghnecu
-    uegrihhlohhuthemuceftddtnecusecvtfgvtghiphhivghnthhsucdlqddutddtmdenuc
-    fjughrpeffhffvuffkfhggtggujgesghdtreertddtvdenucfhrhhomhepofgrgihimhgv
-    ucftihhprghrugcuoehmrgigihhmvgestggvrhhnohdrthgvtghhqeenucggtffrrghtth
-    gvrhhnpeelkeeghefhuddtleejgfeljeffheffgfeijefhgfeufefhtdevteegheeiheeg
-    udenucfkphepledtrdekledrieekrdejieenucevlhhushhtvghrufhiiigvpedtnecurf
-    grrhgrmhepmhgrihhlfhhrohhmpehmrgigihhmvgestggvrhhnohdrthgvtghh
-X-ME-Proxy: <xmx:1dd6X9oUUcblLQEO8JGjSJxYcH8QR3SLnH0EedPYoFaW1aJgGchqvg>
-    <xmx:1dd6X_koHdMtyauXz1S3WAiAxfEsPaYJd-hOJwLQCeIY_pEnZF1rBw>
-    <xmx:1dd6X13sCQZHV9UCeBp3iL8kfEGplz_8GBQqgXYiHuTgOABA6cSA4A>
-    <xmx:1td6X9-Y7oHG9MouGi1dYcQhyr2MIvt_78g3nSnv7cxOZ2xJhNWmbA>
-Received: from localhost (lfbn-tou-1-1502-76.w90-89.abo.wanadoo.fr [90.89.68.76])
-        by mail.messagingengine.com (Postfix) with ESMTPA id EB9793280063;
-        Mon,  5 Oct 2020 04:22:44 -0400 (EDT)
-Date:   Mon, 5 Oct 2020 10:22:42 +0200
-From:   Maxime Ripard <maxime@cerno.tech>
-To:     Icenowy Zheng <icenowy@aosc.io>
-Cc:     Rob Herring <robh+dt@kernel.org>, Chen-Yu Tsai <wens@csie.org>,
-        =?utf-8?B?Q2zDqW1lbnQgUMOpcm9u?= <peron.clem@gmail.com>,
-        devicetree@vger.kernel.org, linux-arm-kernel@lists.infradead.org,
-        linux-kernel@vger.kernel.org, linux-sunxi@googlegroups.com
-Subject: Re: [PATCH 0/2] Try to fix DT schema problems for V3-series DTs
-Message-ID: <20201005082242.l472pdzlvetviqnh@gilmour.lan>
-References: <20201003234842.1121077-1-icenowy@aosc.io>
+        id S1726164AbgJEI0j (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Mon, 5 Oct 2020 04:26:39 -0400
+Received: from lindbergh.monkeyblade.net ([23.128.96.19]:39662 "EHLO
+        lindbergh.monkeyblade.net" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
+        with ESMTP id S1726087AbgJEI0i (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Mon, 5 Oct 2020 04:26:38 -0400
+Received: from mail-vs1-xe41.google.com (mail-vs1-xe41.google.com [IPv6:2607:f8b0:4864:20::e41])
+        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 44F88C0613AC
+        for <devicetree@vger.kernel.org>; Mon,  5 Oct 2020 01:26:38 -0700 (PDT)
+Received: by mail-vs1-xe41.google.com with SMTP id u7so3766374vsq.11
+        for <devicetree@vger.kernel.org>; Mon, 05 Oct 2020 01:26:38 -0700 (PDT)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+        d=linaro.org; s=google;
+        h=mime-version:references:in-reply-to:from:date:message-id:subject:to
+         :cc;
+        bh=41Y6sjMmjcMlV2JauZyN/TxOh6umZ/keewCU2mb8LIc=;
+        b=AXAmvxEcZgWulidtPjWzcdr2Qm2OYOtZA0wDa8FmovT91MPeLRIwIVCT8lx9v5UNlG
+         SctQfxm1GmrUHlaNPX+RFUQtBHXdidJ0/CU1C9clQS0l30cTxEkteaWVnvPQuLuFSdee
+         4MV2Fpon9L5TsVQGS1K3gSKttvhofJOiwA9P0bVAeb/tNn5WAcwRk5Be/IAOdU2QkdYn
+         VFrey16k5OCZxA1L7Q1xqspPxsd/+WYGgx9scKUGZYuyhxSBuKF1PhH1KfSOoQx2J5OY
+         401UuKSNx0/BKxG4Vky36hMzFvsFJwDUWIuAQewHgLK5qqZWGGWEkqztdK9+VC+FKpcj
+         S9OA==
+X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+        d=1e100.net; s=20161025;
+        h=x-gm-message-state:mime-version:references:in-reply-to:from:date
+         :message-id:subject:to:cc;
+        bh=41Y6sjMmjcMlV2JauZyN/TxOh6umZ/keewCU2mb8LIc=;
+        b=HnOdx7+pAM8qb16WZz6MKNbyFikRRHr91y2kRLmydK+rBQVxps0AnFSthY7QdKimOf
+         /2nn5ijitifXVtgvQCKQz2epkcgNsTt9akekS5z3BLL+YI5RftXUT8J5NwMKUhFNKDYa
+         VzeyD9ypTzHvPLidXRKl/RWJCtclPOmudkLoQ25mAttFcmu3IhqHeqdULptcjOBdj4xy
+         0XeX0xkZg12vQRZQPbe2Z00uosZ5f/5pGh3yg0HHP7r8xonuSg11bsIuA9x9zg46g9mr
+         /O4HHeFZzeRtQsqIUB+UWWVsHNqM4XaOvy1FY7e6dwAPO7bnoYw5Z6x7Y1TyDei2vqxs
+         VFkw==
+X-Gm-Message-State: AOAM531xn2uTMozgYtDHmyd9+/U/qg1+0cuA/Dg0Ifd2Uv/ui80fDcI4
+        GvjvAg8gqtLVrU8JohwvuAz+hQpTEVAeHZl9sbQPEw==
+X-Google-Smtp-Source: ABdhPJxlPMGygHVTcnGIf5MQvmk2y9YM/OMFZ7y/LPtKUwwQZxTgA80YvlEMQPDfoWIYZailBQzIdWarus99WB2IvNI=
+X-Received: by 2002:a67:ec9a:: with SMTP id h26mr6751269vsp.34.1601886397228;
+ Mon, 05 Oct 2020 01:26:37 -0700 (PDT)
 MIME-Version: 1.0
-Content-Type: multipart/signed; micalg=pgp-sha256;
-        protocol="application/pgp-signature"; boundary="enchfjewrm6jusjp"
-Content-Disposition: inline
-In-Reply-To: <20201003234842.1121077-1-icenowy@aosc.io>
+References: <20201002234143.3570746-1-robh@kernel.org>
+In-Reply-To: <20201002234143.3570746-1-robh@kernel.org>
+From:   Ulf Hansson <ulf.hansson@linaro.org>
+Date:   Mon, 5 Oct 2020 10:26:01 +0200
+Message-ID: <CAPDyKFq=ZUiYhm0-K5ZVYS1FH2O5e-+Gt6Dftf=LmL9ABa7CaA@mail.gmail.com>
+Subject: Re: [PATCH] dt-bindings: Another round of adding missing 'additionalProperties'
+To:     Rob Herring <robh@kernel.org>
+Cc:     DTML <devicetree@vger.kernel.org>,
+        Linux Kernel Mailing List <linux-kernel@vger.kernel.org>,
+        Thierry Reding <thierry.reding@gmail.com>,
+        Linus Walleij <linus.walleij@linaro.org>,
+        Stephen Boyd <sboyd@kernel.org>,
+        Shawn Guo <shawnguo@kernel.org>,
+        Bjorn Andersson <bjorn.andersson@linaro.org>,
+        Baolin Wang <baolin.wang7@gmail.com>,
+        Guenter Roeck <linux@roeck-us.net>,
+        Jonathan Cameron <jic23@kernel.org>,
+        Mauro Carvalho Chehab <mchehab@kernel.org>,
+        Laurent Pinchart <laurent.pinchart+renesas@ideasonboard.com>,
+        Lee Jones <lee.jones@linaro.org>,
+        "David S. Miller" <davem@davemloft.net>,
+        Bjorn Helgaas <bhelgaas@google.com>,
+        Vinod Koul <vkoul@kernel.org>,
+        Liam Girdwood <lgirdwood@gmail.com>,
+        Mark Brown <broonie@kernel.org>,
+        Greg Kroah-Hartman <gregkh@linuxfoundation.org>,
+        Daniel Lezcano <daniel.lezcano@linaro.org>,
+        linux-clk <linux-clk@vger.kernel.org>,
+        dri-devel <dri-devel@lists.freedesktop.org>,
+        linux-spi@vger.kernel.org,
+        "open list:GPIO SUBSYSTEM" <linux-gpio@vger.kernel.org>,
+        linux-hwmon@vger.kernel.org, linux-iio@vger.kernel.org,
+        openipmi-developer@lists.sourceforge.net,
+        linux-leds@vger.kernel.org,
+        Linux Media Mailing List <linux-media@vger.kernel.org>,
+        "open list:ARM/Rockchip SoC..." <linux-rockchip@lists.infradead.org>,
+        linux-stm32@st-md-mailman.stormreply.com,
+        linux-mips@vger.kernel.org,
+        "linux-mmc@vger.kernel.org" <linux-mmc@vger.kernel.org>,
+        netdev <netdev@vger.kernel.org>,
+        Linux PCI <linux-pci@vger.kernel.org>,
+        Linux PM <linux-pm@vger.kernel.org>,
+        linux-remoteproc@vger.kernel.org, linux-serial@vger.kernel.org,
+        alsa-devel@alsa-project.org,
+        Linux USB List <linux-usb@vger.kernel.org>
+Content-Type: text/plain; charset="UTF-8"
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
+On Sat, 3 Oct 2020 at 01:41, Rob Herring <robh@kernel.org> wrote:
+>
+> Another round of wack-a-mole. The json-schema default is additional
+> unknown properties are allowed, but for DT all properties should be
+> defined.
+>
+> Cc: Thierry Reding <thierry.reding@gmail.com>
+> Cc: Linus Walleij <linus.walleij@linaro.org>
+> Cc: Stephen Boyd <sboyd@kernel.org>
+> Cc: Shawn Guo <shawnguo@kernel.org>
+> Cc: Bjorn Andersson <bjorn.andersson@linaro.org>
+> Cc: Baolin Wang <baolin.wang7@gmail.com>
+> Cc: Guenter Roeck <linux@roeck-us.net>
+> Cc: Jonathan Cameron <jic23@kernel.org>
+> Cc: Mauro Carvalho Chehab <mchehab@kernel.org>
+> Cc: Laurent Pinchart <laurent.pinchart+renesas@ideasonboard.com>
+> Cc: Lee Jones <lee.jones@linaro.org>
+> Cc: Ulf Hansson <ulf.hansson@linaro.org>
+> Cc: "David S. Miller" <davem@davemloft.net>
+> Cc: Bjorn Helgaas <bhelgaas@google.com>
+> Cc: Vinod Koul <vkoul@kernel.org>
+> Cc: Liam Girdwood <lgirdwood@gmail.com>
+> Cc: Mark Brown <broonie@kernel.org>
+> Cc: Greg Kroah-Hartman <gregkh@linuxfoundation.org>
+> Cc: Daniel Lezcano <daniel.lezcano@linaro.org>
+> Cc: linux-clk@vger.kernel.org
+> Cc: dri-devel@lists.freedesktop.org
+> Cc: linux-spi@vger.kernel.org
+> Cc: linux-gpio@vger.kernel.org
+> Cc: linux-hwmon@vger.kernel.org
+> Cc: linux-iio@vger.kernel.org
+> Cc: openipmi-developer@lists.sourceforge.net
+> Cc: linux-leds@vger.kernel.org
+> Cc: linux-media@vger.kernel.org
+> Cc: linux-rockchip@lists.infradead.org
+> Cc: linux-stm32@st-md-mailman.stormreply.com
+> Cc: linux-mips@vger.kernel.org
+> Cc: linux-mmc@vger.kernel.org
+> Cc: netdev@vger.kernel.org
+> Cc: linux-pci@vger.kernel.org
+> Cc: linux-pm@vger.kernel.org
+> Cc: linux-remoteproc@vger.kernel.org
+> Cc: linux-serial@vger.kernel.org
+> Cc: alsa-devel@alsa-project.org
+> Cc: linux-usb@vger.kernel.org
+> Signed-off-by: Rob Herring <robh@kernel.org>
+> ---
+>
+> I'll take this thru the DT tree.
+>
 
---enchfjewrm6jusjp
-Content-Type: text/plain; charset=us-ascii
-Content-Disposition: inline
-Content-Transfer-Encoding: quoted-printable
+[...]
 
-On Sun, Oct 04, 2020 at 07:48:42AM +0800, Icenowy Zheng wrote:
-> This patchset tries to fix DT schema verification errors that exist in
-> V3-series device trees.
->=20
-> The first patch drops bogus properties that is not needed in PineCube
-> DT, and the second one adds compatible to the binding.
->=20
-> Icenowy Zheng (2):
->   ARM: dts: sun8i: s3: drop bogus cells for CSI subnode on PineCube
->   dt-bindings: sram: sunxi-sram: add V3s compatible string
+>  .../bindings/mmc/mmc-pwrseq-emmc.yaml         |  2 ++
+>  .../bindings/mmc/mmc-pwrseq-sd8787.yaml       |  2 ++
+>  .../bindings/mmc/mmc-pwrseq-simple.yaml       |  2 ++
 
-Squashed the first one and applied the second, thanks!
-Maxime
+Acked-by: Ulf Hansson <ulf.hansson@linaro.org>
 
---enchfjewrm6jusjp
-Content-Type: application/pgp-signature; name="signature.asc"
-
------BEGIN PGP SIGNATURE-----
-
-iHUEABYIAB0WIQRcEzekXsqa64kGDp7j7w1vZxhRxQUCX3rX0gAKCRDj7w1vZxhR
-xVyMAQCsTeJd42SblbuSgz65lzJaD1Bx4i1I6ZntEAzEPHcx8wD/eQLFAAQesNm8
-tg5QKOLRIuP3BTaH55ov64VhUkA8sQA=
-=fLzg
------END PGP SIGNATURE-----
-
---enchfjewrm6jusjp--
+Kind regards
+Uffe
