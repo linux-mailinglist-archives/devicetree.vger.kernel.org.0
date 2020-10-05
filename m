@@ -2,114 +2,137 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from vger.kernel.org (vger.kernel.org [23.128.96.18])
-	by mail.lfdr.de (Postfix) with ESMTP id 092B6283241
-	for <lists+devicetree@lfdr.de>; Mon,  5 Oct 2020 10:40:23 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTP id 64FED28328D
+	for <lists+devicetree@lfdr.de>; Mon,  5 Oct 2020 10:51:01 +0200 (CEST)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S1725885AbgJEIkS (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Mon, 5 Oct 2020 04:40:18 -0400
-Received: from new3-smtp.messagingengine.com ([66.111.4.229]:43705 "EHLO
-        new3-smtp.messagingengine.com" rhost-flags-OK-OK-OK-OK)
-        by vger.kernel.org with ESMTP id S1725880AbgJEIkS (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Mon, 5 Oct 2020 04:40:18 -0400
-Received: from compute6.internal (compute6.nyi.internal [10.202.2.46])
-        by mailnew.nyi.internal (Postfix) with ESMTP id 2058358028D;
-        Mon,  5 Oct 2020 04:40:17 -0400 (EDT)
-Received: from mailfrontend1 ([10.202.2.162])
-  by compute6.internal (MEProxy); Mon, 05 Oct 2020 04:40:17 -0400
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=cerno.tech; h=
-        date:from:to:cc:subject:message-id:references:mime-version
-        :content-type:in-reply-to; s=fm1; bh=TP+YDmeLPT4LYJGRAaDqcHNdlZQ
-        KtqTvNfpsMAMS4CQ=; b=Z+rHeB220VuirrOyCQDgK/LoVlcZ6b95vwcwoYsdp/2
-        grsDkChi+u+3WZqTppRq3GQLgtOgo/7xPOiiUCWK+HJb9RlnG2mTjmew1ARLnUuU
-        HwcMhDeZJO3bgbIij5rX2sIMZ+pbE87CfQTj/QxhLZtCj3vRld+n6VpMTlIPJbOK
-        7o2EWq4v0eFMC8elqU2JYuqTmhuxWb0Z67Zg5tv+4Op647ZYsDxJx6PgeDoyvl2q
-        /yS3L+5mR2GooasnddVzG/D3QgoGWeFZ3yxDMkojXfh2lEmU83MnWJ1hIciU2tQV
-        x1KqI73W3dEdEQ/a27W9tAq0WSB42POklTR27jkN1Fw==
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=
-        messagingengine.com; h=cc:content-type:date:from:in-reply-to
-        :message-id:mime-version:references:subject:to:x-me-proxy
-        :x-me-proxy:x-me-sender:x-me-sender:x-sasl-enc; s=fm1; bh=TP+YDm
-        eLPT4LYJGRAaDqcHNdlZQKtqTvNfpsMAMS4CQ=; b=M82nzWEoEQvxdYfOdMqZlu
-        xN4lvZ70N1UcF6yoUwvXwG1wG0x5Km0axhYV/mwCI7mGaH03no4TysgIh+U03P+1
-        +tDM38gu4uRHk0vLo83e9GRYruY6P/havXGZkCsrY37DeLq//oJoFtp5bVpwFlrO
-        ZUAgwf2yWRprng0sz76wF28QuWtf4egD+tbYjIiilWGFpgzQyW1/b5osJT1Pv2zz
-        kXk4WXgCmo9+IUfCQVbQ6ox8ae2h4A6dQN8YqAG0dn37uSbE2fz9CnjDO1T+OyW/
-        hScpsXpACmQEnn6XjJ4oUBMZ+l/+exeeVCZGlYuYelaOdfa4/WZ8RxflwQW+DWgw
-        ==
-X-ME-Sender: <xms:79t6X1SxatzoAeg6XUQsD3w1TUkBPphOEZfPWD2YJqglK55nKlVhEw>
-    <xme:79t6X-wUJU6yCtdwA5tas6Gnjwk96COOpIg2NYAJ0-3hUE4qW3-UZls_ZrHbx8ao7
-    51wRiWi2-wSTTT75Bg>
-X-ME-Proxy-Cause: gggruggvucftvghtrhhoucdtuddrgedujedrgedvgddtkecutefuodetggdotefrodftvf
-    curfhrohhfihhlvgemucfhrghsthforghilhdpqfgfvfdpuffrtefokffrpgfnqfghnecu
-    uegrihhlohhuthemuceftddtnecusecvtfgvtghiphhivghnthhsucdlqddutddtmdenuc
-    fjughrpeffhffvuffkfhggtggujgesghdtreertddtvdenucfhrhhomhepofgrgihimhgv
-    ucftihhprghrugcuoehmrgigihhmvgestggvrhhnohdrthgvtghhqeenucggtffrrghtth
-    gvrhhnpeelkeeghefhuddtleejgfeljeffheffgfeijefhgfeufefhtdevteegheeiheeg
-    udenucfkphepledtrdekledrieekrdejieenucevlhhushhtvghrufhiiigvpedtnecurf
-    grrhgrmhepmhgrihhlfhhrohhmpehmrgigihhmvgestggvrhhnohdrthgvtghh
-X-ME-Proxy: <xmx:79t6X61Ihn82ejYMDMF1UMoaYXDSuOc-joH5PVN1NPastwT9JegY5g>
-    <xmx:79t6X9DL1ztmD654-sNP8SMt-HOvECPQK0_TSPDyfvzKiJHd5qSbNQ>
-    <xmx:79t6X-hrAtyRRvymEaTkS23wZ-4iv9s3cVQrD0rDCTqwWUu45eIkpg>
-    <xmx:8dt6X-74fpOHJB-sg4Wcl5A56NWIAR4QD7s0bmWZ9SCDRUn100cd9g>
-Received: from localhost (lfbn-tou-1-1502-76.w90-89.abo.wanadoo.fr [90.89.68.76])
-        by mail.messagingengine.com (Postfix) with ESMTPA id 7472F3280063;
-        Mon,  5 Oct 2020 04:40:15 -0400 (EDT)
-Date:   Mon, 5 Oct 2020 10:40:13 +0200
-From:   Maxime Ripard <maxime@cerno.tech>
-To:     Rob Herring <robh@kernel.org>
-Cc:     devicetree@vger.kernel.org, dri-devel@lists.freedesktop.org,
-        linux-kernel@vger.kernel.org, Chen-Yu Tsai <wens@csie.org>,
-        Eric Anholt <eric@anholt.net>,
-        Nicolas Saenz Julienne <nsaenzjulienne@suse.de>,
-        Florian Fainelli <f.fainelli@gmail.com>,
-        Ray Jui <rjui@broadcom.com>,
-        Scott Branden <sbranden@broadcom.com>,
-        bcm-kernel-feedback-list@broadcom.com,
-        Maxime Coquelin <mcoquelin.stm32@gmail.com>,
-        Alexandre Torgue <alexandre.torgue@st.com>,
-        Guido =?utf-8?Q?G=C3=BAnther?= <agx@sigxcpu.org>,
-        Robert Chiras <robert.chiras@nxp.com>,
-        Philippe Cornu <philippe.cornu@st.com>,
-        Yannick Fertre <yannick.fertre@st.com>
-Subject: Re: [PATCH] dt-bindings: display: Add dsi-controller.yaml in DSI
- controller schemas
-Message-ID: <20201005084013.loixl65nnvf4jl6f@gilmour.lan>
-References: <20201002225924.3513700-1-robh@kernel.org>
+        id S1725981AbgJEIvA (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Mon, 5 Oct 2020 04:51:00 -0400
+Received: from mga11.intel.com ([192.55.52.93]:21822 "EHLO mga11.intel.com"
+        rhost-flags-OK-OK-OK-OK) by vger.kernel.org with ESMTP
+        id S1725943AbgJEIvA (ORCPT <rfc822;devicetree@vger.kernel.org>);
+        Mon, 5 Oct 2020 04:51:00 -0400
+IronPort-SDR: z+Fx/dibISAEjPm5kj+GmNz2Z0J/utniesi2n9H3YM+7tsAM9J68MGo9Y41qBy88fXdt1eE59l
+ IWiSyPISO9gQ==
+X-IronPort-AV: E=McAfee;i="6000,8403,9764"; a="160664693"
+X-IronPort-AV: E=Sophos;i="5.77,338,1596524400"; 
+   d="scan'208";a="160664693"
+X-Amp-Result: SKIPPED(no attachment in message)
+X-Amp-File-Uploaded: False
+Received: from fmsmga006.fm.intel.com ([10.253.24.20])
+  by fmsmga102.fm.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384; 05 Oct 2020 01:50:55 -0700
+IronPort-SDR: /rXJ0NVdpl3wjhvBXnEay4keEDbVBuVrYjAbwSw6Ra1x0d9MeoAf14Zp07zBChmqgF8/r7UYtf
+ nc9IFqwaYNlA==
+X-ExtLoop1: 1
+X-IronPort-AV: E=Sophos;i="5.77,338,1596524400"; 
+   d="scan'208";a="515923347"
+Received: from linux.intel.com ([10.54.29.200])
+  by fmsmga006.fm.intel.com with ESMTP; 05 Oct 2020 01:50:55 -0700
+Received: from [10.214.146.139] (rtanwar-MOBL.gar.corp.intel.com [10.214.146.139])
+        by linux.intel.com (Postfix) with ESMTP id 2C38558088D;
+        Mon,  5 Oct 2020 01:50:51 -0700 (PDT)
+Subject: Re: [PATCH v4 2/2] Add hardware monitoring driver for Moortec MR75203
+ PVT controller
+To:     Andy Shevchenko <andriy.shevchenko@intel.com>
+Cc:     jdelvare@suse.com, linux@roeck-us.net, p.zabel@pengutronix.de,
+        linux-hwmon@vger.kernel.org, robh+dt@kernel.org,
+        linux-kernel@vger.kernel.org, devicetree@vger.kernel.org,
+        songjun.Wu@intel.com, cheol.yong.kim@intel.com,
+        qi-ming.wu@intel.com, rtanwar@maxlinear.com
+References: <cover.1601621983.git.rahul.tanwar@linux.intel.com>
+ <e8c462ffc826d06c108aac45f8476083097cfa55.1601621983.git.rahul.tanwar@linux.intel.com>
+ <20201002181135.GI3956970@smile.fi.intel.com>
+From:   "Tanwar, Rahul" <rahul.tanwar@linux.intel.com>
+Message-ID: <f224391a-2e51-ec37-7045-4a16f04b5384@linux.intel.com>
+Date:   Mon, 5 Oct 2020 16:50:50 +0800
+User-Agent: Mozilla/5.0 (Windows NT 10.0; WOW64; rv:68.0) Gecko/20100101
+ Thunderbird/68.12.1
 MIME-Version: 1.0
-Content-Type: multipart/signed; micalg=pgp-sha256;
-        protocol="application/pgp-signature"; boundary="i7kn4kgfo2uw7qjo"
-Content-Disposition: inline
-In-Reply-To: <20201002225924.3513700-1-robh@kernel.org>
+In-Reply-To: <20201002181135.GI3956970@smile.fi.intel.com>
+Content-Type: text/plain; charset=utf-8
+Content-Transfer-Encoding: 7bit
+Content-Language: en-US
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
 
---i7kn4kgfo2uw7qjo
-Content-Type: text/plain; charset=us-ascii
-Content-Disposition: inline
-Content-Transfer-Encoding: quoted-printable
+Hi Andy
 
-On Fri, Oct 02, 2020 at 05:59:24PM -0500, Rob Herring wrote:
-> Some DSI controllers are missing a reference to the recently added
-> dsi-controller.yaml schema. Add it and we can drop the duplicate parts.
->=20
-> Cc: Maxime Ripard <mripard@kernel.org>
+On 3/10/2020 2:11 am, Andy Shevchenko wrote:
+> On Fri, Oct 02, 2020 at 03:04:27PM +0800, Rahul Tanwar wrote:
+>> PVT controller (MR75203) is used to configure & control
+>> Moortec embedded analog IP which contains temprature
+>> sensor(TS), voltage monitor(VM) & process detector(PD)
+>> modules. Add hardware monitoring driver to support
+>> MR75203 PVT controller.
+> Some nit-picks below.
+> Reviewed-by: Andy Shevchenko <andriy.shevchenko@intel.com>
+>
+>> Signed-off-by: Rahul Tanwar <rahul.tanwar@linux.intel.com>
+>> ---
+>>  drivers/hwmon/Kconfig   |  10 +
+>>  drivers/hwmon/Makefile  |   1 +
+>>  drivers/hwmon/mr75203.c | 651 ++++++++++++++++++++++++++++++++++++++++++++++++
+>>  3 files changed, 662 insertions(+)
+>>  create mode 100644 drivers/hwmon/mr75203.c
 
-Acked-by: Maxime Ripard <mripard@kernel.org>
+[...]
 
-Thanks!
-Maxime
+>> +		pvt_temp.config = temp_config;
+>> +
+>> +		pvt_info[index++] = &pvt_temp;
+>> +	}
+>> +
+>> +	if (pd_num) {
+>> +		ret = pvt_get_regmap(pdev, "pd", pvt);
+>> +		if (ret)
+>> +			return ret;
+>> +	}
+>> +
+>> +	if (vm_num) {
+>> +		u32 num = vm_num;
+>> +
+>> +		ret = pvt_get_regmap(pdev, "vm", pvt);
+>> +		if (ret)
+>> +			return ret;
+>> +
+>> +		pvt->vm_idx = devm_kcalloc(dev, vm_num, sizeof(*pvt->vm_idx),
+>> +					   GFP_KERNEL);
+>> +		if (!pvt->vm_idx)
+>> +			return -ENOMEM;
+>> +		for (i = 0; i < vm_num; i++)
+>> +			pvt->vm_idx[i] = i;
+> What the point if you are replace them below in one case?
+>
+>> +		ret = device_property_read_u8_array(dev, "intel,vm-map",
+>> +						    pvt->vm_idx, vm_num);
+>> +		if (!ret)
+> Misses {} and because of above
+>
+> 	if (ret) {
+> 		for () ...
+> 	} else {
+> 		for () ...
+> 	}
+>
+>> +			for (i = 0; i < vm_num; i++)
+>> +				if (pvt->vm_idx[i] >= vm_num ||
+>> +				    pvt->vm_idx[i] == 0xff) {
+>> +					num = i;
+>> +					break;
+>> +				}
+> Or looking in this, perhaps move the incremental for-loop here and start it
+> with num which is 0.
 
---i7kn4kgfo2uw7qjo
-Content-Type: application/pgp-signature; name="signature.asc"
+Not able to understand what exactly you are suggesting here. Presently
+it is like below:
+1. Init vm_idx array with incremental values.
+2. Read array from device property.
+3. If success, figure out the last valid value and assign to num.
 
------BEGIN PGP SIGNATURE-----
+Can you please elaborate and explain more clearly? Thanks.
 
-iHUEABYIAB0WIQRcEzekXsqa64kGDp7j7w1vZxhRxQUCX3rb7QAKCRDj7w1vZxhR
-xTXCAP4vKIeUVcYrqfw55zeSps3KKtkhsNvW+sK9F9gjf7jBxQD/UMFRpPlAiasU
-MZTKaNAUJFV3UdU3iJE6ZjtiyfEQxgQ=
-=+3oG
------END PGP SIGNATURE-----
+Regards,
+Rahul
 
---i7kn4kgfo2uw7qjo--
+
