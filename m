@@ -2,85 +2,139 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from vger.kernel.org (vger.kernel.org [23.128.96.18])
-	by mail.lfdr.de (Postfix) with ESMTP id B8D21283325
-	for <lists+devicetree@lfdr.de>; Mon,  5 Oct 2020 11:27:49 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTP id 87522283329
+	for <lists+devicetree@lfdr.de>; Mon,  5 Oct 2020 11:27:59 +0200 (CEST)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S1725901AbgJEJ1s (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Mon, 5 Oct 2020 05:27:48 -0400
-Received: from lindbergh.monkeyblade.net ([23.128.96.19]:49150 "EHLO
-        lindbergh.monkeyblade.net" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S1725891AbgJEJ1s (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Mon, 5 Oct 2020 05:27:48 -0400
-Received: from bhuna.collabora.co.uk (bhuna.collabora.co.uk [IPv6:2a00:1098:0:82:1000:25:2eeb:e3e3])
-        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 5F76AC0613CE
-        for <devicetree@vger.kernel.org>; Mon,  5 Oct 2020 02:27:48 -0700 (PDT)
-Received: from [127.0.0.1] (localhost [127.0.0.1])
-        (Authenticated sender: eballetbo)
-        with ESMTPSA id D84E0292819
-Subject: Re: [PATCH 1/3] dt-bindings: i2c: convert i2c-cros-ec-tunnel to
- json-schema
-To:     =?UTF-8?Q?Ricardo_Ca=c3=b1uelo?= <ricardo.canuelo@collabora.com>
-Cc:     robh@kernel.org, kernel@collabora.com, bleung@chromium.org,
-        groeck@chromium.org, sjg@chromium.org, dianders@chromium.org,
-        devicetree@vger.kernel.org
-References: <20201005071403.17450-1-ricardo.canuelo@collabora.com>
- <20201005071403.17450-2-ricardo.canuelo@collabora.com>
- <19e0e78e-f490-8bcb-cfdb-338a577b2205@collabora.com>
- <20201005091804.2xjwer6ppoog5orm@rcn-XPS-13-9360>
-From:   Enric Balletbo i Serra <enric.balletbo@collabora.com>
-Message-ID: <3d2b79f8-1a1f-ae70-0bd6-617724eec349@collabora.com>
-Date:   Mon, 5 Oct 2020 11:27:44 +0200
-User-Agent: Mozilla/5.0 (X11; Linux x86_64; rv:68.0) Gecko/20100101
- Thunderbird/68.12.0
-MIME-Version: 1.0
-In-Reply-To: <20201005091804.2xjwer6ppoog5orm@rcn-XPS-13-9360>
-Content-Type: text/plain; charset=utf-8
-Content-Language: en-US
-Content-Transfer-Encoding: 8bit
+        id S1725978AbgJEJ16 (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Mon, 5 Oct 2020 05:27:58 -0400
+Received: from mga14.intel.com ([192.55.52.115]:49369 "EHLO mga14.intel.com"
+        rhost-flags-OK-OK-OK-OK) by vger.kernel.org with ESMTP
+        id S1725891AbgJEJ16 (ORCPT <rfc822;devicetree@vger.kernel.org>);
+        Mon, 5 Oct 2020 05:27:58 -0400
+IronPort-SDR: akNKcT7QJys2VA+2TACMjl+cmsyRmZNO0S6lXbxRfM3CXT4CePIT77BUthkEjE66mlbCS/mj5f
+ I4/TkpuX0t2A==
+X-IronPort-AV: E=McAfee;i="6000,8403,9764"; a="162604314"
+X-IronPort-AV: E=Sophos;i="5.77,338,1596524400"; 
+   d="scan'208";a="162604314"
+X-Amp-Result: SKIPPED(no attachment in message)
+X-Amp-File-Uploaded: False
+Received: from fmsmga008.fm.intel.com ([10.253.24.58])
+  by fmsmga103.fm.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384; 05 Oct 2020 02:27:57 -0700
+IronPort-SDR: eHTNDvwFIzelenK/JFFL4YCumRWlGnewsBQPYQy84pmNK6pUusKkEFWrL25L/yG9gNo5HKnIHy
+ /6bUOeGiYghw==
+X-ExtLoop1: 1
+X-IronPort-AV: E=Sophos;i="5.77,338,1596524400"; 
+   d="scan'208";a="296035874"
+Received: from sgsxdev001.isng.intel.com (HELO localhost) ([10.226.88.11])
+  by fmsmga008.fm.intel.com with ESMTP; 05 Oct 2020 02:27:54 -0700
+From:   Rahul Tanwar <rahul.tanwar@linux.intel.com>
+To:     jdelvare@suse.com, linux@roeck-us.net, p.zabel@pengutronix.de,
+        linux-hwmon@vger.kernel.org, robh+dt@kernel.org
+Cc:     linux-kernel@vger.kernel.org, devicetree@vger.kernel.org,
+        andriy.shevchenko@intel.com, songjun.Wu@intel.com,
+        cheol.yong.kim@intel.com, qi-ming.wu@intel.com,
+        rtanwar@maxlinear.com, Rahul Tanwar <rahul.tanwar@linux.intel.com>
+Subject: [PATCH v5 1/2] Add DT bindings schema for PVT controller
+Date:   Mon,  5 Oct 2020 17:27:45 +0800
+Message-Id: <b540b49ca47d75c5f716f8a4e4eed0664a1116bf.1601889876.git.rahul.tanwar@linux.intel.com>
+X-Mailer: git-send-email 2.11.0
+In-Reply-To: <cover.1601889876.git.rahul.tanwar@linux.intel.com>
+References: <cover.1601889876.git.rahul.tanwar@linux.intel.com>
+In-Reply-To: <cover.1601889876.git.rahul.tanwar@linux.intel.com>
+References: <cover.1601889876.git.rahul.tanwar@linux.intel.com>
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-Hi Ricardo,
+PVT controller (MR75203) is used to configure & control
+Moortec embedded analog IP which contains temprature sensor(TS),
+voltage monitor(VM) & process detector(PD) modules.
 
-On 5/10/20 11:18, Ricardo Cañuelo wrote:
-> Hi Enric, thanks for reviewing the patch.
-> 
-> On lun 05-10-2020 10:52:26, Enric Balletbo i Serra wrote:
->>> +examples:
->>> +  - |
->>> +    cros-ec {
->>
->> We try to use always a complete example, and I think that, Rob also prefers
->> complete examples, so here you are missing the spi node.
-> 
-> Ok, I'll prepare a new patch with an extended example.
-> 
->>> +        compatible = "google,cros-ec-spi";
->>
->> And, at least, should have a reg. Did not give you an error?
-> 
-> AFAIK, the reg property is only enforced if the node name includes the
-> unit-address.
-> 
+Add DT bindings schema for PVT controller.
 
-Exactly, and because this is a spi driver it should have both, the node name
-include the unit-address and the reg property. I.e:
+Signed-off-by: Rahul Tanwar <rahul.tanwar@linux.intel.com>
+---
+ .../devicetree/bindings/hwmon/moortec,mr75203.yaml | 71 ++++++++++++++++++++++
+ 1 file changed, 71 insertions(+)
+ create mode 100644 Documentation/devicetree/bindings/hwmon/moortec,mr75203.yaml
 
-    spi0 {
-        #address-cells = <1>;
-        #size-cells = <0>;
+diff --git a/Documentation/devicetree/bindings/hwmon/moortec,mr75203.yaml b/Documentation/devicetree/bindings/hwmon/moortec,mr75203.yaml
+new file mode 100644
+index 000000000000..6f3e3c01f717
+--- /dev/null
++++ b/Documentation/devicetree/bindings/hwmon/moortec,mr75203.yaml
+@@ -0,0 +1,71 @@
++# SPDX-License-Identifier: (GPL-2.0-only OR BSD-2-Clause)
++%YAML 1.2
++---
++$id: http://devicetree.org/schemas/hwmon/moortec,mr75203.yaml#
++$schema: http://devicetree.org/meta-schemas/core.yaml#
++
++title: Moortec Semiconductor MR75203 PVT Controller bindings
++
++maintainers:
++  - Rahul Tanwar <rtanwar@maxlinear.com>
++
++properties:
++  compatible:
++    const: moortec,mr75203
++
++  reg:
++    items:
++      - description: PVT common registers
++      - description: PVT temprature sensor registers
++      - description: PVT process detector registers
++      - description: PVT voltage monitor registers
++
++  reg-names:
++    items:
++      - const: common
++      - const: ts
++      - const: pd
++      - const: vm
++
++  intel,vm-map:
++    description:
++      PVT controller has 5 VM (voltage monitor) sensors.
++      vm-map defines CPU core to VM instance mapping. A
++      value of 0xff means that VM sensor is unused.
++    $ref: /schemas/types.yaml#definitions/uint8-array
++    maxItems: 5
++
++  clocks:
++    maxItems: 1
++
++  resets:
++    maxItems: 1
++
++  "#thermal-sensor-cells":
++    const: 1
++
++required:
++  - compatible
++  - reg
++  - reg-names
++  - intel,vm-map
++  - clocks
++  - resets
++  - "#thermal-sensor-cells"
++
++additionalProperties: false
++
++examples:
++  - |
++    pvt: pvt@e0680000 {
++        compatible = "moortec,mr75203";
++        reg = <0xe0680000 0x80>,
++              <0xe0680080 0x180>,
++              <0xe0680200 0x200>,
++              <0xe0680400 0xc00>;
++        reg-names = "common", "ts", "pd", "vm";
++        intel,vm-map = [03 01 04 ff ff];
++        clocks = <&osc0>;
++        resets = <&rcu0 0x40 7>;
++        #thermal-sensor-cells = <1>;
++    };
+-- 
+2.11.0
 
-        cros-ec@0 {
-            compatible = "google,cros-ec-spi";
-            reg = <0x0>;
-            spi-max-frequency = <5000000>;
-        };
-    };
-
-Thanks,
- Enric
-
-> Cheers,
-> Ricardo
-> 
