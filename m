@@ -2,102 +2,79 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from vger.kernel.org (vger.kernel.org [23.128.96.18])
-	by mail.lfdr.de (Postfix) with ESMTP id 034AE283DAC
-	for <lists+devicetree@lfdr.de>; Mon,  5 Oct 2020 19:44:14 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTP id ED606283DD3
+	for <lists+devicetree@lfdr.de>; Mon,  5 Oct 2020 19:56:55 +0200 (CEST)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S1728362AbgJERoN (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Mon, 5 Oct 2020 13:44:13 -0400
-Received: from lindbergh.monkeyblade.net ([23.128.96.19]:41538 "EHLO
-        lindbergh.monkeyblade.net" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S1728181AbgJERoN (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Mon, 5 Oct 2020 13:44:13 -0400
-Received: from mail-vk1-xa43.google.com (mail-vk1-xa43.google.com [IPv6:2607:f8b0:4864:20::a43])
-        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 68844C0613A8
-        for <devicetree@vger.kernel.org>; Mon,  5 Oct 2020 10:44:13 -0700 (PDT)
-Received: by mail-vk1-xa43.google.com with SMTP id e5so1951079vkm.2
-        for <devicetree@vger.kernel.org>; Mon, 05 Oct 2020 10:44:13 -0700 (PDT)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=chromium.org; s=google;
-        h=mime-version:references:in-reply-to:from:date:message-id:subject:to
-         :cc;
-        bh=T0SUN6EKstVpoqlENVYkDpfxgRN2mhcM+hd8aVgx82Y=;
-        b=Bjhy7mLEf3dMbcB301h2+hrEGKwW0Lztpw8VQTUMYjrf5E1N0OvXzBbiN7Nm22aCGw
-         9lKqHBSMuJczFFO2SHFwXrme+RSj2XbTPmbMh7WBl7D7F4LgcymOwFioF5/PDyoF94sI
-         03dR3zYUPifD8/ZTSvWCz2HfMihd2oVmvihvE=
-X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=1e100.net; s=20161025;
-        h=x-gm-message-state:mime-version:references:in-reply-to:from:date
-         :message-id:subject:to:cc;
-        bh=T0SUN6EKstVpoqlENVYkDpfxgRN2mhcM+hd8aVgx82Y=;
-        b=fOfu5to9j8eMOLe5G+aaMvdTq5zcsSmyy9ky7R5qT+swrKqFA/2mrsEPjiO7AdGP7f
-         NlNSDlmL8vReQIa6s3PaGzuMAofNeqwqB1tijmthvLNUz7KABzGHj+qAFpUWgw3iE2aK
-         eSYAHew8TEpGxVPWUnRojK+xYSrhR4kDVISssNNhXVvAGhCqSmKVe6GPbreWAxknBlpr
-         rZXopn+c70vDZFbTxwAeaE5vyQ5pageZgv9vVLlkiPppi3Zyg5yz1sU7stxVGmfbfZg3
-         2LaCD76Tr//8/xg09IyJxP5kSIIgbeEPTNNmI+hTGjdOD1kianerZTp7AwLgbPqipfmx
-         8FZA==
-X-Gm-Message-State: AOAM530m02akLKtT3bXoOmbJjkzgAW3Oken7xYMo7cWhLcCxg73kxgNc
-        yyPgocFsvfheLf4sA8gS4klXmH/i8MgZKQ==
-X-Google-Smtp-Source: ABdhPJybJ9H5MpINFGJ8PtEcQAvaKAxwKS0HUjuP+r83iTmOukXZNU8FN3JoJ7Rdj3/0OvaSdNDnrQ==
-X-Received: by 2002:a1f:9c12:: with SMTP id f18mr924649vke.14.1601919852478;
-        Mon, 05 Oct 2020 10:44:12 -0700 (PDT)
-Received: from mail-vs1-f47.google.com (mail-vs1-f47.google.com. [209.85.217.47])
-        by smtp.gmail.com with ESMTPSA id j76sm124522vkc.50.2020.10.05.10.44.10
-        for <devicetree@vger.kernel.org>
-        (version=TLS1_3 cipher=TLS_AES_128_GCM_SHA256 bits=128/128);
-        Mon, 05 Oct 2020 10:44:11 -0700 (PDT)
-Received: by mail-vs1-f47.google.com with SMTP id s15so2412154vsm.0
-        for <devicetree@vger.kernel.org>; Mon, 05 Oct 2020 10:44:10 -0700 (PDT)
-X-Received: by 2002:a67:f4c2:: with SMTP id s2mr992567vsn.4.1601919849846;
- Mon, 05 Oct 2020 10:44:09 -0700 (PDT)
+        id S1728699AbgJERzh (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Mon, 5 Oct 2020 13:55:37 -0400
+Received: from mail.kernel.org ([198.145.29.99]:50056 "EHLO mail.kernel.org"
+        rhost-flags-OK-OK-OK-OK) by vger.kernel.org with ESMTP
+        id S1725960AbgJERzg (ORCPT <rfc822;devicetree@vger.kernel.org>);
+        Mon, 5 Oct 2020 13:55:36 -0400
+Received: from localhost (fw-tnat.cambridge.arm.com [217.140.96.140])
+        (using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
+        (No client certificate requested)
+        by mail.kernel.org (Postfix) with ESMTPSA id 0D281207EA;
+        Mon,  5 Oct 2020 17:55:35 +0000 (UTC)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=kernel.org;
+        s=default; t=1601920536;
+        bh=gE8r4CwFuniZqjG8+OVcEN5ZuvAvi+yzUk3tl8ozSsE=;
+        h=Date:From:To:Cc:In-Reply-To:References:Subject:From;
+        b=eoUFY/IgP1qHdxbN5ZhFOu6BxHfazdvFl6bG8o7AJUNQ+dOrzVN5qvlUoGVsm96Pm
+         Qw9eogxfjfAzpkTtvsGGGDcWFUbgwDbnyVBRjNJMqLUKlV23aVo1ky+upIx1Elqpee
+         MFvO0WJlGdAgMlOd1RSLdimhvcg3Yu41LgvyoJbI=
+Date:   Mon, 05 Oct 2020 18:54:33 +0100
+From:   Mark Brown <broonie@kernel.org>
+To:     linux-kernel@vger.kernel.org,
+        Kathiravan T <kathirav@codeaurora.org>,
+        Liam Girdwood <lgirdwood@gmail.com>,
+        devicetree@vger.kernel.org, linux-arm-msm@vger.kernel.org,
+        Vladimir Lypak <junak.pub@gmail.com>,
+        Bjorn Andersson <bjorn.andersson@linaro.org>,
+        Rob Herring <robh+dt@kernel.org>,
+        Andy Gross <agross@kernel.org>
+In-Reply-To: <20201004083413.324351-1-junak.pub@gmail.com>
+References: <20201004083413.324351-1-junak.pub@gmail.com>
+Subject: Re: [PATCH 1/2] regulator: qcom_smd: add pm8953 regulators
+Message-Id: <160192046344.23248.15299965776034446498.b4-ty@kernel.org>
 MIME-Version: 1.0
-References: <20201005163016.13650-1-lukasz.luba@arm.com>
-In-Reply-To: <20201005163016.13650-1-lukasz.luba@arm.com>
-From:   Doug Anderson <dianders@chromium.org>
-Date:   Mon, 5 Oct 2020 10:43:58 -0700
-X-Gmail-Original-Message-ID: <CAD=FV=W70OPB=ufEfqAJEeZBNwr5yPOCmkM7R2uLKnEj6tZ1qA@mail.gmail.com>
-Message-ID: <CAD=FV=W70OPB=ufEfqAJEeZBNwr5yPOCmkM7R2uLKnEj6tZ1qA@mail.gmail.com>
-Subject: Re: [RESEND][PATCH v2 3/3] dt-bindings: thermal: update
- sustainable-power with abstract scale
-To:     Lukasz Luba <lukasz.luba@arm.com>
-Cc:     LKML <linux-kernel@vger.kernel.org>,
-        Linux PM <linux-pm@vger.kernel.org>, linux-doc@vger.kernel.org,
-        "open list:OPEN FIRMWARE AND FLATTENED DEVICE TREE BINDINGS" 
-        <devicetree@vger.kernel.org>, Rob Herring <robh+dt@kernel.org>,
-        amitk@kernel.org, Jonathan Corbet <corbet@lwn.net>,
-        Daniel Lezcano <daniel.lezcano@linaro.org>,
-        Dietmar.Eggemann@arm.com, Quentin Perret <qperret@google.com>,
-        Matthias Kaehlcke <mka@chromium.org>,
-        Rajendra Nayak <rnayak@codeaurora.org>,
-        "Rafael J. Wysocki" <rjw@rjwysocki.net>
-Content-Type: text/plain; charset="UTF-8"
+Content-Type: text/plain; charset="utf-8"
+Content-Transfer-Encoding: 8bit
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-Hi,
+On Sun, 4 Oct 2020 11:34:12 +0300, Vladimir Lypak wrote:
+> The PM8953 is commonly used on board with MSM8953 SoCs or its variants:
+> APQ8053, SDM(SDA)450 and SDM(SDA)632.
+> It provides 7 SMPS and 23 LDO regulators.
 
-On Mon, Oct 5, 2020 at 9:30 AM Lukasz Luba <lukasz.luba@arm.com> wrote:
->
-> Update the documentation for the binding 'sustainable-power' and allow
-> to provide values in an abstract scale. It is required when the cooling
-> devices use an abstract scale for their power values.
->
-> Signed-off-by: Lukasz Luba <lukasz.luba@arm.com>
-> ---
->
-> Hi Rob,
->
-> This is a fixed patch for DT binding, which now passes the
-> make dt_binding_check (I have changed tabs into spaces).
-> The former patch error that I have received is here [1].
->
-> Regards,
-> Lukasz
->
-> [1] https://lore.kernel.org/linux-pm/20201002114426.31277-1-lukasz.luba@arm.com/T/#md4b02a3ada592df67446566180643ba56788c159
+Applied to
 
-...and because I suspect you might not look at any patches that fail
-your auto-checker, I'd appreciate it if you could comment on the
-discussion on the previous version of the patch.  Thanks!  :-)
+   https://git.kernel.org/pub/scm/linux/kernel/git/broonie/regulator.git for-next
 
--Doug
+Thanks!
+
+[1/2] regulator: qcom_smd: add pm8953 regulators
+      commit: b1a2fb10b8ef07a32061c53426303f73533d867b
+[2/2] dt-bindings: regulator: document pm8950 and pm8953 smd regulators
+      commit: 357dd65a9aa8ee0c77c94dc4601075a33f33e528
+
+All being well this means that it will be integrated into the linux-next
+tree (usually sometime in the next 24 hours) and sent to Linus during
+the next merge window (or sooner if it is a bug fix), however if
+problems are discovered then the patch may be dropped or reverted.
+
+You may get further e-mails resulting from automated or manual testing
+and review of the tree, please engage with people reporting problems and
+send followup patches addressing any issues that are reported if needed.
+
+If any updates are required or you are submitting further changes they
+should be sent as incremental updates against current git, existing
+patches will not be replaced.
+
+Please add any relevant lists and maintainers to the CCs when replying
+to this mail.
+
+Thanks,
+Mark
