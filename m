@@ -2,110 +2,115 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from vger.kernel.org (vger.kernel.org [23.128.96.18])
-	by mail.lfdr.de (Postfix) with ESMTP id A2F31283ACB
-	for <lists+devicetree@lfdr.de>; Mon,  5 Oct 2020 17:37:28 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTP id 8583D283B12
+	for <lists+devicetree@lfdr.de>; Mon,  5 Oct 2020 17:40:23 +0200 (CEST)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S1728055AbgJEPh0 (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Mon, 5 Oct 2020 11:37:26 -0400
-Received: from mail.kernel.org ([198.145.29.99]:40912 "EHLO mail.kernel.org"
+        id S1728668AbgJEPjg (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Mon, 5 Oct 2020 11:39:36 -0400
+Received: from mail.kernel.org ([198.145.29.99]:42716 "EHLO mail.kernel.org"
         rhost-flags-OK-OK-OK-OK) by vger.kernel.org with ESMTP
-        id S1727974AbgJEPhV (ORCPT <rfc822;devicetree@vger.kernel.org>);
-        Mon, 5 Oct 2020 11:37:21 -0400
-Received: from mail-ot1-f46.google.com (mail-ot1-f46.google.com [209.85.210.46])
-        (using TLSv1.2 with cipher ECDHE-RSA-AES128-GCM-SHA256 (128/128 bits))
+        id S1727972AbgJEPjW (ORCPT <rfc822;devicetree@vger.kernel.org>);
+        Mon, 5 Oct 2020 11:39:22 -0400
+Received: from earth.universe (dyndsl-095-033-158-146.ewe-ip-backbone.de [95.33.158.146])
+        (using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
         (No client certificate requested)
-        by mail.kernel.org (Postfix) with ESMTPSA id 39D69206DD
-        for <devicetree@vger.kernel.org>; Mon,  5 Oct 2020 15:37:21 +0000 (UTC)
+        by mail.kernel.org (Postfix) with ESMTPSA id 1CD5C2085B;
+        Mon,  5 Oct 2020 15:39:21 +0000 (UTC)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=kernel.org;
-        s=default; t=1601912241;
-        bh=QmCHU7ZxDcq6ahUu/Woq4aquYA1/mphg3DrGpWdrRbQ=;
-        h=References:In-Reply-To:From:Date:Subject:To:Cc:From;
-        b=k+0fVyXfLLXGACLXCvdTmPulSkHgkspFMXi7KefygJKCfJbG/vj/3IAy1vEWoixUC
-         Cuq4uSaRIQBQMTlnAWwRZ4oTzPm6mF83Dxxlx63TbUPW0pUUNAWTPcwX8+4SjIs3DL
-         EkHoArsgWBhd7GRbKAnW6FXHsVvWc1463jI0sMIc=
-Received: by mail-ot1-f46.google.com with SMTP id o8so9020369otl.4
-        for <devicetree@vger.kernel.org>; Mon, 05 Oct 2020 08:37:21 -0700 (PDT)
-X-Gm-Message-State: AOAM531hcJiJ8C2D17oFZnLIv8RTn4U/eUi1sdj90hhRNPaPaeAvykkO
-        doZyM7cDDGVUuxyHK1ULvfY3+BRP11IrIroCKg==
-X-Google-Smtp-Source: ABdhPJzsH1uqqAAoHtLEvcKmHTiLoocvbR9S34oDR55xwJDNuRX1Yovmy1gHyfHIqS1U8Incnd+L5O/K2x8K3Jfy/RQ=
-X-Received: by 2002:a9d:1c90:: with SMTP id l16mr4428421ota.192.1601912240573;
- Mon, 05 Oct 2020 08:37:20 -0700 (PDT)
+        s=default; t=1601912361;
+        bh=YDa9qgcYN/rLvsHl7wxHnDzXxyPxrajJMh139W2bTQc=;
+        h=Date:From:To:Cc:Subject:References:In-Reply-To:From;
+        b=Yt3ruZa68573tch0c/Ho1ALzHfCpTDMLesbdlPmWRDYNKB50IT55EoZp87fsRkzgz
+         7+6j5JNoNjJ3AsqOjA1un0djegx8x339kHr5uakI101R3J4o5G+KgoyioglXZXg5dL
+         Bxy38eyfhsJbMySPsKZTFlatV3r6LR8AuCR8oLYA=
+Received: by earth.universe (Postfix, from userid 1000)
+        id 1CDCB3C0C87; Mon,  5 Oct 2020 17:39:19 +0200 (CEST)
+Date:   Mon, 5 Oct 2020 17:39:19 +0200
+From:   Sebastian Reichel <sre@kernel.org>
+To:     Rob Herring <robh@kernel.org>
+Cc:     devicetree@vger.kernel.org, Ulf Hansson <ulf.hansson@linaro.org>,
+        linux-iio@vger.kernel.org, linux-pci@vger.kernel.org,
+        linux-remoteproc@vger.kernel.org, alsa-devel@alsa-project.org,
+        dri-devel@lists.freedesktop.org, linux-kernel@vger.kernel.org,
+        Thierry Reding <thierry.reding@gmail.com>,
+        Lee Jones <lee.jones@linaro.org>, linux-clk@vger.kernel.org,
+        linux-leds@vger.kernel.org,
+        Laurent Pinchart <laurent.pinchart+renesas@ideasonboard.com>,
+        Daniel Lezcano <daniel.lezcano@linaro.org>,
+        linux-stm32@st-md-mailman.stormreply.com,
+        linux-rockchip@lists.infradead.org, linux-serial@vger.kernel.org,
+        linux-mips@vger.kernel.org, Guenter Roeck <linux@roeck-us.net>,
+        linux-media@vger.kernel.org, linux-pm@vger.kernel.org,
+        Mauro Carvalho Chehab <mchehab@kernel.org>,
+        linux-gpio@vger.kernel.org, Mark Brown <broonie@kernel.org>,
+        Bjorn Helgaas <bhelgaas@google.com>,
+        openipmi-developer@lists.sourceforge.net,
+        Bjorn Andersson <bjorn.andersson@linaro.org>,
+        linux-hwmon@vger.kernel.org, Stephen Boyd <sboyd@kernel.org>,
+        Greg Kroah-Hartman <gregkh@linuxfoundation.org>,
+        linux-usb@vger.kernel.org, linux-mmc@vger.kernel.org,
+        Liam Girdwood <lgirdwood@gmail.com>, linux-spi@vger.kernel.org,
+        Vinod Koul <vkoul@kernel.org>, netdev@vger.kernel.org,
+        Baolin Wang <baolin.wang7@gmail.com>,
+        Shawn Guo <shawnguo@kernel.org>,
+        "David S. Miller" <davem@davemloft.net>,
+        Jonathan Cameron <jic23@kernel.org>
+Subject: Re: [PATCH] dt-bindings: Another round of adding missing
+ 'additionalProperties'
+Message-ID: <20201005153919.llmcjbz4hiqvzd4x@earth.universe>
+References: <20201002234143.3570746-1-robh@kernel.org>
 MIME-Version: 1.0
-References: <20201005071403.17450-1-ricardo.canuelo@collabora.com> <20201005071403.17450-4-ricardo.canuelo@collabora.com>
-In-Reply-To: <20201005071403.17450-4-ricardo.canuelo@collabora.com>
-From:   Rob Herring <robh@kernel.org>
-Date:   Mon, 5 Oct 2020 10:37:09 -0500
-X-Gmail-Original-Message-ID: <CAL_JsqJ5E6LSis1LzgEGPN6aEktkFamRn19v0s-x_OZ+8yMTiA@mail.gmail.com>
-Message-ID: <CAL_JsqJ5E6LSis1LzgEGPN6aEktkFamRn19v0s-x_OZ+8yMTiA@mail.gmail.com>
-Subject: Re: [PATCH 3/3] dt-bindings: mfd: google,cros-ec: add missing properties
-To:     =?UTF-8?Q?Ricardo_Ca=C3=B1uelo?= <ricardo.canuelo@collabora.com>
-Cc:     Collabora Kernel ML <kernel@collabora.com>,
-        Enric Balletbo i Serra <enric.balletbo@collabora.com>,
-        Benson Leung <bleung@chromium.org>,
-        Guenter Roeck <groeck@chromium.org>,
-        Simon Glass <sjg@chromium.org>,
-        Doug Anderson <dianders@chromium.org>,
-        devicetree@vger.kernel.org
-Content-Type: text/plain; charset="UTF-8"
-Content-Transfer-Encoding: quoted-printable
+Content-Type: multipart/signed; micalg=pgp-sha512;
+        protocol="application/pgp-signature"; boundary="ruzfmjzmyxibtjj5"
+Content-Disposition: inline
+In-Reply-To: <20201002234143.3570746-1-robh@kernel.org>
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-On Mon, Oct 5, 2020 at 2:14 AM Ricardo Ca=C3=B1uelo
-<ricardo.canuelo@collabora.com> wrote:
->
-> Add missing properties that are currently used in the examples of
-> subnode bindings and in many DTs.
-> This fixes all current dt_binding_check and dtbs_check warnings related
-> to this binding.
->
-> Signed-off-by: Ricardo Ca=C3=B1uelo <ricardo.canuelo@collabora.com>
+
+--ruzfmjzmyxibtjj5
+Content-Type: text/plain; charset=us-ascii
+Content-Disposition: inline
+Content-Transfer-Encoding: quoted-printable
+
+On Fri, Oct 02, 2020 at 06:41:43PM -0500, Rob Herring wrote:
+> Another round of wack-a-mole. The json-schema default is additional
+> unknown properties are allowed, but for DT all properties should be
+> defined.
+>=20
+> Signed-off-by: Rob Herring <robh@kernel.org>
 > ---
->  .../bindings/mfd/google,cros-ec.yaml          | 40 +++++++++++++++++++
->  1 file changed, 40 insertions(+)
->
-> diff --git a/Documentation/devicetree/bindings/mfd/google,cros-ec.yaml b/=
-Documentation/devicetree/bindings/mfd/google,cros-ec.yaml
-> index f49c0d5d31ad..c2dc05cdef9f 100644
-> --- a/Documentation/devicetree/bindings/mfd/google,cros-ec.yaml
-> +++ b/Documentation/devicetree/bindings/mfd/google,cros-ec.yaml
-> @@ -59,18 +59,58 @@ properties:
->        whether this nvram is present or not.
->      type: boolean
->
-> +  mtk,rpmsg-name:
+>=20
+> I'll take this thru the DT tree.
+>=20
+>  [...]
+>  .../bindings/power/supply/cw2015_battery.yaml |  2 ++
+>  .../bindings/power/supply/rohm,bd99954.yaml   |  8 ++++++++
+> [...]
 
-This should have been mediatek,rpmsg-name, but I guess we're stuck with it.
+Acked-by: Sebastian Reichel <sre@kernel.org>
 
-> +    description:
-> +      Must be defined if the cros-ec is a rpmsg device for a Mediatek
-> +      ARM Cortex M4 Co-processor. Contains the name pf the rpmsg
-> +      device. Used to match the subnode to the rpmsg device announced by
-> +      the SCP.
-> +    $ref: /schemas/types.yaml#/definitions/string
-> +
->    spi-max-frequency:
->      description: Maximum SPI frequency of the device in Hz.
->
->    reg:
->      maxItems: 1
->
-> +  '#address-cells':
-> +    enum: [1, 2]
-> +
-> +  '#size-cells':
-> +    enum: [0, 1]
+-- Sebastian
 
-This doesn't really make sense. Either there's a size or there isn't.
+--ruzfmjzmyxibtjj5
+Content-Type: application/pgp-signature; name="signature.asc"
 
-[...]
+-----BEGIN PGP SIGNATURE-----
 
-> +  "^regulator@[a-f0-9]+$":
-> +  "^ec-codec@[a-f0-9]+$":
+iQIzBAABCgAdFiEE72YNB0Y/i3JqeVQT2O7X88g7+poFAl97PhAACgkQ2O7X88g7
++pqkbg/9HQHD97P7Thh0rG2tNf/oTuwqdbqpGz8XffiIbWso3SaAukPavFc/b34T
+Bhf9ldAe4Jy7Sz8qDavKYO8qMWOF8av5Je5ajNG3fFmRAO28Jz1vcRsxn7JiTvlU
+SnlrNgxMlppGfzCt59G/IH6GyJVUVhZduf1HhaterbutugRNLE6LKY85rtwPlCR6
+d4+sJE+gKYJmNhxj1XYyVrXoWQs22IA8nJggb2g2l5nHfFolffKHFRXTX5Ax7WFL
+vhm/uSgz/4T9RyObm3lx4ODSSZqC3oc1E0DR3jf97rWH6xGUVFuJoAtE5ZpS5AJt
+uC3k2QQJ8mCt5fUA+khtnS4DIsF07uOzd5Hbex8NcXiFnlO/9GYWlmGXxlAnhdrk
+vSk8jlPgslc4xKpae1y8DFQiMndd9+1g0b4ZOJ6RnhaNpnOoFOIIPmC2ViRnQ8/0
+kv5w7Hop2CIxAYj3Jk1IzlmtbmJeQt39ya7uHNJhV2ISd8P3AmrkcNedPd8OV7MO
+7DrV+n/aKjH2gLYX0+377iH59APbluDQd64e+iDir2L5PP4BWXmyMOGqZ+Od7ScJ
+YT7hlpoKPVwZ1lqta77S7LDpYrRtyv8Ce5EsFineimEc1b4N51GTMh6lDPIGVcXz
+Xa1GC6kpGXU9Cx39fOb5K64cnrJ5Whplgiyv+4xd1suU1q25CZM=
+=XHTx
+-----END PGP SIGNATURE-----
 
-What does the number space represent and is it the same for each of
-these? If not, then this is kind of broken. There's only 1 number
-space at a given level.
-
-Rob
+--ruzfmjzmyxibtjj5--
