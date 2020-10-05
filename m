@@ -2,96 +2,120 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from vger.kernel.org (vger.kernel.org [23.128.96.18])
-	by mail.lfdr.de (Postfix) with ESMTP id 0B1E0283F52
-	for <lists+devicetree@lfdr.de>; Mon,  5 Oct 2020 21:09:54 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTP id 7DFFF283F73
+	for <lists+devicetree@lfdr.de>; Mon,  5 Oct 2020 21:18:31 +0200 (CEST)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S1727714AbgJETJw (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Mon, 5 Oct 2020 15:09:52 -0400
-Received: from lindbergh.monkeyblade.net ([23.128.96.19]:54790 "EHLO
+        id S1729275AbgJETSP (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Mon, 5 Oct 2020 15:18:15 -0400
+Received: from lindbergh.monkeyblade.net ([23.128.96.19]:56096 "EHLO
         lindbergh.monkeyblade.net" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S1726657AbgJETJw (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Mon, 5 Oct 2020 15:09:52 -0400
-Received: from mail-wm1-x344.google.com (mail-wm1-x344.google.com [IPv6:2a00:1450:4864:20::344])
-        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 5D8E6C0613CE;
-        Mon,  5 Oct 2020 12:09:52 -0700 (PDT)
-Received: by mail-wm1-x344.google.com with SMTP id p15so576593wmi.4;
-        Mon, 05 Oct 2020 12:09:52 -0700 (PDT)
+        with ESMTP id S1726657AbgJETSO (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Mon, 5 Oct 2020 15:18:14 -0400
+Received: from mail-pg1-x543.google.com (mail-pg1-x543.google.com [IPv6:2607:f8b0:4864:20::543])
+        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id D2263C0613CE
+        for <devicetree@vger.kernel.org>; Mon,  5 Oct 2020 12:18:14 -0700 (PDT)
+Received: by mail-pg1-x543.google.com with SMTP id x16so6632127pgj.3
+        for <devicetree@vger.kernel.org>; Mon, 05 Oct 2020 12:18:14 -0700 (PDT)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=gmail.com; s=20161025;
-        h=from:to:cc:subject:date:message-id:mime-version
-         :content-transfer-encoding;
-        bh=Nc/EoWSskfJwFiPqwL0OQo4dD0QX3BcE0Pr9s1Q9WEU=;
-        b=X8u/q3gLehIM1K5Gk2w7zWIotH1xU0VjCs36cpIivMarOSBHyWFeMrgN1swQBcCU/m
-         bzyPfCz64Cv3mGOKSpq7pHI6z60ZZq6kspsZ+ilmXrLgBwOvWlhCh+nGJjnDG0FqOUY0
-         yNgnBi8umO2oIpYfkN8dK12AwsoU/UfDOaD8qUEbT65PsVPRrvTkd/ZlkR+dQXWWBVAd
-         lPWzzGhgCc6KqPwR0Vm0CmUVtp8PF4cgqy/MMu/heOYph+AnE9/YauSXOwhi/2x7tB1E
-         YtT7P9jjAc3u3hrSmyfmMzdt6JEpxM77gqoY76UFoltp/1ChbIUxep143nK64lNCkeuc
-         RCmQ==
+        d=chromium.org; s=google;
+        h=date:from:to:cc:subject:message-id:references:mime-version
+         :content-disposition:in-reply-to;
+        bh=3GA56NAT+rDqMXV6hlkrQNn+gOyv5hJPGyi8gBGz2Yw=;
+        b=Q9MEsXX0361UUwV7RuVD/f0AKxW7z6wkFZdTRrgWCTYOfgH577knEikRgtzBHQjMjT
+         npieQ9L0cO6YMbO9IpY6eJPPMihiD9dMciZQBeFIUd080itgkBLZ5bijX9xOlUr9LPPC
+         w3wuJAbkk1nAMWytYU9SF4dfcGLrMkvFlZcAA=
 X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
         d=1e100.net; s=20161025;
-        h=x-gm-message-state:from:to:cc:subject:date:message-id:mime-version
-         :content-transfer-encoding;
-        bh=Nc/EoWSskfJwFiPqwL0OQo4dD0QX3BcE0Pr9s1Q9WEU=;
-        b=YFNZzmb57hSujpfssowEqDA+LQE355bniuVu4gJFPWzDUluRyheIjqZ7gfO4EsKQVn
-         stsDhVkxCksCIf1AXrRITgY9iGCfQthrrw3TQYZF23P4noDVJBw7h2JiecAqOa8XwPDP
-         QBgsBMPEZL6uCICo92ptcFXvc+rXW1MtQqyPgsWtBvvtxu6Q5eS3uCQe6pxTS0TBTFz8
-         cLvXza+80DvxCwAzYMcjAbm0edRdkW0RRdMaIV+eYqMGSh4DaaPmLHqwoulHX4mR/t5V
-         lW0THjiHZ6Z3kQKY/48M4E9bEZjtGleHwbE3iOBx+BJ1EZki5acDtwHgBmoXiBQsKHVi
-         EDHg==
-X-Gm-Message-State: AOAM531fOMoV/5uxMk73ipqhZ1pouw9DqJHGQEK8kuJnqXJc8zPJQAQi
-        wqbdxNSARvjx/DIzA1cru2U=
-X-Google-Smtp-Source: ABdhPJz7v8BcJ5QlHjdc0rMtUeLTUeLkqK5T44k5Odo5n2379Mr3PpcHv9UKYsIli0dKdWFWPjdzeg==
-X-Received: by 2002:a1c:2901:: with SMTP id p1mr865861wmp.170.1601924990861;
-        Mon, 05 Oct 2020 12:09:50 -0700 (PDT)
-Received: from clement-Latitude-7490.numericable.fr (213-245-241-245.rev.numericable.fr. [213.245.241.245])
-        by smtp.gmail.com with ESMTPSA id i33sm1195402wri.79.2020.10.05.12.09.49
-        (version=TLS1_3 cipher=TLS_AES_256_GCM_SHA384 bits=256/256);
-        Mon, 05 Oct 2020 12:09:50 -0700 (PDT)
-From:   =?UTF-8?q?Cl=C3=A9ment=20P=C3=A9ron?= <peron.clem@gmail.com>
-To:     Maxime Ripard <mripard@kernel.org>
-Cc:     Yangtao Li <frank@allwinnertech.com>,
-        =?UTF-8?q?Cl=C3=A9ment=20P=C3=A9ron?= <peron.clem@gmail.com>,
-        Linus Walleij <linus.walleij@linaro.org>,
-        Rob Herring <robh+dt@kernel.org>, Chen-Yu Tsai <wens@csie.org>,
-        linux-gpio@vger.kernel.org, devicetree@vger.kernel.org,
-        linux-arm-kernel@lists.infradead.org, linux-kernel@vger.kernel.org
-Subject: [PATCH] dt-bindings: pinctrl: sunxi: Allow pinctrl with more interrupt banks
-Date:   Mon,  5 Oct 2020 21:09:39 +0200
-Message-Id: <20201005190939.21016-1-peron.clem@gmail.com>
-X-Mailer: git-send-email 2.25.1
+        h=x-gm-message-state:date:from:to:cc:subject:message-id:references
+         :mime-version:content-disposition:in-reply-to;
+        bh=3GA56NAT+rDqMXV6hlkrQNn+gOyv5hJPGyi8gBGz2Yw=;
+        b=Y9RdGbPniqoyQA5SSTQx9pi0xgH5kJRgiQP1f14a1S75eZH/JQ6Z4CG8ojOGr+hV+S
+         SqlA1QZmBudb5kUNXqLCIawlAUg04epvb2KD6nDq5Fqw05aeQujfGnERtlJexYUHjQ9H
+         1R3vgvlxYpNu4c1ItrlRNGweQuY6TkRruObS8xkKvgihbEQOPoOgs1mYzn6lOHc++/B7
+         W0WKHrZP3MMHE3+uUs1OT+kqrWESxq7s8/lXn8ml/tl/JKDfmiromdL5T9b1iw/aEsai
+         7qeIa9O5ZmBRdr4LFv8OHAAYdE9Ol/MqzVd2rl4xBYZL1TlALRF6q8VegKbX3RBiGtPh
+         T8hQ==
+X-Gm-Message-State: AOAM532NTzePzN1nc4zHAFbR+zA1S2NqYpF7flx+1zmsRvyFEZ2a1bNX
+        HhUHJGCI/dbRxnjGrxNAW20HRw==
+X-Google-Smtp-Source: ABdhPJybYrDyDmNEj+u3/qlEH3IdseL3kHfXOlCVbiW/p1EWpvW/cAS0DSyWz22/1QvVdrp4IgDZrQ==
+X-Received: by 2002:a63:d50a:: with SMTP id c10mr1007307pgg.26.1601925494272;
+        Mon, 05 Oct 2020 12:18:14 -0700 (PDT)
+Received: from localhost ([2620:15c:202:1:f693:9fff:fef4:e70a])
+        by smtp.gmail.com with ESMTPSA id fv13sm334222pjb.50.2020.10.05.12.18.13
+        (version=TLS1_3 cipher=TLS_AES_128_GCM_SHA256 bits=128/128);
+        Mon, 05 Oct 2020 12:18:13 -0700 (PDT)
+Date:   Mon, 5 Oct 2020 12:18:12 -0700
+From:   Matthias Kaehlcke <mka@chromium.org>
+To:     Alan Stern <stern@rowland.harvard.edu>
+Cc:     Rob Herring <robh@kernel.org>,
+        Doug Anderson <dianders@chromium.org>,
+        Greg Kroah-Hartman <gregkh@linuxfoundation.org>,
+        Frank Rowand <frowand.list@gmail.com>,
+        "linux-kernel@vger.kernel.org" <linux-kernel@vger.kernel.org>,
+        Linux USB List <linux-usb@vger.kernel.org>,
+        Bastien Nocera <hadess@hadess.net>,
+        Stephen Boyd <swboyd@chromium.org>,
+        Ravi Chandra Sadineni <ravisadineni@chromium.org>,
+        Krzysztof Kozlowski <krzk@kernel.org>,
+        "open list:OPEN FIRMWARE AND FLATTENED DEVICE TREE BINDINGS" 
+        <devicetree@vger.kernel.org>, Peter Chen <peter.chen@nxp.com>
+Subject: Re: [PATCH v4 1/2] dt-bindings: usb: Add binding for discrete
+ onboard USB hubs
+Message-ID: <20201005191812.GB4135817@google.com>
+References: <20200930124915.GA1826870@google.com>
+ <CAL_JsqLq9ZJm_CMiqWwbQhgGeu_ac_j43pvk4+xCFueSbyL4wA@mail.gmail.com>
+ <CAD=FV=WcDzgcHNn1+gH+gq_WEwpD0XXdJGm2fBVpAB=3fVbzZA@mail.gmail.com>
+ <CAL_Jsq+Zi+hCmUEiSmYw=pVK472=OW1ZjLnkH1NodWUm8FA5+g@mail.gmail.com>
+ <CAD=FV=WJrvWBLk3oLpv6Q3uY4w7YeQBXVdkpn+SAS5dnxp9-=Q@mail.gmail.com>
+ <20201002183633.GA296334@rowland.harvard.edu>
+ <CAL_JsqKHFA5RWz1SRLkR2JXydURL2pA+4C0+C+4SrJR_h4M0dw@mail.gmail.com>
+ <20201003124142.GA318272@rowland.harvard.edu>
+ <20201005160655.GA4135817@google.com>
+ <20201005161527.GI376584@rowland.harvard.edu>
 MIME-Version: 1.0
-Content-Type: text/plain; charset=UTF-8
-Content-Transfer-Encoding: 8bit
+Content-Type: text/plain; charset=utf-8
+Content-Disposition: inline
+In-Reply-To: <20201005161527.GI376584@rowland.harvard.edu>
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-Recently introduced Allwinner A100 pinctrl block has 7 interrupts.
+On Mon, Oct 05, 2020 at 12:15:27PM -0400, Alan Stern wrote:
+> On Mon, Oct 05, 2020 at 09:06:55AM -0700, Matthias Kaehlcke wrote:
+> > On Sat, Oct 03, 2020 at 08:41:42AM -0400, Alan Stern wrote:
+> > > The decision to enable the power regulator at system startup would be 
+> > > kernel policy, not a part of the DT description.  But there ought to be 
+> > > a standard way of recognizing which resource requirements of this sort 
+> > > should be handled at startup.  Then there could be a special module (in 
+> > > the driver model core? -- that doesn't really seem appropriate) which 
+> > > would search through the whole DT database for resources of this kind 
+> > > and enable them.
+> > 
+> > This might work for some cases that only have a single resource or multiple
+> > resources but no timing/sequencing requirements. For the more complex cases
+> > it would probably end up in something similar to the pwrseq series
+> > (https://lore.kernel.org/patchwork/project/lkml/list/?series=314989&state=%2A&archive=both),
+> > which was nack-ed by Rafael, Rob also expressed he didn't want to go
+> > down that road.
+> > 
+> > It seems to me that initialization of the resources needs to be done by
+> > the/a driver for the device, which knows about the sequencing requirements.
+> > Potentially this could be done in a pre-probe function that you brought up
+> > earlier.
+> 
+> One of the important points of my suggestion was that the resource init 
+> should be done _outside_ of the device's driver, precisely because the 
+> driver module might not even be loaded until the resources are set up 
+> and the device is discovered.
+> 
+> The conclusion is that we need to have code that is aware of some 
+> detailed needs of a specific device but is not part of the device's 
+> driver.  I'm not sure what the best way to implement this would be.
 
-This trig a warning when running dtb_checks:
-sun50i-a100-allwinner-perf1.dt.yaml: pinctrl@300b000: interrupts: [...] is too long
-	From schema: .../allwinner,sun4i-a10-pinctrl.yaml
+Wouldn't it be possible to load the module when the DT specifies that
+the device exists? For USB the kernel would need the VID/PID to identify
+the module, these could be extracted from the compatible string.
 
-Fix this by allowing up to 7 interrupts.
-
-Signed-off-by: Clément Péron <peron.clem@gmail.com>
----
- .../bindings/pinctrl/allwinner,sun4i-a10-pinctrl.yaml           | 2 +-
- 1 file changed, 1 insertion(+), 1 deletion(-)
-
-diff --git a/Documentation/devicetree/bindings/pinctrl/allwinner,sun4i-a10-pinctrl.yaml b/Documentation/devicetree/bindings/pinctrl/allwinner,sun4i-a10-pinctrl.yaml
-index 34a17d5c6135..5240487dfe50 100644
---- a/Documentation/devicetree/bindings/pinctrl/allwinner,sun4i-a10-pinctrl.yaml
-+++ b/Documentation/devicetree/bindings/pinctrl/allwinner,sun4i-a10-pinctrl.yaml
-@@ -61,7 +61,7 @@ properties:
- 
-   interrupts:
-     minItems: 1
--    maxItems: 5
-+    maxItems: 7
-     description:
-       One interrupt per external interrupt bank supported on the
-       controller, sorted by bank number ascending order.
--- 
-2.25.1
-
+Having the initialization code outside of the driver could lead to code
+duplication, since the driver might want to power the device down in
+certain situations (e.g. system suspend).
