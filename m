@@ -2,75 +2,78 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from vger.kernel.org (vger.kernel.org [23.128.96.18])
-	by mail.lfdr.de (Postfix) with ESMTP id 425692837F5
-	for <lists+devicetree@lfdr.de>; Mon,  5 Oct 2020 16:38:31 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTP id 29DA12837FA
+	for <lists+devicetree@lfdr.de>; Mon,  5 Oct 2020 16:39:04 +0200 (CEST)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S1726487AbgJEOi2 (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Mon, 5 Oct 2020 10:38:28 -0400
-Received: from mail.kernel.org ([198.145.29.99]:46842 "EHLO mail.kernel.org"
-        rhost-flags-OK-OK-OK-OK) by vger.kernel.org with ESMTP
-        id S1725936AbgJEOi1 (ORCPT <rfc822;devicetree@vger.kernel.org>);
-        Mon, 5 Oct 2020 10:38:27 -0400
-Received: from mail-ot1-f53.google.com (mail-ot1-f53.google.com [209.85.210.53])
-        (using TLSv1.2 with cipher ECDHE-RSA-AES128-GCM-SHA256 (128/128 bits))
-        (No client certificate requested)
-        by mail.kernel.org (Postfix) with ESMTPSA id 3720020776;
-        Mon,  5 Oct 2020 14:38:27 +0000 (UTC)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=kernel.org;
-        s=default; t=1601908707;
-        bh=qrpsw39g2HYMqSB+6zkRrrlQVSk8tcTuR+W4i5vTgiU=;
-        h=References:In-Reply-To:From:Date:Subject:To:Cc:From;
-        b=yCseW3CGhvBD1u87duDf4tOl/uBzHVb2eh2lLEi20G9+2nmUBe069o/Pe48dOc+Cr
-         TvCl+L76nwScIzXqYdtVOG2Wb56Ww92oEwSxQkvMfkWmjW6M2UUngpgELG7qcWj0o6
-         cCoXV8T/G/CPb6phUgcN1rGn1do0LHbUwCTFtfow=
-Received: by mail-ot1-f53.google.com with SMTP id i12so2989670ota.5;
-        Mon, 05 Oct 2020 07:38:27 -0700 (PDT)
-X-Gm-Message-State: AOAM530fgUS/XqNw54GFDzYAnms59p47NiD5v8USdrFRPeHvhdRyMju6
-        g3ZXb2V+vikyZCbxr0/c5Ze13/gAHL1NNNABbA==
-X-Google-Smtp-Source: ABdhPJxgzGZnVxNKnaUW4PGBqPAxCXhLxf/zBWeYtpXei81FHb/CaZ0SrtW1AZcxDxTzUg+Sq6ioaWDXnTPhY5ZUsRY=
-X-Received: by 2002:a9d:6b0d:: with SMTP id g13mr12169390otp.129.1601908706622;
- Mon, 05 Oct 2020 07:38:26 -0700 (PDT)
+        id S1726552AbgJEOi7 (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Mon, 5 Oct 2020 10:38:59 -0400
+Received: from mail-oi1-f196.google.com ([209.85.167.196]:36362 "EHLO
+        mail-oi1-f196.google.com" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
+        with ESMTP id S1725936AbgJEOi7 (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Mon, 5 Oct 2020 10:38:59 -0400
+Received: by mail-oi1-f196.google.com with SMTP id u17so2727985oie.3;
+        Mon, 05 Oct 2020 07:38:58 -0700 (PDT)
+X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+        d=1e100.net; s=20161025;
+        h=x-gm-message-state:date:from:to:cc:subject:message-id:references
+         :mime-version:content-disposition:in-reply-to;
+        bh=naQi8NEjlXf44kRLn+g1FTyii1oFTs4V5HICiDUnCFM=;
+        b=Mvyya8gaai0gmXmhXDVSW4ogakkTSVbpcBE2R57cV+Gz/hMl2t5iC9GMbxtLCnGufR
+         Yr6EAj5BylUvRDeRD3NLmbsOFuk14CWqxNZ25ttVf+Quu58bamkjKX53C+8c1YTOSrFK
+         yjURLTHZpbdbytgpzTyeRT/8pyPgFHBqPjfHz2JqBOwuZxf+vWS7gyJLJ33WaUVnvfSA
+         qo0lNJf8Xq5s4B/ONqmSDqnlfh2Mpzq9kz+NLzrLxo694qzjR51ZwHRINUadEK1UxERz
+         DIjH/1SqJpRFqxz9a6tmmbeCrDSoTD5TLzekMYzRpnRtEt1LIydrD3BeJhmKFc7RLB8h
+         uBRw==
+X-Gm-Message-State: AOAM532RFPDo4fmted2jp6aUwXtHG54JSPK8l5a7tCgEYg6I3eadiPek
+        lJvHTN/CWZxBvS9uTYPpmA==
+X-Google-Smtp-Source: ABdhPJyBNSFKOcjOpYW30Jw30TpzykIS03eABHXPs2eAFFuiWGe8CeVT1pVZB+S/XP4nZBn1bxFiKQ==
+X-Received: by 2002:aca:55c2:: with SMTP id j185mr5332858oib.13.1601908738430;
+        Mon, 05 Oct 2020 07:38:58 -0700 (PDT)
+Received: from xps15 (24-155-109-49.dyn.grandenetworks.net. [24.155.109.49])
+        by smtp.gmail.com with ESMTPSA id u68sm3104760otb.9.2020.10.05.07.38.56
+        (version=TLS1_3 cipher=TLS_AES_256_GCM_SHA384 bits=256/256);
+        Mon, 05 Oct 2020 07:38:57 -0700 (PDT)
+Received: (nullmailer pid 149913 invoked by uid 1000);
+        Mon, 05 Oct 2020 14:38:56 -0000
+Date:   Mon, 5 Oct 2020 09:38:56 -0500
+From:   Rob Herring <robh@kernel.org>
+To:     Gene Chen <gene.chen.richtek@gmail.com>
+Cc:     shufan_lee@richtek.com, lars@metafoo.de, matthias.bgg@gmail.com,
+        pmeerw@pmeerw.net, Wilma.Wu@mediatek.com,
+        linux-arm-kernel@lists.infradead.org, benjamin.chao@mediatek.com,
+        linux-iio@vger.kernel.org, linux-kernel@vger.kernel.org,
+        robh+dt@kernel.org, jic23@kernel.org, devicetree@vger.kernel.org,
+        cy_huang@richtek.com, gene_chen@richtek.com,
+        linux-mediatek@lists.infradead.org, knaack.h@gmx.de
+Subject: Re: [PATCH v6 1/3] dt-bindings: iio: adc: add bindings doc for
+ MT6360 ADC
+Message-ID: <20201005143856.GA149682@bogus>
+References: <1601542448-7433-1-git-send-email-gene.chen.richtek@gmail.com>
+ <1601542448-7433-2-git-send-email-gene.chen.richtek@gmail.com>
 MIME-Version: 1.0
-References: <20201001145738.17326-1-alban.bedel@aerq.com> <20201001145738.17326-3-alban.bedel@aerq.com>
- <9c164930-ffec-415e-caf7-4eb8c2e57576@roeck-us.net>
-In-Reply-To: <9c164930-ffec-415e-caf7-4eb8c2e57576@roeck-us.net>
-From:   Rob Herring <robh+dt@kernel.org>
-Date:   Mon, 5 Oct 2020 09:38:14 -0500
-X-Gmail-Original-Message-ID: <CAL_JsqJa82AYJQHfxNweJBzL7rLq5Tnzr7fW87SeifwtWkAWCA@mail.gmail.com>
-Message-ID: <CAL_JsqJa82AYJQHfxNweJBzL7rLq5Tnzr7fW87SeifwtWkAWCA@mail.gmail.com>
-Subject: Re: [PATCH v4 2/3] dt-bindings: hwmon: Add the +vs supply to the lm75 bindings
-To:     Guenter Roeck <linux@roeck-us.net>
-Cc:     Alban Bedel <alban.bedel@aerq.com>,
-        Linux HWMON List <linux-hwmon@vger.kernel.org>,
-        Jean Delvare <jdelvare@suse.com>,
-        Liam Girdwood <lgirdwood@gmail.com>,
-        Mark Brown <broonie@kernel.org>, devicetree@vger.kernel.org,
-        "linux-kernel@vger.kernel.org" <linux-kernel@vger.kernel.org>
-Content-Type: text/plain; charset="UTF-8"
+Content-Type: text/plain; charset=us-ascii
+Content-Disposition: inline
+In-Reply-To: <1601542448-7433-2-git-send-email-gene.chen.richtek@gmail.com>
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-On Thu, Oct 1, 2020 at 1:08 PM Guenter Roeck <linux@roeck-us.net> wrote:
->
-> Hi,
->
-> On 10/1/20 7:57 AM, Alban Bedel wrote:
-> > Some boards might have a regulator that control the +VS supply, add it
-> > to the bindings.
-> >
-> > Signed-off-by: Alban Bedel <alban.bedel@aerq.com>
-> > Acked-by: Rob Herring <robh@kernel.org>
->
-> I have nothing in my records, and nothing in patchwork, that suggests
-> that Rob gave this patch an Acked-by:. Please point me to the respective
-> e-mail.
+On Thu, 01 Oct 2020 16:54:06 +0800, Gene Chen wrote:
+> From: Gene Chen <gene_chen@richtek.com>
+> 
+> This change adds the binding doc for the MT6360 ADC.
+> 
+> Signed-off-by: Gene Chen <gene_chen@richtek.com>
+> ---
+>  .../bindings/iio/adc/mediatek,mt6360-adc.yaml      | 34 ++++++++++++++++++++++
+>  1 file changed, 34 insertions(+)
+>  create mode 100644 Documentation/devicetree/bindings/iio/adc/mediatek,mt6360-adc.yaml
+> 
 
-I did on v2.
 
-> Patch 1/3 is also missing an Acked-by: or Reviewed-by: from a DT
-> maintainer.
+Please add Acked-by/Reviewed-by tags when posting new versions. However,
+there's no need to repost patches *only* to add the tags. The upstream
+maintainer will do that for acks received on the version they apply.
 
-In my queue.
+If a tag was not added on purpose, please state why and what changed.
 
-Rob
