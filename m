@@ -2,82 +2,88 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from vger.kernel.org (vger.kernel.org [23.128.96.18])
-	by mail.lfdr.de (Postfix) with ESMTP id 5FF2528369D
-	for <lists+devicetree@lfdr.de>; Mon,  5 Oct 2020 15:33:04 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTP id 908EE2836A8
+	for <lists+devicetree@lfdr.de>; Mon,  5 Oct 2020 15:35:39 +0200 (CEST)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S1725939AbgJENdD (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Mon, 5 Oct 2020 09:33:03 -0400
-Received: from mail.kernel.org ([198.145.29.99]:41876 "EHLO mail.kernel.org"
+        id S1726060AbgJENfb (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Mon, 5 Oct 2020 09:35:31 -0400
+Received: from mail.kernel.org ([198.145.29.99]:42544 "EHLO mail.kernel.org"
         rhost-flags-OK-OK-OK-OK) by vger.kernel.org with ESMTP
-        id S1725914AbgJENdD (ORCPT <rfc822;devicetree@vger.kernel.org>);
-        Mon, 5 Oct 2020 09:33:03 -0400
-Received: from disco-boy.misterjones.org (disco-boy.misterjones.org [51.254.78.96])
+        id S1725936AbgJENfb (ORCPT <rfc822;devicetree@vger.kernel.org>);
+        Mon, 5 Oct 2020 09:35:31 -0400
+Received: from pali.im (pali.im [31.31.79.79])
         (using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
         (No client certificate requested)
-        by mail.kernel.org (Postfix) with ESMTPSA id 18ADD20756;
-        Mon,  5 Oct 2020 13:33:03 +0000 (UTC)
+        by mail.kernel.org (Postfix) with ESMTPSA id 638E720756;
+        Mon,  5 Oct 2020 13:35:30 +0000 (UTC)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=kernel.org;
-        s=default; t=1601904783;
-        bh=1A2qwG3LybK4oPn2enZzeiwMqjcB9vJ04gRWBfbv3Qw=;
-        h=From:To:Cc:Subject:Date:From;
-        b=DYIP8mGtj2LQeYn/yk3FAcoiuVRL/GEgJvOhLRy7ri5SpEtvDI2oXHkqH1vBdFQh1
-         mf0f5FVB2e5OX+9BjbcIwpZdtSztEFtmrghyiXmAgO3dVOjUix3RBaNSpvhBKpub6Q
-         kwQCV/UHkQKuglorDV1nwmBPdTmucnIH/fBGC8yQ=
-Received: from 78.163-31-62.static.virginmediabusiness.co.uk ([62.31.163.78] helo=why.lan)
-        by disco-boy.misterjones.org with esmtpsa (TLS1.3:ECDHE_RSA_AES_256_GCM_SHA384:256)
-        (Exim 4.92)
-        (envelope-from <maz@kernel.org>)
-        id 1kPQbs-00HNke-W8; Mon, 05 Oct 2020 14:33:01 +0100
-From:   Marc Zyngier <maz@kernel.org>
-To:     devicetree@vger.kernel.org, linux-tegra@vger.kernel.org,
-        linux-kernel@vger.kernel.org, linux-arm-kernel@lists.infradead.org
-Cc:     Thierry Reding <thierry.reding@gmail.com>,
-        Jonathan Hunter <jonathanh@nvidia.com>,
-        Nagarjuna Kristam <nkristam@nvidia.com>,
-        Sowjanya Komatineni <skomatineni@nvidia.com>,
-        kernel-team@android.com
-Subject: [PATCH] arm64: tegra: Fix GIC400 missing GICH/GICV register regions
-Date:   Mon,  5 Oct 2020 14:32:56 +0100
-Message-Id: <20201005133256.1390543-1-maz@kernel.org>
-X-Mailer: git-send-email 2.28.0
+        s=default; t=1601904930;
+        bh=QxMXAQ+yCvEEn6dM1e6qBOXZBOw7fFkONowEA4VtgVg=;
+        h=From:To:Cc:Subject:Date:In-Reply-To:References:From;
+        b=1e/t/aI+colfpTAM8N4qwcH90Q+7vo/lnXUhRI0VM+bn23OgQZ+t/oKuHAsSnG1qu
+         YyAUr+6XSImnKCL1x33tLJgt0i7mNX766dwnc2juex09x6SpP86/i4+6d465pn+1h5
+         jxJ+fZr9U8VynzflBIHAaY9HYeNjE+YI0MDW3/qc=
+Received: by pali.im (Postfix)
+        id 1D75EA07; Mon,  5 Oct 2020 15:35:28 +0200 (CEST)
+From:   =?UTF-8?q?Pali=20Roh=C3=A1r?= <pali@kernel.org>
+To:     Gregory CLEMENT <gregory.clement@bootlin.com>
+Cc:     Jason Cooper <jason@lakedaemon.net>, Andrew Lunn <andrew@lunn.ch>,
+        Sebastian Hesselbarth <sebastian.hesselbarth@gmail.com>,
+        Rob Herring <robh+dt@kernel.org>,
+        Andre Heider <a.heider@gmail.com>, devicetree@vger.kernel.org,
+        linux-kernel@vger.kernel.org
+Subject: [PATCH v2] arm64: dts: marvell: espressobin: Update link to V7 schematic
+Date:   Mon,  5 Oct 2020 15:35:13 +0200
+Message-Id: <20201005133513.8649-1-pali@kernel.org>
+X-Mailer: git-send-email 2.20.1
+In-Reply-To: <20200925084306.16309-1-pali@kernel.org>
+References: <20200925084306.16309-1-pali@kernel.org>
 MIME-Version: 1.0
+Content-Type: text/plain; charset=UTF-8
 Content-Transfer-Encoding: 8bit
-X-SA-Exim-Connect-IP: 62.31.163.78
-X-SA-Exim-Rcpt-To: devicetree@vger.kernel.org, linux-tegra@vger.kernel.org, linux-kernel@vger.kernel.org, linux-arm-kernel@lists.infradead.org, thierry.reding@gmail.com, jonathanh@nvidia.com, nkristam@nvidia.com, skomatineni@nvidia.com, kernel-team@android.com
-X-SA-Exim-Mail-From: maz@kernel.org
-X-SA-Exim-Scanned: No (on disco-boy.misterjones.org); SAEximRunCond expanded to false
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-GIC400 has full support for virtualization, and yet the tegra186
-DT doesn't expose the GICH/GICV regions (despite exposing the
-maintenance interrupt that only makes sense for virtualization).
+Up-to-date version of V7 schematic is on new URL linked from official
+tech-spec webpage http://espressobin.net/tech-spec/
 
-Add the missing regions, based on the hunch that the HW doesn't
-use the CPU build-in interfaces, but instead the external ones
-provided by the GIC. KVM's virtual GIC now works with this change.
+Signed-off-by: Pali Rohár <pali@kernel.org>
 
-Signed-off-by: Marc Zyngier <maz@kernel.org>
 ---
- arch/arm64/boot/dts/nvidia/tegra186.dtsi | 4 +++-
- 1 file changed, 3 insertions(+), 1 deletion(-)
+Changes in V2:
+* Added commit description
+---
+ arch/arm64/boot/dts/marvell/armada-3720-espressobin-v7-emmc.dts | 2 +-
+ arch/arm64/boot/dts/marvell/armada-3720-espressobin-v7.dts      | 2 +-
+ 2 files changed, 2 insertions(+), 2 deletions(-)
 
-diff --git a/arch/arm64/boot/dts/nvidia/tegra186.dtsi b/arch/arm64/boot/dts/nvidia/tegra186.dtsi
-index 8eb61dd9921e..fd44545e124d 100644
---- a/arch/arm64/boot/dts/nvidia/tegra186.dtsi
-+++ b/arch/arm64/boot/dts/nvidia/tegra186.dtsi
-@@ -630,7 +630,9 @@ gic: interrupt-controller@3881000 {
- 		#interrupt-cells = <3>;
- 		interrupt-controller;
- 		reg = <0x0 0x03881000 0x0 0x1000>,
--		      <0x0 0x03882000 0x0 0x2000>;
-+		      <0x0 0x03882000 0x0 0x2000>,
-+		      <0x0 0x03884000 0x0 0x2000>,
-+		      <0x0 0x03886000 0x0 0x2000>;
- 		interrupts = <GIC_PPI 9
- 			(GIC_CPU_MASK_SIMPLE(4) | IRQ_TYPE_LEVEL_HIGH)>;
- 		interrupt-parent = <&gic>;
+diff --git a/arch/arm64/boot/dts/marvell/armada-3720-espressobin-v7-emmc.dts b/arch/arm64/boot/dts/marvell/armada-3720-espressobin-v7-emmc.dts
+index e225dce64b9e..4775a7eda481 100644
+--- a/arch/arm64/boot/dts/marvell/armada-3720-espressobin-v7-emmc.dts
++++ b/arch/arm64/boot/dts/marvell/armada-3720-espressobin-v7-emmc.dts
+@@ -8,7 +8,7 @@
+  *
+  */
+ /*
+- * Schematic available at http://wiki.espressobin.net/tiki-download_file.php?fileId=200
++ * Schematic available at http://espressobin.net/wp-content/uploads/2020/05/ESPRESSObin_V7-0_Schematic.pdf
+  */
+ 
+ /dts-v1/;
+diff --git a/arch/arm64/boot/dts/marvell/armada-3720-espressobin-v7.dts b/arch/arm64/boot/dts/marvell/armada-3720-espressobin-v7.dts
+index 44dbe9a21cc7..c47a93978386 100644
+--- a/arch/arm64/boot/dts/marvell/armada-3720-espressobin-v7.dts
++++ b/arch/arm64/boot/dts/marvell/armada-3720-espressobin-v7.dts
+@@ -8,7 +8,7 @@
+  *
+  */
+ /*
+- * Schematic available at http://wiki.espressobin.net/tiki-download_file.php?fileId=200
++ * Schematic available at http://espressobin.net/wp-content/uploads/2020/05/ESPRESSObin_V7-0_Schematic.pdf
+  */
+ 
+ /dts-v1/;
 -- 
-2.28.0
+2.20.1
 
