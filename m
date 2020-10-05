@@ -2,49 +2,50 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from vger.kernel.org (vger.kernel.org [23.128.96.18])
-	by mail.lfdr.de (Postfix) with ESMTP id B94042832D6
-	for <lists+devicetree@lfdr.de>; Mon,  5 Oct 2020 11:13:04 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTP id 7C4962832DC
+	for <lists+devicetree@lfdr.de>; Mon,  5 Oct 2020 11:13:15 +0200 (CEST)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S1726006AbgJEJND (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Mon, 5 Oct 2020 05:13:03 -0400
-Received: from lindbergh.monkeyblade.net ([23.128.96.19]:46828 "EHLO
+        id S1726064AbgJEJNI (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Mon, 5 Oct 2020 05:13:08 -0400
+Received: from lindbergh.monkeyblade.net ([23.128.96.19]:46854 "EHLO
         lindbergh.monkeyblade.net" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S1725887AbgJEJND (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Mon, 5 Oct 2020 05:13:03 -0400
-Received: from mail-pg1-x544.google.com (mail-pg1-x544.google.com [IPv6:2607:f8b0:4864:20::544])
-        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 7E4ACC0613CE
-        for <devicetree@vger.kernel.org>; Mon,  5 Oct 2020 02:13:03 -0700 (PDT)
-Received: by mail-pg1-x544.google.com with SMTP id g29so5624082pgl.2
-        for <devicetree@vger.kernel.org>; Mon, 05 Oct 2020 02:13:03 -0700 (PDT)
+        with ESMTP id S1726058AbgJEJNH (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Mon, 5 Oct 2020 05:13:07 -0400
+Received: from mail-pj1-x1043.google.com (mail-pj1-x1043.google.com [IPv6:2607:f8b0:4864:20::1043])
+        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id A1F5AC0613A8
+        for <devicetree@vger.kernel.org>; Mon,  5 Oct 2020 02:13:07 -0700 (PDT)
+Received: by mail-pj1-x1043.google.com with SMTP id az3so1998815pjb.4
+        for <devicetree@vger.kernel.org>; Mon, 05 Oct 2020 02:13:07 -0700 (PDT)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
         d=linaro.org; s=google;
-        h=from:to:cc:subject:date:message-id;
-        bh=ogtuZFvmTG1HNJ4mpeUW7o3oDnuWDjMGFWxAfAyP1zo=;
-        b=pXBuoTsPuRad3vIUhnovelwcdfQU07Dv8Z+Qy++jDhwhdR0Emie8AuwmaT7EjATyD5
-         LWJXWDJX4zrMY4bLBJicioD/na0mCDYuq2dpjz78gJTkkhbAnc0A/SVV0NzAk4fqDYcQ
-         IYDhyezYAoB09Vfd5DndUUTKk+Oq4RxVgefyh+Xt3yYV5l8DzssfHTFxlg/8Ads2xP0d
-         PmUwHzb9HLUSGWdfcXu3hEhFqWRPHxTcgvkj69O9mERUIjTKu/ntyJjo5YyncEcHfMa8
-         T+t+XDrm5I3Rr72jXjfdcF/VGNw6ZH4eVTCOWu/sy14AoLNStskyKOGtqeqaT7HJc2eS
-         O31w==
+        h=from:to:cc:subject:date:message-id:in-reply-to:references;
+        bh=ZdgKLe65/5ZTL18bHaqdAUbi1xJI+QzTIn6dSNFRMgI=;
+        b=f2t7lvS24tVVJqV0MihUDCs6DheTIibTnFv4yiwHRgZ+a3IhrmApWH1UjwOtYmo+Zq
+         iJyenEUida+a/FcajZHjmLQIRuLWIIoW4uACNRRgjS9xZc5vxBR3GupWrlFC7729Mdn/
+         J1kO2rfmLixioBgWpaUBMquHHI9kXU5LoI9GT3RLeN+6dSpWrWI7w694ptfftLKggSn3
+         CsFxaK7A52rBH8lLlWeeSoptqZqGLERyX8SNhrDZovlcCCJen6IKBNKbXSlgCL7C2UQR
+         P9Da6vLSe3QfpEDRZgZX2HeguPL1EiG5xkuIOROilkD/X0ti364DlsXmLbjOYH85NZaQ
+         O9FA==
 X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
         d=1e100.net; s=20161025;
-        h=x-gm-message-state:from:to:cc:subject:date:message-id;
-        bh=ogtuZFvmTG1HNJ4mpeUW7o3oDnuWDjMGFWxAfAyP1zo=;
-        b=LaIkHcQ2dhEM7fLkPSp18NABCOkuWTQu57J/H0JYYAZ4nqvGyURB9tg8zW9A7qCeh6
-         3GLydaLnFxz5RKP1JxrbUO+N4onVIEvAZyKmfiQQfO74rQE56P8QNVBqIMp6XQ5QopD5
-         fGrBNDne8EvHg71MlJdz4lMcC/Jr76ZSHDQegrwvu9iFc/PK/+lYdazwFgcrTchzX8r2
-         +NPj6LvbdhElFYOGOH145P6AI8UI62s7iMzYm+q4PX5sYVWx8vy5Mq8PNOoM5R8uIRTw
-         Y7FDFHPp4xR+cqqmcd/oMPwhYgymM52xhGI9HSkvqMnslM20iIWBo67dYh1xP9jrtL9o
-         0PmA==
-X-Gm-Message-State: AOAM5334jpju3cGvlFuf9t/nFNVFw4Hgnrvl31fyhWz5xJtGHQcmKYCs
-        3bfmoZ18qzpHH9tMLOHjCFwV
-X-Google-Smtp-Source: ABdhPJxgjUAEMEy8du3ikSCR/tZO6938wCs3TDv/a9TCwUvzczACrPF5VLwM6m/cCdU0KV26Uh//bA==
-X-Received: by 2002:a63:c40a:: with SMTP id h10mr9314528pgd.210.1601889182847;
-        Mon, 05 Oct 2020 02:13:02 -0700 (PDT)
+        h=x-gm-message-state:from:to:cc:subject:date:message-id:in-reply-to
+         :references;
+        bh=ZdgKLe65/5ZTL18bHaqdAUbi1xJI+QzTIn6dSNFRMgI=;
+        b=hzLqgHPBW35i0X38wRf67GLgzA1gpqw4nPp63e1IVjRUGvtjTQYgRSCEobZsy9u1Um
+         A86gzWWVaduTiwCUeNw891LKtmD4CrNHpTkijEHez/wR5FxU/ShTVZgckJV7utUp4pym
+         8l3kFbKocek3LG1pqyonx24GglUsH5qQ3dTUoeYhbaV2yerX5ZHTh+czzkkxgPp9tHTA
+         Je8xqhRFQIyhnA7u6wjq1AAFZWYAq7jhiDACxZhHA6W0STEZ7CkboEGghEzI4subQWe4
+         qbvunFqsyBH4k81acP1QRrun3TtYpc8X4s4TL+Zk5fAjtfbnEimJGa/BHBtvC0RScvjz
+         O9UQ==
+X-Gm-Message-State: AOAM531uv3vKxvF+mmYnY1dOa2OYRfa9q8RNiLfPgZeha64m8ICVCfKx
+        YQtGwctxPnnNsITQohj5KZ4b
+X-Google-Smtp-Source: ABdhPJzcTUOR6tchxr55/BxMSt6DwR7qE9UW+un6FEMV2klT6SlE1ubT8J+7qr+yWq5KmhRsSeUy9A==
+X-Received: by 2002:a17:90b:1642:: with SMTP id il2mr15596914pjb.93.1601889187120;
+        Mon, 05 Oct 2020 02:13:07 -0700 (PDT)
 Received: from localhost.localdomain ([103.59.133.81])
-        by smtp.googlemail.com with ESMTPSA id c7sm11255028pfj.84.2020.10.05.02.12.58
+        by smtp.googlemail.com with ESMTPSA id c7sm11255028pfj.84.2020.10.05.02.13.03
         (version=TLS1_3 cipher=TLS_AES_256_GCM_SHA384 bits=256/256);
-        Mon, 05 Oct 2020 02:13:02 -0700 (PDT)
+        Mon, 05 Oct 2020 02:13:06 -0700 (PDT)
 From:   Manivannan Sadhasivam <manivannan.sadhasivam@linaro.org>
 To:     agross@kernel.org, bjorn.andersson@linaro.org, kishon@ti.com,
         vkoul@kernel.org, robh@kernel.org
@@ -53,59 +54,51 @@ Cc:     svarbanov@mm-sol.com, bhelgaas@google.com,
         linux-pci@vger.kernel.org, linux-kernel@vger.kernel.org,
         mgautam@codeaurora.org, devicetree@vger.kernel.org,
         Manivannan Sadhasivam <manivannan.sadhasivam@linaro.org>
-Subject: [PATCH v3 0/5] Add PCIe support for SM8250 SoC
-Date:   Mon,  5 Oct 2020 14:42:31 +0530
-Message-Id: <20201005091236.31770-1-manivannan.sadhasivam@linaro.org>
+Subject: [PATCH v3 1/5] dt-bindings: phy: qcom,qmp: Add SM8250 PCIe PHY bindings
+Date:   Mon,  5 Oct 2020 14:42:32 +0530
+Message-Id: <20201005091236.31770-2-manivannan.sadhasivam@linaro.org>
 X-Mailer: git-send-email 2.17.1
+In-Reply-To: <20201005091236.31770-1-manivannan.sadhasivam@linaro.org>
+References: <20201005091236.31770-1-manivannan.sadhasivam@linaro.org>
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-Hello,
+Add the below three PCIe PHYs found in SM8250 to the QMP binding:
 
-This series adds PCIe support for Qualcomm SM8250 SoC with relevant PHYs.
-There are 3 PCIe instances on this SoC each with different PHYs. The PCIe
-controller and PHYs are mostly comaptible with the ones found on SDM845
-SoC, hence the old drivers are modified to add the support.
+QMP GEN3x1 PHY - 1 lane
+QMP GEN3x2 PHY - 2 lanes
+QMP Modem PHY - 2 lanes
 
-This series has been tested on RB5 board with QCA6390 chipset connected
-onboard.
+Signed-off-by: Manivannan Sadhasivam <manivannan.sadhasivam@linaro.org>
+---
+ Documentation/devicetree/bindings/phy/qcom,qmp-phy.yaml | 6 ++++++
+ 1 file changed, 6 insertions(+)
 
-NOTE: This series functionally depends on the following patch:
-https://lore.kernel.org/linux-arm-kernel/1599814203-14441-3-git-send-email-hayashi.kunihiko@socionext.com/
-
-I've dropped a similar patch in v2.
-
-Thanks,
-Mani
-
-Changes in v3:
-
-* Rebased on top of phy/next
-* Renamed ops_sm8250 to ops_1_9_0 to maintain uniformity
-
-Changes in v2:
-
-* Fixed the PHY and PCIe bindings
-* Introduced secondary table in PHY driver to abstract out the common configs.
-* Used a more generic way of configuring BDF to SID mapping
-* Dropped ATU change in favor of a patch spotted by Rob
-
-Manivannan Sadhasivam (5):
-  dt-bindings: phy: qcom,qmp: Add SM8250 PCIe PHY bindings
-  phy: qcom-qmp: Add SM8250 PCIe QMP PHYs
-  dt-bindings: pci: qcom: Document PCIe bindings for SM8250 SoC
-  PCI: qcom: Add SM8250 SoC support
-  PCI: qcom: Add support for configuring BDF to SID mapping for SM8250
-
- .../devicetree/bindings/pci/qcom,pcie.txt     |   6 +-
- .../devicetree/bindings/phy/qcom,qmp-phy.yaml |   6 +
- drivers/pci/controller/dwc/Kconfig            |   1 +
- drivers/pci/controller/dwc/pcie-qcom.c        | 149 ++++++++++
- drivers/phy/qualcomm/phy-qcom-qmp.c           | 281 +++++++++++++++++-
- drivers/phy/qualcomm/phy-qcom-qmp.h           |  18 ++
- 6 files changed, 455 insertions(+), 6 deletions(-)
-
+diff --git a/Documentation/devicetree/bindings/phy/qcom,qmp-phy.yaml b/Documentation/devicetree/bindings/phy/qcom,qmp-phy.yaml
+index 185cdea9cf81..ec05db374645 100644
+--- a/Documentation/devicetree/bindings/phy/qcom,qmp-phy.yaml
++++ b/Documentation/devicetree/bindings/phy/qcom,qmp-phy.yaml
+@@ -31,6 +31,9 @@ properties:
+       - qcom,sdm845-qmp-usb3-uni-phy
+       - qcom,sm8150-qmp-ufs-phy
+       - qcom,sm8250-qmp-ufs-phy
++      - qcom,sm8250-qmp-gen3x1-pcie-phy
++      - qcom,sm8250-qmp-gen3x2-pcie-phy
++      - qcom,sm8250-qmp-modem-pcie-phy
+ 
+   reg:
+     items:
+@@ -259,6 +262,9 @@ allOf:
+             enum:
+               - qcom,sdm845-qhp-pcie-phy
+               - qcom,sdm845-qmp-pcie-phy
++              - qcom,sm8250-qmp-gen3x1-pcie-phy
++              - qcom,sm8250-qmp-gen3x2-pcie-phy
++              - qcom,sm8250-qmp-modem-pcie-phy
+     then:
+       properties:
+         clocks:
 -- 
 2.17.1
 
