@@ -2,127 +2,152 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from vger.kernel.org (vger.kernel.org [23.128.96.18])
-	by mail.lfdr.de (Postfix) with ESMTP id 85E14283563
-	for <lists+devicetree@lfdr.de>; Mon,  5 Oct 2020 14:08:44 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTP id 9C16F283576
+	for <lists+devicetree@lfdr.de>; Mon,  5 Oct 2020 14:13:12 +0200 (CEST)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S1725931AbgJEMIn (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Mon, 5 Oct 2020 08:08:43 -0400
-Received: from fllv0016.ext.ti.com ([198.47.19.142]:38796 "EHLO
-        fllv0016.ext.ti.com" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S1725930AbgJEMIn (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Mon, 5 Oct 2020 08:08:43 -0400
-Received: from fllv0034.itg.ti.com ([10.64.40.246])
-        by fllv0016.ext.ti.com (8.15.2/8.15.2) with ESMTP id 095C8cPm047241;
-        Mon, 5 Oct 2020 07:08:38 -0500
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=ti.com;
-        s=ti-com-17Q1; t=1601899718;
-        bh=IYQh6NvcLHwQvpyUYx1AlXSUCurApS4nkon46rVr804=;
-        h=Date:From:To:CC:Subject:References:In-Reply-To;
-        b=y2iAnCHIptattDu4Hk2vIuqHYDv1XkdWync2f+Zd8Up4WMZKgsgIWe6js+1pMdTzQ
-         6l/GzK65c0ADBbn+KQbVYzbKH+z87Dht23riT3tlR8TBL4t3SuAZrF1oyLdx+rnc5y
-         +gCd+IEwCJfCNWkQPIFW2ceI25PMnlekrUAf6tmg=
-Received: from DFLE103.ent.ti.com (dfle103.ent.ti.com [10.64.6.24])
-        by fllv0034.itg.ti.com (8.15.2/8.15.2) with ESMTPS id 095C8csV007784
-        (version=TLSv1.2 cipher=AES256-GCM-SHA384 bits=256 verify=FAIL);
-        Mon, 5 Oct 2020 07:08:38 -0500
-Received: from DFLE105.ent.ti.com (10.64.6.26) by DFLE103.ent.ti.com
- (10.64.6.24) with Microsoft SMTP Server (version=TLS1_2,
- cipher=TLS_ECDHE_RSA_WITH_AES_128_CBC_SHA256_P256) id 15.1.1979.3; Mon, 5 Oct
- 2020 07:08:38 -0500
-Received: from fllv0040.itg.ti.com (10.64.41.20) by DFLE105.ent.ti.com
- (10.64.6.26) with Microsoft SMTP Server (version=TLS1_2,
- cipher=TLS_ECDHE_RSA_WITH_AES_128_CBC_SHA256_P256) id 15.1.1979.3 via
- Frontend Transport; Mon, 5 Oct 2020 07:08:38 -0500
-Received: from localhost (ileax41-snat.itg.ti.com [10.172.224.153])
-        by fllv0040.itg.ti.com (8.15.2/8.15.2) with ESMTP id 095C8bMb051913;
-        Mon, 5 Oct 2020 07:08:38 -0500
-Date:   Mon, 5 Oct 2020 07:08:37 -0500
-From:   Nishanth Menon <nm@ti.com>
-To:     Peter Ujfalusi <peter.ujfalusi@ti.com>
-CC:     <t-kristo@ti.com>, <linux-kernel@vger.kernel.org>,
-        <devicetree@vger.kernel.org>,
-        <linux-arm-kernel@lists.infradead.org>, <robh+dt@kernel.org>
-Subject: Re: [PATCH] arm64: dts: ti: k3-j7200-main: Add McASP nodes
-Message-ID: <20201005120837.75cwdmcpvzbvayq7@kinfolk>
-References: <20201005074850.11247-1-peter.ujfalusi@ti.com>
- <20201005115805.d6yhykn7oc6x2tbu@charm>
- <5a9ed7d3-fcfd-edbf-fc34-112a7e55aa1c@ti.com>
+        id S1726458AbgJEMNA (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Mon, 5 Oct 2020 08:13:00 -0400
+Received: from lindbergh.monkeyblade.net ([23.128.96.19]:46466 "EHLO
+        lindbergh.monkeyblade.net" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
+        with ESMTP id S1726566AbgJEMMv (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Mon, 5 Oct 2020 08:12:51 -0400
+Received: from smtp2-2.goneo.de (smtp2.goneo.de [IPv6:2001:1640:5::8:33])
+        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id D211EC0613CE;
+        Mon,  5 Oct 2020 05:12:50 -0700 (PDT)
+Received: from localhost (localhost [127.0.0.1])
+        by smtp2.goneo.de (Postfix) with ESMTP id 2F85623FFD0;
+        Mon,  5 Oct 2020 14:12:48 +0200 (CEST)
+X-Virus-Scanned: by goneo
+X-Spam-Flag: NO
+X-Spam-Score: -2.981
+X-Spam-Level: 
+X-Spam-Status: No, score=-2.981 tagged_above=-999 tests=[ALL_TRUSTED=-1,
+        AWL=-0.081, BAYES_00=-1.9] autolearn=ham
+Received: from smtp2.goneo.de ([127.0.0.1])
+        by localhost (smtp2.goneo.de [127.0.0.1]) (amavisd-new, port 10024)
+        with ESMTP id r447cAoqNlcB; Mon,  5 Oct 2020 14:12:46 +0200 (CEST)
+Received: from lem-wkst-02.lemonage.de. (hq.lemonage.de [87.138.178.34])
+        by smtp2.goneo.de (Postfix) with ESMTPA id E691E23F48B;
+        Mon,  5 Oct 2020 14:12:44 +0200 (CEST)
+From:   poeschel@lemonage.de
+To:     Rob Herring <robh+dt@kernel.org>, Willy Tarreau <w@1wt.eu>,
+        Lars Poeschel <poeschel@lemonage.de>,
+        Sam Ravnborg <sam@ravnborg.org>, Arnd Bergmann <arnd@arndb.de>,
+        Linus Walleij <linus.walleij@linaro.org>,
+        Mark Brown <broonie@kernel.org>,
+        Daniel Palmer <daniel@0x0f.com>,
+        Lubomir Rintel <lkundrak@v3.sk>, allen <allen.chen@ite.com.tw>,
+        Kuninori Morimoto <kuninori.morimoto.gx@renesas.com>,
+        Geert Uytterhoeven <geert+renesas@glider.be>,
+        devicetree@vger.kernel.org (open list:OPEN FIRMWARE AND FLATTENED
+        DEVICE TREE BINDINGS), linux-kernel@vger.kernel.org (open list)
+Subject: [PATCH v3 31/32] auxdisplay: lcd2s DT binding doc
+Date:   Mon,  5 Oct 2020 14:11:59 +0200
+Message-Id: <20201005121200.3427363-32-poeschel@lemonage.de>
+X-Mailer: git-send-email 2.28.0
+In-Reply-To: <20201005121200.3427363-1-poeschel@lemonage.de>
+References: <20201005121200.3427363-1-poeschel@lemonage.de>
 MIME-Version: 1.0
-Content-Type: text/plain; charset="us-ascii"
-Content-Disposition: inline
-In-Reply-To: <5a9ed7d3-fcfd-edbf-fc34-112a7e55aa1c@ti.com>
-User-Agent: NeoMutt/20171215
-X-EXCLAIMER-MD-CONFIG: e1e8a2fd-e40a-4ac6-ac9b-f7e9cc9ee180
+Content-Transfer-Encoding: 8bit
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-On 15:02-20201005, Peter Ujfalusi wrote:
-> 
-> 
-> On 05/10/2020 14.58, Nishanth Menon wrote:
-> > On 10:48-20201005, Peter Ujfalusi wrote:
-> >> Add the nodes for McASP 0-2 and keep them disabled because several
-> >> required properties are not present as they are board specific.
-> >>
-> >> Signed-off-by: Peter Ujfalusi <peter.ujfalusi@ti.com>
-> >> ---
-> >>  arch/arm64/boot/dts/ti/k3-j7200-main.dtsi | 57 +++++++++++++++++++++++
-> >>  1 file changed, 57 insertions(+)
-> >>
-> >> diff --git a/arch/arm64/boot/dts/ti/k3-j7200-main.dtsi b/arch/arm64/boot/dts/ti/k3-j7200-main.dtsi
-> >> index 72d6496e88dd..cc6c2a81887a 100644
-> >> --- a/arch/arm64/boot/dts/ti/k3-j7200-main.dtsi
-> >> +++ b/arch/arm64/boot/dts/ti/k3-j7200-main.dtsi
-> >> @@ -446,4 +446,61 @@ usb0: usb@6000000 {
-> >>  			dr_mode = "otg";
-> >>  		};
-> >>  	};
-> >> +x
-> >> +	mcasp0: mcasp@02b00000 {
-> >> +		compatible = "ti,am33xx-mcasp-audio";
-> >> +		reg = <0x0 0x02b00000 0x0 0x2000>,
-> >> +			<0x0 0x02b08000 0x0 0x1000>;
-> >> +		reg-names = "mpu","dat";
-> >> +		interrupts = <GIC_SPI 544 IRQ_TYPE_LEVEL_HIGH>,
-> >> +				<GIC_SPI 545 IRQ_TYPE_LEVEL_HIGH>;
-> >> +		interrupt-names = "tx", "rx";
-> >> +
-> >> +		dmas = <&main_udmap 0xc400>, <&main_udmap 0x4400>;
-> >> +		dma-names = "tx", "rx";
-> >> +
-> >> +		clocks = <&k3_clks 174 40>;
-> >> +		clock-names = "fck";
-> >> +		power-domains = <&k3_pds 174 TI_SCI_PD_EXCLUSIVE>;
-> >> +
-> >> +		status = "disabled";
-> > 
-> > I see that there is inconsistent usage of "disabled" in our SoC.dts
-> > 
-> > Our generic rule has been set them to disabled in board.dtsi
-> > McASP and DSS for existing SoC dts do not follow this.. which is a tad
-> > confusing.. (considering that not even all uarts come out on every board
-> > and every uart needs pinmux to function..)
-> 
-> "keep them disabled because several required properties are not present
-> as they are board specific."
-> 
-> In board file the enabled mcasp must be updated with options that is
-> required for operation. Without those option the McASP can not be
-> initialized.
-> 
-> I think we have been revisiting the very same discussion every time we
-> have a new SoC with McASP...
-> 
+From: Lars Poeschel <poeschel@lemonage.de>
 
-Yep.. This doe'snt really follow the rest of the SoC definition. [1]
-came to mind. The McASP discussion is a variation in the debate of the
-same. I'd argue Serdes, or for that matter any IP that has a link to
-outside-the-SoC world has the same discussion point.
+Add a binding doc for the modtronix lcd2s auxdisplay driver. It also
+adds modtronix to the list of known vendor-prefixes.
 
-[1] https://patchwork.kernel.org/patch/9304575/
+Reviewed-by: Willy Tarreau <w@1wt.eu>
+Signed-off-by: Lars Poeschel <poeschel@lemonage.de>
+---
+Changes in v3:
+- Fixed make dt_binding_doc errors
+Changes in v2:
+- Adopted yaml based file format
+---
+ .../bindings/auxdisplay/modtronix,lcd2s.yaml  | 58 +++++++++++++++++++
+ .../devicetree/bindings/vendor-prefixes.yaml  |  2 +
+ 2 files changed, 60 insertions(+)
+ create mode 100644 Documentation/devicetree/bindings/auxdisplay/modtronix,lcd2s.yaml
 
+diff --git a/Documentation/devicetree/bindings/auxdisplay/modtronix,lcd2s.yaml b/Documentation/devicetree/bindings/auxdisplay/modtronix,lcd2s.yaml
+new file mode 100644
+index 000000000000..a1d55a2634a5
+--- /dev/null
++++ b/Documentation/devicetree/bindings/auxdisplay/modtronix,lcd2s.yaml
+@@ -0,0 +1,58 @@
++# SPDX-License-Identifier: (GPL-2.0-only OR BSD-2-Clause)
++%YAML 1.2
++---
++$id: http://devicetree.org/schemas/auxdisplay/modtronix,lcd2s.yaml#
++$schema: http://devicetree.org/meta-schemas/core.yaml#
++
++title: Modtronix engineering LCD2S Character LCD Display
++
++maintainers:
++  - Lars Poeschel <poeschel@lemonage.de>
++
++description:
++  The LCD2S is a Character LCD Display manufactured by Modtronix Engineering.
++  The display supports a serial I2C and SPI interface. The driver currently
++  only supports the I2C interface.
++
++properties:
++  compatible:
++    const: modtronix,lcd2s
++
++  reg:
++    maxItems: 1
++    description:
++      I2C bus address of the display.
++
++  display-height-chars:
++    description: Height of the display, in character cells.
++    $ref: /schemas/types.yaml#/definitions/uint32
++    minimum: 1
++    maximum: 4
++
++  display-width-chars:
++    description: Width of the display, in character cells.
++    $ref: /schemas/types.yaml#/definitions/uint32
++    minimum: 16
++    maximum: 20
++
++required:
++  - compatible
++  - reg
++  - display-height-chars
++  - display-width-chars
++
++additionalProperties: false
++
++examples:
++  - |
++    i2c {
++      #address-cells = <1>;
++      #size-cells = <0>;
++
++      lcd2s: auxdisplay@28 {
++        compatible = "modtronix,lcd2s";
++        reg = <0x28>;
++        display-height-chars = <4>;
++        display-width-chars = <20>;
++      };
++    };
+diff --git a/Documentation/devicetree/bindings/vendor-prefixes.yaml b/Documentation/devicetree/bindings/vendor-prefixes.yaml
+index 63996ab03521..a9dd168db6ce 100644
+--- a/Documentation/devicetree/bindings/vendor-prefixes.yaml
++++ b/Documentation/devicetree/bindings/vendor-prefixes.yaml
+@@ -667,6 +667,8 @@ patternProperties:
+     description: MiraMEMS Sensing Technology Co., Ltd.
+   "^mitsubishi,.*":
+     description: Mitsubishi Electric Corporation
++  "^modtronix,.*":
++    description: Modtronix Engineering
+   "^mosaixtech,.*":
+     description: Mosaix Technologies, Inc.
+   "^motorola,.*":
 -- 
-Regards,
-Nishanth Menon
-Key (0xDDB5849D1736249D) / Fingerprint: F8A2 8693 54EB 8232 17A3  1A34 DDB5 849D 1736 249D
+2.28.0
+
