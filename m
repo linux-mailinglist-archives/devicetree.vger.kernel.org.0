@@ -2,189 +2,118 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from vger.kernel.org (vger.kernel.org [23.128.96.18])
-	by mail.lfdr.de (Postfix) with ESMTP id EB7ED28370F
-	for <lists+devicetree@lfdr.de>; Mon,  5 Oct 2020 15:57:43 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTP id 99F5D283717
+	for <lists+devicetree@lfdr.de>; Mon,  5 Oct 2020 15:58:44 +0200 (CEST)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S1726032AbgJEN5m (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Mon, 5 Oct 2020 09:57:42 -0400
-Received: from mail-ot1-f68.google.com ([209.85.210.68]:36047 "EHLO
-        mail-ot1-f68.google.com" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S1725903AbgJEN5m (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Mon, 5 Oct 2020 09:57:42 -0400
-Received: by mail-ot1-f68.google.com with SMTP id 60so8673765otw.3
-        for <devicetree@vger.kernel.org>; Mon, 05 Oct 2020 06:57:41 -0700 (PDT)
+        id S1726160AbgJEN6k (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Mon, 5 Oct 2020 09:58:40 -0400
+Received: from mail-ot1-f66.google.com ([209.85.210.66]:38839 "EHLO
+        mail-ot1-f66.google.com" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
+        with ESMTP id S1725963AbgJEN6k (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Mon, 5 Oct 2020 09:58:40 -0400
+Received: by mail-ot1-f66.google.com with SMTP id i12so2845961ota.5;
+        Mon, 05 Oct 2020 06:58:39 -0700 (PDT)
 X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
         d=1e100.net; s=20161025;
         h=x-gm-message-state:date:from:to:cc:subject:message-id:references
          :mime-version:content-disposition:in-reply-to;
-        bh=HLXvvMEroZCyEvFhhBCVsUsG4CTHlceWSEkbwHb7abs=;
-        b=cZITGgJsPDBYMHGh2nli2Va6FAkz727U4pyj5uTmEYzlNaTENAL+96P0EFSLKz2io4
-         NxG+LtlmECQqGIF1B4VXMpdBb7RzaX8M3byxi904MCsPBYsm7l2U4psea1f46WFDvZzI
-         fzBIiUXOi1W2AGdVwiJpQgUZtKIx1xd8o8Z6qjkaO5jmmPQGbukWCwmLhZxh/2iNcwda
-         RZ6V65HnrIwKY0/QSKwCEuohj80drNENCEmbnnukv4R3NmuRVHkZL+wycNWvrJY8qPJU
-         jDJMs9bBTupv382mhzJuXfoQi9u1JJH9AjvWv68gvFXzySguqO5IyeiKVfISLxYO/2sk
-         SdZw==
-X-Gm-Message-State: AOAM5336dMMDnTjxAuBowGXQ8FqCakfHT1R5qmZZnQ9RHS0GEwzKwAH1
-        CrFJZHO7H6vJ9yNlY5z2OFPVfOmDfsd/
-X-Google-Smtp-Source: ABdhPJxLkuPrQ//lVhFii7F2n6/PROn58UkLIGod7jgA8Wt9oD/eivK+XCX5n8q/tj7bRI/v6tqR9w==
-X-Received: by 2002:a9d:6f06:: with SMTP id n6mr11762976otq.302.1601906261016;
-        Mon, 05 Oct 2020 06:57:41 -0700 (PDT)
+        bh=LDinh5A/F+3x/5aBFTjkVAl5Osn8OcStGMlGEuBkhrI=;
+        b=l5iwyeuRyB9D8vBDHkdU5QCHvZzw+CRsZVe7d9kq5pvZJDC+q3bgBpiFq499bO3/vN
+         8LuhKQbtflTgqqBPgsDsz7Rid4gAG6KJ6yJwYCTZFqR6uCFOjPMIAfuufq1BASILMGQd
+         hqqWE7sV2YDtZmnjbgGoZ7jMJa3DhFDYU0eYVYaYWaKhG5hso2yIUb1/wZLvyaPZnxlt
+         tCmiTysC4nd4xant/fZfkusfsjF6SOOXuDIdIeD0Y+LLZENRn9jUhDY6zE4vtV+3/dWt
+         /E/SZLCTfApv4VLonfojIiKzQ/hINQFz+Juzb9guCMTzU4DUyxrCvC45DpLOMLhlFoPS
+         I1uw==
+X-Gm-Message-State: AOAM532CK/Qt6yKptM3U8OWR+xoH/9MW3STHpjIjOLpKhTB0EqRjEAol
+        rTvbBmw+cgN+iyxTyYYaeg==
+X-Google-Smtp-Source: ABdhPJzTLpZWIBBWPALDH9jxT7TTMOQOXFRvepavcl5fhlDBEKDYp0A0x8+S7fx6Z2AavSBKCoJLCg==
+X-Received: by 2002:a05:6830:1091:: with SMTP id y17mr3045674oto.160.1601906319138;
+        Mon, 05 Oct 2020 06:58:39 -0700 (PDT)
 Received: from xps15 (24-155-109-49.dyn.grandenetworks.net. [24.155.109.49])
-        by smtp.gmail.com with ESMTPSA id f11sm14515oot.4.2020.10.05.06.57.40
+        by smtp.gmail.com with ESMTPSA id t2sm2099386oie.26.2020.10.05.06.58.37
         (version=TLS1_3 cipher=TLS_AES_256_GCM_SHA384 bits=256/256);
-        Mon, 05 Oct 2020 06:57:40 -0700 (PDT)
-Received: (nullmailer pid 90619 invoked by uid 1000);
-        Mon, 05 Oct 2020 13:57:39 -0000
-Date:   Mon, 5 Oct 2020 08:57:39 -0500
+        Mon, 05 Oct 2020 06:58:38 -0700 (PDT)
+Received: (nullmailer pid 92014 invoked by uid 1000);
+        Mon, 05 Oct 2020 13:58:37 -0000
+Date:   Mon, 5 Oct 2020 08:58:37 -0500
 From:   Rob Herring <robh@kernel.org>
-To:     Jiaxin Yu <jiaxin.yu@mediatek.com>
-Cc:     broonie@kernel.org, tiwai@suse.com, matthias.bgg@gmail.com,
-        p.zabel@pengutronix.de, tzungbi@google.com,
-        alsa-devel@alsa-project.org, linux-arm-kernel@lists.infradead.org,
-        linux-mediatek@lists.infradead.org, devicetree@vger.kernel.org,
-        shane.chien@mediatek.com, kuninori.morimoto.gx@renesas.com,
-        maowenan@huawei.com
-Subject: Re: [PATCH 3/5] dt-bindings: mediatek: mt8192: add audio afe document
-Message-ID: <20201005135739.GA87274@bogus>
-References: <1601624142-18991-1-git-send-email-jiaxin.yu@mediatek.com>
- <1601624142-18991-4-git-send-email-jiaxin.yu@mediatek.com>
+To:     Lukasz Luba <lukasz.luba@arm.com>
+Cc:     linux-pm@vger.kernel.org, devicetree@vger.kernel.org,
+        linux-doc@vger.kernel.org, daniel.lezcano@linaro.org,
+        mka@chromium.org, robh+dt@kernel.org, dianders@chromium.org,
+        linux-kernel@vger.kernel.org, rnayak@codeaurora.org,
+        rjw@rjwysocki.net, qperret@google.com, amitk@kernel.org,
+        corbet@lwn.net, Dietmar.Eggemann@arm.com
+Subject: Re: [PATCH v2 3/3] dt-bindings: thermal: update sustainable-power
+ with abstract scale
+Message-ID: <20201005135837.GA91584@bogus>
+References: <20201002114426.31277-1-lukasz.luba@arm.com>
+ <20201002114426.31277-4-lukasz.luba@arm.com>
 MIME-Version: 1.0
 Content-Type: text/plain; charset=us-ascii
 Content-Disposition: inline
-In-Reply-To: <1601624142-18991-4-git-send-email-jiaxin.yu@mediatek.com>
+In-Reply-To: <20201002114426.31277-4-lukasz.luba@arm.com>
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-On Fri, Oct 02, 2020 at 03:35:40PM +0800, Jiaxin Yu wrote:
-> This patch adds mt8192 audio afe document.
+On Fri, 02 Oct 2020 12:44:26 +0100, Lukasz Luba wrote:
+> Update the documentation for the binding 'sustainable-power' and allow
+> to provide values in an abstract scale. It is required when the cooling
+> devices use an abstract scale for their power values.
 > 
-> Signed-off-by: Jiaxin Yu <jiaxin.yu@mediatek.com>
+> Signed-off-by: Lukasz Luba <lukasz.luba@arm.com>
 > ---
->  .../bindings/sound/mt8192-afe-pcm.yaml        | 98 +++++++++++++++++++
->  1 file changed, 98 insertions(+)
->  create mode 100644 Documentation/devicetree/bindings/sound/mt8192-afe-pcm.yaml
+>  .../devicetree/bindings/thermal/thermal-zones.yaml  | 13 +++++++++----
+>  1 file changed, 9 insertions(+), 4 deletions(-)
 > 
-> diff --git a/Documentation/devicetree/bindings/sound/mt8192-afe-pcm.yaml b/Documentation/devicetree/bindings/sound/mt8192-afe-pcm.yaml
-> new file mode 100644
-> index 0000000000000..43852315f1867
-> --- /dev/null
-> +++ b/Documentation/devicetree/bindings/sound/mt8192-afe-pcm.yaml
-> @@ -0,0 +1,98 @@
-> +# SPDX-License-Identifier: GPL-2.0
 
-Dual license new bindings:
 
-(GPL-2.0-only OR BSD-2-Clause)
+My bot found errors running 'make dt_binding_check' on your patch:
 
-> +%YAML 1.2
-> +---
-> +$id: http://devicetree.org/schemas/sound/mt8192-afe-pcm.yaml#
-> +$schema: http://devicetree.org/meta-schemas/core.yaml#
-> +
-> +title: Mediatek AFE PCM controller for mt8192
-> +
-> +maintainers:
-> +   - Jiaxin Yu <jiaxin.yu@mediatek.com>
-> +   - Shane Chien <shane.chien@mediatek.com>
-> +
-> +properties:
-> +  compatible:
-> +    contains:
+Traceback (most recent call last):
+  File "/usr/local/bin/dt-extract-example", line 45, in <module>
+    binding = yaml.load(open(args.yamlfile, encoding='utf-8').read())
+  File "/usr/local/lib/python3.8/dist-packages/ruamel/yaml/main.py", line 343, in load
+    return constructor.get_single_data()
+  File "/usr/local/lib/python3.8/dist-packages/ruamel/yaml/constructor.py", line 111, in get_single_data
+    node = self.composer.get_single_node()
+  File "_ruamel_yaml.pyx", line 706, in _ruamel_yaml.CParser.get_single_node
+  File "_ruamel_yaml.pyx", line 724, in _ruamel_yaml.CParser._compose_document
+  File "_ruamel_yaml.pyx", line 775, in _ruamel_yaml.CParser._compose_node
+  File "_ruamel_yaml.pyx", line 889, in _ruamel_yaml.CParser._compose_mapping_node
+  File "_ruamel_yaml.pyx", line 775, in _ruamel_yaml.CParser._compose_node
+  File "_ruamel_yaml.pyx", line 889, in _ruamel_yaml.CParser._compose_mapping_node
+  File "_ruamel_yaml.pyx", line 775, in _ruamel_yaml.CParser._compose_node
+  File "_ruamel_yaml.pyx", line 889, in _ruamel_yaml.CParser._compose_mapping_node
+  File "_ruamel_yaml.pyx", line 775, in _ruamel_yaml.CParser._compose_node
+  File "_ruamel_yaml.pyx", line 889, in _ruamel_yaml.CParser._compose_mapping_node
+  File "_ruamel_yaml.pyx", line 775, in _ruamel_yaml.CParser._compose_node
+  File "_ruamel_yaml.pyx", line 889, in _ruamel_yaml.CParser._compose_mapping_node
+  File "_ruamel_yaml.pyx", line 731, in _ruamel_yaml.CParser._compose_node
+  File "_ruamel_yaml.pyx", line 904, in _ruamel_yaml.CParser._parse_next_event
+ruamel.yaml.scanner.ScannerError: while scanning a plain scalar
+  in "<unicode string>", line 102, column 11
+found a tab character that violates indentation
+  in "<unicode string>", line 103, column 1
+make[1]: *** [Documentation/devicetree/bindings/Makefile:18: Documentation/devicetree/bindings/thermal/thermal-zones.example.dts] Error 1
+make[1]: *** Deleting file 'Documentation/devicetree/bindings/thermal/thermal-zones.example.dts'
+make[1]: *** Waiting for unfinished jobs....
+./Documentation/devicetree/bindings/thermal/thermal-zones.yaml:  while scanning a plain scalar
+  in "<unicode string>", line 102, column 11
+found a tab character that violates indentation
+  in "<unicode string>", line 103, column 1
+/builds/robherring/linux-dt-review/Documentation/devicetree/bindings/thermal/thermal-zones.yaml: ignoring, error parsing file
+warning: no schema found in file: ./Documentation/devicetree/bindings/thermal/thermal-zones.yaml
+make: *** [Makefile:1366: dt_binding_check] Error 2
 
-So any other string in addition is okay?
 
-> +      const: mediatek,mt8192-audio
-> +
-> +  interrupts:
-> +    maxItems: 1
-> +    description: AFE interrupt line
+See https://patchwork.ozlabs.org/patch/1375670
 
-Drop description.
+If you already ran 'make dt_binding_check' and didn't see the above
+error(s), then make sure dt-schema is up to date:
 
-> +
-> +  resets:
-> +    maxItems: 1
-> +
-> +  reset-names:
-> +    const: audiosys
-> +
-> +  apmixedsys:
-> +    maxItems: 1
+pip3 install git+https://github.com/devicetree-org/dt-schema.git@master --upgrade
 
-This is an array?
+Please check and re-submit.
 
-> +    description: The mediatek apmixedsys controller
-> +
-> +  infracfg:
-> +    maxItems: 1
-> +    description: The mediatek infracfg controller
-> +
-> +  topckgen:
-> +    maxItems: 1
-> +    description: The mediatek topckgen controller
-
-These all need a type reference and and vendor prefix.
-
-> +
-> +  power-domains:
-> +    maxItems: 1
-> +
-> +  clocks:
-> +    items:
-> +      - description: AFE clock
-> +      - description: ADDA DAC clock
-> +      - description: ADDA DAC pre-distortion clock
-> +      - description: audio infra sys clock
-> +      - description: audio infra 26M clock
-> +
-> +  clock-names:
-> +    items:
-> +      - const: aud_afe_clk
-> +      - const: aud_dac_clk
-> +      - const: aud_dac_predis_clk
-> +      - const: aud_infra_clk
-> +      - const: aud_infra_26m_clk
-> +
-> +required:
-> +  - compatible
-> +  - interrupts
-> +  - resets
-> +  - reset-names
-> +  - power-domains
-> +  - clocks
-> +  - clock-names
-> +
-> +additionalProperties: false
-> +
-> +examples:
-> +  - |
-> +    #include <dt-bindings/clock/mt8192-clk.h>
-> +    #include <dt-bindings/interrupt-controller/irq.h>
-> +    #include <dt-bindings/interrupt-controller/arm-gic.h>
-> +    #include <dt-bindings/power/mt8192-power.h>
-> +
-> +    afe: mt8192-afe-pcm {
-> +        compatible = "mediatek,mt8192-audio";
-> +        interrupts = <GIC_SPI 202 IRQ_TYPE_LEVEL_HIGH>;
-> +        resets = <&watchdog MT8192_TOPRGU_AUDIO_SW_RST>;
-> +        reset-names = "audiosys";
-> +        apmixedsys = <&apmixedsys>;
-> +        infracfg = <&infracfg>;
-> +        topckgen = <&topckgen>;
-> +        power-domains = <&scpsys MT8192_POWER_DOMAIN_AUDIO>;
-> +        clocks = <&audsys CLK_AUD_AFE>,
-> +                 <&audsys CLK_AUD_DAC>,
-> +                 <&audsys CLK_AUD_DAC_PREDIS>,
-> +                 <&infracfg CLK_INFRA_AUDIO>,
-> +                 <&infracfg CLK_INFRA_AUDIO_26M_B>;
-> +        clock-names = "aud_afe_clk",
-> +                      "aud_dac_clk",
-> +                      "aud_dac_predis_clk",
-> +                      "aud_infra_clk",
-> +                      "aud_infra_26m_clk";
-> +    };
-> +
-> +...
-> -- 
-> 2.18.0
