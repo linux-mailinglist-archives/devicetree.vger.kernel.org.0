@@ -2,90 +2,208 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from vger.kernel.org (vger.kernel.org [23.128.96.18])
-	by mail.lfdr.de (Postfix) with ESMTP id A242A283903
-	for <lists+devicetree@lfdr.de>; Mon,  5 Oct 2020 17:07:57 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTP id AD91F283928
+	for <lists+devicetree@lfdr.de>; Mon,  5 Oct 2020 17:11:01 +0200 (CEST)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S1726012AbgJEPH4 (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Mon, 5 Oct 2020 11:07:56 -0400
-Received: from mail-oi1-f195.google.com ([209.85.167.195]:44947 "EHLO
-        mail-oi1-f195.google.com" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S1725994AbgJEPH4 (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Mon, 5 Oct 2020 11:07:56 -0400
-Received: by mail-oi1-f195.google.com with SMTP id x62so4573177oix.11;
-        Mon, 05 Oct 2020 08:07:55 -0700 (PDT)
+        id S1726875AbgJEPKz (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Mon, 5 Oct 2020 11:10:55 -0400
+Received: from lindbergh.monkeyblade.net ([23.128.96.19]:45890 "EHLO
+        lindbergh.monkeyblade.net" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
+        with ESMTP id S1725970AbgJEPKl (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Mon, 5 Oct 2020 11:10:41 -0400
+Received: from mail-wr1-x444.google.com (mail-wr1-x444.google.com [IPv6:2a00:1450:4864:20::444])
+        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id D5314C0613CE;
+        Mon,  5 Oct 2020 08:10:40 -0700 (PDT)
+Received: by mail-wr1-x444.google.com with SMTP id o5so9993491wrn.13;
+        Mon, 05 Oct 2020 08:10:40 -0700 (PDT)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+        d=gmail.com; s=20161025;
+        h=from:to:cc:subject:date:message-id:mime-version
+         :content-transfer-encoding;
+        bh=61sqlqf5DafArIIzaf0d46tvaomigu2E5aU6czoyheo=;
+        b=fKPbnOC5Qfro2yRVg/8ttKDTcR68Xp1AFBF4tFOJcZpABp/DW1n4OBnHimGABy6goK
+         weB/jWAdzvEGvcaWdZ4ncXiOXrVFSpDXHJKt+kFzRPK7woCFTxbUtBAMl2o+gyMoUjhV
+         rg3My3copnFbsZG+Tw7vAPFHs2ONjkFQM9cxxaKCQtV2EzQV6nXx8UhMBR8wuFG1I7yb
+         5thw9MACHLD9E2DOAbs3KI1IdgvDG6yXJ+4FNK3rvjDIWouW5tU9fMdyEspJj3a2Lwxy
+         Mdek3/vEDHLjV9pVHzQX+hcpOHiZ2dm771+GnsL08iPCK8iOwaZSpzCYYvnTSslOMjRa
+         T1IQ==
 X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
         d=1e100.net; s=20161025;
-        h=x-gm-message-state:mime-version:references:in-reply-to:from:date
-         :message-id:subject:to:cc;
-        bh=6MuacTclwsJ1CyOAEhANPVLNoJQr6TmVIPvVGKsF4Uw=;
-        b=cXOPxj8Vq2xruHY83ntGu/wyCJEN+Tc39qZYOBeAyqEe53WuY6FFwR5bnuHLzDCsKx
-         VZIZOzH4xRPT3m70949+lsC3S4NfBwXT/BrOKEteXnTWAB0JzwNHWCyWkri1bn4EHZmO
-         Qf96Co8rqKHcZtifPMKGDv0vkE/dIGn/iUVPsg4C6AZEyfZVtBw4m1ed2BgMJqFy71uG
-         CCIMW0o24ZUWNBdLLChhRvZ6r5s40HajwXJD2ene0B9Y8lZExoH817Y4BNOgfJcOWg0a
-         41AJ1dQYvHGuLELsY/sgzydgJCKgmvqfOaNnRgGaWe1uwgXYfk9SzyotDH6yFqQ9Eqii
-         6VfA==
-X-Gm-Message-State: AOAM5318CVjT4depm4ES2Fw8GFKQquOBj6ZY4r9TBggE1fTIL0TNN4b5
-        iFTMG+Vc6fZoEcEAV/gW74fqEWsYByk=
-X-Google-Smtp-Source: ABdhPJxVOx/ll5cCu8f+CjeOZtvncPluPQZG+qMwGuDra30zvr6A9xQ9iMIc8utqpMFNsj0gEqc7lg==
-X-Received: by 2002:a54:440b:: with SMTP id k11mr42317oiw.76.1601910471848;
-        Mon, 05 Oct 2020 08:07:51 -0700 (PDT)
-Received: from mail-ot1-f50.google.com (mail-ot1-f50.google.com. [209.85.210.50])
-        by smtp.gmail.com with ESMTPSA id m6sm2928579otm.76.2020.10.05.08.07.50
-        (version=TLS1_3 cipher=TLS_AES_128_GCM_SHA256 bits=128/128);
-        Mon, 05 Oct 2020 08:07:51 -0700 (PDT)
-Received: by mail-ot1-f50.google.com with SMTP id n61so8895443ota.10;
-        Mon, 05 Oct 2020 08:07:50 -0700 (PDT)
-X-Received: by 2002:a05:6830:196:: with SMTP id q22mr11485396ota.221.1601910470753;
- Mon, 05 Oct 2020 08:07:50 -0700 (PDT)
+        h=x-gm-message-state:from:to:cc:subject:date:message-id:mime-version
+         :content-transfer-encoding;
+        bh=61sqlqf5DafArIIzaf0d46tvaomigu2E5aU6czoyheo=;
+        b=sQ6rd1MGw26rimlB6uP4m7jYjoO3rjRnpJ4hmd3/uydq6nlH/hdoCYLbnKMFM3H09M
+         bpRkmpIGcK2StEEfY3rMLT2oibvvgtcOZE/z0wu3RixptjIktQGjy1DzAbef68LShu3h
+         4LUUV3HesABsku2WGamGTjFa8by++kAQXP8eYVRNl9SVQhG3RJqo2hMDjXbJ3Ol4NdbS
+         ggWlLNOMLLpsj4SUgtga6WiTxkqYmP/v4+aFBlxVO9hcNj0JakFd7QwYn51KwoYZNokZ
+         uiBNgQcBYzo8vuIsG6dp697JUeQgn1zNT23ruVH/SZH45SXwuckhfwGITeU85JMS+lgW
+         s1hA==
+X-Gm-Message-State: AOAM531qwzaJMgdLVquIeuuUnW424y44G9CDnyqzr9QD1Fjmeu3m7bhC
+        Ly8LmrwpJbB4hCQ1wyxPaYQ=
+X-Google-Smtp-Source: ABdhPJzefvGCaBYqbP/hvMMN1mJnJ/1FqfCGGlhKbYKSGmu5atq5gT6wCf4aE5JBGmiA9PmuaHMJKA==
+X-Received: by 2002:adf:e7c4:: with SMTP id e4mr12076173wrn.113.1601910639541;
+        Mon, 05 Oct 2020 08:10:39 -0700 (PDT)
+Received: from localhost.localdomain (abab191.neoplus.adsl.tpnet.pl. [83.6.165.191])
+        by smtp.googlemail.com with ESMTPSA id 67sm18077wmb.31.2020.10.05.08.10.38
+        (version=TLS1_3 cipher=TLS_AES_256_GCM_SHA384 bits=256/256);
+        Mon, 05 Oct 2020 08:10:38 -0700 (PDT)
+From:   Konrad Dybcio <konradybcio@gmail.com>
+To:     konradybcio@gmail.com
+Cc:     ~postmarketos/upstreaming@lists.sr.ht, phone-devel@vger.kernel.org,
+        Andy Gross <agross@kernel.org>,
+        Bjorn Andersson <bjorn.andersson@linaro.org>,
+        Rob Herring <robh+dt@kernel.org>,
+        linux-arm-msm@vger.kernel.org, devicetree@vger.kernel.org,
+        linux-kernel@vger.kernel.org
+Subject: [PATCH] arm64: dts: Add support for remaining Sony Kitakami boards
+Date:   Mon,  5 Oct 2020 17:10:34 +0200
+Message-Id: <20201005151035.150936-1-konradybcio@gmail.com>
+X-Mailer: git-send-email 2.28.0
 MIME-Version: 1.0
-References: <1601901999-28280-1-git-send-email-madalin.bucur@oss.nxp.com>
-In-Reply-To: <1601901999-28280-1-git-send-email-madalin.bucur@oss.nxp.com>
-From:   Li Yang <leoyang.li@nxp.com>
-Date:   Mon, 5 Oct 2020 10:07:40 -0500
-X-Gmail-Original-Message-ID: <CADRPPNT_SJad2JLwR2t52kRU14d1kW+r52n1dxJ=Xs0UnQb9Zw@mail.gmail.com>
-Message-ID: <CADRPPNT_SJad2JLwR2t52kRU14d1kW+r52n1dxJ=Xs0UnQb9Zw@mail.gmail.com>
-Subject: Re: [PATCH] arm64: dts: fsl: DPAA FMan DMA operations are coherent
-To:     madalin.bucur@oss.nxp.com
-Cc:     Shawn Guo <shawnguo@kernel.org>,
-        "open list:OPEN FIRMWARE AND FLATTENED DEVICE TREE BINDINGS" 
-        <devicetree@vger.kernel.org>, Rob Herring <robh+dt@kernel.org>,
-        "moderated list:ARM/FREESCALE IMX / MXC ARM ARCHITECTURE" 
-        <linux-arm-kernel@lists.infradead.org>,
-        Netdev <netdev@vger.kernel.org>, camelia.groza@oss.nxp.com
-Content-Type: text/plain; charset="UTF-8"
+Content-Transfer-Encoding: 8bit
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-On Mon, Oct 5, 2020 at 7:47 AM Madalin Bucur <madalin.bucur@oss.nxp.com> wrote:
->
-> Although the DPAA 1 FMan operations are coherent, the device tree
-> node for the FMan does not indicate that, resulting in a needless
-> loss of performance. Adding the missing dma-coherent property.
->
-> Fixes: 1ffbecdd8321 ("arm64: dts: add DPAA FMan nodes")
->
-> Signed-off-by: Madalin Bucur <madalin.bucur@oss.nxp.com>
-> Tested-by: Camelia Groza <camelia.groza@oss.nxp.com>
+This patch adds support for the following Xperias:
 
-Acked-by: Li Yang <leoyang.li@nxp.com>
+* Z3+ [aka Z4 in some regions] (Ivy)
+* Z4 Tablet (Karin)
+* Z5 Compact (Suzuran)
+* Z5 Premium (Satsuki)
 
-> ---
->  arch/arm64/boot/dts/freescale/qoriq-fman3-0.dtsi | 1 +
->  1 file changed, 1 insertion(+)
->
-> diff --git a/arch/arm64/boot/dts/freescale/qoriq-fman3-0.dtsi b/arch/arm64/boot/dts/freescale/qoriq-fman3-0.dtsi
-> index 8bc6caa9167d..4338db14c5da 100644
-> --- a/arch/arm64/boot/dts/freescale/qoriq-fman3-0.dtsi
-> +++ b/arch/arm64/boot/dts/freescale/qoriq-fman3-0.dtsi
-> @@ -19,6 +19,7 @@ fman0: fman@1a00000 {
->         clock-names = "fmanclk";
->         fsl,qman-channel-range = <0x800 0x10>;
->         ptimer-handle = <&ptp_timer0>;
-> +       dma-coherent;
->
->         muram@0 {
->                 compatible = "fsl,fman-muram";
-> --
-> 2.1.0
->
+These devices are very similar in terms of hardware, with the main
+differences being display and touch panels.
+
+Signed-off-by: Konrad Dybcio <konradybcio@gmail.com>
+---
+ arch/arm64/boot/dts/qcom/Makefile                |  4 ++++
+ .../qcom/msm8994-sony-xperia-kitakami-ivy.dts    | 16 ++++++++++++++++
+ .../qcom/msm8994-sony-xperia-kitakami-karin.dts  | 16 ++++++++++++++++
+ .../msm8994-sony-xperia-kitakami-satsuki.dts     | 15 +++++++++++++++
+ .../msm8994-sony-xperia-kitakami-suzuran.dts     | 15 +++++++++++++++
+ .../dts/qcom/msm8994-sony-xperia-kitakami.dtsi   |  2 +-
+ 6 files changed, 67 insertions(+), 1 deletion(-)
+ create mode 100644 arch/arm64/boot/dts/qcom/msm8994-sony-xperia-kitakami-ivy.dts
+ create mode 100644 arch/arm64/boot/dts/qcom/msm8994-sony-xperia-kitakami-karin.dts
+ create mode 100644 arch/arm64/boot/dts/qcom/msm8994-sony-xperia-kitakami-satsuki.dts
+ create mode 100644 arch/arm64/boot/dts/qcom/msm8994-sony-xperia-kitakami-suzuran.dts
+
+diff --git a/arch/arm64/boot/dts/qcom/Makefile b/arch/arm64/boot/dts/qcom/Makefile
+index 030d9648fb11..88c0c9fd8495 100644
+--- a/arch/arm64/boot/dts/qcom/Makefile
++++ b/arch/arm64/boot/dts/qcom/Makefile
+@@ -13,7 +13,11 @@ dtb-$(CONFIG_ARCH_QCOM)	+= msm8992-msft-lumia-talkman.dtb
+ dtb-$(CONFIG_ARCH_QCOM)	+= msm8992-xiaomi-libra.dtb
+ dtb-$(CONFIG_ARCH_QCOM)	+= msm8994-angler-rev-101.dtb
+ dtb-$(CONFIG_ARCH_QCOM)	+= msm8994-msft-lumia-cityman.dts
++dtb-$(CONFIG_ARCH_QCOM)	+= msm8994-sony-xperia-kitakami-ivy.dtb
++dtb-$(CONFIG_ARCH_QCOM)	+= msm8994-sony-xperia-kitakami-karin.dtb
++dtb-$(CONFIG_ARCH_QCOM)	+= msm8994-sony-xperia-kitakami-satsuki.dtb
+ dtb-$(CONFIG_ARCH_QCOM)	+= msm8994-sony-xperia-kitakami-sumire.dtb
++dtb-$(CONFIG_ARCH_QCOM)	+= msm8994-sony-xperia-kitakami-suzuran.dtb
+ dtb-$(CONFIG_ARCH_QCOM)	+= msm8996-mtp.dtb
+ dtb-$(CONFIG_ARCH_QCOM)	+= msm8998-asus-novago-tp370ql.dtb
+ dtb-$(CONFIG_ARCH_QCOM)	+= msm8998-hp-envy-x2.dtb
+diff --git a/arch/arm64/boot/dts/qcom/msm8994-sony-xperia-kitakami-ivy.dts b/arch/arm64/boot/dts/qcom/msm8994-sony-xperia-kitakami-ivy.dts
+new file mode 100644
+index 000000000000..ff631e5de257
+--- /dev/null
++++ b/arch/arm64/boot/dts/qcom/msm8994-sony-xperia-kitakami-ivy.dts
+@@ -0,0 +1,16 @@
++// SPDX-License-Identifier: BSD-3-Clause
++/*
++ * Copyright (c) 2020, Konrad Dybcio
++ */
++
++/dts-v1/;
++
++#include "msm8994-sony-xperia-kitakami.dtsi"
++
++/ {
++	model = "Sony Xperia Z3+/Z4";
++	compatible = "sony,ivy-row", "qcom,msm8994";
++
++	qcom,msm-id = <0xcf 0x00>, <0xcf 0x10000>, <0xcf 0x20000>;
++	qcom,board-id = <0x08 0x00>, <0x10008 0x00>;
++};
+diff --git a/arch/arm64/boot/dts/qcom/msm8994-sony-xperia-kitakami-karin.dts b/arch/arm64/boot/dts/qcom/msm8994-sony-xperia-kitakami-karin.dts
+new file mode 100644
+index 000000000000..e46036daf817
+--- /dev/null
++++ b/arch/arm64/boot/dts/qcom/msm8994-sony-xperia-kitakami-karin.dts
+@@ -0,0 +1,16 @@
++// SPDX-License-Identifier: BSD-3-Clause
++/*
++ * Copyright (c) 2020, Konrad Dybcio
++ */
++
++/dts-v1/;
++
++#include "msm8994-sony-xperia-kitakami.dtsi"
++
++/ {
++	model = "Sony Xperia Z4 Tablet";
++	compatible = "sony,karin-row", "qcom,msm8994";
++
++	qcom,msm-id = <0xcf 0x00>, <0xcf 0x10000>, <0xcf 0x20000>;
++	qcom,board-id = <0x08 0x00>, <0x10008 0x00>;
++};
+diff --git a/arch/arm64/boot/dts/qcom/msm8994-sony-xperia-kitakami-satsuki.dts b/arch/arm64/boot/dts/qcom/msm8994-sony-xperia-kitakami-satsuki.dts
+new file mode 100644
+index 000000000000..3aa95e3474de
+--- /dev/null
++++ b/arch/arm64/boot/dts/qcom/msm8994-sony-xperia-kitakami-satsuki.dts
+@@ -0,0 +1,15 @@
++// SPDX-License-Identifier: BSD-3-Clause
++/*
++ * Copyright (c) 2020, Konrad Dybcio
++ */
++
++/dts-v1/;
++
++#include "msm8994-sony-xperia-kitakami.dtsi"
++
++/ {
++	model = "Sony Xperia Z5 Premium";
++	compatible = "sony,satsuki-row", "qcom,msm8994";
++
++	qcom,msm-id = <0xcf 0x20000>, <0xcf 0x20000>;
++};
+diff --git a/arch/arm64/boot/dts/qcom/msm8994-sony-xperia-kitakami-suzuran.dts b/arch/arm64/boot/dts/qcom/msm8994-sony-xperia-kitakami-suzuran.dts
+new file mode 100644
+index 000000000000..79c48a7bb8f9
+--- /dev/null
++++ b/arch/arm64/boot/dts/qcom/msm8994-sony-xperia-kitakami-suzuran.dts
+@@ -0,0 +1,15 @@
++// SPDX-License-Identifier: BSD-3-Clause
++/*
++ * Copyright (c) 2020, Konrad Dybcio
++ */
++
++/dts-v1/;
++
++#include "msm8994-sony-xperia-kitakami.dtsi"
++
++/ {
++	model = "Sony Xperia Z5 Compact";
++	compatible = "sony,suzuran-row", "qcom,msm8994";
++
++	qcom,msm-id = <0xcf 0x20000>;
++};
+diff --git a/arch/arm64/boot/dts/qcom/msm8994-sony-xperia-kitakami.dtsi b/arch/arm64/boot/dts/qcom/msm8994-sony-xperia-kitakami.dtsi
+index 791f254ac3f8..af1bbb0be1c5 100644
+--- a/arch/arm64/boot/dts/qcom/msm8994-sony-xperia-kitakami.dtsi
++++ b/arch/arm64/boot/dts/qcom/msm8994-sony-xperia-kitakami.dtsi
+@@ -11,7 +11,7 @@
+ 
+ / {
+ 	/* required for bootloader to select correct board */
+-	qcom,msm-id = <0xcf 0x20001>;
++	qcom,msm-id = <0xcf 0x20000>, <0xcf 0x20001>;
+ 	qcom,pmic-id = <0x10009 0x1000a 0x00 0x00>;
+ 	qcom,board-id = <8 0>;
+ 
+-- 
+2.28.0
+
