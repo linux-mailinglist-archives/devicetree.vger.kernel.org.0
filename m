@@ -2,208 +2,118 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from vger.kernel.org (vger.kernel.org [23.128.96.18])
-	by mail.lfdr.de (Postfix) with ESMTP id AD91F283928
-	for <lists+devicetree@lfdr.de>; Mon,  5 Oct 2020 17:11:01 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTP id 22564283942
+	for <lists+devicetree@lfdr.de>; Mon,  5 Oct 2020 17:12:34 +0200 (CEST)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S1726875AbgJEPKz (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Mon, 5 Oct 2020 11:10:55 -0400
-Received: from lindbergh.monkeyblade.net ([23.128.96.19]:45890 "EHLO
-        lindbergh.monkeyblade.net" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S1725970AbgJEPKl (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Mon, 5 Oct 2020 11:10:41 -0400
-Received: from mail-wr1-x444.google.com (mail-wr1-x444.google.com [IPv6:2a00:1450:4864:20::444])
-        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id D5314C0613CE;
-        Mon,  5 Oct 2020 08:10:40 -0700 (PDT)
-Received: by mail-wr1-x444.google.com with SMTP id o5so9993491wrn.13;
-        Mon, 05 Oct 2020 08:10:40 -0700 (PDT)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=gmail.com; s=20161025;
-        h=from:to:cc:subject:date:message-id:mime-version
-         :content-transfer-encoding;
-        bh=61sqlqf5DafArIIzaf0d46tvaomigu2E5aU6czoyheo=;
-        b=fKPbnOC5Qfro2yRVg/8ttKDTcR68Xp1AFBF4tFOJcZpABp/DW1n4OBnHimGABy6goK
-         weB/jWAdzvEGvcaWdZ4ncXiOXrVFSpDXHJKt+kFzRPK7woCFTxbUtBAMl2o+gyMoUjhV
-         rg3My3copnFbsZG+Tw7vAPFHs2ONjkFQM9cxxaKCQtV2EzQV6nXx8UhMBR8wuFG1I7yb
-         5thw9MACHLD9E2DOAbs3KI1IdgvDG6yXJ+4FNK3rvjDIWouW5tU9fMdyEspJj3a2Lwxy
-         Mdek3/vEDHLjV9pVHzQX+hcpOHiZ2dm771+GnsL08iPCK8iOwaZSpzCYYvnTSslOMjRa
-         T1IQ==
-X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=1e100.net; s=20161025;
-        h=x-gm-message-state:from:to:cc:subject:date:message-id:mime-version
-         :content-transfer-encoding;
-        bh=61sqlqf5DafArIIzaf0d46tvaomigu2E5aU6czoyheo=;
-        b=sQ6rd1MGw26rimlB6uP4m7jYjoO3rjRnpJ4hmd3/uydq6nlH/hdoCYLbnKMFM3H09M
-         bpRkmpIGcK2StEEfY3rMLT2oibvvgtcOZE/z0wu3RixptjIktQGjy1DzAbef68LShu3h
-         4LUUV3HesABsku2WGamGTjFa8by++kAQXP8eYVRNl9SVQhG3RJqo2hMDjXbJ3Ol4NdbS
-         ggWlLNOMLLpsj4SUgtga6WiTxkqYmP/v4+aFBlxVO9hcNj0JakFd7QwYn51KwoYZNokZ
-         uiBNgQcBYzo8vuIsG6dp697JUeQgn1zNT23ruVH/SZH45SXwuckhfwGITeU85JMS+lgW
-         s1hA==
-X-Gm-Message-State: AOAM531qwzaJMgdLVquIeuuUnW424y44G9CDnyqzr9QD1Fjmeu3m7bhC
-        Ly8LmrwpJbB4hCQ1wyxPaYQ=
-X-Google-Smtp-Source: ABdhPJzefvGCaBYqbP/hvMMN1mJnJ/1FqfCGGlhKbYKSGmu5atq5gT6wCf4aE5JBGmiA9PmuaHMJKA==
-X-Received: by 2002:adf:e7c4:: with SMTP id e4mr12076173wrn.113.1601910639541;
-        Mon, 05 Oct 2020 08:10:39 -0700 (PDT)
-Received: from localhost.localdomain (abab191.neoplus.adsl.tpnet.pl. [83.6.165.191])
-        by smtp.googlemail.com with ESMTPSA id 67sm18077wmb.31.2020.10.05.08.10.38
-        (version=TLS1_3 cipher=TLS_AES_256_GCM_SHA384 bits=256/256);
-        Mon, 05 Oct 2020 08:10:38 -0700 (PDT)
-From:   Konrad Dybcio <konradybcio@gmail.com>
-To:     konradybcio@gmail.com
-Cc:     ~postmarketos/upstreaming@lists.sr.ht, phone-devel@vger.kernel.org,
-        Andy Gross <agross@kernel.org>,
-        Bjorn Andersson <bjorn.andersson@linaro.org>,
-        Rob Herring <robh+dt@kernel.org>,
-        linux-arm-msm@vger.kernel.org, devicetree@vger.kernel.org,
-        linux-kernel@vger.kernel.org
-Subject: [PATCH] arm64: dts: Add support for remaining Sony Kitakami boards
-Date:   Mon,  5 Oct 2020 17:10:34 +0200
-Message-Id: <20201005151035.150936-1-konradybcio@gmail.com>
-X-Mailer: git-send-email 2.28.0
+        id S1726775AbgJEPMd (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Mon, 5 Oct 2020 11:12:33 -0400
+Received: from mail.kernel.org ([198.145.29.99]:42620 "EHLO mail.kernel.org"
+        rhost-flags-OK-OK-OK-OK) by vger.kernel.org with ESMTP
+        id S1726753AbgJEPMd (ORCPT <rfc822;devicetree@vger.kernel.org>);
+        Mon, 5 Oct 2020 11:12:33 -0400
+Received: from mail-ej1-f41.google.com (mail-ej1-f41.google.com [209.85.218.41])
+        (using TLSv1.2 with cipher ECDHE-RSA-AES128-GCM-SHA256 (128/128 bits))
+        (No client certificate requested)
+        by mail.kernel.org (Postfix) with ESMTPSA id EBAB320874;
+        Mon,  5 Oct 2020 15:12:29 +0000 (UTC)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=kernel.org;
+        s=default; t=1601910750;
+        bh=OTdYwMEyL+J44FhDFfQgzJZxz6q76bc6Lh6jwKmwS5g=;
+        h=References:In-Reply-To:From:Date:Subject:To:Cc:From;
+        b=nM7wmTlTuX8R6hHGqmal6NH3CaoOeFSQp8Aib7IWXtH2mBaqcaLd++9AwOC4SH3K8
+         4fgb3X0TKzhJsFs+FrE50DinNtT/KbsYnShjJxhWAigmLKLS+BgGuAMzOgodQ7NX84
+         dIAQsN+xG4L2W75I1bwD6AmzaOtU/KNMD28jjDI4=
+Received: by mail-ej1-f41.google.com with SMTP id a3so12487574ejy.11;
+        Mon, 05 Oct 2020 08:12:29 -0700 (PDT)
+X-Gm-Message-State: AOAM5302AhgBSEDbGfr4D9/FAYN7j+SsBbxybQ05dZM+x93Up5QB6Y5b
+        yjNen7KlYKf9Q5bcMvhaqGxQu0VcvWYrckZl6g==
+X-Google-Smtp-Source: ABdhPJxHcaGDOyyyIo/bjLD+yrWmGhwiaOGN1qPppcdcHTNE1w5AmntLhaCL61aXtfLjtQNitBu+7/fe7jtt0Cj46XE=
+X-Received: by 2002:a17:906:3b8e:: with SMTP id u14mr162034ejf.127.1601910748378;
+ Mon, 05 Oct 2020 08:12:28 -0700 (PDT)
 MIME-Version: 1.0
-Content-Transfer-Encoding: 8bit
+References: <20201004055024.23542-1-phil.chang@mediatek.com> <CAL_JsqJ4rTChMpn7F--fh1A6bOTZxR4rEM9bbA1rdetXmPDeVA@mail.gmail.com>
+In-Reply-To: <CAL_JsqJ4rTChMpn7F--fh1A6bOTZxR4rEM9bbA1rdetXmPDeVA@mail.gmail.com>
+From:   Chun-Kuang Hu <chunkuang.hu@kernel.org>
+Date:   Mon, 5 Oct 2020 23:12:17 +0800
+X-Gmail-Original-Message-ID: <CAAOTY_-5M77vVXuSJiWJK5KVUFXg8m6u054z-CiwVhc1fheDtg@mail.gmail.com>
+Message-ID: <CAAOTY_-5M77vVXuSJiWJK5KVUFXg8m6u054z-CiwVhc1fheDtg@mail.gmail.com>
+Subject: Re: [PATCH] [PATCH] of_reserved_mem: Increase the number of reserved regions
+To:     Rob Herring <robh+dt@kernel.org>
+Cc:     Phil Chang <phil.chang@mediatek.com>,
+        DTML <devicetree@vger.kernel.org>,
+        Alix Wu <alix.wu@mediatek.com>,
+        YJ Chiang <yj.chiang@mediatek.com>,
+        "linux-kernel@vger.kernel.org" <linux-kernel@vger.kernel.org>,
+        Joe Liu <joe.liu@mediatek.com>,
+        "moderated list:ARM/Mediatek SoC support" 
+        <linux-mediatek@lists.infradead.org>,
+        Matthias Brugger <matthias.bgg@gmail.com>,
+        Frank Rowand <frowand.list@gmail.com>,
+        linux-arm-kernel <linux-arm-kernel@lists.infradead.org>
+Content-Type: text/plain; charset="UTF-8"
+Content-Transfer-Encoding: quoted-printable
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-This patch adds support for the following Xperias:
+Hi, Rob:
 
-* Z3+ [aka Z4 in some regions] (Ivy)
-* Z4 Tablet (Karin)
-* Z5 Compact (Suzuran)
-* Z5 Premium (Satsuki)
+Rob Herring <robh+dt@kernel.org> =E6=96=BC 2020=E5=B9=B410=E6=9C=885=E6=97=
+=A5 =E9=80=B1=E4=B8=80 =E4=B8=8B=E5=8D=889:45=E5=AF=AB=E9=81=93=EF=BC=9A
+>
+> On Sun, Oct 4, 2020 at 12:50 AM Phil Chang <phil.chang@mediatek.com> wrot=
+e:
+> >
+> > Certain SoCs need to support large amount of reserved memory
+> > regions, especially to follow the GKI rules from Google.
+> > In MTK new SoC requires more than 68 regions of reserved memory
+> > for each IP's usage, such as load firmware to specific sapce,
+>
+> typo
+>
+> > so that need to reserve more regisions
+>
+> typo. Missing punctuation.
+>
+> >
+> > Signed-off-by: Joe Liu <joe.liu@mediatek.com>
+> > Signed-off-by: YJ Chiang <yj.chiang@mediatek.com>
+> > Signed-off-by: Alix Wu <alix.wu@mediatek.com>
+> > Signed-off-by: Phil Chang <phil.chang@mediatek.com>
+> > ---
+> >  drivers/of/of_reserved_mem.c | 2 +-
+> >  1 file changed, 1 insertion(+), 1 deletion(-)
+> >
+> > diff --git a/drivers/of/of_reserved_mem.c b/drivers/of/of_reserved_mem.=
+c
+> > index 46b9371c8a33..595f0741dcef 100644
+> > --- a/drivers/of/of_reserved_mem.c
+> > +++ b/drivers/of/of_reserved_mem.c
+> > @@ -22,7 +22,7 @@
+> >  #include <linux/slab.h>
+> >  #include <linux/memblock.h>
+> >
+> > -#define MAX_RESERVED_REGIONS   64
+> > +#define MAX_RESERVED_REGIONS   128
+>
+> At some point, this starts to feel like abuse of reserved regions.
+> Please provide details on what the regions are.
+>
+> Also, this probably just needs to be dynamic. I think we're at that point=
+.
 
-These devices are very similar in terms of hardware, with the main
-differences being display and touch panels.
+How about using a config like DRM_FBDEV_OVERALLOC [1] ?
 
-Signed-off-by: Konrad Dybcio <konradybcio@gmail.com>
----
- arch/arm64/boot/dts/qcom/Makefile                |  4 ++++
- .../qcom/msm8994-sony-xperia-kitakami-ivy.dts    | 16 ++++++++++++++++
- .../qcom/msm8994-sony-xperia-kitakami-karin.dts  | 16 ++++++++++++++++
- .../msm8994-sony-xperia-kitakami-satsuki.dts     | 15 +++++++++++++++
- .../msm8994-sony-xperia-kitakami-suzuran.dts     | 15 +++++++++++++++
- .../dts/qcom/msm8994-sony-xperia-kitakami.dtsi   |  2 +-
- 6 files changed, 67 insertions(+), 1 deletion(-)
- create mode 100644 arch/arm64/boot/dts/qcom/msm8994-sony-xperia-kitakami-ivy.dts
- create mode 100644 arch/arm64/boot/dts/qcom/msm8994-sony-xperia-kitakami-karin.dts
- create mode 100644 arch/arm64/boot/dts/qcom/msm8994-sony-xperia-kitakami-satsuki.dts
- create mode 100644 arch/arm64/boot/dts/qcom/msm8994-sony-xperia-kitakami-suzuran.dts
+[1] https://git.kernel.org/pub/scm/linux/kernel/git/torvalds/linux.git/tree=
+/drivers/gpu/drm/Kconfig?h=3Dv5.9-rc8#n125
 
-diff --git a/arch/arm64/boot/dts/qcom/Makefile b/arch/arm64/boot/dts/qcom/Makefile
-index 030d9648fb11..88c0c9fd8495 100644
---- a/arch/arm64/boot/dts/qcom/Makefile
-+++ b/arch/arm64/boot/dts/qcom/Makefile
-@@ -13,7 +13,11 @@ dtb-$(CONFIG_ARCH_QCOM)	+= msm8992-msft-lumia-talkman.dtb
- dtb-$(CONFIG_ARCH_QCOM)	+= msm8992-xiaomi-libra.dtb
- dtb-$(CONFIG_ARCH_QCOM)	+= msm8994-angler-rev-101.dtb
- dtb-$(CONFIG_ARCH_QCOM)	+= msm8994-msft-lumia-cityman.dts
-+dtb-$(CONFIG_ARCH_QCOM)	+= msm8994-sony-xperia-kitakami-ivy.dtb
-+dtb-$(CONFIG_ARCH_QCOM)	+= msm8994-sony-xperia-kitakami-karin.dtb
-+dtb-$(CONFIG_ARCH_QCOM)	+= msm8994-sony-xperia-kitakami-satsuki.dtb
- dtb-$(CONFIG_ARCH_QCOM)	+= msm8994-sony-xperia-kitakami-sumire.dtb
-+dtb-$(CONFIG_ARCH_QCOM)	+= msm8994-sony-xperia-kitakami-suzuran.dtb
- dtb-$(CONFIG_ARCH_QCOM)	+= msm8996-mtp.dtb
- dtb-$(CONFIG_ARCH_QCOM)	+= msm8998-asus-novago-tp370ql.dtb
- dtb-$(CONFIG_ARCH_QCOM)	+= msm8998-hp-envy-x2.dtb
-diff --git a/arch/arm64/boot/dts/qcom/msm8994-sony-xperia-kitakami-ivy.dts b/arch/arm64/boot/dts/qcom/msm8994-sony-xperia-kitakami-ivy.dts
-new file mode 100644
-index 000000000000..ff631e5de257
---- /dev/null
-+++ b/arch/arm64/boot/dts/qcom/msm8994-sony-xperia-kitakami-ivy.dts
-@@ -0,0 +1,16 @@
-+// SPDX-License-Identifier: BSD-3-Clause
-+/*
-+ * Copyright (c) 2020, Konrad Dybcio
-+ */
-+
-+/dts-v1/;
-+
-+#include "msm8994-sony-xperia-kitakami.dtsi"
-+
-+/ {
-+	model = "Sony Xperia Z3+/Z4";
-+	compatible = "sony,ivy-row", "qcom,msm8994";
-+
-+	qcom,msm-id = <0xcf 0x00>, <0xcf 0x10000>, <0xcf 0x20000>;
-+	qcom,board-id = <0x08 0x00>, <0x10008 0x00>;
-+};
-diff --git a/arch/arm64/boot/dts/qcom/msm8994-sony-xperia-kitakami-karin.dts b/arch/arm64/boot/dts/qcom/msm8994-sony-xperia-kitakami-karin.dts
-new file mode 100644
-index 000000000000..e46036daf817
---- /dev/null
-+++ b/arch/arm64/boot/dts/qcom/msm8994-sony-xperia-kitakami-karin.dts
-@@ -0,0 +1,16 @@
-+// SPDX-License-Identifier: BSD-3-Clause
-+/*
-+ * Copyright (c) 2020, Konrad Dybcio
-+ */
-+
-+/dts-v1/;
-+
-+#include "msm8994-sony-xperia-kitakami.dtsi"
-+
-+/ {
-+	model = "Sony Xperia Z4 Tablet";
-+	compatible = "sony,karin-row", "qcom,msm8994";
-+
-+	qcom,msm-id = <0xcf 0x00>, <0xcf 0x10000>, <0xcf 0x20000>;
-+	qcom,board-id = <0x08 0x00>, <0x10008 0x00>;
-+};
-diff --git a/arch/arm64/boot/dts/qcom/msm8994-sony-xperia-kitakami-satsuki.dts b/arch/arm64/boot/dts/qcom/msm8994-sony-xperia-kitakami-satsuki.dts
-new file mode 100644
-index 000000000000..3aa95e3474de
---- /dev/null
-+++ b/arch/arm64/boot/dts/qcom/msm8994-sony-xperia-kitakami-satsuki.dts
-@@ -0,0 +1,15 @@
-+// SPDX-License-Identifier: BSD-3-Clause
-+/*
-+ * Copyright (c) 2020, Konrad Dybcio
-+ */
-+
-+/dts-v1/;
-+
-+#include "msm8994-sony-xperia-kitakami.dtsi"
-+
-+/ {
-+	model = "Sony Xperia Z5 Premium";
-+	compatible = "sony,satsuki-row", "qcom,msm8994";
-+
-+	qcom,msm-id = <0xcf 0x20000>, <0xcf 0x20000>;
-+};
-diff --git a/arch/arm64/boot/dts/qcom/msm8994-sony-xperia-kitakami-suzuran.dts b/arch/arm64/boot/dts/qcom/msm8994-sony-xperia-kitakami-suzuran.dts
-new file mode 100644
-index 000000000000..79c48a7bb8f9
---- /dev/null
-+++ b/arch/arm64/boot/dts/qcom/msm8994-sony-xperia-kitakami-suzuran.dts
-@@ -0,0 +1,15 @@
-+// SPDX-License-Identifier: BSD-3-Clause
-+/*
-+ * Copyright (c) 2020, Konrad Dybcio
-+ */
-+
-+/dts-v1/;
-+
-+#include "msm8994-sony-xperia-kitakami.dtsi"
-+
-+/ {
-+	model = "Sony Xperia Z5 Compact";
-+	compatible = "sony,suzuran-row", "qcom,msm8994";
-+
-+	qcom,msm-id = <0xcf 0x20000>;
-+};
-diff --git a/arch/arm64/boot/dts/qcom/msm8994-sony-xperia-kitakami.dtsi b/arch/arm64/boot/dts/qcom/msm8994-sony-xperia-kitakami.dtsi
-index 791f254ac3f8..af1bbb0be1c5 100644
---- a/arch/arm64/boot/dts/qcom/msm8994-sony-xperia-kitakami.dtsi
-+++ b/arch/arm64/boot/dts/qcom/msm8994-sony-xperia-kitakami.dtsi
-@@ -11,7 +11,7 @@
- 
- / {
- 	/* required for bootloader to select correct board */
--	qcom,msm-id = <0xcf 0x20001>;
-+	qcom,msm-id = <0xcf 0x20000>, <0xcf 0x20001>;
- 	qcom,pmic-id = <0x10009 0x1000a 0x00 0x00>;
- 	qcom,board-id = <8 0>;
- 
--- 
-2.28.0
+Regards,
+Chun-Kuang.
 
+>
+> Rob
+>
+> _______________________________________________
+> Linux-mediatek mailing list
+> Linux-mediatek@lists.infradead.org
+> http://lists.infradead.org/mailman/listinfo/linux-mediatek
