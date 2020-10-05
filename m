@@ -2,135 +2,117 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from vger.kernel.org (vger.kernel.org [23.128.96.18])
-	by mail.lfdr.de (Postfix) with ESMTP id 1078C283B92
-	for <lists+devicetree@lfdr.de>; Mon,  5 Oct 2020 17:48:07 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTP id 339C0283B99
+	for <lists+devicetree@lfdr.de>; Mon,  5 Oct 2020 17:49:02 +0200 (CEST)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S1726613AbgJEPrs (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Mon, 5 Oct 2020 11:47:48 -0400
-Received: from lindbergh.monkeyblade.net ([23.128.96.19]:51734 "EHLO
-        lindbergh.monkeyblade.net" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S1726057AbgJEPrr (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Mon, 5 Oct 2020 11:47:47 -0400
-Received: from mail-ej1-x643.google.com (mail-ej1-x643.google.com [IPv6:2a00:1450:4864:20::643])
-        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id B7E6FC0613CE;
-        Mon,  5 Oct 2020 08:47:45 -0700 (PDT)
-Received: by mail-ej1-x643.google.com with SMTP id h24so6112051ejg.9;
-        Mon, 05 Oct 2020 08:47:45 -0700 (PDT)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=gmail.com; s=20161025;
-        h=date:from:to:cc:subject:message-id:references:mime-version
-         :content-disposition:in-reply-to:user-agent;
-        bh=uVzdx4iW64L/8P8eovtAWrQeLX5Ntc+hO2LaVKxCA1w=;
-        b=hbc5KDiN4sN5G4Gg2xtDlkggQYAeyH3Her6sik0q4Ic4/9XpzvHG7poli0zqObN2ay
-         um/mWzmsEXqD62RgeMKBN+9qFe8+gV0ydnGqHcDNVrHVbzjBaQu6svIS9T9w8ox3fBpv
-         mWGkXnMwtaXxHTKdYdJHsRFNnfZEzwoPiylodW8xFjUfgVzi/hmbIm3rK3GG2PMLhVSs
-         R/sazrclt3+XF5UyKvZn4+oNdlNMfh1OnQgHHdu6bjo0IV9hGWhAHmjzkgnCHJ8tHvrs
-         cbJB47VF+4I3qYLWQF3bp6XMaGnLnaVHaGOkzmvzppyiqqunT3w7sKtQiNmugGZkw0bP
-         dPIQ==
-X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=1e100.net; s=20161025;
-        h=x-gm-message-state:date:from:to:cc:subject:message-id:references
-         :mime-version:content-disposition:in-reply-to:user-agent;
-        bh=uVzdx4iW64L/8P8eovtAWrQeLX5Ntc+hO2LaVKxCA1w=;
-        b=p0Lp+Eu+/fE7MxiN6h//p380Lt5fXqgoFXu6bx0oIC0stlzVTLmR8ROLt3pPEK18QT
-         DKqup1haTCH/7CxaIp3c4FoBUpJW4fg4RAjWJeAOxgyGVRqduXGO01LMAFKqYRfD1ltu
-         GceioyXB0Gxc8hZLj/omd5v47NkjvRfdE+Aeiq3WO+6xmIJxJCasbRLjSD8hLzxKjhWA
-         63O6iEbs3DMZHxJosjCzjWRv0lDhuIgZIze+wkwyAZDk644eVjTpZZOdYncEPBKCph/3
-         +TBPifbD5RQHKk4t7fEgknzaxdcAjEY83Uzxz2bX1yBruLuDUgAgOWz3zz6wzm+ARt9G
-         5ZhA==
-X-Gm-Message-State: AOAM530DSoy4R47kOHX4n13Xh51Mi/hZXMvawBZINBHJPm0cSkSK/X9N
-        2KHn/eLgrO/YZg80PK4bMl4=
-X-Google-Smtp-Source: ABdhPJxJ2YMuyZGMQSK47z00GJx06vbge++4EgwuyMPmupiJuuZvE0wwM+WhtQhaRuD0C8xDOiI4Hg==
-X-Received: by 2002:a17:906:5247:: with SMTP id y7mr292007ejm.503.1601912864439;
-        Mon, 05 Oct 2020 08:47:44 -0700 (PDT)
-Received: from localhost ([217.111.27.204])
-        by smtp.gmail.com with ESMTPSA id c8sm42753ejp.30.2020.10.05.08.47.42
-        (version=TLS1_3 cipher=TLS_AES_256_GCM_SHA384 bits=256/256);
-        Mon, 05 Oct 2020 08:47:43 -0700 (PDT)
-Date:   Mon, 5 Oct 2020 17:47:42 +0200
-From:   Thierry Reding <thierry.reding@gmail.com>
-To:     Peter Geis <pgwipeout@gmail.com>
-Cc:     Rob Herring <robh+dt@kernel.org>,
-        Jonathan Hunter <jonathanh@nvidia.com>,
-        Matt Merhar <mattmerhar@protonmail.com>,
-        Dmitry Osipenko <digetx@gmail.com>,
-        Stephen Warren <swarren@wwwdotorg.org>,
-        Bob Ham <rah@settrans.net>,
-        Leonardo Bras <leobras.c@gmail.com>,
-        Michael Brougham <jusplainmike@gmail.com>,
-        linux-tegra@vger.kernel.org, devicetree@vger.kernel.org,
-        linux-kernel@vger.kernel.org
-Subject: Re: [PATCH v3 0/3] Support NVIDIA Tegra-based Ouya game console
-Message-ID: <20201005154742.GC628746@ulmo>
-References: <20201004133114.845230-1-pgwipeout@gmail.com>
+        id S1727136AbgJEPtB (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Mon, 5 Oct 2020 11:49:01 -0400
+Received: from bhuna.collabora.co.uk ([46.235.227.227]:51234 "EHLO
+        bhuna.collabora.co.uk" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
+        with ESMTP id S1726057AbgJEPtA (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Mon, 5 Oct 2020 11:49:00 -0400
+Received: from [127.0.0.1] (localhost [127.0.0.1])
+        (Authenticated sender: eballetbo)
+        with ESMTPSA id E5AE928F6CC
+Subject: Re: [PATCH 3/3] dt-bindings: mfd: google,cros-ec: add missing
+ properties
+To:     Rob Herring <robh@kernel.org>,
+        =?UTF-8?Q?Ricardo_Ca=c3=b1uelo?= <ricardo.canuelo@collabora.com>
+Cc:     Collabora Kernel ML <kernel@collabora.com>,
+        Benson Leung <bleung@chromium.org>,
+        Guenter Roeck <groeck@chromium.org>,
+        Simon Glass <sjg@chromium.org>,
+        Doug Anderson <dianders@chromium.org>,
+        devicetree@vger.kernel.org, Pi-Hsun Shih <pihsun@chromium.org>,
+        ohad@wizery.com, bjorn.andersson@linaro.org,
+        linux-remoteproc@vger.kernel.org,
+        Matthias Brugger <matthias.bgg@gmail.com>,
+        Nicolas Boichat <drinkcat@google.com>
+References: <20201005071403.17450-1-ricardo.canuelo@collabora.com>
+ <20201005071403.17450-4-ricardo.canuelo@collabora.com>
+ <CAL_JsqJ5E6LSis1LzgEGPN6aEktkFamRn19v0s-x_OZ+8yMTiA@mail.gmail.com>
+From:   Enric Balletbo i Serra <enric.balletbo@collabora.com>
+Message-ID: <7080db15-35d5-8a38-4663-4e30126085c5@collabora.com>
+Date:   Mon, 5 Oct 2020 17:48:55 +0200
+User-Agent: Mozilla/5.0 (X11; Linux x86_64; rv:68.0) Gecko/20100101
+ Thunderbird/68.12.0
 MIME-Version: 1.0
-Content-Type: multipart/signed; micalg=pgp-sha256;
-        protocol="application/pgp-signature"; boundary="E/DnYTRukya0zdZ1"
-Content-Disposition: inline
-In-Reply-To: <20201004133114.845230-1-pgwipeout@gmail.com>
-User-Agent: Mutt/1.14.7 (2020-08-29)
+In-Reply-To: <CAL_JsqJ5E6LSis1LzgEGPN6aEktkFamRn19v0s-x_OZ+8yMTiA@mail.gmail.com>
+Content-Type: text/plain; charset=utf-8
+Content-Language: en-US
+Content-Transfer-Encoding: 8bit
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
+Hi,
 
---E/DnYTRukya0zdZ1
-Content-Type: text/plain; charset=us-ascii
-Content-Disposition: inline
-Content-Transfer-Encoding: quoted-printable
+On 5/10/20 17:37, Rob Herring wrote:
+> On Mon, Oct 5, 2020 at 2:14 AM Ricardo Cañuelo
+> <ricardo.canuelo@collabora.com> wrote:
+>>
+>> Add missing properties that are currently used in the examples of
+>> subnode bindings and in many DTs.
+>> This fixes all current dt_binding_check and dtbs_check warnings related
+>> to this binding.
+>>
+>> Signed-off-by: Ricardo Cañuelo <ricardo.canuelo@collabora.com>
+>> ---
+>>  .../bindings/mfd/google,cros-ec.yaml          | 40 +++++++++++++++++++
+>>  1 file changed, 40 insertions(+)
+>>
+>> diff --git a/Documentation/devicetree/bindings/mfd/google,cros-ec.yaml b/Documentation/devicetree/bindings/mfd/google,cros-ec.yaml
+>> index f49c0d5d31ad..c2dc05cdef9f 100644
+>> --- a/Documentation/devicetree/bindings/mfd/google,cros-ec.yaml
+>> +++ b/Documentation/devicetree/bindings/mfd/google,cros-ec.yaml
+>> @@ -59,18 +59,58 @@ properties:
+>>        whether this nvram is present or not.
+>>      type: boolean
+>>
+>> +  mtk,rpmsg-name:
+> 
+> This should have been mediatek,rpmsg-name, but I guess we're stuck with it.
+> 
 
-On Sun, Oct 04, 2020 at 01:31:11PM +0000, Peter Geis wrote:
-> Good Day,
->=20
-> This series introduces upstream kernel support for the Ouya game console =
-device. Please review and apply. Thank you in advance.
->=20
-> Changelog:
-> v3: - Reorder aliases per Dmitry Osipenko's review.
->     - Add sdio clocks per Dmitry Osipenko's review.
->     - Add missing ti sleep bits per Dmitry Osipenko's review.
->     - Enable lp1 sleep mode.
->     - Fix bluetooth comment and add missing power supplies.
->=20
-> v2: - Update pmic and clock handles per Rob Herring's review.
->     - Add acks from Rob Herring to patch 2 and 3.
->=20
-> Peter Geis (3):
->   ARM: tegra: Add device-tree for Ouya
->   dt-bindings: Add vendor prefix for Ouya Inc.
->   dt-bindings: ARM: tegra: Add Ouya game console
->=20
->  .../devicetree/bindings/arm/tegra.yaml        |    3 +
->  .../devicetree/bindings/vendor-prefixes.yaml  |    2 +
->  arch/arm/boot/dts/Makefile                    |    3 +-
->  arch/arm/boot/dts/tegra30-ouya.dts            | 4511 +++++++++++++++++
->  4 files changed, 4518 insertions(+), 1 deletion(-)
->  create mode 100644 arch/arm/boot/dts/tegra30-ouya.dts
+cc'ing the remote-proc maintainers and some ChromeOS people to be aware.
 
-This looks good to me and I see that Dmitry is happy with it. I'll make
-a mental note to apply it after the merge window closes.
+Seems that the patches that introduce the use of this propietry in the bindings
+are still in linux-next, so maybe we're on time to fix it?
+
+In such case, Ricardo can you take care of it and send patches fixing it?
 
 Thanks,
-Thierry
+ Enric
 
---E/DnYTRukya0zdZ1
-Content-Type: application/pgp-signature; name="signature.asc"
-
------BEGIN PGP SIGNATURE-----
-
-iQIzBAABCAAdFiEEiOrDCAFJzPfAjcif3SOs138+s6EFAl97QB0ACgkQ3SOs138+
-s6EFEw/+K4KzjvNDPMR+5dTRN9MEJ4KjDsLvb06WkHnrDB6sopAoMMgGW8g/Jdf7
-TJZlUz0HcYnuAdwfETulI1PL5R2InsZL+cIyKy0o/naiUw6Y94SJhV/cufh2KkKK
-aUXsFJw/9OR6f7l/olzXYvRTmh2+Qv9xlo7RJdMZnqSYcp/ZfRYw+530f/20VySS
-06ib8XLpwLyeVWOlUv3+8CGg8YHaPAaXNlCpEkLULLd8ZYDCnJfRlVsN8G1bJxOY
-qxaZkKSReTggvajwvi6P/pAPtiGRaOJfGjVlGiPSzoIvgSBFQnsEZkolydg0FzqA
-1QOvPhjdW9HbiBtUGpEtFCiZySMBq/V/sEmKIreeZnlLkNSUTTirydJDOo8NsvNb
-6BDAIfO2REUEJ8gmk2VvplBg18VVr3muzuKYRFDFpIgSB8dILjjCL4+LrtslsEKQ
-UBuPceLCTTkwl6+ntzIV4ODtJfx2qRFTSVDZpRmemK1GdC6K+rIaQJqDViN/Vvyd
-6ooJ+KcxbhkBYcE1QGhiImwovoz8APsOJqq4SPE4pJdK61UPkAzGf2Vemszs+8pk
-wJikQzHqDn0JJPZO7xR6Vcp5fHeMTFqz1YtoFXh2lZmo0LsbwJ7TN70804YIF9Ax
-3VWwoFmTiJ21y39PxCZxEczrBap8jsPbT7EViYD5tMz8sKhfuJc=
-=cAxQ
------END PGP SIGNATURE-----
-
---E/DnYTRukya0zdZ1--
+>> +    description:
+>> +      Must be defined if the cros-ec is a rpmsg device for a Mediatek
+>> +      ARM Cortex M4 Co-processor. Contains the name pf the rpmsg
+>> +      device. Used to match the subnode to the rpmsg device announced by
+>> +      the SCP.
+>> +    $ref: /schemas/types.yaml#/definitions/string
+>> +
+>>    spi-max-frequency:
+>>      description: Maximum SPI frequency of the device in Hz.
+>>
+>>    reg:
+>>      maxItems: 1
+>>
+>> +  '#address-cells':
+>> +    enum: [1, 2]
+>> +
+>> +  '#size-cells':
+>> +    enum: [0, 1]
+> 
+> This doesn't really make sense. Either there's a size or there isn't.
+> 
+> [...]
+> 
+>> +  "^regulator@[a-f0-9]+$":
+>> +  "^ec-codec@[a-f0-9]+$":
+> 
+> What does the number space represent and is it the same for each of
+> these? If not, then this is kind of broken. There's only 1 number
+> space at a given level.
+> 
+> Rob
+> 
