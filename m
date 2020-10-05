@@ -2,87 +2,62 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from vger.kernel.org (vger.kernel.org [23.128.96.18])
-	by mail.lfdr.de (Postfix) with ESMTP id 8F0112834DB
-	for <lists+devicetree@lfdr.de>; Mon,  5 Oct 2020 13:24:43 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTP id 95E282834DE
+	for <lists+devicetree@lfdr.de>; Mon,  5 Oct 2020 13:26:06 +0200 (CEST)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S1725914AbgJELYm (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Mon, 5 Oct 2020 07:24:42 -0400
-Received: from out-2.mail.amis.net ([212.18.32.14]:48176 "EHLO
-        out-2.mail.amis.net" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S1725843AbgJELYm (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Mon, 5 Oct 2020 07:24:42 -0400
-X-Greylist: delayed 475 seconds by postgrey-1.27 at vger.kernel.org; Mon, 05 Oct 2020 07:24:42 EDT
-Received: from in-2.mail.amis.net (in-2.mail.amis.net [212.18.32.19])
-        by out-2.mail.amis.net (Postfix) with ESMTP id 7781681360;
-        Mon,  5 Oct 2020 13:16:46 +0200 (CEST)
-Received: from in-2.mail.amis.net (localhost [127.0.0.1])
-        by in-2.mail.amis.net (Postfix) with ESMTP id 71531C9406;
-        Mon,  5 Oct 2020 13:16:46 +0200 (CEST)
-X-Virus-Scanned: amavisd-new at amis.net
-X-Spam-Flag: NO
-X-Spam-Score: -1
-X-Spam-Level: 
-X-Spam-Status: No, score=-1 required=5 tests=[ALL_TRUSTED=-1]
-        autolearn=disabled
-Received: from in-2.mail.amis.net ([127.0.0.1])
-        by in-2.mail.amis.net (in-2.mail.amis.net [127.0.0.1]) (amavisd-new, port 10024)
-        with ESMTP id js9Bz3HJPxjd; Mon,  5 Oct 2020 13:16:46 +0200 (CEST)
-Received: from smtp1.amis.net (smtp1.amis.net [212.18.32.41])
-        by in-2.mail.amis.net (Postfix) with ESMTP id 1E8FEC9402;
-        Mon,  5 Oct 2020 13:16:46 +0200 (CEST)
-Received: from localhost.localdomain (89-212-21-243.static.t-2.net [89.212.21.243])
-        (using TLSv1.2 with cipher ECDHE-RSA-AES128-GCM-SHA256 (128/128 bits))
-        (No client certificate requested)
-        by smtp1.amis.net (Postfix) with ESMTPSA id 8D2F8C2DD2;
-        Mon,  5 Oct 2020 13:16:45 +0200 (CEST)
-From:   Primoz Fiser <primoz.fiser@norik.com>
-To:     alsa-devel@alsa-project.org
-Cc:     Timur Tabi <timur@kernel.org>,
-        Nicolin Chen <nicoleotsuka@gmail.com>,
-        Xiubo Li <Xiubo.Lee@gmail.com>,
-        Fabio Estevam <festevam@gmail.com>,
-        Shengjiu Wang <shengjiu.wang@gmail.com>,
-        Liam Girdwood <lgirdwood@gmail.com>,
-        Mark Brown <broonie@kernel.org>,
-        Jaroslav Kysela <perex@perex.cz>,
-        Takashi Iwai <tiwai@suse.com>,
-        Rob Herring <robh+dt@kernel.org>, devicetree@vger.kernel.org
-Subject: [PATCH 2/2] ASoC: dt-bindings: fsl: add ac97 fixed mode support
-Date:   Mon,  5 Oct 2020 13:16:44 +0200
-Message-Id: <20201005111644.3131604-2-primoz.fiser@norik.com>
-X-Mailer: git-send-email 2.25.1
-In-Reply-To: <20201005111644.3131604-1-primoz.fiser@norik.com>
-References: <20201005111644.3131604-1-primoz.fiser@norik.com>
-MIME-Version: 1.0
-Content-Transfer-Encoding: 8bit
+        id S1725982AbgJEL0D (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Mon, 5 Oct 2020 07:26:03 -0400
+Received: from lindbergh.monkeyblade.net ([23.128.96.19]:39224 "EHLO
+        lindbergh.monkeyblade.net" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
+        with ESMTP id S1725931AbgJELZy (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Mon, 5 Oct 2020 07:25:54 -0400
+Received: from xavier.telenet-ops.be (xavier.telenet-ops.be [IPv6:2a02:1800:120:4::f00:14])
+        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id CC74BC0613A7
+        for <devicetree@vger.kernel.org>; Mon,  5 Oct 2020 04:25:53 -0700 (PDT)
+Received: from ramsan ([84.195.186.194])
+        by xavier.telenet-ops.be with bizsmtp
+        id cBRq2300M4C55Sk01BRqFe; Mon, 05 Oct 2020 13:25:51 +0200
+Received: from rox.of.borg ([192.168.97.57])
+        by ramsan with esmtp (Exim 4.90_1)
+        (envelope-from <geert@linux-m68k.org>)
+        id 1kPOco-0005HY-L4; Mon, 05 Oct 2020 13:25:50 +0200
+Received: from geert by rox.of.borg with local (Exim 4.90_1)
+        (envelope-from <geert@linux-m68k.org>)
+        id 1kPOco-0005nC-IV; Mon, 05 Oct 2020 13:25:50 +0200
+From:   Geert Uytterhoeven <geert+renesas@glider.be>
+To:     Mark Brown <broonie@kernel.org>, Rob Herring <robh+dt@kernel.org>
+Cc:     linux-spi@vger.kernel.org, devicetree@vger.kernel.org,
+        linux-renesas-soc@vger.kernel.org,
+        Geert Uytterhoeven <geert+renesas@glider.be>
+Subject: [PATCH] spi: renesas,sh-msiof: Add r8a77961 support
+Date:   Mon,  5 Oct 2020 13:25:47 +0200
+Message-Id: <20201005112549.22222-1-geert+renesas@glider.be>
+X-Mailer: git-send-email 2.17.1
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-Add devicetree bindings documentation for operating SSI in AC'97
-variable/fixed mode of operation.
+Document R-Car M3-W+ (R8A77961) SoC bindings.
 
-Signed-off-by: Primoz Fiser <primoz.fiser@norik.com>
+Signed-off-by: Geert Uytterhoeven <geert+renesas@glider.be>
 ---
- Documentation/devicetree/bindings/sound/fsl,ssi.txt | 5 +++++
- 1 file changed, 5 insertions(+)
+Tested on Salvator-XS with R-Car M3-W+ and spi-loopback-test.
 
-diff --git a/Documentation/devicetree/bindings/sound/fsl,ssi.txt b/Documentation/devicetree/bindings/sound/fsl,ssi.txt
-index 7e15a85cecd2..abc5abe11fb9 100644
---- a/Documentation/devicetree/bindings/sound/fsl,ssi.txt
-+++ b/Documentation/devicetree/bindings/sound/fsl,ssi.txt
-@@ -43,6 +43,11 @@ Optional properties:
- - fsl,mode:         The operating mode for the AC97 interface only.
-                     "ac97-slave" - AC97 mode, SSI is clock slave
-                     "ac97-master" - AC97 mode, SSI is clock master
-+- fsl,ac97-mode:    SSI AC97 mode of operation.
-+                    "variable" - AC97 Variable Mode, SLOTREQ bits determine
-+                    next receive/transmit frame
-+                    "fixed" - AC97 Fixed Mode, SSI transmits in accordance with
-+                    AC97 Frame Rate Divider bits
- - fsl,ssi-asynchronous:
-                     If specified, the SSI is to be programmed in asynchronous
-                     mode.  In this mode, pins SRCK, STCK, SRFS, and STFS must
+ Documentation/devicetree/bindings/spi/renesas,sh-msiof.yaml | 1 +
+ 1 file changed, 1 insertion(+)
+
+diff --git a/Documentation/devicetree/bindings/spi/renesas,sh-msiof.yaml b/Documentation/devicetree/bindings/spi/renesas,sh-msiof.yaml
+index 9f7b118adcaf7d20..3d3b60ee1ca46b9d 100644
+--- a/Documentation/devicetree/bindings/spi/renesas,sh-msiof.yaml
++++ b/Documentation/devicetree/bindings/spi/renesas,sh-msiof.yaml
+@@ -41,6 +41,7 @@ properties:
+               - renesas,msiof-r8a774e1      # RZ/G2H
+               - renesas,msiof-r8a7795       # R-Car H3
+               - renesas,msiof-r8a7796       # R-Car M3-W
++              - renesas,msiof-r8a77961      # R-Car M3-W+
+               - renesas,msiof-r8a77965      # R-Car M3-N
+               - renesas,msiof-r8a77970      # R-Car V3M
+               - renesas,msiof-r8a77980      # R-Car V3H
 -- 
-2.25.1
+2.17.1
 
