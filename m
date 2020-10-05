@@ -2,128 +2,102 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from vger.kernel.org (vger.kernel.org [23.128.96.18])
-	by mail.lfdr.de (Postfix) with ESMTP id 50B5728331A
-	for <lists+devicetree@lfdr.de>; Mon,  5 Oct 2020 11:23:22 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTP id 1F534283328
+	for <lists+devicetree@lfdr.de>; Mon,  5 Oct 2020 11:27:59 +0200 (CEST)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S1725936AbgJEJXV (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Mon, 5 Oct 2020 05:23:21 -0400
-Received: from lindbergh.monkeyblade.net ([23.128.96.19]:48452 "EHLO
-        lindbergh.monkeyblade.net" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S1725914AbgJEJXV (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Mon, 5 Oct 2020 05:23:21 -0400
-Received: from bhuna.collabora.co.uk (bhuna.collabora.co.uk [IPv6:2a00:1098:0:82:1000:25:2eeb:e3e3])
-        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id D6F5FC0613CE
-        for <devicetree@vger.kernel.org>; Mon,  5 Oct 2020 02:23:20 -0700 (PDT)
-Received: from [127.0.0.1] (localhost [127.0.0.1])
-        (Authenticated sender: eballetbo)
-        with ESMTPSA id 58A80297463
-Subject: Re: [PATCH 3/3] dt-bindings: mfd: google,cros-ec: add missing
- properties
-To:     =?UTF-8?Q?Ricardo_Ca=c3=b1uelo?= <ricardo.canuelo@collabora.com>,
-        robh@kernel.org
-Cc:     kernel@collabora.com, bleung@chromium.org, groeck@chromium.org,
-        sjg@chromium.org, dianders@chromium.org, devicetree@vger.kernel.org
-References: <20201005071403.17450-1-ricardo.canuelo@collabora.com>
- <20201005071403.17450-4-ricardo.canuelo@collabora.com>
-From:   Enric Balletbo i Serra <enric.balletbo@collabora.com>
-Message-ID: <a6132b1e-7613-35c2-f450-e3ca300ab49b@collabora.com>
-Date:   Mon, 5 Oct 2020 11:23:15 +0200
-User-Agent: Mozilla/5.0 (X11; Linux x86_64; rv:68.0) Gecko/20100101
- Thunderbird/68.12.0
-MIME-Version: 1.0
-In-Reply-To: <20201005071403.17450-4-ricardo.canuelo@collabora.com>
-Content-Type: text/plain; charset=utf-8
-Content-Language: en-US
-Content-Transfer-Encoding: 8bit
+        id S1725905AbgJEJ1y (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Mon, 5 Oct 2020 05:27:54 -0400
+Received: from mga03.intel.com ([134.134.136.65]:53116 "EHLO mga03.intel.com"
+        rhost-flags-OK-OK-OK-OK) by vger.kernel.org with ESMTP
+        id S1725891AbgJEJ1y (ORCPT <rfc822;devicetree@vger.kernel.org>);
+        Mon, 5 Oct 2020 05:27:54 -0400
+IronPort-SDR: tllKcpAyux/2IverV7CmtDJKhrp0CwajQOTOovyj4sTvcBn2RVL8nvj32CB1yj+9pMDyySip2V
+ KS38pTRk1pHg==
+X-IronPort-AV: E=McAfee;i="6000,8403,9764"; a="163468592"
+X-IronPort-AV: E=Sophos;i="5.77,338,1596524400"; 
+   d="scan'208";a="163468592"
+X-Amp-Result: SKIPPED(no attachment in message)
+X-Amp-File-Uploaded: False
+Received: from fmsmga004.fm.intel.com ([10.253.24.48])
+  by orsmga103.jf.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384; 05 Oct 2020 02:27:51 -0700
+IronPort-SDR: nxJLfi3SMBzrnw1ffB+5VA/Jr74ND9wQBQIPZeAN4WBzX1QKcrfs86CheK7Qaw6MGuvH3C0NOs
+ NS+98dfCuXRw==
+X-ExtLoop1: 1
+X-IronPort-AV: E=Sophos;i="5.77,338,1596524400"; 
+   d="scan'208";a="340820755"
+Received: from sgsxdev001.isng.intel.com (HELO localhost) ([10.226.88.11])
+  by fmsmga004.fm.intel.com with ESMTP; 05 Oct 2020 02:27:48 -0700
+From:   Rahul Tanwar <rahul.tanwar@linux.intel.com>
+To:     jdelvare@suse.com, linux@roeck-us.net, p.zabel@pengutronix.de,
+        linux-hwmon@vger.kernel.org, robh+dt@kernel.org
+Cc:     linux-kernel@vger.kernel.org, devicetree@vger.kernel.org,
+        andriy.shevchenko@intel.com, songjun.Wu@intel.com,
+        cheol.yong.kim@intel.com, qi-ming.wu@intel.com,
+        rtanwar@maxlinear.com, Rahul Tanwar <rahul.tanwar@linux.intel.com>
+Subject: [PATCH v5 0/2] Add hwmon driver for Moortec PVT controller
+Date:   Mon,  5 Oct 2020 17:27:44 +0800
+Message-Id: <cover.1601889876.git.rahul.tanwar@linux.intel.com>
+X-Mailer: git-send-email 2.11.0
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-Hi Ricardo,
+Patch 1 adds DT bindings schema in YAML format.
+Patch 2 adds driver for MR75203 PVT controller.
 
-Thank you to work on this.
+v5:
+- Add bits.h header.
+- Use memset32() instead of using loop.
+- Address other code quality related review concerns.
+- Add Reviewed-by tags.
 
-On 5/10/20 9:14, Ricardo Cañuelo wrote:
-> Add missing properties that are currently used in the examples of
-> subnode bindings and in many DTs.
-> This fixes all current dt_binding_check and dtbs_check warnings related
-> to this binding.
-> 
-> Signed-off-by: Ricardo Cañuelo <ricardo.canuelo@collabora.com>
-> ---
->  .../bindings/mfd/google,cros-ec.yaml          | 40 +++++++++++++++++++
->  1 file changed, 40 insertions(+)
-> 
-> diff --git a/Documentation/devicetree/bindings/mfd/google,cros-ec.yaml b/Documentation/devicetree/bindings/mfd/google,cros-ec.yaml
-> index f49c0d5d31ad..c2dc05cdef9f 100644
-> --- a/Documentation/devicetree/bindings/mfd/google,cros-ec.yaml
-> +++ b/Documentation/devicetree/bindings/mfd/google,cros-ec.yaml
-> @@ -59,18 +59,58 @@ properties:
->        whether this nvram is present or not.
->      type: boolean
->  
-> +  mtk,rpmsg-name:
+v4:
+- Fix a spelling mistake in comments.
+- Add return value error checking for all regmap_reads/writes.
+- Remove unnecessary else statement and a validation check.
 
-AFAIK mtk is not a valid vendor prefix (vendor-prefixes.yaml), so I am wondering
-if this should be mediatek,rpmsg-name. I see this being used in
-drivers/rpmsg/mtk_rpmsg.c file, but there isn't a devitree using it. So maybe
-we're on time to fix it.
+v3:
+- Resolve make dt_binding_check errors.
+- Add vendor prefix and type reference for one property in yaml schema.
+- Update new property name in the driver.
 
-Thanks,
- Enric
+v2:
+- Address below review concerns from Andy Shevchenko
+ * Add more info in comments for clamp_val usage for clk sys cycles.
+ * Add mod_devicetable.h & property.h and remove of.h
+ * Remove unnecessary additional mutex lock from driver. Rely on regmap's
+   internal lock.
+ * Use units in timeout macros.
+ * Use HZ_PER_MHZ instead of direct values.
+ * Use devm_platform_ioremap_resource_byname() instead of separate calls.
+ * Use device property read API instead of OF API.
+- Address below review concerns from Guenter Roeck
+ * Improve commit message - add hardware monitoring driver.
+ * Remove unnecessary platform_set_drvdata. Instead add driver data in
+   function args at one place where it is used. Fix a issue related to it.
+ * Remove unnecessary NULL assignment.
+- Address below review concerns from Philipp Zabel
+ * Switch to devm_reset_control_get_exclusive().
+ * Move reset_deassert at the last after clk_enable in probe.
+- Resolve make dt_binding_check error.
+- Add MODULE_LICENSE
 
-> +    description:
-> +      Must be defined if the cros-ec is a rpmsg device for a Mediatek
-> +      ARM Cortex M4 Co-processor. Contains the name pf the rpmsg
-> +      device. Used to match the subnode to the rpmsg device announced by
-> +      the SCP.
-> +    $ref: /schemas/types.yaml#/definitions/string
-> +
->    spi-max-frequency:
->      description: Maximum SPI frequency of the device in Hz.
->  
->    reg:
->      maxItems: 1
->  
-> +  '#address-cells':
-> +    enum: [1, 2]
-> +
-> +  '#size-cells':
-> +    enum: [0, 1]
-> +
->    interrupts:
->      maxItems: 1
->  
->    wakeup-source:
->      description: Button can wake-up the system.
->  
-> +  typec:
-> +    $ref: "/schemas/chrome/google,cros-ec-typec.yaml#"
-> +
-> +  ec-pwm:
-> +    $ref: "/schemas/pwm/google,cros-ec-pwm.yaml#"
-> +
-> +  keyboard-controller:
-> +    $ref: "/schemas/input/google,cros-ec-keyb.yaml#"
-> +
-> +patternProperties:
-> +  "^regulator@[a-f0-9]+$":
-> +    type: object
-> +    $ref: "/schemas/regulator/google,cros-ec-regulator.yaml#"
-> +
-> +  "^extcon[0-9]*$":
-> +    type: object
-> +    $ref: "/schemas/extcon/extcon-usbc-cros-ec.yaml#"
-> +
-> +  "^ec-codec@[a-f0-9]+$":
-> +    type: object
-> +    $ref: "/schemas/sound/google,cros-ec-codec.yaml#"
-> +
-> +  "^i2c-tunnel[0-9]*$":
-> +    type: object
-> +    $ref: "/schemas/i2c/google,cros-ec-i2c-tunnel.yaml#"
-> +
->  required:
->    - compatible
->  
-> 
+v1:
+- Initial version.
+
+
+Rahul Tanwar (2):
+  Add DT bindings schema for PVT controller
+  Add hardware monitoring driver for Moortec MR75203 PVT controller
+
+ .../devicetree/bindings/hwmon/moortec,mr75203.yaml |  71 +++
+ drivers/hwmon/Kconfig                              |  10 +
+ drivers/hwmon/Makefile                             |   1 +
+ drivers/hwmon/mr75203.c                            | 656 +++++++++++++++++++++
+ 4 files changed, 738 insertions(+)
+ create mode 100644 Documentation/devicetree/bindings/hwmon/moortec,mr75203.yaml
+ create mode 100644 drivers/hwmon/mr75203.c
+
+-- 
+2.11.0
+
