@@ -2,88 +2,81 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from vger.kernel.org (vger.kernel.org [23.128.96.18])
-	by mail.lfdr.de (Postfix) with ESMTP id 8C09828351A
-	for <lists+devicetree@lfdr.de>; Mon,  5 Oct 2020 13:39:41 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTP id D94A328352C
+	for <lists+devicetree@lfdr.de>; Mon,  5 Oct 2020 13:50:29 +0200 (CEST)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S1725996AbgJELjk (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Mon, 5 Oct 2020 07:39:40 -0400
-Received: from lindbergh.monkeyblade.net ([23.128.96.19]:41332 "EHLO
-        lindbergh.monkeyblade.net" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S1725891AbgJELjh (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Mon, 5 Oct 2020 07:39:37 -0400
-Received: from mail-lf1-x131.google.com (mail-lf1-x131.google.com [IPv6:2a00:1450:4864:20::131])
-        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 3B317C0613CE;
-        Mon,  5 Oct 2020 04:39:36 -0700 (PDT)
-Received: by mail-lf1-x131.google.com with SMTP id d24so6464514lfa.8;
-        Mon, 05 Oct 2020 04:39:36 -0700 (PDT)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=gmail.com; s=20161025;
-        h=mime-version:references:in-reply-to:from:date:message-id:subject:to
-         :cc;
-        bh=y0xp8TscW6ysKMCr2r9U27WWoLB5uN36ncLR0InNu6M=;
-        b=Q1QJaCwR7QmgTQpB7W9IZr6u+/K5tEtym5SGqybofKshKVP8hucO3W2ctcnfWfRd5Z
-         O/9OfMUEWe7zf3C2Sba4YeLEXMojrdJAUGPPljq6Bb/S265rW1EvG4sm6djayinnNC5i
-         OEfQtUV7MAGDo9tNi73VYB4T6vn0+gQpghifwMbCvQ/UXCIRWA3oX6/t6+5jTiweo5P6
-         xGg4oRuPLXkrrS5DfqKlZebzYrEi9pPp+RhnN57C9BU6t6mUvSPy5yySqKXhqlRgX4JH
-         L7QfW7MlYAtzcp70UYaNN+PfWhGWFKIw9y827VXrHJFSdfWs54SPSy0Etw8RlEoUO8ie
-         Gqvg==
-X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=1e100.net; s=20161025;
-        h=x-gm-message-state:mime-version:references:in-reply-to:from:date
-         :message-id:subject:to:cc;
-        bh=y0xp8TscW6ysKMCr2r9U27WWoLB5uN36ncLR0InNu6M=;
-        b=VEw+9KMjlgWb4yKLcNQde/xqKypQ0XLYQCFurcdbJRR1BB7rlQ8lsl+np67Qg0h5Tn
-         txzsafNw5crMKgcVf+PlObyNiWUAJpqj2o+jEabQR7eUn4LFhJFhgtIC/w79yKw0uA3E
-         b3APFoqgo/CsBlCsJ9hKJwnZNcO3ZO9VhAwn5rCFzuYva1vxxfv8W9fhuj/PIvP+BeuB
-         2OCcLF9zCPKqA4B/K8S2YU+MLBTH2n/xP8BMOMjSfByQQTGL8YDMCweclM4Knk9/Qlcw
-         +cwHofep1gLrUbzc3S/SdeqHOG1czZzt/iMhl0CJBU3zbOstb2G8nuVrRcIGNPULZGYm
-         E5jw==
-X-Gm-Message-State: AOAM5318fbTaZ0KQ9lMpPTw5JbeclNKT3EkxLMN+c1JahorkquKuwyhZ
-        1fh6OvwzTLoOxRuXd3nMQzkJZhImr+vpyM41460=
-X-Google-Smtp-Source: ABdhPJzRYS2ZHOE77CR1mvVjx3e05wKh9jexyi53q9nXKBpB4NhRbGtDd4gKcn3elYJPUCptpsm1aoG6sR0AHEAR/jk=
-X-Received: by 2002:ac2:4e92:: with SMTP id o18mr5941668lfr.527.1601897974630;
- Mon, 05 Oct 2020 04:39:34 -0700 (PDT)
+        id S1725931AbgJELu2 (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Mon, 5 Oct 2020 07:50:28 -0400
+Received: from mail.kernel.org ([198.145.29.99]:49190 "EHLO mail.kernel.org"
+        rhost-flags-OK-OK-OK-OK) by vger.kernel.org with ESMTP
+        id S1725914AbgJELu2 (ORCPT <rfc822;devicetree@vger.kernel.org>);
+        Mon, 5 Oct 2020 07:50:28 -0400
+Received: from localhost (fw-tnat.cambridge.arm.com [217.140.96.140])
+        (using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
+        (No client certificate requested)
+        by mail.kernel.org (Postfix) with ESMTPSA id B904A20757;
+        Mon,  5 Oct 2020 11:50:27 +0000 (UTC)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=kernel.org;
+        s=default; t=1601898628;
+        bh=UZVfuP1aRfwrbBFJKfqea9aS4yvWgRH18g0vwiE7JUQ=;
+        h=Date:From:To:Cc:Subject:References:In-Reply-To:From;
+        b=BaKL8xo71qV17N/t9fGAhq+bn8wwCb+dG7ioGRxw9SMDW/iz7JSuFPnVdsEf5uhpf
+         hvCe6dW0au36/1bvUY4cCIGkqCmK0uKJbPzEbiEjiQDKR4xi2P+x68916e+34Ovcd+
+         YIs51l1towxws7uWgEFMtLbhc3MF5/KhlLuy2wHg=
+Date:   Mon, 5 Oct 2020 12:49:25 +0100
+From:   Mark Brown <broonie@kernel.org>
+To:     Primoz Fiser <primoz.fiser@norik.com>
+Cc:     alsa-devel@alsa-project.org, Timur Tabi <timur@kernel.org>,
+        Nicolin Chen <nicoleotsuka@gmail.com>,
+        Xiubo Li <Xiubo.Lee@gmail.com>,
+        Fabio Estevam <festevam@gmail.com>,
+        Shengjiu Wang <shengjiu.wang@gmail.com>,
+        Liam Girdwood <lgirdwood@gmail.com>,
+        Jaroslav Kysela <perex@perex.cz>,
+        Takashi Iwai <tiwai@suse.com>,
+        Rob Herring <robh+dt@kernel.org>, devicetree@vger.kernel.org
+Subject: Re: [PATCH 1/2] ASoC: fsl: fsl_ssi: add ac97 fixed mode support
+Message-ID: <20201005114925.GC5139@sirena.org.uk>
+References: <20201005111644.3131604-1-primoz.fiser@norik.com>
 MIME-Version: 1.0
-References: <20200930190143.27032-1-krzk@kernel.org> <20200930190143.27032-9-krzk@kernel.org>
- <0a0afea6-8cbb-3e89-5a4f-89660c942ca3@pengutronix.de> <20201001073208.GA5208@kozik-lap>
- <027fd826-6822-9e92-0c6c-2ebed63f4a07@pengutronix.de> <20201001103704.GA26287@kozik-lap>
- <7fcea21d-4651-9ba7-5331-86530296a847@pengutronix.de> <20201002082012.GA6605@pi3>
- <20201002084119.buc6z7hpesoahmg2@pengutronix.de>
-In-Reply-To: <20201002084119.buc6z7hpesoahmg2@pengutronix.de>
-From:   Fabio Estevam <festevam@gmail.com>
-Date:   Mon, 5 Oct 2020 08:39:22 -0300
-Message-ID: <CAOMZO5BMQ_OzvYfb1WJ1C3TJ5w49UvUQa6xb1XA--_kE94wQKA@mail.gmail.com>
-Subject: Re: [PATCH v2 08/12] ARM: dts: imx6dl-pico: fix board compatibles
-To:     Marco Felsch <m.felsch@pengutronix.de>
-Cc:     Krzysztof Kozlowski <krzk@kernel.org>,
-        Ahmad Fatoum <a.fatoum@pengutronix.de>,
-        "open list:OPEN FIRMWARE AND FLATTENED DEVICE TREE BINDINGS" 
-        <devicetree@vger.kernel.org>, Robert Jones <rjones@gateworks.com>,
-        Stefan Riedmueller <s.riedmueller@phytec.de>,
-        Anson Huang <Anson.Huang@nxp.com>,
-        Shawn Guo <shawnguo@kernel.org>,
-        Sascha Hauer <s.hauer@pengutronix.de>,
-        linux-kernel <linux-kernel@vger.kernel.org>,
-        Li Yang <leoyang.li@nxp.com>, Rob Herring <robh+dt@kernel.org>,
-        NXP Linux Team <linux-imx@nxp.com>,
-        Pengutronix Kernel Team <kernel@pengutronix.de>,
-        Andreas Kemnade <andreas@kemnade.info>,
-        "moderated list:ARM/FREESCALE IMX / MXC ARM ARCHITECTURE" 
-        <linux-arm-kernel@lists.infradead.org>
-Content-Type: text/plain; charset="UTF-8"
+Content-Type: multipart/signed; micalg=pgp-sha512;
+        protocol="application/pgp-signature"; boundary="yLVHuoLXiP9kZBkt"
+Content-Disposition: inline
+In-Reply-To: <20201005111644.3131604-1-primoz.fiser@norik.com>
+X-Cookie: Most of your faults are not your fault.
+User-Agent: Mutt/1.10.1 (2018-07-13)
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-Hi Marco,
 
-On Fri, Oct 2, 2020 at 5:41 AM Marco Felsch <m.felsch@pengutronix.de> wrote:
+--yLVHuoLXiP9kZBkt
+Content-Type: text/plain; charset=us-ascii
+Content-Disposition: inline
 
-> Question is what was the author's intention? @Fabio do you have any
-> comments here?
+On Mon, Oct 05, 2020 at 01:16:43PM +0200, Primoz Fiser wrote:
 
-Krzysztof's patch looks good:
+> bits. But in summary, when SSI operates in AC'97 variable mode of
+> operation, CODECs can sometimes send SLOTREQ bits for non-existent audio
+> slots which then "stick" in SSI and completely break audio output.
 
-Reviewed-by: Fabio Estevam <festevam@gmail.com>
+If this is something that happens based on the CODEC shouldn't we be
+doing this by quirking based on the CODEC the system has rather than
+requiring people set a separate DT property?
 
-Thanks
+--yLVHuoLXiP9kZBkt
+Content-Type: application/pgp-signature; name="signature.asc"
+
+-----BEGIN PGP SIGNATURE-----
+
+iQEzBAABCgAdFiEEreZoqmdXGLWf4p/qJNaLcl1Uh9AFAl97CEQACgkQJNaLcl1U
+h9C96gf/T7WsDXzutk8Io6bB7BZKUlJPkuMr5OzGzWy+TQhGS8Cl3gtnQjYIuliB
+VN5TrTI7TL7+sXZNYESI6Nlljf+B7ick4s/8Xtc+ymdiJ3azdp3GRGWbh9SirX1P
+3N6IOrNs9aoT8RnRrKtpKBWnvsAt9yecZ83/giXvUue7Rj9NDwR4E+s8MeIy0Z9f
+xk7qGwQTCmz5cjzQldBvVxW8SmpSsaRN1q6EwCh9GG3Agx+DlfmcrKjxRMrQCkXH
+azhMKoi16YLjLG3nNvykcor08tE8NtjfByY0yBmsl/fZlBC4mXUwNt+cnMT83Jan
+6vjlx2j+zxe+gNqIjFORCDLIImZ1Gw==
+=B5dM
+-----END PGP SIGNATURE-----
+
+--yLVHuoLXiP9kZBkt--
