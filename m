@@ -2,102 +2,93 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from vger.kernel.org (vger.kernel.org [23.128.96.18])
-	by mail.lfdr.de (Postfix) with ESMTP id 213932836AD
-	for <lists+devicetree@lfdr.de>; Mon,  5 Oct 2020 15:36:53 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTP id 551DF2836CE
+	for <lists+devicetree@lfdr.de>; Mon,  5 Oct 2020 15:44:24 +0200 (CEST)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S1725939AbgJENgw (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Mon, 5 Oct 2020 09:36:52 -0400
-Received: from mail.kernel.org ([198.145.29.99]:43134 "EHLO mail.kernel.org"
+        id S1725974AbgJENoX (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Mon, 5 Oct 2020 09:44:23 -0400
+Received: from mail.kernel.org ([198.145.29.99]:44838 "EHLO mail.kernel.org"
         rhost-flags-OK-OK-OK-OK) by vger.kernel.org with ESMTP
-        id S1725914AbgJENgw (ORCPT <rfc822;devicetree@vger.kernel.org>);
-        Mon, 5 Oct 2020 09:36:52 -0400
+        id S1725932AbgJENoX (ORCPT <rfc822;devicetree@vger.kernel.org>);
+        Mon, 5 Oct 2020 09:44:23 -0400
 Received: from mail-oi1-f182.google.com (mail-oi1-f182.google.com [209.85.167.182])
         (using TLSv1.2 with cipher ECDHE-RSA-AES128-GCM-SHA256 (128/128 bits))
         (No client certificate requested)
-        by mail.kernel.org (Postfix) with ESMTPSA id 5ADA720774;
-        Mon,  5 Oct 2020 13:36:51 +0000 (UTC)
+        by mail.kernel.org (Postfix) with ESMTPSA id 0C983207BC;
+        Mon,  5 Oct 2020 13:44:23 +0000 (UTC)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=kernel.org;
-        s=default; t=1601905011;
-        bh=ZIFB3rgf26rt5j5jyMIodGOuMafdvBhjlRX/3PIzwfs=;
+        s=default; t=1601905463;
+        bh=Ib7GBdL7Wn9bocJo9NyhUcUy9MsfqzsQOqA6NxORkCs=;
         h=References:In-Reply-To:From:Date:Subject:To:Cc:From;
-        b=y/aOCBZPeKbzI6w2BUZ53/alYwBumqxwqs9wxTEyFpDNSe7+Iqeu3PBeqs13z2h/U
-         LLziP3TdpkgaDBOgepVjvTyhxQqmYA108Oqo9avokmWyd8d24JD7hrLjIUJLhyxhXU
-         9SKToKrwm/l3AAw/bUfH4XNk3HooI8RTrykqWRTk=
-Received: by mail-oi1-f182.google.com with SMTP id t77so5217265oie.4;
-        Mon, 05 Oct 2020 06:36:51 -0700 (PDT)
-X-Gm-Message-State: AOAM53068eSIuuFbikfCmeP/6EPee1OPcWK/6YWLSLw8Bd3AYveW4blf
-        xtdE3+xkLwdAEQgLRdO85cn05uddb0NwxLiWpQ==
-X-Google-Smtp-Source: ABdhPJyGs5QRZXi2qUMhyXkN0ZTEB+WjvBFpuxhQAOv16pvutHt7q3CX0sNVLLFIy9B+jn4ovbMkwFpiJqg2gYBlnEQ=
-X-Received: by 2002:a05:6808:10e:: with SMTP id b14mr9024261oie.152.1601905010756;
- Mon, 05 Oct 2020 06:36:50 -0700 (PDT)
+        b=b7vdGNYeBNhV5kCPpU9VCAAr6jQnSqGyHEL3iKdrOKtJIBiqbytO9h3rUZX6d0zrG
+         L2L0zizKezD2U3etwiBVc8DLLjWHXVlZ1pbobjbvzPTmXyxSrXST9oD/iWmykppjxk
+         /csmwNNMjYPw1A1qPlX76PJGkaEkGnhAA9sxku3U=
+Received: by mail-oi1-f182.google.com with SMTP id u126so8706344oif.13;
+        Mon, 05 Oct 2020 06:44:23 -0700 (PDT)
+X-Gm-Message-State: AOAM533E3PkQqQyPrROvDS3SapPUZP4QiLqE9JNH4fbv1Xzj+nySji+4
+        Rv86lWBr4fhBoW/JXV0jUnfYGBmXUbrHrNKdnA==
+X-Google-Smtp-Source: ABdhPJz+mQ/NS0sS4uvyu/c0LAt/s/xUYDXx+vCNQnX96Z0KUl55MOK1OCcrE3Hy8xpROafH3uekNkVrqfJk3kun5m4=
+X-Received: by 2002:aca:4c52:: with SMTP id z79mr9074939oia.147.1601905462390;
+ Mon, 05 Oct 2020 06:44:22 -0700 (PDT)
 MIME-Version: 1.0
-References: <20200922190807.6830-1-qiangqing.zhang@nxp.com>
- <20200922190807.6830-2-qiangqing.zhang@nxp.com> <20200929155201.GA665464@bogus>
- <20201003084656.GA29917@gofer.mess.org>
-In-Reply-To: <20201003084656.GA29917@gofer.mess.org>
-From:   Rob Herring <robh@kernel.org>
-Date:   Mon, 5 Oct 2020 08:36:39 -0500
-X-Gmail-Original-Message-ID: <CAL_JsqKEqG_Xous_gf=t9LTY8ZGzwcCYNjMDEGt8bA17JUgW-g@mail.gmail.com>
-Message-ID: <CAL_JsqKEqG_Xous_gf=t9LTY8ZGzwcCYNjMDEGt8bA17JUgW-g@mail.gmail.com>
-Subject: Re: [PATCH V3 1/2] bindings: media: gpio-ir-receiver: add
- linux,autosuspend-period property
-To:     Sean Young <sean@mess.org>
-Cc:     Joakim Zhang <qiangqing.zhang@nxp.com>,
-        Mauro Carvalho Chehab <mchehab@kernel.org>,
-        Linux Media Mailing List <linux-media@vger.kernel.org>,
+References: <20201004055024.23542-1-phil.chang@mediatek.com>
+In-Reply-To: <20201004055024.23542-1-phil.chang@mediatek.com>
+From:   Rob Herring <robh+dt@kernel.org>
+Date:   Mon, 5 Oct 2020 08:44:11 -0500
+X-Gmail-Original-Message-ID: <CAL_JsqJ4rTChMpn7F--fh1A6bOTZxR4rEM9bbA1rdetXmPDeVA@mail.gmail.com>
+Message-ID: <CAL_JsqJ4rTChMpn7F--fh1A6bOTZxR4rEM9bbA1rdetXmPDeVA@mail.gmail.com>
+Subject: Re: [PATCH] [PATCH] of_reserved_mem: Increase the number of reserved regions
+To:     Phil Chang <phil.chang@mediatek.com>
+Cc:     linux-arm-kernel <linux-arm-kernel@lists.infradead.org>,
+        Frank Rowand <frowand.list@gmail.com>,
+        Matthias Brugger <matthias.bgg@gmail.com>,
         devicetree@vger.kernel.org,
         "linux-kernel@vger.kernel.org" <linux-kernel@vger.kernel.org>,
-        NXP Linux Team <linux-imx@nxp.com>
+        "moderated list:ARM/Mediatek SoC support" 
+        <linux-mediatek@lists.infradead.org>,
+        YJ Chiang <yj.chiang@mediatek.com>,
+        Alix Wu <alix.wu@mediatek.com>, Joe Liu <joe.liu@mediatek.com>
 Content-Type: text/plain; charset="UTF-8"
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-On Sat, Oct 3, 2020 at 3:46 AM Sean Young <sean@mess.org> wrote:
+On Sun, Oct 4, 2020 at 12:50 AM Phil Chang <phil.chang@mediatek.com> wrote:
 >
-> On Tue, Sep 29, 2020 at 10:52:01AM -0500, Rob Herring wrote:
-> > On Wed, Sep 23, 2020 at 03:08:06AM +0800, Joakim Zhang wrote:
-> > > Add linux,autosuspend-period property for gpio ir receiver. Some cpuidle
-> > > systems wake from idle may take a bit long time, for such case, need
-> > > disable cpuidle temporarily.
-> > >
-> > > Signed-off-by: Joakim Zhang <qiangqing.zhang@nxp.com>
-> > > ---
-> > > ChangeLogs:
-> > > V1->V2:
-> > >     * New add.
-> > > V2->V3:
-> > >     * linux,autosuspend-period = 125; -> linux,autosuspend-period = <125>;
-> > > ---
-> > >  Documentation/devicetree/bindings/media/gpio-ir-receiver.txt | 3 +++
-> > >  1 file changed, 3 insertions(+)
-> > >
-> > > diff --git a/Documentation/devicetree/bindings/media/gpio-ir-receiver.txt b/Documentation/devicetree/bindings/media/gpio-ir-receiver.txt
-> > > index 58261fb7b408..e1447c9b0e26 100644
-> > > --- a/Documentation/devicetree/bindings/media/gpio-ir-receiver.txt
-> > > +++ b/Documentation/devicetree/bindings/media/gpio-ir-receiver.txt
-> > > @@ -7,6 +7,8 @@ Required properties:
-> > >  Optional properties:
-> > >     - linux,rc-map-name: see rc.txt file in the same
-> > >       directory.
-> > > +        - linux,autosuspend-period: autosuspend delay time,
-> > > +          the unit is milisecond.
-> >
-> > What makes this linux specific?
+> Certain SoCs need to support large amount of reserved memory
+> regions, especially to follow the GKI rules from Google.
+> In MTK new SoC requires more than 68 regions of reserved memory
+> for each IP's usage, such as load firmware to specific sapce,
+
+typo
+
+> so that need to reserve more regisions
+
+typo. Missing punctuation.
+
 >
-> Good point. "linux,autosuspend-period" does not say what is being
-> suspended either. How about "cpuidle-suspend-period" instead?
+> Signed-off-by: Joe Liu <joe.liu@mediatek.com>
+> Signed-off-by: YJ Chiang <yj.chiang@mediatek.com>
+> Signed-off-by: Alix Wu <alix.wu@mediatek.com>
+> Signed-off-by: Phil Chang <phil.chang@mediatek.com>
+> ---
+>  drivers/of/of_reserved_mem.c | 2 +-
+>  1 file changed, 1 insertion(+), 1 deletion(-)
+>
+> diff --git a/drivers/of/of_reserved_mem.c b/drivers/of/of_reserved_mem.c
+> index 46b9371c8a33..595f0741dcef 100644
+> --- a/drivers/of/of_reserved_mem.c
+> +++ b/drivers/of/of_reserved_mem.c
+> @@ -22,7 +22,7 @@
+>  #include <linux/slab.h>
+>  #include <linux/memblock.h>
+>
+> -#define MAX_RESERVED_REGIONS   64
+> +#define MAX_RESERVED_REGIONS   128
 
-'cpuidle' is a Linuxism. And you also need a unit suffix.
+At some point, this starts to feel like abuse of reserved regions.
+Please provide details on what the regions are.
 
-I'm not clear on how autosuspend which is generally how long a
-peripheral is idle before runtime suspending it relates to this which
-seems to be concerned with cpu wakeup latency. I'm assuming you need
-to wake up within a certain time period to capture GPIO edges. Don't
-you know what this time would be based on IR data rates and can
-provide that constraint to cpuidle?
-
-Also, we can set autosuspend times from sysfs. Why do you need to do
-this from DT?
+Also, this probably just needs to be dynamic. I think we're at that point.
 
 Rob
