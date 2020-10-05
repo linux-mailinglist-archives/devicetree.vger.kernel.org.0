@@ -2,117 +2,75 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from vger.kernel.org (vger.kernel.org [23.128.96.18])
-	by mail.lfdr.de (Postfix) with ESMTP id 339C0283B99
-	for <lists+devicetree@lfdr.de>; Mon,  5 Oct 2020 17:49:02 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTP id 33DA0283B9F
+	for <lists+devicetree@lfdr.de>; Mon,  5 Oct 2020 17:50:19 +0200 (CEST)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S1727136AbgJEPtB (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Mon, 5 Oct 2020 11:49:01 -0400
-Received: from bhuna.collabora.co.uk ([46.235.227.227]:51234 "EHLO
-        bhuna.collabora.co.uk" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S1726057AbgJEPtA (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Mon, 5 Oct 2020 11:49:00 -0400
-Received: from [127.0.0.1] (localhost [127.0.0.1])
-        (Authenticated sender: eballetbo)
-        with ESMTPSA id E5AE928F6CC
-Subject: Re: [PATCH 3/3] dt-bindings: mfd: google,cros-ec: add missing
- properties
-To:     Rob Herring <robh@kernel.org>,
-        =?UTF-8?Q?Ricardo_Ca=c3=b1uelo?= <ricardo.canuelo@collabora.com>
-Cc:     Collabora Kernel ML <kernel@collabora.com>,
-        Benson Leung <bleung@chromium.org>,
-        Guenter Roeck <groeck@chromium.org>,
-        Simon Glass <sjg@chromium.org>,
-        Doug Anderson <dianders@chromium.org>,
-        devicetree@vger.kernel.org, Pi-Hsun Shih <pihsun@chromium.org>,
-        ohad@wizery.com, bjorn.andersson@linaro.org,
-        linux-remoteproc@vger.kernel.org,
-        Matthias Brugger <matthias.bgg@gmail.com>,
-        Nicolas Boichat <drinkcat@google.com>
-References: <20201005071403.17450-1-ricardo.canuelo@collabora.com>
- <20201005071403.17450-4-ricardo.canuelo@collabora.com>
- <CAL_JsqJ5E6LSis1LzgEGPN6aEktkFamRn19v0s-x_OZ+8yMTiA@mail.gmail.com>
-From:   Enric Balletbo i Serra <enric.balletbo@collabora.com>
-Message-ID: <7080db15-35d5-8a38-4663-4e30126085c5@collabora.com>
-Date:   Mon, 5 Oct 2020 17:48:55 +0200
-User-Agent: Mozilla/5.0 (X11; Linux x86_64; rv:68.0) Gecko/20100101
- Thunderbird/68.12.0
+        id S1727245AbgJEPuS (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Mon, 5 Oct 2020 11:50:18 -0400
+Received: from lindbergh.monkeyblade.net ([23.128.96.19]:52118 "EHLO
+        lindbergh.monkeyblade.net" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
+        with ESMTP id S1725994AbgJEPuS (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Mon, 5 Oct 2020 11:50:18 -0400
+Received: from mail-ed1-x543.google.com (mail-ed1-x543.google.com [IPv6:2a00:1450:4864:20::543])
+        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 39E77C0613CE;
+        Mon,  5 Oct 2020 08:50:16 -0700 (PDT)
+Received: by mail-ed1-x543.google.com with SMTP id b12so9880691edz.11;
+        Mon, 05 Oct 2020 08:50:16 -0700 (PDT)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+        d=gmail.com; s=20161025;
+        h=mime-version:references:in-reply-to:from:date:message-id:subject:to
+         :cc;
+        bh=rxLRdxz1SNdBolBKufjW/igKHzYiiGTYqjWSfG4kZwE=;
+        b=ajncl+zXLrMl6JFVpt4+y/oZrvOkxGCFA4xqhUbubmnFZnSXZ0FrOp0KAzaPifvyNz
+         lc9/EdxsRcOGe1ZeWoor9vTo22ltkW0IswzyMxrnz7FK9mvs3Tl5UHtoZTqxm5s5cYdJ
+         K75O8up2EqEdq3NZcq7ibiIp2gNqFYZndc4fZqY6A6Lj2XzrQfkgNCyAne80OnqPXLs7
+         7l5dGuB1u64VwHog3K/lwolQCJKCHeH2O22TdwcHWUV2/g2dwq++4SQp4Kzwey2vxfRs
+         PfF2lUAcngqpOzNieE1xevrvDnB2bgD6P0hZu95VVZR9o9+g4EkcWRKXhlldArs4MNIm
+         q05w==
+X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+        d=1e100.net; s=20161025;
+        h=x-gm-message-state:mime-version:references:in-reply-to:from:date
+         :message-id:subject:to:cc;
+        bh=rxLRdxz1SNdBolBKufjW/igKHzYiiGTYqjWSfG4kZwE=;
+        b=afHGOTYotnYKPQB6OPfrUdOWdioCyFIluEHYwjqdB+6DQXGg38zQJ1Bluk7DkKM8Ux
+         C3A/h61FA8enwMx1IsTFD+MOyetN32tyNoO6YKD0WMOqyQChio+XPCFRvbK+N9/rXeZM
+         aYqIzs7U15tl29NldGZpAxxB8Mp/vhP2IgvzsHd0tKjDRZY1E3rtD6snO/VeWpidUCDF
+         4gPF/zQMNK/KsaGayg34kq3mafzXHC9FP8woUwuBVo26Sha1nCFylLknKmfKE82MGSYp
+         AzD5wBumTAt2N3kEmwebkLaQmiF5y6orJ0EGlTP+wqrjbqrIdQE05vmSbLNGIAAW258L
+         iAqQ==
+X-Gm-Message-State: AOAM533WbDOnzT34a40MFmbFgQSZa2WEB3iNkjASAO3PsuAVg97hulVj
+        9e3WdX84xPZqgXugbvyv3LpYy+EASfU4t2Hi2NpFVcnt++4Ewg==
+X-Google-Smtp-Source: ABdhPJxvt2AbjzpK6NK9btt1D5gL+PeDRiMZNhhr7XuRbgPGC57wVzeWIAt9TLjE9TKu5thw6ExQZUyxkLaDDPVp3a0=
+X-Received: by 2002:a50:9e87:: with SMTP id a7mr234569edf.297.1601913014980;
+ Mon, 05 Oct 2020 08:50:14 -0700 (PDT)
 MIME-Version: 1.0
-In-Reply-To: <CAL_JsqJ5E6LSis1LzgEGPN6aEktkFamRn19v0s-x_OZ+8yMTiA@mail.gmail.com>
-Content-Type: text/plain; charset=utf-8
-Content-Language: en-US
-Content-Transfer-Encoding: 8bit
+References: <20201005150313.149754-1-konradybcio@gmail.com>
+ <20201005150313.149754-4-konradybcio@gmail.com> <c03ace9d-d983-c1f8-ab74-ed585aeb2364@linaro.org>
+ <CAMS8qEXBrF-j5ObahFVcJFMuC7=ucz+y7XBzTyuJAqejsE0F+g@mail.gmail.com> <0eb34c71-3e1c-9950-de30-6b163d7cca3a@linaro.org>
+In-Reply-To: <0eb34c71-3e1c-9950-de30-6b163d7cca3a@linaro.org>
+From:   Konrad Dybcio <konradybcio@gmail.com>
+Date:   Mon, 5 Oct 2020 17:49:39 +0200
+Message-ID: <CAMS8qEW2rxYCc-7dQKPMBKQzbw0w1CtxNPVJYbeBPb2-1WvfDg@mail.gmail.com>
+Subject: Re: [PATCH 03/11] arm64: dts: qcom: pm8994: Add thermal-zones for
+ temp alarm
+To:     Daniel Lezcano <daniel.lezcano@linaro.org>
+Cc:     ~postmarketos/upstreaming@lists.sr.ht, phone-devel@vger.kernel.org,
+        Andy Gross <agross@kernel.org>,
+        Bjorn Andersson <bjorn.andersson@linaro.org>,
+        Rob Herring <robh+dt@kernel.org>,
+        linux-arm-msm <linux-arm-msm@vger.kernel.org>,
+        DTML <devicetree@vger.kernel.org>,
+        Linux Kernel Mailing List <linux-kernel@vger.kernel.org>
+Content-Type: text/plain; charset="UTF-8"
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-Hi,
+>What do you mean by they are not "online at once" ?
 
-On 5/10/20 17:37, Rob Herring wrote:
-> On Mon, Oct 5, 2020 at 2:14 AM Ricardo Cañuelo
-> <ricardo.canuelo@collabora.com> wrote:
->>
->> Add missing properties that are currently used in the examples of
->> subnode bindings and in many DTs.
->> This fixes all current dt_binding_check and dtbs_check warnings related
->> to this binding.
->>
->> Signed-off-by: Ricardo Cañuelo <ricardo.canuelo@collabora.com>
->> ---
->>  .../bindings/mfd/google,cros-ec.yaml          | 40 +++++++++++++++++++
->>  1 file changed, 40 insertions(+)
->>
->> diff --git a/Documentation/devicetree/bindings/mfd/google,cros-ec.yaml b/Documentation/devicetree/bindings/mfd/google,cros-ec.yaml
->> index f49c0d5d31ad..c2dc05cdef9f 100644
->> --- a/Documentation/devicetree/bindings/mfd/google,cros-ec.yaml
->> +++ b/Documentation/devicetree/bindings/mfd/google,cros-ec.yaml
->> @@ -59,18 +59,58 @@ properties:
->>        whether this nvram is present or not.
->>      type: boolean
->>
->> +  mtk,rpmsg-name:
-> 
-> This should have been mediatek,rpmsg-name, but I guess we're stuck with it.
-> 
+msm8992/4 are infamous for their thermal issues. Manufacturers have
+been known for straight up disabling some cores or tuning the kernel
+in such a way that some cores get disabled due to the thermal
+constraints.
 
-cc'ing the remote-proc maintainers and some ChromeOS people to be aware.
-
-Seems that the patches that introduce the use of this propietry in the bindings
-are still in linux-next, so maybe we're on time to fix it?
-
-In such case, Ricardo can you take care of it and send patches fixing it?
-
-Thanks,
- Enric
-
->> +    description:
->> +      Must be defined if the cros-ec is a rpmsg device for a Mediatek
->> +      ARM Cortex M4 Co-processor. Contains the name pf the rpmsg
->> +      device. Used to match the subnode to the rpmsg device announced by
->> +      the SCP.
->> +    $ref: /schemas/types.yaml#/definitions/string
->> +
->>    spi-max-frequency:
->>      description: Maximum SPI frequency of the device in Hz.
->>
->>    reg:
->>      maxItems: 1
->>
->> +  '#address-cells':
->> +    enum: [1, 2]
->> +
->> +  '#size-cells':
->> +    enum: [0, 1]
-> 
-> This doesn't really make sense. Either there's a size or there isn't.
-> 
-> [...]
-> 
->> +  "^regulator@[a-f0-9]+$":
->> +  "^ec-codec@[a-f0-9]+$":
-> 
-> What does the number space represent and is it the same for each of
-> these? If not, then this is kind of broken. There's only 1 number
-> space at a given level.
-> 
-> Rob
-> 
+Konrad
