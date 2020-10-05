@@ -2,125 +2,170 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from vger.kernel.org (vger.kernel.org [23.128.96.18])
-	by mail.lfdr.de (Postfix) with ESMTP id F022728335E
-	for <lists+devicetree@lfdr.de>; Mon,  5 Oct 2020 11:33:17 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTP id 1B568283366
+	for <lists+devicetree@lfdr.de>; Mon,  5 Oct 2020 11:36:30 +0200 (CEST)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S1725934AbgJEJdH (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Mon, 5 Oct 2020 05:33:07 -0400
-Received: from lindbergh.monkeyblade.net ([23.128.96.19]:50004 "EHLO
-        lindbergh.monkeyblade.net" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S1725973AbgJEJdF (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Mon, 5 Oct 2020 05:33:05 -0400
-Received: from mail-ej1-x641.google.com (mail-ej1-x641.google.com [IPv6:2a00:1450:4864:20::641])
-        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 29723C0613CE
-        for <devicetree@vger.kernel.org>; Mon,  5 Oct 2020 02:33:05 -0700 (PDT)
-Received: by mail-ej1-x641.google.com with SMTP id p15so10907084ejm.7
-        for <devicetree@vger.kernel.org>; Mon, 05 Oct 2020 02:33:05 -0700 (PDT)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=gmail.com; s=20161025;
-        h=date:from:to:cc:subject:message-id:references:mime-version
-         :content-disposition:in-reply-to:user-agent;
-        bh=QWYrz6qrGDN0PrfuC9I5OUQx6TkLptYBjLcdAijyuXM=;
-        b=tjfW9MjQCxDDuy7KpKhIQMlHqc9lCSq8qGcDIBkR71Y4wbPRSqmaiGPnCXDAh1Aqkg
-         Tl1suqQ36iN+Hy5QbP/IJ9Pt/0FbGsgLC5ydb5FAHcHX9OgP/7B+RJfcwFF/1FRpEIzo
-         rGoH71XwgXTVrZj9djjeZzuLz+XrKQ9SQOW6WUBdxJVDTrFu1orTu4kdr4q0CEc/9+P0
-         KETKg9+9C0GWPEVFNJRzrVxm3MPp6ENDiJ4uXMsxbJgtixvSq1rGnVE8aNg89tbXpY3e
-         ndd3a4vfVH3h/DzRwrVVLYAw4Pb8EPVuqrqbjwMXe66InilYqXHLW8/ln8Sm9JqpUw9J
-         xDHA==
-X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=1e100.net; s=20161025;
-        h=x-gm-message-state:date:from:to:cc:subject:message-id:references
-         :mime-version:content-disposition:in-reply-to:user-agent;
-        bh=QWYrz6qrGDN0PrfuC9I5OUQx6TkLptYBjLcdAijyuXM=;
-        b=KipvWQNH2luljBrtXJ7+piDxuovBW1YTQ258ZndQcQAFx1FuQ9a4CErKYCdLa2VXPk
-         QsZEVEd2FtP+JLJoNyvhjH6ohp+9T1YuAsUPy3hOocl+oMft31pItdeqrO9izoUyTepq
-         5rmlc9hGj6b4OVdxdZZoXjUW9jx14ffAvKLkygUTxWrkNhMJTr47ndoG3NpfZKqXf1xW
-         6NgGZwvwyForMh1yx47IADtWdwkTI8DBvpW0iIJeMemxi5hNd/514oDB3UN/ek8u6o0w
-         tU9p/75VODVRKdo+5miwkzZW2YVVONP+kle5vmkrt3IpmnQCZCTPdRbFN1Ma0wOuZzKo
-         kwew==
-X-Gm-Message-State: AOAM532jW6ARYugZzqIbuO/tXWj0dBo62+2+uWcpfSIybSc5Vig4ihfS
-        qvIZS9+R75iBxmKExXTQYMo=
-X-Google-Smtp-Source: ABdhPJzgBnOa/M7OMH8jTl58X76AyIgFQDa5kfZmuxFD2KS3b95SE6q5kUwEiNNnPdIEv4WFDFUV5w==
-X-Received: by 2002:a17:906:a2cf:: with SMTP id by15mr13995821ejb.298.1601890383914;
-        Mon, 05 Oct 2020 02:33:03 -0700 (PDT)
-Received: from localhost ([217.111.27.204])
-        by smtp.gmail.com with ESMTPSA id p17sm8476043edw.10.2020.10.05.02.33.02
-        (version=TLS1_3 cipher=TLS_AES_256_GCM_SHA384 bits=256/256);
-        Mon, 05 Oct 2020 02:33:02 -0700 (PDT)
-Date:   Mon, 5 Oct 2020 11:33:01 +0200
-From:   Thierry Reding <thierry.reding@gmail.com>
+        id S1725974AbgJEJg2 (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Mon, 5 Oct 2020 05:36:28 -0400
+Received: from lhrrgout.huawei.com ([185.176.76.210]:2954 "EHLO huawei.com"
+        rhost-flags-OK-OK-OK-FAIL) by vger.kernel.org with ESMTP
+        id S1725919AbgJEJg1 (ORCPT <rfc822;devicetree@vger.kernel.org>);
+        Mon, 5 Oct 2020 05:36:27 -0400
+Received: from lhreml710-chm.china.huawei.com (unknown [172.18.7.107])
+        by Forcepoint Email with ESMTP id 094B3ABD20918B3B41D5;
+        Mon,  5 Oct 2020 10:36:23 +0100 (IST)
+Received: from localhost (10.52.124.175) by lhreml710-chm.china.huawei.com
+ (10.201.108.61) with Microsoft SMTP Server (version=TLS1_2,
+ cipher=TLS_ECDHE_RSA_WITH_AES_128_GCM_SHA256) id 15.1.1913.5; Mon, 5 Oct 2020
+ 10:36:21 +0100
+Date:   Mon, 5 Oct 2020 10:34:36 +0100
+From:   Jonathan Cameron <Jonathan.Cameron@Huawei.com>
 To:     Rob Herring <robh@kernel.org>
-Cc:     devicetree@vger.kernel.org, linux-arm-kernel@lists.infradead.org,
-        Andreas =?utf-8?Q?F=C3=A4rber?= <afaerber@suse.de>,
-        Manivannan Sadhasivam <manivannan.sadhasivam@linaro.org>,
-        Baruch Siach <baruch@tkos.co.il>,
-        Linus Walleij <linusw@kernel.org>,
-        Imre Kaloz <kaloz@openwrt.org>,
-        Krzysztof Halasa <khalasa@piap.pl>,
-        Andy Gross <agross@kernel.org>,
+CC:     <devicetree@vger.kernel.org>, <linux-kernel@vger.kernel.org>,
+        "Thierry Reding" <thierry.reding@gmail.com>,
+        Linus Walleij <linus.walleij@linaro.org>,
+        Stephen Boyd <sboyd@kernel.org>,
+        Shawn Guo <shawnguo@kernel.org>,
         Bjorn Andersson <bjorn.andersson@linaro.org>,
-        Maxime Coquelin <mcoquelin.stm32@gmail.com>,
-        Alexandre Torgue <alexandre.torgue@st.com>,
-        Jonathan Hunter <jonathanh@nvidia.com>,
-        Dinh Nguyen <dinguyen@kernel.org>,
-        Anders Berg <anders.berg@lsi.com>
-Subject: Re: [PATCH] dt-bindings: arm: Add missing root node constraint for
- board/SoC bindings
-Message-ID: <20201005093301.GF425362@ulmo>
-References: <20201001200943.1193870-1-robh@kernel.org>
+        "Baolin Wang" <baolin.wang7@gmail.com>,
+        Guenter Roeck <linux@roeck-us.net>,
+        Jonathan Cameron <jic23@kernel.org>,
+        Mauro Carvalho Chehab <mchehab@kernel.org>,
+        Laurent Pinchart <laurent.pinchart+renesas@ideasonboard.com>,
+        Lee Jones <lee.jones@linaro.org>,
+        Ulf Hansson <ulf.hansson@linaro.org>,
+        "David S. Miller" <davem@davemloft.net>,
+        Bjorn Helgaas <bhelgaas@google.com>,
+        "Vinod Koul" <vkoul@kernel.org>,
+        Liam Girdwood <lgirdwood@gmail.com>,
+        Mark Brown <broonie@kernel.org>,
+        Greg Kroah-Hartman <gregkh@linuxfoundation.org>,
+        Daniel Lezcano <daniel.lezcano@linaro.org>,
+        <linux-clk@vger.kernel.org>, <dri-devel@lists.freedesktop.org>,
+        <linux-spi@vger.kernel.org>, <linux-gpio@vger.kernel.org>,
+        <linux-hwmon@vger.kernel.org>, <linux-iio@vger.kernel.org>,
+        <openipmi-developer@lists.sourceforge.net>,
+        <linux-leds@vger.kernel.org>, <linux-media@vger.kernel.org>,
+        <linux-rockchip@lists.infradead.org>,
+        <linux-stm32@st-md-mailman.stormreply.com>,
+        <linux-mips@vger.kernel.org>, <linux-mmc@vger.kernel.org>,
+        <netdev@vger.kernel.org>, <linux-pci@vger.kernel.org>,
+        <linux-pm@vger.kernel.org>, <linux-remoteproc@vger.kernel.org>,
+        <linux-serial@vger.kernel.org>, <alsa-devel@alsa-project.org>,
+        <linux-usb@vger.kernel.org>
+Subject: Re: [PATCH] dt-bindings: Another round of adding missing
+ 'additionalProperties'
+Message-ID: <20201005093436.00004913@Huawei.com>
+In-Reply-To: <20201002234143.3570746-1-robh@kernel.org>
+References: <20201002234143.3570746-1-robh@kernel.org>
+Organization: Huawei Technologies Research and Development (UK) Ltd.
+X-Mailer: Claws Mail 3.17.4 (GTK+ 2.24.32; i686-w64-mingw32)
 MIME-Version: 1.0
-Content-Type: multipart/signed; micalg=pgp-sha256;
-        protocol="application/pgp-signature"; boundary="Y1L3PTX8QE8cb2T+"
-Content-Disposition: inline
-In-Reply-To: <20201001200943.1193870-1-robh@kernel.org>
-User-Agent: Mutt/1.14.7 (2020-08-29)
+Content-Type: text/plain; charset="US-ASCII"
+Content-Transfer-Encoding: 7bit
+X-Originating-IP: [10.52.124.175]
+X-ClientProxiedBy: lhreml730-chm.china.huawei.com (10.201.108.81) To
+ lhreml710-chm.china.huawei.com (10.201.108.61)
+X-CFilter-Loop: Reflected
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
+On Fri, 2 Oct 2020 18:41:43 -0500
+Rob Herring <robh@kernel.org> wrote:
 
---Y1L3PTX8QE8cb2T+
-Content-Type: text/plain; charset=us-ascii
-Content-Disposition: inline
-Content-Transfer-Encoding: quoted-printable
+> Another round of wack-a-mole. The json-schema default is additional
+> unknown properties are allowed, but for DT all properties should be
+> defined.
+> 
+> Cc: Thierry Reding <thierry.reding@gmail.com>
+> Cc: Linus Walleij <linus.walleij@linaro.org>
+> Cc: Stephen Boyd <sboyd@kernel.org>
+> Cc: Shawn Guo <shawnguo@kernel.org>
+> Cc: Bjorn Andersson <bjorn.andersson@linaro.org>
+> Cc: Baolin Wang <baolin.wang7@gmail.com>
+> Cc: Guenter Roeck <linux@roeck-us.net>
+> Cc: Jonathan Cameron <jic23@kernel.org>
+> Cc: Mauro Carvalho Chehab <mchehab@kernel.org>
+> Cc: Laurent Pinchart <laurent.pinchart+renesas@ideasonboard.com>
+> Cc: Lee Jones <lee.jones@linaro.org>
+> Cc: Ulf Hansson <ulf.hansson@linaro.org>
+> Cc: "David S. Miller" <davem@davemloft.net>
+> Cc: Bjorn Helgaas <bhelgaas@google.com>
+> Cc: Vinod Koul <vkoul@kernel.org>
+> Cc: Liam Girdwood <lgirdwood@gmail.com>
+> Cc: Mark Brown <broonie@kernel.org>
+> Cc: Greg Kroah-Hartman <gregkh@linuxfoundation.org>
+> Cc: Daniel Lezcano <daniel.lezcano@linaro.org>
+> Cc: linux-clk@vger.kernel.org
+> Cc: dri-devel@lists.freedesktop.org
+> Cc: linux-spi@vger.kernel.org
+> Cc: linux-gpio@vger.kernel.org
+> Cc: linux-hwmon@vger.kernel.org
+> Cc: linux-iio@vger.kernel.org
+> Cc: openipmi-developer@lists.sourceforge.net
+> Cc: linux-leds@vger.kernel.org
+> Cc: linux-media@vger.kernel.org
+> Cc: linux-rockchip@lists.infradead.org
+> Cc: linux-stm32@st-md-mailman.stormreply.com
+> Cc: linux-mips@vger.kernel.org
+> Cc: linux-mmc@vger.kernel.org
+> Cc: netdev@vger.kernel.org
+> Cc: linux-pci@vger.kernel.org
+> Cc: linux-pm@vger.kernel.org
+> Cc: linux-remoteproc@vger.kernel.org
+> Cc: linux-serial@vger.kernel.org
+> Cc: alsa-devel@alsa-project.org
+> Cc: linux-usb@vger.kernel.org
+> Signed-off-by: Rob Herring <robh@kernel.org>
+> ---
 
-On Thu, Oct 01, 2020 at 03:09:43PM -0500, Rob Herring wrote:
-[...]
-> diff --git a/Documentation/devicetree/bindings/arm/tegra.yaml b/Documenta=
-tion/devicetree/bindings/arm/tegra.yaml
-> index e0b3debaee9e..b4d53290c5f0 100644
-> --- a/Documentation/devicetree/bindings/arm/tegra.yaml
-> +++ b/Documentation/devicetree/bindings/arm/tegra.yaml
-> @@ -11,6 +11,8 @@ maintainers:
->    - Jonathan Hunter <jonathanh@nvidia.com>
-> =20
->  properties:
-> +  $nodename:
-> +    const: "/"
->    compatible:
->      oneOf:
->        - items:
+Hi Rob,
 
-Acked-by: Thierry Reding <treding@nvidia.com>
+Acked-by: Jonathan Cameron <Jonathan.Cameron@huawei.com> # for iio
 
---Y1L3PTX8QE8cb2T+
-Content-Type: application/pgp-signature; name="signature.asc"
 
------BEGIN PGP SIGNATURE-----
+However, one of these made me wonder if the binding was simply wrong...
+(definitely highlights why we should have additionalProperties: false
+where ever possible).
 
-iQIzBAABCAAdFiEEiOrDCAFJzPfAjcif3SOs138+s6EFAl966E0ACgkQ3SOs138+
-s6FoohAAvCq+WHIZHeNO+1O81QkJA703q8xB3/ZKVnxqYs4/xHpa0x33rg2EkFUC
-1dHqS/KLfdYGqzcosvUt01ICOOguAy6TjDq0oO1YWlOoGsUGCcR49VQi4JGvHpCP
-mjVZM+lnBlGxrw50Y7FF+hSu4WSs+fid72Tz4Qgro20AMvXLCLLvzhGbAPTbJj1g
-uPPTY0r4lZb90lbzQf4c+5NqPC8BlhYZmZVXDydk56soZHo2Pcdcy8aLiBwFKq2W
-qYgWE/t7Jp9ssS/b1mc9cGbmeDu57z28L5ZtCL3BL28J64CW69tk9v/uF63fLO86
-Ix/wxpFfsS4UsklKOfLloQvVH29nvVcbhdQOBz9nDYVQu010fxfQ1t/T6/UquDzh
-2hYK0inm/tRQ+7dT4qlCPyvHhIyj0f26b3VTaCo+rIuijkoWQgrN1H6Q/4GJ74MJ
-W+QcZeD97eZoNvWhbbaDdyx7aCgIqch4YT9i8AFDCQl1aVaBxkLs4evdfzZLzO9v
-3lf+MSv1eVzne3n/f+dkvCRzJIzxsK0PkiDY0R+u6BCY1IelZtgtlXtBXAscNNxG
-YDzDADYttP6yvXzLUY5zrq015/LDlQaIxAZ/V4w4PfO7csndebCbnYaoP0Lvk6Cr
-YdMnmKd/x5mT44/151+7CBORrjXdjdzLQl9u9cfoagHBO8YVCz0=
-=zDOf
------END PGP SIGNATURE-----
+...
 
---Y1L3PTX8QE8cb2T+--
+
+> diff --git a/Documentation/devicetree/bindings/iio/imu/invensense,icm42600.yaml b/Documentation/devicetree/bindings/iio/imu/invensense,icm42600.yaml
+> index abd8d25e1136..4c1c083d0e92 100644
+> --- a/Documentation/devicetree/bindings/iio/imu/invensense,icm42600.yaml
+> +++ b/Documentation/devicetree/bindings/iio/imu/invensense,icm42600.yaml
+> @@ -47,11 +47,17 @@ properties:
+>    vddio-supply:
+>      description: Regulator that provides power to the bus
+>  
+> +  spi-max-frequency: true
+> +  spi-cpha: true
+> +  spi-cpol: true
+
+It isn't completely unheard of for a device to operate in multiple SPI modes, but
+it does seem to be fairly unusual.  I took a look at the datasheet and at least
+from the provided timing diagrams, these are both required in SPI mode.
+
+http://invensense.tdk.com/wp-content/uploads/2020/09/DS-000292-ICM-42605-v1.5.pdf
+
+That doesn't make the binding wrong as such, but we could be tighter in checking this!
+
+I'll add this to my list to take a closer look at sometime soonish.
+
+Thanks.
+
+Jonathan
+
+> +
+>  required:
+>    - compatible
+>    - reg
+>    - interrupts
+>  
+> +additionalProperties: false
+> +
+>  examples:
+>    - |
+
