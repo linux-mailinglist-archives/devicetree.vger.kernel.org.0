@@ -2,156 +2,114 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from vger.kernel.org (vger.kernel.org [23.128.96.18])
-	by mail.lfdr.de (Postfix) with ESMTP id 0B6DA2831EF
-	for <lists+devicetree@lfdr.de>; Mon,  5 Oct 2020 10:26:53 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTP id 092B6283241
+	for <lists+devicetree@lfdr.de>; Mon,  5 Oct 2020 10:40:23 +0200 (CEST)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S1726164AbgJEI0j (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Mon, 5 Oct 2020 04:26:39 -0400
-Received: from lindbergh.monkeyblade.net ([23.128.96.19]:39662 "EHLO
-        lindbergh.monkeyblade.net" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S1726087AbgJEI0i (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Mon, 5 Oct 2020 04:26:38 -0400
-Received: from mail-vs1-xe41.google.com (mail-vs1-xe41.google.com [IPv6:2607:f8b0:4864:20::e41])
-        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 44F88C0613AC
-        for <devicetree@vger.kernel.org>; Mon,  5 Oct 2020 01:26:38 -0700 (PDT)
-Received: by mail-vs1-xe41.google.com with SMTP id u7so3766374vsq.11
-        for <devicetree@vger.kernel.org>; Mon, 05 Oct 2020 01:26:38 -0700 (PDT)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=linaro.org; s=google;
-        h=mime-version:references:in-reply-to:from:date:message-id:subject:to
-         :cc;
-        bh=41Y6sjMmjcMlV2JauZyN/TxOh6umZ/keewCU2mb8LIc=;
-        b=AXAmvxEcZgWulidtPjWzcdr2Qm2OYOtZA0wDa8FmovT91MPeLRIwIVCT8lx9v5UNlG
-         SctQfxm1GmrUHlaNPX+RFUQtBHXdidJ0/CU1C9clQS0l30cTxEkteaWVnvPQuLuFSdee
-         4MV2Fpon9L5TsVQGS1K3gSKttvhofJOiwA9P0bVAeb/tNn5WAcwRk5Be/IAOdU2QkdYn
-         VFrey16k5OCZxA1L7Q1xqspPxsd/+WYGgx9scKUGZYuyhxSBuKF1PhH1KfSOoQx2J5OY
-         401UuKSNx0/BKxG4Vky36hMzFvsFJwDUWIuAQewHgLK5qqZWGGWEkqztdK9+VC+FKpcj
-         S9OA==
-X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=1e100.net; s=20161025;
-        h=x-gm-message-state:mime-version:references:in-reply-to:from:date
-         :message-id:subject:to:cc;
-        bh=41Y6sjMmjcMlV2JauZyN/TxOh6umZ/keewCU2mb8LIc=;
-        b=HnOdx7+pAM8qb16WZz6MKNbyFikRRHr91y2kRLmydK+rBQVxps0AnFSthY7QdKimOf
-         /2nn5ijitifXVtgvQCKQz2epkcgNsTt9akekS5z3BLL+YI5RftXUT8J5NwMKUhFNKDYa
-         VzeyD9ypTzHvPLidXRKl/RWJCtclPOmudkLoQ25mAttFcmu3IhqHeqdULptcjOBdj4xy
-         0XeX0xkZg12vQRZQPbe2Z00uosZ5f/5pGh3yg0HHP7r8xonuSg11bsIuA9x9zg46g9mr
-         /O4HHeFZzeRtQsqIUB+UWWVsHNqM4XaOvy1FY7e6dwAPO7bnoYw5Z6x7Y1TyDei2vqxs
-         VFkw==
-X-Gm-Message-State: AOAM531xn2uTMozgYtDHmyd9+/U/qg1+0cuA/Dg0Ifd2Uv/ui80fDcI4
-        GvjvAg8gqtLVrU8JohwvuAz+hQpTEVAeHZl9sbQPEw==
-X-Google-Smtp-Source: ABdhPJxlPMGygHVTcnGIf5MQvmk2y9YM/OMFZ7y/LPtKUwwQZxTgA80YvlEMQPDfoWIYZailBQzIdWarus99WB2IvNI=
-X-Received: by 2002:a67:ec9a:: with SMTP id h26mr6751269vsp.34.1601886397228;
- Mon, 05 Oct 2020 01:26:37 -0700 (PDT)
-MIME-Version: 1.0
-References: <20201002234143.3570746-1-robh@kernel.org>
-In-Reply-To: <20201002234143.3570746-1-robh@kernel.org>
-From:   Ulf Hansson <ulf.hansson@linaro.org>
-Date:   Mon, 5 Oct 2020 10:26:01 +0200
-Message-ID: <CAPDyKFq=ZUiYhm0-K5ZVYS1FH2O5e-+Gt6Dftf=LmL9ABa7CaA@mail.gmail.com>
-Subject: Re: [PATCH] dt-bindings: Another round of adding missing 'additionalProperties'
+        id S1725885AbgJEIkS (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Mon, 5 Oct 2020 04:40:18 -0400
+Received: from new3-smtp.messagingengine.com ([66.111.4.229]:43705 "EHLO
+        new3-smtp.messagingengine.com" rhost-flags-OK-OK-OK-OK)
+        by vger.kernel.org with ESMTP id S1725880AbgJEIkS (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Mon, 5 Oct 2020 04:40:18 -0400
+Received: from compute6.internal (compute6.nyi.internal [10.202.2.46])
+        by mailnew.nyi.internal (Postfix) with ESMTP id 2058358028D;
+        Mon,  5 Oct 2020 04:40:17 -0400 (EDT)
+Received: from mailfrontend1 ([10.202.2.162])
+  by compute6.internal (MEProxy); Mon, 05 Oct 2020 04:40:17 -0400
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=cerno.tech; h=
+        date:from:to:cc:subject:message-id:references:mime-version
+        :content-type:in-reply-to; s=fm1; bh=TP+YDmeLPT4LYJGRAaDqcHNdlZQ
+        KtqTvNfpsMAMS4CQ=; b=Z+rHeB220VuirrOyCQDgK/LoVlcZ6b95vwcwoYsdp/2
+        grsDkChi+u+3WZqTppRq3GQLgtOgo/7xPOiiUCWK+HJb9RlnG2mTjmew1ARLnUuU
+        HwcMhDeZJO3bgbIij5rX2sIMZ+pbE87CfQTj/QxhLZtCj3vRld+n6VpMTlIPJbOK
+        7o2EWq4v0eFMC8elqU2JYuqTmhuxWb0Z67Zg5tv+4Op647ZYsDxJx6PgeDoyvl2q
+        /yS3L+5mR2GooasnddVzG/D3QgoGWeFZ3yxDMkojXfh2lEmU83MnWJ1hIciU2tQV
+        x1KqI73W3dEdEQ/a27W9tAq0WSB42POklTR27jkN1Fw==
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=
+        messagingengine.com; h=cc:content-type:date:from:in-reply-to
+        :message-id:mime-version:references:subject:to:x-me-proxy
+        :x-me-proxy:x-me-sender:x-me-sender:x-sasl-enc; s=fm1; bh=TP+YDm
+        eLPT4LYJGRAaDqcHNdlZQKtqTvNfpsMAMS4CQ=; b=M82nzWEoEQvxdYfOdMqZlu
+        xN4lvZ70N1UcF6yoUwvXwG1wG0x5Km0axhYV/mwCI7mGaH03no4TysgIh+U03P+1
+        +tDM38gu4uRHk0vLo83e9GRYruY6P/havXGZkCsrY37DeLq//oJoFtp5bVpwFlrO
+        ZUAgwf2yWRprng0sz76wF28QuWtf4egD+tbYjIiilWGFpgzQyW1/b5osJT1Pv2zz
+        kXk4WXgCmo9+IUfCQVbQ6ox8ae2h4A6dQN8YqAG0dn37uSbE2fz9CnjDO1T+OyW/
+        hScpsXpACmQEnn6XjJ4oUBMZ+l/+exeeVCZGlYuYelaOdfa4/WZ8RxflwQW+DWgw
+        ==
+X-ME-Sender: <xms:79t6X1SxatzoAeg6XUQsD3w1TUkBPphOEZfPWD2YJqglK55nKlVhEw>
+    <xme:79t6X-wUJU6yCtdwA5tas6Gnjwk96COOpIg2NYAJ0-3hUE4qW3-UZls_ZrHbx8ao7
+    51wRiWi2-wSTTT75Bg>
+X-ME-Proxy-Cause: gggruggvucftvghtrhhoucdtuddrgedujedrgedvgddtkecutefuodetggdotefrodftvf
+    curfhrohhfihhlvgemucfhrghsthforghilhdpqfgfvfdpuffrtefokffrpgfnqfghnecu
+    uegrihhlohhuthemuceftddtnecusecvtfgvtghiphhivghnthhsucdlqddutddtmdenuc
+    fjughrpeffhffvuffkfhggtggujgesghdtreertddtvdenucfhrhhomhepofgrgihimhgv
+    ucftihhprghrugcuoehmrgigihhmvgestggvrhhnohdrthgvtghhqeenucggtffrrghtth
+    gvrhhnpeelkeeghefhuddtleejgfeljeffheffgfeijefhgfeufefhtdevteegheeiheeg
+    udenucfkphepledtrdekledrieekrdejieenucevlhhushhtvghrufhiiigvpedtnecurf
+    grrhgrmhepmhgrihhlfhhrohhmpehmrgigihhmvgestggvrhhnohdrthgvtghh
+X-ME-Proxy: <xmx:79t6X61Ihn82ejYMDMF1UMoaYXDSuOc-joH5PVN1NPastwT9JegY5g>
+    <xmx:79t6X9DL1ztmD654-sNP8SMt-HOvECPQK0_TSPDyfvzKiJHd5qSbNQ>
+    <xmx:79t6X-hrAtyRRvymEaTkS23wZ-4iv9s3cVQrD0rDCTqwWUu45eIkpg>
+    <xmx:8dt6X-74fpOHJB-sg4Wcl5A56NWIAR4QD7s0bmWZ9SCDRUn100cd9g>
+Received: from localhost (lfbn-tou-1-1502-76.w90-89.abo.wanadoo.fr [90.89.68.76])
+        by mail.messagingengine.com (Postfix) with ESMTPA id 7472F3280063;
+        Mon,  5 Oct 2020 04:40:15 -0400 (EDT)
+Date:   Mon, 5 Oct 2020 10:40:13 +0200
+From:   Maxime Ripard <maxime@cerno.tech>
 To:     Rob Herring <robh@kernel.org>
-Cc:     DTML <devicetree@vger.kernel.org>,
-        Linux Kernel Mailing List <linux-kernel@vger.kernel.org>,
-        Thierry Reding <thierry.reding@gmail.com>,
-        Linus Walleij <linus.walleij@linaro.org>,
-        Stephen Boyd <sboyd@kernel.org>,
-        Shawn Guo <shawnguo@kernel.org>,
-        Bjorn Andersson <bjorn.andersson@linaro.org>,
-        Baolin Wang <baolin.wang7@gmail.com>,
-        Guenter Roeck <linux@roeck-us.net>,
-        Jonathan Cameron <jic23@kernel.org>,
-        Mauro Carvalho Chehab <mchehab@kernel.org>,
-        Laurent Pinchart <laurent.pinchart+renesas@ideasonboard.com>,
-        Lee Jones <lee.jones@linaro.org>,
-        "David S. Miller" <davem@davemloft.net>,
-        Bjorn Helgaas <bhelgaas@google.com>,
-        Vinod Koul <vkoul@kernel.org>,
-        Liam Girdwood <lgirdwood@gmail.com>,
-        Mark Brown <broonie@kernel.org>,
-        Greg Kroah-Hartman <gregkh@linuxfoundation.org>,
-        Daniel Lezcano <daniel.lezcano@linaro.org>,
-        linux-clk <linux-clk@vger.kernel.org>,
-        dri-devel <dri-devel@lists.freedesktop.org>,
-        linux-spi@vger.kernel.org,
-        "open list:GPIO SUBSYSTEM" <linux-gpio@vger.kernel.org>,
-        linux-hwmon@vger.kernel.org, linux-iio@vger.kernel.org,
-        openipmi-developer@lists.sourceforge.net,
-        linux-leds@vger.kernel.org,
-        Linux Media Mailing List <linux-media@vger.kernel.org>,
-        "open list:ARM/Rockchip SoC..." <linux-rockchip@lists.infradead.org>,
-        linux-stm32@st-md-mailman.stormreply.com,
-        linux-mips@vger.kernel.org,
-        "linux-mmc@vger.kernel.org" <linux-mmc@vger.kernel.org>,
-        netdev <netdev@vger.kernel.org>,
-        Linux PCI <linux-pci@vger.kernel.org>,
-        Linux PM <linux-pm@vger.kernel.org>,
-        linux-remoteproc@vger.kernel.org, linux-serial@vger.kernel.org,
-        alsa-devel@alsa-project.org,
-        Linux USB List <linux-usb@vger.kernel.org>
-Content-Type: text/plain; charset="UTF-8"
+Cc:     devicetree@vger.kernel.org, dri-devel@lists.freedesktop.org,
+        linux-kernel@vger.kernel.org, Chen-Yu Tsai <wens@csie.org>,
+        Eric Anholt <eric@anholt.net>,
+        Nicolas Saenz Julienne <nsaenzjulienne@suse.de>,
+        Florian Fainelli <f.fainelli@gmail.com>,
+        Ray Jui <rjui@broadcom.com>,
+        Scott Branden <sbranden@broadcom.com>,
+        bcm-kernel-feedback-list@broadcom.com,
+        Maxime Coquelin <mcoquelin.stm32@gmail.com>,
+        Alexandre Torgue <alexandre.torgue@st.com>,
+        Guido =?utf-8?Q?G=C3=BAnther?= <agx@sigxcpu.org>,
+        Robert Chiras <robert.chiras@nxp.com>,
+        Philippe Cornu <philippe.cornu@st.com>,
+        Yannick Fertre <yannick.fertre@st.com>
+Subject: Re: [PATCH] dt-bindings: display: Add dsi-controller.yaml in DSI
+ controller schemas
+Message-ID: <20201005084013.loixl65nnvf4jl6f@gilmour.lan>
+References: <20201002225924.3513700-1-robh@kernel.org>
+MIME-Version: 1.0
+Content-Type: multipart/signed; micalg=pgp-sha256;
+        protocol="application/pgp-signature"; boundary="i7kn4kgfo2uw7qjo"
+Content-Disposition: inline
+In-Reply-To: <20201002225924.3513700-1-robh@kernel.org>
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-On Sat, 3 Oct 2020 at 01:41, Rob Herring <robh@kernel.org> wrote:
->
-> Another round of wack-a-mole. The json-schema default is additional
-> unknown properties are allowed, but for DT all properties should be
-> defined.
->
-> Cc: Thierry Reding <thierry.reding@gmail.com>
-> Cc: Linus Walleij <linus.walleij@linaro.org>
-> Cc: Stephen Boyd <sboyd@kernel.org>
-> Cc: Shawn Guo <shawnguo@kernel.org>
-> Cc: Bjorn Andersson <bjorn.andersson@linaro.org>
-> Cc: Baolin Wang <baolin.wang7@gmail.com>
-> Cc: Guenter Roeck <linux@roeck-us.net>
-> Cc: Jonathan Cameron <jic23@kernel.org>
-> Cc: Mauro Carvalho Chehab <mchehab@kernel.org>
-> Cc: Laurent Pinchart <laurent.pinchart+renesas@ideasonboard.com>
-> Cc: Lee Jones <lee.jones@linaro.org>
-> Cc: Ulf Hansson <ulf.hansson@linaro.org>
-> Cc: "David S. Miller" <davem@davemloft.net>
-> Cc: Bjorn Helgaas <bhelgaas@google.com>
-> Cc: Vinod Koul <vkoul@kernel.org>
-> Cc: Liam Girdwood <lgirdwood@gmail.com>
-> Cc: Mark Brown <broonie@kernel.org>
-> Cc: Greg Kroah-Hartman <gregkh@linuxfoundation.org>
-> Cc: Daniel Lezcano <daniel.lezcano@linaro.org>
-> Cc: linux-clk@vger.kernel.org
-> Cc: dri-devel@lists.freedesktop.org
-> Cc: linux-spi@vger.kernel.org
-> Cc: linux-gpio@vger.kernel.org
-> Cc: linux-hwmon@vger.kernel.org
-> Cc: linux-iio@vger.kernel.org
-> Cc: openipmi-developer@lists.sourceforge.net
-> Cc: linux-leds@vger.kernel.org
-> Cc: linux-media@vger.kernel.org
-> Cc: linux-rockchip@lists.infradead.org
-> Cc: linux-stm32@st-md-mailman.stormreply.com
-> Cc: linux-mips@vger.kernel.org
-> Cc: linux-mmc@vger.kernel.org
-> Cc: netdev@vger.kernel.org
-> Cc: linux-pci@vger.kernel.org
-> Cc: linux-pm@vger.kernel.org
-> Cc: linux-remoteproc@vger.kernel.org
-> Cc: linux-serial@vger.kernel.org
-> Cc: alsa-devel@alsa-project.org
-> Cc: linux-usb@vger.kernel.org
-> Signed-off-by: Rob Herring <robh@kernel.org>
-> ---
->
-> I'll take this thru the DT tree.
->
 
-[...]
+--i7kn4kgfo2uw7qjo
+Content-Type: text/plain; charset=us-ascii
+Content-Disposition: inline
+Content-Transfer-Encoding: quoted-printable
 
->  .../bindings/mmc/mmc-pwrseq-emmc.yaml         |  2 ++
->  .../bindings/mmc/mmc-pwrseq-sd8787.yaml       |  2 ++
->  .../bindings/mmc/mmc-pwrseq-simple.yaml       |  2 ++
+On Fri, Oct 02, 2020 at 05:59:24PM -0500, Rob Herring wrote:
+> Some DSI controllers are missing a reference to the recently added
+> dsi-controller.yaml schema. Add it and we can drop the duplicate parts.
+>=20
+> Cc: Maxime Ripard <mripard@kernel.org>
 
-Acked-by: Ulf Hansson <ulf.hansson@linaro.org>
+Acked-by: Maxime Ripard <mripard@kernel.org>
 
-Kind regards
-Uffe
+Thanks!
+Maxime
+
+--i7kn4kgfo2uw7qjo
+Content-Type: application/pgp-signature; name="signature.asc"
+
+-----BEGIN PGP SIGNATURE-----
+
+iHUEABYIAB0WIQRcEzekXsqa64kGDp7j7w1vZxhRxQUCX3rb7QAKCRDj7w1vZxhR
+xTXCAP4vKIeUVcYrqfw55zeSps3KKtkhsNvW+sK9F9gjf7jBxQD/UMFRpPlAiasU
+MZTKaNAUJFV3UdU3iJE6ZjtiyfEQxgQ=
+=+3oG
+-----END PGP SIGNATURE-----
+
+--i7kn4kgfo2uw7qjo--
