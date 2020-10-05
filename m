@@ -2,137 +2,170 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from vger.kernel.org (vger.kernel.org [23.128.96.18])
-	by mail.lfdr.de (Postfix) with ESMTP id 64FED28328D
-	for <lists+devicetree@lfdr.de>; Mon,  5 Oct 2020 10:51:01 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTP id 80056283293
+	for <lists+devicetree@lfdr.de>; Mon,  5 Oct 2020 10:52:33 +0200 (CEST)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S1725981AbgJEIvA (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Mon, 5 Oct 2020 04:51:00 -0400
-Received: from mga11.intel.com ([192.55.52.93]:21822 "EHLO mga11.intel.com"
-        rhost-flags-OK-OK-OK-OK) by vger.kernel.org with ESMTP
-        id S1725943AbgJEIvA (ORCPT <rfc822;devicetree@vger.kernel.org>);
-        Mon, 5 Oct 2020 04:51:00 -0400
-IronPort-SDR: z+Fx/dibISAEjPm5kj+GmNz2Z0J/utniesi2n9H3YM+7tsAM9J68MGo9Y41qBy88fXdt1eE59l
- IWiSyPISO9gQ==
-X-IronPort-AV: E=McAfee;i="6000,8403,9764"; a="160664693"
-X-IronPort-AV: E=Sophos;i="5.77,338,1596524400"; 
-   d="scan'208";a="160664693"
-X-Amp-Result: SKIPPED(no attachment in message)
-X-Amp-File-Uploaded: False
-Received: from fmsmga006.fm.intel.com ([10.253.24.20])
-  by fmsmga102.fm.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384; 05 Oct 2020 01:50:55 -0700
-IronPort-SDR: /rXJ0NVdpl3wjhvBXnEay4keEDbVBuVrYjAbwSw6Ra1x0d9MeoAf14Zp07zBChmqgF8/r7UYtf
- nc9IFqwaYNlA==
-X-ExtLoop1: 1
-X-IronPort-AV: E=Sophos;i="5.77,338,1596524400"; 
-   d="scan'208";a="515923347"
-Received: from linux.intel.com ([10.54.29.200])
-  by fmsmga006.fm.intel.com with ESMTP; 05 Oct 2020 01:50:55 -0700
-Received: from [10.214.146.139] (rtanwar-MOBL.gar.corp.intel.com [10.214.146.139])
-        by linux.intel.com (Postfix) with ESMTP id 2C38558088D;
-        Mon,  5 Oct 2020 01:50:51 -0700 (PDT)
-Subject: Re: [PATCH v4 2/2] Add hardware monitoring driver for Moortec MR75203
- PVT controller
-To:     Andy Shevchenko <andriy.shevchenko@intel.com>
-Cc:     jdelvare@suse.com, linux@roeck-us.net, p.zabel@pengutronix.de,
-        linux-hwmon@vger.kernel.org, robh+dt@kernel.org,
-        linux-kernel@vger.kernel.org, devicetree@vger.kernel.org,
-        songjun.Wu@intel.com, cheol.yong.kim@intel.com,
-        qi-ming.wu@intel.com, rtanwar@maxlinear.com
-References: <cover.1601621983.git.rahul.tanwar@linux.intel.com>
- <e8c462ffc826d06c108aac45f8476083097cfa55.1601621983.git.rahul.tanwar@linux.intel.com>
- <20201002181135.GI3956970@smile.fi.intel.com>
-From:   "Tanwar, Rahul" <rahul.tanwar@linux.intel.com>
-Message-ID: <f224391a-2e51-ec37-7045-4a16f04b5384@linux.intel.com>
-Date:   Mon, 5 Oct 2020 16:50:50 +0800
-User-Agent: Mozilla/5.0 (Windows NT 10.0; WOW64; rv:68.0) Gecko/20100101
- Thunderbird/68.12.1
+        id S1725891AbgJEIwc (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Mon, 5 Oct 2020 04:52:32 -0400
+Received: from lindbergh.monkeyblade.net ([23.128.96.19]:43692 "EHLO
+        lindbergh.monkeyblade.net" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
+        with ESMTP id S1725887AbgJEIwc (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Mon, 5 Oct 2020 04:52:32 -0400
+Received: from bhuna.collabora.co.uk (bhuna.collabora.co.uk [IPv6:2a00:1098:0:82:1000:25:2eeb:e3e3])
+        by lindbergh.monkeyblade.net (Postfix) with ESMTPS id 658D6C0613CE
+        for <devicetree@vger.kernel.org>; Mon,  5 Oct 2020 01:52:31 -0700 (PDT)
+Received: from [127.0.0.1] (localhost [127.0.0.1])
+        (Authenticated sender: eballetbo)
+        with ESMTPSA id 604C529A028
+Subject: Re: [PATCH 1/3] dt-bindings: i2c: convert i2c-cros-ec-tunnel to
+ json-schema
+To:     =?UTF-8?Q?Ricardo_Ca=c3=b1uelo?= <ricardo.canuelo@collabora.com>,
+        robh@kernel.org
+Cc:     kernel@collabora.com, bleung@chromium.org, groeck@chromium.org,
+        sjg@chromium.org, dianders@chromium.org, devicetree@vger.kernel.org
+References: <20201005071403.17450-1-ricardo.canuelo@collabora.com>
+ <20201005071403.17450-2-ricardo.canuelo@collabora.com>
+From:   Enric Balletbo i Serra <enric.balletbo@collabora.com>
+Message-ID: <19e0e78e-f490-8bcb-cfdb-338a577b2205@collabora.com>
+Date:   Mon, 5 Oct 2020 10:52:26 +0200
+User-Agent: Mozilla/5.0 (X11; Linux x86_64; rv:68.0) Gecko/20100101
+ Thunderbird/68.12.0
 MIME-Version: 1.0
-In-Reply-To: <20201002181135.GI3956970@smile.fi.intel.com>
+In-Reply-To: <20201005071403.17450-2-ricardo.canuelo@collabora.com>
 Content-Type: text/plain; charset=utf-8
-Content-Transfer-Encoding: 7bit
 Content-Language: en-US
+Content-Transfer-Encoding: 8bit
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
+Hi Ricardo,
 
-Hi Andy
+Many thanks to work on this. Just a few comment below.
 
-On 3/10/2020 2:11 am, Andy Shevchenko wrote:
-> On Fri, Oct 02, 2020 at 03:04:27PM +0800, Rahul Tanwar wrote:
->> PVT controller (MR75203) is used to configure & control
->> Moortec embedded analog IP which contains temprature
->> sensor(TS), voltage monitor(VM) & process detector(PD)
->> modules. Add hardware monitoring driver to support
->> MR75203 PVT controller.
-> Some nit-picks below.
-> Reviewed-by: Andy Shevchenko <andriy.shevchenko@intel.com>
->
->> Signed-off-by: Rahul Tanwar <rahul.tanwar@linux.intel.com>
->> ---
->>  drivers/hwmon/Kconfig   |  10 +
->>  drivers/hwmon/Makefile  |   1 +
->>  drivers/hwmon/mr75203.c | 651 ++++++++++++++++++++++++++++++++++++++++++++++++
->>  3 files changed, 662 insertions(+)
->>  create mode 100644 drivers/hwmon/mr75203.c
+On 5/10/20 9:14, Ricardo Cañuelo wrote:
+> Convert the google,cros-ec-i2c-tunnel binding to YAML.
+> 
+> Signed-off-by: Ricardo Cañuelo <ricardo.canuelo@collabora.com>
+> ---
+>  .../i2c/google,cros-ec-i2c-tunnel.yaml        | 56 +++++++++++++++++++
+>  .../bindings/i2c/i2c-cros-ec-tunnel.txt       | 39 -------------
+>  2 files changed, 56 insertions(+), 39 deletions(-)
+>  create mode 100644 Documentation/devicetree/bindings/i2c/google,cros-ec-i2c-tunnel.yaml
+>  delete mode 100644 Documentation/devicetree/bindings/i2c/i2c-cros-ec-tunnel.txt
+> 
+> diff --git a/Documentation/devicetree/bindings/i2c/google,cros-ec-i2c-tunnel.yaml b/Documentation/devicetree/bindings/i2c/google,cros-ec-i2c-tunnel.yaml
+> new file mode 100644
+> index 000000000000..905dbc788dc0
+> --- /dev/null
+> +++ b/Documentation/devicetree/bindings/i2c/google,cros-ec-i2c-tunnel.yaml
+> @@ -0,0 +1,56 @@
+> +# SPDX-License-Identifier: (GPL-2.0 OR BSD-2-Clause)
+> +%YAML 1.2
+> +---
+> +
+> +$id: http://devicetree.org/schemas/i2c/google,cros-ec-i2c-tunnel.yaml#
+> +$schema: http://devicetree.org/meta-schemas/core.yaml#
+> +
+> +title: I2C bus that tunnels through the ChromeOS EC (cros-ec)
+> +
+> +maintainers:
+> +  - Doug Anderson <dianders@chromium.org>
+> +  - Benson Leung <bleung@chromium.org>
+> +  - Enric Balletbo i Serra <enric.balletbo@collabora.com>
+> +
+> +description: |
+> +  On some ChromeOS board designs we've got a connection to the EC
+> +  (embedded controller) but no direct connection to some devices on the
+> +  other side of the EC (like a battery and PMIC).  To get access to
+> +  those devices we need to tunnel our i2c commands through the EC.
+> +
+> +  The node for this device should be under a cros-ec node like
+> +  google,cros-ec-spi or google,cros-ec-i2c.
+> +
+> +properties:
+> +  compatible:
+> +    const: google,cros-ec-i2c-tunnel
+> +
+> +  google,remote-bus:
+> +    description: The EC bus we'd like to talk to.
+> +    $ref: /schemas/types.yaml#/definitions/uint32
+> +
+> +required:
+> +  - compatible
+> +  - google,remote-bus
+> +
+> +unevaluatedProperties: false
+> +
+> +examples:
+> +  - |
+> +    cros-ec {
 
-[...]
+We try to use always a complete example, and I think that, Rob also prefers
+complete examples, so here you are missing the spi node.
 
->> +		pvt_temp.config = temp_config;
->> +
->> +		pvt_info[index++] = &pvt_temp;
->> +	}
->> +
->> +	if (pd_num) {
->> +		ret = pvt_get_regmap(pdev, "pd", pvt);
->> +		if (ret)
->> +			return ret;
->> +	}
->> +
->> +	if (vm_num) {
->> +		u32 num = vm_num;
->> +
->> +		ret = pvt_get_regmap(pdev, "vm", pvt);
->> +		if (ret)
->> +			return ret;
->> +
->> +		pvt->vm_idx = devm_kcalloc(dev, vm_num, sizeof(*pvt->vm_idx),
->> +					   GFP_KERNEL);
->> +		if (!pvt->vm_idx)
->> +			return -ENOMEM;
->> +		for (i = 0; i < vm_num; i++)
->> +			pvt->vm_idx[i] = i;
-> What the point if you are replace them below in one case?
->
->> +		ret = device_property_read_u8_array(dev, "intel,vm-map",
->> +						    pvt->vm_idx, vm_num);
->> +		if (!ret)
-> Misses {} and because of above
->
-> 	if (ret) {
-> 		for () ...
-> 	} else {
-> 		for () ...
-> 	}
->
->> +			for (i = 0; i < vm_num; i++)
->> +				if (pvt->vm_idx[i] >= vm_num ||
->> +				    pvt->vm_idx[i] == 0xff) {
->> +					num = i;
->> +					break;
->> +				}
-> Or looking in this, perhaps move the incremental for-loop here and start it
-> with num which is 0.
+> +        compatible = "google,cros-ec-spi";
 
-Not able to understand what exactly you are suggesting here. Presently
-it is like below:
-1. Init vm_idx array with incremental values.
-2. Read array from device property.
-3. If success, figure out the last valid value and assign to num.
+And, at least, should have a reg. Did not give you an error?
 
-Can you please elaborate and explain more clearly? Thanks.
-
-Regards,
-Rahul
-
-
+> +
+> +        i2c-tunnel {
+> +            compatible = "google,cros-ec-i2c-tunnel";
+> +            #address-cells = <1>;
+> +            #size-cells = <0>;
+> +
+> +            google,remote-bus = <0>;
+> +
+> +            battery: sbs-battery@b {
+> +                compatible = "sbs,sbs-battery";
+> +                reg = <0xb>;
+> +                sbs,poll-retry-count = <1>;
+> +            };
+> +        };
+> +    };
+> diff --git a/Documentation/devicetree/bindings/i2c/i2c-cros-ec-tunnel.txt b/Documentation/devicetree/bindings/i2c/i2c-cros-ec-tunnel.txt
+> deleted file mode 100644
+> index 898f030eba62..000000000000
+> --- a/Documentation/devicetree/bindings/i2c/i2c-cros-ec-tunnel.txt
+> +++ /dev/null
+> @@ -1,39 +0,0 @@
+> -I2C bus that tunnels through the ChromeOS EC (cros-ec)
+> -======================================================
+> -On some ChromeOS board designs we've got a connection to the EC (embedded
+> -controller) but no direct connection to some devices on the other side of
+> -the EC (like a battery and PMIC).  To get access to those devices we need
+> -to tunnel our i2c commands through the EC.
+> -
+> -The node for this device should be under a cros-ec node like google,cros-ec-spi
+> -or google,cros-ec-i2c.
+> -
+> -
+> -Required properties:
+> -- compatible: google,cros-ec-i2c-tunnel
+> -- google,remote-bus: The EC bus we'd like to talk to.
+> -
+> -Optional child nodes:
+> -- One node per I2C device connected to the tunnelled I2C bus.
+> -
+> -
+> -Example:
+> -	cros-ec@0 {
+> -		compatible = "google,cros-ec-spi";
+> -
+> -		...
+> -
+> -		i2c-tunnel {
+> -			compatible = "google,cros-ec-i2c-tunnel";
+> -			#address-cells = <1>;
+> -			#size-cells = <0>;
+> -
+> -			google,remote-bus = <0>;
+> -
+> -			battery: sbs-battery@b {
+> -				compatible = "sbs,sbs-battery";
+> -				reg = <0xb>;
+> -				sbs,poll-retry-count = <1>;
+> -			};
+> -		};
+> -	}
+> 
